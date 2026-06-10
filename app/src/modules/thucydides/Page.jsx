@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, CrossLinks } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 
 // ============================================================================
@@ -118,6 +118,11 @@ export default function Page() {
           <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>现实主义</span>（尤其米尔斯海默）读出「<strong style={{ color: 'var(--china-red)' }}>中国不能和平崛起</strong>」——结构决定悲剧。修昔底德陷阱共享同一结构起点，却给出不同结论：实力转移制造的是<strong style={{ color: 'var(--text-primary)' }}>高危「窗口」而非必然战争</strong>，四条路径与政治家的选择能改写结局。两者对照，恰是「<strong style={{ color: 'var(--text-primary)' }}>结构约束</strong>」与「<strong style={{ color: '#10b981' }}>能动空间</strong>」之争。
         </p>
       </Card>
+      <CrossLinks className="mt-6" links={[
+        { to: '/diplomacy', label: '外交全局框架盘', note: '把「实力转移窗口」落到中美竞合管控的实际矢量与指标盘。' },
+        { to: '/straits', label: '台海局势', note: '最可能的「燧石」触发点——结构高危叠加擦枪走火风险。' },
+        { to: '/military', label: '军事现代化', note: '崛起国军力曲线斜率，正是守成国「预防性焦虑」的来源。' },
+      ]} />
       <p className="text-xs mt-6" style={{ color: 'var(--text-tertiary)' }}>本模块为思想工具，实力曲线与危险度为示意（非预测），用于结构化推演而非实证测量。</p>
     </div>
   );

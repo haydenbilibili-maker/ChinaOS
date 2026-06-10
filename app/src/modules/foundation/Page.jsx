@@ -4,7 +4,7 @@ import EChart from '../../lib/viz/EChart.jsx';
 import * as DB from '../../lib/db/localdb.js';
 import { parseCSV, parseJSON, parseFigure, parseManyFigures } from '../../lib/db/parse.js';
 import { STOCK_CATALOG } from '../../lib/db/stock.js';
-import { FIGURE_SEED } from '../../lib/db/figureSeed.js';
+import { FIGURE_SEED, FIGURE_CATALOG_META } from '../../lib/db/figureSeed.js';
 
 const TABS = [
   ['overview', '总览'], ['datasets', '数据集'], ['upload', '上传导入'],
@@ -364,15 +364,24 @@ function Figures({ figures, refresh, flash }) {
       setBulk(''); await refresh(); flash(`批量导入 ${recs.length} 条简历`);
     } catch (e) { flash('批量解析失败：' + e.message); }
   };
-  const loadSeed = async () => { let ts = Date.now(); for (const r of FIGURE_SEED) await DB.putFigure({ ...r, updatedAt: ts++ }); await refresh(); flash(`已载入公开样本 ${FIGURE_SEED.length} 条`); };
+  const loadSeed = async (replace = false) => {
+    if (replace && figures.length && !window.confirm(`将覆盖/更新 ${FIGURE_SEED.length} 条省部级公开履历（${FIGURE_CATALOG_META.asOf}），继续？`)) return;
+    let ts = Date.now();
+    for (const r of FIGURE_SEED) await DB.putFigure({ ...r, updatedAt: ts++ });
+    await refresh();
+    flash(`已载入 ${FIGURE_CATALOG_META.label}：${FIGURE_SEED.length} 条（截至 ${FIGURE_CATALOG_META.asOf}）`);
+  };
   return (
     <div>
       <Card title="批量导入 · 从权威来源整段粘贴（多条简历）" className="mb-4">
-        <p className="text-[11px] mb-2" style={{ color: 'var(--text-tertiary)' }}>支持：多条简历以空行或「---」分隔、每行一条 JSON(JSONL)、或 JSON 数组。自动按省份关键词关联。来源建议：人民网领导人资料库 / 维基百科党和国家领导人等公开履历（仅录公开任职）。</p>
+        <p className="text-[11px] mb-2" style={{ color: 'var(--text-tertiary)' }}>
+          支持：多条简历以空行或「---」分隔、每行一条 JSON(JSONL)、或 JSON 数组。自动按省份关键词关联。
+          内置数据集：{FIGURE_CATALOG_META.label}（{FIGURE_SEED.length} 条）· 来源 {FIGURE_CATALOG_META.sources.join(' / ')}。
+        </p>
         <textarea value={bulk} onChange={(e) => setBulk(e.target.value)} placeholder={'姓名：张三\n现任：XX省委书记\n2020— 任XX省委书记\n---\n姓名：李四\n现任：XX省省长\n2021— 任XX省省长'} style={{ ...inp, height: 120, fontFamily: 'monospace', resize: 'vertical', width: '100%' }} />
         <div className="flex gap-2 mt-2 flex-wrap">
           <button onClick={doBulk} style={{ ...btn(true), padding: '6px 16px', fontSize: 13 }}>批量解析导入</button>
-          <button onClick={loadSeed} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: 'var(--cyber-cyan)' }}>载入公开样本（{FIGURE_SEED.length} 条）</button>
+          <button onClick={() => loadSeed(true)} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: 'var(--cyber-cyan)' }}>载入省部级履历（{FIGURE_SEED.length} 条 · {FIGURE_CATALOG_META.asOf}）</button>
         </div>
       </Card>
     <Grid cols={2}>

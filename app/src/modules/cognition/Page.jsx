@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, CrossLinks } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 
 // ============================================================================
@@ -155,6 +155,11 @@ export default function Page() {
           边界：长波周期是否客观存在、相位如何划分，学界仍有争议（驱动机制、起止年份、是否被政策熨平均存分歧）。本页为分析框架与思想工具，结合各业务模块的实证数据使用，不构成投资建议。起止年份与相位为学界常见区间的示意标注。
         </p>
       </Card>
+      <CrossLinks className="mt-6" links={[
+        { to: '/techtree', label: '科技树', note: '第六波（AI/聚变/生物）的主导技术群，正是长波回升期的赌注。' },
+        { to: '/semiconductor', label: '半导体', note: '卡脖子环节即长波切换的咽喉——错过窗口就是一代人的落后。' },
+        { to: '/energy', label: '能源系统', note: '每轮长波都由一次能源—动力革命点火，本轮看新能源与聚变。' },
+      ]} />
     </div>
   );
 }

@@ -1,13 +1,26 @@
 import React, { useState } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import EChart from '../../lib/viz/EChart.jsx';
 
 // ============================================================================
-// 文明透视 · 12 卷源代码（现存 9 卷，卷一/九/十待建）
+// 文明透视 · 12 卷源代码（全 12 卷已建）
 // 内容迁自根目录 civilization-*.html 独立报告（原文保留，可外链全文阅读）
 // 文明 OS 栈隐喻：自下而上 物理底座→宇宙观→内核→源代码→减震器→硬件→心理补丁→非正式层→财富闭环
+// 卷一为总纲（内核引导）；卷九强制层、卷十交换层补齐全栈
 // ============================================================================
 
 const VOLUMES = {
+  v1: {
+    num: '卷一', title: '总纲 · 文明操作系统总论', role: 'L9 总纲 · 内核引导', color: '#f43f5e',
+    file: '',
+    thesis: '把全栈串成一部总论：文明不是观念的随机堆叠，而是一套可分层调试的操作系统——自下而上从地理物理底座（L0），经宇宙观（L1）、法家内核（L2）、儒家源代码（L3）、道家减震器（L4）、汉字科举硬件（L5）、佛学心理补丁（L6）、人情非正式层（L7），直到盐铁财富闭环（L8）。本卷提供「引导扇区」：读懂层间调用关系，方能理解今日制度与心理为何如此配置（思想史隐喻，非历史决定论）。',
+    sections: [
+      ['一 · 分层调试观：从物理到财富', '每一层解决上一层无法解决的问题：地理倒逼集权（L0→L2），集权需要软黏合（L2→L3），紧绷系统需要减震（L3→L4），广域整合需要标准化硬件（L5），意义溢出需要心理补丁（L6）。栈是历史试错的沉积，而非顶层设计。'],
+      ['二 · 内核引导顺序：外儒内法剂之以道', '系统启动的核心三件套——法家供强制内核、儒家供合法性源代码、道家供异常恢复。三者非并列而是分时调度：顺境儒法扩张、逆境切道家熬冬，构成两千年「治—乱」周期的调度算法。'],
+      ['三 · 层间耦合与超稳定', '汉字—科举（L5）把精英思想入口收敛到同一轨道，与法家内核（L2）形成超稳定锁定：高整合、低方差，这既是文明延续之因，也是李约瑟难题之果——稳定与创新的根本权衡。'],
+      ['四 · 总纲的现代读法', '改革开放可读作一次「重启进入安全模式」（道家无为）后逐步加载各层；当代「集中力量办大事」「编制执念」「混合所有制」皆是旧栈在新硬件上的重新加载。本卷是其余十一卷的目录与调用图。'],
+    ],
+  },
   v11: {
     num: '卷十一', title: '地理宿命与天下观', role: 'L0 物理底座', color: '#64748b',
     file: 'civilization-geography-destiny-tianxia.html',
@@ -107,11 +120,63 @@ const VOLUMES = {
       ['四 · 终极财富闭环', '经商致富→购地置产→供子读书→入仕为官：财富必须经由土地与功名「洗白」并接入权力，构成中国人的终极财富闭环；其现代映射可与金融、民营经济专题对照阅读。'],
     ],
   },
+  v9: {
+    num: '卷九', title: '暴力与军事组织 · 枪杆子的文明逻辑', role: 'L2b 强制层 · 暴力垄断', color: '#991b1b',
+    file: '',
+    thesis: '法家内核（L2）的合法性最终落实在对暴力的垄断之上。「枪杆子里面出政权」不是现代口号，而是贯穿两千年的结构常量：谁能稳定地组织、供养并控制武装，谁就握有真正的内核权限。本卷处理暴力如何被收编、外包又再收编——以及它为何总是文明栈中最危险的一层（思想史隐喻，非军事史实证）。',
+    sections: [
+      ['一 · 暴力的垄断：从封建私兵到国家常备', '春秋贵族私兵割据 → 秦以「编户齐民」直接征兵、剥夺地方武装权 → 国家成为暴力的唯一合法供应商。暴力一旦私有化（藩镇、军阀），即触发系统崩溃与改朝换代。'],
+      ['二 · 府兵与募兵：成本与忠诚的两难', '府兵制（兵农合一、寓兵于农）低成本但战力随土地兼并瓦解；募兵制（职业军人）战力强但财政沉重且易生骄兵。两套调度方案的反复切换，是历代财政—军事张力的核心。'],
+      ['三 · 军功爵：暴力的激励工程', '商鞅军功爵把杀敌与土地、爵位直接挂钩，将暴力转化为可计量、可兑付的国家 KPI——平民凭斩首逆袭，贵族世袭被打破。这是法家内核最锋利的动员接口（参见卷二秦制）。'],
+      ['四 · 党指挥枪：暴力的再政治化', '近现代的关键制度创新，是把军队从「将领私属/职业雇佣」重新收归政治组织的绝对领导——「党指挥枪」确保暴力服从政治内核而非个人或财阀。可与卷二法家内核、卷十二国家命脉垄断对照阅读：强制层始终是大一统的最后地基。'],
+    ],
+  },
+  v10: {
+    num: '卷十', title: '商业伦理与市场 · 士农工商', role: 'L8b 交换层 · 重义轻利', color: '#b45309',
+    file: '',
+    thesis: '为何中国早有发达的市场与商人，却始终未让商人阶层登上权力顶端？因为在这套栈里，市场是被允许的「交换层」，却被儒家义利之辨与抑商传统反复设限。本卷处理交换的伦理边界：财富可以积累，但「言利」必须被道德话语包裹，资本的政治天花板由此而生（思想史隐喻，非经济史实证）。',
+    sections: [
+      ['一 · 士农工商：抑商的等级编码', '四民秩序把商人排在末位——并非商业不重要，而是要防止流动的资本侵蚀以土地与功名为锚的稳定秩序。重农抑商是对「交换层」越权的制度性防火墙。'],
+      ['二 · 义利之辨：被道德化的市场', '「君子喻于义，小人喻于利」「正其谊不谋其利」——逐利被置于道德审判之下。商人须以慈善、修桥铺路、捐纳功名等方式「赎买」言利之罪，市场行为被迫披上伦理外衣。'],
+      ['三 · 宗族微资本：被允许的毛细市场', '抑商抑的是「大商」对权力的威胁，而非小协作单元。嵌在儒家家本位中的宗族微型资本主义（参见卷十二）获得默许：家庭承担无限责任、高储蓄、代际积累，构成最有韧性的市场底盘。'],
+      ['四 · 双轨呼应：盐铁之上的交换层', '本卷与卷十二盐铁双轨互为表里：国家垄断命脉（盐铁）划定上限，义利之辨与抑商传统约束伦理，民间则在缝隙中极致内卷。今日「先富—共富」「企业家精神 vs 防止资本无序扩张」的张力，正是这套交换层伦理的现代回响。'],
+    ],
+  },
 };
 
-// 文明栈：自下而上的层序
-const STACK_ORDER = ['v11', 'v7', 'v2', 'v4', 'v3', 'v5', 'v6', 'v8', 'v12'];
-const PLANNED = ['卷一 · 总论（待建）', '卷九 · 待建', '卷十 · 待建'];
+// 文明栈：自下而上的层序（卷一总纲置顶为内核引导）
+const STACK_ORDER = ['v11', 'v7', 'v2', 'v9', 'v4', 'v3', 'v5', 'v6', 'v8', 'v12', 'v10', 'v1'];
+
+// 中西文明 OS 对照维度（思想史理想型，非实证）
+const COMPARE_DIMS = [
+  { name: '个体 / 集体', max: 100 },
+  { name: '超越性来源', max: 100 },
+  { name: '权力合法性', max: 100 },
+  { name: '变革方式', max: 100 },
+  { name: '商业地位', max: 100 },
+  { name: '法律 / 关系', max: 100 },
+];
+// 数值为「中华栈在该维度的相对取向」示意刻度（0=西方理想型一端，100=中华理想型一端）
+const COMPARE_TABLE = [
+  ['个体 / 集体', '个人主义 · 契约社会', '集体 / 关系 · 家国同构', 85],
+  ['超越性来源', '人格神 · 彼岸超越', '天命 · 祖先 · 现世内在', 80],
+  ['权力合法性', '神授君权 / 民约', '绩效合法性 · 敬天保民', 75],
+  ['变革方式', '革命 · 断裂 · 制度重设', '均值回归 · 治乱循环 · 改良', 70],
+  ['商业地位', '商人入主流 · 资本驱动', '士农工商 · 资本政治天花板', 88],
+  ['法律 / 关系', '成文法 · 罪感约束', '人情面子 · 耻感约束', 78],
+];
+const compareRadar = {
+  tooltip: {},
+  radar: { indicator: COMPARE_DIMS, axisName: { color: '#93a1b5', fontSize: 11 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.2)' } } },
+  legend: { data: ['中华文明栈', '西方文明栈（理想型）'], textStyle: { color: '#93a1b5' }, bottom: 0 },
+  series: [{
+    type: 'radar',
+    data: [
+      { value: COMPARE_TABLE.map((r) => r[3]), name: '中华文明栈', lineStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.16)' }, itemStyle: { color: '#c41e3a' } },
+      { value: COMPARE_TABLE.map((r) => 100 - r[3]), name: '西方文明栈（理想型）', lineStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.10)' }, itemStyle: { color: '#22d3ee' } },
+    ],
+  }],
+};
 
 export default function Page() {
   const [vol, setVol] = useState('v2');
@@ -121,14 +186,14 @@ export default function Page() {
       <PageHeader
         badge="Civilization Lens · 12 卷"
         title="文明透视 · 文明源代码"
-        subtitle="儒表 · 法里 · 道本 · 汉字—科举硬件 · 释学心理补丁 · 阴阳五行底层 · 地理物理底座 · 盐铁财富闭环 —— 从历史深层结构解读今日制度与心理"
+        subtitle="总纲引导 · 儒表 · 法里 · 道本 · 暴力强制层 · 汉字—科举硬件 · 释学心理补丁 · 阴阳五行底层 · 地理物理底座 · 盐铁财富闭环 · 义利交换层 —— 从历史深层结构解读今日制度与心理"
       />
-      <Card className="mb-6"><p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>与「深度透视」经济—地缘主线并列的文化战略长篇：把文明拆成一个可分层调试的操作系统——每一卷对应一层，自下而上从地理物理约束直到财富闭环。现存 9 卷（卷二—八、十一、十二），卷一/九/十待建。可与「意识形态与文化」「国家治理现代化」「权力逻辑」交叉阅读。</p></Card>
+      <Card className="mb-6"><p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>与「深度透视」经济—地缘主线并列的文化战略长篇：把文明拆成一个可分层调试的操作系统——每一卷对应一层，自下而上从地理物理约束直到财富闭环，并以卷一总纲串成引导扇区。12 卷已全部建成。可与「意识形态与文化」「国家治理现代化」「权力逻辑」交叉阅读。</p></Card>
       <Grid cols={4} className="mb-6">
-        <Stat value="9 / 12 卷" label="已建 / 规划" accent="#c41e3a" />
-        <Stat value="9 层" label="文明 OS 栈" accent="#22d3ee" />
+        <Stat value="12 / 12 卷" label="已建 / 规划" accent="#c41e3a" />
+        <Stat value="9 层 + 总纲" label="文明 OS 栈" accent="#22d3ee" />
         <Stat value="2000+ 年" label="时间纵深" accent="#e8a317" />
-        <Stat value="独立报告" label="每卷可全文阅读" accent="#10b981" />
+        <Stat value="中西对照" label="横向操作系统比较" accent="#10b981" />
       </Grid>
 
       <Grid cols={2} className="mb-6">
@@ -148,14 +213,16 @@ export default function Page() {
             })}
           </div>
           <div className="mt-3 pt-3" style={{ borderTop: '1px solid var(--border-subtle)' }}>
-            {PLANNED.map((p) => (<div key={p} className="text-[11px] mono py-0.5" style={{ color: 'var(--text-tertiary)' }}>// {p}</div>))}
+            <div className="text-[11px] mono py-0.5" style={{ color: 'var(--text-tertiary)' }}>// 12 卷全栈已就绪 · 点击任一层切换</div>
           </div>
         </Card>
 
         <Card title={`${v.num} · ${v.title}`}>
           <div className="flex items-center gap-2 mb-3">
             <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'var(--bg-elevated)', color: v.color }}>{v.role}</span>
-            <a href={`../${v.file}`} target="_blank" rel="noreferrer" className="text-[11px] mono" style={{ color: 'var(--cyber-cyan)' }}>→ 阅读本卷全文报告</a>
+            {v.file
+              ? <a href={`../${v.file}`} target="_blank" rel="noreferrer" className="text-[11px] mono" style={{ color: 'var(--cyber-cyan)' }}>→ 阅读本卷全文报告</a>
+              : <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>// 本卷内嵌 · 暂无外链全文</span>}
           </div>
           <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{v.thesis}</p>
         </Card>
@@ -165,6 +232,26 @@ export default function Page() {
         {v.sections.map(([t, d]) => (
           <Card key={t} title={t}><p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{d}</p></Card>
         ))}
+      </Grid>
+
+      <Grid cols={2} className="mb-6">
+        <Card title="中西文明操作系统对照 · 雷达（理想型 · 非实证）">
+          <EChart option={compareRadar} style={{ height: 300 }} />
+          <p className="text-[11px] mt-2 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>刻度向外（红）= 偏中华栈取向，向内反向（青）= 偏西方理想型；二者在每一维度互为镜像，仅作思想史对照，不代表优劣或精确测量。</p>
+        </Card>
+        <Card title="维度逐项对照表">
+          <div className="space-y-2">
+            {COMPARE_TABLE.map(([dim, west, china]) => (
+              <div key={dim} className="pb-2" style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+                <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>{dim}</div>
+                <div className="flex gap-2 text-[11px] leading-snug">
+                  <div className="flex-1" style={{ color: 'var(--cyber-cyan)' }}>西 · {west}</div>
+                  <div className="flex-1 text-right" style={{ color: 'var(--china-red)' }}>{china} · 华</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Card>
       </Grid>
 
       <Card title="叠读提示 · 文明栈与现实模块的接口">

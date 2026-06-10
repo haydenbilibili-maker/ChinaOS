@@ -1,6 +1,30 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // 共享 UI 原子：模块页统一用这些，保证视觉一致、避免各模块各写一套。
+
+// 横向互链：把抽象理论工具直接接到具体业务模块（反之亦然）。
+// links: [{ to:'/straits', label:'台海局势', note:'一句话说明为何相关' }, ...]
+export function CrossLinks({ title = '横向打通 · 关联模块', links = [], className = '' }) {
+  if (!links.length) return null;
+  return (
+    <div className={`os-card p-5 ${className}`}>
+      <h3 className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>{title}</h3>
+      <p className="text-[11px] mb-3" style={{ color: 'var(--text-tertiary)' }}>把这套框架落到具体盘面 —— 点击直跳。</p>
+      <div className="grid gap-2" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(220px,1fr))' }}>
+        {links.map((l) => (
+          <Link key={l.to} to={l.to} className="block rounded-lg p-3 transition-colors"
+            style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}>
+            <div className="text-sm font-semibold flex items-center gap-1.5" style={{ color: 'var(--cyber-cyan)' }}>
+              {l.label}<span className="mono text-xs" style={{ color: 'var(--text-tertiary)' }}>↗</span>
+            </div>
+            {l.note && <p className="text-[11px] mt-1 leading-snug" style={{ color: 'var(--text-tertiary)' }}>{l.note}</p>}
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export function PageHeader({ badge, title, subtitle, children }) {
   return (

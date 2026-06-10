@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, CrossLinks } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 
 // ============================================================================
@@ -105,6 +105,11 @@ export default function Page() {
           现实主义被批评为低估了经济相互依赖、国际制度、国内政治与观念（建构主义）的作用；进攻性现实主义尤其被指过度悲观、自我实现。作为思想工具，它的价值在于<strong style={{ color: 'var(--text-primary)' }}>提供一个「最坏情况」的结构基线</strong>——理解对手如何用这套逻辑思考，本身就是战略素养。
         </p>
       </Card>
+      <CrossLinks className="mt-6" links={[
+        { to: '/diplomacy', label: '外交全局框架盘', note: '四圈层布局与张力轴，正是现实主义「自助体系」的操作化。' },
+        { to: '/thucydides', label: '修昔底德陷阱', note: '结构现实主义在霸权过渡情境下的悲观推论与反例。' },
+        { to: '/constructivism', label: '建构主义', note: '对照阵营：观念与身份如何改写「无政府状态」的含义。' },
+      ]} />
       <p className="text-xs mt-6" style={{ color: 'var(--text-tertiary)' }}>本模块为国际关系理论梳理与思想工具，曲线/雷达为示意，不构成对现实事件的预测。</p>
     </div>
   );

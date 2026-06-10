@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, CrossLinks } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 
 const gravityChart = {
@@ -79,6 +79,11 @@ export default function Page() {
         </div>
       </Card>
 
+      <CrossLinks title="理论透镜 · 换个框架看同一盘面" className="mb-4" links={[
+        { to: '/gametheory', label: '博弈论', note: '统一/维持现状/介入当作重复博弈与边缘策略的均衡求解。' },
+        { to: '/thucydides', label: '修昔底德陷阱', note: '台海是实力转移窗口里最可能的「燧石」触发点。' },
+        { to: '/deterrence', label: '威慑理论', note: '可信度 × 能力 × 决心——读封控与介入的威慑平衡。' },
+      ]} />
       <p className="text-xs" style={{ color: 'var(--text-tertiary)' }}>「重力决定轨迹，实力定义结果」· 数据来源：公开战略与地缘研报，数值为示意 · 由 china.html「台海」专题迁移</p>
     </div>
   );

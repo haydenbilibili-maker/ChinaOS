@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, CrossLinks } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 
 // ============================================================================
@@ -133,6 +133,11 @@ export default function Page() {
           博弈论是<span className="mono" style={{ color: 'var(--cyber-cyan)' }}>现实主义 / 权力物理学 / 大国战略</span>的微观决策底层：现实主义讲「为什么竞争」，博弈论讲「在给定结构下如何选」。把中美关系拆成一连串重复博弈，就能看清「报复预期」与「未来阴影」如何把死局撬成合作的可能。
         </p>
       </Card>
+      <CrossLinks className="mt-6" links={[
+        { to: '/straits', label: '台海局势', note: '把「以武促统 vs 维持现状」当作重复博弈与边缘策略推演。' },
+        { to: '/diplomacy', label: '外交全局框架盘', note: '中美竞合管控即「斗而不破」的纳什均衡校准。' },
+        { to: '/thucydides', label: '修昔底德陷阱', note: '霸权过渡期的安全困境，本质是信任难以自我执行的囚徒结构。' },
+      ]} />
       <p className="text-xs mt-6" style={{ color: 'var(--text-tertiary)' }}>本模块为博弈论思想工具，收益数值与合作率曲线为示意，用于结构化推演而非实证测量。</p>
     </div>
   );
