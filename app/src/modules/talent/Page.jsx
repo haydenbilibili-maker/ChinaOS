@@ -12,7 +12,7 @@ const short = (p) => (p || '').replace(/(省|市|自治区|回族|壮族|维吾�
 const inp = { background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', borderRadius: 6, padding: '6px 10px', fontSize: 13 };
 const btn = { background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)', border: '1px solid rgba(34,211,238,0.25)', borderRadius: 6, padding: '6px 14px', fontSize: 13, cursor: 'pointer' };
 
-const ROLE_OPTS = ['总书记', '总理', '副总理', '国务委员', '人大委员长', '政协主席', '政协副主席', '政协秘书长', '纪委书记', '外交部长', '政法委书记', '中组部部长', '统战部部长', '中宣部部长', '人大副委员长', '人大秘书长', '监委主任', '军委副主席', '港澳办主任', '党委书记', '市委书记', '省委副书记', '省长', '市长', '常务副省长', '常务副市长', '常务副主席', '自治区主席', '部长', '国防部长', '署长', '局长', '主任', '主席', '董事长', '总经理', '最高法院长', '最高检检察长'];
+const ROLE_OPTS = ['总书记', '总理', '副总理', '国务委员', '人大委员长', '政协主席', '政协副主席', '政协秘书长', '纪委书记', '外交部长', '政法委书记', '中组部部长', '组织部部长', '统战部部长', '中宣部部长', '宣传部长', '人大副委员长', '人大秘书长', '监委主任', '军委副主席', '港澳办主任', '党委书记', '市委书记', '省委副书记', '省长', '市长', '常务副省长', '常务副市长', '常务副主席', '自治区主席', '部长', '国防部长', '署长', '局长', '主任', '主席', '董事长', '总经理', '最高法院长', '最高检检察长'];
 const SECTOR_OPTS = ['国务院', '党中央', '国家机关', '全国政协', '国务院直属机构', '央企', '省属国企', '军队', '地方'];
 const LEVEL_RANK = { '党和国家领导人': 0, '副国级': 1, '正部级': 2, '省部级': 3, '副部级': 4, '正厅级': 5 };
 
@@ -225,7 +225,7 @@ export default function Page() {
       {figures.length < 10 && (
         <Card title="一键载入省部级公开履历" className="mb-4">
           <p className="text-sm mb-3" style={{ color: 'var(--text-secondary)' }}>
-            内置 {FIGURE_SEED.length} 条：省级 {FIGURE_CATALOG_META.breakdown?.provincial} + 人大政协 {FIGURE_CATALOG_META.breakdown?.provincialExtended} + 中央 {FIGURE_CATALOG_META.breakdown?.central} + 扩展 {FIGURE_CATALOG_META.breakdown?.extended} + 城市 {FIGURE_CATALOG_META.breakdown?.municipal} + 地级市 {FIGURE_CATALOG_META.breakdown?.prefectureCity} + 机构 {FIGURE_CATALOG_META.breakdown?.org} + 二层 {FIGURE_CATALOG_META.breakdown?.orgTier2}。来源：{FIGURE_CATALOG_META.sources.join('、')}。
+            内置 {FIGURE_SEED.length} 条：省级 {FIGURE_CATALOG_META.breakdown?.provincial} + 人大政协 {FIGURE_CATALOG_META.breakdown?.provincialExtended} + 常委岗位 {FIGURE_CATALOG_META.breakdown?.provincialStanding} + 中央 {FIGURE_CATALOG_META.breakdown?.central} + 扩展 {FIGURE_CATALOG_META.breakdown?.extended} + 城市 {FIGURE_CATALOG_META.breakdown?.municipal} + 地级市 {FIGURE_CATALOG_META.breakdown?.prefectureCity} + 机构 {FIGURE_CATALOG_META.breakdown?.org} + 二层 {FIGURE_CATALOG_META.breakdown?.orgTier2}。来源：{FIGURE_CATALOG_META.sources.join('、')}。
             也可到 <Link to="/foundation" className="mono" style={{ color: 'var(--cyber-cyan)' }}>数据底座 · 政治人物简历</Link> 增量导入或粘贴更新。
           </p>
           <button type="button" onClick={loadSeed} disabled={loading} style={btn}>
