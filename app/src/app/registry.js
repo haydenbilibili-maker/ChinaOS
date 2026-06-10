@@ -35,14 +35,64 @@ export const MODULES = [
     component: lazy(() => import('../modules/powerphysics/Page.jsx')),
   },
   {
+    id: 'dissipative', path: '/dissipative', group: 'cognition',
+    title: '耗散结构与熵', subtitle: '普里高津 · 负熵流 · 自组织', icon: 'Wind',
+    component: lazy(() => import('../modules/dissipative/Page.jsx')),
+  },
+  {
+    id: 'pathdependence', path: '/pathdependence', group: 'cognition',
+    title: '路径依赖', subtitle: '报酬递增 · QWERTY · 锁定与换道', icon: 'GitFork',
+    component: lazy(() => import('../modules/pathdependence/Page.jsx')),
+  },
+  {
     id: 'realism', path: '/realism', group: 'cognition',
     title: '现实主义', subtitle: '米尔斯海默 · 大国政治', icon: 'Swords',
     component: lazy(() => import('../modules/realism/Page.jsx')),
   },
   {
+    id: 'middleincometrap', path: '/middleincometrap', group: 'cognition',
+    title: '中等收入陷阱', subtitle: '韩国跨越 · 拉美停滞 · 中国窗口', icon: 'TrendingUp',
+    component: lazy(() => import('../modules/middleincometrap/Page.jsx')),
+  },
+  {
+    id: 'thucydides', path: '/thucydides', group: 'cognition',
+    title: '修昔底德陷阱', subtitle: '艾利森 · 守成vs崛起', icon: 'GitFork',
+    component: lazy(() => import('../modules/thucydides/Page.jsx')),
+  },
+  {
+    id: 'gametheory', path: '/gametheory', group: 'cognition',
+    title: '博弈论', subtitle: '纳什均衡 · 重复博弈 · 以牙还牙', icon: 'Dices',
+    component: lazy(() => import('../modules/gametheory/Page.jsx')),
+  },
+  {
+    id: 'antifragile', path: '/antifragile', group: 'cognition',
+    title: '反脆弱', subtitle: '塔勒布 · 凸性 · 从波动获益', icon: 'TrendingUp',
+    component: lazy(() => import('../modules/antifragile/Page.jsx')),
+  },
+  {
+    id: 'constructivism', path: '/constructivism', group: 'cognition',
+    title: '建构主义', subtitle: '温特 · 无政府是国家造就的', icon: 'Network',
+    component: lazy(() => import('../modules/constructivism/Page.jsx')),
+  },
+  {
     id: 'ideology', path: '/ideology', group: 'cognition',
     title: '意识形态理论', subtitle: '自由/马克思/社达', icon: 'Scale3d',
     component: lazy(() => import('../modules/ideology/Page.jsx')),
+  },
+  {
+    id: 'deterrence', path: '/deterrence', group: 'cognition',
+    title: '威慑战略', subtitle: '谢林 · 可信承诺 · 边缘政策', icon: 'ShieldAlert',
+    component: lazy(() => import('../modules/deterrence/Page.jsx')),
+  },
+  {
+    id: 'principalagent', path: '/principalagent', group: 'cognition',
+    title: '委托代理', subtitle: '信息不对称 · 激励相容', icon: 'GitBranchPlus',
+    component: lazy(() => import('../modules/principalagent/Page.jsx')),
+  },
+  {
+    id: 'commons', path: '/commons', group: 'cognition',
+    title: '公地悲剧', subtitle: '集体行动 · 搭便车 · 自治', icon: 'Trees',
+    component: lazy(() => import('../modules/commons/Page.jsx')),
   },
   {
     id: 'depth',
