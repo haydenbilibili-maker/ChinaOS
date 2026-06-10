@@ -16,6 +16,19 @@ const URBANIZATION = [
   { name: '云南省', value: 53 }, { name: '新疆维吾尔自治区', value: 58 }, { name: '西藏自治区', value: 38 },
 ];
 
+// 各省常住人口（万人 · 示意）
+const POPULATION = [
+  { name: '广东省', value: 12700 }, { name: '山东省', value: 10100 }, { name: '河南省', value: 9800 },
+  { name: '江苏省', value: 8500 }, { name: '四川省', value: 8400 }, { name: '河北省', value: 7400 },
+  { name: '浙江省', value: 6600 }, { name: '湖南省', value: 6600 }, { name: '安徽省', value: 6100 },
+  { name: '湖北省', value: 5800 }, { name: '广西壮族自治区', value: 5000 }, { name: '云南省', value: 4700 },
+  { name: '江西省', value: 4500 }, { name: '辽宁省', value: 4200 }, { name: '福建省', value: 4200 },
+  { name: '陕西省', value: 4000 }, { name: '贵州省', value: 3850 }, { name: '山西省', value: 3500 },
+  { name: '重庆市', value: 3200 }, { name: '黑龙江省', value: 3100 }, { name: '新疆维吾尔自治区', value: 2600 },
+  { name: '甘肃省', value: 2500 }, { name: '上海市', value: 2480 }, { name: '北京市', value: 2180 },
+  { name: '内蒙古自治区', value: 2400 }, { name: '吉林省', value: 2350 }, { name: '天津市', value: 1360 },
+];
+
 const clusterBar = {
   grid: { left: 80, right: 24, top: 16, bottom: 24 },
   xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
@@ -40,8 +53,14 @@ export default function Page() {
         <Stat value="~80%" label="目标城镇化率" accent="#10b981" />
         <Stat value="4 极" label="主要城市群" accent="#c41e3a" />
       </Grid>
-      <Card title="各省常住人口城镇化率（% · 示意）" className="mb-6">
-        <ChinaMap data={URBANIZATION} valueName="城镇化率(%)" max={90} style={{ height: 440 }} />
+      <Card title="各省城镇化（示意 · 可切换指标 · 点省下钻）" className="mb-6">
+        <ChinaMap
+          metrics={[
+            { key: 'rate', label: '城镇化率', valueName: '城镇化率(%)', max: 90, data: URBANIZATION },
+            { key: 'pop', label: '常住人口', valueName: '常住人口(万人)', max: 13000, data: POPULATION },
+          ]}
+          style={{ height: 470 }}
+        />
       </Card>
       <Grid cols={2} className="mb-6">
         <Card title="四大城市群经济权重（示意）"><EChart option={clusterBar} style={{ height: 240 }} /></Card>

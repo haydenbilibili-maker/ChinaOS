@@ -29,9 +29,16 @@ async function worldBank(indicator, { country = 'CHN', from = 2018, to = 2024 } 
   return Array.isArray(json) ? json[1] || [] : [];
 }
 
+// 行政区划地理边界（DataV）：adcode='100000' 为全国，省/市用各自 adcode
+async function regionGeo(adcode = '100000') {
+  const url = `https://geo.datav.aliyun.com/areas_v3/bound/${adcode}_full.json`;
+  return getJSON(url, { ttlMs: 24 * 60 * 60 * 1000 });
+}
+
 export const DataBus = {
   getJSON,
   worldBank,
+  regionGeo,
   clearCache: () => cache.clear(),
 };
 

@@ -52,8 +52,11 @@ export default function Page() {
         <Stat value="1.3 亿吨" label="大豆年进口" />
       </Grid>
 
-      <Card title="粮食主产区产量分布（万吨 · 示意）" className="mb-6">
-        <ChinaMap data={GRAIN} valueName="粮食产量(万吨)" max={8000} style={{ height: 440 }} />
+      <Card title="粮食主产区产量分布（万吨 · 示意 · 点省下钻）" className="mb-6">
+        <ChinaMap
+          metrics={[{ key: 'grain', label: '粮食产量', valueName: '粮食产量(万吨)', max: 8000, data: GRAIN }]}
+          style={{ height: 460 }}
+        />
       </Card>
 
       <Grid cols={2} className="mb-6">
