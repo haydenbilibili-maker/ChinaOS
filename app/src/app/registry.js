@@ -25,13 +25,24 @@ export const GROUPS = [
 
 export const MODULES = [
   {
-    id: 'cognition',
-    path: '/cognition',
-    group: 'cognition',
-    title: '认知内核',
-    subtitle: '思想工具 · 理论模型库',
-    icon: 'BrainCircuit',
+    id: 'cognition', path: '/cognition', group: 'cognition',
+    title: '康波周期', subtitle: '康德拉季耶夫长波', icon: 'Waves',
     component: lazy(() => import('../modules/cognition/Page.jsx')),
+  },
+  {
+    id: 'powerphysics', path: '/powerphysics', group: 'cognition',
+    title: '权力物理学', subtitle: '力场 · 确定性 · 统治成本', icon: 'Magnet',
+    component: lazy(() => import('../modules/powerphysics/Page.jsx')),
+  },
+  {
+    id: 'realism', path: '/realism', group: 'cognition',
+    title: '现实主义', subtitle: '米尔斯海默 · 大国政治', icon: 'Swords',
+    component: lazy(() => import('../modules/realism/Page.jsx')),
+  },
+  {
+    id: 'ideology', path: '/ideology', group: 'cognition',
+    title: '意识形态理论', subtitle: '自由/马克思/社达', icon: 'Scale3d',
+    component: lazy(() => import('../modules/ideology/Page.jsx')),
   },
   {
     id: 'depth',
