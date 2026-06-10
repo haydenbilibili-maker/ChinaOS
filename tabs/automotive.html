@@ -1,0 +1,186 @@
+                <section class="space-y-20 animate-fade-in">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-stone-200/80 dark:border-stone-600/50">
+                        <div>
+                            <h2 class="text-xl font-bold text-stone-800 dark:text-stone-100 tracking-tight">汽车与新能源车产业</h2>
+                            <p class="text-sm text-stone-500 dark:text-stone-400 mt-1">Software Defined Vehicle 2024 · 产销与渗透率</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="switchTab('manufacturing'); closeAllNavDropdowns();" class="depth-relate-tag">制造</button>
+                            <button onclick="switchTab('energy'); closeAllNavDropdowns();" class="depth-relate-tag">能源</button>
+                        </div>
+                    </div>
+
+                    <!-- Hero: 新能源车 -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-7 space-y-6">
+                            <div class="inline-flex items-center px-3 py-1 bg-blue-50 dark:bg-blue-950/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-bold uppercase tracking-wider">新能源车渗透率</div>
+                            <h3 class="text-3xl md:text-4xl font-extrabold text-stone-900 dark:text-stone-100 leading-tight">汽车产销与<br><span class="text-blue-700 dark:text-blue-400 italic">新能源</span>渗透</h3>
+                            <p class="text-stone-600 dark:text-stone-400 text-lg leading-relaxed">2024 年新能源车渗透率已超 50%，产销量与出口全球第一；软件定义汽车与智能座舱、OTA 迭代成为竞争焦点。</p>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div class="os-card p-4 rounded-2xl depth-stat-card text-center">
+                                    <div class="depth-stat-value text-stone-900 dark:text-stone-100">50% +</div>
+                                    <div class="depth-stat-label text-stone-400">NEV 渗透率</div>
+                                </div>
+                                <div class="os-card p-4 rounded-2xl depth-stat-card text-center bg-blue-50 dark:bg-blue-950/30">
+                                    <div class="depth-stat-value text-blue-700 dark:text-blue-400">500 万+</div>
+                                    <div class="depth-stat-label text-stone-400">新能源车销量</div>
+                                </div>
+                                <div class="os-card p-4 rounded-2xl depth-stat-card text-center">
+                                    <div class="depth-stat-value text-stone-900 dark:text-stone-100">~60%</div>
+                                    <div class="depth-stat-label text-stone-400">全球动力电池份额</div>
+                                </div>
+                                <div class="os-card p-4 rounded-2xl depth-stat-card text-center">
+                                    <div class="depth-stat-value text-stone-900 dark:text-stone-100">#1</div>
+                                    <div class="depth-stat-label text-stone-400">汽车出口量</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-5 os-card rounded-2xl p-8 overflow-hidden relative" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
+                            <div class="absolute -top-10 -right-10 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                            <h4 class="text-xl font-bold text-white mb-6 relative z-10 flex items-center gap-2">
+                                <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span> 汽车市场趋势
+                            </h4>
+                            <div class="chart-container relative z-10" style="height: 250px;"><canvas id="marketTrendChart"></canvas></div>
+                            <p class="text-[10px] text-white/60 mt-4 text-center relative z-10">数据来源：中汽协与行业统计</p>
+                        </div>
+                    </div>
+
+                    <!-- ????? -->
+                    <div class="space-y-10">
+                        <div class="text-center max-w-3xl mx-auto">
+                            <h3 class="text-2xl font-bold text-stone-900 dark:text-stone-100">??????SDV ????</h3>
+                            <p class="text-stone-500 dark:text-stone-400 mt-3">????????????????????????????????????????????????????????????????</p>
+                        </div>
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                            <div class="auto-glass-card p-6 flex flex-col justify-between">
+                                <div>
+                                    <div class="text-4xl mb-4">??</div>
+                                    <h4 class="font-bold text-stone-900 dark:text-stone-100 text-lg mb-3">?? NOA / ????</h4>
+                                    <p class="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">?????+???????????????????????????????????AI ?????????????????????</p>
+                                </div>
+                                <div class="mt-6 pt-4 border-t border-stone-100 dark:border-stone-700 flex justify-between items-center text-[10px] font-bold text-blue-700 dark:text-blue-400 uppercase">
+                                    <span>???: 30%+ (??)</span>
+                                    <span>??: ??????</span>
+                                </div>
+                            </div>
+                            <div class="auto-glass-card p-6 flex flex-col justify-between bg-stone-900 dark:bg-stone-950 text-white">
+                                <div class="auto-scan-line mb-6"></div>
+                                <div>
+                                    <div class="text-4xl mb-4">???</div>
+                                    <h4 class="font-bold mb-3">?????? (??)</h4>
+                                    <p class="text-xs text-stone-400 leading-relaxed">????? Orin ??????????????????????????????????? 1000+ TOPS ???</p>
+                                </div>
+                                <div class="mt-6 pt-4 border-t border-white/10 flex justify-between items-center text-[10px] font-bold text-rose-500 uppercase">
+                                    <span>????: ????</span>
+                                    <span>??: ????</span>
+                                </div>
+                            </div>
+                            <div class="auto-glass-card p-6 flex flex-col justify-between">
+                                <div>
+                                    <div class="text-4xl mb-4">??</div>
+                                    <h4 class="font-bold text-stone-900 dark:text-stone-100 text-lg mb-3">?????????</h4>
+                                    <p class="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">???????????????????????????????????????????????????????</p>
+                                </div>
+                                <div class="mt-6 pt-4 border-t border-stone-100 dark:border-stone-700 flex justify-between items-center text-[10px] font-bold text-blue-700 dark:text-blue-400 uppercase">
+                                    <span>??: ??/?????</span>
+                                    <span>??: ?????</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="os-card p-8 rounded-2xl">
+                            <h4 class="text-sm font-bold text-stone-800 dark:text-stone-100 mb-6 text-center uppercase tracking-widest text-stone-400">????????????????</h4>
+                            <div class="chart-container"><canvas id="techStackChart"></canvas></div>
+                        </div>
+                    </div>
+
+                    <!-- ???? -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="space-y-6">
+                            <h3 class="text-2xl font-bold text-stone-900 dark:text-stone-100 leading-tight">???????????????????</h3>
+                            <p class="text-stone-600 dark:text-stone-400 leading-relaxed">?????????????????????????????????????????????????????????????????????????????????????????????</p>
+                            <div class="space-y-4">
+                                <div class="p-6 bg-blue-50 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-800 rounded-2xl flex items-start gap-4">
+                                    <div class="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center text-xl font-bold">??</div>
+                                    <div>
+                                        <h4 class="font-bold text-stone-900 dark:text-stone-100">??????</h4>
+                                        <p class="text-xs text-stone-500 dark:text-stone-400">???????Stellantis ??????????????????????????</p>
+                                    </div>
+                                </div>
+                                <div class="p-6 os-card rounded-2xl flex items-start gap-4">
+                                    <div class="w-12 h-12 bg-stone-900 dark:bg-stone-700 text-white rounded-2xl flex items-center justify-center text-xl">?</div>
+                                    <div>
+                                        <h4 class="font-bold text-stone-800 dark:text-stone-100">??????</h4>
+                                        <p class="text-xs text-stone-500 dark:text-stone-400">?????????????????????????????????????</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="auto-glass-card p-8">
+                            <h4 class="text-sm font-bold text-stone-800 dark:text-stone-100 mb-6 text-center uppercase tracking-widest text-stone-400">???????????????? (2024 E)</h4>
+                            <div class="chart-container"><canvas id="globalMarketChart"></canvas></div>
+                            <p class="mt-4 text-[10px] text-stone-400 text-center italic">????????????????????????</p>
+                        </div>
+                    </div>
+
+                    <!-- ????? -->
+                    <div class="bg-stone-950 dark:bg-stone-900 text-white rounded-3xl p-10 md:p-16 relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(white 0.5px, transparent 0.5px); background-size: 32px 32px;"></div>
+                        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                            <div class="lg:col-span-5 space-y-6">
+                                <h3 class="text-3xl font-black italic tracking-tight text-blue-400">??????????????</h3>
+                                <p class="text-stone-300 text-lg leading-relaxed">????????????????????????????????????????????????????????????????????</p>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="p-4 bg-white/10 rounded-2xl border border-white/20">
+                                        <h4 class="font-bold text-sm text-white">??????</h4>
+                                        <div class="text-xl font-black text-blue-400 mt-1">~10%</div>
+                                        <p class="text-[9px] text-blue-200 uppercase mt-1">??????????</p>
+                                    </div>
+                                    <div class="p-4 bg-white/10 rounded-2xl border border-white/20">
+                                        <h4 class="font-bold text-sm text-white">???????</h4>
+                                        <div class="text-xl font-black text-blue-400 mt-1">?? #1</div>
+                                        <p class="text-[9px] text-blue-200 uppercase mt-1">?????????</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lg:col-span-7">
+                                <div class="auto-glass-card bg-white dark:bg-stone-800 p-8">
+                                    <h4 class="text-sm font-bold text-stone-800 dark:text-stone-100 mb-6 text-center uppercase tracking-widest text-stone-400">?????????????</h4>
+                                    <div class="chart-container" style="height: 350px;"><canvas id="competenceRadarChart"></canvas></div>
+                                    <div class="mt-4 flex justify-center gap-6 text-[10px] text-stone-400">
+                                        <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-blue-600"></span> ?????</span>
+                                        <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-stone-300"></span> ??????</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ?? -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="auto-glass-card p-8">
+                            <h4 class="text-sm font-bold text-stone-800 dark:text-stone-100 mb-6 text-center uppercase tracking-widest">????????????? (2030)</h4>
+                            <div class="chart-container"><canvas id="futureMixDoughnutChart"></canvas></div>
+                        </div>
+                        <div class="space-y-6">
+                            <h3 class="text-2xl font-bold text-stone-900 dark:text-stone-100 underline decoration-blue-600 decoration-4 underline-offset-8">??????????????</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-4">
+                                    <span class="w-6 h-6 bg-blue-700 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0">1</span>
+                                    <p class="text-sm text-stone-600 dark:text-stone-400"><strong>????????????????</strong> ?????????????????????????????????????????????????????</p>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <span class="w-6 h-6 bg-blue-700 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0">2</span>
+                                    <p class="text-sm text-stone-600 dark:text-stone-400"><strong>???????????</strong> ????????????????????SiC???? 100% ??????????????????</p>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <span class="w-6 h-6 bg-blue-700 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0">3</span>
+                                    <p class="text-sm text-stone-600 dark:text-stone-400"><strong>??????????</strong> ?????????End-to-End?????2025-2026 ???? L3 ?????????????????</p>
+                                </div>
+                            </div>
+                            <div class="p-6 bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-2xl mt-8">
+                                <p class="text-xs text-blue-800 dark:text-blue-200 leading-relaxed italic"><strong>??????</strong> ?????????????????????AI ????????????????????????????????????????????</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-stone-500 text-center">???????? (CAAM)?????Canalys ????????</p>
+                </section>

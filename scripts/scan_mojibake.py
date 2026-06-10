@@ -92,7 +92,9 @@ def main():
     if argv:
         targets = argv
     else:
+        # 根目录 HTML + 外移的内容分片 tabs/*.html（阶段二后内容源所在）
         targets = sorted(glob.glob(os.path.join(root, "*.html")))
+        targets += sorted(glob.glob(os.path.join(root, "tabs", "*.html")))
 
     all_hits = []
     for t in targets:

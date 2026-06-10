@@ -1,0 +1,193 @@
+                <section class="space-y-20 animate-fade-in">
+                    <div class="flex flex-col gap-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                            <div>
+                                <h2 class="text-xl font-bold text-stone-800 dark:text-stone-100">民航与国产大飞机</h2>
+                                <p class="text-sm text-stone-500 dark:text-stone-400 mt-1">Civil Aviation Strategy 2024 与制度演进</p>
+                            </div>
+                            <div class="flex flex-wrap gap-2 items-center">
+                                <span class="px-2 py-1 bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 text-[10px] font-bold rounded border border-sky-100 dark:border-sky-800 uppercase tracking-tighter">Trillion Market</span>
+                                <button onclick="switchTab('space'); closeAllNavDropdowns();" class="depth-relate-tag">航天</button>
+                                <button onclick="switchTab('advancedmaterials'); closeAllNavDropdowns();" class="depth-relate-tag">材料</button>
+                                <button onclick="switchTab('manufacturing'); closeAllNavDropdowns();" class="depth-relate-tag">制造</button>
+                            </div>
+                        </div>
+                        <nav class="flex flex-wrap gap-2 py-2 border-b border-stone-200 dark:border-stone-700">
+                            <button type="button" onclick="document.getElementById('air-vision')?.scrollIntoView({behavior:'smooth'})" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-sky-100 dark:hover:bg-sky-950/40 hover:text-sky-700 dark:hover:text-sky-300 transition">概览</button>
+                            <button type="button" onclick="document.getElementById('air-products')?.scrollIntoView({behavior:'smooth'})" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-sky-100 dark:hover:bg-sky-950/40 hover:text-sky-700 dark:hover:text-sky-300 transition">机型</button>
+                            <button type="button" onclick="document.getElementById('air-engine')?.scrollIntoView({behavior:'smooth'})" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-sky-100 dark:hover:bg-sky-950/40 hover:text-sky-700 dark:hover:text-sky-300 transition">发动机</button>
+                            <button type="button" onclick="document.getElementById('air-global')?.scrollIntoView({behavior:'smooth'})" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-sky-100 dark:hover:bg-sky-950/40 hover:text-sky-700 dark:hover:text-sky-300 transition">全球</button>
+                            <button type="button" onclick="document.getElementById('air-conclusion')?.scrollIntoView({behavior:'smooth'})" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-sky-100 dark:hover:bg-sky-950/40 hover:text-sky-700 dark:hover:text-sky-300 transition">结论</button>
+                        </nav>
+                    </div>
+
+                    <div id="air-vision" class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                        <div class="lg:col-span-7 space-y-6">
+                            <div class="inline-flex items-center px-3 py-1 bg-sky-50 dark:bg-sky-950/30 text-sky-700 dark:text-sky-300 rounded-full text-xs font-bold uppercase tracking-wider border border-sky-100 dark:border-sky-800">大飞机与万亿市场</div>
+                            <h3 class="text-3xl md:text-4xl font-extrabold text-stone-900 dark:text-stone-100 leading-tight">民航与<br><span class="text-sky-600 dark:text-sky-400 italic">ABC 大飞机</span>布局</h3>
+                            <p class="text-stone-600 dark:text-stone-400 text-lg leading-relaxed">国产大飞机 C919 取证商飞标志着产业链自主可控关键一步；窄体/宽体/支线形成 ABC 产品线，未来 20 年约 1.5 万亿新机需求，与材料、发动机、适航深度耦合。</p>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div class="os-card p-4 depth-stat-card text-center">
+                                    <div class="depth-stat-value text-stone-900 dark:text-stone-100">1,200+ 架</div>
+                                    <div class="depth-stat-label text-stone-400">C919 订单量</div>
+                                </div>
+                                <div class="os-card p-4 depth-stat-card text-center bg-sky-600 dark:bg-sky-700 text-white">
+                                    <div class="depth-stat-value text-white">~9 万亿</div>
+                                    <div class="depth-stat-label text-sky-100">未来20年新机市场</div>
+                                </div>
+                                <div class="os-card p-4 depth-stat-card text-center">
+                                    <div class="depth-stat-value text-stone-900 dark:text-stone-100">~60%</div>
+                                    <div class="depth-stat-label text-stone-400">C919 国产化率目标</div>
+                                </div>
+                                <div class="os-card p-4 depth-stat-card text-center">
+                                    <div class="depth-stat-value text-stone-900 dark:text-stone-100">#1</div>
+                                    <div class="depth-stat-label text-stone-400">国内民航市场规模</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-5">
+                            <div class="os-card rounded-2xl p-10 text-white shadow-2xl relative overflow-hidden" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border: 1px solid rgba(14,165,233,0.2);">
+                                <div class="absolute -top-10 -right-10 w-48 h-48 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                                <h4 class="text-xl font-bold mb-8 flex items-center gap-2 relative z-10">
+                                    <span class="w-2 h-2 bg-sky-400 rounded-full animate-pulse"></span> 新机需求预测 (2024-2043)
+                                </h4>
+                                <div class="chart-container relative z-10" style="height: 250px;"><canvas id="airMarketDemandChart"></canvas></div>
+                                <p class="text-[10px] text-slate-500 mt-4 text-center italic relative z-10">数据来源：商飞、波音、空客 约 20% 份额目标</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="air-products" class="space-y-12">
+                        <div class="text-center max-w-3xl mx-auto">
+                            <h3 class="text-2xl font-bold text-stone-900 dark:text-stone-100">国产机型与产品线</h3>
+                            <p class="text-stone-500 dark:text-stone-400 mt-4">ARJ21 / C919 / C929 与发动机、适航、供应链</p>
+                        </div>
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                            <div class="os-card p-8 flex flex-col justify-between group border-l-4 border-stone-400 dark:border-stone-600">
+                                <div>
+                                    <div class="text-3xl mb-4 group-hover:scale-110 transition-transform">支线</div>
+                                    <h4 class="font-bold text-stone-900 dark:text-stone-100 text-xl mb-3">ARJ21 支线客机</h4>
+                                    <p class="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">已交付超 100 架，主要执飞支线航线；持续迭代与国产发动机配套。</p>
+                                </div>
+                                <div class="mt-6 pt-4 border-t border-stone-100 dark:border-stone-700 flex justify-between items-center text-[10px] font-bold text-stone-600 dark:text-stone-400 uppercase">
+                                    <span>座级: 78-97座</span><span>订单: >30家航司</span>
+                                </div>
+                            </div>
+                            <div class="os-card p-8 flex flex-col justify-between group bg-stone-900 dark:bg-stone-800 text-white border-l-4 border-sky-500">
+                                <div>
+                                    <div class="text-4xl mb-4 group-hover:rotate-6 transition-transform">??</div>
+                                    <h4 class="font-bold mb-3">C919 ?????</h4>
+                                    <p class="text-xs text-slate-400 leading-relaxed">?????????????????????????????????????? A320neo / 737 MAX?</p>
+                                </div>
+                                <div class="mt-6 pt-4 border-t border-white/10 flex justify-between items-center text-[10px] font-bold text-sky-400 uppercase">
+                                    <span>??: 158-192?</span><span>??: ??????</span>
+                                </div>
+                            </div>
+                            <div class="os-card p-8 flex flex-col justify-between group border-l-4 border-indigo-600">
+                                <div>
+                                    <div class="text-3xl mb-4 group-hover:scale-110 transition-transform">??</div>
+                                    <h4 class="font-bold text-stone-900 dark:text-stone-100 text-xl mb-3">C929 ????</h4>
+                                    <p class="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">??????????????????????????????????? 12,000 ?????</p>
+                                </div>
+                                <div class="mt-6 pt-4 border-t border-stone-100 dark:border-stone-700 flex justify-between items-center text-[10px] font-bold text-indigo-700 dark:text-indigo-400 uppercase">
+                                    <span>??: 280-350?</span><span>??: ???????</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="os-card p-8 rounded-2xl border border-stone-200 dark:border-stone-600">
+                            <h4 class="text-sm font-bold text-stone-800 dark:text-stone-100 mb-6 text-center uppercase tracking-widest text-stone-400">??????????????? (%)</h4>
+                            <div class="chart-container"><canvas id="airLocalizationRadarChart"></canvas></div>
+                        </div>
+                    </div>
+
+                    <div id="air-engine" class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="space-y-8">
+                            <h3 class="text-2xl font-bold text-stone-900 dark:text-stone-100 leading-tight">?????<br>CJ-1000A ????????</h3>
+                            <p class="text-stone-600 dark:text-stone-400 leading-relaxed">??????????????????????????????? CJ-1000A ?????????????????????????? C919 ???????????</p>
+                            <div class="space-y-4">
+                                <div class="p-6 bg-sky-50 dark:bg-sky-950/20 border border-sky-100 dark:border-sky-800 rounded-2xl flex items-start gap-4">
+                                    <div class="w-12 h-12 bg-sky-600 text-white rounded-2xl flex items-center justify-center text-xl font-bold">?</div>
+                                    <div>
+                                        <h4 class="font-bold text-stone-900 dark:text-stone-100">??????</h4>
+                                        <p class="text-xs text-stone-500 dark:text-stone-400">?? LEAP-1C ??????????????????????</p>
+                                    </div>
+                                </div>
+                                <div class="p-6 bg-stone-900 dark:bg-stone-800 text-white rounded-2xl flex items-start gap-4">
+                                    <div class="w-12 h-12 bg-white/10 text-white rounded-2xl flex items-center justify-center text-xl font-bold">?</div>
+                                    <div>
+                                        <h4 class="font-bold text-sky-300">?????????</h4>
+                                        <p class="text-xs text-slate-400">??????????????????????????????????</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="os-card p-8">
+                            <h4 class="text-sm font-bold text-stone-800 dark:text-stone-100 mb-6 text-center uppercase tracking-widest text-stone-400">?????????????? (TRL)</h4>
+                            <div class="chart-container"><canvas id="airEngineTRLChart"></canvas></div>
+                            <div class="mt-6 text-center">
+                                <span class="inline-block px-3 py-1 bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 text-[10px] font-bold rounded">????: ????? (TRL 7-8)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="air-global" class="os-card rounded-3xl p-10 md:p-16 relative overflow-hidden shadow-2xl" style="background: linear-gradient(135deg, #312e81 0%, #1e1b4b 100%); border: 1px solid rgba(99,102,241,0.2);">
+                        <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(white 0.5px, transparent 0.5px); background-size: 32px 32px;"></div>
+                        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                            <div class="lg:col-span-5 space-y-6">
+                                <h3 class="text-3xl font-black mb-4 italic tracking-tight text-sky-400">?????<br>????????</h3>
+                                <p class="text-slate-300 text-lg leading-relaxed mb-6">?????????????????????EASA/FAA????????????????EASA????????? C919 ??????</p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div class="p-4 bg-white/10 rounded-2xl border border-white/20">
+                                        <h4 class="font-bold text-sm text-white">EASA ????</h4>
+                                        <div class="text-xl font-black text-sky-400 mt-1">??????</div>
+                                        <p class="text-[9px] text-slate-400 uppercase mt-1">??2025-26????</p>
+                                    </div>
+                                    <div class="p-4 bg-white/10 rounded-2xl border border-white/20">
+                                        <h4 class="font-bold text-sm text-white">??????</h4>
+                                        <div class="text-xl font-black text-sky-400 mt-1">~15% (2035)</div>
+                                        <p class="text-[9px] text-slate-400 uppercase mt-1">??????????</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lg:col-span-7">
+                                <div class="os-card bg-white dark:bg-stone-900 p-8">
+                                    <h4 class="text-sm font-bold text-stone-800 dark:text-stone-100 mb-6 text-center uppercase tracking-widest text-stone-400">????????????????</h4>
+                                    <div class="chart-container" style="height: 350px;"><canvas id="airGlobalRadarChart"></canvas></div>
+                                    <div class="mt-4 flex justify-center gap-6 text-[10px] text-stone-500 dark:text-stone-400">
+                                        <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-sky-600"></span> COMAC (CN)</span>
+                                        <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-stone-300"></span> Boeing (US)</span>
+                                        <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-stone-500"></span> Airbus (EU)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="air-conclusion" class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="os-card p-8">
+                            <h4 class="text-sm font-bold text-stone-800 dark:text-stone-100 mb-6 text-center uppercase tracking-widest">???????????? (2024-2040)</h4>
+                            <div class="chart-container"><canvas id="airFleetDoughnutChart"></canvas></div>
+                        </div>
+                        <div class="space-y-6">
+                            <h3 class="text-2xl font-bold text-stone-900 dark:text-stone-100 underline decoration-sky-700 decoration-4 underline-offset-8">?????????????</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-4">
+                                    <span class="w-6 h-6 bg-sky-700 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 font-bold">1</span>
+                                    <p class="text-sm text-stone-600 dark:text-stone-400"><strong>???????????</strong> ????????????????????????????????????????????????? 1:8?</p>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <span class="w-6 h-6 bg-sky-700 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 font-bold">2</span>
+                                    <p class="text-sm text-stone-600 dark:text-stone-400"><strong>?????????????</strong> ????????????????????????????MRO???????????????</p>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <span class="w-6 h-6 bg-sky-700 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 font-bold">3</span>
+                                    <p class="text-sm text-stone-600 dark:text-stone-400"><strong>??????????</strong> ?? 5G ??????????????????????? (PHM)??????????????????</p>
+                                </div>
+                            </div>
+                            <div class="p-6 bg-sky-50 dark:bg-sky-950/30 border border-sky-200 dark:border-sky-800 rounded-2xl mt-8">
+                                <p class="text-xs text-sky-800 dark:text-sky-200 leading-relaxed italic text-center"><strong>??????</strong> ??????????????????????????????????C919 ?????????????????????????????????</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-stone-500 dark:text-stone-400 text-center">????????? (COMAC)???? (CAAC)?IATA ???????????</p>
+                </section>

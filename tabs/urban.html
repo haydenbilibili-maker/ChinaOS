@@ -1,0 +1,118 @@
+                <section class="space-y-20 animate-fade-in">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-stone-200/80 dark:border-stone-600/50">
+                        <div>
+                            <h2 class="text-xl font-bold text-stone-800 dark:text-stone-100 tracking-tight">?????????????</h2>
+                            <p class="text-sm text-stone-500 dark:text-stone-400 mt-1">Urban Development Report 2024 ? ???????</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="switchTab('rural'); closeAllNavDropdowns();" class="depth-relate-tag">乡村</button>
+                            <button onclick="switchTab('hal'); closeAllNavDropdowns();" class="depth-relate-tag">HAL</button>
+                        </div>
+                    </div>
+
+                    <!-- ???? -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-7 space-y-6">
+                            <div class="inline-flex items-center px-3 py-1 bg-blue-50 dark:bg-blue-950/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-bold uppercase tracking-wider">????????</div>
+                            <h3 class="text-3xl md:text-4xl font-extrabold text-stone-900 dark:text-stone-100 leading-tight">?????????<br><span class="text-blue-600 dark:text-blue-400">????????</span></h3>
+                            <p class="text-stone-600 dark:text-stone-400 text-lg leading-relaxed">????????????? 66%?????????????????????????????????????????????????????????????????????</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div class="os-card p-4 rounded-2xl urban-glass-card text-center">
+                                    <div class="text-2xl font-black text-stone-900 dark:text-stone-100">66.16%</div>
+                                    <div class="text-[10px] text-stone-400 uppercase mt-1">????????</div>
+                                </div>
+                                <div class="os-card p-4 rounded-2xl urban-glass-card text-center">
+                                    <div class="text-2xl font-black text-blue-600">19 ?</div>
+                                    <div class="text-[10px] text-stone-400 uppercase mt-1">????????</div>
+                                </div>
+                                <div class="os-card p-4 rounded-2xl urban-glass-card text-center">
+                                    <div class="text-2xl font-black text-emerald-500">~80%</div>
+                                    <div class="text-[10px] text-stone-400 uppercase mt-1">??? GDP ????</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-5 os-card rounded-2xl p-8 overflow-hidden relative" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
+                            <div class="absolute -bottom-10 -right-10 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                            <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;"></div>
+                            <h4 class="text-xl font-bold text-white mb-6 relative z-10">????????</h4>
+                            <div class="chart-container relative z-10" style="height: 250px;"><canvas id="urbanTrendChart"></canvas></div>
+                        </div>
+                    </div>
+
+                    <!-- ????? -->
+                    <div class="space-y-10">
+                        <div class="text-center max-w-3xl mx-auto">
+                            <h3 class="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">???????????</h3>
+                            <p class="text-stone-500 dark:text-stone-400">????????????3+1??????????????????????</p>
+                        </div>
+                        <div class="flex overflow-x-auto gap-2 pb-2 no-scrollbar">
+                            <button onclick="updateUrbanCluster('yrd')" class="urban-cluster-btn urban-cluster-active text-white px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap transition-all" data-id="yrd">??????</button>
+                            <button onclick="updateUrbanCluster('gba')" class="urban-cluster-btn urban-cluster-inactive bg-white dark:bg-stone-800 px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap text-stone-500 dark:text-stone-400 border border-stone-200 dark:border-stone-600 transition-all" data-id="gba">??????</button>
+                            <button onclick="updateUrbanCluster('jjj')" class="urban-cluster-btn urban-cluster-inactive bg-white dark:bg-stone-800 px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap text-stone-500 dark:text-stone-400 border border-stone-200 dark:border-stone-600 transition-all" data-id="jjj">?????</button>
+                            <button onclick="updateUrbanCluster('cy')" class="urban-cluster-btn urban-cluster-inactive bg-white dark:bg-stone-800 px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap text-stone-500 dark:text-stone-400 border border-stone-200 dark:border-stone-600 transition-all" data-id="cy">????</button>
+                        </div>
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                            <div class="os-card p-8 rounded-2xl urban-glass-card flex flex-col justify-between">
+                                <div>
+                                    <div id="urban-cluster-name" class="text-2xl font-black text-blue-600 mb-2">????? (YRD)</div>
+                                    <div class="text-xs text-stone-400 uppercase font-bold tracking-widest mb-6">???????</div>
+                                    <p id="urban-cluster-desc" class="text-sm text-stone-600 dark:text-stone-400 leading-relaxed mb-8">???????????????????????????????????????????????????????????????</p>
+                                </div>
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center text-sm"><span class="text-stone-400">GDP ????</span><span id="urban-stat-gdp" class="font-bold text-stone-900 dark:text-stone-100">~24%</span></div>
+                                    <div class="flex justify-between items-center text-sm"><span class="text-stone-400">??????</span><span id="urban-stat-rd" class="font-bold text-stone-900 dark:text-stone-100">3.2%</span></div>
+                                </div>
+                            </div>
+                            <div class="lg:col-span-2 os-card p-8 rounded-2xl urban-glass-card">
+                                <h4 class="text-sm font-bold text-stone-800 dark:text-stone-100 mb-6 text-center uppercase tracking-widest">???????????</h4>
+                                <div class="chart-container"><canvas id="urbanClusterRadarChart"></canvas></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ???? -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="space-y-8">
+                            <h3 class="text-2xl font-bold text-stone-900 dark:text-stone-100">???????????</h3>
+                            <p class="text-stone-600 dark:text-stone-400 leading-relaxed">?????????????????????????????????????????????????????????????</p>
+                            <div class="space-y-4">
+                                <div class="os-card p-5 rounded-2xl urban-glass-card flex items-start gap-4">
+                                    <div class="w-10 h-10 bg-blue-100 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center font-bold">?</div>
+                                    <div><h4 class="font-bold text-stone-800 dark:text-stone-100">?? 300 ?????????</h4><p class="text-xs text-stone-500 mt-1">????????????????????????</p></div>
+                                </div>
+                                <div class="os-card p-5 rounded-2xl urban-glass-card flex items-start gap-4">
+                                    <div class="w-10 h-10 bg-emerald-100 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center font-bold">?</div>
+                                    <div><h4 class="font-bold text-stone-800 dark:text-stone-100">???????</h4><p class="text-xs text-stone-500 mt-1">?????????????????????????</p></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="os-card p-8 rounded-2xl urban-glass-card">
+                            <h4 class="text-sm font-bold text-stone-800 dark:text-stone-100 mb-6 text-center uppercase tracking-widest">????????? (2023 ??)</h4>
+                            <div class="chart-container"><canvas id="urbanPopulationDoughnut"></canvas></div>
+                            <p class="mt-6 text-[10px] text-stone-400 text-center italic">?????????????????????? 18 ???????????????????</p>
+                        </div>
+                    </div>
+
+                    <!-- ???? -->
+                    <div class="os-card rounded-2xl p-10 md:p-12 overflow-hidden relative" style="background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);">
+                        <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 32px 32px;"></div>
+                        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                            <div class="lg:col-span-5 space-y-6">
+                                <h3 class="text-2xl font-bold italic text-blue-200">????????????</h3>
+                                <p class="text-slate-300 leading-relaxed">?????????????????15?????????????????????????????????????????????????????</p>
+                                <div class="space-y-4">
+                                    <div class="flex items-center gap-4"><div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-xl">??</div><div><h4 class="font-bold text-white">???????</h4><p class="text-xs text-blue-200">????????????????1???????</p></div></div>
+                                    <div class="flex items-center gap-4"><div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-xl">??</div><div><h4 class="font-bold text-white">??????</h4><p class="text-xs text-blue-200">????????????????????????</p></div></div>
+                                </div>
+                            </div>
+                            <div class="lg:col-span-7">
+                                <div class="p-8 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
+                                    <h4 class="text-sm font-bold mb-6 text-center text-blue-100 uppercase tracking-widest">?????????????? (2020-2024)</h4>
+                                    <div class="chart-container"><canvas id="urbanConnectivityChart"></canvas></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-xs text-stone-500 dark:text-stone-400 text-center">????????????????????????????</p>
+                </section>

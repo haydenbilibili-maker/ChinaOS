@@ -1,6 +1,12 @@
 #!/bin/sh
-# China OS · 乱码门禁：拦截新增乱码（存量已 grandfather）
+# China OS · 提交前门禁
+# 1) 拦截新增乱码（存量已 grandfather）
 python3 scripts/scan_mojibake.py --gate || {
   echo "提交被拦截：发现新增乱码。修复后重试，或临时 'git commit --no-verify'。" >&2
+  exit 1
+}
+# 2) 校验 china.html 与 tabs/ 同步（改了 tabs/ 忘了 build 会被拦下）
+python3 scripts/build_china.py check || {
+  echo "提交被拦截：china.html 与 tabs/ 不同步，请先跑 python3 scripts/build_china.py。" >&2
   exit 1
 }

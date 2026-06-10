@@ -1,0 +1,163 @@
+                <section class="space-y-20 animate-fade-in">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-stone-200/80 dark:border-stone-600/50">
+                        <div>
+                            <h2 class="text-xl font-bold text-stone-800 dark:text-stone-100 tracking-tight">民营经济与市场主体</h2>
+                            <p class="text-sm text-stone-500 dark:text-stone-400 mt-1">Private Sector Dynamics 2024 与制度演进</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="switchTab('soe'); closeAllNavDropdowns();" class="depth-relate-tag">国企</button>
+                            <button onclick="switchTab('reform'); closeAllNavDropdowns();" class="depth-relate-tag">改革</button>
+                            <button onclick="switchTab('tech'); closeAllNavDropdowns();" class="depth-relate-tag">科技</button>
+                        </div>
+                    </div>
+
+                    <!-- Section 1: Hero & 56789 -->
+                    <div id="private-macro" class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                        <div class="lg:col-span-7 space-y-6">
+                            <div class="inline-flex items-center px-3 py-1 bg-orange-50 dark:bg-orange-950/30 text-orange-700 dark:text-orange-300 rounded-full text-xs font-bold uppercase tracking-wider">五六七八九</div>
+                            <h3 class="text-3xl md:text-4xl font-extrabold text-stone-900 dark:text-stone-100 leading-tight">民营经济与<br><span class="text-orange-600 dark:text-orange-400 italic">市场主体</span>贡献</h3>
+                            <p class="text-stone-600 dark:text-stone-400 text-lg leading-relaxed">民营经济贡献了约五成税收、六成 GDP、七成创新、八成就业、九成市场主体；政策从「两个毫不动摇」到「民营经济 31 条」持续强化预期管理。</p>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div class="os-card p-4 depth-stat-card text-center">
+                                    <div class="depth-stat-value text-stone-900 dark:text-stone-100">50% +</div>
+                                    <div class="depth-stat-label text-stone-400">税收贡献</div>
+                                </div>
+                                <div class="os-card p-4 depth-stat-card text-center bg-orange-600 dark:bg-orange-700 text-white">
+                                    <div class="depth-stat-value text-white">60% +</div>
+                                    <div class="depth-stat-label text-orange-100">GDP 贡献</div>
+                                </div>
+                                <div class="os-card p-4 depth-stat-card text-center">
+                                    <div class="depth-stat-value text-stone-900 dark:text-stone-100">70% +</div>
+                                    <div class="depth-stat-label text-stone-400">技术创新</div>
+                                </div>
+                                <div class="os-card p-4 depth-stat-card text-center">
+                                    <div class="depth-stat-value text-stone-900 dark:text-stone-100">80% +</div>
+                                    <div class="depth-stat-label text-stone-400">城镇就业</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-5">
+                            <div class="os-card rounded-2xl p-10 text-white shadow-2xl relative overflow-hidden" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border: 1px solid rgba(249,115,22,0.2);">
+                                <div class="absolute -top-10 -right-10 w-48 h-48 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                                <h4 class="text-xl font-bold mb-8 flex items-center gap-2 relative z-10">
+                                    <span class="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></span> 民企进出口与占比
+                                </h4>
+                                <div class="chart-container relative z-10" style="height: 250px;"><canvas id="privateTradeTrendChart"></canvas></div>
+                                <div class="private-dynamic-line mt-6"></div>
+                                <p class="text-[10px] text-stone-500 mt-4 text-center italic relative z-10">数据来源：海关、商务部</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Innovation Power -->
+                    <div id="private-innovation" class="space-y-12">
+                        <div class="text-center max-w-3xl mx-auto">
+                            <h3 class="text-2xl font-bold text-stone-900 dark:text-stone-100">????????????????</h3>
+                            <p class="text-stone-500 dark:text-stone-400 mt-4">??????????????????????????????????????????????????????????????????</p>
+                        </div>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                            <div class="os-card p-8 private-glass-panel">
+                                <h4 class="text-sm font-bold text-stone-800 dark:text-stone-100 mb-6 text-center uppercase tracking-widest text-stone-400">??????????????? (2024)</h4>
+                                <div class="chart-container"><canvas id="privateInnovationBarChart"></canvas></div>
+                            </div>
+                            <div class="space-y-6">
+                                <div class="os-card p-6 rounded-2xl relative overflow-hidden group">
+                                    <div class="absolute -right-4 -top-4 w-24 h-24 bg-orange-500/5 rounded-full group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+                                    <h4 class="text-lg font-bold text-orange-700 dark:text-orange-400 mb-3">?????????????</h4>
+                                    <p class="text-sm text-stone-500 dark:text-stone-400 leading-relaxed">?????????????????? 90%?????????????????????????????????????</p>
+                                </div>
+                                <div class="os-card p-6 rounded-2xl relative overflow-hidden group">
+                                    <div class="absolute -right-4 -top-4 w-24 h-24 bg-indigo-500/5 rounded-full group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+                                    <h4 class="text-lg font-bold text-indigo-700 dark:text-indigo-400 mb-3">???????R&D?</h4>
+                                    <p class="text-sm text-stone-500 dark:text-stone-400 leading-relaxed">??????????????????????????????????????????????????????????????</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Little Giants -->
+                    <div id="private-giants" class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-5 space-y-8">
+                            <h3 class="text-2xl font-bold text-stone-900 dark:text-stone-100 leading-tight">?????<br>????????????</h3>
+                            <p class="text-stone-600 dark:text-stone-400 leading-relaxed">???????????????????????????????????????????????????????????????????????????????</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="p-5 bg-orange-50 dark:bg-orange-950/20 border border-orange-100 dark:border-orange-800 rounded-2xl">
+                                    <h4 class="font-bold text-orange-900 dark:text-orange-200 text-sm mb-2 italic">????</h4>
+                                    <p class="text-xs text-orange-700 dark:text-orange-300">???????????????????????????????????</p>
+                                </div>
+                                <div class="p-5 bg-indigo-50 dark:bg-indigo-950/20 border border-indigo-100 dark:border-indigo-800 rounded-2xl">
+                                    <h4 class="font-bold text-indigo-900 dark:text-indigo-200 text-sm mb-2 italic">?????</h4>
+                                    <p class="text-xs text-indigo-700 dark:text-indigo-300">????????????????????????????????????????????</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-7">
+                            <div class="os-card p-8 private-glass-panel">
+                                <h4 class="text-sm font-bold text-stone-800 dark:text-stone-100 mb-6 text-center uppercase tracking-widest text-stone-400">?????????????? (??)</h4>
+                                <div class="chart-container" style="height: 300px;"><canvas id="privateGiantsDoughnutChart"></canvas></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 4: Environment & Confidence -->
+                    <div class="os-card rounded-3xl p-10 md:p-16 relative overflow-hidden shadow-2xl" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border: 1px solid rgba(249,115,22,0.15);">
+                        <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#f97316 0.5px, transparent 0.5px); background-size: 30px 30px;"></div>
+                        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                            <div class="lg:col-span-5 space-y-6">
+                                <h3 class="text-3xl font-black mb-4 italic tracking-tight text-orange-400">?????<br>???????</h3>
+                                <p class="text-slate-300 text-lg leading-relaxed mb-6">??????????????????2024????????????????????????????????????????????????????????????????</p>
+                                <div class="space-y-4">
+                                    <div class="flex items-center gap-4 p-4 bg-white/10 rounded-2xl border border-white/20">
+                                        <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-xl">??</div>
+                                        <div>
+                                            <h4 class="font-bold text-sm text-white">??????</h4>
+                                            <p class="text-xs text-slate-400">???????????????????????</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-4 p-4 bg-white/10 rounded-2xl border border-white/20">
+                                        <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-xl">??</div>
+                                        <div>
+                                            <h4 class="font-bold text-sm text-white">????????</h4>
+                                            <p class="text-xs text-slate-400">??????????????????????????????????</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lg:col-span-7">
+                                <div class="os-card bg-white dark:bg-stone-900 p-8">
+                                    <h4 class="text-sm font-bold text-stone-800 dark:text-stone-100 mb-6 text-center uppercase tracking-widest text-stone-400">????????????????? (2024)</h4>
+                                    <div class="chart-container" style="height: 300px;"><canvas id="privateConfidenceRadarChart"></canvas></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 5: Conclusion -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="os-card p-8 private-glass-panel">
+                            <h4 class="text-sm font-bold text-stone-800 dark:text-stone-100 mb-6 text-center uppercase tracking-widest">?????????????</h4>
+                            <div class="chart-container"><canvas id="privateDigitalDoughnutChart"></canvas></div>
+                        </div>
+                        <div class="space-y-6">
+                            <h3 class="text-2xl font-bold text-stone-900 dark:text-stone-100 underline decoration-orange-600 decoration-4 underline-offset-8">???????????</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-4">
+                                    <span class="w-6 h-6 bg-orange-700 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0">1</span>
+                                    <p class="text-sm text-stone-600 dark:text-stone-400"><strong>???????????????</strong> ??????????????????????????????????????????????????????????</p>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <span class="w-6 h-6 bg-orange-700 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0">2</span>
+                                    <p class="text-sm text-stone-600 dark:text-stone-400"><strong>???????</strong> ?????????????????????????????????????????????????????</p>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <span class="w-6 h-6 bg-orange-700 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0">3</span>
+                                    <p class="text-sm text-stone-600 dark:text-stone-400"><strong>????????</strong> ??????????????????????????????????????????????????????</p>
+                                </div>
+                            </div>
+                            <div class="p-6 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-2xl mt-8">
+                                <p class="text-xs text-amber-800 dark:text-amber-200 leading-relaxed italic"><strong>??????</strong> ??????????????????????????????????????????????????????????????</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-stone-500 dark:text-stone-400 text-center">???????????????????????????????</p>
+                </section>
