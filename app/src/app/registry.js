@@ -11,6 +11,7 @@ import { lazy } from 'react';
 export const GROUPS = [
   { id: 'cognition', label: '认知内核', desc: '思想工具 · 理论模型', accent: '#c41e3a' },
   { id: 'lens', label: '内容透镜', desc: '四大支柱', accent: '#22d3ee' },
+  { id: 'depthtopics', label: '深度专题', desc: '已迁移', accent: '#10b981' },
   { id: 'sim', label: '推演与训练', desc: '沙盒 · 内参', accent: '#d4af37' },
   { id: 'foundation', label: '数据与系统', desc: '底座', accent: '#64748b' },
 ];
@@ -35,13 +36,59 @@ export const MODULES = [
     component: lazy(() => import('../modules/depth/Page.jsx')),
   },
   {
-    id: 'foodSecurity',
-    path: '/food-security',
-    group: 'lens',
-    title: '粮食安全',
-    subtitle: '大国粮仓 · 迁移样板',
-    icon: 'Wheat',
+    id: 'foodSecurity', path: '/food-security', group: 'depthtopics',
+    title: '粮食安全', subtitle: '大国粮仓 · 含地图', icon: 'Wheat',
     component: lazy(() => import('../modules/foodSecurity/Page.jsx')),
+  },
+  {
+    id: 'urban', path: '/urban', group: 'depthtopics',
+    title: '新型城镇化', subtitle: '市民化 · 城市群 · 含地图', icon: 'Building2',
+    component: lazy(() => import('../modules/urban/Page.jsx')),
+  },
+  {
+    id: 'ecology', path: '/ecology', group: 'depthtopics',
+    title: '生态文明', subtitle: '双碳 · GEP · 碳市场', icon: 'Leaf',
+    component: lazy(() => import('../modules/ecology/Page.jsx')),
+  },
+  {
+    id: 'automotive', path: '/automotive', group: 'depthtopics',
+    title: '汽车主权', subtitle: '新能源 · 换道超车', icon: 'Car',
+    component: lazy(() => import('../modules/automotive/Page.jsx')),
+  },
+  {
+    id: 'dataElement', path: '/data-element', group: 'depthtopics',
+    title: '数据要素', subtitle: '确权 · 入表 · 东数西算', icon: 'Binary',
+    component: lazy(() => import('../modules/dataElement/Page.jsx')),
+  },
+  {
+    id: 'digital', path: '/digital', group: 'depthtopics',
+    title: '数字经济', subtitle: '数实融合 · 平台', icon: 'Cpu',
+    component: lazy(() => import('../modules/digital/Page.jsx')),
+  },
+  {
+    id: 'bri', path: '/bri', group: 'depthtopics',
+    title: '一带一路', subtitle: '六廊六路 · 中欧班列', icon: 'Route',
+    component: lazy(() => import('../modules/bri/Page.jsx')),
+  },
+  {
+    id: 'foreignTrade', path: '/foreign-trade', group: 'depthtopics',
+    title: '对外贸易', subtitle: '新三样 · RCEP', icon: 'Ship',
+    component: lazy(() => import('../modules/foreignTrade/Page.jsx')),
+  },
+  {
+    id: 'civilAviation', path: '/civil-aviation', group: 'depthtopics',
+    title: '民航与大飞机', subtitle: 'C919 · 低空经济', icon: 'Plane',
+    component: lazy(() => import('../modules/civilAviation/Page.jsx')),
+  },
+  {
+    id: 'culture', path: '/culture', group: 'depthtopics',
+    title: '文化软实力', subtitle: '国潮 · 短剧出海', icon: 'Sparkles',
+    component: lazy(() => import('../modules/culture/Page.jsx')),
+  },
+  {
+    id: 'private', path: '/private', group: 'depthtopics',
+    title: '民营经济', subtitle: '56789 · 公平竞争', icon: 'Briefcase',
+    component: lazy(() => import('../modules/private/Page.jsx')),
   },
   {
     id: 'civilization',
