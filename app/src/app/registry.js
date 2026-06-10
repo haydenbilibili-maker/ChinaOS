@@ -13,6 +13,7 @@ export const GROUPS = [
   { id: 'lens', label: '内容透镜', desc: '四大支柱', accent: '#22d3ee' },
   { id: 'depthtopics', label: '深度专题', desc: '已迁移', accent: '#10b981' },
   { id: 'techtopics', label: '科技专题', desc: '科技树 · 深挖', accent: '#22d3ee' },
+  { id: 'security', label: '安全与国防', desc: '军事 · 台海 · 大安全', accent: '#c41e3a' },
   { id: 'sim', label: '推演与训练', desc: '沙盒 · 内参', accent: '#d4af37' },
   { id: 'foundation', label: '数据与系统', desc: '底座', accent: '#64748b' },
 ];
@@ -110,6 +111,26 @@ export const MODULES = [
     id: 'basicResearch', path: '/basic-research', group: 'techtopics',
     title: '基础研究', subtitle: '国家实验室 · 评价改革', icon: 'FlaskConical',
     component: lazy(() => import('../modules/basicResearch/Page.jsx')),
+  },
+  {
+    id: 'military', path: '/military', group: 'security',
+    title: '军事力量', subtitle: '五大军种 · 战略威慑', icon: 'Shield',
+    component: lazy(() => import('../modules/military/Page.jsx')),
+  },
+  {
+    id: 'straits', path: '/straits', group: 'security',
+    title: '台海局势', subtitle: '地缘重力 · 硅盾', icon: 'Crosshair',
+    component: lazy(() => import('../modules/straits/Page.jsx')),
+  },
+  {
+    id: 'omnisecurity', path: '/omnisecurity', group: 'security',
+    title: '大安全观', subtitle: '粮食 · 能源 · 网络', icon: 'ShieldCheck',
+    component: lazy(() => import('../modules/omnisecurity/Page.jsx')),
+  },
+  {
+    id: 'redweb', path: '/redweb', group: 'security',
+    title: '红网 · 结构分析', subtitle: '权贵网络框架', icon: 'Network',
+    component: lazy(() => import('../modules/redweb/Page.jsx')),
   },
   {
     id: 'civilization',
