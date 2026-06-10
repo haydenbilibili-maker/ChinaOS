@@ -19,6 +19,7 @@ import {
   PROVINCE_NAMES,
   RADAR_DIMS,
   getProvinceRadar,
+  POLICY_ZONES,
 } from './liveMapData.js';
 import EChart from '../../lib/viz/EChart.jsx';
 import { getTimelineSeries, MONTH_COUNT, CURRENT_MONTH_INDEX } from './liveMapHistory.js';
@@ -138,6 +139,10 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showFlows, setShowFlows] = useState(false);
   const [searchQ, setSearchQ] = useState('');
+  const [deltaMode, setDeltaMode] = useState(false);
+  const [zoneId, setZoneId] = useState('');
+  const [xLayer, setXLayer] = useState('economy');
+  const [yLayer, setYLayer] = useState('risk');
 
   const layer = getLayerById(layerId);
   const region = REGION_PRESETS.find((r) => r.id === regionId) || REGION_PRESETS[0];
@@ -156,17 +161,32 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
     return getTimelineSeries(layerId, CURRENT_MONTH_INDEX);
   }, [layerId, monthIndex, timelinePlaying, simLive, jitterSeed]);
 
-  const rankings = useMemo(() => getRankings(layerId, 5, mapData), [layerId, mapData]);
-  const stats = useMemo(() => getNationalStats(layerId, mapData), [layerId, mapData]);
+  // Δ环比模式：当前月 − 12 月前（首月），分色呈现「谁在升温、谁在降温」
+  const deltaData = useMemo(() => {
+    if (!deltaMode) return null;
+    const cur = getTimelineSeries(layerId, CURRENT_MONTH_INDEX);
+    const base = getTimelineSeries(layerId, 0);
+    const baseMap = Object.fromEntries(base.map((d) => [d.name, d.value]));
+    return cur.map((d) => {
+      const dv = +(d.value - (baseMap[d.name] ?? d.value)).toFixed(1);
+      return { ...d, value: dv, metrics: { ...d.metrics, value: dv } };
+    });
+  }, [deltaMode, layerId]);
+
+  const displayData = deltaMode && deltaData ? deltaData : mapData;
+
+  const rankings = useMemo(() => getRankings(layerId, 5, displayData), [layerId, displayData]);
+  const stats = useMemo(() => getNationalStats(layerId, displayData), [layerId, displayData]);
   const palette = PALETTES[theme === 'light' ? 'light' : 'dark'][layerId] || PALETTES.dark.composite;
 
   const hotCoords = useMemo(() => {
+    if (deltaMode) return [];
     const threshold = rankings.hot[Math.min(2, rankings.hot.length - 1)]?.value ?? 80;
     return mapData
       .filter((d) => d.value >= threshold && PROVINCE_COORDS[d.name])
       .slice(0, 8)
       .map((d) => ({ name: d.name, value: [...PROVINCE_COORDS[d.name], d.value] }));
-  }, [mapData, rankings]);
+  }, [mapData, rankings, deltaMode]);
 
   useEffect(() => {
     let alive = true;
@@ -296,7 +316,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
     const labelColor = chartTextColor();
     const pulseScale = 2.2 + Math.sin(pulsePhase * 0.15) * 0.6;
 
-    const seriesData = mapData.map((d) => {
+    const seriesData = displayData.map((d) => {
       const isHot = hotCoords.some((h) => h.name === d.name);
       const isSelected = d.name === selectedProvince;
       return {
@@ -326,30 +346,55 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
         ...CHART_TOOLTIP,
         formatter: (p) => {
           if (p.seriesType === 'lines') return '';
+          if (deltaMode) {
+            const v = p.data?.value;
+            return v == null ? p.name : `<b>${p.name}</b><br/>${layer.label} Δ12月：${v > 0 ? '+' : ''}${v}`;
+          }
           if (p.seriesType === 'effectScatter') return formatTooltip(p.name, layerId, mapData.find((x) => x.name === p.name)?.metrics);
           return formatTooltip(p.name, layerId, p.data?.metrics);
         },
       },
-      visualMap: {
-        show: true,
-        min: layer.min,
-        max: layer.max,
-        left: 8,
-        bottom: isCompact ? 4 : 8,
-        calculable: false,
-        inRange: { color: palette },
-        text: [`高${layer.unit ? ` (${layer.unit})` : ''}`, '低'],
-        textStyle: { color: labelColor, fontSize: 10 },
-        itemWidth: 12,
-        itemHeight: isCompact ? 56 : 80,
-        formatter: (v) => Math.round(v),
-      },
+      visualMap: deltaMode
+        ? {
+          show: true,
+          min: -15,
+          max: 15,
+          left: 8,
+          bottom: isCompact ? 4 : 8,
+          calculable: false,
+          inRange: { color: isDark ? ['#3b82f6', '#16203a', '#ef4444'] : ['#2563eb', '#eef1f6', '#dc2626'] },
+          text: ['升温 Δ', '降温'],
+          textStyle: { color: labelColor, fontSize: 10 },
+          itemWidth: 12,
+          itemHeight: isCompact ? 56 : 80,
+          formatter: (v) => (v > 0 ? `+${Math.round(v)}` : Math.round(v)),
+        }
+        : {
+          show: true,
+          min: layer.min,
+          max: layer.max,
+          left: 8,
+          bottom: isCompact ? 4 : 8,
+          calculable: false,
+          inRange: { color: palette },
+          text: [`高${layer.unit ? ` (${layer.unit})` : ''}`, '低'],
+          textStyle: { color: labelColor, fontSize: 10 },
+          itemWidth: 12,
+          itemHeight: isCompact ? 56 : 80,
+          formatter: (v) => Math.round(v),
+        },
       geo: {
         map: 'china',
         roam: true,
         center: region.center,
         zoom: region.zoom,
         scaleLimit: { min: 0.85, max: 6 },
+        regions: zoneId && POLICY_ZONES[zoneId]
+          ? POLICY_ZONES[zoneId].map((n) => ({
+            name: n,
+            itemStyle: { borderColor: '#d4af37', borderWidth: 1.8, shadowColor: 'rgba(212,175,55,0.45)', shadowBlur: 8 },
+          }))
+          : [],
         itemStyle: {
           areaColor: areaIdle,
           borderColor: borderBase,
@@ -399,7 +444,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
           : []),
       ],
     };
-  }, [theme, layer, mapData, layerId, palette, hotCoords, pulsePhase, region, selectedProvince, isCompact, showFlows]);
+  }, [theme, layer, mapData, displayData, deltaMode, zoneId, layerId, palette, hotCoords, pulsePhase, region, selectedProvince, isCompact, showFlows]);
 
   useEffect(() => {
     const chart = chartRef.current;
@@ -412,6 +457,40 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
     setMonthIndex(CURRENT_MONTH_INDEX);
     setTimelinePlaying(false);
   };
+
+  // 图层×图层 象限散点：31 省在任意两个指标维度上的交叉定位（均值十字分象限）
+  const scatterOpt = useMemo(() => {
+    const xs = getTimelineSeries(xLayer, CURRENT_MONTH_INDEX);
+    const ys = getTimelineSeries(yLayer, CURRENT_MONTH_INDEX);
+    const ymap = Object.fromEntries(ys.map((d) => [d.name, d.value]));
+    const pts = xs.filter((d) => ymap[d.name] != null).map((d) => ({ name: d.name, value: [d.value, ymap[d.name]] }));
+    const xa = +(pts.reduce((s, p) => s + p.value[0], 0) / (pts.length || 1)).toFixed(1);
+    const ya = +(pts.reduce((s, p) => s + p.value[1], 0) / (pts.length || 1)).toFixed(1);
+    const xl = getLayerById(xLayer);
+    const yl = getLayerById(yLayer);
+    const short = (n) => n.replace(/(省|市|自治区|壮族|回族|维吾尔)/g, '');
+    return {
+      grid: { left: 44, right: 20, top: 26, bottom: 32 },
+      tooltip: { ...CHART_TOOLTIP, formatter: (p) => `<b>${p.name}</b><br/>${xl.label}：${p.value[0]}<br/>${yl.label}：${p.value[1]}` },
+      xAxis: { type: 'value', name: xl.label, nameGap: 22, nameTextStyle: { color: '#5b6a82', fontSize: 10 }, scale: true, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+      yAxis: { type: 'value', name: yl.label, nameTextStyle: { color: '#5b6a82', fontSize: 10 }, scale: true, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+      series: [{
+        type: 'scatter',
+        data: pts,
+        symbolSize: 9,
+        itemStyle: { color: STEEL, opacity: 0.8 },
+        label: { show: true, position: 'top', fontSize: 8.5, color: '#93a1b5', formatter: (p) => short(p.name) },
+        emphasis: { itemStyle: { color: HOLD, opacity: 1 }, label: { color: HOLD } },
+        markLine: {
+          silent: true,
+          symbol: 'none',
+          lineStyle: { color: 'rgba(148,163,184,0.35)', type: 'dashed' },
+          label: { color: '#5b6a82', fontSize: 9 },
+          data: [{ xAxis: xa, label: { formatter: `均值 ${xa}` } }, { yAxis: ya, label: { formatter: `均值 ${ya}` } }],
+        },
+      }],
+    };
+  }, [xLayer, yLayer]);
 
   return (
     <section
@@ -461,6 +540,10 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
               <label className="inline-flex items-center gap-1.5 cursor-pointer select-none text-[10px] mono whitespace-nowrap" style={{ color: showFlows ? HOLD : 'var(--text-tertiary)' }}>
                 <input type="checkbox" checked={showFlows} onChange={(e) => setShowFlows(e.target.checked)} style={{ accentColor: HOLD }} />
                 迁徙流
+              </label>
+              <label className="inline-flex items-center gap-1.5 cursor-pointer select-none text-[10px] mono whitespace-nowrap" style={{ color: deltaMode ? '#ef4444' : 'var(--text-tertiary)' }} title="当前月 − 12 月前：红升蓝降">
+                <input type="checkbox" checked={deltaMode} onChange={(e) => setDeltaMode(e.target.checked)} style={{ accentColor: '#ef4444' }} />
+                Δ环比
               </label>
               <label className="inline-flex items-center gap-1.5 cursor-pointer select-none text-[10px] mono whitespace-nowrap" style={{ color: 'var(--text-tertiary)' }}>
                 <input type="checkbox" checked={simLive} onChange={(e) => setSimLive(e.target.checked)} style={{ accentColor: STEEL }} />
@@ -519,6 +602,24 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
                 }}
               >
                 {r.label}
+              </button>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-1.5 items-center">
+            <span className="text-[10px] mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>战略带</span>
+            {Object.keys(POLICY_ZONES).map((z) => (
+              <button
+                key={z}
+                type="button"
+                onClick={() => setZoneId(zoneId === z ? '' : z)}
+                className="text-[10px] mono px-2 py-0.5 rounded-full touch-manipulation"
+                style={{
+                  background: zoneId === z ? 'rgba(212,175,55,0.18)' : 'var(--bg-elevated)',
+                  border: `1px solid ${zoneId === z ? 'rgba(212,175,55,0.5)' : 'var(--border-subtle)'}`,
+                  color: zoneId === z ? '#d4af37' : 'var(--text-secondary)',
+                }}
+              >
+                {z}
               </button>
             ))}
           </div>
@@ -640,6 +741,36 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
               </div>
             );
           })()}
+        </div>
+      )}
+
+      {!isCompact && (
+        <div className="mt-5 p-3 rounded-lg" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}>
+          <div className="flex flex-wrap items-center gap-2 mb-2">
+            <Lucide.ScatterChart size={14} style={{ color: STEEL }} />
+            <span className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>象限研判 · 图层 × 图层</span>
+            <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>31 省交叉定位 · 均值十字分象限 · 点击省份开详情</span>
+            <span className="ml-auto flex items-center gap-1.5 text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>
+              X
+              <select value={xLayer} onChange={(e) => setXLayer(e.target.value)} className="text-[10px] mono rounded"
+                style={{ background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', padding: '3px 6px' }}>
+                {LAYERS.map((l) => <option key={l.id} value={l.id}>{l.label}</option>)}
+              </select>
+              Y
+              <select value={yLayer} onChange={(e) => setYLayer(e.target.value)} className="text-[10px] mono rounded"
+                style={{ background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', padding: '3px 6px' }}>
+                {LAYERS.map((l) => <option key={l.id} value={l.id}>{l.label}</option>)}
+              </select>
+            </span>
+          </div>
+          <EChart
+            option={scatterOpt}
+            style={{ height: 300 }}
+            onReady={(ch) => ch.on('click', (p) => { if (p.name) { setSelectedProvince(p.name); setSidebarOpen(false); } })}
+          />
+          <p className="text-[10px] mono mt-1.5" style={{ color: 'var(--text-tertiary)' }}>
+            右上 = 双高（如 经济热度×风险态势 右上即「高热高险」需重点盯防）· 左下 = 双低 · 离均值十字越远，结构特征越极端
+          </p>
         </div>
       )}
 
