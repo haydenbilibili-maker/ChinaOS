@@ -1,99 +1,92 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { categoryX, valueY, GRID, radarOpt } from '../shared/chartHelpers.js';
+import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
-const rmbShare = {
-  tooltip: { trigger: 'axis' },
-  grid: { left: 44, right: 16, top: 20, bottom: 24 },
-  xAxis: { type: 'category', data: ['2019', '2020', '2021', '2022', '2023', '2024E'], axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } },
-  yAxis: { type: 'value', axisLabel: { formatter: '{value}%', color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
-  series: [{ name: '全球支付份额', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [1.8, 2.1, 2.4, 2.8, 4.1, 4.6], lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' }, areaStyle: { color: 'rgba(232,163,23,0.15)' } }],
-};
-const cipsNodes = {
-  tooltip: { trigger: 'axis' },
-  grid: { left: 90, right: 36, top: 16, bottom: 24 },
-  xAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5' } },
-  yAxis: { type: 'category', data: ['日均交易额', '结算行覆盖', '间接参与者', '直接参与者'], axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } },
-  series: [{ type: 'bar', data: [
-    { value: 88, itemStyle: { color: '#22d3ee' } },
-    { value: 78, itemStyle: { color: '#10b981' } },
-    { value: 92, itemStyle: { color: '#c41e3a' } },
-    { value: 85, itemStyle: { color: '#e8a317' } },
-  ], barWidth: 14, itemStyle: { borderRadius: 3 }, label: { show: true, position: 'right', color: '#93a1b5' } }],
-};
-const ecnyRadar = {
-  radar: {
-    indicator: [{ name: '民生支付', max: 100 }, { name: '跨境结算', max: 100 }, { name: '政务发放', max: 100 }, { name: '供应链金融', max: 100 }, { name: '智能合约自动化', max: 100 }],
-    axisName: { color: '#93a1b5', fontSize: 11 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.2)' } }, splitArea: { show: false },
-  },
-  series: [{ type: 'radar', data: [{ value: [95, 78, 92, 85, 88], name: '试点能级', lineStyle: { color: '#e8a317' }, itemStyle: { color: '#e8a317' }, areaStyle: { color: 'rgba(232,163,23,0.15)' } }] }],
-};
+const CHANNELS = [
+  { key: 'cips', label: 'CIPS 清算', accent: '#22d3ee', share: 4.6, desc: '人民币跨境支付系统覆盖 114 国/地区，提供独立于 SWIFT 的清算通道——极端制裁场景下的主权备份协议。' },
+  { key: 'swap', label: '货币互换', accent: '#10b981', share: 3.2, desc: '与 40+ 央行签署双边本币互换协议，降低美元中间货币依赖，构建「非对称货币引力场」。' },
+  { key: 'trade', label: '本币结算', accent: '#e8a317', share: 5.8, desc: '石油、大宗商品本币结算试点扩大，把贸易规模优势转译为货币话语权——从贸易货币向储备货币渐进。' },
+  { key: 'ecny', label: 'e-CNY 跨境', accent: '#c41e3a', share: 1.2, desc: '数字人民币 mBridge 多边试验，为跨境支付「最后一百米」提供可编程主权货币方案。' },
+];
+
+const PHASES = [
+  { period: '2009–2015', title: '跨境贸易结算', accent: '#64748b', desc: '人民币纳入跨境贸易结算试点，离岸市场起步，份额低于 2%。' },
+  { period: '2016–2020', title: 'SDR 入篮', accent: '#e8a317', desc: '2016 年纳入 IMF SDR 篮子，全球支付份额突破 2%，CIPS 一期上线。' },
+  { period: '2021–至今', title: '去美元化加速', accent: '#c41e3a', desc: '地缘脱钩压力下本币结算扩大，CIPS 参与者超 1400 家，支付份额逼近 5%。' },
+];
 
 export default function Page() {
+  const [channel, setChannel] = useState('cips');
+  const [phaseIdx, setPhaseIdx] = useState(PHASES.length - 1);
+  const ch = CHANNELS.find((x) => x.key === channel) || CHANNELS[0];
+
+  const rmbShare = useMemo(() => ({
+    grid: GRID,
+    xAxis: categoryX(['2019', '2020', '2021', '2022', '2023', '2024E']),
+    yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
+    series: [{ type: 'line', smooth: true, symbol: 'circle', symbolSize: 6,
+      data: [1.8, 2.1, 2.4, 2.8, 4.1, ch.share],
+      lineStyle: { color: ch.accent, width: 2 }, itemStyle: { color: ch.accent },
+      areaStyle: { color: `${ch.accent}22` } }],
+  }), [ch]);
+
+  const ecnyRadar = radarOpt(['民生支付', '跨境结算', '政务发放', '供应链金融', '智能合约'],
+    channel === 'ecny' ? [95, 88, 92, 85, 90] : [85, 72, 88, 75, 70],
+    { name: '试点能级', color: ch.accent });
+
+  const cipsNodes = {
+    grid: { left: 90, right: 36, top: 16, bottom: 24 },
+    xAxis: valueY({ max: 100 }),
+    yAxis: categoryX(['日均交易额', '结算行覆盖', '间接参与者', '直接参与者']),
+    series: [{ type: 'bar', barWidth: 14, itemStyle: { borderRadius: 3 },
+      data: [88, 78, 92, 85].map((v) => ({ value: v, itemStyle: { color: ch.accent } })),
+      label: { show: true, position: 'right', color: '#93a1b5' } }],
+  };
+
   return (
     <div>
       <PageHeader badge="RMB Intl · 金融主权" title="人民币国际化 · CIPS 与数字货币" subtitle="跨境支付 · 本币结算 · e-CNY · 去美元化博弈" />
-
-      <Card className="mb-6"><p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>在现实主义博弈中，货币不仅是中介，更是「主权信用的算法载体」。中国正利用其作为全球最大贸易国的地位，推进「去美元化」：通过在石油、大宗商品领域推行本币结算，构建一个平行于美元体系的<strong style={{ color: 'var(--text-primary)' }}>「非对称货币引力场」</strong>，对冲单极霸权带来的「金融脱钩」风险。</p></Card>
+      <IntroCard>在现实主义博弈中，货币是<strong style={{ color: 'var(--text-primary)' }}>主权信用的算法载体</strong>。中国正利用全球最大贸易国地位，构建平行于美元体系的「非对称货币引力场」，对冲单极霸权带来的金融脱钩风险。</IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="4.61%" label="RMB 全球支付份额 · 全球第四大货币" accent="#e8a317" />
-        <Stat value="114" label="CIPS 覆盖国家/地区 · 独立跨境协议" accent="#22d3ee" />
-        <Stat value="3.2 万亿$" label="外汇储备规模 · 系统流动性压舱石" />
-        <Stat value="TIER 1" label="金融防火墙能级 · Risk Isolation Active" accent="#c41e3a" />
+        <Stat value={`${ch.share}%`} label={`${ch.label}贡献 · 切换`} accent={ch.accent} />
+        <Stat value="114" label="CIPS 覆盖国家/地区" accent="#22d3ee" />
+        <Stat value="3.2 万亿$" label="外汇储备规模" accent="#e8a317" />
+        <Stat value="SDR" label="IMF 篮子权重 ~12%" accent="#10b981" />
       </Grid>
 
-      <Grid cols={2} className="mb-6">
-        <Card title="RMB 全球支付份额走势（% · SWIFT 口径）"><EChart option={rmbShare} style={{ height: 250 }} /></Card>
-        <Card title="CIPS 网络节点能级（指数 · 示意）"><EChart option={cipsNodes} style={{ height: 250 }} /></Card>
-      </Grid>
-
-      <Card title="核心逻辑 · 从「贸易货币」向「主权信用」的跃迁" className="mb-6">
-        <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>人民币国际化的本质不是汇率竞争，而是信用体系竞争：先以贸易结算渗透（份额由 2019 年 1.8% 升至 2024 年约 4.6%），再以离岸清算与储备货币职能逐级跃迁，将贸易规模优势转译为货币话语权。</p>
-        <div className="text-xs italic p-3" style={{ color: 'var(--text-tertiary)', borderLeft: '2px solid #e8a317', background: 'rgba(232,163,23,0.06)' }}>"Currency is the digital extension of a nation's kinetic power."</div>
-      </Card>
-
-      <Grid cols={2} className="mb-6">
-        <Card title="CIPS · 主权备份协议">
-          <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>人民币跨境支付系统（CIPS）覆盖 114 个国家/地区，提供独立于 SWIFT 的清算通道：SWIFT 替代系数持续上升（RISING），跨境清算延时实时化（REAL-TIME）。</p>
-          <p className="text-[11px] italic p-3 rounded" style={{ color: 'var(--text-tertiary)', background: 'rgba(148,163,184,0.08)' }}>分析：CIPS 正从备用选项进化为「全球南方」贸易的底层基座。</p>
-        </Card>
-        <Card title="e-CNY · 主权信用的数字化身">
-          <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>数字人民币不是简单的电子钱包，而是「可编程的主权货币」：通过加载智能合约实现资金流向穿透式监管，拦截资本外逃与洗钱；在离岸接口中为跨境支付「最后一百米」提供基于区块链的物理级方案。</p>
-          <Grid cols={2}>
-            <div style={{ borderLeft: '2px solid #e8a317', paddingLeft: 10 }}><div className="text-sm font-bold mono" style={{ color: '#e8a317' }}>2.0 T+</div><div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>累计交易总额（RMB）</div></div>
-            <div style={{ borderLeft: '2px solid #22d3ee', paddingLeft: 10 }}><div className="text-sm font-bold mono" style={{ color: '#22d3ee' }}>mBridge</div><div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>多边央行数字货币桥参与度</div></div>
-          </Grid>
-        </Card>
-      </Grid>
-
-      <Grid cols={2} className="mb-6">
-        <Card title="数字人民币试点场景渗透（指数 · 示意）"><EChart option={ecnyRadar} style={{ height: 280 }} /></Card>
-        <Card title="四大支柱 · 体系化推进">
-          <div className="space-y-3">
-            {[['01 人民币国际化算法', '贸易结算先行，离岸市场跟进，储备职能渐进，以「渗透」替代「冲锋」。', '#e8a317'],
-              ['02 跨境支付备份协议', 'CIPS 独立报文与清算体系，确保极端制裁场景下跨境结算不中断。', '#22d3ee'],
-              ['03 数字人民币沙盒', 'e-CNY 多城试点 + mBridge 跨境实验，技术护城河先于规模扩张。', '#10b981'],
-              ['04 金融风险防火墙', '资本项目有序开放与风险隔离并行，守住不发生系统性风险的底线。', '#c41e3a']].map(([t, d, c]) => (
-              <div key={t} style={{ borderLeft: `2px solid ${c}`, paddingLeft: 10 }}>
-                <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{t}</div>
-                <p className="text-[11px] mt-0.5 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
-              </div>
-            ))}
-          </div>
-        </Card>
-      </Grid>
-
-      <Card title="调研结论 · 构建「抗封锁」的金融系统" className="mb-6">
-        <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>中国金融体制改革的终点不是简单的「自由化」，而是「安全保障下的高效配置」。通过人民币国际化的逐步渗透、CIPS 协议的全球铺设、以及数字人民币的技术护城河，中国正在物理层面构建一套即便面对极端制裁，仍能维持工业机器持续运转、资源精准调配的金融利维坦。</p>
-        <div className="flex flex-wrap gap-4 text-[10px] mono uppercase" style={{ color: 'var(--text-tertiary)', letterSpacing: '0.1em' }}>
-          <span>// CREDIT_SOVEREIGNTY: 100.00%</span>
-          <span>// RISK_BARRIER: STRENGTHENED</span>
-          <span>// STATUS: STRATEGICALLY_READY</span>
+      <Card title="交互① · 国际化通道选择器" className="mb-6">
+        <SelectorBar items={CHANNELS} activeKey={channel} onSelect={setChannel} />
+        <div className="os-card p-4 mb-4" style={{ background: 'var(--bg-elevated)', borderLeft: `3px solid ${ch.accent}` }}>
+          <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{ch.desc}</p>
         </div>
+        <Grid cols={2}>
+          <Card title="RMB 全球支付份额（随通道切换）"><EChart option={rmbShare} style={{ height: 220 }} /></Card>
+          <Card title="CIPS 网络节点能级"><EChart option={cipsNodes} style={{ height: 220 }} /></Card>
+        </Grid>
       </Card>
 
-      <p className="text-xs mt-6" style={{ color: 'var(--text-tertiary)' }}>「信用的边界即是主权的射程」 · 数据为公开信息综合整理与示意值 · 由 china.html「人民币国际化」专题迁移</p>
+      <Card title="交互② · 国际化阶段时间线" className="mb-6">
+        <TimelineBar stages={PHASES} activeIdx={phaseIdx} onSelect={setPhaseIdx} />
+      </Card>
+
+      <Grid cols={2} className="mb-6">
+        <Card title="数字人民币试点场景（随通道切换）"><EChart option={ecnyRadar} style={{ height: 280 }} /></Card>
+        <Card title="核心逻辑 · 信用体系竞争">
+          <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>人民币国际化本质不是汇率竞争，而是信用体系竞争：先以贸易结算渗透，再以离岸清算与储备货币职能逐级跃迁。</p>
+          <div className="text-xs italic p-3" style={{ color: 'var(--text-tertiary)', borderLeft: '2px solid #e8a317', background: 'rgba(232,163,23,0.06)' }}>"Currency is the digital extension of a nation's kinetic power."</div>
+        </Card>
+      </Grid>
+
+      <FrameworkTrio cards={[
+        { title: 'CIPS 备份协议', subtitle: 'SWIFT 替代', body: '独立报文与清算体系，确保极端制裁场景下跨境结算不中断——从备用选项进化为全球南方贸易底层基座。', pillars: [['114 国覆盖', '清算网络扩张。'], ['实时化', '跨境延时缩短。'], ['mBridge', '多边央行数字货币桥。']] },
+        { title: 'e-CNY 沙盒', subtitle: '可编程货币', body: '数字人民币是可编程的主权货币：智能合约实现资金流向穿透式监管，拦截资本外逃与洗钱。', pillars: [['2.0 T+ 交易', '累计规模放量。'], ['民生场景', '红包与政务发放。'], ['离岸接口', '跨境最后一百米。']] },
+        { title: '金融防火墙', subtitle: '风险隔离', body: '资本项目有序开放与风险隔离并行，守住不发生系统性风险的底线——开放节奏服从安全冗余。', pillars: [['管道式开放', '渐进可兑换。'], ['离岸/onshore', 'CNH 定价窗口。'], ['储备职能', 'SDR 权重提升。']] },
+      ]} />
+
+      <ModuleFooter moduleId="financeRmb" sourceNote="由 china.html「人民币国际化」专题迁移升级" />
     </div>
   );
 }

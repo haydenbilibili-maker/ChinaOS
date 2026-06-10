@@ -19,10 +19,11 @@ export default function App() {
         <Route index element={<Navigate to={DEFAULT_MODULE.path} replace />} />
         {MODULES.map((m) => {
           const Cmp = m.component;
+          const routePath = m.wildcard ? `${m.path.slice(1)}/*` : m.path.slice(1);
           return (
             <Route
               key={m.id}
-              path={m.path.slice(1)}
+              path={routePath}
               element={
                 <Suspense fallback={<Loading />}>
                   <Cmp />
@@ -31,6 +32,9 @@ export default function App() {
             />
           );
         })}
+        <Route path="anticorruption" element={<Navigate to="/talent?tab=anticorruption" replace />} />
+        <Route path="culture-elite" element={<Navigate to="/talent?tab=culture" replace />} />
+        <Route path="business-elite" element={<Navigate to="/talent?tab=business" replace />} />
         <Route path="*" element={<Navigate to={DEFAULT_MODULE.path} replace />} />
       </Route>
     </Routes>

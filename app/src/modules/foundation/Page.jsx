@@ -1,14 +1,20 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import * as DB from '../../lib/db/localdb.js';
-import { parseCSV, parseJSON, parseFigure, parseManyFigures } from '../../lib/db/parse.js';
+import { parseCSV, parseJSON, parseFigure, parseManyFigures, parseDoc } from '../../lib/db/parse.js';
 import { STOCK_CATALOG } from '../../lib/db/stock.js';
 import { FIGURE_SEED, FIGURE_CATALOG_META } from '../../lib/db/figureSeed.js';
+import { DOC_SEED, DOC_CATALOG_META, GWR_METRICS } from '../../lib/db/docSeed.js';
+import { PRIVATE_ENTERPRISE_META, loadPrivateEnterprise500 } from '../../lib/db/privateEnterpriseSeed.js';
+import { ANTI_CORRUPTION_SEED_PKG, ANTI_CORRUPTION_META, ANTI_CORRUPTION_COUNT } from '../../lib/db/antiCorruptionSeed.js';
+import { CULTURAL_ELITE_SEED_PKG, CULTURAL_ELITE_META, CULTURAL_ELITE_COUNT } from '../../lib/db/culturalEliteSeed.js';
+import { BUSINESS_ELITE_SEED_PKG, BUSINESS_ELITE_META, BUSINESS_ELITE_COUNT } from '../../lib/db/businessEliteSeed.js';
 
 const TABS = [
   ['overview', '总览'], ['datasets', '数据集'], ['upload', '上传导入'],
-  ['analyze', '解析分析'], ['figures', '政治人物简历'], ['stock', '存量队列'], ['tools', '备份 / 对账'],
+  ['analyze', '解析分析'], ['figures', '政治人物简历'], ['docs', '政策文件'], ['stock', '存量队列'], ['tools', '备份 / 对账'],
 ];
 const CATS = ['经济运行', '国家统计局', '海关总署', '世界银行', '科技指标', '地缘指标', '政治人物', '其他'];
 const btn = (active) => ({ background: active ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)', color: active ? '#fff' : 'var(--text-secondary)', border: 'none', cursor: 'pointer', borderRadius: 6 });
@@ -50,12 +56,14 @@ export default function Page() {
   const [tab, setTab] = useState('overview');
   const [datasets, setDatasets] = useState([]);
   const [figures, setFigures] = useState([]);
+  const [docs, setDocs] = useState([]);
   const [st, setSt] = useState(null);
   const [toast, setToast] = useState('');
 
   const refresh = useCallback(async () => {
     setDatasets(await DB.listDatasets());
     setFigures(await DB.listFigures());
+    setDocs(await DB.listDocs());
     setSt(await DB.stats());
   }, []);
   useEffect(() => { refresh(); }, [refresh]);
@@ -74,7 +82,8 @@ export default function Page() {
       {tab === 'datasets' && <Datasets datasets={datasets} refresh={refresh} flash={flash} />}
       {tab === 'upload' && <Upload refresh={refresh} flash={flash} go={setTab} />}
       {tab === 'analyze' && <Analyze datasets={datasets} />}
-      {tab === 'figures' && <Figures figures={figures} refresh={refresh} flash={flash} />}
+      {tab === 'figures' && <Figures figures={figures} refresh={refresh} flash={flash} datasets={datasets} />}
+      {tab === 'docs' && <Docs docs={docs} refresh={refresh} flash={flash} />}
       {tab === 'stock' && <Stock datasets={datasets} refresh={refresh} flash={flash} />}
       {tab === 'tools' && <Tools datasets={datasets} refresh={refresh} flash={flash} />}
     </div>
@@ -347,7 +356,7 @@ function Analyze({ datasets }) {
 }
 
 // ---------- 政治人物简历 ----------
-function Figures({ figures, refresh, flash }) {
+function Figures({ figures, refresh, flash, datasets }) {
   const [text, setText] = useState('');
   const [preview, setPreview] = useState(null);
   const [q, setQ] = useState('');
@@ -371,12 +380,60 @@ function Figures({ figures, refresh, flash }) {
     await refresh();
     flash(`已载入 ${FIGURE_CATALOG_META.label}：${FIGURE_SEED.length} 条（截至 ${FIGURE_CATALOG_META.asOf}）`);
   };
+  const acLoaded = datasets?.some((d) => d.id === ANTI_CORRUPTION_SEED_PKG.id);
+  const loadAntiCorruption = async () => {
+    if (acLoaded && !window.confirm(`将覆盖反腐数据集（${ANTI_CORRUPTION_COUNT} 条），继续？`)) return;
+    await DB.putDataset({ ...ANTI_CORRUPTION_SEED_PKG, stampMs: Date.now() });
+    await refresh();
+    flash(`已载入 ${ANTI_CORRUPTION_META.label}：${ANTI_CORRUPTION_COUNT} 条`);
+  };
+  const ceLoaded = datasets?.some((d) => d.id === CULTURAL_ELITE_SEED_PKG.id);
+  const loadCulturalElite = async () => {
+    if (ceLoaded && !window.confirm(`将覆盖文化精英数据集（${CULTURAL_ELITE_COUNT.total} 条），继续？`)) return;
+    await DB.putDataset({ ...CULTURAL_ELITE_SEED_PKG, stampMs: Date.now() });
+    await refresh();
+    flash(`已载入 ${CULTURAL_ELITE_META.label}：${CULTURAL_ELITE_COUNT.total} 条（大学 ${CULTURAL_ELITE_COUNT.university} / 学者 ${CULTURAL_ELITE_COUNT.scholar} / 人才 ${CULTURAL_ELITE_COUNT.talent}）`);
+  };
+  const beLoaded = datasets?.some((d) => d.id === BUSINESS_ELITE_SEED_PKG.id);
+  const loadBusinessElite = async () => {
+    if (beLoaded && !window.confirm(`将覆盖商业精英数据集（${BUSINESS_ELITE_COUNT.total} 条），继续？`)) return;
+    await DB.putDataset({ ...BUSINESS_ELITE_SEED_PKG, stampMs: Date.now() });
+    await refresh();
+    flash(`已载入 ${BUSINESS_ELITE_META.label}：${BUSINESS_ELITE_COUNT.total} 条（创始人 ${BUSINESS_ELITE_COUNT.founder} / 高管 ${BUSINESS_ELITE_COUNT.executive} / 投资人 ${BUSINESS_ELITE_COUNT.investor} / 行业领袖 ${BUSINESS_ELITE_COUNT.industry_leader}）`);
+  };
   return (
     <div>
+      <Card title="商业精英库 · 独立数据集（与政治/文化人才隔离）" className="mb-4">
+        <p className="text-[11px] mb-2" style={{ color: 'var(--text-tertiary)' }}>
+          内置 {BUSINESS_ELITE_COUNT.total} 条（{BUSINESS_ELITE_META.scope}）。来源 {BUSINESS_ELITE_META.sources.slice(0, 4).join(' / ')}等。
+          {BUSINESS_ELITE_META.notes} 展示于 <Link to="/talent?tab=business" className="mono" style={{ color: 'var(--cyber-cyan)' }}>人才库 · 商业精英</Link> 子模块。
+        </p>
+        <button onClick={loadBusinessElite} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: '#e8a317', borderColor: 'rgba(232,163,23,0.35)' }}>
+          {beLoaded ? '覆盖载入' : '载入'}商业精英库（{BUSINESS_ELITE_COUNT.total} 条 · {BUSINESS_ELITE_META.asOf}）
+        </button>
+      </Card>
+      <Card title="文化精英库 · 独立数据集（与政治人才隔离）" className="mb-4">
+        <p className="text-[11px] mb-2" style={{ color: 'var(--text-tertiary)' }}>
+          内置 {CULTURAL_ELITE_COUNT.total} 条（{CULTURAL_ELITE_META.scope}）。来源 {CULTURAL_ELITE_META.sources.slice(0, 4).join(' / ')}等。
+          {CULTURAL_ELITE_META.notes} 展示于 <Link to="/talent?tab=culture" className="mono" style={{ color: 'var(--cyber-cyan)' }}>人才库 · 文化精英</Link> 子模块。
+        </p>
+        <button onClick={loadCulturalElite} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: '#a78bfa', borderColor: 'rgba(139,92,246,0.35)' }}>
+          {ceLoaded ? '覆盖载入' : '载入'}文化精英库（{CULTURAL_ELITE_COUNT.total} 条 · {CULTURAL_ELITE_META.asOf}）
+        </button>
+      </Card>
+      <Card title="反腐名单 · 独立数据集（与人才库隔离）" className="mb-4">
+        <p className="text-[11px] mb-2" style={{ color: 'var(--text-tertiary)' }}>
+          内置 {ANTI_CORRUPTION_COUNT} 条（{ANTI_CORRUPTION_META.scope}）。来源 {ANTI_CORRUPTION_META.sources.join(' / ')}。
+          {ANTI_CORRUPTION_META.notes} 展示于 <Link to="/talent?tab=anticorruption" className="mono" style={{ color: 'var(--cyber-cyan)' }}>人才库 · 反腐名单</Link> 子模块。
+        </p>
+        <button onClick={loadAntiCorruption} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: 'var(--china-red)', borderColor: 'rgba(196,30,58,0.35)' }}>
+          {acLoaded ? '覆盖载入' : '载入'}反腐名单（{ANTI_CORRUPTION_COUNT} 条 · {ANTI_CORRUPTION_META.asOf}）
+        </button>
+      </Card>
       <Card title="批量导入 · 从权威来源整段粘贴（多条简历）" className="mb-4">
         <p className="text-[11px] mb-2" style={{ color: 'var(--text-tertiary)' }}>
           支持：多条简历以空行或「---」分隔、每行一条 JSON(JSONL)、或 JSON 数组。自动按省份关键词关联。
-          内置数据集：{FIGURE_CATALOG_META.label}（共 {FIGURE_SEED.length} 条：省级 {FIGURE_CATALOG_META.breakdown?.provincial} + 人大政协 {FIGURE_CATALOG_META.breakdown?.provincialExtended} + 常委岗位 {FIGURE_CATALOG_META.breakdown?.provincialStanding} + 中央 {FIGURE_CATALOG_META.breakdown?.central} + 扩展 {FIGURE_CATALOG_META.breakdown?.extended} + 城市 {FIGURE_CATALOG_META.breakdown?.municipal} + 地级市 {FIGURE_CATALOG_META.breakdown?.prefectureCity} + 机构 {FIGURE_CATALOG_META.breakdown?.org} + 二层 {FIGURE_CATALOG_META.breakdown?.orgTier2}）· 来源 {FIGURE_CATALOG_META.sources.join(' / ')}。
+          内置数据集：{FIGURE_CATALOG_META.label}（共 {FIGURE_SEED.length} 条：省级 {FIGURE_CATALOG_META.breakdown?.provincial} + 人大政协 {FIGURE_CATALOG_META.breakdown?.provincialExtended} + 常委岗位 {FIGURE_CATALOG_META.breakdown?.provincialStanding} + 中央 {FIGURE_CATALOG_META.breakdown?.central} + 扩展 {FIGURE_CATALOG_META.breakdown?.extended} + 城市 {FIGURE_CATALOG_META.breakdown?.municipal} + 地级市 {FIGURE_CATALOG_META.breakdown?.prefectureCity} + 机构 {FIGURE_CATALOG_META.breakdown?.org} + 二层 {FIGURE_CATALOG_META.breakdown?.orgTier2} + 军事 {FIGURE_CATALOG_META.breakdown?.military}）· 来源 {FIGURE_CATALOG_META.sources.join(' / ')}。
         </p>
         <textarea value={bulk} onChange={(e) => setBulk(e.target.value)} placeholder={'姓名：张三\n现任：XX省委书记\n2020— 任XX省委书记\n---\n姓名：李四\n现任：XX省省长\n2021— 任XX省省长'} style={{ ...inp, height: 120, fontFamily: 'monospace', resize: 'vertical', width: '100%' }} />
         <div className="flex gap-2 mt-2 flex-wrap">
@@ -425,14 +482,86 @@ function Figures({ figures, refresh, flash }) {
   );
 }
 
+// ---------- 政策文件（上传 / 解析 / 管理） ----------
+function Docs({ docs, refresh, flash }) {
+  const [text, setText] = useState('');
+  const [parsed, setParsed] = useState(null);
+  const [q, setQ] = useState('');
+  const TYPE_COLOR = { 政府工作报告: '#c41e3a', 中央经济工作会议: '#e8a317', 五年规划: '#22d3ee' };
+  const doParse = () => { try { const p = parseDoc(text); setParsed(p); } catch (e) { flash('解析失败：' + e.message); } };
+  const save = async () => { await DB.putDoc({ ...parsed, updatedAt: Date.now() }); setText(''); setParsed(null); await refresh(); flash(`已录入「${parsed.title}」`); };
+  const loadSeed = async () => { await DB.clearDocs(); let ts = Date.now(); for (const d of DOC_SEED) await DB.putDoc({ ...d, updatedAt: ts++ }); await refresh(); flash(`已载入内置政策文件 ${DOC_SEED.length} 份`); };
+  const filtered = docs.filter((d) => !q || (d.title + ' ' + d.type + ' ' + (d.keywords || []).join(' ')).includes(q));
+  return (
+    <div>
+      <Card title="政策文件库 · 内置载入" className="mb-4">
+        <p className="text-[11px] mb-2" style={{ color: 'var(--text-tertiary)' }}>
+          内置 {DOC_SEED.length} 份公开要点（政府工作报告 {DOC_CATALOG_META.breakdown.政府工作报告} / 中央经济工作会议 {DOC_CATALOG_META.breakdown.中央经济工作会议} / 五年规划 {DOC_CATALOG_META.breakdown.五年规划}）。来源：{DOC_CATALOG_META.sources.join(' / ')}。前台「<Link to="/policydocs" className="mono" style={{ color: 'var(--cyber-cyan)' }}>政策文件库</Link>」做报告比对、指标趋势与政策洞察。
+        </p>
+        <button onClick={loadSeed} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: 'var(--cyber-cyan)' }}>清空并载入内置 {DOC_SEED.length} 份（去重幂等）</button>
+      </Card>
+      <Grid cols={2}>
+        <Card title="上传解析 · 粘贴报告 / 公报全文或要点">
+          <textarea value={text} onChange={(e) => setText(e.target.value)} placeholder={'2025年政府工作报告\n国内生产总值增长5%左右；赤字率4%左右；城镇新增就业1200万人以上……\n大力提振消费、适度宽松的货币政策、人工智能+……'} style={{ ...inp, height: 200, fontFamily: 'monospace', resize: 'vertical' }} />
+          <div className="flex gap-2 mt-2">
+            <button onClick={doParse} style={{ ...btn(true), padding: '6px 16px', fontSize: 13 }}>解析</button>
+            {parsed && <button onClick={save} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: '#10b981' }}>录入数据库</button>}
+          </div>
+          {parsed && (
+            <div className="mt-3 p-3 rounded text-xs" style={{ background: 'var(--bg-elevated)' }}>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="font-bold" style={{ color: 'var(--text-primary)' }}>{parsed.title}</span>
+                <span className="mono px-1.5 py-0.5 rounded" style={{ background: `${TYPE_COLOR[parsed.type] || '#64748b'}22`, color: TYPE_COLOR[parsed.type] || '#64748b' }}>{parsed.type}{parsed.year ? ` · ${parsed.year}` : ''}</span>
+              </div>
+              {Object.values(parsed.metrics || {}).some((v) => v != null) && (
+                <div className="flex flex-wrap gap-x-3 gap-y-1 mb-2">
+                  {GWR_METRICS.filter((m) => parsed.metrics[m.key] != null).map((m) => <span key={m.key} style={{ color: 'var(--text-tertiary)' }}>{m.label}：<span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{parsed.metrics[m.key]}{m.unit}</span></span>)}
+                </div>
+              )}
+              {(parsed.keywords || []).length > 0 && <div className="flex flex-wrap gap-1 mb-1">{parsed.keywords.map((k) => <span key={k} className="mono px-1.5 py-0.5 rounded" style={{ background: 'var(--bg-base)', color: 'var(--text-secondary)', fontSize: 10 }}>{k}</span>)}</div>}
+              <div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>识别 {Object.values(parsed.metrics || {}).filter((v) => v != null).length} 项指标 · {(parsed.keywords || []).length} 个提法 · {(parsed.highlights || []).length} 条要点</div>
+            </div>
+          )}
+          <p className="text-[11px] mt-2" style={{ color: 'var(--text-tertiary)' }}>自动识别文件类型、年份、量化目标（GDP/赤字率/就业等）、政策定调与关键提法；仅录入用户提供的公开文本要点，供研究比对。</p>
+        </Card>
+        <Card title={`政策文件库 (${filtered.length}/${docs.length})`}>
+          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="检索：标题 / 类型 / 提法" style={{ ...inp, marginBottom: 10 }} />
+          <div className="space-y-2" style={{ maxHeight: 460, overflowY: 'auto' }}>
+            {filtered.map((d) => (
+              <div key={d.id} className="p-3 rounded" style={{ background: 'var(--bg-elevated)', borderLeft: `3px solid ${TYPE_COLOR[d.type] || '#64748b'}` }}>
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{d.year} · {d.type}</span>
+                  <button onClick={async () => { await DB.deleteDoc(d.id); await refresh(); flash('已删除'); }} style={{ ...btn(false), padding: '2px 8px', fontSize: 11, color: 'var(--china-red)' }}>删</button>
+                </div>
+                <div className="text-[11px] mt-0.5" style={{ color: 'var(--text-tertiary)' }}>{d.title}</div>
+                {(d.keywords || []).length > 0 && <div className="text-[10px] mono mt-1" style={{ color: 'var(--text-tertiary)' }}>{(d.keywords || []).slice(0, 4).join(' · ')}</div>}
+              </div>
+            ))}
+            {!filtered.length && <div className="py-16 text-center text-sm mono" style={{ color: 'var(--text-tertiary)' }}>// {docs.length ? '无匹配' : '政策文件库为空，点上方载入内置'}</div>}
+          </div>
+        </Card>
+      </Grid>
+    </div>
+  );
+}
+
 // ---------- 存量队列 ----------
 function Stock({ datasets, refresh, flash }) {
   const [busy, setBusy] = useState('');
+  const loadPe500 = async () => {
+    setBusy('pe500');
+    try {
+      const res = await loadPrivateEnterprise500(DB);
+      await refresh();
+      flash(`已载入 ${PRIVATE_ENTERPRISE_META.label}：企业 ${res.companies} · 人物 ${res.people} · 股权 ${res.equity}（深度 ${res.deep}）`);
+    } catch (e) { flash('载入失败：' + (e.message || e)); }
+    setBusy('');
+  };
   const ingest = async (item) => {
     setBusy(item.key);
     try {
       const { rows, source } = await item.load();
-      await DB.putDataset({ id: `stock_${item.key}`, name: item.name, category: item.category, source, origin: 'stock', rows, stampMs: Date.now() });
+      await DB.putDataset({ id: item.id || `stock_${item.key}`, name: item.name, category: item.category, source, origin: 'stock', rows, stampMs: Date.now() });
       await refresh(); flash(`已录入存量「${item.name}」 ${rows.length} 行`);
     } catch (e) { flash('录入失败：' + (e.message || e)); }
     setBusy('');
@@ -441,9 +570,14 @@ function Stock({ datasets, refresh, flash }) {
   const isIn = (name) => datasets.some((d) => d.name === name);
   return (
     <Card title="存量数据队列 · 各模块已落地数据一键录入">
-      <div className="flex justify-between items-center mb-3">
+      <div className="flex justify-between items-center mb-3 flex-wrap gap-2">
         <p className="text-xs" style={{ color: 'var(--text-tertiary)' }}>已分布在各模块的数据，登记为可录入数据库的存量；真实数据（省级财政/人口、WB）标注实时来源。</p>
-        <button onClick={ingestAll} style={{ ...btn(true), padding: '6px 14px', fontSize: 12 }}>全部录入</button>
+        <div className="flex gap-2">
+          <button disabled={busy === 'pe500'} onClick={loadPe500} style={{ ...btn(false), padding: '6px 14px', fontSize: 12, color: '#fb923c', borderColor: 'rgba(251,146,60,0.4)' }}>
+            {busy === 'pe500' ? '载入中…' : `载入民企500强（${PRIVATE_ENTERPRISE_META.scope}）`}
+          </button>
+          <button onClick={ingestAll} style={{ ...btn(true), padding: '6px 14px', fontSize: 12 }}>全部录入</button>
+        </div>
       </div>
       <div className="space-y-2">
         {STOCK_CATALOG.map((it) => (

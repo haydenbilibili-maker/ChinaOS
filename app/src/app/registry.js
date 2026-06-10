@@ -149,8 +149,12 @@ export const MODULES = [
     component: lazy(() => import('../modules/civilAviation/Page.jsx')),
   },
   {
-    id: 'culture', path: '/culture', group: 'depthtopics',
-    title: '文化软实力', subtitle: '国潮 · 短剧出海', icon: 'Sparkles',
+    id: 'culture',
+    path: '/culture',
+    group: 'depthtopics',
+    title: '文化软实力',
+    subtitle: '国潮 · 短剧出海',
+    icon: 'Sparkles',
     component: lazy(() => import('../modules/culture/Page.jsx')),
   },
   {
@@ -204,6 +208,11 @@ export const MODULES = [
     component: lazy(() => import('../modules/soe/Page.jsx')),
   },
   {
+    id: 'enterprise500', path: '/enterprise500', group: 'industry',
+    title: '民企500强', subtitle: '工商联榜单 · 治理透视', icon: 'Building2',
+    component: lazy(() => import('../modules/enterprise500/Page.jsx')),
+  },
+  {
     id: 'ruleoflaw', path: '/ruleoflaw', group: 'institutions',
     title: '法治建设', subtitle: '智慧法院 · 涉外法治', icon: 'Scale',
     component: lazy(() => import('../modules/ruleoflaw/Page.jsx')),
@@ -248,7 +257,7 @@ export const MODULES = [
   { id: 'neural', path: '/neural', group: 'techtopics', title: '脑机接口', subtitle: '神经数据主权', icon: 'Brain', component: lazy(() => import('../modules/neural/Page.jsx')) },
   {
     id: 'military', path: '/military', group: 'security',
-    title: '军事力量', subtitle: '五大军种 · 战略威慑', icon: 'Shield',
+    title: '军事力量', subtitle: '战区 · 装备 · 基地 · 联勤', icon: 'Shield',
     component: lazy(() => import('../modules/military/Page.jsx')),
   },
   {
@@ -273,7 +282,8 @@ export const MODULES = [
     title: '文明透视',
     subtitle: '12 卷源代码',
     icon: 'ScrollText',
-    component: lazy(() => import('../modules/civilization/Page.jsx')),
+    wildcard: true,
+    component: lazy(() => import('../modules/civilization/index.jsx')),
   },
   {
     id: 'diplomacy',
@@ -304,8 +314,13 @@ export const MODULES = [
   },
   {
     id: 'talent', path: '/talent', group: 'sim',
-    title: '人才库', subtitle: '省部级公开履历检索', icon: 'UsersRound',
+    title: '人才库', subtitle: '公开履历 · 反腐 · 文化/商业精英', icon: 'UsersRound',
     component: lazy(() => import('../modules/talent/Page.jsx')),
+  },
+  {
+    id: 'policydocs', path: '/policydocs', group: 'sim',
+    title: '政策文件库', subtitle: '报告比对 · 政策洞察', icon: 'FileText',
+    component: lazy(() => import('../modules/policydocs/Page.jsx')),
   },
   {
     id: 'foundation',

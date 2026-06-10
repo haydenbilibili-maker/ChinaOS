@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ============================================================================
 // 认知内核 · 威慑与冲突战略（托马斯·谢林 Thomas Schelling）
@@ -97,7 +98,14 @@ export default function Page() {
           </div>
         </Grid>
       </Card>
-      <p className="text-xs mt-6" style={{ color: 'var(--text-tertiary)' }}>本模型为博弈论分析框架与思想工具，参数与权重为示意，用于结构化思考而非实证测量。</p>
+
+      <FrameworkTrio cards={[
+        { title: '可信承诺逻辑', subtitle: '拴手 · 破釜沉舟', body: '谢林悖论：自缚手脚、放弃退路，反而强化威胁可信度。核二次打击、国内立法「拴手」都是同一逻辑——让「不报复」在政治上不可能。', pillars: [['能力', '有没有实施惩罚的实力。'], ['决心', '愿不愿意承受代价。'], ['可信度', '对手是否相信你会做。']] },
+        { title: '边缘政策 · 摸石头', subtitle: 'Brinkmanship', body: '蓄意制造「失控滑向灾难」的共有风险，逼对手先退让——胆小鬼博弈的核心手筋。关税互加是经济版边缘政策。', pillars: [['A2/AD', '抬高外部干预成本。'], ['MAD', '恐怖平衡稳定。'], ['关税战', '经济脱钩风险共有。']] },
+        { title: '升级路径 · 威慑链', subtitle: '能力 → 信号 → 行动', body: '威慑链任一环节断裂即失效：强大军力若无人相信你会用，等于零威慑。台海、核威慑、关税战是三个典型现场。', pillars: [['信号', '沟通可信度是瓶颈。'], ['几何均值', '三者乘积开立方。'], ['最弱环', '系统强度取决于短板。']] },
+      ]} />
+
+      <ModuleFooter moduleId="deterrence" disclaimer="本模型为博弈论分析框架与思想工具，参数与权重为示意，用于结构化思考而非实证测量" />
     </div>
   );
 }

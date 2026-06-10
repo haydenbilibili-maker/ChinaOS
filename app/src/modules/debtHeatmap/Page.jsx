@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import ChinaMap from '../../lib/viz/ChinaMap.jsx';
+import { categoryX, valueY, GRID } from '../shared/chartHelpers.js';
+import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
+
+const DEBT_MODES = [
+  { key: 'rate', label: '债务率', accent: '#c41e3a', desc: '债务/综合财力 %：天津、贵州、云南、青海等地远超 120% 警戒线，沿海经济大省仍有充足缓冲。' },
+  { key: 'explicit', label: '显性债务', accent: '#22d3ee', desc: '人大批准限额内的地方政府债券（一般债+专项债），透明可控，2024 余额约 47 万亿。' },
+  { key: 'implicit', label: '隐性债务', accent: '#e8a317', desc: '城投平台、政府购买服务与 PPP 中沉淀的隐性债务，规模约为显性 1.2–1.5 倍，是风险定价真正难点。' },
+];
 
 // 省级债务率（债务/综合财力 % · 示意值，量级贴近公开研究）—— name 用 DataV 全称
 const DEBT_RATE = [
@@ -48,35 +56,30 @@ const debtRank = {
 };
 
 // 显性债务余额 vs 城投有息债务（万亿元 · 示意，量级贴近公开数据）
-const debtTrend = {
-  grid: { left: 40, right: 16, top: 32, bottom: 24 },
-  legend: { top: 0, textStyle: { color: '#93a1b5' }, itemWidth: 14 },
-  tooltip: { trigger: 'axis' },
-  xAxis: { type: 'category', data: ['2019', '2020', '2021', '2022', '2023', '2024'], axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } },
-  yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5' } },
-  series: [
-    { name: '显性债务余额', type: 'line', smooth: true, symbol: 'circle', data: [21.3, 25.7, 30.5, 35.1, 40.7, 47.5], lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.1)' } },
-    { name: '城投有息债务(估)', type: 'line', smooth: true, symbol: 'circle', data: [44, 49, 54, 57, 60, 62], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
-  ],
-};
 
 export default function Page() {
+  const [mode, setMode] = useState('rate');
+  const m = DEBT_MODES.find((x) => x.key === mode) || DEBT_MODES[0];
+
+  const debtTrend = useMemo(() => ({
+    grid: { ...GRID, top: 32 },
+    legend: { top: 0, textStyle: { color: '#93a1b5' }, itemWidth: 14 },
+    tooltip: { trigger: 'axis' },
+    xAxis: categoryX(['2019', '2020', '2021', '2022', '2023', '2024']),
+    yAxis: valueY(),
+    series: [
+      { name: '显性债务余额', type: 'line', smooth: true, symbol: 'circle',
+        data: [21.3, 25.7, 30.5, 35.1, 40.7, 47.5], lineStyle: { color: m.accent, width: 2 },
+        itemStyle: { color: m.accent }, areaStyle: { color: `${m.accent}18` } },
+      { name: '城投有息债务(估)', type: 'line', smooth: true, symbol: 'circle',
+        data: [44, 49, 54, 57, 60, mode === 'implicit' ? 62 : 58], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
+    ],
+  }), [mode, m]);
+
   return (
     <div>
-      <PageHeader
-        badge="深度透视 · Local Debt"
-        title="地方债务 · 显性隐性与省际热力"
-        subtitle="城投 · 化债 · 一揽子方案 · 省际分化"
-      />
-
-      <Card className="mb-6">
-        <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-          地方债务的核心矛盾不在「显性」账面，而在城投平台沉淀的隐性债务：土地财政退潮后，
-          以土地增值预期为锚的举债模式失去现金流支撑。债务率（债务/综合财力）的省际分化极为陡峭——
-          天津、贵州、云南、青海等地远超 120% 警戒线，而沿海经济大省仍有充足缓冲。
-          化债的本质是时间换空间：以低息长久期的政府债券置换高息短久期的隐性债务，同时压实「谁家的孩子谁抱」的属地责任。
-        </p>
-      </Card>
+      <PageHeader badge="深度透视 · Local Debt" title="地方债务 · 显性隐性与省际热力" subtitle="城投 · 化债 · 一揽子方案 · 省际分化" />
+      <IntroCard>地方债务核心矛盾在城投平台沉淀的<strong style={{ color: 'var(--text-primary)' }}>隐性债务</strong>：土地财政退潮后，以土地增值预期为锚的举债模式失去现金流支撑。化债本质是时间换空间——低息长久期政府债券置换高息短久期隐债。</IntroCard>
 
       <Grid cols={4} className="mb-6">
         <Stat value="~47 万亿" label="显性债务余额（2024 · 地方政府债券）" accent="#c41e3a" />
@@ -85,7 +88,11 @@ export default function Page() {
         <Stat value="2028" label="隐性债务清零目标年" accent="#22d3ee" />
       </Grid>
 
-      <Card title="省级债务率热力（债务/综合财力 % · 示意 · 可切换显债/隐债口径 · 点省下钻）" className="mb-6">
+      <Card title="交互 · 债务口径选择器 + 省际热力图" className="mb-6">
+        <SelectorBar items={DEBT_MODES} activeKey={mode} onSelect={setMode} />
+        <div className="os-card p-4 mb-4" style={{ background: 'var(--bg-elevated)', borderLeft: `3px solid ${m.accent}` }}>
+          <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{m.desc}</p>
+        </div>
         <ChinaMap
           metrics={[
             { key: 'rate', label: '债务率', valueName: '债务率(%)', max: 320, data: DEBT_RATE },
@@ -103,7 +110,7 @@ export default function Page() {
         <Card title="债务/GDP 排序 Top 10（2023 示意 · ≥70% 标红）">
           <EChart option={debtRank} style={{ height: 280 }} />
         </Card>
-        <Card title="显性债务 vs 城投有息债务（万亿元 · 示意）">
+        <Card title="显性债务 vs 城投有息债务（随口径切换）">
           <EChart option={debtTrend} style={{ height: 280 }} />
         </Card>
       </Grid>
@@ -148,17 +155,17 @@ export default function Page() {
         </Card>
       </Grid>
 
+      <FrameworkTrio cards={[
+        { title: '一揽子化债', subtitle: '6+4+2', body: '12 万亿组合将 2028 年前需消化隐债从 14.3 万亿压至 2.3 万亿——隐债显性化、长久期化、低息化。', pillars: [['6 万亿置换', '一次性新增限额。'], ['4 万亿专项债', '分五年释放。'], ['2 万亿自然到期', '棚改隐债。']] },
+        { title: '城投夹层', subtitle: '土地财政', body: '城投是分税制与土地财政衍生物；土地市场转冷后弱资质平台「借新还旧」依赖度急升。', pillars: [['特殊再融资债', '1.5 万亿+ 置换。'], ['7→3% 降息', '利息负担削减。'], ['非标违约', '向债市传导。']] },
+        { title: '中央边界', subtitle: '谁家的孩子', body: '中央救流动性不救清偿力，避免全面兜底诱发新一轮举债冲动；财权事权再平衡才是治本。', pillars: [['不全面兜底', '道德风险约束。'], ['省际分化', '深红=压力测试。'], ['新税基', '消费税/房产税。']] },
+      ]} />
+
       <Card title="结论 · 时间换空间，但空间要靠改革挣" className="mb-6">
-        <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-          一揽子化债将隐债显性化、长久期化、低息化，短期内系统性违约风险显著下降；
-          但债务总量并未消失，只是从「灰色高息」搬到「白色低息」。若土地财政缺口无法由新税基（消费税下划、房产税）填补，
-          化债窗口期内的省际分化仍会加深——地图上的深红区域，正是下一轮央地财政关系改革的压力测试场。
-        </p>
+        <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>债务总量并未消失，只是从「灰色高息」搬到「白色低息」。地图上的深红区域，正是下一轮央地财政关系改革的压力测试场。</p>
       </Card>
 
-      <p className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
-        示意数据综合公开研究与 Wind 等二手整理，非实时审计口径，不替代审计与财政决算 · 由 china.html「地方债务」专题迁移
-      </p>
+      <ModuleFooter moduleId="debtHeatmap" sourceNote="由 china.html「地方债务」专题迁移升级" />
     </div>
   );
 }

@@ -7,7 +7,7 @@
 // ============================================================================
 
 const DB_NAME = 'china-os-db';
-const DB_VER = 1;
+const DB_VER = 2;
 let _db = null;
 
 function open() {
@@ -22,6 +22,7 @@ function open() {
         s.createIndex('byDataset', 'datasetId', { unique: false });
       }
       if (!db.objectStoreNames.contains('figures')) db.createObjectStore('figures', { keyPath: 'id' });
+      if (!db.objectStoreNames.contains('docs')) db.createObjectStore('docs', { keyPath: 'id' });
     };
     req.onsuccess = () => { _db = req.result; resolve(_db); };
     req.onerror = () => reject(req.error);
@@ -135,14 +136,38 @@ export async function clearFigures() {
   notify('__figures__');
 }
 
+// ---------- 政策文件（政府工作报告 / 五年规划 / 中央经济工作会议 等） ----------
+export async function listDocs() {
+  const s = await tx('docs');
+  return (await reqP(s.getAll())).sort((a, b) => (b.year || 0) - (a.year || 0) || (b.updatedAt || 0) - (a.updatedAt || 0));
+}
+export async function putDoc(doc) {
+  const id = doc.id || uid('doc');
+  const db = await open();
+  await reqP(db.transaction('docs', 'readwrite').objectStore('docs').put({ ...doc, id }));
+  notify('__docs__');
+  return id;
+}
+export async function deleteDoc(id) {
+  const db = await open();
+  await reqP(db.transaction('docs', 'readwrite').objectStore('docs').delete(id));
+  notify('__docs__');
+}
+export async function clearDocs() {
+  const db = await open();
+  await reqP(db.transaction('docs', 'readwrite').objectStore('docs').clear());
+  notify('__docs__');
+}
+
 // ---------- 统计 ----------
 export async function stats() {
   const ds = await listDatasets();
   const figs = await listFigures();
+  const docs = await listDocs();
   const byCat = {};
   let totalRows = 0;
   ds.forEach((d) => { byCat[d.category] = (byCat[d.category] || 0) + 1; totalRows += d.rowCount || 0; });
-  return { datasetCount: ds.length, totalRows, figureCount: figs.length, byCategory: byCat };
+  return { datasetCount: ds.length, totalRows, figureCount: figs.length, docCount: docs.length, byCategory: byCat };
 }
 
 // 聚合：对 rows 按 groupBy 分组，对 valueField 求 agg(sum/avg/count/max/min)
@@ -196,15 +221,17 @@ export async function exportAll() {
     const rows = (await getRows(d.id)).map(({ rowId, datasetId, ...r }) => r);
     datasets.push({ ...d, rows });
   }
-  return { app: 'china-os-db', version: 1, exportedAt: new Date().toISOString(), datasets, figures: figs };
+  const docs = await listDocs();
+  return { app: 'china-os-db', version: DB_VER, exportedAt: new Date().toISOString(), datasets, figures: figs, docs };
 }
 export async function importAll(obj, { merge = true } = {}) {
   if (!obj || !Array.isArray(obj.datasets)) throw new Error('备份格式无效（缺 datasets）');
-  let ds = 0, fg = 0;
+  let ds = 0, fg = 0, dc = 0;
   for (const d of obj.datasets) {
     await putDataset({ id: d.id, name: d.name, category: d.category, source: d.source, origin: d.origin || 'import', note: d.note, columns: d.columns, rows: d.rows || [], stampMs: d.updatedAt || 0 });
     ds++;
   }
   if (Array.isArray(obj.figures)) { for (const f of obj.figures) { await putFigure(f); fg++; } }
-  return { datasets: ds, figures: fg };
+  if (Array.isArray(obj.docs)) { for (const d of obj.docs) { await putDoc(d); dc++; } }
+  return { datasets: ds, figures: fg, docs: dc };
 }

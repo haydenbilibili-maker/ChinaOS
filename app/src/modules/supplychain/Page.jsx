@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // 国内供给 vs 进口依存（堆叠横条 · 示意）
 const supplyRiskBar = {
@@ -44,15 +45,20 @@ const chokeList = [
   ['成熟制程产能', '中等', '#10b981'],
 ];
 
+const STRATEGIES = [
+  { key: 'stock', label: '库存冗余', accent: '#e8a317', desc: '战略储备 + 安全库存拉长周转天数，换取极端情景下的可启动性——韧性税的物理形态。' },
+  { key: 'friend', label: '友岸外包', accent: '#22d3ee', desc: '在合规框架下分散采购国别，降低单一司法辖区的断供概率。' },
+  { key: 'local', label: '国产替代', accent: '#10b981', desc: '成熟制程与材料端先行，先进制程依赖研发摊销与生态迁移——举国体制 + 市场订单双轮。' },
+];
+
 export default function Page() {
+  const [stratKey, setStratKey] = useState('local');
+  const strat = STRATEGIES.find((s) => s.key === stratKey) || STRATEGIES[2];
+
   return (
     <div>
       <PageHeader badge="Supply Chain · 产业链人质效应" title="产业链备份 · 库存韧性" subtitle="友岸外包应对 · 链长制 · 备份系统 —— 国产份额 · 对外依存 · 替代弹性" />
-      <Card className="mb-6">
-        <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-          关键领域的<span style={{ color: 'var(--china-red)', fontWeight: 600 }}>国产替代与通道多元化</span>正在重塑供应链版图：高端制程、工业软件与特种材料仍存在「卡脖子」清单；体制以举国体制 + 市场订单双轮驱动替代节奏，成本是时间与资本开支的函数。
-        </p>
-      </Card>
+      <IntroCard>关键领域的<strong style={{ color: 'var(--china-red)' }}>国产替代与通道多元化</strong>正在重塑供应链版图。体制以举国体制 + 市场订单双轮驱动替代节奏，成本是时间与资本开支的函数——效率最优让位于可控性与冗余。</IntroCard>
       <Grid cols={4} className="mb-6">
         <Stat value="6+" label="部委联席领域（示意）" accent="#22d3ee" />
         <Stat value="88%" label="稀土冶炼份额（示意）" accent="#e8a317" />
@@ -64,17 +70,11 @@ export default function Page() {
         <Card title="典型卡脖子环节 · 风险强度（示意）"><EChart option={chokeBar} style={{ height: 260 }} /></Card>
       </Grid>
 
-      <Card title="三类应对逻辑" className="mb-6">
-        <Grid cols={3}>
-          {[['库存与冗余', '#e8a317', '战略储备 + 安全库存拉长周转天数，换取极端情景下的可启动性。'],
-            ['友岸外包', '#22d3ee', '在合规框架下分散采购国别，降低单一司法辖区的断供概率。'],
-            ['国产替代', '#10b981', '成熟制程与材料端先行，先进制程依赖研发摊销与生态迁移。']].map(([t, c, d]) => (
-            <div key={t} style={{ borderLeft: `2px solid ${c}`, paddingLeft: 10 }}>
-              <div className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{t}</div>
-              <p className="text-xs mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
-            </div>
-          ))}
-        </Grid>
+      <Card title="交互 · 三类应对策略切换" className="mb-6">
+        <SelectorBar items={STRATEGIES} activeKey={stratKey} onSelect={setStratKey} />
+        <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: `3px solid ${strat.accent}` }}>
+          <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{strat.desc}</p>
+        </div>
       </Card>
 
       <Grid cols={2} className="mb-6">
@@ -110,7 +110,14 @@ export default function Page() {
           供应链安全已从「效率最优」让位于「可控性与冗余」；企业端表现为双供应商、近岸仓储与长单锁价。宏观上与大基金二期、设备首台套政策形成共振——库存韧性与友岸外包是过渡形态，终局取决于国产替代的良率曲线能否在管制窗口期内爬坡。
         </p>
       </Card>
-      <p className="text-xs mt-6" style={{ color: 'var(--text-tertiary)' }}>图示为结构推演示意，具体比例随年度与口径变化，请与半导体、能源专题交叉验证 · 由 china.html「供应链」专题迁移</p>
+
+      <FrameworkTrio cards={[
+        { title: '链长制逻辑', subtitle: '逐链建档 · 断点', body: '部委与地方链长对重点产业链逐链建档，识别断点卡点并匹配订单与资本——行政协调 + 市场验证的双轨推进。', pillars: [['链长挂帅', '逐链责任到人。'], ['备份≠替代', '节奏与考核不同。'], ['双供应商', '韧性税成为默认。']] },
+        { title: '摸石头 · 韧性建设', subtitle: '2020 → 2025E', body: '国产替代指数从 38 升至 70，多元采购覆盖从 30 升至 74——库存韧性与友岸外包是过渡形态，终局取决于良率曲线。', pillars: [['EUV 95', '最硬卡脖子。'], ['EDA 82', '全流程管制。'], ['成熟 45', '规模优势已有。']] },
+        { title: '升级路径 · 大安全观', subtitle: '生存冗余', body: '供应链安全已纳入大安全观第四支柱。与半导体、关键材料、工业软件模块形成交叉验证网络。', pillars: [['库存', '极端可启动性。'], ['友岸', '司法辖区分散。'], ['替代', '商业闭环终局。']] },
+      ]} />
+
+      <ModuleFooter moduleId="supplychain" sourceNote="由 china.html「供应链」专题迁移升级" />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // 产业链四环节（自主度/资本强度/人才/生态/出口管制敏感度 · 示意）
 const LINK = {
@@ -80,7 +81,14 @@ export default function Page() {
         </Grid>
       </Card>
       <Card title="制度锚点"><p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>半导体是大基金、科创板与地方招商的交汇点；若缺乏良率与迭代数据闭环，资本密度可能转化为过剩产能而非技术主权。</p></Card>
-      <p className="text-xs mt-6" style={{ color: 'var(--text-tertiary)' }}>进出口与份额为行业区间示意；请以海关总署、SEMI、企业年报为准 · 由 china.html「半导体」专题迁移</p>
+
+      <FrameworkTrio cards={[
+        { title: '芯片主权逻辑', subtitle: '成熟 + 封装换道', body: 'EUV 短缺约束下，以成熟制程 + Chiplet + 先进封装维持 AI/HPC 可用性，是理性主权防御带。功率与车规是现金牛窗口。', pillars: [['28nm+', '成熟节点规模优势。'], ['Chiplet', '等效制程跳跃。'], ['SiC/GaN', '新能源车绑定。']] },
+        { title: '大基金 · 摸石头', subtitle: 'I → II → III', body: '三期更强调设备材料与制造环节连续性投入。需防重复建设与估值泡沫——资本密度须转化为良率数据闭环。', pillars: [['设计 EDA', '管制敏感 90。'], ['EUV 设备', '最硬约束 98。'], ['出口管制', '长臂管辖常态化。']] },
+        { title: '升级路径 · 硅盾对照', subtitle: '台海 · 10nm', body: '10nm 以下产能高度集中于台海——半导体模块与台海/科技树形成三角：卡脖子清单 ↔ 硅盾人质 ↔ 国产替代节奏。', pillars: [['进口 4000 亿$', '最大芯片进口国。'], ['产值 ~25%', '全球份额攀升中。'], ['TOP3 应用', '消费/通信/计算。']] },
+      ]} />
+
+      <ModuleFooter moduleId="semiconductor" sourceNote="由 china.html「半导体」专题迁移升级" />
     </div>
   );
 }

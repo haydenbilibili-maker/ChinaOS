@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { PageHeader, Card, Grid, Stat, CrossLinks } from '../../app/ui.jsx';
+import { CrossLinks, PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ============================================================================
 // 认知内核 · 现实主义国际关系理论（含米尔斯海默进攻性现实主义）
@@ -105,12 +106,23 @@ export default function Page() {
           现实主义被批评为低估了经济相互依赖、国际制度、国内政治与观念（建构主义）的作用；进攻性现实主义尤其被指过度悲观、自我实现。作为思想工具，它的价值在于<strong style={{ color: 'var(--text-primary)' }}>提供一个「最坏情况」的结构基线</strong>——理解对手如何用这套逻辑思考，本身就是战略素养。
         </p>
       </Card>
+
+      <FrameworkTrio cards={[
+        { title: '自助体系逻辑', subtitle: 'Mearsheimer · 进攻性', body: '无政府状态下国家只能自助——权力是生存的唯一可靠保障。进攻性现实主义读出「中国不能和平崛起」，结构决定悲剧倾向。', pillars: [['权力', '生存的唯一保障。'], ['制衡', '均势自动形成。'], ['窗口期', '实力交叉最危险。']] },
+        { title: '最坏情况基线', subtitle: '思想工具 · 非预测', body: '现实主义的价值在于提供最坏情况的结构基线——理解对手如何用这套逻辑思考，本身就是战略素养。经济相互依赖与制度被低估。', pillars: [['结构基线', '非实证预测。'], ['修昔底德', '可规避的反例。'], ['建构主义', '观念改写身份。']] },
+        { title: '升级路径 · 理论对照', subtitle: '结构 vs 能动', body: '与修昔底德陷阱、建构主义、外交博弈模块形成理论三角——结构约束与能动空间之争是认知内核的核心张力。', pillars: [['外交盘', '自助体系操作化。'], ['台海', '结构高危现场。'], ['博弈论', '重复均衡求解。']] },
+      ]} />
+
       <CrossLinks className="mt-6" links={[
         { to: '/diplomacy', label: '外交全局框架盘', note: '四圈层布局与张力轴，正是现实主义「自助体系」的操作化。' },
         { to: '/thucydides', label: '修昔底德陷阱', note: '结构现实主义在霸权过渡情境下的悲观推论与反例。' },
         { to: '/constructivism', label: '建构主义', note: '对照阵营：观念与身份如何改写「无政府状态」的含义。' },
       ]} />
-      <p className="text-xs mt-6" style={{ color: 'var(--text-tertiary)' }}>本模块为国际关系理论梳理与思想工具，曲线/雷达为示意，不构成对现实事件的预测。</p>
+      <ModuleFooter moduleId="realism" links={[
+        { to: '/diplomacy', label: '外交全局框架盘', note: '四圈层布局与张力轴，正是现实主义「自助体系」的操作化。' },
+        { to: '/thucydides', label: '修昔底德陷阱', note: '结构现实主义在霸权过渡情境下的悲观推论与反例。' },
+        { to: '/constructivism', label: '建构主义', note: '对照阵营：观念与身份如何改写「无政府状态」的含义。' },
+      ]} disclaimer="本模块为国际关系理论梳理与思想工具，曲线/雷达为示意，不构成对现实事件的预测" />
     </div>
   );
 }

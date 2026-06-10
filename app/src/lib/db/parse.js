@@ -126,3 +126,41 @@ export function detectProvince(text) {
   for (const p of PROVINCES) { const short = p.replace(/(省|市|自治区|回族|壮族|维吾尔)/g, ''); if (short.length >= 2 && text.includes(short)) return p; }
   return '';
 }
+
+// 政策文件解析：从粘贴的报告/公报全文或要点中抽取结构化字段（尽力而为，供编辑后入库）
+const DOC_KEYWORD_BANK = ['高质量发展', '新质生产力', '碳达峰', '碳中和', '双循环', '新发展格局', '科技自立自强', '提振消费', '扩大内需', '适度宽松', '稳中求进', '人工智能+', '未来产业', '现代化产业体系', '两个毫不动摇', '民营经济', '防范化解重大风险', '减税降费', '六稳', '六保', '专精特新', '统筹发展与安全', '反内卷', '稳楼市稳股市', '设备更新', '以旧换新', '全过程人民民主', '共同富裕', '放管服', '供给侧结构性改革', '高水平开放', '十四五', '十五五'];
+export function parseDoc(text) {
+  const t = (text || '').trim();
+  if (!t) throw new Error('内容为空');
+  // 类型
+  let type = '其他';
+  if (/政府工作报告/.test(t)) type = '政府工作报告';
+  else if (/中央经济工作会议/.test(t)) type = '中央经济工作会议';
+  else if (/五年规划|十[三四五六]五|国民经济和社会发展.*规划/.test(t)) type = '五年规划';
+  // 年份（取首个 19xx/20xx）
+  const ym = t.match(/((?:19|20)\d{2})\s*年/);
+  const year = ym ? Number(ym[1]) : null;
+  // 量化指标
+  const num = (re) => { const m = t.match(re); return m ? Number(m[1]) : null; };
+  const metrics = {
+    gdpTarget: num(/(?:GDP|国内生产总值|经济)增长[^0-9]{0,8}(\d+(?:\.\d+)?)\s*%/),
+    deficit: num(/赤字率[^0-9]{0,8}(\d+(?:\.\d+)?)\s*%/),
+    cpi: num(/(?:CPI|居民消费价格)[^0-9]{0,12}(\d+(?:\.\d+)?)\s*%/),
+    jobs: num(/城镇新增就业[^0-9]{0,8}(\d+(?:\.\d+)?)\s*万/),
+    urbanUnemp: num(/城镇调查失业率[^0-9]{0,8}(\d+(?:\.\d+)?)\s*%/),
+    specialBond: num(/专项债[^0-9]{0,10}(\d+(?:\.\d+)?)\s*万亿/),
+    longBond: num(/超长期特别国债[^0-9]{0,10}(\d+(?:\.\d+)?)\s*万亿/),
+    defense: num(/国防(?:支出|预算)[^0-9]{0,8}增长?[^0-9]{0,4}(\d+(?:\.\d+)?)\s*%/),
+  };
+  // 政策定调
+  const stance = {};
+  if (/积极的财政政策|积极财政/.test(t)) stance.fiscal = '积极财政';
+  if (/适度宽松/.test(t)) stance.monetary = '适度宽松';
+  else if (/稳健的货币政策|稳健货币/.test(t)) stance.monetary = '稳健';
+  // 关键提法（命中词库）
+  const keywords = DOC_KEYWORD_BANK.filter((k) => t.includes(k));
+  // 要点：按句号/换行切，取较长的前若干句
+  const highlights = t.split(/[。\n]+/).map((s) => s.trim()).filter((s) => s.length >= 12 && s.length <= 80).slice(0, 6);
+  const title = (t.split(/\n/)[0] || '').trim().slice(0, 40) || (year ? `${year} 年${type}` : type);
+  return { type, year, title, metrics, stance, keywords, highlights, source: '用户上传', asOf: new Date().toISOString().slice(0, 7) };
+}
