@@ -23,6 +23,18 @@ const decadeOf = (f) => { const y = birthYear(f); return y ? `${String(Math.floo
 const nativeProv = (f) => { const n = f.fields?.native || ''; const m = n.match(/^(北京|上海|天津|重庆|河北|山西|辽宁|吉林|黑龙江|江苏|浙江|安徽|福建|江西|山东|河南|湖北|湖南|广东|广西|海南|四川|贵州|云南|陕西|甘肃|青海|宁夏|新疆|西藏|内蒙古)/); return m ? m[1] : (n ? '其他' : '未知'); };
 const tenureYears = (f) => { const cur = (f.career || []).find((c) => !c.to); if (!cur) return null; const m = (cur.from || '').match(/(\d{4})/); return m ? CUR_YEAR - +m[1] : null; };
 
+// 唯一键 + 去重：同一人同一任职只展示一条（修历史载入累积的重复），保留 updatedAt 最新者
+const figKey = (f) => `${f.name}#${f.fields?.birth || ''}#${f.province || ''}#${f.role || ''}#${f.org || f.fields?.title || ''}`;
+function dedupeFigures(list) {
+  const seen = new Map();
+  for (const f of list || []) {
+    const k = figKey(f);
+    const prev = seen.get(k);
+    if (!prev || (f.updatedAt || 0) >= (prev.updatedAt || 0)) seen.set(k, f);
+  }
+  return [...seen.values()];
+}
+
 // 分布统计
 function tally(arr, keyFn) {
   const m = new Map();
@@ -50,7 +62,10 @@ function DistBars({ data, color = '#22d3ee', max, onPick, active }) {
 }
 
 export default function Page() {
-  const figures = useFigures();
+  const figuresRaw = useFigures();
+  // 前端按唯一键去重展示（不改库，立即消除历史重复）
+  const figures = useMemo(() => (figuresRaw == null ? figuresRaw : dedupeFigures(figuresRaw)), [figuresRaw]);
+  const dupCount = figuresRaw && figures ? figuresRaw.length - figures.length : 0;
   const [q, setQ] = useState('');
   const [prov, setProv] = useState('');
   const [level, setLevel] = useState('');
@@ -103,10 +118,12 @@ export default function Page() {
     minority && ['民族', '少数民族', () => setMinority(false)],
   ].filter(Boolean);
 
+  // 先清空再以稳定 id 写入：彻底幂等，多次载入不再累积重复
   const loadSeed = async () => {
     setLoading(true);
+    await DB.clearFigures();
     let ts = Date.now();
-    for (const r of FIGURE_SEED) await DB.putFigure({ ...r, updatedAt: ts++ });
+    for (const r of FIGURE_SEED) await DB.putFigure({ ...r, id: r.id || figKey(r), updatedAt: ts++ });
     setLoading(false);
   };
   const clearAll = () => { setQ(''); setProv(''); setLevel(''); setRole(''); setSector(''); setDecade(''); setMinority(false); };
@@ -208,7 +225,7 @@ export default function Page() {
       {figures.length < 10 && (
         <Card title="一键载入省部级公开履历" className="mb-4">
           <p className="text-sm mb-3" style={{ color: 'var(--text-secondary)' }}>
-            内置 {FIGURE_SEED.length} 条：省级 {FIGURE_CATALOG_META.breakdown?.provincial} + 中央 {FIGURE_CATALOG_META.breakdown?.central} + 扩展 {FIGURE_CATALOG_META.breakdown?.extended} + 城市 {FIGURE_CATALOG_META.breakdown?.municipal} + 地级市 {FIGURE_CATALOG_META.breakdown?.prefectureCity} + 机构 {FIGURE_CATALOG_META.breakdown?.org} + 二层 {FIGURE_CATALOG_META.breakdown?.orgTier2}。来源：{FIGURE_CATALOG_META.sources.join('、')}。
+            内置 {FIGURE_SEED.length} 条：省级 {FIGURE_CATALOG_META.breakdown?.provincial} + 人大政协 {FIGURE_CATALOG_META.breakdown?.provincialExtended} + 中央 {FIGURE_CATALOG_META.breakdown?.central} + 扩展 {FIGURE_CATALOG_META.breakdown?.extended} + 城市 {FIGURE_CATALOG_META.breakdown?.municipal} + 地级市 {FIGURE_CATALOG_META.breakdown?.prefectureCity} + 机构 {FIGURE_CATALOG_META.breakdown?.org} + 二层 {FIGURE_CATALOG_META.breakdown?.orgTier2}。来源：{FIGURE_CATALOG_META.sources.join('、')}。
             也可到 <Link to="/foundation" className="mono" style={{ color: 'var(--cyber-cyan)' }}>数据底座 · 政治人物简历</Link> 增量导入或粘贴更新。
           </p>
           <button type="button" onClick={loadSeed} disabled={loading} style={btn}>
@@ -260,7 +277,17 @@ export default function Page() {
                 <button onClick={clearAll} className="text-[11px] mono px-2 py-0.5" style={{ color: 'var(--china-red)', background: 'none', border: 'none', cursor: 'pointer' }}>清空</button>
               </div>
             )}
-            <div className="text-[11px] mono mt-2" style={{ color: 'var(--text-tertiary)' }}>命中 {filtered.length} / {figures.length} 条 · 平均 {avgAge}岁</div>
+            <div className="flex items-center gap-3 flex-wrap mt-2">
+              <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>命中 {filtered.length} / {figures.length} 条 · 平均 {avgAge}岁</span>
+              {dupCount > 0 && (
+                <span className="text-[11px] mono flex items-center gap-2" style={{ color: '#e8a317' }}>
+                  · 已去重展示，隐藏 {dupCount} 条重复
+                  <button onClick={loadSeed} disabled={loading} title="清空并以稳定 id 重载，物理清除重复" className="px-2 py-0.5 rounded flex items-center gap-1" style={{ background: 'rgba(232,163,23,0.14)', border: '1px solid rgba(232,163,23,0.4)', color: '#e8a317', cursor: 'pointer' }}>
+                    <Lucide.Wand2 size={11} />{loading ? '清理中…' : '清理库内重复'}
+                  </button>
+                </span>
+              )}
+            </div>
           </Card>
 
           {view === 'stats' ? (

@@ -129,6 +129,11 @@ export async function deleteFigure(id) {
   await reqP(db.transaction('figures', 'readwrite').objectStore('figures').delete(id));
   notify('__figures__');
 }
+export async function clearFigures() {
+  const db = await open();
+  await reqP(db.transaction('figures', 'readwrite').objectStore('figures').clear());
+  notify('__figures__');
+}
 
 // ---------- 统计 ----------
 export async function stats() {
