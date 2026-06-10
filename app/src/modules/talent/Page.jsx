@@ -125,11 +125,71 @@ export default function Page() {
     return buckets;
   })();
   const ageBar = {
-    grid: { left: 38, right: 12, top: 12, bottom: 22 },
+    grid: { left: 34, right: 12, top: 12, bottom: 22 },
     xAxis: { type: 'category', data: ageHist.map((b) => b[0]), axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
     yAxis: { type: 'value', axisLabel: { color: '#93a1b5', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
-    tooltip: { trigger: 'axis' },
-    series: [{ type: 'bar', data: ageHist.map((b) => b[1]), itemStyle: { color: '#c41e3a' }, barWidth: '60%' }],
+    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+    series: [{ type: 'bar', data: ageHist.map((b) => b[1]), barWidth: '60%', itemStyle: { borderRadius: [3, 3, 0, 0], color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: '#c41e3a' }, { offset: 1, color: '#5e0f1d' }] } } }],
+  };
+
+  // ── 多维图表配置 ──────────────────────────────────────────────
+  const PAL = ['#c41e3a', '#22d3ee', '#e8a317', '#10b981', '#8b5cf6', '#fb923c', '#f0abfc'];
+  const AX = { axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } } };
+  const donut = (data, center = ['34%', '52%']) => ({
+    tooltip: { trigger: 'item', formatter: '{b}<br/>{c} 人 ({d}%)' },
+    legend: { type: 'scroll', orient: 'vertical', right: 2, top: 'center', textStyle: { color: '#93a1b5', fontSize: 10.5 }, itemWidth: 9, itemHeight: 9 },
+    series: [{ type: 'pie', radius: ['44%', '70%'], center, avoidLabelOverlap: true, itemStyle: { borderColor: '#0f1623', borderWidth: 2 }, label: { show: false }, data: data.map(([n, v], i) => ({ name: n, value: v, itemStyle: { color: PAL[i % PAL.length] } })) }],
+  });
+  const levelDonut = donut(distLevel.filter(([k]) => k));
+  const sectorDonut = donut(distSector);
+  // 中央委员身份构成
+  const rankBucket = (f) => { const r = f.fields?.rank || ''; if (/常委/.test(r)) return '政治局常委'; if (/政治局委员/.test(r)) return '政治局委员'; if (/候补/.test(r)) return '候补委员'; if (/中央委员/.test(r)) return '中央委员'; return r ? '其他/部门' : '未注明'; };
+  const rankDonut = donut(tally(filtered, rankBucket));
+  // 出生年代 × 层级 堆叠
+  const DEC = distDecade.map((d) => d[0]);
+  const LV_ORD = ['党和国家领导人', '副国级', '正部级', '省部级', '副部级', '正厅级'].filter((l) => filtered.some((f) => f.level === l));
+  const decadeLevel = {
+    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+    legend: { type: 'scroll', top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
+    grid: { left: 32, right: 10, top: 30, bottom: 20 },
+    xAxis: { type: 'category', data: DEC, ...AX },
+    yAxis: { type: 'value', ...AX },
+    series: LV_ORD.map((lv, i) => ({ name: lv, type: 'bar', stack: 't', emphasis: { focus: 'series' }, itemStyle: { color: PAL[i % PAL.length] }, data: DEC.map((d) => filtered.filter((f) => decadeOf(f) === d && f.level === lv).length) })),
+  };
+  // 籍贯 Top 横向条
+  const natSorted = [...distNative].slice(0, 12).reverse();
+  const nativeBar = {
+    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+    grid: { left: 48, right: 24, top: 8, bottom: 20 },
+    xAxis: { type: 'value', ...AX },
+    yAxis: { type: 'category', data: natSorted.map((d) => d[0]), ...AX },
+    series: [{ type: 'bar', data: natSorted.map((d) => d[1]), barWidth: '62%', label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 }, itemStyle: { borderRadius: [0, 3, 3, 0], color: { type: 'linear', x: 0, y: 0, x2: 1, y2: 0, colorStops: [{ offset: 0, color: '#8a6510' }, { offset: 1, color: '#e8a317' }] } } }],
+  };
+  // 籍贯输出 ↔ 现任流入 对流
+  const natMap = Object.fromEntries(tally(filtered, nativeProv));
+  const serveMap = Object.fromEntries(tally(filtered.filter((f) => f.province && f.province !== '中央'), (f) => short(f.province)));
+  const flowProvs = [...new Set([...Object.keys(natMap), ...Object.keys(serveMap)])].filter((p) => p !== '未知' && p !== '其他')
+    .map((p) => [p, natMap[p] || 0, serveMap[p] || 0]).sort((a, b) => (b[1] + b[2]) - (a[1] + a[2])).slice(0, 12).reverse();
+  const flowBar = {
+    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: (ps) => `${ps[0].name}<br/>籍贯输出 ${Math.abs(ps[0].value)}<br/>现任流入 ${ps[1] ? ps[1].value : 0}` },
+    legend: { data: ['籍贯·输出', '现任·流入'], top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
+    grid: { left: 46, right: 26, top: 28, bottom: 20 },
+    xAxis: { type: 'value', ...AX, axisLabel: { color: '#93a1b5', fontSize: 10, formatter: (v) => Math.abs(v) } },
+    yAxis: { type: 'category', data: flowProvs.map((d) => d[0]), ...AX },
+    series: [
+      { name: '籍贯·输出', type: 'bar', stack: 't', data: flowProvs.map((d) => -d[1]), itemStyle: { color: '#e8a317' } },
+      { name: '现任·流入', type: 'bar', stack: 't', data: flowProvs.map((d) => d[2]), itemStyle: { color: '#22d3ee' } },
+    ],
+  };
+  // 年龄 × 任期 散点（按层级着色）
+  const tenureNow = (f) => { const m = (f.fields?.tookOffice || '').match(/(\d{4})/); return m ? CUR_YEAR - +m[1] : tenureYears(f); };
+  const ageTenure = {
+    tooltip: { formatter: (p) => `${p.data[2]}<br/>${p.data[0]} 岁 · 现职 ${p.data[1]} 年` },
+    legend: { type: 'scroll', top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
+    grid: { left: 34, right: 14, top: 28, bottom: 30 },
+    xAxis: { type: 'value', name: '年龄', nameGap: 18, nameTextStyle: { color: '#5b6a82', fontSize: 10 }, scale: true, ...AX },
+    yAxis: { type: 'value', name: '现职任期', nameTextStyle: { color: '#5b6a82', fontSize: 10 }, ...AX },
+    series: LV_ORD.map((lv, i) => ({ name: lv, type: 'scatter', symbolSize: 7, itemStyle: { color: PAL[i % PAL.length], opacity: 0.78 }, data: filtered.filter((f) => f.level === lv).map((f) => [ageOf(f), tenureNow(f), f.name]).filter((d) => d[0] && d[1] != null) })),
   };
 
   return (
@@ -148,7 +208,7 @@ export default function Page() {
       {figures.length < 10 && (
         <Card title="一键载入省部级公开履历" className="mb-4">
           <p className="text-sm mb-3" style={{ color: 'var(--text-secondary)' }}>
-            内置 {FIGURE_SEED.length} 条：省级 {FIGURE_CATALOG_META.breakdown?.provincial} + 中央 {FIGURE_CATALOG_META.breakdown?.central} + 扩展 {FIGURE_CATALOG_META.breakdown?.extended} + 城市 {FIGURE_CATALOG_META.breakdown?.municipal} + 机构 {FIGURE_CATALOG_META.breakdown?.org}。来源：{FIGURE_CATALOG_META.sources.join('、')}。
+            内置 {FIGURE_SEED.length} 条：省级 {FIGURE_CATALOG_META.breakdown?.provincial} + 中央 {FIGURE_CATALOG_META.breakdown?.central} + 扩展 {FIGURE_CATALOG_META.breakdown?.extended} + 城市 {FIGURE_CATALOG_META.breakdown?.municipal} + 地级市 {FIGURE_CATALOG_META.breakdown?.prefectureCity} + 机构 {FIGURE_CATALOG_META.breakdown?.org} + 二层 {FIGURE_CATALOG_META.breakdown?.orgTier2}。来源：{FIGURE_CATALOG_META.sources.join('、')}。
             也可到 <Link to="/foundation" className="mono" style={{ color: 'var(--cyber-cyan)' }}>数据底座 · 政治人物简历</Link> 增量导入或粘贴更新。
           </p>
           <button type="button" onClick={loadSeed} disabled={loading} style={btn}>
@@ -204,14 +264,27 @@ export default function Page() {
           </Card>
 
           {view === 'stats' ? (
-            <Grid cols={2} className="mb-4">
-              <Card title={`年龄结构 · 命中 ${filtered.length} 人`}><EChart option={ageBar} style={{ height: 200 }} /><p className="text-[10px] mono mt-1" style={{ color: 'var(--text-tertiary)' }}>// 按公开出生年份折算，截至 {CUR_YEAR}</p></Card>
-              <Card title="层级分布"><DistBars data={distLevel} color="#c41e3a" onPick={(k) => setLevel(level === k ? '' : k)} active={level} /></Card>
-              <Card title="出生年代"><DistBars data={distDecade} color="#8b5cf6" onPick={(k) => setDecade(decade === k ? '' : k)} active={decade} /></Card>
-              <Card title="系统分布"><DistBars data={distSector} color="#10b981" /></Card>
-              <Card title="籍贯 · 人才输出地 Top"><DistBars data={distNative} color="#e8a317" /></Card>
-              <Card title="现任地域分布 Top"><DistBars data={distProv} color="#22d3ee" onPick={(k) => { const full = provinces.find((p) => short(p) === k); setProv(prov === full ? '' : full); }} active={short(prov)} /></Card>
-            </Grid>
+            <div className="space-y-4 mb-4">
+              <div className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>// 多维统计基于当前命中 {filtered.length} 人；调整上方筛选条件，所有图表实时联动</div>
+              <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px,1fr))' }}>
+                <Card title={`年龄结构 · 均 ${avgAge}岁`}><EChart option={ageBar} style={{ height: 200 }} /></Card>
+                <Card title={`层级构成 · ${distLevel.filter(([k]) => k).length} 档`}><EChart option={levelDonut} style={{ height: 200 }} /></Card>
+                <Card title={`系统口径 · ${distSector.length} 类`}><EChart option={sectorDonut} style={{ height: 200 }} /></Card>
+                <Card title="中央委员身份构成"><EChart option={rankDonut} style={{ height: 200 }} /></Card>
+              </div>
+              <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(330px,1fr))' }}>
+                <Card title="出生年代 × 层级 · 代际权力结构"><EChart option={decadeLevel} style={{ height: 270 }} /><p className="text-[10px] mono mt-1" style={{ color: 'var(--text-tertiary)' }}>// 各年代在不同层级的人数堆叠——看「哪一代正卡在哪一层」</p></Card>
+                <Card title="籍贯输出 ↔ 现任流入 · 人才地理对流"><EChart option={flowBar} style={{ height: 270 }} /><p className="text-[10px] mono mt-1" style={{ color: 'var(--text-tertiary)' }}>// 左=该省籍贯官员数（输出），右=在该省任职数（流入）</p></Card>
+                <Card title="籍贯 · 人才输出地 Top12"><EChart option={nativeBar} style={{ height: 270 }} /></Card>
+                <Card title="年龄 × 现职任期 · 晋升轨迹（按层级着色）"><EChart option={ageTenure} style={{ height: 270 }} /><p className="text-[10px] mono mt-1" style={{ color: 'var(--text-tertiary)' }}>// 左上=年轻且新任（上升势头）· 右下=年长且久任</p></Card>
+              </div>
+              <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px,1fr))' }}>
+                <Card title="层级（点选筛选）"><DistBars data={distLevel.filter(([k]) => k)} color="#c41e3a" onPick={(k) => setLevel(level === k ? '' : k)} active={level} /></Card>
+                <Card title="出生年代（点选筛选）"><DistBars data={distDecade} color="#8b5cf6" onPick={(k) => setDecade(decade === k ? '' : k)} active={decade} /></Card>
+                <Card title="现任地域 Top（点选筛选）"><DistBars data={distProv} color="#22d3ee" onPick={(k) => { const full = provinces.find((p) => short(p) === k); setProv(prov === full ? '' : full); }} active={short(prov)} /></Card>
+              </div>
+              <p className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>// 年龄按公开出生年份折算 · 任期按上任日期折算（截至 {CUR_YEAR}）· 中央委员身份据二十届名单 · 籍贯/任期数据覆盖率不一，未注明者不计入对应图</p>
+            </div>
           ) : (
             <div className="grid gap-4" style={{ gridTemplateColumns: '1.25fr 1fr' }}>
               <Card title={`检索结果 (${filtered.length}/${figures.length})`}>
