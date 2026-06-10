@@ -11,7 +11,10 @@ const DB_VER = 2;
 let _db = null;
 
 function open() {
-  if (_db) return Promise.resolve(_db);
+  // 版本感知：若缓存连接版本低于当前（如旧会话停留在 v1，缺 docs store），
+  // 关闭并以 DB_VER 重新打开，触发 onupgradeneeded 建表。避免「无 docs 存储」静默报错。
+  if (_db && _db.version >= DB_VER) return Promise.resolve(_db);
+  if (_db) { try { _db.close(); } catch (_) {} _db = null; }
   return new Promise((resolve, reject) => {
     const req = indexedDB.open(DB_NAME, DB_VER);
     req.onupgradeneeded = (e) => {
@@ -26,6 +29,7 @@ function open() {
     };
     req.onsuccess = () => { _db = req.result; resolve(_db); };
     req.onerror = () => reject(req.error);
+    req.onblocked = () => reject(new Error('数据库升级被其它标签页阻塞，请关闭该站点的其它标签后重试'));
   });
 }
 

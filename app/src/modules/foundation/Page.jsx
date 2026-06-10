@@ -487,10 +487,21 @@ function Docs({ docs, refresh, flash }) {
   const [text, setText] = useState('');
   const [parsed, setParsed] = useState(null);
   const [q, setQ] = useState('');
+  const [busy, setBusy] = useState(false);
   const TYPE_COLOR = { 政府工作报告: '#c41e3a', 中央经济工作会议: '#e8a317', 五年规划: '#22d3ee' };
   const doParse = () => { try { const p = parseDoc(text); setParsed(p); } catch (e) { flash('解析失败：' + e.message); } };
-  const save = async () => { await DB.putDoc({ ...parsed, updatedAt: Date.now() }); setText(''); setParsed(null); await refresh(); flash(`已录入「${parsed.title}」`); };
-  const loadSeed = async () => { await DB.clearDocs(); let ts = Date.now(); for (const d of DOC_SEED) await DB.putDoc({ ...d, updatedAt: ts++ }); await refresh(); flash(`已载入内置政策文件 ${DOC_SEED.length} 份`); };
+  const save = async () => { try { await DB.putDoc({ ...parsed, updatedAt: Date.now() }); setText(''); setParsed(null); await refresh(); flash(`已录入「${parsed.title}」`); } catch (e) { flash('录入失败：' + (e.message || e)); } };
+  const loadSeed = async () => {
+    setBusy(true);
+    try {
+      await DB.clearDocs();
+      let ts = Date.now();
+      for (const d of DOC_SEED) await DB.putDoc({ ...d, id: d.id, updatedAt: ts++ });
+      await refresh();
+      flash(`已载入内置政策文件 ${DOC_SEED.length} 份`);
+    } catch (e) { flash('载入失败：' + (e.message || e)); }
+    setBusy(false);
+  };
   const filtered = docs.filter((d) => !q || (d.title + ' ' + d.type + ' ' + (d.keywords || []).join(' ')).includes(q));
   return (
     <div>
@@ -498,7 +509,7 @@ function Docs({ docs, refresh, flash }) {
         <p className="text-[11px] mb-2" style={{ color: 'var(--text-tertiary)' }}>
           内置 {DOC_SEED.length} 份公开要点（政府工作报告 {DOC_CATALOG_META.breakdown.政府工作报告} / 中央经济工作会议 {DOC_CATALOG_META.breakdown.中央经济工作会议} / 五年规划 {DOC_CATALOG_META.breakdown.五年规划}）。来源：{DOC_CATALOG_META.sources.join(' / ')}。前台「<Link to="/policydocs" className="mono" style={{ color: 'var(--cyber-cyan)' }}>政策文件库</Link>」做报告比对、指标趋势与政策洞察。
         </p>
-        <button onClick={loadSeed} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: 'var(--cyber-cyan)' }}>清空并载入内置 {DOC_SEED.length} 份（去重幂等）</button>
+        <button onClick={loadSeed} disabled={busy} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: 'var(--cyber-cyan)' }}>{busy ? '载入中…' : `清空并载入内置 ${DOC_SEED.length} 份（去重幂等）`}</button>
       </Card>
       <Grid cols={2}>
         <Card title="上传解析 · 粘贴报告 / 公报全文或要点">
