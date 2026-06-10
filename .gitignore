@@ -16,6 +16,9 @@ build/
 *.swp
 *~
 
+# 扫描产物（可再生；基线 mojibake_baseline.json 需入库，勿忽略）
+mojibake_report.json
+
 # 日志与缓存
 *.log
 npm-debug.log*

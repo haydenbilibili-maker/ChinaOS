@@ -1,0 +1,6 @@
+#!/bin/sh
+# China OS · 乱码门禁：拦截新增乱码（存量已 grandfather）
+python3 scripts/scan_mojibake.py --gate || {
+  echo "提交被拦截：发现新增乱码。修复后重试，或临时 'git commit --no-verify'。" >&2
+  exit 1
+}
