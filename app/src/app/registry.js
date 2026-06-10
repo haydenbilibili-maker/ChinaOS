@@ -253,6 +253,11 @@ export const MODULES = [
     component: lazy(() => import('../modules/sandbox/Page.jsx')),
   },
   {
+    id: 'talent', path: '/talent', group: 'sim',
+    title: '人才库', subtitle: '省部级公开履历检索', icon: 'UsersRound',
+    component: lazy(() => import('../modules/talent/Page.jsx')),
+  },
+  {
     id: 'foundation',
     path: '/foundation',
     group: 'foundation',

@@ -2,8 +2,9 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import * as DB from '../../lib/db/localdb.js';
-import { parseCSV, parseJSON, parseFigure } from '../../lib/db/parse.js';
+import { parseCSV, parseJSON, parseFigure, parseManyFigures } from '../../lib/db/parse.js';
 import { STOCK_CATALOG } from '../../lib/db/stock.js';
+import { FIGURE_SEED } from '../../lib/db/figureSeed.js';
 
 const TABS = [
   ['overview', '总览'], ['datasets', '数据集'], ['upload', '上传导入'],
@@ -351,12 +352,31 @@ function Figures({ figures, refresh, flash }) {
   const [preview, setPreview] = useState(null);
   const [q, setQ] = useState('');
   const FIELD_LABEL = { name: '姓名', gender: '性别', birth: '出生', native: '籍贯', ethnic: '民族', party: '入党', edu: '学历', title: '现任', field: '分管' };
+  const [bulk, setBulk] = useState('');
   const doParse = () => { try { setPreview(parseFigure(text)); } catch (e) { flash('解析失败：' + e.message); } };
   const filtered = figures.filter((f) => !q || (f.name + ' ' + (f.fields?.title || '') + ' ' + (f.province || '') + ' ' + (f.raw || '')).toLowerCase().includes(q.toLowerCase()));
   const save = async () => { await DB.putFigure({ ...preview, updatedAt: Date.now() }); setText(''); setPreview(null); await refresh(); flash(`已录入「${preview.name}」`); };
+  const doBulk = async () => {
+    try {
+      const recs = parseManyFigures(bulk).filter((r) => r.name && r.name !== '未命名');
+      if (!recs.length) { flash('未解析到简历记录'); return; }
+      let ts = Date.now(); for (const r of recs) await DB.putFigure({ ...r, kind: r.kind || '导入', updatedAt: ts++ });
+      setBulk(''); await refresh(); flash(`批量导入 ${recs.length} 条简历`);
+    } catch (e) { flash('批量解析失败：' + e.message); }
+  };
+  const loadSeed = async () => { let ts = Date.now(); for (const r of FIGURE_SEED) await DB.putFigure({ ...r, updatedAt: ts++ }); await refresh(); flash(`已载入公开样本 ${FIGURE_SEED.length} 条`); };
   return (
+    <div>
+      <Card title="批量导入 · 从权威来源整段粘贴（多条简历）" className="mb-4">
+        <p className="text-[11px] mb-2" style={{ color: 'var(--text-tertiary)' }}>支持：多条简历以空行或「---」分隔、每行一条 JSON(JSONL)、或 JSON 数组。自动按省份关键词关联。来源建议：人民网领导人资料库 / 维基百科党和国家领导人等公开履历（仅录公开任职）。</p>
+        <textarea value={bulk} onChange={(e) => setBulk(e.target.value)} placeholder={'姓名：张三\n现任：XX省委书记\n2020— 任XX省委书记\n---\n姓名：李四\n现任：XX省省长\n2021— 任XX省省长'} style={{ ...inp, height: 120, fontFamily: 'monospace', resize: 'vertical', width: '100%' }} />
+        <div className="flex gap-2 mt-2 flex-wrap">
+          <button onClick={doBulk} style={{ ...btn(true), padding: '6px 16px', fontSize: 13 }}>批量解析导入</button>
+          <button onClick={loadSeed} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: 'var(--cyber-cyan)' }}>载入公开样本（{FIGURE_SEED.length} 条）</button>
+        </div>
+      </Card>
     <Grid cols={2}>
-      <Card title="录入简历（粘贴文本或 JSON → 解析）">
+      <Card title="单条录入（粘贴文本或 JSON → 解析）">
         <textarea value={text} onChange={(e) => setText(e.target.value)} placeholder={'姓名：示例\n籍贯：XX省\n民族：汉族\n学历：XX大学\n现任：XX省委书记\n2018— 任XX市委书记\n2015—2018 任XX副省长'} style={{ ...inp, height: 220, fontFamily: 'monospace', resize: 'vertical' }} />
         <div className="flex gap-2 mt-2">
           <button onClick={doParse} style={{ ...btn(true), padding: '6px 16px', fontSize: 13 }}>解析</button>
@@ -392,6 +412,7 @@ function Figures({ figures, refresh, flash }) {
         </div>
       </Card>
     </Grid>
+    </div>
   );
 }
 

@@ -46,6 +46,34 @@ export function parseJSON(text) {
   return { columns, rows: arr, meta: j.meta };
 }
 
+// 批量简历解析：一段文本含多条简历时拆分逐条解析。
+// 分隔约定：`---` 分隔行、或空行+「姓名：」起始的块、或 JSONL（每行一个 JSON）。
+export function parseManyFigures(text) {
+  const t = text.trim();
+  // JSONL（每行 JSON 对象）
+  if (t.split('\n').filter(Boolean).every((l) => l.trim().startsWith('{'))) {
+    return t.split('\n').filter((l) => l.trim()).map((l) => parseFigure(l));
+  }
+  // JSON 数组
+  if (t.startsWith('[')) {
+    try { return JSON.parse(t).map((o) => parseFigure(JSON.stringify(o))); } catch (_) { /* fall through */ }
+  }
+  // `---` 分隔
+  let blocks;
+  if (/\n-{3,}\n/.test(t)) blocks = t.split(/\n-{3,}\n/);
+  else {
+    // 以「姓名：」或独立姓名行作为新记录起点
+    blocks = []; let cur = [];
+    for (const line of t.split('\n')) {
+      const isHead = /^(姓名[:：]|[一-龥]{2,4}\s*$)/.test(line.trim());
+      if (isHead && cur.length && cur.join('').trim()) { blocks.push(cur.join('\n')); cur = []; }
+      cur.push(line);
+    }
+    if (cur.join('').trim()) blocks.push(cur.join('\n'));
+  }
+  return blocks.map((b) => b.trim()).filter(Boolean).map((b) => parseFigure(b));
+}
+
 // 政治人物简历解析：从粘贴文本或 JSON 抽取结构化字段 + 履历时间线。
 // 支持「标签：值」与含年份的履历行（YYYY ... 任 ... 职）。
 export function parseFigure(text) {
