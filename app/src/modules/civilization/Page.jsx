@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { Link } from 'react-router-dom';
+import { PageHeader, Card, Grid, Stat, CrossLinks } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 
 // ============================================================================
@@ -178,83 +179,191 @@ const compareRadar = {
   }],
 };
 
+// 治乱调度：每层在「顺境扩张 / 逆境熬冬」两种系统态下的角色
+//   boom=顺境主调度 · bust=逆境主调度 · both=两态常驻（暴力强制）· base=结构常量底座
+const REGIME = { v2: 'boom', v4: 'boom', v3: 'bust', v6: 'bust', v9: 'both', v11: 'base', v7: 'base', v5: 'base', v8: 'base', v12: 'base', v10: 'base', v1: 'base' };
+const REGIME_TAG = { boom: ['顺境调度', '#e8a317'], bust: ['逆境调度', '#10b981'], both: ['两态常驻', '#991b1b'], base: ['结构常量', '#64748b'] };
+
+// 逐卷 → 现实业务模块接口（叠读直跳）
+const VOL_LINKS = {
+  v1: [{ to: '/governance', label: '治理现代化', note: '总纲的层间调用图，对应当代国家治理体系的分层装载。' }, { to: '/reform', label: '改革开放', note: '「重启进入安全模式后逐层加载」的现实版本。' }],
+  v11: [{ to: '/straits', label: '台海局势', note: '地理密室与天下观 → 地缘重力与硅盾。' }, { to: '/bri', label: '一带一路', note: '半封闭地理的通道再造与外向突围。' }, { to: '/regional', label: '区域协调', note: '400 毫米线两侧的农牧—板块张力当代回响。' }],
+  v7: [{ to: '/ideology', label: '意识形态理论', note: '天命绩效合法性 → 当代绩效正当性叙事的底层隐喻。' }],
+  v2: [{ to: '/govsystem', label: '政府体系', note: '法家 KPI 与编户齐民 → 压力型体制与执行算法。' }, { to: '/powerlogic', label: '权力逻辑', note: '外儒内法剂之以道的当代运行。' }, { to: '/soe', label: '国有资本', note: '集中力量办大事的制度基因。' }],
+  v4: [{ to: '/education', label: '教育', note: '「万般皆下品惟有读书高」的源代码仍在运行。' }, { to: '/socialgov', label: '基层治理', note: '差序格局与家国同构 → 网格与人情社会。' }],
+  v3: [{ to: '/reform', label: '改革开放', note: '包产到户、乡镇企业野蛮生长 = 道家无为而治。' }, { to: '/private', label: '民营经济', note: '逆境「冬眠战略」与均值回归。' }],
+  v5: [{ to: '/education', label: '教育', note: '科举 → 高考作为阶层流动制度化通道。' }, { to: '/talent', label: '人才库', note: '标准化精英选拔网络的当代映射。' }],
+  v6: [{ to: '/culture', label: '文化软实力', note: '三教合一与现世主义底座 → 心理与价值供给。' }],
+  v8: [{ to: '/socialgov', label: '基层治理', note: '面子人情的非正式信用与执行弹性。' }, { to: '/private', label: '民营经济', note: '民企「兄弟/家人」修辞与关系劳动。' }],
+  v12: [{ to: '/soe', label: '国有资本', note: '盐铁垄断命脉 → 战略底座与链主。' }, { to: '/private', label: '民营经济', note: '缝隙中极致内卷的宗族微资本。' }],
+  v9: [{ to: '/military', label: '军事力量', note: '枪杆子里出政权 = 暴力垄断的强制层。' }],
+  v10: [{ to: '/private', label: '民营经济', note: '义利之辨与抑商传统 → 资本的政治天花板。' }, { to: '/soe', label: '国有资本', note: '盐铁之上的交换层伦理。' }],
+};
+
+// 文明栈分层条：自下而上渲染（reverse STACK_ORDER），active 高亮，dimMode 控制治乱亮灭
+function StackBars({ active, onPick, dimFor }) {
+  return (
+    <div className="space-y-1">
+      {[...STACK_ORDER].reverse().map((k) => {
+        const x = VOLUMES[k];
+        const sel = k === active;
+        const op = dimFor ? dimFor(k) : 1;
+        return (
+          <button key={k} onClick={() => onPick(k)}
+            className="w-full text-left rounded flex items-stretch gap-0 overflow-hidden transition-all"
+            style={{ background: sel ? 'rgba(196,30,58,0.14)' : 'var(--bg-elevated)', border: `1px solid ${sel ? 'var(--china-red)' : 'transparent'}`, cursor: 'pointer', opacity: op }}>
+            <span style={{ width: 5, background: x.color, flexShrink: 0 }} />
+            <span className="flex items-center gap-3 px-3 py-2 flex-1">
+              <span className="text-[10px] mono shrink-0" style={{ width: 132, color: x.color }}>{x.role}</span>
+              <span className="text-xs flex-1" style={{ color: sel ? '#fff' : 'var(--text-secondary)' }}>{x.num} · {x.title}</span>
+            </span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+const TABS = [['stack', '文明栈总览'], ['read', '逐卷精读'], ['schedule', '治乱调度算法'], ['compare', '中西对照']];
+
 export default function Page() {
   const [vol, setVol] = useState('v2');
+  const [tab, setTab] = useState('stack');
+  const [regime, setRegime] = useState('boom');
   const v = VOLUMES[vol];
+  const [rtag, rcolor] = REGIME_TAG[REGIME[vol]];
+  const btn = (a) => ({ background: a ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)', color: a ? '#fff' : 'var(--text-secondary)', border: 'none', cursor: 'pointer', borderRadius: 6, padding: '6px 14px', fontSize: 13 });
+  // 调度态下各层不透明度：主调度全亮、常驻次亮、底座微亮、错配态压暗
+  const dimFor = (k) => {
+    const r = REGIME[k];
+    if (r === regime || r === 'both') return 1;
+    if (r === 'base') return 0.5;
+    return 0.16;
+  };
+
   return (
     <div>
-      <PageHeader
-        badge="Civilization Lens · 12 卷"
-        title="文明透视 · 文明源代码"
-        subtitle="总纲引导 · 儒表 · 法里 · 道本 · 暴力强制层 · 汉字—科举硬件 · 释学心理补丁 · 阴阳五行底层 · 地理物理底座 · 盐铁财富闭环 · 义利交换层 —— 从历史深层结构解读今日制度与心理"
-      />
-      <Card className="mb-6"><p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>与「深度透视」经济—地缘主线并列的文化战略长篇：把文明拆成一个可分层调试的操作系统——每一卷对应一层，自下而上从地理物理约束直到财富闭环，并以卷一总纲串成引导扇区。12 卷已全部建成。可与「意识形态与文化」「国家治理现代化」「权力逻辑」交叉阅读。</p></Card>
+      <PageHeader badge="Civilization Lens · 12 卷"
+        title="文明透视 · 文明源代码栈"
+        subtitle="把文明拆成一台可分层调试的操作系统：地理物理底座 → 宇宙观 → 法家内核 → 儒家源代码 → 道家减震器 → 汉字科举硬件 → 佛学心理补丁 → 人情非正式层 → 盐铁财富闭环，以总纲串成引导扇区" />
+      <Card className="mb-6"><p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+        与「<Link to="/depth" className="mono" style={{ color: 'var(--cyber-cyan)' }}>深度透视</Link>」经济—地缘主线并列的文化战略长篇。核心隐喻：每一卷是一层，自下而上叠成全栈；<strong style={{ color: 'var(--text-primary)' }}>外儒内法剂之以道</strong>不是并列，而是<strong style={{ color: 'var(--text-primary)' }}>分时调度</strong>——顺境儒法扩张、逆境切道家熬冬。12 卷已全部建成（思想史与制度隐喻，非历史决定论）。
+      </p></Card>
       <Grid cols={4} className="mb-6">
-        <Stat value="12 / 12 卷" label="已建 / 规划" accent="#c41e3a" />
-        <Stat value="9 层 + 总纲" label="文明 OS 栈" accent="#22d3ee" />
-        <Stat value="2000+ 年" label="时间纵深" accent="#e8a317" />
-        <Stat value="中西对照" label="横向操作系统比较" accent="#10b981" />
+        <Stat value="12/12" label="全栈卷数 · 已就绪" accent="#c41e3a" />
+        <Stat value="10 层" label="OS 栈深度（9+总纲）" accent="#22d3ee" />
+        <Stat value="2000+" label="年 · 时间纵深" accent="#e8a317" />
+        <Stat value="6 维" label="中西对照维度" accent="#10b981" />
       </Grid>
 
-      <Grid cols={2} className="mb-6">
-        <Card title="文明 OS 栈 · 自下而上（点层切换）">
-          <div className="space-y-1">
-            {[...STACK_ORDER].reverse().map((k) => {
-              const x = VOLUMES[k];
-              const active = k === vol;
-              return (
-                <button key={k} onClick={() => setVol(k)}
-                  className="w-full text-left px-3 py-2 rounded flex items-center gap-3"
-                  style={{ background: active ? 'rgba(196,30,58,0.16)' : 'var(--bg-elevated)', border: `1px solid ${active ? 'var(--china-red)' : 'transparent'}`, cursor: 'pointer' }}>
-                  <span className="text-[10px] mono w-24 shrink-0" style={{ color: x.color }}>{x.role}</span>
-                  <span className="text-xs flex-1" style={{ color: active ? '#fff' : 'var(--text-secondary)' }}>{x.num} · {x.title}</span>
-                </button>
-              );
-            })}
-          </div>
-          <div className="mt-3 pt-3" style={{ borderTop: '1px solid var(--border-subtle)' }}>
-            <div className="text-[11px] mono py-0.5" style={{ color: 'var(--text-tertiary)' }}>// 12 卷全栈已就绪 · 点击任一层切换</div>
-          </div>
-        </Card>
+      <div className="flex gap-1 flex-wrap mb-4">
+        {TABS.map(([k, label]) => <button key={k} onClick={() => setTab(k)} style={btn(k === tab)} className="mono">{label}</button>)}
+      </div>
 
-        <Card title={`${v.num} · ${v.title}`}>
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'var(--bg-elevated)', color: v.color }}>{v.role}</span>
-            {v.file
-              ? <a href={`../${v.file}`} target="_blank" rel="noreferrer" className="text-[11px] mono" style={{ color: 'var(--cyber-cyan)' }}>→ 阅读本卷全文报告</a>
-              : <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>// 本卷内嵌 · 暂无外链全文</span>}
-          </div>
-          <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{v.thesis}</p>
-        </Card>
-      </Grid>
+      {tab === 'stack' && (
+        <Grid cols={2} className="mb-6">
+          <Card title="文明 OS 栈 · 自下而上（点层切换，→ 跳「逐卷精读」）">
+            <StackBars active={vol} onPick={(k) => { setVol(k); }} />
+            <p className="text-[11px] mono mt-3 pt-3" style={{ borderTop: '1px solid var(--border-subtle)', color: 'var(--text-tertiary)' }}>// 左侧色条 = 各层在栈中的位置；下层为上层提供运行前提，上层解决下层无法解决的问题</p>
+          </Card>
+          <Card title={`${v.num} · ${v.title}`}>
+            <div className="flex items-center gap-2 mb-3 flex-wrap">
+              <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'var(--bg-elevated)', color: v.color }}>{v.role}</span>
+              <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: `${rcolor}1a`, color: rcolor }}>{rtag}</span>
+              {v.file
+                ? <a href={`../${v.file}`} target="_blank" rel="noreferrer" className="text-[11px] mono" style={{ color: 'var(--cyber-cyan)' }}>→ 全文报告</a>
+                : <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>// 本卷内嵌</span>}
+            </div>
+            <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>{v.thesis}</p>
+            <button onClick={() => setTab('read')} className="text-xs mono" style={{ color: 'var(--cyber-cyan)', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>展开四节精读 + 现实接口 →</button>
+          </Card>
+        </Grid>
+      )}
 
-      <Grid cols={2} className="mb-6">
-        {v.sections.map(([t, d]) => (
-          <Card key={t} title={t}><p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{d}</p></Card>
-        ))}
-      </Grid>
-
-      <Grid cols={2} className="mb-6">
-        <Card title="中西文明操作系统对照 · 雷达（理想型 · 非实证）">
-          <EChart option={compareRadar} style={{ height: 300 }} />
-          <p className="text-[11px] mt-2 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>刻度向外（红）= 偏中华栈取向，向内反向（青）= 偏西方理想型；二者在每一维度互为镜像，仅作思想史对照，不代表优劣或精确测量。</p>
-        </Card>
-        <Card title="维度逐项对照表">
-          <div className="space-y-2">
-            {COMPARE_TABLE.map(([dim, west, china]) => (
-              <div key={dim} className="pb-2" style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-                <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>{dim}</div>
-                <div className="flex gap-2 text-[11px] leading-snug">
-                  <div className="flex-1" style={{ color: 'var(--cyber-cyan)' }}>西 · {west}</div>
-                  <div className="flex-1 text-right" style={{ color: 'var(--china-red)' }}>{china} · 华</div>
-                </div>
-              </div>
+      {tab === 'read' && (
+        <div className="mb-6">
+          <div className="flex gap-1.5 flex-wrap mb-4">
+            {[...STACK_ORDER].reverse().map((k) => (
+              <button key={k} onClick={() => setVol(k)} className="text-xs px-2.5 py-1 rounded mono"
+                style={{ background: k === vol ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)', color: k === vol ? '#fff' : 'var(--text-secondary)', border: `1px solid ${k === vol ? VOLUMES[k].color : 'transparent'}`, cursor: 'pointer' }}>
+                {VOLUMES[k].num}
+              </button>
             ))}
           </div>
-        </Card>
-      </Grid>
+          <Card className="mb-4">
+            <div className="flex items-center gap-2 mb-2 flex-wrap">
+              <span className="text-base font-semibold" style={{ color: 'var(--text-primary)' }}>{v.num} · {v.title}</span>
+              <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'var(--bg-elevated)', color: v.color }}>{v.role}</span>
+              <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: `${rcolor}1a`, color: rcolor }}>{rtag}</span>
+              {v.file && <a href={`../${v.file}`} target="_blank" rel="noreferrer" className="text-[11px] mono" style={{ color: 'var(--cyber-cyan)' }}>→ 全文报告</a>}
+            </div>
+            <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{v.thesis}</p>
+          </Card>
+          <Grid cols={2} className="mb-4">
+            {v.sections.map(([t, d]) => (
+              <Card key={t} title={t}><p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{d}</p></Card>
+            ))}
+          </Grid>
+          {VOL_LINKS[vol] && <CrossLinks title={`${v.num} · 现实接口 · 直跳业务模块`} links={VOL_LINKS[vol]} />}
+        </div>
+      )}
 
-      <Card title="叠读提示 · 文明栈与现实模块的接口">
+      {tab === 'schedule' && (
+        <Grid cols={2} className="mb-6">
+          <Card title="治乱调度算法 · 同一套栈的两种系统态">
+            <div className="flex gap-2 mb-4">
+              <button onClick={() => setRegime('boom')} className="flex-1 text-sm py-2 rounded mono"
+                style={{ background: regime === 'boom' ? 'rgba(232,163,23,0.2)' : 'var(--bg-elevated)', color: regime === 'boom' ? '#e8a317' : 'var(--text-secondary)', border: `1px solid ${regime === 'boom' ? '#e8a317' : 'transparent'}`, cursor: 'pointer' }}>顺境 · 儒法扩张</button>
+              <button onClick={() => setRegime('bust')} className="flex-1 text-sm py-2 rounded mono"
+                style={{ background: regime === 'bust' ? 'rgba(16,185,129,0.2)' : 'var(--bg-elevated)', color: regime === 'bust' ? '#10b981' : 'var(--text-secondary)', border: `1px solid ${regime === 'bust' ? '#10b981' : 'transparent'}`, cursor: 'pointer' }}>逆境 · 道家熬冬</button>
+            </div>
+            <StackBars active={vol} onPick={setVol} dimFor={dimFor} />
+            <p className="text-[11px] mono mt-3" style={{ color: 'var(--text-tertiary)' }}>// 亮 = 当前态主调度层 · 半亮 = 结构常量底座 · 暗 = 另一态才激活</p>
+          </Card>
+          <Card title={regime === 'boom' ? '顺境调度 · 儒法驱动扩张' : '逆境调度 · 道家低耗熬冬'}>
+            <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
+              {regime === 'boom'
+                ? '王朝上升期 / 经济扩张期：法家内核（L2）以 KPI 与动员驱动增长，儒家源代码（L3）供合法性与愿景，汉字—科举（L5）持续收敛精英入口。系统高整合、高动员，代价是低方差、压抑高风险创新（李约瑟难题之果）。现实回响：强监管、超级工程、集中力量办大事。'
+                : '王朝末年 / 经济崩溃期：切换道家减震器（L4）——轻徭薄赋、与民休息、放松管制、负面清单，靠自发秩序修复元气；佛学心理补丁（L6）卸载意义溢出。系统低耗、容错、均值回归。现实回响：从强监管转向稳预期、休养生息、「我无为而民自化」。'}
+            </p>
+            <div className="space-y-2">
+              {Object.entries(REGIME).filter(([, r]) => r === regime || r === 'both').map(([k]) => (
+                <button key={k} onClick={() => { setVol(k); setTab('read'); }} className="w-full text-left flex items-center gap-3 px-3 py-2 rounded"
+                  style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', cursor: 'pointer' }}>
+                  <span style={{ width: 8, height: 8, borderRadius: 2, background: VOLUMES[k].color }} />
+                  <span className="text-xs" style={{ color: 'var(--text-primary)' }}>{VOLUMES[k].num} · {VOLUMES[k].title}</span>
+                  <span className="text-[10px] mono ml-auto" style={{ color: 'var(--text-tertiary)' }}>{VOLUMES[k].role}</span>
+                </button>
+              ))}
+            </div>
+            <p className="text-[11px] mt-3" style={{ color: 'var(--text-tertiary)' }}>暴力强制层（L2b）两态常驻——无论扩张或收缩，对暴力的垄断始终是内核的最终保障。</p>
+          </Card>
+        </Grid>
+      )}
+
+      {tab === 'compare' && (
+        <Grid cols={2} className="mb-6">
+          <Card title="中西文明操作系统对照 · 雷达（理想型 · 非实证）">
+            <EChart option={compareRadar} style={{ height: 300 }} />
+            <p className="text-[11px] mt-2 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>刻度向外（红）= 偏中华栈取向，向内反向（青）= 偏西方理想型；二者每一维度互为镜像，仅作思想史对照，不代表优劣或精确测量。</p>
+          </Card>
+          <Card title="维度逐项对照表">
+            <div className="space-y-2">
+              {COMPARE_TABLE.map(([dim, west, china]) => (
+                <div key={dim} className="pb-2" style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+                  <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>{dim}</div>
+                  <div className="flex gap-2 text-[11px] leading-snug">
+                    <div className="flex-1" style={{ color: 'var(--cyber-cyan)' }}>西 · {west}</div>
+                    <div className="flex-1 text-right" style={{ color: 'var(--china-red)' }}>{china} · 华</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Card>
+        </Grid>
+      )}
+
+      <Card title="叠读提示 · 文明栈与现实模块的接口（点「逐卷精读」可逐卷直跳）">
         <Grid cols={3}>
           {[['法家内核 ↔ 制度与改革', '卷二的秦制动员与 KPI 逻辑，对应「政府体系」压力型体制与「权力逻辑」儒表法里。'],
             ['盐铁双轨 ↔ 国资/民营', '卷十二的垄断—缝隙结构，对应「国有资本」战略底座与「民营经济」56789 的当代双轨。'],

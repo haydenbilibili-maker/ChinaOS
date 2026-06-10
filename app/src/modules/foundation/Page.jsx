@@ -376,7 +376,7 @@ function Figures({ figures, refresh, flash }) {
       <Card title="批量导入 · 从权威来源整段粘贴（多条简历）" className="mb-4">
         <p className="text-[11px] mb-2" style={{ color: 'var(--text-tertiary)' }}>
           支持：多条简历以空行或「---」分隔、每行一条 JSON(JSONL)、或 JSON 数组。自动按省份关键词关联。
-          内置数据集：{FIGURE_CATALOG_META.label}（{FIGURE_SEED.length} 条）· 来源 {FIGURE_CATALOG_META.sources.join(' / ')}。
+          内置数据集：{FIGURE_CATALOG_META.label}（共 {FIGURE_SEED.length} 条：省级 {FIGURE_CATALOG_META.breakdown?.provincial} + 中央 {FIGURE_CATALOG_META.breakdown?.central} + 扩展 {FIGURE_CATALOG_META.breakdown?.extended}）· 来源 {FIGURE_CATALOG_META.sources.join(' / ')}。
         </p>
         <textarea value={bulk} onChange={(e) => setBulk(e.target.value)} placeholder={'姓名：张三\n现任：XX省委书记\n2020— 任XX省委书记\n---\n姓名：李四\n现任：XX省省长\n2021— 任XX省省长'} style={{ ...inp, height: 120, fontFamily: 'monospace', resize: 'vertical', width: '100%' }} />
         <div className="flex gap-2 mt-2 flex-wrap">
