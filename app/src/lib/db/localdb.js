@@ -8,28 +8,42 @@
 
 const DB_NAME = 'china-os-db';
 const DB_VER = 2;
+// 本库依赖的对象存储；缺任一即触发升级建表（兼容历史/并发改动留下的不完整 schema）
+const REQUIRED_STORES = ['datasets', 'rows', 'figures', 'docs'];
 let _db = null;
 
-function open() {
-  // 版本感知：若缓存连接版本低于当前（如旧会话停留在 v1，缺 docs store），
-  // 关闭并以 DB_VER 重新打开，触发 onupgradeneeded 建表。避免「无 docs 存储」静默报错。
-  if (_db && _db.version >= DB_VER) return Promise.resolve(_db);
-  if (_db) { try { _db.close(); } catch (_) {} _db = null; }
+// 幂等建表：在任意版本升级时补齐缺失的 store（带 if-not-contains 守卫）
+function ensureStores(db) {
+  if (!db.objectStoreNames.contains('datasets')) db.createObjectStore('datasets', { keyPath: 'id' });
+  if (!db.objectStoreNames.contains('rows')) {
+    const s = db.createObjectStore('rows', { keyPath: 'rowId' });
+    s.createIndex('byDataset', 'datasetId', { unique: false });
+  }
+  if (!db.objectStoreNames.contains('figures')) db.createObjectStore('figures', { keyPath: 'id' });
+  if (!db.objectStoreNames.contains('docs')) db.createObjectStore('docs', { keyPath: 'id' });
+}
+
+function openAt(version) {
   return new Promise((resolve, reject) => {
-    const req = indexedDB.open(DB_NAME, DB_VER);
-    req.onupgradeneeded = (e) => {
-      const db = e.target.result;
-      if (!db.objectStoreNames.contains('datasets')) db.createObjectStore('datasets', { keyPath: 'id' });
-      if (!db.objectStoreNames.contains('rows')) {
-        const s = db.createObjectStore('rows', { keyPath: 'rowId' });
-        s.createIndex('byDataset', 'datasetId', { unique: false });
-      }
-      if (!db.objectStoreNames.contains('figures')) db.createObjectStore('figures', { keyPath: 'id' });
-      if (!db.objectStoreNames.contains('docs')) db.createObjectStore('docs', { keyPath: 'id' });
-    };
-    req.onsuccess = () => { _db = req.result; resolve(_db); };
+    const req = version ? indexedDB.open(DB_NAME, version) : indexedDB.open(DB_NAME);
+    req.onupgradeneeded = (e) => ensureStores(e.target.result);
+    req.onsuccess = () => resolve(req.result);
     req.onerror = () => reject(req.error);
     req.onblocked = () => reject(new Error('数据库升级被其它标签页阻塞，请关闭该站点的其它标签后重试'));
+  });
+}
+
+// 不只看版本号——直接核对所需 store 是否齐全；缺失则以 version+1 强制升级建表。
+// 兼容「磁盘已是某版本但 schema 不完整」（历史 / 并发改动导致 docs 等 store 缺失）。
+function open() {
+  if (_db && REQUIRED_STORES.every((s) => _db.objectStoreNames.contains(s))) return Promise.resolve(_db);
+  if (_db) { try { _db.close(); } catch (_) {} _db = null; }
+  return openAt(undefined).then((db) => {
+    const missing = REQUIRED_STORES.some((s) => !db.objectStoreNames.contains(s));
+    const ver = db.version;
+    if (!missing && ver >= DB_VER) { _db = db; return _db; }
+    db.close();
+    return openAt(Math.max(DB_VER, ver + (missing ? 1 : 0))).then((db2) => { _db = db2; return _db; });
   });
 }
 
