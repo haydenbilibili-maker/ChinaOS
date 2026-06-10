@@ -54,7 +54,7 @@ export function parseFigure(text) {
   if (t.startsWith('{')) {
     try {
       const j = JSON.parse(t);
-      return { name: j.name || j.姓名 || '未命名', fields: j.fields || j, career: j.career || j.履历 || [], raw: t };
+      return { name: j.name || j.姓名 || '未命名', fields: j.fields || j, career: j.career || j.履历 || [], province: j.province || detectProvince(t), raw: t };
     } catch (_) { /* 退回文本解析 */ }
   }
   const LABELS = {
@@ -87,5 +87,14 @@ export function parseFigure(text) {
       career.push({ from: ym[1], to: ym[2] || '', desc: (ym[3] || line).trim() });
     }
   }
-  return { name: fields.name || '未命名', fields, career, raw: t };
+  return { name: fields.name || '未命名', fields, career, province: detectProvince(t), raw: t };
+}
+
+// 从文本检测关联省份（datav 全称），优先现任/籍贯出现的省份
+const PROVINCES = ['北京市', '天津市', '上海市', '重庆市', '河北省', '山西省', '辽宁省', '吉林省', '黑龙江省', '江苏省', '浙江省', '安徽省', '福建省', '江西省', '山东省', '河南省', '湖北省', '湖南省', '广东省', '海南省', '四川省', '贵州省', '云南省', '陕西省', '甘肃省', '青海省', '内蒙古自治区', '广西壮族自治区', '西藏自治区', '宁夏回族自治区', '新疆维吾尔自治区'];
+export function detectProvince(text) {
+  for (const p of PROVINCES) { if (text.includes(p)) return p; }
+  // 简称兜底（如「黑龙江」「内蒙古」）
+  for (const p of PROVINCES) { const short = p.replace(/(省|市|自治区|回族|壮族|维吾尔)/g, ''); if (short.length >= 2 && text.includes(short)) return p; }
+  return '';
 }

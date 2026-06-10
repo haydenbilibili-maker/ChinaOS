@@ -35,6 +35,11 @@ function reqP(r) { return new Promise((res, rej) => { r.onsuccess = () => res(r.
 
 const uid = (() => { let n = 0; return (p) => `${p}_${(typeof performance !== 'undefined' ? Math.floor(performance.now() * 1000) : 0)}_${n++}`; })();
 
+// ---------- 发布/订阅（写入即通知，驱动模块即时刷新） ----------
+const listeners = new Set();
+export function subscribe(fn) { listeners.add(fn); return () => listeners.delete(fn); }
+function notify(id) { listeners.forEach((f) => { try { f(id); } catch (_) {} }); }
+
 // ---------- 数据集 ----------
 export async function listDatasets() {
   const s = await tx('datasets');
@@ -73,6 +78,7 @@ export async function putDataset({ id, name, category, source, origin = 'upload'
     const rowStore = t.objectStore('rows');
     rows.forEach((r, i) => rowStore.put({ rowId: `${dsId}__${i}__${uid('r')}`, datasetId: dsId, ...r }));
   });
+  notify(dsId);
   return dsId;
 }
 
@@ -82,10 +88,14 @@ export async function updateRow(rowId, patch) {
   const cur = await reqP(s.get(rowId));
   if (!cur) return;
   await reqP(s.put({ ...cur, ...patch }));
+  notify(cur.datasetId);
 }
 export async function deleteRow(rowId) {
   const db = await open();
-  await reqP(db.transaction('rows', 'readwrite').objectStore('rows').delete(rowId));
+  const s = db.transaction('rows', 'readwrite').objectStore('rows');
+  const cur = await reqP(s.get(rowId));
+  await reqP(s.delete(rowId));
+  if (cur) notify(cur.datasetId);
 }
 export async function deleteDataset(id) {
   const db = await open();
@@ -99,6 +109,7 @@ export async function deleteDataset(id) {
       if (cur) { t.objectStore('rows').delete(cur.primaryKey); cur.continue(); }
     };
   });
+  notify(id);
 }
 
 // ---------- 政治人物简历 ----------
@@ -110,11 +121,13 @@ export async function putFigure(fig) {
   const id = fig.id || uid('fig');
   const db = await open();
   await reqP(db.transaction('figures', 'readwrite').objectStore('figures').put({ ...fig, id }));
+  notify('__figures__');
   return id;
 }
 export async function deleteFigure(id) {
   const db = await open();
   await reqP(db.transaction('figures', 'readwrite').objectStore('figures').delete(id));
+  notify('__figures__');
 }
 
 // ---------- 统计 ----------
@@ -145,4 +158,48 @@ export function aggregate(rows, { groupBy, valueField, agg = 'sum' }) {
     else if (agg === 'min') val = arr.length ? Math.min(...arr) : 0;
     return { key: k, value: Math.round(val * 100) / 100 };
   }).sort((a, b) => b.value - a.value);
+}
+
+// ---------- 字段类型推断与校验 ----------
+export function inferTypes(rows, columns) {
+  const out = {};
+  columns.forEach((c) => {
+    let num = 0, txt = 0, empty = 0;
+    rows.forEach((r) => {
+      const v = r[c];
+      if (v === '' || v == null) empty++;
+      else if (typeof v === 'number' || (!Number.isNaN(Number(v)) && String(v).trim() !== '')) num++;
+      else txt++;
+    });
+    const nonEmpty = num + txt;
+    out[c] = { type: nonEmpty === 0 ? 'empty' : num >= txt ? 'number' : 'text', num, txt, empty,
+      issues: out_issues(c, num, txt) };
+  });
+  return out;
+  function out_issues(col, n, t) {
+    if (n > 0 && t > 0) return `混合类型：${n} 数值 / ${t} 文本`;
+    return '';
+  }
+}
+
+// ---------- 整库导出 / 导入 ----------
+export async function exportAll() {
+  const ds = await listDatasets();
+  const figs = await listFigures();
+  const datasets = [];
+  for (const d of ds) {
+    const rows = (await getRows(d.id)).map(({ rowId, datasetId, ...r }) => r);
+    datasets.push({ ...d, rows });
+  }
+  return { app: 'china-os-db', version: 1, exportedAt: new Date().toISOString(), datasets, figures: figs };
+}
+export async function importAll(obj, { merge = true } = {}) {
+  if (!obj || !Array.isArray(obj.datasets)) throw new Error('备份格式无效（缺 datasets）');
+  let ds = 0, fg = 0;
+  for (const d of obj.datasets) {
+    await putDataset({ id: d.id, name: d.name, category: d.category, source: d.source, origin: d.origin || 'import', note: d.note, columns: d.columns, rows: d.rows || [], stampMs: d.updatedAt || 0 });
+    ds++;
+  }
+  if (Array.isArray(obj.figures)) { for (const f of obj.figures) { await putFigure(f); fg++; } }
+  return { datasets: ds, figures: fg };
 }

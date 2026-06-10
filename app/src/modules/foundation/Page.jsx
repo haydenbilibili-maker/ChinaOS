@@ -7,7 +7,7 @@ import { STOCK_CATALOG } from '../../lib/db/stock.js';
 
 const TABS = [
   ['overview', '总览'], ['datasets', '数据集'], ['upload', '上传导入'],
-  ['analyze', '解析分析'], ['figures', '政治人物简历'], ['stock', '存量队列'],
+  ['analyze', '解析分析'], ['figures', '政治人物简历'], ['stock', '存量队列'], ['tools', '备份 / 对账'],
 ];
 const CATS = ['经济运行', '国家统计局', '海关总署', '世界银行', '科技指标', '地缘指标', '政治人物', '其他'];
 const btn = (active) => ({ background: active ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)', color: active ? '#fff' : 'var(--text-secondary)', border: 'none', cursor: 'pointer', borderRadius: 6 });
@@ -75,7 +75,83 @@ export default function Page() {
       {tab === 'analyze' && <Analyze datasets={datasets} />}
       {tab === 'figures' && <Figures figures={figures} refresh={refresh} flash={flash} />}
       {tab === 'stock' && <Stock datasets={datasets} refresh={refresh} flash={flash} />}
+      {tab === 'tools' && <Tools datasets={datasets} refresh={refresh} flash={flash} />}
     </div>
+  );
+}
+
+// ---------- 备份 / 对账 ----------
+function Tools({ datasets, refresh, flash }) {
+  const [aId, setA] = useState(''); const [bId, setB] = useState('');
+  const [keyCol, setKeyCol] = useState(''); const [valCol, setVal] = useState('');
+  const [recon, setRecon] = useState(null);
+  const doExport = async () => {
+    const all = await DB.exportAll();
+    const blob = new Blob([JSON.stringify(all, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `china-os-db-backup-${all.exportedAt.slice(0, 10)}.json`; a.click();
+    flash(`已导出整库：${all.datasets.length} 数据集 / ${all.figures.length} 简历`);
+  };
+  const doImport = (e) => {
+    const f = e.target.files[0]; if (!f) return;
+    const r = new FileReader();
+    r.onload = async () => { try { const res = await DB.importAll(JSON.parse(String(r.result))); await refresh(); flash(`已导入备份：${res.datasets} 数据集 / ${res.figures} 简历`); } catch (er) { flash('导入失败：' + er.message); } };
+    r.readAsText(f);
+  };
+  const runRecon = async () => {
+    const [ra, rb] = await Promise.all([DB.getRows(aId), DB.getRows(bId)]);
+    const idx = {}; rb.forEach((r) => { idx[r[keyCol]] = r; });
+    const rows = ra.map((r) => {
+      const m = idx[r[keyCol]]; const va = Number(r[valCol]); const vb = m ? Number(m[valCol]) : null;
+      const delta = vb != null && !Number.isNaN(va) && !Number.isNaN(vb) ? va - vb : null;
+      const pct = delta != null && vb ? (delta / vb) * 100 : null;
+      return { key: r[keyCol], a: va, b: vb, delta: delta != null ? Math.round(delta * 100) / 100 : null, pct: pct != null ? Math.round(pct * 10) / 10 : null };
+    }).filter((x) => x.b != null);
+    setRecon(rows.sort((x, y) => Math.abs(y.pct || 0) - Math.abs(x.pct || 0)));
+  };
+  const dsA = datasets.find((d) => d.id === aId); const dsB = datasets.find((d) => d.id === bId);
+  const commonCols = dsA && dsB ? dsA.columns.filter((c) => dsB.columns.includes(c)) : [];
+  return (
+    <Grid cols={1}>
+      <Card title="整库备份 · 导出 / 导入">
+        <div className="flex gap-2 items-center flex-wrap">
+          <button onClick={doExport} style={{ ...btn(true), padding: '6px 16px', fontSize: 13 }}>导出整库 JSON</button>
+          <label style={{ ...btn(false), padding: '6px 16px', fontSize: 13 }}>导入备份<input type="file" accept=".json" onChange={doImport} style={{ display: 'none' }} /></label>
+          <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>导出含全部数据集（行）与简历；导入按 id 覆盖合并。</span>
+        </div>
+      </Card>
+      <Card title="多源对账 · NBS vs WB（同名指标偏差核对）" className="mt-4">
+        <div className="flex gap-2 flex-wrap items-center text-xs mb-3">
+          <select value={aId} onChange={(e) => { setA(e.target.value); setRecon(null); }} style={{ ...inp, width: 200 }}><option value="">源 A</option>{datasets.map((d) => <option key={d.id} value={d.id}>{d.name}</option>)}</select>
+          <span style={{ color: 'var(--text-tertiary)' }}>对</span>
+          <select value={bId} onChange={(e) => { setB(e.target.value); setRecon(null); }} style={{ ...inp, width: 200 }}><option value="">源 B</option>{datasets.map((d) => <option key={d.id} value={d.id}>{d.name}</option>)}</select>
+          {commonCols.length > 0 && <>
+            <span style={{ color: 'var(--text-tertiary)' }}>主键</span>
+            <select value={keyCol} onChange={(e) => setKeyCol(e.target.value)} style={{ ...inp, width: 120 }}><option value="">键</option>{commonCols.map((c) => <option key={c} value={c}>{c}</option>)}</select>
+            <span style={{ color: 'var(--text-tertiary)' }}>比对</span>
+            <select value={valCol} onChange={(e) => setVal(e.target.value)} style={{ ...inp, width: 120 }}><option value="">值</option>{commonCols.map((c) => <option key={c} value={c}>{c}</option>)}</select>
+            <button onClick={runRecon} disabled={!keyCol || !valCol} style={{ ...btn(true), padding: '5px 14px', fontSize: 12 }}>对账</button>
+          </>}
+        </div>
+        {recon && (
+          <div style={{ overflowX: 'auto', border: '1px solid var(--border-subtle)', borderRadius: 8 }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
+              <thead><tr style={{ background: 'var(--bg-elevated)' }}>{['主键', '源A', '源B', 'Δ', 'Δ%'].map((h) => <th key={h} style={{ padding: '6px 10px', textAlign: 'left', color: 'var(--text-secondary)' }}>{h}</th>)}</tr></thead>
+              <tbody>{recon.map((r) => (
+                <tr key={r.key} style={{ borderTop: '1px solid var(--border-subtle)' }}>
+                  <td style={{ padding: '4px 10px', color: 'var(--text-primary)' }}>{r.key}</td>
+                  <td style={{ padding: '4px 10px', color: 'var(--text-secondary)' }}>{r.a}</td>
+                  <td style={{ padding: '4px 10px', color: 'var(--text-secondary)' }}>{r.b}</td>
+                  <td style={{ padding: '4px 10px', color: 'var(--text-secondary)' }}>{r.delta}</td>
+                  <td style={{ padding: '4px 10px', color: Math.abs(r.pct) > 10 ? '#c41e3a' : Math.abs(r.pct) > 3 ? '#e8a317' : '#10b981', fontFamily: 'monospace' }}>{r.pct != null ? r.pct + '%' : '—'}</td>
+                </tr>
+              ))}</tbody>
+            </table>
+          </div>
+        )}
+        {recon && <p className="text-[11px] mt-2" style={{ color: 'var(--text-tertiary)' }}>红：偏差&gt;10% · 黄：&gt;3% · 绿：≤3%。多源（如 NBS vs WB）同指标偏差可揭示口径差异或数据质量问题。</p>}
+        {!recon && <p className="text-xs" style={{ color: 'var(--text-tertiary)' }}>选两个含相同列名的数据集（如同时含「指标/数值」），按主键比对数值字段的偏差。</p>}
+      </Card>
+    </Grid>
   );
 }
 
@@ -214,7 +290,15 @@ function Upload({ refresh, flash, go }) {
               <select value={cat} onChange={(e) => setCat(e.target.value)} style={inp}>{CATS.map((c) => <option key={c} value={c}>{c}</option>)}</select>
               <input value={source} onChange={(e) => setSource(e.target.value)} placeholder="来源（如：国家统计局 2023）" style={{ ...inp, gridColumn: '1 / 3' }} />
             </div>
-            <div className="text-xs mono mb-2" style={{ color: 'var(--text-tertiary)' }}>{parsed.columns.length} 列 · {parsed.rows.length} 行 · 列：{parsed.columns.join(' / ')}</div>
+            <div className="text-xs mono mb-2" style={{ color: 'var(--text-tertiary)' }}>{parsed.columns.length} 列 · {parsed.rows.length} 行</div>
+            <div className="flex flex-wrap gap-1.5 mb-2">
+              {Object.entries(DB.inferTypes(parsed.rows, parsed.columns)).map(([col, t]) => (
+                <span key={col} className="text-[10px] mono px-2 py-0.5 rounded" title={t.issues || ''}
+                  style={{ background: 'var(--bg-elevated)', color: t.issues ? '#e8a317' : t.type === 'number' ? '#22d3ee' : 'var(--text-tertiary)' }}>
+                  {col}:{t.type}{t.issues ? ' ⚠' : ''}
+                </span>
+              ))}
+            </div>
             <DataTable rows={parsed.rows.slice(0, 50)} columns={parsed.columns} />
             <button onClick={doImport} className="mt-3" style={{ ...btn(true), padding: '6px 16px', fontSize: 13 }}>导入数据库</button>
           </>
@@ -265,8 +349,10 @@ function Analyze({ datasets }) {
 function Figures({ figures, refresh, flash }) {
   const [text, setText] = useState('');
   const [preview, setPreview] = useState(null);
+  const [q, setQ] = useState('');
   const FIELD_LABEL = { name: '姓名', gender: '性别', birth: '出生', native: '籍贯', ethnic: '民族', party: '入党', edu: '学历', title: '现任', field: '分管' };
   const doParse = () => { try { setPreview(parseFigure(text)); } catch (e) { flash('解析失败：' + e.message); } };
+  const filtered = figures.filter((f) => !q || (f.name + ' ' + (f.fields?.title || '') + ' ' + (f.province || '') + ' ' + (f.raw || '')).toLowerCase().includes(q.toLowerCase()));
   const save = async () => { await DB.putFigure({ ...preview, updatedAt: Date.now() }); setText(''); setPreview(null); await refresh(); flash(`已录入「${preview.name}」`); };
   return (
     <Grid cols={2}>
@@ -287,12 +373,13 @@ function Figures({ figures, refresh, flash }) {
         )}
         <p className="text-[11px] mt-2" style={{ color: 'var(--text-tertiary)' }}>解析抽取「标签：值」字段与含年份的履历时间线；仅录入用户提供的公开履历文本，供研究检索。</p>
       </Card>
-      <Card title={`简历库 (${figures.length})`}>
-        <div className="space-y-2" style={{ maxHeight: 460, overflowY: 'auto' }}>
-          {figures.map((f) => (
+      <Card title={`简历库 (${filtered.length}/${figures.length})`}>
+        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="检索：姓名 / 现任 / 省份 / 关键词" style={{ ...inp, marginBottom: 10 }} />
+        <div className="space-y-2" style={{ maxHeight: 420, overflowY: 'auto' }}>
+          {filtered.map((f) => (
             <div key={f.id} className="p-3 rounded" style={{ background: 'var(--bg-elevated)' }}>
               <div className="flex items-center justify-between">
-                <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>{f.name}</span>
+                <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>{f.name}{f.province && <span className="text-[10px] mono ml-2 px-1.5 py-0.5 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)' }}>{f.province.replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '')}</span>}</span>
                 <button onClick={async () => { await DB.deleteFigure(f.id); await refresh(); flash('已删除'); }} style={{ ...btn(false), padding: '2px 8px', fontSize: 11, color: 'var(--china-red)' }}>删</button>
               </div>
               <div className="flex flex-wrap gap-x-3 text-[11px] mt-1" style={{ color: 'var(--text-tertiary)' }}>
@@ -301,7 +388,7 @@ function Figures({ figures, refresh, flash }) {
               {f.career?.length > 0 && <div className="text-[11px] mt-1" style={{ color: 'var(--text-tertiary)' }}>履历 {f.career.length} 条 · 最近 {f.career[0]?.from}</div>}
             </div>
           ))}
-          {!figures.length && <div className="py-16 text-center text-sm mono" style={{ color: 'var(--text-tertiary)' }}>// 简历库为空</div>}
+          {!filtered.length && <div className="py-16 text-center text-sm mono" style={{ color: 'var(--text-tertiary)' }}>// {figures.length ? '无匹配' : '简历库为空'}</div>}
         </div>
       </Card>
     </Grid>

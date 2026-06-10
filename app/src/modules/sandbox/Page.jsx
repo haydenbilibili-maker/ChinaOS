@@ -3,6 +3,9 @@ import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import ChinaMap from '../../lib/viz/ChinaMap.jsx';
 import DataBus from '../../lib/data/DataBus.js';
+import * as DB from '../../lib/db/localdb.js';
+import { useDataset, useFigures } from '../../lib/db/useDataset.js';
+import { Link } from 'react-router-dom';
 
 // ============================================================================
 // 治国沙盒 · 区域治理人才配置 + 熵增监控（实测）
@@ -125,30 +128,34 @@ const SCENARIOS = {
 export default function Page() {
   const [sel, setSel] = useState('黑龙江省');
   const [scn, setScn] = useState('fiscal');
-  const [stats, setStats] = useState(null);
-  const [source, setSource] = useState('local');
-  const [loadErr, setLoadErr] = useState(null);
   const [national, setNational] = useState(null); // WB 实时全国基线
   const [natState, setNatState] = useState('loading'); // loading | live | offline
 
+  // ★ 数据↔模块联动：从本地库读省级数据（写入即刷新）；库中无则自播种自 JSON 快照
+  const { rows: dbRows, ready } = useDataset('stock_province-stats');
+  const figures = useFigures();
+  const source = dbRows ? 'db' : 'local';
   useEffect(() => {
-    // 省级：远程优先 + 本地兜底（remote 留空 → 用本地快照）。配置 remote URL 即自动切「实时」。
-    DataBus.provinceStats({ remote: import.meta.env.VITE_PROVINCE_API || null })
-      .then((r) => { setStats(r); setSource(r.source); })
-      .catch((e) => setLoadErr(String(e)));
-    // 全国基线：真·实时打世界银行 API
+    if (ready && !dbRows) {
+      DataBus.getJSON('data/province-stats.json').then((j) => DB.putDataset({
+        id: 'stock_province-stats', name: '省级财政/人口/债务（实测）', category: '经济运行',
+        source: j.meta?.source || '统计公报 2023', origin: 'stock', rows: j.provinces, stampMs: Date.now(),
+      }));
+    }
+  }, [ready, dbRows]);
+  useEffect(() => {
     DataBus.chinaIndicators()
       .then((r) => { setNational(r); setNatState(r.gdpGrowth || r.population ? 'live' : 'offline'); })
       .catch(() => setNatState('offline'));
   }, []);
 
-  // 实测熵增指数（由真实数据现场计算）
+  // 实测熵增指数（由本地库真实数据现场计算）
   const computed = useMemo(() => {
-    if (!stats) return null;
-    const rows = stats.provinces.map((p) => ({ ...p, entropy: entropyOf(p) }));
+    if (!dbRows) return null;
+    const rows = dbRows.map((p) => ({ ...p, entropy: entropyOf(p) }));
     rows.sort((a, b) => b.entropy - a.entropy);
     return rows;
-  }, [stats]);
+  }, [dbRows]);
 
   const metrics = useMemo(() => {
     if (!computed) return [];
@@ -186,7 +193,7 @@ export default function Page() {
         <span style={{ color: 'var(--text-tertiary)' }}> 本页为思维训练模型，所有「人才」均为画像/原型，不指向任何真实人事评价。</span>
       </p></Card>
       <Grid cols={4} className="mb-6">
-        <Stat value={computed ? (source === 'live' ? '31 · 实时' : '31 · 快照') : '加载中…'} label="省级数据态" accent="#22d3ee" />
+        <Stat value={computed ? (source === 'db' ? '31 · 本地库' : '31 · 快照') : '加载中…'} label="省级数据态（联动）" accent="#22d3ee" />
         <Stat value="7 / 31" label="人才已配置（东北+边疆带）" accent="#10b981" />
         <Stat value={computed ? computed[0].name.replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '') + ' ' + computed[0].entropy : '—'} label="熵增最高省（实测）" accent="#c41e3a" />
         <Stat value="2023" label="省级数据年份（公报口径）" accent="#e8a317" />
@@ -214,7 +221,6 @@ export default function Page() {
       </Card>
 
       <Card title="省域熵增地图（实测 · 可切换指标 · 点击省份调出配置）" className="mb-6">
-        {loadErr && <p className="text-xs mono mb-2" style={{ color: 'var(--china-red)' }}>数据加载失败：{loadErr}</p>}
         {metrics.length > 0 ? (
           <ChinaMap metrics={metrics} enableDrill={false} onRegionClick={(name) => setSel(name)} style={{ height: 460 }} />
         ) : (
@@ -277,6 +283,31 @@ export default function Page() {
           )}
         </Card>
       </Grid>
+
+      <Card title={`可选简历 · 匹配「${sel.replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '')}」（来自简历库）`} className="mb-6">
+        {(() => {
+          const short = sel.replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '');
+          const matched = (figures || []).filter((f) => f.province === sel || (f.raw && f.raw.includes(short)) || (f.fields?.native && f.fields.native.includes(short)));
+          if (figures === null) return <div className="mono text-xs" style={{ color: 'var(--text-tertiary)' }}>// 加载简历库…</div>;
+          if (!matched.length) return (
+            <p className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
+              简历库中暂无匹配「{short}」的简历。到 <Link to="/foundation" className="mono" style={{ color: 'var(--cyber-cyan)' }}>数据底座 · 政治人物简历</Link> 上传并解析（含该省份关键词即自动关联）。
+            </p>
+          );
+          return (
+            <Grid cols={3}>
+              {matched.map((f) => (
+                <div key={f.id} className="os-card p-3" style={{ background: 'var(--bg-elevated)' }}>
+                  <div className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{f.name}</div>
+                  <div className="text-[11px] mt-0.5" style={{ color: 'var(--text-tertiary)' }}>{f.fields?.title || ''}{f.fields?.edu ? ' · ' + f.fields.edu : ''}</div>
+                  {f.career?.length > 0 && <div className="text-[11px] mt-1 mono" style={{ color: 'var(--cyber-cyan)' }}>履历 {f.career.length} 条 · 最近 {f.career[0]?.from}</div>}
+                </div>
+              ))}
+            </Grid>
+          );
+        })()}
+        <p className="text-[11px] mt-3" style={{ color: 'var(--text-tertiary)' }}>简历由数据底座 admin 上传解析、按省份关键词自动关联；均为用户提供的公开履历，供研究检索，不构成人事评价。</p>
+      </Card>
 
       <Card title="熵增监控 · 实测 Top 10（全国）" className="mb-6">
         {top10Option ? <EChart option={top10Option} style={{ height: 280 }} /> : <div className="mono text-xs" style={{ color: 'var(--text-tertiary)' }}>// 加载中…</div>}
