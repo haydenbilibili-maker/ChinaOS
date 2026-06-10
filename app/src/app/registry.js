@@ -12,6 +12,7 @@ export const GROUPS = [
   { id: 'cognition', label: '认知内核', desc: '思想工具 · 理论模型', accent: '#c41e3a' },
   { id: 'lens', label: '内容透镜', desc: '四大支柱', accent: '#22d3ee' },
   { id: 'depthtopics', label: '深度专题', desc: '已迁移', accent: '#10b981' },
+  { id: 'techtopics', label: '科技专题', desc: '科技树 · 深挖', accent: '#22d3ee' },
   { id: 'sim', label: '推演与训练', desc: '沙盒 · 内参', accent: '#d4af37' },
   { id: 'foundation', label: '数据与系统', desc: '底座', accent: '#64748b' },
 ];
@@ -89,6 +90,26 @@ export const MODULES = [
     id: 'private', path: '/private', group: 'depthtopics',
     title: '民营经济', subtitle: '56789 · 公平竞争', icon: 'Briefcase',
     component: lazy(() => import('../modules/private/Page.jsx')),
+  },
+  {
+    id: 'quantum', path: '/quantum', group: 'techtopics',
+    title: '量子信息', subtitle: '计算 · 通信 · 测量', icon: 'Atom',
+    component: lazy(() => import('../modules/quantum/Page.jsx')),
+  },
+  {
+    id: 'semiconductor', path: '/semiconductor', group: 'techtopics',
+    title: '半导体', subtitle: '芯片主权 · 大基金', icon: 'CircuitBoard',
+    component: lazy(() => import('../modules/semiconductor/Page.jsx')),
+  },
+  {
+    id: 'aiplus', path: '/aiplus', group: 'techtopics',
+    title: '人工智能+', subtitle: '智算 · 行业大模型', icon: 'BrainCog',
+    component: lazy(() => import('../modules/aiplus/Page.jsx')),
+  },
+  {
+    id: 'basicResearch', path: '/basic-research', group: 'techtopics',
+    title: '基础研究', subtitle: '国家实验室 · 评价改革', icon: 'FlaskConical',
+    component: lazy(() => import('../modules/basicResearch/Page.jsx')),
   },
   {
     id: 'civilization',
