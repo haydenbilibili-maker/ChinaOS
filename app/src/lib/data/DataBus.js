@@ -10,22 +10,33 @@
 
 const cache = new Map();
 
-async function getJSON(url, { ttlMs = 5 * 60 * 1000 } = {}) {
+async function getJSON(url, { ttlMs = 5 * 60 * 1000, timeoutMs = 0 } = {}) {
   const hit = cache.get(url);
   const now = Date.now();
   if (hit && now - hit.t < ttlMs) return hit.v;
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`DataBus: ${url} -> ${res.status}`);
-  const v = await res.json();
-  cache.set(url, { v, t: now });
-  return v;
+  // 可选超时：外部 API（WB 等）慢/不可达时不挂死，优雅降级
+  let signal, timer;
+  if (timeoutMs > 0 && typeof AbortController !== 'undefined') {
+    const ac = new AbortController();
+    signal = ac.signal;
+    timer = setTimeout(() => ac.abort(), timeoutMs);
+  }
+  try {
+    const res = await fetch(url, signal ? { signal } : undefined);
+    if (!res.ok) throw new Error(`DataBus: ${url} -> ${res.status}`);
+    const v = await res.json();
+    cache.set(url, { v, t: now });
+    return v;
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
 }
 
 // 世界银行指标（沿用现有 data/ 目录，迁移期复用同一数据源）
-async function worldBank(indicator, { country = 'CHN', from = 2018, to = 2024 } = {}) {
+async function worldBank(indicator, { country = 'CHN', from = 2018, to = 2024, timeoutMs = 8000 } = {}) {
   const base = 'https://api.worldbank.org/v2/country/';
   const url = `${base}${country}/indicator/${indicator}?format=json&per_page=20&date=${from}:${to}`;
-  const json = await getJSON(url);
+  const json = await getJSON(url, { timeoutMs });
   return Array.isArray(json) ? json[1] || [] : [];
 }
 
@@ -35,10 +46,37 @@ async function regionGeo(adcode = '100000') {
   return getJSON(url, { ttlMs: 24 * 60 * 60 * 1000 });
 }
 
+// 省级统计数据：远程优先 + 本地快照兜底 + 数据源标注。
+// 省级粒度无免费公开实时 API，故默认本地快照；配置 remote 后自动切换并标注「实时」。
+// remote 可指向自建代理 / NBS 数据网关 / 托管 JSON（同 schema：{meta, provinces[]}）。
+async function provinceStats({ remote } = {}) {
+  if (remote) {
+    try {
+      const j = await getJSON(remote, { ttlMs: 10 * 60 * 1000 });
+      if (j && Array.isArray(j.provinces)) return { source: 'live', remote, meta: j.meta || {}, provinces: j.provinces };
+    } catch (_) { /* 远程失败 → 兜底 */ }
+  }
+  const j = await getJSON('data/province-stats.json', { ttlMs: 30 * 60 * 1000 });
+  return { source: 'local', meta: j.meta || {}, provinces: j.provinces };
+}
+
+// 全国实时基线：直接打世界银行 API（真·实时），取各指标最新非空值。
+async function chinaIndicators() {
+  const pick = (rows) => (rows || []).filter((r) => r && r.value != null).sort((a, b) => b.date - a.date)[0] || null;
+  const [gdpG, pop, gdp] = await Promise.all([
+    worldBank('NY.GDP.MKTP.KD.ZG', { from: 2019, to: 2024 }).catch(() => []),
+    worldBank('SP.POP.TOTL', { from: 2019, to: 2024 }).catch(() => []),
+    worldBank('NY.GDP.MKTP.CD', { from: 2019, to: 2024 }).catch(() => []),
+  ]);
+  return { gdpGrowth: pick(gdpG), population: pick(pop), gdp: pick(gdp), fetchedAt: undefined };
+}
+
 export const DataBus = {
   getJSON,
   worldBank,
   regionGeo,
+  provinceStats,
+  chinaIndicators,
   clearCache: () => cache.clear(),
 };
 

@@ -61,6 +61,54 @@ const CONFIG = {
     ],
     kpi: '营商环境修复 > 国企改革 > 海防配套 > 增长质量',
   },
+  '新疆维吾尔自治区': {
+    tag: '边疆带 · 已配置',
+    challenge: '反恐维稳与长治久安 · 民族团结 · 油气煤与棉花保供 · 一带一路核心区 · 兵团特殊体制 · 南北疆发展落差',
+    radar: [30, 55, 50, 60, 98, 95],
+    team: [
+      ['自治区党委书记 · 画像', '维稳、民族与发展「三位一体」操盘手，通常高配（政治局委员级）。社会稳定与长治久安是压倒一切的总目标，经济增长服从于此。'],
+      ['政府主席 · 画像', '少数民族干部惯例，主抓民生改善、就业与南疆脱贫成果巩固；以发展促稳定、以民生赢人心。'],
+      ['新疆生产建设兵团司令员 · 关键岗', '党政军企合一的特殊体制：屯垦戍边、维稳支援与向南发展，需军地协调与组织动员能级。'],
+      ['喀什/和田地委书记 · 关键岗', '南疆反恐维稳前沿：基层组织、去极端化与产业就业（劳动密集型）的复合任务。'],
+    ],
+    kpi: '社会稳定与长治久安 > 民族团结 > 能源/棉花保供 > 一带一路核心区 > 增长',
+  },
+  '西藏自治区': {
+    tag: '边疆带 · 已配置',
+    challenge: '反分裂与中印边境国防 · 宗教事务管理 · 国家生态安全屏障 · 财政自给率全国最低（近乎全靠转移支付）· 极端低人口承载',
+    radar: [10, 35, 25, 30, 100, 85],
+    team: [
+      ['自治区党委书记 · 画像', '反分裂、边防与宗教事务三重高压任务，高配。核心是国家安全与主权完整，几乎不以 GDP 论英雄。'],
+      ['政府主席 · 画像', '藏族干部惯例，主抓民生兜底、生态保护与对口援藏资源落地。'],
+      ['军地协调一线主官 · 关键岗', '中印边境实控线一线：稳边固防、兴边富民与突发事件处置，需军地一体经验。'],
+      ['宗教事务/统战主官 · 关键岗', '寺庙管理、活佛转世规制与意识形态阵地，是长治久安的关键变量。'],
+    ],
+    kpi: '反分裂与边防 > 宗教事务管理 > 生态屏障 > 民生兜底 > 增长（弱考核）',
+  },
+  '云南省': {
+    tag: '边疆带 · 已配置',
+    challenge: '中缅老越边境 + 缅北电诈/毒品跨境治理 · 25 个世居少数民族 · 生物多样性屏障 · 面向南亚东南亚辐射中心 · 中老铁路通道',
+    radar: [33, 50, 45, 55, 90, 80],
+    team: [
+      ['省委书记 · 画像', '强边固防 + 打击跨境犯罪（电诈/毒品）+ 民族团结复合操盘手，对外事与政法系统协同要求高。'],
+      ['省长 · 画像', '面向南亚东南亚开放枢纽建设：中老铁路经济带、口岸经济与文旅，外向型经济履历优先。'],
+      ['德宏/西双版纳/普洱州市主官 · 关键岗', '跨境治理一线：边民管理、缅北遣返协作与口岸管控的高强度复合任务。'],
+      ['禁毒/打击跨境犯罪专班 · 关键岗', '毒品与电诈跨境产业链打击，需政法、外事与情报协同的特战能力。'],
+    ],
+    kpi: '强边固防与跨境犯罪打击 > 民族团结 > 沿边开放（中老铁路）> 生态屏障 > 增长',
+  },
+  '内蒙古自治区': {
+    tag: '边疆带 · 已配置',
+    challenge: '能源保供基地（煤电外送/风光大基地）· 草原荒漠化生态屏障 · 中蒙俄边境 · 民族团结 · 煤炭领域反腐倒查 ·「两个屏障」定位',
+    radar: [42, 45, 65, 70, 75, 65],
+    team: [
+      ['自治区党委书记 · 画像', '「两个屏障」（北疆安全稳定 + 北方生态安全）操盘手，叠加煤炭反腐与能源保供政治责任，需纪律与发展双能力。'],
+      ['政府主席 · 画像', '蒙古族干部惯例，主抓能源经济（煤电、风光大基地外送）与生态修复的协同。'],
+      ['能源/电力外送统筹岗 · 关键岗', '保障东送电力与煤炭稳价稳供，是全国能源安全的关键节点。'],
+      ['边境盟市主官 · 关键岗', '中蒙俄口岸（满洲里/二连浩特）通道治理与兴边富民。'],
+    ],
+    kpi: '生态屏障 > 能源保供（外送）> 民族团结与边防 > 反腐倡廉 > 增长',
+  },
 };
 
 const RADAR_IND = [
@@ -78,12 +126,20 @@ export default function Page() {
   const [sel, setSel] = useState('黑龙江省');
   const [scn, setScn] = useState('fiscal');
   const [stats, setStats] = useState(null);
+  const [source, setSource] = useState('local');
   const [loadErr, setLoadErr] = useState(null);
+  const [national, setNational] = useState(null); // WB 实时全国基线
+  const [natState, setNatState] = useState('loading'); // loading | live | offline
 
   useEffect(() => {
-    DataBus.getJSON('data/province-stats.json')
-      .then(setStats)
+    // 省级：远程优先 + 本地兜底（remote 留空 → 用本地快照）。配置 remote URL 即自动切「实时」。
+    DataBus.provinceStats({ remote: import.meta.env.VITE_PROVINCE_API || null })
+      .then((r) => { setStats(r); setSource(r.source); })
       .catch((e) => setLoadErr(String(e)));
+    // 全国基线：真·实时打世界银行 API
+    DataBus.chinaIndicators()
+      .then((r) => { setNational(r); setNatState(r.gdpGrowth || r.population ? 'live' : 'offline'); })
+      .catch(() => setNatState('offline'));
   }, []);
 
   // 实测熵增指数（由真实数据现场计算）
@@ -123,18 +179,39 @@ export default function Page() {
       <PageHeader
         badge="Sandbox · 思维训练 + 实测熵增"
         title="治国沙盒 · 区域治理人才配置"
-        subtitle="挑战画像 → 能力需求 → 履历池匹配 —— 熵增指数已接 DataBus 实测（2023 财政决算/统计公报）"
+        subtitle="挑战画像 → 能力需求 → 履历池匹配 —— 全国基线实时(WB)、省级熵增实测、东北+边疆带 7 省人才配置"
       />
       <Card className="mb-6"><p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-        治理的第一道工序是「把对的人放进对的省」。本沙盘把每个省域的问题<strong style={{ color: 'var(--text-primary)' }}>向量化</strong>，推导主政能力需求，再从履历池匹配班子<strong style={{ color: 'var(--text-primary)' }}>画像</strong>。熵增指数由各省<strong style={{ color: 'var(--text-primary)' }}>真实财政/人口/债务数据</strong>现场计算（公式见下），东北三省为人才配置样板。
+        治理的第一道工序是「把对的人放进对的省」。本沙盘把每个省域的问题<strong style={{ color: 'var(--text-primary)' }}>向量化</strong>，推导主政能力需求，再从履历池匹配班子<strong style={{ color: 'var(--text-primary)' }}>画像</strong>。熵增指数由各省<strong style={{ color: 'var(--text-primary)' }}>真实财政/人口/债务数据</strong>现场计算（公式见下）。已配置 7 省：东北三省（粮食/产业/财政型）+ 边疆带四省区（边防/民族/生态型）——两类省份的挑战向量根本不同。
         <span style={{ color: 'var(--text-tertiary)' }}> 本页为思维训练模型，所有「人才」均为画像/原型，不指向任何真实人事评价。</span>
       </p></Card>
       <Grid cols={4} className="mb-6">
-        <Stat value={computed ? '31 · 实测' : '加载中…'} label="省级单位 · 数据态" accent="#22d3ee" />
-        <Stat value="3 / 31" label="人才已配置（东北）" accent="#10b981" />
+        <Stat value={computed ? (source === 'live' ? '31 · 实时' : '31 · 快照') : '加载中…'} label="省级数据态" accent="#22d3ee" />
+        <Stat value="7 / 31" label="人才已配置（东北+边疆带）" accent="#10b981" />
         <Stat value={computed ? computed[0].name.replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '') + ' ' + computed[0].entropy : '—'} label="熵增最高省（实测）" accent="#c41e3a" />
-        <Stat value="2023" label="数据年份（公报口径）" accent="#e8a317" />
+        <Stat value="2023" label="省级数据年份（公报口径）" accent="#e8a317" />
       </Grid>
+
+      <Card title="全国实时基线 · World Bank API" className="mb-6">
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: natState === 'live' ? 'rgba(16,185,129,0.16)' : 'var(--bg-elevated)', color: natState === 'live' ? '#10b981' : 'var(--text-tertiary)' }}>
+            {natState === 'live' ? '● 实时已连通' : natState === 'loading' ? '○ 连接中…' : '○ 离线兜底'}
+          </span>
+          <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>api.worldbank.org · 每次加载实时拉取最新非空值</span>
+        </div>
+        {natState === 'live' ? (
+          <Grid cols={3}>
+            <Stat value={national.gdpGrowth ? `${national.gdpGrowth.value.toFixed(2)}%` : '—'} label={`GDP 增速 · ${national.gdpGrowth?.date || ''}（实时）`} accent="#c41e3a" />
+            <Stat value={national.population ? `${(national.population.value / 1e8).toFixed(2)} 亿` : '—'} label={`总人口 · ${national.population?.date || ''}（实时）`} accent="#22d3ee" />
+            <Stat value={national.gdp ? `${(national.gdp.value / 1e12).toFixed(1)} 万亿$` : '—'} label={`GDP 现价 · ${national.gdp?.date || ''}（实时）`} accent="#e8a317" />
+          </Grid>
+        ) : (
+          <p className="text-xs mono" style={{ color: 'var(--text-tertiary)' }}>
+            {natState === 'loading' ? '// 正在连接世界银行 API…' : '// WB API 暂不可达；省级熵增仍按本地快照实测运行。'}
+          </p>
+        )}
+        <p className="text-[11px] mt-2" style={{ color: 'var(--text-tertiary)' }}>全国基线为真·实时 API（WB）；省级粒度无免费公开实时源，故用 2023 公报快照（DataBus 已留 remote 接口，配置 <span className="mono">VITE_PROVINCE_API</span> 即自动切「实时」并标注）。</p>
+      </Card>
 
       <Card title="省域熵增地图（实测 · 可切换指标 · 点击省份调出配置）" className="mb-6">
         {loadErr && <p className="text-xs mono mb-2" style={{ color: 'var(--china-red)' }}>数据加载失败：{loadErr}</p>}
@@ -174,7 +251,7 @@ export default function Page() {
             <div className="text-sm leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
               <p className="mb-2">该省人才尚未配置。按方法论生成：</p>
               <p className="mono text-xs">1. 挑战画像 → 六维打分（实测体征已就位）<br />2. 能力需求 → 由短板与政治权重推导主政画像<br />3. 履历池匹配 → 书记/省长/省会主官/关键厅局逐岗配置</p>
-              <p className="mt-2 text-xs">扩展队列：东北 ✅ → 西北/西南边疆 → 债务带 → 沿海 → 全部省会。</p>
+              <p className="mt-2 text-xs">扩展队列：东北 ✅ · 边疆带（新疆/西藏/云南/内蒙古）✅ → 债务带（贵州/甘肃/天津）→ 沿海大省 → 全部省会。</p>
             </div>
           )}
         </Card>
