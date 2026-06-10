@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import * as Lucide from 'lucide-react';
 import { Card, Grid } from '../../app/ui.jsx';
-import { GROUPS } from '../../app/registry.js';
+import { GROUPS, MODULES } from '../../app/registry.js';
 import EChart from '../../lib/viz/EChart.jsx';
 import { AXIS, GRID_LINE, LABEL } from '../shared/chartHelpers.js';
 import * as DB from '../../lib/db/localdb.js';
@@ -178,6 +178,133 @@ function LiveDbStatus() {
   );
 }
 
+// ── 最近访问（Shell 记录的访问足迹 · localStorage 驱动） ─────
+function RecentVisits() {
+  const recent = useMemo(() => {
+    try {
+      const paths = JSON.parse(localStorage.getItem('cos-recent') || '[]');
+      return paths.map((p) => MODULES.find((m) => m.path === p)).filter(Boolean).slice(0, 8);
+    } catch (_) { return []; }
+  }, []);
+  if (!recent.length) return null;
+  return (
+    <div className="flex items-center gap-2 flex-wrap mb-5">
+      <span className="text-[10px] mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>最近访问</span>
+      {recent.map((m) => {
+        const g = GROUPS.find((x) => x.id === m.group);
+        return (
+          <Link key={m.id} to={m.path} className="os-card-interactive inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs"
+            style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', color: 'var(--text-secondary)' }}>
+            <span style={{ color: g?.accent || STEEL }}><Icon name={m.icon} size={12} /></span>{m.title}
+          </Link>
+        );
+      })}
+    </div>
+  );
+}
+
+// ── 康波时钟 · 长波坐标（镜像康波页判读） ───────────────────
+function KondratievClock() {
+  const opt = useMemo(() => {
+    const pts = [];
+    for (let y = 1990; y <= 2055; y += 1) pts.push([y, +Math.sin((2 * Math.PI * (y - 1788)) / 54).toFixed(3)]);
+    return {
+      grid: { left: 10, right: 10, top: 10, bottom: 20 },
+      xAxis: { type: 'value', min: 1990, max: 2055, interval: 20, axisLabel: { color: '#5b6a82', fontSize: 9, formatter: (v) => String(v) }, axisLine: { lineStyle: { color: '#27324a' } } },
+      yAxis: { type: 'value', min: -1.35, max: 1.35, show: false },
+      series: [{
+        type: 'line', smooth: true, symbol: 'none', data: pts,
+        lineStyle: { color: STEEL, width: 2 }, areaStyle: { color: 'rgba(34,211,238,0.07)' },
+        markLine: { silent: true, symbol: 'none', data: [{ xAxis: 2026, label: { formatter: '今 2026', color: COOL, fontSize: 9 }, lineStyle: { color: COOL, type: 'dashed' } }] },
+        markArea: { silent: true, itemStyle: { color: 'rgba(139,92,246,0.10)' }, data: [[{ xAxis: 2040, label: { formatter: '第6波', color: '#8b5cf6', position: 'insideTop', fontSize: 9 } }, { xAxis: 2055 }]] },
+      }],
+    };
+  }, []);
+  return (
+    <ScreenCard title="康波时钟 · 长波坐标" accent="#8b5cf6"
+      footer={<>第 5 波（信息）冬季尾段 → 第 6 波（AI/聚变/生物）孕育期 · 推演见 <Link to="/cognition" className="mono" style={{ color: STEEL }}>康波周期</Link> 共振模拟器</>}>
+      <EChart option={opt} style={{ height: 148 }} />
+      <div className="flex gap-2 mt-2 flex-wrap">
+        {[['当前相位', '第5波·冬', '#64748b'], ['下一波引擎', 'AI·聚变·生物', '#8b5cf6'], ['切换窗口', '~2035–2045', HOLD]].map(([k, v, c]) => (
+          <span key={k} className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'var(--bg-elevated)', color: c }}>{k} {v}</span>
+        ))}
+      </div>
+    </ScreenCard>
+  );
+}
+
+// ── 全域风险雷达（镜像大安全观八域评级 · 示意） ──────────────
+function RiskRadar() {
+  const opt = useMemo(() => ({
+    radar: {
+      indicator: ['科技', '经济', '能源资源', '网络数据', '军事', '政治', '社会', '生物'].map((n) => ({ name: n, max: 5 })),
+      axisName: { color: '#93a1b5', fontSize: 10 },
+      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+      axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+      splitArea: { show: false }, radius: '66%',
+    },
+    series: [{ type: 'radar', data: [{ value: [4.5, 4, 3.5, 4, 3.5, 2.5, 3, 2.5], name: '威胁紧张度', lineStyle: { color: COOL, width: 2 }, itemStyle: { color: COOL }, areaStyle: { color: 'rgba(196,30,58,0.15)' } }] }],
+  }), []);
+  return (
+    <ScreenCard title="全域风险雷达" accent={COOL}
+      footer={<>八域威胁紧张度（示意评级 1–5，科技/网络最高）· 详见 <Link to="/omnisecurity" className="mono" style={{ color: STEEL }}>大安全观</Link></>}>
+      <EChart option={opt} style={{ height: 196 }} />
+    </ScreenCard>
+  );
+}
+
+// ── 2026 政策日历（关键定调节点） ───────────────────────────
+const CALENDAR_2026 = [
+  ['3 月', '全国两会', '政府工作报告 + 「十五五」规划纲要审议', COOL],
+  ['4/7/10 月', '政治局会议', '季度经济形势定调与政策微调窗口', HOLD],
+  ['10–11 月', '峰会季', 'APEC / G20 · 元首外交与中美护栏校准', STEEL],
+  ['12 月', '中央经济工作会议', '定调 2027 · 财政货币基调与重点任务排序', HOLD],
+];
+function PolicyCalendar() {
+  return (
+    <ScreenCard title="2026 政策日历 · 关键定调节点" accent={WARM}
+      footer={<>定调落地追踪见 <Link to="/policydocs" className="mono" style={{ color: STEEL }}>政策文件库</Link>（上传新公报即更新政策脉搏）</>}>
+      <div className="space-y-2">
+        {CALENDAR_2026.map(([when, what, note, c]) => (
+          <div key={what} className="flex items-start gap-2.5 rounded-lg px-3 py-2" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}>
+            <span className="text-[10px] mono px-1.5 py-0.5 rounded shrink-0 mt-0.5" style={{ background: `${c}14`, color: c, border: `1px solid ${c}44` }}>{when}</span>
+            <span className="min-w-0">
+              <span className="block text-xs font-medium" style={{ color: 'var(--text-primary)' }}>{what}</span>
+              <span className="block text-[10px] leading-snug" style={{ color: 'var(--text-tertiary)' }}>{note}</span>
+            </span>
+          </div>
+        ))}
+      </div>
+    </ScreenCard>
+  );
+}
+
+// ── 认知内核 · 思想工具箱速览（自动同步注册表） ──────────────
+function CognitionToolbox() {
+  const tools = MODULES.filter((m) => m.group === 'cognition');
+  return (
+    <section className="mb-8">
+      <div className="flex items-center gap-2 mb-3">
+        <Lucide.BrainCircuit size={16} style={{ color: HOLD }} />
+        <h2 className="os-card-title m-0">认知内核 · 思想工具箱</h2>
+        <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>{`// ${tools.length} 个可推演理论模型 · 拖动参数看结构后果`}</span>
+      </div>
+      <div className="grid gap-2" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(160px,1fr))' }}>
+        {tools.map((m) => (
+          <Link key={m.id} to={m.path} className="os-card-interactive rounded-lg p-2.5 flex items-start gap-2"
+            style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}>
+            <span className="shrink-0 mt-0.5" style={{ color: COOL }}><Icon name={m.icon} size={14} /></span>
+            <span className="min-w-0">
+              <span className="block text-xs font-medium truncate" style={{ color: 'var(--text-primary)' }}>{m.title}</span>
+              <span className="block text-[10px] truncate" style={{ color: 'var(--text-tertiary)' }}>{m.subtitle}</span>
+            </span>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 // ── 大屏图表 option ───────────────────────────────────────
 function useOptions() {
   return useMemo(() => {
@@ -345,6 +472,9 @@ export default function DashboardPage() {
       {/* ── 0. 滚动情报条 ────────────────────────────────── */}
       <Ticker />
 
+      {/* ── 0.5 最近访问足迹 ─────────────────────────────── */}
+      <RecentVisits />
+
       {/* ── 1. 项目总揽 · Hero ───────────────────────────── */}
       <section
         className="os-card os-section mb-6 overflow-hidden relative"
@@ -408,6 +538,11 @@ export default function DashboardPage() {
           <PolicyPulse />
           <LiveDbStatus />
         </Grid>
+        <Grid cols={3} gap="0.85rem" className="dash-screen-grid mt-3">
+          <KondratievClock />
+          <RiskRadar />
+          <PolicyCalendar />
+        </Grid>
       </section>
 
       {/* ── 3. 实时大屏 ──────────────────────────────────── */}
@@ -440,6 +575,9 @@ export default function DashboardPage() {
       </section>
 
       {/* ── 2. 快速跳转 ──────────────────────────────────── */}
+      {/* ── 3.5 认知内核工具箱 ───────────────────────────── */}
+      <CognitionToolbox />
+
       <QuickNav />
 
       {/* ── 数据来源 / 免责声明 ──────────────────────────── */}
