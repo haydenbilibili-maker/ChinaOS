@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="国家能力与空间重塑：中国超级工程决策解析。铁公基与新基建、高铁、南水北调、东数西算、国家战略 ROI 模型。">
+    <title>国家能力与空间重塑：中国超级工程深度决策解析 | China OS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --slate-deep: #0f172a;
+            --steel: #3b82f6;
+            --crimson: #e11d48;
+            --bg: #f8fafc;
+        }
+        body {
+            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+            color: #1e293b;
+            font-family: 'PingFang SC', 'Microsoft YaHei', -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px rgba(15, 23, 42, 0.06);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container { height: 400px; }
+        }
+        .logic-card {
+            transition: all 0.3s ease;
+            border-top: 4px solid transparent;
+        }
+        .logic-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-top-color: var(--crimson);
+        }
+        .case-tab { transition: all 0.2s ease-in-out; }
+        .case-tab.active {
+            background-color: var(--slate-deep);
+            color: white;
+            border-bottom: 4px solid var(--steel);
+        }
+        .fade-in { animation: fadeIn 0.4s ease-in-out forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="bg-slate-900 text-slate-100 sticky top-0 z-50 shadow-xl border-b border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-2">
+            <div class="text-xl font-bold tracking-wider flex items-center gap-2">
+                <span class="text-sky-400">▣</span>
+                <span>超级工程决策内参</span>
+                <span class="text-slate-400 text-sm font-normal hidden md:inline border-l border-slate-600 pl-2">国家能力 · 空间重塑</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-4 text-sm font-medium">
+                <a href="china.html" class="text-sky-400 hover:text-sky-300 transition">← China OS</a>
+                <a href="#logic" class="hover:text-blue-400 transition hidden sm:inline">底层逻辑</a>
+                <a href="#trends" class="hover:text-blue-400 transition hidden sm:inline">投资演变</a>
+                <a href="#cases" class="hover:text-blue-400 transition hidden sm:inline">战略案例</a>
+                <a href="#evaluation" class="hover:text-blue-400 transition hidden sm:inline">多维评估</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-slate-800 text-slate-50 py-24 px-4 relative overflow-hidden">
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-blue-900 opacity-20 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-red-900 opacity-20 blur-3xl"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div class="inline-block bg-blue-600/20 border border-blue-500 text-blue-300 px-4 py-1.5 rounded-full text-xs font-bold mb-6 tracking-widest backdrop-blur-sm">
+                MACRO-STRATEGY BRIEFING
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
+                国家能力与空间重塑：<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-red-400">中国超级工程决策解析</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 leading-relaxed max-w-3xl mx-auto text-left md:text-center mt-6">
+                超级工程（Mega Projects）不仅是工程技术的集中展示，也是跨越发展陷阱、重塑经济地理、对冲地缘风险的宏观政策工具。本页从逻辑、数据与案例拆解决策核心。
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-16 space-y-28">
+
+        <section id="logic" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-1.5 h-8 bg-red-600 rounded-full"></div>
+                <h2 class="text-3xl font-bold text-slate-900">一、超级工程的决策底层逻辑</h2>
+            </div>
+            <p class="text-slate-600 mb-10 max-w-4xl text-lg">在西方经济学语境下，许多超级工程因漫长投资回报期而显得「不经济」。决策层往往同时核算<strong class="text-slate-900">综合国家账本</strong>（外部性、安全、区域平衡）。</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-panel p-8 rounded-2xl logic-card">
+                    <div class="text-4xl mb-6">⚙</div>
+                    <h3 class="font-bold text-xl mb-3 text-slate-900">逆周期调节与产能蓄水池</h3>
+                    <div class="h-1 w-12 bg-blue-500 mb-5"></div>
+                    <p class="text-sm text-slate-600 leading-relaxed">下行周期中，大型工程可吸纳钢铁、水泥等基础产能，稳定就业并通过乘数效应传导信用与流动性（示意性表述）。</p>
+                </div>
+                <div class="glass-panel p-8 rounded-2xl logic-card">
+                    <div class="text-4xl mb-6">🗺</div>
+                    <h3 class="font-bold text-xl mb-3 text-slate-900">打破胡焕庸线：空间资源重配</h3>
+                    <div class="h-1 w-12 bg-red-500 mb-5"></div>
+                    <p class="text-sm text-slate-600 leading-relaxed">南水北调、西气东输、西电东送等，以工程手段缓解资源与人口、产业的空间错配，支撑全国统一大市场物理连通。</p>
+                </div>
+                <div class="glass-panel p-8 rounded-2xl logic-card">
+                    <div class="text-4xl mb-6">🛡</div>
+                    <h3 class="font-bold text-xl mb-3 text-slate-900">国家安全与底线思维</h3>
+                    <div class="h-1 w-12 bg-slate-800 mb-5"></div>
+                    <p class="text-sm text-slate-600 leading-relaxed">大飞机、北斗、关键基础设施等，在地缘紧张背景下更强调供应链与技术自主，财务回报常退居次要。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="trends" class="scroll-mt-24 glass-panel py-12 px-6 rounded-3xl border border-slate-200/80">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-1.5 h-8 bg-blue-600 rounded-full"></div>
+                <h2 class="text-3xl font-bold text-slate-900">二、投资重心演变：「铁公基」与「新基建」</h2>
+            </div>
+            <p class="text-slate-600 mb-8 max-w-4xl">传统交通能源与 5G、特高压、算力枢纽等新型基础设施并存，下图为<strong>示意趋势</strong>，非精确统计原值。</p>
+            <div class="bg-white/90 p-6 rounded-2xl shadow-sm border border-slate-100">
+                <div class="chart-container">
+                    <canvas id="infraTrendChart"></canvas>
+                </div>
+                <div class="mt-6 p-4 bg-blue-50/90 rounded-xl border border-blue-100 flex items-start gap-4">
+                    <div class="text-2xl mt-1">💡</div>
+                    <div>
+                        <h4 class="font-bold text-blue-900">数据洞察</h4>
+                        <p class="text-sm text-blue-800 mt-1">传统基建存量巨大、边际效益分化；新基建增速阶段性走高，成为数字化与能源转型的载体之一。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cases" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-1.5 h-8 bg-slate-800 rounded-full"></div>
+                <h2 class="text-3xl font-bold text-slate-900">三、战略级案例拆解</h2>
+            </div>
+            <div class="glass-panel rounded-2xl shadow-lg overflow-hidden border border-slate-200/80">
+                <div class="flex flex-col md:flex-row border-b border-slate-200 bg-slate-50/80">
+                    <button type="button" class="case-tab active flex-1 py-5 px-6 text-center text-slate-600 hover:bg-slate-100 flex flex-col items-center justify-center gap-1" onclick="switchMegaTab('case-hsr', this)">
+                        <span class="text-2xl">🚄</span>
+                        <span class="font-bold text-lg">八纵八横高铁网</span>
+                        <span class="text-xs font-normal opacity-80">时空压缩与经济重塑</span>
+                    </button>
+                    <button type="button" class="case-tab flex-1 py-5 px-6 text-center text-slate-600 hover:bg-slate-100 border-t md:border-t-0 md:border-l border-slate-200 flex flex-col items-center justify-center gap-1" onclick="switchMegaTab('case-water', this)">
+                        <span class="text-2xl">🌊</span>
+                        <span class="font-bold text-lg">南水北调工程</span>
+                        <span class="text-xs font-normal opacity-80">跨流域水资源配置</span>
+                    </button>
+                    <button type="button" class="case-tab flex-1 py-5 px-6 text-center text-slate-600 hover:bg-slate-100 border-t md:border-t-0 md:border-l border-slate-200 flex flex-col items-center justify-center gap-1" onclick="switchMegaTab('case-data', this)">
+                        <span class="text-2xl">💻</span>
+                        <span class="font-bold text-lg">东数西算工程</span>
+                        <span class="text-xs font-normal opacity-80">算力与能源协同</span>
+                    </button>
+                </div>
+                <div class="p-8 md:p-12 min-h-[400px] bg-white/50">
+                    <div id="case-hsr" class="mega-tab-content block fade-in">
+                        <div class="flex flex-col lg:flex-row gap-10">
+                            <div class="lg:w-2/3 space-y-6">
+                                <h3 class="text-2xl font-bold text-slate-900 mb-2">高铁网：从技术引进到标准输出</h3>
+                                <p class="text-slate-500 text-sm">运营里程与投资额为公开统计量级；全球占比等为常见引用口径（示意）。</p>
+                                <div class="space-y-4 text-slate-700 text-sm">
+                                    <p><strong class="text-slate-900">表层目标：</strong>城际通达、缓解春运等峰值出行压力。</p>
+                                    <ul class="list-disc pl-5 space-y-2">
+                                        <li><strong>城市群与要素流动：</strong> 缩短时空距离，强化京津冀、长三角、大湾区等轴带的联系强度。</li>
+                                        <li><strong>产业与标准：</strong> 装备与工程建设能力外溢至部分境外项目（如雅万高铁等）。</li>
+                                        <li><strong>应急与动员：</strong> 网络在人员与物资快速投送上的潜在价值常被讨论。</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="lg:w-1/3 bg-slate-50 p-6 rounded-xl border border-slate-200 h-fit">
+                                <h4 class="font-bold text-slate-800 mb-4 border-b pb-2">争议与风险</h4>
+                                <p class="text-sm text-slate-600">建设与运营主体负债、中西部线路客流与财务可持续性、土地与环保约束等需长期平衡。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="case-water" class="mega-tab-content hidden fade-in">
+                        <div class="flex flex-col lg:flex-row gap-10">
+                            <div class="lg:w-2/3 space-y-6">
+                                <h3 class="text-2xl font-bold text-slate-900 mb-2">南水北调：跨流域配置与华北水安全</h3>
+                                <p class="text-slate-500 text-sm">东线、中线已大规模通水；西线方案仍在论证阶段。</p>
+                                <ul class="list-disc pl-5 space-y-2 text-sm text-slate-700">
+                                    <li>缓解华北地下水超采、支撑城市与工业用水结构。</li>
+                                    <li>移民安置、生态补偿与调出区利益协调。</li>
+                                    <li>长距离输水的成本、水价与财政补贴机制。</li>
+                                </ul>
+                            </div>
+                            <div class="lg:w-1/3 bg-slate-50 p-6 rounded-xl border border-slate-200 h-fit">
+                                <h4 class="font-bold text-slate-800 mb-4 border-b pb-2">争议与风险</h4>
+                                <p class="text-sm text-slate-600">终端水价与全成本回收、汉江等中下游生态与航运影响、干旱年调度规则等。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="case-data" class="mega-tab-content hidden fade-in">
+                        <div class="flex flex-col lg:flex-row gap-10">
+                            <div class="lg:w-2/3 space-y-6">
+                                <h3 class="text-2xl font-bold text-slate-900 mb-2">东数西算：算力枢纽与绿电协同</h3>
+                                <p class="text-slate-500 text-sm">八大枢纽、十大集群为国家发改委等公开布局框架。</p>
+                                <ul class="list-disc pl-5 space-y-2 text-sm text-slate-700">
+                                    <li>将时延不敏感算力向西部清洁能源优势区布局，降低 PUE 与碳强度。</li>
+                                    <li>带动西部数字产业与网络基础设施投资。</li>
+                                    <li>核心温数据、低时延业务仍依赖东部与边缘节点；网络调度与电力交易机制复杂。</li>
+                                </ul>
+                            </div>
+                            <div class="lg:w-1/3 bg-slate-50 p-6 rounded-xl border border-slate-200 h-fit">
+                                <h4 class="font-bold text-slate-800 mb-4 border-b pb-2">前沿挑战</h4>
+                                <p class="text-sm text-slate-600">跨区域算力调度、电价与市场机制、数据安全与灾备层级设计等。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="evaluation" class="scroll-mt-24 mb-16">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-1.5 h-8 bg-red-600 rounded-full"></div>
+                <h2 class="text-3xl font-bold text-slate-900">四、超级工程评估：多维 ROI（示意）</h2>
+            </div>
+            <div class="glass-panel p-8 rounded-2xl flex flex-col md:flex-row items-center gap-12 border border-slate-200/80">
+                <div class="w-full md:w-1/2">
+                    <div class="chart-container" style="height: 380px; max-height: 450px;">
+                        <canvas id="evaluationRadarChart"></canvas>
+                    </div>
+                    <p class="text-center text-xs text-slate-400 mt-4">示意：商业资本 vs 国家战略维度权重对比（非实证回归结果）</p>
+                </div>
+                <div class="w-full md:w-1/2 space-y-6">
+                    <h3 class="text-2xl font-bold text-slate-900 border-b pb-3">资本市场模型 vs 综合战略取向</h3>
+                    <div class="space-y-4 text-sm text-slate-600">
+                        <p><strong class="text-slate-800">商业 ROI 导向：</strong>强调现金流、回收期、DCF；对偏远线型基础设施往往给出偏低财务评分。</p>
+                        <p><strong class="text-slate-800">国家战略取向：</strong>将产业链、区域协调、安全与长期风险对冲纳入，财务指标仅为维度之一。</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 text-sm text-slate-700">
+                        审视超级工程时，需同时区分<strong>可货币化收益</strong>与<strong>公共品外部性</strong>，避免单一财务指标误判。
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-10 text-center border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-4">
+            <p class="font-semibold text-slate-300">超级工程决策解析 · <a href="china.html" class="text-sky-400 hover:text-sky-300 underline underline-offset-2">China OS</a></p>
+            <p class="mt-3 text-xs leading-relaxed max-w-2xl mx-auto opacity-70">图表为定性趋势示意，不构成投资建议或工程审计依据。</p>
+            <p class="mt-4 text-xs opacity-60">© 2026 · China OS 深度调研系列</p>
+        </div>
+    </footer>
+
+    <script>
+        function switchMegaTab(tabId, btn) {
+            document.querySelectorAll('.mega-tab-content').forEach(function (el) {
+                el.classList.add('hidden');
+                el.classList.remove('block', 'fade-in');
+            });
+            document.querySelectorAll('.case-tab').forEach(function (t) { t.classList.remove('active'); });
+            var panel = document.getElementById(tabId);
+            if (panel) {
+                panel.classList.remove('hidden');
+                panel.classList.add('block', 'fade-in');
+            }
+            if (btn) btn.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            Chart.defaults.font.family = "'PingFang SC', 'Microsoft YaHei', sans-serif";
+            Chart.defaults.color = '#64748b';
+
+            var elTrend = document.getElementById('infraTrendChart');
+            if (elTrend) {
+                new Chart(elTrend.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024E', '2025E'],
+                        datasets: [
+                            {
+                                type: 'line',
+                                label: '新基建投资增速 (%) — 示意',
+                                data: [5, 8, 12, 18, 22, 28, 25, 20, 18, 15, 14],
+                                borderColor: '#e11d48',
+                                backgroundColor: '#e11d48',
+                                borderWidth: 3,
+                                pointRadius: 4,
+                                pointBackgroundColor: '#fff',
+                                tension: 0.4,
+                                yAxisID: 'y1'
+                            },
+                            {
+                                type: 'bar',
+                                label: '传统基建投资存量估算 (万亿元) — 示意',
+                                data: [12, 14, 16, 17.5, 18.2, 18.8, 19.5, 21, 22.5, 23.5, 24.5],
+                                backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                                hoverBackgroundColor: 'rgba(59, 130, 246, 1)',
+                                borderRadius: 4,
+                                yAxisID: 'y'
+                            }
+                        ]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        interaction: { mode: 'index', intersect: false },
+                        plugins: {
+                            legend: { position: 'top', labels: { usePointStyle: true, boxWidth: 8 } },
+                            tooltip: {
+                                backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                                titleFont: { size: 14 },
+                                bodyFont: { size: 13 },
+                                padding: 12
+                            }
+                        },
+                        scales: {
+                            x: { grid: { display: false } },
+                            y: {
+                                type: 'linear',
+                                display: true,
+                                position: 'left',
+                                title: { display: true, text: '存量规模 (万亿元)' },
+                                grid: { borderDash: [5, 5] }
+                            },
+                            y1: {
+                                type: 'linear',
+                                display: true,
+                                position: 'right',
+                                title: { display: true, text: '增速 (%)' },
+                                grid: { display: false },
+                                suggestedMin: 0,
+                                suggestedMax: 35
+                            }
+                        }
+                    }
+                });
+            }
+
+            var elRadar = document.getElementById('evaluationRadarChart');
+            if (elRadar) {
+                new Chart(elRadar.getContext('2d'), {
+                    type: 'radar',
+                    data: {
+                        labels: ['直接财务回报 (ROI)', '产业链带动效应', '社会公平与区域协调', '地缘与国防安全', '前沿技术突破'],
+                        datasets: [
+                            {
+                                label: '国家战略评估（示意）',
+                                data: [30, 95, 90, 100, 95],
+                                fill: true,
+                                backgroundColor: 'rgba(225, 29, 72, 0.2)',
+                                borderColor: '#e11d48',
+                                pointBackgroundColor: '#e11d48',
+                                pointBorderColor: '#fff',
+                                borderWidth: 2
+                            },
+                            {
+                                label: '纯商业资本评估（示意）',
+                                data: [95, 40, 10, 5, 60],
+                                fill: true,
+                                backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                                borderColor: '#3b82f6',
+                                pointBackgroundColor: '#3b82f6',
+                                pointBorderColor: '#fff',
+                                borderWidth: 2
+                            }
+                        ]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        scales: {
+                            r: {
+                                angleLines: { color: 'rgba(0,0,0,0.1)' },
+                                grid: { color: 'rgba(0,0,0,0.1)' },
+                                pointLabels: { font: { size: 12, weight: 'bold' }, color: '#1e293b' },
+                                ticks: { display: false, max: 100, min: 0 }
+                            }
+                        },
+                        plugins: {
+                            legend: { position: 'bottom' },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        return context.dataset.label + ': ' + context.raw + ' / 100';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

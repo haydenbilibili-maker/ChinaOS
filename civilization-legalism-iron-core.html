@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>帝国的铁件：法家思想与「外儒内法」的治国密码</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&display=swap');
+    </style>
+    <style>
+        body {
+            background-color: #1c1917;
+            color: #f5f5f4;
+            font-family: 'Noto Serif SC', 'PingFang SC', serif;
+            scroll-behavior: smooth;
+            background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        h1, h2, h3, h4, .font-sans { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        .iron-card {
+            background: linear-gradient(145deg, #292524, #1c1917);
+            border: 1px solid #44403c;
+            transition: all 0.3s ease;
+        }
+        .iron-card:hover {
+            border-color: #991b1b;
+            box-shadow: 0 10px 25px -5px rgba(153, 27, 27, 0.4);
+            transform: translateY(-5px);
+        }
+        .duality-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            transition: all 0.5s ease;
+        }
+        .layer-confucian {
+            background-color: #fefce8;
+            color: #1c1917;
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #d4af37;
+        }
+        .layer-legalist {
+            background-color: #450a0a;
+            color: #fca5a5;
+            position: relative;
+            z-index: 5;
+            padding: 3rem;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #991b1b;
+        }
+        .duality-container.revealed .layer-confucian { transform: translateY(-100%); }
+        .fade-in { animation: fadeIn 0.6s ease-in-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1c1917; }
+        ::-webkit-scrollbar-thumb { background: #44403c; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #78716c; }
+    </style>
+</head>
+<body class="antialiased selection:bg-red-900 selection:text-red-100">
+    <nav class="bg-black/80 backdrop-blur-md text-stone-200 sticky top-0 z-50 shadow-2xl border-b border-stone-800 font-sans">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold tracking-widest flex items-center gap-2">
+                <span class="text-red-600 text-2xl">⚖️</span> <span>帝国铁件：法家</span>
+                <span class="text-stone-500 text-sm font-normal hidden md:inline-block ml-2 border-l border-stone-700 pl-2">文化战略调研 · 卷二</span>
+            </div>
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#triad" class="hover:text-red-500 transition">法·术·势</a>
+                <a href="#duality" class="hover:text-red-500 transition">外儒内法</a>
+                <a href="#capacity" class="hover:text-red-500 transition">国家能力奇迹</a>
+                <a href="#modernity" class="hover:text-red-500 transition">现代回响</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative py-24 px-4 overflow-hidden border-b border-stone-800">
+        <div class="absolute top-1/2 right-10 -translate-y-1/2 text-[15rem] font-black text-stone-800 opacity-30 select-none pointer-events-none font-serif">法</div>
+        <div class="max-w-5xl mx-auto relative z-10">
+            <div class="inline-block bg-red-950 border border-red-800 text-red-400 px-4 py-1.5 rounded-sm text-xs font-bold mb-6 tracking-widest font-sans uppercase">
+                MACHIAVELLIAN ENGINE OF THE EMPIRE
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight text-stone-100">
+                法家思想：<br>
+                <span class="text-red-600">冷酷的国家机器与权力算法</span>
+            </h1>
+            <p class="text-lg text-stone-400 leading-relaxed mt-6 font-serif max-w-3xl">
+                若儒家以道德与血缘软性黏合社会，法家则以严刑峻法与绝对权力硬性锻造国家机器。法家不信人性本善，只信利益驱动与恐惧威慑；正是这一底层逻辑，赋予古代中国超越同时代多数文明的极限社会动员能力，奠定大一统帝国的物理基础。
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-16 space-y-32">
+        <section id="triad" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-red-700 rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-stone-100">一、韩非子的权力三角：法、术、势</h2>
+            </div>
+            <p class="text-stone-400 mb-8 max-w-4xl text-lg font-serif">
+                法家集大成者韩非，为君王设计了一套摒弃道德、讲求机械效率的统治工具箱，构成古代官僚体制运转的核心算法。
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-serif">
+                <div class="iron-card p-8 rounded-xl relative overflow-hidden">
+                    <div class="text-5xl mb-4 text-stone-500">📜</div>
+                    <h3 class="text-2xl font-bold text-stone-100 mb-2 font-sans">法 (Fa) : 公开的规则</h3>
+                    <div class="h-0.5 w-12 bg-red-800 mb-4"></div>
+                    <p class="text-sm text-stone-400 leading-relaxed mb-4">
+                        成文的法律与 KPI 系统。法家认为规则须极其明确且严酷（「刑九赏一」）。触犯者无论贵贱必惩；达成目标（如战场杀敌）必予爵赏。
+                    </p>
+                    <div class="bg-stone-900 p-3 rounded text-xs border border-stone-700 text-stone-500 font-sans">
+                        <strong class="text-stone-300">底层逻辑：</strong>以确定性的赏罚机制取代不可靠的道德自觉，驱动民众如齿轮运转。
+                    </div>
+                </div>
+                <div class="iron-card p-8 rounded-xl relative overflow-hidden">
+                    <div class="text-5xl mb-4 text-stone-500">🎭</div>
+                    <h3 class="text-2xl font-bold text-stone-100 mb-2 font-sans">术 (Shu) : 隐秘的权谋</h3>
+                    <div class="h-0.5 w-12 bg-red-800 mb-4"></div>
+                    <p class="text-sm text-stone-400 leading-relaxed mb-4">
+                        君王驾驭官僚的隐秘手段（帝王术）：暗中考察、分而治之、不轻易表露喜怒（「去好去恶，臣乃见素」），防投其所好、结党营私。
+                    </p>
+                    <div class="bg-stone-900 p-3 rounded text-xs border border-stone-700 text-stone-500 font-sans">
+                        <strong class="text-stone-300">底层逻辑：</strong>法对民，术对臣；以信息不对称维持最高权力的神秘与生杀权。
+                    </div>
+                </div>
+                <div class="iron-card p-8 rounded-xl relative overflow-hidden">
+                    <div class="text-5xl mb-4 text-stone-500">👑</div>
+                    <h3 class="text-2xl font-bold text-stone-100 mb-2 font-sans">势 (Shi) : 绝对的威权</h3>
+                    <div class="h-0.5 w-12 bg-red-800 mb-4"></div>
+                    <p class="text-sm text-stone-400 leading-relaxed mb-4">
+                        制度赋予的位置与权力落差。法家认为治天下不靠君王个人贤愚，而靠其所处之位。「飞龙乘云，腾蛇游雾」，失势则龙不如蚓。
+                    </p>
+                    <div class="bg-stone-900 p-3 rounded text-xs border border-stone-700 text-stone-500 font-sans">
+                        <strong class="text-stone-300">底层逻辑：</strong>高度中央集权之「势」，使平庸君主亦能凭法、术维持机器运转。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="duality" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 rounded-sm" style="background-color: #b45309;"></div>
+                <h2 class="text-3xl font-bold text-stone-100">二、终极统治术：外儒内法 (The Imperial Synthesis)</h2>
+            </div>
+            <p class="text-stone-400 mb-8 max-w-4xl text-lg font-serif">
+                秦纯用法家，高效而暴，二世而亡。汉以后统治者创造出两千年政治史的关键发明——<strong>「外儒内法，剂之以道」</strong>。点击下方卡片，揭开温情话语下的冷硬内核。
+            </p>
+            <div class="max-w-3xl mx-auto mt-10">
+                <div class="duality-container shadow-2xl cursor-pointer" id="dualityBox" onclick="toggleDuality()">
+                    <div class="layer-confucian p-10 text-center">
+                        <div class="text-6xl mb-4">📜</div>
+                        <h3 class="text-3xl font-black text-stone-900 mb-2 font-serif tracking-widest">外儒 (The Mask)</h3>
+                        <p class="text-stone-600 font-sans mt-4 max-w-lg text-sm leading-relaxed">
+                            表面：皇帝「天子」、爱民如子；官员「父母官」、仁义礼智信；国家靠道德教化运转。这是极好的安抚人心、降低维稳成本的<strong>话语体系与意识形态外壳</strong>。
+                        </p>
+                        <div class="mt-8 animate-bounce text-stone-400 font-sans text-xs flex items-center flex-col">
+                            <span>点击揭开真相</span>
+                            <span class="text-xl">👇</span>
+                        </div>
+                    </div>
+                    <div class="layer-legalist text-center">
+                        <div class="text-6xl mb-4">⚔️</div>
+                        <h3 class="text-3xl font-black text-red-500 mb-2 font-serif tracking-widest">内法 (The Core)</h3>
+                        <p class="text-red-200 font-sans mt-4 max-w-lg text-sm leading-relaxed">
+                            实际：户籍、连坐、严刑控基层；郡县、军功爵、酷吏汲取资源；特务与奏折监视百官。<strong>权力机器只认力量与利益，毫不留情。</strong>
+                        </p>
+                        <div class="mt-8 text-red-800 font-sans text-xs">点击恢复伪装</div>
+                    </div>
+                </div>
+                <p class="text-center text-stone-500 mt-4 text-sm font-serif italic">汉宣帝：「汉家自有制度，本以霸王道杂之……奈何纯任德教！」</p>
+            </div>
+        </section>
+
+        <section id="capacity" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-red-600 rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-stone-100">三、秦制奇迹：法家对「国家能力」的极限压榨</h2>
+            </div>
+            <p class="text-stone-400 mb-8 max-w-4xl text-lg font-serif">
+                商鞅变法将秦国改造成<strong>为战争与农业生产而存在的军国主义机器</strong>：摧毁贵族特权，国家直控个体，动员能力骇人。
+            </p>
+            <div class="bg-stone-900 p-6 md:p-8 rounded-xl border border-stone-800 shadow-2xl">
+                <h3 class="text-xl font-bold text-stone-200 font-sans mb-6">战国时期国家动员能力评估模型（资源汲取率 · 概念指数）</h3>
+                <div class="chart-container">
+                    <canvas id="mobilizationChart"></canvas>
+                </div>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 font-serif">
+                    <div class="bg-stone-800/50 p-5 rounded-lg border-l-4 border-stone-600">
+                        <h4 class="font-bold text-stone-200 mb-2 font-sans">分封制国家（如齐、楚）</h4>
+                        <p class="text-sm text-stone-400">资源在贵族手中，国君借兵借粮，中央汲取弱；阶层固化，底层难上升。</p>
+                    </div>
+                    <div class="bg-red-900/20 p-5 rounded-lg border-l-4 border-red-700">
+                        <h4 class="font-bold text-red-400 mb-2 font-sans">法家秦制（商鞅后）</h4>
+                        <p class="text-sm text-red-200/80">
+                            实行<strong>「编户齐民」</strong>与<strong>「军功爵制」</strong>：破贵族垄断，平民斩首可获土地爵位；国家直向农户征税征兵，动员率可达总人口相当比例（古代语境下极高），终以体量碾压六国。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="modernity" class="scroll-mt-24 mb-16">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-stone-500 rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-stone-100">四、现代回响：大一统基因与集中力量办大事</h2>
+            </div>
+            <p class="text-stone-400 mb-8 max-w-4xl text-lg font-serif">
+                帝制虽终，「强国家、弱社会」、中央集权与集中力量办大事仍深嵌当代治理。
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans">
+                <div class="iron-card p-6 rounded-lg">
+                    <div class="text-3xl mb-3">🏗️</div>
+                    <h3 class="text-xl font-bold text-stone-200 mb-3">国家执行力与超级工程</h3>
+                    <p class="text-sm text-stone-400 leading-relaxed font-serif">
+                        高铁网、南水北调等，依托大政府传统：对土地、资本、人力的强调配。与强调否决与扯皮的体制相比，更重「势」与刚性 KPI 执行。
+                    </p>
+                </div>
+                <div class="iron-card p-6 rounded-lg">
+                    <div class="text-3xl mb-3">📊</div>
+                    <h3 class="text-xl font-bold text-stone-200 mb-3">数字化「编户齐民」与强监管</h3>
+                    <p class="text-sm text-stone-400 leading-relaxed font-serif">
+                        户籍、什伍连坐的逻辑，在技术条件下演化为网格化、大数据风控等，危机应对与微观穿透力极强。
+                    </p>
+                </div>
+                <div class="iron-card p-6 rounded-lg md:col-span-2 border-l-4 border-red-700">
+                    <h3 class="text-xl font-bold text-stone-200 mb-3 flex items-center gap-2">
+                        <span>⚠️</span> <span>现代风险：重富国强兵，轻个体消费</span>
+                    </h3>
+                    <p class="text-sm text-stone-400 leading-relaxed font-serif max-w-4xl">
+                        《商君书》式「弱民、贫民、疲民」让民常处劳作与渴求奖赏状态以利国家——其现代残留体现为长期重生产与投资、福利与个体消费相对不足，与内需、内卷等议题相连。<strong>如何平衡国家宏大叙事与微观个体福祉，是当代核心张力之一。</strong>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-black text-stone-600 py-10 text-center border-t border-stone-800 font-sans">
+        <div class="max-w-4xl mx-auto px-4">
+            <p class="font-bold text-stone-500 tracking-wider">文明透视 · 文化战略长篇 · 法家卷（卷二）</p>
+            <p class="mt-3 text-xs leading-relaxed max-w-2xl mx-auto opacity-60 font-serif">
+                不理解法家，易把客套当软弱；不理解外儒内法，难读历代政治中精密包装下的刚性手腕。与 China OS「文明透视」模块同源。
+            </p>
+            <p class="mt-4 text-xs font-mono">© 2026 Cultural Strategy · China OS</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleDuality() {
+            document.getElementById('dualityBox').classList.toggle('revealed');
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            Chart.defaults.font.family = "'PingFang SC', 'Microsoft YaHei', sans-serif";
+            Chart.defaults.color = '#a8a29e';
+            Chart.defaults.borderColor = '#44403c';
+            const ctxMob = document.getElementById('mobilizationChart').getContext('2d');
+            new Chart(ctxMob, {
+                type: 'bar',
+                data: {
+                    labels: ['军功爵制刺激', '编户齐民抽税', '底层流动性', '中央指令传达', '军队占人口比例'],
+                    datasets: [
+                        {
+                            label: '传统贵族分封国家 (如楚/齐)',
+                            data: [15, 30, 10, 40, 5],
+                            backgroundColor: 'rgba(168, 162, 158, 0.5)',
+                            borderColor: '#a8a29e',
+                            borderWidth: 1,
+                            borderRadius: 4
+                        },
+                        {
+                            label: '法家集权国家 (秦国)',
+                            data: [95, 90, 85, 95, 20],
+                            backgroundColor: 'rgba(153, 27, 27, 0.8)',
+                            borderColor: '#ef4444',
+                            borderWidth: 1,
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { position: 'top', labels: { color: '#e7e5e4' } },
+                        tooltip: {
+                            backgroundColor: 'rgba(28, 25, 23, 0.95)',
+                            titleFont: { size: 14, family: 'sans-serif' },
+                            bodyFont: { size: 13, family: 'sans-serif' },
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.raw + ' (评估指数)';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#d6d3d1', font: { weight: 'bold' } }
+                        },
+                        y: {
+                            title: { display: true, text: '国家机器效能/动员指数', color: '#78716c' },
+                            max: 100,
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

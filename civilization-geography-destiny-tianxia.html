@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地理宿命与天下观：中华文明的物理底座与地缘基因</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;500;700;900&display=swap');
+    </style>
+
+    <style>
+        body {
+            background-color: #1c1917; /* Stone 900 - Earthy dark */
+            color: #d6d3d1; /* Stone 300 */
+            font-family: 'Noto Serif SC', 'PingFang SC', serif;
+            scroll-behavior: smooth;
+            background-image: 
+                linear-gradient(rgba(161, 98, 7, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(161, 98, 7, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        h1, h2, h3, h4, .font-sans {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        /* Chart Container */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 380px;
+        }
+
+        /* Interactive Split Panels (Agrarian vs Nomadic) */
+        .geo-split-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            min-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .geo-split-container { flex-direction: row; }
+        }
+        .geo-pane {
+            flex: 1;
+            padding: 2rem;
+            border-radius: 1rem;
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: crosshair;
+        }
+        .geo-pane::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            transition: background 0.5s ease;
+            z-index: 1;
+        }
+        .geo-pane:hover { flex: 1.5; }
+        .geo-pane:hover::before { background: rgba(0,0,0,0.1); }
+        .pane-content { position: relative; z-index: 2; }
+        
+        .pane-agrarian { background: linear-gradient(135deg, #713f12, #451a03); border: 2px solid #a16207; }
+        .pane-nomadic { background: linear-gradient(135deg, #1f4211, #14532d); border: 2px solid #4d7c0f; }
+
+        /* Tianxia Concentric Rings */
+        .tianxia-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 0;
+            margin: 0 auto;
+            position: relative;
+        }
+        .ring {
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px dashed rgba(214, 211, 209, 0.3);
+            position: relative;
+            transition: all 0.4s ease;
+        }
+        .ring:hover { border-color: rgba(214, 211, 209, 0.8); background-color: rgba(255,255,255,0.02); }
+        .ring-label {
+            position: absolute;
+            top: 5%;
+            font-size: 0.75rem;
+            font-family: 'PingFang SC', sans-serif;
+            color: #a8a29e;
+            letter-spacing: 2px;
+            background: #1c1917;
+            padding: 0 5px;
+        }
+        .ring-4 { width: 320px; height: 320px; }
+        .ring-3 { width: 240px; height: 240px; border-style: solid; border-color: rgba(161, 98, 7, 0.5); }
+        .ring-2 { width: 160px; height: 160px; border-style: solid; border-color: rgba(161, 98, 7, 0.8); background: rgba(161, 98, 7, 0.1); }
+        .ring-1 { width: 80px; height: 80px; background: #991b1b; color: #fef3c7; font-weight: bold; font-size: 1.5rem; box-shadow: 0 0 20px rgba(153, 27, 27, 0.6); border: 2px solid #fca5a5;}
+        
+        @media (min-width: 768px) {
+            .ring-4 { width: 450px; height: 450px; }
+            .ring-3 { width: 330px; height: 330px; }
+            .ring-2 { width: 210px; height: 210px; }
+            .ring-1 { width: 90px; height: 90px; font-size: 2rem; }
+            .ring-label { font-size: 0.9rem; top: 8%; }
+        }
+
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); filter: blur(3px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1c1917; }
+        ::-webkit-scrollbar-thumb { background: #713f12; }
+        ::-webkit-scrollbar-thumb:hover { background: #a16207; }
+    </style>
+</head>
+<body class="antialiased selection:bg-yellow-900 selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="bg-stone-950/80 backdrop-blur-md text-stone-300 sticky top-0 z-50 border-b border-stone-800 font-sans shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold tracking-widest flex items-center gap-3">
+                <span class="text-yellow-600 font-serif">⛰️</span> <span class="text-stone-100">地理宿命与宏观基因</span>
+                <span class="text-stone-500 text-sm font-normal hidden md:inline-block ml-2 border-l border-stone-700 pl-2">文明透视 · 卷十一</span>
+            </div>
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#prison" class="hover:text-yellow-500 transition">地理密室</a>
+                <a href="#nomad" class="hover:text-yellow-500 transition">400毫米降水线</a>
+                <a href="#malthus" class="hover:text-red-500 transition">治乱循环</a>
+                <a href="#tianxia" class="hover:text-yellow-500 transition">天下观矩阵</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative py-32 px-4 overflow-hidden border-b border-stone-900">
+        <div class="absolute inset-0 flex justify-center items-center opacity-5 pointer-events-none">
+            <div class="text-[30rem] font-black font-serif text-yellow-900 transform -rotate-12">土</div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div class="inline-block bg-stone-900 border border-yellow-900/50 text-yellow-600 px-4 py-1.5 rounded-sm text-xs font-bold mb-6 tracking-widest font-sans">
+                地理决定论 · 结构叙事
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-8 leading-tight text-stone-100">
+                农耕基因与马尔萨斯重置：<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-amber-500">中华文明的物理约束底座</span>
+            </h1>
+            <p class="text-lg text-stone-400 leading-relaxed mt-6 font-serif max-w-3xl mx-auto">
+                一切制度与观念，都须落实在物质地基之上。中华文明之所以演化出高度中央集权与强集体取向，并非源于单线思想史偶然，而与<strong>「黄河—治水」「400毫米降水线两侧的农牧张力」以及「土地与人口的极限博弈」</strong>长期互锁相关。读懂这片土地的物理约束，才能理解历史上对「大一统」与「治—乱」的极端敏感。
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-16 space-y-32">
+
+        <!-- Section 1: The Geographic Prison & Hydraulic Empire -->
+        <section id="prison" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-yellow-700 rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-stone-100 tracking-wider">一、 地理密室与「治水帝国」的诞生</h2>
+            </div>
+            <p class="text-stone-400 mb-8 max-w-4xl text-lg font-serif">
+                古代中国是一个巨大的「地理密室」。西有世界屋脊青藏高原，北有浩瀚戈壁大漠，东临浩瀚无垠的太平洋。这种半封闭的地理环境，决定了中华文明无法像环地中海文明那样轻易地向外扩散，只能向内极度内卷发展。
+            </p>
+
+            <div class="bg-stone-900 p-8 rounded-2xl shadow-2xl border border-stone-800 flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/3 flex justify-center">
+                    <div class="text-[10rem] opacity-80 text-yellow-800 drop-shadow-[0_0_15px_rgba(161,98,7,0.5)]">🌊</div>
+                </div>
+                
+                <div class="w-full md:w-2/3 space-y-6 font-serif">
+                    <div class="border-l-2 border-yellow-700 pl-5">
+                        <h3 class="text-xl font-bold text-yellow-500 mb-2 font-sans">黄河：文明的摇篮与暴君</h3>
+                        <p class="text-sm text-stone-400 leading-relaxed">
+                            中华文明发源于黄土高原与黄河流域。黄河含沙量极大，极易地上悬河、决堤改道。<strong>在古代，没有任何一个村落或小诸侯国能够独立应对黄河的泛滥。</strong>
+                        </p>
+                    </div>
+                    <div class="border-l-2 border-yellow-700 pl-5">
+                        <h3 class="text-xl font-bold text-yellow-500 mb-2 font-sans">治水帝国理论 (Hydraulic Empire)</h3>
+                        <p class="text-sm text-stone-400 leading-relaxed">
+                            为了修建庞大的堤坝网络和灌溉水渠，被迫催生出了一个能够<strong>跨越部落、在超大规模空间内调动百万劳工和物资</strong>的强权核心。这是欧洲庄园制小领主永远无法做到的。因此，大一统的中央集权专制（我们之前讨论的法家机器），从一开始就是这片土地为了抗拒水患而<strong>被物理环境倒逼出来的生存工具</strong>。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: The 400mm Isohyet & Nomadic Conflict -->
+        <section id="nomad" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-green-800 rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-stone-100 tracking-wider">二、 400毫米等降水线：两千年战争的楚河汉界</h2>
+            </div>
+            <p class="text-stone-400 mb-8 max-w-4xl text-lg font-serif">
+                在中国版图上，有一条隐形的刻度线决定了两千年的历史走向——<strong>400毫米等降水线</strong>。线的东南，降水充沛，演化出了定居的农耕文明（汉族）；线的西北，干旱少雨，只能演化出逐水草而居的游牧文明（匈奴、突厥、蒙古）。
+            </p>
+
+            <div class="geo-split-container font-sans shadow-2xl">
+                <!-- Agrarian -->
+                <div class="geo-pane pane-agrarian">
+                    <div class="pane-content">
+                        <div class="flex items-center justify-between mb-4 border-b border-yellow-800 pb-2">
+                            <h3 class="text-3xl font-black text-yellow-500 tracking-widest font-serif">农耕文明</h3>
+                            <span class="text-4xl opacity-50">🌾</span>
+                        </div>
+                        <ul class="space-y-4 text-sm text-yellow-100/80 font-serif leading-relaxed">
+                            <li><strong class="text-yellow-400 font-sans">生存算法：</strong> 脸朝黄土背朝天，高度依赖土地和节气。追求极致的稳定与宗族繁衍。</li>
+                            <li><strong class="text-yellow-400 font-sans">战争形态：</strong> 步兵为主，依靠庞大的后勤粮草网络。一旦离开补给线深入大漠，战斗力断崖下跌。</li>
+                            <li><strong class="text-yellow-400 font-sans">文化映射：</strong> 诞生了强调「安土重迁」「服从秩序」「长幼尊卑」的<strong class="text-yellow-400 font-sans">儒家思想</strong>。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Central Wall Divider -->
+                <div class="hidden md:flex flex-col items-center justify-center w-8 bg-stone-700 border-x border-stone-900 z-10 relative">
+                    <div class="absolute text-xs font-bold text-stone-900 writing-vertical tracking-widest whitespace-nowrap -rotate-90">长城长城长城长城长城长城长城长城长城</div>
+                </div>
+
+                <!-- Nomadic -->
+                <div class="geo-pane pane-nomadic">
+                    <div class="pane-content">
+                        <div class="flex items-center justify-between mb-4 border-b border-green-800 pb-2">
+                            <h3 class="text-3xl font-black text-green-500 tracking-widest font-serif">游牧幽灵</h3>
+                            <span class="text-4xl opacity-50">🐎</span>
+                        </div>
+                        <ul class="space-y-4 text-sm text-green-100/80 font-serif leading-relaxed">
+                            <li><strong class="text-green-400 font-sans">生存算法：</strong> 气候脆弱，一旦遭遇白灾（雪灾），不南下掠夺农耕区就会冻饿而死。掠夺不是作恶，是生存刚需。</li>
+                            <li><strong class="text-green-400 font-sans">战争形态：</strong> 天然的骑兵。机动性极强，不需要庞大后勤（以战养战），对农耕区形成降维打击。</li>
+                            <li><strong class="text-green-400 font-sans">长城本质：</strong> 长城不是为了彻底挡住骑兵（防线太长防不住），而是<strong>一道「经济隔离过滤网」</strong>。它迫使游牧民族必须集结大军才能叩关，而一旦集结大军，就给了中原王朝预警和调动资源的时间。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-6 text-center text-sm text-stone-500 font-serif italic">
+                「一部中国古代史，就是一部沿400毫米等降水线的农牧拉锯战与最终大融合的历史。」
+            </div>
+        </section>
+
+        <!-- Section 3: The Malthusian Reset -->
+        <section id="malthus" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-red-800 rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-stone-100 tracking-wider">三、 治乱循环：恐怖的「马尔萨斯重置」</h2>
+            </div>
+            <p class="text-stone-400 mb-8 max-w-4xl text-lg font-serif">
+                农耕文明最大的梦魇是<strong>「马尔萨斯陷阱」</strong>。在古代科技（没有化肥和高产作物）锁死的情况下，土地的产出是有极限的；但和平年代的人口是呈指数级繁衍的。
+            </p>
+
+            <div class="bg-black p-6 md:p-8 rounded-2xl border border-red-900/30 shadow-[0_0_30px_rgba(127,29,29,0.2)]">
+                <h3 class="text-lg font-bold mb-2 text-stone-300 font-sans text-center">中国历史人口大周期波动估算模型 (万人)</h3>
+                <p class="text-xs text-red-500/80 mb-6 font-sans tracking-widest text-center">每一次骤降，都代表着数千万生命的非正常消亡</p>
+                
+                <div class="chart-container">
+                    <canvas id="malthusChart"></canvas>
+                </div>
+                
+                <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 font-serif">
+                    <div class="p-5 border-l-4 border-stone-600 bg-stone-900/50 rounded-r-lg">
+                        <h4 class="font-bold text-stone-300 mb-2 font-sans flex items-center gap-2"><span class="text-xl">📈</span> 繁荣的毒药 (土地兼并)</h4>
+                        <p class="text-sm text-stone-400 leading-relaxed">
+                            王朝建立初期，地广人稀，经济复苏。经过百年的繁衍，人口逼近土地极限。同时，官僚地主通过权力疯狂兼并土地。最终，海量的底层农民失去土地成为流民，只要遭遇一场旱灾，系统就会瞬间崩溃。
+                        </p>
+                    </div>
+                    <div class="p-5 border-l-4 border-red-700 bg-red-950/20 rounded-r-lg">
+                        <h4 class="font-bold text-red-500 mb-2 font-sans flex items-center gap-2"><span class="text-xl">💥</span> 终极暴力重置 (治乱循环)</h4>
+                        <p class="text-sm text-red-300/80 leading-relaxed">
+                            农民起义爆发，伴随而来的往往是极其惨烈的军阀混战（如黄巾起义、黄巢起义、明末流寇）。战争、饥荒和瘟疫在短短几十年内，<strong>将全国人口强行物理消灭50%甚至70%</strong>。重新空出大量无主荒地，新王朝建立，开启下一个循环。
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-6 bg-stone-800 p-5 rounded-lg border border-stone-700 text-sm text-stone-300 font-sans shadow-lg">
+                <strong class="text-amber-500 block mb-1">战略心理投射：为什么中国人如此病态地害怕「乱」？</strong>
+                因为西方历史上的乱往往是领主间的几百人械斗；而中国历史上的「乱」，是千万级别的人口重置（人相食）。这也就是为什么无论是官方还是民间，<strong>对「稳定（维稳）」的需求绝对压倒一切个人自由</strong>。这是深深刻在DNA里的生存恐惧。
+            </div>
+        </section>
+
+        <!-- Section 4: Tianxia Worldview -->
+        <section id="tianxia" class="scroll-mt-24 mb-16">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-amber-700 rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-stone-100 tracking-wider">四、 天下体系：非威斯特伐利亚的宇宙秩序</h2>
+            </div>
+            <p class="text-stone-400 mb-8 max-w-4xl text-lg font-serif">
+                现代国际关系建立在西方的「威斯特伐利亚体系（Westphalian system）」上，强调主权国家一律平等，边界清晰。但中国古代从来不认为自己是一个「国家（Nation-State）」，而是<strong>「天下（A Universe）」</strong>。
+            </p>
+
+            <div class="bg-stone-900 rounded-2xl shadow-xl border border-stone-800 p-8 flex flex-col md:flex-row items-center gap-12 overflow-hidden">
+                
+                <div class="w-full md:w-1/2 flex justify-center">
+                    <!-- CSS Concentric Rings representing Tianxia -->
+                    <div class="tianxia-wrap">
+                        <div class="ring ring-4">
+                            <span class="ring-label">化外之民 (四夷)</span>
+                            <div class="ring ring-3">
+                                <span class="ring-label">朝贡藩属 (如朝/越)</span>
+                                <div class="ring ring-2">
+                                    <span class="ring-label">羁縻州郡</span>
+                                    <div class="ring ring-1 font-serif">
+                                        天子
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-1/2 space-y-6 font-serif">
+                    <h3 class="text-2xl font-bold text-amber-500 mb-4 font-sans border-b border-stone-700 pb-2">文化同心圆模型</h3>
+                    
+                    <div class="space-y-4 text-stone-300 text-sm leading-relaxed">
+                        <p>
+                            <strong>1. 没有明确国界，只有文化衰减区：</strong> 天下体系是一个以中原王朝皇帝（道德与权力的化身）为中心的同心圆。越靠近中心，被儒家文化教化的程度越深（华夏）；越往边缘，文化辐射越弱（蛮夷）。「边界」是动态模糊的。
+                        </p>
+                        <p>
+                            <strong>2. 朝贡体系 (Tributary System)：</strong> 这不是殖民地掠夺体系，而是一套<strong>「不平等的道德与贸易契约」</strong>。周边藩属国承认中国皇帝的宗主地位（面子），皇帝则通过「厚往薄来」的赏赐维持区域和平（里子）。
+                        </p>
+                        <p>
+                            <strong>3. 华夷之辨的灵活性：</strong> 「夷狄入中国，则中国之」。中国人判断「是不是自己人」，首要标准不是血统或种族，而是<strong>你是否接受了中华的文化与制度（如汉字、儒学）</strong>。这就解释了为什么少数民族（鲜卑、满、蒙）入主中原后，最终都被汉化吸收。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 p-8 bg-gradient-to-br from-black to-stone-900 border-t-2 border-yellow-700 rounded-xl shadow-2xl flex items-start gap-5">
+                <div class="text-5xl opacity-90 mt-1">🌏</div>
+                <div>
+                    <h3 class="text-2xl font-bold text-yellow-500 mb-3 font-sans">收束：地理—天下尺度下的当代投射</h3>
+                    <p class="text-sm leading-relaxed text-stone-300 font-serif">
+                        将视角拉长到地理与千年尺度，可以看到：<br><br>
+                        当代中国的<strong>「一带一路」</strong>倡议，与历史上「朝贡体系—天下观」存在结构相似性：以经贸与基础设施连通周边，强调合作叙事，而非近代殖民帝国的军事占领模板（具体政策工具与时代条件已完全不同，此处仅作制度隐喻对照）。<br><br>
+                        对<strong>「粮食安全（耕地红线）」</strong>与<strong>「社会稳定」</strong>的高度重视，亦与历史上反复出现的马尔萨斯式冲击记忆叠合：治乱之间的代价过高，系统对「失序」的厌恶往往压倒其他偏好。<br><br>
+                        <strong>当代政治经济操作、区域竞争与文化政治，仍在与两千年来的河患治理、农牧边界与天下秩序叙事发生隐性对话。文明体的路径依赖与制度弹性并存，其走向取决于资源约束、技术条件与外部环境的共同演化。</strong>
+                    </p>
+                </div>
+            </div>
+            
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-stone-600 py-10 text-center border-t border-stone-900 font-sans mt-10">
+        <div class="max-w-4xl mx-auto px-4">
+            <p class="font-bold text-stone-500 tracking-wider mb-2">文明透视 · 地理宿命与地缘基因 · 卷十一</p>
+            <p class="text-xs leading-relaxed max-w-2xl mx-auto opacity-50 font-serif">
+                地理即约束，亦是文明演化的舞台。理解苦难与循环，才能理解韧性与调适。
+            </p>
+            <p class="mt-4 text-xs text-stone-600">© 2026</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Initialize Charts when DOM loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Global Chart config for dark/historical theme
+            Chart.defaults.font.family = "'PingFang SC', 'Microsoft YaHei', sans-serif";
+            Chart.defaults.color = '#a8a29e'; // stone-400
+            Chart.defaults.borderColor = '#292524'; // stone-800 grid lines
+
+            // --- Area Chart: Malthusian Population Cycles ---
+            const ctxMalthus = document.getElementById('malthusChart').getContext('2d');
+            
+            new Chart(ctxMalthus, {
+                type: 'line',
+                data: {
+                    labels: ['西汉初', '西汉末', '东汉末(三国)', '西晋', '隋初', '隋末', '唐盛世', '唐末(五代)', '北宋', '金/元乱世', '明初', '明末清初', '清康乾', '清末(太平天国)'],
+                    datasets: [
+                        {
+                            label: '历史在册人口估算变化 (极具惨烈的重置)',
+                            // Simplified conceptual data points showing extreme boom and bust
+                            data: [1500, 6000, 1500, 3500, 4600, 2000, 8000, 3000, 10000, 4000, 6000, 3000, 30000, 25000], 
+                            borderColor: '#b91c1c', // red-700
+                            backgroundColor: 'rgba(153, 27, 27, 0.2)', // red-800 low opacity
+                            borderWidth: 3,
+                            pointBackgroundColor: '#fca5a5', // red-300
+                            pointBorderColor: '#7f1d1d',
+                            pointRadius: 4,
+                            pointHoverRadius: 8,
+                            fill: true,
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(12, 10, 9, 0.95)', // stone-950
+                            titleFont: { size: 14, family: 'sans-serif' },
+                            bodyFont: { size: 13, family: 'sans-serif' },
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    return '人口估算: ' + context.raw + ' 万人';
+                                },
+                                afterBody: function(context) {
+                                    // Add context for the sharp drops
+                                    const index = context[0].dataIndex;
+                                    if(index === 2) return '\n⚠️ 三国战乱，十室九空';
+                                    if(index === 5) return '\n⚠️ 隋末大乱，人口减半';
+                                    if(index === 7) return '\n⚠️ 安史之乱至五代，军阀混战';
+                                    if(index === 11) return '\n⚠️ 明末大饥荒与小冰河期';
+                                    return '';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { 
+                            grid: { display: false },
+                            ticks: { 
+                                maxRotation: 45, 
+                                minRotation: 45,
+                                font: { size: 11 }
+                            }
+                        },
+                        y: {
+                            min: 0,
+                            grid: { borderDash: [4, 4], color: '#44403c' },
+                            title: { display: true, text: '人口规模 (万人)', color: '#a8a29e' }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

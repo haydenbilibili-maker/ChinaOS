@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文明的减震器：道家思想与战略弹性底层逻辑</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Chosen Palette: Ethereal Mist (#f0fdfa - Teal 50), Deep Water (#0f766e - Teal 700), Ink Void (#172554 - Blue 950), Zen Stone (#94a3b8 - Slate 400) -->
+    
+    <!-- Application Structure Plan:
+        The SPA uses a "Fluid / Zen" narrative structure, contrasting the rigidity of previous models.
+        1. "The Ultimate Shock Absorber" (Hero): Defines Daoism as the systemic elasticity that saves Chinese civilization from burning out under Confucian/Legalist pressure.
+        2. "Cyclical Reversion" (Sec 1): Explains "反者道之动" (Mean Reversion). Uses a Chart.js Sine Wave to map historical dynastic cycles (Expansion vs. Rest/Recovery).
+        3. "The Algorithm of Water" (Sec 2): Translates "上善若水" into business/military strategy (Asymmetrical survival, yielding to overcome). Uses interactive cascading CSS cards.
+        4. "Wuwei Governance" (Sec 3): Contrasts heavy state intervention (Youwei) with Laissez-faire (Wuwei). Uses a Yin-Yang toggle UI.
+        5. "Modern Antidote" (Sec 4): Connects Daoism to today's "Involution" (内卷) and "Lying Flat" (躺平), analyzing them as rational Daoist survival strategies in economic winters.
+    -->
+    
+    <!-- Visualization & Content Choices:
+        1. Mean Reversion -> Goal: Show boom/bust cycles -> Sine Wave Line Chart (Chart.js) -> Maps phases of "Extreme Control (Legalist/Failure)" followed by "Deregulation (Daoist/Recovery)".
+        2. Water Strategy -> Goal: Explain soft power -> CSS Floating Cards -> Gentle animations, avoiding harsh lines or SVGs.
+        3. Wuwei vs Youwei -> Goal: Compare governance styles -> Interactive Toggle (JS) -> Switches content between interventionist and deregulated states.
+        4. Modern Psychology -> Goal: Contextualize social trends -> Tabbed Grid -> Connects ancient philosophy to current youth/corporate behavior.
+        CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. Unicode is used for iconography.
+    -->
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;700&display=swap');
+
+        body {
+            background-color: #f8fafc; /* Very light slate */
+            color: #172554; /* Deep blue/black */
+            font-family: 'Noto Serif SC', 'PingFang SC', serif;
+            scroll-behavior: smooth;
+            /* Mist effect background */
+            background-image: radial-gradient(circle at 50% 0%, #e0f2fe 0%, transparent 70%),
+                              radial-gradient(circle at 0% 100%, #f0fdfa 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        h1, h2, h3, h4, .font-sans {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        /* Mandatory Chart Container Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+
+        /* Interactive Elements */
+        .water-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(15, 118, 110, 0.2);
+            border-radius: 1rem;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .water-card:hover {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 20px 40px -10px rgba(15, 118, 110, 0.15);
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(15, 118, 110, 0.5);
+        }
+
+        .dao-tab {
+            transition: all 0.3s ease;
+            color: #64748b;
+        }
+        .dao-tab.active {
+            color: #0f766e; /* Deep Teal */
+            border-bottom: 2px solid #0f766e;
+            font-weight: bold;
+        }
+
+        /* Yin Yang Toggle Button */
+        .yy-toggle {
+            position: relative;
+            width: 120px;
+            height: 50px;
+            background: #cbd5e1;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.4s;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .yy-toggle::before {
+            content: "有为";
+            position: absolute;
+            left: 15px;
+            top: 12px;
+            font-family: 'PingFang SC', sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            color: #64748b;
+            transition: 0.4s;
+        }
+        .yy-toggle::after {
+            content: "无为";
+            position: absolute;
+            right: 15px;
+            top: 12px;
+            font-family: 'PingFang SC', sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+            transition: 0.4s;
+            opacity: 0;
+        }
+        .yy-slider {
+            position: absolute;
+            height: 42px;
+            width: 42px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            border-radius: 50%;
+            transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        
+        .yy-toggle.active { background: #0f766e; }
+        .yy-toggle.active::before { opacity: 0; }
+        .yy-toggle.active::after { opacity: 1; }
+        .yy-toggle.active .yy-slider { transform: translateX(70px); }
+
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+    </style>
+</head>
+<body class="antialiased selection:bg-teal-900 selection:text-teal-100">
+
+    <!-- Navigation -->
+    <nav class="bg-white/70 backdrop-blur-md text-slate-800 sticky top-0 z-50 border-b border-slate-200 font-sans shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold tracking-widest flex items-center gap-2">
+                <span class="text-teal-600 text-2xl">☯️</span> <span>文明减震器：道家</span>
+                <span class="text-slate-400 text-sm font-normal hidden md:inline-block ml-2 border-l border-slate-300 pl-2">文明透视 · 卷三 · 专题报告</span>
+            </div>
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#cycle" class="hover:text-teal-600 transition">周期与均值回归</a>
+                <a href="#water" class="hover:text-teal-600 transition">水之战略</a>
+                <a href="#wuwei" class="hover:text-teal-600 transition">无为而治</a>
+                <a href="#modernity" class="hover:text-teal-600 transition">现代抗抑郁剂</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative py-28 px-4 overflow-hidden border-b border-slate-200">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div class="inline-block bg-teal-50 border border-teal-200 text-teal-700 px-4 py-1.5 rounded-full text-xs font-bold mb-6 tracking-widest font-sans uppercase">
+                STRATEGIC ELASTICITY & SURVIVAL
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-8 leading-tight text-slate-900">
+                道家老庄：<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">中国文明的战略弹性与柔性底盘</span>
+            </h1>
+            <p class="text-lg text-slate-600 leading-relaxed mt-6 font-serif max-w-3xl mx-auto">
+                儒家教人如何“入世”建功立业，法家教人如何“驭世”驾驭权力。但这两种系统都是高度紧绷的，一旦遇到经济崩溃或王朝末年，极易折断。<strong>道家（老庄思想）则是教人在绝境中如何“退守”、“存续”与“顺势而为”</strong>。它是中国人刻在骨子里的均值回归算法，是防止整个民族在极度内卷中彻底发疯的文化减震器。
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-16 space-y-32">
+
+        <!-- Section 1: Cyclical Reversion (反者道之动) -->
+        <section id="cycle" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-teal-600 rounded-full"></div>
+                <h2 class="text-3xl font-bold text-slate-900">一、 周期定律：“反者道之动”与均值回归</h2>
+            </div>
+            <p class="text-slate-600 mb-8 max-w-4xl text-lg font-serif">
+                《道德经》云：“反者道之动”。意思是，任何事物发展到了极点，必然走向它的反面。这是一种极其深刻的<strong>宏观周期思维</strong>。中国历史上的伟大复兴，往往是在极致的高压崩溃后，利用道家思想进行“休养生息”才得以实现的。
+            </p>
+
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-slate-100">
+                <h3 class="text-lg font-bold text-center mb-6 text-slate-800 font-sans">大历史周期中的治国逻辑切换 (概念模型)</h3>
+                <div class="chart-container">
+                    <canvas id="cycleChart"></canvas>
+                </div>
+                
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 font-serif">
+                    <div class="p-5 bg-red-50/50 rounded-xl border border-red-100">
+                        <h4 class="font-bold text-red-800 mb-2 font-sans flex items-center gap-2"><span class="text-xl">🔥</span> 阳极 (法家/儒家高压期)</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            如秦朝末年、隋朝末年。国家不断加码，滥用民力修长城、开运河、连年征战。系统绷到极点，最终引发大起义，社会总资产清零。这在经济学上对应着<strong>过度杠杆化和产能过剩引发的硬着陆</strong>。
+                        </p>
+                    </div>
+                    <div class="p-5 bg-teal-50/50 rounded-xl border border-teal-100">
+                        <h4 class="font-bold text-teal-800 mb-2 font-sans flex items-center gap-2"><span class="text-xl">🌊</span> 阴复 (道家黄老之学休养期)</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            如汉初“文景之治”、唐初“贞观之治”。面对残破的经济，统治者主动采用道家的“黄老之学”，<strong>轻徭薄赋、与民休息、放松管制 (Deregulation)</strong>。社会在极低的干预下，依靠民间的自发秩序迅速恢复元气。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: The Water Strategy (上善若水) -->
+        <section id="water" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-cyan-600 rounded-full"></div>
+                <h2 class="text-3xl font-bold text-slate-900">二、 弱势生存法：“上善若水”的不对称战略</h2>
+            </div>
+            <p class="text-slate-600 mb-8 max-w-4xl text-lg font-serif">
+                道家崇尚“水”和“雌性/婴儿”。这绝不是软弱，而是一种在力量处于绝对劣势时，如何<strong>避免正面硬刚、保存实力、最终反客为主的“不对称博弈战略”</strong>。
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 font-sans">
+                <!-- Card 1 -->
+                <div class="water-card p-8">
+                    <div class="text-4xl mb-4 text-cyan-600">💧</div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">避其锋芒，处众人之所恶</h3>
+                    <div class="h-0.5 w-10 bg-cyan-200 mb-4"></div>
+                    <p class="text-sm text-slate-600 font-serif leading-relaxed">
+                        水总是流向最低处（低姿态）。在商业战略中，这意味着<strong>避开巨头厮杀的“红海”</strong>，进入别人看不上的边缘市场或下沉市场（所谓“处众人之所恶”），在暗中积蓄力量。拼多多的早期崛起，就是典型的道家“下沉如水”的战略。
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="water-card p-8">
+                    <div class="text-4xl mb-4 text-teal-600">🌪️</div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">柔弱胜刚强</h3>
+                    <div class="h-0.5 w-10 bg-teal-200 mb-4"></div>
+                    <p class="text-sm text-slate-600 font-serif leading-relaxed">
+                        牙齿坚硬但容易脱落，舌头柔软却能陪伴终生。在企业出海或地缘博弈中，<strong>“不争”不代表放弃，而是不作无谓的直接对抗</strong>。面对美国的科技封锁，中国采用“曲线救国”、通过东盟等第三方市场进行产能输出（如我们在第五期提到的），就是以柔克刚的体现。
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="water-card p-8">
+                    <div class="text-4xl mb-4 text-blue-500">🕳️</div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">无用之用，方为大用</h3>
+                    <div class="h-0.5 w-10 bg-blue-200 mb-4"></div>
+                    <p class="text-sm text-slate-600 font-serif leading-relaxed">
+                        庄子认为，笔直的树木最先被砍伐（出头鸟），而长得歪歪扭扭的树却能安享天年。在极其凶险的权力斗争或严打周期中，<strong>主动“示弱”、剥离核心资产、甚至展现出一定的“无用性”</strong>，是民营企业集团或高级官僚安全着陆的最高保命哲学。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Wuwei Governance (无为而治) -->
+        <section id="wuwei" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-slate-800 rounded-full"></div>
+                <h2 class="text-3xl font-bold text-slate-900">三、 管理的终极境界：“无为而治”</h2>
+            </div>
+            <p class="text-slate-600 mb-8 max-w-4xl text-lg font-serif">
+                “治大国，若烹小鲜。”（治理大国就像煎小鱼，翻动得太频繁，鱼就碎了）。<strong>无为并不是什么都不做，而是不妄为，尊重系统的自发秩序（Spontaneous Order）。</strong>
+            </p>
+
+            <div class="bg-white p-10 rounded-3xl shadow-xl border border-slate-100 flex flex-col items-center">
+                <!-- Interactive Toggle -->
+                <div class="mb-10 flex flex-col items-center">
+                    <span class="text-sm text-slate-400 mb-3 font-sans">点击切换系统管理状态</span>
+                    <div class="yy-toggle" id="govToggle" onclick="toggleGovernance()">
+                        <div class="yy-slider" id="govSlider">⚙️</div>
+                    </div>
+                </div>
+
+                <!-- Content Area -->
+                <div class="w-full max-w-4xl relative min-h-[250px] font-sans">
+                    
+                    <!-- Youwei (Active) State -->
+                    <div id="state-youwei" class="absolute inset-0 transition-all duration-500 transform opacity-100 scale-100">
+                        <div class="bg-slate-50 border-2 border-slate-300 p-8 rounded-2xl flex flex-col md:flex-row gap-8 items-center">
+                            <div class="text-6xl animate-spin" style="animation-duration: 3s;">⚙️</div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-800 mb-3">有为 (Interventionist) : 乱作为与合成谬误</h3>
+                                <p class="text-slate-600 leading-relaxed font-serif text-sm">
+                                    对应于现代政府的“产业政策一刀切”或企业的“过度微观管理（Micromanagement）”。<br><br>
+                                    <strong>特征：</strong> 各级部门频繁出台KPI、朝令夕改。虽然初衷是好的，但由于系统过于复杂，各项政策在执行中互相冲突（合成谬误）。比如前几年对教培、互联网、房地产的叠加式重拳出击，导致市场信心急剧收缩。<strong>“天下多忌讳，而民弥贫；法物滋彰，而盗贼多有。”</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wuwei (Daoist) State -->
+                    <div id="state-wuwei" class="absolute inset-0 transition-all duration-500 transform opacity-0 scale-95 pointer-events-none">
+                        <div class="bg-teal-50 border-2 border-teal-500 p-8 rounded-2xl flex flex-col md:flex-row gap-8 items-center shadow-[0_0_30px_rgba(15,118,110,0.15)]">
+                            <div class="text-6xl text-teal-600">🌱</div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-teal-900 mb-3">无为 (Laissez-Faire) : 自发秩序的生长</h3>
+                                <p class="text-teal-800/80 leading-relaxed font-serif text-sm">
+                                    对应于现代经济学中的“市场原教旨主义”或“负面清单管理”。<br><br>
+                                    <strong>特征：</strong> 决策者只设定最基础的底线规则（道），然后把手拿开，停止干预。容忍一定的混乱，让市场主体和员工基于自身利益去试错和创新。中国改革开放初期允许包产到户、允许乡镇企业野蛮生长，本质上就是国家放弃“有为的指令计划”，退回到了道家的“无为而治”。<strong>“我无为，而民自化；我好静，而民自正。”</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Modern Comfort -->
+        <section id="modernity" class="scroll-mt-24 mb-16">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-slate-400 rounded-full"></div>
+                <h2 class="text-3xl font-bold text-slate-900">四、 时代解药：“躺平”作为一种道家防御机制</h2>
+            </div>
+            <p class="text-slate-600 mb-8 max-w-4xl text-lg font-serif">
+                我们曾在第六期探讨过当代青年的“极度内卷”与“躺平”。如果儒家是教人如何在内卷中拼搏，那么道家则提供了一个极其高维的心理学解药：<strong>既然规则是荒谬的，那么退出游戏就是最理性的选择</strong>。
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 font-serif">
+                
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center gap-3 mb-4 font-sans">
+                        <div class="bg-blue-100 text-blue-600 p-2 rounded-lg text-xl">🛋️</div>
+                        <h3 class="text-xl font-bold text-slate-800">“躺平”：非暴力的不合作运动</h3>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                        庄子说：“知其不可奈何而安之若命”。当阶层固化、房价高不可攀、努力工作并不能带来相应的财富增长时（即儒家的奋斗契约破产），年轻人选择“低欲望、不买房、不结婚”。这在西方可能被视为颓废，但在中国文化语境中，这是<strong>退回到道家的心理防线，通过降低自身的能量消耗（降低期望值），来抵御外界的高压吸血</strong>。
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center gap-3 mb-4 font-sans">
+                        <div class="bg-amber-100 text-amber-600 p-2 rounded-lg text-xl">💰</div>
+                        <h3 class="text-xl font-bold text-slate-800">企业的“冬眠战略”</h3>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                        在当前的经济寒冬（我们在第四期提到的资产负债表衰退期），最危险的企业往往是那些试图逆势扩张（强行有为）的企业。聪明的企业家正在运用道家的智慧：<strong>现金为王、裁减边缘业务、停止一切非必要的投资（无为）</strong>。这正是老子所说的：“多言数穷，不如守中”。熬过漫长的冬天，活着就是最大的胜利。
+                    </p>
+                </div>
+
+                <div class="md:col-span-2 bg-gradient-to-r from-teal-900 to-slate-900 text-teal-100 p-8 rounded-xl shadow-2xl flex items-start gap-4">
+                    <div class="text-4xl mt-1 opacity-80">🍃</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2 font-sans">文化战略收束洞见</h3>
+                        <p class="text-sm leading-relaxed opacity-90">
+                            至此，我们完整拼凑了中国古代治国理政的最高公式：<strong>“儒表法里，道本佛末”</strong>。<br><br>
+                            顺境时，国家用<strong>儒家</strong>的道德画大饼，用<strong>法家</strong>的KPI和严刑峻法驱动社会高速扩张；<br>
+                            逆境时，无论是国家还是个体，都会迅速切换到底层的<strong>道家</strong>系统，通过“无为而治”和“躺平低耗”来熬过冰河期。<br><br>
+                            <strong>理解了这个三位一体的循环系统，有助于把握中国宏观政策周期切换的“文化罗盘”。当观察到官方政策开始从“强监管（法）”向“稳预期、促消费、不折腾（道）”转变时，即可判断历史的均值回归再度启动。</strong>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#f8fafc] text-slate-400 py-10 text-center border-t border-slate-200 font-sans mt-20">
+        <div class="max-w-4xl mx-auto px-4">
+            <p class="font-bold text-slate-500 tracking-wider">中华文明源代码解码计划 · 道家卷 · 专题报告</p>
+            <p class="mt-3 text-xs leading-relaxed max-w-2xl mx-auto opacity-70 font-serif">
+                道家不仅是出世的隐学，更是极高维度的帝王之学与生存博弈论。善战者，立于不败之地，而不失敌之败也。
+            </p>
+            <p class="mt-4 text-xs">© 2026 Cultural Strategy Intelligence</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Toggle Logic for Wuwei vs Youwei
+        let isWuwei = false;
+        function toggleGovernance() {
+            const toggleBtn = document.getElementById('govToggle');
+            const slider = document.getElementById('govSlider');
+            const stateYouwei = document.getElementById('state-youwei');
+            const stateWuwei = document.getElementById('state-wuwei');
+
+            isWuwei = !isWuwei;
+
+            if (isWuwei) {
+                toggleBtn.classList.add('active');
+                slider.innerText = '🌱';
+                
+                // Hide Youwei
+                stateYouwei.classList.remove('opacity-100', 'scale-100');
+                stateYouwei.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+                
+                // Show Wuwei
+                stateWuwei.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+                stateWuwei.classList.add('opacity-100', 'scale-100');
+            } else {
+                toggleBtn.classList.remove('active');
+                slider.innerText = '⚙️';
+                
+                // Show Youwei
+                stateYouwei.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+                stateYouwei.classList.add('opacity-100', 'scale-100');
+                
+                // Hide Wuwei
+                stateWuwei.classList.remove('opacity-100', 'scale-100');
+                stateWuwei.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+            }
+        }
+
+        // Initialize Charts when DOM loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Global Chart config for zen theme
+            Chart.defaults.font.family = "'PingFang SC', 'Microsoft YaHei', sans-serif";
+            Chart.defaults.color = '#64748b'; // slate-500
+            Chart.defaults.borderColor = '#e2e8f0'; // slate-200 grid lines
+
+            // --- Sine Wave Chart: Dynastic/Economic Cycles ---
+            const ctxCycle = document.getElementById('cycleChart').getContext('2d');
+            
+            // Generate Sine Wave Data
+            const labels = [];
+            const dataPoints = [];
+            for (let i = 0; i <= 100; i++) {
+                labels.push(i);
+                // Sine wave formula to create smooth peaks and troughs
+                dataPoints.push(Math.sin((i / 100) * Math.PI * 2) * 50 + 50); 
+            }
+
+            new Chart(ctxCycle, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: '国家干预度 / 社会承载力',
+                            data: dataPoints,
+                            borderColor: '#0f766e', // Teal 700
+                            backgroundColor: 'rgba(15, 118, 110, 0.1)',
+                            borderWidth: 3,
+                            pointRadius: 0, // Hide points for smooth wave
+                            fill: true,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { enabled: false }, // Disable generic tooltip to focus on conceptual zones
+                        annotation: {
+                            // Note: Annotations usually require chartjs-plugin-annotation, 
+                            // but we can achieve conceptual understanding via the axes labels and the surrounding UI.
+                        }
+                    },
+                    scales: {
+                        x: { 
+                            grid: { display: false },
+                            ticks: { display: false },
+                            title: { display: true, text: '时间轴 (历史周期迭代)', color: '#94a3b8' }
+                        },
+                        y: {
+                            min: 0,
+                            max: 100,
+                            grid: { borderDash: [5, 5] },
+                            ticks: {
+                                callback: function(value) {
+                                    if(value === 90) return '高压极限 (法家崩盘)';
+                                    if(value === 50) return '儒家常态平衡';
+                                    if(value === 10) return '低压底谷 (道家复苏)';
+                                    return '';
+                                },
+                                color: '#475569',
+                                font: { family: 'serif', weight: 'bold' }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

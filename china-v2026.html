@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>China OS v2026.1 - Data Integration & Macro Telemetry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap');
+
+        :root {
+            --os-bg: #f8f9fa;
+            --os-surface: #ffffff;
+            --os-accent: #1a1a1a;
+            --os-data-green: #2ecc71;
+            --os-data-red: #e74c3c;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--os-bg);
+            color: #1f2937;
+            overflow-x: hidden;
+        }
+
+        .font-mono-os { font-family: 'Fira Code', monospace; }
+
+        /* Glassmorphism UI */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            margin: auto;
+        }
+
+        .sync-animation {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+
+        /* Scanline effect for OS feel */
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 0, 0, 0.02);
+            position: absolute;
+            z-index: 10;
+            top: 0;
+            animation: scan 8s linear infinite;
+        }
+
+        @keyframes scan {
+            from { top: 0; }
+            to { top: 100%; }
+        }
+
+        /* Data Jitter Warning */
+        .data-jitter-warning {
+            animation: jitterPulse 1.5s ease-in-out infinite;
+        }
+        @keyframes jitterPulse {
+            0%, 100% { opacity: 1; border-color: #e74c3c; }
+            50% { opacity: 0.9; border-color: #c0392b; }
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-12">
+    <div class="scanline"></div>
+
+    <!-- System Header -->
+    <header class="glass-panel sticky top-0 z-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <div class="w-8 h-8 bg-black rounded-sm flex items-center justify-center">
+                    <span class="text-white font-bold text-xs">CN</span>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold tracking-tight">China OS <span class="text-xs font-mono-os opacity-50">CORE_EXT_v2026.1</span></h1>
+                    <div class="flex items-center space-x-2 text-[10px] uppercase tracking-widest text-gray-400">
+                        <span id="sync-status" class="text-green-500">● 数据已同步 (NBS/WB)</span>
+                        <span>|</span>
+                        <span id="timestamp">2026-02-16 16:48:42</span>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="hidden md:flex space-x-1">
+                <button onclick="switchTab('telemetry')" class="px-4 py-2 text-xs font-bold uppercase hover:bg-gray-100 rounded transition" id="tab-telemetry">Telemetry</button>
+                <button onclick="switchTab('registry')" class="px-4 py-2 text-xs font-bold uppercase hover:bg-gray-100 rounded transition" id="tab-registry">External Registry</button>
+                <button onclick="switchTab('risk')" class="px-4 py-2 text-xs font-bold uppercase hover:bg-gray-100 rounded transition" id="tab-risk">Risk Profile</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Dashboard Hero -->
+        <div id="telemetry-view" class="space-y-6">
+            <!-- Data Jitter Warning (CompareAndAudit) -->
+            <div id="data-jitter-warning" class="hidden glass-panel p-4 rounded-xl border-2 border-red-500 bg-red-50 data-jitter-warning">
+                <p class="font-mono-os font-bold text-red-700 text-sm">⚠ WARNING: Data_Jitter_Detected</p>
+                <p class="text-xs text-red-600 mt-1">NBS 与 WB GDP 增速差异超过 1% 阈值。建议执行交叉校验。</p>
+                <p id="jitter-detail" class="text-xs text-gray-600 mt-1 font-mono-os"></p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Data Source Card: NBS -->
+                <div class="glass-panel p-6 rounded-xl border-l-4 border-black">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-[10px] font-bold text-gray-400 uppercase">Local Registry (NBS)</span>
+                        <div class="h-2 w-2 rounded-full bg-green-500 sync-animation"></div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-500">季度 GDP 增速</span>
+                            <span id="nbs-gdp" class="font-mono-os font-bold">5.2%</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-500">CPI 指数</span>
+                            <span id="nbs-cpi" class="font-mono-os font-bold">0.3%</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-500">制造业 PMI</span>
+                            <span id="nbs-pmi" class="font-mono-os font-bold">50.8</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Source Card: World Bank -->
+                <div class="glass-panel p-6 rounded-xl border-l-4 border-blue-500">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-[10px] font-bold text-gray-400 uppercase">Global Peer (World Bank)</span>
+                        <div class="h-2 w-2 rounded-full bg-blue-500"></div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-500">预期年增长</span>
+                            <span id="wb-gdp" class="font-mono-os font-bold text-blue-600">4.5%</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-500">人均 GNI (Atlas)</span>
+                            <span id="wb-gni" class="font-mono-os font-bold">$12,850</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-500">数字经济占比</span>
+                            <span id="wb-digital" class="font-mono-os font-bold">41.5%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Source Card: System Entropy -->
+                <div class="glass-panel p-6 rounded-xl border-l-4 border-red-500">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-[10px] font-bold text-gray-400 uppercase">System Entropy (Risk)</span>
+                        <div class="h-2 w-2 rounded-full bg-red-500"></div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-500">人口抚养比</span>
+                            <span id="risk-dependency" class="font-mono-os font-bold text-red-600">46.2%</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-500">宏观杠杆率</span>
+                            <span id="risk-leverage" class="font-mono-os font-bold text-red-600">287%</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-500">碳排放强度</span>
+                            <span id="risk-carbon" class="font-mono-os font-bold text-green-600">-3.2%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Major Visualization -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="glass-panel p-8 rounded-2xl">
+                    <h3 class="text-sm font-bold uppercase tracking-widest mb-6 flex items-center">
+                        <span class="w-2 h-4 bg-black mr-2"></span> 系统吞吐量对比: NBS vs WB
+                    </h3>
+                    <div class="chart-container">
+                        <canvas id="gdpComparisonChart"></canvas>
+                    </div>
+                </div>
+                <div class="glass-panel p-8 rounded-2xl">
+                    <h3 class="text-sm font-bold uppercase tracking-widest mb-6 flex items-center">
+                        <span class="w-2 h-4 bg-blue-500 mr-2"></span> 结构性性能分析 (Structural Performance)
+                    </h3>
+                    <div class="chart-container">
+                        <canvas id="structureChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Registry View (Details) -->
+        <div id="registry-view" class="hidden space-y-6">
+            <div class="glass-panel p-8 rounded-2xl">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-xl font-bold italic">External_Database_Lookup</h2>
+                    <div class="flex space-x-2">
+                        <span class="px-3 py-1 bg-gray-100 text-[10px] font-bold rounded">SOURCE: World Bank API</span>
+                        <span id="registry-sync-time" class="px-3 py-1 bg-gray-100 text-[10px] font-bold rounded">LAST_SYNC: --</span>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left font-mono-os text-xs">
+                        <thead>
+                            <tr class="border-b border-gray-100">
+                                <th class="pb-4 text-gray-400">INDICATOR_ID</th>
+                                <th class="pb-4 text-gray-400">DESCRIPTION</th>
+                                <th class="pb-4 text-gray-400">VALUE (CHINA)</th>
+                                <th class="pb-4 text-gray-400">WORLD_AVG</th>
+                                <th class="pb-4 text-gray-400">STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="registry-table-body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Risk View -->
+        <div id="risk-view" class="hidden space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="glass-panel p-8 rounded-2xl">
+                    <h3 class="text-lg font-bold mb-4">系统"缓冲区溢出"风险 (Aging Risk)</h3>
+                    <p class="text-sm text-gray-500 mb-6">该图表展示了根据世界银行人口预测，系统在 2025-2050 年间的"内存泄露"风险，主要体现为劳动适龄人口减少。</p>
+                    <div class="chart-container">
+                        <canvas id="agingRiskChart"></canvas>
+                    </div>
+                </div>
+                <div class="glass-panel p-8 rounded-2xl flex flex-col justify-center">
+                    <div class="space-y-6">
+                        <div class="border-l-4 border-red-500 pl-4">
+                            <h4 class="font-bold text-red-600">DEBT_OVERLOAD_EXCEPTION</h4>
+                            <p class="text-xs text-gray-500">宏观杠杆率超出预警线。当前内核动作：分批置换地方债，降低系统主频风险。</p>
+                        </div>
+                        <div class="border-l-4 border-amber-500 pl-4">
+                            <h4 class="font-bold text-amber-600">PROPERTY_RESOURCE_LEAK</h4>
+                            <p class="text-xs text-gray-500">资产负债表衰退风险。正在执行"白名单"注入补丁，防止系统性坏账死锁。</p>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <h4 class="font-bold text-green-600">ENERGY_REFACORING_COMPLETE</h4>
+                            <p class="text-xs text-gray-500">清洁能源子系统运行良好。光伏/风电装机容量已突破系统冗余，有效对冲资源熵增。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Terminal Prompt Overlay -->
+    <div id="terminal-overlay" class="fixed bottom-4 right-4 w-72 glass-panel p-4 rounded-lg shadow-2xl border border-gray-300">
+        <div class="flex items-center space-x-2 mb-2">
+            <div class="w-2 h-2 rounded-full bg-red-400"></div>
+            <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
+            <div class="w-2 h-2 rounded-full bg-green-400"></div>
+            <span class="text-[10px] font-mono-os text-gray-400">china-os-shell --sync</span>
+        </div>
+        <div id="terminal-output" class="font-mono-os text-[10px] text-gray-600 leading-tight">
+            <p>> Initializing...</p>
+        </div>
+    </div>
+
+    <script>
+        // Registry indicators (reference for fetch simulation)
+        const REGISTRY_INDICATORS = [
+            { id: 'NY.GDP.MKTP.KD.ZG', desc: 'GDP Growth (annual %)', key: 'gdp' },
+            { id: 'FP.CPI.TOTL.ZG', desc: 'Consumer Price Index (annual %)', key: 'cpi' },
+            { id: 'SP.POP.DPND.OL', desc: 'Age Dependency Ratio, Old (% working)', key: 'dependency' },
+            { id: 'TX.VAL.TECH.MF.ZS', desc: 'High-tech exports (% of mfg)', key: 'techExport' },
+            { id: 'EG.ELC.RNEW.ZS', desc: 'Renewable electricity output (%)', key: 'renewable' }
+        ];
+
+        const state = {
+            currentTab: 'telemetry',
+            isSyncing: false,
+            data: {
+                nbs: { gdp: [], labels: [], latestGdp: 0 },
+                wb: { gdp: [], labels: [], latestGdp: 0 },
+                registry: []
+            },
+            lastSyncTime: null
+        };
+
+        const charts = {};
+
+        /** 模拟 fetch 数据拉取：NBS + World Bank 风格 API */
+        async function fetchSimulatedData() {
+            const term = document.getElementById('terminal-output');
+            if (term) term.innerHTML = '';
+            appendTerminal('Connecting to stats.gov.cn...');
+            await delay(400);
+
+            appendTerminal('> 200 OK. Fetching NBS_DATA_2026_Q1.');
+            await delay(500);
+
+            const nbsRes = await mockFetchNBS();
+            state.data.nbs = nbsRes;
+
+            appendTerminal('> Connecting to api.worldbank.org...');
+            await delay(400);
+
+            appendTerminal('> Authenticated. Pulling GNI_PER_CAPITA.');
+            await delay(500);
+
+            const wbRes = await mockFetchWorldBank();
+            state.data.wb = wbRes;
+
+            appendTerminal('> Running cross-validation...');
+            await delay(300);
+
+            const registryRes = await mockFetchRegistry();
+            state.data.registry = registryRes;
+            state.lastSyncTime = new Date();
+
+            appendTerminal('> System Ready. All metrics sync\'d.', true);
+            document.getElementById('sync-status').innerText = '● 数据已同步 (NBS/WB)';
+            document.getElementById('sync-status').className = 'text-green-500';
+
+            updateDataCards();
+            runCompareAndAudit();
+            if (state.currentTab === 'telemetry') initTelemetryCharts();
+            if (state.currentTab === 'registry') renderRegistryTable();
+        }
+
+        function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+        function appendTerminal(text, isSuccess = false) {
+            const el = document.getElementById('terminal-output');
+            const p = document.createElement('p');
+            p.textContent = text.startsWith('>') ? text : '> ' + text;
+            if (isSuccess) { p.classList.add('text-green-600', 'font-bold'); }
+            el.appendChild(p);
+            el.scrollTop = el.scrollHeight;
+        }
+
+        /** 模拟 NBS API 响应 */
+        async function mockFetchNBS() {
+            await delay(200);
+            const base = [5.1, 5.3, 5.0, 5.2, 5.3];
+            const jitter = () => (Math.random() - 0.5) * 1.2;
+            const gdp = base.map(v => Math.round((v + jitter()) * 10) / 10);
+            return {
+                gdp,
+                labels: ['2023 Q4', '2024 Q1', '2024 Q2', '2024 Q3', '2024 Q4'],
+                latestGdp: gdp[gdp.length - 1],
+                cpi: (0.2 + Math.random() * 0.3).toFixed(1),
+                pmi: (49.5 + Math.random() * 2.5).toFixed(1)
+            };
+        }
+
+        /** 模拟 World Bank API 响应 */
+        async function mockFetchWorldBank() {
+            await delay(200);
+            const base = [4.8, 5.0, 4.6, 4.8, 4.9];
+            const jitter = () => (Math.random() - 0.5) * 1.4;
+            const gdp = base.map(v => Math.round((v + jitter()) * 10) / 10);
+            return {
+                gdp,
+                labels: ['2023 Q4', '2024 Q1', '2024 Q2', '2024 Q3', '2024 Q4'],
+                latestGdp: gdp[gdp.length - 1],
+                gni: (12200 + Math.floor(Math.random() * 1500)).toString(),
+                digital: (39 + Math.random() * 5).toFixed(1)
+            };
+        }
+
+        /** 模拟 Registry 拉取（基于 indicators） */
+        async function mockFetchRegistry() {
+            await delay(150);
+            return REGISTRY_INDICATORS.map(ind => {
+                const val = Math.random();
+                let cn = '', avg = '', status = 'OPTIMAL';
+                switch (ind.key) {
+                    case 'gdp': cn = (4.5 + val * 1.2).toFixed(1) + '%'; avg = '3.1%'; status = val > 0.7 ? 'HIGH' : 'OPTIMAL'; break;
+                    case 'cpi': cn = (0.1 + val * 0.5).toFixed(1) + '%'; avg = '5.8%'; status = parseFloat(cn) < 1 ? 'LOW_DEF' : 'NORMAL'; break;
+                    case 'dependency': cn = (18 + val * 6).toFixed(1) + '%'; avg = '14.2%'; status = parseFloat(cn) > 20 ? 'CRITICAL' : 'NORMAL'; break;
+                    case 'techExport': cn = (25 + val * 12).toFixed(1) + '%'; avg = '18.5%'; status = 'OPTIMAL'; break;
+                    case 'renewable': cn = (28 + val * 8).toFixed(1) + '%'; avg = '28.2%'; status = 'UPGRADING'; break;
+                    default: cn = '-'; avg = '-';
+                }
+                return { ...ind, cn, avg, status };
+            });
+        }
+
+        /** CompareAndAudit: NBS vs WB GDP 差异超过 1% 时告警 */
+        function runCompareAndAudit() {
+            const nbsGdp = state.data.nbs.latestGdp;
+            const wbGdp = state.data.wb.latestGdp;
+            const diff = Math.abs(nbsGdp - wbGdp);
+            const threshold = 1.0;
+
+            const warningEl = document.getElementById('data-jitter-warning');
+            const detailEl = document.getElementById('jitter-detail');
+
+            if (diff > threshold) {
+                warningEl.classList.remove('hidden');
+                if (detailEl) detailEl.textContent = `NBS: ${nbsGdp}% | WB: ${wbGdp}% | Δ = ${diff.toFixed(1)}% (阈值 ${threshold}%)`;
+            } else {
+                warningEl.classList.add('hidden');
+                if (detailEl) detailEl.textContent = '';
+            }
+        }
+
+        function updateDataCards() {
+            const n = state.data.nbs, w = state.data.wb, r = state.data.registry;
+            setText('nbs-gdp', (n.latestGdp || n.gdp?.[n.gdp.length - 1] || 5.2) + '%');
+            setText('nbs-cpi', n.cpi ? n.cpi + '%' : '0.3%');
+            setText('nbs-pmi', n.pmi || '50.8');
+            setText('wb-gdp', (w.latestGdp || w.gdp?.[w.gdp.length - 1] || 4.5) + '%');
+            setText('wb-gni', w.gni ? '$' + w.gni : '$12,850');
+            setText('wb-digital', w.digital ? w.digital + '%' : '41.5%');
+            const dep = r.find(x => x.key === 'dependency');
+            if (dep) setText('risk-dependency', dep.cn);
+            const lev = r.find(x => x.key === 'gdp');
+            if (lev) setText('risk-leverage', '287%');
+            setText('risk-carbon', '-3.2%');
+        }
+
+        function setText(id, val) {
+            const el = document.getElementById(id);
+            if (el) el.textContent = val;
+        }
+
+        function switchTab(tabId) {
+            state.currentTab = tabId;
+            ['telemetry', 'registry', 'risk'].forEach(t => {
+                document.getElementById(`${t}-view`).classList.add('hidden');
+                document.getElementById(`tab-${t}`).classList.remove('bg-gray-100', 'text-black');
+            });
+            document.getElementById(`${tabId}-view`).classList.remove('hidden');
+            document.getElementById(`tab-${tabId}`).classList.add('bg-gray-100', 'text-black');
+
+            if (tabId === 'telemetry') initTelemetryCharts();
+            if (tabId === 'risk') initRiskCharts();
+            if (tabId === 'registry') renderRegistryTable();
+        }
+
+        function initTelemetryCharts() {
+            const nbs = state.data.nbs, wb = state.data.wb;
+            const labels = nbs.labels?.length ? nbs.labels : wb.labels || ['2023 Q4', '2024 Q1', '2024 Q2', '2024 Q3', '2024 Q4'];
+            const nbsData = nbs.gdp?.length ? nbs.gdp : [5.1, 5.3, 5.0, 5.2, 5.3];
+            const wbData = wb.gdp?.length ? wb.gdp : [4.8, 5.0, 4.6, 4.8, 4.9];
+
+            const ctx1 = document.getElementById('gdpComparisonChart')?.getContext('2d');
+            if (ctx1) {
+                if (charts.gdp) charts.gdp.destroy();
+                charts.gdp = new Chart(ctx1, {
+                    type: 'line',
+                    data: {
+                        labels,
+                        datasets: [
+                            { label: 'NBS (官方汇报)', data: nbsData, borderColor: '#1a1a1a', tension: 0.4, borderWidth: 3 },
+                            { label: 'WB (外部观测)', data: wbData, borderColor: '#3498db', borderDash: [5, 5], tension: 0.4 }
+                        ]
+                    },
+                    options: { maintainAspectRatio: false, scales: { y: { beginAtZero: false, min: 4 } } }
+                });
+            }
+
+            const ctx2 = document.getElementById('structureChart')?.getContext('2d');
+            if (ctx2) {
+                if (charts.struct) charts.struct.destroy();
+                charts.struct = new Chart(ctx2, {
+                    type: 'radar',
+                    data: {
+                        labels: ['制造业 (Manufacturing)', '数字经济 (Digital)', '消费 (Consumption)', '基建 (Infra)', '出口 (Export)', '绿色能源 (Green)'],
+                        datasets: [{
+                            label: '系统性能权重',
+                            data: [85, 75, 60, 90, 80, 70],
+                            backgroundColor: 'rgba(26, 26, 26, 0.1)',
+                            borderColor: '#1a1a1a',
+                            pointBackgroundColor: '#1a1a1a'
+                        }]
+                    },
+                    options: { maintainAspectRatio: false }
+                });
+            }
+        }
+
+        function initRiskCharts() {
+            const ctx = document.getElementById('agingRiskChart')?.getContext('2d');
+            if (!ctx) return;
+            if (charts.risk) charts.risk.destroy();
+            charts.risk = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['2025', '2030', '2035', '2040', '2045', '2050'],
+                    datasets: [{
+                        label: '劳动年龄人口占比预测 (%)',
+                        data: [63.2, 61.5, 58.4, 55.2, 52.1, 49.8],
+                        backgroundColor: '#e74c3c'
+                    }]
+                },
+                options: { maintainAspectRatio: false, scales: { y: { min: 40, max: 70 } } }
+            });
+        }
+
+        function renderRegistryTable() {
+            const tbody = document.getElementById('registry-table-body');
+            const data = state.data.registry?.length ? state.data.registry : REGISTRY_INDICATORS.map(ind => ({
+                ...ind,
+                cn: '-',
+                avg: '-',
+                status: 'PENDING'
+            }));
+
+            if (state.lastSyncTime) {
+                const sec = Math.floor((Date.now() - state.lastSyncTime) / 1000);
+                const el = document.getElementById('registry-sync-time');
+                if (el) el.textContent = `LAST_SYNC: ${sec}s ago`;
+            }
+
+            tbody.innerHTML = data.map(ind => `
+                <tr class="border-b border-gray-50 hover:bg-gray-50 transition">
+                    <td class="py-4 font-bold text-blue-600">${ind.id}</td>
+                    <td class="py-4 text-gray-600">${ind.desc}</td>
+                    <td class="py-4 font-bold">${ind.cn}</td>
+                    <td class="py-4 text-gray-400">${ind.avg}</td>
+                    <td class="py-4">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-bold ${ind.status === 'CRITICAL' ? 'bg-red-100 text-red-600' : ind.status === 'HIGH' ? 'bg-amber-100 text-amber-600' : 'bg-gray-100 text-gray-600'}">
+                            ${ind.status}
+                        </span>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        window.onload = () => {
+            document.getElementById('sync-status').innerText = '● 同步中...';
+            document.getElementById('sync-status').className = 'text-amber-500';
+            fetchSimulatedData();
+
+            setInterval(() => {
+                const el = document.getElementById('timestamp');
+                if (el) el.innerText = new Date().toISOString().replace('T', ' ').split('.')[0];
+            }, 1000);
+        };
+    </script>
+</body>
+</html>

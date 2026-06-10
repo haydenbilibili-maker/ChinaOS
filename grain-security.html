@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="大国粮仓：中国粮食安全深度调研。口粮安全、大豆依存、藏粮于地/技、大食物观与供应链重塑。">
+    <title>大国粮仓：中国粮食安全深度调研 | China OS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --emerald-deep: #064e3b;
+            --amber-grain: #d97706;
+            --stone-bg: #fafaf9;
+            --alert-red: #dc2626;
+        }
+        body {
+            background: linear-gradient(180deg, #fafaf9 0%, #f5f5f4 50%, #fafaf9 100%);
+            color: #292524;
+            font-family: 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+            scroll-behavior: smooth;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px rgba(6, 78, 59, 0.06);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container { height: 400px; }
+        }
+        .chart-mini {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            max-height: 250px;
+        }
+        .threat-card {
+            transition: all 0.3s ease;
+            border-top: 4px solid transparent;
+        }
+        .threat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            border-top-color: var(--amber-grain);
+        }
+        .strategy-tab {
+            transition: all 0.2s;
+        }
+        .strategy-tab.active {
+            background-color: var(--emerald-deep);
+            color: #fff;
+            font-weight: 700;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.12);
+        }
+        .fade-in {
+            animation: fadeIn 0.45s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-watermark {
+            position: absolute;
+            inset: 0;
+            opacity: 0.06;
+            font-size: clamp(8rem, 25vw, 14rem);
+            line-height: 1;
+            text-align: center;
+            pointer-events: none;
+            user-select: none;
+            top: -3rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="bg-emerald-900 text-stone-100 sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-2">
+            <div class="text-xl font-bold tracking-wider">
+                <span class="text-amber-400">▣</span> 大国粮仓
+                <span class="text-emerald-400 text-sm font-normal hidden md:inline ml-2">| 粮食安全 · 决策逻辑</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-4 text-sm font-medium">
+                <a href="china.html" class="text-amber-300 hover:text-amber-200 transition">← China OS</a>
+                <a href="#overview" class="hover:text-amber-400 transition hidden sm:inline">双重现实</a>
+                <a href="#vulnerability" class="hover:text-amber-400 transition hidden sm:inline">大豆困局</a>
+                <a href="#pressures" class="hover:text-amber-400 transition hidden sm:inline">系统性压力</a>
+                <a href="#strategies" class="hover:text-amber-400 transition hidden sm:inline">国家战略</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-emerald-800 text-stone-50 py-20 px-4 border-b-8 border-amber-600 relative overflow-hidden">
+        <div class="hero-watermark" aria-hidden="true">粮</div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div class="inline-block bg-amber-600 text-white px-3 py-1 rounded-full text-xs font-bold mb-4 tracking-widest">智库简报 · 结构化交互</div>
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-6">中国粮食安全：从「绝对够吃」到「结构性隐患」</h1>
+            <p class="text-lg md:text-xl text-emerald-100 leading-relaxed text-left md:text-center">
+                「悠悠万事，吃饭为大」。在全球地缘冲突加剧、极端天气频发的背景下，中国的粮食安全已不再仅仅是农业问题，而是国家战略安全的底座。本报告解构粮食体系的韧性与软肋，侧重物理约束与政策工具链。
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-12 space-y-24">
+
+        <section id="overview" class="scroll-mt-24">
+            <div class="border-l-4 border-emerald-800 pl-4 mb-8">
+                <h2 class="text-3xl font-bold text-stone-800">一、双重现实：口粮绝对安全与饲料粮高度依赖</h2>
+                <p class="text-stone-500 mt-2">中国以占世界约 9% 的耕地、6% 的淡水资源，养活了世界近 20% 的人口。但这背后存在严重的品种结构失衡：主粮依靠化肥与密植实现高自给，肉蛋奶成本却与海外大豆供应链深度绑定。</p>
+            </div>
+
+            <div class="glass-card p-6 md:p-10 rounded-xl">
+                <h3 class="text-xl font-bold mb-8 text-center text-stone-700">三大主粮 vs 大豆：自给率的结构落差（2023–2024 量级示意）</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                    <div>
+                        <div class="chart-mini"><canvas id="wheatChart"></canvas></div>
+                        <div class="text-center mt-2 font-bold text-stone-700">小麦（口粮）</div>
+                    </div>
+                    <div>
+                        <div class="chart-mini"><canvas id="riceChart"></canvas></div>
+                        <div class="text-center mt-2 font-bold text-stone-700">水稻（口粮）</div>
+                    </div>
+                    <div>
+                        <div class="chart-mini"><canvas id="cornChart"></canvas></div>
+                        <div class="text-center mt-2 font-bold text-stone-700">玉米（饲料/工业）</div>
+                    </div>
+                    <div>
+                        <div class="chart-mini"><canvas id="soyChart"></canvas></div>
+                        <div class="text-center mt-2 font-bold text-red-700">大豆（榨油/饲料）</div>
+                    </div>
+                </div>
+                <div class="mt-8 bg-amber-50/90 p-4 rounded-lg border border-amber-200 text-stone-700 text-sm">
+                    <strong>核心洞察：</strong>「中国人的饭碗主要装中国粮」在<strong>口粮（小麦、大米）</strong>上已高度实现，自给率量级常在 98% 以上。但随着膳食结构升级，作为豆粕主要来源的<strong>大豆</strong>自给率长期偏低，构成最大的结构性对外依赖。
+                </div>
+            </div>
+        </section>
+
+        <section id="vulnerability" class="scroll-mt-24">
+            <div class="border-l-4 border-amber-600 pl-4 mb-8">
+                <h2 class="text-3xl font-bold text-stone-800">二、核心软肋：大豆困局与「隐形水土流失」</h2>
+                <p class="text-stone-500 mt-2">中国年进口大豆约亿吨级。这不仅是农产品贸易，本质是间接进口海外土地与淡水资源的农业承载力。海上通道与产地集中度过高时，肉蛋奶价格体系对冲击高度敏感。</p>
+            </div>
+
+            <div class="glass-card p-6 md:p-8 rounded-xl">
+                <div class="chart-container">
+                    <canvas id="soyTrendChart"></canvas>
+                </div>
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-bold text-lg text-emerald-800 mb-2">为什么不完全自给大豆？</h4>
+                        <p class="text-sm text-stone-600">大豆属土地密集型作物。按现有单产粗算，若完全弥补进口量级需额外占用巨量耕地，与口粮与其他作物争地，形成<strong>两难权衡</strong>：扩豆则挤压玉米/小麦面积，威胁口粮与饲料玉米的底线布局。</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg text-emerald-800 mb-2">地缘与供应链集中度</h4>
+                        <p class="text-sm text-stone-600">进口来源曾长期集中于少数产区与航线。贸易摩擦、极端天气（如拉尼娜影响南美收成）或航道风险，均会放大价格波动与政策应对成本。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pressures" class="scroll-mt-24">
+            <div class="border-l-4 border-red-700 pl-4 mb-8">
+                <h2 class="text-3xl font-bold text-stone-800">三、逼近极限的系统性压力</h2>
+                <p class="text-stone-500 mt-2">除进口依赖外，本土农业面临资源禀赋与人口结构的双重约束，高投入、高消耗模式难以无限延续。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-card p-6 rounded-xl threat-card">
+                    <div class="text-2xl mb-4 font-mono text-amber-800">土</div>
+                    <h3 class="font-bold text-lg mb-2 text-stone-800">耕地红线承压</h3>
+                    <div class="h-1 w-10 bg-amber-500 mb-4"></div>
+                    <p class="text-sm text-stone-600">
+                        严守「18 亿亩耕地红线」同时，城镇化仍挤压优质耕地；地力透支、黑土地退化、南方酸化与中低产田占比较高，单产提升依赖农田质量与投入品效率。
+                    </p>
+                </div>
+                <div class="glass-card p-6 rounded-xl threat-card">
+                    <div class="text-2xl mb-4">💧</div>
+                    <h3 class="font-bold text-lg mb-2 text-stone-800">水资源错配</h3>
+                    <div class="h-1 w-10 bg-blue-500 mb-4"></div>
+                    <p class="text-sm text-stone-600">
+                        水资源「南多北少」与粮食生产重心北移并存，黄淮海等区长期超采地下水，农业用水约束逼近物理上限。
+                    </p>
+                </div>
+                <div class="glass-card p-6 rounded-xl threat-card">
+                    <div class="text-2xl mb-4">🧬</div>
+                    <h3 class="font-bold text-lg mb-2 text-stone-800">种业「卡脖子」隐忧</h3>
+                    <div class="h-1 w-10 bg-emerald-500 mb-4"></div>
+                    <p class="text-sm text-stone-600">
+                        水稻、小麦种源自给度高；玉米、大豆及高端蔬菜种质与跨国巨头在核心种源与生物技术路线上仍有差距，种子被称为农业的「芯片」。
+                    </p>
+                </div>
+                <div class="glass-card p-6 rounded-xl threat-card">
+                    <div class="text-2xl mb-4">👴</div>
+                    <h3 class="font-bold text-lg mb-2 text-stone-800">农业劳动力老龄化</h3>
+                    <div class="h-1 w-10 bg-stone-500 mb-4"></div>
+                    <p class="text-sm text-stone-600">
+                        青壮年外流使农业从业者年龄结构偏高；机械化缓解大田作业，丘陵与精细农业仍受人力断层制约。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="strategies" class="scroll-mt-24 mb-20">
+            <div class="border-l-4 border-emerald-800 pl-4 mb-8">
+                <h2 class="text-3xl font-bold text-stone-800">四、国家战略：破局与重构</h2>
+                <p class="text-stone-500 mt-2">决策层在「藏粮于地、藏粮于技」与全球供应链布局、大食物观之间组合施策。点击下方标签查看逻辑链。</p>
+            </div>
+
+            <div class="glass-card rounded-xl overflow-hidden">
+                <div class="flex flex-col md:flex-row border-b border-stone-200/80 bg-white/50">
+                    <button type="button" class="strategy-tab active flex-1 py-4 px-4 text-center text-stone-600 hover:bg-stone-50/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700" onclick="openStrategyTab('land', this)">
+                        <span class="block text-lg">⛰ 藏粮于地</span>
+                        <span class="text-xs font-normal mt-1 block">保数量与提质量</span>
+                    </button>
+                    <button type="button" class="strategy-tab flex-1 py-4 px-4 text-center text-stone-600 hover:bg-stone-50/80 border-t md:border-t-0 md:border-l border-stone-200/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700" onclick="openStrategyTab('tech', this)">
+                        <span class="block text-lg">🧬 藏粮于技</span>
+                        <span class="text-xs font-normal mt-1 block">种业与智慧农业</span>
+                    </button>
+                    <button type="button" class="strategy-tab flex-1 py-4 px-4 text-center text-stone-600 hover:bg-stone-50/80 border-t md:border-t-0 md:border-l border-stone-200/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700" onclick="openStrategyTab('global', this)">
+                        <span class="block text-lg">🚢 供应链重塑</span>
+                        <span class="text-xs font-normal mt-1 block">进口多元与大食物观</span>
+                    </button>
+                </div>
+
+                <div class="p-6 md:p-10 min-h-[300px] bg-white/40">
+                    <div id="land" class="tab-content fade-in block">
+                        <h3 class="text-2xl font-bold text-emerald-900 mb-4">藏粮于地：红线与高标准农田</h3>
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="flex-1 space-y-4 text-stone-700">
+                                <p><strong>底层逻辑：</strong>粮食的底座是土地；在总面积硬约束下，提高单产、抗灾与地力是主路径。</p>
+                                <ul class="list-disc pl-5 space-y-2 text-sm">
+                                    <li><strong>高标准农田：</strong>集中连片、旱涝保收，目标指向稳定产能与资源利用效率。</li>
+                                    <li><strong>黑土地保护：</strong>保护性耕作、秸秆还田等减缓退化。</li>
+                                    <li><strong>盐碱地综合利用：</strong>耐盐碱品种与工程改良并举，挖掘边际土地潜力。</li>
+                                </ul>
+                            </div>
+                            <div class="md:w-1/3 bg-emerald-50/90 p-4 rounded-lg flex flex-col justify-center items-center text-center border border-emerald-100">
+                                <div class="text-2xl mb-2">🚜</div>
+                                <div class="text-lg font-bold text-emerald-800">遏制「非农化」</div>
+                                <div class="text-emerald-800 font-bold mb-2">管控「非粮化」</div>
+                                <p class="text-xs text-stone-600">良田种粮，遥感与督查压实用途管制。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tech" class="tab-content fade-in hidden">
+                        <h3 class="text-2xl font-bold text-emerald-900 mb-4">藏粮于技：种业与农业现代化</h3>
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="flex-1 space-y-4 text-stone-700">
+                                <p><strong>底层逻辑：</strong>水土逼近极限时，全要素生产率提升主要靠科技与组织方式变革。</p>
+                                <ul class="list-disc pl-5 space-y-2 text-sm">
+                                    <li><strong>种业振兴：</strong>种质资源普查、育种攻关与产业化衔接；生物育种在合规框架下提升单产与抗性。</li>
+                                    <li><strong>间作套种等模式：</strong>如大豆玉米带状复合种植，在稳玉米前提下挖掘大豆面积。</li>
+                                    <li><strong>智能农机：</strong>北斗导航、无人机植保与无人农场，对冲劳动力短缺。</li>
+                                </ul>
+                            </div>
+                            <div class="md:w-1/3 bg-amber-50/90 p-4 rounded-lg flex flex-col justify-center items-center text-center border border-amber-100">
+                                <div class="text-2xl mb-2">🔬</div>
+                                <div class="text-lg font-bold text-amber-800">生物育种与单产天花板</div>
+                                <p class="text-xs text-stone-600 mt-2">转基因玉米、大豆产业化试点逐步扩区，属应对产量与成本约束的政策工具之一。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="global" class="tab-content fade-in hidden">
+                        <h3 class="text-2xl font-bold text-emerald-900 mb-4">供应链与大食物观</h3>
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="flex-1 space-y-4 text-stone-700">
+                                <p><strong>底层逻辑：</strong>承认完全自给不现实时，用来源多元化、海外布局与食物来源拓展分散风险。</p>
+                                <ul class="list-disc pl-5 space-y-2 text-sm">
+                                    <li><strong>进口多元化：</strong>降低对单一国家依赖，拓展南美、黑海、俄罗斯远东等来源。</li>
+                                    <li><strong>海外资产与物流：</strong>央企与贸易商在全球港口、仓储与贸易流向上的布局，增强议价与调度能力。</li>
+                                    <li><strong>大食物观：</strong>向森林、江河湖海、设施农业与新型蛋白拓展，减轻传统耕地单一压力。</li>
+                                </ul>
+                            </div>
+                            <div class="md:w-1/3 bg-stone-100/90 p-4 rounded-lg flex flex-col justify-center items-center text-center border border-stone-200">
+                                <div class="text-2xl mb-2">🌐</div>
+                                <div class="text-lg font-bold text-stone-800">大食物观</div>
+                                <p class="text-xs text-stone-600 mt-2">从单一谷物视角扩展到全资源谱系的食物供给安全。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-stone-900 text-stone-400 py-8 text-center text-sm">
+        <div class="max-w-4xl mx-auto px-4">
+            <p>粮食安全与决策逻辑 · 宏观趋势示意 · <a href="china.html" class="text-amber-500/90 hover:text-amber-400 underline underline-offset-2">China OS</a></p>
+            <p class="mt-2 text-xs">图表数据为反映趋势的概略估算或公开统计量级整理，用于战略分析演示，非精确统计原值引用。</p>
+        </div>
+    </footer>
+
+    <script>
+        function openStrategyTab(tabName, btn) {
+            document.querySelectorAll('.strategy-tab').forEach(function (b) { b.classList.remove('active'); });
+            document.querySelectorAll('.tab-content').forEach(function (c) {
+                c.classList.add('hidden');
+                c.classList.remove('block');
+            });
+            var panel = document.getElementById(tabName);
+            if (panel) {
+                panel.classList.remove('hidden');
+                panel.classList.add('block');
+            }
+            if (btn) btn.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            Chart.defaults.font.family = "'PingFang SC', 'Microsoft YaHei', sans-serif";
+            Chart.defaults.color = '#57534e';
+
+            function createDoughnut(ctxId, val, color) {
+                var el = document.getElementById(ctxId);
+                if (!el) return;
+                var ctx = el.getContext('2d');
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['自给', '缺口/进口'],
+                        datasets: [{
+                            data: [val, 100 - val],
+                            backgroundColor: [color, '#e5e5e5'],
+                            borderWidth: 0,
+                            cutout: '75%'
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: { enabled: false }
+                        },
+                        animation: { animateScale: true, animateRotate: true }
+                    },
+                    plugins: [{
+                        id: 'centerText_' + ctxId,
+                        afterDraw: function (chart) {
+                            var width = chart.width;
+                            var height = chart.height;
+                            var c = chart.ctx;
+                            c.save();
+                            var fontSize = (height / 100).toFixed(2);
+                            c.font = 'bold ' + fontSize + 'em sans-serif';
+                            c.textBaseline = 'middle';
+                            c.fillStyle = color;
+                            var text = val + '%';
+                            var textX = Math.round((width - c.measureText(text).width) / 2);
+                            var textY = height / 2;
+                            c.fillText(text, textX, textY);
+                            c.restore();
+                        }
+                    }]
+                });
+            }
+
+            createDoughnut('wheatChart', 99, '#d97706');
+            createDoughnut('riceChart', 99, '#d97706');
+            createDoughnut('cornChart', 95, '#059669');
+            createDoughnut('soyChart', 18, '#dc2626');
+
+            var trendEl = document.getElementById('soyTrendChart');
+            if (trendEl) {
+                new Chart(trendEl.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
+                        datasets: [
+                            {
+                                type: 'line',
+                                label: '国内大豆产量 (万吨)',
+                                data: [1215, 1237, 1360, 1528, 1595, 1810, 1960, 1640, 2028, 2084],
+                                borderColor: '#059669',
+                                backgroundColor: '#059669',
+                                borderWidth: 3,
+                                pointRadius: 4,
+                                tension: 0.3,
+                                yAxisID: 'y'
+                            },
+                            {
+                                type: 'bar',
+                                label: '大豆进口量 (万吨)',
+                                data: [7140, 8169, 8391, 9553, 8803, 8851, 10033, 9652, 9108, 9941],
+                                backgroundColor: 'rgba(217, 119, 6, 0.7)',
+                                borderColor: 'rgba(217, 119, 6, 1)',
+                                borderWidth: 1,
+                                borderRadius: 4,
+                                yAxisID: 'y'
+                            }
+                        ]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        interaction: { mode: 'index', intersect: false },
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: '中国大豆产量与进口量趋势 (2014–2023，公开统计量级)',
+                                font: { size: 15, weight: 'bold' }
+                            },
+                            legend: { position: 'bottom' },
+                            tooltip: {
+                                backgroundColor: 'rgba(41, 37, 36, 0.92)',
+                                titleFont: { size: 14 },
+                                bodyFont: { size: 13 },
+                                padding: 12
+                            }
+                        },
+                        scales: {
+                            x: { grid: { display: false } },
+                            y: {
+                                type: 'linear',
+                                display: true,
+                                position: 'left',
+                                title: { display: true, text: '万吨' },
+                                suggestedMin: 0,
+                                suggestedMax: 12000
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

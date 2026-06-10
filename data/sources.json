@@ -1,0 +1,30 @@
+{
+  "version": "2.0",
+  "description": "Phase 2.0 数据源接入协议 - 支持 NBS、WB、IMF 及未来扩展",
+  "sources": [
+    {
+      "id": "nbs",
+      "name": "国家统计局",
+      "nameEn": "NBS",
+      "url": "stats.gov.cn",
+      "type": "internal",
+      "status": "connected"
+    },
+    {
+      "id": "wb",
+      "name": "世界银行",
+      "nameEn": "World Bank",
+      "url": "api.worldbank.org",
+      "type": "external",
+      "status": "connected"
+    },
+    {
+      "id": "imf",
+      "name": "国际货币基金组织",
+      "nameEn": "IMF WEO",
+      "url": "imf.org/weo",
+      "type": "external",
+      "status": "connected"
+    }
+  ]
+}

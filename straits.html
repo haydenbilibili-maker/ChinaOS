@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台海关系的战略重力与现实主义博弈 | 交互式数字报告</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --straits-slate: #0f172a;
+            --straits-crimson: #7f1d1d;
+            --straits-steel: #334155;
+            --straits-cyan: #0891b2;
+            --straits-bg: #f8fafc;
+        }
+
+        body {
+            background-color: var(--straits-bg);
+            color: var(--straits-slate);
+            font-family: 'Inter', 'PingFang SC', system-ui, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            height: 320px;
+            margin: auto;
+        }
+
+        @media (min-width: 768px) { .chart-container { height: 400px; } }
+
+        .logic-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .logic-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.1);
+        }
+
+        .tension-line {
+            height: 4px;
+            background: linear-gradient(90deg, var(--straits-cyan), var(--straits-crimson));
+            width: 100px;
+            border-radius: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .active-tab {
+            background-color: var(--straits-slate);
+            color: white;
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+
+        .radar-scan {
+            position: relative;
+            overflow: hidden;
+        }
+        .radar-scan::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(8, 145, 178, 0.1), transparent 40%);
+            transform: translate(-50%, -50%);
+            animation: rotate-radar 4s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate-radar {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+    </style>
+    <!-- Chosen Palette: 台海深蓝 (Straits Slate), 警戒红 (Crimson), 工业钢 (Steel), 侦测青 (Cyan) -->
+</head>
+<body class="antialiased selection:bg-red-200">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <a href="china.html?tab=reportsHub" class="flex items-center space-x-3 hover:opacity-80 transition">
+                    <div class="w-10 h-10 bg-red-900 rounded-lg flex items-center justify-center shadow-lg">
+                        <span class="text-white text-xl font-bold">陆</span>
+                    </div>
+                    <div>
+                        <h1 class="text-base font-bold text-slate-900 leading-none">台海局势：重力、张力与博弈算法</h1>
+                        <p class="text-[10px] text-slate-400 uppercase tracking-widest mt-1 italic">Cross-Strait Strategic Gravity Analysis</p>
+                    </div>
+                </a>
+            </div>
+            <nav class="hidden lg:flex space-x-6 text-sm font-semibold text-slate-500">
+                <a href="#equilibrium" class="hover:text-red-700 transition-colors">宏观均势</a>
+                <a href="#economic" class="hover:text-red-700 transition-colors">重力场逻辑</a>
+                <a href="#deterrence" class="hover:text-red-700 transition-colors">物理威慑</a>
+                <a href="#scenarios" class="hover:text-red-700 transition-colors">终局预测</a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <a href="china.html?tab=reportsHub" class="text-xs text-slate-500 hover:text-slate-700">← China OS</a>
+                <span class="text-[10px] px-2 py-1 bg-red-900 text-white rounded font-bold uppercase">Realpolitik</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-8 space-y-16 relative">
+        
+        <!-- Section 1: Strategic Equilibrium (The Physics of Power) -->
+        <section id="equilibrium" class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div class="lg:col-span-7 space-y-6">
+                <div class="inline-flex items-center px-3 py-1 bg-red-50 text-red-800 rounded-full text-xs font-bold uppercase tracking-wider">
+                    核心地缘命题
+                </div>
+                <h2 class="text-4xl font-extrabold text-slate-900 leading-tight">
+                    地缘物理学：<br><span class="text-red-900 italic">"岛链突破"</span>的必然性计算
+                </h2>
+                <p class="text-slate-600 text-lg leading-relaxed">
+                    在现实主义框架下，台湾的归属不仅涉及主权尊严，更是中国突破「第一岛链」封锁、获取太平洋深水出海口的<strong>物理前提</strong>。对于中枢而言，维持现状是一场高昂的「防御成本」博弈；而实现统一则是彻底重塑西太平洋地缘引力场、将「内海化」安全边界向外推移千公里的战略质变。这种物理层面的诱惑，构成了决策算法的底层驱动。
+                </p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="p-4 logic-card text-center border-slate-100">
+                        <div class="text-xl font-black text-slate-900">180km</div>
+                        <div class="text-[9px] text-slate-400 uppercase mt-1">海峡物理宽度</div>
+                    </div>
+                    <div class="p-4 logic-card text-center border-red-200 bg-red-50/20">
+                        <div class="text-xl font-black text-red-800">100%</div>
+                        <div class="text-[9px] text-red-600 uppercase mt-1">战略意志穿透</div>
+                    </div>
+                    <div class="p-4 logic-card text-center">
+                        <div class="text-xl font-black text-slate-900">90% +</div>
+                        <div class="text-[9px] text-slate-400 uppercase mt-1">先进制程芯片依赖</div>
+                    </div>
+                    <div class="p-4 logic-card text-center">
+                        <div class="text-xl font-black text-slate-900">#1</div>
+                        <div class="text-[9px] text-slate-400 uppercase mt-1">全球海运航道权重</div>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:col-span-5">
+                <div class="bg-slate-900 rounded-[2.5rem] p-10 text-white shadow-2xl relative overflow-hidden radar-scan">
+                    <h3 class="text-xl font-bold mb-8">台海「安全/冲突」概率模型模拟</h3>
+                    <div class="chart-container" style="height: 250px;">
+                        <canvas id="equilibriumChart"></canvas>
+                    </div>
+                    <p class="text-[10px] text-white/40 mt-4 text-center">随着军力对比失衡，维持「现状」的熵值正在急剧增加</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Economic Gravity (The Interdependence Algorithm) -->
+        <section id="economic" class="space-y-12">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold text-slate-900">经济重力场：无法逃逸的嵌合逻辑</h2>
+                <p class="text-slate-500 mt-4">现实主义逻辑认为，政治意愿最终会向经济引力低头。中国通过建立庞大的产业嵌合体，让离岸系统在生存层面与在岸系统深度绑定。</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Logic 1 -->
+                <div class="logic-card p-8 flex flex-col justify-between group">
+                    <div>
+                        <div class="tension-line"></div>
+                        <h4 class="font-bold text-slate-900 text-xl mb-3">芯片「人质」困境</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">台湾半导体产业（台积电等）既是全球科技的明珠，也是最脆弱的战略锚点。这种「硅盾」是双向的：它既是外部干预的理由，也是中国在极端情况下实施「供应链绑架」的筹码。</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100 flex justify-between items-center text-[10px] font-bold text-red-800 uppercase">
+                        <span>属性: 结构性依赖</span>
+                        <span>变量: 产能本地化进度</span>
+                    </div>
+                </div>
+                <!-- Logic 2 -->
+                <div class="logic-card p-8 flex flex-col justify-between group bg-slate-900 text-white">
+                    <div>
+                        <div class="tension-line" style="background: var(--straits-cyan)"></div>
+                        <h4 class="font-bold mb-3 text-cyan-400">贸易顺差的「蓄水池」</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">台湾对大陆巨额的贸易顺差（年均超千亿美元）本质上是大陆通过经济让利维持的「统一保证金」。在现实主义眼中，随时可以关闭的贸易闸门是比导弹更隐秘的动员武器。</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-white/10 flex justify-between items-center text-[10px] font-bold text-cyan-500 uppercase">
+                        <span>顺差额: 1,500亿$+</span>
+                        <span>功能: 经济平衡木</span>
+                    </div>
+                </div>
+                <!-- Logic 3 -->
+                <div class="logic-card p-8 flex flex-col justify-between group">
+                    <div>
+                        <div class="tension-line"></div>
+                        <h4 class="font-bold text-slate-900 text-xl mb-3">人才与资本的「磁吸」</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">通过提供超大规模的市场机遇与研发资金，体制正持续稀释台湾的产业独特性，将「台湾制造」内化为「中国供应链」的一环，实现技术与资本的慢性融合。</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100 flex justify-between items-center text-[10px] font-bold text-slate-600 uppercase">
+                        <span>模式: 虹吸效应</span>
+                        <span>核心: 市场规模溢价</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+                <h3 class="text-sm font-bold text-slate-800 mb-6 text-center uppercase tracking-widest text-slate-400">两岸产业依存度与脱钩代价评估 (2010-2024)</h3>
+                <div class="chart-container">
+                    <canvas id="interdependenceChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Military Deterrence (A2/AD Physics) -->
+        <section id="deterrence" class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+                <h2 class="text-3xl font-bold text-slate-900 leading-tight">物理威慑：<br>A2/AD 框架下的成本重塑</h2>
+                <p class="text-slate-600 leading-relaxed">
+                    在军事现实主义视角下，中国近海的对抗环境已发生质变。通过高超音速武器、饱和式无人机群及远海监视系统，中国正构建一个让外部干预「成本高于收益」的禁区。当外部支援被量化为「不可承受的损失」时，台海局势将从「三方博弈」坍缩为「单向压制」。
+                </p>
+                <div class="space-y-4">
+                    <div class="p-6 bg-red-50 border border-red-100 rounded-3xl shadow-sm flex items-start gap-4">
+                        <div class="w-12 h-12 bg-red-800 text-white rounded-2xl flex items-center justify-center text-xl font-bold">拒</div>
+                        <div>
+                            <h4 class="font-bold text-slate-900">反介入/区域拒止 (A2/AD)</h4>
+                            <p class="text-xs text-slate-500">以东风-21D/26 为核心，将外部航母打击群隔离在 1,500 公里外，实现战场的物理封闭。</p>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white border border-slate-100 rounded-3xl shadow-sm flex items-start gap-4">
+                        <div class="w-12 h-12 bg-slate-900 text-white rounded-2xl flex items-center justify-center text-xl font-bold">锁</div>
+                        <div>
+                            <h4 class="font-bold text-slate-900">常态化抵近封锁</h4>
+                            <p class="text-xs text-slate-500">通过海空警巡抹除「海峡中线」概念，建立行政与军事的双重存在，实现「事实上」的行政管理预演。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="logic-card p-8">
+                <h3 class="text-sm font-bold text-slate-800 mb-6 text-center uppercase tracking-widest text-slate-400">两岸军力对比与干预门槛演变 (指数)</h3>
+                <div class="chart-container">
+                    <canvas id="militaryBalanceChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: End-Game Scenarios (The Reality Check) -->
+        <section id="scenarios" class="bg-slate-900 text-white rounded-[3rem] p-10 md:p-16 relative overflow-hidden shadow-2xl border border-red-950">
+            <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(var(--straits-crimson) 0.5px, transparent 0.5px); background-size: 32px 32px;"></div>
+            
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                <div class="lg:col-span-5 space-y-6">
+                    <h2 class="text-4xl font-black mb-4 italic tracking-tight text-red-500">终局计算：<br>从「偏离」到「回归」</h2>
+                    <p class="text-slate-300 text-lg leading-relaxed mb-6">
+                        中国对台战略的现实主义逻辑已从「防独」转向「促统」。通过建立一套能够承受最高强度制裁的经济内循环、能够阻断外部干预的物理禁区、以及一套具有穿透力的制度出口方案，体制正在等待那个「成本最低点」的到来。
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-4 bg-white/5 rounded-2xl border border-white/10 text-center">
+                            <h4 class="font-bold text-sm text-red-400">战略耐心度</h4>
+                            <div class="text-2xl font-black text-white mt-1">极高</div>
+                            <p class="text-[9px] text-slate-500 uppercase mt-1">以十年为单位的筹谋</p>
+                        </div>
+                        <div class="p-4 bg-white/5 rounded-2xl border border-white/10 text-center">
+                            <h4 class="font-bold text-sm text-red-400">战术灵活性</h4>
+                            <div class="text-2xl font-black text-white mt-1">增强</div>
+                            <p class="text-[9px] text-slate-500 uppercase mt-1">非战争军事行动常态化</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-7">
+                    <div class="logic-card bg-white p-8">
+                        <h4 class="text-sm font-bold text-slate-800 mb-6 text-center uppercase tracking-widest text-slate-400">台海局势演进雷达模型 (2024-2035)</h4>
+                        <div class="chart-container" style="height: 350px;">
+                            <canvas id="scenarioRadarChart"></canvas>
+                        </div>
+                        <div class="mt-4 flex justify-center gap-6 text-[10px] text-slate-400 font-bold uppercase">
+                            <span>主权吸纳力</span>
+                            <span>外部反制力</span>
+                            <span>内部韧性</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Conclusion -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="logic-card p-8">
+                <h3 class="text-sm font-bold text-slate-800 mb-6 text-center uppercase tracking-widest">权力意志在台海空间的投射层级</h3>
+                <div class="chart-container">
+                    <canvas id="powerProjectionChart"></canvas>
+                </div>
+            </div>
+            <div class="space-y-6">
+                <h2 class="text-3xl font-bold text-slate-900 underline decoration-red-900 decoration-4 underline-offset-8">调研结论：冷酷的均势终结</h2>
+                <div class="space-y-4">
+                    <div class="flex items-start gap-4">
+                        <span class="w-6 h-6 bg-red-950 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 font-bold">1</span>
+                        <p class="text-sm text-slate-600"><strong>从「模糊」到「清晰」：</strong> 随着综合国力的跨越，中枢已不再需要通过「战略模糊」来换取生存空间。现在的逻辑是利用「绝对的清晰」来压缩对手的博弈空间，通过展示不可阻挡的趋势来诱导对手放弃对抗。</p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="w-6 h-6 bg-red-950 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 font-bold">2</span>
+                        <p class="text-sm text-slate-600"><strong>制度的「后发先至」：</strong> 台湾作为民主社会在面对高效动员的极权体系时，存在天然的「决策损耗」弱势。中国体制正利用这种效率落差，通过在灰色地带的持续蚕食，建立既成事实。</p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="w-6 h-6 bg-red-950 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 font-bold">3</span>
+                        <p class="text-sm text-slate-600"><strong>文明尺度的统一逻辑：</strong> 统一不仅是地理的合并，更是治理软件的统一。大湾区的整合经验正在被提炼为一套可移植的、能够实现「系统兼容性」的统一方案。</p>
+                    </div>
+                </div>
+                <div class="p-6 bg-slate-900 border border-red-950 rounded-2xl mt-8">
+                    <p class="text-xs text-slate-400 leading-relaxed italic text-center">
+                        <strong>调研组终评：</strong> 台海关系不是一个「待解决的问题」，而是一个「正在发生的进程」。现实主义的计算告诉我们，所有的制裁、外交抗议和防御建设，都只是在延缓地缘引力带来的物理坍缩。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-16">
+        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
+            <div class="text-xs text-slate-400">
+                © 2024 交互式深度调研平台 · 台海专项报告 · <a href="china.html?tab=reportsHub" class="hover:text-slate-600" style="color: var(--straits-crimson);">返回 China OS</a>
+            </div>
+            <div class="flex gap-4 opacity-30 text-[10px] font-black">
+                <span>DETERRENCE</span>
+                <span>GRAVITY</span>
+                <span>UNIFICATION</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Chart.defaults.font.family = "'Inter', 'PingFang SC', sans-serif";
+            Chart.defaults.color = '#64748b';
+
+            // 1. Equilibrium Probability (Area Line)
+            const ctxEqu = document.getElementById('equilibriumChart').getContext('2d');
+            new Chart(ctxEqu, {
+                type: 'line',
+                data: {
+                    labels: ['2000', '2010', '2020', '2024', '2030(E)'],
+                    datasets: [
+                        { label: '统一确定性', data: [5, 15, 45, 65, 90], borderColor: '#ef4444', backgroundColor: 'rgba(127, 29, 29, 0.1)', fill: true, tension: 0.4, borderWidth: 4 },
+                        { label: '外部干预收益比', data: [95, 80, 50, 30, 10], borderColor: '#0891b2', borderDash: [5, 5], fill: false }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } }, scales: { y: { display: false }, x: { grid: { display: false } } } }
+            });
+
+            // 2. Interdependence & Decoupling Cost (Bar)
+            const ctxDep = document.getElementById('interdependenceChart').getContext('2d');
+            new Chart(ctxDep, {
+                type: 'bar',
+                data: {
+                    labels: ['半导体供应链', '电子代工集成', '石化/机械贸易', '金融/资本流动', '社会/人员对流'],
+                    datasets: [
+                        { label: '依存度 (%)', data: [92, 85, 65, 40, 35], backgroundColor: '#334155', borderRadius: 4 },
+                        { label: '单方面脱钩代价', data: [98, 90, 75, 82, 88], backgroundColor: '#7f1d1d', borderRadius: 4 }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { max: 100, grid: { color: '#f1f5f9' } }, x: { grid: { display: false } } } }
+            });
+
+            // 3. Military Balance Index (Line)
+            const ctxBal = document.getElementById('militaryBalanceChart').getContext('2d');
+            new Chart(ctxBal, {
+                type: 'line',
+                data: {
+                    labels: ['1996', '2005', '2015', '2024', '2027(预)'],
+                    datasets: [
+                        { label: 'A2/AD 覆盖深度', data: [10, 30, 65, 95, 100], borderColor: '#7f1d1d', borderWidth: 4, fill: false, tension: 0.4 },
+                        { label: '外部介入安全感', data: [90, 75, 40, 15, 5], borderColor: '#64748b', borderDash: [2, 2], fill: false }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+            });
+
+            // 4. Scenario Radar
+            const ctxRadar = document.getElementById('scenarioRadarChart').getContext('2d');
+            new Chart(ctxRadar, {
+                type: 'radar',
+                data: {
+                    labels: ['物理封锁力', '经济抗压性', '社会共识度', '技术主权', '国际承认度', '制度兼容性'],
+                    datasets: [{
+                        label: '系统成熟度',
+                        data: [98, 85, 60, 92, 75, 82],
+                        borderColor: '#7f1d1d',
+                        backgroundColor: 'rgba(127, 29, 29, 0.2)',
+                        pointBackgroundColor: '#7f1d1d',
+                        borderWidth: 3
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { r: { suggestedMin: 50, suggestedMax: 100, ticks: { display: false } } } }
+            });
+
+            // 5. Power Projection (Doughnut)
+            const ctxProj = document.getElementById('powerProjectionChart').getContext('2d');
+            new Chart(ctxProj, {
+                type: 'doughnut',
+                data: {
+                    labels: ['军事红线 (打击)', '法律疆域 (规则)', '经济重力 (吸纳)', '文化认知 (渗透)'],
+                    datasets: [{
+                        data: [40, 20, 30, 10],
+                        backgroundColor: ['#450a0a', '#7f1d1d', '#991b1b', '#cbd5e1'],
+                        borderWidth: 0,
+                        hoverOffset: 15
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { legend: { position: 'bottom' } } }
+            });
+        });
+    </script>
+</body>
+</html>

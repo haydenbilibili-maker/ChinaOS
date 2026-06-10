@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金融强国与资本突围：中国金融底层逻辑与人民币战略</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Chosen Palette: Central Bank Navy (#1e3a8a - representing authority/stability), Reserve Gold (#d4af37 - representing wealth/gold standard), Crimson Red (#dc2626 - A-share growth/national will), Slate Gray (#475569 - background/text) -->
+    
+    <!-- Application Structure Plan:
+        The SPA completes the macro analysis by focusing on the "Financial Lifeblood" (Capital & Currency).
+        1. "The Ultimate Battlefield" (Hero & Sec 1): Frames finance not just as economics, but as national security. Focuses on De-dollarization (selling US treasuries, buying gold).
+        2. "PBOC's Structural Tools" (Sec 2): Explains how the Central Bank uses "Structural Monetary Policy" instead of western-style QE to force capital into high-tech, avoiding real estate. Uses an interactive flow visualization.
+        3. "Capital Market Rebirth" (Sec 3): Analyzes the brutal restructuring of the A-Share market (The New Nine-Point Guideline), shifting from a "financing market" (extracting wealth) to an "investment market" (paying dividends). Uses comparison cards.
+        4. "Global Pricing Power" (Sec 4): The endgame. Shows the strategic push to control pricing for commodities (Shanghai Gold/Oil) and tech valuations. Uses an interactive Tab system.
+    -->
+    
+    <!-- Visualization & Content Choices:
+        1. De-dollarization Trend -> Goal: Show the shift in PBOC reserves -> Dual-axis Line/Bar Chart (Chart.js) -> Clearly contrasts the dumping of US Treasuries with the relentless accumulation of Gold.
+        2. Structural Monetary Policy -> Goal: Explain targeted capital flows -> CSS Flexbox/Grid Pipeline (NO SVG) -> Visually demonstrates capital being directed through specific "pipes" (PSL, Tech Loans) while blocking others (Real Estate).
+        3. A-Share Paradigm Shift -> Goal: Compare old vs new rules -> Interactive Flip/Hover Cards -> Contrasts the old "IPO Cash-out" logic with the new "Dividend & Patient Capital" logic.
+        4. Pricing Power -> Goal: Categorize strategic commodity/equity goals -> Tabbed Interface -> Keeps complex financial strategies organized and accessible.
+        CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. Unicode is used for iconography.
+    -->
+
+    <style>
+        body {
+            background-color: #f1f5f9; /* Slate 100 */
+            color: #1e293b; /* Slate 800 */
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Mandatory Chart Container Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 420px;
+            }
+        }
+
+        /* Custom Interactive Elements */
+        .finance-card {
+            transition: all 0.3s ease;
+            border-top: 4px solid transparent;
+        }
+        .finance-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.1);
+            border-top-color: #d4af37; /* Gold */
+        }
+
+        .pricing-tab {
+            transition: all 0.2s ease;
+        }
+        .pricing-tab.active {
+            background-color: #1e3a8a; /* Navy Blue */
+            color: white;
+            font-weight: bold;
+            border-bottom: 3px solid #d4af37;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #e2e8f0; }
+        ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="bg-blue-950 text-slate-100 sticky top-0 z-50 shadow-xl border-b border-blue-900">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold tracking-wider flex items-center gap-2">
+                <span class="text-yellow-500">🏦</span> <span>大国资本内参</span>
+                <span class="text-blue-300 text-sm font-normal hidden md:inline-block ml-2 border-l border-blue-800 pl-2">深度透视 · 专题报告（第七期）</span>
+            </div>
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#currency" class="hover:text-yellow-400 transition">去美元化与黄金</a>
+                <a href="#monetary" class="hover:text-yellow-400 transition">央行滴灌术</a>
+                <a href="#capital" class="hover:text-yellow-400 transition">资本市场重塑</a>
+                <a href="#pricing" class="hover:text-yellow-400 transition">争夺全球定价权</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-slate-900 text-slate-50 py-24 px-4 relative overflow-hidden">
+        <div class="absolute inset-0 flex justify-center items-center opacity-5 pointer-events-none text-[20rem]">¥</div>
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-900/40 to-transparent pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-1/2 h-full bg-gradient-to-t from-yellow-900/20 to-transparent pointer-events-none"></div>
+        
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div class="inline-block bg-blue-900/60 border border-blue-700 text-yellow-500 px-4 py-1.5 rounded-full text-xs font-bold mb-6 tracking-widest backdrop-blur-md">
+                MACRO FINANCIAL STRATEGY & SOVEREIGNTY
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
+                金融强国与资本突围：<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">重塑中国金融底层逻辑</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 leading-relaxed max-w-3xl mx-auto mt-6 text-left md:text-center">
+                没有金融主权，所有的实体制造业都只是一块任人宰割的肥肉。面对西方可能发动的“金融核战”（SWIFT切断、外储冻结），中国正在经历一场激烈的金融体系重构：对外抛售美债、囤积黄金；对内重塑A股规则、引导“耐心资本”。本报告梳理“金融强国”层面的主要操盘逻辑。
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-16 space-y-28">
+
+        <!-- Section 1: The Currency Battlefield (De-dollarization) -->
+        <section id="currency" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-1.5 h-8 bg-yellow-500 rounded-full shadow-[0_0_10px_rgba(234,179,8,0.8)]"></div>
+                <h2 class="text-3xl font-bold text-slate-900">一、 外储防御战：隐秘的“去美元化”与黄金锚</h2>
+            </div>
+            <p class="text-slate-600 mb-8 max-w-4xl text-lg">
+                俄乌冲突中，西方瞬间冻结俄罗斯3000亿美元外汇储备，彻底打破了“主权资产神圣不可侵犯”的西方金融神话。这促使中国央行在资产负债表上展开了史无前例的防守反击。
+            </p>
+
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-md border border-slate-200">
+                <h3 class="text-xl font-bold text-center mb-6 text-slate-800">中国央行底牌置换：美债持仓 vs 官方黄金储备量估算趋势</h3>
+                <div class="chart-container">
+                    <canvas id="reserveChart"></canvas>
+                </div>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                        <h4 class="font-bold text-blue-900 mb-2">战略性抛售美债</h4>
+                        <p class="text-sm text-slate-600">
+                            中国持有的美国国债已从2013年的1.3万亿美元巅峰，一路抛售至目前的7000多亿美元附近。这不仅是为了规避地缘政治冻结风险，更是对美国滥发货币、利用通胀收割全球的实质性抵抗。
+                        </p>
+                    </div>
+                    <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-200">
+                        <h4 class="font-bold text-yellow-800 mb-2">重铸“黄金锚”与本币结算</h4>
+                        <p class="text-sm text-slate-600">
+                            央行连续大规模增持实物黄金，旨在为未来可能遭遇极端制裁时，给人民币提供终极信用背书。同时，通过“金砖+”机制和中东石油贸易，强力推进人民币在双边贸易中的直接结算（CIPS系统），从根部瓦解美元霸权。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: PBOC's Structural Monetary Policy -->
+        <section id="monetary" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-1.5 h-8 bg-blue-700 rounded-full"></div>
+                <h2 class="text-3xl font-bold text-slate-900">二、 央行滴灌术：拒绝大水漫灌的“结构性货币政策”</h2>
+            </div>
+            <p class="text-slate-600 mb-8 max-w-4xl text-lg">
+                面对经济下行，美联储的习惯做法是量化宽松（QE）“直升机撒钱”。但中国央行深知，一旦大水漫灌，资金必定再次流入炒房团和地方城投手中。因此，央行发明了极具中国特色的“精准滴灌”。
+            </p>
+
+            <div class="bg-white p-8 rounded-2xl shadow-md border border-slate-200">
+                <div class="text-center mb-6 text-slate-500 text-sm font-bold tracking-wide">资金流向的“红绿灯”控制机制</div>
+                
+                <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                    
+                    <div class="bg-blue-900 text-white p-6 rounded-2xl text-center w-full md:w-1/4 shadow-lg border border-blue-800">
+                        <div class="text-4xl mb-2">🏦</div>
+                        <h4 class="font-bold text-lg">中国人民银行 (PBOC)</h4>
+                        <p class="text-xs text-blue-200 mt-2">释放流动性，但附带严苛的使用条件 (结构性工具: PSL, 碳减排支持工具)</p>
+                    </div>
+
+                    <div class="text-slate-400 text-3xl font-bold hidden md:block">➡</div>
+                    <div class="text-slate-400 text-3xl font-bold md:hidden my-2">⬇</div>
+
+                    <div class="bg-slate-100 border-2 border-slate-300 p-6 rounded-2xl text-center w-full md:w-1/4 shadow-inner">
+                        <div class="text-4xl mb-2">🏛️</div>
+                        <h4 class="font-bold text-slate-800 text-lg">商业银行 (资金管道)</h4>
+                        <p class="text-xs text-slate-600 mt-2">必须按照央行的“指导目录”放贷，面临极强的行政窗口指导。</p>
+                    </div>
+
+                    <div class="flex flex-col gap-4 text-slate-400 font-bold hidden md:flex">
+                        <div class="transform rotate-[-30deg] translate-y-2">↗</div>
+                        <div class="transform rotate-[30deg] -translate-y-2">↘</div>
+                    </div>
+                    <div class="flex flex-row gap-8 text-slate-400 font-bold md:hidden my-2">
+                        <div class="transform rotate-[210deg]">↖</div>
+                        <div class="transform rotate-[150deg]">↗</div>
+                    </div>
+
+                    <div class="flex flex-col gap-6 w-full md:w-1/3">
+                        <div class="finance-card bg-emerald-50 border-l-4 border-emerald-500 p-5 rounded-lg shadow-sm">
+                            <h4 class="font-bold text-emerald-800 flex justify-between items-center">
+                                <span>🟢 强力支持领域</span>
+                                <span class="text-xl">🚀</span>
+                            </h4>
+                            <ul class="text-xs text-slate-600 mt-2 list-disc pl-4 space-y-1">
+                                <li>专精特新、半导体硬科技</li>
+                                <li>新能源产业链扩产</li>
+                                <li>设备更新与消费品以旧换新</li>
+                                <li>城中村改造 (三大工程)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="finance-card bg-red-50 border-l-4 border-red-500 p-5 rounded-lg shadow-sm">
+                            <h4 class="font-bold text-red-800 flex justify-between items-center">
+                                <span>🔴 严格限制领域</span>
+                                <span class="text-xl">⛔</span>
+                            </h4>
+                            <ul class="text-xs text-slate-600 mt-2 list-disc pl-4 space-y-1">
+                                <li>高杠杆房地产拿地扩张</li>
+                                <li>地方政府隐性城投违规基建</li>
+                                <li>落后高耗能产能</li>
+                                <li>金融系统内空转套利</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 text-center text-sm text-slate-500 italic">
+                    洞察：通过这种方式，央行试图在不推高全局通胀和资产泡沫的前提下，完成中国经济核心引擎的切换。
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Capital Market Rebirth (A-Share) -->
+        <section id="capital" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-1.5 h-8 bg-red-600 rounded-full"></div>
+                <h2 class="text-3xl font-bold text-slate-900">三、 A股大清洗：从“融资抽血机”到“耐心资本池”</h2>
+            </div>
+            <p class="text-slate-600 mb-8 max-w-4xl text-lg">
+                长久以来，中国股市的定位是“为企业融资解困”（甚至为国企脱困），散户沦为被大股东减持收割的韭菜。随着“新国九条”的发布，最高层决意重塑规则，因为科技创新无法依赖银行的间接贷款，必须依靠一个健康的直接融资资本市场。
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-lg transition">
+                    <div class="flex items-center gap-3 mb-4 border-b pb-3">
+                        <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-xl">💔</div>
+                        <h3 class="text-xl font-bold text-slate-500 line-through decoration-red-500 decoration-2">旧逻辑：抽血市与圈钱游戏</h3>
+                    </div>
+                    <ul class="space-y-4 text-sm text-slate-600">
+                        <li><strong class="text-slate-800">IPO套利：</strong> 公司上市的最大目的往往是原始股东、创投机构通过高溢价发行直接套现走人。</li>
+                        <li><strong class="text-slate-800">铁公鸡不分红：</strong> 多数企业常年不向中小投资者派发股息，投资者只能被迫进行高频的投机炒作（炒概念、炒妖股）。</li>
+                        <li><strong class="text-slate-800">退市难：</strong> 劣质公司（财务造假、空壳）死而不僵，变成“壳资源”被反复炒作，劣币驱逐良币。</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-md border-2 border-red-600 hover:shadow-xl transition relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">新国九条导向</div>
+                    <div class="flex items-center gap-3 mb-4 border-b border-red-100 pb-3">
+                        <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-xl">🌱</div>
+                        <h3 class="text-xl font-bold text-red-700">新逻辑：投资市与耐心资本</h3>
+                    </div>
+                    <ul class="space-y-4 text-sm text-slate-700">
+                        <li><strong class="text-red-700">严刑峻法与退市常态化：</strong> 极大幅度提高IPO门槛，严查财务造假，对不符合标准的企业坚决强制退市（让壳价值归零）。</li>
+                        <li><strong class="text-red-700">强制分红与回报：</strong> 将分红比例与大股东减持资格挂钩，不分红甚至会被实施ST（特别处理），逼迫企业以真金白银回馈投资者。</li>
+                        <li><strong class="text-red-700">呼唤“耐心资本”：</strong> 引入社保基金、保险资金等长期资金入市。用长期稳定的资本去支持那些研发周期极长的“硬科技”企业。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Global Pricing Power -->
+        <section id="pricing" class="scroll-mt-24 mb-16">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-1.5 h-8 bg-slate-800 rounded-full"></div>
+                <h2 class="text-3xl font-bold text-slate-900">四、 终极目标：争夺核心资产的“全球定价权”</h2>
+            </div>
+            <p class="text-slate-600 mb-8 max-w-4xl text-lg">
+                金融强国的最高境界不是拥有多少外汇，而是拥有“定价权”。中国不仅是全球最大的制造业工厂和原材料买家，现在更要争夺这些资产在国际大宗及金融市场的价格制定权。
+            </p>
+
+            <div class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
+                <div class="flex flex-col md:flex-row border-b border-slate-200 bg-slate-50 px-2 pt-2 gap-2">
+                    <button type="button" class="pricing-tab active flex-1 py-4 px-6 text-center text-slate-600 hover:bg-blue-50 focus:outline-none rounded-t-lg" onclick="switchTab(event, 'tab-commodity')">
+                        🛢️ 大宗商品定价权<br><span class="text-xs font-normal opacity-80">上海金与原油期货</span>
+                    </button>
+                    <button type="button" class="pricing-tab flex-1 py-4 px-6 text-center text-slate-600 hover:bg-blue-50 focus:outline-none rounded-t-lg" onclick="switchTab(event, 'tab-bond')">
+                        📜 人民币债券市场<br><span class="text-xs font-normal opacity-80">安全资产的替代品</span>
+                    </button>
+                    <button type="button" class="pricing-tab flex-1 py-4 px-6 text-center text-slate-600 hover:bg-blue-50 focus:outline-none rounded-t-lg" onclick="switchTab(event, 'tab-valuation')">
+                        💎 核心科技估值体系<br><span class="text-xs font-normal opacity-80">中国特色估值体系 (中特估)</span>
+                    </button>
+                </div>
+
+                <div class="p-8 min-h-[300px] bg-white">
+                    
+                    <div id="tab-commodity" class="tab-content block fade-in">
+                        <h3 class="text-2xl font-bold text-blue-900 mb-4">挑战华尔街：从“被动接受”到“主动出价”</h3>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-4">
+                            长期以来，全球石油定价看纽约（WTI）和伦敦（Brent），黄金看伦敦（LBMA）。中国作为最大买家，却只能被动接受西方金融资本炒作出的高价。
+                        </p>
+                        <div class="bg-blue-50 p-5 rounded-lg border border-blue-100">
+                            <h4 class="font-bold text-slate-800 mb-2">破局之战</h4>
+                            <ul class="list-disc pl-5 space-y-2 text-sm text-slate-600">
+                                <li><strong>上海原油期货 (INE)：</strong> 推出了以人民币计价的原油期货，旨在让中东及俄罗斯的石油逐渐摆脱美元结算，直接用人民币交易并形成基准价格。</li>
+                                <li><strong>上海金 (Shanghai Gold)：</strong> 推出以人民币计价的黄金基准价。这不仅是争夺黄金定价权，更是为了配合央行囤积黄金，为人民币国际化打造坚实的后盾。</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="tab-bond" class="tab-content hidden fade-in">
+                        <h3 class="text-2xl font-bold text-blue-900 mb-4">人民币国债：全球资本避风港的试水</h3>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-4">
+                            要让外国人持有人民币，必须给他们提供安全、有收益的投资渠道。美国通过发行美债吸纳全球资本，中国也必须建立深度的、高流动性的人民币债券市场。
+                        </p>
+                        <div class="bg-blue-50 p-5 rounded-lg border border-blue-100">
+                            <h4 class="font-bold text-slate-800 mb-2">战略推进</h4>
+                            <p class="text-sm text-slate-600 mb-3">
+                                持续推动金融市场对外开放（如债券通、沪深港通），吸引中东主权财富基金（如沙特PIF、阿布扎比投资局）等全球“非西方阵营”的长期资本，将其赚取的人民币直接投资于中国国债和优质资产，形成<strong>资金回流闭环</strong>。
+                            </p>
+                            <p class="text-sm text-slate-600">
+                                在中美利差倒挂的极端压力下，中国国债仍保持稳定，证明了其作为全球资产配置中独立于西方周期的“避险属性”。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="tab-valuation" class="tab-content hidden fade-in">
+                        <h3 class="text-2xl font-bold text-blue-900 mb-4">中特估：夺回核心资产的定价话语权</h3>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-4">
+                            许多掌握着国家经济命脉的大型央企国企（涉及能源、通信、基建），其在资本市场上的估值（市盈率/市净率）常年处于极低水平。这被视为是被西方主导的估值模型“严重低估”。
+                        </p>
+                        <div class="bg-blue-50 p-5 rounded-lg border border-blue-100">
+                            <h4 class="font-bold text-slate-800 mb-2">中国特色估值体系 (中特估) 的提出</h4>
+                            <p class="text-sm text-slate-600">
+                                官方提出探索建立具有中国特色的估值体系。核心逻辑是：对于那些承担了巨大社会责任（如扶贫、保供、极端基建）、在西方商业逻辑下看似“不赚钱”的央国企，必须在资本市场上给予更高的战略溢价和合理定价。防范核心国有资产被外资或私人资本低价抄底。
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="mt-12 p-6 bg-slate-900 text-slate-300 rounded-xl shadow-lg border-l-4 border-yellow-500">
+                <h3 class="text-xl font-bold mb-3 text-white">决策洞见</h3>
+                <p class="text-sm leading-relaxed opacity-90">
+                    从实体的“新质生产力”到虚拟的“金融强国”，这是一体两面的超级国家战略。<br><br>
+                    未来十年的中国宏观经济画面已经浮现：在央行<strong>“不漫灌、只滴灌”</strong>的强行政约束下，旧的房地产泡沫将被缓慢拆解（时间换空间）；而在资本市场上，严刑峻法将驱赶资金流向那些能够<strong>突破美国“小院高墙”封锁的硬科技企业</strong>。同时，在外汇和商品战线上，中国将联合“全球南方”国家，依托庞大的工业产能，逐步<strong>解构美元和华尔街的定价霸权</strong>。<br><br>
+                    这是一场没有任何退路、关乎大国兴衰的资本突围战。
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-500 py-10 text-center border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-4">
+            <p class="font-bold text-slate-400 tracking-wider">金融底层逻辑与资本战略决策系统 · 专题版 07</p>
+            <p class="mt-3 text-xs leading-relaxed max-w-2xl mx-auto opacity-60">
+                高度机密战略推演模型。本页面涉及的外汇储备趋势、结构性政策图解为反映宏观金融战略轨迹的概略展示。大国博弈的尽头，是货币信用与金融定价权的生死存亡。
+            </p>
+            <p class="mt-4 text-xs">© 2026 Strategic Macro Intelligence</p>
+        </div>
+    </footer>
+
+    <script>
+        function switchTab(evt, tabId) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('block', 'fade-in');
+                content.classList.add('hidden');
+            });
+            document.querySelectorAll('.pricing-tab').forEach(tab => tab.classList.remove('active'));
+
+            const panel = document.getElementById(tabId);
+            panel.classList.remove('hidden');
+            setTimeout(() => panel.classList.add('block', 'fade-in'), 10);
+            evt.currentTarget.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            Chart.defaults.font.family = "'PingFang SC', 'Microsoft YaHei', sans-serif";
+            Chart.defaults.color = '#64748b';
+
+            const ctxReserve = document.getElementById('reserveChart').getContext('2d');
+            new Chart(ctxReserve, {
+                type: 'bar',
+                data: {
+                    labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                    datasets: [
+                        {
+                            type: 'line',
+                            label: '中国持有美债规模估算 (十亿美元)',
+                            data: [1245, 1058, 1184, 1123, 1069, 1061, 1068, 867, 816, 767],
+                            borderColor: '#1e3a8a',
+                            backgroundColor: '#1e3a8a',
+                            borderWidth: 3,
+                            pointBackgroundColor: '#fff',
+                            pointBorderColor: '#1e3a8a',
+                            pointRadius: 4,
+                            tension: 0.3,
+                            yAxisID: 'y'
+                        },
+                        {
+                            type: 'bar',
+                            label: '中国央行官方黄金储备估算 (百万盎司)',
+                            data: [56.6, 59.2, 59.2, 59.5, 62.6, 62.6, 62.6, 64.6, 71.8, 72.7],
+                            backgroundColor: 'rgba(212, 175, 55, 0.7)',
+                            borderColor: '#d4af37',
+                            borderWidth: 1,
+                            borderRadius: 4,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { position: 'top', labels: { usePointStyle: true, boxWidth: 8 } },
+                        tooltip: {
+                            backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 13 },
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    const v = context.raw;
+                                    if (context.datasetIndex === 0) {
+                                        return context.dataset.label.split(' (')[0] + ': ' + v + ' 十亿美元';
+                                    }
+                                    return context.dataset.label.split(' (')[0] + ': ' + v + ' 百万盎司';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { grid: { display: false } },
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: { display: true, text: '美债规模 (十亿美元)' },
+                            grid: { borderDash: [5, 5] },
+                            suggestedMin: 600,
+                            suggestedMax: 1400
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: { display: true, text: '黄金储备 (百万盎司)' },
+                            grid: { display: false },
+                            suggestedMin: 50,
+                            suggestedMax: 80
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国军事力量全维度透视 | 交互式报告</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* * Chart Container Styling 
+         * Ensuring responsiveness and preventing overflow as per technical requirements.
+         */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            height: 300px; /* Mobile default */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px; /* Tablet */
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .chart-container {
+                height: 400px; /* Desktop */
+            }
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #fcfcfc; /* Light, neutral background */
+            color: #333;
+        }
+
+        /* Custom scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+
+        .active-tab {
+            border-bottom: 2px solid #ef4444; /* Red accent */
+            color: #ef4444;
+            font-weight: 600;
+        }
+    </style>
+    <!-- Chosen Palette: Warm Neutrals (Cream/Light Grey) with China Red (#ef4444) and Steel Blue (#475569) accents. -->
+    <!-- Application Structure Plan: A Dashboard-style layout. 
+         1. Hero: High-level strategic goals (2027/2035/2049).
+         2. Macro Data: Budget trends (Line Chart) and Global context.
+         3. Structure Explorer: Interactive Tabs for Services (Army, Navy, Air, Rocket, SSF) and Theaters.
+         4. Domain Deep-Dive: Specific charts for Naval expansion (Bar) and Air modernization (Doughnut).
+         5. Kinetic Capabilities: Interactive missile range filter.
+         This structure moves from abstract strategy to concrete organization, then to hard hardware data. -->
+    <!-- Visualization & Content Choices: 
+         - Budget: Line Chart (Chart.js) -> Shows trend over time clearly.
+         - Navy: Bar Chart (Chart.js) -> Best for comparing quantities of ship types.
+         - Air Force: Doughnut Chart (Chart.js) -> Shows proportion of Gen 3 vs Gen 4/5.
+         - Missiles: Interactive List with visual width bars (HTML/JS) -> Allows sorting/filtering without complex SVG.
+         - Org Structure: Tabbed Content Cards -> Handles text-heavy descriptions cleanly.
+         -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="text-gray-800">
+
+    <!-- Navigation / Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-red-600 rounded flex items-center justify-center text-white font-bold">CN</div>
+                <h1 class="text-xl font-bold tracking-tight text-slate-800">中国军事力量全维度透视</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#strategy" class="hover:text-red-600 transition-colors">战略目标</a>
+                <a href="#budget" class="hover:text-red-600 transition-colors">国防预算</a>
+                <a href="#organization" class="hover:text-red-600 transition-colors">组织架构</a>
+                <a href="#domains" class="hover:text-red-600 transition-colors">军种能力</a>
+                <a href="#capabilities" class="hover:text-red-600 transition-colors">核心装备</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+        <!-- Section 1: Executive Summary & Strategy -->
+        <section id="strategy" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-4">
+                <h2 class="text-3xl font-bold text-slate-900">走向世界一流军队</h2>
+                <p class="text-lg text-slate-600 leading-relaxed">
+                    本报告旨在全面解析中国人民解放军（PLA）的现代化进程。中国国防政策的核心目标是通过“三步走”战略，在21世纪中叶全面建成世界一流军队。当前的重点在于机械化、信息化与智能化的融合发展，以及远海防卫与战略威慑能力的提升。
+                </p>
+                
+                <!-- Timeline/Milestones using Flexbox Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                    <div class="bg-white p-6 rounded-lg shadow-sm border-t-4 border-red-500">
+                        <div class="text-2xl font-bold text-slate-800 mb-2">2027年</div>
+                        <div class="text-sm text-slate-500 uppercase tracking-wide mb-3">建军百年奋斗目标</div>
+                        <p class="text-gray-700 text-sm">加快机械化信息化智能化融合发展，具备捍卫国家主权与统一的战略能力。</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border-t-4 border-red-400">
+                        <div class="text-2xl font-bold text-slate-800 mb-2">2035年</div>
+                        <div class="text-sm text-slate-500 uppercase tracking-wide mb-3">国防现代化</div>
+                        <p class="text-gray-700 text-sm">基本实现国防和军队现代化，军事理论、组织形态、人员与武器装备全面升级。</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border-t-4 border-red-300">
+                        <div class="text-2xl font-bold text-slate-800 mb-2">2049年</div>
+                        <div class="text-sm text-slate-500 uppercase tracking-wide mb-3">世界一流军队</div>
+                        <p class="text-gray-700 text-sm">全面建成世界一流军队，支撑中华民族伟大复兴的战略高度。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Stats Card -->
+            <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                <h3 class="text-lg font-semibold text-slate-800 mb-4 border-b border-slate-200 pb-2">关键数据概览 (估算)</h3>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center">
+                        <span class="text-slate-600">现役总兵力</span>
+                        <span class="font-bold text-slate-900">~200 万</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-slate-600">主要水面战斗舰艇</span>
+                        <span class="font-bold text-slate-900">350+ 艘</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-slate-600">现代化战机</span>
+                        <span class="font-bold text-slate-900">1,300+ 架</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-slate-600">洲际弹道导弹 (ICBM)</span>
+                        <span class="font-bold text-slate-900">350+ 枚</span>
+                    </div>
+                </div>
+                <div class="mt-6 p-4 bg-yellow-50 rounded text-sm text-yellow-800">
+                    <strong>注意：</strong> 数据基于开源情报整理，反映大概规模与趋势。
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Budget Analysis -->
+        <section id="budget" class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-6">
+                <div class="max-w-2xl">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-2">国防预算趋势分析</h2>
+                    <p class="text-slate-600">
+                        随着经济体量的增长，中国国防预算持续稳定增加。此图表显示了过去十年官方公布的国防预算增长趋势（单位：十亿美元）。这反映了对装备更新换代、实战化训练及人员待遇提升的持续投入。
+                    </p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <button id="toggleBudgetView" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-md text-sm font-medium transition-colors">
+                        切换视图: 增长率 vs 总额
+                    </button>
+                </div>
+            </div>
+            
+            <div class="w-full bg-slate-50 rounded-lg p-4">
+                <div class="chart-container">
+                    <canvas id="budgetChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Organization & Structure -->
+        <section id="organization">
+            <h2 class="text-2xl font-bold text-slate-900 mb-6">组织架构与战区体制</h2>
+            <p class="text-slate-600 mb-8 max-w-4xl">
+                2016年军改后，解放军确立了“军委管总、战区主战、军种主建”的格局。五大战区分别应对不同战略方向的安全威胁，各军种则专注于力量建设。点击下方选项卡探索详细信息。
+            </p>
+
+            <div class="flex flex-col md:flex-row gap-6">
+                <!-- Tabs Navigation -->
+                <div class="w-full md:w-1/4 flex flex-col space-y-2">
+                    <button onclick="updateOrg('army')" class="org-tab active-tab text-left px-4 py-3 rounded-lg hover:bg-slate-50 transition-all font-medium" data-target="army">
+                        陆军 (PLAA)
+                    </button>
+                    <button onclick="updateOrg('navy')" class="org-tab text-left px-4 py-3 rounded-lg hover:bg-slate-50 transition-all font-medium text-slate-500" data-target="navy">
+                        海军 (PLAN)
+                    </button>
+                    <button onclick="updateOrg('air')" class="org-tab text-left px-4 py-3 rounded-lg hover:bg-slate-50 transition-all font-medium text-slate-500" data-target="air">
+                        空军 (PLAAF)
+                    </button>
+                    <button onclick="updateOrg('rocket')" class="org-tab text-left px-4 py-3 rounded-lg hover:bg-slate-50 transition-all font-medium text-slate-500" data-target="rocket">
+                        火箭军 (PLARF)
+                    </button>
+                    <button onclick="updateOrg('support')" class="org-tab text-left px-4 py-3 rounded-lg hover:bg-slate-50 transition-all font-medium text-slate-500" data-target="support">
+                        战略支援 (SSF/Information)
+                    </button>
+                </div>
+
+                <!-- Content Area -->
+                <div class="w-full md:w-3/4 bg-white border border-slate-200 rounded-xl p-6 md:p-8 min-h-[300px] shadow-sm">
+                    <div id="org-content-title" class="text-xl font-bold text-slate-800 mb-2">陆军 (PLAA)</div>
+                    <div id="org-content-desc" class="text-slate-600 mb-6">
+                        世界规模最大的地面部队。近年来持续推进合成化改革，由师团制向旅营制转型，强调全域机动和立体攻防能力。
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-slate-50 p-4 rounded border border-slate-100">
+                            <h4 class="font-semibold text-slate-700 mb-2">核心任务</h4>
+                            <p id="org-content-mission" class="text-sm text-slate-600">保卫国家陆地疆土，维护主权安全，参与国际维和与人道主义救援。</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded border border-slate-100">
+                            <h4 class="font-semibold text-slate-700 mb-2">主要装备特点</h4>
+                            <p id="org-content-equip" class="text-sm text-slate-600">99A主战坦克、04A步兵战车、PCL-181车载榴弹炮、直-10/19/20直升机。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Domain Capabilities (Navy & Air) -->
+        <section id="domains" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Naval Power -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <h3 class="text-xl font-bold text-slate-900 mb-2">海军力量：走向深蓝</h3>
+                <p class="text-sm text-slate-600 mb-4">
+                    中国海军已成为世界上舰艇数量最多的海军。虽然总吨位仍次于美国，但造舰速度极快。图表展示了主要水面舰艇的构成估算。
+                </p>
+                <div class="chart-container">
+                    <canvas id="navyChart"></canvas>
+                </div>
+                <div class="mt-4 text-xs text-slate-500 text-center">
+                    注：包含航母、驱逐舰、护卫舰、轻型护卫舰等主要战斗舰艇。
+                </div>
+            </div>
+
+            <!-- Air Power -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <h3 class="text-xl font-bold text-slate-900 mb-2">空军力量：跨代升级</h3>
+                <p class="text-sm text-slate-600 mb-4">
+                    空军正在从“国土防空型”向“攻防兼备型”转变。关键在于淘汰老旧的歼-7/8，大量列装歼-10C、歼-16及歼-20等四代和五代机。
+                </p>
+                <div class="chart-container relative">
+                    <canvas id="airChart"></canvas>
+                    <!-- Center Text Overlay -->
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <div class="text-center">
+                            <span class="block text-3xl font-bold text-slate-800">50%+</span>
+                            <span class="text-xs text-slate-500">现代化率</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 flex flex-wrap gap-2 justify-center">
+                    <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">五代机: J-20</span>
+                    <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">四代半: J-16, J-10C</span>
+                    <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">战略轰炸: H-6K/N</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Rocket Force & Interactive Capabilities -->
+        <section id="capabilities" class="bg-slate-900 text-white rounded-2xl p-6 md:p-10 shadow-lg overflow-hidden relative">
+            <!-- Background element for visual interest -->
+            <div class="absolute top-0 right-0 w-64 h-64 bg-red-600 opacity-5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+
+            <h2 class="text-2xl font-bold mb-4 relative z-10">火箭军与战略威慑能力</h2>
+            <p class="text-slate-300 mb-8 max-w-3xl relative z-10">
+                中国拥有世界上种类最繁多、规模最大的陆基导弹部队。以下互动模块展示了不同类型导弹的射程覆盖与战略意义。
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                <!-- Controls -->
+                <div class="space-y-4">
+                    <h3 class="font-semibold text-red-400 uppercase tracking-wider text-sm">选择导弹类型</h3>
+                    <div class="space-y-2">
+                        <button onclick="filterMissiles('srbm')" class="missile-btn w-full text-left px-4 py-3 rounded bg-slate-800 hover:bg-slate-700 transition-colors border-l-4 border-transparent focus:border-red-500 focus:bg-slate-700 active-filter">
+                            <div class="font-bold">近程弹道导弹 (SRBM)</div>
+                            <div class="text-xs text-slate-400">DF-11, DF-15 系列</div>
+                        </button>
+                        <button onclick="filterMissiles('mrbm')" class="missile-btn w-full text-left px-4 py-3 rounded bg-slate-800 hover:bg-slate-700 transition-colors border-l-4 border-transparent focus:border-red-500 focus:bg-slate-700">
+                            <div class="font-bold">中程/反舰弹道导弹 (MRBM/ASBM)</div>
+                            <div class="text-xs text-slate-400">DF-21D ("航母杀手")</div>
+                        </button>
+                        <button onclick="filterMissiles('irbm')" class="missile-btn w-full text-left px-4 py-3 rounded bg-slate-800 hover:bg-slate-700 transition-colors border-l-4 border-transparent focus:border-red-500 focus:bg-slate-700">
+                            <div class="font-bold">中远程弹道导弹 (IRBM)</div>
+                            <div class="text-xs text-slate-400">DF-26 ("关岛快递")</div>
+                        </button>
+                        <button onclick="filterMissiles('icbm')" class="missile-btn w-full text-left px-4 py-3 rounded bg-slate-800 hover:bg-slate-700 transition-colors border-l-4 border-transparent focus:border-red-500 focus:bg-slate-700">
+                            <div class="font-bold">洲际弹道导弹 (ICBM)</div>
+                            <div class="text-xs text-slate-400">DF-31AG, DF-41</div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Visualization Area -->
+                <div class="md:col-span-2 bg-slate-800 rounded-lg p-6 border border-slate-700 flex flex-col justify-center">
+                    <div id="missile-display-title" class="text-xl font-bold text-white mb-2">近程弹道导弹 (SRBM)</div>
+                    <div id="missile-display-desc" class="text-slate-300 mb-6 text-sm h-12">
+                        主要用于精确打击周边地区的高价值目标，如机场、港口和指挥中心。
+                    </div>
+                    
+                    <!-- Visual Representation of Range -->
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between text-xs text-slate-400 mb-1">
+                                <span>射程估算</span>
+                                <span id="missile-range-val">600 - 1,000 km</span>
+                            </div>
+                            <div class="w-full bg-slate-900 rounded-full h-4 overflow-hidden">
+                                <div id="missile-range-bar" class="bg-gradient-to-r from-red-600 to-orange-500 h-full rounded-full transition-all duration-700 ease-out" style="width: 10%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-slate-500 mt-1">
+                                <span>0 km</span>
+                                <span>12,000+ km</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-900/50 p-4 rounded border border-slate-700/50">
+                            <h4 class="text-sm font-semibold text-slate-200 mb-2">战略覆盖范围</h4>
+                            <p id="missile-target-text" class="text-sm text-slate-400">
+                                覆盖第一岛链内目标，包括台湾岛及周边海域。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="border-t border-slate-200 pt-8 pb-12">
+            <div class="text-center">
+                <p class="text-slate-500 text-sm mb-2">© 2024 交互式国防报告演示</p>
+                <p class="text-slate-400 text-xs">
+                    数据来源：基于公开防务白皮书、国际战略研究所 (IISS) 及五角大楼年度报告整理。<br>
+                    本应用仅用于演示前端数据可视化技术，不代表任何官方立场。
+                </p>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        // --- Data Definitions ---
+        
+        // Organization Data
+        const orgData = {
+            army: {
+                title: "陆军 (PLAA)",
+                desc: "世界规模最大的地面部队。近年来持续推进合成化改革，由师团制向旅营制转型，强调全域机动和立体攻防能力。重点提升空突力量和远程火力。",
+                mission: "保卫国家陆地疆土，维护主权安全，参与国际维和与人道主义救援。",
+                equip: "99A主战坦克, 04A步兵战车, PCL-181车载榴弹炮, 直-20通用直升机, 远程火箭炮系统。"
+            },
+            navy: {
+                title: "海军 (PLAN)",
+                desc: "战略转型期，正从近海防御型向远海防卫型转变。三大舰队（北海、东海、南海）均在快速换装新型舰艇，航母战斗群建设是当前核心。",
+                mission: "近海防御，远海防卫，维护海上交通线安全，海外利益保护。",
+                equip: "辽宁舰/山东舰/福建舰航母, 055型万吨大驱, 052D驱逐舰, 075两栖攻击舰, 094/093核潜艇。"
+            },
+            air: {
+                title: "空军 (PLAAF)",
+                desc: "致力于建设空天一体、攻防兼备的强大空军。由国土防空向攻势防空转变，五代机数量快速增长，战略投送能力显著增强。",
+                mission: "组织国土防空，实施空中进攻，遂行战略投送，支援陆海作战。",
+                equip: "歼-20隐身战机, 运-20大型运输机, 轰-6K/N轰炸机, 空警-500预警机, 红旗-9防空系统。"
+            },
+            rocket: {
+                title: "火箭军 (PLARF)",
+                desc: "中国战略威慑的核心力量。拥有核常兼备、射程衔接的各类弹道导弹与巡航导弹，具备对陆上重要目标和海上移动目标的精确打击能力。",
+                mission: "遏制他国对中国使用核武器，遂行核反击和常规导弹精确打击任务。",
+                equip: "东风-17 (高超音速), 东风-21D/26 (反舰/中远), 东风-41 (洲际), 东风-100 (巡航)。"
+            },
+            support: {
+                title: "战略支援与联勤 (SSF/JLSF)",
+                desc: "负责整合太空、网络、电子战、心理战等新型作战力量，以及全军的联勤保障。是信息化战争的“力量倍增器”。",
+                mission: "战场环境保障，信息通信保障，信息攻防，战略投送与物资供应。",
+                equip: "北斗卫星导航系统, 电子侦察卫星, 网络攻防平台, 大型综合补给体系。"
+            }
+        };
+
+        // Missile Data
+        const missileData = {
+            srbm: {
+                title: "近程弹道导弹 (SRBM)",
+                desc: "主要用于精确打击周边地区的高价值目标，如机场、港口和指挥中心。数量庞大，精度高。",
+                rangeText: "600 - 1,000 km",
+                width: "10%",
+                target: "覆盖第一岛链内目标，重点针对台湾岛及周边海域目标。"
+            },
+            mrbm: {
+                title: "中程/反舰弹道导弹 (MRBM)",
+                desc: "著名的“反介入/区域拒止”(A2/AD) 核心武器。DF-21D 具有攻击海上移动目标（如航母）的能力。",
+                rangeText: "1,500 - 2,500 km",
+                width: "20%",
+                target: "覆盖第一岛链至第二岛链之间的海域，包括日本、菲律宾及南海区域。"
+            },
+            irbm: {
+                title: "中远程弹道导弹 (IRBM)",
+                desc: "核常兼备，具备快速反应能力。DF-26 被称为“关岛快递”，能够打击第二岛链的关键节点。",
+                rangeText: "3,000 - 4,000 km",
+                width: "35%",
+                target: "覆盖关岛安德森空军基地及印度洋北部目标，威慑第二岛链。"
+            },
+            icbm: {
+                title: "洲际弹道导弹 (ICBM)",
+                desc: "国家战略核威慑的基石。采用固体燃料，机动发射或发射井部署，具备多弹头分导能力 (MIRV)。",
+                rangeText: "12,000 - 15,000 km",
+                width: "100%",
+                target: "覆盖全球大部分地区，包括北美大陆、欧洲全境。确保二次核打击能力。"
+            }
+        };
+
+        // --- Interaction Logic ---
+
+        // 1. Organization Tabs
+        function updateOrg(key) {
+            const data = orgData[key];
+            // Update Text
+            document.getElementById('org-content-title').textContent = data.title;
+            document.getElementById('org-content-desc').textContent = data.desc;
+            document.getElementById('org-content-mission').textContent = data.mission;
+            document.getElementById('org-content-equip').textContent = data.equip;
+
+            // Update Active State styling
+            document.querySelectorAll('.org-tab').forEach(btn => {
+                btn.classList.remove('active-tab', 'text-slate-800');
+                btn.classList.add('text-slate-500');
+                if(btn.dataset.target === key) {
+                    btn.classList.add('active-tab', 'text-slate-800');
+                    btn.classList.remove('text-slate-500');
+                }
+            });
+        }
+
+        // 2. Missile Filters
+        function filterMissiles(key) {
+            const data = missileData[key];
+            document.getElementById('missile-display-title').textContent = data.title;
+            document.getElementById('missile-display-desc').textContent = data.desc;
+            document.getElementById('missile-range-val').textContent = data.rangeText;
+            document.getElementById('missile-target-text').textContent = data.target;
+            
+            // Animate Bar
+            document.getElementById('missile-range-bar').style.width = data.width;
+
+            // Update Active State styling for missile buttons
+            document.querySelectorAll('.missile-btn').forEach(btn => {
+                btn.classList.remove('border-red-500', 'bg-slate-700');
+                // We use the onclick attribute to find the active one for simplicity in this specific structure
+                if(btn.getAttribute('onclick').includes(key)) {
+                    btn.classList.add('border-red-500', 'bg-slate-700');
+                }
+            });
+        }
+
+        // --- Chart.js Initialization ---
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Chart Defaults
+            Chart.defaults.font.family = "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif";
+            Chart.defaults.color = '#64748b';
+            
+            // 1. Budget Chart (Line)
+            const ctxBudget = document.getElementById('budgetChart').getContext('2d');
+            const budgetChart = new Chart(ctxBudget, {
+                type: 'line',
+                data: {
+                    labels: ['2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                    datasets: [{
+                        label: '官方国防预算 (亿美元)',
+                        data: [132, 146, 155, 163, 175, 183, 193, 209, 229, 224, 236], // Estimated/converted values for demo
+                        borderColor: '#ef4444',
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.3,
+                        fill: true,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#ef4444',
+                        pointRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top' },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                            titleColor: '#1e293b',
+                            bodyColor: '#1e293b',
+                            borderColor: '#e2e8f0',
+                            borderWidth: 1
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            grid: { borderDash: [2, 4] }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // Toggle logic for Budget (Simulation)
+            let isTotalView = true;
+            document.getElementById('toggleBudgetView').addEventListener('click', () => {
+                isTotalView = !isTotalView;
+                if (isTotalView) {
+                    budgetChart.data.datasets[0].data = [132, 146, 155, 163, 175, 183, 193, 209, 229, 224, 236];
+                    budgetChart.data.datasets[0].label = '官方国防预算 (亿美元)';
+                    budgetChart.options.scales.y.beginAtZero = false;
+                } else {
+                    // Simulated growth rates
+                    budgetChart.data.datasets[0].data = [12.2, 10.1, 7.6, 7.0, 8.1, 7.5, 6.6, 6.8, 7.1, 7.2, 7.2];
+                    budgetChart.data.datasets[0].label = '年度增长率 (%)';
+                    budgetChart.options.scales.y.beginAtZero = true;
+                }
+                budgetChart.update();
+            });
+
+
+            // 2. Navy Chart (Bar)
+            const ctxNavy = document.getElementById('navyChart').getContext('2d');
+            new Chart(ctxNavy, {
+                type: 'bar',
+                data: {
+                    labels: ['航空母舰', '巡洋舰/驱逐舰', '护卫舰', '现代化潜艇', '两栖舰船'],
+                    datasets: [{
+                        label: '估算数量 (艘)',
+                        data: [3, 50, 90, 60, 55], // Rough estimates for visualization
+                        backgroundColor: [
+                            '#ef4444', // Carrier
+                            '#334155', // Destroyer
+                            '#475569', // Frigate
+                            '#64748b', // Sub
+                            '#94a3b8'  // Amphib
+                        ],
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y', // Horizontal bar for better readability of labels
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            grid: { borderDash: [2, 2] }
+                        },
+                        y: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // 3. Air Force Chart (Doughnut)
+            const ctxAir = document.getElementById('airChart').getContext('2d');
+            new Chart(ctxAir, {
+                type: 'doughnut',
+                data: {
+                    labels: ['现代战机 (4/5代)', '老旧战机 (2/3代)', '特种飞机 (预警/电子)', '战略轰炸'],
+                    datasets: [{
+                        data: [55, 30, 8, 7],
+                        backgroundColor: [
+                            '#ef4444', // Modern
+                            '#cbd5e1', // Old
+                            '#334155', // Special
+                            '#475569'  // Bombers
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { usePointStyle: true, padding: 20 }
+                        }
+                    }
+                }
+            });
+            
+            // Initialize filters
+            // Set initial state for missile button visual
+             document.querySelector('.missile-btn').classList.add('border-red-500', 'bg-slate-700');
+        });
+    </script>
+</body>
+</html>

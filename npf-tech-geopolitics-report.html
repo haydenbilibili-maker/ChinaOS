@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>破壁与突围：科技战、脱钩断链与新质生产力底层逻辑</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Chosen Palette: Deep Tech Space (#020617 - background), Neon Cyan (#06b6d4 - technology/new forces), Alert Orange (#f97316 - chokepoints/threats), Slate Gray (#334155 - text) -->
+    
+    <!-- Application Structure Plan:
+        This SPA acts as a strategic war-room dashboard detailing the external economic-tech environment.
+        1. "The Ultimate Chokepoint" (Hero & Sec 1): Exposes the terrifying reliance on imported semiconductors compared to oil. Uses a bar chart to shock the reader with scale.
+        2. "The Anatomy of the Tech Blockade" (Sec 2): Breaks down the US "Small Yard, High Fence" strategy. Uses an interactive CSS grid to map the semiconductor supply chain vulnerabilities.
+        3. "The Counter-Offensive: New Productive Forces" (Sec 3): Explains WHY the "New Three Items" (EVs, Batteries, Solar) are the chosen weapons to bypass traditional tech bottlenecks. Uses tabbed analysis.
+        4. "Geopolitical Pivot: The Great Going Out" (Sec 4): Shows the shift in trade reliance from the West to the Global South to digest this new industrial capacity. Uses a divergent line chart.
+    -->
+    
+    <!-- Visualization & Content Choices:
+        1. Import Scale Comparison -> Goal: Contextualize vulnerability -> Horizontal Bar Chart (Chart.js) -> Strikingly shows that chip imports dwarf oil imports in dollar value.
+        2. Supply Chain Chokepoints -> Goal: Organize vulnerabilities logically -> CSS Grid Node Map (NO SVG) -> Users hover over nodes (EDA, Lithography, Foundry) to see specific blockade policies.
+        3. New Productive Forces -> Goal: Categorize the state's strategic bets -> Interactive Tab Cards -> Separates complex industrial policy into readable chunks (EVs, AI, Green Energy).
+        4. Trade Pivot -> Goal: Show geopolitical shift -> Line Chart (Chart.js) -> Visualizes the crossing lines where ASEAN/Global South exports surpass US/EU exports.
+        CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. Unicode is used for iconography.
+    -->
+
+    <style>
+        body {
+            background-color: #020617; /* Slate 950 */
+            color: #e2e8f0; /* Slate 200 */
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Mandatory Chart Container Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 380px;
+            }
+        }
+
+        /* Hero grid — pure CSS, no SVG */
+        .hero-grid-bg {
+            background-color: #020617;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Custom Interactive Elements */
+        .choke-node {
+            transition: all 0.3s ease;
+            border: 1px solid #334155;
+            background: linear-gradient(145deg, #0f172a, #1e293b);
+        }
+        .choke-node:hover {
+            border-color: #f97316; /* Orange */
+            box-shadow: 0 0 15px rgba(249, 115, 22, 0.4);
+            transform: translateY(-5px);
+        }
+        .choke-node .hidden-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            opacity: 0;
+        }
+        .choke-node:hover .hidden-detail {
+            max-height: 150px;
+            opacity: 1;
+            margin-top: 0.5rem;
+        }
+
+        .tab-btn {
+            transition: all 0.2s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .tab-btn.active {
+            color: #06b6d4; /* Cyan */
+            border-bottom-color: #06b6d4;
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body class="antialiased selection:bg-cyan-900 selection:text-cyan-100">
+
+    <!-- Navigation -->
+    <nav class="bg-slate-900/80 backdrop-blur-md text-slate-100 sticky top-0 z-50 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold tracking-wider flex items-center gap-2">
+                <span class="text-cyan-400">⚡</span> <span>全球博弈内参</span>
+                <span class="text-slate-500 text-sm font-normal hidden md:inline-block ml-2 border-l border-slate-700 pl-2">深度透视 · 专题报告</span>
+            </div>
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#vulnerability" class="hover:text-cyan-400 transition">第一软肋</a>
+                <a href="#blockade" class="hover:text-cyan-400 transition">小院高墙</a>
+                <a href="#newforces" class="hover:text-cyan-400 transition">新质生产力</a>
+                <a href="#globalsouth" class="hover:text-cyan-400 transition">地缘大出海</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative py-20 px-4 overflow-hidden border-b border-slate-800">
+        <div class="absolute inset-0 hero-grid-bg opacity-50 pointer-events-none"></div>
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-cyan-900/30 blur-[120px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div class="inline-block bg-slate-800 border border-slate-700 text-cyan-400 px-4 py-1.5 rounded-full text-xs font-bold mb-6 tracking-widest uppercase">
+                Geopolitical Tech & Economic Strategy
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
+                破壁与突围：<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">科技战与新质生产力底层逻辑</span>
+            </h1>
+            <p class="text-lg text-slate-400 leading-relaxed max-w-3xl mx-auto mt-6 text-left md:text-center">
+                既然旧的房地产引擎已被放弃，中国经济正试图完成人类史上最大规模的“工业换挡”。但这一次，横亘在国家战略面前的，是以美国为首的西方阵营对半导体与前沿科技实施的极寒级封锁（“小院高墙”）。本报告拆解这场关乎国运的科技围剿与产能突围战。
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-16 space-y-32">
+
+        <!-- Section 1: The Ultimate Vulnerability -->
+        <section id="vulnerability" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-1.5 h-8 bg-orange-500 rounded-full shadow-[0_0_10px_rgba(249,115,22,0.8)]"></div>
+                <h2 class="text-3xl font-bold text-slate-100">一、 最大的生存软肋：超越石油的“芯”病</h2>
+            </div>
+            <p class="text-slate-400 mb-8 max-w-4xl text-lg">
+                公众通常认为中国最大的进口依赖是原油。但在冷酷的国际贸易账本上，中国在集成电路（芯片）上的外汇消耗，已连续多年远超原油。这是现代工业社会真正的“阿喀琉斯之踵”。
+            </p>
+
+            <div class="bg-slate-900 p-6 md:p-8 rounded-2xl shadow-2xl border border-slate-800">
+                <h3 class="text-xl font-bold text-center mb-6 text-slate-300">中国核心战略物资年度进口额对比 (单位: 亿美元)</h3>
+                <div class="chart-container">
+                    <canvas id="importCompareChart"></canvas>
+                </div>
+                <div class="mt-8 bg-slate-800/50 p-5 rounded-lg border-l-4 border-orange-500 text-sm text-slate-300">
+                    <strong class="text-orange-400">决策层痛点：</strong> 石油可以通过增加俄罗斯、中东的多元化进口或发展新能源汽车来部分替代；但高端半导体芯片，全球仅有极少数美国及其盟友（日、荷、韩、中国台湾）掌握全产业链。只要这根链条被掐断，整个国家的数字化转型、AI战略乃至现代国防都将陷入瘫痪。
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: The Blockade (Small Yard High Fence) -->
+        <section id="blockade" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-1.5 h-8 bg-slate-500 rounded-full"></div>
+                <h2 class="text-3xl font-bold text-slate-100">二、 解剖“小院高墙”：半导体产业链的精准绞杀</h2>
+            </div>
+            <p class="text-slate-400 mb-8 max-w-4xl text-lg">
+                美国并未选择全面脱钩（代价太大），而是采用了“小院高墙”（Small Yard, High Fence）策略。即在服装、家具等低端领域保持贸易，但在关键的半导体、AI节点上，筑起绝对的技术壁垒。
+            </p>
+
+            <div class="p-8 bg-slate-900 rounded-2xl border border-slate-800">
+                <div class="text-center mb-6 text-slate-400 text-sm">互动图谱：悬浮下方关键节点，查看具体封锁手段</div>
+                
+                <!-- CSS Interactive Flow (No SVG) -->
+                <div class="flex flex-col lg:flex-row items-stretch justify-center gap-6">
+                    
+                    <!-- Node 1 -->
+                    <div class="choke-node p-6 rounded-xl flex-1 cursor-crosshair">
+                        <div class="text-3xl mb-3">💻</div>
+                        <h4 class="font-bold text-cyan-400 mb-1">上游：EDA软件与IP</h4>
+                        <p class="text-xs text-slate-500 font-mono">芯片设计的“图纸与画笔”</p>
+                        <div class="hidden-detail">
+                            <div class="mt-3 pt-3 border-t border-slate-700 text-sm text-slate-300">
+                                <strong>绞杀手段：</strong> Synopsys、Cadence等美国三大巨头对华断供先进制程EDA软件；ARM限制高性能IP核授权。导致国内芯片设计公司面临“无笔可用”的绝境。
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-center text-slate-600 text-2xl hidden lg:flex">➡</div>
+                    <div class="flex items-center justify-center text-slate-600 text-2xl lg:hidden my-2">⬇</div>
+
+                    <!-- Node 2 -->
+                    <div class="choke-node p-6 rounded-xl flex-1 cursor-crosshair border-orange-500/30">
+                        <div class="text-3xl mb-3">🔬</div>
+                        <h4 class="font-bold text-orange-400 mb-1">中游：半导体设备与材料</h4>
+                        <p class="text-xs text-slate-500 font-mono">工业皇冠上的明珠</p>
+                        <div class="hidden-detail">
+                            <div class="mt-3 pt-3 border-t border-slate-700 text-sm text-slate-300">
+                                <strong>极致绞杀：</strong> 联合荷兰ASML禁售EUV光刻机，并在近期扩大至DUV级别；联合日本限制光刻胶等23种高端材料出口。这是物理层面的绝对卡死（不仅不让买芯片，连造芯片的机器也不让买）。
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-center text-slate-600 text-2xl hidden lg:flex">➡</div>
+                    <div class="flex items-center justify-center text-slate-600 text-2xl lg:hidden my-2">⬇</div>
+
+                    <!-- Node 3 -->
+                    <div class="choke-node p-6 rounded-xl flex-1 cursor-crosshair">
+                        <div class="text-3xl mb-3">🏭</div>
+                        <h4 class="font-bold text-cyan-400 mb-1">下游：先进代工制造</h4>
+                        <p class="text-xs text-slate-500 font-mono">高端芯片落地环节</p>
+                        <div class="hidden-detail">
+                            <div class="mt-3 pt-3 border-t border-slate-700 text-sm text-slate-300">
+                                <strong>绞杀手段：</strong> 严禁台积电（TSMC）、三星为中国大陆企业（如华为海思）代工7nm及以下先进制程芯片。美国《芯片法案》更以巨额补贴逼迫制造产能回流美国。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: The Counter-Offensive (New Productive Forces) -->
+        <section id="newforces" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-1.5 h-8 bg-cyan-500 rounded-full shadow-[0_0_10px_rgba(6,182,212,0.8)]"></div>
+                <h2 class="text-3xl font-bold text-slate-100">三、 战略反攻：“新质生产力”与“新三样”的换道超车</h2>
+            </div>
+            <p class="text-slate-400 mb-8 max-w-4xl text-lg">
+                面对硅基半导体的铜墙铁壁，决策层的最高战略是“在无法硬刚的领域搞国产替代（成熟制程兜底），在具备优势的领域换道超车（新质生产力）”。这就是为什么“新三样”成为国家级风口的原因。
+            </p>
+
+            <div class="bg-slate-900 rounded-2xl shadow-xl border border-slate-800 overflow-hidden">
+                <!-- Tab Headers -->
+                <div class="flex flex-col md:flex-row border-b border-slate-800 bg-slate-950/50">
+                    <button type="button" class="tab-btn active flex-1 py-4 px-6 text-center font-bold text-slate-400 hover:text-cyan-200 focus:outline-none" onclick="switchTechTab(event, 'ev-tab')">
+                        🚗 新能源汽车 (EV) <br><span class="text-xs font-normal opacity-70">颠覆百年燃油霸权</span>
+                    </button>
+                    <button type="button" class="tab-btn flex-1 py-4 px-6 text-center font-bold text-slate-400 hover:text-cyan-200 focus:outline-none border-t md:border-t-0 md:border-l border-slate-800" onclick="switchTechTab(event, 'green-tab')">
+                        🔋 锂电与光伏 <br><span class="text-xs font-normal opacity-70">新能源的地缘武器</span>
+                    </button>
+                    <button type="button" class="tab-btn flex-1 py-4 px-6 text-center font-bold text-slate-400 hover:text-cyan-200 focus:outline-none border-t md:border-t-0 md:border-l border-slate-800" onclick="switchTechTab(event, 'ai-tab')">
+                        🧠 AI与底层算力 <br><span class="text-xs font-normal opacity-70">艰难的生态重构</span>
+                    </button>
+                </div>
+
+                <!-- Tab Contents -->
+                <div class="p-8 min-h-[350px]">
+                    <!-- EV Content -->
+                    <div id="ev-tab" class="tech-content block fade-in">
+                        <div class="flex flex-col md:flex-row gap-8 items-center">
+                            <div class="md:w-2/3 space-y-4">
+                                <h3 class="text-2xl font-bold text-cyan-400 mb-4">换道超车的典范：为什么死磕新能源车？</h3>
+                                <p class="text-slate-300 text-sm leading-relaxed">
+                                    在传统内燃机（发动机、变速箱）领域，欧美日拥有百年的专利壁垒和极深的工业护城河，中国企业难以逾越。
+                                </p>
+                                <p class="text-slate-300 text-sm leading-relaxed">
+                                    <strong>战略逻辑：</strong> 果断放弃在内燃机上的纠缠，直接将赛道切换至“三电”（电池、电机、电控）。在这个全新赛道上，大家都在同一起跑线。中国利用庞大的国内市场规模、完善的供应链和工程师红利，成功孕育出比亚迪、宁德时代等巨头，不仅摆脱了对美日欧汽车技术的依赖，更使其成为填补房地产投资空白的<span class="text-cyan-400 font-bold">第一大工业增长极</span>。
+                                </p>
+                            </div>
+                            <div class="md:w-1/3 w-full bg-slate-800 p-6 rounded-xl border border-slate-700 text-center">
+                                <div class="text-5xl mb-3">🌐</div>
+                                <div class="font-bold text-slate-200 mb-1">重塑产业链</div>
+                                <p class="text-xs text-slate-400">目前中国的新能源汽车产销量及出口量均位居世界第一，彻底改变了全球汽车工业版图。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Green Tech Content -->
+                    <div id="green-tab" class="tech-content hidden fade-in">
+                        <div class="flex flex-col md:flex-row gap-8 items-center">
+                            <div class="md:w-2/3 space-y-4">
+                                <h3 class="text-2xl font-bold text-cyan-400 mb-4">光伏与电池：将“能源”变为“制造”</h3>
+                                <p class="text-slate-300 text-sm leading-relaxed">
+                                    传统的化石能源受制于地理分布（中东、俄罗斯、美国），必须依赖危险的海上运输线。
+                                </p>
+                                <p class="text-slate-300 text-sm leading-relaxed">
+                                    <strong>战略逻辑：</strong> 发展光伏和锂电池，其本质是将“资源依赖型”的能源体系，转化为“制造业依赖型”的能源体系。只要有阳光，加上中国制造的光伏板，就能产生能源。中国目前控制了全球80%以上的光伏产业链环节（多晶硅、硅片、电池片、组件）以及超60%的动力电池产能。这极大提升了国家底线生存的安全度，并成为强势的出口创汇工具。
+                                </p>
+                            </div>
+                            <div class="md:w-1/3 w-full bg-slate-800 p-6 rounded-xl border border-slate-700 text-center">
+                                <div class="text-5xl mb-3">☀️</div>
+                                <div class="font-bold text-slate-200 mb-1">绝对统治力</div>
+                                <p class="text-xs text-slate-400">西方正试图通过提高关税（反补贴调查）来阻挡中国新能源产品，但这很难改变中国在制造成本上的碾压优势。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Content -->
+                    <div id="ai-tab" class="tech-content hidden fade-in">
+                        <div class="flex flex-col md:flex-row gap-8 items-center">
+                            <div class="md:w-2/3 space-y-4">
+                                <h3 class="text-2xl font-bold text-orange-400 mb-4">人工智能与算力：没有硝烟的暗战</h3>
+                                <p class="text-slate-300 text-sm leading-relaxed">
+                                    AI大模型（如ChatGPT）的爆发，使得“算力”成为新时代的战略资源。美国通过禁止英伟达（NVIDIA）向中国出售高端AI芯片（如A100/H100及改进型），试图锁死中国AI发展的上限。
+                                </p>
+                                <p class="text-slate-300 text-sm leading-relaxed">
+                                    <strong>战略逻辑（艰难突围）：</strong> 这是真正的攻坚战。一方面，华为（昇腾算力生态）等企业被迫在成熟制程的基础上，通过系统级架构创新（堆叠技术）、软件优化来弥补单芯片性能的不足，艰难搭建完全脱离美国技术的底层算力底座。这是国家意志与市场力量的极限结合。
+                                </p>
+                            </div>
+                            <div class="md:w-1/3 w-full bg-slate-800 border-l-4 border-orange-500 p-6 rounded-xl text-center">
+                                <div class="text-5xl mb-3">🚧</div>
+                                <div class="font-bold text-orange-400 mb-1">生态软肋</div>
+                                <p class="text-xs text-slate-400">相比硬件制造，打破CUDA（英伟达软件生态）的垄断，建立起开发者愿意使用的国产AI软件框架，是比造芯片更难的系统工程。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Geopolitical Trade Pivot -->
+        <section id="globalsouth" class="scroll-mt-24 mb-16">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-1.5 h-8 bg-blue-500 rounded-full"></div>
+                <h2 class="text-3xl font-bold text-slate-100">四、 “大出海”时代：重构地缘经济版图</h2>
+            </div>
+            <p class="text-slate-400 mb-8 max-w-4xl text-lg">
+                面对国内严重的内卷以及美欧日渐高耸的关税壁垒（尤其针对新三样），庞大的“新质生产力”产能必须寻找出路。中国正在加速摆脱对传统发达国家市场的绝对依赖，全面倒向“全球南方”（Global South）。
+            </p>
+
+            <div class="bg-slate-900 p-6 md:p-8 rounded-2xl shadow-xl border border-slate-800">
+                <h3 class="text-lg font-bold text-slate-300 mb-6 text-center">中国出口贸易伙伴结构演化（历史性交叉）</h3>
+                <div class="chart-container">
+                    <canvas id="tradePivotChart"></canvas>
+                </div>
+                
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-slate-800/80 p-5 rounded-lg border border-slate-700">
+                        <h4 class="font-bold text-cyan-400 mb-2">东盟与“一带一路”的接力</h4>
+                        <p class="text-sm text-slate-400">
+                            数据清晰表明，东盟已经取代美欧，成为中国第一大贸易伙伴。这不仅是终端消费品的出口，更包含中间件设备的输出——中国企业通过在东南亚、墨西哥建厂（产能出海），巧妙绕开美国的关税壁垒。
+                        </p>
+                    </div>
+                    <div class="bg-slate-800/80 p-5 rounded-lg border border-slate-700">
+                        <h4 class="font-bold text-orange-400 mb-2">出海的风险：内卷的外溢</h4>
+                        <p class="text-sm text-slate-400">
+                            然而，这种海量的低价、高质量工业品输出，也开始引起巴西、墨西哥等发展中国家的警惕。他们同样需要保护本国脆弱的工业体系。因此，从“卖商品”向“海外建厂、分享技术与利润”转变，是中国企业出海下半场的必修课。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#020617] text-slate-500 py-10 text-center border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-4">
+            <p class="font-bold text-slate-400 tracking-wider">科技地缘与宏观战略决策系统 · 专题版 05</p>
+            <p class="mt-3 text-xs leading-relaxed max-w-2xl mx-auto opacity-60">
+                机密级别模拟内参。本页面涉及的进出口数据、技术图谱为反映宏观战略趋势的模型数据。在逆全球化浪潮中，大国竞争已从“效率优先”转向“安全绝对优先”。
+            </p>
+            <p class="mt-4 text-xs">© 2026 Strategic Macro Intelligence</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Tab Switching Logic for New Productive Forces
+        function switchTechTab(evt, tabId) {
+            const contents = document.querySelectorAll('.tech-content');
+            contents.forEach(content => {
+                content.classList.remove('block', 'fade-in');
+                content.classList.add('hidden');
+            });
+
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            const panel = document.getElementById(tabId);
+            panel.classList.remove('hidden');
+            setTimeout(() => {
+                panel.classList.add('block', 'fade-in');
+            }, 10);
+            
+            evt.currentTarget.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            Chart.defaults.color = '#94a3b8';
+            Chart.defaults.font.family = "'PingFang SC', 'Microsoft YaHei', sans-serif";
+            Chart.defaults.borderColor = '#1e293b';
+
+            const ctxImport = document.getElementById('importCompareChart').getContext('2d');
+            new Chart(ctxImport, {
+                type: 'bar',
+                data: {
+                    labels: ['2019', '2020', '2021', '2022', '2023'],
+                    datasets: [
+                        {
+                            label: '集成电路 (芯片) 进口额',
+                            data: [3055, 3500, 4325, 4155, 3493],
+                            backgroundColor: 'rgba(6, 182, 212, 0.8)',
+                            borderColor: '#06b6d4',
+                            borderWidth: 1,
+                            borderRadius: 4
+                        },
+                        {
+                            label: '原油 进口额',
+                            data: [2413, 1763, 2573, 3655, 3375],
+                            backgroundColor: 'rgba(249, 115, 22, 0.6)',
+                            borderColor: '#f97316',
+                            borderWidth: 1,
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    indexAxis: 'y',
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { position: 'top', labels: { color: '#cbd5e1' } },
+                        tooltip: {
+                            backgroundColor: 'rgba(15, 23, 42, 0.95)',
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 13 },
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.raw + ' 亿美元';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { 
+                            title: { display: true, text: '金额 (亿美元)', color: '#94a3b8' },
+                            grid: { color: '#1e293b' }
+                        },
+                        y: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            const ctxTrade = document.getElementById('tradePivotChart').getContext('2d');
+            new Chart(ctxTrade, {
+                type: 'line',
+                data: {
+                    labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
+                    datasets: [
+                        {
+                            label: '对东盟 (ASEAN) 进出口额',
+                            data: [472, 452, 514, 587, 641, 684, 878, 975, 911],
+                            borderColor: '#06b6d4',
+                            backgroundColor: 'rgba(6, 182, 212, 0.1)',
+                            borderWidth: 3,
+                            pointBackgroundColor: '#020617',
+                            pointBorderColor: '#06b6d4',
+                            pointBorderWidth: 2,
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: '对美国 (USA) 进出口额',
+                            data: [558, 524, 583, 633, 541, 586, 755, 759, 664],
+                            borderColor: '#f97316',
+                            borderDash: [5, 5],
+                            backgroundColor: 'transparent',
+                            borderWidth: 2,
+                            pointBackgroundColor: '#020617',
+                            pointBorderColor: '#f97316',
+                            pointBorderWidth: 2,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { position: 'top', labels: { color: '#cbd5e1' } },
+                        tooltip: {
+                            backgroundColor: 'rgba(15, 23, 42, 0.95)',
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 13 },
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.raw + ' 亿美元';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { 
+                            grid: { display: false }
+                        },
+                        y: {
+                            title: { display: true, text: '进出口总额 (亿美元)', color: '#94a3b8' },
+                            grid: { color: '#1e293b' }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

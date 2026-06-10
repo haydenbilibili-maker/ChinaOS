@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人口拐点与阶层重构：中国社会底层逻辑演变深度解析</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Chosen Palette: Midnight Purple (#2e1065 - representing twilight/aging), Crimson Rose (#be185d - representing youth/births), Soft Slate (#f8fafc - background), Muted Gold (#ca8a04 - wealth/pension) -->
+    
+    <!-- Application Structure Plan:
+        The SPA completes the macro analysis by focusing on the "Human Element" (Demographics and Society).
+        1. "The Demographic Scissors" (Hero & Sec 1): Visualizes the historic crossing of birth and death rates. This sets the stage that the era of endless cheap labor is permanently over.
+        2. "The Employment Paradox" (Sec 2): Contrasts the intense "Involution" (内卷) and high youth unemployment with the severe shortage of blue-collar/advanced manufacturing workers. Uses CSS flex-cards for comparison.
+        3. "The Silver Tsunami" (Sec 3): Analyzes the aging population and the massive pressure on the pension system, while highlighting the "Silver Economy" opportunity. Uses a stacked bar chart.
+        4. "The New Social Contract" (Sec 4): Explains state interventions like "Common Prosperity" (共同富裕) and "Double Reduction" (双减) as desperate attempts to lower living costs and boost birth rates. Uses an interactive Tab system.
+    -->
+    
+    <!-- Visualization & Content Choices:
+        1. Births vs Deaths -> Goal: Show the historic reversal -> Line Chart (Chart.js) -> Clear visual intersection of the two lines ("The Scissors Gap").
+        2. Structural Mismatch -> Goal: Highlight the paradox of joblessness vs. labor shortage -> Interactive CSS Cards with Unicode -> Easy to digest qualitative data. No SVG.
+        3. Aging Demographics -> Goal: Show the rapid shift in age brackets -> Stacked Bar Chart (Chart.js) -> Shows the shrinking working-age base supporting a growing elderly top.
+        4. Policy Responses -> Goal: Connect social phenomena to state policy -> Tabbed Interface -> Organizes policies like "Common Prosperity" logically.
+        CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. Unicode is used for iconography.
+    -->
+
+    <style>
+        body {
+            background-color: #f8fafc; /* Slate 50 */
+            color: #334155; /* Slate 700 */
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Mandatory Chart Container Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+
+        /* Custom Interactive Elements */
+        .paradox-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid transparent;
+        }
+        .paradox-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .policy-tab {
+            transition: all 0.2s ease;
+        }
+        .policy-tab.active {
+            background-color: #2e1065; /* Purple 900 */
+            color: white;
+            border-radius: 0.5rem 0.5rem 0 0;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="bg-purple-950 text-slate-100 sticky top-0 z-50 shadow-lg border-b border-purple-800">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold tracking-wider flex items-center gap-2">
+                <span>👥</span> <span>社会底层逻辑内参</span>
+                <span class="text-purple-300 text-sm font-normal hidden md:inline-block ml-2 border-l border-purple-700 pl-2">深度透视 · 专题报告（第六期）</span>
+            </div>
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#demographics" class="hover:text-pink-400 transition">人口剪刀差</a>
+                <a href="#employment" class="hover:text-pink-400 transition">就业结构悖论</a>
+                <a href="#aging" class="hover:text-pink-400 transition">银发海啸</a>
+                <a href="#socialcontract" class="hover:text-pink-400 transition">新社会契约</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-purple-900 text-slate-50 py-24 px-4 relative overflow-hidden">
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-pink-700 opacity-20 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-purple-500 opacity-20 blur-3xl"></div>
+        
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div class="inline-block bg-purple-800/50 border border-purple-600 text-purple-200 px-4 py-1.5 rounded-full text-xs font-bold mb-6 tracking-widest backdrop-blur-sm">
+                MACRO DEMOGRAPHICS & SOCIAL STRATIFICATION
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
+                人口拐点与阶层重构：<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-300">终结与新生的社会底层逻辑</span>
+            </h1>
+            <p class="text-lg md:text-xl text-purple-200 leading-relaxed max-w-3xl mx-auto mt-6 text-left md:text-center">
+                所有的超级工程和科技博弈，最终都面临一个绝对的物理极限——“人”。中国维持了40年的“无限廉价劳动力”时代已在此刻画上句号。本报告将视线从宏大叙事转向微观个体，解析人口收缩、极度内卷与“共同富裕”政策背后的深刻社会重构。
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-16 space-y-28">
+
+        <!-- Section 1: The Demographic Scissors -->
+        <section id="demographics" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-1.5 h-8 bg-pink-600 rounded-full"></div>
+                <h2 class="text-3xl font-bold text-slate-900">一、 历史的交叉：死亡交叉与人口剪刀差</h2>
+            </div>
+            <p class="text-slate-600 mb-8 max-w-4xl text-lg">
+                2022-2023年是中国宏观历史上的一个绝对分水岭：出生人口跌破千万大关，总人口首次出现负增长。这并非暂时的波动，而是城市化后期、高房价、高教育成本共同挤压下的长期趋势。
+            </p>
+
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200">
+                <h3 class="text-xl font-bold text-center mb-6 text-slate-800">中国历年出生与死亡人口演变趋势 (单位: 万人)</h3>
+                <div class="chart-container">
+                    <canvas id="populationChart"></canvas>
+                </div>
+                <div class="mt-8 bg-pink-50 p-5 rounded-lg border-l-4 border-pink-600 text-sm text-slate-700">
+                    <strong class="text-pink-800">决策层痛点：</strong> 人口的急剧萎缩直接抽干了房地产的“刚需”底层逻辑（见第四期），并对未来的内需市场规模提出严峻挑战。“人口红利”彻底终结，被迫全面转向“人才红利”和“机器替代人”。
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Employment Paradox -->
+        <section id="employment" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-1.5 h-8 bg-purple-700 rounded-full"></div>
+                <h2 class="text-3xl font-bold text-slate-900">二、 结构性悖论：“极度内卷”与“用工荒”并存</h2>
+            </div>
+            <p class="text-slate-600 mb-8 max-w-4xl text-lg">
+                中国目前面临的并非绝对的“工作岗位不足”，而是极其严重的<strong>结构性错配</strong>。社会期待与产业现实之间出现了一条巨大的鸿沟。
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 paradox-card hover:border-t-purple-600">
+                    <div class="flex justify-between items-center mb-6">
+                        <div class="text-4xl">🎓</div>
+                        <div class="bg-purple-100 text-purple-800 text-xs font-bold px-3 py-1 rounded-full">白领 / 服务业</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-3">高学历通胀与“内卷”</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                        每年超过1100万高校毕业生涌入市场。由于互联网、教培、房地产等昔日吸收高学历人才的“蓄水池”萎缩，导致体制内（考公、考编）竞争达到白热化状态。“内卷”成为常态，而“躺平”成为部分青年对抗极度竞争的无声抗议。
+                    </p>
+                    <div class="bg-slate-50 p-4 rounded-lg text-xs text-slate-500 border border-slate-100">
+                        <strong>表现形式：</strong> 硕博毕业生竞争基层街道办岗位；外卖骑手中本科以上学历占比不断上升。
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 paradox-card hover:border-t-pink-600">
+                    <div class="flex justify-between items-center mb-6">
+                        <div class="text-4xl">⚙️</div>
+                        <div class="bg-pink-100 text-pink-800 text-xs font-bold px-3 py-1 rounded-full">蓝领 / 制造业</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-3">制造业的“用工荒”</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                        我们在第五期讨论的“新质生产力”（新能源、高端制造），面临着极度缺乏高级技工的困境。预计到2025年，中国制造业十大重点领域人才缺口将接近3000万人。年轻人宁愿做网约车司机或外卖员，也不愿进工厂（即使薪水更高）。
+                    </p>
+                    <div class="bg-slate-50 p-4 rounded-lg text-xs text-slate-500 border border-slate-100">
+                        <strong>表现形式：</strong> 沿海工厂高薪“抢人”无果；技能型技术工人断代现象严重。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: The Silver Tsunami -->
+        <section id="aging" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-1.5 h-8 bg-yellow-600 rounded-full"></div>
+                <h2 class="text-3xl font-bold text-slate-900">三、 银发海啸：养老金承压与银发经济的崛起</h2>
+            </div>
+            <p class="text-slate-600 mb-8 max-w-4xl text-lg">
+                1962年至1973年是中国历史上最大的“婴儿潮”。如今，这庞大的群体正以每年两千万人的规模涌入退休大军。这不仅是对国家财政的终极考验，也意味着消费市场的彻底转型。
+            </p>
+
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex flex-col lg:flex-row gap-10 items-center">
+                    <div class="w-full lg:w-3/5">
+                        <div class="chart-container">
+                            <canvas id="agingChart"></canvas>
+                        </div>
+                        <p class="text-center text-xs text-slate-400 mt-2">中国各年龄段人口占比演变（包含联合国中方案预测）</p>
+                    </div>
+                    
+                    <div class="w-full lg:w-2/5 space-y-6">
+                        <div class="p-5 border-l-4 border-red-500 bg-red-50 rounded-r-lg">
+                            <h4 class="font-bold text-red-900 mb-2">危机：养老金池的穿透压力</h4>
+                            <p class="text-sm text-red-800/80">
+                                曾经是5个年轻人养1个老人，未来可能变成1.5个年轻人养1个老人。现收现付制的养老金体系在部分人口流出省份（如东北）早已入不敷出，高度依赖中央财政的跨省调剂。<strong>延迟退休</strong>已成为不可逆转的政策选项。
+                            </p>
+                        </div>
+                        
+                        <div class="p-5 border-l-4 border-yellow-500 bg-yellow-50 rounded-r-lg">
+                            <h4 class="font-bold text-yellow-900 mb-2">机遇：爆发的“银发经济”</h4>
+                            <p class="text-sm text-yellow-800/80">
+                                60后退休人群是中国第一批完整享受到改革开放和房地产红利的群体，他们掌握着中国社会的大部分净财富。医疗康养、适老化改造、抗衰老生物医药、甚至老年文旅，将取代母婴、K12教育，成为未来20年最确定、最庞大的消费赛道。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: The New Social Contract -->
+        <section id="socialcontract" class="scroll-mt-24 mb-16">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-1.5 h-8 bg-purple-900 rounded-full"></div>
+                <h2 class="text-3xl font-bold text-slate-900">四、 重塑社会契约：“共同富裕”与分配逻辑的转向</h2>
+            </div>
+            <p class="text-slate-600 mb-8 max-w-4xl text-lg">
+                面对生育率暴跌和阶层固化，国家机器开始通过强大的行政手段干预社会分配。过去40年“效率优先，让一部分人先富起来”的旧契约，正在转向“兼顾公平、抑制资本无序扩张”的新契约。
+            </p>
+
+            <div class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
+                <div class="flex flex-col md:flex-row border-b border-slate-200 bg-slate-50 px-2 pt-2 gap-2">
+                    <button type="button" class="policy-tab active flex-1 py-4 px-6 text-center font-bold text-slate-600 hover:bg-slate-200 focus:outline-none" onclick="switchTab(event, 'tab-wealth')">
+                        💰 财富重分配<br><span class="text-xs font-normal opacity-80">共同富裕与三次分配</span>
+                    </button>
+                    <button type="button" class="policy-tab flex-1 py-4 px-6 text-center font-bold text-slate-600 hover:bg-slate-200 focus:outline-none" onclick="switchTab(event, 'tab-edu')">
+                        📚 拆解教育军备竞赛<br><span class="text-xs font-normal opacity-80">“双减”与职业教育分流</span>
+                    </button>
+                    <button type="button" class="policy-tab flex-1 py-4 px-6 text-center font-bold text-slate-600 hover:bg-slate-200 focus:outline-none" onclick="switchTab(event, 'tab-welfare')">
+                        🏥 基础民生兜底<br><span class="text-xs font-normal opacity-80">医疗集采与保障房</span>
+                    </button>
+                </div>
+
+                <div class="p-8 min-h-[300px] bg-white">
+                    
+                    <div id="tab-wealth" class="tab-content block fade-in">
+                        <h3 class="text-2xl font-bold text-purple-900 mb-4">共同富裕：对资本红绿灯的设置</h3>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-4">
+                            国家意识到，放任财富向极少数平台垄断企业和房地产寡头集中，会抽干全社会的消费能力，导致底层彻底失去向上流动的希望（“躺平”的根源）。
+                        </p>
+                        <ul class="list-disc pl-5 space-y-3 text-sm text-slate-600">
+                            <li><strong>反垄断与资本红绿灯：</strong> 强力拆解互联网平台的“赢者通吃”模式，打破封闭生态，防止资本在民生领域（如社区团购）的掠夺性倾销。</li>
+                            <li><strong>税收与三次分配：</strong> 强化高净值人群和网红主播的税务稽查；鼓励大型企业巨头（如腾讯、阿里）主动捐出千亿资金设立“共同富裕”专项基金（第三次分配）。</li>
+                            <li><strong>缩小体制内外差距：</strong> 在经济下行期，开始对部分发达地区体制内人员的奖金与津贴进行规范和降薪，以安抚广泛的社会情绪。</li>
+                        </ul>
+                    </div>
+
+                    <div id="tab-edu" class="tab-content hidden fade-in">
+                        <h3 class="text-2xl font-bold text-purple-900 mb-4">“双减”政策：强行拉平起跑线</h3>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-4">
+                            教育原本是跨越阶层的桥梁，但近年来演变成了比拼家庭财力的“军备竞赛”。昂贵的课外辅导费成为了压垮年轻父母生育意愿的“三座大山”之一。
+                        </p>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-slate-50 p-4 border border-slate-200 rounded">
+                                <h4 class="font-bold text-slate-800 mb-2">雷霆打击教培行业</h4>
+                                <p class="text-xs text-slate-600">国家不惜以毁灭一个市值数万亿的K12课外辅导行业（如新东方、好未来）为代价，禁止资本化运作。其核心决策逻辑是：<strong>教育公平高于纯粹的商业利益，必须降低全社会的育儿焦虑</strong>。</p>
+                            </div>
+                            <div class="bg-slate-50 p-4 border border-slate-200 rounded">
+                                <h4 class="font-bold text-slate-800 mb-2">职普分流与职业教育</h4>
+                                <p class="text-xs text-slate-600">为解决我们在“第二部分”提到的制造业缺人问题，国家在中考阶段实行严格的分流，将大量生源导向职业技术学校。试图效仿德国双元制体系，提升“高级蓝领”的社会地位，为新质生产力储备产业工人。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-welfare" class="tab-content hidden fade-in">
+                        <h3 class="text-2xl font-bold text-purple-900 mb-4">挤压虚高利润，实施基础兜底</h3>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-4">
+                            除了教育，医疗和住房成本也是抑制社会活力和生育率的毒瘤。国家的策略是通过行政买方垄断力量，强行挤出中间环节的暴利。
+                        </p>
+                        <ul class="list-disc pl-5 space-y-3 text-sm text-slate-600">
+                            <li><strong>医疗器械与药品“灵魂砍价”：</strong> 医保局通过国家级集中采购（集采），将心脏支架、人工关节及大量基础药品的费用砍掉80%甚至90%以上。重塑医疗产业链利润分配，减轻老龄化带来的医保基金穿透危机。</li>
+                            <li><strong>住房双轨制：</strong> 在商品房市场遇冷（详见第四期）的同时，国家大力推进“保障性租赁住房”和“城中村改造”。试图构建“高端有市场、低端有保障”的双轨制，让在大城市打拼的新市民“住得起、留得下”。</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="mt-8 p-6 bg-purple-900 text-purple-100 rounded-xl shadow-lg border-l-4 border-pink-500">
+                <h3 class="text-xl font-bold mb-2">决策内参终局总结</h3>
+                <p class="text-sm leading-relaxed opacity-90">
+                    至此，本系列完成了全部六期的宏观战略闭环梳理。<br>
+                    从【顶层权力设计】到【粮食能源底线】，从【超级工程空间重塑】到【刺破地产与地方债泡沫】，再到【科技战下的新质生产力突围】，直至今天这最后一环——【人口拐点下的阶层与社会契约重构】。<br>
+                    中国的决策底层逻辑已经非常清晰：<strong>放弃唯GDP论的狂飙突进，在极端的外部围堵和内部人口萎缩的极限施压下，通过强大的国家行政力量，将有限的资源强制转移至硬核科技、高端制造以及底层民生保障。</strong> 这是一个伴随巨大阵痛，但试图实现“涅槃重生”的史诗级国家转型。
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-10 text-center border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-4">
+            <p class="font-semibold text-slate-300">宏观社会底层逻辑与人口拐点分析 · 专题版 06</p>
+            <p class="mt-3 text-xs leading-relaxed max-w-2xl mx-auto opacity-70">
+                声明：本分析页面中涉及的人口预测与社会趋势等数据，为基于国家统计局历史数据及联合国相关预测模型的概略呈现，旨在辅助阐明社会结构重塑的宏观逻辑。
+            </p>
+            <p class="mt-4 text-xs">© 2026 Strategic Macro Intelligence</p>
+        </div>
+    </footer>
+
+    <script>
+        function switchTab(evt, tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.remove('block', 'fade-in');
+                content.classList.add('hidden');
+            });
+
+            const tabs = document.querySelectorAll('.policy-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            const panel = document.getElementById(tabId);
+            panel.classList.remove('hidden');
+            setTimeout(() => {
+                panel.classList.add('block', 'fade-in');
+            }, 10);
+            
+            evt.currentTarget.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            Chart.defaults.font.family = "'PingFang SC', 'Microsoft YaHei', sans-serif";
+            Chart.defaults.color = '#64748b';
+
+            const ctxPop = document.getElementById('populationChart').getContext('2d');
+            new Chart(ctxPop, {
+                type: 'line',
+                data: {
+                    labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
+                    datasets: [
+                        {
+                            label: '出生人口 (万人)',
+                            data: [1883, 1723, 1523, 1465, 1200, 1062, 956, 902],
+                            borderColor: '#be185d',
+                            backgroundColor: 'rgba(190, 24, 93, 0.1)',
+                            borderWidth: 3,
+                            pointBackgroundColor: '#fff',
+                            pointBorderColor: '#be185d',
+                            pointRadius: 5,
+                            fill: true,
+                            tension: 0.3
+                        },
+                        {
+                            label: '死亡人口 (万人)',
+                            data: [977, 986, 993, 998, 997, 1014, 1041, 1110],
+                            borderColor: '#334155',
+                            backgroundColor: 'transparent',
+                            borderWidth: 3,
+                            pointBackgroundColor: '#fff',
+                            pointBorderColor: '#334155',
+                            pointRadius: 5,
+                            borderDash: [5, 5],
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { position: 'top', labels: { usePointStyle: true, boxWidth: 8 } },
+                        tooltip: {
+                            backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 13 },
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label.replace(' (万人)', '') + ': ' + context.raw + ' 万人';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { grid: { display: false } },
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: { display: true, text: '人口数量 (万人)' },
+                            suggestedMin: 500,
+                            suggestedMax: 2000
+                        }
+                    }
+                }
+            });
+
+            const ctxAging = document.getElementById('agingChart').getContext('2d');
+            new Chart(ctxAging, {
+                type: 'bar',
+                data: {
+                    labels: ['2000', '2010', '2020', '2035 (预测)', '2050 (预测)'],
+                    datasets: [
+                        {
+                            label: '0-14岁 (少儿)',
+                            data: [22.9, 16.6, 17.9, 12.5, 10.5],
+                            backgroundColor: '#f472b6',
+                            stack: 'Stack 0',
+                        },
+                        {
+                            label: '15-64岁 (劳动适龄)',
+                            data: [70.1, 74.5, 68.6, 59.5, 51.5],
+                            backgroundColor: '#8b5cf6',
+                            stack: 'Stack 0',
+                        },
+                        {
+                            label: '65岁及以上 (老龄)',
+                            data: [7.0, 8.9, 13.5, 28.0, 38.0],
+                            backgroundColor: '#eab308',
+                            stack: 'Stack 0',
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                            backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 13 },
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.raw + '%';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { 
+                            grid: { display: false },
+                            stacked: true 
+                        },
+                        y: {
+                            stacked: true,
+                            title: { display: true, text: '占总人口比例 (%)' },
+                            max: 100
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

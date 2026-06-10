@@ -1,0 +1,12 @@
+{
+  "source": "国家统计局 (NBS) 公开发布参考",
+  "lastUpdated": "2025-01",
+  "note": "完整数据请访问 data.stats.gov.cn 查询。此处为公开公报与发布会的参考值，仅供对照。",
+  "indicators": [
+    { "name": "国内生产总值增速", "code": "A0101", "unit": "%", "latestValue": 5.2, "latestYear": "2024", "description": "全年 GDP 同比增速" },
+    { "name": "居民消费价格指数 (CPI)", "code": "A0102", "unit": "%", "latestValue": 0.2, "latestYear": "2024", "description": "全年同比" },
+    { "name": "工业生产者出厂价格 (PPI)", "code": "A0103", "unit": "%", "latestValue": -2.5, "latestYear": "2024", "description": "全年同比" },
+    { "name": "制造业采购经理指数 (PMI)", "code": "A0104", "unit": "", "latestValue": 50.2, "latestYear": "2024-12", "description": "月度" },
+    { "name": "城镇调查失业率", "code": "A0105", "unit": "%", "latestValue": 5.1, "latestYear": "2024", "description": "年度" }
+  ]
+}

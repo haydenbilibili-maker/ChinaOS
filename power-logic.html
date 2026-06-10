@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国政治权力运行逻辑调研 | 现实主义透视</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --power-dark: #020617;
+            --power-red: #7f1d1d;
+            --power-steel: #475569;
+            --power-gold: #a16207;
+            --power-bg: #f8fafc;
+            --power-teal: #0d9488;
+        }
+
+        body {
+            background-color: var(--power-bg);
+            color: var(--power-dark);
+            font-family: 'Inter', 'PingFang SC', system-ui, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            height: 320px;
+            margin: auto;
+        }
+
+        @media (min-width: 768px) { .chart-container { height: 400px; } }
+
+        .realist-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .realist-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        .cyber-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--power-teal), transparent);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .cyber-line::after {
+            content: "";
+            position: absolute;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: white;
+            animation: data-ping 2s infinite linear;
+        }
+        @keyframes data-ping {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .pulse-red {
+            animation: pulse-red-border 2.5s infinite;
+        }
+        @keyframes pulse-red-border {
+            0% { border-color: rgba(127, 29, 29, 0.2); }
+            50% { border-color: rgba(127, 29, 29, 0.8); }
+            100% { border-color: rgba(127, 29, 29, 0.2); }
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="antialiased selection:bg-red-200">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <a href="china.html?tab=powerreport" class="flex items-center space-x-3 hover:opacity-80 transition">
+                    <div class="w-10 h-10 bg-slate-900 rounded-lg flex items-center justify-center shadow-lg">
+                        <span class="text-white text-xl font-bold">权</span>
+                    </div>
+                    <div>
+                        <h1 class="text-base font-bold text-slate-900 leading-none">权力运行与社会控制逻辑</h1>
+                        <p class="text-[10px] text-slate-400 uppercase tracking-widest mt-1 italic">Realist Mechanism & Control Algorithm</p>
+                    </div>
+                </a>
+            </div>
+            <nav class="hidden lg:flex space-x-6 text-sm font-semibold text-slate-500">
+                <a href="#mismatch" class="hover:text-red-700">分配悖论</a>
+                <a href="#incentive" class="hover:text-red-700">官僚算法</a>
+                <a href="#cyber" class="hover:text-red-700">赛博反馈</a>
+                <a href="#semantic" class="hover:text-red-700">语义防火墙</a>
+                <a href="#security" class="hover:text-red-700">全域安全</a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <a href="china.html?tab=powerreport" class="text-xs text-slate-500 hover:text-slate-700">← China OS</a>
+                <span class="text-[10px] px-2 py-1 bg-red-900 text-white rounded font-bold uppercase">Realpolitik</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-8 space-y-16 relative">
+
+        <!-- Section 1: Fiscal Mismatch -->
+        <section id="mismatch" class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div class="lg:col-span-7 space-y-6">
+                <div class="inline-flex items-center px-3 py-1 bg-red-50 text-red-800 rounded-full text-xs font-bold uppercase tracking-wider">
+                    权力物理学：资源重构
+                </div>
+                <h2 class="text-4xl font-extrabold text-slate-900 leading-tight">
+                    不平等的契约：<br><span class="text-red-900 italic">「收支倒挂」</span>的激励艺术
+                </h2>
+                <p class="text-slate-600 text-lg leading-relaxed">
+                    在现实主义视角下，中国央地关系的实质是「财权上收以控全局，事权下移以推责任」。这种结构性错配并非体制失误，而是一套精巧的激励算法：它让地方政府始终处于对资源的饥渴状态，从而被迫投入高强度的招商引资和经济锦标赛，同时在政治上实现对中枢的绝对依附。
+                </p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="p-4 realist-card text-center border-red-100">
+                        <div class="text-xl font-black text-slate-900">集中</div>
+                        <div class="text-[9px] text-slate-400 uppercase mt-1">中枢财政主导权</div>
+                    </div>
+                    <div class="p-4 realist-card text-center border-red-200 bg-red-50/20">
+                        <div class="text-xl font-black text-red-800">竞争</div>
+                        <div class="text-[9px] text-red-600 uppercase mt-1">地方锦标赛逻辑</div>
+                    </div>
+                    <div class="p-4 realist-card text-center">
+                        <div class="text-xl font-black text-slate-900">穿透</div>
+                        <div class="text-[9px] text-slate-400 uppercase mt-1">指令垂直触达率</div>
+                    </div>
+                    <div class="p-4 realist-card text-center">
+                        <div class="text-xl font-black text-slate-900">备份</div>
+                        <div class="text-[9px] text-slate-400 uppercase mt-1">风险冗余消化</div>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:col-span-5">
+                <div class="bg-slate-900 rounded-[2.5rem] p-10 text-white shadow-2xl relative overflow-hidden">
+                    <h3 class="text-xl font-bold mb-8">财政分成与支出责任博弈 (2010-2024)</h3>
+                    <div class="chart-container" style="height: 250px;">
+                        <canvas id="fiscalChart"></canvas>
+                    </div>
+                    <p class="text-[10px] text-white/40 mt-4 text-center">中央收入占比 vs 地方支出占比的剪刀差</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Bureaucratic Incentive -->
+        <section id="incentive" class="space-y-12">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold text-slate-900">官僚算法：KPI 驱动下的治理工厂</h2>
+                <p class="text-slate-500 mt-4">中国的官僚体系运行在极其复杂的考核算法之上。从 GDP 指标到全域安全，权力的逻辑在于如何通过指标调整，迅速对数千万官僚的行为进行「重新编程」。</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="realist-card p-8 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-1 bg-red-800 mb-4"></div>
+                        <h4 class="font-bold text-slate-900 text-xl mb-3">晋升博弈</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">通过设置极高强度的末位淘汰和异地调任机制，官僚系统不是在为理想工作，而是在为「不掉队」进行生物性的优胜劣汰竞争。</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100 flex justify-between items-center text-[10px] font-bold text-red-800 uppercase">
+                        <span>周期: 3-5年</span>
+                        <span>核心: 人事主权</span>
+                    </div>
+                </div>
+                <div class="realist-card p-8 flex flex-col justify-between group bg-slate-950 text-white">
+                    <div>
+                        <div class="w-12 h-1 bg-amber-600 mb-4"></div>
+                        <h4 class="font-bold mb-3 text-amber-500">政治吸纳</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">通过将社会精英（企业家、学者）纳入体制边缘或咨询机构，体制消解了潜在的挑战者，将其利益与现状锁定。这是一种「软性的瓦解」。</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-white/10 flex justify-between items-center text-[10px] font-bold text-amber-500 uppercase">
+                        <span>方式: 统战/咨询</span>
+                        <span>目标: 降低对抗成本</span>
+                    </div>
+                </div>
+                <div class="realist-card p-8 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-1 bg-slate-400 mb-4"></div>
+                        <h4 class="font-bold text-slate-900 text-xl mb-3">结构性清理</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">反腐是系统的「磁盘碎片整理」。通过清理利益集团，中枢重新夺回人事主权，确保指令在庞大官僚体系中的零损耗传导。</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100 flex justify-between items-center text-[10px] font-bold text-slate-600 uppercase">
+                        <span>频率: 常态化</span>
+                        <span>本质: 权力除尘</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Cybernetic Feedback -->
+        <section id="cyber" class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-5 space-y-8">
+                <div class="inline-flex items-center px-3 py-1 bg-teal-50 text-teal-700 rounded-full text-xs font-bold uppercase tracking-wider">
+                    数字反馈：赛博校准
+                </div>
+                <h2 class="text-3xl font-bold text-slate-900 leading-tight">反馈回路：<br>数字监控与「回应性治理」</h2>
+                <p class="text-slate-600 leading-relaxed">
+                    数字化手段并非仅用于压制，更用于系统的精准「校准」。体制通过大数据舆情感知底层压力，在社会不满超过阈值前，迅速释放局部治理红利或进行针对性干预。这是一种「预防性维护」，旨在用最低的政治代价消除系统性风险。
+                </p>
+                <div class="cyber-line mt-6"></div>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4 p-4 bg-white border border-slate-100 rounded-2xl shadow-sm">
+                        <div class="w-10 h-10 bg-teal-600 text-white rounded-lg flex items-center justify-center font-bold">校</div>
+                        <p class="text-xs text-slate-500">压力点实时定位：算法识别社会情绪热点，预判风险走向。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:col-span-7">
+                <div class="realist-card p-8">
+                    <h4 class="text-sm font-bold text-slate-800 mb-6 text-center uppercase tracking-widest text-slate-400">风险校准雷达：系统冗余与反馈效能 (2024)</h4>
+                    <div class="chart-container">
+                        <canvas id="cyberRadarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Semantic Sovereignty -->
+        <section id="semantic" class="bg-slate-950 text-white rounded-[3rem] p-10 md:p-16 relative overflow-hidden shadow-2xl">
+            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(white 0.5px, transparent 0.5px); background-size: 30px 30px;"></div>
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                <div class="lg:col-span-5 space-y-6">
+                    <h2 class="text-4xl font-black mb-4 italic tracking-tight text-amber-500">语义防火墙：<br>话语作为防御性武器</h2>
+                    <p class="text-slate-300 text-lg leading-relaxed mb-8">
+                        通过创造平行的术语体系（如「全过程民主」、「新质生产力」），体制建立了一套认知层面的免疫系统。这种语义闭环让外部的思想工具在进入本土语境时会产生强烈的「排异反应」，从而实现了对超大规模社会极低边际成本的思想控制。
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                        <div class="p-4 bg-white/5 rounded-2xl border border-white/10">
+                            <h4 class="font-bold text-amber-400 mb-2">定义权垄断</h4>
+                            <p class="text-slate-500">重新解释普适价值，将其内化为国家叙事的一部分。</p>
+                        </div>
+                        <div class="p-4 bg-white/5 rounded-2xl border border-white/10">
+                            <h4 class="font-bold text-amber-400 mb-2">语义闭环</h4>
+                            <p class="text-slate-500">外部思想工具在接触本土语境时失效。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-7">
+                    <div class="realist-card bg-white p-8">
+                        <h4 class="text-sm font-bold text-slate-800 mb-6 text-center uppercase tracking-widest text-slate-400">语义防御系统有效性分布</h4>
+                        <div class="chart-container" style="height: 300px;">
+                            <canvas id="identityRadarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Total Securitization -->
+        <section id="security" class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
+            <div class="realist-card p-10 bg-slate-900 text-white relative overflow-hidden pulse-red border-2">
+                <h3 class="text-3xl font-black mb-6 italic text-red-500">全域安全：<br>绝对秩序的生存计算</h3>
+                <p class="text-slate-400 text-lg leading-relaxed">
+                    体制正将「安全」泛化为决策底色。从金融安全到粮食安全，甚至是「历史安全」。系统宁愿牺牲部分效率，也要通过增加制度冗余，确保在面对极端外部冲击时的「不可逆转性」。
+                </p>
+                <div class="mt-8 space-y-4">
+                    <div class="flex items-center gap-4 p-4 bg-white/5 rounded-xl border border-white/10">
+                        <div class="text-2xl">🛡️</div>
+                        <span class="text-sm text-slate-300">预防性治理：在风险变压力前拆弹。</span>
+                    </div>
+                    <div class="flex items-center gap-4 p-4 bg-white/5 rounded-xl border border-white/10">
+                        <div class="text-2xl">🧱</div>
+                        <span class="text-sm text-slate-300">韧性冗余：建立平行的资源内循环。</span>
+                    </div>
+                </div>
+            </div>
+            <div class="realist-card p-8">
+                <h4 class="text-sm font-bold text-slate-800 mb-6 text-center uppercase tracking-widest text-slate-400">资源倾斜：安全 vs 效率 分配模型</h4>
+                <div class="chart-container">
+                    <canvas id="securitySpreadChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Vision: Conclusion -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="realist-card p-8">
+                <h3 class="text-sm font-bold text-slate-800 mb-6 text-center uppercase tracking-widest">权力资源的最终分配：算法化的利维坦</h3>
+                <div class="chart-container">
+                    <canvas id="powerResourceChart"></canvas>
+                </div>
+            </div>
+            <div class="space-y-6">
+                <h2 class="text-3xl font-bold text-slate-900 underline decoration-red-900 decoration-4 underline-offset-8">调研结论：冷酷的演化智慧</h2>
+                <div class="space-y-4 text-sm text-slate-600">
+                    <p><strong>1. 生存是最高元逻辑：</strong> 整个体制是一个以「存续」为最高目标的巨型算法。它冷酷地计算着每一笔统治成本与安全红利。</p>
+                    <p><strong>2. 算法取代博弈：</strong> 通过对海量社会数据的实时响应和预测性干预，系统正试图消灭一切「意外」，实现对未来的确定性预测。</p>
+                    <p><strong>3. 不可逆的路径依赖：</strong> 这套庞大、高度集权的系统已经完成了自我闭环。它强大的生存本能使得任何外源性改革最终都将被其强大的内核所同化。</p>
+                </div>
+                <div class="p-6 bg-slate-900 border border-red-950 rounded-2xl mt-8">
+                    <p class="text-xs text-slate-400 leading-relaxed italic text-center font-medium">
+                        <strong>调研组终评：</strong> 中国制度是一个在极端生存压力下演化出来的「超级物种」。理解它的逻辑，必须超越道德评价，回归到物理与算力的底层规律。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-16">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-xs text-slate-400">
+                © 2024 现实主义权力逻辑专题报告
+                <a href="china.html?tab=powerreport" class="block mt-2 font-medium hover:opacity-80 transition" style="color: var(--power-red);">← 返回 China OS</a>
+            </div>
+            <div class="flex gap-4 opacity-30 text-[10px] font-black uppercase tracking-widest text-slate-900">
+                <span>REALPOLITIK</span>
+                <span>CONTROL</span>
+                <span>SECURITY</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Chart.defaults.font.family = "'Inter', 'PingFang SC', sans-serif";
+            Chart.defaults.color = '#64748b';
+
+            // 1. Fiscal Mismatch Chart
+            new Chart(document.getElementById('fiscalChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['1994', '2005', '2015', '2020', '2024'],
+                    datasets: [
+                        { label: '中央收入占比', data: [22, 52, 45, 47, 48], backgroundColor: '#7f1d1d', borderRadius: 4 },
+                        { label: '地方支出责任', type: 'line', data: [72, 80, 85, 86, 88], borderColor: '#f59e0b', fill: false, tension: 0.4, borderWidth: 3 }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: '#fff' } } }, scales: { y: { display: false }, x: { grid: { display: false } } } }
+            });
+
+            // 2. Cyber Radar
+            new Chart(document.getElementById('cyberRadarChart').getContext('2d'), {
+                type: 'radar',
+                data: {
+                    labels: ['舆情预判', '压力定位', '政策转向', '原子化程度', '利益补偿', '防火墙密度'],
+                    datasets: [{ label: '系统效能', data: [92, 95, 78, 88, 70, 96], borderColor: '#0d9488', backgroundColor: 'rgba(13, 148, 136, 0.1)', borderWidth: 3 }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { r: { suggestedMin: 50, suggestedMax: 100, ticks: { display: false } } } }
+            });
+
+            // 3. Identity Radar
+            new Chart(document.getElementById('identityRadarChart').getContext('2d'), {
+                type: 'radar',
+                data: {
+                    labels: ['叙事统一性', '文化排外度', '动员深度', '外部免疫力', '制度认同', '信息茧房厚度'],
+                    datasets: [{ label: '语义闭环指数', data: [95, 88, 92, 85, 90, 98], borderColor: '#a16207', backgroundColor: 'rgba(161, 98, 7, 0.1)', borderWidth: 3 }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { r: { suggestedMin: 60, suggestedMax: 100, ticks: { display: false } } } }
+            });
+
+            // 4. Security Polar Area
+            new Chart(document.getElementById('securitySpreadChart').getContext('2d'), {
+                type: 'polarArea',
+                data: {
+                    labels: ['政权安全', '经济安全', '技术安全', '资源安全', '粮食安全', '社会安全'],
+                    datasets: [{ data: [95, 85, 90, 88, 92, 82], backgroundColor: ['#7f1d1d', '#b45309', '#1e3a8a', '#064e3b', '#0d9488', '#4c1d95'] }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { r: { ticks: { display: false } } } }
+            });
+
+            // 5. Power Resource Doughnut
+            new Chart(document.getElementById('powerResourceChart').getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['强制性权力', '酬赏性权力', '规范性权力', '信息性权力'],
+                    datasets: [{ data: [25, 30, 25, 20], backgroundColor: ['#450a0a', '#7f1d1d', '#92400e', '#334155'], borderWidth: 0 }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, cutout: '75%' }
+            });
+        });
+    </script>
+</body>
+</html>
