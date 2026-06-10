@@ -65,6 +65,79 @@ const IND_DPRK = [
   ['朝俄 vs 朝中', '相对热度', [['升温', WARM, '朝中互动明显领先'], ['维持', HOLD, '双线并行，中方主动再锚定', 1], ['降温', COOL, '朝向俄系统性倾斜']]],
 ];
 
+// 大国关系情景评估（中美 / 中俄 / 中欧）—— 沿用中朝 [id,名,概率,色,机理,触发条件,先行信号] 范式
+const POWERS = {
+  us: {
+    label: '中美', sub: '总牵引 · 竞合管控', color: HOLD,
+    summary: '所有其它关系的定价锚。结构是守成—崛起的安全困境（修昔底德引力场），底色是深度互赖与科技主战场。当前处「斗而不破、以拖待变」的管控性竞争，元首外交是唯一可靠的护栏。',
+    scn: [
+      ['S1', '管控性竞争（护栏化）', '高 · 当前主导', HOLD, '元首外交设护栏，关税与科技战持续但不失控；各自争取时间、避免误判升级。', '双方均无意摊牌；选举与经济周期未触发剧变；台海未越红线。', '元首通话/会晤维持节奏；军事沟通渠道在线；制裁与反制「斗而有度」。'],
+      ['S2', '阶段性缓和', '中', WARM, '选举周期或经济需要驱动的战术性回暖：部分关税回撤、芬太尼/禁毒与军事对话恢复、投资有限解冻。', '美方国内政治需要「成果」；中方需稳外资外贸；双方都想给紧张降压。', '高层互访密集 + 联合声明；关税豁免清单扩大；商务/金融工作组重启。'],
+      ['S3', '螺旋升级 / 新冷战固化', '中', COOL, '科技全面脱钩、阵营对立硬化、第三方议题（台/俄）叠加，竞争压倒管控。', '台海或南海危机；对华全面技术封锁；盟友体系协同围堵成型。', '沟通渠道中断；出口管制与实体清单大幅加码；阵营化军演常态化。'],
+      ['S4', '局部热冲突', '低 · 高冲击', COOL, '台海/南海擦枪走火，危机管控失败，由对抗滑向有限军事冲突。', '宣布独立等触发事件；海空意外碰撞且沟通失效；第三方误判。', '军事热线失效；前沿兵力调动；金融/能源紧急避险。'],
+      ['S5', '战略大交易 / G2 默契', '低', STEEL, '划分势力范围式的战略默契——北京长期求而不得、华盛顿不愿给予，故概率最低。', '双方同时判断对抗成本不可承受；出现愿做交易的强势领导人组合。', '罕见的高层秘密渠道；核心利益相互书面确认；盟友被边缘化的迹象。'],
+    ],
+    consts: [
+      ['实力转移', '守成 vs 崛起的结构性安全困境（修昔底德），是所有剧本共享的引力场——见「修昔底德陷阱」理论页。'],
+      ['深度互赖', '双向贸易仍逾 6000 亿美元、金融与供应链彼此嵌套；「武器化的互赖」既是筹码也是刹车。'],
+      ['科技制高点', '半导体/AI 是竞争主战场：「小院高墙」精准封锁 + 中方自主替代并行，难以全面脱钩亦难以共享。'],
+      ['第三方放大器', '台湾、俄罗斯、盟友体系是放大器——任一议题恶化都会外溢拉高整体烈度。'],
+    ],
+    ind: [
+      ['元首/高层沟通', '频率 × 成果', [['缓和', WARM, '机制化会晤 + 实质让步'], ['管控', HOLD, '高频通话护栏，议题冻结', 1], ['中断', COOL, '沟通停摆 + 制裁螺旋']]],
+      ['关税与出口管制', '清单松紧', [['回撤', WARM, '关税豁免 + 实体清单缩减'], ['冻结', HOLD, '维持现状不再加码', 1], ['加码', COOL, '新增管制 + 反制升级']]],
+      ['台海风险', '军事活动烈度', [['降温', WARM, '活动频次回落'], ['常态化', HOLD, '高压巡航成新常态', 1], ['危机', COOL, '封控演训 / 擦枪走火']]],
+      ['军事沟通渠道', '危机管控', [['恢复', WARM, '战区对话 + 海空相遇规则', 1], ['有限', HOLD, '间歇性、低层级'], ['中断', COOL, '热线失效']]],
+    ],
+  },
+  ru: {
+    label: '中俄', sub: '背靠背 · 深度协作', color: WARM,
+    summary: '「上不封顶」的战略协作，最大粘合剂是共同面对美国主导秩序。结构互补（俄能源资源军技 ↔ 中市场制造资本），但有历史猜忌底色与「结伴不结盟」红线——亲密中有算计。',
+    scn: [
+      ['S1', '战略协作深化（不结盟）', '高 · 当前主导', WARM, '能源/军技/本币结算持续深化，元首高频互动；但中方不结盟、不承担俄战争成本。', '美国对华俄双向施压；乌战长期化使俄更需中国；中方需稳定战略后方。', '能源贸易与本币结算扩张；联合演训常态；高层互访高规格。'],
+      ['S2', '不对称依附加深', '中', STEEL, '西方制裁令俄深度依赖中国，中方获折价能源与议价权，俄渐成「小伙伴」。', '制裁长期化 + 俄出口路径单一化；人民币在俄结算占比持续抬升。', '对俄贸易顺差扩大；能源长协折价；俄金融体系人民币化加深。'],
+      ['S3', '战略疏离 / 局部摩擦', '中低', HOLD, '中亚势力范围竞争、俄印军售、北极与远东利益碰撞浮现，背靠背出现裂缝。', '俄战略回旋空间恢复；中亚/北极利益直接冲突；俄对华戒心上升。', '中亚多边场合分歧公开；俄重启对印/对越军售；远东合作降温。'],
+      ['S4', '俄战败 / 政权动荡外溢', '低 · 高冲击', COOL, '普京体制不稳、核风险上升或俄严重战败，中国骤失战略后方并承接外溢风险。', '前线崩溃 + 国内剧变；核门槛被试探；边境与能源通道不稳。', '俄高层异动；核态势升级信号；中方边境与能源应急动员。'],
+      ['S5', '俄西方阶段性和解', '低', HOLD, '俄乌停火后莫斯科向西修复关系，削弱中俄背靠背的独特价值。', '可接受的停火条件出现；俄判断对西缓和收益更高。', '俄欧/俄美接触升温；对华能源折价收窄；俄外交重心西移。'],
+    ],
+    consts: [
+      ['共同对手', '美国主导秩序是两国战略协作的最大粘合剂——只要压力在，协作的底层动机就在。'],
+      ['互补结构', '俄的能源/资源/军技 ↔ 中国的市场/制造/资本，天然互补，构成长期合作的物质基础。'],
+      ['历史阴影', '边界、中亚、远东人口与影响力的长期猜忌，是亲密叙事下不会消失的底色。'],
+      ['不结盟红线', '中方坚持「结伴不结盟」：拒为乌战背书、拒承担二级制裁，以保住对西方与全球南方的回旋余地。'],
+    ],
+    ind: [
+      ['能源贸易与本币结算', '规模 × 占比', [['扩张', WARM, '长协加码 + 人民币结算升', 1], ['维持', HOLD, '稳定但不再扩张'], ['收缩', COOL, '路径多元化 / 折价收窄']]],
+      ['军技合作与演训', '深度 × 频率', [['升温', WARM, '联合演训 + 敏感技术合作', 1], ['维持', HOLD, '常规交流'], ['降温', COOL, '俄转向对印对越']]],
+      ['中亚/北极利益', '协调度', [['协作', WARM, '上合/北极议程协同'], ['并行', HOLD, '各自布局、暂无冲突', 1], ['摩擦', COOL, '势力范围公开竞争']]],
+      ['俄乌战局', '对华含义', [['僵持', HOLD, '维持中方议价与折价', 1], ['停火西和', STEEL, '背靠背价值被稀释'], ['俄崩', COOL, '战略后方丧失']]],
+    ],
+  },
+  eu: {
+    label: '中欧', sub: '争夺地 · 摩擦中维系', color: COOL,
+    summary: '无直接安全冲突的纯经济—价值博弈。经贸是压舱石、价值观与制度差异是结构性摩擦源，而美国变量（跨大西洋协调）高度牵动欧洲对华姿态。当前处「去风险」框架下的有限合作。',
+    scn: [
+      ['S1', '去风险下的有限合作', '高 · 当前主导', HOLD, '经贸基本盘维系，但电动车反补贴、产能过剩、人权与对俄立场持续摩擦——合作与设防并行。', '欧盟维持「去风险不脱钩」共识；中方稳经贸、分化施压阵线。', '关税与反补贴个案化；高层互访维持；投资审查趋严但未封死。'],
+      ['S2', '经贸再挂钩 / 战略自主', '中', WARM, '欧洲在中美间求第三极，德法主导对华务实回暖，投资与市场准入双向松动。', '欧洲经济承压需要中国市场；美欧出现裂痕；中方扩大对欧让利。', '投资协定重启信号；龙头车企/化工加大对华；免签与采购大单。'],
+      ['S3', '跨大西洋协同对华', '中', COOL, '欧美在去风险、出口管制、供应链「去中国化」上协调一致，欧洲对华阵营化。', '美方成功整合盟友；涉俄或涉台事件触发欧洲转向；价值观叙事压倒经贸。', '欧美出口管制清单趋同；对华投资审查全面化；涉华议题联合表态。'],
+      ['S4', '全面经贸战', '低中', COOL, '关税报复螺旋、投资审查全面化、稀土与关键矿产反制，经贸纽带被武器化。', '电动车/产能争端失控；中方稀土反制；欧方对华全面设限。', '双向关税与反制清单扩大；企业撤资/断供；WTO 争端激增。'],
+      ['S5', '欧洲对华政策碎片化', '中', STEEL, '成员国立场分裂（疑华 vs 务实），中方逐一对接、分化各个击破。', '欧盟内部共识瓦解；匈塞等务实派与德法疑虑派分歧扩大。', '成员国双边大单与欧盟层面表态背离；中方主攻薄弱环节。'],
+    ],
+    consts: [
+      ['经贸压舱石', '中欧互为最大贸易伙伴之一，相互依赖度高——这是任何摩擦都难以彻底切断的底盘。'],
+      ['价值观—制度差异', '人权、市场准入、补贴透明度是结构性摩擦源，非个案而是体制性的。'],
+      ['美国变量', '欧洲对华政策高度受美欧关系与跨大西洋协调牵动，是中欧关系最大的外生扰动。'],
+      ['无安全维度', '不同于中美，中欧无直接安全冲突，是一场纯经济—价值博弈——天花板与地板都更可控。'],
+    ],
+    ind: [
+      ['电动车/产能争端', '烈度', [['缓和', WARM, '价格承诺 / 个案了结'], ['僵持', HOLD, '反补贴税维持，未扩面', 1], ['升级', COOL, '报复性关税螺旋']]],
+      ['投资与市场准入', '开放度', [['推进', WARM, '投资协定/准入双向松动'], ['冻结', HOLD, '维持现状，审查趋严', 1], ['倒退', COOL, '投资审查全面化']]],
+      ['对俄立场协调', '与美趋同度', [['松动', WARM, '欧洲保留对华经贸独立'], ['维持', HOLD, '原则分歧、务实合作', 1], ['趋同', COOL, '欧美对华联合施压']]],
+      ['跨大西洋对华协同', '阵营化', [['分化', WARM, '美欧裂痕、成员国务实', 1], ['并行', HOLD, '各自为政'], ['协同', COOL, '出口管制/表态趋同']]],
+    ],
+  },
+};
+
 function IndicatorBoard({ rows }) {
   return (
     <div style={{ border: '1px solid var(--border-subtle)', borderRadius: 12, overflow: 'hidden' }}>
@@ -88,11 +161,12 @@ function IndicatorBoard({ rows }) {
   );
 }
 
-const TABS = [['layers', '四层架构'], ['vectors', '关系矢量盘'], ['tensions', '结构性张力轴'], ['dprk', '中朝情景评估'], ['indicators', '全局指标盘']];
+const TABS = [['layers', '四层架构'], ['vectors', '关系矢量盘'], ['tensions', '结构性张力轴'], ['powers', '大国关系情景'], ['dprk', '中朝情景评估'], ['indicators', '全局指标盘']];
 
 export default function Page() {
   const [hot, setHot] = useState(null);
   const [tab, setTab] = useState('layers');
+  const [power, setPower] = useState('us');
   const btn = (a) => ({ background: a ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)', color: a ? '#fff' : 'var(--text-secondary)', border: 'none', cursor: 'pointer', borderRadius: 6, padding: '6px 14px', fontSize: 13 });
 
   return (
@@ -190,6 +264,59 @@ export default function Page() {
         </Card>
       )}
 
+      {tab === 'powers' && (() => {
+        const P = POWERS[power];
+        return (
+          <div>
+            <div className="flex gap-1.5 flex-wrap mb-4">
+              {Object.entries(POWERS).map(([k, v]) => (
+                <button key={k} onClick={() => setPower(k)} className="mono text-sm px-4 py-2 rounded"
+                  style={{ background: k === power ? `${v.color}26` : 'var(--bg-elevated)', color: k === power ? v.color : 'var(--text-secondary)', border: `1px solid ${k === power ? v.color : 'transparent'}`, cursor: 'pointer' }}>
+                  {v.label} <span className="text-[10px] opacity-70">· {v.sub.split(' · ')[1] || v.sub}</span>
+                </button>
+              ))}
+            </div>
+            <div className="os-card p-5 mb-4" style={{ borderLeft: `3px solid ${P.color}` }}>
+              <div className="flex items-center gap-2 mb-2 flex-wrap">
+                <span className="text-base font-semibold" style={{ color: 'var(--text-primary)' }}>{P.label}</span>
+                <span style={pill(P.color)}>{P.sub}</span>
+              </div>
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{P.summary}</p>
+            </div>
+            <Grid cols={5} className="mb-4">
+              {P.scn.map(([id, nm, prob, c]) => (
+                <div key={id} className="os-card p-3" style={{ background: 'var(--bg-elevated)', borderLeft: `3px solid ${c}` }}>
+                  <div className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>{id}</div>
+                  <div className="text-xs font-semibold mt-1 mb-2" style={{ color: 'var(--text-primary)' }}>{nm}</div>
+                  <span style={{ ...pill(c), fontSize: 9.5 }}>{prob}</span>
+                </div>
+              ))}
+            </Grid>
+            <Card title="结构性恒量 · 任何剧本的地基" className="mb-4">
+              <Grid cols={2}>
+                {P.consts.map(([h, p]) => (
+                  <div key={h} style={{ borderLeft: `2px solid ${STEEL}`, paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{h}</div><p className="text-[11px] mt-1" style={{ color: 'var(--text-tertiary)' }}>{p}</p></div>
+                ))}
+              </Grid>
+            </Card>
+            {P.scn.map(([id, nm, prob, c, jl, tj, xx]) => (
+              <Card key={id} className="mb-3">
+                <div className="flex justify-between items-start mb-3">
+                  <div className="text-base font-semibold" style={{ color: 'var(--text-primary)' }}><span className="mono text-xs mr-2" style={{ color: 'var(--text-tertiary)' }}>{id}</span>{nm}</div>
+                  <span style={pill(c)}>{prob}</span>
+                </div>
+                <div className="space-y-2 text-xs">
+                  <div style={{ display: 'grid', gridTemplateColumns: '76px 1fr', gap: 12 }}><span className="mono" style={{ color: STEEL }}>机理</span><span style={{ color: 'var(--text-secondary)' }}>{jl}</span></div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '76px 1fr', gap: 12, paddingTop: 8, borderTop: '1px solid var(--border-subtle)' }}><span className="mono" style={{ color: STEEL }}>触发条件</span><span style={{ color: 'var(--text-secondary)' }}>{tj}</span></div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '76px 1fr', gap: 12, paddingTop: 8, borderTop: '1px solid var(--border-subtle)' }}><span className="mono" style={{ color: STEEL }}>先行信号</span><span style={{ color: 'var(--text-secondary)' }}>{xx}</span></div>
+                </div>
+              </Card>
+            ))}
+            <Card title={`${P.label}先行指标盘 · 三档阈值 + 当前读数`}><IndicatorBoard rows={P.ind} /></Card>
+          </div>
+        );
+      })()}
+
       {tab === 'dprk' && (
         <div>
           <Grid cols={5} className="mb-4">
@@ -243,7 +370,7 @@ export default function Page() {
           ))}
         </ol>
       </Card>
-      <p className="text-xs mt-6" style={{ color: 'var(--text-tertiary)' }}>判读基准 2026-06 · 吸收自《中朝关系情景评估盘》《中国外交全局框架盘》；恒量/变量分离 · 行为优先于辞令 · 阈值触发重判。本盘为分析框架，非预测、非立场陈述。</p>
+      <p className="text-xs mt-6" style={{ color: 'var(--text-tertiary)' }}>判读基准 2026-06 · 吸收自《中朝关系情景评估盘》《中国外交全局框架盘》，大国关系情景（中美/中俄/中欧）依同一范式扩建；恒量/变量分离 · 行为优先于辞令 · 阈值触发重判。本盘为分析框架，非预测、非立场陈述。</p>
     </div>
   );
 }
