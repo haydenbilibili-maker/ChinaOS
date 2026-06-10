@@ -11,6 +11,7 @@ import { lazy } from 'react';
 export const GROUPS = [
   { id: 'cognition', label: '认知内核', desc: '思想工具 · 理论模型', accent: '#c41e3a' },
   { id: 'lens', label: '内容透镜', desc: '四大支柱', accent: '#22d3ee' },
+  { id: 'institutions', label: '制度与改革', desc: '权力 · 治理 · 法治', accent: '#e8a317' },
   { id: 'depthtopics', label: '深度专题', desc: '已迁移', accent: '#10b981' },
   { id: 'techtopics', label: '科技专题', desc: '科技树 · 深挖', accent: '#22d3ee' },
   { id: 'security', label: '安全与国防', desc: '军事 · 台海 · 大安全', accent: '#c41e3a' },
@@ -111,6 +112,36 @@ export const MODULES = [
     id: 'basicResearch', path: '/basic-research', group: 'techtopics',
     title: '基础研究', subtitle: '国家实验室 · 评价改革', icon: 'FlaskConical',
     component: lazy(() => import('../modules/basicResearch/Page.jsx')),
+  },
+  {
+    id: 'powerlogic', path: '/powerlogic', group: 'institutions',
+    title: '权力逻辑', subtitle: '儒表法里 · 数字利维坦', icon: 'Cpu',
+    component: lazy(() => import('../modules/powerlogic/Page.jsx')),
+  },
+  {
+    id: 'reform', path: '/reform', group: 'institutions',
+    title: '改革开放', subtitle: '现实主义算法演进', icon: 'GitFork',
+    component: lazy(() => import('../modules/reform/Page.jsx')),
+  },
+  {
+    id: 'governance', path: '/governance', group: 'institutions',
+    title: '治理现代化', subtitle: '网格 · 数字政府', icon: 'Network',
+    component: lazy(() => import('../modules/governance/Page.jsx')),
+  },
+  {
+    id: 'govsystem', path: '/govsystem', group: 'institutions',
+    title: '政府体系', subtitle: '压力型 · 执行算法', icon: 'Workflow',
+    component: lazy(() => import('../modules/govsystem/Page.jsx')),
+  },
+  {
+    id: 'soe', path: '/soe', group: 'institutions',
+    title: '国有资本', subtitle: '战略底座 · 链主', icon: 'Building',
+    component: lazy(() => import('../modules/soe/Page.jsx')),
+  },
+  {
+    id: 'ruleoflaw', path: '/ruleoflaw', group: 'institutions',
+    title: '法治建设', subtitle: '智慧法院 · 涉外法治', icon: 'Scale',
+    component: lazy(() => import('../modules/ruleoflaw/Page.jsx')),
   },
   {
     id: 'military', path: '/military', group: 'security',
