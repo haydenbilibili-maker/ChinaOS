@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { PageHeader, Card, Grid } from '../../app/ui.jsx';
 
 const DIMS = [
@@ -19,15 +20,20 @@ export default function Page() {
         title="深度透视 · 7 维 90+ 专题"
         subtitle="项目最大的内容主体；迁移期专题逐个从 china.html 迁入独立模块"
       >
-        <a
-          href="../china.html"
-          target="_blank"
-          rel="noreferrer"
-          className="text-sm mono"
-          style={{ color: 'var(--cyber-cyan)' }}
-        >
-          → 在传统视图（china.html）中浏览全部专题
-        </a>
+        <div className="flex flex-wrap items-center gap-4">
+          <Link to="/food-security" className="text-sm mono" style={{ color: 'var(--china-red)' }}>
+            ★ 已迁移样板：粮食安全（含中国地图）
+          </Link>
+          <a
+            href="../china.html"
+            target="_blank"
+            rel="noreferrer"
+            className="text-sm mono"
+            style={{ color: 'var(--cyber-cyan)' }}
+          >
+            → 在传统视图（china.html）中浏览全部专题
+          </a>
+        </div>
       </PageHeader>
       <Grid cols={2}>
         {DIMS.map(([t, d]) => (

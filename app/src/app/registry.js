@@ -35,6 +35,15 @@ export const MODULES = [
     component: lazy(() => import('../modules/depth/Page.jsx')),
   },
   {
+    id: 'foodSecurity',
+    path: '/food-security',
+    group: 'lens',
+    title: '粮食安全',
+    subtitle: '大国粮仓 · 迁移样板',
+    icon: 'Wheat',
+    component: lazy(() => import('../modules/foodSecurity/Page.jsx')),
+  },
+  {
     id: 'civilization',
     path: '/civilization',
     group: 'lens',
