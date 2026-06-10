@@ -1,8 +1,8 @@
                 <section class="space-y-20 animate-fade-in">
                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-stone-200/80 dark:border-stone-600/50">
                         <div>
-                            <h2 class="text-xl font-bold text-stone-800 dark:text-stone-100 tracking-tight">?????????????</h2>
-                            <p class="text-sm text-stone-500 dark:text-stone-400 mt-1">Urban Development Report 2024 ? ???????</p>
+                            <h2 class="text-xl font-bold text-stone-800 dark:text-stone-100 tracking-tight">以人为核心的新型城镇化</h2>
+                            <p class="text-sm text-stone-500 dark:text-stone-400 mt-1">Urban Development Report 2024 · 城镇化系统拆解</p>
                         </div>
                         <div class="flex flex-wrap gap-2">
                             <button onclick="switchTab('rural'); closeAllNavDropdowns();" class="depth-relate-tag">乡村</button>
@@ -10,109 +10,109 @@
                         </div>
                     </div>
 
-                    <!-- ???? -->
+                    <!-- 总览 -->
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                         <div class="lg:col-span-7 space-y-6">
-                            <div class="inline-flex items-center px-3 py-1 bg-blue-50 dark:bg-blue-950/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-bold uppercase tracking-wider">????????</div>
-                            <h3 class="text-3xl md:text-4xl font-extrabold text-stone-900 dark:text-stone-100 leading-tight">?????????<br><span class="text-blue-600 dark:text-blue-400">????????</span></h3>
-                            <p class="text-stone-600 dark:text-stone-400 text-lg leading-relaxed">????????????? 66%?????????????????????????????????????????????????????????????????????</p>
+                            <div class="inline-flex items-center px-3 py-1 bg-blue-50 dark:bg-blue-950/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-bold uppercase tracking-wider">城镇化进程</div>
+                            <h3 class="text-3xl md:text-4xl font-extrabold text-stone-900 dark:text-stone-100 leading-tight">从规模扩张<br><span class="text-blue-600 dark:text-blue-400">转向以人为本</span></h3>
+                            <p class="text-stone-600 dark:text-stone-400 text-lg leading-relaxed">常住人口城镇化率已突破 66%，但户籍城镇化率仍明显滞后。下一阶段的核心，是把已进城的农业转移人口真正变成市民，推动公共服务覆盖从「常住」走向「均等」。</p>
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                                 <div class="os-card p-4 rounded-2xl urban-glass-card text-center">
                                     <div class="text-2xl font-black text-stone-900 dark:text-stone-100">66.16%</div>
-                                    <div class="text-[10px] text-stone-400 uppercase mt-1">????????</div>
+                                    <div class="text-[10px] text-stone-400 uppercase mt-1">常住人口城镇化率</div>
                                 </div>
                                 <div class="os-card p-4 rounded-2xl urban-glass-card text-center">
-                                    <div class="text-2xl font-black text-blue-600">19 ?</div>
-                                    <div class="text-[10px] text-stone-400 uppercase mt-1">????????</div>
+                                    <div class="text-2xl font-black text-blue-600">19 城</div>
+                                    <div class="text-[10px] text-stone-400 uppercase mt-1">城区千万级特大城市</div>
                                 </div>
                                 <div class="os-card p-4 rounded-2xl urban-glass-card text-center">
                                     <div class="text-2xl font-black text-emerald-500">~80%</div>
-                                    <div class="text-[10px] text-stone-400 uppercase mt-1">??? GDP ????</div>
+                                    <div class="text-[10px] text-stone-400 uppercase mt-1">城市贡献 GDP 占比</div>
                                 </div>
                             </div>
                         </div>
                         <div class="lg:col-span-5 os-card rounded-2xl p-8 overflow-hidden relative" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
                             <div class="absolute -bottom-10 -right-10 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
                             <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;"></div>
-                            <h4 class="text-xl font-bold text-white mb-6 relative z-10">????????</h4>
+                            <h4 class="text-xl font-bold text-white mb-6 relative z-10">城镇化率趋势</h4>
                             <div class="chart-container relative z-10" style="height: 250px;"><canvas id="urbanTrendChart"></canvas></div>
                         </div>
                     </div>
 
-                    <!-- ????? -->
+                    <!-- 城市群 -->
                     <div class="space-y-10">
                         <div class="text-center max-w-3xl mx-auto">
-                            <h3 class="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">???????????</h3>
-                            <p class="text-stone-500 dark:text-stone-400">????????????3+1??????????????????????</p>
+                            <h3 class="text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">城市群与都市圈格局</h3>
+                            <p class="text-stone-500 dark:text-stone-400">人口与产业向「3+1」核心城市群集聚，构成新型城镇化的主体形态与增长极。</p>
                         </div>
                         <div class="flex overflow-x-auto gap-2 pb-2 no-scrollbar">
-                            <button onclick="updateUrbanCluster('yrd')" class="urban-cluster-btn urban-cluster-active text-white px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap transition-all" data-id="yrd">??????</button>
-                            <button onclick="updateUrbanCluster('gba')" class="urban-cluster-btn urban-cluster-inactive bg-white dark:bg-stone-800 px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap text-stone-500 dark:text-stone-400 border border-stone-200 dark:border-stone-600 transition-all" data-id="gba">??????</button>
-                            <button onclick="updateUrbanCluster('jjj')" class="urban-cluster-btn urban-cluster-inactive bg-white dark:bg-stone-800 px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap text-stone-500 dark:text-stone-400 border border-stone-200 dark:border-stone-600 transition-all" data-id="jjj">?????</button>
-                            <button onclick="updateUrbanCluster('cy')" class="urban-cluster-btn urban-cluster-inactive bg-white dark:bg-stone-800 px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap text-stone-500 dark:text-stone-400 border border-stone-200 dark:border-stone-600 transition-all" data-id="cy">????</button>
+                            <button onclick="updateUrbanCluster('yrd')" class="urban-cluster-btn urban-cluster-active text-white px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap transition-all" data-id="yrd">长三角城市群</button>
+                            <button onclick="updateUrbanCluster('gba')" class="urban-cluster-btn urban-cluster-inactive bg-white dark:bg-stone-800 px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap text-stone-500 dark:text-stone-400 border border-stone-200 dark:border-stone-600 transition-all" data-id="gba">粤港澳大湾区</button>
+                            <button onclick="updateUrbanCluster('jjj')" class="urban-cluster-btn urban-cluster-inactive bg-white dark:bg-stone-800 px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap text-stone-500 dark:text-stone-400 border border-stone-200 dark:border-stone-600 transition-all" data-id="jjj">京津冀城市群</button>
+                            <button onclick="updateUrbanCluster('cy')" class="urban-cluster-btn urban-cluster-inactive bg-white dark:bg-stone-800 px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap text-stone-500 dark:text-stone-400 border border-stone-200 dark:border-stone-600 transition-all" data-id="cy">成渝双城圈</button>
                         </div>
                         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                             <div class="os-card p-8 rounded-2xl urban-glass-card flex flex-col justify-between">
                                 <div>
-                                    <div id="urban-cluster-name" class="text-2xl font-black text-blue-600 mb-2">????? (YRD)</div>
-                                    <div class="text-xs text-stone-400 uppercase font-bold tracking-widest mb-6">???????</div>
-                                    <p id="urban-cluster-desc" class="text-sm text-stone-600 dark:text-stone-400 leading-relaxed mb-8">???????????????????????????????????????????????????????????????</p>
+                                    <div id="urban-cluster-name" class="text-2xl font-black text-blue-600 mb-2">长三角 (YRD)</div>
+                                    <div class="text-xs text-stone-400 uppercase font-bold tracking-widest mb-6">核心增长极画像</div>
+                                    <p id="urban-cluster-desc" class="text-sm text-stone-600 dark:text-stone-400 leading-relaxed mb-8">以上海为龙头，联动江浙皖，是全国经济密度最高、城镇连绵程度最强的区域，制造业与现代服务业协同领先，都市圈一体化进程走在前列。</p>
                                 </div>
                                 <div class="space-y-4">
-                                    <div class="flex justify-between items-center text-sm"><span class="text-stone-400">GDP ????</span><span id="urban-stat-gdp" class="font-bold text-stone-900 dark:text-stone-100">~24%</span></div>
-                                    <div class="flex justify-between items-center text-sm"><span class="text-stone-400">??????</span><span id="urban-stat-rd" class="font-bold text-stone-900 dark:text-stone-100">3.2%</span></div>
+                                    <div class="flex justify-between items-center text-sm"><span class="text-stone-400">GDP 全国占比</span><span id="urban-stat-gdp" class="font-bold text-stone-900 dark:text-stone-100">~24%</span></div>
+                                    <div class="flex justify-between items-center text-sm"><span class="text-stone-400">研发投入强度</span><span id="urban-stat-rd" class="font-bold text-stone-900 dark:text-stone-100">3.2%</span></div>
                                 </div>
                             </div>
                             <div class="lg:col-span-2 os-card p-8 rounded-2xl urban-glass-card">
-                                <h4 class="text-sm font-bold text-stone-800 dark:text-stone-100 mb-6 text-center uppercase tracking-widest">???????????</h4>
+                                <h4 class="text-sm font-bold text-stone-800 dark:text-stone-100 mb-6 text-center uppercase tracking-widest">城市群综合能力雷达</h4>
                                 <div class="chart-container"><canvas id="urbanClusterRadarChart"></canvas></div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- ???? -->
+                    <!-- 市民化 -->
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         <div class="space-y-8">
-                            <h3 class="text-2xl font-bold text-stone-900 dark:text-stone-100">???????????</h3>
-                            <p class="text-stone-600 dark:text-stone-400 leading-relaxed">?????????????????????????????????????????????????????????????</p>
+                            <h3 class="text-2xl font-bold text-stone-900 dark:text-stone-100">农业转移人口市民化</h3>
+                            <p class="text-stone-600 dark:text-stone-400 leading-relaxed">户籍制度改革是市民化的关键闸门。常住与户籍两个城镇化率之间的落差，对应着上亿尚未充分享有城市公共服务的常住人口，这是改革的真正主战场。</p>
                             <div class="space-y-4">
                                 <div class="os-card p-5 rounded-2xl urban-glass-card flex items-start gap-4">
-                                    <div class="w-10 h-10 bg-blue-100 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center font-bold">?</div>
-                                    <div><h4 class="font-bold text-stone-800 dark:text-stone-100">?? 300 ?????????</h4><p class="text-xs text-stone-500 mt-1">????????????????????????</p></div>
+                                    <div class="w-10 h-10 bg-blue-100 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center font-bold">户</div>
+                                    <div><h4 class="font-bold text-stone-800 dark:text-stone-100">城区 300 万以下城市全面落户</h4><p class="text-xs text-stone-500 mt-1">取消落户限制，推动落户门槛与社保年限逐步松绑。</p></div>
                                 </div>
                                 <div class="os-card p-5 rounded-2xl urban-glass-card flex items-start gap-4">
-                                    <div class="w-10 h-10 bg-emerald-100 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center font-bold">?</div>
-                                    <div><h4 class="font-bold text-stone-800 dark:text-stone-100">???????</h4><p class="text-xs text-stone-500 mt-1">?????????????????????????</p></div>
+                                    <div class="w-10 h-10 bg-emerald-100 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center font-bold">服</div>
+                                    <div><h4 class="font-bold text-stone-800 dark:text-stone-100">公共服务均等化</h4><p class="text-xs text-stone-500 mt-1">教育、医疗、住房、养老随常住人口配置，与户籍逐步脱钩。</p></div>
                                 </div>
                             </div>
                         </div>
                         <div class="os-card p-8 rounded-2xl urban-glass-card">
-                            <h4 class="text-sm font-bold text-stone-800 dark:text-stone-100 mb-6 text-center uppercase tracking-widest">????????? (2023 ??)</h4>
+                            <h4 class="text-sm font-bold text-stone-800 dark:text-stone-100 mb-6 text-center uppercase tracking-widest">两个城镇化率落差 (2023 示意)</h4>
                             <div class="chart-container"><canvas id="urbanPopulationDoughnut"></canvas></div>
-                            <p class="mt-6 text-[10px] text-stone-400 text-center italic">?????????????????????? 18 ???????????????????</p>
+                            <p class="mt-6 text-[10px] text-stone-400 text-center italic">常住与户籍城镇化率之差，对应约 18 个百分点的潜在市民化人口规模。</p>
                         </div>
                     </div>
 
-                    <!-- ???? -->
+                    <!-- 城市更新 -->
                     <div class="os-card rounded-2xl p-10 md:p-12 overflow-hidden relative" style="background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);">
                         <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 32px 32px;"></div>
                         <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                             <div class="lg:col-span-5 space-y-6">
-                                <h3 class="text-2xl font-bold italic text-blue-200">????????????</h3>
-                                <p class="text-slate-300 leading-relaxed">?????????????????15?????????????????????????????????????????????????????</p>
+                                <h3 class="text-2xl font-bold italic text-blue-200">从增量扩张到存量更新</h3>
+                                <p class="text-slate-300 leading-relaxed">城市发展进入存量提质阶段，「十五五」的重心从摊大饼式扩张转向城市更新：老旧小区改造、地下管网升级、社区生活圈补短板，把宜居韧性写进既有空间。</p>
                                 <div class="space-y-4">
-                                    <div class="flex items-center gap-4"><div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-xl">??</div><div><h4 class="font-bold text-white">???????</h4><p class="text-xs text-blue-200">????????????????1???????</p></div></div>
-                                    <div class="flex items-center gap-4"><div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-xl">??</div><div><h4 class="font-bold text-white">??????</h4><p class="text-xs text-blue-200">????????????????????????</p></div></div>
+                                    <div class="flex items-center gap-4"><div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-xl">🏘️</div><div><h4 class="font-bold text-white">老旧小区改造</h4><p class="text-xs text-blue-200">水电气管网与适老化更新，重塑社区「1 刻钟生活圈」。</p></div></div>
+                                    <div class="flex items-center gap-4"><div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-xl">🏞️</div><div><h4 class="font-bold text-white">县域城镇化</h4><p class="text-xs text-blue-200">以县城为载体承接就近城镇化，补齐市政与公共服务短板。</p></div></div>
                                 </div>
                             </div>
                             <div class="lg:col-span-7">
                                 <div class="p-8 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
-                                    <h4 class="text-sm font-bold mb-6 text-center text-blue-100 uppercase tracking-widest">?????????????? (2020-2024)</h4>
+                                    <h4 class="text-sm font-bold mb-6 text-center text-blue-100 uppercase tracking-widest">城市更新重点领域投入 (2020-2024)</h4>
                                     <div class="chart-container"><canvas id="urbanConnectivityChart"></canvas></div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <p class="text-xs text-stone-500 dark:text-stone-400 text-center">????????????????????????????</p>
+                    <p class="text-xs text-stone-500 dark:text-stone-400 text-center">数据为公开信息综合整理及示意值，仅供研究参考，不代表官方口径。</p>
                 </section>
