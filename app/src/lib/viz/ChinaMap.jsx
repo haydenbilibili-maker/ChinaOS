@@ -39,7 +39,7 @@ function deriveCityData(mapName, baseValue) {
   }));
 }
 
-export default function ChinaMap({ metrics = [], style, className, enableDrill = true }) {
+export default function ChinaMap({ metrics = [], style, className, enableDrill = true, onRegionClick }) {
   const wrapRef = useRef(null);
   const elRef = useRef(null);
   const chartRef = useRef(null);
@@ -65,6 +65,8 @@ export default function ChinaMap({ metrics = [], style, className, enableDrill =
     const ro = new ResizeObserver(() => chart.resize());
     ro.observe(elRef.current);
     chart.on('click', (p) => {
+      // 选区回调（如沙盒「点省选中」），与下钻互斥使用
+      if (onClickRef.current) onClickRef.current(p.name, nameToAdcode[p.name]);
       if (!enableDrill) return;
       // 仅在全国视图点省份时下钻
       if (chartRef.current.__view !== 'china') return;
@@ -81,9 +83,11 @@ export default function ChinaMap({ metrics = [], style, className, enableDrill =
     return () => { ro.disconnect(); chart.dispose(); chartRef.current = null; };
   }, [ready, enableDrill]);
 
-  // 让点击回调读到最新 metric / view
+  // 让点击回调读到最新 metric / view / onRegionClick
   const metricRef = useRef(metric);
   metricRef.current = metric;
+  const onClickRef = useRef(onRegionClick);
+  onClickRef.current = onRegionClick;
   useEffect(() => { if (chartRef.current) chartRef.current.__view = view.mapName === 'china' ? 'china' : 'region'; }, [view]);
 
   // 3) 渲染 option（指标/视图变化时）
