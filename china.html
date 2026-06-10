@@ -1689,9 +1689,9 @@
             sandboxHighPriority: [],
             sandboxCycleSpeed: 5000,
             sandboxCycleCount: 0,
-            /** ?????????? */
+            /** 红网监控视图 */
             redweb: { view: 'dashboard' },
-            /** ?????????????Ring 0 ?? */
+            /** 灾难恢复模式（内核 Ring 0 接管） */
             disasterRecoveryMode: false,
             systemLatency: 28,
             ring0Takeover: false
@@ -1760,7 +1760,7 @@
         }
         let sandboxNodes = initSandboxNodes();
 
-        // Data Store - ??????????
+        // Data Store - 全局应用数据
         const appData = {
             navGroups: [
                 {
@@ -2020,8 +2020,8 @@
         let spaceSovereigntyECharts = { orbitalCount: null };
         let automotiveSovereigntyECharts = { localizationIndex: null };
 
-        /** Phase 2.0 ??????????? + ?? */
-        /* ??? ? ??? ???????? */
+        /** Phase 2.0 图表主题统一管理 + 配色 */
+        /* 浅色 与 深色 双主题色彩方案 */
         const ChartTheme = {
             isDark: () => document.body.classList.contains('dark-mode'),
             text: () => ChartTheme.isDark() ? '#c4a0a0' : '#5c3d3d',
@@ -2036,7 +2036,7 @@
             }
         };
 
-        /** 2.0 ECharts ???? ChartTheme ???? */
+        /** 2.0 ECharts 注册主题 ChartTheme 配色方案 */
         if (typeof echarts !== 'undefined') {
             echarts.registerTheme('china-os-light', {
                 color: ['#C41E3A','#D4AF37','#E8A317','#B22222','#0284c7','#059669'],
@@ -2077,7 +2077,7 @@
             a.click();
         }
 
-        /** SystemEntropyCalculator ? ?? Aging_Rate(????) ? Tech_Innovation_Index(????) ?????????? */
+        /** SystemEntropyCalculator ? 根据 Aging_Rate(老龄化率) 与 Tech_Innovation_Index(科技创新指数) 计算系统熵增 */
         let entropyIntervalId = null;
         class SystemEntropyCalculator {
             static getInputs() {
@@ -2125,7 +2125,7 @@
             }
         }
 
-        /** PRD 2.2.B: Aging Simulator ? ????????? (2025-2050) */
+        /** PRD 2.2.B: Aging Simulator ? 老龄化压力推演 (2025-2050) */
         function getAgingSimLevel(year) {
             const { agingRate, techInnovation } = SystemEntropyCalculator.getInputs();
             const base = 58;
@@ -2192,15 +2192,15 @@
         }
 
         /**
-         * ChinaOS_DataBus - ????????
-         * ?? China_OS_PRD_v2.0.md ????
+         * ChinaOS_DataBus - 数据总线模块
+         * 依据 China_OS_PRD_v2.0.md 设计实现
          * 
-         * ????Internal Bus (NBS) + External Connector (WB/IMF)
-         *         ? HAL(???) ? Kernel(??) ? Telemetry(??)
+         * 架构：Internal Bus (NBS) + External Connector (WB/IMF)
+         *         ? HAL(硬件层) ? Kernel(内核) ? Telemetry(遥测)
          * 
-         * ?????????????????? NBS vs WB ??? (Delta)
+         * 核心职责：内外部数据交叉比对，计算 NBS vs WB 偏差 (Delta)
          */
-        /** ??????? (Phase 2.0) */
+        /** 数据源配置表 (Phase 2.0) */
         const DATA_SOURCE_SCHEMA = {
             nbs: { id: 'nbs', name: '国家统计局', nameEn: 'NBS', url: 'stats.gov.cn', type: 'internal' },
             wb: { id: 'wb', name: '世界银行', nameEn: 'World Bank', url: 'api.worldbank.org', type: 'external' },
@@ -2214,23 +2214,23 @@
                 this._lastSync = null;
             }
 
-            /** ???????????? (hal | kernel | telemetry) */
+            /** 订阅指定数据层的更新 (hal | kernel | telemetry) */
             on(layerId, callback) {
                 this._subscribers.set(layerId, callback);
             }
 
-            /** ???????? */
+            /** 向单层推送数据 */
             _emit(layerId, payload) {
                 const cb = this._subscribers.get(layerId);
                 if (cb) cb(payload);
             }
 
-            /** ???????? */
+            /** 向所有层广播数据 */
             _broadcast(payload) {
                 this._subscribers.forEach((cb, layerId) => cb({ ...payload, targetLayer: layerId }));
             }
 
-            /** ????? Delta - ?????????????? (Phase 2: ?? IMF) */
+            /** 计算偏差 Delta - 内外部数据源差异比对 (Phase 2: 加入 IMF) */
             _computeDelta(nbs, wb, imf) {
                 const nbsGdp = nbs?.latestGdp ?? nbs?.gdp?.[4] ?? 5.2;
                 const wbGdp = wb?.latestGdp ?? wb?.gdp?.[4] ?? 4.5;
@@ -2252,11 +2252,11 @@
                 };
             }
 
-            /** CrossCheck ???WB ?????? NBS ?????? 15% ????? */
+            /** CrossCheck 交叉校验：WB 数据若与 NBS 数据偏差超过 15% 则标记异常 */
             crossCheck() {
                 const delta = this._cache.delta;
                 if (!delta) return { anomaly: false };
-                const ANOMALY_THRESHOLD = 15;  // ????????
+                const ANOMALY_THRESHOLD = 15;  // 异常偏差阈值（百分比）
                 if (delta.gdpDelta > ANOMALY_THRESHOLD) {
                     return {
                         anomaly: true,
@@ -2267,7 +2267,7 @@
                 return { anomaly: false };
             }
 
-            /** ?? NBS API ?? - Internal Bus?????stats.gov.cn */
+            /** 拉取 NBS API 数据 - Internal Bus，数据源：stats.gov.cn */
             async fetchNBS() {
                 await new Promise(r => setTimeout(r, 200));
                 const base = [5.1, 5.3, 5.0, 5.2, 5.3];
@@ -2283,7 +2283,7 @@
                 };
             }
 
-            /** ?? World Bank API ?? - External Connector?????api.worldbank.org */
+            /** 拉取 World Bank API 数据 - External Connector，数据源：api.worldbank.org */
             async fetchWorldBank() {
                 await new Promise(r => setTimeout(r, 200));
                 const base = [4.8, 5.0, 4.6, 4.8, 4.9];
@@ -2300,7 +2300,7 @@
                 };
             }
 
-            /** Phase 2: ?? IMF WEO API ?? - External Connector?????imf.org/weo */
+            /** Phase 2: 拉取 IMF WEO API 数据 - External Connector，数据源：imf.org/weo */
             async fetchIMF() {
                 await new Promise(r => setTimeout(r, 250));
                 const base = [4.9, 4.7, 4.5, 4.6, 4.8];
@@ -2317,7 +2317,7 @@
                 };
             }
 
-            /** ??????????? */
+            /** 同步所有数据源并回调进度 */
             async sync(onProgress) {
                 if (onProgress) onProgress({ phase: 'nbs', msg: 'Connecting to stats.gov.cn...' });
                 await new Promise(r => setTimeout(r, 400));
@@ -2378,9 +2378,9 @@
         const dataBus = new ChinaOS_DataBus();
 
         /**
-         * auditEngine ? ??????
-         * ?? ????(nbs) ? ????(wb) ? GDP ???
-         * Delta > 0.8% ?????? CRITICAL ??
+         * auditEngine ? 数据审计引擎
+         * 比对 国家统计局(nbs) 与 世界银行(wb) 的 GDP 数据
+         * Delta > 0.8% 时触发并输出 CRITICAL 告警
          */
         function auditEngine(nbs, wb, onTerminalOutput) {
             if (!nbs || !wb) return;
@@ -2394,7 +2394,7 @@
             }
         }
 
-        /** ???????? GDP ????? Dashboard ???? */
+        /** 根据信任权重加权 GDP 数值，供 Dashboard 仪表盘使用 */
         function getWeightedGdp() {
             const d = state.data2026?.data || {};
             const nbsGdp = d.nbs?.latestGdp ?? d.nbs?.gdp?.[4] ?? 5.2;
@@ -2403,7 +2403,7 @@
             return (1 - w) * nbsGdp + w * wbGdp;
         }
 
-        /** ?? Dashboard ???? */
+        /** 更新 Dashboard 审计摘要 */
         function updateDashboardAuditSummary() {
             const el = document.getElementById('dashboardAuditSummary');
             if (!el) return;
@@ -2422,7 +2422,7 @@
                 ? '<span class="text-red-600 dark:text-red-400 font-medium">数据偏差较大</span> Δ=' + maxDev.toFixed(2) + '% · ' + sources + ' · <button onclick="state.data2026.subTab=\'audit\'; switchTab(\'data2026\'); closeAllNavDropdowns();" class="text-blue-600 dark:text-blue-400 underline">查看审计</button>'
                 : '<span class="text-green-600 dark:text-green-400">数据一致</span> Δ=' + maxDev.toFixed(2) + '% · ' + sources;
         }
-        /** ?? Dashboard ???????????????? */
+        /** 更新 Dashboard 顶部核心指标摘要（增长率等） */
         function updateDashboardSummaryMetrics() {
             const gdp = getWeightedGdp();
             const growthEl = document.getElementById('dashboardGdpGrowth');
@@ -2438,7 +2438,7 @@
                 const w = (state.dataTrustWeight ?? 0.5) * 100;
                 sourceEl.textContent = w < 30 ? '偏 NBS' : w > 70 ? '偏 WB' : 'NBS 与 WB 混合';
             }
-            // PRD ????????????? (????????)
+            // PRD 满意度指数，由僵局加权和推算 (反向映射至百分比)
             const deadlockSum = getDeadlockWeightedSum();
             const satisfaction = Math.round(Math.max(0, Math.min(100, 100 - deadlockSum * 0.6)));
             const satEl = document.getElementById('satisfactionIndex');
@@ -2608,9 +2608,9 @@
         }
 
 
-        // ?????????????????? (PRD 1.3)
-        dataBus.on('hal', (p) => { /* HAL ?????? NBS ???? */ });
-        dataBus.on('kernel', (p) => { /* Kernel ?????? NBS+WB ????? Delta */ });
+        // 订阅数据总线各层更新并刷新视图 (PRD 1.3)
+        dataBus.on('hal', (p) => { /* HAL 层数据更新 NBS 指标 */ });
+        dataBus.on('kernel', (p) => { /* Kernel 层计算 NBS+WB 双源对比 Delta */ });
         dataBus.on('telemetry', (p) => {
             if (state.currentTab === 'data2026') {
                 state.data2026.data = { nbs: p.nbs, wb: p.wb, imf: p.imf || {}, registry: p.registry };
@@ -2638,7 +2638,7 @@
             { type: "代持/壳公司", count: 210, value: "$5B+", risk: "中" }
         ];
 
-        // v2026 ????
+        // v2026 核心指标
         const REGISTRY_INDICATORS = [
             { id: 'NY.GDP.MKTP.KD.ZG', desc: 'GDP Growth (annual %)', key: 'gdp' },
             { id: 'FP.CPI.TOTL.ZG', desc: 'Consumer Price Index (annual %)', key: 'cpi' },
@@ -2676,7 +2676,7 @@
         function getGroupItems(group) {
             return group.subCategories ? group.subCategories.flatMap(sc => sc.items) : (group.items || []);
         }
-        // Navigation Renderer - ????????????
+        // Navigation Renderer - 渲染主导航分组
         function renderNav() {
             navContainer.innerHTML = appData.navGroups.map((group, gIdx) => {
                 const items = getGroupItems(group);
@@ -2728,7 +2728,7 @@
                 if (!e.target.closest('.nav-dropdown')) closeAllNavDropdowns();
             });
         }
-        /** Phase 4: ??????? */
+        /** Phase 4: 移动端导航切换 */
         function initMobileNavToggle() {
             const toggle = document.getElementById('mobileNavToggle');
             const navContainer = document.getElementById('nav-container');
@@ -2767,7 +2767,7 @@
                 }
             }
             document.getElementById('content-area')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            // Phase 4: ???? - URL ?? tab ??
+            // Phase 4: 路由同步 - URL 写入 tab 参数
             try {
                 const url = new URL(location.href);
                 url.searchParams.set('tab', tabId);
@@ -2784,7 +2784,7 @@
             } catch (_) {}
             return null;
         }
-        /** ????????????????????????????????????? */
+        /** 根据当前标签页查找所属分组并渲染二级子导航 */
         function renderSubNav() {
             if (!subNavContainer) return;
             const group = appData.navGroups.find(g => getGroupItems(g).some(i => i.id === state.currentTab));
@@ -8605,14 +8605,14 @@
             }
         }
 
-        // --- ???? (Diplomacy) ?? ---
+        // --- 大国外交 (Diplomacy) 数据 ---
         const diplomacyPartners = [
-            { id: 1, name: "???", level: "???????????", tag: "major" },
-            { id: 2, name: "?? (ASEAN)", level: "????????", tag: "neighborhood" },
-            { id: 3, name: "????", level: "??????????", tag: "all" },
-            { id: 4, name: "????", level: "?????????", tag: "neighborhood" },
-            { id: 5, name: "?? (EU)", level: "????????", tag: "major" },
-            { id: 6, name: "????", level: "?????????", tag: "neighborhood" }
+            { id: 1, name: "美国", level: "竞争与合作并存的大国关系", tag: "major" },
+            { id: 2, name: "东盟 (ASEAN)", level: "全面战略伙伴关系", tag: "neighborhood" },
+            { id: 3, name: "一带一路", level: "高质量共建合作伙伴", tag: "all" },
+            { id: 4, name: "俄罗斯", level: "新时代全面战略协作", tag: "neighborhood" },
+            { id: 5, name: "欧盟 (EU)", level: "全面战略伙伴关系", tag: "major" },
+            { id: 6, name: "中亚五国", level: "睦邻友好合作关系", tag: "neighborhood" }
         ];
         function filterDiplomacyPartners(tag) {
             const listEl = document.getElementById('diplomacy-partner-list');
@@ -9615,7 +9615,7 @@
                     data: {
                         labels: ['2012', '2015', '2018', '2020', '2022', '2023'],
                         datasets: [{
-                            label: '?????? (???)',
+                            label: '海洋生产总值 (万亿元)',
                             data: [5.0, 6.5, 8.3, 8.0, 9.5, 9.9],
                             borderColor: '#fff',
                             backgroundColor: 'rgba(255, 255, 255, 0.1)',
@@ -9642,9 +9642,9 @@
                 charts.deepSeaRadar = new Chart(deepCtx.getContext('2d'), {
                     type: 'radar',
                     data: {
-                        labels: ['????', '????? (ROV/AUV)', '???? (?/??)', '????', '??????', '????'],
+                        labels: ['深潜技术', '无人潜航器 (ROV/AUV)', '海洋观测 (浮/潜标)', '钻探开采', '深海生物勘探', '装备制造'],
                         datasets: [{
-                            label: '????',
+                            label: '能力指数',
                             data: [98, 85, 92, 78, 88, 95],
                             borderColor: '#0c4a6e',
                             backgroundColor: 'rgba(12, 74, 110, 0.1)',
@@ -9672,7 +9672,7 @@
                 charts.marineIndustry = new Chart(indCtx.getContext('2d'), {
                     type: 'doughnut',
                     data: {
-                        labels: ['?????', '??????', '???????', '???????', '?????'],
+                        labels: ['海洋渔业', '海洋油气业', '海洋交通运输业', '海洋旅游业', '海洋工程业'],
                         datasets: [{
                             data: [45, 18, 15, 12, 10],
                             backgroundColor: ['#0c4a6e', '#0ea5e9', '#10b981', '#f59e0b', '#334155'],
@@ -9693,7 +9693,7 @@
                 charts.shipbuildingComparison = new Chart(shipCtx.getContext('2d'), {
                     type: 'bar',
                     data: {
-                        labels: ['???', '????', '????'],
+                        labels: ['造船完工量', '新接订单量', '手持订单量'],
                         datasets: [
                             { label: '?? (China)', data: [50.2, 66.6, 55.0], backgroundColor: '#0ea5e9', borderRadius: 6 },
                             { label: '?? (Korea)', data: [28.5, 25.5, 31.0], backgroundColor: '#e2e8f0', borderRadius: 6 },
@@ -9716,9 +9716,9 @@
                 charts.blueCarbonRadar = new Chart(blueCtx.getContext('2d'), {
                     type: 'radar',
                     data: {
-                        labels: ['?????', '?????', '????', '??????', '??????', '??????'],
+                        labels: ['红树林修复', '海草床保护', '盐沼湿地', '固碳能力评估', '生态监测体系', '碳汇交易机制'],
                         datasets: [{
-                            label: '????',
+                            label: '发展水平',
                             data: [92, 75, 80, 85, 88, 70],
                             borderColor: '#10b981',
                             backgroundColor: 'rgba(16, 185, 129, 0.1)',
@@ -9759,7 +9759,7 @@
                     data: {
                         labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024(E)'],
                         datasets: [{
-                            label: '??????? (10???)',
+                            label: '微短剧市场规模 (10亿美元)',
                             data: [65, 82, 105, 138, 142, 155, 172],
                             borderColor: '#ef4444',
                             backgroundColor: 'rgba(239, 68, 68, 0.1)',
@@ -9786,7 +9786,7 @@
                 charts.audiencePreference = new Chart(audCtx.getContext('2d'), {
                     type: 'doughnut',
                     data: {
-                        labels: ['??? (????)', '?? (????)', '?? (????)', '?? (????)', '????'],
+                        labels: ['短视频 (抖音快手)', '长剧 (爱奇艺)', '游戏 (米哈游)', '电影 (院线)', '其他类型'],
                         datasets: [{
                             data: [35, 20, 15, 22, 8],
                             backgroundColor: ['#ef4444', '#8b5cf6', '#fbbf24', '#10b981', '#cbd5e1'],
@@ -9807,7 +9807,7 @@
                 charts.impactRadar = new Chart(impactCtx.getContext('2d'), {
                     type: 'radar',
                     data: {
-                        labels: ['??????', '????', '?????', '??????', '?????', '????'],
+                        labels: ['全球传播力', '内容创新', '技术驱动', '商业变现力', '文化认同', '产业规模'],
                         datasets: [{
                             label: '2024 ??',
                             data: [92, 85, 88, 95, 82, 90],
@@ -9840,7 +9840,7 @@
                     data: {
                         labels: ['2023', '2025(?)', '2027(?)', '2030(?)'],
                         datasets: [{
-                            label: '??????',
+                            label: '出海营收指数',
                             data: [100, 145, 210, 320],
                             backgroundColor: '#ef4444',
                             borderRadius: 12,
@@ -9863,9 +9863,9 @@
                 charts.competenceBar = new Chart(compCtx.getContext('2d'), {
                     type: 'bar',
                     data: {
-                        labels: ['????', '????', '????(??/??)', '??IP'],
+                        labels: ['内容生产', '技术平台', '渠道分发(出海/海外)', '原创IP'],
                         datasets: [{
-                            label: '???????',
+                            label: '产业竞争力指数',
                             data: [92, 96, 88, 75],
                             backgroundColor: '#ef4444',
                             borderRadius: 8,
@@ -10328,11 +10328,11 @@
             });
         }
 
-        /** ???? (Food Security) - ????????? */
+        /** 粮食安全 (Food Security) - 主要进口来源与自给率 */
         const foodSecurityData = {
             selfSufficiency: [95, 98, 102, 99, 101, 98],
             labels: ['2019', '2020', '2021', '2022', '2023', '2024(E)'],
-            imports: ['??', '??', '??', '??', '???'],
+            imports: ['大豆', '玉米', '小麦', '稻米', '食用油'],
             importShare: [60, 12, 8, 6, 5]
         };
         function getFoodSecurityHTML() { return TAB_PARTIALS['foodSecurity']; }
@@ -10348,7 +10348,7 @@
                     data: {
                         labels: foodSecurityData.labels,
                         datasets: [{
-                            label: '????? (%)',
+                            label: '粮食自给率 (%)',
                             data: foodSecurityData.selfSufficiency,
                             borderColor: '#22c55e',
                             backgroundColor: 'rgba(34, 197, 94, 0.15)',
@@ -11214,7 +11214,7 @@
                     data: {
                         labels: ['2018', '2020', '2022', '2023', '2024(E)', '2026(?)'],
                         datasets: [{
-                            label: '???????? (%)',
+                            label: '新能源汽车渗透率 (%)',
                             data: [4.5, 5.4, 25.6, 31.6, 45.0, 65.0],
                             borderColor: '#3b82f6',
                             backgroundColor: 'rgba(59, 130, 246, 0.1)',
@@ -11241,7 +11241,7 @@
                 charts.autoTechStack = new Chart(stackCtx.getContext('2d'), {
                     type: 'bar',
                     data: {
-                        labels: ['L2+ ????', '??????', '??????', '800V????', '?????/??'],
+                        labels: ['L2+ 智能驾驶', '城市领航辅助', '智能座舱普及', '800V高压平台', '激光雷达/感知'],
                         datasets: [
                             { label: '2022 ?? (%)', data: [15, 2, 45, 1, 0], backgroundColor: '#e2e8f0', borderRadius: 6 },
                             { label: '2024(E) ?? (%)', data: [42, 18, 85, 12, 5], backgroundColor: '#3b82f6', borderRadius: 6 }
@@ -11263,9 +11263,9 @@
                 charts.autoGlobalMarket = new Chart(globalCtx.getContext('2d'), {
                     type: 'bar',
                     data: {
-                        labels: ['?? (ASEAN)', '?? (EU)', '???/??', '??', '??'],
+                        labels: ['东南亚 (ASEAN)', '欧洲 (EU)', '中东/非洲', '南美', '俄罗斯'],
                         datasets: [{
-                            label: '???????????',
+                            label: '中国新能源车出口竞争力指数',
                             data: [95, 78, 88, 72, 65],
                             backgroundColor: '#3b82f6',
                             borderRadius: 12,
@@ -11288,10 +11288,10 @@
                 charts.autoCompetenceRadar = new Chart(radarCtx.getContext('2d'), {
                     type: 'radar',
                     data: {
-                        labels: ['??????', '??????', '????/??', '??????', '???????', '??????'],
+                        labels: ['电池与电控', '智能座舱', '自动驾驶/算法', '生产制造', '品牌与供应链', '成本控制'],
                         datasets: [
-                            { label: '??????', data: [95, 92, 98, 96, 90, 72], borderColor: '#3b82f6', backgroundColor: 'rgba(59, 130, 246, 0.1)', pointBackgroundColor: '#3b82f6' },
-                            { label: '??????', data: [80, 65, 70, 50, 85, 95], borderColor: '#cbd5e1', backgroundColor: 'rgba(203, 213, 225, 0.1)', pointBackgroundColor: '#cbd5e1' }
+                            { label: '中国车企', data: [95, 92, 98, 96, 90, 72], borderColor: '#3b82f6', backgroundColor: 'rgba(59, 130, 246, 0.1)', pointBackgroundColor: '#3b82f6' },
+                            { label: '传统车企', data: [80, 65, 70, 50, 85, 95], borderColor: '#cbd5e1', backgroundColor: 'rgba(203, 213, 225, 0.1)', pointBackgroundColor: '#cbd5e1' }
                         ]
                     },
                     options: {
@@ -11315,7 +11315,7 @@
                 charts.autoFutureMix = new Chart(mixCtx.getContext('2d'), {
                     type: 'doughnut',
                     data: {
-                        labels: ['??? (BEV)', '??/?? (PHEV/EREV)', '???? (ICE)', '??/??'],
+                        labels: ['纯电动 (BEV)', '插混/增程 (PHEV/EREV)', '燃油车 (ICE)', '氢能/其他'],
                         datasets: [{
                             data: [45, 35, 15, 5],
                             backgroundColor: ['#3b82f6', '#0ea5e9', '#cbd5e1', '#334155'],
@@ -11333,15 +11333,15 @@
             }
         }
 
-        // --- ???? (Governance) ?? ---
+        // --- 国家治理 (Governance) 模块 ---
         const governanceFiscalData = {
             revenue: {
-                labels: ['1993(???)', '2000', '2010', '2020', '2023'],
+                labels: ['1993(分税制前)', '2000', '2010', '2020', '2023'],
                 central: [22.0, 52.2, 51.1, 45.3, 46.5],
                 local: [78.0, 47.8, 48.9, 54.7, 53.5]
             },
             expenditure: {
-                labels: ['1993(???)', '2000', '2010', '2020', '2023'],
+                labels: ['1993(分税制前)', '2000', '2010', '2020', '2023'],
                 central: [28.3, 34.7, 17.8, 14.3, 13.9],
                 local: [71.7, 65.3, 82.2, 85.7, 86.1]
             }
@@ -11360,13 +11360,13 @@
                 if (type === 'revenue') {
                     btnRev.className = active;
                     btnExp.className = inactive;
-                    charts.governanceFiscal.data.datasets[0].label = '?????? (%)';
-                    charts.governanceFiscal.data.datasets[1].label = '?????? (%)';
+                    charts.governanceFiscal.data.datasets[0].label = '中央财政收入占比 (%)';
+                    charts.governanceFiscal.data.datasets[1].label = '地方财政收入占比 (%)';
                 } else {
                     btnExp.className = active;
                     btnRev.className = inactive;
-                    charts.governanceFiscal.data.datasets[0].label = '?????? (%)';
-                    charts.governanceFiscal.data.datasets[1].label = '?????? (%)';
+                    charts.governanceFiscal.data.datasets[0].label = '中央财政支出占比 (%)';
+                    charts.governanceFiscal.data.datasets[1].label = '地方财政支出占比 (%)';
                 }
             }
             charts.governanceFiscal.update();
@@ -11766,12 +11766,12 @@
             `;
         }
 
-        /** ???????? - ???? */
+        /** 医疗改革阶段数据 - 互动时间轴 */
         const reformStageData = {
-            1: { title: "??????? (1978-1992)", desc: "??????????????????????????????????????????????'??????????????????'??????", policy: "??????????????", keyword: "?????????" },
-            2: { title: "???????? (1992-2001)", desc: "??????????'????????????'????????????????????????????????'????'????????", policy: "????????????", keyword: "???????" },
-            3: { title: "????????? (2001-2012)", desc: "???WTO?????????'?????'????????????????????????????2010???????????????????", policy: "????????????", keyword: "?????WTO" },
-            4: { title: "???????? (2012??)", desc: "????'???'?'???'????????????????????'????'?????????????????????????????", policy: "????????????", keyword: "?????????" }
+            1: { title: "改革探索起步期 (1978-1992)", desc: "改革开放初期，公费医疗与劳保医疗体系沿袭计划经济模式，财政负担沉重、效率低下。国家开始尝试'放权让利、扩大医院自主权'的初步改革。", policy: "扩大医院经营自主权改革", keyword: "公费医疗与劳保" },
+            2: { title: "市场化改革探索期 (1992-2001)", desc: "随着市场经济体制'建立社会主义市场经济'目标确立，医疗领域引入市场机制，医院走向自负盈亏，'看病难、看病贵'问题逐步显现。", policy: "医疗机构市场化探索", keyword: "市场化与自负盈亏" },
+            3: { title: "全民医保体系建设期 (2001-2012)", desc: "中国加入WTO后经济快速发展，启动'新医改'，建立城镇职工、城镇居民和新型农村合作医疗三大体系，到2010年基本实现全民医保广覆盖。", policy: "新型农村合作医疗", keyword: "全民医保与WTO" },
+            4: { title: "医改深化攻坚期 (2012至今)", desc: "围绕'强基层'与'保基本'深化综合改革，推进分级诊疗、公立医院'三医联动'改革，加强基本药物制度与医保支付方式改革，提升医疗服务质量。", policy: "公立医院综合改革", keyword: "分级诊疗与三医联动" }
         };
         function showReformStage(id) {
             const data = reformStageData[id];
@@ -12395,7 +12395,7 @@
                     data: {
                         labels: ['2016', '2018', '2020', '2021', '2022', '2023'],
                         datasets: [{
-                            label: '????????? (%)',
+                            label: '民营企业进出口占比 (%)',
                             data: [38.1, 40.6, 46.6, 48.6, 50.9, 53.5],
                             borderColor: '#fff',
                             backgroundColor: 'rgba(249, 115, 22, 0.2)',
@@ -12419,8 +12419,8 @@
                 charts.privateInnovationBar = new Chart(ctxInno.getContext('2d'), {
                     type: 'bar',
                     data: {
-                        labels: ['????????', '????????', 'R&D??????', '????????', '???????'],
-                        datasets: [{ label: '?????? (%)', data: [72, 91, 78, 65, 82], backgroundColor: orange, borderRadius: 8, barThickness: 24 }]
+                        labels: ['专利申请占比', '发明专利占比', 'R&D投入占比', '技术人员占比', '新产品产值'],
+                        datasets: [{ label: '民营企业占比 (%)', data: [72, 91, 78, 65, 82], backgroundColor: orange, borderRadius: 8, barThickness: 24 }]
                     },
                     options: {
                         responsive: true, maintainAspectRatio: false,
@@ -12439,7 +12439,7 @@
                 charts.privateGiantsDoughnut = new Chart(ctxGiants.getContext('2d'), {
                     type: 'doughnut',
                     data: {
-                        labels: ['???????', '??????', '????????', '????????', '???????'],
+                        labels: ['先进制造业', '信息技术业', '现代服务业', '新能源与环保', '消费与零售'],
                         datasets: [{ data: [35, 25, 20, 12, 8], backgroundColor: [orange, '#4f46e5', '#10b981', '#fbbf24', '#cbd5e1'], borderWidth: 0, hoverOffset: 15 }]
                     },
                     options: {
@@ -12455,7 +12455,7 @@
                 charts.privateConfidenceRadar = new Chart(ctxRadar.getContext('2d'), {
                     type: 'radar',
                     data: {
-                        labels: ['??????', '??????', '?????', '???????', '??????', '??????'],
+                        labels: ['政策预期', '融资环境', '市场需求', '产权保护信心', '营商环境', '盈利预期'],
                         datasets: [{
                             label: '2024 ??',
                             data: [82, 75, 68, 90, 88, 72],
@@ -12480,7 +12480,7 @@
                 charts.privateDigitalDoughnut = new Chart(ctxDig.getContext('2d'), {
                     type: 'doughnut',
                     data: {
-                        labels: ['????(??4.0)', '??????', '????????', '??????', '??????'],
+                        labels: ['智能制造(工业4.0)', '数字化转型中', '初步信息化', '尚未数字化', '观望评估中'],
                         datasets: [{ data: [12, 28, 35, 15, 10], backgroundColor: ['#4f46e5', '#6366f1', '#a5b4fc', '#e0e7ff', '#f1f5f9'], borderWidth: 0 }]
                     },
                     options: {
@@ -13364,7 +13364,7 @@
                     data: {
                         labels: ['2020', '2021', '2022', '2023', '2024(E)', '2026(?)'],
                         datasets: [{
-                            label: '???? (??)',
+                            label: '市场规模 (亿元)',
                             data: [545, 815, 1105, 1420, 1850, 2600],
                             borderColor: '#fff',
                             backgroundColor: 'rgba(255, 255, 255, 0.1)',
@@ -13388,10 +13388,10 @@
                 charts.dataelementSector = new Chart(ctxSector.getContext('2d'), {
                     type: 'bar',
                     data: {
-                        labels: ['????', '????', '????', '????', '????', '?????'],
+                        labels: ['金融行业', '政务领域', '医疗健康', '工业制造', '交通物流', '电信运营'],
                         datasets: [
-                            { label: '????', data: [95, 88, 92, 75, 82, 98], backgroundColor: blue, borderRadius: 6 },
-                            { label: '????', data: [70, 65, 85, 80, 55, 90], backgroundColor: '#e2e8f0', borderRadius: 6 }
+                            { label: '数据供给', data: [95, 88, 92, 75, 82, 98], backgroundColor: blue, borderRadius: 6 },
+                            { label: '数据需求', data: [70, 65, 85, 80, 55, 90], backgroundColor: '#e2e8f0', borderRadius: 6 }
                         ]
                     },
                     options: {
@@ -13410,7 +13410,7 @@
                 charts.dataelementTechRadar = new Chart(ctxTech.getContext('2d'), {
                     type: 'radar',
                     data: {
-                        labels: ['?????? (MPC)', '????', '?????? (TEE)', '????', '???????', '?????'],
+                        labels: ['安全多方计算 (MPC)', '联邦学习', '可信执行环境 (TEE)', '区块链', '隐私计算平台', '同态加密'],
                         datasets: [
                             { label: '2024 ??', data: [85, 92, 88, 65, 78, 60], borderColor: blue, backgroundColor: 'rgba(37, 99, 235, 0.1)', pointBackgroundColor: blue },
                             { label: '2021 ??', data: [50, 60, 55, 30, 45, 20], borderColor: '#cbd5e1', borderDash: [5, 5], fill: false }
@@ -13431,9 +13431,9 @@
                 charts.dataelementGovernanceRadar = new Chart(ctxGov.getContext('2d'), {
                     type: 'radar',
                     data: {
-                        labels: ['??????', '??????', '???????', '??????', '???????', '??????'],
+                        labels: ['数据确权制度', '流通交易规则', '安全合规体系', '收益分配机制', '跨境流动管理', '监管协同能力'],
                         datasets: [{
-                            label: '????',
+                            label: '建设进度',
                             data: [92, 75, 68, 95, 72, 65],
                             borderColor: blue,
                             backgroundColor: 'rgba(37, 99, 235, 0.2)',
@@ -13456,7 +13456,7 @@
                 charts.dataelementFutureDoughnut = new Chart(ctxFuture.getContext('2d'), {
                     type: 'doughnut',
                     data: {
-                        labels: ['??????', '??????', '??????', '?????'],
+                        labels: ['公共数据开放', '企业数据流通', '个人数据保护', '跨境数据流动'],
                         datasets: [{
                             data: [40, 35, 10, 15],
                             backgroundColor: [blue, '#06b6d4', '#cbd5e1', '#7c3aed'],
@@ -13688,8 +13688,8 @@
                     data: {
                         labels: ['2024', '2028', '2032', '2036', '2040', '2043'],
                         datasets: [
-                            { label: '?????? (?)', data: [350, 480, 560, 620, 750, 880], backgroundColor: sky, borderRadius: 6 },
-                            { label: '?????? (??/?)', type: 'line', data: [1.2, 1.8, 2.5, 3.8, 5.2, 8.5], borderColor: '#fff', borderWidth: 3, fill: false, yAxisID: 'y1' }
+                            { label: '机队规模 (架)', data: [350, 480, 560, 620, 750, 880], backgroundColor: sky, borderRadius: 6 },
+                            { label: '年交付量 (百架/年)', type: 'line', data: [1.2, 1.8, 2.5, 3.8, 5.2, 8.5], borderColor: '#fff', borderWidth: 3, fill: false, yAxisID: 'y1' }
                         ]
                     },
                     options: {
@@ -13709,7 +13709,7 @@
                 charts.airLocalizationRadar = new Chart(ctxLoc.getContext('2d'), {
                     type: 'radar',
                     data: {
-                        labels: ['???? (Airframe)', '???? (Avionics)', '???? (Engine)', '???? (Systems)', '???? (Materials)', '????'],
+                        labels: ['机体结构 (Airframe)', '航空电子 (Avionics)', '航空发动机 (Engine)', '机载系统 (Systems)', '复合材料 (Materials)', '总装集成'],
                         datasets: [
                             { label: '2020 ??', data: [85, 30, 5, 25, 40, 45], borderColor: '#cbd5e1', backgroundColor: 'rgba(203, 213, 225, 0.1)', borderDash: [5, 5] },
                             { label: '2024(E) ??', data: [95, 55, 15, 52, 65, 78], borderColor: sky, backgroundColor: 'rgba(14, 165, 233, 0.1)', pointBackgroundColor: sky, borderWidth: 2 }
@@ -13730,8 +13730,8 @@
                 charts.airEngineTRL = new Chart(ctxTRL.getContext('2d'), {
                     type: 'bar',
                     data: {
-                        labels: ['??????', '??????', '???????', '??????', '????', '????'],
-                        datasets: [{ label: '????? (0-10)', data: [10, 10, 9, 7.5, 3.5, 1], backgroundColor: navy, borderRadius: 8, barThickness: 32 }]
+                        labels: ['热端部件设计', '单晶涡轮叶片', '全权限数字控制', '高温合金材料', '风扇叶片', '整机集成'],
+                        datasets: [{ label: '技术成熟度 (0-10)', data: [10, 10, 9, 7.5, 3.5, 1], backgroundColor: navy, borderRadius: 8, barThickness: 32 }]
                     },
                     options: {
                         responsive: true, maintainAspectRatio: false,
@@ -13749,7 +13749,7 @@
                 charts.airGlobalRadar = new Chart(ctxGlobal.getContext('2d'), {
                     type: 'radar',
                     data: {
-                        labels: ['???????', '?????', '??????', '??????', '??????', '??????'],
+                        labels: ['气动设计能力', '航电系统', '机体制造', '发动机配套', '适航认证', '客户服务'],
                         datasets: [
                             { label: '?? (COMAC)', data: [92, 88, 95, 68, 45, 96], borderColor: sky, backgroundColor: 'rgba(14, 165, 233, 0.1)', pointBackgroundColor: sky },
                             { label: '?? (Airbus)', data: [98, 95, 92, 95, 98, 85], borderColor: '#64748b', backgroundColor: 'rgba(100, 116, 139, 0.05)', pointBackgroundColor: '#64748b' }
@@ -13770,7 +13770,7 @@
                 charts.airFleetDoughnut = new Chart(ctxFleet.getContext('2d'), {
                     type: 'doughnut',
                     data: {
-                        labels: ['???? (COMAC)', '?????? (A/B)', '???????', '???????'],
+                        labels: ['国产机型 (COMAC)', '空客波音 (A/B)', '其他支线机型', '通用航空机型'],
                         datasets: [{ data: [15, 65, 12, 8], backgroundColor: ['#1e3a8a', sky, '#94a3b8', '#cbd5e1'], borderWidth: 0, hoverOffset: 15 }]
                     },
                     options: {
@@ -16605,16 +16605,16 @@
             }
         }
 
-        /** ????????? - ???? */
+        /** 数字经济增长趋势 - 图表数据 */
         const digitalGrowthData = {
-            scale: { labels: ['2016', '2018', '2020', '2022', '2023'], data: [22.6, 31.3, 39.2, 50.2, 53.9], label: '?????? (???)' },
+            scale: { labels: ['2016', '2018', '2020', '2022', '2023'], data: [22.6, 31.3, 39.2, 50.2, 53.9], label: '数字经济规模 (万亿元)' },
             ratio: { labels: ['2016', '2018', '2020', '2022', '2023'], data: [30.3, 34.8, 38.6, 41.5, 42.8], label: '? GDP ?? (%)' }
         };
         const digitalVerticalData = {
-            ecommerce: { title: '??????', desc: '???????????????????????????????????????????????????????????????? C2M ????????', stat1: '15.4 ??', stat2: '27.6%', stat3: '??????', chart: [10.6, 11.7, 13.1, 15.4], color: '#1e1b4b' },
-            fintech: { title: '????', desc: '???????????????????????????????????????????????????????? (e-CNY) ??????', stat1: '500 ??+', stat2: '90%+', stat3: 'e-CNY ??', chart: [8.5, 9.2, 10.5, 12.0], color: '#06b6d4' },
-            cloud: { title: '??????', desc: '???????????????????????????????????????????????????????? AI ???', stat1: '4500 ?', stat2: '35%', stat3: '????', chart: [3.2, 4.8, 7.5, 9.8], color: '#6366f1' },
-            ai: { title: '???? (AI)', desc: '??? AI ???? AI ?????????????????????????????????AI + ???????????????????', stat1: '5000 ?+', stat2: '15%', stat3: 'AGI ??', chart: [2.1, 4.3, 6.8, 11.5], color: '#a855f7' }
+            ecommerce: { title: '数字电商零售', desc: '中国拥有全球最大的电子商务市场，直播带货与社交电商深度融合，从平台经济向产业互联网延伸，依托庞大消费基础推动 C2M 反向定制模式发展。', stat1: '15.4 万亿', stat2: '27.6%', stat3: '渗透率领先', chart: [10.6, 11.7, 13.1, 15.4], color: '#1e1b4b' },
+            fintech: { title: '金融科技', desc: '移动支付与数字金融基础设施全球领先，普惠金融覆盖广泛，监管科技持续完善，数字人民币 (e-CNY) 试点稳步推进。', stat1: '500 万亿+', stat2: '90%+', stat3: 'e-CNY 试点', chart: [8.5, 9.2, 10.5, 12.0], color: '#06b6d4' },
+            cloud: { title: '云计算与大数据', desc: '公有云市场快速扩张，国产云厂商占据主导，算力基础设施持续升级，企业上云加速并与 AI 融合赋能。', stat1: '4500 亿', stat2: '35%', stat3: '增速领先', chart: [3.2, 4.8, 7.5, 9.8], color: '#6366f1' },
+            ai: { title: '人工智能 (AI)', desc: '生成式 AI 与大模型 AI 应用快速落地，产业规模高速增长，政策大力扶持，AI + 各行各业深度融合催生新业态。', stat1: '5000 亿+', stat2: '15%', stat3: 'AGI 探索', chart: [2.1, 4.3, 6.8, 11.5], color: '#a855f7' }
         };
         function updateDigitalGrowthChart(type) {
             const data = digitalGrowthData[type];
@@ -16667,7 +16667,7 @@
                     type: 'line',
                     data: {
                         labels: ['2019', '2020', '2021', '2022', '2023', '2024'],
-                        datasets: [{ label: '?????? (??)', data: [35.8, 39.2, 45.5, 50.2, 52.2, 53.9], borderColor: '#a5b4fc', backgroundColor: 'rgba(165, 180, 252, 0.25)', fill: true, tension: 0.4, borderWidth: 3, pointBackgroundColor: '#fff', pointRadius: 5 }]
+                        datasets: [{ label: '数字经济规模 (万亿)', data: [35.8, 39.2, 45.5, 50.2, 52.2, 53.9], borderColor: '#a5b4fc', backgroundColor: 'rgba(165, 180, 252, 0.25)', fill: true, tension: 0.4, borderWidth: 3, pointBackgroundColor: '#fff', pointRadius: 5 }]
                     },
                     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { grid: { color: 'rgba(255,255,255,0.1)' }, ticks: { color: 'rgba(255,255,255,0.8)' } }, x: { grid: { display: false }, ticks: { color: 'rgba(255,255,255,0.8)' } } } }
                 });
@@ -16687,7 +16687,7 @@
                 const v = digitalVerticalData.ecommerce;
                 charts.digitalVertical = new Chart(vertCtx.getContext('2d'), {
                     type: 'line',
-                    data: { labels: ['2020', '2021', '2022', '2023'], datasets: [{ label: '??????', data: v.chart, borderColor: v.color, backgroundColor: v.color + '22', fill: true, tension: 0.4 }] },
+                    data: { labels: ['2020', '2021', '2022', '2023'], datasets: [{ label: '市场规模趋势', data: v.chart, borderColor: v.color, backgroundColor: v.color + '22', fill: true, tension: 0.4 }] },
                     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { display: false }, x: { grid: { display: false }, ticks: { color: ChartTheme.text() } } } }
                 });
             }
@@ -16697,7 +16697,7 @@
                 const gridColor = isDark ? 'rgba(148,163,184,0.15)' : 'rgba(0,0,0,0.06)';
                 charts.digitalRegRadar = new Chart(radarCtx.getContext('2d'), {
                     type: 'radar',
-                    data: { labels: ['????', '????', '????', '????', '????'], datasets: [{ label: '????', data: [95, 80, 85, 90, 75], borderColor: '#1e1b4b', backgroundColor: 'rgba(30, 27, 75, 0.15)', pointBackgroundColor: '#1e1b4b', borderWidth: 2 }] },
+                    data: { labels: ['政策支持', '技术创新', '人才储备', '资金投入', '市场需求'], datasets: [{ label: '发展指数', data: [95, 80, 85, 90, 75], borderColor: '#1e1b4b', backgroundColor: 'rgba(30, 27, 75, 0.15)', pointBackgroundColor: '#1e1b4b', borderWidth: 2 }] },
                     options: { responsive: true, maintainAspectRatio: false, scales: { r: { angleLines: { color: gridColor }, grid: { color: gridColor }, pointLabels: { color: ChartTheme.text() }, ticks: { display: false }, suggestedMin: 50, suggestedMax: 100 } }, plugins: { legend: { display: false } } }
                 });
             }
@@ -16712,18 +16712,18 @@
             updateDigitalVertical('ecommerce');
         }
 
-        /** ?????????? - ???? */
+        /** 制造业宏观增长数据 - 图表数据 */
         const mfgMacroData = {
-            growth: { labels: ['2018', '2019', '2020', '2021', '2022', '2023'], highTech: [11.7, 8.8, 7.1, 18.2, 7.4, 6.2], avgIndustry: [6.2, 5.7, 2.8, 9.6, 3.6, 4.6], suffix: '????? (%)' },
-            investment: { labels: ['2018', '2019', '2020', '2021', '2022', '2023'], highTech: [16.1, 15.9, 11.5, 22.2, 18.9, 10.3], avgIndustry: [9.5, 3.1, 0.1, 11.4, 9.1, 6.5], suffix: '???? (%)' }
+            growth: { labels: ['2018', '2019', '2020', '2021', '2022', '2023'], highTech: [11.7, 8.8, 7.1, 18.2, 7.4, 6.2], avgIndustry: [6.2, 5.7, 2.8, 9.6, 3.6, 4.6], suffix: '增加值增速 (%)' },
+            investment: { labels: ['2018', '2019', '2020', '2021', '2022', '2023'], highTech: [16.1, 15.9, 11.5, 22.2, 18.9, 10.3], avgIndustry: [9.5, 3.1, 0.1, 11.4, 9.1, 6.5], suffix: '投资增速 (%)' }
         };
         function updateManufacturingMacroChart(type) {
             const data = mfgMacroData[type];
             if (!charts.mfgMacro || !data) return;
             charts.mfgMacro.data.datasets[0].data = data.highTech;
             charts.mfgMacro.data.datasets[1].data = data.avgIndustry;
-            charts.mfgMacro.data.datasets[0].label = '??????' + data.suffix;
-            charts.mfgMacro.data.datasets[1].label = '?????' + data.suffix;
+            charts.mfgMacro.data.datasets[0].label = '高技术制造业' + data.suffix;
+            charts.mfgMacro.data.datasets[1].label = '工业平均水平' + data.suffix;
             const btnG = document.getElementById('mfgBtnGrowth');
             const btnI = document.getElementById('mfgBtnInvest');
             if (btnG && btnI) {
@@ -17527,12 +17527,12 @@
             }
         }
 
-        /** ????????? - ???? */
+        /** 城市群发展数据 - 图表数据 */
         const urbanClusterData = {
-            yrd: { name: "????? (YRD)", desc: "???????????????????????????????????????????????????????????????", gdp: "~24%", rd: "3.2%", radar: [98, 95, 92, 90, 95] },
-            gba: { name: "?????? (GBA)", desc: "???????????????????????????????????????????????????????????", gdp: "~13%", rd: "3.7%", radar: [92, 98, 85, 88, 90] },
-            jjj: { name: "??? (JJJ)", desc: "????????????????????????????????????????????????????????????", gdp: "~8.5%", rd: "2.8%", radar: [90, 80, 88, 95, 85] },
-            cy: { name: "???? (CY)", desc: "????????????????????????????????????????????????????????????", gdp: "~6.5%", rd: "2.2%", radar: [82, 85, 95, 80, 78] }
+            yrd: { name: "长三角城市群 (YRD)", desc: "以上海为龙头，江浙皖协同发展，是中国经济最活跃、开放程度最高、创新能力最强的区域之一，集成电路与高端制造产业高度集聚。", gdp: "~24%", rd: "3.2%", radar: [98, 95, 92, 90, 95] },
+            gba: { name: "粤港澳大湾区 (GBA)", desc: "以广深港为核心引擎，深度融合制造业与现代服务业，电子信息与数字经济产业领先，是国际科技创新与对外开放的重要门户。", gdp: "~13%", rd: "3.7%", radar: [92, 98, 85, 88, 90] },
+            jjj: { name: "京津冀 (JJJ)", desc: "以北京为核心，疏解非首都功能，推动雄安新区建设，科教资源与高端服务业密集，区域协同发展水平持续提升。", gdp: "~8.5%", rd: "2.8%", radar: [90, 80, 88, 95, 85] },
+            cy: { name: "成渝地区 (CY)", desc: "以成都重庆为双核，打造西部经济增长极，电子信息与汽车制造产业基础雄厚，是内陆开放高地与国家战略腹地。", gdp: "~6.5%", rd: "2.2%", radar: [82, 85, 95, 80, 78] }
         };
         function updateUrbanCluster(id) {
             const data = urbanClusterData[id];
@@ -17567,7 +17567,7 @@
                     type: 'line',
                     data: {
                         labels: ['1978', '1990', '2000', '2010', '2020', '2023'],
-                        datasets: [{ label: '???? (%)', data: [17.9, 26.4, 36.2, 49.7, 63.9, 66.2], borderColor: '#fff', backgroundColor: 'rgba(255, 255, 255, 0.2)', fill: true, tension: 0.4, borderWidth: 3, pointBackgroundColor: '#fff' }]
+                        datasets: [{ label: '城镇化率 (%)', data: [17.9, 26.4, 36.2, 49.7, 63.9, 66.2], borderColor: '#fff', backgroundColor: 'rgba(255, 255, 255, 0.2)', fill: true, tension: 0.4, borderWidth: 3, pointBackgroundColor: '#fff' }]
                     },
                     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { display: false }, x: { ticks: { color: 'rgba(255,255,255,0.7)', font: { size: 10 } }, grid: { display: false } } } }
                 });
@@ -17579,8 +17579,8 @@
                 charts.urbanClusterRadar = new Chart(radarCtx.getContext('2d'), {
                     type: 'radar',
                     data: {
-                        labels: ['????', '????', '????', '????', '????'],
-                        datasets: [{ label: '??????', data: urbanClusterData.yrd.radar, borderColor: '#1e40af', backgroundColor: 'rgba(30, 64, 175, 0.15)', pointBackgroundColor: '#1e40af', borderWidth: 2 }]
+                        labels: ['经济总量', '科技创新', '产业基础', '基础设施', '开放程度'],
+                        datasets: [{ label: '城市群指数', data: urbanClusterData.yrd.radar, borderColor: '#1e40af', backgroundColor: 'rgba(30, 64, 175, 0.15)', pointBackgroundColor: '#1e40af', borderWidth: 2 }]
                     },
                     options: { responsive: true, maintainAspectRatio: false, scales: { r: { angleLines: { color: gridColor }, grid: { color: gridColor }, pointLabels: { color: ChartTheme.text() }, suggestedMin: 50, suggestedMax: 100, ticks: { display: false } } }, plugins: { legend: { display: false } } }
                 });
@@ -17590,7 +17590,7 @@
                 charts.urbanPopulationDoughnut = new Chart(popCtx.getContext('2d'), {
                     type: 'doughnut',
                     data: {
-                        labels: ['??????', '????????', '????'],
+                        labels: ['城镇常住人口', '农村常住人口', '流动人口'],
                         datasets: [{ data: [47.5, 18.7, 33.8], backgroundColor: ['#1e40af', '#60a5fa', '#e2e8f0'], borderWidth: 0, hoverOffset: 15 }]
                     },
                     options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 }, color: ChartTheme.text() } } } }
@@ -20380,11 +20380,11 @@
         }
 
         const ecologyParkData = {
-            sjy: { name: "???????", desc: "?????????????????????????????????????????????????????????", area: "19.07", species: "??????", radar: [95, 98, 92, 85, 90] },
-            panda: { name: "???????", desc: "?????????????????????????????????????????????????????????", area: "2.71", species: "??????????", radar: [85, 95, 88, 92, 98] },
-            tiger: { name: "????????", desc: "??????????????????????????????????????????????????", area: "1.41", species: "???????", radar: [90, 85, 95, 80, 88] },
-            hainan: { name: "??????????", desc: "???????????????????????????????????????????????????????", area: "0.43", species: "????????", radar: [80, 92, 85, 95, 82] },
-            wuyi: { name: "???????", desc: "?????????????????????????????????????????????????", area: "0.13", species: "?????????", radar: [88, 90, 82, 75, 95] }
+            sjy: { name: "三江源国家公园", desc: "地处青藏高原腹地，是长江、黄河、澜沧江的发源地，被誉为中华水塔，生态地位极其重要，是高寒生态系统保护的核心区域。", area: "19.07", species: "藏羚羊、雪豹", radar: [95, 98, 92, 85, 90] },
+            panda: { name: "大熊猫国家公园", desc: "横跨川陕甘三省，保护大熊猫及其栖息地，连通破碎化生境，促进种群基因交流，是生物多样性保护的旗舰工程。", area: "2.71", species: "大熊猫、川金丝猴", radar: [85, 95, 88, 92, 98] },
+            tiger: { name: "东北虎豹国家公园", desc: "跨吉林、黑龙江两省，是中国野生东北虎、东北豹的重要栖息地与繁衍家园。", area: "1.41", species: "东北虎、东北豹", radar: [90, 85, 95, 80, 88] },
+            hainan: { name: "海南热带雨林国家公园", desc: "是我国分布最集中、保存最完好的热带雨林，也是海南长臂猿的唯一栖息地。", area: "0.43", species: "海南长臂猿", radar: [80, 92, 85, 95, 82] },
+            wuyi: { name: "武夷山国家公园", desc: "是世界文化与自然双重遗产，保存了完整的中亚热带森林生态系统。", area: "0.13", species: "黄腹角雉等", radar: [88, 90, 82, 75, 95] }
         };
 
         function updateEcologyPark(id) {
@@ -21540,7 +21540,7 @@
             `;
         }
 
-        /** ??????????? - ???? */
+        /** 一带一路与全球互联 - 渲染函数 */
         function getBRIHTML() { return TAB_PARTIALS['bri']; }
 
         /** 法治体系与司法现代化 - China OS v2.0 法治模块 */
@@ -21676,15 +21676,15 @@
             `;
         }
 
-        /** ???????????? - ???? */
+        /** 法治体系与司法现代化 - 渲染函数 */
         function getForeignTradeHTML() { return TAB_PARTIALS['foreignTrade']; }
 
-        /** ????????? - ???? */
+        /** 对外贸易与全球布局 - 渲染函数 */
         const guochaoMatrixData = {
-            tech: { title: "??????", tag: "??????", desc: "??????????????????????????????????????????????", stat: "~85%", keyword: "??????", radar: [98, 95, 80, 75, 92] },
-            beauty: { title: "???????", tag: "???????", desc: "???????????????????????????????????????????", stat: "~55%", keyword: "??????", radar: [70, 92, 95, 85, 80] },
-            auto: { title: "???? (EV)", tag: "??????", desc: "???????????????????????????????????????????????", stat: "~60%", keyword: "?????", radar: [95, 88, 90, 80, 95] },
-            ip: { title: "????? IP", tag: "??????", desc: "?????????????????????????????????????????", stat: "300%+", keyword: "?????", radar: [40, 98, 70, 95, 60] }
+            tech: { title: "国产科技", tag: "硬核突破", desc: "从智能手机到操作系统，国产科技品牌凭借自主研发持续抢占国内市场份额。", stat: "~85%", keyword: "自主创新", radar: [98, 95, 80, 75, 92] },
+            beauty: { title: "国货美妆", tag: "东方美学", desc: "国产美妆品牌融合东方审美与现代工艺，以高性价比赢得年轻消费者青睐。", stat: "~55%", keyword: "东方美学", radar: [70, 92, 95, 85, 80] },
+            auto: { title: "新能源汽车 (EV)", tag: "弯道超车", desc: "中国新能源汽车产业链完整、技术领先，国产品牌在国内市场占据主导地位。", stat: "~60%", keyword: "弯道超车", radar: [95, 88, 90, 80, 95] },
+            ip: { title: "国潮文创 IP", tag: "文化自信", desc: "依托深厚的传统文化资源，国潮文创IP快速崛起，带动衍生消费高速增长。", stat: "300%+", keyword: "文化自信", radar: [40, 98, 70, 95, 60] }
         };
 
         function updateGuochaoMatrix(id) {
@@ -21922,7 +21922,7 @@
                     type: 'line',
                     data: {
                         labels: ['1949', '1980', '2000', '2010', '2020', '2024'],
-                        datasets: [{ label: '??? (%)', data: [8.6, 12.0, 16.5, 20.3, 23.0, 24.0], borderColor: '#fff', backgroundColor: 'rgba(255, 255, 255, 0.2)', fill: true, tension: 0.4, borderWidth: 3, pointBackgroundColor: '#fff' }]
+                        datasets: [{ label: '森林覆盖率 (%)', data: [8.6, 12.0, 16.5, 20.3, 23.0, 24.0], borderColor: '#fff', backgroundColor: 'rgba(255, 255, 255, 0.2)', fill: true, tension: 0.4, borderWidth: 3, pointBackgroundColor: '#fff' }]
                     },
                     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { display: false }, x: { ticks: { color: 'rgba(255,255,255,0.7)', font: { size: 10 } }, grid: { display: false } } } }
                 });
@@ -21932,8 +21932,8 @@
                 charts.ecoParkRadar = new Chart(parkRadarCtx.getContext('2d'), {
                     type: 'radar',
                     data: {
-                        labels: ['????', '????', '?????', '????', '????'],
-                        datasets: [{ label: '????', data: ecologyParkData.sjy.radar, borderColor: '#064e3b', backgroundColor: 'rgba(6, 78, 59, 0.1)', pointBackgroundColor: '#064e3b' }]
+                        labels: ['生态价值', '物种多样', '保护成效', '科研价值', '管理水平'],
+                        datasets: [{ label: '综合评分', data: ecologyParkData.sjy.radar, borderColor: '#064e3b', backgroundColor: 'rgba(6, 78, 59, 0.1)', pointBackgroundColor: '#064e3b' }]
                     },
                     options: { responsive: true, maintainAspectRatio: false, scales: { r: { angleLines: { color: gridColor }, grid: { color: gridColor }, pointLabels: { color: textColor }, suggestedMin: 50, suggestedMax: 100, ticks: { display: false } } }, plugins: { legend: { display: false } } }
                 });
@@ -21943,8 +21943,8 @@
                 charts.ecoSpecies = new Chart(speciesCtx.getContext('2d'), {
                     type: 'bar',
                     data: {
-                        labels: ['?????', '???', '??', '???', '???'],
-                        datasets: [{ label: '?????? (2024)', data: [180, 250, 420, 160, 195], backgroundColor: '#10b981', borderRadius: 12, barThickness: 32 }]
+                        labels: ['三江源', '大熊猫', '东北虎', '海南雨林', '武夷山'],
+                        datasets: [{ label: '物种数量 (2024)', data: [180, 250, 420, 160, 195], backgroundColor: '#10b981', borderRadius: 12, barThickness: 32 }]
                     },
                     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { grid: { color: ChartTheme.grid() }, ticks: { color: textColor } }, x: { grid: { display: false }, ticks: { color: textColor } } } }
                 });
@@ -21955,7 +21955,7 @@
                     type: 'bar',
                     data: {
                         labels: ['2016', '2018', '2020', '2022', '2024(E)'],
-                        datasets: [{ label: '??????', data: [4.5, 5.8, 7.2, 8.5, 9.8], backgroundColor: isDark ? 'rgba(16, 185, 129, 0.4)' : 'rgba(6, 78, 59, 0.3)', borderColor: '#10b981', borderWidth: 1, borderRadius: 8 }]
+                        datasets: [{ label: '生态产值', data: [4.5, 5.8, 7.2, 8.5, 9.8], backgroundColor: isDark ? 'rgba(16, 185, 129, 0.4)' : 'rgba(6, 78, 59, 0.3)', borderColor: '#10b981', borderWidth: 1, borderRadius: 8 }]
                     },
                     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { grid: { color: ChartTheme.grid() }, ticks: { color: textColor } }, x: { grid: { display: false }, ticks: { color: textColor } } } }
                 });
@@ -21965,8 +21965,8 @@
                 charts.ecoGlobalRadar = new Chart(globalRadarCtx.getContext('2d'), {
                     type: 'radar',
                     data: {
-                        labels: ['?????', '?????', '??????', '????', '????', '????'],
-                        datasets: [{ label: '????', data: [95, 90, 98, 75, 92, 85], borderColor: '#064e3b', backgroundColor: 'rgba(6, 78, 59, 0.1)', pointBackgroundColor: '#064e3b', borderWidth: 2 }]
+                        labels: ['森林覆盖', '湿地保护', '生物多样性', '碳汇能力', '治理投入', '国际合作'],
+                        datasets: [{ label: '中国指标', data: [95, 90, 98, 75, 92, 85], borderColor: '#064e3b', backgroundColor: 'rgba(6, 78, 59, 0.1)', pointBackgroundColor: '#064e3b', borderWidth: 2 }]
                     },
                     options: { responsive: true, maintainAspectRatio: false, scales: { r: { angleLines: { color: gridColor }, grid: { color: gridColor }, pointLabels: { color: textColor }, suggestedMin: 50, suggestedMax: 100, ticks: { display: false } } }, plugins: { legend: { display: false } } }
                 });
@@ -22357,7 +22357,7 @@
                     type: 'line',
                     data: {
                         labels: ['2013', '2015', '2017', '2019', '2021', '2023', '2024(E)'],
-                        datasets: [{ label: '???? FDI (???)', data: [927, 1180, 1201, 1106, 1136, 1301, 1380], borderColor: '#fff', backgroundColor: 'rgba(255, 255, 255, 0.1)', fill: true, tension: 0.4, borderWidth: 3, pointBackgroundColor: '#fff', pointRadius: 5 }]
+                        datasets: [{ label: '对外直接投资 FDI (亿美元)', data: [927, 1180, 1201, 1106, 1136, 1301, 1380], borderColor: '#fff', backgroundColor: 'rgba(255, 255, 255, 0.1)', fill: true, tension: 0.4, borderWidth: 3, pointBackgroundColor: '#fff', pointRadius: 5 }]
                     },
                     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { grid: { color: 'rgba(255,255,255,0.1)' }, ticks: { color: 'rgba(255,255,255,0.7)', font: { size: 10 } } }, x: { ticks: { color: 'rgba(255,255,255,0.7)', font: { size: 10 } }, grid: { display: false } } } }
                 });
@@ -22367,7 +22367,7 @@
                 charts.briSector = new Chart(sectorCtx.getContext('2d'), {
                     type: 'doughnut',
                     data: {
-                        labels: ['??????', '????/???', '????/??', '?????', '????/??'],
+                        labels: ['基础设施建设', '能源/电力合作', '交通运输/物流', '产能合作园区', '数字经济/通信'],
                         datasets: [{ data: [35, 25, 20, 12, 8], backgroundColor: ['#b91c1c', '#0369a1', '#d4af37', '#10b981', '#cbd5e1'], borderWidth: 0, hoverOffset: 15 }]
                     },
                     options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 }, color: textColor } } } }
@@ -22378,8 +22378,8 @@
                 charts.briRegional = new Chart(regionalCtx.getContext('2d'), {
                     type: 'bar',
                     data: {
-                        labels: ['??? (ASEAN)', '??', '??', '??', '??/???'],
-                        datasets: [{ label: '???????', data: [95, 88, 82, 75, 78], backgroundColor: '#b91c1c', borderRadius: 8, barThickness: 24 }]
+                        labels: ['东南亚 (ASEAN)', '中亚', '南亚', '非洲', '中东/西亚'],
+                        datasets: [{ label: '项目合作指数', data: [95, 88, 82, 75, 78], backgroundColor: '#b91c1c', borderRadius: 8, barThickness: 24 }]
                     },
                     options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', plugins: { legend: { display: false } }, scales: { y: { grid: { display: false }, ticks: { color: textColor } }, x: { beginAtZero: true, grid: { color: ChartTheme.grid() }, ticks: { color: textColor } } } }
                 });
@@ -22389,8 +22389,8 @@
                 charts.briWutong = new Chart(wutongCtx.getContext('2d'), {
                     type: 'radar',
                     data: {
-                        labels: ['????', '????', '????', '????', '????'],
-                        datasets: [{ label: '????', data: [92, 95, 88, 80, 85], borderColor: '#b91c1c', backgroundColor: 'rgba(185, 28, 28, 0.1)', pointBackgroundColor: '#b91c1c' }]
+                        labels: ['政策沟通', '设施联通', '贸易畅通', '资金融通', '民心相通'],
+                        datasets: [{ label: '推进程度', data: [92, 95, 88, 80, 85], borderColor: '#b91c1c', backgroundColor: 'rgba(185, 28, 28, 0.1)', pointBackgroundColor: '#b91c1c' }]
                     },
                     options: { responsive: true, maintainAspectRatio: false, scales: { r: { angleLines: { color: gridColor }, grid: { color: gridColor }, pointLabels: { color: textColor }, suggestedMin: 60, suggestedMax: 100, ticks: { display: false } } }, plugins: { legend: { display: false } } }
                 });
@@ -22400,7 +22400,7 @@
                 charts.briImpact = new Chart(impactCtx.getContext('2d'), {
                     type: 'doughnut',
                     data: {
-                        labels: ['????????', '???????', '???????', '???????'],
+                        labels: ['基础设施互联互通', '贸易投资增长', '就业与民生改善', '区域协调发展'],
                         datasets: [{ data: [40, 25, 20, 15], backgroundColor: ['#b91c1c', '#0369a1', '#d4af37', '#334155'], borderWidth: 0 }]
                     },
                     options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 }, color: textColor } } } }
@@ -22546,7 +22546,7 @@
                     type: 'line',
                     data: {
                         labels: ['2015', '2017', '2019', '2021', '2023', '2024(E)'],
-                        datasets: [{ label: '????????? (%)', data: [25.5, 27.2, 29.1, 31.5, 33.8, 35.2], borderColor: '#fff', backgroundColor: 'rgba(255, 255, 255, 0.1)', fill: true, tension: 0.4, borderWidth: 3, pointBackgroundColor: '#fff' }]
+                        datasets: [{ label: '新兴市场出口占比 (%)', data: [25.5, 27.2, 29.1, 31.5, 33.8, 35.2], borderColor: '#fff', backgroundColor: 'rgba(255, 255, 255, 0.1)', fill: true, tension: 0.4, borderWidth: 3, pointBackgroundColor: '#fff' }]
                     },
                     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { display: false }, x: { ticks: { color: 'rgba(255,255,255,0.7)', font: { size: 10 } }, grid: { display: false } } } }
                 });
@@ -22558,8 +22558,8 @@
                     data: {
                         labels: ['2020', '2021', '2022', '2023', '2024(E)'],
                         datasets: [
-                            { label: '??????????', data: [100, 165, 280, 450, 520], backgroundColor: '#075985', borderRadius: 6 },
-                            { label: '??????????', data: [100, 115, 108, 105, 107], backgroundColor: '#e2e8f0', borderRadius: 6 }
+                            { label: '新兴市场出口指数', data: [100, 165, 280, 450, 520], backgroundColor: '#075985', borderRadius: 6 },
+                            { label: '传统市场出口指数', data: [100, 115, 108, 105, 107], backgroundColor: '#e2e8f0', borderRadius: 6 }
                         ]
                     },
                     options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, grid: { color: ChartTheme.grid() }, ticks: { color: textColor } }, x: { grid: { display: false }, ticks: { color: textColor } } }, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 }, color: textColor } } } }
@@ -22570,7 +22570,7 @@
                 charts.tradePartner = new Chart(partnerCtx.getContext('2d'), {
                     type: 'doughnut',
                     data: {
-                        labels: ['?? (ASEAN)', '?? (EU)', '?? (US)', '??+ (BRICS+)', '????', '??'],
+                        labels: ['东盟 (ASEAN)', '欧盟 (EU)', '美国 (US)', '金砖+ (BRICS+)', '拉美及非洲', '其他'],
                         datasets: [{ data: [16.5, 13.2, 11.0, 14.5, 8.8, 36.0], backgroundColor: ['#075985', '#0369a1', '#0ea5e9', '#d4af37', '#64748b', '#cbd5e1'], borderWidth: 0, hoverOffset: 15 }]
                     },
                     options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 }, color: textColor } } } }
@@ -22582,7 +22582,7 @@
                     type: 'bar',
                     data: {
                         labels: ['2018', '2020', '2022', '2023', '2024(E)'],
-                        datasets: [{ label: '???', data: [1.06, 1.69, 2.11, 2.38, 2.65], backgroundColor: '#075985', borderRadius: 8, barThickness: 40 }]
+                        datasets: [{ label: '进出口总额', data: [1.06, 1.69, 2.11, 2.38, 2.65], backgroundColor: '#075985', borderRadius: 8, barThickness: 40 }]
                     },
                     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { grid: { color: ChartTheme.grid() }, ticks: { color: textColor } }, x: { grid: { display: false }, ticks: { color: textColor } } } }
                 });
@@ -22592,7 +22592,7 @@
                 charts.tradeGvc = new Chart(gvcCtx.getContext('2d'), {
                     type: 'radar',
                     data: {
-                        labels: ['?????', '?????', '??????', '???????', '???????', '??????'],
+                        labels: ['产业链完整', '品牌价值', '研发创新', '制造规模', '物流效率', '数字贸易'],
                         datasets: [{ label: '2024 ??', data: [92, 75, 68, 98, 85, 80], borderColor: '#075985', backgroundColor: 'rgba(7, 89, 133, 0.1)', pointBackgroundColor: '#075985', borderWidth: 2 }]
                     },
                     options: { responsive: true, maintainAspectRatio: false, scales: { r: { angleLines: { color: gridColor }, grid: { color: gridColor }, pointLabels: { color: textColor }, suggestedMin: 50, suggestedMax: 100, ticks: { display: false } } }, plugins: { legend: { display: false } } }
@@ -23310,21 +23310,21 @@
 
         // Logic for Interactive Elements
 
-        /** ????????????? */
+        /** 计算僵局加权综合得分 */
         function getDeadlockWeightedSum() {
             const w = state.deadlockWeights;
             const p = state.deadlockPressure;
             return w.realEstate * p.realEstate + w.youthEmployment * p.youthEmployment + w.localDebt * p.localDebt;
         }
 
-        /** ???????????? body ?? */
+        /** 更新系统过热状态：根据死锁加权和判断 body 标记 */
         function updateSystemOverheatState() {
             const sum = getDeadlockWeightedSum();
             state.systemOverheat = sum > state.deadlockThreshold;
             document.body.classList.toggle('system-overheat', state.systemOverheat);
             syncOverheatToast();
         }
-        /** ?? Toast?????3 ?????? */
+        /** 过热 Toast：可手动关闭，3 秒后自动隐藏 */
         let overheatToastDismissed = false;
         let overheatToastAutoHideId = null;
         function dismissOverheatToast() {
@@ -23342,7 +23342,7 @@
             }
         }
 
-        /** ??????????????????? */
+        /** 一键自动修复：触发缓解死锁压力的处理流程 */
         async function runAutoHealing() {
             const btn = document.getElementById('autoHealBtn');
             if (btn) btn.disabled = true;
@@ -23368,7 +23368,7 @@
             if (btn) btn.disabled = false;
         }
 
-        /** ??????? UI ?? */
+        /** 更新死锁指标的 UI 显示 */
         function updateDeadlockUI() {
             ['deadlockRealEstate', 'deadlockYouth', 'deadlockDebt'].forEach((id, i) => {
                 const keys = ['realEstate', 'youthEmployment', 'localDebt'];
@@ -23382,10 +23382,10 @@
             if (typeof refreshDashboardDeadlockChart === 'function') refreshDashboardDeadlockChart();
         }
 
-        /** ?????????????????????
-         * alpha=0(???): KPI=GDP?Resource_Level ???
-         * alpha=1(???): KPI=?????/?????Innovation_Index ???
-         * @param {boolean} addNoise - ??????????????????????
+        /** 计算锦标赛增长：根据政策偏好在两种路径间插值
+         * alpha=0(旧路径): KPI=GDP×Resource_Level 主导
+         * alpha=1(新路径): KPI=新质生产力/创新驱动×Innovation_Index 主导
+         * @param {boolean} addNoise - 是否在结果中加入随机波动以模拟真实数据
          */
         function computeTournamentGrowth(addNoise = false) {
             const alpha = state.kernelPolicyPreference;  // 0~1
@@ -23605,7 +23605,7 @@
             if (label) label.textContent = ms === 3000 ? '3秒' : ms === 5000 ? '5秒' : ms === 10000 ? '10秒' : (ms / 1000) + '秒';
         }
 
-        /** ?????????????????????????? */
+        /** 启动沙盒试点：在指定节点上运行局部改革试验 */
         function startSandboxPilot(nodeId) {
             if (state.sandboxSystemwidePatch) return;
             const node = sandboxNodes.find(n => n.id === nodeId);
@@ -23756,8 +23756,8 @@
             document.getElementById('biosPatchOverlay')?.classList.remove('open');
         }
 
-        // --- v2026 ?????? ---
-        /** ??????????????? */
+        // --- v2026 数据同步模块 ---
+        /** 数据模块：执行一次本地同步 */
         /** 数据模块：执行一次本地调度并更新遥测/看板/图表 */
         function runData2026Sync() {
             var statusEl = document.getElementById('sync-status-2026');
@@ -23795,14 +23795,14 @@
                 if (!cmd) return;
                 appendTerminal2026('$ ' + cmd, false);
                 if (cmd.includes('init') && cmd.includes('--reform')) {
-                    appendTerminal2026('> ???????...', true);
+                    appendTerminal2026('> 正在初始化改革...', true);
                     triggerReformEffect();
                 } else if (cmd.includes('status') && cmd.includes('--entropy')) {
                     const entropy = (state.deadlockPressure?.realEstate || 0) + (state.deadlockPressure?.youthEmployment || 0) + (state.deadlockPressure?.localDebt || 0);
                     appendTerminal2026('> Entropy Index: ' + (entropy / 3).toFixed(1) + ' (Weighted: ' + getDeadlockWeightedSum().toFixed(1) + ')', true);
                     triggerEntropyEffect();
                 } else {
-                    appendTerminal2026('> ???????: init --reform, status --entropy', false);
+                    appendTerminal2026('> 可用命令: init --reform, status --entropy', false);
                 }
             };
         }
@@ -23838,7 +23838,7 @@
             const crossCheckResult = dataBus.crossCheck();
             if (crossCheckResult.anomaly) {
                 appendTerminal2026(`? SYSTEM_DATA_ANOMALY: ${crossCheckResult.message}`, false, true);
-                appendTerminal2026(`   [CrossCheck] ??(WB)???(NBS)?????? 15% ??`, false, true);
+                appendTerminal2026(`   [CrossCheck] 世行(WB)与统计局(NBS)数据偏差超过 15% 阈值`, false, true);
             }
 
             const cache = dataBus.getCache();
@@ -23848,7 +23848,7 @@
             state.data2026.lastSync = dataBus.getLastSync();
 
             const statusEl = document.getElementById('sync-status-2026');
-            if (statusEl) { statusEl.textContent = '? ????? (NBS/WB/IMF)'; statusEl.className = 'text-green-600 dark:text-green-400'; }
+            if (statusEl) { statusEl.textContent = '✓ 数据已同步 (NBS/WB/IMF)'; statusEl.className = 'text-green-600 dark:text-green-400'; }
 
             updateDataCards2026();
             runCompareAndAudit2026();
@@ -23864,7 +23864,7 @@
             if (detail) {
                 const imfStr = delta.imfGdp != null ? ` | IMF: ${delta.imfGdp}%` : '';
                 detail.textContent = delta.gdpDeltaExceedsThreshold
-                    ? `NBS: ${delta.nbsGdp}% | WB: ${delta.wbGdp}%${imfStr} | ??? = ${(delta.maxDeviation ?? delta.gdpDelta).toFixed(1)}% (?? 1%)`
+                    ? `NBS: ${delta.nbsGdp}% | WB: ${delta.wbGdp}%${imfStr} | 最大偏差 = ${(delta.maxDeviation ?? delta.gdpDelta).toFixed(1)}% (阈值 1%)`
                     : '';
             }
         }
@@ -23980,10 +23980,10 @@
         }
 
         /**
-         * Phase 3: ????? 2.0 - Aging Simulator (2025?2050)
+         * Phase 3: 老龄化模拟器 2.0 - Aging Simulator (2025→2050)
          * Current_System_Performance = (Threads * Worker_Quality) - (Memory_Leak_Factor * Retirement_Ratio)
-         * ????? Worker_Quality ???????? Memory_Leak ????
-         * @param {number} targetYear ????????????
+         * 随年份增长 Worker_Quality 提升，但退休比上升导致 Memory_Leak 增大
+         * @param {number} targetYear 目标年份，用于计算系统性能曲线
          */
         function computeRiskSimulatorData(targetYear) {
             const baseYears = [2025, 2030, 2035, 2040, 2045, 2050];
@@ -24170,7 +24170,7 @@
                 charts.scenario.update();
             }
             const summary = document.getElementById('scenarioSummary');
-            if (summary) summary.textContent = `???GDP ${gdp}% ? ??????? ${nqpf}% ? ???? ${green}%??????${data[data.length-1] > data[0] ? '??' : '??'}???`;
+            if (summary) summary.textContent = `情景：GDP ${gdp}% · 新质生产力增速 ${nqpf}% · 绿色占比 ${green}%，整体趋势${data[data.length-1] > data[0] ? '上行' : '下行'}，请关注`;
         }
 
         function initScenarioCharts() {
@@ -24187,7 +24187,7 @@
                 type: 'line',
                 data: {
                     labels: years.map(String),
-                    datasets: [{ label: '????', data, borderColor: '#C41E3A', backgroundColor: 'rgba(196,30,58,0.1)', fill: true, tension: 0.3 }]
+                    datasets: [{ label: '增长曲线', data, borderColor: '#C41E3A', backgroundColor: 'rgba(196,30,58,0.1)', fill: true, tension: 0.3 }]
                 },
                 options: {
                     responsive: true,
@@ -24233,7 +24233,7 @@
             charts.bios.update();
         }
 
-        /** ?????????? ? ?????Ring 0 ???????????? */
+        /** 触发全局冲击事件 → 进入灾备（Ring 0 内核级保护）恢复模式 */
         function triggerGlobalShock() {
             if (state.disasterRecoveryMode) return;
             state.disasterRecoveryMode = true;
@@ -24282,7 +24282,7 @@
             syncDarkModeToggleUi();
         }
 
-        // Global Search - ???????????????
+        // Global Search - 全局搜索：按标签或编号匹配导航项
         function getItemSubCategory(itemId) {
             const g = appData.navGroups.find(gr => getGroupItems(gr).some(i => i.id === itemId));
             if (!g?.subCategories) return null;
@@ -24300,7 +24300,7 @@
                     n.label.toLowerCase().includes(q) || n.id.toLowerCase().includes(q)
                 );
                 if (matches.length === 0) {
-                    resultsEl.innerHTML = '<div class="px-3 py-4 text-sm text-stone-500 text-center">?????</div>';
+                    resultsEl.innerHTML = '<div class="px-3 py-4 text-sm text-stone-500 text-center">无匹配结果</div>';
                     resultsEl.classList.remove('hidden');
                     return;
                 }
@@ -24353,7 +24353,7 @@
             }
         });
 
-        /** ?? 0/1 ??? Canvas ?? */
+        /** 二进制 0/1 数据流 Canvas 动画 */
         function initBinaryFlowCanvas() {
             const canvas = document.getElementById('binaryFlowCanvas');
             if (!canvas) return;
@@ -24383,7 +24383,7 @@
             setInterval(draw, 80);
         }
 
-        /** Phase 4: ???? - ??????? HTML */
+        /** Phase 4: 报告导出 - 将当前页面导出为 HTML */
         function exportReportAsHtml() {
             const content = document.getElementById('content-area');
             const item = appData.navItems.find(n => n.id === state.currentTab);
@@ -24418,7 +24418,7 @@
             localStorage.setItem(BOOKMARK_KEY, JSON.stringify(list));
             renderBookmarkList();
             const btn = event?.target;
-            if (btn && btn.textContent) { const t = btn.textContent; btn.textContent = '???'; setTimeout(() => btn.textContent = t, 1200); }
+            if (btn && btn.textContent) { const t = btn.textContent; btn.textContent = '已收藏'; setTimeout(() => btn.textContent = t, 1200); }
         }
         function deleteBookmark(tabId) {
             let list = getBookmarks().filter(b => b.id !== tabId);
@@ -24433,8 +24433,8 @@
                     <button onclick="deleteBookmark('${b.id}'); event.stopPropagation();" class="opacity-0 group-hover:opacity-100 text-red-500 text-xs px-1" title="??">?</button>
                 </div>
             `).join('') : '';
-            const emptyHeader = '<p class="px-4 py-2 text-xs text-stone-500">????</p>';
-            const emptyCenter = '<p class="px-4 py-8 text-center text-stone-500 dark:text-stone-400 text-sm">????</p>';
+            const emptyHeader = '<p class="px-4 py-2 text-xs text-stone-500">暂无收藏</p>';
+            const emptyCenter = '<p class="px-4 py-8 text-center text-stone-500 dark:text-stone-400 text-sm">暂无收藏</p>';
             const el = document.getElementById('bookmarkList');
             if (el) el.innerHTML = list.length ? html : emptyHeader;
             const el2 = document.getElementById('bookmarkListCenter');
@@ -24451,16 +24451,16 @@
         }
         document.addEventListener('click', (e) => { if (!e.target.closest('#bookmarkDropdownWrap')) closeBookmarkDropdown(); });
 
-        /** Phase 4: ?????? */
+        /** Phase 4: 复制分享链接 */
         function copyShareLink() {
             const url = location.origin + location.pathname + '?tab=' + (state.currentTab || 'dashboard');
             navigator.clipboard.writeText(url).then(() => {
                 const btn = event?.target;
-                if (btn) { const t = btn.textContent; btn.textContent = '???'; setTimeout(() => btn.textContent = t, 1500); }
+                if (btn) { const t = btn.textContent; btn.textContent = '已复制'; setTimeout(() => btn.textContent = t, 1500); }
             }).catch(() => {});
         }
 
-        // Boot - ?? DOM ????????????????
+        // Boot - 等待 DOM 就绪后启动整个应用初始化流程
         function boot() {
             init();
             loadDarkMode();
