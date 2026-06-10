@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* China OS 设计令牌 · 权力红 / 钢灰 / 赛博青 · 暗色科技感默认 */
+:root {
+  --china-red: #c41e3a;
+  --china-deep: #8b0000;
+  --cyber-cyan: #22d3ee;
+  --fire-gold: #d4af37;
+  --bg-base: #0a0e17;
+  --bg-surface: #0f1623;
+  --bg-elevated: #1a2333;
+  --border-subtle: rgba(148, 163, 184, 0.16);
+  --text-primary: #e8edf6;
+  --text-secondary: #93a1b5;
+  --text-tertiary: #5b6a82;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 科技感细节：扫描栅格底纹（克制、低对比） */
+.grid-backdrop {
+  background-image:
+    linear-gradient(rgba(34, 211, 238, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.os-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+}
+
+.os-card:hover {
+  border-color: rgba(196, 30, 58, 0.4);
+}
+
+.mono {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-elevated);
+  border-radius: 4px;
+}
