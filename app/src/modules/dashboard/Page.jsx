@@ -23,6 +23,9 @@ import {
   FEATURED,
   SOURCES,
 } from './data.js';
+import NewsMarquee from './NewsMarquee.jsx';
+import LiveStreamsSection from './LiveStreamsSection.jsx';
+import LiveChinaMap from './LiveChinaMap.jsx';
 
 function Icon({ name, size = 16 }) {
   const Cmp = Lucide[name] || Lucide.Square;
@@ -35,8 +38,8 @@ const fmt = (n) => n.toLocaleString('en-US');
 function ScreenCard({ title, accent = '#22d3ee', children, footer }) {
   return (
     <div
-      className="os-card os-card-lift p-4 flex flex-col"
-      style={{ borderColor: `${accent}33`, boxShadow: `0 0 0 1px ${accent}1f, 0 0 28px -10px ${accent}40` }}
+      className="os-card os-card-lift os-screen-card p-4 flex flex-col"
+      style={{ '--screen-accent': accent }}
     >
       <div className="flex items-center gap-2 mb-2">
         <span className="w-1.5 h-1.5 rounded-full" style={{ background: accent, boxShadow: `0 0 8px ${accent}` }} />
@@ -66,7 +69,7 @@ function Ticker() {
     </span>
   ));
   return (
-    <div className="os-ticker os-card mb-4" style={{ padding: '8px 0', borderColor: 'rgba(34,211,238,0.18)' }}>
+    <div className="os-ticker os-card mb-4" style={{ padding: '8px 0', borderColor: 'var(--border-subtle)' }}>
       <div className="os-ticker-track">
         {items('a')}
         {items('b')}
@@ -254,23 +257,37 @@ function RiskRadar() {
 }
 
 // ── 2026 政策日历（关键定调节点） ───────────────────────────
+// 锚定日期为各节点惯例时间（示意）；倒计时按访问当日实时折算
 const CALENDAR_2026 = [
-  ['3 月', '全国两会', '政府工作报告 + 「十五五」规划纲要审议', COOL],
-  ['4/7/10 月', '政治局会议', '季度经济形势定调与政策微调窗口', HOLD],
-  ['10–11 月', '峰会季', 'APEC / G20 · 元首外交与中美护栏校准', STEEL],
-  ['12 月', '中央经济工作会议', '定调 2027 · 财政货币基调与重点任务排序', HOLD],
+  ['3 月', '2026-03-05', '全国两会', '政府工作报告 + 「十五五」规划纲要审议', COOL],
+  ['4/7/10 月', '2026-07-30', '政治局会议', '季度经济形势定调与政策微调窗口', HOLD],
+  ['10–11 月', '2026-11-15', '峰会季', 'APEC / G20 · 元首外交与中美护栏校准', STEEL],
+  ['12 月', '2026-12-10', '中央经济工作会议', '定调 2027 · 财政货币基调与重点任务排序', HOLD],
 ];
+function daysUntil(iso) {
+  return Math.ceil((new Date(`${iso}T00:00:00`) - new Date()) / 86400000);
+}
 function PolicyCalendar() {
+  const rows = useMemo(() => {
+    const withD = CALENDAR_2026.map((r) => ({ r, d: daysUntil(r[1]) }));
+    const next = withD.filter((x) => x.d >= 0).sort((a, b) => a.d - b.d)[0];
+    return withD.map((x) => ({ ...x, isNext: next && x === next }));
+  }, []);
   return (
     <ScreenCard title="2026 政策日历 · 关键定调节点" accent={WARM}
       footer={<>定调落地追踪见 <Link to="/policydocs" className="mono" style={{ color: STEEL }}>政策文件库</Link>（上传新公报即更新政策脉搏）</>}>
       <div className="space-y-2">
-        {CALENDAR_2026.map(([when, what, note, c]) => (
-          <div key={what} className="flex items-start gap-2.5 rounded-lg px-3 py-2" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}>
+        {rows.map(({ r: [when, , what, note, c], d, isNext }) => (
+          <div key={what} className="flex items-start gap-2.5 rounded-lg px-3 py-2"
+            style={{ background: 'var(--bg-elevated)', border: `1px solid ${isNext ? `${WARM}66` : 'var(--border-subtle)'}` }}>
             <span className="text-[10px] mono px-1.5 py-0.5 rounded shrink-0 mt-0.5" style={{ background: `${c}14`, color: c, border: `1px solid ${c}44` }}>{when}</span>
-            <span className="min-w-0">
+            <span className="min-w-0 flex-1">
               <span className="block text-xs font-medium" style={{ color: 'var(--text-primary)' }}>{what}</span>
               <span className="block text-[10px] leading-snug" style={{ color: 'var(--text-tertiary)' }}>{note}</span>
+            </span>
+            <span className="text-[10px] mono shrink-0 mt-0.5 px-1.5 py-0.5 rounded"
+              style={{ color: d < 0 ? 'var(--text-tertiary)' : isNext ? WARM : 'var(--text-secondary)', background: isNext ? 'rgba(16,185,129,0.14)' : 'transparent' }}>
+              {d < 0 ? '已过' : d === 0 ? '今日' : `T-${d}天`}
             </span>
           </div>
         ))}
@@ -388,9 +405,102 @@ function useOptions() {
   }, []);
 }
 
+// ── 关注清单（星标模块 · localStorage + 自定义事件跨组件同步） ──
+function readFavs() { try { return JSON.parse(localStorage.getItem('cos-favs') || '[]'); } catch (_) { return []; } }
+function useFavs() {
+  const [favs, setFavs] = useState(readFavs);
+  useEffect(() => {
+    const h = () => setFavs(readFavs());
+    window.addEventListener('cos-favs-changed', h);
+    return () => window.removeEventListener('cos-favs-changed', h);
+  }, []);
+  const toggle = (id) => {
+    const cur = readFavs();
+    const next = cur.includes(id) ? cur.filter((x) => x !== id) : [id, ...cur];
+    try { localStorage.setItem('cos-favs', JSON.stringify(next.slice(0, 24))); } catch (_) {}
+    window.dispatchEvent(new Event('cos-favs-changed'));
+  };
+  return [favs, toggle];
+}
+
+function FavStrip() {
+  const [favs, toggle] = useFavs();
+  const mods = favs.map((id) => MODULES.find((m) => m.id === id)).filter(Boolean);
+  if (!mods.length) return null;
+  return (
+    <div className="flex items-center gap-2 flex-wrap mb-3">
+      <span className="text-[10px] mono shrink-0" style={{ color: HOLD }}>★ 关注</span>
+      {mods.map((m) => {
+        const g = GROUPS.find((x) => x.id === m.group);
+        return (
+          <span key={m.id} className="inline-flex items-center rounded-full" style={{ background: 'var(--bg-elevated)', border: `1px solid ${HOLD}44` }}>
+            <Link to={m.path} className="inline-flex items-center gap-1.5 pl-2.5 pr-1 py-1 text-xs" style={{ color: 'var(--text-secondary)' }}>
+              <span style={{ color: g?.accent || STEEL }}><Icon name={m.icon} size={12} /></span>{m.title}
+            </Link>
+            <button onClick={() => toggle(m.id)} title="取消关注" style={{ background: 'none', border: 'none', cursor: 'pointer', color: HOLD, padding: '0 6px' }}><Lucide.X size={11} /></button>
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
+// ── 今日简报生成器（聚合态势/施政/读数/节点 → 可复制 Markdown） ──
+function buildBriefing(latestDoc) {
+  const today = new Date().toISOString().slice(0, 10);
+  const m = latestDoc.metrics || {};
+  const lines = [
+    `# China OS 今日简报 · ${today}`, '',
+    '## 战略态势',
+    ...VECTORS.map(([nm, st, , arrow, note]) => `- ${nm}：${st} ${arrow} —— ${note}`), '',
+    `## 施政基准（${latestDoc.year}）`,
+    `- GDP 目标 ${m.gdpTarget ?? '—'}% 左右 · 赤字率 ${m.deficit ?? '—'}% 左右 · CPI ${m.cpi ?? '—'}% · 新增就业 ${m.jobs ?? '—'} 万+`,
+    ...(latestDoc.stance ? [`- 财政：${latestDoc.stance.fiscal} · 货币：${latestDoc.stance.monetary}`] : []), '',
+    '## 关键读数',
+    ...TICKER.slice(0, 12).map(([k, v]) => `- ${k}：${v}`), '',
+    '## 临近节点',
+    ...CALENDAR_2026.map(([, iso, what]) => ({ what, iso, d: daysUntil(iso) }))
+      .filter((x) => x.d >= 0).sort((a, b) => a.d - b.d)
+      .map((x) => `- ${x.what}：T-${x.d} 天（${x.iso}）`), '',
+    '> 由 China OS 中枢看板生成 · 读数为各模块判读基准（示意），非投资建议',
+  ];
+  return lines.join('\n');
+}
+
+function BriefingGenerator() {
+  const docs = useDocs();
+  const [text, setText] = useState('');
+  const [copied, setCopied] = useState(false);
+  const latest = useMemo(() => {
+    const list = (docs || []).filter((d) => d.type === '政府工作报告' && d.metrics);
+    return list.sort((a, b) => (b.year || 0) - (a.year || 0))[0] || GWR_DOCS[GWR_DOCS.length - 1];
+  }, [docs]);
+  const gen = () => { setText(buildBriefing(latest)); setCopied(false); };
+  const copy = async () => {
+    try { await navigator.clipboard.writeText(text); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch (_) {}
+  };
+  return (
+    <section className="mb-8">
+      <div className="flex items-center gap-2 mb-3 flex-wrap">
+        <Lucide.FileDown size={16} style={{ color: WARM }} />
+        <h2 className="os-card-title m-0">今日简报</h2>
+        <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>{'// 一键聚合 态势/施政/读数/节点 为可复制 Markdown'}</span>
+        <span className="ml-auto flex gap-2">
+          <button onClick={gen} className="os-btn os-btn-primary os-btn-sm">生成简报</button>
+          {text && <button onClick={copy} className="os-btn os-btn-sm">{copied ? '✓ 已复制' : '复制 Markdown'}</button>}
+        </span>
+      </div>
+      {text && (
+        <pre className="os-card p-4 text-xs mono" style={{ whiteSpace: 'pre-wrap', color: 'var(--text-secondary)', maxHeight: 300, overflowY: 'auto', lineHeight: 1.7 }}>{text}</pre>
+      )}
+    </section>
+  );
+}
+
 // ── 快速跳转 ──────────────────────────────────────────────
 function QuickNav() {
   const [q, setQ] = useState('');
+  const [favs, toggleFav] = useFavs();
   const kw = q.trim().toLowerCase();
 
   const filtered = useMemo(() => {
@@ -439,10 +549,18 @@ function QuickNav() {
                 style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}
               >
                 <span className="shrink-0 mt-0.5" style={{ color: group.accent }}><Icon name={m.icon} /></span>
-                <span className="min-w-0">
+                <span className="min-w-0 flex-1">
                   <span className="block text-sm font-medium truncate" style={{ color: 'var(--text-primary)' }}>{m.title}</span>
                   {m.subtitle && <span className="block text-[11px] truncate" style={{ color: 'var(--text-tertiary)' }}>{m.subtitle}</span>}
                 </span>
+                <button
+                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleFav(m.id); }}
+                  title={favs.includes(m.id) ? '取消关注' : '加入关注'}
+                  className="shrink-0"
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: favs.includes(m.id) ? HOLD : 'var(--text-tertiary)', padding: 2, marginTop: 2 }}
+                >
+                  <Lucide.Star size={13} fill={favs.includes(m.id) ? HOLD : 'none'} />
+                </button>
               </Link>
             ))}
           </div>
@@ -472,7 +590,8 @@ export default function DashboardPage() {
       {/* ── 0. 滚动情报条 ────────────────────────────────── */}
       <Ticker />
 
-      {/* ── 0.5 最近访问足迹 ─────────────────────────────── */}
+      {/* ── 0.5 关注清单 + 最近访问足迹 ──────────────────── */}
+      <FavStrip />
       <RecentVisits />
 
       {/* ── 1. 项目总揽 · Hero ───────────────────────────── */}
@@ -507,6 +626,26 @@ export default function DashboardPage() {
           ))}
         </div>
 
+        {/* 时政要闻 · 主流媒体 RSS 跑马灯 */}
+        <NewsMarquee />
+
+        {/* 神州实况 · 公共直播信号预览 */}
+        <LiveStreamsSection compact previewCount={8} />
+
+        {/* 全球资产脉搏 · 独立模块入口 */}
+        <Link
+          to="/market-pulse"
+          className="os-card-interactive mt-5 flex items-center justify-between rounded-lg px-4 py-3"
+          style={{ background: 'var(--bg-elevated)', border: '1px solid rgba(34,211,238,0.28)' }}
+        >
+          <span className="flex items-center gap-2">
+            <Lucide.Activity size={16} style={{ color: STEEL }} />
+            <span className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>全球资产脉搏</span>
+            <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>股市 · 债市 · 汇市 · 大宗</span>
+          </span>
+          <span className="text-xs mono" style={{ color: STEEL }}>进入模块 →</span>
+        </Link>
+
         {/* 重点模块精选 */}
         <div className="mt-6">
           <div className="text-xs mb-2" style={{ color: 'var(--text-secondary)' }}>重点模块</div>
@@ -526,6 +665,21 @@ export default function DashboardPage() {
         </div>
       </section>
 
+      {/* ── 1.5 神州活图 · 紧凑预览 ───────────────────────── */}
+      <LiveChinaMap className="mb-4" variant="compact" />
+      <Link
+        to="/shenzhou-live"
+        className="os-card-interactive mb-8 flex items-center justify-between rounded-lg px-4 py-3"
+        style={{ background: 'var(--bg-elevated)', border: '1px solid rgba(34,211,238,0.28)' }}
+      >
+        <span className="flex items-center gap-2">
+          <Lucide.Map size={16} style={{ color: STEEL }} />
+          <span className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>神州活图</span>
+          <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>十二层指标 · 时间轴 · 对比</span>
+        </span>
+        <span className="text-xs mono" style={{ color: STEEL }}>进入模块 →</span>
+      </Link>
+
       {/* ── 2. 态势 · 政策 · 底座 三联速览 ─────────────────── */}
       <section className="mb-8">
         <div className="flex items-center gap-2 mb-3">
@@ -544,6 +698,9 @@ export default function DashboardPage() {
           <PolicyCalendar />
         </Grid>
       </section>
+
+            {/* ── 2.5 今日简报生成器 ───────────────────────────── */}
+      <BriefingGenerator />
 
       {/* ── 3. 实时大屏 ──────────────────────────────────── */}
       <section className="mb-8">
