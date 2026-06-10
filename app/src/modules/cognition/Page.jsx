@@ -1,12 +1,15 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat, CrossLinks } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ============================================================================
 // 认知内核 · 康波周期（Kondratiev Wave）交互分析工具
 // ----------------------------------------------------------------------------
 // 康德拉季耶夫长波：约 50—60 年的资本主义经济长期波动（远长于基钦/朱格拉周期）。
-// 本工具：嵌套周期对比 + 五波叠加图（春夏秋冬相位）+ 历史长波详情 + 中国定位。
+// 本工具：嵌套周期对比 + 五波叠加图（春夏秋冬相位）+ 多周期共振模拟器 +
+// 四季资产轮动框架 + 第六波技术群成熟度 + 历次长波换轨成本 + 中国定位。
 // ============================================================================
 
 // 已识别的五次长波 + 第六波推演（起止为学界常见区间，存争议）
@@ -33,6 +36,34 @@ const SEASONS = [
   ['冬 · 萧条 Depression', '#64748b', '出清与通缩，旧技术红利耗尽；下一波技术在此孕育，现金为王、布局种子。'],
 ];
 
+// 四季 × 大类资产相对表现（周期框架的一般规律表述，非任何投资建议）
+const ROTATION = [
+  { season: '春 · 回升', color: '#10b981', cells: ['★★★', '★★', '★★', '★', '★★'], note: '风险偏好回升，权益与成长资产弹性最大' },
+  { season: '夏 · 繁荣/滞胀', color: '#e8a317', cells: ['★★', '★★★', '★', '★', '★★★'], note: '通胀抬头，商品与抗通胀实物资产相对占优' },
+  { season: '秋 · 衰退', color: '#c41e3a', cells: ['★', '★', '★★★', '★★', '★★'], note: '去杠杆与避险，债券/现金类相对防御' },
+  { season: '冬 · 萧条', color: '#64748b', cells: ['★', '★', '★★', '★★★', '★★'], note: '出清通缩，现金为王；同时是播种下一波技术的窗口' },
+];
+const ROTATION_ASSETS = ['股票', '商品', '债券', '现金', '黄金'];
+
+// 第六波候选技术群成熟度（0—100 示意评分：距产业化的距离，60 为产业化门槛）
+const SEEDS = [
+  { name: 'AI / 大模型', score: 78, color: '#c41e3a', note: '已跨产业化门槛，正处扩散早段——最像第六波的「铁路时刻」' },
+  { name: '新能源/储能', score: 72, color: '#10b981', note: '光伏/电池成本曲线持续下穿，规模化扩散中' },
+  { name: '合成生物', score: 46, color: '#e8a317', note: '平台技术成型，量产成本与监管路径待解' },
+  { name: '量子计算', score: 30, color: '#22d3ee', note: '纠错与规模化是硬墙，实用化仍在远端' },
+  { name: '脑机接口', score: 24, color: '#fb923c', note: '医疗特批场景先行，消费级遥远' },
+  { name: '可控核聚变', score: 18, color: '#8b5cf6', note: 'Q 值刚过 1 的实验阶段，但一旦成功将重置能源体系' },
+];
+
+// 历次长波交替期的体系切换（霸权 / 货币 / 能源「换轨」）
+const SWITCHES = [
+  { era: '约 1840s', wave: '第1→2波', hegemon: '英国霸权确立', money: '金本位随贸易扩张', energy: '水力 → 煤', color: '#22d3ee' },
+  { era: '约 1890s', wave: '第2→3波', hegemon: '美/德挑战英国', money: '英镑体系承压', energy: '煤 → 电气 + 内燃萌芽', color: '#10b981' },
+  { era: '约 1940s', wave: '第3→4波', hegemon: '美国霸权 + 布雷顿森林', money: '英镑 → 美元', energy: '煤 → 石油', color: '#e8a317' },
+  { era: '约 1990s', wave: '第4→5波', hegemon: '冷战终结 · 单极时刻', money: '信用美元 + 石油美元巩固', energy: '石油 + 电气化深化', color: '#c41e3a' },
+  { era: '约 2040s?', wave: '第5→6波（推演）', hegemon: '多极竞逐 · 中美定义权之争', money: '美元松动? 数字货币 / 多元结算?', energy: '油 → 电（可再生 + 核/聚变）', color: '#8b5cf6' },
+];
+
 // 嵌套周期对比（年）
 const NESTED = {
   grid: { left: 90, right: 40, top: 10, bottom: 24 },
@@ -44,9 +75,36 @@ const NESTED = {
 };
 
 const NOW_YEAR = 2024;
+const SIM_YEAR = 2026;
+
+// 相位(0—100%) → 四季判读
+function phaseSeason(p) {
+  if (p < 25) return { name: '春 · 回升', color: '#10b981' };
+  if (p < 50) return { name: '夏 · 繁荣', color: '#e8a317' };
+  if (p < 75) return { name: '秋 · 衰退', color: '#c41e3a' };
+  return { name: '冬 · 萧条', color: '#64748b' };
+}
+
+// 第六波成熟度 bar
+const SEED_OPT = {
+  grid: { ...GRID, left: 80, bottom: 20 },
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: (p) => `${p[0].name}：${p[0].value} / 100` },
+  yAxis: categoryX(SEEDS.map((s) => s.name).reverse()),
+  xAxis: { ...valueY({ max: 100 }), type: 'value' },
+  series: [{
+    type: 'bar', barWidth: 14, data: SEEDS.map((s) => s.score).reverse(),
+    itemStyle: { borderRadius: 3, color: (p) => SEEDS[SEEDS.length - 1 - p.dataIndex].color },
+    label: { show: true, position: 'right', formatter: '{c}', color: '#93a1b5', fontSize: 10 },
+    markLine: { silent: true, symbol: 'none', data: [{ xAxis: 60, label: { formatter: '产业化门槛 60', color: '#e8a317', position: 'insideEndTop' }, lineStyle: { color: '#e8a317', type: 'dashed' } }] },
+  }],
+};
 
 export default function Page() {
   const [sel, setSel] = useState(5);
+  // 多周期共振模拟器：三周期的当前相位（0—100%，即处于各自周期的第几成）
+  const [kPhase, setKPhase] = useState(82);   // 康波 54y · 默认冬末
+  const [jPhase, setJPhase] = useState(40);   // 朱格拉 9y
+  const [bPhase, setBPhase] = useState(65);   // 基钦 3.5y
   const w = WAVES.find((x) => x.id === sel);
 
   // 康波长波叠加曲线（约 54 年周期的复合正弦），并对选中波叠加春夏秋冬相位带
@@ -74,13 +132,65 @@ export default function Page() {
     };
   }, [w]);
 
+  // 多周期共振：三正弦叠加（振幅 康波1.0 / 朱格拉0.55 / 基钦0.3），投影未来 20 年
+  const resonance = useMemo(() => {
+    const cyc = [
+      { T: 54, A: 1.0, p: kPhase, name: '康波 54y', color: '#c41e3a' },
+      { T: 9, A: 0.55, p: jPhase, name: '朱格拉 9y', color: '#22d3ee' },
+      { T: 3.5, A: 0.3, p: bPhase, name: '基钦 3.5y', color: '#e8a317' },
+    ];
+    const val = (c, dt) => c.A * Math.sin(2 * Math.PI * (c.p / 100 + dt / c.T));
+    const comp = [];
+    const parts = cyc.map(() => []);
+    let peak = { v: -9, y: SIM_YEAR };
+    let trough = { v: 9, y: SIM_YEAR };
+    for (let dt = 0; dt <= 20; dt += 0.25) {
+      const y = +(SIM_YEAR + dt).toFixed(2);
+      const s = cyc.reduce((acc, c) => acc + val(c, dt), 0);
+      comp.push([y, +s.toFixed(3)]);
+      cyc.forEach((c, i) => parts[i].push([y, +val(c, dt).toFixed(3)]));
+      if (s > peak.v) peak = { v: s, y };
+      if (s < trough.v) trough = { v: s, y };
+    }
+    const now = comp[0][1];
+    const readings = cyc.map((c) => ({ ...c, season: phaseSeason(c.p), v: val(c, 0) }));
+    const sameDown = readings.every((r) => r.v < -0.1 * r.A);
+    const sameUp = readings.every((r) => r.v > 0.1 * r.A);
+    const verdict = now >= 1.2 ? { t: '多周期同向共振 · 大繁荣区', c: '#10b981' }
+      : now <= -1.2 ? { t: '多周期同向共振 · 大萧条区', c: '#c41e3a' }
+      : Math.abs(now) < 0.4 ? { t: '周期相互对冲 · 景气钝化区', c: '#64748b' }
+      : now > 0 ? { t: '温和扩张（未形成共振）', c: '#22d3ee' } : { t: '温和收缩（未形成共振）', c: '#e8a317' };
+    const opt = {
+      grid: { left: 36, right: 16, top: 30, bottom: 26 },
+      tooltip: { trigger: 'axis', valueFormatter: (v) => (typeof v === 'number' ? v.toFixed(2) : v) },
+      legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+      xAxis: { type: 'value', min: SIM_YEAR, max: SIM_YEAR + 20, interval: 4, axisLabel: { formatter: (v) => String(v), color: '#5b6a82' }, axisLine: { lineStyle: { color: '#27324a' } } },
+      yAxis: { type: 'value', min: -2.2, max: 2.2, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } }, axisLabel: { color: '#5b6a82', fontSize: 10 } },
+      series: [
+        ...cyc.map((c, i) => ({ name: c.name, type: 'line', smooth: true, symbol: 'none', data: parts[i], lineStyle: { color: c.color, width: 1, opacity: 0.45, type: 'dashed' } })),
+        { name: '景气合成', type: 'line', smooth: true, symbol: 'none', data: comp,
+          lineStyle: { color: '#8b5cf6', width: 3 }, areaStyle: { color: 'rgba(139,92,246,0.10)' },
+          markPoint: { symbolSize: 1, label: { fontSize: 10 }, data: [
+            { coord: [peak.y, +peak.v.toFixed(2)], value: `峰 ${Math.round(peak.y)}`, label: { color: '#10b981' } },
+            { coord: [trough.y, +trough.v.toFixed(2)], value: `谷 ${Math.round(trough.y)}`, label: { color: '#c41e3a' } },
+          ] },
+          markLine: { silent: true, symbol: 'none', data: [{ yAxis: 0, lineStyle: { color: 'rgba(148,163,184,0.3)' }, label: { show: false } }] } },
+      ],
+    };
+    return { opt, readings, now, verdict, peak, trough };
+  }, [kPhase, jPhase, bPhase]);
+
+  const sliders = [
+    ['康波 54y', kPhase, setKPhase, '#c41e3a'],
+    ['朱格拉 9y', jPhase, setJPhase, '#22d3ee'],
+    ['基钦 3.5y', bPhase, setBPhase, '#e8a317'],
+  ];
+
   return (
     <div>
       <PageHeader badge="Cognition · 理论模型库" title="康波周期 · 康德拉季耶夫长波"
         subtitle="约 50—60 年的经济长波 —— 透过技术革命的潮汐，定位中国「换道超车」的周期坐标" />
-      <Card className="mb-6"><p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-        康波周期由苏联经济学家<strong style={{ color: 'var(--text-primary)' }}>尼古拉·康德拉季耶夫</strong>于 1920 年代提出：通过研究英法美等国物价、利率、工资、贸易的长期数据，他发现资本主义存在约 50—60 年的长期波动，远长于基钦库存周期（3—4 年）与朱格拉设备周期（8—10 年）。每一轮长波由一组<strong style={{ color: 'var(--text-primary)' }}>主导技术</strong>驱动，经历回升—繁荣—衰退—萧条四季；旧波的「冬天」正是下一波技术种子的孕育期。
-      </p></Card>
+      <IntroCard>康波周期由苏联经济学家<strong style={{ color: 'var(--text-primary)' }}>尼古拉·康德拉季耶夫</strong>于 1920 年代提出：资本主义存在约 50—60 年的长期波动。每一轮长波由一组<strong style={{ color: 'var(--text-primary)' }}>主导技术</strong>驱动，经历回升—繁荣—衰退—萧条四季；旧波的「冬天」正是下一波技术种子的孕育期。本页另附多周期共振模拟器：同一时点的景气，是康波/朱格拉/基钦多周期相位的合成。</IntroCard>
 
       <Grid cols={4} className="mb-6">
         <Stat value="50—60 年" label="长波周期" accent="#c41e3a" />
@@ -105,15 +215,8 @@ export default function Page() {
         </Card>
       </Grid>
 
-      <Card title="五次长波叠加图 · 主导技术的潮汐（点下方切换长波，叠加其春夏秋冬）" className="mb-6">
-        <div className="flex gap-1 flex-wrap mb-3">
-          {WAVES.map((x) => (
-            <button key={x.id} onClick={() => setSel(x.id)} className="text-xs px-3 py-1.5 rounded mono"
-              style={{ background: x.id === sel ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)', color: x.id === sel ? '#fff' : 'var(--text-secondary)', border: `1px solid ${x.id === sel ? x.color : 'transparent'}`, cursor: 'pointer' }}>
-              第{x.id}波 · {x.from}
-            </button>
-          ))}
-        </div>
+      <Card title="交互 · 五次长波选择器（叠加春夏秋冬相位）" className="mb-6">
+        <SelectorBar items={WAVES.map((x) => ({ key: x.id, label: `第${x.id}波 · ${x.from}`, accent: x.color }))} activeKey={sel} onSelect={setSel} getKey={(i) => i.key} />
         <EChart option={longWave} style={{ height: 280 }} />
       </Card>
 
@@ -137,6 +240,84 @@ export default function Page() {
         </Card>
       </Grid>
 
+      <Card title="模拟器 · 多周期共振（康波 × 朱格拉 × 基钦 → 未来 20 年景气合成）" className="mb-6">
+        <Grid cols={3} className="mb-3">
+          {sliders.map(([label, val, setter, color], i) => (
+            <div key={label}>
+              <div className="flex items-center justify-between text-xs mb-1">
+                <span style={{ color }}>{label} · 相位</span>
+                <span className="mono" style={{ color: 'var(--text-primary)' }}>{val}% <span style={{ color: resonance.readings[i].season.color }}>（{resonance.readings[i].season.name}）</span></span>
+              </div>
+              <input type="range" min={0} max={100} step={1} value={val} onChange={(e) => setter(+e.target.value)} style={{ width: '100%', accentColor: '#c41e3a' }} />
+            </div>
+          ))}
+        </Grid>
+        <EChart option={resonance.opt} style={{ height: 290 }} />
+        <div className="mt-3 p-3 rounded" style={{ background: 'var(--bg-elevated)', border: `1px solid ${resonance.verdict.c}40` }}>
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="text-sm font-semibold" style={{ color: resonance.verdict.c }}>{SIM_YEAR} 判读：{resonance.verdict.t}</span>
+            <span className="text-xs mono" style={{ color: 'var(--text-tertiary)' }}>合成读数 {resonance.now.toFixed(2)}（区间 ±1.85）</span>
+          </div>
+          <p className="text-xs mt-1 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+            投影窗口内：合成峰值约 <span className="mono" style={{ color: '#10b981' }}>{Math.round(resonance.peak.y)} 年（{resonance.peak.v.toFixed(2)}）</span>，谷值约 <span className="mono" style={{ color: '#c41e3a' }}>{Math.round(resonance.trough.y)} 年（{resonance.trough.v.toFixed(2)}）</span>。
+            核心机制：当三周期<strong style={{ color: 'var(--text-primary)' }}>同向叠加（共振）</strong>，波动被放大为大繁荣或大萧条——1929 与 2008 常被解读为「康波秋冬 + 朱格拉下行 + 基钦去库」的三杀共振；反之相位错开时彼此对冲，景气表现为「温吞震荡」。
+          </p>
+          <p className="text-[11px] mt-1" style={{ color: 'var(--text-tertiary)' }}>正弦叠加为教学示意：真实周期非严格正弦、周期长度漂移、且可被政策强行移相。拖动滑杆体验「相位组合 → 景气形态」的敏感性即可，勿作预测。</p>
+        </div>
+      </Card>
+
+      <Grid cols={2} className="mb-6">
+        <Card title="四季资产轮动 · 周期框架表">
+          <table className="w-full text-xs" style={{ borderCollapse: 'collapse' }}>
+            <thead>
+              <tr style={{ color: 'var(--text-tertiary)' }}>
+                <th className="text-left py-1.5" style={{ borderBottom: '1px solid var(--border-default)' }}>相位</th>
+                {ROTATION_ASSETS.map((a) => <th key={a} className="text-center py-1.5" style={{ borderBottom: '1px solid var(--border-default)' }}>{a}</th>)}
+              </tr>
+            </thead>
+            <tbody>
+              {ROTATION.map((r) => (
+                <tr key={r.season} title={r.note}>
+                  <td className="py-2 font-semibold whitespace-nowrap" style={{ color: r.color, borderBottom: '1px solid var(--border-default)' }}>{r.season}</td>
+                  {r.cells.map((c, i) => (
+                    <td key={i} className="text-center py-2 mono" style={{ color: c === '★★★' ? r.color : 'var(--text-tertiary)', borderBottom: '1px solid var(--border-default)' }}>{c}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="text-[11px] mt-2 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>★ 数量表示该相位下的<em>相对</em>表现（多 = 相对占优）。<strong style={{ color: 'var(--text-primary)' }}>此为周期视角的一般规律框架，非投资建议</strong>——真实资产表现受政策、估值起点与流动性主导，长波相位只是其中一个低频变量。</p>
+        </Card>
+        <Card title="第六波技术群 · 成熟度（冬天里的种子，哪些先发芽）">
+          <EChart option={SEED_OPT} style={{ height: 230 }} />
+          <div className="space-y-1 mt-1">
+            {SEEDS.slice(0, 3).map((s) => (
+              <p key={s.name} className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}><span className="mono" style={{ color: s.color }}>{s.name}</span> — {s.note}</p>
+            ))}
+          </div>
+        </Card>
+      </Grid>
+
+      <Card title="换轨成本 · 历次长波交替期的体系切换（霸权 / 货币 / 能源）" className="mb-6">
+        <Grid cols={5}>
+          {SWITCHES.map((s) => (
+            <div key={s.era} className="p-3 rounded" style={{ background: 'var(--bg-elevated)', borderTop: `2px solid ${s.color}` }}>
+              <div className="text-xs font-bold mono" style={{ color: s.color }}>{s.era}</div>
+              <div className="text-[10px] mb-2" style={{ color: 'var(--text-tertiary)' }}>{s.wave}</div>
+              {[['霸权', s.hegemon], ['货币', s.money], ['能源', s.energy]].map(([k, v]) => (
+                <div key={k} className="mb-1.5">
+                  <span className="text-[10px] mono uppercase" style={{ color: 'var(--text-tertiary)' }}>{k}</span>
+                  <p className="text-[11px] leading-snug" style={{ color: 'var(--text-secondary)' }}>{v}</p>
+                </div>
+              ))}
+            </div>
+          ))}
+        </Grid>
+        <p className="text-xs mt-3 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+          规律：长波交替期往往伴随<strong style={{ color: 'var(--text-primary)' }}>体系级「换轨」</strong>——霸权易位（或承压）、储备货币切换（英镑→美元）、能源底座更替（煤→油→电）。换轨成本极高（通常伴随战争/危机/秩序重建），但<strong style={{ color: 'var(--text-primary)' }}>新轨道的定义权属于在冬天完成布局的一方</strong>。第六波的悬念：电力底座 + 算力货币化 + 多极结算，谁来定义？——这正是<span className="mono" style={{ color: 'var(--cyber-cyan)' }}>能源主权 / 人民币国际化 / 算力基建</span>模块的长波坐标。
+        </p>
+      </Card>
+
       <Card title="当前坐标 · 第五波的萧条期与第六波的孕育" className="mb-6">
         <Grid cols={3}>
           {[['萧条期出清', '信息技术红利边际递减，全球进入去杠杆与低增长；这是康波冬季的典型特征（约 2015–2025）。'],
@@ -147,19 +328,21 @@ export default function Page() {
         </Grid>
       </Card>
 
+      <FrameworkTrio cards={[
+        { title: '长波引擎', subtitle: '技术群 S 曲线', body: '每轮长波由主导技术群的扩散 S 曲线驱动：导入期（春）→ 加速扩散（夏）→ 红利递减（秋）→ 耗尽出清（冬）。', pillars: [['导入', '新技术嵌入基础设施。'], ['扩散', '成本下穿引爆需求。'], ['耗尽', '红利递减孕育下波。']] },
+        { title: '多周期共振', subtitle: '相位合成', body: '景气是康波/朱格拉/基钦相位的合成：同向叠加放大为大繁荣/大萧条，错相则相互对冲。', pillars: [['基钦 3.5年', '库存周期。'], ['朱格拉 9年', '设备周期。'], ['共振', '同向叠加放大波动。']] },
+        { title: '换道窗口', subtitle: '冬天播种', body: '长波交替期是体系换轨期：在旧波冬天完成对新技术群的布局，方能争夺新轨道定义权。', pillars: [['第4波末班车', '改革开放 1978。'], ['第5波全面追赶', '制造+应用场景。'], ['第6波卡位', 'AI/新能源/生物。']] },
+      ]} />
+
       <Card title="作为思想工具 · 康波的用法与边界">
         <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
           康波不是占卜，而是一副<strong style={{ color: 'var(--text-primary)' }}>「长焦镜头」</strong>：它提醒我们把今天的政策与产业放到 50 年尺度上看——为什么国家不惜代价押注 AI/半导体/聚变？因为长波的窗口期一旦错过，就是一代人的落后。
         </p>
         <p className="text-xs mt-3 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
-          边界：长波周期是否客观存在、相位如何划分，学界仍有争议（驱动机制、起止年份、是否被政策熨平均存分歧）。本页为分析框架与思想工具，结合各业务模块的实证数据使用，不构成投资建议。起止年份与相位为学界常见区间的示意标注。
+          边界：长波周期是否客观存在、相位如何划分，学界仍有争议（驱动机制、起止年份、是否被政策熨平均存分歧）。本页全部曲线为<strong style={{ color: 'var(--text-primary)' }}>教学示意（正弦叠加），非实证拟合</strong>；资产轮动表为周期框架的一般规律表述。<strong style={{ color: 'var(--text-primary)' }}>本页为分析框架与思想工具，不构成任何投资建议</strong>；起止年份、相位与成熟度评分均为示意标注，请结合各业务模块的实证数据使用。
         </p>
       </Card>
-      <CrossLinks className="mt-6" links={[
-        { to: '/techtree', label: '科技树', note: '第六波（AI/聚变/生物）的主导技术群，正是长波回升期的赌注。' },
-        { to: '/semiconductor', label: '半导体', note: '卡脖子环节即长波切换的咽喉——错过窗口就是一代人的落后。' },
-        { to: '/energy', label: '能源系统', note: '每轮长波都由一次能源—动力革命点火，本轮看新能源与聚变。' },
-      ]} />
+      <ModuleFooter moduleId="cognition" disclaimer="长波周期是否客观存在学界仍有争议；本页全部曲线为正弦示意而非实证拟合，为分析框架与思想工具，不构成投资建议" />
     </div>
   );
 }
