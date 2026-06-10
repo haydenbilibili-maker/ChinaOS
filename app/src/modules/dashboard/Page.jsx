@@ -6,6 +6,7 @@ import { GROUPS } from '../../app/registry.js';
 import EChart from '../../lib/viz/EChart.jsx';
 import { AXIS, GRID_LINE, LABEL } from '../shared/chartHelpers.js';
 import * as DB from '../../lib/db/localdb.js';
+import { useDocs } from '../../lib/db/useDataset.js';
 import { GWR_DOCS } from '../../lib/db/docSeed.js';
 import {
   AS_OF,
@@ -100,17 +101,27 @@ function StrategyPulse() {
   );
 }
 
-// ── 政策脉搏（取政策文件库最新一份政府工作报告） ─────────────
+// ── 政策脉搏（联动本地政策文件库：库内有报告即读活数据，写入即刷新；空库回退内置种子） ──
 function PolicyPulse() {
-  const latest = GWR_DOCS[GWR_DOCS.length - 1];
+  const docs = useDocs();
+  const liveGwr = useMemo(() => {
+    const list = (docs || []).filter((d) => d.type === '政府工作报告' && d.metrics);
+    return list.sort((a, b) => (b.year || 0) - (a.year || 0))[0] || null;
+  }, [docs]);
+  const latest = liveGwr || GWR_DOCS[GWR_DOCS.length - 1];
+  const metrics = latest.metrics || {};
   const chips = [
-    ['GDP', latest.metrics.gdpTarget != null ? `${latest.metrics.gdpTarget}%左右` : '—', HOLD],
-    ['赤字率', latest.metrics.deficit != null ? `${latest.metrics.deficit}%左右` : '—', COOL],
-    ['CPI', latest.metrics.cpi != null ? `${latest.metrics.cpi}%左右` : '—', STEEL],
-    ['新增就业', latest.metrics.jobs != null ? `${latest.metrics.jobs}万+` : '—', WARM],
+    ['GDP', metrics.gdpTarget != null ? `${metrics.gdpTarget}%左右` : '—', HOLD],
+    ['赤字率', metrics.deficit != null ? `${metrics.deficit}%左右` : '—', COOL],
+    ['CPI', metrics.cpi != null ? `${metrics.cpi}%左右` : '—', STEEL],
+    ['新增就业', metrics.jobs != null ? `${metrics.jobs}万+` : '—', WARM],
   ];
   return (
-    <ScreenCard title={`政策脉搏 · ${latest.year} 施政基准`} accent={HOLD} footer={<>结构化要点 · 历年比对与提法变迁见 <Link to="/policydocs" className="mono" style={{ color: STEEL }}>政策文件库</Link></>}>
+    <ScreenCard title={`政策脉搏 · ${latest.year} 施政基准`} accent={HOLD}
+      footer={<>
+        <span className="mono px-1.5 py-0.5 rounded mr-1.5" style={{ background: liveGwr ? 'rgba(16,185,129,0.16)' : 'var(--bg-elevated)', color: liveGwr ? WARM : 'var(--text-tertiary)', fontSize: 9 }}>{liveGwr ? '● 本地库活数据' : '○ 内置种子'}</span>
+        结构化要点 · 历年比对与提法变迁见 <Link to="/policydocs" className="mono" style={{ color: STEEL }}>政策文件库</Link>
+      </>}>
       <div className="grid grid-cols-2 gap-2 mb-3">
         {chips.map(([k, v, c]) => (
           <div key={k} className="rounded-lg px-3 py-2" style={{ background: 'var(--bg-elevated)', border: `1px solid ${c}33` }}>
@@ -147,7 +158,7 @@ function LiveDbStatus() {
   const cells = [
     { label: '数据集', value: st ? st.datasetCount : '…', to: '/foundation', accent: STEEL, icon: 'Database' },
     { label: '数据行', value: st ? fmt(st.totalRows) : '…', to: '/foundation', accent: WARM, icon: 'Rows3' },
-    { label: '人物履历', value: st ? fmt(st.figureCount) : '…', to: '/talent', accent: COOL, icon: 'UsersRound' },
+    { label: '人才精英', value: st ? fmt(st.figureCount) : '…', to: '/talent', accent: COOL, icon: 'UsersRound' },
     { label: '政策文件', value: st ? (st.docCount ?? 0) : '…', to: '/policydocs', accent: HOLD, icon: 'FileText' },
   ];
   return (
@@ -407,7 +418,7 @@ export default function DashboardPage() {
           <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>// LIVE · 种子计数</span>
         </div>
         <Grid cols={3} gap="0.85rem" className="dash-screen-grid">
-          <ScreenCard title="人才库分层构成" accent="#c41e3a" footer="全口径公开履历 · 按层级聚合">
+          <ScreenCard title="中国政要分层构成" accent="#c41e3a" footer="政治权力队列 · 按层级聚合">
             <EChart option={opt.donut} style={{ height: 230 }} />
           </ScreenCard>
           <ScreenCard title="反腐历年趋势" accent="#e8a317" footer="副省部级及以上为主 · 按官宣年归集（2012 起）">
