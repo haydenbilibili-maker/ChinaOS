@@ -7,7 +7,7 @@
 //       能源→能源资源、金融→金融财政；diplomacy 工具读作「上级协调」。
 // 模型：raw = impact × intensity + 省情脆弱度修正；
 //       relief = Σ 工具投放比例 × mitigation × 班子胜任度乘数；
-//       net = raw − relief；score = 六域净冲击均值 → 三档判定。
+//       net = raw − relief；score = 六域净冲击均值与最痛域 0.5/0.5 混合 → 三档判定。
 // 声明：汉东省、京州/吕州/林城及全部官员均为虚构，致敬经典政治叙事，
 //       与任何真实地区、机构、人物无关。全部系数为示意标定，非预测。
 // ============================================================================
@@ -360,7 +360,10 @@ export function hdEngine({ scenario, intensity, alloc, baselineMods, mult }) {
   });
 
   const net = raw.map((v, i) => Math.max(0, Math.round(v - relief[i])));
-  const score = Math.round(net.reduce((a, b) => a + b, 0) / 6);
+  // 均值会把单域灾难平均掉（社会民生净 81、其余五域安然 → 均值仅 29），
+  // 混入最痛域对半计权：塌方无法被其他领域的岁月静好稀释。
+  const mean = net.reduce((a, b) => a + b, 0) / 6;
+  const score = Math.round(mean * 0.5 + Math.max(...net) * 0.5);
 
   let verdict;
   if (score < 30) {
