@@ -22,6 +22,16 @@ import {
   POLICY_ZONES,
 } from './liveMapData.js';
 import EChart from '../../lib/viz/EChart.jsx';
+import {
+  useLiveWeather, REAL_LAYERS, REAL_PALETTES, REAL_PALETTES_LIGHT,
+  buildRealSeries, formatRealTooltip,
+} from './liveWeather.js';
+import {
+  useLiveQuakes, buildQuakeSeries, quakeSymbolSize, quakeColor, formatQuakeTooltip,
+} from './liveQuakes.js';
+
+// 种子层 + 实时层合并（综合态势置首，随后两个真实数据层，再接其余种子层）
+const ALL_LAYERS = [LAYERS[0], ...REAL_LAYERS, ...LAYERS.slice(1)];
 import { getTimelineSeries, MONTH_COUNT, CURRENT_MONTH_INDEX } from './liveMapHistory.js';
 import LiveMapLayerBar from './LiveMapLayerBar.jsx';
 import LiveMapTimeline from './LiveMapTimeline.jsx';
@@ -76,7 +86,7 @@ function RankList({ title, items, accent }) {
       <div className="text-[10px] mono mb-1.5" style={{ color: 'var(--text-tertiary)' }}>{title}</div>
       <ul className="space-y-1">
         {items.map((d, i) => (
-          <li key={d.name} className="flex items-center gap-2 text-xs rounded px-2 py-1"
+          <li key={d.name} className="lcm-rise flex items-center gap-2 text-xs rounded px-2 py-1"
             style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}>
             <span className="mono w-4 shrink-0" style={{ color: accent }}>{i + 1}</span>
             <span className="truncate flex-1" style={{ color: 'var(--text-primary)' }}>{d.name.replace(/(省|市|自治区|壮族|回族|维吾尔)/g, '')}</span>
@@ -98,9 +108,9 @@ function StatStrip({ stats, layer, simLive, inline = false }) {
 
   return (
     <div className={className} style={boxStyle}>
-      <span style={{ color: 'var(--text-tertiary)' }}>均值 <b style={{ color: STEEL }}>{stats.avg}</b></span>
-      <span style={{ color: 'var(--text-tertiary)' }}>最高 <b style={{ color: '#10b981' }}>{stats.max}</b>{!inline && <span className="hidden sm:inline"> ({stats.maxProv?.replace(/(省|市|自治区|壮族|回族|维吾尔)/g, '')})</span>}</span>
-      <span style={{ color: 'var(--text-tertiary)' }}>最低 <b style={{ color: '#64748b' }}>{stats.min}</b>{!inline && <span className="hidden sm:inline"> ({stats.minProv?.replace(/(省|市|自治区|壮族|回族|维吾尔)/g, '')})</span>}</span>
+      <span style={{ color: 'var(--text-tertiary)' }}>均值 <b key={`a${stats.avg}`} className="lcm-flash" style={{ color: STEEL }}>{stats.avg}</b></span>
+      <span style={{ color: 'var(--text-tertiary)' }}>最高 <b key={`m${stats.max}`} className="lcm-flash" style={{ color: '#10b981' }}>{stats.max}</b>{!inline && <span className="hidden sm:inline"> ({stats.maxProv?.replace(/(省|市|自治区|壮族|回族|维吾尔)/g, '')})</span>}</span>
+      <span style={{ color: 'var(--text-tertiary)' }}>最低 <b key={`n${stats.min}`} className="lcm-flash-gold" style={{ color: '#64748b' }}>{stats.min}</b>{!inline && <span className="hidden sm:inline"> ({stats.minProv?.replace(/(省|市|自治区|壮族|回族|维吾尔)/g, '')})</span>}</span>
       {!inline && (
         <>
           <span style={{ color: 'var(--text-tertiary)' }}>单位 <b style={{ color: 'var(--text-secondary)' }}>{layer.unit || '指数 0–100'}</b></span>
@@ -143,11 +153,25 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
   const [zoneId, setZoneId] = useState('');
   const [xLayer, setXLayer] = useState('economy');
   const [yLayer, setYLayer] = useState('risk');
+  const [showQuakes, setShowQuakes] = useState(false);
+  const [now, setNow] = useState(() => new Date());
 
-  const layer = getLayerById(layerId);
+  const layer = ALL_LAYERS.find((l) => l.id === layerId) || getLayerById(layerId);
+  const isReal = !!layer.live;
   const region = REGION_PRESETS.find((r) => r.id === regionId) || REGION_PRESETS[0];
 
+  // 真实数据源：Open-Meteo 气象/空气质量（实况层激活时取数）+ USGS 地震（开关激活时取数）
+  const weather = useLiveWeather();
+  const quakesState = useLiveQuakes();
+
+  // 头部实时时钟（30s 粒度足够）
+  useEffect(() => {
+    const id = setInterval(() => setNow(new Date()), 30000);
+    return () => clearInterval(id);
+  }, []);
+
   const mapData = useMemo(() => {
+    if (isReal) return []; // 实况层走 realSeries，种子时间轴函数不识别 live 层 id
     if (monthIndex !== CURRENT_MONTH_INDEX || timelinePlaying) {
       return getTimelineSeries(layerId, monthIndex);
     }
@@ -159,11 +183,11 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
       });
     }
     return getTimelineSeries(layerId, CURRENT_MONTH_INDEX);
-  }, [layerId, monthIndex, timelinePlaying, simLive, jitterSeed]);
+  }, [layerId, monthIndex, timelinePlaying, simLive, jitterSeed, isReal]);
 
-  // Δ环比模式：当前月 − 12 月前（首月），分色呈现「谁在升温、谁在降温」
+  // Δ环比模式：当前月 − 12 月前（首月），分色呈现「谁在升温、谁在降温」（仅种子层）
   const deltaData = useMemo(() => {
-    if (!deltaMode) return null;
+    if (!deltaMode || isReal) return null;
     const cur = getTimelineSeries(layerId, CURRENT_MONTH_INDEX);
     const base = getTimelineSeries(layerId, 0);
     const baseMap = Object.fromEntries(base.map((d) => [d.name, d.value]));
@@ -171,16 +195,25 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
       const dv = +(d.value - (baseMap[d.name] ?? d.value)).toFixed(1);
       return { ...d, value: dv, metrics: { ...d.metrics, value: dv } };
     });
-  }, [deltaMode, layerId]);
+  }, [deltaMode, layerId, isReal]);
 
-  const displayData = deltaMode && deltaData ? deltaData : mapData;
+  // 实况层序列（Open-Meteo 实测；未就绪/失败 → 空序列 + 状态条提示）
+  const realSeries = useMemo(() => {
+    if (!isReal || !weather.data) return [];
+    return buildRealSeries(layerId, weather.data);
+  }, [isReal, layerId, weather.data]);
 
-  const rankings = useMemo(() => getRankings(layerId, 5, displayData), [layerId, displayData]);
-  const stats = useMemo(() => getNationalStats(layerId, displayData), [layerId, displayData]);
-  const palette = PALETTES[theme === 'light' ? 'light' : 'dark'][layerId] || PALETTES.dark.composite;
+  const displayData = isReal ? realSeries : (deltaMode && deltaData ? deltaData : mapData);
+  const statSeries = useMemo(() => displayData.filter((d) => d.value != null), [displayData]);
+
+  const rankings = useMemo(() => getRankings(layerId, 5, statSeries), [layerId, statSeries]);
+  const stats = useMemo(() => (statSeries.length ? getNationalStats(layerId, statSeries) : { avg: '—', max: '—', min: '—', maxProv: '', minProv: '' }), [layerId, statSeries]);
+  const palette = isReal
+    ? (theme === 'light' ? (REAL_PALETTES_LIGHT[layerId] || REAL_PALETTES[layerId]) : REAL_PALETTES[layerId])
+    : (PALETTES[theme === 'light' ? 'light' : 'dark'][layerId] || PALETTES.dark.composite);
 
   const hotCoords = useMemo(() => {
-    if (deltaMode) return [];
+    if (deltaMode || isReal) return [];
     const threshold = rankings.hot[Math.min(2, rankings.hot.length - 1)]?.value ?? 80;
     return mapData
       .filter((d) => d.value >= threshold && PROVINCE_COORDS[d.name])
@@ -207,8 +240,8 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
     if (!autoRotate || isCompact) return undefined;
     const id = setInterval(() => {
       setLayerId((cur) => {
-        const idx = LAYERS.findIndex((l) => l.id === cur);
-        return LAYERS[(idx + 1) % LAYERS.length].id;
+        const idx = ALL_LAYERS.findIndex((l) => l.id === cur);
+        return ALL_LAYERS[(idx + 1) % ALL_LAYERS.length].id;
       });
     }, ROTATE_MS);
     return () => clearInterval(id);
@@ -346,6 +379,8 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
         ...CHART_TOOLTIP,
         formatter: (p) => {
           if (p.seriesType === 'lines') return '';
+          if (p.seriesName === 'quakes') return formatQuakeTooltip(p);
+          if (isReal) return formatRealTooltip(p.name, layerId, weather.data?.[p.name], weather.fetchedAt);
           if (deltaMode) {
             const v = p.data?.value;
             return v == null ? p.name : `<b>${p.name}</b><br/>${layer.label} Δ12月：${v > 0 ? '+' : ''}${v}`;
@@ -354,7 +389,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
           return formatTooltip(p.name, layerId, p.data?.metrics);
         },
       },
-      visualMap: deltaMode
+      visualMap: deltaMode && !isReal
         ? {
           show: true,
           min: -15,
@@ -442,9 +477,21 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
               .map(([f, t, w]) => ({ coords: [PROVINCE_COORDS[f], PROVINCE_COORDS[t]], lineStyle: { width: 0.5 + w * 0.16 } })),
           }]
           : []),
+        ...(showQuakes && !isCompact && quakesState.quakes?.length
+          ? [{
+            name: 'quakes',
+            type: 'effectScatter',
+            coordinateSystem: 'geo',
+            zlevel: 4,
+            data: buildQuakeSeries(quakesState.quakes).map((q) => ({ ...q, itemStyle: { color: quakeColor(q.mag) } })),
+            symbolSize: quakeSymbolSize,
+            rippleEffect: { scale: 3.2, brushType: 'stroke', period: 3 },
+            itemStyle: { shadowBlur: 10, shadowColor: 'rgba(239,68,68,0.5)' },
+          }]
+          : []),
       ],
     };
-  }, [theme, layer, mapData, displayData, deltaMode, zoneId, layerId, palette, hotCoords, pulsePhase, region, selectedProvince, isCompact, showFlows]);
+  }, [theme, layer, mapData, displayData, deltaMode, isReal, weather.data, weather.fetchedAt, zoneId, layerId, palette, hotCoords, pulsePhase, region, selectedProvince, isCompact, showFlows, showQuakes, quakesState.quakes]);
 
   useEffect(() => {
     const chart = chartRef.current;
@@ -495,8 +542,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
   return (
     <section
       ref={shellRef}
-      className={`os-card os-section live-china-map-shell p-4 md:p-5 lg:p-6 ${isFullscreen ? 'live-china-map-fullscreen' : ''} ${className || ''}`}
-      style={{ borderColor: 'rgba(34,211,238,0.2)' }}
+      className={`os-card os-section live-china-map-shell lcm-premium p-4 md:p-5 lg:p-6 ${isFullscreen ? 'live-china-map-fullscreen' : ''} ${className || ''}`}
     >
       {/* Header: title left, controls right */}
       <div className="live-china-map-toolbar flex flex-wrap items-start justify-between gap-x-6 gap-y-3 mb-4">
@@ -504,14 +550,20 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
           <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
             <Icon name="Map" size={16} style={{ color: STEEL }} />
             <h2 className="os-card-title m-0">神州活图</h2>
-            <span className="text-[10px] mono px-1.5 py-0.5 rounded"
+            <span className="lcm-breathe inline-flex items-center gap-1.5 text-[10px] mono px-1.5 py-0.5 rounded"
               style={{ background: 'rgba(34,211,238,0.12)', color: STEEL, border: '1px solid rgba(34,211,238,0.25)' }}>
+              <span className="lcm-live-dot" style={{ color: '#ef4444' }} />
               LIVE
             </span>
-            <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>{LAYERS.length} 层</span>
+            <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>{ALL_LAYERS.length} 层 · 其中 {REAL_LAYERS.length} 实测</span>
+            {!isCompact && (
+              <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>
+                {now.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })} CST
+              </span>
+            )}
           </div>
           <p className="text-xs m-0 mt-1.5" style={{ color: 'var(--text-tertiary)' }}>
-            {isCompact ? '省级动态预览 · 点击进入完整体验' : `实时动态中国 · 省级 choropleth · 时间轴 · 对比 · AS_OF ${AS_OF}`}
+            {isCompact ? '省级动态预览 · 点击进入完整体验' : `实时动态中国 · Open-Meteo 实测气象/空气 + USGS 地震 + 种子态势层 · AS_OF ${AS_OF}`}
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-3 shrink-0">
@@ -541,9 +593,13 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
                 <input type="checkbox" checked={showFlows} onChange={(e) => setShowFlows(e.target.checked)} style={{ accentColor: HOLD }} />
                 迁徙流
               </label>
-              <label className="inline-flex items-center gap-1.5 cursor-pointer select-none text-[10px] mono whitespace-nowrap" style={{ color: deltaMode ? '#ef4444' : 'var(--text-tertiary)' }} title="当前月 − 12 月前：红升蓝降">
-                <input type="checkbox" checked={deltaMode} onChange={(e) => setDeltaMode(e.target.checked)} style={{ accentColor: '#ef4444' }} />
+              <label className="inline-flex items-center gap-1.5 select-none text-[10px] mono whitespace-nowrap" style={{ color: isReal ? 'var(--text-tertiary)' : deltaMode ? '#ef4444' : 'var(--text-tertiary)', opacity: isReal ? 0.4 : 1, cursor: isReal ? 'not-allowed' : 'pointer' }} title={isReal ? '实况层为即时读数，无环比' : '当前月 − 12 月前：红升蓝降'}>
+                <input type="checkbox" disabled={isReal} checked={deltaMode && !isReal} onChange={(e) => setDeltaMode(e.target.checked)} style={{ accentColor: '#ef4444' }} />
                 Δ环比
+              </label>
+              <label className="inline-flex items-center gap-1.5 cursor-pointer select-none text-[10px] mono whitespace-nowrap" style={{ color: showQuakes ? '#ef4444' : 'var(--text-tertiary)' }} title="USGS 30 天 M4+ 地震目录 · 周边 bbox">
+                <input type="checkbox" checked={showQuakes} onChange={(e) => setShowQuakes(e.target.checked)} style={{ accentColor: '#ef4444' }} />
+                地震{showQuakes && quakesState.quakes ? ` ${quakesState.quakes.length}` : ''}
               </label>
               <label className="inline-flex items-center gap-1.5 cursor-pointer select-none text-[10px] mono whitespace-nowrap" style={{ color: 'var(--text-tertiary)' }}>
                 <input type="checkbox" checked={simLive} onChange={(e) => setSimLive(e.target.checked)} style={{ accentColor: STEEL }} />
@@ -568,14 +624,22 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
         </div>
       </div>
 
-      <LiveMapLayerBar layers={LAYERS} activeId={layerId} onSelect={handleLayerChange} accent={STEEL} compact={isCompact} />
+      <LiveMapLayerBar layers={ALL_LAYERS} activeId={layerId} onSelect={handleLayerChange} accent={STEEL} compact={isCompact} />
 
       {!isCompact ? (
         <div className="live-china-map-meta flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-3 mb-1">
-          <span className="text-[10px] mono min-w-0" style={{ color: 'var(--text-tertiary)' }}>
-            {layer.desc} · 数据源：<span style={{ color: 'var(--text-secondary)' }}>{layer.source === 'seed' ? '内置种子' : '实时'}</span>
+          <span className="text-[10px] mono min-w-0 inline-flex items-center gap-2" style={{ color: 'var(--text-tertiary)' }}>
+            {layer.desc} · 数据源：<span style={{ color: isReal ? '#10b981' : 'var(--text-secondary)' }}>{layer.source === 'seed' ? '内置种子' : 'Open-Meteo 实测'}</span>
+            {isReal && weather.loading && <span style={{ color: STEEL }}>// 正在获取实测…</span>}
+            {isReal && weather.error && <span style={{ color: HOLD }}>实时源不可达：{weather.error} · 自动重试中</span>}
+            {isReal && !weather.error && weather.fetchedAt && (
+              <span className="inline-flex items-center gap-1" style={{ color: '#10b981' }}>
+                <span className="lcm-live-dot" style={{ color: '#10b981' }} />
+                实测 {weather.fetchedAt.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })} · 10min 自动刷新
+              </span>
+            )}
           </span>
-          <StatStrip stats={stats} layer={layer} simLive={simLive} inline />
+          <StatStrip stats={stats} layer={layer} simLive={simLive && !isReal} inline />
         </div>
       ) : (
         <>
@@ -594,7 +658,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
                 key={r.id}
                 type="button"
                 onClick={() => setRegionId(r.id)}
-                className="text-[10px] mono px-2 py-0.5 rounded-full touch-manipulation"
+                className="lcm-chip text-[10px] mono px-2 py-0.5 rounded-full touch-manipulation"
                 style={{
                   background: regionId === r.id ? 'rgba(34,211,238,0.18)' : 'var(--bg-elevated)',
                   border: `1px solid ${regionId === r.id ? 'rgba(34,211,238,0.45)' : 'var(--border-subtle)'}`,
@@ -612,7 +676,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
                 key={z}
                 type="button"
                 onClick={() => setZoneId(zoneId === z ? '' : z)}
-                className="text-[10px] mono px-2 py-0.5 rounded-full touch-manipulation"
+                className="lcm-chip text-[10px] mono px-2 py-0.5 rounded-full touch-manipulation"
                 style={{
                   background: zoneId === z ? 'rgba(212,175,55,0.18)' : 'var(--bg-elevated)',
                   border: `1px solid ${zoneId === z ? 'rgba(212,175,55,0.5)' : 'var(--border-subtle)'}`,
@@ -623,18 +687,25 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
               </button>
             ))}
           </div>
-          <LiveMapTimeline
-            monthIndex={monthIndex}
-            onChange={(m) => { setMonthIndex(m); setTimelinePlaying(false); }}
-            playing={timelinePlaying}
-            onTogglePlay={() => setTimelinePlaying((p) => !p)}
-            accent={STEEL}
-          />
+          {!isReal && (
+            <LiveMapTimeline
+              monthIndex={monthIndex}
+              onChange={(m) => { setMonthIndex(m); setTimelinePlaying(false); }}
+              playing={timelinePlaying}
+              onTogglePlay={() => setTimelinePlaying((p) => !p)}
+              accent={STEEL}
+            />
+          )}
+          {isReal && (
+            <div className="text-[10px] mono px-3 py-2 rounded-lg" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', color: 'var(--text-tertiary)' }}>
+              实况层为即时观测快照（无 12 月回放）· 悬停省份查看 气温/湿度/风速/降水/PM2.5 全要素 · 来源 Open-Meteo 公开气象 API，非官方气象部门发布口径
+            </div>
+          )}
         </div>
       )}
 
       <div className={`live-china-map-body ${!isCompact ? 'live-china-map-body--full' : ''} mt-4`}>
-        <div className={`live-china-map-canvas relative min-w-0 ${isCompact ? 'live-china-map-canvas--compact' : ''}`}>
+        <div className={`live-china-map-canvas lcm-scan relative min-w-0 ${isCompact ? 'live-china-map-canvas--compact' : ''}`}>
           <div ref={elRef} style={{ width: '100%', height: '100%' }} />
           {!ready && !err && (
             <div className="mono text-xs absolute top-3 left-3" style={{ color: 'var(--text-tertiary)' }}>// 加载地图边界…</div>
@@ -644,8 +715,9 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
           )}
           {selectedProvince && !isCompact && (
             <ProvinceDetailDrawer
+              key={selectedProvince}
               provinceName={selectedProvince}
-              layerId={layerId}
+              layerId={isReal ? 'climate' : layerId}
               compareNames={compareNames}
               onClose={() => setSelectedProvince(null)}
               onToggleCompare={toggleCompare}
