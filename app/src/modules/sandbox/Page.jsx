@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import { IntroCard, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
+import { CRISIS_DOMAINS, CRISES, TOOLS, mitigatedImpact, compositeImpact, buildCrisisReport } from './crisisData.js';
 import EChart from '../../lib/viz/EChart.jsx';
 import ChinaMap from '../../lib/viz/ChinaMap.jsx';
 import DataBus from '../../lib/data/DataBus.js';
@@ -127,102 +128,16 @@ const SCENARIOS = {
 };
 
 // ============================================================================
-// 国家级危机情景引擎 · 压力测试（思想实验，非预测）
-// 实际冲击 = 基准系数 × 烈度(0-100)；六域固定：科技/经济/社会/外交/能源/金融
-// ============================================================================
-const CRISIS_DOMAINS = ['科技', '经济', '社会', '外交', '能源', '金融'];
-
-const CRISES = {
-  chipBan: {
-    label: '芯片全面禁运', color: '#8b5cf6',
-    intro: '先进制程、设备与 EDA 全面断供，半导体链被迫整体国产替代的极限压力测试。',
-    chain: ['先进制程与设备/EDA 断供', 'AI/车规高端芯片缺口放大', '整机与智能终端出口受挫', '替代投资与大基金井喷', '成熟制程产能过剩风险'],
-    impact: [0.95, 0.6, 0.3, 0.7, 0.15, 0.4],
-    toolbox: [
-      ['成熟制程极限堆叠', '28nm + Chiplet 先稳住车规/工控/家电基本盘'],
-      ['卡点揭榜挂帅', '设备/材料/EDA 逐项立军令状，大基金三期定向投放'],
-      ['存量囤备+第三地转口', '拉长断供生效时间窗，为替代争取窗口期'],
-      ['稀土/镓锗对等反制', '以上游材料筹码换设备许可的谈判空间'],
-    ],
-    talentNeed: '需要供应链作战型 + 科技攻坚型干部前置：懂晶圆厂建设周期、敢拍板百亿级设备订单的复合操盘手。',
-    watch: ['半导体设备进口额同比', '关键环节国产化率（刻蚀/光刻胶）', '代工厂对陆出货许可变动'],
-  },
-  strait: {
-    label: '台海高烈度对峙', color: '#c41e3a',
-    intro: '演训升级为持续性海空封控对峙，航运保险、外资风险偏好与金融溢价同时重估。',
-    chain: ['海空封控演训常态化', '航运改道+战争险费率飙升', '外资避险撤出与供应链转单', '金融市场风险溢价重估', '战时经济动员预案激活'],
-    impact: [0.55, 0.75, 0.6, 0.95, 0.7, 0.85],
-    toolbox: [
-      ['灰区节奏控制', '封控烈度分级可逆，保留降级台阶避免误判螺旋'],
-      ['金融防波堤', '汇率干预+离岸流动性安排+关键企业外债置换'],
-      ['能源粮食战略囤备', '90 天以上进口中断承受力为底线目标'],
-      ['法律战+外宣战', '封控的国内法/国际法叙事先行，分化对手联盟'],
-    ],
-    talentNeed: '需要军地协同型 + 金融维稳型干部双前置：东南沿海主官须有动员体系与外资安抚的双重操作能力。',
-    watch: ['台海周边战争险费率', '海峡 AIS 航迹密度异动', '离岸人民币隐含波动率'],
-  },
-  housing: {
-    label: '房企连环违约', color: '#e8a317',
-    intro: '头部房企交叉违约引爆信用收缩，土地财政与居民资产负债表同时承压。',
-    chain: ['头部房企交叉违约', '保交楼压力+预售资金冻结', '土地出让金骤降冲击地方财政', '居民资产缩水压制消费', '城投与中小银行风险传染'],
-    impact: [0.1, 0.8, 0.7, 0.15, 0.1, 0.85],
-    toolbox: [
-      ['保交楼国家队接管', '项目层面封闭运作，切断「烂尾→断供」社会传导'],
-      ['白名单融资滴灌', '区分项目风险与集团风险，避免误伤在建优质盘'],
-      ['收储转保障房', '央行再贷款收购存量，托底价格同时补保障短板'],
-      ['地方化债组合拳', '置换债+央地共担，防止土地财政缺口击穿三保'],
-    ],
-    talentNeed: '需要金融处置型 + 社会稳控型干部组合：既能拆弹债务重组，又能在业主维权一线管理预期。',
-    watch: ['70 城房价环比下行扩散度', '土地出让金同比', 'AA 城投利差走阔'],
-  },
-  grain: {
-    label: '粮食歉收+大豆断供', color: '#10b981',
-    intro: '极端气候致主产区歉收，叠加大豆进口断供，饲料—肉价—CPI 链条全面承压。',
-    chain: ['主产区极端气候歉收', '大豆/玉米进口通道收紧', '饲料成本推升肉蛋价格', 'CPI 食品项抬升挤压低收入群体', '储备投放与应急配给预案启动'],
-    impact: [0.05, 0.45, 0.8, 0.5, 0.2, 0.25],
-    toolbox: [
-      ['中央储备梯次投放', '稻麦储备充裕是底牌，节奏比规模更重要'],
-      ['进口多元化急转', '巴西/阿根廷/俄罗斯多源替代+国际粮商长协锁价'],
-      ['豆粕减量替代', '低蛋白日粮+合成生物饲料蛋白的应急放量'],
-      ['最低收购价+种粮直补加码', '保住下一季播种面积的政治底线'],
-    ],
-    talentNeed: '需要农业系统型 + 应急保供型干部前置：主产省主官的粮食安全党政同责在此情景下一票否决。',
-    watch: ['主产省墒情与积温距平', 'CBOT 大豆价格+到岸升贴水', '能繁母猪存栏环比'],
-  },
-  finance: {
-    label: '外部金融冲击', color: '#22d3ee',
-    intro: '美元流动性危机或金融制裁升级，资本外流、汇率与外储三线同时承压。',
-    chain: ['美元流动性收紧/制裁升级', '资本外流+人民币贬值压力', '外储消耗与离岸市场失锚', '进口成本抬升输入通胀', '国内信用被动收缩'],
-    impact: [0.2, 0.65, 0.35, 0.6, 0.45, 0.95],
-    toolbox: [
-      ['资本流动宏观审慎', '远购风险准备金/逆周期因子分级加码，不搞硬管制'],
-      ['本币结算扩围', 'CIPS+货币互换网络对冲 SWIFT 依赖的极限场景'],
-      ['外储结构防御化', '黄金与多元资产占比提升，降低美债敞口集中度'],
-      ['离岸流动性反击', '央票发行+离岸池调控，提高做空人民币成本'],
-    ],
-    talentNeed: '需要国际金融实战型干部前置：央行/外管/主权基金履历，经历过 2015 汇改一役者优先。',
-    watch: ['离岸-在岸汇差(CNH-CNY)', '外储月度变动与估值剥离', '中美十年期利差'],
-  },
-  pandemic: {
-    label: '公共卫生危机复发', color: '#fb923c',
-    intro: '新发呼吸道病原体快速过峰，考验常态化监测、医疗冗余与社会预期管理。',
-    chain: ['新发病原体跨区传播', '医疗资源挤兑风险显形', '服务业与线下消费骤冷', '防控与开放的预期反复摇摆', '财政补贴与公卫体系紧急扩容'],
-    impact: [0.15, 0.55, 0.9, 0.3, 0.1, 0.35],
-    toolbox: [
-      ['哨点监测前置', '多点触发预警，把发现窗口从周压缩到天'],
-      ['分级诊疗硬隔离', '基层首诊+重症集中，守住 ICU 床位不挤兑'],
-      ['精准防控工具箱', '以最小社会成本换传播速降，杜绝层层加码回潮'],
-      ['预期管理一个口径', '权威信息单一出口，对冲恐慌性囤积与谣言'],
-    ],
-    talentNeed: '需要公共卫生专业型 + 城市运行保障型干部组合：疾控体系出身的副省长配置成为刚需。',
-    watch: ['哨点医院病原阳性率', '发热门诊就诊量周环比', '重症床位占用率'],
-  },
-};
+// 国家级危机情景引擎：数据与算法层抽至 ./crisisData.js（含缓解矩阵/复合耦合/报告生成）
 
 export default function Page() {
   const [sel, setSel] = useState('黑龙江省');
   const [scn, setScn] = useState('fiscal');
   const [crisisKey, setCrisisKey] = useState('chipBan');
+  const [secondCrisis, setSecondCrisis] = useState(''); // 复合危机叠加（空=单一情景）
+  const [alloc, setAlloc] = useState({ fiscal: 20, monetary: 20, industry: 20, diplomacy: 20, mobilize: 20 }); // 政策资源 Σ≤100
+  const [reportMd, setReportMd] = useState('');
+  const [reportCopied, setReportCopied] = useState(false);
   const [intensity, setIntensity] = useState(50);
   const [national, setNational] = useState(null); // WB 实时全国基线
   const [natState, setNatState] = useState('loading'); // loading | live | offline
@@ -277,25 +192,48 @@ export default function Page() {
     };
   }, [computed]);
 
-  // ── 国家级危机情景引擎：实际冲击 = 基准系数 × 烈度 ──
-  const crisis = CRISES[crisisKey];
-  const crisisVals = useMemo(() => crisis.impact.map((k) => Math.round(k * intensity)), [crisis, intensity]);
-  const crisisScore = useMemo(() => Math.round(crisisVals.reduce((a, b) => a + b, 0) / crisisVals.length), [crisisVals]);
-  const crisisVerdict = crisisScore < 30
-    ? { tier: '可吸收', color: '#10b981', read: '冲击在政策工具与冗余产能的吸收范围内，重点是防止预期自我强化。' }
-    : crisisScore <= 60
-      ? { tier: '承压管理', color: '#e8a317', read: '系统进入承压区：跨部门专班须接管传导链关键节点，工具箱前两项立即启用。' }
-      : { tier: '系统性应激', color: '#c41e3a', read: '冲击越过自稳阈值：进入战时式资源统配，全部工具同时上桌并接受次生代价。' };
+  // ── 国家级危机情景引擎：缓解矩阵 + 复合耦合（算法层见 crisisData.js） ──
+  const crisis = useMemo(() => (
+    secondCrisis && secondCrisis !== crisisKey
+      ? compositeImpact(CRISES[crisisKey], CRISES[secondCrisis], intensity)
+      : CRISES[crisisKey]
+  ), [crisisKey, secondCrisis, intensity]);
+  const allocTotal = TOOLS.reduce((sum, t) => sum + alloc[t.id], 0);
+  const engine = useMemo(() => mitigatedImpact(crisis, intensity, alloc), [crisis, intensity, alloc]);
+  const crisisScore = engine.score;
+  const crisisVerdict = { tier: engine.verdict[0], color: engine.verdict[1], read: engine.verdict[2] };
+  // 应对前 vs 应对后 双系列对比
   const crisisOption = useMemo(() => ({
-    grid: { left: 64, right: 40, top: 8, bottom: 24 },
-    xAxis: { type: 'value', max: 100, axisLabel: { color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+    legend: { data: ['应对前', '应对后'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0, itemWidth: 10, itemHeight: 10 },
+    grid: { left: 44, right: 24, top: 26, bottom: 16 },
+    xAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
     yAxis: { type: 'category', data: [...CRISIS_DOMAINS].reverse(), axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } },
-    series: [{
-      type: 'bar', data: [...crisisVals].reverse(), barWidth: 14,
-      itemStyle: { color: (p) => `rgba(196,30,58,${(0.3 + 0.7 * p.value / 100).toFixed(2)})`, borderRadius: 3 },
-      label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 },
-    }],
-  }), [crisisVals]);
+    series: [
+      { name: '应对前', type: 'bar', barWidth: 8, data: [...engine.raw].reverse(), itemStyle: { color: 'rgba(196,30,58,0.35)', borderRadius: [0, 3, 3, 0] } },
+      { name: '应对后', type: 'bar', barWidth: 8, data: [...engine.net].reverse(), itemStyle: { color: '#c41e3a', borderRadius: [0, 3, 3, 0] } },
+    ],
+  }), [engine]);
+  // 应对小组组建器：按危机画像关键词在真实履历池打分匹配（画像推演，非人事评价）
+  const team = useMemo(() => {
+    if (!figures || !crisis.talentKeywords) return [];
+    return figures
+      .map((f) => {
+        const hay = [f.raw, f.org, f.fields?.title, ...(f.career || []).map((c) => c.desc)].filter(Boolean).join(' ');
+        const hits = crisis.talentKeywords.filter((k) => hay.includes(k));
+        return hits.length ? { name: f.name, title: f.fields?.title || f.org || f.role || '', score: hits.length, hits } : null;
+      })
+      .filter(Boolean)
+      .sort((x, y) => y.score - x.score)
+      .slice(0, 5);
+  }, [figures, crisis]);
+  const genReport = () => {
+    setReportMd(buildCrisisReport({ crisisLabel: crisis.label, intensity, alloc, raw: engine.raw, net: engine.net, score: engine.score, verdict: engine.verdict, team }));
+    setReportCopied(false);
+  };
+  const copyReport = async () => {
+    try { await navigator.clipboard.writeText(reportMd); setReportCopied(true); setTimeout(() => setReportCopied(false), 2000); } catch (_) { /* noop */ }
+  };
 
   return (
     <div>
@@ -475,6 +413,50 @@ export default function Page() {
           <span className="text-sm mono font-semibold w-10 text-right shrink-0" style={{ color: crisis.color }}>{intensity}</span>
         </div>
 
+        <div className="flex items-center gap-2 flex-wrap mb-4">
+          <span className="text-[11px] mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>叠加第二危机</span>
+          <button onClick={() => setSecondCrisis('')} className="text-[10px] px-2 py-0.5 rounded mono"
+            style={{ background: !secondCrisis ? 'rgba(148,163,184,0.18)' : 'var(--bg-elevated)', color: !secondCrisis ? 'var(--text-primary)' : 'var(--text-tertiary)', border: '1px solid var(--border-subtle)', cursor: 'pointer' }}>无</button>
+          {Object.keys(CRISES).filter((k) => k !== crisisKey).map((k) => (
+            <button key={k} onClick={() => setSecondCrisis(secondCrisis === k ? '' : k)} className="text-[10px] px-2 py-0.5 rounded mono"
+              style={{ background: secondCrisis === k ? 'rgba(239,68,68,0.2)' : 'var(--bg-elevated)', color: secondCrisis === k ? '#ef4444' : 'var(--text-tertiary)', border: `1px solid ${secondCrisis === k ? '#ef444466' : 'var(--border-subtle)'}`, cursor: 'pointer' }}>
+              + {CRISES[k].label}
+            </button>
+          ))}
+          {secondCrisis && <span className="text-[10px] mono" style={{ color: '#ef4444' }}>⚠ 非线性耦合：救援资源互相挤占，工具效力打 85 折</span>}
+        </div>
+
+        <div className="os-card p-4 mb-4" style={{ background: 'var(--bg-elevated)' }}>
+          <div className="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <span className="text-[10px] mono uppercase" style={{ color: 'var(--cyber-cyan)' }}>政策资源配置器 · 预算 100 点</span>
+            <span className="flex items-center gap-2">
+              <span className="text-[11px] mono" style={{ color: allocTotal > 100 ? '#ef4444' : allocTotal === 100 ? '#10b981' : 'var(--text-secondary)' }}>已配 {allocTotal} / 100</span>
+              <button onClick={() => setAlloc({ fiscal: 0, monetary: 0, industry: 0, diplomacy: 0, mobilize: 0 })} className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'var(--bg-base)', color: 'var(--text-tertiary)', border: '1px solid var(--border-subtle)', cursor: 'pointer' }}>清零</button>
+            </span>
+          </div>
+          <Grid cols={5}>
+            {TOOLS.map((t) => {
+              const others = allocTotal - alloc[t.id];
+              const max = Math.max(0, 100 - others);
+              return (
+                <div key={t.id}>
+                  <div className="flex justify-between text-[10px] mb-1">
+                    <span style={{ color: t.color }}>{t.label}</span>
+                    <span className="mono" style={{ color: 'var(--text-secondary)' }}>{alloc[t.id]}</span>
+                  </div>
+                  <input type="range" min={0} max={100} value={alloc[t.id]}
+                    onChange={(e) => { const v = Math.min(Number(e.target.value), max); setAlloc((prev) => ({ ...prev, [t.id]: v })); }}
+                    style={{ width: '100%', accentColor: t.color }} />
+                  <p className="text-[9px] leading-snug mt-0.5" style={{ color: 'var(--text-tertiary)' }}>{t.desc}</p>
+                </div>
+              );
+            })}
+          </Grid>
+          <p className="text-[10px] mono mt-2" style={{ color: 'var(--text-tertiary)' }}>
+            缓解量 = Σ 工具点数 × 该工具对各域的边际效率（工具-危机错配则边际趋零：货币宽松救不了芯片断供）· 总冲击 {Math.round(engine.raw.reduce((x, y) => x + y, 0) / 6)} → {crisisScore}
+          </p>
+        </div>
+
         <Grid cols={2}>
           <div>
             <p className="text-xs leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>
@@ -501,8 +483,8 @@ export default function Page() {
           </div>
 
           <div>
-            <div className="text-[10px] mono uppercase mb-1" style={{ color: '#93a1b5' }}>六域冲击 = 基准系数 × 烈度 {intensity}</div>
-            <EChart option={crisisOption} style={{ height: 200 }} />
+            <div className="text-[10px] mono uppercase mb-1" style={{ color: '#93a1b5' }}>六域冲击 · 应对前 vs 应对后（烈度 {intensity} · 已配 {allocTotal} 点）</div>
+            <EChart option={crisisOption} style={{ height: 230 }} />
             <div className="text-[10px] mono uppercase mt-3 mb-2" style={{ color: crisis.color }}>应对工具箱</div>
             <div className="space-y-2 mb-3">
               {crisis.toolbox.map(([t, d]) => (
@@ -518,9 +500,36 @@ export default function Page() {
                 {crisis.talentNeed} <Link to="/talent" className="mono" style={{ color: 'var(--cyber-cyan)' }}>→ 干部画像库</Link>
               </p>
             </div>
+            <div className="p-3 rounded mt-3" style={{ background: 'var(--bg-elevated)', border: '1px solid rgba(212,175,55,0.25)' }}>
+              <span className="text-[10px] mono uppercase" style={{ color: 'var(--fire-gold)' }}>应对小组自动组建 · 履历池画像匹配 Top5</span>
+              {!team.length && <p className="text-[11px] mt-1.5" style={{ color: 'var(--text-tertiary)' }}>// 履历池加载中或无匹配（到人才库载入内置数据后重试）</p>}
+              <div className="space-y-1.5 mt-2">
+                {team.map((m) => (
+                  <div key={m.name + m.title} className="flex items-center gap-2">
+                    <span className="text-xs font-semibold shrink-0" style={{ color: 'var(--text-primary)' }}>{m.name}</span>
+                    <span className="text-[10px] truncate flex-1" style={{ color: 'var(--text-tertiary)' }}>{m.title}</span>
+                    <span className="flex gap-1 shrink-0">
+                      {m.hits.slice(0, 3).map((h) => (
+                        <span key={h} className="text-[9px] mono px-1 rounded" style={{ background: 'rgba(212,175,55,0.14)', color: 'var(--fire-gold)' }}>{h}</span>
+                      ))}
+                    </span>
+                    <span className="text-[10px] mono shrink-0" style={{ color: 'var(--cyber-cyan)' }}>匹配 {m.score}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="text-[9px] mt-2" style={{ color: 'var(--text-tertiary)' }}>按履历关键词命中自动排序——画像匹配仅供推演，不构成人事评价。</p>
+            </div>
           </div>
         </Grid>
 
+        <div className="flex items-center gap-2 mt-4 flex-wrap">
+          <button onClick={genReport} className="os-btn os-btn-primary os-btn-sm">生成推演报告</button>
+          {reportMd && <button onClick={copyReport} className="os-btn os-btn-sm">{reportCopied ? '✓ 已复制' : '复制 Markdown'}</button>}
+          <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>聚合 情景×烈度×配置×判定×小组 为可归档推演纪要</span>
+        </div>
+        {reportMd && (
+          <pre className="os-card p-4 mt-3 text-xs mono" style={{ whiteSpace: 'pre-wrap', color: 'var(--text-secondary)', maxHeight: 260, overflowY: 'auto', lineHeight: 1.7, background: 'var(--bg-elevated)' }}>{reportMd}</pre>
+        )}
         <p className="text-[11px] mt-4" style={{ color: 'var(--text-tertiary)' }}>
           情景为思想实验/压力测试框架，非预测；传导系数为示意标定，烈度由用户设定，不构成对任何事件概率的判断。
         </p>
