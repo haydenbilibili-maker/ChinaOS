@@ -1,0 +1,354 @@
+import React, { useState, useMemo } from 'react';
+import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import EChart from '../../lib/viz/EChart.jsx';
+import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
+import {
+  WG_AS_OF, SIDES, CARDS, STRATEGIES, INIT, MAX_TURNS, AP_PER_TURN,
+  makeInitialState, usMove, resolveTurn, judge, buildWarReport,
+} from './wargameData.js';
+
+// ============================================================================
+// 大国博弈推演桌 · 中美科技-经贸博弈的回合制思想实验
+// ----------------------------------------------------------------------------
+// 安全红线：仅科技/经贸/产业维度的抽象博弈，不涉军事冲突情景；
+//          牌名一律中性术语，不出现任何具体真实企业名。
+// 声明：思想实验 / 分析框架 · 非预测 · 非政策倡导 · 双方收益矩阵为示意标定。
+// 引擎全在 wargameData.js（确定性纯函数）；本页只做选牌-结算-呈现。
+// ============================================================================
+
+const AX = { line: '#27324a', text: '#93a1b5', split: 'rgba(148,163,184,0.1)' };
+
+const BTN = {
+  background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)',
+  color: 'var(--text-secondary)', borderRadius: 6, padding: '4px 12px', fontSize: 12, cursor: 'pointer',
+};
+const BTN_RED = { ...BTN, background: 'rgba(196,30,58,0.16)', border: '1px solid rgba(196,30,58,0.4)', color: '#c41e3a', fontWeight: 600 };
+const BTN_CYAN = { ...BTN, background: 'rgba(34,211,238,0.12)', border: '1px solid rgba(34,211,238,0.35)', color: '#22d3ee', fontWeight: 600 };
+
+const STRAT_ACCENT = { hawk: '#c41e3a', tit: '#e8a317', deal: '#10b981' };
+const SIDE_LABEL = { cn: '中方', us: '美方', both: '通用' };
+const SIDE_COLOR = { cn: '#c41e3a', us: '#22d3ee', both: '#8b5cf6' };
+
+// 中方可出手牌（side cn/both），牌库顺序即手牌顺序
+const CN_HAND = CARDS.filter((c) => c.side === 'cn' || c.side === 'both');
+
+const sgn = (v) => (v > 0 ? `+${v}` : `${v}`);
+const dColor = (v) => (v > 0 ? '#10b981' : v < 0 ? '#c41e3a' : 'var(--text-tertiary)');
+
+/** effect 四值小字：己科技/己经贸/对科技/对经贸 */
+function EffectRow({ effect }) {
+  const cells = [
+    ['己科技', effect.selfTech], ['己经贸', effect.selfEcon],
+    ['对科技', effect.oppTech], ['对经贸', effect.oppEcon],
+  ];
+  return (
+    <div className="flex flex-wrap gap-x-2.5 gap-y-0.5 mt-1.5">
+      {cells.map(([k, v]) => (
+        <span key={k} className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>
+          {k} <span style={{ color: dColor(v), fontWeight: 600 }}>{sgn(v)}</span>
+        </span>
+      ))}
+    </div>
+  );
+}
+
+export default function Page() {
+  // —— 对局状态 ——
+  const [strategy, setStrategy] = useState('tit');     // 美方策略档位
+  const [game, setGame] = useState(makeInitialState);  // 引擎 state（turn 0 起步）
+  const [selected, setSelected] = useState([]);        // 本回合已选中方牌 id
+  const [reportMd, setReportMd] = useState('');
+  const [copied, setCopied] = useState(false);
+
+  const finished = game.turn >= MAX_TURNS;
+  const strat = useMemo(() => STRATEGIES.find((s) => s.id === strategy) || STRATEGIES[0], [strategy]);
+
+  // 已选行动点
+  const apUsed = useMemo(
+    () => selected.reduce((s, id) => s + (CN_HAND.find((c) => c.id === id)?.cost || 0), 0),
+    [selected]
+  );
+
+  // 中方持续牌驻留集合（驻留中的牌再点出会被引擎弃置——直接禁选并标注）
+  const cnPersist = useMemo(
+    () => new Set(game.persist.filter((p) => p.side === 'cn').map((p) => p.cardId)),
+    [game.persist]
+  );
+
+  const toggleCard = (card) => {
+    if (finished) return;
+    setSelected((prev) => {
+      if (prev.includes(card.id)) return prev.filter((x) => x !== card.id);
+      if (apUsed + card.cost > AP_PER_TURN) return prev;     // 行动点不够，不收
+      if (cnPersist.has(card.id)) return prev;               // 已驻留，重复出牌无效
+      return [...prev, card.id];
+    });
+  };
+
+  // 出牌结算：美方按策略同步出牌，引擎一次性推进一个回合
+  const settleTurn = () => {
+    if (finished) return;
+    const usCards = usMove(strategy, game, game.turn + 1);
+    setGame((prev) => resolveTurn(prev, selected, usCards));
+    setSelected([]);
+  };
+
+  const restart = () => {
+    setGame(makeInitialState());
+    setSelected([]);
+    setReportMd('');
+    setCopied(false);
+  };
+
+  // 终局判定（仅 5 回合打满后）
+  const verdict = useMemo(() => (finished ? judge(game) : null), [finished, game]);
+
+  const genReport = () => {
+    try {
+      setReportMd(buildWarReport({ strategy, state: game }));
+    } catch (e) {
+      setReportMd(`# 报告生成异常\n\n${String(e)}`);
+    }
+    setCopied(false);
+  };
+  const copyReport = () => {
+    navigator.clipboard?.writeText(reportMd).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1600);
+    });
+  };
+
+  // —— 战局曲线：四线（中科技/中经贸/美科技/美经贸），回合 0..5 ——
+  const curveOption = useMemo(() => {
+    const lines = [
+      ['中方科技', 'cnTech', '#c41e3a', 'solid'],
+      ['中方经贸', 'cnEcon', '#fb923c', 'dashed'],
+      ['美方科技', 'usTech', '#22d3ee', 'solid'],
+      ['美方经贸', 'usEcon', '#8b5cf6', 'dashed'],
+    ];
+    return {
+      legend: { data: lines.map((l) => l[0]), textStyle: { color: AX.text }, top: 0 },
+      grid: { left: 40, right: 18, top: 34, bottom: 26 },
+      xAxis: {
+        type: 'category',
+        data: game.history.map((h) => (h.turn === 0 ? '开局' : `第${h.turn}回合`)),
+        axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text },
+      },
+      yAxis: {
+        type: 'value', min: 0, max: 100,
+        axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text },
+        splitLine: { lineStyle: { color: AX.split } },
+      },
+      series: lines.map(([name, key, color, type]) => ({
+        name, type: 'line', data: game.history.map((h) => h[key]),
+        lineStyle: { color, width: 2, type }, itemStyle: { color }, symbolSize: 6,
+      })),
+    };
+  }, [game.history]);
+
+  return (
+    <div>
+      {/* 0 —— 页头 / 思想实验声明 / 四格 Stat */}
+      <PageHeader
+        badge="Simulation · 大国博弈推演桌"
+        title="大国博弈推演桌 · 科技-经贸回合制思想实验"
+        subtitle="八张中性牌 × 五个回合 × 三档对手策略——博弈不是棋盘上的胜负，是两条供应链的耐力赛"
+      />
+      <IntroCard>
+        <strong style={{ color: 'var(--text-primary)' }}>思想实验声明：</strong>
+        本页是中美科技-经贸博弈的抽象推演框架——非预测、非政策倡导，双方收益矩阵为示意标定，仅覆盖科技/经贸/产业维度，不涉任何军事冲突情景。
+        把宏大叙事压缩成一张 2×2×5 的账本：每一回合，双方各持 {AP_PER_TURN} 个行动点，从管制、关税、攻关、谈判这些中性术语牌里挑出自己的组合；管制牌伤对方科技但反噬己方经贸，攻关牌慢热而持续，谈判与开放双正但小——出牌的瞬间爽感和五回合后的四线对账，往往是两回事。
+        博弈不是棋盘上的胜负，是两条供应链的耐力赛：谁的血条厚、谁的时间结构有利、谁先把敌意变现，比谁嗓门大重要得多。
+      </IntroCard>
+      <Grid cols={4} className="mb-8">
+        <Stat value={WG_AS_OF} label="推演基准日" accent="#22d3ee" />
+        <Stat value={`${CARDS.length} 张`} label="中性术语牌库" accent="#e8a317" />
+        <Stat value={`${MAX_TURNS} 回合`} label={`回合制 · 每回合 ${AP_PER_TURN} 行动点`} accent="#c41e3a" />
+        <Stat value={`${STRATEGIES.length} 档`} label="美方 AI 策略" accent="#10b981" />
+      </Grid>
+
+      {/* 1 —— 对局设定 */}
+      <Card title="① 对局设定 · 选定对手的性格">
+        <SelectorBar
+          items={STRATEGIES} activeKey={strategy} onSelect={setStrategy}
+          getKey={(s) => s.id} getLabel={(s) => s.label} getAccent={(s) => STRAT_ACCENT[s.id]}
+        />
+        <p className="text-xs leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
+          <span className="font-semibold" style={{ color: STRAT_ACCENT[strategy] }}>{strat.label}：</span>{strat.desc}
+          {game.turn > 0 && !finished && ' —— 中途换档即时生效：对手的性格，本来就是局中变量。'}
+        </p>
+        <div className="flex items-center gap-3 flex-wrap">
+          <span className="mono text-xl font-bold" style={{ color: finished ? '#e8a317' : '#22d3ee' }}>
+            {finished ? '对局终了' : `第 ${game.turn + 1} / ${MAX_TURNS} 回合`}
+          </span>
+          <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>
+            已结算 {game.turn} 回合 · 持续牌驻留 {game.persist.length} 张
+          </span>
+          <button type="button" style={BTN} onClick={restart}>↻ 重开对局</button>
+        </div>
+        <div className="flex flex-wrap gap-1.5 mt-3">
+          {SIDES.map((s) => (
+            <span key={s.id} className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: `${s.color}1f`, color: s.color }}>
+              {s.label} 开局 科技 {INIT[s.id].tech} / 经贸 {INIT[s.id].econ}{s.id === 'cn' ? ' · 追赶者设定' : ''}
+            </span>
+          ))}
+        </div>
+      </Card>
+
+      {/* 2 —— 我方手牌 */}
+      <Card title={`② 我方手牌 · 行动点 ${apUsed}/${AP_PER_TURN}`}>
+        <div className="grid gap-3 mb-4" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))' }}>
+          {CN_HAND.map((c) => {
+            const sel = selected.includes(c.id);
+            const parked = cnPersist.has(c.id);
+            const unaffordable = !sel && apUsed + c.cost > AP_PER_TURN;
+            const blocked = finished || parked || unaffordable;
+            return (
+              <button
+                key={c.id} type="button" onClick={() => toggleCard(c)}
+                className="text-left rounded p-3"
+                style={{
+                  background: sel ? 'rgba(196,30,58,0.10)' : 'var(--bg-elevated)',
+                  border: sel ? '1px solid rgba(196,30,58,0.55)' : '1px solid var(--border-subtle)',
+                  borderTop: sel ? '3px solid #c41e3a' : `3px solid ${SIDE_COLOR[c.side]}55`,
+                  opacity: blocked && !sel ? 0.45 : 1,
+                  cursor: blocked && !sel ? 'not-allowed' : 'pointer',
+                }}
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-sm font-semibold" style={{ color: sel ? '#c41e3a' : 'var(--text-primary)' }}>{c.label}</span>
+                  <span
+                    className="text-[10px] mono px-1.5 py-0.5 rounded shrink-0"
+                    style={{ background: 'var(--bg-base)', color: '#e8a317', border: '1px solid var(--border-subtle)' }}
+                  >费 {c.cost}</span>
+                </div>
+                <div className="flex flex-wrap gap-1.5 mt-1">
+                  <span className="text-[10px] mono" style={{ color: SIDE_COLOR[c.side] }}>{SIDE_LABEL[c.side]}牌</span>
+                  <span className="text-[10px] mono" style={{ color: c.decay === '持续' ? '#10b981' : 'var(--text-tertiary)' }}>{c.decay}</span>
+                  {parked && <span className="text-[10px] mono" style={{ color: '#10b981' }}>已驻留生效中</span>}
+                </div>
+                <EffectRow effect={c.effect} />
+                <p className="text-[10px] leading-snug mt-1.5" style={{ color: 'var(--text-tertiary)' }}>{c.desc}</p>
+              </button>
+            );
+          })}
+        </div>
+        <div className="flex items-center gap-3 flex-wrap">
+          <button
+            type="button"
+            disabled={finished}
+            style={{ ...BTN_RED, padding: '8px 20px', fontSize: 13, opacity: finished ? 0.5 : 1, cursor: finished ? 'not-allowed' : 'pointer' }}
+            onClick={settleTurn}
+          >
+            {finished ? '五回合已打满 · 看终局判定' : `▶ 出牌结算本回合（第 ${game.turn + 1} 回合）`}
+          </button>
+          <span className="text-[11px] flex-1" style={{ color: 'var(--text-tertiary)', minWidth: 200 }}>
+            {selected.length === 0
+              ? '可空手过回合：按兵不动也是一手牌——科技线自然增长 +1 仍在走。'
+              : `本回合出牌：${selected.map((id) => CN_HAND.find((c) => c.id === id)?.label).join(' + ')} · 结算时美方按「${strat.label}」同步出牌。`}
+          </span>
+        </div>
+      </Card>
+
+      {/* 3 —— 战局曲线 */}
+      <Card title="③ 战局曲线 · 四线对账">
+        <EChart option={curveOption} style={{ height: 300 }} />
+        <p className="text-[11px] mt-2" style={{ color: 'var(--text-tertiary)' }}>
+          实线为科技线、虚线为经贸线。看的不是单点高低，是斜率：管制把对方科技线斜率打负，代价是己方经贸线同步走低——四条线没有一条是免费的。
+        </p>
+      </Card>
+
+      {/* 4 —— 回合纪要 */}
+      <Card title="④ 回合纪要 · 出牌与效果">
+        {game.log.length === 0 ? (
+          <p className="text-xs mono" style={{ color: 'var(--text-tertiary)' }}>
+            // 尚无纪要——选好手牌按下结算，第一回合开始记账。
+          </p>
+        ) : (
+          <div className="space-y-1.5">
+            {[...game.log].reverse().map((r) => (
+              <div key={r.turn} className="flex items-center gap-3 text-xs py-1.5 px-2 rounded flex-wrap" style={{ background: 'var(--bg-elevated)' }}>
+                <span className="mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>第 {r.turn} 回合</span>
+                <span className="shrink-0" style={{ color: '#c41e3a' }}>中方 {r.cn.join('+')}</span>
+                <span className="shrink-0" style={{ color: '#22d3ee' }}>美方 {r.us.join('+')}</span>
+                <span className="mono flex-1 text-right" style={{ minWidth: 200 }}>
+                  <span style={{ color: dColor(r.delta.cnTech) }}>中科技{sgn(r.delta.cnTech)}</span>
+                  <span className="mx-1" style={{ color: dColor(r.delta.cnEcon) }}>中经贸{sgn(r.delta.cnEcon)}</span>
+                  <span className="mx-1" style={{ color: dColor(r.delta.usTech) }}>美科技{sgn(r.delta.usTech)}</span>
+                  <span style={{ color: dColor(r.delta.usEcon) }}>美经贸{sgn(r.delta.usEcon)}</span>
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+      </Card>
+
+      {/* 5 —— 终局判定（5 回合打满后显示） */}
+      {finished && verdict && (
+        <Card title="⑤ 终局判定 · 五回合对账">
+          <div className="flex items-center gap-5 flex-wrap mb-4">
+            <div
+              className="flex items-center justify-center rounded shrink-0 px-5"
+              style={{ minWidth: 130, height: 84, border: `2px solid ${verdict.color}`, background: `${verdict.color}14` }}
+            >
+              <span className="font-bold" style={{ fontSize: 26, color: verdict.color }}>{verdict.label}</span>
+            </div>
+            <div className="flex-1" style={{ minWidth: 240 }}>
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{verdict.note}</p>
+              <p className="text-[11px] mono mt-2" style={{ color: 'var(--text-tertiary)' }}>
+                终局四线：中方 科技 {game.cn.tech}（{sgn(game.cn.tech - INIT.cn.tech)}）/ 经贸 {game.cn.econ}（{sgn(game.cn.econ - INIT.cn.econ)}） ·
+                美方 科技 {game.us.tech}（{sgn(game.us.tech - INIT.us.tech)}）/ 经贸 {game.us.econ}（{sgn(game.us.econ - INIT.us.econ)}）
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 flex-wrap">
+            <button type="button" style={BTN_CYAN} onClick={genReport}>📄 生成推演报告</button>
+            {reportMd && (
+              <button type="button" style={copied ? { ...BTN, color: '#10b981' } : BTN} onClick={copyReport}>
+                {copied ? '已复制 ✓' : '复制 Markdown'}
+              </button>
+            )}
+            <button type="button" style={BTN_RED} onClick={restart}>↻ 重开对局（换策略再推一盘）</button>
+          </div>
+          {reportMd && (
+            <pre
+              className="text-[11px] leading-relaxed p-4 rounded mt-3 mono overflow-auto"
+              style={{
+                background: 'var(--bg-base)', border: '1px solid var(--border-subtle)',
+                color: 'var(--text-secondary)', maxHeight: 420, whiteSpace: 'pre-wrap',
+              }}
+            >{reportMd}</pre>
+          )}
+        </Card>
+      )}
+
+      {/* 6 —— 框架三卡 + 页脚 */}
+      <FrameworkTrio cards={[
+        {
+          title: '筹码的不对称', subtitle: '管制快 · 反噬慢', accent: 'var(--fire-gold)', border: 'var(--fire-gold)',
+          body: '管制牌对对方科技线立竿见影，对己方经贸线却是分期付款的反噬——出牌瞬间的烈度，永远高估了五回合后的净收益。筹码的真实价格，要等账期走完才看得见。',
+          pillars: [['立竿见影', '对方科技线当回合走低。'], ['分期反噬', '己方经贸逐回合还账。'], ['底牌损耗', '稀土类筹码打一张少一张。']],
+        },
+        {
+          title: '时滞与耐力', subtitle: '慢热牌的复利', accent: 'var(--cyber-cyan)', border: 'var(--cyber-cyan)',
+          body: '攻关与标准联盟单回合数字难看，但驻留效果按回合复利——五回合的耐力赛里，胜负手不在最响的那张牌，在最沉得住气的那张。追赶者的时间结构，靠持续牌一格一格垫出来。',
+          pillars: [['驻留生效', '持续牌效果逐回合累计。'], ['自然增长', '科技线每回合 +1 不靠出牌。'], ['斜率思维', '看曲线斜率，不看单点。']],
+        },
+        {
+          title: '缓和的窗口期', subtitle: '双正但小的难处', accent: 'var(--china-red)', border: 'var(--china-red)',
+          body: '谈判与开放双正但小，单回合永远不如对抗醒目——它买的不是分数，是把博弈拖入对自己有利的时间结构。窗口期不是和解，是双方同时算清了对抗的边际成本；能开多久，取决于谁先变现敌意。',
+          pillars: [['双正但小', '缓和收益不如对抗伤害醒目。'], ['时间换档', '把耐力赛拖进己方节奏。'], ['窗口易碎', '一张管制牌就能关上。']],
+        },
+      ]} />
+      <ModuleFooter
+        moduleId="wargame"
+        links={[
+          { to: '/diplomacy', label: '外交全局框架盘', note: '推演桌上的策略档位，对应现实里四圈层布局与张力轴的操作选择。' },
+          { to: '/techtree', label: '科技攻坚树', note: '「自主攻关」那张持续牌的现实展开：卡脖子清单与攻关路线图。' },
+          { to: '/macro', label: '宏观经济仪表盘', note: '经贸线血条的现实读数——耐力赛拼的就是这张底盘。' },
+        ]}
+        disclaimer="思想实验 / 分析框架 · 非预测 · 非政策倡导 · 仅科技/经贸维度抽象博弈，双方收益矩阵为示意标定，不构成对任何现实主体的评价"
+      />
+    </div>
+  );
+}

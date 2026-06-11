@@ -18,6 +18,12 @@ const AXIS = '#27324a';
 const LABEL = '#93a1b5';
 const SPLIT = 'rgba(148,163,184,0.1)';
 
+const BTN = {
+  background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)',
+  color: 'var(--text-secondary)', borderRadius: 6, padding: '4px 12px', fontSize: 12, cursor: 'pointer',
+};
+const BTN_CYAN = { ...BTN, background: 'rgba(34,211,238,0.12)', border: '1px solid rgba(34,211,238,0.35)', color: '#22d3ee', fontWeight: 600 };
+
 // 雷达底座：六维统一指标轴
 const RADAR_FRAME = {
   indicator: ABILITY_DIMS.map((d) => ({ name: d, max: 100 })),
@@ -75,6 +81,8 @@ export default function Page() {
   const [levelSel, setLevelSel] = useState('全部');
   const [picked, setPicked] = useState(null); // 选中人物 name
   const [scnKey, setScnKey] = useState('chipBan');
+  const [report, setReport] = useState('');
+  const [copied, setCopied] = useState(false);
 
   // ── 全库画像：profileOf 一次性跑完并缓存 ──
   const profiles = useMemo(
@@ -181,6 +189,59 @@ export default function Page() {
   }), [mobility]);
 
   const toggleTag = (id) => setTagSel((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
+
+  // ── 人岗匹配报告：当前情景 + 匹配结果 + 库级统计 → Markdown ──
+  const genReport = () => {
+    if (!lib || !stats) return;
+    const lines = [];
+    lines.push('# 组织画像引擎 · 人岗匹配报告');
+    lines.push('');
+    lines.push(`> 情景匹配引擎输出 · 全库 ${stats.count} 人画像 × matchScore 加权向量距离（算法演示）`);
+    lines.push('');
+    lines.push('## 一、情景与需求画像');
+    lines.push('');
+    lines.push(`- 选中情景：**${scene.label}**（key: ${scene.key}）`);
+    lines.push(`- 情景说明：${scene.desc}`);
+    lines.push('- 需求向量（六维，0-100）：');
+    ABILITY_DIMS.forEach((d, i) => lines.push(`  - ${d}：${scene.need[i]}`));
+    const needMax = Math.max(...scene.need);
+    lines.push(`- 首要需求维度：**${ABILITY_DIMS[scene.need.indexOf(needMax)]}**（${needMax}）——匹配权重随需求强度分配。`);
+    lines.push('');
+    lines.push('## 二、Top 推荐名单');
+    lines.push('');
+    top12.forEach(({ fig, p, score }, i) => {
+      const tags = p.tags.length ? p.tags.join('/') : '无标签命中';
+      lines.push(`${i + 1}. ${fig.name} — 匹配分 ${score} · ${p.seniority} · 标签：${tags}（公开履历画像）`);
+    });
+    lines.push('');
+    lines.push('## 三、库级供给面观察');
+    lines.push('');
+    lines.push(`- 已画像 ${stats.count} 人；经历标签覆盖率 ${stats.tagCover}%；平均跨省足迹 ${stats.crossAvg}；六维总均分 ${stats.dimMean}。`);
+    lines.push(`- 全库六维均值：${ABILITY_DIMS.map((d, i) => `${d} ${Math.round(lib.dimAvg[i])}`).join(' / ')}。`);
+    const topTags = Object.entries(lib.tagCounts).sort((a, b) => b[1] - a[1]).slice(0, 3);
+    if (topTags.length) lines.push(`- 标签供给前三：${topTags.map(([t, c]) => `${t}（${c} 人）`).join('、')}。`);
+    lines.push(`- 跨省历练（≥2 省）${mobility.mobile} 人（${mobility.share}%），本地深耕（≤1 省）${mobility.local} 人。`);
+    const gaps = ABILITY_DIMS
+      .map((d, i) => ({ d, gap: scene.need[i] - Math.round(lib.dimAvg[i]) }))
+      .filter((x) => x.gap > 0)
+      .sort((a, b) => b.gap - a.gap);
+    lines.push(gaps.length
+      ? `- 供给缺口（需求 − 全库均值 > 0）：${gaps.map((x) => `${x.d} +${x.gap}`).join('、')}——该情景需求对全库供给面构成结构性压力。`
+      : '- 本情景各维需求均不超过全库均值，供给面整体充裕。');
+    lines.push('');
+    lines.push('---');
+    lines.push('');
+    lines.push('*画像由公开履历关键词自动推断，匹配为算法演示；不构成对任何真实人物的人事评价或预测*');
+    setReport(lines.join('\n'));
+    setCopied(false);
+  };
+
+  const copyReport = () => {
+    navigator.clipboard?.writeText(report).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1600);
+    });
+  };
 
   return (
     <>
@@ -346,6 +407,30 @@ export default function Page() {
                 )}
               </div>
             </Grid>
+          </Card>
+
+          {/* ── 人岗匹配报告 ── */}
+          <Card title="📄 人岗匹配报告">
+            <p className="text-xs leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>
+              将当前选中情景（{scene.label}）的需求画像、Top 推荐名单与库级供给面观察拼装为 Markdown 报告，可一键复制归档。
+            </p>
+            <div className="flex items-center gap-2 flex-wrap">
+              <button type="button" style={BTN_CYAN} onClick={genReport}>生成匹配报告</button>
+              {report && (
+                <button type="button" style={copied ? { ...BTN, color: '#10b981' } : BTN} onClick={copyReport}>
+                  {copied ? '已复制 ✓' : '复制 Markdown'}
+                </button>
+              )}
+            </div>
+            {report && (
+              <pre
+                className="text-[11px] leading-relaxed p-4 rounded mt-3 mono overflow-auto"
+                style={{
+                  background: 'var(--bg-base)', border: '1px solid var(--border-subtle)',
+                  color: 'var(--text-secondary)', maxHeight: 420, whiteSpace: 'pre-wrap',
+                }}
+              >{report}</pre>
+            )}
           </Card>
 
           {/* ── 流动性分析 ── */}

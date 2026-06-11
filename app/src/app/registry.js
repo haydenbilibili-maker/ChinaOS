@@ -419,6 +419,21 @@ export const MODULES = [
     component: lazy(() => import('../modules/handong/Page.jsx')),
   },
   {
+    id: 'macro', path: '/macro', group: 'sim',
+    title: '宏观调控驾驶舱', subtitle: '模拟 · 政策组合 · 八季度推演 · 四难平衡', icon: 'Gauge',
+    component: lazy(() => import('../modules/macro/Page.jsx')),
+  },
+  {
+    id: 'inspection', path: '/inspection', group: 'sim',
+    title: '中央巡视沙盘', subtitle: '虚构汉东 · 线索研判 · 谈话调度 · 整改跟踪', icon: 'ClipboardCheck',
+    component: lazy(() => import('../modules/inspection/Page.jsx')),
+  },
+  {
+    id: 'wargame', path: '/wargame', group: 'sim',
+    title: '大国博弈推演桌', subtitle: '模拟 · 科技经贸博弈 · 回合制 · 思想实验', icon: 'Swords',
+    component: lazy(() => import('../modules/wargame/Page.jsx')),
+  },
+  {
     id: 'legalStatutes', path: '/legal-statutes', group: 'legal',
     title: '法律条文', subtitle: '法律语料 · 行政法规 · 司法解释', icon: 'BookMarked', accent: '#8b5cf6',
     component: lazy(() => import('../modules/legalStatutes/Page.jsx')),
