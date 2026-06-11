@@ -371,6 +371,15 @@ export const MODULES = [
     component: lazy(() => import('../modules/techtree/Page.jsx')),
   },
   {
+    id: 'chronicle',
+    path: '/chronicle',
+    group: 'lens',
+    title: '国运时间轴',
+    subtitle: '1949→2026 · 七时代 · 六域大事记',
+    icon: 'History',
+    component: lazy(() => import('../modules/chronicle/Page.jsx')),
+  },
+  {
     id: 'sandbox',
     path: '/sandbox',
     group: 'sim',
