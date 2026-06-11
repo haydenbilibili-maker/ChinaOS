@@ -8,6 +8,8 @@ import { AXIS, GRID_LINE, LABEL } from '../shared/chartHelpers.js';
 import * as DB from '../../lib/db/localdb.js';
 import { useDocs } from '../../lib/db/useDataset.js';
 import { GWR_DOCS } from '../../lib/db/docSeed.js';
+import { INDICATORS as WATCH_INDICATORS, LEVELS as WATCH_LEVELS } from '../watchtower/data.js';
+import { EVENTS as CHRONICLE_EVENTS, ERAS as CHRONICLE_ERAS } from '../chronicle/data.js';
 import {
   AS_OF,
   MODULE_COUNT,
@@ -405,6 +407,58 @@ function useOptions() {
   }, []);
 }
 
+// ── 监测台速览（红档告警回流指挥舱） ─────────────────────────
+function WatchPulse() {
+  const alerts = useMemo(() => WATCH_INDICATORS.filter((i) => i.level === 'cool').slice(0, 5), []);
+  const counts = useMemo(() => ({
+    cool: WATCH_INDICATORS.filter((i) => i.level === 'cool').length,
+    hold: WATCH_INDICATORS.filter((i) => i.level === 'hold').length,
+    warm: WATCH_INDICATORS.filter((i) => i.level === 'warm').length,
+  }), []);
+  return (
+    <ScreenCard title="监测台速览 · 越线告警" accent={COOL}
+      footer={<>六域 {WATCH_INDICATORS.length} 项先行指标 · 三档阈值全盘见 <Link to="/watchtower" className="mono" style={{ color: STEEL }}>全局监测台</Link></>}>
+      <div className="flex gap-2 mb-2.5">
+        {[['红', counts.cool, WATCH_LEVELS.cool.color], ['黄', counts.hold, WATCH_LEVELS.hold.color], ['绿', counts.warm, WATCH_LEVELS.warm.color]].map(([k, n, c]) => (
+          <span key={k} className="text-[10px] mono px-2 py-0.5 rounded-full" style={{ background: `${c}14`, color: c, border: `1px solid ${c}44` }}>{k} {n}</span>
+        ))}
+      </div>
+      <div className="space-y-1.5">
+        {alerts.map((a) => (
+          <Link key={a.id} to="/watchtower" className="os-card-interactive flex items-center gap-2 rounded-lg px-2.5 py-1.5"
+            style={{ background: 'var(--bg-elevated)', borderLeft: `2px solid ${COOL}` }}>
+            <span className="text-xs font-medium truncate" style={{ color: 'var(--text-primary)', maxWidth: 110 }}>{a.name}</span>
+            <span className="text-[10px] mono truncate flex-1" style={{ color: COOL }}>{a.reading}</span>
+            <span className="mono text-[10px] shrink-0" style={{ color: 'var(--text-tertiary)' }}>{a.trend}</span>
+          </Link>
+        ))}
+      </div>
+    </ScreenCard>
+  );
+}
+
+// ── 时间轴速览（当前时代 + 最新节点回流指挥舱） ───────────────
+function ChroniclePulse() {
+  const era = CHRONICLE_ERAS[CHRONICLE_ERAS.length - 1];
+  const recent = useMemo(() => CHRONICLE_EVENTS.slice(-5).reverse(), []);
+  return (
+    <ScreenCard title={`国运坐标 · ${era.label} ${era.range[0]}–${era.range[1]}`} accent={era.accent || '#fb923c'}
+      footer={<>1949→2026 七时代 {CHRONICLE_EVENTS.length} 节点全轴见 <Link to="/chronicle" className="mono" style={{ color: STEEL }}>国运时间轴</Link></>}>
+      <p className="text-[11px] leading-relaxed mb-2.5 px-2.5 py-2 rounded-lg" style={{ background: 'var(--bg-elevated)', color: 'var(--text-secondary)', borderLeft: `2px solid ${era.accent || '#fb923c'}` }}>{era.summary}</p>
+      <div className="space-y-1.5">
+        {recent.map((e) => (
+          <Link key={`${e.y}-${e.title}`} to={e.to || '/chronicle'} className="os-card-interactive flex items-center gap-2 rounded-lg px-2.5 py-1.5"
+            style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}>
+            <span className="mono text-[10px] shrink-0" style={{ color: era.accent || '#fb923c' }}>{e.y}</span>
+            <span className="text-xs font-medium truncate" style={{ color: 'var(--text-primary)' }}>{e.title}</span>
+            {e.w === 3 && <span className="text-[9px] mono ml-auto shrink-0" style={{ color: HOLD }}>★</span>}
+          </Link>
+        ))}
+      </div>
+    </ScreenCard>
+  );
+}
+
 // ── 关注清单（星标模块 · localStorage + 自定义事件跨组件同步） ──
 function readFavs() { try { return JSON.parse(localStorage.getItem('cos-favs') || '[]'); } catch (_) { return []; } }
 function useFavs() {
@@ -666,19 +720,7 @@ export default function DashboardPage() {
       </section>
 
       {/* ── 1.5 神州活图 · 紧凑预览 ───────────────────────── */}
-      <LiveChinaMap className="mb-4" variant="compact" />
-      <Link
-        to="/shenzhou-live"
-        className="os-card-interactive mb-8 flex items-center justify-between rounded-lg px-4 py-3"
-        style={{ background: 'var(--bg-elevated)', border: '1px solid rgba(34,211,238,0.28)' }}
-      >
-        <span className="flex items-center gap-2">
-          <Lucide.Map size={16} style={{ color: STEEL }} />
-          <span className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>神州活图</span>
-          <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>十二层指标 · 时间轴 · 对比</span>
-        </span>
-        <span className="text-xs mono" style={{ color: STEEL }}>进入模块 →</span>
-      </Link>
+      <LiveChinaMap className="mb-8" variant="compact" />
 
       {/* ── 2. 态势 · 政策 · 底座 三联速览 ─────────────────── */}
       <section className="mb-8">
@@ -696,6 +738,10 @@ export default function DashboardPage() {
           <KondratievClock />
           <RiskRadar />
           <PolicyCalendar />
+        </Grid>
+        <Grid cols={2} gap="0.85rem" className="dash-screen-grid mt-3">
+          <WatchPulse />
+          <ChroniclePulse />
         </Grid>
       </section>
 

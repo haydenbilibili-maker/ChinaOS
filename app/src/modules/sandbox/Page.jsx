@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { IntroCard, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import ChinaMap from '../../lib/viz/ChinaMap.jsx';
 import DataBus from '../../lib/data/DataBus.js';
@@ -125,9 +126,104 @@ const SCENARIOS = {
   breakthrough: { label: '产业突破窗口', rec: '书记改配「产业操盘手」型：扩大容错授权与「揭榜挂帅」，KPI 从均衡考核切换为单点突破（如吉林押注一汽电动化）；引入科创/链主企业背景副省长，打通央企总部资源。对应信号：细分赛道全国份额拐点。' },
 };
 
+// ============================================================================
+// 国家级危机情景引擎 · 压力测试（思想实验，非预测）
+// 实际冲击 = 基准系数 × 烈度(0-100)；六域固定：科技/经济/社会/外交/能源/金融
+// ============================================================================
+const CRISIS_DOMAINS = ['科技', '经济', '社会', '外交', '能源', '金融'];
+
+const CRISES = {
+  chipBan: {
+    label: '芯片全面禁运', color: '#8b5cf6',
+    intro: '先进制程、设备与 EDA 全面断供，半导体链被迫整体国产替代的极限压力测试。',
+    chain: ['先进制程与设备/EDA 断供', 'AI/车规高端芯片缺口放大', '整机与智能终端出口受挫', '替代投资与大基金井喷', '成熟制程产能过剩风险'],
+    impact: [0.95, 0.6, 0.3, 0.7, 0.15, 0.4],
+    toolbox: [
+      ['成熟制程极限堆叠', '28nm + Chiplet 先稳住车规/工控/家电基本盘'],
+      ['卡点揭榜挂帅', '设备/材料/EDA 逐项立军令状，大基金三期定向投放'],
+      ['存量囤备+第三地转口', '拉长断供生效时间窗，为替代争取窗口期'],
+      ['稀土/镓锗对等反制', '以上游材料筹码换设备许可的谈判空间'],
+    ],
+    talentNeed: '需要供应链作战型 + 科技攻坚型干部前置：懂晶圆厂建设周期、敢拍板百亿级设备订单的复合操盘手。',
+    watch: ['半导体设备进口额同比', '关键环节国产化率（刻蚀/光刻胶）', '代工厂对陆出货许可变动'],
+  },
+  strait: {
+    label: '台海高烈度对峙', color: '#c41e3a',
+    intro: '演训升级为持续性海空封控对峙，航运保险、外资风险偏好与金融溢价同时重估。',
+    chain: ['海空封控演训常态化', '航运改道+战争险费率飙升', '外资避险撤出与供应链转单', '金融市场风险溢价重估', '战时经济动员预案激活'],
+    impact: [0.55, 0.75, 0.6, 0.95, 0.7, 0.85],
+    toolbox: [
+      ['灰区节奏控制', '封控烈度分级可逆，保留降级台阶避免误判螺旋'],
+      ['金融防波堤', '汇率干预+离岸流动性安排+关键企业外债置换'],
+      ['能源粮食战略囤备', '90 天以上进口中断承受力为底线目标'],
+      ['法律战+外宣战', '封控的国内法/国际法叙事先行，分化对手联盟'],
+    ],
+    talentNeed: '需要军地协同型 + 金融维稳型干部双前置：东南沿海主官须有动员体系与外资安抚的双重操作能力。',
+    watch: ['台海周边战争险费率', '海峡 AIS 航迹密度异动', '离岸人民币隐含波动率'],
+  },
+  housing: {
+    label: '房企连环违约', color: '#e8a317',
+    intro: '头部房企交叉违约引爆信用收缩，土地财政与居民资产负债表同时承压。',
+    chain: ['头部房企交叉违约', '保交楼压力+预售资金冻结', '土地出让金骤降冲击地方财政', '居民资产缩水压制消费', '城投与中小银行风险传染'],
+    impact: [0.1, 0.8, 0.7, 0.15, 0.1, 0.85],
+    toolbox: [
+      ['保交楼国家队接管', '项目层面封闭运作，切断「烂尾→断供」社会传导'],
+      ['白名单融资滴灌', '区分项目风险与集团风险，避免误伤在建优质盘'],
+      ['收储转保障房', '央行再贷款收购存量，托底价格同时补保障短板'],
+      ['地方化债组合拳', '置换债+央地共担，防止土地财政缺口击穿三保'],
+    ],
+    talentNeed: '需要金融处置型 + 社会稳控型干部组合：既能拆弹债务重组，又能在业主维权一线管理预期。',
+    watch: ['70 城房价环比下行扩散度', '土地出让金同比', 'AA 城投利差走阔'],
+  },
+  grain: {
+    label: '粮食歉收+大豆断供', color: '#10b981',
+    intro: '极端气候致主产区歉收，叠加大豆进口断供，饲料—肉价—CPI 链条全面承压。',
+    chain: ['主产区极端气候歉收', '大豆/玉米进口通道收紧', '饲料成本推升肉蛋价格', 'CPI 食品项抬升挤压低收入群体', '储备投放与应急配给预案启动'],
+    impact: [0.05, 0.45, 0.8, 0.5, 0.2, 0.25],
+    toolbox: [
+      ['中央储备梯次投放', '稻麦储备充裕是底牌，节奏比规模更重要'],
+      ['进口多元化急转', '巴西/阿根廷/俄罗斯多源替代+国际粮商长协锁价'],
+      ['豆粕减量替代', '低蛋白日粮+合成生物饲料蛋白的应急放量'],
+      ['最低收购价+种粮直补加码', '保住下一季播种面积的政治底线'],
+    ],
+    talentNeed: '需要农业系统型 + 应急保供型干部前置：主产省主官的粮食安全党政同责在此情景下一票否决。',
+    watch: ['主产省墒情与积温距平', 'CBOT 大豆价格+到岸升贴水', '能繁母猪存栏环比'],
+  },
+  finance: {
+    label: '外部金融冲击', color: '#22d3ee',
+    intro: '美元流动性危机或金融制裁升级，资本外流、汇率与外储三线同时承压。',
+    chain: ['美元流动性收紧/制裁升级', '资本外流+人民币贬值压力', '外储消耗与离岸市场失锚', '进口成本抬升输入通胀', '国内信用被动收缩'],
+    impact: [0.2, 0.65, 0.35, 0.6, 0.45, 0.95],
+    toolbox: [
+      ['资本流动宏观审慎', '远购风险准备金/逆周期因子分级加码，不搞硬管制'],
+      ['本币结算扩围', 'CIPS+货币互换网络对冲 SWIFT 依赖的极限场景'],
+      ['外储结构防御化', '黄金与多元资产占比提升，降低美债敞口集中度'],
+      ['离岸流动性反击', '央票发行+离岸池调控，提高做空人民币成本'],
+    ],
+    talentNeed: '需要国际金融实战型干部前置：央行/外管/主权基金履历，经历过 2015 汇改一役者优先。',
+    watch: ['离岸-在岸汇差(CNH-CNY)', '外储月度变动与估值剥离', '中美十年期利差'],
+  },
+  pandemic: {
+    label: '公共卫生危机复发', color: '#fb923c',
+    intro: '新发呼吸道病原体快速过峰，考验常态化监测、医疗冗余与社会预期管理。',
+    chain: ['新发病原体跨区传播', '医疗资源挤兑风险显形', '服务业与线下消费骤冷', '防控与开放的预期反复摇摆', '财政补贴与公卫体系紧急扩容'],
+    impact: [0.15, 0.55, 0.9, 0.3, 0.1, 0.35],
+    toolbox: [
+      ['哨点监测前置', '多点触发预警，把发现窗口从周压缩到天'],
+      ['分级诊疗硬隔离', '基层首诊+重症集中，守住 ICU 床位不挤兑'],
+      ['精准防控工具箱', '以最小社会成本换传播速降，杜绝层层加码回潮'],
+      ['预期管理一个口径', '权威信息单一出口，对冲恐慌性囤积与谣言'],
+    ],
+    talentNeed: '需要公共卫生专业型 + 城市运行保障型干部组合：疾控体系出身的副省长配置成为刚需。',
+    watch: ['哨点医院病原阳性率', '发热门诊就诊量周环比', '重症床位占用率'],
+  },
+};
+
 export default function Page() {
   const [sel, setSel] = useState('黑龙江省');
   const [scn, setScn] = useState('fiscal');
+  const [crisisKey, setCrisisKey] = useState('chipBan');
+  const [intensity, setIntensity] = useState(50);
   const [national, setNational] = useState(null); // WB 实时全国基线
   const [natState, setNatState] = useState('loading'); // loading | live | offline
 
@@ -181,6 +277,26 @@ export default function Page() {
     };
   }, [computed]);
 
+  // ── 国家级危机情景引擎：实际冲击 = 基准系数 × 烈度 ──
+  const crisis = CRISES[crisisKey];
+  const crisisVals = useMemo(() => crisis.impact.map((k) => Math.round(k * intensity)), [crisis, intensity]);
+  const crisisScore = useMemo(() => Math.round(crisisVals.reduce((a, b) => a + b, 0) / crisisVals.length), [crisisVals]);
+  const crisisVerdict = crisisScore < 30
+    ? { tier: '可吸收', color: '#10b981', read: '冲击在政策工具与冗余产能的吸收范围内，重点是防止预期自我强化。' }
+    : crisisScore <= 60
+      ? { tier: '承压管理', color: '#e8a317', read: '系统进入承压区：跨部门专班须接管传导链关键节点，工具箱前两项立即启用。' }
+      : { tier: '系统性应激', color: '#c41e3a', read: '冲击越过自稳阈值：进入战时式资源统配，全部工具同时上桌并接受次生代价。' };
+  const crisisOption = useMemo(() => ({
+    grid: { left: 64, right: 40, top: 8, bottom: 24 },
+    xAxis: { type: 'value', max: 100, axisLabel: { color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+    yAxis: { type: 'category', data: [...CRISIS_DOMAINS].reverse(), axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } },
+    series: [{
+      type: 'bar', data: [...crisisVals].reverse(), barWidth: 14,
+      itemStyle: { color: (p) => `rgba(196,30,58,${(0.3 + 0.7 * p.value / 100).toFixed(2)})`, borderRadius: 3 },
+      label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 },
+    }],
+  }), [crisisVals]);
+
   return (
     <div>
       <PageHeader
@@ -188,10 +304,9 @@ export default function Page() {
         title="治国沙盒 · 区域治理人才配置"
         subtitle="挑战画像 → 能力需求 → 履历池匹配 —— 全国基线实时(WB)、省级熵增实测、东北+边疆带 7 省人才配置"
       />
-      <Card className="mb-6"><p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-        治理的第一道工序是「把对的人放进对的省」。本沙盘把每个省域的问题<strong style={{ color: 'var(--text-primary)' }}>向量化</strong>，推导主政能力需求，再从履历池匹配班子<strong style={{ color: 'var(--text-primary)' }}>画像</strong>。熵增指数由各省<strong style={{ color: 'var(--text-primary)' }}>真实财政/人口/债务数据</strong>现场计算（公式见下）。已配置 7 省：东北三省（粮食/产业/财政型）+ 边疆带四省区（边防/民族/生态型）——两类省份的挑战向量根本不同。
-        <span style={{ color: 'var(--text-tertiary)' }}> 本页为思维训练模型，所有「人才」均为画像/原型，不指向任何真实人事评价。</span>
-      </p></Card>
+      <IntroCard>
+        治理的第一道工序是「把对的人放进对的省」。本沙盘把每个省域的问题<strong style={{ color: 'var(--text-primary)' }}>向量化</strong>，推导主政能力需求，再从履历池匹配班子<strong style={{ color: 'var(--text-primary)' }}>画像</strong>。熵增指数由各省<strong style={{ color: 'var(--text-primary)' }}>真实财政/人口/债务数据</strong>现场计算。已配置 7 省：东北三省 + 边疆带四省区——两类省份的挑战向量根本不同。
+      </IntroCard>
       <Grid cols={4} className="mb-6">
         <Stat value={computed ? (source === 'db' ? '31 · 本地库' : '31 · 快照') : '加载中…'} label="省级数据态（联动）" accent="#22d3ee" />
         <Stat value="7 / 31" label="人才已配置（东北+边疆带）" accent="#10b981" />
@@ -291,7 +406,7 @@ export default function Page() {
           if (figures === null) return <div className="mono text-xs" style={{ color: 'var(--text-tertiary)' }}>// 加载简历库…</div>;
           if (!matched.length) return (
             <p className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
-              简历库中暂无匹配「{short}」的简历。到 <Link to="/foundation" className="mono" style={{ color: 'var(--cyber-cyan)' }}>数据底座 · 政治人物简历</Link> 上传并解析（含该省份关键词即自动关联）。
+              中国政要库中暂无匹配「{short}」的履历。到 <Link to="/foundation" className="mono" style={{ color: 'var(--cyber-cyan)' }}>数据底座 · 人才精英</Link> 上传并解析（含该省份关键词即自动关联）。
             </p>
           );
           return (
@@ -306,7 +421,7 @@ export default function Page() {
             </Grid>
           );
         })()}
-        <p className="text-[11px] mt-3" style={{ color: 'var(--text-tertiary)' }}>简历由数据底座 admin 上传解析、按省份关键词自动关联；均为用户提供的公开履历，供研究检索，不构成人事评价。</p>
+        <p className="text-[11px] mt-3" style={{ color: 'var(--text-tertiary)' }}>简历由数据底座 admin 上传解析、按省份关键词自动关联；均为用户提供的政要公开任职信息，供研究检索，不构成人事评价。</p>
       </Card>
 
       <Card title="熵增监控 · 实测 Top 10（全国）" className="mb-6">
@@ -326,11 +441,98 @@ export default function Page() {
         <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{SCENARIOS[scn].rec}</p>
       </Card>
 
-      <Grid cols={2}>
-        <Card title="与「政府体系」叠读"><p className="text-xs leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>本沙盘是「组织算法」（多岗位轮换、政绩评价矩阵）的应用层：压力型体制的责任状，最终落在人岗匹配的精度上。</p></Card>
-        <Card title="数据口径"><p className="text-xs leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>财政自给率/常住人口/净变动为 2023 年各省统计公报与财政决算公开数据（人工录入快照）；债务率为研报区间估算。经 DataBus 加载，后续可替换为实时接口。</p></Card>
-      </Grid>
-      <p className="text-xs mt-6" style={{ color: 'var(--text-tertiary)' }}>人才均为画像/原型，不构成对任何真实人物或人事安排的评价；熵增公式为训练模型，不替代官方统计口径</p>
+      {/* ════════ 国家级危机情景引擎（压力测试） ════════ */}
+      <div className="os-card p-5 mb-6" style={{ borderColor: `${crisis.color}66` }}>
+        <div className="flex items-center justify-between flex-wrap gap-2 mb-3">
+          <div>
+            <div className="text-[10px] mono uppercase tracking-wider" style={{ color: crisis.color }}>Crisis Engine · 国家级压力测试</div>
+            <h3 className="text-base font-semibold mt-0.5" style={{ color: 'var(--text-primary)' }}>危机情景引擎 · 六情景 × 烈度推演</h3>
+          </div>
+          <div className="text-right">
+            <span className="text-[11px] mono px-2.5 py-1 rounded" style={{ background: `${crisisVerdict.color}22`, color: crisisVerdict.color, border: `1px solid ${crisisVerdict.color}55` }}>
+              总冲击 {crisisScore} · {crisisVerdict.tier}
+            </span>
+          </div>
+        </div>
+
+        <div className="flex gap-1 flex-wrap mb-4">
+          {Object.keys(CRISES).map((k) => (
+            <button key={k} onClick={() => setCrisisKey(k)} className="text-xs px-3 py-1 rounded mono"
+              style={{
+                background: k === crisisKey ? `${CRISES[k].color}26` : 'var(--bg-elevated)',
+                color: k === crisisKey ? CRISES[k].color : 'var(--text-secondary)',
+                border: k === crisisKey ? `1px solid ${CRISES[k].color}66` : '1px solid transparent', cursor: 'pointer',
+              }}>
+              {CRISES[k].label}
+            </button>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-3 mb-4">
+          <span className="text-[11px] mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>烈度 0—100</span>
+          <input type="range" min={0} max={100} value={intensity} onChange={(e) => setIntensity(Number(e.target.value))}
+            style={{ width: '100%', accentColor: crisis.color }} />
+          <span className="text-sm mono font-semibold w-10 text-right shrink-0" style={{ color: crisis.color }}>{intensity}</span>
+        </div>
+
+        <Grid cols={2}>
+          <div>
+            <p className="text-xs leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>
+              <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>机理：</span>{crisis.intro}
+            </p>
+            <div className="text-[10px] mono uppercase mb-2" style={{ color: crisis.color }}>传导链（{crisis.chain.length} 步）</div>
+            <div className="space-y-1.5 mb-4" style={{ borderLeft: `2px solid ${crisis.color}44`, paddingLeft: 10 }}>
+              {crisis.chain.map((step, i) => (
+                <div key={step} className="flex items-center gap-2">
+                  <span className="text-[10px] mono w-5 h-5 rounded-full flex items-center justify-center shrink-0"
+                    style={{ background: `${crisis.color}22`, color: crisis.color }}>{i + 1}</span>
+                  <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>{step}</span>
+                </div>
+              ))}
+            </div>
+            <div className="p-3 rounded mb-3" style={{ background: 'var(--bg-elevated)' }}>
+              <span className="text-[10px] mono uppercase" style={{ color: crisisVerdict.color }}>判定 · {crisisVerdict.tier}</span>
+              <p className="text-xs mt-1 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{crisisVerdict.read}</p>
+            </div>
+            <div className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>
+              <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>先行指标：</span>
+              {crisis.watch.join(' · ')}（详见 <Link to="/watchtower" className="mono" style={{ color: 'var(--cyber-cyan)' }}>风险瞭望塔</Link>）
+            </div>
+          </div>
+
+          <div>
+            <div className="text-[10px] mono uppercase mb-1" style={{ color: '#93a1b5' }}>六域冲击 = 基准系数 × 烈度 {intensity}</div>
+            <EChart option={crisisOption} style={{ height: 200 }} />
+            <div className="text-[10px] mono uppercase mt-3 mb-2" style={{ color: crisis.color }}>应对工具箱</div>
+            <div className="space-y-2 mb-3">
+              {crisis.toolbox.map(([t, d]) => (
+                <div key={t} style={{ borderLeft: `2px solid ${crisis.color}`, paddingLeft: 10 }}>
+                  <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{t}</div>
+                  <p className="text-[11px] mt-0.5 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
+                </div>
+              ))}
+            </div>
+            <div className="p-3 rounded" style={{ background: 'var(--bg-elevated)' }}>
+              <span className="text-[10px] mono uppercase" style={{ color: 'var(--fire-gold)' }}>班子画像需求</span>
+              <p className="text-xs mt-1 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                {crisis.talentNeed} <Link to="/talent" className="mono" style={{ color: 'var(--cyber-cyan)' }}>→ 干部画像库</Link>
+              </p>
+            </div>
+          </div>
+        </Grid>
+
+        <p className="text-[11px] mt-4" style={{ color: 'var(--text-tertiary)' }}>
+          情景为思想实验/压力测试框架，非预测；传导系数为示意标定，烈度由用户设定，不构成对任何事件概率的判断。
+        </p>
+      </div>
+
+      <FrameworkTrio cards={[
+        { title: '盐铁逻辑', subtitle: '命脉省域 · 压舱石', body: '东北粮食安全、边疆稳边固防、能源保供——这些省份的 KPI 权重与南方增长型省份根本不同，是当代盐铁专营的地理映射。', pillars: [['粮食', '政治责任压舱石。'], ['边疆', '稳边固防优先。'], ['财政', '倒挂与转移支付。']] },
+        { title: '摸石头方法论', subtitle: '画像 · 灰度 · 迭代', body: '人才均为画像/原型而非真人评价——通过挑战向量推导能力需求，在履历池中灰度匹配，是组织算法的训练沙盒。', pillars: [['向量化', '省域挑战画像。'], ['匹配', '履历池联动。'], ['情景', '条件变化推演。']] },
+        { title: '升级路径', subtitle: '从熵增到再配置', body: '熵增指数持续抬升即触发班子再配置推演——财政倒挂、人口流出、债务压力的三维合成，是治理精度的量化入口。', pillars: [['实测', '2023 公报口径。'], ['全国', 'WB 实时基线。'], ['监控', 'Top10 预警。']] },
+      ]} />
+
+      <ModuleFooter moduleId="sandbox" disclaimer="人才均为画像/原型，不构成对任何真实人物或人事安排的评价；熵增公式为训练模型，不替代官方统计口径" />
     </div>
   );
 }
