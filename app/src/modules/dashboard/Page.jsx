@@ -10,6 +10,8 @@ import { useDocs } from '../../lib/db/useDataset.js';
 import { GWR_DOCS } from '../../lib/db/docSeed.js';
 import { INDICATORS as WATCH_INDICATORS, LEVELS as WATCH_LEVELS } from '../watchtower/data.js';
 import { EVENTS as CHRONICLE_EVENTS, ERAS as CHRONICLE_ERAS } from '../chronicle/data.js';
+import { useGdeltNews, timeAgo, domainBadge } from './liveGdelt.js';
+import { useLiveMarkets, probColor } from './livePolymarket.js';
 import {
   AS_OF,
   MODULE_COUNT,
@@ -459,6 +461,70 @@ function ChroniclePulse() {
   );
 }
 
+// ── 全球涉华舆情流（GDELT 实时索引 · 英文源） ─────────────────
+function GdeltPulse() {
+  const { articles, fetchedAt, source, loading, error } = useGdeltNews();
+  const srcLabel = source === 'hn' ? 'HN 实时（技术面兜底）' : 'GDELT 实时';
+  return (
+    <ScreenCard title="全球涉华舆情流" accent={STEEL}
+      footer={<>
+        <span className="mono px-1.5 py-0.5 rounded mr-1.5" style={{ background: articles?.length ? 'rgba(16,185,129,0.16)' : 'var(--bg-elevated)', color: articles?.length ? WARM : 'var(--text-tertiary)', fontSize: 9 }}>{articles?.length ? `● ${srcLabel} ${fetchedAt ? fetchedAt.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }) : ''}` : '○ 待接入'}</span>
+        英文媒体涉华条目 · 双源（GDELT→HN）· 标题与立场来自第三方媒体，不代表本项目观点
+      </>}>
+      {loading && <div className="text-[11px] mono py-6 text-center" style={{ color: 'var(--text-tertiary)' }}>{'// 正在拉取 GDELT 索引…'}</div>}
+      {!loading && error && !articles?.length && <div className="text-[11px] mono py-6 text-center" style={{ color: HOLD }}>实时源不可达：{error} · 自动重试中</div>}
+      {!!articles?.length && (
+        <div className="space-y-1.5" style={{ maxHeight: 252, overflowY: 'auto' }}>
+          {articles.slice(0, 10).map((a) => (
+            <a key={a.url} href={a.url} target="_blank" rel="noopener noreferrer"
+              className="os-card-interactive flex items-start gap-2 rounded-lg px-2.5 py-1.5"
+              style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}>
+              <span className="min-w-0 flex-1">
+                <span className="block text-xs leading-snug" style={{ color: 'var(--text-primary)', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{a.title}</span>
+                <span className="block text-[10px] mono mt-0.5" style={{ color: 'var(--text-tertiary)' }}>{domainBadge(a.domain)} · {timeAgo(a.when)}</span>
+              </span>
+              <span className="mono text-[10px] shrink-0 mt-0.5" style={{ color: STEEL }}>↗</span>
+            </a>
+          ))}
+        </div>
+      )}
+    </ScreenCard>
+  );
+}
+
+// ── 预测市场速览（Polymarket 群体定价 · 已滤地缘敏感议题） ──────
+function PolyPulse() {
+  const { markets, fetchedAt, loading, error } = useLiveMarkets();
+  return (
+    <ScreenCard title="预测市场速览 · 群体预期定价" accent="#8b5cf6"
+      footer={<>
+        <span className="mono px-1.5 py-0.5 rounded mr-1.5" style={{ background: markets?.length ? 'rgba(16,185,129,0.16)' : 'var(--bg-elevated)', color: markets?.length ? WARM : 'var(--text-tertiary)', fontSize: 9 }}>{markets?.length ? `● Polymarket 实时 ${fetchedAt ? fetchedAt.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }) : ''}` : '○ 待接入'}</span>
+        交易者聚合概率（宏观/科技类，已过滤地缘敏感）· 非本项目观点 · 非投资建议
+      </>}>
+      {loading && <div className="text-[11px] mono py-6 text-center" style={{ color: 'var(--text-tertiary)' }}>{'// 正在拉取市场定价…'}</div>}
+      {!loading && error && !markets?.length && <div className="text-[11px] mono py-6 text-center" style={{ color: HOLD }}>实时源不可达：{error} · 自动重试中</div>}
+      {!!markets?.length && (
+        <div className="space-y-2">
+          {markets.slice(0, 5).map((m) => (
+            <div key={m.slug} className="rounded-lg px-2.5 py-2" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}>
+              <div className="flex items-center gap-2">
+                <span className="text-xs leading-snug flex-1 min-w-0" style={{ color: 'var(--text-primary)' }}>{m.q}</span>
+                <span className="mono text-sm font-bold shrink-0" style={{ color: probColor(m.yes) }}>{m.yes}%</span>
+              </div>
+              <div className="flex items-center gap-2 mt-1.5">
+                <span className="flex-1 rounded-full relative" style={{ height: 5, background: 'var(--bg-base)' }}>
+                  <span className="absolute inset-y-0 left-0 rounded-full" style={{ width: `${m.yes}%`, background: probColor(m.yes), opacity: 0.8 }} />
+                </span>
+                <span className="mono text-[9px] shrink-0" style={{ color: 'var(--text-tertiary)' }}>24h {m.vol} · 截 {m.end}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </ScreenCard>
+  );
+}
+
 // ── 关注清单（星标模块 · localStorage + 自定义事件跨组件同步） ──
 function readFavs() { try { return JSON.parse(localStorage.getItem('cos-favs') || '[]'); } catch (_) { return []; } }
 function useFavs() {
@@ -742,6 +808,10 @@ export default function DashboardPage() {
         <Grid cols={2} gap="0.85rem" className="dash-screen-grid mt-3">
           <WatchPulse />
           <ChroniclePulse />
+        </Grid>
+        <Grid cols={2} gap="0.85rem" className="dash-screen-grid mt-3">
+          <GdeltPulse />
+          <PolyPulse />
         </Grid>
       </section>
 

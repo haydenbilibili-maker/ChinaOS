@@ -29,6 +29,9 @@ import {
 import {
   useLiveQuakes, buildQuakeSeries, quakeSymbolSize, quakeColor, formatQuakeTooltip,
 } from './liveQuakes.js';
+import {
+  useLiveFlights, buildFlightSeries, flightStats, formatFlightTooltip,
+} from './liveFlights.js';
 
 // 种子层 + 实时层合并（综合态势置首，随后两个真实数据层，再接其余种子层）
 const ALL_LAYERS = [LAYERS[0], ...REAL_LAYERS, ...LAYERS.slice(1)];
@@ -154,6 +157,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
   const [xLayer, setXLayer] = useState('economy');
   const [yLayer, setYLayer] = useState('risk');
   const [showQuakes, setShowQuakes] = useState(false);
+  const [showAir, setShowAir] = useState(false);
   const [now, setNow] = useState(() => new Date());
 
   const layer = ALL_LAYERS.find((l) => l.id === layerId) || getLayerById(layerId);
@@ -163,6 +167,8 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
   // 真实数据源：Open-Meteo 气象/空气质量（实况层激活时取数）+ USGS 地震（开关激活时取数）
   const weather = useLiveWeather();
   const quakesState = useLiveQuakes();
+  const flightsState = useLiveFlights();
+  const airStats = useMemo(() => flightStats(flightsState.flights), [flightsState.flights]);
 
   // 头部实时时钟（30s 粒度足够）
   useEffect(() => {
@@ -380,6 +386,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
         formatter: (p) => {
           if (p.seriesType === 'lines') return '';
           if (p.seriesName === 'quakes') return formatQuakeTooltip(p);
+          if (p.seriesName === 'flights') return formatFlightTooltip(p);
           if (isReal) return formatRealTooltip(p.name, layerId, weather.data?.[p.name], weather.fetchedAt);
           if (deltaMode) {
             const v = p.data?.value;
@@ -489,9 +496,22 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
             itemStyle: { shadowBlur: 10, shadowColor: 'rgba(239,68,68,0.5)' },
           }]
           : []),
+        ...(showAir && !isCompact && flightsState.flights?.length
+          ? [{
+            name: 'flights',
+            type: 'scatter',
+            coordinateSystem: 'geo',
+            zlevel: 5,
+            symbol: 'path://M0,-7 L5,7 L0,4 L-5,7 Z',
+            symbolSize: 7,
+            data: buildFlightSeries(flightsState.flights),
+            itemStyle: { color: isDark ? '#a5f3fc' : '#0e7490', opacity: 0.85, shadowBlur: 4, shadowColor: 'rgba(34,211,238,0.6)' },
+            emphasis: { itemStyle: { color: HOLD, opacity: 1 } },
+          }]
+          : []),
       ],
     };
-  }, [theme, layer, mapData, displayData, deltaMode, isReal, weather.data, weather.fetchedAt, zoneId, layerId, palette, hotCoords, pulsePhase, region, selectedProvince, isCompact, showFlows, showQuakes, quakesState.quakes]);
+  }, [theme, layer, mapData, displayData, deltaMode, isReal, weather.data, weather.fetchedAt, zoneId, layerId, palette, hotCoords, pulsePhase, region, selectedProvince, isCompact, showFlows, showQuakes, quakesState.quakes, showAir, flightsState.flights]);
 
   useEffect(() => {
     const chart = chartRef.current;
@@ -600,6 +620,10 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
               <label className="inline-flex items-center gap-1.5 cursor-pointer select-none text-[10px] mono whitespace-nowrap" style={{ color: showQuakes ? '#ef4444' : 'var(--text-tertiary)' }} title="USGS 30 天 M4+ 地震目录 · 周边 bbox">
                 <input type="checkbox" checked={showQuakes} onChange={(e) => setShowQuakes(e.target.checked)} style={{ accentColor: '#ef4444' }} />
                 地震{showQuakes && quakesState.quakes ? ` ${quakesState.quakes.length}` : ''}
+              </label>
+              <label className="inline-flex items-center gap-1.5 cursor-pointer select-none text-[10px] mono whitespace-nowrap" style={{ color: showAir ? '#a5f3fc' : 'var(--text-tertiary)' }} title={`airplanes.live 社区 ADS-B · 可见 ${airStats.total} 架 · 均高 ${airStats.avgAlt}km（大陆覆盖稀疏，示意）`}>
+                <input type="checkbox" checked={showAir} onChange={(e) => setShowAir(e.target.checked)} style={{ accentColor: '#22d3ee' }} />
+                ✈ 空情{showAir && airStats.total ? ` ${airStats.total}` : ''}
               </label>
               <label className="inline-flex items-center gap-1.5 cursor-pointer select-none text-[10px] mono whitespace-nowrap" style={{ color: 'var(--text-tertiary)' }}>
                 <input type="checkbox" checked={simLive} onChange={(e) => setSimLive(e.target.checked)} style={{ accentColor: STEEL }} />

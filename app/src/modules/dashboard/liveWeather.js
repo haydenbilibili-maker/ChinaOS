@@ -15,16 +15,19 @@ import { PROVINCE_COORDS, PROVINCE_NAMES } from './liveMapData.js';
 export const REAL_LAYERS = [
   { id: 'liveTemp', label: '实况气温', icon: 'Thermometer', valueName: '气温', unit: '°C', min: -20, max: 40, live: true, source: 'open-meteo', desc: 'Open-Meteo 实时 2m 气温 · 31 省会站点 · 10 分钟自动刷新' },
   { id: 'livePm25', label: '空气 PM2.5', icon: 'Wind', valueName: 'PM2.5', unit: 'µg/m³', min: 0, max: 150, live: true, source: 'open-meteo', desc: 'Open-Meteo 空气质量 · 省会 PM2.5 实测 · 10 分钟自动刷新' },
+  { id: 'livePrecip', label: '实况降水', icon: 'CloudRain', valueName: '降水', unit: 'mm', min: 0, max: 20, live: true, source: 'open-meteo', desc: 'Open-Meteo 当前小时降水量 · 省会站点 · 雨带实时可见 · 10 分钟自动刷新' }
 ];
 
 /** 暗色主题色带：气温（冷→热）/ PM2.5（优→严重污染） */
 export const REAL_PALETTES = {
+  livePrecip: ['#16203a', '#1e3a8a', '#1d4ed8', '#0891b2', '#22d3ee', '#a5f3fc'],
   liveTemp: ['#312e81', '#1d4ed8', '#0891b2', '#10b981', '#facc15', '#f97316', '#dc2626'],
   livePm25: ['#10b981', '#a3e635', '#facc15', '#fb923c', '#ef4444', '#a855f7'],
 };
 
 /** 浅色主题变体（略提亮） */
 export const REAL_PALETTES_LIGHT = {
+  livePrecip: ['#eef1f6', '#bfdbfe', '#60a5fa', '#2563eb', '#0891b2', '#155e75'],
   liveTemp: ['#4f46e5', '#3b82f6', '#06b6d4', '#34d399', '#fde047', '#fb923c', '#ef4444'],
   livePm25: ['#34d399', '#bef264', '#fde047', '#fdba74', '#f87171', '#c084fc'],
 };
@@ -179,7 +182,7 @@ export function buildRealSeries(layerId, data) {
   if (!data) return [];
   return PROVINCE_NAMES.map((name) => {
     const d = data[name];
-    const value = d ? (layerId === 'livePm25' ? d.pm25 : d.temp) : null;
+    const value = d ? (layerId === 'livePm25' ? d.pm25 : layerId === 'livePrecip' ? d.precip : d.temp) : null;
     return { name, value: value == null ? null : value, metrics: d ? { ...d } : {} };
   });
 }
