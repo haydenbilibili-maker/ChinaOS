@@ -404,6 +404,16 @@ export const MODULES = [
     component: lazy(() => import('../modules/watchtower/Page.jsx')),
   },
   {
+    id: 'partyschool', path: '/party-school', group: 'sim',
+    title: '党校研修推演', subtitle: '模拟 · 课程配置 · 结业考核筛选', icon: 'GraduationCap',
+    component: lazy(() => import('../modules/partyschool/Page.jsx')),
+  },
+  {
+    id: 'orgengine', path: '/org-engine', group: 'sim',
+    title: '组织画像引擎', subtitle: '模拟 · 全库六维画像 · 情景匹配底座', icon: 'ScanSearch',
+    component: lazy(() => import('../modules/orgengine/Page.jsx')),
+  },
+  {
     id: 'legalStatutes', path: '/legal-statutes', group: 'legal',
     title: '法律条文', subtitle: '法律语料 · 行政法规 · 司法解释', icon: 'BookMarked', accent: '#8b5cf6',
     component: lazy(() => import('../modules/legalStatutes/Page.jsx')),
