@@ -414,6 +414,11 @@ export const MODULES = [
     component: lazy(() => import('../modules/orgengine/Page.jsx')),
   },
   {
+    id: 'handong', path: '/handong', group: 'sim',
+    title: '汉东治理沙盘', subtitle: '虚构省份 · 全要素配置 · 剧情推演 · 政绩任免', icon: 'Landmark',
+    component: lazy(() => import('../modules/handong/Page.jsx')),
+  },
+  {
     id: 'legalStatutes', path: '/legal-statutes', group: 'legal',
     title: '法律条文', subtitle: '法律语料 · 行政法规 · 司法解释', icon: 'BookMarked', accent: '#8b5cf6',
     component: lazy(() => import('../modules/legalStatutes/Page.jsx')),
