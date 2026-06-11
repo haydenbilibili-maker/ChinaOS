@@ -4,7 +4,8 @@
 // 定位：纯函数引擎层，承载「回合=年度」的任期治理周期——
 //   省态三表（经济动能/社会元气/财政余力）逐年演化、
 //   财政余力决定年度政策预算、治理失分留下余波事件、
-//   官员成长维度与连任疲劳、五年任期届满考核定级与换届总结。
+//   官员成长维度与连任疲劳、五年任期届满考核定级与换届总结、
+//   换届连任结算（succession）与跨届治理史拼接（mergeTermHistory）。
 // 零 React、零外部依赖、不 import 任何模块——可直接 node 冒烟。
 // 声明：全部系数为示意标定，非预测；虚构省份推演，
 //       不构成对任何真实地区、真实人物的评价或预测。
@@ -177,4 +178,156 @@ export function buildTermReport(ctx) {
   lines.push('虚构省份任期推演，全部系数为示意标定；不构成对任何真实人物的人事评价或预测。');
 
   return lines.join('\n');
+}
+
+// ---------- 换届连任 ----------
+
+// 岗位标签（与 handongData.POSTS 对齐的硬编码副本——保持本文件零依赖可 node 冒烟）
+const SUCC_POST_LABEL = {
+  secretary: '省委书记', governor: '省长', deputy: '常务副省长',
+  organize: '组织部长', law: '政法委书记', propaganda: '宣传部长',
+};
+const postLabelOf = (pid) => SUCC_POST_LABEL[pid] || pid;
+
+// 换届结算：按 promotionJudge 同口径阈值内联判断（不 import handongData 保持零依赖）——
+//   merit>=70 拟提拔 / >=50 留任 / >=38 诫勉 / 其余 调整出局。
+// 人事规则：
+//   书记拟提拔 → 上调中央历练（离任出缺，不计 removed）；
+//   省长拟提拔 → 升任书记；常务副拟提拔 → 升任省长；
+//   其余岗位拟提拔 → 竞聘常务副（merit 最高者得，并列取岗序在前者，其余原岗留任）；
+//   调整（merit<38）→ 出局进 removed（转任非领导职务）；诫勉 → 原岗留任带警示；留任 → 原岗。
+// 晋升链按 书记→省长→常务副 顺序结算避免冲突；空出岗位置 null。
+// 返回 { nextAssign, moves:[{name,from,to,reason}], removed:[officialId] }。
+export function succession(assign, officials) {
+  const byId = {};
+  (officials || []).forEach((o) => { byId[o.id] = o; });
+  const verdictOf = (m) => (m >= 70 ? 'promote' : m >= 50 ? 'stay' : m >= 38 ? 'warn' : 'out');
+
+  const postIds = Object.keys(assign || {});
+  const next = {};
+  postIds.forEach((pid) => { next[pid] = (assign && assign[pid]) || null; });
+  const moves = [];
+  const removed = [];
+
+  // 0) 调整出局：merit<38 全员先清场——无论在哪个岗，一律转任非领导职务
+  postIds.forEach((pid) => {
+    const o = next[pid] ? byId[next[pid]] : null;
+    if (o && verdictOf(o.merit) === 'out') {
+      removed.push(o.id);
+      next[pid] = null;
+      moves.push({
+        name: o.name, from: postLabelOf(pid), to: '非领导职务',
+        reason: '政绩 ' + o.merit + ' 落入调整档（<38）：转任非领导职务',
+      });
+    }
+  });
+
+  // 1) 书记：拟提拔 → 上调中央历练（离任出缺，不进 removed）
+  const secO = next.secretary ? byId[next.secretary] : null;
+  if (secO && verdictOf(secO.merit) === 'promote') {
+    next.secretary = null;
+    moves.push({
+      name: secO.name, from: postLabelOf('secretary'), to: '中央历练',
+      reason: '政绩 ' + secO.merit + ' 拟提拔：上调中央历练，书记岗出缺',
+    });
+  }
+
+  // 2) 省长：拟提拔 → 升任书记（书记岗未出缺则原岗留任待机）
+  const govO = next.governor ? byId[next.governor] : null;
+  if (govO && verdictOf(govO.merit) === 'promote') {
+    if (next.secretary === null) {
+      next.secretary = govO.id;
+      next.governor = null;
+      moves.push({
+        name: govO.name, from: postLabelOf('governor'), to: postLabelOf('secretary'),
+        reason: '政绩 ' + govO.merit + ' 拟提拔：循链升任省委书记',
+      });
+    } else {
+      moves.push({
+        name: govO.name, from: postLabelOf('governor'), to: postLabelOf('governor'),
+        reason: '政绩 ' + govO.merit + ' 拟提拔，但书记岗未出缺：原岗留任待机',
+      });
+    }
+  }
+
+  // 3) 常务副：拟提拔 → 升任省长（省长岗未出缺则原岗留任待机）
+  const depO = next.deputy ? byId[next.deputy] : null;
+  if (depO && verdictOf(depO.merit) === 'promote') {
+    if (next.governor === null) {
+      next.governor = depO.id;
+      next.deputy = null;
+      moves.push({
+        name: depO.name, from: postLabelOf('deputy'), to: postLabelOf('governor'),
+        reason: '政绩 ' + depO.merit + ' 拟提拔：循链升任省长',
+      });
+    } else {
+      moves.push({
+        name: depO.name, from: postLabelOf('deputy'), to: postLabelOf('deputy'),
+        reason: '政绩 ' + depO.merit + ' 拟提拔，但省长岗未出缺：原岗留任待机',
+      });
+    }
+  }
+
+  // 4) 其余岗位：拟提拔者竞聘常务副——merit 最高者得（并列取岗序在前者），其余原岗留任
+  const chainPosts = ['secretary', 'governor', 'deputy'];
+  const contenders = postIds
+    .filter((pid) => chainPosts.indexOf(pid) === -1)
+    .map((pid) => ({ pid, o: next[pid] ? byId[next[pid]] : null }))
+    .filter((c) => c.o && verdictOf(c.o.merit) === 'promote');
+  if (contenders.length && next.deputy === null) {
+    let win = contenders[0];
+    contenders.forEach((c) => { if (c.o.merit > win.o.merit) win = c; });
+    next.deputy = win.o.id;
+    next[win.pid] = null;
+    moves.push({
+      name: win.o.name, from: postLabelOf(win.pid), to: postLabelOf('deputy'),
+      reason: '政绩 ' + win.o.merit + ' 拟提拔：竞聘常务副省长胜出（' + contenders.length + ' 人竞聘）',
+    });
+    contenders.forEach((c) => {
+      if (c === win) return;
+      moves.push({
+        name: c.o.name, from: postLabelOf(c.pid), to: postLabelOf(c.pid),
+        reason: '政绩 ' + c.o.merit + ' 拟提拔：竞聘常务副未果，原岗留任',
+      });
+    });
+  } else if (contenders.length) {
+    contenders.forEach((c) => {
+      moves.push({
+        name: c.o.name, from: postLabelOf(c.pid), to: postLabelOf(c.pid),
+        reason: '政绩 ' + c.o.merit + ' 拟提拔，但常务副岗未出缺：原岗留任待机',
+      });
+    });
+  }
+
+  // 5) 诫勉：原岗留任带警示（诫勉档不会被晋升链移动，直接按 next 现状记纪要）
+  postIds.forEach((pid) => {
+    const o = next[pid] ? byId[next[pid]] : null;
+    if (o && verdictOf(o.merit) === 'warn') {
+      moves.push({
+        name: o.name, from: postLabelOf(pid), to: postLabelOf(pid),
+        reason: '政绩 ' + o.merit + ' 落入诫勉档（38-49）：原岗留任带警示',
+      });
+    }
+  });
+
+  return { nextAssign: next, moves, removed };
+}
+
+// ---------- 跨届治理史 ----------
+
+// 把多届 history 连成一条跨届序列 [{x:'T1Y1',score,term}...]，供跨届净冲击连线。
+// termHistory = [{term, history:[{year,score,...}...]}...]；容错：缺 term 按下标补，缺 year 按序号补。
+export function mergeTermHistory(termHistory) {
+  const seq = [];
+  (termHistory || []).forEach((t, ti) => {
+    const tn = t && t.term != null ? t.term : ti + 1;
+    ((t && t.history) || []).forEach((h, hi) => {
+      seq.push({
+        x: 'T' + tn + 'Y' + (h && h.year != null ? h.year : hi + 1),
+        score: h ? h.score : 0,
+        term: tn,
+      });
+    });
+  });
+  return seq;
 }

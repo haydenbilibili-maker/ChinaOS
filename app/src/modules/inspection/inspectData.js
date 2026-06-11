@@ -31,6 +31,10 @@ export const CLUE_SOURCES = [
     id: 'opinion', label: '舆情热点', color: '#e8a317',
     desc: '短视频、网帖与市场传闻——传播最快的线索，热度不等于实据，但烟的背后总有火。',
   },
+  {
+    id: 'handover', label: '沙盘移送', color: '#8b5cf6',
+    desc: '汉东治理沙盘的失分回合自动移送——推演里烂掉的账，迟早摆上巡视的桌面。',
+  },
 ];
 
 // ----------------------------------------------------------------------------
@@ -149,6 +153,32 @@ export function buildClues() {
     }
   });
   return out;
+}
+
+// ----------------------------------------------------------------------------
+// 沙盘移送线索：汉东治理沙盘账本（cos-hd-ledger）的失分回合 → 巡视线索。
+// 账本 failures 新进先出，取最近 ≤4 条确定性映射；指向域取该剧情冲击系数
+// 最大的域（平手取靠前者），查不到 sceneId 时落到民生维（domain 2）。
+// 空输入返回 []，不取随机数、不取当前时间。
+// ----------------------------------------------------------------------------
+export function buildHandoverClues(failures) {
+  if (!Array.isArray(failures) || failures.length === 0) return [];
+  return failures.slice(0, 4).map((f, i) => {
+    const scene = HD_SCENARIOS.find((s) => s.id === f.sceneId);
+    let domain = 2;
+    if (scene && Array.isArray(scene.impact) && scene.impact.length) {
+      domain = 0;
+      scene.impact.forEach((v, di) => { if (v > scene.impact[domain]) domain = di; });
+    }
+    return {
+      id: `ho-${i}`,
+      source: 'handover',
+      sceneId: f.sceneId,
+      label: `沙盘移送：${f.label}（第${f.term}届第${f.year}年 · 净冲击 ${f.score}）`,
+      cred: clamp(Math.round(Number(f.score) || 0), 45, 90),
+      domain,
+    };
+  });
 }
 
 // ----------------------------------------------------------------------------

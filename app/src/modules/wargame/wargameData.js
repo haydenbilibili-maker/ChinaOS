@@ -241,6 +241,22 @@ export function resolveTurn(state, cnCards, usCards) {
   return next;
 }
 
+/**
+ * 中方全程出牌统计（策略实验室存档用）：去重计次 → ['自主攻关×3','谈判窗口']。
+ * 剔除「按兵不动」与重复打出被弃置的牌；驻留标注还原为原牌名。纯函数。
+ */
+export function tallyCnPlays(log) {
+  const counts = new Map();
+  (log || []).forEach((r) => {
+    ((r && r.cn) || []).forEach((raw) => {
+      if (typeof raw !== 'string' || raw === '按兵不动' || raw.includes('弃置')) return;
+      const label = raw.replace('（驻留）', '');
+      counts.set(label, (counts.get(label) || 0) + 1);
+    });
+  });
+  return [...counts.entries()].map(([label, n]) => (n > 1 ? `${label}×${n}` : label));
+}
+
 // ----------------------------------------------------------------------------
 // 终局判定（5 回合后）：五档结局，各配一句冷峻判语
 // ----------------------------------------------------------------------------

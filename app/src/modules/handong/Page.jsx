@@ -10,7 +10,7 @@ import {
 import { useRealPool, filterPool, topMatches, REAL_POOL_NOTE } from './realPool.js';
 import {
   TERM_YEARS, METRICS, initMetrics, yearBudget, evolveMetrics, aftermathOf,
-  growthDims, fatiguePenalty, termGrade, buildTermReport,
+  growthDims, fatiguePenalty, termGrade, buildTermReport, succession, mergeTermHistory,
 } from './cycle.js';
 
 // ============================================================================
@@ -142,6 +142,12 @@ export default function Page() {
   const [termDone, setTermDone] = useState(false);       // 任期届满
   const [termReportMd, setTermReportMd] = useState('');  // 任期总结 Markdown
   const [termCopied, setTermCopied] = useState(false);
+  // —— 换届连任 v3：届次/三届治理史/出局名单/换届纪要/巡视整改包袱 ——
+  const [term, setTerm] = useState(1);                   // 第几届班子
+  const [termHistory, setTermHistory] = useState([]);    // 历届账本 [{term,grade,history,metricsStart,metricsEnd}]
+  const [removedIds, setRemovedIds] = useState([]);      // 换届出局官员 id（已调整 · 转任非领导职务）
+  const [lastMoves, setLastMoves] = useState([]);        // 最近一次换届纪要 moves
+  const [inspectBurden, setInspectBurden] = useState(null); // 巡视沙盘整改账本（跨模块 'cos-inspect-issues'）
 
   const resourceObj = useMemo(() => RESOURCE_TYPES.find((r) => r.id === resource) || RESOURCE_TYPES[0], [resource]);
   // 当前生效候选池：real 模式取人才库政要池（加载中/为空时为 []），fiction 取原创虚构 14 人
@@ -170,6 +176,33 @@ export default function Page() {
     setPoolMode(mode);
     setAssign(Object.fromEntries(POSTS.map((p) => [p.id, null])));
   };
+
+  // 换届出局名单：两池候选中 disabled + 「已调整」，任免面板显示「转任非领导职务」
+  const removedIdSet = useMemo(() => new Set(removedIds), [removedIds]);
+
+  // —— 跨模块账本读取：巡视沙盘整改包袱（'cos-inspect-issues'，mount 读一次 + 双监听） ——
+  useEffect(() => {
+    const read = () => {
+      try {
+        const parsed = JSON.parse(localStorage.getItem('cos-inspect-issues') || 'null');
+        setInspectBurden(parsed && Array.isArray(parsed.issues) ? parsed : null);
+      } catch (_) { setInspectBurden(null); }
+    };
+    read();
+    window.addEventListener('storage', read);
+    window.addEventListener('cos-ledger-change', read);
+    return () => {
+      window.removeEventListener('storage', read);
+      window.removeEventListener('cos-ledger-change', read);
+    };
+  }, []);
+  const burdenN = inspectBurden?.issues?.length || 0;
+  const burdenMajor = useMemo(
+    () => (inspectBurden?.issues || []).filter((i) => i.severity === '重大').length,
+    [inspectBurden]
+  );
+  // 未销号判定：账本 rounds<4 视为整改未完成——重大问题压着，财政余力年度恢复 -1
+  const burdenActive = burdenMajor >= 1 && (inspectBurden?.rounds ?? 0) < 4;
 
   // 三产结构联动约束：改一根滑杆，剩余两根按原比例分摊（Σ 恒 = 100）
   const setIndustryAt = (idx, val) => {
@@ -255,6 +288,7 @@ export default function Page() {
       let best = null, bestS = -1;
       filteredLive.forEach((o) => {
         if (taken.has(o.id)) return;
+        if (removedIdSet.has(o.id)) return; // 已调整出局者不再入班子
         const s = matchScore(o.dims, p.need);
         if (s > bestS) { bestS = s; best = o.id; }
       });
@@ -267,7 +301,7 @@ export default function Page() {
   const reserves = useMemo(() => {
     const inCabinet = new Set(Object.values(assign).filter(Boolean));
     return filteredLive
-      .filter((o) => !inCabinet.has(o.id))
+      .filter((o) => !inCabinet.has(o.id) && !removedIdSet.has(o.id))
       .map((o) => {
         let top = 0;
         o.dims.forEach((v, i) => { if (v > o.dims[top]) top = i; });
@@ -302,7 +336,9 @@ export default function Page() {
     });
     // a. 三表演化（先存上一年，供省态运行台 Δ 展示）
     setPrevMetrics(metrics);
-    const nextMetrics = evolveMetrics(metrics, result.net, allocUsed);
+    let nextMetrics = evolveMetrics(metrics, result.net, allocUsed);
+    // a'. 巡视联动：账本里有重大问题且未销号（rounds<4）→ 财政余力年度恢复额外 -1（下限 5）
+    if (burdenActive) nextMetrics = { ...nextMetrics, fiscal: Math.max(5, nextMetrics.fiscal - 1) };
     setMetrics(nextMetrics);
     // b. 在岗成长：主官（书记/省长）top+2 second+1，其余班子 top+1——封顶由 officialsLive 的 clamp 兜底
     const [gTop, gSecond] = growthDims(activeScenario.need);
@@ -335,7 +371,28 @@ export default function Page() {
       intensity, score: result.score, verdict: result.verdict[0], color: result.verdict[1],
       fiscal: Math.round(nextMetrics.fiscal),
     }]);
-    // e. 年度推进：第 TERM_YEARS 年执行完即届满，不再 +1
+    // e. 跨模块账本写入：治理失分（score>=60）记入 'cos-hd-ledger'，巡视沙盘按账本出题
+    if (result.score >= 60) {
+      try {
+        let prevLedger = { failures: [], stamp: 0 };
+        try {
+          const parsed = JSON.parse(localStorage.getItem('cos-hd-ledger') || 'null');
+          if (parsed && Array.isArray(parsed.failures)) {
+            prevLedger = { failures: parsed.failures, stamp: Number(parsed.stamp) || 0 };
+          }
+        } catch (_) { /* 解析失败按空账本降级 */ }
+        const entry = {
+          sceneId: String(activeScenario.id).split('+')[0], // 复合场景取主剧情 id
+          label: activeScenario.label, term, year, score: result.score,
+        };
+        localStorage.setItem('cos-hd-ledger', JSON.stringify({
+          failures: [entry, ...prevLedger.failures].slice(0, 12), // ≤12 条新进先出
+          stamp: prevLedger.stamp + 1,                            // 整数递增，不取时间
+        }));
+        window.dispatchEvent(new CustomEvent('cos-ledger-change'));
+      } catch (_) { /* 存储不可用时静默放弃 */ }
+    }
+    // f. 年度推进：第 TERM_YEARS 年执行完即届满，不再 +1
     if (year >= TERM_YEARS) setTermDone(true);
     else setYear(year + 1);
   };
@@ -350,7 +407,8 @@ export default function Page() {
     setAftermath(null);
   };
 
-  // 重开新任期：三表按「当前」省情重置——P0 变更在此刻才生效；政绩档案直接归 50
+  // 重开新任期：三表按「当前」省情重置——P0 变更在此刻才生效；政绩档案直接归 50；
+  // 届次/治理史/出局名单/换届纪要一并清零（推倒重来，不是换届）
   const restartTerm = () => {
     const m0 = initMetrics(baselineMods);
     setMetrics(m0);
@@ -360,6 +418,25 @@ export default function Page() {
     setBoost({}); setStreaks({}); setTermDone(false);
     setTermReportMd(''); setTermCopied(false);
     setMerits(Object.fromEntries(basePool.map((o) => [o.id, 50])));
+    setTerm(1); setTermHistory([]); setRemovedIds([]); setLastMoves([]);
+  };
+
+  // 执行换届：本届入史册、班子按政绩口径连任/晋升/出局——换届不洗账，
+  // metrics/merits/boost/streaks/aftermath 全部跨届延续（上届烂账新班子接着背），
+  // metricsStart 重设为当前三表快照，年度与回合清零进入下一届。
+  const doSuccession = () => {
+    const res = succession(assign, officialsLive);
+    setTermHistory((prev) => [...prev, {
+      term, grade: termGrade(rounds), history: rounds, metricsStart, metricsEnd: metrics,
+    }]);
+    setAssign(res.nextAssign);
+    if (res.removed.length) setRemovedIds((prev) => Array.from(new Set([...prev, ...res.removed])));
+    setLastMoves(res.moves);
+    setMetricsStart({ ...metrics });
+    setPrevMetrics({ ...metrics });
+    setTerm(term + 1);
+    setYear(1); setRounds([]); setTermDone(false);
+    setTermReportMd(''); setTermCopied(false);
   };
 
   // 任期届满考核：S/A/B/C 大徽章
@@ -375,7 +452,8 @@ export default function Page() {
       }).filter(Boolean);
       const aftermathCount = rounds.filter((r) => (r.label || '').includes('余波')).length;
       let md = buildTermReport({
-        startYear: 2026, history: rounds, metricsStart, metricsEnd: metrics,
+        startYear: 2026 + (term - 1) * TERM_YEARS, // 第 N 届起始年随届次顺延
+        history: rounds, metricsStart, metricsEnd: metrics,
         grade: termGrade(rounds), roster, aftermathCount,
       });
       if (poolMode === 'real') md += '\n\n*' + REAL_POOL_NOTE + '*';
@@ -499,6 +577,34 @@ export default function Page() {
     ],
   }), [rounds]);
 
+  // 跨届净冲击连线：历届账本 + 本届在途回合拼成一条线（T1Y1..TnYm）
+  const crossSeq = useMemo(
+    () => mergeTermHistory(rounds.length ? [...termHistory, { term, history: rounds }] : termHistory),
+    [termHistory, rounds, term]
+  );
+  const crossTermOption = useMemo(() => ({
+    grid: { left: 40, right: 16, top: 14, bottom: 24 },
+    xAxis: {
+      type: 'category', data: crossSeq.map((p) => p.x),
+      axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text, fontSize: 10 },
+    },
+    yAxis: {
+      type: 'value', min: 0, max: 100,
+      axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text },
+      splitLine: { lineStyle: { color: AX.split } },
+    },
+    series: [{
+      type: 'line', data: crossSeq.map((p) => p.score),
+      lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, symbolSize: 5,
+      markLine: {
+        silent: true, symbol: 'none',
+        lineStyle: { type: 'dashed', color: '#64748b' },
+        label: { color: AX.text, fontSize: 10, formatter: '失守线 60' },
+        data: [{ yAxis: 60 }],
+      },
+    }],
+  }), [crossSeq]);
+
   return (
     <div>
       {/* 0 —— 页头与虚构声明 */}
@@ -519,8 +625,8 @@ export default function Page() {
         />
         <Stat value={`${HD_SCENARIOS.length} 段`} label="剧情情景（可叠加）" accent="#c41e3a" />
         <Stat
-          value={termDone ? '任期届满' : `第 ${year}/${TERM_YEARS} 年`}
-          label={`任期进度 · 已推演 ${rounds.length} 年`}
+          value={`第 ${term} 届 · 任期第 ${year}/${TERM_YEARS} 年`}
+          label={termDone ? `任期届满 · 待换届 · 本届已推演 ${rounds.length} 年` : `任期进度 · 本届已推演 ${rounds.length} 年`}
           accent="#10b981"
         />
       </Grid>
@@ -573,8 +679,8 @@ export default function Page() {
         <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
           <div>
             <div className="flex items-baseline gap-3 flex-wrap">
-              <span className="mono text-xl font-bold" style={{ color: '#22d3ee' }}>任期第 {year}/{TERM_YEARS} 年</span>
-              <span className="mono text-xs" style={{ color: 'var(--text-tertiary)' }}>{2025 + year} 年度</span>
+              <span className="mono text-xl font-bold" style={{ color: '#22d3ee' }}>第 {term} 届 · 任期第 {year}/{TERM_YEARS} 年</span>
+              <span className="mono text-xs" style={{ color: 'var(--text-tertiary)' }}>{2025 + (term - 1) * TERM_YEARS + year} 年度</span>
               {termDone && (
                 <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'rgba(196,30,58,0.16)', color: '#c41e3a' }}>
                   任期已届满 · 待换届结算
@@ -592,10 +698,21 @@ export default function Page() {
                 </p>
               )}
             </div>
+            {burdenN > 0 && (
+              <div className="mt-3">
+                <span
+                  className="text-[10px] mono px-2 py-0.5 rounded inline-block"
+                  style={{ border: '1px solid #8b5cf6', color: '#8b5cf6', background: 'rgba(139,92,246,0.10)' }}
+                >巡视整改包袱 {burdenN} 项 · 重大 {burdenMajor}</span>
+                <p className="text-[10px] mt-1" style={{ color: 'var(--text-tertiary)' }}>
+                  重大问题未销号期间，财政余力年度恢复 -1{burdenActive ? '（生效中）' : '（无重大或已销号 · 不生效）'}
+                </p>
+              </div>
+            )}
             <div className="flex items-center gap-2 flex-wrap mt-4">
-              <button type="button" style={BTN} onClick={restartTerm}>↻ 重开新任期</button>
+              <button type="button" style={BTN} onClick={restartTerm}>↻ 推倒重来</button>
               <span className="text-[10px] flex-1" style={{ color: 'var(--text-tertiary)', minWidth: 180 }}>
-                P0 省情变更只对新任期生效；重开将按当前省情重置三表与年度，政绩档案全员归 50。
+                P0 省情变更只对推倒重来后生效：按当前省情重置三表与年度，届次/治理史/出局名单清零，政绩档案全员归 50。
               </span>
             </div>
           </div>
@@ -703,11 +820,12 @@ export default function Page() {
                     <option value="">— 空缺 —</option>
                     {options.map((cand) => {
                       const usedBy = POSTS.find((pp) => pp.id !== p.id && assign[pp.id] === cand.id);
+                      const isRemoved = removedIdSet.has(cand.id); // 换届出局：禁选 + 「已调整」
                       return (
-                        <option key={cand.id} value={cand.id} disabled={!!usedBy}>
+                        <option key={cand.id} value={cand.id} disabled={!!usedBy || isRemoved}>
                           {poolMode === 'real'
-                            ? `${cand.name} · ${cand.archetype} · 匹配${cand.match}`
-                            : `${cand.name}${usedBy ? `（已任${usedBy.label}）` : ''}`}
+                            ? `${cand.name} · ${cand.archetype} · 匹配${cand.match}${isRemoved ? '（已调整）' : ''}`
+                            : `${cand.name}${isRemoved ? '（已调整）' : usedBy ? `（已任${usedBy.label}）` : ''}`}
                         </option>
                       );
                     })}
@@ -969,14 +1087,23 @@ export default function Page() {
             </div>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
+            <button
+              type="button"
+              style={{ ...BTN_RED, padding: '8px 20px', fontSize: 13 }}
+              onClick={doSuccession}
+            >⏩ 执行换届 · 进入第 {term + 1} 届</button>
             <button type="button" style={BTN_CYAN} onClick={genTermReport}>📄 生成任期总结</button>
             {termReportMd && (
               <button type="button" style={termCopied ? { ...BTN, color: '#10b981' } : BTN} onClick={copyTermReport}>
                 {termCopied ? '已复制 ✓' : '复制 Markdown'}
               </button>
             )}
-            <button type="button" style={BTN_RED} onClick={restartTerm}>↻ 重开新任期（按当前省情重置三表 · 政绩归 50）</button>
+            <button type="button" style={BTN} onClick={restartTerm}>↻ 推倒重来（重置三表与届次 · 政绩归 50）</button>
           </div>
+          <p className="text-[11px] mt-2" style={{ color: 'var(--text-tertiary)' }}>
+            换届不洗账：省态三表、政绩档案、成长与疲劳、在途余波全部跨届延续——上届烂账，新班子接着背；
+            书记拟提拔上调中央、省长循链升书记、常务副循链升省长、其余拟提拔竞聘常务副，政绩不到 38 直接出局。
+          </p>
           {termReportMd && (
             <pre
               className="text-[11px] leading-relaxed p-4 rounded mt-3 mono overflow-auto"
@@ -986,6 +1113,53 @@ export default function Page() {
               }}
             >{termReportMd}</pre>
           )}
+        </Card>
+      )}
+
+      {/* 6.6 —— 换届纪要（最近一次换届的人事结算清单） */}
+      {lastMoves.length > 0 && (
+        <Card title={`⑥.6 换届纪要 · 第 ${term} 届班子就位`}>
+          <div className="space-y-1.5">
+            {lastMoves.map((mv, i) => (
+              <div key={i} className="flex items-center gap-3 text-xs py-1.5 px-2 rounded flex-wrap" style={{ background: 'var(--bg-elevated)' }}>
+                <span className="font-semibold shrink-0" style={{ color: 'var(--text-primary)', width: 64 }}>{mv.name}</span>
+                <span className="mono shrink-0" style={{ color: mv.from === mv.to ? 'var(--text-tertiary)' : '#22d3ee' }}>
+                  {mv.from} → {mv.to}
+                </span>
+                <span className="flex-1 text-[11px]" style={{ color: 'var(--text-tertiary)', minWidth: 200 }}>{mv.reason}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-[11px] mt-3" style={{ color: 'var(--text-tertiary)' }}>
+            出缺岗位（空缺）需在「② 班子组建」补配；「已调整」者两池禁选，任免面板状态记「转任非领导职务」。
+          </p>
+        </Card>
+      )}
+
+      {/* 6.7 —— 三届治理史（跨届账本与净冲击连线） */}
+      {termHistory.length >= 1 && (
+        <Card title="⑥.7 三届治理史 · 跨届账本">
+          <div className="space-y-1.5 mb-3">
+            {termHistory.map((t) => (
+              <div key={t.term} className="flex items-center gap-3 text-xs py-1.5 px-2 rounded flex-wrap" style={{ background: 'var(--bg-elevated)' }}>
+                <span className="mono shrink-0 font-semibold" style={{ color: 'var(--text-primary)', width: 56 }}>第 {t.term} 届</span>
+                <span
+                  className="text-[10px] mono px-2 py-0.5 rounded shrink-0"
+                  style={{ background: `${t.grade.color}1f`, color: t.grade.color, border: `1px solid ${t.grade.color}55` }}
+                >{t.grade.title}</span>
+                <span className="mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>均分 {t.grade.avg}</span>
+                <span className="mono shrink-0" style={{ color: t.grade.failCount ? '#c41e3a' : '#10b981' }}>失分 {t.grade.failCount} 次</span>
+                <span className="mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>{t.history.length} 年</span>
+                <span className="mono text-[10px] flex-1 text-right" style={{ color: 'var(--text-tertiary)', minWidth: 160 }}>
+                  {METRICS.map((m) => `${m.label.slice(0, 2)} ${t.metricsStart[m.id]}→${t.metricsEnd[m.id]}`).join(' · ')}
+                </span>
+              </div>
+            ))}
+          </div>
+          {crossSeq.length >= 2 && <EChart option={crossTermOption} style={{ height: 180 }} />}
+          <p className="text-[11px] mt-2" style={{ color: 'var(--text-tertiary)' }}>
+            跨届净冲击连线（红实线）与失守线 60（虚线）：换届只换人不洗账——三表、余波与政绩全部跨届延续，曲线不因换班子断档。
+          </p>
         </Card>
       )}
 
@@ -1006,8 +1180,11 @@ export default function Page() {
             return (
               <div key={o.id} className="flex items-center gap-3 py-2 flex-wrap" style={{ borderBottom: '1px solid var(--border-subtle)' }}>
                 <span className="text-sm font-semibold shrink-0" style={{ color: 'var(--text-primary)', width: 64 }}>{o.name}</span>
-                <span className="text-[11px] mono shrink-0" style={{ color: post ? '#22d3ee' : 'var(--text-tertiary)', width: 90 }}>
-                  {post ? post.label : '在野'}
+                <span
+                  className="text-[11px] mono shrink-0"
+                  style={{ color: post ? '#22d3ee' : removedIdSet.has(o.id) ? '#64748b' : 'var(--text-tertiary)', width: 96 }}
+                >
+                  {post ? post.label : removedIdSet.has(o.id) ? '转任非领导职务' : '在野'}
                 </span>
                 {o.real && <RealBadge />}
                 <div className="h-2 rounded overflow-hidden shrink-0" style={{ background: 'var(--bg-base)', width: 120 }}>

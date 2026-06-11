@@ -1,10 +1,10 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { OFFICIALS, HD_SCENARIOS, HD_DOMAIN_LABELS } from '../handong/handongData.js';
 import {
   INSPECT_AS_OF, CLUE_SOURCES,
-  buildClues, talkPlan, evidenceChain, issueList, rectifyTrack, buildInspectReport,
+  buildClues, buildHandoverClues, talkPlan, evidenceChain, issueList, rectifyTrack, buildInspectReport,
 } from './inspectData.js';
 
 // ============================================================================
@@ -32,14 +32,42 @@ const sourceOf = (id) => CLUE_SOURCES.find((s) => s.id === id);
 
 export default function Page() {
   // —— 线索台账（确定性生成，挂载期一次） ——
-  const clues = useMemo(() => buildClues(), []);
+  const baseClues = useMemo(() => buildClues(), []);
   // —— 工作流状态 ——
-  const [sourceKey, setSourceKey] = useState('all');   // 三源筛选
+  const [sourceKey, setSourceKey] = useState('all');   // 四源筛选
   const [selected, setSelected] = useState([]);        // 研判篮：线索 id
   const [talked, setTalked] = useState([]);            // 已谈话：官员 id
   const [rounds, setRounds] = useState(0);             // 整改轮次 0-4
   const [reportMd, setReportMd] = useState('');
   const [copied, setCopied] = useState(false);
+
+  // —— 汉东账本（cos-hd-ledger）：mount 读一次 + storage / cos-ledger-change 双监听 ——
+  const [hdFailures, setHdFailures] = useState([]);
+  useEffect(() => {
+    const readLedger = () => {
+      try {
+        const raw = localStorage.getItem('cos-hd-ledger');
+        const data = raw ? JSON.parse(raw) : null;
+        const fails = data && Array.isArray(data.failures) ? data.failures : [];
+        setHdFailures((prev) => (JSON.stringify(prev) === JSON.stringify(fails) ? prev : fails));
+      } catch {
+        setHdFailures((prev) => (prev.length ? [] : prev));
+      }
+    };
+    readLedger();
+    window.addEventListener('storage', readLedger);
+    window.addEventListener('cos-ledger-change', readLedger);
+    return () => {
+      window.removeEventListener('storage', readLedger);
+      window.removeEventListener('cos-ledger-change', readLedger);
+    };
+  }, []);
+
+  // —— 全量线索池：三源 12 条 + 沙盘移送 ≤4 条（id 段独立，天然不冲突） ——
+  const handoverClues = useMemo(() => {
+    try { return buildHandoverClues(hdFailures); } catch { return []; }
+  }, [hdFailures]);
+  const clues = useMemo(() => [...baseClues, ...handoverClues], [baseClues, handoverClues]);
 
   // —— 计算链：线索 → 谈话 → 证据链 → 问题 → 整改 ——
   const visibleClues = useMemo(
@@ -54,6 +82,30 @@ export default function Page() {
     () => plan.filter((p) => talked.includes(p.officialId)).length,
     [plan, talked]
   );
+
+  // —— 回写跨模块账本（cos-inspect-issues）：问题清单 + 整改轮次 → 汉东沙盘 ——
+  // 只在载荷 JSON 与上次写入不同才写（useRef 缓存），避免写入循环；
+  // stamp 用上次值 +1（首次 1），不取随机数、不取当前时间。
+  const lastIssuesSig = useRef('');
+  useEffect(() => {
+    const payload = {
+      issues: issues.map((it) => ({ sceneId: it.sceneId, label: it.label, severity: it.severity })),
+      rounds: Math.max(0, Math.min(4, Math.round(rounds || 0))),
+    };
+    const sig = JSON.stringify(payload);
+    if (sig === lastIssuesSig.current) return;
+    lastIssuesSig.current = sig;
+    try {
+      let prevStamp = 0;
+      try {
+        const raw = localStorage.getItem('cos-inspect-issues');
+        const prev = raw ? JSON.parse(raw) : null;
+        if (prev && Number.isFinite(prev.stamp)) prevStamp = Math.round(prev.stamp);
+      } catch { prevStamp = 0; }
+      localStorage.setItem('cos-inspect-issues', JSON.stringify({ ...payload, stamp: prevStamp + 1 }));
+      window.dispatchEvent(new CustomEvent('cos-ledger-change'));
+    } catch { /* 存储不可用时静默降级 */ }
+  }, [issues, rounds]);
 
   const toggleClue = (id) => {
     setSelected((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
@@ -103,13 +155,18 @@ export default function Page() {
       </IntroCard>
       <Grid cols={4} className="mb-8">
         <Stat value={INSPECT_AS_OF} label="进驻基准日" accent="#22d3ee" />
-        <Stat value={`${clues.length} 条`} label="三源线索台账" accent="#c41e3a" />
+        <Stat value={`${clues.length} 条`} label="线索台账（三源 + 沙盘移送）" accent="#c41e3a" />
         <Stat value={`${OFFICIALS.length} 名`} label="虚构官员库（谈话对象池）" accent="#e8a317" />
         <Stat value="4 轮" label="整改销号周期" accent="#10b981" />
       </Grid>
 
       {/* 1 —— 线索研判台 */}
-      <Card title={`① 线索研判台 · 三源汇集 12 条 —— 已入研判篮 ${selected.length}/${clues.length}`}>
+      <Card title={`① 线索研判台 · 三源 12 条 + 沙盘移送 ${handoverClues.length} 条 —— 已入研判篮 ${selected.length}/${clues.length}`}>
+        {handoverClues.length === 0 && (
+          <p className="text-[11px] mono mb-3" style={{ color: 'var(--text-tertiary)' }}>
+            // 汉东沙盘暂无移送线索——沙盘里治理失分的回合会自动移送到这里。
+          </p>
+        )}
         <SelectorBar
           items={[
             { key: 'all', label: '全部线索', accent: '#64748b' },
@@ -331,6 +388,9 @@ export default function Page() {
         )}
         <p className="text-[11px] mt-3" style={{ color: 'var(--text-tertiary)' }}>
           定档那一刻只是开始：问题越重，启动越迟、销号越慢——整改跟踪追的是制度修复速度与破坏速度之间的时间差。
+        </p>
+        <p className="text-[11px] mt-1.5" style={{ color: 'var(--text-tertiary)' }}>
+          整改进度会同步回汉东沙盘：重大问题未销号期间拖累其财政恢复。
         </p>
       </Card>
 

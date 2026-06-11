@@ -1,10 +1,10 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import {
   WG_AS_OF, SIDES, CARDS, STRATEGIES, INIT, MAX_TURNS, AP_PER_TURN,
-  makeInitialState, usMove, resolveTurn, judge, buildWarReport,
+  makeInitialState, usMove, resolveTurn, judge, buildWarReport, tallyCnPlays,
 } from './wargameData.js';
 
 // ============================================================================
@@ -34,6 +34,33 @@ const CN_HAND = CARDS.filter((c) => c.side === 'cn' || c.side === 'both');
 
 const sgn = (v) => (v > 0 ? `+${v}` : `${v}`);
 const dColor = (v) => (v > 0 ? '#10b981' : v < 0 ? '#c41e3a' : 'var(--text-tertiary)');
+
+// —— 策略实验室：对局存档（独立键 · 数组 cap 10 · 新进先出） ——
+const RUNS_KEY = 'cos-wargame-runs';
+
+/** 读档：解析失败 / 结构异常一律降级为空数组 */
+function readRuns() {
+  try {
+    const arr = JSON.parse(localStorage.getItem(RUNS_KEY) || '[]');
+    if (!Array.isArray(arr)) return [];
+    return arr.filter((r) => r && typeof r === 'object' && r.judge && r.final).slice(0, 10);
+  } catch {
+    return [];
+  }
+}
+
+/** 两局对比的一句自动结论（只替中方两线记账） */
+function compareVerdict(a, b) {
+  const dT = a.final.cnTech - b.final.cnTech;
+  const dE = a.final.cnEcon - b.final.cnEcon;
+  const A = `#${a.id}「${a.strategyLabel}」`;
+  const B = `#${b.id}「${b.strategyLabel}」`;
+  if (dT === 0 && dE === 0) return `${A} 与 ${B} 两局中方科技、经贸双线打平——对手性格不同，账面殊途同归。`;
+  if (dT > 0 && dE < 0) return `${A} 局在科技线多保了 ${dT} 点，代价是经贸线少 ${-dE} 点——攻关换血条的经典账。`;
+  if (dT < 0 && dE > 0) return `${B} 局在科技线多保了 ${-dT} 点，代价是经贸线少 ${dE} 点——${A} 局用科技斜率换了经贸体面。`;
+  if (dT >= 0 && dE >= 0) return `${A} 局科技线多 ${dT} 点、经贸线多 ${dE} 点，中方两线全面不劣——这一档对手没让中方付出额外代价。`;
+  return `${B} 局科技线多 ${-dT} 点、经贸线多 ${-dE} 点，中方两线全面不劣——${A} 局的牌路整体吃亏。`;
+}
 
 /** effect 四值小字：己科技/己经贸/对科技/对经贸 */
 function EffectRow({ effect }) {
@@ -102,6 +129,58 @@ export default function Page() {
 
   // 终局判定（仅 5 回合打满后）
   const verdict = useMemo(() => (finished ? judge(game) : null), [finished, game]);
+
+  // —— 策略实验室：存档列表 / 选中对比（最多 2 局） ——
+  const [runs, setRuns] = useState(readRuns);   // mount 时读档恢复列表
+  const [picked, setPicked] = useState([]);     // 选中的存档 id（≤2）
+  const savedRef = useRef(false);               // 本局是否已入档（防重复写）
+
+  // 终局自动存档：turn 打满且 judge 非空时写一次；重开对局后标记复位
+  useEffect(() => {
+    if (!finished || !verdict) { savedRef.current = false; return; }
+    if (savedRef.current) return;
+    savedRef.current = true;
+    try {
+      const prev = readRuns();
+      const maxId = prev.reduce((m, r) => Math.max(m, Number(r.id) || 0), 0);
+      const run = {
+        id: maxId + 1,
+        strategy,
+        strategyLabel: strat.label,
+        judge: { label: verdict.label, color: verdict.color },
+        final: { cnTech: game.cn.tech, cnEcon: game.cn.econ, usTech: game.us.tech, usEcon: game.us.econ },
+        cardsPlayed: tallyCnPlays(game.log),
+      };
+      const next = [run, ...prev].slice(0, 10);
+      localStorage.setItem(RUNS_KEY, JSON.stringify(next));
+      setRuns(next);
+      window.dispatchEvent(new CustomEvent('cos-ledger-change'));
+    } catch {
+      /* 存档失败：本局按未入档处理，不打断对局 */
+    }
+  }, [finished, verdict, game, strategy, strat]);
+
+  const togglePick = (id) => {
+    setPicked((prev) => {
+      if (prev.includes(id)) return prev.filter((x) => x !== id);
+      if (prev.length >= 2) return prev;   // 已选满 2 局：先取消一局再换
+      return [...prev, id];
+    });
+  };
+
+  const clearRuns = () => {
+    try {
+      localStorage.removeItem(RUNS_KEY);
+      window.dispatchEvent(new CustomEvent('cos-ledger-change'));
+    } catch { /* 清档失败按已清处理 */ }
+    setRuns([]);
+    setPicked([]);
+  };
+
+  const pickedRuns = useMemo(
+    () => picked.map((id) => runs.find((r) => r.id === id)).filter(Boolean),
+    [picked, runs]
+  );
 
   const genReport = () => {
     try {
@@ -322,7 +401,89 @@ export default function Page() {
         </Card>
       )}
 
-      {/* 6 —— 框架三卡 + 页脚 */}
+      {/* 6 —— 策略实验室：对局存档与对比复盘（存档 ≥1 才显示） */}
+      {runs.length > 0 && (
+        <Card title="⑥ 策略实验室 · 对局复盘">
+          <p className="text-[11px] mb-3" style={{ color: 'var(--text-tertiary)' }}>
+            每盘打满五回合自动入档（仅留最近 10 局）。点击存档行选中，选满 2 局自动出对比表，再点一次取消。
+          </p>
+          <div className="space-y-1.5 mb-4">
+            {runs.map((r) => {
+              const sel = picked.includes(r.id);
+              return (
+                <button
+                  key={r.id} type="button" onClick={() => togglePick(r.id)}
+                  className="w-full text-left flex items-center gap-3 flex-wrap text-xs py-1.5 px-2 rounded"
+                  style={{
+                    background: sel ? 'rgba(34,211,238,0.10)' : 'var(--bg-elevated)',
+                    border: sel ? '1px solid rgba(34,211,238,0.45)' : '1px solid var(--border-subtle)',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <span className="mono shrink-0 font-semibold" style={{ color: sel ? '#22d3ee' : 'var(--text-tertiary)' }}>#{r.id}</span>
+                  <span className="shrink-0 font-semibold" style={{ color: STRAT_ACCENT[r.strategy] || 'var(--text-secondary)' }}>{r.strategyLabel}</span>
+                  <span
+                    className="text-[10px] mono px-1.5 py-0.5 rounded shrink-0"
+                    style={{ background: `${r.judge.color}1f`, color: r.judge.color, border: `1px solid ${r.judge.color}55` }}
+                  >{r.judge.label}</span>
+                  <span className="mono text-[10px] flex-1" style={{ color: 'var(--text-tertiary)', minWidth: 220 }}>
+                    中科技 {r.final.cnTech} · 中经贸 {r.final.cnEcon} · 美科技 {r.final.usTech} · 美经贸 {r.final.usEcon}
+                  </span>
+                  {Array.isArray(r.cardsPlayed) && r.cardsPlayed.length > 0 && (
+                    <span className="text-[10px] shrink-0" style={{ color: 'var(--text-tertiary)' }}>{r.cardsPlayed.join(' / ')}</span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+          {pickedRuns.length === 1 && (
+            <p className="text-[11px] mono mb-4" style={{ color: '#22d3ee' }}>
+              已选 #{pickedRuns[0].id}「{pickedRuns[0].strategyLabel}」——再选一局即可对比复盘。
+            </p>
+          )}
+          {pickedRuns.length === 2 && (
+            <div className="rounded p-3 mb-4" style={{ background: 'var(--bg-base)', border: '1px solid var(--border-subtle)' }}>
+              <div className="grid text-[11px] mono items-center" style={{ gridTemplateColumns: '76px 1fr 1fr 72px', rowGap: 5 }}>
+                <span style={{ color: 'var(--text-tertiary)' }}>线 / 对局</span>
+                {pickedRuns.map((r) => (
+                  <span key={r.id} className="text-right font-semibold" style={{ color: STRAT_ACCENT[r.strategy] || 'var(--text-primary)' }}>
+                    #{r.id} {r.strategyLabel} · {r.judge.label}
+                  </span>
+                ))}
+                <span className="text-right" style={{ color: 'var(--text-tertiary)' }}>Δ 前−后</span>
+                {[
+                  ['中方科技', 'cnTech', true], ['中方经贸', 'cnEcon', true],
+                  ['美方科技', 'usTech', false], ['美方经贸', 'usEcon', false],
+                ].map(([label, key, cnLine]) => {
+                  const d = pickedRuns[0].final[key] - pickedRuns[1].final[key];
+                  return (
+                    <React.Fragment key={key}>
+                      <span style={{ color: 'var(--text-secondary)' }}>{label}</span>
+                      <span className="text-right" style={{ color: 'var(--text-primary)' }}>{pickedRuns[0].final[key]}</span>
+                      <span className="text-right" style={{ color: 'var(--text-primary)' }}>{pickedRuns[1].final[key]}</span>
+                      <span className="text-right font-semibold" style={{ color: cnLine ? dColor(d) : 'var(--text-tertiary)' }}>{sgn(d)}</span>
+                    </React.Fragment>
+                  );
+                })}
+              </div>
+              <p className="text-xs leading-relaxed mt-3" style={{ color: 'var(--text-secondary)' }}>
+                {compareVerdict(pickedRuns[0], pickedRuns[1])}
+              </p>
+              <p className="text-[10px] mt-1" style={{ color: 'var(--text-tertiary)' }}>
+                Δ 着色：中方两线前者高着绿、低着红；美方两线中性灰——实验室只替中方记账。
+              </p>
+            </div>
+          )}
+          <div className="flex items-center gap-3 flex-wrap">
+            <button type="button" style={BTN} onClick={clearRuns}>🗑 清空实验室</button>
+            <span className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>
+              点击即清空全部对局存档，不可恢复，无二次确认。
+            </span>
+          </div>
+        </Card>
+      )}
+
+      {/* 7 —— 框架三卡 + 页脚 */}
       <FrameworkTrio cards={[
         {
           title: '筹码的不对称', subtitle: '管制快 · 反噬慢', accent: 'var(--fire-gold)', border: 'var(--fire-gold)',
