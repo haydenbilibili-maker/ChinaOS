@@ -7,6 +7,7 @@ import {
   HD_AS_OF, RESOURCE_TYPES, CAPITALS, POSTS, OFFICIALS, HD_SCENARIOS,
   computeBaseline, teamCompetence, hdEngine, meritDelta, promotionJudge, hdReport,
 } from './handongData.js';
+import { useRealPool, filterPool, topMatches, REAL_POOL_NOTE } from './realPool.js';
 
 // ============================================================================
 // 汉东省 · 全要素治理沙盒（虚构推演页）
@@ -70,6 +71,16 @@ function adviceFor(judge, postId) {
   return '建议调整岗位，转任非领导职务交流使用';
 }
 
+/** 真实人物徽章：库内政要（公开履历画像）统一标识 */
+function RealBadge() {
+  return (
+    <span
+      className="text-[10px] mono px-1.5 py-0.5 rounded-full shrink-0"
+      style={{ border: '1px solid var(--border-subtle)', color: 'var(--text-tertiary)', background: 'transparent' }}
+    >真实 · 公开履历</span>
+  );
+}
+
 function RangeRow({ label, value, min, max, step = 1, unit = '', accent = '#22d3ee', onChange }) {
   return (
     <div className="mb-3">
@@ -96,6 +107,10 @@ export default function Page() {
   // —— 班子 ——
   const [assign, setAssign] = useState(() => Object.fromEntries(POSTS.map((p) => [p.id, null])));
   const [merits, setMerits] = useState(() => Object.fromEntries(OFFICIALS.map((o) => [o.id, o.merit])));
+  // —— 候选池：虚构官员库 / 真实政要库（人才库公开履历画像）双池 ——
+  const [poolMode, setPoolMode] = useState('fiction'); // 'fiction' | 'real'
+  const [poolQuery, setPoolQuery] = useState('');
+  const realPool = useRealPool();
   // —— 剧情与政策 ——
   const [scenKey, setScenKey] = useState(HD_SCENARIOS[0]?.id);
   const [secondKey, setSecondKey] = useState('');
@@ -107,10 +122,26 @@ export default function Page() {
   const [copied, setCopied] = useState(false);
 
   const resourceObj = useMemo(() => RESOURCE_TYPES.find((r) => r.id === resource) || RESOURCE_TYPES[0], [resource]);
-  const officialsLive = useMemo(
-    () => OFFICIALS.map((o) => ({ ...o, merit: merits[o.id] ?? o.merit })),
-    [merits]
+  // 当前生效候选池：real 模式取人才库政要池（加载中/为空时为 []），fiction 取原创虚构 14 人
+  const basePool = useMemo(
+    () => (poolMode === 'real' ? (realPool.pool || []) : OFFICIALS),
+    [poolMode, realPool.pool]
   );
+  const officialsLive = useMemo(
+    () => basePool.map((o) => ({ ...o, merit: merits[o.id] ?? o.merit })),
+    [basePool, merits]
+  );
+  // 搜索范围（仅 real 模式生效；fiction 恒等于全量池）
+  const filteredLive = useMemo(
+    () => (poolMode === 'real' ? filterPool(officialsLive, poolQuery) : officialsLive),
+    [poolMode, officialsLive, poolQuery]
+  );
+  // 切池：两池 id 不互通 → 清空 assign；merits 保留（同池回切后政绩档案仍在）
+  const switchPool = (mode) => {
+    if (mode === poolMode) return;
+    setPoolMode(mode);
+    setAssign(Object.fromEntries(POSTS.map((p) => [p.id, null])));
+  };
 
   // 三产结构联动约束：改一根滑杆，剩余两根按原比例分摊（Σ 恒 = 100）
   const setIndustryAt = (idx, val) => {
@@ -175,12 +206,13 @@ export default function Page() {
   }, [baselineMods, resourceObj, capital]);
 
   // 自动荐配：按岗位权重从高到低，贪心匹配 need×dims 最高且未被占用的官员
+  // real 模式作用于搜索范围（filteredLive）——实质是「搜索范围内荐配」
   const autoAssign = () => {
     const taken = new Set();
     const next = {};
     [...POSTS].sort((a, b) => b.weight - a.weight).forEach((p) => {
       let best = null, bestS = -1;
-      officialsLive.forEach((o) => {
+      filteredLive.forEach((o) => {
         if (taken.has(o.id)) return;
         const s = matchScore(o.dims, p.need);
         if (s > bestS) { bestS = s; best = o.id; }
@@ -190,10 +222,10 @@ export default function Page() {
     setAssign(Object.fromEntries(POSTS.map((p) => [p.id, next[p.id] || null])));
   };
 
-  // 应对小组：未入班子的官员按当前场景 need 匹配 Top4
+  // 应对小组：未入班子的官员按当前场景 need 匹配 Top4（real 模式同样跟随搜索范围）
   const reserves = useMemo(() => {
     const inCabinet = new Set(Object.values(assign).filter(Boolean));
-    return officialsLive
+    return filteredLive
       .filter((o) => !inCabinet.has(o.id))
       .map((o) => {
         let top = 0;
@@ -202,7 +234,16 @@ export default function Page() {
       })
       .sort((a, b) => b.match - a.match)
       .slice(0, 4);
-  }, [assign, officialsLive, activeScenario]);
+  }, [assign, filteredLive, activeScenario]);
+
+  // 任免/报告名册：fiction 全量；real 只列「登场过」的人（在班子里，或政绩档案有 ≠50 记录）
+  const rosterLive = useMemo(() => {
+    if (poolMode !== 'real') return officialsLive;
+    const inCabinet = new Set(Object.values(assign).filter(Boolean));
+    return officialsLive
+      .filter((o) => inCabinet.has(o.id) || (merits[o.id] != null && merits[o.id] !== 50))
+      .sort((a, b) => b.merit - a.merit);
+  }, [poolMode, officialsLive, assign, merits]);
 
   // 执行推演回合：记录历史 + 政绩写回（主官=书记/省长吃主官Δ，其余班子吃班子Δ）
   const runRound = () => {
@@ -225,11 +266,13 @@ export default function Page() {
 
   const genReport = () => {
     try {
-      setReportMd(hdReport({
+      let md = hdReport({
         scenario: activeScenario, intensity,
         cfg: { pop, gdpPc, industry, resource, capital },
-        assign, alloc, officials: officialsLive, result,
-      }));
+        assign, alloc, officials: rosterLive, result,
+      });
+      if (poolMode === 'real') md += '\n\n*' + REAL_POOL_NOTE + '*';
+      setReportMd(md);
     } catch (e) {
       setReportMd(`# 报告生成异常\n\n${String(e)}`);
     }
@@ -306,11 +349,15 @@ export default function Page() {
         subtitle="配置一个省 → 组一套班子 → 砸一场危机 → 摆一桌政策 → 跑一个回合 → 政绩写回与任免判定"
       />
       <IntroCard>
-        <strong style={{ color: 'var(--text-primary)' }}>虚构声明：</strong>汉东省及其下辖京州、吕州、林城均为虚构地名，十四名官员与六段剧情均为原创虚构，致敬经典政治叙事，与任何真实地区、机构、人物无关。本页把治国沙盒的四件套——省情参数、班子乘数、危机引擎、政策预算——装进同一个可配置省份，跑通「推演 → 考核 → 任免」的完整治理回合：你拧的每一根滑杆都是国情，你放的每一个人都是变量。
+        <strong style={{ color: 'var(--text-primary)' }}>虚构声明：</strong>汉东省及其下辖京州、吕州、林城均为虚构地名，十四名官员与六段剧情均为原创虚构，致敬经典政治叙事，与任何真实地区、机构、人物无关。本页把治国沙盒的四件套——省情参数、班子乘数、危机引擎、政策预算——装进同一个可配置省份，跑通「推演 → 考核 → 任免」的完整治理回合：你拧的每一根滑杆都是国情，你放的每一个人都是变量。班子可选接入人才库真实政要（仅公开履历生成的算法画像）；即便选用真实人物，全部推演、政绩与任免仍为虚构游戏机制。
       </IntroCard>
       <Grid cols={4} className="mb-8">
         <Stat value={HD_AS_OF} label="推演基准日" accent="#22d3ee" />
-        <Stat value={`${OFFICIALS.length} 人`} label="原创虚构官员库" accent="#e8a317" />
+        <Stat
+          value={poolMode === 'real' ? `${realPool.count ?? basePool.length} 人` : `${OFFICIALS.length} 人`}
+          label={poolMode === 'real' ? '真实政要库（公开履历画像）' : '原创虚构官员库'}
+          accent="#e8a317"
+        />
         <Stat value={`${HD_SCENARIOS.length} 段`} label="剧情情景（可叠加）" accent="#c41e3a" />
         <Stat value={`${rounds.length} 回合`} label="本会话已推演" accent="#10b981" />
       </Grid>
@@ -360,6 +407,41 @@ export default function Page() {
 
       {/* 2 —— 班子组建 */}
       <Card title="② 班子组建 · 人是变量">
+        <div className="mb-4">
+          <div className="flex items-center gap-2 flex-wrap">
+            <button
+              type="button"
+              onClick={() => switchPool('fiction')}
+              style={poolMode === 'fiction' ? { ...BTN_CYAN, borderRadius: 999 } : { ...BTN, borderRadius: 999 }}
+            >虚构官员库 ×{OFFICIALS.length}</button>
+            <button
+              type="button"
+              disabled={realPool.loading}
+              onClick={() => switchPool('real')}
+              style={{
+                ...(poolMode === 'real' ? BTN_CYAN : BTN), borderRadius: 999,
+                opacity: realPool.loading ? 0.5 : 1, cursor: realPool.loading ? 'not-allowed' : 'pointer',
+              }}
+            >{realPool.loading ? '真实政要库 · 载入中…' : `真实政要库 ×${realPool.count}（公开履历画像）`}</button>
+            {poolMode === 'real' && (
+              <input
+                value={poolQuery}
+                onChange={(e) => setPoolQuery(e.target.value)}
+                placeholder="搜索姓名 / 省份 / 职务 / 标签…"
+                className="os-input text-xs flex-1"
+                style={{ minWidth: 180, maxWidth: 320 }}
+              />
+            )}
+          </div>
+          {poolMode === 'real' && (
+            <p className="text-[11px] mt-2" style={{ color: 'var(--text-tertiary)' }}>{REAL_POOL_NOTE}</p>
+          )}
+          {poolMode === 'real' && !realPool.loading && basePool.length === 0 && (
+            <p className="text-xs mono mt-2" style={{ color: '#e8a317' }}>
+              人才库政要队列为空——请先到 人才库 或 数据与系统底座 载入政要数据
+            </p>
+          )}
+        </div>
         <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
           <div>
             <div className="flex gap-2 mb-3">
@@ -369,6 +451,17 @@ export default function Page() {
             {POSTS.map((p) => {
               const oid = assign[p.id];
               const o = oid ? officialsLive.find((x) => x.id === oid) : null;
+              // real 池上千人不全量塞 select：每岗只列搜索范围内 need 匹配 Top30（排除他岗已占，不排自己当前值）
+              let options;
+              if (poolMode === 'real') {
+                const taken = new Set(POSTS.filter((pp) => pp.id !== p.id).map((pp) => assign[pp.id]).filter(Boolean));
+                options = topMatches(filteredLive, p.need, taken, 30);
+                if (oid && o && !options.some((x) => x.id === oid)) {
+                  options = [{ ...o, match: matchScore(o.dims, p.need) }, ...options];
+                }
+              } else {
+                options = officialsLive;
+              }
               return (
                 <div key={p.id} className="flex items-center gap-2 mb-2 flex-wrap">
                   <span className="text-xs mono shrink-0" style={{ color: 'var(--text-secondary)', width: 84 }}>
@@ -381,11 +474,13 @@ export default function Page() {
                     style={{ background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', minWidth: 120 }}
                   >
                     <option value="">— 空缺 —</option>
-                    {officialsLive.map((cand) => {
+                    {options.map((cand) => {
                       const usedBy = POSTS.find((pp) => pp.id !== p.id && assign[pp.id] === cand.id);
                       return (
                         <option key={cand.id} value={cand.id} disabled={!!usedBy}>
-                          {cand.name}{usedBy ? `（已任${usedBy.label}）` : ''}
+                          {poolMode === 'real'
+                            ? `${cand.name} · ${cand.archetype} · 匹配${cand.match}`
+                            : `${cand.name}${usedBy ? `（已任${usedBy.label}）` : ''}`}
                         </option>
                       );
                     })}
@@ -393,6 +488,7 @@ export default function Page() {
                   <span className="text-[11px] mono shrink-0" style={{ color: o ? 'var(--text-tertiary)' : 'var(--text-tertiary)', width: 150 }}>
                     {o ? `${o.archetype} · ${o.age}岁 · 绩${o.merit}` : '待配置'}
                   </span>
+                  {o?.real && <RealBadge />}
                 </div>
               );
             })}
@@ -534,6 +630,17 @@ export default function Page() {
                 <span className="text-[10px] mono" style={{ color: '#10b981' }}>匹配 {o.match}</span>
               </div>
               <div className="text-[11px] mt-0.5" style={{ color: 'var(--text-tertiary)' }}>{o.archetype} · {o.age}岁</div>
+              {o.real && (
+                <div className="flex items-center gap-1 mt-1 flex-wrap">
+                  <RealBadge />
+                  {(o.tags || []).map((t) => (
+                    <span key={t} className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'var(--bg-base)', color: '#22d3ee' }}>{t}</span>
+                  ))}
+                </div>
+              )}
+              {o.real && o.bio && (
+                <p className="text-[10px] mt-1 leading-snug" style={{ color: 'var(--text-tertiary)', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{o.bio}</p>
+              )}
               <div className="text-[10px] mono mt-1.5" style={{ color: '#e8a317' }}>
                 最强维 {HD_DOMAINS[o.topDim]} {o.dims[o.topDim]}
               </div>
@@ -574,9 +681,16 @@ export default function Page() {
       </Card>
 
       {/* 7 —— 任免面板 */}
-      <Card title="⑦ 任免面板 · 政绩档案与组织判定">
+      <Card title={poolMode === 'real' ? (
+        <>⑦ 任免面板 · 政绩档案与组织判定 <span className="text-[11px] font-normal" style={{ color: 'var(--text-tertiary)' }}>（虚构推演机制 · 非真实人事评价）</span></>
+      ) : '⑦ 任免面板 · 政绩档案与组织判定'}>
         <div className="mb-4">
-          {officialsLive.map((o) => {
+          {poolMode === 'real' && rosterLive.length === 0 && (
+            <p className="text-xs mono" style={{ color: 'var(--text-tertiary)' }}>
+              // 尚无真实政要登场——组建班子并执行推演后，此处生成沙盘政绩档案
+            </p>
+          )}
+          {rosterLive.map((o) => {
             const post = POSTS.find((p) => assign[p.id] === o.id);
             const judge = promotionJudge(o.merit);
             return (
@@ -585,6 +699,7 @@ export default function Page() {
                 <span className="text-[11px] mono shrink-0" style={{ color: post ? '#22d3ee' : 'var(--text-tertiary)', width: 90 }}>
                   {post ? post.label : '在野'}
                 </span>
+                {o.real && <RealBadge />}
                 <div className="h-2 rounded overflow-hidden shrink-0" style={{ background: 'var(--bg-base)', width: 120 }}>
                   <div style={{ width: `${o.merit}%`, height: '100%', background: judge[1], transition: 'width .3s' }} />
                 </div>
