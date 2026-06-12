@@ -445,11 +445,11 @@ function ChroniclePulse() {
   const recent = useMemo(() => CHRONICLE_EVENTS.slice(-5).reverse(), []);
   return (
     <ScreenCard title={`国运坐标 · ${era.label} ${era.range[0]}–${era.range[1]}`} accent={era.accent || '#fb923c'}
-      footer={<>1949→2026 七时代 {CHRONICLE_EVENTS.length} 节点全轴见 <Link to="/chronicle" className="mono" style={{ color: STEEL }}>国运时间轴</Link></>}>
+      footer={<>1949→2026 七时代 {CHRONICLE_EVENTS.length} 节点全轴见 <Link to="/modules/guoyun?tab=timeline" className="mono" style={{ color: STEEL }}>国运时间轴</Link></>}>
       <p className="text-[11px] leading-relaxed mb-2.5 px-2.5 py-2 rounded-lg" style={{ background: 'var(--bg-elevated)', color: 'var(--text-secondary)', borderLeft: `2px solid ${era.accent || '#fb923c'}` }}>{era.summary}</p>
       <div className="space-y-1.5">
         {recent.map((e) => (
-          <Link key={`${e.y}-${e.title}`} to={e.to || '/chronicle'} className="os-card-interactive flex items-center gap-2 rounded-lg px-2.5 py-1.5"
+          <Link key={`${e.y}-${e.title}`} to={e.to || '/modules/guoyun?tab=timeline'} className="os-card-interactive flex items-center gap-2 rounded-lg px-2.5 py-1.5"
             style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}>
             <span className="mono text-[10px] shrink-0" style={{ color: era.accent || '#fb923c' }}>{e.y}</span>
             <span className="text-xs font-medium truncate" style={{ color: 'var(--text-primary)' }}>{e.title}</span>

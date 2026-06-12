@@ -227,3 +227,21 @@
   margin: calc(-1 * var(--card-padding)) calc(-1 * var(--card-padding));
   max-width: none;
 }
+
+/* 国运合一 · 两谱系外壳 */
+.guoyun-unified.is-timeline {
+  --lineage-accent: #5e8c7a;
+}
+
+.guoyun-unified.is-sim {
+  --lineage-accent: #d4af37;
+}
+
+.guoyun-lineage-hint {
+  padding: var(--card-padding);
+  background: color-mix(in srgb, var(--lineage-accent) 6%, var(--bg-elevated));
+}
+
+.guoyun-chronicle-panel {
+  --chip-accent: var(--lineage-accent);
+}
