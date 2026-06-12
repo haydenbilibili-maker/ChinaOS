@@ -1,0 +1,256 @@
+@import "../shared/gy/tokens.css";
+
+#tj-app .tj-shell { max-width: 1060px; margin: 0 auto; padding: 0 28px 96px; }
+
+/* 题头 */
+#tj-app .tj-mast { padding: 56px 0 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+#tj-app .tj-mast-meta { font-family: var(--sans); font-size: 11px; letter-spacing: .22em; color: var(--xuanzhi-mute); text-transform: uppercase; }
+#tj-app .tj-mast-meta b { color: var(--jin); font-weight: 500; }
+#tj-app h1.tj-title { font-size: clamp(30px, 5vw, 46px); font-weight: 600; letter-spacing: .08em; line-height: 1.3; margin-top: 14px; }
+#tj-app h1.tj-title .tj-title-sub { display: block; font-size: 14px; font-weight: 400; color: var(--xuanzhi-dim); letter-spacing: .3em; margin-top: 10px; }
+#tj-app .tj-mast-seal { flex-shrink: 0; writing-mode: vertical-rl; font-size: 13px; letter-spacing: .35em; color: var(--zhu); border: 1px solid var(--zhu-dim); padding: 14px 8px; line-height: 1; user-select: none; }
+
+/* 可迁移进程签名图 */
+#tj-app .tj-found { margin-top: 44px; border: 1px solid var(--hairline); background: var(--xuan-deep); padding: 22px 24px 12px; }
+#tj-app .tj-found svg { width: 100%; height: auto; display: block; }
+#tj-app .tj-found-caption { font-family: var(--sans); font-size: 11.5px; color: var(--xuanzhi-mute); letter-spacing: .04em; padding: 8px 2px 6px; }
+#tj-app .tj-found-caption b { color: var(--xuanzhi); }
+
+/* 页签 */
+#tj-app .tj-nav { display: flex; flex-wrap: wrap; margin-top: 30px; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); position: sticky; top: 0; background: var(--xuan); z-index: 10; }
+#tj-app .tj-nav button { flex: 1 1 auto; background: none; border: none; border-right: 1px solid var(--hairline); color: var(--xuanzhi-dim); font-family: var(--serif); font-size: 14px; letter-spacing: .1em; padding: 15px 9px 13px; cursor: pointer; position: relative; transition: color .2s; white-space: nowrap; }
+#tj-app .tj-nav button:last-child { border-right: none; }
+#tj-app .tj-nav button:hover { color: var(--xuanzhi); }
+#tj-app .tj-nav button:focus-visible { outline: 1px solid var(--jin); outline-offset: -1px; }
+#tj-app .tj-nav button.is-active { color: var(--xuanzhi); }
+#tj-app .tj-nav button.is-active::after { content: ""; position: absolute; left: 14%; right: 14%; bottom: -1px; height: 2px; background: var(--zhu); }
+
+/* 通用 */
+#tj-app section.tj-panel { display: none; padding-top: 50px; }
+#tj-app section.tj-panel.is-active { display: block; animation: tjFade .35s ease; }
+@keyframes tjFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { #tj-app section.tj-panel.is-active { animation: none; } }
+#tj-app .tj-sec-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 8px; flex-wrap: wrap; }
+#tj-app .tj-sec-head h2 { font-size: 23px; font-weight: 600; letter-spacing: .1em; }
+#tj-app .tj-sec-head .tj-sec-tag { font-family: var(--sans); font-size: 11px; letter-spacing: .18em; color: var(--xuanzhi-mute); }
+#tj-app .tj-lede { color: var(--xuanzhi-dim); font-size: 15px; max-width: 76ch; margin-bottom: 34px; }
+#tj-app .tj-lede b { color: var(--xuanzhi); font-weight: 600; }
+#tj-app h3.tj-h3 { font-size: 17px; font-weight: 600; letter-spacing: .08em; margin: 40px 0 18px; display: flex; align-items: center; gap: 12px; }
+#tj-app h3.tj-h3::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
+#tj-app .tj-card { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 20px 22px; }
+#tj-app .tj-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+#tj-app .tj-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+#tj-app .tj-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+#tj-app .tj-card p { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.78; }
+#tj-app .tj-card p b { color: var(--xuanzhi); font-weight: 600; }
+#tj-app .tj-card .tj-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .24em; color: var(--xuanzhi-mute); display: block; margin-bottom: 10px; }
+#tj-app .tj-verdict { margin-top: 38px; border-left: 2px solid var(--jin); background: var(--xuan-deep); padding: 22px 26px; font-size: 15px; line-height: 2; }
+#tj-app .tj-verdict .tj-verdict-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .3em; color: var(--jin); display: block; margin-bottom: 8px; }
+#tj-app .tj-verdict b { color: var(--xuanzhi); font-weight: 600; }
+#tj-app .tj-rows { border-top: 1px solid var(--hairline); }
+#tj-app .tj-row { display: grid; grid-template-columns: 132px 1fr; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--hairline); font-size: 13px; }
+#tj-app .tj-row .tj-row-k { font-family: var(--mono); font-size: 12px; color: var(--xuanzhi-mute); padding-top: 1px; }
+#tj-app .tj-row .tj-row-k.k-zhu { color: var(--zhu); }
+#tj-app .tj-row .tj-row-v { color: var(--xuanzhi-dim); line-height: 1.78; }
+#tj-app .tj-row .tj-row-v b { color: var(--xuanzhi); font-weight: 600; }
+#tj-app .tj-xref { display: inline-block; margin-top: 10px; font-family: var(--sans); font-size: 10.5px; letter-spacing: .12em; color: var(--jin); border: 1px solid var(--jin-dim); padding: 3px 9px; margin-right: 6px; }
+
+/* 数据卡(T1) · 大号锚定数 */
+#tj-app .tj-data3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+#tj-app .tj-stat { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 18px 20px; border-top: 3px solid var(--zhu); }
+#tj-app .tj-stat .tj-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .22em; color: var(--xuanzhi-mute); display: block; margin-bottom: 9px; }
+#tj-app .tj-stat .tj-stat-n { font-family: var(--mono); font-size: 27px; color: var(--zhu); line-height: 1.1; display: block; }
+#tj-app .tj-stat .tj-stat-u { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .08em; display: block; margin-top: 4px; }
+#tj-app .tj-stat p { font-size: 12px; color: var(--xuanzhi-dim); line-height: 1.7; margin-top: 10px; }
+#tj-app .tj-stat p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 构成谱系 / 国际坐标 / 阶梯 */
+#tj-app .tj-scale { border: 1px solid var(--hairline); }
+#tj-app .tj-scale-row { display: grid; grid-template-columns: 150px 1fr; gap: 0; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); }
+#tj-app .tj-scale-row:last-child { border-bottom: none; }
+#tj-app .tj-scale-num { padding: 16px 18px; border-right: 1px solid var(--hairline); background: var(--xuan-deep); }
+#tj-app .tj-scale-num .n { font-family: var(--mono); font-size: 21px; color: var(--xuanzhi); display: block; line-height: 1.2; }
+#tj-app .tj-scale-num .u { font-family: var(--sans); font-size: 10.5px; color: var(--xuanzhi-mute); letter-spacing: .12em; }
+#tj-app .tj-scale-row.wide .n { color: var(--xuanzhi-mute); }
+#tj-app .tj-scale-row.core .tj-scale-num { border-left: 3px solid var(--zhu); }
+#tj-app .tj-scale-row.core .n { color: var(--zhu); }
+#tj-app .tj-scale-body { padding: 15px 18px; }
+#tj-app .tj-scale-body h5 { font-size: 13.5px; font-weight: 600; margin-bottom: 4px; }
+#tj-app .tj-scale-body p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#tj-app .tj-scale-body p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 双时间链(T2) / 利率阶梯 */
+#tj-app .tj-track { border: 1px solid var(--hairline); }
+#tj-app .tj-track-row { display: grid; grid-template-columns: 170px 1fr 110px; gap: 0; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); align-items: stretch; }
+#tj-app .tj-track-row:last-child { border-bottom: none; }
+#tj-app .tj-track-head { padding: 16px 18px; border-right: 1px solid var(--hairline); background: var(--xuan-deep); }
+#tj-app .tj-track-head .n { font-family: var(--mono); font-size: 20px; color: var(--xuanzhi); display: block; line-height: 1.2; }
+#tj-app .tj-track-head .u { font-family: var(--sans); font-size: 10.5px; color: var(--xuanzhi-mute); letter-spacing: .1em; display: block; margin-top: 3px; }
+#tj-app .tj-track-body { padding: 14px 18px; }
+#tj-app .tj-track-body h6 { font-size: 13.5px; font-weight: 600; margin-bottom: 4px; }
+#tj-app .tj-track-body p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.7; }
+#tj-app .tj-track-body p b { color: var(--xuanzhi); font-weight: 600; }
+#tj-app .tj-track-rate { padding: 14px 16px; border-left: 1px solid var(--hairline); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: var(--xuan-deep); }
+#tj-app .tj-track-rate .r { font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: .06em; }
+#tj-app .tj-track-rate .r-sub { font-family: var(--mono); font-size: 10px; color: var(--xuanzhi-mute); margin-top: 4px; }
+#tj-app .tj-track-row.hi .tj-track-head { border-left: 3px solid var(--jin); }
+#tj-app .tj-track-row.hi .tj-track-rate .r { color: var(--jin); }
+#tj-app .tj-track-row.mid .tj-track-rate .r { color: var(--dai); }
+#tj-app .tj-track-row.lo .tj-track-head { border-left: 3px solid var(--zhu); }
+#tj-app .tj-track-row.lo .tj-track-head .n { color: var(--zhu); }
+#tj-app .tj-track-row.lo .tj-track-rate .r { color: var(--zhu); }
+
+/* 双链对照(T2 焦虑 vs 安抚) */
+#tj-app .tj-dual { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+#tj-app .tj-dual-col { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#tj-app .tj-dual-col.anx { border-top: 3px solid var(--zhu); }
+#tj-app .tj-dual-col.sooth { border-top: 3px solid var(--jin); }
+#tj-app .tj-dual-col h6 { font-family: var(--sans); font-size: 11px; letter-spacing: .14em; padding: 12px 16px 8px; color: var(--xuanzhi-mute); }
+#tj-app .tj-dual-col.anx h6 b { color: var(--zhu); }
+#tj-app .tj-dual-col.sooth h6 b { color: var(--jin); }
+#tj-app .tj-dual-step { padding: 10px 16px; border-top: 1px solid var(--hairline); font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.7; display: flex; gap: 10px; align-items: baseline; }
+#tj-app .tj-dual-step .y { font-family: var(--mono); font-size: 11px; flex-shrink: 0; width: 58px; }
+#tj-app .tj-dual-col.anx .tj-dual-step .y { color: var(--zhu); }
+#tj-app .tj-dual-col.sooth .tj-dual-step .y { color: var(--jin); }
+#tj-app .tj-dual-step b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 悖论对照(T3/T5) */
+#tj-app .tj-twin { display: grid; grid-template-columns: 1fr 60px 1fr; gap: 0; border: 1px solid var(--hairline); margin-top: 4px; }
+#tj-app .tj-twin > div { padding: 16px 18px; }
+#tj-app .tj-twin .tj-twin-a { background: var(--xuan-raise); border-right: 1px solid var(--hairline); }
+#tj-app .tj-twin .tj-twin-mid { background: var(--xuan-deep); display: flex; align-items: center; justify-content: center; font-family: var(--mono); color: var(--zhu); font-size: 18px; }
+#tj-app .tj-twin .tj-twin-b { background: var(--xuan-raise); border-left: 1px solid var(--hairline); }
+#tj-app .tj-twin h6 { font-family: var(--sans); font-size: 10.5px; letter-spacing: .16em; color: var(--xuanzhi-mute); margin-bottom: 8px; }
+#tj-app .tj-twin p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.7; }
+#tj-app .tj-twin p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 三联卡 */
+#tj-app .tj-tri3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+#tj-app .tj-tri3 > div { background: var(--xuan-deep); border: 1px solid var(--hairline); padding: 14px 15px; border-bottom: 2px solid var(--jin-dim); }
+#tj-app .tj-tri3 h6 { font-size: 12.5px; color: var(--jin); font-weight: 600; margin-bottom: 5px; font-family: var(--sans); letter-spacing: .06em; }
+#tj-app .tj-tri3 p { font-size: 11.5px; color: var(--xuanzhi-dim); line-height: 1.7; }
+#tj-app .tj-tri3 p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 纵向链 / 套娃分层 */
+#tj-app .tj-nest { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#tj-app .tj-nest-row { padding: 13px 18px; border-bottom: 1px solid var(--hairline); font-size: 13px; display: flex; gap: 14px; align-items: baseline; }
+#tj-app .tj-nest-row:last-child { border-bottom: none; }
+#tj-app .tj-nest-row .tj-nest-k { font-family: var(--mono); font-size: 12px; color: var(--zhu); flex-shrink: 0; width: 140px; }
+#tj-app .tj-nest-row .tj-nest-v { color: var(--xuanzhi-dim); line-height: 1.72; }
+#tj-app .tj-nest-row .tj-nest-v b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 引擎 / 谱系卡 */
+#tj-app .tj-art { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 18px 20px; margin-bottom: 12px; border-left: 3px solid var(--zhu); }
+#tj-app .tj-art h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 6px; display: flex; gap: 11px; align-items: baseline; }
+#tj-app .tj-art h5 b { font-family: var(--mono); color: var(--zhu); font-size: 12px; font-weight: 500; }
+#tj-app .tj-art p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#tj-app .tj-art p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 签名图 / 示意图容器 */
+#tj-app .tj-hirsch { border: 1px solid var(--hairline); background: var(--xuan-deep); padding: 20px; margin-bottom: 18px; }
+#tj-app .tj-hirsch svg { width: 100%; height: auto; }
+
+/* 外流仪表卡(T4) */
+#tj-app .tj-gauge { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+#tj-app .tj-gauge-cell { background: var(--xuan-raise); border: 1px solid var(--hairline); border-top: 3px solid var(--jin); padding: 16px 18px; }
+#tj-app .tj-gauge-cell .g-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .2em; color: var(--xuanzhi-mute); display: block; margin-bottom: 8px; }
+#tj-app .tj-gauge-cell .g-n { font-family: var(--mono); font-size: 24px; color: var(--jin); line-height: 1.1; display: block; }
+#tj-app .tj-gauge-cell .g-u { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); display: block; margin-top: 4px; }
+#tj-app .tj-gauge-cell p { font-size: 12px; color: var(--xuanzhi-dim); line-height: 1.7; margin-top: 10px; }
+#tj-app .tj-gauge-cell p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 案例 rows / 链条 */
+#tj-app .tj-chain { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#tj-app .tj-chain-row { padding: 13px 18px; border-bottom: 1px solid var(--hairline); font-size: 13px; display: flex; gap: 16px; align-items: baseline; position: relative; }
+#tj-app .tj-chain-row:last-child { border-bottom: none; }
+#tj-app .tj-chain-row .tj-chain-step { font-family: var(--mono); font-size: 12px; color: var(--zhu); flex-shrink: 0; width: 92px; }
+#tj-app .tj-chain-row .tj-chain-v { color: var(--xuanzhi-dim); line-height: 1.74; }
+#tj-app .tj-chain-row .tj-chain-v b { color: var(--xuanzhi); font-weight: 600; }
+#tj-app .tj-chain-row.peak { border-left: 3px solid var(--zhu); }
+#tj-app .tj-chain-row.peak .tj-chain-v b { color: var(--zhu); }
+
+/* 筹码盘点对照表(T6) */
+#tj-app .tj-bargain { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+#tj-app .tj-bargain-col { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#tj-app .tj-bargain-col.state { border-top: 3px solid var(--dai); }
+#tj-app .tj-bargain-col.tip { border-top: 3px solid var(--zhu); }
+#tj-app .tj-bargain-col h6 { font-family: var(--sans); font-size: 11px; letter-spacing: .14em; padding: 12px 16px 8px; color: var(--xuanzhi-mute); }
+#tj-app .tj-bargain-col.state h6 b { color: var(--dai); }
+#tj-app .tj-bargain-col.tip h6 b { color: var(--zhu); }
+#tj-app .tj-bargain-row { padding: 11px 16px; border-top: 1px solid var(--hairline); font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.7; }
+#tj-app .tj-bargain-row .bk { font-family: var(--mono); font-size: 11.5px; color: var(--xuanzhi); display: block; margin-bottom: 2px; }
+#tj-app .tj-bargain-col.state .tj-bargain-row .bk { color: var(--dai); }
+#tj-app .tj-bargain-col.tip .tj-bargain-row .bk { color: var(--zhu); }
+#tj-app .tj-bargain-row b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 三形态卡(T8) */
+#tj-app .tj-bal { border: 1px solid var(--qing-dim); background: rgba(65, 89, 78, .08); padding: 18px 20px; margin-bottom: 12px; }
+#tj-app .tj-bal h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 6px; color: var(--qing); }
+#tj-app .tj-bal p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#tj-app .tj-bal p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 修正卡(T9) */
+#tj-app .tj-fix { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 16px 20px; margin-bottom: 12px; border-left: 3px solid var(--jin); }
+#tj-app .tj-fix h5 { font-size: 14px; font-weight: 600; margin-bottom: 6px; display: flex; gap: 11px; align-items: baseline; }
+#tj-app .tj-fix h5 b { font-family: var(--mono); color: var(--jin); font-size: 12px; font-weight: 500; }
+#tj-app .tj-fix p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#tj-app .tj-fix p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 章节规划登记表 */
+#tj-app .tj-plan { border: 1px solid var(--hairline); }
+#tj-app .tj-plan-row { padding: 14px 18px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); display: flex; gap: 16px; align-items: baseline; }
+#tj-app .tj-plan-row:last-child { border-bottom: none; }
+#tj-app .tj-plan-k { font-family: var(--mono); font-size: 12px; color: var(--zhu); flex-shrink: 0; width: 76px; }
+#tj-app .tj-plan-v { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#tj-app .tj-plan-v b { color: var(--xuanzhi); font-weight: 600; }
+#tj-app .tj-plan-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .14em; color: var(--xuanzhi-mute); border: 1px solid var(--hairline); padding: 2px 8px; flex-shrink: 0; }
+
+/* 观测哨 */
+#tj-app .tj-watch-intro { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 22px; }
+#tj-app .tj-watch-intro p { font-size: 13.5px; color: var(--xuanzhi-dim); max-width: 64ch; }
+#tj-app .tj-storage-state { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .08em; }
+#tj-app .tj-watch { border: 1px solid var(--hairline); }
+#tj-app .tj-watch-item { display: grid; grid-template-columns: 1fr 320px; gap: 18px; padding: 18px 22px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); }
+#tj-app .tj-watch-item:last-child { border-bottom: none; }
+#tj-app .tj-watch-item h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 5px; }
+#tj-app .tj-watch-item h5 b { font-family: var(--mono); color: var(--jin); font-weight: 500; font-size: 12px; margin-right: 8px; }
+#tj-app .tj-watch-item .tj-watch-desc { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.75; }
+#tj-app .tj-watch-ctrl { display: flex; flex-direction: column; gap: 9px; }
+#tj-app .tj-status-row { display: flex; gap: 6px; }
+#tj-app .tj-status-btn { flex: 1; font-family: var(--sans); font-size: 11.5px; letter-spacing: .08em; padding: 7px 0; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi-mute); cursor: pointer; transition: all .15s; }
+#tj-app .tj-status-btn:hover { color: var(--xuanzhi); }
+#tj-app .tj-status-btn:focus-visible { outline: 1px solid var(--jin); }
+#tj-app .tj-status-btn.on-good { background: var(--qing-dim); border-color: var(--qing); color: var(--xuanzhi); }
+#tj-app .tj-status-btn.on-flat { background: #3a3f33; border-color: var(--xuanzhi-mute); color: var(--xuanzhi); }
+#tj-app .tj-status-btn.on-bad { background: var(--zhu-dim); border-color: var(--zhu); color: var(--xuanzhi); }
+#tj-app .tj-watch-note { width: 100%; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi); font-family: var(--sans); font-size: 12.5px; padding: 8px 10px; resize: vertical; min-height: 38px; line-height: 1.6; }
+#tj-app .tj-watch-note:focus { outline: 1px solid var(--jin); }
+#tj-app .tj-watch-note::placeholder { color: var(--xuanzhi-mute); }
+#tj-app .tj-watch-stamp { font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); text-align: right; min-height: 14px; }
+
+/* 页脚 */
+#tj-app .tj-foot { margin-top: 66px; border-top: 1px solid var(--hairline); padding-top: 24px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+#tj-app .tj-foot p { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .06em; line-height: 1.9; max-width: 66ch; }
+#tj-app .tj-foot .tj-foot-meta { text-align: right; font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); line-height: 2; flex-shrink: 0; }
+
+@media (max-width: 860px) {
+  #tj-app .tj-grid-2, #tj-app .tj-grid-3, #tj-app .tj-data3, #tj-app .tj-tri3,
+  #tj-app .tj-dual, #tj-app .tj-bargain, #tj-app .tj-gauge { grid-template-columns: 1fr; }
+  #tj-app .tj-watch-item { grid-template-columns: 1fr; }
+  #tj-app .tj-mast-seal { display: none; }
+  #tj-app .tj-nav button { flex: 1 1 30%; font-size: 12.5px; letter-spacing: .04em; }
+  #tj-app .tj-row, #tj-app .tj-scale-row { grid-template-columns: 1fr; gap: 4px; }
+  #tj-app .tj-track-row { grid-template-columns: 1fr; }
+  #tj-app .tj-track-head, #tj-app .tj-track-rate { border-right: none; border-left: none; flex-direction: row; gap: 12px; justify-content: flex-start; }
+  #tj-app .tj-twin { grid-template-columns: 1fr; }
+  #tj-app .tj-twin .tj-twin-mid { padding: 6px; }
+  #tj-app .tj-nest-row, #tj-app .tj-plan-row, #tj-app .tj-chain-row { flex-direction: column; gap: 3px; }
+  #tj-app .tj-nest-row .tj-nest-k, #tj-app .tj-plan-k, #tj-app .tj-chain-row .tj-chain-step { width: auto; }
+}
+
+#tj-app { border-radius: var(--radius-lg); }
+
+.tajian-module-wrap {
+  margin: calc(-1 * var(--card-padding)) calc(-1 * var(--card-padding));
+  max-width: none;
+}
