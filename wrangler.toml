@@ -1,0 +1,16 @@
+# China OS · Cloudflare Workers 静态部署
+# 部署前必须先构建 Vite 应用：cd app && npm run build
+# 一键部署（项目根目录）：npm run deploy
+#
+# 产物目录 app/dist/ — 勿再部署仓库根目录的 china.html 等遗留静态页
+
+name = "chinaos"
+main = "worker/index.js"
+compatibility_date = "2024-09-23"
+
+[assets]
+directory = "./app/dist"
+binding = "ASSETS"
+
+# 禁止 wrangler 自动把 not_found 交给 worker 之外的默认行为；由 worker 统一处理 SPA 回退
+not_found_handling = "none"

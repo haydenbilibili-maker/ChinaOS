@@ -73,6 +73,26 @@ npm run preview    # 本地预览生产构建
 
 `vite.config.js` 中 `base: './'`，可部署至任意静态子路径，与遗留 HTML 报告共存。
 
+## Cloudflare Workers 部署
+
+**线上地址：** https://chinaos.hayden-bilibili.workers.dev/
+
+> 常见故障：若页面仍显示「China OS v2.0 系统架构总览」（遗留 `china.html`），说明 Worker 仍在托管仓库根目录静态文件，而非 `app/dist`。请使用下方命令重新部署。
+
+```bash
+# 项目根目录
+npm install          # 安装 wrangler（仅首次）
+npm run deploy       # 构建 app/ + wrangler deploy
+```
+
+配置见 [`wrangler.toml`](wrangler.toml)（静态资源 `app/dist`）与 [`worker/index.js`](worker/index.js)（遗留 `/china?tab=…` → `/#/…` 重定向）。
+
+本地预览 Worker：
+
+```bash
+npm run preview:worker   # http://localhost:8787
+```
+
 ---
 
 ## 数据与语料

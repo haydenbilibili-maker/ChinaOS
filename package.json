@@ -1,0 +1,13 @@
+{
+  "name": "china2os",
+  "private": true,
+  "description": "China OS · Cloudflare Workers 部署脚本（主应用在 app/）",
+  "scripts": {
+    "build": "npm run build --prefix app",
+    "deploy": "npm run build && wrangler deploy",
+    "preview:worker": "npm run build && wrangler dev"
+  },
+  "devDependencies": {
+    "wrangler": "^4.100.0"
+  }
+}

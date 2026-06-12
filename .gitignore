@@ -24,6 +24,7 @@ mojibake_report.json
 npm-debug.log*
 .vite/
 .cache/
+.wrangler/
 
 # 环境与密钥
 .env
