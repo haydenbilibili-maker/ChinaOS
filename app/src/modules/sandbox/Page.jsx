@@ -14,6 +14,8 @@ import MacroSimulator from '../macro/Page.jsx';
 import InspectionSimulator from '../inspection/Page.jsx';
 import WargameSimulator from '../wargame/Page.jsx';
 import PresserSimulator from '../presser/Page.jsx';
+import PartySchoolSection from '../talent/PartySchoolSection.jsx';
+import OrgDepartmentSection from '../talent/OrgDepartmentSection.jsx';
 
 const SANDBOX_TABS = [
   { id: 'general', label: '通用沙盘', accent: '#22d3ee' },
@@ -22,6 +24,8 @@ const SANDBOX_TABS = [
   { id: 'wargame', label: '大国博弈推演桌', accent: '#8b5cf6' },
   { id: 'presser', label: '舆情风暴应对台', accent: '#f59e0b' },
   { id: 'macro', label: '宏观调控驾驶舱', accent: '#10b981' },
+  { id: 'party-school', label: '党校研修', accent: '#c41e3a' },
+  { id: 'org-dept', label: '组织画像', accent: '#e8a317' },
 ];
 
 const VALID_SANDBOX_TABS = new Set(SANDBOX_TABS.map((t) => t.id));
@@ -33,6 +37,8 @@ const SANDBOX_SUBTITLES = {
   wargame: '科技-经贸回合制思想实验 · 八张中性牌 × 五回合 × 三档对手策略',
   presser: '抽象情景推演 · 响应时机 × 口径 × 渠道',
   macro: '五根政策杆 · 八季度推演 · 增长/物价/就业/杠杆四难平衡',
+  'party-school': '干部培训模拟 · 课程配置 · 班次筛选 · 结业考核 —— 教学推演沙盘，人才均为画像/原型',
+  'org-dept': '全库六维画像 · 12 经历标签 · 情景匹配底座 —— 公开履历关键词推断，不构成人事评价',
 };
 
 // ===========================================================================
@@ -351,6 +357,16 @@ export default function Page() {
         <PresserSimulator embedded />
       ) : sandboxTab === 'macro' ? (
         <MacroSimulator embedded />
+      ) : sandboxTab === 'party-school' ? (
+        <>
+          <PartySchoolSection />
+          <ModuleFooter moduleId="sandbox" disclaimer="党校研修为教学推演沙盘；人才均为画像/原型，不构成对任何真实人物或人事安排的评价" />
+        </>
+      ) : sandboxTab === 'org-dept' ? (
+        <>
+          <OrgDepartmentSection />
+          <ModuleFooter moduleId="sandbox" disclaimer="组织画像为公开履历关键词推断；不构成人事评价或任免建议" />
+        </>
       ) : (
       <>
       <IntroCard>

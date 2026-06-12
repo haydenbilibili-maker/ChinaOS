@@ -35,9 +35,9 @@ export default function App() {
           <Route path="inspection" element={<Navigate to="/sandbox?tab=inspection" replace />} />
           <Route path="wargame" element={<Navigate to="/sandbox?tab=wargame" replace />} />
           <Route path="presser" element={<Navigate to="/sandbox?tab=presser" replace />} />
-          <Route path="party-school" element={<Navigate to="/talent?tab=party-school" replace />} />
-          <Route path="org-engine" element={<Navigate to="/talent?tab=org-dept" replace />} />
-          <Route path="organization-dept" element={<Navigate to="/talent?tab=org-dept" replace />} />
+          <Route path="party-school" element={<Navigate to="/sandbox?tab=party-school" replace />} />
+          <Route path="org-engine" element={<Navigate to="/sandbox?tab=org-dept" replace />} />
+          <Route path="organization-dept" element={<Navigate to="/sandbox?tab=org-dept" replace />} />
           <Route path="legal-statutes" element={<Navigate to="/policydocs?tab=legal" replace />} />
           <Route path="*" element={<Navigate to={DEFAULT_MODULE.path} replace />} />
         </Route>

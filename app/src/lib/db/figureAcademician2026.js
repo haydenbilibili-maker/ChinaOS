@@ -16,7 +16,7 @@ export const ACADEMICIAN_META = {
     '新华社/人民日报公开报道', '维基百科公开条目',
   ],
   scope: '中科院院士 {cas} 人；工程院院士 {cae} 人；两院院士 {both} 人；合计 {total} 人',
-  notes: '公开子集：与知识精英/商业精英队列交叉引用并 enrich；非穷尽全名单；研究用途，信息截至 {as_of}。',
+  notes: '公开子集：与文化精英/商业精英队列交叉引用并 enrich；非穷尽全名单；研究用途，信息截至 {as_of}。',
 };
 
 /** @param {string} academy 'cas' | 'cae' | 'both' */

@@ -13,6 +13,7 @@ import {
   buildGovGraph, buildMeetingFrequency, buildToolIntensity, buildAgendaDonut, buildTermTimeline,
 } from './data.js';
 import { SIM_NOTE, TOPIC_PARAMS, simAttention, INTL_TERM_COMPARE, INTL_NOTE, buildLeadReport } from './leadershipSim.js';
+import LeadershipAiSim from './LeadershipAiSim.jsx';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 领袖统治 · 权力结构 / 决策机制 / 人事布局 / 历史演进
@@ -803,6 +804,7 @@ export default function Page() {
       {section === 'history' && (
         <HistorySection eraIdx={eraIdx} setEraIdx={setEraIdx} agendaId={agendaId} setAgendaId={setAgendaId} />
       )}
+      {section === 'aisim' && <LeadershipAiSim />}
 
       <UpgradeSections
         eraLabel={activeEra?.label || '全周期'}

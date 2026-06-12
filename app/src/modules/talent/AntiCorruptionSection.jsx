@@ -19,6 +19,7 @@ import FigureAvatar from '../../lib/ui/FigureAvatar.jsx';
 import { figureAvatarProps, prefetchFigureAvatars } from '../../lib/ui/figureAvatarResolve.js';
 import TalentDetailPanel, { ExpandableText } from './TalentDetailPanel.jsx';
 import { useTalentDeepLink } from '../../lib/talent/routing.js';
+import { EraTimeline } from '../leadership/EraTimeline.jsx';
 
 const short = (p) => (p || '').replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '');
 const inp = { background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', borderRadius: 6, padding: '6px 10px', fontSize: 13 };
@@ -69,6 +70,9 @@ export default function AntiCorruptionSection() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [q, setQ] = useState('');
   const [year, setYear] = useState('');
+  const [yearIdx, setYearIdx] = useState(-1);
+  const [dateFrom, setDateFrom] = useState('');
+  const [dateTo, setDateTo] = useState('');
   const [bucket, setBucket] = useState('');
   const [level, setLevel] = useState('');
   const [levelTier, setLevelTier] = useState('');
@@ -88,6 +92,26 @@ export default function AntiCorruptionSection() {
 
   const tierDef = levelTier ? LEVEL_TIERS.find((t) => t.id === levelTier) : null;
   const years = useMemo(() => [...new Set(list.map((r) => r.year).filter(Boolean))].sort((a, b) => b - a), [list]);
+  const yearStages = useMemo(() => years.map((y) => {
+    const n = list.filter((r) => r.year === y).length;
+    return { period: String(y), title: `${n} 案`, desc: `${y} 年公开落马/被查 ${n} 条`, accent: '#c41e3a' };
+  }), [years, list]);
+
+  useEffect(() => {
+    if (!year) { setYearIdx(-1); return; }
+    const idx = years.indexOf(Number(year));
+    if (idx >= 0 && idx !== yearIdx) setYearIdx(idx);
+  }, [year, years, yearIdx]);
+
+  const pickYear = useCallback((idx) => {
+    setYearIdx(idx);
+    const y = years[idx];
+    if (y != null) {
+      setYear(String(y));
+      setDateFrom(`${y}-01-01`);
+      setDateTo(`${y}-12-31`);
+    }
+  }, [years]);
   const buckets = useMemo(() => [...new Set(list.map((r) => r.yearBucket).filter(Boolean))], [list]);
   const levels = useMemo(() => [...new Set(list.map((r) => r.level).filter(Boolean))].sort((a, b) => (LEVEL_RANK[a] ?? 9) - (LEVEL_RANK[b] ?? 9)), [list]);
   const sectors = useMemo(() => [...new Set(list.map((r) => r.sector).filter(Boolean))].sort(), [list]);
@@ -97,8 +121,11 @@ export default function AntiCorruptionSection() {
     const out = list.filter((r) => {
       const hay = [r.name, r.formerRole, r.org, r.province, r.sector, r.level, r.category, r.status, r.notes, r.source, r.caseType].join(' ');
       const tierOk = !tierDef?.match || tierDef.match(r.level);
+      const d = r.announcementDate || '';
+      const inRange = (!dateFrom || d >= dateFrom) && (!dateTo || d <= dateTo);
       return tierOk
-        && (!year || r.year === year)
+        && inRange
+        && (!year || r.year === year || String(r.year) === year)
         && (!bucket || r.yearBucket === bucket)
         && (!level || r.level === level)
         && (!sector || r.sector === sector)
@@ -111,7 +138,7 @@ export default function AntiCorruptionSection() {
     else if (sort === 'level') out.sort((a, b) => (LEVEL_RANK[a.level] ?? 9) - (LEVEL_RANK[b.level] ?? 9) || (b.announcementDate || '').localeCompare(a.announcementDate || ''));
     else if (sort === 'name') out.sort((a, b) => a.name.localeCompare(b.name, 'zh'));
     return out;
-  }, [list, q, year, bucket, level, levelTier, tierDef, sector, prov, typicalOnly, sort]);
+  }, [list, q, year, dateFrom, dateTo, bucket, level, levelTier, tierDef, sector, prov, typicalOnly, sort]);
 
   useEffect(() => {
     if (filtered.length) prefetchFigureAvatars(filtered, 56);
@@ -167,10 +194,14 @@ export default function AntiCorruptionSection() {
     setLoading(false);
   };
 
-  const clearAll = () => { setQ(''); setYear(''); setBucket(''); setLevel(''); setLevelTier(''); setSector(''); setProv(''); setTypicalOnly(false); };
+  const clearAll = () => {
+    setQ(''); setYear(''); setYearIdx(-1); setDateFrom(''); setDateTo('');
+    setBucket(''); setLevel(''); setLevelTier(''); setSector(''); setProv(''); setTypicalOnly(false);
+  };
   const activeChips = [
     q && ['搜索', `“${q}”`, () => setQ('')],
-    year && ['年份', year, () => setYear('')],
+    (dateFrom || dateTo) && ['被查时间', `${dateFrom || '…'} ~ ${dateTo || '…'}`, () => { setDateFrom(''); setDateTo(''); setYear(''); setYearIdx(-1); }],
+    year && !dateFrom && !dateTo && ['年份', year, () => { setYear(''); setYearIdx(-1); }],
     bucket && ['分期', bucket, () => setBucket('')],
     levelTier && ['层级带', LEVEL_TIERS.find((t) => t.id === levelTier)?.label, () => setLevelTier('')],
     level && ['层级', level, () => setLevel('')],
@@ -224,13 +255,44 @@ export default function AntiCorruptionSection() {
         <Card title="反腐透视队列为空"><p className="text-sm" style={{ color: 'var(--text-secondary)' }}>点击上方按钮载入内置反腐数据集。</p></Card>
       ) : (
         <>
+          {yearStages.length > 0 && (
+            <Card title="反腐时间轴 · 按被查年份" className="mb-4">
+              <p className="text-[11px] mono mb-3" style={{ color: 'var(--text-tertiary)' }}>
+                节点 = 官宣/被查归年 · 点击年份同步筛选列表 · 支持下方日期区间精筛
+              </p>
+              <EraTimeline
+                stages={yearStages}
+                activeIdx={yearIdx >= 0 ? yearIdx : 0}
+                onSelect={pickYear}
+                renderDetail={(st, idx) => (
+                  <div className="os-card lead-era-tl-detail" style={{ padding: 'var(--card-padding)', background: 'var(--bg-elevated)', borderLeft: '3px solid #c41e3a' }}>
+                    <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                      <span className="mono text-sm font-semibold" style={{ color: '#c41e3a' }}>{st.period}</span>
+                      <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{st.title}</span>
+                      <button type="button" onClick={() => { setYear(''); setYearIdx(-1); setDateFrom(''); setDateTo(''); }}
+                        className="text-[11px] mono px-2 py-0.5 rounded" style={{ background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-tertiary)', cursor: 'pointer' }}>
+                        清除年份筛选
+                      </button>
+                    </div>
+                    <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{st.desc}</p>
+                    <p className="text-[11px] mono mt-2" style={{ color: 'var(--text-tertiary)' }}>
+                      当前命中 {filtered.filter((r) => r.year === Number(st.period)).length} / {list.filter((r) => r.year === Number(st.period)).length} 条
+                    </p>
+                  </div>
+                )}
+              />
+            </Card>
+          )}
+
           <Card className="mb-4">
             <div className="flex gap-2 flex-wrap items-center">
               <div className="flex items-center gap-1.5 px-2 rounded" style={{ background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', flex: 1, minWidth: 180 }}>
                 <Lucide.Search size={14} style={{ color: 'var(--text-tertiary)' }} />
                 <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="姓名 / 原职务 / 机构 / 案类" style={{ ...inp, background: 'transparent', border: 'none', flex: 1, padding: '6px 0' }} />
               </div>
-              <select value={year} onChange={(e) => setYear(e.target.value)} style={inp}><option value="">全部年份</option>{years.map((y) => <option key={y} value={y}>{y}</option>)}</select>
+              <select value={year} onChange={(e) => { const v = e.target.value; setYear(v); if (v) { setDateFrom(`${v}-01-01`); setDateTo(`${v}-12-31`); const idx = years.indexOf(Number(v)); if (idx >= 0) setYearIdx(idx); } else { setDateFrom(''); setDateTo(''); setYearIdx(-1); } }} style={inp}><option value="">全部年份</option>{years.map((y) => <option key={y} value={y}>{y}</option>)}</select>
+              <input type="date" value={dateFrom} onChange={(e) => { setDateFrom(e.target.value); setYear(''); setYearIdx(-1); }} style={inp} title="被查起始" aria-label="被查起始" />
+              <input type="date" value={dateTo} onChange={(e) => { setDateTo(e.target.value); setYear(''); setYearIdx(-1); }} style={inp} title="被查截止" aria-label="被查截止" />
               <select value={bucket} onChange={(e) => setBucket(e.target.value)} style={inp}><option value="">全部分期</option>{buckets.map((b) => <option key={b} value={b}>{b}</option>)}</select>
               <select value={levelTier} onChange={(e) => { setLevelTier(e.target.value); setLevel(''); }} style={inp}>
                 {LEVEL_TIERS.map((t) => <option key={t.id || 'all'} value={t.id}>{t.label}</option>)}
@@ -268,7 +330,7 @@ export default function AntiCorruptionSection() {
               </div>
             )}
             <p className="text-[11px] mono mt-2" style={{ color: 'var(--text-tertiary)' }}>
-              命中 {filtered.length} / {list.length} 条 · 按官宣日期归年 · {ANTI_CORRUPTION_META.scope}
+              命中 {filtered.length} / {list.length} 条 · 按被查/官宣日期筛选 · {ANTI_CORRUPTION_META.scope}
               {dbDupeCount > 0 && ` · 本地库去重 ${rawDbCount}→${list.length}（合并 ${dbDupeCount} 条重复）`}
               {totalDupeHint > 0 && dbDupeCount === 0 && ANTI_CORRUPTION_DUPE_COUNT > 0 && ` · 种子已去重 ${ANTI_CORRUPTION_DUPE_COUNT} 条`}
             </p>

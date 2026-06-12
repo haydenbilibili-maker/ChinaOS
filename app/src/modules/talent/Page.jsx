@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import AntiCorruptionSection from './AntiCorruptionSection.jsx';
 import CulturalEliteSection from './CulturalEliteSection.jsx';
 import BusinessEliteSection from './BusinessEliteSection.jsx';
@@ -10,8 +10,6 @@ import TaiwanPoliticalSection from './TaiwanPoliticalSection.jsx';
 import HigherEducationSection from './HigherEducationSection.jsx';
 import ThinkTankSection from './ThinkTankSection.jsx';
 import ResearchInstituteSection from './ResearchInstituteSection.jsx';
-import PartySchoolSection from './PartySchoolSection.jsx';
-import OrgDepartmentSection from './OrgDepartmentSection.jsx';
 import TalentDetailPanel from './TalentDetailPanel.jsx';
 import * as Lucide from 'lucide-react';
 import { PageHeader, Card, Grid, Stat, StatGrid, TabBar, Button } from '../../app/ui.jsx';
@@ -102,8 +100,6 @@ const TAB_DEFS = [
   { id: 'business', baseLabel: '商业精英', accent: '#e8a317', bg: 'rgba(232,163,23,0.16)' },
   { id: 'overseas', baseLabel: '海外人才', accent: '#0ea5e9', bg: 'rgba(14,165,233,0.16)' },
   { id: 'diplomatic', baseLabel: '外交人才', accent: '#f59e0b', bg: 'rgba(245,158,11,0.16)' },
-  { id: 'party-school', baseLabel: '党校研修', accent: '#c41e3a', bg: 'rgba(196,30,58,0.16)' },
-  { id: 'org-dept', baseLabel: '组织画像', accent: '#e8a317', bg: 'rgba(232,163,23,0.16)' },
 ];
 
 const TAB_COUNT = {
@@ -209,20 +205,21 @@ const TAB_META = {
       return `驻外使节公开任职图谱 · ${parts.join(' / ')} —— 内置 ${c.total} 条（与境内政要/知识精英队列分轨；外交部长见中国政要）`;
     },
   },
-  'party-school': {
-    title: '人才精英库 · 党校研修推演',
-    subtitle: () => '干部培训模拟 · 课程配置 · 班次筛选 · 结业考核 —— 教学推演沙盘，人才均为画像/原型',
-  },
-  'org-dept': {
-    title: '人才精英库 · 组织画像引擎',
-    subtitle: () => '全库六维画像 · 12 经历标签 · 情景匹配底座 —— 公开履历关键词推断，不构成人事评价',
-  },
 };
 
+const SANDBOX_LEGACY_TABS = { 'party-school': 'party-school', 'org-dept': 'org-dept' };
+
 export default function Page() {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const tabParam = searchParams.get('tab');
   const tab = resolveTalentTab(tabParam || 'resume');
+
+  useEffect(() => {
+    if (tabParam && SANDBOX_LEGACY_TABS[tabParam]) {
+      navigate(`/sandbox?tab=${SANDBOX_LEGACY_TABS[tabParam]}`, { replace: true });
+    }
+  }, [tabParam, navigate]);
   const setTab = (id) => {
     if (id === 'resume') setSearchParams({}, { replace: true });
     else setSearchParams({ tab: id }, { replace: true });
@@ -475,10 +472,6 @@ export default function Page() {
         <OverseasTalentSection />
       ) : tab === 'diplomatic' ? (
         <DiplomaticCorpsSection />
-      ) : tab === 'party-school' ? (
-        <PartySchoolSection />
-      ) : tab === 'org-dept' ? (
-        <OrgDepartmentSection />
       ) : (
         <>
       <StatGrid>

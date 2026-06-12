@@ -7,6 +7,7 @@ import {
   CULTURAL_ELITE_COUNT,
 } from './figureCulturalElite2026.js';
 import { CULTURAL_ELITE_EXPANSION } from './talentBulkExpansion2026.js';
+import { CULTURAL_ELITE_EXPANSION_2 } from './talentBulkExpansion2026_part2.js';
 import { mergeAcademiciansIntoCulturalElite } from './academicianMerge.js';
 import { enrichTalentList } from '../talent/talentEnrich.js';
 import {
@@ -62,7 +63,7 @@ export function dedupeCulturalElite(list) {
 }
 
 export function buildCulturalEliteSeed() {
-  const merged = mergeAcademiciansIntoCulturalElite([...CULTURAL_ELITE_2026, ...CULTURAL_ELITE_EXPANSION]);
+  const merged = mergeAcademiciansIntoCulturalElite([...CULTURAL_ELITE_2026, ...CULTURAL_ELITE_EXPANSION, ...CULTURAL_ELITE_EXPANSION_2]);
   const { rows, dupeCount, rawCount } = dedupeCulturalElite(merged);
   return {
     id: CULTURAL_ELITE_DATASET_ID,

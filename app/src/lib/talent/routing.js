@@ -4,12 +4,19 @@
 
 import { useCallback, useEffect, useRef } from 'react';
 
-export const VALID_TALENT_TABS = new Set(['resume', 'anticorruption', 'dissident', 'taiwan', 'education', 'thinktank', 'research', 'knowledge', 'business', 'overseas', 'diplomatic', 'party-school', 'org-dept']);
+export const VALID_TALENT_TABS = new Set(['resume', 'anticorruption', 'dissident', 'taiwan', 'education', 'thinktank', 'research', 'knowledge', 'business', 'overseas', 'diplomatic']);
+
+export const VALID_SANDBOX_TABS = new Set(['general', 'handong', 'inspection', 'wargame', 'presser', 'macro', 'party-school', 'org-dept']);
 
 export const LEGACY_TAB_ALIASES = {
   culture: 'knowledge', scholar: 'knowledge', gba: 'taiwan', hkmacau: 'taiwan',
-  partyschool: 'party-school', 'party-school': 'party-school', orgengine: 'org-dept', 'org-dept': 'org-dept',
+  partyschool: 'party-school', orgengine: 'org-dept', 'organization-dept': 'org-dept',
 };
+
+export function buildSandboxLink(tab = 'general') {
+  if (!tab || tab === 'general') return '/sandbox';
+  return `/sandbox?tab=${tab}`;
+}
 
 /** 中国政要稳定 id（与 Page.jsx figKey / 入库逻辑一致） */
 export function figureEntityId(f) {

@@ -394,7 +394,7 @@ export const MODULES = [
   },
   {
     id: 'talent', path: '/talent', group: 'sim',
-    title: '人才精英库', subtitle: '结构化人力资本图谱 · 中国政要 / 反腐透视 / 党校研修 / 组织画像 / 知识生产 / 资本逻辑', icon: 'UsersRound',
+    title: '人才精英库', subtitle: '结构化人力资本图谱 · 中国政要 / 反腐透视 / 知识生产 / 资本逻辑 / 外交与海外', icon: 'UsersRound',
     component: lazy(() => import('../modules/talent/Page.jsx')),
   },
   {

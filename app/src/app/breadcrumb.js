@@ -14,8 +14,6 @@ const TALENT_TAB_LABELS = {
   business: '商业精英',
   overseas: '海外人才',
   diplomatic: '外交人才',
-  'party-school': '党校研修',
-  'org-dept': '组织画像',
 };
 
 const SANDBOX_TAB_LABELS = {
@@ -25,6 +23,8 @@ const SANDBOX_TAB_LABELS = {
   wargame: '大国博弈推演桌',
   presser: '舆情风暴应对台',
   macro: '宏观调控驾驶舱',
+  'party-school': '党校研修',
+  'org-dept': '组织画像',
 };
 
 const POLICY_CORPUS_LABELS = {

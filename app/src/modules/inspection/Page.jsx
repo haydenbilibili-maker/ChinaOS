@@ -442,7 +442,7 @@ export default function Page({ embedded = false }) {
         moduleId="inspection"
         links={[
           { to: '/sandbox?tab=handong', label: '汉东省沙盘', note: '同一虚构省份：从巡视底稿回到全要素治理推演' },
-          { to: '/talent?tab=org-dept', label: '组织画像引擎', note: '全库六维画像——谈话对象的能力底数从这里来' },
+          { to: '/sandbox?tab=org-dept', label: '组织画像引擎', note: '全库六维画像——谈话对象的能力底数从这里来' },
         ]}
         disclaimer="虚构省份巡视沙盘，致敬经典政治叙事；与任何真实巡视工作、真实人物无关；不构成对任何机构流程的描述"
       />

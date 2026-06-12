@@ -17,6 +17,7 @@ export const SECTION_TABS = [
   { key: 'decision', label: '决策机制', accent: '#22d3ee' },
   { key: 'personnel', label: '人事布局', accent: '#e8a317' },
   { key: 'history', label: '历史演进', accent: '#8b5cf6' },
+  { key: 'aisim', label: 'AI 推演', accent: '#10b981' },
 ];
 
 // ── 代际/观察窗口选择器 ───────────────────────────────────────────────────────
@@ -32,7 +33,7 @@ export const INSTITUTION_TOOLS = [
   { key: 'inspection', label: '巡视巡察', accent: '#c41e3a', route: '/sandbox?tab=inspection', note: '全覆盖监督与整改闭环' },
   { key: 'anticorruption', label: '纪检监察', accent: '#64748b', route: '/talent?tab=anticorruption', note: '自我监督机制与案例库' },
   { key: 'personnel', label: '人事任免', accent: '#e8a317', route: '/talent', note: '结构化政要图谱与履历' },
-  { key: 'party-school', label: '党校培训', accent: '#10b981', route: '/party-school', note: '干部意识形态与能力再生产' },
+  { key: 'party-school', label: '党校培训', accent: '#10b981', route: '/sandbox?tab=party-school', note: '干部意识形态与能力再生产' },
   { key: 'policy', label: '政令文库', accent: '#22d3ee', route: '/policydocs', note: '政策文本与立法迭代' },
   { key: 'diplomacy', label: '元首外交', accent: '#8b5cf6', route: '/diplomacy', note: '最高层对外校准器' },
 ];

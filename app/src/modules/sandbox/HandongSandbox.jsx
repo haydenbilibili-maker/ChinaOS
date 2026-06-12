@@ -401,7 +401,7 @@ export default function HandongSandbox() {
         { to: '/talent', label: '人才精英库 · 中国政要', note: '主官派遣候选池与履历深链。' },
         { to: '/anticorruption', label: '反腐专题', note: '反腐风暴情景的制度语境。' },
         { to: '/policydocs', label: '政策文件库', note: '产业政策与督查整改话语支撑。' },
-        { to: '/talent?tab=party-school', label: '党校研修', note: '干部培训与梯队建设参照。' },
+        { to: '/sandbox?tab=party-school', label: '党校研修', note: '干部培训与梯队建设参照。' },
       ]} />
     </div>
   );

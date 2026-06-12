@@ -7,6 +7,7 @@ import {
   DISSIDENT_COUNT,
 } from './figureDissident2026.js';
 import { DISSIDENT_EXPANSION } from './talentBulkExpansion2026.js';
+import { DISSIDENT_EXPANSION_2 } from './talentBulkExpansion2026_part2.js';
 import { enrichTalentList } from '../talent/talentEnrich.js';
 import { FIGURE_SEED } from './figureSeed.js';
 import { CULTURAL_ELITE_2026 } from './figureCulturalElite2026.js';
@@ -97,7 +98,7 @@ export function dedupeDissident(list) {
 }
 
 export function buildDissidentSeed() {
-  const { rows, dupeCount, rawCount } = dedupeDissident([...DISSIDENT_2026, ...DISSIDENT_EXPANSION]);
+  const { rows, dupeCount, rawCount } = dedupeDissident([...DISSIDENT_2026, ...DISSIDENT_EXPANSION, ...DISSIDENT_EXPANSION_2]);
   return {
     id: DISSIDENT_DATASET_ID,
     name: DISSIDENT_META.label,
