@@ -255,7 +255,7 @@ export const AGENDA = [
     links: [
       { to: '/military', label: '军事力量' },
       { to: '/defense-mobilization', label: '国防动员' },
-      { to: '/wargame', label: '博弈推演' },
+      { to: '/sandbox?tab=wargame', label: '博弈推演' },
     ],
   },
   {
@@ -281,7 +281,7 @@ export const AGENDA = [
     links: [
       { to: '/thucydides', label: '修昔底德陷阱' },
       { to: '/diplomacy', label: '外交博弈' },
-      { to: '/wargame', label: '博弈推演' },
+      { to: '/sandbox?tab=wargame', label: '博弈推演' },
     ],
   },
   {

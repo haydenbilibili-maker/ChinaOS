@@ -25,7 +25,6 @@ export const GROUPS = [
   { id: 'region', label: '区域与全球化', desc: '板块 · 海洋 · 资源', accent: '#8b5cf6' },
   { id: 'security', label: '安全与国防', desc: '军事 · 台海 · 大安全', accent: '#c41e3a' },
   { id: 'sim', label: '推演与训练', desc: '沙盒 · 内参', accent: '#d4af37' },
-  { id: 'legal', label: '法律条文', desc: '法律语料 · 行政法规', accent: '#8b5cf6' },
   { id: 'foundation', label: '数据与系统', desc: '底座', accent: '#64748b' },
 ];
 
@@ -229,11 +228,6 @@ export const MODULES = [
     component: lazy(() => import('../modules/powerlogic/Page.jsx')),
   },
   {
-    id: 'leadership', path: '/leadership', group: 'institutions',
-    title: '领袖统治', subtitle: '公开口径 · 治理逻辑解构 · 议程作战盘', icon: 'Crown',
-    component: lazy(() => import('../modules/leadership/Page.jsx')),
-  },
-  {
     id: 'reform', path: '/reform', group: 'institutions',
     title: '改革开放', subtitle: '现实主义 · 算法演进 · 摸石过河', icon: 'GitFork',
     component: lazy(() => import('../modules/reform/Page.jsx')),
@@ -394,18 +388,13 @@ export const MODULES = [
     component: lazy(() => import('../modules/sandbox/Page.jsx')),
   },
   {
-    id: 'talent', path: '/talent', group: 'sim',
-    title: '人才精英库', subtitle: '结构化人力资本图谱 · 中国政要 / 反腐透视 / 异见人士 / 台湾政要 / 机构载体 / 知识生产 / 资本逻辑', icon: 'UsersRound',
-    component: lazy(() => import('../modules/talent/Page.jsx')),
-  },
-  {
-    id: 'policydocs', path: '/policydocs', group: 'sim',
-    title: '政策文库', subtitle: '报告比对 · 政策洞察 · 文本挖掘', icon: 'FileText',
-    component: lazy(() => import('../modules/policydocs/Page.jsx')),
+    id: 'leadership', path: '/leadership', group: 'sim',
+    title: '领袖统治', subtitle: '权力结构 · 决策机制 · 12 图可视化 · 四区交互', icon: 'Crown',
+    component: lazy(() => import('../modules/leadership/Page.jsx')),
   },
   {
     id: 'watchtower', path: '/watchtower', group: 'sim',
-    title: '全局监测台', subtitle: '六域先行指标 · 三档阈值 · 越线告警', icon: 'Siren',
+    title: '全局监测台', subtitle: '六域 36 指标 · 阈值告警 · 战役回执', icon: 'Activity',
     component: lazy(() => import('../modules/watchtower/Page.jsx')),
   },
   {
@@ -420,7 +409,7 @@ export const MODULES = [
   },
   {
     id: 'handong', path: '/handong', group: 'sim',
-    title: '汉东治理沙盘', subtitle: '虚构省份 · 全要素配置 · 剧情推演 · 政绩任免', icon: 'Landmark',
+    title: '汉东治理沙盘', subtitle: '虚构省份 · 任期周期 · 换届连任 · 政绩任免', icon: 'Landmark',
     component: lazy(() => import('../modules/handong/Page.jsx')),
   },
   {
@@ -444,9 +433,14 @@ export const MODULES = [
     component: lazy(() => import('../modules/presser/Page.jsx')),
   },
   {
-    id: 'legalStatutes', path: '/legal-statutes', group: 'legal',
-    title: '法律条文', subtitle: '法律语料 · 行政法规 · 司法解释', icon: 'BookMarked', accent: '#8b5cf6',
-    component: lazy(() => import('../modules/legalStatutes/Page.jsx')),
+    id: 'talent', path: '/talent', group: 'sim',
+    title: '人才精英库', subtitle: '结构化人力资本图谱 · 中国政要 / 反腐透视 / 异见人士 / 台湾政要 / 机构载体 / 知识生产 / 资本逻辑', icon: 'UsersRound',
+    component: lazy(() => import('../modules/talent/Page.jsx')),
+  },
+  {
+    id: 'policydocs', path: '/policydocs', group: 'sim',
+    title: '政令文库', subtitle: '政策文件 · 法律条文 · 文本挖掘', icon: 'FileText',
+    component: lazy(() => import('../modules/policydocs/Page.jsx')),
   },
   {
     id: 'foundation',
@@ -456,6 +450,11 @@ export const MODULES = [
     subtitle: '世界银行 · 国家统计局 · IMF',
     icon: 'Database',
     component: lazy(() => import('../modules/foundation/Page.jsx')),
+  },
+  {
+    id: 'watchtower', path: '/watchtower', group: 'foundation',
+    title: '全局监测台', subtitle: '六域先行指标 · 三档阈值 · 越线告警', icon: 'Siren',
+    component: lazy(() => import('../modules/watchtower/Page.jsx')),
   },
 ];
 
