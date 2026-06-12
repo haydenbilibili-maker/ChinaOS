@@ -428,7 +428,7 @@ export const MODULES = [
     id: 'guoyun',
     path: '/modules/guoyun',
     group: 'sim',
-    title: '国运',
+    title: '国运模拟器',
     subtitle: '七时代轴 · 情景推演 · 观测哨',
     icon: 'Compass',
     component: lazy(() => import('../modules/guoyun/Page.jsx')),

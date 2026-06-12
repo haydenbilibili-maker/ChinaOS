@@ -27,8 +27,8 @@ export default function GuoyunPage() {
   return (
     <div className={`guoyun-unified ${tab === 'timeline' ? 'is-timeline' : 'is-sim'}`}>
       <PageHeader
-        badge="国运 · 两谱系"
-        title="国运"
+        badge="国运模拟器 · 两谱系"
+        title="国运模拟器"
         subtitle="已发生的结构演化 · 对未来的情景推演 —— 同一模块的两条谱系，互为坐标"
       />
 

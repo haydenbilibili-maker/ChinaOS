@@ -1339,7 +1339,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "观测哨",
     "aliases": [],
     "category": "gy",
-    "definition": "国运/GY模块中用于跟踪硬信号、年度复盘概率的状态节点。",
+    "definition": "国运模拟器/GY模块中用于跟踪硬信号、年度复盘概率的状态节点。",
     "context": [
       {
         "moduleId": "guoyun",
@@ -1355,9 +1355,9 @@ export const GLOSSARY_ENTRIES = [
     "related": [
       "行为优先",
       "变量B",
-      "国运"
+      "国运模拟器"
     ],
-    "source": "GY系列；China OS · 国运",
+    "source": "GY系列；China OS · 国运模拟器",
     "initial": "#"
   },
   {
@@ -3357,16 +3357,17 @@ export const GLOSSARY_ENTRIES = [
   },
   {
     "id": "mod-guoyun",
-    "term": "国运",
+    "term": "国运模拟器",
     "aliases": [
+      "国运",
       "七时代轴"
     ],
     "category": "module",
-    "definition": "China OS 功能模块「国运」聚焦七时代轴 · 情景推演 · 观测哨。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括情景推演、观测哨。",
+    "definition": "China OS 功能模块「国运模拟器」聚焦七时代轴 · 情景推演 · 观测哨。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括情景推演、观测哨。",
     "context": [
       {
         "moduleId": "guoyun",
-        "label": "国运",
+        "label": "国运模拟器",
         "path": "/modules/guoyun"
       }
     ],
@@ -3374,7 +3375,7 @@ export const GLOSSARY_ENTRIES = [
       "情景推演",
       "观测哨"
     ],
-    "source": "China OS · registry.js；China OS · 国运",
+    "source": "China OS · registry.js；China OS · 国运模拟器",
     "initial": "G"
   },
   {
@@ -4514,7 +4515,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "两谱系",
     "aliases": [],
     "category": "gy",
-    "definition": "国运模块中并行梳理的两条历史—结构谱系框架。",
+    "definition": "国运模拟器模块中并行梳理的两条历史—结构谱系框架。",
     "context": [
       {
         "moduleId": "guoyun",
@@ -5555,7 +5556,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "情景推演",
     "aliases": [],
     "category": "module",
-    "definition": "「情景推演」为 China OS 模块「治国沙盒」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「治国沙盒」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括治国沙盒、国运。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
+    "definition": "「情景推演」为 China OS 模块「治国沙盒」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「治国沙盒」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括治国沙盒、国运模拟器。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "sandbox",
@@ -5564,15 +5565,15 @@ export const GLOSSARY_ENTRIES = [
       },
       {
         "moduleId": "guoyun",
-        "label": "国运",
+        "label": "国运模拟器",
         "path": "/modules/guoyun"
       }
     ],
     "related": [
       "治国沙盒",
-      "国运"
+      "国运模拟器"
     ],
-    "source": "China OS · 治国沙盒；China OS · 国运",
+    "source": "China OS · 治国沙盒；China OS · 国运模拟器",
     "initial": "Q"
   },
   {
