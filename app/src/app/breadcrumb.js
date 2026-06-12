@@ -1,6 +1,7 @@
 import { GROUPS, MODULES, modulesByGroup } from './registry.js';
 import { resolveTalentTab } from '../lib/talent/routing.js';
 import { GUOYUN_TAB_LABELS, resolveGuoyunTab } from '../lib/guoyun/routing.js';
+import { YISHI_TAB_LABELS, resolveYishiTab } from '../lib/yishixingtai/routing.js';
 import { getVolume } from '../modules/civilization/volumes.js';
 
 const TALENT_TAB_LABELS = {
@@ -83,6 +84,14 @@ function getSubRouteCrumbs(mod, pathname, search) {
     const tab = resolveGuoyunTab(params.get('tab'));
     if (tab !== 'sim' && GUOYUN_TAB_LABELS[tab]) {
       return [{ label: GUOYUN_TAB_LABELS[tab], to: null, active: true }];
+    }
+  }
+
+  if (mod.id === 'yishixingtai') {
+    const params = new URLSearchParams(search.startsWith('?') ? search.slice(1) : search);
+    const tab = resolveYishiTab(params.get('tab'));
+    if (tab !== 'overview' && YISHI_TAB_LABELS[tab]) {
+      return [{ label: YISHI_TAB_LABELS[tab], to: null, active: true }];
     }
   }
 

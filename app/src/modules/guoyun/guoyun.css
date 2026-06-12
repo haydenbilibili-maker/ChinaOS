@@ -1,44 +1,16 @@
-/* 国运推演 · 样式隔离根 #gy-app · 令牌映射 China OS 日览/夜览 */
+/* 国运推演 · 样式隔离根 #gy-app */
+@import '../shared/gy/tokens.css';
+
 #gy-app {
-  --xuan: var(--bg-base);
-  --xuan-deep: var(--bg-inset);
-  --xuan-raise: var(--bg-elevated);
-  --xuanzhi: var(--text-primary);
-  --xuanzhi-dim: var(--text-secondary);
-  --xuanzhi-mute: var(--text-tertiary);
-  --zhu: var(--china-red);
-  --zhu-dim: var(--china-deep);
-  --qing: #5e8c7a;
-  --qing-dim: #41594e;
-  --jin: var(--fire-gold);
-  --hairline: var(--border-subtle);
   --gy-seg-mid: #3a3f33;
   --gy-seg-tail: #4a2f3d;
-
-  --serif: "Songti SC", "Noto Serif CJK SC", "Noto Serif SC", "SimSun", "STSong", var(--font-sans);
-  --sans: var(--font-sans);
-  --mono: var(--font-mono);
-
-  background: var(--xuan);
-  color: var(--xuanzhi);
-  font-family: var(--serif);
-  font-size: var(--text-md);
-  line-height: 1.85;
-  min-height: 100%;
-  -webkit-font-smoothing: antialiased;
   border-radius: var(--radius-lg);
 }
 
 :root[data-theme='light'] #gy-app {
-  --qing: #3d7a66;
-  --qing-dim: #c8e4d8;
-  --zhu-dim: #f0d0cc;
   --gy-seg-mid: #d8ddd0;
   --gy-seg-tail: #e8d0d8;
 }
-
-#gy-app * { box-sizing: border-box; margin: 0; padding: 0; }
-#gy-app ::selection { background: var(--zhu-dim); color: var(--xuanzhi); }
 
 #gy-app .gy-shell { max-width: 1060px; margin: 0 auto; padding: 0 28px 96px; }
 
@@ -204,6 +176,27 @@
 #gy-app .gy-watch-note:focus { outline: 1px solid var(--jin); }
 #gy-app .gy-watch-note::placeholder { color: var(--xuanzhi-mute); }
 #gy-app .gy-watch-stamp { font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); text-align: right; min-height: 14px; }
+
+#gy-app .gy-xref {
+  display: inline-block;
+  margin-top: 10px;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  letter-spacing: .12em;
+  color: var(--jin);
+  border: 1px solid var(--jin-dim);
+  padding: 3px 9px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color .15s, border-color .15s;
+}
+#gy-app .gy-xref:hover { color: var(--xuanzhi); border-color: var(--jin); }
+
+#gy-app .gy-deep-focus {
+  outline: 1px solid var(--jin);
+  outline-offset: 4px;
+  transition: outline-color .4s ease;
+}
 
 /* ───────────── 页脚 ───────────── */
 #gy-app .gy-foot { margin-top: 70px; border-top: 1px solid var(--hairline); padding-top: 24px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }

@@ -566,6 +566,18 @@ const MAP = {
     { to: '/computing', label: '算力设施 · 动员潜力', note: '新域新质算力动员预案。' },
     { to: '/low-altitude', label: '低空经济 · 无人机', note: '民用无人机转军用通道。' },
   ],
+  guoyun: [
+    { to: '/modules/yishixingtai', label: '合法性机器 · GY-02', note: '意识形态五组件与张力层，与推演三变量四情景双向耦合。' },
+    { to: '/modules/yishixingtai?tab=tension&tension=t03', label: '张力 T-03 · 复兴叙事 ⟂ 停滞', note: '日本化情景的意识形态杀伤大于经济杀伤。' },
+    { to: '/modules/guoyun?tab=timeline', label: '国运时间轴 · 已发生', note: '1949→2026 七时代六域大事记谱系。' },
+    { to: '/cognition', label: '康波周期 · 长波', note: '国运推演变量 A 的康波供给侧坐标。' },
+  ],
+  yishixingtai: [
+    { to: '/modules/guoyun', label: '国运推演 · GY-01', note: '三变量 × 四情景推演，张力层与观测哨年度对账联动。' },
+    { to: '/modules/guoyun?panel=p-tuiyan&scenario=down', label: '情景三 · 日本化加深', note: '与张力 T-03 直接耦合的推演情景。' },
+    { to: '/powerlogic', label: '权力逻辑 · 儒表法里', note: '合法性机器的制度底层与统治成本。' },
+    { to: '/ideology', label: '意识形态 · 理论透镜', note: '自由主义 / 马克思等对照阅读。' },
+  ],
 };
 
 export function getCrossLinks(moduleId) {

@@ -290,6 +290,7 @@ export default function ChroniclePanel() {
           { to: '/pathdependence', label: '路径依赖', note: '关键节点如何收窄选择集' },
           { to: '/cognition', label: '康波周期', note: '长波坐标对照' },
           { to: '/modules/guoyun', label: '国运推演', note: '未来情景谱系' },
+          { to: '/modules/yishixingtai', label: '合法性机器', note: 'GY-02 意识形态架构' },
         ]}
         disclaimer="大事记为公开史实策展（教科书/白皮书口径），节点取舍为分析框架服务，非完整编年史"
       />

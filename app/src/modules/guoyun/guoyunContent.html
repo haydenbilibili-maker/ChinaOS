@@ -131,7 +131,7 @@
 
     <h3 class="gy-h3">三个随机变量</h3>
 
-    <div class="gy-var">
+    <div class="gy-var" id="gy-var-a" data-var="a">
       <div class="gy-var-head"><h4><b>VAR-A</b>AI/技术红利能否对冲人口与债务</h4><span>经济线的唯一真问题</span></div>
       <div class="gy-bar" role="img" aria-label="变量A概率分布:对冲成功25%,部分对冲50%,对冲失败25%">
         <div class="gy-bar-seg seg-up" style="width:25%"><span class="seg-text">对冲成功</span><b>25%</b></div>
@@ -139,9 +139,10 @@
         <div class="gy-bar-seg seg-down" style="width:25%"><span class="seg-text">对冲失败 · 日本化</span><b>25%</b></div>
       </div>
       <p class="gy-var-note">中国此刻是康波新周期的供给侧核心(电力、算力、制造、工程师红利全部在场,1990年代的日本不具备),但需求侧窟窿也比日本当年深。<em>对冲成败不取决于技术,取决于财政是否敢真正转向居民部门——这是政治决定,不是经济决定。</em></p>
+      <a class="gy-xref" href="#/modules/yishixingtai?tab=tension&amp;tension=t01">↘ 耦合 GY-02 · 张力 T-01</a>
     </div>
 
-    <div class="gy-var">
+    <div class="gy-var" id="gy-var-b" data-var="b">
       <div class="gy-var-head"><h4><b>VAR-B</b>权力节点的连续性</h4><span>2027年74岁 · 2032年79岁 · 2036年83岁</span></div>
       <div class="gy-bar" role="img" aria-label="变量B概率分布:全程在位40%,主动梯队20%,被动交接30%,无序交接10%">
         <div class="gy-bar-seg seg-up" style="width:40%"><span class="seg-text">全程在位且机能在线</span><b>40%</b></div>
@@ -152,7 +153,7 @@
       <p class="gy-var-note">只按高龄精算基数加顶级医疗修正,十年内实质性健康冲击概率不低于三成。<em>此变量不是众多变量之一,而是其他所有变量的方差放大器</em>——2018年的制度选择把体制变成了「单点架构」,体现为所有情景的置信区间被拉宽。</p>
     </div>
 
-    <div class="gy-var">
+    <div class="gy-var" id="gy-var-c" data-var="c">
       <div class="gy-var-head"><h4><b>VAR-C</b>台海</h4><span>期权而非期货:压低行权成本,不预设行权日</span></div>
       <div class="gy-bar" role="img" aria-label="变量C概率分布:威慑均衡65%,隔离封锁类22%,全面冲突13%">
         <div class="gy-bar-seg seg-up" style="width:65%"><span class="seg-text">威慑均衡维持</span><b>65%</b></div>
@@ -160,29 +161,32 @@
         <div class="gy-bar-seg seg-down" style="width:13%"><span class="seg-text">全面冲突</span><b>13%</b></div>
       </div>
       <p class="gy-var-note">外界系统性高估「主动时间表」、低估「条件触发」。<em>变量C不独立:随A、B恶化而上升</em>——经济对冲失败+权力节点临近终点,是历史上「用外部行动锁定遗产」的经典配置;反之AI红利兑现会提高耐心,因为时间重新站到自己一边。</p>
+      <a class="gy-xref" href="#/modules/yishixingtai?tab=tension&amp;tension=t02">↘ 耦合 GY-02 · 张力 T-02</a>
     </div>
 
     <h3 class="gy-h3">四个合成情景</h3>
     <div class="gy-grid-2">
-      <div class="gy-scn scn-base">
+      <div class="gy-scn scn-base" id="gy-scenario-base" data-scenario="base">
         <div class="gy-scn-prob">40%</div>
         <h4>韧性僵局 <span style="color:var(--xuanzhi-mute); font-size:12px;">(基准)</span></h4>
         <span class="gy-scn-cond">A取中 × B前两档 × C均衡</span>
         <p>全球AI与制造的供给侧霸权之一,国内却是低增长、低通胀、低信心的「三低」体感。改革议程悬置,2035验收线靠口径技术性达标。钝刀式结构分化:东南沿海+AI产业带繁荣,广义东北化向更多内陆省份蔓延。最闷,也最可能。</p>
+        <a class="gy-xref" href="#/modules/yishixingtai?tab=tension&amp;tension=t01">↘ 耦合 GY-02 · 张力 T-01</a>
       </div>
-      <div class="gy-scn scn-up">
+      <div class="gy-scn scn-up" id="gy-scenario-up" data-scenario="up">
         <div class="gy-scn-prob">20%</div>
         <h4>第二增长曲线</h4>
         <span class="gy-scn-cond">A上行 × 财政真转向 × B连续</span>
         <p>触发大概率不是主动觉醒,而是通缩痛感倒逼(类1998「危机驱动改革」)。若发生,2030年代部分复刻1990年代美国的生产率叙事,且因制造业在岸,红利分配更宽。概率不高,因为它要求体制做最不擅长的事:向居民部门让渡资源与确定性。</p>
       </div>
-      <div class="gy-scn scn-down">
+      <div class="gy-scn scn-down" id="gy-scenario-down" data-scenario="down">
         <div class="gy-scn-prob">22%</div>
         <h4>日本化加深</h4>
         <span class="gy-scn-cond">A下行 × B任意</span>
         <p>技术明星继续闪耀,宏观上资产负债表衰退固化、人口复利显形、地方长期紧缩。与日本的关键区别是政治的:日本用选举吸收失落三十年,中国对应的吸收机制是安全体系+叙事管理,成本更高且累积。社会契约将在2030年代后期被实质重写。</p>
+        <a class="gy-xref" href="#/modules/yishixingtai?tab=tension&amp;tension=t03">↘ 耦合 GY-02 · 张力 T-03</a>
       </div>
-      <div class="gy-scn scn-tail">
+      <div class="gy-scn scn-tail" id="gy-scenario-tail" data-scenario="tail">
         <div class="gy-scn-prob">18%</div>
         <h4>高方差尾部</h4>
         <span class="gy-scn-cond">B无序 ∨ C越线 ∨ 两者串联</span>
@@ -205,10 +209,11 @@
     </div>
 
     <div class="gy-watch" id="gy-watch-list">
-      <div class="gy-watch-item" data-key="w1">
+      <div class="gy-watch-item" data-key="w1" id="gy-watch-w1">
         <div>
           <h5><b>W-01</b>二十一大人事</h5>
           <p class="gy-watch-desc">是否出现实权岗位上的60后末端/70后梯队——变量B最早的硬信号,2027年秋见分晓。</p>
+          <a class="gy-xref" href="#/modules/yishixingtai?tab=watch&amp;watch=y6">↘ 耦合 GY-02 · 观测哨 Y-06</a>
         </div>
         <div class="gy-watch-ctrl">
           <div class="gy-status-row">

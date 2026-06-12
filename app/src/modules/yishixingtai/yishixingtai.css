@@ -1,0 +1,191 @@
+@import "../shared/gy/tokens.css";
+
+#ys-app { border-radius: var(--radius-lg); }
+
+  /* ───────────── 题头 ───────────── */
+  #ys-app .ys-mast { padding: 56px 0 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+  #ys-app .ys-mast-meta { font-family: var(--sans); font-size: 11px; letter-spacing: .22em; color: var(--xuanzhi-mute); text-transform: uppercase; }
+  #ys-app .ys-mast-meta b { color: var(--jin); font-weight: 500; }
+  #ys-app h1.ys-title { font-size: clamp(30px, 5vw, 46px); font-weight: 600; letter-spacing: .08em; line-height: 1.3; margin-top: 14px; }
+  #ys-app h1.ys-title .ys-title-sub { display: block; font-size: 14px; font-weight: 400; color: var(--xuanzhi-dim); letter-spacing: .3em; margin-top: 10px; }
+  #ys-app .ys-mast-seal { flex-shrink: 0; writing-mode: vertical-rl; font-size: 13px; letter-spacing: .35em; color: var(--zhu); border: 1px solid var(--zhu-dim); padding: 14px 8px; line-height: 1; user-select: none; }
+
+  /* ───────────── 页签 ───────────── */
+  #ys-app .ys-nav { display: flex; margin-top: 46px; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); position: sticky; top: 0; background: var(--xuan); z-index: 10; }
+  #ys-app .ys-nav button { flex: 1; background: none; border: none; border-right: 1px solid var(--hairline); color: var(--xuanzhi-dim); font-family: var(--serif); font-size: 15px; letter-spacing: .22em; padding: 16px 0 14px; cursor: pointer; position: relative; transition: color .2s; }
+  #ys-app .ys-nav button:last-child { border-right: none; }
+  #ys-app .ys-nav button:hover { color: var(--xuanzhi); }
+  #ys-app .ys-nav button:focus-visible { outline: 1px solid var(--jin); outline-offset: -1px; }
+  #ys-app .ys-nav button.is-active { color: var(--xuanzhi); }
+  #ys-app .ys-nav button.is-active::after { content: ""; position: absolute; left: 20%; right: 20%; bottom: -1px; height: 2px; background: var(--zhu); }
+  #ys-app .ys-nav button small { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: .12em; color: var(--xuanzhi-mute); margin-top: 3px; }
+
+  /* ───────────── 通用版式 ───────────── */
+  #ys-app section.ys-panel { display: none; padding-top: 54px; }
+  #ys-app section.ys-panel.is-active { display: block; animation: ysFade .35s ease; }
+  @keyframes ysFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { #ys-app section.ys-panel.is-active { animation: none; } }
+
+  #ys-app .ys-sec-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 8px; }
+  #ys-app .ys-sec-head h2 { font-size: 24px; font-weight: 600; letter-spacing: .12em; }
+  #ys-app .ys-sec-head .ys-sec-tag { font-family: var(--sans); font-size: 11px; letter-spacing: .2em; color: var(--xuanzhi-mute); }
+  #ys-app .ys-lede { color: var(--xuanzhi-dim); font-size: 15px; max-width: 74ch; margin-bottom: 38px; }
+  #ys-app h3.ys-h3 { font-size: 17px; font-weight: 600; letter-spacing: .1em; margin: 44px 0 18px; display: flex; align-items: center; gap: 12px; }
+  #ys-app h3.ys-h3::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
+
+  #ys-app .ys-card { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 22px 24px; }
+  #ys-app .ys-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  #ys-app .ys-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  #ys-app .ys-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+  #ys-app .ys-card p { font-size: 13.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+  #ys-app .ys-card .ys-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .25em; color: var(--xuanzhi-mute); display: block; margin-bottom: 10px; }
+
+  #ys-app .ys-verdict { margin-top: 40px; border-left: 2px solid var(--jin); background: var(--xuan-deep); padding: 22px 26px; font-size: 15px; line-height: 2; }
+  #ys-app .ys-verdict .ys-verdict-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .3em; color: var(--jin); display: block; margin-bottom: 8px; }
+
+  /* ───────────── 签名元素:机器剖面 ───────────── */
+  #ys-app .ys-strata { margin-top: 8px; border: 1px solid var(--hairline); }
+  #ys-app .ys-stratum { display: grid; grid-template-columns: 130px 1fr 200px; align-items: center; gap: 18px; padding: 0 22px; cursor: pointer; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); transition: background .2s; position: relative; min-height: 76px; }
+  #ys-app .ys-stratum:last-child { border-bottom: none; }
+  #ys-app .ys-stratum:hover { background: #20262f; }
+  #ys-app .ys-stratum:focus-visible { outline: 1px solid var(--jin); outline-offset: -1px; }
+  #ys-app .ys-stratum::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; }
+  #ys-app .ys-stratum[data-comp="c5"]::before { background: var(--jin); }
+  #ys-app .ys-stratum[data-comp="c4"]::before { background: var(--qing); }
+  #ys-app .ys-stratum[data-comp="c3"]::before { background: var(--zhu); }
+  #ys-app .ys-stratum[data-comp="c2"]::before { background: var(--dai); }
+  #ys-app .ys-stratum[data-comp="c1"]::before { background: var(--xuanzhi-dim); }
+  #ys-app .ys-stratum[data-comp="c1"] { min-height: 96px; background: var(--xuan-deep); } /* 内核基岩更厚 */
+  #ys-app .ys-stratum .ys-st-role { font-family: var(--sans); font-size: 10.5px; letter-spacing: .22em; color: var(--xuanzhi-mute); }
+  #ys-app .ys-stratum .ys-st-name { font-size: 16.5px; font-weight: 600; letter-spacing: .08em; }
+  #ys-app .ys-stratum .ys-st-name small { display: block; font-size: 12px; font-weight: 400; color: var(--xuanzhi-dim); letter-spacing: .04em; margin-top: 2px; }
+  #ys-app .ys-stratum .ys-st-go { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); text-align: right; letter-spacing: .1em; }
+  #ys-app .ys-stratum:hover .ys-st-go { color: var(--jin); }
+  #ys-app .ys-strata-caption { font-family: var(--sans); font-size: 11.5px; color: var(--xuanzhi-mute); margin-top: 10px; letter-spacing: .04em; }
+
+  /* 优先序公式 */
+  #ys-app .ys-order { display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: wrap; margin-top: 18px; padding: 26px 18px; background: var(--xuan-deep); border: 1px solid var(--hairline); }
+  #ys-app .ys-order .ys-ord-item { font-size: 17px; letter-spacing: .12em; padding: 6px 16px; }
+  #ys-app .ys-order .ys-ord-gt { font-family: var(--mono); color: var(--zhu); font-size: 18px; }
+  #ys-app .ys-order .o-sec { color: var(--zhu); } #ys-app .ys-order .o-dev { color: var(--qing); }
+  #ys-app .ys-order .o-fux { color: var(--dai); } #ys-app .ys-order .o-eq { color: var(--xuanzhi-dim); }
+  #ys-app .ys-order .o-org { color: var(--xuanzhi); font-weight: 600; } #ys-app .ys-order .o-all { color: var(--xuanzhi-mute); }
+
+  /* ───────────── 组件深挖:卷宗 ───────────── */
+  #ys-app .ys-dossier { border: 1px solid var(--hairline); margin-bottom: 14px; background: var(--xuan-raise); }
+  #ys-app .ys-dossier-head { display: grid; grid-template-columns: 64px 1fr auto; align-items: center; gap: 18px; padding: 18px 22px; cursor: pointer; transition: background .2s; }
+  #ys-app .ys-dossier-head:hover { background: #20262f; }
+  #ys-app .ys-dossier-head:focus-visible { outline: 1px solid var(--jin); outline-offset: -1px; }
+  #ys-app .ys-dossier-no { font-family: var(--mono); font-size: 13px; color: var(--xuanzhi-mute); }
+  #ys-app .ys-dossier-head h4 { font-size: 16.5px; font-weight: 600; letter-spacing: .06em; }
+  #ys-app .ys-dossier-head h4 small { display: block; font-size: 12px; font-weight: 400; color: var(--xuanzhi-dim); margin-top: 3px; letter-spacing: .03em; }
+  #ys-app .ys-dossier-toggle { font-family: var(--sans); font-size: 11px; letter-spacing: .15em; color: var(--xuanzhi-mute); }
+  #ys-app .ys-dossier.is-open .ys-dossier-toggle { color: var(--jin); }
+  #ys-app .ys-dossier[data-comp="c1"] { border-top: 3px solid var(--xuanzhi-dim); }
+  #ys-app .ys-dossier[data-comp="c2"] { border-top: 3px solid var(--dai); }
+  #ys-app .ys-dossier[data-comp="c3"] { border-top: 3px solid var(--zhu); }
+  #ys-app .ys-dossier[data-comp="c4"] { border-top: 3px solid var(--qing); }
+  #ys-app .ys-dossier[data-comp="c5"] { border-top: 3px solid var(--jin); }
+  #ys-app .ys-dossier-body { display: none; border-top: 1px solid var(--hairline); padding: 24px 22px 26px; }
+  #ys-app .ys-dossier.is-open .ys-dossier-body { display: block; }
+
+  #ys-app .ys-dossier-body .ys-thesis { font-size: 14.5px; line-height: 1.95; border-left: 2px solid var(--hairline); padding-left: 16px; margin-bottom: 24px; color: var(--xuanzhi); max-width: 78ch; }
+  #ys-app .ys-sub { margin-bottom: 22px; }
+  #ys-app .ys-sub-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .28em; color: var(--jin); display: block; margin-bottom: 10px; }
+  #ys-app .ys-sub p { font-size: 13.5px; color: var(--xuanzhi-dim); line-height: 1.85; max-width: 80ch; }
+  /* 谱系链 */
+  #ys-app .ys-chain { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  #ys-app .ys-chain span { font-family: var(--sans); font-size: 12px; padding: 5px 11px; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi-dim); white-space: nowrap; }
+  #ys-app .ys-chain b.arrow { font-family: var(--mono); color: var(--xuanzhi-mute); font-weight: 400; }
+  #ys-app .ys-chain span.now { border-color: var(--jin-dim); color: var(--xuanzhi); }
+  /* 节点/案例列表 */
+  #ys-app .ys-rows { border-top: 1px solid var(--hairline); }
+  #ys-app .ys-row { display: grid; grid-template-columns: 96px 1fr; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--hairline); font-size: 13px; }
+  #ys-app .ys-row .ys-row-k { font-family: var(--mono); font-size: 12px; color: var(--xuanzhi-mute); padding-top: 1px; }
+  #ys-app .ys-row .ys-row-v { color: var(--xuanzhi-dim); line-height: 1.75; }
+  #ys-app .ys-row .ys-row-v b { color: var(--xuanzhi); font-weight: 600; }
+  /* 弱点与检验 */
+  #ys-app .ys-weak { background: var(--xuan-deep); border: 1px solid var(--zhu-dim); padding: 16px 18px; }
+  #ys-app .ys-weak ul { list-style: none; }
+  #ys-app .ys-weak li { font-size: 13px; color: var(--xuanzhi-dim); padding: 5px 0 5px 18px; position: relative; line-height: 1.75; }
+  #ys-app .ys-weak li::before { content: "✕"; position: absolute; left: 0; top: 6px; color: var(--zhu); font-family: var(--mono); font-size: 11px; }
+  #ys-app .ys-probe { margin-top: 14px; font-size: 13.5px; color: var(--xuanzhi); border-left: 2px solid var(--jin); padding-left: 14px; line-height: 1.85; }
+  #ys-app .ys-probe b { color: var(--jin); font-weight: 600; font-family: var(--sans); font-size: 11px; letter-spacing: .2em; margin-right: 8px; }
+
+  /* ───────────── 仲裁表 ───────────── */
+  #ys-app .ys-arb { border: 1px solid var(--hairline); }
+  #ys-app .ys-arb-row { display: grid; grid-template-columns: 190px 1fr; gap: 18px; padding: 16px 22px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); }
+  #ys-app .ys-arb-row:last-child { border-bottom: none; }
+  #ys-app .ys-arb-duel { font-size: 14px; line-height: 1.6; }
+  #ys-app .ys-arb-duel .win { color: var(--xuanzhi); font-weight: 600; }
+  #ys-app .ys-arb-duel .gt { font-family: var(--mono); color: var(--zhu); padding: 0 5px; }
+  #ys-app .ys-arb-duel .lose { color: var(--xuanzhi-mute); }
+  #ys-app .ys-arb-row p { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.75; }
+
+  /* ───────────── 双轨对照 ───────────── */
+  #ys-app .ys-twin { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
+  #ys-app .ys-twin-col { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+  #ys-app .ys-twin-head { padding: 15px 20px 11px; border-bottom: 1px solid var(--hairline); }
+  #ys-app .ys-twin-head h4 { font-size: 15.5px; letter-spacing: .15em; }
+  #ys-app .ys-twin-head small { font-family: var(--sans); font-size: 10.5px; letter-spacing: .1em; color: var(--xuanzhi-mute); }
+  #ys-app .ys-twin-item { padding: 13px 20px; border-bottom: 1px solid var(--hairline); }
+  #ys-app .ys-twin-item:last-child { border-bottom: none; }
+  #ys-app .ys-twin-item h5 { font-size: 13.5px; font-weight: 600; margin-bottom: 3px; }
+  #ys-app .ys-twin-item p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.75; }
+
+  /* ───────────── 张力 ───────────── */
+  #ys-app .ys-tension { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 20px 22px; border-top: 3px solid var(--zhu); }
+  #ys-app .ys-tension h4 { font-size: 15px; margin-bottom: 8px; }
+  #ys-app .ys-tension h4 b { font-family: var(--mono); color: var(--zhu); font-weight: 500; font-size: 12px; margin-right: 8px; }
+  #ys-app .ys-tension p { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.8; }
+  #ys-app .ys-tension .ys-xref { display: inline-block; margin-top: 10px; font-family: var(--sans); font-size: 10.5px; letter-spacing: .12em; color: var(--jin); border: 1px solid var(--jin-dim); padding: 3px 9px; }
+
+  /* ───────────── 观测哨 (与 GY-01 同构) ───────────── */
+  #ys-app .ys-watch-intro { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 22px; }
+  #ys-app .ys-watch-intro p { font-size: 13.5px; color: var(--xuanzhi-dim); max-width: 64ch; }
+  #ys-app .ys-storage-state { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .08em; }
+  #ys-app .ys-watch { border: 1px solid var(--hairline); }
+  #ys-app .ys-watch-item { display: grid; grid-template-columns: 1fr 320px; gap: 18px; padding: 18px 22px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); }
+  #ys-app .ys-watch-item:last-child { border-bottom: none; }
+  #ys-app .ys-watch-item h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 5px; }
+  #ys-app .ys-watch-item h5 b { font-family: var(--mono); color: var(--jin); font-weight: 500; font-size: 12px; margin-right: 8px; }
+  #ys-app .ys-watch-item .ys-watch-desc { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.75; }
+  #ys-app .ys-watch-ctrl { display: flex; flex-direction: column; gap: 9px; }
+  #ys-app .ys-status-row { display: flex; gap: 6px; }
+  #ys-app .ys-status-btn { flex: 1; font-family: var(--sans); font-size: 11.5px; letter-spacing: .08em; padding: 7px 0; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi-mute); cursor: pointer; transition: all .15s; }
+  #ys-app .ys-status-btn:hover { color: var(--xuanzhi); }
+  #ys-app .ys-status-btn:focus-visible { outline: 1px solid var(--jin); }
+  #ys-app .ys-status-btn.on-good { background: var(--qing-dim); border-color: var(--qing); color: var(--xuanzhi); }
+  #ys-app .ys-status-btn.on-flat { background: #3a3f33; border-color: var(--xuanzhi-mute); color: var(--xuanzhi); }
+  #ys-app .ys-status-btn.on-bad  { background: var(--zhu-dim); border-color: var(--zhu); color: var(--xuanzhi); }
+  #ys-app .ys-watch-note { width: 100%; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi); font-family: var(--sans); font-size: 12.5px; padding: 8px 10px; resize: vertical; min-height: 38px; line-height: 1.6; }
+  #ys-app .ys-watch-note:focus { outline: 1px solid var(--jin); }
+  #ys-app .ys-watch-note::placeholder { color: var(--xuanzhi-mute); }
+  #ys-app .ys-watch-stamp { font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); text-align: right; min-height: 14px; }
+
+  /* ───────────── 页脚 ───────────── */
+  #ys-app .ys-foot { margin-top: 70px; border-top: 1px solid var(--hairline); padding-top: 24px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  #ys-app .ys-foot p { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .06em; line-height: 1.9; max-width: 66ch; }
+  #ys-app .ys-foot .ys-foot-meta { text-align: right; font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); line-height: 2; flex-shrink: 0; }
+
+  /* ───────────── 响应式 ───────────── */
+  @media (max-width: 860px) {
+    #ys-app .ys-grid-2, #ys-app .ys-grid-3, #ys-app .ys-twin { grid-template-columns: 1fr; }
+    #ys-app .ys-watch-item { grid-template-columns: 1fr; }
+    #ys-app .ys-mast-seal { display: none; }
+    #ys-app .ys-nav button { letter-spacing: .08em; font-size: 13px; }
+    #ys-app .ys-nav button small { display: none; }
+    #ys-app .ys-stratum { grid-template-columns: 1fr; gap: 4px; padding: 14px 18px; }
+    #ys-app .ys-stratum .ys-st-go { display: none; }
+    #ys-app .ys-arb-row { grid-template-columns: 1fr; gap: 8px; }
+    #ys-app .ys-row { grid-template-columns: 1fr; gap: 2px; }
+    #ys-app .ys-order .ys-ord-item { font-size: 14px; padding: 4px 8px; }
+  }
+
+#ys-app .ys-tension .ys-xref { text-decoration: none; cursor: pointer; transition: color .15s, border-color .15s; }
+#ys-app .ys-tension .ys-xref:hover { color: var(--xuanzhi); border-color: var(--jin); }
+
+.yishixingtai-module-wrap {
+  margin: calc(-1 * var(--card-padding)) calc(-1 * var(--card-padding));
+  max-width: none;
+}

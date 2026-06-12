@@ -1,0 +1,53 @@
+/* GY-01 / GY-02 共享设计令牌 · 玄青夜读 · 映射 China OS 日览/夜览 */
+#gy-app,
+#ys-app {
+  --xuan: var(--bg-base);
+  --xuan-deep: var(--bg-inset);
+  --xuan-raise: var(--bg-elevated);
+  --xuanzhi: var(--text-primary);
+  --xuanzhi-dim: var(--text-secondary);
+  --xuanzhi-mute: var(--text-tertiary);
+  --zhu: var(--china-red);
+  --zhu-dim: var(--china-deep);
+  --qing: #5e8c7a;
+  --qing-dim: #41594e;
+  --jin: var(--fire-gold);
+  --jin-dim: #6e5d38;
+  --dai: #5d7489;
+  --dai-dim: #3d4c5a;
+  --hairline: var(--border-subtle);
+
+  --serif: "Songti SC", "Noto Serif CJK SC", "Noto Serif SC", "SimSun", "STSong", var(--font-sans);
+  --sans: var(--font-sans);
+  --mono: var(--font-mono);
+
+  background: var(--xuan);
+  color: var(--xuanzhi);
+  font-family: var(--serif);
+  font-size: var(--text-md);
+  line-height: 1.85;
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+:root[data-theme='light'] #gy-app,
+:root[data-theme='light'] #ys-app {
+  --qing: #3d7a66;
+  --qing-dim: #c8e4d8;
+  --zhu-dim: #f0d0cc;
+  --jin-dim: #c9b87a;
+  --dai-dim: #b8c8d4;
+}
+
+#gy-app *,
+#ys-app * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#gy-app ::selection,
+#ys-app ::selection {
+  background: var(--zhu-dim);
+  color: var(--xuanzhi);
+}

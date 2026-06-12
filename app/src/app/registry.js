@@ -388,6 +388,15 @@ export const MODULES = [
     component: lazy(() => import('../modules/guoyun/Page.jsx')),
   },
   {
+    id: 'yishixingtai',
+    path: '/modules/yishixingtai',
+    group: 'sim',
+    title: '合法性机器',
+    subtitle: '意识形态架构 · 五组件 · GY-02',
+    icon: 'Layers',
+    component: lazy(() => import('../modules/yishixingtai/Page.jsx')),
+  },
+  {
     id: 'leadership', path: '/leadership', group: 'sim',
     title: '领袖统治', subtitle: '权力结构 · 决策机制 · 12 图可视化 · 四区交互', icon: 'Crown',
     component: lazy(() => import('../modules/leadership/Page.jsx')),

@@ -1,20 +1,37 @@
 /** 国运推演 · 页签与观测哨 localStorage（命名空间 chinaos.guoyun.v1） */
+import { resolveGuoyunPanel } from '../../lib/gy/coupling.js';
+
 const NS = 'chinaos.guoyun.v1';
 
-export function initGuoyun(root) {
+function scrollToEl(el) {
+  if (!el) return;
+  setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+}
+
+function highlightEl(el) {
+  if (!el) return;
+  el.classList.add('gy-deep-focus');
+  setTimeout(() => el.classList.remove('gy-deep-focus'), 2400);
+}
+
+/** @param {HTMLElement | null} root @param {{ panel?: string, scenario?: string, var?: string, watch?: string }} deepLink */
+export function initGuoyun(root, deepLink = {}) {
   if (!root) return () => {};
 
   const cleanups = [];
 
   const nav = root.querySelectorAll('.gy-nav button');
+  const activatePanel = (panelId) => {
+    nav.forEach((b) => {
+      b.classList.toggle('is-active', b.dataset.panel === panelId);
+    });
+    root.querySelectorAll('section.gy-panel').forEach((p) => {
+      p.classList.toggle('is-active', p.id === panelId);
+    });
+  };
+
   nav.forEach((btn) => {
-    const onClick = () => {
-      nav.forEach((b) => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-      root.querySelectorAll('section.gy-panel').forEach((p) => {
-        p.classList.toggle('is-active', p.id === btn.dataset.panel);
-      });
-    };
+    const onClick = () => activatePanel(btn.dataset.panel);
     btn.addEventListener('click', onClick);
     cleanups.push(() => btn.removeEventListener('click', onClick));
   });
@@ -109,6 +126,28 @@ export function initGuoyun(root) {
 
     render();
   });
+
+  const panel = resolveGuoyunPanel(deepLink.panel) || 'p-tuiyan';
+  if (deepLink.panel || deepLink.scenario || deepLink.var || deepLink.watch) {
+    activatePanel(panel);
+  }
+
+  if (deepLink.var) {
+    const el = root.querySelector(`#gy-var-${deepLink.var}`);
+    scrollToEl(el);
+    highlightEl(el);
+  }
+  if (deepLink.scenario) {
+    const el = root.querySelector(`#gy-scenario-${deepLink.scenario}`);
+    scrollToEl(el);
+    highlightEl(el);
+  }
+  if (deepLink.watch) {
+    const el = root.querySelector(`#gy-watch-list .gy-watch-item[data-key="${deepLink.watch}"]`);
+    activatePanel('p-watch');
+    scrollToEl(el);
+    highlightEl(el);
+  }
 
   return () => cleanups.forEach((fn) => fn());
 }
