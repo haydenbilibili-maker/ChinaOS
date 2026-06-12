@@ -229,6 +229,11 @@ export const MODULES = [
     component: lazy(() => import('../modules/powerlogic/Page.jsx')),
   },
   {
+    id: 'leadership', path: '/leadership', group: 'institutions',
+    title: '领袖统治', subtitle: '公开口径 · 治理逻辑解构 · 议程作战盘', icon: 'Crown',
+    component: lazy(() => import('../modules/leadership/Page.jsx')),
+  },
+  {
     id: 'reform', path: '/reform', group: 'institutions',
     title: '改革开放', subtitle: '现实主义 · 算法演进 · 摸石过河', icon: 'GitFork',
     component: lazy(() => import('../modules/reform/Page.jsx')),
