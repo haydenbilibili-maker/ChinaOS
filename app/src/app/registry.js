@@ -434,6 +434,11 @@ export const MODULES = [
     component: lazy(() => import('../modules/wargame/Page.jsx')),
   },
   {
+    id: 'presser', path: '/presser', group: 'sim',
+    title: '舆情风暴应对台', subtitle: '模拟 · 抽象情景 · 响应时机 · 口径与渠道', icon: 'Megaphone',
+    component: lazy(() => import('../modules/presser/Page.jsx')),
+  },
+  {
     id: 'legalStatutes', path: '/legal-statutes', group: 'legal',
     title: '法律条文', subtitle: '法律语料 · 行政法规 · 司法解释', icon: 'BookMarked', accent: '#8b5cf6',
     component: lazy(() => import('../modules/legalStatutes/Page.jsx')),

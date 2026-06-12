@@ -36,6 +36,29 @@ const AX = { line: '#27324a', text: '#93a1b5', split: 'rgba(148,163,184,0.1)' };
 const INIT_CFG = { pop: 7600, gdpPc: 8, industry: [8, 44, 48], resource: RESOURCE_TYPES[0]?.id || 'energy', capital: CAPITALS[0] };
 const initialMetrics = () => initMetrics(computeBaseline(INIT_CFG));
 
+// —— 整局存档：'cos-hd-save'（v1）——切路由不丢任期，回到页面自动续局 ——
+// 只存可序列化的「局面」字段；realPool/报告文本/搜索串一律不入档。
+const HD_SAVE_KEY = 'cos-hd-save';
+
+/** 读档纯函数：try/catch 解析 + v===1 + 关键字段类型粗校验，任何不对劲返回 null（坏档降级为新局） */
+function loadHdSave() {
+  try {
+    const s = JSON.parse(localStorage.getItem(HD_SAVE_KEY) || 'null');
+    if (!s || s.v !== 1) return null;
+    if (typeof s.pop !== 'number' || typeof s.gdpPc !== 'number') return null;
+    if (!Array.isArray(s.industry) || s.industry.length !== 3) return null;
+    if (!s.assign || typeof s.assign !== 'object' || Array.isArray(s.assign)) return null;
+    if (!s.merits || typeof s.merits !== 'object') return null;
+    if (!s.metrics || typeof s.metrics !== 'object' || typeof s.metrics.fiscal !== 'number') return null;
+    if (!s.metricsStart || typeof s.metricsStart !== 'object') return null;
+    if (!s.prevMetrics || typeof s.prevMetrics !== 'object') return null;
+    if (typeof s.term !== 'number' || typeof s.year !== 'number') return null;
+    if (!Array.isArray(s.rounds) || !Array.isArray(s.termHistory)) return null;
+    if (!Array.isArray(s.removedIds) || !Array.isArray(s.lastMoves)) return null;
+    return s;
+  } catch (_) { return null; }
+}
+
 const BTN = {
   background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)',
   color: 'var(--text-secondary)', borderRadius: 6, padding: '4px 12px', fontSize: 12, cursor: 'pointer',
@@ -108,17 +131,24 @@ function RangeRow({ label, value, min, max, step = 1, unit = '', accent = '#22d3
 }
 
 export default function Page() {
+  // —— 存档恢复：mount 时读一次档，整局状态自此惰性初始化（坏档 SAVED=null 走默认值） ——
+  // poolMode==='real' 续局时 realPool 异步未就绪，assign 引用的真实官员暂不在池：
+  // teamCompetence 缺人按空岗 40 计、各 find() 链路均空安全，池载入后自动对上。
+  const SAVED = useRef(loadHdSave()).current;
+  const [showRestoreNote, setShowRestoreNote] = useState(() => !!SAVED); // 恢复横幅（仅本次会话内可关，不入存档）
   // —— P0 省情配置 ——
-  const [pop, setPop] = useState(INIT_CFG.pop);            // 常住人口（万）
-  const [gdpPc, setGdpPc] = useState(INIT_CFG.gdpPc);      // 人均 GDP（万元）
-  const [industry, setIndustry] = useState([...INIT_CFG.industry]); // 三产结构 Σ=100
-  const [resource, setResource] = useState(INIT_CFG.resource);
-  const [capital, setCapital] = useState(INIT_CFG.capital);
+  const [pop, setPop] = useState(() => SAVED?.pop ?? INIT_CFG.pop);            // 常住人口（万）
+  const [gdpPc, setGdpPc] = useState(() => SAVED?.gdpPc ?? INIT_CFG.gdpPc);    // 人均 GDP（万元）
+  const [industry, setIndustry] = useState(() => [...(SAVED?.industry || INIT_CFG.industry)]); // 三产结构 Σ=100
+  const [resource, setResource] = useState(() => SAVED?.resource ?? INIT_CFG.resource);
+  const [capital, setCapital] = useState(() => SAVED?.capital ?? INIT_CFG.capital);
   // —— 班子 ——
-  const [assign, setAssign] = useState(() => Object.fromEntries(POSTS.map((p) => [p.id, null])));
-  const [merits, setMerits] = useState(() => Object.fromEntries(OFFICIALS.map((o) => [o.id, o.merit])));
+  const [assign, setAssign] = useState(() => Object.fromEntries(POSTS.map((p) => [p.id, SAVED?.assign?.[p.id] ?? null])));
+  const [merits, setMerits] = useState(() => (
+    SAVED?.merits ? { ...SAVED.merits } : Object.fromEntries(OFFICIALS.map((o) => [o.id, o.merit]))
+  ));
   // —— 候选池：虚构官员库 / 真实政要库（人才库公开履历画像）双池 ——
-  const [poolMode, setPoolMode] = useState('fiction'); // 'fiction' | 'real'
+  const [poolMode, setPoolMode] = useState(() => (SAVED?.poolMode === 'real' ? 'real' : 'fiction')); // 'fiction' | 'real'
   const [poolQuery, setPoolQuery] = useState('');
   const realPool = useRealPool();
   // —— 剧情与政策 ——
@@ -127,27 +157,45 @@ export default function Page() {
   const [intensity, setIntensity] = useState(55);
   const [alloc, setAlloc] = useState({ fiscal: 20, monetary: 15, industry: 20, diplomacy: 15, mobilize: 20 });
   // —— 回合与报告 ——
-  const [rounds, setRounds] = useState([]);
+  const [rounds, setRounds] = useState(() => SAVED?.rounds ?? []);
   const [reportMd, setReportMd] = useState('');
   const [copied, setCopied] = useState(false);
   // —— 任期治理周期 v2：三表/年度/余波/成长/疲劳/届满 ——
-  const [metrics, setMetrics] = useState(initialMetrics);          // 省态三表（任期内持续演化，不随 P0 滑杆重置）
-  const [metricsStart, setMetricsStart] = useState(initialMetrics); // 任期起点快照（届满对账）
-  const [prevMetrics, setPrevMetrics] = useState(initialMetrics);   // 上一年三表（Δ chips）
-  const [year, setYear] = useState(1);                   // 任期第几年（1-TERM_YEARS）
-  const [aftermath, setAftermath] = useState(null);      // 在途余波（null = 无）
+  const [metrics, setMetrics] = useState(() => SAVED?.metrics ?? initialMetrics());          // 省态三表（任期内持续演化，不随 P0 滑杆重置）
+  const [metricsStart, setMetricsStart] = useState(() => SAVED?.metricsStart ?? initialMetrics()); // 任期起点快照（届满对账）
+  const [prevMetrics, setPrevMetrics] = useState(() => SAVED?.prevMetrics ?? initialMetrics());   // 上一年三表（Δ chips）
+  const [year, setYear] = useState(() => SAVED?.year ?? 1);          // 任期第几年（1-TERM_YEARS）
+  const [aftermath, setAftermath] = useState(() => SAVED?.aftermath ?? null); // 在途余波（null = 无）
   const [engagedAftermath, setEngagedAftermath] = useState(''); // 已装填「应对余波」的源剧情 id
-  const [boost, setBoost] = useState({});                // 官员六维成长增量 {id:[6]}
-  const [streaks, setStreaks] = useState({});            // 连续在岗年数 {id:n}（连任疲劳）
-  const [termDone, setTermDone] = useState(false);       // 任期届满
+  const [boost, setBoost] = useState(() => SAVED?.boost ?? {});      // 官员六维成长增量 {id:[6]}
+  const [streaks, setStreaks] = useState(() => SAVED?.streaks ?? {}); // 连续在岗年数 {id:n}（连任疲劳）
+  const [termDone, setTermDone] = useState(() => !!SAVED?.termDone); // 任期届满
   const [termReportMd, setTermReportMd] = useState('');  // 任期总结 Markdown
   const [termCopied, setTermCopied] = useState(false);
   // —— 换届连任 v3：届次/三届治理史/出局名单/换届纪要/巡视整改包袱 ——
-  const [term, setTerm] = useState(1);                   // 第几届班子
-  const [termHistory, setTermHistory] = useState([]);    // 历届账本 [{term,grade,history,metricsStart,metricsEnd}]
-  const [removedIds, setRemovedIds] = useState([]);      // 换届出局官员 id（已调整 · 转任非领导职务）
-  const [lastMoves, setLastMoves] = useState([]);        // 最近一次换届纪要 moves
+  const [term, setTerm] = useState(() => SAVED?.term ?? 1);          // 第几届班子
+  const [termHistory, setTermHistory] = useState(() => SAVED?.termHistory ?? []); // 历届账本 [{term,grade,history,metricsStart,metricsEnd}]
+  const [removedIds, setRemovedIds] = useState(() => [...(SAVED?.removedIds || [])]); // 换届出局官员 id（已调整 · 转任非领导职务）
+  const [lastMoves, setLastMoves] = useState(() => SAVED?.lastMoves ?? []); // 最近一次换届纪要 moves
   const [inspectBurden, setInspectBurden] = useState(null); // 巡视沙盘整改账本（跨模块 'cos-inspect-issues'）
+
+  // —— 整局自动存档：快照 JSON 与 ref 缓存比对，内容不变不写（天然防抖+防循环）；写失败静默。
+  // 私有存档键，非跨模块账本——不广播 'cos-ledger-change'，避免滑杆拖动引发事件风暴。
+  const saveWrittenRef = useRef('');
+  useEffect(() => {
+    const payload = JSON.stringify({
+      pop, gdpPc, industry, resource, capital, poolMode, assign, merits, boost, streaks,
+      removedIds, term, year, rounds, termHistory, metrics, metricsStart, prevMetrics,
+      aftermath, termDone, lastMoves, v: 1,
+    });
+    if (payload === saveWrittenRef.current) return;
+    try {
+      localStorage.setItem(HD_SAVE_KEY, payload);
+      saveWrittenRef.current = payload;
+    } catch (_) { /* 存储不可用时静默放弃 */ }
+  }, [pop, gdpPc, industry, resource, capital, poolMode, assign, merits, boost, streaks,
+      removedIds, term, year, rounds, termHistory, metrics, metricsStart, prevMetrics,
+      aftermath, termDone, lastMoves]);
 
   const resourceObj = useMemo(() => RESOURCE_TYPES.find((r) => r.id === resource) || RESOURCE_TYPES[0], [resource]);
   // 当前生效候选池：real 模式取人才库政要池（加载中/为空时为 []），fiction 取原创虚构 14 人
@@ -461,6 +509,7 @@ export default function Page() {
     setTermReportMd(''); setTermCopied(false);
     setMerits(Object.fromEntries(basePool.map((o) => [o.id, 50])));
     setTerm(1); setTermHistory([]); setRemovedIds([]); setLastMoves([]);
+    try { localStorage.removeItem(HD_SAVE_KEY); } catch (_) { /* 存储不可用时静默放弃 */ }
   };
 
   // 执行换届：本届入史册、班子按政绩口径连任/晋升/出局——换届不洗账，
@@ -655,6 +704,17 @@ export default function Page() {
         title="汉东省 · 全要素治理沙盒"
         subtitle="配置一个省 → 组一套班子 → 年复一年扛危机 → 省态三表持续演化 → 五年任期届满大考与换届结算"
       />
+      {SAVED && showRestoreNote && (
+        <div
+          className="flex items-center gap-3 flex-wrap text-xs px-3 py-2 rounded mb-3"
+          style={{ border: '1px solid rgba(34,211,238,0.35)', background: 'rgba(34,211,238,0.06)' }}
+        >
+          <span className="flex-1 leading-relaxed" style={{ color: '#22d3ee', minWidth: 220 }}>
+            📂 已恢复上局存档 · 第 {SAVED.term} 届 · 任期第 {SAVED.year}/{TERM_YEARS} 年 —— 进度自动保存，换页不丢局
+          </span>
+          <button type="button" style={BTN} onClick={() => setShowRestoreNote(false)}>知道了</button>
+        </div>
+      )}
       <IntroCard>
         <strong style={{ color: 'var(--text-primary)' }}>虚构声明：</strong>汉东省及其下辖京州、吕州、林城均为虚构地名，十四名官员与六段剧情均为原创虚构，致敬经典政治叙事，与任何真实地区、机构、人物无关。本页把治国沙盒的四件套——省情参数、班子乘数、危机引擎、政策预算——装进同一个可配置省份，跑通「配置省情 → 组班子 → 年度危机 → 省态演化 → 五年大考」的任期治理周期：回合即年度，省态三表逐年演化、财政约束政策弹药、治理失分留余波、官员在岗成长亦会连任疲劳；你拧的每一根滑杆都是国情，你放的每一个人都是变量，五年届满交卷换届。班子可选接入人才库真实政要（仅公开履历生成的算法画像）；即便选用真实人物，全部推演、政绩与任免仍为虚构游戏机制。
       </IntroCard>
@@ -752,7 +812,7 @@ export default function Page() {
               </div>
             )}
             <div className="flex items-center gap-2 flex-wrap mt-4">
-              <button type="button" style={BTN} onClick={restartTerm}>↻ 推倒重来</button>
+              <button type="button" style={BTN} onClick={restartTerm}>↻ 推倒重来 · 清空存档</button>
               <span className="text-[10px] flex-1" style={{ color: 'var(--text-tertiary)', minWidth: 180 }}>
                 P0 省情变更只对推倒重来后生效：按当前省情重置三表与年度，届次/治理史/出局名单清零，政绩档案全员归 50。
               </span>
@@ -1159,7 +1219,7 @@ export default function Page() {
                 {termCopied ? '已复制 ✓' : '复制 Markdown'}
               </button>
             )}
-            <button type="button" style={BTN} onClick={restartTerm}>↻ 推倒重来（重置三表与届次 · 政绩归 50）</button>
+            <button type="button" style={BTN} onClick={restartTerm}>↻ 推倒重来（重置三表与届次 · 政绩归 50）· 清空存档</button>
           </div>
           <p className="text-[11px] mt-2" style={{ color: 'var(--text-tertiary)' }}>
             换届不洗账：省态三表、政绩档案、成长与疲劳、在途余波全部跨届延续——上届烂账，新班子接着背；

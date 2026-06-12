@@ -27,7 +27,8 @@ const BTN_RED = { ...BTN, background: 'rgba(196,30,58,0.16)', border: '1px solid
 const BTN_CYAN = { ...BTN, background: 'rgba(34,211,238,0.12)', border: '1px solid rgba(34,211,238,0.35)', color: '#22d3ee', fontWeight: 600 };
 
 const STRAT_ACCENT = { hawk: '#c41e3a', tit: '#e8a317', deal: '#10b981' };
-const TRACK_ACCENT = { litho: '#22d3ee', soft: '#e8a317', aero: '#8b5cf6' };
+// 攻关线配色：键为 techtree 领域 k（TECH_TRACKS 派生 id）；旧档 litho/soft/aero 查无即走灰色兜底
+const TRACK_ACCENT = { semi: '#c41e3a', bci: '#8b5cf6', ai: '#22d3ee', space: '#e8a317', robot: '#10b981' };
 const SIDE_LABEL = { cn: '中方', us: '美方', both: '通用' };
 const SIDE_COLOR = { cn: '#c41e3a', us: '#22d3ee', both: '#8b5cf6' };
 
@@ -83,8 +84,8 @@ function EffectRow({ effect }) {
 
 export default function Page() {
   // —— 对局状态 ——
-  const [strategy, setStrategy] = useState('tit');     // 美方策略档位
-  const [track, setTrack] = useState('litho');         // 攻关目标线（重开对局保留）
+  const [strategy, setStrategy] = useState('tit');             // 美方策略档位
+  const [track, setTrack] = useState(TECH_TRACKS[0].id);       // 攻关目标线（重开对局保留），缺省=派生第一条
   const [game, setGame] = useState(makeInitialState);  // 引擎 state（turn 0 起步）
   const [selected, setSelected] = useState([]);        // 本回合已选中方牌 id
   const [reportMd, setReportMd] = useState('');
@@ -245,7 +246,7 @@ export default function Page() {
         本页是中美科技-经贸博弈的抽象推演框架——非预测、非政策倡导，双方收益矩阵为示意标定，仅覆盖科技/经贸/产业维度，不涉任何军事冲突情景。
         把宏大叙事压缩成一张 2×2×5 的账本：每一回合，双方各持 {AP_PER_TURN} 个行动点，从管制、关税、攻关、谈判这些中性术语牌里挑出自己的组合；管制牌伤对方科技但反噬己方经贸，攻关牌慢热而持续，谈判与开放双正但小——出牌的瞬间爽感和五回合后的四线对账，往往是两回事。
         博弈不是棋盘上的胜负，是两条供应链的耐力赛：谁的血条厚、谁的时间结构有利、谁先把敌意变现，比谁嗓门大重要得多。
-        本轮扩容把两体博弈改成三体：欧盟与东盟作为摇摆方上桌——缓和与开放把它们拉过来，管制与胁迫把它们推出去，倾斜到位就逐回合给倾向侧的经贸线记账；「自主攻关」也不再是匀速直线，光刻、工软、航发三条目标线总量接近、时间结构天差地别——选哪条线，就是选押注哪一种耐心。
+        本轮扩容把两体博弈改成三体：欧盟与东盟作为摇摆方上桌——缓和与开放把它们拉过来，管制与胁迫把它们推出去，倾斜到位就逐回合给倾向侧的经贸线记账；「自主攻关」也不再是匀速直线，五条攻关目标线直接派生自科技树作战盘——受制卡脖子领域全员上桌，再补并跑区战略权重最高的几条，总量接近、时间结构天差地别——选哪条线，就是选押注哪一种耐心。
       </IntroCard>
       <Grid cols={4} className="mb-8">
         <Stat value={WG_AS_OF} label="推演基准日" accent="#22d3ee" />
@@ -264,14 +265,15 @@ export default function Page() {
           <span className="font-semibold" style={{ color: STRAT_ACCENT[strategy] }}>{strat.label}：</span>{strat.desc}
           {game.turn > 0 && !finished && ' —— 中途换档即时生效：对手的性格，本来就是局中变量。'}
         </p>
-        <div className="text-[11px] mono mb-2" style={{ color: 'var(--text-tertiary)' }}>攻关目标线 · 「自主攻关」驻留后走哪条增益曲线</div>
+        <div className="text-[11px] mono mb-2" style={{ color: 'var(--text-tertiary)' }}>攻关目标线 · 「自主攻关」驻留后走哪条增益曲线（5 条 · 派生自科技树作战盘）</div>
         <SelectorBar
           items={TECH_TRACKS} activeKey={track} onSelect={setTrack}
-          getKey={(t) => t.id} getLabel={(t) => t.label} getAccent={(t) => TRACK_ACCENT[t.id]}
+          getKey={(t) => t.id} getLabel={(t) => t.label} getAccent={(t) => TRACK_ACCENT[t.id] || '#64748b'}
         />
         <p className="text-xs leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
-          <span className="font-semibold" style={{ color: TRACK_ACCENT[track] }}>{trackObj.label}：</span>{trackObj.desc}
-          <span className="mono text-[11px]" style={{ color: 'var(--text-tertiary)' }}>　逐回合增益 {trackObj.curve.join(' / ')} · 重开对局保留所选线</span>
+          <span className="font-semibold" style={{ color: TRACK_ACCENT[track] || '#64748b' }}>{trackObj.label}：</span>
+          <span className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>卡点：{trackObj.neck}</span>
+          <span className="mono text-[11px]" style={{ color: 'var(--text-tertiary)' }}>　逐回合增益 {trackObj.curve.join(' / ')}（合计 +{trackObj.curve.reduce((s, v) => s + v, 0)}） · 重开对局保留所选线</span>
         </p>
         <div className="flex items-center gap-3 flex-wrap">
           <span className="mono text-xl font-bold" style={{ color: finished ? '#e8a317' : '#22d3ee' }}>
@@ -326,7 +328,7 @@ export default function Page() {
                   <span className="text-[10px] mono" style={{ color: SIDE_COLOR[c.side] }}>{SIDE_LABEL[c.side]}牌</span>
                   <span className="text-[10px] mono" style={{ color: c.decay === '持续' ? '#10b981' : 'var(--text-tertiary)' }}>{c.decay}</span>
                   {c.id === 'selfdev' && (
-                    <span className="text-[10px] mono" style={{ color: TRACK_ACCENT[track] }}>走「{trackObj.label}」线</span>
+                    <span className="text-[10px] mono" style={{ color: TRACK_ACCENT[track] || '#64748b' }}>走「{trackObj.label}」线</span>
                   )}
                   {parked && <span className="text-[10px] mono" style={{ color: '#10b981' }}>已驻留生效中</span>}
                 </div>
@@ -588,7 +590,7 @@ export default function Page() {
         moduleId="wargame"
         links={[
           { to: '/diplomacy', label: '外交全局框架盘', note: '推演桌上的策略档位，对应现实里四圈层布局与张力轴的操作选择。' },
-          { to: '/techtree', label: '科技攻坚树', note: '「自主攻关」那张持续牌的现实展开：卡脖子清单与攻关路线图。' },
+          { to: '/techtree', label: '科技攻坚树', note: '攻关线的数据源头：五条目标线即作战盘领域派生，卡点与曲线同步联动。' },
           { to: '/macro', label: '宏观经济仪表盘', note: '经贸线血条的现实读数——耐力赛拼的就是这张底盘。' },
         ]}
         disclaimer="思想实验 / 分析框架 · 非预测 · 非政策倡导 · 仅科技/经贸维度抽象博弈，双方收益矩阵为示意标定，不构成对任何现实主体的评价"

@@ -1,13 +1,15 @@
 // ============================================================================
-// 大国博弈推演桌 · 纯函数引擎（零 React · 零外部依赖）
+// 大国博弈推演桌 · 纯函数引擎（零 React · 仅依赖科技树纯数据层）
 // ----------------------------------------------------------------------------
 // 中美科技-经贸博弈的回合制思想实验：8 张抽象牌 × 5 回合 × 3 档对手策略
-// + 两个第三方摇摆天平（欧盟/东盟）× 三条攻关目标线（光刻/工软/航发）。
+// + 两个第三方摇摆天平（欧盟/东盟）× 五条攻关目标线（由科技树 12 领域派生）。
 // 安全红线：仅科技/经贸/产业维度的抽象博弈，不涉军事冲突情景；
 //          牌名一律中性术语，不出现任何具体真实企业名。
 // 声明：思想实验 / 分析框架 · 非预测 · 非政策倡导 · 双方收益矩阵为示意标定。
 // 全部逻辑确定性纯函数：无随机数、无当前时间（基准日为常量字符串）。
 // ============================================================================
+
+import { DOMAINS } from '../techtree/domains.js';
 
 export const WG_AS_OF = '2026-06-11';
 
@@ -61,16 +63,52 @@ function initialTilts() {
 
 // ----------------------------------------------------------------------------
 // 攻关目标线：「自主攻关」驻留后的逐回合 tech 增益 = curve[当前回合-1]（替代原固定 +3）。
-// 机理：高端光刻后程爆发（设备链打通之前几乎无产出，打通之后增益陡升）；
-//      工业软件线性爬坡（替代曲线平滑，每回合稳定多一点）；
-//      航空动力前期沉默（头两回合颗粒无收，台架数据攒够之后增益最猛）。
-// 三线 5 回合满额累计 14 / 15 / 16——总量接近，时间结构天差地别。
+// 由科技树作战盘 12 领域（techtree/domains.js）确定性派生，共 5 条：
+//   tier==='locked' 全部入列（半导体/脑机接口——受制者必上攻关桌），
+//   再取 chase 中战略权重最高的若干补足（AI/航天/机器人）。
+// 曲线派生规则（全确定性，无随机；见 deriveCurve）：
+//   五回合总增益 = 13 + Math.round(weight / 50)——战略权重越高总增益越大（约 14-15）；
+//   时间形状由 TRL 决定——trl≤5 后程爆发（前 2 回合 0，赌后程）；
+//   trl 6-7 中段发力（峰值在第 3 回合）；trl≥8 线性平滑（逐回合稳定爬坡）。
+// 旧档 litho/soft/aero 三个 id 已退役：引擎侧 resolveTurn 找不到 id 一律回退第一条，
+// 展示侧（存档行）label 兜底为原 id 字符串——旧档不崩溃、不丢行。
 // ----------------------------------------------------------------------------
-export const TECH_TRACKS = [
-  { id: 'litho', label: '高端光刻', curve: [0, 1, 2, 4, 7], desc: '后程爆发：前两回合几乎无产出，设备链一旦打通增益陡升——五回合里最考验耐心的一条线。' },
-  { id: 'soft', label: '工业软件', curve: [1, 2, 3, 4, 5], desc: '线性爬坡：替代曲线平滑，每回合都比上回合多一点——没有惊喜，也没有惊吓。' },
-  { id: 'aero', label: '航空动力', curve: [0, 0, 2, 5, 9], desc: '前期沉默：头两回合颗粒无收，台架数据攒够之后增益最猛——赌的就是后程。' },
-];
+
+/**
+ * 曲线派生纯函数：trl 决定形状、total 为五回合总增益，返回长度 5、求和恰为 total 的数组。
+ * trl≤5 后程爆发：[0, 0, ≈15%, ≈32%, 余额]——前两回合颗粒无收，增益全押在后程；
+ * trl 6-7 中段发力：[≈7%, ≈20%, ≈33%, ≈25%, 余额]——第 3 回合见顶，先慢热后收敛；
+ * trl≥8 线性平滑：[1, 2, 3, 4, total-10]——成熟领域替代曲线平滑，没有惊喜也没有惊吓。
+ */
+export function deriveCurve(trl, total) {
+  if (trl <= 5) {
+    const t3 = Math.round(total * 0.15);
+    const t4 = Math.round(total * 0.32);
+    return [0, 0, t3, t4, total - t3 - t4];
+  }
+  if (trl <= 7) {
+    const t1 = Math.round(total * 0.07);
+    const t2 = Math.round(total * 0.2);
+    const t3 = Math.round(total * 0.33);
+    const t4 = Math.round(total * 0.25);
+    return [t1, t2, t3, t4, total - t1 - t2 - t3 - t4];
+  }
+  return [1, 2, 3, 4, total - 10];
+}
+
+const LOCKED_DOMAINS = DOMAINS.filter((d) => d.tier === 'locked');
+const CHASE_TOP = DOMAINS
+  .filter((d) => d.tier === 'chase')
+  .slice()
+  .sort((a, b) => b.weight - a.weight)
+  .slice(0, Math.max(0, 5 - LOCKED_DOMAINS.length));
+
+export const TECH_TRACKS = [...LOCKED_DOMAINS, ...CHASE_TOP].map((d) => ({
+  id: d.k,
+  label: d.name,
+  neck: d.neck,
+  curve: deriveCurve(d.trl, 13 + Math.round(d.weight / 50)),
+}));
 
 // ----------------------------------------------------------------------------
 // 牌库：effect 四值均以「出牌方」为 self（-10..+10）；decay 持续 = 效果驻留逐回合生效
@@ -223,8 +261,10 @@ function applyEffect(next, sideId, effect) {
  * 次序：科技自然增长 +1 → 驻留持续牌生效 → 本回合出牌生效（含第三方 tilt 一次性结算）
  *      → 第三方倾斜回合效应（|tilt|≥40 给倾向侧 econ 加成，入 log）
  *      （持续牌首次打出即驻留并当回合生效；重复打出视为弃置，弃置不计 tilt）。
- * opts.track：「自主攻关」所走的攻关目标线 id（litho/soft/aero），缺省 litho——
- *            不传 opts 与传 {track:'litho'} 结果全等（向后兼容）。
+ * opts.track：「自主攻关」所走的攻关目标线 id（TECH_TRACKS[].id，即领域 k），
+ *            缺省为派生后第一条（TECH_TRACKS[0].id，当前为 semi）；
+ *            传入未知 id（含旧档 litho/soft/aero）同样回退第一条，不抛错——
+ *            不传 opts 与传 {track: TECH_TRACKS[0].id} 结果全等（向后兼容）。
  */
 export function resolveTurn(state, cnCards, usCards, opts) {
   if (!state || state.turn >= MAX_TURNS) return state;
@@ -410,7 +450,7 @@ export function buildWarReport(ctx) {
   L.push('');
   L.push(`- **美方策略**：${strat.label} —— ${strat.desc}`);
   const trk = TECH_TRACKS.find((t) => t.id === ctx.track);
-  if (trk) L.push(`- **攻关目标线**：${trk.label} —— 逐回合增益 ${trk.curve.join('/')}（${trk.desc}）`);
+  if (trk) L.push(`- **攻关目标线**：${trk.label} —— 卡点：${trk.neck} · 逐回合增益 ${trk.curve.join('/')}`);
   L.push(`- **初值标定**：中方 科技 ${INIT.cn.tech} / 经贸 ${INIT.cn.econ}（追赶者设定）；美方 科技 ${INIT.us.tech} / 经贸 ${INIT.us.econ}`);
   L.push(`- **规则**：每回合行动点 ${AP_PER_TURN}，共 ${MAX_TURNS} 回合；科技线每回合自然增长 +${TECH_GROWTH}；持续牌效果驻留至终局`);
   L.push('');
