@@ -30,6 +30,8 @@ import {
   SELF_MEDIA_INDEX_NAMES,
 } from '../db/selfMediaSeed.js';
 import { normalizeSelfMediaName } from '../db/selfMediaPrimary.js';
+import { GLOSSARY_COUNT } from '../db/glossarySeed.js';
+import { buildGlossaryHay } from '../db/glossary.js';
 
 const GROUP_LABEL = Object.fromEntries(GROUPS.map((g) => [g.id, g.label]));
 const short = (p) => (p || '').replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '');
@@ -68,7 +70,7 @@ export function buildModuleRecords() {
 }
 
 /** 种子变更时递增，使模块级索引缓存在 HMR / 热更新后失效 */
-export const SEARCH_INDEX_REVISION = `v12:self-media:${SELF_MEDIA_DEDUPED_COUNT.total}:${CULTURAL_ELITE_DEDUPED_COUNT.total}:${DIPLOMATIC_CORPS_SEED_PKG?.rows?.length ?? 0}`;
+export const SEARCH_INDEX_REVISION = `v13:glossary:${GLOSSARY_COUNT}:self-media:${SELF_MEDIA_DEDUPED_COUNT.total}:${CULTURAL_ELITE_DEDUPED_COUNT.total}:${DIPLOMATIC_CORPS_SEED_PKG?.rows?.length ?? 0}`;
 
 let _indexPromise = null;
 let _indexRevision = null;
@@ -462,6 +464,21 @@ export function buildSearchIndex() {
         entityId: d.id,
         dataset: 'policy-docs',
         hay: hayOf(d.title, d.type, d.category, d.org, d.year, ...(d.keywords || []), ...(d.highlights || []), hasCorpus ? '本地原文库 政策原文' : ''),
+      });
+    }
+
+    const { GLOSSARY_ENTRIES, CATEGORY_MAP } = await import('../db/glossary.js');
+    for (const g of GLOSSARY_ENTRIES || []) {
+      if (!g.term) continue;
+      pushRecord(records, {
+        type: 'glossary',
+        id: `glossary:${g.id}`,
+        title: g.term,
+        subtitle: g.definition?.slice(0, 80) || '',
+        badge: CATEGORY_MAP[g.category]?.label || '术语',
+        path: `/glossary?id=${encodeURIComponent(g.id)}`,
+        entityId: g.id,
+        hay: buildGlossaryHay(g),
       });
     }
 

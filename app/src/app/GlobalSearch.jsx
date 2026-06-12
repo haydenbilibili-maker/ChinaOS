@@ -21,8 +21,9 @@ const TYPE_META = {
   taiwan: { label: '港澳台政要', accent: '#38bdf8', icon: 'Landmark' },
   policy: { label: '政策文件', accent: '#ef4444', icon: 'FileText' },
   legal: { label: '法律条文', accent: '#8b5cf6', icon: 'BookMarked' },
+  glossary: { label: '术语词典', accent: '#64748b', icon: 'BookOpen' },
 };
-const TYPE_ORDER = ['module', 'legal', 'figure', 'policy', 'knowledge', 'culture', 'business', 'education', 'thinktank', 'research', 'overseas', 'diplomatic', 'dissident', 'taiwan', 'anticorruption', 'enterprise'];
+const TYPE_ORDER = ['module', 'glossary', 'legal', 'figure', 'policy', 'knowledge', 'culture', 'business', 'education', 'thinktank', 'research', 'overseas', 'diplomatic', 'dissident', 'taiwan', 'anticorruption', 'enterprise'];
 
 // 精选入口（空查询时的快捷建议）
 const FEATURED = [
@@ -32,6 +33,7 @@ const FEATURED = [
   { label: '台海局势', path: '/straits', icon: 'Crosshair' },
   { label: '科技树', path: '/techtree', icon: 'GitBranch' },
   { label: '治国沙盒', path: '/sandbox', icon: 'Boxes' },
+  { label: '术语词典', path: '/glossary', icon: 'BookOpen' },
 ];
 
 function Icon({ name, size = 16, ...rest }) {
