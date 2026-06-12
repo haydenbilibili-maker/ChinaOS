@@ -1,6 +1,7 @@
 import { GROUPS, MODULES, modulesByGroup } from './registry.js';
 import { resolveTalentTab } from '../lib/talent/routing.js';
 import { GUOYUN_TAB_LABELS, resolveGuoyunTab } from '../lib/guoyun/routing.js';
+import { LINGGONG_TAB_LABELS, resolveLinggongTab } from '../lib/linggong/routing.js';
 import { YISHI_TAB_LABELS, resolveYishiTab } from '../lib/yishixingtai/routing.js';
 import { getVolume } from '../modules/civilization/volumes.js';
 
@@ -92,6 +93,14 @@ function getSubRouteCrumbs(mod, pathname, search) {
     const tab = resolveYishiTab(params.get('tab'));
     if (tab !== 'overview' && YISHI_TAB_LABELS[tab]) {
       return [{ label: YISHI_TAB_LABELS[tab], to: null, active: true }];
+    }
+  }
+
+  if (mod.id === 'linggong') {
+    const params = new URLSearchParams(search.startsWith('?') ? search.slice(1) : search);
+    const tab = resolveLinggongTab(params.get('tab'));
+    if (tab !== 'l1' && LINGGONG_TAB_LABELS[tab]) {
+      return [{ label: LINGGONG_TAB_LABELS[tab], to: null, active: true }];
     }
   }
 
