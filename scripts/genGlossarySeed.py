@@ -4,9 +4,12 @@ from __future__ import annotations
 
 import json
 import re
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+from glossaryPostProcess import dedupe_glossary, enrich_glossary_definitions
 REGISTRY = ROOT / "app/src/app/registry.js"
 INDEX_MD = ROOT / "中国深度调研系列_索引与恢复指令.md"
 OUT = ROOT / "app/src/lib/db/glossarySeed.js"
@@ -411,7 +414,15 @@ def index_keyword_entries(kws: list[str]) -> list[dict]:
     return out
 
 
-def build_all() -> list[dict]:
+def protected_curated_terms() -> set[str]:
+    terms: set[str] = set()
+    for e in CURATED + GY_EXTRA:
+        terms.add(e["term"])
+        terms.update(e.get("aliases") or [])
+    return terms
+
+
+def build_all() -> tuple[list[dict], dict, dict]:
     mods = parse_registry()
     kws = parse_index_keywords()
     items: list[dict] = []
@@ -423,13 +434,16 @@ def build_all() -> list[dict]:
         items.append(entry(title, cat, defn, context=["policydocs"], source="政令文库 · 法律分类"))
     for title, cat, defn in TALENT_CATS:
         items.append(entry(title, cat, defn, context=["talent"], source="China OS · 人才精英库"))
-    # 去重：同 id 保留定义更长者
+    # 同 id 保留定义更长者（生成阶段预去重）
     by_id: dict[str, dict] = {}
     for it in items:
         prev = by_id.get(it["id"])
         if not prev or len(it["definition"]) > len(prev["definition"]):
             by_id[it["id"]] = it
-    return sorted(by_id.values(), key=lambda x: (x["initial"], x["term"]))
+    raw = list(by_id.values())
+    deduped, dedup_stats = dedupe_glossary(raw)
+    enriched, enrich_stats = enrich_glossary_definitions(deduped, protected_curated_terms())
+    return sorted(enriched, key=lambda x: (x["initial"], x["term"])), dedup_stats, enrich_stats
 
 
 def emit_js(entries: list[dict]) -> str:
@@ -460,13 +474,22 @@ export const GLOSSARY_COUNT = GLOSSARY_ENTRIES.length;
 
 
 def main():
-    entries = build_all()
+    entries, dedup_stats, enrich_stats = build_all()
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(emit_js(entries), encoding="utf-8")
     cats = {}
     for e in entries:
         cats[e["category"]] = cats.get(e["category"], 0) + 1
     print(f"Wrote {len(entries)} entries -> {OUT}")
+    print(
+        f"Dedup: {dedup_stats['before']} -> {dedup_stats['after']} "
+        f"(-{dedup_stats['removed']}, {dedup_stats['merged_groups']} groups)"
+    )
+    print(
+        f"Enrich: avg {enrich_stats['avg_before']:.1f} -> {enrich_stats['avg_after']:.1f} chars, "
+        f"{enrich_stats['enriched']} updated, {enrich_stats['skipped_protected']} protected, "
+        f"{enrich_stats['under_min']} under {60} chars"
+    )
     for k, v in sorted(cats.items(), key=lambda x: -x[1]):
         print(f"  {CAT_LABEL.get(k, k)}: {v}")
 

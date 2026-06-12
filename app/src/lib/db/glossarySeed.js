@@ -6,7 +6,7 @@ export const GLOSSARY_META = {
   id: 'glossary',
   label: '术语词典',
   asOf: '2026-06',
-  count: 631,
+  count: 443,
   source: 'China OS 模块语料 + 深度调研系列索引 + 手工策展',
 };
 
@@ -55,7 +55,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "12 图可视化",
     "aliases": [],
     "category": "module",
-    "definition": "模块「领袖统治」副题关键词：12 图可视化。",
+    "definition": "「12 图可视化」为 China OS 模块「领袖统治」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「领袖统治」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括领袖统治。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "leadership",
@@ -92,9 +92,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "#"
   },
   {
-    "id": "term-71765419",
+    "id": "term-44465144",
     "term": "56789",
-    "aliases": [],
+    "aliases": [
+      "民营经济"
+    ],
     "category": "econ",
     "definition": "民营经济贡献约50%税收、60%GDP、70%创新、80%就业、90%企业数的概括。",
     "context": [
@@ -106,107 +108,11 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "两个毫不动摇",
-      "民营经济"
+      "民营经济",
+      "公平竞争",
+      "产权保护"
     ],
-    "source": "民营经济论述",
-    "initial": "#"
-  },
-  {
-    "id": "mod-private-term-71765419",
-    "term": "56789",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「民营经济」副题关键词：56789。",
-    "context": [
-      {
-        "moduleId": "private",
-        "label": "民营经济",
-        "path": "/private"
-      }
-    ],
-    "related": [
-      "民营经济"
-    ],
-    "source": "China OS · 民营经济",
-    "initial": "#"
-  },
-  {
-    "id": "mod-silverEconomy-term-81004822",
-    "term": "9073",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「银发经济」副题关键词：9073。",
-    "context": [
-      {
-        "moduleId": "silverEconomy",
-        "label": "银发经济",
-        "path": "/silver-economy"
-      }
-    ],
-    "related": [
-      "银发经济"
-    ],
-    "source": "China OS · 银发经济",
-    "initial": "#"
-  },
-  {
-    "id": "mod-depth-七维框架",
-    "term": "七维框架",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「深度透视」副题关键词：七维框架。",
-    "context": [
-      {
-        "moduleId": "depth",
-        "label": "深度透视",
-        "path": "/depth"
-      }
-    ],
-    "related": [
-      "深度透视"
-    ],
-    "source": "China OS · 深度透视",
-    "initial": "#"
-  },
-  {
-    "id": "mod-civilAviation-低空经济",
-    "term": "低空经济",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「民用航空」副题关键词：低空经济。",
-    "context": [
-      {
-        "moduleId": "civilAviation",
-        "label": "民用航空",
-        "path": "/civil-aviation"
-      }
-    ],
-    "related": [
-      "民用航空"
-    ],
-    "source": "China OS · 民用航空",
-    "initial": "#"
-  },
-  {
-    "id": "mod-lowAltitude",
-    "term": "低空经济",
-    "aliases": [
-      "eVTOL"
-    ],
-    "category": "tech",
-    "definition": "China OS 模块「低空经济」：eVTOL · 无人机 · 通用航空。",
-    "context": [
-      {
-        "moduleId": "lowAltitude",
-        "label": "低空经济",
-        "path": "/low-altitude"
-      }
-    ],
-    "related": [
-      "无人机",
-      "通用航空"
-    ],
-    "source": "China OS · registry.js",
+    "source": "民营经济论述；China OS · registry.js；China OS · 民营经济",
     "initial": "#"
   },
   {
@@ -214,7 +120,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "储运加注",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「氢能产业」副题关键词：储运加注。",
+    "definition": "「储运加注」为 China OS 模块「氢能产业」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「氢能产业」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括氢能产业。技术与产业维度上，储运加注关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "hydrogen",
@@ -231,7 +137,9 @@ export const GLOSSARY_ENTRIES = [
   {
     "id": "儒表法里",
     "term": "儒表法里",
-    "aliases": [],
+    "aliases": [
+      "权力逻辑"
+    ],
     "category": "politics",
     "definition": "表面伦理教化与底层法家治理术并存的权力运作传统。",
     "context": [
@@ -243,28 +151,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "数字利维坦",
-      "统治成本"
-    ],
-    "source": "中国深度调研系列 · 权力逻辑",
-    "initial": "#"
-  },
-  {
-    "id": "mod-powerlogic-儒表法里",
-    "term": "儒表法里",
-    "aliases": [],
-    "category": "politics",
-    "definition": "模块「权力逻辑」副题关键词：儒表法里。",
-    "context": [
-      {
-        "moduleId": "powerlogic",
-        "label": "权力逻辑",
-        "path": "/powerlogic"
-      }
-    ],
-    "related": [
+      "统治成本",
       "权力逻辑"
     ],
-    "source": "China OS · 权力逻辑",
+    "source": "中国深度调研系列 · 权力逻辑；China OS · registry.js；China OS · 权力逻辑",
     "initial": "#"
   },
   {
@@ -272,7 +162,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "党内法规",
     "aliases": [],
     "category": "legal",
-    "definition": "党内制度性规范，与国家法律体系并行。",
+    "definition": "「党内法规」为中国法律规范层级分类之一：党内制度性规范，与国家法律体系并行。政令文库按此层级组织政策与法条语料，支持跨文本检索与合规边界对照。在 China OS「policydocs」模块中作为分析锚点出现。",
     "context": [
       {
         "moduleId": "policydocs",
@@ -285,49 +175,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "#"
   },
   {
-    "id": "mod-frontierGov-兴边富民",
-    "term": "兴边富民",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「边疆治理」副题关键词：兴边富民。",
-    "context": [
-      {
-        "moduleId": "frontierGov",
-        "label": "边疆治理",
-        "path": "/frontier-gov"
-      }
-    ],
-    "related": [
-      "边疆治理"
-    ],
-    "source": "China OS · 边疆治理",
-    "initial": "#"
-  },
-  {
-    "id": "mod-futureIndustry-具身智能",
-    "term": "具身智能",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「未来产业」副题关键词：具身智能。",
-    "context": [
-      {
-        "moduleId": "futureIndustry",
-        "label": "未来产业",
-        "path": "/future-industry"
-      }
-    ],
-    "related": [
-      "未来产业"
-    ],
-    "source": "China OS · 未来产业",
-    "initial": "#"
-  },
-  {
     "id": "mod-silverEconomy-养老服务",
     "term": "养老服务",
     "aliases": [],
     "category": "module",
-    "definition": "模块「银发经济」副题关键词：养老服务。",
+    "definition": "「养老服务」为 China OS 模块「银发经济」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「银发经济」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括银发经济。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "silverEconomy",
@@ -342,32 +194,13 @@ export const GLOSSARY_ENTRIES = [
     "initial": "#"
   },
   {
-    "id": "mod-supplychain-冗余备份",
-    "term": "冗余备份",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「供应链」副题关键词：冗余备份。",
-    "context": [
-      {
-        "moduleId": "supplychain",
-        "label": "供应链",
-        "path": "/supplychain"
-      }
-    ],
-    "related": [
-      "供应链"
-    ],
-    "source": "China OS · 供应链",
-    "initial": "#"
-  },
-  {
     "id": "mod-military",
     "term": "军事力量",
     "aliases": [
       "战区联合"
     ],
     "category": "military",
-    "definition": "China OS 模块「军事力量」：战区联合 · 主战装备 · 全球基地。",
+    "definition": "China OS 功能模块「军事力量」聚焦战区联合 · 主战装备 · 全球基地。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括主战装备、全球基地。",
     "context": [
       {
         "moduleId": "military",
@@ -379,7 +212,7 @@ export const GLOSSARY_ENTRIES = [
       "主战装备",
       "全球基地"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 军事力量",
     "initial": "#"
   },
   {
@@ -387,7 +220,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "决策机制",
     "aliases": [],
     "category": "module",
-    "definition": "模块「领袖统治」副题关键词：决策机制。",
+    "definition": "「决策机制」为 China OS 模块「领袖统治」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「领袖统治」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括领袖统治。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "leadership",
@@ -406,7 +239,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "冷链网络",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「现代物流」副题关键词：冷链网络。",
+    "definition": "「冷链网络」为 China OS 模块「现代物流」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「现代物流」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括现代物流。技术与产业维度上，冷链网络关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "logistics",
@@ -425,7 +258,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "凸性效应",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「反脆弱性」副题关键词：凸性效应。",
+    "definition": "「凸性效应」为 China OS 模块「反脆弱性」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「反脆弱性」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括反脆弱性。从成本—收益框架看，凸性效应连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "antifragile",
@@ -464,7 +297,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "历史源码",
     "aliases": [],
     "category": "module",
-    "definition": "模块「文明透视」副题关键词：历史源码。",
+    "definition": "「历史源码」为 China OS 模块「文明透视」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「文明透视」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括文明透视。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "civilization",
@@ -482,7 +315,8 @@ export const GLOSSARY_ENTRIES = [
     "id": "压力传导",
     "term": "压力传导",
     "aliases": [
-      "压力体制"
+      "压力体制",
+      "政府体系"
     ],
     "category": "politics",
     "definition": "上级目标与考核通过层级体系向下分解，形成层层加压的执行机制。",
@@ -500,47 +334,12 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "锦标赛竞争",
-      "穿透式监管"
-    ],
-    "source": "中国深度调研系列",
-    "initial": "#"
-  },
-  {
-    "id": "mod-govsystem-压力体制",
-    "term": "压力体制",
-    "aliases": [],
-    "category": "politics",
-    "definition": "模块「政府体系」副题关键词：压力体制。",
-    "context": [
-      {
-        "moduleId": "govsystem",
-        "label": "政府体系",
-        "path": "/govsystem"
-      }
-    ],
-    "related": [
+      "穿透式监管",
+      "执行算法",
+      "央地关系",
       "政府体系"
     ],
-    "source": "China OS · 政府体系",
-    "initial": "#"
-  },
-  {
-    "id": "mod-energy-压舱石",
-    "term": "压舱石",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「能源安全」副题关键词：压舱石。",
-    "context": [
-      {
-        "moduleId": "energy",
-        "label": "能源安全",
-        "path": "/energy"
-      }
-    ],
-    "related": [
-      "能源安全"
-    ],
-    "source": "China OS · 能源安全",
+    "source": "中国深度调研系列；China OS · registry.js；China OS · 政府体系",
     "initial": "#"
   },
   {
@@ -563,47 +362,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "新质生产力",
-      "国家实验室"
-    ],
-    "source": "中国深度调研系列",
-    "initial": "#"
-  },
-  {
-    "id": "mod-basicResearch-原始创新",
-    "term": "原始创新",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「基础研究」副题关键词：原始创新。",
-    "context": [
-      {
-        "moduleId": "basicResearch",
-        "label": "基础研究",
-        "path": "/basic-research"
-      }
-    ],
-    "related": [
+      "国家实验室",
       "基础研究"
     ],
-    "source": "China OS · 基础研究",
-    "initial": "#"
-  },
-  {
-    "id": "mod-rural-县域经济",
-    "term": "县域经济",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「乡村振兴」副题关键词：县域经济。",
-    "context": [
-      {
-        "moduleId": "rural",
-        "label": "乡村振兴",
-        "path": "/rural"
-      }
-    ],
-    "related": [
-      "乡村振兴"
-    ],
-    "source": "China OS · 乡村振兴",
+    "source": "中国深度调研系列；China OS · 基础研究",
     "initial": "#"
   },
   {
@@ -611,7 +373,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "友好社会",
     "aliases": [],
     "category": "module",
-    "definition": "模块「生育支持」副题关键词：友好社会。",
+    "definition": "「友好社会」为 China OS 模块「生育支持」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「生育支持」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括生育支持。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "fertilitySupport",
@@ -630,7 +392,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "双向流动",
     "aliases": [],
     "category": "module",
-    "definition": "模块「跨境投资」副题关键词：双向流动。",
+    "definition": "「双向流动」为 China OS 模块「跨境投资」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「跨境投资」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括跨境投资。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "fdi",
@@ -648,6 +410,7 @@ export const GLOSSARY_ENTRIES = [
     "id": "双碳目标",
     "term": "双碳目标",
     "aliases": [
+      "生态文明",
       "碳达峰碳中和"
     ],
     "category": "tech",
@@ -666,28 +429,12 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "能源压舱石",
-      "绿氢"
-    ],
-    "source": "生态文明",
-    "initial": "#"
-  },
-  {
-    "id": "mod-ecology-双碳目标",
-    "term": "双碳目标",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「生态文明」副题关键词：双碳目标。",
-    "context": [
-      {
-        "moduleId": "ecology",
-        "label": "生态文明",
-        "path": "/ecology"
-      }
-    ],
-    "related": [
+      "绿氢",
+      "碳汇市场",
+      "绿水青山",
       "生态文明"
     ],
-    "source": "China OS · 生态文明",
+    "source": "生态文明；China OS · registry.js；China OS · 生态文明",
     "initial": "#"
   },
   {
@@ -715,7 +462,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "司法解释",
     "aliases": [],
     "category": "legal",
-    "definition": "最高法院、最高检察院对法律适用问题的解释。",
+    "definition": "「司法解释」为中国法律规范层级分类之一：最高法院、最高检察院对法律适用问题的解释。政令文库按此层级组织政策与法条语料，支持跨文本检索与合规边界对照。在 China OS「policydocs」模块中作为分析锚点出现。",
     "context": [
       {
         "moduleId": "policydocs",
@@ -728,30 +475,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "#"
   },
   {
-    "id": "mod-defenseMobilization-后备力量",
-    "term": "后备力量",
-    "aliases": [],
-    "category": "military",
-    "definition": "模块「国防动员」副题关键词：后备力量。",
-    "context": [
-      {
-        "moduleId": "defenseMobilization",
-        "label": "国防动员",
-        "path": "/defense-mobilization"
-      }
-    ],
-    "related": [
-      "国防动员"
-    ],
-    "source": "China OS · 国防动员",
-    "initial": "#"
-  },
-  {
     "id": "idx-固有安全性",
     "term": "固有安全性",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：固有安全性。",
+    "definition": "「固有安全性」为深度调研索引核心术语，叙事脉络见《核能转型与第四代核电技术》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -764,30 +492,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "#"
   },
   {
-    "id": "mod-antifragile-塔勒布",
-    "term": "塔勒布",
-    "aliases": [],
-    "category": "econ",
-    "definition": "模块「反脆弱性」副题关键词：塔勒布。",
-    "context": [
-      {
-        "moduleId": "antifragile",
-        "label": "反脆弱性",
-        "path": "/antifragile"
-      }
-    ],
-    "related": [
-      "反脆弱性"
-    ],
-    "source": "China OS · 反脆弱性",
-    "initial": "#"
-  },
-  {
     "id": "mod-govsystem-央地关系",
     "term": "央地关系",
     "aliases": [],
     "category": "politics",
-    "definition": "模块「政府体系」副题关键词：央地关系。",
+    "definition": "「央地关系」为 China OS 模块「政府体系」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「政府体系」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括政府体系。从权力物理学视角，央地关系刻画央地博弈、激励结构与制度穿透力的耦合关系。",
     "context": [
       {
         "moduleId": "govsystem",
@@ -806,7 +515,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "守成崛起",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「修昔底德陷阱」副题关键词：守成崛起。",
+    "definition": "「守成崛起」为 China OS 模块「修昔底德陷阱」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「修昔底德陷阱」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括修昔底德陷阱。从成本—收益框架看，守成崛起连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "thucydides",
@@ -825,7 +534,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "宏观审慎",
     "aliases": [],
     "category": "module",
-    "definition": "模块「金融系统」副题关键词：宏观审慎。",
+    "definition": "「宏观审慎」为 China OS 模块「金融系统」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「金融系统」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括金融系统。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "finance",
@@ -844,7 +553,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "宪法",
     "aliases": [],
     "category": "legal",
-    "definition": "国家根本法，具有最高法律效力。",
+    "definition": "「宪法」为中国法律规范层级分类之一：国家根本法，具有最高法律效力。政令文库按此层级组织政策与法条语料，支持跨文本检索与合规边界对照。在 China OS「policydocs」模块中作为分析锚点出现。",
     "context": [
       {
         "moduleId": "policydocs",
@@ -906,7 +615,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "惩罚性赔偿",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：惩罚性赔偿。",
+    "definition": "「惩罚性赔偿」为深度调研索引核心术语，叙事脉络见《法治建设与司法现代化》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -923,7 +632,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "抚养比",
     "aliases": [],
     "category": "module",
-    "definition": "模块「人口结构」副题关键词：抚养比。",
+    "definition": "「抚养比」为 China OS 模块「人口结构」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「人口结构」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括人口结构。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "demographic",
@@ -940,7 +649,9 @@ export const GLOSSARY_ENTRIES = [
   {
     "id": "挤压性存在",
     "term": "挤压性存在",
-    "aliases": [],
+    "aliases": [
+      "性少数群像"
+    ],
     "category": "society",
     "definition": "性少数群体在公共空间中被迫压缩自我表达的社会结构描述（GY-04）。",
     "context": [
@@ -952,28 +663,11 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "GY-04",
-      "可见形态"
-    ],
-    "source": "GY-04",
-    "initial": "#"
-  },
-  {
-    "id": "mod-xingshaoshu-挤压性存在",
-    "term": "挤压性存在",
-    "aliases": [],
-    "category": "gy",
-    "definition": "模块「性少数群像」副题关键词：挤压性存在。",
-    "context": [
-      {
-        "moduleId": "xingshaoshu",
-        "label": "性少数群像",
-        "path": "/modules/xingshaoshu"
-      }
-    ],
-    "related": [
+      "可见形态",
+      "被允许的可见形态",
       "性少数群像"
     ],
-    "source": "China OS · 性少数群像",
+    "source": "GY-04；China OS · registry.js；China OS · 性少数群像",
     "initial": "#"
   },
   {
@@ -981,7 +675,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "搭便车",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「公地悲剧」副题关键词：搭便车。",
+    "definition": "「搭便车」为 China OS 模块「公地悲剧」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「公地悲剧」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括公地悲剧。从成本—收益框架看，搭便车连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "commons",
@@ -1012,28 +706,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "试点",
-      "灰度迭代"
-    ],
-    "source": "改革开放叙事",
-    "initial": "#"
-  },
-  {
-    "id": "mod-reform-摸石过河",
-    "term": "摸石过河",
-    "aliases": [],
-    "category": "politics",
-    "definition": "模块「改革开放」副题关键词：摸石过河。",
-    "context": [
-      {
-        "moduleId": "reform",
-        "label": "改革开放",
-        "path": "/reform"
-      }
-    ],
-    "related": [
+      "灰度迭代",
       "改革开放"
     ],
-    "source": "China OS · 改革开放",
+    "source": "改革开放叙事；China OS · 改革开放",
     "initial": "#"
   },
   {
@@ -1041,7 +717,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "普惠托育",
     "aliases": [],
     "category": "module",
-    "definition": "模块「生育支持」副题关键词：普惠托育。",
+    "definition": "「普惠托育」为 China OS 模块「生育支持」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「生育支持」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括生育支持。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "fertilitySupport",
@@ -1056,68 +732,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "#"
   },
   {
-    "id": "mod-education-普职分流",
-    "term": "普职分流",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「教育体系」副题关键词：普职分流。",
-    "context": [
-      {
-        "moduleId": "education",
-        "label": "教育体系",
-        "path": "/education"
-      }
-    ],
-    "related": [
-      "教育体系"
-    ],
-    "source": "China OS · 教育体系",
-    "initial": "#"
-  },
-  {
-    "id": "mod-offshore-普通法窗",
-    "term": "普通法窗",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「港澳离岸」副题关键词：普通法窗。",
-    "context": [
-      {
-        "moduleId": "offshore",
-        "label": "港澳离岸",
-        "path": "/offshore"
-      }
-    ],
-    "related": [
-      "港澳离岸"
-    ],
-    "source": "China OS · 港澳离岸",
-    "initial": "#"
-  },
-  {
-    "id": "mod-dissipative-普里高津",
-    "term": "普里高津",
-    "aliases": [],
-    "category": "econ",
-    "definition": "模块「耗散结构」副题关键词：普里高津。",
-    "context": [
-      {
-        "moduleId": "dissipative",
-        "label": "耗散结构",
-        "path": "/dissipative"
-      }
-    ],
-    "related": [
-      "耗散结构"
-    ],
-    "source": "China OS · 耗散结构",
-    "initial": "#"
-  },
-  {
     "id": "mod-live-feeds-景区",
     "term": "景区",
     "aliases": [],
     "category": "module",
-    "definition": "模块「神州实况」副题关键词：景区。",
+    "definition": "「景区」为 China OS 模块「神州实况」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「神州实况」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括神州实况。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "live-feeds",
@@ -1136,7 +755,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "朝贡",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：朝贡。",
+    "definition": "「朝贡」为深度调研索引核心术语，叙事脉络见《地理宿命与天下观：中华文明的物理底座与地缘基因》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -1178,7 +797,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "枢纽",
     "aliases": [],
     "category": "module",
-    "definition": "模块「神州实况」副题关键词：枢纽。",
+    "definition": "「枢纽」为 China OS 模块「神州实况」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「神州实况」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括神州实况。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "live-feeds",
@@ -1209,26 +828,7 @@ export const GLOSSARY_ENTRIES = [
       "网格管理",
       "基层治理"
     ],
-    "source": "社会治理",
-    "initial": "#"
-  },
-  {
-    "id": "mod-socialgov-枫桥经验",
-    "term": "枫桥经验",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「基层治理」副题关键词：枫桥经验。",
-    "context": [
-      {
-        "moduleId": "socialgov",
-        "label": "基层治理",
-        "path": "/socialgov"
-      }
-    ],
-    "related": [
-      "基层治理"
-    ],
-    "source": "China OS · 基层治理",
+    "source": "社会治理；China OS · 基层治理",
     "initial": "#"
   },
   {
@@ -1238,7 +838,7 @@ export const GLOSSARY_ENTRIES = [
       "绿氢制取"
     ],
     "category": "tech",
-    "definition": "China OS 模块「氢能产业」：绿氢制取 · 储运加注 · 燃料电池。",
+    "definition": "China OS 功能模块「氢能产业」聚焦绿氢制取 · 储运加注 · 燃料电池。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括储运加注、燃料电池。",
     "context": [
       {
         "moduleId": "hydrogen",
@@ -1250,7 +850,7 @@ export const GLOSSARY_ENTRIES = [
       "储运加注",
       "燃料电池"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 氢能产业",
     "initial": "#"
   },
   {
@@ -1260,7 +860,7 @@ export const GLOSSARY_ENTRIES = [
       "电动智能"
     ],
     "category": "module",
-    "definition": "China OS 模块「汽车主权」：电动智能 · 换道超车 · 全球出海。",
+    "definition": "China OS 功能模块「汽车主权」聚焦电动智能 · 换道超车 · 全球出海。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括换道超车、全球出海。",
     "context": [
       {
         "moduleId": "automotive",
@@ -1272,7 +872,7 @@ export const GLOSSARY_ENTRIES = [
       "换道超车",
       "全球出海"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 汽车主权",
     "initial": "#"
   },
   {
@@ -1280,7 +880,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "油气保供",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「能源安全」副题关键词：油气保供。",
+    "definition": "「油气保供」为 China OS 模块「能源安全」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「能源安全」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括能源安全。技术与产业维度上，油气保供关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "energy",
@@ -1299,7 +899,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "涉外法治",
     "aliases": [],
     "category": "politics",
-    "definition": "模块「法治建设」副题关键词：涉外法治。",
+    "definition": "「涉外法治」为 China OS 模块「法治建设」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「法治建设」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括法治建设。从权力物理学视角，涉外法治刻画央地博弈、激励结构与制度穿透力的耦合关系。",
     "context": [
       {
         "moduleId": "ruleoflaw",
@@ -1318,7 +918,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "涉外法治竞争力。",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：涉外法治竞争力。。",
+    "definition": "「涉外法治竞争力。」为深度调研索引核心术语，叙事脉络见《法治建设与司法现代化》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -1328,25 +928,6 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [],
     "source": "中国深度调研系列_索引与恢复指令.md",
-    "initial": "#"
-  },
-  {
-    "id": "mod-constructivism-温特",
-    "term": "温特",
-    "aliases": [],
-    "category": "econ",
-    "definition": "模块「建构主义」副题关键词：温特。",
-    "context": [
-      {
-        "moduleId": "constructivism",
-        "label": "建构主义",
-        "path": "/constructivism"
-      }
-    ],
-    "related": [
-      "建构主义"
-    ],
-    "source": "China OS · 建构主义",
     "initial": "#"
   },
   {
@@ -1366,26 +947,7 @@ export const GLOSSARY_ENTRIES = [
       "委托代理",
       "道德风险"
     ],
-    "source": "机制设计",
-    "initial": "#"
-  },
-  {
-    "id": "mod-principalagent-激励相容",
-    "term": "激励相容",
-    "aliases": [],
-    "category": "econ",
-    "definition": "模块「委托代理」副题关键词：激励相容。",
-    "context": [
-      {
-        "moduleId": "principalagent",
-        "label": "委托代理",
-        "path": "/principalagent"
-      }
-    ],
-    "related": [
-      "委托代理"
-    ],
-    "source": "China OS · 委托代理",
+    "source": "机制设计；China OS · 委托代理",
     "initial": "#"
   },
   {
@@ -1393,7 +955,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "熊猫",
     "aliases": [],
     "category": "module",
-    "definition": "模块「神州实况」副题关键词：熊猫。",
+    "definition": "「熊猫」为 China OS 模块「神州实况」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「神州实况」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括神州实况。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "live-feeds",
@@ -1424,63 +986,6 @@ export const GLOSSARY_ENTRIES = [
     "initial": "#"
   },
   {
-    "id": "mod-shenzhou-live-省级分层",
-    "term": "省级分层",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「神州活图」副题关键词：省级分层。",
-    "context": [
-      {
-        "moduleId": "shenzhou-live",
-        "label": "神州活图",
-        "path": "/shenzhou-live"
-      }
-    ],
-    "related": [
-      "神州活图"
-    ],
-    "source": "China OS · 神州活图",
-    "initial": "#"
-  },
-  {
-    "id": "mod-debtHeatmap-省际热力",
-    "term": "省际热力",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「地方债务」副题关键词：省际热力。",
-    "context": [
-      {
-        "moduleId": "debtHeatmap",
-        "label": "地方债务",
-        "path": "/debt"
-      }
-    ],
-    "related": [
-      "地方债务"
-    ],
-    "source": "China OS · 地方债务",
-    "initial": "#"
-  },
-  {
-    "id": "mod-tech-研发投入",
-    "term": "研发投入",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「创新体系」副题关键词：研发投入。",
-    "context": [
-      {
-        "moduleId": "tech",
-        "label": "创新体系",
-        "path": "/tech-policy"
-      }
-    ],
-    "related": [
-      "创新体系"
-    ],
-    "source": "China OS · 创新体系",
-    "initial": "#"
-  },
-  {
     "id": "硅盾屏障",
     "term": "硅盾屏障",
     "aliases": [],
@@ -1495,28 +1000,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "产业链人质",
-      "地缘引力"
-    ],
-    "source": "China OS · 台海模块",
-    "initial": "#"
-  },
-  {
-    "id": "mod-straits-硅盾屏障",
-    "term": "硅盾屏障",
-    "aliases": [],
-    "category": "military",
-    "definition": "模块「台海局势」副题关键词：硅盾屏障。",
-    "context": [
-      {
-        "moduleId": "straits",
-        "label": "台海局势",
-        "path": "/straits"
-      }
-    ],
-    "related": [
+      "地缘引力",
       "台海局势"
     ],
-    "source": "China OS · 台海局势",
+    "source": "China OS · 台海模块；China OS · 台海局势",
     "initial": "#"
   },
   {
@@ -1524,7 +1011,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "碳定价",
     "aliases": [],
     "category": "module",
-    "definition": "模块「绿色金融」副题关键词：碳定价。",
+    "definition": "「碳定价」为 China OS 模块「绿色金融」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「绿色金融」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括绿色金融。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "greenfinance",
@@ -1543,7 +1030,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "碳汇市场",
     "aliases": [],
     "category": "module",
-    "definition": "模块「生态文明」副题关键词：碳汇市场。",
+    "definition": "「碳汇市场」为 China OS 模块「生态文明」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「生态文明」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括生态文明。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "ecology",
@@ -1562,7 +1049,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "祖冲之号",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：祖冲之号。",
+    "definition": "「祖冲之号」为深度调研索引核心术语，叙事脉络见《量子信息技术与未来计算》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -1579,7 +1066,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "种业自主",
     "aliases": [],
     "category": "module",
-    "definition": "模块「粮食安全」副题关键词：种业自主。",
+    "definition": "「种业自主」为 China OS 模块「粮食安全」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「粮食安全」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括粮食安全。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "foodSecurity",
@@ -1623,7 +1110,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "穿透式监管。",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：穿透式监管。。",
+    "definition": "「穿透式监管。」为深度调研索引核心术语，叙事脉络见《中央与地方关系深度解析》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -1636,69 +1123,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "#"
   },
   {
-    "id": "mod-realism-米尔斯海默",
-    "term": "米尔斯海默",
-    "aliases": [],
-    "category": "econ",
-    "definition": "模块「现实主义」副题关键词：米尔斯海默。",
-    "context": [
-      {
-        "moduleId": "realism",
-        "label": "现实主义",
-        "path": "/realism"
-      }
-    ],
-    "related": [
-      "现实主义"
-    ],
-    "source": "China OS · 现实主义",
-    "initial": "#"
-  },
-  {
-    "id": "mod-foodSecurity",
-    "term": "粮食安全",
-    "aliases": [
-      "耕地红线"
-    ],
-    "category": "module",
-    "definition": "China OS 模块「粮食安全」：耕地红线 · 种业自主 · 大国粮仓。",
-    "context": [
-      {
-        "moduleId": "foodSecurity",
-        "label": "粮食安全",
-        "path": "/food-security"
-      }
-    ],
-    "related": [
-      "种业自主",
-      "大国粮仓"
-    ],
-    "source": "China OS · registry.js",
-    "initial": "#"
-  },
-  {
-    "id": "mod-omnisecurity-粮食安全",
-    "term": "粮食安全",
-    "aliases": [],
-    "category": "military",
-    "definition": "模块「大安全观」副题关键词：粮食安全。",
-    "context": [
-      {
-        "moduleId": "omnisecurity",
-        "label": "大安全观",
-        "path": "/omnisecurity"
-      }
-    ],
-    "related": [
-      "大安全观"
-    ],
-    "source": "China OS · 大安全观",
-    "initial": "#"
-  },
-  {
     "id": "纳什均衡",
     "term": "纳什均衡",
-    "aliases": [],
+    "aliases": [
+      "博弈理论"
+    ],
     "category": "econ",
     "definition": "各方在给定他人策略下均无单方面偏离激励的稳定状态。",
     "context": [
@@ -1710,34 +1139,18 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "重复博弈",
-      "以牙还牙"
-    ],
-    "source": "博弈论",
-    "initial": "#"
-  },
-  {
-    "id": "mod-gametheory-纳什均衡",
-    "term": "纳什均衡",
-    "aliases": [],
-    "category": "econ",
-    "definition": "模块「博弈理论」副题关键词：纳什均衡。",
-    "context": [
-      {
-        "moduleId": "gametheory",
-        "label": "博弈理论",
-        "path": "/gametheory"
-      }
-    ],
-    "related": [
+      "以牙还牙",
       "博弈理论"
     ],
-    "source": "China OS · 博弈理论",
+    "source": "博弈论；China OS · registry.js；China OS · 博弈理论",
     "initial": "#"
   },
   {
     "id": "耐心资本",
     "term": "耐心资本",
-    "aliases": [],
+    "aliases": [
+      "资本市场"
+    ],
     "category": "econ",
     "definition": "愿意长期持有、容忍短期波动的资本，支持硬科技与基础设施。",
     "context": [
@@ -1749,67 +1162,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "注册制",
-      "创投"
-    ],
-    "source": "金融政策",
-    "initial": "#"
-  },
-  {
-    "id": "mod-capitalMarket-耐心资本",
-    "term": "耐心资本",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「资本市场」副题关键词：耐心资本。",
-    "context": [
-      {
-        "moduleId": "capitalMarket",
-        "label": "资本市场",
-        "path": "/capital-market"
-      }
-    ],
-    "related": [
+      "创投",
       "资本市场"
     ],
-    "source": "China OS · 资本市场",
-    "initial": "#"
-  },
-  {
-    "id": "耕地红线",
-    "term": "耕地红线",
-    "aliases": [],
-    "category": "research",
-    "definition": "18亿亩耕地保护底线，约束城市化与工业用地扩张。",
-    "context": [
-      {
-        "moduleId": "foodSecurity",
-        "label": "foodSecurity",
-        "path": null
-      }
-    ],
-    "related": [
-      "藏粮于地",
-      "口粮绝对安全"
-    ],
-    "source": "国土空间规划",
-    "initial": "#"
-  },
-  {
-    "id": "mod-foodSecurity-耕地红线",
-    "term": "耕地红线",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「粮食安全」副题关键词：耕地红线。",
-    "context": [
-      {
-        "moduleId": "foodSecurity",
-        "label": "粮食安全",
-        "path": "/food-security"
-      }
-    ],
-    "related": [
-      "粮食安全"
-    ],
-    "source": "China OS · 粮食安全",
+    "source": "金融政策；China OS · registry.js；China OS · 资本市场",
     "initial": "#"
   },
   {
@@ -1842,7 +1198,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "船舶制造",
     "aliases": [],
     "category": "module",
-    "definition": "模块「海洋经济」副题关键词：船舶制造。",
+    "definition": "「船舶制造」为 China OS 模块「海洋经济」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「海洋经济」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括海洋经济。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "marine",
@@ -1857,49 +1213,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "#"
   },
   {
-    "id": "mod-thucydides-艾利森",
-    "term": "艾利森",
-    "aliases": [],
-    "category": "econ",
-    "definition": "模块「修昔底德陷阱」副题关键词：艾利森。",
-    "context": [
-      {
-        "moduleId": "thucydides",
-        "label": "修昔底德陷阱",
-        "path": "/thucydides"
-      }
-    ],
-    "related": [
-      "修昔底德陷阱"
-    ],
-    "source": "China OS · 修昔底德陷阱",
-    "initial": "#"
-  },
-  {
-    "id": "mod-semiconductor-芯片主权",
-    "term": "芯片主权",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「集成电路」副题关键词：芯片主权。",
-    "context": [
-      {
-        "moduleId": "semiconductor",
-        "label": "集成电路",
-        "path": "/semiconductor"
-      }
-    ],
-    "related": [
-      "集成电路"
-    ],
-    "source": "China OS · 集成电路",
-    "initial": "#"
-  },
-  {
     "id": "mod-healthcare-药品集采",
     "term": "药品集采",
     "aliases": [],
     "category": "module",
-    "definition": "模块「医疗医保」副题关键词：药品集采。",
+    "definition": "「药品集采」为 China OS 模块「医疗医保」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「医疗医保」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括医疗医保。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "healthcare",
@@ -1911,25 +1229,6 @@ export const GLOSSARY_ENTRIES = [
       "医疗医保"
     ],
     "source": "China OS · 医疗医保",
-    "initial": "#"
-  },
-  {
-    "id": "mod-gig-蓄水池",
-    "term": "蓄水池",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「零工经济」副题关键词：蓄水池。",
-    "context": [
-      {
-        "moduleId": "gig",
-        "label": "零工经济",
-        "path": "/gig"
-      }
-    ],
-    "related": [
-      "零工经济"
-    ],
-    "source": "China OS · 零工经济",
     "initial": "#"
   },
   {
@@ -1973,30 +1272,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "#"
   },
   {
-    "id": "mod-robotics-装机密度",
-    "term": "装机密度",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「机器人」副题关键词：装机密度。",
-    "context": [
-      {
-        "moduleId": "robotics",
-        "label": "机器人",
-        "path": "/robotics"
-      }
-    ],
-    "related": [
-      "机器人"
-    ],
-    "source": "China OS · 机器人",
-    "initial": "#"
-  },
-  {
     "id": "mod-unifiedMarket-要素流通",
     "term": "要素流通",
     "aliases": [],
     "category": "politics",
-    "definition": "模块「统一大市场」副题关键词：要素流通。",
+    "definition": "「要素流通」为 China OS 模块「统一大市场」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「统一大市场」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括统一大市场。从权力物理学视角，要素流通刻画央地博弈、激励结构与制度穿透力的耦合关系。",
     "context": [
       {
         "moduleId": "unifiedMarket",
@@ -2040,7 +1320,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "观念建构",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「建构主义」副题关键词：观念建构。",
+    "definition": "「观念建构」为 China OS 模块「建构主义」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「建构主义」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括建构主义。从成本—收益框架看，观念建构连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "constructivism",
@@ -2104,7 +1384,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "诸侯经济消解。",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：诸侯经济消解。。",
+    "definition": "「诸侯经济消解。」为深度调研索引核心术语，叙事脉络见《区域经济战略与全国统一大市场》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -2117,44 +1397,31 @@ export const GLOSSARY_ENTRIES = [
     "initial": "#"
   },
   {
-    "id": "mod-deterrence-谢林",
-    "term": "谢林",
-    "aliases": [],
-    "category": "econ",
-    "definition": "模块「威慑战略」副题关键词：谢林。",
-    "context": [
-      {
-        "moduleId": "deterrence",
-        "label": "威慑战略",
-        "path": "/deterrence"
-      }
-    ],
-    "related": [
-      "威慑战略"
-    ],
-    "source": "China OS · 威慑战略",
-    "initial": "#"
-  },
-  {
     "id": "mod-fdi",
     "term": "跨境投资",
     "aliases": [
       "负面清单"
     ],
     "category": "module",
-    "definition": "China OS 模块「跨境投资」：负面清单 · 双向流动 · 外资准入。",
+    "definition": "China OS 功能模块「跨境投资」聚焦负面清单 · 双向流动 · 外资准入。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括双向流动、外资准入、制度开放。",
     "context": [
       {
         "moduleId": "fdi",
         "label": "跨境投资",
         "path": "/fdi"
+      },
+      {
+        "moduleId": "instOpen",
+        "label": "制度开放",
+        "path": "/inst-open"
       }
     ],
     "related": [
       "双向流动",
-      "外资准入"
+      "外资准入",
+      "制度开放"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 制度开放；China OS · 跨境投资",
     "initial": "#"
   },
   {
@@ -2162,7 +1429,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "跨境电商",
     "aliases": [],
     "category": "module",
-    "definition": "模块「对外贸易」副题关键词：跨境电商。",
+    "definition": "「跨境电商」为 China OS 模块「对外贸易」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「对外贸易」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括对外贸易。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "foreignTrade",
@@ -2181,7 +1448,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "跨境结算",
     "aliases": [],
     "category": "module",
-    "definition": "模块「人民币国际化」副题关键词：跨境结算。",
+    "definition": "「跨境结算」为 China OS 模块「人民币国际化」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「人民币国际化」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括人民币国际化。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "financeRmb",
@@ -2200,7 +1467,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "轨道上的中国",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：轨道上的中国。",
+    "definition": "「轨道上的中国」为深度调研索引核心术语，叙事脉络见《现代化基建与低空经济》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -2217,7 +1484,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "适老改造",
     "aliases": [],
     "category": "module",
-    "definition": "模块「银发经济」副题关键词：适老改造。",
+    "definition": "「适老改造」为 China OS 模块「银发经济」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「银发经济」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括银发经济。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "silverEconomy",
@@ -2236,7 +1503,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "适航取证",
     "aliases": [],
     "category": "module",
-    "definition": "模块「民用航空」副题关键词：适航取证。",
+    "definition": "「适航取证」为 China OS 模块「民用航空」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「民用航空」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括民用航空。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "civilAviation",
@@ -2255,7 +1522,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "逆周期调节",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：逆周期调节。",
+    "definition": "「逆周期调节」为深度调研索引核心术语，叙事脉络见《国家能力与空间重塑：中国超级工程决策解析》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -2297,7 +1564,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "非化石能源占比",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：非化石能源占比。",
+    "definition": "「非化石能源占比」为深度调研索引核心术语，叙事脉络见《能源转型与「双碳」目标》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -2307,25 +1574,6 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [],
     "source": "中国深度调研系列_索引与恢复指令.md",
-    "initial": "#"
-  },
-  {
-    "id": "mod-middleincometrap-韩国跨越",
-    "term": "韩国跨越",
-    "aliases": [],
-    "category": "econ",
-    "definition": "模块「中等收入陷阱」副题关键词：韩国跨越。",
-    "context": [
-      {
-        "moduleId": "middleincometrap",
-        "label": "中等收入陷阱",
-        "path": "/middleincometrap"
-      }
-    ],
-    "related": [
-      "中等收入陷阱"
-    ],
-    "source": "China OS · 中等收入陷阱",
     "initial": "#"
   },
   {
@@ -2360,7 +1608,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "保障房",
     "aliases": [],
     "category": "module",
-    "definition": "模块「住房地产」副题关键词：保障房。",
+    "definition": "「保障房」为 China OS 模块「住房地产」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「住房地产」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括住房地产。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "housing",
@@ -2377,7 +1625,9 @@ export const GLOSSARY_ENTRIES = [
   {
     "id": "北斗组网",
     "term": "北斗组网",
-    "aliases": [],
+    "aliases": [
+      "航天产业"
+    ],
     "category": "tech",
     "definition": "自主全球卫星导航系统，提供定位、授时与短报文服务。",
     "context": [
@@ -2389,69 +1639,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "商业航天",
-      "深空探测"
-    ],
-    "source": "航天产业",
-    "initial": "B"
-  },
-  {
-    "id": "mod-space-北斗组网",
-    "term": "北斗组网",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「航天产业」副题关键词：北斗组网。",
-    "context": [
-      {
-        "moduleId": "space",
-        "label": "航天产业",
-        "path": "/space"
-      }
-    ],
-    "related": [
+      "深空探测",
       "航天产业"
     ],
-    "source": "China OS · 航天产业",
-    "initial": "B"
-  },
-  {
-    "id": "mod-polar-北极航道",
-    "term": "北极航道",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「极地战略」副题关键词：北极航道。",
-    "context": [
-      {
-        "moduleId": "polar",
-        "label": "极地战略",
-        "path": "/polar"
-      }
-    ],
-    "related": [
-      "极地战略"
-    ],
-    "source": "China OS · 极地战略",
-    "initial": "B"
-  },
-  {
-    "id": "mod-gametheory",
-    "term": "博弈理论",
-    "aliases": [
-      "纳什均衡"
-    ],
-    "category": "econ",
-    "definition": "China OS 模块「博弈理论」：纳什均衡 · 重复博弈 · 以牙还牙。",
-    "context": [
-      {
-        "moduleId": "gametheory",
-        "label": "博弈理论",
-        "path": "/gametheory"
-      }
-    ],
-    "related": [
-      "重复博弈",
-      "以牙还牙"
-    ],
-    "source": "China OS · registry.js",
+    "source": "航天产业；China OS · registry.js；China OS · 航天产业",
     "initial": "B"
   },
   {
@@ -2524,30 +1715,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "B"
   },
   {
-    "id": "mod-pathdependence-报酬递增",
-    "term": "报酬递增",
-    "aliases": [],
-    "category": "econ",
-    "definition": "模块「路径依赖」副题关键词：报酬递增。",
-    "context": [
-      {
-        "moduleId": "pathdependence",
-        "label": "路径依赖",
-        "path": "/pathdependence"
-      }
-    ],
-    "related": [
-      "路径依赖"
-    ],
-    "source": "China OS · 路径依赖",
-    "initial": "B"
-  },
-  {
     "id": "mod-antifragile-波动获益",
     "term": "波动获益",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「反脆弱性」副题关键词：波动获益。",
+    "definition": "「波动获益」为 China OS 模块「反脆弱性」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「反脆弱性」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括反脆弱性。从成本—收益框架看，波动获益连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "antifragile",
@@ -2566,7 +1738,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "被允许的可见形态",
     "aliases": [],
     "category": "gy",
-    "definition": "模块「性少数群像」副题关键词：被允许的可见形态。",
+    "definition": "「被允许的可见形态」为 China OS 模块「性少数群像」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「性少数群像」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括性少数群像。在国运/GY推演谱系中，被允许的可见形态作为可观测变量或结构隐喻，参与情景分支与尾部风险评估。",
     "context": [
       {
         "moduleId": "xingshaoshu",
@@ -2579,44 +1751,6 @@ export const GLOSSARY_ENTRIES = [
     ],
     "source": "China OS · 性少数群像",
     "initial": "B"
-  },
-  {
-    "id": "mod-civilAviation-c919",
-    "term": "C919",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「民用航空」副题关键词：C919。",
-    "context": [
-      {
-        "moduleId": "civilAviation",
-        "label": "民用航空",
-        "path": "/civil-aviation"
-      }
-    ],
-    "related": [
-      "民用航空"
-    ],
-    "source": "China OS · 民用航空",
-    "initial": "C"
-  },
-  {
-    "id": "mod-industrysoftware-cad-cae",
-    "term": "CAD/CAE",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「工业软件」副题关键词：CAD/CAE。",
-    "context": [
-      {
-        "moduleId": "industrysoftware",
-        "label": "工业软件",
-        "path": "/industry-software"
-      }
-    ],
-    "related": [
-      "工业软件"
-    ],
-    "source": "China OS · 工业软件",
-    "initial": "C"
   },
   {
     "id": "ccus",
@@ -2650,7 +1784,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "CCUS。",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：CCUS。。",
+    "definition": "「CCUS。」为深度调研索引核心术语，叙事脉络见《能源转型与「双碳」目标》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -2666,6 +1800,7 @@ export const GLOSSARY_ENTRIES = [
     "id": "cips",
     "term": "CIPS",
     "aliases": [
+      "人民币国际化",
       "人民币跨境支付系统"
     ],
     "category": "econ",
@@ -2679,28 +1814,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "人民币国际化",
-      "e-CNY"
+      "e-CNY",
+      "跨境结算"
     ],
-    "source": "金融基础设施",
-    "initial": "C"
-  },
-  {
-    "id": "mod-financeRmb-cips",
-    "term": "CIPS",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「人民币国际化」副题关键词：CIPS。",
-    "context": [
-      {
-        "moduleId": "financeRmb",
-        "label": "人民币国际化",
-        "path": "/rmb"
-      }
-    ],
-    "related": [
-      "人民币国际化"
-    ],
-    "source": "China OS · 人民币国际化",
+    "source": "金融基础设施；China OS · registry.js；China OS · 人民币国际化",
     "initial": "C"
   },
   {
@@ -2717,13 +1834,18 @@ export const GLOSSARY_ENTRIES = [
         "moduleId": "semiconductor",
         "label": "semiconductor",
         "path": null
+      },
+      {
+        "moduleId": "depth",
+        "label": "depth",
+        "path": null
       }
     ],
     "related": [
       "换道超车",
       "成熟制程筑底"
     ],
-    "source": "半导体产业",
+    "source": "半导体产业；中国深度调研系列_索引与恢复指令.md",
     "initial": "C"
   },
   {
@@ -2756,7 +1878,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "产业链人质。",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：产业链人质。。",
+    "definition": "「产业链人质。」为深度调研索引核心术语，叙事脉络见《台海局势与战略博弈》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -2773,7 +1895,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "产权保护",
     "aliases": [],
     "category": "module",
-    "definition": "模块「民营经济」副题关键词：产权保护。",
+    "definition": "「产权保护」为 China OS 模块「民营经济」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「民营经济」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括民营经济。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "private",
@@ -2788,30 +1910,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "C"
   },
   {
-    "id": "mod-dataElement-产权确权",
-    "term": "产权确权",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「数据要素」副题关键词：产权确权。",
-    "context": [
-      {
-        "moduleId": "dataElement",
-        "label": "数据要素",
-        "path": "/data-element"
-      }
-    ],
-    "related": [
-      "数据要素"
-    ],
-    "source": "China OS · 数据要素",
-    "initial": "C"
-  },
-  {
     "id": "mod-tcmHealth-传承创新",
     "term": "传承创新",
     "aliases": [],
     "category": "module",
-    "definition": "模块「中医药」副题关键词：传承创新。",
+    "definition": "「传承创新」为 China OS 模块「中医药」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「中医药」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括中医药。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "tcmHealth",
@@ -2830,7 +1933,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "出海授权",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「生物医药」副题关键词：出海授权。",
+    "definition": "「出海授权」为 China OS 模块「生物医药」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「生物医药」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括生物医药。技术与产业维度上，出海授权关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "bio",
@@ -2849,7 +1952,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "创投",
     "aliases": [],
     "category": "module",
-    "definition": "模块「资本市场」副题关键词：创投。",
+    "definition": "「创投」为 China OS 模块「资本市场」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「资本市场」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括资本市场。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "capitalMarket",
@@ -2870,7 +1973,7 @@ export const GLOSSARY_ENTRIES = [
       "研发投入"
     ],
     "category": "tech",
-    "definition": "China OS 模块「创新体系」：研发投入 · 高新企业 · 成果转化。",
+    "definition": "China OS 功能模块「创新体系」聚焦研发投入 · 高新企业 · 成果转化。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括高新企业、成果转化。",
     "context": [
       {
         "moduleId": "tech",
@@ -2882,7 +1985,7 @@ export const GLOSSARY_ENTRIES = [
       "高新企业",
       "成果转化"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 创新体系",
     "initial": "C"
   },
   {
@@ -2890,7 +1993,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "创新潮",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「康波周期」副题关键词：创新潮。",
+    "definition": "「创新潮」为 China OS 模块「康波周期」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「康波周期」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括康波周期。从成本—收益框架看，创新潮连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "cognition",
@@ -2905,30 +2008,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "C"
   },
   {
-    "id": "mod-bio-创新药械",
-    "term": "创新药械",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「生物医药」副题关键词：创新药械。",
-    "context": [
-      {
-        "moduleId": "bio",
-        "label": "生物医药",
-        "path": "/bio"
-      }
-    ],
-    "related": [
-      "生物医药"
-    ],
-    "source": "China OS · 生物医药",
-    "initial": "C"
-  },
-  {
     "id": "mod-rural-城乡融合",
     "term": "城乡融合",
     "aliases": [],
     "category": "module",
-    "definition": "模块「乡村振兴」副题关键词：城乡融合。",
+    "definition": "「城乡融合」为 China OS 模块「乡村振兴」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「乡村振兴」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括乡村振兴。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "rural",
@@ -2947,27 +2031,13 @@ export const GLOSSARY_ENTRIES = [
     "term": "城市群",
     "aliases": [],
     "category": "module",
-    "definition": "模块「新型城镇化」副题关键词：城市群。",
+    "definition": "「城市群」为 China OS 模块「新型城镇化」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「新型城镇化」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括新型城镇化、区域协调。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "urban",
         "label": "新型城镇化",
         "path": "/urban"
-      }
-    ],
-    "related": [
-      "新型城镇化"
-    ],
-    "source": "China OS · 新型城镇化",
-    "initial": "C"
-  },
-  {
-    "id": "mod-regional-城市群",
-    "term": "城市群",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「区域协调」副题关键词：城市群。",
-    "context": [
+      },
       {
         "moduleId": "regional",
         "label": "区域协调",
@@ -2975,9 +2045,10 @@ export const GLOSSARY_ENTRIES = [
       }
     ],
     "related": [
+      "新型城镇化",
       "区域协调"
     ],
-    "source": "China OS · 区域协调",
+    "source": "China OS · 新型城镇化；China OS · 区域协调",
     "initial": "C"
   },
   {
@@ -3005,7 +2076,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "成果转化",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「创新体系」副题关键词：成果转化。",
+    "definition": "「成果转化」为 China OS 模块「创新体系」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「创新体系」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括创新体系。技术与产业维度上，成果转化关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "tech",
@@ -3046,7 +2117,7 @@ export const GLOSSARY_ENTRIES = [
       "多维ROI"
     ],
     "category": "tech",
-    "definition": "China OS 模块「超级工程」：多维ROI · 国家账本 · 战略投资。",
+    "definition": "China OS 功能模块「超级工程」聚焦多维ROI · 国家账本 · 战略投资。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括国家账本、战略投资。",
     "context": [
       {
         "moduleId": "megaprojects",
@@ -3058,7 +2129,7 @@ export const GLOSSARY_ENTRIES = [
       "国家账本",
       "战略投资"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 超级工程",
     "initial": "C"
   },
   {
@@ -3066,7 +2137,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "长波",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「康波周期」副题关键词：长波。",
+    "definition": "「长波」为 China OS 模块「康波周期」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「康波周期」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括康波周期。从成本—收益框架看，长波连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "cognition",
@@ -3084,6 +2155,7 @@ export const GLOSSARY_ENTRIES = [
     "id": "drg",
     "term": "DRG",
     "aliases": [
+      "医疗医保",
       "按病种付费"
     ],
     "category": "society",
@@ -3097,28 +2169,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "药品集采",
-      "分级诊疗"
-    ],
-    "source": "医保改革",
-    "initial": "D"
-  },
-  {
-    "id": "mod-healthcare-drg",
-    "term": "DRG",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「医疗医保」副题关键词：DRG。",
-    "context": [
-      {
-        "moduleId": "healthcare",
-        "label": "医疗医保",
-        "path": "/healthcare"
-      }
-    ],
-    "related": [
+      "分级诊疗",
       "医疗医保"
     ],
-    "source": "China OS · 医疗医保",
+    "source": "医保改革；China OS · registry.js；China OS · 医疗医保",
     "initial": "D"
   },
   {
@@ -3153,7 +2207,7 @@ export const GLOSSARY_ENTRIES = [
       "省际热力"
     ],
     "category": "module",
-    "definition": "China OS 模块「地方债务」：省际热力 · 隐性债务 · 化债方案。",
+    "definition": "China OS 功能模块「地方债务」聚焦省际热力 · 隐性债务 · 化债方案。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括隐性债务、化债方案。",
     "context": [
       {
         "moduleId": "debtHeatmap",
@@ -3165,7 +2219,7 @@ export const GLOSSARY_ENTRIES = [
       "隐性债务",
       "化债方案"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 地方债务",
     "initial": "D"
   },
   {
@@ -3209,30 +2263,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "D"
   },
   {
-    "id": "mod-straits-地缘重力",
-    "term": "地缘重力",
-    "aliases": [],
-    "category": "military",
-    "definition": "模块「台海局势」副题关键词：地缘重力。",
-    "context": [
-      {
-        "moduleId": "straits",
-        "label": "台海局势",
-        "path": "/straits"
-      }
-    ],
-    "related": [
-      "台海局势"
-    ],
-    "source": "China OS · 台海局势",
-    "initial": "D"
-  },
-  {
     "id": "mod-governance-多元共治",
     "term": "多元共治",
     "aliases": [],
     "category": "politics",
-    "definition": "模块「治理现代化」副题关键词：多元共治。",
+    "definition": "「多元共治」为 China OS 模块「治理现代化」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「治理现代化」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括治理现代化。从权力物理学视角，多元共治刻画央地博弈、激励结构与制度穿透力的耦合关系。",
     "context": [
       {
         "moduleId": "governance",
@@ -3247,49 +2282,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "D"
   },
   {
-    "id": "mod-logistics-多式联运",
-    "term": "多式联运",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「现代物流」副题关键词：多式联运。",
-    "context": [
-      {
-        "moduleId": "logistics",
-        "label": "现代物流",
-        "path": "/logistics"
-      }
-    ],
-    "related": [
-      "现代物流"
-    ],
-    "source": "China OS · 现代物流",
-    "initial": "D"
-  },
-  {
-    "id": "mod-megaprojects-多维roi",
-    "term": "多维ROI",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「超级工程」副题关键词：多维ROI。",
-    "context": [
-      {
-        "moduleId": "megaprojects",
-        "label": "超级工程",
-        "path": "/megaprojects"
-      }
-    ],
-    "related": [
-      "超级工程"
-    ],
-    "source": "China OS · 超级工程",
-    "initial": "D"
-  },
-  {
     "id": "idx-多维roi",
     "term": "多维ROI。",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：多维ROI。。",
+    "definition": "「多维ROI。」为深度调研索引核心术语，叙事脉络见《国家能力与空间重塑：中国超级工程决策解析》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -3306,7 +2303,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "多维对标",
     "aliases": [],
     "category": "module",
-    "definition": "模块「国际对标」副题关键词：多维对标。",
+    "definition": "「多维对标」为 China OS 模块「国际对标」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「国际对标」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括国际对标。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "benchmark",
@@ -3325,7 +2322,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "多重专题",
     "aliases": [],
     "category": "module",
-    "definition": "模块「深度透视」副题关键词：多重专题。",
+    "definition": "「多重专题」为 China OS 模块「深度透视」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「深度透视」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括深度透视。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "depth",
@@ -3344,7 +2341,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "大国政治",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「现实主义」副题关键词：大国政治。",
+    "definition": "「大国政治」为 China OS 模块「现实主义」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「现实主义」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括现实主义。从成本—收益框架看，大国政治连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "realism",
@@ -3363,7 +2360,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "大国粮仓",
     "aliases": [],
     "category": "module",
-    "definition": "模块「粮食安全」副题关键词：大国粮仓。",
+    "definition": "「大国粮仓」为 China OS 模块「粮食安全」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「粮食安全」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括粮食安全。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "foodSecurity",
@@ -3382,7 +2379,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "大基金",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「集成电路」副题关键词：大基金。",
+    "definition": "「大基金」为 China OS 模块「集成电路」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「集成电路」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括集成电路。技术与产业维度上，大基金关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "semiconductor",
@@ -3401,7 +2398,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "大基金。",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：大基金。。",
+    "definition": "「大基金。」为深度调研索引核心术语，叙事脉络见《半导体自主化与全球博弈》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -3414,33 +2411,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "D"
   },
   {
-    "id": "mod-omnisecurity",
-    "term": "大安全观",
-    "aliases": [
-      "粮食安全"
-    ],
-    "category": "military",
-    "definition": "China OS 模块「大安全观」：粮食安全 · 能源安全 · 网络安全。",
-    "context": [
-      {
-        "moduleId": "omnisecurity",
-        "label": "大安全观",
-        "path": "/omnisecurity"
-      }
-    ],
-    "related": [
-      "能源安全",
-      "网络安全"
-    ],
-    "source": "China OS · registry.js",
-    "initial": "D"
-  },
-  {
     "id": "idx-大安全观",
     "term": "大安全观。",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：大安全观。。",
+    "definition": "「大安全观。」为深度调研索引核心术语，叙事脉络见《中国政治决策逻辑分析》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -3457,7 +2432,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "大宗",
     "aliases": [],
     "category": "module",
-    "definition": "模块「全球资产脉搏」副题关键词：大宗。",
+    "definition": "「大宗」为 China OS 模块「全球资产脉搏」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「全球资产脉搏」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括全球资产脉搏。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "marketPulse",
@@ -3476,7 +2451,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "大湾区系统消融。",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：大湾区系统消融。。",
+    "definition": "「大湾区系统消融。」为深度调研索引核心术语，叙事脉络见《一国两制的现实主义逻辑调研》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -3493,7 +2468,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "大豆对外依存",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：大豆对外依存。",
+    "definition": "「大豆对外依存」为深度调研索引核心术语，叙事脉络见《大国粮仓：中国粮食安全深度调研》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -3530,7 +2505,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "对口支援",
     "aliases": [],
     "category": "module",
-    "definition": "模块「边疆治理」副题关键词：对口支援。",
+    "definition": "「对口支援」为 China OS 模块「边疆治理」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「边疆治理」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括边疆治理。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "frontierGov",
@@ -3545,33 +2520,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "D"
   },
   {
-    "id": "mod-foreignTrade",
-    "term": "对外贸易",
-    "aliases": [
-      "新三样"
-    ],
-    "category": "module",
-    "definition": "China OS 模块「对外贸易」：新三样 · RCEP · 跨境电商。",
-    "context": [
-      {
-        "moduleId": "foreignTrade",
-        "label": "对外贸易",
-        "path": "/foreign-trade"
-      }
-    ],
-    "related": [
-      "RCEP",
-      "跨境电商"
-    ],
-    "source": "China OS · registry.js",
-    "initial": "D"
-  },
-  {
     "id": "mod-shenzhou-live-对比研判",
     "term": "对比研判",
     "aliases": [],
     "category": "module",
-    "definition": "模块「神州活图」副题关键词：对比研判。",
+    "definition": "「对比研判」为 China OS 模块「神州活图」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「神州活图」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括神州活图。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "shenzhou-live",
@@ -3590,7 +2543,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "对立统一",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「矛盾论」副题关键词：对立统一。",
+    "definition": "「对立统一」为 China OS 模块「矛盾论」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「矛盾论」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括矛盾论。从成本—收益框架看，对立统一连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "contradictions",
@@ -3655,30 +2608,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "D"
   },
   {
-    "id": "mod-automotive-电动智能",
-    "term": "电动智能",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「汽车主权」副题关键词：电动智能。",
-    "context": [
-      {
-        "moduleId": "automotive",
-        "label": "汽车主权",
-        "path": "/automotive"
-      }
-    ],
-    "related": [
-      "汽车主权"
-    ],
-    "source": "China OS · 汽车主权",
-    "initial": "D"
-  },
-  {
     "id": "mod-culture-短剧出海",
     "term": "短剧出海",
     "aliases": [],
     "category": "module",
-    "definition": "模块「文化软实力」副题关键词：短剧出海。",
+    "definition": "「短剧出海」为 China OS 模块「文化软实力」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「文化软实力」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括文化软实力。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "culture",
@@ -3697,7 +2631,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "端到端大模型",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：端到端大模型。",
+    "definition": "「端到端大模型」为深度调研索引核心术语，叙事脉络见《人工智能与「人工智能+」行动》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -3707,6 +2641,25 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [],
     "source": "中国深度调研系列_索引与恢复指令.md",
+    "initial": "D"
+  },
+  {
+    "id": "mod-glossary-调研术语",
+    "term": "调研术语",
+    "aliases": [],
+    "category": "module",
+    "definition": "「调研术语」为 China OS 模块「术语词典」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「术语词典」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括术语词典。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
+    "context": [
+      {
+        "moduleId": "glossary",
+        "label": "术语词典",
+        "path": "/glossary"
+      }
+    ],
+    "related": [
+      "术语词典"
+    ],
+    "source": "China OS · 术语词典",
     "initial": "D"
   },
   {
@@ -3726,26 +2679,7 @@ export const GLOSSARY_ENTRIES = [
       "委托代理",
       "激励相容"
     ],
-    "source": "经济学",
-    "initial": "D"
-  },
-  {
-    "id": "mod-principalagent-道德风险",
-    "term": "道德风险",
-    "aliases": [],
-    "category": "econ",
-    "definition": "模块「委托代理」副题关键词：道德风险。",
-    "context": [
-      {
-        "moduleId": "principalagent",
-        "label": "委托代理",
-        "path": "/principalagent"
-      }
-    ],
-    "related": [
-      "委托代理"
-    ],
-    "source": "China OS · 委托代理",
+    "source": "经济学；China OS · 委托代理",
     "initial": "D"
   },
   {
@@ -3753,7 +2687,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "都市圈",
     "aliases": [],
     "category": "module",
-    "definition": "模块「新型城镇化」副题关键词：都市圈。",
+    "definition": "「都市圈」为 China OS 模块「新型城镇化」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「新型城镇化」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括新型城镇化。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "urban",
@@ -3786,32 +2720,15 @@ export const GLOSSARY_ENTRIES = [
       "CIPS",
       "人民币国际化"
     ],
-    "source": "央行数字货币",
-    "initial": "E"
-  },
-  {
-    "id": "mod-financeRmb-e-cny",
-    "term": "e-CNY",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「人民币国际化」副题关键词：e-CNY。",
-    "context": [
-      {
-        "moduleId": "financeRmb",
-        "label": "人民币国际化",
-        "path": "/rmb"
-      }
-    ],
-    "related": [
-      "人民币国际化"
-    ],
-    "source": "China OS · 人民币国际化",
+    "source": "央行数字货币；China OS · 人民币国际化",
     "initial": "E"
   },
   {
     "id": "evtol",
     "term": "eVTOL",
-    "aliases": [],
+    "aliases": [
+      "低空经济"
+    ],
     "category": "tech",
     "definition": "电动垂直起降飞行器，低空经济与城市空中交通的核心载体。",
     "context": [
@@ -3828,28 +2745,12 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "低空经济",
-      "数字航路"
+      "数字航路",
+      "无人机",
+      "通用航空",
+      "民用航空"
     ],
-    "source": "低空经济",
-    "initial": "E"
-  },
-  {
-    "id": "mod-lowAltitude-evtol",
-    "term": "eVTOL",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「低空经济」副题关键词：eVTOL。",
-    "context": [
-      {
-        "moduleId": "lowAltitude",
-        "label": "低空经济",
-        "path": "/low-altitude"
-      }
-    ],
-    "related": [
-      "低空经济"
-    ],
-    "source": "China OS · 低空经济",
+    "source": "低空经济；China OS · registry.js；China OS · 低空经济；China OS · 民用航空",
     "initial": "E"
   },
   {
@@ -3882,7 +2783,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "分级诊疗",
     "aliases": [],
     "category": "module",
-    "definition": "模块「医疗医保」副题关键词：分级诊疗。",
+    "definition": "「分级诊疗」为 China OS 模块「医疗医保」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「医疗医保」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括医疗医保。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "healthcare",
@@ -3899,7 +2800,9 @@ export const GLOSSARY_ENTRIES = [
   {
     "id": "反脆弱性",
     "term": "反脆弱性",
-    "aliases": [],
+    "aliases": [
+      "塔勒布"
+    ],
     "category": "econ",
     "definition": "系统从波动与压力中获益而非仅抵抗损伤的性质（凸性效应）。",
     "context": [
@@ -3911,31 +2814,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "塔勒布",
-      "凸性效应"
-    ],
-    "source": "塔勒布 · 反脆弱",
-    "initial": "F"
-  },
-  {
-    "id": "mod-antifragile",
-    "term": "反脆弱性",
-    "aliases": [
-      "塔勒布"
-    ],
-    "category": "econ",
-    "definition": "China OS 模块「反脆弱性」：塔勒布 · 凸性效应 · 波动获益。",
-    "context": [
-      {
-        "moduleId": "antifragile",
-        "label": "反脆弱性",
-        "path": "/antifragile"
-      }
-    ],
-    "related": [
       "凸性效应",
       "波动获益"
     ],
-    "source": "China OS · registry.js",
+    "source": "塔勒布 · 反脆弱；China OS · registry.js；China OS · 反脆弱性",
     "initial": "F"
   },
   {
@@ -3943,7 +2825,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "反腐透视",
     "aliases": [],
     "category": "module",
-    "definition": "talent 模块：落马官员与案例结构化数据。",
+    "definition": "「反腐透视」为人才精英库（talent）子域标签：talent 模块：落马官员与案例结构化数据。该分类用于结构化检索政要、学者、资本逻辑与海外精英等人物图谱。",
     "context": [
       {
         "moduleId": "talent",
@@ -3960,7 +2842,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "服务化",
     "aliases": [],
     "category": "module",
-    "definition": "模块「扩大内需」副题关键词：服务化。",
+    "definition": "「服务化」为 China OS 模块「扩大内需」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「扩大内需」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括扩大内需。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "consumption",
@@ -3981,7 +2863,7 @@ export const GLOSSARY_ENTRIES = [
       "数字贸易"
     ],
     "category": "module",
-    "definition": "China OS 模块「服务贸易」：数字贸易 · 服贸创新 · 知识密集。",
+    "definition": "China OS 功能模块「服务贸易」聚焦数字贸易 · 服贸创新 · 知识密集。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括服贸创新、知识密集。",
     "context": [
       {
         "moduleId": "serviceTrade",
@@ -3993,7 +2875,7 @@ export const GLOSSARY_ENTRIES = [
       "服贸创新",
       "知识密集"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 服务贸易",
     "initial": "F"
   },
   {
@@ -4001,7 +2883,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "服贸创新",
     "aliases": [],
     "category": "module",
-    "definition": "模块「服务贸易」副题关键词：服贸创新。",
+    "definition": "「服贸创新」为 China OS 模块「服务贸易」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「服务贸易」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括服务贸易。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "serviceTrade",
@@ -4020,7 +2902,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "法律",
     "aliases": [],
     "category": "legal",
-    "definition": "全国人大及其常委会制定的规范性文件。",
+    "definition": "「法律」（法律政策）：全国人大及其常委会制定的规范性文件。在 China OS「policydocs」模块中作为分析锚点出现。法治与政策文本维度上，法律界定规范层级与合规边界。",
     "context": [
       {
         "moduleId": "policydocs",
@@ -4037,7 +2919,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "法律条文",
     "aliases": [],
     "category": "module",
-    "definition": "模块「政令文库」副题关键词：法律条文。",
+    "definition": "「法律条文」为 China OS 模块「政令文库」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「政令文库」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括政令文库。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "policydocs",
@@ -4052,44 +2934,30 @@ export const GLOSSARY_ENTRIES = [
     "initial": "F"
   },
   {
-    "id": "mod-ruleoflaw",
+    "id": "idx-智慧法院",
     "term": "法治建设",
     "aliases": [
       "智慧法院"
     ],
     "category": "politics",
-    "definition": "China OS 模块「法治建设」：智慧法院 · 涉外法治 · 营商环境。",
+    "definition": "China OS 功能模块「法治建设」聚焦智慧法院 · 涉外法治 · 营商环境。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括涉外法治、营商环境。",
     "context": [
       {
         "moduleId": "ruleoflaw",
         "label": "法治建设",
         "path": "/ruleoflaw"
+      },
+      {
+        "moduleId": "depth",
+        "label": "depth",
+        "path": null
       }
     ],
     "related": [
       "涉外法治",
       "营商环境"
     ],
-    "source": "China OS · registry.js",
-    "initial": "F"
-  },
-  {
-    "id": "mod-demographic-负增长",
-    "term": "负增长",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「人口结构」副题关键词：负增长。",
-    "context": [
-      {
-        "moduleId": "demographic",
-        "label": "人口结构",
-        "path": "/demographic"
-      }
-    ],
-    "related": [
-      "人口结构"
-    ],
-    "source": "China OS · 人口结构",
+    "source": "China OS · registry.js；中国深度调研系列_索引与恢复指令.md；China OS · 法治建设",
     "initial": "F"
   },
   {
@@ -4097,7 +2965,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "负熵流",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「耗散结构」副题关键词：负熵流。",
+    "definition": "「负熵流」为 China OS 模块「耗散结构」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「耗散结构」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括耗散结构。从成本—收益框架看，负熵流连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "dissipative",
@@ -4112,49 +2980,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "F"
   },
   {
-    "id": "mod-instOpen-负面清单",
-    "term": "负面清单",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「制度开放」副题关键词：负面清单。",
-    "context": [
-      {
-        "moduleId": "instOpen",
-        "label": "制度开放",
-        "path": "/inst-open"
-      }
-    ],
-    "related": [
-      "制度开放"
-    ],
-    "source": "China OS · 制度开放",
-    "initial": "F"
-  },
-  {
-    "id": "mod-fdi-负面清单",
-    "term": "负面清单",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「跨境投资」副题关键词：负面清单。",
-    "context": [
-      {
-        "moduleId": "fdi",
-        "label": "跨境投资",
-        "path": "/fdi"
-      }
-    ],
-    "related": [
-      "跨境投资"
-    ],
-    "source": "China OS · 跨境投资",
-    "initial": "F"
-  },
-  {
     "id": "mod-aiplus-赋能百业",
     "term": "赋能百业",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「人工智能+」副题关键词：赋能百业。",
+    "definition": "「赋能百业」为 China OS 模块「人工智能+」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「人工智能+」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括人工智能+。技术与产业维度上，赋能百业关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "aiplus",
@@ -4169,30 +2999,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "F"
   },
   {
-    "id": "mod-publicSafety-防灾减灾",
-    "term": "防灾减灾",
-    "aliases": [],
-    "category": "military",
-    "definition": "模块「公共安全」副题关键词：防灾减灾。",
-    "context": [
-      {
-        "moduleId": "publicSafety",
-        "label": "公共安全",
-        "path": "/public-safety"
-      }
-    ],
-    "related": [
-      "公共安全"
-    ],
-    "source": "China OS · 公共安全",
-    "initial": "F"
-  },
-  {
     "id": "mod-manufacturing-gvc位势",
     "term": "GVC位势",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「制造强国」副题关键词：GVC位势。",
+    "definition": "「GVC位势」为 China OS 模块「制造强国」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「制造强国」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括制造强国。技术与产业维度上，GVC位势关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "manufacturing",
@@ -4204,25 +3015,6 @@ export const GLOSSARY_ENTRIES = [
       "制造强国"
     ],
     "source": "China OS · 制造强国",
-    "initial": "G"
-  },
-  {
-    "id": "mod-yishixingtai-gy-02",
-    "term": "GY-02",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「合法性机器」副题关键词：GY-02。",
-    "context": [
-      {
-        "moduleId": "yishixingtai",
-        "label": "合法性机器",
-        "path": "/modules/yishixingtai"
-      }
-    ],
-    "related": [
-      "合法性机器"
-    ],
-    "source": "China OS · 合法性机器",
     "initial": "G"
   },
   {
@@ -4242,26 +3034,7 @@ export const GLOSSARY_ENTRIES = [
       "GY-04",
       "青年"
     ],
-    "source": "China OS · GY系列",
-    "initial": "G"
-  },
-  {
-    "id": "mod-qingnian-gy-03",
-    "term": "GY-03",
-    "aliases": [],
-    "category": "gy",
-    "definition": "模块「青年」副题关键词：GY-03。",
-    "context": [
-      {
-        "moduleId": "qingnian",
-        "label": "青年",
-        "path": "/modules/qingnian"
-      }
-    ],
-    "related": [
-      "青年"
-    ],
-    "source": "China OS · 青年",
+    "source": "China OS · GY系列；China OS · 青年",
     "initial": "G"
   },
   {
@@ -4279,28 +3052,29 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "GY-03",
-      "可见形态"
+      "可见形态",
+      "性少数群像"
     ],
-    "source": "China OS · GY系列",
+    "source": "China OS · GY系列；China OS · 性少数群像",
     "initial": "G"
   },
   {
-    "id": "mod-xingshaoshu-gy-04",
-    "term": "GY-04",
+    "id": "mod-linggong-gy-05",
+    "term": "GY-05",
     "aliases": [],
     "category": "gy",
-    "definition": "模块「性少数群像」副题关键词：GY-04。",
+    "definition": "「GY-05」为 China OS 模块「零工经济人群」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「零工经济人群」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括零工经济人群。在国运/GY推演谱系中，GY-05作为可观测变量或结构隐喻，参与情景分支与尾部风险评估。",
     "context": [
       {
-        "moduleId": "xingshaoshu",
-        "label": "性少数群像",
-        "path": "/modules/xingshaoshu"
+        "moduleId": "linggong",
+        "label": "零工经济人群",
+        "path": "/modules/linggong"
       }
     ],
     "related": [
-      "性少数群像"
+      "零工经济人群"
     ],
-    "source": "China OS · 性少数群像",
+    "source": "China OS · 零工经济人群",
     "initial": "G"
   },
   {
@@ -4310,7 +3084,7 @@ export const GLOSSARY_ENTRIES = [
       "冗余备份"
     ],
     "category": "tech",
-    "definition": "China OS 模块「供应链」：冗余备份 · 韧性安全 · 自主可控。",
+    "definition": "China OS 功能模块「供应链」聚焦冗余备份 · 韧性安全 · 自主可控。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括韧性安全、自主可控。",
     "context": [
       {
         "moduleId": "supplychain",
@@ -4322,7 +3096,7 @@ export const GLOSSARY_ENTRIES = [
       "韧性安全",
       "自主可控"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 供应链",
     "initial": "G"
   },
   {
@@ -4330,7 +3104,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "供应链多元化",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：供应链多元化。",
+    "definition": "「供应链多元化」为深度调研索引核心术语，叙事脉络见《大国粮仓：中国粮食安全深度调研》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -4349,7 +3123,7 @@ export const GLOSSARY_ENTRIES = [
       "防灾减灾"
     ],
     "category": "military",
-    "definition": "China OS 模块「公共安全」：防灾减灾 · 应急管理 · 韧性城市。",
+    "definition": "China OS 功能模块「公共安全」聚焦防灾减灾 · 应急管理 · 韧性城市。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括应急管理、韧性城市。",
     "context": [
       {
         "moduleId": "publicSafety",
@@ -4361,13 +3135,15 @@ export const GLOSSARY_ENTRIES = [
       "应急管理",
       "韧性城市"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 公共安全",
     "initial": "G"
   },
   {
     "id": "公地悲剧",
     "term": "公地悲剧",
-    "aliases": [],
+    "aliases": [
+      "集体行动"
+    ],
     "category": "econ",
     "definition": "个体理性使用共享资源导致集体不可持续的过度消耗。",
     "context": [
@@ -4379,31 +3155,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "集体行动",
-      "搭便车"
-    ],
-    "source": "哈丁 · 公地悲剧",
-    "initial": "G"
-  },
-  {
-    "id": "mod-commons",
-    "term": "公地悲剧",
-    "aliases": [
-      "集体行动"
-    ],
-    "category": "econ",
-    "definition": "China OS 模块「公地悲剧」：集体行动 · 搭便车 · 自主治理。",
-    "context": [
-      {
-        "moduleId": "commons",
-        "label": "公地悲剧",
-        "path": "/commons"
-      }
-    ],
-    "related": [
       "搭便车",
       "自主治理"
     ],
-    "source": "China OS · registry.js",
+    "source": "哈丁 · 公地悲剧；China OS · registry.js；China OS · 公地悲剧",
     "initial": "G"
   },
   {
@@ -4411,7 +3166,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "公平竞争",
     "aliases": [],
     "category": "module",
-    "definition": "模块「民营经济」副题关键词：公平竞争。",
+    "definition": "「公平竞争」为 China OS 模块「民营经济」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「民营经济」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括民营经济。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "private",
@@ -4426,30 +3181,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "G"
   },
   {
-    "id": "mod-live-feeds-公开慢直播",
-    "term": "公开慢直播",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「神州实况」副题关键词：公开慢直播。",
-    "context": [
-      {
-        "moduleId": "live-feeds",
-        "label": "神州实况",
-        "path": "/live-feeds"
-      }
-    ],
-    "related": [
-      "神州实况"
-    ],
-    "source": "China OS · 神州实况",
-    "initial": "G"
-  },
-  {
     "id": "mod-frontierGov-共同体",
     "term": "共同体",
     "aliases": [],
     "category": "module",
-    "definition": "模块「边疆治理」副题关键词：共同体。",
+    "definition": "「共同体」为 China OS 模块「边疆治理」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「边疆治理」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括边疆治理。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "frontierGov",
@@ -4461,28 +3197,6 @@ export const GLOSSARY_ENTRIES = [
       "边疆治理"
     ],
     "source": "China OS · 边疆治理",
-    "initial": "G"
-  },
-  {
-    "id": "mod-materials",
-    "term": "关键材料",
-    "aliases": [
-      "卡脖子"
-    ],
-    "category": "tech",
-    "definition": "China OS 模块「关键材料」：卡脖子 · 国产替代 · 前沿材料。",
-    "context": [
-      {
-        "moduleId": "materials",
-        "label": "关键材料",
-        "path": "/materials"
-      }
-    ],
-    "related": [
-      "国产替代",
-      "前沿材料"
-    ],
-    "source": "China OS · registry.js",
     "initial": "G"
   },
   {
@@ -4526,22 +3240,7 @@ export const GLOSSARY_ENTRIES = [
         "moduleId": "industrysoftware",
         "label": "industrysoftware",
         "path": null
-      }
-    ],
-    "related": [
-      "卡脖子",
-      "自主可控"
-    ],
-    "source": "产业政策",
-    "initial": "G"
-  },
-  {
-    "id": "mod-materials-国产替代",
-    "term": "国产替代",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「关键材料」副题关键词：国产替代。",
-    "context": [
+      },
       {
         "moduleId": "materials",
         "label": "关键材料",
@@ -4549,47 +3248,12 @@ export const GLOSSARY_ENTRIES = [
       }
     ],
     "related": [
-      "关键材料"
-    ],
-    "source": "China OS · 关键材料",
-    "initial": "G"
-  },
-  {
-    "id": "mod-industrysoftware-国产替代",
-    "term": "国产替代",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「工业软件」副题关键词：国产替代。",
-    "context": [
-      {
-        "moduleId": "industrysoftware",
-        "label": "工业软件",
-        "path": "/industry-software"
-      }
-    ],
-    "related": [
+      "卡脖子",
+      "自主可控",
+      "关键材料",
       "工业软件"
     ],
-    "source": "China OS · 工业软件",
-    "initial": "G"
-  },
-  {
-    "id": "mod-basicResearch-国家实验室",
-    "term": "国家实验室",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「基础研究」副题关键词：国家实验室。",
-    "context": [
-      {
-        "moduleId": "basicResearch",
-        "label": "基础研究",
-        "path": "/basic-research"
-      }
-    ],
-    "related": [
-      "基础研究"
-    ],
-    "source": "China OS · 基础研究",
+    "source": "产业政策；China OS · 关键材料；China OS · 工业软件",
     "initial": "G"
   },
   {
@@ -4597,7 +3261,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "国家统计局",
     "aliases": [],
     "category": "module",
-    "definition": "模块「数据底座」副题关键词：国家统计局。",
+    "definition": "「国家统计局」为 China OS 模块「数据底座」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「数据底座」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括数据底座。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "foundation",
@@ -4616,7 +3280,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "国家账本",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「超级工程」副题关键词：国家账本。",
+    "definition": "「国家账本」为 China OS 模块「超级工程」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「超级工程」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括超级工程。技术与产业维度上，国家账本关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "megaprojects",
@@ -4637,7 +3301,7 @@ export const GLOSSARY_ENTRIES = [
       "战略底座"
     ],
     "category": "politics",
-    "definition": "China OS 模块「国有资本」：战略底座 · 链主企业 · 国资改革。",
+    "definition": "China OS 功能模块「国有资本」聚焦战略底座 · 链主企业 · 国资改革。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括链主企业、国资改革。",
     "context": [
       {
         "moduleId": "soe",
@@ -4649,26 +3313,7 @@ export const GLOSSARY_ENTRIES = [
       "链主企业",
       "国资改革"
     ],
-    "source": "China OS · registry.js",
-    "initial": "G"
-  },
-  {
-    "id": "mod-culture-国潮崛起",
-    "term": "国潮崛起",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「文化软实力」副题关键词：国潮崛起。",
-    "context": [
-      {
-        "moduleId": "culture",
-        "label": "文化软实力",
-        "path": "/culture"
-      }
-    ],
-    "related": [
-      "文化软实力"
-    ],
-    "source": "China OS · 文化软实力",
+    "source": "China OS · registry.js；China OS · 国有资本",
     "initial": "G"
   },
   {
@@ -4676,7 +3321,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "国资改革",
     "aliases": [],
     "category": "politics",
-    "definition": "模块「国有资本」副题关键词：国资改革。",
+    "definition": "「国资改革」为 China OS 模块「国有资本」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「国有资本」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括国有资本。从权力物理学视角，国资改革刻画央地博弈、激励结构与制度穿透力的耦合关系。",
     "context": [
       {
         "moduleId": "soe",
@@ -4697,19 +3342,25 @@ export const GLOSSARY_ENTRIES = [
       "时间轴"
     ],
     "category": "module",
-    "definition": "China OS 模块「国运」：时间轴 · 推演 · 两谱系。",
+    "definition": "China OS 功能模块「国运」聚焦时间轴 · 推演 · 两谱系。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括推演、两谱系、神州活图。",
     "context": [
       {
         "moduleId": "guoyun",
         "label": "国运",
         "path": "/modules/guoyun"
+      },
+      {
+        "moduleId": "shenzhou-live",
+        "label": "神州活图",
+        "path": "/shenzhou-live"
       }
     ],
     "related": [
       "推演",
-      "两谱系"
+      "两谱系",
+      "神州活图"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 神州活图；China OS · 国运",
     "initial": "G"
   },
   {
@@ -4719,7 +3370,7 @@ export const GLOSSARY_ENTRIES = [
       "后备力量"
     ],
     "category": "military",
-    "definition": "China OS 模块「国防动员」：后备力量 · 平战结合 · 新域新质。",
+    "definition": "China OS 功能模块「国防动员」聚焦后备力量 · 平战结合 · 新域新质。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括平战结合、新域新质。",
     "context": [
       {
         "moduleId": "defenseMobilization",
@@ -4731,7 +3382,7 @@ export const GLOSSARY_ENTRIES = [
       "平战结合",
       "新域新质"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 国防动员",
     "initial": "G"
   },
   {
@@ -4741,7 +3392,7 @@ export const GLOSSARY_ENTRIES = [
       "中美日德"
     ],
     "category": "module",
-    "definition": "China OS 模块「国际对标」：中美日德 · 多维对标 · 全球坐标。",
+    "definition": "China OS 功能模块「国际对标」聚焦中美日德 · 多维对标 · 全球坐标。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括多维对标、全球坐标。",
     "context": [
       {
         "moduleId": "benchmark",
@@ -4753,7 +3404,7 @@ export const GLOSSARY_ENTRIES = [
       "多维对标",
       "全球坐标"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 国际对标",
     "initial": "G"
   },
   {
@@ -4763,7 +3414,7 @@ export const GLOSSARY_ENTRIES = [
       "CAD/CAE"
     ],
     "category": "tech",
-    "definition": "China OS 模块「工业软件」：CAD/CAE · 自主信创 · 国产替代。",
+    "definition": "China OS 功能模块「工业软件」聚焦CAD/CAE · 自主信创 · 国产替代。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括自主信创、国产替代。",
     "context": [
       {
         "moduleId": "industrysoftware",
@@ -4775,48 +3426,7 @@ export const GLOSSARY_ENTRIES = [
       "自主信创",
       "国产替代"
     ],
-    "source": "China OS · registry.js",
-    "initial": "G"
-  },
-  {
-    "id": "mod-enterprise500-工商联榜",
-    "term": "工商联榜",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「民企500强」副题关键词：工商联榜。",
-    "context": [
-      {
-        "moduleId": "enterprise500",
-        "label": "民企500强",
-        "path": "/enterprise500"
-      }
-    ],
-    "related": [
-      "民企500强"
-    ],
-    "source": "China OS · 民企500强",
-    "initial": "G"
-  },
-  {
-    "id": "mod-reform",
-    "term": "改革开放",
-    "aliases": [
-      "现实主义"
-    ],
-    "category": "politics",
-    "definition": "China OS 模块「改革开放」：现实主义 · 算法演进 · 摸石过河。",
-    "context": [
-      {
-        "moduleId": "reform",
-        "label": "改革开放",
-        "path": "/reform"
-      }
-    ],
-    "related": [
-      "算法演进",
-      "摸石过河"
-    ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 工业软件",
     "initial": "G"
   },
   {
@@ -4834,28 +3444,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "机器的盲区",
-      "GY-03"
-    ],
-    "source": "GY-03 · 青年",
-    "initial": "G"
-  },
-  {
-    "id": "mod-qingnian-概率的暗物质",
-    "term": "概率的暗物质",
-    "aliases": [],
-    "category": "gy",
-    "definition": "模块「青年」副题关键词：概率的暗物质。",
-    "context": [
-      {
-        "moduleId": "qingnian",
-        "label": "青年",
-        "path": "/modules/qingnian"
-      }
-    ],
-    "related": [
+      "GY-03",
       "青年"
     ],
-    "source": "China OS · 青年",
+    "source": "GY-03 · 青年；China OS · 青年",
     "initial": "G"
   },
   {
@@ -4865,7 +3457,7 @@ export const GLOSSARY_ENTRIES = [
       "普通法窗"
     ],
     "category": "module",
-    "definition": "China OS 模块「港澳离岸」：普通法窗 · 离岸RMB · 资本通道。",
+    "definition": "China OS 功能模块「港澳离岸」聚焦普通法窗 · 离岸RMB · 资本通道。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括离岸RMB、资本通道。",
     "context": [
       {
         "moduleId": "offshore",
@@ -4877,26 +3469,7 @@ export const GLOSSARY_ENTRIES = [
       "离岸RMB",
       "资本通道"
     ],
-    "source": "China OS · registry.js",
-    "initial": "G"
-  },
-  {
-    "id": "mod-marketPulse-股市",
-    "term": "股市",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「全球资产脉搏」副题关键词：股市。",
-    "context": [
-      {
-        "moduleId": "marketPulse",
-        "label": "全球资产脉搏",
-        "path": "/market-pulse"
-      }
-    ],
-    "related": [
-      "全球资产脉搏"
-    ],
-    "source": "China OS · 全球资产脉搏",
+    "source": "China OS · registry.js；China OS · 港澳离岸",
     "initial": "G"
   },
   {
@@ -4904,7 +3477,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "规则对接",
     "aliases": [],
     "category": "module",
-    "definition": "模块「制度开放」副题关键词：规则对接。",
+    "definition": "「规则对接」为 China OS 模块「制度开放」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「制度开放」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括制度开放。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "instOpen",
@@ -4919,30 +3492,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "G"
   },
   {
-    "id": "mod-manufacturing-规模优势",
-    "term": "规模优势",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「制造强国」副题关键词：规模优势。",
-    "context": [
-      {
-        "moduleId": "manufacturing",
-        "label": "制造强国",
-        "path": "/manufacturing"
-      }
-    ],
-    "related": [
-      "制造强国"
-    ],
-    "source": "China OS · 制造强国",
-    "initial": "G"
-  },
-  {
     "id": "mod-tech-高新企业",
     "term": "高新企业",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「创新体系」副题关键词：高新企业。",
+    "definition": "「高新企业」为 China OS 模块「创新体系」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「创新体系」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括创新体系。技术与产业维度上，高新企业关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "tech",
@@ -4961,7 +3515,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "高温气冷堆",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：高温气冷堆。",
+    "definition": "「高温气冷堆」为深度调研索引核心术语，叙事脉络见《核能转型与第四代核电技术》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -4974,30 +3528,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "G"
   },
   {
-    "id": "mod-medequipment-高端影像",
-    "term": "高端影像",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「医疗装备」副题关键词：高端影像。",
-    "context": [
-      {
-        "moduleId": "medequipment",
-        "label": "医疗装备",
-        "path": "/medequipment"
-      }
-    ],
-    "related": [
-      "医疗装备"
-    ],
-    "source": "China OS · 医疗装备",
-    "initial": "G"
-  },
-  {
     "id": "mod-education-高考改革",
     "term": "高考改革",
     "aliases": [],
     "category": "module",
-    "definition": "模块「教育体系」副题关键词：高考改革。",
+    "definition": "「高考改革」为 China OS 模块「教育体系」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「教育体系」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括教育体系。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "education",
@@ -5016,7 +3551,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "互联互通",
     "aliases": [],
     "category": "module",
-    "definition": "模块「一带一路」副题关键词：互联互通。",
+    "definition": "「互联互通」为 China OS 模块「一带一路」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「一带一路」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括一带一路。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "bri",
@@ -5045,28 +3580,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "隐性债务",
-      "专项债"
-    ],
-    "source": "财政政策",
-    "initial": "H"
-  },
-  {
-    "id": "mod-debtHeatmap-化债方案",
-    "term": "化债方案",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「地方债务」副题关键词：化债方案。",
-    "context": [
-      {
-        "moduleId": "debtHeatmap",
-        "label": "地方债务",
-        "path": "/debt"
-      }
-    ],
-    "related": [
+      "专项债",
       "地方债务"
     ],
-    "source": "China OS · 地方债务",
+    "source": "财政政策；China OS · 地方债务",
     "initial": "H"
   },
   {
@@ -5074,7 +3591,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "华夷之辨",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：华夷之辨。",
+    "definition": "「华夷之辨」为深度调研索引核心术语，叙事脉络见《地理宿命与天下观：中华文明的物理底座与地缘基因》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -5089,7 +3606,9 @@ export const GLOSSARY_ENTRIES = [
   {
     "id": "华龙一号",
     "term": "华龙一号",
-    "aliases": [],
+    "aliases": [
+      "核能电力"
+    ],
     "category": "tech",
     "definition": "自主三代核电技术品牌，体现基荷能源主权。",
     "context": [
@@ -5101,35 +3620,20 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "固有安全性",
-      "基荷主权"
-    ],
-    "source": "核电产业",
-    "initial": "H"
-  },
-  {
-    "id": "mod-nuclear-华龙一号",
-    "term": "华龙一号",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「核能电力」副题关键词：华龙一号。",
-    "context": [
-      {
-        "moduleId": "nuclear",
-        "label": "核能电力",
-        "path": "/nuclear"
-      }
-    ],
-    "related": [
+      "基荷主权",
+      "四代堆",
+      "核燃料",
       "核能电力"
     ],
-    "source": "China OS · 核能电力",
+    "source": "核电产业；China OS · registry.js；China OS · 核能电力",
     "initial": "H"
   },
   {
     "id": "合法性机器",
     "term": "合法性机器",
     "aliases": [
-      "GY-02"
+      "GY-02",
+      "意识形态架构"
     ],
     "category": "gy",
     "definition": "GY-02：将意识形态、叙事与仪式组件化以生产政治合法性的系统隐喻。",
@@ -5142,31 +3646,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "张力T-01",
-      "五组件"
-    ],
-    "source": "GY-02 · 意识形态架构",
-    "initial": "H"
-  },
-  {
-    "id": "mod-yishixingtai",
-    "term": "合法性机器",
-    "aliases": [
-      "意识形态架构"
-    ],
-    "category": "module",
-    "definition": "China OS 模块「合法性机器」：意识形态架构 · 五组件 · GY-02。",
-    "context": [
-      {
-        "moduleId": "yishixingtai",
-        "label": "合法性机器",
-        "path": "/modules/yishixingtai"
-      }
-    ],
-    "related": [
       "五组件",
       "GY-02"
     ],
-    "source": "China OS · registry.js",
+    "source": "GY-02 · 意识形态架构；China OS · registry.js；China OS · 合法性机器",
     "initial": "H"
   },
   {
@@ -5174,7 +3657,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "合法成本",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「权力物理」副题关键词：合法成本。",
+    "definition": "「合法成本」为 China OS 模块「权力物理」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「权力物理」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括权力物理。从成本—收益框架看，合法成本连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "powerphysics",
@@ -5208,28 +3691,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "成熟制程筑底",
-      "Chiplet"
-    ],
-    "source": "中国深度调研系列 · 半导体/汽车",
-    "initial": "H"
-  },
-  {
-    "id": "mod-automotive-换道超车",
-    "term": "换道超车",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「汽车主权」副题关键词：换道超车。",
-    "context": [
-      {
-        "moduleId": "automotive",
-        "label": "汽车主权",
-        "path": "/automotive"
-      }
-    ],
-    "related": [
+      "Chiplet",
       "汽车主权"
     ],
-    "source": "China OS · 汽车主权",
+    "source": "中国深度调研系列 · 半导体/汽车；China OS · 汽车主权",
     "initial": "H"
   },
   {
@@ -5237,7 +3702,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "核心部件",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「机器人」副题关键词：核心部件。",
+    "definition": "「核心部件」为 China OS 模块「机器人」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「机器人」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括机器人。技术与产业维度上，核心部件关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "robotics",
@@ -5281,7 +3746,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "核燃料",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「核能电力」副题关键词：核燃料。",
+    "definition": "「核燃料」为 China OS 模块「核能电力」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「核能电力」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括核能电力。技术与产业维度上，核燃料关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "nuclear",
@@ -5296,33 +3761,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "H"
   },
   {
-    "id": "mod-nuclear",
-    "term": "核能电力",
-    "aliases": [
-      "华龙一号"
-    ],
-    "category": "tech",
-    "definition": "China OS 模块「核能电力」：华龙一号 · 四代堆 · 核燃料。",
-    "context": [
-      {
-        "moduleId": "nuclear",
-        "label": "核能电力",
-        "path": "/nuclear"
-      }
-    ],
-    "related": [
-      "四代堆",
-      "核燃料"
-    ],
-    "source": "China OS · registry.js",
-    "initial": "H"
-  },
-  {
     "id": "mod-marketPulse-汇市",
     "term": "汇市",
     "aliases": [],
     "category": "module",
-    "definition": "模块「全球资产脉搏」副题关键词：汇市。",
+    "definition": "「汇市」为 China OS 模块「全球资产脉搏」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「全球资产脉搏」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括全球资产脉搏。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "marketPulse",
@@ -5343,7 +3786,7 @@ export const GLOSSARY_ENTRIES = [
       "权益矿山"
     ],
     "category": "module",
-    "definition": "China OS 模块「海外资源」：权益矿山 · 航道安全 · 资源主权。",
+    "definition": "China OS 功能模块「海外资源」聚焦权益矿山 · 航道安全 · 资源主权。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括航道安全、资源主权。",
     "context": [
       {
         "moduleId": "resources",
@@ -5355,26 +3798,7 @@ export const GLOSSARY_ENTRIES = [
       "航道安全",
       "资源主权"
     ],
-    "source": "China OS · registry.js",
-    "initial": "H"
-  },
-  {
-    "id": "mod-marine-海洋权益",
-    "term": "海洋权益",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「海洋经济」副题关键词：海洋权益。",
-    "context": [
-      {
-        "moduleId": "marine",
-        "label": "海洋经济",
-        "path": "/marine"
-      }
-    ],
-    "related": [
-      "海洋经济"
-    ],
-    "source": "China OS · 海洋经济",
+    "source": "China OS · registry.js；China OS · 海外资源",
     "initial": "H"
   },
   {
@@ -5384,7 +3808,7 @@ export const GLOSSARY_ENTRIES = [
       "海洋权益"
     ],
     "category": "module",
-    "definition": "China OS 模块「海洋经济」：海洋权益 · 船舶制造 · 深海开发。",
+    "definition": "China OS 功能模块「海洋经济」聚焦海洋权益 · 船舶制造 · 深海开发。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括船舶制造、深海开发。",
     "context": [
       {
         "moduleId": "marine",
@@ -5396,7 +3820,7 @@ export const GLOSSARY_ENTRIES = [
       "船舶制造",
       "深海开发"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 海洋经济",
     "initial": "H"
   },
   {
@@ -5406,7 +3830,7 @@ export const GLOSSARY_ENTRIES = [
       "权贵网络"
     ],
     "category": "military",
-    "definition": "China OS 模块「红色巨网」：权贵网络 · 结构分析 · 利益图谱。",
+    "definition": "China OS 功能模块「红色巨网」聚焦权贵网络 · 结构分析 · 利益图谱。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括结构分析、利益图谱。",
     "context": [
       {
         "moduleId": "redweb",
@@ -5418,13 +3842,15 @@ export const GLOSSARY_ENTRIES = [
       "结构分析",
       "利益图谱"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 红色巨网",
     "initial": "H"
   },
   {
     "id": "耗散结构",
     "term": "耗散结构",
-    "aliases": [],
+    "aliases": [
+      "普里高津"
+    ],
     "category": "research",
     "definition": "开放系统通过负熵流维持有序结构，远离平衡态的自组织理论。",
     "context": [
@@ -5438,51 +3864,7 @@ export const GLOSSARY_ENTRIES = [
       "负熵流",
       "自组织"
     ],
-    "source": "普里高津",
-    "initial": "H"
-  },
-  {
-    "id": "mod-dissipative",
-    "term": "耗散结构",
-    "aliases": [
-      "普里高津"
-    ],
-    "category": "econ",
-    "definition": "China OS 模块「耗散结构」：普里高津 · 负熵流 · 自组织。",
-    "context": [
-      {
-        "moduleId": "dissipative",
-        "label": "耗散结构",
-        "path": "/dissipative"
-      }
-    ],
-    "related": [
-      "负熵流",
-      "自组织"
-    ],
-    "source": "China OS · registry.js",
-    "initial": "H"
-  },
-  {
-    "id": "mod-space",
-    "term": "航天产业",
-    "aliases": [
-      "北斗组网"
-    ],
-    "category": "tech",
-    "definition": "China OS 模块「航天产业」：北斗组网 · 商业航天 · 深空探测。",
-    "context": [
-      {
-        "moduleId": "space",
-        "label": "航天产业",
-        "path": "/space"
-      }
-    ],
-    "related": [
-      "商业航天",
-      "深空探测"
-    ],
-    "source": "China OS · registry.js",
+    "source": "普里高津；China OS · registry.js；China OS · 耗散结构",
     "initial": "H"
   },
   {
@@ -5490,7 +3872,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "航道安全",
     "aliases": [],
     "category": "module",
-    "definition": "模块「海外资源」副题关键词：航道安全。",
+    "definition": "「航道安全」为 China OS 模块「海外资源」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「海外资源」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括海外资源。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "resources",
@@ -5509,7 +3891,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "IMF",
     "aliases": [],
     "category": "module",
-    "definition": "模块「数据底座」副题关键词：IMF。",
+    "definition": "「IMF」为 China OS 模块「数据底座」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「数据底座」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括数据底座。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "foundation",
@@ -5528,7 +3910,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "九章",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：九章。",
+    "definition": "「九章」为深度调研索引核心术语，叙事脉络见《量子信息技术与未来计算》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -5561,35 +3943,13 @@ export const GLOSSARY_ENTRIES = [
     "initial": "J"
   },
   {
-    "id": "mod-socialgov",
-    "term": "基层治理",
-    "aliases": [
-      "网格管理"
-    ],
-    "category": "module",
-    "definition": "China OS 模块「基层治理」：网格管理 · 综治中心 · 枫桥经验。",
-    "context": [
-      {
-        "moduleId": "socialgov",
-        "label": "基层治理",
-        "path": "/socialgov"
-      }
-    ],
-    "related": [
-      "综治中心",
-      "枫桥经验"
-    ],
-    "source": "China OS · registry.js",
-    "initial": "J"
-  },
-  {
     "id": "mod-basicResearch",
     "term": "基础研究",
     "aliases": [
       "国家实验室"
     ],
     "category": "tech",
-    "definition": "China OS 模块「基础研究」：国家实验室 · 评价改革 · 原始创新。",
+    "definition": "China OS 功能模块「基础研究」聚焦国家实验室 · 评价改革 · 原始创新。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括评价改革、原始创新。",
     "context": [
       {
         "moduleId": "basicResearch",
@@ -5601,7 +3961,7 @@ export const GLOSSARY_ENTRIES = [
       "评价改革",
       "原始创新"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 基础研究",
     "initial": "J"
   },
   {
@@ -5611,7 +3971,7 @@ export const GLOSSARY_ENTRIES = [
       "新老基建"
     ],
     "category": "tech",
-    "definition": "China OS 模块「基础设施」：新老基建 · 专项债 · 有效投资。",
+    "definition": "China OS 功能模块「基础设施」聚焦新老基建 · 专项债 · 有效投资。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括专项债、有效投资。",
     "context": [
       {
         "moduleId": "infrastructure",
@@ -5623,7 +3983,7 @@ export const GLOSSARY_ENTRIES = [
       "专项债",
       "有效投资"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 基础设施",
     "initial": "J"
   },
   {
@@ -5631,7 +3991,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "基荷主权。",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：基荷主权。。",
+    "definition": "「基荷主权。」为深度调研索引核心术语，叙事脉络见《核能转型与第四代核电技术》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -5668,7 +4028,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "就业蓄水池。",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：就业蓄水池。。",
+    "definition": "「就业蓄水池。」为深度调研索引核心术语，叙事脉络见《零工经济与新就业形态》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -5683,7 +4043,9 @@ export const GLOSSARY_ENTRIES = [
   {
     "id": "建构主义",
     "term": "建构主义",
-    "aliases": [],
+    "aliases": [
+      "温特"
+    ],
     "category": "research",
     "definition": "强调观念、规范与文化塑造国际行为主体身份与利益的范式。",
     "context": [
@@ -5697,29 +4059,7 @@ export const GLOSSARY_ENTRIES = [
       "无政府文化",
       "观念建构"
     ],
-    "source": "温特 · 建构主义",
-    "initial": "J"
-  },
-  {
-    "id": "mod-constructivism",
-    "term": "建构主义",
-    "aliases": [
-      "温特"
-    ],
-    "category": "econ",
-    "definition": "China OS 模块「建构主义」：温特 · 观念建构 · 无政府文化。",
-    "context": [
-      {
-        "moduleId": "constructivism",
-        "label": "建构主义",
-        "path": "/constructivism"
-      }
-    ],
-    "related": [
-      "观念建构",
-      "无政府文化"
-    ],
-    "source": "China OS · registry.js",
+    "source": "温特 · 建构主义；China OS · registry.js；China OS · 建构主义",
     "initial": "J"
   },
   {
@@ -5727,7 +4067,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "技术跃迁",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「新质生产力」副题关键词：技术跃迁。",
+    "definition": "「技术跃迁」为 China OS 模块「新质生产力」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「新质生产力」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括新质生产力。技术与产业维度上，技术跃迁关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "npf",
@@ -5748,7 +4088,7 @@ export const GLOSSARY_ENTRIES = [
       "装机密度"
     ],
     "category": "tech",
-    "definition": "China OS 模块「机器人」：装机密度 · 人形整机 · 核心部件。",
+    "definition": "China OS 功能模块「机器人」聚焦装机密度 · 人形整机 · 核心部件。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括人形整机、核心部件。",
     "context": [
       {
         "moduleId": "robotics",
@@ -5760,13 +4100,15 @@ export const GLOSSARY_ENTRIES = [
       "人形整机",
       "核心部件"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 机器人",
     "initial": "J"
   },
   {
     "id": "机器的盲区",
     "term": "机器的盲区",
-    "aliases": [],
+    "aliases": [
+      "青年"
+    ],
     "category": "gy",
     "definition": "青年群体在统计与治理模型中被系统性低估的暗物质隐喻（GY-03）。",
     "context": [
@@ -5778,28 +4120,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "GY-03",
-      "概率的暗物质"
-    ],
-    "source": "GY-03 · 青年",
-    "initial": "J"
-  },
-  {
-    "id": "mod-qingnian-机器的盲区",
-    "term": "机器的盲区",
-    "aliases": [],
-    "category": "gy",
-    "definition": "模块「青年」副题关键词：机器的盲区。",
-    "context": [
-      {
-        "moduleId": "qingnian",
-        "label": "青年",
-        "path": "/modules/qingnian"
-      }
-    ],
-    "related": [
+      "概率的暗物质",
       "青年"
     ],
-    "source": "China OS · 青年",
+    "source": "GY-03 · 青年；China OS · registry.js；China OS · 青年",
     "initial": "J"
   },
   {
@@ -5807,7 +4131,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "结构分析",
     "aliases": [],
     "category": "military",
-    "definition": "模块「红色巨网」副题关键词：结构分析。",
+    "definition": "「结构分析」为 China OS 模块「红色巨网」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「红色巨网」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括红色巨网。地缘与安全维度上，结构分析纳入成本收益比与能力—意图匹配的战略计算。",
     "context": [
       {
         "moduleId": "redweb",
@@ -5822,30 +4146,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "J"
   },
   {
-    "id": "mod-talent-结构化人力资本图谱",
-    "term": "结构化人力资本图谱",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「人才精英库」副题关键词：结构化人力资本图谱。",
-    "context": [
-      {
-        "moduleId": "talent",
-        "label": "人才精英库",
-        "path": "/talent"
-      }
-    ],
-    "related": [
-      "人才精英库"
-    ],
-    "source": "China OS · 人才精英库",
-    "initial": "J"
-  },
-  {
     "id": "mod-medequipment-进口替代",
     "term": "进口替代",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「医疗装备」副题关键词：进口替代。",
+    "definition": "「进口替代」为 China OS 模块「医疗装备」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「医疗装备」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括医疗装备。技术与产业维度上，进口替代关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "medequipment",
@@ -5864,7 +4169,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "金融安全",
     "aliases": [],
     "category": "module",
-    "definition": "模块「金融系统」副题关键词：金融安全。",
+    "definition": "「金融安全」为 China OS 模块「金融系统」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「金融系统」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括金融系统。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "finance",
@@ -5885,7 +4190,7 @@ export const GLOSSARY_ENTRIES = [
       "系统风险"
     ],
     "category": "module",
-    "definition": "China OS 模块「金融系统」：系统风险 · 宏观审慎 · 金融安全。",
+    "definition": "China OS 功能模块「金融系统」聚焦系统风险 · 宏观审慎 · 金融安全。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括宏观审慎、金融安全。",
     "context": [
       {
         "moduleId": "finance",
@@ -5897,7 +4202,7 @@ export const GLOSSARY_ENTRIES = [
       "宏观审慎",
       "金融安全"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 金融系统",
     "initial": "J"
   },
   {
@@ -5905,7 +4210,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "降本增效",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「现代物流」副题关键词：降本增效。",
+    "definition": "「降本增效」为 China OS 模块「现代物流」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「现代物流」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括现代物流。技术与产业维度上，降本增效关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "logistics",
@@ -5945,32 +4250,13 @@ export const GLOSSARY_ENTRIES = [
     "initial": "J"
   },
   {
-    "id": "mod-commons-集体行动",
-    "term": "集体行动",
-    "aliases": [],
-    "category": "econ",
-    "definition": "模块「公地悲剧」副题关键词：集体行动。",
-    "context": [
-      {
-        "moduleId": "commons",
-        "label": "公地悲剧",
-        "path": "/commons"
-      }
-    ],
-    "related": [
-      "公地悲剧"
-    ],
-    "source": "China OS · 公地悲剧",
-    "initial": "J"
-  },
-  {
     "id": "mod-semiconductor",
     "term": "集成电路",
     "aliases": [
       "芯片主权"
     ],
     "category": "tech",
-    "definition": "China OS 模块「集成电路」：芯片主权 · 大基金 · 先进制程。",
+    "definition": "China OS 功能模块「集成电路」聚焦芯片主权 · 大基金 · 先进制程。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括大基金、先进制程。",
     "context": [
       {
         "moduleId": "semiconductor",
@@ -5982,13 +4268,15 @@ export const GLOSSARY_ENTRIES = [
       "大基金",
       "先进制程"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 集成电路",
     "initial": "J"
   },
   {
     "id": "卡脖子",
     "term": "卡脖子",
-    "aliases": [],
+    "aliases": [
+      "关键材料"
+    ],
     "category": "tech",
     "definition": "关键核心技术对外依赖、受制于人形成的供应链断点风险。",
     "context": [
@@ -6005,28 +4293,11 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "国产替代",
-      "自主可控"
-    ],
-    "source": "科技自立自强",
-    "initial": "K"
-  },
-  {
-    "id": "mod-materials-卡脖子",
-    "term": "卡脖子",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「关键材料」副题关键词：卡脖子。",
-    "context": [
-      {
-        "moduleId": "materials",
-        "label": "关键材料",
-        "path": "/materials"
-      }
-    ],
-    "related": [
+      "自主可控",
+      "前沿材料",
       "关键材料"
     ],
-    "source": "China OS · 关键材料",
+    "source": "科技自立自强；China OS · registry.js；China OS · 关键材料",
     "initial": "K"
   },
   {
@@ -6071,26 +4342,7 @@ export const GLOSSARY_ENTRIES = [
       "威慑战略",
       "边缘政策"
     ],
-    "source": "谢林 · 威慑",
-    "initial": "K"
-  },
-  {
-    "id": "mod-deterrence-可信承诺",
-    "term": "可信承诺",
-    "aliases": [],
-    "category": "econ",
-    "definition": "模块「威慑战略」副题关键词：可信承诺。",
-    "context": [
-      {
-        "moduleId": "deterrence",
-        "label": "威慑战略",
-        "path": "/deterrence"
-      }
-    ],
-    "related": [
-      "威慑战略"
-    ],
-    "source": "China OS · 威慑战略",
+    "source": "谢林 · 威慑；China OS · 威慑战略",
     "initial": "K"
   },
   {
@@ -6098,27 +4350,13 @@ export const GLOSSARY_ENTRIES = [
     "term": "可控聚变",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「未来产业」副题关键词：可控聚变。",
+    "definition": "「可控聚变」为 China OS 模块「未来产业」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「未来产业」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括未来产业、科技图谱。技术与产业维度上，可控聚变关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "futureIndustry",
         "label": "未来产业",
         "path": "/future-industry"
-      }
-    ],
-    "related": [
-      "未来产业"
-    ],
-    "source": "China OS · 未来产业",
-    "initial": "K"
-  },
-  {
-    "id": "mod-techtree-可控聚变",
-    "term": "可控聚变",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「科技图谱」副题关键词：可控聚变。",
-    "context": [
+      },
       {
         "moduleId": "techtree",
         "label": "科技图谱",
@@ -6126,34 +4364,17 @@ export const GLOSSARY_ENTRIES = [
       }
     ],
     "related": [
+      "未来产业",
       "科技图谱"
     ],
-    "source": "China OS · 科技图谱",
-    "initial": "K"
-  },
-  {
-    "id": "mod-cognition-康德拉季耶夫",
-    "term": "康德拉季耶夫",
-    "aliases": [],
-    "category": "econ",
-    "definition": "模块「康波周期」副题关键词：康德拉季耶夫。",
-    "context": [
-      {
-        "moduleId": "cognition",
-        "label": "康波周期",
-        "path": "/cognition"
-      }
-    ],
-    "related": [
-      "康波周期"
-    ],
-    "source": "China OS · 康波周期",
+    "source": "China OS · 未来产业；China OS · 科技图谱",
     "initial": "K"
   },
   {
     "id": "康波周期",
     "term": "康波周期",
     "aliases": [
+      "康德拉季耶夫",
       "康德拉季耶夫周期"
     ],
     "category": "econ",
@@ -6169,29 +4390,7 @@ export const GLOSSARY_ENTRIES = [
       "长波",
       "创新潮"
     ],
-    "source": "康德拉季耶夫",
-    "initial": "K"
-  },
-  {
-    "id": "mod-cognition",
-    "term": "康波周期",
-    "aliases": [
-      "康德拉季耶夫"
-    ],
-    "category": "econ",
-    "definition": "China OS 模块「康波周期」：康德拉季耶夫 · 长波 · 创新潮。",
-    "context": [
-      {
-        "moduleId": "cognition",
-        "label": "康波周期",
-        "path": "/cognition"
-      }
-    ],
-    "related": [
-      "长波",
-      "创新潮"
-    ],
-    "source": "China OS · registry.js",
+    "source": "康德拉季耶夫；China OS · registry.js；China OS · 康波周期",
     "initial": "K"
   },
   {
@@ -6201,7 +4400,7 @@ export const GLOSSARY_ENTRIES = [
       "消费率"
     ],
     "category": "module",
-    "definition": "China OS 模块「扩大内需」：消费率 · 服务化 · 以旧换新。",
+    "definition": "China OS 功能模块「扩大内需」聚焦消费率 · 服务化 · 以旧换新。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括服务化、以旧换新。",
     "context": [
       {
         "moduleId": "consumption",
@@ -6213,7 +4412,7 @@ export const GLOSSARY_ENTRIES = [
       "服务化",
       "以旧换新"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 扩大内需",
     "initial": "K"
   },
   {
@@ -6223,7 +4422,7 @@ export const GLOSSARY_ENTRIES = [
       "智能算力"
     ],
     "category": "module",
-    "definition": "China OS 模块「科技图谱」：智能算力 · 可控聚变 · 深空军备。",
+    "definition": "China OS 功能模块「科技图谱」聚焦智能算力 · 可控聚变 · 深空军备。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括可控聚变、深空军备。",
     "context": [
       {
         "moduleId": "techtree",
@@ -6235,7 +4434,7 @@ export const GLOSSARY_ENTRIES = [
       "可控聚变",
       "深空军备"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 科技图谱",
     "initial": "K"
   },
   {
@@ -6243,7 +4442,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "科技链",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「教科人才」副题关键词：科技链。",
+    "definition": "「科技链」为 China OS 模块「教科人才」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「教科人才」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括教科人才。技术与产业维度上，科技链关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "eduSciTalent",
@@ -6292,66 +4491,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "时间轴",
-      "推演"
-    ],
-    "source": "GY-01",
-    "initial": "L"
-  },
-  {
-    "id": "mod-guoyun-两谱系",
-    "term": "两谱系",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「国运」副题关键词：两谱系。",
-    "context": [
-      {
-        "moduleId": "guoyun",
-        "label": "国运",
-        "path": "/modules/guoyun"
-      }
-    ],
-    "related": [
+      "推演",
       "国运"
     ],
-    "source": "China OS · 国运",
-    "initial": "L"
-  },
-  {
-    "id": "mod-watchtower-六域先行指标",
-    "term": "六域先行指标",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「全局监测台」副题关键词：六域先行指标。",
-    "context": [
-      {
-        "moduleId": "watchtower",
-        "label": "全局监测台",
-        "path": "/watchtower"
-      }
-    ],
-    "related": [
-      "全局监测台"
-    ],
-    "source": "China OS · 全局监测台",
-    "initial": "L"
-  },
-  {
-    "id": "mod-bri-六廊六路",
-    "term": "六廊六路",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「一带一路」副题关键词：六廊六路。",
-    "context": [
-      {
-        "moduleId": "bri",
-        "label": "一带一路",
-        "path": "/bri"
-      }
-    ],
-    "related": [
-      "一带一路"
-    ],
-    "source": "China OS · 一带一路",
+    "source": "GY-01；China OS · 国运",
     "initial": "L"
   },
   {
@@ -6359,7 +4502,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "利益图谱",
     "aliases": [],
     "category": "military",
-    "definition": "模块「红色巨网」副题关键词：利益图谱。",
+    "definition": "「利益图谱」为 China OS 模块「红色巨网」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「红色巨网」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括红色巨网。地缘与安全维度上，利益图谱纳入成本收益比与能力—意图匹配的战略计算。",
     "context": [
       {
         "moduleId": "redweb",
@@ -6374,30 +4517,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "L"
   },
   {
-    "id": "mod-powerphysics-力场强制",
-    "term": "力场强制",
-    "aliases": [],
-    "category": "econ",
-    "definition": "模块「权力物理」副题关键词：力场强制。",
-    "context": [
-      {
-        "moduleId": "powerphysics",
-        "label": "权力物理",
-        "path": "/powerphysics"
-      }
-    ],
-    "related": [
-      "权力物理"
-    ],
-    "source": "China OS · 权力物理",
-    "initial": "L"
-  },
-  {
     "id": "mod-middleincometrap-拉美停滞",
     "term": "拉美停滞",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「中等收入陷阱」副题关键词：拉美停滞。",
+    "definition": "「拉美停滞」为 China OS 模块「中等收入陷阱」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「中等收入陷阱」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括中等收入陷阱。从成本—收益框架看，拉美停滞连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "middleincometrap",
@@ -6409,25 +4533,6 @@ export const GLOSSARY_ENTRIES = [
       "中等收入陷阱"
     ],
     "source": "China OS · 中等收入陷阱",
-    "initial": "L"
-  },
-  {
-    "id": "mod-offshore-离岸rmb",
-    "term": "离岸RMB",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「港澳离岸」副题关键词：离岸RMB。",
-    "context": [
-      {
-        "moduleId": "offshore",
-        "label": "港澳离岸",
-        "path": "/offshore"
-      }
-    ],
-    "related": [
-      "港澳离岸"
-    ],
-    "source": "China OS · 港澳离岸",
     "initial": "L"
   },
   {
@@ -6447,9 +4552,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "双系统耦合",
-      "资本通道"
+      "资本通道",
+      "港澳离岸"
     ],
-    "source": "中国深度调研系列",
+    "source": "中国深度调研系列；China OS · 港澳离岸",
     "initial": "L"
   },
   {
@@ -6478,30 +4584,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "L"
   },
   {
-    "id": "mod-hydrogen-绿氢制取",
-    "term": "绿氢制取",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「氢能产业」副题关键词：绿氢制取。",
-    "context": [
-      {
-        "moduleId": "hydrogen",
-        "label": "氢能产业",
-        "path": "/hydrogen"
-      }
-    ],
-    "related": [
-      "氢能产业"
-    ],
-    "source": "China OS · 氢能产业",
-    "initial": "L"
-  },
-  {
     "id": "mod-ecology-绿水青山",
     "term": "绿水青山",
     "aliases": [],
     "category": "module",
-    "definition": "模块「生态文明」副题关键词：绿水青山。",
+    "definition": "「绿水青山」为 China OS 模块「生态文明」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「生态文明」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括生态文明。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "ecology",
@@ -6516,30 +4603,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "L"
   },
   {
-    "id": "mod-greenfinance-绿色债券",
-    "term": "绿色债券",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「绿色金融」副题关键词：绿色债券。",
-    "context": [
-      {
-        "moduleId": "greenfinance",
-        "label": "绿色金融",
-        "path": "/green-finance"
-      }
-    ],
-    "related": [
-      "绿色金融"
-    ],
-    "source": "China OS · 绿色金融",
-    "initial": "L"
-  },
-  {
     "id": "mod-energy-绿色转型",
     "term": "绿色转型",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「能源安全」副题关键词：绿色转型。",
+    "definition": "「绿色转型」为 China OS 模块「能源安全」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「能源安全」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括能源安全。技术与产业维度上，绿色转型关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "energy",
@@ -6560,7 +4628,7 @@ export const GLOSSARY_ENTRIES = [
       "绿色债券"
     ],
     "category": "module",
-    "definition": "China OS 模块「绿色金融」：绿色债券 · 碳定价 · 转型金融。",
+    "definition": "China OS 功能模块「绿色金融」聚焦绿色债券 · 碳定价 · 转型金融。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括碳定价、转型金融。",
     "context": [
       {
         "moduleId": "greenfinance",
@@ -6572,26 +4640,7 @@ export const GLOSSARY_ENTRIES = [
       "碳定价",
       "转型金融"
     ],
-    "source": "China OS · registry.js",
-    "initial": "L"
-  },
-  {
-    "id": "mod-northeastRevival-老工业基地",
-    "term": "老工业基地",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「东北振兴」副题关键词：老工业基地。",
-    "context": [
-      {
-        "moduleId": "northeastRevival",
-        "label": "东北振兴",
-        "path": "/northeast"
-      }
-    ],
-    "related": [
-      "东北振兴"
-    ],
-    "source": "China OS · 东北振兴",
+    "source": "China OS · registry.js；China OS · 绿色金融",
     "initial": "L"
   },
   {
@@ -6599,7 +4648,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "老龄化",
     "aliases": [],
     "category": "module",
-    "definition": "模块「人口结构」副题关键词：老龄化。",
+    "definition": "「老龄化」为 China OS 模块「人口结构」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「人口结构」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括人口结构。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "demographic",
@@ -6616,7 +4665,9 @@ export const GLOSSARY_ENTRIES = [
   {
     "id": "路径依赖",
     "term": "路径依赖",
-    "aliases": [],
+    "aliases": [
+      "报酬递增"
+    ],
     "category": "econ",
     "definition": "历史选择通过报酬递增与锁定效应限制后续换道空间。",
     "context": [
@@ -6628,31 +4679,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "锁定效应",
-      "报酬递增"
-    ],
-    "source": "路径依赖理论",
-    "initial": "L"
-  },
-  {
-    "id": "mod-pathdependence",
-    "term": "路径依赖",
-    "aliases": [
-      "报酬递增"
-    ],
-    "category": "econ",
-    "definition": "China OS 模块「路径依赖」：报酬递增 · 锁定效应 · 路径换道。",
-    "context": [
-      {
-        "moduleId": "pathdependence",
-        "label": "路径依赖",
-        "path": "/pathdependence"
-      }
-    ],
-    "related": [
-      "锁定效应",
+      "报酬递增",
       "路径换道"
     ],
-    "source": "China OS · registry.js",
+    "source": "路径依赖理论；China OS · registry.js；China OS · 路径依赖",
     "initial": "L"
   },
   {
@@ -6660,7 +4690,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "路径换道",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「路径依赖」副题关键词：路径换道。",
+    "definition": "「路径换道」为 China OS 模块「路径依赖」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「路径依赖」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括路径依赖。从成本—收益框架看，路径换道连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "pathdependence",
@@ -6679,7 +4709,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "路线博弈",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：路线博弈。",
+    "definition": "「路线博弈」为深度调研索引核心术语，叙事脉络见《中国政治决策逻辑分析》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -6696,7 +4726,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "量子互联网。",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：量子互联网。。",
+    "definition": "「量子互联网。」为深度调研索引核心术语，叙事脉络见《量子信息技术与未来计算》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -6713,7 +4743,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "量子优越性",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：量子优越性。",
+    "definition": "「量子优越性」为深度调研索引核心术语，叙事脉络见《量子信息技术与未来计算》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -6730,7 +4760,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "量子保密通信干线",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：量子保密通信干线。",
+    "definition": "「量子保密通信干线」为深度调研索引核心术语，叙事脉络见《量子信息技术与未来计算》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -6749,7 +4779,7 @@ export const GLOSSARY_ENTRIES = [
       "量子计算"
     ],
     "category": "tech",
-    "definition": "China OS 模块「量子信息」：量子计算 · 量子通信 · 量子测量。",
+    "definition": "China OS 功能模块「量子信息」聚焦量子计算 · 量子通信 · 量子测量。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括量子通信、量子测量。",
     "context": [
       {
         "moduleId": "quantum",
@@ -6761,7 +4791,7 @@ export const GLOSSARY_ENTRIES = [
       "量子通信",
       "量子测量"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 量子信息",
     "initial": "L"
   },
   {
@@ -6769,26 +4799,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "量子测量",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「量子信息」副题关键词：量子测量。",
-    "context": [
-      {
-        "moduleId": "quantum",
-        "label": "量子信息",
-        "path": "/quantum"
-      }
-    ],
-    "related": [
-      "量子信息"
-    ],
-    "source": "China OS · 量子信息",
-    "initial": "L"
-  },
-  {
-    "id": "mod-quantum-量子计算",
-    "term": "量子计算",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「量子信息」副题关键词：量子计算。",
+    "definition": "「量子测量」为 China OS 模块「量子信息」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「量子信息」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括量子信息。技术与产业维度上，量子测量关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "quantum",
@@ -6807,7 +4818,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "量子通信",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「量子信息」副题关键词：量子通信。",
+    "definition": "「量子通信」为 China OS 模块「量子信息」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「量子信息」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括量子信息。技术与产业维度上，量子通信关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "quantum",
@@ -6826,7 +4837,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "链主企业",
     "aliases": [],
     "category": "politics",
-    "definition": "模块「国有资本」副题关键词：链主企业。",
+    "definition": "「链主企业」为 China OS 模块「国有资本」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「国有资本」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括国有资本。从权力物理学视角，链主企业刻画央地博弈、激励结构与制度穿透力的耦合关系。",
     "context": [
       {
         "moduleId": "soe",
@@ -6847,7 +4858,7 @@ export const GLOSSARY_ENTRIES = [
       "蓄水池"
     ],
     "category": "module",
-    "definition": "China OS 模块「零工经济」：蓄水池 · 算法治理 · 新业态。",
+    "definition": "China OS 功能模块「零工经济」聚焦蓄水池 · 算法治理 · 新业态。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括算法治理、新业态。",
     "context": [
       {
         "moduleId": "gig",
@@ -6859,7 +4870,29 @@ export const GLOSSARY_ENTRIES = [
       "算法治理",
       "新业态"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 零工经济",
+    "initial": "L"
+  },
+  {
+    "id": "mod-linggong",
+    "term": "零工经济人群",
+    "aliases": [
+      "悬空的基础设施"
+    ],
+    "category": "gy",
+    "definition": "China OS 功能模块「零工经济人群」聚焦悬空的基础设施 · 系统压在他们身上 · GY-05。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括系统压在他们身上、GY-05。",
+    "context": [
+      {
+        "moduleId": "linggong",
+        "label": "零工经济人群",
+        "path": "/modules/linggong"
+      }
+    ],
+    "related": [
+      "系统压在他们身上",
+      "GY-05"
+    ],
+    "source": "China OS · registry.js；China OS · 零工经济人群",
     "initial": "L"
   },
   {
@@ -6869,7 +4902,7 @@ export const GLOSSARY_ENTRIES = [
       "权力结构"
     ],
     "category": "module",
-    "definition": "China OS 模块「领袖统治」：权力结构 · 决策机制 · 12 图可视化 · 四区交互。",
+    "definition": "China OS 功能模块「领袖统治」聚焦权力结构 · 决策机制 · 12 图可视化 · 四区交互。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括决策机制、12 图可视化、四区交互。",
     "context": [
       {
         "moduleId": "leadership",
@@ -6882,7 +4915,7 @@ export const GLOSSARY_ENTRIES = [
       "12 图可视化",
       "四区交互"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 领袖统治",
     "initial": "L"
   },
   {
@@ -6892,7 +4925,7 @@ export const GLOSSARY_ENTRIES = [
       "工商联榜"
     ],
     "category": "tech",
-    "definition": "China OS 模块「民企500强」：工商联榜 · 治理透视 · 行业分布。",
+    "definition": "China OS 功能模块「民企500强」聚焦工商联榜 · 治理透视 · 行业分布。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括治理透视、行业分布。",
     "context": [
       {
         "moduleId": "enterprise500",
@@ -6904,7 +4937,7 @@ export const GLOSSARY_ENTRIES = [
       "治理透视",
       "行业分布"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 民企500强",
     "initial": "M"
   },
   {
@@ -6914,7 +4947,7 @@ export const GLOSSARY_ENTRIES = [
       "C919"
     ],
     "category": "module",
-    "definition": "China OS 模块「民用航空」：C919 · 适航取证 · 低空经济。",
+    "definition": "China OS 功能模块「民用航空」聚焦C919 · 适航取证 · 低空经济。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括适航取证、低空经济。",
     "context": [
       {
         "moduleId": "civilAviation",
@@ -6926,29 +4959,7 @@ export const GLOSSARY_ENTRIES = [
       "适航取证",
       "低空经济"
     ],
-    "source": "China OS · registry.js",
-    "initial": "M"
-  },
-  {
-    "id": "mod-private",
-    "term": "民营经济",
-    "aliases": [
-      "56789"
-    ],
-    "category": "module",
-    "definition": "China OS 模块「民营经济」：56789 · 公平竞争 · 产权保护。",
-    "context": [
-      {
-        "moduleId": "private",
-        "label": "民营经济",
-        "path": "/private"
-      }
-    ],
-    "related": [
-      "公平竞争",
-      "产权保护"
-    ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 民用航空",
     "initial": "M"
   },
   {
@@ -6956,7 +4967,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "马克思",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「意识形态」副题关键词：马克思。",
+    "definition": "「马克思」为 China OS 模块「意识形态」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「意识形态」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括意识形态。从成本—收益框架看，马克思连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "ideology",
@@ -6975,7 +4986,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "马尔萨斯重置",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：马尔萨斯重置。",
+    "definition": "「马尔萨斯重置」为深度调研索引核心术语，叙事脉络见《地理宿命与天下观：中华文明的物理底座与地缘基因》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -6992,7 +5003,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "农牧拉锯",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：农牧拉锯。",
+    "definition": "「农牧拉锯」为深度调研索引核心术语，叙事脉络见《地理宿命与天下观：中华文明的物理底座与地缘基因》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -7031,28 +5042,13 @@ export const GLOSSARY_ENTRIES = [
       "压舱石"
     ],
     "category": "tech",
-    "definition": "China OS 模块「能源安全」：压舱石 · 绿色转型 · 油气保供。",
+    "definition": "China OS 功能模块「能源安全」聚焦压舱石 · 绿色转型 · 油气保供。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括绿色转型、油气保供、大安全观。",
     "context": [
       {
         "moduleId": "energy",
         "label": "能源安全",
         "path": "/energy"
-      }
-    ],
-    "related": [
-      "绿色转型",
-      "油气保供"
-    ],
-    "source": "China OS · registry.js",
-    "initial": "N"
-  },
-  {
-    "id": "mod-omnisecurity-能源安全",
-    "term": "能源安全",
-    "aliases": [],
-    "category": "military",
-    "definition": "模块「大安全观」副题关键词：能源安全。",
-    "context": [
+      },
       {
         "moduleId": "omnisecurity",
         "label": "大安全观",
@@ -7060,9 +5056,11 @@ export const GLOSSARY_ENTRIES = [
       }
     ],
     "related": [
+      "绿色转型",
+      "油气保供",
       "大安全观"
     ],
-    "source": "China OS · 大安全观",
+    "source": "China OS · registry.js；China OS · 大安全观；China OS · 能源安全",
     "initial": "N"
   },
   {
@@ -7070,7 +5068,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "能源航道",
     "aliases": [],
     "category": "module",
-    "definition": "模块「外交博弈」副题关键词：能源航道。",
+    "definition": "「能源航道」为 China OS 模块「外交博弈」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「外交博弈」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括外交博弈。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "diplomacy",
@@ -7089,7 +5087,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "平台经济",
     "aliases": [],
     "category": "module",
-    "definition": "模块「数字经济」副题关键词：平台经济。",
+    "definition": "「平台经济」为 China OS 模块「数字经济」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「数字经济」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括数字经济。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "digital",
@@ -7108,7 +5106,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "平战结合",
     "aliases": [],
     "category": "military",
-    "definition": "模块「国防动员」副题关键词：平战结合。",
+    "definition": "「平战结合」为 China OS 模块「国防动员」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「国防动员」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括国防动员。地缘与安全维度上，平战结合纳入成本收益比与能力—意图匹配的战略计算。",
     "context": [
       {
         "moduleId": "defenseMobilization",
@@ -7127,7 +5125,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "破除壁垒",
     "aliases": [],
     "category": "politics",
-    "definition": "模块「统一大市场」副题关键词：破除壁垒。",
+    "definition": "「破除壁垒」为 China OS 模块「统一大市场」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「统一大市场」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括统一大市场。从权力物理学视角，破除壁垒刻画央地博弈、激励结构与制度穿透力的耦合关系。",
     "context": [
       {
         "moduleId": "unifiedMarket",
@@ -7146,7 +5144,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "评价改革",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「基础研究」副题关键词：评价改革。",
+    "definition": "「评价改革」为 China OS 模块「基础研究」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「基础研究」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括基础研究。技术与产业维度上，评价改革关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "basicResearch",
@@ -7164,7 +5162,9 @@ export const GLOSSARY_ENTRIES = [
     "id": "全域安全化",
     "term": "全域安全化",
     "aliases": [
-      "大安全观"
+      "大安全观",
+      "粮食安全",
+      "耕地红线"
     ],
     "category": "politics",
     "definition": "将经济、科技、文化、网络等议题纳入国家安全框架统筹，扩张「统筹发展与安全」的决策边界。",
@@ -7178,13 +5178,26 @@ export const GLOSSARY_ENTRIES = [
         "moduleId": "powerlogic",
         "label": "powerlogic",
         "path": null
+      },
+      {
+        "moduleId": "foodSecurity",
+        "label": "foodSecurity",
+        "path": null
       }
     ],
     "related": [
       "底线思维",
-      "统筹发展与安全"
+      "统筹发展与安全",
+      "藏粮于地",
+      "口粮绝对安全",
+      "种业自主",
+      "大国粮仓",
+      "能源安全",
+      "网络安全",
+      "粮食安全",
+      "大安全观"
     ],
-    "source": "中国深度调研系列",
+    "source": "中国深度调研系列；国土空间规划；China OS · registry.js；China OS · 粮食安全；China OS · 大安全观",
     "initial": "Q"
   },
   {
@@ -7192,7 +5205,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "全域安全化。",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：全域安全化。。",
+    "definition": "「全域安全化。」为深度调研索引核心术语，叙事脉络见《中国政治权力运行逻辑调研》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -7205,28 +5218,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "Q"
   },
   {
-    "id": "mod-dashboard-全局总揽",
-    "term": "全局总揽",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「中枢看板」副题关键词：全局总揽。",
-    "context": [
-      {
-        "moduleId": "dashboard",
-        "label": "中枢看板",
-        "path": "/dashboard"
-      }
-    ],
-    "related": [
-      "中枢看板"
-    ],
-    "source": "China OS · 中枢看板",
-    "initial": "Q"
-  },
-  {
     "id": "全局监测台",
     "term": "全局监测台",
-    "aliases": [],
+    "aliases": [
+      "六域先行指标"
+    ],
     "category": "module",
     "definition": "六域先行指标、三档阈值与越线告警的遥测面板。",
     "context": [
@@ -7238,31 +5234,11 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "治国沙盒",
-      "行为优先"
-    ],
-    "source": "China OS",
-    "initial": "Q"
-  },
-  {
-    "id": "mod-watchtower",
-    "term": "全局监测台",
-    "aliases": [
-      "六域先行指标"
-    ],
-    "category": "module",
-    "definition": "China OS 模块「全局监测台」：六域先行指标 · 三档阈值 · 越线告警。",
-    "context": [
-      {
-        "moduleId": "watchtower",
-        "label": "全局监测台",
-        "path": "/watchtower"
-      }
-    ],
-    "related": [
+      "行为优先",
       "三档阈值",
       "越线告警"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS；China OS · registry.js；China OS · 全局监测台",
     "initial": "Q"
   },
   {
@@ -7270,7 +5246,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "全景扫描",
     "aliases": [],
     "category": "module",
-    "definition": "模块「深度透视」副题关键词：全景扫描。",
+    "definition": "「全景扫描」为 China OS 模块「深度透视」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「深度透视」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括深度透视。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "depth",
@@ -7289,7 +5265,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "全球出海",
     "aliases": [],
     "category": "module",
-    "definition": "模块「汽车主权」副题关键词：全球出海。",
+    "definition": "「全球出海」为 China OS 模块「汽车主权」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「汽车主权」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括汽车主权。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "automotive",
@@ -7308,7 +5284,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "全球坐标",
     "aliases": [],
     "category": "module",
-    "definition": "模块「国际对标」副题关键词：全球坐标。",
+    "definition": "「全球坐标」为 China OS 模块「国际对标」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「国际对标」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括国际对标。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "benchmark",
@@ -7327,7 +5303,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "全球基地",
     "aliases": [],
     "category": "military",
-    "definition": "模块「军事力量」副题关键词：全球基地。",
+    "definition": "「全球基地」为 China OS 模块「军事力量」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「军事力量」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括军事力量。地缘与安全维度上，全球基地纳入成本收益比与能力—意图匹配的战略计算。",
     "context": [
       {
         "moduleId": "military",
@@ -7348,7 +5324,7 @@ export const GLOSSARY_ENTRIES = [
       "股市"
     ],
     "category": "module",
-    "definition": "China OS 模块「全球资产脉搏」：股市 · 债市 · 汇市 · 大宗。",
+    "definition": "China OS 功能模块「全球资产脉搏」聚焦股市 · 债市 · 汇市 · 大宗。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括债市、汇市、大宗。",
     "context": [
       {
         "moduleId": "marketPulse",
@@ -7361,7 +5337,7 @@ export const GLOSSARY_ENTRIES = [
       "汇市",
       "大宗"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 全球资产脉搏",
     "initial": "Q"
   },
   {
@@ -7369,7 +5345,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "全要素率",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「新质生产力」副题关键词：全要素率。",
+    "definition": "「全要素率」为 China OS 模块「新质生产力」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「新质生产力」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括新质生产力。技术与产业维度上，全要素率关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "npf",
@@ -7410,7 +5386,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "全要素生产率倍增。",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：全要素生产率倍增。。",
+    "definition": "「全要素生产率倍增。」为深度调研索引核心术语，叙事脉络见《新质生产力与未来产业调研》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -7427,7 +5403,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "全面振兴",
     "aliases": [],
     "category": "module",
-    "definition": "模块「东北振兴」副题关键词：全面振兴。",
+    "definition": "「全面振兴」为 China OS 模块「东北振兴」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「东北振兴」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括东北振兴。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "northeastRevival",
@@ -7446,7 +5422,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "前沿材料",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「关键材料」副题关键词：前沿材料。",
+    "definition": "「前沿材料」为 China OS 模块「关键材料」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「关键材料」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括关键材料。技术与产业维度上，前沿材料关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "materials",
@@ -7467,7 +5443,7 @@ export const GLOSSARY_ENTRIES = [
       "四大板块"
     ],
     "category": "module",
-    "definition": "China OS 模块「区域协调」：四大板块 · 转移支付 · 城市群。",
+    "definition": "China OS 功能模块「区域协调」聚焦四大板块 · 转移支付 · 城市群。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括转移支付、城市群。",
     "context": [
       {
         "moduleId": "regional",
@@ -7479,7 +5455,7 @@ export const GLOSSARY_ENTRIES = [
       "转移支付",
       "城市群"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 区域协调",
     "initial": "Q"
   },
   {
@@ -7487,7 +5463,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "区域品牌",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「文旅消费」副题关键词：区域品牌。",
+    "definition": "「区域品牌」为 China OS 模块「文旅消费」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「文旅消费」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括文旅消费。技术与产业维度上，区域品牌关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "tourism",
@@ -7506,7 +5482,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "区域纵横",
     "aliases": [],
     "category": "module",
-    "definition": "模块「外交博弈」副题关键词：区域纵横。",
+    "definition": "「区域纵横」为 China OS 模块「外交博弈」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「外交博弈」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括外交博弈。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "diplomacy",
@@ -7525,7 +5501,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "情景推演",
     "aliases": [],
     "category": "module",
-    "definition": "模块「治国沙盒」副题关键词：情景推演。",
+    "definition": "「情景推演」为 China OS 模块「治国沙盒」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「治国沙盒」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括治国沙盒。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "sandbox",
@@ -7557,7 +5533,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "权力制衡",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「现实主义」副题关键词：权力制衡。",
+    "definition": "「权力制衡」为 China OS 模块「现实主义」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「现实主义」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括现实主义。从成本—收益框架看，权力制衡连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "realism",
@@ -7578,7 +5554,7 @@ export const GLOSSARY_ENTRIES = [
       "力场强制"
     ],
     "category": "econ",
-    "definition": "China OS 模块「权力物理」：力场强制 · 合法成本 · 信息穿透。",
+    "definition": "China OS 功能模块「权力物理」聚焦力场强制 · 合法成本 · 信息穿透。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括合法成本、信息穿透。",
     "context": [
       {
         "moduleId": "powerphysics",
@@ -7590,26 +5566,7 @@ export const GLOSSARY_ENTRIES = [
       "合法成本",
       "信息穿透"
     ],
-    "source": "China OS · registry.js",
-    "initial": "Q"
-  },
-  {
-    "id": "mod-leadership-权力结构",
-    "term": "权力结构",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「领袖统治」副题关键词：权力结构。",
-    "context": [
-      {
-        "moduleId": "leadership",
-        "label": "领袖统治",
-        "path": "/leadership"
-      }
-    ],
-    "related": [
-      "领袖统治"
-    ],
-    "source": "China OS · 领袖统治",
+    "source": "China OS · registry.js；China OS · 权力物理",
     "initial": "Q"
   },
   {
@@ -7617,7 +5574,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "权力转移",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「修昔底德陷阱」副题关键词：权力转移。",
+    "definition": "「权力转移」为 China OS 模块「修昔底德陷阱」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「修昔底德陷阱」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括修昔底德陷阱。从成本—收益框架看，权力转移连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "thucydides",
@@ -7629,88 +5586,6 @@ export const GLOSSARY_ENTRIES = [
       "修昔底德陷阱"
     ],
     "source": "China OS · 修昔底德陷阱",
-    "initial": "Q"
-  },
-  {
-    "id": "mod-powerlogic",
-    "term": "权力逻辑",
-    "aliases": [
-      "儒表法里"
-    ],
-    "category": "politics",
-    "definition": "China OS 模块「权力逻辑」：儒表法里 · 数字利维坦 · 统治成本。",
-    "context": [
-      {
-        "moduleId": "powerlogic",
-        "label": "权力逻辑",
-        "path": "/powerlogic"
-      }
-    ],
-    "related": [
-      "数字利维坦",
-      "统治成本"
-    ],
-    "source": "China OS · registry.js",
-    "initial": "Q"
-  },
-  {
-    "id": "mod-resources-权益矿山",
-    "term": "权益矿山",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「海外资源」副题关键词：权益矿山。",
-    "context": [
-      {
-        "moduleId": "resources",
-        "label": "海外资源",
-        "path": "/resources"
-      }
-    ],
-    "related": [
-      "海外资源"
-    ],
-    "source": "China OS · 海外资源",
-    "initial": "Q"
-  },
-  {
-    "id": "mod-redweb-权贵网络",
-    "term": "权贵网络",
-    "aliases": [],
-    "category": "military",
-    "definition": "模块「红色巨网」副题关键词：权贵网络。",
-    "context": [
-      {
-        "moduleId": "redweb",
-        "label": "红色巨网",
-        "path": "/redweb"
-      }
-    ],
-    "related": [
-      "红色巨网"
-    ],
-    "source": "China OS · 红色巨网",
-    "initial": "Q"
-  },
-  {
-    "id": "mod-qingnian",
-    "term": "青年",
-    "aliases": [
-      "机器的盲区"
-    ],
-    "category": "gy",
-    "definition": "China OS 模块「青年」：机器的盲区 · 概率的暗物质 · GY-03。",
-    "context": [
-      {
-        "moduleId": "qingnian",
-        "label": "青年",
-        "path": "/modules/qingnian"
-      }
-    ],
-    "related": [
-      "概率的暗物质",
-      "GY-03"
-    ],
-    "source": "China OS · registry.js",
     "initial": "Q"
   },
   {
@@ -7728,28 +5603,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "新三样",
-      "跨境电商"
-    ],
-    "source": "区域贸易",
-    "initial": "R"
-  },
-  {
-    "id": "mod-foreignTrade-rcep",
-    "term": "RCEP",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「对外贸易」副题关键词：RCEP。",
-    "context": [
-      {
-        "moduleId": "foreignTrade",
-        "label": "对外贸易",
-        "path": "/foreign-trade"
-      }
-    ],
-    "related": [
+      "跨境电商",
       "对外贸易"
     ],
-    "source": "China OS · 对外贸易",
+    "source": "区域贸易；China OS · 对外贸易",
     "initial": "R"
   },
   {
@@ -7759,7 +5616,7 @@ export const GLOSSARY_ENTRIES = [
       "负增长"
     ],
     "category": "module",
-    "definition": "China OS 模块「人口结构」：负增长 · 抚养比 · 老龄化。",
+    "definition": "China OS 功能模块「人口结构」聚焦负增长 · 抚养比 · 老龄化。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括抚养比、老龄化。",
     "context": [
       {
         "moduleId": "demographic",
@@ -7771,7 +5628,7 @@ export const GLOSSARY_ENTRIES = [
       "抚养比",
       "老龄化"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 人口结构",
     "initial": "R"
   },
   {
@@ -7781,7 +5638,7 @@ export const GLOSSARY_ENTRIES = [
       "智算底座"
     ],
     "category": "tech",
-    "definition": "China OS 模块「人工智能+」：智算底座 · 行业模型 · 赋能百业。",
+    "definition": "China OS 功能模块「人工智能+」聚焦智算底座 · 行业模型 · 赋能百业。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括行业模型、赋能百业。",
     "context": [
       {
         "moduleId": "aiplus",
@@ -7793,7 +5650,7 @@ export const GLOSSARY_ENTRIES = [
       "行业模型",
       "赋能百业"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 人工智能+",
     "initial": "R"
   },
   {
@@ -7801,7 +5658,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "人形整机",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「机器人」副题关键词：人形整机。",
+    "definition": "「人形整机」为 China OS 模块「机器人」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「机器人」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括机器人。技术与产业维度上，人形整机关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "robotics",
@@ -7820,7 +5677,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "人才培养",
     "aliases": [],
     "category": "module",
-    "definition": "模块「教育体系」副题关键词：人才培养。",
+    "definition": "「人才培养」为 China OS 模块「教育体系」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「教育体系」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括教育体系。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "education",
@@ -7841,7 +5698,7 @@ export const GLOSSARY_ENTRIES = [
       "结构化人力资本图谱"
     ],
     "category": "module",
-    "definition": "China OS 模块「人才精英库」：结构化人力资本图谱 · 中国政要 / 反腐透视 / 知识生产 / 资本逻辑 / 外交与海外。",
+    "definition": "China OS 功能模块「人才精英库」聚焦结构化人力资本图谱 · 中国政要 / 反腐透视 / 知识生产 / 资本逻辑 / 外交与海外。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括中国政要 / 反腐透视 / 知识生产 / 资本逻辑 / 外交与海外。",
     "context": [
       {
         "moduleId": "talent",
@@ -7852,26 +5709,7 @@ export const GLOSSARY_ENTRIES = [
     "related": [
       "中国政要 / 反腐透视 / 知识生产 / 资本逻辑 / 外交与海外"
     ],
-    "source": "China OS · registry.js",
-    "initial": "R"
-  },
-  {
-    "id": "mod-sandbox-人才配置",
-    "term": "人才配置",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「治国沙盒」副题关键词：人才配置。",
-    "context": [
-      {
-        "moduleId": "sandbox",
-        "label": "治国沙盒",
-        "path": "/sandbox"
-      }
-    ],
-    "related": [
-      "治国沙盒"
-    ],
-    "source": "China OS · 治国沙盒",
+    "source": "China OS · registry.js；China OS · 人才精英库",
     "initial": "R"
   },
   {
@@ -7879,7 +5717,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "人才链",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「教科人才」副题关键词：人才链。",
+    "definition": "「人才链」为 China OS 模块「教科人才」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「教科人才」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括教科人才。技术与产业维度上，人才链关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "eduSciTalent",
@@ -7898,7 +5736,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "人机融合",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「脑机接口」副题关键词：人机融合。",
+    "definition": "「人机融合」为 China OS 模块「脑机接口」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「脑机接口」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括脑机接口。技术与产业维度上，人机融合关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "neural",
@@ -7913,33 +5751,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "R"
   },
   {
-    "id": "mod-financeRmb",
-    "term": "人民币国际化",
-    "aliases": [
-      "CIPS"
-    ],
-    "category": "module",
-    "definition": "China OS 模块「人民币国际化」：CIPS · e-CNY · 跨境结算。",
-    "context": [
-      {
-        "moduleId": "financeRmb",
-        "label": "人民币国际化",
-        "path": "/rmb"
-      }
-    ],
-    "related": [
-      "e-CNY",
-      "跨境结算"
-    ],
-    "source": "China OS · registry.js",
-    "initial": "R"
-  },
-  {
     "id": "idx-人造太阳",
     "term": "人造太阳",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：人造太阳。",
+    "definition": "「人造太阳」为深度调研索引核心术语，叙事脉络见《核能转型与第四代核电技术》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -7956,7 +5772,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "燃料电池",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「氢能产业」副题关键词：燃料电池。",
+    "definition": "「燃料电池」为 China OS 模块「氢能产业」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「氢能产业」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括氢能产业。技术与产业维度上，燃料电池关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "hydrogen",
@@ -7975,7 +5791,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "韧性城市",
     "aliases": [],
     "category": "military",
-    "definition": "模块「公共安全」副题关键词：韧性城市。",
+    "definition": "「韧性城市」为 China OS 模块「公共安全」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「公共安全」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括公共安全。地缘与安全维度上，韧性城市纳入成本收益比与能力—意图匹配的战略计算。",
     "context": [
       {
         "moduleId": "publicSafety",
@@ -7994,7 +5810,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "韧性安全",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「供应链」副题关键词：韧性安全。",
+    "definition": "「韧性安全」为 China OS 模块「供应链」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「供应链」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括供应链。技术与产业维度上，韧性安全关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "supplychain",
@@ -8013,7 +5829,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "三大工程",
     "aliases": [],
     "category": "module",
-    "definition": "模块「住房地产」副题关键词：三大工程。",
+    "definition": "「三大工程」为 China OS 模块「住房地产」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「住房地产」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括住房地产。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "housing",
@@ -8032,7 +5848,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "三档阈值",
     "aliases": [],
     "category": "module",
-    "definition": "模块「全局监测台」副题关键词：三档阈值。",
+    "definition": "「三档阈值」为 China OS 模块「全局监测台」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「全局监测台」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括全局监测台。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "watchtower",
@@ -8067,49 +5883,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "S"
   },
   {
-    "id": "mod-foundation-世界银行",
-    "term": "世界银行",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「数据底座」副题关键词：世界银行。",
-    "context": [
-      {
-        "moduleId": "foundation",
-        "label": "数据底座",
-        "path": "/foundation"
-      }
-    ],
-    "related": [
-      "数据底座"
-    ],
-    "source": "China OS · 数据底座",
-    "initial": "S"
-  },
-  {
-    "id": "mod-civilization-十二卷",
-    "term": "十二卷",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「文明透视」副题关键词：十二卷。",
-    "context": [
-      {
-        "moduleId": "civilization",
-        "label": "文明透视",
-        "path": "/civilization"
-      }
-    ],
-    "related": [
-      "文明透视"
-    ],
-    "source": "China OS · 文明透视",
-    "initial": "S"
-  },
-  {
     "id": "mod-northeastRevival-十五五",
     "term": "十五五",
     "aliases": [],
     "category": "module",
-    "definition": "模块「东北振兴」副题关键词：十五五。",
+    "definition": "「十五五」为 China OS 模块「东北振兴」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「东北振兴」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括东北振兴。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "northeastRevival",
@@ -8128,7 +5906,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "商业航天",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「航天产业」副题关键词：商业航天。",
+    "definition": "「商业航天」为 China OS 模块「航天产业」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「航天产业」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括航天产业。技术与产业维度上，商业航天关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "space",
@@ -8147,7 +5925,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "四代堆",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「核能电力」副题关键词：四代堆。",
+    "definition": "「四代堆」为 China OS 模块「核能电力」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「核能电力」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括核能电力。技术与产业维度上，四代堆关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "nuclear",
@@ -8166,7 +5944,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "四区交互",
     "aliases": [],
     "category": "module",
-    "definition": "模块「领袖统治」副题关键词：四区交互。",
+    "definition": "「四区交互」为 China OS 模块「领袖统治」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「领袖统治」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括领袖统治。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "leadership",
@@ -8181,30 +5959,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "S"
   },
   {
-    "id": "mod-regional-四大板块",
-    "term": "四大板块",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「区域协调」副题关键词：四大板块。",
-    "context": [
-      {
-        "moduleId": "regional",
-        "label": "区域协调",
-        "path": "/regional"
-      }
-    ],
-    "related": [
-      "区域协调"
-    ],
-    "source": "China OS · 区域协调",
-    "initial": "S"
-  },
-  {
     "id": "mod-dashboard-实时大屏",
     "term": "实时大屏",
     "aliases": [],
     "category": "module",
-    "definition": "模块「中枢看板」副题关键词：实时大屏。",
+    "definition": "「实时大屏」为 China OS 模块「中枢看板」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「中枢看板」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括中枢看板。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "dashboard",
@@ -8216,25 +5975,6 @@ export const GLOSSARY_ENTRIES = [
       "中枢看板"
     ],
     "source": "China OS · 中枢看板",
-    "initial": "S"
-  },
-  {
-    "id": "mod-urban-市民化",
-    "term": "市民化",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「新型城镇化」副题关键词：市民化。",
-    "context": [
-      {
-        "moduleId": "urban",
-        "label": "新型城镇化",
-        "path": "/urban"
-      }
-    ],
-    "related": [
-      "新型城镇化"
-    ],
-    "source": "China OS · 新型城镇化",
     "initial": "S"
   },
   {
@@ -8257,28 +5997,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "网格管理",
-      "穿透式监管"
-    ],
-    "source": "中国深度调研系列",
-    "initial": "S"
-  },
-  {
-    "id": "mod-powerlogic-数字利维坦",
-    "term": "数字利维坦",
-    "aliases": [],
-    "category": "politics",
-    "definition": "模块「权力逻辑」副题关键词：数字利维坦。",
-    "context": [
-      {
-        "moduleId": "powerlogic",
-        "label": "权力逻辑",
-        "path": "/powerlogic"
-      }
-    ],
-    "related": [
+      "穿透式监管",
       "权力逻辑"
     ],
-    "source": "China OS · 权力逻辑",
+    "source": "中国深度调研系列；China OS · 权力逻辑",
     "initial": "S"
   },
   {
@@ -8286,7 +6008,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "数字劳动力",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：数字劳动力。",
+    "definition": "「数字劳动力」为深度调研索引核心术语，叙事脉络见《零工经济与新就业形态》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -8305,7 +6027,7 @@ export const GLOSSARY_ENTRIES = [
       "网络经济"
     ],
     "category": "module",
-    "definition": "China OS 模块「数字巨网」：网络经济 · 赛博反馈 · 语义防火墙。",
+    "definition": "China OS 功能模块「数字巨网」聚焦网络经济 · 赛博反馈 · 语义防火墙。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括赛博反馈、语义防火墙。",
     "context": [
       {
         "moduleId": "digitalGiantWeb",
@@ -8317,7 +6039,7 @@ export const GLOSSARY_ENTRIES = [
       "赛博反馈",
       "语义防火墙"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 数字巨网",
     "initial": "S"
   },
   {
@@ -8325,7 +6047,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "数字政府",
     "aliases": [],
     "category": "politics",
-    "definition": "模块「治理现代化」副题关键词：数字政府。",
+    "definition": "「数字政府」为 China OS 模块「治理现代化」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「治理现代化」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括治理现代化。从权力物理学视角，数字政府刻画央地博弈、激励结构与制度穿透力的耦合关系。",
     "context": [
       {
         "moduleId": "governance",
@@ -8344,7 +6066,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "数字治理",
     "aliases": [],
     "category": "module",
-    "definition": "模块「数字经济」副题关键词：数字治理。",
+    "definition": "「数字治理」为 China OS 模块「数字经济」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「数字经济」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括数字经济。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "digital",
@@ -8365,7 +6087,7 @@ export const GLOSSARY_ENTRIES = [
       "数实融合"
     ],
     "category": "module",
-    "definition": "China OS 模块「数字经济」：数实融合 · 平台经济 · 数字治理。",
+    "definition": "China OS 功能模块「数字经济」聚焦数实融合 · 平台经济 · 数字治理。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括平台经济、数字治理。",
     "context": [
       {
         "moduleId": "digital",
@@ -8377,7 +6099,7 @@ export const GLOSSARY_ENTRIES = [
       "平台经济",
       "数字治理"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 数字经济",
     "initial": "S"
   },
   {
@@ -8385,7 +6107,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "数字航路。",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：数字航路。。",
+    "definition": "「数字航路。」为深度调研索引核心术语，叙事脉络见《现代化基建与低空经济》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -8398,49 +6120,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "S"
   },
   {
-    "id": "mod-serviceTrade-数字贸易",
-    "term": "数字贸易",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「服务贸易」副题关键词：数字贸易。",
-    "context": [
-      {
-        "moduleId": "serviceTrade",
-        "label": "服务贸易",
-        "path": "/service-trade"
-      }
-    ],
-    "related": [
-      "服务贸易"
-    ],
-    "source": "China OS · 服务贸易",
-    "initial": "S"
-  },
-  {
-    "id": "mod-digital-数实融合",
-    "term": "数实融合",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「数字经济」副题关键词：数实融合。",
-    "context": [
-      {
-        "moduleId": "digital",
-        "label": "数字经济",
-        "path": "/digital"
-      }
-    ],
-    "related": [
-      "数字经济"
-    ],
-    "source": "China OS · 数字经济",
-    "initial": "S"
-  },
-  {
     "id": "mod-neural-数据主权",
     "term": "数据主权",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「脑机接口」副题关键词：数据主权。",
+    "definition": "「数据主权」为 China OS 模块「脑机接口」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「脑机接口」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括脑机接口。技术与产业维度上，数据主权关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "neural",
@@ -8459,7 +6143,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "数据入表",
     "aliases": [],
     "category": "module",
-    "definition": "模块「数据要素」副题关键词：数据入表。",
+    "definition": "「数据入表」为 China OS 模块「数据要素」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「数据要素」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括数据要素。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "dataElement",
@@ -8476,7 +6160,9 @@ export const GLOSSARY_ENTRIES = [
   {
     "id": "数据底座",
     "term": "数据底座",
-    "aliases": [],
+    "aliases": [
+      "世界银行"
+    ],
     "category": "module",
     "definition": "IndexedDB 本地数据集管理：上传、解析、编辑与对账。",
     "context": [
@@ -8488,31 +6174,11 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "世界银行",
-      "人才精英"
-    ],
-    "source": "China OS",
-    "initial": "S"
-  },
-  {
-    "id": "mod-foundation",
-    "term": "数据底座",
-    "aliases": [
-      "世界银行"
-    ],
-    "category": "module",
-    "definition": "China OS 模块「数据底座」：世界银行 · 国家统计局 · IMF。",
-    "context": [
-      {
-        "moduleId": "foundation",
-        "label": "数据底座",
-        "path": "/foundation"
-      }
-    ],
-    "related": [
+      "人才精英",
       "国家统计局",
       "IMF"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS；China OS · registry.js；China OS · 数据底座",
     "initial": "S"
   },
   {
@@ -8522,7 +6188,7 @@ export const GLOSSARY_ENTRIES = [
       "产权确权"
     ],
     "category": "module",
-    "definition": "China OS 模块「数据要素」：产权确权 · 数据入表 · 东数西算。",
+    "definition": "China OS 功能模块「数据要素」聚焦产权确权 · 数据入表 · 东数西算。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括数据入表、东数西算。",
     "context": [
       {
         "moduleId": "dataElement",
@@ -8534,7 +6200,7 @@ export const GLOSSARY_ENTRIES = [
       "数据入表",
       "东数西算"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 数据要素",
     "initial": "S"
   },
   {
@@ -8563,49 +6229,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "S"
   },
   {
-    "id": "mod-shenzhou-live-时间轴",
-    "term": "时间轴",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「神州活图」副题关键词：时间轴。",
-    "context": [
-      {
-        "moduleId": "shenzhou-live",
-        "label": "神州活图",
-        "path": "/shenzhou-live"
-      }
-    ],
-    "related": [
-      "神州活图"
-    ],
-    "source": "China OS · 神州活图",
-    "initial": "S"
-  },
-  {
-    "id": "mod-guoyun-时间轴",
-    "term": "时间轴",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「国运」副题关键词：时间轴。",
-    "context": [
-      {
-        "moduleId": "guoyun",
-        "label": "国运",
-        "path": "/modules/guoyun"
-      }
-    ],
-    "related": [
-      "国运"
-    ],
-    "source": "China OS · 国运",
-    "initial": "S"
-  },
-  {
     "id": "idx-水资源约束",
     "term": "水资源约束。",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：水资源约束。。",
+    "definition": "「水资源约束。」为深度调研索引核心术语，叙事脉络见《大国粮仓：中国粮食安全深度调研》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -8624,7 +6252,7 @@ export const GLOSSARY_ENTRIES = [
       "七维框架"
     ],
     "category": "module",
-    "definition": "China OS 模块「深度透视」：七维框架 · 多重专题 · 全景扫描。",
+    "definition": "China OS 功能模块「深度透视」聚焦七维框架 · 多重专题 · 全景扫描。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括多重专题、全景扫描。",
     "context": [
       {
         "moduleId": "depth",
@@ -8636,7 +6264,7 @@ export const GLOSSARY_ENTRIES = [
       "多重专题",
       "全景扫描"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 深度透视",
     "initial": "S"
   },
   {
@@ -8644,7 +6272,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "深海开发",
     "aliases": [],
     "category": "module",
-    "definition": "模块「海洋经济」副题关键词：深海开发。",
+    "definition": "「深海开发」为 China OS 模块「海洋经济」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「海洋经济」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括海洋经济。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "marine",
@@ -8663,7 +6291,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "深空军备",
     "aliases": [],
     "category": "module",
-    "definition": "模块「科技图谱」副题关键词：深空军备。",
+    "definition": "「深空军备」为 China OS 模块「科技图谱」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「科技图谱」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括科技图谱。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "techtree",
@@ -8682,7 +6310,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "深空探测",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「航天产业」副题关键词：深空探测。",
+    "definition": "「深空探测」为 China OS 模块「航天产业」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「航天产业」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括航天产业。技术与产业维度上，深空探测关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "space",
@@ -8697,33 +6325,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "S"
   },
   {
-    "id": "mod-ecology",
-    "term": "生态文明",
-    "aliases": [
-      "双碳目标"
-    ],
-    "category": "module",
-    "definition": "China OS 模块「生态文明」：双碳目标 · 碳汇市场 · 绿水青山。",
-    "context": [
-      {
-        "moduleId": "ecology",
-        "label": "生态文明",
-        "path": "/ecology"
-      }
-    ],
-    "related": [
-      "碳汇市场",
-      "绿水青山"
-    ],
-    "source": "China OS · registry.js",
-    "initial": "S"
-  },
-  {
     "id": "mod-futureIndustry-生物制造",
     "term": "生物制造",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「未来产业」副题关键词：生物制造。",
+    "definition": "「生物制造」为 China OS 模块「未来产业」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「未来产业」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括未来产业。技术与产业维度上，生物制造关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "futureIndustry",
@@ -8744,7 +6350,7 @@ export const GLOSSARY_ENTRIES = [
       "创新药械"
     ],
     "category": "tech",
-    "definition": "China OS 模块「生物医药」：创新药械 · 生物安全 · 出海授权。",
+    "definition": "China OS 功能模块「生物医药」聚焦创新药械 · 生物安全 · 出海授权。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括生物安全、出海授权。",
     "context": [
       {
         "moduleId": "bio",
@@ -8756,7 +6362,7 @@ export const GLOSSARY_ENTRIES = [
       "生物安全",
       "出海授权"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 生物医药",
     "initial": "S"
   },
   {
@@ -8764,7 +6370,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "生物安全",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「生物医药」副题关键词：生物安全。",
+    "definition": "「生物安全」为 China OS 模块「生物医药」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「生物医药」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括生物医药。技术与产业维度上，生物安全关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "bio",
@@ -8785,7 +6391,7 @@ export const GLOSSARY_ENTRIES = [
       "生育补贴"
     ],
     "category": "module",
-    "definition": "China OS 模块「生育支持」：生育补贴 · 普惠托育 · 友好社会。",
+    "definition": "China OS 功能模块「生育支持」聚焦生育补贴 · 普惠托育 · 友好社会。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括普惠托育、友好社会。",
     "context": [
       {
         "moduleId": "fertilitySupport",
@@ -8797,26 +6403,7 @@ export const GLOSSARY_ENTRIES = [
       "普惠托育",
       "友好社会"
     ],
-    "source": "China OS · registry.js",
-    "initial": "S"
-  },
-  {
-    "id": "mod-fertilitySupport-生育补贴",
-    "term": "生育补贴",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「生育支持」副题关键词：生育补贴。",
-    "context": [
-      {
-        "moduleId": "fertilitySupport",
-        "label": "生育支持",
-        "path": "/fertility-support"
-      }
-    ],
-    "related": [
-      "生育支持"
-    ],
-    "source": "China OS · 生育支持",
+    "source": "China OS · registry.js；China OS · 生育支持",
     "initial": "S"
   },
   {
@@ -8824,7 +6411,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "社会保护",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：社会保护。",
+    "definition": "「社会保护」为深度调研索引核心术语，叙事脉络见《零工经济与新就业形态》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -8841,7 +6428,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "社会矛盾体",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「矛盾论」副题关键词：社会矛盾体。",
+    "definition": "「社会矛盾体」为 China OS 模块「矛盾论」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「矛盾论」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括矛盾论。从成本—收益框架看，社会矛盾体连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "contradictions",
@@ -8860,7 +6447,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "社会达尔文",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「意识形态」副题关键词：社会达尔文。",
+    "definition": "「社会达尔文」为 China OS 模块「意识形态」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「意识形态」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括意识形态。从成本—收益框架看，社会达尔文连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "ideology",
@@ -8881,7 +6468,7 @@ export const GLOSSARY_ENTRIES = [
       "公开慢直播"
     ],
     "category": "module",
-    "definition": "China OS 模块「神州实况」：公开慢直播 · 熊猫 · 景区 · 枢纽。",
+    "definition": "China OS 功能模块「神州实况」聚焦公开慢直播 · 熊猫 · 景区 · 枢纽。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括熊猫、景区、枢纽。",
     "context": [
       {
         "moduleId": "live-feeds",
@@ -8894,7 +6481,7 @@ export const GLOSSARY_ENTRIES = [
       "景区",
       "枢纽"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 神州实况",
     "initial": "S"
   },
   {
@@ -8904,7 +6491,7 @@ export const GLOSSARY_ENTRIES = [
       "省级分层"
     ],
     "category": "module",
-    "definition": "China OS 模块「神州活图」：省级分层 · 时间轴 · 对比研判。",
+    "definition": "China OS 功能模块「神州活图」聚焦省级分层 · 时间轴 · 对比研判。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括时间轴、对比研判。",
     "context": [
       {
         "moduleId": "shenzhou-live",
@@ -8916,26 +6503,7 @@ export const GLOSSARY_ENTRIES = [
       "时间轴",
       "对比研判"
     ],
-    "source": "China OS · registry.js",
-    "initial": "S"
-  },
-  {
-    "id": "mod-neural-神经接口",
-    "term": "神经接口",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「脑机接口」副题关键词：神经接口。",
-    "context": [
-      {
-        "moduleId": "neural",
-        "label": "脑机接口",
-        "path": "/neural"
-      }
-    ],
-    "related": [
-      "脑机接口"
-    ],
-    "source": "China OS · 脑机接口",
+    "source": "China OS · registry.js；China OS · 神州活图",
     "initial": "S"
   },
   {
@@ -8958,50 +6526,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "东数西算",
-      "智算中心"
-    ],
-    "source": "中国深度调研系列 · 科技主权",
-    "initial": "S"
-  },
-  {
-    "id": "mod-computing-算力主权",
-    "term": "算力主权",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「算力设施」副题关键词：算力主权。",
-    "context": [
-      {
-        "moduleId": "computing",
-        "label": "算力设施",
-        "path": "/computing"
-      }
-    ],
-    "related": [
+      "智算中心",
       "算力设施"
     ],
-    "source": "China OS · 算力设施",
-    "initial": "S"
-  },
-  {
-    "id": "mod-computing",
-    "term": "算力设施",
-    "aliases": [
-      "东数西算"
-    ],
-    "category": "tech",
-    "definition": "China OS 模块「算力设施」：东数西算 · 智算中心 · 算力主权。",
-    "context": [
-      {
-        "moduleId": "computing",
-        "label": "算力设施",
-        "path": "/computing"
-      }
-    ],
-    "related": [
-      "智算中心",
-      "算力主权"
-    ],
-    "source": "China OS · registry.js",
+    "source": "中国深度调研系列 · 科技主权；China OS · 算力设施",
     "initial": "S"
   },
   {
@@ -9026,26 +6554,7 @@ export const GLOSSARY_ENTRIES = [
       "零工经济",
       "数字劳动力"
     ],
-    "source": "中国深度调研系列 · 零工经济",
-    "initial": "S"
-  },
-  {
-    "id": "mod-gig-算法治理",
-    "term": "算法治理",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「零工经济」副题关键词：算法治理。",
-    "context": [
-      {
-        "moduleId": "gig",
-        "label": "零工经济",
-        "path": "/gig"
-      }
-    ],
-    "related": [
-      "零工经济"
-    ],
-    "source": "China OS · 零工经济",
+    "source": "中国深度调研系列 · 零工经济；China OS · 零工经济",
     "initial": "S"
   },
   {
@@ -9053,7 +6562,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "算法演进",
     "aliases": [],
     "category": "politics",
-    "definition": "模块「改革开放」副题关键词：算法演进。",
+    "definition": "「算法演进」为 China OS 模块「改革开放」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「改革开放」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括改革开放。从权力物理学视角，算法演进刻画央地博弈、激励结构与制度穿透力的耦合关系。",
     "context": [
       {
         "moduleId": "reform",
@@ -9089,28 +6598,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "语义防火墙",
-      "数字利维坦"
-    ],
-    "source": "中国深度调研系列",
-    "initial": "S"
-  },
-  {
-    "id": "mod-digitalGiantWeb-赛博反馈",
-    "term": "赛博反馈",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「数字巨网」副题关键词：赛博反馈。",
-    "context": [
-      {
-        "moduleId": "digitalGiantWeb",
-        "label": "数字巨网",
-        "path": "/digital-giant-web"
-      }
-    ],
-    "related": [
+      "数字利维坦",
       "数字巨网"
     ],
-    "source": "China OS · 数字巨网",
+    "source": "中国深度调研系列；China OS · 数字巨网",
     "initial": "S"
   },
   {
@@ -9118,7 +6609,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "锁定效应",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「路径依赖」副题关键词：锁定效应。",
+    "definition": "「锁定效应」为 China OS 模块「路径依赖」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「路径依赖」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括路径依赖。从成本—收益框架看，锁定效应连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "pathdependence",
@@ -9139,7 +6630,7 @@ export const GLOSSARY_ENTRIES = [
       "地缘重力"
     ],
     "category": "military",
-    "definition": "China OS 模块「台海局势」：地缘重力 · 硅盾屏障 · 统一进程。",
+    "definition": "China OS 功能模块「台海局势」聚焦地缘重力 · 硅盾屏障 · 统一进程。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括硅盾屏障、统一进程。",
     "context": [
       {
         "moduleId": "straits",
@@ -9151,7 +6642,7 @@ export const GLOSSARY_ENTRIES = [
       "硅盾屏障",
       "统一进程"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 台海局势",
     "initial": "T"
   },
   {
@@ -9159,7 +6650,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "土地制度",
     "aliases": [],
     "category": "module",
-    "definition": "模块「乡村振兴」副题关键词：土地制度。",
+    "definition": "「土地制度」为 China OS 模块「乡村振兴」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「乡村振兴」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括乡村振兴。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "rural",
@@ -9228,7 +6719,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "推演",
     "aliases": [],
     "category": "module",
-    "definition": "模块「国运」副题关键词：推演。",
+    "definition": "「推演」为 China OS 模块「国运」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「国运」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括国运。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "guoyun",
@@ -9247,7 +6738,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "梯度转移",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：梯度转移。",
+    "definition": "「梯度转移」为深度调研索引核心术语，叙事脉络见《区域经济战略与全国统一大市场》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -9262,7 +6753,9 @@ export const GLOSSARY_ENTRIES = [
   {
     "id": "特高压",
     "term": "特高压",
-    "aliases": [],
+    "aliases": [
+      "智能电网"
+    ],
     "category": "tech",
     "definition": "±800kV及以上直流/1000kV交流输电，实现远距离大容量电力调度。",
     "context": [
@@ -9274,28 +6767,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "源网荷储",
-      "新型储能"
-    ],
-    "source": "电网工程",
-    "initial": "T"
-  },
-  {
-    "id": "mod-smartgrid-特高压",
-    "term": "特高压",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「智能电网」副题关键词：特高压。",
-    "context": [
-      {
-        "moduleId": "smartgrid",
-        "label": "智能电网",
-        "path": "/smartgrid"
-      }
-    ],
-    "related": [
+      "新型储能",
       "智能电网"
     ],
-    "source": "China OS · 智能电网",
+    "source": "电网工程；China OS · registry.js；China OS · 智能电网",
     "initial": "T"
   },
   {
@@ -9305,7 +6780,7 @@ export const GLOSSARY_ENTRIES = [
       "五个统一"
     ],
     "category": "politics",
-    "definition": "China OS 模块「统一大市场」：五个统一 · 破除壁垒 · 要素流通。",
+    "definition": "China OS 功能模块「统一大市场」聚焦五个统一 · 破除壁垒 · 要素流通。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括破除壁垒、要素流通。",
     "context": [
       {
         "moduleId": "unifiedMarket",
@@ -9317,7 +6792,7 @@ export const GLOSSARY_ENTRIES = [
       "破除壁垒",
       "要素流通"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 统一大市场",
     "initial": "T"
   },
   {
@@ -9325,7 +6800,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "统一进程",
     "aliases": [],
     "category": "military",
-    "definition": "模块「台海局势」副题关键词：统一进程。",
+    "definition": "「统一进程」为 China OS 模块「台海局势」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「台海局势」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括台海局势。地缘与安全维度上，统一进程纳入成本收益比与能力—意图匹配的战略计算。",
     "context": [
       {
         "moduleId": "straits",
@@ -9344,7 +6819,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "统治成本",
     "aliases": [],
     "category": "politics",
-    "definition": "模块「权力逻辑」副题关键词：统治成本。",
+    "definition": "「统治成本」为 China OS 模块「权力逻辑」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「权力逻辑」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括权力逻辑。从权力物理学视角，统治成本刻画央地博弈、激励结构与制度穿透力的耦合关系。",
     "context": [
       {
         "moduleId": "powerlogic",
@@ -9388,7 +6863,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "通用航空",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「低空经济」副题关键词：通用航空。",
+    "definition": "「通用航空」为 China OS 模块「低空经济」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「低空经济」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括低空经济。技术与产业维度上，通用航空关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "lowAltitude",
@@ -9407,7 +6882,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "铁公基",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：铁公基。",
+    "definition": "「铁公基」为深度调研索引核心术语，叙事脉络见《国家能力与空间重塑：中国超级工程决策解析》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -9418,25 +6893,6 @@ export const GLOSSARY_ENTRIES = [
     "related": [],
     "source": "中国深度调研系列_索引与恢复指令.md",
     "initial": "T"
-  },
-  {
-    "id": "mod-unifiedMarket-五个统一",
-    "term": "五个统一",
-    "aliases": [],
-    "category": "politics",
-    "definition": "模块「统一大市场」副题关键词：五个统一。",
-    "context": [
-      {
-        "moduleId": "unifiedMarket",
-        "label": "统一大市场",
-        "path": "/unified-market"
-      }
-    ],
-    "related": [
-      "统一大市场"
-    ],
-    "source": "China OS · 统一大市场",
-    "initial": "W"
   },
   {
     "id": "五组件",
@@ -9455,26 +6911,7 @@ export const GLOSSARY_ENTRIES = [
       "合法性机器",
       "张力T-01"
     ],
-    "source": "GY-02",
-    "initial": "W"
-  },
-  {
-    "id": "mod-yishixingtai-五组件",
-    "term": "五组件",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「合法性机器」副题关键词：五组件。",
-    "context": [
-      {
-        "moduleId": "yishixingtai",
-        "label": "合法性机器",
-        "path": "/modules/yishixingtai"
-      }
-    ],
-    "related": [
-      "合法性机器"
-    ],
-    "source": "China OS · 合法性机器",
+    "source": "GY-02；China OS · 合法性机器",
     "initial": "W"
   },
   {
@@ -9482,7 +6919,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "外交与海外",
     "aliases": [],
     "category": "module",
-    "definition": "talent 模块：外交官与海外华人精英。",
+    "definition": "「外交与海外」为人才精英库（talent）子域标签：talent 模块：外交官与海外华人精英。该分类用于结构化检索政要、学者、资本逻辑与海外精英等人物图谱。",
     "context": [
       {
         "moduleId": "talent",
@@ -9501,7 +6938,7 @@ export const GLOSSARY_ENTRIES = [
       "中美博弈"
     ],
     "category": "module",
-    "definition": "China OS 模块「外交博弈」：中美博弈 · 区域纵横 · 能源航道。",
+    "definition": "China OS 功能模块「外交博弈」聚焦中美博弈 · 区域纵横 · 能源航道。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括区域纵横、能源航道。",
     "context": [
       {
         "moduleId": "diplomacy",
@@ -9513,7 +6950,7 @@ export const GLOSSARY_ENTRIES = [
       "区域纵横",
       "能源航道"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 外交博弈",
     "initial": "W"
   },
   {
@@ -9521,7 +6958,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "外资准入",
     "aliases": [],
     "category": "module",
-    "definition": "模块「跨境投资」副题关键词：外资准入。",
+    "definition": "「外资准入」为 China OS 模块「跨境投资」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「跨境投资」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括跨境投资。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "fdi",
@@ -9540,7 +6977,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "文化贸易",
     "aliases": [],
     "category": "module",
-    "definition": "模块「文化软实力」副题关键词：文化贸易。",
+    "definition": "「文化贸易」为 China OS 模块「文化软实力」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「文化软实力」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括文化软实力。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "culture",
@@ -9561,7 +6998,7 @@ export const GLOSSARY_ENTRIES = [
       "国潮崛起"
     ],
     "category": "module",
-    "definition": "China OS 模块「文化软实力」：国潮崛起 · 短剧出海 · 文化贸易。",
+    "definition": "China OS 功能模块「文化软实力」聚焦国潮崛起 · 短剧出海 · 文化贸易。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括短剧出海、文化贸易。",
     "context": [
       {
         "moduleId": "culture",
@@ -9573,7 +7010,7 @@ export const GLOSSARY_ENTRIES = [
       "短剧出海",
       "文化贸易"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 文化软实力",
     "initial": "W"
   },
   {
@@ -9583,7 +7020,7 @@ export const GLOSSARY_ENTRIES = [
       "入境旅游"
     ],
     "category": "tech",
-    "definition": "China OS 模块「文旅消费」：入境旅游 · 区域品牌 · 消费升级。",
+    "definition": "China OS 功能模块「文旅消费」聚焦入境旅游 · 区域品牌 · 消费升级。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括区域品牌、消费升级。",
     "context": [
       {
         "moduleId": "tourism",
@@ -9595,7 +7032,7 @@ export const GLOSSARY_ENTRIES = [
       "区域品牌",
       "消费升级"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 文旅消费",
     "initial": "W"
   },
   {
@@ -9603,7 +7040,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "文明基因",
     "aliases": [],
     "category": "module",
-    "definition": "模块「文明透视」副题关键词：文明基因。",
+    "definition": "「文明基因」为 China OS 模块「文明透视」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「文明透视」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括文明透视。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "civilization",
@@ -9624,7 +7061,7 @@ export const GLOSSARY_ENTRIES = [
       "十二卷"
     ],
     "category": "module",
-    "definition": "China OS 模块「文明透视」：十二卷 · 文明基因 · 历史源码。",
+    "definition": "China OS 功能模块「文明透视」聚焦十二卷 · 文明基因 · 历史源码。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括文明基因、历史源码。",
     "context": [
       {
         "moduleId": "civilization",
@@ -9636,7 +7073,7 @@ export const GLOSSARY_ENTRIES = [
       "文明基因",
       "历史源码"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 文明透视",
     "initial": "W"
   },
   {
@@ -9644,7 +7081,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "文本挖掘",
     "aliases": [],
     "category": "module",
-    "definition": "模块「政令文库」副题关键词：文本挖掘。",
+    "definition": "「文本挖掘」为 China OS 模块「政令文库」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「政令文库」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括政令文库。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "policydocs",
@@ -9663,7 +7100,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "无人区布局",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：无人区布局。",
+    "definition": "「无人区布局」为深度调研索引核心术语，叙事脉络见《新质生产力与未来产业调研》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -9680,7 +7117,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "无人机",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「低空经济」副题关键词：无人机。",
+    "definition": "「无人机」为 China OS 模块「低空经济」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「低空经济」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括低空经济。技术与产业维度上，无人机关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "lowAltitude",
@@ -9699,7 +7136,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "无政府文化",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「建构主义」副题关键词：无政府文化。",
+    "definition": "「无政府文化」为 China OS 模块「建构主义」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「建构主义」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括建构主义。从成本—收益框架看，无政府文化连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "constructivism",
@@ -9711,47 +7148,6 @@ export const GLOSSARY_ENTRIES = [
       "建构主义"
     ],
     "source": "China OS · 建构主义",
-    "initial": "W"
-  },
-  {
-    "id": "mod-npf-未来产业",
-    "term": "未来产业",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「新质生产力」副题关键词：未来产业。",
-    "context": [
-      {
-        "moduleId": "npf",
-        "label": "新质生产力",
-        "path": "/npf"
-      }
-    ],
-    "related": [
-      "新质生产力"
-    ],
-    "source": "China OS · 新质生产力",
-    "initial": "W"
-  },
-  {
-    "id": "mod-futureIndustry",
-    "term": "未来产业",
-    "aliases": [
-      "具身智能"
-    ],
-    "category": "tech",
-    "definition": "China OS 模块「未来产业」：具身智能 · 可控聚变 · 生物制造。",
-    "context": [
-      {
-        "moduleId": "futureIndustry",
-        "label": "未来产业",
-        "path": "/future-industry"
-      }
-    ],
-    "related": [
-      "可控聚变",
-      "生物制造"
-    ],
-    "source": "China OS · registry.js",
     "initial": "W"
   },
   {
@@ -9780,49 +7176,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "W"
   },
   {
-    "id": "mod-governance-网格管理",
-    "term": "网格管理",
-    "aliases": [],
-    "category": "politics",
-    "definition": "模块「治理现代化」副题关键词：网格管理。",
-    "context": [
-      {
-        "moduleId": "governance",
-        "label": "治理现代化",
-        "path": "/governance"
-      }
-    ],
-    "related": [
-      "治理现代化"
-    ],
-    "source": "China OS · 治理现代化",
-    "initial": "W"
-  },
-  {
-    "id": "mod-socialgov-网格管理",
-    "term": "网格管理",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「基层治理」副题关键词：网格管理。",
-    "context": [
-      {
-        "moduleId": "socialgov",
-        "label": "基层治理",
-        "path": "/socialgov"
-      }
-    ],
-    "related": [
-      "基层治理"
-    ],
-    "source": "China OS · 基层治理",
-    "initial": "W"
-  },
-  {
     "id": "mod-omnisecurity-网络安全",
     "term": "网络安全",
     "aliases": [],
     "category": "military",
-    "definition": "模块「大安全观」副题关键词：网络安全。",
+    "definition": "「网络安全」为 China OS 模块「大安全观」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「大安全观」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括大安全观。地缘与安全维度上，网络安全纳入成本收益比与能力—意图匹配的战略计算。",
     "context": [
       {
         "moduleId": "omnisecurity",
@@ -9834,25 +7192,6 @@ export const GLOSSARY_ENTRIES = [
       "大安全观"
     ],
     "source": "China OS · 大安全观",
-    "initial": "W"
-  },
-  {
-    "id": "mod-digitalGiantWeb-网络经济",
-    "term": "网络经济",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「数字巨网」副题关键词：网络经济。",
-    "context": [
-      {
-        "moduleId": "digitalGiantWeb",
-        "label": "数字巨网",
-        "path": "/digital-giant-web"
-      }
-    ],
-    "related": [
-      "数字巨网"
-    ],
-    "source": "China OS · 数字巨网",
     "initial": "W"
   },
   {
@@ -9876,30 +7215,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "X"
   },
   {
-    "id": "mod-principalagent-信息不对称",
-    "term": "信息不对称",
-    "aliases": [],
-    "category": "econ",
-    "definition": "模块「委托代理」副题关键词：信息不对称。",
-    "context": [
-      {
-        "moduleId": "principalagent",
-        "label": "委托代理",
-        "path": "/principalagent"
-      }
-    ],
-    "related": [
-      "委托代理"
-    ],
-    "source": "China OS · 委托代理",
-    "initial": "X"
-  },
-  {
     "id": "mod-powerphysics-信息穿透",
     "term": "信息穿透",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「权力物理」副题关键词：信息穿透。",
+    "definition": "「信息穿透」为 China OS 模块「权力物理」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「权力物理」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括权力物理。从成本—收益框架看，信息穿透连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "powerphysics",
@@ -9916,7 +7236,9 @@ export const GLOSSARY_ENTRIES = [
   {
     "id": "修昔底德陷阱",
     "term": "修昔底德陷阱",
-    "aliases": [],
+    "aliases": [
+      "艾利森"
+    ],
     "category": "econ",
     "definition": "守成大国与崛起大国之间的结构性冲突风险，由权力转移放大误判。",
     "context": [
@@ -9928,31 +7250,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "权力转移",
-      "现实主义"
+      "现实主义",
+      "守成崛起"
     ],
-    "source": "艾利森 · 修昔底德陷阱",
-    "initial": "X"
-  },
-  {
-    "id": "mod-thucydides",
-    "term": "修昔底德陷阱",
-    "aliases": [
-      "艾利森"
-    ],
-    "category": "econ",
-    "definition": "China OS 模块「修昔底德陷阱」：艾利森 · 守成崛起 · 权力转移。",
-    "context": [
-      {
-        "moduleId": "thucydides",
-        "label": "修昔底德陷阱",
-        "path": "/thucydides"
-      }
-    ],
-    "related": [
-      "守成崛起",
-      "权力转移"
-    ],
-    "source": "China OS · registry.js",
+    "source": "艾利森 · 修昔底德陷阱；China OS · registry.js；China OS · 修昔底德陷阱",
     "initial": "X"
   },
   {
@@ -9960,7 +7261,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "先进制程",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「集成电路」副题关键词：先进制程。",
+    "definition": "「先进制程」为 China OS 模块「集成电路」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「集成电路」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括集成电路。技术与产业维度上，先进制程关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "semiconductor",
@@ -9975,48 +7276,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "X"
   },
   {
-    "id": "idx-先进封装",
-    "term": "先进封装",
-    "aliases": [],
-    "category": "research",
-    "definition": "中国深度调研系列索引关键词：先进封装。",
-    "context": [
-      {
-        "moduleId": "depth",
-        "label": "depth",
-        "path": null
-      }
-    ],
-    "related": [],
-    "source": "中国深度调研系列_索引与恢复指令.md",
-    "initial": "X"
-  },
-  {
-    "id": "mod-xingshaoshu",
-    "term": "性少数群像",
-    "aliases": [
-      "挤压性存在"
-    ],
-    "category": "gy",
-    "definition": "China OS 模块「性少数群像」：挤压性存在 · 被允许的可见形态 · GY-04。",
-    "context": [
-      {
-        "moduleId": "xingshaoshu",
-        "label": "性少数群像",
-        "path": "/modules/xingshaoshu"
-      }
-    ],
-    "related": [
-      "被允许的可见形态",
-      "GY-04"
-    ],
-    "source": "China OS · registry.js",
-    "initial": "X"
-  },
-  {
     "id": "新三样",
     "term": "新三样",
-    "aliases": [],
+    "aliases": [
+      "对外贸易"
+    ],
     "category": "econ",
     "definition": "电动载人车、锂电池、光伏产品构成的出口增长引擎。",
     "context": [
@@ -10028,28 +7292,11 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "RCEP",
-      "换道超车"
-    ],
-    "source": "外贸统计口径",
-    "initial": "X"
-  },
-  {
-    "id": "mod-foreignTrade-新三样",
-    "term": "新三样",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「对外贸易」副题关键词：新三样。",
-    "context": [
-      {
-        "moduleId": "foreignTrade",
-        "label": "对外贸易",
-        "path": "/foreign-trade"
-      }
-    ],
-    "related": [
+      "换道超车",
+      "跨境电商",
       "对外贸易"
     ],
-    "source": "China OS · 对外贸易",
+    "source": "外贸统计口径；China OS · registry.js；China OS · 对外贸易",
     "initial": "X"
   },
   {
@@ -10057,7 +7304,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "新业态",
     "aliases": [],
     "category": "module",
-    "definition": "模块「零工经济」副题关键词：新业态。",
+    "definition": "「新业态」为 China OS 模块「零工经济」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「零工经济」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括零工经济。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "gig",
@@ -10076,7 +7323,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "新型储能",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「智能电网」副题关键词：新型储能。",
+    "definition": "「新型储能」为 China OS 模块「智能电网」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「智能电网」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括智能电网。技术与产业维度上，新型储能关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "smartgrid",
@@ -10097,7 +7344,7 @@ export const GLOSSARY_ENTRIES = [
       "市民化"
     ],
     "category": "module",
-    "definition": "China OS 模块「新型城镇化」：市民化 · 城市群 · 都市圈。",
+    "definition": "China OS 功能模块「新型城镇化」聚焦市民化 · 城市群 · 都市圈。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括城市群、都市圈。",
     "context": [
       {
         "moduleId": "urban",
@@ -10109,7 +7356,7 @@ export const GLOSSARY_ENTRIES = [
       "城市群",
       "都市圈"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 新型城镇化",
     "initial": "X"
   },
   {
@@ -10117,7 +7364,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "新域新质",
     "aliases": [],
     "category": "military",
-    "definition": "模块「国防动员」副题关键词：新域新质。",
+    "definition": "「新域新质」为 China OS 模块「国防动员」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「国防动员」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括国防动员。地缘与安全维度上，新域新质纳入成本收益比与能力—意图匹配的战略计算。",
     "context": [
       {
         "moduleId": "defenseMobilization",
@@ -10136,7 +7383,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "新基建",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：新基建。",
+    "definition": "「新基建」为深度调研索引核心术语，叙事脉络见《国家能力与空间重塑：中国超级工程决策解析》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -10149,28 +7396,12 @@ export const GLOSSARY_ENTRIES = [
     "initial": "X"
   },
   {
-    "id": "mod-infrastructure-新老基建",
-    "term": "新老基建",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「基础设施」副题关键词：新老基建。",
-    "context": [
-      {
-        "moduleId": "infrastructure",
-        "label": "基础设施",
-        "path": "/infrastructure"
-      }
-    ],
-    "related": [
-      "基础设施"
-    ],
-    "source": "China OS · 基础设施",
-    "initial": "X"
-  },
-  {
     "id": "新质生产力",
     "term": "新质生产力",
-    "aliases": [],
+    "aliases": [
+      "具身智能",
+      "未来产业"
+    ],
     "category": "econ",
     "definition": "以技术革命性突破与要素创新性配置驱动全要素生产率跃迁的发展范式。",
     "context": [
@@ -10187,31 +7418,13 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "未来产业",
-      "原始创新"
-    ],
-    "source": "中国深度调研系列 / 政府工作报告",
-    "initial": "X"
-  },
-  {
-    "id": "mod-npf",
-    "term": "新质生产力",
-    "aliases": [
-      "未来产业"
-    ],
-    "category": "tech",
-    "definition": "China OS 模块「新质生产力」：未来产业 · 全要素率 · 技术跃迁。",
-    "context": [
-      {
-        "moduleId": "npf",
-        "label": "新质生产力",
-        "path": "/npf"
-      }
-    ],
-    "related": [
+      "原始创新",
       "全要素率",
-      "技术跃迁"
+      "技术跃迁",
+      "可控聚变",
+      "生物制造"
     ],
-    "source": "China OS · registry.js",
+    "source": "中国深度调研系列 / 政府工作报告；China OS · registry.js；China OS · 新质生产力；China OS · 未来产业",
     "initial": "X"
   },
   {
@@ -10219,7 +7432,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "消费升级",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「文旅消费」副题关键词：消费升级。",
+    "definition": "「消费升级」为 China OS 模块「文旅消费」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「文旅消费」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括文旅消费。技术与产业维度上，消费升级关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "tourism",
@@ -10234,32 +7447,13 @@ export const GLOSSARY_ENTRIES = [
     "initial": "X"
   },
   {
-    "id": "mod-consumption-消费率",
-    "term": "消费率",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「扩大内需」副题关键词：消费率。",
-    "context": [
-      {
-        "moduleId": "consumption",
-        "label": "扩大内需",
-        "path": "/consumption"
-      }
-    ],
-    "related": [
-      "扩大内需"
-    ],
-    "source": "China OS · 扩大内需",
-    "initial": "X"
-  },
-  {
     "id": "mod-logistics",
     "term": "现代物流",
     "aliases": [
       "多式联运"
     ],
     "category": "tech",
-    "definition": "China OS 模块「现代物流」：多式联运 · 降本增效 · 冷链网络。",
+    "definition": "China OS 功能模块「现代物流」聚焦多式联运 · 降本增效 · 冷链网络。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括降本增效、冷链网络。",
     "context": [
       {
         "moduleId": "logistics",
@@ -10271,13 +7465,16 @@ export const GLOSSARY_ENTRIES = [
       "降本增效",
       "冷链网络"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 现代物流",
     "initial": "X"
   },
   {
     "id": "现实主义",
     "term": "现实主义",
-    "aliases": [],
+    "aliases": [
+      "改革开放",
+      "米尔斯海默"
+    ],
     "category": "research",
     "definition": "国际政治中以权力、制衡与安全为首要解释变量的理论传统。",
     "context": [
@@ -10285,44 +7482,7 @@ export const GLOSSARY_ENTRIES = [
         "moduleId": "realism",
         "label": "realism",
         "path": null
-      }
-    ],
-    "related": [
-      "权力制衡",
-      "米尔斯海默"
-    ],
-    "source": "国际关系理论",
-    "initial": "X"
-  },
-  {
-    "id": "mod-realism",
-    "term": "现实主义",
-    "aliases": [
-      "米尔斯海默"
-    ],
-    "category": "econ",
-    "definition": "China OS 模块「现实主义」：米尔斯海默 · 大国政治 · 权力制衡。",
-    "context": [
-      {
-        "moduleId": "realism",
-        "label": "现实主义",
-        "path": "/realism"
-      }
-    ],
-    "related": [
-      "大国政治",
-      "权力制衡"
-    ],
-    "source": "China OS · registry.js",
-    "initial": "X"
-  },
-  {
-    "id": "mod-reform-现实主义",
-    "term": "现实主义",
-    "aliases": [],
-    "category": "politics",
-    "definition": "模块「改革开放」副题关键词：现实主义。",
-    "context": [
+      },
       {
         "moduleId": "reform",
         "label": "改革开放",
@@ -10330,28 +7490,33 @@ export const GLOSSARY_ENTRIES = [
       }
     ],
     "related": [
+      "权力制衡",
+      "米尔斯海默",
+      "大国政治",
+      "算法演进",
+      "摸石过河",
       "改革开放"
     ],
-    "source": "China OS · 改革开放",
+    "source": "国际关系理论；China OS · registry.js；China OS · 现实主义；China OS · 改革开放",
     "initial": "X"
   },
   {
-    "id": "mod-finance-系统风险",
-    "term": "系统风险",
+    "id": "mod-linggong-系统压在他们身上",
+    "term": "系统压在他们身上",
     "aliases": [],
-    "category": "module",
-    "definition": "模块「金融系统」副题关键词：系统风险。",
+    "category": "gy",
+    "definition": "「系统压在他们身上」为 China OS 模块「零工经济人群」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「零工经济人群」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括零工经济人群。在国运/GY推演谱系中，系统压在他们身上作为可观测变量或结构隐喻，参与情景分支与尾部风险评估。",
     "context": [
       {
-        "moduleId": "finance",
-        "label": "金融系统",
-        "path": "/finance-system"
+        "moduleId": "linggong",
+        "label": "零工经济人群",
+        "path": "/modules/linggong"
       }
     ],
     "related": [
-      "金融系统"
+      "零工经济人群"
     ],
-    "source": "China OS · 金融系统",
+    "source": "China OS · 零工经济人群",
     "initial": "X"
   },
   {
@@ -10359,7 +7524,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "行业分布",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「民企500强」副题关键词：行业分布。",
+    "definition": "「行业分布」为 China OS 模块「民企500强」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「民企500强」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括民企500强。技术与产业维度上，行业分布关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "enterprise500",
@@ -10374,30 +7539,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "X"
   },
   {
-    "id": "mod-housing-行业周期",
-    "term": "行业周期",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「住房地产」副题关键词：行业周期。",
-    "context": [
-      {
-        "moduleId": "housing",
-        "label": "住房地产",
-        "path": "/housing"
-      }
-    ],
-    "related": [
-      "住房地产"
-    ],
-    "source": "China OS · 住房地产",
-    "initial": "X"
-  },
-  {
     "id": "idx-行业垂直模型",
     "term": "行业垂直模型。",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：行业垂直模型。。",
+    "definition": "「行业垂直模型。」为深度调研索引核心术语，叙事脉络见《人工智能与「人工智能+」行动》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -10414,7 +7560,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "行业模型",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「人工智能+」副题关键词：行业模型。",
+    "definition": "「行业模型」为 China OS 模块「人工智能+」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「人工智能+」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括人工智能+。技术与产业维度上，行业模型关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "aiplus",
@@ -10453,7 +7599,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "行政法规",
     "aliases": [],
     "category": "legal",
-    "definition": "国务院制定的规范性文件。",
+    "definition": "「行政法规」（法律政策）：国务院制定的规范性文件。在 China OS「policydocs」模块中作为分析锚点出现。法治与政策文本维度上，行政法规界定规范层级与合规边界。",
     "context": [
       {
         "moduleId": "policydocs",
@@ -10472,7 +7618,7 @@ export const GLOSSARY_ENTRIES = [
       "六廊六路"
     ],
     "category": "module",
-    "definition": "China OS 模块「一带一路」：六廊六路 · 中欧班列 · 互联互通。",
+    "definition": "China OS 功能模块「一带一路」聚焦六廊六路 · 中欧班列 · 互联互通。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括中欧班列、互联互通。",
     "context": [
       {
         "moduleId": "bri",
@@ -10484,7 +7630,7 @@ export const GLOSSARY_ENTRIES = [
       "中欧班列",
       "互联互通"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 一带一路",
     "initial": "Y"
   },
   {
@@ -10492,7 +7638,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "以旧换新",
     "aliases": [],
     "category": "module",
-    "definition": "模块「扩大内需」副题关键词：以旧换新。",
+    "definition": "「以旧换新」为 China OS 模块「扩大内需」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「扩大内需」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括扩大内需。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "consumption",
@@ -10523,28 +7669,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "重复博弈",
-      "可信承诺"
-    ],
-    "source": "博弈论 · 阿克塞尔罗德",
-    "initial": "Y"
-  },
-  {
-    "id": "mod-gametheory-以牙还牙",
-    "term": "以牙还牙",
-    "aliases": [],
-    "category": "econ",
-    "definition": "模块「博弈理论」副题关键词：以牙还牙。",
-    "context": [
-      {
-        "moduleId": "gametheory",
-        "label": "博弈理论",
-        "path": "/gametheory"
-      }
-    ],
-    "related": [
+      "可信承诺",
       "博弈理论"
     ],
-    "source": "China OS · 博弈理论",
+    "source": "博弈论 · 阿克塞尔罗德；China OS · 博弈理论",
     "initial": "Y"
   },
   {
@@ -10552,7 +7680,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "应急管理",
     "aliases": [],
     "category": "military",
-    "definition": "模块「公共安全」副题关键词：应急管理。",
+    "definition": "「应急管理」为 China OS 模块「公共安全」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「公共安全」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括公共安全。地缘与安全维度上，应急管理纳入成本收益比与能力—意图匹配的战略计算。",
     "context": [
       {
         "moduleId": "publicSafety",
@@ -10573,7 +7701,7 @@ export const GLOSSARY_ENTRIES = [
       "自由主义"
     ],
     "category": "econ",
-    "definition": "China OS 模块「意识形态」：自由主义 · 马克思 · 社会达尔文。",
+    "definition": "China OS 功能模块「意识形态」聚焦自由主义 · 马克思 · 社会达尔文。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括马克思、社会达尔文。",
     "context": [
       {
         "moduleId": "ideology",
@@ -10585,26 +7713,7 @@ export const GLOSSARY_ENTRIES = [
       "马克思",
       "社会达尔文"
     ],
-    "source": "China OS · registry.js",
-    "initial": "Y"
-  },
-  {
-    "id": "mod-yishixingtai-意识形态架构",
-    "term": "意识形态架构",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「合法性机器」副题关键词：意识形态架构。",
-    "context": [
-      {
-        "moduleId": "yishixingtai",
-        "label": "合法性机器",
-        "path": "/modules/yishixingtai"
-      }
-    ],
-    "related": [
-      "合法性机器"
-    ],
-    "source": "China OS · 合法性机器",
+    "source": "China OS · registry.js；China OS · 意识形态",
     "initial": "Y"
   },
   {
@@ -10612,7 +7721,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "有效投资",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「基础设施」副题关键词：有效投资。",
+    "definition": "「有效投资」为 China OS 模块「基础设施」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「基础设施」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括基础设施。技术与产业维度上，有效投资关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "infrastructure",
@@ -10646,28 +7755,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "特高压",
-      "新型储能"
-    ],
-    "source": "能源政策",
-    "initial": "Y"
-  },
-  {
-    "id": "mod-smartgrid-源网荷储",
-    "term": "源网荷储",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「智能电网」副题关键词：源网荷储。",
-    "context": [
-      {
-        "moduleId": "smartgrid",
-        "label": "智能电网",
-        "path": "/smartgrid"
-      }
-    ],
-    "related": [
+      "新型储能",
       "智能电网"
     ],
-    "source": "China OS · 智能电网",
+    "source": "能源政策；China OS · 智能电网",
     "initial": "Y"
   },
   {
@@ -10675,7 +7766,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "营商环境",
     "aliases": [],
     "category": "politics",
-    "definition": "模块「法治建设」副题关键词：营商环境。",
+    "definition": "「营商环境」为 China OS 模块「法治建设」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「法治建设」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括法治建设。从权力物理学视角，营商环境刻画央地博弈、激励结构与制度穿透力的耦合关系。",
     "context": [
       {
         "moduleId": "ruleoflaw",
@@ -10709,28 +7800,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "赛博反馈",
-      "意识形态"
-    ],
-    "source": "中国深度调研系列",
-    "initial": "Y"
-  },
-  {
-    "id": "mod-digitalGiantWeb-语义防火墙",
-    "term": "语义防火墙",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「数字巨网」副题关键词：语义防火墙。",
-    "context": [
-      {
-        "moduleId": "digitalGiantWeb",
-        "label": "数字巨网",
-        "path": "/digital-giant-web"
-      }
-    ],
-    "related": [
+      "意识形态",
       "数字巨网"
     ],
-    "source": "China OS · 数字巨网",
+    "source": "中国深度调研系列；China OS · 数字巨网",
     "initial": "Y"
   },
   {
@@ -10738,7 +7811,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "越线告警",
     "aliases": [],
     "category": "module",
-    "definition": "模块「全局监测台」副题关键词：越线告警。",
+    "definition": "「越线告警」为 China OS 模块「全局监测台」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「全局监测台」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括全局监测台。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "watchtower",
@@ -10759,7 +7832,7 @@ export const GLOSSARY_ENTRIES = [
       "9073"
     ],
     "category": "module",
-    "definition": "China OS 模块「银发经济」：9073 · 养老服务 · 适老改造。",
+    "definition": "China OS 功能模块「银发经济」聚焦9073 · 养老服务 · 适老改造。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括养老服务、适老改造。",
     "context": [
       {
         "moduleId": "silverEconomy",
@@ -10771,7 +7844,7 @@ export const GLOSSARY_ENTRIES = [
       "养老服务",
       "适老改造"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 银发经济",
     "initial": "Y"
   },
   {
@@ -10789,28 +7862,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "化债方案",
-      "专项债"
-    ],
-    "source": "地方债研究",
-    "initial": "Y"
-  },
-  {
-    "id": "mod-debtHeatmap-隐性债务",
-    "term": "隐性债务",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「地方债务」副题关键词：隐性债务。",
-    "context": [
-      {
-        "moduleId": "debtHeatmap",
-        "label": "地方债务",
-        "path": "/debt"
-      }
-    ],
-    "related": [
+      "专项债",
       "地方债务"
     ],
-    "source": "China OS · 地方债务",
+    "source": "地方债研究；China OS · 地方债务",
     "initial": "Y"
   },
   {
@@ -10838,7 +7893,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "专项债",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「基础设施」副题关键词：专项债。",
+    "definition": "「专项债」为 China OS 模块「基础设施」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「基础设施」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括基础设施。技术与产业维度上，专项债关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "infrastructure",
@@ -10859,7 +7914,7 @@ export const GLOSSARY_ENTRIES = [
       "重大工程"
     ],
     "category": "module",
-    "definition": "China OS 模块「中医药」：重大工程 · 传承创新 · 治未病。",
+    "definition": "China OS 功能模块「中医药」聚焦重大工程 · 传承创新 · 治未病。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括传承创新、治未病。",
     "context": [
       {
         "moduleId": "tcmHealth",
@@ -10871,7 +7926,7 @@ export const GLOSSARY_ENTRIES = [
       "传承创新",
       "治未病"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 中医药",
     "initial": "Z"
   },
   {
@@ -10879,7 +7934,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "中国政要",
     "aliases": [],
     "category": "module",
-    "definition": "talent 模块：结构化政要人物图谱。",
+    "definition": "「中国政要」为人才精英库（talent）子域标签：talent 模块：结构化政要人物图谱。该分类用于结构化检索政要、学者、资本逻辑与海外精英等人物图谱。",
     "context": [
       {
         "moduleId": "talent",
@@ -10896,7 +7951,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "中国窗口",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「中等收入陷阱」副题关键词：中国窗口。",
+    "definition": "「中国窗口」为 China OS 模块「中等收入陷阱」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「中等收入陷阱」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括中等收入陷阱。从成本—收益框架看，中国窗口连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "middleincometrap",
@@ -10917,7 +7972,7 @@ export const GLOSSARY_ENTRIES = [
       "全局总揽"
     ],
     "category": "module",
-    "definition": "China OS 模块「中枢看板」：全局总揽 · 模块直达 · 实时大屏。",
+    "definition": "China OS 功能模块「中枢看板」聚焦全局总揽 · 模块直达 · 实时大屏。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括模块直达、实时大屏。",
     "context": [
       {
         "moduleId": "dashboard",
@@ -10929,7 +7984,7 @@ export const GLOSSARY_ENTRIES = [
       "模块直达",
       "实时大屏"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 中枢看板",
     "initial": "Z"
   },
   {
@@ -10937,7 +7992,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "中欧班列",
     "aliases": [],
     "category": "module",
-    "definition": "模块「一带一路」副题关键词：中欧班列。",
+    "definition": "「中欧班列」为 China OS 模块「一带一路」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「一带一路」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括一带一路。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "bri",
@@ -10954,7 +8009,9 @@ export const GLOSSARY_ENTRIES = [
   {
     "id": "中等收入陷阱",
     "term": "中等收入陷阱",
-    "aliases": [],
+    "aliases": [
+      "韩国跨越"
+    ],
     "category": "econ",
     "definition": "人均GDP达中等水平后增长停滞的结构困境，跨越需制度与产业升级。",
     "context": [
@@ -10966,69 +8023,11 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "全要素生产率",
-      "韩国跨越"
-    ],
-    "source": "发展经济学",
-    "initial": "Z"
-  },
-  {
-    "id": "mod-middleincometrap",
-    "term": "中等收入陷阱",
-    "aliases": [
-      "韩国跨越"
-    ],
-    "category": "econ",
-    "definition": "China OS 模块「中等收入陷阱」：韩国跨越 · 拉美停滞 · 中国窗口。",
-    "context": [
-      {
-        "moduleId": "middleincometrap",
-        "label": "中等收入陷阱",
-        "path": "/middleincometrap"
-      }
-    ],
-    "related": [
+      "韩国跨越",
       "拉美停滞",
       "中国窗口"
     ],
-    "source": "China OS · registry.js",
-    "initial": "Z"
-  },
-  {
-    "id": "mod-diplomacy-中美博弈",
-    "term": "中美博弈",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「外交博弈」副题关键词：中美博弈。",
-    "context": [
-      {
-        "moduleId": "diplomacy",
-        "label": "外交博弈",
-        "path": "/diplomacy"
-      }
-    ],
-    "related": [
-      "外交博弈"
-    ],
-    "source": "China OS · 外交博弈",
-    "initial": "Z"
-  },
-  {
-    "id": "mod-benchmark-中美日德",
-    "term": "中美日德",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「国际对标」副题关键词：中美日德。",
-    "context": [
-      {
-        "moduleId": "benchmark",
-        "label": "国际对标",
-        "path": "/benchmark"
-      }
-    ],
-    "related": [
-      "国际对标"
-    ],
-    "source": "China OS · 国际对标",
+    "source": "发展经济学；China OS · registry.js；China OS · 中等收入陷阱",
     "initial": "Z"
   },
   {
@@ -11036,7 +8035,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "主战装备",
     "aliases": [],
     "category": "military",
-    "definition": "模块「军事力量」副题关键词：主战装备。",
+    "definition": "「主战装备」为 China OS 模块「军事力量」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「军事力量」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括军事力量。地缘与安全维度上，主战装备纳入成本收益比与能力—意图匹配的战略计算。",
     "context": [
       {
         "moduleId": "military",
@@ -11071,30 +8070,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "Z"
   },
   {
-    "id": "mod-contradictions-主次矛盾",
-    "term": "主次矛盾",
-    "aliases": [],
-    "category": "econ",
-    "definition": "模块「矛盾论」副题关键词：主次矛盾。",
-    "context": [
-      {
-        "moduleId": "contradictions",
-        "label": "矛盾论",
-        "path": "/contradictions"
-      }
-    ],
-    "related": [
-      "矛盾论"
-    ],
-    "source": "China OS · 矛盾论",
-    "initial": "Z"
-  },
-  {
     "id": "mod-marketPulse-债市",
     "term": "债市",
     "aliases": [],
     "category": "module",
-    "definition": "模块「全球资产脉搏」副题关键词：债市。",
+    "definition": "「债市」为 China OS 模块「全球资产脉搏」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「全球资产脉搏」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括全球资产脉搏。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "marketPulse",
@@ -11115,7 +8095,7 @@ export const GLOSSARY_ENTRIES = [
       "自贸试验"
     ],
     "category": "module",
-    "definition": "China OS 模块「制度开放」：自贸试验 · 负面清单 · 规则对接。",
+    "definition": "China OS 功能模块「制度开放」聚焦自贸试验 · 负面清单 · 规则对接。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括负面清单、规则对接。",
     "context": [
       {
         "moduleId": "instOpen",
@@ -11127,7 +8107,7 @@ export const GLOSSARY_ENTRIES = [
       "负面清单",
       "规则对接"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 制度开放",
     "initial": "Z"
   },
   {
@@ -11135,7 +8115,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "制度红利",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：制度红利。",
+    "definition": "「制度红利」为深度调研索引核心术语，叙事脉络见《法治建设与司法现代化》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -11154,7 +8134,7 @@ export const GLOSSARY_ENTRIES = [
       "规模优势"
     ],
     "category": "tech",
-    "definition": "China OS 模块「制造强国」：规模优势 · GVC位势 · 转型升级。",
+    "definition": "China OS 功能模块「制造强国」聚焦规模优势 · GVC位势 · 转型升级。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括GVC位势、转型升级。",
     "context": [
       {
         "moduleId": "manufacturing",
@@ -11166,45 +8146,7 @@ export const GLOSSARY_ENTRIES = [
       "GVC位势",
       "转型升级"
     ],
-    "source": "China OS · registry.js",
-    "initial": "Z"
-  },
-  {
-    "id": "mod-military-战区联合",
-    "term": "战区联合",
-    "aliases": [],
-    "category": "military",
-    "definition": "模块「军事力量」副题关键词：战区联合。",
-    "context": [
-      {
-        "moduleId": "military",
-        "label": "军事力量",
-        "path": "/military"
-      }
-    ],
-    "related": [
-      "军事力量"
-    ],
-    "source": "China OS · 军事力量",
-    "initial": "Z"
-  },
-  {
-    "id": "mod-soe-战略底座",
-    "term": "战略底座",
-    "aliases": [],
-    "category": "politics",
-    "definition": "模块「国有资本」副题关键词：战略底座。",
-    "context": [
-      {
-        "moduleId": "soe",
-        "label": "国有资本",
-        "path": "/soe"
-      }
-    ],
-    "related": [
-      "国有资本"
-    ],
-    "source": "China OS · 国有资本",
+    "source": "China OS · registry.js；China OS · 制造强国",
     "initial": "Z"
   },
   {
@@ -11212,7 +8154,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "战略投资",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「超级工程」副题关键词：战略投资。",
+    "definition": "「战略投资」为 China OS 模块「超级工程」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「超级工程」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括超级工程。技术与产业维度上，战略投资关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "megaprojects",
@@ -11231,7 +8173,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "执行算法",
     "aliases": [],
     "category": "politics",
-    "definition": "模块「政府体系」副题关键词：执行算法。",
+    "definition": "「执行算法」为 China OS 模块「政府体系」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「政府体系」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括政府体系。从权力物理学视角，执行算法刻画央地博弈、激励结构与制度穿透力的耦合关系。",
     "context": [
       {
         "moduleId": "govsystem",
@@ -11248,7 +8190,9 @@ export const GLOSSARY_ENTRIES = [
   {
     "id": "政令文库",
     "term": "政令文库",
-    "aliases": [],
+    "aliases": [
+      "政策文件"
+    ],
     "category": "module",
     "definition": "政策文件与法律条文的结构化语料库与阅读器。",
     "context": [
@@ -11260,72 +8204,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "法治建设",
-      "文本挖掘"
+      "文本挖掘",
+      "法律条文"
     ],
-    "source": "China OS",
-    "initial": "Z"
-  },
-  {
-    "id": "mod-policydocs",
-    "term": "政令文库",
-    "aliases": [
-      "政策文件"
-    ],
-    "category": "module",
-    "definition": "China OS 模块「政令文库」：政策文件 · 法律条文 · 文本挖掘。",
-    "context": [
-      {
-        "moduleId": "policydocs",
-        "label": "政令文库",
-        "path": "/policydocs"
-      }
-    ],
-    "related": [
-      "法律条文",
-      "文本挖掘"
-    ],
-    "source": "China OS · registry.js",
-    "initial": "Z"
-  },
-  {
-    "id": "mod-govsystem",
-    "term": "政府体系",
-    "aliases": [
-      "压力体制"
-    ],
-    "category": "politics",
-    "definition": "China OS 模块「政府体系」：压力体制 · 执行算法 · 央地关系。",
-    "context": [
-      {
-        "moduleId": "govsystem",
-        "label": "政府体系",
-        "path": "/govsystem"
-      }
-    ],
-    "related": [
-      "执行算法",
-      "央地关系"
-    ],
-    "source": "China OS · registry.js",
-    "initial": "Z"
-  },
-  {
-    "id": "mod-policydocs-政策文件",
-    "term": "政策文件",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「政令文库」副题关键词：政策文件。",
-    "context": [
-      {
-        "moduleId": "policydocs",
-        "label": "政令文库",
-        "path": "/policydocs"
-      }
-    ],
-    "related": [
-      "政令文库"
-    ],
-    "source": "China OS · 政令文库",
+    "source": "China OS；China OS · registry.js；China OS · 政令文库",
     "initial": "Z"
   },
   {
@@ -11333,7 +8215,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "政策模拟",
     "aliases": [],
     "category": "module",
-    "definition": "模块「治国沙盒」副题关键词：政策模拟。",
+    "definition": "「政策模拟」为 China OS 模块「治国沙盒」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「治国沙盒」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括治国沙盒。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "sandbox",
@@ -11352,7 +8234,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "治乱循环",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：治乱循环。",
+    "definition": "「治乱循环」为深度调研索引核心术语，叙事脉络见《地理宿命与天下观：中华文明的物理底座与地缘基因》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -11367,7 +8249,9 @@ export const GLOSSARY_ENTRIES = [
   {
     "id": "治国沙盒",
     "term": "治国沙盒",
-    "aliases": [],
+    "aliases": [
+      "人才配置"
+    ],
     "category": "module",
     "definition": "人才配置、情景推演与政策模拟的交互训练环境。",
     "context": [
@@ -11379,31 +8263,11 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "全局监测台",
-      "政令文库"
-    ],
-    "source": "China OS",
-    "initial": "Z"
-  },
-  {
-    "id": "mod-sandbox",
-    "term": "治国沙盒",
-    "aliases": [
-      "人才配置"
-    ],
-    "category": "module",
-    "definition": "China OS 模块「治国沙盒」：人才配置 · 情景推演 · 政策模拟。",
-    "context": [
-      {
-        "moduleId": "sandbox",
-        "label": "治国沙盒",
-        "path": "/sandbox"
-      }
-    ],
-    "related": [
+      "政令文库",
       "情景推演",
       "政策模拟"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS；China OS · registry.js；China OS · 治国沙盒",
     "initial": "Z"
   },
   {
@@ -11411,7 +8275,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "治未病",
     "aliases": [],
     "category": "module",
-    "definition": "模块「中医药」副题关键词：治未病。",
+    "definition": "「治未病」为 China OS 模块「中医药」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「中医药」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括中医药。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "tcmHealth",
@@ -11430,7 +8294,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "治水帝国",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：治水帝国。",
+    "definition": "「治水帝国」为深度调研索引核心术语，叙事脉络见《地理宿命与天下观：中华文明的物理底座与地缘基因》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -11446,22 +8310,31 @@ export const GLOSSARY_ENTRIES = [
     "id": "mod-governance",
     "term": "治理现代化",
     "aliases": [
+      "基层治理",
       "网格管理"
     ],
     "category": "politics",
-    "definition": "China OS 模块「治理现代化」：网格管理 · 数字政府 · 多元共治。",
+    "definition": "China OS 功能模块「治理现代化」聚焦网格管理 · 数字政府 · 多元共治。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括数字政府、多元共治、综治中心、枫桥经验、基层治理。",
     "context": [
       {
         "moduleId": "governance",
         "label": "治理现代化",
         "path": "/governance"
+      },
+      {
+        "moduleId": "socialgov",
+        "label": "基层治理",
+        "path": "/socialgov"
       }
     ],
     "related": [
       "数字政府",
-      "多元共治"
+      "多元共治",
+      "综治中心",
+      "枫桥经验",
+      "基层治理"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 治理现代化；China OS · 基层治理",
     "initial": "Z"
   },
   {
@@ -11469,7 +8342,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "治理透视",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「民企500强」副题关键词：治理透视。",
+    "definition": "「治理透视」为 China OS 模块「民企500强」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「民企500强」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括民企500强。技术与产业维度上，治理透视关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "enterprise500",
@@ -11500,26 +8373,7 @@ export const GLOSSARY_ENTRIES = [
       "耐心资本",
       "资本市场"
     ],
-    "source": "资本市场改革",
-    "initial": "Z"
-  },
-  {
-    "id": "mod-capitalMarket-注册制",
-    "term": "注册制",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「资本市场」副题关键词：注册制。",
-    "context": [
-      {
-        "moduleId": "capitalMarket",
-        "label": "资本市场",
-        "path": "/capital-market"
-      }
-    ],
-    "related": [
-      "资本市场"
-    ],
-    "source": "China OS · 资本市场",
+    "source": "资本市场改革；China OS · 资本市场",
     "initial": "Z"
   },
   {
@@ -11527,7 +8381,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "知识密集",
     "aliases": [],
     "category": "module",
-    "definition": "模块「服务贸易」副题关键词：知识密集。",
+    "definition": "「知识密集」为 China OS 模块「服务贸易」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「服务贸易」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括服务贸易。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "serviceTrade",
@@ -11546,7 +8400,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "知识生产",
     "aliases": [],
     "category": "module",
-    "definition": "talent 模块：院士、学者、文化精英等。",
+    "definition": "「知识生产」为人才精英库（talent）子域标签：talent 模块：院士、学者、文化精英等。该分类用于结构化检索政要、学者、资本逻辑与海外精英等人物图谱。",
     "context": [
       {
         "moduleId": "talent",
@@ -11583,7 +8437,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "综治中心",
     "aliases": [],
     "category": "module",
-    "definition": "模块「基层治理」副题关键词：综治中心。",
+    "definition": "「综治中心」为 China OS 模块「基层治理」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「基层治理」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括基层治理。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "socialgov",
@@ -11602,7 +8456,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "自主信创",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「工业软件」副题关键词：自主信创。",
+    "definition": "「自主信创」为 China OS 模块「工业软件」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「工业软件」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括工业软件。技术与产业维度上，自主信创关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "industrysoftware",
@@ -11621,7 +8475,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "自主可控",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「供应链」副题关键词：自主可控。",
+    "definition": "「自主可控」为 China OS 模块「供应链」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「供应链」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括供应链。技术与产业维度上，自主可控关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "supplychain",
@@ -11640,7 +8494,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "自主器械",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「医疗装备」副题关键词：自主器械。",
+    "definition": "「自主器械」为 China OS 模块「医疗装备」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「医疗装备」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括医疗装备。技术与产业维度上，自主器械关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "medequipment",
@@ -11659,7 +8513,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "自主治理",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「公地悲剧」副题关键词：自主治理。",
+    "definition": "「自主治理」为 China OS 模块「公地悲剧」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「公地悲剧」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括公地悲剧。从成本—收益框架看，自主治理连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "commons",
@@ -11674,30 +8528,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "Z"
   },
   {
-    "id": "mod-ideology-自由主义",
-    "term": "自由主义",
-    "aliases": [],
-    "category": "econ",
-    "definition": "模块「意识形态」副题关键词：自由主义。",
-    "context": [
-      {
-        "moduleId": "ideology",
-        "label": "意识形态",
-        "path": "/ideology"
-      }
-    ],
-    "related": [
-      "意识形态"
-    ],
-    "source": "China OS · 意识形态",
-    "initial": "Z"
-  },
-  {
     "id": "mod-dissipative-自组织",
     "term": "自组织",
     "aliases": [],
     "category": "econ",
-    "definition": "模块「耗散结构」副题关键词：自组织。",
+    "definition": "「自组织」为 China OS 模块「耗散结构」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「耗散结构」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括耗散结构。从成本—收益框架看，自组织连接宏观约束、要素配置与增长路径的权衡节点。",
     "context": [
       {
         "moduleId": "dissipative",
@@ -11712,52 +8547,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "Z"
   },
   {
-    "id": "mod-instOpen-自贸试验",
-    "term": "自贸试验",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「制度开放」副题关键词：自贸试验。",
-    "context": [
-      {
-        "moduleId": "instOpen",
-        "label": "制度开放",
-        "path": "/inst-open"
-      }
-    ],
-    "related": [
-      "制度开放"
-    ],
-    "source": "China OS · 制度开放",
-    "initial": "Z"
-  },
-  {
-    "id": "mod-capitalMarket",
-    "term": "资本市场",
-    "aliases": [
-      "耐心资本"
-    ],
-    "category": "module",
-    "definition": "China OS 模块「资本市场」：耐心资本 · 注册制 · 创投。",
-    "context": [
-      {
-        "moduleId": "capitalMarket",
-        "label": "资本市场",
-        "path": "/capital-market"
-      }
-    ],
-    "related": [
-      "注册制",
-      "创投"
-    ],
-    "source": "China OS · registry.js",
-    "initial": "Z"
-  },
-  {
     "id": "mod-offshore-资本通道",
     "term": "资本通道",
     "aliases": [],
     "category": "module",
-    "definition": "模块「港澳离岸」副题关键词：资本通道。",
+    "definition": "「资本通道」为 China OS 模块「港澳离岸」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「港澳离岸」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括港澳离岸。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "offshore",
@@ -11776,7 +8570,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "资本逻辑",
     "aliases": [],
     "category": "module",
-    "definition": "talent 模块：商业精英与民企关联。",
+    "definition": "「资本逻辑」为人才精英库（talent）子域标签：talent 模块：商业精英与民企关联。该分类用于结构化检索政要、学者、资本逻辑与海外精英等人物图谱。",
     "context": [
       {
         "moduleId": "talent",
@@ -11793,7 +8587,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "资源主权",
     "aliases": [],
     "category": "module",
-    "definition": "模块「海外资源」副题关键词：资源主权。",
+    "definition": "「资源主权」为 China OS 模块「海外资源」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「海外资源」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括海外资源。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "resources",
@@ -11812,7 +8606,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "资源博弈",
     "aliases": [],
     "category": "module",
-    "definition": "模块「极地战略」副题关键词：资源博弈。",
+    "definition": "「资源博弈」为 China OS 模块「极地战略」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「极地战略」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括极地战略。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "polar",
@@ -11831,7 +8625,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "转型升级",
     "aliases": [],
     "category": "tech",
-    "definition": "模块「制造强国」副题关键词：转型升级。",
+    "definition": "「转型升级」为 China OS 模块「制造强国」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「制造强国」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括制造强国。技术与产业维度上，转型升级关联自主可控、换道超车与算力/能源等硬约束。",
     "context": [
       {
         "moduleId": "manufacturing",
@@ -11850,7 +8644,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "转型金融",
     "aliases": [],
     "category": "module",
-    "definition": "模块「绿色金融」副题关键词：转型金融。",
+    "definition": "「转型金融」为 China OS 模块「绿色金融」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「绿色金融」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括绿色金融。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "greenfinance",
@@ -11879,28 +8673,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "分税制",
-      "四大板块"
-    ],
-    "source": "财政体制",
-    "initial": "Z"
-  },
-  {
-    "id": "mod-regional-转移支付",
-    "term": "转移支付",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「区域协调」副题关键词：转移支付。",
-    "context": [
-      {
-        "moduleId": "regional",
-        "label": "区域协调",
-        "path": "/regional"
-      }
-    ],
-    "related": [
+      "四大板块",
       "区域协调"
     ],
-    "source": "China OS · 区域协调",
+    "source": "财政体制；China OS · 区域协调",
     "initial": "Z"
   },
   {
@@ -11918,47 +8694,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "以牙还牙",
-      "纳什均衡"
-    ],
-    "source": "博弈论",
-    "initial": "Z"
-  },
-  {
-    "id": "mod-gametheory-重复博弈",
-    "term": "重复博弈",
-    "aliases": [],
-    "category": "econ",
-    "definition": "模块「博弈理论」副题关键词：重复博弈。",
-    "context": [
-      {
-        "moduleId": "gametheory",
-        "label": "博弈理论",
-        "path": "/gametheory"
-      }
-    ],
-    "related": [
+      "纳什均衡",
       "博弈理论"
     ],
-    "source": "China OS · 博弈理论",
-    "initial": "Z"
-  },
-  {
-    "id": "mod-tcmHealth-重大工程",
-    "term": "重大工程",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「中医药」副题关键词：重大工程。",
-    "context": [
-      {
-        "moduleId": "tcmHealth",
-        "label": "中医药",
-        "path": "/tcm-health"
-      }
-    ],
-    "related": [
-      "中医药"
-    ],
-    "source": "China OS · 中医药",
+    "source": "博弈论；China OS · 博弈理论",
     "initial": "Z"
   },
   {
@@ -11968,7 +8707,7 @@ export const GLOSSARY_ENTRIES = [
       "老工业基地"
     ],
     "category": "module",
-    "definition": "China OS 模块「东北振兴」：老工业基地 · 全面振兴 · 十五五。",
+    "definition": "China OS 功能模块「东北振兴」聚焦老工业基地 · 全面振兴 · 十五五。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括全面振兴、十五五。",
     "context": [
       {
         "moduleId": "northeastRevival",
@@ -11980,13 +8719,15 @@ export const GLOSSARY_ENTRIES = [
       "全面振兴",
       "十五五"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 东北振兴",
     "initial": "北"
   },
   {
     "id": "东数西算",
     "term": "东数西算",
-    "aliases": [],
+    "aliases": [
+      "算力设施"
+    ],
     "category": "tech",
     "definition": "将东部算力需求向西部能源富集区调度，实现算力与绿电协同的国家工程。",
     "context": [
@@ -12003,47 +8744,11 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "算力主权",
-      "智算中心"
-    ],
-    "source": "国家算力枢纽工程",
-    "initial": "北"
-  },
-  {
-    "id": "mod-dataElement-东数西算",
-    "term": "东数西算",
-    "aliases": [],
-    "category": "module",
-    "definition": "模块「数据要素」副题关键词：东数西算。",
-    "context": [
-      {
-        "moduleId": "dataElement",
-        "label": "数据要素",
-        "path": "/data-element"
-      }
-    ],
-    "related": [
-      "数据要素"
-    ],
-    "source": "China OS · 数据要素",
-    "initial": "北"
-  },
-  {
-    "id": "mod-computing-东数西算",
-    "term": "东数西算",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「算力设施」副题关键词：东数西算。",
-    "context": [
-      {
-        "moduleId": "computing",
-        "label": "算力设施",
-        "path": "/computing"
-      }
-    ],
-    "related": [
+      "智算中心",
+      "数据要素",
       "算力设施"
     ],
-    "source": "China OS · 算力设施",
+    "source": "国家算力枢纽工程；China OS · registry.js；China OS · 数据要素；China OS · 算力设施",
     "initial": "北"
   },
   {
@@ -12053,7 +8758,7 @@ export const GLOSSARY_ENTRIES = [
       "北极航道"
     ],
     "category": "module",
-    "definition": "China OS 模块「极地战略」：北极航道 · 极地科考 · 资源博弈。",
+    "definition": "China OS 功能模块「极地战略」聚焦北极航道 · 极地科考 · 资源博弈。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括极地科考、资源博弈。",
     "context": [
       {
         "moduleId": "polar",
@@ -12065,7 +8770,7 @@ export const GLOSSARY_ENTRIES = [
       "极地科考",
       "资源博弈"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 极地战略",
     "initial": "地"
   },
   {
@@ -12073,7 +8778,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "极地科考",
     "aliases": [],
     "category": "module",
-    "definition": "模块「极地战略」副题关键词：极地科考。",
+    "definition": "「极地科考」为 China OS 模块「极地战略」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「极地战略」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括极地战略。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "polar",
@@ -12088,11 +8793,30 @@ export const GLOSSARY_ENTRIES = [
     "initial": "地"
   },
   {
+    "id": "mod-glossary-模块交叉链接",
+    "term": "模块交叉链接",
+    "aliases": [],
+    "category": "module",
+    "definition": "「模块交叉链接」为 China OS 模块「术语词典」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「术语词典」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括术语词典。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
+    "context": [
+      {
+        "moduleId": "glossary",
+        "label": "术语词典",
+        "path": "/glossary"
+      }
+    ],
+    "related": [
+      "术语词典"
+    ],
+    "source": "China OS · 术语词典",
+    "initial": "块"
+  },
+  {
     "id": "mod-dashboard-模块直达",
     "term": "模块直达",
     "aliases": [],
     "category": "module",
-    "definition": "模块「中枢看板」副题关键词：模块直达。",
+    "definition": "「模块直达」为 China OS 模块「中枢看板」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「中枢看板」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括中枢看板。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "dashboard",
@@ -12113,7 +8837,7 @@ export const GLOSSARY_ENTRIES = [
       "谢林"
     ],
     "category": "econ",
-    "definition": "China OS 模块「威慑战略」：谢林 · 可信承诺 · 边缘政策。",
+    "definition": "China OS 功能模块「威慑战略」聚焦谢林 · 可信承诺 · 边缘政策。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括可信承诺、边缘政策。",
     "context": [
       {
         "moduleId": "deterrence",
@@ -12125,7 +8849,7 @@ export const GLOSSARY_ENTRIES = [
       "可信承诺",
       "边缘政策"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 威慑战略",
     "initial": "慑"
   },
   {
@@ -12133,7 +8857,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "威斯特伐利亚对照。",
     "aliases": [],
     "category": "research",
-    "definition": "中国深度调研系列索引关键词：威斯特伐利亚对照。。",
+    "definition": "「威斯特伐利亚对照。」为深度调研索引核心术语，叙事脉络见《地理宿命与天下观：中华文明的物理底座与地缘基因》。在 China OS「depth」模块中作为分析锚点出现。该术语服务于穿透宏观叙事、解析制度底层代码的分析传统，强调物理与财政约束。",
     "context": [
       {
         "moduleId": "depth",
@@ -12152,7 +8876,7 @@ export const GLOSSARY_ENTRIES = [
       "行业周期"
     ],
     "category": "module",
-    "definition": "China OS 模块「住房地产」：行业周期 · 保障房 · 三大工程。",
+    "definition": "China OS 功能模块「住房地产」聚焦行业周期 · 保障房 · 三大工程。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括保障房、三大工程。",
     "context": [
       {
         "moduleId": "housing",
@@ -12164,13 +8888,15 @@ export const GLOSSARY_ENTRIES = [
       "保障房",
       "三大工程"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 住房地产",
     "initial": "房"
   },
   {
     "id": "委托代理",
     "term": "委托代理",
-    "aliases": [],
+    "aliases": [
+      "信息不对称"
+    ],
     "category": "econ",
     "definition": "委托人通过契约与激励让代理人行动，但面临信息不对称与道德风险。",
     "context": [
@@ -12184,29 +8910,7 @@ export const GLOSSARY_ENTRIES = [
       "激励相容",
       "道德风险"
     ],
-    "source": "经济学",
-    "initial": "托"
-  },
-  {
-    "id": "mod-principalagent",
-    "term": "委托代理",
-    "aliases": [
-      "信息不对称"
-    ],
-    "category": "econ",
-    "definition": "China OS 模块「委托代理」：信息不对称 · 激励相容 · 道德风险。",
-    "context": [
-      {
-        "moduleId": "principalagent",
-        "label": "委托代理",
-        "path": "/principalagent"
-      }
-    ],
-    "related": [
-      "激励相容",
-      "道德风险"
-    ],
-    "source": "China OS · registry.js",
+    "source": "经济学；China OS · registry.js；China OS · 委托代理",
     "initial": "托"
   },
   {
@@ -12216,7 +8920,7 @@ export const GLOSSARY_ENTRIES = [
       "神经接口"
     ],
     "category": "tech",
-    "definition": "China OS 模块「脑机接口」：神经接口 · 数据主权 · 人机融合。",
+    "definition": "China OS 功能模块「脑机接口」聚焦神经接口 · 数据主权 · 人机融合。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括数据主权、人机融合。",
     "context": [
       {
         "moduleId": "neural",
@@ -12228,7 +8932,7 @@ export const GLOSSARY_ENTRIES = [
       "数据主权",
       "人机融合"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 脑机接口",
     "initial": "未"
   },
   {
@@ -12238,7 +8942,7 @@ export const GLOSSARY_ENTRIES = [
       "县域经济"
     ],
     "category": "module",
-    "definition": "China OS 模块「乡村振兴」：县域经济 · 土地制度 · 城乡融合。",
+    "definition": "China OS 功能模块「乡村振兴」聚焦县域经济 · 土地制度 · 城乡融合。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括土地制度、城乡融合。",
     "context": [
       {
         "moduleId": "rural",
@@ -12250,7 +8954,7 @@ export const GLOSSARY_ENTRIES = [
       "土地制度",
       "城乡融合"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 乡村振兴",
     "initial": "村"
   },
   {
@@ -12260,7 +8964,7 @@ export const GLOSSARY_ENTRIES = [
       "兴边富民"
     ],
     "category": "module",
-    "definition": "China OS 模块「边疆治理」：兴边富民 · 对口支援 · 共同体。",
+    "definition": "China OS 功能模块「边疆治理」聚焦兴边富民 · 对口支援 · 共同体。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括对口支援、共同体。",
     "context": [
       {
         "moduleId": "frontierGov",
@@ -12272,7 +8976,7 @@ export const GLOSSARY_ENTRIES = [
       "对口支援",
       "共同体"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 边疆治理",
     "initial": "疆"
   },
   {
@@ -12292,49 +8996,8 @@ export const GLOSSARY_ENTRIES = [
       "可信承诺",
       "威慑战略"
     ],
-    "source": "谢林 · 威慑",
+    "source": "谢林 · 威慑；China OS · 威慑战略",
     "initial": "疆"
-  },
-  {
-    "id": "mod-deterrence-边缘政策",
-    "term": "边缘政策",
-    "aliases": [],
-    "category": "econ",
-    "definition": "模块「威慑战略」副题关键词：边缘政策。",
-    "context": [
-      {
-        "moduleId": "deterrence",
-        "label": "威慑战略",
-        "path": "/deterrence"
-      }
-    ],
-    "related": [
-      "威慑战略"
-    ],
-    "source": "China OS · 威慑战略",
-    "initial": "疆"
-  },
-  {
-    "id": "mod-healthcare",
-    "term": "医疗医保",
-    "aliases": [
-      "DRG"
-    ],
-    "category": "module",
-    "definition": "China OS 模块「医疗医保」：DRG · 药品集采 · 分级诊疗。",
-    "context": [
-      {
-        "moduleId": "healthcare",
-        "label": "医疗医保",
-        "path": "/healthcare"
-      }
-    ],
-    "related": [
-      "药品集采",
-      "分级诊疗"
-    ],
-    "source": "China OS · registry.js",
-    "initial": "疗"
   },
   {
     "id": "mod-medequipment",
@@ -12343,7 +9006,7 @@ export const GLOSSARY_ENTRIES = [
       "高端影像"
     ],
     "category": "tech",
-    "definition": "China OS 模块「医疗装备」：高端影像 · 进口替代 · 自主器械。",
+    "definition": "China OS 功能模块「医疗装备」聚焦高端影像 · 进口替代 · 自主器械。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括进口替代、自主器械。",
     "context": [
       {
         "moduleId": "medequipment",
@@ -12355,7 +9018,7 @@ export const GLOSSARY_ENTRIES = [
       "进口替代",
       "自主器械"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 医疗装备",
     "initial": "疗"
   },
   {
@@ -12365,7 +9028,7 @@ export const GLOSSARY_ENTRIES = [
       "主次矛盾"
     ],
     "category": "econ",
-    "definition": "China OS 模块「矛盾论」：主次矛盾 · 对立统一 · 社会矛盾体。",
+    "definition": "China OS 功能模块「矛盾论」聚焦主次矛盾 · 对立统一 · 社会矛盾体。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括对立统一、社会矛盾体。",
     "context": [
       {
         "moduleId": "contradictions",
@@ -12377,7 +9040,7 @@ export const GLOSSARY_ENTRIES = [
       "对立统一",
       "社会矛盾体"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 矛盾论",
     "initial": "盾"
   },
   {
@@ -12387,7 +9050,7 @@ export const GLOSSARY_ENTRIES = [
       "教育链"
     ],
     "category": "tech",
-    "definition": "China OS 模块「教科人才」：教育链 · 科技链 · 人才链。",
+    "definition": "China OS 功能模块「教科人才」聚焦教育链 · 科技链 · 人才链。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括科技链、人才链。",
     "context": [
       {
         "moduleId": "eduSciTalent",
@@ -12399,7 +9062,7 @@ export const GLOSSARY_ENTRIES = [
       "科技链",
       "人才链"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 教科人才",
     "initial": "育"
   },
   {
@@ -12409,7 +9072,7 @@ export const GLOSSARY_ENTRIES = [
       "普职分流"
     ],
     "category": "module",
-    "definition": "China OS 模块「教育体系」：普职分流 · 高考改革 · 人才培养。",
+    "definition": "China OS 功能模块「教育体系」聚焦普职分流 · 高考改革 · 人才培养。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括高考改革、人才培养。",
     "context": [
       {
         "moduleId": "education",
@@ -12421,63 +9084,8 @@ export const GLOSSARY_ENTRIES = [
       "高考改革",
       "人才培养"
     ],
-    "source": "China OS · registry.js",
+    "source": "China OS · registry.js；China OS · 教育体系",
     "initial": "育"
-  },
-  {
-    "id": "mod-eduSciTalent-教育链",
-    "term": "教育链",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「教科人才」副题关键词：教育链。",
-    "context": [
-      {
-        "moduleId": "eduSciTalent",
-        "label": "教科人才",
-        "path": "/edu-sci-talent"
-      }
-    ],
-    "related": [
-      "教科人才"
-    ],
-    "source": "China OS · 教科人才",
-    "initial": "育"
-  },
-  {
-    "id": "mod-ruleoflaw-智慧法院",
-    "term": "智慧法院",
-    "aliases": [],
-    "category": "politics",
-    "definition": "模块「法治建设」副题关键词：智慧法院。",
-    "context": [
-      {
-        "moduleId": "ruleoflaw",
-        "label": "法治建设",
-        "path": "/ruleoflaw"
-      }
-    ],
-    "related": [
-      "法治建设"
-    ],
-    "source": "China OS · 法治建设",
-    "initial": "能"
-  },
-  {
-    "id": "idx-智慧法院",
-    "term": "智慧法院",
-    "aliases": [],
-    "category": "research",
-    "definition": "中国深度调研系列索引关键词：智慧法院。",
-    "context": [
-      {
-        "moduleId": "depth",
-        "label": "depth",
-        "path": null
-      }
-    ],
-    "related": [],
-    "source": "中国深度调研系列_索引与恢复指令.md",
-    "initial": "能"
   },
   {
     "id": "智算中心",
@@ -12499,89 +9107,33 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "东数西算",
-      "人工智能+"
-    ],
-    "source": "产业政策",
-    "initial": "能"
-  },
-  {
-    "id": "mod-computing-智算中心",
-    "term": "智算中心",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「算力设施」副题关键词：智算中心。",
-    "context": [
-      {
-        "moduleId": "computing",
-        "label": "算力设施",
-        "path": "/computing"
-      }
-    ],
-    "related": [
+      "人工智能+",
       "算力设施"
     ],
-    "source": "China OS · 算力设施",
+    "source": "产业政策；China OS · 算力设施",
     "initial": "能"
   },
   {
-    "id": "mod-aiplus-智算底座",
-    "term": "智算底座",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「人工智能+」副题关键词：智算底座。",
-    "context": [
-      {
-        "moduleId": "aiplus",
-        "label": "人工智能+",
-        "path": "/aiplus"
-      }
-    ],
-    "related": [
-      "人工智能+"
-    ],
-    "source": "China OS · 人工智能+",
-    "initial": "能"
-  },
-  {
-    "id": "mod-smartgrid",
-    "term": "智能电网",
+    "id": "mod-glossary",
+    "term": "术语词典",
     "aliases": [
-      "特高压"
+      "专有名词"
     ],
-    "category": "tech",
-    "definition": "China OS 模块「智能电网」：特高压 · 新型储能 · 源网荷储。",
-    "context": [
-      {
-        "moduleId": "smartgrid",
-        "label": "智能电网",
-        "path": "/smartgrid"
-      }
-    ],
-    "related": [
-      "新型储能",
-      "源网荷储"
-    ],
-    "source": "China OS · registry.js",
-    "initial": "能"
-  },
-  {
-    "id": "mod-techtree-智能算力",
-    "term": "智能算力",
-    "aliases": [],
     "category": "module",
-    "definition": "模块「科技图谱」副题关键词：智能算力。",
+    "definition": "China OS 功能模块「术语词典」聚焦专有名词 · 调研术语 · 模块交叉链接。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括调研术语、模块交叉链接。",
     "context": [
       {
-        "moduleId": "techtree",
-        "label": "科技图谱",
-        "path": "/techtree"
+        "moduleId": "glossary",
+        "label": "术语词典",
+        "path": "/glossary"
       }
     ],
     "related": [
-      "科技图谱"
+      "调研术语",
+      "模块交叉链接"
     ],
-    "source": "China OS · 科技图谱",
-    "initial": "能"
+    "source": "China OS · registry.js；China OS · 术语词典",
+    "initial": "语"
   },
   {
     "id": "收支倒挂",
@@ -12610,25 +9162,6 @@ export const GLOSSARY_ENTRIES = [
     ],
     "source": "中国深度调研系列 · 权力运行逻辑",
     "initial": "赛"
-  },
-  {
-    "id": "mod-tourism-入境旅游",
-    "term": "入境旅游",
-    "aliases": [],
-    "category": "tech",
-    "definition": "模块「文旅消费」副题关键词：入境旅游。",
-    "context": [
-      {
-        "moduleId": "tourism",
-        "label": "文旅消费",
-        "path": "/tourism"
-      }
-    ],
-    "related": [
-      "文旅消费"
-    ],
-    "source": "China OS · 文旅消费",
-    "initial": "陷"
   }
 ];
 
