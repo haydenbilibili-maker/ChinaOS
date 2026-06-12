@@ -1,0 +1,556 @@
+<div class="yb-shell">
+
+  <!-- 题头 -->
+  <header class="yb-mast">
+    <div>
+      <div class="yb-mast-meta">ChinaOS · MODULE <b>GY-15</b> · 人群画像分层 · 第十三子集</div>
+      <h1 class="yb-title">医保里的人<span class="yb-title-sub">全员接口 · 单方面改版的契约</span></h1>
+    </div>
+    <div class="yb-mast-seal">条款修订中</div>
+  </header>
+
+  <!-- 全员接口签名图 -->
+  <div class="yb-found" aria-label="全员接口示意图:中央一个大接口图标「医保 API · 13.3 亿调用方」,上方两条粗细悬殊的输入管道——粗管「职工医保 3.7 亿·高配协议」、细管「居民医保 9.6 亿·低配协议」;接口下方三个改版补丁依次叠加——「集采·药品端」「DRG·病床端」「个账改革·账户端」各标「BREAKING CHANGE·未经协商」;右侧一条警示线「居民医保调用方连年减少(退保信号)」;底注「↗ GY-09 应计负债的医疗分册·所有模块的总账接口」">
+    <svg viewBox="0 0 1000 460" xmlns="http://www.w3.org/2000/svg" role="img">
+      <text x="500" y="20" font-size="11" fill="#8f897d" text-anchor="middle" font-family="mono" letter-spacing="2">ChinaOS · UNIVERSAL API · 全员接口</text>
+
+      <!-- 上方两条输入管道 -->
+      <rect x="120" y="44" width="320" height="42" rx="4" fill="#1b2028" stroke="#5d7489" stroke-width="2"/>
+      <text x="280" y="62" font-size="12" fill="#d6cfc2" text-anchor="middle" font-family="serif" letter-spacing="1">职工医保 · 3.7 亿</text>
+      <text x="280" y="78" font-size="9.5" fill="#5d7489" text-anchor="middle" font-family="mono">高配协议 · 有个账 · 退休免缴</text>
+      <rect x="560" y="52" width="320" height="26" rx="4" fill="#161a20" stroke="#3d4c5a" stroke-width="1"/>
+      <text x="720" y="64" font-size="11" fill="#9a948a" text-anchor="middle" font-family="serif" letter-spacing="1">居民医保 · 9.6 亿</text>
+      <text x="720" y="76" font-size="9" fill="#5c5850" text-anchor="middle" font-family="mono">低配协议 · 无个账 · 年年缴费</text>
+
+      <!-- 管道汇入箭头 -->
+      <path d="M 280 86 L 420 150" stroke="#5d7489" stroke-width="2.4" marker-end="url(#ybDown)"/>
+      <path d="M 720 78 L 580 150" stroke="#3d4c5a" stroke-width="1.2" marker-end="url(#ybDownD)"/>
+
+      <!-- 中央接口 -->
+      <rect x="380" y="156" width="240" height="96" rx="10" fill="#1b2028" stroke="#b39657" stroke-width="2.5"/>
+      <circle cx="430" cy="204" r="7" fill="none" stroke="#6e5d38" stroke-width="1.2"/>
+      <circle cx="500" cy="186" r="7" fill="none" stroke="#6e5d38" stroke-width="1.2"/>
+      <circle cx="570" cy="208" r="7" fill="none" stroke="#6e5d38" stroke-width="1.2"/>
+      <text x="500" y="200" font-size="15" fill="#d6cfc2" text-anchor="middle" font-family="serif" letter-spacing="2">医保 API</text>
+      <text x="500" y="222" font-size="10" fill="#b39657" text-anchor="middle" font-family="mono" letter-spacing="1">13.3 亿调用方 · 全光谱汇入</text>
+      <text x="500" y="240" font-size="9" fill="#7d6a3a" text-anchor="middle" font-family="sans-serif">协议修改权由一方持有 · 改版从不发版本号</text>
+
+      <!-- 右侧警示线:退保信号 -->
+      <path d="M 620 204 L 900 204" stroke="#b5483a" stroke-width="1" stroke-dasharray="4 4"/>
+      <path d="M 900 204 L 900 250" stroke="#b5483a" stroke-width="1" stroke-dasharray="4 4"/>
+      <text x="905" y="200" font-size="9" fill="#b5483a" text-anchor="end" font-family="mono">居民医保调用方连年减少 ↓</text>
+      <text x="905" y="246" font-size="9" fill="#b5483a" text-anchor="end" font-family="mono">退保信号 · 用脚投票</text>
+
+      <!-- 下方三个改版补丁 -->
+      <path d="M 500 252 L 500 282" stroke="#b39657" stroke-width="1.4" marker-end="url(#ybDownG)"/>
+      <rect x="130" y="286" width="240" height="58" rx="4" fill="#161a20" stroke="#b5483a" stroke-width="1.4"/>
+      <text x="250" y="306" font-size="12" fill="#d6cfc2" text-anchor="middle" font-family="serif">集采 · 药品端</text>
+      <text x="250" y="322" font-size="8.5" fill="#b5483a" text-anchor="middle" font-family="mono" letter-spacing=".5">BREAKING CHANGE</text>
+      <text x="250" y="336" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="mono">未经协商 · 原研出局</text>
+      <rect x="380" y="286" width="240" height="58" rx="4" fill="#161a20" stroke="#b5483a" stroke-width="1.4"/>
+      <text x="500" y="306" font-size="12" fill="#d6cfc2" text-anchor="middle" font-family="serif">DRG · 病床端</text>
+      <text x="500" y="322" font-size="8.5" fill="#b5483a" text-anchor="middle" font-family="mono" letter-spacing=".5">BREAKING CHANGE</text>
+      <text x="500" y="336" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="mono">未经协商 · 打包付费</text>
+      <rect x="630" y="286" width="240" height="58" rx="4" fill="#161a20" stroke="#b5483a" stroke-width="1.4"/>
+      <text x="750" y="306" font-size="12" fill="#d6cfc2" text-anchor="middle" font-family="serif">个账改革 · 账户端</text>
+      <text x="750" y="322" font-size="8.5" fill="#b5483a" text-anchor="middle" font-family="mono" letter-spacing=".5">BREAKING CHANGE</text>
+      <text x="750" y="336" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="mono">未经协商 · 划入减少</text>
+
+      <!-- 底注 -->
+      <line x1="120" y1="392" x2="880" y2="392" stroke="#3d4c5a" stroke-width="1" stroke-dasharray="3 5"/>
+      <text x="500" y="414" font-size="10" fill="#7d6a3a" text-anchor="middle" font-family="mono">↗ GY-09 应计负债的医疗分册 · 所有模块的总账接口</text>
+      <text x="500" y="436" font-size="9" fill="#5c5850" text-anchor="middle" font-family="sans-serif">医疗费用曲线先于养老金曲线变陡 · 人在领养老金之前先生病</text>
+
+      <defs>
+        <marker id="ybDown" markerWidth="8" markerHeight="8" refX="4" refY="6" orient="auto"><path d="M0,0 L4,6 L8,0" fill="none" stroke="#5d7489" stroke-width="1.2"/></marker>
+        <marker id="ybDownG" markerWidth="8" markerHeight="8" refX="4" refY="6" orient="auto"><path d="M0,0 L4,6 L8,0" fill="none" stroke="#b39657" stroke-width="1.2"/></marker>
+        <marker id="ybDownD" markerWidth="8" markerHeight="8" refX="4" refY="6" orient="auto"><path d="M0,0 L4,6 L8,0" fill="none" stroke="#3d4c5a" stroke-width="1.2"/></marker>
+      </defs>
+    </svg>
+    <div class="yb-found-caption">总框架:每个人终将进入的人群——<b>慢病患者与医保依赖人口</b>,是老龄化财政从抽象数字变成具体疼痛的第一现场。医保是体制与全民之间最广泛的隐性契约,是 China OS 唯一的<b>全员接口(Universal API)</b>:13.3 亿参保者、全光谱所有人群(GY-03 到 GY-14)最终都通过这个接口与系统结算。接口的问题在于<b>协议由一方持有修改权,且改版从不发版本号</b>。上方两条粗细悬殊的输入管道——职工医保(高配协议)与居民医保(低配协议);接口下方三个改版补丁依次叠加(集采·药品端 / DRG·病床端 / 个账改革·账户端),每个都标注「BREAKING CHANGE · 未经协商」;右侧一条警示线测量居民医保调用方连年减少的退保信号。本片把 GY-01 的财政变量翻译成<b>药片和病床的语言</b>,且具有总账性质:所有人群最终汇入。2023 年初武汉白发风波证明——<b>这是少数能让最顺从的人群走上街头的议题。</b></div>
+  </div>
+
+  <!-- 页签 -->
+  <nav class="yb-nav" role="tablist">
+    <button role="tab" data-panel="yb-p-y1" class="is-active">全员接口</button>
+    <button role="tab" data-panel="yb-p-y2">退保信号</button>
+    <button role="tab" data-panel="yb-p-y3">集采</button>
+    <button role="tab" data-panel="yb-p-y4">DRG</button>
+    <button role="tab" data-panel="yb-p-y5">白发风波</button>
+    <button role="tab" data-panel="yb-p-y6">双轨裸奔层</button>
+    <button role="tab" data-panel="yb-p-y7">救命钱语法</button>
+    <button role="tab" data-panel="yb-p-y8">形态推演</button>
+    <button role="tab" data-panel="yb-p-watch">合成 · 观测哨</button>
+  </nav>
+
+  <!-- ════ Y1 全员接口 ════ -->
+  <section class="yb-panel is-active" id="yb-p-y1">
+    <div class="yb-sec-head"><h2>Y1 · 唯一的全员接口</h2><span class="yb-sec-tag">总账性质 · 全光谱在此汇入同一张总账</span></div>
+    <p class="yb-lede">医保是中国唯一覆盖全民的制度接口——<b>13.3 亿参保</b>(职工约 3.7 亿、居民约 9.6 亿),比户籍更普遍、比养老金更高频、比税收更可感。本系列所有人群在此汇入同一张总账:<b style="color:var(--zhu);">医保的参数,就是全光谱的共同命运参数。</b></p>
+    <div class="yb-disclaimer">说明:本片参保、缴费、集采与基金读数为<b>训练知识基线 + 公开政策与报道</b>(国家医保局集采意见函、证券时报集采调查、医药魔方舆情、RFA 集采争议报道等),口径分散、统计边界宽窄不一——相应数字标注「约」,并在观测哨留有回填槽。参保人数的「数据清理」与「退保」之口径争议,本片以分布与意愿结构为框架处理。</div>
+
+    <h3 class="yb-h3">三个数据锚点:全员性 · 高频性 · 总账性</h3>
+    <div class="yb-data3">
+      <div class="yb-stat">
+        <span class="yb-eyebrow">参保总盘</span>
+        <span class="yb-stat-n">约 13.3 亿</span>
+        <span class="yb-stat-u">参保率长期 95% 上下 · 比户籍更普遍</span>
+        <p>农民工、零工、职校生家庭、中产、老人——<b>每个模块的人群在医院收费窗口前重新相遇</b>(↗ W-01)。</p>
+      </div>
+      <div class="yb-stat">
+        <span class="yb-eyebrow">慢病人口</span>
+        <span class="yb-stat-n">约 4 亿+</span>
+        <span class="yb-stat-u">高血压 2 亿+ · 糖尿病 1.4 亿 · 随老龄化扩容</span>
+        <p>医保基金是<b style="color:var(--zhu);">老龄化账单的第一到期科目</b>——医疗费用曲线先于养老金曲线变陡(↗ GY-09 L1)。</p>
+      </div>
+      <div class="yb-stat">
+        <span class="yb-eyebrow">高频接口</span>
+        <span class="yb-stat-n">报销比例</span>
+        <span class="yb-stat-u">每次挂号开药住院都是一次结算</span>
+        <p>对多数人,「国家」这个抽象物<b>最具体的形态就是报销比例</b>——调用最频繁的财政接口。</p>
+      </div>
+    </div>
+
+    <h3 class="yb-h3">接口的全员性:全光谱在收费窗口前相遇</h3>
+    <div class="yb-nest">
+      <div class="yb-nest-row"><span class="yb-nest-k">农民工</span><span class="yb-nest-v">↗ GY-06 县域端——低轨医保 × 高发职业病,Y6 裸奔层的核心存量(↗ M5 尘肺链条)。</span></div>
+      <div class="yb-nest-row"><span class="yb-nest-k">灵活就业 / 零工</span><span class="yb-nest-v">↗ GY-05 悬空地基的医疗面——断保与断缴社保同步,「社保无用论」的医保分量。</span></div>
+      <div class="yb-nest-row"><span class="yb-nest-k">职校生家庭</span><span class="yb-nest-v">↗ GY-11 县域多孩家庭——全家保费成显性现金流决策,缴费意愿前线。</span></div>
+      <div class="yb-nest-row"><span class="yb-nest-k">中产</span><span class="yb-nest-v">↗ GY-08 医疗自费恐惧——储蓄动机第一位是「怕生病」,集采后再添一层焦虑。</span></div>
+      <div class="yb-nest-row"><span class="yb-nest-k">老人</span><span class="yb-nest-v"><b style="color:var(--zhu);">↗ GY-09 应计负债——人在领养老金之前先生病,医保是老龄化的第一现场。</b></span></div>
+    </div>
+
+    <h3 class="yb-h3">高频性:最具体的「国家」</h3>
+    <div class="yb-art">
+      <h5><b>调用频次</b>定义可感性</h5>
+      <p>医保是普通人与国家财政之间调用最频繁的接口——每一次挂号、开药、住院都是一次结算。养老金一年领十二次、税收一年算一次,而医保<b style="color:var(--zhu);">在每一个病痛时刻被即时调用</b>。正因如此,医保参数的任何变化都比其他财政变量更快被身体感知:对多数人,「国家」这个抽象物最具体的形态就是报销比例。</p>
+    </div>
+
+    <h3 class="yb-h3">双轨结构预埋:第三条双轨(Y6 详述)</h3>
+    <div class="yb-card" style="padding:6px 22px;">
+      <div class="yb-rows" style="border-top:none;">
+        <div class="yb-row"><span class="yb-row-k k-zhu">职工医保</span><span class="yb-row-v">单位+个人缴费、待遇高、有个账、退休免缴——<b>高配协议</b>,与户籍内、体制内同源。</span></div>
+        <div class="yb-row"><span class="yb-row-k">居民医保</span><span class="yb-row-v">定额缴费+财政补助、待遇低、无个账、年年缴费——<b>低配协议</b>,与农民工零工同源。</span></div>
+        <div class="yb-row"><span class="yb-row-k">同构判断</span><span class="yb-row-v"><b style="color:var(--zhu);">与户籍(GY-06)、养老金(GY-09 L2)同构的第三条双轨</b>——轨道归属由就业形态决定。</span></div>
+      </div>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="yb-xref">↗ GY-09 L1 · 老龄化斜率的医疗投影</span>
+      <span class="yb-xref">↗ GY-06 · 双轨的就业形态决定论</span>
+      <span class="yb-xref">↗ Y6 · 接口的等级化</span>
+    </div>
+
+    <div class="yb-verdict">
+      <span class="yb-verdict-tag">Y1 判词</span>
+      医保的政治地位被严重低估——它是这个系统真正的<b>全民公约数</b>。养老金的矛盾按代际与轨道分组,医保的矛盾人人有份;<b style="color:var(--zhu);">机器在所有别处的治理失误都可以分而治之,唯独这个接口的故障是广播式的。</b>
+      <span class="yb-xref">↗ Y2 · 退保信号:9.6 亿人的边际续约意愿</span>
+    </div>
+  </section>
+
+  <!-- ════ Y2 退保信号 ════ -->
+  <section class="yb-panel" id="yb-p-y2">
+    <div class="yb-sec-head"><h2>Y2 · 退保信号</h2><span class="yb-sec-tag">用脚投票的开始 · 逆选择螺旋的入口</span></div>
+    <p class="yb-lede">居民医保参保人数连年下降(累计数千万级,官方归因「数据清理」、民间归因「退保」)——无论口径之争如何,缴费端的事实是:<b>个人缴费标准二十年从 10 元涨到 400 元(40 倍)</b>,而县域多孩家庭的全家保费已成显性负担。<b style="color:var(--zhu);">逆选择螺旋的入口已经打开。</b></p>
+
+    <h3 class="yb-h3">缴费的爬坡史:40 倍涨幅的二十年</h3>
+    <div class="yb-chain">
+      <div class="yb-chain-row"><span class="yb-chain-step">2003 起步</span><span class="yb-chain-v">新农合个人缴 <b>10 元</b>起步——疾病分散的最初对价,几乎无负担感。</span></div>
+      <div class="yb-chain-row"><span class="yb-chain-step">逐年上调</span><span class="yb-chain-v">居民医保整合后<b>逐年上调</b>——财政补助(670 元上下)与个人缴费(400 元上下)同步爬坡。</span></div>
+      <div class="yb-chain-row"><span class="yb-chain-step">现状 400 元</span><span class="yb-chain-v"><b>40 倍涨幅发生在县域收入远未同步增长的二十年里</b>——一家五口年保费 2000 元。</span></div>
+      <div class="yb-chain-row peak"><span class="yb-chain-step">显性决策</span><span class="yb-chain-v">对 GY-06 县域端家庭,缴不缴医保已是<b>真实的现金流决策</b>——缴费意愿到达临界点。</span></div>
+    </div>
+
+    <h3 class="yb-h3">退保的微观理性:健康者先退</h3>
+    <div class="yb-art">
+      <h5><b>逆选择</b>最怕的退出顺序</h5>
+      <p>年轻健康者算账——缴 400 元、门诊报销有限、断保再续有等待期惩罚——得出「不生病就是亏」的逆选择逻辑,于是<b style="color:var(--zhu);">健康者先退</b>。这正是保险制度最怕的退出顺序:留下的是高风险人群,池子的风险浓度被动上升。灵活就业者的断保与断缴社保同步发生(↗ GY-03 社保无用论、↗ GY-05 悬空地基的医疗面),两条退出曲线相互强化。</p>
+    </div>
+
+    <h3 class="yb-h3">官方口径与民间体感:两者可以同真</h3>
+    <div class="yb-twin">
+      <div class="yb-twin-a"><h6>官方 · 数据清理</h6><p>「参保数据清理去重」——<b>清理是技术事实</b>:重复参保、虚挂参保的剔除确实存在,口径上成立。</p></div>
+      <div class="yb-twin-mid">⇄</div>
+      <div class="yb-twin-b"><h6>民间 · 缴费意愿下滑</h6><p>县域「催缴难」的基层体感——<b style="color:var(--zhu);">缴费意愿下滑是政治事实</b>;两者可以同真,但后者更重要。</p></div>
+    </div>
+
+    <h3 class="yb-h3">螺旋的数学:滑向高费率小池</h3>
+    <div class="yb-nest">
+      <div class="yb-nest-row"><span class="yb-nest-k">①健康者退出</span><span class="yb-nest-v">边际健康参保者率先离场——基金池的<b>风险浓度上升</b>。</span></div>
+      <div class="yb-nest-row"><span class="yb-nest-k">②待遇/缴费</span><span class="yb-nest-v">风险浓度上升 → <b>待遇收紧或缴费再涨</b>——以维持基金平衡。</span></div>
+      <div class="yb-nest-row"><span class="yb-nest-k">③更多退出</span><span class="yb-nest-v">缴费再涨 → 更多边际参保者退出——螺旋自我强化。</span></div>
+      <div class="yb-nest-row"><span class="yb-nest-k">④老弱病残互保</span><span class="yb-nest-v"><b style="color:var(--zhu);">居民医保滑向「老弱病残互保」的高费率小池——这是形态β 的主线。</b></span></div>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="yb-xref">↗ GY-03 · 社保无用论的医保分量</span>
+      <span class="yb-xref">↗ GY-05 · 悬空地基的医疗面</span>
+      <span class="yb-xref">↗ Y8 形态β · 退保螺旋确认</span>
+    </div>
+
+    <div class="yb-verdict">
+      <span class="yb-verdict-tag">Y2 判词</span>
+      居民医保的参保曲线是全系列最值得盯的<b>单一曲线</b>之一——它测量的不是医保,是 9.6 亿人对「与系统继续签约」的边际意愿。<b style="color:var(--zhu);">退保是比上访更深刻的政治行为:上访还相信条款可以谈,退保是不再续约。</b>
+      <span class="yb-xref">↗ Y3 · 集采:药片上的财政</span>
+    </div>
+  </section>
+
+  <!-- ════ Y3 集采 ════ -->
+  <section class="yb-panel" id="yb-p-y3">
+    <div class="yb-sec-head"><h2>Y3 · 集采</h2><span class="yb-sec-tag">药片上的财政 · 价格地板之下是疗效地板</span></div>
+    <p class="yb-lede">药品集采用「以量换价」十批砍掉数千亿药费——<b>财政逻辑无可指摘</b>;但第十批集采原研药全部出局(默克、辉瑞、拜耳等 33 种)与临床端的质量争议(「麻药不睡、血压不降、泻药不泻」的医生公开发声)标志着控费触到了硬边界:<b style="color:var(--zhu);">价格的地板之下,是疗效的地板。</b></p>
+
+    <h3 class="yb-h3">集采成绩单 vs 第十批转折(dual)</h3>
+    <div class="yb-dual">
+      <div class="yb-dual-col green">
+        <h6>成绩单 · <b>必须先记的功</b></h6>
+        <div class="yb-dual-step"><span class="y">批次</span><span>十批国家集采、数百种药品<b>持续推进</b></span></div>
+        <div class="yb-dual-step"><span class="y">降幅</span><span>平均降幅过半、部分<b>90%+</b></span></div>
+        <div class="yb-dual-step"><span class="y">可及性</span><span>高血压糖尿病基础药<b>白菜价</b></span></div>
+        <div class="yb-dual-step"><span class="y">判定</span><span><b style="color:var(--qing);">慢病用药可及性真实改善</b></span></div>
+      </div>
+      <div class="yb-dual-col anx">
+        <h6>第十批转折 · <b>触到硬边界</b></h6>
+        <div class="yb-dual-step"><span class="y">时间</span><span>2024-12-30 · 62 种药<b>降幅创新高</b></span></div>
+        <div class="yb-dual-step"><span class="y">原研</span><span>默克/辉瑞/拜耳等 33 种<b>全军出局</b></span></div>
+        <div class="yb-dual-step"><span class="y">退场</span><span>公立体系内进口原研<b>事实性退场</b></span></div>
+        <div class="yb-dual-step"><span class="y">判定</span><span><b style="color:var(--zhu);">集采仿制成体制内默认选项</b></span></div>
+      </div>
+    </div>
+
+    <h3 class="yb-h3">质量争议的升级:从网络体感到专业异议</h3>
+    <div class="yb-timeline">
+      <div class="yb-tl-row core"><span class="yb-tl-time">2025-01</span><span class="yb-tl-v"><b class="h">医生公开发声</b>——上海瑞金、北京朝阳医生在两会与政协渠道发声「麻药不睡、血压不降、泻药不泻」。</span></div>
+      <div class="yb-tl-row"><span class="yb-tl-time">2025-01</span><span class="yb-tl-v"><b>医保局赴沪</b>——国家医保局牵头赴沪联合调查质量争议;争议进入官方程序。</span></div>
+      <div class="yb-tl-row core"><span class="yb-tl-time">升级判断</span><span class="yb-tl-v"><b style="color:var(--zhu);">争议从网络体感上升为体制内专业群体的正式异议——这是集采政治化的第一信号。</b></span></div>
+    </div>
+
+    <h3 class="yb-h3">结构性问题与转嫁链</h3>
+    <div class="yb-nest">
+      <div class="yb-nest-row"><span class="yb-nest-k">一致性评价</span><span class="yb-nest-v">「一次性通过」与<b>持续生产的质量漂移</b>——通过评价不等于持续达标。</span></div>
+      <div class="yb-nest-row"><span class="yb-nest-k">成本挤压</span><span class="yb-nest-v">超低中标价下原料药/辅料的<b>替换空间</b>——「中标即亏损」的仿制药企博弈。</span></div>
+      <div class="yb-nest-row"><span class="yb-nest-k">不进报表的转嫁</span><span class="yb-nest-v"><b style="color:var(--zhu);">财政省下的钱,有一部分以疗效不确定性的形式转嫁给了患者身体——这笔转嫁不进任何报表。</b></span></div>
+      <div class="yb-nest-row"><span class="yb-nest-k">两轨药品</span><span class="yb-nest-v">体制内/有钱者院外自费原研,普通人体制内仿制——<b>与 GY-09 三轨养老金同构的「两轨药品」</b>(↗ GY-08 储蓄动机)。</span></div>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="yb-xref">↗ GY-09 · 三轨养老金的药品同构</span>
+      <span class="yb-xref">↗ GY-08 · 医疗自费恐惧再添一层</span>
+      <span class="yb-xref">↗ watch CH-02 · 集采质量证据链</span>
+    </div>
+
+    <div class="yb-verdict">
+      <span class="yb-verdict-tag">Y3 判词</span>
+      集采的深层问题不是某批药的质量,是<b>定价权的单边性</b>:药价由基金支付方单方面压到地板,疗效风险由患者单方面承担,中间没有患者的谈判席位——<b style="color:var(--zhu);">这正是「沉默契约单方面重谈」的药品版:条款改了,签约方没被通知,直到麻药不睡的那一刻。</b>
+      <span class="yb-xref">↗ Y4 · DRG:病床上的预算</span>
+    </div>
+  </section>
+
+  <!-- ════ Y4 DRG ════ -->
+  <section class="yb-panel" id="yb-p-y4">
+    <div class="yb-sec-head"><h2>Y4 · DRG</h2><span class="yb-sec-tag">病床上的预算 · 财政紧缩沿权力梯度向下流动</span></div>
+    <p class="yb-lede">DRG/DIP 支付改革把「按项目付费」改为「按病组打包付费」——<b>控费逻辑国际通行</b>;但在中国式执行下,预算压力被医院原样转译为临床行为变形:推诿重症、十五天出院潜规则、分解住院、低码高编——<b style="color:var(--zhu);">患者成为医院与医保对抗博弈的战场。</b></p>
+
+    <h3 class="yb-h3">改革逻辑:纸面上的纠偏</h3>
+    <div class="yb-card">
+      <p style="font-size:14px; line-height:1.95; color:var(--xuanzhi);">按病组定额打包 → 超支医院自担 → 倒逼控制过度医疗——<b style="color:var(--zhu);">纸面上是对「大处方大检查」的纠偏</b>。逻辑无可指摘:把无限的诊疗冲动装进有限的预算盒子。问题不在逻辑,在于盒子的边缘会切掉谁。</p>
+    </div>
+
+    <h3 class="yb-h3">现场的变形清单:预算约束在病床边的具体化(nest)</h3>
+    <div class="yb-nest">
+      <div class="yb-nest-row"><span class="yb-nest-k">重症推诿</span><span class="yb-nest-v">复杂病人 = 必亏病组,医院<b>婉拒收治</b>——最安全的选择是不收复杂病人。</span></div>
+      <div class="yb-nest-row"><span class="yb-nest-k">十五天出院</span><span class="yb-nest-v">住院日逼近病组均值即<b>动员出院-再入院</b>——把一次治疗切成两段结算。</span></div>
+      <div class="yb-nest-row"><span class="yb-nest-k">分解住院</span><span class="yb-nest-v">一次治疗<b>拆多次结算</b>——绕开单次病组定额上限。</span></div>
+      <div class="yb-nest-row"><span class="yb-nest-k">高编码博弈</span><span class="yb-nest-v">病历向<b>高付费病组靠拢</b>(低码高编)——与医保飞检的猫鼠循环。</span></div>
+      <div class="yb-nest-row"><span class="yb-nest-k">机制判断</span><span class="yb-nest-v"><b style="color:var(--zhu);">每一项变形都是预算约束在病床边的具体化——没有谁作恶,只有约束自己长出了形状。</b></span></div>
+    </div>
+
+    <h3 class="yb-h3">医生的位置:从患者代理人到基金守门人</h3>
+    <div class="yb-twin">
+      <div class="yb-twin-a"><h6>改革前 · 患者代理人</h6><p>临床决策以<b>患者利益</b>为优先——医患信任建立在「医生为我考虑」的制度假设上。</p></div>
+      <div class="yb-twin-mid">⇄</div>
+      <div class="yb-twin-b"><h6>改革后 · 基金守门人</h6><p>临床决策被预算参数渗透(「这个药出 DRG 了」)、绩效与病组盈亏挂钩——<b style="color:var(--zhu);">医生从患者代理人滑向基金守门人</b>(↗ GY-07 B6「不出错优先」的临床版)。</p></div>
+    </div>
+
+    <h3 class="yb-h3">与集采的叠加:公立医疗的「基础款化」</h3>
+    <div class="yb-art">
+      <h5><b>双重挤压</b>下的溢出市场</h5>
+      <p>药品端(集采仿制)+ 支付端(DRG 控费)双重挤压下,公立医疗的「基础款化」加速——<b style="color:var(--zhu);">体制内医疗向「保基本」收敛,「好医疗」溢出到自费市场</b>。特需、私立、海外就医的繁荣不是市场的胜利,是同一枚硬币的另一面:被基础款化挤出的需求,在自费端重新定价。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="yb-xref">↗ GY-07 B6 · 不出错优先的临床版</span>
+      <span class="yb-xref">↗ Y3 · 集采+DRG 双重挤压</span>
+      <span class="yb-xref">↗ Y6 · 溢出到自费市场的另一面</span>
+    </div>
+
+    <div class="yb-verdict">
+      <span class="yb-verdict-tag">Y4 判词</span>
+      DRG 教科书般地展示了「好政策的现场变形」:控费目标层层下压,每一层都把压力转给更弱的下游,最末端是病床上无谈判能力的人。<b style="color:var(--zhu);">财政紧缩从不均匀降临——它沿着权力梯度向下流动,最终积在最深的洼地:重症、老人、穷人。</b>
+      <span class="yb-xref">↗ Y5 · 个账改革与白发风波</span>
+    </div>
+  </section>
+
+  <!-- ════ Y5 白发风波 ════ -->
+  <section class="yb-panel" id="yb-p-y5">
+    <div class="yb-sec-head"><h2>Y5 · 个账改革与白发风波</h2><span class="yb-sec-tag">重谈的样本 · 单方面改版的完美标本</span></div>
+    <p class="yb-lede">2023 年医保个人账户改革(划入减少、置换门诊统筹)引发武汉等地退休人员聚集——<b>「白发风波」是观察「沉默契约单方面重谈」全过程的完美样本</b>:技术上合理的改革,因未经协商的执行方式,<b style="color:var(--zhu);">触发了最顺从人群的街头反应。</b></p>
+
+    <h3 class="yb-h3">改革内容:精算逻辑成立</h3>
+    <div class="yb-card">
+      <p style="font-size:14px; line-height:1.95; color:var(--xuanzhi);">职工医保个账划入减少(单位缴费部分不再入个账)→ 置换为门诊统筹报销——<b style="color:var(--zhu);">精算逻辑成立</b>:个账沉淀资金低效(大量趴在账户里不动)、门诊共济更公平(把钱用在真正看病的人身上)。这是一次方向正确的再分配。问题不在改了什么,在于怎么改。</p>
+    </div>
+
+    <h3 class="yb-h3">风波机制:技术调整被体验为单方面违约(chain)</h3>
+    <div class="yb-chain">
+      <div class="yb-chain-row"><span class="yb-chain-step">名义产权</span><span class="yb-chain-v">退休者体感「<b>我账户里的钱被拿走了</b>」——个账被普遍理解为私有财产而非保险安排。</span></div>
+      <div class="yb-chain-row"><span class="yb-chain-step">动了产权感</span><span class="yb-chain-v">改革动了「<b>名义产权</b>」——即便实质是再分配,体感上是「被取走」。</span></div>
+      <div class="yb-chain-row"><span class="yb-chain-step">沟通缺位</span><span class="yb-chain-v">叠加<b>宣传缺位与补偿缺位</b>——技术调整被体验为单方面违约。</span></div>
+      <div class="yb-chain-row peak"><span class="yb-chain-step">街头反应</span><span class="yb-chain-v"><b style="color:var(--zhu);">最顺从人群走上街头</b>(↗ GY-09 L7 全样本:动员快、口号旧、处置轻)。</span></div>
+    </div>
+
+    <h3 class="yb-h3">样本的教益:学到了节奏,没学到协商</h3>
+    <div class="yb-twin">
+      <div class="yb-twin-a"><h6>机器学到 · 节奏与包装</h6><p>后续改革更<b>渐进</b>——分步推进、加强宣传、预留缓冲;白发风波成了「怎样改才不出事」的操作手册。</p></div>
+      <div class="yb-twin-mid">⇄</div>
+      <div class="yb-twin-b"><h6>机器未学 · 协商</h6><p><b style="color:var(--zhu);">契约的另一方依然没有谈判席位,下一次改版依然是单方面的</b>——这决定了同类风波必然复发,只是议题轮换(集采质量、缴费上涨、待遇收紧都在候选清单上)。</p></div>
+    </div>
+
+    <h3 class="yb-h3">代际再分配的本质:实体正义与程序缺席</h3>
+    <div class="yb-art">
+      <h5><b>方向公平 · 程序专断</b>的标准困境</h5>
+      <p>个账改革实质是从「有积累的在职/退休职工」向「高频就医的老弱」再分配——<b>方向公平,程序专断</b>。这是中国式改革的标准困境:实体正义与程序缺席的永恒组合。<b style="color:var(--zhu);">改革者握有正确的方向,却拒绝把方向交给被改革者讨论——于是正确的改革以违约的形式抵达。</b></p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="yb-xref">↗ GY-09 L7 · 全样本:动员快口号旧处置轻</span>
+      <span class="yb-xref">↗ Y2 · 退休者用聚集要求席位</span>
+      <span class="yb-xref">↗ Y7 · 救命钱语法的政治能量</span>
+    </div>
+
+    <div class="yb-verdict">
+      <span class="yb-verdict-tag">Y5 判词</span>
+      白发风波与 Y3 的医生发声、Y2 的退保曲线是同一件事的三个面:<b>契约的另一方开始用各自的方式要求谈判席位</b>——退休者用聚集,医生用专业异议,县域家庭用退保。<b style="color:var(--zhu);">机器可以分别处置三者,无法处置三者共同指向的事实:单方面改版的合法性额度正在耗尽。</b>
+      <span class="yb-xref">↗ Y6 · 双轨与裸奔层</span>
+    </div>
+  </section>
+
+  <!-- ════ Y6 双轨裸奔层 ════ -->
+  <section class="yb-panel" id="yb-p-y6">
+    <div class="yb-sec-head"><h2>Y6 · 双轨与裸奔层</h2><span class="yb-sec-tag">接口的等级 · 网眼大小按身份分配</span></div>
+    <p class="yb-lede">全员接口内部是<b>等级化</b>的——职工与居民的待遇差、目录内与目录外的自费深渊、惠民保的补丁性质,共同构成医疗保障的纵向分层;最底层是「参保了仍然裸奔」的人群:<b style="color:var(--zhu);">一场大病的自费部分,依然足以击穿一个县域家庭。</b></p>
+
+    <h3 class="yb-h3">纵向分层:接口的等级阶梯(scale)</h3>
+    <div class="yb-scale">
+      <div class="yb-scale-row green">
+        <div class="yb-scale-num"><span class="n">职工高轨</span><span class="u">高配协议</span></div>
+        <div class="yb-scale-body"><h5>职工医保 · 报销比例高</h5><p>有个账、退休免缴、报销比例高——<b>同一场大病,自付额最低的一轨</b>;轨道归属由稳定就业决定。</p></div>
+      </div>
+      <div class="yb-scale-row">
+        <div class="yb-scale-num"><span class="n">居民低轨</span><span class="u">低配协议</span></div>
+        <div class="yb-scale-body"><h5>居民医保 · 比例低无个账</h5><p>无个账、年年缴费、报销比例低——<b style="color:var(--zhu);">GY-05/06 人群天然落在低轨</b>(↗ 悬空地基的医疗面)。</p></div>
+      </div>
+      <div class="yb-scale-row">
+        <div class="yb-scale-num"><span class="n">目录边界</span><span class="u">自费深渊</span></div>
+        <div class="yb-scale-body"><h5>目录外 · 100% 自理</h5><p>创新药、进口器械、护工费、营养支持——<b>「报销 70%」的真实语义是「目录内 70%、目录外 100% 自理」</b>。</p></div>
+      </div>
+      <div class="yb-scale-row core">
+        <div class="yb-scale-num"><span class="n">裸奔层</span><span class="u">参保仍裸奔</span></div>
+        <div class="yb-scale-body"><h5>大病返贫 · 参保了仍然裸奔</h5><p><b style="color:var(--zhu);">大病自费击穿储蓄 → 借贷/卖房 → 因病返贫</b>——返贫监测的第一大原因始终是病(↗ GY-06 M5 尘肺链条的普遍化版本)。</p></div>
+      </div>
+    </div>
+
+    <h3 class="yb-h3">大病返贫链条:报销比例的纸面含义</h3>
+    <div class="yb-chain">
+      <div class="yb-chain-row"><span class="yb-chain-step">重疾发生</span><span class="yb-chain-v">一场重疾——治疗的<b>实际自付远超报销比例的纸面含义</b>。</span></div>
+      <div class="yb-chain-row"><span class="yb-chain-step">击穿储蓄</span><span class="yb-chain-v">自费部分<b>击穿家庭储蓄</b>——目录外项目按 100% 自理累加。</span></div>
+      <div class="yb-chain-row"><span class="yb-chain-step">借贷卖房</span><span class="yb-chain-v">储蓄耗尽后<b>借贷、卖房</b>——家庭资产负债表重构。</span></div>
+      <div class="yb-chain-row peak"><span class="yb-chain-step">因病返贫</span><span class="yb-chain-v"><b style="color:var(--zhu);">脱贫攻坚后返贫监测的第一大原因始终是病。</b></span></div>
+    </div>
+
+    <h3 class="yb-h3">补丁市场:水滴筹是最诚实的测量仪</h3>
+    <div class="yb-nest">
+      <div class="yb-nest-row"><span class="yb-nest-k">惠民保</span><span class="yb-nest-v">城市定制型商业医疗险的爆发与<b>赔付率困境</b>——补丁性质,可持续性存疑(↗ W-08)。</span></div>
+      <div class="yb-nest-row"><span class="yb-nest-k">百万医疗险</span><span class="yb-nest-v"><b>健康告知陷阱</b>——保费便宜但理赔门槛高,健康者投保、患病者被拒。</span></div>
+      <div class="yb-nest-row"><span class="yb-nest-k">众筹平台</span><span class="yb-nest-v"><b style="color:var(--zhu);">水滴筹作为「社会化医保」的常态化——水滴筹的繁荣是医保缺口最诚实的测量仪:一个需要靠朋友圈乞讨支付医疗费的社会,保障的成色写在每一条转发里。</b></span></div>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="yb-xref">↗ GY-06 M5 · 尘肺链条的普遍化</span>
+      <span class="yb-xref">↗ GY-08/09 · 公共保障缺口压制消费率</span>
+      <span class="yb-xref">↗ W-08 · 水滴筹指数</span>
+    </div>
+
+    <div class="yb-verdict">
+      <span class="yb-verdict-tag">Y6 判词</span>
+      医保的等级结构使「全民医保」与「医疗焦虑全民化」并行不悖——覆盖率 95% 与储蓄动机第一位是「怕生病」同时为真。<b style="color:var(--zhu);">接口是全员的,协议等级不是——这正是中国式普遍主义的标准形态:人人都在网内,网眼的大小按身份分配。</b>
+      <span class="yb-xref">↗ Y7 · 救命钱的语法</span>
+    </div>
+  </section>
+
+  <!-- ════ Y7 救命钱语法 ════ -->
+  <section class="yb-panel" id="yb-p-y7">
+    <div class="yb-sec-head"><h2>Y7 · 政治形态学</h2><span class="yb-sec-tag">救命钱的语法 · 身体是最后的事实裁判</span></div>
+    <p class="yb-lede">医保议题的政治能量在全光谱中位居最高一档——<b>「救命钱」语法是公平语法(GY-03 CH-03)的最硬核版本</b>:它无需任何意识形态加持,跨越所有人群分界,且<b style="color:var(--zhu);">机器无法用任何叙事消解「药不灵」「报不了」的身体体验。</b></p>
+
+    <h3 class="yb-h3">语法的不可辩驳性:身体是最后的事实裁判</h3>
+    <div class="yb-twin">
+      <div class="yb-twin-a"><h6>可反驳 · 性价比叙事</h6><p>「集采让更多人用得起药」——<b>性价比叙事可以反驳</b>:它是一个可被数据和说理参与的辩论场。</p></div>
+      <div class="yb-twin-mid">⇄</div>
+      <div class="yb-twin-b"><h6>不可反驳 · 身体体验</h6><p><b style="color:var(--zhu);">麻药不睡是麻药不睡</b>——医保争议是少数「宣传完全无效」的领域:身体是最后的事实裁判。</p></div>
+    </div>
+
+    <h3 class="yb-h3">跨人群的合流潜力:接到同一根导线</h3>
+    <div class="yb-nest">
+      <div class="yb-nest-row"><span class="yb-nest-k">老人</span><span class="yb-nest-v">白发风波——退休者用<b>聚集</b>要求席位(↗ Y5)。</span></div>
+      <div class="yb-nest-row"><span class="yb-nest-k">专业层</span><span class="yb-nest-v">医生异议——专业群体用<b>正式异议</b>发声(↗ Y3)。</span></div>
+      <div class="yb-nest-row"><span class="yb-nest-k">县域</span><span class="yb-nest-v">退保——县域家庭用<b>退网</b>表达(↗ Y2)。</span></div>
+      <div class="yb-nest-row"><span class="yb-nest-k">中产</span><span class="yb-nest-v"><b style="color:var(--zhu);">自费恐惧——医保是唯一能把全光谱怨恨接到同一根导线上的议题</b>;GY-03 CH-03 触发条件库里权重最高的候选场景之一。</span></div>
+    </div>
+
+    <h3 class="yb-h3">机器的处置困境:三个工具同时失灵</h3>
+    <div class="yb-card" style="padding:6px 22px;">
+      <div class="yb-rows" style="border-top:none;">
+        <div class="yb-row"><span class="yb-row-k k-zhu">不能定性</span><span class="yb-row-v">救命钱诉求<b>政治完全正确</b>——无法扣帽子、无法污名化。</span></div>
+        <div class="yb-row"><span class="yb-row-k">不能拖延</span><span class="yb-row-v"><b>疾病不等待</b>——拖延战术在生死时限前失效。</span></div>
+        <div class="yb-row"><span class="yb-row-k">不能收买</span><span class="yb-row-v">问题是<b>参数性的</b>——收买个案无法解决结构问题。</span></div>
+        <div class="yb-row"><span class="yb-row-k k-zhu">唯一有效</span><span class="yb-row-v"><b style="color:var(--zhu);">唯一有效的处置是真给钱,而真给钱恰是财政做不到的</b>(↗ GY-01 死循环的医疗端投影)。</span></div>
+      </div>
+    </div>
+
+    <h3 class="yb-h3">国际对照的警示:没有选票泄压阀</h3>
+    <div class="yb-art">
+      <h5><b>跨政体现象</b>的中国特殊性</h5>
+      <p>医疗紧缩引发的政治动荡是跨政体现象——英国 NHS 危机的选票效应、美国医保政治的极化引擎,都证明医疗不满的政治重量。<b style="color:var(--zhu);">中国的特殊性在于没有选票泄压阀:医疗不满没有制度化出口,只能积累或溢出。</b>别国的医疗愤怒每隔几年在选举里清零一次,这里的医疗愤怒没有清零机制,只有蓄水。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="yb-xref">↗ GY-03 CH-03 · 公平语法的最硬核版本</span>
+      <span class="yb-xref">↗ GY-12 · 元变量:别的不满需要组织</span>
+      <span class="yb-xref">↗ GY-01 · 死循环的医疗端投影</span>
+    </div>
+
+    <div class="yb-verdict">
+      <span class="yb-verdict-tag">Y7 判词</span>
+      机器最深的软肋不是经济失速也不是舆论失控,是 13.3 亿人共享的身体经验与官方叙事的偏差——<b style="color:var(--zhu);">所有别的不满需要组织才有力量(↗ GY-12 元变量),唯独这一种不满自带同步性:所有人都会老,都会病,都会在同一个收费窗口前理解彼此。</b>
+      <span class="yb-xref">↗ Y8 · 形态推演(三态)</span>
+    </div>
+  </section>
+
+  <!-- ════ Y8 形态推演 ════ -->
+  <section class="yb-panel" id="yb-p-y8">
+    <div class="yb-sec-head"><h2>Y8 · 形态推演</h2><span class="yb-sec-tag">三态 · α 渐进紧缩 / β 退保螺旋 / γ 总账到期</span></div>
+    <p class="yb-lede">医保前线的演化路径,按概率从高到低拆成三态。三态共享同一个起点(<b>控费、紧缩、重谈在财政上无可避免,在政治上无人授权</b>),<b style="color:var(--zhu);">分岔点在于:紧缩能否维持技术化渐进、居民医保参保会否塌方成螺旋、老龄化斜率会否使总账系统性到期。</b></p>
+
+    <div class="yb-bal">
+      <h5>形态 α · 基准 · 渐进紧缩(概率最高)</h5>
+      <p>集采扩面(耗材、中成药)+ DRG 深化 + 缴费缓涨 + 目录动态调整——<b>紧缩以技术化、渐进化方式推进</b>;白发式风波<b style="color:var(--zhu);">点状复发、点状安抚</b>;居民医保参保缓慢阴跌但未成螺旋。机器已从白发风波学会节奏与包装,以渐进对冲风波。<b>概率最高</b>(↗ W-01/W-07)。</p>
+    </div>
+    <div class="yb-bal" style="border-color:var(--jin-dim); background:rgba(110,93,56,.10);">
+      <h5 style="color:var(--jin);">形态 β · 压力 · 退保螺旋确认</h5>
+      <p>县域缴费意愿塌方使居民医保参保<b style="color:var(--jin);">连续大幅下降</b> → 基金池逆选择恶化 → 待遇收紧/缴费跳涨 → 螺旋自证。标志事件:<b>参保率跌破 90% 或某省居民医保基金当期穿底公开化</b>(↗ W-01/W-06)。政治含义:<b style="color:var(--zhu);">9.6 亿人的接口出现成规模「退网」,这是比任何街头事件更深的合法性事件</b>——↗ GY-01/07/09 形态β 的同族(同一财政母危机的第四个分册)。</p>
+    </div>
+    <div class="yb-bal" style="border-color:var(--zhu-dim); background:rgba(181,72,58,.08);">
+      <h5 style="color:var(--zhu);">形态 γ · 尾部 · 总账到期</h5>
+      <p>老龄化斜率(↗ GY-09 L1)使医保基金<b style="color:var(--zhu);">先于养老金</b>进入系统性收支危机——医疗挤兑(保基本的基本不断下移)与代际重谈(在职者缴费率上限 vs 退休者待遇刚性)公开化。<b>医保的γ形态比养老金更早到达且更难拖延:养老金可以晚发,手术不能晚做。</b>仅挂接 GY-01 尾部情景(↗ W-06)。</p>
+    </div>
+
+    <div style="margin-top:14px;">
+      <span class="yb-xref">↗ GY-01 · 同一财政母危机的第四分册</span>
+      <span class="yb-xref">↗ GY-09 L1 · 老龄化斜率使医保先到期</span>
+      <span class="yb-xref">↗ W-01/W-06 · β/γ 的逼近速度仪表</span>
+    </div>
+
+    <div class="yb-verdict">
+      <span class="yb-verdict-tag">Y8 判词</span>
+      三态的分岔不在机器是否放松控费(财政不允许放松),<b>在居民医保的续约意愿能否在缴费爬坡面前存活、老龄化斜率能否被渐进手段拖住</b>。形态 α 是技术化渐进紧缩、点状风波,形态 β 是退保螺旋自证、接口成规模退网,形态 γ 是总账先于养老金到期、手术等不得。<b style="color:var(--zhu);">从 α 到 γ 不需要新的危机,只需要老龄化继续陡峭、缴费继续爬坡——当续约意愿低到连催缴都无效时,系统将失去它与普通人之间最后一个全员接口。</b>
+      <span class="yb-xref">↗ watch · 总判词与耦合修正</span>
+    </div>
+  </section>
+
+  <!-- ════ 合成 · 观测哨 ════ -->
+  <section class="yb-panel" id="yb-p-watch">
+    <div class="yb-sec-head"><h2>Y9 · 合成与观测哨</h2><span class="yb-sec-tag">全员接口 · 总账到期 · 年度对账</span></div>
+
+    <div class="yb-verdict" style="margin-top:0; margin-bottom:34px;">
+      <span class="yb-verdict-tag">总判词 · 不再续约</span>
+      医保是 China OS 的<b>全员接口与最后的总账</b>——全光谱十二个人群切片在此汇入同一个收费窗口。系统正在做的事在财政上无可避免(控费、紧缩、重谈),在政治上无人授权(单方面改版、不发版本号、不设谈判席位)。<br><br>
+      <b style="color:var(--zhu);">白发风波、医生异议、退保曲线是契约另一方递来的三张谈判申请——机器至今的回应方式是改进节奏与包装,而非设置席位。这个接口的最终风险不是崩溃,是 13.3 亿调用方逐渐确认一个共同认知:协议只在对方需要时有效。届时无需任何组织、任何动员——所有人会像退出居民医保那样,安静地为整个系统打上「不再续约」的标记。意义市场(GY-13)接住他们的灵魂,自费市场接住他们的身体,而系统失去的,是它与普通人之间最后一个全员接口。</b><br><br>
+      与前十二个子集合观:退役军人是「唯一被国家出资预装组织运行时」,信仰人群是「国家退出意义供给后的无主端口」,主播与创作者是「希望市场的彩票调度」,医保里的人则补上第十三条规律——<b>医保是「总账接口」:它不是又一个人群切片,是所有人群切片的共同结算层;别的模块分析的是某一类人怎样承压,这个模块分析的是所有人最终在同一个窗口前,如何共享同一种身体经验。</b>
+    </div>
+
+    <h3 class="yb-h3">对 GY 系列的五条修正</h3>
+    <div class="yb-fix">
+      <h5><b>修正 · GY-01</b>医保基金应与地方债、养老金并列为三大刚性科目</h5>
+      <p>财政压力测算应将医保基金(尤其居民医保的财政补助依赖与职工医保的老龄化支出曲线)纳入三大刚性科目,<b style="color:var(--zhu);">且标注医保的「不可拖延性」高于另两项:晚发养老金是违约,停得起手术是死人。</b></p>
+    </div>
+    <div class="yb-fix">
+      <h5><b>修正 · GY-03</b>「社保无用论」观测项应拆分医保与养老金两个分量</h5>
+      <p>年轻人对养老金的不信任是远期折现,对医保的弃保是即期决策——<b style="color:var(--zhu);">后者的政治信号更强</b>;建议将「弃医保」单列为社保信任的高敏分量。</p>
+    </div>
+    <div class="yb-fix">
+      <h5><b>修正 · GY-06+09</b>第一代农民工的老年医保处境应显式标注三重叠加</h5>
+      <p>低轨医保 × 高发职业病 × 县域医疗能力——<b>三重叠加使这个人群是 Y6 裸奔层的核心存量</b>;建议在 GY-06 M5 / GY-09 增补医保端处境。</p>
+    </div>
+    <div class="yb-fix">
+      <h5><b>修正 · GY-08</b>中产「医疗自费恐惧」应升格为防御性收缩的第一驱动</h5>
+      <p>先于教育军备——集采后的「两轨药品」使中产首次直面「<b style="color:var(--zhu);">钱能不能买回原研药</b>」的具体焦虑,这是其储蓄曲线的新增刚性。</p>
+    </div>
+    <div class="yb-fix">
+      <h5><b>修正 · GY-13</b>医疗绝望与意义市场的接口应双向标注</h5>
+      <p>重症家庭的求神拜佛、病友群的玄学浓度——<b style="color:var(--zhu);">Y6 的裸奔层是 X 系列「反周期市场」最稳定的客源</b>;意义市场接住身体被自费市场放弃的人的灵魂。</p>
+    </div>
+
+    <div class="yb-watch-intro">
+      <p>这个接口的处境变动,关键看三组指针:续约意愿的总仪表(居民医保参保数 / 缴费与催缴强度)、控费触界的温度计(集采质量争议 / 原研可及性 / DRG 变形读数)、总账到期的逼近速度(基金收支 / 白发式风波 / 水滴筹指数)。逐项标注状态、记录证据,年度与 GY 系列同步对账。状态与备注自动保存在本机。口径敏感者标「约」,待权威年度数据回填。</p>
+      <span class="yb-storage-state" id="yb-storage-state"></span>
+    </div>
+
+    <div class="yb-watch" id="yb-watch-list">
+      <div class="yb-watch-item" data-key="w1">
+        <div><h5><b>W-01</b>居民医保参保数</h5><p class="yb-watch-desc">年度增减与官方口径之争——<b>形态β 的主仪表,全系列最重要单一曲线之一。</b>测量 9.6 亿人的边际续约意愿。</p></div>
+        <div class="yb-watch-ctrl"><div class="yb-status-row"><button class="yb-status-btn" data-status="good">向好</button><button class="yb-status-btn" data-status="flat">中性</button><button class="yb-status-btn" data-status="bad">恶化</button></div><textarea class="yb-watch-note" placeholder="证据与备注…"></textarea><div class="yb-watch-stamp"></div></div>
+      </div>
+      <div class="yb-watch-item" data-key="w2">
+        <div><h5><b>W-02</b>缴费标准与催缴强度</h5><p class="yb-watch-desc">个人缴费涨幅、基层催缴的行政化程度——<b>与村干部考核挂钩 = 意愿塌方的代偿信号。</b>缴费爬坡的临界读数。</p></div>
+        <div class="yb-watch-ctrl"><div class="yb-status-row"><button class="yb-status-btn" data-status="good">向好</button><button class="yb-status-btn" data-status="flat">中性</button><button class="yb-status-btn" data-status="bad">恶化</button></div><textarea class="yb-watch-note" placeholder="证据与备注…"></textarea><div class="yb-watch-stamp"></div></div>
+      </div>
+      <div class="yb-watch-item" data-key="w3">
+        <div><h5><b>W-03</b>集采质量争议</h5><p class="yb-watch-desc">医生专业异议的频度与渠道、医保局调查的结论与整改——<b>Y3 政治化的温度计。</b>身体体验对官方叙事的偏差读数。</p></div>
+        <div class="yb-watch-ctrl"><div class="yb-status-row"><button class="yb-status-btn" data-status="good">向好</button><button class="yb-status-btn" data-status="flat">中性</button><button class="yb-status-btn" data-status="bad">恶化</button></div><textarea class="yb-watch-note" placeholder="证据与备注…"></textarea><div class="yb-watch-stamp"></div></div>
+      </div>
+      <div class="yb-watch-item" data-key="w4">
+        <div><h5><b>W-04</b>原研药可及性</h5><p class="yb-watch-desc">公立体系内原研占比、院外自费市场规模——<b>「两轨药品」的分化速度。</b>中产自费恐惧的具体化进度。</p></div>
+        <div class="yb-watch-ctrl"><div class="yb-status-row"><button class="yb-status-btn" data-status="good">向好</button><button class="yb-status-btn" data-status="flat">中性</button><button class="yb-status-btn" data-status="bad">恶化</button></div><textarea class="yb-watch-note" placeholder="证据与备注…"></textarea><div class="yb-watch-stamp"></div></div>
+      </div>
+      <div class="yb-watch-item" data-key="w5">
+        <div><h5><b>W-05</b>DRG 变形读数</h5><p class="yb-watch-desc">十五天出院/推诿重症的舆情频度、飞检处罚与申诉博弈——<b>预算紧缩在病床边的具体化强度。</b>权力梯度下流的实证。</p></div>
+        <div class="yb-watch-ctrl"><div class="yb-status-row"><button class="yb-status-btn" data-status="good">向好</button><button class="yb-status-btn" data-status="flat">中性</button><button class="yb-status-btn" data-status="bad">恶化</button></div><textarea class="yb-watch-note" placeholder="证据与备注…"></textarea><div class="yb-watch-stamp"></div></div>
+      </div>
+      <div class="yb-watch-item" data-key="w6">
+        <div><h5><b>W-06</b>基金收支</h5><p class="yb-watch-desc">职工/居民两池的当期结余、个别省份穿底信号——<b>形态γ 的逼近速度。</b>总账到期的核心仪表。</p></div>
+        <div class="yb-watch-ctrl"><div class="yb-status-row"><button class="yb-status-btn" data-status="good">向好</button><button class="yb-status-btn" data-status="flat">中性</button><button class="yb-status-btn" data-status="bad">恶化</button></div><textarea class="yb-watch-note" placeholder="证据与备注…"></textarea><div class="yb-watch-stamp"></div></div>
+      </div>
+      <div class="yb-watch-item" data-key="w7">
+        <div><h5><b>W-07</b>白发式风波</h5><p class="yb-watch-desc">医保参数调整引发的聚集事件频度与处置模式——<b>重谈样本库的更新。</b>单方面改版的合法性额度读数。</p></div>
+        <div class="yb-watch-ctrl"><div class="yb-status-row"><button class="yb-status-btn" data-status="good">向好</button><button class="yb-status-btn" data-status="flat">中性</button><button class="yb-status-btn" data-status="bad">恶化</button></div><textarea class="yb-watch-note" placeholder="证据与备注…"></textarea><div class="yb-watch-stamp"></div></div>
+      </div>
+      <div class="yb-watch-item" data-key="w8">
+        <div><h5><b>W-08</b>水滴筹指数</h5><p class="yb-watch-desc">大病众筹平台的筹款规模与达成率——<b>保障缺口的民间测量仪。</b>裸奔层规模的代理读数。</p></div>
+        <div class="yb-watch-ctrl"><div class="yb-status-row"><button class="yb-status-btn" data-status="good">向好</button><button class="yb-status-btn" data-status="flat">中性</button><button class="yb-status-btn" data-status="bad">恶化</button></div><textarea class="yb-watch-note" placeholder="证据与备注…"></textarea><div class="yb-watch-stamp"></div></div>
+      </div>
+    </div>
+
+    <h3 class="yb-h3">章节规划 · 登记表</h3>
+    <div class="yb-plan">
+      <div class="yb-plan-row"><span class="yb-plan-k">CH-01</span><span class="yb-plan-v"><b>白发风波全样本</b> — 2023 武汉等地事件的动员、诉求、处置与后续政策调整的完整复盘。</span><span class="yb-plan-tag">待建</span></div>
+      <div class="yb-plan-row"><span class="yb-plan-k">CH-02</span><span class="yb-plan-v"><b>集采质量证据链</b> — 一致性评价制度、中标价成本测算与临床反馈的文献化。</span><span class="yb-plan-tag">待建</span></div>
+      <div class="yb-plan-row"><span class="yb-plan-k">CH-03</span><span class="yb-plan-v"><b>逆选择螺旋推演</b> — 居民医保参保-基金-待遇的系统动力学模型与省际先行样本。</span><span class="yb-plan-tag">待建</span></div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="yb-foot">
+    <p>方法论:医保里的人以「全员接口(Universal API)」模型刻画——医保是 China OS 唯一覆盖全民的制度接口,13.3 亿参保者、全光谱所有人群(GY-03 到 GY-14)最终都通过这个接口与系统结算;接口的问题在于协议由一方持有修改权、改版从不发版本号。核心命题:每个人终将进入的人群(慢病患者与医保依赖人口)是老龄化财政从抽象数字变成具体疼痛的第一现场,医保是体制与全民之间最广泛的隐性契约,每次改革都是单方面重谈条款,且具有总账性质——所有人群最终汇入。Y1 唯一的全员接口:13.3 亿参保(职工约 3.7 亿、居民约 9.6 亿)、参保率 95% 上下,比户籍更普遍比养老金更高频比税收更可感(国家=报销比例),慢病人口 4 亿+(高血压 2 亿+糖尿病 1.4 亿)使医保基金成老龄化账单第一到期科目(医疗费用曲线先于养老金曲线变陡),双轨结构(职工高配协议 vs 居民低配协议)是与户籍 GY-06、养老金 GY-09 L2 同构的第三条双轨。Y2 退保信号:居民医保参保连年下降(累计数千万级、官方归因数据清理民间归因退保),个人缴费 10 元(2003)→400 元上下(财政补助 670 元上下)40 倍涨幅、县域多孩家庭全家保费成显性负担,退保微观理性(健康者算账「不生病就是亏」逆选择逻辑→健康者先退,保险最怕的退出顺序)、灵活就业者断保与断缴社保同步(↗GY-03/05),官方数据清理(技术事实)与民间缴费意愿下滑(政治事实)可同真,螺旋数学(健康者退出→风险浓度上升→待遇收紧缴费再涨→更多退出→滑向老弱病残互保高费率小池=形态β主线);退保是比上访更深刻的政治行为(上访相信条款可谈、退保是不再续约)。Y3 集采:以量换价十批砍掉数千亿药费(财政逻辑无可指摘),成绩单(十批数百种药、降幅过半甚至 90%+、慢病基础药白菜价)vs 第十批转折(2024-12-30 共 62 种降幅创新高、原研药全军出局含默克辉瑞拜耳等 33 种、公立体系内进口原研事实性退场),质量争议升级(上海瑞金北京朝阳医生 2025-01 两会政协发声「麻药不睡血压不降泻药不泻」→国家医保局赴沪联合调查=集采政治化第一信号),结构性问题(一致性评价一次性通过与质量漂移、超低中标价成本挤压、中标即亏损博弈、疗效不确定性转嫁患者身体不进报表)、阶层化用药(院外自费原研 vs 体制内仿制=与 GY-09 三轨同构的两轨药品);深层问题是定价权单边性(沉默契约单方面重谈的药品版)。Y4 DRG:按项目付费改按病组打包付费(控费逻辑国际通行),中国式执行下预算压力转译为临床行为变形(重症推诿、十五天出院、分解住院、低码高编、医保飞检猫鼠循环),医生从患者代理人滑向基金守门人(↗GY-07 B6 不出错优先临床版),与集采叠加使公立医疗基础款化加速(保基本收敛、好医疗溢出自费市场);财政紧缩沿权力梯度向下流动、积在最深洼地(重症老人穷人)。Y5 个账改革与白发风波:2023 个账改革(划入减少置换门诊统筹、精算逻辑成立)引发武汉等地退休人员聚集,风波机制(个账被理解为私有财产、改革动名义产权、宣传补偿缺位→技术调整被体验为单方面违约,↗GY-09 L7 动员快口号旧处置轻),样本教益(机器学到节奏与包装、未学到协商、下一次改版依然单方面、同类风波必然复发议题轮换),代际再分配本质(从有积累职工向高频就医老弱、方向公平程序专断=实体正义与程序缺席的永恒组合);白发风波+医生发声+退保曲线是契约另一方用各自方式要求谈判席位、单方面改版的合法性额度正在耗尽。Y6 双轨与裸奔层:全员接口内部等级化(职工居民待遇差、目录内外自费深渊、惠民保补丁性质),最底层是参保仍裸奔人群(大病自费击穿县域家庭),目录边界(报销 70% 真实语义=目录内 70% 目录外 100% 自理)、大病返贫链条(重疾→自费击穿储蓄→借贷卖房→因病返贫=返贫监测第一大原因)、补丁市场(惠民保赔付率困境、百万医疗险健康告知陷阱、水滴筹常态化=医保缺口最诚实测量仪);接口全员协议等级不是、人人在网内网眼大小按身份分配=中国式普遍主义标准形态。Y7 救命钱语法:医保政治能量全光谱最高一档,救命钱语法是公平语法(GY-03 CH-03)最硬核版本(无需意识形态加持、跨越所有人群分界、机器无法用叙事消解药不灵报不了的身体体验),语法不可辩驳性(性价比叙事可反驳、身体体验不可反驳、身体是最后事实裁判)、跨人群合流(白发风波老人+医生异议专业层+退保县域+自费恐惧中产=唯一能把全光谱怨恨接到同一根导线上的议题)、处置困境(不能定性政治正确、不能拖延疾病不等待、不能收买问题参数性、唯一有效是真给钱而财政做不到=GY-01 死循环医疗端投影)、国际对照(NHS 危机选票效应、美国医保政治极化、中国无选票泄压阀只能积累或溢出);机器最深软肋是 13.3 亿人共享身体经验与官方叙事偏差、这种不满自带同步性。Y8 形态推演:α 渐进紧缩(集采扩面+DRG 深化+缴费缓涨+目录动态调整、技术化渐进、白发式风波点状复发点状安抚、参保缓慢阴跌未成螺旋,概率最高)/β 退保螺旋确认(县域缴费意愿塌方→参保连续大幅下降→逆选择恶化→待遇收紧缴费跳涨→螺旋自证,标志事件参保率跌破 90% 或某省基金当期穿底公开化、9.6 亿人接口成规模退网=比街头事件更深的合法性事件、GY-01/07/09 形态β同族)/γ 总账到期(老龄化斜率使医保基金先于养老金进入系统性收支危机、医疗挤兑+代际重谈公开化、养老金可晚发手术不能晚做、仅挂接 GY-01 尾部)。数据锚定(2025/2026+训练知识基线,待权威年度数据回填):参保总盘约 13.3 亿(职工约 3.7 亿居民约 9.6 亿)、居民医保参保连年下降(累计数千万级口径有争议)、居民个人缴费 10 元(2003)→400 元上下(补助 670 元上下)、第十批国家集采(2024-12-30)62 种药原研全部出局(默克辉瑞拜耳等 33 种)、2025-01 医保局赴沪联合调查、慢病人口 4 亿+(高血压 2 亿+糖尿病 1.4 亿)、2023 个账改革与武汉白发风波。注:口径分散统计边界宽窄不一、最新数据以观测哨逐年回填。作为人群画像分层第十三子集,与 GY-01 财政(医保基金并列三大刚性科目、不可拖延性最高)、GY-03 青年(社保无用论拆分医保与养老金分量)、GY-06+09 农民工老年(低轨医保×高发职业病×县域医疗能力三重叠加=裸奔层核心存量)、GY-08 中产(医疗自费恐惧升格防御性收缩第一驱动)、GY-13 信仰人群(医疗绝望与意义市场双向标注、裸奔层是反周期市场最稳定客源)五处耦合;具有总账性质——所有人群最终汇入,是全员接口与最后总账。来源:用户规划简报、国家医保局集采意见函(2025-01)、证券时报集采调查报道、医药魔方第十批集采舆情、RFA 集采争议报道(2025-01)、训练知识基线。</p>
+    <div class="yb-foot-meta">
+      ChinaOS · GY-15 · v1.0.0<br>
+      生成 2026-06 丙午年<br>
+      人群画像 子集XIII · 关联模块 → GY-01/03/05/06/08/09/13<br>
+      注记:参保与基金口径以观测哨逐年回填
+    </div>
+  </footer>
+
+</div>
