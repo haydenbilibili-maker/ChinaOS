@@ -467,14 +467,14 @@ export const MODULES = [
     component: lazy(() => import('../modules/foundation/Page.jsx')),
   },
   {
-    id: 'watchtower', path: '/watchtower', group: 'foundation',
-    title: '全局监测台', subtitle: '六域先行指标 · 三档阈值 · 越线告警', icon: 'Siren',
-    component: lazy(() => import('../modules/watchtower/Page.jsx')),
-  },
-  {
     id: 'glossary', path: '/glossary', group: 'foundation',
     title: '术语词典', subtitle: '专有名词 · 调研术语 · 模块交叉链接', icon: 'BookOpen',
     component: lazy(() => import('../modules/glossary/Page.jsx')),
+  },
+  {
+    id: 'watchtower', path: '/watchtower', group: 'foundation',
+    title: '全局监测台', subtitle: '六域先行指标 · 三档阈值 · 越线告警', icon: 'Siren',
+    component: lazy(() => import('../modules/watchtower/Page.jsx')),
   },
 ];
 
