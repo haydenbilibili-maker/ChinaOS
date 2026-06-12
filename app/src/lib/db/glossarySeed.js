@@ -6,7 +6,7 @@ export const GLOSSARY_META = {
   id: 'glossary',
   label: '术语词典',
   asOf: '2026-06',
-  count: 443,
+  count: 446,
   source: 'China OS 模块语料 + 深度调研系列索引 + 手工策展',
 };
 
@@ -92,7 +92,7 @@ export const GLOSSARY_ENTRIES = [
     "initial": "#"
   },
   {
-    "id": "term-44465144",
+    "id": "term-70765710",
     "term": "56789",
     "aliases": [
       "民营经济"
@@ -293,11 +293,11 @@ export const GLOSSARY_ENTRIES = [
     "initial": "#"
   },
   {
-    "id": "mod-civilization-历史源码",
-    "term": "历史源码",
+    "id": "mod-civilization-历史底片",
+    "term": "历史底片",
     "aliases": [],
     "category": "module",
-    "definition": "「历史源码」为 China OS 模块「文明透视」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「文明透视」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括文明透视。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
+    "definition": "「历史底片」为 China OS 模块「文明透视」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「文明透视」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括文明透视。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "civilization",
@@ -1354,9 +1354,10 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "行为优先",
-      "变量B"
+      "变量B",
+      "国运"
     ],
-    "source": "GY系列",
+    "source": "GY系列；China OS · 国运",
     "initial": "#"
   },
   {
@@ -3078,6 +3079,25 @@ export const GLOSSARY_ENTRIES = [
     "initial": "G"
   },
   {
+    "id": "mod-nongmingong-gy-06",
+    "term": "GY-06",
+    "aliases": [],
+    "category": "gy",
+    "definition": "「GY-06」为 China OS 模块「农民工」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「农民工」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括农民工。在国运/GY推演谱系中，GY-06作为可观测变量或结构隐喻，参与情景分支与尾部风险评估。",
+    "context": [
+      {
+        "moduleId": "nongmingong",
+        "label": "农民工",
+        "path": "/modules/nongmingong"
+      }
+    ],
+    "related": [
+      "农民工"
+    ],
+    "source": "China OS · 农民工",
+    "initial": "G"
+  },
+  {
     "id": "mod-supplychain",
     "term": "供应链",
     "aliases": [
@@ -3339,28 +3359,22 @@ export const GLOSSARY_ENTRIES = [
     "id": "mod-guoyun",
     "term": "国运",
     "aliases": [
-      "时间轴"
+      "七时代轴"
     ],
     "category": "module",
-    "definition": "China OS 功能模块「国运」聚焦时间轴 · 推演 · 两谱系。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括推演、两谱系、神州活图。",
+    "definition": "China OS 功能模块「国运」聚焦七时代轴 · 情景推演 · 观测哨。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括情景推演、观测哨。",
     "context": [
       {
         "moduleId": "guoyun",
         "label": "国运",
         "path": "/modules/guoyun"
-      },
-      {
-        "moduleId": "shenzhou-live",
-        "label": "神州活图",
-        "path": "/shenzhou-live"
       }
     ],
     "related": [
-      "推演",
-      "两谱系",
-      "神州活图"
+      "情景推演",
+      "观测哨"
     ],
-    "source": "China OS · registry.js；China OS · 神州活图；China OS · 国运",
+    "source": "China OS · registry.js；China OS · 国运",
     "initial": "G"
   },
   {
@@ -3695,6 +3709,25 @@ export const GLOSSARY_ENTRIES = [
       "汽车主权"
     ],
     "source": "中国深度调研系列 · 半导体/汽车；China OS · 汽车主权",
+    "initial": "H"
+  },
+  {
+    "id": "mod-nongmingong-换页内存",
+    "term": "换页内存",
+    "aliases": [],
+    "category": "gy",
+    "definition": "「换页内存」为 China OS 模块「农民工」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「农民工」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括农民工。在国运/GY推演谱系中，换页内存作为可观测变量或结构隐喻，参与情景分支与尾部风险评估。",
+    "context": [
+      {
+        "moduleId": "nongmingong",
+        "label": "农民工",
+        "path": "/modules/nongmingong"
+      }
+    ],
+    "related": [
+      "农民工"
+    ],
+    "source": "China OS · 农民工",
     "initial": "H"
   },
   {
@@ -4491,10 +4524,9 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "时间轴",
-      "推演",
-      "国运"
+      "推演"
     ],
-    "source": "GY-01；China OS · 国运",
+    "source": "GY-01",
     "initial": "L"
   },
   {
@@ -4999,6 +5031,28 @@ export const GLOSSARY_ENTRIES = [
     "initial": "M"
   },
   {
+    "id": "mod-nongmingong",
+    "term": "农民工",
+    "aliases": [
+      "未完成的迁徙"
+    ],
+    "category": "gy",
+    "definition": "China OS 功能模块「农民工」聚焦未完成的迁徙 · 换页内存 · GY-06。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括换页内存、GY-06。",
+    "context": [
+      {
+        "moduleId": "nongmingong",
+        "label": "农民工",
+        "path": "/modules/nongmingong"
+      }
+    ],
+    "related": [
+      "换页内存",
+      "GY-06"
+    ],
+    "source": "China OS · registry.js；China OS · 农民工",
+    "initial": "N"
+  },
+  {
     "id": "idx-农牧拉锯",
     "term": "农牧拉锯",
     "aliases": [],
@@ -5501,18 +5555,24 @@ export const GLOSSARY_ENTRIES = [
     "term": "情景推演",
     "aliases": [],
     "category": "module",
-    "definition": "「情景推演」为 China OS 模块「治国沙盒」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「治国沙盒」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括治国沙盒。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
+    "definition": "「情景推演」为 China OS 模块「治国沙盒」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「治国沙盒」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括治国沙盒、国运。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
     "context": [
       {
         "moduleId": "sandbox",
         "label": "治国沙盒",
         "path": "/sandbox"
+      },
+      {
+        "moduleId": "guoyun",
+        "label": "国运",
+        "path": "/modules/guoyun"
       }
     ],
     "related": [
-      "治国沙盒"
+      "治国沙盒",
+      "国运"
     ],
-    "source": "China OS · 治国沙盒",
+    "source": "China OS · 治国沙盒；China OS · 国运",
     "initial": "Q"
   },
   {
@@ -6229,6 +6289,25 @@ export const GLOSSARY_ENTRIES = [
     "initial": "S"
   },
   {
+    "id": "mod-shenzhou-live-时间轴",
+    "term": "时间轴",
+    "aliases": [],
+    "category": "module",
+    "definition": "「时间轴」为 China OS 模块「神州活图」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「神州活图」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括神州活图。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
+    "context": [
+      {
+        "moduleId": "shenzhou-live",
+        "label": "神州活图",
+        "path": "/shenzhou-live"
+      }
+    ],
+    "related": [
+      "神州活图"
+    ],
+    "source": "China OS · 神州活图",
+    "initial": "S"
+  },
+  {
     "id": "idx-水资源约束",
     "term": "水资源约束。",
     "aliases": [],
@@ -6715,25 +6794,6 @@ export const GLOSSARY_ENTRIES = [
     "initial": "T"
   },
   {
-    "id": "mod-guoyun-推演",
-    "term": "推演",
-    "aliases": [],
-    "category": "module",
-    "definition": "「推演」为 China OS 模块「国运」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「国运」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括国运。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
-    "context": [
-      {
-        "moduleId": "guoyun",
-        "label": "国运",
-        "path": "/modules/guoyun"
-      }
-    ],
-    "related": [
-      "国运"
-    ],
-    "source": "China OS · 国运",
-    "initial": "T"
-  },
-  {
     "id": "idx-梯度转移",
     "term": "梯度转移",
     "aliases": [],
@@ -7058,10 +7118,10 @@ export const GLOSSARY_ENTRIES = [
     "id": "mod-civilization",
     "term": "文明透视",
     "aliases": [
-      "十二卷"
+      "十二卷源码"
     ],
     "category": "module",
-    "definition": "China OS 功能模块「文明透视」聚焦十二卷 · 文明基因 · 历史源码。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括文明基因、历史源码。",
+    "definition": "China OS 功能模块「文明透视」聚焦十二卷源码 · 文明基因 · 历史底片。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括文明基因、历史底片。",
     "context": [
       {
         "moduleId": "civilization",
@@ -7071,7 +7131,7 @@ export const GLOSSARY_ENTRIES = [
     ],
     "related": [
       "文明基因",
-      "历史源码"
+      "历史底片"
     ],
     "source": "China OS · registry.js；China OS · 文明透视",
     "initial": "W"

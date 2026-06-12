@@ -1,4 +1,5 @@
 /** 青年 GY-03 · 页签 / 章节跳转 / 观测哨（命名空间 chinaos.qingnian.v1） */
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 import { qingnianPanelId, resolveQingnianTab } from '../../lib/qingnian/routing.js';
 
 const NS = 'chinaos.qingnian.v1';
@@ -99,7 +100,7 @@ export function initQingnian(root, deepLink = {}) {
       if (note.value !== (rec.note || '')) note.value = rec.note || '';
       stampEl.textContent = rec.updated
         ? `更新 ${rec.updated}${rec.status ? ` · ${STATUS_LABEL[rec.status]}` : ''}`
-        : '';
+        : `基准 ${AS_OF_BASELINE} · 待观测`;
     };
 
     btns.forEach((b) => {

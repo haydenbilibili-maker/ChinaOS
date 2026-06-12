@@ -6,8 +6,9 @@
 // 各源 RSS 端点公开可查，实际可用性随媒体调整；种子保证离线可读。
 // ============================================================================
 import { useState, useEffect } from 'react';
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
-export const AS_OF_NEWS = '2026-06-11';
+export const AS_OF_NEWS = AS_OF_BASELINE;
 
 /** 时政要闻最大时效（天）；超出则丢弃（RSS 归档项常见） */
 export const NEWS_MAX_AGE_DAYS = 60;

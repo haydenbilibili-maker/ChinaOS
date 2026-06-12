@@ -1,4 +1,5 @@
 /** 性少数群像 GY-04 · 页签 / 观测哨（命名空间 chinaos.xss.v1） */
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 import { xingshaoshuPanelId } from '../../lib/xingshaoshu/routing.js';
 
 const NS = 'chinaos.xss.v1';
@@ -80,7 +81,7 @@ export function initXingshaoshu(root, deepLink = {}) {
       if (note.value !== (rec.note || '')) note.value = rec.note || '';
       stampEl.textContent = rec.updated
         ? `更新 ${rec.updated}${rec.status ? ` · ${STATUS_LABEL[rec.status]}` : ''}`
-        : '';
+        : `基准 ${AS_OF_BASELINE} · 待观测`;
     };
 
     btns.forEach((b) => {

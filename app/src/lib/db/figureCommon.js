@@ -1,5 +1,7 @@
 // 中国政要 · 共享构造器
-export const AS_OF = '2026-06-11';
+import { AS_OF_BASELINE } from '../config/asOfBaseline.js';
+
+export const AS_OF = AS_OF_BASELINE;
 
 /** @typedef {'official'|'media'|'academic'|'inferred'} VerifyTier */
 /** @typedef {'high'|'medium'|'low'} Confidence */

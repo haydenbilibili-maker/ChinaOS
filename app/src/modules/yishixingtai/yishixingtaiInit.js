@@ -1,4 +1,5 @@
 /** 意识形态架构 · 页签 / 卷宗 / 观测哨（命名空间 chinaos.yishi.v1） */
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 import { resolveYishiTab, yishiPanelId } from '../../lib/yishixingtai/routing.js';
 
 const NS = 'chinaos.yishi.v1';
@@ -133,7 +134,7 @@ export function initYishixingtai(root, deepLink = {}) {
       if (note.value !== (rec.note || '')) note.value = rec.note || '';
       stampEl.textContent = rec.updated
         ? `更新 ${rec.updated}${rec.status ? ` · ${STATUS_LABEL[rec.status]}` : ''}`
-        : '';
+        : `基准 ${AS_OF_BASELINE} · 待观测`;
     };
 
     btns.forEach((b) => {

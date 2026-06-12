@@ -1,4 +1,5 @@
 /** 国运推演 · 页签与观测哨 localStorage（命名空间 chinaos.guoyun.v1） */
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 import { resolveGuoyunPanel } from '../../lib/gy/coupling.js';
 
 const NS = 'chinaos.guoyun.v1';
@@ -92,7 +93,7 @@ export function initGuoyun(root, deepLink = {}) {
       if (note.value !== (rec.note || '')) note.value = rec.note || '';
       stampEl.textContent = rec.updated
         ? `更新 ${rec.updated}${rec.status ? ` · ${STATUS_LABEL[rec.status]}` : ''}`
-        : '';
+        : `基准 ${AS_OF_BASELINE} · 待观测`;
     };
 
     btns.forEach((b) => {

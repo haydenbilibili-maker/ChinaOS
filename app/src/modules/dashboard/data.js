@@ -18,8 +18,9 @@ import { DOC_CATALOG_META } from '../../lib/db/docSeed.js';
 import { LEGAL_STATUTE_DEDUPED_COUNT } from '../../lib/db/legalStatuteSeed.js';
 import { PRIVATE_ENTERPRISE_META, PE500_COMPANIES, PE500_DATASETS } from '../../lib/db/privateEnterpriseSeed.js';
 import { RANK_PYRAMID, MILITARY_INTEL_META } from '../../lib/db/militaryIntel2026.js';
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
-export const AS_OF = '2026-06-11';
+export const AS_OF = AS_OF_BASELINE;
 
 // ── 基础计数 ──────────────────────────────────────────────
 const HOME_GROUP = 'home';
