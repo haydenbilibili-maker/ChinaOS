@@ -72,7 +72,19 @@ export default defineConfig({
   base: './',
   build: {
     outDir: 'dist',
+    emptyOutDir: true,
     chunkSizeWarningLimit: 1200,
+    rollupOptions: {
+      output: {
+        // 按模块目录命名 lazy chunk，避免全部叫 Page-{hash}.js 难以排查部署失步
+        chunkFileNames(chunkInfo) {
+          const id = chunkInfo.facadeModuleId || '';
+          const mod = id.match(/\/modules\/([^/]+)\//)?.[1];
+          if (mod) return `assets/mod-${mod}-[hash].js`;
+          return 'assets/[name]-[hash].js';
+        },
+      },
+    },
   },
   server: {
     proxy: {

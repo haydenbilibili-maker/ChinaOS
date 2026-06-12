@@ -10,7 +10,8 @@ function withCacheHeaders(response, pathname) {
   if (pathname === '/' || pathname.endsWith('/index.html')) {
     headers.set('Cache-Control', 'no-cache, no-store, must-revalidate');
     headers.set('Pragma', 'no-cache');
-  } else if (/\/assets\/[^/]+-[A-Za-z0-9_-]{8,}\.(js|css|woff2?)$/i.test(pathname)) {
+    headers.set('CDN-Cache-Control', 'no-store');
+  } else if (/\/assets\/[^/]+\.(js|css|woff2?)$/i.test(pathname)) {
     headers.set('Cache-Control', 'public, max-age=31536000, immutable');
   }
   return new Response(response.body, {

@@ -40,10 +40,29 @@ async function worldBank(indicator, { country = 'CHN', from = 2018, to = 2024, t
   return Array.isArray(json) ? json[1] || [] : [];
 }
 
-// 行政区划地理边界（DataV）：adcode='100000' 为全国，省/市用各自 adcode
+// 行政区划地理边界：本地 GeoJSON 优先，DataV CDN 兜底（浏览器端常遇 403/CORS）
+const REGION_GEO_URLS = {
+  100000: [
+    '/geo/china-100000.json',
+    'https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json',
+  ],
+};
+
 async function regionGeo(adcode = '100000') {
-  const url = `https://geo.datav.aliyun.com/areas_v3/bound/${adcode}_full.json`;
-  return getJSON(url, { ttlMs: 24 * 60 * 60 * 1000 });
+  const key = String(adcode);
+  const urls = REGION_GEO_URLS[key] || [
+    `/geo/china-${key}.json`,
+    `https://geo.datav.aliyun.com/areas_v3/bound/${key}_full.json`,
+  ];
+  let lastErr;
+  for (const url of urls) {
+    try {
+      return await getJSON(url, { ttlMs: 24 * 60 * 60 * 1000 });
+    } catch (e) {
+      lastErr = e;
+    }
+  }
+  throw lastErr || new Error(`DataBus: region geo ${key} unavailable`);
 }
 
 // 世界地图 GeoJSON：本地静态资源优先，CDN 兜底（jsDelivr echarts/map 路径已 404）
