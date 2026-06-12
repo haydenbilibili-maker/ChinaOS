@@ -393,48 +393,8 @@ export const MODULES = [
     component: lazy(() => import('../modules/leadership/Page.jsx')),
   },
   {
-    id: 'watchtower', path: '/watchtower', group: 'sim',
-    title: '全局监测台', subtitle: '六域 36 指标 · 阈值告警 · 战役回执', icon: 'Activity',
-    component: lazy(() => import('../modules/watchtower/Page.jsx')),
-  },
-  {
-    id: 'partyschool', path: '/party-school', group: 'sim',
-    title: '党校研修推演', subtitle: '模拟 · 课程配置 · 结业考核筛选', icon: 'GraduationCap',
-    component: lazy(() => import('../modules/partyschool/Page.jsx')),
-  },
-  {
-    id: 'orgengine', path: '/org-engine', group: 'sim',
-    title: '组织画像引擎', subtitle: '模拟 · 全库六维画像 · 情景匹配底座', icon: 'ScanSearch',
-    component: lazy(() => import('../modules/orgengine/Page.jsx')),
-  },
-  {
-    id: 'handong', path: '/handong', group: 'sim',
-    title: '汉东治理沙盘', subtitle: '虚构省份 · 任期周期 · 换届连任 · 政绩任免', icon: 'Landmark',
-    component: lazy(() => import('../modules/handong/Page.jsx')),
-  },
-  {
-    id: 'macro', path: '/macro', group: 'sim',
-    title: '宏观调控驾驶舱', subtitle: '模拟 · 政策组合 · 八季度推演 · 四难平衡', icon: 'Gauge',
-    component: lazy(() => import('../modules/macro/Page.jsx')),
-  },
-  {
-    id: 'inspection', path: '/inspection', group: 'sim',
-    title: '中央巡视沙盘', subtitle: '虚构汉东 · 线索研判 · 谈话调度 · 整改跟踪', icon: 'ClipboardCheck',
-    component: lazy(() => import('../modules/inspection/Page.jsx')),
-  },
-  {
-    id: 'wargame', path: '/wargame', group: 'sim',
-    title: '大国博弈推演桌', subtitle: '模拟 · 科技经贸博弈 · 回合制 · 思想实验', icon: 'Swords',
-    component: lazy(() => import('../modules/wargame/Page.jsx')),
-  },
-  {
-    id: 'presser', path: '/presser', group: 'sim',
-    title: '舆情风暴应对台', subtitle: '模拟 · 抽象情景 · 响应时机 · 口径与渠道', icon: 'Megaphone',
-    component: lazy(() => import('../modules/presser/Page.jsx')),
-  },
-  {
     id: 'talent', path: '/talent', group: 'sim',
-    title: '人才精英库', subtitle: '结构化人力资本图谱 · 中国政要 / 反腐透视 / 异见人士 / 台湾政要 / 机构载体 / 知识生产 / 资本逻辑', icon: 'UsersRound',
+    title: '人才精英库', subtitle: '结构化人力资本图谱 · 中国政要 / 反腐透视 / 党校研修 / 组织画像 / 知识生产 / 资本逻辑', icon: 'UsersRound',
     component: lazy(() => import('../modules/talent/Page.jsx')),
   },
   {
