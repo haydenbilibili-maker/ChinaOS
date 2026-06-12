@@ -70,7 +70,7 @@ export function buildModuleRecords() {
 }
 
 /** 种子变更时递增，使模块级索引缓存在 HMR / 热更新后失效 */
-export const SEARCH_INDEX_REVISION = `v13:glossary:${GLOSSARY_COUNT}:self-media:${SELF_MEDIA_DEDUPED_COUNT.total}:${CULTURAL_ELITE_DEDUPED_COUNT.total}:${DIPLOMATIC_CORPS_SEED_PKG?.rows?.length ?? 0}`;
+export const SEARCH_INDEX_REVISION = `v14:self-media-exp:${SELF_MEDIA_DEDUPED_COUNT.total}:${CULTURAL_ELITE_DEDUPED_COUNT.total}:${DIPLOMATIC_CORPS_SEED_PKG?.rows?.length ?? 0}`;
 
 let _indexPromise = null;
 let _indexRevision = null;

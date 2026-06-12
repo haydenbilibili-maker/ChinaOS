@@ -2,6 +2,10 @@
 """Generate app/src/lib/db/figureSelfMedia2026.js — self-media / influencer seed."""
 from pathlib import Path
 from collections import Counter
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from genSelfMediaExpansion import EXPANSION_ENTRIES
 
 OUT = Path(__file__).resolve().parents[1] / "app/src/lib/db/figureSelfMedia2026.js"
 
@@ -9,7 +13,7 @@ HEADER = """// =================================================================
 // 自媒体人库 · 传媒影响力队列 · 2026-06
 // ----------------------------------------------------------------------------
 // 口径：以自媒体/大V/网红为主身份的公开传播节点；平台粉丝量级与垂类影响力建档。
-// 生成：scripts/genSelfMediaSeed.py
+// 生成：scripts/genSelfMediaSeed.py + scripts/genSelfMediaExpansion.py
 // ============================================================================
 
 import { AS_OF } from './figureCommon.js';
@@ -298,6 +302,9 @@ ENTRIES = [
     ("sm-x-49", "懂车帝", "douyin", "汽车媒体", "tech", "抖音500万+", "字节系汽车媒体。", "懂车帝", "—", "A", "公开报道"),
     ("sm-x-50", "汽车之家", "wechat", "汽车媒体", "tech", "微信100万+", "汽车垂直媒体。", "汽车之家", "—", "A", "公开报道"),
 ]
+
+# Merge curated expansion (B站百大 + 抖音千万粉+)
+ENTRIES = ENTRIES + list(EXPANSION_ENTRIES)
 
 # Filter: dedupe by id and name (keep first / higher tier)
 TIER_RANK = {"S": 0, "A": 1, "B": 2, "C": 3}
