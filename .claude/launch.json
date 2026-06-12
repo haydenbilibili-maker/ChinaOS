@@ -40,6 +40,32 @@
         "--strictPort"
       ],
       "port": 5181
+    },
+    {
+      "name": "ludo-web",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "/Users/hayden_lee/LifeOS_Workspace/Business_Projects/ludo/apps/web",
+        "run",
+        "dev"
+      ],
+      "port": 10087
+    },
+    {
+      "name": "ludo-web-prod",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "/Users/hayden_lee/LifeOS_Workspace/Business_Projects/ludo/apps/web",
+        "run",
+        "preview",
+        "--",
+        "--port",
+        "10088",
+        "--strictPort"
+      ],
+      "port": 10088
     }
   ]
 }

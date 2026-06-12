@@ -30,7 +30,7 @@ const STATUS_COLOR = { 未启动: '#64748b', 整改中: '#e8a317', 已销号: '#
 const sceneOf = (id) => HD_SCENARIOS.find((s) => s.id === id);
 const sourceOf = (id) => CLUE_SOURCES.find((s) => s.id === id);
 
-export default function Page() {
+export default function Page({ embedded = false }) {
   // —— 线索台账（确定性生成，挂载期一次） ——
   const baseClues = useMemo(() => buildClues(), []);
   // —— 工作流状态 ——
@@ -136,12 +136,13 @@ export default function Page() {
 
   return (
     <div>
-      {/* 0 —— 页头与虚构声明 */}
+      {!embedded && (
       <PageHeader
         badge="Simulation · 中央巡视沙盘（虚构）"
         title="中央巡视沙盘 · 进驻汉东"
         subtitle="三源线索入篮 → 谈话优先级调度 → 证据链闭合定档 → 整改双闸销号 → 一份可复盘的巡视工作底稿"
       />
+      )}
       <IntroCard>
         <strong style={{ color: 'var(--text-primary)' }}>虚构声明：</strong>
         本页为虚构省份巡视沙盘，致敬经典政治叙事；汉东省与全部官员均为原创虚构，
@@ -436,14 +437,16 @@ export default function Page() {
           pillars: [['定档', '严重度决定整改节奏。'], ['双闸', '启动与销号两道闸门。'], ['销号', '回头看核验才算闭环。']],
         },
       ]} />
+      {!embedded && (
       <ModuleFooter
         moduleId="inspection"
         links={[
-          { to: '/handong', label: '汉东治理沙盘', note: '同一虚构省份：从巡视底稿回到全要素治理推演' },
-          { to: '/org-engine', label: '组织画像引擎', note: '全库六维画像——谈话对象的能力底数从这里来' },
+          { to: '/sandbox?tab=handong', label: '汉东省沙盘', note: '同一虚构省份：从巡视底稿回到全要素治理推演' },
+          { to: '/talent?tab=org-dept', label: '组织画像引擎', note: '全库六维画像——谈话对象的能力底数从这里来' },
         ]}
         disclaimer="虚构省份巡视沙盘，致敬经典政治叙事；与任何真实巡视工作、真实人物无关；不构成对任何机构流程的描述"
       />
+      )}
     </div>
   );
 }

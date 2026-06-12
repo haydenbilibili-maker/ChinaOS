@@ -96,7 +96,7 @@ function EffectRow({ effect }) {
   );
 }
 
-export default function Page() {
+export default function Page({ embedded = false }) {
   // —— 对局状态 ——
   const [strategy, setStrategy] = useState('tit');             // 美方策略档位
   const [track, setTrack] = useState(TECH_TRACKS[0].id);       // 攻关目标线（重开对局保留），缺省=派生第一条
@@ -273,12 +273,13 @@ export default function Page() {
 
   return (
     <div>
-      {/* 0 —— 页头 / 思想实验声明 / 四格 Stat */}
+      {!embedded && (
       <PageHeader
         badge="Simulation · 大国博弈推演桌"
         title="大国博弈推演桌 · 科技-经贸回合制思想实验"
         subtitle="八张中性牌 × 五个回合 × 三档对手策略 + 两个摇摆方——博弈不是棋盘上的胜负，是两条供应链的耐力赛"
       />
+      )}
       <IntroCard>
         <strong style={{ color: 'var(--text-primary)' }}>思想实验声明：</strong>
         本页是中美科技-经贸博弈的抽象推演框架——非预测、非政策倡导，双方收益矩阵为示意标定，仅覆盖科技/经贸/产业维度，不涉任何军事冲突情景。
@@ -644,15 +645,17 @@ export default function Page() {
           pillars: [['双正但小', '缓和收益不如对抗伤害醒目。'], ['时间换档', '把耐力赛拖进己方节奏。'], ['窗口易碎', '一张管制牌就能关上。']],
         },
       ]} />
+      {!embedded && (
       <ModuleFooter
         moduleId="wargame"
         links={[
           { to: '/diplomacy', label: '外交全局框架盘', note: '推演桌上的策略档位，对应现实里四圈层布局与张力轴的操作选择。' },
           { to: '/techtree', label: '科技攻坚树', note: '攻关线的数据源头：五条目标线即作战盘领域派生，卡点与曲线同步联动。' },
-          { to: '/macro', label: '宏观经济仪表盘', note: '经贸线血条的现实读数——耐力赛拼的就是这张底盘。' },
+          { to: '/sandbox?tab=macro', label: '宏观调控驾驶舱', note: '经贸线血条的现实读数——耐力赛拼的就是这张底盘。' },
         ]}
         disclaimer="思想实验 / 分析框架 · 非预测 · 非政策倡导 · 仅科技/经贸维度抽象博弈，双方收益矩阵为示意标定，不构成对任何现实主体的评价"
       />
+      )}
     </div>
   );
 }

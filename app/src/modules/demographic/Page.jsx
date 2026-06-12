@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { PageHeader, Card, Grid, Stat, CrossLinks } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 const AXIS = '#27324a';
 const SPLIT = 'rgba(148,163,184,0.1)';
@@ -133,7 +134,7 @@ export default function Page() {
   return (
     <div>
       <PageHeader badge="Demographic Balance & Future Resilience" title="人口负增长 · 结构转型" subtitle="抚养比 · 老龄化 · 生育支持 · 城镇化迁移 —— 人口结构与长寿红利博弈（DATA_ANCHOR: 7th_CENSUS_UPDATE）" />
-      <Card className="mb-6"><p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>现实主义逻辑认为，人口老龄化是文明演进的物理必然。四条主线展开应对：01 老龄化熵增对冲、02 人才红利迭代、03 银发经济算法、04 生育激励与成本。核心目标是维持基本医保与社保基金的精算平衡，防止「赡养比」崩塌引发的财政系统性风险。</p></Card>
+      <IntroCard>现实主义逻辑认为，人口老龄化是文明演进的物理必然。四条主线展开应对：01 老龄化熵增对冲、02 人才红利迭代、03 银发经济算法、04 生育激励与成本。核心目标是维持基本医保与社保基金的精算平衡，防止「赡养比」崩塌引发的财政系统性风险。</IntroCard>
 
       <Grid cols={4} className="mb-6">
         <Stat value="14.08 亿" label="总人口 · 2022 达峰后转入负增长" accent="#c41e3a" />
@@ -242,14 +243,12 @@ export default function Page() {
           <span>// STATUS: RESILIENT</span>
         </div>
       </Card>
-
-      <CrossLinks links={[
-        { to: '/education', label: '教育', note: '人才红利的供给端 —— 决定密度红利上限。' },
-        { to: '/healthcare', label: '医疗', note: '老龄化的负载端 —— 医保精算压力来源。' },
-        { to: '/housing', label: '住房', note: '生育意愿的成本约束 —— 三座大山之首。' },
+<FrameworkTrio cards={[
+        { key: 'salt', body: '老龄化负载：医保/养老精算压力。' },
+        { key: 'stone', body: '人才红利密度对冲劳动力缺口。' },
+        { key: 'path', body: '生育支持：成本—意愿函数系统校准。' },
       ]} />
-
-      <p className="text-xs mt-6" style={{ color: 'var(--text-tertiary)' }}>数据锚点：第七次人口普查及公开统计综合整理，部分为示意值 · 由 china.html「人口」专题迁移</p>
+<ModuleFooter moduleId="demographic" sourceNote="由 china.html「人口」专题迁移" />
     </div>
   );
 }

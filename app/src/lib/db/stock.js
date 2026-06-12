@@ -8,6 +8,15 @@ import { PE500_DATASETS, PRIVATE_ENTERPRISE_META } from './privateEnterpriseSeed
 import { buildAntiCorruptionSeed, ANTI_CORRUPTION_META } from './antiCorruptionSeed.js';
 import { buildCulturalEliteSeed, CULTURAL_ELITE_META } from './culturalEliteSeed.js';
 import { buildBusinessEliteSeed, BUSINESS_ELITE_META } from './businessEliteSeed.js';
+import { buildHigherEducationSeed, HIGHER_EDUCATION_META } from './higherEducationSeed.js';
+import { buildThinkTankSeed, THINK_TANK_META } from './thinkTankSeed.js';
+import { buildResearchInstituteSeed, RESEARCH_INSTITUTE_META } from './researchInstituteSeed.js';
+import { buildWorldBankSeed, WORLD_BANK_META } from './worldBankSeed.js';
+import { buildAcademicianSeed, ACADEMICIAN_META } from './academicianSeed.js';
+import { buildOverseasTalentSeed, OVERSEAS_TALENT_META } from './overseasTalentSeed.js';
+import { buildLegalStatuteSeed, LEGAL_STATUTE_META } from './legalStatuteSeed.js';
+import { buildDissidentSeed, DISSIDENT_META } from './dissidentSeed.js';
+import { buildTaiwanPoliticalSeed, TAIWAN_POLITICAL_META } from './taiwanPoliticalSeed.js';
 
 // 各模块内嵌的代表性数据快照（origin=stock）
 const EMBEDDED = {
@@ -46,10 +55,58 @@ const EMBEDDED = {
 // 存量目录：每项含一个 loader 返回 { columns?, rows, source }
 export const STOCK_CATALOG = [
   {
+    key: 'higher-education',
+    id: buildHigherEducationSeed().id,
+    name: buildHigherEducationSeed().name,
+    category: '高等教育',
+    source: HIGHER_EDUCATION_META.sources[0],
+    real: false,
+    load: async () => {
+      const s = buildHigherEducationSeed();
+      return { rows: s.rows, source: s.source };
+    },
+  },
+  {
+    key: 'think-tank',
+    id: buildThinkTankSeed().id,
+    name: buildThinkTankSeed().name,
+    category: '顶级智库',
+    source: THINK_TANK_META.sources[0],
+    real: false,
+    load: async () => {
+      const s = buildThinkTankSeed();
+      return { rows: s.rows, source: s.source };
+    },
+  },
+  {
+    key: 'research-institute',
+    id: buildResearchInstituteSeed().id,
+    name: buildResearchInstituteSeed().name,
+    category: '科研院所',
+    source: RESEARCH_INSTITUTE_META.sources[0],
+    real: false,
+    load: async () => {
+      const s = buildResearchInstituteSeed();
+      return { rows: s.rows, source: s.source };
+    },
+  },
+  {
+    key: 'academician',
+    id: buildAcademicianSeed().id,
+    name: buildAcademicianSeed().name,
+    category: '两院院士',
+    source: ACADEMICIAN_META.sources[0],
+    real: false,
+    load: async () => {
+      const s = buildAcademicianSeed();
+      return { rows: s.rows, source: s.source };
+    },
+  },
+  {
     key: 'cultural-elite',
     id: buildCulturalEliteSeed().id,
     name: buildCulturalEliteSeed().name,
-    category: '文化精英',
+    category: '知识精英',
     source: CULTURAL_ELITE_META.sources[0],
     real: false,
     load: async () => {
@@ -70,14 +127,62 @@ export const STOCK_CATALOG = [
     },
   },
   {
+    key: 'overseas-talent',
+    id: buildOverseasTalentSeed().id,
+    name: buildOverseasTalentSeed().name,
+    category: '海外人才',
+    source: OVERSEAS_TALENT_META.sources[0],
+    real: false,
+    load: async () => {
+      const s = buildOverseasTalentSeed();
+      return { rows: s.rows, source: s.source };
+    },
+  },
+  {
+    key: 'legal-statute',
+    id: buildLegalStatuteSeed().id,
+    name: buildLegalStatuteSeed().name,
+    category: '法律条文',
+    source: LEGAL_STATUTE_META.sources[0],
+    real: false,
+    load: async () => {
+      const s = buildLegalStatuteSeed();
+      return { rows: s.rows, source: s.source };
+    },
+  },
+  {
     key: 'anticorruption',
     id: buildAntiCorruptionSeed().id,
     name: buildAntiCorruptionSeed().name,
-    category: '政治人物',
+    category: '人才精英',
     source: ANTI_CORRUPTION_META.sources[0],
     real: false,
     load: async () => {
       const s = buildAntiCorruptionSeed();
+      return { rows: s.rows, source: s.source };
+    },
+  },
+  {
+    key: 'dissident',
+    id: buildDissidentSeed().id,
+    name: buildDissidentSeed().name,
+    category: '异见人士',
+    source: DISSIDENT_META.sources[0],
+    real: false,
+    load: async () => {
+      const s = buildDissidentSeed();
+      return { rows: s.rows, source: s.source };
+    },
+  },
+  {
+    key: 'taiwan-political',
+    id: buildTaiwanPoliticalSeed().id,
+    name: buildTaiwanPoliticalSeed().name,
+    category: '港澳台政要',
+    source: TAIWAN_POLITICAL_META.sources[0],
+    real: false,
+    load: async () => {
+      const s = buildTaiwanPoliticalSeed();
       return { rows: s.rows, source: s.source };
     },
   },
@@ -100,6 +205,18 @@ export const STOCK_CATALOG = [
       if (n.gdp) rows.push({ 指标: 'GDP 现价(US$)', 年份: n.gdp.date, 数值: n.gdp.value });
       if (!rows.length) throw new Error('WB API 暂不可达');
       return { rows, source: 'World Bank API（实时拉取）' };
+    },
+  },
+  {
+    key: 'worldbank-wdi',
+    id: WORLD_BANK_META.id,
+    name: WORLD_BANK_META.label,
+    category: '世界银行',
+    source: WORLD_BANK_META.source,
+    real: true,
+    load: async () => {
+      const s = buildWorldBankSeed();
+      return { columns: s.columns, rows: s.rows, source: s.source };
     },
   },
   ...Object.entries(EMBEDDED).map(([key, v]) => ({

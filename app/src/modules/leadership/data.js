@@ -48,10 +48,14 @@ export const POWER_TIERS = [
 ];
 
 // ── 决策 Sankey 节点 ─────────────────────────────────────────────────────────
+// ECharts Sankey 要求有向无环（DAG）：「巡视反馈→调研论证」会形成
+// 议题输入→…→执行督查→巡视反馈→调研论证→… 的闭环，直接渲染会抛 cycle 错误并使整页崩溃。
+// 解决：反馈边导向「↺反馈」镜像汇点（与 redweb / digitalGiantWeb 同模式）。
 const SANKEY_NODES = [
   { name: '议题输入' }, { name: '调研论证' }, { name: '部际协调' },
   { name: '政治局常委会' }, { name: '中央全会' }, { name: '国务院常务' },
   { name: '立法/发布' }, { name: '执行督查' }, { name: '巡视反馈' },
+  { name: '调研论证 ↺反馈' },
 ];
 const SANKEY_LINKS = [
   { source: '议题输入', target: '调研论证', value: 45 },
@@ -64,7 +68,7 @@ const SANKEY_LINKS = [
   { source: '中央全会', target: '立法/发布', value: 10 },
   { source: '立法/发布', target: '执行督查', value: 42 },
   { source: '执行督查', target: '巡视反馈', value: 15 },
-  { source: '巡视反馈', target: '调研论证', value: 8 },
+  { source: '巡视反馈', target: '调研论证 ↺反馈', value: 8 },
 ];
 
 // ── 代际时间线（公开代际框架 · 示意节点） ───────────────────────────────────

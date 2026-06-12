@@ -12,7 +12,7 @@ import {
   buildPresserReport,
 } from './presserData.js';
 
-export default function Page() {
+export default function Page({ embedded = false }) {
   const [scenarioId, setScenarioId] = useState(PR_SCENARIOS[0].id);
   const [hours, setHours] = useState(12);
   const [stance, setStance] = useState('full');
@@ -49,11 +49,13 @@ export default function Page() {
 
   return (
     <div>
+      {!embedded && (
       <PageHeader
         badge="Sim · 舆情"
         title="舆情风暴应对台"
         subtitle={`抽象情景推演 · 响应时机 × 口径 × 渠道 · 基准日 ${PR_AS_OF}`}
       />
+      )}
       <IntroCard>
         六个情景均为原创虚构抽象题材，不指向任何真实事件。推演「未响应复利攀升 → 口径衰减差分 → 渠道触达/信任套利」的机理结构；非公关建议。
       </IntroCard>
@@ -132,7 +134,7 @@ export default function Page() {
         <pre className="text-[11px] leading-relaxed whitespace-pre-wrap mono" style={{ color: 'var(--text-secondary)', maxHeight: 360, overflowY: 'auto' }}>{report}</pre>
       </Card>
 
-      <ModuleFooter moduleId="presser" disclaimer={`思想工具 · 抽象情景 · 基准日 ${PR_AS_OF} · 非公关建议`} />
+      {!embedded && <ModuleFooter moduleId="presser" disclaimer={`思想工具 · 抽象情景 · 基准日 ${PR_AS_OF} · 非公关建议`} />}
     </div>
   );
 }

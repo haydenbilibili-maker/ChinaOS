@@ -2,7 +2,8 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
+import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
+import { EraTimeline } from './EraTimeline.jsx';
 import { useFigures } from '../../lib/db/useDataset.js';
 import {
   LEAD_AS_OF, LEAD_DISCLAIMER, ERA_TIMELINE, TERM_SYSTEM, GOV_MODEL, BRAIN_TRUST, AGENDA, TRADEOFFS,
@@ -136,7 +137,7 @@ function EraDetail({ stages, idx, onSelect }) {
     color: disabled ? 'var(--text-tertiary)' : CYAN, cursor: disabled ? 'default' : 'pointer', opacity: disabled ? 0.5 : 1,
   });
   return (
-    <div className="os-card" style={{ padding: 'var(--card-padding)', background: 'var(--bg-elevated)', borderLeft: `3px solid ${accent}` }}>
+    <div className="os-card lead-era-tl-detail" style={{ padding: 'var(--card-padding)', background: 'var(--bg-elevated)', borderLeft: `3px solid ${accent}` }}>
       <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
         <div className="flex items-center gap-2.5">
           <span className="mono text-sm font-semibold" style={{ color: accent }}>{st.period}</span>
@@ -358,7 +359,7 @@ function HistorySection({ eraIdx, setEraIdx, agendaId, setAgendaId }) {
       </div>
 
       <Card title="执政时间轴 · 公开节点">
-        <TimelineBar
+        <EraTimeline
           stages={eraStages}
           activeIdx={eraIdx}
           onSelect={setEraIdx}

@@ -1,8 +1,10 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { NavLink, Link, Outlet, useLocation } from 'react-router-dom';
 import * as Lucide from 'lucide-react';
-import { GROUPS, modulesByGroup, moduleById } from './registry.js';
+import { GROUPS, modulesByGroup } from './registry.js';
+import { buildBreadcrumbs } from './breadcrumb.js';
 import GlobalSearch from './GlobalSearch.jsx';
+import SiteFooter from './SiteFooter.jsx';
 import { buildSearchIndex } from '../lib/search/buildIndex.js';
 import { getTheme, toggleTheme, subscribeTheme } from '../lib/theme.js';
 
@@ -11,6 +13,49 @@ const IS_MAC = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(naviga
 function Icon({ name, size = 16 }) {
   const Cmp = Lucide[name] || Lucide.Square;
   return <Cmp size={size} strokeWidth={1.75} />;
+}
+
+function BreadcrumbNav({ items }) {
+  if (!items.length) return null;
+  return (
+    <nav className="os-breadcrumb min-w-0 flex-1" aria-label="面包屑">
+      <ol className="os-breadcrumb__list flex items-center gap-0.5 min-w-0 m-0 p-0 list-none">
+        {items.map((item, i) => (
+          <li key={`${item.label}-${i}`} className="flex items-center gap-0.5 min-w-0">
+            {i > 0 && (
+              <Lucide.ChevronRight size={13} className="os-breadcrumb__sep shrink-0" aria-hidden="true" />
+            )}
+            {item.active || !item.to ? (
+              <span
+                className="os-breadcrumb__current truncate"
+                aria-current={item.active ? 'page' : undefined}
+              >
+                {item.accent ? (
+                  <span className="inline-flex items-center gap-1.5 min-w-0">
+                    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: item.accent }} />
+                    <span className="truncate">{item.label}</span>
+                  </span>
+                ) : (
+                  item.label
+                )}
+              </span>
+            ) : (
+              <Link to={item.to} className="os-breadcrumb__link truncate">
+                {item.accent ? (
+                  <span className="inline-flex items-center gap-1.5 min-w-0">
+                    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: item.accent }} />
+                    <span className="truncate">{item.label}</span>
+                  </span>
+                ) : (
+                  item.label
+                )}
+              </Link>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  );
 }
 
 function GroupBlock({ group, onNavigate }) {
@@ -49,8 +94,10 @@ function GroupBlock({ group, onNavigate }) {
 
 export default function Shell() {
   const loc = useLocation();
-  const active = moduleById(loc.pathname.replace('/', '')) || null;
-  const group = active ? GROUPS.find((g) => g.id === active.group) : null;
+  const crumbs = useMemo(
+    () => buildBreadcrumbs(loc.pathname, loc.search),
+    [loc.pathname, loc.search],
+  );
   const mainRef = useRef(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -155,18 +202,15 @@ export default function Shell() {
         >
           <button
             type="button"
-            className="os-hamburger os-btn os-btn-ghost os-btn-sm"
+            className="os-hamburger os-btn os-btn-ghost os-btn-sm shrink-0"
             onClick={() => setDrawerOpen(true)}
             aria-label="打开导航"
           >
             <Lucide.Menu size={16} />
           </button>
-          <span>China OS</span>
-          {group && <><Lucide.ChevronRight size={13} /><span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full" style={{ background: group.accent }} />{group.label}</span></>}
-          <Lucide.ChevronRight size={13} />
-          <span className="truncate" style={{ color: 'var(--text-secondary)' }}>{active ? active.title : '总览'}</span>
+          <BreadcrumbNav items={crumbs} />
 
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto flex items-center gap-2 shrink-0">
             <button
               type="button"
               onClick={() => setSearchOpen(true)}
@@ -195,6 +239,7 @@ export default function Shell() {
         <div key={loc.pathname} className="os-page-enter px-8 py-8 max-w-6xl">
           <Outlet />
         </div>
+        <SiteFooter />
       </main>
 
       <GlobalSearch open={searchOpen} onClose={closeSearch} />

@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Card, CrossLinks, Grid, Stat } from '../../app/ui.jsx';
 import { FrameworkTrio } from '../shared/ModuleParadigm.jsx';
 import {
-  VOLUMES, STACK_ORDER, REGIME, REGIME_TAG, VOL_LINKS, getVolume, wordEstimate,
+  VOLUMES, CANONICAL_ORDER, REGIME, REGIME_TAG, VOL_LINKS, getVolume, wordEstimate, getLayerCode, getPrevNextVol,
 } from './volumes.js';
 
 const PROGRESS_KEY = 'civilization-read-progress';
@@ -60,13 +60,8 @@ export default function VolumeDetail() {
   const progress = loadProgress()[volId] || 0;
   const words = vol ? wordEstimate(vol) : 0;
 
-  const prevNext = useMemo(() => {
-    const idx = STACK_ORDER.indexOf(volId);
-    return {
-      prev: idx > 0 ? STACK_ORDER[idx - 1] : null,
-      next: idx >= 0 && idx < STACK_ORDER.length - 1 ? STACK_ORDER[idx + 1] : null,
-    };
-  }, [volId]);
+  const prevNext = useMemo(() => getPrevNextVol(volId), [volId]);
+  const layerCode = vol ? getLayerCode(vol.role) : '';
 
   useEffect(() => {
     if (!vol) return undefined;
@@ -124,6 +119,14 @@ export default function VolumeDetail() {
             <span className="text-[11px] mono px-2 py-0.5 rounded" style={{ background: 'rgba(196,30,58,0.14)', color: 'var(--china-red)' }}>
               全文报告
             </span>
+            {prevNext.index >= 0 && (
+              <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'var(--bg-base)', color: 'var(--text-tertiary)' }}>
+                栈序 {prevNext.index + 1}/{prevNext.total}
+              </span>
+            )}
+            {layerCode && (
+              <span className="text-[10px] mono px-2 py-0.5 rounded font-semibold" style={{ background: `${vol.color}22`, color: vol.color, border: `1px solid ${vol.color}44` }}>{layerCode}</span>
+            )}
             <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'var(--bg-elevated)', color: vol.color }}>{vol.role}</span>
             <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: `${rcolor}1a`, color: rcolor }}>{rtag}</span>
           </div>
@@ -151,6 +154,28 @@ export default function VolumeDetail() {
             <Card title="目录">
               <TocNav sections={allSections} activeId={activeSec} color={vol.color} />
             </Card>
+            <Card title="卷序导航" className="mt-3">
+              <div className="space-y-1 max-h-48 overflow-y-auto">
+                {CANONICAL_ORDER.map((id, i) => {
+                  const v = VOLUMES[id];
+                  const on = id === volId;
+                  const lc = getLayerCode(v.role);
+                  return (
+                    <Link key={id} to={`/civilization/v/${id}`}
+                      className="flex items-center gap-2 text-[11px] mono px-2 py-1.5 rounded"
+                      style={{
+                        color: on ? '#fff' : 'var(--text-secondary)',
+                        background: on ? `${vol.color}33` : 'transparent',
+                        borderLeft: `2px solid ${on ? vol.color : 'transparent'}`,
+                      }}>
+                      <span style={{ color: on ? vol.color : 'var(--text-tertiary)', width: 14 }}>{i + 1}</span>
+                      {lc && <span style={{ color: v.color, fontSize: 10 }}>{lc}</span>}
+                      <span className="truncate">{v.num}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </Card>
             <div className="mt-3 space-y-1">
               {prevNext.prev && (
                 <button type="button" onClick={() => navigate(`/civilization/v/${prevNext.prev}`)}
@@ -171,7 +196,7 @@ export default function VolumeDetail() {
         </aside>
 
         {/* 正文 */}
-        <article>
+        <article className="os-prose">
           {vol.frameworks?.length > 0 && (
             <div id="fw-block" className="mb-8">
               <FrameworkTrio cards={vol.frameworks} />
@@ -189,9 +214,9 @@ export default function VolumeDetail() {
                       {sec.lead && <p className="text-xs mt-0.5 mono" style={{ color: vol.color }}>{sec.lead}</p>}
                     </div>
                   </div>
-                  <div className="space-y-3">
+                  <div className="space-y-3 os-prose">
                     {sec.body.map((p, i) => (
-                      <p key={i} className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{p}</p>
+                      <p key={i} className="prose-p">{p}</p>
                     ))}
                   </div>
                   {sec.cards?.length > 0 && (

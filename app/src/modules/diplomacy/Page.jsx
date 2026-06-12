@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
-import EChart from '../../lib/viz/EChart.jsx';
+import { IntroCard, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // 升温/维持/降温 三档色（沿用附件判读盘语义）
 const WARM = '#10b981', HOLD = '#e8a317', COOL = '#c41e3a', STEEL = '#22d3ee';
@@ -173,9 +173,9 @@ export default function Page() {
     <div>
       <PageHeader badge="Diplomacy · 全局框架盘" title="外交全局框架 · 判读盘"
         subtitle="四层嵌套系统：理念供叙事 · 结构定处境 · 布局分圈层 · 工具给抓手 —— 分辨恒量与变量，以行为而非辞令读信号" />
-      <Card className="mb-6"><p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+      <IntroCard>
         读中国外交，最忌当一串孤立事件。它是一个<strong style={{ color: 'var(--text-primary)' }}>四层嵌套系统</strong>，所有具体动作都能在这套坐标里定位。判读纪律第一条：<strong style={{ color: 'var(--text-primary)' }}>话语≈噪声，行为=信号</strong>——「传统友好」信息量近乎为零，真正泄露方向的是贸易数据、互访级别、制裁立场与劳务往来。
-      </p></Card>
+      </IntroCard>
 
       {/* 四圈层布局环 */}
       <Card title="布局环 · 四圈层定位（悬停图例高亮）" className="mb-6">
@@ -370,7 +370,14 @@ export default function Page() {
           ))}
         </ol>
       </Card>
-      <p className="text-xs mt-6" style={{ color: 'var(--text-tertiary)' }}>判读基准 2026-06 · 吸收自《中朝关系情景评估盘》《中国外交全局框架盘》，大国关系情景（中美/中俄/中欧）依同一范式扩建；恒量/变量分离 · 行为优先于辞令 · 阈值触发重判。本盘为分析框架，非预测、非立场陈述。</p>
+
+      <FrameworkTrio cards={[
+        { title: '盐铁逻辑', subtitle: '经济杠杆 · 命脉控盘', body: '外交工具层的底层是经济互赖与供应链武器化——市场准入、稀土与关键矿产是当代盐铁专营。', pillars: [['互赖筹码', '深度绑定即刹车。'], ['供应链', '卡脖子反制。'], ['南方投资', '长期票仓绑定。']] },
+        { title: '摸石头方法论', subtitle: '试点 · 灰度 · 校准', body: '韬光养晦与奋发有为之间的指针回摆，本质是姿态校准而非路线翻转——战狼降温、伙伴外交重启皆为战术性试探。', pillars: [['话语滞后', 'L1 永远光滑。'], ['行为信号', '互访级别定价。'], ['张力轴', '发展 vs 安全。']] },
+        { title: '升级路径', subtitle: '从参与者到供给者', body: '从融入现秩序到供给全球治理方案——人类命运共同体与三大全球倡议，是把「崛起」翻译成「公共产品」的叙事升级。', pillars: [['四环分工', '大国·周边·南方·多边。'], ['自建机制', '金砖/上合/一带一路。'], ['元首外交', '最高校准器。']] },
+      ]} />
+
+      <ModuleFooter moduleId="diplomacy" disclaimer="判读基准 2026-06 · 本盘为分析框架，恒量/变量分离 · 行为优先于辞令 · 阈值触发重判，非预测、非立场陈述" />
     </div>
   );
 }

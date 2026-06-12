@@ -11,7 +11,7 @@ import { AS_OF, fig } from './figureCommon.js';
 export const FIGURE_MUNICIPAL_META = {
   id: 'municipal-2026-06',
   asOf: AS_OF,
-  label: '城市主官公开履历 · 2026-06',
+  label: '城市主官政要 · 2026-06',
   sources: ['新华网', '人民网', '中国政府网', '维基百科·副省级市领导人列表', '各市政府官网'],
   scope: '副省级市15×2 + 省会/首府17×2 + 直辖市市长3',
   notes: '副省级与省会重叠城市仅录入副省级条目；重庆市长见省级库暂缺占位',

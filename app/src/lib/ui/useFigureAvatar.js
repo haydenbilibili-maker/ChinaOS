@@ -1,18 +1,27 @@
 import { useEffect, useState } from 'react';
-import { fetchFigureAvatarUrl, subscribeFigureAvatar } from './figureAvatar.js';
+import { fetchFigureAvatar, subscribeFigureAvatar } from './figureAvatar.js';
+import { VERIFY_TIER } from './avatarVerify.js';
 
 /**
- * @param {string} name
- * @param {string} [avatarUrl] optional seed override from fields.avatarUrl
+ * @param {string|{ id?: string, name: string, nameEn?: string, wikiTitle?: string, wikiLang?: string, avatarUrl?: string, verifyTier?: string, source?: string }} nameOrMeta
+ * @param {string} [avatarUrl] legacy: optional seed override
  * @param {boolean} [enabled=true] defer fetch until visible when false
  */
-export function useFigureAvatar(name, avatarUrl, enabled = true) {
+export function useFigureAvatar(nameOrMeta, avatarUrl, enabled = true) {
   const [url, setUrl] = useState(null);
+  const [verifyTier, setVerifyTier] = useState(VERIFY_TIER.EMPTY);
   const [status, setStatus] = useState('idle');
+
+  const meta = typeof nameOrMeta === 'string'
+    ? { name: nameOrMeta, avatarUrl }
+    : nameOrMeta;
+  const name = meta?.name || '';
+  const resolvedUrl = meta?.avatarUrl || avatarUrl;
 
   useEffect(() => {
     if (!name || !enabled) {
       setUrl(null);
+      setVerifyTier(VERIFY_TIER.EMPTY);
       setStatus('idle');
       return undefined;
     }
@@ -20,23 +29,31 @@ export function useFigureAvatar(name, avatarUrl, enabled = true) {
     let cancelled = false;
     setStatus('loading');
 
-    const unsub = subscribeFigureAvatar(name, avatarUrl, (resolved) => {
-      if (cancelled) return;
-      setUrl(resolved);
-      setStatus(resolved ? 'loaded' : 'fallback');
-    });
+    const payload = { ...meta, avatarUrl: resolvedUrl };
 
-    fetchFigureAvatarUrl(name, avatarUrl).then((resolved) => {
+    const apply = (result) => {
       if (cancelled) return;
+      const tier = result?.tier || VERIFY_TIER.EMPTY;
+      const resolved = tier === VERIFY_TIER.VERIFIED ? (result?.url || null) : null;
       setUrl(resolved);
-      setStatus(resolved ? 'loaded' : 'fallback');
-    });
+      setVerifyTier(tier);
+      setStatus(tier === VERIFY_TIER.VERIFIED && resolved ? 'verified' : 'empty');
+    };
+
+    const unsub = subscribeFigureAvatar(payload, undefined, apply);
+
+    fetchFigureAvatar(payload).then(apply);
 
     return () => {
       cancelled = true;
       unsub();
     };
-  }, [name, avatarUrl, enabled]);
+  }, [name, resolvedUrl, enabled, meta?.id, meta?.nameEn, meta?.wikiTitle, meta?.wikiLang, meta?.verifyTier, meta?.source]);
 
-  return { url, status };
+  return {
+    url,
+    verifyTier,
+    verified: verifyTier === VERIFY_TIER.VERIFIED && !!url,
+    status,
+  };
 }

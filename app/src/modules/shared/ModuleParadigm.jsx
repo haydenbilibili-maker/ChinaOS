@@ -3,9 +3,9 @@ import { CrossLinks, Grid } from '../../app/ui.jsx';
 import { getCrossLinks } from './moduleCrossLinks.js';
 
 /** 专题页统一 intro 卡片 */
-export function IntroCard({ children, className = 'mb-6' }) {
+export function IntroCard({ children, className = 'mb-8' }) {
   return (
-    <div className={`os-card p-5 ${className}`}>
+    <div className={`os-card ${className}`} style={{ padding: 'var(--card-padding)' }}>
       <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{children}</p>
     </div>
   );
@@ -20,13 +20,13 @@ export function SelectorBar({ items, activeKey, onSelect, getKey = (i) => i.key,
         const active = key === activeKey;
         const accent = getAccent(item);
         return (
-          <button key={key} type="button" onClick={() => onSelect(key)} className="text-xs px-3 py-1.5 rounded mono"
-            style={{
-              background: active ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)',
-              color: active ? '#fff' : 'var(--text-secondary)',
-              border: `1px solid ${active ? accent : 'var(--border-subtle)'}`,
-              cursor: 'pointer', transition: 'all .15s',
-            }}>{getLabel(item)}</button>
+          <button
+            key={key}
+            type="button"
+            onClick={() => onSelect(key)}
+            className={`os-filter-chip mono ${active ? 'is-active' : ''}`}
+            style={{ '--chip-accent': accent }}
+          >{getLabel(item)}</button>
         );
       })}
     </div>
@@ -42,14 +42,13 @@ export function TimelineBar({ stages, activeIdx, onSelect, renderDetail }) {
           const active = i === activeIdx;
           const accent = st.accent || st.color || 'var(--china-red)';
           return (
-            <button key={st.period || st.label || i} type="button" onClick={() => onSelect(i)} className="text-xs px-3 py-1.5 rounded mono flex-1"
-              style={{
-                minWidth: 120,
-                background: active ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)',
-                color: active ? '#fff' : 'var(--text-secondary)',
-                border: `1px solid ${active ? accent : 'var(--border-subtle)'}`,
-                cursor: 'pointer', transition: 'all .15s', textAlign: 'left',
-              }}>
+            <button
+              key={st.period || st.label || i}
+              type="button"
+              onClick={() => onSelect(i)}
+              className={`os-filter-chip mono flex-1 ${active ? 'is-active' : ''}`}
+              style={{ '--chip-accent': accent, minWidth: 120, textAlign: 'left' }}
+            >
               {(st.period || st.range) && <div style={{ color: active ? accent : 'var(--text-tertiary)' }}>{st.period || st.range}</div>}
               <div>{st.title || st.label}</div>
             </button>
@@ -57,7 +56,7 @@ export function TimelineBar({ stages, activeIdx, onSelect, renderDetail }) {
         })}
       </div>
       {renderDetail ? renderDetail(stages[activeIdx], activeIdx) : (
-        <div className="os-card p-5" style={{ background: 'var(--bg-elevated)', borderLeft: `3px solid ${stages[activeIdx]?.accent || stages[activeIdx]?.color || 'var(--china-red)'}` }}>
+        <div className="os-card" style={{ padding: 'var(--card-padding)', background: 'var(--bg-elevated)', borderLeft: `3px solid ${stages[activeIdx]?.accent || stages[activeIdx]?.color || 'var(--china-red)'}` }}>
           <div className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
             {[stages[activeIdx]?.period, stages[activeIdx]?.title].filter(Boolean).join(' · ')}
           </div>
@@ -77,19 +76,19 @@ export function FrameworkTrio({ cards }) {
   ];
   const merged = defaults.map((d, i) => ({ ...d, ...(cards[i] || cards[d.key] || {}) }));
   return (
-    <div className="grid gap-4 mb-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}>
+    <div className="grid gap-6 md:gap-6 lg:gap-8 mb-8" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
       {merged.map((c) => (
-        <div key={c.key} className="os-card p-5" style={{ background: 'var(--bg-surface)', borderLeft: `3px solid ${c.border}` }}>
-          <div className="flex items-baseline gap-2 mb-2">
-            <span className="text-base font-semibold" style={{ color: c.accent }}>{c.title}</span>
-            {c.subtitle && <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>{c.subtitle}</span>}
+        <div key={c.key} className="os-card" style={{ padding: 'var(--card-padding)', background: 'var(--bg-surface)', borderLeft: `3px solid ${c.border}` }}>
+          <div className="flex flex-col gap-1 mb-3">
+            <span className="text-base font-semibold leading-snug" style={{ color: c.accent }}>{c.title}</span>
+            {c.subtitle && <span className="text-[11px] mono leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{c.subtitle}</span>}
           </div>
-          <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>{c.body}</p>
+          <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>{c.body}</p>
           {c.pillars?.length > 0 && (
-            <Grid cols={c.pillars.length >= 3 ? 3 : c.pillars.length}>
+            <Grid cols={c.pillars.length >= 3 ? 3 : c.pillars.length} gap="1rem 1.75rem">
               {c.pillars.map(([t, d]) => (
-                <div key={t}>
-                  <div className="text-xs font-semibold mb-1" style={{ color: c.accent }}>{t}</div>
+                <div key={t} className="min-w-0">
+                  <div className="text-xs font-semibold mb-1.5 leading-snug" style={{ color: c.accent }}>{t}</div>
                   <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
                 </div>
               ))}

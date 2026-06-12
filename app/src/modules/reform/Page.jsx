@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { PageHeader, Card, Grid, Stat, CrossLinks } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ─── 阶段定义 · 1978 至今的「现实主义算法演进」五段 ───
 const PHASES = [
@@ -117,7 +118,7 @@ export default function Page() {
   return (
     <div>
       <PageHeader badge="Reform · Realist Evolution" title="改革开放的现实主义逻辑" subtitle="系统重启 · 灰度测试 · 资源汲取 · 绩效契约 —— 一场彻底的「生存算法切换」" />
-      <Card className="mb-6"><p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>1978 年的改革开放是把系统最高优先级从「纯洁度」调整为「生产力」的务实权力交易：通过向社会释放局部经济自由（两权分离），换取系统在剧变时代的整体稳定与绝对领导权。指数级增长是「绩效合法性」最强硬的物理证据。下方时间线把四十余年读作一段<span style={{ color: 'var(--cyber-cyan)' }}>「现实主义算法演进」</span>——压力倒逼、灰度试错、均值回归。</p></Card>
+      <IntroCard>1978 年的改革开放是把系统最高优先级从「纯洁度」调整为「生产力」的务实权力交易：通过向社会释放局部经济自由（两权分离），换取系统在剧变时代的整体稳定与绝对领导权。指数级增长是「绩效合法性」最强硬的物理证据。下方时间线把四十余年读作一段<span style={{ color: 'var(--cyber-cyan)' }}>「现实主义算法演进」</span>——压力倒逼、灰度试错、均值回归。</IntroCard>
 
       <Grid cols={4} className="mb-6">
         <Stat value="372 倍" label="名义 GDP 增幅(1978→2024)" accent="#c41e3a" />
@@ -246,14 +247,12 @@ export default function Page() {
       </Card>
 
       <Card title="调研组终评" className="mb-6"><p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>改革开放是中国权力逻辑中最成功的「版本迭代」——以极致的实用主义，把一个濒临崩溃的系统转化为全球最具规模的复杂协同体。无为而无不为：真正的控制不在于规定每一步，而在于松绑后均值回归到秩序。</p></Card>
-
-      <CrossLinks links={[
-        { to: '/private', label: '民营经济 · 算力外包' },
-        { to: '/soe', label: '国有经济 · 战略基座' },
-        { to: '/civilization', label: '文明 OS · 长周期视角' },
+<FrameworkTrio cards={[
+        { key: 'salt', body: '放权让利：最小生产单元激励下放。' },
+        { key: 'stone', body: '摸着石头过河：灰度特区与双轨软着陆。' },
+        { key: 'path', body: '受控开放：安全冗余下的制度型开放。' },
       ]} />
-
-      <p className="text-xs mt-6" style={{ color: 'var(--text-tertiary)' }}>数据来源：国家统计局(NBS)、世界银行(WB)、WTO 等，部分为示意值 · 由 china.html「体制改革」专题迁移</p>
+<ModuleFooter moduleId="reform" sourceNote="由 china.html「体制改革」专题迁移" />
     </div>
   );
 }

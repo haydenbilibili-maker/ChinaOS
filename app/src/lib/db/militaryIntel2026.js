@@ -382,11 +382,11 @@ export const LOGISTICS = {
     { level: '军港/机场/场站', role: '装卸载与中转', location: '战略通道节点' },
   ],
   hubs: [
-    { name: '武汉联勤保障基地', type: '总部/仓储', region: '中部', note: '2016 军改后联勤主体' },
-    { name: '西宁联勤保障中心', type: '高原保障', region: '西部', note: '高原边防物资投送' },
-    { name: '无锡联勤保障中心', type: '综合保障', region: '东部', note: '东南方向储备' },
-    { name: '桂林联勤保障中心', type: '南部保障', region: '南部', note: '华南方向' },
-    { name: '沈阳联勤保障中心', type: '寒区保障', region: '北部', note: '东北方向' },
+    { name: '武汉联勤保障基地', type: '总部/仓储', region: '中部', coord: [114.30, 30.59], note: '2016 军改后联勤主体' },
+    { name: '西宁联勤保障中心', type: '高原保障', region: '西部', coord: [101.78, 36.62], note: '高原边防物资投送' },
+    { name: '无锡联勤保障中心', type: '综合保障', region: '东部', coord: [120.31, 31.49], note: '东南方向储备' },
+    { name: '桂林联勤保障中心', type: '南部保障', region: '南部', coord: [110.29, 25.27], note: '华南方向' },
+    { name: '沈阳联勤保障中心', type: '寒区保障', region: '北部', coord: [123.43, 41.80], note: '东北方向' },
   ],
   transport: {
     strategicAirlift: { label: '战略空运', capacity: '运-20 机队 50+ 架', note: '跨区投送能力持续提升' },
@@ -421,4 +421,245 @@ export const BASE_TYPE_COLORS = {
   火箭军: '#e8a317',
   海外: '#10b981',
   岛礁: '#c41e3a',
+};
+
+// ============================================================================
+// 扩展可视化数据集 · 2026-06 升级批次
+// ============================================================================
+
+/** 军衔金字塔 · 漏斗示意（人数为公开估算/编制示意，非精确） */
+export const RANK_PYRAMID = {
+  asOf: '2025-06',
+  note: '军衔层级人数为公开估算与编制示意，非官方精确数据；用于结构直观对比。',
+  levels: [
+    { rank: '上将', count: 38, label: '军委 / 战区 / 军种主官', color: '#c41e3a' },
+    { rank: '中将', count: 120, label: '正战区 / 副战区级', color: '#e8602e' },
+    { rank: '少将', count: 600, label: '正军 / 副军级', color: '#e8a317' },
+    { rank: '校官', count: 90000, label: '团师机关骨干', color: '#22d3ee' },
+    { rank: '尉官', count: 200000, label: '基层指挥军官', color: '#8b5cf6' },
+    { rank: '士官 / 义务兵', count: 1500000, label: '士兵主体', color: '#64748b' },
+  ],
+};
+
+/** 兵员构成堆叠 · 现役 / 预备役 / 文职 / 武警（单位：万 · 估算示意） */
+export const FORCE_COMPOSITION = {
+  asOf: '2024',
+  unit: '万人 · 估算示意',
+  segments: [
+    { name: '现役', value: 200, color: '#c41e3a' },
+    { name: '武警', value: 50, color: '#22d3ee' },
+    { name: '预备役', value: 50, color: '#e8a317' },
+    { name: '文职', value: 30, color: '#8b5cf6' },
+  ],
+  note: '武警归中央军委建制但不计入现役总员额；民兵随任务动态编组，不计入此图。',
+};
+
+/** 征兵规模与大学生比例年趋势（公开报道示意） */
+export const RECRUITMENT_TREND = {
+  asOf: '2024',
+  years: ['2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+  scale: [45, 45, 50, 50, 48, 46, 45],
+  collegeShare: [30, 35, 40, 45, 50, 55, 60],
+  note: '2021 起改为一年两次征兵；大学生及理工科征集比例持续上升（公开报道区间示意）。',
+};
+
+/** 军费占 GDP 趋势 · SIPRI 口径（高于官方约 1.2%） */
+export const DEFENSE_GDP_TREND = {
+  asOf: '2024',
+  years: ['2014', '2016', '2018', '2020', '2022', '2024'],
+  budget: [131, 146, 168, 178, 200, 236],
+  gdpShare: [1.9, 1.9, 1.9, 1.7, 1.6, 1.5],
+  note: 'SIPRI 估算口径军费占 GDP（含部分预算外项目），官方公布口径约 1.2%。',
+};
+
+/** 国际军费对比 · SIPRI 2024 现价示意 */
+export const INTL_DEFENSE_COMPARE = {
+  asOf: '2024',
+  unit: 'B$ · SIPRI 现价美元',
+  data: [
+    { name: '美国', value: 916, color: '#3b82f6' },
+    { name: '中国', value: 296, color: '#c41e3a' },
+    { name: '俄罗斯', value: 109, color: '#e8a317' },
+    { name: '印度', value: 86, color: '#f59e0b' },
+    { name: '沙特', value: 76, color: '#10b981' },
+    { name: '英国', value: 75, color: '#22d3ee' },
+    { name: '德国', value: 67, color: '#8b5cf6' },
+    { name: '日本', value: 50, color: '#64748b' },
+  ],
+  note: '中国为 SIPRI 估算值，高于官方公布；用于量级对比，非精确排名。',
+};
+
+/** 军种—兵种 旭日图（占比示意 %） */
+export const SERVICE_SUNBURST = [
+  { name: '陆军', itemStyle: { color: '#c41e3a' }, children: [
+    { name: '合成部队', value: 30 }, { name: '陆军航空兵', value: 4 }, { name: '特种作战', value: 3 }, { name: '防空兵', value: 5 },
+  ] },
+  { name: '海军', itemStyle: { color: '#22d3ee' }, children: [
+    { name: '水面舰艇', value: 5 }, { name: '潜艇', value: 2 }, { name: '海军航空兵', value: 3 }, { name: '陆战队', value: 2 },
+  ] },
+  { name: '空军', itemStyle: { color: '#8b5cf6' }, children: [
+    { name: '航空兵', value: 9 }, { name: '地空导弹', value: 3 }, { name: '空降兵', value: 3 },
+  ] },
+  { name: '火箭军', itemStyle: { color: '#e8a317' }, children: [
+    { name: '核反击', value: 3 }, { name: '常规导弹', value: 5 },
+  ] },
+  { name: '信息支援 / 联勤 / 其他', itemStyle: { color: '#64748b' }, children: [
+    { name: '信息支援', value: 5 }, { name: '联勤保障', value: 10 }, { name: '军委直属', value: 8 },
+  ] },
+];
+
+/** 装备谱系树 · ECharts tree */
+export const EQUIPMENT_TREE = {
+  name: '主战装备谱系',
+  children: [
+    { name: '海军', children: [
+      { name: '航空母舰', children: [{ name: '辽宁/山东' }, { name: '福建(电磁弹射)' }] },
+      { name: '驱护舰', children: [{ name: '055型大驱' }, { name: '052D' }, { name: '054A/B' }] },
+      { name: '两栖', children: [{ name: '075型' }, { name: '071型' }] },
+      { name: '潜艇', children: [{ name: '094/096(战略)' }, { name: '093(攻击)' }, { name: '039A/B' }] },
+    ] },
+    { name: '空军', children: [
+      { name: '战斗机', children: [{ name: '歼-20(五代)' }, { name: '歼-16/10C' }] },
+      { name: '轰炸机', children: [{ name: '轰-6K/N' }] },
+      { name: '支援机', children: [{ name: '运-20' }, { name: '空警-500' }] },
+    ] },
+    { name: '陆军', children: [
+      { name: '装甲', children: [{ name: '99A坦克' }, { name: '04A步战' }] },
+      { name: '火力', children: [{ name: 'PCL-181' }, { name: 'PHL-191' }] },
+      { name: '陆航', children: [{ name: '直-20' }, { name: '直-10' }] },
+    ] },
+    { name: '火箭军', children: [
+      { name: '核常导弹', children: [{ name: 'DF-41/31AG' }, { name: 'DF-26/21D' }] },
+      { name: '战术/巡航', children: [{ name: 'DF-17(高超)' }, { name: 'CJ-10' }] },
+    ] },
+  ],
+};
+
+/** 主战装备数量对比 · IISS 示意（对数刻度展示） */
+export const EQUIPMENT_COMPARE = {
+  asOf: 'IISS Military Balance 2025 示意',
+  data: [
+    { name: '主战坦克', value: 4200, color: '#c41e3a' },
+    { name: '步战/装甲车', value: 7000, color: '#e8602e' },
+    { name: '作战飞机', value: 1300, color: '#8b5cf6' },
+    { name: '主要水面舰艇', value: 370, color: '#22d3ee' },
+    { name: '潜艇', value: 60, color: '#06b6d4' },
+    { name: '战略运输机', value: 50, color: '#10b981' },
+    { name: '弹道导弹发射架', value: 500, color: '#e8a317' },
+  ],
+  note: '不同类别量级差异大，采用对数刻度；数值为公开估算区间中值。',
+};
+
+/** 装备服役/亮相年代时间线 */
+export const SERVICE_TIMELINE = [
+  { year: 2012, name: '辽宁舰服役', domain: '海军', color: '#22d3ee' },
+  { year: 2015, name: 'DF-26 阅兵', domain: '火箭军', color: '#e8a317' },
+  { year: 2017, name: '歼-20 服役', domain: '空军', color: '#8b5cf6' },
+  { year: 2017, name: '山东舰下水', domain: '海军', color: '#22d3ee' },
+  { year: 2017, name: '运-20 列装', domain: '空军', color: '#8b5cf6' },
+  { year: 2019, name: 'DF-17 高超亮相', domain: '火箭军', color: '#e8a317' },
+  { year: 2019, name: '075首舰下水', domain: '海军', color: '#22d3ee' },
+  { year: 2021, name: 'DF-41 公开', domain: '火箭军', color: '#e8a317' },
+  { year: 2022, name: '福建舰下水', domain: '海军', color: '#22d3ee' },
+  { year: 2024, name: '歼-35 测试', domain: '空军', color: '#8b5cf6' },
+  { year: 2024, name: '六代机概念曝光', domain: '空军', color: '#8b5cf6' },
+];
+
+/** 海空军现代化率雷达（双系列示意 %） */
+export const MODERNIZATION_RADAR = {
+  indicators: [
+    { name: '主力换代率', max: 100 },
+    { name: '信息化', max: 100 },
+    { name: '远程投送', max: 100 },
+    { name: '体系协同', max: 100 },
+    { name: '隐身/反隐身', max: 100 },
+    { name: '无人化', max: 100 },
+  ],
+  navy: [72, 78, 65, 80, 55, 60],
+  air: [68, 82, 70, 78, 75, 65],
+  note: '现代化率为公开评估综合示意，非官方指标。',
+};
+
+/** TRL 成熟度矩阵热力图 · 领域 × 研发阶段（0-100 成熟度示意） */
+export const TRL_MATRIX = {
+  asOf: '2026-06',
+  domains: ['军事AI', '高超音速', '量子通信', '天基/反太空', '军工芯片', '电子战', '无人集群', '定向能/电磁炮'],
+  stages: ['基础研究', '关键技术', '系统集成', '试验验证', '列装应用'],
+  // [stageIdx, domainIdx, value]
+  data: [
+    [90, 95, 70, 95, 60, 88, 85, 75],
+    [85, 90, 65, 90, 55, 85, 80, 65],
+    [78, 85, 55, 85, 50, 80, 72, 50],
+    [70, 82, 45, 80, 40, 75, 65, 40],
+    [60, 78, 30, 75, 30, 68, 50, 25],
+  ],
+  note: '成熟度为综合公开披露的定性评估示意（行=阶段，列=领域），不含涉密项目。',
+};
+
+/** 国防科技研发投入趋势（示意指数，2014=100） */
+export const RD_INVESTMENT_TREND = {
+  asOf: '2024',
+  years: ['2014', '2016', '2018', '2020', '2022', '2024'],
+  index: [100, 122, 150, 178, 215, 260],
+  note: '国防科研投入指数为公开军费 R&D 占比与增速推算的相对趋势示意。',
+};
+
+/** 军民融合关系 · Sankey（民口 → 领域 → 军用，权重示意） */
+export const MCF_SANKEY = {
+  nodes: [
+    { name: '商业航天', itemStyle: { color: '#22d3ee' } },
+    { name: '民营科技', itemStyle: { color: '#8b5cf6' } },
+    { name: '高校院所', itemStyle: { color: '#e8a317' } },
+    { name: '国有军工', itemStyle: { color: '#c41e3a' } },
+    { name: '人工智能', itemStyle: { color: '#10b981' } },
+    { name: '低轨星座', itemStyle: { color: '#10b981' } },
+    { name: '先进材料', itemStyle: { color: '#10b981' } },
+    { name: '芯片/电子', itemStyle: { color: '#10b981' } },
+    { name: '太空作战', itemStyle: { color: '#fb923c' } },
+    { name: '智能装备', itemStyle: { color: '#fb923c' } },
+    { name: '战略投送', itemStyle: { color: '#fb923c' } },
+  ],
+  links: [
+    { source: '商业航天', target: '低轨星座', value: 8 },
+    { source: '商业航天', target: '战略投送', value: 4 },
+    { source: '民营科技', target: '人工智能', value: 7 },
+    { source: '民营科技', target: '芯片/电子', value: 5 },
+    { source: '高校院所', target: '先进材料', value: 6 },
+    { source: '高校院所', target: '人工智能', value: 5 },
+    { source: '国有军工', target: '芯片/电子', value: 6 },
+    { source: '国有军工', target: '智能装备', value: 7 },
+    { source: '人工智能', target: '智能装备', value: 8 },
+    { source: '人工智能', target: '太空作战', value: 4 },
+    { source: '低轨星座', target: '太空作战', value: 8 },
+    { source: '先进材料', target: '智能装备', value: 6 },
+    { source: '芯片/电子', target: '智能装备', value: 6 },
+    { source: '芯片/电子', target: '太空作战', value: 5 },
+    { source: '低轨星座', target: '战略投送', value: 4 },
+  ],
+  note: '军民融合（军民一体化国家战略体系）路径关系示意，权重为定性强度，非真实经费。',
+};
+
+/** 战区兵力构成对比 · 堆叠（集团军/海空军侧重，相对强度示意 0-100） */
+export const THEATER_FORCE = {
+  asOf: '2025 示意',
+  theaters: ['东部战区', '南部战区', '西部战区', '北部战区', '中部战区'],
+  series: [
+    { name: '陆军', color: '#c41e3a', data: [55, 45, 75, 60, 65] },
+    { name: '海军', color: '#22d3ee', data: [70, 80, 5, 40, 5] },
+    { name: '空军', color: '#8b5cf6', data: [75, 60, 55, 55, 70] },
+    { name: '火箭军/支援', color: '#e8a317', data: [60, 50, 45, 40, 55] },
+  ],
+  note: '战区力量侧重为方向性强度示意（非编制人数），反映主战方向资源倾斜。',
+};
+
+/** 第一/第二岛链示意线 · 坐标为地缘概念近似点，非精确边界 */
+export const ISLAND_CHAINS = {
+  note: '岛链为冷战地缘概念近似连线，非领土主张或精确军事边界。',
+  first: [
+    [129.5, 42.5], [129.0, 35.5], [128.6, 32.6], [126.5, 30.0], [123.5, 25.5],
+    [121.5, 23.5], [120.5, 21.5], [120.0, 18.0], [119.5, 14.0], [121.0, 10.5], [118.0, 6.0],
+  ],
+  second: [
+    [142.0, 35.5], [142.5, 27.0], [145.7, 15.2], [144.8, 13.4], [138.0, 9.5], [134.5, 7.3],
+  ],
 };

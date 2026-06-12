@@ -874,7 +874,7 @@ export default function Page() {
         {wgRuns.length === 0 ? (
           <p className="text-xs leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
             博弈桌尚未开局——攻关线的真实压力测试在那张桌上。
-            <Link to="/wargame" className="ml-2 font-semibold" style={{ color: '#22d3ee' }}>→ 上博弈桌推演</Link>
+            <Link to="/sandbox?tab=wargame" className="ml-2 font-semibold" style={{ color: '#22d3ee' }}>→ 上博弈桌推演</Link>
           </p>
         ) : (
           <>
@@ -892,7 +892,7 @@ export default function Page() {
               ))}
             </div>
             <p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>
-              回执来自 <Link to="/wargame" style={{ color: '#22d3ee' }}>大国博弈推演桌</Link> 的对局存档（最多回显 6 局）——攻关线即本盘领域，作战盘改数据，博弈桌同步换线。
+              回执来自 <Link to="/sandbox?tab=wargame" style={{ color: '#22d3ee' }}>大国博弈推演桌</Link> 的对局存档（最多回显 6 局）——攻关线即本盘领域，作战盘改数据，博弈桌同步换线。
             </p>
           </>
         )}
@@ -920,7 +920,7 @@ export default function Page() {
       <ModuleFooter
         moduleId="techtree"
         links={[
-          { to: '/wargame', label: '大国博弈推演桌', note: '攻关线即本盘领域——上桌做压力测试。' },
+          { to: '/sandbox?tab=wargame', label: '大国博弈推演桌', note: '攻关线即本盘领域——上桌做压力测试。' },
           { to: '/manufacturing', label: '制造业 · GVC 位势', note: '国产替代与微笑曲线锚点。' },
           { to: '/semiconductor', label: '半导体 · 卡脖子', note: '科技树最硬受制节点深潜。' },
         ]}

@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import * as Lucide from 'lucide-react';
-import { PageHeader, Card, Grid, Stat, CrossLinks } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, TabBar } from '../../app/ui.jsx';
+import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { useDataset } from '../../lib/db/useDataset.js';
 import * as DB from '../../lib/db/localdb.js';
@@ -462,7 +463,7 @@ export default function Page() {
 
       <Card className="mb-4">
         <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-          本模块与政治人物简历库<strong style={{ color: 'var(--text-primary)' }}>隔离存储</strong>，聚焦工商联榜单企业的创始人、股权架构与职业经理人三条治理维度。
+          本模块与人才精英库<strong style={{ color: 'var(--text-primary)' }}>隔离存储</strong>，聚焦工商联榜单企业的创始人、股权架构与职业经理人三条治理维度。
           全量 {cos.length} 家企业已载入；深度画像 {deepCount} 家。
           {PRIVATE_ENTERPRISE_META.notes}
         </p>
@@ -658,11 +659,7 @@ export default function Page() {
 
       {viewMode === 'ranking' && (
         <>
-          <div className="flex gap-1 flex-wrap mb-4">
-            {TABS.map(([k, label]) => (
-              <button key={k} type="button" onClick={() => setTab(k)} className="mono" style={btn(tab === k)}>{label}</button>
-            ))}
-          </div>
+          <TabBar tabs={TABS} value={tab} onChange={setTab} accent="#fb923c" className="mb-4" />
 
           <div className="grid gap-4" style={{ gridTemplateColumns: 'minmax(280px, 1.25fr) minmax(260px, 1fr)' }}>
             <Card title={`${TABS.find(([k]) => k === tab)?.[1] || ''} · ${listRows.length} 条`}>
@@ -707,12 +704,7 @@ export default function Page() {
         </>
       )}
 
-      <CrossLinks className="mt-6" links={[
-        { to: '/private', label: '民营经济 · 56789贡献', note: '宏观贡献与营商环境语境。' },
-        { to: '/soe', label: '国有资本 · 战略底座', note: '国资/民营双轨对照。' },
-        { to: '/principalagent', label: '委托代理', note: '创始人—职业经理人治理张力。' },
-        { to: '/foundation', label: '数据底座', note: '数据集导入与管理。' },
-      ]} />
+      <ModuleFooter moduleId="enterprise500" disclaimer="榜单与股权数据为公开信息综合，仅用于产业分布与治理结构分析，不代表投资建议" />
     </div>
   );
 }

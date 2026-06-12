@@ -46,6 +46,24 @@ async function regionGeo(adcode = '100000') {
   return getJSON(url, { ttlMs: 24 * 60 * 60 * 1000 });
 }
 
+// 世界地图 GeoJSON：本地静态资源优先，CDN 兜底（jsDelivr echarts/map 路径已 404）
+const WORLD_GEO_URLS = [
+  '/geo/world.json',
+  'https://raw.githubusercontent.com/apache/echarts/master/test/data/map/json/world.json',
+];
+
+async function worldGeo() {
+  let lastErr;
+  for (const url of WORLD_GEO_URLS) {
+    try {
+      return await getJSON(url, { ttlMs: 24 * 60 * 60 * 1000 });
+    } catch (e) {
+      lastErr = e;
+    }
+  }
+  throw lastErr || new Error('DataBus: world geo unavailable');
+}
+
 // 省级统计数据：远程优先 + 本地快照兜底 + 数据源标注。
 // 省级粒度无免费公开实时 API，故默认本地快照；配置 remote 后自动切换并标注「实时」。
 // remote 可指向自建代理 / NBS 数据网关 / 托管 JSON（同 schema：{meta, provinces[]}）。
@@ -75,6 +93,7 @@ export const DataBus = {
   getJSON,
   worldBank,
   regionGeo,
+  worldGeo,
   provinceStats,
   chinaIndicators,
   clearCache: () => cache.clear(),

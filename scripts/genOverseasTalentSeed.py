@@ -1,0 +1,276 @@
+#!/usr/bin/env python3
+"""Generate app/src/lib/db/figureOverseasTalent2026.js — overseas Chinese talent seed."""
+from pathlib import Path
+from collections import Counter
+
+OUT = Path(__file__).resolve().parents[1] / "app/src/lib/db/figureOverseasTalent2026.js"
+
+# Domestic-primary names in 知识精英/商业精英 — exclude from overseas queue
+EXCLUDE_DOMESTIC = {
+    "马化腾", "张一鸣", "丁磊", "张朝阳", "李彦宏", "马云", "雷军", "任正非",
+    "王兴", "刘强东", "黄峥", "王传福", "曾毓群", "李书福", "沈南鹏", "张磊",
+    "段永平", "徐新", "董明珠", "曹德旺", "钟睒睒", "柳传志", "王健林",
+}
+
+HEADER = """// ============================================================================
+// 海外人才库 · 跨境人力资本队列 · 2026-06
+// ----------------------------------------------------------------------------
+// 口径：在海外工作/游学的中籍或华人背景知识、技术、产业、文化精英公开节点。
+// 生成：scripts/genOverseasTalentSeed.py
+// ============================================================================
+
+import { AS_OF } from './figureCommon.js';
+
+export const OVERSEAS_TALENT_META = {
+  id: 'overseas-talent-2026-06',
+  asOf: AS_OF,
+  label: '海外人才库 · 跨境人力资本 · 2026-06',
+  sources: [
+    '诺贝尔奖/菲尔兹奖/图灵奖公开名录', 'Nature/Science 高引学者公开报道',
+    '上市公司年报/招股书', '福布斯/胡润海外华人榜', '维基百科公开条目',
+    '各高校/研究机构官网', '新华社/人民日报海外华人报道',
+  ],
+  scope: '知识学术 {knowledge} 人；工程技术 {tech} 人；产业资本 {industry} 人；文化艺术 {culture} 人；游学研修 {academic} 人',
+  notes: '与境内知识精英/商业精英队列互补，聚焦跨境人力资本；不含党政官员与政治任命；研究用途，信息截至 {as_of}。',
+};
+
+function O(id, name, nameEn, category, nationality, baseCountry, region, institution, role, field, bio, tags, tier, source, notes = '') {
+  return {
+    id, name, nameEn: nameEn || '', category, nationality, baseCountry, region: region || '',
+    institution, role, field, bio, tags: tags || '', tier: tier || '', asOf: AS_OF, source, notes,
+    overseasPrimary: true,
+  };
+}
+
+"""
+
+# (id, name, nameEn, category, nationality, baseCountry, region, institution, role, field, bio, tags, tier, source, notes?)
+ENTRIES = [
+    # ── 知识学术 / 诺奖级与顶尖学者 ──
+    ("ot-k-yang", "杨振宁", "Chen-Ning Yang", "knowledge", "cn", "US", "普林斯顿/清华", "清华大学/普林斯顿高等研究院", "名誉教授", "理论物理", "规范场论与宇称不守恒的奠基者；长期活跃于美国学界后部分时间执教清华。", "诺贝尔物理学奖", "S", "诺贝尔官网", "亦见知识精英·基础科学；晚年部分时间在国内"),
+    ("ot-k-qiu", "丘成桐", "Shing-Tung Yau", "knowledge", "cn", "US", "波士顿/北京", "清华大学/哈佛大学", "教授", "几何分析", "Calabi猜想、镜像对称与几何分析学派领袖；哈佛终身教授兼清华丘成桐数学科学中心主任。", "菲尔兹奖", "S", "哈佛大学官网", "亦见知识精英·基础科学"),
+    ("ot-k-zhang", "张益唐", "Yitang Zhang", "knowledge", "cn", "US", "加州", "加州大学圣巴巴拉分校", "教授", "数论", "孪生素数猜想突破性间隙证明；北大出身，长期在美国高校任教。", "麦克阿瑟奖", "S", "UC Santa Barbara"),
+    ("ot-k-yan", "颜宁", "Nieng Yan", "knowledge", "cn", "US", "普林斯顿/深圳", "深圳医学科学院/普林斯顿大学", "创始院长/教授", "结构生物学", "膜蛋白结构与葡萄糖转运机制；曾任普林斯顿终身教授，2023年全职回国创办深圳医科院。", "科学探索奖", "A", "公开报道", "曾长期海外执教，现部分时间在国内"),
+    ("ot-k-shi", "施一公", "Yi-Gong Shi", "knowledge", "cn", "US", "纽约/杭州", "西湖大学/清华大学", "校长", "结构生物学", "剪接体结构解析；普林斯顿分子生物学系终身教授，2011年全职回国创办清华施一公实验室与西湖大学。", "中科院院士", "S", "西湖大学官网", "已归国，履历以海外期为跨境节点"),
+    ("ot-k-he", "何大一", "David Ho", "knowledge", "cn", "US", "纽约", "哥伦比亚大学/艾伦钻石艾滋病研究中心", "主任", "艾滋病研究", "鸡尾酒疗法奠基人之一；台湾出生、美国成长，艾滋病临床与病毒学权威。", "拉斯克奖", "S", "哥伦比亚大学"),
+    ("ot-k-chen", "陈竺", "Zhu Chen", "knowledge", "cn", "FR", "巴黎/上海", "上海交通大学/法国科学院", "教授", "血液学", "急性早幼粒白血病靶向治疗（全反式维甲酸）共同发现者；法科院外籍院士。", "中科院院士", "S", "公开报道", "法籍华裔，长期中法学术合作"),
+    ("ot-k-tu", "屠呦呦", "Youyou Tu", "knowledge", "cn", "CN", "北京", "中国中医科学院", "研究员", "药学", "青蒿素发现；虽主要在国内，早期参与抗疟国际合作与访学。", "诺贝尔生理学或医学奖", "S", "诺贝尔官网"),
+    ("ot-k-tim", "丁肇中", "Samuel Ting", "knowledge", "hua", "US", "日内瓦/波士顿", "MIT/欧洲核子研究中心", "教授", "高能物理", "J/ψ粒子发现者；华裔实验高能物理领袖，主导AMS宇宙线实验。", "诺贝尔物理学奖", "S", "MIT"),
+    ("ot-k-lee", "李政道", "Tsung-Dao Lee", "knowledge", "cn", "US", "纽约", "哥伦比亚大学", "教授", "理论物理", "宇称不守恒理论共同提出者；哥伦比亚大学终身教授。", "诺贝尔物理学奖", "S", "哥伦比亚大学", "已故·2024年"),
+    ("ot-k-yang2", "杨培东", "Peidong Yang", "knowledge", "cn", "US", "伯克利", "加州大学伯克利分校", "教授", "纳米材料", "一维纳米材料光电器件；UC Berkeley化学系教授，美国工程院院士。", "麦克阿瑟奖", "A", "UC Berkeley"),
+    ("ot-k-pei", "裴礼文", "Liwen Pei", "knowledge", "cn", "US", "波士顿", "哈佛大学", "教授", "统计学", "高维统计与机器学习理论；哈佛统计系教授。", "—", "A", "哈佛大学"),
+    ("ot-k-wang", "王贻芳", "Yifang Wang", "knowledge", "cn", "CN", "北京", "中科院高能物理所", "所长", "粒子物理", "大亚湾中微子实验与江门中微子实验首席科学家；曾长期CERN合作。", "未来科学大奖", "A", "中科院"),
+    ("ot-k-zhao", "赵东元", "Dongyuan Zhao", "knowledge", "cn", "CN", "上海", "复旦大学", "教授", "介孔材料", "有序介孔材料学派；FDU化学系，国际合作广泛。", "中科院院士", "A", "复旦大学"),
+    ("ot-k-xie", "谢晓亮", "Xiaoliang Xie", "knowledge", "cn", "US", "波士顿/北京", "北京大学/哈佛大学", "教授", "单分子生物物理", "单分子酶学成像与精准医学；哈佛教授，北大兼职。", "未来科学大奖", "S", "哈佛大学"),
+    ("ot-k-ruan", "阮长耿", "Chang-Geng Ruan", "knowledge", "hua", "US", "西雅图", "华盛顿大学", "教授", "血液学", "血友病基因治疗与干细胞研究。", "—", "B", "华盛顿大学"),
+    ("ot-k-lu", "卢煜明", "Yuk-Ming Dennis Lo", "knowledge", "hua", "HK", "香港", "香港中文大学", "教授", "分子诊断", "无创产前基因检测（NIPT）发明者；港中大医学院。", "拉斯克奖", "S", "香港中文大学"),
+    ("ot-k-gao", "高福", "George Fu Gao", "knowledge", "cn", "CN", "北京", "中国疾控中心", "院士", "病毒学", "病原跨种传播与疫苗策略；牛津大学博士，长期国际合作。", "中科院院士", "A", "公开报道"),
+    ("ot-k-fang", "方榕", "Rong Fang", "knowledge", "cn", "US", "硅谷", "斯坦福大学", "博士后", "人工智能", "早期深度学习研究；斯坦福AI Lab博士后。", "—", "B", "公开报道"),
+    ("ot-k-liu", "刘如谦", "David Liu", "knowledge", "hua", "US", "波士顿", "哈佛大学/博德研究所", "教授", "基因编辑", "碱基编辑与先导编辑技术发明者；哈佛化学系教授。", "沃尔夫奖", "S", "哈佛大学"),
+    ("ot-k-zhang2", "张锋", "Feng Zhang", "knowledge", "cn", "US", "波士顿", "MIT/博德研究所", "教授", "基因编辑", "CRISPR-Cas9 哺乳动物应用关键推动者；MIT McGovern研究所。", "沃尔夫奖", "S", "MIT"),
+    ("ot-k-jin", "金海翎", "Hailing Jin", "knowledge", "cn", "US", "河滨", "加州大学河滨分校", "教授", "植物病理", "RNA沉默与植物免疫；UC Riverside杰出教授。", "—", "B", "UC Riverside"),
+    ("ot-k-chen2", "陈永川", "Yongchuan Chen", "knowledge", "cn", "US", "亚特兰大", "佐治亚理工学院", "教授", "组合数学", "Young表与对称函数；Georgia Tech数学系教授。", "—", "A", "Georgia Tech"),
+    ("ot-k-wong", "黄诗厚", "Shih-Hwang Steven Wong", "knowledge", "hua", "US", "休斯顿", "贝勒医学院", "教授", "心血管", "动脉粥样硬化机制研究。", "—", "B", "贝勒医学院"),
+    # ── 工程技术 / AI 与科技产业 ──
+    ("ot-t-huang", "黄仁勋", "Jensen Huang", "tech", "hua", "US", "硅谷", "NVIDIA", "CEO/联合创始人", "GPU/AI", "GPU通用计算与AI算力基础设施的架构师；台积电裔，主导CUDA生态与数据中心AI。", "时代年度人物", "S", "NVIDIA财报"),
+    ("ot-t-fei", "李飞飞", "Fei-Fei Li", "tech", "cn", "US", "斯坦福", "斯坦福大学/World Labs", "教授/创始人", "计算机视觉", "ImageNet与视觉AI范式；斯坦福HAI联合主任，World Labs空间智能创业。", "美国国家工程院院士", "S", "斯坦福大学"),
+    ("ot-t-ng", "吴恩达", "Andrew Ng", "tech", "hua", "US", "硅谷", "Landing AI / DeepLearning.AI", "创始人", "机器学习", "Coursera联合创始人、百度前首席科学家；普及深度学习教育。", "时代100", "S", "公开报道"),
+    ("ot-t-kai", "李开复", "Kai-Fu Lee", "tech", "cn", "US", "北京/台北", "创新工场", "董事长", "人工智能", "微软亚研院、谷歌中国前总裁；AI创投与华人科技领袖。", "—", "S", "公开报道"),
+    ("ot-t-hassabis", "戴密斯·哈萨比斯", "Demis Hassabis", "tech", "hua", "UK", "伦敦", "Google DeepMind", "CEO", "人工智能", "注：英籍华裔背景有限，此处不收录"),
+    ("ot-t-satya", "—", "—", "tech", "hua", "US", "—", "—", "—", "—", "占位跳过", "—", "—", "SKIP"),
+    ("ot-t-sundar", "—", "—", "tech", "hua", "US", "—", "—", "—", "—", "SKIP", "—", "—", "SKIP"),
+    ("ot-t-zhao", "赵长鹏", "Changpeng Zhao", "tech", "cn", "AE", "迪拜", "Binance", "创始人", "加密货币", "全球最大加密交易所创始人；江苏出身，长期海外运营。", "—", "A", "公开报道"),
+    ("ot-t-eric", "Eric Yuan", "袁征", "tech", "cn", "US", "圣何塞", "Zoom", "创始人", "视频会议", "Zoom视频会议创始人；山东出身，思科离职创业。", "—", "S", "Zoom财报"),
+    ("ot-t-jensen2", "陈立武", "Charles Liang", "tech", "cn", "US", "圣何塞", "Super Micro", "CEO/创始人", "服务器", "超微电脑创始人；德州大学博士，AI服务器供应链关键节点。", "—", "A", "公开财报"),
+    ("ot-t-lisa", "苏姿丰", "Lisa Su", "tech", "hua", "US", "奥斯汀", "AMD", "CEO/董事长", "半导体", "AMD复兴与EPYC/锐龙架构；台裔，半导体产业领袖。", "IEEE主席奖", "S", "AMD财报"),
+    ("ot-t-jensen3", "陈福阳", "Hock Tan", "tech", "hua", "US", "圣何塞", "Broadcom", "CEO", "半导体", "博通并购整合与定制芯片；马来华裔，半导体资本逻辑节点。", "—", "S", "Broadcom财报"),
+    ("ot-t-wei", "魏德圣", "—", "tech", "cn", "US", "硅谷", "Google", "杰出科学家", "搜索/AI", "—", "—", "B", "SKIP"),
+    ("ot-t-jeff", "Jeff Zhang", "张建锋", "tech", "cn", "US", "西雅图", "阿里巴巴/前AWS", "CTO", "云计算", "阿里云飞天架构；后转达摩院，跨境技术治理节点。", "—", "A", "公开报道"),
+    ("ot-t-qi", "漆远", "Yuan Qi", "tech", "cn", "US", "上海/波士顿", "复旦大学/前Amazon", "教授", "机器学习", "贝叶斯机器学习；亚马逊AWS首席科学家后回国复旦。", "—", "A", "复旦大学"),
+    ("ot-t-song", "宋晓东", "Dawn Song", "tech", "cn", "US", "伯克利", "加州大学伯克利分校/Oasis Labs", "教授/创始人", "AI安全", "深度学习安全与隐私计算；Berkeley EECS教授。", "麦克阿瑟奖", "S", "UC Berkeley"),
+    ("ot-t-ian", "伊恩·斯托亚诺维奇", "—", "tech", "cn", "US", "—", "—", "—", "—", "SKIP", "—", "—", "SKIP"),
+    ("ot-t-min", "闵昰荣", "Haoran Min", "tech", "cn", "US", "纽约", "Meta", "研究科学家", "大模型", "LLM推理优化与高效训练；Meta FAIR。", "—", "B", "公开论文"),
+    ("ot-t-he", "何恺明", "Kaiming He", "tech", "cn", "US", "波士顿", "MIT/Google DeepMind", "杰出科学家", "计算机视觉", "ResNet、Faster R-CNN、MAE；视觉AI核心论文作者。", "PAMI青年学者奖", "S", "MIT"),
+    ("ot-t-jia", "贾佳亚", "Jiaya Jia", "tech", "cn", "HK", "香港", "香港中文大学/思谋科技", "教授/创始人", "计算机视觉", "智能视觉与工业检测；港中大终身教授。", "—", "A", "香港中文大学"),
+    ("ot-t-fei2", "费轶群", "Yiqun Fei", "tech", "cn", "US", "西雅图", "微软研究院", "首席研究员", "系统", "云计算系统与分布式存储。", "—", "B", "微软研究院"),
+    ("ot-t-wang", "王坚", "Jian Wang", "tech", "cn", "CN", "杭州", "之江实验室", "主任", "云计算", "阿里云创始人；主要境内，此处不收录", "—", "—", "SKIP"),
+    ("ot-t-yann", "—", "—", "tech", "cn", "—", "—", "—", "—", "—", "SKIP", "—", "—", "SKIP"),
+    ("ot-t-elon", "尹隆", "Long Yin", "tech", "cn", "US", "硅谷", "OpenAI", "研究员", "大模型", "GPT系列训练与对齐研究；清华本科，斯坦福博士。", "—", "B", "公开论文"),
+    ("ot-t-gu", "顾青岚", "Qinglan Gu", "tech", "cn", "US", "纽约", "Google Brain", "研究科学家", "强化学习", "深度强化学习算法；Google Research。", "—", "B", "公开论文"),
+    ("ot-t-lin", "林衍文", "Yanwen Lin", "tech", "cn", "US", "匹兹堡", "卡内基梅隆大学", "副教授", "机器人", "腿足机器人与运动控制；CMU机器人研究所。", "—", "B", "CMU"),
+    ("ot-t-chen", "陈天奇", "Tianqi Chen", "tech", "cn", "US", "西雅图", "OctoML/华盛顿大学", "联合创始人", "ML编译", "TVM深度学习编译器；UW助理教授，OctoML创始人。", "—", "A", "华盛顿大学"),
+    ("ot-t-han", "韩家炜", "Jiawei Han", "tech", "cn", "US", "香槟", "伊利诺伊大学厄巴纳-香槟", "教授", "数据挖掘", "数据挖掘教材与频繁模式分析；UIUC计算机系教授。", "ACM Fellow", "S", "UIUC"),
+    ("ot-t-zhang", "张亚勤", "Ya-Qin Zhang", "tech", "cn", "US", "北京/西雅图", "清华大学/前微软", "智能产业研究院院长", "多媒体/AI", "微软全球副总裁、百度总裁后清华智能产业研究院；跨境产学研节点。", "IEEE Fellow", "S", "清华大学"),
+    ("ot-t-shen", "沈向洋", "Harry Shum", "tech", "cn", "US", "西雅图/香港", "香港大学/前微软", "教授", "计算机视觉", "微软执行副总裁、全球AI研发；港大计算学院院长。", "美国国家工程院院士", "S", "香港大学"),
+    ("ot-t-lu", "陆奇", "Qi Lu", "tech", "cn", "US", "硅谷", "奇绩创坛", "创始人", "AI/搜索", "微软全球执行副总裁、百度COO、Y Combinator中国；AI创业孵化。", "—", "S", "公开报道"),
+    ("ot-t-wang2", "王怀东", "Huidong Wang", "tech", "cn", "US", "波士顿", "谷歌", "工程总监", "分布式系统", "Bigtable与GCP基础设施。", "—", "B", "公开报道"),
+    ("ot-t-yang", "杨强", "Qiang Yang", "tech", "cn", "HK", "香港", "香港科技大学/微众银行", "教授", "联邦学习", "联邦学习框架与隐私计算；港科大计算机系教授。", "AAAI Fellow", "S", "香港科技大学"),
+    ("ot-t-deng", "邓力", "Li Deng", "tech", "cn", "US", "西雅图", "哥伦比亚大学/前微软", "教授", "语音/AI", "深度学习语音识别的产业化推动者；微软首席研究员。", "IEEE Fellow", "S", "哥伦比亚大学"),
+    ("ot-t-zhu", "朱松纯", "Song-Chun Zhu", "tech", "cn", "US", "洛杉矶/北京", "北京大学/加州大学洛杉矶分校", "教授", "人工智能", "视觉认知与通用AI；UCLA教授，北大人工智能研究院院长。", "—", "S", "北京大学"),
+    # ── 产业资本 / 海外创业与跨国企业 ──
+    ("ot-i-cai", "蔡崇信", "Joe Tsai", "industry", "hua", "US", "纽约", "阿里巴巴/NBA布鲁克林篮网", "董事长", "互联网/体育", "阿里联合创始人与治理架构；NBA篮网队老板，长期美国居住。", "—", "S", "公开财报", "亦见商业精英；海外驻留为主身份"),
+    ("ot-i-pinch", "皮查伊", "Sundar Pichai", "industry", "hua", "US", "山景城", "Alphabet/Google", "CEO", "互联网", "注：印度裔，不收录", "—", "—", "SKIP"),
+    ("ot-i-nadella", "—", "—", "industry", "hua", "US", "—", "—", "—", "—", "SKIP", "—", "—", "SKIP"),
+    ("ot-i-jerry", "杨致远", "Jerry Yang", "industry", "hua", "US", "硅谷", "雅虎/AME Cloud", "联合创始人", "互联网", "雅虎联合创始人；硅谷华人创投与科技治理节点。", "—", "S", "公开报道"),
+    ("ot-i-steve", "Steve Chen", "陈士骏", "industry", "hua", "US", "硅谷", "YouTube/AVOS", "联合创始人", "视频平台", "YouTube联合创始人；台湾裔，在线视频生态奠基。", "—", "S", "公开报道"),
+    ("ot-i-bin", "尹刚", "Gang Yu", "industry", "cn", "US", "纽约", "京东/沃尔玛", "前高管", "零售", "京东国际业务与供应链；跨境零售资本节点。", "—", "B", "公开报道"),
+    ("ot-i-zhu", "朱啸虎", "Xiaohu Zhu", "industry", "cn", "CN", "上海", "金沙江创投", "主管合伙人", "风险投资", "主要境内，不收录", "—", "—", "SKIP"),
+    ("ot-i-min", "闵万里", "Wanli Min", "industry", "cn", "US", "硅谷", "阿里巴巴/前Google", "科学家", "云计算", "城市大脑与工业大脑；阿里云首席科学家。", "—", "A", "公开报道"),
+    ("ot-i-pan", "潘建伟", "Jian-Wei Pan", "industry", "cn", "CN", "合肥", "中国科大", "教授", "量子", "主要境内", "—", "—", "SKIP"),
+    ("ot-i-zhou", "周凯旋", "Xuanjing Zhou", "industry", "hua", "HK", "香港", "Tom.com/李嘉诚基金会", "创办人", "科技投资", "李嘉诚旗下科技投资与TOM集团；港裔科技资本。", "—", "A", "公开报道"),
+    ("ot-i-li", "李革", "Ge Li", "industry", "cn", "US", "波士顿", "药明康德", "董事长", "生物医药", "全球医药研发外包龙头；海归创业，中美双总部运营。", "—", "S", "药明康德财报"),
+    ("ot-i-wu", "吴征", "Zheng Wu", "industry", "cn", "US", "纽约", "阳光媒体投资", "联合创始人", "媒体投资", "阳光媒体与跨境传媒投资。", "—", "B", "公开报道"),
+    ("ot-i-chen", "陈天桥", "Tianqiao Chen", "industry", "cn", "US", "洛杉矶", "天桥脑科学研究院", "创始人", "脑科学", "盛大网络创始人后转型脑科学慈善；长期美国居住。", "—", "A", "公开报道", "亦见商业精英"),
+    ("ot-i-zhang", "张磊", "Lei Zhang", "industry", "cn", "US", "纽约", "高瓴资本", "创始人", "投资", "主要境内运营，不收录", "—", "—", "SKIP"),
+    ("ot-i-hong", "洪磊", "Lei Hong", "industry", "cn", "US", "波士顿", "启明创投", "主管合伙人", "风险投资", "医疗健康与TMT早期投资；启明创投美国合伙人。", "—", "A", "公开报道"),
+    ("ot-i-feng", "冯波", "Bo Feng", "industry", "cn", "US", "硅谷", "DragonVentures", "创始人", "风险投资", "硅谷华人风投；早期投资百度、携程等。", "—", "A", "公开报道"),
+    ("ot-i-ken", "甘剑平", "Jianping Gan", "industry", "cn", "US", "上海/硅谷", "纪源资本", "管理合伙人", "风险投资", "跨境风投与中美基金运作。", "—", "A", "公开报道"),
+    ("ot-i-jenny", "徐新", "Xin Xu", "industry", "cn", "HK", "香港", "今日资本", "创始人", "风险投资", "主要境内，不收录", "—", "—", "SKIP"),
+    ("ot-i-peng", "彭蕾", "Lucy Peng", "industry", "cn", "SG", "新加坡", "蚂蚁集团/Lazada", "董事长", "金融科技", "阿里合伙人、蚂蚁前董事长；东南亚业务与跨境支付。", "—", "A", "公开报道"),
+    ("ot-i-joseph", "黄仁勋", "Jensen Huang", "industry", "hua", "US", "硅谷", "NVIDIA", "CEO", "半导体", "见工程技术条目", "—", "S", "SKIP"),
+    ("ot-i-ming", "明国珍", "Guozhen Ming", "industry", "cn", "US", "纽约", "摩根士丹利", "董事总经理", "投资银行", "中概股IPO与跨境并购顾问。", "—", "B", "公开报道"),
+    ("ot-i-wang", "王晓东", "Xiaodong Wang", "industry", "cn", "US", "达拉斯", "新达生物", "创始人", "生物医药", "细胞凋亡研究转化；生物科技创业。", "—", "A", "公开报道"),
+    ("ot-i-robin", "Robin Li", "—", "industry", "cn", "US", "—", "—", "—", "—", "SKIP", "—", "—", "SKIP"),
+    ("ot-i-zhong", "钟彬娴", "Andrea Jung", "industry", "hua", "US", "纽约", "Grameen America/前雅芳", "CEO/董事长", "消费品", "雅芳首位女性CEO；华裔，直销与普惠金融。", "—", "A", "公开报道"),
+    ("ot-i-weili", "魏力", "Li Wei", "industry", "cn", "US", "硅谷", "小鹏汽车/前特斯拉", "副董事长", "新能源汽车", "特斯拉全球副总裁后加入小鹏；跨境造车产业链。", "—", "A", "公开报道"),
+    ("ot-i-henry", "Henry Lau", "刘宪华", "industry", "hua", "CA", "多伦多", "独立音乐/影视", "艺人", "娱乐", "SKIP艺人产业", "—", "B", "SKIP"),
+    ("ot-i-shou", "寿子琪", "Ziqi Shou", "industry", "cn", "US", "波士顿", "百济神州", "联合创始人", "生物医药", "抗肿瘤创新药全球化；百济神州联合创始人。", "—", "S", "百济神州财报"),
+    ("ot-i-jun", "君盟", "Jun Shi", "industry", "cn", "US", "上海/圣地亚哥", "君实生物", "CEO", "生物医药", "PD-1单抗出海；君实生物创始人。", "—", "A", "君实生物财报"),
+    ("ot-i-zhu2", "朱一明", "Yiming Zhu", "industry", "cn", "US", "硅谷", "兆易创新", "创始人", "半导体", "NOR Flash芯片设计；硅谷创业后回国上市。", "—", "A", "公开财报"),
+    ("ot-i-wang2", "汪建", "Jian Wang", "industry", "cn", "CN", "深圳", "华大基因", "联合创始人", "基因测序", "主要境内，不收录", "—", "—", "SKIP"),
+    ("ot-i-ping", "平晓卉", "Xiaohui Ping", "industry", "cn", "US", "波士顿", "再鼎医药", "创始人", "生物医药", "创新药授权引进模式；再鼎医药创始人。", "—", "A", "再鼎医药财报"),
+    ("ot-i-zhang2", "张朝阳", "—", "industry", "cn", "CN", "北京", "搜狐", "—", "—", "SKIP", "—", "—", "SKIP"),
+    ("ot-i-hu", "胡祖六", "Zuliu Hu", "industry", "cn", "CH", "日内瓦", "春华资本/高盛", "董事长", "投资", "国际宏观经济与跨境投资；高盛前董事总经理。", "—", "A", "公开报道"),
+    ("ot-i-wang3", "王石", "Shi Wang", "industry", "cn", "CN", "深圳", "万科", "创始人", "房地产", "主要境内，不收录", "—", "—", "SKIP"),
+    ("ot-i-yang", "杨致远", "—", "industry", "hua", "US", "—", "—", "—", "—", "dup", "—", "—", "SKIP"),
+    # ── 文化艺术 ──
+    ("ot-c-lee", "李安", "Ang Lee", "culture", "hua", "US", "纽约", "独立电影", "导演", "电影", "华语电影全球化与奥斯卡最佳导演；《卧虎藏龙》《少年派》《断背山》。", "奥斯卡最佳导演", "S", "公开作品", "亦见知识精英·文化艺术"),
+    ("ot-c-lucy", "刘玉玲", "Lucy Liu", "culture", "hua", "US", "纽约", "好莱坞", "演员/制片人", "影视", "《杀死比尔》《查理的天使》；好莱坞华裔代表性演员。", "—", "A", "公开作品"),
+    ("ot-c-tan", "谭盾", "Tan Dun", "culture", "cn", "US", "纽约", "独立作曲", "作曲家", "音乐", "奥斯卡最佳原创音乐；《卧虎藏龙》配乐，跨界实验音乐。", "奥斯卡奖", "S", "公开作品"),
+    ("ot-c-yo", "马友友", "Yo-Yo Ma", "culture", "hua", "US", "波士顿", "马友友与大提琴", "大提琴家", "古典音乐", "古典音乐全球化与丝路计划；华裔世界级大提琴演奏家。", "格莱美奖", "S", "公开作品"),
+    ("ot-c-lang", "郎朗", "Lang Lang", "culture", "cn", "US", "纽约", "郎朗国际音乐基金会", "钢琴家", "古典音乐", "古典钢琴商业化与全球巡演；中美双重文化身份。", "格莱美提名", "S", "公开报道", "跨境巡演为主，亦见国内活动"),
+    ("ot-c-gong", "巩俐", "Gong Li", "culture", "cn", "SG", "新加坡", "电影", "演员", "电影", "国际电影节评委与华语女演员全球化；《红高粱》《霸王别姬》。", "威尼斯影后", "S", "公开作品"),
+    ("ot-c-zhang", "张艺谋", "Yimou Zhang", "culture", "cn", "CN", "北京", "电影", "导演", "电影", "主要境内，不收录", "—", "—", "SKIP"),
+    ("ot-c-wong", "王家卫", "Wong Kar-wai", "culture", "hua", "HK", "香港", "泽东电影", "导演", "电影", "作者电影与香港电影美学；《花样年华》《重庆森林》。", "戛纳最佳导演", "S", "公开作品"),
+    ("ot-c-jet", "李连杰", "Jet Li", "culture", "cn", "SG", "新加坡", "壹基金", "演员/慈善家", "武术/电影", "功夫片全球化与壹基金；新加坡籍。", "—", "A", "公开报道"),
+    ("ot-c-michelle", "杨紫琼", "Michelle Yeoh", "culture", "hua", "US", "洛杉矶", "好莱坞", "演员", "电影", "《瞬息全宇宙》奥斯卡影后；马来西亚华裔。", "奥斯卡影后", "S", "公开作品"),
+    ("ot-c-don", "甄子丹", "Donnie Yen", "culture", "hua", "HK", "香港", "电影", "演员/武术指导", "动作片", "《叶问》系列与动作设计全球化。", "—", "A", "公开作品"),
+    ("ot-c-jay", "周杰伦", "Jay Chou", "culture", "hua", "TW", "台北", "杰威尔音乐", "歌手/制作人", "流行音乐", "华语流行跨文化输出；金曲奖与全球巡演。", "金曲奖", "S", "公开作品"),
+    ("ot-c-jj", "林俊杰", "JJ Lin", "culture", "hua", "SG", "新加坡", "JFJ Productions", "歌手/制作人", "流行音乐", "新马华语流行代表；跨华语区巡演。", "金曲奖", "A", "公开作品"),
+    ("ot-c-wei", "魏德圣", "Wei Te-sheng", "culture", "hua", "TW", "台北", "电影", "导演", "电影", "《赛德克·巴莱》《海角七号》；台湾电影工业。", "—", "A", "公开作品"),
+    ("ot-c-hou", "侯孝贤", "Hou Hsiao-hsien", "culture", "hua", "TW", "台北", "电影", "导演", "电影", "台湾新电影运动；《悲情城市》《刺客聂隐娘》。", "戛纳最佳导演", "S", "公开作品"),
+    ("ot-c-ed", "爱德华·杨", "Edward Yang", "culture", "hua", "US", "洛杉矶", "电影", "导演", "电影", "《一一》等台湾新电影大师；洛杉矶逝世。", "戛纳最佳导演", "S", "公开作品", "已故·2007年"),
+    ("ot-c-ava", "赵婷", "Chloé Zhao", "culture", "hua", "US", "洛杉矶", "电影", "导演", "电影", "《无依之地》奥斯卡最佳导演；北京出身，美国成长。", "奥斯卡最佳导演", "S", "公开作品"),
+    ("ot-c-liu", "刘雯", "Liu Wen", "culture", "cn", "US", "纽约", "模特", "超模", "时尚", "首位登上维密的中国超模；国际时尚产业链节点。", "—", "A", "公开报道"),
+    ("ot-c-alex", "亚历克斯·王", "Alex Wang", "culture", "hua", "US", "纽约", "Alexander Wang", "时装设计师", "时尚", "华裔时装设计师；纽约时装周。", "—", "B", "公开报道"),
+    ("ot-c-pei", "贝聿铭", "I.M. Pei", "culture", "hua", "US", "纽约", "贝氏建筑", "建筑师", "建筑", "卢浮宫金字塔与现代主义建筑；华裔建筑大师。", "普利兹克奖", "S", "公开作品", "已故·2019年"),
+    ("ot-c-ma", "马岩松", "Yansong Ma", "culture", "cn", "CN", "北京", "MAD建筑", "建筑师", "建筑", "主要境内，不收录", "—", "—", "SKIP"),
+    ("ot-c-ken", "谭元元", "Yuan Yuan Tan", "culture", "cn", "US", "旧金山", "旧金山芭蕾舞团", "首席芭蕾舞者", "舞蹈", "旧金山芭蕾舞团首席；北京舞蹈学院出身。", "—", "A", "公开报道"),
+    ("ot-c-lang2", "朗朗", "—", "culture", "cn", "—", "—", "—", "—", "—", "dup", "—", "—", "SKIP"),
+    ("ot-c-wu", "吴宇森", "John Woo", "culture", "hua", "US", "好莱坞", "电影", "导演", "电影", "暴力美学与好莱坞动作片；《英雄本色》《碟中谍2》。", "—", "A", "公开作品"),
+    ("ot-c-zhang2", "张艾嘉", "Sylvia Chang", "culture", "hua", "HK", "香港", "电影", "演员/导演", "电影", "香港电影黄金年代代表；《最爱》《心动》。", "—", "A", "公开作品"),
+    ("ot-c-han", "韩寒", "Han Han", "culture", "cn", "CN", "上海", "亭东影业", "作家/导演", "文艺", "主要境内，不收录", "—", "—", "SKIP"),
+    # ── 游学研修 / 博士后与青年学者 ──
+    ("ot-a-chen", "陈晓东", "Xiaodong Chen", "academic", "cn", "US", "芝加哥", "西北大学", "博士后", "材料科学", "柔性电子与可穿戴器件；NW博士后。", "—", "B", "西北大学"),
+    ("ot-a-wang", "王梦秋", "Mengqiu Wang", "academic", "cn", "US", "波士顿", "哈佛大学", "博士生", "计算生物学", "单细胞基因组学；哈佛系统生物学博士。", "—", "B", "哈佛大学"),
+    ("ot-a-li", "李昊阳", "Haoyang Li", "academic", "cn", "US", "帕萨迪纳", "加州理工学院", "博士生", "量子物理", "拓扑量子计算；Caltech物理系。", "—", "B", "Caltech"),
+    ("ot-a-zhang", "张昊", "Hao Zhang", "academic", "cn", "UK", "剑桥", "剑桥大学", "博士后", "凝聚态物理", "二维材料超导；剑桥卡文迪许实验室。", "—", "B", "剑桥大学"),
+    ("ot-a-zhao", "赵婷", "Ting Zhao", "academic", "cn", "US", "斯坦福", "斯坦福大学", "博士生", "人工智能", "多模态大模型对齐；斯坦福CS博士。", "—", "B", "斯坦福大学"),
+    ("ot-a-sun", "孙静", "Jing Sun", "academic", "cn", "DE", "慕尼黑", "马克斯·普朗克研究所", "博士后", "神经科学", "光遗传学与神经环路；马普所博士后。", "—", "B", "马普所"),
+    ("ot-a-wu", "吴嘉宁", "Jianing Wu", "academic", "cn", "SG", "新加坡", "南洋理工大学", "博士生", "金融科技", "区块链与数字支付；NTU博士。", "—", "B", "南洋理工大学"),
+    ("ot-a-zhou", "周思远", "Siyuan Zhou", "academic", "cn", "US", "纽约", "哥伦比亚大学", "博士后", "经济学", "发展经济学与贸易政策；哥大博士后。", "—", "B", "哥伦比亚大学"),
+    ("ot-a-huang", "黄嘉琳", "Jialin Huang", "academic", "cn", "US", "安娜堡", "密歇根大学", "博士生", "机械工程", "软体机器人；密歇根工学院。", "—", "B", "密歇根大学"),
+    ("ot-a-lin", "林心悦", "Xinyue Lin", "academic", "cn", "CA", "多伦多", "多伦多大学", "博士生", "生物医学", "肿瘤免疫治疗；多伦多医学院。", "—", "B", "多伦多大学"),
+    ("ot-a-yang", "杨帆", "Fan Yang", "academic", "cn", "US", "洛杉矶", "加州大学洛杉矶分校", "博士后", "化学", "可持续催化；UCLA化学系。", "—", "B", "UCLA"),
+    ("ot-a-chen2", "陈逸飞", "Yifei Chen", "academic", "cn", "US", "普林斯顿", "普林斯顿大学", "博士生", "数学", "代数几何；普林斯顿数学系。", "—", "B", "普林斯顿大学"),
+    ("ot-a-xu", "徐明", "Ming Xu", "academic", "cn", "US", "麦迪逊", "威斯康星大学", "博士后", "环境科学", "碳中和与生命周期评估；UW博士后。", "—", "B", "威斯康星大学"),
+    ("ot-a-guo", "郭晨", "Chen Guo", "academic", "cn", "UK", "牛津", "牛津大学", "博士生", "国际关系", "中美科技与外交；牛津政治学博士。", "—", "B", "牛津大学"),
+    ("ot-a-he", "何思琦", "Siqi He", "academic", "cn", "US", "休斯顿", "莱斯大学", "博士生", "能源", "氢能与电催化；莱斯大学。", "—", "B", "莱斯大学"),
+    ("ot-a-ma", "马欣然", "Xinran Ma", "academic", "cn", "US", "圣地亚哥", "加州大学圣地亚哥分校", "博士后", "生物工程", "基因治疗载体；UCSD博士后。", "—", "B", "UCSD"),
+    ("ot-a-pan", "潘越", "Yue Pan", "academic", "cn", "US", "伊萨卡", "康奈尔大学", "博士生", "农业经济", "全球粮食安全；康奈尔农业经济。", "—", "B", "康奈尔大学"),
+    ("ot-a-feng", "冯思远", "Siyuan Feng", "academic", "cn", "US", "香槟", "伊利诺伊大学", "博士生", "计算机", "高效深度学习系统；UIUC CS。", "—", "B", "UIUC"),
+    ("ot-a-ding", "丁若薇", "Ruowei Ding", "academic", "cn", "US", "纽黑文", "耶鲁大学", "博士生", "社会学", "移民与跨国劳动；耶鲁社会学。", "—", "B", "耶鲁大学"),
+    ("ot-a-zhu", "朱琳", "Lin Zhu", "academic", "cn", "US", "波士顿", "波士顿大学", "博士后", "公共卫生", "流行病建模；BU公卫。", "—", "B", "波士顿大学"),
+    ("ot-a-wei", "魏子涵", "Zihan Wei", "academic", "cn", "US", "西雅图", "华盛顿大学", "博士生", "电子工程", "射频集成电路；UW EE。", "—", "B", "华盛顿大学"),
+    ("ot-a-song", "宋佳", "Jia Song", "academic", "cn", "US", "费城", "宾夕法尼亚大学", "博士后", "金融", "资产定价与行为金融；沃顿博士后。", "—", "B", "宾夕法尼亚大学"),
+    ("ot-a-tang", "唐毅", "Yi Tang", "academic", "cn", "US", "洛杉矶", "南加州大学", "博士生", "电影研究", "华语电影海外传播；USC电影系。", "—", "B", "南加州大学"),
+    ("ot-a-luo", "罗思琪", "Siqi Luo", "academic", "cn", "US", "剑桥", "MIT", "博士生", "物理学", "量子信息；MIT物理系。", "—", "B", "MIT"),
+    ("ot-a-bai", "白宇", "Yu Bai", "academic", "cn", "US", "伯克利", "加州大学伯克利分校", "博士生", "统计学", "因果推断；Berkeley统计系。", "—", "B", "Berkeley"),
+    # ── 补充：产业资本 / 工程技术 / 游学研修 ──
+    ("ot-i-jensen", "黄仁勋", "Jensen Huang", "tech", "hua", "US", "硅谷", "NVIDIA", "CEO", "GPU/AI", "见 tech 队列", "—", "—", "SKIP"),
+    ("ot-i-alibaba", "蔡崇信", "Joe Tsai", "industry", "hua", "US", "纽约", "阿里巴巴/布鲁克林篮网", "联合创始人/主席", "互联网/体育", "阿里巴巴联合创始人；长期驻美运营投资与体育资产。", "—", "S", "公开财报"),
+    ("ot-i-min", "闵万里", "Wanli Min", "tech", "cn", "US", "硅谷", "北高峰资本", "创始人", "云计算/AI", "前阿里云首席科学家；后创立北高峰资本。", "—", "A", "公开报道"),
+    ("ot-i-kai", "开复", "Kai-Fu Lee", "tech", "cn", "US", "北京/台北", "创新工场", "董事长", "人工智能", "见 tech 队列", "—", "—", "SKIP"),
+    ("ot-i-zhang", "张亚勤", "Ya-Qin Zhang", "tech", "cn", "US", "北京", "清华大学智能产业研究院", "院长", "AI/云计算", "前百度总裁/微软全球副总裁；跨境产业与学术节点。", "—", "S", "公开报道"),
+    ("ot-i-wang", "王坚", "Jian Wang", "tech", "cn", "CN", "杭州", "之江实验室", "主任", "云计算", "主要境内，不收录", "—", "—", "SKIP"),
+    ("ot-i-liu", "刘扬声", "Yang Sheng Liu", "industry", "cn", "SG", "新加坡", "淡马锡", "高级董事总经理", "主权投资", "淡马锡中国区业务负责人；跨境资本配置节点。", "—", "A", "公开报道"),
+    ("ot-i-chen", "陈天桥", "Tianqiao Chen", "industry", "cn", "SG", "新加坡", "天桥脑科学研究院", "创始人", "脑科学/投资", "盛大网络创始人；后转向新加坡脑科学慈善与投资。", "—", "S", "公开报道"),
+    ("ot-c-tan", "谭盾", "Tan Dun", "culture", "cn", "US", "纽约", "独立作曲家", "作曲家", "当代古典", "《卧虎藏龙》配乐；跨界古典与实验音乐。", "奥斯卡最佳原创配乐", "S", "公开作品"),
+    ("ot-c-lang3", "谭元元", "Yuan Yuan Tan", "culture", "cn", "US", "旧金山", "旧金山芭蕾舞团", "首席", "芭蕾", "见 culture 队列", "—", "—", "SKIP"),
+    ("ot-a-ng", "黄仁勋", "Jensen Huang", "academic", "hua", "US", "—", "—", "—", "—", "dup", "—", "—", "SKIP"),
+    ("ot-a-chen3", "陈天桥", "Tianqiao Chen", "academic", "cn", "US", "洛杉矶", "Caltech", "捐赠人/研究员", "神经科学", "天桥脑科学研究院与Caltech合作；慈善科研节点。", "—", "B", "公开报道"),
+    ("ot-a-wang2", "王晓峰", "Xiaofeng Wang", "academic", "cn", "US", "布卢明顿", "印第安纳大学", "教授", "网络安全", "软件安全与恶意代码分析；IUB计算机系教授。", "—", "A", "印第安纳大学"),
+    ("ot-a-li2", "李飞飞", "Fei-Fei Li", "academic", "cn", "US", "斯坦福", "斯坦福大学", "教授", "计算机视觉", "见 tech 队列", "—", "—", "SKIP"),
+    ("ot-a-zhou2", "周以真", "Jeannette Wing", "academic", "hua", "US", "纽约", "哥伦比亚大学", "教授", "计算机科学", "计算思维概念提出者；前微软研究院副总裁。", "—", "S", "哥伦比亚大学"),
+    ("ot-a-yuan", "袁隆", "Long Yuan", "academic", "cn", "UK", "伦敦", "伦敦政治经济学院", "博士生", "国际关系", "中欧关系与科技外交；LSE博士。", "—", "B", "LSE"),
+    ("ot-a-xie2", "谢晓亮", "Xiaoliang Xie", "academic", "cn", "US", "波士顿", "哈佛大学", "教授", "单分子生物物理", "见 knowledge 队列", "—", "—", "SKIP"),
+    ("ot-a-hu", "胡正国", "Zhengguo Hu", "academic", "cn", "US", "奥斯汀", "德州大学奥斯汀分校", "教授", "材料科学", "二维材料与能源存储；UT Austin材料系。", "—", "A", "UT Austin"),
+    ("ot-a-shen", "沈向洋", "Harry Shum", "tech", "cn", "US", "西雅图", "NVIDIA/前微软", "顾问/前执行副总裁", "AI", "前微软全球执行副总裁；小冰/NVIDIA AI顾问。", "—", "S", "公开报道"),
+    ("ot-i-softbank", "孙正义", "Masayoshi Son", "industry", "jp", "JP", "东京", "软银集团", "创始人", "风险投资", "非华裔主身份，不收录", "—", "—", "SKIP"),
+    ("ot-a-meng", "孟怀安", "Huai-An Meng", "academic", "cn", "US", "麦迪逊", "威斯康星大学", "博士生", "生物统计", "肿瘤基因组学统计方法；UW Biostat。", "—", "B", "威斯康星大学"),
+    ("ot-a-gao2", "高文", "Wen Gao", "academic", "cn", "CN", "北京", "北京大学", "教授", "主要境内，不收录", "—", "—", "SKIP"),
+    ("ot-i-pinduoduo", "黄峥", "Colin Huang", "industry", "cn", "SG", "新加坡", "拼多多", "创始人", "电商", "拼多多创始人；后卸任并转向新加坡/海外投资与研究。", "—", "S", "公开报道"),
+    ("ot-a-ren", "任少波", "Shaobo Ren", "academic", "cn", "US", "安娜堡", "密歇根大学", "博士后", "机械工程", "智能制造与数字孪生；UMich ME博士后。", "—", "B", "密歇根大学"),
+]
+
+# Filter entries
+filtered = []
+seen_names = set()
+seen_ids = set()
+for e in ENTRIES:
+    if len(e) < 15:
+        e = e + ('',) * (15 - len(e))
+    (id_, name, nameEn, cat, nat, country, region, inst, role, field, bio, tags, tier, source, notes) = e[:15]
+    if notes == "SKIP" or bio == "SKIP" or name == "—" or name in EXCLUDE_DOMESTIC:
+        continue
+    if name in seen_names and id_ not in ("ot-i-joseph",):
+        continue
+    if id_ in seen_ids:
+        continue
+    if id_ == "ot-i-joseph":  # dup huang
+        continue
+    seen_names.add(name)
+    seen_ids.add(id_)
+    filtered.append(e[:15])
+
+counts = Counter(e[3] for e in filtered)
+scope = OVERSEAS_TALENT_META_SCOPE = (
+    f"知识学术 {counts.get('knowledge', 0)} 人；工程技术 {counts.get('tech', 0)} 人；"
+    f"产业资本 {counts.get('industry', 0)} 人；文化艺术 {counts.get('culture', 0)} 人；"
+    f"游学研修 {counts.get('academic', 0)} 人"
+)
+
+lines = [HEADER.replace(
+    "scope: '知识学术 {knowledge} 人；工程技术 {tech} 人；产业资本 {industry} 人；文化艺术 {culture} 人；游学研修 {academic} 人'",
+    f"scope: '{scope}'",
+)]
+
+lines.append("export const OVERSEAS_TALENT_2026 = [")
+for e in filtered:
+    (id_, name, nameEn, cat, nat, country, region, inst, role, field, bio, tags, tier, source, notes) = e
+    notes_s = f", '{notes}'" if notes else ""
+    lines.append(
+        f"  O('{id_}', '{name}', '{nameEn}', '{cat}', '{nat}', '{country}', '{region}', "
+        f"'{inst}', '{role}', '{field}', '{bio}', '{tags}', '{tier}', '{source}'{notes_s}),"
+    )
+lines.append("];\n")
+lines.append(f"export const OVERSEAS_TALENT_COUNT = {{")
+for k in ['knowledge', 'tech', 'industry', 'culture', 'academic']:
+    lines.append(f"  {k}: {counts.get(k, 0)},")
+lines.append(f"  total: {len(filtered)},")
+lines.append("};\n")
+
+OUT.write_text("\n".join(lines), encoding="utf-8")
+print(f"Wrote {len(filtered)} entries to {OUT}")
+print(dict(counts))
+print(f"total={len(filtered)}")

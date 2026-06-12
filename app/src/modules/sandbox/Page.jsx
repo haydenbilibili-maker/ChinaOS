@@ -7,14 +7,33 @@ import ChinaMap from '../../lib/viz/ChinaMap.jsx';
 import DataBus from '../../lib/data/DataBus.js';
 import * as DB from '../../lib/db/localdb.js';
 import { useDataset, useFigures } from '../../lib/db/useDataset.js';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import HandongSandbox from './HandongSandbox.jsx';
 import SandboxToolkit from './SandboxToolkit.jsx';
+import MacroSimulator from '../macro/Page.jsx';
+import InspectionSimulator from '../inspection/Page.jsx';
+import WargameSimulator from '../wargame/Page.jsx';
+import PresserSimulator from '../presser/Page.jsx';
 
 const SANDBOX_TABS = [
-  { id: 'handong', label: '汉东省沙盘', accent: '#c41e3a' },
   { id: 'general', label: '通用沙盘', accent: '#22d3ee' },
+  { id: 'handong', label: '汉东省沙盘', accent: '#c41e3a' },
+  { id: 'inspection', label: '中央巡视沙盘', accent: '#e8a317' },
+  { id: 'wargame', label: '大国博弈推演桌', accent: '#8b5cf6' },
+  { id: 'presser', label: '舆情风暴应对台', accent: '#f59e0b' },
+  { id: 'macro', label: '宏观调控驾驶舱', accent: '#10b981' },
 ];
+
+const VALID_SANDBOX_TABS = new Set(SANDBOX_TABS.map((t) => t.id));
+
+const SANDBOX_SUBTITLES = {
+  general: '挑战画像 → 能力需求 → 履历池匹配 —— 全国基线实时(WB)、省级熵增实测、东北+边疆带 7 省人才配置',
+  handong: '虚构推演 · 汉东省沙盘 —— 参数配置、主官派遣、多场景剧情、四件套应对、政绩任免',
+  inspection: '三源线索入篮 → 谈话调度 → 证据链定档 → 整改双闸销号 → 巡视工作底稿',
+  wargame: '科技-经贸回合制思想实验 · 八张中性牌 × 五回合 × 三档对手策略',
+  presser: '抽象情景推演 · 响应时机 × 口径 × 渠道',
+  macro: '五根政策杆 · 八季度推演 · 增长/物价/就业/杠杆四难平衡',
+};
 
 // ===========================================================================
 // 账本联动（监测台告警 → 战役 → 判定回流）
@@ -153,7 +172,13 @@ const SCENARIOS = {
 // 国家级危机情景引擎：数据与算法层抽至 ./crisisData.js（含缓解矩阵/复合耦合/报告生成）
 
 export default function Page() {
-  const [sandboxTab, setSandboxTab] = useState('handong');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const tabParam = searchParams.get('tab');
+  const sandboxTab = VALID_SANDBOX_TABS.has(tabParam) ? tabParam : 'general';
+  const setSandboxTab = (id) => {
+    if (id === 'general') setSearchParams({}, { replace: true });
+    else setSearchParams({ tab: id }, { replace: true });
+  };
   const [sel, setSel] = useState('黑龙江省');
   const [scn, setScn] = useState('fiscal');
   const [crisisKey, setCrisisKey] = useState('chipBan');
@@ -296,9 +321,7 @@ export default function Page() {
       <PageHeader
         badge="Sandbox · 思维训练 + 实测熵增"
         title="治国沙盒 · 区域治理人才配置"
-        subtitle={sandboxTab === 'handong'
-          ? '虚构推演 · 汉东省沙盘 —— 参数配置、主官派遣、多场景剧情、四件套应对、政绩任免'
-          : '挑战画像 → 能力需求 → 履历池匹配 —— 全国基线实时(WB)、省级熵增实测、东北+边疆带 7 省人才配置'}
+        subtitle={SANDBOX_SUBTITLES[sandboxTab] || SANDBOX_SUBTITLES.general}
       />
       <div className="flex gap-2 mb-6">
         {SANDBOX_TABS.map((t) => (
@@ -320,6 +343,14 @@ export default function Page() {
           <HandongSandbox />
           <ModuleFooter moduleId="sandbox" disclaimer="汉东省为虚构省域推演；人才均为画像/原型，不构成对任何真实人物或人事安排的评价" />
         </>
+      ) : sandboxTab === 'inspection' ? (
+        <InspectionSimulator embedded />
+      ) : sandboxTab === 'wargame' ? (
+        <WargameSimulator embedded />
+      ) : sandboxTab === 'presser' ? (
+        <PresserSimulator embedded />
+      ) : sandboxTab === 'macro' ? (
+        <MacroSimulator embedded />
       ) : (
       <>
       <IntroCard>

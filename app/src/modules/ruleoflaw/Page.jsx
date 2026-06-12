@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { PageHeader, Card, Grid, Stat, CrossLinks } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 const AX = { axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } };
 const SPLIT = { splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } };
@@ -229,14 +230,12 @@ export default function Page() {
           <span>// JUSTICE: TRANSPARENT</span><span>// SYSTEM: REFORMED</span><span>// STATUS: SECURE</span>
         </div>
       </Card>
-
-      <CrossLinks links={[
-        { to: '/private', label: '民营经济与企业家信心', note: '产权司法保护与确定性预期 = 民营信心修复的底层。' },
-        { to: '/soe', label: '国企改革与产权边界', note: '统一大市场下国资民资的竞争中性与产权边界。' },
-        { to: '/governance', label: '治理现代化', note: '法治政府是治理体系从「权力意志」转向「规则」的核心层。' },
+<FrameworkTrio cards={[
+        { key: 'salt', body: '营商法治：产权保护与破产重整。' },
+        { key: 'stone', body: '知产护城河：专利确权周期压缩。' },
+        { key: 'path', body: '涉外法治：从规则接受者到博弈者。' },
       ]} />
-
-      <p className="text-xs mt-6" style={{ color: 'var(--text-tertiary)' }}>数据来源：最高人民法院工作报告、国家知识产权局等，部分为示意值 · 由 china.html「法治政府」专题迁移</p>
+<ModuleFooter moduleId="ruleoflaw" sourceNote="由 china.html「法治政府」专题迁移" />
     </div>
   );
 }

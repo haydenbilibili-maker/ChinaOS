@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as echarts from 'echarts';
 import DataBus from '../../lib/data/DataBus.js';
-import { THEATERS, PROVINCE_THEATER, MILITARY_BASES, BASE_TYPE_COLORS } from '../../lib/db/militaryIntel2026.js';
+import { THEATERS, PROVINCE_THEATER, MILITARY_BASES, BASE_TYPE_COLORS, LOGISTICS, ISLAND_CHAINS } from '../../lib/db/militaryIntel2026.js';
 
 const registered = new Set(['_init']);
 const THEATER_COLORS = Object.fromEntries(THEATERS.map((t) => [t.id, t.color]));
@@ -113,6 +113,33 @@ export default function MilitaryMap({
           { type: 'scatter', coordinateSystem: 'geo', data: hqScatter, zlevel: 2 },
         ],
       }, true);
+    } else if (mode === 'logistics') {
+      const hubs = (LOGISTICS.hubs || []).filter((h) => h.coord).map((h) => ({
+        id: h.name,
+        name: h.name,
+        value: [...h.coord, h.type],
+        symbol: 'diamond',
+        symbolSize: 16,
+        itemStyle: { color: '#10b981', borderColor: '#fff', borderWidth: 1 },
+        label: { show: true, formatter: h.name.replace('联勤保障', '').replace('中心', '').replace('基地', ''), position: 'right', color: '#e2e8f0', fontSize: 10 },
+      }));
+
+      chart.setOption({
+        backgroundColor: 'transparent',
+        tooltip: {
+          trigger: 'item',
+          backgroundColor: 'rgba(10,14,23,0.92)',
+          borderColor: 'rgba(16,185,129,0.4)',
+          textStyle: { color: '#e2e8f0', fontSize: 11 },
+          formatter: (p) => `<b>${p.name}</b><br/>类型：${p.data?.value?.[2] || ''}<br/>${(LOGISTICS.hubs.find((x) => x.name === p.name) || {}).note || ''}`,
+        },
+        geo: {
+          map: 'china', roam: true, scaleLimit: { min: 0.8, max: 4 },
+          itemStyle: { areaColor: 'rgba(30,41,59,0.55)', borderColor: 'rgba(148,163,184,0.2)' },
+          emphasis: { itemStyle: { areaColor: 'rgba(16,185,129,0.18)' }, label: { show: false } },
+        },
+        series: [{ type: 'effectScatter', coordinateSystem: 'geo', data: hubs, rippleEffect: { scale: 3, brushType: 'stroke' }, zlevel: 2 }],
+      }, true);
     } else {
       const scatter = MILITARY_BASES.map((b) => ({
         id: b.id,
@@ -125,6 +152,30 @@ export default function MilitaryMap({
           borderWidth: selectedBase === b.id ? 2 : 0,
         },
       }));
+
+      const chainSeries = mode === 'bases-global' ? [
+        {
+          type: 'lines', coordinateSystem: 'geo', zlevel: 1, silent: true,
+          lineStyle: { color: '#e8a317', width: 1.6, type: 'dashed', opacity: 0.7, curveness: 0 },
+          effect: { show: true, period: 6, trailLength: 0.3, color: '#e8a317', symbolSize: 3 },
+          data: [{ coords: ISLAND_CHAINS.first }],
+        },
+        {
+          type: 'lines', coordinateSystem: 'geo', zlevel: 1, silent: true,
+          lineStyle: { color: '#22d3ee', width: 1.4, type: 'dashed', opacity: 0.6, curveness: 0 },
+          effect: { show: true, period: 8, trailLength: 0.3, color: '#22d3ee', symbolSize: 3 },
+          data: [{ coords: ISLAND_CHAINS.second }],
+        },
+      ] : [];
+
+      const chainLabels = mode === 'bases-global' ? [{
+        type: 'scatter', coordinateSystem: 'geo', zlevel: 2, silent: true, symbolSize: 0,
+        label: { show: true, fontSize: 10, fontWeight: 'bold' },
+        data: [
+          { value: [123.5, 25.5, ''], label: { formatter: '第一岛链', color: '#e8a317', position: 'top' } },
+          { value: [145.7, 15.2, ''], label: { formatter: '第二岛链', color: '#22d3ee', position: 'top' } },
+        ],
+      }] : [];
 
       chart.setOption({
         backgroundColor: 'transparent',
@@ -143,12 +194,16 @@ export default function MilitaryMap({
           map: 'china',
           roam: true,
           scaleLimit: { min: 0.6, max: 5 },
-          center: mode === 'bases-global' ? [105, 28] : undefined,
-          zoom: mode === 'bases-global' ? 1.1 : 1.2,
+          center: mode === 'bases-global' ? [118, 24] : undefined,
+          zoom: mode === 'bases-global' ? 1.0 : 1.2,
           itemStyle: { areaColor: 'rgba(30,41,59,0.55)', borderColor: 'rgba(148,163,184,0.2)' },
           emphasis: { itemStyle: { areaColor: 'rgba(34,211,238,0.2)' }, label: { show: false } },
         },
-        series: [{ type: 'scatter', coordinateSystem: 'geo', data: scatter, zlevel: 2 }],
+        series: [
+          ...chainSeries,
+          { type: 'scatter', coordinateSystem: 'geo', data: scatter, zlevel: 2 },
+          ...chainLabels,
+        ],
       }, true);
     }
   }, [ready, mode, selectedTheater, selectedBase]);

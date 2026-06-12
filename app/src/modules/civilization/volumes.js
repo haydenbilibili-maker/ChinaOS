@@ -1,13 +1,40 @@
 // 文明透视 · 12 卷源代码 · 单一数据源
 // 内容迁自 civilization-*.html 独立报告 + 内嵌扩展卷（思想史隐喻，非历史决定论）
 
-/** OS 栈自下而上（L0→L9），用于「文明栈总览」「治乱调度」 */
+/** OS 栈自下而上（L0→L9）：地理→宇宙观→法家→强制→儒→道→科举→佛→人情→盐铁→交换→总纲 */
 export const STACK_ORDER = ['v11', 'v7', 'v2', 'v9', 'v4', 'v3', 'v5', 'v6', 'v8', 'v12', 'v10', 'v1'];
 
-/** 卷一至卷十二阅读序，用于「逐卷精读」列表/网格与详情 prev/next */
-export const READ_ORDER = ['v1', 'v2', 'v3', 'v4', 'v5', 'v6', 'v7', 'v8', 'v9', 'v10', 'v11', 'v12'];
+/** 卷一至卷十二编号序（目录/编号对照，非推荐阅读序） */
+export const CATALOG_ORDER = ['v1', 'v2', 'v3', 'v4', 'v5', 'v6', 'v7', 'v8', 'v9', 'v10', 'v11', 'v12'];
 
-const CN_NUM = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'];
+/** 逐卷精读 · 列表/网格 · prev/next 统一采用的叙事序（= STACK_ORDER） */
+export const CANONICAL_ORDER = STACK_ORDER;
+
+/** 文明栈总览可视化：自上而下展示（L9 总纲置顶） */
+export const STACK_DISPLAY_TOPDOWN = [...STACK_ORDER].reverse();
+
+export function getLayerCode(role) {
+  const m = role?.match(/^(L\d+b?)/);
+  return m ? m[1] : '';
+}
+
+export function getStackRank(volId) {
+  return STACK_ORDER.indexOf(volId);
+}
+
+export function getPrevNextVol(volId) {
+  const idx = STACK_ORDER.indexOf(volId);
+  return {
+    prev: idx > 0 ? STACK_ORDER[idx - 1] : null,
+    next: idx >= 0 && idx < STACK_ORDER.length - 1 ? STACK_ORDER[idx + 1] : null,
+    index: idx,
+    total: STACK_ORDER.length,
+  };
+}
+
+export function sortByStackOrder(ids) {
+  return [...ids].sort((a, b) => getStackRank(a) - getStackRank(b));
+}
 
 export const REGIME = {
   v2: 'boom', v4: 'boom', v3: 'bust', v6: 'bust', v9: 'both',
@@ -115,7 +142,7 @@ export const VOLUMES = {
     ],
   },
   v7: {
-    id: 'v7', num: '卷七', title: '易经与五行宇宙观', role: 'L1 宇宙观底层', color: '#8b5cf6',
+    id: 'v7', order: 7, num: '卷七', title: '易经与五行宇宙观', role: 'L1 宇宙观底层', color: '#8b5cf6',
     tags: ['易经', '五行', '天命', '关联思维', '绩效合法性'],
     thesis: '孔孟老庄是「上层语言」；更底层是以阴阳消长与五行生克关联组织经验世界的传统模型，常与整体论、权变思维与绩效合法性叙事相互缠绕。',
     frameworks: [
@@ -137,7 +164,7 @@ export const VOLUMES = {
     ],
   },
   v2: {
-    id: 'v2', num: '卷二', title: '法家与外儒内法', role: 'L2 内核 Kernel', color: '#c41e3a',
+    id: 'v2', order: 2, num: '卷二', title: '法家与外儒内法', role: 'L2 内核 Kernel', color: '#c41e3a',
     tags: ['法家', '韩非子', '外儒内法', '编户齐民', '国家能力'],
     thesis: '儒家以道德与血缘软性黏合社会，法家则以严刑峻法与绝对权力硬性锻造国家机器。法家不信人性本善，只信利益驱动与恐惧威慑——正是这一底层逻辑赋予古代中国极限社会动员能力，奠定大一统帝国的物理基础。',
     frameworks: [
@@ -164,7 +191,7 @@ export const VOLUMES = {
     ],
   },
   v4: {
-    id: 'v4', num: '卷四', title: '儒家与社会底层逻辑', role: 'L3 源代码 Source', color: '#e8a317',
+    id: 'v4', order: 4, num: '卷四', title: '儒家与社会底层逻辑', role: 'L3 源代码 Source', color: '#e8a317',
     tags: ['儒家', '差序格局', '家国同构', '五常', '教育执念'],
     thesis: '儒家不仅是道德哲学，更是一套经两千多年迭代的「超大型人类社会管理系统」——定义了服从与责任、个体与集体的边界，构成中华文明历劫不灭的核心源代码。',
     frameworks: [
@@ -186,7 +213,7 @@ export const VOLUMES = {
     ],
   },
   v3: {
-    id: 'v3', num: '卷三', title: '道家与战略弹性', role: 'L4 减震器 Damper', color: '#10b981',
+    id: 'v3', order: 3, num: '卷三', title: '道家与战略弹性', role: 'L4 减震器 Damper', color: '#10b981',
     tags: ['道家', '无为而治', '均值回归', '反者道之动', '躺平'],
     thesis: '儒家教人「入世」，法家教人「驭世」——二者皆紧绷，经济崩溃或王朝末年系统易折。道家教人在绝境中退守、存续与顺势而为：刻在文化里的均值回归算法，亦是极度内卷下的文明减震器。',
     frameworks: [
@@ -208,7 +235,7 @@ export const VOLUMES = {
     ],
   },
   v5: {
-    id: 'v5', num: '卷五', title: '汉字与科举', role: 'L5 硬件外挂 Hardware', color: '#22d3ee',
+    id: 'v5', order: 5, num: '卷五', title: '汉字与科举', role: 'L5 硬件外挂 Hardware', color: '#22d3ee',
     tags: ['汉字', '科举', '李约瑟难题', '标准化', '高考'],
     thesis: '欧洲与中国面积相仿，表音文字与方言分化易导向政治碎裂；中国能长期维持广域整合，靠两项制度—技术组合：超越口语的视觉书写协议（汉字）+ 跨血缘的精英选拔与意识形态标准化网络（科举）。',
     frameworks: [
@@ -230,7 +257,7 @@ export const VOLUMES = {
     ],
   },
   v6: {
-    id: 'v6', num: '卷六', title: '佛学中国化与深层心理', role: 'L6 心理补丁 Patch', color: '#f0abfc',
+    id: 'v6', order: 6, num: '卷六', title: '佛学中国化与深层心理', role: 'L6 心理补丁 Patch', color: '#f0abfc',
     tags: ['佛教', '禅宗', '三教合一', '因果轮回', '心理缓冲'],
     thesis: '儒家「未知生焉知死」悬置终极痛苦、法家将人工具化、道家善退守却少谈彼岸——乱世与个体重创下意义系统现「内存溢出」。佛教中国化提供可操作的超越叙事与情绪卸载接口，构成历史的「心理层」缓冲带。',
     frameworks: [
@@ -252,7 +279,7 @@ export const VOLUMES = {
     ],
   },
   v8: {
-    id: 'v8', num: '卷八', title: '人情面子与江湖', role: 'L7 非正式层 Informal', color: '#fb923c',
+    id: 'v8', order: 8, num: '卷八', title: '人情面子与江湖', role: 'L7 非正式层 Informal', color: '#fb923c',
     tags: ['差序格局', '面子', '人情', '耻感', '庙堂江湖'],
     thesis: '成文法与科层指令是一层；日常协作中还叠放着关系、面子与圈层信任。费孝通「差序格局」、人情往来与「庙堂—江湖」二分，是理解组织行为与政策摩擦的社会学启发式。',
     frameworks: [
@@ -274,7 +301,7 @@ export const VOLUMES = {
     ],
   },
   v12: {
-    id: 'v12', num: '卷十二', title: '盐铁专卖与双轨经济', role: 'L8 财富闭环 Loop', color: '#d4af37',
+    id: 'v12', order: 12, num: '卷十二', title: '盐铁专卖与双轨经济', role: 'L8 财富闭环 Loop', color: '#d4af37',
     tags: ['盐铁论', '双轨经济', '国企', '宗族资本', '财富闭环'],
     thesis: '为什么既有统管命脉的庞大国企，又有全球最「卷」最具韧性的民营生态？这不是现代发明的混合所有制，而是自汉代盐铁之辩以来的「大一统经济学」：国家控扼命脉以维稳，民间在缝隙中极致内卷以图存。',
     frameworks: [
@@ -296,7 +323,7 @@ export const VOLUMES = {
     ],
   },
   v9: {
-    id: 'v9', num: '卷九', title: '暴力与军事组织 · 枪杆子的文明逻辑', role: 'L2b 强制层 · 暴力垄断', color: '#991b1b',
+    id: 'v9', order: 9, num: '卷九', title: '暴力与军事组织 · 枪杆子的文明逻辑', role: 'L2b 强制层 · 暴力垄断', color: '#991b1b',
     tags: ['暴力垄断', '府兵募兵', '军功爵', '党指挥枪', '改朝换代'],
     thesis: '法家内核（L2）的合法性最终落实在对暴力的垄断之上。「枪杆子里面出政权」不是现代口号，而是贯穿两千年的结构常量：谁能稳定地组织、供养并控制武装，谁就握有真正的内核权限。',
     frameworks: [
@@ -318,7 +345,7 @@ export const VOLUMES = {
     ],
   },
   v10: {
-    id: 'v10', num: '卷十', title: '商业伦理与市场 · 士农工商', role: 'L8b 交换层 · 重义轻利', color: '#b45309',
+    id: 'v10', order: 10, num: '卷十', title: '商业伦理与市场 · 士农工商', role: 'L8b 交换层 · 重义轻利', color: '#b45309',
     tags: ['士农工商', '义利之辨', '抑商', '宗族微资本', '资本天花板'],
     thesis: '为何中国早有发达的市场与商人，却始终未让商人阶层登上权力顶端？因为在这套栈里，市场是被允许的「交换层」，却被儒家义利之辨与抑商传统反复设限。财富可以积累，但「言利」必须被道德话语包裹。',
     frameworks: [
@@ -341,7 +368,7 @@ export const VOLUMES = {
   },
 };
 
-export const VOLUME_IDS = Object.keys(VOLUMES);
+export const VOLUME_IDS = [...CANONICAL_ORDER];
 
 export function getVolume(id) {
   return VOLUMES[id] || null;

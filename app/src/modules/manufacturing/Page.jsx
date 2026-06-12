@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { PageHeader, Card, Grid, Stat, CrossLinks } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 const AXIS = '#27324a';
 const SPLIT = 'rgba(148,163,184,0.1)';
@@ -138,7 +139,7 @@ export default function Page() {
   return (
     <div>
       <PageHeader badge="Manufacturing · New Quality Productive Forces" title="制造业规模 · 全球价值链位势" subtitle="GVC 微笑曲线 · 增加值全球份额 · 门类位势 —— 从世界工厂到制造强国的「非对称相互依赖」" />
-      <Card className="mb-6"><p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>中国制造业增加值占全球约 30%、连续 14 年居全球第一，且拥有联合国产业分类中全部工业门类。其转型主线是沿微笑曲线的纵向迁徙：组装中段已达绝对统治，真正的变量在于研发设计（左端）与品牌服务（右端）的爬升速度能否跑赢外部脱钩的速度。</p></Card>
+      <IntroCard>中国制造业增加值占全球约 30%、连续 14 年居全球第一，且拥有联合国产业分类中全部工业门类。其转型主线是沿微笑曲线的纵向迁徙：组装中段已达绝对统治，真正的变量在于研发设计（左端）与品牌服务（右端）的爬升速度能否跑赢外部脱钩的速度。</IntroCard>
       <Grid cols={4} className="mb-6">
         <Stat value="~30%" label="制造业增加值全球份额（连续 14 年第一）" accent="#e8a317" />
         <Stat value="+10.2%" label="高技术制造业增速 · 引领结构化升级" accent="#c41e3a" />
@@ -286,16 +287,13 @@ export default function Page() {
           ))}
         </Grid>
       </Card>
-
-      <CrossLinks className="mb-6" links={[
-        { to: '/robotics', label: '机器人 · 自动化密度' },
-        { to: '/semiconductor', label: '半导体 · 关键零部件卡脖子' },
-        { to: '/supplychain', label: '供应链 · 主权防御' },
-        { to: '/techtree', label: '科技树 · 自主攻坚' },
+<Card title="系统观察"><p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>End of Segment: Industrial Backbone Architecture —— CAPACITY: OPTIMIZED · VALUE_CHAIN: ASCENDING · STATUS: RESILIENT。规模统治力已成事实，真正的变量在于价值链两端（原始研发与品牌服务）的爬升速度能否跑赢外部脱钩的速度。</p></Card>
+<FrameworkTrio cards={[
+        { key: 'salt', body: '微笑曲线：从代工中段向研发/品牌攀升。' },
+        { key: 'stone', body: '专精特新蜂群：卡脖子节点进口替代。' },
+        { key: 'path', body: '非对称相互依赖：长板锁定谈判筹码。' },
       ]} />
-
-      <Card title="系统观察"><p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>End of Segment: Industrial Backbone Architecture —— CAPACITY: OPTIMIZED · VALUE_CHAIN: ASCENDING · STATUS: RESILIENT。规模统治力已成事实，真正的变量在于价值链两端（原始研发与品牌服务）的爬升速度能否跑赢外部脱钩的速度。</p></Card>
-      <p className="text-xs mt-6" style={{ color: 'var(--text-tertiary)' }}>数据为公开信息综合整理与示意值，仅供结构性参考 · 由 china.html「制造业」专题迁移</p>
+<ModuleFooter moduleId="manufacturing" sourceNote="由 china.html「制造业」专题迁移" />
     </div>
   );
 }

@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import * as Lucide from 'lucide-react';
 import { Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
@@ -15,6 +15,10 @@ import {
   dedupeAntiCorruption,
   acKey,
 } from '../../lib/db/antiCorruptionSeed.js';
+import FigureAvatar from '../../lib/ui/FigureAvatar.jsx';
+import { figureAvatarProps, prefetchFigureAvatars } from '../../lib/ui/figureAvatarResolve.js';
+import TalentDetailPanel, { ExpandableText } from './TalentDetailPanel.jsx';
+import { useTalentDeepLink } from '../../lib/talent/routing.js';
 
 const short = (p) => (p || '').replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '');
 const inp = { background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', borderRadius: 6, padding: '6px 10px', fontSize: 13 };
@@ -62,6 +66,7 @@ function TypicalBadge() {
 
 export default function AntiCorruptionSection() {
   const { rows, ready } = useDataset(ANTI_CORRUPTION_DATASET_ID, ANTI_CORRUPTION_SEED_PKG);
+  const [searchParams, setSearchParams] = useSearchParams();
   const [q, setQ] = useState('');
   const [year, setYear] = useState('');
   const [bucket, setBucket] = useState('');
@@ -81,7 +86,7 @@ export default function AntiCorruptionSection() {
     return { list: deduped, dbDupeCount: dupeCount, rawDbCount: raw.length };
   }, [rows]);
 
-  const tierDef = LEVEL_TIERS.find((t) => t.id === levelTier);
+  const tierDef = levelTier ? LEVEL_TIERS.find((t) => t.id === levelTier) : null;
   const years = useMemo(() => [...new Set(list.map((r) => r.year).filter(Boolean))].sort((a, b) => b - a), [list]);
   const buckets = useMemo(() => [...new Set(list.map((r) => r.yearBucket).filter(Boolean))], [list]);
   const levels = useMemo(() => [...new Set(list.map((r) => r.level).filter(Boolean))].sort((a, b) => (LEVEL_RANK[a] ?? 9) - (LEVEL_RANK[b] ?? 9)), [list]);
@@ -91,7 +96,7 @@ export default function AntiCorruptionSection() {
   const filtered = useMemo(() => {
     const out = list.filter((r) => {
       const hay = [r.name, r.formerRole, r.org, r.province, r.sector, r.level, r.category, r.status, r.notes, r.source, r.caseType].join(' ');
-      const tierOk = !tierDef || tierDef.match(r.level);
+      const tierOk = !tierDef?.match || tierDef.match(r.level);
       return tierOk
         && (!year || r.year === year)
         && (!bucket || r.yearBucket === bucket)
@@ -108,7 +113,33 @@ export default function AntiCorruptionSection() {
     return out;
   }, [list, q, year, bucket, level, levelTier, tierDef, sector, prov, typicalOnly, sort]);
 
-  const detail = sel || filtered[0] || null;
+  useEffect(() => {
+    if (filtered.length) prefetchFigureAvatars(filtered, 56);
+  }, [filtered]);
+
+  const detail = sel || (searchParams.get('id') ? null : filtered[0]) || null;
+
+  const { selectEntity } = useTalentDeepLink({
+    searchParams, setSearchParams, filtered, allList: list, sel, setSel, ready,
+    preserveKeys: [], keyFn: acKey,
+  });
+  const pickEntity = useCallback((r) => selectEntity(r), [selectEntity]);
+
+  const pickByIndex = useCallback((idx) => {
+    const r = filtered[idx];
+    if (r) pickEntity(r);
+  }, [filtered, pickEntity]);
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (!filtered.length || e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
+      const cur = detail ? filtered.indexOf(detail) : 0;
+      if (e.key === 'ArrowDown' || e.key === 'j') { e.preventDefault(); pickByIndex(Math.min(cur + 1, filtered.length - 1)); }
+      else if (e.key === 'ArrowUp' || e.key === 'k') { e.preventDefault(); pickByIndex(Math.max(cur - 1, 0)); }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [filtered, detail, pickByIndex]);
   const distYear = tally(filtered, (r) => r.year).sort((a, b) => b[0] - a[0]);
   const distLevel = tally(filtered, (r) => r.level);
   const distSector = tally(filtered, (r) => r.sector);
@@ -157,9 +188,9 @@ export default function AntiCorruptionSection() {
           <Lucide.Gavel size={16} />
         </span>
         <div>
-          <h2 className="text-base font-semibold" style={{ color: 'var(--text-primary)' }}>反腐名单 · 历年汇总</h2>
+          <h2 className="text-base font-semibold" style={{ color: 'var(--text-primary)' }}>反腐透视 · 权力纠错账本</h2>
           <p className="text-[11px] mono mt-0.5" style={{ color: 'var(--text-tertiary)' }}>
-            人才库子模块 · 十八大以来公开落马/被查 —— 内置 {ANTI_CORRUPTION_COUNT} 条
+            独立观测队列 · 十八大以来公开落马/被查 —— 内置 {ANTI_CORRUPTION_COUNT} 条
             {ANTI_CORRUPTION_RAW_COUNT > ANTI_CORRUPTION_COUNT && `（原始 ${ANTI_CORRUPTION_RAW_COUNT}，种子去重 ${ANTI_CORRUPTION_DUPE_COUNT}）`}
             ，截至 {ANTI_CORRUPTION_META.asOf}
           </p>
@@ -180,7 +211,7 @@ export default function AntiCorruptionSection() {
       {list.length < 10 && (
         <Card title="一键载入反腐名单" className="mb-4">
           <p className="text-sm mb-3" style={{ color: 'var(--text-secondary)' }}>
-            独立数据集，与公开履历隔离。来源：{ANTI_CORRUPTION_META.sources.join('、')}。{ANTI_CORRUPTION_META.notes}
+            独立数据集，与中国政要队列隔离；非人物荣誉名录。来源：{ANTI_CORRUPTION_META.sources.join('、')}。{ANTI_CORRUPTION_META.notes}
             也可到 <Link to="/foundation" className="mono" style={{ color: 'var(--cyber-cyan)' }}>数据底座</Link> 载入。
           </p>
           <button type="button" onClick={() => loadSeed(false)} disabled={loading} style={btn}>
@@ -190,7 +221,7 @@ export default function AntiCorruptionSection() {
       )}
 
       {!list.length ? (
-        <Card title="数据集为空"><p className="text-sm" style={{ color: 'var(--text-secondary)' }}>点击上方按钮载入内置反腐名单。</p></Card>
+        <Card title="反腐透视队列为空"><p className="text-sm" style={{ color: 'var(--text-secondary)' }}>点击上方按钮载入内置反腐数据集。</p></Card>
       ) : (
         <>
           <Card className="mb-4">
@@ -264,9 +295,10 @@ export default function AntiCorruptionSection() {
                   {filtered.map((r) => {
                     const on = detail === r;
                     return (
-                      <button key={acKey(r)} onClick={() => setSel(r)} className="w-full text-left px-3 py-2 rounded"
+                      <button key={acKey(r)} onClick={() => pickEntity(r)} className="w-full text-left px-3 py-2 rounded"
                         style={{ background: on ? 'rgba(196,30,58,0.14)' : 'var(--bg-elevated)', border: `1px solid ${on ? 'var(--china-red)' : 'transparent'}`, cursor: 'pointer' }}>
                         <div className="flex items-center gap-1.5 flex-wrap">
+                          <FigureAvatar {...figureAvatarProps(r)} size={28} ring={on} />
                           <span className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{r.name}</span>
                           <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>{r.announcementDate}</span>
                           {r.level && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(196,30,58,0.12)', color: 'var(--china-red)' }}>{r.level}</span>}
@@ -284,31 +316,47 @@ export default function AntiCorruptionSection() {
 
               <Card title={detail ? `${detail.name} · 案件详情` : '选择一条'}>
                 {detail && (
-                  <>
-                    <div className="flex items-center gap-3 mb-3 pb-3" style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-                      <span className="flex items-center justify-center rounded-full shrink-0 text-lg font-bold" style={{ width: 44, height: 44, background: 'rgba(196,30,58,0.12)', color: 'var(--china-red)' }}>{detail.name[0]}</span>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <span className="font-bold text-base" style={{ color: 'var(--text-primary)' }}>{detail.name}</span>
-                          {detail.level && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(196,30,58,0.12)', color: 'var(--china-red)' }}>{detail.level}</span>}
-                          {detail.caseType === '典型' && <TypicalBadge />}
-                        </div>
-                        <div className="text-[11px] mt-0.5" style={{ color: 'var(--text-secondary)' }}>{detail.formerRole}</div>
-                      </div>
-                    </div>
-                    <div className="grid gap-1.5 text-xs mb-3" style={{ gridTemplateColumns: 'auto 1fr' }}>
-                      {detail.org && <><span style={{ color: 'var(--text-tertiary)' }}>原机构</span><span style={{ color: 'var(--text-secondary)' }}>{detail.org}{detail.sector ? `（${detail.sector}）` : ''}</span></>}
-                      {detail.province && <><span style={{ color: 'var(--text-tertiary)' }}>关联地域</span><span style={{ color: 'var(--text-secondary)' }}>{detail.province}</span></>}
-                      {detail.announcementDate && <><span style={{ color: 'var(--text-tertiary)' }}>官宣日期</span><span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{detail.announcementDate}</span></>}
-                      {detail.year && <><span style={{ color: 'var(--text-tertiary)' }}>归年</span><span style={{ color: 'var(--text-secondary)' }}>{detail.year} · {detail.yearBucket}</span></>}
-                      {detail.category && <><span style={{ color: 'var(--text-tertiary)' }}>案类</span><span style={{ color: 'var(--text-secondary)' }}>{detail.category}</span></>}
-                      {detail.status && <><span style={{ color: 'var(--text-tertiary)' }}>处置</span><span style={{ color: '#e8a317' }}>{detail.status}</span></>}
-                      {detail.caseType && <><span style={{ color: 'var(--text-tertiary)' }}>案例类型</span><span style={{ color: '#e8a317' }}>{detail.caseType === '典型' ? '全国性典型案例' : detail.caseType}</span></>}
-                      {detail.source && <><span style={{ color: 'var(--text-tertiary)' }}>来源</span><span style={{ color: 'var(--text-tertiary)' }}>{detail.source}</span></>}
-                      {detail.notes && <><span style={{ color: 'var(--text-tertiary)' }}>备注</span><span style={{ color: 'var(--text-secondary)' }}>{detail.notes}</span></>}
-                    </div>
-                    <p className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>// 公开报道口径 · 司法细节以法院公开裁判为准</p>
-                  </>
+                  <TalentDetailPanel
+                    name={detail.name}
+                    subtitle={detail.formerRole}
+                    avatar={<FigureAvatar {...figureAvatarProps(detail)} size={56} ring eager />}
+                    badges={(
+                      <>
+                        {detail.level && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(196,30,58,0.12)', color: 'var(--china-red)' }}>{detail.level}</span>}
+                        {detail.caseType === '典型' && <TypicalBadge />}
+                        {detail.yearBucket && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(232,163,23,0.12)', color: '#e8a317' }}>{detail.yearBucket}</span>}
+                      </>
+                    )}
+                    sections={[
+                      {
+                        title: '基本信息',
+                        fields: [
+                          { label: '原机构', value: detail.org ? `${detail.org}${detail.sector ? `（${detail.sector}）` : ''}` : null },
+                          { label: '关联地域', value: detail.province },
+                          { label: '系统', value: detail.sector },
+                          { label: '案类', value: detail.category },
+                        ],
+                      },
+                      {
+                        title: '案件进程',
+                        fields: [
+                          { label: '官宣日期', value: detail.announcementDate, accent: 'var(--cyber-cyan)' },
+                          { label: '归年', value: detail.year ? `${detail.year} · ${detail.yearBucket}` : detail.yearBucket },
+                          { label: '处置', value: detail.status, accent: '#e8a317' },
+                          { label: '案例类型', value: detail.caseType === '典型' ? '全国性典型案例' : detail.caseType },
+                        ],
+                      },
+                      ...(detail.notes ? [{
+                        title: '备注',
+                        content: <ExpandableText text={detail.notes} maxLen={120} />,
+                      }] : []),
+                      {
+                        title: '关联标签',
+                        fields: [{ label: '来源', value: detail.source }],
+                      },
+                    ]}
+                    queueNote="// 公开报道口径 · 司法细节以法院公开裁判为准"
+                  />
                 )}
               </Card>
             </div>

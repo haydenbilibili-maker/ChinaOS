@@ -12,7 +12,7 @@ import { AS_OF, fig } from './figureCommon.js';
 export const FIGURE_CATALOG_META = {
   id: 'provincial-2026-06',
   asOf: AS_OF,
-  label: '省部级公开履历 · 2026-06',
+  label: '省部级政要 · 2026-06',
   sources: ['新华网', '人民网', '中国政府网', '维基百科·省级领导人列表'],
   scope: '政治局常委 7 人 + 31 省级党委书记 + 31 省级政府首长（人大/政协见 provincialExtended）',
   notes: '重庆市长职务暂缺；人大主任/政协主席见 figureProvincialExtended2026；具体任免以官方发布为准',

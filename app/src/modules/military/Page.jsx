@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { PageHeader, Card, Grid, Stat, CrossLinks } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, TabBar } from '../../app/ui.jsx';
+import { FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import MilitaryMap, { BaseTypeLegend, TheaterLegend } from './MilitaryMap.jsx';
 import { FIGURE_MILITARY_COUNT } from '../../lib/db/figureMilitary2026.js';
@@ -19,7 +20,22 @@ import {
   THEATERS,
   LOGISTICS,
   MILITARY_BASES,
+  RANK_PYRAMID,
+  FORCE_COMPOSITION,
+  RECRUITMENT_TREND,
+  DEFENSE_GDP_TREND,
+  INTL_DEFENSE_COMPARE,
+  SERVICE_SUNBURST,
+  EQUIPMENT_TREE,
+  EQUIPMENT_COMPARE,
+  SERVICE_TIMELINE,
+  MODERNIZATION_RADAR,
+  TRL_MATRIX,
+  RD_INVESTMENT_TREND,
+  MCF_SANKEY,
+  THEATER_FORCE,
 } from '../../lib/db/militaryIntel2026.js';
+import { AXIS, GRID_LINE, LABEL, LEGEND, categoryX, valueY, logY, radarOpt } from '../shared/chartHelpers.js';
 
 const TABS = [
   ['overview', '总览'],
@@ -70,16 +86,6 @@ function DistBars({ data, color = '#c41e3a', max, labelW = 56 }) {
         );
       })}
     </div>
-  );
-}
-
-function SourceFooter() {
-  return (
-    <p className="text-xs mt-8 pt-4 border-t leading-relaxed" style={{ color: 'var(--text-tertiary)', borderColor: 'var(--border-subtle)' }}>
-      <span className="mono" style={{ color: 'var(--china-red)' }}>公开资料整理</span>
-      {' · '}截至 {MILITARY_INTEL_META.asOf} · 来源：{MILITARY_INTEL_META.sources.join('、')}。
-      {MILITARY_INTEL_META.disclaimer}
-    </p>
   );
 }
 
@@ -145,6 +151,24 @@ function OverviewTab() {
   );
 }
 
+function RankPyramid({ levels }) {
+  return (
+    <div className="space-y-1">
+      {levels.map((l, i) => {
+        const w = 32 + (i / (levels.length - 1)) * 66;
+        return (
+          <div key={l.rank} className="flex items-center justify-center" title={l.label}>
+            <div className="flex items-center justify-between px-3" style={{ width: `${w}%`, height: 32, background: `${l.color}d0`, borderRadius: 4, border: `1px solid ${l.color}` }}>
+              <span className="text-[11px] font-semibold whitespace-nowrap" style={{ color: '#fff' }}>{l.rank}</span>
+              <span className="text-[10px] mono" style={{ color: '#fff' }}>{l.count.toLocaleString()}</span>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 function PersonnelTab() {
   const [svc, setSvc] = useState('army');
   const s = SERVICES[svc];
@@ -155,6 +179,64 @@ function PersonnelTab() {
       data: PERSONNEL.serviceShare.map((d) => ({ value: d.value, name: d.name, itemStyle: { color: d.color } })) }],
   };
 
+  const sunburst = {
+    tooltip: { trigger: 'item', formatter: (p) => `${p.name}: ${p.value || ''}` },
+    series: [{
+      type: 'sunburst', radius: ['12%', '92%'], center: ['50%', '50%'], data: SERVICE_SUNBURST,
+      label: { color: '#e2e8f0', fontSize: 9, minAngle: 8 },
+      itemStyle: { borderColor: '#0a0e17', borderWidth: 1 },
+      levels: [{}, { r0: '12%', r: '52%' }, { r0: '52%', r: '92%', label: { align: 'right' } }],
+    }],
+  };
+
+  const forceStack = {
+    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: (a) => a.map((x) => `${x.seriesName}: ${x.value} 万`).join('<br/>') },
+    legend: { ...LEGEND, top: 0 },
+    grid: { left: 8, right: 8, top: 30, bottom: 8, containLabel: true },
+    xAxis: { type: 'value', splitLine: GRID_LINE, axisLabel: LABEL, name: '万', nameTextStyle: { color: '#5b6a82' } },
+    yAxis: { type: 'category', data: ['兵员构成'], axisLine: AXIS, axisLabel: LABEL },
+    series: FORCE_COMPOSITION.segments.map((seg) => ({ name: seg.name, type: 'bar', stack: 't', barWidth: 40, data: [seg.value], itemStyle: { color: seg.color }, label: { show: true, color: '#fff', fontSize: 10 } })),
+  };
+
+  const recruitChart = {
+    tooltip: { trigger: 'axis' },
+    legend: { ...LEGEND, top: 0 },
+    grid: { left: 40, right: 40, top: 30, bottom: 24 },
+    xAxis: categoryX(RECRUITMENT_TREND.years),
+    yAxis: [
+      { type: 'value', name: '万', nameTextStyle: { color: '#5b6a82' }, splitLine: GRID_LINE, axisLabel: LABEL },
+      { type: 'value', name: '%', nameTextStyle: { color: '#5b6a82' }, splitLine: { show: false }, axisLabel: LABEL, max: 100 },
+    ],
+    series: [
+      { name: '征兵规模(万)', type: 'bar', data: RECRUITMENT_TREND.scale, barWidth: 18, itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } },
+      { name: '大学生比例(%)', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', data: RECRUITMENT_TREND.collegeShare, lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
+    ],
+  };
+
+  const gdpChart = {
+    tooltip: { trigger: 'axis' },
+    legend: { ...LEGEND, top: 0 },
+    grid: { left: 44, right: 44, top: 30, bottom: 24 },
+    xAxis: categoryX(DEFENSE_GDP_TREND.years),
+    yAxis: [
+      { type: 'value', name: 'B$', nameTextStyle: { color: '#5b6a82' }, splitLine: GRID_LINE, axisLabel: LABEL },
+      { type: 'value', name: '%GDP', nameTextStyle: { color: '#5b6a82' }, splitLine: { show: false }, axisLabel: LABEL },
+    ],
+    series: [
+      { name: '军费(B$)', type: 'bar', data: DEFENSE_GDP_TREND.budget, barWidth: 18, itemStyle: { color: '#e8a317', borderRadius: [3, 3, 0, 0] } },
+      { name: '占GDP(%)', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', data: DEFENSE_GDP_TREND.gdpShare, lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' } },
+    ],
+  };
+
+  const intlChart = {
+    tooltip: { trigger: 'item', formatter: (p) => `${p.name}: ${p.value} B$` },
+    grid: { left: 56, right: 36, top: 10, bottom: 20 },
+    xAxis: { type: 'value', splitLine: GRID_LINE, axisLabel: LABEL },
+    yAxis: { type: 'category', data: INTL_DEFENSE_COMPARE.data.map((d) => d.name).reverse(), axisLine: AXIS, axisLabel: LABEL },
+    series: [{ type: 'bar', barWidth: 13, label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 },
+      data: INTL_DEFENSE_COMPARE.data.map((d) => ({ value: d.value, itemStyle: { color: d.color, borderRadius: [0, 3, 3, 0] } })).reverse() }],
+  };
+
   return (
     <>
       <Grid cols={4} className="mb-4">
@@ -162,6 +244,36 @@ function PersonnelTab() {
         <Stat value={PERSONNEL.civilianStaff.total} label="文职人员" accent="#8b5cf6" />
         <Stat value={PERSONNEL.recruitment.annual} label="年征兵规模" accent="#22d3ee" />
         <Stat value={SERVICES.capf.stat.split(' ·')[0]} label="武警估算" />
+      </Grid>
+      <Grid cols={2} className="mb-6">
+        <Card title={`军种—兵种 旭日图 · ${PERSONNEL.asOf}`}>
+          <EChart option={sunburst} style={{ height: 280 }} />
+          <p className="text-[10px] mt-1" style={{ color: 'var(--text-tertiary)' }}>占比为开源估算示意，内环=军种，外环=主要兵种</p>
+        </Card>
+        <Card title="军衔金字塔 · 编制结构示意">
+          <p className="text-[10px] mb-2" style={{ color: 'var(--text-tertiary)' }}>{RANK_PYRAMID.note}（{RANK_PYRAMID.asOf}）</p>
+          <RankPyramid levels={RANK_PYRAMID.levels} />
+        </Card>
+      </Grid>
+      <Grid cols={2} className="mb-6">
+        <Card title={`兵员构成堆叠 · ${FORCE_COMPOSITION.asOf}（${FORCE_COMPOSITION.unit}）`}>
+          <EChart option={forceStack} style={{ height: 130 }} />
+          <p className="text-[10px] mt-2 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{FORCE_COMPOSITION.note}</p>
+        </Card>
+        <Card title="征兵规模与大学生比例趋势">
+          <EChart option={recruitChart} style={{ height: 200 }} />
+          <p className="text-[10px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{RECRUITMENT_TREND.note}</p>
+        </Card>
+      </Grid>
+      <Grid cols={2} className="mb-6">
+        <Card title="军费占 GDP 趋势 · SIPRI 口径">
+          <EChart option={gdpChart} style={{ height: 220 }} />
+          <p className="text-[10px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{DEFENSE_GDP_TREND.note}</p>
+        </Card>
+        <Card title={`国际军费对比 · ${INTL_DEFENSE_COMPARE.asOf}（${INTL_DEFENSE_COMPARE.unit}）`}>
+          <EChart option={intlChart} style={{ height: 220 }} />
+          <p className="text-[10px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{INTL_DEFENSE_COMPARE.note}</p>
+        </Card>
       </Grid>
       <Grid cols={2} className="mb-6">
         <Card title={`军种人员结构示意 · ${PERSONNEL.asOf}`}>
@@ -256,12 +368,76 @@ function EquipmentTab() {
       data: AIR_PIE.data.map((d) => ({ value: d.value, name: d.name, itemStyle: { color: d.color } })) }],
   };
 
+  const treeChart = {
+    tooltip: { trigger: 'item', triggerOn: 'mousemove' },
+    series: [{
+      type: 'tree', data: [EQUIPMENT_TREE], top: '2%', left: '14%', bottom: '2%', right: '18%',
+      symbolSize: 7, orient: 'LR', initialTreeDepth: 2, expandAndCollapse: true,
+      label: { position: 'left', verticalAlign: 'middle', align: 'right', fontSize: 10, color: '#e2e8f0' },
+      leaves: { label: { position: 'right', verticalAlign: 'middle', align: 'left', color: '#93a1b5', fontSize: 9 } },
+      itemStyle: { color: '#c41e3a', borderColor: '#c41e3a' },
+      lineStyle: { color: 'rgba(148,163,184,0.3)' },
+      emphasis: { focus: 'descendant' },
+    }],
+  };
+
+  const compareChart = {
+    tooltip: { trigger: 'item', formatter: (p) => `${p.name}: ${p.value.toLocaleString()}` },
+    grid: { left: 96, right: 48, top: 10, bottom: 24 },
+    xAxis: { type: 'log', min: 10, splitLine: GRID_LINE, axisLabel: LABEL },
+    yAxis: { type: 'category', data: EQUIPMENT_COMPARE.data.map((d) => d.name).reverse(), axisLine: AXIS, axisLabel: LABEL },
+    series: [{ type: 'bar', barWidth: 13, label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 },
+      data: EQUIPMENT_COMPARE.data.map((d) => ({ value: d.value, itemStyle: { color: d.color, borderRadius: [0, 3, 3, 0] } })).reverse() }],
+  };
+
+  const timelineChart = {
+    tooltip: { trigger: 'item', formatter: (p) => `${p.data.value[0]} · ${p.data.name}` },
+    grid: { left: 50, right: 24, top: 30, bottom: 24 },
+    xAxis: { type: 'value', min: 2011, max: 2025, interval: 2, axisLabel: { ...LABEL, formatter: '{value}' }, splitLine: GRID_LINE },
+    yAxis: { type: 'category', data: ['火箭军', '空军', '海军'], axisLine: AXIS, axisLabel: LABEL },
+    series: [{
+      type: 'scatter', symbolSize: 13,
+      label: { show: true, position: 'top', formatter: (p) => p.data.name, fontSize: 9, color: '#93a1b5' },
+      data: SERVICE_TIMELINE.map((t) => ({ name: t.name, value: [t.year, t.domain], itemStyle: { color: t.color } })),
+    }],
+  };
+
+  const modRadar = {
+    tooltip: { trigger: 'item' },
+    legend: { ...LEGEND, top: 0 },
+    radar: {
+      indicator: MODERNIZATION_RADAR.indicators, axisName: { color: '#93a1b5', fontSize: 10 },
+      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false },
+    },
+    series: [{ type: 'radar', data: [
+      { value: MODERNIZATION_RADAR.navy, name: '海军', lineStyle: { color: '#22d3ee', width: 2 }, areaStyle: { color: 'rgba(34,211,238,0.12)' }, itemStyle: { color: '#22d3ee' } },
+      { value: MODERNIZATION_RADAR.air, name: '空军', lineStyle: { color: '#8b5cf6', width: 2 }, areaStyle: { color: 'rgba(139,92,246,0.12)' }, itemStyle: { color: '#8b5cf6' } },
+    ] }],
+  };
+
   return (
     <>
       <Grid cols={2} className="mb-6">
         <Card title={`海军力量 · ${NAVY_BAR.asOf}（艘 · 估算）`}><EChart option={navyChart} style={{ height: 220 }} /></Card>
         <Card title={`空军现代化 · ${AIR_PIE.asOf}`}><EChart option={airChart} style={{ height: 220 }} /></Card>
       </Grid>
+      <Grid cols={2} className="mb-6">
+        <Card title="主战装备数量对比 · 对数刻度">
+          <EChart option={compareChart} style={{ height: 240 }} />
+          <p className="text-[10px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>来源：{EQUIPMENT_COMPARE.asOf} · {EQUIPMENT_COMPARE.note}</p>
+        </Card>
+        <Card title="海空军现代化率雷达 · 公开评估">
+          <EChart option={modRadar} style={{ height: 240 }} />
+          <p className="text-[10px] mt-1" style={{ color: 'var(--text-tertiary)' }}>{MODERNIZATION_RADAR.note}</p>
+        </Card>
+      </Grid>
+      <Card title="主战装备谱系树 · 点击节点展开/折叠" className="mb-6">
+        <EChart option={treeChart} style={{ height: 320 }} />
+      </Card>
+      <Card title="装备服役 / 亮相年代时间线 · 公开报道" className="mb-6">
+        <EChart option={timelineChart} style={{ height: 220 }} />
+        <p className="text-[10px] mt-1" style={{ color: 'var(--text-tertiary)' }}>横轴为年份，纵轴为军种；点位为里程碑式列装/亮相节点示意。</p>
+      </Card>
       <Card title="主要装备谱系 · 公开报道整理" className="mb-6">
         <div className="flex gap-1 flex-wrap mb-3">
           {EQUIPMENT_CATALOG.map((c) => (
@@ -315,11 +491,59 @@ function TechTab() {
   const [sel, setSel] = useState('ai');
   const t = TECH_DOMAINS.find((x) => x.id === sel) || TECH_DOMAINS[0];
 
+  const heatData = useMemo(() => {
+    const out = [];
+    TRL_MATRIX.data.forEach((row, stageIdx) => row.forEach((v, domainIdx) => out.push([domainIdx, stageIdx, v])));
+    return out;
+  }, []);
+
+  const trlHeat = {
+    tooltip: { position: 'top', formatter: (p) => `${TRL_MATRIX.domains[p.data[0]]} · ${TRL_MATRIX.stages[p.data[1]]}: ${p.data[2]}` },
+    grid: { left: 70, right: 20, top: 10, bottom: 80 },
+    xAxis: { type: 'category', data: TRL_MATRIX.domains, axisLabel: { ...LABEL, rotate: 32, interval: 0 }, axisLine: AXIS, splitArea: { show: true } },
+    yAxis: { type: 'category', data: TRL_MATRIX.stages, axisLabel: LABEL, axisLine: AXIS, splitArea: { show: true } },
+    visualMap: { min: 20, max: 100, calculable: true, orient: 'horizontal', left: 'center', bottom: 0, inRange: { color: ['#141c2b', '#7c2d12', '#e8a317', '#22d3ee'] }, textStyle: { color: '#93a1b5', fontSize: 10 } },
+    series: [{ type: 'heatmap', data: heatData, label: { show: true, color: '#0a0e17', fontSize: 9 }, emphasis: { itemStyle: { shadowBlur: 6, shadowColor: 'rgba(0,0,0,0.5)' } } }],
+  };
+
+  const rdChart = {
+    tooltip: { trigger: 'axis' },
+    grid: { left: 44, right: 16, top: 16, bottom: 24 },
+    xAxis: categoryX(RD_INVESTMENT_TREND.years),
+    yAxis: valueY({ name: '指数', nameTextStyle: { color: '#5b6a82' } }),
+    series: [{ type: 'line', smooth: true, symbol: 'circle', symbolSize: 7, data: RD_INVESTMENT_TREND.index, lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.12)' } }],
+  };
+
+  const sankey = {
+    tooltip: { trigger: 'item', triggerOn: 'mousemove' },
+    series: [{
+      type: 'sankey', data: MCF_SANKEY.nodes, links: MCF_SANKEY.links,
+      top: 10, bottom: 10, left: 10, right: 110, emphasis: { focus: 'adjacency' },
+      label: { color: '#e2e8f0', fontSize: 10 },
+      lineStyle: { color: 'gradient', opacity: 0.42, curveness: 0.5 },
+      itemStyle: { borderWidth: 0 }, nodeGap: 10,
+    }],
+  };
+
   return (
     <>
       <p className="text-xs mb-4 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
         尖端军事科技按 TRL（Technology Readiness Level，1–9）标注成熟度；数据来自公开防务报告与科研披露，不含涉密项目细节。
       </p>
+      <Grid cols={2} className="mb-6">
+        <Card title="尖端科技成熟度矩阵 · 领域 × 研发阶段">
+          <EChart option={trlHeat} style={{ height: 280 }} />
+          <p className="text-[10px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{TRL_MATRIX.note}</p>
+        </Card>
+        <Card title="国防科技研发投入趋势 · 指数（2014=100）">
+          <EChart option={rdChart} style={{ height: 240 }} />
+          <p className="text-[10px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{RD_INVESTMENT_TREND.note}</p>
+        </Card>
+      </Grid>
+      <Card title="军民融合关系图 · 民口 → 领域 → 军用（Sankey）" className="mb-6">
+        <EChart option={sankey} style={{ height: 300 }} />
+        <p className="text-[10px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{MCF_SANKEY.note}</p>
+      </Card>
       <Grid cols={3} className="mb-4">
         {TECH_DOMAINS.map((d) => (
           <button
@@ -373,11 +597,24 @@ function TheaterTab() {
   const [sel, setSel] = useState('east');
   const th = THEATERS.find((x) => x.id === sel) || THEATERS[0];
 
+  const theaterForceChart = {
+    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+    legend: { ...LEGEND, top: 0 },
+    grid: { left: 40, right: 16, top: 30, bottom: 24 },
+    xAxis: categoryX(THEATER_FORCE.theaters, { interval: 0 }),
+    yAxis: valueY({ max: 280 }),
+    series: THEATER_FORCE.series.map((seg) => ({ name: seg.name, type: 'bar', stack: 't', barWidth: 30, data: seg.data, itemStyle: { color: seg.color } })),
+  };
+
   return (
     <>
       <Card title="五大战区辖区 · 公开资料" className="mb-4">
         <TheaterLegend selected={sel} onSelect={setSel} />
         <MilitaryMap mode="theater" selectedTheater={sel} onTheaterClick={setSel} style={{ height: 400, marginTop: 12 }} />
+      </Card>
+      <Card title={`战区力量侧重对比 · ${THEATER_FORCE.asOf}`} className="mb-4">
+        <EChart option={theaterForceChart} style={{ height: 240 }} />
+        <p className="text-[10px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{THEATER_FORCE.note}</p>
       </Card>
       <Grid cols={2} className="mb-4">
         <Card title={th.name}>
@@ -428,13 +665,39 @@ function TheaterTab() {
   );
 }
 
+const LIFT_STRENGTH = [
+  { name: '铁路机动', val: 85, color: '#10b981', note: '全军铁路输送体系' },
+  { name: '管线补给', val: 60, color: '#22d3ee', note: '西南/西北管线网' },
+  { name: '战略空运', val: 55, color: '#8b5cf6', note: '运-20 机队 50+ 架' },
+  { name: '战略海运', val: 45, color: '#e8a317', note: '民用滚装 + 补给舰（仍为短板）' },
+];
+
 function LogisticsTab() {
+  const liftChart = {
+    tooltip: { trigger: 'item', formatter: (p) => `${p.name}: ${p.value}/100` },
+    grid: { left: 70, right: 30, top: 10, bottom: 20 },
+    xAxis: { type: 'value', max: 100, splitLine: GRID_LINE, axisLabel: LABEL },
+    yAxis: { type: 'category', data: LIFT_STRENGTH.map((l) => l.name).reverse(), axisLine: AXIS, axisLabel: LABEL },
+    series: [{ type: 'bar', barWidth: 16, label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 },
+      data: LIFT_STRENGTH.map((l) => ({ value: l.val, itemStyle: { color: l.color, borderRadius: [0, 3, 3, 0] } })).reverse() }],
+  };
+
   return (
     <>
       <Grid cols={3} className="mb-4">
         <Stat value={LOGISTICS.hubs.length} label="联勤保障中心" accent="#10b981" />
         <Stat value={LOGISTICS.transport.strategicAirlift.capacity.split(' ')[0]} label="战略空运" accent="#22d3ee" />
         <Stat value="5" label="战区联勤中心" />
+      </Grid>
+      <Grid cols={2} className="mb-6">
+        <Card title="五大联勤保障中心 · 地理分布">
+          <MilitaryMap mode="logistics" style={{ height: 320 }} />
+          <p className="text-[10px] mt-1" style={{ color: 'var(--text-tertiary)' }}>菱形标注为联勤保障中心驻地（公开报道量级），覆盖五大战略方向。</p>
+        </Card>
+        <Card title="战略投送能力强度 · 相对评估示意">
+          <EChart option={liftChart} style={{ height: 220 }} />
+          <p className="text-[10px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>强度为公开评估相对值（0–100）示意；远海海运投送仍为主要短板。</p>
+        </Card>
       </Grid>
       <Grid cols={2} className="mb-6">
         <Card title={`联勤保障部队结构 · ${LOGISTICS.asOf}`}>
@@ -501,6 +764,10 @@ function BasesTab() {
           ))}
         </div>
         <BaseTypeLegend />
+        <div className="flex flex-wrap gap-2 mt-1">
+          <span className="text-[10px] mono flex items-center gap-1" style={{ color: '#e8a317' }}><span style={{ width: 14, height: 0, borderTop: '2px dashed #e8a317', display: 'inline-block' }} />第一岛链</span>
+          <span className="text-[10px] mono flex items-center gap-1" style={{ color: '#22d3ee' }}><span style={{ width: 14, height: 0, borderTop: '2px dashed #22d3ee', display: 'inline-block' }} />第二岛链</span>
+        </div>
         <MilitaryMap mode="bases-global" selectedBase={sel} onBaseClick={setSel} style={{ height: 420, marginTop: 8 }} />
       </Card>
       <Grid cols={2}>
@@ -560,11 +827,7 @@ export default function Page() {
         </div>
       </PageHeader>
 
-      <div className="flex flex-wrap gap-1.5 mb-6">
-        {TABS.map(([k, label]) => (
-          <button key={k} type="button" onClick={() => setTab(k)} style={tabBtn(tab === k)}>{label}</button>
-        ))}
-      </div>
+      <TabBar tabs={TABS} value={tab} onChange={setTab} accent="var(--china-red)" />
 
       {tab === 'overview' && <OverviewTab />}
       {tab === 'personnel' && <PersonnelTab />}
@@ -574,13 +837,16 @@ export default function Page() {
       {tab === 'logistics' && <LogisticsTab />}
       {tab === 'bases' && <BasesTab />}
 
-      <CrossLinks className="mt-6" links={[
-        { to: '/talent', label: '人才库 · 军事将官', note: `${FIGURE_MILITARY_COUNT} 条现役将官公开履历，可与战区/军种对照` },
-        { to: '/straits', label: '台海局势', note: 'A2/AD 气泡与地缘重力 —— 东部战区方向延伸' },
-        { to: '/omnisecurity', label: '大安全观', note: '粮食 · 能源 · 网络 —— 总体国家安全观下的军事支撑' },
+      <FrameworkTrio cards={[
+        { title: '盐铁逻辑', subtitle: '命脉装备 · 战略底座', body: '导弹谱系、核威慑、A2/AD 能力是当代盐铁专营的军事映射——守成者最不愿失去的物理筹码。', pillars: [['核威慑', '二次打击可信。'], ['A2/AD', '区域拒止。'], ['联勤', '投送与补给。']] },
+        { title: '摸石头方法论', subtitle: '迭代 · 灰度 · 验证', body: '装备列装与作战概念同步迭代——从近海防御到远海护卫，从机械化到信息化智能化的渐进式跃迁。', pillars: [['战区', '五大战区体制。'], ['装备', 'TRL 分层列装。'], ['演训', '实战化检验。']] },
+        { title: '升级路径', subtitle: '从数量到质量', body: '裁军增效、军改深化、新域新质作战力量——从规模型向质量效能型的结构性升级。', pillars: [['智能化', '算力主权。'], ['航天', '低轨星座。'], ['联合作战', '体系对抗。']] },
       ]} />
 
-      <SourceFooter />
+      <ModuleFooter
+        moduleId="military"
+        disclaimer={`公开资料整理 · 截至 ${MILITARY_INTEL_META.asOf} · 来源：${MILITARY_INTEL_META.sources.join('、')}。${MILITARY_INTEL_META.disclaimer}`}
+      />
     </div>
   );
 }

@@ -3,18 +3,43 @@ import { Link, useSearchParams } from 'react-router-dom';
 import AntiCorruptionSection from './AntiCorruptionSection.jsx';
 import CulturalEliteSection from './CulturalEliteSection.jsx';
 import BusinessEliteSection from './BusinessEliteSection.jsx';
+import OverseasTalentSection from './OverseasTalentSection.jsx';
+import DiplomaticCorpsSection from './DiplomaticCorpsSection.jsx';
+import DissidentSection from './DissidentSection.jsx';
+import TaiwanPoliticalSection from './TaiwanPoliticalSection.jsx';
+import HigherEducationSection from './HigherEducationSection.jsx';
+import ThinkTankSection from './ThinkTankSection.jsx';
+import ResearchInstituteSection from './ResearchInstituteSection.jsx';
+import PartySchoolSection from './PartySchoolSection.jsx';
+import OrgDepartmentSection from './OrgDepartmentSection.jsx';
+import TalentDetailPanel from './TalentDetailPanel.jsx';
 import * as Lucide from 'lucide-react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid, TabBar, Button } from '../../app/ui.jsx';
+import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import FigureAvatar from '../../lib/ui/FigureAvatar.jsx';
+import { figureAvatarProps, prefetchFigureAvatars } from '../../lib/ui/figureAvatarResolve.js';
 import EChart from '../../lib/viz/EChart.jsx';
 import { useFigures } from '../../lib/db/useDataset.js';
 import * as DB from '../../lib/db/localdb.js';
 import { FIGURE_SEED, FIGURE_CATALOG_META } from '../../lib/db/figureSeed.js';
+import { CULTURAL_ELITE_DEDUPED_COUNT, CE_SUB_CATS, CE_TAB_LABEL } from '../../lib/db/culturalEliteSeed.js';
+import { BUSINESS_ELITE_DEDUPED_COUNT } from '../../lib/db/businessEliteSeed.js';
+import { OVERSEAS_TALENT_DEDUPED_COUNT, OT_TAB_LABEL } from '../../lib/db/overseasTalentSeed.js';
+import { DIPLOMATIC_CORPS_DEDUPED_COUNT, DC_TAB_LABEL } from '../../lib/db/diplomaticCorpsSeed.js';
+import { HIGHER_EDUCATION_DEDUPED_COUNT } from '../../lib/db/higherEducationSeed.js';
+import { RESEARCH_INSTITUTE_DEDUPED_COUNT, RI_STATE_TYPES } from '../../lib/db/researchInstituteSeed.js';
+import { THINK_TANK_DEDUPED_COUNT } from '../../lib/db/thinkTankSeed.js';
+import { ANTI_CORRUPTION_COUNT } from '../../lib/db/antiCorruptionSeed.js';
+import { DISSIDENT_DEDUPED_COUNT } from '../../lib/db/dissidentSeed.js';
+import { TAIWAN_POLITICAL_DEDUPED_COUNT, TW_TAB_LABEL } from '../../lib/db/taiwanPoliticalSeed.js';
+import { resolveTalentTab, useTalentDeepLink } from '../../lib/talent/routing.js';
+import { applyTalentEnrichment } from '../../lib/talent/talentEnrich.js';
+import { buildTalentDetailSections, CrossRefLinks, eventsToTimeline } from '../../lib/talent/detailSections.jsx';
+import { buildDetailFooter, normalizeTags } from '../../lib/talent/metadata.jsx';
 
 const CUR_YEAR = 2026;
 const short = (p) => (p || '').replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '');
-const inp = { background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', borderRadius: 6, padding: '6px 10px', fontSize: 13 };
-const btn = { background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)', border: '1px solid rgba(34,211,238,0.25)', borderRadius: 6, padding: '6px 14px', fontSize: 13, cursor: 'pointer' };
+const inp = { background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', borderRadius: 'var(--radius-sm)', padding: '6px 10px', fontSize: 'var(--text-sm)' };
 
 const ROLE_OPTS = ['总书记', '总理', '副总理', '国务委员', '人大委员长', '政协主席', '政协副主席', '政协秘书长', '纪委书记', '外交部长', '政法委书记', '中组部部长', '组织部部长', '统战部部长', '中宣部部长', '宣传部长', '人大副委员长', '人大秘书长', '监委主任', '军委副主席', '军委委员', '港澳办主任', '党委书记', '市委书记', '省委副书记', '省长', '市长', '常务副省长', '常务副市长', '常务副主席', '自治区主席', '部长', '国防部长', '战区司令员', '战区政治委员', '战区副司令员', '参谋长', '政治工作部主任', '副司令员', '副政委', '署长', '局长', '主任', '主席', '董事长', '总经理', '最高法院长', '最高检检察长'];
 const SECTOR_OPTS = ['国务院', '党中央', '国家机关', '全国政协', '国务院直属机构', '央企', '省属国企', '军队', '地方'];
@@ -65,48 +90,156 @@ function DistBars({ data, color = '#22d3ee', max, onPick, active }) {
   );
 }
 
-const TABS = [
-  { id: 'resume', label: '公开履历', accent: 'var(--cyber-cyan)', bg: 'rgba(34,211,238,0.16)' },
-  { id: 'anticorruption', label: '反腐名单', accent: 'var(--china-red)', bg: 'rgba(196,30,58,0.16)' },
-  { id: 'culture', label: '文化精英', accent: '#a78bfa', bg: 'rgba(139,92,246,0.16)' },
-  { id: 'business', label: '商业精英', accent: '#e8a317', bg: 'rgba(232,163,23,0.16)' },
+const TAB_DEFS = [
+  { id: 'resume', baseLabel: '中国政要', accent: 'var(--cyber-cyan)', bg: 'rgba(34,211,238,0.16)' },
+  { id: 'anticorruption', baseLabel: '反腐透视', accent: 'var(--china-red)', bg: 'rgba(196,30,58,0.16)' },
+  { id: 'dissident', baseLabel: '异见人士', accent: '#a78bfa', bg: 'rgba(139,92,246,0.16)' },
+  { id: 'taiwan', baseLabel: '港澳台政要', accent: '#38bdf8', bg: 'rgba(56,189,248,0.16)' },
+  { id: 'education', baseLabel: '高等教育', accent: '#10b981', bg: 'rgba(16,185,129,0.16)' },
+  { id: 'thinktank', baseLabel: '智库', accent: '#22d3ee', bg: 'rgba(34,211,238,0.16)' },
+  { id: 'research', baseLabel: '科研院所', accent: '#a78bfa', bg: 'rgba(139,92,246,0.16)' },
+  { id: 'knowledge', baseLabel: '知识精英', accent: '#a78bfa', bg: 'rgba(139,92,246,0.16)' },
+  { id: 'business', baseLabel: '商业精英', accent: '#e8a317', bg: 'rgba(232,163,23,0.16)' },
+  { id: 'overseas', baseLabel: '海外人才', accent: '#0ea5e9', bg: 'rgba(14,165,233,0.16)' },
+  { id: 'diplomatic', baseLabel: '外交人才', accent: '#f59e0b', bg: 'rgba(245,158,11,0.16)' },
+  { id: 'party-school', baseLabel: '党校研修', accent: '#c41e3a', bg: 'rgba(196,30,58,0.16)' },
+  { id: 'org-dept', baseLabel: '组织画像', accent: '#e8a317', bg: 'rgba(232,163,23,0.16)' },
 ];
+
+const TAB_COUNT = {
+  resume: FIGURE_SEED.length,
+  anticorruption: ANTI_CORRUPTION_COUNT,
+  dissident: DISSIDENT_DEDUPED_COUNT.total,
+  taiwan: TAIWAN_POLITICAL_DEDUPED_COUNT.total,
+  education: HIGHER_EDUCATION_DEDUPED_COUNT.total,
+  thinktank: THINK_TANK_DEDUPED_COUNT.total,
+  research: RESEARCH_INSTITUTE_DEDUPED_COUNT.total,
+  knowledge: CULTURAL_ELITE_DEDUPED_COUNT.total,
+  business: BUSINESS_ELITE_DEDUPED_COUNT.total,
+  overseas: OVERSEAS_TALENT_DEDUPED_COUNT.total,
+  diplomatic: DIPLOMATIC_CORPS_DEDUPED_COUNT.total,
+};
+
+function buildTalentTabs() {
+  return TAB_DEFS.map(({ id, baseLabel, accent, bg }) => ({
+    id,
+    label: TAB_COUNT[id] ? `${baseLabel}(${TAB_COUNT[id]})` : baseLabel,
+    accent,
+    bg,
+  }));
+}
+
+const ceSubtitle = () => {
+  const parts = CE_SUB_CATS.map((k) => `${CE_TAB_LABEL[k]} ${CULTURAL_ELITE_DEDUPED_COUNT[k] ?? 0}`);
+  return `知识生产队列 · ${parts.join(' / ')} —— 内置 ${CULTURAL_ELITE_DEDUPED_COUNT.total} 条（含两院院士 enrich）`;
+};
 
 const TAB_META = {
   resume: {
-    title: '公开履历人才库',
-    subtitle: (n, asOf) => `地方 + 中央部委 + 军事将官 —— 内置 ${n} 条，截至 ${asOf}`,
+    title: '人才精英库 · 中国政要',
+    subtitle: (n, asOf) => `政治权力队列 · 地方/中央部委/军事将官等公开任职政治人物 —— 内置 ${n} 条，截至 ${asOf}。不含知识生产与商业资本图谱。`,
   },
   anticorruption: {
-    title: '人才库 · 反腐名单',
-    subtitle: () => '子模块 · 十八大以来公开落马/被查案例历年汇总',
+    title: '人才精英库 · 反腐透视',
+    subtitle: () => '权力纠错账本 · 十八大以来公开落马/被查案例历年汇总，与中国政要独立建档。',
   },
-  culture: {
-    title: '人才库 · 文化精英',
-    subtitle: () => '子模块 · C9/985 人文强校 · 长江学者/杰青 · 文博/文联/非遗',
+  dissident: {
+    title: '人才精英库 · 异见人士',
+    subtitle: () => {
+      const c = DISSIDENT_DEDUPED_COUNT;
+      const parts = ['lawyer', 'journalist', 'writer', 'movement', 'religion', 'labor', 'online', 'exile'].map((k) => {
+        const labels = { lawyer: '维权律师', journalist: '记者', writer: '作家', movement: '民运', religion: '宗教', labor: '劳工', online: '网络异议', exile: '流亡海外' };
+        return `${labels[k]} ${c[k] ?? 0}`;
+      });
+      return `制度边界档案 · 公开记录中的异议表达者、维权者与制度边界案例；与政要/知识生产队列隔离 —— ${parts.join(' / ')}，内置 ${c.total} 条`;
+    },
+  },
+  taiwan: {
+    title: '人才精英库 · 港澳台政要',
+    subtitle: () => {
+      const c = TAIWAN_POLITICAL_DEDUPED_COUNT;
+      return `台港澳公开任职政治人物；与 PRC 中国政要队列分轨建档 —— 台湾 ${c.tw ?? 0} / 香港 ${c.hk ?? 0} / 澳门 ${c.mo ?? 0}，内置 ${c.total} 条`;
+    },
+  },
+  education: {
+    title: '人才精英库 · 高等教育',
+    subtitle: () => {
+      const c = HIGHER_EDUCATION_DEDUPED_COUNT;
+      return `机构载体队列 · 985/211/双一流全覆盖（C9 ${c.C9} · 985 ${c['985']} · 211 ${c['211']} · 双一流 ${c.双一流}）—— 内置 ${c.total} 所`;
+    },
+  },
+  thinktank: {
+    title: '人才精英库 · 智库',
+    subtitle: () => {
+      const c = THINK_TANK_DEDUPED_COUNT;
+      return `机构载体队列 · 国家级 ${c['国家级智库'] || 0} / 高校 ${c['高校智库'] || 0} / 社会 ${c['社会智库'] || 0} / 部委 ${c['部委智库'] || 0} —— 内置 ${c.total} 家`;
+    },
+  },
+  research: {
+    title: '人才精英库 · 科研院所',
+    subtitle: () => {
+      const c = RESEARCH_INSTITUTE_DEDUPED_COUNT;
+      const state = RI_STATE_TYPES.reduce((n, k) => n + (c[k] || 0), 0);
+      return `机构载体队列 · 国立体系 ${state} 所 + 民企科研 ${c['民企科研'] || 0} 家 + 大科学装置 ${c['大科学装置'] || 0} 项 —— 国家战略科技力量与企业级研发补充节点，内置 ${c.total} 条`;
+    },
+  },
+  knowledge: {
+    title: '人才精英库 · 知识精英',
+    subtitle: ceSubtitle,
   },
   business: {
-    title: '人才库 · 商业精英',
-    subtitle: () => '子模块 · 创始人 / 高管 / 投资人 · 工商联500强关联',
+    title: '人才精英库 · 商业精英',
+    subtitle: () => {
+      const c = BUSINESS_ELITE_DEDUPED_COUNT;
+      return `资本逻辑队列 · 创始人 ${c.founder} / 实控人 ${c.controller || 0} / 高管 ${c.executive} / 投资人 ${c.investor} —— 角色 × 行业双维 · 内置 ${c.total} 条`;
+    },
+  },
+  overseas: {
+    title: '人才精英库 · 海外人才',
+    subtitle: () => {
+      const parts = ['knowledge', 'tech', 'industry', 'culture', 'academic'].map((k) => `${OT_TAB_LABEL[k]} ${OVERSEAS_TALENT_DEDUPED_COUNT[k] ?? 0}`);
+      return `跨境人力资本队列 · ${parts.join(' / ')} —— 内置 ${OVERSEAS_TALENT_DEDUPED_COUNT.total} 条（与境内队列互补，聚焦海外驻留/游学节点）`;
+    },
+  },
+  diplomatic: {
+    title: '人才精英库 · 外交人才',
+    subtitle: () => {
+      const c = DIPLOMATIC_CORPS_DEDUPED_COUNT;
+      const parts = ['亚太', '欧洲', '北美', '拉美', '非洲', '中东', '国际组织'].map((k) => `${DC_TAB_LABEL[k]} ${c[k] ?? 0}`);
+      return `驻外使节公开任职图谱 · ${parts.join(' / ')} —— 内置 ${c.total} 条（与境内政要/知识精英队列分轨；外交部长见中国政要）`;
+    },
+  },
+  'party-school': {
+    title: '人才精英库 · 党校研修推演',
+    subtitle: () => '干部培训模拟 · 课程配置 · 班次筛选 · 结业考核 —— 教学推演沙盘，人才均为画像/原型',
+  },
+  'org-dept': {
+    title: '人才精英库 · 组织画像引擎',
+    subtitle: () => '全库六维画像 · 12 经历标签 · 情景匹配底座 —— 公开履历关键词推断，不构成人事评价',
   },
 };
-
-const VALID_TABS = new Set(['resume', 'anticorruption', 'culture', 'business']);
 
 export default function Page() {
   const [searchParams, setSearchParams] = useSearchParams();
   const tabParam = searchParams.get('tab');
-  const tab = VALID_TABS.has(tabParam) && tabParam !== 'resume' ? tabParam : 'resume';
+  const tab = resolveTalentTab(tabParam || 'resume');
   const setTab = (id) => {
     if (id === 'resume') setSearchParams({}, { replace: true });
     else setSearchParams({ tab: id }, { replace: true });
   };
 
+  useEffect(() => {
+    if (tabParam === 'culture') setSearchParams({ tab: 'knowledge' }, { replace: true });
+    else if (tabParam === 'scholar') setSearchParams({ tab: 'knowledge', ce: 'humanities' }, { replace: true });
+  }, [tabParam, setSearchParams]);
+
+  const tabs = useMemo(() => buildTalentTabs(), []);
+
   const figuresRaw = useFigures();
   // 前端按唯一键去重展示（不改库，立即消除历史重复）
   const figures = useMemo(() => (figuresRaw == null ? figuresRaw : dedupeFigures(figuresRaw)), [figuresRaw]);
   const dupCount = figuresRaw && figures ? figuresRaw.length - figures.length : 0;
-  const [q, setQ] = useState('');
+  const [q, setQ] = useState(() => searchParams.get('q') || '');
   const [prov, setProv] = useState('');
   const [level, setLevel] = useState('');
   const [role, setRole] = useState('');
@@ -157,7 +290,27 @@ export default function Page() {
     return list;
   }, [figures, q, prov, level, role, sector, decade, minority, quickFilter, sort]);
 
-  const detail = sel || filtered[0] || null;
+  useEffect(() => {
+    if (tab === 'resume' && filtered.length) prefetchFigureAvatars(filtered, 56);
+  }, [tab, filtered]);
+
+  const detail = sel || (searchParams.get('id') ? null : filtered[0]) || null;
+
+  const { selectEntity } = useTalentDeepLink({
+    searchParams,
+    setSearchParams,
+    filtered,
+    allList: figures || [],
+    sel,
+    setSel,
+    ready: figures != null && tab === 'resume',
+    preserveKeys: [],
+  });
+
+  useEffect(() => {
+    const qp = searchParams.get('q');
+    if (tab === 'resume' && qp && qp !== q) setQ(qp);
+  }, [tab, searchParams, q]);
   const activeChips = [
     q && ['搜索', `“${q}”`, () => setQ('')], prov && ['省份', short(prov), () => setProv('')],
     sector && ['系统', sector, () => setSector('')], level && ['层级', level, () => setLevel('')],
@@ -179,8 +332,8 @@ export default function Page() {
 
   const pickFigure = useCallback((idx) => {
     const f = filtered[idx];
-    if (f) setSel(f);
-  }, [filtered]);
+    if (f) selectEntity(f);
+  }, [filtered, selectEntity]);
 
   useEffect(() => {
     if (tab !== 'resume') return undefined;
@@ -194,9 +347,9 @@ export default function Page() {
     return () => window.removeEventListener('keydown', onKey);
   }, [tab, filtered, detail, pickFigure]);
 
-  if (figures === null && tab === 'resume') return <div className="py-20 text-center mono text-sm" style={{ color: 'var(--text-tertiary)' }}>// 加载人才库…</div>;
+  if (figures === null && tab === 'resume') return <div className="py-20 text-center mono text-sm" style={{ color: 'var(--text-tertiary)' }}>// 加载人才精英库…</div>;
 
-  // 分布数据（仅公开履历 tab 使用）
+  // 分布数据（仅中国政要 tab 使用）
   const distLevel = tally(filtered, (f) => f.level);
   const distSector = tally(filtered, (f) => f.sector || (f.province && f.province !== '中央' ? '地方' : ''));
   const distDecade = tally(filtered, decadeOf).sort((a, b) => a[0].localeCompare(b[0]));
@@ -296,38 +449,39 @@ export default function Page() {
 
   return (
     <div>
-      <PageHeader badge="Talent · 人才库"
+      <PageHeader badge="Talent · 人才精英库"
         title={meta.title}
         subtitle={headerSubtitle} />
 
-      <div className="sticky z-20 mb-6 py-2" style={{ top: 0, background: 'linear-gradient(180deg, var(--bg-page) 85%, transparent)', backdropFilter: 'blur(8px)' }}>
-        <div className="flex rounded overflow-hidden" style={{ border: '1px solid var(--border-subtle)', width: 'fit-content' }}>
-          {TABS.map(({ id, label, accent, bg }) => {
-            const on = tab === id;
-            return (
-              <button key={id} type="button" onClick={() => setTab(id)}
-                className="text-sm px-4 py-2 transition-colors"
-                style={{
-                  background: on ? bg : 'var(--bg-base)',
-                  color: on ? accent : 'var(--text-tertiary)',
-                  border: 'none', cursor: 'pointer', fontWeight: on ? 600 : 400,
-                }}>
-                {label}
-              </button>
-            );
-          })}
-        </div>
-      </div>
+      <TabBar tabs={tabs} value={tab} onChange={setTab} variant="segment" sticky />
 
       {tab === 'anticorruption' ? (
         <AntiCorruptionSection />
-      ) : tab === 'culture' ? (
+      ) : tab === 'dissident' ? (
+        <DissidentSection />
+      ) : tab === 'taiwan' ? (
+        <TaiwanPoliticalSection />
+      ) : tab === 'education' ? (
+        <HigherEducationSection />
+      ) : tab === 'thinktank' ? (
+        <ThinkTankSection />
+      ) : tab === 'research' ? (
+        <ResearchInstituteSection />
+      ) : tab === 'knowledge' ? (
         <CulturalEliteSection />
       ) : tab === 'business' ? (
         <BusinessEliteSection />
+      ) : tab === 'overseas' ? (
+        <OverseasTalentSection />
+      ) : tab === 'diplomatic' ? (
+        <DiplomaticCorpsSection />
+      ) : tab === 'party-school' ? (
+        <PartySchoolSection />
+      ) : tab === 'org-dept' ? (
+        <OrgDepartmentSection />
       ) : (
         <>
-      <div className="grid gap-3 mb-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(110px,1fr))' }}>
+      <StatGrid>
         <Stat value={figures.length} label="简历总数" accent="#22d3ee" />
         <Stat value={viceCount || '—'} label="副国级" accent="#c41e3a" />
         <Stat value={milCount || shangCount || '—'} label="军事将官" accent="#556b2f" />
@@ -335,22 +489,22 @@ export default function Page() {
         <Stat value={citySecCount || secCount || '—'} label="书记/主官" accent="#e8a317" />
         <Stat value={avgAge || '—'} label="平均年龄" accent="#8b5cf6" />
         <Stat value={minorityCount || '—'} label="少数民族" accent="#fb923c" />
-      </div>
+      </StatGrid>
 
       {figures.length < 10 && (
-        <Card title="一键载入公开履历" className="mb-4">
+        <Card title="一键载入中国政要" className="mb-4">
           <p className="text-sm mb-3" style={{ color: 'var(--text-secondary)' }}>
             内置 {FIGURE_SEED.length} 条：省级 {FIGURE_CATALOG_META.breakdown?.provincial} + 人大政协 {FIGURE_CATALOG_META.breakdown?.provincialExtended} + 常委岗位 {FIGURE_CATALOG_META.breakdown?.provincialStanding} + 中央 {FIGURE_CATALOG_META.breakdown?.central} + 扩展 {FIGURE_CATALOG_META.breakdown?.extended} + 城市 {FIGURE_CATALOG_META.breakdown?.municipal} + 地级市 {FIGURE_CATALOG_META.breakdown?.prefectureCity} + 机构 {FIGURE_CATALOG_META.breakdown?.org} + 二层 {FIGURE_CATALOG_META.breakdown?.orgTier2} + 军事 {FIGURE_CATALOG_META.breakdown?.military}。来源：{FIGURE_CATALOG_META.sources.join('、')}。
-            也可到 <Link to="/foundation" className="mono" style={{ color: 'var(--cyber-cyan)' }}>数据底座 · 政治人物简历</Link> 增量导入或粘贴更新。
+            也可到 <Link to="/foundation" className="mono" style={{ color: 'var(--cyber-cyan)' }}>数据底座 · 人才精英</Link> 增量导入或粘贴更新。
           </p>
-          <button type="button" onClick={loadSeed} disabled={loading} style={btn}>
+          <Button variant="primary" onClick={loadSeed} disabled={loading}>
             {loading ? '载入中…' : `载入 ${FIGURE_CATALOG_META.label}（${FIGURE_SEED.length} 条）`}
-          </button>
+          </Button>
         </Card>
       )}
 
       {!figures.length ? (
-        <Card title="人才库为空"><p className="text-sm" style={{ color: 'var(--text-secondary)' }}>点击上方按钮载入内置数据集，或到数据底座批量导入。</p></Card>
+        <Card title="中国政要队列为空"><p className="text-sm" style={{ color: 'var(--text-secondary)' }}>点击上方按钮载入内置中国政要数据集，或到数据底座批量导入。</p></Card>
       ) : (
         <>
           {/* 工具条 */}
@@ -439,14 +593,14 @@ export default function Page() {
               <p className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>// 年龄按公开出生年份折算 · 任期按上任日期折算（截至 {CUR_YEAR}）· 中央委员身份据二十届名单 · 籍贯/任期数据覆盖率不一，未注明者不计入对应图</p>
             </div>
           ) : (
-            <div className="grid gap-4" style={{ gridTemplateColumns: '1.25fr 1fr' }}>
+            <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
               <Card title={`检索结果 (${filtered.length}/${figures.length})`}>
                 {view === 'grid' ? (
                   <div className="grid gap-2" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(150px,1fr))', maxHeight: 540, overflowY: 'auto' }}>
                     {filtered.map((f) => (
-                      <button key={f.id} onClick={() => setSel(f)} className="text-left p-2.5 rounded" style={{ background: detail?.id === f.id ? 'rgba(196,30,58,0.14)' : 'var(--bg-elevated)', border: `1px solid ${detail?.id === f.id ? 'var(--china-red)' : 'var(--border-subtle)'}`, cursor: 'pointer' }}>
+                      <button key={f.id} onClick={() => selectEntity(f)} className={`os-list-item text-left p-2.5 rounded ${detail?.id === f.id ? 'is-selected' : ''}`}>
                         <div className="flex items-center gap-2 mb-1">
-                          <FigureAvatar name={f.name} avatarUrl={f.fields?.avatarUrl} size={26} ring={detail?.id === f.id} />
+                          <FigureAvatar {...figureAvatarProps(f)} size={26} ring={detail?.id === f.id} />
                           <span className="font-semibold text-sm truncate" style={{ color: 'var(--text-primary)' }}>{f.name}</span>
                         </div>
                         <div className="flex flex-wrap gap-1">
@@ -463,9 +617,9 @@ export default function Page() {
                     {filtered.map((f) => {
                       const on = detail?.id === f.id; const age = ageOf(f);
                       return (
-                        <button key={f.id} onClick={() => setSel(f)} className="w-full text-left px-3 py-2 rounded" style={{ background: on ? 'rgba(196,30,58,0.14)' : 'var(--bg-elevated)', border: `1px solid ${on ? 'var(--china-red)' : 'transparent'}`, cursor: 'pointer' }}>
+                        <button key={f.id} onClick={() => selectEntity(f)} className={`os-list-item w-full text-left px-3 py-2 rounded ${on ? 'is-selected' : ''}`}>
                           <div className="flex items-center gap-1.5 flex-wrap">
-                            <FigureAvatar name={f.name} avatarUrl={f.fields?.avatarUrl} size={28} ring={on} />
+                            <FigureAvatar {...figureAvatarProps(f)} size={28} ring={on} />
                             <span className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{f.name}</span>
                             {age && <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>{age}岁·{decadeOf(f)}</span>}
                             {f.level && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(196,30,58,0.12)', color: 'var(--china-red)' }}>{f.level}</span>}
@@ -487,50 +641,64 @@ export default function Page() {
 
               <Card title={detail ? `${detail.name} · 履历详情` : '选择一位'}>
                 {detail && (() => {
-                  const age = ageOf(detail); const ten = tenureYears(detail);
+                  const d = applyTalentEnrichment(detail, { queue: 'figures' });
+                  const age = ageOf(d);
+                  const ten = tenureYears(d);
+                  const tenureNowVal = (() => { const m = (d.fields?.tookOffice || '').match(/(\d{4})/); return m ? CUR_YEAR - +m[1] : ten; })();
+                  const tagList = [...new Set([...normalizeTags(d.tags), d.role, d.sector, d.level, decadeOf(d)].filter((t) => t && t !== '未知'))];
+                  const baseSections = [
+                        {
+                          title: '基本信息',
+                          cols: 3,
+                          fields: [
+                            { label: '现任/头衔', value: d.fields?.title },
+                            { label: '机构', value: d.org ? `${d.org}${d.sector ? `（${d.sector}）` : ''}` : null },
+                            { label: '关联地域', value: d.province ? (d.province === '中央' ? '中央/国家机构' : d.province) : null },
+                            { label: '籍贯', value: d.fields?.native },
+                            { label: '民族', value: d.fields?.ethnic && d.fields.ethnic !== '汉族' ? d.fields.ethnic : null, accent: '#fb923c' },
+                            { label: '出生', value: d.fields?.birth ? `${d.fields.birth}${age ? ` · 现 ${age} 岁` : ''}` : null },
+                            { label: '学历', value: d.fields?.edu },
+                            { label: '城市层级', value: d.fields?.cityTier },
+                          ],
+                        },
+                        {
+                          title: '权力结构',
+                          cols: 3,
+                          fields: [
+                            { label: '层级', value: d.level, accent: 'var(--china-red)' },
+                            { label: '职务', value: d.role },
+                            { label: '系统', value: d.sector, accent: '#d4af37' },
+                            { label: '中委身份', value: d.fields?.rank },
+                            { label: '现职任期', value: tenureNowVal != null ? `约 ${tenureNowVal} 年` : null },
+                            { label: '上任', value: d.fields?.tookOffice },
+                            { label: '军阶', value: d.fields?.milRank },
+                            { label: '军种/战区', value: [d.fields?.milBranch, d.fields?.milUnit].filter(Boolean).join(' · ') || null },
+                          ],
+                        },
+                  ];
                   return (
-                    <>
-                      <div className="flex items-center gap-3 mb-3 pb-3" style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-                        <FigureAvatar name={detail.name} avatarUrl={detail.fields?.avatarUrl} size={44} ring />
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 flex-wrap">
-                            <span className="font-bold text-base" style={{ color: 'var(--text-primary)' }}>{detail.name}</span>
-                            {detail.level && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(196,30,58,0.12)', color: 'var(--china-red)' }}>{detail.level}</span>}
-                            {age && <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>{age}岁 · {decadeOf(detail)}</span>}
-                          </div>
-                          <div className="text-[11px] mt-0.5" style={{ color: 'var(--text-secondary)' }}>{detail.fields?.title || ''}</div>
-                        </div>
-                      </div>
-                      <div className="grid gap-1.5 text-xs mb-3" style={{ gridTemplateColumns: 'auto 1fr' }}>
-                        {detail.org && <><span style={{ color: 'var(--text-tertiary)' }}>机构</span><span style={{ color: 'var(--text-secondary)' }}>{detail.org}{detail.sector ? `（${detail.sector}）` : ''}</span></>}
-                        {detail.province && <><span style={{ color: 'var(--text-tertiary)' }}>关联地域</span><span style={{ color: 'var(--text-secondary)' }}>{detail.province === '中央' ? '中央/国家机构' : detail.province}</span></>}
-                        {detail.fields?.native && <><span style={{ color: 'var(--text-tertiary)' }}>籍贯</span><span style={{ color: 'var(--text-secondary)' }}>{detail.fields.native}</span></>}
-                        {detail.fields?.ethnic && detail.fields.ethnic !== '汉族' && <><span style={{ color: 'var(--text-tertiary)' }}>民族</span><span style={{ color: '#fb923c' }}>{detail.fields.ethnic}</span></>}
-                        {detail.fields?.birth && <><span style={{ color: 'var(--text-tertiary)' }}>出生</span><span style={{ color: 'var(--text-secondary)' }}>{detail.fields.birth}{age ? ` · 现 ${age} 岁` : ''}</span></>}
-                        {detail.fields?.rank && <><span style={{ color: 'var(--text-tertiary)' }}>中委身份</span><span style={{ color: 'var(--text-secondary)' }}>{detail.fields.rank}</span></>}
-                        {ten != null && <><span style={{ color: 'var(--text-tertiary)' }}>现职任期</span><span style={{ color: 'var(--text-secondary)' }}>约 {ten} 年</span></>}
-                        {detail.fields?.edu && <><span style={{ color: 'var(--text-tertiary)' }}>学历</span><span style={{ color: 'var(--text-secondary)' }}>{detail.fields.edu}</span></>}
-                        {detail.fields?.note && <><span style={{ color: 'var(--text-tertiary)' }}>备注</span><span style={{ color: '#e8a317' }}>{detail.fields.note}</span></>}
-                      </div>
-                      {detail.career?.length > 0 ? (
-                        <div>
-                          <div className="text-[10px] mono mb-2" style={{ color: 'var(--text-tertiary)' }}>公开任职时间线 · {detail.career.length} 条</div>
-                          <div className="space-y-2">
-                            {detail.career.map((c, i) => (
-                              <div key={i} className="flex gap-2.5" style={{ position: 'relative' }}>
-                                <span className="text-[11px] mono shrink-0 text-right pt-px" style={{ width: 78, color: 'var(--cyber-cyan)' }}>{c.from}{c.to ? `–${c.to}` : '–今'}</span>
-                                <span className="shrink-0" style={{ width: 7, height: 7, borderRadius: '50%', marginTop: 5, background: c.to ? 'var(--text-tertiary)' : 'var(--china-red)' }} />
-                                <span className="text-xs flex-1" style={{ color: 'var(--text-secondary)' }}>{c.desc}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      ) : <p className="text-xs" style={{ color: 'var(--text-tertiary)' }}>暂无结构化履历条目。</p>}
-                      <div className="mt-3 pt-3 text-[11px] flex flex-wrap gap-x-3" style={{ borderTop: '1px solid var(--border-subtle)', color: 'var(--text-tertiary)' }}>
-                        <span>来源：{detail.source || '用户导入'}</span>
-                        {detail.asOf && <span>截至：{detail.asOf}</span>}
-                      </div>
-                    </>
+                    <TalentDetailPanel
+                      name={d.name}
+                      subtitle={d.fields?.title || d.org || ''}
+                      avatar={<FigureAvatar {...figureAvatarProps(d)} size={56} ring eager />}
+                      verifyRecord={d}
+                      crossLinks={<CrossRefLinks record={d} queue="figures" />}
+                      badges={(
+                        <>
+                          {d.level && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(196,30,58,0.12)', color: 'var(--china-red)' }}>{d.level}</span>}
+                          {age && <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>{age}岁 · {decadeOf(d)}</span>}
+                          {d.role && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'var(--bg-base)', color: 'var(--text-tertiary)' }}>{d.role}</span>}
+                        </>
+                      )}
+                      tags={tagList}
+                      tagAccent="#c41e3a"
+                      sections={buildTalentDetailSections(d, { queue: 'figures', baseSections, bioLabel: '公开任职要点' })}
+                      timeline={eventsToTimeline(d) || d.career}
+                      timelineExpandable
+                      timelineAccent="var(--cyber-cyan)"
+                      queueNote="// 政治权力队列 · 公开任职口径 · 不含私人信息"
+                      footer={buildDetailFooter(d)}
+                    />
                   );
                 })()}
               </Card>
@@ -538,11 +706,10 @@ export default function Page() {
           )}
         </>
       )}
-      <p className="text-xs mt-6" style={{ color: 'var(--text-tertiary)' }}>
-        仅收录公开任职履历，不含私人信息（住址/家庭/联系方式/财产）；年龄按公开出生年份折算，任免以新华社/人民网/中国政府网发布为准。
-        {FIGURE_CATALOG_META.notes && ` ${FIGURE_CATALOG_META.notes}。`}
-        与治国沙盒「可选简历」按省联动。
-      </p>
+      <ModuleFooter
+        moduleId="talent"
+        disclaimer={`政治权力队列：仅收录公开任职履历，不含私人信息；年龄按公开出生年份折算，任免以新华社/人民网/中国政府网发布为准。${FIGURE_CATALOG_META.notes ? ` ${FIGURE_CATALOG_META.notes}。` : ''}与治国沙盒「可选简历」按省联动。`}
+      />
         </>
       )}
     </div>

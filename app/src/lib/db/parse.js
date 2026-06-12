@@ -1,5 +1,5 @@
 // ============================================================================
-// 数据解析工具 · CSV / JSON / 政治人物简历
+// 数据解析工具 · CSV / JSON / 中国政要履历
 // ============================================================================
 
 // 健壮 CSV 解析（支持引号、逗号转义、CRLF）。返回 { columns, rows }。
@@ -74,7 +74,7 @@ export function parseManyFigures(text) {
   return blocks.map((b) => b.trim()).filter(Boolean).map((b) => parseFigure(b));
 }
 
-// 政治人物简历解析：从粘贴文本或 JSON 抽取结构化字段 + 履历时间线。
+// 中国政要履历解析：从粘贴文本或 JSON 抽取结构化字段 + 履历时间线。
 // 支持「标签：值」与含年份的履历行（YYYY ... 任 ... 职）。
 export function parseFigure(text) {
   const t = text.trim();
@@ -137,6 +137,12 @@ export function parseDoc(text) {
   if (/政府工作报告/.test(t)) type = '政府工作报告';
   else if (/中央经济工作会议/.test(t)) type = '中央经济工作会议';
   else if (/五年规划|十[三四五六]五|国民经济和社会发展.*规划/.test(t)) type = '五年规划';
+  else if (/全会.*决定|全会.*建议|三中全会|四中全会|五中全会/.test(t)) type = '中央全会决定';
+  else if (/国务院.*(?:意见|通知|方案|决定|条例|若干措施)/.test(t) || /^国务院关于/.test(t)) type = '国务院文件';
+  else if (/条例|法律|法$|解释$/.test(t.split('\n')[0] || '')) type = '法律法规';
+  else if (/省|市|自治区|特别行政区/.test(t) && /条例|规定|办法|方案/.test(t)) type = '地方法规';
+  else if (/京津冀|长三角|粤港澳|东北|成渝|一带一路|区域|经济带|都市圈/.test(t)) type = '区域战略';
+  else if (/部|委|局|署|总行|证监会|银保监会|金融监管/.test(t)) type = '部委政策';
   // 年份（取首个 19xx/20xx）
   const ym = t.match(/((?:19|20)\d{2})\s*年/);
   const year = ym ? Number(ym[1]) : null;

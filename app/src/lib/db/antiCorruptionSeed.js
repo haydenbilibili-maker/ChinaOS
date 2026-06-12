@@ -43,7 +43,7 @@ export function buildAntiCorruptionSeed() {
   return {
     id: ANTI_CORRUPTION_DATASET_ID,
     name: ANTI_CORRUPTION_META.label,
-    category: '政治人物',
+    category: '人才精英',
     source: ANTI_CORRUPTION_META.sources.join(' / '),
     note: `${ANTI_CORRUPTION_META.scope}。${ANTI_CORRUPTION_META.notes}${dupeCount ? ` 种子去重：${rawCount}→${rows.length}（合并${dupeCount}条重复）。` : ''}`,
     columns: ANTI_CORRUPTION_COLUMNS,

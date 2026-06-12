@@ -3,10 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <title>China OS · 治大国如烹小鲜</title>
   </head>
   <body>
+    <script>
+      (function () {
+        try {
+          var k = 'c2os-theme';
+          var v = localStorage.getItem(k);
+          var t = (v === 'light' || v === 'dark') ? v
+            : (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+          var r = document.documentElement;
+          r.setAttribute('data-theme', t);
+          r.classList.toggle('dark', t === 'dark');
+        } catch (e) { /* 隐私模式等 */ }
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { PageHeader, Card, Grid, Stat, CrossLinks } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 const profitTrend = {
   legend: { data: ['总资产(万亿)', '净利润(万亿)'], textStyle: { color: '#93a1b5' }, top: 0 },
@@ -124,7 +125,7 @@ export default function Page() {
   return (
     <div>
       <PageHeader badge="SOE · Strategic Control" title="国有企业战略重塑与权力逻辑" subtitle="宏观底座 · 核心功能 · 专业化整合 · 治理效能 —— 国有资本作为主权延伸的物理工具" />
-      <Card className="mb-6"><p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>国企不仅是经济主体，更是中枢控制国民经济命脉、应对全球性风险的物理工具。通过占领能源、电信、金融与高端制造等「战略制高点」，构建无法被外部轻易干扰的生存底座。改革逻辑已从「去行政化」转向「增强核心功能」——通过国企实现国家战略意志的精准投放。</p></Card>
+      <IntroCard>国企不仅是经济主体，更是中枢控制国民经济命脉、应对全球性风险的物理工具。通过占领能源、电信、金融与高端制造等「战略制高点」，构建无法被外部轻易干扰的生存底座。改革逻辑已从「去行政化」转向「增强核心功能」——通过国企实现国家战略意志的精准投放。</IntroCard>
       <Grid cols={4} className="mb-6">
         <Stat value="97 家" label="国资委监管央企" accent="#c41e3a" />
         <Stat value="300 万亿" label="国企总资产 (RMB)" accent="#22d3ee" />
@@ -139,20 +140,7 @@ export default function Page() {
 
       {/* ── 央企板块选择器 ── */}
       <Card title="央企板块控制图谱 · 点选切换" className="mb-6">
-        <div className="flex flex-wrap gap-2 mb-4">
-          {SECTORS.map((s) => {
-            const active = s.key === sectorKey;
-            return (
-              <button key={s.key} onClick={() => setSectorKey(s.key)} className="text-xs px-3 py-1.5 rounded mono"
-                style={{
-                  background: active ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)',
-                  color: active ? '#fff' : 'var(--text-secondary)',
-                  border: `1px solid ${active ? s.accent : 'var(--border-subtle)'}`,
-                  cursor: 'pointer', transition: 'all .15s',
-                }}>{s.name}</button>
-            );
-          })}
-        </div>
+        <SelectorBar items={SECTORS.map((s) => ({ key: s.key, label: s.name, accent: s.accent }))} activeKey={sectorKey} onSelect={setSectorKey} />
         <div className="os-card p-5" style={{ background: 'var(--bg-elevated)', borderLeft: `3px solid ${sector.accent}` }}>
           <div className="flex items-baseline justify-between flex-wrap gap-2 mb-3">
             <div className="text-base font-semibold" style={{ color: 'var(--text-primary)' }}>{sector.name}</div>
@@ -205,28 +193,7 @@ export default function Page() {
 
       {/* ── 国资改革阶段时间线（交互） ── */}
       <Card title="国资改革阶段时间线 · 点选展开" className="mb-6">
-        <div className="flex flex-wrap gap-2 mb-4">
-          {REFORM_STAGES.map((st, i) => {
-            const active = i === stageIdx;
-            return (
-              <button key={st.period} onClick={() => setStageIdx(i)} className="text-xs px-3 py-1.5 rounded mono flex-1"
-                style={{
-                  minWidth: 130,
-                  background: active ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)',
-                  color: active ? '#fff' : 'var(--text-secondary)',
-                  border: `1px solid ${active ? st.accent : 'var(--border-subtle)'}`,
-                  cursor: 'pointer', transition: 'all .15s', textAlign: 'left',
-                }}>
-                <div style={{ color: active ? st.accent : 'var(--text-tertiary)' }}>{st.period}</div>
-                <div>{st.title}</div>
-              </button>
-            );
-          })}
-        </div>
-        <div className="os-card p-5" style={{ background: 'var(--bg-elevated)', borderLeft: `3px solid ${stage.accent}` }}>
-          <div className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>{stage.period} · {stage.title}</div>
-          <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{stage.desc}</p>
-        </div>
+        <TimelineBar stages={REFORM_STAGES} activeIdx={stageIdx} onSelect={setStageIdx} />
       </Card>
 
       <Card title="核心功能 · 从「普遍服务」到「战略支撑」" className="mb-6">
@@ -269,13 +236,12 @@ export default function Page() {
       </Card>
 
       <Card title="调研组总结" className="mb-6"><p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>国企是中国政治体制在经济维度的「重装步兵」，冷酷地追求战略安全性与资本回报率的平衡。盐铁两千年，命脉从未旁落——只是从盐与铁，换成了电网、算力与货币的闸门。</p></Card>
-
-      <CrossLinks links={[
-        { to: '/civilization', label: '文明透视 · 卷十二「盐铁逻辑」' },
-        { to: '/private', label: '民营经济 · 国进民退的边界' },
+<FrameworkTrio cards={[
+        { key: 'salt', body: '盐铁官营两千年：命脉垄断 = 维稳底盘。' },
+        { key: 'stone', body: '混改管资本：两类公司试点与专业化整合。' },
+        { key: 'path', body: '一利五率 + 市值管理：主权意志证券化。' },
       ]} />
-
-      <p className="text-xs mt-6" style={{ color: 'var(--text-tertiary)' }}>数据来源：国资委、统计局、行业机构综合，板块占比/权重/链主清单为示意值，仅供分析框架参考，非投资建议 · 由 china.html「国有资本」专题迁移升级</p>
+<ModuleFooter moduleId="soe" sourceNote="由 china.html「国有资本」专题迁移" />
     </div>
   );
 }

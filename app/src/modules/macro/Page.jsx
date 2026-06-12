@@ -108,7 +108,7 @@ function DeltaChip({ state, value }) {
   );
 }
 
-export default function Page() {
+export default function Page({ embedded = false }) {
   const [levers, setLevers] = useState(() => defaultLevers());
   const [reportMd, setReportMd] = useState('');
   const [copied, setCopied] = useState(false);
@@ -198,12 +198,13 @@ export default function Page() {
 
   return (
     <div>
-      {/* 0 —— 页头 / 总览 */}
+      {!embedded && (
       <PageHeader
         badge="Simulation · 宏观调控驾驶舱"
         title="宏观调控 · 四难平衡驾驶舱"
         subtitle="五根政策杆，八个季度，四张互相透支的资产负债表——拉动任何一根杆，代价都在别处、在后面。"
       />
+      )}
       <IntroCard>
         增长、物价、就业、杠杆——宏观调控的四难平衡：每一根政策杆都同时作用于不止一个目标，
         且作用带着时滞。财政当季见效、杠杆账单第 3 季才开始计提；降息第 2 季拉增长、第 4 季抬通胀；
@@ -324,14 +325,16 @@ export default function Page() {
           pillars: [['区间', '三目标各留余地。'], ['阀门', '管制即缓冲器。'], ['折线', '路径优先于落点。']],
         },
       ]} />
+      {!embedded && (
       <ModuleFooter
         moduleId="macro"
         links={[
-          { to: '/sandbox', label: '治国沙盒', note: '把宏观杆放进危机情景：同一套工具在六域冲击下的对冲推演。' },
+          { to: '/sandbox?tab=macro', label: '治国沙盒', note: '把宏观杆放进危机情景：同一套工具在六域冲击下的对冲推演。' },
           { to: '/reform', label: '改革开放', note: '四十余年宏观调控范式的来路：从价格闯关到跨周期调节。' },
         ]}
         disclaimer="示意模型 · 思想工具 · 非投资建议 · 非预测"
       />
+      )}
     </div>
   );
 }

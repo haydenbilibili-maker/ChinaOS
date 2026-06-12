@@ -28,11 +28,25 @@ export default {
         },
       },
       fontFamily: {
+        sans: ['"Noto Sans SC"', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"PingFang SC"', '"Microsoft YaHei"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
+      fontSize: {
+        xs: ['var(--text-xs)', { lineHeight: 'var(--leading-normal)' }],
+        sm: ['var(--text-sm)', { lineHeight: 'var(--leading-relaxed)' }],
+        base: ['var(--text-base)', { lineHeight: 'var(--leading-normal)' }],
+        lg: ['var(--text-lg)', { lineHeight: 'var(--leading-tight)' }],
+        xl: ['var(--text-xl)', { lineHeight: 'var(--leading-tight)' }],
+      },
       borderRadius: {
-        xl: '14px',
-        '2xl': '20px',
+        md: 'var(--radius-md)',
+        lg: 'var(--radius-lg)',
+        xl: 'var(--radius-lg)',
+        '2xl': 'var(--radius-xl)',
+      },
+      transitionDuration: {
+        fast: '180ms',
+        base: '220ms',
       },
     },
   },
