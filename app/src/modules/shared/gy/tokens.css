@@ -9,7 +9,8 @@
 #zc-app,
 #ln-app,
 #tj-app,
-#zx-app {
+#zx-app,
+#ty-app {
   --xuan: var(--bg-base);
   --xuan-deep: var(--bg-inset);
   --xuan-raise: var(--bg-elevated);
@@ -67,7 +68,8 @@
 #zc-app *,
 #ln-app *,
 #tj-app *,
-#zx-app * {
+#zx-app *,
+#ty-app * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -83,7 +85,8 @@
 #zc-app ::selection,
 #ln-app ::selection,
 #tj-app ::selection,
-#zx-app ::selection {
+#zx-app ::selection,
+#ty-app ::selection {
   background: var(--zhu-dim);
   color: var(--xuanzhi);
 }
