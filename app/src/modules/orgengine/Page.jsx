@@ -1,10 +1,11 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { PageHeader, Card, Grid, Stat, OS_INPUT } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { useFigures } from '../../lib/db/useDataset.js';
 import { ABILITY_DIMS, TAG_DEFS, profileOf, matchScore, summarizeLibrary } from '../shared/talentProfile.js';
 import { CRISES, CRISIS_DOMAINS } from '../sandbox/crisisData.js';
+import { abilityToDomain } from '../handong/realPool.js';
 
 // ============================================================================
 // 中央组织部 · 全库人才画像引擎（模拟）
@@ -52,6 +53,9 @@ const SCENES = [
 ];
 
 const LEVEL_ORDER = ['党和国家领导人', '副国级', '正部级', '省部级', '副部级', '正厅级'];
+
+// 汉东沙盘六域空间（与 handong/Page.jsx HD_DOMAINS 同序）：补位推荐的需求向量口径
+const HD_DOMAINS = ['科技产业', '经济', '社会民生', '外部环境', '能源资源', '金融财政'];
 
 function tagDefOf(label) {
   return TAG_DEFS.find((t) => t.label === label);
@@ -162,6 +166,67 @@ export default function Page() {
       { value: top1.p.dims, name: top1.fig.name, lineStyle: { color: GOLD }, areaStyle: { color: 'rgba(232,163,23,0.12)' }, itemStyle: { color: GOLD } },
     ] }],
   }), [scene, top1]);
+
+  // ── 汉东补位联动：读出缺账本（'cos-hd-vacancies'，mount 读一次 + 双监听）──
+  // useRef 缓存原始串：同串不重设 state，避免账本事件风暴下的无谓重渲染
+  const [hdVacancies, setHdVacancies] = useState(null);
+  const vacRawRef = useRef(null);
+  useEffect(() => {
+    const read = () => {
+      try {
+        const raw = localStorage.getItem('cos-hd-vacancies');
+        if (raw === vacRawRef.current) return;
+        vacRawRef.current = raw;
+        const parsed = JSON.parse(raw || 'null');
+        setHdVacancies(parsed && Array.isArray(parsed.vacancies) ? parsed : null);
+      } catch (_) { setHdVacancies(null); }
+    };
+    read();
+    window.addEventListener('storage', read);
+    window.addEventListener('cos-ledger-change', read);
+    return () => {
+      window.removeEventListener('storage', read);
+      window.removeEventListener('cos-ledger-change', read);
+    };
+  }, []);
+
+  // ── 汉东补位推荐：全库画像（能力空间）经 abilityToDomain 投影到汉东六域空间，
+  //    按各出缺岗位 need 向量 matchScore 排序取 Top5（复用 profiles 缓存，不重跑 profileOf）──
+  const hdRecs = useMemo(() => {
+    const vacs = hdVacancies?.vacancies;
+    if (!Array.isArray(vacs) || !vacs.length || !profiles.length) return null;
+    const pool = profiles.map(({ fig, p }) => ({ fig, p, domainDims: abilityToDomain(p.dims, p.tagIds) }));
+    const recs = {};
+    const blocks = vacs.map((v) => {
+      const top5 = pool
+        .map((x) => ({ fig: x.fig, p: x.p, score: matchScore(x.domainDims, v.need) }))
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 5);
+      recs[v.postId] = top5.map((x) => ({
+        name: x.fig.name, score: x.score, level: x.p.seniority, tags: (x.p.tags || []).slice(0, 2),
+      }));
+      return { postId: v.postId, label: v.label, need: v.need, top5 };
+    });
+    return { blocks, recs };
+  }, [hdVacancies, profiles]);
+
+  // ── 名单回流汉东：Top5 按契约写 'cos-hd-recommend'（useRef 缓存 JSON 串，不同才写防循环）──
+  const recWrittenRef = useRef('');
+  useEffect(() => {
+    if (!hdRecs) return;
+    const payload = JSON.stringify(hdRecs.recs);
+    if (payload === recWrittenRef.current) return;
+    try {
+      let prevStamp = 0;
+      try {
+        const parsed = JSON.parse(localStorage.getItem('cos-hd-recommend') || 'null');
+        prevStamp = Number(parsed?.stamp) || 0;
+      } catch (_) { /* 坏档按 0 起步 */ }
+      localStorage.setItem('cos-hd-recommend', JSON.stringify({ recs: hdRecs.recs, stamp: prevStamp + 1 }));
+      recWrittenRef.current = payload;
+      window.dispatchEvent(new CustomEvent('cos-ledger-change'));
+    } catch (_) { /* 存储不可用时静默放弃 */ }
+  }, [hdRecs]);
 
   // ── 流动性分析：跨省分布 + 历练/深耕占比 ──
   const mobility = useMemo(() => {
@@ -407,6 +472,49 @@ export default function Page() {
                 )}
               </div>
             </Grid>
+          </Card>
+
+          {/* ── 汉东补位推荐：跨模块联动（出缺账本 → 全库画像 Top5 → 名单回流沙盘）── */}
+          <Card title="🏯 汉东补位推荐 · 跨模块联动">
+            {!hdRecs ? (
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                汉东班子目前满员——沙盘那边没有空椅子
+              </p>
+            ) : (
+              <>
+                <p className="text-xs leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>
+                  汉东治理沙盘第 {hdVacancies?.term ?? '—'} 届班子出缺 {hdRecs.blocks.length} 岗。全库画像经能力空间 → 汉东六域空间线性投影后，按各岗需求向量加权匹配取 Top5，名单已回流沙盘「班子组建」区。
+                </p>
+                <div className="space-y-3">
+                  {hdRecs.blocks.map((b) => (
+                    <div key={b.postId} className="p-3 rounded" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}>
+                      <div className="flex items-baseline gap-2 flex-wrap mb-2">
+                        <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{b.label}</span>
+                        <span className="text-[10px] mono" style={{ color: LABEL }}>
+                          需求 {HD_DOMAINS.map((d, i) => `${d} ${(b.need && b.need[i]) || 0}`).join(' · ')}
+                        </span>
+                      </div>
+                      <div className="space-y-1">
+                        {b.top5.map((x, i) => (
+                          <div key={`${x.fig.name}-${i}`} className="flex items-center gap-2 text-xs flex-wrap">
+                            <span className="mono shrink-0" style={{ color: 'var(--text-tertiary)', width: 18 }}>{i + 1}.</span>
+                            <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>{x.fig.name}</span>
+                            <span className="mono shrink-0" style={{ color: '#8b5cf6' }}>匹配 {x.score}</span>
+                            <span className="text-[10px] mono shrink-0" style={{ color: LABEL }}>{x.p.seniority}</span>
+                            {(x.p.tags || []).slice(0, 2).map((t) => (
+                              <span key={t} className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ border: '1px solid var(--border-subtle)', color: LABEL }}>{t}</span>
+                            ))}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+            <p className="text-[11px] mt-3" style={{ color: 'var(--text-tertiary)' }}>
+              画像由公开履历关键词自动推断，推荐为算法演示；不构成对任何真实人物的人事评价或预测
+            </p>
           </Card>
 
           {/* ── 人岗匹配报告 ── */}

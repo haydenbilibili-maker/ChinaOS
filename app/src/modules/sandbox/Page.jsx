@@ -1,13 +1,35 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import { IntroCard, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
-import { CRISIS_DOMAINS, CRISES, TOOLS, mitigatedImpact, compositeImpact, buildCrisisReport } from './crisisData.js';
+import { CRISES, CRISIS_DOMAINS, mitigatedImpact, compositeImpact } from './crisisData.js';
 import EChart from '../../lib/viz/EChart.jsx';
 import ChinaMap from '../../lib/viz/ChinaMap.jsx';
 import DataBus from '../../lib/data/DataBus.js';
 import * as DB from '../../lib/db/localdb.js';
 import { useDataset, useFigures } from '../../lib/db/useDataset.js';
 import { Link } from 'react-router-dom';
+import HandongSandbox from './HandongSandbox.jsx';
+import SandboxToolkit from './SandboxToolkit.jsx';
+
+const SANDBOX_TABS = [
+  { id: 'handong', label: '汉东省沙盘', accent: '#c41e3a' },
+  { id: 'general', label: '通用沙盘', accent: '#22d3ee' },
+];
+
+// ===========================================================================
+// 账本联动（监测台告警 → 战役 → 判定回流）
+// 读 'cos-watch-alerts'（监测台写）：{alerts:[{key,label,domain,level,score}]≤6,stamp}
+// 写 'cos-sandbox-verdicts'：{verdicts:[{label,score,verdict,crisisKeys}]≤6 新进先出,stamp}
+// 域→危机 确定性映射：取该域 impact 系数最大的危机（域序同 CRISIS_DOMAINS）。依据：
+//   科技0: chipBan .95 ＞ strait .55      经济1: housing .80 ＞ strait .75
+//   社会2: pandemic .90 ＞ grain .80      外交3: strait .95 ＞ chipBan .70
+//   能源4: strait .70 ＞ finance .45      金融5: finance .95 ＞ strait/housing .85
+// ===========================================================================
+const WATCH_ALERTS_KEY = 'cos-watch-alerts';
+const SANDBOX_VERDICTS_KEY = 'cos-sandbox-verdicts';
+const LEDGER_EVENT = 'cos-ledger-change';
+const DOMAIN_TO_CRISIS = ['chipBan', 'housing', 'pandemic', 'strait', 'strait', 'finance'];
+const ALERT_BADGE = { '红': '#c41e3a', '橙': '#fb923c' };
 
 // ============================================================================
 // 治国沙盒 · 区域治理人才配置 + 熵增监控（实测）
@@ -131,6 +153,7 @@ const SCENARIOS = {
 // 国家级危机情景引擎：数据与算法层抽至 ./crisisData.js（含缓解矩阵/复合耦合/报告生成）
 
 export default function Page() {
+  const [sandboxTab, setSandboxTab] = useState('handong');
   const [sel, setSel] = useState('黑龙江省');
   const [scn, setScn] = useState('fiscal');
   const [crisisKey, setCrisisKey] = useState('chipBan');
@@ -159,6 +182,82 @@ export default function Page() {
       .then((r) => { setNational(r); setNatState(r.gdpGrowth || r.population ? 'live' : 'offline'); })
       .catch(() => setNatState('offline'));
   }, []);
+
+  // 读 'cos-watch-alerts'：mount 读一次 + storage/cos-ledger-change 双监听；
+  // useRef 缓存 JSON 串、不同才 setState（防循环）
+  const [watchAlerts, setWatchAlerts] = useState([]);
+  const alertsJsonRef = useRef('');
+  useEffect(() => {
+    const load = () => {
+      let list = [];
+      try {
+        const parsed = JSON.parse(localStorage.getItem(WATCH_ALERTS_KEY) || 'null');
+        if (parsed && Array.isArray(parsed.alerts)) list = parsed.alerts.slice(0, 6);
+      } catch { list = []; }
+      const json = JSON.stringify(list);
+      if (json !== alertsJsonRef.current) { alertsJsonRef.current = json; setWatchAlerts(list); }
+    };
+    load();
+    window.addEventListener('storage', load);
+    window.addEventListener(LEDGER_EVENT, load);
+    return () => {
+      window.removeEventListener('storage', load);
+      window.removeEventListener(LEDGER_EVENT, load);
+    };
+  }, []);
+
+  // 与 SandboxToolkit 同源的引擎复算（crisisData 纯函数同参同果），供判定回执使用
+  const engineResult = useMemo(() => {
+    const A = CRISES[crisisKey];
+    if (!A) return null;
+    const crisis = secondCrisis && secondCrisis !== crisisKey && CRISES[secondCrisis]
+      ? compositeImpact(A, CRISES[secondCrisis], intensity)
+      : A;
+    return { label: crisis.label, ...mitigatedImpact(crisis, intensity, alloc) };
+  }, [crisisKey, secondCrisis, intensity, alloc]);
+
+  const [verdictSent, setVerdictSent] = useState(false);
+  useEffect(() => { setVerdictSent(false); }, [crisisKey, secondCrisis, intensity, alloc]);
+
+  // ⚔ 按告警开战役：沿告警序取前两个「互不相同」的映射危机（映射重合则顺延取下一条），
+  // 仅一条告警/全部同危机时退化为单危机；烈度 = max(60, 告警最高 score)
+  const openBattle = () => {
+    const keys = [];
+    watchAlerts.forEach((a) => {
+      const k = DOMAIN_TO_CRISIS[a.domain];
+      if (k && CRISES[k] && !keys.includes(k) && keys.length < 2) keys.push(k);
+    });
+    if (!keys.length) return;
+    setCrisisKey(keys[0]);
+    setSecondCrisis(keys[1] || '');
+    const top = watchAlerts.reduce((m, a) => Math.max(m, Number(a.score) || 0), 0);
+    setIntensity(Math.max(60, Math.min(100, top)));
+  };
+
+  // 📮 判定回执：按契约 append 'cos-sandbox-verdicts'（cap 6 新进先出，stamp 整数递增首次 1）
+  const sendVerdict = () => {
+    if (!engineResult) return;
+    try {
+      let prevList = [];
+      let stamp = 0;
+      try {
+        const parsed = JSON.parse(localStorage.getItem(SANDBOX_VERDICTS_KEY) || 'null');
+        if (parsed && typeof parsed === 'object') {
+          if (Array.isArray(parsed.verdicts)) prevList = parsed.verdicts;
+          if (Number.isInteger(parsed.stamp)) stamp = parsed.stamp;
+        }
+      } catch { /* 坏档降级空值 */ }
+      const entry = {
+        label: engineResult.label,
+        score: engineResult.score,
+        verdict: engineResult.verdict[0],
+        crisisKeys: secondCrisis && secondCrisis !== crisisKey && CRISES[secondCrisis] ? [crisisKey, secondCrisis] : [crisisKey],
+      };
+      localStorage.setItem(SANDBOX_VERDICTS_KEY, JSON.stringify({ verdicts: [entry, ...prevList].slice(0, 6), stamp: stamp + 1 }));
+      window.dispatchEvent(new CustomEvent(LEDGER_EVENT));
+      setVerdictSent(true);
+    } catch { /* 存储不可用降级：按钮无效但不报错 */ }
+  };
 
   // 实测熵增指数（由本地库真实数据现场计算）
   const computed = useMemo(() => {
@@ -192,56 +291,37 @@ export default function Page() {
     };
   }, [computed]);
 
-  // ── 国家级危机情景引擎：缓解矩阵 + 复合耦合（算法层见 crisisData.js） ──
-  const crisis = useMemo(() => (
-    secondCrisis && secondCrisis !== crisisKey
-      ? compositeImpact(CRISES[crisisKey], CRISES[secondCrisis], intensity)
-      : CRISES[crisisKey]
-  ), [crisisKey, secondCrisis, intensity]);
-  const allocTotal = TOOLS.reduce((sum, t) => sum + alloc[t.id], 0);
-  const engine = useMemo(() => mitigatedImpact(crisis, intensity, alloc), [crisis, intensity, alloc]);
-  const crisisScore = engine.score;
-  const crisisVerdict = { tier: engine.verdict[0], color: engine.verdict[1], read: engine.verdict[2] };
-  // 应对前 vs 应对后 双系列对比
-  const crisisOption = useMemo(() => ({
-    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-    legend: { data: ['应对前', '应对后'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0, itemWidth: 10, itemHeight: 10 },
-    grid: { left: 44, right: 24, top: 26, bottom: 16 },
-    xAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
-    yAxis: { type: 'category', data: [...CRISIS_DOMAINS].reverse(), axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } },
-    series: [
-      { name: '应对前', type: 'bar', barWidth: 8, data: [...engine.raw].reverse(), itemStyle: { color: 'rgba(196,30,58,0.35)', borderRadius: [0, 3, 3, 0] } },
-      { name: '应对后', type: 'bar', barWidth: 8, data: [...engine.net].reverse(), itemStyle: { color: '#c41e3a', borderRadius: [0, 3, 3, 0] } },
-    ],
-  }), [engine]);
-  // 应对小组组建器：按危机画像关键词在真实履历池打分匹配（画像推演，非人事评价）
-  const team = useMemo(() => {
-    if (!figures || !crisis.talentKeywords) return [];
-    return figures
-      .map((f) => {
-        const hay = [f.raw, f.org, f.fields?.title, ...(f.career || []).map((c) => c.desc)].filter(Boolean).join(' ');
-        const hits = crisis.talentKeywords.filter((k) => hay.includes(k));
-        return hits.length ? { name: f.name, title: f.fields?.title || f.org || f.role || '', score: hits.length, hits } : null;
-      })
-      .filter(Boolean)
-      .sort((x, y) => y.score - x.score)
-      .slice(0, 5);
-  }, [figures, crisis]);
-  const genReport = () => {
-    setReportMd(buildCrisisReport({ crisisLabel: crisis.label, intensity, alloc, raw: engine.raw, net: engine.net, score: engine.score, verdict: engine.verdict, team }));
-    setReportCopied(false);
-  };
-  const copyReport = async () => {
-    try { await navigator.clipboard.writeText(reportMd); setReportCopied(true); setTimeout(() => setReportCopied(false), 2000); } catch (_) { /* noop */ }
-  };
-
   return (
     <div>
       <PageHeader
         badge="Sandbox · 思维训练 + 实测熵增"
         title="治国沙盒 · 区域治理人才配置"
-        subtitle="挑战画像 → 能力需求 → 履历池匹配 —— 全国基线实时(WB)、省级熵增实测、东北+边疆带 7 省人才配置"
+        subtitle={sandboxTab === 'handong'
+          ? '虚构推演 · 汉东省沙盘 —— 参数配置、主官派遣、多场景剧情、四件套应对、政绩任免'
+          : '挑战画像 → 能力需求 → 履历池匹配 —— 全国基线实时(WB)、省级熵增实测、东北+边疆带 7 省人才配置'}
       />
+      <div className="flex gap-2 mb-6">
+        {SANDBOX_TABS.map((t) => (
+          <button key={t.id} type="button" onClick={() => setSandboxTab(t.id)}
+            className="text-sm px-4 py-2 rounded mono font-semibold"
+            style={{
+              background: sandboxTab === t.id ? `${t.accent}22` : 'var(--bg-elevated)',
+              color: sandboxTab === t.id ? t.accent : 'var(--text-secondary)',
+              border: sandboxTab === t.id ? `1px solid ${t.accent}66` : '1px solid var(--border-subtle)',
+              cursor: 'pointer',
+            }}>
+            {t.label}
+          </button>
+        ))}
+      </div>
+
+      {sandboxTab === 'handong' ? (
+        <>
+          <HandongSandbox />
+          <ModuleFooter moduleId="sandbox" disclaimer="汉东省为虚构省域推演；人才均为画像/原型，不构成对任何真实人物或人事安排的评价" />
+        </>
+      ) : (
+      <>
       <IntroCard>
         治理的第一道工序是「把对的人放进对的省」。本沙盘把每个省域的问题<strong style={{ color: 'var(--text-primary)' }}>向量化</strong>，推导主政能力需求，再从履历池匹配班子<strong style={{ color: 'var(--text-primary)' }}>画像</strong>。熵增指数由各省<strong style={{ color: 'var(--text-primary)' }}>真实财政/人口/债务数据</strong>现场计算。已配置 7 省：东北三省 + 边疆带四省区——两类省份的挑战向量根本不同。
       </IntroCard>
@@ -379,158 +459,68 @@ export default function Page() {
         <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{SCENARIOS[scn].rec}</p>
       </Card>
 
-      {/* ════════ 国家级危机情景引擎（压力测试） ════════ */}
-      <div className="os-card p-5 mb-6" style={{ borderColor: `${crisis.color}66` }}>
-        <div className="flex items-center justify-between flex-wrap gap-2 mb-3">
-          <div>
-            <div className="text-[10px] mono uppercase tracking-wider" style={{ color: crisis.color }}>Crisis Engine · 国家级压力测试</div>
-            <h3 className="text-base font-semibold mt-0.5" style={{ color: 'var(--text-primary)' }}>危机情景引擎 · 六情景 × 烈度推演</h3>
-          </div>
-          <div className="text-right">
-            <span className="text-[11px] mono px-2.5 py-1 rounded" style={{ background: `${crisisVerdict.color}22`, color: crisisVerdict.color, border: `1px solid ${crisisVerdict.color}55` }}>
-              总冲击 {crisisScore} · {crisisVerdict.tier}
-            </span>
-          </div>
-        </div>
-
-        <div className="flex gap-1 flex-wrap mb-4">
-          {Object.keys(CRISES).map((k) => (
-            <button key={k} onClick={() => setCrisisKey(k)} className="text-xs px-3 py-1 rounded mono"
-              style={{
-                background: k === crisisKey ? `${CRISES[k].color}26` : 'var(--bg-elevated)',
-                color: k === crisisKey ? CRISES[k].color : 'var(--text-secondary)',
-                border: k === crisisKey ? `1px solid ${CRISES[k].color}66` : '1px solid transparent', cursor: 'pointer',
-              }}>
-              {CRISES[k].label}
-            </button>
-          ))}
-        </div>
-
-        <div className="flex items-center gap-3 mb-4">
-          <span className="text-[11px] mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>烈度 0—100</span>
-          <input type="range" min={0} max={100} value={intensity} onChange={(e) => setIntensity(Number(e.target.value))}
-            style={{ width: '100%', accentColor: crisis.color }} />
-          <span className="text-sm mono font-semibold w-10 text-right shrink-0" style={{ color: crisis.color }}>{intensity}</span>
-        </div>
-
-        <div className="flex items-center gap-2 flex-wrap mb-4">
-          <span className="text-[11px] mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>叠加第二危机</span>
-          <button onClick={() => setSecondCrisis('')} className="text-[10px] px-2 py-0.5 rounded mono"
-            style={{ background: !secondCrisis ? 'rgba(148,163,184,0.18)' : 'var(--bg-elevated)', color: !secondCrisis ? 'var(--text-primary)' : 'var(--text-tertiary)', border: '1px solid var(--border-subtle)', cursor: 'pointer' }}>无</button>
-          {Object.keys(CRISES).filter((k) => k !== crisisKey).map((k) => (
-            <button key={k} onClick={() => setSecondCrisis(secondCrisis === k ? '' : k)} className="text-[10px] px-2 py-0.5 rounded mono"
-              style={{ background: secondCrisis === k ? 'rgba(239,68,68,0.2)' : 'var(--bg-elevated)', color: secondCrisis === k ? '#ef4444' : 'var(--text-tertiary)', border: `1px solid ${secondCrisis === k ? '#ef444466' : 'var(--border-subtle)'}`, cursor: 'pointer' }}>
-              + {CRISES[k].label}
-            </button>
-          ))}
-          {secondCrisis && <span className="text-[10px] mono" style={{ color: '#ef4444' }}>⚠ 非线性耦合：救援资源互相挤占，工具效力打 85 折</span>}
-        </div>
-
-        <div className="os-card p-4 mb-4" style={{ background: 'var(--bg-elevated)' }}>
-          <div className="flex items-center justify-between flex-wrap gap-2 mb-3">
-            <span className="text-[10px] mono uppercase" style={{ color: 'var(--cyber-cyan)' }}>政策资源配置器 · 预算 100 点</span>
-            <span className="flex items-center gap-2">
-              <span className="text-[11px] mono" style={{ color: allocTotal > 100 ? '#ef4444' : allocTotal === 100 ? '#10b981' : 'var(--text-secondary)' }}>已配 {allocTotal} / 100</span>
-              <button onClick={() => setAlloc({ fiscal: 0, monetary: 0, industry: 0, diplomacy: 0, mobilize: 0 })} className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'var(--bg-base)', color: 'var(--text-tertiary)', border: '1px solid var(--border-subtle)', cursor: 'pointer' }}>清零</button>
-            </span>
-          </div>
-          <Grid cols={5}>
-            {TOOLS.map((t) => {
-              const others = allocTotal - alloc[t.id];
-              const max = Math.max(0, 100 - others);
-              return (
-                <div key={t.id}>
-                  <div className="flex justify-between text-[10px] mb-1">
-                    <span style={{ color: t.color }}>{t.label}</span>
-                    <span className="mono" style={{ color: 'var(--text-secondary)' }}>{alloc[t.id]}</span>
+      <Card title="⚔ 战役模式 · 监测台联动" className="mb-6">
+        {watchAlerts.length === 0 ? (
+          <p className="text-xs mono" style={{ color: 'var(--text-tertiary)' }}>监测台暂无红橙告警——天下无事，沙盘吃灰</p>
+        ) : (
+          <>
+            <div className="flex flex-col gap-1.5 mb-3">
+              {watchAlerts.map((a) => {
+                const badge = ALERT_BADGE[a.level] || '#64748b';
+                const ck = DOMAIN_TO_CRISIS[a.domain];
+                return (
+                  <div key={a.key || a.label} className="flex items-center gap-2 flex-wrap">
+                    <span className="text-[10px] mono px-1.5 py-0.5 rounded shrink-0" style={{ background: `${badge}29`, color: badge }}>{a.level || '—'}</span>
+                    <span className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{a.label || '—'}</span>
+                    <span className="text-[10px] mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>{CRISIS_DOMAINS[a.domain] || '—'}域</span>
+                    <span className="mono text-xs shrink-0" style={{ color: badge }}>{Number(a.score) || 0}</span>
+                    <span className="flex-1" />
+                    <span className="text-[10px] mono shrink-0" style={{ color: 'var(--cyber-cyan)' }}>→ {(ck && CRISES[ck]?.label) || '—'}</span>
                   </div>
-                  <input type="range" min={0} max={100} value={alloc[t.id]}
-                    onChange={(e) => { const v = Math.min(Number(e.target.value), max); setAlloc((prev) => ({ ...prev, [t.id]: v })); }}
-                    style={{ width: '100%', accentColor: t.color }} />
-                  <p className="text-[9px] leading-snug mt-0.5" style={{ color: 'var(--text-tertiary)' }}>{t.desc}</p>
-                </div>
-              );
-            })}
-          </Grid>
-          <p className="text-[10px] mono mt-2" style={{ color: 'var(--text-tertiary)' }}>
-            缓解量 = Σ 工具点数 × 该工具对各域的边际效率（工具-危机错配则边际趋零：货币宽松救不了芯片断供）· 总冲击 {Math.round(engine.raw.reduce((x, y) => x + y, 0) / 6)} → {crisisScore}
-          </p>
-        </div>
-
-        <Grid cols={2}>
-          <div>
-            <p className="text-xs leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>
-              <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>机理：</span>{crisis.intro}
-            </p>
-            <div className="text-[10px] mono uppercase mb-2" style={{ color: crisis.color }}>传导链（{crisis.chain.length} 步）</div>
-            <div className="space-y-1.5 mb-4" style={{ borderLeft: `2px solid ${crisis.color}44`, paddingLeft: 10 }}>
-              {crisis.chain.map((step, i) => (
-                <div key={step} className="flex items-center gap-2">
-                  <span className="text-[10px] mono w-5 h-5 rounded-full flex items-center justify-center shrink-0"
-                    style={{ background: `${crisis.color}22`, color: crisis.color }}>{i + 1}</span>
-                  <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>{step}</span>
-                </div>
-              ))}
+                );
+              })}
             </div>
-            <div className="p-3 rounded mb-3" style={{ background: 'var(--bg-elevated)' }}>
-              <span className="text-[10px] mono uppercase" style={{ color: crisisVerdict.color }}>判定 · {crisisVerdict.tier}</span>
-              <p className="text-xs mt-1 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{crisisVerdict.read}</p>
+            <div className="flex items-center gap-2 flex-wrap">
+              <button type="button" onClick={openBattle} className="os-btn os-btn-primary os-btn-sm">⚔ 按告警开战役（Top2 复合）</button>
+              <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>取前两条告警映射的不同危机（重合则顺延）；烈度 = max(60, 告警最高分)</span>
             </div>
-            <div className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>
-              <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>先行指标：</span>
-              {crisis.watch.join(' · ')}（详见 <Link to="/watchtower" className="mono" style={{ color: 'var(--cyber-cyan)' }}>风险瞭望塔</Link>）
-            </div>
-          </div>
-
-          <div>
-            <div className="text-[10px] mono uppercase mb-1" style={{ color: '#93a1b5' }}>六域冲击 · 应对前 vs 应对后（烈度 {intensity} · 已配 {allocTotal} 点）</div>
-            <EChart option={crisisOption} style={{ height: 230 }} />
-            <div className="text-[10px] mono uppercase mt-3 mb-2" style={{ color: crisis.color }}>应对工具箱</div>
-            <div className="space-y-2 mb-3">
-              {crisis.toolbox.map(([t, d]) => (
-                <div key={t} style={{ borderLeft: `2px solid ${crisis.color}`, paddingLeft: 10 }}>
-                  <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{t}</div>
-                  <p className="text-[11px] mt-0.5 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
-                </div>
-              ))}
-            </div>
-            <div className="p-3 rounded" style={{ background: 'var(--bg-elevated)' }}>
-              <span className="text-[10px] mono uppercase" style={{ color: 'var(--fire-gold)' }}>班子画像需求</span>
-              <p className="text-xs mt-1 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                {crisis.talentNeed} <Link to="/talent" className="mono" style={{ color: 'var(--cyber-cyan)' }}>→ 干部画像库</Link>
-              </p>
-            </div>
-            <div className="p-3 rounded mt-3" style={{ background: 'var(--bg-elevated)', border: '1px solid rgba(212,175,55,0.25)' }}>
-              <span className="text-[10px] mono uppercase" style={{ color: 'var(--fire-gold)' }}>应对小组自动组建 · 履历池画像匹配 Top5</span>
-              {!team.length && <p className="text-[11px] mt-1.5" style={{ color: 'var(--text-tertiary)' }}>// 履历池加载中或无匹配（到人才库载入内置数据后重试）</p>}
-              <div className="space-y-1.5 mt-2">
-                {team.map((m) => (
-                  <div key={m.name + m.title} className="flex items-center gap-2">
-                    <span className="text-xs font-semibold shrink-0" style={{ color: 'var(--text-primary)' }}>{m.name}</span>
-                    <span className="text-[10px] truncate flex-1" style={{ color: 'var(--text-tertiary)' }}>{m.title}</span>
-                    <span className="flex gap-1 shrink-0">
-                      {m.hits.slice(0, 3).map((h) => (
-                        <span key={h} className="text-[9px] mono px-1 rounded" style={{ background: 'rgba(212,175,55,0.14)', color: 'var(--fire-gold)' }}>{h}</span>
-                      ))}
-                    </span>
-                    <span className="text-[10px] mono shrink-0" style={{ color: 'var(--cyber-cyan)' }}>匹配 {m.score}</span>
-                  </div>
-                ))}
-              </div>
-              <p className="text-[9px] mt-2" style={{ color: 'var(--text-tertiary)' }}>按履历关键词命中自动排序——画像匹配仅供推演，不构成人事评价。</p>
-            </div>
-          </div>
-        </Grid>
-
-        <div className="flex items-center gap-2 mt-4 flex-wrap">
-          <button onClick={genReport} className="os-btn os-btn-primary os-btn-sm">生成推演报告</button>
-          {reportMd && <button onClick={copyReport} className="os-btn os-btn-sm">{reportCopied ? '✓ 已复制' : '复制 Markdown'}</button>}
-          <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>聚合 情景×烈度×配置×判定×小组 为可归档推演纪要</span>
-        </div>
-        {reportMd && (
-          <pre className="os-card p-4 mt-3 text-xs mono" style={{ whiteSpace: 'pre-wrap', color: 'var(--text-secondary)', maxHeight: 260, overflowY: 'auto', lineHeight: 1.7, background: 'var(--bg-elevated)' }}>{reportMd}</pre>
+          </>
         )}
-        <p className="text-[11px] mt-4" style={{ color: 'var(--text-tertiary)' }}>
+        <p className="text-[11px] mt-3" style={{ color: 'var(--text-tertiary)' }}>
+          告警来自<Link to="/watchtower" className="mono" style={{ color: 'var(--cyber-cyan)' }}>全局监测台</Link>红/橙档指标（账本联动）；映射规则为「域 → 该域 impact 系数最大的危机」，写死可审计。
+        </p>
+      </Card>
+
+      <div className="mb-6">
+        <SandboxToolkit
+          mode="national"
+          crises={CRISES}
+          crisisKey={crisisKey}
+          setCrisisKey={setCrisisKey}
+          secondCrisis={secondCrisis}
+          setSecondCrisis={setSecondCrisis}
+          intensity={intensity}
+          setIntensity={setIntensity}
+          alloc={alloc}
+          setAlloc={setAlloc}
+          figures={figures}
+          reportMd={reportMd}
+          setReportMd={setReportMd}
+          reportCopied={reportCopied}
+          setReportCopied={setReportCopied}
+          title="危机情景引擎 · 六情景 × 烈度推演"
+          subtitle="Crisis Engine · 国家级压力测试"
+        />
+        <div className="flex items-center gap-2 mt-3 flex-wrap">
+          <button type="button" onClick={sendVerdict} className="os-btn os-btn-sm">📮 把本局判定回执监测台</button>
+          {engineResult && (
+            <span className="text-[11px] mono" style={{ color: engineResult.verdict[1] }}>
+              本局：{engineResult.label} · 总冲击 {engineResult.score} · {engineResult.verdict[0]}
+            </span>
+          )}
+          {verdictSent && <span className="text-[11px] mono" style={{ color: '#10b981' }}>✓ 已回执 · 监测台「沙盒推演回执」卡可查</span>}
+        </div>
+        <p className="text-[11px] mt-3" style={{ color: 'var(--text-tertiary)' }}>
           情景为思想实验/压力测试框架，非预测；传导系数为示意标定，烈度由用户设定，不构成对任何事件概率的判断。
         </p>
       </div>
@@ -542,6 +532,8 @@ export default function Page() {
       ]} />
 
       <ModuleFooter moduleId="sandbox" disclaimer="人才均为画像/原型，不构成对任何真实人物或人事安排的评价；熵增公式为训练模型，不替代官方统计口径" />
+      </>
+      )}
     </div>
   );
 }

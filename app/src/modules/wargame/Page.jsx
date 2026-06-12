@@ -4,6 +4,7 @@ import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import {
   WG_AS_OF, SIDES, CARDS, STRATEGIES, INIT, MAX_TURNS, AP_PER_TURN,
+  THIRD_PARTIES, TECH_TRACKS, TILT_TIPPING, TILT_SIDED,
   makeInitialState, usMove, resolveTurn, judge, buildWarReport, tallyCnPlays,
 } from './wargameData.js';
 
@@ -26,6 +27,7 @@ const BTN_RED = { ...BTN, background: 'rgba(196,30,58,0.16)', border: '1px solid
 const BTN_CYAN = { ...BTN, background: 'rgba(34,211,238,0.12)', border: '1px solid rgba(34,211,238,0.35)', color: '#22d3ee', fontWeight: 600 };
 
 const STRAT_ACCENT = { hawk: '#c41e3a', tit: '#e8a317', deal: '#10b981' };
+const TRACK_ACCENT = { litho: '#22d3ee', soft: '#e8a317', aero: '#8b5cf6' };
 const SIDE_LABEL = { cn: '中方', us: '美方', both: '通用' };
 const SIDE_COLOR = { cn: '#c41e3a', us: '#22d3ee', both: '#8b5cf6' };
 
@@ -82,6 +84,7 @@ function EffectRow({ effect }) {
 export default function Page() {
   // —— 对局状态 ——
   const [strategy, setStrategy] = useState('tit');     // 美方策略档位
+  const [track, setTrack] = useState('litho');         // 攻关目标线（重开对局保留）
   const [game, setGame] = useState(makeInitialState);  // 引擎 state（turn 0 起步）
   const [selected, setSelected] = useState([]);        // 本回合已选中方牌 id
   const [reportMd, setReportMd] = useState('');
@@ -89,6 +92,7 @@ export default function Page() {
 
   const finished = game.turn >= MAX_TURNS;
   const strat = useMemo(() => STRATEGIES.find((s) => s.id === strategy) || STRATEGIES[0], [strategy]);
+  const trackObj = useMemo(() => TECH_TRACKS.find((t) => t.id === track) || TECH_TRACKS[0], [track]);
 
   // 已选行动点
   const apUsed = useMemo(
@@ -112,14 +116,15 @@ export default function Page() {
     });
   };
 
-  // 出牌结算：美方按策略同步出牌，引擎一次性推进一个回合
+  // 出牌结算：美方按策略同步出牌，引擎一次性推进一个回合（攻关线随 opts 传入）
   const settleTurn = () => {
     if (finished) return;
     const usCards = usMove(strategy, game, game.turn + 1);
-    setGame((prev) => resolveTurn(prev, selected, usCards));
+    setGame((prev) => resolveTurn(prev, selected, usCards, { track }));
     setSelected([]);
   };
 
+  // 重开对局：策略与攻关目标线均保留，只清盘面
   const restart = () => {
     setGame(makeInitialState());
     setSelected([]);
@@ -147,6 +152,8 @@ export default function Page() {
         id: maxId + 1,
         strategy,
         strategyLabel: strat.label,
+        track,                                // 增量字段：攻关目标线 id（旧档无此字段不影响读取）
+        tilts: { ...(game.tilts || {}) },     // 增量字段：终局第三方天平
         judge: { label: verdict.label, color: verdict.color },
         final: { cnTech: game.cn.tech, cnEcon: game.cn.econ, usTech: game.us.tech, usEcon: game.us.econ },
         cardsPlayed: tallyCnPlays(game.log),
@@ -158,7 +165,7 @@ export default function Page() {
     } catch {
       /* 存档失败：本局按未入档处理，不打断对局 */
     }
-  }, [finished, verdict, game, strategy, strat]);
+  }, [finished, verdict, game, strategy, strat, track]);
 
   const togglePick = (id) => {
     setPicked((prev) => {
@@ -184,7 +191,7 @@ export default function Page() {
 
   const genReport = () => {
     try {
-      setReportMd(buildWarReport({ strategy, state: game }));
+      setReportMd(buildWarReport({ strategy, state: game, track }));
     } catch (e) {
       setReportMd(`# 报告生成异常\n\n${String(e)}`);
     }
@@ -231,13 +238,14 @@ export default function Page() {
       <PageHeader
         badge="Simulation · 大国博弈推演桌"
         title="大国博弈推演桌 · 科技-经贸回合制思想实验"
-        subtitle="八张中性牌 × 五个回合 × 三档对手策略——博弈不是棋盘上的胜负，是两条供应链的耐力赛"
+        subtitle="八张中性牌 × 五个回合 × 三档对手策略 + 两个摇摆方——博弈不是棋盘上的胜负，是两条供应链的耐力赛"
       />
       <IntroCard>
         <strong style={{ color: 'var(--text-primary)' }}>思想实验声明：</strong>
         本页是中美科技-经贸博弈的抽象推演框架——非预测、非政策倡导，双方收益矩阵为示意标定，仅覆盖科技/经贸/产业维度，不涉任何军事冲突情景。
         把宏大叙事压缩成一张 2×2×5 的账本：每一回合，双方各持 {AP_PER_TURN} 个行动点，从管制、关税、攻关、谈判这些中性术语牌里挑出自己的组合；管制牌伤对方科技但反噬己方经贸，攻关牌慢热而持续，谈判与开放双正但小——出牌的瞬间爽感和五回合后的四线对账，往往是两回事。
         博弈不是棋盘上的胜负，是两条供应链的耐力赛：谁的血条厚、谁的时间结构有利、谁先把敌意变现，比谁嗓门大重要得多。
+        本轮扩容把两体博弈改成三体：欧盟与东盟作为摇摆方上桌——缓和与开放把它们拉过来，管制与胁迫把它们推出去，倾斜到位就逐回合给倾向侧的经贸线记账；「自主攻关」也不再是匀速直线，光刻、工软、航发三条目标线总量接近、时间结构天差地别——选哪条线，就是选押注哪一种耐心。
       </IntroCard>
       <Grid cols={4} className="mb-8">
         <Stat value={WG_AS_OF} label="推演基准日" accent="#22d3ee" />
@@ -255,6 +263,15 @@ export default function Page() {
         <p className="text-xs leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
           <span className="font-semibold" style={{ color: STRAT_ACCENT[strategy] }}>{strat.label}：</span>{strat.desc}
           {game.turn > 0 && !finished && ' —— 中途换档即时生效：对手的性格，本来就是局中变量。'}
+        </p>
+        <div className="text-[11px] mono mb-2" style={{ color: 'var(--text-tertiary)' }}>攻关目标线 · 「自主攻关」驻留后走哪条增益曲线</div>
+        <SelectorBar
+          items={TECH_TRACKS} activeKey={track} onSelect={setTrack}
+          getKey={(t) => t.id} getLabel={(t) => t.label} getAccent={(t) => TRACK_ACCENT[t.id]}
+        />
+        <p className="text-xs leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
+          <span className="font-semibold" style={{ color: TRACK_ACCENT[track] }}>{trackObj.label}：</span>{trackObj.desc}
+          <span className="mono text-[11px]" style={{ color: 'var(--text-tertiary)' }}>　逐回合增益 {trackObj.curve.join(' / ')} · 重开对局保留所选线</span>
         </p>
         <div className="flex items-center gap-3 flex-wrap">
           <span className="mono text-xl font-bold" style={{ color: finished ? '#e8a317' : '#22d3ee' }}>
@@ -282,6 +299,10 @@ export default function Page() {
             const parked = cnPersist.has(c.id);
             const unaffordable = !sel && apUsed + c.cost > AP_PER_TURN;
             const blocked = finished || parked || unaffordable;
+            // 自主攻关：己科技按所选攻关线曲线显示下一回合的真实增益
+            const eff = c.id === 'selfdev'
+              ? { ...c.effect, selfTech: trackObj.curve[Math.min(game.turn, MAX_TURNS - 1)] }
+              : c.effect;
             return (
               <button
                 key={c.id} type="button" onClick={() => toggleCard(c)}
@@ -304,9 +325,12 @@ export default function Page() {
                 <div className="flex flex-wrap gap-1.5 mt-1">
                   <span className="text-[10px] mono" style={{ color: SIDE_COLOR[c.side] }}>{SIDE_LABEL[c.side]}牌</span>
                   <span className="text-[10px] mono" style={{ color: c.decay === '持续' ? '#10b981' : 'var(--text-tertiary)' }}>{c.decay}</span>
+                  {c.id === 'selfdev' && (
+                    <span className="text-[10px] mono" style={{ color: TRACK_ACCENT[track] }}>走「{trackObj.label}」线</span>
+                  )}
                   {parked && <span className="text-[10px] mono" style={{ color: '#10b981' }}>已驻留生效中</span>}
                 </div>
-                <EffectRow effect={c.effect} />
+                <EffectRow effect={eff} />
                 <p className="text-[10px] leading-snug mt-1.5" style={{ color: 'var(--text-tertiary)' }}>{c.desc}</p>
               </button>
             );
@@ -337,6 +361,57 @@ export default function Page() {
         </p>
       </Card>
 
+      {/* 3.5 —— 第三方天平 */}
+      <Card title="③.5 第三方天平 · 摇摆方往哪边倒">
+        <div className="space-y-4 mb-3">
+          {THIRD_PARTIES.map((tp) => {
+            const tilt = (game.tilts || {})[tp.id] ?? tp.init;
+            const abs = Math.abs(tilt);
+            return (
+              <div key={tp.id}>
+                <div className="flex items-center gap-2 flex-wrap mb-1.5">
+                  <span className="text-sm font-semibold" style={{ color: tp.color }}>{tp.label}</span>
+                  <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: `${tp.color}1f`, color: tp.color, border: `1px solid ${tp.color}55` }}>
+                    tilt {tilt > 0 ? '+' : ''}{tilt}
+                  </span>
+                  {abs >= TILT_TIPPING && (
+                    <span
+                      className="text-[10px] mono px-1.5 py-0.5 rounded"
+                      style={{ background: 'rgba(232,163,23,0.14)', color: '#e8a317', border: '1px solid rgba(232,163,23,0.4)' }}
+                    >已倾斜 · 每回合{tilt > 0 ? '中' : '美'}方经贸 +{tp.id === 'eu' ? 2 : 1}</span>
+                  )}
+                  {abs >= TILT_SIDED && (
+                    <span className="text-[10px] font-bold" style={{ color: '#c41e3a' }}>实质选边</span>
+                  )}
+                </div>
+                <div className="relative rounded" style={{ height: 14, background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}>
+                  {/* 中点刻度 + ±40/±60 阈值刻度 */}
+                  <div className="absolute" style={{ left: '50%', top: 0, bottom: 0, width: 2, background: '#27324a' }} />
+                  {[-TILT_SIDED, -TILT_TIPPING, TILT_TIPPING, TILT_SIDED].map((m) => (
+                    <div key={m} className="absolute" style={{ left: `${50 + m / 2}%`, top: 3, bottom: 3, width: 1, background: 'rgba(148,163,184,0.25)' }} />
+                  ))}
+                  <div
+                    className="absolute rounded-sm"
+                    style={{
+                      top: 2, bottom: 2,
+                      left: tilt >= 0 ? '50%' : `${50 - abs / 2}%`,
+                      width: `${abs / 2}%`,
+                      background: tp.color, opacity: 0.85,
+                    }}
+                  />
+                </div>
+                <div className="flex justify-between text-[10px] mono mt-0.5" style={{ color: 'var(--text-tertiary)' }}>
+                  <span>-100 亲美</span><span>0 中立</span><span>+100 亲中</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>
+          缓和与开放把摇摆方拉过来，管制与胁迫把它们推出去——|tilt|≥{TILT_TIPPING} 起每回合给倾向侧经贸加成（欧盟 +2 / 东盟 +1），≥{TILT_SIDED} 视为实质选边。摇摆方不投票，只用供应链下注。
+        </p>
+      </Card>
+
       {/* 4 —— 回合纪要 */}
       <Card title="④ 回合纪要 · 出牌与效果">
         {game.log.length === 0 ? (
@@ -356,6 +431,9 @@ export default function Page() {
                   <span className="mx-1" style={{ color: dColor(r.delta.usTech) }}>美科技{sgn(r.delta.usTech)}</span>
                   <span style={{ color: dColor(r.delta.usEcon) }}>美经贸{sgn(r.delta.usEcon)}</span>
                 </span>
+                {Array.isArray(r.tiltNotes) && r.tiltNotes.length > 0 && (
+                  <span className="text-[10px] mono w-full" style={{ color: '#e8a317' }}>⚖ {r.tiltNotes.join(' · ')}</span>
+                )}
               </div>
             ))}
           </div>
@@ -422,6 +500,11 @@ export default function Page() {
                 >
                   <span className="mono shrink-0 font-semibold" style={{ color: sel ? '#22d3ee' : 'var(--text-tertiary)' }}>#{r.id}</span>
                   <span className="shrink-0 font-semibold" style={{ color: STRAT_ACCENT[r.strategy] || 'var(--text-secondary)' }}>{r.strategyLabel}</span>
+                  {r.track && (
+                    <span className="text-[10px] mono shrink-0" style={{ color: TRACK_ACCENT[r.track] || 'var(--text-tertiary)' }}>
+                      {(TECH_TRACKS.find((t) => t.id === r.track) || { label: r.track }).label}
+                    </span>
+                  )}
                   <span
                     className="text-[10px] mono px-1.5 py-0.5 rounded shrink-0"
                     style={{ background: `${r.judge.color}1f`, color: r.judge.color, border: `1px solid ${r.judge.color}55` }}

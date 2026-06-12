@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -267,6 +267,48 @@ export default function Page() {
   const actIdx = Math.min(3, Math.floor(intensity / 25)); // 烈度 0-25-50-75-100 → 点亮到第几幕
 
   const emptyPosts = useMemo(() => POSTS.filter((p) => !assign[p.id]), [assign]);
+
+  // —— 跨模块账本写入：出缺岗位（'cos-hd-vacancies'）——组织引擎按此出补位推荐 ——
+  // 防循环：useRef 缓存净荷 JSON 串，内容不变不写；满员时照写 vacancies:[]（让对方知道没空椅子）
+  const vacanciesWrittenRef = useRef('');
+  useEffect(() => {
+    const vacancies = emptyPosts.map((p) => ({ postId: p.id, label: p.label, need: p.need }));
+    const payload = JSON.stringify({ vacancies, term });
+    if (payload === vacanciesWrittenRef.current) return;
+    try {
+      let prevStamp = 0;
+      try {
+        const parsed = JSON.parse(localStorage.getItem('cos-hd-vacancies') || 'null');
+        prevStamp = Number(parsed?.stamp) || 0;
+      } catch (_) { /* 坏档按 0 起步 */ }
+      localStorage.setItem('cos-hd-vacancies', JSON.stringify({ vacancies, term, stamp: prevStamp + 1 }));
+      vacanciesWrittenRef.current = payload;
+      window.dispatchEvent(new CustomEvent('cos-ledger-change'));
+    } catch (_) { /* 存储不可用时静默放弃 */ }
+  }, [emptyPosts, term]);
+
+  // —— 跨模块账本读取：组织引擎补位推荐（'cos-hd-recommend'，mount 读一次 + 双监听） ——
+  // useRef 缓存原始串：同串不重设 state，避免账本事件风暴下的无谓重渲染
+  const [hdRecommend, setHdRecommend] = useState(null);
+  const recommendRawRef = useRef(null);
+  useEffect(() => {
+    const read = () => {
+      try {
+        const raw = localStorage.getItem('cos-hd-recommend');
+        if (raw === recommendRawRef.current) return;
+        recommendRawRef.current = raw;
+        const parsed = JSON.parse(raw || 'null');
+        setHdRecommend(parsed && parsed.recs && typeof parsed.recs === 'object' ? parsed : null);
+      } catch (_) { setHdRecommend(null); }
+    };
+    read();
+    window.addEventListener('storage', read);
+    window.addEventListener('cos-ledger-change', read);
+    return () => {
+      window.removeEventListener('storage', read);
+      window.removeEventListener('cos-ledger-change', read);
+    };
+  }, []);
 
   // 省情判读一句话
   const baselineRead = useMemo(() => {
@@ -806,8 +848,13 @@ export default function Page() {
               } else {
                 options = officialsLive;
               }
+              // 组织引擎补位推荐：仅空缺岗位且账本里有该岗名单时展示（≤3 个 chips）
+              const recChips = !oid && Array.isArray(hdRecommend?.recs?.[p.id])
+                ? hdRecommend.recs[p.id].slice(0, 3)
+                : [];
               return (
-                <div key={p.id} className="flex items-center gap-2 mb-2 flex-wrap">
+                <React.Fragment key={p.id}>
+                <div className="flex items-center gap-2 mb-2 flex-wrap">
                   <span className="text-xs mono shrink-0" style={{ color: 'var(--text-secondary)', width: 84 }}>
                     {p.label}<span style={{ color: 'var(--text-tertiary)' }}> ·{Math.round(p.weight * 100)}%</span>
                   </span>
@@ -841,6 +888,20 @@ export default function Page() {
                     >疲劳 {streaks[o.id] || 0}年</span>
                   )}
                 </div>
+                {recChips.length > 0 && (
+                  <div className="flex items-center gap-1.5 flex-wrap mb-2" style={{ paddingLeft: 92 }}>
+                    <span className="text-[10px] mono shrink-0" style={{ color: '#8b5cf6' }}>组织引擎荐</span>
+                    {recChips.map((r) => (
+                      <span
+                        key={r.name}
+                        className="text-[10px] mono px-1.5 py-0.5 rounded-full shrink-0"
+                        style={{ border: '1px solid rgba(139,92,246,0.45)', color: '#8b5cf6', background: 'transparent' }}
+                      >{r.name} · {r.score}</span>
+                    ))}
+                    <span className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>切到真实政要库搜索姓名即可入班</span>
+                  </div>
+                )}
+                </React.Fragment>
               );
             })}
             {emptyPosts.length > 0 && (

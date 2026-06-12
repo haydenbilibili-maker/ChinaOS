@@ -1,7 +1,8 @@
 // ============================================================================
 // 大国博弈推演桌 · 纯函数引擎（零 React · 零外部依赖）
 // ----------------------------------------------------------------------------
-// 中美科技-经贸博弈的回合制思想实验：8 张抽象牌 × 5 回合 × 3 档对手策略。
+// 中美科技-经贸博弈的回合制思想实验：8 张抽象牌 × 5 回合 × 3 档对手策略
+// + 两个第三方摇摆天平（欧盟/东盟）× 三条攻关目标线（光刻/工软/航发）。
 // 安全红线：仅科技/经贸/产业维度的抽象博弈，不涉军事冲突情景；
 //          牌名一律中性术语，不出现任何具体真实企业名。
 // 声明：思想实验 / 分析框架 · 非预测 · 非政策倡导 · 双方收益矩阵为示意标定。
@@ -24,6 +25,52 @@ export const INIT = {
   cn: { tech: 52, econ: 70 },
   us: { tech: 60, econ: 70 },
 };
+
+// ----------------------------------------------------------------------------
+// 第三方摇摆方：tilt ∈ [-100, 100]，-100 完全亲美 · 0 中立 · +100 完全亲中。
+// 初值标定：欧盟 -20（跨大西洋惯性，先天偏美一档）；东盟 +10（供应链互嵌，先天微偏中）。
+// ----------------------------------------------------------------------------
+export const THIRD_PARTIES = [
+  { id: 'eu', label: '欧盟', color: '#8b5cf6', init: -20 },
+  { id: 'asean', label: '东盟', color: '#10b981', init: 10 },
+];
+
+// 牌 → tilt 的确定性影响表（出牌当回合一次性结算，两个第三方同步加减；
+// 持续牌只在打出那一回合计 tilt，驻留期间不逐回合重复计；重复打出被弃置的不计）。
+// 机理：中方谈判/开放/标准 → 给摇摆方递的筹码越实在，倾中越多（+6/+8/+10）；
+//      中方稀土筹码 → 胁迫的副作用：摇摆方兔死狐悲，向美侧离心（-8）；
+//      美方出口管制/实体清单 → 管制溢出殃及盟友供应链，把摇摆方推向中方（+4）；
+//      美方谈判窗口 → 展示可交易性，摇摆方回流美侧（-6）。
+export const TILT_EFFECTS = {
+  cn: { talk: 6, open_market: 8, std_alliance: 10, rare_earth: -8 },
+  us: { export_control: 4, entity_list: 4, talk: -6 },
+};
+
+// 倾斜回合效应：|tilt| ≥ TILT_TIPPING 的第三方，每回合给倾向侧 econ 加成；
+// 权重：欧盟体量大 → 1 × 1.5 向上取整 = +2；东盟 = +1。≥ TILT_SIDED 视为实质选边。
+export const TILT_TIPPING = 40;
+export const TILT_SIDED = 60;
+const TILT_WEIGHT = { eu: 2, asean: 1 };
+
+function clampTilt(v) { return Math.max(-100, Math.min(100, v)); }
+
+/** 第三方天平初值表（旧档无 tilts 字段时按此补齐——向后兼容） */
+function initialTilts() {
+  return Object.fromEntries(THIRD_PARTIES.map((tp) => [tp.id, tp.init]));
+}
+
+// ----------------------------------------------------------------------------
+// 攻关目标线：「自主攻关」驻留后的逐回合 tech 增益 = curve[当前回合-1]（替代原固定 +3）。
+// 机理：高端光刻后程爆发（设备链打通之前几乎无产出，打通之后增益陡升）；
+//      工业软件线性爬坡（替代曲线平滑，每回合稳定多一点）；
+//      航空动力前期沉默（头两回合颗粒无收，台架数据攒够之后增益最猛）。
+// 三线 5 回合满额累计 14 / 15 / 16——总量接近，时间结构天差地别。
+// ----------------------------------------------------------------------------
+export const TECH_TRACKS = [
+  { id: 'litho', label: '高端光刻', curve: [0, 1, 2, 4, 7], desc: '后程爆发：前两回合几乎无产出，设备链一旦打通增益陡升——五回合里最考验耐心的一条线。' },
+  { id: 'soft', label: '工业软件', curve: [1, 2, 3, 4, 5], desc: '线性爬坡：替代曲线平滑，每回合都比上回合多一点——没有惊喜，也没有惊吓。' },
+  { id: 'aero', label: '航空动力', curve: [0, 0, 2, 5, 9], desc: '前期沉默：头两回合颗粒无收，台架数据攒够之后增益最猛——赌的就是后程。' },
+];
 
 // ----------------------------------------------------------------------------
 // 牌库：effect 四值均以「出牌方」为 self（-10..+10）；decay 持续 = 效果驻留逐回合生效
@@ -137,6 +184,7 @@ export function makeInitialState() {
     log: [],
     persist: [],   // 驻留中的持续牌 [{side, cardId}]
     lastCn: [],    // 中方上一回合出牌（tit 镜像依据）
+    tilts: initialTilts(),   // 第三方天平 {eu, asean}
     history: [{ turn: 0, cnTech: INIT.cn.tech, cnEcon: INIT.cn.econ, usTech: INIT.us.tech, usEcon: INIT.us.econ }],
   };
 }
@@ -172,13 +220,17 @@ function applyEffect(next, sideId, effect) {
 
 /**
  * 结算一个回合 → 新 state（输入 state 不被修改）。
- * 次序：科技自然增长 +1 → 驻留持续牌生效 → 本回合出牌生效
- *      （持续牌首次打出即驻留并当回合生效；重复打出视为弃置）。
+ * 次序：科技自然增长 +1 → 驻留持续牌生效 → 本回合出牌生效（含第三方 tilt 一次性结算）
+ *      → 第三方倾斜回合效应（|tilt|≥40 给倾向侧 econ 加成，入 log）
+ *      （持续牌首次打出即驻留并当回合生效；重复打出视为弃置，弃置不计 tilt）。
+ * opts.track：「自主攻关」所走的攻关目标线 id（litho/soft/aero），缺省 litho——
+ *            不传 opts 与传 {track:'litho'} 结果全等（向后兼容）。
  */
-export function resolveTurn(state, cnCards, usCards) {
+export function resolveTurn(state, cnCards, usCards, opts) {
   if (!state || state.turn >= MAX_TURNS) return state;
   const cn = sanitizePlay('cn', cnCards);
   const us = sanitizePlay('us', usCards);
+  const track = TECH_TRACKS.find((t) => t.id === (opts && opts.track)) || TECH_TRACKS[0];
 
   const next = {
     cn: { ...state.cn },
@@ -187,8 +239,17 @@ export function resolveTurn(state, cnCards, usCards) {
     log: [...state.log],
     persist: [...state.persist],
     lastCn: [...cn],
+    tilts: { ...(state.tilts || initialTilts()) },   // 旧档无 tilts：按初值补齐（向后兼容）
     history: [...state.history],
   };
+
+  // 自主攻关的本回合 tech 增益按攻关线曲线取值（按对局回合数索引，替代原固定 +3）：
+  // 打出与驻留同走一条曲线——光刻后程爆发 / 软件线性 / 航发前期沉默。
+  const effectFor = (c) => (
+    c.id === 'selfdev'
+      ? { ...c.effect, selfTech: track.curve[Math.min(next.turn, track.curve.length) - 1] }
+      : c.effect
+  );
 
   // 1. 科技线自然增长：没人出牌，追赶也在发生
   next.cn.tech += TECH_GROWTH;
@@ -197,10 +258,10 @@ export function resolveTurn(state, cnCards, usCards) {
   // 2. 驻留持续牌逐回合生效
   next.persist.forEach((p) => {
     const c = CARD_MAP[p.cardId];
-    if (c) applyEffect(next, p.side, c.effect);
+    if (c) applyEffect(next, p.side, effectFor(c));
   });
 
-  // 3. 本回合出牌生效（持续牌入驻留；重复打出弃置）
+  // 3. 本回合出牌生效（持续牌入驻留；重复打出弃置；tilt 出牌当回合一次性结算）
   const played = { cn: [], us: [] };
   [['cn', cn], ['us', us]].forEach(([sideId, ids]) => {
     ids.forEach((id) => {
@@ -212,9 +273,26 @@ export function resolveTurn(state, cnCards, usCards) {
         }
         next.persist.push({ side: sideId, cardId: id });
       }
-      applyEffect(next, sideId, c.effect);
+      applyEffect(next, sideId, effectFor(c));
+      const dTilt = (TILT_EFFECTS[sideId] || {})[id] || 0;
+      if (dTilt) {
+        THIRD_PARTIES.forEach((tp) => {
+          next.tilts[tp.id] = clampTilt((next.tilts[tp.id] || 0) + dTilt);
+        });
+      }
       played[sideId].push(c.decay === '持续' ? `${c.label}（驻留）` : c.label);
     });
+  });
+
+  // 3.5 第三方倾斜回合效应：|tilt|≥40 给倾向侧经贸加成（欧盟 +2 / 东盟 +1），写入 log
+  const tiltNotes = [];
+  THIRD_PARTIES.forEach((tp) => {
+    const t = next.tilts[tp.id] || 0;
+    if (Math.abs(t) < TILT_TIPPING) return;
+    const beneficiary = t > 0 ? 'cn' : 'us';
+    const bonus = TILT_WEIGHT[tp.id] || 1;
+    next[beneficiary].econ += bonus;
+    tiltNotes.push(`${tp.label}（tilt ${t > 0 ? '+' : ''}${t} · ${t > 0 ? '倾中' : '倾美'}）→ ${beneficiary === 'cn' ? '中方' : '美方'}经贸 +${bonus}`);
   });
 
   // 4. 截断到 0..100
@@ -223,7 +301,7 @@ export function resolveTurn(state, cnCards, usCards) {
   next.us.tech = clamp(next.us.tech);
   next.us.econ = clamp(next.us.econ);
 
-  // 5. 记账：回合纪要 + 曲线点
+  // 5. 记账：回合纪要（含第三方天平快照与加成明细）+ 曲线点
   const delta = {
     cnTech: next.cn.tech - state.cn.tech,
     cnEcon: next.cn.econ - state.cn.econ,
@@ -236,6 +314,8 @@ export function resolveTurn(state, cnCards, usCards) {
     us: played.us.length ? played.us : ['按兵不动'],
     delta,
     after: { cnTech: next.cn.tech, cnEcon: next.cn.econ, usTech: next.us.tech, usEcon: next.us.econ },
+    tilts: { ...next.tilts },
+    tiltNotes,
   });
   next.history.push({ turn: next.turn, cnTech: next.cn.tech, cnEcon: next.cn.econ, usTech: next.us.tech, usEcon: next.us.econ });
   return next;
@@ -266,34 +346,42 @@ export function judge(state) {
   const dCnEcon = state.cn.econ - INIT.cn.econ;
   const dUsEcon = state.us.econ - INIT.us.econ;
 
+  let v;
   if (-dCnTech > 8) {
-    return {
+    v = {
       label: '美方锁喉', color: '#22d3ee',
       note: '断供链条压过了追赶速度：中方科技线被按进负增长区间。锁喉的代价计在美方经贸账上——但账单到期日在五回合之外。',
     };
-  }
-  if (dCnTech > dUsTech && state.cn.econ >= 55) {
-    return {
+  } else if (dCnTech > dUsTech && state.cn.econ >= 55) {
+    v = {
       label: '中方突围', color: '#c41e3a',
       note: '科技增幅反超且经贸底盘未破：封锁变成了倒逼出来的进度表。突围不靠奇迹，靠的是每回合多挤出的那一点点投入。',
     };
-  }
-  if (state.cn.econ < 55 && state.us.econ < 55) {
-    return {
+  } else if (state.cn.econ < 55 && state.us.econ < 55) {
+    v = {
       label: '双输螺旋', color: '#e8a317',
       note: '两条供应链互相放血，谁都没赢——只是输的速度不同。螺旋一旦转起来，止损本身就成了示弱，于是没人止损。',
     };
-  }
-  if (state.cn.econ >= 65 && state.us.econ >= 65) {
-    return {
+  } else if (state.cn.econ >= 65 && state.us.econ >= 65) {
+    v = {
       label: '缓和窗口', color: '#10b981',
       note: '双方经贸线都保住了体面：窗口期不是和解，是双方同时算清了对抗的边际成本。窗口能开多久，取决于下一轮谁先变现敌意。',
     };
+  } else {
+    v = {
+      label: '相持消耗', color: '#64748b',
+      note: `四线对账：科技 ${dCnTech >= 0 ? '+' : ''}${dCnTech}/${dUsTech >= 0 ? '+' : ''}${dUsTech}，经贸 ${dCnEcon >= 0 ? '+' : ''}${dCnEcon}/${dUsEcon >= 0 ? '+' : ''}${dUsEcon}。没有胜负，只有消耗速率——耐力赛进入了拼血条厚度的中段。`,
+    };
   }
-  return {
-    label: '相持消耗', color: '#64748b',
-    note: `四线对账：科技 ${dCnTech >= 0 ? '+' : ''}${dCnTech}/${dUsTech >= 0 ? '+' : ''}${dUsTech}，经贸 ${dCnEcon >= 0 ? '+' : ''}${dCnEcon}/${dUsEcon >= 0 ? '+' : ''}${dUsEcon}。没有胜负，只有消耗速率——耐力赛进入了拼血条厚度的中段。`,
-  };
+
+  // 第三方实质选边判语：终局任一 |tilt| ≥ 60（旧档无 tilts 视为全中立，不触发）
+  const sided = THIRD_PARTIES
+    .filter((tp) => Math.abs((state.tilts || {})[tp.id] || 0) >= TILT_SIDED)
+    .map((tp) => tp.label);
+  if (sided.length) {
+    v = { ...v, note: `${v.note}${sided.join('、')}已实质选边——多极是修辞，站队是现实。` };
+  }
+  return v;
 }
 
 // ----------------------------------------------------------------------------
@@ -321,6 +409,8 @@ export function buildWarReport(ctx) {
   L.push('## 一、策略设定');
   L.push('');
   L.push(`- **美方策略**：${strat.label} —— ${strat.desc}`);
+  const trk = TECH_TRACKS.find((t) => t.id === ctx.track);
+  if (trk) L.push(`- **攻关目标线**：${trk.label} —— 逐回合增益 ${trk.curve.join('/')}（${trk.desc}）`);
   L.push(`- **初值标定**：中方 科技 ${INIT.cn.tech} / 经贸 ${INIT.cn.econ}（追赶者设定）；美方 科技 ${INIT.us.tech} / 经贸 ${INIT.us.econ}`);
   L.push(`- **规则**：每回合行动点 ${AP_PER_TURN}，共 ${MAX_TURNS} 回合；科技线每回合自然增长 +${TECH_GROWTH}；持续牌效果驻留至终局`);
   L.push('');
@@ -343,6 +433,10 @@ export function buildWarReport(ctx) {
   L.push(`| 美方科技 | ${INIT.us.tech} | ${state.us.tech} | ${sgn(state.us.tech - INIT.us.tech)} |`);
   L.push(`| 美方经贸 | ${INIT.us.econ} | ${state.us.econ} | ${sgn(state.us.econ - INIT.us.econ)} |`);
   L.push('');
+  if (state.tilts) {
+    L.push(`第三方天平终值：${THIRD_PARTIES.map((tp) => `${tp.label} ${sgn(state.tilts[tp.id] || 0)}`).join(' · ')}（正值倾中 / 负值倾美，|tilt|≥${TILT_TIPPING} 起每回合给倾向侧经贸加成）`);
+    L.push('');
+  }
 
   L.push('## 四、判定与机理');
   L.push('');
