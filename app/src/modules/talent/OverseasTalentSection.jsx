@@ -17,6 +17,9 @@ import {
 } from '../../lib/db/overseasTalentSeed.js';
 import { useTalentDeepLink, findEntityInList } from '../../lib/talent/routing.js';
 import TalentDetailPanel, { ExpandableText } from './TalentDetailPanel.jsx';
+import { applyTalentEnrichment } from '../../lib/talent/talentEnrich.js';
+import { buildTalentDetailSections, CrossRefLinks, eventsToTimeline } from '../../lib/talent/detailSections.jsx';
+import { buildDetailFooter, normalizeTags } from '../../lib/talent/metadata.jsx';
 
 const inp = { background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', borderRadius: 6, padding: '6px 10px', fontSize: 13 };
 const btn = { background: 'rgba(14,165,233,0.14)', color: '#0ea5e9', border: '1px solid rgba(14,165,233,0.35)', borderRadius: 6, padding: '6px 14px', fontSize: 13, cursor: 'pointer' };
@@ -353,47 +356,46 @@ export default function OverseasTalentSection() {
               </Card>
 
               <Card title={detail ? `${detail.name} · 详情` : '选择一位'}>
-                {detail && (
+                {detail && (() => {
+                  const d = applyTalentEnrichment(detail, { queue: 'overseas' });
+                  return (
                   <TalentDetailPanel
-                    name={detail.name}
-                    subtitle={`${detail.role || ''}${detail.institution ? ` · ${detail.institution}` : ''}`}
-                    avatar={<FigureAvatar {...figureAvatarProps(detail)} size={56} ring eager />}
+                    name={d.name}
+                    subtitle={`${d.role || ''}${d.institution ? ` · ${d.institution}` : ''}`}
+                    verifyRecord={d}
+                    crossLinks={<CrossRefLinks record={d} queue="overseas" />}
+                    avatar={<FigureAvatar {...figureAvatarProps(d)} size={56} ring eager />}
                     badges={(
                       <>
-                        {detail.nameEn && <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>{detail.nameEn}</span>}
-                        <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(14,165,233,0.12)', color: '#0ea5e9' }}>{OT_TAB_LABEL[detail.category]}</span>
-                        {detail.tier && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(212,175,55,0.12)', color: '#d4af37' }}>Tier {detail.tier}</span>}
+                        {d.nameEn && <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>{d.nameEn}</span>}
+                        <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(14,165,233,0.12)', color: '#0ea5e9' }}>{OT_TAB_LABEL[d.category]}</span>
+                        {d.tier && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(212,175,55,0.12)', color: '#d4af37' }}>Tier {d.tier}</span>}
                       </>
                     )}
-                    tags={detail.tags && detail.tags !== '—' ? detail.tags.split(/[,，/]/).map((t) => t.trim()).filter(Boolean) : []}
+                    tags={normalizeTags(d.tags)}
                     tagAccent="#0ea5e9"
-                    sections={[
-                      {
+                    sections={buildTalentDetailSections(d, {
+                      queue: 'overseas',
+                      bioLabel: '跨境履历要点',
+                      baseSections: [{
                         title: '基本信息',
                         fields: [
-                          { label: '驻留国', value: detail.baseCountry ? `${COUNTRY_LABEL[detail.baseCountry] || detail.baseCountry}${detail.region ? ` · ${detail.region}` : ''}` : null, accent: 'var(--cyber-cyan)' },
-                          { label: '身份', value: NAT_LABEL[detail.nationality] || detail.nationality },
-                          { label: '领域', value: detail.field, accent: '#a78bfa' },
-                          { label: '机构', value: detail.institution },
-                          { label: '职务', value: detail.role },
+                          { label: '驻留国', value: d.baseCountry ? `${COUNTRY_LABEL[d.baseCountry] || d.baseCountry}${d.region ? ` · ${d.region}` : ''}` : null, accent: 'var(--cyber-cyan)' },
+                          { label: '身份', value: NAT_LABEL[d.nationality] || d.nationality },
+                          { label: '领域', value: d.field, accent: '#a78bfa' },
+                          { label: '机构', value: d.institution },
+                          { label: '职务', value: d.role },
                         ],
-                      },
-                      ...(detail.bio ? [{
-                        title: '履历要点',
-                        content: <ExpandableText text={detail.bio} maxLen={160} />,
-                      }] : []),
-                      {
-                        title: '关联标签',
-                        fields: [
-                          { label: '队列', value: OT_TAB_LABEL[detail.category] },
-                          { label: '备注', value: detail.notes, accent: '#e8a317' },
-                          { label: '来源', value: detail.source },
-                        ],
-                      },
-                    ]}
+                      }],
+                    })}
+                    timeline={eventsToTimeline(d)}
+                    timelineExpandable
+                    timelineAccent="#0ea5e9"
                     queueNote="// 跨境人力资本队列 · 与境内知识/商业队列互补"
+                    footer={buildDetailFooter(d)}
                   />
-                )}
+                  );
+                })()}
               </Card>
             </div>
           )}

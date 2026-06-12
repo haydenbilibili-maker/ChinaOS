@@ -13,6 +13,7 @@ import TalentDetailPanel, { ExpandableText } from './TalentDetailPanel.jsx';
 import { applyTalentEnrichment } from '../../lib/talent/talentEnrich.js';
 import { buildTalentDetailSections, CrossRefLinks } from '../../lib/talent/detailSections.jsx';
 import { buildDetailFooter, normalizeTags } from '../../lib/talent/metadata.jsx';
+import { eventsToTimeline } from '../../lib/talent/detailSections.jsx';
 import { useTalentDeepLink, findEntityInList } from '../../lib/talent/routing.js';
 import {
   CULTURAL_ELITE_SEED_PKG,
@@ -536,6 +537,9 @@ export default function CulturalEliteSection() {
                       }] : []),
                     ],
                     })}
+                    timeline={eventsToTimeline(d)}
+                    timelineExpandable
+                    timelineAccent="#a78bfa"
                     queueNote={`// ${CE_TAB_LABEL[d.category]} · 公开信息口径 · 荣誉与职务以来源发布时为准`}
                     footer={buildDetailFooter(d)}
                   />

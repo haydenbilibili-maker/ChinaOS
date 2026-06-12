@@ -60,7 +60,7 @@ export function buildModuleRecords() {
 }
 
 /** 种子变更时递增，使模块级索引缓存在 HMR / 热更新后失效 */
-export const SEARCH_INDEX_REVISION = `v10:bulk-expansion2:${CULTURAL_ELITE_DEDUPED_COUNT.total}:${DIPLOMATIC_CORPS_SEED_PKG?.rows?.length ?? 0}`;
+export const SEARCH_INDEX_REVISION = `v11:density-enrich:${CULTURAL_ELITE_DEDUPED_COUNT.total}:${DIPLOMATIC_CORPS_SEED_PKG?.rows?.length ?? 0}`;
 
 let _indexPromise = null;
 let _indexRevision = null;

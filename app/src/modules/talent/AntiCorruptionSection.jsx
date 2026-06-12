@@ -18,6 +18,9 @@ import {
 import FigureAvatar from '../../lib/ui/FigureAvatar.jsx';
 import { figureAvatarProps, prefetchFigureAvatars } from '../../lib/ui/figureAvatarResolve.js';
 import TalentDetailPanel, { ExpandableText } from './TalentDetailPanel.jsx';
+import { applyTalentEnrichment } from '../../lib/talent/talentEnrich.js';
+import { buildTalentDetailSections, CrossRefLinks, eventsToTimeline } from '../../lib/talent/detailSections.jsx';
+import { buildDetailFooter, normalizeTags } from '../../lib/talent/metadata.jsx';
 import { useTalentDeepLink } from '../../lib/talent/routing.js';
 import { EraTimeline } from '../leadership/EraTimeline.jsx';
 
@@ -377,49 +380,60 @@ export default function AntiCorruptionSection() {
               </Card>
 
               <Card title={detail ? `${detail.name} · 案件详情` : '选择一条'}>
-                {detail && (
+                {detail && (() => {
+                  const d = applyTalentEnrichment(detail, { queue: 'anticorruption' });
+                  return (
                   <TalentDetailPanel
-                    name={detail.name}
-                    subtitle={detail.formerRole}
-                    avatar={<FigureAvatar {...figureAvatarProps(detail)} size={56} ring eager />}
+                    name={d.name}
+                    subtitle={d.formerRole}
+                    verifyRecord={d}
+                    crossLinks={<CrossRefLinks record={d} queue="anticorruption" />}
+                    avatar={<FigureAvatar {...figureAvatarProps(d)} size={56} ring eager />}
                     badges={(
                       <>
-                        {detail.level && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(196,30,58,0.12)', color: 'var(--china-red)' }}>{detail.level}</span>}
-                        {detail.caseType === '典型' && <TypicalBadge />}
-                        {detail.yearBucket && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(232,163,23,0.12)', color: '#e8a317' }}>{detail.yearBucket}</span>}
+                        {d.level && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(196,30,58,0.12)', color: 'var(--china-red)' }}>{d.level}</span>}
+                        {d.caseType === '典型' && <TypicalBadge />}
+                        {d.yearBucket && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(232,163,23,0.12)', color: '#e8a317' }}>{d.yearBucket}</span>}
                       </>
                     )}
-                    sections={[
+                    tags={normalizeTags(d.tags)}
+                    tagAccent="#c41e3a"
+                    sections={buildTalentDetailSections(d, {
+                      queue: 'anticorruption',
+                      bioLabel: '案件公开要点',
+                      baseSections: [
                       {
                         title: '基本信息',
                         fields: [
-                          { label: '原机构', value: detail.org ? `${detail.org}${detail.sector ? `（${detail.sector}）` : ''}` : null },
-                          { label: '关联地域', value: detail.province },
-                          { label: '系统', value: detail.sector },
-                          { label: '案类', value: detail.category },
+                          { label: '原机构', value: d.org ? `${d.org}${d.sector ? `（${d.sector}）` : ''}` : null },
+                          { label: '关联地域', value: d.province },
+                          { label: '系统', value: d.sector },
+                          { label: '案类', value: d.category },
                         ],
                       },
                       {
                         title: '案件进程',
                         fields: [
-                          { label: '官宣日期', value: detail.announcementDate, accent: 'var(--cyber-cyan)' },
-                          { label: '归年', value: detail.year ? `${detail.year} · ${detail.yearBucket}` : detail.yearBucket },
-                          { label: '处置', value: detail.status, accent: '#e8a317' },
-                          { label: '案例类型', value: detail.caseType === '典型' ? '全国性典型案例' : detail.caseType },
+                          { label: '官宣日期', value: d.announcementDate, accent: 'var(--cyber-cyan)' },
+                          { label: '归年', value: d.year ? `${d.year} · ${d.yearBucket}` : d.yearBucket },
+                          { label: '处置', value: d.status, accent: '#e8a317' },
+                          { label: '案例类型', value: d.caseType === '典型' ? '全国性典型案例' : d.caseType },
                         ],
                       },
-                      ...(detail.notes ? [{
+                      ...(d.notes ? [{
                         title: '备注',
-                        content: <ExpandableText text={detail.notes} maxLen={120} />,
+                        content: <ExpandableText text={d.notes} maxLen={120} />,
                       }] : []),
-                      {
-                        title: '关联标签',
-                        fields: [{ label: '来源', value: detail.source }],
-                      },
-                    ]}
+                    ],
+                    })}
+                    timeline={eventsToTimeline(d)}
+                    timelineExpandable
+                    timelineAccent="var(--china-red)"
                     queueNote="// 公开报道口径 · 司法细节以法院公开裁判为准"
+                    footer={buildDetailFooter(d)}
                   />
-                )}
+                  );
+                })()}
               </Card>
             </div>
           )}

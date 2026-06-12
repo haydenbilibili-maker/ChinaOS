@@ -22,6 +22,9 @@ import {
   classifyBusinessSector,
 } from '../../lib/db/businessEliteSeed.js';
 import TalentDetailPanel, { ExpandableText } from './TalentDetailPanel.jsx';
+import { applyTalentEnrichment } from '../../lib/talent/talentEnrich.js';
+import { buildTalentDetailSections, CrossRefLinks, eventsToTimeline } from '../../lib/talent/detailSections.jsx';
+import { buildDetailFooter, normalizeTags } from '../../lib/talent/metadata.jsx';
 import { useTalentDeepLink, findEntityInList } from '../../lib/talent/routing.js';
 
 const short = (p) => (p || '').replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '');
@@ -482,54 +485,60 @@ export default function BusinessEliteSection() {
               </Card>
 
               <Card title={detail ? `${detail.name} · 详情` : '选择一位'}>
-                {detail && (
+                {detail && (() => {
+                  const d = applyTalentEnrichment(detail, { queue: 'business' });
+                  return (
                   <TalentDetailPanel
-                    name={detail.name}
-                    subtitle={`${detail.title || ''}${detail.company ? ` · ${detail.company}` : ''}`}
-                    avatar={<FigureAvatar {...figureAvatarProps(detail)} size={56} ring eager />}
+                    name={d.name}
+                    subtitle={`${d.title || ''}${d.company ? ` · ${d.company}` : ''}`}
+                    verifyRecord={d}
+                    crossLinks={<CrossRefLinks record={d} queue="business" />}
+                    avatar={<FigureAvatar {...figureAvatarProps(d)} size={56} ring eager />}
                     badges={(
                       <>
-                        <AcademicianBadge record={detail} size="md" />
-                        <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(232,163,23,0.12)', color: ROLE_ACCENT[detail.category] || '#e8a317' }}>{BE_ROLE_LABEL[detail.category]}</span>
-                        <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(139,92,246,0.12)', color: SECTOR_ACCENT[sectorOf(detail)] || '#a78bfa' }}>{BE_SECTOR_LABEL[sectorOf(detail)]}</span>
+                        <AcademicianBadge record={d} size="md" />
+                        <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(232,163,23,0.12)', color: ROLE_ACCENT[d.category] || '#e8a317' }}>{BE_ROLE_LABEL[d.category]}</span>
+                        <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(139,92,246,0.12)', color: SECTOR_ACCENT[sectorOf(d)] || '#a78bfa' }}>{BE_SECTOR_LABEL[sectorOf(d)]}</span>
                       </>
                     )}
-                    tags={honorTags(detail)}
+                    tags={[...normalizeTags(d.tags), ...honorTags(d)].filter(Boolean)}
                     tagAccent="#d4af37"
-                    sections={[
+                    sections={buildTalentDetailSections(d, {
+                      queue: 'business',
+                      bioLabel: '公开商业履历要点',
+                      baseSections: [
                       {
                         title: '基本信息',
                         fields: [
-                          { label: '公司/机构', value: detail.company },
-                          { label: '职务', value: detail.title },
-                          { label: '细分行业', value: detail.industry, accent: '#a78bfa' },
-                          { label: '行业板块', value: BE_SECTOR_LABEL[sectorOf(detail)] },
-                          { label: '省份', value: detail.province },
-                          { label: '角色', value: BE_ROLE_LABEL[detail.category] },
+                          { label: '公司/机构', value: d.company },
+                          { label: '职务', value: d.title },
+                          { label: '细分行业', value: d.industry, accent: '#a78bfa' },
+                          { label: '行业板块', value: BE_SECTOR_LABEL[sectorOf(d)] },
+                          { label: '省份', value: d.province },
+                          { label: '角色', value: BE_ROLE_LABEL[d.category] },
                         ],
                       },
                       {
                         title: '资本逻辑',
                         fields: [
-                          { label: '代表成就', value: detail.achievements, accent: 'var(--cyber-cyan)' },
-                          { label: '荣誉', value: detail.honors !== '—' ? detail.honors : null, accent: '#d4af37' },
+                          { label: '代表成就', value: d.achievements, accent: 'var(--cyber-cyan)' },
+                          { label: '荣誉', value: d.honors !== '—' ? d.honors : null, accent: '#d4af37' },
                         ],
                       },
-                      ...(detail.background ? [{
+                      ...(d.background && !d.bio ? [{
                         title: '背景摘要',
-                        content: <ExpandableText text={detail.background} maxLen={140} />,
+                        content: <ExpandableText text={d.background} maxLen={140} />,
                       }] : []),
-                      {
-                        title: '关联标签',
-                        fields: [
-                          { label: '备注', value: detail.notes },
-                          { label: '来源', value: detail.source },
-                        ],
-                      },
-                    ]}
+                    ],
+                    })}
+                    timeline={eventsToTimeline(d)}
+                    timelineExpandable
+                    timelineAccent="#e8a317"
                     queueNote="// 资本逻辑队列 · 与民企500强公司视角互补"
+                    footer={buildDetailFooter(d)}
                   />
-                )}
+                  );
+                })()}
               </Card>
             </div>
           )}

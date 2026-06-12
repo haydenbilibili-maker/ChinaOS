@@ -3,6 +3,7 @@
 // ============================================================================
 
 import { AS_OF } from '../db/figureCommon.js';
+import { buildDensityPatch } from './talentDensity.js';
 
 /** @typedef {'official'|'media'|'academic'|'inferred'} VerifyTier */
 /** @typedef {'high'|'medium'|'low'} Confidence */
@@ -207,6 +208,7 @@ const QUEUE_DEFAULTS = {
   dissident: { verifyTier: 'media', confidence: 'medium' },
   taiwan: { verifyTier: 'official', confidence: 'high' },
   anticorruption: { verifyTier: 'official', confidence: 'high' },
+  diplomatic: { verifyTier: 'official', confidence: 'high' },
   education: { verifyTier: 'official', confidence: 'high' },
   thinktank: { verifyTier: 'official', confidence: 'high' },
   research: { verifyTier: 'official', confidence: 'high' },
@@ -254,6 +256,7 @@ function autoProvenance(record, queue) {
     dissident: `制度边界公开记录；来源：${src}；叙事存在阵营化差异`,
     taiwan: `台港澳公开职务；来源：${src}`,
     anticorruption: `反腐公开通报；来源：${src}`,
+    diplomatic: `外交部/驻外使领馆公开任命；来源：${src}`,
     education: `高校公开名录；来源：${src}`,
     thinktank: `智库机构公开信息；来源：${src}`,
     research: `科研院所/大科学装置公开节点；来源：${src}`,
@@ -272,13 +275,14 @@ export function applyTalentEnrichment(record, opts = {}) {
   const key = record.id || record.name;
   const patch = FLAGSHIP_ENRICH[key] || FLAGSHIP_ENRICH[record.name] || {};
   const defaults = tierDefault && queue ? QUEUE_DEFAULTS[queue] || {} : {};
+  const density = buildDensityPatch(record, queue);
   const auto = isAutoFlagship(record, queue) ? {
     verifyTier: defaults.verifyTier || 'media',
     confidence: defaults.confidence || 'medium',
     provenance: autoProvenance(record, queue),
     verifiedAt: AS_OF,
   } : {};
-  const merged = { ...defaults, ...auto, ...record, ...patch };
+  const merged = { ...defaults, ...auto, ...record, ...density, ...patch };
   if (!merged.asOf) merged.asOf = AS_OF;
   if (!merged.verifiedAt && merged.verifyTier) merged.verifiedAt = AS_OF;
   if (patch.keyEvents && record.career?.length && !patch.career) {
