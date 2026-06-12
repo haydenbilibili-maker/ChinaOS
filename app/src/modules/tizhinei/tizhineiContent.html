@@ -1,0 +1,454 @@
+<div class="tz-shell">
+
+  <!-- 题头 -->
+  <header class="tz-mast">
+    <div>
+      <div class="tz-mast-meta">ChinaOS · MODULE <b>GY-07</b> · 人群画像分层 · 第五子集</div>
+      <h1 class="tz-title">体制内人群<span class="tz-title-sub">常驻内存 · 刚兑的最后分区</span></h1>
+    </div>
+    <div class="tz-mast-seal">编制即信仰</div>
+  </header>
+
+  <!-- 常驻内存签名图 -->
+  <div class="tz-found" aria-label="常驻内存示意图:体制内人群是系统的常驻分区,被分页表永久登记、永不换出、优先供电;但供电母线的电压(土地财政)正在下降">
+    <svg viewBox="0 0 1000 320" xmlns="http://www.w3.org/2000/svg" role="img">
+      <!-- 内存条外框 -->
+      <rect x="80" y="30" width="840" height="160" fill="none" stroke="#2a2f38" stroke-width="1.5"/>
+      <text x="500" y="22" font-size="11" fill="#8f897d" text-anchor="middle" font-family="mono" letter-spacing="2">ChinaOS · MEMORY MODULE · 劳动力</text>
+      <!-- 左:常驻分区(实线 + 锁) -->
+      <rect x="100" y="52" width="380" height="118" fill="#1b2028" stroke="#b5483a" stroke-width="2"/>
+      <text x="290" y="84" font-size="14" fill="#d6cfc2" text-anchor="middle" font-family="serif" letter-spacing="2">常驻分区 · 约 8000 万财政供养</text>
+      <text x="290" y="106" font-size="11" fill="#b5483a" text-anchor="middle" font-family="mono">RESIDENT · 不可换出</text>
+      <text x="290" y="128" font-size="10.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">公务员 716.7万 · 事业编 ~3100万 · 国企正式 + 离退休</text>
+      <!-- 锁图标 -->
+      <rect x="272" y="142" width="22" height="16" fill="none" stroke="#b5483a" stroke-width="1.5"/>
+      <path d="M 276 142 a 7 7 0 0 1 14 0" fill="none" stroke="#b5483a" stroke-width="1.5"/>
+      <text x="316" y="155" font-size="10" fill="#b5483a" font-family="mono">LOCKED</text>
+      <!-- 右:换页分区(虚线 + 双向箭头) -->
+      <rect x="520" y="52" width="380" height="118" fill="#1b2028" stroke="#5d7489" stroke-width="1.5" stroke-dasharray="5 5"/>
+      <text x="710" y="84" font-size="14" fill="#9fb0bd" text-anchor="middle" font-family="serif" letter-spacing="2">换页分区 · 3 亿流动劳动力</text>
+      <text x="710" y="106" font-size="11" fill="#5d7489" text-anchor="middle" font-family="mono">PAGEABLE · 可换入换出</text>
+      <text x="710" y="128" font-size="10.5" fill="#5d7489" text-anchor="middle" font-family="sans-serif">↗ GY-06 农民工 · ↗ GY-05 零工</text>
+      <!-- 双向箭头 -->
+      <path d="M 640 152 L 780 152" stroke="#5d7489" stroke-width="1.5" marker-start="url(#tzArr)" marker-end="url(#tzArr)"/>
+      <!-- 分区隔断 -->
+      <line x1="500" y1="52" x2="500" y2="170" stroke="#2a2f38" stroke-width="1" stroke-dasharray="2 3"/>
+      <!-- 供电母线 -->
+      <path d="M 290 170 L 290 232" stroke="#b5483a" stroke-width="2" marker-end="url(#tzDown)"/>
+      <path d="M 710 170 L 710 232" stroke="#5d7489" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#tzDown)"/>
+      <rect x="120" y="236" width="760" height="46" fill="#1b2028" stroke="#7d3a31" stroke-width="1.5"/>
+      <text x="500" y="258" font-size="13" fill="#d6cfc2" text-anchor="middle" font-family="serif" letter-spacing="2">供电母线 · 财政 / 土地出让金</text>
+      <text x="500" y="276" font-size="10.5" fill="#7d3a31" text-anchor="middle" font-family="sans-serif">电压下降中 · 2021 峰值 8.7 万亿 → 近乎腰斩</text>
+      <text x="940" y="262" font-size="10" fill="#7d3a31" text-anchor="end" font-family="mono">▼ V↓</text>
+      <defs>
+        <marker id="tzArr" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M1,1 L6,4 L1,7" fill="none" stroke="#5d7489" stroke-width="1.5"/></marker>
+        <marker id="tzDown" markerWidth="8" markerHeight="8" refX="4" refY="6" orient="auto"><path d="M1,1 L4,6 L7,1" fill="none" stroke="currentColor" stroke-width="1.5"/></marker>
+      </defs>
+    </svg>
+    <div class="tz-found-caption">总框架:体制内人群是 China OS 的<b style="color:#d6cfc2;">常驻内存(Resident Memory)</b>——与 GY-06 的「换页内存」精确镜像。同一块内存条上两个分区:左侧「常驻分区·约 8000 万财政供养」被分页表永久登记、加锁、不可换出、优先供电;右侧「换页分区·3 亿流动劳动力」虚线双向、需要时调入不需要时换出。三十年来系统把最稳定的供电分配给自己的运行进程,这在工程上完全正确。核心张力一句话:<b style="color:#7d3a31;">常驻分区的供电协议是按土地财政的电压设计的,而电压已经降了一半。</b></div>
+  </div>
+
+  <!-- 页签 -->
+  <nav class="tz-nav" role="tablist">
+    <button role="tab" data-panel="tz-p-b1" class="is-active">规模口径</button>
+    <button role="tab" data-panel="tz-p-b2">刚兑债券</button>
+    <button role="tab" data-panel="tz-p-b3">入口窄门</button>
+    <button role="tab" data-panel="tz-p-b4">内部分层</button>
+    <button role="tab" data-panel="tz-p-b5">财政地基</button>
+    <button role="tab" data-panel="tz-p-b6">行为生态</button>
+    <button role="tab" data-panel="tz-p-b7">政治功能</button>
+    <button role="tab" data-panel="tz-p-b8">形态推演</button>
+    <button role="tab" data-panel="tz-p-watch">合成 · 观测哨</button>
+  </nav>
+
+  <!-- ════ B1 规模口径 ════ -->
+  <section class="tz-panel is-active" id="tz-p-b1">
+    <div class="tz-sec-head"><h2>B1 · 规模与口径</h2><span class="tz-sec-tag">谁在编制里 · 差一个数量级的口径陷阱</span></div>
+    <p class="tz-lede"><b>「体制内」和「农民工」一样是个口径陷阱</b>——从公务员到广义财政供养,数字差一个数量级,每个口径对应不同的政治含义。从窄到宽逐级看,可信度递减、政治含量递增。</p>
+
+    <div class="tz-scale">
+      <div class="tz-scale-row">
+        <div class="tz-scale-num"><span class="n">700–800万</span><span class="u">最窄 · 行政编制</span></div>
+        <div class="tz-scale-body"><h5>公务员(行政编制)</h5><p>官方 2015 年公布 <b>716.7 万</b>后未再更新——<b>口径本身的停更就是信息</b>。最窄、最硬,但远非这个人群的主体。</p></div>
+      </div>
+      <div class="tz-scale-row core">
+        <div class="tz-scale-num"><span class="n">~3100万</span><span class="u">中口径 · 事业编</span></div>
+        <div class="tz-scale-body"><h5>事业编制(刚兑的主体人群)</h5><p>教师约半壁、医护、科研院所。这是讨论体制内刚兑时真正有用的分析人群。</p></div>
+      </div>
+      <div class="tz-scale-row">
+        <div class="tz-scale-num"><span class="n">+数千万</span><span class="u">宽口径 · 广义体制内</span></div>
+        <div class="tz-scale-body"><h5>加国企正式职工</h5><p>央企 + 地方国企在编数千万——「广义体制内」。现金流来源从财政转向垄断利润与经营收入。</p></div>
+      </div>
+      <div class="tz-scale-row wide">
+        <div class="tz-scale-num"><span class="n">6000–8000万</span><span class="u">最宽 · 财政供养</span></div>
+        <div class="tz-scale-body"><h5>财政供养人口估算(含离退休)</h5><p>含退休金财政负担的离退休人员。<b>约每 18 个中国人供养 1 个</b>,县域这个比值可达 9:1 甚至更低。</p></div>
+      </div>
+    </div>
+
+    <h3 class="tz-h3">隐藏层:编外用工 · 体制内部的双轨制</h3>
+    <div class="tz-card">
+      <p style="font-size:14px; line-height:1.95; color:var(--xuanzhi);">所有口径之外还有一个隐藏层——<b>编外用工</b>:劳务派遣、政府购买服务、辅警、社区工作者、合同制教师,估算与编内规模相当甚至更大。<b>体制内部完整复制了双轨制:编制内刚兑,编制外零工。</b>同一个办公室里,编内是债主、编外是零工——这是 GY-05 零工人群「三重身份」在体制内的镜像。</p>
+      <span class="tz-xref">↗ GY-05 L2 · 三重身份的体制内镜像</span>
+    </div>
+
+    <div class="tz-verdict">
+      <span class="tz-verdict-tag">B1 判词</span>
+      编制不是一种职业,<b>是一种产权</b>——对财政现金流的优先索取权。讨论这个人群,就是讨论这种准产权的<b>发行量、含权量与违约风险</b>。口径之争的本质,是不同口径对应不同政治含义:谈优越性用最宽口径(规模庞大),谈精简用最窄口径(只有几百万),而真正承载刚兑信用的是中间那 3100 万事业编。
+    </div>
+  </section>
+
+  <!-- ════ B2 刚兑债券 ════ -->
+  <section class="tz-panel" id="tz-p-b2">
+    <div class="tz-sec-head"><h2>B2 · 编制的政治经济学</h2><span class="tz-sec-tag">最后一种刚兑债券 · 全社会的信用排序</span></div>
+    <p class="tz-lede">在房产信仰、平台造富、教培金融等一切社会承诺相继违约之后,<b>编制是系统发行的最后一种被普遍相信的刚兑债券。</b>考编热的本质不是就业选择,<b>是全社会用脚投票的信用排序。</b></p>
+
+    <h3 class="tz-h3">含权结构:工资只是票面</h3>
+    <p class="tz-lede" style="margin-bottom:18px;">编制的真实收益远超名义工资。基本工资只是票面,真实收益是一组叠加的含权项——这也是后文 B5 重定价最先被剥离的层。</p>
+    <div class="tz-card" style="padding:6px 22px;">
+      <div class="tz-rows" style="border-top:none;">
+        <div class="tz-row"><span class="tz-row-k">现金含权</span><span class="tz-row-v"><b>津贴补贴 + 公积金双边高比例 + 职业年金 + 隐性医疗 + 食堂/房改余荫</b> — 票面之外的实际收益率主体,且大多不进个税表。</span></div>
+        <div class="tz-row"><span class="tz-row-k k-zhu">期权含权</span><span class="tz-row-v"><b>稳定性的期权价值</b> — 下行期里「不会失业」本身按市场定价值多少?越是裁员潮,这个期权越贵。</span></div>
+        <div class="tz-row"><span class="tz-row-k">社会含权</span><span class="tz-row-v"><b>婚恋市场溢价 + 信贷资质</b> — 县域相亲市场编制是硬通货;银行给编制的授信额度,即市场对刚兑的定价。</span></div>
+        <div class="tz-row"><span class="tz-row-k">法域含权</span><span class="tz-row-v">体制内外二元劳动力市场:<b>同工不同酬、同城不同保障的制度化。</b>2008《劳动合同法》管不进编制围墙,围墙内自成法域。</span></div>
+      </div>
+    </div>
+
+    <h3 class="tz-h3">激励结构的总损益表:引擎需要工程师,定价机制产出考生</h3>
+    <div class="tz-card">
+      <p style="font-size:14px; line-height:1.95; color:var(--xuanzhi);">「宇宙的尽头是编制」——系统用十年教会一代人:<b>只有体制是刚兑。</b>安全偏好被制度反复奖励后固化(↗ GY-03 总览)。<b style="color:var(--jin);">这是激励结构的总损益表:引擎需要工程师与企业家,而定价机制产出的是考生。</b></p>
+      <span class="tz-xref">↗ GY-03 总览 · 安全偏好被制度反复奖励后固化</span>
+    </div>
+
+    <div class="tz-verdict">
+      <span class="tz-verdict-tag">B2 判词</span>
+      一个社会最聪明的年轻人集体竞争「对财政现金流的优先索取权」而非创造现金流,<b>等价于一个公司最好的员工都在竞聘财务部。</b>这不是青年的非理性,<b>是他们对系统所有其他承诺信用评级的理性回应。</b>编制这张债券之所以被疯抢,恰恰因为它是唯一还没违约的那张——抢它的人数,就是其他债券违约程度的实时读数。
+    </div>
+  </section>
+
+  <!-- ════ B3 入口窄门 ════ -->
+  <section class="tz-panel" id="tz-p-b3">
+    <div class="tz-sec-head"><h2>B3 · 入口窄门</h2><span class="tz-sec-tag">351 万人的信用投票 · 窄门越窄挤的人越多</span></div>
+    <p class="tz-lede"><b>2026 国考报名超 351 万创历史新高、整体录取率 1.35%、最热岗位 7591:1</b>——窄门越窄,挤的人越多。这个正反馈本身,就是系统其他出口堵塞程度的实时读数。</p>
+
+    <div class="tz-grid-3">
+      <div class="tz-card"><span class="tz-eyebrow">报名规模</span><h4>351 万+</h4><p>2026 国考报名,历史新高。从 2019 年约 <b>140 万到 351 万+</b>,七年翻 2.5 倍。</p></div>
+      <div class="tz-card"><span class="tz-eyebrow">整体录取率</span><h4>1.35%</h4><p>录取率创新低。与同期民企信心、地产、互联网招聘曲线<b>精确反向</b>。</p></div>
+      <div class="tz-card"><span class="tz-eyebrow">最热岗位</span><h4>7591 : 1</h4><p>报录比的尾部极值。招录计划同步缩减,<b>分母扩大、分子收缩,双向驱动恶化。</b></p></div>
+    </div>
+
+    <h3 class="tz-h3">窄门背后的四条线索</h3>
+    <div class="tz-card" style="padding:6px 22px;">
+      <div class="tz-rows" style="border-top:none;">
+        <div class="tz-row"><span class="tz-row-k">数据序列</span><span class="tz-row-v">国考报名 2019 年约 140 万 → 2026 年 351 万+,<b>七年翻 2.5 倍</b>——与民企信心、地产、互联网招聘曲线精确反向。</span></div>
+        <div class="tz-row"><span class="tz-row-k">招录缩减</span><span class="tz-row-v">2026 招录计划略减、多省缩招,基层岗位压力大——<b>分母扩大、分子收缩,报录比恶化是双向驱动的。</b></span></div>
+        <div class="tz-row"><span class="tz-row-k">年龄放宽</span><span class="tz-row-v">部分岗位 35→38 岁。表面是友好,<b>实质是承认 35 岁焦虑已成系统性问题</b>,同时为「大龄上岸」二次分流开口。</span></div>
+        <div class="tz-row"><span class="tz-row-k k-zhu">学历通胀</span><span class="tz-row-v">清北博士进街道办、海归硕士考城管——<b>人力资本定价全面紊乱,顶级教育投资的收益率向编制溢价坍缩。</b></span></div>
+      </div>
+    </div>
+
+    <h3 class="tz-h3">考编经济:考编本身已是一种就业形态</h3>
+    <div class="tz-card">
+      <p style="font-size:14px; line-height:1.95; color:var(--xuanzhi);">公考培训产业百亿规模,「全职考编」家庭(脱产二战三战)成为<b>县域新型家庭结构</b>。<b style="color:var(--jin);">考编本身已是一种就业形态</b>——与 GY-03 冰河期里「考试作为蓄水池」同谱系:它把待业的统计压力,转译成「正在备考」的体面叙事。</p>
+      <span class="tz-xref">↗ GY-03 冰河期 · 考试作为蓄水池</span>
+    </div>
+
+    <div class="tz-verdict">
+      <span class="tz-verdict-tag">B3 判词</span>
+      报录比是这个系统最诚实的民调。<b>351 万人报名不是 351 万人热爱公共服务,是 351 万张对市场经济投出的不信任票。</b>窄门越窄、挤的人越多这个正反馈,不会自我修复——它只会随其他出口的堵塞程度同步加剧,直到出口重新打开,或编制本身开始折价(见 B5)。
+    </div>
+  </section>
+
+  <!-- ════ B4 内部分层 ════ -->
+  <section class="tz-panel" id="tz-p-b4">
+    <div class="tz-sec-head"><h2>B4 · 内部分层</h2><span class="tz-sec-tag">体制内的体制外 · 刚兑成色按离财政心脏的距离递减</span></div>
+    <p class="tz-lede"><b>「体制内」远非铁板一块</b>——央地、编内外、实权清水、垄断国企与基层事业编之间的落差,不小于体制内外的落差。<b>刚兑的成色,按离财政心脏的距离递减。</b></p>
+
+    <h3 class="tz-h3">纵向落差:离财政心脏越远,刚兑越薄</h3>
+    <div class="tz-nest">
+      <div class="tz-nest-row"><span class="tz-nest-k">中央部委</span><span class="tz-nest-v"><b>刚兑最硬</b> — 现金流直接来自中央财政,最后被动到的一层。</span></div>
+      <div class="tz-nest-row"><span class="tz-nest-k">省 / 市</span><span class="tz-nest-v">现金流随地方税基与转移支付波动,中间地带。</span></div>
+      <div class="tz-nest-row"><span class="tz-nest-k">县 / 乡镇</span><span class="tz-nest-v"><b>刚兑最薄</b> — 事多人少钱紧,<b>欠薪缓薪首发区</b>。形态β(见 B8)的第一现场。</span></div>
+    </div>
+
+    <h3 class="tz-h3">横向落差:同样叫体制内,现金流来源不同</h3>
+    <div class="tz-twin">
+      <div class="tz-twin-a"><h6>垄断央企端</h6><p>烟草/电网/金融央企——垄断租金、年薪数十万。现金流来源是<b>垄断利润</b>。</p></div>
+      <div class="tz-twin-mid">≠</div>
+      <div class="tz-twin-b"><h6>基层事业编端</h6><p>县域中小学教师——绩效缓发的第一顺位。现金流来源是<b>转移支付</b>。</p></div>
+    </div>
+
+    <h3 class="tz-h3">编内外落差与实权清水:两条真实的分层轴</h3>
+    <div class="tz-card" style="padding:6px 22px;">
+      <div class="tz-rows" style="border-top:none;">
+        <div class="tz-row"><span class="tz-row-k k-zhu">编内外落差</span><span class="tz-row-v">同一个办公室,<b>编内是债主、编外是零工</b>。辅警与正式警员、合同制教师与在编教师——<b>体制用编外缓冲层保护编内刚兑,逻辑与平台用外包骑手保护正式员工完全同构。</b></span></div>
+        <div class="tz-row"><span class="tz-row-k">实权 vs 清水</span><span class="tz-row-v">审批、执法、土地、资金口岗位与「养老科室」的灰色落差。反腐高压改变了灰色收入的风险定价,<b>但寻租位差依然是体制内部真实的分层轴。</b></span></div>
+      </div>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="tz-xref">↗ GY-05 L4 · 法律套娃(编外缓冲层 = 外包骑手)</span>
+    </div>
+
+    <div class="tz-verdict">
+      <span class="tz-verdict-tag">B4 判词</span>
+      分析体制内必须放弃「干部」这个整体想象。这个人群是按<b>「离财政心脏的距离 × 离权力管道的距离」二维分布</b>的——<b>尾部的乡镇编外人员,处境与 GY-06 的人群只隔一张劳务合同。</b>当上层谈论「体制内」时想象的是中央部委的硬刚兑,而这个人群规模的真正主体,是离心脏最远、最先被减压的那一端。
+      <span class="tz-xref">↗ GY-06 · 乡镇编外 = 只隔一张劳务合同的农民工</span>
+    </div>
+  </section>
+
+  <!-- ════ B5 财政地基 ════ -->
+  <section class="tz-panel" id="tz-p-b5">
+    <div class="tz-sec-head"><h2>B5 · 财政地基</h2><span class="tz-sec-tag">刚兑的资产负债表 · 重定价已经开始</span></div>
+    <p class="tz-lede"><b>编制刚兑的偿付能力挂在土地财政上。</b>土地出让金从 2021 年 8.7 万亿峰值近乎斩腰——<b>刚兑的重定价已经开始,形式不是违约,是渐进的「含权剥离」。</b></p>
+
+    <div class="tz-squeeze" aria-label="土地财政电压下降与含权剥离序列示意">
+      <svg viewBox="0 0 1000 200" xmlns="http://www.w3.org/2000/svg" role="img">
+        <!-- 收入端断流 -->
+        <rect x="60" y="50" width="240" height="90" fill="#1b2028" stroke="#7d3a31" stroke-width="1.5"/>
+        <text x="180" y="86" font-size="13" fill="#8f897d" text-anchor="middle" font-family="serif">土地出让金</text>
+        <text x="180" y="106" font-size="11" fill="#7d3a31" text-anchor="middle" font-family="sans-serif">8.7万亿 → 腰斩</text>
+        <text x="180" y="124" font-size="10" fill="#7d3a31" text-anchor="middle" font-family="mono">收入端断流</text>
+        <path d="M 300 95 L 360 95" stroke="#7d3a31" stroke-width="2" marker-end="url(#tzIn5)"/>
+        <!-- 偿付主体 -->
+        <rect x="380" y="40" width="240" height="110" fill="#1b2028" stroke="#b5483a" stroke-width="2"/>
+        <text x="500" y="80" font-size="13" fill="#d6cfc2" text-anchor="middle" font-family="serif" letter-spacing="2">编制刚兑</text>
+        <text x="500" y="100" font-size="10.5" fill="#b5483a" text-anchor="middle" font-family="sans-serif">~8000万财政供养</text>
+        <text x="500" y="120" font-size="10" fill="#8f897d" text-anchor="middle" font-family="mono">偿付能力承压</text>
+        <path d="M 620 95 L 680 95" stroke="#5d7489" stroke-width="2" marker-end="url(#tzIn5)"/>
+        <!-- 重定价形式 -->
+        <rect x="700" y="50" width="240" height="90" fill="#1b2028" stroke="#5d7489" stroke-width="1.5" stroke-dasharray="4 4"/>
+        <text x="820" y="86" font-size="13" fill="#9fb0bd" text-anchor="middle" font-family="serif">含权剥离</text>
+        <text x="820" y="106" font-size="11" fill="#5d7489" text-anchor="middle" font-family="sans-serif">阴跌 · 非违约</text>
+        <text x="820" y="124" font-size="10" fill="#5d7489" text-anchor="middle" font-family="mono">票面不动,实收下调</text>
+        <defs>
+          <marker id="tzIn5" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M1,1 L6,4 L1,7" fill="none" stroke="currentColor" stroke-width="1.5"/></marker>
+        </defs>
+      </svg>
+    </div>
+
+    <h3 class="tz-h3">重定价的渐进序列(已发生)</h3>
+    <p class="tz-lede" style="margin-bottom:18px;">顺序精确遵循<b>「先剥离含权、再动票面、最后动本金(编制本身)」</b>。逐级读这条时间链。</p>
+    <div class="tz-chain">
+      <div class="tz-chain-row"><span class="tz-chain-step">1</span><span class="tz-chain-v"><b>年终绩效缓发 / 追回</b> — 从含权层最软的一项开刀。</span></div>
+      <div class="tz-chain-row"><span class="tz-chain-step">2</span><span class="tz-chain-v"><b>沿海公务员降薪 20–30%</b> — 财力较强地区率先动票面边缘。</span></div>
+      <div class="tz-chain-row"><span class="tz-chain-step">3</span><span class="tz-chain-v"><b>公积金比例下调</b> — 双边高比例的隐性现金含权被压缩。</span></div>
+      <div class="tz-chain-row"><span class="tz-chain-step">4</span><span class="tz-chain-v"><b>食堂车补缩水</b> — 余荫类含权逐项剥离。</span></div>
+      <div class="tz-chain-row"><span class="tz-chain-step">5</span><span class="tz-chain-v"><b>编外清退</b> — 第一缓冲垫先割,保护编内刚兑。</span></div>
+      <div class="tz-chain-row"><span class="tz-chain-step">6</span><span class="tz-chain-v"><b>人口小县机构改革试点</b> — 山西河曲等:撤并机构、精简编制。</span></div>
+      <div class="tz-chain-row"><span class="tz-chain-step">7</span><span class="tz-chain-v"><b>2023 中央国家机关 5% 编制精简</b> — 从地方试点上升到中央动作。</span></div>
+      <div class="tz-chain-row peak"><span class="tz-chain-step">8</span><span class="tz-chain-v"><b>2026 招录缩减</b> — 入口收缩。出口处缩编已启动,入口处 351 万人仍在排队。</span></div>
+    </div>
+
+    <h3 class="tz-h3">超额认购 × 悄悄折价:一级与二级市场的背离</h3>
+    <div class="tz-card" style="padding:6px 22px;">
+      <div class="tz-rows" style="border-top:none;">
+        <div class="tz-row"><span class="tz-row-k">收入端断流</span><span class="tz-row-v">土地出让金腰斩、地方税基随地产-消费下行收缩;<b>转移支付撑住基本盘但边际吃紧</b>(付息挤占发薪)。</span></div>
+        <div class="tz-row"><span class="tz-row-k k-zhu">入口 vs 出口</span><span class="tz-row-v">「缩编却开始了」与考编热并存:<b>入口处 351 万人排队,出口处缩编启动——刚兑资产在一级市场超额认购、二级市场悄悄折价的经典图景。</b></span></div>
+        <div class="tz-row"><span class="tz-row-k">退休端暗账</span><span class="tz-row-v">机关事业单位养老金并轨(2014 改革、2024 过渡期结束)名义完成,但职业年金与财政补缺口使<b>实际待遇落差仍在</b>;双轨的政治成本由 GY-09(老年群体)承接。</span></div>
+      </div>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="tz-xref">↗ GY-01 · 地方债死锁(付息挤占发薪)</span>
+    </div>
+
+    <div class="tz-verdict">
+      <span class="tz-verdict-tag">B5 判词</span>
+      <b>编制刚兑不会以「违约」的形式破裂,会以「含权逐项剥离」的形式阴跌</b>——和零工单价阴跌(GY-05 L3 术一)是同一种手法:<b>票面不动,实际收益率单方面下调。</b>观测哨应盯「含权」而非「票面」:当媒体还在报道「公务员工资没降」时,公积金、车补、绩效、年金已经被逐项拿走——折价发生在票面之外的那一层。
+      <span class="tz-xref">↗ GY-05 L3 术一 · 单价单方面阴跌(同手法)</span>
+    </div>
+  </section>
+
+  <!-- ════ B6 行为生态 ════ -->
+  <section class="tz-panel" id="tz-p-b6">
+    <div class="tz-sec-head"><h2>B6 · 行为生态</h2><span class="tz-sec-tag">不出错优先的机器 · 执行力以无法问责的方式钝化</span></div>
+    <p class="tz-lede"><b>问责扩大化 + 晋升通道收窄 + 刚兑预期动摇,三者叠加把体制内的行为模式整体推向「不出错优先」</b>——机器的执行力,以一种无法问责的方式钝化。</p>
+
+    <div class="tz-art">
+      <h5><b>态一</b>痕迹管理与形式主义内卷</h5>
+      <p>留痕本是问责工具,演化为自我保护手段——<b>工作的目的从做事变成证明做过。</b>基层减负发文与基层负担同步增长的悖论:每一份减负文件,本身又是一份要留痕的负担。</p>
+    </div>
+    <div class="tz-art">
+      <h5><b>态二</b>躺平履职 · 无限合规的消极执行</h5>
+      <p>不犯错、不冒头、不创新的理性策略。重大改革攻坚期遇到的不是反对,是<b>无限合规的消极执行</b>——每一步都按文件,文件没写的不动。反对是可识别、可问责的;消极执行不是。</p>
+    </div>
+    <div class="tz-art">
+      <h5><b>态三</b>年轻一代的代际摩擦 · 话语是先行指标</h5>
+      <p>90/95 后科员对酒局文化、无效加班、领导崇拜的耐受度<b>断崖式低于前辈</b>;体制内离职话语(「逃离体制」小红书叙事)从禁忌变成流量品类。<b>注意:离职率本身仍低(刚兑还在),变的是话语与士气——这是先行指标。</b></p>
+    </div>
+    <div class="tz-art">
+      <h5><b>态四</b>忠诚筛选与能力筛选的张力</h5>
+      <p>政治标准优先的人事逻辑<b>在承平期成本不显,在需要执行力对冲危机时成本集中显形</b>(↗ GY-01 变量A)。承平期选忠诚,危机期需能力——两套筛选标准的错配,在最需要执行力的时刻交账。</p>
+    </div>
+
+    <div class="tz-verdict">
+      <span class="tz-verdict-tag">B6 判词</span>
+      系统正在为「<b>确保不出错</b>」支付「<b>确保不出活</b>」的对价。执行机器的钝化不会出现在任何报表上,但<b>它是 GY-01 所有情景推演里被低估的摩擦系数</b>——当推演假设指令从 Ring 0 下达后被完整执行时,真实世界里它正被一层无限合规的消极执行逐级打折。
+      <span class="tz-xref">↗ GY-03 Q-07 观测哨 · 代际摩擦(共享指标)</span>
+      <span class="tz-xref">↗ GY-01 变量A · 被低估的摩擦系数</span>
+    </div>
+  </section>
+
+  <!-- ════ B7 政治功能 ════ -->
+  <section class="tz-panel" id="tz-p-b7">
+    <div class="tz-sec-head"><h2>B7 · 政治功能</h2><span class="tz-sec-tag">合法性机器的物理载体 · 不是受众,是机器本身</span></div>
+    <p class="tz-lede"><b>这个人群不是合法性机器的受众,是机器本身</b>——GY-02 的五组件全部需要通过这 8000 万人的手运转。<b>他们的士气、利益与信仰状态,就是机器的硬件健康度。</b></p>
+
+    <div class="tz-squeeze" aria-label="政策从Ring 0到公民经体制内人群转译执行的滤波器示意">
+      <svg viewBox="0 0 1000 180" xmlns="http://www.w3.org/2000/svg" role="img">
+        <rect x="60" y="60" width="180" height="64" fill="#1b2028" stroke="#5d7489" stroke-width="1.5"/>
+        <text x="150" y="90" font-size="13" fill="#9fb0bd" text-anchor="middle" font-family="serif">Ring 0</text>
+        <text x="150" y="110" font-size="10" fill="#5d7489" text-anchor="middle" font-family="mono">中央指令</text>
+        <path d="M 240 92 L 360 92" stroke="#5d7489" stroke-width="2" marker-end="url(#tzIn7)"/>
+        <!-- 滤波器:体制内人群 -->
+        <rect x="360" y="40" width="280" height="104" fill="#1b2028" stroke="#b5483a" stroke-width="2"/>
+        <text x="500" y="76" font-size="13" fill="#d6cfc2" text-anchor="middle" font-family="serif" letter-spacing="2">体制内人群 · 执行末梢</text>
+        <text x="500" y="98" font-size="10.5" fill="#b5483a" text-anchor="middle" font-family="sans-serif">~8000万 · 真实滤波器</text>
+        <text x="500" y="118" font-size="10" fill="#8f897d" text-anchor="middle" font-family="mono">选择性执行 · 加码 / 打折</text>
+        <path d="M 640 92 L 760 92" stroke="#b5483a" stroke-width="2" marker-end="url(#tzIn7)"/>
+        <rect x="760" y="60" width="180" height="64" fill="#1b2028" stroke="#5d7489" stroke-width="1.5"/>
+        <text x="850" y="90" font-size="13" fill="#9fb0bd" text-anchor="middle" font-family="serif">公民</text>
+        <text x="850" y="110" font-size="10" fill="#5d7489" text-anchor="middle" font-family="mono">最后一公里</text>
+        <defs>
+          <marker id="tzIn7" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M1,1 L6,4 L1,7" fill="none" stroke="currentColor" stroke-width="1.5"/></marker>
+        </defs>
+      </svg>
+    </div>
+
+    <h3 class="tz-h3">四个政治功能维度</h3>
+    <div class="tz-card" style="padding:6px 22px;">
+      <div class="tz-rows" style="border-top:none;">
+        <div class="tz-row"><span class="tz-row-k">执行末梢</span><span class="tz-row-v">政策从 Ring 0 到公民的最后一公里全部由这个人群转译执行——<b>他们的选择性执行、加码或打折,是中央指令的真实滤波器。</b></span></div>
+        <div class="tz-row"><span class="tz-row-k k-zhu">双重身份</span><span class="tz-row-v">既是刚兑的<b>债权人</b>(要财政养),又是合法性的<b>承销商</b>(要向社会兑现叙事)——<b>当财政紧张迫使机器对内剥离含权时,它同时在削弱自己叙事承销商的销售意愿。</b></span></div>
+        <div class="tz-row"><span class="tz-row-k">代际换芯</span><span class="tz-row-v">未来十年体制内完成 60/70 后向 85/95 后的整体换班。<b>新一代的工具理性(编制是饭碗不是信仰)替代前辈的混合动机(饭碗+信仰+权力快感)</b>——机器照常运转,但「超额奉献」的冗余电压消失。</span></div>
+        <div class="tz-row"><span class="tz-row-k">县域社会学</span><span class="tz-row-v">县城是体制浓度最高的社会:编制家庭联姻、资源内循环(「县域婆罗门」话语)。<b>县城同时是 GY-06 县域回流的承接地——回流人口遇到的是一个由编制家庭定义机会结构的本地社会,这是两个模块的交汇点。</b></span></div>
+      </div>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="tz-xref">↗ GY-02 · 政策调度器(执行末梢即滤波器)</span>
+      <span class="tz-xref">↗ GY-03 形态D · 官僚渗透(代际换芯)</span>
+      <span class="tz-xref">↗ GY-06 县域回流 · 编制家庭定义的机会结构</span>
+    </div>
+
+    <div class="tz-verdict">
+      <span class="tz-verdict-tag">B7 判词</span>
+      对这台机器最大的威胁从来不是外部批评,<b>是承销商的私下定价</b>:当体制内的人自己开始用「上岸」「围城」「退路」的语言描述编制时,<b>他们已经把信仰降级成了金融产品——而金融产品是会被赎回的。</b>外部批评机器可以宣布非法、可以反驳;承销商士气的阴跌不可观测、不可问责、不可宣布非法——这正是它最危险的地方。
+    </div>
+  </section>
+
+  <!-- ════ B8 形态推演 ════ -->
+  <section class="tz-panel" id="tz-p-b8">
+    <div class="tz-sec-head"><h2>B8 · 形态推演</h2><span class="tz-sec-tag">三态 · α 渐进重定价 / β 县域局部破裂 / γ 编制大重构</span></div>
+    <p class="tz-lede">编制刚兑的演化路径,按概率从高到低拆成三态。三态共享同一个起点(土地财政电压下降),分岔点在于<b>财政紧张是否突破「阴跌」进入「断点」</b>。</p>
+
+    <div class="tz-bal">
+      <h5>形态 α · 基准 · 渐进重定价(概率最高)</h5>
+      <p>含权剥离 + 编外清退 + 自然减员缩编持续,<b>刚兑票面维持</b>,考编热延续(其他出口未开)。体制内士气阴跌但无断点。<b>系统当前的稳态</b>——用机器自身的钝化(B6)分期支付重定价的成本。</p>
+    </div>
+    <div class="tz-bal" style="border-color:var(--jin-dim); background:rgba(110,93,56,.10);">
+      <h5 style="color:var(--jin);">形态 β · 压力 · 县域刚兑局部破裂</h5>
+      <p>若干高债务县市出现<b>编内连续欠薪(从缓发到实欠)</b>,事业编(教师医护)首当其冲——标志事件:<b>教师集体讨薪进入公共视野。</b>政治意义重大:<b style="color:var(--jin);">编制刚兑的第一次公开违约将瞬间重定价全社会的信用排序,351 万考生的预期同步动摇。</b>体制内讨薪将使用与农民工讨薪完全相同的「血汗钱语法」——这个画面本身就是叙事的事故。</p>
+    </div>
+    <div class="tz-bal" style="border-color:var(--zhu-dim); background:rgba(181,72,58,.08);">
+      <h5 style="color:var(--zhu);">形态 γ · 尾部 · 编制大重构(仅在 GY-01 尾部情景展开)</h5>
+      <p>财政重整倒逼下的体制规模硬着陆——<b>90 年代国企下岗的体制内版本</b>。历史参照:1998 年下岗潮以「买断工龄」完成约 <b>3000 万人</b>的刚兑清算,代价由一代人吞下。<b style="color:var(--zhu);">差异:当年有入世红利与地产周期承接下岗潮,今天两者皆无;且当年被清算的是工人,这次将是机器自己的零件——机器拆自己零件的政治力学完全不同。</b></p>
+    </div>
+
+    <div style="margin-top:14px;">
+      <span class="tz-xref">↗ GY-01 地方债 · 县域刚兑破裂的财政触发</span>
+      <span class="tz-xref">↗ GY-03 CH-03 · 公平语法(体制内讨薪的血汗钱语法)</span>
+      <span class="tz-xref">↗ GY-01 尾部情景 · 编制大重构的唯一入口</span>
+    </div>
+
+    <div class="tz-verdict">
+      <span class="tz-verdict-tag">B8 判词</span>
+      三态的分岔不在宏观增长率,<b>在县域财政的第一笔实欠工资</b>。形态 α 是系统主动选择的阴跌路径,形态 β 是阴跌失控的第一个断点,形态 γ 是断点的级联。<b>从 α 到 β 不需要总崩盘,只需要一个高债务县发不出教师工资并被拍成视频</b>——这就是为什么观测哨 W-02 是整个模块最关键的一项。
+    </div>
+  </section>
+
+  <!-- ════ 合成 · 观测哨 ════ -->
+  <section class="tz-panel" id="tz-p-watch">
+    <div class="tz-sec-head"><h2>B9 · 合成与观测哨</h2><span class="tz-sec-tag">常驻内存 · 刚兑的最后分区 · 年度对账</span></div>
+
+    <div class="tz-verdict" style="margin-top:0; margin-bottom:34px;">
+      <span class="tz-verdict-tag">总判词 · 常驻内存</span>
+      体制内人群是 China OS 的<b>常驻内存</b>——系统把最稳定的供电分配给自己的运行进程,这在工程上完全正确。但当 <b>351 万人排队申请常驻</b>、而供电母线电压持续下降时,系统面对一个无解的三角:<b>维持刚兑(财政不允许)、公开违约(合法性不允许)、阴跌剥离(士气不允许)。</b>它选择了第三条,<b>用机器自身的钝化分期支付。</b><br><br>
+      <b style="color:var(--jin);">编制这张债券的价格,是这个系统所有其他承诺的信用基准——它一动,全表重估。</b><br><br>
+      与前四个子集合观:青年是「被特定窗口看见」,性少数是「被允许的可见形态」,零工是「被治理成永久的中间态」,农民工是「被批发寄存于路上」,体制内人群则补上第五条规律——<b>一个被当作常驻内存的人群,会被优先供电、永不换出,直到供电协议本身的电压撑不住为止:用得最信任,养得最贵,也最不敢动。</b>
+    </div>
+
+    <h3 class="tz-h3">对 GY 系列的四条修正</h3>
+    <div class="tz-fix">
+      <h5><b>修正 · GY-01</b>地方债死锁应增加「发薪优先级」变量</h5>
+      <p>地方债模块的「死锁」推演应增加「发薪优先级」变量——<b>付息与发薪的挤占关系是县域政治稳定的第一约束,先于一切基建投资变量。</b>哪个县先停发工资,哪个县就先进入形态 β。</p>
+    </div>
+    <div class="tz-fix">
+      <h5><b>修正 · GY-02</b>合法性机器应显式建模「承销商士气」</h5>
+      <p>合法性机器的组件分析应显式建模「承销商士气」——<b>五组件的输出功率全部乘以执行末梢的折扣系数,该系数正在阴跌且不可观测。</b>机器的硬件健康度,是被低估的隐变量。</p>
+    </div>
+    <div class="tz-fix">
+      <h5><b>修正 · GY-03</b>「宇宙尽头是编制」叙事需加注时效</h5>
+      <p>「宇宙尽头是编制」的安全偏好叙事需加注时效——<b>若形态 β 发生,青年的风险定价将再次紊乱:连最后的刚兑都违约时,行为模式可能从「考编」直接跳到「润/躺」双极,中间没有缓冲带。</b></p>
+    </div>
+    <div class="tz-fix">
+      <h5><b>修正 · GY-06</b>县域承接力审计须把「编制家庭机会垄断」列为隐性门槛</h5>
+      <p>县域承接力审计(GY-06 CH-03)必须把「<b>编制家庭的机会垄断</b>」列为回流人口的隐性门槛——<b>县城的就业承接力问题,同时是机会分配结构问题。</b>回流人口遇到的不是空地,是已被编制家庭定义好的机会结构。</p>
+    </div>
+
+    <div class="tz-watch-intro">
+      <p>这个人群的处境变动,关键看三组指针:入口拥挤度(报录比)、含权折价速度(剥离序列)、刚兑断点(编内欠薪)。逐项标注状态、记录证据,年度与 GY 系列同步对账。状态与备注自动保存在本机。</p>
+      <span class="tz-storage-state" id="tz-storage-state"></span>
+    </div>
+
+    <div class="tz-watch" id="tz-watch-list">
+      <div class="tz-watch-item" data-key="w1">
+        <div><h5><b>W-01</b>国考/省考报录比</h5><p class="tz-watch-desc">继续创新高 = 出口堵塞加剧;回落且民企招聘回暖 = 激励松动。B3 入口窄门的逐年读数(与 GY-03 Q-03 共享)。</p></div>
+        <div class="tz-watch-ctrl"><div class="tz-status-row"><button class="tz-status-btn" data-status="good">向好</button><button class="tz-status-btn" data-status="flat">中性</button><button class="tz-status-btn" data-status="bad">恶化</button></div><textarea class="tz-watch-note" placeholder="证据与备注…"></textarea><div class="tz-watch-stamp"></div></div>
+      </div>
+      <div class="tz-watch-item" data-key="w2">
+        <div><h5><b>W-02</b>编内欠薪事件</h5><p class="tz-watch-desc">缓发→实欠的形态升级、是否触及编内教师/医护——<b>形态 β 的第一信号。</b>B8 分岔点的关键仪表,整个模块最关键的一项。</p></div>
+        <div class="tz-watch-ctrl"><div class="tz-status-row"><button class="tz-status-btn" data-status="good">向好</button><button class="tz-status-btn" data-status="flat">中性</button><button class="tz-status-btn" data-status="bad">恶化</button></div><textarea class="tz-watch-note" placeholder="证据与备注…"></textarea><div class="tz-watch-stamp"></div></div>
+      </div>
+      <div class="tz-watch-item" data-key="w3">
+        <div><h5><b>W-03</b>缩编扩面</h5><p class="tz-watch-desc">人口小县试点是否扩为普遍政策、事业单位改革(撤并/转企)节奏。B5 重定价序列第 6–7 步的推进速度。</p></div>
+        <div class="tz-watch-ctrl"><div class="tz-status-row"><button class="tz-status-btn" data-status="good">向好</button><button class="tz-status-btn" data-status="flat">中性</button><button class="tz-status-btn" data-status="bad">恶化</button></div><textarea class="tz-watch-note" placeholder="证据与备注…"></textarea><div class="tz-watch-stamp"></div></div>
+      </div>
+      <div class="tz-watch-item" data-key="w4">
+        <div><h5><b>W-04</b>编外清退规模</h5><p class="tz-watch-desc">辅警/社工/合同教师的清退与待遇——<b>刚兑缓冲垫的消耗速度。</b>B4 编外缓冲层、B5 序列第 5 步的读数。</p></div>
+        <div class="tz-watch-ctrl"><div class="tz-status-row"><button class="tz-status-btn" data-status="good">向好</button><button class="tz-status-btn" data-status="flat">中性</button><button class="tz-status-btn" data-status="bad">恶化</button></div><textarea class="tz-watch-note" placeholder="证据与备注…"></textarea><div class="tz-watch-stamp"></div></div>
+      </div>
+      <div class="tz-watch-item" data-key="w5">
+        <div><h5><b>W-05</b>含权剥离序列</h5><p class="tz-watch-desc">公积金比例、津贴绩效、车补食堂——<b>票面之外的实际收益率曲线。</b>B5 判词「盯含权而非票面」的执行哨。</p></div>
+        <div class="tz-watch-ctrl"><div class="tz-status-row"><button class="tz-status-btn" data-status="good">向好</button><button class="tz-status-btn" data-status="flat">中性</button><button class="tz-status-btn" data-status="bad">恶化</button></div><textarea class="tz-watch-note" placeholder="证据与备注…"></textarea><div class="tz-watch-stamp"></div></div>
+      </div>
+      <div class="tz-watch-item" data-key="w6">
+        <div><h5><b>W-06</b>体制内离职与话语强度</h5><p class="tz-watch-desc">实际离职率(仍低=刚兑尚在)vs 话语热度(先行指标)。B6 态三的张力计(与 GY-03 Q-07 共享)。</p></div>
+        <div class="tz-watch-ctrl"><div class="tz-status-row"><button class="tz-status-btn" data-status="good">向好</button><button class="tz-status-btn" data-status="flat">中性</button><button class="tz-status-btn" data-status="bad">恶化</button></div><textarea class="tz-watch-note" placeholder="证据与备注…"></textarea><div class="tz-watch-stamp"></div></div>
+      </div>
+      <div class="tz-watch-item" data-key="w7">
+        <div><h5><b>W-07</b>国企招聘吸纳</h5><p class="tz-watch-desc">国企扩招作为政策性蓄水池的规模——<b>刚兑外延的财政成本。</b>B1 宽口径外延、B3 出口扩容的读数。</p></div>
+        <div class="tz-watch-ctrl"><div class="tz-status-row"><button class="tz-status-btn" data-status="good">向好</button><button class="tz-status-btn" data-status="flat">中性</button><button class="tz-status-btn" data-status="bad">恶化</button></div><textarea class="tz-watch-note" placeholder="证据与备注…"></textarea><div class="tz-watch-stamp"></div></div>
+      </div>
+      <div class="tz-watch-item" data-key="w8">
+        <div><h5><b>W-08</b>养老金并轨的实际落差</h5><p class="tz-watch-desc">机关事业退休待遇与企业职工的比值变化——<b>双轨清算的进度条。</b>B5 退休端暗账(→ GY-09 接口)。</p></div>
+        <div class="tz-watch-ctrl"><div class="tz-status-row"><button class="tz-status-btn" data-status="good">向好</button><button class="tz-status-btn" data-status="flat">中性</button><button class="tz-status-btn" data-status="bad">恶化</button></div><textarea class="tz-watch-note" placeholder="证据与备注…"></textarea><div class="tz-watch-stamp"></div></div>
+      </div>
+    </div>
+
+    <h3 class="tz-h3">章节规划 · 登记表</h3>
+    <div class="tz-plan">
+      <div class="tz-plan-row"><span class="tz-plan-k">CH-01</span><span class="tz-plan-v"><b>县域刚兑审计</b> — 高债务县编内发薪压力测试,与 GY-01/GY-06 三模块对账。</span><span class="tz-plan-tag">待建</span></div>
+      <div class="tz-plan-row"><span class="tz-plan-k">CH-02</span><span class="tz-plan-v"><b>编外人群深描</b> — 体制内的零工:辅警/社工/合同教师的法律与生存结构。</span><span class="tz-plan-tag">待建</span></div>
+      <div class="tz-plan-row"><span class="tz-plan-k">CH-03</span><span class="tz-plan-v"><b>1998 下岗潮对照表</b> — 刚兑清算的历史先例:机制/代价/承接条件逐项对照今日。</span><span class="tz-plan-tag">待建</span></div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="tz-foot">
+    <p>方法论:四口径严格区分(行政编制 716.7 万 / 事业编 ~3100 万 / 广义体制内 / 财政供养 6000–8000 万),拒绝用单一「体制内」口径掩盖一个数量级的差异;编制以「对财政现金流的优先索取权」这一准产权模型刻画,真实收益按含权结构(津贴/公积金/年金/期权/婚恋信贷溢价)而非票面计;刚兑重定价以「先剥离含权、再动票面、最后动本金」的渐进序列追踪;数据锚定 2026 国考报名 351 万+、录取率 1.35%、最热岗 7591:1、土地出让金 2021 峰值 8.7 万亿近乎腰斩、2023 中央国家机关 5% 编制精简、1998 下岗潮约 3000 万人。作为人群画像分层第五子集,与 GY-06 农民工(换页内存)精确镜像,与 GY-05 零工共享编外双轨与含权阴跌手法,与 GY-01 地方债、GY-02 合法性机器、GY-03 青年三处咬合。来源:国考报名(2025-10 央视网/新浪财经)、录取率(中国教育在线 2025-12)、缩编报道(新浪财经 2026-02)。</p>
+    <div class="tz-foot-meta">
+      ChinaOS · GY-07 · v1.0.0<br>
+      生成 2026-06 丙午年<br>
+      人群画像 子集V · 关联模块 → GY-01/02/03/05/06
+    </div>
+  </footer>
+
+</div>
