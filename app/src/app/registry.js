@@ -388,6 +388,15 @@ export const MODULES = [
     component: lazy(() => import('../modules/sandbox/Page.jsx')),
   },
   {
+    id: 'guoyun',
+    path: '/modules/guoyun',
+    group: 'sim',
+    title: '国运推演',
+    subtitle: '起局 · 对账 · 推演 · 观测',
+    icon: 'Compass',
+    component: lazy(() => import('../modules/guoyun/Page.jsx')),
+  },
+  {
     id: 'leadership', path: '/leadership', group: 'sim',
     title: '领袖统治', subtitle: '权力结构 · 决策机制 · 12 图可视化 · 四区交互', icon: 'Crown',
     component: lazy(() => import('../modules/leadership/Page.jsx')),

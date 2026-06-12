@@ -1,0 +1,229 @@
+/* 国运推演 · 样式隔离根 #gy-app · 令牌映射 China OS 日览/夜览 */
+#gy-app {
+  --xuan: var(--bg-base);
+  --xuan-deep: var(--bg-inset);
+  --xuan-raise: var(--bg-elevated);
+  --xuanzhi: var(--text-primary);
+  --xuanzhi-dim: var(--text-secondary);
+  --xuanzhi-mute: var(--text-tertiary);
+  --zhu: var(--china-red);
+  --zhu-dim: var(--china-deep);
+  --qing: #5e8c7a;
+  --qing-dim: #41594e;
+  --jin: var(--fire-gold);
+  --hairline: var(--border-subtle);
+  --gy-seg-mid: #3a3f33;
+  --gy-seg-tail: #4a2f3d;
+
+  --serif: "Songti SC", "Noto Serif CJK SC", "Noto Serif SC", "SimSun", "STSong", var(--font-sans);
+  --sans: var(--font-sans);
+  --mono: var(--font-mono);
+
+  background: var(--xuan);
+  color: var(--xuanzhi);
+  font-family: var(--serif);
+  font-size: var(--text-md);
+  line-height: 1.85;
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  border-radius: var(--radius-lg);
+}
+
+:root[data-theme='light'] #gy-app {
+  --qing: #3d7a66;
+  --qing-dim: #c8e4d8;
+  --zhu-dim: #f0d0cc;
+  --gy-seg-mid: #d8ddd0;
+  --gy-seg-tail: #e8d0d8;
+}
+
+#gy-app * { box-sizing: border-box; margin: 0; padding: 0; }
+#gy-app ::selection { background: var(--zhu-dim); color: var(--xuanzhi); }
+
+#gy-app .gy-shell { max-width: 1060px; margin: 0 auto; padding: 0 28px 96px; }
+
+/* ───────────── 题头 ───────────── */
+#gy-app .gy-mast { padding: 56px 0 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+#gy-app .gy-mast-meta { font-family: var(--sans); font-size: 11px; letter-spacing: .22em; color: var(--xuanzhi-mute); text-transform: uppercase; }
+#gy-app .gy-mast-meta b { color: var(--jin); font-weight: 500; }
+#gy-app h1.gy-title { font-size: clamp(30px, 5vw, 46px); font-weight: 600; letter-spacing: .08em; line-height: 1.3; margin-top: 14px; }
+#gy-app h1.gy-title .gy-title-sub { display: block; font-size: 14px; font-weight: 400; color: var(--xuanzhi-dim); letter-spacing: .3em; margin-top: 10px; }
+#gy-app .gy-mast-seal {
+  flex-shrink: 0; writing-mode: vertical-rl; font-size: 13px; letter-spacing: .35em;
+  color: var(--zhu); border: 1px solid var(--zhu-dim); padding: 14px 8px; line-height: 1;
+  user-select: none;
+}
+
+/* ───────────── 干支时间轴 (签名元素) ───────────── */
+#gy-app .gy-ganzhi { margin: 46px 0 0; position: relative; padding: 26px 0 58px; }
+#gy-app .gy-ganzhi-rail { position: absolute; left: 0; right: 0; top: 50px; height: 1px; background: var(--hairline); }
+#gy-app .gy-ganzhi-rail::after {
+  content: ""; position: absolute; left: 0; top: 0; height: 1px; width: 58.3%;
+  background: linear-gradient(90deg, var(--qing-dim), var(--jin));
+}
+#gy-app .gy-gz-nodes { position: relative; display: flex; justify-content: space-between; }
+#gy-app .gy-gz-node { position: relative; text-align: center; width: 16.6%; }
+#gy-app .gy-gz-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--xuanzhi-mute); margin: 21px auto 0; }
+#gy-app .gy-gz-node.is-past .gy-gz-dot { background: var(--qing); }
+#gy-app .gy-gz-node.is-now .gy-gz-dot { background: var(--jin); box-shadow: 0 0 0 4px color-mix(in srgb, var(--jin) 18%, transparent); }
+#gy-app .gy-gz-node.is-key .gy-gz-dot { background: var(--zhu); }
+#gy-app .gy-gz-year { font-family: var(--mono); font-size: 12px; color: var(--xuanzhi-dim); }
+#gy-app .gy-gz-gz { font-size: 13px; letter-spacing: .15em; color: var(--xuanzhi); margin-top: 2px; }
+#gy-app .gy-gz-label { position: absolute; left: 50%; transform: translateX(-50%); top: 78px; white-space: nowrap; font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .1em; }
+#gy-app .gy-gz-node.is-now .gy-gz-label { color: var(--jin); }
+#gy-app .gy-gz-node.is-key .gy-gz-label { color: var(--zhu); }
+
+/* ───────────── 页签导航 ───────────── */
+#gy-app .gy-nav { display: flex; gap: 0; margin-top: 30px; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); position: sticky; top: 0; background: var(--xuan); z-index: 10; }
+#gy-app .gy-nav button {
+  flex: 1; background: none; border: none; border-right: 1px solid var(--hairline);
+  color: var(--xuanzhi-dim); font-family: var(--serif); font-size: 15px; letter-spacing: .25em;
+  padding: 16px 0 14px; cursor: pointer; position: relative; transition: color .2s;
+}
+#gy-app .gy-nav button:last-child { border-right: none; }
+#gy-app .gy-nav button:hover { color: var(--xuanzhi); }
+#gy-app .gy-nav button:focus-visible { outline: 1px solid var(--jin); outline-offset: -1px; }
+#gy-app .gy-nav button.is-active { color: var(--xuanzhi); }
+#gy-app .gy-nav button.is-active::after { content: ""; position: absolute; left: 20%; right: 20%; bottom: -1px; height: 2px; background: var(--zhu); }
+#gy-app .gy-nav button small { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: .12em; color: var(--xuanzhi-mute); margin-top: 3px; }
+
+/* ───────────── 通用版式 ───────────── */
+#gy-app section.gy-panel { display: none; padding-top: 54px; }
+#gy-app section.gy-panel.is-active { display: block; animation: gyFade .35s ease; }
+@keyframes gyFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  #gy-app section.gy-panel.is-active { animation: none; }
+  #gy-app .gy-bar-seg { transition: none !important; }
+}
+
+#gy-app .gy-sec-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 8px; }
+#gy-app .gy-sec-head h2 { font-size: 24px; font-weight: 600; letter-spacing: .12em; }
+#gy-app .gy-sec-head .gy-sec-tag { font-family: var(--sans); font-size: 11px; letter-spacing: .2em; color: var(--xuanzhi-mute); }
+#gy-app .gy-lede { color: var(--xuanzhi-dim); font-size: 15px; max-width: 72ch; margin-bottom: 38px; }
+
+#gy-app h3.gy-h3 { font-size: 17px; font-weight: 600; letter-spacing: .1em; margin: 44px 0 18px; display: flex; align-items: center; gap: 12px; }
+#gy-app h3.gy-h3::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
+
+#gy-app .gy-card { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 22px 24px; }
+#gy-app .gy-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+#gy-app .gy-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+#gy-app .gy-card h4 { font-size: 15px; font-weight: 600; letter-spacing: .06em; margin-bottom: 8px; }
+#gy-app .gy-card p { font-size: 13.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#gy-app .gy-card .gy-card-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .25em; color: var(--xuanzhi-mute); display: block; margin-bottom: 10px; }
+
+#gy-app .gy-verdict {
+  margin-top: 40px; border-left: 2px solid var(--jin); background: var(--xuan-deep);
+  padding: 22px 26px; font-size: 15px; line-height: 2;
+}
+#gy-app .gy-verdict .gy-verdict-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .3em; color: var(--jin); display: block; margin-bottom: 8px; }
+
+/* ───────────── 起局:序列 ───────────── */
+#gy-app .gy-seq { display: grid; gap: 0; }
+#gy-app .gy-seq-item { display: grid; grid-template-columns: 92px 1fr; gap: 22px; padding: 20px 0; border-bottom: 1px solid var(--hairline); }
+#gy-app .gy-seq-item:last-child { border-bottom: none; }
+#gy-app .gy-seq-no { font-size: 21px; letter-spacing: .15em; color: var(--zhu); font-weight: 600; padding-top: 2px; }
+#gy-app .gy-seq-body h4 { font-size: 15.5px; margin-bottom: 6px; }
+#gy-app .gy-seq-body p { font-size: 13.5px; color: var(--xuanzhi-dim); }
+
+/* ───────────── 对账:三栏 ───────────── */
+#gy-app .gy-ledger { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; align-items: start; }
+#gy-app .gy-ledger-col { border-top: 3px solid; background: var(--xuan-raise); border-left: 1px solid var(--hairline); border-right: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+#gy-app .gy-ledger-col.col-win  { border-top-color: var(--qing); }
+#gy-app .gy-ledger-col.col-loss { border-top-color: var(--zhu); }
+#gy-app .gy-ledger-col.col-open { border-top-color: var(--jin); }
+#gy-app .gy-ledger-head { padding: 16px 20px 12px; border-bottom: 1px solid var(--hairline); }
+#gy-app .gy-ledger-head h4 { font-size: 16px; letter-spacing: .2em; }
+#gy-app .col-win  .gy-ledger-head h4 { color: var(--qing); }
+#gy-app .col-loss .gy-ledger-head h4 { color: var(--zhu); }
+#gy-app .col-open .gy-ledger-head h4 { color: var(--jin); }
+#gy-app .gy-ledger-head small { font-family: var(--sans); font-size: 10.5px; letter-spacing: .12em; color: var(--xuanzhi-mute); }
+#gy-app .gy-ledger-item { padding: 15px 20px; border-bottom: 1px solid var(--hairline); }
+#gy-app .gy-ledger-item:last-child { border-bottom: none; }
+#gy-app .gy-ledger-item h5 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+#gy-app .gy-ledger-item p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.75; }
+
+/* ───────────── 推演:概率条 ───────────── */
+#gy-app .gy-var { margin-bottom: 30px; }
+#gy-app .gy-var-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 10px; }
+#gy-app .gy-var-head h4 { font-size: 15.5px; letter-spacing: .06em; }
+#gy-app .gy-var-head h4 b { color: var(--jin); font-weight: 600; margin-right: 10px; font-family: var(--mono); font-size: 13px; }
+#gy-app .gy-var-head span { font-family: var(--sans); font-size: 11.5px; color: var(--xuanzhi-mute); }
+#gy-app .gy-bar { display: flex; height: 40px; border: 1px solid var(--hairline); background: var(--xuan-deep); overflow: hidden; }
+#gy-app .gy-bar-seg { display: flex; align-items: center; justify-content: center; gap: 6px; font-family: var(--sans); font-size: 11px; letter-spacing: .04em; color: var(--xuanzhi); white-space: nowrap; overflow: hidden; transition: width .6s ease; border-right: 1px solid var(--xuan); }
+#gy-app .gy-bar-seg:last-child { border-right: none; }
+#gy-app .gy-bar-seg b { font-family: var(--mono); font-size: 11.5px; font-weight: 600; }
+#gy-app .seg-up   { background: var(--qing-dim); }
+#gy-app .seg-mid  { background: var(--gy-seg-mid); }
+#gy-app .seg-down { background: var(--zhu-dim); }
+#gy-app .seg-tail { background: var(--gy-seg-tail); }
+#gy-app .gy-var-note { font-size: 12.5px; color: var(--xuanzhi-dim); margin-top: 9px; line-height: 1.75; max-width: 80ch; }
+#gy-app .gy-var-note em { color: var(--jin); font-style: normal; }
+
+/* 情景卡 */
+#gy-app .gy-scn { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 20px 22px; position: relative; }
+#gy-app .gy-scn-prob { position: absolute; top: 18px; right: 20px; font-family: var(--mono); font-size: 22px; font-weight: 600; }
+#gy-app .gy-scn h4 { font-size: 15.5px; margin-bottom: 8px; padding-right: 70px; }
+#gy-app .gy-scn .gy-scn-cond { font-family: var(--sans); font-size: 10.5px; letter-spacing: .1em; color: var(--xuanzhi-mute); display: block; margin-bottom: 10px; }
+#gy-app .gy-scn p { font-size: 13px; color: var(--xuanzhi-dim); }
+#gy-app .gy-scn.scn-base .gy-scn-prob { color: var(--xuanzhi); }
+#gy-app .gy-scn.scn-up   .gy-scn-prob { color: var(--qing); }
+#gy-app .gy-scn.scn-down .gy-scn-prob { color: var(--zhu); }
+#gy-app .gy-scn.scn-tail .gy-scn-prob { color: var(--jin); }
+#gy-app .gy-scn.scn-base { border-top: 3px solid var(--xuanzhi-mute); }
+#gy-app .gy-scn.scn-up   { border-top: 3px solid var(--qing); }
+#gy-app .gy-scn.scn-down { border-top: 3px solid var(--zhu); }
+#gy-app .gy-scn.scn-tail { border-top: 3px solid var(--jin); }
+
+/* ───────────── 观测哨 ───────────── */
+#gy-app .gy-watch-intro { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 22px; }
+#gy-app .gy-watch-intro p { font-size: 13.5px; color: var(--xuanzhi-dim); max-width: 64ch; }
+#gy-app .gy-storage-state { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .08em; }
+#gy-app .gy-watch { border: 1px solid var(--hairline); }
+#gy-app .gy-watch-item { display: grid; grid-template-columns: 1fr 320px; gap: 18px; padding: 18px 22px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); }
+#gy-app .gy-watch-item:last-child { border-bottom: none; }
+#gy-app .gy-watch-item h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 5px; }
+#gy-app .gy-watch-item h5 b { font-family: var(--mono); color: var(--jin); font-weight: 500; font-size: 12px; margin-right: 8px; }
+#gy-app .gy-watch-item .gy-watch-desc { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.75; }
+#gy-app .gy-watch-ctrl { display: flex; flex-direction: column; gap: 9px; }
+#gy-app .gy-status-row { display: flex; gap: 6px; }
+#gy-app .gy-status-btn {
+  flex: 1; font-family: var(--sans); font-size: 11.5px; letter-spacing: .08em; padding: 7px 0;
+  background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi-mute);
+  cursor: pointer; transition: all .15s;
+}
+#gy-app .gy-status-btn:hover { color: var(--xuanzhi); }
+#gy-app .gy-status-btn:focus-visible { outline: 1px solid var(--jin); }
+#gy-app .gy-status-btn.on-good { background: var(--qing-dim); border-color: var(--qing); color: var(--xuanzhi); }
+#gy-app .gy-status-btn.on-flat { background: var(--gy-seg-mid); border-color: var(--xuanzhi-mute); color: var(--xuanzhi); }
+#gy-app .gy-status-btn.on-bad  { background: var(--zhu-dim); border-color: var(--zhu); color: var(--xuanzhi); }
+#gy-app .gy-watch-note {
+  width: 100%; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi);
+  font-family: var(--sans); font-size: 12.5px; padding: 8px 10px; resize: vertical; min-height: 38px; line-height: 1.6;
+}
+#gy-app .gy-watch-note:focus { outline: 1px solid var(--jin); }
+#gy-app .gy-watch-note::placeholder { color: var(--xuanzhi-mute); }
+#gy-app .gy-watch-stamp { font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); text-align: right; min-height: 14px; }
+
+/* ───────────── 页脚 ───────────── */
+#gy-app .gy-foot { margin-top: 70px; border-top: 1px solid var(--hairline); padding-top: 24px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+#gy-app .gy-foot p { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .06em; line-height: 1.9; max-width: 66ch; }
+#gy-app .gy-foot .gy-foot-meta { text-align: right; font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); line-height: 2; flex-shrink: 0; }
+
+/* ───────────── 响应式 ───────────── */
+@media (max-width: 860px) {
+  #gy-app .gy-grid-2, #gy-app .gy-grid-3, #gy-app .gy-ledger { grid-template-columns: 1fr; }
+  #gy-app .gy-watch-item { grid-template-columns: 1fr; }
+  #gy-app .gy-gz-label { display: none; }
+  #gy-app .gy-mast-seal { display: none; }
+  #gy-app .gy-nav button { letter-spacing: .1em; font-size: 13.5px; }
+  #gy-app .gy-nav button small { display: none; }
+  #gy-app .gy-seq-item { grid-template-columns: 1fr; gap: 6px; }
+  #gy-app .gy-bar-seg span.seg-text { display: none; }
+}
+
+/* Shell 内全宽展示：抵消 os-page-enter 内边距 */
+.guoyun-module-wrap {
+  margin: calc(-1 * var(--card-padding)) calc(-1 * var(--card-padding));
+  max-width: none;
+}
