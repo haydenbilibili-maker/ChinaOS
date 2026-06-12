@@ -1,0 +1,170 @@
+@import "../shared/gy/tokens.css";
+
+#nm-app .nm-shell { max-width: 1060px; margin: 0 auto; padding: 0 28px 96px; }
+
+/* 题头 */
+#nm-app .nm-mast { padding: 56px 0 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+#nm-app .nm-mast-meta { font-family: var(--sans); font-size: 11px; letter-spacing: .22em; color: var(--xuanzhi-mute); text-transform: uppercase; }
+#nm-app .nm-mast-meta b { color: var(--jin); font-weight: 500; }
+#nm-app h1.nm-title { font-size: clamp(30px, 5vw, 46px); font-weight: 600; letter-spacing: .08em; line-height: 1.3; margin-top: 14px; }
+#nm-app h1.nm-title .nm-title-sub { display: block; font-size: 14px; font-weight: 400; color: var(--xuanzhi-dim); letter-spacing: .3em; margin-top: 10px; }
+#nm-app .nm-mast-seal { flex-shrink: 0; writing-mode: vertical-rl; font-size: 13px; letter-spacing: .35em; color: var(--zhu); border: 1px solid var(--zhu-dim); padding: 14px 8px; line-height: 1; user-select: none; }
+
+/* 换页内存签名图 */
+#nm-app .nm-found { margin-top: 44px; border: 1px solid var(--hairline); background: var(--xuan-deep); padding: 22px 24px 12px; }
+#nm-app .nm-found svg { width: 100%; height: auto; display: block; }
+#nm-app .nm-found-caption { font-family: var(--sans); font-size: 11.5px; color: var(--xuanzhi-mute); letter-spacing: .04em; padding: 8px 2px 6px; }
+
+/* 页签 */
+#nm-app .nm-nav { display: flex; flex-wrap: wrap; margin-top: 30px; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); position: sticky; top: 0; background: var(--xuan); z-index: 10; }
+#nm-app .nm-nav button { flex: 1 1 auto; background: none; border: none; border-right: 1px solid var(--hairline); color: var(--xuanzhi-dim); font-family: var(--serif); font-size: 14px; letter-spacing: .1em; padding: 15px 9px 13px; cursor: pointer; position: relative; transition: color .2s; white-space: nowrap; }
+#nm-app .nm-nav button:last-child { border-right: none; }
+#nm-app .nm-nav button:hover { color: var(--xuanzhi); }
+#nm-app .nm-nav button:focus-visible { outline: 1px solid var(--jin); outline-offset: -1px; }
+#nm-app .nm-nav button.is-active { color: var(--xuanzhi); }
+#nm-app .nm-nav button.is-active::after { content: ""; position: absolute; left: 14%; right: 14%; bottom: -1px; height: 2px; background: var(--zhu); }
+
+/* 通用 */
+#nm-app section.nm-panel { display: none; padding-top: 50px; }
+#nm-app section.nm-panel.is-active { display: block; animation: nmFade .35s ease; }
+@keyframes nmFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { #nm-app section.nm-panel.is-active { animation: none; } }
+#nm-app .nm-sec-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 8px; flex-wrap: wrap; }
+#nm-app .nm-sec-head h2 { font-size: 23px; font-weight: 600; letter-spacing: .1em; }
+#nm-app .nm-sec-head .nm-sec-tag { font-family: var(--sans); font-size: 11px; letter-spacing: .18em; color: var(--xuanzhi-mute); }
+#nm-app .nm-lede { color: var(--xuanzhi-dim); font-size: 15px; max-width: 76ch; margin-bottom: 34px; }
+#nm-app .nm-lede b { color: var(--xuanzhi); font-weight: 600; }
+#nm-app h3.nm-h3 { font-size: 17px; font-weight: 600; letter-spacing: .08em; margin: 40px 0 18px; display: flex; align-items: center; gap: 12px; }
+#nm-app h3.nm-h3::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
+#nm-app .nm-card { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 20px 22px; }
+#nm-app .nm-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+#nm-app .nm-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+#nm-app .nm-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+#nm-app .nm-card p { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.78; }
+#nm-app .nm-card p b { color: var(--xuanzhi); font-weight: 600; }
+#nm-app .nm-card .nm-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .24em; color: var(--xuanzhi-mute); display: block; margin-bottom: 10px; }
+#nm-app .nm-verdict { margin-top: 38px; border-left: 2px solid var(--jin); background: var(--xuan-deep); padding: 22px 26px; font-size: 15px; line-height: 2; }
+#nm-app .nm-verdict .nm-verdict-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .3em; color: var(--jin); display: block; margin-bottom: 8px; }
+#nm-app .nm-verdict b { color: var(--xuanzhi); font-weight: 600; }
+#nm-app .nm-rows { border-top: 1px solid var(--hairline); }
+#nm-app .nm-row { display: grid; grid-template-columns: 132px 1fr; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--hairline); font-size: 13px; }
+#nm-app .nm-row .nm-row-k { font-family: var(--mono); font-size: 12px; color: var(--xuanzhi-mute); padding-top: 1px; }
+#nm-app .nm-row .nm-row-k.k-zhu { color: var(--zhu); }
+#nm-app .nm-row .nm-row-v { color: var(--xuanzhi-dim); line-height: 1.78; }
+#nm-app .nm-row .nm-row-v b { color: var(--xuanzhi); font-weight: 600; }
+#nm-app .nm-xref { display: inline-block; margin-top: 10px; font-family: var(--sans); font-size: 10.5px; letter-spacing: .12em; color: var(--jin); border: 1px solid var(--jin-dim); padding: 3px 9px; margin-right: 6px; }
+
+/* 口径阶梯(M1 双峰) */
+#nm-app .nm-scale { border: 1px solid var(--hairline); }
+#nm-app .nm-scale-row { display: grid; grid-template-columns: 150px 1fr; gap: 0; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); }
+#nm-app .nm-scale-row:last-child { border-bottom: none; }
+#nm-app .nm-scale-num { padding: 16px 18px; border-right: 1px solid var(--hairline); background: var(--xuan-deep); }
+#nm-app .nm-scale-num .n { font-family: var(--mono); font-size: 21px; color: var(--xuanzhi); display: block; line-height: 1.2; }
+#nm-app .nm-scale-num .u { font-family: var(--sans); font-size: 10.5px; color: var(--xuanzhi-mute); letter-spacing: .12em; }
+#nm-app .nm-scale-row.wide .n { color: var(--xuanzhi-mute); }
+#nm-app .nm-scale-row.core .nm-scale-num { border-left: 3px solid var(--zhu); }
+#nm-app .nm-scale-row.core .n { color: var(--zhu); }
+#nm-app .nm-scale-body { padding: 15px 18px; }
+#nm-app .nm-scale-body h5 { font-size: 13.5px; font-weight: 600; margin-bottom: 4px; }
+#nm-app .nm-scale-body p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.72; }
+
+/* 双峰对照(M1) */
+#nm-app .nm-twin { display: grid; grid-template-columns: 1fr 60px 1fr; gap: 0; border: 1px solid var(--hairline); margin-top: 4px; }
+#nm-app .nm-twin > div { padding: 16px 18px; }
+#nm-app .nm-twin .nm-twin-a { background: var(--xuan-raise); border-right: 1px solid var(--hairline); }
+#nm-app .nm-twin .nm-twin-mid { background: var(--xuan-deep); display: flex; align-items: center; justify-content: center; font-family: var(--mono); color: var(--zhu); font-size: 18px; }
+#nm-app .nm-twin .nm-twin-b { background: var(--xuan-raise); border-left: 1px solid var(--hairline); }
+#nm-app .nm-twin h6 { font-family: var(--sans); font-size: 10.5px; letter-spacing: .16em; color: var(--xuanzhi-mute); margin-bottom: 8px; }
+#nm-app .nm-twin p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.7; }
+
+/* 闸门套娃(M4) */
+#nm-app .nm-nest { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#nm-app .nm-nest-row { padding: 13px 18px; border-bottom: 1px solid var(--hairline); font-size: 13px; display: flex; gap: 14px; align-items: baseline; }
+#nm-app .nm-nest-row:last-child { border-bottom: none; }
+#nm-app .nm-nest-row .nm-nest-k { font-family: var(--mono); font-size: 12px; color: var(--zhu); flex-shrink: 0; width: 140px; }
+#nm-app .nm-nest-row .nm-nest-v { color: var(--xuanzhi-dim); line-height: 1.72; }
+#nm-app .nm-nest-row .nm-nest-v b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 机器四术(M2) */
+#nm-app .nm-art { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 18px 20px; margin-bottom: 12px; border-left: 3px solid var(--zhu); }
+#nm-app .nm-art h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 6px; display: flex; gap: 11px; align-items: baseline; }
+#nm-app .nm-art h5 b { font-family: var(--mono); color: var(--zhu); font-size: 12px; font-weight: 500; }
+#nm-app .nm-art p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#nm-app .nm-art p b { color: var(--xuanzhi); font-weight: 600; }
+#nm-app .nm-out3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 12px; }
+#nm-app .nm-out3 div { background: var(--xuan-deep); border: 1px solid var(--hairline); padding: 11px 13px; }
+#nm-app .nm-out3 h6 { font-size: 12px; color: var(--jin); font-weight: 600; margin-bottom: 4px; font-family: var(--sans); letter-spacing: .06em; }
+#nm-app .nm-out3 p { font-size: 11.5px; color: var(--xuanzhi-dim); line-height: 1.65; }
+
+/* 县域三态卡(M7/M8) */
+#nm-app .nm-bal { border: 1px solid var(--qing-dim); background: rgba(65, 89, 78, .08); padding: 18px 20px; margin-bottom: 12px; }
+#nm-app .nm-bal h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 6px; color: var(--qing); }
+#nm-app .nm-bal p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#nm-app .nm-bal p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 换岗/挤压示意(M6/M7) */
+#nm-app .nm-squeeze { border: 1px solid var(--hairline); background: var(--xuan-deep); padding: 20px; margin-bottom: 18px; }
+#nm-app .nm-squeeze svg { width: 100%; height: auto; }
+
+/* 修正卡(M9) */
+#nm-app .nm-fix { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 16px 20px; margin-bottom: 12px; border-left: 3px solid var(--jin); }
+#nm-app .nm-fix h5 { font-size: 14px; font-weight: 600; margin-bottom: 6px; display: flex; gap: 11px; align-items: baseline; }
+#nm-app .nm-fix h5 b { font-family: var(--mono); color: var(--jin); font-size: 12px; font-weight: 500; }
+#nm-app .nm-fix p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#nm-app .nm-fix p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 章节规划登记表 */
+#nm-app .nm-plan { border: 1px solid var(--hairline); }
+#nm-app .nm-plan-row { padding: 14px 18px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); display: flex; gap: 16px; align-items: baseline; }
+#nm-app .nm-plan-row:last-child { border-bottom: none; }
+#nm-app .nm-plan-k { font-family: var(--mono); font-size: 12px; color: var(--zhu); flex-shrink: 0; width: 76px; }
+#nm-app .nm-plan-v { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#nm-app .nm-plan-v b { color: var(--xuanzhi); font-weight: 600; }
+#nm-app .nm-plan-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .14em; color: var(--xuanzhi-mute); border: 1px solid var(--hairline); padding: 2px 8px; flex-shrink: 0; }
+
+/* 观测哨 */
+#nm-app .nm-watch-intro { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 22px; }
+#nm-app .nm-watch-intro p { font-size: 13.5px; color: var(--xuanzhi-dim); max-width: 64ch; }
+#nm-app .nm-storage-state { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .08em; }
+#nm-app .nm-watch { border: 1px solid var(--hairline); }
+#nm-app .nm-watch-item { display: grid; grid-template-columns: 1fr 320px; gap: 18px; padding: 18px 22px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); }
+#nm-app .nm-watch-item:last-child { border-bottom: none; }
+#nm-app .nm-watch-item h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 5px; }
+#nm-app .nm-watch-item h5 b { font-family: var(--mono); color: var(--jin); font-weight: 500; font-size: 12px; margin-right: 8px; }
+#nm-app .nm-watch-item .nm-watch-desc { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.75; }
+#nm-app .nm-watch-ctrl { display: flex; flex-direction: column; gap: 9px; }
+#nm-app .nm-status-row { display: flex; gap: 6px; }
+#nm-app .nm-status-btn { flex: 1; font-family: var(--sans); font-size: 11.5px; letter-spacing: .08em; padding: 7px 0; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi-mute); cursor: pointer; transition: all .15s; }
+#nm-app .nm-status-btn:hover { color: var(--xuanzhi); }
+#nm-app .nm-status-btn:focus-visible { outline: 1px solid var(--jin); }
+#nm-app .nm-status-btn.on-good { background: var(--qing-dim); border-color: var(--qing); color: var(--xuanzhi); }
+#nm-app .nm-status-btn.on-flat { background: #3a3f33; border-color: var(--xuanzhi-mute); color: var(--xuanzhi); }
+#nm-app .nm-status-btn.on-bad { background: var(--zhu-dim); border-color: var(--zhu); color: var(--xuanzhi); }
+#nm-app .nm-watch-note { width: 100%; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi); font-family: var(--sans); font-size: 12.5px; padding: 8px 10px; resize: vertical; min-height: 38px; line-height: 1.6; }
+#nm-app .nm-watch-note:focus { outline: 1px solid var(--jin); }
+#nm-app .nm-watch-note::placeholder { color: var(--xuanzhi-mute); }
+#nm-app .nm-watch-stamp { font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); text-align: right; min-height: 14px; }
+
+/* 页脚 */
+#nm-app .nm-foot { margin-top: 66px; border-top: 1px solid var(--hairline); padding-top: 24px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+#nm-app .nm-foot p { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .06em; line-height: 1.9; max-width: 66ch; }
+#nm-app .nm-foot .nm-foot-meta { text-align: right; font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); line-height: 2; flex-shrink: 0; }
+
+@media (max-width: 860px) {
+  #nm-app .nm-grid-2, #nm-app .nm-grid-3, #nm-app .nm-out3 { grid-template-columns: 1fr; }
+  #nm-app .nm-watch-item { grid-template-columns: 1fr; }
+  #nm-app .nm-mast-seal { display: none; }
+  #nm-app .nm-nav button { flex: 1 1 30%; font-size: 12.5px; letter-spacing: .04em; }
+  #nm-app .nm-row, #nm-app .nm-scale-row { grid-template-columns: 1fr; gap: 4px; }
+  #nm-app .nm-twin { grid-template-columns: 1fr; }
+  #nm-app .nm-twin .nm-twin-mid { padding: 6px; }
+  #nm-app .nm-nest-row, #nm-app .nm-plan-row { flex-direction: column; gap: 3px; }
+  #nm-app .nm-nest-row .nm-nest-k, #nm-app .nm-plan-k { width: auto; }
+}
+
+#nm-app { border-radius: var(--radius-lg); }
+
+.nongmingong-module-wrap {
+  margin: calc(-1 * var(--card-padding)) calc(-1 * var(--card-padding));
+  max-width: none;
+}

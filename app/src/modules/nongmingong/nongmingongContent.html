@@ -1,0 +1,433 @@
+<div class="nm-shell">
+
+  <!-- 题头 -->
+  <header class="nm-mast">
+    <div>
+      <div class="nm-mast-meta">ChinaOS · MODULE <b>GY-06</b> · 人群画像分层 · 第四子集</div>
+      <h1 class="nm-title">农民工<span class="nm-title-sub">未完成的迁徙 · 系统的换页内存</span></h1>
+    </div>
+    <div class="nm-mast-seal">寄存于路上</div>
+  </header>
+
+  <!-- 换页内存签名图 -->
+  <div class="nm-found" aria-label="换页内存示意图:这个人群是系统的可换页内存,需要时调入城市,不需要时换出回乡,户籍分页表从不为他们登记常驻地址">
+    <svg viewBox="0 0 1000 300" xmlns="http://www.w3.org/2000/svg" role="img">
+      <!-- 上层:城市现代生活 -->
+      <rect x="120" y="18" width="760" height="40" fill="#1b2028" stroke="#5d7489" stroke-width="1.5"/>
+      <text x="500" y="43" font-size="13" fill="#5d7489" text-anchor="middle" font-family="sans-serif" letter-spacing="1.5">城市现代生活 · 世界工厂 · 城市毛细血管 · 基建与服务的底层劳动</text>
+      <!-- 调入/调出箭头 -->
+      <path d="M 175 30 L 230 70" stroke="#b5483a" stroke-width="2" marker-end="url(#nmArrow)"/>
+      <text x="120" y="34" font-size="11" fill="#b5483a" font-family="mono" text-anchor="middle">swap in</text>
+      <path d="M 770 70 L 825 30" stroke="#5d7489" stroke-width="2" marker-end="url(#nmArrow)"/>
+      <text x="880" y="34" font-size="11" fill="#5d7489" font-family="mono" text-anchor="middle">swap out</text>
+      <!-- 承重梁:3.01亿流动劳动力(实线) -->
+      <rect x="120" y="82" width="760" height="52" fill="#1b2028" stroke="#b5483a" stroke-width="2"/>
+      <text x="500" y="106" font-size="15" fill="#d6cfc2" text-anchor="middle" font-family="serif" letter-spacing="2">农民工 · 3.01 亿流动劳动力(本地 1.21 亿 + 外出 1.80 亿)</text>
+      <text x="500" y="124" font-size="11" fill="#8f897d" text-anchor="middle" font-family="sans-serif">平均年龄 43.3 岁 · 50 岁以上 32.0%(历史新高)· 月均 5000 元+(无社保折价)</text>
+      <!-- 分页表:户籍 -->
+      <rect x="120" y="150" width="760" height="22" fill="none" stroke="#7d3a31" stroke-width="1" stroke-dasharray="2 4"/>
+      <text x="500" y="165" font-size="10.5" fill="#7d3a31" text-anchor="middle" font-family="mono">户籍 · 内存分页表 · 从不为他们登记常驻地址</text>
+      <!-- 下方两个虚线空洞 -->
+      <rect x="200" y="192" width="260" height="78" fill="none" stroke="#7d3a31" stroke-width="1" stroke-dasharray="4 5"/>
+      <text x="330" y="224" font-size="13" fill="#7d3a31" text-anchor="middle" font-family="serif">城市户籍</text>
+      <text x="330" y="246" font-size="10.5" fill="#5c5850" text-anchor="middle" font-family="sans-serif">不被写入 · 半市民化 2.5 亿</text>
+      <rect x="540" y="192" width="260" height="78" fill="none" stroke="#7d3a31" stroke-width="1" stroke-dasharray="4 5"/>
+      <text x="670" y="224" font-size="13" fill="#7d3a31" text-anchor="middle" font-family="serif">农村土地</text>
+      <text x="670" y="246" font-size="10.5" fill="#5c5850" text-anchor="middle" font-family="sans-serif">回不去的备份 · 空心化的养老</text>
+      <text x="940" y="186" font-size="10" fill="#7d3a31" text-anchor="end" font-family="mono">↕ 双向悬空</text>
+      <defs>
+        <marker id="nmArrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M1,1 L6,4 L1,7" fill="none" stroke="currentColor" stroke-width="1.5"/></marker>
+      </defs>
+    </svg>
+    <div class="nm-found-caption">总框架:这个人群是 China OS 的换页内存(Swap Memory)——需要时被调入城市(swap in),不需要时被换出回乡(swap out),而户籍这张「内存分页表」从不为他们登记常驻地址。三十年来系统的高速运转建立在这种自由换页之上:城市得到劳动力而不必支付市民化成本,危机得到缓冲而不必出现贫民窟。上层的一切都压在这条 3.01 亿的承重梁上;但梁的下方,本应托住它的两根支柱——城市户籍(不被写入)与农村土地(回不去的备份)——全是虚线空洞。双向悬空:既没有常驻城市的地址,也回不到可领养老的农村。</div>
+  </div>
+
+  <!-- 页签 -->
+  <nav class="nm-nav" role="tablist">
+    <button role="tab" data-panel="nm-p-m1" class="is-active">双峰规模</button>
+    <button role="tab" data-panel="nm-p-m2">户籍机器</button>
+    <button role="tab" data-panel="nm-p-m3">认同悬置</button>
+    <button role="tab" data-panel="nm-p-m4">教育再生产</button>
+    <button role="tab" data-panel="nm-p-m5">老去的一代</button>
+    <button role="tab" data-panel="nm-p-m6">经济换岗</button>
+    <button role="tab" data-panel="nm-p-m7">县域回流</button>
+    <button role="tab" data-panel="nm-p-m8">政治形态学</button>
+    <button role="tab" data-panel="nm-p-watch">合成 · 观测哨</button>
+  </nav>
+
+  <!-- ════ M1 双峰规模 ════ -->
+  <section class="nm-panel is-active" id="nm-p-m1">
+    <div class="nm-sec-head"><h2>M1 · 规模与双峰</h2><span class="nm-sec-tag">一个名字 · 两个人群</span></div>
+    <p class="nm-lede"><b>「农民工」这个统计口径里装着两个几乎没有交集的人群,用同一个名字掩盖了一场代际断裂。</b>先看 2025 年的存量与结构,再看代际谱系。</p>
+
+    <div class="nm-scale">
+      <div class="nm-scale-row core">
+        <div class="nm-scale-num"><span class="n">3.01亿</span><span class="u">总量 · +0.5%</span></div>
+        <div class="nm-scale-body"><h5>2025 年总量 30115 万</h5><p>增量近停滞,存量见顶。本地 12109 万,外出 18006 万(外出中省内流动占比续升)。</p></div>
+      </div>
+      <div class="nm-scale-row">
+        <div class="nm-scale-num"><span class="n">43.3岁</span><span class="u">平均年龄 · 逐年上行</span></div>
+        <div class="nm-scale-body"><h5>50 岁以上占 32.0%(连年历史新高)</h5><p>40 岁及以下占 44.2%。年龄结构正在快速老化,这是存量见顶的直接表征。</p></div>
+      </div>
+      <div class="nm-scale-row">
+        <div class="nm-scale-num"><span class="n">5000元+</span><span class="u">月均 · 名义工资</span></div>
+        <div class="nm-scale-body"><h5>「无社保折价」后的名义工资</h5><p>把本应计入的养老、医疗、工伤、失业、住房五险一金折算回去,<b>真实劳动报酬被系统性低估 30–40%</b>。</p></div>
+      </div>
+    </div>
+
+    <h3 class="nm-h3">双峰结构:同一个名字,两个不相交的人群</h3>
+    <div class="nm-twin">
+      <div class="nm-twin-a"><h6>第一峰 · 老去的一代</h6><p>1980 年前出生,建筑工地的主力,超龄清退令的对象。目标函数是挣钱回乡盖房,城市是工作场所而非生活预期。</p></div>
+      <div class="nm-twin-mid">≠</div>
+      <div class="nm-twin-b"><h6>第二峰 · 农三代(新生代)</h6><p>1995/2000 后出生,已汇入平台经济(骑手/快递/网约车)。在城市长大或长期生活,不会务农、不愿回村。<span class="nm-xref" style="margin-top:8px;">↗ GY-05 L1 · 农民工3.0</span></p></div>
+    </div>
+
+    <h3 class="nm-h3">三代谱系:工作场所在变,户籍地基不变</h3>
+    <div class="nm-card" style="padding:6px 22px;">
+      <div class="nm-rows" style="border-top:none;">
+        <div class="nm-row"><span class="nm-row-k">一代 · 1990s</span><span class="nm-row-v"><b>进工地</b> — 挣钱回乡盖房。城市是临时谋生地。</span></div>
+        <div class="nm-row"><span class="nm-row-k">二代 · 2000s</span><span class="nm-row-v"><b>进工厂</b> — 珠三角流水线。开始长期居留城市。</span></div>
+        <div class="nm-row"><span class="nm-row-k k-zhu">三代 · 2015 后</span><span class="nm-row-v"><b>进平台</b> — 骑手/快递/网约车。完全城市化的生活方式。<b>每一代的物理工作场所在变,户籍地基的缺失一字未变。</b></span></div>
+      </div>
+    </div>
+
+    <div class="nm-verdict">
+      <span class="nm-verdict-tag">M1 判词</span>
+      增量见顶意味着「无限劳动力供给」时代结束——<b>刘易斯拐点已过十年</b>,但权利结构是按「无限供给」时代设计的,至今未随稀缺性重新定价。劳动力市场已经从买方市场转向结构性短缺(制造业招工难与青年失业并存),而议价机制没有跟上——<b>因为议价从来不通过市场,而通过制度,制度不动。</b>
+      <span class="nm-xref">↗ GY-05 L1 · 规模换人(农三代被截流)</span>
+    </div>
+  </section>
+
+  <!-- ════ M2 户籍机器 ════ -->
+  <section class="nm-panel" id="nm-p-m2">
+    <div class="nm-sec-head"><h2>M2 · 户籍机器</h2><span class="nm-sec-tag">半市民化的精确设计 · 抢人才,不要人</span></div>
+    <p class="nm-lede"><b>户籍制度在 2014 年后的改革不是在拆除门槛,而是在把门槛改造成筛子。</b>这台机器有四道工序,拆开看。</p>
+
+    <div class="nm-art">
+      <h5><b>术一</b>名义放开的错位 · 放开的地方没人去</h5>
+      <p>300 万以下城市全面放开、500 万以下放宽——但人口流入的目的地恰恰是 500 万以上的大城市。<b>放开的地方没人去,想去的地方不放开。</b>放开本身被设计成无效的善意。</p>
+    </div>
+    <div class="nm-art">
+      <h5><b>术二</b>积分落户 · 反向瞄准的算法</h5>
+      <p>积分制的筛选逻辑:学历、社保年限、房产、年龄倒扣分——<b>每一项都精确反向瞄准农民工的弱项</b>。这不是技术中性的管理工具,而是按人力资本对人口分层的显式算法。</p>
+    </div>
+    <div class="nm-art">
+      <h5><b>术三</b>半市民化 · 2.5 亿人的差值</h5>
+      <p>常住人口城镇化率约 67%,户籍人口城镇化率不到 50%——<b>中间近 2.5 亿人的差值就是这个人群</b>:劳动在城市、权利在农村、人在两者之间。</p>
+      <div class="nm-out3">
+        <div><h6>子女教育</h6><p>积分入学受限,中高考多数返乡。</p></div>
+        <div><h6>医疗保障</h6><p>异地报销折扣,缴存地与就医地分离。</p></div>
+        <div><h6>保障房 · 养老</h6><p>保障房设户籍门槛;养老缴存地与领取地分离。</p></div>
+      </div>
+    </div>
+    <div class="nm-art">
+      <h5><b>术四</b>分离机 · 价值留城市,成本退农村</h5>
+      <p>系统收益测算:<b>每一个不落户的劳动者,城市每年节省数万元公共服务成本。</b>三十年累计,这是中国版原始积累的核心暗账之一——户籍是一台把劳动力价值留在城市、把抚养成本退回农村的分离机。</p>
+    </div>
+
+    <div class="nm-verdict">
+      <span class="nm-verdict-tag">M2 判词</span>
+      贫民窟的缺席被引为治理优越性证据,但其对价是把贫民窟拆散成<b>时间</b>(青春在城市、老年在农村)与<b>空间</b>(劳动在城市、家庭在县域)的分布式形态。<b>系统不是消灭了贫民窟,是把它分页存储了。</b>
+      <span class="nm-xref">↗ GY-02 合法性机器 · 治理绩效叙事的选择性计账</span>
+    </div>
+  </section>
+
+  <!-- ════ M3 认同悬置 ════ -->
+  <section class="nm-panel" id="nm-p-m3">
+    <div class="nm-sec-head"><h2>M3 · 新生代的认同悬置</h2><span class="nm-sec-tag">参照系断裂 · 出来就是赚 vs 留不下就是亏</span></div>
+    <p class="nm-lede"><b>第一代与新生代的根本区别不在年龄,在参照系</b>——一代比照的是农村(出来就是赚),新生代比照的是城市(留不下就是亏)。预期结构完全不同,同样的制度安排产生完全不同的政治化学。</p>
+
+    <div class="nm-twin">
+      <div class="nm-twin-a"><h6>一代 · 比照农村</h6><p>目标函数明确(挣钱-寄钱-回乡盖房-养老),城市是工作场所不是生活预期,忍耐被回乡叙事补偿。</p></div>
+      <div class="nm-twin-mid">≠</div>
+      <div class="nm-twin-b"><h6>新生代 · 比照城市</h6><p>多数在城市长大或长期生活,不会务农、不愿回村,消费方式、婚恋预期、子女教育想象全部城市化——<b>但分页表不记录他们。</b></p></div>
+    </div>
+    <p class="nm-lede" style="margin-top:18px;">「回不去的农村,留不下的城市」不是文学修辞,<b>是制度设计的直接输出。</b></p>
+
+    <h3 class="nm-h3">认同悬置的行为后果</h3>
+    <div class="nm-card" style="padding:6px 22px;">
+      <div class="nm-rows" style="border-top:none;">
+        <div class="nm-row"><span class="nm-row-k">储蓄行为</span><span class="nm-row-v">储蓄率低于一代——<b>不再为回乡积累</b>,因为没有回乡的预期。</span></div>
+        <div class="nm-row"><span class="nm-row-k">就业行为</span><span class="nm-row-v">跳槽率高,对「吃苦叙事」免疫。被告知人生大概率不如预期的世代逻辑在此同样成立,且<b>叠加户籍折扣</b>。</span></div>
+        <div class="nm-row"><span class="nm-row-k k-zhu">婚姻挤压</span><span class="nm-row-v">出生性别比失衡沉积的约三千万过剩男性,主要沉积在这个人群的<b>县域端</b>。彩礼通胀实质是县域婚姻市场的稀缺性定价。</span></div>
+      </div>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="nm-xref">↗ GY-03 总览 · 不如预期的世代逻辑(叠加户籍折扣)</span>
+      <span class="nm-xref">↗ GY-03 CH-01 · 双重错配(高学历女性与县域过剩男性互不可见)</span>
+    </div>
+
+    <h3 class="nm-h3">「全顺民」假设的裂缝:三个减压阀,没有一个是出口</h3>
+    <p class="nm-lede" style="margin-bottom:18px;">一代的忍耐有回乡叙事兜底,<b>新生代没有兜底叙事。</b>其能量目前被三个通道吸收——但三个通道都是减压阀,没有一个是出口。</p>
+    <div class="nm-grid-3">
+      <div class="nm-card"><span class="nm-eyebrow">通道一</span><h4>平台零工原子化</h4><p>站点分散、众包无同事,组织意愿被瓦解。<span class="nm-xref" style="margin-top:6px;">↗ GY-05 L6</span></p></div>
+      <div class="nm-card"><span class="nm-eyebrow">通道二</span><h4>短视频注意力沉没</h4><p>把过剩的时间与情绪沉没进算法注意力市场。</p></div>
+      <div class="nm-card"><span class="nm-eyebrow">通道三</span><h4>县域回流降压</h4><p>把矛盾从一线批发转售给县域。详见 M7。</p></div>
+    </div>
+
+    <div class="nm-verdict">
+      <span class="nm-verdict-tag">M3 判词</span>
+      新生代农民工是「<b>城市化了的人 × 未城市化的权利</b>」这个矛盾的人格化。一代人的问题是辛苦,新生代的问题是悬置——<b>辛苦可以被收入补偿,悬置不能。</b>
+    </div>
+  </section>
+
+  <!-- ════ M4 教育再生产 ════ -->
+  <section class="nm-panel" id="nm-p-m4">
+    <div class="nm-sec-head"><h2>M4 · 教育再生产</h2><span class="nm-sec-tag">阶层的代际传送带 · 三道精确闸门</span></div>
+    <p class="nm-lede"><b>这个人群的子代教育被三道闸门精确分流,机会结构的再生产已经制度化运转两代人。</b></p>
+
+    <div class="nm-nest">
+      <div class="nm-nest-row"><span class="nm-nest-k">闸门一 · 留守</span><span class="nm-nest-v">峰值期农村留守儿童约 <b>6000–7000 万</b>(口径不一)。随迁与留守的取舍本身就是户籍机器强加的家庭结构手术。留守的认知发展、心理健康代价已有大量追踪研究确认——<b>这是把抚养成本退回农村的人力资本利息。</b></span></div>
+      <div class="nm-nest-row"><span class="nm-nest-k">闸门二 · 中高考壁垒</span><span class="nm-nest-v">随迁子女可以在城市读完初中,但中考/高考多数必须返乡——<b>教育在最关键的衔接点强制换页。</b>返乡考试 = 课标不衔接 + 家庭分离 + 录取线差异的三重惩罚。</span></div>
+      <div class="nm-nest-row"><span class="nm-nest-k">闸门三 · 普职分流</span><span class="nm-nest-v">约一半初中毕业生进入中职序列,农民工子代在分流中的占比远超城市子代。职教在理念上是德国双元制,在现实中多数是次级劳动力市场的预备队——<b>新生代农民工的再生产由此闭环。</b></span></div>
+    </div>
+
+    <h3 class="nm-h3">对照「小镇做题家」叙事</h3>
+    <div class="nm-card">
+      <p style="font-size:14px; line-height:1.95; color:var(--xuanzhi);">能通过高考通道上行的农村子弟是<b>幸存者偏差</b>,且其通道正在变窄——重点高校农村生源比例长期走低,专项计划是补丁不是结构。把个别上行者的故事讲成普遍机会,正是这套再生产机制最有效的意识形态外衣。</p>
+    </div>
+
+    <div class="nm-verdict">
+      <span class="nm-verdict-tag">M4 判词</span>
+      GY-03 的青年问题是「<b>上行通道收窄</b>」,这个人群的子代问题是「<b>通道入口就不在你的地图上</b>」。两者叠加处,即中国机会结构的真实底图。
+      <span class="nm-xref">↗ GY-01 变量A · 人力资本错配的最大单一来源</span>
+    </div>
+  </section>
+
+  <!-- ════ M5 老去的一代 ════ -->
+  <section class="nm-panel" id="nm-p-m5">
+    <div class="nm-sec-head"><h2>M5 · 老去的第一代</h2><span class="nm-sec-tag">没有退休这回事 · 已经到账的账单</span></div>
+    <p class="nm-lede"><b>第一代农民工正在进入一场制度从未为他们设计过的老年</b>——「退而不能休」是这个系统最确定、最临近、规模最大的账单之一。</p>
+
+    <h3 class="nm-h3">规模与养老金双轨</h3>
+    <div class="nm-card" style="padding:6px 22px;">
+      <div class="nm-rows" style="border-top:none;">
+        <div class="nm-row"><span class="nm-row-k">规模</span><span class="nm-row-v"><b>50 岁以上农民工约 9600 万</b>(32% × 3.01 亿),且逐年增加。60 岁以上仍在务工者数千万。</span></div>
+        <div class="nm-row"><span class="nm-row-k k-zhu">养老金双轨</span><span class="nm-row-v">城乡居民养老保险月均约 <b>200 元上下</b>——是城镇职工养老金(约 3700 元/月量级)的<b>二十分之一量级</b>。一个为城市建设劳动三十年的建筑工,老年领取的是农村标准。</span></div>
+      </div>
+    </div>
+
+    <h3 class="nm-h3">两道下行的闸:清退令与职业病</h3>
+    <div class="nm-grid-2">
+      <div class="nm-card"><span class="nm-eyebrow">超龄清退令</span><h4>清退不是退休,是降级</h4><p>2019 起多地建筑业禁用 60 岁以上工人。<b>以安全之名将最无积蓄的一代赶出收入最高的工地</b>,挤入保安、保洁、园林等更低薪的灰色续工,或回乡务农。</p></div>
+      <div class="nm-card"><span class="nm-eyebrow">工伤与尘肺</span><h4>完整的返贫链条</h4><p>职业病账单集中在这一代爆发。尘肺病农民工估计数十万至上百万,<b>认定难(劳动关系举证)→ 治疗贵 → 返贫链条完整。</b></p></div>
+    </div>
+
+    <h3 class="nm-h3">与 GY-05 的镜像:未来已提前到货</h3>
+    <div class="nm-twin">
+      <div class="nm-twin-a"><h6>GY-05 零工 · 预演</h6><p>零工人群是「2040 年的低年金世代」——养老缴费空窗的预定名单,尚在推演中。</p></div>
+      <div class="nm-twin-mid">→</div>
+      <div class="nm-twin-b"><h6>第一代农民工 · 实证</h6><p>第一代农民工是「2025 年已经到账的低年金世代」。<b>未来不需要推演,它已经以第一代农民工的形态提前到货。</b></p></div>
+    </div>
+
+    <div class="nm-verdict">
+      <span class="nm-verdict-tag">M5 判词</span>
+      系统对第一代的隐性承诺是「<b>青春换工资,老年靠土地</b>」。土地养老在空心化、老龄化的农村已经破产,而系统拒绝把这笔账重新入账。<b>观测这笔账如何处理,就是观测系统对所有「蓄水池人群」最终态度的实验。</b>
+      <span class="nm-xref">↗ GY-05 L4 · 2040 低年金世代(本模块为已到账实证)</span>
+    </div>
+  </section>
+
+  <!-- ════ M6 经济换岗 ════ -->
+  <section class="nm-panel" id="nm-p-m6">
+    <div class="nm-sec-head"><h2>M6 · 经济功能的换岗</h2><span class="nm-sec-tag">从世界工厂到城市毛细血管 · 第三次换岗</span></div>
+    <p class="nm-lede">这个人群的就业结构正在经历<b>第三次换岗</b>——从制造业流水线换到城市服务业与平台。宏观叙事称之为转型,<b>微观体感是从有合同的工厂换到无合同的街头。</b></p>
+
+    <div class="nm-squeeze" aria-label="两个传统蓄水池放水,平台唯一进水示意">
+      <svg viewBox="0 0 1000 200" xmlns="http://www.w3.org/2000/svg" role="img">
+        <!-- 制造业池(放水) -->
+        <rect x="60" y="50" width="240" height="90" fill="#1b2028" stroke="#2a2f38" stroke-width="1.5"/>
+        <text x="180" y="90" font-size="13" fill="#8f897d" text-anchor="middle" font-family="serif">制造业流水线</text>
+        <text x="180" y="110" font-size="10.5" fill="#7d3a31" text-anchor="middle" font-family="sans-serif">外迁 + 黑灯工厂 · 放水</text>
+        <path d="M 180 140 L 180 175" stroke="#7d3a31" stroke-width="2" marker-end="url(#nmDown)"/>
+        <!-- 建筑业池(放水) -->
+        <rect x="380" y="50" width="240" height="90" fill="#1b2028" stroke="#2a2f38" stroke-width="1.5"/>
+        <text x="500" y="90" font-size="13" fill="#8f897d" text-anchor="middle" font-family="serif">建筑工地</text>
+        <text x="500" y="110" font-size="10.5" fill="#7d3a31" text-anchor="middle" font-family="sans-serif">地产周期收缩 · 放水</text>
+        <path d="M 500 140 L 500 175" stroke="#7d3a31" stroke-width="2" marker-end="url(#nmDown)"/>
+        <!-- 平台池(进水) -->
+        <rect x="700" y="50" width="240" height="90" fill="#1b2028" stroke="#b5483a" stroke-width="2"/>
+        <text x="820" y="90" font-size="13" fill="#d6cfc2" text-anchor="middle" font-family="serif">平台 / 城市服务业</text>
+        <text x="820" y="110" font-size="10.5" fill="#b5483a" text-anchor="middle" font-family="sans-serif">唯一还在进水的池子</text>
+        <path d="M 820 30 L 820 48" stroke="#b5483a" stroke-width="2" marker-end="url(#nmDown)"/>
+        <defs>
+          <marker id="nmDown" markerWidth="8" markerHeight="8" refX="4" refY="6" orient="auto"><path d="M1,1 L4,6 L7,1" fill="none" stroke="currentColor" stroke-width="1.5"/></marker>
+        </defs>
+      </svg>
+    </div>
+
+    <h3 class="nm-h3">换岗的四条线索</h3>
+    <div class="nm-card" style="padding:6px 22px;">
+      <div class="nm-rows" style="border-top:none;">
+        <div class="nm-row"><span class="nm-row-k">行业迁移</span><span class="nm-row-v">制造业占比逐年下行,建筑业萎缩(地产下行直接砍掉第一代的主阵地),批发零售、住宿餐饮、居民服务与平台经济占比上行。</span></div>
+        <div class="nm-row"><span class="nm-row-k">双重挤压</span><span class="nm-row-v">制造业外迁(越南/印度/墨西哥)与自动化(黑灯工厂)双重挤压中低技能岗位;建筑业由地产周期决定性收缩——<b>两个传统蓄水池同时放水,平台成为唯一还在进水的池子。</b></span></div>
+        <div class="nm-row"><span class="nm-row-k">收入结构</span><span class="nm-row-v">计件化、日结化、去合同化比例上升。<b>「灵活」覆盖率即权利折扣覆盖率。</b></span></div>
+        <div class="nm-row"><span class="nm-row-k k-zhu">宏观功能不变</span><span class="nm-row-v">无论在流水线还是在电动车上,这个人群始终承担同一职能——<b>以低于市民价格供给城市运转的基础劳动。</b>变的是工头从人换成算法。</span></div>
+      </div>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="nm-xref">↗ GY-05 L1 · 规模换人(平台是唯一进水池)</span>
+      <span class="nm-xref">↗ GY-05 L3 · 算法雇主(工头换成算法)</span>
+    </div>
+
+    <div class="nm-verdict">
+      <span class="nm-verdict-tag">M6 判词</span>
+      三次换岗,岗位形态越来越「自由」,劳动关系越来越稀薄。<b>从工厂到平台不是上升螺旋,是同一权利水位下的水平迁移——池子换了,水位没换。</b>
+    </div>
+  </section>
+
+  <!-- ════ M7 县域回流 ════ -->
+  <section class="nm-panel" id="nm-p-m7">
+    <div class="nm-sec-head"><h2>M7 · 县域回流</h2><span class="nm-sec-tag">缓冲器还是终点站 · 把矛盾批发给县域财政</span></div>
+    <p class="nm-lede">2025 年数据确认<b>省内就业、本地就业占比持续上升</b>——「就近城镇化」正在发生。这既是系统设计的减压阀,也可能是新生代悬置状态的最终着陆点,<b>但县城能否接得住,取决于县域财政这个最脆弱的环节。</b></p>
+
+    <h3 class="nm-h3">拉力与推力</h3>
+    <div class="nm-twin">
+      <div class="nm-twin-a"><h6>拉力 · 县城</h6><p>房价可及、彩礼婚姻市场在县域、子女教育就近解决(绕开随迁壁垒)。</p></div>
+      <div class="nm-twin-mid">←→</div>
+      <div class="nm-twin-b"><h6>推力 · 大城市</h6><p>落户无望、平台收入见顶、35/45 岁年龄墙。趋势确认:外出农民工中省内流动占比逐年上升,跨省长距离迁徙退潮,中西部县城吸纳回流。</p></div>
+    </div>
+
+    <h3 class="nm-h3">县城接得住吗:需求搬到财政最弱的地方</h3>
+    <div class="nm-card">
+      <p style="font-size:14px; line-height:1.95; color:var(--xuanzhi);">县域经济的就业供给主要是<b>体制(编制)、基建(财政)、低端服务业</b>三块——前两块都挂在土地财政与转移支付上。<b style="color:var(--jin);">回流人口把就业需求从市场最强的地方,搬到财政最弱的地方。</b></p>
+      <span class="nm-xref">↗ GY-01 · 地方债死锁(县域承接力的财政天花板)</span>
+    </div>
+
+    <div class="nm-bal">
+      <h5>新叙事兜底 · 也是唯一的债务陷阱</h5>
+      <p>「回得去的县城」替代了一代人的「回得去的农村」,为新生代的悬置提供了一个中间着陆点——这是 M3 三个减压阀中<b>唯一带有真实资产(县城房产)的一个,因此也是唯一可能变成新债务陷阱的一个</b>(县城房价 × 回流接盘)。</p>
+    </div>
+
+    <div class="nm-verdict">
+      <span class="nm-verdict-tag">M7 判词</span>
+      县域回流是系统当前最重要的自发减压机制,相当于把一线城市的矛盾<b>批发转售给县域财政</b>。它能运转多久,与土地财政的残值和转移支付的可持续性同周期——<b>观测哨必须盯住县域端。</b>
+    </div>
+  </section>
+
+  <!-- ════ M8 政治形态学 ════ -->
+  <section class="nm-panel" id="nm-p-m8">
+    <div class="nm-sec-head"><h2>M8 · 政治形态学</h2><span class="nm-sec-tag">低组织化的高频微冲突 · 三个稳定条件正在弱化</span></div>
+    <p class="nm-lede">这个人群的冲突形态三十年来高度稳定——<b>高频、小规模、经济目标、去政治化(讨薪模式)</b>。但支撑这种稳定的三个条件(回乡退路、代际忍耐、增长增量)正在同时弱化。</p>
+
+    <h3 class="nm-h3">经典形态与机器的标准补丁</h3>
+    <div class="nm-card" style="padding:6px 22px;">
+      <div class="nm-rows" style="border-top:none;">
+        <div class="nm-row"><span class="nm-row-k">经典形态</span><span class="nm-row-v"><b>欠薪集体行动</b> — 目标具体(拿钱走人)、不寻求组织化、不外溢政治诉求,政府以「维稳-调解-兑付」流水线处置。恶意欠薪入刑、保证金制度是机器对这一形态的标准化补丁。</span></div>
+        <div class="nm-row"><span class="nm-row-k">组织化天花板</span><span class="nm-row-v">工会的缺席/吸纳双轨;佳士事件确认了帮助这个人群组织化的外部尝试,触碰的是机器最硬的红线。</span></div>
+        <div class="nm-row"><span class="nm-row-k k-zhu">新形态萌芽</span><span class="nm-row-v">平台骑手的分散式停送、建筑工地的塔吊维权剧场化、短视频时代的「曝光维权」——把组织化需求外包给流量算法,<b>用平台的注意力市场替代被禁止的集体谈判。</b></span></div>
+      </div>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="nm-xref">↗ GY-04 核心判断 · 问题从来不是议题,是「组织」</span>
+      <span class="nm-xref">↗ GY-05 L6 · 平台骑手分散式停送(共享新形态)</span>
+    </div>
+
+    <h3 class="nm-h3">形态推演:三态</h3>
+    <div class="nm-bal">
+      <h5>形态 α · 基准 · 延续(概率最高)</h5>
+      <p>讨薪模式延续,县域回流持续泄压,高频微冲突常态化处置。<b>系统当前的稳态。</b></p>
+    </div>
+    <div class="nm-bal" style="border-color:var(--jin-dim); background:rgba(110,93,56,.10);">
+      <h5 style="color:var(--jin);">形态 β · 压力 · 合流</h5>
+      <p>经济下行使欠薪面扩大 + 平台单价持续阴跌 + 清退令挤压老一代——<b>三股不满在县域端合流。</b>标志事件:跨行业、跨工地的同城联动。<b>↗ GY-03 CH-03 公平语法:诉求语言将是「血汗钱」而非任何主义。</b></p>
+    </div>
+    <div class="nm-bal" style="border-color:var(--zhu-dim); background:rgba(181,72,58,.08);">
+      <h5 style="color:var(--zhu);">形态 γ · 尾部 · 挂接 GY-01 尾部情景</h5>
+      <p>宏观硬着陆下蓄水池本身蓄不住水。<b>历史参照不是 1989,是 2008 年底两千万农民工返乡潮</b>——当年靠四万亿与土地缓冲消化,<b style="color:var(--zhu);">下一次两个缓冲都不在了。</b></p>
+    </div>
+
+    <div class="nm-verdict">
+      <span class="nm-verdict-tag">M8 判词</span>
+      这个人群的「稳定」从来不是满意,<b>是退路的存在。</b>一代的退路是农村,新生代的退路被设计为县城。政治形态的关键变量因此只有一个:<b>县城接不接得住。接得住,悬置继续;接不住,3 亿人第一次同时没有退路。</b>
+      <span class="nm-xref">↗ GY-01 尾部情景 · 蓄不住水的蓄水池</span>
+    </div>
+  </section>
+
+  <!-- ════ 合成 · 观测哨 ════ -->
+  <section class="nm-panel" id="nm-p-watch">
+    <div class="nm-sec-head"><h2>M9 · 合成与观测哨</h2><span class="nm-sec-tag">未完成的迁徙 · 年度对账</span></div>
+
+    <div class="nm-verdict" style="margin-top:0; margin-bottom:34px;">
+      <span class="nm-verdict-tag">总判词 · 系统的换页内存</span>
+      农民工是 China OS 运行三十年的<b>换页内存</b>——系统性能的真正来源,从未被写入常驻内存的分页表。第一代用「回乡」叙事完成了自我注销,<b>新生代拒绝注销但无处常驻。</b><br><br>
+      系统当前的解法是把常驻地址批发指向县城——<b>这是一场用最弱的财政承接最大的人群的豪赌。</b>账单已经以第一代「退而不能休」的形态部分到期,新生代的账单(市民化,或者悬置的政治化)在 2030 年代到期。<br><br>
+      与前三个子集合观:青年是「被特定窗口看见」,性少数是「被允许的可见形态=被允许的存在形态」,零工是「被治理成永久的中间态」,农民工则补上第四条规律——<b>一个被当作可换页内存的人群,会被批发寄存于路上:用得最久,登记得最少,回不去也留不下。</b>
+    </div>
+
+    <h3 class="nm-h3">对 GY 系列的四条修正</h3>
+    <div class="nm-fix">
+      <h5><b>修正 · GY-01</b>把市民化作为最大单一内需储备入账</h5>
+      <p>变量A(经济对冲)的需求侧测算,应把「<b>2.5 亿半市民化人口的市民化</b>」作为最大单一内需储备入账——市民化每推进一个百分点,释放的耐用消费与住房需求以千亿计。反向:不推进,则内需天花板就是户籍天花板。</p>
+    </div>
+    <div class="nm-fix">
+      <h5><b>修正 · GY-02</b>血汗钱语法 · 机器最无法宣布非法</h5>
+      <p>合法性机器对这个人群的叙事覆盖最薄(「奋斗者」叙事在 50 岁清退令面前失效)。公平语法(GY-03 CH-03)在此人群的版本是「<b>血汗钱语法</b>」——最古老、最朴素、机器最无法宣布非法的一种。</p>
+    </div>
+    <div class="nm-fix">
+      <h5><b>修正 · GY-03</b>冰河期里温度最低的分层</h5>
+      <p>青年模块的「冰河期世代」应<b>显式包含新生代农民工下沉端</b>——大专以下学历的县域青年,是冰河期里温度最低的分层。</p>
+    </div>
+    <div class="nm-fix">
+      <h5><b>修正 · GY-05</b>「换人」是双向的</h5>
+      <p>零工模块的「换人」(农民工二代 → 下沉白领)在本模块视角下是<b>双向的</b>:白领下沉进平台,农三代也在被平台从工厂上游截流——<b>两股人在同一个池子相遇。</b></p>
+    </div>
+
+    <div class="nm-watch-intro">
+      <p>这个人群的处境变动,关键看三组指针:市民化的真实进度(户籍/常住差值)、第一代账单的处理(清退/养老)、县域豪赌的接得住与否(回流承接力)。逐项标注状态、记录证据,年度与 GY 系列同步对账。状态与备注自动保存在本机。</p>
+      <span class="nm-storage-state" id="nm-storage-state"></span>
+    </div>
+
+    <div class="nm-watch" id="nm-watch-list">
+      <div class="nm-watch-item" data-key="w1">
+        <div><h5><b>W-01</b>农民工总量与平均年龄</h5><p class="nm-watch-desc">总量是否见顶回落、50+ 占比何时破 35%——存量老化的速度计。M1 双峰结构的逐年读数。</p></div>
+        <div class="nm-watch-ctrl"><div class="nm-status-row"><button class="nm-status-btn" data-status="good">向好</button><button class="nm-status-btn" data-status="flat">中性</button><button class="nm-status-btn" data-status="bad">恶化</button></div><textarea class="nm-watch-note" placeholder="证据与备注…"></textarea><div class="nm-watch-stamp"></div></div>
+      </div>
+      <div class="nm-watch-item" data-key="w2">
+        <div><h5><b>W-02</b>户籍/常住城镇化率差值</h5><p class="nm-watch-desc">差值收窄速度 = 市民化的真实进度条(不看发文看差值)。M2 户籍机器是否真正松动的唯一硬指标。</p></div>
+        <div class="nm-watch-ctrl"><div class="nm-status-row"><button class="nm-status-btn" data-status="good">向好</button><button class="nm-status-btn" data-status="flat">中性</button><button class="nm-status-btn" data-status="bad">恶化</button></div><textarea class="nm-watch-note" placeholder="证据与备注…"></textarea><div class="nm-watch-stamp"></div></div>
+      </div>
+      <div class="nm-watch-item" data-key="w3">
+        <div><h5><b>W-03</b>县域就业承接</h5><p class="nm-watch-desc">省内/本地农民工占比、县城新房去化与县域财政自给率——M7 豪赌的三个仪表。回流接得住还是接不住。</p></div>
+        <div class="nm-watch-ctrl"><div class="nm-status-row"><button class="nm-status-btn" data-status="good">向好</button><button class="nm-status-btn" data-status="flat">中性</button><button class="nm-status-btn" data-status="bad">恶化</button></div><textarea class="nm-watch-note" placeholder="证据与备注…"></textarea><div class="nm-watch-stamp"></div></div>
+      </div>
+      <div class="nm-watch-item" data-key="w4">
+        <div><h5><b>W-04</b>超龄清退与续工形态</h5><p class="nm-watch-desc">清退令扩面还是软化、60+ 务工者规模——第一代账单的处理方式。M5 系统态度的实验读数。</p></div>
+        <div class="nm-watch-ctrl"><div class="nm-status-row"><button class="nm-status-btn" data-status="good">向好</button><button class="nm-status-btn" data-status="flat">中性</button><button class="nm-status-btn" data-status="bad">恶化</button></div><textarea class="nm-watch-note" placeholder="证据与备注…"></textarea><div class="nm-watch-stamp"></div></div>
+      </div>
+      <div class="nm-watch-item" data-key="w5">
+        <div><h5><b>W-05</b>随迁子女异地中高考</h5><p class="nm-watch-desc">政策是否触碰录取线结构(而非只开报名口子)——M4 闸门二的松动试金石。教育换页是否真正取消。</p></div>
+        <div class="nm-watch-ctrl"><div class="nm-status-row"><button class="nm-status-btn" data-status="good">向好</button><button class="nm-status-btn" data-status="flat">中性</button><button class="nm-status-btn" data-status="bad">恶化</button></div><textarea class="nm-watch-note" placeholder="证据与备注…"></textarea><div class="nm-watch-stamp"></div></div>
+      </div>
+      <div class="nm-watch-item" data-key="w6">
+        <div><h5><b>W-06</b>欠薪冲突的形态</h5><p class="nm-watch-desc">是否出现跨工地/跨行业同城联动、曝光维权的平台治理强度——M8 形态 β 的先行指标。合流还是延续。</p></div>
+        <div class="nm-watch-ctrl"><div class="nm-status-row"><button class="nm-status-btn" data-status="good">向好</button><button class="nm-status-btn" data-status="flat">中性</button><button class="nm-status-btn" data-status="bad">恶化</button></div><textarea class="nm-watch-note" placeholder="证据与备注…"></textarea><div class="nm-watch-stamp"></div></div>
+      </div>
+      <div class="nm-watch-item" data-key="w7">
+        <div><h5><b>W-07</b>新生代参保率</h5><p class="nm-watch-desc">职工养老/工伤参保率的边际变化、平台强制参保试点扩面(与 GY-05 W 系列共享)。权利水位是否上行。</p></div>
+        <div class="nm-watch-ctrl"><div class="nm-status-row"><button class="nm-status-btn" data-status="good">向好</button><button class="nm-status-btn" data-status="flat">中性</button><button class="nm-status-btn" data-status="bad">恶化</button></div><textarea class="nm-watch-note" placeholder="证据与备注…"></textarea><div class="nm-watch-stamp"></div></div>
+      </div>
+      <div class="nm-watch-item" data-key="w8">
+        <div><h5><b>W-08</b>农村养老金标准</h5><p class="nm-watch-desc">城乡居保基础养老金的调整幅度——系统对「土地养老破产」的对价出价。M5 隐性承诺的兑付温度计。</p></div>
+        <div class="nm-watch-ctrl"><div class="nm-status-row"><button class="nm-status-btn" data-status="good">向好</button><button class="nm-status-btn" data-status="flat">中性</button><button class="nm-status-btn" data-status="bad">恶化</button></div><textarea class="nm-watch-note" placeholder="证据与备注…"></textarea><div class="nm-watch-stamp"></div></div>
+      </div>
+    </div>
+
+    <h3 class="nm-h3">章节规划 · 登记表</h3>
+    <div class="nm-plan">
+      <div class="nm-plan-row"><span class="nm-plan-k">CH-01</span><span class="nm-plan-v"><b>户籍机器解剖</b> — 已并入 M2,可扩展为独立深章:积分制算法逐城对比。</span><span class="nm-plan-tag">待建</span></div>
+      <div class="nm-plan-row"><span class="nm-plan-k">CH-02</span><span class="nm-plan-v"><b>第一代的老年</b> — 尘肺/清退/养老金三联,口述史结构。</span><span class="nm-plan-tag">待建</span></div>
+      <div class="nm-plan-row"><span class="nm-plan-k">CH-03</span><span class="nm-plan-v"><b>县域承接力审计</b> — 财政-就业-房价三表联看,与 GY-01 地方债模块对账。</span><span class="nm-plan-tag">待建</span></div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="nm-foot">
+    <p>方法论:双峰结构严格区分(老去的一代 / 农三代),拒绝用单一「农民工」口径掩盖代际断裂;数据锚定国家统计局《2025 年农民工监测调查报告》(2026-04-30 发布)——总量 30115 万、平均年龄 43.3 岁、50 岁以上 32.0%、月均 5000 元+、半市民化差值约 2.5 亿;户籍机器以「价值留城市、成本退农村」的分离机模型刻画;持平记录县域回流既是减压阀也可能是新债务陷阱。作为人群画像分层第四子集,与子集I(青年)在冰河期/公平语法/机会结构三处咬合,与子集III(零工)共享换人/算法雇主/低年金世代,与 GY-01/GY-02 共用设计令牌与复盘节奏。</p>
+    <div class="nm-foot-meta">
+      ChinaOS · GY-06 · v1.0.0<br>
+      生成 2026-06 丙午年<br>
+      人群画像 子集IV · 关联模块 → GY-01/03/05
+    </div>
+  </footer>
+
+</div>
