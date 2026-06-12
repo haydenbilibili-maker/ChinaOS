@@ -203,7 +203,6 @@
   #qn-app .qn-ch { grid-template-columns: 1fr; gap: 8px; }
   #qn-app .qn-row { grid-template-columns: 1fr; gap: 2px; }
 }
-</style>
 
 #qn-app { border-radius: var(--radius-lg); }
 
