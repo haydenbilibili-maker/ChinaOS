@@ -1,0 +1,270 @@
+@import "../shared/gy/tokens.css";
+
+#la-app .la-shell { max-width: 1060px; margin: 0 auto; padding: 0 28px 96px; }
+
+/* 题头 */
+#la-app .la-mast { padding: 56px 0 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+#la-app .la-mast-meta { font-family: var(--sans); font-size: 11px; letter-spacing: .22em; color: var(--xuanzhi-mute); text-transform: uppercase; }
+#la-app .la-mast-meta b { color: var(--jin); font-weight: 500; }
+#la-app h1.la-title { font-size: clamp(30px, 5vw, 46px); font-weight: 600; letter-spacing: .08em; line-height: 1.3; margin-top: 14px; }
+#la-app h1.la-title .la-title-sub { display: block; font-size: 14px; font-weight: 400; color: var(--xuanzhi-dim); letter-spacing: .3em; margin-top: 10px; }
+#la-app .la-mast-seal { flex-shrink: 0; writing-mode: vertical-rl; font-size: 13px; letter-spacing: .35em; color: var(--zhu); border: 1px solid var(--zhu-dim); padding: 14px 8px; line-height: 1; user-select: none; }
+
+/* 境外节点签名图 */
+#la-app .la-found { margin-top: 44px; border: 1px solid var(--hairline); background: var(--xuan-deep); padding: 22px 24px 12px; }
+#la-app .la-found svg { width: 100%; height: auto; display: block; }
+#la-app .la-found-caption { font-family: var(--sans); font-size: 11.5px; color: var(--xuanzhi-mute); letter-spacing: .04em; padding: 8px 2px 6px; }
+#la-app .la-found-caption b { color: var(--xuanzhi); }
+
+/* 页签 */
+#la-app .la-nav { display: flex; flex-wrap: wrap; margin-top: 30px; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); position: sticky; top: 0; background: var(--xuan); z-index: 10; }
+#la-app .la-nav button { flex: 1 1 auto; background: none; border: none; border-right: 1px solid var(--hairline); color: var(--xuanzhi-dim); font-family: var(--serif); font-size: 14px; letter-spacing: .1em; padding: 15px 9px 13px; cursor: pointer; position: relative; transition: color .2s; white-space: nowrap; }
+#la-app .la-nav button:last-child { border-right: none; }
+#la-app .la-nav button:hover { color: var(--xuanzhi); }
+#la-app .la-nav button:focus-visible { outline: 1px solid var(--jin); outline-offset: -1px; }
+#la-app .la-nav button.is-active { color: var(--xuanzhi); }
+#la-app .la-nav button.is-active::after { content: ""; position: absolute; left: 14%; right: 14%; bottom: -1px; height: 2px; background: var(--zhu); }
+
+/* 通用 */
+#la-app section.la-panel { display: none; padding-top: 50px; }
+#la-app section.la-panel.is-active { display: block; animation: laFade .35s ease; }
+@keyframes laFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { #la-app section.la-panel.is-active { animation: none; } }
+#la-app .la-sec-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 8px; flex-wrap: wrap; }
+#la-app .la-sec-head h2 { font-size: 23px; font-weight: 600; letter-spacing: .1em; }
+#la-app .la-sec-head .la-sec-tag { font-family: var(--sans); font-size: 11px; letter-spacing: .18em; color: var(--xuanzhi-mute); }
+#la-app .la-lede { color: var(--xuanzhi-dim); font-size: 15px; max-width: 76ch; margin-bottom: 34px; }
+#la-app .la-lede b { color: var(--xuanzhi); font-weight: 600; }
+#la-app h3.la-h3 { font-size: 17px; font-weight: 600; letter-spacing: .08em; margin: 40px 0 18px; display: flex; align-items: center; gap: 12px; }
+#la-app h3.la-h3::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
+#la-app .la-card { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 20px 22px; }
+#la-app .la-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+#la-app .la-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+#la-app .la-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+#la-app .la-card p { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.78; }
+#la-app .la-card p b { color: var(--xuanzhi); font-weight: 600; }
+#la-app .la-card .la-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .24em; color: var(--xuanzhi-mute); display: block; margin-bottom: 10px; }
+#la-app .la-verdict { margin-top: 38px; border-left: 2px solid var(--jin); background: var(--xuan-deep); padding: 22px 26px; font-size: 15px; line-height: 2; }
+#la-app .la-verdict .la-verdict-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .3em; color: var(--jin); display: block; margin-bottom: 8px; }
+#la-app .la-verdict b { color: var(--xuanzhi); font-weight: 600; }
+#la-app .la-rows { border-top: 1px solid var(--hairline); }
+#la-app .la-row { display: grid; grid-template-columns: 132px 1fr; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--hairline); font-size: 13px; }
+#la-app .la-row .la-row-k { font-family: var(--mono); font-size: 12px; color: var(--xuanzhi-mute); padding-top: 1px; }
+#la-app .la-row .la-row-k.k-zhu { color: var(--zhu); }
+#la-app .la-row .la-row-v { color: var(--xuanzhi-dim); line-height: 1.78; }
+#la-app .la-row .la-row-v b { color: var(--xuanzhi); font-weight: 600; }
+#la-app .la-xref { display: inline-block; margin-top: 10px; font-family: var(--sans); font-size: 10.5px; letter-spacing: .12em; color: var(--jin); border: 1px solid var(--jin-dim); padding: 3px 9px; margin-right: 6px; }
+
+/* 数据卡 · 大号锚定数 */
+#la-app .la-data3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+#la-app .la-stat { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 18px 20px; border-top: 3px solid var(--zhu); }
+#la-app .la-stat .la-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .22em; color: var(--xuanzhi-mute); display: block; margin-bottom: 9px; }
+#la-app .la-stat .la-stat-n { font-family: var(--mono); font-size: 27px; color: var(--zhu); line-height: 1.1; display: block; }
+#la-app .la-stat .la-stat-u { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .08em; display: block; margin-top: 4px; }
+#la-app .la-stat p { font-size: 12px; color: var(--xuanzhi-dim); line-height: 1.7; margin-top: 10px; }
+#la-app .la-stat p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 谱系阶梯 / 资产分层光谱条 */
+#la-app .la-scale { border: 1px solid var(--hairline); }
+#la-app .la-scale-row { display: grid; grid-template-columns: 150px 1fr; gap: 0; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); }
+#la-app .la-scale-row:last-child { border-bottom: none; }
+#la-app .la-scale-num { padding: 16px 18px; border-right: 1px solid var(--hairline); background: var(--xuan-deep); }
+#la-app .la-scale-num .n { font-family: var(--mono); font-size: 16px; color: var(--xuanzhi); display: block; line-height: 1.3; }
+#la-app .la-scale-num .u { font-family: var(--sans); font-size: 10.5px; color: var(--xuanzhi-mute); letter-spacing: .12em; }
+#la-app .la-scale-row.wide .n { color: var(--xuanzhi-mute); }
+#la-app .la-scale-row.core .la-scale-num { border-left: 3px solid var(--zhu); }
+#la-app .la-scale-row.core .n { color: var(--zhu); }
+#la-app .la-scale-row.green .la-scale-num { border-left: 3px solid var(--qing); }
+#la-app .la-scale-row.green .n { color: var(--qing); }
+#la-app .la-scale-body { padding: 15px 18px; }
+#la-app .la-scale-body h5 { font-size: 13.5px; font-weight: 600; margin-bottom: 4px; }
+#la-app .la-scale-body p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#la-app .la-scale-body p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 资产分层光谱条 */
+#la-app .la-spectrum { border: 1px solid var(--hairline); background: var(--xuan-raise); margin-top: 4px; }
+#la-app .la-spectrum-bar { display: flex; height: 16px; }
+#la-app .la-spectrum-bar > span { flex: 1; }
+#la-app .la-spectrum-bar .s1 { background: var(--jin-dim); }
+#la-app .la-spectrum-bar .s2 { background: #3a3f33; }
+#la-app .la-spectrum-bar .s3 { background: var(--zhu-dim); }
+#la-app .la-spectrum-ends { display: flex; justify-content: space-between; padding: 8px 14px 4px; font-family: var(--mono); font-size: 11px; }
+#la-app .la-spectrum-ends .l { color: var(--jin); }
+#la-app .la-spectrum-ends .r { color: var(--zhu); }
+#la-app .la-spectrum-row { padding: 11px 16px; border-top: 1px solid var(--hairline); font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.7; display: flex; gap: 12px; align-items: baseline; }
+#la-app .la-spectrum-row .t { font-family: var(--mono); font-size: 11px; color: var(--zhu); flex-shrink: 0; width: 120px; }
+#la-app .la-spectrum-row b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 二维分布对照 / ROI账本 dual */
+#la-app .la-dual { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+#la-app .la-dual-col { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#la-app .la-dual-col.anx { border-top: 3px solid var(--zhu); }
+#la-app .la-dual-col.sooth { border-top: 3px solid var(--jin); }
+#la-app .la-dual-col.green { border-top: 3px solid var(--qing); }
+#la-app .la-dual-col h6 { font-family: var(--sans); font-size: 11px; letter-spacing: .14em; padding: 12px 16px 8px; color: var(--xuanzhi-mute); }
+#la-app .la-dual-col.anx h6 b { color: var(--zhu); }
+#la-app .la-dual-col.sooth h6 b { color: var(--jin); }
+#la-app .la-dual-col.green h6 b { color: var(--qing); }
+#la-app .la-dual-step { padding: 10px 16px; border-top: 1px solid var(--hairline); font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.7; display: flex; gap: 10px; align-items: baseline; }
+#la-app .la-dual-step .y { font-family: var(--mono); font-size: 11px; flex-shrink: 0; width: 58px; }
+#la-app .la-dual-col.anx .la-dual-step .y { color: var(--zhu); }
+#la-app .la-dual-col.sooth .la-dual-step .y { color: var(--jin); }
+#la-app .la-dual-col.green .la-dual-step .y { color: var(--qing); }
+#la-app .la-dual-step b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 资源面 vs 风险面对照 */
+#la-app .la-face { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+#la-app .la-face-col { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#la-app .la-face-col.res { border-top: 3px solid var(--qing); }
+#la-app .la-face-col.risk { border-top: 3px solid var(--zhu); }
+#la-app .la-face-col h6 { font-family: var(--sans); font-size: 11px; letter-spacing: .14em; padding: 13px 16px 9px; color: var(--xuanzhi-mute); }
+#la-app .la-face-col.res h6 b { color: var(--qing); }
+#la-app .la-face-col.risk h6 b { color: var(--zhu); }
+#la-app .la-face-item { padding: 11px 16px; border-top: 1px solid var(--hairline); font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#la-app .la-face-item .k { font-family: var(--mono); font-size: 11.5px; display: block; margin-bottom: 3px; }
+#la-app .la-face-col.res .la-face-item .k { color: var(--qing); }
+#la-app .la-face-col.risk .la-face-item .k { color: var(--zhu); }
+#la-app .la-face-item b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 能跨境/不能跨境清单 twin */
+#la-app .la-twinlist { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+#la-app .la-twinlist-col { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#la-app .la-twinlist-col.can { border-top: 3px solid var(--zhu); }
+#la-app .la-twinlist-col.cant { border-top: 3px solid var(--qing); }
+#la-app .la-twinlist-col h6 { font-family: var(--sans); font-size: 11px; letter-spacing: .14em; padding: 13px 16px 9px; color: var(--xuanzhi-mute); }
+#la-app .la-twinlist-col.can h6 b { color: var(--zhu); }
+#la-app .la-twinlist-col.cant h6 b { color: var(--qing); }
+#la-app .la-twinlist-item { padding: 11px 16px; border-top: 1px solid var(--hairline); font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.72; display: flex; gap: 10px; align-items: baseline; }
+#la-app .la-twinlist-item .m { font-family: var(--mono); flex-shrink: 0; }
+#la-app .la-twinlist-col.can .la-twinlist-item .m { color: var(--zhu); }
+#la-app .la-twinlist-col.cant .la-twinlist-item .m { color: var(--qing); }
+#la-app .la-twinlist-item b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 悖论对照 / 双重态 */
+#la-app .la-twin { display: grid; grid-template-columns: 1fr 60px 1fr; gap: 0; border: 1px solid var(--hairline); margin-top: 4px; }
+#la-app .la-twin > div { padding: 16px 18px; }
+#la-app .la-twin .la-twin-a { background: var(--xuan-raise); border-right: 1px solid var(--hairline); }
+#la-app .la-twin .la-twin-mid { background: var(--xuan-deep); display: flex; align-items: center; justify-content: center; font-family: var(--mono); color: var(--zhu); font-size: 18px; }
+#la-app .la-twin .la-twin-b { background: var(--xuan-raise); border-left: 1px solid var(--hairline); }
+#la-app .la-twin h6 { font-family: var(--sans); font-size: 10.5px; letter-spacing: .16em; color: var(--xuanzhi-mute); margin-bottom: 8px; }
+#la-app .la-twin p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.7; }
+#la-app .la-twin p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 三形态卡集合 / tri */
+#la-app .la-tri3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+#la-app .la-tri3 > div { background: var(--xuan-deep); border: 1px solid var(--hairline); padding: 14px 15px; border-bottom: 2px solid var(--jin-dim); }
+#la-app .la-tri3 h6 { font-size: 12.5px; color: var(--jin); font-weight: 600; margin-bottom: 5px; font-family: var(--sans); letter-spacing: .06em; }
+#la-app .la-tri3 p { font-size: 11.5px; color: var(--xuanzhi-dim); line-height: 1.7; }
+#la-app .la-tri3 p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 套娃分层 / 落差 rows */
+#la-app .la-nest { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#la-app .la-nest-row { padding: 13px 18px; border-bottom: 1px solid var(--hairline); font-size: 13px; display: flex; gap: 14px; align-items: baseline; }
+#la-app .la-nest-row:last-child { border-bottom: none; }
+#la-app .la-nest-row .la-nest-k { font-family: var(--mono); font-size: 12px; color: var(--zhu); flex-shrink: 0; width: 140px; }
+#la-app .la-nest-row .la-nest-v { color: var(--xuanzhi-dim); line-height: 1.72; }
+#la-app .la-nest-row .la-nest-v b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 谱系卡 */
+#la-app .la-art { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 18px 20px; margin-bottom: 12px; border-left: 3px solid var(--zhu); }
+#la-app .la-art h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 6px; display: flex; gap: 11px; align-items: baseline; }
+#la-app .la-art h5 b { font-family: var(--mono); color: var(--zhu); font-size: 12px; font-weight: 500; }
+#la-app .la-art p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#la-app .la-art p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 时序链 / 机制链条 */
+#la-app .la-chain { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#la-app .la-chain-row { padding: 13px 18px; border-bottom: 1px solid var(--hairline); font-size: 13px; display: flex; gap: 16px; align-items: baseline; position: relative; }
+#la-app .la-chain-row:last-child { border-bottom: none; }
+#la-app .la-chain-row .la-chain-step { font-family: var(--mono); font-size: 12px; color: var(--zhu); flex-shrink: 0; width: 120px; }
+#la-app .la-chain-row .la-chain-v { color: var(--xuanzhi-dim); line-height: 1.74; }
+#la-app .la-chain-row .la-chain-v b { color: var(--xuanzhi); font-weight: 600; }
+#la-app .la-chain-row.peak { border-left: 3px solid var(--zhu); }
+#la-app .la-chain-row.peak .la-chain-v b { color: var(--zhu); }
+
+/* 时间线 */
+#la-app .la-timeline { border: 1px solid var(--hairline); background: var(--xuan-raise); position: relative; }
+#la-app .la-tl-row { padding: 14px 18px 14px 22px; border-bottom: 1px solid var(--hairline); display: grid; grid-template-columns: 96px 1fr; gap: 16px; align-items: baseline; position: relative; }
+#la-app .la-tl-row:last-child { border-bottom: none; }
+#la-app .la-tl-row::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--zhu-dim); }
+#la-app .la-tl-row.core::before { background: var(--zhu); }
+#la-app .la-tl-time { font-family: var(--mono); font-size: 12px; color: var(--zhu); flex-shrink: 0; }
+#la-app .la-tl-v { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.74; }
+#la-app .la-tl-v b { color: var(--xuanzhi); font-weight: 600; }
+#la-app .la-tl-v .h { color: var(--zhu); font-weight: 600; }
+
+/* 三形态卡 */
+#la-app .la-bal { border: 1px solid var(--qing-dim); background: rgba(65, 89, 78, .08); padding: 18px 20px; margin-bottom: 12px; }
+#la-app .la-bal h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 6px; color: var(--qing); }
+#la-app .la-bal p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#la-app .la-bal p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 修正卡 */
+#la-app .la-fix { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 16px 20px; margin-bottom: 12px; border-left: 3px solid var(--jin); }
+#la-app .la-fix h5 { font-size: 14px; font-weight: 600; margin-bottom: 6px; display: flex; gap: 11px; align-items: baseline; }
+#la-app .la-fix h5 b { font-family: var(--mono); color: var(--jin); font-size: 12px; font-weight: 500; }
+#la-app .la-fix p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#la-app .la-fix p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 章节规划登记表 */
+#la-app .la-plan { border: 1px solid var(--hairline); }
+#la-app .la-plan-row { padding: 14px 18px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); display: flex; gap: 16px; align-items: baseline; }
+#la-app .la-plan-row:last-child { border-bottom: none; }
+#la-app .la-plan-k { font-family: var(--mono); font-size: 12px; color: var(--zhu); flex-shrink: 0; width: 76px; }
+#la-app .la-plan-v { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#la-app .la-plan-v b { color: var(--xuanzhi); font-weight: 600; }
+#la-app .la-plan-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .14em; color: var(--xuanzhi-mute); border: 1px solid var(--hairline); padding: 2px 8px; flex-shrink: 0; }
+
+/* 观测哨 */
+#la-app .la-watch-intro { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 22px; }
+#la-app .la-watch-intro p { font-size: 13.5px; color: var(--xuanzhi-dim); max-width: 64ch; }
+#la-app .la-storage-state { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .08em; }
+#la-app .la-watch { border: 1px solid var(--hairline); }
+#la-app .la-watch-item { display: grid; grid-template-columns: 1fr 320px; gap: 18px; padding: 18px 22px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); }
+#la-app .la-watch-item:last-child { border-bottom: none; }
+#la-app .la-watch-item h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 5px; }
+#la-app .la-watch-item h5 b { font-family: var(--mono); color: var(--jin); font-weight: 500; font-size: 12px; margin-right: 8px; }
+#la-app .la-watch-item .la-watch-desc { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.75; }
+#la-app .la-watch-ctrl { display: flex; flex-direction: column; gap: 9px; }
+#la-app .la-status-row { display: flex; gap: 6px; }
+#la-app .la-status-btn { flex: 1; font-family: var(--sans); font-size: 11.5px; letter-spacing: .08em; padding: 7px 0; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi-mute); cursor: pointer; transition: all .15s; }
+#la-app .la-status-btn:hover { color: var(--xuanzhi); }
+#la-app .la-status-btn:focus-visible { outline: 1px solid var(--jin); }
+#la-app .la-status-btn.on-good { background: var(--qing-dim); border-color: var(--qing); color: var(--xuanzhi); }
+#la-app .la-status-btn.on-flat { background: #3a3f33; border-color: var(--xuanzhi-mute); color: var(--xuanzhi); }
+#la-app .la-status-btn.on-bad { background: var(--zhu-dim); border-color: var(--zhu); color: var(--xuanzhi); }
+#la-app .la-watch-note { width: 100%; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi); font-family: var(--sans); font-size: 12.5px; padding: 8px 10px; resize: vertical; min-height: 38px; line-height: 1.6; }
+#la-app .la-watch-note:focus { outline: 1px solid var(--jin); }
+#la-app .la-watch-note::placeholder { color: var(--xuanzhi-mute); }
+#la-app .la-watch-stamp { font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); text-align: right; min-height: 14px; }
+
+/* 页脚 */
+#la-app .la-foot { margin-top: 66px; border-top: 1px solid var(--hairline); padding-top: 24px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+#la-app .la-foot p { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .06em; line-height: 1.9; max-width: 66ch; }
+#la-app .la-foot .la-foot-meta { text-align: right; font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); line-height: 2; flex-shrink: 0; }
+
+/* 诚实标注小字 */
+#la-app .la-disclaimer { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .04em; margin-top: -22px; margin-bottom: 30px; line-height: 1.7; border-left: 2px solid var(--jin-dim); padding: 4px 0 4px 12px; }
+#la-app .la-disclaimer b { color: var(--jin); font-weight: 500; }
+
+@media (max-width: 860px) {
+  #la-app .la-grid-2, #la-app .la-grid-3, #la-app .la-data3, #la-app .la-tri3,
+  #la-app .la-dual, #la-app .la-face, #la-app .la-twinlist { grid-template-columns: 1fr; }
+  #la-app .la-watch-item { grid-template-columns: 1fr; }
+  #la-app .la-mast-seal { display: none; }
+  #la-app .la-nav button { flex: 1 1 30%; font-size: 12.5px; letter-spacing: .04em; }
+  #la-app .la-row, #la-app .la-scale-row, #la-app .la-tl-row { grid-template-columns: 1fr; gap: 4px; }
+  #la-app .la-twin { grid-template-columns: 1fr; }
+  #la-app .la-twin .la-twin-mid { padding: 6px; }
+  #la-app .la-nest-row, #la-app .la-plan-row, #la-app .la-chain-row { flex-direction: column; gap: 3px; }
+  #la-app .la-nest-row .la-nest-k, #la-app .la-plan-k, #la-app .la-chain-row .la-chain-step { width: auto; }
+  #la-app .la-spectrum-row { flex-direction: column; gap: 3px; }
+  #la-app .la-spectrum-row .t { width: auto; }
+}
+
+#la-app { border-radius: var(--radius-lg); }
+
+.lian-module-wrap {
+  margin: calc(-1 * var(--card-padding)) calc(-1 * var(--card-padding));
+  max-width: none;
+}
