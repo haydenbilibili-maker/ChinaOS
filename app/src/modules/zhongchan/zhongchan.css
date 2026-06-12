@@ -1,0 +1,197 @@
+@import "../shared/gy/tokens.css";
+
+#zc-app .zc-shell { max-width: 1060px; margin: 0 auto; padding: 0 28px 96px; }
+
+/* 题头 */
+#zc-app .zc-mast { padding: 56px 0 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+#zc-app .zc-mast-meta { font-family: var(--sans); font-size: 11px; letter-spacing: .22em; color: var(--xuanzhi-mute); text-transform: uppercase; }
+#zc-app .zc-mast-meta b { color: var(--jin); font-weight: 500; }
+#zc-app h1.zc-title { font-size: clamp(30px, 5vw, 46px); font-weight: 600; letter-spacing: .08em; line-height: 1.3; margin-top: 14px; }
+#zc-app h1.zc-title .zc-title-sub { display: block; font-size: 14px; font-weight: 400; color: var(--xuanzhi-dim); letter-spacing: .3em; margin-top: 10px; }
+#zc-app .zc-mast-seal { flex-shrink: 0; writing-mode: vertical-rl; font-size: 13px; letter-spacing: .35em; color: var(--zhu); border: 1px solid var(--zhu-dim); padding: 14px 8px; line-height: 1; user-select: none; }
+
+/* 质押态签名图 */
+#zc-app .zc-found { margin-top: 44px; border: 1px solid var(--hairline); background: var(--xuan-deep); padding: 22px 24px 12px; }
+#zc-app .zc-found svg { width: 100%; height: auto; display: block; }
+#zc-app .zc-found-caption { font-family: var(--sans); font-size: 11.5px; color: var(--xuanzhi-mute); letter-spacing: .04em; padding: 8px 2px 6px; }
+
+/* 页签 */
+#zc-app .zc-nav { display: flex; flex-wrap: wrap; margin-top: 30px; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); position: sticky; top: 0; background: var(--xuan); z-index: 10; }
+#zc-app .zc-nav button { flex: 1 1 auto; background: none; border: none; border-right: 1px solid var(--hairline); color: var(--xuanzhi-dim); font-family: var(--serif); font-size: 14px; letter-spacing: .1em; padding: 15px 9px 13px; cursor: pointer; position: relative; transition: color .2s; white-space: nowrap; }
+#zc-app .zc-nav button:last-child { border-right: none; }
+#zc-app .zc-nav button:hover { color: var(--xuanzhi); }
+#zc-app .zc-nav button:focus-visible { outline: 1px solid var(--jin); outline-offset: -1px; }
+#zc-app .zc-nav button.is-active { color: var(--xuanzhi); }
+#zc-app .zc-nav button.is-active::after { content: ""; position: absolute; left: 14%; right: 14%; bottom: -1px; height: 2px; background: var(--zhu); }
+
+/* 通用 */
+#zc-app section.zc-panel { display: none; padding-top: 50px; }
+#zc-app section.zc-panel.is-active { display: block; animation: zcFade .35s ease; }
+@keyframes zcFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { #zc-app section.zc-panel.is-active { animation: none; } }
+#zc-app .zc-sec-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 8px; flex-wrap: wrap; }
+#zc-app .zc-sec-head h2 { font-size: 23px; font-weight: 600; letter-spacing: .1em; }
+#zc-app .zc-sec-head .zc-sec-tag { font-family: var(--sans); font-size: 11px; letter-spacing: .18em; color: var(--xuanzhi-mute); }
+#zc-app .zc-lede { color: var(--xuanzhi-dim); font-size: 15px; max-width: 76ch; margin-bottom: 34px; }
+#zc-app .zc-lede b { color: var(--xuanzhi); font-weight: 600; }
+#zc-app h3.zc-h3 { font-size: 17px; font-weight: 600; letter-spacing: .08em; margin: 40px 0 18px; display: flex; align-items: center; gap: 12px; }
+#zc-app h3.zc-h3::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
+#zc-app .zc-card { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 20px 22px; }
+#zc-app .zc-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+#zc-app .zc-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+#zc-app .zc-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+#zc-app .zc-card p { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.78; }
+#zc-app .zc-card p b { color: var(--xuanzhi); font-weight: 600; }
+#zc-app .zc-card .zc-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .24em; color: var(--xuanzhi-mute); display: block; margin-bottom: 10px; }
+#zc-app .zc-verdict { margin-top: 38px; border-left: 2px solid var(--jin); background: var(--xuan-deep); padding: 22px 26px; font-size: 15px; line-height: 2; }
+#zc-app .zc-verdict .zc-verdict-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .3em; color: var(--jin); display: block; margin-bottom: 8px; }
+#zc-app .zc-verdict b { color: var(--xuanzhi); font-weight: 600; }
+#zc-app .zc-rows { border-top: 1px solid var(--hairline); }
+#zc-app .zc-row { display: grid; grid-template-columns: 132px 1fr; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--hairline); font-size: 13px; }
+#zc-app .zc-row .zc-row-k { font-family: var(--mono); font-size: 12px; color: var(--xuanzhi-mute); padding-top: 1px; }
+#zc-app .zc-row .zc-row-k.k-zhu { color: var(--zhu); }
+#zc-app .zc-row .zc-row-v { color: var(--xuanzhi-dim); line-height: 1.78; }
+#zc-app .zc-row .zc-row-v b { color: var(--xuanzhi); font-weight: 600; }
+#zc-app .zc-xref { display: inline-block; margin-top: 10px; font-family: var(--sans); font-size: 10.5px; letter-spacing: .12em; color: var(--jin); border: 1px solid var(--jin-dim); padding: 3px 9px; margin-right: 6px; }
+
+/* 口径阶梯(Z1) */
+#zc-app .zc-scale { border: 1px solid var(--hairline); }
+#zc-app .zc-scale-row { display: grid; grid-template-columns: 150px 1fr; gap: 0; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); }
+#zc-app .zc-scale-row:last-child { border-bottom: none; }
+#zc-app .zc-scale-num { padding: 16px 18px; border-right: 1px solid var(--hairline); background: var(--xuan-deep); }
+#zc-app .zc-scale-num .n { font-family: var(--mono); font-size: 21px; color: var(--xuanzhi); display: block; line-height: 1.2; }
+#zc-app .zc-scale-num .u { font-family: var(--sans); font-size: 10.5px; color: var(--xuanzhi-mute); letter-spacing: .12em; }
+#zc-app .zc-scale-row.wide .n { color: var(--xuanzhi-mute); }
+#zc-app .zc-scale-row.core .zc-scale-num { border-left: 3px solid var(--zhu); }
+#zc-app .zc-scale-row.core .n { color: var(--zhu); }
+#zc-app .zc-scale-body { padding: 15px 18px; }
+#zc-app .zc-scale-body h5 { font-size: 13.5px; font-weight: 600; margin-bottom: 4px; }
+#zc-app .zc-scale-body p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.72; }
+
+/* 压力数据卡(Z2) · 大号锚定数 */
+#zc-app .zc-data3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+#zc-app .zc-stat { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 18px 20px; border-top: 3px solid var(--zhu); }
+#zc-app .zc-stat .zc-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .22em; color: var(--xuanzhi-mute); display: block; margin-bottom: 9px; }
+#zc-app .zc-stat .zc-stat-n { font-family: var(--mono); font-size: 27px; color: var(--zhu); line-height: 1.1; display: block; }
+#zc-app .zc-stat .zc-stat-u { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .08em; display: block; margin-top: 4px; }
+#zc-app .zc-stat p { font-size: 12px; color: var(--xuanzhi-dim); line-height: 1.7; margin-top: 10px; }
+#zc-app .zc-stat p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 行为三联(Z2/Z5) */
+#zc-app .zc-tri3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+#zc-app .zc-tri3 > div { background: var(--xuan-deep); border: 1px solid var(--hairline); padding: 14px 15px; border-bottom: 2px solid var(--jin-dim); }
+#zc-app .zc-tri3 h6 { font-size: 12.5px; color: var(--jin); font-weight: 600; margin-bottom: 5px; font-family: var(--sans); letter-spacing: .06em; }
+#zc-app .zc-tri3 p { font-size: 11.5px; color: var(--xuanzhi-dim); line-height: 1.7; }
+#zc-app .zc-tri3 p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 剪刀差对照(Z3) */
+#zc-app .zc-twin { display: grid; grid-template-columns: 1fr 60px 1fr; gap: 0; border: 1px solid var(--hairline); margin-top: 4px; }
+#zc-app .zc-twin > div { padding: 16px 18px; }
+#zc-app .zc-twin .zc-twin-a { background: var(--xuan-raise); border-right: 1px solid var(--hairline); }
+#zc-app .zc-twin .zc-twin-mid { background: var(--xuan-deep); display: flex; align-items: center; justify-content: center; font-family: var(--mono); color: var(--zhu); font-size: 18px; }
+#zc-app .zc-twin .zc-twin-b { background: var(--xuan-raise); border-left: 1px solid var(--hairline); }
+#zc-app .zc-twin h6 { font-family: var(--sans); font-size: 10.5px; letter-spacing: .16em; color: var(--xuanzhi-mute); margin-bottom: 8px; }
+#zc-app .zc-twin p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.7; }
+#zc-app .zc-twin p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 套娃分层 / 纵向链 */
+#zc-app .zc-nest { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#zc-app .zc-nest-row { padding: 13px 18px; border-bottom: 1px solid var(--hairline); font-size: 13px; display: flex; gap: 14px; align-items: baseline; }
+#zc-app .zc-nest-row:last-child { border-bottom: none; }
+#zc-app .zc-nest-row .zc-nest-k { font-family: var(--mono); font-size: 12px; color: var(--zhu); flex-shrink: 0; width: 140px; }
+#zc-app .zc-nest-row .zc-nest-v { color: var(--xuanzhi-dim); line-height: 1.72; }
+#zc-app .zc-nest-row .zc-nest-v b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 三引擎卡(Z4) */
+#zc-app .zc-art { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 18px 20px; margin-bottom: 12px; border-left: 3px solid var(--zhu); }
+#zc-app .zc-art h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 6px; display: flex; gap: 11px; align-items: baseline; }
+#zc-app .zc-art h5 b { font-family: var(--mono); color: var(--zhu); font-size: 12px; font-weight: 500; }
+#zc-app .zc-art p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#zc-app .zc-art p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 赫希曼三角(Z6/Z7) */
+#zc-app .zc-hirsch { border: 1px solid var(--hairline); background: var(--xuan-deep); padding: 20px; margin-bottom: 18px; }
+#zc-app .zc-hirsch svg { width: 100%; height: auto; }
+
+/* 案例 rows(Z7) */
+#zc-app .zc-chain { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#zc-app .zc-chain-row { padding: 13px 18px; border-bottom: 1px solid var(--hairline); font-size: 13px; display: flex; gap: 16px; align-items: baseline; position: relative; }
+#zc-app .zc-chain-row:last-child { border-bottom: none; }
+#zc-app .zc-chain-row .zc-chain-step { font-family: var(--mono); font-size: 12px; color: var(--zhu); flex-shrink: 0; width: 92px; }
+#zc-app .zc-chain-row .zc-chain-v { color: var(--xuanzhi-dim); line-height: 1.74; }
+#zc-app .zc-chain-row .zc-chain-v b { color: var(--xuanzhi); font-weight: 600; }
+#zc-app .zc-chain-row.peak { border-left: 3px solid var(--zhu); }
+#zc-app .zc-chain-row.peak .zc-chain-v b { color: var(--zhu); }
+
+/* 三形态卡(Z8) */
+#zc-app .zc-bal { border: 1px solid var(--qing-dim); background: rgba(65, 89, 78, .08); padding: 18px 20px; margin-bottom: 12px; }
+#zc-app .zc-bal h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 6px; color: var(--qing); }
+#zc-app .zc-bal p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#zc-app .zc-bal p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 签名图容器 */
+#zc-app .zc-squeeze { border: 1px solid var(--hairline); background: var(--xuan-deep); padding: 20px; margin-bottom: 18px; }
+#zc-app .zc-squeeze svg { width: 100%; height: auto; }
+
+/* 修正卡(Z9) */
+#zc-app .zc-fix { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 16px 20px; margin-bottom: 12px; border-left: 3px solid var(--jin); }
+#zc-app .zc-fix h5 { font-size: 14px; font-weight: 600; margin-bottom: 6px; display: flex; gap: 11px; align-items: baseline; }
+#zc-app .zc-fix h5 b { font-family: var(--mono); color: var(--jin); font-size: 12px; font-weight: 500; }
+#zc-app .zc-fix p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#zc-app .zc-fix p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 章节规划登记表 */
+#zc-app .zc-plan { border: 1px solid var(--hairline); }
+#zc-app .zc-plan-row { padding: 14px 18px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); display: flex; gap: 16px; align-items: baseline; }
+#zc-app .zc-plan-row:last-child { border-bottom: none; }
+#zc-app .zc-plan-k { font-family: var(--mono); font-size: 12px; color: var(--zhu); flex-shrink: 0; width: 76px; }
+#zc-app .zc-plan-v { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#zc-app .zc-plan-v b { color: var(--xuanzhi); font-weight: 600; }
+#zc-app .zc-plan-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .14em; color: var(--xuanzhi-mute); border: 1px solid var(--hairline); padding: 2px 8px; flex-shrink: 0; }
+
+/* 观测哨 */
+#zc-app .zc-watch-intro { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 22px; }
+#zc-app .zc-watch-intro p { font-size: 13.5px; color: var(--xuanzhi-dim); max-width: 64ch; }
+#zc-app .zc-storage-state { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .08em; }
+#zc-app .zc-watch { border: 1px solid var(--hairline); }
+#zc-app .zc-watch-item { display: grid; grid-template-columns: 1fr 320px; gap: 18px; padding: 18px 22px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); }
+#zc-app .zc-watch-item:last-child { border-bottom: none; }
+#zc-app .zc-watch-item h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 5px; }
+#zc-app .zc-watch-item h5 b { font-family: var(--mono); color: var(--jin); font-weight: 500; font-size: 12px; margin-right: 8px; }
+#zc-app .zc-watch-item .zc-watch-desc { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.75; }
+#zc-app .zc-watch-ctrl { display: flex; flex-direction: column; gap: 9px; }
+#zc-app .zc-status-row { display: flex; gap: 6px; }
+#zc-app .zc-status-btn { flex: 1; font-family: var(--sans); font-size: 11.5px; letter-spacing: .08em; padding: 7px 0; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi-mute); cursor: pointer; transition: all .15s; }
+#zc-app .zc-status-btn:hover { color: var(--xuanzhi); }
+#zc-app .zc-status-btn:focus-visible { outline: 1px solid var(--jin); }
+#zc-app .zc-status-btn.on-good { background: var(--qing-dim); border-color: var(--qing); color: var(--xuanzhi); }
+#zc-app .zc-status-btn.on-flat { background: #3a3f33; border-color: var(--xuanzhi-mute); color: var(--xuanzhi); }
+#zc-app .zc-status-btn.on-bad { background: var(--zhu-dim); border-color: var(--zhu); color: var(--xuanzhi); }
+#zc-app .zc-watch-note { width: 100%; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi); font-family: var(--sans); font-size: 12.5px; padding: 8px 10px; resize: vertical; min-height: 38px; line-height: 1.6; }
+#zc-app .zc-watch-note:focus { outline: 1px solid var(--jin); }
+#zc-app .zc-watch-note::placeholder { color: var(--xuanzhi-mute); }
+#zc-app .zc-watch-stamp { font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); text-align: right; min-height: 14px; }
+
+/* 页脚 */
+#zc-app .zc-foot { margin-top: 66px; border-top: 1px solid var(--hairline); padding-top: 24px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+#zc-app .zc-foot p { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .06em; line-height: 1.9; max-width: 66ch; }
+#zc-app .zc-foot .zc-foot-meta { text-align: right; font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); line-height: 2; flex-shrink: 0; }
+
+@media (max-width: 860px) {
+  #zc-app .zc-grid-2, #zc-app .zc-grid-3, #zc-app .zc-data3, #zc-app .zc-tri3 { grid-template-columns: 1fr; }
+  #zc-app .zc-watch-item { grid-template-columns: 1fr; }
+  #zc-app .zc-mast-seal { display: none; }
+  #zc-app .zc-nav button { flex: 1 1 30%; font-size: 12.5px; letter-spacing: .04em; }
+  #zc-app .zc-row, #zc-app .zc-scale-row { grid-template-columns: 1fr; gap: 4px; }
+  #zc-app .zc-twin { grid-template-columns: 1fr; }
+  #zc-app .zc-twin .zc-twin-mid { padding: 6px; }
+  #zc-app .zc-nest-row, #zc-app .zc-plan-row, #zc-app .zc-chain-row { flex-direction: column; gap: 3px; }
+  #zc-app .zc-nest-row .zc-nest-k, #zc-app .zc-plan-k, #zc-app .zc-chain-row .zc-chain-step { width: auto; }
+}
+
+#zc-app { border-radius: var(--radius-lg); }
+
+.zhongchan-module-wrap {
+  margin: calc(-1 * var(--card-padding)) calc(-1 * var(--card-padding));
+  max-width: none;
+}
