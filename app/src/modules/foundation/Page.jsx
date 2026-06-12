@@ -14,6 +14,7 @@ import { CULTURAL_ELITE_SEED_PKG, CULTURAL_ELITE_META, CULTURAL_ELITE_DEDUPED_CO
 import { ACADEMICIAN_SEED_PKG, ACADEMICIAN_META, ACADEMICIAN_DEDUPED_COUNT } from '../../lib/db/academicianSeed.js';
 import { BUSINESS_ELITE_SEED_PKG, BUSINESS_ELITE_META, BUSINESS_ELITE_COUNT } from '../../lib/db/businessEliteSeed.js';
 import { OVERSEAS_TALENT_SEED_PKG, OVERSEAS_TALENT_META, OVERSEAS_TALENT_DEDUPED_COUNT, OT_TAB_LABEL } from '../../lib/db/overseasTalentSeed.js';
+import { SELF_MEDIA_SEED_PKG, SELF_MEDIA_META, SELF_MEDIA_DEDUPED_COUNT, SM_TAB_LABEL, SM_SUB_CATS } from '../../lib/db/selfMediaSeed.js';
 import { DIPLOMATIC_CORPS_SEED_PKG, DIPLOMATIC_CORPS_META, DIPLOMATIC_CORPS_DEDUPED_COUNT, DC_TAB_LABEL } from '../../lib/db/diplomaticCorpsSeed.js';
 import { DISSIDENT_SEED_PKG, DISSIDENT_META, DISSIDENT_DEDUPED_COUNT, DV_TAB_LABEL } from '../../lib/db/dissidentSeed.js';
 import { TAIWAN_POLITICAL_SEED_PKG, TAIWAN_POLITICAL_META, TAIWAN_POLITICAL_DEDUPED_COUNT, TW_TAB_LABEL } from '../../lib/db/taiwanPoliticalSeed.js';
@@ -579,6 +580,13 @@ function Figures({ figures, refresh, flash, datasets }) {
     await refresh();
     flash(`已载入 ${OVERSEAS_TALENT_META.label}：${OVERSEAS_TALENT_DEDUPED_COUNT.total} 条（${['knowledge', 'tech', 'industry', 'culture', 'academic'].map((k) => `${OT_TAB_LABEL[k]} ${OVERSEAS_TALENT_DEDUPED_COUNT[k]}`).join(' / ')}）`);
   };
+  const smLoaded = datasets?.some((d) => d.id === SELF_MEDIA_SEED_PKG.id);
+  const loadSelfMedia = async () => {
+    if (smLoaded && !window.confirm(`将覆盖自媒体人数据集（${SELF_MEDIA_DEDUPED_COUNT.total} 条），继续？`)) return;
+    await DB.putDataset({ ...SELF_MEDIA_SEED_PKG, stampMs: Date.now() });
+    await refresh();
+    flash(`已载入 ${SELF_MEDIA_META.label}：${SELF_MEDIA_DEDUPED_COUNT.total} 条（${SM_SUB_CATS.map((k) => `${SM_TAB_LABEL[k]} ${SELF_MEDIA_DEDUPED_COUNT[k]}`).join(' / ')}）`);
+  };
   const dcLoaded = datasets?.some((d) => d.id === DIPLOMATIC_CORPS_SEED_PKG.id);
   const loadDiplomaticCorps = async () => {
     if (dcLoaded && !window.confirm(`将覆盖外交人才数据集（${DIPLOMATIC_CORPS_DEDUPED_COUNT.total} 条），继续？`)) return;
@@ -662,6 +670,15 @@ function Figures({ figures, refresh, flash, datasets }) {
         </p>
         <button onClick={loadOverseasTalent} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: '#0ea5e9', borderColor: 'rgba(14,165,233,0.35)' }}>
           {otLoaded ? '覆盖载入' : '载入'}海外人才库（{OVERSEAS_TALENT_DEDUPED_COUNT.total} 条 · {OVERSEAS_TALENT_META.asOf}）
+        </button>
+      </Card>
+      <Card title="自媒体人库 · 传媒影响力队列（与知识精英拆分）" className="mb-4">
+        <p className="text-[11px] mb-2" style={{ color: 'var(--text-tertiary)' }}>
+          内置 {SELF_MEDIA_DEDUPED_COUNT.total} 条（{SELF_MEDIA_META.scope}）。来源 {SELF_MEDIA_META.sources.slice(0, 4).join(' / ')}等。
+          {SELF_MEDIA_META.notes} 展示于 <Link to="/talent?tab=self-media" className="mono" style={{ color: 'var(--cyber-cyan)' }}>人才精英库 · 自媒体人</Link> 队列。
+        </p>
+        <button onClick={loadSelfMedia} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: '#f472b6', borderColor: 'rgba(244,114,182,0.35)' }}>
+          {smLoaded ? '覆盖载入' : '载入'}自媒体人库（{SELF_MEDIA_DEDUPED_COUNT.total} 条 · {SELF_MEDIA_META.asOf}）
         </button>
       </Card>
       <Card title="外交人才库 · 驻外使节全图（与政要/海外人才分轨）" className="mb-4">

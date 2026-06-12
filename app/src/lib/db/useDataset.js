@@ -12,6 +12,7 @@ import { LEGAL_STATUTE_DATASET_ID, LEGAL_STATUTE_SEED_PKG, dedupeLegalStatute } 
 import { DISSIDENT_DATASET_ID, DISSIDENT_SEED_PKG } from './dissidentSeed.js';
 import { TAIWAN_POLITICAL_DATASET_ID, TAIWAN_POLITICAL_SEED_PKG, dedupeTaiwanPolitical } from './taiwanPoliticalSeed.js';
 import { DIPLOMATIC_CORPS_DATASET_ID, DIPLOMATIC_CORPS_SEED_PKG, dedupeDiplomaticCorps } from './diplomaticCorpsSeed.js';
+import { SELF_MEDIA_DATASET_ID, SELF_MEDIA_SEED_PKG, dedupeSelfMedia } from './selfMediaSeed.js';
 
 // 响应式读取本地库数据集：写入（编辑/导入/删除）即自动刷新 → 模块前台即时更新。
 // seed: 库中无此 id 时自动播种（{name,category,source,rows,...}），保证开箱即用。
@@ -130,6 +131,13 @@ export function useWorldBank() {
 // 响应式读取两院院士库（中科院 / 工程院）
 export function useAcademician() {
   return useDataset(ACADEMICIAN_DATASET_ID, ACADEMICIAN_SEED_PKG);
+}
+
+// 响应式读取自媒体人库（传媒影响力队列）；读取时按姓名去重
+export function useSelfMedia() {
+  const state = useDataset(SELF_MEDIA_DATASET_ID, SELF_MEDIA_SEED_PKG);
+  const rows = state.rows == null ? null : dedupeSelfMedia(state.rows).rows;
+  return { rows, ready: state.ready };
 }
 
 // 响应式读取法律条文库（法律 / 行政法规 / 司法解释）；读取时按 id 去重，避免存量重复录入

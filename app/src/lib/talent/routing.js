@@ -4,7 +4,7 @@
 
 import { useCallback, useEffect, useRef } from 'react';
 
-export const VALID_TALENT_TABS = new Set(['resume', 'anticorruption', 'dissident', 'taiwan', 'education', 'thinktank', 'research', 'knowledge', 'business', 'overseas', 'diplomatic']);
+export const VALID_TALENT_TABS = new Set(['resume', 'anticorruption', 'dissident', 'taiwan', 'education', 'thinktank', 'research', 'knowledge', 'business', 'overseas', 'diplomatic', 'self-media']);
 
 export const VALID_SANDBOX_TABS = new Set(['general', 'handong', 'inspection', 'wargame', 'presser', 'macro', 'party-school', 'org-dept']);
 
@@ -32,10 +32,10 @@ export function resolveTalentTab(tabParam) {
 
 /**
  * 构建可分享的人才库深链
- * @param {{ tab?: string, id?: string, ce?: string, be?: string, bs?: string, tt?: string, ri?: string, ot?: string, dc?: string, dv?: string, tw?: string, rg?: string, q?: string }} opts
+ * @param {{ tab?: string, id?: string, ce?: string, be?: string, bs?: string, tt?: string, ri?: string, ot?: string, dc?: string, dv?: string, tw?: string, sm?: string, rg?: string, q?: string }} opts
  */
 export function buildTalentLink(opts = {}) {
-  const { tab, id, ce, be, bs, tt, ri, ot, dc, dv, tw, rg, q } = opts;
+  const { tab, id, ce, be, bs, tt, ri, ot, dc, dv, tw, sm, rg, q } = opts;
   const params = new URLSearchParams();
   const resolvedTab = tab ? resolveTalentTab(tab) : 'resume';
   if (resolvedTab && resolvedTab !== 'resume') params.set('tab', resolvedTab);
@@ -49,6 +49,7 @@ export function buildTalentLink(opts = {}) {
   if (dc) params.set('dc', dc);
   if (dv) params.set('dv', dv);
   if (tw) params.set('tw', tw);
+  if (sm) params.set('sm', sm);
   if (rg) params.set('rg', rg);
   if (q && !id) params.set('q', q);
   const qs = params.toString();

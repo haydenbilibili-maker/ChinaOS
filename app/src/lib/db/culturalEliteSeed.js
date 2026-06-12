@@ -10,6 +10,7 @@ import { CULTURAL_ELITE_EXPANSION } from './talentBulkExpansion2026.js';
 import { CULTURAL_ELITE_EXPANSION_2 } from './talentBulkExpansion2026_part2.js';
 import { mergeAcademiciansIntoCulturalElite } from './academicianMerge.js';
 import { enrichTalentList } from '../talent/talentEnrich.js';
+import { isSelfMediaPrimary } from './selfMediaPrimary.js';
 import {
   CE_SUB_CATS,
   CE_TAB_LEGACY_ALIASES,
@@ -63,7 +64,8 @@ export function dedupeCulturalElite(list) {
 }
 
 export function buildCulturalEliteSeed() {
-  const merged = mergeAcademiciansIntoCulturalElite([...CULTURAL_ELITE_2026, ...CULTURAL_ELITE_EXPANSION, ...CULTURAL_ELITE_EXPANSION_2]);
+  const merged = mergeAcademiciansIntoCulturalElite([...CULTURAL_ELITE_2026, ...CULTURAL_ELITE_EXPANSION, ...CULTURAL_ELITE_EXPANSION_2])
+    .filter((row) => !isSelfMediaPrimary(row.name));
   const { rows, dupeCount, rawCount } = dedupeCulturalElite(merged);
   return {
     id: CULTURAL_ELITE_DATASET_ID,

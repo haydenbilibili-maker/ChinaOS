@@ -5,6 +5,7 @@ import CulturalEliteSection from './CulturalEliteSection.jsx';
 import BusinessEliteSection from './BusinessEliteSection.jsx';
 import OverseasTalentSection from './OverseasTalentSection.jsx';
 import DiplomaticCorpsSection from './DiplomaticCorpsSection.jsx';
+import SelfMediaSection from './SelfMediaSection.jsx';
 import DissidentSection from './DissidentSection.jsx';
 import TaiwanPoliticalSection from './TaiwanPoliticalSection.jsx';
 import HigherEducationSection from './HigherEducationSection.jsx';
@@ -30,6 +31,7 @@ import { THINK_TANK_DEDUPED_COUNT } from '../../lib/db/thinkTankSeed.js';
 import { ANTI_CORRUPTION_COUNT } from '../../lib/db/antiCorruptionSeed.js';
 import { DISSIDENT_DEDUPED_COUNT } from '../../lib/db/dissidentSeed.js';
 import { TAIWAN_POLITICAL_DEDUPED_COUNT, TW_TAB_LABEL } from '../../lib/db/taiwanPoliticalSeed.js';
+import { SELF_MEDIA_DEDUPED_COUNT, SM_TAB_LABEL, SM_SUB_CATS } from '../../lib/db/selfMediaSeed.js';
 import { resolveTalentTab, useTalentDeepLink } from '../../lib/talent/routing.js';
 import { applyTalentEnrichment } from '../../lib/talent/talentEnrich.js';
 import { buildTalentDetailSections, CrossRefLinks, eventsToTimeline } from '../../lib/talent/detailSections.jsx';
@@ -100,6 +102,7 @@ const TAB_DEFS = [
   { id: 'business', baseLabel: '商业精英', accent: '#e8a317', bg: 'rgba(232,163,23,0.16)' },
   { id: 'overseas', baseLabel: '海外人才', accent: '#0ea5e9', bg: 'rgba(14,165,233,0.16)' },
   { id: 'diplomatic', baseLabel: '外交人才', accent: '#f59e0b', bg: 'rgba(245,158,11,0.16)' },
+  { id: 'self-media', baseLabel: '自媒体人', accent: '#f472b6', bg: 'rgba(244,114,182,0.16)' },
 ];
 
 const TAB_COUNT = {
@@ -114,6 +117,7 @@ const TAB_COUNT = {
   business: BUSINESS_ELITE_DEDUPED_COUNT.total,
   overseas: OVERSEAS_TALENT_DEDUPED_COUNT.total,
   diplomatic: DIPLOMATIC_CORPS_DEDUPED_COUNT.total,
+  'self-media': SELF_MEDIA_DEDUPED_COUNT.total,
 };
 
 function buildTalentTabs() {
@@ -203,6 +207,14 @@ const TAB_META = {
       const c = DIPLOMATIC_CORPS_DEDUPED_COUNT;
       const parts = ['亚太', '欧洲', '北美', '拉美', '非洲', '中东', '国际组织'].map((k) => `${DC_TAB_LABEL[k]} ${c[k] ?? 0}`);
       return `驻外使节公开任职图谱 · ${parts.join(' / ')} —— 内置 ${c.total} 条（与境内政要/知识精英队列分轨；外交部长见中国政要）`;
+    },
+  },
+  'self-media': {
+    title: '人才精英库 · 自媒体人',
+    subtitle: () => {
+      const c = SELF_MEDIA_DEDUPED_COUNT;
+      const parts = SM_SUB_CATS.map((k) => `${SM_TAB_LABEL[k]} ${c[k] ?? 0}`);
+      return `传媒影响力队列 · ${parts.join(' / ')} —— 内置 ${c.total} 条（自知识精英迁出 ${c.migrated ?? 0} 条；平台×垂类×影响力分层）`;
     },
   },
 };
@@ -472,6 +484,8 @@ export default function Page() {
         <OverseasTalentSection />
       ) : tab === 'diplomatic' ? (
         <DiplomaticCorpsSection />
+      ) : tab === 'self-media' ? (
+        <SelfMediaSection />
       ) : (
         <>
       <StatGrid>

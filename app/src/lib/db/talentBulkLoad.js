@@ -14,6 +14,7 @@ import { OVERSEAS_TALENT_SEED_PKG, OVERSEAS_TALENT_META, OVERSEAS_TALENT_DEDUPED
 import { DIPLOMATIC_CORPS_SEED_PKG, DIPLOMATIC_CORPS_META, DIPLOMATIC_CORPS_DEDUPED_COUNT } from './diplomaticCorpsSeed.js';
 import { DISSIDENT_SEED_PKG, DISSIDENT_META, DISSIDENT_DEDUPED_COUNT } from './dissidentSeed.js';
 import { TAIWAN_POLITICAL_SEED_PKG, TAIWAN_POLITICAL_META, TAIWAN_POLITICAL_DEDUPED_COUNT } from './taiwanPoliticalSeed.js';
+import { SELF_MEDIA_SEED_PKG, SELF_MEDIA_META, SELF_MEDIA_DEDUPED_COUNT } from './selfMediaSeed.js';
 
 /** 一键载入队列定义（顺序即执行顺序） */
 export const TALENT_BULK_QUEUES = [
@@ -29,12 +30,13 @@ export const TALENT_BULK_QUEUES = [
   { key: 'business_elite', label: BUSINESS_ELITE_META.label, type: 'dataset', pkg: BUSINESS_ELITE_SEED_PKG, count: BUSINESS_ELITE_COUNT.total, asOf: BUSINESS_ELITE_META.asOf },
   { key: 'overseas_talent', label: OVERSEAS_TALENT_META.label, type: 'dataset', pkg: OVERSEAS_TALENT_SEED_PKG, count: OVERSEAS_TALENT_DEDUPED_COUNT.total, asOf: OVERSEAS_TALENT_META.asOf },
   { key: 'diplomatic_corps', label: DIPLOMATIC_CORPS_META.label, type: 'dataset', pkg: DIPLOMATIC_CORPS_SEED_PKG, count: DIPLOMATIC_CORPS_DEDUPED_COUNT.total, asOf: DIPLOMATIC_CORPS_META.asOf },
+  { key: 'self_media', label: SELF_MEDIA_META.label, type: 'dataset', pkg: SELF_MEDIA_SEED_PKG, count: SELF_MEDIA_DEDUPED_COUNT.total, asOf: SELF_MEDIA_META.asOf },
 ];
 
 export const TALENT_BULK_TOTAL_COUNT = TALENT_BULK_QUEUES.reduce((n, q) => n + q.count, 0);
 
 export const TALENT_BULK_SCOPE_LABEL =
-  '中国政要、反腐透视、异见人士、港澳台政要、高等教育、智库、科研院所、两院院士、知识精英、商业精英、海外人才、外交人才';
+  '中国政要、反腐透视、异见人士、港澳台政要、高等教育、智库、科研院所、两院院士、知识精英、商业精英、海外人才、外交人才、自媒体人';
 
 export function getTalentBulkConfirmMessage() {
   const detail = TALENT_BULK_QUEUES.map((q) => `${q.label} ${q.count}`).join(' · ');

@@ -302,6 +302,18 @@ function diplomaticBio(r) {
   ].filter(Boolean).join('。');
 }
 
+function selfMediaBio(r) {
+  return [
+    r.platform && `主平台：${r.platform}`,
+    r.niche && `垂类：${r.niche}`,
+    r.followers && `粉丝量级：${r.followers}`,
+    r.keyWorks && `代表作品：${r.keyWorks}`,
+    r.controversies && r.controversies !== '—' ? `争议节点：${r.controversies}` : null,
+    r.bio,
+    '信息以各平台公开资料与媒体报道为准；粉丝数据为公开报道口径。',
+  ].filter(Boolean).join('。');
+}
+
 function diplomaticTimeline(r) {
   const events = [];
   const app = yearOf(r.appointedDate);
@@ -364,6 +376,11 @@ const BUILDERS = {
     keyEvents: isThinTimeline(r.keyEvents || r.career) ? diplomaticTimeline(r) : undefined,
     tags: mergeTags(r.tags, r.hostCountry, r.region, r.role, r.rank),
   }),
+  selfMedia: (r) => ({
+    bio: isThinBio(r.bio) ? selfMediaBio(r) : undefined,
+    tags: mergeTags(r.tags, r.platform, r.platformKey, r.niche, r.category, r.tier, r.followers),
+    publicRecordNote: r.publicRecordNote || '粉丝量级与商业数据以公开报道为准，不含非公开收入信息',
+  }),
 };
 
 /**
@@ -386,7 +403,7 @@ export function buildDensityPatch(record, queue) {
     const tiers = {
       figures: 'official', knowledge: 'academic', business: 'media',
       overseas: 'academic', dissident: 'media', taiwan: 'official',
-      anticorruption: 'official', diplomatic: 'official',
+      anticorruption: 'official', diplomatic: 'official', selfMedia: 'media',
     };
     patch.verifyTier = tiers[q] || 'media';
   }

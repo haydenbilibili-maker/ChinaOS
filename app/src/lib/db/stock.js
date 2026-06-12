@@ -17,6 +17,7 @@ import { buildOverseasTalentSeed, OVERSEAS_TALENT_META } from './overseasTalentS
 import { buildLegalStatuteSeed, LEGAL_STATUTE_META } from './legalStatuteSeed.js';
 import { buildDissidentSeed, DISSIDENT_META } from './dissidentSeed.js';
 import { buildTaiwanPoliticalSeed, TAIWAN_POLITICAL_META } from './taiwanPoliticalSeed.js';
+import { buildSelfMediaSeed, SELF_MEDIA_META } from './selfMediaSeed.js';
 
 // 各模块内嵌的代表性数据快照（origin=stock）
 const EMBEDDED = {
@@ -135,6 +136,18 @@ export const STOCK_CATALOG = [
     real: false,
     load: async () => {
       const s = buildOverseasTalentSeed();
+      return { rows: s.rows, source: s.source };
+    },
+  },
+  {
+    key: 'self-media',
+    id: buildSelfMediaSeed().id,
+    name: buildSelfMediaSeed().name,
+    category: '自媒体人',
+    source: SELF_MEDIA_META.sources[0],
+    real: false,
+    load: async () => {
+      const s = buildSelfMediaSeed();
       return { rows: s.rows, source: s.source };
     },
   },

@@ -22,6 +22,14 @@ import { dvKey } from '../db/dissidentSeed.js';
 import { twKey, TW_REGION_LABEL, TW_TAB_LABEL } from '../db/taiwanPoliticalSeed.js';
 import { acKey as acadKey } from '../db/academicianSeed.js';
 import { academyBadgeLabel, resolveAcademy } from '../db/academicianCommon.js';
+import {
+  smKey,
+  SM_TAB_LABEL,
+  SELF_MEDIA_SEED_PKG,
+  SELF_MEDIA_DEDUPED_COUNT,
+  SELF_MEDIA_INDEX_NAMES,
+} from '../db/selfMediaSeed.js';
+import { normalizeSelfMediaName } from '../db/selfMediaPrimary.js';
 
 const GROUP_LABEL = Object.fromEntries(GROUPS.map((g) => [g.id, g.label]));
 const short = (p) => (p || '').replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '');
@@ -60,7 +68,7 @@ export function buildModuleRecords() {
 }
 
 /** 种子变更时递增，使模块级索引缓存在 HMR / 热更新后失效 */
-export const SEARCH_INDEX_REVISION = `v11:density-enrich:${CULTURAL_ELITE_DEDUPED_COUNT.total}:${DIPLOMATIC_CORPS_SEED_PKG?.rows?.length ?? 0}`;
+export const SEARCH_INDEX_REVISION = `v12:self-media:${SELF_MEDIA_DEDUPED_COUNT.total}:${CULTURAL_ELITE_DEDUPED_COUNT.total}:${DIPLOMATIC_CORPS_SEED_PKG?.rows?.length ?? 0}`;
 
 let _indexPromise = null;
 let _indexRevision = null;
@@ -136,6 +144,7 @@ export function buildSearchIndex() {
 
     for (const r of CULTURAL_ELITE_SEED_PKG?.rows || []) {
       if (!r.name) continue;
+      if (SELF_MEDIA_INDEX_NAMES.has(normalizeSelfMediaName(r.name))) continue;
       const entityId = ceKey(r);
       const ctx = [r.discipline || r.field, r.institution || r.title, r.region].filter(Boolean).join(' · ');
       pushRecord(records, {
@@ -284,6 +293,29 @@ export function buildSearchIndex() {
         entityId,
         dataset: 'diplomatic-corps',
         hay: hayOf(r.name, r.nameEn, r.role, r.hostCountry, r.hostCity, r.region, r.careerHighlights, ...(r.previousPosts || []), r.rank, r.provenance, r.source),
+      });
+    }
+
+    const smSeen = new Set();
+    for (const r of SELF_MEDIA_SEED_PKG?.rows || []) {
+      if (!r.name) continue;
+      const entityId = smKey(r);
+      const normName = normalizeSelfMediaName(r.name);
+      if (smSeen.has(normName)) continue;
+      smSeen.add(normName);
+      const ctx = [r.platform, r.niche, r.followers, SM_TAB_LABEL[r.category]].filter(Boolean).join(' · ');
+      pushRecord(records, {
+        type: 'selfMedia',
+        id: `selfMedia:${entityId}`,
+        title: r.name,
+        subtitle: ctx,
+        badge: SM_TAB_LABEL[r.category] || '自媒体人',
+        path: buildTalentLink({ tab: 'self-media', sm: r.category, id: entityId }),
+        talentTab: 'self-media',
+        subCategory: r.category,
+        entityId,
+        dataset: 'self-media',
+        hay: hayOf(entityId, r.id, r.name, r.platform, r.platformKey, r.niche, r.followers, r.bio, r.keyWorks, r.controversies, r.tier, SM_TAB_LABEL[r.category], r.source, r.tags),
       });
     }
 

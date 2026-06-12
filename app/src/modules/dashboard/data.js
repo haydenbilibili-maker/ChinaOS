@@ -13,6 +13,7 @@ import { BUSINESS_ELITE_DEDUPED_COUNT } from '../../lib/db/businessEliteSeed.js'
 import { HIGHER_EDUCATION_DEDUPED_COUNT } from '../../lib/db/higherEducationSeed.js';
 import { RESEARCH_INSTITUTE_DEDUPED_COUNT } from '../../lib/db/researchInstituteSeed.js';
 import { OVERSEAS_TALENT_DEDUPED_COUNT } from '../../lib/db/overseasTalentSeed.js';
+import { SELF_MEDIA_DEDUPED_COUNT } from '../../lib/db/selfMediaSeed.js';
 import { DOC_CATALOG_META } from '../../lib/db/docSeed.js';
 import { LEGAL_STATUTE_DEDUPED_COUNT } from '../../lib/db/legalStatuteSeed.js';
 import { PRIVATE_ENTERPRISE_META, PE500_COMPANIES, PE500_DATASETS } from '../../lib/db/privateEnterpriseSeed.js';
@@ -52,6 +53,7 @@ export const DATASET_SCALE = [
   { key: '科研院所', value: RESEARCH_INSTITUTE_DEDUPED_COUNT.total, to: '/talent?tab=research', color: '#a78bfa' },
   { key: '高等教育', value: HIGHER_EDUCATION_DEDUPED_COUNT.total, to: '/talent?tab=education', color: '#10b981' },
   { key: '海外人才', value: OVERSEAS_TALENT_DEDUPED_COUNT.total, to: '/talent?tab=overseas', color: '#0ea5e9' },
+  { key: '自媒体人', value: SELF_MEDIA_DEDUPED_COUNT.total, to: '/talent?tab=self-media', color: '#f472b6' },
   { key: '500强股权', value: PE_EQUITY, to: '/enterprise500', color: '#64748b' },
 ].sort((a, b) => b.value - a.value);
 

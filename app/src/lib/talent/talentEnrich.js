@@ -212,6 +212,7 @@ const QUEUE_DEFAULTS = {
   education: { verifyTier: 'official', confidence: 'high' },
   thinktank: { verifyTier: 'official', confidence: 'high' },
   research: { verifyTier: 'official', confidence: 'high' },
+  selfMedia: { verifyTier: 'media', confidence: 'medium' },
 };
 
 function normalizeTagList(tags) {
@@ -260,6 +261,7 @@ function autoProvenance(record, queue) {
     education: `高校公开名录；来源：${src}`,
     thinktank: `智库机构公开信息；来源：${src}`,
     research: `科研院所/大科学装置公开节点；来源：${src}`,
+    selfMedia: `自媒体公开账号与媒体报道；来源：${src}；粉丝量级为公开口径`,
   };
   return templates[queue] || `公开资料整理；来源：${src}`;
 }
