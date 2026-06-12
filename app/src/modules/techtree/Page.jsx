@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { getTheme, subscribeTheme } from '../../lib/theme.js';
+import { usFlagBlue, usFlagBlueAlpha } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { DOMAINS, TIER_LABEL } from './domains.js';
-import { TECH_AS_OF, CHAIN_OF, NECK_ITEMS, MILESTONES, SCORECARD, simTech, buildTechReport } from './techDeep.js';
+import { TECH_AS_OF, CHAIN_OF, NECK_ITEMS, MILESTONES, SCORECARD, DEPENDS, propagateRisk, simTech, buildTechReport } from './techDeep.js';
 
 // ============================================================================
 // 科技树作战盘 · 12 大战略科技领域（作战地图版）
@@ -15,7 +17,9 @@ import { TECH_AS_OF, CHAIN_OF, NECK_ITEMS, MILESTONES, SCORECARD, simTech, build
 //   0  PageHeader + IntroCard（位势→断点→投入→时间）+ Stat×4
 //   ①  TRL × 自主度矩阵 + 战略权重排序（双图并排）
 //   ②  领域作战室：雷达 + 战略判读 + 供应链断点条 + 卡脖子清单 + 里程碑
+//      + 域间依赖图（断点传导网络：circular graph + propagateRisk 注记，点节点切域）
 //   ③  攻关推演模拟器：三滑杆 → 十年自主度曲线（突破线 / 断供冲击 / 突破年）
+//      当前域方案实时回写账本 'cos-tech-plans'（博弈桌『自主攻关』按方案动态加权）
 //   ④  中美记分牌：六维双向条
 //   ⑤  全库卡脖子总表：12 域平铺 · severity 降序 · tier 筛选
 //   ⑥  攻关推演报告：buildTechReport → Markdown 复制
@@ -139,6 +143,75 @@ function trackLabelOf(id) {
   return d ? d.name : String(id);
 }
 
+// ---- ③ 攻关方案账本：本页为唯一写入方（博弈桌『自主攻关』为读取方）----
+// 契约：{ plans: { [k]: { rd, talent, open, breakthrough, auto2030 } }, stamp: 整数递增 }
+const TECH_PLANS_KEY = 'cos-tech-plans';
+
+// ---- ② 域间依赖图：k → 领域名 / 被依赖次数（入度，决定节点大小 8 + n*4）----
+const DOMAIN_NAME_OF = Object.fromEntries(DOMAINS.map((d) => [d.k, d.name]));
+const IN_DEGREE = Object.fromEntries(
+  DOMAINS.map((d) => [d.k, DEPENDS.filter((e) => e.to === d.k).length])
+);
+
+// 传导风险边级描述 → 颜色（与 SEV_META 同语义梯度）
+const DEP_SEV_COLOR = { 重度传导: '#c41e3a', 中度传导: '#e8a317', 轻度传导: '#64748b' };
+
+/** ② 域间依赖图 option：circular 布局（铁律禁 force——其布局含随机性） */
+function buildDependsOption(sel) {
+  return {
+    tooltip: {
+      trigger: 'item',
+      backgroundColor: 'rgba(15,23,42,0.92)', borderColor: '#27324a', textStyle: { color: '#e2e8f0' },
+      formatter: (p) => {
+        if (p.dataType === 'edge') {
+          return `${p.data.fromName} 依赖 ${p.data.toName}<br/>${p.data.note}（强度 ${p.data.strength}）`;
+        }
+        return `${p.data.name}<br/>被依赖 ${p.data.inDeg} 次 · ${TIER_LABEL[p.data.tier]}${p.data.k === sel ? '<br/>当前选中域' : ''}`;
+      },
+    },
+    series: [{
+      type: 'graph',
+      layout: 'circular',
+      circular: { rotateLabel: false },
+      roam: false,
+      edgeSymbol: ['none', 'arrow'],
+      edgeSymbolSize: 7,
+      emphasis: { focus: 'adjacency' },
+      data: DOMAINS.map((d) => ({
+        name: d.name, k: d.k, tier: d.tier, inDeg: IN_DEGREE[d.k],
+        symbolSize: 8 + IN_DEGREE[d.k] * 4,
+        itemStyle: {
+          color: TIER_COLOR[d.tier],
+          borderColor: d.k === sel ? '#e8a317' : 'rgba(255,255,255,0.2)',
+          borderWidth: d.k === sel ? 3 : 1,
+        },
+        label: {
+          show: true, fontSize: 10,
+          color: d.k === sel ? '#e8a317' : '#93a1b5',
+          fontWeight: d.k === sel ? 'bold' : 'normal',
+        },
+      })),
+      links: DEPENDS.map((e) => {
+        const isOut = e.from === sel; // 选中域的出边=它的上游依赖，红色高亮
+        return {
+          source: DOMAIN_NAME_OF[e.from], target: DOMAIN_NAME_OF[e.to],
+          fromName: DOMAIN_NAME_OF[e.from], toName: DOMAIN_NAME_OF[e.to],
+          note: e.note, strength: e.strength,
+          lineStyle: {
+            color: isOut ? '#c41e3a' : 'rgba(148,163,184,0.3)',
+            width: isOut ? e.strength * 1.6 : e.strength,
+            opacity: isOut ? 0.95 : 0.45,
+            curveness: 0.22,
+          },
+          label: isOut
+            ? { show: true, formatter: e.note, fontSize: 9, color: '#c41e3a' }
+            : { show: false },
+        };
+      }),
+    }],
+  };
+}
+
 // ============================================================================
 // 子组件
 // ============================================================================
@@ -247,8 +320,8 @@ function LeverSlider({ label, value, onChange, accent, hint }) {
   );
 }
 
-/** 记分牌单行：cn 左红 / us 右青，居中对称双向条 */
-function ScoreRow({ row }) {
+/** 记分牌单行：cn 左红 / us 右蓝，居中对称双向条 */
+function ScoreRow({ row, usBlue, usBlueFade }) {
   return (
     <div className="py-1.5">
       <div className="flex items-center gap-2">
@@ -262,8 +335,8 @@ function ScoreRow({ row }) {
         <div className="shrink-0" style={{ width: 2, height: 18, background: 'rgba(148,163,184,0.4)' }} />
         {/* 右半：美国（左对齐向外生长） */}
         <div className="flex-1 flex items-center gap-1.5">
-          <div className="rounded-r" style={{ width: `${row.us * 0.9}%`, maxWidth: '92%', height: 12, background: 'linear-gradient(90deg, #22d3ee, rgba(34,211,238,0.35))' }} />
-          <span className="text-[10px] mono" style={{ color: '#22d3ee' }}>{row.us}</span>
+          <div className="rounded-r" style={{ width: `${row.us * 0.9}%`, maxWidth: '92%', height: 12, background: `linear-gradient(90deg, ${usBlue}, ${usBlueFade})` }} />
+          <span className="text-[10px] mono" style={{ color: usBlue }}>{row.us}</span>
         </div>
       </div>
       <p className="text-[10px] mt-0.5 leading-relaxed" style={{ color: 'var(--text-tertiary)', paddingLeft: 104 }}>{row.note}</p>
@@ -353,6 +426,12 @@ export default function Page() {
   const [sel, setSel] = useState('ai');
   const d = DOMAINS.find((x) => x.k === sel);
 
+  const [theme, setTheme] = useState(getTheme);
+  useEffect(() => subscribeTheme(setTheme), []);
+  const usBlue = usFlagBlue(theme);
+  const usBlueFade = usFlagBlueAlpha(theme, 0.35);
+  const usBlueSoft = usFlagBlueAlpha(theme, 0.08);
+
   // ③ 推演滑杆：研发投入强度 / 人才引进力度 / 开放合作度（默认 60/50/40）
   const [rd, setRd] = useState(60);
   const [talent, setTalent] = useState(50);
@@ -391,6 +470,51 @@ export default function Page() {
     return p ? p.auto : sim.path[Math.min(4, sim.path.length - 1)]?.auto ?? '—';
   }, [sim]);
 
+  // ③→账本：当前域攻关方案回写 'cos-tech-plans'（合并保留其他域方案）
+  // 防循环：useRef 记住上次写入的 (域|方案) JSON + 与账本现值 JSON 比对，相同即跳过
+  const planWrittenRef = useRef('');
+  useEffect(() => {
+    try {
+      const p2030 = sim.path.find((x) => x.year === 2030);
+      const plan = {
+        rd, talent, open,
+        breakthrough: sim.breakthrough, // 年份 | null
+        auto2030: p2030 ? Math.round(p2030.auto * 10) / 10 : 0, // 2030 推演自主度（1 位小数）
+      };
+      const nextJson = JSON.stringify(plan);
+      const guard = `${sel}|${nextJson}`;
+      if (planWrittenRef.current === guard) return;
+
+      // 坏档降级：解析失败 / 结构异常一律按空账本重建
+      let ledger = null;
+      try { ledger = JSON.parse(localStorage.getItem(TECH_PLANS_KEY) || 'null'); } catch { ledger = null; }
+      const plans = ledger && typeof ledger === 'object' && ledger.plans && typeof ledger.plans === 'object'
+        ? ledger.plans : {};
+      if (JSON.stringify(plans[sel] ?? null) === nextJson) {
+        planWrittenRef.current = guard;
+        return;
+      }
+
+      const stamp = Number.isFinite(Number(ledger?.stamp)) ? Math.floor(Number(ledger.stamp)) + 1 : 1;
+      localStorage.setItem(TECH_PLANS_KEY, JSON.stringify({ plans: { ...plans, [sel]: plan }, stamp }));
+      planWrittenRef.current = guard;
+      window.dispatchEvent(new CustomEvent('cos-ledger-change', { detail: { key: TECH_PLANS_KEY } }));
+    } catch {
+      // localStorage 不可用（隐私模式等）：静默降级，页面功能不受影响
+    }
+  }, [sel, rd, talent, open, sim]);
+
+  // ② 域间依赖图：传导风险（纯函数）+ graph option（选中域高亮）
+  const depRisk = useMemo(() => propagateRisk(sel), [sel]);
+  const dependsOption = useMemo(() => buildDependsOption(sel), [sel]);
+  // EChart 封装无 onEvents prop，但暴露 onReady(chart)——直接挂原生 click 事件；
+  // setSel 为 useState setter（引用稳定），只在挂载时绑定一次即可
+  const onDependsReady = (chart) => {
+    chart.on('click', (params) => {
+      if (params.dataType === 'node' && params.data && params.data.k) setSel(params.data.k);
+    });
+  };
+
   // ② 选中域深度数据
   const chain = CHAIN_OF[sel] || [];
   const necks = NECK_ITEMS[sel] || [];
@@ -403,8 +527,8 @@ export default function Page() {
   );
   const filteredHard = filteredRows.filter((r) => r.severity === 3).length;
 
-  // ② 雷达 option（依赖选中域）
-  const radarOption = {
+  // ② 雷达 option（依赖选中域 + 主题）
+  const radarOption = useMemo(() => ({
     legend: { data: ['中国', '美国'], textStyle: { color: '#93a1b5' }, top: 0 },
     radar: {
       indicator: RADAR_IND, axisName: { color: '#93a1b5', fontSize: 11 }, radius: '62%',
@@ -417,10 +541,10 @@ export default function Page() {
       data: [
         { value: d.radar, name: '中国', lineStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.18)' }, itemStyle: { color: '#c41e3a' } },
         // 美国基线以「能力位势」近似映射到五维（示意）
-        { value: RADAR_IND.map(() => d.us), name: '美国', lineStyle: { color: '#22d3ee', type: 'dashed' }, areaStyle: { color: 'rgba(34,211,238,0.08)' }, itemStyle: { color: '#22d3ee' } },
+        { value: RADAR_IND.map(() => d.us), name: '美国', lineStyle: { color: usBlue, type: 'dashed' }, areaStyle: { color: usBlueSoft }, itemStyle: { color: usBlue } },
       ],
     }],
-  };
+  }), [d, usBlue, usBlueSoft]);
 
   // ⑥ 生成报告（当前选中域 + 滑杆值 + sim 结果）
   const genReport = () => {
@@ -506,7 +630,7 @@ export default function Page() {
                 <div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>中国位势</div>
               </div>
               <div className="text-center p-2 rounded" style={{ background: 'var(--bg-elevated)' }}>
-                <div className="text-lg font-bold mono" style={{ color: '#22d3ee' }}>{d.us}</div>
+                <div className="text-lg font-bold mono" style={{ color: usBlue }}>{d.us}</div>
                 <div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>美国位势</div>
               </div>
               <div className="text-center p-2 rounded" style={{ background: 'var(--bg-elevated)' }}>
@@ -531,7 +655,7 @@ export default function Page() {
         </p>
       </Card>
 
-      <Grid cols={2} className="mb-6">
+      <Grid cols={2} className="mb-3">
         <Card title={`② ${d.name} · 卡脖子清单（severity 分级 + 替代路线）`}>
           <NeckList items={necks} />
         </Card>
@@ -540,6 +664,60 @@ export default function Page() {
           <p className="text-[10px] mt-3" style={{ color: 'var(--text-tertiary)' }}>仅收录广为公开的节点，表述克制；里程碑是回看坐标，不是预测依据。</p>
         </Card>
       </Grid>
+
+      {/* ================= ② 域间依赖图 · 断点传导网络 ================= */}
+      <Card title="② 域间依赖图 · 断点传导网络（箭头指向被依赖方 · 点节点切换选中域）" className="mb-6">
+        <div className="grid gap-4" style={{ gridTemplateColumns: '3fr 2fr' }}>
+          <div>
+            <EChart option={dependsOption} onReady={onDependsReady} style={{ height: 360 }} />
+            <p className="text-[10px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
+              节点大小=被依赖次数（半导体 / 新材料为全网最大底座）· 颜色=分层 · 金描边=当前选中域；
+              <span style={{ color: '#c41e3a' }}> 红色出边</span>=选中域的上游依赖（标注依赖注记），灰边=其余依赖；边宽=依赖强度。
+            </p>
+          </div>
+          <div>
+            <div className="text-center p-3 rounded mb-3" style={{ background: 'var(--bg-elevated)' }}>
+              <div
+                className="text-3xl font-bold mono"
+                style={{ color: depRisk.score >= 70 ? '#c41e3a' : depRisk.score >= 40 ? '#e8a317' : depRisk.score > 0 ? '#22d3ee' : '#10b981' }}
+              >{depRisk.score}</div>
+              <div className="text-[10px] mt-1" style={{ color: 'var(--text-tertiary)' }}>
+                {d.name} · 上游断点传导风险（0-100）
+              </div>
+            </div>
+            {depRisk.paths.length === 0 ? (
+              <p className="text-xs leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
+                该域无上游依赖出边——它是传导网络的根部底座：断点不从别处传来，只从这里向全网下游扩散。
+                根部域自身的硬卡点，就是全网的系统性风险源。
+              </p>
+            ) : (
+              <div className="space-y-1.5">
+                {depRisk.paths.map((p) => (
+                  <div key={p.via} className="text-xs py-1.5 px-2 rounded" style={{ background: 'var(--bg-elevated)' }}>
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="text-[10px] mono px-1.5 py-0.5 rounded shrink-0"
+                        style={{
+                          background: `${DEP_SEV_COLOR[p.severity] || '#64748b'}1f`,
+                          color: DEP_SEV_COLOR[p.severity] || '#64748b',
+                          border: `1px solid ${DEP_SEV_COLOR[p.severity] || '#64748b'}55`,
+                        }}
+                      >{p.severity}</span>
+                      <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>{p.via}</span>
+                    </div>
+                    <p className="text-[10px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
+                      {p.via}：{p.note}——上游硬卡点会沿这条边传导。
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+            <p className="text-[10px] mt-2 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
+              评分=Σ 依赖强度×(上游硬卡点×10 + 最弱链节点断点深度×0.5)，归一至 0-100——确定性合成，非预测。
+            </p>
+          </div>
+        </div>
+      </Card>
 
       {/* ================= ③ 攻关推演模拟器 ================= */}
       <Card title={`③ 攻关推演模拟器 · ${d.name} 十年自主度曲线（确定性推演 · 示意标定）`} className="mb-6">
@@ -592,17 +770,20 @@ export default function Page() {
         <p className="text-[10px] mt-2" style={{ color: 'var(--text-tertiary)' }}>
           曲线为确定性纯函数推演（同输入恒同输出），基准 {TECH_AS_OF}；金虚线=85 突破线，红钉=断供冲击（数字为命中深度），金星=突破年。示意标定 · 非预测。
         </p>
+        <p className="text-[10px] mt-1" style={{ color: '#22d3ee' }}>
+          当前方案已回写图谱账本——博弈桌『自主攻关』将按此方案动态加权。
+        </p>
       </Card>
 
       {/* ================= ④ 中美记分牌 ================= */}
-      <Card title="④ 中美科技记分牌 · 六维双向条（左红=中国 · 右青=美国 · 示意标定）" className="mb-6">
+      <Card title="④ 中美科技记分牌 · 六维双向条（左红=中国 · 右蓝=美国 · 示意标定）" className="mb-6">
         <div className="space-y-1">
-          {SCORECARD.map((row) => <ScoreRow key={row.dim} row={row} />)}
+          {SCORECARD.map((row) => <ScoreRow key={row.dim} row={row} usBlue={usBlue} usBlueFade={usBlueFade} />)}
         </div>
         <div className="mt-3 p-2.5 rounded" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #e8a317' }}>
           <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
             总评：六维均值 中 <span className="mono font-bold" style={{ color: '#c41e3a' }}>{scoreCnAvg}</span> vs
-            美 <span className="mono font-bold" style={{ color: '#22d3ee' }}>{scoreUsAvg}</span>，
+            美 <span className="mono font-bold" style={{ color: usBlue }}>{scoreUsAvg}</span>，
             差距 <span className="mono font-bold" style={{ color: scoreUsAvg - scoreCnAvg > 0 ? '#e8a317' : '#10b981' }}>
               {scoreUsAvg - scoreCnAvg > 0 ? `-${scoreUsAvg - scoreCnAvg}` : `+${scoreCnAvg - scoreUsAvg}`}
             </span>——

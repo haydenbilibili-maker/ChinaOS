@@ -387,3 +387,63 @@ export function buildTechReport({ domain, levers = {}, sim }) {
   L.push('示意标定 · 非预测 · 非投资建议');
   return L.join('\n');
 }
+
+// ============================================================================
+// 七、域间依赖网络（断点传导）—— from 依赖 to，箭头指向被依赖方
+// note ≤16 字依赖注记 · strength 1-3 依赖强度（3=命门级）
+// 网络设定（系统自洽）：semi（芯片底座）与 material（材料底座）为最大被依赖
+// 节点，且二者自身无出边——它们是传导链的根部，断点从这里向全网扩散；
+// ai 同时是 robot/bci/mfg 的智能底座，构成「semi→ai→具身/脑机/制造」二级传导。
+// ============================================================================
+export const DEPENDS = [
+  { from: 'ai', to: 'semi', note: '算力命门', strength: 3 },
+  { from: 'ai', to: 'energy', note: '训练耗电', strength: 1 },
+  { from: 'robot', to: 'ai', note: '具身智能大脑', strength: 2 },
+  { from: 'robot', to: 'semi', note: '专用 SoC 供给', strength: 2 },
+  { from: 'bci', to: 'semi', note: '神经信号芯片', strength: 2 },
+  { from: 'bci', to: 'ai', note: '神经解码算法', strength: 2 },
+  { from: 'space', to: 'semi', note: '抗辐照器件', strength: 2 },
+  { from: 'space', to: 'material', note: '宇航结构材料', strength: 2 },
+  { from: 'fusion', to: 'material', note: '带材与第一壁', strength: 3 },
+  { from: 'mfg', to: 'robot', note: '产线自动化', strength: 2 },
+  { from: 'mfg', to: 'ai', note: '工业智能化', strength: 1 },
+  { from: 'quantum', to: 'semi', note: '测控电子学芯片', strength: 1 },
+  { from: 'biotech', to: 'material', note: '高端试剂耗材', strength: 1 },
+  { from: 'comm', to: 'semi', note: '射频与基带芯片', strength: 2 },
+  { from: 'energy', to: 'material', note: '电池关键材料', strength: 1 },
+];
+
+// ============================================================================
+// 八、上游断点传导风险 propagateRisk(k) —— 确定性纯函数（零随机）
+// ----------------------------------------------------------------------------
+// 机理：k 的风险不在自身，而在它依赖的上游域——上游硬卡点会沿依赖边传导。
+// 评分公式（确定性合成）：
+//   单边传导 edgeRisk = strength × ( hard×10 + (100 − minAuto)×0.5 )
+//     hard    = 被依赖域 NECK_ITEMS 中 severity=3 硬卡点条数（每条计 10 分压强）
+//     minAuto = 被依赖域 CHAIN_OF 链条最低节点自主度——链强度由最弱一环决定，
+//               (100−minAuto)×0.5 即「最弱一环的断点深度」折半计入
+//   总分 score = min(100, round( Σ edgeRisk × 0.45 ))   —— 0.45 为归一系数，
+//   标定锚点：ai（semi 强度 3 + energy 强度 1）≈ 90，comm（semi 强度 2）≈ 55
+// 边级 severity 描述：edgeRisk ≥120 重度传导 / ≥60 中度传导 / 其余 轻度传导
+// 无出边（semi / material 等根部底座域）返回 { score: 0, paths: [] }。
+// ============================================================================
+export function propagateRisk(k) {
+  const edges = DEPENDS.filter((e) => e.from === k);
+  if (edges.length === 0) return { score: 0, paths: [] };
+
+  const scored = edges
+    .map((e) => {
+      const hard = (NECK_ITEMS[e.to] || []).filter((n) => n.severity === 3).length;
+      const chain = CHAIN_OF[e.to] || [];
+      const minAuto = chain.length ? Math.min(...chain.map((c) => c.auto)) : 100;
+      const edgeRisk = e.strength * (hard * 10 + (100 - minAuto) * 0.5);
+      const dep = DOMAIN_BY_K[e.to];
+      const severity = edgeRisk >= 120 ? '重度传导' : edgeRisk >= 60 ? '中度传导' : '轻度传导';
+      return { via: dep ? dep.name : e.to, note: e.note, severity, _risk: edgeRisk };
+    })
+    .sort((a, b) => b._risk - a._risk);
+
+  const total = scored.reduce((s, p) => s + p._risk, 0);
+  const score = Math.min(100, Math.round(total * 0.45));
+  return { score, paths: scored.map(({ via, note, severity }) => ({ via, note, severity })) };
+}

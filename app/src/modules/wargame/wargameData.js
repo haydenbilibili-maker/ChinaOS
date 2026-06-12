@@ -111,6 +111,45 @@ export const TECH_TRACKS = [...LOCKED_DOMAINS, ...CHASE_TOP].map((d) => ({
 }));
 
 // ----------------------------------------------------------------------------
+// 图谱方案回写加成：科技图谱攻关推演页把方案写入账本 'cos-tech-plans'
+// （{plans:{[领域k]:{rd,talent,open,breakthrough,auto2030}},stamp}），
+// 推演桌按方案给对应攻关线的增益曲线加权——图谱里下了重注的线，桌上也更硬。
+// ----------------------------------------------------------------------------
+
+/**
+ * 纯函数：tracks × plans（账本 plans 字段）→ 新 tracks 数组，不修改入参。
+ * 对每条 track，若 plans[track.id] 存在：
+ *   bonus = (rd≥70 ? 1 : 0) + (talent≥60 ? 1 : 0)，取值 0-2；
+ *   bonus≥1 → 第 4 回合 +1；bonus===2 → 第 4、5 回合各 +1；
+ *   breakthrough 存在且 ≤2032 → 再把第 5 回合 1 点前移到第 3 回合
+ *   （前移不增总量——图谱里突破得早，桌上发力也早；第 5 回合不足 1 点则不前移）；
+ *   被改写的 track 附 {boosted: bonus, planNote: '图谱方案加成 +N'}。
+ * plans 缺失/坏档/方案无效 → 对应 track 原样返回（向后兼容，无账本时零变化）。
+ */
+export function applyTechPlans(tracks, plans) {
+  const list = Array.isArray(tracks) ? tracks : [];
+  if (!plans || typeof plans !== 'object') return list;
+  return list.map((track) => {
+    const plan = plans[track.id];
+    if (!plan || typeof plan !== 'object' || !Array.isArray(track.curve) || track.curve.length < 5) {
+      return track;
+    }
+    const bonus = (Number(plan.rd) >= 70 ? 1 : 0) + (Number(plan.talent) >= 60 ? 1 : 0);
+    const bt = plan.breakthrough == null ? NaN : Number(plan.breakthrough);
+    const early = Number.isFinite(bt) && bt <= 2032;
+    if (bonus === 0 && !early) return track;
+    const curve = [...track.curve];
+    if (bonus >= 1) curve[3] += 1;
+    if (bonus === 2) curve[4] += 1;
+    if (early && curve[4] >= 1) {
+      curve[4] -= 1;
+      curve[2] += 1;
+    }
+    return { ...track, curve, boosted: bonus, planNote: `图谱方案加成 +${bonus}` };
+  });
+}
+
+// ----------------------------------------------------------------------------
 // 牌库：effect 四值均以「出牌方」为 self（-10..+10）；decay 持续 = 效果驻留逐回合生效
 // 设计自洽：管制类伤对方科技但反噬己方经贸；攻关类慢热（持续小步快跑）；
 //          谈判/开放双正但小——缓和的收益从来不如对抗的伤害醒目，这正是博弈的难处。
@@ -265,12 +304,18 @@ function applyEffect(next, sideId, effect) {
  *            缺省为派生后第一条（TECH_TRACKS[0].id，当前为 semi）；
  *            传入未知 id（含旧档 litho/soft/aero）同样回退第一条，不抛错——
  *            不传 opts 与传 {track: TECH_TRACKS[0].id} 结果全等（向后兼容）。
+ * opts.curveOverride：可选增益曲线（长度 5 数组），传入时替代查表所得 track.curve——
+ *            供页面把 applyTechPlans 加成后的曲线喂进结算；缺省走原查表，
+ *            传入与查表曲线相同的数组时结果与不传全等（向后兼容）。
  */
 export function resolveTurn(state, cnCards, usCards, opts) {
   if (!state || state.turn >= MAX_TURNS) return state;
   const cn = sanitizePlay('cn', cnCards);
   const us = sanitizePlay('us', usCards);
   const track = TECH_TRACKS.find((t) => t.id === (opts && opts.track)) || TECH_TRACKS[0];
+  const curve = (opts && Array.isArray(opts.curveOverride) && opts.curveOverride.length > 0)
+    ? opts.curveOverride
+    : track.curve;
 
   const next = {
     cn: { ...state.cn },
@@ -287,7 +332,7 @@ export function resolveTurn(state, cnCards, usCards, opts) {
   // 打出与驻留同走一条曲线——光刻后程爆发 / 软件线性 / 航发前期沉默。
   const effectFor = (c) => (
     c.id === 'selfdev'
-      ? { ...c.effect, selfTech: track.curve[Math.min(next.turn, track.curve.length) - 1] }
+      ? { ...c.effect, selfTech: curve[Math.min(next.turn, curve.length) - 1] }
       : c.effect
   );
 
@@ -431,7 +476,8 @@ const sgn = (v) => (v > 0 ? `+${v}` : `${v}`);
 
 /**
  * 生成 Markdown 推演报告。
- * ctx: { strategy: 策略 id 或对象, state: 终局 state }
+ * ctx: { strategy: 策略 id 或对象, state: 终局 state, track?: 攻关线 id,
+ *        tracks?: 攻关线数组（页面传 applyTechPlans 加成后的 activeTracks；缺省查 TECH_TRACKS） }
  */
 export function buildWarReport(ctx) {
   const { state } = ctx;
@@ -449,8 +495,9 @@ export function buildWarReport(ctx) {
   L.push('## 一、策略设定');
   L.push('');
   L.push(`- **美方策略**：${strat.label} —— ${strat.desc}`);
-  const trk = TECH_TRACKS.find((t) => t.id === ctx.track);
-  if (trk) L.push(`- **攻关目标线**：${trk.label} —— 卡点：${trk.neck} · 逐回合增益 ${trk.curve.join('/')}`);
+  const trackPool = Array.isArray(ctx.tracks) && ctx.tracks.length ? ctx.tracks : TECH_TRACKS;
+  const trk = trackPool.find((t) => t.id === ctx.track);
+  if (trk) L.push(`- **攻关目标线**：${trk.label} —— 卡点：${trk.neck} · 逐回合增益 ${trk.curve.join('/')}${trk.boosted > 0 ? `（${trk.planNote} · 来自科技图谱攻关推演的回写方案）` : ''}`);
   L.push(`- **初值标定**：中方 科技 ${INIT.cn.tech} / 经贸 ${INIT.cn.econ}（追赶者设定）；美方 科技 ${INIT.us.tech} / 经贸 ${INIT.us.econ}`);
   L.push(`- **规则**：每回合行动点 ${AP_PER_TURN}，共 ${MAX_TURNS} 回合；科技线每回合自然增长 +${TECH_GROWTH}；持续牌效果驻留至终局`);
   L.push('');

@@ -5,7 +5,7 @@ import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/M
 import {
   WG_AS_OF, SIDES, CARDS, STRATEGIES, INIT, MAX_TURNS, AP_PER_TURN,
   THIRD_PARTIES, TECH_TRACKS, TILT_TIPPING, TILT_SIDED,
-  makeInitialState, usMove, resolveTurn, judge, buildWarReport, tallyCnPlays,
+  makeInitialState, usMove, resolveTurn, judge, buildWarReport, tallyCnPlays, applyTechPlans,
 } from './wargameData.js';
 
 // ============================================================================
@@ -37,6 +37,20 @@ const CN_HAND = CARDS.filter((c) => c.side === 'cn' || c.side === 'both');
 
 const sgn = (v) => (v > 0 ? `+${v}` : `${v}`);
 const dColor = (v) => (v > 0 ? '#10b981' : v < 0 ? '#c41e3a' : 'var(--text-tertiary)');
+
+// —— 图谱方案回写：科技图谱攻关推演页写入的账本（只读消费） ——
+const PLANS_KEY = 'cos-tech-plans';
+
+/** 读取图谱方案账本的 plans 字段：缺失 / 解析失败 / 结构异常一律降级为 null（零变化） */
+function readTechPlans() {
+  try {
+    const obj = JSON.parse(localStorage.getItem(PLANS_KEY) || 'null');
+    if (!obj || typeof obj !== 'object' || !obj.plans || typeof obj.plans !== 'object') return null;
+    return obj.plans;
+  } catch {
+    return null;
+  }
+}
 
 // —— 策略实验室：对局存档（独立键 · 数组 cap 10 · 新进先出） ——
 const RUNS_KEY = 'cos-wargame-runs';
@@ -91,9 +105,32 @@ export default function Page() {
   const [reportMd, setReportMd] = useState('');
   const [copied, setCopied] = useState(false);
 
+  // —— 图谱方案账本：mount 读一次 + storage / cos-ledger-change 双监听，JSON 比对防循环 ——
+  const [techPlans, setTechPlans] = useState(readTechPlans);
+  const plansSigRef = useRef(JSON.stringify(readTechPlans() ?? null));
+  useEffect(() => {
+    const sync = () => {
+      const next = readTechPlans();
+      const sig = JSON.stringify(next ?? null);
+      if (sig === plansSigRef.current) return;
+      plansSigRef.current = sig;
+      setTechPlans(next);
+    };
+    window.addEventListener('storage', sync);
+    window.addEventListener('cos-ledger-change', sync);
+    return () => {
+      window.removeEventListener('storage', sync);
+      window.removeEventListener('cos-ledger-change', sync);
+    };
+  }, []);
+
+  // 加成后的攻关线：无账本 / 坏档时 applyTechPlans 原样返回 TECH_TRACKS（零变化）
+  const activeTracks = useMemo(() => applyTechPlans(TECH_TRACKS, techPlans), [techPlans]);
+  const boostedTracks = useMemo(() => activeTracks.filter((t) => (t.boosted || 0) > 0), [activeTracks]);
+
   const finished = game.turn >= MAX_TURNS;
   const strat = useMemo(() => STRATEGIES.find((s) => s.id === strategy) || STRATEGIES[0], [strategy]);
-  const trackObj = useMemo(() => TECH_TRACKS.find((t) => t.id === track) || TECH_TRACKS[0], [track]);
+  const trackObj = useMemo(() => activeTracks.find((t) => t.id === track) || activeTracks[0], [track, activeTracks]);
 
   // 已选行动点
   const apUsed = useMemo(
@@ -117,11 +154,12 @@ export default function Page() {
     });
   };
 
-  // 出牌结算：美方按策略同步出牌，引擎一次性推进一个回合（攻关线随 opts 传入）
+  // 出牌结算：美方按策略同步出牌，引擎一次性推进一个回合
+  // （攻关线随 opts 传入；曲线用 activeTracks 中选中线的加成后曲线覆盖查表）
   const settleTurn = () => {
     if (finished) return;
     const usCards = usMove(strategy, game, game.turn + 1);
-    setGame((prev) => resolveTurn(prev, selected, usCards, { track }));
+    setGame((prev) => resolveTurn(prev, selected, usCards, { track, curveOverride: trackObj.curve }));
     setSelected([]);
   };
 
@@ -192,7 +230,7 @@ export default function Page() {
 
   const genReport = () => {
     try {
-      setReportMd(buildWarReport({ strategy, state: game, track }));
+      setReportMd(buildWarReport({ strategy, state: game, track, tracks: activeTracks }));
     } catch (e) {
       setReportMd(`# 报告生成异常\n\n${String(e)}`);
     }
@@ -267,13 +305,33 @@ export default function Page() {
         </p>
         <div className="text-[11px] mono mb-2" style={{ color: 'var(--text-tertiary)' }}>攻关目标线 · 「自主攻关」驻留后走哪条增益曲线（5 条 · 派生自科技树作战盘）</div>
         <SelectorBar
-          items={TECH_TRACKS} activeKey={track} onSelect={setTrack}
+          items={activeTracks} activeKey={track} onSelect={setTrack}
           getKey={(t) => t.id} getLabel={(t) => t.label} getAccent={(t) => TRACK_ACCENT[t.id] || '#64748b'}
         />
+        {boostedTracks.length > 0 && (
+          <div className="flex flex-wrap items-center gap-1.5 -mt-2 mb-3">
+            {boostedTracks.map((t) => (
+              <span
+                key={t.id}
+                title="来自科技图谱攻关推演的回写方案"
+                className="text-[10px] mono px-1.5 py-0.5 rounded"
+                style={{ background: 'rgba(232,163,23,0.14)', color: '#e8a317', border: '1px solid rgba(232,163,23,0.4)' }}
+              >{t.label} · {t.planNote}</span>
+            ))}
+            <span className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>来自科技图谱攻关推演的回写方案</span>
+          </div>
+        )}
         <p className="text-xs leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
           <span className="font-semibold" style={{ color: TRACK_ACCENT[track] || '#64748b' }}>{trackObj.label}：</span>
           <span className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>卡点：{trackObj.neck}</span>
           <span className="mono text-[11px]" style={{ color: 'var(--text-tertiary)' }}>　逐回合增益 {trackObj.curve.join(' / ')}（合计 +{trackObj.curve.reduce((s, v) => s + v, 0)}） · 重开对局保留所选线</span>
+          {trackObj.boosted > 0 && (
+            <span
+              title="来自科技图谱攻关推演的回写方案"
+              className="text-[10px] mono px-1.5 py-0.5 rounded ml-1.5"
+              style={{ background: 'rgba(232,163,23,0.14)', color: '#e8a317', border: '1px solid rgba(232,163,23,0.4)' }}
+            >{trackObj.planNote}</span>
+          )}
         </p>
         <div className="flex items-center gap-3 flex-wrap">
           <span className="mono text-xl font-bold" style={{ color: finished ? '#e8a317' : '#22d3ee' }}>
@@ -504,7 +562,7 @@ export default function Page() {
                   <span className="shrink-0 font-semibold" style={{ color: STRAT_ACCENT[r.strategy] || 'var(--text-secondary)' }}>{r.strategyLabel}</span>
                   {r.track && (
                     <span className="text-[10px] mono shrink-0" style={{ color: TRACK_ACCENT[r.track] || 'var(--text-tertiary)' }}>
-                      {(TECH_TRACKS.find((t) => t.id === r.track) || { label: r.track }).label}
+                      {(activeTracks.find((t) => t.id === r.track) || { label: r.track }).label}
                     </span>
                   )}
                   <span
