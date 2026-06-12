@@ -145,6 +145,15 @@ def file_char_count(rel_path: str) -> int:
         return 0
 
 
+def read_frontmatter_tier(rel_path: str) -> str | None:
+    try:
+        head = (CORPUS_DIR / rel_path).read_text(encoding="utf-8")[:600]
+    except OSError:
+        return None
+    m = re.search(r"corpusTier:\s*(\S+)", head)
+    return m.group(1) if m else None
+
+
 def is_official_corpus(rel_path: str) -> bool:
     try:
         head = (CORPUS_DIR / rel_path).read_text(encoding="utf-8")[:800]
@@ -156,15 +165,19 @@ def is_official_corpus(rel_path: str) -> bool:
 def corpus_tier(entry_id: str, rel_path: str | None) -> str | None:
     if not rel_path:
         return None
-    if file_char_count(rel_path) < STUB_THRESHOLD:
+    chars = file_char_count(rel_path)
+    if chars < STUB_THRESHOLD:
         return "stub"
+    fm_tier = read_frontmatter_tier(rel_path)
     if is_official_corpus(rel_path):
-        return "full"
+        return fm_tier or "official"
+    if fm_tier in ("official", "full", "extended", "excerpt", "stub"):
+        return fm_tier
     if entry_id in EXCERPT_IDS:
         return "excerpt"
     if entry_id.startswith("ji-"):
         return "extended"
-    return "full"
+    return "full" if chars >= 8000 else "extended"
 
 
 def resolve_corpus_file(entry_id: str) -> str | None:

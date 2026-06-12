@@ -104,6 +104,15 @@ LEGAL_TARGETS: list[LegalTarget] = [
     LegalTarget("law-trademark", "中华人民共和国商标法"),
     LegalTarget("law-air", "中华人民共和国大气污染防治法"),
     LegalTarget("law-enterprise-bankruptcy", "中华人民共和国企业破产法"),
+    LegalTarget("law-admin-procedure", "中华人民共和国行政处罚法"),
+    LegalTarget("law-admin-review", "中华人民共和国行政复议法"),
+    LegalTarget("law-data-security", "中华人民共和国数据安全法"),
+    LegalTarget("law-cybersecurity", "中华人民共和国网络安全法"),
+    LegalTarget("law-pipl", "中华人民共和国个人信息保护法", rel_path="laws/law-personal-info.md"),
+    LegalTarget("law-env-protection", "中华人民共和国环境保护法"),
+    LegalTarget("law-labor", "中华人民共和国劳动法"),
+    LegalTarget("law-foreign-investment", "中华人民共和国外商投资法"),
+    LegalTarget("law-nat-security", "中华人民共和国国家安全法"),
 ]
 
 POLICY_TARGETS: list[PolicyTarget] = [
