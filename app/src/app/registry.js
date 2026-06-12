@@ -20,11 +20,11 @@ export const GROUPS = [
   { id: 'depthtopics', label: '深度专题', desc: '已迁移', accent: '#10b981' },
   { id: 'techtopics', label: '科技专题', desc: '科技树 · 深挖', accent: '#22d3ee' },
   { id: 'society', label: '社会与民生', desc: '人口 · 医保 · 住房', accent: '#f0abfc' },
-  { id: 'population', label: '中国人群分析', desc: '世代 · 阶层 · 人群画像', accent: '#ec4899' },
   { id: 'industry', label: '产业与制造', desc: '能源 · 算力 · 链', accent: '#fb923c' },
   { id: 'finance', label: '货币金融', desc: '人民币 · 债务', accent: '#d4af37' },
   { id: 'region', label: '区域与全球化', desc: '板块 · 海洋 · 资源', accent: '#8b5cf6' },
   { id: 'security', label: '安全与国防', desc: '军事 · 台海 · 大安全', accent: '#c41e3a' },
+  { id: 'population', label: '中国人群分析', desc: '世代 · 阶层 · 人群画像', accent: '#ec4899' },
   { id: 'sim', label: '推演与训练', desc: '沙盒 · 内参', accent: '#d4af37' },
   { id: 'foundation', label: '数据与系统', desc: '底座', accent: '#64748b' },
 ];
