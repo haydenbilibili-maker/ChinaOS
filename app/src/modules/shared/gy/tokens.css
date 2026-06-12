@@ -1,7 +1,8 @@
 /* GY 系列共享设计令牌 · 玄青夜读 · 映射 China OS 日览/夜览（GY-01/02/03+） */
 #gy-app,
 #ys-app,
-#qn-app {
+#qn-app,
+#xs-app {
   --xuan: var(--bg-base);
   --xuan-deep: var(--bg-inset);
   --xuan-raise: var(--bg-elevated);
@@ -33,7 +34,8 @@
 
 :root[data-theme='light'] #gy-app,
 :root[data-theme='light'] #ys-app,
-:root[data-theme='light'] #qn-app {
+:root[data-theme='light'] #qn-app,
+:root[data-theme='light'] #xs-app {
   --qing: #3d7a66;
   --qing-dim: #c8e4d8;
   --zhu-dim: #f0d0cc;
@@ -43,7 +45,8 @@
 
 #gy-app *,
 #ys-app *,
-#qn-app * {
+#qn-app *,
+#xs-app * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -51,7 +54,8 @@
 
 #gy-app ::selection,
 #ys-app ::selection,
-#qn-app ::selection {
+#qn-app ::selection,
+#xs-app ::selection {
   background: var(--zhu-dim);
   color: var(--xuanzhi);
 }
