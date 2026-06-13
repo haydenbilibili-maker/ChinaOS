@@ -1,0 +1,212 @@
+@import "../shared/gy/tokens.css";
+
+#gr-app .gr-shell { max-width: 1060px; margin: 0 auto; padding: 0 28px 96px; }
+
+/* 题头 */
+#gr-app .gr-mast { padding: 56px 0 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+#gr-app .gr-mast-meta { font-family: var(--sans); font-size: 11px; letter-spacing: .22em; color: var(--xuanzhi-mute); text-transform: uppercase; }
+#gr-app .gr-mast-meta b { color: var(--jin); font-weight: 500; }
+#gr-app h1.gr-title { font-size: clamp(30px, 5vw, 46px); font-weight: 600; letter-spacing: .08em; line-height: 1.3; margin-top: 14px; }
+#gr-app h1.gr-title .gr-title-sub { display: block; font-size: 14px; font-weight: 400; color: var(--xuanzhi-dim); letter-spacing: .3em; margin-top: 10px; }
+#gr-app .gr-mast-seal { flex-shrink: 0; writing-mode: vertical-rl; font-size: 13px; letter-spacing: .35em; color: var(--qing); border: 1px solid var(--qing-dim); padding: 14px 8px; line-height: 1; user-select: none; }
+
+/* 题头下方敏感度声明 */
+#gr-app .gr-mast-note { font-family: var(--sans); font-size: 11.5px; color: var(--xuanzhi-mute); letter-spacing: .04em; line-height: 1.7; margin-top: 18px; border-left: 2px solid var(--jin-dim); padding: 5px 0 5px 12px; max-width: 80ch; }
+#gr-app .gr-mast-note b { color: var(--jin); font-weight: 500; }
+
+/* 签名图 */
+#gr-app .gr-found { margin-top: 32px; border: 1px solid var(--hairline); background: var(--xuan-deep); padding: 22px 24px 12px; }
+#gr-app .gr-found svg { width: 100%; height: auto; display: block; }
+#gr-app .gr-found-caption { font-family: var(--sans); font-size: 11.5px; color: var(--xuanzhi-mute); letter-spacing: .04em; padding: 8px 2px 6px; }
+#gr-app .gr-found-caption b { color: var(--xuanzhi); }
+
+/* 页签 */
+#gr-app .gr-nav { display: flex; flex-wrap: wrap; margin-top: 30px; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); position: sticky; top: 0; background: var(--xuan); z-index: 10; }
+#gr-app .gr-nav button { flex: 1 1 auto; background: none; border: none; border-right: 1px solid var(--hairline); color: var(--xuanzhi-dim); font-family: var(--serif); font-size: 14px; letter-spacing: .1em; padding: 15px 9px 13px; cursor: pointer; position: relative; transition: color .2s; white-space: nowrap; }
+#gr-app .gr-nav button:last-child { border-right: none; }
+#gr-app .gr-nav button:hover { color: var(--xuanzhi); }
+#gr-app .gr-nav button:focus-visible { outline: 1px solid var(--jin); outline-offset: -1px; }
+#gr-app .gr-nav button.is-active { color: var(--xuanzhi); }
+#gr-app .gr-nav button.is-active::after { content: ""; position: absolute; left: 14%; right: 14%; bottom: -1px; height: 2px; background: var(--qing); }
+
+/* 通用 */
+#gr-app section.gr-panel { display: none; padding-top: 50px; }
+#gr-app section.gr-panel.is-active { display: block; animation: grFade .35s ease; }
+@keyframes grFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { #gr-app section.gr-panel.is-active { animation: none; } }
+#gr-app .gr-sec-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 8px; flex-wrap: wrap; }
+#gr-app .gr-sec-head h2 { font-size: 23px; font-weight: 600; letter-spacing: .1em; }
+#gr-app .gr-sec-head .gr-sec-tag { font-family: var(--sans); font-size: 11px; letter-spacing: .18em; color: var(--xuanzhi-mute); }
+#gr-app .gr-lede { color: var(--xuanzhi-dim); font-size: 15px; max-width: 76ch; margin-bottom: 34px; }
+#gr-app .gr-lede b { color: var(--xuanzhi); font-weight: 600; }
+#gr-app h3.gr-h3 { font-size: 17px; font-weight: 600; letter-spacing: .08em; margin: 40px 0 18px; display: flex; align-items: center; gap: 12px; }
+#gr-app h3.gr-h3::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
+#gr-app .gr-card { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 20px 22px; }
+#gr-app .gr-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+#gr-app .gr-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+#gr-app .gr-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+#gr-app .gr-card p { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.78; }
+#gr-app .gr-card p b { color: var(--xuanzhi); font-weight: 600; }
+#gr-app .gr-card .gr-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .24em; color: var(--xuanzhi-mute); display: block; margin-bottom: 10px; }
+#gr-app .gr-verdict { margin-top: 38px; border-left: 2px solid var(--jin); background: var(--xuan-deep); padding: 22px 26px; font-size: 15px; line-height: 2; }
+#gr-app .gr-verdict .gr-verdict-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .3em; color: var(--jin); display: block; margin-bottom: 8px; }
+#gr-app .gr-verdict b { color: var(--xuanzhi); font-weight: 600; }
+#gr-app .gr-xref { display: inline-block; margin-top: 10px; font-family: var(--sans); font-size: 10.5px; letter-spacing: .12em; color: var(--jin); border: 1px solid var(--jin-dim); padding: 3px 9px; margin-right: 6px; }
+
+/* 数据卡 */
+#gr-app .gr-data3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+#gr-app .gr-stat { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 18px 20px; border-top: 3px solid var(--qing); }
+#gr-app .gr-stat.alt { border-top-color: var(--zhu); }
+#gr-app .gr-stat .gr-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .22em; color: var(--xuanzhi-mute); display: block; margin-bottom: 9px; }
+#gr-app .gr-stat .gr-stat-n { font-family: var(--mono); font-size: 27px; color: var(--qing); line-height: 1.1; display: block; }
+#gr-app .gr-stat.alt .gr-stat-n { color: var(--zhu); }
+#gr-app .gr-stat .gr-stat-u { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .08em; display: block; margin-top: 4px; }
+#gr-app .gr-stat p { font-size: 12px; color: var(--xuanzhi-dim); line-height: 1.7; margin-top: 10px; }
+#gr-app .gr-stat p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 占比对比卡 */
+#gr-app .gr-compare { display: grid; grid-template-columns: 1fr 56px 1fr; border: 1px solid var(--hairline); margin-top: 4px; align-items: stretch; }
+#gr-app .gr-compare > div { padding: 20px 22px; }
+#gr-app .gr-compare .gr-compare-a { background: var(--xuan-raise); border-top: 3px solid var(--qing); }
+#gr-app .gr-compare .gr-compare-mid { background: var(--xuan-deep); display: flex; align-items: center; justify-content: center; font-family: var(--mono); color: var(--qing); font-size: 26px; }
+#gr-app .gr-compare .gr-compare-b { background: var(--xuan-raise); border-top: 3px solid var(--zhu); }
+#gr-app .gr-compare h6 { font-family: var(--sans); font-size: 10.5px; letter-spacing: .16em; color: var(--xuanzhi-mute); margin-bottom: 8px; }
+#gr-app .gr-compare .gr-compare-a h6 b { color: var(--qing); }
+#gr-app .gr-compare .gr-compare-b h6 b { color: var(--zhu); }
+#gr-app .gr-compare .gr-compare-n { font-family: var(--mono); font-size: 30px; line-height: 1.1; display: block; margin-bottom: 6px; }
+#gr-app .gr-compare .gr-compare-a .gr-compare-n { color: var(--qing); }
+#gr-app .gr-compare .gr-compare-b .gr-compare-n { color: var(--zhu); }
+#gr-app .gr-compare p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#gr-app .gr-compare p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 构成 rows */
+#gr-app .gr-rows { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#gr-app .gr-row { padding: 13px 18px; border-bottom: 1px solid var(--hairline); font-size: 13px; display: grid; grid-template-columns: 132px 1fr; gap: 16px; align-items: baseline; }
+#gr-app .gr-row:last-child { border-bottom: none; }
+#gr-app .gr-row .gr-row-k { font-family: var(--mono); font-size: 12px; color: var(--qing); }
+#gr-app .gr-row .gr-row-v { color: var(--xuanzhi-dim); line-height: 1.74; }
+#gr-app .gr-row .gr-row-v b { color: var(--xuanzhi); font-weight: 600; }
+#gr-app .gr-row.peak { border-left: 3px solid var(--qing); }
+#gr-app .gr-row.peak .gr-row-v b { color: var(--qing); }
+
+/* 序列图 / 进程链 */
+#gr-app .gr-chain { border: 1px solid var(--hairline); background: var(--xuan-raise); margin-top: 4px; }
+#gr-app .gr-chain-row { padding: 14px 18px; border-bottom: 1px solid var(--hairline); display: grid; grid-template-columns: 130px 1fr; gap: 16px; align-items: baseline; }
+#gr-app .gr-chain-row:last-child { border-bottom: none; }
+#gr-app .gr-chain-row .gr-chain-t { font-family: var(--mono); font-size: 12.5px; color: var(--dai); flex-shrink: 0; }
+#gr-app .gr-chain-row .gr-chain-v { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.74; }
+#gr-app .gr-chain-row .gr-chain-v b { color: var(--xuanzhi); font-weight: 600; }
+#gr-app .gr-chain-row.v1 { border-left: 3px solid var(--qing); }
+#gr-app .gr-chain-row.v1 .gr-chain-t { color: var(--qing); }
+#gr-app .gr-chain-row.v2 { border-left: 3px solid var(--zhu); }
+#gr-app .gr-chain-row.v2 .gr-chain-t { color: var(--zhu); }
+#gr-app .gr-chain-row.v2 .gr-chain-v b { color: var(--zhu); }
+
+/* 中性提示带(非戏剧化) */
+#gr-app .gr-breaking { margin-top: 14px; border: 1px solid var(--jin); background: rgba(110,93,56,.10); padding: 14px 18px; font-family: var(--mono); font-size: 13px; color: var(--xuanzhi); line-height: 1.7; }
+#gr-app .gr-breaking b { color: var(--jin); }
+#gr-app .gr-breaking .gr-breaking-tag { display: block; font-size: 10.5px; letter-spacing: .26em; color: var(--jin); margin-bottom: 7px; }
+
+/* dual 对照(中性双栏) */
+#gr-app .gr-dual { display: grid; grid-template-columns: 1fr 60px 1fr; border: 1px solid var(--hairline); margin-top: 4px; }
+#gr-app .gr-dual > div { padding: 16px 18px; }
+#gr-app .gr-dual .gr-dual-a { background: var(--xuan-raise); border-right: 1px solid var(--hairline); border-top: 3px solid var(--qing); }
+#gr-app .gr-dual .gr-dual-mid { background: var(--xuan-deep); display: flex; align-items: center; justify-content: center; font-family: var(--mono); color: var(--dai); font-size: 18px; }
+#gr-app .gr-dual .gr-dual-b { background: var(--xuan-raise); border-left: 1px solid var(--hairline); border-top: 3px solid var(--zhu); }
+#gr-app .gr-dual h6 { font-family: var(--sans); font-size: 10.5px; letter-spacing: .16em; color: var(--xuanzhi-mute); margin-bottom: 8px; }
+#gr-app .gr-dual .gr-dual-a h6 b { color: var(--qing); }
+#gr-app .gr-dual .gr-dual-b h6 b { color: var(--zhu); }
+#gr-app .gr-dual .gr-dual-pole { font-family: var(--mono); font-size: 11px; display: block; margin-bottom: 6px; }
+#gr-app .gr-dual .gr-dual-a .gr-dual-pole { color: var(--qing); }
+#gr-app .gr-dual .gr-dual-b .gr-dual-pole { color: var(--zhu); }
+#gr-app .gr-dual p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#gr-app .gr-dual p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 立场归因小字 */
+#gr-app .gr-attrib { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .04em; line-height: 1.7; margin-bottom: 18px; border: 1px dashed var(--jin-dim); padding: 9px 14px; background: var(--xuan-deep); }
+#gr-app .gr-attrib b { color: var(--jin); font-weight: 500; }
+
+/* 论点卡 */
+#gr-app .gr-art { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 18px 20px; margin-bottom: 12px; border-left: 3px solid var(--qing); }
+#gr-app .gr-art h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 6px; display: flex; gap: 11px; align-items: baseline; }
+#gr-app .gr-art h5 b { font-family: var(--mono); color: var(--qing); font-size: 12px; font-weight: 500; }
+#gr-app .gr-art p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#gr-app .gr-art p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 方法论卡(移民安置取向) */
+#gr-app .gr-form { border: 1px solid var(--qing-dim); background: rgba(65, 89, 78, .08); padding: 18px 20px; margin-bottom: 12px; }
+#gr-app .gr-form h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 6px; color: var(--qing); }
+#gr-app .gr-form p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#gr-app .gr-form p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 修正卡 */
+#gr-app .gr-fix { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 16px 20px; margin-bottom: 12px; border-left: 3px solid var(--jin); }
+#gr-app .gr-fix h5 { font-size: 14px; font-weight: 600; margin-bottom: 6px; display: flex; gap: 11px; align-items: baseline; }
+#gr-app .gr-fix h5 b { font-family: var(--mono); color: var(--jin); font-size: 12px; font-weight: 500; }
+#gr-app .gr-fix p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#gr-app .gr-fix p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 章节规划登记表 */
+#gr-app .gr-plan { border: 1px solid var(--hairline); }
+#gr-app .gr-plan-row { padding: 14px 18px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); display: flex; gap: 16px; align-items: baseline; }
+#gr-app .gr-plan-row:last-child { border-bottom: none; }
+#gr-app .gr-plan-k { font-family: var(--mono); font-size: 12px; color: var(--qing); flex-shrink: 0; width: 76px; }
+#gr-app .gr-plan-v { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#gr-app .gr-plan-v b { color: var(--xuanzhi); font-weight: 600; }
+#gr-app .gr-plan-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .14em; color: var(--xuanzhi-mute); border: 1px solid var(--hairline); padding: 2px 8px; flex-shrink: 0; }
+
+/* 观测哨 */
+#gr-app .gr-watch-intro { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 22px; }
+#gr-app .gr-watch-intro p { font-size: 13.5px; color: var(--xuanzhi-dim); max-width: 64ch; }
+#gr-app .gr-storage-state { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .08em; }
+#gr-app .gr-watch { border: 1px solid var(--hairline); }
+#gr-app .gr-watch-item { display: grid; grid-template-columns: 1fr 320px; gap: 18px; padding: 18px 22px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); }
+#gr-app .gr-watch-item:last-child { border-bottom: none; }
+#gr-app .gr-watch-item h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 5px; }
+#gr-app .gr-watch-item h5 b { font-family: var(--mono); color: var(--jin); font-weight: 500; font-size: 12px; margin-right: 8px; }
+#gr-app .gr-watch-item .gr-watch-desc { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.75; }
+#gr-app .gr-watch-ctrl { display: flex; flex-direction: column; gap: 9px; }
+#gr-app .gr-status-row { display: flex; gap: 6px; }
+#gr-app .gr-status-btn { flex: 1; font-family: var(--sans); font-size: 11.5px; letter-spacing: .08em; padding: 7px 0; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi-mute); cursor: pointer; transition: all .15s; }
+#gr-app .gr-status-btn:hover { color: var(--xuanzhi); }
+#gr-app .gr-status-btn:focus-visible { outline: 1px solid var(--jin); }
+#gr-app .gr-status-btn.on-good { background: var(--qing-dim); border-color: var(--qing); color: var(--xuanzhi); }
+#gr-app .gr-status-btn.on-flat { background: #3a3f33; border-color: var(--xuanzhi-mute); color: var(--xuanzhi); }
+#gr-app .gr-status-btn.on-bad { background: var(--zhu-dim); border-color: var(--zhu); color: var(--xuanzhi); }
+#gr-app .gr-watch-note { width: 100%; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi); font-family: var(--sans); font-size: 12.5px; padding: 8px 10px; resize: vertical; min-height: 38px; line-height: 1.6; }
+#gr-app .gr-watch-note:focus { outline: 1px solid var(--jin); }
+#gr-app .gr-watch-note::placeholder { color: var(--xuanzhi-mute); }
+#gr-app .gr-watch-stamp { font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); text-align: right; min-height: 14px; }
+
+/* 页脚 */
+#gr-app .gr-foot { margin-top: 66px; border-top: 1px solid var(--hairline); padding-top: 24px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+#gr-app .gr-foot p { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .06em; line-height: 1.9; max-width: 66ch; }
+#gr-app .gr-foot .gr-foot-meta { text-align: right; font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); line-height: 2; flex-shrink: 0; }
+
+/* 诚实标注 */
+#gr-app .gr-disclaimer { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .04em; margin-top: -22px; margin-bottom: 30px; line-height: 1.7; border-left: 2px solid var(--jin-dim); padding: 4px 0 4px 12px; }
+#gr-app .gr-disclaimer b { color: var(--jin); font-weight: 500; }
+#gr-app .gr-disclaimer.top { margin-top: 0; margin-bottom: 30px; }
+
+/* 题头下方显著 disclaimer(分析立场声明) */
+#gr-app .gr-mast-disclaimer { font-family: var(--sans); font-size: 12px; color: var(--xuanzhi-dim); letter-spacing: .03em; line-height: 1.85; margin-top: 30px; border: 1px solid var(--qing-dim); border-left: 3px solid var(--qing); padding: 16px 20px; background: var(--xuan-deep); max-width: 82ch; }
+#gr-app .gr-mast-disclaimer .gr-disclaimer-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .3em; color: var(--qing); display: block; margin-bottom: 10px; text-transform: uppercase; }
+#gr-app .gr-mast-disclaimer b { color: var(--xuanzhi); font-weight: 600; }
+
+@media (max-width: 860px) {
+  #gr-app .gr-grid-2, #gr-app .gr-grid-3, #gr-app .gr-data3 { grid-template-columns: 1fr; }
+  #gr-app .gr-watch-item { grid-template-columns: 1fr; }
+  #gr-app .gr-mast-seal { display: none; }
+  #gr-app .gr-nav button { flex: 1 1 30%; font-size: 12.5px; letter-spacing: .04em; }
+  #gr-app .gr-row, #gr-app .gr-chain-row { grid-template-columns: 1fr; gap: 4px; }
+  #gr-app .gr-dual, #gr-app .gr-compare { grid-template-columns: 1fr; }
+  #gr-app .gr-plan-row { flex-direction: column; gap: 3px; }
+  #gr-app .gr-plan-k { width: auto; }
+}
+
+#gr-app { border-radius: var(--radius-lg); }
+
+.ganran-module-wrap {
+  margin: calc(-1 * var(--card-padding)) calc(-1 * var(--card-padding));
+  max-width: none;
+}
