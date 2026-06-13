@@ -1,0 +1,448 @@
+<div class="bz-shell">
+
+  <!-- 题头 -->
+  <header class="bz-mast">
+    <div>
+      <div class="bz-mast-meta">ChinaOS · MODULE <b>GY-46</b> · 人群画像分层 · 第四十四子集 · 第四批收官</div>
+      <h1 class="bz-title">殡葬与临终关怀从业者<span class="bz-title-sub">进程回收器 · 系统需要却避而不见</span></h1>
+    </div>
+    <div class="bz-mast-seal">送最后一程</div>
+  </header>
+  <p class="bz-mast-note">注记(敏感度处理):本片以<b>死亡照护产业与老龄化</b>视角,讨论殡葬/临终行业与从业者处境;保持庄重、不渲染、不消费死亡,聚焦「如何有尊严地送别」的制度与人文。把殡葬与临终关怀从业者(入殓师、遗体接运、殡仪、安宁疗护护士、社工)刻画为 China OS 的「进程回收器(Process Reaper / Garbage Collector)」:负责生命进程的终结与善后(临终关怀 → 遗体接运 → 殡仪 → 安葬),是系统必需的 GC,却被系统刻意挡在视线之外(死亡禁忌、职业污名);而随着年死亡约 1100 万的死亡高峰(↗ GY-09 老龄化的终点)到来,这个 GC 的负载正在急剧上升。数据为年死亡人口口径、殡葬市场报告、安宁疗护试点报道与训练知识基线,标量级、留观测哨回填,精确口径与量级估算严格区分。</p>
+
+  <!-- 进程回收器 签名图 -->
+  <div class="bz-found" aria-label="进程回收器示意图:一个 GC/reaper 守护进程处理生命进程的 terminate 与 cleanup 四段 临终关怀/遗体接运/殡仪/安葬;进程必需却被半透明遮罩隐藏(死亡禁忌/污名);负载条随死亡高峰上升;底注 年死亡约1100万 殡葬市场4114亿 安宁疗护4000+机构 系统的进程回收者 系列收官">
+    <svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg" role="img">
+      <text x="500" y="20" font-size="11" fill="#8f897d" text-anchor="middle" font-family="mono" letter-spacing="2">ChinaOS · PROCESS REAPER / GC · 生命进程的终结与善后</text>
+      <text x="500" y="44" font-size="9.5" fill="#7d6a3a" text-anchor="middle" font-family="sans-serif">— 系统必需的进程回收器,却被刻意挡在视线之外 —</text>
+
+      <!-- 进程入口:终结的生命进程 -->
+      <rect x="60" y="92" width="200" height="60" rx="3" fill="#23201a" stroke="#3d4c5a" stroke-width="1"/><text x="160" y="116" font-size="10" fill="#7d9488" text-anchor="middle" font-family="mono">terminating process</text><text x="160" y="136" font-size="8" fill="#8f897d" text-anchor="middle" font-family="sans-serif">生命进程走到终点</text>
+      <line x1="260" y1="122" x2="356" y2="122" stroke="#5d7489" stroke-width="1.2" marker-end="url(#bzArrow)"/>
+
+      <!-- GC 守护进程(中心,克制高亮) -->
+      <rect x="360" y="92" width="280" height="96" rx="6" fill="#1c242e" stroke="#5e8c7a" stroke-width="2"/>
+      <text x="500" y="122" font-size="13" fill="#5e8c7a" text-anchor="middle" font-family="mono" letter-spacing="1">GC / reaper 守护进程</text>
+      <text x="500" y="144" font-size="11" fill="#7d9488" text-anchor="middle" font-family="mono">terminate &amp; cleanup</text>
+      <text x="500" y="164" font-size="9" fill="#8f897d" text-anchor="middle" font-family="sans-serif">殡葬与临终关怀从业者 · 负责善后</text>
+      <text x="500" y="178" font-size="8.5" fill="#7d6a3a" text-anchor="middle" font-family="mono">the process the system needs but will not look at</text>
+
+      <!-- 四段流水线 -->
+      <rect x="70" y="252" width="200" height="58" rx="4" fill="#23201a" stroke="#41594e" stroke-width="1.2"/><text x="170" y="276" font-size="10" fill="#5e8c7a" text-anchor="middle" font-family="mono">段1 · 临终关怀</text><text x="170" y="296" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">安宁疗护 ↗GY-15/37</text>
+      <rect x="290" y="252" width="200" height="58" rx="4" fill="#23201a" stroke="#41594e" stroke-width="1.2"/><text x="390" y="276" font-size="10" fill="#5e8c7a" text-anchor="middle" font-family="mono">段2 · 遗体接运</text><text x="390" y="296" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">接运工 · 最受忌讳</text>
+      <rect x="510" y="252" width="200" height="58" rx="4" fill="#23201a" stroke="#41594e" stroke-width="1.2"/><text x="610" y="276" font-size="10" fill="#5e8c7a" text-anchor="middle" font-family="mono">段3 · 殡仪</text><text x="610" y="296" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">入殓师 · 火化</text>
+      <rect x="730" y="252" width="200" height="58" rx="4" fill="#23201a" stroke="#41594e" stroke-width="1.2"/><text x="830" y="276" font-size="10" fill="#5e8c7a" text-anchor="middle" font-family="mono">段4 · 安葬</text><text x="830" y="296" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">墓地 · 节地生态</text>
+
+      <line x1="450" y1="188" x2="170" y2="250" stroke="#5e8c7a" stroke-width="1.1" marker-end="url(#bzArrowGreen)"/>
+      <line x1="480" y1="188" x2="390" y2="250" stroke="#5e8c7a" stroke-width="1.1" marker-end="url(#bzArrowGreen)"/>
+      <line x1="520" y1="188" x2="610" y2="250" stroke="#5e8c7a" stroke-width="1.1" marker-end="url(#bzArrowGreen)"/>
+      <line x1="550" y1="188" x2="830" y2="250" stroke="#5e8c7a" stroke-width="1.1" marker-end="url(#bzArrowGreen)"/>
+
+      <!-- 负载条:随死亡高峰上升 -->
+      <text x="100" y="350" font-size="9" fill="#8f897d" font-family="mono">负载 · 随死亡高峰上升</text>
+      <rect x="100" y="358" width="800" height="14" rx="2" fill="#23201a" stroke="#3d4c5a" stroke-width="1"/>
+      <rect x="100" y="358" width="560" height="14" rx="2" fill="#6e5d38" opacity="0.7"/>
+      <text x="670" y="369" font-size="8.5" fill="#c2a052" font-family="mono">年死亡约 1100 万 · 持续上升 ↗GY-09</text>
+
+      <!-- 死亡禁忌的半透明遮罩 -->
+      <rect x="50" y="74" width="900" height="248" rx="6" fill="#0e1116" opacity="0.32"/>
+      <text x="500" y="60" font-size="9" fill="#7d6a3a" text-anchor="middle" font-family="mono" letter-spacing="1">▒ 死亡禁忌 / 职业污名的遮罩 · 必需却被半透明地「隐藏」 ▒</text>
+
+      <defs>
+        <marker id="bzArrow" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5d7489"/></marker>
+        <marker id="bzArrowGreen" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5e8c7a"/></marker>
+      </defs>
+
+      <line x1="100" y1="478" x2="900" y2="478" stroke="#3d4c5a" stroke-width="1" stroke-dasharray="3 5"/>
+      <text x="500" y="504" font-size="10.5" fill="#5e8c7a" text-anchor="middle" font-family="serif" letter-spacing="2">— 一个系统如何对待生命的终结,是它如何对待生命本身的最后注脚 —</text>
+      <text x="500" y="528" font-size="9" fill="#7d9488" text-anchor="middle" font-family="sans-serif">年死亡约 1100 万 · 殡葬市场 4114 亿 · 安宁疗护 4000+ 机构 · 系统的进程回收者 · 系列收官</text>
+      <text x="500" y="550" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="mono">注:以死亡照护产业与老龄化框架处理,庄重不渲染,标量级,留观测哨回填</text>
+    </svg>
+    <div class="bz-found-caption">模块隐喻是<b>进程回收器 / GC 守护进程(Process Reaper / Garbage Collector)</b>:殡葬与临终关怀从业者是 China OS 的进程回收器——负责生命进程的终结与善后(临终关怀 → 遗体接运 → 殡仪 → 安葬四段),是系统必需的 GC,却被系统刻意挡在视线之外(死亡禁忌、职业污名)。签名图:一个 GC/reaper 守护进程处理进程的 <b>terminate &amp; cleanup</b>,四段流水线「临终关怀(安宁疗护 ↗GY-15/37)/ 遗体接运 / 殡仪 / 安葬」由它承接;整个进程区被一层半透明的<b>死亡禁忌/职业污名遮罩</b>盖住——必需却被「隐藏」;底部负载条随「死亡高峰」上升;底注「年死亡约 1100 万 · 殡葬市场 4114 亿 · 安宁疗护 4000+ 机构 · 系统的进程回收者 · 系列收官」。<b>本片最关键的判断:这个 GC 的处境是「越必需越被回避」——不是被忽视,是被死亡禁忌主动遮蔽;它干着送别逝者最庄重的工作,受着最深的偏见,又随着死亡高峰(年 1100 万)而扩张。作为人群画像分层第四批的收官、也是年龄轴的终点(起点是数字原住民 GY-26),这一片指向一个终极命题:所有人群,最终都汇入这里——一个系统如何对待生命的终结,是它如何对待生命本身的最后注脚。</b></div>
+  </div>
+
+  <!-- 页签 -->
+  <nav class="bz-nav" role="tablist">
+    <button role="tab" data-panel="bz-p-b1" class="is-active">死亡高峰负载激增</button>
+    <button role="tab" data-panel="bz-p-b2">进程回收器</button>
+    <button role="tab" data-panel="bz-p-b3">殡葬争议死不起</button>
+    <button role="tab" data-panel="bz-p-b4">临终关怀</button>
+    <button role="tab" data-panel="bz-p-b5">禁忌遮蔽下的必需者</button>
+    <button role="tab" data-panel="bz-p-b6">形态推演</button>
+    <button role="tab" data-panel="bz-p-watch">合成 · 观测哨</button>
+  </nav>
+
+  <!-- ════ B1 死亡高峰负载激增 ════ -->
+  <section class="bz-panel is-active" id="bz-p-b1">
+    <div class="bz-sec-head"><h2>B1 · 死亡高峰:进程回收的负载激增</h2><span class="bz-sec-tag">年死亡约 1100 万 · 老龄化的终点</span></div>
+    <p class="bz-disclaimer top">注记(敏感度处理):本节将年死亡人口与死亡高峰作为<b>老龄化的人口学终点与殡葬/临终需求的结构变量</b>分析,关注进程回收负载的上升;以死亡照护产业与老龄化框架处理,庄重不渲染、不消费死亡,数据为年死亡人口口径标量级,待权威年度数据回填。</p>
+    <p class="bz-lede">殡葬与临终关怀的需求不是社会情绪的波动,是一道确定性的人口曲线——<b style="color:var(--zhu);">年死亡人口约 1100 万(2023)/1093 万(2024)且持续上升:婴儿潮世代(↗ GY-09 老龄化的终点)步入生命终点,死亡高峰来临,使殡葬与临终关怀的需求刚性激增</b>。这是老龄化(↗ GY-09)的必然终点:老龄化的尽头是死亡高峰,而处理这个终点的人,是殡葬/临终从业者——本片是 GY-09 那条曲线的下游终点片。</p>
+
+    <h3 class="bz-h3">死亡高峰:确定性的负载上升</h3>
+    <div class="bz-rows">
+      <div class="bz-row peak"><span class="bz-row-k">死亡高峰</span><span class="bz-row-v"><b style="color:var(--zhu);">年死亡约 1100 万(2023)/1093 万(2024),未来持续上升——婴儿潮世代步入终点</b>(↗ GY-09 L1 老龄化的终点)。</span></div>
+      <div class="bz-row"><span class="bz-row-k">需求刚性</span><span class="bz-row-v">死亡是确定性事件——<b>殡葬需求绝对刚性</b>;死亡高峰使殡葬/临终需求结构性上升(↗ 签名图 负载条)。</span></div>
+      <div class="bz-row peak"><span class="bz-row-k">老龄化的终点</span><span class="bz-row-v"><b style="color:var(--zhu);">GY-09 讲老龄化(活着的老人),本片讲其终点(离世)——老龄化的尽头是死亡高峰</b>;本片是 GY-09 的下游终点。</span></div>
+      <div class="bz-row"><span class="bz-row-k">市场规模</span><span class="bz-row-v">殡葬市场约 4114 亿(2024)、持续增长——<b>「白色经济」随死亡高峰扩张</b>(↗ B3 殡葬争议)。</span></div>
+    </div>
+
+    <h3 class="bz-h3">三万个进程,每天被回收</h3>
+    <div class="bz-data3">
+      <div class="bz-stat"><span class="bz-eyebrow">年死亡人口</span><span class="bz-stat-n">约 1100 万</span><span class="bz-stat-u">2023 / 1093 万(2024)</span><p>每天约三万个生命进程终结,需要被有尊严地回收——<b>死亡高峰是确定性的负载曲线</b>(↗ W-01 总仪表)。</p></div>
+      <div class="bz-stat"><span class="bz-eyebrow">殡葬市场</span><span class="bz-stat-n">约 4114 亿</span><span class="bz-stat-u">2024 · 持续增长</span><p><b style="color:var(--zhu);">「白色经济」随死亡高峰扩张</b>——市场规模上升,但争议(死不起)与从业者处境并未同步改善(↗ B3)。</p></div>
+      <div class="bz-stat"><span class="bz-eyebrow">老龄化下游</span><span class="bz-stat-n">活着→离世</span><span class="bz-stat-u">GY-09 的终点段</span><p>活着的老人(↗ GY-09)最终都会走到这里——<b>本片是老龄化曲线的下游终点</b>:老龄化的尽头是死亡高峰。</p></div>
+    </div>
+
+    <h3 class="bz-h3">从老龄化到死亡高峰:同一条曲线的两端</h3>
+    <div class="bz-chain">
+      <div class="bz-chain-row v1"><span class="bz-chain-t">上游 · GY-09</span><span class="bz-chain-v">老龄化——<b>活着的老人</b>:一条人口结构曲线的存续端(↗ GY-09 老龄化)。</span></div>
+      <div class="bz-chain-row"><span class="bz-chain-t">中段</span><span class="bz-chain-v">婴儿潮世代步入高龄——<b>照护悬崖(↗ GY-31)与失能照护承担上升</b>,照护链延伸到生命末段(↗ B4)。</span></div>
+      <div class="bz-chain-row v2"><span class="bz-chain-t">下游 · 本片</span><span class="bz-chain-v"><b style="color:var(--zhu);">死亡高峰——离世:同一条曲线的终结端</b>;站在这里、负责送最后一程的,是殡葬/临终从业者(↗ B2)。</span></div>
+    </div>
+
+    <div class="bz-art">
+      <h5><b>每天有三万个生命进程终结,需要被有尊严地回收</b>死亡高峰来了,处理死亡的人,正被推到台前</h5>
+      <p>老龄化最终会抵达一个所有人都不愿谈的终点——死亡高峰。<b style="color:var(--zhu);">年死亡 1100 万,意味着每天有三万个生命进程终结,需要被有尊严地回收。这是 GY-09 那条老龄化曲线的下游:活着的老人最终都会走到这里,而站在这里、负责送最后一程的,是这个社会最不愿正视的一群从业者。死亡高峰来了,处理死亡的人,正被推到台前。</b>(↗ GY-09 老龄化的终点 / ↗ B2 进程回收器)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="bz-xref">↗ GY-09 · 老龄化的终点</span>
+      <span class="bz-xref">↗ GY-31 · 照护悬崖</span>
+      <span class="bz-xref">↗ B2 · 进程回收器</span>
+    </div>
+
+    <div class="bz-verdict">
+      <span class="bz-verdict-tag">B1 判词</span>
+      老龄化最终会抵达一个所有人都不愿谈的终点——死亡高峰。年死亡 1100 万,意味着每天有三万个生命进程终结,需要被有尊严地回收。这是 GY-09 那条老龄化曲线的下游:活着的老人最终都会走到这里,而站在这里、负责送最后一程的,是这个社会最不愿正视的一群从业者。<b style="color:var(--zhu);">死亡高峰来了,处理死亡的人,正被推到台前。</b>
+      <span class="bz-xref">↗ B2 · 进程回收器</span>
+    </div>
+  </section>
+
+  <!-- ════ B2 进程回收器必需却避而不见 ════ -->
+  <section class="bz-panel" id="bz-p-b2">
+    <div class="bz-sec-head"><h2>B2 · 进程回收器:必需却避而不见</h2><span class="bz-sec-tag">本片独特机制 · 越必需越被回避</span></div>
+    <p class="bz-disclaimer top">注记(敏感度处理):本节将殡葬/临终从业者作为<b>系统的 GC(进程回收器)与「必需 × 隐形」机制</b>分析,关注死亡禁忌制造的职业污名;以死亡照护产业框架处理,庄重不渲染、不消费死亡,「污名」作为结构性表述,旨在理解禁忌遮蔽的机制,不针对具体个人。</p>
+    <p class="bz-lede">本片独特机制——殡葬/临终从业者是系统的 GC(进程回收器):<b style="color:var(--zhu);">必需(每个生命终结都需要他们)却被避而不见(死亡禁忌使社会刻意不看这个行业)。这种「必需 × 隐形」的组合制造了职业污名</b>——入殓师、遗体接运工被忌讳、被回避,干着最庄重的工作,受着最深的偏见。这不是「越关键越不可见」(↗ GY-17/GY-39)的又一个样本,而是更彻底的「越必需越被回避」:不是被忽视,是被禁忌主动遮蔽。</p>
+
+    <h3 class="bz-h3">必需 × 隐形:GC 的本质</h3>
+    <div class="bz-dual">
+      <div class="bz-dual-a"><h6>必需端 · <b>满格</b></h6><span class="bz-dual-pole">每个死亡都需要他们</span><p><b style="color:var(--qing);">每个生命进程的终结都需要被处理——临终照护、遗体接运、殡仪、安葬,缺一不可</b>;系统离不开这个 GC(↗ B1 死亡高峰)。</p></div>
+      <div class="bz-dual-mid">↔</div>
+      <div class="bz-dual-b"><h6>隐形端 · <b>遮蔽</b></h6><span class="bz-dual-pole">社会刻意不看</span><p><b style="color:var(--zhu);">社会因死亡禁忌刻意不看这个行业——「必需却避而不见」是 GC 的本质</b>;不是看不见,是不愿看(↗ 签名图遮罩)。</p></div>
+    </div>
+
+    <h3 class="bz-h3">职业污名:最庄重的工作,最深的偏见</h3>
+    <div class="bz-rows">
+      <div class="bz-row peak"><span class="bz-row-k">职业污名</span><span class="bz-row-v"><b style="color:var(--zhu);">入殓师、遗体接运、火化工被忌讳(「晦气」「不吉利」)——干着最庄重的工作,受着最深的偏见</b>;婚恋、社交中的回避(《入殓师》式的处境)。</span></div>
+      <div class="bz-row"><span class="bz-row-k">死亡禁忌</span><span class="bz-row-v">中国文化对死亡的避讳——<b>「死」字不能说、白事被回避</b>;这使整个行业处在文化的阴影里(↗ B5 禁忌遮蔽)。</span></div>
+      <div class="bz-row peak"><span class="bz-row-k">越必需越被回避</span><span class="bz-row-v"><b style="color:var(--zhu);">不是被忽视(↗ GY-17/GY-39 越关键越不可见),是被死亡禁忌主动遮蔽——社会需要他们处理死亡,又不愿承认自己需要</b>。</span></div>
+      <div class="bz-row"><span class="bz-row-k">与不可见的特殊版</span><span class="bz-row-v">保安在场即服务、家政在场被忽视(↗ GY-17/GY-39),殡葬从业者则是「必需却被主动回避」——<b>这是「越关键越不可见」的更彻底版本</b>。</span></div>
+    </div>
+
+    <h3 class="bz-h3">GC 的处境:必需,却被挡在视线之外</h3>
+    <div class="bz-rows">
+      <div class="bz-row peak"><span class="bz-row-k">挡在视线外</span><span class="bz-row-v"><b style="color:var(--zhu);">系统因为对死亡的恐惧,刻意把他们挡在视线之外——他们干着最庄重的事,却背着最深的偏见</b>(↗ 签名图遮罩)。</span></div>
+      <div class="bz-row"><span class="bz-row-k">让逝者体面</span><span class="bz-row-v">让逝者体面地离开——<b>这是 GC 的核心功能,也是这份工作的尊严所在</b>;被污名,不改其庄重(↗ B4 善终)。</span></div>
+      <div class="bz-row peak"><span class="bz-row-k">承认的缺失</span><span class="bz-row-v"><b style="color:var(--zhu);">社会需要他们处理死亡,又不愿承认自己需要——这份「不承认」本身,就是死亡禁忌的形态</b>(↗ B5)。</span></div>
+      <div class="bz-row"><span class="bz-row-k">全图谱定位</span><span class="bz-row-v">殡葬/临终从业者是 GY-17/GY-39(越关键越不可见)的死亡照护端、GY-37(医护)的临终端——<b>系统的进程回收者</b>(↗ B5 / watch 修正)。</span></div>
+    </div>
+
+    <div class="bz-art">
+      <h5><b>他们干着最庄重的事,却背着最深的偏见</b>社会需要他们处理死亡,又不愿承认自己需要</h5>
+      <p>殡葬从业者是这个系统的垃圾回收器——每个生命进程的终结都需要他们处理,可这个社会因为对死亡的恐惧,刻意把他们挡在视线之外。<b style="color:var(--zhu);">他们干着最庄重的事:让逝者体面地离开。却背着最深的偏见:被说成晦气,在婚恋和社交里被回避。这不是「越关键越不可见」(↗ GY-17),是更彻底的「越必需越被回避」——社会需要他们处理死亡,又不愿承认自己需要。</b>(↗ GY-17/GY-39 越关键越不可见 / ↗ B5 禁忌遮蔽 / ↗ B3 殡葬争议)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="bz-xref">↗ GY-17/GY-39 · 越关键越不可见</span>
+      <span class="bz-xref">↗ GY-37 · 医护(临终端)</span>
+      <span class="bz-xref">↗ B3 · 殡葬争议</span>
+    </div>
+
+    <div class="bz-verdict">
+      <span class="bz-verdict-tag">B2 判词</span>
+      殡葬从业者是这个系统的垃圾回收器——每个生命进程的终结都需要他们处理,可这个社会因为对死亡的恐惧,刻意把他们挡在视线之外。他们干着最庄重的事:让逝者体面地离开。却背着最深的偏见:被说成晦气,在婚恋和社交里被回避。<b style="color:var(--zhu);">这不是「越关键越不可见」,是更彻底的「越必需越被回避」——社会需要他们处理死亡,又不愿承认自己需要。</b>
+      <span class="bz-xref">↗ B3 · 殡葬争议死不起</span>
+    </div>
+  </section>
+
+  <!-- ════ B3 殡葬争议死不起 ════ -->
+  <section class="bz-panel" id="bz-p-b3">
+    <div class="bz-sec-head"><h2>B3 · 殡葬的争议:暴利、垄断与「死不起」</h2><span class="bz-sec-tag">暴利归垄断 · 污名归一线</span></div>
+    <p class="bz-disclaimer top">注记(敏感度处理):本节将殡葬业的成本与垄断争议作为<b>「死不起」的产业结构与公众情绪错位</b>分析,关注一线从业者替行业形象背锅的处境;以死亡照护产业框架处理,庄重不渲染、不消费死亡,旨在理解争议的结构成因,不针对具体个人或机构。</p>
+    <p class="bz-lede">殡葬业的争议集中在「死不起」——<b style="color:var(--zhu);">墓地价格高企(一线核心区超 10 万/㎡,「墓比房贵」)、殡葬服务的区域垄断与不透明收费、丧葬的攀比与高消费;殡葬从业者夹在「行业暴利」的公众指责与自身低薪/污名的现实之间,是公众情绪与行业结构错位的承受者</b>。暴利归的是垄断的墓地与服务环节,骂声和污名却落在一线那个低薪的入殓师、接运工头上——这是 GY-37(医患矛盾/一线背锅)的死亡照护同构。</p>
+
+    <h3 class="bz-h3">暴利的指责 vs 一线的背锅</h3>
+    <div class="bz-dual">
+      <div class="bz-dual-a"><h6>暴利端 · <b>垄断环节</b></h6><span class="bz-dual-pole">墓地 / 服务的高利</span><p><b style="color:var(--qing);">墓地价格高企、殡仪服务的区域性垄断、捆绑收费、不透明——「殡葬暴利」的指责指向的是资本与垄断环节</b>(↗ 死不起 rows)。</p></div>
+      <div class="bz-dual-mid">↔</div>
+      <div class="bz-dual-b"><h6>背锅端 · <b>一线从业者</b></h6><span class="bz-dual-pole">低薪 + 污名</span><p><b style="color:var(--zhu);">公众骂「行业暴利」,一线从业者(入殓师/接运工/火化工)多低薪 + 污名——暴利归资本/垄断,污名与低薪归一线</b>(↔ GY-37 医患矛盾)。</p></div>
+    </div>
+
+    <h3 class="bz-h3">「死不起」:身后事的高成本</h3>
+    <div class="bz-rows">
+      <div class="bz-row peak"><span class="bz-row-k">墓比房贵</span><span class="bz-row-v"><b style="color:var(--zhu);">墓地价格高企(一线超 10 万/㎡、「墓比房贵」)、墓地 20 年使用权争议——身后事的高成本</b>(↔ GY-20 彩礼的身后版)。</span></div>
+      <div class="bz-row"><span class="bz-row-k">区域垄断</span><span class="bz-row-v">殡仪服务的区域性垄断、捆绑收费、不透明——<b>「殡葬暴利」的公众指责由此而来</b>;暴利集中在垄断环节。</span></div>
+      <div class="bz-row peak"><span class="bz-row-k">攀比高消费</span><span class="bz-row-v"><b style="color:var(--zhu);">丧葬的面子文化、攀比——白事的高消费</b>(↔ GY-20 彩礼的身后版);移风易俗的对象。</span></div>
+      <div class="bz-row"><span class="bz-row-k">殡葬改革</span><span class="bz-row-v">节地生态安葬、惠民殡葬、破除天价墓地、移风易俗——<b>政策推动殡葬回归公益与节俭</b>(↗ B6 形态β / W-02/W-03)。</span></div>
+    </div>
+
+    <h3 class="bz-h3">错位:两头不讨好的一线</h3>
+    <div class="bz-rows">
+      <div class="bz-row peak"><span class="bz-row-k">情绪与结构错位</span><span class="bz-row-v"><b style="color:var(--zhu);">公众骂「行业暴利」,可暴利归的是垄断的墓地和服务环节,骂声和污名却落在一线那个低薪的入殓师、接运工头上</b>(↔ GY-37 一线背锅)。</span></div>
+      <div class="bz-row"><span class="bz-row-k">双重承受</span><span class="bz-row-v">他们既要承受死亡禁忌的偏见(↗ B2),又要替整个行业的「暴利」形象背锅——<b>干着送别逝者的庄重活,两头不讨好</b>。</span></div>
+      <div class="bz-row peak"><span class="bz-row-k">与 GY-37 同构</span><span class="bz-row-v"><b style="color:var(--zhu);">暴利归资本/垄断环节,污名与低薪归一线从业者——与医患矛盾(↗ GY-37)中医护替体制背锅同构</b>(↗ watch 修正)。</span></div>
+      <div class="bz-row"><span class="bz-row-k">公益化方向</span><span class="bz-row-v">殡葬公益化、惠民殡葬、破除天价墓地——<b>是缓解「死不起」、为一线正名的制度方向</b>(↗ B6 / W-02/W-03)。</span></div>
+    </div>
+    <div class="bz-breaking">
+      <span class="bz-breaking-tag">! 暴利归垄断的墓地和服务,骂声和污名却落在一线那个低薪的入殓师头上</span>
+      殡葬业最尖锐的矛盾是「死不起」——墓地比房子还贵,殡仪收费不透明,公众一提殡葬就骂暴利。<b>可暴利归的是垄断的墓地和服务环节,骂声和污名却落在一线那个低薪的入殓师、接运工头上。他们既要承受死亡禁忌的偏见,又要替整个行业的「暴利」形象背锅——干着送别逝者的庄重活,两头不讨好。</b>
+    </div>
+
+    <div class="bz-art">
+      <h5><b>暴利归垄断环节,骂声和污名落在一线头上</b>他们干着送别逝者的庄重活,两头不讨好</h5>
+      <p>殡葬业最尖锐的矛盾是「死不起」——墓地比房子还贵,殡仪收费不透明,公众一提殡葬就骂暴利。<b style="color:var(--zhu);">可暴利归的是垄断的墓地和服务环节,骂声和污名却落在一线那个低薪的入殓师、接运工头上。他们既要承受死亡禁忌的偏见,又要替整个行业的「暴利」形象背锅——干着送别逝者的庄重活,两头不讨好。</b>(↗ GY-37 医患矛盾/一线背锅 / ↗ GY-20 彩礼 / ↗ B4 临终关怀)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="bz-xref">↗ GY-37 · 医患矛盾(一线背锅)</span>
+      <span class="bz-xref">↗ GY-20 · 彩礼(身后版)</span>
+      <span class="bz-xref">↗ B4 · 临终关怀</span>
+    </div>
+
+    <div class="bz-verdict">
+      <span class="bz-verdict-tag">B3 判词</span>
+      殡葬业最尖锐的矛盾是「死不起」——墓地比房子还贵,殡仪收费不透明,公众一提殡葬就骂暴利。可暴利归的是垄断的墓地和服务环节,骂声和污名却落在一线那个低薪的入殓师、接运工头上。<b style="color:var(--zhu);">他们既要承受死亡禁忌的偏见,又要替整个行业的「暴利」形象背锅——干着送别逝者的庄重活,两头不讨好。</b>
+      <span class="bz-xref">↗ B4 · 临终关怀</span>
+    </div>
+  </section>
+
+  <!-- ════ B4 临终关怀 ════ -->
+  <section class="bz-panel" id="bz-p-b4">
+    <div class="bz-sec-head"><h2>B4 · 临终关怀:从「治疗到死」到「有尊严地离开」</h2><span class="bz-sec-tag">安宁疗护 · 善终观念的转变</span></div>
+    <p class="bz-disclaimer top">注记(敏感度处理):本节将临终关怀/安宁疗护作为<b>对过度医疗的反思与善终照护形态</b>分析,关注死亡照护的人文升级与照护链的终点;以死亡照护产业与老龄化框架处理,庄重不渲染、不消费死亡,旨在理解「有尊严地离开」的制度与人文成因,不针对具体个人或医疗决策。</p>
+    <p class="bz-lede">临终关怀/安宁疗护(4000+ 机构试点)的兴起,是对「过度医疗、治疗到死」的反思——<b style="color:var(--zhu);">让生命末期在减轻痛苦、保有尊严中度过,而非在 ICU 插满管子(↗ GY-15 医疗)。这是一种新的「善终」观念与照护形态,需要专门的安宁疗护护士、社工、志愿者,是死亡照护的人文升级</b>。「谁来照护」(↗ GY-31)的问题,最终延伸到「谁来送终」——而这个社会才刚刚开始承认,送终也是一种需要专业、需要尊严的照护。</p>
+
+    <h3 class="bz-h3">治疗到死 vs 有尊严地离开</h3>
+    <div class="bz-dual">
+      <div class="bz-dual-a"><h6>旧形态 · <b>↗ GY-15</b></h6><span class="bz-dual-pole">治疗到死 / ICU 插管</span><p><b style="color:var(--qing);">「不惜一切治疗到死」——生命末期在 ICU 插满管子,过度医疗;与 DRG 控费(↗ GY-15 Y4)有复杂关系</b>。</p></div>
+      <div class="bz-dual-mid">↔</div>
+      <div class="bz-dual-b"><h6>新形态 · <b>善终</b></h6><span class="bz-dual-pole">减轻痛苦 / 保有尊严</span><p><b style="color:var(--zhu);">安宁疗护让生命末期减轻痛苦、保有尊严——「善终」观念的转变;从「治疗到死」转向「有尊严地离开」</b>。</p></div>
+    </div>
+
+    <h3 class="bz-h3">安宁疗护:谁来送终</h3>
+    <div class="bz-rows">
+      <div class="bz-row peak"><span class="bz-row-k">安宁疗护</span><span class="bz-row-v"><b style="color:var(--zhu);">4000+ 机构试点、安宁病房、社区临终照护——让生命末期减轻痛苦、保有尊严</b>(↗ W-04 善终体系)。</span></div>
+      <div class="bz-row"><span class="bz-row-k">专门照护者</span><span class="bz-row-v">安宁疗护护士(↗ GY-37)、社工、心理师、志愿者——<b>死亡照护需要专门的人</b>;区别于治疗的「照护到最后」(↗ W-07 供给)。</span></div>
+      <div class="bz-row peak"><span class="bz-row-k">死亡教育缺失</span><span class="bz-row-v"><b style="color:var(--zhu);">中国缺乏死亡教育——不会谈死、不会面对死</b>;安宁疗护的推广也是死亡观念的启蒙(↗ W-06)。</span></div>
+      <div class="bz-row"><span class="bz-row-k">照护链终点</span><span class="bz-row-v">临终照护是照护链的最后一段——<b>「谁来照护」(↗ GY-31)延伸到「谁来送终」</b>;安宁疗护是 GY-09 照护悬崖的终点段。</span></div>
+    </div>
+
+    <h3 class="bz-h3">从「谁来照护」到「谁来送终」</h3>
+    <div class="bz-rows">
+      <div class="bz-row peak"><span class="bz-row-k">对过度医疗的反思</span><span class="bz-row-v"><b style="color:var(--zhu);">从「不惜一切治疗到死」(ICU 插管)转向「有尊严地离开」——「善终」观念的转变</b>(↗ GY-15 医疗 / DRG 控费)。</span></div>
+      <div class="bz-row"><span class="bz-row-k">照护链的接口</span><span class="bz-row-v">临终照护接续医护(↗ GY-37)与照护(↗ GY-31)——<b>「谁来治病」「谁来照护」延伸到「谁来送终」</b>;安宁疗护护士是三者的交汇(↗ watch 修正)。</span></div>
+      <div class="bz-row peak"><span class="bz-row-k">人文升级</span><span class="bz-row-v"><b style="color:var(--zhu);">送终也是一种需要专业、需要尊严的照护——死亡照护的人文升级,这个社会才刚刚开始承认</b>(↗ B6 形态γ)。</span></div>
+      <div class="bz-row"><span class="bz-row-k">全图谱定位</span><span class="bz-row-v">临终关怀是 GY-15(临终医疗)、GY-37(医护)、GY-31(照护的最后一段)、GY-09(照护悬崖终点)的交汇——<b>死亡照护的善终端</b>(↗ B5 / watch)。</span></div>
+    </div>
+
+    <div class="bz-art">
+      <h5><b>怎么让一个人有尊严地离开,而不是在 ICU 里插满管子治疗到最后一刻</b>送终也是一种需要专业、需要尊严的照护</h5>
+      <p>临终关怀是这个社会刚刚开始学习的一课——怎么让一个人有尊严地离开,而不是在 ICU 里插满管子治疗到最后一刻。<b style="color:var(--zhu);">安宁疗护让生命的末段回归平静,可它需要专门的护士、社工、志愿者,需要整个社会补上缺失已久的死亡教育。「谁来照护」(↗ GY-31)的问题,最终延伸到「谁来送终」——而我们才刚刚开始承认,送终也是一种需要专业、需要尊严的照护。</b>(↗ GY-15 医疗 / ↗ GY-31 照护 / ↗ GY-37 医护)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="bz-xref">↗ GY-15 · 医疗(过度医疗)</span>
+      <span class="bz-xref">↗ GY-31 · 照护(终点段)</span>
+      <span class="bz-xref">↗ B5 · 禁忌遮蔽下的必需者</span>
+    </div>
+
+    <div class="bz-verdict">
+      <span class="bz-verdict-tag">B4 判词</span>
+      临终关怀是这个社会刚刚开始学习的一课——怎么让一个人有尊严地离开,而不是在 ICU 里插满管子治疗到最后一刻。安宁疗护让生命的末段回归平静,可它需要专门的护士、社工、志愿者,需要整个社会补上缺失已久的死亡教育。<b style="color:var(--zhu);">「谁来照护」的问题,最终延伸到「谁来送终」——而我们才刚刚开始承认,送终也是一种需要专业、需要尊严的照护。</b>
+      <span class="bz-xref">↗ B5 · 禁忌遮蔽下的必需者</span>
+    </div>
+  </section>
+
+  <!-- ════ B5 政治形态学禁忌遮蔽下的必需者 ════ -->
+  <section class="bz-panel" id="bz-p-b5">
+    <div class="bz-sec-head"><h2>B5 · 政治形态学:禁忌遮蔽下的必需者</h2><span class="bz-sec-tag">所有人群的终点站 · 系列收官</span></div>
+    <p class="bz-disclaimer top">注记(敏感度处理):本节将殡葬/临终从业者作为<b>禁忌遮蔽下的必需者与全图谱收官</b>分析,关注其政治沉默与「善终权利」「身后尊严」的人文底线;以死亡照护产业与老龄化框架处理,庄重不渲染、不消费死亡,「禁忌遮蔽」「终点站」作为结构性表述,旨在理解死亡照护的制度与人文成因,不针对具体个人。</p>
+    <p class="bz-lede">殡葬/临终从业者政治上沉默、文化上被禁忌遮蔽——<b style="color:var(--zhu);">人数不多、被死亡禁忌隔离、无组织发声;但其行业(殡葬公益化、安宁疗护推广、死亡教育)关乎每个人的「身后尊严」与「善终权利」,是老龄化社会必须正视的人文底线</b>。作为人群图谱的收官,它指向一个终极命题:一个系统如何对待生命的终结,是它如何对待生命本身的最后注脚——所有人群,无论塔尖还是极贫,最终都汇入这里。</p>
+
+    <h3 class="bz-h3">禁忌遮蔽与终极人群</h3>
+    <div class="bz-rows">
+      <div class="bz-row peak"><span class="bz-row-k">禁忌遮蔽</span><span class="bz-row-v"><b style="color:var(--zhu);">被死亡禁忌隔离、社会刻意不看——文化遮蔽下的沉默</b>;行业自身也低调(↗ B2 必需却避而不见)。</span></div>
+      <div class="bz-row"><span class="bz-row-k">关乎每个人</span><span class="bz-row-v">殡葬与临终是每个人的终点——<b>「所有人群最终汇入」的终极人群</b>(↔ GY-15 医保的总账性质的死亡版);本片是全图谱年龄轴的终点。</span></div>
+      <div class="bz-row peak"><span class="bz-row-k">善终权利</span><span class="bz-row-v"><b style="color:var(--zhu);">有尊严地离开、节俭体面地安葬——「善终」是生命尊严的最后一环</b>;殡葬公益化、安宁疗护是其制度保障(↗ B6 形态γ)。</span></div>
+      <div class="bz-row"><span class="bz-row-k">人文底线</span><span class="bz-row-v">一个社会如何对待死亡(送别逝者、关怀临终)——<b>是它如何对待生命的最后注脚</b>(↗ watch 总判词)。</span></div>
+    </div>
+
+    <h3 class="bz-h3">年龄轴的终点:从数字原住民到生命终结</h3>
+    <div class="bz-dual">
+      <div class="bz-dual-a"><h6>起点 · <b>↗ GY-26</b></h6><span class="bz-dual-pole">数字原住民 · 正在成形</span><p><b style="color:var(--qing);">数字原住民(↗ GY-26)是年龄轴的起点——一个人如何被算法养大;「正在成形」的一端</b>。</p></div>
+      <div class="bz-dual-mid">↔</div>
+      <div class="bz-dual-b"><h6>终点 · <b>本片</b></h6><span class="bz-dual-pole">殡葬临终 · 生命终结</span><p><b style="color:var(--zhu);">殡葬/临终从业者处理的是年龄轴的终点——一个人如何被有尊严地送别;「生命终结」的一端</b>(↗ 年龄轴闭合)。</p></div>
+    </div>
+
+    <h3 class="bz-h3">全光谱的收官:所有人群最终汇入</h3>
+    <div class="bz-rows">
+      <div class="bz-row peak"><span class="bz-row-k">终点站</span><span class="bz-row-v"><b style="color:var(--zhu);">所有人群,无论塔尖(↗ GY-10)还是极贫(↗ GY-43),无论青年(↗ GY-03)还是老人(↗ GY-09),最终都会汇入这里</b>——整张人群图谱的终点站。</span></div>
+      <div class="bz-row"><span class="bz-row-k">交汇的收口</span><span class="bz-row-v">殡葬/临终从业者是 GY-09(老龄化终点)、GY-37(医护/临终医疗)、GY-31(照护的最后一段)、GY-15(临终医疗)的交汇——<b>死亡照护的收口片</b>。</span></div>
+      <div class="bz-row peak"><span class="bz-row-k">从生到死的轴</span><span class="bz-row-v"><b style="color:var(--zhu);">图谱从数字原住民(↗ GY-26)的「正在成形」开始,到这里的「生命终结」结束——闭合「从生到死」的完整人生轴</b>(↗ watch 年龄轴闭合)。</span></div>
+      <div class="bz-row"><span class="bz-row-k">最后的注脚</span><span class="bz-row-v">一个系统如何对待生命的终结(能不能让人有尊严地离开、体面地安葬、不必「死不起」)——<b>是它如何对待生命本身的最后注脚</b>(↗ watch 总判词)。</span></div>
+    </div>
+    <div class="bz-breaking">
+      <span class="bz-breaking-tag">! 所有人群最终都汇入这里,而他们被死亡的禁忌挡在所有人的视线之外</span>
+      殡葬与临终从业者是这张人群图谱的收官——因为所有人群,无论塔尖还是极贫,无论青年还是老人,最终都会汇入这里。<b>他们处理的是每个人的终点,却被死亡的禁忌挡在所有人的视线之外。一个系统如何对待生命的终结——能不能让人有尊严地离开、体面地安葬、不必「死不起」——是它如何对待生命本身的最后注脚。</b>
+    </div>
+
+    <div class="bz-art">
+      <h5><b>所有人群最终都会汇入这里,他们处理的是每个人的终点</b>一个系统如何对待生命的终结,是它如何对待生命本身的最后注脚</h5>
+      <p>殡葬与临终从业者是这张人群图谱的收官——因为所有人群,无论塔尖(↗ GY-10)还是极贫(↗ GY-43),无论青年(↗ GY-03)还是老人(↗ GY-09),最终都会汇入这里。<b style="color:var(--zhu);">他们处理的是每个人的终点,却被死亡的禁忌挡在所有人的视线之外。一个系统如何对待生命的终结——能不能让人有尊严地离开、体面地安葬、不必「死不起」——是它如何对待生命本身的最后注脚。图谱从数字原住民(↗ GY-26)的「正在成形」开始,到这里的「生命终结」结束:四十四片画的,终究是同一件事——这个系统里,一个人从生到死,被怎样对待。</b>(↗ GY-09/26/15/37/31 · 收官 / ↗ B6 三态)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="bz-xref">↗ GY-26 · 数字原住民(起点)</span>
+      <span class="bz-xref">↗ GY-09/15/37/31 · 收口</span>
+      <span class="bz-xref">↗ B6 · 三态推演</span>
+    </div>
+
+    <div class="bz-verdict">
+      <span class="bz-verdict-tag">B5 判词</span>
+      殡葬与临终从业者是这张人群图谱的收官——因为所有人群,无论塔尖还是极贫,无论青年还是老人,最终都会汇入这里。他们处理的是每个人的终点,却被死亡的禁忌挡在所有人的视线之外。一个系统如何对待生命的终结——能不能让人有尊严地离开、体面地安葬、不必「死不起」——是它如何对待生命本身的最后注脚。<b style="color:var(--zhu);">图谱从数字原住民(↗ GY-26)的「正在成形」开始,到这里的「生命终结」结束:四十四片画的,终究是同一件事——这个系统里,一个人从生到死,被怎样对待。</b>
+      <span class="bz-xref">↗ B6 · 三态推演</span>
+    </div>
+  </section>
+
+  <!-- ════ B6 形态推演 ════ -->
+  <section class="bz-panel" id="bz-p-b6">
+    <div class="bz-sec-head"><h2>B6 · 形态推演(三态)</h2><span class="bz-sec-tag">死亡高峰扩张 / 死不起供给紧张 / 善终体系升级</span></div>
+    <p class="bz-lede">殡葬与临终关怀这个「进程回收器」的未来走向,取决于三股力量的相对强弱——<b style="color:var(--zhu);">死亡高峰(↗ GY-09)使殡葬需求刚性上升、墓地稀缺与殡葬高成本使「死不起」加剧、安宁疗护与死亡教育的推广使善终观念转变</b>。三态推演如下,概率最高的是死亡高峰下扩张但污名与「死不起」延续的基准态。</p>
+
+    <h3 class="bz-h3">三态:α 死亡高峰扩张 / β 死不起供给紧张 / γ 善终体系升级</h3>
+    <div class="bz-form">
+      <h5>形态 α · 基准 · 死亡高峰下的扩张(概率最高)</h5>
+      <p>死亡高峰(↗ GY-09)使殡葬需求刚性上升、安宁疗护渐进推广、殡葬改革(节地生态、惠民)推进;<b style="color:var(--zhu);">行业扩张但污名(↗ B2)与「死不起」(↗ B3)延续——进程回收器在更大负载下运行,处境未根本改变</b>。概率最高(↗ W-01/W-02/W-05)。</p>
+    </div>
+    <div class="bz-form" style="border-color:var(--zhu-dim); background:rgba(181,72,58,.08);">
+      <h5 style="color:var(--zhu);">形态 β · 压力 · 死不起与供给紧张</h5>
+      <p>死亡高峰 + 墓地稀缺 + 殡葬高成本使「死不起」加剧——<b style="color:var(--zhu);">倒逼殡葬公益化、节地生态安葬、殡葬服务规范;安宁疗护供给跟不上需求</b>;标志:殡葬改革深化、安宁疗护纳入医保/长护险(↗ W-02/W-03/W-04/W-07)。</p>
+    </div>
+    <div class="bz-form" style="border-color:var(--jin-dim); background:rgba(110,93,56,.10);">
+      <h5 style="color:var(--jin);">形态 γ · 升级 · 善终体系与死亡观念转变</h5>
+      <p>安宁疗护普及 + 死亡教育 + 殡葬公益化 + 生态安葬——<b style="color:var(--jin);">从「治疗到死/死不起」向「善终体系」升级;死亡观念从禁忌走向坦然</b>;这是老龄化社会的人文成熟方向(↗ W-06/W-08)。</p>
+    </div>
+
+    <h3 class="bz-h3">三态的共同底色:进程回收器的命题始终在</h3>
+    <div class="bz-rows">
+      <div class="bz-row peak"><span class="bz-row-k">回收是底色</span><span class="bz-row-v"><b style="color:var(--zhu);">无论哪种形态,殡葬/临终从业者作为进程回收器的命题都在——差异只在它能否被看见、被正名、被人文化</b>(↗ B2)。</span></div>
+      <div class="bz-row"><span class="bz-row-k">死亡高峰是变量</span><span class="bz-row-v">死亡高峰(↗ GY-09)是最大的外生变量——<b>它决定负载,而非命题;负载只会上升</b>(↗ B1)。</span></div>
+      <div class="bz-row peak"><span class="bz-row-k">善终是远景</span><span class="bz-row-v"><b style="color:var(--zhu);">安宁疗护普及、死亡教育、殡葬公益化——从「治疗到死/死不起」到「善终体系」的人文升级</b>;形态γ 是长期方向(↗ B5/W-08)。</span></div>
+    </div>
+
+    <div class="bz-art">
+      <h5><b>差异只在它能否被看见、被正名、被人文化</b>无论哪种形态,进程回收器的命题始终在——它只决定这份回收能否有尊严</h5>
+      <p>三态推演的共同底色是:<b style="color:var(--zhu);">殡葬/临终从业者作为进程回收器的命题始终在,差异只在死亡高峰下扩张但污名延续、死不起与供给紧张还是善终体系升级。基准是死亡高峰下扩张(行业扩张但污名与「死不起」延续);压力态里墓地稀缺与高成本使「死不起」加剧,倒逼殡葬公益化与服务规范,安宁疗护供给跟不上需求;升级态里安宁疗护普及、死亡教育、殡葬公益化使死亡观念从禁忌走向坦然,从「治疗到死/死不起」向「善终体系」升级。</b>(↗ GY-09 死亡高峰 / ↗ B3 死不起 / ↗ B5 收官)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="bz-xref">↗ GY-09 · 死亡高峰(变量)</span>
+      <span class="bz-xref">↗ B3 · 死不起(压力态)</span>
+      <span class="bz-xref">↗ watch · 总判词与观测哨</span>
+    </div>
+
+    <div class="bz-verdict">
+      <span class="bz-verdict-tag">B6 判词</span>
+      三态推演的共同底色是:殡葬/临终从业者作为进程回收器的命题始终在,差异只在死亡高峰下扩张但污名延续、死不起与供给紧张还是善终体系升级。基准是死亡高峰下扩张;压力态里「死不起」加剧、倒逼殡葬公益化与服务规范、安宁疗护供给跟不上需求;升级态里安宁疗护普及、死亡教育、殡葬公益化使死亡观念从禁忌走向坦然。<b style="color:var(--zhu);">系统不取消进程回收这个命题,它只决定这份回收能否被看见、能否被正名、能否有尊严。</b>
+      <span class="bz-xref">↗ watch · 合成观测哨</span>
+    </div>
+  </section>
+
+  <!-- ════ 合成 · 观测哨 ════ -->
+  <section class="bz-panel" id="bz-p-watch">
+    <div class="bz-sec-head"><h2>B7 / B8 · 合成与观测哨</h2><span class="bz-sec-tag">进程回收器 · 第四十四子集 · 第四批收官 · 年度对账</span></div>
+    <p class="bz-disclaimer top">注记(敏感度处理):全片以死亡照护产业与老龄化框架处理,庄重不渲染、不消费死亡,「进程回收器」「越必需越被回避」「终点站」作为机制描述,聚焦殡葬/临终行业与从业者处境的结构成因,不针对具体个人、不展示个案、不消费死亡。形态推演与观测哨为机制研判,数据为年死亡人口口径、殡葬市场报告、安宁疗护试点报道与训练知识基线,标量级、待权威年度数据回填,精确口径与量级估算严格区分。</p>
+
+    <div class="bz-verdict" style="margin-top:14px; margin-bottom:34px;">
+      <span class="bz-verdict-tag">B7 · 总判词 · 进程回收器(系列收官)</span>
+      殡葬与临终关怀从业者是 China OS 的进程回收器——负责生命进程的终结与善后,系统必需却避而不见。年死亡 1100 万的死亡高峰,是老龄化(↗ GY-09)那条曲线的下游终点:活着的老人最终都会走到这里。<br><br>
+      <b style="color:var(--zhu);">这个 GC 的处境是「越必需越被回避」——不是被忽视(↗ GY-17/GY-39),是被死亡禁忌主动遮蔽;他们干着送别逝者的最庄重的工作,受着「晦气」的最深偏见,还要替「殡葬暴利」背锅(暴利归垄断环节,污名与低薪归一线)。而临终关怀的兴起,是这个社会刚开始学的一课:怎么让人有尊严地离开,而不是在 ICU 治疗到最后一刻——「谁来照护」(↗ GY-31)最终延伸到「谁来送终」。作为人群图谱第四批的收官、也是年龄轴的终点(起点是数字原住民 GY-26 的「正在成形」),这一片指向一个终极命题:所有人群——塔尖与极贫、青年与老人——最终都汇入这里;一个系统如何对待生命的终结(能不能不必「死不起」、能不能有尊严地走),是它如何对待生命本身的最后注脚。四十四片画的,终究是同一件事:这个系统里,一个人从生到死,被怎样对待。</b><br><br>
+      与全系列合观:GY-09 老龄化讲活着的老人,本片讲离世,死亡高峰(年 1100 万)是老龄化曲线的终点段,二者构成老龄化的「存续端与终结端」;GY-37 医护、GY-31 照护、GY-15 临终医疗在本片汇为「谁来治病/谁来照护/谁来送终」的终点,安宁疗护护士是三者的交汇;GY-26 数字原住民是年龄轴的起点(正在成形),本片是终点(生命终结),二者闭合「从生到死」的完整人生轴。作为人群画像分层第四十四子集、第四批收官,本片把整张图谱的命题收束为一句——<b>它不是又一个孤立人群,而是所有人群最终汇入的终点站:一个系统如何对待一个人从生到死的全过程。系列至此 34 片(GY-03~46,含待建),边疆民族与现役军人仍留待封顶。</b>
+    </div>
+
+    <h3 class="bz-h3">对 GY 系列的五条修正</h3>
+    <div class="bz-fix">
+      <h5><b>修正 · GY-09</b>老龄化的存续端与终结端</h5>
+      <p>殡葬/临终是老龄化的下游终点——GY-09 讲活着的老人,本片讲离世;<b style="color:var(--zhu);">死亡高峰(年 1100 万)是老龄化曲线的终点段</b>;建议 GY-09↔GY-46 链接为「老龄化的存续端与终结端」。</p>
+    </div>
+    <div class="bz-fix">
+      <h5><b>修正 · GY-37 + GY-31</b>谁来治病 / 谁来照护 / 谁来送终</h5>
+      <p>临终关怀(安宁疗护)是医护(↗ GY-37)与照护(↗ GY-31)的最后一段——<b>「谁来治病」「谁来照护」延伸到「谁来送终」</b>;安宁疗护护士是三者的交汇;建议三片串为「治病—照护—送终」的照护轴。</p>
+    </div>
+    <div class="bz-fix">
+      <h5><b>修正 · GY-15</b>善终 vs 过度医疗</h5>
+      <p>临终关怀是对「过度医疗/治疗到死」的反思——<b style="color:var(--zhu);">与 DRG 控费(GY-15 Y4)、医保的临终医疗支出复杂相关</b>;善终 vs 过度医疗是医疗资源与生命尊严的张力;建议 GY-15 以此标注其临终医疗端。</p>
+    </div>
+    <div class="bz-fix">
+      <h5><b>修正 · GY-26</b>年龄轴闭合(从生到死)</h5>
+      <p>数字原住民(GY-26,年龄轴起点/正在成形)与殡葬临终(本片,年龄轴终点/生命终结)构成人群图谱年龄轴的两端——<b>从「一个人如何被算法养大」到「一个人如何被有尊严地送别」,闭合「从生到死」的完整人生轴</b>;建议 GY-26↔GY-46 标注为年龄轴两端。</p>
+    </div>
+    <div class="bz-fix">
+      <h5><b>修正 · 母框架</b>终点站 · 第四批收官</h5>
+      <p>殡葬/临终是图谱的「终点站」——所有人群最终汇入;<b style="color:var(--zhu);">它把整张图谱的命题收束为一句:一个系统如何对待一个人从生到死的全过程</b>;系列至此 34 片(GY-03~46,含待建),边疆民族与现役军人仍留待封顶。</p>
+    </div>
+
+    <div class="bz-watch-intro">
+      <p>这个人群的处境变动,关键看三组指针:负载与市场(死亡人口、殡葬市场与死不起、殡葬改革)、善终与照护(安宁疗护、临终照护供给)、从业者与观念(从业者处境、死亡教育、善终权利)。逐项标注状态、记录证据,年度与 GY 系列同步对账。状态与备注自动保存在本机。数据敏感处标量级,待权威年度数据回填,精确口径与量级估算严格区分;以死亡照护产业与老龄化框架观测,庄重不渲染、不消费死亡。</p>
+      <span class="bz-storage-state" id="bz-storage-state"></span>
+    </div>
+
+    <div class="bz-watch" id="bz-watch-list">
+      <div class="bz-watch-item" data-key="w1">
+        <div><h5><b>W-01</b>死亡人口</h5><p class="bz-watch-desc">年死亡数、死亡高峰曲线——<b>B1 负载的总仪表(接 GY-09)。</b></p></div>
+        <div class="bz-watch-ctrl"><div class="bz-status-row"><button class="bz-status-btn" data-status="good">向好</button><button class="bz-status-btn" data-status="flat">中性</button><button class="bz-status-btn" data-status="bad">恶化</button></div><textarea class="bz-watch-note" placeholder="证据与备注…"></textarea><div class="bz-watch-stamp"></div></div>
+      </div>
+      <div class="bz-watch-item" data-key="w2">
+        <div><h5><b>W-02</b>殡葬市场与「死不起」</h5><p class="bz-watch-desc">殡葬市场规模、墓地价格、收费透明——<b>B3 争议读数。</b></p></div>
+        <div class="bz-watch-ctrl"><div class="bz-status-row"><button class="bz-status-btn" data-status="good">向好</button><button class="bz-status-btn" data-status="flat">中性</button><button class="bz-status-btn" data-status="bad">恶化</button></div><textarea class="bz-watch-note" placeholder="证据与备注…"></textarea><div class="bz-watch-stamp"></div></div>
+      </div>
+      <div class="bz-watch-item" data-key="w3">
+        <div><h5><b>W-03</b>殡葬改革</h5><p class="bz-watch-desc">节地生态安葬、惠民殡葬、移风易俗——<b>殡葬公益化进度。</b></p></div>
+        <div class="bz-watch-ctrl"><div class="bz-status-row"><button class="bz-status-btn" data-status="good">向好</button><button class="bz-status-btn" data-status="flat">中性</button><button class="bz-status-btn" data-status="bad">恶化</button></div><textarea class="bz-watch-note" placeholder="证据与备注…"></textarea><div class="bz-watch-stamp"></div></div>
+      </div>
+      <div class="bz-watch-item" data-key="w4">
+        <div><h5><b>W-04</b>安宁疗护</h5><p class="bz-watch-desc">安宁疗护机构数、安宁病房、纳入医保/长护险——<b>B4 善终体系。</b></p></div>
+        <div class="bz-watch-ctrl"><div class="bz-status-row"><button class="bz-status-btn" data-status="good">向好</button><button class="bz-status-btn" data-status="flat">中性</button><button class="bz-status-btn" data-status="bad">恶化</button></div><textarea class="bz-watch-note" placeholder="证据与备注…"></textarea><div class="bz-watch-stamp"></div></div>
+      </div>
+      <div class="bz-watch-item" data-key="w5">
+        <div><h5><b>W-05</b>从业者处境</h5><p class="bz-watch-desc">殡葬一线从业者薪资、污名、招聘——<b>B2 必需者的境遇。</b></p></div>
+        <div class="bz-watch-ctrl"><div class="bz-status-row"><button class="bz-status-btn" data-status="good">向好</button><button class="bz-status-btn" data-status="flat">中性</button><button class="bz-status-btn" data-status="bad">恶化</button></div><textarea class="bz-watch-note" placeholder="证据与备注…"></textarea><div class="bz-watch-stamp"></div></div>
+      </div>
+      <div class="bz-watch-item" data-key="w6">
+        <div><h5><b>W-06</b>死亡教育</h5><p class="bz-watch-desc">死亡教育普及、善终观念——<b>文化转变。</b></p></div>
+        <div class="bz-watch-ctrl"><div class="bz-status-row"><button class="bz-status-btn" data-status="good">向好</button><button class="bz-status-btn" data-status="flat">中性</button><button class="bz-status-btn" data-status="bad">恶化</button></div><textarea class="bz-watch-note" placeholder="证据与备注…"></textarea><div class="bz-watch-stamp"></div></div>
+      </div>
+      <div class="bz-watch-item" data-key="w7">
+        <div><h5><b>W-07</b>临终照护供给</h5><p class="bz-watch-desc">安宁疗护护士/社工/志愿者缺口——<b>B4 供给(接 GY-37/GY-31)。</b></p></div>
+        <div class="bz-watch-ctrl"><div class="bz-status-row"><button class="bz-status-btn" data-status="good">向好</button><button class="bz-status-btn" data-status="flat">中性</button><button class="bz-status-btn" data-status="bad">恶化</button></div><textarea class="bz-watch-note" placeholder="证据与备注…"></textarea><div class="bz-watch-stamp"></div></div>
+      </div>
+      <div class="bz-watch-item" data-key="w8">
+        <div><h5><b>W-08</b>善终权利</h5><p class="bz-watch-desc">临终决策(生前预嘱/尊严死)、安宁疗护可及性——<b>形态γ 人文成熟。</b></p></div>
+        <div class="bz-watch-ctrl"><div class="bz-status-row"><button class="bz-status-btn" data-status="good">向好</button><button class="bz-status-btn" data-status="flat">中性</button><button class="bz-status-btn" data-status="bad">恶化</button></div><textarea class="bz-watch-note" placeholder="证据与备注…"></textarea><div class="bz-watch-stamp"></div></div>
+      </div>
+    </div>
+
+    <h3 class="bz-h3">章节规划 · 登记表</h3>
+    <div class="bz-plan">
+      <div class="bz-plan-row"><span class="bz-plan-k">CH-01</span><span class="bz-plan-v"><b>进程回收器</b> — 殡葬从业者的必需与污名、一线 vs 垄断环节,接 GY-37。</span><span class="bz-plan-tag">待建</span></div>
+      <div class="bz-plan-row"><span class="bz-plan-k">CH-02</span><span class="bz-plan-v"><b>死不起</b> — 墓地/殡葬高成本与公益化改革、节地生态安葬。</span><span class="bz-plan-tag">待建</span></div>
+      <div class="bz-plan-row"><span class="bz-plan-k">CH-03</span><span class="bz-plan-v"><b>谁来送终</b> — 安宁疗护/死亡教育/善终体系,照护链的终点,接 GY-31/GY-09/GY-15。</span><span class="bz-plan-tag">待建</span></div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="bz-foot">
+    <p>方法论:殡葬与临终关怀从业者以「进程回收器(Process Reaper / Garbage Collector)」模型刻画——殡葬与临终关怀从业者是 China OS 的进程回收器负责生命进程的终结与善后临终关怀到遗体接运到殡仪到安葬四段是系统必需的 GC 却被系统刻意挡在视线之外死亡禁忌职业污名而随着年死亡约 1100 万的死亡高峰 GY-09 老龄化的终点到来这个 GC 的负载正在急剧上升签名图一个 GC reaper 守护进程处理进程的 terminate 与 cleanup 四段临终关怀遗体接运殡仪安葬整个进程区被一层半透明的死亡禁忌职业污名遮罩盖住必需却被隐藏负载条随死亡高峰上升底注年死亡约 1100 万殡葬市场 4114 亿安宁疗护 4000+ 机构系统的进程回收者系列收官。核心命题:年死亡人口约 1100 万死亡高峰来临 GY-09 老龄化的终点催生一个 4114 亿的殡葬市场与正在兴起的临终关怀安宁疗护 4000+ 机构殡葬临终从业者入殓师遗体接运殡仪安宁疗护护士社工是系统的进程回收器处理生命进程的终结与善后系统必需却避而不见被死亡禁忌污名又随死亡高峰而扩张这个 GC 的处境是越必需越被回避不是被忽视 GY-17 GY-39 是被死亡禁忌主动遮蔽他们干着送别逝者最庄重的工作受着晦气的最深偏见还要替殡葬暴利背锅暴利归垄断环节污名与低薪归一线临终关怀的兴起是对过度医疗治疗到死的反思 GY-15 让生命末期有尊严地离开谁来照护 GY-31 延伸到谁来送终作为人群图谱第四批收官也是年龄轴的终点起点是数字原住民 GY-26 这一片指向终极命题所有人群塔尖与极贫青年与老人最终都汇入这里一个系统如何对待生命的终结是它如何对待生命本身的最后注脚四十四片画的终究是同一件事这个系统里一个人从生到死被怎样对待。数据锚定(年死亡人口口径加殡葬市场报告加安宁疗护试点报道加训练知识基线,待权威年度数据回填):年死亡人口约 1100 万 2023 1093 万 2024 死亡高峰来临婴儿潮世代步入终点 GY-09 殡葬市场约 4114 亿 2024 一线核心区墓地超 10 万每平方米墓比房贵安宁疗护 4000+ 机构试点长护险试点节地生态安葬惠民殡葬改革。注:以死亡照护产业与老龄化框架处理保持庄重不渲染不消费死亡聚焦如何有尊严地送别的制度与人文不针对具体个人不展示个案精确口径与量级估算严格区分。作为人群画像分层第四十四子集第四批收官,与 GY-09 老龄化(存续端与终结端)、GY-37 医护与 GY-31 照护(治病照护送终的照护轴)、GY-15 临终医疗(善终与过度医疗)、GY-26 数字原住民(年龄轴从生到死闭合)、GY-17/GY-39(越关键越不可见的死亡照护端)等耦合,是所有人群最终汇入的终点站。来源:年死亡人口数据、殡葬市场报告、安宁疗护试点报道、训练知识基线。</p>
+    <div class="bz-foot-meta">
+      ChinaOS · GY-46 · v1.0.0<br>
+      生成 2026-06 丙午年<br>
+      人群画像 第四十四子集 · 第四批收官 · 关联模块 → GY-09/15/26/31/37<br>
+      注记:死亡照护产业框架,庄重不渲染
+    </div>
+  </footer>
+
+</div>
