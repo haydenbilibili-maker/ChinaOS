@@ -1,0 +1,464 @@
+<div class="ba-shell">
+
+  <!-- 题头 -->
+  <header class="ba-mast">
+    <div>
+      <div class="ba-mast-meta">ChinaOS · MODULE <b>GY-39</b> · 人群画像分层 · 第三十七子集</div>
+      <h1 class="ba-title">保安群体<span class="ba-title-sub">空闲轮询的待命进程 · 在场即服务</span></h1>
+    </div>
+    <div class="ba-mast-seal">出事才被想起</div>
+  </header>
+  <p class="ba-mast-note">注记(口径处理):本片以<b>城市安全劳动社会学与用工制度视角</b>分析保安群体作为一个长期 idle 却必须 24 小时常驻的待命进程,关注其「在场即服务」的劳动形态、低薪无保障的用工黑洞、三个来源的人生切面、最隐形的在场者的政治形态;不评判具体行业或个人,「低薪」「无保障」「在场劳动」作为<b>结构问题</b>描述,不渲染个案、不归咎任何一方;数据为公安部保安员数据、保安服务市场报告口径与训练知识基线,标「约」、留观测哨回填,量级估算与精确口径严格区分。</p>
+
+  <!-- 空闲待命进程签名图 -->
+  <div class="ba-found" aria-label="空闲待命进程示意图:一个守护进程标 STATE IDLE STANDBY,CPU 占用条几乎为零但 RESIDENT 24h 常驻灯亮,守在门口与监控屏前,价值等于在场不是产出,只有一个异常事件才让它被 notice,构成标签 676 万农民工退役低龄老人低薪在场即服务,底注城市安全劳动末梢平时隐形出事才被想起">
+    <svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg" role="img">
+      <text x="500" y="20" font-size="11" fill="#8f897d" text-anchor="middle" font-family="mono" letter-spacing="2">ChinaOS · IDLE POLLING DAEMON · 价值=在场,不是产出</text>
+      <text x="500" y="44" font-size="9.5" fill="#7d6a3a" text-anchor="middle" font-family="sans-serif">— 一个长期 idle 却必须 24 小时常驻的守护进程:CPU 占用极低,但必须在线轮询 —</text>
+
+      <!-- 守护进程主体 -->
+      <rect x="80" y="80" width="300" height="120" rx="8" fill="#1c242e" stroke="#5e8c7a" stroke-width="2"/>
+      <text x="230" y="108" font-size="12" fill="#5e8c7a" text-anchor="middle" font-family="serif" letter-spacing="1">守护进程 · 保安(daemon)</text>
+      <text x="230" y="132" font-size="13" fill="#7d9488" text-anchor="middle" font-family="mono">STATE: IDLE / STANDBY</text>
+      <text x="230" y="156" font-size="9" fill="#8f897d" text-anchor="middle" font-family="sans-serif">站岗 / 值守 / 巡逻 / 看监控 — 多数时间在待命</text>
+      <text x="230" y="174" font-size="8.5" fill="#5e8c7a" text-anchor="middle" font-family="mono">RESIDENT 24h · 常驻灯亮 ●</text>
+      <text x="230" y="190" font-size="8.5" fill="#b39657" text-anchor="middle" font-family="sans-serif">价值 = 在场,不是产出(在场即服务)</text>
+
+      <!-- CPU 占用条 几乎为零 -->
+      <text x="560" y="92" font-size="10" fill="#8f897d" font-family="mono">CPU 占用 · 几乎为零</text>
+      <rect x="560" y="100" width="360" height="22" rx="3" fill="#23201a" stroke="#3d4c5a" stroke-width="1"/>
+      <rect x="562" y="102" width="22" height="18" rx="2" fill="#5e8c7a"/>
+      <text x="930" y="116" font-size="9" fill="#7d9488" text-anchor="end" font-family="mono">~3%</text>
+      <text x="560" y="150" font-size="10" fill="#8f897d" font-family="mono">在线时长 · 常驻 24h</text>
+      <rect x="560" y="158" width="360" height="22" rx="3" fill="#23201a" stroke="#3d4c5a" stroke-width="1"/>
+      <rect x="562" y="160" width="356" height="18" rx="2" fill="#b39657" opacity="0.8"/>
+      <text x="930" y="174" font-size="9" fill="#2a2418" text-anchor="end" font-family="mono">100%</text>
+      <text x="740" y="196" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">闲不等于不累:整段时间被完全征用,却被视为「清闲」</text>
+
+      <!-- 守在门口/监控屏前 -->
+      <rect x="120" y="232" width="340" height="60" rx="6" fill="#1c242e" stroke="#5d7489" stroke-width="1.4"/>
+      <text x="290" y="258" font-size="11" fill="#5d7489" text-anchor="middle" font-family="serif">守在门口 / 监控屏前</text>
+      <text x="290" y="278" font-size="8.5" fill="#7d9488" text-anchor="middle" font-family="sans-serif">小区 · 商场 · 写字楼 · 医院 · 学校 · 地铁 · 工地</text>
+
+      <!-- 异常事件才被 notice -->
+      <rect x="540" y="232" width="340" height="60" rx="6" fill="#2a1818" stroke="#b5483a" stroke-width="1.6"/>
+      <text x="710" y="256" font-size="11" fill="#c2786e" text-anchor="middle" font-family="serif">⚡ 异常事件 · 才被 notice</text>
+      <text x="710" y="276" font-size="8.5" fill="#c2a09a" text-anchor="middle" font-family="sans-serif">平时完全隐形,只在抛出异常(出事)的那一刻才被想起</text>
+      <line x1="460" y1="262" x2="538" y2="262" stroke="#b5483a" stroke-width="1.6" stroke-dasharray="4 3" marker-end="url(#baArrow)"/>
+      <defs>
+        <marker id="baArrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#b5483a"/></marker>
+      </defs>
+
+      <!-- 在场即服务带 -->
+      <rect x="120" y="320" width="760" height="58" rx="8" fill="#2a2418" stroke="#b39657" stroke-width="1.6"/>
+      <text x="500" y="346" font-size="13" fill="#c9b87a" text-anchor="middle" font-family="serif" letter-spacing="2">在场即服务 · 出售的不是产出,而是「在场」</text>
+      <text x="500" y="367" font-size="9.5" fill="#a89968" text-anchor="middle" font-family="sans-serif">威慑、应急、值守的价值来自人在岗本身 — 这是最彻底的时间征用,却被低估为轻松活</text>
+
+      <!-- 汇流池 -->
+      <text x="500" y="406" font-size="11" fill="#c2786e" text-anchor="middle" font-family="serif" letter-spacing="1">汇流池 · 三个承压人群的共同下游</text>
+      <rect x="130" y="416" width="220" height="44" rx="4" fill="#1c242e" stroke="#5d7489" stroke-width="1.2"/><text x="240" y="436" font-size="9" fill="#7d9488" text-anchor="middle" font-family="sans-serif">农民工 ↗ GY-06</text><text x="240" y="451" font-size="8" fill="#8f897d" text-anchor="middle" font-family="mono">进城低技能就业兜底</text>
+      <rect x="390" y="416" width="220" height="44" rx="4" fill="#1c242e" stroke="#5d7489" stroke-width="1.2"/><text x="500" y="436" font-size="9" fill="#7d9488" text-anchor="middle" font-family="sans-serif">退役军人 ↗ GY-12</text><text x="500" y="451" font-size="8" fill="#8f897d" text-anchor="middle" font-family="mono">从持枪站哨到小区站岗</text>
+      <rect x="650" y="416" width="220" height="44" rx="4" fill="#1c242e" stroke="#5d7489" stroke-width="1.2"/><text x="760" y="436" font-size="9" fill="#7d9488" text-anchor="middle" font-family="sans-serif">低龄老人 ↗ GY-09</text><text x="760" y="451" font-size="8" fill="#8f897d" text-anchor="middle" font-family="mono">退而不能休的再就业</text>
+
+      <line x1="100" y1="488" x2="900" y2="488" stroke="#3d4c5a" stroke-width="1" stroke-dasharray="3 5"/>
+      <text x="500" y="514" font-size="10.5" fill="#b5483a" text-anchor="middle" font-family="serif" letter-spacing="2">— 676 万 · 农民工/退役/低龄老人 · 低薪 · 在场即服务 —</text>
+      <text x="500" y="538" font-size="9" fill="#7d9488" text-anchor="middle" font-family="sans-serif">城市安全劳动末梢 · 平时隐形,出事才被想起</text>
+      <text x="500" y="560" font-size="9" fill="#8f897d" text-anchor="middle" font-family="sans-serif">守护他人安全的人,自己却是劳动保障最薄的人</text>
+      <text x="500" y="582" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="mono">注:低薪与无保障作为结构问题描述,不渲染个案、不归咎任何一方</text>
+    </svg>
+    <div class="ba-found-caption">模块隐喻是<b>空闲轮询的待命进程(Idle Polling Daemon)</b>:保安是 China OS 一个长期 idle、却必须常驻的守护进程——CPU 占用极低(多数时间在站岗、值守、看监控),但必须 24 小时在线轮询;它的价值不是计算产出,是「在场」本身(在场即服务);这个守护进程平时完全隐形,只在抛出异常(出事)的那一刻才被想起。签名图:一个守护进程标 <b>STATE: IDLE / STANDBY</b>,CPU 占用条几乎为零,但 <b>RESIDENT 24h</b> 常驻灯亮着;它守在门口/监控屏前,旁边一行「价值 = 在场,不是产出」;只有一个异常事件 ⚡ 才让它被 notice;构成标签「676 万 · 农民工/退役/低龄老人 · 低薪 · 在场即服务」;底注「城市安全劳动末梢 · 平时隐形,出事才被想起」。<b>这个人群是 GY-06(农民工)、GY-12(退役军人)、GY-09(低龄老人)的汇流池,本片最关键的判断是把「保安看似清闲」重构为一种被严重低估的「在场劳动」——价值在于在场而非产出。</b></div>
+  </div>
+
+  <!-- 页签 -->
+  <nav class="ba-nav" role="tablist">
+    <button role="tab" data-panel="ba-p-b1" class="is-active">676万汇流池</button>
+    <button role="tab" data-panel="ba-p-b2">在场即服务</button>
+    <button role="tab" data-panel="ba-p-b3">劳动黑洞</button>
+    <button role="tab" data-panel="ba-p-b4">三个来源</button>
+    <button role="tab" data-panel="ba-p-b5">政治形态学</button>
+    <button role="tab" data-panel="ba-p-b6">形态推演</button>
+    <button role="tab" data-panel="ba-p-watch">合成 · 观测哨</button>
+  </nav>
+
+  <!-- ════ B1 676万汇流池 ════ -->
+  <section class="ba-panel is-active" id="ba-p-b1">
+    <div class="ba-sec-head"><h2>B1 · 规模与构成:676 万的汇流池</h2><span class="ba-sec-tag">城市安全的毛细血管</span></div>
+    <p class="ba-lede">全国保安员约 676 万+(保安公司约 1.7 万家、市场约 3000 亿),是城市安全的毛细血管;其构成是多个承压人群的汇流池——<b style="color:var(--zhu);">农民工(↗ GY-06)、退役军人(↗ GY-12)、低龄/退休再就业老人(↗ GY-09),共同特征是低门槛、低薪、高流动</b>。这是一个「谁都能干、谁都不愿久干」的岗位:低门槛接住了他们,低薪又留不住他们;他们守着城市的每一个出入口,自己却是劳动市场里最不被看见的一道门。</p>
+
+    <h3 class="ba-h3">总盘:约 676 万保安守着城市每一个出入口</h3>
+    <div class="ba-data3">
+      <div class="ba-stat">
+        <span class="ba-eyebrow">全国保安员</span>
+        <span class="ba-stat-n">约 676 万+</span>
+        <span class="ba-stat-u">2023 末 · 公安部口径</span>
+        <p>全国保安员约 676 万+(2023 末,公安部)——<b style="color:var(--zhu);">城市安全的毛细血管</b>;数字标量级、留观测哨回填(↗ W-01)。</p>
+      </div>
+      <div class="ba-stat">
+        <span class="ba-eyebrow">保安公司</span>
+        <span class="ba-stat-n">约 1.7 万家</span>
+        <span class="ba-stat-u">市场约 3000 亿</span>
+        <p>保安公司约 1.7 万家、保安服务市场约 3000 亿(2023)——<b>一个规模庞大却低利润、低门槛的行业</b>。</p>
+      </div>
+      <div class="ba-stat">
+        <span class="ba-eyebrow">岗前 / 在岗培训</span>
+        <span class="ba-stat-n">94+ / 135 万</span>
+        <span class="ba-stat-u">2023 · 人次</span>
+        <p>2023 岗前培训超 94 万人次、在岗培训 135 万人次——<b style="color:var(--zhu);">高流动的另一面是培训量大</b>;行业存在权益保障不足等问题(↗ B3)。</p>
+      </div>
+    </div>
+
+    <h3 class="ba-h3">汇流池构成:多个承压人群在保安岗汇流</h3>
+    <div class="ba-rows">
+      <div class="ba-row peak"><span class="ba-row-k">农民工 ↗ GY-06</span><span class="ba-row-v"><b style="color:var(--zhu);">进城低技能就业的兜底之一</b>——年龄偏大、进厂无门,保安是城市就业的接收口。</span></div>
+      <div class="ba-row"><span class="ba-row-k">退役军人 ↗ GY-12</span><span class="ba-row-v">自主就业的低端出口(↗ GY-12 V4)——<b>「从持枪站哨到小区站岗」是退役落差的浓缩意象</b>。</span></div>
+      <div class="ba-row peak"><span class="ba-row-k">低龄老人 ↗ GY-09</span><span class="ba-row-v"><b style="color:var(--zhu);">退休金不足(尤其城乡居保 ↗ GY-30)→ 退而不能休</b>——保安/保洁是低龄老人再就业的主要出口。</span></div>
+      <div class="ba-row"><span class="ba-row-k">共同特征</span><span class="ba-row-v">低门槛(培训上岗)、低薪、高流动、合同制/劳务派遣(↗ GY-05 用工)——<b>「谁都能干、谁都不愿久干」的岗位</b>。</span></div>
+    </div>
+    <div class="ba-breaking">
+      <span class="ba-breaking-tag">! 低门槛接住了他们,低薪又留不住他们</span>
+      676 万保安是几个承压人群的共同下游——<b>进城的农民工、退役的军人、退休返工的老人,最后都可能站在某个门口;低门槛接住了他们,低薪又留不住他们</b>。
+    </div>
+
+    <h3 class="ba-h3">城市毛细血管:安全末梢由这 676 万人守着</h3>
+    <div class="ba-dual">
+      <div class="ba-dual-a"><h6>覆盖 · <b>无处不在</b></h6><span class="ba-dual-pole">小区 / 商场 / 写字楼 / 工地</span><p>小区、商场、写字楼、医院、学校、地铁、工地——<b style="color:var(--qing);">城市空间的安全末梢由这 676 万人守着</b>;每一个出入口背后都有一个保安。</p></div>
+      <div class="ba-dual-mid">↔</div>
+      <div class="ba-dual-b"><h6>地位 · <b>最不被看见</b></h6><span class="ba-dual-pole">低薪 / 高流动 / 隐形</span><p><b style="color:var(--zhu);">守着城市的每一个出入口,自己却是劳动市场里最不被看见的一道门</b>;无处不在,又无人注意(↗ B5)。</p></div>
+    </div>
+
+    <div class="ba-art">
+      <h5><b>676 万保安是几个承压人群的共同下游</b>低门槛接住了他们,低薪又留不住他们</h5>
+      <p>676 万保安是几个承压人群的共同下游——进城的农民工、退役的军人、退休返工的老人,最后都可能站在某个门口。<b style="color:var(--zhu);">这是一个「谁都能干、谁都不愿久干」的岗位:低门槛接住了他们,低薪又留不住他们。他们守着城市的每一个出入口,自己却是劳动市场里最不被看见的一道门。</b>(↗ GY-06/GY-12/GY-09 · 三个来源)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="ba-xref">↗ GY-06/12/09 · 汇流池的三个来源</span>
+      <span class="ba-xref">↗ GY-05 · 劳务派遣用工</span>
+      <span class="ba-xref">↗ B2 · 在场即服务</span>
+    </div>
+
+    <div class="ba-verdict">
+      <span class="ba-verdict-tag">B1 判词</span>
+      676 万保安是几个承压人群的共同下游——进城的农民工、退役的军人、退休返工的老人,最后都可能站在某个门口。这是一个「谁都能干、谁都不愿久干」的岗位:低门槛接住了他们,低薪又留不住他们。<b style="color:var(--zhu);">他们守着城市的每一个出入口,自己却是劳动市场里最不被看见的一道门。</b>
+      <span class="ba-xref">↗ B2 · 在场即服务</span>
+    </div>
+  </section>
+
+  <!-- ════ B2 在场即服务 ════ -->
+  <section class="ba-panel" id="ba-p-b2">
+    <div class="ba-sec-head"><h2>B2 · 在场即服务:待命劳动的特殊性</h2><span class="ba-sec-tag">本片独特机制 · 出售的是在场而非产出</span></div>
+    <p class="ba-disclaimer top">注记(口径处理):本节将「在场劳动」作为一种被低估的<b>劳动形态</b>分析,关注其时间被完全征用却被视为清闲的机制,不针对具体行业或个人,不渲染个案;「待命」「在场」为劳动社会学描述,旨在理解这种劳动的真实强度。</p>
+    <p class="ba-lede">本片独特机制——保安出售的不是产出而是「在场」:<b style="color:var(--zhu);">站岗、值守、巡逻、看监控,大量时间是「待命」而非「工作」</b>。这种「在场即服务」的劳动形态被严重低估——看似清闲,实则是用整段时间的人身在场换取报酬,是时间被完全占用却不被视为「在工作」的劳动。社会用「闲」来给他的低薪找理由,却看不见他付出的是整块的、不能做别的事的时间。</p>
+
+    <h3 class="ba-h3">在场即服务:价值来自人在岗本身</h3>
+    <div class="ba-rows">
+      <div class="ba-row peak"><span class="ba-row-k">在场即服务</span><span class="ba-row-v"><b style="color:var(--zhu);">保安的核心价值是「人在岗」</b>——威慑、应急、值守的价值来自在场本身,而非产出量。</span></div>
+      <div class="ba-row"><span class="ba-row-k">待命的悖论</span><span class="ba-row-v">大量时间在「待命」(无事发生时站着/坐着)——<b>看似清闲,实则整段时间被占用</b>;「闲」不等于「不累」(长时间站立、值夜、单调)。</span></div>
+      <div class="ba-row peak"><span class="ba-row-k">时间的完全占用</span><span class="ba-row-v"><b style="color:var(--zhu);">12 小时班、两班倒、住值班室</b>——用整段人身时间换低薪;时间被完全征用却被低估为「轻松活」。</span></div>
+      <div class="ba-row"><span class="ba-row-k">基层在场同类</span><span class="ba-row-v">保安与保洁、物业、前台同属「在场服务」的城市基层——<b>维持城市运转的隐形劳动</b>(↔ GY-17 越关键越不可见 / GY-31 照护在场)。</span></div>
+    </div>
+
+    <h3 class="ba-h3">在场劳动的悖论:看似清闲,实则彻底的时间征用</h3>
+    <div class="ba-dual">
+      <div class="ba-dual-a"><h6>表象 · <b>看似清闲</b></h6><span class="ba-dual-pole">站着没事干 / 能多累</span><p>站着没事干、坐在监控屏前——<b style="color:var(--qing);">社会把它误读为最清闲的活</b>;「闲」成了给低薪找理由的依据。</p></div>
+      <div class="ba-dual-mid">→</div>
+      <div class="ba-dual-b"><h6>实质 · <b>整块时间被钉住</b></h6><span class="ba-dual-pole">12 小时 / 不能离开</span><p><b style="color:var(--zhu);">12 小时的班,整段人生被钉在一个门口,无事发生也不能离开</b>——这是最彻底的时间征用,付出的是不能做别的事的整块时间。</p></div>
+    </div>
+    <div class="ba-breaking">
+      <span class="ba-breaking-tag">! 闲不等于不累,在场就是最彻底的时间征用</span>
+      保安出售的是「在场」——他的工作就是「在那儿」;<b>这种劳动最容易被误读为清闲,可「在场即服务」恰恰是最彻底的时间征用,整段时间被占用却不被视为在工作</b>。
+    </div>
+
+    <h3 class="ba-h3">在场劳动链:从威慑到应急,价值在人不在产出</h3>
+    <div class="ba-chain">
+      <div class="ba-chain-row v1"><span class="ba-chain-t">威慑</span><span class="ba-chain-v"><b>人在岗即是威慑</b> — 门口有人、监控有人盯,本身就降低了风险;价值不在产出量,在「有人在」。</span></div>
+      <div class="ba-chain-row v2"><span class="ba-chain-t">值守</span><span class="ba-chain-v"><b style="color:var(--zhu);">大量时间是待命</b> — 站岗、巡逻、看监控,无事发生时也必须在场;闲不等于不累。</span></div>
+      <div class="ba-chain-row v1"><span class="ba-chain-t">应急</span><span class="ba-chain-v"><b>出事那一刻的第一响应</b> — 真正的「计算」只在异常事件时发生,但为了那一刻必须 24 小时常驻。</span></div>
+      <div class="ba-chain-row v2"><span class="ba-chain-t">时间征用</span><span class="ba-chain-v"><b style="color:var(--zhu);">整块时间被完全占用</b> — 12 小时班、两班倒、住值班室;社会用「闲」给低薪找理由,看不见整块时间的代价。</span></div>
+    </div>
+
+    <div class="ba-art">
+      <h5><b>保安出售的是「在场」——他的工作就是「在那儿」</b>这是最彻底的时间征用,却被误读为清闲</h5>
+      <p>保安出售的是「在场」——他的工作就是「在那儿」。这种劳动最容易被误读为清闲:站着没事干,能多累?<b style="color:var(--zhu);">可「在场即服务」恰恰是最彻底的时间征用——12 小时的班,整段人生被钉在一个门口,无事发生也不能离开。社会用「闲」来给他的低薪找理由,却看不见他付出的是整块的、不能做别的事的时间。</b>(↗ GY-17 越关键越不可见 / ↗ GY-31 照护在场)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="ba-xref">↗ GY-17 · 越关键越不可见</span>
+      <span class="ba-xref">↗ GY-31 · 照护的在场劳动</span>
+      <span class="ba-xref">↗ B3 · 低薪与无保障</span>
+    </div>
+
+    <div class="ba-verdict">
+      <span class="ba-verdict-tag">B2 判词</span>
+      保安出售的是「在场」——他的工作就是「在那儿」。这种劳动最容易被误读为清闲:站着没事干,能多累?可「在场即服务」恰恰是最彻底的时间征用——12 小时的班,整段人生被钉在一个门口,无事发生也不能离开。<b style="color:var(--zhu);">社会用「闲」来给他的低薪找理由,却看不见他付出的是整块的、不能做别的事的时间。</b>
+      <span class="ba-xref">↗ B3 · 守护者无保障</span>
+    </div>
+  </section>
+
+  <!-- ════ B3 劳动黑洞 ════ -->
+  <section class="ba-panel" id="ba-p-b3">
+    <div class="ba-sec-head"><h2>B3 · 低薪与无保障:安全末梢的劳动黑洞</h2><span class="ba-sec-tag">守护他人安全的人,自己最没有保障</span></div>
+    <p class="ba-disclaimer top">注记(口径处理):本节将保安的低薪与无保障作为<b>结构问题</b>分析,关注用工制度与责任稀释的根源,不针对具体公司或个人,不渲染个案;旨在理解城市安全劳动末梢的处境与改善方向。</p>
+    <p class="ba-lede">保安普遍低薪(多在当地最低工资线附近)、劳务派遣/外包(↗ GY-05 用工套娃)、社保不全、工时长——<b style="color:var(--zhu);">是城市安全的承担者,却处在劳动保障的末梢</b>;「守护他人安全的人,自己最没有保障」。这是城市安全末梢的劳动黑洞:把维持秩序的成本压到最低,方法是把它交给一群最没有议价能力的人。</p>
+
+    <h3 class="ba-h3">守护者无保障:安全的提供者保障最薄</h3>
+    <div class="ba-dual">
+      <div class="ba-dual-a"><h6>守护 · <b>千万身家</b></h6><span class="ba-dual-pole">小区 / 财产 / 安全</span><p><b style="color:var(--qing);">保安守护他人/财产的安全</b>——守着价值千万的小区门口,是城市安全的第一道防线。</p></div>
+      <div class="ba-dual-mid">↔</div>
+      <div class="ba-dual-b"><h6>自身 · <b>保障最薄</b></h6><span class="ba-dual-pole">低薪 / 派遣 / 缺社保</span><p><b style="color:var(--zhu);">拿着最低工资,签着派遣合同,缺着社保</b>——安全的提供者,是安全保障最薄的人(↔ GY-31 照护者无保障 / GY-27 货车司机的安全版)。</p></div>
+    </div>
+
+    <h3 class="ba-h3">劳动黑洞:低薪、派遣、长工时的叠加</h3>
+    <div class="ba-rows">
+      <div class="ba-row peak"><span class="ba-row-k">低薪</span><span class="ba-row-v"><b style="color:var(--zhu);">保安薪资多在当地最低工资线附近</b>——守着价值千万的财产,拿着最低的工资。</span></div>
+      <div class="ba-row"><span class="ba-row-k">派遣/外包 ↗ GY-05</span><span class="ba-row-v">保安多为保安公司派遣/物业外包(↗ GY-05 L4)——<b>三方用工、责任稀释、社保不全</b>(↔ GY-24 治理末梢 / GY-05 法律黑洞的安全版)。</span></div>
+      <div class="ba-row peak"><span class="ba-row-k">工时长</span><span class="ba-row-v"><b style="color:var(--zhu);">12 小时班、两班倒、夜班</b>——长工时 + 低薪 + 单调的叠加。</span></div>
+      <div class="ba-row"><span class="ba-row-k">守护者无保障</span><span class="ba-row-v">保安守护他人/财产的安全,自己的劳动权益、社保、职业安全却最缺保障——<b>安全的提供者是安全保障最薄的人</b>。</span></div>
+    </div>
+    <div class="ba-breaking">
+      <span class="ba-breaking-tag">! 把秩序的成本压到最低,交给最没议价能力的人</span>
+      保安是守护安全的人里最没有安全感的人——<b>他守着千万身家的小区门口,拿着最低工资,签着派遣合同,缺着社保;把维持秩序的成本压到最低,方法是把它交给一群最没有议价能力的人</b>。
+    </div>
+
+    <h3 class="ba-h3">用工套娃:三方用工如何稀释责任</h3>
+    <div class="ba-chain">
+      <div class="ba-chain-row v1"><span class="ba-chain-t">甲方</span><span class="ba-chain-v"><b>物业/业主/单位</b> — 需要安全服务,但把它外包出去,以最低成本采购。</span></div>
+      <div class="ba-chain-row v2"><span class="ba-chain-t">保安公司</span><span class="ba-chain-v"><b style="color:var(--zhu);">派遣/外包的中间层(↗ GY-05 L4)</b> — 三方用工,责任在层层转包中被稀释;社保不全成为常态。</span></div>
+      <div class="ba-chain-row v1"><span class="ba-chain-t">保安个人</span><span class="ba-chain-v"><b>责任与风险的最末端</b> — 出事时第一个被问责,平时却是保障最薄的一环。</span></div>
+      <div class="ba-chain-row v2"><span class="ba-chain-t">责任稀释</span><span class="ba-chain-v"><b style="color:var(--zhu);">谁都在用工,谁都不完全担责</b> — 这是 GY-05 用工套娃在城市安全的版本,劳动黑洞由此形成。</span></div>
+    </div>
+
+    <div class="ba-art">
+      <h5><b>守护者无保障,是这个岗位最朴素也最尖锐的反讽</b>把秩序的成本压到最低,交给最没议价能力的人</h5>
+      <p>保安是守护安全的人里最没有安全感的人——他守着千万身家的小区门口,拿着最低工资,签着派遣合同,缺着社保。<b style="color:var(--zhu);">这是城市安全末梢的劳动黑洞:把维持秩序的成本压到最低,方法是把它交给一群最没有议价能力的人。守护者无保障,是这个岗位最朴素也最尖锐的反讽。</b>(↗ GY-05 用工套娃 / ↗ GY-24 治理末梢)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="ba-xref">↗ GY-05 · 用工套娃与责任稀释</span>
+      <span class="ba-xref">↗ GY-31 · 照护者无保障的同构</span>
+      <span class="ba-xref">↗ B4 · 三个来源</span>
+    </div>
+
+    <div class="ba-verdict">
+      <span class="ba-verdict-tag">B3 判词</span>
+      保安是守护安全的人里最没有安全感的人——他守着千万身家的小区门口,拿着最低工资,签着派遣合同,缺着社保。这是城市安全末梢的劳动黑洞:把维持秩序的成本压到最低,方法是把它交给一群最没有议价能力的人。<b style="color:var(--zhu);">守护者无保障,是这个岗位最朴素也最尖锐的反讽。</b>
+      <span class="ba-xref">↗ B4 · 三个来源的人生切面</span>
+    </div>
+  </section>
+
+  <!-- ════ B4 三个来源 ════ -->
+  <section class="ba-panel" id="ba-p-b4">
+    <div class="ba-sec-head"><h2>B4 · 三个来源的人生切面</h2><span class="ba-sec-tag">多重承压的共同显影板</span></div>
+    <p class="ba-lede">保安岗的三类来源各有人生切面——<b style="color:var(--zhu);">农民工(↗ GY-06:低技能进城的就业兜底)、退役军人(↗ GY-12 V4:自主就业的低端落点,「从持枪站哨到小区站岗」)、低龄老人(↗ GY-09:退休金不足的再就业)</b>;保安岗是这三个人群困境的共同显影。站在门口的那个保安,背后可能是三种人生,保安岗把三种困境显影在同一身制服上。</p>
+
+    <h3 class="ba-h3">三个来源:农民工、退役军人、低龄老人</h3>
+    <div class="ba-rows">
+      <div class="ba-row peak"><span class="ba-row-k">农民工 ↗ GY-06</span><span class="ba-row-v"><b style="color:var(--zhu);">低技能、年龄偏大、进厂无门</b> → 保安是城市就业的兜底之一;一个进城却进不了厂的人,最后站到了门口。</span></div>
+      <div class="ba-row"><span class="ba-row-k">退役军人 ↗ GY-12 V4</span><span class="ba-row-v">自主就业的低端落点——<b>「从持枪站哨到小区站岗」是退役落差的浓缩意象</b>(↗ GY-12 安置成色)。</span></div>
+      <div class="ba-row peak"><span class="ba-row-k">低龄老人 ↗ GY-09</span><span class="ba-row-v"><b style="color:var(--zhu);">退休金不足(尤其城乡居保 ↗ GY-30)→ 退而不能休</b> → 保安/保洁是低龄老人再就业的主要出口。</span></div>
+      <div class="ba-row"><span class="ba-row-k">共同显影</span><span class="ba-row-v">三个人群的困境(农民工的年龄墙、退役的安置落差、老人的低养老金)在保安岗上交汇——<b>保安岗是多重承压的共同显影板</b>。</span></div>
+    </div>
+    <div class="ba-breaking">
+      <span class="ba-breaking-tag">! 一身制服,显影了三种人生</span>
+      站在门口的那个保安,背后可能是三种人生:<b>一个进城却进不了厂的农民工,一个退伍后从持枪站哨变成小区站岗的老兵,一个退休金不够花、退而不能休的老人</b>。
+    </div>
+
+    <h3 class="ba-h3">退役落差:从持枪站哨到小区站岗</h3>
+    <div class="ba-dual">
+      <div class="ba-dual-a"><h6>从前 · <b>持枪站哨</b></h6><span class="ba-dual-pole">军营 / 尊崇 / 组织力</span><p><b style="color:var(--qing);">在部队里持枪站哨、被尊崇、有组织力</b>——退役前的身份带着荣誉与纪律(↗ GY-12 预装组织力)。</p></div>
+      <div class="ba-dual-mid">→</div>
+      <div class="ba-dual-b"><h6>之后 · <b>小区站岗</b></h6><span class="ba-dual-pole">门口 / 低薪 / 落差</span><p><b style="color:var(--zhu);">退役后从持枪站哨变成小区站岗</b>——这是退役安置落差(V4)最浓缩的意象;保安岗是退役军人自主就业低端落点的典型。</p></div>
+    </div>
+
+    <div class="ba-art">
+      <h5><b>保安岗把三种困境显影在同一身制服上</b>它是城市就业的最大公约数,也是多重承压的共同出口</h5>
+      <p>站在门口的那个保安,背后可能是三种人生:一个进城却进不了厂的农民工,一个退伍后从持枪站哨变成小区站岗的老兵,一个退休金不够花、退而不能休的老人。<b style="color:var(--zhu);">保安岗把三种困境显影在同一身制服上——它是城市就业的最大公约数,也是多重承压的共同出口。</b>(↗ GY-06 农民工 / ↗ GY-12 退役 / ↗ GY-09 低龄老人)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="ba-xref">↗ GY-06 · 农民工的年龄墙</span>
+      <span class="ba-xref">↗ GY-12 · 退役安置落差</span>
+      <span class="ba-xref">↗ GY-09/30 · 低龄老人低养老金</span>
+    </div>
+
+    <div class="ba-verdict">
+      <span class="ba-verdict-tag">B4 判词</span>
+      站在门口的那个保安,背后可能是三种人生:一个进城却进不了厂的农民工,一个退伍后从持枪站哨变成小区站岗的老兵,一个退休金不够花、退而不能休的老人。<b style="color:var(--zhu);">保安岗把三种困境显影在同一身制服上——它是城市就业的最大公约数,也是多重承压的共同出口。</b>
+      <span class="ba-xref">↗ B5 · 最隐形的在场者</span>
+    </div>
+  </section>
+
+  <!-- ════ B5 政治形态学 ════ -->
+  <section class="ba-panel" id="ba-p-b5">
+    <div class="ba-sec-head"><h2>B5 · 政治形态学:最隐形的在场者</h2><span class="ba-sec-tag">无处不在,又无人注意</span></div>
+    <p class="ba-lede">保安政治上极度沉默与隐形——<b style="color:var(--zhu);">分散在每个角落、高流动、无组织、被「服务者」身份消解</b>;他们无处不在却无人注意,是城市里「在场的隐形人」。其与治理末梢(↗ GY-24)的关系微妙:保安是私营安全的末梢,部分承担准治理功能(门禁、巡查、应急),是治理外包的市场版。他是你每天都会路过、却从不会记住的人。</p>
+
+    <h3 class="ba-h3">在场的隐形人:无处不在却无人注意</h3>
+    <div class="ba-rows">
+      <div class="ba-row peak"><span class="ba-row-k">隐形的在场</span><span class="ba-row-v"><b style="color:var(--zhu);">无处不在(每个门口)却无人注意</b>——「在场的隐形人」(↔ GY-17 越关键越不可见的城市空间版)。</span></div>
+      <div class="ba-row"><span class="ba-row-k">无组织、高流动</span><span class="ba-row-v">分散、流动快、派遣制——<b>难以形成任何集体性</b>(↔ GY-05 原子化 / GY-27 分散)。</span></div>
+      <div class="ba-row peak"><span class="ba-row-k">准治理功能 ↗ GY-24</span><span class="ba-row-v"><b style="color:var(--zhu);">门禁、巡查、应急、配合维稳</b>——保安承担部分准治理功能,是「安全治理外包」的市场末梢(↔ GY-24 编外治理者的私营版)。</span></div>
+      <div class="ba-row"><span class="ba-row-k">全光谱交点</span><span class="ba-row-v">保安是 GY-06(农民工)、GY-12(退役)、GY-09/GY-30(低龄老人)的汇流,GY-05(低薪派遣)、GY-24(准治理末梢)的交点——<b>城市服务业最大的「在场劳动」蓄水池之一</b>。</span></div>
+    </div>
+
+    <h3 class="ba-h3">治理末梢的公私两端:编外治理者 ↔ 私营安全</h3>
+    <div class="ba-dual">
+      <div class="ba-dual-a"><h6>公营末梢 · <b>编外治理者</b></h6><span class="ba-dual-pole">网格员 / 辅警 ↗ GY-24</span><p>网格员、辅警等编外治理者——<b style="color:var(--qing);">公营的治理末梢(↗ GY-24)</b>,借权代理、上面千条线的承接者。</p></div>
+      <div class="ba-dual-mid">↔</div>
+      <div class="ba-dual-b"><h6>私营末梢 · <b>保安</b></h6><span class="ba-dual-pole">门禁 / 巡查 / 应急</span><p><b style="color:var(--zhu);">保安是安全治理外包到市场的最隐形末梢</b>——用最低的成本,把秩序的维持交给一群最隐形的在场者;准治理的私营一端。</p></div>
+    </div>
+    <div class="ba-breaking">
+      <span class="ba-breaking-tag">! 你每天都会路过,却从不会记住的人</span>
+      保安是城市里最矛盾的存在——无处不在,又无人注意;<b>他站在每一个门口,是你每天都会路过、却从不会记住的人;高度流动、无法组织、被「服务者」的身份消解了存在感</b>。
+    </div>
+
+    <div class="ba-art">
+      <h5><b>他是安全治理外包到市场的最末梢——用最低的成本,把秩序的维持交给一群最隐形的在场者</b></h5>
+      <p>保安是城市里最矛盾的存在——无处不在,又无人注意。他站在每一个门口,是你每天都会路过、却从不会记住的人。<b style="color:var(--zhu);">他高度流动、无法组织、被「服务者」的身份消解了存在感,却又承担着门禁、巡查、应急这些准治理的功能。他是安全治理外包到市场的最末梢——用最低的成本,把秩序的维持,交给了一群最隐形的在场者。</b>(↗ GY-24 治理末梢 / ↗ GY-05 原子化)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="ba-xref">↗ GY-24 · 治理末梢的公营一端</span>
+      <span class="ba-xref">↗ GY-05 · 派遣的原子化</span>
+      <span class="ba-xref">↗ GY-17 · 越关键越不可见</span>
+    </div>
+
+    <div class="ba-verdict">
+      <span class="ba-verdict-tag">B5 判词</span>
+      保安是城市里最矛盾的存在——无处不在,又无人注意。他站在每一个门口,是你每天都会路过、却从不会记住的人。他高度流动、无法组织、被「服务者」的身份消解了存在感,却又承担着门禁、巡查、应急这些准治理的功能。<b style="color:var(--zhu);">他是安全治理外包到市场的最末梢——用最低的成本,把秩序的维持,交给了一群最隐形的在场者。</b>
+      <span class="ba-xref">↗ B6 · 三态推演</span>
+    </div>
+  </section>
+
+  <!-- ════ B6 形态推演 ════ -->
+  <section class="ba-panel" id="ba-p-b6">
+    <div class="ba-sec-head"><h2>B6 · 形态推演(三态)</h2><span class="ba-sec-tag">低薪汇流延续 / 老龄化加压 / 技防替代</span></div>
+    <p class="ba-lede">保安这个长期 idle 却必须 24 小时常驻的待命进程的未来走向,取决于三股力量的相对强弱——<b style="color:var(--zhu);">就业兜底功能的延续、老龄化与经济下行对蓄水池的加压、智能安防(技防)对人防的替代</b>。三态推演如下,概率最高的是低薪汇流延续的基准态。</p>
+
+    <h3 class="ba-h3">三态:α 低薪汇流延续 / β 老龄化加压 / γ 技防替代</h3>
+    <div class="ba-form">
+      <h5>形态 α · 基准 · 低薪汇流延续(概率最高)</h5>
+      <p>保安作为多人群就业兜底延续、低薪派遣常态、行业规范缓慢推进;<b style="color:var(--zhu);">技防(监控/AI)部分替代但人防仍是主体</b>。概率最高(在场劳动是城市安全的刚需,就业兜底功能短期难替代,↗ W-01/W-02)。</p>
+    </div>
+    <div class="ba-form" style="border-color:var(--zhu-dim); background:rgba(181,72,58,.08);">
+      <h5 style="color:var(--zhu);">形态 β · 压力 · 老龄化与就业兜底加压</h5>
+      <p>若经济下行使更多农民工/失业者/老人涌入保安岗(就业兜底功能强化),同时老龄化使低龄老人保安增多——<b style="color:var(--zhu);">保安岗成为更大的承压蓄水池;标志:保安队伍老龄化、就业兜底属性凸显</b>(↗ W-06)。</p>
+    </div>
+    <div class="ba-form" style="border-color:var(--jin-dim); background:rgba(110,93,56,.10);">
+      <h5 style="color:var(--jin);">形态 γ · 技术 · 技防替代人防</h5>
+      <p>智能安防(AI 监控、人脸、智能巡检)替代部分人力——<b style="color:var(--jin);">「机器换人」的安全版(↗ GY-22/GY-28 AI)</b>;但应急、威慑、人身在场难被完全替代,低端岗位收缩、技术岗位要求提高的分化(↗ W-07)。</p>
+    </div>
+
+    <h3 class="ba-h3">三态的共同底色:在场劳动是城市安全的刚需</h3>
+    <div class="ba-rows">
+      <div class="ba-row peak"><span class="ba-row-k">在场不可省</span><span class="ba-row-v"><b style="color:var(--zhu);">无论哪种形态,应急、威慑、人身在场短期难被完全替代</b>——三态的差异只在蓄水池如何被加压、被技术部分替代。</span></div>
+      <div class="ba-row"><span class="ba-row-k">老龄化是变量</span><span class="ba-row-v">经济下行与老龄化是最大的外生变量——<b>形态 β 的触发点;保安队伍老龄化与就业兜底属性凸显是最响的信号</b>(↗ B4)。</span></div>
+      <div class="ba-row peak"><span class="ba-row-k">技防非万能</span><span class="ba-row-v"><b style="color:var(--zhu);">AI 替代重复监控,但应急、威慑、人身在场难被替代</b>——形态 γ 缓解的是人力成本,缓解不了在场的核心价值。</span></div>
+    </div>
+
+    <div class="ba-art">
+      <h5><b>技防替代重复监控,却替代不了应急与人身在场</b>在场劳动是城市安全的刚需,三态只是蓄水池的不同出口</h5>
+      <p>三态推演的共同底色是:<b style="color:var(--zhu);">在场劳动(威慑、应急、人身在场)短期难被完全替代,差异只在蓄水池如何被加压、被技术部分替代。基准是低薪汇流延续;压力态里老龄化与经济下行把保安岗推成更大的承压蓄水池;技术态里智能安防替代部分人力,却替代不了应急与人身在场的核心价值。</b>(↗ GY-22/GY-28 机器换人 / ↗ GY-09 老龄化)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="ba-xref">↗ GY-22/28 · 机器换人的安全版</span>
+      <span class="ba-xref">↗ GY-09 · 老龄化加压</span>
+      <span class="ba-xref">↗ watch · 总判词与观测哨</span>
+    </div>
+
+    <div class="ba-verdict">
+      <span class="ba-verdict-tag">B6 判词</span>
+      三态推演的共同底色是:在场劳动(威慑、应急、人身在场)短期难被完全替代,差异只在蓄水池如何被加压、被技术部分替代。基准是低薪汇流延续;压力态里老龄化与经济下行把保安岗推成更大的承压蓄水池;技术态里智能安防替代部分人力。<b style="color:var(--zhu);">但应急、威慑、人身在场——这些「在场即服务」的核心——难被技术替代:技防缓解人力成本,缓解不了在场的价值。</b>
+      <span class="ba-xref">↗ watch · 合成观测哨</span>
+    </div>
+  </section>
+
+  <!-- ════ 合成 · 观测哨 ════ -->
+  <section class="ba-panel" id="ba-p-watch">
+    <div class="ba-sec-head"><h2>B7 / B9 · 合成与观测哨</h2><span class="ba-sec-tag">空闲轮询的待命进程 · 第三十七子集 · 年度对账</span></div>
+    <p class="ba-disclaimer top">注记(口径处理):全片以城市安全劳动社会学与用工制度框架处理,不评判具体行业或个人,「低薪」「无保障」「在场劳动」作为结构问题描述,不渲染个案、不归咎任何一方。形态推演与观测哨为机制研判,数据为公安部保安员数据、保安服务市场报告口径与训练知识基线,标「约」、待权威年度数据回填,量级估算与精确口径严格区分。</p>
+
+    <div class="ba-verdict" style="margin-top:14px; margin-bottom:34px;">
+      <span class="ba-verdict-tag">B7 · 总判词 · 在场即服务</span>
+      保安是 China OS 一个长期 idle 却必须 24 小时常驻的守护进程——CPU 占用极低(多数时间在待命),价值不是产出而是「在场」,平时完全隐形,只在出事的那一刻才被想起。<br><br>
+      <b style="color:var(--zhu);">676 万保安是几个承压人群的共同下游:进城进不了厂的农民工(↗ GY-06)、从持枪站哨到小区站岗的退役军人(↗ GY-12)、退休金不够退而不能休的低龄老人(↗ GY-09/GY-30)——保安岗把三种困境显影在同一身制服上。他出售的是「在场」这种最彻底的时间征用,社会却用「闲」给他的低薪找理由;他守护着千万身家的安全,自己却是劳动保障最薄的人——守护者无保障,是这个岗位最尖锐的反讽。他无处不在又无人注意,承担着准治理的功能(↗ GY-24),却是安全治理外包到市场的最隐形末梢。当一个城市把维持秩序的成本压到最低、交给一群最没有议价能力的在场者,秩序看起来很便宜——便宜的代价,是 676 万人用整块的时间和最低的保障,替这座城市站着。</b><br><br>
+      与全系列合观:GY-06 农民工、GY-12 退役军人、GY-09/GY-30 低龄老人是保安岗的三个来源,本片是它们的共同汇流池;GY-05 用工套娃在保安身上是「在场服务」型低薪派遣劳动的版本;GY-24 治理末梢「编外治理者」的公营末梢与保安「私营安全」的市场末梢,构成准治理的公私两端;GY-17 越关键越不可见、GY-31 照护在场是「在场劳动」的同构样本。作为人群画像分层第三十七子集,本片把城市安全劳动末梢补进整张图谱——<b>它不是又一个孤立人群,而是多个承压人群在城市安全岗上的共同显影端,核心问题始终是:当秩序被压到最低成本、交给最隐形的在场者,这座城市的安全还撑得住吗。</b>
+    </div>
+
+    <h3 class="ba-h3">对 GY 系列的五条修正</h3>
+    <div class="ba-fix">
+      <h5><b>修正 · GY-06/GY-12/GY-09</b>保安岗是三人群的共同汇流池</h5>
+      <p>保安岗是三人群的共同汇流池——农民工年龄墙、退役安置落差、低龄老人低养老金在此交汇——<b style="color:var(--zhu);">建议三片把「保安/保洁等在场服务」标注为低端就业的共同兜底出口</b>。</p>
+    </div>
+    <div class="ba-fix">
+      <h5><b>修正 · GY-05</b>补「在场服务」劳动形态</h5>
+      <p>保安是「在场服务」型低薪派遣劳动——与即时配送(外卖)、货运(GY-27)不同,<b>它出售的是待命时间而非计件产出</b>;建议 GY-05 补「在场服务」劳动形态。</p>
+    </div>
+    <div class="ba-fix">
+      <h5><b>修正 · GY-24</b>治理末梢的公营与私营</h5>
+      <p>保安是「安全治理外包」的市场末梢——与编外治理者(网格员/辅警 ↗ GY-24)的公营末梢相对——<b style="color:var(--zhu);">构成准治理的公私两端;建议链接为「治理末梢的公营与私营」</b>。</p>
+    </div>
+    <div class="ba-fix">
+      <h5><b>修正 · GY-12</b>从持枪站哨到小区站岗</h5>
+      <p>「从持枪站哨到小区站岗」是退役安置落差(V4)最浓缩的意象——<b>保安岗是退役军人自主就业低端落点的典型</b>;建议 GY-12 以此意象标注 V4 安置成色。</p>
+    </div>
+    <div class="ba-fix">
+      <h5><b>修正 · 母框架</b>补「在场劳动 / 待命服务」形态</h5>
+      <p>保安补「在场劳动 / 待命服务」这一被低估的劳动形态——<b style="color:var(--zhu);">价值在于在场而非产出,时间被完全征用却被视为「清闲」</b>,是「越关键越不可见」(↗ GY-17/GY-31)在城市安全空间的又一样本。</p>
+    </div>
+
+    <div class="ba-watch-intro">
+      <p>这个人群的处境变动,关键看三组指针:规模与构成(保安规模 / 薪资 / 用工社保)、劳动与值守(工时 / 在场强度)、来源与替代(退役安置 / 低龄老人 / 技防 / 行业规范)。逐项标注状态、记录证据,年度与 GY 系列同步对账。状态与备注自动保存在本机。数据敏感处标「约」,待权威年度数据回填,量级估算与精确口径严格区分;低薪与无保障作为结构问题观测,不渲染个案。</p>
+      <span class="ba-storage-state" id="ba-storage-state"></span>
+    </div>
+
+    <div class="ba-watch" id="ba-watch-list">
+      <div class="ba-watch-item" data-key="w1">
+        <div><h5><b>W-01</b>保安规模与构成</h5><p class="ba-watch-desc">保安员数、农民工/退役/老人占比——<b>汇流池的总仪表。</b></p></div>
+        <div class="ba-watch-ctrl"><div class="ba-status-row"><button class="ba-status-btn" data-status="good">向好</button><button class="ba-status-btn" data-status="flat">中性</button><button class="ba-status-btn" data-status="bad">恶化</button></div><textarea class="ba-watch-note" placeholder="证据与备注…"></textarea><div class="ba-watch-stamp"></div></div>
+      </div>
+      <div class="ba-watch-item" data-key="w2">
+        <div><h5><b>W-02</b>薪资与最低工资</h5><p class="ba-watch-desc">保安薪资 vs 当地最低工资——<b>B3 低薪读数。</b></p></div>
+        <div class="ba-watch-ctrl"><div class="ba-status-row"><button class="ba-status-btn" data-status="good">向好</button><button class="ba-status-btn" data-status="flat">中性</button><button class="ba-status-btn" data-status="bad">恶化</button></div><textarea class="ba-watch-note" placeholder="证据与备注…"></textarea><div class="ba-watch-stamp"></div></div>
+      </div>
+      <div class="ba-watch-item" data-key="w3">
+        <div><h5><b>W-03</b>用工与社保</h5><p class="ba-watch-desc">派遣/外包比例、社保覆盖、工伤——<b>劳动黑洞的填补。</b></p></div>
+        <div class="ba-watch-ctrl"><div class="ba-status-row"><button class="ba-status-btn" data-status="good">向好</button><button class="ba-status-btn" data-status="flat">中性</button><button class="ba-status-btn" data-status="bad">恶化</button></div><textarea class="ba-watch-note" placeholder="证据与备注…"></textarea><div class="ba-watch-stamp"></div></div>
+      </div>
+      <div class="ba-watch-item" data-key="w4">
+        <div><h5><b>W-04</b>工时与值守</h5><p class="ba-watch-desc">班制、夜班、住值班室——<b>在场劳动的强度。</b></p></div>
+        <div class="ba-watch-ctrl"><div class="ba-status-row"><button class="ba-status-btn" data-status="good">向好</button><button class="ba-status-btn" data-status="flat">中性</button><button class="ba-status-btn" data-status="bad">恶化</button></div><textarea class="ba-watch-note" placeholder="证据与备注…"></textarea><div class="ba-watch-stamp"></div></div>
+      </div>
+      <div class="ba-watch-item" data-key="w5">
+        <div><h5><b>W-05</b>退役安置占比</h5><p class="ba-watch-desc">退役军人进保安岗的比例——<b>V4 安置落差读数。</b></p></div>
+        <div class="ba-watch-ctrl"><div class="ba-status-row"><button class="ba-status-btn" data-status="good">向好</button><button class="ba-status-btn" data-status="flat">中性</button><button class="ba-status-btn" data-status="bad">恶化</button></div><textarea class="ba-watch-note" placeholder="证据与备注…"></textarea><div class="ba-watch-stamp"></div></div>
+      </div>
+      <div class="ba-watch-item" data-key="w6">
+        <div><h5><b>W-06</b>低龄老人保安</h5><p class="ba-watch-desc">保安队伍老龄化、退休再就业占比——<b>B4/形态β。</b></p></div>
+        <div class="ba-watch-ctrl"><div class="ba-status-row"><button class="ba-status-btn" data-status="good">向好</button><button class="ba-status-btn" data-status="flat">中性</button><button class="ba-status-btn" data-status="bad">恶化</button></div><textarea class="ba-watch-note" placeholder="证据与备注…"></textarea><div class="ba-watch-stamp"></div></div>
+      </div>
+      <div class="ba-watch-item" data-key="w7">
+        <div><h5><b>W-07</b>技防替代</h5><p class="ba-watch-desc">智能安防对人防的替代——<b>形态γ 进度(接 GY-22/GY-28)。</b></p></div>
+        <div class="ba-watch-ctrl"><div class="ba-status-row"><button class="ba-status-btn" data-status="good">向好</button><button class="ba-status-btn" data-status="flat">中性</button><button class="ba-status-btn" data-status="bad">恶化</button></div><textarea class="ba-watch-note" placeholder="证据与备注…"></textarea><div class="ba-watch-stamp"></div></div>
+      </div>
+      <div class="ba-watch-item" data-key="w8">
+        <div><h5><b>W-08</b>行业规范</h5><p class="ba-watch-desc">保安服务行业规范、权益保障改革——<b>B3 保障改善。</b></p></div>
+        <div class="ba-watch-ctrl"><div class="ba-status-row"><button class="ba-status-btn" data-status="good">向好</button><button class="ba-status-btn" data-status="flat">中性</button><button class="ba-status-btn" data-status="bad">恶化</button></div><textarea class="ba-watch-note" placeholder="证据与备注…"></textarea><div class="ba-watch-stamp"></div></div>
+      </div>
+    </div>
+
+    <h3 class="ba-h3">章节规划 · 登记表</h3>
+    <div class="ba-plan">
+      <div class="ba-plan-row"><span class="ba-plan-k">CH-01</span><span class="ba-plan-v"><b>在场劳动学</b> — 待命服务的劳动形态、时间征用与低薪的合理化机制。</span><span class="ba-plan-tag">待建</span></div>
+      <div class="ba-plan-row"><span class="ba-plan-k">CH-02</span><span class="ba-plan-v"><b>三个来源</b> — 农民工/退役/低龄老人在保安岗的汇流,接 GY-06/GY-12/GY-09。</span><span class="ba-plan-tag">待建</span></div>
+      <div class="ba-plan-row"><span class="ba-plan-k">CH-03</span><span class="ba-plan-v"><b>守护者无保障</b> — 派遣/社保/工时的劳动黑洞、安全治理外包,接 GY-05/GY-24。</span><span class="ba-plan-tag">待建</span></div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="ba-foot">
+    <p>方法论:保安群体以「空闲轮询的待命进程(Idle Polling Daemon)」模型刻画——保安是 China OS 一个长期 idle 却必须常驻的守护进程它的核心价值不是计算产出是在场本身在场即服务 CPU 占用极低多数时间在站岗值守看监控但必须 24 小时在线轮询这个守护进程平时完全隐形只在抛出异常出事的那一刻才被想起签名图一个守护进程标 STATE IDLE STANDBY CPU 占用条几乎为零但 RESIDENT 24h 常驻灯亮着它守在门口监控屏前旁边一行价值等于在场不是产出只有一个异常事件才让它被 notice 构成标签 676 万农民工退役低龄老人低薪在场即服务底注城市安全劳动末梢平时隐形出事才被想起。核心命题:676 万保安员是农民工 GY-06 退役军人 GY-12 低龄老人 GY-09 的汇流池城市安全的毛细血管他们出售的不是产出而是在场站岗值守巡逻看监控多数时间在待命价值是在场即服务却低薪低地位几乎隐形只在出事时才被想起 676 万保安是几个承压人群的共同下游进城进不了厂的农民工从持枪站哨到小区站岗的退役军人退休金不够退而不能休的低龄老人保安岗把三种困境显影在同一身制服上他出售的是在场这种最彻底的时间征用社会却用闲给他的低薪找理由他守护着千万身家的安全自己却是劳动保障最薄的人守护者无保障是这个岗位最尖锐的反讽他无处不在又无人注意承担着准治理的功能 GY-24 却是安全治理外包到市场的最隐形末梢当一个城市把维持秩序的成本压到最低交给一群最没有议价能力的在场者秩序看起来很便宜便宜的代价是 676 万人用整块的时间和最低的保障替这座城市站着。数据锚定(公安部保安员数据加保安服务市场报告口径加训练知识基线,待权威年度数据回填):全国保安员约 676 万 2023 末公安部保安公司约 1.7 万家保安服务市场约 3000 亿 2023 年 2023 岗前培训超 94 万人次在岗培训 135 万人次行业存在权益保障不足等问题构成农民工退役军人低龄老人为主低门槛低薪高流动劳务派遣保安薪资多在当地最低工资线附近 12 小时班两班倒夜班住值班室。注:全片以城市安全劳动社会学与用工制度框架处理,不评判具体行业或个人,低薪无保障在场劳动作为结构问题描述不渲染个案不归咎任何一方,保安精确规模与最新薪资社保数据待回填,精确口径与量级估算严格区分,数字标注量级并留观测哨回填。作为人群画像分层第三十七子集,与 GY-06 农民工 GY-12 退役军人 GY-09 低龄老人(保安岗是三人群的共同汇流池)、GY-05 用工套娃(保安是在场服务型低薪派遣劳动)、GY-24 治理末梢(保安私营末梢与编外治理者公营末梢构成准治理公私两端)、GY-17 越关键越不可见与 GY-31 照护在场(在场劳动的同构)、GY-22 与 GY-28(机器换人的安全版)等耦合。来源:公安部保安员数据(人民网/光明网 2024-03)、保安服务市场报告、训练知识基线。</p>
+    <div class="ba-foot-meta">
+      ChinaOS · GY-39 · v1.0.0<br>
+      生成 2026-06 丙午年<br>
+      人群画像 第三十七子集 · 关联模块 → GY-05/06/09/12/24<br>
+      注记:城市安全劳动社会学框架 · 低薪与无保障作结构问题描述 · 不归咎任何一方
+    </div>
+  </footer>
+
+</div>
