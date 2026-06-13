@@ -1,0 +1,446 @@
+<div class="jc-shell">
+
+  <!-- 题头 -->
+  <header class="jc-mast">
+    <div>
+      <div class="jc-mast-meta">ChinaOS · MODULE <b>GY-44</b> · 人群画像分层 · 第四十二子集</div>
+      <h1 class="jc-title">社区矫正与刑释人员<span class="jc-title-sub">解除隔离后的权限残留 · 前科作为持久标记</span></h1>
+    </div>
+    <div class="jc-mast-seal">刑满之后</div>
+  </header>
+  <p class="jc-mast-note">注记(敏感度处理):本片以<b>司法制度与回归社会</b>视角,讨论社区矫正、安置帮教、前科消除等制度机制——把社区矫正对象与刑满释放人员刻画为 China OS 从沙箱/隔离中释放、却仍带着残留标记的进程:监禁是 sandbox 隔离,社区矫正是「受限运行权限」(在社区但权限受约束),刑满是「解除隔离」;但进程上有一个不随刑期结束而清除的持久 flag「前科记录」,它在重新接入系统(回归社会)时触发连锁 <code>permission denied</code>(就业、职业资格、社会信任);<b>不渲染犯罪、不污名化个体</b>,聚焦「刑满之后如何回归」的制度设计,社区矫正重新犯罪率长期低位(约 0.2%)本身是制度成效的体现;数据为社区矫正法、司法部社区矫正数据、安置帮教制度与训练知识基线,标量级、留观测哨回填,精确口径与量级估算严格区分。</p>
+
+  <!-- 解除隔离后的权限残留 签名图 -->
+  <div class="jc-found" aria-label="解除隔离后的权限残留示意图:一个进程从 sandbox(隔离/矫正)中 released,却仍带着一枚红色残留 flag 前科记录;重新接入系统时一串权限被拒 就业✗ 职业资格✗ 社会信任✗;旁边一条 前科消除/记录封存 的修复通道,未成年人封存已建、成年人有限;底注 社区矫正累计数百万 重新犯罪率约0.2% GY-32 被标记账户的刑事镜像">
+    <svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg" role="img">
+      <text x="500" y="20" font-size="11" fill="#8f897d" text-anchor="middle" font-family="mono" letter-spacing="2">ChinaOS · POST-SANDBOX RESIDUAL FLAGS · 解除隔离,残留标记不随刑期清除</text>
+      <text x="500" y="44" font-size="9.5" fill="#7d6a3a" text-anchor="middle" font-family="sans-serif">— 一个从沙箱(隔离/矫正)中释放、却仍带着持久残留 flag 的进程 —</text>
+
+      <!-- sandbox 隔离 -> 受限运行 -> released -->
+      <rect x="60" y="100" width="170" height="56" rx="3" fill="#23201a" stroke="#3d4c5a" stroke-width="1"/><text x="145" y="124" font-size="10" fill="#7d9488" text-anchor="middle" font-family="mono">sandbox · 监禁隔离</text><text x="145" y="142" font-size="8" fill="#8f897d" text-anchor="middle" font-family="sans-serif">完全隔离运行</text>
+      <line x1="230" y1="128" x2="288" y2="128" stroke="#7d9488" stroke-width="1.2" marker-end="url(#jcArrow)"/>
+      <rect x="290" y="100" width="180" height="56" rx="3" fill="#23201a" stroke="#3d4c5a" stroke-width="1"/><text x="380" y="124" font-size="10" fill="#7d9488" text-anchor="middle" font-family="mono">社区矫正 · 受限运行</text><text x="380" y="142" font-size="8" fill="#8f897d" text-anchor="middle" font-family="sans-serif">管制/缓刑/假释/监外</text>
+      <line x1="470" y1="128" x2="528" y2="128" stroke="#c2a052" stroke-width="1.4" marker-end="url(#jcArrowGold)"/>
+      <rect x="530" y="100" width="170" height="56" rx="3" fill="#1c242e" stroke="#c2a052" stroke-width="1.4"/><text x="615" y="124" font-size="10" fill="#c2a052" text-anchor="middle" font-family="mono">released · 刑满解除隔离</text><text x="615" y="142" font-size="8" fill="#8f897d" text-anchor="middle" font-family="sans-serif">服刑期满 · 重新接入</text>
+
+      <!-- 残留 flag -->
+      <rect x="740" y="98" width="200" height="60" rx="3" fill="#2a1c1c" stroke="#b5483a" stroke-width="1.6"/><text x="840" y="122" font-size="10.5" fill="#c2786e" text-anchor="middle" font-family="mono">⚑ 残留 flag</text><text x="840" y="142" font-size="9" fill="#b5483a" text-anchor="middle" font-family="sans-serif">前科记录 · 不随刑期清除</text>
+
+      <!-- 进程主体(中心) -->
+      <rect x="360" y="248" width="280" height="96" rx="6" fill="#1c242e" stroke="#c2786e" stroke-width="2"/>
+      <text x="500" y="278" font-size="13" fill="#c2786e" text-anchor="middle" font-family="mono" letter-spacing="1">刑释 / 矫正人员</text>
+      <text x="500" y="300" font-size="11.5" fill="#b5483a" text-anchor="middle" font-family="mono">RELEASED · flag: 前科 [persistent]</text>
+      <text x="500" y="320" font-size="9" fill="#8f897d" text-anchor="middle" font-family="sans-serif">刑期已还清 · 标记仍在 · 重新做人却被反复检验</text>
+      <text x="500" y="334" font-size="8.5" fill="#7d6a3a" text-anchor="middle" font-family="mono">sentence served, flag not cleared</text>
+      <line x1="840" y1="158" x2="600" y2="246" stroke="#b5483a" stroke-width="1.2" stroke-dasharray="3 4"/>
+
+      <!-- 一串权限被拒 -->
+      <text x="220" y="300" font-size="10.5" fill="#b5483a" text-anchor="middle" font-family="serif">重新接入 · permission denied</text>
+      <text x="220" y="320" font-size="9" fill="#8f897d" text-anchor="middle" font-family="mono">就业 ✗</text>
+      <text x="220" y="336" font-size="9" fill="#8f897d" text-anchor="middle" font-family="mono">职业资格 ✗</text>
+      <text x="220" y="352" font-size="9" fill="#8f897d" text-anchor="middle" font-family="mono">社会信任 ✗</text>
+      <line x1="300" y1="320" x2="358" y2="300" stroke="#b5483a" stroke-width="1.2" stroke-dasharray="3 4"/>
+
+      <!-- 修复通道 -->
+      <rect x="360" y="380" width="280" height="58" rx="4" fill="#23201a" stroke="#6e5d38" stroke-width="1.2"/><text x="500" y="404" font-size="10" fill="#c2a052" text-anchor="middle" font-family="mono">修复通道 · 前科消除 / 记录封存</text><text x="500" y="424" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">未成年人封存(已建) · 成年人前科消除(有限)</text>
+      <line x1="500" y1="344" x2="500" y2="378" stroke="#c2a052" stroke-width="1.2" marker-end="url(#jcArrowGold)"/>
+
+      <defs>
+        <marker id="jcArrow" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#7d9488"/></marker>
+        <marker id="jcArrowGold" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#c2a052"/></marker>
+      </defs>
+
+      <line x1="100" y1="478" x2="900" y2="478" stroke="#3d4c5a" stroke-width="1" stroke-dasharray="3 5"/>
+      <text x="500" y="504" font-size="10.5" fill="#b5483a" text-anchor="middle" font-family="serif" letter-spacing="2">— 惩罚在正式刑罚结束后,仍以「残留标记」的形式延续 —</text>
+      <text x="500" y="528" font-size="9" fill="#7d9488" text-anchor="middle" font-family="sans-serif">社区矫正累计数百万 · 重新犯罪率约 0.2% · GY-32 被标记账户的刑事镜像</text>
+      <text x="500" y="550" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="mono">注:以司法制度与回归社会框架处理,不渲染犯罪、不污名化个体,标量级,留观测哨回填</text>
+    </svg>
+    <div class="jc-found-caption">模块隐喻是<b>解除隔离后的权限残留(Post-Sandbox Residual Flags)</b>:社区矫正对象与刑满释放人员是 China OS 从 sandbox/隔离中释放、却仍带着残留标记的进程——监禁是 sandbox 隔离,社区矫正是「受限运行权限」(在社区但权限受约束),刑满是「解除隔离」;但进程上有一个不随刑期结束而清除的持久 flag「前科记录」,它在重新接入系统(回归社会)时触发连锁 <code>permission denied</code>(就业、职业资格、落户、社会信任)。签名图:进程从 sandbox 经社区矫正 <b>released</b>,却仍带着一枚红色残留 flag「前科记录」;重新接入系统时一串权限被拒「就业 ✗ / 职业资格 ✗ / 社会信任 ✗」;下方是一条「前科消除/记录封存」的修复通道(未成年人记录封存已建,成年人前科消除有限);底注「社区矫正累计数百万 · 重新犯罪率约 0.2% · GY-32 被标记账户的刑事镜像」。<b>本片最关键的判断:刑期可以结束,前科不会——前科作为持久标记在刑满后长期存在,使惩罚在正式刑罚结束后仍以「残留标记」的形式延续。这是 GY-32(失信被标记账户)的刑事镜像;而这片最核心的命题是「刑满之后如何回归」:约 0.2% 的低重新犯罪率证明在社区中矫正比监禁更能让人回归,可回归不是走出大门那一刻就完成的,而是一连串能否被接住的断点。</b></div>
+  </div>
+
+  <!-- 页签 -->
+  <nav class="jc-nav" role="tablist">
+    <button role="tab" data-panel="jc-p-j1" class="is-active">非监禁刑</button>
+    <button role="tab" data-panel="jc-p-j2">权限残留</button>
+    <button role="tab" data-panel="jc-p-j3">回归的断点</button>
+    <button role="tab" data-panel="jc-p-j4">安置帮教</button>
+    <button role="tab" data-panel="jc-p-j5">被标记者两难</button>
+    <button role="tab" data-panel="jc-p-j6">形态推演</button>
+    <button role="tab" data-panel="jc-p-watch">合成 · 观测哨</button>
+  </nav>
+
+  <!-- ════ J1 规模与制度 ════ -->
+  <section class="jc-panel is-active" id="jc-p-j1">
+    <div class="jc-sec-head"><h2>J1 · 规模与制度:社区矫正法下的非监禁刑</h2><span class="jc-sec-tag">0.2% 重新犯罪率 = 制度成效</span></div>
+    <p class="jc-disclaimer top">注记(敏感度处理):本节将社区矫正法、非监禁刑(管制/缓刑/假释/监外执行)作为<b>刑罚制度的规范化与文明化</b>分析,关注「在社区中矫正」相对监禁的回归优势;不渲染犯罪、不污名化个体,约 0.2% 的低重新犯罪率作为制度成效引述,数据为社区矫正法与司法部社区矫正数据标量级口径,待权威年度数据回填。</p>
+    <p class="jc-lede">社区矫正与刑释人员不是一个模糊的群体,是一张被制度规范化接住的规模——<b style="color:var(--zhu);">社区矫正法(2020-07 施行)确立了非监禁刑(管制、缓刑、假释、暂予监外执行)的规范化;社区矫正对象累计接收数百万、在册数十万,加上每年刑满释放数十万,共同构成「涉刑回归人群」</b>。它最有力的辩护是一个数字:社区矫正重新犯罪率长期低位(约 0.2%)——「在社区中矫正」比监禁更有利于回归,是刑罚文明化的方向。</p>
+
+    <h3 class="jc-h3">非监禁刑的四类:在社区里服刑的人</h3>
+    <div class="jc-rows">
+      <div class="jc-row peak"><span class="jc-row-k">管制 · 缓刑</span><span class="jc-row-v"><b style="color:var(--zhu);">管制(限制人身自由但不关押)与缓刑(暂缓执行原判刑罚)——非监禁刑的主体</b>;由司法行政机关在社区执行(↗ J4 矫正末梢)。</span></div>
+      <div class="jc-row"><span class="jc-row-k">假释 · 监外</span><span class="jc-row-v">假释(服刑一定期限后附条件提前释放)、暂予监外执行(因病/孕等不宜收监)——<b>从高墙内向社区的过渡;受限运行而非完全隔离</b>(↗ 签名图)。</span></div>
+      <div class="jc-row peak"><span class="jc-row-k">规模</span><span class="jc-row-v"><b style="color:var(--zhu);">社区矫正对象累计接收数百万、在册数十万——「在社区里服刑」的人群;加上每年刑满释放数十万出狱者</b>,共同构成涉刑回归人群(↗ J3 回归)。</span></div>
+      <div class="jc-row"><span class="jc-row-k">执行主体</span><span class="jc-row-v">由司法行政机关(司法所)执行,社会工作者参与——<b>「在社区中矫正」依赖治理末梢的承接</b>(↗ GY-24 治理末梢的司法矫正版)。</span></div>
+    </div>
+
+    <h3 class="jc-h3">0.2% 的辩护:在社区矫正 vs 在牢里关着</h3>
+    <div class="jc-data3">
+      <div class="jc-stat"><span class="jc-eyebrow">社区矫正对象</span><span class="jc-stat-n">数百万</span><span class="jc-stat-u">累计接收 · 在册数十万</span><p>非监禁刑规范化后,<b>「在社区里服刑」成为一个稳定的制度安排</b>(↗ J4 末梢承接)。</p></div>
+      <div class="jc-stat"><span class="jc-eyebrow">重新犯罪率</span><span class="jc-stat-n">约 0.2%</span><span class="jc-stat-u">长期低位 · 制度成效</span><p><b style="color:var(--zhu);">社区矫正对象重新犯罪率长期保持低位——「在社区中矫正」比监禁更有利于回归的直接证据</b>。</p></div>
+      <div class="jc-stat"><span class="jc-eyebrow">刑满释放</span><span class="jc-stat-n">数十万/年</span><span class="jc-stat-u">出狱回归人群</span><p>每年数十万出狱者面临回归——<b>社区矫正接住一端,安置帮教(↗ J4)接住另一端</b>。</p></div>
+    </div>
+
+    <h3 class="jc-h3">刑罚文明化:从重监禁到监禁 + 社区矫正</h3>
+    <div class="jc-rows">
+      <div class="jc-row peak"><span class="jc-row-k">文明化方向</span><span class="jc-row-v"><b style="color:var(--zhu);">从「重监禁」向「监禁 + 社区矫正」、宽严相济——非监禁刑的扩大是刑罚文明化的方向</b>(↔ GY-32 从惩戒向修复的同向)。</span></div>
+      <div class="jc-row"><span class="jc-row-k">不是唯一选择</span><span class="jc-row-v">约 0.2% 的重新犯罪率证明监禁不是唯一选择——<b>社区矫正更能让人重新做人;关得多严,不等于矫正得更好</b>(↗ J5 防范 vs 回归)。</span></div>
+      <div class="jc-row peak"><span class="jc-row-k">回归优先</span><span class="jc-row-v"><b style="color:var(--zhu);">刑罚的文明不在于关得多严,而在于放出来之后能不能真的接住</b>——把人放回社会矫正,本就是为了让他回得来(↗ J3/J4)。</span></div>
+      <div class="jc-row"><span class="jc-row-k">全图谱定位</span><span class="jc-row-v">社区矫正/刑释人员是 GY-32(被标记账户)的刑事镜像、GY-02(安全治理)的对象、GY-24(司法所执行)的工作对象——<b>「被标记者」轴的刑事端</b>(↗ J5)。</span></div>
+    </div>
+
+    <div class="jc-art">
+      <h5><b>约 0.2% 的重新犯罪率,是这个制度最有力的辩护</b>刑罚的文明,不在于关得多严,而在于放出来之后能不能真的接住</h5>
+      <p>社区矫正法把一部分刑罚从高墙内搬到了社区里——让管制、缓刑、假释的人在社会中接受矫正,而不是关进监狱。<b style="color:var(--zhu);">约 0.2% 的重新犯罪率,是这个制度最有力的辩护:在社区里矫正,比在牢里关着,更能让一个人重新做人。刑罚的文明,不在于关得多严,而在于放出来之后,能不能真的接住。</b>(↗ GY-32 从惩戒向修复 / ↗ GY-24 矫正末梢 / ↗ J3 回归的断点)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="jc-xref">↗ GY-24 · 治理末梢(司法矫正版)</span>
+      <span class="jc-xref">↗ GY-32 · 从惩戒向修复</span>
+      <span class="jc-xref">↗ J3 · 回归的断点</span>
+    </div>
+
+    <div class="jc-verdict">
+      <span class="jc-verdict-tag">J1 判词</span>
+      社区矫正法把一部分刑罚从高墙内搬到了社区里——让管制、缓刑、假释的人在社会中接受矫正,而不是关进监狱。约 0.2% 的重新犯罪率,是这个制度最有力的辩护:在社区里矫正,比在牢里关着,更能让一个人重新做人。<b style="color:var(--zhu);">刑罚的文明,不在于关得多严,而在于放出来之后,能不能真的接住。</b>
+      <span class="jc-xref">↗ J2 · 权限残留</span>
+    </div>
+  </section>
+
+  <!-- ════ J2 权限残留 ════ -->
+  <section class="jc-panel" id="jc-p-j2">
+    <div class="jc-sec-head"><h2>J2 · 权限残留:前科作为持久标记</h2><span class="jc-sec-tag">本片独特机制 · 刑期结束标记不结束</span></div>
+    <p class="jc-disclaimer top">注记(敏感度处理):本节将前科记录、法定职业禁入、前科报告义务作为<b>制度性的资格限制与残留标记机制</b>分析,关注「刑期结束 ≠ 标记清除」的结构、与失信标记的同构;不渲染犯罪、不污名化个体,旨在理解惩罚如何以残留标记形式延续,以及修复通道的方向,不针对具体个人。</p>
+    <p class="jc-lede">本片独特机制——刑期可以结束,前科记录不会:<b style="color:var(--zhu);">前科作为持久标记(permission flag)在刑满后长期存在,触发连锁的资格限制(某些职业禁入、从业资格、参军/公考限制)与隐性歧视(就业、社会信任)</b>。这是「惩罚在正式刑罚结束后仍以残留标记形式延续」,与 GY-32(失信标记的权限降级)结构同构——一个金融标记,一个刑事标记,都在正式处罚后以残留标记延续社会性约束。</p>
+
+    <h3 class="jc-h3">权限拒绝链:前科触发的一串 permission denied</h3>
+    <div class="jc-chain">
+      <div class="jc-chain-row v2"><span class="jc-chain-t">flag: 前科</span><span class="jc-chain-v"><b style="color:var(--zhu);">前科记录在刑满后长期存在——刑期结束 ≠ 标记清除</b>;犯罪记录伴随终身(成年人前科消除制度有限)。</span></div>
+      <div class="jc-chain-row v1"><span class="jc-chain-t">职业资格 ✗</span><span class="jc-chain-v"><b>法定职业禁入——律师/教师/医生等某些资格</b>、从业限制;前科触发一串法律层面的 permission denied。</span></div>
+      <div class="jc-chain-row v1"><span class="jc-chain-t">公考/参军 ✗</span><span class="jc-chain-v">公务员考录、参军等的前科限制——<b>正式制度通道因标记关闭;并非针对个人,而是 flag 触发的自动拒绝</b>。</span></div>
+      <div class="jc-chain-row v2"><span class="jc-chain-t">就业/信任 ✗</span><span class="jc-chain-v"><b style="color:var(--zhu);">「前科报告义务」(法律要求如实报告前科)使求职时披露成为门关闭点</b>——用人单位的前科顾虑、隐性就业歧视(↗ J3 就业断点)。</span></div>
+    </div>
+
+    <h3 class="jc-h3">与 GY-32 的同构:被标记账户的刑事镜像</h3>
+    <div class="jc-dual">
+      <div class="jc-dual-a"><h6>金融端 · <b>↗ GY-32</b></h6><span class="jc-dual-pole">失信标记 → 权限降级</span><p><b style="color:var(--qing);">失信被执行人:信用标记触发权限降级(高消费限制、出行受限)</b>;一个金融性的残留标记,在正式处罚后延续社会性约束。</p></div>
+      <div class="jc-dual-mid">↔</div>
+      <div class="jc-dual-b"><h6>刑事端 · <b>本片</b></h6><span class="jc-dual-pole">前科标记 → 资格限制</span><p><b style="color:var(--zhu);">刑释人员:前科标记触发资格限制(职业禁入、从业/公考限制)</b>;一个刑事性的残留标记,同样在刑罚结束后延续社会性约束。</p></div>
+    </div>
+
+    <h3 class="jc-h3">残留标记的逻辑:正式处罚结束后的延续</h3>
+    <div class="jc-rows">
+      <div class="jc-row peak"><span class="jc-row-k">刑期 vs 前科</span><span class="jc-row-v"><b style="color:var(--zhu);">刑期是有期限的,前科是无期限的——法律上「还清」了,标记却不随之清除</b>(↗ 签名图 sentence served, flag not cleared)。</span></div>
+      <div class="jc-row"><span class="jc-row-k">触发时刻</span><span class="jc-row-v">每一次求职、每一次资格申请、每一次需要社会信任的时刻——<b>残留标记触发一串「权限拒绝」;惩罚以另一种形式继续</b>(↗ J3 断点)。</span></div>
+      <div class="jc-row peak"><span class="jc-row-k">真正的刑满</span><span class="jc-row-v"><b style="color:var(--zhu);">真正的刑满,不只是走出高墙,是那枚标记能不能被允许淡去</b>——这正是修复通道(前科消除/记录封存)的意义(↗ J5 形态γ)。</span></div>
+      <div class="jc-row"><span class="jc-row-k">修复的方向</span><span class="jc-row-v">未成年人犯罪记录封存(已建)、成年人前科消除/限制查询的探索——<b>从「永久标记」向「有限残留 + 修复通道」,与 GY-32 信用修复同向</b>(↗ W-05)。</span></div>
+    </div>
+    <div class="jc-breaking">
+      <span class="jc-breaking-tag">! 刑期是有期限的,前科是无期限的</span>
+      一个人服完了刑、矫正期满了,法律上他已经「还清」了,<b>但那枚「前科记录」的标记不会随之清除——它在他每一次求职、每一次资格申请、每一次需要社会信任的时刻,触发一串「权限拒绝」。这和失信被执行人(↗ GY-32)是同一种机制:正式的处罚结束了,残留的标记却让惩罚以另一种形式继续</b>。
+    </div>
+
+    <div class="jc-art">
+      <h5><b>正式的处罚结束了,残留的标记却让惩罚以另一种形式继续</b>真正的刑满,不只是走出高墙,是那枚标记能不能被允许淡去</h5>
+      <p>刑期是有期限的,前科是无期限的。一个人服完了刑、矫正期满了,法律上他已经「还清」了,但那枚「前科记录」的标记不会随之清除——它在他每一次求职、每一次资格申请、每一次需要社会信任的时刻,触发一串「权限拒绝」。这和失信被执行人(↗ GY-32)是同一种机制:正式的处罚结束了,残留的标记却让惩罚以另一种形式继续。<b style="color:var(--zhu);">真正的刑满,不只是走出高墙,是那枚标记能不能被允许淡去。</b>(↗ GY-32 被标记账户金融端 / ↗ J3 就业断点 / ↗ J5 前科消除)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="jc-xref">↗ GY-32 · 被标记账户(金融端)</span>
+      <span class="jc-xref">↗ J3 · 就业断点</span>
+      <span class="jc-xref">↗ J5 · 修复通道</span>
+    </div>
+
+    <div class="jc-verdict">
+      <span class="jc-verdict-tag">J2 判词</span>
+      刑期是有期限的,前科是无期限的。一个人服完了刑、矫正期满了,法律上他已经「还清」了,但那枚「前科记录」的标记不会随之清除——它在他每一次求职、每一次资格申请、每一次需要社会信任的时刻,触发一串「权限拒绝」。这和失信被执行人(↗ GY-32)是同一种机制:正式的处罚结束了,残留的标记却让惩罚以另一种形式继续。<b style="color:var(--zhu);">真正的刑满,不只是走出高墙,是那枚标记能不能被允许淡去。</b>
+      <span class="jc-xref">↗ J3 · 回归的断点</span>
+    </div>
+  </section>
+
+  <!-- ════ J3 回归的断点 ════ -->
+  <section class="jc-panel" id="jc-p-j3">
+    <div class="jc-sec-head"><h2>J3 · 回归的断点:就业、社会关系、身份</h2><span class="jc-sec-tag">三重断点 · 就业是第一道关</span></div>
+    <p class="jc-disclaimer top">注记(敏感度处理):本节将就业、社会关系、身份重建作为<b>回归社会的多重断点与支持缺口</b>分析,关注「无缝衔接」的回归支持不足时断点如何累积;不渲染犯罪、不污名化个体,「断点累积可能推向再犯」作为机制研判而非对个人的预设,旨在理解回归支持的制度意义,不针对具体个人。</p>
+    <p class="jc-lede">回归社会不是走出大门那一刻就完成的——<b style="color:var(--zhu);">刑释/矫正人员面临多重断点:就业难(前科歧视 + 技能断层 + 社会关系断裂)、社会关系修复难(家庭、社区接纳)、身份重建难(自我认同、社会标签)</b>。「无缝衔接」的回归支持不足时,断点累积可能推向再犯,而就业是回归的第一道关——一份工作不只是收入,是一个人重新被社会需要、重新有正常身份的证明。</p>
+
+    <h3 class="jc-h3">三重断点:每一个都是一次考验</h3>
+    <div class="jc-rows">
+      <div class="jc-row peak"><span class="jc-row-k">就业断点</span><span class="jc-row-v"><b style="color:var(--zhu);">前科歧视(↗ J2)+ 服刑期间技能/社会脱节 + 社会关系断裂——就业是回归的第一难关</b>;「找不到工作」是再犯的重要推力(↗ W-04)。</span></div>
+      <div class="jc-row"><span class="jc-row-k">社会关系断点</span><span class="jc-row-v">家庭可能已破裂、社区的疏离与戒备——<b>社会支持网的断裂</b>(↔ GY-30 留守/孤立);回得去的家不一定还在。</span></div>
+      <div class="jc-row peak"><span class="jc-row-k">身份重建</span><span class="jc-row-v"><b style="color:var(--zhu);">「刑满释放人员」的标签、自我认同的重建——从「服刑人员」到「正常社会成员」的身份转换困难</b>(↗ J5 标签的自我实现)。</span></div>
+      <div class="jc-row"><span class="jc-row-k">衔接的缺口</span><span class="jc-row-v">社区矫正(在矫期间)→ 刑满 → 安置帮教(↗ J4)的衔接——<b>「监所—社区」的无缝衔接不足时,回归者在断点处失去支持</b>(↗ J4 必接必送)。</span></div>
+    </div>
+
+    <h3 class="jc-h3">就业是第一道关:一份工作不只是收入</h3>
+    <div class="jc-dual">
+      <div class="jc-dual-a"><h6>断点 · <b>找不到工作</b></h6><span class="jc-dual-pole">前科 + 技能断层 + 关系断裂</span><p><b style="color:var(--qing);">前科披露使就业门关闭、服刑期间技能脱节、社会关系断裂——三重叠加使就业成为最难的一关</b>(↗ J2 前科报告义务)。</p></div>
+      <div class="jc-dual-mid">↔</div>
+      <div class="jc-dual-b"><h6>接住 · <b>一份工作</b></h6><span class="jc-dual-pole">收入 + 被需要 + 正常身份</span><p><b style="color:var(--zhu);">一份工作不只是收入,是重新被社会需要、重新有正常身份的证明——接住了就业,就接住了回归的第一步</b>(↗ J4 就业帮扶)。</p></div>
+    </div>
+
+    <h3 class="jc-h3">断点累积:接住还是推回原路</h3>
+    <div class="jc-rows">
+      <div class="jc-row peak"><span class="jc-row-k">接住 → 普通人</span><span class="jc-row-v"><b style="color:var(--zhu);">每一个断点接住了,他就重新成为一个普通人</b>;社区矫正约 0.2% 的低重新犯罪率(↗ J1),正是断点被接住的结果。</span></div>
+      <div class="jc-row"><span class="jc-row-k">接不住 → 累积</span><span class="jc-row-v">接不住,断点累积,就可能把他推回原路——<b>找不到工作、回不去的家、抹不掉的标签,叠加成再犯的推力</b>(↗ J5 标签自我实现)。</span></div>
+      <div class="jc-row peak"><span class="jc-row-k">汇入极贫 ↗ GY-43</span><span class="jc-row-v"><b style="color:var(--zhu);">部分刑释人员因回归就业困难陷入极贫——是 GY-43 救助对象的来源之一</b>;回归断点累积处与极贫兜底交汇(↗ J5 对 GY-43 的修正)。</span></div>
+      <div class="jc-row"><span class="jc-row-k">就业是第一关</span><span class="jc-row-v">三重断点中,就业是第一道关——<b>因为它同时是收入端、身份端、社会信任端的交汇;接住就业,后两道断点也更容易跨过</b>(↗ J4 安置帮教)。</span></div>
+    </div>
+
+    <div class="jc-art">
+      <h5><b>回归社会不是走出大门那一刻就完成的</b>它是一连串断点——找不到工作、回不去的家、抹不掉的标签</h5>
+      <p>回归社会不是走出大门那一刻就完成的,它是一连串断点——找不到工作、回不去的家、抹不掉的标签。每一个断点都是一次考验:接住了,他就重新成为一个普通人;接不住,断点累积,就可能把他推回原路。<b style="color:var(--zhu);">其中就业是第一道关,因为一份工作不只是收入,是一个人重新被社会需要、重新有正常身份的证明。</b>(↗ J2 前科歧视 / ↗ GY-43 回归陷贫 / ↗ J4 安置帮教)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="jc-xref">↗ J2 · 前科歧视</span>
+      <span class="jc-xref">↗ GY-43 · 回归陷贫</span>
+      <span class="jc-xref">↗ J4 · 安置帮教</span>
+    </div>
+
+    <div class="jc-verdict">
+      <span class="jc-verdict-tag">J3 判词</span>
+      回归社会不是走出大门那一刻就完成的,它是一连串断点——找不到工作、回不去的家、抹不掉的标签。每一个断点都是一次考验:接住了,他就重新成为一个普通人;接不住,断点累积,就可能把他推回原路。其中就业是第一道关,因为一份工作不只是收入,<b style="color:var(--zhu);">是一个人重新被社会需要、重新有正常身份的证明。</b>
+      <span class="jc-xref">↗ J4 · 接住还是放任</span>
+    </div>
+  </section>
+
+  <!-- ════ J4 安置帮教 ════ -->
+  <section class="jc-panel" id="jc-p-j4">
+    <div class="jc-sec-head"><h2>J4 · 安置帮教:接住还是放任</h2><span class="jc-sec-tag">衔接式帮扶 · 降低再犯的核心</span></div>
+    <p class="jc-disclaimer top">注记(敏感度处理):本节将安置帮教、过渡安置、就业帮扶、社会力量参与作为<b>回归支持的制度机制与覆盖缺口</b>分析,关注「接得住」对地方与个案的依赖、社会接纳的关键;不渲染犯罪、不污名化个体,旨在理解衔接式帮扶如何降低再犯、实现真正回归,不针对具体个人或机构。</p>
+    <p class="jc-lede">安置帮教(对刑满释放人员的过渡安置与帮扶教育)是回归支持的关键制度——<b style="color:var(--zhu);">过渡性安置基地、就业帮扶、心理疏导、社会融入;但安置帮教的覆盖、资源、社会参与不足,使「接得住」高度依赖地方与个案</b>。「衔接式帮扶」是降低再犯、实现真正回归的核心:它做得好,再犯率就低;它资源不足、社会不接纳,回归就只是名义上的。</p>
+
+    <h3 class="jc-h3">安置帮教的内容:过渡的落脚点</h3>
+    <div class="jc-rows">
+      <div class="jc-row peak"><span class="jc-row-k">过渡安置</span><span class="jc-row-v"><b style="color:var(--zhu);">刑满释放人员的过渡性安置基地、就业培训——回归的制度落脚点</b>;给一个缓冲的过渡空间(↗ J3 身份重建)。</span></div>
+      <div class="jc-row"><span class="jc-row-k">就业帮扶</span><span class="jc-row-v">就业培训、岗位对接、社会企业吸纳——<b>接住就业这第一道关(↗ J3);一份工作是回归的核心</b>。</span></div>
+      <div class="jc-row peak"><span class="jc-row-k">衔接式帮扶</span><span class="jc-row-v"><b style="color:var(--zhu);">从监所到社区的无缝衔接、必接必送——减少回归断点(↗ J3);衔接好则再犯低</b>(↗ W-03)。</span></div>
+      <div class="jc-row"><span class="jc-row-k">心理与融入</span><span class="jc-row-v">心理疏导、社会融入帮扶——<b>不只是给钱给岗,还要帮他从「服刑人员」转回「正常社会成员」</b>(↗ J3 身份重建)。</span></div>
+    </div>
+
+    <h3 class="jc-h3">接得住的依赖:政府帮教 vs 社会接纳</h3>
+    <div class="jc-dual">
+      <div class="jc-dual-a"><h6>制度端 · <b>资源与覆盖</b></h6><span class="jc-dual-pole">必接必送 / 衔接式帮扶</span><p><b style="color:var(--qing);">安置帮教的资源、专业力量、社会参与有限,使「接得住」依赖地方与个案——社工、社会组织参与的不足</b>(↗ GY-24 治理末梢承接)。</p></div>
+      <div class="jc-dual-mid">↔</div>
+      <div class="jc-dual-b"><h6>社会端 · <b>接纳与机会</b></h6><span class="jc-dual-pole">社会企业 / 不歧视的环境</span><p><b style="color:var(--zhu);">社会企业(吸纳刑释人员就业)、公益组织、社工——回归需要社会的接纳而非仅政府;「不歧视」的社会环境是回归的土壤</b>(↗ J5 去标签)。</p></div>
+    </div>
+
+    <h3 class="jc-h3">接住一个人:不被前科定义的机会</h3>
+    <div class="jc-rows">
+      <div class="jc-row peak"><span class="jc-row-k">做得好则再犯低</span><span class="jc-row-v"><b style="color:var(--zhu);">安置帮教做得好,再犯率就低,一个人就真的回来了</b>;衔接式帮扶是降低再犯的核心(↗ J1 0.2%)。</span></div>
+      <div class="jc-row"><span class="jc-row-k">资源不足则名义</span><span class="jc-row-v">资源不足、社会不接纳,回归就只是名义上的——<b>「接得住」高度依赖地方与个案,缺口处回归落空</b>(↗ 形态β)。</span></div>
+      <div class="jc-row peak"><span class="jc-row-k">最难的部分</span><span class="jc-row-v"><b style="color:var(--zhu);">「接住」靠的不只是政府的帮教,更是社会愿不愿意给他一个不被前科定义的机会——这恰恰是最难的部分</b>(↗ J5 被标记者的两难)。</span></div>
+      <div class="jc-row"><span class="jc-row-k">末梢承接 ↗ GY-24</span><span class="jc-row-v">社区矫正由司法所 + 社工执行,安置帮教依赖基层与社工——<b>是治理末梢(GY-24)的司法矫正版工作对象</b>(↗ J5 对 GY-24 的修正)。</span></div>
+    </div>
+
+    <div class="jc-art">
+      <h5><b>它做得好,再犯率就低,一个人就真的回来了</b>「接住」靠的不只是政府帮教,更是社会愿不愿意给他一个不被前科定义的机会</h5>
+      <p>安置帮教是这个系统对「刑满之后」的回答——给一个过渡的落脚点、一份帮扶的工作、一段融入的缓冲。它做得好,再犯率就低,一个人就真的回来了;它资源不足、社会不接纳,回归就只是名义上的。<b style="color:var(--zhu);">「接住」一个刑满释放的人,靠的不只是政府的帮教,更是社会愿不愿意给他一个不被前科定义的机会——而这恰恰是最难的部分。</b>(↗ GY-24 末梢承接 / ↗ J3 就业第一关 / ↗ J5 去标签)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="jc-xref">↗ GY-24 · 末梢承接</span>
+      <span class="jc-xref">↗ J3 · 就业第一关</span>
+      <span class="jc-xref">↗ J5 · 被标记者两难</span>
+    </div>
+
+    <div class="jc-verdict">
+      <span class="jc-verdict-tag">J4 判词</span>
+      安置帮教是这个系统对「刑满之后」的回答——给一个过渡的落脚点、一份帮扶的工作、一段融入的缓冲。它做得好,再犯率就低,一个人就真的回来了;它资源不足、社会不接纳,回归就只是名义上的。「接住」一个刑满释放的人,靠的不只是政府的帮教,<b style="color:var(--zhu);">更是社会愿不愿意给他一个不被前科定义的机会——而这恰恰是最难的部分。</b>
+      <span class="jc-xref">↗ J5 · 被标记者的两难</span>
+    </div>
+  </section>
+
+  <!-- ════ J5 政治形态学 ════ -->
+  <section class="jc-panel" id="jc-p-j5">
+    <div class="jc-sec-head"><h2>J5 · 政治形态学:被标记者的沉默与两难</h2><span class="jc-sec-tag">最沉默的被标记者 · 安全 vs 回归</span></div>
+    <p class="jc-disclaimer top">注记(敏感度处理):本节将刑释/矫正人员作为<b>「被标记者」轴刑事端的政治形态</b>分析,关注其几乎无声的边缘处境、防范与回归的制度两难、修复机制的方向;不渲染犯罪、不污名化个体,「被标记者的沉默」作为结构性表述,「标签的自我实现」作为机制研判,旨在理解安全与回归的张力,不针对具体个人。</p>
+    <p class="jc-lede">刑释/矫正人员是政治上几乎完全无声的人群——<b style="color:var(--zhu);">前科的污名使其极度边缘、不敢发声、无组织;制度面临两难:既要防范风险(社会安全、再犯防控)又要促进回归(去标签、给机会),而「权限残留」的设计偏向防范,使回归的天平向「持续约束」倾斜</b>。这是 GY-02(安全治理)与「回归人本」之间的张力。吊诡的是,过度的标记反而可能把人逼回原路,与防范初衷背离。</p>
+
+    <h3 class="jc-h3">被标记者的沉默与制度的两难</h3>
+    <div class="jc-rows">
+      <div class="jc-row peak"><span class="jc-row-k">最沉默</span><span class="jc-row-v"><b style="color:var(--zhu);">前科污名使其极度边缘、不敢暴露身份、无组织、无声——最沉默的被标记人群</b>(↗ GY-32 债务污名的刑事极致)。</span></div>
+      <div class="jc-row"><span class="jc-row-k">制度两难</span><span class="jc-row-v">防范风险(安全、再犯防控 ↗ GY-02)vs 促进回归(去标签、给机会)——<b>权限残留的设计偏向防范;安全优先使回归让位</b>(↗ J5 对 GY-02 的修正)。</span></div>
+      <div class="jc-row peak"><span class="jc-row-k">天平倾斜</span><span class="jc-row-v"><b style="color:var(--zhu);">「权限残留」让回归的天平向「持续约束」倾斜——这是 GY-02(安全治理)与「回归人本」之间的结构张力</b>(↗ J1 文明化的反向拉力)。</span></div>
+      <div class="jc-row"><span class="jc-row-k">无回报的人</span><span class="jc-row-v">刑释人员是几乎无议价、无组织、无声的人群——<b>一个系统怎么对待已还清刑期、却还没被允许翻篇的人,是它文明刻度的检验</b>(↗ watch 总判词)。</span></div>
+    </div>
+
+    <h3 class="jc-h3">防范 vs 回归:过度标记的吊诡</h3>
+    <div class="jc-dual">
+      <div class="jc-dual-a"><h6>防范 · <b>↗ GY-02</b></h6><span class="jc-dual-pole">安全 / 再犯防控</span><p><b style="color:var(--qing);">防范风险:社会安全、再犯防控——权限残留偏向防范,安全优先</b>;这是制度天然的倾向(↗ GY-02 安全治理)。</p></div>
+      <div class="jc-dual-mid">↔</div>
+      <div class="jc-dual-b"><h6>回归 · <b>去标签</b></h6><span class="jc-dual-pole">给机会 / 重新做人</span><p><b style="color:var(--zhu);">促进回归:去标签、给机会——但过度的权限残留可能反推再犯,与防范初衷背离</b>(↗ 标签的自我实现)。</p></div>
+    </div>
+
+    <h3 class="jc-h3">标签的自我实现与修复的方向</h3>
+    <div class="jc-rows">
+      <div class="jc-row peak"><span class="jc-row-k">自我实现</span><span class="jc-row-v"><b style="color:var(--zhu);">前科歧视 → 就业无门 → 生计困难 → 再犯风险上升——过度的权限残留可能反而推高再犯,与防范初衷背离</b>(↗ J3 断点累积)。</span></div>
+      <div class="jc-row"><span class="jc-row-k">未成年人封存</span><span class="jc-row-v">未成年人犯罪记录封存(已建)——<b>从「永久标记」向「有限残留」的已落地一步;给改过的人一条翻页的路</b>(↗ 形态γ)。</span></div>
+      <div class="jc-row peak"><span class="jc-row-k">成年人探索</span><span class="jc-row-v"><b style="color:var(--zhu);">成年人前科消除/限制查询的探索——「有限残留 + 修复通道」是文明方向</b>(↔ GY-32 信用修复的刑事镜像)。</span></div>
+      <div class="jc-row"><span class="jc-row-k">全光谱定位</span><span class="jc-row-v">刑释/矫正人员是 GY-32(被标记账户)的刑事镜像、GY-02(安全治理)的对象、GY-24(司法所执行)的工作对象、GY-43(部分陷极贫)的来源——<b>「被标记者」的刑事端</b>(↗ watch 五条修正)。</span></div>
+    </div>
+    <div class="jc-breaking">
+      <span class="jc-breaking-tag">! 真正降低再犯的,从来不是更重的标记,是给一条能淡去标记、重新做人的路</span>
+      制度在这里面对一个两难:既要防范风险,又要让人回归,而「权限残留」的设计天然偏向防范——安全优先,回归让位。<b>可吊诡的是,过度的标记反而可能把人逼回原路:找不到工作、处处碰壁,标签就成了自我实现的预言。真正降低再犯的,从来不是更重的标记,是给一条能淡去标记、重新做人的路——就像失信也需要信用修复(↗ GY-32),刑满也需要前科能被允许翻篇</b>。
+    </div>
+
+    <div class="jc-art">
+      <h5><b>过度的标记反而可能把人逼回原路</b>就像失信也需要信用修复,刑满也需要前科能被允许翻篇</h5>
+      <p>刑满释放的人是这个系统里最沉默的被标记者——前科的污名让他们连暴露身份都不敢,更谈不上发声。制度在这里面对一个两难:既要防范风险,又要让人回归,而「权限残留」的设计天然偏向防范——安全优先,回归让位。可吊诡的是,过度的标记反而可能把人逼回原路:找不到工作、处处碰壁,标签就成了自我实现的预言。<b style="color:var(--zhu);">真正降低再犯的,从来不是更重的标记,是给一条能淡去标记、重新做人的路——就像失信也需要信用修复(↗ GY-32),刑满也需要前科能被允许翻篇。</b>(↗ GY-02 安全治理 / ↗ GY-32 信用修复 / ↗ J6 三态)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="jc-xref">↗ GY-02 · 安全治理</span>
+      <span class="jc-xref">↗ GY-32 · 信用修复(镜像)</span>
+      <span class="jc-xref">↗ J6 · 三态推演</span>
+    </div>
+
+    <div class="jc-verdict">
+      <span class="jc-verdict-tag">J5 判词</span>
+      刑满释放的人是这个系统里最沉默的被标记者——前科的污名让他们连暴露身份都不敢,更谈不上发声。制度在这里面对一个两难:既要防范风险,又要让人回归,而「权限残留」的设计天然偏向防范——安全优先,回归让位。可吊诡的是,过度的标记反而可能把人逼回原路:找不到工作、处处碰壁,标签就成了自我实现的预言。真正降低再犯的,从来不是更重的标记,<b style="color:var(--zhu);">是给一条能淡去标记、重新做人的路——就像失信也需要信用修复,刑满也需要前科能被允许翻篇。</b>
+      <span class="jc-xref">↗ J6 · 三态推演</span>
+    </div>
+  </section>
+
+  <!-- ════ J6 形态推演 ════ -->
+  <section class="jc-panel" id="jc-p-j6">
+    <div class="jc-sec-head"><h2>J6 · 形态推演(三态)</h2><span class="jc-sec-tag">矫正规范化 / 回归断点累积 / 前科消除去标签</span></div>
+    <p class="jc-lede">社区矫正与刑释人员这个「解除隔离后的残留进程」的未来走向,取决于三股力量的相对强弱——<b style="color:var(--zhu);">社区矫正规范化与重新犯罪率维持低位、经济下行使回归就业更难而断点累积、前科消除与犯罪记录封存的去标签化探索</b>。三态推演如下,概率最高的是矫正规范化的基准态。</p>
+
+    <h3 class="jc-h3">三态:α 矫正规范化 / β 回归断点累积 / γ 前科消除去标签</h3>
+    <div class="jc-form">
+      <h5>形态 α · 基准 · 矫正规范化(概率最高)</h5>
+      <p>社区矫正规范化、重新犯罪率维持低位、安置帮教渐进;<b style="color:var(--zhu);">前科残留延续,未成年人记录封存落实、成年人前科消除有限探索</b>。概率最高(↗ W-01/W-02/W-05)。</p>
+    </div>
+    <div class="jc-form" style="border-color:var(--zhu-dim); background:rgba(181,72,58,.08);">
+      <h5 style="color:var(--zhu);">形态 β · 压力 · 回归断点累积</h5>
+      <p>若经济下行(就业难 ↗ GY-05/GY-34)使刑释人员回归就业更难——<b style="color:var(--zhu);">回归断点累积、再犯风险上升压力;倒逼安置帮教强化、社会企业吸纳、反就业歧视</b>;标志:刑释人员就业帮扶成为治理重点(↗ W-04/W-06)。</p>
+    </div>
+    <div class="jc-form" style="border-color:var(--jin-dim); background:rgba(110,93,56,.10);">
+      <h5 style="color:var(--jin);">形态 γ · 修复 · 前科消除与去标签</h5>
+      <p>前科消除制度、犯罪记录封存扩展(成年人轻罪)、反前科歧视——<b style="color:var(--jin);">从「永久权限残留」向「有限残留 + 修复通道」(↗ GY-32 信用修复的刑事版)</b>;社会去标签化是理想方向(↗ W-05/W-07)。</p>
+    </div>
+
+    <h3 class="jc-h3">三态的共同底色:残留标记始终是命题</h3>
+    <div class="jc-rows">
+      <div class="jc-row peak"><span class="jc-row-k">标记是底色</span><span class="jc-row-v"><b style="color:var(--zhu);">无论哪种形态,前科作为残留标记的命题都在——差异只在它能否被允许淡去</b>(↗ J2)。</span></div>
+      <div class="jc-row"><span class="jc-row-k">经济是变量</span><span class="jc-row-v">经济下行(就业难)是最大的外生变量——<b>形态 β 的触发点;回归就业更难、断点累积是最响的信号</b>(↗ GY-05/GY-34)。</span></div>
+      <div class="jc-row peak"><span class="jc-row-k">去标签是远景</span><span class="jc-row-v"><b style="color:var(--zhu);">前科消除、记录封存扩展、反前科歧视——从「永久残留」到「有限残留 + 修复」</b>;形态 γ 是长期方向(↗ J5/W-07)。</span></div>
+    </div>
+
+    <div class="jc-art">
+      <h5><b>差异只在残留标记能否被允许淡去</b>无论哪种形态,系统都不取消前科这个命题——它只决定标记能不能翻页、断点能不能被接住</h5>
+      <p>三态推演的共同底色是:<b style="color:var(--zhu);">前科作为残留标记的命题始终在,差异只在矫正规范化、回归断点累积还是前科消除去标签。基准是矫正规范化(重新犯罪率维持低位、安置帮教渐进、未成年人封存落实);压力态里经济下行使回归就业更难、断点累积、再犯风险上升压力,倒逼安置帮教强化与反就业歧视;修复态里前科消除、记录封存扩展、反前科歧视,从永久残留向有限残留 + 修复通道。</b>(↗ GY-05 就业难 / ↗ GY-32 信用修复 / ↗ J5 去标签)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="jc-xref">↗ GY-05 · 就业难(断点推力)</span>
+      <span class="jc-xref">↗ GY-32 · 信用修复(刑事版)</span>
+      <span class="jc-xref">↗ watch · 总判词与观测哨</span>
+    </div>
+
+    <div class="jc-verdict">
+      <span class="jc-verdict-tag">J6 判词</span>
+      三态推演的共同底色是:前科作为残留标记的命题始终在,差异只在矫正规范化、回归断点累积还是前科消除去标签。基准是矫正规范化(重新犯罪率维持低位、安置帮教渐进);压力态里经济下行使回归就业更难、断点累积,倒逼安置帮教强化与反就业歧视;修复态里前科消除、记录封存扩展、反前科歧视。<b style="color:var(--zhu);">系统不取消前科这个命题,它只决定这枚标记能不能翻页、那些断点能不能被接住。</b>
+      <span class="jc-xref">↗ watch · 合成观测哨</span>
+    </div>
+  </section>
+
+  <!-- ════ 合成 · 观测哨 ════ -->
+  <section class="jc-panel" id="jc-p-watch">
+    <div class="jc-sec-head"><h2>J7 / J8 · 合成与观测哨</h2><span class="jc-sec-tag">解除隔离后的权限残留 · 第四十二子集 · 年度对账</span></div>
+    <p class="jc-disclaimer top">注记(敏感度处理):全片以司法制度与回归社会框架处理,不渲染犯罪、不污名化个体,「权限残留」「被标记者的沉默」「标签的自我实现」作为机制描述,聚焦「刑满之后如何回归」的制度设计,不针对具体个人、不展示个案;社区矫正约 0.2% 的低重新犯罪率本身是制度成效的体现。形态推演与观测哨为机制研判,数据为社区矫正法、司法部社区矫正数据、安置帮教制度与训练知识基线,标量级、待权威年度数据回填,精确口径与量级估算严格区分。</p>
+
+    <div class="jc-verdict" style="margin-top:14px; margin-bottom:34px;">
+      <span class="jc-verdict-tag">J7 · 总判词 · 解除隔离后的权限残留</span>
+      社区矫正与刑释人员是 China OS 从沙箱隔离中释放、却仍带着残留标记的进程——监禁是隔离,社区矫正是受限运行权限,刑满是解除隔离,但进程上那枚「前科记录」的持久 flag 不随刑期结束而清除,它在每一次回归社会时触发连锁的 permission denied(就业、职业资格、社会信任)。<br><br>
+      <b style="color:var(--zhu);">这是 GY-32(失信被标记账户)的刑事镜像:一个金融标记、一个刑事标记,都让惩罚在正式处罚结束后以残留标记的形式延续。社区矫正约 0.2% 的低重新犯罪率证明,在社区中矫正比监禁更能让人回归——可回归不是走出大门那一刻就完成的,它是一连串断点:找不到工作、回不去的家、抹不掉的标签,而就业是第一道关。制度在这里面对一个两难:既要防范风险(↗ GY-02),又要促进回归,而权限残留的设计偏向防范——安全优先,回归让位。吊诡的是,过度的标记反而把人逼回原路,与防范初衷背离。真正降低再犯的不是更重的标记,是给一条能淡去标记、重新做人的路。一个社会的文明,既看它怎么惩罚,更看它怎么接住那个已经还清了刑期、却还没被允许翻篇的人——就像失信需要信用修复,刑满也需要前科能够翻页。</b><br><br>
+      与全系列合观:GY-32 失信被执行人是「被标记账户」的金融端、本片是其刑事端(被标记者的金融端与刑事端对照);GY-02 安全治理体现了防范与「回归人本」的张力,本片是「安全 vs 回归」的制度张力样本;GY-24 治理末梢在本片显影为社区矫正/安置帮教的司法矫正版工作对象;GY-43 城市极贫在本片找到来源之一——部分刑释人员因回归就业困难陷入极贫。作为人群画像分层第四十二子集,本片把「被标记者」轴的刑事端补进全光谱——<b>它不是又一个孤立人群,而是与债务(GY-32 金融)、失独(GY-25 政策)、性少数(GY-04 身份)等「被定义/被标记」人群同属一类,核心始终是:正式处罚结束后残留标记如何延续、能否修复,以及怎么接住那个已还清刑期却没被允许翻篇的人。</b>
+    </div>
+
+    <h3 class="jc-h3">对 GY 系列的五条修正</h3>
+    <div class="jc-fix">
+      <h5><b>修正 · GY-32</b>被标记者的金融端与刑事端</h5>
+      <p>刑释/矫正人员(前科标记→资格限制)与失信被执行人(信用标记→权限降级)是「被标记账户」的刑事版与金融版——<b style="color:var(--zhu);">都在正式处罚后以残留标记延续社会性约束,都需要修复通道(前科消除/信用修复)</b>;建议 GY-32↔GY-44 链接为「被标记者的金融端与刑事端」。</p>
+    </div>
+    <div class="jc-fix">
+      <h5><b>修正 · GY-02</b>安全 vs 回归的制度张力</h5>
+      <p>社区矫正/安置帮教体现了安全治理(组件三)与「回归人本」的张力——<b>权限残留偏向防范,过度标记可能反推再犯</b>;建议作为「安全 vs 回归」的制度张力样本。</p>
+    </div>
+    <div class="jc-fix">
+      <h5><b>修正 · GY-24</b>治理末梢的司法矫正版</h5>
+      <p>社区矫正由司法所 + 社会工作者执行,安置帮教依赖基层与社工——<b style="color:var(--zhu);">是治理末梢(GY-24)的司法矫正版工作对象</b>;建议 GY-24 以此标注其司法矫正承接面。</p>
+    </div>
+    <div class="jc-fix">
+      <h5><b>修正 · GY-43</b>极贫救助对象的来源之一</h5>
+      <p>部分刑释人员因回归就业困难陷入极贫——<b>是 GY-43 救助对象的来源之一;回归断点累积处与极贫兜底交汇</b>;建议 GY-43 以此标注其涉刑来源。</p>
+    </div>
+    <div class="jc-fix">
+      <h5><b>修正 · 母框架</b>「被标记者」轴的刑事端</h5>
+      <p>刑释/矫正人员补「被标记者」轴的刑事端——<b style="color:var(--zhu);">与债务(GY-32 金融)、失独(GY-25 政策)、性少数(GY-04 身份)等「被定义/被标记」人群同属一类;其核心是「正式处罚结束后残留标记如何延续/能否修复」</b>。</p>
+    </div>
+
+    <div class="jc-watch-intro">
+      <p>这个人群的处境变动,关键看三组指针:规模与成效(社区矫正规模、重新犯罪率、刑满释放人数)、接住与回归(安置帮教衔接、就业回归、前科消除/封存)、断点与末梢(回归断点、社会接纳、矫正末梢力量)。逐项标注状态、记录证据,年度与 GY 系列同步对账。状态与备注自动保存在本机。数据敏感处标量级,待权威年度数据回填,精确口径与量级估算严格区分;以司法制度与回归社会框架观测,不渲染犯罪、不污名化个体。</p>
+      <span class="jc-storage-state" id="jc-storage-state"></span>
+    </div>
+
+    <div class="jc-watch" id="jc-watch-list">
+      <div class="jc-watch-item" data-key="w1">
+        <div><h5><b>W-01</b>社区矫正规模</h5><p class="jc-watch-desc">在册/累计社区矫正对象、刑满释放人数——<b>人群规模。</b></p></div>
+        <div class="jc-watch-ctrl"><div class="jc-status-row"><button class="jc-status-btn" data-status="good">向好</button><button class="jc-status-btn" data-status="flat">中性</button><button class="jc-status-btn" data-status="bad">恶化</button></div><textarea class="jc-watch-note" placeholder="证据与备注…"></textarea><div class="jc-watch-stamp"></div></div>
+      </div>
+      <div class="jc-watch-item" data-key="w2">
+        <div><h5><b>W-02</b>重新犯罪率</h5><p class="jc-watch-desc">社区矫正重新犯罪率(约 0.2%)——<b>J1 制度成效。</b></p></div>
+        <div class="jc-watch-ctrl"><div class="jc-status-row"><button class="jc-status-btn" data-status="good">向好</button><button class="jc-status-btn" data-status="flat">中性</button><button class="jc-status-btn" data-status="bad">恶化</button></div><textarea class="jc-watch-note" placeholder="证据与备注…"></textarea><div class="jc-watch-stamp"></div></div>
+      </div>
+      <div class="jc-watch-item" data-key="w3">
+        <div><h5><b>W-03</b>安置帮教</h5><p class="jc-watch-desc">必接必送衔接率、过渡安置基地、就业帮扶覆盖——<b>J4 接住程度。</b></p></div>
+        <div class="jc-watch-ctrl"><div class="jc-status-row"><button class="jc-status-btn" data-status="good">向好</button><button class="jc-status-btn" data-status="flat">中性</button><button class="jc-status-btn" data-status="bad">恶化</button></div><textarea class="jc-watch-note" placeholder="证据与备注…"></textarea><div class="jc-watch-stamp"></div></div>
+      </div>
+      <div class="jc-watch-item" data-key="w4">
+        <div><h5><b>W-04</b>就业回归</h5><p class="jc-watch-desc">刑释人员就业率、前科就业歧视、社会企业吸纳——<b>J3 第一道关。</b></p></div>
+        <div class="jc-watch-ctrl"><div class="jc-status-row"><button class="jc-status-btn" data-status="good">向好</button><button class="jc-status-btn" data-status="flat">中性</button><button class="jc-status-btn" data-status="bad">恶化</button></div><textarea class="jc-watch-note" placeholder="证据与备注…"></textarea><div class="jc-watch-stamp"></div></div>
+      </div>
+      <div class="jc-watch-item" data-key="w5">
+        <div><h5><b>W-05</b>前科消除/封存</h5><p class="jc-watch-desc">未成年人记录封存落实、成年人前科消除探索——<b>J5/形态γ。</b></p></div>
+        <div class="jc-watch-ctrl"><div class="jc-status-row"><button class="jc-status-btn" data-status="good">向好</button><button class="jc-status-btn" data-status="flat">中性</button><button class="jc-status-btn" data-status="bad">恶化</button></div><textarea class="jc-watch-note" placeholder="证据与备注…"></textarea><div class="jc-watch-stamp"></div></div>
+      </div>
+      <div class="jc-watch-item" data-key="w6">
+        <div><h5><b>W-06</b>回归断点</h5><p class="jc-watch-desc">再犯的就业/生计相关性——<b>形态β 信号。</b></p></div>
+        <div class="jc-watch-ctrl"><div class="jc-status-row"><button class="jc-status-btn" data-status="good">向好</button><button class="jc-status-btn" data-status="flat">中性</button><button class="jc-status-btn" data-status="bad">恶化</button></div><textarea class="jc-watch-note" placeholder="证据与备注…"></textarea><div class="jc-watch-stamp"></div></div>
+      </div>
+      <div class="jc-watch-item" data-key="w7">
+        <div><h5><b>W-07</b>社会接纳</h5><p class="jc-watch-desc">反前科歧视、社会力量参与——<b>去标签的社会土壤。</b></p></div>
+        <div class="jc-watch-ctrl"><div class="jc-status-row"><button class="jc-status-btn" data-status="good">向好</button><button class="jc-status-btn" data-status="flat">中性</button><button class="jc-status-btn" data-status="bad">恶化</button></div><textarea class="jc-watch-note" placeholder="证据与备注…"></textarea><div class="jc-watch-stamp"></div></div>
+      </div>
+      <div class="jc-watch-item" data-key="w8">
+        <div><h5><b>W-08</b>矫正末梢</h5><p class="jc-watch-desc">司法所/社工配置、社区矫正执行力量——<b>J4 末梢承接(接 GY-24)。</b></p></div>
+        <div class="jc-watch-ctrl"><div class="jc-status-row"><button class="jc-status-btn" data-status="good">向好</button><button class="jc-status-btn" data-status="flat">中性</button><button class="jc-status-btn" data-status="bad">恶化</button></div><textarea class="jc-watch-note" placeholder="证据与备注…"></textarea><div class="jc-watch-stamp"></div></div>
+      </div>
+    </div>
+
+    <h3 class="jc-h3">章节规划 · 登记表</h3>
+    <div class="jc-plan">
+      <div class="jc-plan-row"><span class="jc-plan-k">CH-01</span><span class="jc-plan-v"><b>权限残留</b> — 前科作为持久标记的资格限制清单,与失信标记对照,接 GY-32。</span><span class="jc-plan-tag">待建</span></div>
+      <div class="jc-plan-row"><span class="jc-plan-k">CH-02</span><span class="jc-plan-v"><b>回归的断点</b> — 就业/社会关系/身份的三重断点与安置帮教,接 GY-43。</span><span class="jc-plan-tag">待建</span></div>
+      <div class="jc-plan-row"><span class="jc-plan-k">CH-03</span><span class="jc-plan-v"><b>标记的修复</b> — 前科消除/记录封存的制度探索,安全与回归的张力,接 GY-02。</span><span class="jc-plan-tag">待建</span></div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="jc-foot">
+    <p>方法论:社区矫正与刑释人员以「解除隔离后的权限残留(Post-Sandbox Residual Flags)」模型刻画——社区矫正对象与刑满释放人员是 China OS 从沙箱隔离中释放却仍带着残留标记的进程监禁是 sandbox 隔离社区矫正是受限运行权限在社区但权限受约束刑满是解除隔离但进程上有一个不随刑期结束而清除的持久 flag 前科记录它在重新接入系统回归社会时触发连锁 permission denied 就业职业资格落户社会信任签名图进程从 sandbox 经社区矫正 released 却仍带着一枚红色残留 flag 前科记录重新接入系统时一串权限被拒就业职业资格社会信任下方是一条前科消除记录封存的修复通道未成年人封存已建成年人前科消除有限底注社区矫正累计数百万重新犯罪率约 0.2% GY-32 被标记账户的刑事镜像。核心命题:刑期可以结束前科记录不会前科作为持久标记在刑满后长期存在触发连锁的资格限制某些职业禁入从业资格参军公考限制与隐性歧视就业社会信任这是惩罚在正式刑罚结束后仍以残留标记形式延续与 GY-32 失信标记的权限降级结构同构一个金融标记一个刑事标记都在正式处罚后以残留标记延续社会性约束社区矫正约 0.2% 的低重新犯罪率证明在社区中矫正比监禁更能让人回归可回归不是走出大门那一刻就完成的它是一连串断点找不到工作回不去的家抹不掉的标签而就业是第一道关制度在这里面对一个两难既要防范风险又要促进回归而权限残留的设计偏向防范安全优先回归让位吊诡的是过度的标记反而把人逼回原路与防范初衷背离真正降低再犯的不是更重的标记是给一条能淡去标记重新做人的路一个社会的文明既看它怎么惩罚更看它怎么接住那个已经还清了刑期却还没被允许翻篇的人就像失信需要信用修复刑满也需要前科能够翻页。数据锚定(社区矫正法加司法部社区矫正数据加安置帮教制度加训练知识基线,待权威年度数据回填):社区矫正法 2020-07 施行社区矫正对象累计接收数百万在册数十万每年刑满释放数十万社区矫正重新犯罪率长期低位约 0.2% 安置帮教必接必送过渡安置就业帮扶前科报告义务法定职业禁入未成年人犯罪记录封存已建成年人前科消除制度有限。注:以司法制度与回归社会框架处理不渲染犯罪不污名化个体聚焦刑满之后如何回归的制度设计不针对具体个人不展示个案精确口径与量级估算严格区分。作为人群画像分层第四十二子集,与 GY-32 被标记账户(金融端与刑事端对照)、GY-02 安全治理(安全 vs 回归的张力)、GY-24 治理末梢(司法矫正版工作对象)、GY-43 城市极贫(回归陷贫的来源之一)、GY-05 就业难(断点推力)、母框架被标记者轴的刑事端等耦合。来源:社区矫正法、司法部社区矫正数据、安置帮教制度、训练知识基线。</p>
+    <div class="jc-foot-meta">
+      ChinaOS · GY-44 · v1.0.0<br>
+      生成 2026-06 丙午年<br>
+      人群画像 第四十二子集 · 关联模块 → GY-02/24/32/43<br>
+      注记:司法制度与回归社会框架,不渲染犯罪不污名
+    </div>
+  </footer>
+
+</div>
