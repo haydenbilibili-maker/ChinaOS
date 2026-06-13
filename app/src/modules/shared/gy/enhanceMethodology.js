@@ -19,6 +19,13 @@ const APPENDIX_RE =
 
 const MOBILE_MQ = '(max-width: 768px)';
 
+const APPENDIX_MARKERS = [
+  { key: 'anchors', label: '数据锚定', icon: '◇' },
+  { key: 'note', label: '注记', icon: '※' },
+  { key: 'coupling', label: '模块耦合', icon: '↔' },
+  { key: 'sources', label: '来源', icon: '◎' },
+];
+
 /** @param {string} text */
 function stripMethodologyPrefix(text) {
   return text.replace(/^方法论[:：]\s*/, '').trim();
@@ -140,6 +147,97 @@ function formatBody(text) {
     .join('');
 }
 
+/** @param {string} text */
+function findAppendixHits(text) {
+  /** @type {{ key: string, index: number, len: number }[]} */
+  const hits = [];
+
+  const tryAdd = (key, re) => {
+    const m = re.exec(text);
+    if (m) hits.push({ key, index: m.index, len: m[0].length });
+  };
+
+  tryAdd('anchors', /数据锚定(?:\([^)]*\))?[:：]/);
+
+  const noteM = /(?:^|(?<=[。；;]))(注(?:记)?[:：])/.exec(text);
+  if (noteM) {
+    hits.push({ key: 'note', index: noteM.index + noteM[0].length - noteM[1].length, len: noteM[1].length });
+  }
+
+  const couplingIdx = text.search(/作为人群画像/);
+  if (couplingIdx >= 0) hits.push({ key: 'coupling', index: couplingIdx, len: 0 });
+
+  tryAdd('sources', /来源[:：]/);
+
+  hits.sort((a, b) => a.index - b.index);
+
+  return hits.filter((hit, i) => i === 0 || hit.index >= hits[i - 1].index + 2);
+}
+
+/** @param {string} appendix */
+function parseAppendixBlocks(appendix) {
+  if (!appendix) return [];
+
+  const hits = findAppendixHits(appendix);
+  if (!hits.length) {
+    return [{ key: 'misc', label: '附录', icon: '·', body: appendix }];
+  }
+
+  return hits.map((hit, i) => {
+    const meta = APPENDIX_MARKERS.find((m) => m.key === hit.key) || { key: hit.key, label: hit.key, icon: '·' };
+    const start = hit.index + hit.len;
+    const end = i + 1 < hits.length ? hits[i + 1].index : appendix.length;
+    let body = appendix.slice(start, end).trim().replace(/[。；;]$/, '').trim();
+    return { ...meta, body };
+  });
+}
+
+/** @param {string} text */
+function parseStatItems(text) {
+  return text
+    .split(/[;；]/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
+/** @param {string} text */
+function formatStatGrid(text) {
+  const items = parseStatItems(text);
+  if (items.length < 2) return formatBody(text);
+
+  return `<dl class="gy-method-stat-grid">${items
+    .map((item) => {
+      const numMatch = item.match(/^([\d.]+[%+万亿级]*\s*[^、,，(（]{0,28})/);
+      const dt = numMatch ? numMatch[1].trim() : item.slice(0, Math.min(24, item.length));
+      const dd = numMatch ? item.slice(numMatch[0].length).replace(/^[、,，\s]+/, '') : '';
+      if (dd) {
+        return `<div class="gy-method-stat"><dt>${linkifyGy(highlightTerms(dt))}</dt><dd>${linkifyGy(highlightTerms(dd))}</dd></div>`;
+      }
+      return `<div class="gy-method-stat gy-method-stat--solo"><dd>${linkifyGy(highlightTerms(item))}</dd></div>`;
+    })
+    .join('')}</dl>`;
+}
+
+/** @param {string} appendix */
+function formatAppendix(appendix) {
+  if (!appendix) return '';
+
+  const blocks = parseAppendixBlocks(appendix);
+  return `<div class="gy-method-appendix-wrap">${blocks
+    .map((block) => {
+      const bodyHtml =
+        block.key === 'anchors'
+          ? formatStatGrid(block.body)
+          : formatBody(block.body);
+      return `
+        <section class="gy-method-appendix-block gy-method-appendix-block--${block.key}">
+          <h4 class="gy-method-appendix-label"><span class="gy-method-appendix-icon" aria-hidden="true">${block.icon}</span>${block.label}</h4>
+          <div class="gy-method-appendix-body">${bodyHtml}</div>
+        </section>`;
+    })
+    .join('')}</div>`;
+}
+
 /** @param {HTMLElement} metaEl */
 function parseMeta(metaEl) {
   const raw = metaEl.innerHTML
@@ -206,6 +304,7 @@ function buildMetaAside(meta) {
   return `
     <aside class="gy-method-meta" aria-label="模块元数据">
       <div class="gy-method-meta-card">
+        <div class="gy-method-meta-head">模块档案</div>
         <div class="gy-method-meta-row">
           <span class="gy-method-meta-k">模块</span>
           <span class="gy-method-meta-v">${self ? `GY-${gyNum} · ${self.label}` : meta.raw[0] || '—'}</span>
@@ -245,16 +344,16 @@ function buildMethodologyPanel(footer, prefix) {
   const panels = sections
     .map(
       (s, i) =>
-        `<div class="gy-method-panel${i === 0 ? ' is-active' : ''}" role="tabpanel" data-panel="${s.id}" ${sections.length > 1 ? `aria-labelledby="tab-${s.id}"` : ''}>${formatBody(s.body)}</div>`,
+        `<div class="gy-method-panel${i === 0 ? ' is-active' : ''}${sections.length === 1 ? ' gy-method-panel--solo' : ''}" role="tabpanel" data-panel="${s.id}" ${sections.length > 1 ? `aria-labelledby="tab-${s.id}"` : ''}>${formatBody(s.body)}</div>`,
     )
     .join('');
 
   const badge = model
-    ? `<span class="gy-method-badge" title="分析模型">${model.split('(')[0].trim()}${model.includes('(') ? `<span class="gy-method-badge-sub">${model.match(/\(([^)]+)\)/)?.[1] || ''}</span>` : ''}</span>`
+    ? `<span class="gy-method-badge" title="分析模型"><span class="gy-method-badge-main">${model.split('(')[0].trim()}</span>${model.includes('(') ? `<span class="gy-method-badge-sub">${model.match(/\(([^)]+)\)/)?.[1] || ''}</span>` : ''}</span>`
     : '';
 
   const introHtml = intro ? `<div class="gy-method-intro">${formatBody(intro)}</div>` : '';
-  const appendixHtml = appendix ? `<div class="gy-method-appendix">${formatBody(appendix)}</div>` : '';
+  const appendixHtml = appendix ? formatAppendix(appendix) : '';
 
   const isMobile = typeof window !== 'undefined' && window.matchMedia(MOBILE_MQ).matches;
 
@@ -267,7 +366,10 @@ function buildMethodologyPanel(footer, prefix) {
             <h3 class="gy-method-title">方法论</h3>
             ${badge}
           </div>
-          <button type="button" class="gy-method-toggle" aria-expanded="${!isMobile}">${isMobile ? '展开' : '收起'}</button>
+          <button type="button" class="gy-method-toggle" aria-expanded="${!isMobile}">
+            <span class="gy-method-toggle-icon" aria-hidden="true">${isMobile ? '＋' : '−'}</span>
+            <span class="gy-method-toggle-label">${isMobile ? '展开' : '收起'}</span>
+          </button>
         </header>
         <div class="gy-method-body${isMobile ? ' is-collapsed' : ''}">
           ${introHtml}
@@ -287,12 +389,15 @@ function wireInteractions(footer) {
   const cleanups = [];
 
   const toggle = footer.querySelector('.gy-method-toggle');
+  const toggleIcon = footer.querySelector('.gy-method-toggle-icon');
+  const toggleLabel = footer.querySelector('.gy-method-toggle-label');
   const body = footer.querySelector('.gy-method-body');
   if (toggle && body) {
     const onToggle = () => {
       const collapsed = body.classList.toggle('is-collapsed');
       toggle.setAttribute('aria-expanded', String(!collapsed));
-      toggle.textContent = collapsed ? '展开' : '收起';
+      if (toggleLabel) toggleLabel.textContent = collapsed ? '展开' : '收起';
+      if (toggleIcon) toggleIcon.textContent = collapsed ? '＋' : '−';
     };
     toggle.addEventListener('click', onToggle);
     cleanups.push(() => toggle.removeEventListener('click', onToggle));
@@ -311,7 +416,8 @@ function wireInteractions(footer) {
       if (body?.classList.contains('is-collapsed')) {
         body.classList.remove('is-collapsed');
         toggle?.setAttribute('aria-expanded', 'true');
-        if (toggle) toggle.textContent = '收起';
+        if (toggleLabel) toggleLabel.textContent = '收起';
+        if (toggleIcon) toggleIcon.textContent = '−';
       }
     };
     tab.addEventListener('click', onClick);
