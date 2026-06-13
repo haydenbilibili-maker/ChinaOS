@@ -54,6 +54,16 @@ export const GY_MODULES = {
   '46': { id: 'binzang', path: '/modules/binzang', label: '殡葬临终', group: 'population' },
   '47': { id: 'junren', path: '/modules/junren', label: '现役军人', group: 'population' },
   '48': { id: 'bianjiang', path: '/modules/bianjiang', label: '边疆民族', group: 'population' },
+  '49': { id: 'jiedu', path: '/modules/jiedu', label: '戒毒康复', group: 'population' },
+  '50': { id: 'zhiyebing', path: '/modules/zhiyebing', label: '职业病工伤', group: 'population' },
+  '51': { id: 'zhengdi', path: '/modules/zhengdi', label: '征地拆迁', group: 'population' },
+  '52': { id: 'fangui', path: '/modules/fangui', label: '反拐救助', group: 'population' },
+  '53': { id: 'hanjian', path: '/modules/hanjian', label: '罕见大病', group: 'population' },
+  '54': { id: 'ertong', path: '/modules/ertong', label: '流动留守儿童', group: 'population' },
+  '55': { id: 'jingzhang', path: '/modules/jingzhang', label: '精神障碍与被监护', group: 'population' },
+  '56': { id: 'gongyi', path: '/modules/gongyi', label: '工程移民', group: 'population' },
+  '57': { id: 'xinfang', path: '/modules/xinfang', label: '信访群体', group: 'population' },
+  '58': { id: 'ganran', path: '/modules/ganran', label: '受污名疾病群体', group: 'population' },
 };
 
 /** GY-03…46 已上线人群切片编号（不含 GY-00 母索引） */
