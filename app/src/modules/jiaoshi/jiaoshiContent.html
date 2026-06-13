@@ -1,0 +1,559 @@
+<div class="js-shell">
+
+  <!-- 题头 -->
+  <header class="js-mast">
+    <div>
+      <div class="js-mast-meta">ChinaOS · MODULE <b>GY-38</b> · 人群画像分层 · 第三十六子集</div>
+      <h1 class="js-title">中小学教师<span class="js-title-sub">被中断抢占的进程 · 优先级反转</span></h1>
+    </div>
+    <div class="js-mast-seal">教学排在最后</div>
+  </header>
+  <p class="js-mast-note">注记(口径处理):本片以<b>教育劳动社会学与编制制度视角</b>分析中小学教师作为一个深受「优先级反转」之苦的进程,关注其非教学负担、双减增负、学龄人口拐点、县乡师资虹吸的结构根源;不评判具体政策或个人,「负担」「减负悖论」作为<b>结构问题</b>描述,不渲染个案、不归咎任何一方;数据为教育部教育统计公报口径与训练知识基线,标「约」、留观测哨回填,量级估算与精确口径严格区分。</p>
+
+  <!-- 优先级反转签名图 -->
+  <div class="js-found" aria-label="优先级反转的进程示意图:进程主任务教学正在运行,被一连串中断填表打卡进校园摊派迎检值班反复抢占preempt,主任务被饿死starved,进程标 PRIORITY INVERSION 教学被降到最低,底注专任教师约1800万教育劳动者端减负年年喊负担年年增">
+    <svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg" role="img">
+      <text x="500" y="20" font-size="11" fill="#8f897d" text-anchor="middle" font-family="mono" letter-spacing="2">ChinaOS · PRIORITY INVERSION · 教学被降到最低</text>
+      <text x="500" y="44" font-size="9.5" fill="#7d6a3a" text-anchor="middle" font-family="sans-serif">— 本该最高优先级的教学,被一群强制但低价值的行政中断反复抢占 —</text>
+
+      <!-- 进程主任务 教学 -->
+      <rect x="80" y="80" width="260" height="100" rx="8" fill="#1c242e" stroke="#5e8c7a" stroke-width="2"/>
+      <text x="210" y="108" font-size="12" fill="#5e8c7a" text-anchor="middle" font-family="serif" letter-spacing="1">进程主任务 · 教学</text>
+      <text x="210" y="132" font-size="13" fill="#7d9488" text-anchor="middle" font-family="mono">PRIORITY: HIGH</text>
+      <text x="210" y="156" font-size="9" fill="#8f897d" text-anchor="middle" font-family="sans-serif">备课 / 上课 / 批改 / 育人 — 本应最先运行</text>
+      <text x="210" y="172" font-size="8.5" fill="#b5483a" text-anchor="middle" font-family="mono">STATE: WAIT(被饿死 · starved)</text>
+
+      <!-- 中断风暴 -->
+      <text x="700" y="74" font-size="11" fill="#c2786e" text-anchor="middle" font-family="serif" letter-spacing="1">中断风暴 · 非教学任务 · 强制但低价值</text>
+      <rect x="500" y="88" width="100" height="32" rx="4" fill="#2a1818" stroke="#b5483a" stroke-width="1.2"/><text x="550" y="108" font-size="9" fill="#c2a09a" text-anchor="middle" font-family="sans-serif">填表报数</text>
+      <rect x="612" y="88" width="100" height="32" rx="4" fill="#2a1818" stroke="#b5483a" stroke-width="1.2"/><text x="662" y="108" font-size="9" fill="#c2a09a" text-anchor="middle" font-family="sans-serif">APP 打卡</text>
+      <rect x="724" y="88" width="116" height="32" rx="4" fill="#2a1818" stroke="#b5483a" stroke-width="1.2"/><text x="782" y="108" font-size="9" fill="#c2a09a" text-anchor="middle" font-family="sans-serif">XX 进校园</text>
+      <rect x="500" y="128" width="100" height="32" rx="4" fill="#2a1818" stroke="#b5483a" stroke-width="1.2"/><text x="550" y="148" font-size="9" fill="#c2a09a" text-anchor="middle" font-family="sans-serif">社会摊派</text>
+      <rect x="612" y="128" width="100" height="32" rx="4" fill="#2a1818" stroke="#b5483a" stroke-width="1.2"/><text x="662" y="148" font-size="9" fill="#c2a09a" text-anchor="middle" font-family="sans-serif">创建迎检</text>
+      <rect x="724" y="128" width="116" height="32" rx="4" fill="#2a1818" stroke="#b5483a" stroke-width="1.2"/><text x="782" y="148" font-size="9" fill="#c2a09a" text-anchor="middle" font-family="sans-serif">值班巡逻</text>
+      <text x="670" y="178" font-size="9" fill="#8f897d" text-anchor="middle" font-family="mono">每一项都「必须完成」→ 反复 preempt 主任务 ↗</text>
+
+      <!-- 抢占箭头 -->
+      <line x1="500" y1="130" x2="345" y2="120" stroke="#b5483a" stroke-width="1.6" marker-end="url(#jsArrow)"/>
+      <text x="420" y="112" font-size="9" fill="#b5483a" text-anchor="middle" font-family="mono">PREEMPT</text>
+      <defs>
+        <marker id="jsArrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#b5483a"/></marker>
+      </defs>
+
+      <!-- 优先级反转带 -->
+      <rect x="120" y="226" width="760" height="58" rx="8" fill="#2a2418" stroke="#b39657" stroke-width="1.6"/>
+      <text x="500" y="252" font-size="13" fill="#c9b87a" text-anchor="middle" font-family="serif" letter-spacing="2">优先级反转 · 重要的任务在等待,琐碎的任务在运行</text>
+      <text x="500" y="273" font-size="9.5" fill="#a89968" text-anchor="middle" font-family="sans-serif">教学被挤到 CPU 时间片的间隙 — 教育质量与教师职业获得感双双受损</text>
+
+      <!-- 时间轴:谁在 CPU 上运行 -->
+      <text x="100" y="318" font-size="10" fill="#8f897d" font-family="mono">CPU 时间轴 →</text>
+      <rect x="100" y="328" width="70" height="26" fill="#2a1818" stroke="#b5483a"/><text x="135" y="345" font-size="8" fill="#c2a09a" text-anchor="middle" font-family="mono">填表</text>
+      <rect x="172" y="328" width="40" height="26" fill="#1c242e" stroke="#5e8c7a"/><text x="192" y="345" font-size="7.5" fill="#7d9488" text-anchor="middle" font-family="mono">教学</text>
+      <rect x="214" y="328" width="80" height="26" fill="#2a1818" stroke="#b5483a"/><text x="254" y="345" font-size="8" fill="#c2a09a" text-anchor="middle" font-family="mono">进校园</text>
+      <rect x="296" y="328" width="34" height="26" fill="#1c242e" stroke="#5e8c7a"/><text x="313" y="345" font-size="7.5" fill="#7d9488" text-anchor="middle" font-family="mono">教学</text>
+      <rect x="332" y="328" width="90" height="26" fill="#2a1818" stroke="#b5483a"/><text x="377" y="345" font-size="8" fill="#c2a09a" text-anchor="middle" font-family="mono">创建迎检</text>
+      <rect x="424" y="328" width="70" height="26" fill="#2a1818" stroke="#b5483a"/><text x="459" y="345" font-size="8" fill="#c2a09a" text-anchor="middle" font-family="mono">打卡</text>
+      <rect x="496" y="328" width="30" height="26" fill="#1c242e" stroke="#5e8c7a"/><text x="511" y="345" font-size="7.5" fill="#7d9488" text-anchor="middle" font-family="mono">教学</text>
+      <rect x="528" y="328" width="80" height="26" fill="#2a1818" stroke="#b5483a"/><text x="568" y="345" font-size="8" fill="#c2a09a" text-anchor="middle" font-family="mono">摊派</text>
+      <text x="700" y="346" font-size="9" fill="#b5483a" font-family="sans-serif">→ 红块(行政中断)占满,绿块(教学)只剩间隙</text>
+
+      <!-- 减负悖论 -->
+      <rect x="150" y="386" width="700" height="50" rx="6" fill="#2a1818" stroke="#b5483a" stroke-width="1.4"/>
+      <text x="500" y="408" font-size="11" fill="#c2786e" text-anchor="middle" font-family="serif">减负悖论 · 减负文件本身没能减负,负担年年增</text>
+      <text x="500" y="426" font-size="8.5" fill="#c2a09a" text-anchor="middle" font-family="sans-serif">减负文件治不了反转,因为它自己就是又一道必须完成的中断(↗ GY-24 治理末梢的教育版)</text>
+
+      <line x1="100" y1="468" x2="900" y2="468" stroke="#3d4c5a" stroke-width="1" stroke-dasharray="3 5"/>
+      <text x="500" y="494" font-size="10.5" fill="#b5483a" text-anchor="middle" font-family="serif" letter-spacing="2">— 专任教师约 1800 万 · 教育劳动者端 · 减负年年喊,负担年年增 —</text>
+      <text x="500" y="518" font-size="9" fill="#7d9488" text-anchor="middle" font-family="sans-serif">学校成了各条线任务的最终落点,老师成了最末端的执行员</text>
+      <text x="500" y="540" font-size="9" fill="#8f897d" text-anchor="middle" font-family="sans-serif">最响的信号还是退出——当老师开始犹豫要不要让自己孩子也从教,「谁来教书」就亮起了红灯</text>
+      <text x="500" y="564" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="mono">注:负担作为结构问题描述,不渲染个案、不归咎任何一方</text>
+    </svg>
+    <div class="js-found-caption">模块隐喻是<b>优先级反转 / 中断过载的进程(Priority Inversion under Interrupt Storm)</b>:中小学教师是 China OS 一个深受优先级反转之苦的进程——它的核心任务「教学」本应最高优先级,却不断被一群低价值但「强制」的中断抢占:填表、APP 打卡、各类「进校园」、社会事务摊派、创建迎检、值班。结果是优先级反转:重要的教学在 wait,琐碎的行政中断在 run。签名图:一个进程主任务「教学」正在运行,被一连串中断「填表 / 打卡 / XX 进校园 / 摊派 / 迎检 / 值班」反复 preempt,主任务被饿死(starved);进程标 <b>PRIORITY INVERSION · 教学被降到最低</b>;底注「专任教师约 1800 万 · 教育劳动者端 · 减负年年喊,负担年年增」。<b>这个人群是教育系统的劳动者端(GY-11 职校生、GY-26 数字原住民、GY-33 青椒切的是学生与高校端),本片最关键的判断是把「教师减负年年喊、负担年年增」重构为一场技术意义上的优先级反转。</b></div>
+  </div>
+
+  <!-- 页签 -->
+  <nav class="js-nav" role="tablist">
+    <button role="tab" data-panel="js-p-j1" class="is-active">1800万教育劳动者</button>
+    <button role="tab" data-panel="js-p-j2">优先级反转</button>
+    <button role="tab" data-panel="js-p-j3">双减悖论</button>
+    <button role="tab" data-panel="js-p-j4">学龄人口拐点</button>
+    <button role="tab" data-panel="js-p-j5">县中塌陷</button>
+    <button role="tab" data-panel="js-p-j6">政治形态学</button>
+    <button role="tab" data-panel="js-p-j7">形态推演</button>
+    <button role="tab" data-panel="js-p-watch">合成 · 观测哨</button>
+  </nav>
+
+  <!-- ════ J1 1800万教育劳动者 ════ -->
+  <section class="js-panel is-active" id="js-p-j1">
+    <div class="js-sec-head"><h2>J1 · 规模与定位:1800 万教育劳动者</h2><span class="js-sec-tag">教育系统的劳动者端</span></div>
+    <p class="js-lede">全国各级各类专任教师约 1800 万,中小学专任教师约 1300 万+——<b style="color:var(--zhu);">规模最大的专业技术队伍之一,承载着教育的全部一线执行</b>;GY-11(职校生)、GY-26(数字原住民)、GY-33(青椒)切的是学生与高校端,本片切的是基础教育的执行者。社会给他们的是「人类灵魂工程师」的崇高名号,日常给他们的是填不完的表、打不完的卡、迎不完的检——崇高的叙事和琐碎的负担之间,站着同一个被优先级反转困住的老师。</p>
+
+    <h3 class="js-h3">总盘:约 1800 万专任教师服务全国学生</h3>
+    <div class="js-data3">
+      <div class="js-stat">
+        <span class="js-eyebrow">各级各类专任教师</span>
+        <span class="js-stat-n">约 1800 万</span>
+        <span class="js-stat-u">教育统计公报 · 量级</span>
+        <p>各级各类专任教师约 1800 万——<b style="color:var(--zhu);">规模最大的专业技术队伍之一</b>;数字标量级、留观测哨回填(↗ W-01)。</p>
+      </div>
+      <div class="js-stat">
+        <span class="js-eyebrow">中小学专任教师</span>
+        <span class="js-stat-n">约 1300 万+</span>
+        <span class="js-stat-u">基础教育执行者</span>
+        <p>中小学专任教师约 1300 万+——<b>基础教育的一线执行者</b>;本片切的就是这个劳动者端(↔ GY-11/GY-26 学生端)。</p>
+      </div>
+      <div class="js-stat">
+        <span class="js-eyebrow">体制内属性(↗ GY-07)</span>
+        <span class="js-stat-n">事业编核心</span>
+        <span class="js-stat-u">工资不低于公务员</span>
+        <p>公办教师是事业编核心,「教师工资不低于公务员」政策——<b style="color:var(--zhu);">有编制的稳定,也有体制的考核与负担</b>(↗ GY-07)。</p>
+      </div>
+    </div>
+
+    <h3 class="js-h3">教育系统四片成谱:学生端、分流端、高校端、劳动者端</h3>
+    <div class="js-rows">
+      <div class="js-row peak"><span class="js-row-k">教育劳动者端</span><span class="js-row-v"><b style="color:var(--zhu);">本片是基础教育的执行者</b>——GY-26(数字原住民/学生低龄端)、GY-11(职校生/分流端)、GY-33(青椒/高校端)是学生与高校,教师是这套系统的劳动者一侧。</span></div>
+      <div class="js-row"><span class="js-row-k">崇高叙事</span><span class="js-row-v">「人类灵魂工程师」「春蚕到死丝方尽」——<b>被尊为崇高的师德叙事</b>;荣誉的另一面是道德绑定与议价空间的压缩(↗ J6)。</span></div>
+      <div class="js-row peak"><span class="js-row-k">负担现实</span><span class="js-row-v"><b style="color:var(--zhu);">填不完的表、打不完的卡、迎不完的检</b>——非教学负担的行政洪流;崇高的叙事兑不出与之相称的工作环境(↗ J2)。</span></div>
+      <div class="js-row"><span class="js-row-k">两端拉扯</span><span class="js-row-v">「师德崇高」叙事与「非教学负担」现实——<b>被尊为灵魂工程师,被压以无尽的行政事务</b>;教师就被夹在这两端之间。</span></div>
+    </div>
+    <div class="js-breaking">
+      <span class="js-breaking-tag">! 崇高的名号,琐碎的负担,同一个老师</span>
+      1800 万教师承载着教育的全部一线执行——<b>社会给他们的是「人类灵魂工程师」的崇高名号,日常给他们的是填不完的表、打不完的卡、迎不完的检</b>。
+    </div>
+
+    <h3 class="js-h3">崇高 vs 负担:师德叙事与行政现实的拉扯</h3>
+    <div class="js-dual">
+      <div class="js-dual-a"><h6>叙事 · <b>师德崇高</b></h6><span class="js-dual-pole">人类灵魂工程师</span><p>「灵魂工程师」「无私奉献」「为人师表」——<b style="color:var(--qing);">崇高的师德叙事</b>;荣誉真实,但叙事也压缩了议价与抱怨的空间(↗ J6)。</p></div>
+      <div class="js-dual-mid">↔</div>
+      <div class="js-dual-b"><h6>现实 · <b>非教学负担</b></h6><span class="js-dual-pole">填表 / 打卡 / 迎检</span><p><b style="color:var(--zhu);">填表报数、APP 打卡、各类进校园、创建迎检——教学之外的行政洪流</b>;崇高的名号兑不出相称的工作环境(↗ J2)。</p></div>
+    </div>
+
+    <div class="js-art">
+      <h5><b>1800 万教师是规模最大的专业队伍之一,也是教育系统的劳动者端</b>承载着教育的全部一线执行</h5>
+      <p>1800 万教师承载着教育的全部一线执行,是规模最大的专业队伍之一。<b style="color:var(--zhu);">社会给他们的是「人类灵魂工程师」的崇高名号,日常给他们的是填不完的表、打不完的卡、迎不完的检。崇高的叙事和琐碎的负担之间,站着的是同一个被优先级反转困住的老师。</b>(↗ GY-07 体制内 / ↗ J2 优先级反转)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="js-xref">↗ GY-11/26/33 · 教育系统的学生端</span>
+      <span class="js-xref">↗ GY-07 · 体制内的事业编</span>
+      <span class="js-xref">↗ J2 · 优先级反转</span>
+    </div>
+
+    <div class="js-verdict">
+      <span class="js-verdict-tag">J1 判词</span>
+      1800 万教师承载着教育的全部一线执行,是规模最大的专业队伍之一。社会给他们的是「人类灵魂工程师」的崇高名号,日常给他们的是填不完的表、打不完的卡、迎不完的检。<b style="color:var(--zhu);">崇高的叙事和琐碎的负担之间,站着的是同一个被优先级反转困住的老师。</b>
+      <span class="js-xref">↗ J2 · 被非教学任务抢占</span>
+    </div>
+  </section>
+
+  <!-- ════ J2 优先级反转 ════ -->
+  <section class="js-panel" id="js-p-j2">
+    <div class="js-sec-head"><h2>J2 · 优先级反转:被非教学任务抢占</h2><span class="js-sec-tag">本片独特机制 · 重要任务被琐事饿死</span></div>
+    <p class="js-disclaimer top">注记(口径处理):本节将非教学负担作为<b>结构问题</b>分析,关注其制度根源与治理,不针对具体地区、学校或个人,不渲染个案;「进校园」「摊派」为治理现象的社会学描述,旨在理解与改善。</p>
+    <p class="js-lede">本片独特机制——教师的核心任务(教学)被海量非教学任务系统性抢占:<b style="color:var(--zhu);">填表报数、APP 打卡、各类「进校园」(反诈/消防/普法/创建)、社会事务摊派、创建迎检、值班巡逻</b>。中央三令五申「教师减负」,负担却年年增——这是「优先级反转」的典型:本该最高优先级的教学,被一群「强制但低价值」的行政中断反复抢占,重要的任务在等待,琐碎的任务在运行。</p>
+
+    <h3 class="js-h3">非教学负担清单:教学之外的行政洪流</h3>
+    <div class="js-rows">
+      <div class="js-row peak"><span class="js-row-k">填表报数</span><span class="js-row-v"><b style="color:var(--zhu);">填表报数、各类 APP 打卡、留痕材料台账</b>——「做了不如证明做了」的留痕主义侵入教学(↗ GY-07 B6 留痕主义的教育版)。</span></div>
+      <div class="js-row"><span class="js-row-k">进校园泛滥</span><span class="js-row-v">反诈、消防、禁毒、扫黑、普法、各种主题教育——<b>各部门把工作摊派进校园,学校成为各条线任务的落点</b>(↔ GY-24 治理末梢「上面千条线」的教育版)。</span></div>
+      <div class="js-row peak"><span class="js-row-k">社会事务摊派</span><span class="js-row-v"><b style="color:var(--zhu);">创文创卫、人口普查辅助、防疫值守</b>——社会事务被摊派给教师;教学之外的行政任务无止境。</span></div>
+      <div class="js-row"><span class="js-row-k">创建迎检</span><span class="js-row-v">各类创建、迎检、留痕材料——<b>「做了不如证明做了」</b>;迎检材料本身成了一项必须完成的中断。</span></div>
+    </div>
+
+    <h3 class="js-h3">「进校园」泛滥:学校成为各条线任务的落点</h3>
+    <div class="js-chain">
+      <div class="js-chain-row v1"><span class="js-chain-t">上面千条线</span><span class="js-chain-v"><b>各条线部门的任务(↗ GY-24 M4)</b> — 反诈、消防、禁毒、普法、创建,每条线都要进校园「落地」。</span></div>
+      <div class="js-chain-row v2"><span class="js-chain-t">学校接单</span><span class="js-chain-v"><b style="color:var(--zhu);">学校成为各条线任务的最终落点</b> — 学生有组织、有场地、易考核,各条线工作都愿意「进校园」找学校落地。</span></div>
+      <div class="js-chain-row v1"><span class="js-chain-t">教师执行</span><span class="js-chain-v"><b>任务摊到班主任与一线教师</b> — 老师成了最末端的执行员;每一项都要组织、要留痕、要上报。</span></div>
+      <div class="js-chain-row v2"><span class="js-chain-t">教学被挤压</span><span class="js-chain-v"><b style="color:var(--zhu);">非教学时间挤占教学时间</b> — 教学质量与职业获得感双双受损;最该被保护的教学,优先级被降到最低。</span></div>
+    </div>
+    <div class="js-breaking">
+      <span class="js-breaking-tag">! 减负文件治不了反转,因为它自己就是又一道中断</span>
+      教师减负为什么年年喊、年年增?<b>因为这是一场优先级反转:减负文件治不了反转,因为它自己就是又一道必须完成的中断(↗ GY-24 基层减负悖论的教师版)</b>。
+    </div>
+
+    <h3 class="js-h3">优先级反转的后果:最该被保护的教学被降到最低</h3>
+    <div class="js-dual">
+      <div class="js-dual-a"><h6>应然 · <b>教学最高优先级</b></h6><span class="js-dual-pole">备课 / 上课 / 育人</span><p>教学本应是教师的最高优先级——<b style="color:var(--qing);">备课、上课、批改、育人</b>;这是教师这个进程被创建出来要运行的主任务。</p></div>
+      <div class="js-dual-mid">→</div>
+      <div class="js-dual-b"><h6>实然 · <b>琐事在运行</b></h6><span class="js-dual-pole">填表 / 打卡 / 迎检</span><p><b style="color:var(--zhu);">大量时间用于非教学 → 教学被挤压 → 教育质量与职业获得感双双受损</b>;最该被保护的教学,优先级被降到最低。</p></div>
+    </div>
+
+    <div class="js-art">
+      <h5><b>每一项都「必须完成」,于是教学只能在它们的间隙里运行</b>学校成了各条线任务的最终落点</h5>
+      <p>教师减负为什么年年喊、年年增?因为这是一场优先级反转:本该最高优先级的教学,被一群「强制但低价值」的行政中断反复抢占——填表、打卡、迎检、各种进校园。<b style="color:var(--zhu);">每一项都「必须完成」,于是教学只能在它们的间隙里运行。学校成了各条线任务的最终落点,老师成了最末端的执行员。减负文件治不了反转,因为它自己就是又一道必须完成的中断。</b>(↗ GY-24 治理末梢 / ↗ J1 崇高与负担)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="js-xref">↗ GY-24 · 治理末梢「上面千条线」</span>
+      <span class="js-xref">↗ GY-07 · 留痕主义</span>
+      <span class="js-xref">↗ J3 · 双减增负</span>
+    </div>
+
+    <div class="js-verdict">
+      <span class="js-verdict-tag">J2 判词</span>
+      教师减负为什么年年喊、年年增?因为这是一场优先级反转:本该最高优先级的教学,被一群「强制但低价值」的行政中断反复抢占——填表、打卡、迎检、各种进校园,每一项都「必须完成」,于是教学只能在它们的间隙里运行。学校成了各条线任务的最终落点,老师成了最末端的执行员。<b style="color:var(--zhu);">减负文件治不了反转,因为它自己就是又一道必须完成的中断。</b>
+      <span class="js-xref">↗ J3 · 减学生负担增教师负担</span>
+    </div>
+  </section>
+
+  <!-- ════ J3 双减悖论 ════ -->
+  <section class="js-panel" id="js-p-j3">
+    <div class="js-sec-head"><h2>J3 · 双减悖论:减学生负担,增教师负担</h2><span class="js-sec-tag">负担的转移而非消失</span></div>
+    <p class="js-lede">双减(减轻学生作业与校外培训负担)在教师端的镜像是「增负」——<b style="color:var(--zhu);">课后延时服务、作业管理、校内提质使教师工时延长</b>;学生的负担被从校外(教培 ↗ GY-11 J2)转移回校内,由教师承接。减负从来不是负担的消失,是负担的搬家——而教师,常常是那个最终收货的人。</p>
+
+    <h3 class="js-h3">减负→增负的转移:同一份负担,换了承担者</h3>
+    <div class="js-dual">
+      <div class="js-dual-a"><h6>学生端 · <b>减负</b></h6><span class="js-dual-pole">作业 / 校外培训</span><p>作业总量压减、校外学科类培训压缩——<b style="color:var(--qing);">减轻的是学生的作业和家长的钱包</b>;双减的初衷在学生侧确有缓解。</p></div>
+      <div class="js-dual-mid">→</div>
+      <div class="js-dual-b"><h6>教师端 · <b>增负</b></h6><span class="js-dual-pole">课后服务 / 校内提质</span><p><b style="color:var(--zhu);">课后延时服务、作业管理、校内提质——教师工时延长、要求提高</b>;负担被搬回校内,压在教师身上。</p></div>
+    </div>
+
+    <h3 class="js-h3">增负的四个来源:工时、提质、承接、家校</h3>
+    <div class="js-rows">
+      <div class="js-row peak"><span class="js-row-k">课后服务增负</span><span class="js-row-v"><b style="color:var(--zhu);">双减后校内课后延时服务——教师早到晚走,看护到傍晚</b>;「减负」减的是学生和家长,增的是教师工作时间。</span></div>
+      <div class="js-row"><span class="js-row-k">作业与提质压力</span><span class="js-row-v">作业管理、校内提质、课堂提效——<b>教学要求提高 + 服务时间延长的双重加压</b>;质与量同时上升。</span></div>
+      <div class="js-row peak"><span class="js-row-k">教培转移的承接(↗ GY-11)</span><span class="js-row-v"><b style="color:var(--zhu);">校外教培被压缩,需求部分回流校内</b>——教师承接了原本由教培市场分担的部分。</span></div>
+      <div class="js-row"><span class="js-row-k">家校边界模糊</span><span class="js-row-v">家长群 24 小时在线、家校责任边界模糊、家长高要求与维权——<b>教师的责任被无限延伸到课堂之外</b>。</span></div>
+    </div>
+    <div class="js-breaking">
+      <span class="js-breaking-tag">! 减负不是负担的消失,是负担的搬家</span>
+      双减是一场负担的转移——它减轻了学生的作业和家长的钱包,<b>却把负担挪回了校内,压在教师身上;课后服务让老师早到晚走,家长群让老师 24 小时在线</b>。
+    </div>
+
+    <h3 class="js-h3">家校关系的张力:责任边界的一退再退</h3>
+    <div class="js-chain">
+      <div class="js-chain-row v1"><span class="js-chain-t">家长群</span><span class="js-chain-v"><b>24 小时在线的家校连接</b> — 通知、打卡、答疑随时进来;教师的工作时间被无限拉长。</span></div>
+      <div class="js-chain-row v2"><span class="js-chain-t">责任延伸</span><span class="js-chain-v"><b style="color:var(--zhu);">家校责任边界模糊</b> — 课堂之外的安全、情绪、家庭作业都被归因到老师;责任的边界一退再退。</span></div>
+      <div class="js-chain-row v1"><span class="js-chain-t">高要求维权</span><span class="js-chain-v"><b>家长的高要求与维权</b> — 个别化诉求与维权压力上升;教师在家校界面承压。</span></div>
+      <div class="js-chain-row v2"><span class="js-chain-t">最终收货</span><span class="js-chain-v"><b style="color:var(--zhu);">教师常是负担搬家最终的收货人</b> — 学生减的、家长省的,最后由教师的工时和责任承接。</span></div>
+    </div>
+
+    <div class="js-art">
+      <h5><b>减负从来不是负担的消失,是负担的搬家——而教师常是那个最终收货的人</b></h5>
+      <p>双减是一场负担的转移——它减轻了学生的作业和家长的钱包,却把负担挪回了校内,压在教师身上。<b style="color:var(--zhu);">课后服务让老师早到晚走,家长群让老师 24 小时在线,责任的边界一退再退。减负从来不是负担的消失,是负担的搬家——而教师,常常是那个最终收货的人。</b>(↗ GY-11 J2 教培 / ↗ J2 优先级反转)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="js-xref">↗ GY-11 · 教培压缩与回流</span>
+      <span class="js-xref">↗ J2 · 行政中断的叠加</span>
+      <span class="js-xref">↗ J4 · 学龄人口拐点</span>
+    </div>
+
+    <div class="js-verdict">
+      <span class="js-verdict-tag">J3 判词</span>
+      双减是一场负担的转移——它减轻了学生的作业和家长的钱包,却把负担挪回了校内,压在教师身上。课后服务让老师早到晚走,家长群让老师 24 小时在线,责任的边界一退再退。<b style="color:var(--zhu);">减负从来不是负担的消失,是负担的搬家——而教师,常常是那个最终收货的人。</b>
+      <span class="js-xref">↗ J4 · 从短缺到过剩的反转</span>
+    </div>
+  </section>
+
+  <!-- ════ J4 学龄人口拐点 ════ -->
+  <section class="js-panel" id="js-p-j4">
+    <div class="js-sec-head"><h2>J4 · 学龄人口拐点:从短缺到过剩的反转</h2><span class="js-sec-tag">最早看见自己未来萎缩的职业</span></div>
+    <p class="js-lede">教师队伍正面临「当前结构性短缺」与「未来总量过剩」的双重前景——<b style="color:var(--zhu);">出生率下降(↗ GY-03/GY-25)使学龄人口见顶回落,幼儿园已现关停潮、小学随后</b>;教师需求将随生源萎缩而下降,「教师过剩」与「教师退出机制」进入讨论,与当下的结构性缺科(体音美、心理、乡村)并存。教师是少数能清晰看见自己未来萎缩的职业之一。</p>
+
+    <h3 class="js-h3">双重前景:当前短缺 vs 未来过剩</h3>
+    <div class="js-dual">
+      <div class="js-dual-a"><h6>当前 · <b>结构性短缺</b></h6><span class="js-dual-pole">缺科 / 缺乡村 / 缺男教师</span><p>学科结构性缺(体育/音乐/美术/心理/科学)、区域性缺(乡村 ↗ GY-30)、男教师稀缺——<b style="color:var(--qing);">结构性短缺现实存在</b>。</p></div>
+      <div class="js-dual-mid">⇄</div>
+      <div class="js-dual-b"><h6>未来 · <b>总量过剩</b></h6><span class="js-dual-pole">生源萎缩 / 需求回落</span><p><b style="color:var(--zhu);">出生率下降(↗ GY-03 CH-01 / GY-25)→ 幼儿园关停潮已现 → 小学学位需求回落 → 教师需求下降</b>;「教师过剩」成为可见前景。</p></div>
+    </div>
+
+    <h3 class="js-h3">反转的传导:少子化的冲击波沿学段逐级上行</h3>
+    <div class="js-chain">
+      <div class="js-chain-row v2"><span class="js-chain-t">幼儿园</span><span class="js-chain-v"><b style="color:var(--zhu);">已现关停潮</b> — 出生率下降最先冲击的学段;入园人数下降、园所关停已是现实(↗ GY-03/GY-25)。</span></div>
+      <div class="js-chain-row v1"><span class="js-chain-t">小学</span><span class="js-chain-v"><b>临近的下一站</b> — 学位需求回落临近;师范招生、教师招聘已在部分地区收缩。</span></div>
+      <div class="js-chain-row v2"><span class="js-chain-t">初中</span><span class="js-chain-v"><b style="color:var(--zhu);">冲击波继续上行</b> — 生源萎缩沿学段逐级传导;需求随之回落。</span></div>
+      <div class="js-chain-row v1"><span class="js-chain-t">高中</span><span class="js-chain-v"><b>最后到达的学段</b> — 少子化的冲击波沿学段逐级传导,最终覆盖整个基础教育链条。</span></div>
+    </div>
+    <div class="js-breaking">
+      <span class="js-breaking-tag">! 教师是少数能清晰看见自己未来萎缩的职业</span>
+      出生率下降的冲击波正沿着学段往上走:<b>幼儿园已经在关停,小学就在前面;这个职业当下还在为缺体音美、缺乡村教师发愁,未来却要面对生源萎缩带来的总量过剩和退出机制</b>。
+    </div>
+
+    <h3 class="js-h3">铁饭碗松动:从「铁饭碗」到「可流动可退出」</h3>
+    <div class="js-rows">
+      <div class="js-row peak"><span class="js-row-k">教师退出机制</span><span class="js-row-v"><b style="color:var(--zhu);">教师编制改革、退出机制——从「铁饭碗」向「可流动/可退出」改革的信号</b>(↗ GY-07 编制刚兑松动的教育版)。</span></div>
+      <div class="js-row"><span class="js-row-k">县管校聘</span><span class="js-row-v">教师由「学校人」变「系统人」,可在县域内调配——<b>编制确定性的松动</b>;统筹调配以应对生源结构变化。</span></div>
+      <div class="js-row peak"><span class="js-row-k">师范与招聘收缩</span><span class="js-row-v"><b style="color:var(--zhu);">师范招生、教师招聘已在部分地区收缩</b>——反转的早期读数;招聘大幅下降是形态 β 的标志(↗ W-04)。</span></div>
+      <div class="js-row"><span class="js-row-k">教师女性化(↗ GY-17)</span><span class="js-row-v">中小学教师女性占比高、男教师稀缺——<b>教师队伍的性别结构问题</b>(↗ GY-17 中年女性的同构)。</span></div>
+    </div>
+
+    <div class="js-art">
+      <h5><b>从「铁饭碗」到「可流动」,少子化正在改写教师编制的确定性</b>它是人口拐点最早传导到的职业之一</h5>
+      <p>教师是少数能清晰看见自己未来萎缩的职业——出生率下降的冲击波正沿着学段往上走:幼儿园已经在关停,小学就在前面。<b style="color:var(--zhu);">这个职业当下还在为缺体音美、缺乡村教师发愁,未来却要面对生源萎缩带来的总量过剩和退出机制。从「铁饭碗」到「可流动」,少子化正在改写教师编制的确定性——它是 GY-03/GY-25 那场人口拐点,最早传导到的职业之一。</b>(↗ GY-03/GY-25 / ↗ GY-07 编制松动)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="js-xref">↗ GY-03/GY-25 · 出生率与人口拐点</span>
+      <span class="js-xref">↗ GY-07 · 编制刚兑松动</span>
+      <span class="js-xref">↗ GY-17 · 教师女性化</span>
+    </div>
+
+    <div class="js-verdict">
+      <span class="js-verdict-tag">J4 判词</span>
+      教师是少数能清晰看见自己未来萎缩的职业——出生率下降的冲击波正沿着学段往上走:幼儿园已经在关停,小学就在前面。这个职业当下还在为缺体音美、缺乡村教师发愁,未来却要面对生源萎缩带来的总量过剩和退出机制。<b style="color:var(--zhu);">从「铁饭碗」到「可流动」,少子化正在改写教师编制的确定性——它是 GY-03/GY-25 那场人口拐点,最早传导到的职业之一。</b>
+      <span class="js-xref">↗ J5 · 教师的虹吸</span>
+    </div>
+  </section>
+
+  <!-- ════ J5 县中塌陷 ════ -->
+  <section class="js-panel" id="js-p-j5">
+    <div class="js-sec-head"><h2>J5 · 县中塌陷与城乡分化:教师的虹吸</h2><span class="js-sec-tag">好老师的单向流动</span></div>
+    <p class="js-lede">优质教师从县域、乡村向城市、超级中学单向流动(虹吸),造成「县中塌陷」与乡村教师老化——<b style="color:var(--zhu);">这是城乡教育资源分化(↗ GY-20 县域 / GY-30 农村)在教师端的体现,也是教育公平的关键变量</b>。教育公平喊在分数线上,根子却在讲台上:决定一个县域孩子能走多远的,首先是有没有好老师愿意留下来教他。</p>
+
+    <h3 class="js-h3">虹吸图:优质师资的单向流动</h3>
+    <div class="js-pyramid" aria-label="教师虹吸示意图:优质师资从乡村流向县城从县城流向城市从普通学校流向超级中学,单向流动造成县中塌陷与乡村教师老化,而公费师范特岗银龄的定向推力弱于虹吸的拉力">
+      <svg viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" role="img">
+        <text x="450" y="22" font-size="11" fill="#8f897d" text-anchor="middle" font-family="mono" letter-spacing="2">SIPHON · 好老师的单向虹吸</text>
+
+        <rect x="60" y="60" width="200" height="80" rx="6" fill="#1c242e" stroke="#5d7489" stroke-width="1.4"/>
+        <text x="160" y="92" font-size="11" fill="#5d7489" text-anchor="middle" font-family="serif">乡村学校</text>
+        <text x="160" y="112" font-size="8.5" fill="#7d9488" text-anchor="middle" font-family="sans-serif">教师老化 · 待遇低 · 留不住年轻人</text>
+        <text x="160" y="128" font-size="8" fill="#8f897d" text-anchor="middle" font-family="mono">↗ GY-30 农村最末梢</text>
+
+        <rect x="350" y="60" width="200" height="80" rx="6" fill="#2a2418" stroke="#b39657" stroke-width="1.4"/>
+        <text x="450" y="92" font-size="11" fill="#c9b87a" text-anchor="middle" font-family="serif">县域中学</text>
+        <text x="450" y="112" font-size="8.5" fill="#a89968" text-anchor="middle" font-family="sans-serif">优质师资与生源被掏空 · 县中塌陷</text>
+        <text x="450" y="128" font-size="8" fill="#8f897d" text-anchor="middle" font-family="mono">↗ GY-20 县域青年上升通道</text>
+
+        <rect x="640" y="60" width="200" height="80" rx="6" fill="#2a1818" stroke="#b5483a" stroke-width="1.6"/>
+        <text x="740" y="92" font-size="11" fill="#c2786e" text-anchor="middle" font-family="serif">城市名校 / 超级中学</text>
+        <text x="740" y="112" font-size="8.5" fill="#c2a09a" text-anchor="middle" font-family="sans-serif">虹吸的目的地 · 集中优质师资生源</text>
+
+        <line x1="262" y1="100" x2="348" y2="100" stroke="#b5483a" stroke-width="1.6" marker-end="url(#jsSiphon)"/>
+        <line x1="552" y1="100" x2="638" y2="100" stroke="#b5483a" stroke-width="1.6" marker-end="url(#jsSiphon)"/>
+        <defs>
+          <marker id="jsSiphon" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#b5483a"/></marker>
+        </defs>
+        <text x="450" y="170" font-size="9" fill="#b5483a" text-anchor="middle" font-family="mono">单向虹吸 → 好老师从乡村流向县城,从县城流向城市,从普通校流向超级中学</text>
+
+        <rect x="120" y="200" width="320" height="90" rx="6" fill="#1c242e" stroke="#5e8c7a" stroke-width="1.4"/>
+        <text x="280" y="226" font-size="11" fill="#5e8c7a" text-anchor="middle" font-family="serif">定向推力 · 弱</text>
+        <text x="280" y="246" font-size="9" fill="#7d9488" text-anchor="middle" font-family="sans-serif">公费师范生 · 特岗计划 · 银龄讲学</text>
+        <text x="280" y="264" font-size="9" fill="#7d9488" text-anchor="middle" font-family="sans-serif">国家用定向政策填补乡村/县域缺口</text>
+        <text x="280" y="282" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="mono">但留不住:服务期满即流失</text>
+
+        <rect x="460" y="200" width="320" height="90" rx="6" fill="#2a1818" stroke="#b5483a" stroke-width="1.4"/>
+        <text x="620" y="226" font-size="11" fill="#c2786e" text-anchor="middle" font-family="serif">虹吸拉力 · 强</text>
+        <text x="620" y="246" font-size="9" fill="#c2a09a" text-anchor="middle" font-family="sans-serif">城市待遇 / 发展空间 / 子女教育</text>
+        <text x="620" y="264" font-size="9" fill="#c2a09a" text-anchor="middle" font-family="sans-serif">超级中学与名校的资源与平台吸引</text>
+        <text x="620" y="282" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="mono">拉力强于推力 → 净流出</text>
+        <text x="450" y="245" font-size="14" fill="#c9b87a" text-anchor="middle" font-family="mono">⇄</text>
+
+        <text x="450" y="320" font-size="9.5" fill="#b5483a" text-anchor="middle" font-family="serif" letter-spacing="1">— 教育公平喊在分数线上,根子却在讲台上:留不住好老师的地方,也留不住向上的通道 —</text>
+        <text x="450" y="344" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">做题家的起点不平等从师资开始(↗ GY-20 县域青年)</text>
+      </svg>
+    </div>
+
+    <h3 class="js-h3">县中塌陷与乡村困境:虹吸的两端</h3>
+    <div class="js-rows">
+      <div class="js-row peak"><span class="js-row-k">县中塌陷(↗ GY-20)</span><span class="js-row-v"><b style="color:var(--zhu);">超级中学、城市名校虹吸县域优质师资与生源——县中的优质教师流失</b>;县域青年的教育上游被掏空。</span></div>
+      <div class="js-row"><span class="js-row-k">乡村教师困境(↗ GY-30)</span><span class="js-row-v">乡村教师老化、待遇低、留不住年轻人、特岗教师流失——<b>农村教育最末梢的师资在凋零</b>(↗ GY-30 农村)。</span></div>
+      <div class="js-row peak"><span class="js-row-k">师范公费定向</span><span class="js-row-v"><b style="color:var(--zhu);">公费师范生、特岗计划、银龄讲学——国家用定向政策填补缺口</b>;但虹吸的拉力强于定向的推力。</span></div>
+      <div class="js-row"><span class="js-row-k">教育公平的关键</span><span class="js-row-v">教师质量的城乡差是教育公平的核心——<b>「县中塌陷」直接关系县域青年(↗ GY-20)的上升通道</b>;做题家的起点不平等从师资开始。</span></div>
+    </div>
+    <div class="js-breaking">
+      <span class="js-breaking-tag">! 留不住好老师的地方,也留不住向上的通道</span>
+      教师也在被虹吸——优质师资从乡村流向县城,从县城流向城市,从普通学校流向超级中学;<b>县中塌陷的背后,是好老师的单向流动;而留不住好老师的地方,也留不住向上的通道</b>。
+    </div>
+
+    <div class="js-art">
+      <h5><b>教育公平喊在分数线上,根子却在讲台上</b>决定县域孩子能走多远的,首先是有没有好老师愿意留下来</h5>
+      <p>教师也在被虹吸——优质师资从乡村流向县城,从县城流向城市,从普通学校流向超级中学。<b style="color:var(--zhu);">县中塌陷的背后,是好老师的单向流动;而留不住好老师的地方,也留不住向上的通道。教育公平喊在分数线上,根子却在讲台上:决定一个县域孩子能走多远的,首先是有没有好老师愿意留下来教他。</b>(↗ GY-20 县域 / ↗ GY-30 农村)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="js-xref">↗ GY-20 · 县域青年的上升通道</span>
+      <span class="js-xref">↗ GY-30 · 农村教育最末梢</span>
+      <span class="js-xref">↗ J6 · 崇高叙事下的沉默</span>
+    </div>
+
+    <div class="js-verdict">
+      <span class="js-verdict-tag">J5 判词</span>
+      教师也在被虹吸——优质师资从乡村流向县城,从县城流向城市,从普通学校流向超级中学。县中塌陷的背后,是好老师的单向流动;而留不住好老师的地方,也留不住向上的通道。教育公平喊在分数线上,根子却在讲台上:<b style="color:var(--zhu);">决定一个县域孩子能走多远的,首先是有没有好老师愿意留下来教他。</b>
+      <span class="js-xref">↗ J6 · 被崇高与被消耗之间</span>
+    </div>
+  </section>
+
+  <!-- ════ J6 政治形态学 ════ -->
+  <section class="js-panel" id="js-p-j6">
+    <div class="js-sec-head"><h2>J6 · 政治形态学:崇高叙事下的沉默</h2><span class="js-sec-tag">编制、师德、假期特权三重锁</span></div>
+    <p class="js-lede">教师政治上高度沉默——<b style="color:var(--zhu);">体制内(↗ GY-07)、师德约束(一票否决)、崇高叙事的道德绑定、寒暑假的「特权」想象使其诉求难获同情</b>;其不满以职业倦怠、用脚投票(逃离县乡、不让子女从教)、网络匿名吐槽表达,是体制内专业群体的又一沉默样本(↗ GY-37 医护 / GY-33 青椒 的同构)。当老师开始犹豫要不要让自己孩子也当老师,「谁来教书」就和「谁来治病」一样,成了悬在公共服务头上的问题。</p>
+
+    <h3 class="js-h3">三重锁:师德、假期特权、体制内沉默</h3>
+    <div class="js-rows">
+      <div class="js-row peak"><span class="js-row-k">师德的双刃</span><span class="js-row-v"><b style="color:var(--zhu);">师德崇高 + 一票否决——崇高叙事既是荣誉也是约束</b>;教师被要求「为人师表」「无私奉献」,议价与抱怨被道德化压制。</span></div>
+      <div class="js-row"><span class="js-row-k">「寒暑假特权」想象</span><span class="js-row-v">社会对教师「有寒暑假、稳定」的特权想象——<b>压制了对教师负担的同情</b>;教师的非教学负担、延时服务、隐性加班不被看见。</span></div>
+      <div class="js-row peak"><span class="js-row-k">体制内的沉默(↗ GY-07)</span><span class="js-row-v"><b style="color:var(--zhu);">编制 + 师德 + 假期特权想象使教师少有集体行动——沉默承受</b>;偶有的待遇/绩效缓发(↗ GY-07 B5)维权个案。</span></div>
+      <div class="js-row"><span class="js-row-k">用脚投票</span><span class="js-row-v">逃离乡村/县城(↗ GY-30/GY-20)、职业倦怠、「劝人从教」的犹豫、教师子女不从教——<b>专业群体的代际退出信号</b>(↔ GY-37 劝孩子别学医 / GY-22 不进厂)。</span></div>
+    </div>
+
+    <h3 class="js-h3">崇高 vs 消耗:荣誉叙事与真实处境</h3>
+    <div class="js-dual">
+      <div class="js-dual-a"><h6>被崇高 · <b>荣誉叙事</b></h6><span class="js-dual-pole">灵魂工程师 / 春蚕</span><p>「人类灵魂工程师」「春蚕到死丝方尽」——<b style="color:var(--qing);">崇高叙事把抱怨变成了不师德</b>(↔ GY-37 白衣天使 / GY-12 尊崇的同构)。</p></div>
+      <div class="js-dual-mid">↔</div>
+      <div class="js-dual-b"><h6>被消耗 · <b>真实处境</b></h6><span class="js-dual-pole">行政洪流 / 隐性加班</span><p><b style="color:var(--zhu);">优先级反转的行政洪流、延时服务的隐性加班、县乡的留守困境——很难被看见</b>;假期特权的想象把负担变成了矫情。</p></div>
+    </div>
+
+    <h3 class="js-h3">全光谱交点:谁来教书与谁来治病谁来种地</h3>
+    <div class="js-rows">
+      <div class="js-row peak"><span class="js-row-k">教育系统交点</span><span class="js-row-v"><b style="color:var(--zhu);">教师是 GY-11/GY-26/GY-33(教育系统)、GY-07(体制内)、GY-24(治理末梢摊派)、GY-17(女性化)、GY-03/GY-25(学龄人口)的交点</b>。</span></div>
+      <div class="js-row"><span class="js-row-k">公共服务人力之问</span><span class="js-row-v">「谁来教书」与医护「谁来治病」(↗ GY-37)、农民「谁来种地」(↗ GY-35)并列——<b>是公共服务人力之问的教育版</b>。</span></div>
+      <div class="js-row peak"><span class="js-row-k">代际退出信号</span><span class="js-row-v"><b style="color:var(--zhu);">当老师开始犹豫要不要让自己孩子也当老师,「谁来教书」就成了悬在公共服务头上的问题</b>(↔ GY-37/GY-22 的同构)。</span></div>
+    </div>
+    <div class="js-breaking">
+      <span class="js-breaking-tag">! 崇高把抱怨变成不师德,假期特权把负担变成矫情</span>
+      教师的沉默被三样东西锁住——编制、师德、和那个「有寒暑假多舒服」的社会想象;<b>崇高叙事把抱怨变成了不师德,假期特权的想象把负担变成了矫情</b>。
+    </div>
+
+    <div class="js-art">
+      <h5><b>当老师开始犹豫要不要让自己孩子也当老师,「谁来教书」就成了悬在公共服务头上的问题</b></h5>
+      <p>教师的沉默被三样东西锁住——编制、师德、和那个「有寒暑假多舒服」的社会想象。崇高叙事把抱怨变成了不师德,假期特权的想象把负担变成了矫情。<b style="color:var(--zhu);">于是教师的真实处境——优先级反转的行政洪流、延时服务的隐性加班、县乡的留守困境——很难被看见。最响的信号还是退出:当老师开始犹豫要不要让自己孩子也当老师,「谁来教书」就和「谁来治病」「谁来种地」一样,成了悬在公共服务头上的问题。</b>(↗ GY-37 医护 / ↗ GY-35 农民)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="js-xref">↗ GY-37 · 劝孩子别学医的同构</span>
+      <span class="js-xref">↗ GY-22 · 用脚投票的同构</span>
+      <span class="js-xref">↗ GY-07 · 体制内的沉默</span>
+    </div>
+
+    <div class="js-verdict">
+      <span class="js-verdict-tag">J6 判词</span>
+      教师的沉默被三样东西锁住——编制、师德、和那个「有寒暑假多舒服」的社会想象。崇高叙事把抱怨变成了不师德,假期特权的想象把负担变成了矫情。于是教师的真实处境——优先级反转的行政洪流、延时服务的隐性加班、县乡的留守困境——很难被看见。最响的信号还是退出:<b style="color:var(--zhu);">当老师开始犹豫要不要让自己孩子也当老师,「谁来教书」就和「谁来治病」「谁来种地」一样,成了悬在公共服务头上的问题。</b>
+      <span class="js-xref">↗ J7 · 三态推演</span>
+    </div>
+  </section>
+
+  <!-- ════ J7 形态推演 ════ -->
+  <section class="js-panel" id="js-p-j7">
+    <div class="js-sec-head"><h2>J7 · 形态推演(三态)</h2><span class="js-sec-tag">减负拉锯 / 少子化冲击 / 减负与 AI 重塑</span></div>
+    <p class="js-lede">中小学教师这个被优先级反转困住的进程的未来走向,取决于三股力量的相对强弱——<b style="color:var(--zhu);">非教学负担的清理与反弹、少子化冲击的显形、减负实质化与 AI 的双重重塑</b>。三态推演如下,概率最高的是减负-增负拉锯的延续。</p>
+
+    <h3 class="js-h3">三态:α 减负拉锯 / β 少子化冲击 / γ 减负与 AI</h3>
+    <div class="js-form">
+      <h5>形态 α · 基准 · 减负-增负拉锯(概率最高)</h5>
+      <p>非教学负担清理与反弹拉锯、双减增负延续、结构性缺科与师资虹吸并存;<b style="color:var(--zhu);">编制改革(县管校聘/退出机制)渐进而不质变</b>。概率最高(优先级反转是结构常态,减负文件本身就是又一道中断,↗ W-02/W-03)。</p>
+    </div>
+    <div class="js-form" style="border-color:var(--zhu-dim); background:rgba(181,72,58,.08);">
+      <h5 style="color:var(--zhu);">形态 β · 压力 · 少子化冲击显形</h5>
+      <p>若学龄人口下降使幼儿园关停潮向小学传导——<b style="color:var(--zhu);">教师过剩、招聘收缩、转岗分流、编制收紧成为现实;标志:师范招生缩减、中小学教师招聘大幅下降、教师转岗/退出机制落地</b>(↗ W-04/W-05)。</p>
+    </div>
+    <div class="js-form" style="border-color:var(--jin-dim); background:rgba(110,93,56,.10);">
+      <h5 style="color:var(--jin);">形态 γ · 改革 · 减负与 AI 双重重塑</h5>
+      <p>教师减负实质化(清单管理、社会事务退出校园)+ AI 辅助教学(备课/批改/个性化)——<b style="color:var(--jin);">教师从行政事务和重复劳动中部分解放</b>(↗ GY-26/GY-28 AI);但 AI 也带来教师角色重构与部分替代焦虑(↗ W-08)。</p>
+    </div>
+
+    <h3 class="js-h3">三态的共同底色:优先级反转是结构常态</h3>
+    <div class="js-rows">
+      <div class="js-row peak"><span class="js-row-k">反转不变</span><span class="js-row-v"><b style="color:var(--zhu);">无论哪种形态,优先级反转(非教学负担抢占教学)短期难改</b>——三态的差异只在反转如何被矫正、被显形、被技术缓解。</span></div>
+      <div class="js-row"><span class="js-row-k">少子化是变量</span><span class="js-row-v">学龄人口拐点是最大的外生变量——<b>形态 β 的触发点;教师招聘大幅下降是最响的公共警报</b>(↗ J4)。</span></div>
+      <div class="js-row peak"><span class="js-row-k">AI 非万能</span><span class="js-row-v"><b style="color:var(--zhu);">AI 缓解重复劳动,但育人、关系、价值引导难被替代</b>——形态 γ 缓解的是事务量,缓解不了教师角色的核心。</span></div>
+    </div>
+
+    <div class="js-art">
+      <h5><b>减负文件治不了反转,AI 缓解事务量,缓解不了角色核心</b>优先级反转是结构常态,三态只是反转的不同出口</h5>
+      <p>三态推演的共同底色是:<b style="color:var(--zhu);">优先级反转(非教学负担抢占教学)短期难改,差异只在反转如何被矫正、显形、技术缓解。基准是减负-增负的拉锯延续;压力态里少子化冲击把教师过剩与退出机制推成现实;技术态里减负实质化与 AI 缓解了事务量,却缓解不了育人与教师角色的核心。</b>(↗ GY-03/GY-25 / ↗ GY-26/GY-28)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="js-xref">↗ GY-03/GY-25 · 少子化冲击</span>
+      <span class="js-xref">↗ GY-26/28 · AI 辅助教学</span>
+      <span class="js-xref">↗ watch · 总判词与观测哨</span>
+    </div>
+
+    <div class="js-verdict">
+      <span class="js-verdict-tag">J7 判词</span>
+      三态推演的共同底色是:优先级反转(非教学负担抢占教学)短期难改,差异只在反转如何被矫正、显形、技术缓解。基准是减负-增负的拉锯延续;压力态里少子化冲击把教师过剩与退出机制推成现实;技术态里减负实质化与 AI 缓解了事务量。<b style="color:var(--zhu);">但育人与教师角色的核心——关系、价值引导——难被技术替代:AI 缓解事务量,缓解不了角色核心。</b>
+      <span class="js-xref">↗ watch · 合成观测哨</span>
+    </div>
+  </section>
+
+  <!-- ════ 合成 · 观测哨 ════ -->
+  <section class="js-panel" id="js-p-watch">
+    <div class="js-sec-head"><h2>J8 / J9 · 合成与观测哨</h2><span class="js-sec-tag">被中断抢占的进程 · 第三十六子集 · 年度对账</span></div>
+    <p class="js-disclaimer top">注记(口径处理):全片以教育劳动社会学与编制制度框架处理,不评判具体政策或个人,「负担」「减负悖论」作为结构问题描述,不渲染个案、不归咎任何一方。形态推演与观测哨为机制研判,数据为教育部教育统计公报口径与训练知识基线,标「约」、待权威年度数据回填,量级估算与精确口径严格区分。</p>
+
+    <div class="js-verdict" style="margin-top:14px; margin-bottom:34px;">
+      <span class="js-verdict-tag">J8 · 总判词 · 优先级反转</span>
+      中小学教师是 China OS 一个深受优先级反转之苦的进程——本应最高优先级的教学,被填表、打卡、进校园、摊派、迎检这一连串「强制但低价值」的行政中断反复抢占,重要的任务在等待,琐碎的任务在运行。<br><br>
+      <b style="color:var(--zhu);">这就是「教师减负年年喊、负担年年增」的技术解释:减负文件治不了优先级反转,因为它自己就是又一道必须完成的中断。双减把学生的负担搬回校内压给教师,家长群把责任延伸到 24 小时,学校成了各条线任务的最终落点(↗ GY-24 治理末梢的教育版)。而这个职业最特殊之处,是它能清晰看见自己未来的萎缩——出生率下降(↗ GY-03/GY-25)的冲击波正沿学段上行,幼儿园已在关停,教师从「铁饭碗」向「可流动可退出」改革;当下还在为缺乡村教师发愁,未来要面对总量过剩。教师的崇高叙事锁住了它的抱怨,假期特权的想象遮蔽了它的负担,而最响的信号还是退出:当老师开始犹豫要不要让孩子也从教,「谁来教书」就和医护的「谁来治病」(↗ GY-37)、农民的「谁来种地」(↗ GY-35)一起,成了这个社会公共服务人力之问的又一道未解题。</b><br><br>
+      与全系列合观:GY-26 数字原住民(学生低龄端)、GY-11 职校生(分流端)、GY-33 青椒(高校端)是教育系统的学生与高校端,本片是基础教育的劳动者端,四片成谱;GY-07 体制内事业编与「教师工资不低于公务员」是体制刚兑的教育版,县管校聘/退出机制是 GY-07 编制刚兑松动(B5)在教育的信号;GY-24 治理末梢「上面千条线」(M4)的教育版是「进校园」泛滥与社会事务摊派;GY-20/GY-30 城乡分化在教师端的体现是县中塌陷与乡村教师老化;GY-03/GY-25 学龄人口拐点使教师成为最早看见自身萎缩的职业。作为人群画像分层第三十六子集,本片把公共服务人力侧的教育一端补进整张图谱——<b>它不是又一个孤立人群,而是教育系统在劳动者一侧的执行端,核心问题始终是:谁来教书,在一个被行政中断反复抢占、又将面对生源萎缩的系统里,还撑得住吗。</b>
+    </div>
+
+    <h3 class="js-h3">对 GY 系列的五条修正</h3>
+    <div class="js-fix">
+      <h5><b>修正 · GY-11/26/33</b>教育系统的学生端与教师端</h5>
+      <p>GY-26(数字原住民/学生低龄端)、GY-11(职校生/分流端)、GY-33(青椒/高校端)是学生与高校,本片是基础教育的劳动者端——<b style="color:var(--zhu);">建议串为「教育系统的学生端与教师端」,四片成谱</b>。</p>
+    </div>
+    <div class="js-fix">
+      <h5><b>修正 · GY-07</b>体制刚兑的教育版与其松动</h5>
+      <p>教师是事业编核心,「教师工资不低于公务员」是体制刚兑的教育版——<b>县管校聘/退出机制是 GY-07 编制刚兑松动(B5)在教育的信号</b>;少子化是松动的外生推手。</p>
+    </div>
+    <div class="js-fix">
+      <h5><b>修正 · GY-24</b>治理末梢「上面千条线」的教育版</h5>
+      <p>「进校园」泛滥与社会事务摊派是治理末梢「上面千条线」(GY-24 M4)的教育版——<b style="color:var(--zhu);">学校成为各条线任务落点,教师被末梢化</b>;减负悖论与基层减负悖论同构。</p>
+    </div>
+    <div class="js-fix">
+      <h5><b>修正 · GY-20 / GY-30</b>城乡分化在教师端的体现</h5>
+      <p>县中塌陷与乡村教师老化是城乡分化(↗ GY-20/GY-30)在教师端的体现——<b>好老师的单向虹吸直接关系县域青年的上升通道</b>;教育公平的根子在讲台上。</p>
+    </div>
+    <div class="js-fix">
+      <h5><b>修正 · GY-03 / GY-25</b>最早看见自身萎缩的职业</h5>
+      <p>学龄人口拐点(出生率下降)使教师成为最早看见自身萎缩的职业——<b style="color:var(--zhu);">少子化(↗ GY-03 CH-01/GY-25)的冲击波最早传导到教育供给端</b>;幼儿园关停潮是早期读数。</p>
+    </div>
+
+    <div class="js-watch-intro">
+      <p>这个人群的处境变动,关键看三组指针:负担与减负(规模与结构 / 非教学负担 / 双减增负)、人口与编制(学龄人口冲击 / 编制改革)、师资与吸引力(县中乡村师资 / 职业吸引力 / AI 与教师)。逐项标注状态、记录证据,年度与 GY 系列同步对账。状态与备注自动保存在本机。数据敏感处标「约」,待权威年度数据回填,量级估算与精确口径严格区分;负担作为结构问题观测,不渲染个案。</p>
+      <span class="js-storage-state" id="js-storage-state"></span>
+    </div>
+
+    <div class="js-watch" id="js-watch-list">
+      <div class="js-watch-item" data-key="w1">
+        <div><h5><b>W-01</b>教师规模与结构</h5><p class="js-watch-desc">专任教师数、生师比、学科/区域/性别结构——<b>队伍的总仪表。</b></p></div>
+        <div class="js-watch-ctrl"><div class="js-status-row"><button class="js-status-btn" data-status="good">向好</button><button class="js-status-btn" data-status="flat">中性</button><button class="js-status-btn" data-status="bad">恶化</button></div><textarea class="js-watch-note" placeholder="证据与备注…"></textarea><div class="js-watch-stamp"></div></div>
+      </div>
+      <div class="js-watch-item" data-key="w2">
+        <div><h5><b>W-02</b>非教学负担</h5><p class="js-watch-desc">减负清单落地、社会事务进校园治理——<b>J2 优先级反转的矫正。</b></p></div>
+        <div class="js-watch-ctrl"><div class="js-status-row"><button class="js-status-btn" data-status="good">向好</button><button class="js-status-btn" data-status="flat">中性</button><button class="js-status-btn" data-status="bad">恶化</button></div><textarea class="js-watch-note" placeholder="证据与备注…"></textarea><div class="js-watch-stamp"></div></div>
+      </div>
+      <div class="js-watch-item" data-key="w3">
+        <div><h5><b>W-03</b>双减增负</h5><p class="js-watch-desc">课后服务时长、教师工时、家校边界——<b>J3 增负读数。</b></p></div>
+        <div class="js-watch-ctrl"><div class="js-status-row"><button class="js-status-btn" data-status="good">向好</button><button class="js-status-btn" data-status="flat">中性</button><button class="js-status-btn" data-status="bad">恶化</button></div><textarea class="js-watch-note" placeholder="证据与备注…"></textarea><div class="js-watch-stamp"></div></div>
+      </div>
+      <div class="js-watch-item" data-key="w4">
+        <div><h5><b>W-04</b>学龄人口冲击</h5><p class="js-watch-desc">幼儿园关停、小学学位需求、师范招生与教师招聘——<b>J4 反转进度。</b></p></div>
+        <div class="js-watch-ctrl"><div class="js-status-row"><button class="js-status-btn" data-status="good">向好</button><button class="js-status-btn" data-status="flat">中性</button><button class="js-status-btn" data-status="bad">恶化</button></div><textarea class="js-watch-note" placeholder="证据与备注…"></textarea><div class="js-watch-stamp"></div></div>
+      </div>
+      <div class="js-watch-item" data-key="w5">
+        <div><h5><b>W-05</b>编制改革</h5><p class="js-watch-desc">县管校聘、教师退出机制、教师工资兑现(绩效缓发)——<b>铁饭碗松动。</b></p></div>
+        <div class="js-watch-ctrl"><div class="js-status-row"><button class="js-status-btn" data-status="good">向好</button><button class="js-status-btn" data-status="flat">中性</button><button class="js-status-btn" data-status="bad">恶化</button></div><textarea class="js-watch-note" placeholder="证据与备注…"></textarea><div class="js-watch-stamp"></div></div>
+      </div>
+      <div class="js-watch-item" data-key="w6">
+        <div><h5><b>W-06</b>县中/乡村师资</h5><p class="js-watch-desc">县中塌陷、乡村教师流失与特岗——<b>J5 虹吸与公平。</b></p></div>
+        <div class="js-watch-ctrl"><div class="js-status-row"><button class="js-status-btn" data-status="good">向好</button><button class="js-status-btn" data-status="flat">中性</button><button class="js-status-btn" data-status="bad">恶化</button></div><textarea class="js-watch-note" placeholder="证据与备注…"></textarea><div class="js-watch-stamp"></div></div>
+      </div>
+      <div class="js-watch-item" data-key="w7">
+        <div><h5><b>W-07</b>职业吸引力</h5><p class="js-watch-desc">师范报考、教师离职、从教意愿——<b>退出信号(接 GY-37/GY-22)。</b></p></div>
+        <div class="js-watch-ctrl"><div class="js-status-row"><button class="js-status-btn" data-status="good">向好</button><button class="js-status-btn" data-status="flat">中性</button><button class="js-status-btn" data-status="bad">恶化</button></div><textarea class="js-watch-note" placeholder="证据与备注…"></textarea><div class="js-watch-stamp"></div></div>
+      </div>
+      <div class="js-watch-item" data-key="w8">
+        <div><h5><b>W-08</b>AI 与教师</h5><p class="js-watch-desc">AI 辅助教学、教师角色重构——<b>形态γ 读数(接 GY-26/GY-28)。</b></p></div>
+        <div class="js-watch-ctrl"><div class="js-status-row"><button class="js-status-btn" data-status="good">向好</button><button class="js-status-btn" data-status="flat">中性</button><button class="js-status-btn" data-status="bad">恶化</button></div><textarea class="js-watch-note" placeholder="证据与备注…"></textarea><div class="js-watch-stamp"></div></div>
+      </div>
+    </div>
+
+    <h3 class="js-h3">章节规划 · 登记表</h3>
+    <div class="js-plan">
+      <div class="js-plan-row"><span class="js-plan-k">CH-01</span><span class="js-plan-v"><b>优先级反转</b> — 非教学负担清单与减负悖论,接 GY-24。</span><span class="js-plan-tag">待建</span></div>
+      <div class="js-plan-row"><span class="js-plan-k">CH-02</span><span class="js-plan-v"><b>学龄人口冲击波</b> — 从幼儿园关停到教师过剩的传导、编制改革,接 GY-03/GY-25。</span><span class="js-plan-tag">待建</span></div>
+      <div class="js-plan-row"><span class="js-plan-k">CH-03</span><span class="js-plan-v"><b>县中塌陷</b> — 教师虹吸与城乡教育公平,接 GY-20/GY-30。</span><span class="js-plan-tag">待建</span></div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="js-foot">
+    <p>方法论:中小学教师以「优先级反转(Priority Inversion under Interrupt Storm)」模型刻画——中小学教师是 China OS 一个深受优先级反转之苦的进程它的核心任务教学本应最高优先级却不断被一群低价值但强制的中断抢占填表 APP 打卡各类进校园社会事务摊派创建迎检值班结果是优先级反转重要的教学在 wait 琐碎的行政中断在 run 签名图一个进程主任务教学正在运行被一连串中断填表打卡 XX 进校园摊派迎检值班反复 preempt 主任务被饿死 starved 进程标 PRIORITY INVERSION 教学被降到最低底注专任教师约 1800 万教育劳动者端减负年年喊负担年年增。核心命题:全国专任教师约 1800 万中小学约 1300 万他们是教育系统的劳动者端 GY-11 职校生 GY-26 数字原住民是学生端 GY-33 青椒是高校端核心处境是优先级反转本应最高优先级的教学被海量低价值却强制的非教学任务填表打卡进校园摊派迎检反复抢占重要的任务在等待琐碎的任务在运行这就是教师减负年年喊负担年年增的技术解释减负文件治不了优先级反转因为它自己就是又一道必须完成的中断双减把学生的负担搬回校内压给教师家长群把责任延伸到 24 小时学校成了各条线任务的最终落点 GY-24 治理末梢的教育版而这个职业最特殊之处是它能清晰看见自己未来的萎缩出生率下降 GY-03 GY-25 的冲击波正沿学段上行幼儿园已在关停教师从铁饭碗向可流动可退出改革当下还在为缺乡村教师发愁未来要面对总量过剩教师的崇高叙事锁住了它的抱怨假期特权的想象遮蔽了它的负担而最响的信号还是退出当老师开始犹豫要不要让孩子也从教谁来教书就和医护的谁来治病 GY-37 农民的谁来种地 GY-35 一起成了这个社会公共服务人力之问的又一道未解题。数据锚定(教育部教育统计公报口径加训练知识基线,待权威年度数据回填):各级各类专任教师约 1800 万中小学专任教师约 1300 万公办教师为事业编核心教师工资不低于公务员教师减负中央专项发文清理非教学任务双减后课后服务增负县管校聘教师退出机制改革学龄人口拐点出生率下降幼儿园关停潮已现向小学传导结构性缺科体音美心理乡村与未来过剩并存县中塌陷乡村教师老化教师女性化男教师稀缺。注:全片以教育劳动社会学与编制制度框架处理,不评判具体政策或个人,负担减负悖论作为结构问题描述不渲染个案不归咎任何一方,教师精确规模与最新招聘关停数据待回填,以教育劳动与编制制度框架处理,精确口径与量级估算严格区分,数字标注量级并留观测哨回填。作为人群画像分层第三十六子集,与 GY-11 职校生 GY-26 数字原住民 GY-33 青椒(教育系统的学生端与教师端四片成谱)、GY-07 体制内(体制刚兑的教育版与县管校聘退出机制松动)、GY-24 治理末梢(进校园泛滥与社会事务摊派是上面千条线的教育版)、GY-20 县域与 GY-30 农村(县中塌陷与乡村教师老化是城乡分化的教师端)、GY-03 出生率与 GY-25 人口拐点(最早看见自身萎缩的职业)、GY-17 中年女性(教师女性化)、GY-37 医护(谁来治病的同构)、GY-35 农民(谁来种地的同构)等耦合。来源:教育部教育统计公报、教师减负文件、双减政策、训练知识基线。</p>
+    <div class="js-foot-meta">
+      ChinaOS · GY-38 · v1.0.0<br>
+      生成 2026-06 丙午年<br>
+      人群画像 第三十六子集 · 关联模块 → GY-03/07/11/24/33<br>
+      注记:教育劳动社会学框架 · 负担作结构问题描述 · 不归咎任何一方
+    </div>
+  </footer>
+
+</div>
