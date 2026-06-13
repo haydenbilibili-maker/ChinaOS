@@ -1,10 +1,18 @@
-/** 人群画像总图谱 GY-00 · 页签 / 切片点亮（命名空间 chinaos.atlas.v1） */
+/** 人群画像总图谱 GY-00 · 页签 / 切片点亮 / 模块跳转（命名空间 chinaos.atlas.v2） */
+import { GY_MODULES } from '../../lib/gy/registry.js';
 import { renqunTupuPanelId } from '../../lib/renqun-tupu/routing.js';
 import { withGyInit } from '../shared/gy/enhanceMethodology.js';
 
-const NS = 'chinaos.atlas.v1';
-const DEFAULT_LIT = ['GY-03', 'GY-04', 'GY-05'];
-const TOTAL = 25;
+const NS = 'chinaos.atlas.v2';
+const NS_LEGACY = 'chinaos.atlas.v1';
+
+/** GY-03…28 全部已上线人群切片 */
+const DEFAULT_LIT = Object.entries(GY_MODULES)
+  .filter(([, m]) => m.group === 'population' && m.id !== 'renqunTupu')
+  .map(([num]) => `GY-${num}`)
+  .sort();
+
+const TOTAL = DEFAULT_LIT.length;
 
 /** @param {HTMLElement | null} root @param {{ tab?: string }} deepLink */
 function initRenqunTupuCore(root, deepLink = {}) {
@@ -31,7 +39,10 @@ function initRenqunTupuCore(root, deepLink = {}) {
   const load = () => {
     try {
       const v = localStorage.getItem(NS);
-      return v ? JSON.parse(v) : DEFAULT_LIT.slice();
+      if (v) return JSON.parse(v);
+      const legacy = localStorage.getItem(NS_LEGACY);
+      if (legacy) return JSON.parse(legacy);
+      return DEFAULT_LIT.slice();
     } catch {
       return memStore || DEFAULT_LIT.slice();
     }
@@ -58,12 +69,15 @@ function initRenqunTupuCore(root, deepLink = {}) {
     const doneN = root.querySelector('#at-done-n');
     if (doneN) doneN.textContent = String(n);
     const todoN = root.querySelector('#at-todo-n');
-    if (todoN) todoN.textContent = String(TOTAL - n);
+    if (todoN) todoN.textContent = String(Math.max(0, TOTAL - n));
   };
 
-  const renderSlices = () => {
+  const renderLitState = () => {
     root.querySelectorAll('.at-slice').forEach((s) => {
       s.classList.toggle('is-lit', isLit(s.dataset.code));
+    });
+    root.querySelectorAll('.at-axis-node[data-code]').forEach((n) => {
+      n.classList.toggle('lit', isLit(n.dataset.code));
     });
   };
 
@@ -72,25 +86,59 @@ function initRenqunTupuCore(root, deepLink = {}) {
     if (i === -1) lit.push(code);
     else lit.splice(i, 1);
     save(lit);
-    renderSlices();
+    renderLitState();
     renderRing();
+  };
+
+  const navigateSlice = (route) => {
+    if (!route) return;
+    window.location.hash = route.startsWith('#') ? route : `#${route}`;
   };
 
   root.querySelectorAll('.at-slice').forEach((s) => {
     const code = s.dataset.code;
-    const onClick = () => toggle(code);
+    const route = s.dataset.route;
+
+    const onDotClick = (e) => {
+      e.stopPropagation();
+      toggle(code);
+    };
+    const dot = s.querySelector('.at-slice-dot');
+    if (dot) {
+      dot.addEventListener('click', onDotClick);
+      cleanups.push(() => dot.removeEventListener('click', onDotClick));
+    }
+
+    const onSliceClick = (e) => {
+      if (e.target.closest('.at-slice-dot')) return;
+      if (e.shiftKey || e.metaKey || e.ctrlKey) {
+        toggle(code);
+        return;
+      }
+      if (route) navigateSlice(route);
+      else toggle(code);
+    };
     const onKey = (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        toggle(code);
+        if (e.shiftKey) toggle(code);
+        else if (route) navigateSlice(route);
+        else toggle(code);
       }
     };
-    s.addEventListener('click', onClick);
+    s.addEventListener('click', onSliceClick);
     s.addEventListener('keydown', onKey);
     cleanups.push(() => {
-      s.removeEventListener('click', onClick);
+      s.removeEventListener('click', onSliceClick);
       s.removeEventListener('keydown', onKey);
     });
+  });
+
+  root.querySelectorAll('.at-axis-node[data-route]').forEach((node) => {
+    const onClick = () => navigateSlice(node.dataset.route);
+    node.addEventListener('click', onClick);
+    node.style.cursor = 'pointer';
+    cleanups.push(() => node.removeEventListener('click', onClick));
   });
 
   const resetBtn = root.querySelector('#at-reset');
@@ -98,14 +146,14 @@ function initRenqunTupuCore(root, deepLink = {}) {
     const onReset = () => {
       lit = DEFAULT_LIT.slice();
       save(lit);
-      renderSlices();
+      renderLitState();
       renderRing();
     };
     resetBtn.addEventListener('click', onReset);
     cleanups.push(() => resetBtn.removeEventListener('click', onReset));
   }
 
-  renderSlices();
+  renderLitState();
   renderRing();
   activatePanel(renqunTupuPanelId(deepLink.tab));
 

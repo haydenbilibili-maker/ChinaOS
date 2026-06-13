@@ -49,7 +49,8 @@
 #at-app .at-slice.is-extremal::before { background: var(--jin); width: 4px; }
 #at-app .at-slice .at-slice-code { font-family: var(--mono); font-size: 11px; color: var(--xuanzhi-mute); display: flex; justify-content: space-between; align-items: center; }
 #at-app .at-slice.is-lit .at-slice-code { color: var(--qing); }
-#at-app .at-slice .at-slice-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--xuanzhi-mute); }
+#at-app .at-slice .at-slice-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--xuanzhi-mute); cursor: pointer; }
+#at-app .at-slice .at-slice-dot:hover { background: var(--jin); }
 #at-app .at-slice.is-lit .at-slice-dot { background: var(--qing); box-shadow: 0 0 0 3px rgba(94, 140, 122, .2); }
 #at-app .at-slice h4 { font-size: 14px; font-weight: 600; margin: 7px 0 5px; letter-spacing: .02em; }
 #at-app .at-slice p { font-size: 11.5px; color: var(--xuanzhi-dim); line-height: 1.6; }
