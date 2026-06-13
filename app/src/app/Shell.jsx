@@ -79,6 +79,38 @@ function BreadcrumbNav({ items }) {
   );
 }
 
+function SidebarTreeControls({ onExpandAll, onCollapseAll }) {
+  return (
+    <div
+      className="os-sidebar-tree-controls px-3 py-2 shrink-0 border-b"
+      style={{ borderColor: 'var(--border-subtle)' }}
+    >
+      <div className="flex items-center gap-1">
+        <button
+          type="button"
+          className="os-sidebar-tree-btn os-btn os-btn-ghost os-btn-sm flex-1"
+          onClick={onExpandAll}
+          aria-label="一键展开全部分组"
+          title="展开全部分组"
+        >
+          <Lucide.UnfoldVertical size={13} />
+          <span>一键展开</span>
+        </button>
+        <button
+          type="button"
+          className="os-sidebar-tree-btn os-btn os-btn-ghost os-btn-sm flex-1"
+          onClick={onCollapseAll}
+          aria-label="一键缩回全部分组"
+          title="缩回全部分组"
+        >
+          <Lucide.FoldVertical size={13} />
+          <span>一键缩回</span>
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function GroupBlock({ group, expanded, onToggle, onNavigate, alwaysShowModules }) {
   const mods = modulesByGroup(group.id);
   if (!mods.length) return null;
@@ -161,12 +193,33 @@ export default function Shell() {
   const [theme, setThemeState] = useState(() => getTheme());
   const [expandedGroups, setExpandedGroups] = useState(() => loadExpandedGroups());
 
+  const collapsibleGroupIds = useMemo(
+    () => GROUPS.filter((g) => g.id !== HOME_GROUP_ID && modulesByGroup(g.id).length > 0).map((g) => g.id),
+    [],
+  );
+
   const toggleGroup = useCallback((groupId) => {
     if (groupId === HOME_GROUP_ID) return;
     setExpandedGroups((prev) => {
       const next = new Set(prev);
       if (next.has(groupId)) next.delete(groupId);
       else next.add(groupId);
+      persistExpandedGroups(next);
+      return next;
+    });
+  }, []);
+
+  const expandAllGroups = useCallback(() => {
+    setExpandedGroups(() => {
+      const next = new Set(collapsibleGroupIds);
+      persistExpandedGroups(next);
+      return next;
+    });
+  }, [collapsibleGroupIds]);
+
+  const collapseAllGroups = useCallback(() => {
+    setExpandedGroups(() => {
+      const next = new Set();
       persistExpandedGroups(next);
       return next;
     });
@@ -272,6 +325,7 @@ export default function Shell() {
             <Lucide.X size={16} />
           </button>
         </div>
+        <SidebarTreeControls onExpandAll={expandAllGroups} onCollapseAll={collapseAllGroups} />
         <div className="flex-1 overflow-y-auto py-4 min-h-0">
           {GROUPS.map((g) => (
             <GroupBlock
