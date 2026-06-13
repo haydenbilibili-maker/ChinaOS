@@ -23,7 +23,7 @@ function mergeTags(...lists) {
 
 function isThinBio(bio) {
   if (!bio) return true;
-  if (bio.length < 36) return true;
+  if (bio.length < 80) return true;
   return PLACEHOLDER_RE.test(bio);
 }
 
@@ -206,15 +206,21 @@ function businessBio(r) {
 }
 
 function businessTimeline(r) {
-  const events = [];
-  if (r.company && r.title) {
-    events.push({ from: '', to: '', desc: `现任${r.company}${r.title}` });
+  const events = [...(r.keyEvents || r.career || [])];
+  if (r.company && r.title && !events.some((e) => (e.desc || '').includes(r.company))) {
+    events.unshift({ from: '', to: '', desc: `现任${r.company}${r.title}` });
   }
-  if (r.achievements) {
+  if (r.achievements && !events.some((e) => (e.desc || '').includes(r.achievements.slice(0, 12)))) {
     events.push({ from: '', to: '', desc: r.achievements });
   }
-  if (r.honors && r.honors !== '—') {
+  if (r.honors && r.honors !== '—' && !events.some((e) => (e.desc || '').includes('荣誉'))) {
     events.push({ from: '', to: '', desc: `荣誉：${r.honors}` });
+  }
+  if (r.background && events.length < 3) {
+    events.push({ from: '', to: '', desc: `背景：${r.background.slice(0, 72)}${r.background.length > 72 ? '…' : ''}` });
+  }
+  if (r.industry && events.length < 2) {
+    events.push({ from: '', to: '', desc: `${r.industry}赛道公开节点` });
   }
   return events.length >= 2 ? events : null;
 }
@@ -242,25 +248,87 @@ function overseasTimeline(r) {
   return events.length >= 2 ? events : null;
 }
 
+const TW_PARTY_LABEL = {
+  DPP: '民进党', KMT: '国民党', TPP: '台湾民众党', PFP: '亲民党', NPP: '时代力量',
+};
+
 function taiwanBio(r) {
+  const party = r.party && (TW_PARTY_LABEL?.[r.party] || r.party);
+  const region = r.region === 'hk' ? '香港' : r.region === 'mo' ? '澳门' : '台湾';
+  const events = r.keyEvents || r.career || [];
+  const careerNote = events.length
+    ? `公开履历含${events.length}个节点，最新：${events[0]?.desc || r.role || ''}`
+    : (r.role ? `现任公开职务：${r.role}` : '');
   return [
-    r.party && `${r.party}籍`,
+    party && `${party}籍`,
+    region && `${region}政治人物`,
     r.role && `公开职务：${r.role}`,
     r.term && `任期：${r.term}`,
     r.status && `状态：${r.status}`,
-    '职务信息以台湾当局公开选举/任命结果为准；两岸叙事存在立场差异。',
+    careerNote,
+    '职务信息以当地公开选举/任命结果为准；两岸叙事存在立场差异。',
   ].filter(Boolean).join('。');
 }
 
+function taiwanTimeline(r) {
+  const events = [...(r.keyEvents || r.career || [])];
+  const termStart = yearOf(r.term) || (r.term || '').match(/(\d{4})/)?.[1];
+  if (termStart && r.role && !events.some((e) => e.from === termStart)) {
+    events.unshift({ from: termStart, to: '', desc: `任${r.role}（${r.term || termStart}）` });
+  } else if (r.role && !events.length) {
+    events.push({ from: '', to: '', desc: `现任公开职务：${r.role}` });
+  }
+  const party = r.party && (TW_PARTY_LABEL[r.party] || r.party);
+  if (party && !events.some((e) => (e.desc || '').includes(party))) {
+    events.push({ from: '', to: termStart || '', desc: `${party}籍政治人物` });
+  }
+  if (r.status && events.length < 3) {
+    events.push({ from: '', to: '', desc: `状态：${r.status}` });
+  }
+  if (r.bio && events.length < 2) {
+    events.push({ from: '', to: '', desc: r.bio.slice(0, 80) });
+  }
+  return events.length >= 2 ? events : null;
+}
+
 function dissidentBio(r) {
+  const events = r.keyEvents || r.career || [];
+  const recordNote = events.length
+    ? `公开记录含${events.length}个关键节点，最新：${events[0]?.desc || r.knownFor || ''}`
+    : (r.knownFor ? `公开关联：${r.knownFor}` : '');
   return [
     r.field && `${r.field}领域`,
+    r.subCategory && `类型：${r.subCategory}`,
+    r.background && `背景：${r.background}`,
+    r.knownFor && `公开标识：${r.knownFor}`,
     r.status && `现状：${r.status}`,
     r.location && `所在地：${r.location}`,
-    r.subCategory && `类型：${r.subCategory}`,
-    r.notes || r.background,
+    recordNote,
+    r.notes,
     '案件与言论记录以公开法律文书及多方报道交叉核对；叙事存在阵营化差异。',
   ].filter(Boolean).join('。');
+}
+
+function dissidentTimeline(r) {
+  const events = [...(r.keyEvents || r.career || [])];
+  if (r.knownFor && !events.some((e) => (e.desc || '').includes(r.knownFor.slice(0, 8)))) {
+    events.unshift({ from: '', to: '', desc: `公开关联：${r.knownFor}` });
+  }
+  if (r.background && events.length < 3) {
+    events.push({ from: '', to: '', desc: `背景：${r.background}` });
+  }
+  const statusYear = yearOf(r.year || r.announcementDate);
+  if (r.status) {
+    events.push({
+      from: statusYear || '',
+      to: '',
+      desc: `现状：${r.status}${r.location ? `（${r.location}）` : ''}`,
+    });
+  }
+  if (r.field && events.length < 2) {
+    events.push({ from: '', to: '', desc: `${r.field}领域公开记录` });
+  }
+  return events.length >= 2 ? events : null;
 }
 
 function anticorruptionBio(r) {
@@ -358,10 +426,12 @@ const BUILDERS = {
   }),
   taiwan: (r) => ({
     bio: isThinBio(r.bio) ? taiwanBio(r) : undefined,
+    keyEvents: isThinTimeline(r.keyEvents || r.career) ? taiwanTimeline(r) : undefined,
     tags: mergeTags(r.tags, r.party, r.role, r.region),
   }),
   dissident: (r) => ({
     bio: isThinBio(r.bio) ? dissidentBio(r) : undefined,
+    keyEvents: isThinTimeline(r.keyEvents || r.career) ? dissidentTimeline(r) : undefined,
     tags: mergeTags(r.tags, r.category, r.subCategory, r.field, r.status),
     publicRecordNote: r.publicRecordNote || '公开记录存在阵营化叙事差异，以法律文书与多方报道交叉核对',
   }),

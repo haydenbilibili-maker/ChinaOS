@@ -3,7 +3,7 @@ corpusSource: official
 corpusTier: official
 docId: law-cybersecurity
 sourceUrl: https://flk.npc.gov.cn/detail.html?021e7d7684474107b8f3febbb1c4f8b5
-fetchedAt: 2026-06-12
+fetchedAt: 2026-06-13
 bbbs: 021e7d7684474107b8f3febbb1c4f8b5
 ---
 
@@ -515,6 +515,6 @@ bbbs: 021e7d7684474107b8f3febbb1c4f8b5
 
 ---
 
-*来源：[国家法律法规数据库](https://flk.npc.gov.cn/detail.html?021e7d7684474107b8f3febbb1c4f8b5) · 抓取日期 2026-06-12 · 官方法律电子文本。*
+*来源：[国家法律法规数据库](https://flk.npc.gov.cn/detail.html?021e7d7684474107b8f3febbb1c4f8b5) · 抓取日期 2026-06-13 · 官方法律电子文本。*
 
 > **免责声明**：本文件仅供研究学习，不构成法律意见；引用请以官方公布文本为准。

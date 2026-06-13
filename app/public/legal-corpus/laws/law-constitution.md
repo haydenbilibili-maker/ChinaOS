@@ -3,15 +3,13 @@ corpusSource: official
 corpusTier: official
 docId: law-constitution
 sourceUrl: https://flk.npc.gov.cn/detail.html?2c909fdd678bf17901678bf5a483004b
-fetchedAt: 2026-06-12
+fetchedAt: 2026-06-13
 bbbs: 2c909fdd678bf17901678bf5a483004b
 ---
 
 # 中华人民共和国宪法
 
 > 2018-03-11 · 全国人民代表大会 · 施行 2018-03-11
-
-中华人民共和国宪法
 
 （1982年12月4日第五届全国人民代表大会第五次会议通过　1982年12月4日全国人民代表大会公告公布施行
 
@@ -1117,6 +1115,6 @@ bbbs: 2c909fdd678bf17901678bf5a483004b
 
 ---
 
-*来源：[国家法律法规数据库](https://flk.npc.gov.cn/detail.html?2c909fdd678bf17901678bf5a483004b) · 抓取日期 2026-06-12 · 官方法律电子文本。*
+*来源：[国家法律法规数据库](https://flk.npc.gov.cn/detail.html?2c909fdd678bf17901678bf5a483004b) · 抓取日期 2026-06-13 · 官方法律电子文本。*
 
 > **免责声明**：本文件仅供研究学习，不构成法律意见；引用请以官方公布文本为准。

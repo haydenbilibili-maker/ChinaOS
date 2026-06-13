@@ -3,15 +3,13 @@ corpusSource: official
 corpusTier: official
 docId: law-enterprise-bankruptcy
 sourceUrl: https://flk.npc.gov.cn/detail.html?2c909fdd678bf17901678bf63c7c0343
-fetchedAt: 2026-06-12
+fetchedAt: 2026-06-13
 bbbs: 2c909fdd678bf17901678bf63c7c0343
 ---
 
 # 中华人民共和国企业破产法
 
 > 2006-08-27 · 全国人民代表大会常务委员会 · 施行 2007-06-01
-
-中华人民共和国企业破产法
 
 （2006年8月27日第十届全国人民代表大会常务委员会第二十三次会议通过）
 
@@ -1095,6 +1093,6 @@ bbbs: 2c909fdd678bf17901678bf63c7c0343
 
 ---
 
-*来源：[国家法律法规数据库](https://flk.npc.gov.cn/detail.html?2c909fdd678bf17901678bf63c7c0343) · 抓取日期 2026-06-12 · 官方法律电子文本。*
+*来源：[国家法律法规数据库](https://flk.npc.gov.cn/detail.html?2c909fdd678bf17901678bf63c7c0343) · 抓取日期 2026-06-13 · 官方法律电子文本。*
 
 > **免责声明**：本文件仅供研究学习，不构成法律意见；引用请以官方公布文本为准。

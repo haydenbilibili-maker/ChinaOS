@@ -2,7 +2,7 @@
 corpusSource: structured
 corpusTier: extended
 docId: reg-eco-compensation
-enrichedAt: 2026-06-12
+enrichedAt: 2026-06-13
 ---
 
 # 生态保护补偿条例

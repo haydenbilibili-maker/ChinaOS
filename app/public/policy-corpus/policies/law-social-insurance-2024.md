@@ -2,7 +2,7 @@
 corpusSource: structured
 corpusTier: extended
 docId: law-social-insurance-2024
-enrichedAt: 2026-06-12
+enrichedAt: 2026-06-13
 ---
 
 # 中华人民共和国社会保险法（修正）

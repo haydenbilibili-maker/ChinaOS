@@ -2,7 +2,7 @@
 corpusSource: structured
 corpusTier: extended
 docId: law-civil-2024
-enrichedAt: 2026-06-12
+enrichedAt: 2026-06-13
 ---
 
 # 关于适用《中华人民共和国民法典》合同编通则若干问题的解释

@@ -3,15 +3,13 @@ corpusSource: official
 corpusTier: official
 docId: law-hk-security
 sourceUrl: https://flk.npc.gov.cn/detail.html?ff80808172b5f24f0173094174de251e
-fetchedAt: 2026-06-12
+fetchedAt: 2026-06-13
 bbbs: ff80808172b5f24f0173094174de251e
 ---
 
 # 中华人民共和国香港特别行政区维护国家安全法
 
 > 2020-06-30 · 全国人民代表大会常务委员会 · 施行 2020-06-30
-
-中华人民共和国香港特别行政区维护国家安全法
 
 （2020年6月30日第十三届全国人民代表大会常务委员会第二十次会议通过）
 
@@ -537,6 +535,6 @@ bbbs: ff80808172b5f24f0173094174de251e
 
 ---
 
-*来源：[国家法律法规数据库](https://flk.npc.gov.cn/detail.html?ff80808172b5f24f0173094174de251e) · 抓取日期 2026-06-12 · 官方法律电子文本。*
+*来源：[国家法律法规数据库](https://flk.npc.gov.cn/detail.html?ff80808172b5f24f0173094174de251e) · 抓取日期 2026-06-13 · 官方法律电子文本。*
 
 > **免责声明**：本文件仅供研究学习，不构成法律意见；引用请以官方公布文本为准。

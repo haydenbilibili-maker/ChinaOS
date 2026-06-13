@@ -3,7 +3,7 @@ corpusSource: official
 corpusTier: official
 docId: law-private-2025
 sourceUrl: https://flk.npc.gov.cn/detail.html?ff8081819667441b0196867ec42b2b7a
-fetchedAt: 2026-06-12
+fetchedAt: 2026-06-13
 bbbs: ff8081819667441b0196867ec42b2b7a
 ---
 
@@ -469,6 +469,6 @@ bbbs: ff8081819667441b0196867ec42b2b7a
 
 ---
 
-*来源：[国家法律法规数据库](https://flk.npc.gov.cn/detail.html?ff8081819667441b0196867ec42b2b7a) · 抓取日期 2026-06-12 · 官方法律电子文本。*
+*来源：[国家法律法规数据库](https://flk.npc.gov.cn/detail.html?ff8081819667441b0196867ec42b2b7a) · 抓取日期 2026-06-13 · 官方法律电子文本。*
 
 > **免责声明**：本文件仅供研究学习，不构成法律意见；引用请以官方公布文本为准。

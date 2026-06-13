@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-12T15:22:27Z",
+  "generatedAt": "2026-06-13T04:11:01Z",
   "baseUrl": "/policy-corpus",
   "totalEntries": 241,
   "corpusCount": 241,
@@ -124,7 +124,7 @@
       "year": 2022,
       "category": "",
       "corpusFile": "policies/cewc-2022.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "cewc-2023": {
       "id": "cewc-2023",
@@ -135,7 +135,7 @@
       "year": 2023,
       "category": "",
       "corpusFile": "policies/cewc-2023.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "cewc-2024": {
       "id": "cewc-2024",
@@ -168,7 +168,7 @@
       "year": 2016,
       "category": "",
       "corpusFile": "policies/fyp-13.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "fyp-14": {
       "id": "fyp-14",
@@ -212,7 +212,7 @@
       "year": 2025,
       "category": "十五五",
       "corpusFile": "policies/plenum-20-4.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "plenum-19-5": {
       "id": "plenum-19-5",
@@ -245,7 +245,7 @@
       "year": 2022,
       "category": "法治",
       "corpusFile": "policies/plenum-20-2.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-ai-2024": {
       "id": "gwy-ai-2024",
@@ -267,7 +267,7 @@
       "year": 2024,
       "category": "科技",
       "corpusFile": "policies/gwy-future-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-digital-2023": {
       "id": "gwy-digital-2023",
@@ -278,7 +278,7 @@
       "year": 2023,
       "category": "科技",
       "corpusFile": "policies/gwy-digital-2023.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-consume-2024": {
       "id": "gwy-consume-2024",
@@ -289,7 +289,7 @@
       "year": 2024,
       "category": "社会",
       "corpusFile": "policies/gwy-consume-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-tradein-2024": {
       "id": "gwy-tradein-2024",
@@ -300,7 +300,7 @@
       "year": 2024,
       "category": "产业",
       "corpusFile": "policies/gwy-tradein-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-semicon-2024": {
       "id": "gwy-semicon-2024",
@@ -322,7 +322,7 @@
       "year": 2023,
       "category": "产业",
       "corpusFile": "policies/gwy-nev-2023.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-rural-2024": {
       "id": "gwy-rural-2024",
@@ -366,7 +366,7 @@
       "year": 2024,
       "category": "开放",
       "corpusFile": "policies/gwy-open-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-carbon-2024": {
       "id": "gwy-carbon-2024",
@@ -377,7 +377,7 @@
       "year": 2024,
       "category": "产业",
       "corpusFile": "policies/gwy-carbon-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-market-2024": {
       "id": "gwy-market-2024",
@@ -388,7 +388,7 @@
       "year": 2024,
       "category": "产业",
       "corpusFile": "policies/gwy-market-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-lowalt-2024": {
       "id": "gwy-lowalt-2024",
@@ -399,7 +399,7 @@
       "year": 2024,
       "category": "产业",
       "corpusFile": "policies/gwy-lowalt-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-data-2024": {
       "id": "gwy-data-2024",
@@ -410,7 +410,7 @@
       "year": 2024,
       "category": "科技",
       "corpusFile": "policies/gwy-data-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-housing-2024": {
       "id": "gwy-housing-2024",
@@ -421,7 +421,7 @@
       "year": 2024,
       "category": "金融",
       "corpusFile": "policies/gwy-housing-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-capital-2024": {
       "id": "gwy-capital-2024",
@@ -432,7 +432,7 @@
       "year": 2024,
       "category": "金融",
       "corpusFile": "policies/gwy-capital-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-manufacturing-2024": {
       "id": "gwy-manufacturing-2024",
@@ -443,7 +443,7 @@
       "year": 2024,
       "category": "产业",
       "corpusFile": "policies/gwy-manufacturing-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "miit-ai-2025": {
       "id": "miit-ai-2025",
@@ -696,7 +696,7 @@
       "year": 2024,
       "category": "产业",
       "corpusFile": "policies/miit-steel-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "ndrc-hydrogen-2024": {
       "id": "ndrc-hydrogen-2024",
@@ -718,7 +718,7 @@
       "year": 2024,
       "category": "产业",
       "corpusFile": "policies/mara-food-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "miit-textile-2024": {
       "id": "miit-textile-2024",
@@ -729,7 +729,7 @@
       "year": 2024,
       "category": "产业",
       "corpusFile": "policies/miit-textile-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "ndrc-logistics-2024": {
       "id": "ndrc-logistics-2024",
@@ -740,7 +740,7 @@
       "year": 2024,
       "category": "产业",
       "corpusFile": "policies/ndrc-logistics-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "moe-edu-2024": {
       "id": "moe-edu-2024",
@@ -751,7 +751,7 @@
       "year": 2024,
       "category": "社会",
       "corpusFile": "policies/moe-edu-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "moe-ai-edu-2025": {
       "id": "moe-ai-edu-2025",
@@ -762,7 +762,7 @@
       "year": 2025,
       "category": "社会",
       "corpusFile": "policies/moe-ai-edu-2025.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "nhc-health-2024": {
       "id": "nhc-health-2024",
@@ -795,7 +795,7 @@
       "year": 2024,
       "category": "社会",
       "corpusFile": "policies/mohrss-employ-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "mohrss-pension-2024": {
       "id": "mohrss-pension-2024",
@@ -817,7 +817,7 @@
       "year": 2024,
       "category": "社会",
       "corpusFile": "policies/moe-univ-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "nhc-tcm-2024": {
       "id": "nhc-tcm-2024",
@@ -839,7 +839,7 @@
       "year": 2024,
       "category": "社会",
       "corpusFile": "policies/mca-social-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "ndrc-fyp15-2026": {
       "id": "ndrc-fyp15-2026",
@@ -850,7 +850,7 @@
       "year": 2026,
       "category": "十五五",
       "corpusFile": "policies/ndrc-fyp15-2026.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "most-fyp15-2026": {
       "id": "most-fyp15-2026",
@@ -861,7 +861,7 @@
       "year": 2026,
       "category": "十五五",
       "corpusFile": "policies/most-fyp15-2026.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "miit-fyp15-2026": {
       "id": "miit-fyp15-2026",
@@ -872,7 +872,7 @@
       "year": 2026,
       "category": "十五五",
       "corpusFile": "policies/miit-fyp15-2026.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "mof-fyp15-2026": {
       "id": "mof-fyp15-2026",
@@ -883,7 +883,7 @@
       "year": 2026,
       "category": "十五五",
       "corpusFile": "policies/mof-fyp15-2026.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "ndrc-consume-2026": {
       "id": "ndrc-consume-2026",
@@ -894,7 +894,7 @@
       "year": 2026,
       "category": "十五五",
       "corpusFile": "policies/ndrc-consume-2026.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "law-private-2025": {
       "id": "law-private-2025",
@@ -916,7 +916,7 @@
       "year": 2024,
       "category": "法治",
       "corpusFile": "policies/law-energy-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "law-stats-2024": {
       "id": "law-stats-2024",
@@ -938,7 +938,7 @@
       "year": 2024,
       "category": "法治",
       "corpusFile": "policies/law-edu-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "law-tariff-2024": {
       "id": "law-tariff-2024",
@@ -960,7 +960,7 @@
       "year": 2024,
       "category": "法治",
       "corpusFile": "policies/law-patent-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "law-crypto-2024": {
       "id": "law-crypto-2024",
@@ -971,7 +971,7 @@
       "year": 2024,
       "category": "法治",
       "corpusFile": "policies/law-crypto-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "law-company-2024": {
       "id": "law-company-2024",
@@ -982,7 +982,7 @@
       "year": 2024,
       "category": "法治",
       "corpusFile": "policies/law-company-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "law-civil-2024": {
       "id": "law-civil-2024",
@@ -1004,7 +1004,7 @@
       "year": 2024,
       "category": "法治",
       "corpusFile": "policies/law-cyber-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "law-anti-monopoly-2024": {
       "id": "law-anti-monopoly-2024",
@@ -1015,7 +1015,7 @@
       "year": 2024,
       "category": "法治",
       "corpusFile": "policies/law-anti-monopoly-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "law-state-secrets-2024": {
       "id": "law-state-secrets-2024",
@@ -1026,7 +1026,7 @@
       "year": 2024,
       "category": "法治",
       "corpusFile": "policies/law-state-secrets-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "law-military-2024": {
       "id": "law-military-2024",
@@ -1037,7 +1037,7 @@
       "year": 2024,
       "category": "法治",
       "corpusFile": "policies/law-military-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "law-value-added-2024": {
       "id": "law-value-added-2024",
@@ -1092,7 +1092,7 @@
       "year": 2024,
       "category": "区域",
       "corpusFile": "policies/region-gba-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "region-ne-2024": {
       "id": "region-ne-2024",
@@ -1367,7 +1367,7 @@
       "year": 2024,
       "category": "产业",
       "corpusFile": "policies/local-js-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-supply-2024": {
       "id": "gwy-supply-2024",
@@ -1378,7 +1378,7 @@
       "year": 2024,
       "category": "产业",
       "corpusFile": "policies/gwy-supply-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-foreign-2024": {
       "id": "gwy-foreign-2024",
@@ -1389,7 +1389,7 @@
       "year": 2024,
       "category": "开放",
       "corpusFile": "policies/gwy-foreign-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-bri-2024": {
       "id": "gwy-bri-2024",
@@ -1400,7 +1400,7 @@
       "year": 2024,
       "category": "开放",
       "corpusFile": "policies/gwy-bri-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-ftz-2025": {
       "id": "gwy-ftz-2025",
@@ -1411,7 +1411,7 @@
       "year": 2025,
       "category": "开放",
       "corpusFile": "policies/gwy-ftz-2025.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-food-2024": {
       "id": "gwy-food-2024",
@@ -1422,7 +1422,7 @@
       "year": 2024,
       "category": "安全",
       "corpusFile": "policies/gwy-food-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-energy-sec-2024": {
       "id": "gwy-energy-sec-2024",
@@ -1433,7 +1433,7 @@
       "year": 2024,
       "category": "安全",
       "corpusFile": "policies/gwy-energy-sec-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-chain-2024": {
       "id": "gwy-chain-2024",
@@ -1444,7 +1444,7 @@
       "year": 2024,
       "category": "安全",
       "corpusFile": "policies/gwy-chain-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-cyber-2024": {
       "id": "gwy-cyber-2024",
@@ -1455,7 +1455,7 @@
       "year": 2024,
       "category": "安全",
       "corpusFile": "policies/gwy-cyber-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-aero-2025": {
       "id": "gwy-aero-2025",
@@ -1466,7 +1466,7 @@
       "year": 2025,
       "category": "产业",
       "corpusFile": "policies/gwy-aero-2025.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-bio-2025": {
       "id": "gwy-bio-2025",
@@ -1477,7 +1477,7 @@
       "year": 2025,
       "category": "产业",
       "corpusFile": "policies/gwy-bio-2025.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-auto-2025": {
       "id": "gwy-auto-2025",
@@ -1488,7 +1488,7 @@
       "year": 2025,
       "category": "产业",
       "corpusFile": "policies/gwy-auto-2025.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "gwy-insurance-2025": {
       "id": "gwy-insurance-2025",
@@ -1499,7 +1499,7 @@
       "year": 2025,
       "category": "金融",
       "corpusFile": "policies/gwy-insurance-2025.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "ndrc-data-elem-2024": {
       "id": "ndrc-data-elem-2024",
@@ -1752,7 +1752,7 @@
       "year": 2024,
       "category": "产业",
       "corpusFile": "policies/miit-nev-battery-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "miit-chip-export-2024": {
       "id": "miit-chip-export-2024",
@@ -1829,7 +1829,7 @@
       "year": 2024,
       "category": "产业",
       "corpusFile": "policies/miit-chemical-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "mara-machinery-2024": {
       "id": "mara-machinery-2024",
@@ -1851,7 +1851,7 @@
       "year": 2024,
       "category": "产业",
       "corpusFile": "policies/miit-rare-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "moe-shuangjian-2024": {
       "id": "moe-shuangjian-2024",
@@ -1862,7 +1862,7 @@
       "year": 2024,
       "category": "社会",
       "corpusFile": "policies/moe-shuangjian-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "moe-voc-2025": {
       "id": "moe-voc-2025",
@@ -1873,7 +1873,7 @@
       "year": 2025,
       "category": "社会",
       "corpusFile": "policies/moe-voc-2025.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "nhc-insurance-2024": {
       "id": "nhc-insurance-2024",
@@ -1884,7 +1884,7 @@
       "year": 2024,
       "category": "社会",
       "corpusFile": "policies/nhc-insurance-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "nhc-fertility-2025": {
       "id": "nhc-fertility-2025",
@@ -1895,7 +1895,7 @@
       "year": 2025,
       "category": "社会",
       "corpusFile": "policies/nhc-fertility-2025.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "mca-elderly-2025": {
       "id": "mca-elderly-2025",
@@ -1939,7 +1939,7 @@
       "year": 2024,
       "category": "社会",
       "corpusFile": "policies/nhc-primary-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "moe-stem-2025": {
       "id": "moe-stem-2025",
@@ -1961,7 +1961,7 @@
       "year": 2026,
       "category": "十五五",
       "corpusFile": "policies/nea-fyp15-2026.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "mot-fyp15-2026": {
       "id": "mot-fyp15-2026",
@@ -1972,7 +1972,7 @@
       "year": 2026,
       "category": "十五五",
       "corpusFile": "policies/mot-fyp15-2026.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "mara-fyp15-2026": {
       "id": "mara-fyp15-2026",
@@ -1983,7 +1983,7 @@
       "year": 2026,
       "category": "十五五",
       "corpusFile": "policies/mara-fyp15-2026.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "mee-fyp15-2026": {
       "id": "mee-fyp15-2026",
@@ -1994,7 +1994,7 @@
       "year": 2026,
       "category": "十五五",
       "corpusFile": "policies/mee-fyp15-2026.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "mofcom-fyp15-2026": {
       "id": "mofcom-fyp15-2026",
@@ -2005,7 +2005,7 @@
       "year": 2026,
       "category": "十五五",
       "corpusFile": "policies/mofcom-fyp15-2026.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "ndrc-digital-fyp15-2026": {
       "id": "ndrc-digital-fyp15-2026",
@@ -2027,7 +2027,7 @@
       "year": 2026,
       "category": "十五五",
       "corpusFile": "policies/sastind-fyp15-2026.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "mofcom-rcep-2024": {
       "id": "mofcom-rcep-2024",
@@ -2038,7 +2038,7 @@
       "year": 2024,
       "category": "开放",
       "corpusFile": "policies/mofcom-rcep-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "mofcom-negative-2024": {
       "id": "mofcom-negative-2024",
@@ -2060,7 +2060,7 @@
       "year": 2024,
       "category": "开放",
       "corpusFile": "policies/mofcom-export-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "safe-fdi-2024": {
       "id": "safe-fdi-2024",
@@ -2082,7 +2082,7 @@
       "year": 2024,
       "category": "开放",
       "corpusFile": "policies/gacc-fta-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "mofcom-bri-2025": {
       "id": "mofcom-bri-2025",
@@ -2137,7 +2137,7 @@
       "year": 2024,
       "category": "安全",
       "corpusFile": "policies/nea-power-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "cac-cyber-2024": {
       "id": "cac-cyber-2024",
@@ -2181,7 +2181,7 @@
       "year": 2024,
       "category": "安全",
       "corpusFile": "policies/mem-flood-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "mps-public-2024": {
       "id": "mps-public-2024",
@@ -2192,7 +2192,7 @@
       "year": 2024,
       "category": "安全",
       "corpusFile": "policies/mps-public-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "samr-food-2024": {
       "id": "samr-food-2024",
@@ -2203,7 +2203,7 @@
       "year": 2024,
       "category": "安全",
       "corpusFile": "policies/samr-food-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "mee-eco-2024": {
       "id": "mee-eco-2024",
@@ -2214,7 +2214,7 @@
       "year": 2024,
       "category": "安全",
       "corpusFile": "policies/mee-eco-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "most-biosafety-2024": {
       "id": "most-biosafety-2024",
@@ -2247,7 +2247,7 @@
       "year": 2025,
       "category": "安全",
       "corpusFile": "policies/cac-data-sec-2025.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "policy-antitrust-2024": {
       "id": "policy-antitrust-2024",
@@ -2280,7 +2280,7 @@
       "year": 2024,
       "category": "法治",
       "corpusFile": "policies/policy-judicial-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "policy-tax-2025": {
       "id": "policy-tax-2025",
@@ -2291,7 +2291,7 @@
       "year": 2025,
       "category": "法治",
       "corpusFile": "policies/policy-tax-2025.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "policy-labor-2024": {
       "id": "policy-labor-2024",
@@ -2302,7 +2302,7 @@
       "year": 2024,
       "category": "法治",
       "corpusFile": "policies/policy-labor-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "policy-esg-2024": {
       "id": "policy-esg-2024",
@@ -2313,7 +2313,7 @@
       "year": 2024,
       "category": "法治",
       "corpusFile": "policies/policy-esg-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "policy-credit-2024": {
       "id": "policy-credit-2024",
@@ -2533,7 +2533,7 @@
       "year": 2024,
       "category": "产业",
       "corpusFile": "policies/local-hn-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "local-sd-2024": {
       "id": "local-sd-2024",
@@ -2566,7 +2566,7 @@
       "year": 2024,
       "category": "社会",
       "corpusFile": "policies/local-yn-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "local-ln-2024": {
       "id": "local-ln-2024",
@@ -2577,7 +2577,7 @@
       "year": 2024,
       "category": "法治",
       "corpusFile": "policies/local-ln-2024.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "local-zj-lowalt-2025": {
       "id": "local-zj-lowalt-2025",
@@ -2588,7 +2588,7 @@
       "year": 2025,
       "category": "产业",
       "corpusFile": "policies/local-zj-lowalt-2025.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "local-gd-hk-2024": {
       "id": "local-gd-hk-2024",
@@ -2610,7 +2610,7 @@
       "year": 2025,
       "category": "产业",
       "corpusFile": "policies/local-bj-lowalt-2025.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "local-sh-chip-2024": {
       "id": "local-sh-chip-2024",
@@ -2643,7 +2643,7 @@
       "year": 2025,
       "category": "开放",
       "corpusFile": "policies/local-hainan-2025.md",
-      "corpusTier": "excerpt"
+      "corpusTier": "extended"
     },
     "local-sx-2024": {
       "id": "local-sx-2024",

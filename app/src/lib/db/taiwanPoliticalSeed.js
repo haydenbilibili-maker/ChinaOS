@@ -8,6 +8,7 @@ import {
 } from './figureTaiwanPolitical2026.js';
 import { TAIWAN_POLITICAL_EXPANSION } from './talentBulkExpansion2026.js';
 import { TAIWAN_POLITICAL_EXPANSION_2 } from './talentBulkExpansion2026_part2.js';
+import { TAIWAN_POLITICAL_EXPANSION_3 } from './talentBulkExpansion2026_part3.js';
 import { enrichTalentList } from '../talent/talentEnrich.js';
 import { FIGURE_SEED } from './figureSeed.js';
 import { DISSIDENT_2026 } from './figureDissident2026.js';
@@ -184,7 +185,7 @@ export function dedupeTaiwanPolitical(list) {
 }
 
 export function buildTaiwanPoliticalSeed() {
-  const { rows, dupeCount, rawCount } = dedupeTaiwanPolitical([...TAIWAN_POLITICAL_2026, ...TAIWAN_POLITICAL_EXPANSION, ...TAIWAN_POLITICAL_EXPANSION_2]);
+  const { rows, dupeCount, rawCount } = dedupeTaiwanPolitical([...TAIWAN_POLITICAL_2026, ...TAIWAN_POLITICAL_EXPANSION, ...TAIWAN_POLITICAL_EXPANSION_2, ...TAIWAN_POLITICAL_EXPANSION_3]);
   return {
     id: TAIWAN_POLITICAL_DATASET_ID,
     name: TAIWAN_POLITICAL_META.label,

@@ -3,15 +3,13 @@ corpusSource: official
 corpusTier: official
 docId: law-anti-monopoly
 sourceUrl: https://flk.npc.gov.cn/detail.html?ff8081818234ccb501829f46c6ac2a5a
-fetchedAt: 2026-06-12
+fetchedAt: 2026-06-13
 bbbs: ff8081818234ccb501829f46c6ac2a5a
 ---
 
 # 中华人民共和国反垄断法
 
 > 2022-06-24 · 全国人民代表大会常务委员会 · 施行 2022-08-01
-
-中华人民共和国反垄断法
 
 （2007年8月30日第十届全国人民代表大会常务委员会第二十九次会议通过　根据2022年6月24日第十三届全国人民代表大会常务委员会第三十五次会议《关于修改〈中华人民共和国反垄断法〉的决定》修正）
 
@@ -561,6 +559,6 @@ bbbs: ff8081818234ccb501829f46c6ac2a5a
 
 ---
 
-*来源：[国家法律法规数据库](https://flk.npc.gov.cn/detail.html?ff8081818234ccb501829f46c6ac2a5a) · 抓取日期 2026-06-12 · 官方法律电子文本。*
+*来源：[国家法律法规数据库](https://flk.npc.gov.cn/detail.html?ff8081818234ccb501829f46c6ac2a5a) · 抓取日期 2026-06-13 · 官方法律电子文本。*
 
 > **免责声明**：本文件仅供研究学习，不构成法律意见；引用请以官方公布文本为准。

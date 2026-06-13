@@ -1,0 +1,31 @@
+{
+  "pass": "2026-06-13",
+  "talent": {
+    "before": {
+      "total": 3989,
+      "bio_coverage_pct_40": 99.6,
+      "timeline_coverage_pct": 92.3,
+      "dissident_timeline": 79,
+      "taiwan_timeline": 65
+    },
+    "after": {
+      "total": 4037,
+      "bio_coverage_pct_80": 50.9,
+      "thin_bio_80": 1678,
+      "timeline_coverage_pct": 96.5,
+      "dissident_timeline": 174,
+      "taiwan_timeline": 161,
+      "new_entries_net": 48
+    }
+  },
+  "corpus": {
+    "before": {
+      "total": 423,
+      "avg_chars": 3491,
+      "legal_avg": 5066,
+      "policy_avg": 2302,
+      "under3500": 395
+    },
+    "after_note": "see terminal after enrich+fetch"
+  }
+}

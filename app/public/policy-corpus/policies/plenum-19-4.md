@@ -2,7 +2,7 @@
 corpusSource: structured
 corpusTier: extended
 docId: plenum-19-4
-enrichedAt: 2026-06-12
+enrichedAt: 2026-06-13
 ---
 
 # 十九届四中全会 · 坚持和完善中国特色社会主义制度推进国家治理体系和治理能力现代化

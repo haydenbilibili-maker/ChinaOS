@@ -39,12 +39,13 @@ const QUEUES = [
 function stats(rows, queue) {
   const enriched = rows.map((r) => applyTalentEnrichment(r, { queue }));
   const thin = /扩展条目|扩展种子|示意/i;
-  const withBio = enriched.filter((r) => r.bio && r.bio.length > 40 && !thin.test(r.bio)).length;
+  const withBio = enriched.filter((r) => r.bio && r.bio.length > 80 && !thin.test(r.bio)).length;
+  const thinBio = enriched.filter((r) => !r.bio || r.bio.length < 80 || thin.test(r.bio)).length;
   const withTimeline = enriched.filter((r) => (r.keyEvents || r.career || []).length >= 2).length;
   const withProv = enriched.filter((r) => r.provenance).length;
   const withTags = enriched.filter((r) => r.tags).length;
   const withVerify = enriched.filter((r) => r.verifyTier).length;
-  return { total: rows.length, withBio, withTimeline, withProv, withTags, withVerify };
+  return { total: rows.length, withBio, thinBio, withTimeline, withProv, withTags, withVerify };
 }
 
 const report = Object.fromEntries(QUEUES.map(([q, rows]) => [q, stats(rows, q)]));
@@ -65,12 +66,13 @@ def main() -> int:
     report = json.loads(proc.stdout)
     total = sum(v["total"] for v in report.values())
     bio = sum(v["withBio"] for v in report.values())
+    thin = sum(v["thinBio"] for v in report.values())
     tl = sum(v["withTimeline"] for v in report.values())
     print(f"// talent density report · {ROOT.name}")
-    print(f"// entries: {total} · bio≥40ch: {bio} · timeline≥2: {tl}")
+    print(f"// entries: {total} · bio≥80ch: {bio} · thinBio: {thin} · timeline≥2: {tl}")
     for q, s in report.items():
         print(
-            f"  {q:14} n={s['total']:4}  bio={s['withBio']:4}  timeline={s['withTimeline']:4}  "
+            f"  {q:14} n={s['total']:4}  bio={s['withBio']:4}  thin={s['thinBio']:4}  timeline={s['withTimeline']:4}  "
             f"prov={s['withProv']:4}  tags={s['withTags']:4}  verify={s['withVerify']:4}"
         )
     return 0

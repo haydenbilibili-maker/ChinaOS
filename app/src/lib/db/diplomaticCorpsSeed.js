@@ -6,6 +6,7 @@ import {
   DIPLOMATIC_CORPS_META,
   DIPLOMATIC_CORPS_COUNT,
 } from './figureDiplomaticCorps2026.js';
+import { DIPLOMATIC_CORPS_EXPANSION_3 } from './talentBulkExpansion2026_part3.js';
 import { enrichTalentList } from '../talent/talentEnrich.js';
 import { FIGURE_SEED } from './figureSeed.js';
 
@@ -76,7 +77,7 @@ export function dedupeDiplomaticCorps(list) {
 }
 
 export function buildDiplomaticCorpsSeed() {
-  const { rows, dupeCount, rawCount } = dedupeDiplomaticCorps(DIPLOMATIC_CORPS_2026);
+  const { rows, dupeCount, rawCount } = dedupeDiplomaticCorps([...DIPLOMATIC_CORPS_2026, ...DIPLOMATIC_CORPS_EXPANSION_3]);
   return {
     id: DIPLOMATIC_CORPS_DATASET_ID,
     name: DIPLOMATIC_CORPS_META.label,

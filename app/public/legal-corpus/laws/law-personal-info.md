@@ -3,7 +3,7 @@ corpusSource: official
 corpusTier: official
 docId: law-pipl
 sourceUrl: https://flk.npc.gov.cn/detail.html?ff8081817b6472a3017b656cc2040044
-fetchedAt: 2026-06-12
+fetchedAt: 2026-06-13
 bbbs: ff8081817b6472a3017b656cc2040044
 ---
 
@@ -573,6 +573,6 @@ bbbs: ff8081817b6472a3017b656cc2040044
 
 ---
 
-*来源：[国家法律法规数据库](https://flk.npc.gov.cn/detail.html?ff8081817b6472a3017b656cc2040044) · 抓取日期 2026-06-12 · 官方法律电子文本。*
+*来源：[国家法律法规数据库](https://flk.npc.gov.cn/detail.html?ff8081817b6472a3017b656cc2040044) · 抓取日期 2026-06-13 · 官方法律电子文本。*
 
 > **免责声明**：本文件仅供研究学习，不构成法律意见；引用请以官方公布文本为准。

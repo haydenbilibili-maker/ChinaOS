@@ -2,7 +2,7 @@
 corpusSource: structured
 corpusTier: extended
 docId: law-value-added-2024
-enrichedAt: 2026-06-12
+enrichedAt: 2026-06-13
 ---
 
 # 中华人民共和国增值税法

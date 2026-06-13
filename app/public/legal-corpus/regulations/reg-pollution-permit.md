@@ -2,7 +2,7 @@
 corpusSource: structured
 corpusTier: extended
 docId: reg-pollution-permit
-enrichedAt: 2026-06-12
+enrichedAt: 2026-06-13
 ---
 
 # 排污许可管理条例

@@ -3,15 +3,13 @@ corpusSource: official
 corpusTier: official
 docId: law-civil-code
 sourceUrl: https://flk.npc.gov.cn/detail.html?ff808081729d1efe01729d50b5c500bf
-fetchedAt: 2026-06-12
+fetchedAt: 2026-06-13
 bbbs: ff808081729d1efe01729d50b5c500bf
 ---
 
 # 中华人民共和国民法典
 
 > 2020-05-28 · 全国人民代表大会 · 施行 2021-01-01
-
-中华人民共和国民法典
 
 （2020年5月28日第十三届全国人民代表大会第三次会议通过）
 
@@ -7595,6 +7593,6 @@ bbbs: ff808081729d1efe01729d50b5c500bf
 
 ---
 
-*来源：[国家法律法规数据库](https://flk.npc.gov.cn/detail.html?ff808081729d1efe01729d50b5c500bf) · 抓取日期 2026-06-12 · 官方法律电子文本。*
+*来源：[国家法律法规数据库](https://flk.npc.gov.cn/detail.html?ff808081729d1efe01729d50b5c500bf) · 抓取日期 2026-06-13 · 官方法律电子文本。*
 
 > **免责声明**：本文件仅供研究学习，不构成法律意见；引用请以官方公布文本为准。

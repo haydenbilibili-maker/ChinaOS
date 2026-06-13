@@ -12,6 +12,7 @@ import { FIGURE_ORG_TIER2_2026, FIGURE_ORG_TIER2_META, FIGURE_ORG_TIER2_COUNT } 
 import { FIGURE_PREFECTURE_CITY_2026, FIGURE_PREFECTURE_CITY_META, FIGURE_PREFECTURE_CITY_COUNT } from './figurePrefectureCity2026.js';
 import { FIGURE_MILITARY_2026, FIGURE_MILITARY_META, FIGURE_MILITARY_COUNT } from './figureMilitary2026.js';
 import { FIGURE_EXPANSION_2026 } from './figureExpansion2026.js';
+import { FIGURE_MILITARY_EXPANSION_3 } from './talentBulkExpansion2026_part3.js';
 import { enrichTalentList } from '../talent/talentEnrich.js';
 
 const FIGURE_SEED_BASE = [
@@ -25,6 +26,7 @@ const FIGURE_SEED_BASE = [
   ...FIGURE_ORG_2026,
   ...FIGURE_ORG_TIER2_2026,
   ...FIGURE_MILITARY_2026,
+  ...FIGURE_MILITARY_EXPANSION_3,
   ...FIGURE_EXPANSION_2026,
 ];
 
