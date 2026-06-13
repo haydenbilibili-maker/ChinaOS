@@ -1,4 +1,5 @@
 import { lazy } from 'react';
+import { POPULATION_SLICE_COUNT } from '../lib/gy/registry.js';
 
 // ============================================================================
 // 模块注册表 · China OS 单一数据源
@@ -278,7 +279,7 @@ export const MODULES = [
     path: '/modules/renqun-tupu',
     group: 'population',
     title: '人群画像总图谱',
-    subtitle: '34 片切片 · 八轴全光谱 · 母索引',
+    subtitle: `${POPULATION_SLICE_COUNT} 片切片 · 八轴全光谱 · 母索引`,
     icon: 'Network',
     component: lazy(() => import('../modules/renqun-tupu/Page.jsx')),
   },

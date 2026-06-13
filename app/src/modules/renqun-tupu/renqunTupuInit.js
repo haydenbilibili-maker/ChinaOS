@@ -1,5 +1,6 @@
 /** 人群画像总图谱 GY-00 · 页签 / 切片点亮 / 模块跳转（命名空间 chinaos.atlas.v2） */
-import { GY_MODULES } from '../../lib/gy/registry.js';
+import { mountAtlasDom } from '../../lib/renqun-tupu/atlasRender.js';
+import { POPULATION_SLICE_COUNT, POPULATION_SLICE_GY_NUMS } from '../../lib/gy/registry.js';
 import { renqunTupuPanelId } from '../../lib/renqun-tupu/routing.js';
 import { withGyInit } from '../shared/gy/enhanceMethodology.js';
 
@@ -7,16 +8,14 @@ const NS = 'chinaos.atlas.v2';
 const NS_LEGACY = 'chinaos.atlas.v1';
 
 /** GY-03…36 全部已上线人群切片 */
-const DEFAULT_LIT = Object.entries(GY_MODULES)
-  .filter(([, m]) => m.group === 'population' && m.id !== 'renqunTupu')
-  .map(([num]) => `GY-${num}`)
-  .sort();
-
-const TOTAL = DEFAULT_LIT.length;
+const DEFAULT_LIT = POPULATION_SLICE_GY_NUMS.map((num) => `GY-${num}`);
+const TOTAL = POPULATION_SLICE_COUNT;
 
 /** @param {HTMLElement | null} root @param {{ tab?: string }} deepLink */
 function initRenqunTupuCore(root, deepLink = {}) {
   if (!root) return () => {};
+
+  mountAtlasDom(root);
 
   const cleanups = [];
 

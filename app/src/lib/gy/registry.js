@@ -44,6 +44,14 @@ export const GY_MODULES = {
   '36': { id: 'yulun', path: '/modules/yulun', label: '网络舆论场', group: 'population' },
 };
 
+/** GY-03…36 已上线人群切片编号（不含 GY-00 母索引） */
+export const POPULATION_SLICE_GY_NUMS = Object.entries(GY_MODULES)
+  .filter(([, m]) => m.group === 'population' && m.id !== 'renqunTupu')
+  .map(([num]) => num)
+  .sort();
+
+export const POPULATION_SLICE_COUNT = POPULATION_SLICE_GY_NUMS.length;
+
 /** @param {string} num two-digit string e.g. "03" */
 export function gyModulePath(num) {
   const mod = GY_MODULES[num];
