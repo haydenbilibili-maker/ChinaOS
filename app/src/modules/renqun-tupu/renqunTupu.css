@@ -1,0 +1,108 @@
+@import "../shared/gy/tokens.css";
+
+#at-app .at-shell { max-width: 1080px; margin: 0 auto; padding: 0 28px 96px; }
+
+#at-app .at-mast { padding: 56px 0 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+#at-app .at-mast-meta { font-family: var(--sans); font-size: 11px; letter-spacing: .22em; color: var(--xuanzhi-mute); text-transform: uppercase; }
+#at-app .at-mast-meta b { color: var(--jin); font-weight: 500; }
+#at-app h1.at-title { font-size: clamp(30px, 5vw, 46px); font-weight: 600; letter-spacing: .08em; line-height: 1.3; margin-top: 14px; }
+#at-app h1.at-title .at-title-sub { display: block; font-size: 14px; font-weight: 400; color: var(--xuanzhi-dim); letter-spacing: .28em; margin-top: 10px; }
+#at-app .at-mast-seal { flex-shrink: 0; writing-mode: vertical-rl; font-size: 13px; letter-spacing: .32em; color: var(--zhu); border: 1px solid var(--zhu-dim); padding: 14px 8px; line-height: 1; user-select: none; }
+
+#at-app .at-progress { margin-top: 30px; display: flex; align-items: center; gap: 22px; border: 1px solid var(--hairline); background: var(--xuan-deep); padding: 18px 24px; }
+#at-app .at-prog-ring { flex-shrink: 0; }
+#at-app .at-prog-text h4 { font-size: 15px; font-weight: 600; letter-spacing: .06em; }
+#at-app .at-prog-text p { font-family: var(--sans); font-size: 12px; color: var(--xuanzhi-dim); margin-top: 3px; }
+#at-app .at-prog-text p b { color: var(--qing); font-family: var(--mono); }
+
+#at-app .at-nav { display: flex; flex-wrap: wrap; margin-top: 30px; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); position: sticky; top: 0; background: var(--xuan); z-index: 10; }
+#at-app .at-nav button { flex: 1 1 auto; background: none; border: none; border-right: 1px solid var(--hairline); color: var(--xuanzhi-dim); font-family: var(--serif); font-size: 14.5px; letter-spacing: .16em; padding: 15px 12px 13px; cursor: pointer; position: relative; transition: color .2s; white-space: nowrap; }
+#at-app .at-nav button:last-child { border-right: none; }
+#at-app .at-nav button:hover { color: var(--xuanzhi); }
+#at-app .at-nav button:focus-visible { outline: 1px solid var(--jin); outline-offset: -1px; }
+#at-app .at-nav button.is-active { color: var(--xuanzhi); }
+#at-app .at-nav button.is-active::after { content: ""; position: absolute; left: 18%; right: 18%; bottom: -1px; height: 2px; background: var(--zhu); }
+
+#at-app section.at-panel { display: none; padding-top: 50px; }
+#at-app section.at-panel.is-active { display: block; animation: atFade .35s ease; }
+@keyframes atFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { #at-app section.at-panel.is-active { animation: none; } }
+#at-app .at-sec-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 8px; flex-wrap: wrap; }
+#at-app .at-sec-head h2 { font-size: 23px; font-weight: 600; letter-spacing: .1em; }
+#at-app .at-sec-head .at-sec-tag { font-family: var(--sans); font-size: 11px; letter-spacing: .18em; color: var(--xuanzhi-mute); }
+#at-app .at-lede { color: var(--xuanzhi-dim); font-size: 15px; max-width: 78ch; margin-bottom: 32px; }
+#at-app .at-lede b { color: var(--xuanzhi); font-weight: 600; }
+#at-app h3.at-h3 { font-size: 16px; font-weight: 600; letter-spacing: .1em; margin: 38px 0 16px; display: flex; align-items: center; gap: 12px; color: var(--jin); }
+#at-app h3.at-h3::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
+#at-app .at-verdict { margin-top: 36px; border-left: 2px solid var(--jin); background: var(--xuan-deep); padding: 22px 26px; font-size: 15px; line-height: 2; }
+#at-app .at-verdict .at-verdict-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .3em; color: var(--jin); display: block; margin-bottom: 8px; }
+#at-app .at-verdict b { color: var(--xuanzhi); font-weight: 600; }
+
+#at-app .at-cluster { margin-bottom: 30px; }
+#at-app .at-cluster-head { font-family: var(--sans); font-size: 11px; letter-spacing: .2em; color: var(--xuanzhi-mute); padding-bottom: 10px; border-bottom: 1px solid var(--hairline); margin-bottom: 14px; }
+#at-app .at-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+#at-app .at-slice { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 14px 16px; cursor: pointer; transition: all .18s; position: relative; }
+#at-app .at-slice:hover { background: #20262f; border-color: var(--jin-dim); }
+#at-app .at-slice:focus-visible { outline: 1px solid var(--jin); outline-offset: -1px; }
+#at-app .at-slice::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--xuanzhi-mute); transition: background .18s; }
+#at-app .at-slice.is-lit::before { background: var(--qing); }
+#at-app .at-slice.is-extremal::before { background: var(--jin); width: 4px; }
+#at-app .at-slice .at-slice-code { font-family: var(--mono); font-size: 11px; color: var(--xuanzhi-mute); display: flex; justify-content: space-between; align-items: center; }
+#at-app .at-slice.is-lit .at-slice-code { color: var(--qing); }
+#at-app .at-slice .at-slice-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--xuanzhi-mute); }
+#at-app .at-slice.is-lit .at-slice-dot { background: var(--qing); box-shadow: 0 0 0 3px rgba(94, 140, 122, .2); }
+#at-app .at-slice h4 { font-size: 14px; font-weight: 600; margin: 7px 0 5px; letter-spacing: .02em; }
+#at-app .at-slice p { font-size: 11.5px; color: var(--xuanzhi-dim); line-height: 1.6; }
+#at-app .at-slice .at-slice-axes { margin-top: 8px; display: flex; gap: 5px; flex-wrap: wrap; }
+#at-app .at-slice .at-slice-axes span { font-family: var(--sans); font-size: 9.5px; letter-spacing: .06em; color: var(--xuanzhi-mute); border: 1px solid var(--hairline); padding: 1px 6px; }
+#at-app .at-slice .at-slice-sens { position: absolute; top: 13px; right: 14px; font-family: var(--mono); font-size: 9.5px; color: var(--zhu); letter-spacing: .08em; }
+
+#at-app .at-axis { border: 1px solid var(--hairline); background: var(--xuan-raise); margin-bottom: 10px; display: grid; grid-template-columns: 160px 1fr; }
+#at-app .at-axis-name { padding: 14px 16px; border-right: 1px solid var(--hairline); background: var(--xuan-deep); }
+#at-app .at-axis-name h5 { font-size: 13.5px; font-weight: 600; letter-spacing: .06em; }
+#at-app .at-axis-name small { font-family: var(--sans); font-size: 10px; color: var(--xuanzhi-mute); letter-spacing: .06em; display: block; margin-top: 3px; }
+#at-app .at-axis-nodes { padding: 13px 16px; display: flex; gap: 7px; flex-wrap: wrap; align-items: center; }
+#at-app .at-axis-node { font-family: var(--sans); font-size: 11.5px; padding: 4px 10px; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi-dim); }
+#at-app .at-axis-node.lit { border-color: var(--qing-dim); color: var(--xuanzhi); }
+#at-app .at-axis-node b { font-family: var(--mono); font-size: 10px; color: var(--xuanzhi-mute); margin-right: 5px; }
+
+#at-app .at-price { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+#at-app .at-price-col { border: 1px solid var(--hairline); background: var(--xuan-raise); border-top: 3px solid var(--jin); }
+#at-app .at-price-head { padding: 16px 18px; border-bottom: 1px solid var(--hairline); }
+#at-app .at-price-head .at-price-eq { font-family: var(--mono); font-size: 12px; color: var(--jin); letter-spacing: .04em; }
+#at-app .at-price-head h4 { font-size: 15px; font-weight: 600; margin-top: 6px; }
+#at-app .at-price-body { padding: 14px 18px; }
+#at-app .at-price-body p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.75; }
+#at-app .at-price-extreme { margin-top: 12px; padding: 10px 12px; background: var(--xuan-deep); border: 1px solid var(--jin-dim); }
+#at-app .at-price-extreme .at-pe-tag { font-family: var(--sans); font-size: 9.5px; letter-spacing: .18em; color: var(--jin); display: block; margin-bottom: 4px; }
+#at-app .at-price-extreme p { font-size: 11.5px; color: var(--xuanzhi); line-height: 1.6; }
+
+#at-app .at-rule { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 18px 20px; margin-bottom: 12px; border-left: 3px solid var(--qing); }
+#at-app .at-rule h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 6px; display: flex; gap: 11px; align-items: baseline; }
+#at-app .at-rule h5 b { font-family: var(--mono); color: var(--qing); font-size: 12px; font-weight: 500; }
+#at-app .at-rule p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.78; }
+#at-app .at-rule p b { color: var(--xuanzhi); font-weight: 600; }
+
+#at-app .at-order { border: 1px solid var(--hairline); }
+#at-app .at-order-row { display: grid; grid-template-columns: 54px 1fr; gap: 14px; padding: 12px 18px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); font-size: 13px; align-items: baseline; }
+#at-app .at-order-row:last-child { border-bottom: none; }
+#at-app .at-order-row .at-order-n { font-family: var(--mono); font-size: 12px; color: var(--jin); }
+#at-app .at-order-row .at-order-v { color: var(--xuanzhi-dim); line-height: 1.7; }
+#at-app .at-order-row .at-order-v b { color: var(--xuanzhi); font-weight: 600; }
+
+#at-app .at-foot { margin-top: 64px; border-top: 1px solid var(--hairline); padding-top: 24px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+#at-app .at-foot p { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .06em; line-height: 1.9; max-width: 66ch; }
+#at-app .at-foot .at-foot-meta { text-align: right; font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); line-height: 2; flex-shrink: 0; }
+#at-app .at-reset { background: none; border: 1px solid var(--hairline); color: var(--xuanzhi-mute); font-family: var(--sans); font-size: 10.5px; letter-spacing: .1em; padding: 5px 12px; cursor: pointer; margin-top: 10px; }
+#at-app .at-reset:hover { color: var(--xuanzhi); border-color: var(--jin-dim); }
+
+@media (max-width: 860px) {
+  #at-app .at-grid, #at-app .at-price { grid-template-columns: 1fr; }
+  #at-app .at-mast-seal { display: none; }
+  #at-app .at-nav button { flex: 1 1 40%; font-size: 13px; letter-spacing: .06em; }
+  #at-app .at-axis { grid-template-columns: 1fr; }
+  #at-app .at-axis-name { border-right: none; border-bottom: 1px solid var(--hairline); }
+}
+
+.renqun-tupu-module-wrap { margin-top: -1rem; }
+.renqun-tupu-page .os-page-header { margin-bottom: 0; }

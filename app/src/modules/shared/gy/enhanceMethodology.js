@@ -5,7 +5,7 @@
 import { GY_MODULES, gyModulePath, normalizeGyNum, parseGyRefList } from '../../../lib/gy/registry.js';
 
 const POPULATION_ROOTS = new Set([
-  'gy-app', 'ys-app',
+  'gy-app', 'ys-app', 'at-app',
   'qn-app', 'xs-app', 'lg-app', 'nm-app', 'tz-app', 'zc-app', 'ln-app',
   'tj-app', 'zx-app', 'ty-app', 'ym-app', 'lp-app', 'yb-app', 'la-app',
   'zn-app', 'cz-app', 'ds-app', 'xy-app', 'xm-app', 'jg-app', 'mb-app', 'ms-app', 'sd-app', 'sz-app',

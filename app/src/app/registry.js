@@ -24,7 +24,7 @@ export const GROUPS = [
   { id: 'finance', label: '货币金融', desc: '人民币 · 债务', accent: '#d4af37' },
   { id: 'region', label: '区域与全球化', desc: '板块 · 海洋 · 资源', accent: '#8b5cf6' },
   { id: 'security', label: '安全与国防', desc: '军事 · 台海 · 大安全', accent: '#c41e3a' },
-  { id: 'population', label: '中国人群分析', desc: '世代 · 阶层 · 人群画像', accent: '#ec4899' },
+  { id: 'population', label: '中国人群分析', desc: '人群画像总图谱 · 世代 · 阶层', accent: '#ec4899' },
   { id: 'sim', label: '推演与训练', desc: '沙盒 · 内参', accent: '#d4af37' },
   { id: 'foundation', label: '数据与系统', desc: '底座', accent: '#64748b' },
 ];
@@ -273,6 +273,15 @@ export const MODULES = [
   { id: 'silverEconomy', path: '/silver-economy', group: 'society', title: '银发经济', subtitle: '9073 · 养老服务 · 适老改造', icon: 'HeartHandshake', accent: '#8b5cf6', component: lazy(() => import('../modules/silverEconomy/Page.jsx')) },
   { id: 'fertilitySupport', path: '/fertility-support', group: 'society', title: '生育支持', subtitle: '生育补贴 · 普惠托育 · 友好社会', icon: 'Baby', accent: '#ec4899', component: lazy(() => import('../modules/fertilitySupport/Page.jsx')) },
   { id: 'tcmHealth', path: '/tcm-health', group: 'society', title: '中医药', subtitle: '重大工程 · 传承创新 · 治未病', icon: 'Flower2', component: lazy(() => import('../modules/tcmHealth/Page.jsx')) },
+  {
+    id: 'renqunTupu',
+    path: '/modules/renqun-tupu',
+    group: 'population',
+    title: '人群画像总图谱',
+    subtitle: '25 片切片 · 八轴全光谱 · 母索引',
+    icon: 'Network',
+    component: lazy(() => import('../modules/renqun-tupu/Page.jsx')),
+  },
   {
     id: 'qingnian',
     path: '/modules/qingnian',

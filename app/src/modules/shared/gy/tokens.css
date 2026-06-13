@@ -2,6 +2,7 @@
 @import "./methodology.css";
 #gy-app,
 #ys-app,
+#at-app,
 #qn-app,
 #xs-app,
 #lg-app,
@@ -50,6 +51,7 @@
 
 :root[data-theme='light'] #gy-app,
 :root[data-theme='light'] #ys-app,
+:root[data-theme='light'] #at-app,
 :root[data-theme='light'] #qn-app,
 :root[data-theme='light'] #xs-app,
 :root[data-theme='light'] #lg-app,
@@ -76,6 +78,7 @@
 
 #gy-app *,
 #ys-app *,
+#at-app *,
 #qn-app *,
 #xs-app *,
 #lg-app *,
@@ -100,6 +103,7 @@
 
 #gy-app ::selection,
 #ys-app ::selection,
+#at-app ::selection,
 #qn-app ::selection,
 #xs-app ::selection,
 #lg-app ::selection,

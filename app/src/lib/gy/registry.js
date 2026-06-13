@@ -5,6 +5,7 @@
 
 /** @type {Record<string, { id: string, path: string, label: string, group: 'sim' | 'population' }>} */
 export const GY_MODULES = {
+  '00': { id: 'renqunTupu', path: '/modules/renqun-tupu', label: '人群画像总图谱', group: 'population' },
   '01': { id: 'guoyun', path: '/modules/guoyun', label: '国运推演', group: 'sim' },
   '02': { id: 'yishixingtai', path: '/modules/yishixingtai', label: '合法性机器', group: 'sim' },
   '03': { id: 'qingnian', path: '/modules/qingnian', label: '青年', group: 'population' },

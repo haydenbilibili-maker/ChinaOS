@@ -1,0 +1,212 @@
+<div class="at-shell">
+
+  <!-- 题头 -->
+  <header class="at-mast">
+    <div>
+      <div class="at-mast-meta">ChinaOS · MODULE <b>GY-00</b> · 人群分层 · 母索引</div>
+      <h1 class="at-title">人群画像总图谱<span class="at-title-sub">25 片切片 · 八轴全光谱 · 一张隐性价目表的全息验证</span></h1>
+    </div>
+    <div class="at-mast-seal">被看见即被定价</div>
+  </header>
+
+  <!-- 进度环 -->
+  <div class="at-progress">
+    <div class="at-prog-ring">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r="27" fill="none" stroke="#2a2f38" stroke-width="6"/>
+        <circle id="at-ring" cx="32" cy="32" r="27" fill="none" stroke="#5e8c7a" stroke-width="6"
+                stroke-dasharray="169.6" stroke-dashoffset="149.2" stroke-linecap="round" transform="rotate(-90 32 32)"/>
+        <text id="at-ring-txt" x="32" y="37" font-size="15" fill="#d6cfc2" text-anchor="middle" font-family="monospace">3/25</text>
+      </svg>
+    </div>
+    <div class="at-prog-text">
+      <h4>钻探进度</h4>
+      <p>已钻透 <b id="at-done-n">3</b> 片 · 规划中 <span id="at-todo-n">22</span> 片 · 点击任一切片可标记点亮(本机保存)</p>
+    </div>
+  </div>
+
+  <!-- 页签 -->
+  <nav class="at-nav" role="tablist">
+    <button role="tab" data-panel="at-p-atlas" class="is-active">图谱</button>
+    <button role="tab" data-panel="at-p-axes">轴线覆盖</button>
+    <button role="tab" data-panel="at-p-price">价目表假说</button>
+    <button role="tab" data-panel="at-p-order">钻探顺序</button>
+  </nav>
+
+  <!-- ════ 图谱 ════ -->
+  <section class="at-panel is-active" id="at-p-atlas">
+    <div class="at-sec-head"><h2>图谱</h2><span class="at-sec-tag">25 片人群切片 · 按主轴归簇 · 绿=已钻透 金=极值校准点</span></div>
+    <p class="at-lede">这不是 25 个孤立选题,而是合起来补全一张中国社会结构剖面的全息图。三片已钻透(青年/性少数/零工)偏在结构承压端,其余 22 片刻意沿被忽略的轴线配平——塔尖、中间层、体制内、身体、城乡、意义、退出,都要有。<b>点击切片标记点亮;金色边的三片是母框架价目表的极值校准点。</b></p>
+
+    <!-- 已钻透 -->
+    <div class="at-cluster">
+      <div class="at-cluster-head">已钻透 · 承压端三片</div>
+      <div class="at-grid" id="at-grid-done">
+        <div class="at-slice" data-code="GY-03" tabindex="0" role="button"><div class="at-slice-code"><span>GY-03</span><span class="at-slice-dot"></span></div><h4>青年</h4><p>机器的盲区,概率的暗物质。退出是最诚实的反馈。</p><div class="at-slice-axes"><span>年龄</span><span>阶层</span></div></div>
+        <div class="at-slice" data-code="GY-04" tabindex="0" role="button"><div class="at-slice-code"><span>GY-04</span><span class="at-slice-dot"></span></div><h4>性少数</h4><p>挤压性存在。被允许的可见形态=被允许的存在形态。</p><div class="at-slice-axes"><span>身份</span><span>横切</span></div></div>
+        <div class="at-slice" data-code="GY-05" tabindex="0" role="button"><div class="at-slice-code"><span>GY-05</span><span class="at-slice-dot"></span></div><h4>零工经济</h4><p>悬空的基础设施。同时是稳定器与风险源。</p><div class="at-slice-axes"><span>劳动</span><span>底层</span></div></div>
+      </div>
+    </div>
+
+    <!-- 阶层与财富 -->
+    <div class="at-cluster">
+      <div class="at-cluster-head">轴 · 阶层与财富(含退出)</div>
+      <div class="at-grid">
+        <div class="at-slice" data-code="GY-07" tabindex="0" role="button"><div class="at-slice-code"><span>GY-07</span><span class="at-slice-dot"></span></div><h4>中产:杠杆买来的身份</h4><p>用三十年房贷购买的身份,资产负债表正在收回。防御性人生。</p><div class="at-slice-axes"><span>阶层</span><span>需求侧</span></div></div>
+        <div class="at-slice is-extremal" data-code="GY-08" tabindex="0" role="button"><div class="at-slice-code"><span>GY-08</span><span class="at-slice-dot"></span></div><span class="at-slice-sens">校准点</span><h4>塔尖的不安</h4><p>要钱不要人的镜像。退出成本峰值校准点(润学/家办离岸)。</p><div class="at-slice-axes"><span>阶层</span><span>退出</span></div></div>
+        <div class="at-slice" data-code="GY-15" tabindex="0" role="button"><div class="at-slice-code"><span>GY-15</span><span class="at-slice-dot"></span></div><span class="at-slice-sens">敏·中高</span><h4>离岸中国人</h4><p>用脚投票者的未结清账户。退出语法的物理完成式。</p><div class="at-slice-axes"><span>退出</span><span>境外</span></div></div>
+      </div>
+    </div>
+
+    <!-- 政治位置 -->
+    <div class="at-cluster">
+      <div class="at-cluster-head">轴 · 政治位置与治理(母框架对照组密集区)</div>
+      <div class="at-grid">
+        <div class="at-slice" data-code="GY-06" tabindex="0" role="button"><div class="at-slice-code"><span>GY-06</span><span class="at-slice-dot"></span></div><h4>体制内青年:上岸之后</h4><p>上了岸,发现船在漏水。CH-03形态D的载体人群。</p><div class="at-slice-axes"><span>体制内</span><span>青年</span></div></div>
+        <div class="at-slice is-extremal" data-code="GY-11" tabindex="0" role="button"><div class="at-slice-code"><span>GY-11</span><span class="at-slice-dot"></span></div><span class="at-slice-sens">校准点·敏</span><h4>退役军人</h4><p>唯一让系统主动建部委的怨恨。组织化峰值校准点。</p><div class="at-slice-axes"><span>组织化</span><span>对照组</span></div></div>
+        <div class="at-slice" data-code="GY-23" tabindex="0" role="button"><div class="at-slice-code"><span>GY-23</span><span class="at-slice-dot"></span></div><h4>基层治理末梢</h4><p>网格员/辅警/社工/协管:权力的临时工化。背锅缓冲层。</p><div class="at-slice-axes"><span>治理</span><span>编外</span></div></div>
+        <div class="at-slice" data-code="GY-27" tabindex="0" role="button"><div class="at-slice-code"><span>GY-27</span><span class="at-slice-dot"></span></div><span class="at-slice-sens">敏·高</span><h4>军人(现役)</h4><p>封顶片。以制度史与人群处境框架处理,不涉作战与部署。</p><div class="at-slice-axes"><span>体制</span><span>封顶</span></div></div>
+      </div>
+    </div>
+
+    <!-- 城乡户籍 -->
+    <div class="at-cluster">
+      <div class="at-cluster-head">轴 · 城乡与户籍断层</div>
+      <div class="at-grid">
+        <div class="at-slice" data-code="GY-09" tabindex="0" role="button"><div class="at-slice-code"><span>GY-09</span><span class="at-slice-dot"></span></div><h4>第一代农民工的老去</h4><p>建造城市的人不被城市养老。零工模块的终局预演。</p><div class="at-slice-axes"><span>城乡</span><span>老龄</span></div></div>
+        <div class="at-slice" data-code="GY-19" tabindex="0" role="button"><div class="at-slice-code"><span>GY-19</span><span class="at-slice-dot"></span></div><h4>小镇与县域青年</h4><p>留下的人。编制原产地,行政上最不被看见的中间层。</p><div class="at-slice-axes"><span>城乡</span><span>青年</span></div></div>
+        <div class="at-slice" data-code="GY-20" tabindex="0" role="button"><div class="at-slice-code"><span>GY-20</span><span class="at-slice-dot"></span></div><h4>城市新移民:有城无籍</h4><p>事实市民,法律外人。中国版无代表的纳税。</p><div class="at-slice-axes"><span>户籍</span><span>夹心</span></div></div>
+        <div class="at-slice" data-code="GY-26" tabindex="0" role="button"><div class="at-slice-code"><span>GY-26</span><span class="at-slice-dot"></span></div><span class="at-slice-sens">敏·最高</span><h4>边疆与民族人群</h4><p>封顶片。以区域发展/政策史/人口结构的事实框架处理,持平多视角。</p><div class="at-slice-axes"><span>民族</span><span>封顶</span></div></div>
+      </div>
+    </div>
+
+    <!-- 性别与年龄端 -->
+    <div class="at-cluster">
+      <div class="at-cluster-head">轴 · 性别 / 年龄两端</div>
+      <div class="at-grid">
+        <div class="at-slice" data-code="GY-16" tabindex="0" role="button"><div class="at-slice-code"><span>GY-16</span><span class="at-slice-dot"></span></div><h4>中年女性:被折叠的一代</h4><p>无偿劳动总承包人,夹心承重墙。CH-01的年龄盲区。</p><div class="at-slice-axes"><span>性别</span><span>中年</span></div></div>
+        <div class="at-slice" data-code="GY-18" tabindex="0" role="button"><div class="at-slice-code"><span>GY-18</span><span class="at-slice-dot"></span></div><h4>单身女性与不婚者</h4><p>退出之后的新稳态。退出的建制化,不可逆性上升。</p><div class="at-slice-axes"><span>性别</span><span>退出</span></div></div>
+        <div class="at-slice" data-code="GY-25" tabindex="0" role="button"><div class="at-slice-code"><span>GY-25</span><span class="at-slice-dot"></span></div><span class="at-slice-sens">敏·中</span><h4>数字原住民:10后</h4><p>屏幕养大的一代。社会化的平台化,系统最大的未知数。</p><div class="at-slice-axes"><span>年龄</span><span>前瞻</span></div></div>
+        <div class="at-slice" data-code="GY-24" tabindex="0" role="button"><div class="at-slice-code"><span>GY-24</span><span class="at-slice-dot"></span></div><span class="at-slice-sens">敏·中</span><h4>失独与计生后遗人群</h4><p>政策账单的活体。政策反转的代际套牢。</p><div class="at-slice-axes"><span>政策史</span><span>老龄</span></div></div>
+      </div>
+    </div>
+
+    <!-- 身体与健康 -->
+    <div class="at-cluster">
+      <div class="at-cluster-head">轴 · 身体与健康</div>
+      <div class="at-grid">
+        <div class="at-slice is-extremal" data-code="GY-17" tabindex="0" role="button"><div class="at-slice-code"><span>GY-17</span><span class="at-slice-dot"></span></div><span class="at-slice-sens">校准点</span><h4>残障人群</h4><p>可见性的零点校准点。驱逐被外包给建筑与制度的默认设置。</p><div class="at-slice-axes"><span>身体</span><span>对照组</span></div></div>
+        <div class="at-slice" data-code="GY-14" tabindex="0" role="button"><div class="at-slice-code"><span>GY-14</span><span class="at-slice-dot"></span></div><h4>医保里的人</h4><p>慢病与老龄财政前线。所有人群最终汇入的总账切片。</p><div class="at-slice-axes"><span>健康</span><span>财政</span></div></div>
+        <div class="at-slice" data-code="GY-22" tabindex="0" role="button"><div class="at-slice-code"><span>GY-22</span><span class="at-slice-dot"></span></div><span class="at-slice-sens">敏·中</span><h4>带病生存的年轻人</h4><p>健康的阶层化。健康作为新的资本形态。剪刀差的身体版。</p><div class="at-slice-axes"><span>健康</span><span>青年</span></div></div>
+      </div>
+    </div>
+
+    <!-- 教育劳动与意义 -->
+    <div class="at-cluster">
+      <div class="at-cluster-head">轴 · 教育-劳动出口 / 意义供给</div>
+      <div class="at-grid">
+        <div class="at-slice" data-code="GY-10" tabindex="0" role="button"><div class="at-slice-code"><span>GY-10</span><span class="at-slice-dot"></span></div><h4>被分流的一半:职校生</h4><p>15岁被一场考试定价。青年研究的暗面补全。</p><div class="at-slice-axes"><span>教育</span><span>劳动</span></div></div>
+        <div class="at-slice" data-code="GY-21" tabindex="0" role="button"><div class="at-slice-code"><span>GY-21</span><span class="at-slice-dot"></span></div><h4>制造业技术工人</h4><p>被需要却不被向往。战略价值与社会地位的背离。</p><div class="at-slice-axes"><span>劳动</span><span>组件四</span></div></div>
+        <div class="at-slice" data-code="GY-13" tabindex="0" role="button"><div class="at-slice-code"><span>GY-13</span><span class="at-slice-dot"></span></div><h4>流量彩票:主播创作者</h4><p>零工的镜像兄弟。彩票化激励维持千万人无偿劳动。</p><div class="at-slice-axes"><span>劳动</span><span>意义</span></div></div>
+        <div class="at-slice" data-code="GY-12" tabindex="0" role="button"><div class="at-slice-code"><span>GY-12</span><span class="at-slice-dot"></span></div><span class="at-slice-sens">敏·中</span><h4>意义市场:信仰人群</h4><p>国家退出意义供给后谁在填。去组织化信仰的繁荣。</p><div class="at-slice-axes"><span>意义</span><span>CH-04</span></div></div>
+      </div>
+    </div>
+
+    <div class="at-verdict">
+      <span class="at-verdict-tag">图谱判词</span>
+      二十五片做完,这张图谱要能回答一个比任何单片都大的问题:<b>这台机器对「人群」这个层级,是否存在一张统一的隐性价目表。</b>三片已钻透给出了三条线索规律,但规律要在全光谱上成立才算数——所以图谱里埋了三个金色的极值校准点(塔尖/退役军人/残障),它们分别测量退出成本、组织化潜能、可见性这三个定价变量的两端。任何一个校准点不符合假说,假说就要修正。这是图谱的验证结构,也是它存在的理由。
+    </div>
+  </section>
+
+  <!-- ════ 轴线覆盖 ════ -->
+  <section class="at-panel" id="at-p-axes">
+    <div class="at-sec-head"><h2>轴线覆盖</h2><span class="at-sec-tag">八条轴 · 检验全光谱无偏</span></div>
+    <p class="at-lede">前十五片几乎都以「经济-政治处境」为切分轴,容易切成一张偏向承压端的图。第二个十片刻意沿被忽略的轴线配平。下表是覆盖自检:每条轴都有切片落点,才说明图谱是全息而非偏向。</p>
+
+    <div class="at-axis"><div class="at-axis-name"><h5>阶层轴</h5><small>塔尖 → 底层</small></div><div class="at-axis-nodes"><span class="at-axis-node"><b>08</b>塔尖</span><span class="at-axis-node"><b>07</b>中产</span><span class="at-axis-node"><b>20</b>夹心层</span><span class="at-axis-node lit"><b>05</b>零工</span><span class="at-axis-node"><b>09</b>农民工</span></div></div>
+    <div class="at-axis"><div class="at-axis-name"><h5>年龄轴</h5><small>10后 → 老去</small></div><div class="at-axis-nodes"><span class="at-axis-node"><b>25</b>数字原住民</span><span class="at-axis-node lit"><b>03</b>青年</span><span class="at-axis-node"><b>16</b>中年女性</span><span class="at-axis-node"><b>24</b>计生后遗</span><span class="at-axis-node"><b>09</b>老去农民工</span></div></div>
+    <div class="at-axis"><div class="at-axis-name"><h5>性别轴</h5><small>分叉 → 退出 → 折叠</small></div><div class="at-axis-nodes"><span class="at-axis-node lit"><b>03</b>CH-01分叉</span><span class="at-axis-node"><b>18</b>单身不婚</span><span class="at-axis-node"><b>16</b>中年女性</span></div></div>
+    <div class="at-axis"><div class="at-axis-name"><h5>政治位置轴</h5><small>体制内 → 编外 → 对照组</small></div><div class="at-axis-nodes"><span class="at-axis-node"><b>06</b>体制内青年</span><span class="at-axis-node"><b>23</b>治理末梢</span><span class="at-axis-node"><b>11</b>退役军人</span><span class="at-axis-node"><b>27</b>军人</span></div></div>
+    <div class="at-axis"><div class="at-axis-name"><h5>城乡户籍轴</h5><small>县域 → 流动 → 边疆</small></div><div class="at-axis-nodes"><span class="at-axis-node"><b>19</b>县域青年</span><span class="at-axis-node"><b>20</b>新移民</span><span class="at-axis-node"><b>09</b>农民工</span><span class="at-axis-node"><b>26</b>边疆民族</span></div></div>
+    <div class="at-axis"><div class="at-axis-name"><h5>身体健康轴</h5><small>可见性零点 → 总账</small></div><div class="at-axis-nodes"><span class="at-axis-node"><b>17</b>残障</span><span class="at-axis-node"><b>22</b>慢病青年</span><span class="at-axis-node"><b>14</b>医保人群</span></div></div>
+    <div class="at-axis"><div class="at-axis-name"><h5>意义轴</h5><small>真空 → 供应商</small></div><div class="at-axis-nodes"><span class="at-axis-node"><b>12</b>信仰人群</span><span class="at-axis-node"><b>13</b>流量主播</span></div></div>
+    <div class="at-axis"><div class="at-axis-name"><h5>退出轴</h5><small>原地 → 物理 → 离岸</small></div><div class="at-axis-nodes"><span class="at-axis-node lit"><b>03</b>躺平</span><span class="at-axis-node"><b>18</b>不婚</span><span class="at-axis-node"><b>15</b>离岸</span><span class="at-axis-node"><b>08</b>塔尖外流</span></div></div>
+
+    <div class="at-verdict">
+      <span class="at-verdict-tag">覆盖判词</span>
+      八条轴全部有落点,且每条轴上既有承压端也有特权端的切片——这是图谱无偏的形式证明。仍有一片刻意游离于八轴之外:<b>GY-12 意义人群</b>,它不属于任何处境轴,而是所有处境的共同精神后果——这正是它的位置:当八条轴上的人都在各自的结构里受困,意义市场是他们唯一共享的出口。它是图谱的「第九维」。
+    </div>
+  </section>
+
+  <!-- ════ 价目表假说 ════ -->
+  <section class="at-panel" id="at-p-price">
+    <div class="at-sec-head"><h2>价目表假说</h2><span class="at-sec-tag">母框架 · 三规律收束为一张表 · 待全光谱验证</span></div>
+    <p class="at-lede">三片已钻透各自给出一条规律。把它们叠在一起,浮现出一个更大的假说:<b>这台机器给每个人群标了价,而定价用的是三个变量。</b>下面先列三规律,再收束为三维价目表,最后标出验证用的三个极值校准点。</p>
+
+    <h3 class="at-h3">三条已验证的规律</h3>
+    <div class="at-rule"><h5><b>规律一 · 子集I 青年</b>可见窗口决定对待方式</h5><p>国家只通过就业数据与舆情窗口看见青年,于是青年只被当作「待提振的数据」或「待管控的风险」处理。<b>被看见的方式,决定了被对待的方式。</b></p></div>
+    <div class="at-rule"><h5><b>规律二 · 子集II 性少数</b>可见形态即存在形态</h5><p>被允许在私域存在、市场消费,却被禁止公共显现与自我组织。<b>一个群体被允许以什么形态可见,就被允许以什么形态存在。</b></p></div>
+    <div class="at-rule"><h5><b>规律三 · 子集III 零工</b>双重身份者被寄存</h5><p>同时是稳定器(风险汇)与潜在不稳定层(风险源)的人群,被治理成永久的中间态:<b>用得最狠,给得最少,看得最紧。</b></p></div>
+
+    <h3 class="at-h3">收束:三维隐性价目表</h3>
+    <div class="at-price">
+      <div class="at-price-col">
+        <div class="at-price-head"><span class="at-price-eq">组织化潜能 → 定价 风险</span><h4>风险维</h4></div>
+        <div class="at-price-body">
+          <p>一个群体能否聚起来,决定了它在权力眼中的风险等级——与它诉求的烈度无关。佳士/女权/LGBT/骑手联盟四个毫无交集的议题被同样处理,证明被防范的从来是「组织」而非「主张」。</p>
+          <div class="at-price-extreme"><span class="at-pe-tag">极值校准点 · 峰值</span><p>GY-11 退役军人:唯一天然组织化的怨恨群体,获得了专设部委的制度回应。组织力越高,赎买越认真。</p></div>
+        </div>
+      </div>
+      <div class="at-price-col">
+        <div class="at-price-head"><span class="at-price-eq">可见性窗口 → 定价 待遇</span><h4>待遇维</h4></div>
+        <div class="at-price-body">
+          <p>一个群体被哪个窗口看见,决定了它能得到什么待遇。青年经由就业窗口、性少数经由疾控窗口被看见,待遇也就被锁定在那个窗口的逻辑里。</p>
+          <div class="at-price-extreme"><span class="at-pe-tag">极值校准点 · 零点</span><p>GY-17 残障:几乎不被任何窗口看见,排斥被外包给建筑与制度的默认设置。可见性归零,待遇也归零——驱逐无需主动。</p></div>
+        </div>
+      </div>
+      <div class="at-price-col">
+        <div class="at-price-head"><span class="at-price-eq">退出成本 → 定价 话语权</span><h4>话语权维</h4></div>
+        <div class="at-price-body">
+          <p>一个群体退出的成本越低、选项越好,它对系统的隐性议价权越高。零工的退出是躺平(无议价),塔尖的退出是离岸(带走资本与税基,议价极高)。</p>
+          <div class="at-price-extreme"><span class="at-pe-tag">极值校准点 · 峰值</span><p>GY-08 塔尖:唯一拥有跨国退出选项的人群,与国家进行「安全感换留存」的隐性谈判。退出成本最高者,话语权最高。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="at-verdict">
+      <span class="at-verdict-tag">价目表判词</span>
+      若这张表成立,它解释的就不只是某几个人群,而是<b>整台机器对待「社会」的统一语法</b>:它不按道德、不按贡献、不按苦难给人群排序,而按三个纯功能变量定价——你能不能聚起来、你被哪个窗口看见、你能不能走得掉。<b>残障、退役军人、塔尖三个校准点分别钉住三个变量的极值</b>,二十五片逐一落位后,这张表要么被证实为中国式治理的隐藏操作系统,要么在某个反例处被迫修正——无论哪种,都是这套人群研究最大的产出。
+    </div>
+  </section>
+
+  <!-- ════ 钻探顺序 ════ -->
+  <section class="at-panel" id="at-p-order">
+    <div class="at-sec-head"><h2>钻探顺序</h2><span class="at-sec-tag">按咬合密度与铺垫关系 · 非重要性排序</span></div>
+    <p class="at-lede">顺序不是优先级,是施工逻辑——先做与既有模块咬合最紧、能为年度对账提供地基的片,封顶片(高敏感)放在母框架成熟后。可随时按任意顺序点片,此表仅为建议路径。</p>
+
+    <div class="at-order">
+      <div class="at-order-row"><span class="at-order-n">第一</span><span class="at-order-v"><b>GY-06 体制内青年</b> — 直接续接 CH-03 形态D,趁公平语法分析还热;Q-07 观测哨的人群版。</span></div>
+      <div class="at-order-row"><span class="at-order-n">第二</span><span class="at-order-v"><b>GY-07 中产</b> — 数据最实,给 GY-01 年度对账提供需求侧微观地基;是 GY-03 剪刀差的父母端。</span></div>
+      <div class="at-order-row"><span class="at-order-n">第三</span><span class="at-order-v"><b>GY-09 农民工老去</b> — GY-05 的终局预演,情感重量与写作价值最高。</span></div>
+      <div class="at-order-row"><span class="at-order-n">第四</span><span class="at-order-v"><b>GY-10 职校生</b> — 补全 GY-03 暗面(做题家叙事覆盖不到的另一半)。</span></div>
+      <div class="at-order-row"><span class="at-order-n">中段</span><span class="at-order-v">GY-11 退役军人 / GY-12 信仰 / GY-13 流量 / GY-14 医保 顺序灵活;GY-16–25 沿轴线补齐。<b>GY-11 与 GY-08 是价目表的两个校准对照组,建议在母框架收束前完成。</b></span></div>
+      <div class="at-order-row"><span class="at-order-n">后段</span><span class="at-order-v"><b>GY-08 塔尖 + GY-15 离岸</b> — 互为延长线(同一退出语法,天壤退出成本),适合连做。</span></div>
+      <div class="at-order-row"><span class="at-order-n">封顶</span><span class="at-order-v"><b>GY-26 边疆民族 / GY-27 军人</b> — 敏感度最高,放在母框架完全成熟后,以制度史、区域发展、人口结构的事实框架处理,持平多视角,不作单边论断。</span></div>
+    </div>
+
+    <div class="at-foot" style="border:none; margin-top:24px; padding:0;">
+      <button class="at-reset" id="at-reset">重置所有点亮状态</button>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="at-foot">
+    <p>方法论:25 片合为一张全息剖面,非孤立选题;八轴配平确保无偏;母框架价目表为工作假说,三个极值校准点(残障/退役军人/塔尖)为证伪结构。封顶两片以事实与制度框架处理,持平多视角。本图谱为整个 ChinaOS 人群分层的总入口,每完成一片在图谱点亮。与 GY-01/GY-02 共用设计令牌与复盘节奏。</p>
+    <div class="at-foot-meta">
+      ChinaOS · GY-00 · v1.0.0<br>
+      生成 2026-06-12 丙午年<br>
+      母索引 · 25片 · 关联 GY-01…GY-27
+    </div>
+  </footer>
+
+</div>
