@@ -665,9 +665,10 @@ export const GLOSSARY_ENTRIES = [
       "GY-04",
       "可见形态",
       "被允许的可见形态",
+      "性少数",
       "性少数群像"
     ],
-    "source": "GY-04；China OS · registry.js；China OS · 性少数群像",
+    "source": "GY-04；China OS · registry.js；China OS · 性少数",
     "initial": "#"
   },
   {
@@ -1739,18 +1740,18 @@ export const GLOSSARY_ENTRIES = [
     "term": "被允许的可见形态",
     "aliases": [],
     "category": "gy",
-    "definition": "「被允许的可见形态」为 China OS 模块「性少数群像」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「性少数群像」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括性少数群像。在国运/GY推演谱系中，被允许的可见形态作为可观测变量或结构隐喻，参与情景分支与尾部风险评估。",
+    "definition": "「被允许的可见形态」为 China OS 模块「性少数」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「性少数」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括性少数。在国运/GY推演谱系中，被允许的可见形态作为可观测变量或结构隐喻，参与情景分支与尾部风险评估。",
     "context": [
       {
         "moduleId": "xingshaoshu",
-        "label": "性少数群像",
+        "label": "性少数",
         "path": "/modules/xingshaoshu"
       }
     ],
     "related": [
-      "性少数群像"
+      "性少数"
     ],
-    "source": "China OS · 性少数群像",
+    "source": "China OS · 性少数",
     "initial": "B"
   },
   {
@@ -3043,7 +3044,7 @@ export const GLOSSARY_ENTRIES = [
     "term": "GY-04",
     "aliases": [],
     "category": "gy",
-    "definition": "性少数群像模块代号：挤压性存在 · 被允许的可见形态。",
+    "definition": "性少数模块代号：挤压性存在 · 被允许的可见形态。",
     "context": [
       {
         "moduleId": "xingshaoshu",
@@ -3054,9 +3055,10 @@ export const GLOSSARY_ENTRIES = [
     "related": [
       "GY-03",
       "可见形态",
+      "性少数",
       "性少数群像"
     ],
-    "source": "China OS · GY系列；China OS · 性少数群像",
+    "source": "China OS · GY系列；China OS · 性少数",
     "initial": "G"
   },
   {
@@ -3064,18 +3066,18 @@ export const GLOSSARY_ENTRIES = [
     "term": "GY-05",
     "aliases": [],
     "category": "gy",
-    "definition": "「GY-05」为 China OS 模块「零工经济人群」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「零工经济人群」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括零工经济人群。在国运/GY推演谱系中，GY-05作为可观测变量或结构隐喻，参与情景分支与尾部风险评估。",
+    "definition": "「GY-05」为 China OS 模块「零工经济」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「零工经济」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括零工经济。在国运/GY推演谱系中，GY-05作为可观测变量或结构隐喻，参与情景分支与尾部风险评估。",
     "context": [
       {
         "moduleId": "linggong",
-        "label": "零工经济人群",
+        "label": "零工经济",
         "path": "/modules/linggong"
       }
     ],
     "related": [
-      "零工经济人群"
+      "零工经济"
     ],
-    "source": "China OS · 零工经济人群",
+    "source": "China OS · 零工经济",
     "initial": "G"
   },
   {
@@ -4908,16 +4910,17 @@ export const GLOSSARY_ENTRIES = [
   },
   {
     "id": "mod-linggong",
-    "term": "零工经济人群",
+    "term": "零工经济",
     "aliases": [
+      "零工经济人群",
       "悬空的基础设施"
     ],
     "category": "gy",
-    "definition": "China OS 功能模块「零工经济人群」聚焦悬空的基础设施 · 系统压在他们身上 · GY-05。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括系统压在他们身上、GY-05。",
+    "definition": "China OS 功能模块「零工经济」聚焦悬空的基础设施 · 系统压在他们身上 · GY-05。模块词条用于全局搜索与术语词典的交叉导航，便于从概念跳转至可操作面板。关联概念包括系统压在他们身上、GY-05。",
     "context": [
       {
         "moduleId": "linggong",
-        "label": "零工经济人群",
+        "label": "零工经济",
         "path": "/modules/linggong"
       }
     ],
@@ -4925,7 +4928,7 @@ export const GLOSSARY_ENTRIES = [
       "系统压在他们身上",
       "GY-05"
     ],
-    "source": "China OS · registry.js；China OS · 零工经济人群",
+    "source": "China OS · registry.js；China OS · 零工经济",
     "initial": "L"
   },
   {
@@ -7566,18 +7569,18 @@ export const GLOSSARY_ENTRIES = [
     "term": "系统压在他们身上",
     "aliases": [],
     "category": "gy",
-    "definition": "「系统压在他们身上」为 China OS 模块「零工经济人群」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「零工经济人群」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括零工经济人群。在国运/GY推演谱系中，系统压在他们身上作为可观测变量或结构隐喻，参与情景分支与尾部风险评估。",
+    "definition": "「系统压在他们身上」为 China OS 模块「零工经济」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「零工经济」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括零工经济。在国运/GY推演谱系中，系统压在他们身上作为可观测变量或结构隐喻，参与情景分支与尾部风险评估。",
     "context": [
       {
         "moduleId": "linggong",
-        "label": "零工经济人群",
+        "label": "零工经济",
         "path": "/modules/linggong"
       }
     ],
     "related": [
-      "零工经济人群"
+      "零工经济"
     ],
-    "source": "China OS · 零工经济人群",
+    "source": "China OS · 零工经济",
     "initial": "X"
   },
   {

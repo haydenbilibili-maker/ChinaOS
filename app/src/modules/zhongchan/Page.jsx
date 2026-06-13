@@ -11,7 +11,7 @@ export default function ZhongchanPage() {
     <div className="zhongchan-page">
       <PageHeader
         badge="GY-08 · 人群画像分层"
-        title="中产阶层"
+        title="中产"
         subtitle="质押态进程 · 三张折价的凭证"
       />
       <ZhongchanPanel />

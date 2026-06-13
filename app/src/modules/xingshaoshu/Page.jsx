@@ -11,7 +11,7 @@ export default function XingshaoshuPage() {
     <div className="xingshaoshu-page">
       <PageHeader
         badge="GY-04 · 人群画像分层"
-        title="性少数群像"
+        title="性少数"
         subtitle="挤压性存在 · 被允许的可见形态 = 被允许的存在形态"
       />
       <XingshaoshuPanel />

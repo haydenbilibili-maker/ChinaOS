@@ -11,7 +11,7 @@ export default function LiupiaoPage() {
     <div className="liupiao-page">
       <PageHeader
         badge="GY-14 · 人群画像分层"
-        title="流量彩票 · 主播与创作者"
+        title="创作者"
         subtitle="彩票调度 · 用中奖伪装的职业"
       />
       <LiupiaoPanel />

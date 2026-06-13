@@ -11,7 +11,7 @@ export default function ZhixiaoPage() {
     <div className="zhixiao-page">
       <PageHeader
         badge="GY-11 · 人群画像分层"
-        title="被分流的一半:职校生"
+        title="职校生"
         subtitle="编译期定价 · 十五岁的一次性判决"
       />
       <ZhixiaoPanel />

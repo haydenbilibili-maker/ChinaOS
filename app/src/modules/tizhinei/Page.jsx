@@ -11,7 +11,7 @@ export default function TizhineiPage() {
     <div className="tizhinei-page">
       <PageHeader
         badge="GY-07 · 人群画像分层"
-        title="体制内人群"
+        title="体制内"
         subtitle="常驻内存 · 刚兑的最后分区"
       />
       <TizhineiPanel />

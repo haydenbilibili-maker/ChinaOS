@@ -11,7 +11,7 @@ export default function LianPage() {
     <div className="lian-page">
       <PageHeader
         badge="GY-16 · 人群画像分层 · 系列收官"
-        title="离岸中国人 · 用脚投票者的账户"
+        title="离岸华人"
         subtitle="境外节点 · 未结清的账户"
       />
       <LianPanel />

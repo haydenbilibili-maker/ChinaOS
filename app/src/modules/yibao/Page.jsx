@@ -11,7 +11,7 @@ export default function YibaoPage() {
     <div className="yibao-page">
       <PageHeader
         badge="GY-15 · 人群画像分层"
-        title="医保里的人 · 慢病与老龄财政"
+        title="医保群体"
         subtitle="全员接口 · 单方面改版的契约"
       />
       <YibaoPanel />

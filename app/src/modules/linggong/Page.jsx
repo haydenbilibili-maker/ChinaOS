@@ -11,7 +11,7 @@ export default function LinggongPage() {
     <div className="linggong-page">
       <PageHeader
         badge="GY-05 · 人群画像分层"
-        title="零工经济人群"
+        title="零工经济"
         subtitle="悬空的基础设施 · 系统压在他们身上，他们不站在任何东西上"
       />
       <LinggongPanel />

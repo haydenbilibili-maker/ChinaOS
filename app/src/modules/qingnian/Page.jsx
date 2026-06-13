@@ -12,7 +12,7 @@ export default function QingnianPage() {
       <PageHeader
         badge="GY-03 · 世代研究"
         title="青年"
-        subtitle="机器的盲区 · 概率的暗物质 · 与 GY-01/GY-02 双向耦合"
+        subtitle="机器的盲区 · 概率的暗物质 · 二亿人的退出"
       />
       <QingnianPanel />
     </div>

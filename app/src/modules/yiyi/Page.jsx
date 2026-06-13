@@ -11,7 +11,7 @@ export default function YiyiPage() {
     <div className="yiyi-page">
       <PageHeader
         badge="GY-13 · 人群画像分层"
-        title="意义市场 · 信仰人群"
+        title="信仰人群"
         subtitle="无主端口 · 被许可的玄学"
       />
       <YiyiPanel />

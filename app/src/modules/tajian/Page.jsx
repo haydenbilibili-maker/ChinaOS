@@ -11,8 +11,8 @@ export default function TajianPage() {
     <div className="tajian-page">
       <PageHeader
         badge="GY-10 · 人群画像分层"
-        title="塔尖:高净值与企业家"
-        subtitle="可迁移进程 · 资本在候机"
+        title="塔尖阶层"
+        subtitle="可迁移进程 · 要钱不要人的塔尖"
       />
       <TajianPanel />
     </div>

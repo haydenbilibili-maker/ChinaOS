@@ -11,7 +11,7 @@ export default function LaonianPage() {
     <div className="laonian-page">
       <PageHeader
         badge="GY-09 · 人群画像分层"
-        title="老年群体"
+        title="老年"
         subtitle="应计负债 · 账期已至的三亿人"
       />
       <LaonianPanel />
