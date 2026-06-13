@@ -1,0 +1,522 @@
+<div class="yh-shell">
+
+  <!-- 题头 -->
+  <header class="yh-mast">
+    <div>
+      <div class="yh-mast-meta">ChinaOS · MODULE <b>GY-37</b> · 人群画像分层 · 第三十五子集</div>
+      <h1 class="yh-title">医护人员<span class="yh-title-sub">永远满载的服务进程 · 请求队列溢出</span></h1>
+    </div>
+    <div class="yh-mast-seal">医患同困</div>
+  </header>
+  <p class="yh-mast-note">注记(口径处理):本片以<b>劳动社会学与医疗体制视角</b>分析医护人员作为长期满载运行的服务进程,关注其结构性供需约束、薪酬与养成机制、医患关系的制度根源;不评判具体事件、不针对具体机构或个人,医患矛盾作为<b>结构问题</b>描述,不渲染个案、不归咎医患任何一方;数据为国家卫健委统计公报口径与训练知识基线,标「约」、留观测哨回填,量级估算与精确口径严格区分。</p>
+
+  <!-- 请求队列溢出签名图 -->
+  <div class="yh-found" aria-label="请求队列溢出的服务进程示意图:一个服务进程标 LOAD 100%+,前面排着溢出的请求队列患者 14 亿健康请求,服务进程过热红灯过劳规培低薪医患风险,一行医患同困同一场过载的两端,底注执业医师 508.2 万卫生技术人员约 1250 万 GY-15 患者端的劳动者镜像">
+    <svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg" role="img">
+      <text x="500" y="20" font-size="11" fill="#8f897d" text-anchor="middle" font-family="mono" letter-spacing="2">ChinaOS · OVERLOADED SERVICE · 请求队列溢出</text>
+      <text x="500" y="44" font-size="9.5" fill="#7d6a3a" text-anchor="middle" font-family="sans-serif">— 508 万医师服务 14 亿人,这台服务器从设计上就注定满载 —</text>
+
+      <!-- 服务进程 LOAD 100%+ -->
+      <rect x="640" y="80" width="280" height="120" rx="8" fill="#2a1818" stroke="#b5483a" stroke-width="2"/>
+      <text x="780" y="106" font-size="12" fill="#c2786e" text-anchor="middle" font-family="serif" letter-spacing="1">服务进程 · 医护人员</text>
+      <text x="780" y="130" font-size="18" fill="#c2786e" text-anchor="middle" font-family="mono">LOAD 100%+</text>
+      <circle cx="704" cy="160" r="6" fill="#b5483a"><animate attributeName="opacity" values="1;0.3;1" dur="1.4s" repeatCount="indefinite"/></circle>
+      <text x="780" y="165" font-size="9" fill="#8f897d" text-anchor="middle" font-family="mono">过热红灯 · OVERHEAT</text>
+      <text x="780" y="184" font-size="8.5" fill="#a89968" text-anchor="middle" font-family="sans-serif">过劳 / 规培低薪 / 医患风险</text>
+
+      <!-- 溢出的请求队列 -->
+      <text x="280" y="98" font-size="11" fill="#5d7489" text-anchor="middle" font-family="serif" letter-spacing="1">请求队列 · 患者 · 14 亿健康请求</text>
+      <rect x="80" y="112" width="60" height="36" rx="4" fill="#1c242e" stroke="#5d7489" stroke-width="1.2"/>
+      <rect x="150" y="112" width="60" height="36" rx="4" fill="#1c242e" stroke="#5d7489" stroke-width="1.2"/>
+      <rect x="220" y="112" width="60" height="36" rx="4" fill="#1c242e" stroke="#5d7489" stroke-width="1.2"/>
+      <rect x="290" y="112" width="60" height="36" rx="4" fill="#1c242e" stroke="#5d7489" stroke-width="1.2"/>
+      <rect x="360" y="112" width="60" height="36" rx="4" fill="#1c242e" stroke="#5d7489" stroke-width="1.2"/>
+      <rect x="430" y="112" width="60" height="36" rx="4" fill="#2a1818" stroke="#b5483a" stroke-width="1.4"/>
+      <rect x="500" y="112" width="60" height="36" rx="4" fill="#2a1818" stroke="#b5483a" stroke-width="1.4"/>
+      <text x="320" y="170" font-size="9" fill="#8f897d" text-anchor="middle" font-family="mono">挂号难 · 专家号秒光 · 三甲爆满 — 队列持续溢出 ↗</text>
+      <line x1="560" y1="130" x2="640" y2="135" stroke="#b5483a" stroke-width="1.4" marker-end="url(#yhArrow)"/>
+      <defs>
+        <marker id="yhArrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#b5483a"/></marker>
+      </defs>
+
+      <!-- 医患同困带 -->
+      <rect x="120" y="248" width="760" height="58" rx="8" fill="#2a2418" stroke="#b39657" stroke-width="1.6"/>
+      <text x="500" y="274" font-size="13" fill="#c9b87a" text-anchor="middle" font-family="serif" letter-spacing="2">医患同困 · 同一场过载的两端</text>
+      <text x="500" y="295" font-size="9.5" fill="#a89968" text-anchor="middle" font-family="sans-serif">医护被过劳 / 低回报 / 风险困住 · 患者被难挂号 / 高自费困住 — 两个受害者,不是对立方</text>
+
+      <!-- 服务端 vs 客户端 -->
+      <rect x="150" y="338" width="320" height="86" rx="6" fill="#1c242e" stroke="#5e8c7a" stroke-width="1.4"/>
+      <text x="310" y="362" font-size="11" fill="#5e8c7a" text-anchor="middle" font-family="serif">服务端 · 医护过劳</text>
+      <text x="310" y="382" font-size="9" fill="#7d9488" text-anchor="middle" font-family="sans-serif">超负荷 · 规培低薪长工时 · 医疗风险</text>
+      <text x="310" y="400" font-size="9" fill="#7d9488" text-anchor="middle" font-family="sans-serif">防御性医疗 · 缺科 · 健康透支</text>
+      <text x="310" y="416" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="mono">↗ GY-33 / GY-23 / GY-22</text>
+
+      <rect x="530" y="338" width="320" height="86" rx="6" fill="#2a1818" stroke="#b5483a" stroke-width="1.4"/>
+      <text x="690" y="362" font-size="11" fill="#c2786e" text-anchor="middle" font-family="serif">客户端 · 患者就医难</text>
+      <text x="690" y="382" font-size="9" fill="#c2a09a" text-anchor="middle" font-family="sans-serif">挂号难 · 自费重 · 获得感低</text>
+      <text x="690" y="400" font-size="9" fill="#c2a09a" text-anchor="middle" font-family="sans-serif">DRG 控费下压 · 防御性医疗体验</text>
+      <text x="690" y="416" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="mono">↗ GY-15 患者端</text>
+      <line x1="470" y1="381" x2="530" y2="381" stroke="#b39657" stroke-width="1.4" stroke-dasharray="3 3"/>
+      <text x="500" y="375" font-size="13" fill="#c9b87a" text-anchor="middle" font-family="mono">⇄</text>
+
+      <line x1="100" y1="460" x2="900" y2="460" stroke="#3d4c5a" stroke-width="1" stroke-dasharray="3 5"/>
+      <text x="500" y="486" font-size="10.5" fill="#b5483a" text-anchor="middle" font-family="serif" letter-spacing="2">— 执业医师 508.2 万 · 卫生技术人员约 1250 万 · GY-15 患者端的劳动者镜像 —</text>
+      <text x="500" y="510" font-size="9" fill="#7d9488" text-anchor="middle" font-family="sans-serif">需求(14 亿人的健康)永远超过供给,服务进程长期 100%+ 满载,请求队列持续溢出</text>
+      <text x="500" y="532" font-size="9" fill="#8f897d" text-anchor="middle" font-family="sans-serif">最响的警报不是医闹,是退出——当医护开始劝自己的孩子别学医,这台服务器的维护者正在悄悄离场</text>
+      <text x="500" y="556" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="mono">注:医患矛盾作为结构问题描述,不渲染个案、不归咎医患任何一方</text>
+    </svg>
+    <div class="yh-found-caption">模块隐喻是<b>请求队列溢出的服务进程(Overloaded Service, Request Queue Overflow)</b>:医护人员是 China OS 一个长期满载运行的服务进程——508 万执业医师服务 14 亿人的健康请求,服务器 CPU 长期 100%+,请求队列(患者)持续溢出(挂号难、专家号秒光、三甲人满为患);服务端(医护过劳、规培低薪长工时)与客户端(患者就医难、自费重 ↗ GY-15)在同一场过载里同时受困。签名图:一个服务进程标 <b>LOAD 100%+</b>,前面排着溢出的请求队列「患者 · 14 亿健康请求」;服务进程自身亮着过热红灯「过劳 / 规培低薪 / 医患风险」;一行字「<b>医患同困:同一场过载的两端</b>」;底注「执业医师 508.2 万 · 卫生技术人员约 1250 万 · GY-15 患者端的劳动者镜像」。<b>这个人群是 GY-15(医保/患者端)的劳动者镜像,本片最关键的判断是把「医患对立」重构为「医患同困」。</b></div>
+  </div>
+
+  <!-- 页签 -->
+  <nav class="yh-nav" role="tablist">
+    <button role="tab" data-panel="yh-p-y1" class="is-active">508万服务14亿</button>
+    <button role="tab" data-panel="yh-p-y2">医患同困</button>
+    <button role="tab" data-panel="yh-p-y3">规培学徒期</button>
+    <button role="tab" data-panel="yh-p-y4">薪酬改革</button>
+    <button role="tab" data-panel="yh-p-y5">护士与基层</button>
+    <button role="tab" data-panel="yh-p-y6">政治形态学</button>
+    <button role="tab" data-panel="yh-p-y7">形态推演</button>
+    <button role="tab" data-panel="yh-p-watch">合成 · 观测哨</button>
+  </nav>
+
+  <!-- ════ Y1 508万服务14亿 ════ -->
+  <section class="yh-panel is-active" id="yh-p-y1">
+    <div class="yh-sec-head"><h2>Y1 · 规模与过载:508 万医师服务 14 亿人</h2><span class="yh-sec-tag">这台服务器从设计上就注定满载</span></div>
+    <p class="yh-lede">执业(助理)医师 508.2 万、注册护士 500 万+、卫生技术人员约 1250 万,相对 14 亿人口和老龄化(↗ GY-09)的医疗需求,长期处于结构性供不应求;<b style="color:var(--zhu);">优质医疗(三甲、专家)的稀缺,使「挂号难、看病难」成为请求队列的永久溢出</b>。这是一台从设计上就注定满载运行的服务器——医护的过劳与患者的难医,只是同一个过载的两个读数。</p>
+
+    <h3 class="yh-h3">总盘:508 万医师服务 14 亿人</h3>
+    <div class="yh-data3">
+      <div class="yh-stat">
+        <span class="yh-eyebrow">执业(助理)医师</span>
+        <span class="yh-stat-n">508.2 万</span>
+        <span class="yh-stat-u">2024 卫生健康统计公报</span>
+        <p>执业(助理)医师 508.2 万——<b style="color:var(--zhu);">服务 14 亿人的健康请求</b>;千人医师数虽提升,但相对刚性上升的需求仍结构性不足(↗ GY-09)。</p>
+      </div>
+      <div class="yh-stat">
+        <span class="yh-eyebrow">注册护士</span>
+        <span class="yh-stat-n">500 万+</span>
+        <span class="yh-stat-u">金字塔底层主力</span>
+        <p>注册护士 500 万+——<b>护理劳动的承担者</b>;护患比长期不足,高强度低地位高流失(↗ Y5),是医疗劳动金字塔的底层主力。</p>
+      </div>
+      <div class="yh-stat">
+        <span class="yh-eyebrow">卫生技术人员</span>
+        <span class="yh-stat-n">约 1250 万</span>
+        <span class="yh-stat-u">供给端总盘</span>
+        <p>卫生技术人员约 1250 万——<b style="color:var(--zhu);">这是健康供给的人力总盘</b>;相对 14 亿人口与老龄化曲线,总量过载与结构错配并存。</p>
+      </div>
+    </div>
+
+    <h3 class="yh-h3">结构性过载:总量过载 + 结构错配的双重压力</h3>
+    <div class="yh-rows">
+      <div class="yh-row peak"><span class="yh-row-k">挂号难即溢出</span><span class="yh-row-v"><b style="color:var(--zhu);">优质医疗资源(三甲、专家、大城市)高度集中</b>——「挂号难」是优质医疗请求队列的永久溢出;不是管理问题,是供需的结构性溢出。</span></div>
+      <div class="yh-row"><span class="yh-row-k">老龄化加压(↗ GY-09)</span><span class="yh-row-v">老龄化使医疗需求刚性上升——<b>需求曲线持续上移,供给追不上</b>;医护过载是老龄化压力的供给侧投影。</span></div>
+      <div class="yh-row peak"><span class="yh-row-k">分布失衡</span><span class="yh-row-v"><b style="color:var(--zhu);">城乡、区域、专科(儿科/急诊/精神科/全科)的结构性短缺</b>——总量过载 + 结构错配的双重压力同时存在。</span></div>
+      <div class="yh-row"><span class="yh-row-k">两个读数</span><span class="yh-row-v">在这台长期 100%+ 运行的服务器上,<b>医护的过劳和患者的难医,是同一个过载的两个读数</b>(↗ Y2 医患同困 / GY-15 患者端)。</span></div>
+    </div>
+    <div class="yh-breaking">
+      <span class="yh-breaking-tag">! 挂号难不是管理问题,是供需的结构性溢出</span>
+      508 万医师服务 14 亿人,这台服务器从设计上就注定满载——<b>挂号难不是管理问题,是供需的结构性溢出:优质医疗的请求永远多于它能处理的</b>。
+    </div>
+
+    <h3 class="yh-h3">供需缺口:被需求曲线追着跑的供给</h3>
+    <div class="yh-dual">
+      <div class="yh-dual-a"><h6>供给端 · <b>508 万医师 / 1250 万卫技</b></h6><span class="yh-dual-pole">总量在增 · 结构错配</span><p>千人医师护士数稳步提升——<b style="color:var(--qing);">供给在扩张,但优质医疗(专家、三甲、信任)难以快速复制</b>;缺科与基层弱使有效供给打折(↗ Y5)。</p></div>
+      <div class="yh-dual-mid">⇄</div>
+      <div class="yh-dual-b"><h6>需求端 · <b>14 亿人的健康请求</b></h6><span class="yh-dual-pole">老龄化 · 刚性上移</span><p><b style="color:var(--zhu);">老龄化(↗ GY-09)使医疗需求刚性上升,需求曲线持续上移</b>——供给追不上,请求队列在三甲门口持续溢出。</p></div>
+    </div>
+
+    <div class="yh-art">
+      <h5><b>508 万医师服务 14 亿人,这台服务器从设计上就注定满载</b>挂号难是供需的结构性溢出</h5>
+      <p>508 万医师服务 14 亿人,这台服务器从设计上就注定满载。<b style="color:var(--zhu);">挂号难不是管理问题,是供需的结构性溢出——优质医疗的请求永远多于它能处理的。在这台长期 100%+ 运行的服务器上,医护的过劳和患者的难医,是同一个过载的两个读数。</b>(↗ GY-09 老龄化 / ↗ Y2 医患同困)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="yh-xref">↗ GY-09 · 老龄化的医疗需求</span>
+      <span class="yh-xref">↗ GY-15 · 患者端的过载镜像</span>
+      <span class="yh-xref">↗ Y2 · 医患同困</span>
+    </div>
+
+    <div class="yh-verdict">
+      <span class="yh-verdict-tag">Y1 判词</span>
+      508 万医师服务 14 亿人,这台服务器从设计上就注定满载。挂号难不是管理问题,是供需的结构性溢出——优质医疗的请求永远多于它能处理的。<b style="color:var(--zhu);">在这台长期 100%+ 运行的服务器上,医护的过劳和患者的难医,是同一个过载的两个读数。</b>
+      <span class="yh-xref">↗ Y2 · 被结构对立的两端</span>
+    </div>
+  </section>
+
+  <!-- ════ Y2 医患同困 ════ -->
+  <section class="yh-panel" id="yh-p-y2">
+    <div class="yh-sec-head"><h2>Y2 · 医患同困:被结构对立的两端</h2><span class="yh-sec-tag">本片核心命题 · 从对立到同困</span></div>
+    <p class="yh-disclaimer top">注记(口径处理):本节将医患关系紧张作为<b>结构问题</b>分析,关注其制度根源与治理,不渲染个案、不归咎医患任何一方、不评判具体事件;「同困」「对立」均为社会学描述,旨在理解与改善,不针对具体机构或群体。</p>
+    <p class="yh-lede">本片核心命题——医患关系的紧张(医闹、伤医、不信任)常被叙述为「医患对立」,<b style="color:var(--zhu);">但其结构根源是同一场过载:医护被超负荷、低回报、高风险困住,患者被难挂号、高自费(↗ GY-15)、低获得感困住——他们是同一个医疗资源约束下的两个受困方,不是对立方</b>。真正该被追问的,是那个让 508 万人服务 14 亿、还要一边控费一边背锅的系统。</p>
+
+    <h3 class="yh-h3">从「对立」到「同困」:表象与实质</h3>
+    <div class="yh-dual">
+      <div class="yh-dual-a"><h6>表象 · <b>医患对立</b></h6><span class="yh-dual-pole">医闹 / 伤医 / 不信任</span><p>医闹、伤医事件、医患不信任——<b style="color:var(--qing);">表面是医患对立</b>;矛盾被错误地引向彼此,两个受害者在诊室里相遇,却被结构推着互相迁怒。</p></div>
+      <div class="yh-dual-mid">→</div>
+      <div class="yh-dual-b"><h6>实质 · <b>医患同困</b></h6><span class="yh-dual-pole">同一个资源约束</span><p><b style="color:var(--zhu);">医护(过劳、低薪相对付出、风险、防御性医疗)+ 患者(挂号难、自费重 ↗ GY-15、获得感低)——双方都被医疗资源约束困住</b>;真正的对手是约束与制度设计。</p></div>
+    </div>
+
+    <h3 class="yh-h3">风险转嫁链:控费压力沿链条下压</h3>
+    <div class="yh-chain">
+      <div class="yh-chain-row v1"><span class="yh-chain-t">医保控费</span><span class="yh-chain-v"><b>DRG / DIP 支付改革(↗ GY-15 Y4)</b> — 控费压力的源头;支付方式从按项目付费转向按病种打包。</span></div>
+      <div class="yh-chain-row v2"><span class="yh-chain-t">医院压力</span><span class="yh-chain-v"><b style="color:var(--zhu);">控费指标传导到医院运营</b> — 医院承压,把成本与考核压力沿层级下压到科室与一线。</span></div>
+      <div class="yh-chain-row v1"><span class="yh-chain-t">医生行为变形</span><span class="yh-chain-v"><b>推诿重症 / 防御性医疗</b> — 医生从患者代理人滑向基金守门人;行为在控费与责任的夹缝里变形。</span></div>
+      <div class="yh-chain-row v2"><span class="yh-chain-t">医患界面爆发</span><span class="yh-chain-v"><b style="color:var(--zhu);">患者体验差 → 医患矛盾</b> — 控费压力沿链条下压,最终在医患界面爆发;诊室是整条链的终端。</span></div>
+    </div>
+    <div class="yh-breaking">
+      <span class="yh-breaking-tag">! 信任的制度地基被支付改革改写</span>
+      DRG 使医生从患者代理人滑向基金守门人——<b>医患信任的制度基础被支付改革改写(↗ GY-15 Y4)</b>;当医生既要治病又要守门,信任的地基就被动了。
+    </div>
+
+    <h3 class="yh-h3">「同困」的判断意义:重构,而非道德归因</h3>
+    <div class="yh-rows">
+      <div class="yh-row peak"><span class="yh-row-k">从道德到结构</span><span class="yh-row-v"><b style="color:var(--zhu);">把医患矛盾从「道德/对立」重构为「结构/同困」</b>——真正的对手是医疗资源约束与制度设计,不是彼此。</span></div>
+      <div class="yh-row"><span class="yh-row-k">两个受害者</span><span class="yh-row-v">排队三小时、看病三分钟的医患双方,<b>是同一场过载里的两个受害者</b>——矛盾被结构推着引向彼此。</span></div>
+      <div class="yh-row peak"><span class="yh-row-k">该被追问的系统</span><span class="yh-row-v"><b style="color:var(--zhu);">真正该被追问的,是那个让 508 万人服务 14 亿、还要一边控费一边背锅的系统</b>——而不是诊室里相遇的医患双方。</span></div>
+    </div>
+
+    <div class="yh-art">
+      <h5><b>他们困在同一场过载里,却被结构推着互相迁怒</b>真正的对手是系统,不是彼此</h5>
+      <p>医患矛盾最深的误读,是把它讲成医生和患者的对立。<b style="color:var(--zhu);">其实他们困在同一场过载里:医生被超负荷和风险压着,患者被难挂号和高自费压着,两个受害者在诊室里相遇,却被结构推着互相迁怒。真正该被追问的,是那个让 508 万人服务 14 亿、还要一边控费一边背锅的系统——而不是排队三小时、看病三分钟的医患双方。</b>(↗ GY-15 Y4 / ↗ Y1 过载)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="yh-xref">↗ GY-15 · 医保/患者端(DRG 控费)</span>
+      <span class="yh-xref">↗ Y1 · 结构性过载</span>
+      <span class="yh-xref">↗ Y4 · 控费与创收的下压</span>
+    </div>
+
+    <div class="yh-verdict">
+      <span class="yh-verdict-tag">Y2 判词</span>
+      医患矛盾最深的误读,是把它讲成医生和患者的对立。其实他们困在同一场过载里:医生被超负荷和风险压着,患者被难挂号和高自费压着,两个受害者在诊室里相遇,却被结构推着互相迁怒。<b style="color:var(--zhu);">真正该被追问的,是那个让 508 万人服务 14 亿、还要一边控费一边背锅的系统——而不是排队三小时、看病三分钟的医患双方。</b>
+      <span class="yh-xref">↗ Y3 · 医学版的非升即走</span>
+    </div>
+  </section>
+
+  <!-- ════ Y3 规培学徒期 ════ -->
+  <section class="yh-panel" id="yh-p-y3">
+    <div class="yh-sec-head"><h2>Y3 · 规培与青年医生:医学版的非升即走</h2><span class="yh-sec-tag">回报最延迟的职业路径之一</span></div>
+    <p class="yh-lede">住院医师规范化培训(规培)使青年医生经历<b style="color:var(--zhu);">长学制(5+3+…)+ 低薪 + 长工时的漫长「学徒期」</b>——医学生要熬到独立行医、评职称、上手术台,周期极长、回报延迟,是 GY-33(青椒非升即走)的医学版、GY-23(健康透支)的职业版。而最苦最险的儿科急诊全科,恰恰最没人愿意去(↗ GY-22)。</p>
+
+    <h3 class="yh-h3">长学制:成为一个独立医生的漫长链路</h3>
+    <div class="yh-chain">
+      <div class="yh-chain-row v1"><span class="yh-chain-t">5 年本科</span><span class="yh-chain-v"><b>临床医学本科</b> — 学徒期的起点;医学是少有的长学制专业之一。</span></div>
+      <div class="yh-chain-row v2"><span class="yh-chain-t">3 年规培</span><span class="yh-chain-v"><b style="color:var(--zhu);">住院医师规范化培训(5+3)</b> — 收入低、工时长(夜班、连轴转),是「医学生的苦熬期」;与付出严重不匹配(↔ GY-33/GY-28 的延迟低回报)。</span></div>
+      <div class="yh-chain-row v1"><span class="yh-chain-t">专培 / 读研读博</span><span class="yh-chain-v"><b>专科医师培训 + 学历晋升</b> — 学徒期进一步拉长;成为一个独立医生的周期极长。</span></div>
+      <div class="yh-chain-row v2"><span class="yh-chain-t">职称晋升</span><span class="yh-chain-v"><b style="color:var(--zhu);">论文、课题(↗ GY-33 唯论文)</b> — 临床医生被迫做科研,临床与科研的双重内卷;独立行医的资格姗姗来迟。</span></div>
+    </div>
+    <div class="yh-breaking">
+      <span class="yh-breaking-tag">! 中国回报最延迟的职业路径之一</span>
+      成为一个医生,要熬过五年本科、三年规培、无尽的夜班和论文,才能换来独立行医的资格——<b>这是中国回报最延迟的职业路径之一(↔ GY-33 青椒 / GY-28 程序员)</b>。
+    </div>
+
+    <h3 class="yh-h3">健康透支与缺科:激励把人从最需要的科室赶走</h3>
+    <div class="yh-rows">
+      <div class="yh-row peak"><span class="yh-row-k">健康透支(↗ GY-23)</span><span class="yh-row-v"><b style="color:var(--zhu);">超长工时、夜班、连续手术——医护是健康透支最严重的职业之一</b>;「医生猝死」个案是其极端。</span></div>
+      <div class="yh-row"><span class="yh-row-k">论文化晋升(↗ GY-33)</span><span class="yh-row-v">医生晋升要论文、课题——<b>临床医生被迫做科研,临床与科研的双重内卷</b>;唯论文的指挥棒在医学界同样运行。</span></div>
+      <div class="yh-row peak"><span class="yh-row-k">儿科/急诊/全科荒</span><span class="yh-row-v"><b style="color:var(--zhu);">高风险、高强度、低回报使青年医生不愿选儿科/急诊/全科</b>——激励错配导致结构性缺科(↔ GY-22 被需要不被向往的医学版)。</span></div>
+    </div>
+
+    <h3 class="yh-h3">规培 ≈ 非升即走:专业养成的漫长学徒期</h3>
+    <div class="yh-dual">
+      <div class="yh-dual-a"><h6>青椒 · <b>GY-33 非升即走</b></h6><span class="yh-dual-pole">长聘前的临时工</span><p>高校青椒在长聘前经历低薪、长工时、论文考核的临时工阶段——<b style="color:var(--qing);">「非升即走」的学术学徒期</b>(↗ GY-33)。</p></div>
+      <div class="yh-dual-mid">↔</div>
+      <div class="yh-dual-b"><h6>青年医生 · <b>规培学徒期</b></h6><span class="yh-dual-pole">独立行医前的苦熬</span><p><b style="color:var(--zhu);">规培是医学版的非升即走——长学制 + 低薪长工时 + 论文晋升,与青椒同构</b>;专业养成的漫长学徒期。</p></div>
+    </div>
+
+    <div class="yh-art">
+      <h5><b>当救死扶伤的崇高兑不出相称的回报,激励就把青年医生从最需要他们的科室赶走</b></h5>
+      <p>成为一个医生,要熬过五年本科、三年规培、无尽的夜班和论文,才能换来独立行医的资格——这是中国回报最延迟的职业路径之一。<b style="color:var(--zhu);">而最苦、最险、最累的儿科急诊全科,恰恰最没人愿意去:当救死扶伤的崇高,兑不出与付出相称的回报和尊重,激励就把青年医生从最需要他们的科室赶走了。</b>(↗ GY-22 被需要不被向往 / ↗ GY-23 健康透支)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="yh-xref">↗ GY-33 · 非升即走的医学版</span>
+      <span class="yh-xref">↗ GY-23 · 健康透支</span>
+      <span class="yh-xref">↗ GY-22 · 被需要不被向往</span>
+    </div>
+
+    <div class="yh-verdict">
+      <span class="yh-verdict-tag">Y3 判词</span>
+      成为一个医生,要熬过五年本科、三年规培、无尽的夜班和论文,才能换来独立行医的资格——这是中国回报最延迟的职业路径之一。而最苦、最险、最累的儿科急诊全科,恰恰最没人愿意去:<b style="color:var(--zhu);">当救死扶伤的崇高,兑不出与付出相称的回报和尊重,激励就把青年医生从最需要他们的科室赶走了(↗ GY-22)。</b>
+      <span class="yh-xref">↗ Y4 · 编制、创收、改革</span>
+    </div>
+  </section>
+
+  <!-- ════ Y4 薪酬改革 ════ -->
+  <section class="yh-panel" id="yh-p-y4">
+    <div class="yh-sec-head"><h2>Y4 · 公立医院与薪酬:编制、创收、改革</h2><span class="yh-sec-tag">医改最直接的执行者,也是承受者</span></div>
+    <p class="yh-lede">公立医院医护是体制内(↗ GY-07 事业编)的特殊一群——<b style="color:var(--zhu);">既有编制的稳定,又受「以药养医 → 医改 → DRG 控费」的收入波动</b>;薪酬阳光化(年薪制、三明医改)与创收依赖的张力,使医护收入处在改革的不确定中。他们是医改最直接的执行者,也是最直接的承受者。</p>
+
+    <h3 class="yh-h3">收入来源的反复重构:一条改革时间链</h3>
+    <div class="yh-chain">
+      <div class="yh-chain-row v1"><span class="yh-chain-t">以药养医</span><span class="yh-chain-v"><b>药品加成时代</b> — 收入靠药品加成支撑;创收依赖的旧模式。</span></div>
+      <div class="yh-chain-row v2"><span class="yh-chain-t">零加成 / 集采</span><span class="yh-chain-v"><b style="color:var(--zhu);">药品零加成、集采(↗ GY-15 Y3)</b> — 切断药品加成的旧收入来源;创收模式被第一次重构。</span></div>
+      <div class="yh-chain-row v1"><span class="yh-chain-t">DRG 控费</span><span class="yh-chain-v"><b>DRG / DIP 支付改革(↗ GY-15 Y4)</b> — 收入再被支付方式改写;控费压力沿链条下压(↗ Y2)。</span></div>
+      <div class="yh-chain-row v2"><span class="yh-chain-t">薪酬制度改革</span><span class="yh-chain-v"><b style="color:var(--zhu);">三明医改 / 年薪制 / 医务性收入</b> — 试图切断创收依赖、提高阳光收入;落地不均、争议并存。</span></div>
+    </div>
+    <div class="yh-breaking">
+      <span class="yh-breaking-tag">! 每一次过渡的不确定,都压在一线医护身上</span>
+      公立医院医护是带着编制的劳动者——<b>稳定,但收入被一轮轮医改反复重构;每一次过渡的不确定,都压在一线医护的工作量和收入预期上</b>。
+    </div>
+
+    <h3 class="yh-h3">体制内属性与分层:稳定、考核、天花板</h3>
+    <div class="yh-rows">
+      <div class="yh-row peak"><span class="yh-row-k">体制内属性(↗ GY-07)</span><span class="yh-row-v"><b style="color:var(--zhu);">公立医院医护多为事业编——有编制的稳定,也有体制的考核与天花板</b>;是体制内专业群体的一支。</span></div>
+      <div class="yh-row"><span class="yh-row-k">创收压力下压</span><span class="yh-row-v">医院运营压力 → 科室创收指标 → 医生工作量考核——<b>控费与创收的张力压在一线医护身上</b>(↔ GY-24 治理末梢 / GY-07 B6 的医院版)。</span></div>
+      <div class="yh-row peak"><span class="yh-row-k">体制内分层(↗ GY-07 B4)</span><span class="yh-row-v"><b style="color:var(--zhu);">三甲专家 vs 基层医生、编内 vs 合同/规培——医护内部的待遇分层悬殊</b>;同一身份下分层显著。</span></div>
+    </div>
+
+    <h3 class="yh-h3">阳光化 vs 创收依赖:切旧建新的张力</h3>
+    <div class="yh-dual">
+      <div class="yh-dual-a"><h6>创收依赖 · <b>旧模式</b></h6><span class="yh-dual-pole">以药养医 / 工作量考核</span><p>药品加成、检查创收、工作量指标——<b style="color:var(--qing);">旧的创收依赖被反复切断</b>;但医院运营压力仍在,创收逻辑难以一夜退场。</p></div>
+      <div class="yh-dual-mid">→</div>
+      <div class="yh-dual-b"><h6>薪酬阳光化 · <b>三明 / 年薪制</b></h6><span class="yh-dual-pole">医务性收入 / 阳光收入</span><p><b style="color:var(--zhu);">薪酬阳光化、年薪制试点——试图切断创收依赖、提高阳光收入</b>;但落地不均、争议并存,过渡的不确定压在一线。</p></div>
+    </div>
+
+    <div class="yh-art">
+      <h5><b>他们是医改最直接的执行者,也是最直接的承受者</b>每一次过渡的不确定都压在一线</h5>
+      <p>公立医院医护是带着编制的劳动者——稳定,但收入被一轮轮医改反复重构:从靠药品加成,到零加成、集采、DRG 控费,再到年薪制改革。<b style="color:var(--zhu);">每一次改革都想切断旧的创收依赖、建立新的阳光收入,而每一次过渡的不确定,都压在一线医护的工作量和收入预期上。他们是医改最直接的执行者,也是最直接的承受者。</b>(↗ GY-07 体制内 / ↗ GY-15 集采 DRG)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="yh-xref">↗ GY-07 · 体制内的事业编</span>
+      <span class="yh-xref">↗ GY-15 · 集采与 DRG</span>
+      <span class="yh-xref">↗ Y5 · 金字塔的底层</span>
+    </div>
+
+    <div class="yh-verdict">
+      <span class="yh-verdict-tag">Y4 判词</span>
+      公立医院医护是带着编制的劳动者——稳定,但收入被一轮轮医改反复重构:从靠药品加成,到零加成、集采、DRG 控费,再到年薪制改革。每一次改革都想切断旧的创收依赖、建立新的阳光收入,而每一次过渡的不确定,都压在一线医护的工作量和收入预期上。<b style="color:var(--zhu);">他们是医改最直接的执行者,也是最直接的承受者。</b>
+      <span class="yh-xref">↗ Y5 · 倒金字塔</span>
+    </div>
+  </section>
+
+  <!-- ════ Y5 护士与基层 ════ -->
+  <section class="yh-panel" id="yh-p-y5">
+    <div class="yh-sec-head"><h2>Y5 · 护士与基层:金字塔的底层</h2><span class="yh-sec-tag">强三甲、弱基层的倒金字塔</span></div>
+    <p class="yh-lede">护士(500 万+)和基层医疗(社区/乡镇卫生院、村医)是医疗体系金字塔的底层——<b style="color:var(--zhu);">护士的高强度、低地位、高流失,基层医疗的弱、村医的老化(↗ GY-30 农村),构成「强三甲、弱基层」的倒金字塔</b>,与分级诊疗的目标背离。倒金字塔越倒,顶端的过载(Y1)就越重。</p>
+
+    <h3 class="yh-h3">倒金字塔:头重脚轻的医疗体系</h3>
+    <div class="yh-pyramid" aria-label="倒金字塔示意图:顶端三甲医院人满为患最宽,中段二级医院与全科,底端基层社区乡镇卫生院与村医最窄而凋零,与正常分级诊疗金字塔相反">
+      <svg viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" role="img">
+        <text x="450" y="22" font-size="11" fill="#8f897d" text-anchor="middle" font-family="mono" letter-spacing="2">INVERTED PYRAMID · 强三甲弱基层的倒金字塔</text>
+        <!-- 倒金字塔三层 -->
+        <polygon points="120,60 780,60 660,150 240,150" fill="#2a1818" stroke="#b5483a" stroke-width="1.6"/>
+        <text x="450" y="98" font-size="13" fill="#c2786e" text-anchor="middle" font-family="serif" letter-spacing="1">三甲医院 · 人满为患</text>
+        <text x="450" y="120" font-size="9.5" fill="#c2a09a" text-anchor="middle" font-family="sans-serif">所有人涌向顶端 → Y1 过载在此最重 · 挂号难 / 专家号秒光</text>
+
+        <polygon points="240,158 660,158 560,238 340,238" fill="#2a2418" stroke="#b39657" stroke-width="1.4"/>
+        <text x="450" y="194" font-size="12" fill="#c9b87a" text-anchor="middle" font-family="serif">二级医院 · 全科医生「守门」</text>
+        <text x="450" y="214" font-size="9" fill="#a89968" text-anchor="middle" font-family="sans-serif">全科短缺 → 分级诊疗「守门」失灵,患者绕过基层直奔三甲</text>
+
+        <polygon points="340,246 560,246 510,320 390,320" fill="#1c242e" stroke="#5d7489" stroke-width="1.4"/>
+        <text x="450" y="282" font-size="11" fill="#5d7489" text-anchor="middle" font-family="serif">基层 · 社区/乡镇卫生院/村医</text>
+        <text x="450" y="300" font-size="8.5" fill="#7d9488" text-anchor="middle" font-family="sans-serif">门可罗雀 · 村医老化凋零(↗ GY-30)</text>
+
+        <text x="450" y="348" font-size="9.5" fill="#b5483a" text-anchor="middle" font-family="serif" letter-spacing="1">— 分级诊疗想让小病留在基层,可基层太弱、全科太缺,于是所有人还是涌向三甲 —</text>
+      </svg>
+    </div>
+
+    <h3 class="yh-h3">护士与村医:底层主力与最末梢</h3>
+    <div class="yh-rows">
+      <div class="yh-row peak"><span class="yh-row-k">护士的处境</span><span class="yh-row-v"><b style="color:var(--zhu);">高强度(护患比不足)、情感劳动(↗ GY-31)、相对低地位、职业天花板、流失率高</b>——护士是医疗劳动金字塔的底层主力(女性为主 ↗ GY-17)。</span></div>
+      <div class="yh-row"><span class="yh-row-k">基层医疗的弱</span><span class="yh-row-v">社区卫生服务中心、乡镇卫生院、村医——<b>「强三甲、弱基层」的倒金字塔</b>;分级诊疗(小病在基层)因基层弱而难落地。</span></div>
+      <div class="yh-row peak"><span class="yh-row-k">村医老化(↗ GY-30)</span><span class="yh-row-v"><b style="color:var(--zhu);">村医老龄化、待遇低、后继无人——农村医疗的最末梢在凋零</b>(↗ GY-30 农村留守老人的医疗不可达)。</span></div>
+      <div class="yh-row"><span class="yh-row-k">全科短缺</span><span class="yh-row-v">分级诊疗依赖全科医生「守门」,而全科短缺——<b>倒金字塔使患者全涌向三甲(Y1 过载)</b>;守门失灵,过载无处分流。</span></div>
+    </div>
+    <div class="yh-breaking">
+      <span class="yh-breaking-tag">! 强基层喊了多年,金字塔却还是头重脚轻</span>
+      护士在金字塔底层支撑着最繁重的护理,村医在最末梢凋零老去——<b>强基层喊了多年,金字塔却还是头重脚轻;倒金字塔越倒,顶端的过载(Y1)就越重</b>。
+    </div>
+
+    <div class="yh-art">
+      <h5><b>中国医疗是一座倒金字塔——三甲人满为患,基层门可罗雀</b>倒得越厉害,顶端过载越重</h5>
+      <p>中国医疗是一座倒金字塔——三甲医院人满为患,基层医疗门可罗雀。<b style="color:var(--zhu);">护士在金字塔底层支撑着最繁重的护理,村医在最末梢凋零老去。分级诊疗想让小病留在基层,可基层太弱、全科太缺,于是所有人还是涌向三甲——倒金字塔越倒,顶端的过载(Y1)就越重。强基层喊了多年,金字塔却还是头重脚轻。</b>(↗ GY-30 农村 / ↗ GY-31 照护劳动)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="yh-xref">↗ GY-30 · 农村留守老人的医疗不可达</span>
+      <span class="yh-xref">↗ GY-31 · 护士的情感/照护劳动</span>
+      <span class="yh-xref">↗ GY-17 · 护士的性别构成</span>
+    </div>
+
+    <div class="yh-verdict">
+      <span class="yh-verdict-tag">Y5 判词</span>
+      中国医疗是一座倒金字塔——三甲医院人满为患,基层医疗门可罗雀。护士在金字塔底层支撑着最繁重的护理,村医在最末梢凋零老去。分级诊疗想让小病留在基层,可基层太弱、全科太缺,于是所有人还是涌向三甲——倒金字塔越倒,顶端的过载(Y1)就越重。<b style="color:var(--zhu);">强基层喊了多年,金字塔却还是头重脚轻。</b>
+      <span class="yh-xref">↗ Y6 · 被尊崇与被消耗</span>
+    </div>
+  </section>
+
+  <!-- ════ Y6 政治形态学 ════ -->
+  <section class="yh-panel" id="yh-p-y6">
+    <div class="yh-sec-head"><h2>Y6 · 政治形态学:被尊崇与被消耗之间</h2><span class="yh-sec-tag">英雄叙事退潮,消耗常态延续</span></div>
+    <p class="yh-lede">医护处在「被尊崇」(白衣天使、抗疫英雄叙事)与「被消耗」(过劳、低回报、医患风险、背锅)之间——<b style="color:var(--zhu);">疫情期间被推上英雄叙事,疫情后回归过载常态</b>;其不满以离职(尤其护士、儿科)、用脚投票(不选缺科)、子女不学医表达,是体制内专业群体的沉默消耗。当一个职业的从业者开始劝下一代别入行,这个职业的吸引力就亮起了红灯。</p>
+
+    <h3 class="yh-h3">尊崇 vs 消耗:英雄叙事的潮起潮落</h3>
+    <div class="yh-dual">
+      <div class="yh-dual-a"><h6>被尊崇 · <b>英雄叙事</b></h6><span class="yh-dual-pole">白衣天使 / 抗疫英雄</span><p>白衣天使、抗疫英雄、最美逆行者——<b style="color:var(--qing);">疫情期间的英雄化</b>(↗ GY-02 叙事 / ↔ GY-12 退役军人尊崇 / GY-18 励志叙事的同构)。</p></div>
+      <div class="yh-dual-mid">↔</div>
+      <div class="yh-dual-b"><h6>被消耗 · <b>过载常态</b></h6><span class="yh-dual-pole">过劳 / 低回报 / 风险</span><p><b style="color:var(--zhu);">疫情后回归过载、低回报、医患风险——英雄叙事退潮,消耗常态延续</b>;崇高还在,相称的回报与安全却没跟上。</p></div>
+    </div>
+
+    <h3 class="yh-h3">最响的信号是退出:用脚投票与沉默消耗</h3>
+    <div class="yh-rows">
+      <div class="yh-row peak"><span class="yh-row-k">用脚投票</span><span class="yh-row-v"><b style="color:var(--zhu);">护士离职、青年医生逃离儿科急诊、「劝人学医天打雷劈」的自嘲、医护子女不学医</b>——专业群体的代际退出信号(↔ GY-22 技工 / GY-38 教师的同构)。</span></div>
+      <div class="yh-row"><span class="yh-row-k">体制内的沉默(↗ GY-07)</span><span class="yh-row-v">编制 + 职业荣誉 + 患者责任使医护少有集体行动——<b>沉默消耗</b>;伤医事件后的短暂关注难转化为结构改善。</span></div>
+      <div class="yh-row peak"><span class="yh-row-k">全光谱交点</span><span class="yh-row-v"><b style="color:var(--zhu);">医护是 GY-15(患者端)的劳动者镜像、GY-09(老龄化需求)的供给端、GY-07(体制内专业)、GY-33(规培≈非升即走)、GY-23(健康透支)、GY-31(护士照护劳动)的交点</b>——「谁来治病」与「谁来照护」(↗ GY-31)共同构成健康供给的人力之问。</span></div>
+    </div>
+    <div class="yh-breaking">
+      <span class="yh-breaking-tag">! 当从业者开始劝下一代别入行,职业吸引力就亮起红灯</span>
+      最响的信号不是抗议,是退出——<b>护士离职、青年医生躲开儿科急诊、医生劝自己孩子别学医;当一个职业的从业者开始劝下一代别入行,这个职业的吸引力就亮起了红灯(↗ GY-22/GY-38)</b>。
+    </div>
+
+    <div class="yh-art">
+      <h5><b>崇高还在,但兑不出相称的回报、尊重和安全时,连白衣天使也会用脚投票</b></h5>
+      <p>医护被夹在尊崇和消耗之间——疫情时是英雄,疫情后是过劳的常态。<b style="color:var(--zhu);">最响的信号不是抗议,是退出:护士离职、青年医生躲开儿科急诊、医生劝自己孩子别学医。当一个职业的从业者开始劝下一代别入行,这个职业的吸引力就亮起了红灯(↗ GY-22/GY-38)。救死扶伤的崇高还在,但崇高兑不出与之相称的回报、尊重和安全时,连白衣天使也会用脚投票。</b>(↗ GY-15 / ↗ GY-31)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="yh-xref">↗ GY-02 · 英雄叙事的管理</span>
+      <span class="yh-xref">↗ GY-22 · 用脚投票的同构</span>
+      <span class="yh-xref">↗ GY-31 · 谁来照护</span>
+    </div>
+
+    <div class="yh-verdict">
+      <span class="yh-verdict-tag">Y6 判词</span>
+      医护被夹在尊崇和消耗之间——疫情时是英雄,疫情后是过劳的常态。最响的信号不是抗议,是退出:护士离职、青年医生躲开儿科急诊、医生劝自己孩子别学医。当一个职业的从业者开始劝下一代别入行,这个职业的吸引力就亮起了红灯(↗ GY-22/GY-38)。<b style="color:var(--zhu);">救死扶伤的崇高还在,但崇高兑不出与之相称的回报、尊重和安全时,连白衣天使也会用脚投票。</b>
+      <span class="yh-xref">↗ Y7 · 三态推演</span>
+    </div>
+  </section>
+
+  <!-- ════ Y7 形态推演 ════ -->
+  <section class="yh-panel" id="yh-p-y7">
+    <div class="yh-sec-head"><h2>Y7 · 形态推演(三态)</h2><span class="yh-sec-tag">过载常态 / 缺科流失 / AI 与分级诊疗</span></div>
+    <p class="yh-lede">医护人员这台满载服务进程的未来走向,取决于三股力量的相对强弱——<b style="color:var(--zhu);">供需结构性过载的延续、缺科与流失的显形、技术与改革的缓解</b>。三态推演如下,概率最高的是过载常态化。</p>
+
+    <h3 class="yh-h3">三态:α 过载常态 / β 缺科流失 / γ AI 与改革</h3>
+    <div class="yh-form">
+      <h5>形态 α · 基准 · 过载常态化(概率最高)</h5>
+      <p>供需结构性过载延续、医改(薪酬/DRG/分级诊疗)渐进、医患矛盾周期性爆发但总体可控;<b style="color:var(--zhu);">缺科(儿科/急诊/全科)与基层弱长期存在</b>。概率最高(满载是结构常态,改革渐进而不质变,↗ W-01/W-03)。</p>
+    </div>
+    <div class="yh-form" style="border-color:var(--zhu-dim); background:rgba(181,72,58,.08);">
+      <h5 style="color:var(--zhu);">形态 β · 压力 · 缺科与流失显形</h5>
+      <p>若儿科/急诊/全科/护士流失加剧 + 老龄化需求爆发(↗ GY-09),医疗供给在关键环节告急——<b style="color:var(--zhu);">倒逼薪酬改革、缺科激励、基层强化提速;标志:关键科室「医生荒」成为公共议题</b>(↗ W-03/W-06)。</p>
+    </div>
+    <div class="yh-form" style="border-color:var(--jin-dim); background:rgba(110,93,56,.10);">
+      <h5 style="color:var(--jin);">形态 γ · 技术/改革 · AI 与分级诊疗</h5>
+      <p>AI 辅助诊断、互联网医疗、分级诊疗见效部分缓解过载(↗ GY-26/GY-28 AI);<b style="color:var(--jin);">但优质医疗稀缺的核心(专家、信任)难被技术替代——技术缓解流量,缓解不了信任与稀缺</b>(↗ W-08)。</p>
+    </div>
+
+    <h3 class="yh-h3">三态的共同底色:满载是结构常态</h3>
+    <div class="yh-rows">
+      <div class="yh-row peak"><span class="yh-row-k">满载不变</span><span class="yh-row-v"><b style="color:var(--zhu);">无论哪种形态,508 万服务 14 亿的结构性满载短期难改</b>——三态的差异只在过载如何被缓解、被分流、被显形。</span></div>
+      <div class="yh-row"><span class="yh-row-k">缺科是脆弱点</span><span class="yh-row-v">儿科/急诊/全科/护士是最先告急的环节——<b>形态 β 的触发点;关键科室「医生荒」是最响的公共警报</b>。</span></div>
+      <div class="yh-row peak"><span class="yh-row-k">技术非万能</span><span class="yh-row-v"><b style="color:var(--zhu);">AI 与互联网医疗缓解流量,但专家与信任难被替代</b>——形态 γ 缓解的是请求量,缓解不了稀缺与信任的核心。</span></div>
+    </div>
+
+    <div class="yh-art">
+      <h5><b>技术缓解流量,缓解不了信任与稀缺</b>满载是结构常态,三态只是过载的不同出口</h5>
+      <p>三态推演的共同底色是:<b style="color:var(--zhu);">508 万服务 14 亿的结构性满载短期难改,差异只在过载如何被缓解、分流、显形。基准是过载常态化;压力态是缺科与流失把关键科室推成公共议题;技术态里 AI 与分级诊疗缓解了请求流量,却缓解不了优质医疗(专家、信任)的稀缺核心。</b>(↗ GY-09 / ↗ GY-26)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="yh-xref">↗ GY-09 · 老龄化需求爆发</span>
+      <span class="yh-xref">↗ GY-26/28 · AI 辅助诊断</span>
+      <span class="yh-xref">↗ watch · 总判词与观测哨</span>
+    </div>
+
+    <div class="yh-verdict">
+      <span class="yh-verdict-tag">Y7 判词</span>
+      三态推演的共同底色是:508 万服务 14 亿的结构性满载短期难改,差异只在过载如何被缓解、分流、显形。基准是过载常态化;压力态是缺科与流失把关键科室推成公共议题;技术态里 AI 与分级诊疗缓解了请求流量。<b style="color:var(--zhu);">但优质医疗稀缺的核心——专家与信任——难被技术替代:技术缓解流量,缓解不了信任与稀缺。</b>
+      <span class="yh-xref">↗ watch · 合成观测哨</span>
+    </div>
+  </section>
+
+  <!-- ════ 合成 · 观测哨 ════ -->
+  <section class="yh-panel" id="yh-p-watch">
+    <div class="yh-sec-head"><h2>Y8 / Y9 · 合成与观测哨</h2><span class="yh-sec-tag">请求队列溢出的服务进程 · 第三十五子集 · 年度对账</span></div>
+    <p class="yh-disclaimer top">注记(口径处理):全片以劳动社会学与医疗体制框架处理,不评判具体事件、不针对具体机构或个人,医患矛盾作为结构问题描述,不渲染个案、不归咎医患任何一方。形态推演与观测哨为机制研判,数据为国家卫健委统计公报口径与训练知识基线,标「约」、待权威年度数据回填,量级估算与精确口径严格区分。</p>
+
+    <div class="yh-verdict" style="margin-top:14px; margin-bottom:34px;">
+      <span class="yh-verdict-tag">Y8 · 总判词 · 请求队列溢出</span>
+      医护人员是 China OS 一个长期 100%+ 满载、请求队列持续溢出的服务进程——508 万医师服务 14 亿人的健康请求,挂号难是这台服务器永久的溢出告警。<br><br>
+      <b style="color:var(--zhu);">这个人群是 GY-15(医保/患者端)的劳动者镜像,而本片最关键的判断是把「医患对立」重构为「医患同困」:医护被过劳、低回报、风险困住,患者被难挂号、高自费困住,两个受害者在诊室相遇,却被结构推着互相迁怒——真正的对手是让 508 万人服务 14 亿、还要一边控费一边背锅的系统设计。控费压力(DRG ↗ GY-15)沿链条下压,最终在医患界面爆发;倒金字塔(强三甲弱基层)让过载无处分流;规培把青年医生困在医学版的非升即走(↗ GY-33)和健康透支(↗ GY-23)里;而最苦最险的儿科急诊全科最没人去(↗ GY-22 被需要不被向往)。最响的警报不是医闹,是退出——当医护开始劝自己的孩子别学医,这台服务器的维护者,正在悄悄离场。「谁来治病」和「谁来照护」(↗ GY-31)一起,构成了这个老龄化社会健康供给的人力之问。</b><br><br>
+      与全系列合观:GY-15 医保/患者端与医护/劳动者端是医疗系统的供需两端,「医患同困」把两片接成一个过载系统,DRG 控费对医生行为的改写在本片承接;GY-09 老龄化的医疗需求供给端是医护,L4 照护悬崖(谁来照护)与本片「谁来治病」共同构成老龄化的人力供给问题;GY-33 规培是医学版的非升即走,长学制 + 低薪长工时 + 论文晋升与青椒同构;GY-31/GY-17 护士(500 万+、女性为主)是照护劳动 + 性别的医疗机构版;GY-22 儿科/急诊/全科「缺科」是「被需要不被向往」的医学版。作为人群画像分层第三十五子集,本片把健康供给的人力侧补进整张图谱——<b>它不是又一个孤立人群,而是 GY-15 患者端在劳动者一侧的镜像,核心问题始终是:谁来治病、谁来照护,在一台永远满载的服务器上,还能撑多久。</b>
+    </div>
+
+    <h3 class="yh-h3">对 GY 系列的五条修正</h3>
+    <div class="yh-fix">
+      <h5><b>修正 · GY-15</b>医疗系统的患者端与医护端</h5>
+      <p>医保/患者端(GY-15)与医护/劳动者端(本片)是医疗系统的供需两端——<b style="color:var(--zhu);">「医患同困」把两片接成一个过载系统;DRG 控费(GY-15 Y4)对医生行为的改写在本片承接</b>;建议 GY-15↔GY-37 链接为「医疗系统的患者端与医护端」。</p>
+    </div>
+    <div class="yh-fix">
+      <h5><b>修正 · GY-09</b>老龄化人力供给的两问</h5>
+      <p>老龄化的医疗需求供给端是医护——<b>L4 照护悬崖(谁来照护)与本片「谁来治病」共同构成老龄化的人力供给问题</b>;医护过载是老龄化压力的供给侧投影。</p>
+    </div>
+    <div class="yh-fix">
+      <h5><b>修正 · GY-33</b>专业养成的漫长学徒期</h5>
+      <p>规培(住院医师规范化培训)是医学版的非升即走——<b style="color:var(--zhu);">长学制 + 低薪长工时 + 论文晋升,与青椒(GY-33)同构</b>;建议链接为「专业养成的漫长学徒期」。</p>
+    </div>
+    <div class="yh-fix">
+      <h5><b>修正 · GY-31 / GY-17</b>谁来照护在医院内的承担者</h5>
+      <p>护士(500 万+,女性为主)的高强度低地位是照护劳动(↗ GY-31)+ 性别(↗ GY-17)的医疗机构版——<b>「谁来照护」在医院内的承担者</b>;护士是照护劳动光谱在机构里的延伸。</p>
+    </div>
+    <div class="yh-fix">
+      <h5><b>修正 · GY-22</b>缺科是被需要不被向往的医学版</h5>
+      <p>儿科/急诊/全科「缺科」是「被需要不被向往」的医学版——<b style="color:var(--zhu);">高风险高强度低回报使青年医生逃离最需要的科室;激励与需求的背离同构于技工荒</b>;建议双向链接。</p>
+    </div>
+
+    <div class="yh-watch-intro">
+      <p>这个人群的处境变动,关键看三组指针:规模与过载(医护规模 / 千人指标 / 医患关系)、养成与流失(缺科状况 / 规培与青年医生 / 护士流失)、改革与基层(薪酬改革 / 基层医疗 / AI 互联网医疗)。逐项标注状态、记录证据,年度与 GY 系列同步对账。状态与备注自动保存在本机。数据敏感处标「约」,待权威年度数据回填,量级估算与精确口径严格区分;医患矛盾作为结构问题观测,不渲染个案。</p>
+      <span class="yh-storage-state" id="yh-storage-state"></span>
+    </div>
+
+    <div class="yh-watch" id="yh-watch-list">
+      <div class="yh-watch-item" data-key="w1">
+        <div><h5><b>W-01</b>医护规模与千人指标</h5><p class="yh-watch-desc">执业医师/护士/卫技人员数、千人医师护士数——<b>过载程度的总仪表。</b></p></div>
+        <div class="yh-watch-ctrl"><div class="yh-status-row"><button class="yh-status-btn" data-status="good">向好</button><button class="yh-status-btn" data-status="flat">中性</button><button class="yh-status-btn" data-status="bad">恶化</button></div><textarea class="yh-watch-note" placeholder="证据与备注…"></textarea><div class="yh-watch-stamp"></div></div>
+      </div>
+      <div class="yh-watch-item" data-key="w2">
+        <div><h5><b>W-02</b>医患关系</h5><p class="yh-watch-desc">伤医/医闹事件、医患信任度、防御性医疗——<b>Y2 同困的界面读数。</b></p></div>
+        <div class="yh-watch-ctrl"><div class="yh-status-row"><button class="yh-status-btn" data-status="good">向好</button><button class="yh-status-btn" data-status="flat">中性</button><button class="yh-status-btn" data-status="bad">恶化</button></div><textarea class="yh-watch-note" placeholder="证据与备注…"></textarea><div class="yh-watch-stamp"></div></div>
+      </div>
+      <div class="yh-watch-item" data-key="w3">
+        <div><h5><b>W-03</b>缺科状况</h5><p class="yh-watch-desc">儿科/急诊/全科/精神科的医生缺口与流失——<b>Y3/Y6 激励错配。</b></p></div>
+        <div class="yh-watch-ctrl"><div class="yh-status-row"><button class="yh-status-btn" data-status="good">向好</button><button class="yh-status-btn" data-status="flat">中性</button><button class="yh-status-btn" data-status="bad">恶化</button></div><textarea class="yh-watch-note" placeholder="证据与备注…"></textarea><div class="yh-watch-stamp"></div></div>
+      </div>
+      <div class="yh-watch-item" data-key="w4">
+        <div><h5><b>W-04</b>规培与青年医生</h5><p class="yh-watch-desc">规培待遇、青年医生流失、学医意愿(报考医学院)——<b>代际退出信号。</b></p></div>
+        <div class="yh-watch-ctrl"><div class="yh-status-row"><button class="yh-status-btn" data-status="good">向好</button><button class="yh-status-btn" data-status="flat">中性</button><button class="yh-status-btn" data-status="bad">恶化</button></div><textarea class="yh-watch-note" placeholder="证据与备注…"></textarea><div class="yh-watch-stamp"></div></div>
+      </div>
+      <div class="yh-watch-item" data-key="w5">
+        <div><h5><b>W-05</b>薪酬改革</h5><p class="yh-watch-desc">三明医改/年薪制扩面、阳光收入占比——<b>Y4 收入重构进度。</b></p></div>
+        <div class="yh-watch-ctrl"><div class="yh-status-row"><button class="yh-status-btn" data-status="good">向好</button><button class="yh-status-btn" data-status="flat">中性</button><button class="yh-status-btn" data-status="bad">恶化</button></div><textarea class="yh-watch-note" placeholder="证据与备注…"></textarea><div class="yh-watch-stamp"></div></div>
+      </div>
+      <div class="yh-watch-item" data-key="w6">
+        <div><h5><b>W-06</b>护士流失</h5><p class="yh-watch-desc">护患比、护士离职率——<b>金字塔底层的可持续性。</b></p></div>
+        <div class="yh-watch-ctrl"><div class="yh-status-row"><button class="yh-status-btn" data-status="good">向好</button><button class="yh-status-btn" data-status="flat">中性</button><button class="yh-status-btn" data-status="bad">恶化</button></div><textarea class="yh-watch-note" placeholder="证据与备注…"></textarea><div class="yh-watch-stamp"></div></div>
+      </div>
+      <div class="yh-watch-item" data-key="w7">
+        <div><h5><b>W-07</b>基层医疗</h5><p class="yh-watch-desc">基层就诊占比、村医数量与老化、分级诊疗成效——<b>倒金字塔的矫正。</b></p></div>
+        <div class="yh-watch-ctrl"><div class="yh-status-row"><button class="yh-status-btn" data-status="good">向好</button><button class="yh-status-btn" data-status="flat">中性</button><button class="yh-status-btn" data-status="bad">恶化</button></div><textarea class="yh-watch-note" placeholder="证据与备注…"></textarea><div class="yh-watch-stamp"></div></div>
+      </div>
+      <div class="yh-watch-item" data-key="w8">
+        <div><h5><b>W-08</b>AI/互联网医疗</h5><p class="yh-watch-desc">AI 辅助诊断、互联网医院、远程医疗——<b>形态γ 缓解读数(接 GY-26/GY-28)。</b></p></div>
+        <div class="yh-watch-ctrl"><div class="yh-status-row"><button class="yh-status-btn" data-status="good">向好</button><button class="yh-status-btn" data-status="flat">中性</button><button class="yh-status-btn" data-status="bad">恶化</button></div><textarea class="yh-watch-note" placeholder="证据与备注…"></textarea><div class="yh-watch-stamp"></div></div>
+      </div>
+    </div>
+
+    <h3 class="yh-h3">章节规划 · 登记表</h3>
+    <div class="yh-plan">
+      <div class="yh-plan-row"><span class="yh-plan-k">CH-01</span><span class="yh-plan-v"><b>医患同困</b> — 从对立到同困的重构、控费压力下压链,接 GY-15。</span><span class="yh-plan-tag">待建</span></div>
+      <div class="yh-plan-row"><span class="yh-plan-k">CH-02</span><span class="yh-plan-v"><b>规培与缺科</b> — 青年医生养成的漫长学徒期、儿科急诊全科荒,接 GY-33/GY-22。</span><span class="yh-plan-tag">待建</span></div>
+      <div class="yh-plan-row"><span class="yh-plan-k">CH-03</span><span class="yh-plan-v"><b>倒金字塔</b> — 强三甲弱基层、护士与村医、分级诊疗的困境,接 GY-30/GY-31。</span><span class="yh-plan-tag">待建</span></div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="yh-foot">
+    <p>方法论:医护人员以「请求队列溢出的服务进程(Overloaded Service, Request Queue Overflow)」模型刻画——医护人员是 China OS 一个长期满载运行的服务进程 508 万执业医师服务 14 亿人的健康请求服务器 CPU 长期 100%+ 请求队列患者持续溢出挂号难专家号秒光三甲人满为患服务端医护过劳规培低薪长工时与客户端患者就医难自费重 GY-15 在同一场过载里同时受困签名图一个服务进程标 LOAD 100%+ 前面排着溢出的请求队列患者 14 亿健康请求服务进程自身亮着过热红灯过劳规培低薪医患风险一行字医患同困同一场过载的两端底注执业医师 508.2 万卫生技术人员约 1250 万 GY-15 患者端的劳动者镜像。核心命题:执业助理医师 508.2 万注册护士 500 万卫生技术人员约 1250 万他们是 GY-15 医保患者端的劳动者镜像需求 14 亿人的健康永远超过供给服务进程长期 100%+ 满载请求队列溢出挂号难三甲爆满医护过劳与患者难医是同一场过载的两面医患同困而非医患对立 508 万医师服务 14 亿人这台服务器从设计上就注定满载挂号难是供需的结构性溢出本片最关键的判断是把医患对立重构为医患同困医护被过劳低回报风险困住患者被难挂号高自费困住两个受害者在诊室相遇却被结构推着互相迁怒真正的对手是让 508 万人服务 14 亿还要一边控费一边背锅的系统设计控费压力 DRG 沿链条下压最终在医患界面爆发倒金字塔强三甲弱基层让过载无处分流规培把青年医生困在医学版的非升即走和健康透支里而最苦最险的儿科急诊全科最没人去最响的警报不是医闹是退出当医护开始劝自己的孩子别学医这台服务器的维护者正在悄悄离场谁来治病和谁来照护一起构成了这个老龄化社会健康供给的人力之问。数据锚定(国家卫健委 2024 年我国卫生健康事业发展统计公报口径加训练知识基线,待权威年度数据回填):执业助理医师 508.2 万注册护士 500 万卫生技术人员约 1250 万规培住院医师规范化培训 5+3 学制 DRG DIP 支付改革三明医改年薪制药品集采儿科急诊全科精神科结构性缺科护患比不足村医老化。注:全片以劳动社会学与医疗体制框架处理,不评判具体事件不针对具体机构或个人,医患矛盾作为结构问题描述不渲染个案不归咎医患任何一方,精确口径与量级估算严格区分,数字标注量级并留观测哨回填。作为人群画像分层第三十五子集,与 GY-15 医保群体(医疗系统的患者端与医护端医患同困把两片接成过载系统 DRG 控费对医生行为的改写)、GY-09 老龄化(老龄化人力供给的两问谁来治病与谁来照护)、GY-33 高校青椒(规培是医学版的非升即走专业养成的漫长学徒期)、GY-31 家政照护与 GY-17 中年女性(护士是照护劳动加性别的医疗机构版谁来照护在医院内的承担者)、GY-22 制造业技术工人(缺科是被需要不被向往的医学版)等耦合。来源:国家卫健委《2024 年我国卫生健康事业发展统计公报》、人民日报医师数据、训练知识基线。</p>
+    <div class="yh-foot-meta">
+      ChinaOS · GY-37 · v1.0.0<br>
+      生成 2026-06 丙午年<br>
+      人群画像 第三十五子集 · 关联模块 → GY-09/15/22/31/33<br>
+      注记:劳动社会学框架 · 医患同困作结构问题描述 · 不归咎任何一方
+    </div>
+  </footer>
+
+</div>
