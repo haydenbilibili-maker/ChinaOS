@@ -1,0 +1,221 @@
+@import "../shared/gy/tokens.css";
+
+#xy-app .xy-shell { max-width: 1060px; margin: 0 auto; padding: 0 28px 96px; }
+
+/* 题头 */
+#xy-app .xy-mast { padding: 56px 0 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+#xy-app .xy-mast-meta { font-family: var(--sans); font-size: 11px; letter-spacing: .22em; color: var(--xuanzhi-mute); text-transform: uppercase; }
+#xy-app .xy-mast-meta b { color: var(--jin); font-weight: 500; }
+#xy-app h1.xy-title { font-size: clamp(30px, 5vw, 46px); font-weight: 600; letter-spacing: .08em; line-height: 1.3; margin-top: 14px; }
+#xy-app h1.xy-title .xy-title-sub { display: block; font-size: 14px; font-weight: 400; color: var(--xuanzhi-dim); letter-spacing: .3em; margin-top: 10px; }
+#xy-app .xy-mast-seal { flex-shrink: 0; writing-mode: vertical-rl; font-size: 13px; letter-spacing: .35em; color: var(--zhu); border: 1px solid var(--zhu-dim); padding: 14px 8px; line-height: 1; user-select: none; }
+
+/* 中间件签名图 */
+#xy-app .xy-found { margin-top: 44px; border: 1px solid var(--hairline); background: var(--xuan-deep); padding: 22px 24px 12px; }
+#xy-app .xy-found svg { width: 100%; height: auto; display: block; }
+#xy-app .xy-found-caption { font-family: var(--sans); font-size: 11.5px; color: var(--xuanzhi-mute); letter-spacing: .04em; padding: 8px 2px 6px; }
+#xy-app .xy-found-caption b { color: var(--xuanzhi); }
+
+/* 页签 */
+#xy-app .xy-nav { display: flex; flex-wrap: wrap; margin-top: 30px; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); position: sticky; top: 0; background: var(--xuan); z-index: 10; }
+#xy-app .xy-nav button { flex: 1 1 auto; background: none; border: none; border-right: 1px solid var(--hairline); color: var(--xuanzhi-dim); font-family: var(--serif); font-size: 14px; letter-spacing: .1em; padding: 15px 9px 13px; cursor: pointer; position: relative; transition: color .2s; white-space: nowrap; }
+#xy-app .xy-nav button:last-child { border-right: none; }
+#xy-app .xy-nav button:hover { color: var(--xuanzhi); }
+#xy-app .xy-nav button:focus-visible { outline: 1px solid var(--jin); outline-offset: -1px; }
+#xy-app .xy-nav button.is-active { color: var(--xuanzhi); }
+#xy-app .xy-nav button.is-active::after { content: ""; position: absolute; left: 14%; right: 14%; bottom: -1px; height: 2px; background: var(--zhu); }
+
+/* 通用 */
+#xy-app section.xy-panel { display: none; padding-top: 50px; }
+#xy-app section.xy-panel.is-active { display: block; animation: xyFade .35s ease; }
+@keyframes xyFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { #xy-app section.xy-panel.is-active { animation: none; } }
+#xy-app .xy-sec-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 8px; flex-wrap: wrap; }
+#xy-app .xy-sec-head h2 { font-size: 23px; font-weight: 600; letter-spacing: .1em; }
+#xy-app .xy-sec-head .xy-sec-tag { font-family: var(--sans); font-size: 11px; letter-spacing: .18em; color: var(--xuanzhi-mute); }
+#xy-app .xy-lede { color: var(--xuanzhi-dim); font-size: 15px; max-width: 76ch; margin-bottom: 34px; }
+#xy-app .xy-lede b { color: var(--xuanzhi); font-weight: 600; }
+#xy-app h3.xy-h3 { font-size: 17px; font-weight: 600; letter-spacing: .08em; margin: 40px 0 18px; display: flex; align-items: center; gap: 12px; }
+#xy-app h3.xy-h3::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
+#xy-app .xy-card { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 20px 22px; }
+#xy-app .xy-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+#xy-app .xy-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+#xy-app .xy-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+#xy-app .xy-card p { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.78; }
+#xy-app .xy-card p b { color: var(--xuanzhi); font-weight: 600; }
+#xy-app .xy-card .xy-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .24em; color: var(--xuanzhi-mute); display: block; margin-bottom: 10px; }
+#xy-app .xy-verdict { margin-top: 38px; border-left: 2px solid var(--jin); background: var(--xuan-deep); padding: 22px 26px; font-size: 15px; line-height: 2; }
+#xy-app .xy-verdict .xy-verdict-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .3em; color: var(--jin); display: block; margin-bottom: 8px; }
+#xy-app .xy-verdict b { color: var(--xuanzhi); font-weight: 600; }
+#xy-app .xy-xref { display: inline-block; margin-top: 10px; font-family: var(--sans); font-size: 10.5px; letter-spacing: .12em; color: var(--jin); border: 1px solid var(--jin-dim); padding: 3px 9px; margin-right: 6px; }
+
+/* 数据卡 · 大号锚定数 */
+#xy-app .xy-data3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+#xy-app .xy-stat { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 18px 20px; border-top: 3px solid var(--zhu); }
+#xy-app .xy-stat .xy-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .22em; color: var(--xuanzhi-mute); display: block; margin-bottom: 9px; }
+#xy-app .xy-stat .xy-stat-n { font-family: var(--mono); font-size: 27px; color: var(--zhu); line-height: 1.1; display: block; }
+#xy-app .xy-stat .xy-stat-u { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .08em; display: block; margin-top: 4px; }
+#xy-app .xy-stat p { font-size: 12px; color: var(--xuanzhi-dim); line-height: 1.7; margin-top: 10px; }
+#xy-app .xy-stat p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 悖论卡 */
+#xy-app .xy-paradox { border: 1px solid var(--hairline); background: var(--xuan-raise); display: grid; grid-template-columns: 1fr 60px 1fr; }
+#xy-app .xy-paradox > div { padding: 18px 20px; }
+#xy-app .xy-paradox .xy-par-a { border-right: 1px solid var(--hairline); }
+#xy-app .xy-paradox .xy-par-mid { background: var(--xuan-deep); display: flex; align-items: center; justify-content: center; font-family: var(--mono); color: var(--zhu); font-size: 16px; }
+#xy-app .xy-paradox h6 { font-family: var(--sans); font-size: 10.5px; letter-spacing: .16em; color: var(--xuanzhi-mute); margin-bottom: 8px; }
+#xy-app .xy-paradox .xy-par-n { font-family: var(--mono); font-size: 24px; color: var(--zhu); display: block; margin-bottom: 6px; }
+#xy-app .xy-paradox .xy-par-b .xy-par-n { color: var(--dai); }
+#xy-app .xy-paradox p { font-size: 12px; color: var(--xuanzhi-dim); line-height: 1.7; }
+#xy-app .xy-paradox p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* nest 多层 */
+#xy-app .xy-nest { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#xy-app .xy-nest-row { padding: 13px 18px; border-bottom: 1px solid var(--hairline); font-size: 13px; display: flex; gap: 14px; align-items: baseline; }
+#xy-app .xy-nest-row:last-child { border-bottom: none; }
+#xy-app .xy-nest-row .xy-nest-k { font-family: var(--mono); font-size: 12px; color: var(--zhu); flex-shrink: 0; width: 140px; }
+#xy-app .xy-nest-row .xy-nest-v { color: var(--xuanzhi-dim); line-height: 1.72; }
+#xy-app .xy-nest-row .xy-nest-v b { color: var(--xuanzhi); font-weight: 600; }
+
+/* rows */
+#xy-app .xy-rows { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#xy-app .xy-row { padding: 13px 18px; border-bottom: 1px solid var(--hairline); font-size: 13px; display: grid; grid-template-columns: 132px 1fr; gap: 16px; align-items: baseline; }
+#xy-app .xy-row:last-child { border-bottom: none; }
+#xy-app .xy-row .xy-row-k { font-family: var(--mono); font-size: 12px; color: var(--zhu); }
+#xy-app .xy-row .xy-row-v { color: var(--xuanzhi-dim); line-height: 1.74; }
+#xy-app .xy-row .xy-row-v b { color: var(--xuanzhi); font-weight: 600; }
+
+/* chain */
+#xy-app .xy-chain { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#xy-app .xy-chain-row { padding: 13px 18px; border-bottom: 1px solid var(--hairline); font-size: 13px; display: flex; gap: 16px; align-items: baseline; position: relative; }
+#xy-app .xy-chain-row:last-child { border-bottom: none; }
+#xy-app .xy-chain-row .xy-chain-step { font-family: var(--mono); font-size: 12px; color: var(--zhu); flex-shrink: 0; width: 120px; }
+#xy-app .xy-chain-row .xy-chain-v { color: var(--xuanzhi-dim); line-height: 1.74; }
+#xy-app .xy-chain-row .xy-chain-v b { color: var(--xuanzhi); font-weight: 600; }
+#xy-app .xy-chain-row.peak { border-left: 3px solid var(--zhu); }
+#xy-app .xy-chain-row.peak .xy-chain-v b { color: var(--zhu); }
+
+/* dual 两套OS对照(X2) */
+#xy-app .xy-dual { display: grid; grid-template-columns: 1fr 60px 1fr; border: 1px solid var(--hairline); margin-top: 4px; }
+#xy-app .xy-dual > div { padding: 16px 18px; }
+#xy-app .xy-dual .xy-dual-a { background: var(--xuan-raise); border-right: 1px solid var(--hairline); border-top: 3px solid var(--dai); }
+#xy-app .xy-dual .xy-dual-mid { background: var(--xuan-deep); display: flex; align-items: center; justify-content: center; font-family: var(--mono); color: var(--zhu); font-size: 18px; }
+#xy-app .xy-dual .xy-dual-b { background: var(--xuan-raise); border-left: 1px solid var(--hairline); border-top: 3px solid var(--zhu); }
+#xy-app .xy-dual h6 { font-family: var(--sans); font-size: 10.5px; letter-spacing: .16em; color: var(--xuanzhi-mute); margin-bottom: 8px; }
+#xy-app .xy-dual .xy-dual-a h6 b { color: var(--dai); }
+#xy-app .xy-dual .xy-dual-b h6 b { color: var(--zhu); }
+#xy-app .xy-dual .xy-dual-pole { font-family: var(--mono); font-size: 11px; display: block; margin-bottom: 6px; }
+#xy-app .xy-dual .xy-dual-a .xy-dual-pole { color: var(--dai); }
+#xy-app .xy-dual .xy-dual-b .xy-dual-pole { color: var(--zhu); }
+#xy-app .xy-dual p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#xy-app .xy-dual p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* twin */
+#xy-app .xy-twin { display: grid; grid-template-columns: 1fr 60px 1fr; gap: 0; border: 1px solid var(--hairline); margin-top: 4px; }
+#xy-app .xy-twin > div { padding: 16px 18px; }
+#xy-app .xy-twin .xy-twin-a { background: var(--xuan-raise); border-right: 1px solid var(--hairline); }
+#xy-app .xy-twin .xy-twin-mid { background: var(--xuan-deep); display: flex; align-items: center; justify-content: center; font-family: var(--mono); color: var(--zhu); font-size: 18px; }
+#xy-app .xy-twin .xy-twin-b { background: var(--xuan-raise); border-left: 1px solid var(--hairline); }
+#xy-app .xy-twin h6 { font-family: var(--sans); font-size: 10.5px; letter-spacing: .16em; color: var(--xuanzhi-mute); margin-bottom: 8px; }
+#xy-app .xy-twin p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.7; }
+#xy-app .xy-twin p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 蜜雪冰城经济学卡(X4) */
+#xy-app .xy-mixue { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+#xy-app .xy-mixue-card { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 18px 20px; border-top: 3px solid var(--qing); }
+#xy-app .xy-mixue-card .xy-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .22em; color: var(--xuanzhi-mute); display: block; margin-bottom: 9px; }
+#xy-app .xy-mixue-card .xy-mixue-formula { font-family: var(--mono); font-size: 16px; color: var(--qing); line-height: 1.3; display: block; margin-bottom: 8px; }
+#xy-app .xy-mixue-card p { font-size: 12px; color: var(--xuanzhi-dim); line-height: 1.7; }
+#xy-app .xy-mixue-card p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 出走返乡钟摆图(X6) */
+#xy-app .xy-pendulum { border: 1px solid var(--hairline); background: var(--xuan-raise); display: grid; grid-template-columns: 1fr 56px 1fr; }
+#xy-app .xy-pendulum > div { padding: 18px 20px; }
+#xy-app .xy-pendulum .xy-pend-a { border-right: 1px solid var(--hairline); border-top: 3px solid var(--dai); }
+#xy-app .xy-pendulum .xy-pend-b { border-top: 3px solid var(--zhu); }
+#xy-app .xy-pendulum .xy-pend-mid { background: var(--xuan-deep); display: flex; align-items: center; justify-content: center; font-family: var(--mono); color: var(--jin); font-size: 18px; }
+#xy-app .xy-pendulum h6 { font-family: var(--sans); font-size: 10.5px; letter-spacing: .16em; color: var(--xuanzhi-mute); margin-bottom: 8px; }
+#xy-app .xy-pendulum .xy-pend-a h6 b { color: var(--dai); }
+#xy-app .xy-pendulum .xy-pend-b h6 b { color: var(--zhu); }
+#xy-app .xy-pendulum p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#xy-app .xy-pendulum p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 谱系卡 / 论点卡 */
+#xy-app .xy-art { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 18px 20px; margin-bottom: 12px; border-left: 3px solid var(--zhu); }
+#xy-app .xy-art h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 6px; display: flex; gap: 11px; align-items: baseline; }
+#xy-app .xy-art h5 b { font-family: var(--mono); color: var(--zhu); font-size: 12px; font-weight: 500; }
+#xy-app .xy-art p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#xy-app .xy-art p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 三形态卡 α/β/γ(X8) */
+#xy-app .xy-form { border: 1px solid var(--qing-dim); background: rgba(65, 89, 78, .08); padding: 18px 20px; margin-bottom: 12px; }
+#xy-app .xy-form h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 6px; color: var(--qing); }
+#xy-app .xy-form p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#xy-app .xy-form p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 修正卡 */
+#xy-app .xy-fix { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 16px 20px; margin-bottom: 12px; border-left: 3px solid var(--jin); }
+#xy-app .xy-fix h5 { font-size: 14px; font-weight: 600; margin-bottom: 6px; display: flex; gap: 11px; align-items: baseline; }
+#xy-app .xy-fix h5 b { font-family: var(--mono); color: var(--jin); font-size: 12px; font-weight: 500; }
+#xy-app .xy-fix p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#xy-app .xy-fix p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 章节规划登记表 */
+#xy-app .xy-plan { border: 1px solid var(--hairline); }
+#xy-app .xy-plan-row { padding: 14px 18px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); display: flex; gap: 16px; align-items: baseline; }
+#xy-app .xy-plan-row:last-child { border-bottom: none; }
+#xy-app .xy-plan-k { font-family: var(--mono); font-size: 12px; color: var(--zhu); flex-shrink: 0; width: 76px; }
+#xy-app .xy-plan-v { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#xy-app .xy-plan-v b { color: var(--xuanzhi); font-weight: 600; }
+#xy-app .xy-plan-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .14em; color: var(--xuanzhi-mute); border: 1px solid var(--hairline); padding: 2px 8px; flex-shrink: 0; }
+
+/* 观测哨 */
+#xy-app .xy-watch-intro { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 22px; }
+#xy-app .xy-watch-intro p { font-size: 13.5px; color: var(--xuanzhi-dim); max-width: 64ch; }
+#xy-app .xy-storage-state { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .08em; }
+#xy-app .xy-watch { border: 1px solid var(--hairline); }
+#xy-app .xy-watch-item { display: grid; grid-template-columns: 1fr 320px; gap: 18px; padding: 18px 22px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); }
+#xy-app .xy-watch-item:last-child { border-bottom: none; }
+#xy-app .xy-watch-item h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 5px; }
+#xy-app .xy-watch-item h5 b { font-family: var(--mono); color: var(--jin); font-weight: 500; font-size: 12px; margin-right: 8px; }
+#xy-app .xy-watch-item .xy-watch-desc { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.75; }
+#xy-app .xy-watch-ctrl { display: flex; flex-direction: column; gap: 9px; }
+#xy-app .xy-status-row { display: flex; gap: 6px; }
+#xy-app .xy-status-btn { flex: 1; font-family: var(--sans); font-size: 11.5px; letter-spacing: .08em; padding: 7px 0; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi-mute); cursor: pointer; transition: all .15s; }
+#xy-app .xy-status-btn:hover { color: var(--xuanzhi); }
+#xy-app .xy-status-btn:focus-visible { outline: 1px solid var(--jin); }
+#xy-app .xy-status-btn.on-good { background: var(--qing-dim); border-color: var(--qing); color: var(--xuanzhi); }
+#xy-app .xy-status-btn.on-flat { background: #3a3f33; border-color: var(--xuanzhi-mute); color: var(--xuanzhi); }
+#xy-app .xy-status-btn.on-bad { background: var(--zhu-dim); border-color: var(--zhu); color: var(--xuanzhi); }
+#xy-app .xy-watch-note { width: 100%; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi); font-family: var(--sans); font-size: 12.5px; padding: 8px 10px; resize: vertical; min-height: 38px; line-height: 1.6; }
+#xy-app .xy-watch-note:focus { outline: 1px solid var(--jin); }
+#xy-app .xy-watch-note::placeholder { color: var(--xuanzhi-mute); }
+#xy-app .xy-watch-stamp { font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); text-align: right; min-height: 14px; }
+
+/* 页脚 */
+#xy-app .xy-foot { margin-top: 66px; border-top: 1px solid var(--hairline); padding-top: 24px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+#xy-app .xy-foot p { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .06em; line-height: 1.9; max-width: 66ch; }
+#xy-app .xy-foot .xy-foot-meta { text-align: right; font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); line-height: 2; flex-shrink: 0; }
+
+/* 诚实标注小字 */
+#xy-app .xy-disclaimer { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .04em; margin-top: -22px; margin-bottom: 30px; line-height: 1.7; border-left: 2px solid var(--jin-dim); padding: 4px 0 4px 12px; }
+#xy-app .xy-disclaimer b { color: var(--jin); font-weight: 500; }
+
+@media (max-width: 860px) {
+  #xy-app .xy-grid-2, #xy-app .xy-grid-3, #xy-app .xy-data3, #xy-app .xy-mixue { grid-template-columns: 1fr; }
+  #xy-app .xy-watch-item { grid-template-columns: 1fr; }
+  #xy-app .xy-mast-seal { display: none; }
+  #xy-app .xy-nav button { flex: 1 1 30%; font-size: 12.5px; letter-spacing: .04em; }
+  #xy-app .xy-row { grid-template-columns: 1fr; gap: 4px; }
+  #xy-app .xy-twin, #xy-app .xy-dual, #xy-app .xy-paradox, #xy-app .xy-pendulum { grid-template-columns: 1fr; }
+  #xy-app .xy-twin .xy-twin-mid, #xy-app .xy-dual .xy-dual-mid, #xy-app .xy-paradox .xy-par-mid, #xy-app .xy-pendulum .xy-pend-mid { padding: 6px; }
+  #xy-app .xy-nest-row, #xy-app .xy-plan-row, #xy-app .xy-chain-row { flex-direction: column; gap: 3px; }
+  #xy-app .xy-nest-row .xy-nest-k, #xy-app .xy-plan-k, #xy-app .xy-chain-row .xy-chain-step { width: auto; }
+}
+
+#xy-app { border-radius: var(--radius-lg); }
+
+.xianyu-module-wrap {
+  margin: calc(-1 * var(--card-padding)) calc(-1 * var(--card-padding));
+  max-width: none;
+}
