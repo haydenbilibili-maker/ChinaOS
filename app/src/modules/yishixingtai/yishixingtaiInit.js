@@ -1,6 +1,7 @@
-/** 意识形态架构 · 页签 / 卷宗 / 观测哨（命名空间 chinaos.yishi.v1） */
+/** 意识形态架构 GY-02 · 页签 / 卷宗 / 观测哨（命名空间 chinaos.yishi.v1） */
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 import { resolveYishiTab, yishiPanelId } from '../../lib/yishixingtai/routing.js';
+import { withGyInit } from '../shared/gy/enhanceMethodology.js';
 
 const NS = 'chinaos.yishi.v1';
 
@@ -10,7 +11,7 @@ function scrollToEl(el) {
 }
 
 /** @param {HTMLElement | null} root @param {{ tab?: string, tension?: string, watch?: string, comp?: string }} deepLink */
-export function initYishixingtai(root, deepLink = {}) {
+function initYishixingtaiCore(root, deepLink = {}) {
   if (!root) return () => {};
 
   const cleanups = [];
@@ -21,6 +22,7 @@ export function initYishixingtai(root, deepLink = {}) {
     root.querySelectorAll('section.ys-panel').forEach((p) => {
       p.classList.toggle('is-active', p.id === panelId);
     });
+    window.scrollTo({ top: 0, behavior: 'auto' });
   };
 
   nav.forEach((btn) => {
@@ -190,3 +192,5 @@ export function initYishixingtai(root, deepLink = {}) {
 
   return () => cleanups.forEach((fn) => fn());
 }
+
+export const initYishixingtai = withGyInit(initYishixingtaiCore);

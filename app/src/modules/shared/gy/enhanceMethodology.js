@@ -5,6 +5,7 @@
 import { GY_MODULES, gyModulePath, normalizeGyNum, parseGyRefList } from '../../../lib/gy/registry.js';
 
 const POPULATION_ROOTS = new Set([
+  'gy-app', 'ys-app',
   'qn-app', 'xs-app', 'lg-app', 'nm-app', 'tz-app', 'zc-app', 'ln-app',
   'tj-app', 'zx-app', 'ty-app', 'ym-app', 'lp-app', 'yb-app', 'la-app',
 ]);
@@ -436,6 +437,7 @@ export function enhanceMethodology(root) {
 
   const prefix = root.id.replace(/-app$/, '').slice(0, 2);
   const prefixMap = {
+    gy: 'gy', ys: 'ys',
     qn: 'qn', xs: 'xs', lg: 'lg', nm: 'nm', tz: 'tz', zc: 'zc', ln: 'ln',
     tj: 'tj', zx: 'zx', ty: 'ty', ym: 'ym', lp: 'lp', yb: 'yb', la: 'la',
   };

@@ -1,5 +1,7 @@
 /* 人群切片方法论页脚 · 共享布局（GY-03–16） */
 
+#gy-app .gy-method,
+#ys-app .gy-method,
 #qn-app .gy-method,
 #xs-app .gy-method,
 #lg-app .gy-method,
@@ -19,6 +21,8 @@
   padding-top: 28px;
 }
 
+#gy-app .gy-method.is-enhanced,
+#ys-app .gy-method.is-enhanced,
 #qn-app .gy-method.is-enhanced,
 #xs-app .gy-method.is-enhanced,
 #lg-app .gy-method.is-enhanced,

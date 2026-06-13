@@ -7,7 +7,7 @@ export default function YishixingtaiPage() {
   return (
     <div className="yishixingtai-page">
       <PageHeader
-        badge="GY-02 · 意识形态分析"
+        badge="GY-02 · 推演与训练"
         title="合法性机器"
         subtitle="五组件剖面 · 优先序仲裁 · 与 GY-01 国运推演双向耦合"
       />
