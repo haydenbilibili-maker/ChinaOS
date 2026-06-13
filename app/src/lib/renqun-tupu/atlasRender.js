@@ -1,6 +1,6 @@
 import { moduleById } from '../../app/registry.js';
-import { GY_MODULES } from '../gy/registry.js';
-import { ATLAS_AXES, ATLAS_CLUSTERS } from './atlasData.js';
+import { GY_MODULES, POPULATION_SLICE_GY_NUMS } from '../gy/registry.js';
+import { ATLAS_AXES, ATLAS_CLUSTERS, atlasDeclaredGyNums } from './atlasData.js';
 
 /** @param {AtlasSliceMeta} meta */
 function resolveSlice(meta) {
@@ -63,6 +63,12 @@ export function renderAtlasAxesHtml() {
  * @param {HTMLElement} root
  */
 export function mountAtlasDom(root) {
+  const declared = atlasDeclaredGyNums();
+  const missing = POPULATION_SLICE_GY_NUMS.filter((num) => !declared.includes(num));
+  if (missing.length) {
+    console.warn('[atlas] atlasData 缺少人群切片:', missing.map((n) => `GY-${n}`).join(', '));
+  }
+
   const clustersMount = root.querySelector('#at-atlas-clusters');
   if (clustersMount) clustersMount.innerHTML = renderAtlasClustersHtml();
 

@@ -1,5 +1,5 @@
 /**
- * GY 系列模块路由注册表 · 人群切片 GY-03–36 + 推演 GY-01/02
+ * GY 系列模块路由注册表 · 人群切片 GY-03–46 + 推演 GY-01/02
  * 供方法论脚注 GY-xx 交叉引用链接化
  */
 
@@ -54,7 +54,7 @@ export const GY_MODULES = {
   '46': { id: 'binzang', path: '/modules/binzang', label: '殡葬临终', group: 'population' },
 };
 
-/** GY-03…36 已上线人群切片编号（不含 GY-00 母索引） */
+/** GY-03…46 已上线人群切片编号（不含 GY-00 母索引） */
 export const POPULATION_SLICE_GY_NUMS = Object.entries(GY_MODULES)
   .filter(([, m]) => m.group === 'population' && m.id !== 'renqunTupu')
   .map(([num]) => num)

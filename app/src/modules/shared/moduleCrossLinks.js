@@ -149,7 +149,7 @@ const MAP = {
     { to: '/financeRmb', label: '人民币国际化', note: '项目融资与跨境清算。' },
   ],
   dashboard: [
-    { to: '/modules/renqun-tupu', label: '人群画像总图谱 · GY-00', note: '中国人群分析组总入口，34 片切片钻探进度。' },
+    { to: '/modules/renqun-tupu', label: '人群画像总图谱 · GY-00', note: '中国人群分析组总入口，44 片切片钻探进度。' },
     { to: '/market-pulse', label: '全球资产脉搏 · 实时行情', note: '股债汇大宗 18 标的轮询。' },
     { to: '/diplomacy', label: '外交博弈 · 矢量盘', note: '战略态势速览数据源。' },
     { to: '/policydocs', label: '政策文库 · 施政基准', note: '政策脉搏活数据接口。' },
@@ -578,7 +578,7 @@ const MAP = {
     { to: '/modules/yishixingtai', label: '合法性机器 · GY-02', note: '母框架意识形态层，与人群价目表假说互证。' },
   ],
   guoyun: [
-    { to: '/modules/renqun-tupu', label: '人群画像总图谱 · GY-00', note: '34 片人群切片母索引，钻探进度与价目表假说验证结构。' },
+    { to: '/modules/renqun-tupu', label: '人群画像总图谱 · GY-00', note: '44 片人群切片母索引，钻探进度与价目表假说验证结构。' },
     { to: '/modules/yishixingtai', label: '合法性机器 · GY-02', note: '意识形态五组件与张力层，与推演三变量四情景双向耦合。' },
     { to: '/modules/yishixingtai?tab=tension&tension=t03', label: '张力 T-03 · 复兴叙事 ⟂ 停滞', note: '日本化情景的意识形态杀伤大于经济杀伤。' },
     { to: '/modules/guoyun?tab=timeline', label: '国运时间轴 · 已发生', note: '1949→2026 七时代六域大事记谱系。' },
@@ -588,7 +588,7 @@ const MAP = {
     { to: '/cognition', label: '康波周期 · 长波', note: '国运推演变量 A 的康波供给侧坐标。' },
   ],
   qingnian: [
-    { to: '/modules/renqun-tupu', label: '人群画像总图谱 · GY-00', note: '人群分层母索引，34 片切片与八轴配平图谱。' },
+    { to: '/modules/renqun-tupu', label: '人群画像总图谱 · GY-00', note: '人群分层母索引，44 片切片与八轴配平图谱。' },
     { to: '/modules/linggong', label: '零工经济 · GY-05 子集 III', note: '冰河期/公平语法/风险时间表三处咬合，下沉白领与青年汇流。' },
     { to: '/modules/linggong?tab=l2', label: 'GY-05 L2 · 三重身份', note: '非正规化主体人群与 CH-02 对照同构。' },
     { to: '/modules/xingshaoshu', label: '性少数 · GY-04 子集 II', note: '人群画像第二子集，共享「被特定窗口看见才被特定方式对待」母命题。' },
