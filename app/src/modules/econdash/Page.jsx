@@ -16,6 +16,7 @@ import SectionWatch from './SectionWatch.jsx';
 import SectionDiscipline from './SectionDiscipline.jsx';
 import SectionCycle from './SectionCycle.jsx';
 import SectionFiveYear from './SectionFiveYear.jsx';
+import SectionDataHub from './SectionDataHub.jsx';
 import { buildPanoramaReport } from './econReport.js';
 
 // ============================================================================
@@ -630,6 +631,9 @@ export default function Page({ embedded = false }) {
 
       {/* ◷ 五年规划目标达成度 */}
       <div className="mb-6"><SectionFiveYear /></div>
+
+      {/* ⌗ 经济数据底座 · 本地序列管理 */}
+      <div className="mb-6"><SectionDataHub /></div>
 
       {/* § 数据使用纪律 */}
       <div className="mb-6"><SectionDiscipline /></div>
