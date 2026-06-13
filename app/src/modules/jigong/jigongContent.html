@@ -1,0 +1,468 @@
+<div class="jg-shell">
+
+  <!-- 题头 -->
+  <header class="jg-mast">
+    <div>
+      <div class="jg-mast-meta">ChinaOS · MODULE <b>GY-22</b> · 人群画像分层 · 第二十子集</div>
+      <h1 class="jg-title">制造业技术工人 · 被需要却不被向往<span class="jg-title-sub">无人认领的关键依赖 · 系统标 CRITICAL，维护者却在流失</span></h1>
+    </div>
+    <div class="jg-mast-seal">被需要 ≠ 被向往</div>
+  </header>
+
+  <!-- 无人认领的关键依赖签名图 -->
+  <div class="jg-found" aria-label="无人认领的关键依赖示意图:一个进程方块「制造业技术工人·技能人才超2亿/高技能6000万+」标 CRITICAL·国家战略依赖·priority HIGH;上方系统重要性进度条满格,下方社会吸引力/年轻人意愿进度条见底,两条之间一道裂缝标背离;招聘端弹出 recruiting… NO APPLICANT,维护者计数↓;底注十大重点领域缺口近3000万·缺口率48%·年轻人不愿进厂">
+    <svg viewBox="0 0 1000 470" xmlns="http://www.w3.org/2000/svg" role="img">
+      <text x="500" y="20" font-size="11" fill="#8f897d" text-anchor="middle" font-family="mono" letter-spacing="2">ChinaOS · UNMAINTAINED CRITICAL DEPENDENCY · 无人认领的关键依赖</text>
+      <text x="500" y="44" font-size="9.5" fill="#7d6a3a" text-anchor="middle" font-family="sans-serif">— 整个制造强国栈都 import 它,维护者池却在持续萎缩 —</text>
+
+      <!-- 进程方块:制造业技术工人 -->
+      <rect x="120" y="64" width="360" height="220" rx="8" fill="#1b2028" stroke="#5e8c7a" stroke-width="1.8"/>
+      <text x="300" y="90" font-size="14" fill="#d6cfc2" text-anchor="middle" font-family="serif" letter-spacing="1">制造业技术工人(DEPENDENCY)</text>
+      <text x="300" y="110" font-size="9" fill="#5e8c7a" text-anchor="middle" font-family="mono" letter-spacing="1">技能人才超 2 亿 / 高技能 6000 万+</text>
+
+      <!-- CRITICAL 标记 -->
+      <rect x="150" y="130" width="300" height="58" rx="5" fill="#0f1318" stroke="#b5483a" stroke-width="1.4"/>
+      <text x="300" y="153" font-size="11" fill="#b5483a" text-anchor="middle" font-family="mono" letter-spacing="1">status: CRITICAL · 国家战略依赖</text>
+      <text x="300" y="174" font-size="11" fill="#d6cfc2" text-anchor="middle" font-family="mono" letter-spacing="1">priority: HIGH · 制造强国/新质生产力</text>
+
+      <!-- 维护者计数下降 -->
+      <rect x="150" y="206" width="300" height="58" rx="5" fill="#15171b" stroke="#5d7489" stroke-width="1.3"/>
+      <text x="300" y="229" font-size="10.5" fill="#8a96a4" text-anchor="middle" font-family="mono" letter-spacing="1">maintainers: 萎缩中 &#8595;</text>
+      <text x="300" y="249" font-size="10" fill="#8a96a4" text-anchor="middle" font-family="sans-serif">高技能技师/高级技师尤为稀缺</text>
+
+      <!-- 招聘端:NO APPLICANT -->
+      <rect x="640" y="100" width="250" height="150" rx="8" fill="#15171b" stroke="#4a4a4a" stroke-width="2" stroke-dasharray="6 4"/>
+      <text x="765" y="128" font-size="13" fill="#8a8a8a" text-anchor="middle" font-family="serif" letter-spacing="1">招聘端(RECRUITING)</text>
+      <text x="765" y="148" font-size="9" fill="#b5483a" text-anchor="middle" font-family="mono" letter-spacing="1">recruiting… NO APPLICANT</text>
+      <text x="765" y="174" font-size="9.5" fill="#6e6e6e" text-anchor="middle" font-family="sans-serif">十大领域缺口近 3000 万</text>
+      <text x="765" y="194" font-size="9.5" fill="#6e6e6e" text-anchor="middle" font-family="sans-serif">缺口率约 48%</text>
+      <text x="765" y="222" font-size="9" fill="#7d6a3a" text-anchor="middle" font-family="sans-serif">「宁送外卖不进厂」</text>
+
+      <line x1="640" y1="155" x2="480" y2="155" stroke="#b5483a" stroke-width="1.6" stroke-dasharray="4 3"/>
+      <text x="560" y="148" font-size="10" fill="#b5483a" text-anchor="middle" font-family="mono">import ← 无人响应</text>
+
+      <!-- 系统重要性进度条:满格 -->
+      <text x="120" y="324" font-size="10" fill="#5e8c7a" font-family="mono" letter-spacing="1">系统重要性(战略价值)</text>
+      <rect x="120" y="332" width="760" height="16" rx="3" fill="#0f1318" stroke="#3d4c5a" stroke-width="1"/>
+      <rect x="121" y="333" width="758" height="14" rx="3" fill="#5e8c7a"/>
+      <text x="868" y="344" font-size="9" fill="#15171b" text-anchor="end" font-family="mono">100%</text>
+
+      <!-- 裂缝:背离 -->
+      <line x1="120" y1="362" x2="880" y2="362" stroke="#b5483a" stroke-width="1.4" stroke-dasharray="3 6"/>
+      <text x="500" y="360" font-size="10.5" fill="#b5483a" text-anchor="middle" font-family="serif" letter-spacing="3">— 背 离 —</text>
+
+      <!-- 社会吸引力进度条:见底 -->
+      <text x="120" y="384" font-size="10" fill="#b5483a" font-family="mono" letter-spacing="1">社会吸引力(年轻人意愿)</text>
+      <rect x="120" y="392" width="760" height="16" rx="3" fill="#0f1318" stroke="#3d4c5a" stroke-width="1"/>
+      <rect x="121" y="393" width="90" height="14" rx="3" fill="#b5483a"/>
+      <text x="868" y="404" font-size="9" fill="#8f897d" text-anchor="end" font-family="mono">见底</text>
+
+      <text x="500" y="438" font-size="9.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">系统重要性拉满,社会吸引力见底——两条曲线的剪刀差,就是技工荒</text>
+      <line x1="120" y1="452" x2="880" y2="452" stroke="#3d4c5a" stroke-width="1" stroke-dasharray="3 5"/>
+    </svg>
+    <div class="jg-found-caption">模块隐喻是<b>无人认领的关键依赖(Unmaintained Critical Dependency)</b>:技术工人是 China OS 标记为 CRITICAL 的核心依赖——整个制造强国的运行栈都 import 它;但它的「维护者池」在持续萎缩,因为维护这个依赖吃力、低薪、不被致敬。这就像那个全世界都依赖、却没人愿意维护的开源底层库:<b>系统重要性拉满,社会吸引力见底,两条曲线的剪刀差就是技工荒</b>。签名图:一个进程方块「制造业技术工人 · 技能人才超 2 亿 / 高技能 6000 万+」标 <b>CRITICAL · 国家战略依赖 · priority HIGH</b>;上方「系统重要性」进度条满格,下方「社会吸引力 / 年轻人意愿」进度条见底,两条之间一道醒目的裂缝标「背离」;招聘端弹出 `recruiting… NO APPLICANT`,维护者计数 &#8595;;底注「十大重点领域缺口近 3000 万 · 缺口率 48% · 年轻人不愿进厂」。<b>国家战略最需要的人,恰恰是年轻人最不愿成为的人。</b></div>
+  </div>
+
+  <!-- 页签 -->
+  <nav class="jg-nav" role="tablist">
+    <button role="tab" data-panel="jg-p-j1" class="is-active">规模与缺口</button>
+    <button role="tab" data-panel="jg-p-j2">价值地位背离</button>
+    <button role="tab" data-panel="jg-p-j3">激励反向产出</button>
+    <button role="tab" data-panel="jg-p-j4">双元制学不来</button>
+    <button role="tab" data-panel="jg-p-j5">机器换人双向挤压</button>
+    <button role="tab" data-panel="jg-p-j6">政治形态学</button>
+    <button role="tab" data-panel="jg-p-j7">形态推演</button>
+    <button role="tab" data-panel="jg-p-watch">合成 · 观测哨</button>
+  </nav>
+
+  <!-- ════ J1 规模与缺口 ════ -->
+  <section class="jg-panel is-active" id="jg-p-j1">
+    <div class="jg-sec-head"><h2>J1 · 规模与缺口</h2><span class="jg-sec-tag">被需要的硬数据</span></div>
+    <p class="jg-lede">中国技能人才<b>超 2 亿</b>、高技能人才<b>6000 万+</b>,但制造业十大重点领域 2025 年人才缺口<b style="color:var(--zhu);">近 3000 万</b>、缺口率<b>约 48%</b>——最缺的一百个工种里 <b>41 个</b>是生产制造类。「被需要」是有硬数据的,而且<b style="color:var(--zhu);">越是国家战略方向,缺口越大</b>:新质生产力越前沿,技工缺口越大。</p>
+    <div class="jg-disclaimer">说明:本片缺口、薪资、培养与替代读数为<b>训练知识基线 + 公开政策与报道</b>(人民论坛/澎湃制造业人才缺口报道、2025 两会胡德兆委员发言、国家技能人才统计口径)。缺口测算口径与「高/低技能」边界宽窄不一——相应数字标注「约」,并在观测哨留有回填槽。</div>
+
+    <h3 class="jg-h3">三个数据锚点:总量 · 缺口 · 缺口率</h3>
+    <div class="jg-data3">
+      <div class="jg-stat">
+        <span class="jg-eyebrow">十大领域人才总量</span>
+        <span class="jg-stat-n">约 6200 万</span>
+        <span class="jg-stat-u">制造业十大重点领域(2025)</span>
+        <p>这是制造强国战略的<b>人力地基量级</b>——而需求远高于此。</p>
+      </div>
+      <div class="jg-stat">
+        <span class="jg-eyebrow">需求缺口</span>
+        <span class="jg-stat-n">近 3000 万</span>
+        <span class="jg-stat-u">总量与需求之间的硬落差</span>
+        <p>这不是劳动力短缺,是<b style="color:var(--zhu);">「战略需要」与「个体意愿」的精确落差</b>。</p>
+      </div>
+      <div class="jg-stat">
+        <span class="jg-eyebrow">缺口率</span>
+        <span class="jg-stat-n">约 48%</span>
+        <span class="jg-stat-u">近半数岗位无人填</span>
+        <p>系统标了 CRITICAL,<b>近一半的位子,年轻人按了拒绝</b>。</p>
+      </div>
+    </div>
+
+    <h3 class="jg-h3">能见度悖论:被官方盖章「需要」 vs 没人愿来</h3>
+    <div class="jg-paradox">
+      <div class="jg-par-a"><h6>战略确认</h6><span class="jg-par-n">官方盖章</span><p>技能人才被写进<b>制造强国、新质生产力、技能型社会</b>三大国家战略,政策反复呼吁——这个人群的战略重要性是官方盖章的(↗ GY-02 组件四技术发展主义)。</p></div>
+      <div class="jg-par-mid">≠</div>
+      <div class="jg-par-b"><h6>招聘现实</h6><span class="jg-par-n">无人响应</span><p><b style="color:var(--zhu);">十大领域缺口近 3000 万、缺口率约 48%</b>——「人手 2–4 个录用通知」是中高级技工供不应求的体感;越是国家战略方向,缺口越大。</p></div>
+    </div>
+
+    <h3 class="jg-h3">缺口的结构:不是没人,是没有高技能的人</h3>
+    <div class="jg-rows">
+      <div class="jg-row"><span class="jg-row-k">前沿越缺</span><span class="jg-row-v">新一代信息技术缺 <b>950 万</b>、高档数控机床与机器人缺 <b>450 万</b>、新材料缺 <b>400 万</b>——<b style="color:var(--zhu);">新质生产力越前沿,技工缺口越大</b>。</span></div>
+      <div class="jg-row"><span class="jg-row-k">工种集中</span><span class="jg-row-v">最缺的百大工种里 <b>41 个</b>是制造与生产类(汽车产线工、机床工、焊工等)——<b>缺口高度集中在生产制造端</b>。</span></div>
+      <div class="jg-row"><span class="jg-row-k">高技能稀缺</span><span class="jg-row-v">高技能人才(技师/高级技师)尤为稀缺——<b style="color:var(--zhu);">不是没人,是没有高技能的人</b>。</span></div>
+      <div class="jg-row peak" style="border-left:3px solid var(--zhu);"><span class="jg-row-k">学历倒挂</span><span class="jg-row-v">制造业从业者本科占比仅 <b>6.1%</b>,多数操作工高中及以下——<b style="color:var(--zhu);">人力资本结构与「制造强国」的技术雄心严重不匹配</b>。</span></div>
+    </div>
+
+    <div class="jg-art">
+      <h5><b>被反复确认却始终无解</b>国家越强调制造强国,缺口越显眼</h5>
+      <p>技工荒是一个被反复确认却始终无解的缺口——国家越强调制造强国,缺口越显眼。3000 万的数字不是劳动力短缺,是「战略需要」与「个体意愿」之间的精确落差:<b style="color:var(--zhu);">系统标了 CRITICAL,年轻人按了拒绝</b>。这个人群的战略重要性已由官方盖章(↗ GY-02 组件四),但盖章不等于有人来填(↗ J2 价值与地位的背离)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="jg-xref">↗ GY-02 · 组件四技术发展主义</span>
+      <span class="jg-xref">↗ J2 · 战略价值与社会地位背离</span>
+      <span class="jg-xref">↗ J3 · 激励反向产出</span>
+    </div>
+
+    <div class="jg-verdict">
+      <span class="jg-verdict-tag">J1 判词</span>
+      技工荒是一个被反复确认却始终无解的缺口——国家越强调制造强国,缺口越显眼。<b style="color:var(--zhu);">3000 万的数字不是劳动力短缺,是「战略需要」与「个体意愿」之间的精确落差:系统标了 CRITICAL,年轻人按了拒绝。</b>
+      <span class="jg-xref">↗ J2 · 战略价值与社会地位背离</span>
+    </div>
+  </section>
+
+  <!-- ════ J2 战略价值与社会地位背离 ════ -->
+  <section class="jg-panel" id="jg-p-j2">
+    <div class="jg-sec-head"><h2>J2 · 价值与地位背离</h2><span class="jg-sec-tag">本片核心机制</span></div>
+    <p class="jg-lede">本片核心机制——<b style="color:var(--zhu);">一个群体对国家越重要,不等于对个体越有吸引力</b>。技术工人的「战略价值」(国家需要)与「社会地位」(个人是否被尊重/向往)严重背离;当「被需要」无法转化为「被尊重」和「被向往」,<b>制造强国战略就悬空在没有人愿意填的岗位上</b>。</p>
+
+    <h3 class="jg-h3">背离的双条:系统重要性满格 vs 社会吸引力见底</h3>
+    <div class="jg-diverge">
+      <div class="jg-bar-block">
+        <div class="jg-bar-label"><b>战略价值 · 国家需要</b><span>系统重要性 · 满格</span></div>
+        <div class="jg-bar-track"><div class="jg-bar-fill full" style="width:100%;"></div></div>
+      </div>
+      <div class="jg-diverge-gap">↑ 背离 ↓ · 「被需要」无法转化为「被向往」</div>
+      <div class="jg-bar-block">
+        <div class="jg-bar-label"><b>社会地位 · 个人向往</b><span>社会吸引力 · 见底</span></div>
+        <div class="jg-bar-track"><div class="jg-bar-fill empty" style="width:12%;"></div></div>
+      </div>
+    </div>
+
+    <h3 class="jg-h3">背离的三维:薪资 · 地位 · 前景</h3>
+    <div class="jg-rows">
+      <div class="jg-row"><span class="jg-row-k">薪资</span><span class="jg-row-v">多数技工薪资<b>与劳动强度、技术含量不匹配</b>;媒体宣传「高级技工年薪几十万」「技工比白领挣得多」——<b style="color:var(--zhu);">但这是极少数顶尖技师的幸存者偏差</b>,多数普通技工薪资平平、强度大、保障弱(↗ GY-05/GY-06 权利水位)。</span></div>
+      <div class="jg-row"><span class="jg-row-k">地位</span><span class="jg-row-v">蓝领的社会评价崩塌,「进厂」是失败叙事——<b>「学好数理化不如有个好爸爸」「宁送外卖不进厂」</b>;工厂纪律、流水线异化、宿舍管制(↗ GY-05 L2)共同构成「不向往」。</span></div>
+      <div class="jg-row peak" style="border-left:3px solid var(--zhu);"><span class="jg-row-k">前景</span><span class="jg-row-v">晋升通道窄、职业天花板低——<b style="color:var(--zhu);">三者共同压低「向往度」</b>;进厂在年轻人价值序列里的排位持续下滑。</span></div>
+    </div>
+
+    <h3 class="jg-h3">脱钩结构:战略价值由国家承担,议价能力由个体承担</h3>
+    <div class="jg-dual">
+      <div class="jg-dual-a"><h6>战略价值端 · <b>国家需要</b></h6><span class="jg-dual-pole">strategy.needs(technician) = true</span><p>制造强国、新质生产力把技工的<b>战略重要性拉满</b>——这是国家承担的、写在文件里的需要。这就是签名图上满格的那条「系统重要性」。</p></div>
+      <div class="jg-dual-mid">⟂</div>
+      <div class="jg-dual-b"><h6>个人回报端 · <b>个体承担</b></h6><span class="jg-dual-pole">individual.benefit = 见底</span><p><b style="color:var(--zhu);">国家需要 ≠ 个人受益</b>——战略价值不会自动转化为个人回报;技工的战略重要性由国家承担,议价能力却由个体承担,两者脱钩。</p></div>
+    </div>
+
+    <div class="jg-art">
+      <h5><b>命令得了需要,命令不了向往</b>价值与尊严脱钩,再宏大的战略也填不满流水线</h5>
+      <p>制造强国的战略写在文件里,技工荒写在招聘启事上——两者的距离就是「被需要」到「被向往」的距离。<b style="color:var(--zhu);">一个社会可以命令企业需要技工,不能命令年轻人向往技工</b>。当价值与尊严脱钩,再宏大的战略也填不满流水线(↗ J3 激励反向 / ↗ J6 用脚投票)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="jg-xref">↗ GY-05/06 · 蓝领权利水位</span>
+      <span class="jg-xref">↗ J3 · 激励反向产出</span>
+      <span class="jg-xref">↗ J6 · 用脚投票</span>
+    </div>
+
+    <div class="jg-verdict">
+      <span class="jg-verdict-tag">J2 判词</span>
+      制造强国的战略写在文件里,技工荒写在招聘启事上——两者的距离就是「被需要」到「被向往」的距离。一个社会可以命令企业需要技工,不能命令年轻人向往技工。<b style="color:var(--zhu);">当价值与尊严脱钩,再宏大的战略也填不满流水线。</b>
+      <span class="jg-xref">↗ J3 · 引擎要技工,机制产考生</span>
+    </div>
+  </section>
+
+  <!-- ════ J3 激励结构的反向产出 ════ -->
+  <section class="jg-panel" id="jg-p-j3">
+    <div class="jg-sec-head"><h2>J3 · 激励反向产出</h2><span class="jg-sec-tag">引擎要技工,机制产考生</span></div>
+    <p class="jg-lede">这片直接回答 GY-02 的悬置矛盾——<b style="color:var(--zhu);">引擎需要工程师与技工,激励结构却产出考生与骑手</b>(↗ GY-03/GY-07/GY-11)。教育、薪酬、社会评价三套激励系统全部把最优秀的年轻人导离制造业,<b>制造强国的人才地基由此被系统性抽空</b>。</p>
+
+    <h3 class="jg-h3">三套激励的反向:教育 / 薪酬 / 评价</h3>
+    <div class="jg-rows">
+      <div class="jg-row"><span class="jg-row-k">教育导向</span><span class="jg-row-v">普职分流(↗ GY-11)把「差生」分进职校 → 职校与技工被污名为「失败者的去处」 → 最优秀者全力考普高、考大学、考编(↗ GY-07)——<b style="color:var(--zhu);">教育系统从起点就把技工定义为兜底选项</b>。</span></div>
+      <div class="jg-row"><span class="jg-row-k">薪酬信号</span><span class="jg-row-v">体制刚兑(↗ GY-07)、互联网/金融高薪(虽已回落 ↗ GY-08)长期吸走顶尖人才;技工薪资缺乏竞争力——<b>钱的信号也指向「别当技工」</b>。</span></div>
+      <div class="jg-row"><span class="jg-row-k">社会评价</span><span class="jg-row-v">白领/编制/网红(↗ GY-14)是被向往的身份,蓝领技工不是——<b style="color:var(--zhu);">三套激励(教育/薪酬/评价)共振,把人才精确导离制造业</b>。</span></div>
+      <div class="jg-row peak" style="border-left:3px solid var(--zhu);"><span class="jg-row-k">引擎 vs 机制</span><span class="jg-row-v">引擎需要工程师与技工,机制产出的却是<b>考生、骑手与主播</b>——这是 GY-02 内部矛盾在人群层面的兑现。</span></div>
+    </div>
+
+    <h3 class="jg-h3">与 GY-02 的咬合:机器要的人才,机器的激励正在劝退</h3>
+    <div class="jg-dual">
+      <div class="jg-dual-a"><h6>组件四的要求 · <b>技术发展主义</b></h6><span class="jg-dual-pole">engine.requires(engineer + technician)</span><p>组件四(技术发展主义)要求<b>强大的工程师与技工队伍</b>——这是合法性机器自身写下的硬需求(↗ GY-02)。</p></div>
+      <div class="jg-dual-mid">⟂</div>
+      <div class="jg-dual-b"><h6>合法性机器的激励 · <b>编制/学历/流量</b></h6><span class="jg-dual-pole">incentive.outputs(考生 + 骑手 + 主播)</span><p><b style="color:var(--zhu);">机器同时维护的激励结构(编制崇拜、学历至上、金融造富)却产出考生与骑手</b>——机器要的人才,机器的激励结构正在劝退。</p></div>
+    </div>
+
+    <div class="jg-art">
+      <h5><b>最深的瓶颈不是技术或资本,是激励结构</b>引擎需要的零件被自己的激励系统批量送往别处</h5>
+      <p>制造强国最深的瓶颈不是技术、不是资本,是激励结构——它一边喊着要工程师与技工,一边用编制、学历、流量把最聪明的年轻人引向考场和直播间。<b style="color:var(--zhu);">引擎需要的零件,正被这台机器自己的激励系统批量送往别处</b>。这是 GY-02 组件四的人群裂缝:战略与激励,朝着相反的方向用力(↗ watch · 对 GY-02 的修正)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="jg-xref">↗ GY-02 · 组件四的自相矛盾</span>
+      <span class="jg-xref">↗ GY-11 · 普职分流</span>
+      <span class="jg-xref">↗ GY-14 · 流量造富叙事</span>
+    </div>
+
+    <div class="jg-verdict">
+      <span class="jg-verdict-tag">J3 判词</span>
+      制造强国最深的瓶颈不是技术、不是资本,是激励结构——它一边喊着要工程师与技工,一边用编制、学历、流量把最聪明的年轻人引向考场和直播间。<b style="color:var(--zhu);">引擎需要的零件,正被这台机器自己的激励系统批量送往别处。这是 GY-02 组件四的人群裂缝:战略与激励,朝着相反的方向用力。</b>
+      <span class="jg-xref">↗ J4 · 双元制学不来</span>
+    </div>
+  </section>
+
+  <!-- ════ J4 双元制学不来 ════ -->
+  <section class="jg-panel" id="jg-p-j4">
+    <div class="jg-sec-head"><h2>J4 · 双元制学不来</h2><span class="jg-sec-tag">制度移植的失败</span></div>
+    <p class="jg-lede">德国双元制(<b>企业深度参与培养 + 技工高薪高地位 + 社会无学历歧视</b>)被反复引为榜样,但三个前提在中国全不成立——<b style="color:var(--zhu);">引进了车间,引不进车间外面的社会契约</b>(↗ GY-11 J3 同构)。</p>
+
+    <h3 class="jg-h3">三个不成立的前提:三缺其三</h3>
+    <div class="jg-sieve">
+      <div class="jg-sieve-card fail">
+        <span class="jg-eyebrow">前提一</span>
+        <span class="jg-sieve-formula">企业不愿育</span>
+        <p>德国靠企业<b>深度参与培养</b>;中国企业怕「培养完跳槽」,<b>缺内生动力</b>——宁可挖人不愿育人。</p>
+      </div>
+      <div class="jg-sieve-card fail">
+        <span class="jg-eyebrow">前提二</span>
+        <span class="jg-sieve-formula">技工不高薪</span>
+        <p>德国技工<b>高薪</b>;中国<b style="color:var(--zhu);">薪酬结构未给技工足够溢价</b>——见 J2 的背离。</p>
+      </div>
+      <div class="jg-sieve-card fail">
+        <span class="jg-eyebrow">前提三</span>
+        <span class="jg-sieve-formula">社会有歧视</span>
+        <p>德国<b>无学历歧视</b>;中国<b>学历至上、蓝领污名根深</b>——见 J3 的评价反向。</p>
+      </div>
+    </div>
+
+    <h3 class="jg-h3">公地悲剧:正外部性使无人愿意投资</h3>
+    <div class="jg-chain">
+      <div class="jg-chain-row"><span class="jg-chain-step">① 培养链断裂</span><span class="jg-chain-v">「技工荒」与「职校生贱卖」并存——断在中间的培养链<b>没人愿付费修复</b>(企业怕跳槽、职校没能力、个人没资本);<b>高级技工缺口大与职校生就业差同时成立</b>,正因培养链断裂(↗ GY-11 J5)。</span></div>
+      <div class="jg-chain-row peak"><span class="jg-chain-step">② 理性算计</span><span class="jg-chain-v">单个企业培养技工 → 技工跳槽 → 培养投资为他人作嫁 → 企业宁可挖人不愿育人 → 全行业技工供给不足——<b style="color:var(--zhu);">典型的公地悲剧:技能投资的正外部性使无人愿意投资</b>。</span></div>
+      <div class="jg-chain-row"><span class="jg-chain-step">③ 政策补丁</span><span class="jg-chain-v">产教融合、企业新型学徒制、职业技能等级认定——<b>方向对,但动不了「企业内生动力 + 技工地位 + 社会评价」三个根</b>。</span></div>
+      <div class="jg-chain-row"><span class="jg-chain-step">④ 学不来的根</span><span class="jg-chain-v">引进流水线容易,引进「焊工值得尊敬」的社会共识难——<b style="color:var(--zhu);">而后者才是双元制真正的引擎</b>。</span></div>
+    </div>
+
+    <div class="jg-art" style="margin-top:14px;">
+      <h5><b>双元制不是培训方法,是社会契约</b>企业愿育、技工得敬、社会不歧视</h5>
+      <p>双元制不是一套培训方法,是一份社会契约——<b style="color:var(--zhu);">企业愿育、技工得敬、社会不歧视</b>。中国学得来车间设备,学不来这份契约。引进流水线容易,引进「焊工值得尊敬」的社会共识难——而后者才是双元制真正的引擎(↗ GY-11 培养—就业断链的两端)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="jg-xref">↗ GY-11 J5 · 职校生贱卖与培养链断裂</span>
+      <span class="jg-xref">↗ J2 · 技工薪资背离</span>
+      <span class="jg-xref">↗ J3 · 学历至上的评价反向</span>
+    </div>
+
+    <div class="jg-verdict">
+      <span class="jg-verdict-tag">J4 判词</span>
+      双元制不是一套培训方法,是一份社会契约——企业愿育、技工得敬、社会不歧视。中国学得来车间设备,学不来这份契约。<b style="color:var(--zhu);">引进流水线容易,引进「焊工值得尊敬」的社会共识难——而后者才是双元制真正的引擎。</b>
+      <span class="jg-xref">↗ J5 · 机器换人双向挤压</span>
+    </div>
+  </section>
+
+  <!-- ════ J5 机器换人双向挤压 ════ -->
+  <section class="jg-panel" id="jg-p-j5">
+    <div class="jg-sec-head"><h2>J5 · 机器换人</h2><span class="jg-sec-tag">双向挤压</span></div>
+    <p class="jg-lede">自动化/机器人(↗ GY-02 组件四自身的产物)对技术工人是双向的——<b style="color:var(--zhu);">既替代低技能岗位(黑灯工厂减少普工需求),又抬高对高技能岗位(设备运维、产线编程)的要求</b>;这使技工群体内部分化:低技能被挤出,高技能更稀缺。</p>
+
+    <h3 class="jg-h3">双向挤压:替代端 ↔ 升级端</h3>
+    <div class="jg-twin">
+      <div class="jg-twin-a"><h6>替代端 · <b>低技能被挤出</b></h6><p>自动化替代流水线普工,黑灯工厂、机器换人减少中低技能岗位——<b>「不进厂」的年轻人某种程度上是对的:低端制造岗位正在消失</b>(↗ GY-05 L8 自动化挤压的制造端)。</p></div>
+      <div class="jg-twin-mid">↔</div>
+      <div class="jg-twin-b"><h6>升级端 · <b>高技能更稀缺</b></h6><p><b style="color:var(--zhu);">机器换人同时制造新的高技能需求</b>(工业机器人运维、数控编程、智能产线工程师)——缺口最大的恰是这类「新蓝领/灰领」;新一代信息技术缺 950 万正是此类。</p></div>
+    </div>
+
+    <h3 class="jg-h3">内部分化与培养赛跑</h3>
+    <div class="jg-rows">
+      <div class="jg-row"><span class="jg-row-k">内部分化</span><span class="jg-row-v">技工群体分裂为「被替代的低技能」与「更稀缺的高技能」——<b style="color:var(--zhu);">机器换人既是威胁也是机会,取决于在分化的哪一端</b>。</span></div>
+      <div class="jg-row"><span class="jg-row-k">新蓝领缺口</span><span class="jg-row-v">缺口最大的恰是工业机器人运维、数控编程等「新蓝领/灰领」——<b>新一代信息技术缺 950 万正是此类</b>。</span></div>
+      <div class="jg-row peak" style="border-left:3px solid var(--zhu);"><span class="jg-row-k">培养赛跑</span><span class="jg-row-v">高技能岗位的培养速度<b>跟不上自动化升级速度</b>——技术升级比人才培养快,缺口因此持续扩大;这是 J1 缺口的动态成因。</span></div>
+    </div>
+
+    <div class="jg-art">
+      <h5><b>不是技工的终结,是技工的重新洗牌</b>淘汰拧螺丝的手,渴求调试机器人的脑</h5>
+      <p>机器换人不是技工的终结,是技工的重新洗牌——它一边淘汰拧螺丝的手,一边渴求调试机器人的脑。问题在于,<b style="color:var(--zhu);">被淘汰的和被渴求的之间隔着一条无人付费修复的培养链(J4):机器换得很快,人却换不过来</b>。制造强国的瓶颈,从「缺人」变成了「缺会用机器的人」(↗ GY-05/GY-06 替代冲击)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="jg-xref">↗ GY-05 L8 · 自动化挤压制造端</span>
+      <span class="jg-xref">↗ J4 · 无人付费修复的培养链</span>
+      <span class="jg-xref">↗ J7 · 形态γ 自动化对冲</span>
+    </div>
+
+    <div class="jg-verdict">
+      <span class="jg-verdict-tag">J5 判词</span>
+      机器换人不是技工的终结,是技工的重新洗牌——它一边淘汰拧螺丝的手,一边渴求调试机器人的脑。问题在于,被淘汰的和被渴求的之间隔着一条无人付费修复的培养链(J4):机器换得很快,人却换不过来。<b style="color:var(--zhu);">制造强国的瓶颈,从「缺人」变成了「缺会用机器的人」。</b>
+      <span class="jg-xref">↗ J6 · 政治形态学</span>
+    </div>
+  </section>
+
+  <!-- ════ J6 政治形态学 ════ -->
+  <section class="jg-panel" id="jg-p-j6">
+    <div class="jg-sec-head"><h2>J6 · 政治形态学</h2><span class="jg-sec-tag">沉默的战略人群</span></div>
+    <p class="jg-lede">技术工人政治上高度沉默——分散在企业内部、被「大国工匠/劳模」叙事吸纳、组织化潜能低(工会吸纳)。但其<b style="color:var(--zhu);">「用脚投票」</b>(年轻人不进厂、技工跳槽流动)是一种分散而有效的抵抗,<b>直接转化为制造强国战略的执行赤字</b>。</p>
+
+    <h3 class="jg-h3">无组织的结构:被叙事吸纳与用脚投票</h3>
+    <div class="jg-nest">
+      <div class="jg-nest-row"><span class="jg-nest-k">叙事吸纳</span><span class="jg-nest-v">「大国工匠」「劳动模范」「八级工」的荣誉叙事(↗ GY-02 强国叙事)表彰极少数顶尖技工——<b style="color:var(--zhu);">用个别楷模的荣耀,掩盖多数技工的待遇与地位</b>(↔ GY-18 残障励志叙事同构:用少数标兵遮蔽多数结构)。</span></div>
+      <div class="jg-nest-row"><span class="jg-nest-k">用脚投票</span><span class="jg-nest-v">技工的抵抗不是抗议,是「不来」与「跳槽」——年轻人不进厂(供给端罢工)、技工高流动(用脚议价)——<b>分散、合法、无声,却直接造成 3000 万缺口</b>。</span></div>
+      <div class="jg-nest-row"><span class="jg-nest-k">议价悖论</span><span class="jg-nest-v">缺口理应抬高技工议价能力(稀缺→涨价),但现实中薪资上涨缓慢——<b style="color:var(--zhu);">因为缺的是「高技能」,而多数现存技工是低技能(可被自动化替代)</b>;稀缺性没有转化为多数人的议价能力。</span></div>
+    </div>
+
+    <h3 class="jg-h3">意愿赤字 = 执行赤字 · 战略可以规划,意愿无法规划</h3>
+    <div class="jg-rows">
+      <div class="jg-row"><span class="jg-row-k">直接冲突</span><span class="jg-row-v">这个人群的意愿赤字直接 = 制造强国的执行赤字——<b style="color:var(--zhu);">GY-02 组件四的战略,卡在了没人愿意当技工这个最朴素的事实上</b>。</span></div>
+      <div class="jg-row"><span class="jg-row-k">规划的边界</span><span class="jg-row-v">战略可以规划,<b>意愿无法规划</b>——战略悬空的地方,正是意愿缺席的地方。</span></div>
+      <div class="jg-row peak" style="border-left:3px solid var(--zhu);"><span class="jg-row-k">最朴素的拒绝</span><span class="jg-row-v">3000 万缺口是几千万年轻人用脚投出的票:<b style="color:var(--zhu);">不是反对制造强国,是拒绝一个被需要却不被尊重的人生</b>。</span></div>
+    </div>
+
+    <div class="jg-art">
+      <h5><b>他们不上街,抗议方式是「不进厂」</b>制造业听得最清楚却最无力回应的沉默</h5>
+      <p>技术工人不上街,他们的抗议方式是「不进厂」——这是制造业听得最清楚、却最无力回应的一种沉默。<b style="color:var(--zhu);">3000 万缺口是几千万年轻人用脚投出的票:不是反对制造强国,是拒绝一个被需要却不被尊重的人生</b>。战略悬空的地方,正是意愿缺席的地方(↗ GY-05 弃厂入平台的镜像 / ↗ GY-18 标兵叙事同构)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="jg-xref">↗ GY-02 · 强国叙事与楷模表彰</span>
+      <span class="jg-xref">↗ GY-18 · 励志标兵叙事同构</span>
+      <span class="jg-xref">↗ J7 · 形态推演(三态)</span>
+    </div>
+
+    <div class="jg-verdict">
+      <span class="jg-verdict-tag">J6 判词</span>
+      技术工人不上街,他们的抗议方式是「不进厂」——这是制造业听得最清楚、却最无力回应的一种沉默。<b style="color:var(--zhu);">3000 万缺口是几千万年轻人用脚投出的票:不是反对制造强国,是拒绝一个被需要却不被尊重的人生。战略悬空的地方,正是意愿缺席的地方。</b>
+      <span class="jg-xref">↗ J7 · 形态推演(三态)</span>
+    </div>
+  </section>
+
+  <!-- ════ J7 形态推演 ════ -->
+  <section class="jg-panel" id="jg-p-j7">
+    <div class="jg-sec-head"><h2>J7 · 形态推演</h2><span class="jg-sec-tag">三态 · α 缺口长期化 / β 待遇地位重估 / γ 自动化对冲</span></div>
+    <p class="jg-lede">制造业技术工人的演化路径,按概率拆成三态。三态共享同一个起点(<b>战略价值与社会地位背离、激励反向、双元制三前提缺失、机器换人双向挤压</b>),<b style="color:var(--zhu);">分岔点在于:技工待遇与地位会否实质重估、激励结构会否被动、自动化能否对冲缺口。</b></p>
+
+    <div class="jg-form">
+      <h5>形态 α · 基准 · 缺口长期化(概率最高)</h5>
+      <p>技工荒持续、政策补丁渐进(产教融合、技能等级、技师待遇微调),高技能缺口随自动化升级<b>长期存在</b>;制造业「招工难」常态化。<b>三态中概率最高</b>(↗ W-01/W-02)。</p>
+    </div>
+    <div class="jg-form" style="border-color:var(--jin-dim); background:rgba(110,93,56,.10);">
+      <h5 style="color:var(--jin);">形态 β · 破局 · 待遇与地位重估</h5>
+      <p>制造强国压力倒逼技工待遇与地位实质提升——<b>高技能技工薪资向工程师靠拢、职业荣誉制度化、产教融合见效</b>;标志:「灰领」薪资与社会评价出现拐点,年轻人进厂意愿回升。<b style="color:var(--jin);">这是战略落地的唯一真出路(动激励结构,而非喊口号)</b>(↗ W-02/W-07/W-03)。</p>
+    </div>
+    <div class="jg-form" style="border-color:var(--zhu-dim); background:rgba(181,72,58,.08);">
+      <h5 style="color:var(--zhu);">形态 γ · 替代 · 自动化对冲</h5>
+      <p>若人才缺口长期无法填补,自动化/AI 加速替代成为对冲——<b style="color:var(--zhu);">用机器换人绕过「没人愿当技工」</b>;但高端设备的运维人才缺口依旧(J5),且大规模替代冲击低技能就业池(↗ GY-05/GY-06)。按技术曲线推进(↗ W-06)。</p>
+    </div>
+
+    <div style="margin-top:14px;">
+      <span class="jg-xref">↗ GY-05/06 · 替代冲击就业池</span>
+      <span class="jg-xref">↗ W-02/W-07 · 形态β 待遇拐点仪表</span>
+      <span class="jg-xref">↗ W-06 · 自动化替代率进度</span>
+    </div>
+
+    <div class="jg-verdict">
+      <span class="jg-verdict-tag">J7 判词</span>
+      三态的分岔不在背离是否存在(它由激励结构与社会评价结构性确立),<b>在技工待遇地位会否实质重估、激励结构会否被动、自动化能否对冲缺口</b>。形态 α 是缺口长期化的渐进补丁,形态 β 是待遇与地位的实质重估,形态 γ 是自动化对冲下的绕行。<b style="color:var(--zhu);">这个人群的命运,最大的变量不是再多发几份产教融合文件,而是机器最不愿动的激励结构本身会不会动。</b>
+      <span class="jg-xref">↗ watch · 总判词与耦合修正</span>
+    </div>
+  </section>
+
+  <!-- ════ 合成 · 观测哨 ════ -->
+  <section class="jg-panel" id="jg-p-watch">
+    <div class="jg-sec-head"><h2>J8 · 合成与观测哨</h2><span class="jg-sec-tag">无人认领的关键依赖 · 第二十子集 · 年度对账</span></div>
+
+    <div class="jg-verdict" style="margin-top:0; margin-bottom:34px;">
+      <span class="jg-verdict-tag">总判词 · 无人认领的关键依赖</span>
+      制造业技术工人是 China OS 标记为 CRITICAL 的关键依赖——整个制造强国栈都 import 它,维护者池却在萎缩,因为维护这个依赖吃力、低薪、不被致敬。<br><br>
+      <b style="color:var(--zhu);">这个人群精确暴露了 GY-02 组件四(技术发展主义)的内部裂缝:机器要的是工程师与技工,机器的激励结构(编制崇拜、学历至上、流量造富)却批量产出考生、骑手与主播。战略价值与社会地位的背离,使「被需要」无法转化为「被向往」——3000 万缺口不是劳动力短缺,是几千万年轻人用脚投出的、对「被需要却不被尊重」的人生的否决票。制造强国的真正瓶颈不在技术或资本,在一份学不来的社会契约:让焊工值得尊敬。这份契约不签,再多的产教融合文件也填不满流水线;而签这份契约,要动的恰是机器最不愿动的激励结构本身。</b><br><br>
+      与全系列合观:GY-11 在「编译期定价」切了职校生的就业出口,GY-22 在「关键依赖」补全了技术工人的需求入口——两片是同一条培养链「就业」与「需求」的两端;GY-05/GY-06 在零工蓄水池切了「弃厂入平台」的供给端罢工,GY-22 在制造端承接了它的镜像;GY-02 组件四的技术发展主义,卡在了 GY-22 这个「没人愿意当技工」的最朴素事实上。关键依赖不报错,因此不预警;它被抽空的是制造强国的人才地基,因此一旦兑付,连本带利。
+    </div>
+
+    <h3 class="jg-h3">对 GY 系列的五条修正</h3>
+    <div class="jg-fix">
+      <h5><b>修正 · GY-02</b>组件四应显式标注「人群裂缝」</h5>
+      <p>组件四(技术发展主义)应显式标注「人群裂缝」——<b style="color:var(--zhu);">战略对技工的需求与激励结构对技工的劝退,构成机器内部的自相矛盾</b>;技工荒是这个矛盾的人群层兑现,建议作为组件四的悬置风险长期监测。</p>
+    </div>
+    <div class="jg-fix">
+      <h5><b>修正 · GY-11</b>职校生与技工是同一条管道的两端</h5>
+      <p>职校生(就业出口)与技术工人是同一条管道的两端——<b>职校生贱卖(GY-11 J5)与技工荒(本片)并存</b>,共同的病灶是断裂的培养链(双元制三前提缺失);建议 GY-11↔GY-22 双向链接为「培养—就业」断链的两端。</p>
+    </div>
+    <div class="jg-fix">
+      <h5><b>修正 · GY-05</b>「不进厂」是供给端罢工的镜像</h5>
+      <p>「不进厂」选择的另一面——<b style="color:var(--zhu);">农民工二代/年轻人弃厂入平台(GY-05 L1/L2)的镜像就是制造业的供给端罢工</b>;零工蓄水池的扩张与技工荒是同一人群流向的一体两面。</p>
+    </div>
+    <div class="jg-fix">
+      <h5><b>修正 · GY-06</b>农民工不再进厂是供给侧根源</h5>
+      <p>农民工「三代进平台」(GY-06 三代谱系)的尽头,是制造业失去了它传统的劳动力补充——<b>技工荒的供给侧根源之一是农民工二代/三代不再进厂</b>。</p>
+    </div>
+    <div class="jg-fix">
+      <h5><b>修正 · GY-14</b>流量造富是激励反向的具体投影</h5>
+      <p>流量造富叙事(GY-14 彩票化)是把年轻人导离制造业的激励信号之一——<b style="color:var(--zhu);">「做主播」对「当技工」的吸引力碾压,是 J3 激励反向的一个具体投影</b>。</p>
+    </div>
+
+    <div class="jg-watch-intro">
+      <p>这个人群的处境变动,关键看三组指针:被需要的硬仪表(技工缺口与缺口率 / 自动化替代率)、背离度读数(技工薪资 vs 白领编制 / 灰领新蓝领薪资 / 技工地位叙事)、破题信号(年轻人进厂意愿 / 产教融合实效 / 技工流动率)。逐项标注状态、记录证据,年度与 GY 系列同步对账。状态与备注自动保存在本机。口径敏感者标「约」,待权威年度数据回填。</p>
+      <span class="jg-storage-state" id="jg-storage-state"></span>
+    </div>
+
+    <div class="jg-watch" id="jg-watch-list">
+      <div class="jg-watch-item" data-key="w1">
+        <div><h5><b>W-01</b>技工缺口与缺口率</h5><p class="jg-watch-desc">十大重点领域人才缺口、高技能占比——<b>被需要的硬仪表</b>(与 GY-11 共享)。</p></div>
+        <div class="jg-watch-ctrl"><div class="jg-status-row"><button class="jg-status-btn" data-status="good">向好</button><button class="jg-status-btn" data-status="flat">中性</button><button class="jg-status-btn" data-status="bad">恶化</button></div><textarea class="jg-watch-note" placeholder="证据与备注…"></textarea><div class="jg-watch-stamp"></div></div>
+      </div>
+      <div class="jg-watch-item" data-key="w2">
+        <div><h5><b>W-02</b>技工薪资 vs 白领/编制</h5><p class="jg-watch-desc">高技能技工薪资中位数与可比白领的比值——<b>背离度的核心读数。</b></p></div>
+        <div class="jg-watch-ctrl"><div class="jg-status-row"><button class="jg-status-btn" data-status="good">向好</button><button class="jg-status-btn" data-status="flat">中性</button><button class="jg-status-btn" data-status="bad">恶化</button></div><textarea class="jg-watch-note" placeholder="证据与备注…"></textarea><div class="jg-watch-stamp"></div></div>
+      </div>
+      <div class="jg-watch-item" data-key="w3">
+        <div><h5><b>W-03</b>年轻人进厂意愿</h5><p class="jg-watch-desc">制造业新增就业青年占比、职校生制造业对口就业率——<b>向往度</b>(与 GY-11 共享)。</p></div>
+        <div class="jg-watch-ctrl"><div class="jg-status-row"><button class="jg-status-btn" data-status="good">向好</button><button class="jg-status-btn" data-status="flat">中性</button><button class="jg-status-btn" data-status="bad">恶化</button></div><textarea class="jg-watch-note" placeholder="证据与备注…"></textarea><div class="jg-watch-stamp"></div></div>
+      </div>
+      <div class="jg-watch-item" data-key="w4">
+        <div><h5><b>W-04</b>产教融合实效</h5><p class="jg-watch-desc">企业新型学徒制、产教融合的实际培养量与留存——<b>培养链修复进度。</b></p></div>
+        <div class="jg-watch-ctrl"><div class="jg-status-row"><button class="jg-status-btn" data-status="good">向好</button><button class="jg-status-btn" data-status="flat">中性</button><button class="jg-status-btn" data-status="bad">恶化</button></div><textarea class="jg-watch-note" placeholder="证据与备注…"></textarea><div class="jg-watch-stamp"></div></div>
+      </div>
+      <div class="jg-watch-item" data-key="w5">
+        <div><h5><b>W-05</b>技工流动率</h5><p class="jg-watch-desc">制造业技工跳槽率与流动——<b>用脚议价的强度。</b></p></div>
+        <div class="jg-watch-ctrl"><div class="jg-status-row"><button class="jg-status-btn" data-status="good">向好</button><button class="jg-status-btn" data-status="flat">中性</button><button class="jg-status-btn" data-status="bad">恶化</button></div><textarea class="jg-watch-note" placeholder="证据与备注…"></textarea><div class="jg-watch-stamp"></div></div>
+      </div>
+      <div class="jg-watch-item" data-key="w6">
+        <div><h5><b>W-06</b>自动化替代率</h5><p class="jg-watch-desc">黑灯工厂/工业机器人密度、普工岗位净增减——<b>J5 双向挤压的进度。</b></p></div>
+        <div class="jg-watch-ctrl"><div class="jg-status-row"><button class="jg-status-btn" data-status="good">向好</button><button class="jg-status-btn" data-status="flat">中性</button><button class="jg-status-btn" data-status="bad">恶化</button></div><textarea class="jg-watch-note" placeholder="证据与备注…"></textarea><div class="jg-watch-stamp"></div></div>
+      </div>
+      <div class="jg-watch-item" data-key="w7">
+        <div><h5><b>W-07</b>灰领/新蓝领薪资</h5><p class="jg-watch-desc">工业机器人运维、数控编程等新岗位的薪资与吸引力——<b>形态β 的拐点信号。</b></p></div>
+        <div class="jg-watch-ctrl"><div class="jg-status-row"><button class="jg-status-btn" data-status="good">向好</button><button class="jg-status-btn" data-status="flat">中性</button><button class="jg-status-btn" data-status="bad">恶化</button></div><textarea class="jg-watch-note" placeholder="证据与备注…"></textarea><div class="jg-watch-stamp"></div></div>
+      </div>
+      <div class="jg-watch-item" data-key="w8">
+        <div><h5><b>W-08</b>技工地位叙事</h5><p class="jg-watch-desc">「大国工匠」表彰 vs 蓝领社会评价的结构数据背离——<b>叙事的真伪。</b></p></div>
+        <div class="jg-watch-ctrl"><div class="jg-status-row"><button class="jg-status-btn" data-status="good">向好</button><button class="jg-status-btn" data-status="flat">中性</button><button class="jg-status-btn" data-status="bad">恶化</button></div><textarea class="jg-watch-note" placeholder="证据与备注…"></textarea><div class="jg-watch-stamp"></div></div>
+      </div>
+    </div>
+
+    <h3 class="jg-h3">章节规划 · 登记表</h3>
+    <div class="jg-plan">
+      <div class="jg-plan-row"><span class="jg-plan-k">CH-01</span><span class="jg-plan-v"><b>缺口解剖</b> — 十大重点领域缺口的工种分布、高技能 vs 低技能的结构性短缺图。</span><span class="jg-plan-tag">待建</span></div>
+      <div class="jg-plan-row"><span class="jg-plan-k">CH-02</span><span class="jg-plan-v"><b>双元制移植失败学</b> — 德国三前提与中国现实的逐项对照、培养链断裂的公地悲剧分析。</span><span class="jg-plan-tag">待建</span></div>
+      <div class="jg-plan-row"><span class="jg-plan-k">CH-03</span><span class="jg-plan-v"><b>激励反向报告</b> — 教育/薪酬/评价三套激励如何共振导离制造业,接 GY-02 组件四。</span><span class="jg-plan-tag">待建</span></div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="jg-foot">
+    <p>方法论:制造业技术工人以「无人认领的关键依赖(Unmaintained Critical Dependency)」模型刻画——技术工人是 China OS 标记为 CRITICAL 的核心依赖整个制造强国的运行栈都 import 它但它的维护者池在持续萎缩因为维护这个依赖吃力低薪不被致敬,这就像那个全世界都依赖却没人愿意维护的开源底层库系统重要性拉满社会吸引力见底两条曲线的剪刀差就是技工荒,签名图一个进程方块制造业技术工人技能人才超 2 亿/高技能 6000 万+标 CRITICAL 国家战略依赖 priority HIGH 上方系统重要性进度条满格下方社会吸引力/年轻人意愿进度条见底两条之间一道裂缝标背离招聘端弹出 recruiting NO APPLICANT 维护者计数下降,国家战略最需要的人恰恰是年轻人最不愿成为的人。核心命题:国家战略(新质生产力制造强国)最需要的人恰恰是年轻人最不愿成为的人技工荒与用工荒是 GY-02 组件四技术发展主义与人群意愿之间的结构性裂缝,这个人群精确暴露了 GY-02 组件四技术发展主义的内部裂缝机器要的是工程师与技工机器的激励结构编制崇拜学历至上流量造富却批量产出考生骑手与主播战略价值与社会地位的背离使被需要无法转化为被向往,3000 万缺口不是劳动力短缺是几千万年轻人用脚投出的对被需要却不被尊重的人生的否决票,制造强国的真正瓶颈不在技术或资本在一份学不来的社会契约让焊工值得尊敬这份契约不签再多产教融合文件也填不满流水线而签这份契约要动的恰是机器最不愿动的激励结构本身。J1 规模与缺口:技能人才超 2 亿高技能人才 6000 万+但制造业十大重点领域 2025 人才缺口近 3000 万缺口率约 48% 最缺一百个工种里 41 个是生产制造类、十大领域人才总量约 6200 万、新一代信息技术缺 950 万高档数控机床与机器人缺 450 万新材料缺 400 万(新质生产力越前沿技工缺口越大)、制造业从业者本科占比仅 6.1% 多数操作工高中及以下学历倒挂、被需要政策确认(技能人才写进制造强国新质生产力技能型社会战略重要性官方盖章 ↗GY-02 组件四);技工荒被反复确认却始终无解国家越强调制造强国缺口越显眼 3000 万不是劳动力短缺是战略需要与个体意愿的精确落差系统标了 CRITICAL 年轻人按了拒绝。J2 战略价值与社会地位背离(核心机制):一个群体对国家越重要不等于对个体越有吸引力战略价值国家需要与社会地位个人是否被尊重向往严重背离被需要无法转化为被尊重和被向往制造强国战略悬空在没人愿填的岗位上,背离三维度薪资(多数技工薪资与劳动强度技术含量不匹配高薪神话是极少数顶尖技师幸存者偏差 ↗GY-05/06)地位(蓝领社会评价崩塌进厂是失败叙事学好数理化不如有个好爸爸宁送外卖不进厂工厂纪律流水线异化宿舍管制 ↗GY-05 L2)前景(晋升通道窄职业天花板低)、被需要的廉价(国家需要≠个人受益战略价值不会自动转化为个人回报技工战略重要性由国家承担议价能力由个体承担两者脱钩);制造强国战略写在文件里技工荒写在招聘启事上两者距离就是被需要到被向往的距离一个社会可以命令企业需要技工不能命令年轻人向往技工当价值与尊严脱钩再宏大的战略也填不满流水线。J3 激励结构反向产出(引擎要技工机制产考生):直接回答 GY-02 悬置矛盾引擎需要工程师与技工激励结构却产出考生与骑手(↗GY-03/07/11)教育薪酬社会评价三套激励全部把最优秀年轻人导离制造业,教育导向反向(普职分流 ↗GY-11 把差生分进职校职校与技工被污名为失败者去处最优秀者全力考普高考大学考编 ↗GY-07 教育系统从起点把技工定义为兜底选项)薪酬信号反向(体制刚兑 ↗GY-07 互联网金融高薪 ↗GY-08 长期吸走顶尖人才技工薪资缺乏竞争力钱的信号也指向别当技工)社会评价反向(白领编制网红 ↗GY-14 是被向往身份蓝领技工不是三套激励共振把人才精确导离制造业)与 GY-02 咬合(组件四技术发展主义要求强大工程师与技工队伍但合法性机器同时维护的激励结构编制崇拜学历至上金融造富却产出考生与骑手这是 GY-02 内部自相矛盾在人群层面的兑现机器要的人才机器的激励结构正在劝退);制造强国最深瓶颈不是技术不是资本是激励结构它一边喊着要工程师与技工一边用编制学历流量把最聪明年轻人引向考场和直播间引擎需要的零件正被这台机器自己的激励系统批量送往别处这是 GY-02 组件四的人群裂缝战略与激励朝着相反方向用力。J4 双元制学不来(制度移植失败):德国双元制企业深度参与培养+技工高薪高地位+社会无学历歧视被反复引为榜样但三个前提在中国全不成立引进了车间引不进车间外面的社会契约(↗GY-11 J3 同构),三个不成立前提(企业深度参与培养中国企业怕培养完跳槽缺内生动力/技工高薪薪酬结构未给技工足够溢价/社会无学历歧视中国学历至上蓝领污名根深三缺其三)培养链断裂 ↗GY-11 J5(技工荒与职校生贱卖并存断在中间的培养链没人愿付费修复企业怕跳槽职校没能力个人没资本高级技工缺口大与职校生就业差同时成立正因培养链断裂)企业理性算计(单个企业培养技工→技工跳槽→培养投资为他人作嫁→企业宁可挖人不愿育人→全行业技工供给不足典型公地悲剧技能投资正外部性使无人愿意投资)政策补丁(产教融合企业新型学徒制职业技能等级认定方向对但动不了企业内生动力+技工地位+社会评价三个根);双元制不是培训方法是社会契约企业愿育技工得敬社会不歧视中国学得来车间设备学不来这份契约引进流水线容易引进焊工值得尊敬的社会共识难而后者才是双元制真正的引擎。J5 机器换人双向挤压:自动化机器人(↗GY-02 组件四自身产物)对技术工人是双向的既替代低技能岗位黑灯工厂减少普工需求又抬高对高技能岗位设备运维产线编程的要求使技工群体内部分化低技能被挤出高技能更稀缺,替代端(自动化替代流水线普工黑灯工厂机器换人减少中低技能岗位不进厂的年轻人某种程度上是对的低端制造岗位正在消失 ↗GY-05 L8)升级端(机器换人同时制造新的高技能需求工业机器人运维数控编程智能产线工程师缺口最大恰是这类新蓝领灰领新一代信息技术缺 950 万正是此类)内部分化(技工群体分裂为被替代的低技能与更稀缺的高技能机器换人既是威胁也是机会取决于在分化的哪一端)培养赛跑(高技能岗位培养速度跟不上自动化升级速度技术升级比人才培养快缺口因此持续扩大这是 J1 缺口动态成因);机器换人不是技工的终结是技工的重新洗牌它一边淘汰拧螺丝的手一边渴求调试机器人的脑被淘汰的和被渴求的之间隔着一条无人付费修复的培养链 J4 机器换得很快人却换不过来制造强国的瓶颈从缺人变成了缺会用机器的人。J6 政治形态学(沉默的战略人群):技术工人政治上高度沉默分散在企业内部被大国工匠劳模叙事吸纳组织化潜能低工会吸纳但其用脚投票年轻人不进厂技工跳槽流动是一种分散而有效的抵抗直接转化为制造强国战略的执行赤字,无组织被叙事吸纳(大国工匠劳动模范八级工荣誉叙事 ↗GY-02 强国叙事表彰极少数顶尖技工用个别楷模的荣耀掩盖多数技工的待遇与地位 ↔GY-18 残障励志叙事同构用少数标兵遮蔽多数结构)用脚投票(技工抵抗不是抗议是不来与跳槽年轻人不进厂供给端罢工技工高流动用脚议价分散合法无声却直接造成 3000 万缺口)与战略直接冲突(这个人群意愿赤字直接=制造强国执行赤字 GY-02 组件四战略卡在没人愿意当技工这个最朴素的事实上战略可以规划意愿无法规划)议价能力悖论(缺口理应抬高技工议价能力稀缺涨价但现实薪资上涨缓慢因为缺的是高技能而多数现存技工是低技能可被自动化替代稀缺性没有转化为多数人议价能力);技术工人不上街抗议方式是不进厂这是制造业听得最清楚却最无力回应的一种沉默 3000 万缺口是几千万年轻人用脚投出的票不是反对制造强国是拒绝一个被需要却不被尊重的人生战略悬空的地方正是意愿缺席的地方。J7 形态推演:α 缺口长期化(技工荒持续政策补丁渐进产教融合技能等级技师待遇微调高技能缺口随自动化升级长期存在制造业招工难常态化概率最高)/β 待遇与地位重估(制造强国压力倒逼技工待遇与地位实质提升高技能技工薪资向工程师靠拢职业荣誉制度化产教融合见效标志灰领薪资与社会评价出现拐点年轻人进厂意愿回升这是战略落地唯一真出路动激励结构而非喊口号)/γ 自动化对冲(若人才缺口长期无法填补自动化 AI 加速替代成为对冲用机器换人绕过没人愿当技工但高端设备运维人才缺口依旧 J5 且大规模替代冲击低技能就业池 ↗GY-05/06 按技术曲线推进)。数据锚定(2025+训练知识基线,待权威年度数据回填):制造业十大重点领域人才总量约 6200 万需求缺口近 3000 万缺口率约 48%、技能人才超 2 亿高技能人才 6000 万+制造业从业者本科占比仅 6.1%、最缺百大工种中 41 个为制造生产类新一代信息技术缺 950 万数控机床与机器人缺 450 万新材料缺 400 万、宁送外卖不进厂人手 2-4 个录用通知中高级技工供不应求体感。注:缺口测算口径与高低技能边界宽窄不一、最新数据以观测哨逐年回填、规模为量级估算不等同于本人群个体。作为人群画像分层第二十子集,与 GY-02 组件四(技术发展主义应显式标注人群裂缝战略对技工需求与激励结构对技工劝退构成机器内部自相矛盾技工荒是这个矛盾的人群层兑现建议作为组件四悬置风险长期监测)、GY-11 职校生(职校生就业出口与技术工人是同一条管道两端职校生贱卖 GY-11 J5 与技工荒并存共同病灶是断裂培养链双元制三前提缺失建议双向链接为培养就业断链两端)、GY-05 零工(不进厂选择另一面农民工二代年轻人弃厂入平台 GY-05 L1/L2 镜像就是制造业供给端罢工零工蓄水池扩张与技工荒是同一人群流向一体两面)、GY-06 农民工(农民工三代进平台 GY-06 三代谱系尽头是制造业失去传统劳动力补充技工荒供给侧根源之一是农民工二代三代不再进厂)、GY-14 流量造富(流量造富叙事 GY-14 彩票化是把年轻人导离制造业的激励信号之一做主播对当技工的吸引力碾压是 J3 激励反向一个具体投影)五处耦合。来源:用户规划简报、人民论坛/澎湃制造业人才缺口报道、2025 两会胡德兆委员发言(新浪/21 经济网)、训练知识基线。</p>
+    <div class="jg-foot-meta">
+      ChinaOS · GY-22 · v1.0.0<br>
+      生成 2026-06 丙午年<br>
+      人群画像 子集XX · 关联模块 → GY-02/05/06/11/14<br>
+      注记:缺口测算口径分散,数据以观测哨逐年回填
+    </div>
+  </footer>
+
+</div>
