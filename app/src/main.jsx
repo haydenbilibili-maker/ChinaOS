@@ -4,6 +4,10 @@ import { HashRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import { initTheme } from './lib/theme.js';
+import { initChunkRecovery } from './lib/chunkRecovery.js';
+
+// 部署后 stale chunk → 自动 reload 一次（须在 React 挂载前注册）
+initChunkRecovery();
 
 // 启动即确定主题（存储 > 系统 > 夜览），避免首帧闪烁并同步图表调色板
 initTheme();

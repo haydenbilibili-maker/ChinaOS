@@ -66,9 +66,23 @@ function streamProxyPlugin() {
   };
 }
 
+/** 构建时注入 build id，便于排查 partial deploy / 缓存失步 */
+function buildIdPlugin() {
+  const buildId = new Date().toISOString();
+  return {
+    name: 'china2os-build-id',
+    transformIndexHtml(html) {
+      return html.replace(
+        '<meta name="viewport"',
+        `<meta name="china2os-build" content="${buildId}" />\n    <meta name="viewport"`,
+      );
+    },
+  };
+}
+
 // base: './' 便于部署到任意静态子路径（与现有 china.html 静态托管一致）
 export default defineConfig({
-  plugins: [react(), streamProxyPlugin()],
+  plugins: [react(), streamProxyPlugin(), buildIdPlugin()],
   base: './',
   build: {
     outDir: 'dist',

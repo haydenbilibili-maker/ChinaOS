@@ -155,9 +155,11 @@ async function fetchSource(sourceMeta) {
   const timer = setTimeout(() => ac.abort(), FETCH_TIMEOUT_MS);
   try {
     const res = await fetch(url, { signal: ac.signal });
-    if (!res.ok) throw new Error(String(res.status));
+    if (!res.ok) return [];
     const json = await res.json();
     return parseRss2Json(json, sourceMeta);
+  } catch {
+    return [];
   } finally {
     clearTimeout(timer);
   }
@@ -287,9 +289,7 @@ export async function fetchNewsFeed() {
     items: seedPrepared.items,
     mode: 'seed',
     filterStats: liveRaw.length ? livePrepared.stats : seedPrepared.stats,
-    error: liveRaw.length
-      ? (filterNote ? `${filterNote}，已回退种子` : '部分源不可用，已合并种子')
-      : 'RSS 代理不可达，展示内置种子',
+    error: liveRaw.length && filterNote ? `${filterNote}，已回退种子` : null,
   };
 }
 

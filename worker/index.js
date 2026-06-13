@@ -4,15 +4,25 @@
 
 const LEGACY_ENTRY = /^\/china(?:\.html)?$/i;
 
-/** 带 content hash 的构建产物可长期缓存；index.html 禁止缓存以免部署后仍见旧版 */
+const INDEX_PATH_RE = /^\/(?:index\.html)?$/i;
+const IMMUTABLE_ASSET_RE =
+  /\/assets\/(?:mod-[^/]+-|[\w.-]+-)[A-Za-z0-9_-]{6,}\.(?:js|css|woff2?|png|jpe?g|svg|webp|ico|json)$/i;
+
+function isSpaEntryPath(pathname) {
+  return INDEX_PATH_RE.test(pathname) || pathname.endsWith('/index.html');
+}
+
+/** 带 content hash 的构建产物可长期缓存；index.html / SPA 回退禁止缓存以免部署后仍见旧版 */
 function withCacheHeaders(response, pathname) {
   const headers = new Headers(response.headers);
-  if (pathname === '/' || pathname.endsWith('/index.html')) {
+  if (isSpaEntryPath(pathname)) {
     headers.set('Cache-Control', 'no-cache, no-store, must-revalidate');
     headers.set('Pragma', 'no-cache');
+    headers.set('Expires', '0');
     headers.set('CDN-Cache-Control', 'no-store');
-  } else if (/\/assets\/[^/]+\.(js|css|woff2?)$/i.test(pathname)) {
+  } else if (IMMUTABLE_ASSET_RE.test(pathname)) {
     headers.set('Cache-Control', 'public, max-age=31536000, immutable');
+    headers.set('CDN-Cache-Control', 'public, max-age=31536000, immutable');
   }
   return new Response(response.body, {
     status: response.status,
@@ -45,7 +55,7 @@ export default {
     }
 
     const assetResponse = await env.ASSETS.fetch(request);
-    const isHashedAsset = /\/assets\/[^/]+\.(js|css|woff2?|png|jpe?g|svg|webp|ico|json)$/i.test(url.pathname);
+    const isHashedAsset = IMMUTABLE_ASSET_RE.test(url.pathname);
 
     if (assetResponse.ok || (isHashedAsset && assetResponse.status !== 404)) {
       return withCacheHeaders(assetResponse, url.pathname);
