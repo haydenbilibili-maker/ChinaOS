@@ -1,0 +1,423 @@
+<div class="mq-shell">
+
+  <!-- 题头 -->
+  <header class="mq-mast">
+    <div>
+      <div class="mq-mast-meta">ChinaOS · MODULE <b>GY-42</b> · 人群画像分层 · 第四十子集</div>
+      <h1 class="mq-title">中小民营企业主<span class="mq-title-sub">两头 I/O 阻塞的中间件进程 · 夹心资本</span></h1>
+    </div>
+    <div class="mq-mast-seal">上游欠款,下游催款</div>
+  </header>
+  <p class="mq-mast-note">注记(口径处理):本片以<b>资本光谱分层与现金流约束的制度分析</b>框架,讨论中小民营企业主作为塔尖企业家(↗ GY-10)与个体户(↗ GY-29)之间的「资本中间层」——把中小民企刻画为一个被上下游 I/O 同时阻塞的中间件进程:上游 read 阻塞(应收账款被大客户/国企账期拖欠)、下游 write 必须执行(工资/货款/税/社保的刚性输出)、而融资管道又细又贵;关注其账期与融资两头挤的现金流绞杀、信心与预期、立法安抚与兑现、作为最大就业承载者的政治沉默;<b>不针对具体机构或个人,不渲染个案、不归咎任何一方</b>,聚焦资本中间层的结构性约束;数据为民营企业户数(市场监管/人民日报 2024)、中小企业融资与发展指数(《2024 年中国中小企业融资发展报告》经济参考报)、民营经济促进法报道与训练知识基线,标量级、留观测哨回填,精确口径与量级估算严格区分。</p>
+
+  <!-- 两头 I/O 阻塞中间件签名图 -->
+  <div class="mq-found" aria-label="两头 I/O 阻塞的中间件进程示意图:中心一个中间件进程标 cashflow starved,上游 read(应收账款)红色 BLOCKED 被大客户/国企账期拖欠,下游 write(工资/货款/税/社保)刚性输出箭头必须执行,侧面一根细而标高息的融资管道(银行/债券·民企仅12%);底注 5700万民企 占企业92.3% 夹心资本 账期与融资两头挤">
+    <svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg" role="img">
+      <text x="500" y="20" font-size="11" fill="#8f897d" text-anchor="middle" font-family="mono" letter-spacing="2">ChinaOS · MIDDLEWARE BLOCKED ON BOTH ENDS · 上游 read 阻塞,下游 write 刚性,资金管道细而贵</text>
+      <text x="500" y="44" font-size="9.5" fill="#7d6a3a" text-anchor="middle" font-family="sans-serif">— 一个被上下游 I/O 同时阻塞、被现金流饿死的资本中间层进程 —</text>
+
+      <!-- 上游 read 阻塞 -->
+      <text x="230" y="92" font-size="11" fill="#c2786e" text-anchor="middle" font-family="serif" letter-spacing="1">上游 · read 阻塞</text>
+      <rect x="120" y="104" width="220" height="48" rx="4" fill="#2a1818" stroke="#b5483a" stroke-width="1.6"/>
+      <text x="230" y="126" font-size="10" fill="#c2a09a" text-anchor="middle" font-family="mono">大客户 / 国企 / 政府项目</text>
+      <text x="230" y="143" font-size="9" fill="#8f897d" text-anchor="middle" font-family="sans-serif">账期拖欠 · 隐性占款</text>
+      <line x1="340" y1="128" x2="430" y2="270" stroke="#b5483a" stroke-width="1.6" stroke-dasharray="4 4" marker-end="url(#mqArrowRed)"/>
+      <text x="360" y="200" font-size="10" fill="#b5483a" font-family="mono" transform="rotate(54 360 200)">read(应收账款) ✕ BLOCKED</text>
+
+      <!-- 融资管道(细而贵) -->
+      <text x="820" y="92" font-size="11" fill="#7d6a3a" text-anchor="middle" font-family="serif" letter-spacing="1">资金管道 · 细而贵</text>
+      <rect x="700" y="104" width="220" height="48" rx="4" fill="#23201a" stroke="#7d6a3a" stroke-width="1.4"/>
+      <text x="810" y="126" font-size="10" fill="#c9b87a" text-anchor="middle" font-family="mono">银行 / 债券 融资</text>
+      <text x="810" y="143" font-size="9" fill="#8f897d" text-anchor="middle" font-family="sans-serif">高息 · 民企净融资仅 12%</text>
+      <line x1="700" y1="138" x2="572" y2="278" stroke="#7d6a3a" stroke-width="1.2" stroke-dasharray="2 5"/>
+      <text x="650" y="208" font-size="9" fill="#7d6a3a" font-family="mono" transform="rotate(-48 650 208)">细管 · 高息 · 难借</text>
+
+      <!-- 中间件进程(中心) -->
+      <rect x="385" y="276" width="230" height="86" rx="6" fill="#1c242e" stroke="#c2786e" stroke-width="2"/>
+      <text x="500" y="306" font-size="13" fill="#c2786e" text-anchor="middle" font-family="mono" letter-spacing="1">中小民企(中间件)</text>
+      <text x="500" y="328" font-size="11" fill="#b5483a" text-anchor="middle" font-family="mono">cashflow starved</text>
+      <text x="500" y="348" font-size="9" fill="#8f897d" text-anchor="middle" font-family="sans-serif">有员工 · 有厂房 · 有规模 · 缺缓冲</text>
+
+      <!-- 下游 write 刚性输出 -->
+      <line x1="460" y1="362" x2="320" y2="452" stroke="#c2a052" stroke-width="1.8" marker-end="url(#mqArrowGold)"/>
+      <line x1="500" y1="362" x2="500" y2="452" stroke="#c2a052" stroke-width="1.8" marker-end="url(#mqArrowGold)"/>
+      <line x1="540" y1="362" x2="680" y2="452" stroke="#c2a052" stroke-width="1.8" marker-end="url(#mqArrowGold)"/>
+      <text x="500" y="392" font-size="10" fill="#c9b87a" text-anchor="middle" font-family="mono">write(工资/货款/税/社保) → 刚性必须执行</text>
+
+      <rect x="250" y="456" width="140" height="40" rx="3" fill="#23201a" stroke="#3d4c5a" stroke-width="1"/><text x="320" y="481" font-size="9.5" fill="#7d9488" text-anchor="middle" font-family="mono">员工工资 / 社保</text>
+      <rect x="430" y="456" width="140" height="40" rx="3" fill="#23201a" stroke="#3d4c5a" stroke-width="1"/><text x="500" y="481" font-size="9.5" fill="#7d9488" text-anchor="middle" font-family="mono">供应商货款</text>
+      <rect x="610" y="456" width="140" height="40" rx="3" fill="#23201a" stroke="#3d4c5a" stroke-width="1"/><text x="680" y="481" font-size="9.5" fill="#7d9488" text-anchor="middle" font-family="mono">税费 / 租金</text>
+
+      <defs>
+        <marker id="mqArrowRed" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#b5483a"/></marker>
+        <marker id="mqArrowGold" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#c2a052"/></marker>
+      </defs>
+
+      <line x1="100" y1="516" x2="900" y2="516" stroke="#3d4c5a" stroke-width="1" stroke-dasharray="3 5"/>
+      <text x="500" y="542" font-size="10.5" fill="#b5483a" text-anchor="middle" font-family="serif" letter-spacing="2">— 上游欠款 + 下游催款 + 融资难贵 · 三面夹击 · 黑字倒闭 —</text>
+      <text x="500" y="564" font-size="9" fill="#7d9488" text-anchor="middle" font-family="sans-serif">5700 万民企 · 占企业 92.3% · 夹心资本 · 账期与融资两头挤</text>
+      <text x="500" y="584" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="mono">注:以资本中间层与现金流约束制度分析框架处理,标量级,留观测哨回填</text>
+    </svg>
+    <div class="mq-found-caption">模块隐喻是<b>两头 I/O 阻塞的中间件进程(Middleware Blocked on Both Ends)</b>:中小民营企业主是 China OS 一个被上下游 I/O 同时阻塞的中间件进程——上游 <code>read(应收账款)</code>阻塞(被大客户/国企的账期拖欠卡住),下游 <code>write(工资/货款/税/社保)</code>必须执行(刚性输出不能延期),而供给资金的管道(银行融资)又细又贵(民企债券净融资仅占约 12%)。结果是这个中间件被现金流饿死(<b>cashflow starved</b>)。签名图:进程中心标 <b>cashflow starved</b>,上游红色 BLOCKED 的应收账款 read、下游金色刚性的工资/货款/税/社保 write 输出箭头、侧面一根细而标「高息」的融资管道;底注「5700 万民企 · 占企业 92.3% · 夹心资本 · 账期与融资两头挤」。<b>本片最关键的判断:中小民企主是经营者光谱的资本中间层——比个体户(↗ GY-29 裸跑)重、有员工厂房规模的固定成本敞口,比塔尖(↗ GY-10 可迁移)弱、没有离岸退路与有限责任的对冲。规模本以为是护城河,实则是更大的现金流敞口;他们最常见的死法不是没生意,是「黑字倒闭」。</b></div>
+  </div>
+
+  <!-- 页签 -->
+  <nav class="mq-nav" role="tablist">
+    <button role="tab" data-panel="mq-p-q1" class="is-active">资本三层</button>
+    <button role="tab" data-panel="mq-p-q2">两头IO阻塞</button>
+    <button role="tab" data-panel="mq-p-q3">信心与预期</button>
+    <button role="tab" data-panel="mq-p-q4">安抚与立法</button>
+    <button role="tab" data-panel="mq-p-q5">沉默承载者</button>
+    <button role="tab" data-panel="mq-p-q6">形态推演</button>
+    <button role="tab" data-panel="mq-p-watch">合成 · 观测哨</button>
+  </nav>
+
+  <!-- ════ Q1 资本三层 ════ -->
+  <section class="mq-panel is-active" id="mq-p-q1">
+    <div class="mq-sec-head"><h2>Q1 · 资本三层:塔尖、中间、末梢</h2><span class="mq-sec-tag">退出能力沿三层递减</span></div>
+    <p class="mq-lede">经营者不是铁板一块,是三层——<b style="color:var(--zhu);">塔尖(↗ GY-10,可迁移进程,有离岸/信托/有限责任对冲)、中小民企主(本片,夹心中间层,有规模有员工但缺缓冲)、个体户(↗ GY-29,裸跑进程,无限责任无缓冲);资本退出能力与风险缓冲沿这三层递减</b>。中小民企主夹在中间:比个体户重(有员工、厂房、规模),比塔尖弱(无离岸退路、无资本对冲),是吸纳最多就业却最脆弱的一层。</p>
+
+    <h3 class="mq-h3">三层结构:退出能力与风险缓冲的梯度</h3>
+    <div class="mq-tri">
+      <div class="mq-tri-card"><h6>塔尖 · <b>可迁移进程 ↗ GY-10</b></h6><span class="mq-tri-pole">离岸 / 信托 / 有限责任</span><p><b>有离岸退路、信托与有限责任的风险隔离</b>——可迁移、可对冲;经营者光谱的顶层,退出能力最强、风险缓冲最厚。</p></div>
+      <div class="mq-tri-card mid"><h6>中间 · <b>夹心资本(本片)</b></h6><span class="mq-tri-pole">有员工 / 厂房 / 规模</span><p><b style="color:var(--zhu);">有员工(十几到几百人)、有厂房设备(重资产)、有规模——「中型老板」</b>;民企超 5700 万户(占企业 92.3%),是就业与税收的主力,却没有塔尖的退路。</p></div>
+      <div class="mq-tri-card low"><h6>末梢 · <b>裸跑进程 ↗ GY-29</b></h6><span class="mq-tri-pole">无限责任 / 无缓冲</span><p><b>个体户夫妻店,轻装灵活但无限责任、无风险缓冲</b>——可裸跑可关停;经营者光谱的末梢,固定成本敞口最小。</p></div>
+    </div>
+
+    <h3 class="mq-h3">夹心的脆弱:规模带来的不是安全,是敞口</h3>
+    <div class="mq-rows">
+      <div class="mq-row peak"><span class="mq-row-k">中间层定位</span><span class="mq-row-v"><b style="color:var(--zhu);">有员工、有厂房设备、有规模(区别于个体户的夫妻店)——「中型老板」</b>;民营企业超 5700 万户、占企业 92.3%,是就业与税收的主力(↗ Q5)。</span></div>
+      <div class="mq-row"><span class="mq-row-k">比个体户重</span><span class="mq-row-v">员工工资/厂房刚性成本更高、不能像个体户那样轻装关停——<b>规模意味着更高的固定成本敞口</b>(↗ Q2 下游刚性)。</span></div>
+      <div class="mq-row peak"><span class="mq-row-k">比塔尖弱</span><span class="mq-row-v"><b style="color:var(--zhu);">没有离岸/信托/有限责任的风险隔离(↗ GY-10 T4)</b>——退路与对冲都缺;规模带来的不是安全,是更大的固定成本敞口。</span></div>
+      <div class="mq-row"><span class="mq-row-k">就业承载 ↗ GY-05/06/22</span><span class="mq-row-v">中小民企吸纳了最大份额的城镇就业——<b>是 GY-05/06/22/27 等劳动人群的雇主端;中小民企主的生死直接关系几亿人的饭碗</b>。</span></div>
+    </div>
+
+    <h3 class="mq-h3">三层退出能力梯度:同一光谱的三段</h3>
+    <div class="mq-chain">
+      <div class="mq-chain-row v1"><span class="mq-chain-t">塔尖</span><span class="mq-chain-v"><b>可迁移、可离岸、有限责任对冲(↗ GY-10)</b> — 退出能力最强,风险缓冲最厚,「想走能走得远」。</span></div>
+      <div class="mq-chain-row v2"><span class="mq-chain-t">中间(本片)</span><span class="mq-chain-v"><b style="color:var(--zhu);">有员工厂房规模但无离岸退路、无有限责任对冲</b> — 退出能力居中、风险缓冲最薄,「想走走不远、想留留不安」。</span></div>
+      <div class="mq-chain-row v1"><span class="mq-chain-t">末梢</span><span class="mq-chain-v"><b>个体户裸跑、可关停但无限责任(↗ GY-29)</b> — 固定成本敞口最小,可轻装退出,「想走能轻装走」。</span></div>
+    </div>
+
+    <div class="mq-art">
+      <h5><b>规模本以为是护城河,实则是更大的固定成本敞口</b>他承载着最多的就业,自己却是这三层里现金流最容易断的一层</h5>
+      <p>经营者不是铁板一块,是三层——塔尖能离岸对冲(↗ GY-10),个体户能轻装裸跑(↗ GY-29),夹在中间的中小民企主最尴尬:他有员工要养、有厂房要还、有规模要维持,却没有塔尖的退路,也没有个体户的灵活。<b style="color:var(--zhu);">规模本以为是护城河,实则是更大的固定成本敞口。他承载着最多的就业,自己却是这三层里现金流最容易断的一层。</b>(↗ GY-10 塔尖 / ↗ GY-29 末梢 / ↗ Q2 两头阻塞)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="mq-xref">↗ GY-10 · 塔尖企业家(可迁移/有对冲)</span>
+      <span class="mq-xref">↗ GY-29 · 个体户(裸跑/无限责任)</span>
+      <span class="mq-xref">↗ Q2 · 两头 I/O 阻塞</span>
+    </div>
+
+    <div class="mq-verdict">
+      <span class="mq-verdict-tag">Q1 判词</span>
+      经营者不是铁板一块,是三层——塔尖能离岸对冲(↗ GY-10),个体户能轻装裸跑(↗ GY-29),夹在中间的中小民企主最尴尬:他有员工要养、有厂房要还、有规模要维持,却没有塔尖的退路,也没有个体户的灵活。规模本以为是护城河,实则是更大的固定成本敞口。<b style="color:var(--zhu);">他承载着最多的就业,自己却是这三层里现金流最容易断的一层。</b>
+      <span class="mq-xref">↗ Q2 · 账期与融资的夹击</span>
+    </div>
+  </section>
+
+  <!-- ════ Q2 两头 I/O 阻塞 ════ -->
+  <section class="mq-panel" id="mq-p-q2">
+    <div class="mq-sec-head"><h2>Q2 · 两头 I/O 阻塞:账期与融资的夹击</h2><span class="mq-sec-tag">本片独特机制 · 黑字倒闭</span></div>
+    <p class="mq-disclaimer top">注记(口径处理):本节将「账期拖欠」「融资难贵」作为<b>现金流约束与三角债的结构问题</b>分析,关注上游 read 阻塞与下游 write 刚性的现金流绞杀;不针对具体机构或交易对手,「黑字倒闭」「隐性占款」作为机制描述,旨在理解中小民企最致命的死法,不渲染个案。</p>
+    <p class="mq-lede">本片独特机制——中小民企主的现金流被两头阻塞:<b style="color:var(--zhu);">上游应收账款被大客户/国企账期拖欠(read 阻塞),下游员工工资/供应商货款/税费社保是刚性支付(write 必须执行),而银行融资又难又贵(资金管道细)</b>。三面夹击使「有订单、没现金」成为常态,是中小民企最致命的死法。它最怕的不是没订单,是有订单却收不回钱。</p>
+
+    <h3 class="mq-h3">上游 read 阻塞 vs 下游 write 刚性:占款与刚性的对峙</h3>
+    <div class="mq-dual">
+      <div class="mq-dual-a"><h6>上游 · <b>read 阻塞</b></h6><span class="mq-dual-pole">应收账款 / 账期占款</span><p><b style="color:var(--qing);">应收账款被大企业/国企/政府项目拖欠</b>——「账期」是大企业对中小企业的隐性占款;账款清欠虽推进,三角债仍是顽疾(↗ W-03)。</p></div>
+      <div class="mq-dual-mid">↔</div>
+      <div class="mq-dual-b"><h6>下游 · <b>write 刚性</b></h6><span class="mq-dual-pole">工资 / 货款 / 税 / 社保</span><p><b style="color:var(--zhu);">员工工资、供应商货款、税费、社保、租金——刚性输出不能延期</b>(欠薪即违法、断供即停产);下游一天都不能等。</p></div>
+    </div>
+
+    <h3 class="mq-h3">融资管道:细且贵的资金供给</h3>
+    <div class="mq-rows">
+      <div class="mq-row peak"><span class="mq-row-k">管道细</span><span class="mq-row-v"><b style="color:var(--zhu);">民企债券净融资仅占总体约 12%、抵押担保门槛高</b>——银行偏好大企业/国企/有抵押者;民企想借钱,管道又细又难(↗ W-04)。</span></div>
+      <div class="mq-row"><span class="mq-row-k">融资贵</span><span class="mq-row-v">融资成本显著高于国企——<b>「融资难、融资贵」;账期是大企业转嫁给小企业的免息贷款,而小企业自己借钱要付最高的利息</b>。</span></div>
+      <div class="mq-row peak"><span class="mq-row-k">结构性偏好</span><span class="mq-row-v"><b style="color:var(--zhu);">银行的风险偏好天然向大企业/国企/有抵押者倾斜</b>——中小企业融资存量虽增(7.76 万亿、+11.4%)但增速放缓,结构性偏好难根本扭转(↗ Q4)。</span></div>
+      <div class="mq-row"><span class="mq-row-k">个人连带 ↗ GY-32</span><span class="mq-row-v">民企主常以个人资产担保企业贷款(互保联保、个人无限连带)——<b>企业债务与个人债务绑定;黑字倒闭后企业主常背个人债务</b>(↗ GY-32)。</span></div>
+    </div>
+
+    <h3 class="mq-h3">黑字倒闭链:从订单到现金流断裂</h3>
+    <div class="mq-chain">
+      <div class="mq-chain-row v1"><span class="mq-chain-t">有订单</span><span class="mq-chain-v"><b>账上有利润、手上有订单</b> — 生意没问题,问题在现金流;「有订单」不等于「有现金」。</span></div>
+      <div class="mq-chain-row v2"><span class="mq-chain-t">上游占款</span><span class="mq-chain-v"><b style="color:var(--zhu);">应收账款被大客户/国企账期拖欠收不回</b> — read 阻塞,现金被占在上游(↗ W-03)。</span></div>
+      <div class="mq-chain-row v1"><span class="mq-chain-t">下游刚性</span><span class="mq-chain-v"><b>工资/货款/税/社保一天都不能等</b> — write 刚性,现金被刚性输出抽走。</span></div>
+      <div class="mq-chain-row v2"><span class="mq-chain-t">融资无门</span><span class="mq-chain-v"><b style="color:var(--zhu);">银行的钱又贵又难借,补不上现金缺口</b> — 资金管道细,三面一夹,现金流断裂 → 黑字倒闭(↗ GY-32)。</span></div>
+    </div>
+    <div class="mq-breaking">
+      <span class="mq-breaking-tag">! 最常见的死因不是没生意,是没现金</span>
+      中小民企主最怕的不是没订单,是有订单却收不回钱——<b>上游的大客户用账期占着他的应收账款,下游的工人、供应商、税务局却一天都不能等,而银行的钱又贵又难借。三面一夹,现金流就断了,这就是「黑字倒闭」:账上明明有利润,却因为现金流转不动而倒下</b>。
+    </div>
+
+    <div class="mq-art">
+      <h5><b>账期是大企业转嫁给小企业的免息贷款</b>而小企业自己想借钱,却要付最高的利息</h5>
+      <p>中小民企主最怕的不是没订单,是有订单却收不回钱。上游的大客户用账期占着他的应收账款,下游的工人、供应商、税务局却一天都不能等,而银行的钱又贵又难借。三面一夹,现金流就断了——这就是「黑字倒闭」:账上明明有利润,却因为现金流转不动而倒下。<b style="color:var(--zhu);">账期是大企业转嫁给小企业的免息贷款,而小企业自己想借钱,却要付最高的利息。</b>(↗ GY-32 债务/担保链 / ↗ Q3 信心 / ↗ W-03/W-04)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="mq-xref">↗ GY-32 · 企业债务与担保链</span>
+      <span class="mq-xref">↗ Q1 · 固定成本敞口</span>
+      <span class="mq-xref">↗ Q3 · 信心与预期</span>
+    </div>
+
+    <div class="mq-verdict">
+      <span class="mq-verdict-tag">Q2 判词</span>
+      中小民企主最怕的不是没订单,是有订单却收不回钱。上游的大客户用账期占着他的应收账款,下游的工人、供应商、税务局却一天都不能等,而银行的钱又贵又难借。三面一夹,现金流就断了——这就是「黑字倒闭」:账上明明有利润,却因为现金流转不动而倒下。<b style="color:var(--zhu);">账期是大企业转嫁给小企业的免息贷款,而小企业自己想借钱,却要付最高的利息。</b>
+      <span class="mq-xref">↗ Q3 · 信心是最脆弱的资产</span>
+    </div>
+  </section>
+
+  <!-- ════ Q3 信心与预期 ════ -->
+  <section class="mq-panel" id="mq-p-q3">
+    <div class="mq-sec-head"><h2>Q3 · 信心与预期:投资还是收缩</h2><span class="mq-sec-tag">荣枯线以下的集体观望</span></div>
+    <p class="mq-lede">中小民企主的核心变量是信心——<b style="color:var(--zhu);">它决定投资、扩产、雇人还是收缩、躺平、撤资</b>。2021 年以来的政策不确定性(↗ GY-10 T2)、需求疲软(↗ GY-08 中产收缩)、账期与融资困境(↗ Q2),使民企信心成为宏观经济的关键先行变量;中小企业发展指数、民间投资增速是其温度计。信心在,他就投资;信心没了,他就把钱留着或转走。</p>
+
+    <h3 class="mq-h3">信心温度计:长期停在荣枯线以下</h3>
+    <div class="mq-gauge">
+      <div class="mq-gauge-row"><span class="mq-gauge-k">中小企业发展指数</span><div class="mq-gauge-bar"><div class="mq-gauge-fill" style="width:89%"></div><div class="mq-gauge-line" style="left:100%" title="荣枯线 100"></div></div><span class="mq-gauge-v">≈ 89 · 荣枯线 100 以下</span></div>
+      <div class="mq-gauge-row"><span class="mq-gauge-k">民间投资增速</span><div class="mq-gauge-bar"><div class="mq-gauge-fill" style="width:35%"></div></div><span class="mq-gauge-v">低位 · 投资意愿弱(↗ GY-10 W-02)</span></div>
+      <div class="mq-gauge-row"><span class="mq-gauge-k">民企贷款意愿</span><div class="mq-gauge-bar"><div class="mq-gauge-fill" style="width:42%"></div></div><span class="mq-gauge-v">谨慎 · 不敢加杠杆扩产</span></div>
+      <div class="mq-gauge-row"><span class="mq-gauge-k">扩产/雇人意愿</span><div class="mq-gauge-bar"><div class="mq-gauge-fill" style="width:38%"></div></div><span class="mq-gauge-v">收缩 · 「投还是不投」集体观望</span></div>
+    </div>
+
+    <h3 class="mq-h3">信心的侵蚀源与传导</h3>
+    <div class="mq-rows">
+      <div class="mq-row peak"><span class="mq-row-k">信心即投资</span><span class="mq-row-v"><b style="color:var(--zhu);">民企主信心 → 投资/扩产/雇人 or 收缩/不投/裁员</b>——信心是民间投资(↗ GY-10 W-02)的微观基础,是宏观经济的先行变量。</span></div>
+      <div class="mq-row"><span class="mq-row-k">侵蚀源</span><span class="mq-row-v">政策不确定性(↗ GY-10 T2 安全感账本)、需求疲软(↗ GY-08)、账期融资困境(↗ Q2)、营商环境体感(↗ GY-29 G5)——<b>多重因素叠加压制信心</b>。</span></div>
+      <div class="mq-row peak"><span class="mq-row-k">温度计</span><span class="mq-row-v"><b style="color:var(--zhu);">中小企业发展指数约 89(荣枯线 100 以下)、民间投资增速、民企贷款</b>——信心的可观测代理;指数长期在荣枯线下徘徊(↗ W-01/W-02)。</span></div>
+      <div class="mq-row"><span class="mq-row-k">资本链传导 ↗ GY-10</span><span class="mq-row-v">塔尖收缩投资(↗ GY-10 T3)→ 产业链订单减少 → 中小民企承压——<b>信心沿资本链向下传导;塔尖的收缩会沿订单流到中间层</b>。</span></div>
+    </div>
+
+    <div class="mq-art">
+      <h5><b>最值钱也最脆弱的资产,是信心</b>几千万老板在「投还是不投」之间,集体选择了观望</h5>
+      <p>中小民企主最值钱也最脆弱的资产,是信心。信心在,他就投资、扩产、多雇几个人;信心没了,他就收缩、躺平、把钱留着或转走。而过去几年,政策的不确定、需求的疲软、账期和融资的困境,一点点把这份信心磨薄。<b style="color:var(--zhu);">中小企业发展指数长期停在荣枯线以下——那不是一个数字,是几千万老板在「投还是不投」之间,集体选择了观望。</b>(↗ GY-10 安全感账本 / ↗ GY-08 需求疲软 / ↗ Q2 账期融资)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="mq-xref">↗ GY-10 · 民间投资与安全感账本</span>
+      <span class="mq-xref">↗ GY-08 · 中产收缩的需求端</span>
+      <span class="mq-xref">↗ Q4 · 安抚与立法</span>
+    </div>
+
+    <div class="mq-verdict">
+      <span class="mq-verdict-tag">Q3 判词</span>
+      中小民企主最值钱也最脆弱的资产,是信心。信心在,他就投资、扩产、多雇几个人;信心没了,他就收缩、躺平、把钱留着或转走。而过去几年,政策的不确定、需求的疲软、账期和融资的困境,一点点把这份信心磨薄。<b style="color:var(--zhu);">中小企业发展指数长期停在荣枯线以下——那不是一个数字,是几千万老板在「投还是不投」之间,集体选择了观望。</b>
+      <span class="mq-xref">↗ Q4 · 条文与兑现的距离</span>
+    </div>
+  </section>
+
+  <!-- ════ Q4 安抚与立法 ════ -->
+  <section class="mq-panel" id="mq-p-q4">
+    <div class="mq-sec-head"><h2>Q4 · 安抚与立法:促进法能否兑现</h2><span class="mq-sec-tag">条文与兑现之间的距离</span></div>
+    <p class="mq-disclaimer top">注记(口径处理):本节将《民营经济促进法》、账款清欠、融资支持作为<b>制度安抚与执行兑现</b>分析,关注「条文」与「兑现」之间的执行距离;不评判具体立法或执法,「远洋捕捞式执法」作为已被公开讨论的营商环境现象引述(↗ GY-10 T2),旨在理解安抚可信度取决于兑现而非文本,不渲染个案、不归咎任何一方。</p>
+    <p class="mq-lede">国家用《民营经济促进法》(2025)、清理账款拖欠、融资支持、减税降费等密集安抚中小民企——<b style="color:var(--zhu);">立法把「平等对待、保护产权、清理欠款」写成法律文本</b>;但「条文」与「兑现」之间隔着执行(账款清欠的反复、融资落地的难、远洋捕捞式执法 ↗ GY-10 T2)的距离。立法是承诺,兑现是检验。</p>
+
+    <h3 class="mq-h3">条文 vs 兑现:承诺与检验的对峙</h3>
+    <div class="mq-dual">
+      <div class="mq-dual-a"><h6>条文 · <b>政策善意</b></h6><span class="mq-dual-pole">促进法 / 清欠条例 / 普惠金融</span><p><b style="color:var(--qing);">《民营经济促进法》(2025)写平等对待、产权保护、账款清理;清欠条例、普惠金融、利率下降</b>——把承诺写成法律文本(↗ GY-10 T6 立法的信号意义)。</p></div>
+      <div class="mq-dual-mid">↔</div>
+      <div class="mq-dual-b"><h6>兑现 · <b>执行走样</b></h6><span class="mq-dual-pole">清欠反复 / 银行偏好 / 异地执法</span><p><b style="color:var(--zhu);">账款清欠年年清年年欠、融资支持年年喊银行年年偏爱大企业、远洋捕捞式执法的阴影还在(↗ GY-10 T2)</b>——安抚的可信度取决于兑现,而非文本。</p></div>
+    </div>
+
+    <h3 class="mq-h3">三组安抚与各自的执行缺口</h3>
+    <div class="mq-rows">
+      <div class="mq-row peak"><span class="mq-row-k">立法安抚</span><span class="mq-row-v"><b style="color:var(--zhu);">《民营经济促进法》(2025)把平等对待、产权保护、账款清理写成法律</b>——立法的信号意义(↗ GY-10 T6);但条文落地待检验(↗ W-05)。</span></div>
+      <div class="mq-row"><span class="mq-row-k">账款清欠</span><span class="mq-row-v">专项清理拖欠中小企业账款、《保障中小企业款项支付条例》——<b>针对 Q2 上游阻塞的政策;但清欠反复、大企业占款顽固</b>(↗ W-03)。</span></div>
+      <div class="mq-row peak"><span class="mq-row-k">融资支持</span><span class="mq-row-v"><b style="color:var(--zhu);">普惠金融、中小微贷款、贷款利率下降</b>——针对融资难贵;但结构性偏好(银行爱大企业)难根本扭转(↗ Q2/W-04)。</span></div>
+      <div class="mq-row"><span class="mq-row-k">条文与兑现</span><span class="mq-row-v">政策善意(条文)vs 执行走样(账款清欠不力、异地逐利执法 ↗ GY-10 T2、营商环境末梢 ↗ GY-29)——<b>安抚的可信度取决于兑现,而非文本</b>。</span></div>
+    </div>
+
+    <div class="mq-art">
+      <h5><b>立法是承诺,兑现是检验</b>要的不是又一份文件,是收得回的账款、借得到的钱、和不会被随意征用的安全感</h5>
+      <p>国家给了中小民企主一部《民营经济促进法》,把平等、产权、清欠都写进了条文。但条文和兑现之间,隔着一段最难走的路:账款清欠年年清、年年欠,融资支持年年喊、银行年年偏爱大企业,远洋捕捞式执法的阴影还在(↗ GY-10)。<b style="color:var(--zhu);">立法是承诺,兑现是检验——中小民企主要的不是又一份文件,是收得回的账款、借得到的钱、和不会被随意征用的安全感。</b>(↗ GY-10 安全感账本 / ↗ GY-29 营商环境末梢 / ↗ W-05)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="mq-xref">↗ GY-10 · 立法的信号意义与远洋捕捞</span>
+      <span class="mq-xref">↗ GY-29 · 营商环境末梢</span>
+      <span class="mq-xref">↗ Q5 · 沉默的就业承载者</span>
+    </div>
+
+    <div class="mq-verdict">
+      <span class="mq-verdict-tag">Q4 判词</span>
+      国家给了中小民企主一部《民营经济促进法》,把平等、产权、清欠都写进了条文。但条文和兑现之间,隔着一段最难走的路:账款清欠年年清、年年欠,融资支持年年喊、银行年年偏爱大企业,远洋捕捞式执法的阴影还在(↗ GY-10)。立法是承诺,兑现是检验——<b style="color:var(--zhu);">中小民企主要的不是又一份文件,是收得回的账款、借得到的钱、和不会被随意征用的安全感。</b>
+      <span class="mq-xref">↗ Q5 · 沉默地不再扩张</span>
+    </div>
+  </section>
+
+  <!-- ════ Q5 沉默承载者 ════ -->
+  <section class="mq-panel" id="mq-p-q5">
+    <div class="mq-sec-head"><h2>Q5 · 政治形态学:沉默的就业承载者</h2><span class="mq-sec-tag">用脚投票 · 就业链的总闸</span></div>
+    <p class="mq-disclaimer top">注记(口径处理):本节将中小民企主作为<b>资本中间层的政治形态</b>分析,关注其分散沉默、用脚投票(不投资/关厂/迁厂/移民)、作为最大就业承载者的系统传导;不评判具体政策或个人,「沉默的退出」「用脚投票」作为结构问题描述,不渲染个案、不归咎任何一方。</p>
+    <p class="mq-lede">中小民企主政治上分散、沉默——<b style="color:var(--zhu);">数量庞大(5700 万)但极度分散、个体化、被「民营经济」宏大叙事覆盖;其表达是用脚投票(不投资、关厂、移民 ↗ GY-10、转行)、行业协会有限代言</b>;作为最大就业承载者,其信心收缩对就业(↗ GY-05/06/22)的传导比任何抗议都更具系统影响。他能做的最响亮的事,就是悄悄地不再扩张。</p>
+
+    <h3 class="mq-h3">分散沉默与用脚投票:沉默的退出</h3>
+    <div class="mq-rows">
+      <div class="mq-row peak"><span class="mq-row-k">分散与沉默</span><span class="mq-row-v"><b style="color:var(--zhu);">5700 万户、行业地域分散、个体化——难以形成集体声音</b>(↔ GY-29 个体户的放大版);被「民营经济」宏大叙事覆盖。</span></div>
+      <div class="mq-row"><span class="mq-row-k">用脚投票</span><span class="mq-row-v">不投资、收缩、关厂、移民(↗ GY-10 塔尖的中小版)、转行——<b>沉默的退出;信心收缩是其主要「表达」</b>(↗ W-08)。</span></div>
+      <div class="mq-row peak"><span class="mq-row-k">就业传导 ↗ GY-05/06/22</span><span class="mq-row-v"><b style="color:var(--zhu);">中小民企吸纳最大份额就业 → 民企承压 → 裁员/不招 → 失业(↗ GY-05/06/22/34)</b>——民企信心是就业的总闸;其收缩的系统影响远超声量。</span></div>
+      <div class="mq-row"><span class="mq-row-k">三层政治差异</span><span class="mq-row-v">塔尖有资源能离岸(↗ GY-10 T7)、个体户太小太散(↗ GY-29 G6)、中小民企主夹在中间——<b>有一定资源但无离岸退路,是「想走走不远、想留留不安」的夹心</b>。</span></div>
+    </div>
+
+    <h3 class="mq-h3">全光谱交汇:资本光谱的承重中段</h3>
+    <div class="mq-rows">
+      <div class="mq-row peak"><span class="mq-row-k">资本中间层</span><span class="mq-row-v"><b style="color:var(--zhu);">中小民企主是 GY-10(塔尖)、GY-29(个体户)的资本中间层</b>——退出能力与风险缓冲沿三层递减(↗ Q1)。</span></div>
+      <div class="mq-row"><span class="mq-row-k">雇员的雇主端</span><span class="mq-row-v">GY-05/06/22/27(雇员)的雇主端——<b>民企信心收缩直接传导为裁员/不招/降薪/迁厂;就业链的上游总闸在本片</b>。</span></div>
+      <div class="mq-row peak"><span class="mq-row-k">债务与中产交汇</span><span class="mq-row-v"><b style="color:var(--zhu);">GY-32(企业债务/担保链)、GY-08(中产老板)的交汇</b>——黑字倒闭后企业主常背个人债务;相当部分中小民企主是「中产老板」(↗ Q1/Q2)。</span></div>
+    </div>
+    <div class="mq-breaking">
+      <span class="mq-breaking-tag">! 他们的「表达」不是上街,是关厂、是不再投资、是把厂搬到东南亚、是把孩子送出国</span>
+      中小民企主是最沉默的就业承载者——<b>5700 万户分散在各行各业,没有共同的声音,却握着几亿人的饭碗。他们的「表达」不是上街,是关厂、是不再投资、是把厂搬到东南亚、是把孩子送出国。这种沉默的退出最危险:它不喧哗,却直接传导到就业</b>。
+    </div>
+
+    <div class="mq-art">
+      <h5><b>他能做的最响亮的事,就是悄悄地不再扩张</b>而几千万个「不再扩张」加起来,就是宏观数据上消失的那些岗位</h5>
+      <p>中小民企主是最沉默的就业承载者——5700 万户分散在各行各业,没有共同的声音,却握着几亿人的饭碗。他们的「表达」不是上街,是关厂、是不再投资、是把厂搬到东南亚、是把孩子送出国。这种沉默的退出最危险:它不喧哗,却直接传导到就业。当一个夹心层既走不远(不如塔尖能离岸)又留不安(不如个体户能轻装),<b style="color:var(--zhu);">他能做的最响亮的事,就是悄悄地不再扩张——而几千万个「不再扩张」加起来,就是宏观数据上消失的那些岗位。</b>(↗ GY-05/06/22 就业链 / ↗ GY-10 离岸 / ↗ GY-29 太小太散)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="mq-xref">↗ GY-05/06/22 · 就业链的雇员端</span>
+      <span class="mq-xref">↗ GY-10 · 塔尖的中小版退出</span>
+      <span class="mq-xref">↗ Q6 · 三态推演</span>
+    </div>
+
+    <div class="mq-verdict">
+      <span class="mq-verdict-tag">Q5 判词</span>
+      中小民企主是最沉默的就业承载者——5700 万户分散在各行各业,没有共同的声音,却握着几亿人的饭碗。他们的「表达」不是上街,是关厂、是不再投资、是把厂搬到东南亚、是把孩子送出国。这种沉默的退出最危险:它不喧哗,却直接传导到就业。当一个夹心层既走不远(不如塔尖能离岸)又留不安(不如个体户能轻装),<b style="color:var(--zhu);">他能做的最响亮的事,就是悄悄地不再扩张——而几千万个「不再扩张」加起来,就是宏观数据上消失的那些岗位。</b>
+      <span class="mq-xref">↗ Q6 · 三态推演</span>
+    </div>
+  </section>
+
+  <!-- ════ Q6 形态推演 ════ -->
+  <section class="mq-panel" id="mq-p-q6">
+    <div class="mq-sec-head"><h2>Q6 · 形态推演(三态)</h2><span class="mq-sec-tag">低信心维持 / 倒闭潮 / 专精特新分化</span></div>
+    <p class="mq-lede">中小民企这个两头 I/O 阻塞的中间件进程的未来走向,取决于三股力量的相对强弱——<b style="color:var(--zhu);">账期/融资困境的延续与信心低位、需求持续疲软触发的倒闭潮与就业冲击、政策扶持「专精特新」与普通中小出清的分化</b>。三态推演如下,概率最高的是低信心维持的基准态。</p>
+
+    <h3 class="mq-h3">三态:α 低信心维持 / β 倒闭潮 / γ 专精特新分化</h3>
+    <div class="mq-form">
+      <h5>形态 α · 基准 · 低信心维持(概率最高)</h5>
+      <p>账期/融资困境延续、信心低位徘徊、促进法渐进落地;<b style="color:var(--zhu);">中小民企在收缩与观望中维持,就业承载力承压但未崩</b>。概率最高(↗ W-01/W-02/W-05)。</p>
+    </div>
+    <div class="mq-form" style="border-color:var(--zhu-dim); background:rgba(181,72,58,.08);">
+      <h5 style="color:var(--zhu);">形态 β · 压力 · 倒闭潮与就业冲击</h5>
+      <p>若需求持续疲软 + 账期融资恶化,中小民企倒闭潮扩大——<b style="color:var(--zhu);">直接冲击就业(↗ GY-05/06/22/34),失业蓄水池叠加溢出</b>;标志:民间投资负增长常态化、中小企业发展指数深跌、规模性裁员(↗ W-02/W-06)。</p>
+    </div>
+    <div class="mq-form" style="border-color:var(--jin-dim); background:rgba(110,93,56,.10);">
+      <h5 style="color:var(--jin);">形态 γ · 分化 · 专精特新 vs 出清</h5>
+      <p>政策扶持「专精特新」「小巨人」(高技术中小企业)+ 普通中小企业出清——<b style="color:var(--jin);">中小民企分化为被扶持的「专精特新」与被淘汰的传统中小;同时部分制造业民企出海(↗ GY-10 T5 迁厂)</b>(↗ W-07/W-08)。</p>
+    </div>
+
+    <h3 class="mq-h3">三态的共同底色:信心与现金流是总闸</h3>
+    <div class="mq-rows">
+      <div class="mq-row peak"><span class="mq-row-k">现金流是底色</span><span class="mq-row-v"><b style="color:var(--zhu);">无论哪种形态,两头 I/O 阻塞的现金流约束都在</b>——三态的差异只在维持、出清还是分化(↗ Q2)。</span></div>
+      <div class="mq-row"><span class="mq-row-k">需求是变量</span><span class="mq-row-v">需求持续疲软(中产收缩 ↗ GY-08)是最大的外生变量——<b>形态 β 的触发点;民间投资负增长、规模性裁员是最响的信号</b>(↗ GY-08)。</span></div>
+      <div class="mq-row peak"><span class="mq-row-k">分化是远景</span><span class="mq-row-v"><b style="color:var(--zhu);">专精特新扶持与传统中小出清、制造业民企出海(↗ GY-10 T5)——行业从「普惠」转向「分层扶持」</b>;形态 γ 是长期方向(↗ W-07)。</span></div>
+    </div>
+
+    <div class="mq-art">
+      <h5><b>差异只在维持、出清还是分化</b>这个夹心层的现金流和信心,是整个就业链最上游、也最沉默的总闸</h5>
+      <p>三态推演的共同底色是:<b style="color:var(--zhu);">两头 I/O 阻塞的现金流约束始终在,差异只在低信心维持、倒闭潮出清还是专精特新分化。基准是低信心维持(收缩观望但未崩);压力态里需求持续疲软触发倒闭潮、直接冲击就业、失业蓄水池溢出;分化态里专精特新被扶持、传统中小出清、部分制造业民企出海。</b>(↗ GY-08 需求端 / ↗ GY-10 迁厂 / ↗ GY-05/06/22 就业链)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="mq-xref">↗ GY-08 · 需求疲软的外生变量</span>
+      <span class="mq-xref">↗ GY-10 · 制造业民企出海</span>
+      <span class="mq-xref">↗ watch · 总判词与观测哨</span>
+    </div>
+
+    <div class="mq-verdict">
+      <span class="mq-verdict-tag">Q6 判词</span>
+      三态推演的共同底色是:两头 I/O 阻塞的现金流约束始终在,差异只在低信心维持、倒闭潮出清还是专精特新分化。基准是低信心维持(收缩观望但未崩);压力态里需求持续疲软触发倒闭潮、直接冲击就业、失业蓄水池溢出;分化态里专精特新被扶持、传统中小出清、部分制造业民企出海。<b style="color:var(--zhu);">这个夹心层的现金流和信心,是整个就业链最上游、也最沉默的那个总闸。</b>
+      <span class="mq-xref">↗ watch · 合成观测哨</span>
+    </div>
+  </section>
+
+  <!-- ════ 合成 · 观测哨 ════ -->
+  <section class="mq-panel" id="mq-p-watch">
+    <div class="mq-sec-head"><h2>Q7 / Q8 · 合成与观测哨</h2><span class="mq-sec-tag">两头 I/O 阻塞 · 第四十子集 · 年度对账</span></div>
+    <p class="mq-disclaimer top">注记(口径处理):全片以资本中间层与现金流约束的制度分析框架处理,不针对具体机构或个人,「黑字倒闭」「账期占款」「沉默退出」作为结构问题与机制描述,不渲染个案、不归咎任何一方。形态推演与观测哨为机制研判,数据为民营企业户数(市场监管/人民日报 2024)、中小企业融资与发展指数(《2024 年中国中小企业融资发展报告》经济参考报)、民营经济促进法报道与训练知识基线,标量级、待权威年度数据回填,精确口径与量级估算严格区分。</p>
+
+    <div class="mq-verdict" style="margin-top:14px; margin-bottom:34px;">
+      <span class="mq-verdict-tag">Q7 · 总判词 · 两头 I/O 阻塞的中间件进程</span>
+      中小民营企业主是 China OS 一个被上下游 I/O 同时阻塞的中间件进程——上游 read 阻塞(应收账款被大客户/国企账期拖欠),下游 write 必须执行(工资/货款/税/社保的刚性输出),而供给资金的管道(银行融资)又细又贵。<br><br>
+      <b style="color:var(--zhu);">他们是经营者光谱的资本中间层:比个体户(↗ GY-29 裸跑)重——有员工、厂房、规模的固定成本敞口;比塔尖(↗ GY-10 可迁移)弱——没有离岸退路与有限责任的对冲。规模本以为是护城河,实则是更大的现金流敞口;他们最常见的死法不是没生意,是「黑字倒闭」——账上有利润,现金流却转不动。账期是大企业转嫁给小企业的免息贷款,而小企业自己借钱要付最高的利息。他们最值钱也最脆弱的资产是信心,而过去几年的政策不确定、需求疲软、账期融资困境,把这份信心磨到了荣枯线以下。国家用《民营经济促进法》安抚,但条文与兑现之间隔着账款清欠的反复、融资落地的难、和远洋捕捞的阴影。作为最大的就业承载者,他们的反抗不是上街,是悄悄地不再扩张——而几千万个「不再扩张」加起来,就是宏观数据上消失的岗位和增长。这个夹心层的现金流和信心,是整个就业链(↗ GY-05/06/22)最上游、也最沉默的那个总闸。</b><br><br>
+      与全系列合观:GY-10 塔尖企业家是可迁移/有对冲的顶层、本片是夹心/两头挤的中间层、GY-29 个体户是裸跑/无限责任的末梢(资本三层退出能力梯度);GY-05/06/22/27 劳动人群在本片找到雇主端——民企信心收缩直接传导为裁员/不招/降薪/迁厂;GY-08 中产是它需求端(买不动)与「中产老板」的交汇;GY-32 债务以企业债务、互保联保、个人无限连带为企业来源。作为人群画像分层第四十子集,本片把资本光谱的承重中段补进整张图谱——<b>它不是又一个孤立人群,而是塔尖与末梢之间被两头 I/O 阻塞、承载最多就业却最缺缓冲的显影端,核心问题始终是:当一个夹心层既走不远又留不安,它沉默的不再扩张会把多少岗位从宏观数据里抹去。</b>
+    </div>
+
+    <h3 class="mq-h3">对 GY 系列的五条修正</h3>
+    <div class="mq-fix">
+      <h5><b>修正 · GY-10/GY-29</b>资本的三层退出能力梯度</h5>
+      <p>经营者三层光谱正式确立——<b style="color:var(--zhu);">塔尖(GY-10 可迁移/有对冲)、中小民企主(本片 夹心/两头挤)、个体户(GY-29 裸跑/无限责任);退出能力与风险缓冲沿三层递减</b>,建议串为「资本的三层退出能力梯度」。</p>
+    </div>
+    <div class="mq-fix">
+      <h5><b>修正 · GY-08</b>区分「中产打工者」与「中产老板」</h5>
+      <p>中小民企主中相当部分是「中产老板」——<b>其资产/债务/信心与中产(GY-08)部分重叠但有员工与经营敞口</b>;建议区分「中产打工者」与「中产老板」。</p>
+    </div>
+    <div class="mq-fix">
+      <h5><b>修正 · GY-05/06/22/27</b>就业链的上游总闸</h5>
+      <p>中小民企是这些劳动人群的雇主端——<b style="color:var(--zhu);">民企信心收缩直接传导为裁员/不招/降薪/迁厂;就业链的上游总闸在本片</b>。</p>
+    </div>
+    <div class="mq-fix">
+      <h5><b>修正 · GY-32</b>黑字倒闭后的个人无限连带</h5>
+      <p>中小民企的企业债务、互保联保、个人无限连带(民企主常以个人资产担保企业贷款)是债务人群(GY-32)的企业来源——<b>黑字倒闭后企业主常背个人债务</b>;建议 GY-32 以此标注企业入口。</p>
+    </div>
+    <div class="mq-fix">
+      <h5><b>修正 · 母框架</b>资本中间层与沉默退出</h5>
+      <p>中小民企主补「资本中间层」——<b style="color:var(--zhu);">退出方式价目表上,他处在「想走走不远(不如塔尖离岸)、想留留不安(不如个体户轻装)」的夹心位置;其退出形式是「沉默地不再扩张」,是退出轴的资本中段样本</b>。</p>
+    </div>
+
+    <div class="mq-watch-intro">
+      <p>这个人群的处境变动,关键看三组指针:规模与信心(民企户数/发展指数/民间投资)、阻塞与管道(账款清欠/融资占比与成本)、兑现与去向(促进法落地/倒闭与就业/专精特新/出海)。逐项标注状态、记录证据,年度与 GY 系列同步对账。状态与备注自动保存在本机。数据敏感处标量级,待权威年度数据回填,精确口径与量级估算严格区分;以资本中间层与现金流约束的制度分析框架观测,不针对具体机构或个人。</p>
+      <span class="mq-storage-state" id="mq-storage-state"></span>
+    </div>
+
+    <div class="mq-watch" id="mq-watch-list">
+      <div class="mq-watch-item" data-key="w1">
+        <div><h5><b>W-01</b>中小企业发展指数</h5><p class="mq-watch-desc">指数与荣枯线、分项——<b>信心的总仪表。</b></p></div>
+        <div class="mq-watch-ctrl"><div class="mq-status-row"><button class="mq-status-btn" data-status="good">向好</button><button class="mq-status-btn" data-status="flat">中性</button><button class="mq-status-btn" data-status="bad">恶化</button></div><textarea class="mq-watch-note" placeholder="证据与备注…"></textarea><div class="mq-watch-stamp"></div></div>
+      </div>
+      <div class="mq-watch-item" data-key="w2">
+        <div><h5><b>W-02</b>民间投资增速</h5><p class="mq-watch-desc">民间固投增速与占比——<b>Q3 信心的投资读数(接 GY-10)。</b></p></div>
+        <div class="mq-watch-ctrl"><div class="mq-status-row"><button class="mq-status-btn" data-status="good">向好</button><button class="mq-status-btn" data-status="flat">中性</button><button class="mq-status-btn" data-status="bad">恶化</button></div><textarea class="mq-watch-note" placeholder="证据与备注…"></textarea><div class="mq-watch-stamp"></div></div>
+      </div>
+      <div class="mq-watch-item" data-key="w3">
+        <div><h5><b>W-03</b>账款拖欠</h5><p class="mq-watch-desc">账款清欠成效、平均账期、三角债——<b>Q2 上游阻塞。</b></p></div>
+        <div class="mq-watch-ctrl"><div class="mq-status-row"><button class="mq-status-btn" data-status="good">向好</button><button class="mq-status-btn" data-status="flat">中性</button><button class="mq-status-btn" data-status="bad">恶化</button></div><textarea class="mq-watch-note" placeholder="证据与备注…"></textarea><div class="mq-watch-stamp"></div></div>
+      </div>
+      <div class="mq-watch-item" data-key="w4">
+        <div><h5><b>W-04</b>民企融资</h5><p class="mq-watch-desc">民企贷款/债券占比、融资成本 vs 国企——<b>Q2 资金管道。</b></p></div>
+        <div class="mq-watch-ctrl"><div class="mq-status-row"><button class="mq-status-btn" data-status="good">向好</button><button class="mq-status-btn" data-status="flat">中性</button><button class="mq-status-btn" data-status="bad">恶化</button></div><textarea class="mq-watch-note" placeholder="证据与备注…"></textarea><div class="mq-watch-stamp"></div></div>
+      </div>
+      <div class="mq-watch-item" data-key="w5">
+        <div><h5><b>W-05</b>促进法兑现</h5><p class="mq-watch-desc">民营经济促进法落地、产权案件、营商环境——<b>Q4 条文到兑现。</b></p></div>
+        <div class="mq-watch-ctrl"><div class="mq-status-row"><button class="mq-status-btn" data-status="good">向好</button><button class="mq-status-btn" data-status="flat">中性</button><button class="mq-status-btn" data-status="bad">恶化</button></div><textarea class="mq-watch-note" placeholder="证据与备注…"></textarea><div class="mq-watch-stamp"></div></div>
+      </div>
+      <div class="mq-watch-item" data-key="w6">
+        <div><h5><b>W-06</b>倒闭与就业</h5><p class="mq-watch-desc">中小企业注销/倒闭、民企用工、裁员——<b>形态β 信号(接 GY-05/06)。</b></p></div>
+        <div class="mq-watch-ctrl"><div class="mq-status-row"><button class="mq-status-btn" data-status="good">向好</button><button class="mq-status-btn" data-status="flat">中性</button><button class="mq-status-btn" data-status="bad">恶化</button></div><textarea class="mq-watch-note" placeholder="证据与备注…"></textarea><div class="mq-watch-stamp"></div></div>
+      </div>
+      <div class="mq-watch-item" data-key="w7">
+        <div><h5><b>W-07</b>专精特新</h5><p class="mq-watch-desc">小巨人/专精特新扶持 vs 传统中小出清——<b>形态γ 分化。</b></p></div>
+        <div class="mq-watch-ctrl"><div class="mq-status-row"><button class="mq-status-btn" data-status="good">向好</button><button class="mq-status-btn" data-status="flat">中性</button><button class="mq-status-btn" data-status="bad">恶化</button></div><textarea class="mq-watch-note" placeholder="证据与备注…"></textarea><div class="mq-watch-stamp"></div></div>
+      </div>
+      <div class="mq-watch-item" data-key="w8">
+        <div><h5><b>W-08</b>民企出海/移民</h5><p class="mq-watch-desc">制造业迁厂、企业主移民——<b>夹心退出(接 GY-10)。</b></p></div>
+        <div class="mq-watch-ctrl"><div class="mq-status-row"><button class="mq-status-btn" data-status="good">向好</button><button class="mq-status-btn" data-status="flat">中性</button><button class="mq-status-btn" data-status="bad">恶化</button></div><textarea class="mq-watch-note" placeholder="证据与备注…"></textarea><div class="mq-watch-stamp"></div></div>
+      </div>
+    </div>
+
+    <h3 class="mq-h3">章节规划 · 登记表</h3>
+    <div class="mq-plan">
+      <div class="mq-plan-row"><span class="mq-plan-k">CH-01</span><span class="mq-plan-v"><b>资本三层</b> — 塔尖/中小民企主/个体户的退出能力与风险缓冲梯度,接 GY-10/GY-29。</span><span class="mq-plan-tag">待建</span></div>
+      <div class="mq-plan-row"><span class="mq-plan-k">CH-02</span><span class="mq-plan-v"><b>黑字倒闭</b> — 账期+刚性支付+融资难的现金流绞杀机制,接 GY-32。</span><span class="mq-plan-tag">待建</span></div>
+      <div class="mq-plan-row"><span class="mq-plan-k">CH-03</span><span class="mq-plan-v"><b>信心温度计</b> — 民企信心与民间投资、促进法兑现,接 GY-10/GY-08。</span><span class="mq-plan-tag">待建</span></div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="mq-foot">
+    <p>方法论:中小民营企业主以「两头 I/O 阻塞的中间件进程(Middleware Blocked on Both Ends)」模型刻画——中小民企主是塔尖企业家与个体户之间的资本中间层一个被上下游 I/O 同时阻塞的中间件进程上游 read 阻塞应收账款被大客户国企账期拖欠下游 write 必须执行工资货款税社保的刚性输出而供给资金的管道银行融资又细又贵民企债券净融资仅占约 12% 结果是这个中间件被现金流饿死签名图进程中心标 cashflow starved 上游红色 BLOCKED 的应收账款 read 下游金色刚性的工资货款税社保 write 输出箭头侧面一根细而标高息的融资管道底注 5700 万民企占企业 92.3% 夹心资本账期与融资两头挤。核心命题:民营企业超 5700 万户占企业 92.3% 中小民企主是塔尖 GY-10 与个体户 GY-29 之间的资本中间层有员工有规模有重资产却被上游账期拖欠加下游刚性支付加银行融资难贵三面夹击他们既没有塔尖的离岸退路与有限责任对冲也没有个体户的轻装灵活是承担了最多就业却最缺现金流缓冲的夹心资本他们最常见的死法不是没生意是黑字倒闭账上有利润现金流却转不动账期是大企业转嫁给小企业的免息贷款而小企业自己借钱要付最高的利息他们最值钱也最脆弱的资产是信心过去几年的政策不确定需求疲软账期融资困境把这份信心磨到了荣枯线以下国家用民营经济促进法安抚但条文与兑现之间隔着账款清欠的反复融资落地的难和远洋捕捞的阴影作为最大的就业承载者他们的反抗不是上街是悄悄地不再扩张而几千万个不再扩张加起来就是宏观数据上消失的岗位和增长这个夹心层的现金流和信心是整个就业链最上游也最沉默的那个总闸。数据锚定(民营企业户数加中小企业融资与发展指数加民营经济促进法报道加训练知识基线,待权威年度数据回填):民营企业超 5700 万户占企业 92.3% 2024 一季度末 2012-2024 民企占比由 79.4% 升至 91.96% 中小企业融资存量 7.76 万亿增 11.4% 增速放缓民企债券净融资仅占约 12% 融资成本高于国企中小企业发展指数约 89 荣枯线 100 以下保障中小企业款项支付条例民营经济促进法 2025。注:以资本中间层与现金流约束制度分析框架处理不针对具体机构或个人聚焦结构性约束不渲染个案不归咎任何一方精确口径与量级估算严格区分。作为人群画像分层第四十子集,与 GY-10 塔尖企业家(资本三层退出能力梯度)、GY-29 个体户(裸跑/无限责任末梢)、GY-08 中产(需求端与中产老板交汇)、GY-05/06/22/27 劳动人群(就业链的雇主端总闸)、GY-32 债务(企业债务与个人无限连带的企业来源)等耦合。来源:民营企业户数(市场监管/人民日报 2024)、中小企业融资与发展指数(《2024 年中国中小企业融资发展报告》经济参考报)、民营经济促进法报道、训练知识基线。</p>
+    <div class="mq-foot-meta">
+      ChinaOS · GY-42 · v1.0.0<br>
+      生成 2026-06 丙午年<br>
+      人群画像 第四十子集 · 关联模块 → GY-08/10/29/32/22<br>
+      注记:资本中间层框架 · 现金流约束分析
+    </div>
+  </footer>
+
+</div>
