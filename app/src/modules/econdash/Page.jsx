@@ -10,6 +10,8 @@ import {
 import SectionDeflation from './SectionDeflation.jsx';
 import SectionDivergence from './SectionDivergence.jsx';
 import SectionCatalog from './SectionCatalog.jsx';
+import SectionRegional from './SectionRegional.jsx';
+import SectionCompare from './SectionCompare.jsx';
 
 // ============================================================================
 // 经济大盘 · 全景与实时监测
@@ -494,6 +496,9 @@ export default function Page({ embedded = false }) {
         </Grid>
       </Card>
 
+      {/* ◆ 国际对比 · 世界银行实时多国 */}
+      <div className="mb-6"><SectionCompare /></div>
+
       {/* ④ 金丝雀监测盘 */}
       <Card title="④ 金丝雀监测盘 · 转折的早信号">
         <div className="flex items-center justify-between gap-2 flex-wrap mb-3">
@@ -541,6 +546,9 @@ export default function Page({ embedded = false }) {
 
       {/* ★ 背离监测 · 叙事×现实 */}
       <div className="mb-6"><SectionDivergence /></div>
+
+      {/* ▲ 区域下钻 · 投资环境压力 */}
+      <div className="mb-6"><SectionRegional /></div>
 
       {/* ⑤ 收入分配与新经济 */}
       <Card title="⑤ 收入分配与新经济 · 增长落到谁身上">
