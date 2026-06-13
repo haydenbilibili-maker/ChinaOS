@@ -1,6 +1,6 @@
 /**
- * 人群切片方法论页脚 · DOM 增强器 v2
- * 叙事区 + 元数据侧栏 + 附录网格 · 12 列平衡布局
+ * 人群切片方法论页脚 · DOM 增强器 v3
+ * 真网格叙事/侧栏 · 章节单面板切换 · 子卡片分区
  */
 import { GY_MODULES, gyModulePath, normalizeGyNum, parseGyRefList } from '../../../lib/gy/registry.js';
 
@@ -37,9 +37,12 @@ function stripMethodologyPrefix(text) {
 /** @param {string} text */
 function extractModel(text) {
   const m = text.match(/以「([^」]+)」模型刻画/);
-  if (!m) return { model: null, rest: text };
+  if (!m) return { model: null, modelEn: null, rest: text };
+  const model = m[1];
+  const enMatch = model.match(/^([^(（]+)(?:[（(]([^)）]+)[)）])?/);
   return {
-    model: m[1],
+    model: enMatch ? enMatch[1].trim() : model,
+    modelEn: enMatch?.[2]?.trim() || null,
     rest: text.replace(m[0], '').replace(/^——\s*/, '——').trim(),
   };
 }
@@ -312,7 +315,7 @@ function buildAppendixGrid(blocks) {
   const hasSources = keys.includes('sources');
   const shortPair = hasNote && hasSources;
 
-  return `<div class="gy-method-appendix-grid${shortPair ? ' gy-method-appendix-grid--paired' : ''}">${blocks
+  return `<div class="gy-method-appendix-zone"><div class="gy-method-appendix-grid${shortPair ? ' gy-method-appendix-grid--paired' : ''}">${blocks
     .map((block) => {
       const bodyHtml = formatAppendixBody(block.body, block.key);
       const spanClass =
@@ -328,7 +331,7 @@ function buildAppendixGrid(blocks) {
           <div class="gy-method-appendix-body">${bodyHtml}</div>
         </section>`;
     })
-    .join('')}</div>`;
+    .join('')}</div></div>`;
 }
 
 /** @param {HTMLElement} metaEl */
@@ -421,6 +424,13 @@ function buildHeadMetaSummary(meta) {
   return `<span class="gy-method-head-meta">${parts.join(' · ')}</span>`;
 }
 
+/** @param {string | null} model @param {string | null} modelEn */
+function buildTitleBlock(model, modelEn) {
+  if (!model) return '';
+  const enHtml = modelEn ? `<span class="gy-method-subtitle">${modelEn}</span>` : '';
+  return `<div class="gy-method-title-block"><h3 class="gy-method-title">${model}</h3>${enHtml}</div>`;
+}
+
 /** @param {{ id: string, label: string, title: string, body: string }[]} sections */
 function buildPhaseTabs(sections) {
   return `<div class="gy-method-tabs" role="tablist">
@@ -428,34 +438,31 @@ function buildPhaseTabs(sections) {
   </div>`;
 }
 
-/** @param {{ id: string, label: string, title: string, body: string }[]} sections */
-function buildPhasePanels(sections) {
+/** @param {{ id: string, label: string, title: string, body: string }[]} sections @param {boolean} subCard */
+function buildSectionPanels(sections, subCard = false) {
   return sections
-    .map(
-      (s, i) =>
-        `<div class="gy-method-panel${i === 0 ? ' is-active' : ''}" role="tabpanel" data-panel="${s.id}">${formatBody(s.body)}</div>`,
-    )
+    .map((s, i) => {
+      const active = i === 0 ? ' is-active' : '';
+      const body = formatBody(s.body);
+      if (subCard) {
+        return `<div class="gy-method-panel gy-method-sec-card${active}" role="tabpanel" data-panel="${s.id}" id="gy-sec-${s.id}">
+          <h4 class="gy-method-sec-label">${s.title}</h4>
+          <div class="gy-method-sec-body">${body}</div>
+        </div>`;
+      }
+      return `<div class="gy-method-panel${active}" role="tabpanel" data-panel="${s.id}">${body}</div>`;
+    })
     .join('');
 }
 
 /** @param {{ id: string, label: string, title: string, body: string }[]} sections */
 function buildSectionChips(sections) {
-  return `<nav class="gy-method-section-chips" aria-label="章节导航">${sections
-    .map((s) => `<a class="gy-method-sec-chip" href="#gy-sec-${s.id}" data-sec="${s.id}">${s.title}</a>`)
-    .join('')}</nav>`;
-}
-
-/** @param {{ id: string, label: string, title: string, body: string }[]} sections */
-function buildStackedSections(sections) {
-  return `<div class="gy-method-sections">${sections
+  return `<nav class="gy-method-section-chips" role="tablist" aria-label="章节导航">${sections
     .map(
-      (s) => `
-      <section id="gy-sec-${s.id}" class="gy-method-sec">
-        <h4 class="gy-method-sec-label"><span class="gy-method-sec-icon" aria-hidden="true">◆</span>${s.title}</h4>
-        <div class="gy-method-sec-body">${formatBody(s.body)}</div>
-      </section>`,
+      (s, i) =>
+        `<button type="button" class="gy-method-sec-chip${i === 0 ? ' is-active' : ''}" role="tab" data-tab="${s.id}" aria-selected="${i === 0}">${s.title}</button>`,
     )
-    .join('')}</div>`;
+    .join('')}</nav>`;
 }
 
 /** @param {HTMLElement} footer @param {string} prefix */
@@ -465,18 +472,15 @@ function buildMethodologyPanel(footer, prefix) {
   if (!para || !metaEl) return null;
 
   const rawText = stripMethodologyPrefix(para.textContent || '');
-  const { model, rest } = extractModel(rawText);
+  const { model, modelEn, rest } = extractModel(rawText);
   const { intro, sections, appendix, mode } = parseSections(rest);
   const meta = parseMeta(metaEl);
   const { lead, quote } = extractPullQuote(intro);
 
   const usePhaseTabs = mode === 'phase' && sections.length > 1;
-  const useNamedStack = mode === 'named' && sections.length > 1;
+  const useNamedFilter = mode === 'named' && sections.length > 1;
 
-  const badge = model
-    ? `<span class="gy-method-badge" title="分析模型"><span class="gy-method-badge-main">${model.split('(')[0].trim()}</span>${model.includes('(') ? `<span class="gy-method-badge-sub">${model.match(/\(([^)]+)\)/)?.[1] || ''}</span>` : ''}</span>`
-    : '';
-
+  const titleBlock = buildTitleBlock(model, modelEn);
   const headMeta = buildHeadMetaSummary(meta);
   const leadHtml = lead ? `<div class="gy-method-lead">${formatBody(lead)}</div>` : '';
   const quoteHtml = quote
@@ -484,35 +488,43 @@ function buildMethodologyPanel(footer, prefix) {
     : '';
 
   const tabsHtml = usePhaseTabs ? buildPhaseTabs(sections) : '';
-  const chipsHtml = useNamedStack ? buildSectionChips(sections) : '';
+  const chipsHtml = useNamedFilter ? buildSectionChips(sections) : '';
 
   let narrativeBody = '';
   if (usePhaseTabs) {
-    narrativeBody = `<div class="gy-method-panels">${buildPhasePanels(sections)}</div>`;
-  } else if (useNamedStack) {
-    narrativeBody = buildStackedSections(sections);
+    narrativeBody = `<div class="gy-method-panels">${buildSectionPanels(sections, false)}</div>`;
+  } else if (useNamedFilter) {
+    narrativeBody = `<div class="gy-method-panels gy-method-panels--named">${buildSectionPanels(sections, true)}</div>`;
   } else {
-    narrativeBody = `<div class="gy-method-panels"><div class="gy-method-panel gy-method-panel--solo is-active">${formatBody(sections[0]?.body || '')}</div></div>`;
+    const soloBody = sections[0]?.body || '';
+    const soloTitle = sections[0]?.title;
+    if (mode === 'solo' && soloTitle === '方法论') {
+      narrativeBody = `<div class="gy-method-panels"><div class="gy-method-panel gy-method-panel--solo is-active">${formatBody(soloBody)}</div></div>`;
+    } else {
+      narrativeBody = `<div class="gy-method-panels gy-method-panels--named"><div class="gy-method-panel gy-method-sec-card is-active" role="tabpanel">${soloTitle && soloTitle !== '方法论' ? `<h4 class="gy-method-sec-label">${soloTitle}</h4>` : ''}<div class="gy-method-sec-body">${formatBody(soloBody)}</div></div></div>`;
+    }
   }
 
   const appendixHtml = appendix ? buildAppendixGrid(parseAppendixBlocks(appendix)) : '';
 
   const isMobile = typeof window !== 'undefined' && window.matchMedia(MOBILE_MQ).matches;
 
-  footer.classList.add('gy-method', 'is-enhanced');
+  footer.classList.add('gy-method', 'is-enhanced', 'gy-method--v3');
   footer.innerHTML = `
     <div class="gy-method-card">
       <header class="gy-method-head">
-        <div class="gy-method-head-left">
+        <div class="gy-method-head-stack">
           <span class="gy-method-label">方法论</span>
-          ${badge}
-        </div>
-        <div class="gy-method-head-right">
-          ${headMeta}
-          <button type="button" class="gy-method-toggle" aria-expanded="${!isMobile}">
-            <svg class="gy-method-toggle-icon" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5L6 8.5L10 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            <span class="gy-method-toggle-label">${isMobile ? '展开' : '收起'}</span>
-          </button>
+          <div class="gy-method-head-row">
+            ${titleBlock || '<div class="gy-method-title-block"><h3 class="gy-method-title gy-method-title--fallback">分析框架</h3></div>'}
+            <div class="gy-method-head-right">
+              ${headMeta}
+              <button type="button" class="gy-method-toggle" aria-expanded="${!isMobile}">
+                <svg class="gy-method-toggle-icon" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5L6 8.5L10 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <span class="gy-method-toggle-label">${isMobile ? '展开' : '收起'}</span>
+              </button>
+            </div>
+          </div>
         </div>
       </header>
       <div class="gy-method-collapsible${isMobile ? ' is-collapsed' : ''}">
@@ -523,16 +535,43 @@ function buildMethodologyPanel(footer, prefix) {
               ${leadHtml}
               ${chipsHtml}
               ${narrativeBody}
-              ${quoteHtml}
             </div>
             ${buildMetaRail(meta)}
           </div>
+          ${quoteHtml}
           ${appendixHtml}
         </div>
       </div>
     </div>`;
 
   return footer;
+}
+
+/** @param {HTMLElement} footer */
+function wireTabGroup(footer, tabSelector, panelSelector, collapsible, toggle, toggleLabel) {
+  const cleanups = [];
+  const tabs = footer.querySelectorAll(tabSelector);
+  const panels = footer.querySelectorAll(panelSelector);
+
+  tabs.forEach((tab) => {
+    const onClick = () => {
+      const id = tab.dataset.tab;
+      tabs.forEach((t) => {
+        t.classList.toggle('is-active', t === tab);
+        t.setAttribute('aria-selected', String(t === tab));
+      });
+      panels.forEach((p) => p.classList.toggle('is-active', p.dataset.panel === id));
+      if (collapsible?.classList.contains('is-collapsed')) {
+        collapsible.classList.remove('is-collapsed');
+        toggle?.setAttribute('aria-expanded', 'true');
+        if (toggleLabel) toggleLabel.textContent = '收起';
+      }
+    };
+    tab.addEventListener('click', onClick);
+    cleanups.push(() => tab.removeEventListener('click', onClick));
+  });
+
+  return cleanups;
 }
 
 /** @param {HTMLElement} footer */
@@ -552,39 +591,10 @@ function wireInteractions(footer) {
     cleanups.push(() => toggle.removeEventListener('click', onToggle));
   }
 
-  const tabs = footer.querySelectorAll('.gy-method-tab');
-  const panels = footer.querySelectorAll('.gy-method-panel');
-  tabs.forEach((tab) => {
-    const onClick = () => {
-      const id = tab.dataset.tab;
-      tabs.forEach((t) => {
-        t.classList.toggle('is-active', t === tab);
-        t.setAttribute('aria-selected', String(t === tab));
-      });
-      panels.forEach((p) => p.classList.toggle('is-active', p.dataset.panel === id));
-      if (collapsible?.classList.contains('is-collapsed')) {
-        collapsible.classList.remove('is-collapsed');
-        toggle?.setAttribute('aria-expanded', 'true');
-        if (toggleLabel) toggleLabel.textContent = '收起';
-      }
-    };
-    tab.addEventListener('click', onClick);
-    cleanups.push(() => tab.removeEventListener('click', onClick));
-  });
-
-  footer.querySelectorAll('.gy-method-sec-chip').forEach((chip) => {
-    const onClick = (e) => {
-      e.preventDefault();
-      const id = chip.getAttribute('href')?.slice(1);
-      const target = id ? footer.querySelector(`#${id}`) : null;
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        footer.querySelectorAll('.gy-method-sec-chip').forEach((c) => c.classList.toggle('is-active', c === chip));
-      }
-    };
-    chip.addEventListener('click', onClick);
-    cleanups.push(() => chip.removeEventListener('click', onClick));
-  });
+  cleanups.push(
+    ...wireTabGroup(footer, '.gy-method-tab', '.gy-method-panel', collapsible, toggle, toggleLabel),
+    ...wireTabGroup(footer, '.gy-method-sec-chip', '.gy-method-panel', collapsible, toggle, toggleLabel),
+  );
 
   return () => cleanups.forEach((fn) => fn());
 }
