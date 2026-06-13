@@ -24,7 +24,7 @@ export const PROVIDERS = {
     style: 'openai',
     baseURL: 'https://api.deepseek.com',
     model: 'deepseek-chat',
-    hint: 'DeepSeek 开放平台（OpenAI 兼容）',
+    hint: 'DeepSeek 开放平台（OpenAI 兼容）；需账户有余额方可调用',
   },
   anthropic: {
     label: 'Anthropic',
@@ -223,6 +223,20 @@ async function pump(body, parser) {
   }
 }
 
+function formatHttpErrorMessage(status, detail) {
+  if (status === 402 || /insufficient balance/i.test(detail)) {
+    return '账户余额不足（402）：请前往 DeepSeek 开放平台（platform.deepseek.com）充值后再试';
+  }
+  const map = {
+    401: 'API Key 无效或未授权（401）',
+    403: '无访问权限（403）',
+    404: 'baseURL 或模型路径错误（404）',
+    429: '请求过于频繁或额度耗尽（429）',
+  };
+  const msg = map[status] || `请求失败（${status}）`;
+  return detail ? `${msg}：${detail}` : msg;
+}
+
 async function httpError(res) {
   let detail = '';
   try {
@@ -231,14 +245,7 @@ async function httpError(res) {
   } catch (_) {
     try { detail = await res.text(); } catch (__) { detail = ''; }
   }
-  const map = {
-    401: 'API Key 无效或未授权（401）',
-    403: '无访问权限（403）',
-    404: 'baseURL 或模型路径错误（404）',
-    429: '请求过于频繁或额度耗尽（429）',
-  };
-  const msg = map[res.status] || `请求失败（${res.status}）`;
-  const err = new Error(detail ? `${msg}：${detail}` : msg);
+  const err = new Error(formatHttpErrorMessage(res.status, detail));
   err.code = 'HTTP_ERROR';
   err.status = res.status;
   return err;
