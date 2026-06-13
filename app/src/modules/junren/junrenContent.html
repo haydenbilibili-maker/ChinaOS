@@ -1,0 +1,470 @@
+<div class="jr-shell">
+
+  <!-- 题头 -->
+  <header class="jr-mast">
+    <div>
+      <div class="jr-mast-meta">ChinaOS · MODULE <b>GY-47</b> · 人群画像分层 · 第四十五子集</div>
+      <h1 class="jr-title">现役军人<span class="jr-title-sub">内核态特权进程 · 受最严格访问控制</span></h1>
+    </div>
+    <div class="jr-mast-seal">党指挥枪</div>
+  </header>
+  <p class="jr-mast-note">注记(分析边界):本片<b>严格作为政治社会学与制度分析</b>,只讨论军人作为社会群体与制度的维度(征兵、社会化、政治属性、地位、社会契约、退役衔接);<b>不涉及任何作战能力、装备、部署、编制番号、战备等军事信息</b>,所有内容基于公开制度常识。把约 200 万现役军人刻画为 China OS 的「内核态特权进程(Kernel-Mode / Ring-0 Process)」:军队运行在与平民社会(用户态)隔离的受保护空间(军营/封闭性),拥有最高权限与制度地位,却受最严格的政治访问控制——「党指挥枪」(党对军队绝对领导)是唯一不可绕过的入口。它是 GY-12 退役军人(↗ GY-12)的前端、兵源来自县域与职教青年(↗ GY-11/GY-20)的上升通道、军属家庭的依托。数据为现役约 200 万的公开口径、兵役与国防建设的社会—制度常识与训练知识基线,标量级、留观测哨回填,精确口径与量级估算严格区分。</p>
+
+  <!-- 内核态特权进程 签名图 -->
+  <div class="jr-found" aria-label="内核态特权进程示意图:系统分层为用户态(平民社会·各人群)与内核态(军队·约200万现役),二者之间一道受保护边界(军营封闭性);内核态进程标 RING 0·最高权限·受保护;其上方一道访问控制门 党指挥枪(绝对领导) 是唯一入口;底注 作为人群/制度分析·非军事信息·GY-12 退役军人的前端">
+    <svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg" role="img">
+      <text x="500" y="20" font-size="11" fill="#8f897d" text-anchor="middle" font-family="mono" letter-spacing="2">ChinaOS · KERNEL-MODE / RING-0 PROCESS · 系统的最高权限层</text>
+      <text x="500" y="44" font-size="9.5" fill="#7d6a3a" text-anchor="middle" font-family="sans-serif">— 作为人群与制度的分析 · 非军事信息 —</text>
+
+      <!-- 访问控制门:党指挥枪(唯一入口) -->
+      <rect x="320" y="70" width="360" height="46" rx="6" fill="#1c242e" stroke="#b39657" stroke-width="2"/>
+      <text x="500" y="92" font-size="12" fill="#c2a052" text-anchor="middle" font-family="mono" letter-spacing="1">访问控制门 · 党指挥枪(绝对领导)</text>
+      <text x="500" y="108" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">唯一、不可绕过的访问控制 · 政治建军</text>
+      <line x1="500" y1="116" x2="500" y2="158" stroke="#b39657" stroke-width="1.4" marker-end="url(#jrArrowGold)"/>
+
+      <!-- 内核态:军队(中心,克制高亮) -->
+      <rect x="160" y="160" width="680" height="120" rx="6" fill="#1c242e" stroke="#5d7489" stroke-width="2"/>
+      <text x="500" y="190" font-size="13" fill="#7d9488" text-anchor="middle" font-family="mono" letter-spacing="1">内核态 KERNEL · 军队 · 约 200 万现役</text>
+      <rect x="380" y="206" width="240" height="34" rx="4" fill="#23201a" stroke="#5e8c7a" stroke-width="1.4"/>
+      <text x="500" y="228" font-size="11" fill="#5e8c7a" text-anchor="middle" font-family="mono">RING 0 · 最高权限 · 受保护</text>
+      <text x="500" y="262" font-size="9" fill="#8f897d" text-anchor="middle" font-family="sans-serif">系统极少直接调用,却为一切兜底的最终强制层</text>
+
+      <!-- 受保护边界:军营封闭性 -->
+      <line x1="80" y1="320" x2="920" y2="320" stroke="#b39657" stroke-width="1.4" stroke-dasharray="6 4"/>
+      <text x="500" y="338" font-size="9" fill="#c2a052" text-anchor="middle" font-family="mono" letter-spacing="1">▒ 受保护边界 · 军营封闭性 · 内核态与用户态隔离 ▒</text>
+
+      <!-- 用户态:平民社会(各人群) -->
+      <rect x="80" y="356" width="840" height="86" rx="6" fill="#23201a" stroke="#3d4c5a" stroke-width="1.2"/>
+      <text x="500" y="384" font-size="12" fill="#7d9488" text-anchor="middle" font-family="mono" letter-spacing="1">用户态 USER · 平民社会(各人群)</text>
+      <rect x="120" y="398" width="150" height="30" rx="3" fill="#1c242e" stroke="#3d4c5a"/><text x="195" y="418" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">兵源 ↗GY-11/20</text>
+      <rect x="290" y="398" width="150" height="30" rx="3" fill="#1c242e" stroke="#3d4c5a"/><text x="365" y="418" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">军属家庭</text>
+      <rect x="560" y="398" width="150" height="30" rx="3" fill="#1c242e" stroke="#3d4c5a"/><text x="635" y="418" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">退役 ↗GY-12</text>
+      <rect x="730" y="398" width="150" height="30" rx="3" fill="#1c242e" stroke="#3d4c5a"/><text x="805" y="418" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">叙事 ↗GY-02/36</text>
+
+      <!-- 人力循环:用户态<->内核态 -->
+      <line x1="195" y1="396" x2="320" y2="322" stroke="#5e8c7a" stroke-width="1.1" marker-end="url(#jrArrowGreen)"/>
+      <line x1="635" y1="396" x2="560" y2="322" stroke="#5d7489" stroke-width="1.1" marker-end="url(#jrArrowGrey)"/>
+      <text x="240" y="356" font-size="8" fill="#5e8c7a" font-family="mono">征召(入)</text>
+      <text x="588" y="356" font-size="8" fill="#5d7489" font-family="mono">退役(出)</text>
+
+      <defs>
+        <marker id="jrArrowGold" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#b39657"/></marker>
+        <marker id="jrArrowGreen" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5e8c7a"/></marker>
+        <marker id="jrArrowGrey" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5d7489"/></marker>
+      </defs>
+
+      <line x1="100" y1="478" x2="900" y2="478" stroke="#3d4c5a" stroke-width="1" stroke-dasharray="3 5"/>
+      <text x="500" y="504" font-size="10.5" fill="#5d7489" text-anchor="middle" font-family="serif" letter-spacing="2">— 最高权限、受最严格政治控制、为整个系统兜底,却以最普通人家的子弟为血肉 —</text>
+      <text x="500" y="528" font-size="9" fill="#7d9488" text-anchor="middle" font-family="sans-serif">作为人群/制度分析 · 非军事信息 · GY-12 退役军人的前端 · 兵源 ↗GY-11/20 · 叙事 ↗GY-02/36</text>
+      <text x="500" y="550" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="mono">注:仅作政治社会学与制度分析,不涉作战能力、装备、部署、编制等军事信息,标量级,留观测哨回填</text>
+    </svg>
+    <div class="jr-found-caption">模块隐喻是<b>内核态特权进程 / Ring-0 Process(Kernel-Mode Process)</b>:现役军人是 China OS 运行在 Ring 0 的内核态进程——拥有最高权限、运行在与平民社会(用户态)隔离的受保护空间(军营/封闭性),是系统极少直接调用却为一切兜底的最终强制层。它的访问控制是一条不可绕过的硬规则:<b>「党指挥枪」(党对军队绝对领导)</b>。签名图:系统分层为用户态「平民社会(各人群)」与内核态「军队 · 约 200 万现役」,二者之间一道受保护边界(军营封闭性);内核态进程标 <b>RING 0 · 最高权限 · 受保护</b>;其上方一道访问控制门「党指挥枪(绝对领导)」是唯一入口;用户态侧标出兵源(↗GY-11/20)、军属、退役(↗GY-12)、叙事(↗GY-02/36)四个接口,征召为入、退役为出,构成完整的人力循环。<b>本片最关键的判断:把军队当作一个人群——它是一个有清晰生命周期的人力系统,从县域与职教青年应征入伍,经军营封闭社会化,到退役回归平民社会(↗ GY-12)。它与系统签的是「尊崇换奉献」的社会契约,而这份契约的前端(现役尊崇保障)与后端(退役安置兑现 ↗ GY-12)必须连上。本片不谈一兵一卒的战力,只画出这个内核态进程在人群系统中的位置:最高权限、受最严格政治控制、为整个系统兜底、却以最普通人家的子弟为血肉。它是 GY-12 退役军人那条线的前半段。</b></div>
+  </div>
+
+  <!-- 页签 -->
+  <nav class="jr-nav" role="tablist">
+    <button role="tab" data-panel="jr-p-n1" class="is-active">作为人群的军队</button>
+    <button role="tab" data-panel="jr-p-n2">内核态封闭性与隔离</button>
+    <button role="tab" data-panel="jr-p-n3">党指挥枪访问控制</button>
+    <button role="tab" data-panel="jr-p-n4">兵源谁来当兵</button>
+    <button role="tab" data-panel="jr-p-n5">社会契约尊崇与保障</button>
+    <button role="tab" data-panel="jr-p-n6">政治与社会角色</button>
+    <button role="tab" data-panel="jr-p-n7">形态推演</button>
+    <button role="tab" data-panel="jr-p-watch">合成 · 观测哨</button>
+  </nav>
+
+  <!-- ════ N1 作为人群的军队 ════ -->
+  <section class="jr-panel is-active" id="jr-p-n1">
+    <div class="jr-sec-head"><h2>N1 · 规模与定位:作为人群的军队</h2><span class="jr-sec-tag">约 200 万现役 · 有进有出的人力系统</span></div>
+    <p class="jr-disclaimer top">注记(分析边界):本节将军队作为一个<b>人群/制度</b>——一个有特定来源、特定生命周期、特定社会契约的人力系统——来分析,只讨论其作为社会群体的维度;<b>不涉及任何作战能力、装备、部署、编制番号、战备等军事信息</b>,数据为现役约 200 万的公开口径标量级,待权威口径回填。</p>
+    <p class="jr-lede">现役军人不是本片要去衡量的一种军事力量,而是一个可以被人口学与社会学描述的人群——<b style="color:var(--zhu);">约 200 万现役(公开口径,历经多轮精简),由特定来源(征召)、特定生命周期(服役—退役)、特定社会契约(尊崇—保障)定义</b>。把军队当作一个「人群/制度」分析:它是国家的最高强制制度,也是与退役军人(↗ GY-12)、军属、兵源人群(↗ GY-11/GY-20)构成完整人力循环的群体。这是 GY-12 退役军人那条线的前半段:它是赎买的后端,本片是其前端。</p>
+
+    <h3 class="jr-h3">量级与定位:一个人力系统</h3>
+    <div class="jr-rows">
+      <div class="jr-row peak"><span class="jr-row-k">量级</span><span class="jr-row-v"><b style="color:var(--zhu);">现役约 200 万(公开口径,历经多轮精简)</b>——本片视角是<b>人群与制度</b>,非军事力量(↗ W-01 总仪表)。</span></div>
+      <div class="jr-row"><span class="jr-row-k">人力循环</span><span class="jr-row-v">兵源(征召,↗ N4)→ 现役(服役)→ 退役(↗ GY-12)→ 军属(家庭依托)——<b>军队是一个有进有出的人力系统</b>(↗ 签名图)。</span></div>
+      <div class="jr-row peak"><span class="jr-row-k">与退役的衔接</span><span class="jr-row-v"><b style="color:var(--zhu);">现役是退役军人(GY-12,5700 万)的「上游」——现役服役经历与退役安置落差(↗ GY-12 V4)是同一循环的两端</b>;GY-12 是赎买的后端,本片是前端。</span></div>
+      <div class="jr-row"><span class="jr-row-k">制度地位</span><span class="jr-row-v">作为国家最高强制制度,军队在系统中地位特殊——<b>它是系统的「内核」</b>,与平民社会(用户态)相对(↗ N2)。</span></div>
+    </div>
+
+    <h3 class="jr-h3">三个量级:人群、生命周期、社会契约</h3>
+    <div class="jr-data3">
+      <div class="jr-stat"><span class="jr-eyebrow">现役规模</span><span class="jr-stat-n">约 200 万</span><span class="jr-stat-u">公开口径 · 多轮精简</span><p>本片把这 200 万当作一个<b>人群</b>来看——<b>谁来、为什么、当兵意味着什么、退役之后如何</b>(↗ N4/N5)。</p></div>
+      <div class="jr-stat"><span class="jr-eyebrow">退役存量</span><span class="jr-stat-n">5700 万</span><span class="jr-stat-u">GY-12 · 现役的下游</span><p><b style="color:var(--zhu);">现役是 5700 万退役军人的上游</b>——人力循环的前后端;本片解释那 5700 万是怎样被「制造」出来的(↗ GY-12)。</p></div>
+      <div class="jr-stat"><span class="jr-eyebrow">生命周期</span><span class="jr-stat-n">入伍→退役</span><span class="jr-stat-u">有进有出</span><p>从县域青年应征入伍,到服役数年,到退役回归社会——<b>一个有清晰生命周期的人力系统</b>(↗ N4/GY-12)。</p></div>
+    </div>
+
+    <h3 class="jr-h3">人力循环:同一系统的进与出</h3>
+    <div class="jr-chain">
+      <div class="jr-chain-row v1"><span class="jr-chain-t">入 · ↗N4</span><span class="jr-chain-v">兵源——<b>县域、农村、职教青年应征入伍</b>(↗ GY-11/GY-20);军队从被定价最低的人群里招募(↗ N4 判词)。</span></div>
+      <div class="jr-chain-row"><span class="jr-chain-t">中段</span><span class="jr-chain-v">服役——<b>军营封闭社会化(↗ N2)塑造集体、纪律、荣誉</b>;这正是 GY-12「预装组织力」的出厂安装(↗ GY-12 V2)。</span></div>
+      <div class="jr-chain-row v2"><span class="jr-chain-t">出 · ↗GY-12</span><span class="jr-chain-v"><b style="color:var(--zhu);">退役——回归平民社会:同一循环的终结端</b>;现役尊崇与退役安置是「尊崇换奉献」契约的两端(↗ N5/GY-12)。</span></div>
+    </div>
+
+    <div class="jr-art">
+      <h5><b>把军队当作一个人群,它就是一个有清晰生命周期的人力系统</b>本片不谈它能打什么仗,只谈它作为一个群体</h5>
+      <p>把军队当作一个人群来看,它就是一个有清晰生命周期的人力系统——<b style="color:var(--zhu);">从县域青年应征入伍,到服役数年,到退役回归社会(↗ GY-12)。本片不谈它能打什么仗,只谈它作为一个群体:谁来当兵、为什么、当兵意味着什么、退役之后又如何。这是 GY-12 退役军人那条线的前半段。</b>(↗ GY-12 退役军人 / ↗ N4 兵源 / ↗ N2 内核态)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="jr-xref">↗ GY-12 · 退役军人(后端)</span>
+      <span class="jr-xref">↗ GY-11/GY-20 · 兵源</span>
+      <span class="jr-xref">↗ N2 · 内核态封闭性</span>
+    </div>
+
+    <div class="jr-verdict">
+      <span class="jr-verdict-tag">N1 判词</span>
+      把军队当作一个人群来看,它就是一个有清晰生命周期的人力系统——从县域青年应征入伍,到服役数年,到退役回归社会(↗ GY-12)。本片不谈它能打什么仗,只谈它作为一个群体:谁来当兵、为什么、当兵意味着什么、退役之后又如何。<b style="color:var(--zhu);">这是 GY-12 退役军人那条线的前半段。</b>
+      <span class="jr-xref">↗ N2 · 内核态封闭性与隔离</span>
+    </div>
+  </section>
+
+  <!-- ════ N2 内核态封闭性与隔离 ════ -->
+  <section class="jr-panel" id="jr-p-n2">
+    <div class="jr-sec-head"><h2>N2 · 内核态:封闭性与隔离</h2><span class="jr-sec-tag">军营封闭 · 特殊社会化 · 预装组织力的来源</span></div>
+    <p class="jr-disclaimer top">注记(分析边界):本节将军营的封闭性与军人的特殊社会化作为<b>社会学机制</b>分析,关注它如何塑造军人的集体、纪律、荣誉以及退役后的再社会化;<b>不涉及任何作战、训练科目、部署、编制等军事信息</b>,聚焦「军营如何塑造人」的社会化维度。</p>
+    <p class="jr-lede">军队是运行在「内核态」的封闭系统——<b style="color:var(--zhu);">军营的封闭性、军事社会的相对隔离、独立的供给与管理体系,使现役军人与平民社会(用户态)相对隔离</b>。这种隔离既是纪律的要求,也塑造了军人特殊的社会化(集体、服从、荣誉)与再社会化(退役后回归平民社会的适应,↗ GY-12)。这套社会化,正是 GY-12 退役军人那身「预装组织力」的出厂安装过程——理解了军营如何塑造人,就理解了退役军人为何是唯一「天然组织化」的人群(↗ GY-12 V2)。</p>
+
+    <h3 class="jr-h3">封闭性:与平民社会的隔离</h3>
+    <div class="jr-dual">
+      <div class="jr-dual-a"><h6>用户态 · <b>平民社会</b></h6><span class="jr-dual-pole">开放 / 自组织</span><p><b style="color:var(--qing);">平民社会是开放、流动、自组织的用户态——各人群在其中各自运行,横向松散</b>(↗ GY-11/GY-26 的社会化对照)。</p></div>
+      <div class="jr-dual-mid">↔</div>
+      <div class="jr-dual-b"><h6>内核态 · <b>军营</b></h6><span class="jr-dual-pole">封闭 / 受保护</span><p><b style="color:var(--zhu);">军营是封闭、受保护、独立供给(医疗/教育)的内核态——军事社会与平民社会相对隔离</b>;隔离是其本质(↗ 签名图边界)。</p></div>
+    </div>
+
+    <h3 class="jr-h3">特殊社会化:军营如何塑造人</h3>
+    <div class="jr-rows">
+      <div class="jr-row peak"><span class="jr-row-k">集体主义</span><span class="jr-row-v"><b style="color:var(--zhu);">集体、纪律、服从、荣誉——军营是一套强力的社会化机制</b>(与 GY-11 职校军事化管理、GY-26 数字原住民的社会化形成对照)。</span></div>
+      <div class="jr-row"><span class="jr-row-k">独立体系</span><span class="jr-row-v">独立的供给、医疗、教育(军队系统)——<b>一套与平民社会平行的完整体系</b>;封闭性的物质基础(↗ N5 保障)。</span></div>
+      <div class="jr-row peak"><span class="jr-row-k">战友纽带</span><span class="jr-row-v"><b style="color:var(--zhu);">军营训练赋予的指挥链、横向纽带、纪律——这正是 GY-12 退役军人「预装组织力」的来源</b>(↗ GY-12 V2)。</span></div>
+      <div class="jr-row"><span class="jr-row-k">再社会化断点</span><span class="jr-row-v">退役后从军事社会回归平民社会——<b>再社会化的适应;军营封闭性越强,退役再适应越需要支持</b>(↗ GY-12 安置帮教的前因)。</span></div>
+    </div>
+
+    <h3 class="jr-h3">出厂安装:预装组织力如何被装入</h3>
+    <div class="jr-rows">
+      <div class="jr-row peak"><span class="jr-row-k">组织力来源</span><span class="jr-row-v"><b style="color:var(--zhu);">本片解释了 GY-12 那种「预装组织力」是如何被装入的——军营是出厂安装的车间</b>(↗ GY-12 V2)。</span></div>
+      <div class="jr-row"><span class="jr-row-k">隔离的双重性</span><span class="jr-row-v">隔离塑造了军人独特的社会化,也制造了退役再适应的断点——<b>封闭性既是力量,也是退役难题的前因</b>(↗ GY-12)。</span></div>
+      <div class="jr-row peak"><span class="jr-row-k">唯一天然组织化</span><span class="jr-row-v"><b style="color:var(--zhu);">理解了军营如何塑造人,就理解了退役军人为何是唯一「天然组织化」的人群</b>(↗ GY-12 V2)。</span></div>
+      <div class="jr-row"><span class="jr-row-k">全图谱定位</span><span class="jr-row-v">军营社会化是 GY-12(组织力来源)、GY-11(军事化管理对照)的上游——<b>系统的内核态社会化车间</b>(↗ watch 修正)。</span></div>
+    </div>
+
+    <div class="jr-art">
+      <h5><b>军营的封闭性是它作为内核态进程的本质</b>它运行在与平民社会隔离的保护空间里</h5>
+      <p>军队的封闭性是它作为内核态进程的本质——它运行在与平民社会隔离的保护空间里。<b style="color:var(--zhu);">这种隔离塑造了军人独特的社会化:集体、纪律、荣誉、战友纽带。而这套社会化也正是 GY-12 退役军人那身「预装组织力」的出厂安装过程——理解了军营如何塑造人,就理解了退役军人为何是唯一「天然组织化」的人群(↗ GY-12 V2)。</b>(↗ GY-12 预装组织力 / ↗ GY-11 军事化管理 / ↗ N5 保障)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="jr-xref">↗ GY-12 · 预装组织力(V2)</span>
+      <span class="jr-xref">↗ GY-11/GY-26 · 社会化对照</span>
+      <span class="jr-xref">↗ N3 · 党指挥枪</span>
+    </div>
+
+    <div class="jr-verdict">
+      <span class="jr-verdict-tag">N2 判词</span>
+      军队的封闭性是它作为内核态进程的本质——它运行在与平民社会隔离的保护空间里。这种隔离塑造了军人独特的社会化:集体、纪律、荣誉、战友纽带。<b style="color:var(--zhu);">而这套社会化也正是 GY-12 退役军人那身「预装组织力」的出厂安装过程——理解了军营如何塑造人,就理解了退役军人为何是唯一「天然组织化」的人群。</b>
+      <span class="jr-xref">↗ N3 · 党指挥枪访问控制</span>
+    </div>
+  </section>
+
+  <!-- ════ N3 党指挥枪访问控制 ════ -->
+  <section class="jr-panel" id="jr-p-n3">
+    <div class="jr-sec-head"><h2>N3 · 访问控制:党指挥枪</h2><span class="jr-sec-tag">党对军队绝对领导 · 制度事实陈述</span></div>
+    <p class="jr-disclaimer top">注记(分析边界):本节将「党对军队绝对领导(党指挥枪)」作为<b>制度事实</b>陈述,只讨论它确立的军队政治属性与制度分野,<b>不作评判、不涉任何军事信息</b>;以政治社会学框架理解军队在系统中位置的核心规则。</p>
+    <p class="jr-lede">「党对军队绝对领导」(党指挥枪)是中国军事制度的核心特征——<b style="color:var(--zhu);">这是一条不可绕过的「访问控制」规则,确立了军队的政治属性(党的军队而非国家化军队)</b>。本片作为制度事实陈述这一原则,是理解军队在系统中位置的关键,也是其与许多国家「军队国家化」不同的根本制度分野。它是军队这个内核态进程唯一的访问控制门——确保最高的强制力始终置于确定的政治控制之下。</p>
+
+    <h3 class="jr-h3">访问控制门:唯一、不可绕过</h3>
+    <div class="jr-rows">
+      <div class="jr-row peak"><span class="jr-row-k">制度核心</span><span class="jr-row-v"><b style="color:var(--zhu);">党对军队绝对领导(党指挥枪)——中国军事制度的根本原则</b>;政治建军、听党指挥(↗ 签名图访问控制门)。</span></div>
+      <div class="jr-row"><span class="jr-row-k">政治属性</span><span class="jr-row-v">党的军队——<b>区别于「军队国家化」的制度安排</b>;本片作为制度事实陈述,不作评判(↗ N6 政治象征)。</span></div>
+      <div class="jr-row peak"><span class="jr-row-k">「访问控制」隐喻</span><span class="jr-row-v"><b style="color:var(--zhu);">党指挥枪是军队这个内核态进程唯一的、不可绕过的访问控制——确保最高强制力始终在确定的政治控制之下</b>(↗ N6 兜底层)。</span></div>
+      <div class="jr-row"><span class="jr-row-k">政治可靠优先</span><span class="jr-row-v">政治建军使政治忠诚成为首要标准——<b>与 GY-07(体制内政治标准优先)同源的「忠诚筛选」,在军队中是最高形态</b>(↗ watch 修正)。</span></div>
+    </div>
+
+    <h3 class="jr-h3">忠诚筛选:与 GY-07 同源的最高形态</h3>
+    <div class="jr-rows">
+      <div class="jr-row peak"><span class="jr-row-k">系统稳定器</span><span class="jr-row-v"><b style="color:var(--zhu);">党指挥枪确立军队政治属性——最高的强制力始终置于确定的政治控制之下,这是这台机器的核心稳定器</b>(↗ N6)。</span></div>
+      <div class="jr-row"><span class="jr-row-k">制度分野</span><span class="jr-row-v">它是理解军队在系统中位置的钥匙——<b>也是中国与许多国家「军队国家化」制度的根本分野</b>(制度事实,不作评判)。</span></div>
+      <div class="jr-row peak"><span class="jr-row-k">忠诚的最高形态</span><span class="jr-row-v"><b style="color:var(--zhu);">政治建军使政治忠诚成为首要标准——军队是忠诚筛选最严格的制度,GY-07「政治标准优先」的最高形态</b>(↗ GY-07)。</span></div>
+      <div class="jr-row"><span class="jr-row-k">全图谱定位</span><span class="jr-row-v">党指挥枪是 GY-07(忠诚筛选)的最高形态、N6(政治象征)的制度前提——<b>内核态进程的访问控制规则</b>(↗ watch 修正)。</span></div>
+    </div>
+
+    <div class="jr-art">
+      <h5><b>党指挥枪是军队这个内核态进程唯一的访问控制门</b>最高的强制力始终置于确定的政治控制之下</h5>
+      <p>「党指挥枪」是这个系统最根本的制度设计之一——它是军队这个内核态进程唯一的访问控制门。<b style="color:var(--zhu);">它确立了军队的政治属性:党的军队。本片只作为制度事实陈述这一原则——它是理解军队在整个系统中位置的钥匙,也是中国与许多国家「军队国家化」制度的根本分野。最高的强制力始终置于确定的政治控制之下,这是这台机器的核心稳定器。</b>(↗ GY-07 忠诚筛选 / ↗ N6 政治象征 / ↗ N2 内核态)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="jr-xref">↗ GY-07 · 政治忠诚筛选(最高形态)</span>
+      <span class="jr-xref">↗ N6 · 政治象征</span>
+      <span class="jr-xref">↗ N4 · 兵源</span>
+    </div>
+
+    <div class="jr-verdict">
+      <span class="jr-verdict-tag">N3 判词</span>
+      「党指挥枪」是这个系统最根本的制度设计之一——它是军队这个内核态进程唯一的访问控制门。它确立了军队的政治属性:党的军队。本片只作为制度事实陈述这一原则——它是理解军队在整个系统中位置的钥匙,也是中国与许多国家「军队国家化」制度的根本分野。<b style="color:var(--zhu);">最高的强制力始终置于确定的政治控制之下,这是这台机器的核心稳定器。</b>
+      <span class="jr-xref">↗ N4 · 兵源:谁来当兵</span>
+    </div>
+  </section>
+
+  <!-- ════ N4 兵源谁来当兵 ════ -->
+  <section class="jr-panel" id="jr-p-n4">
+    <div class="jr-sec-head"><h2>N4 · 兵源:谁来当兵</h2><span class="jr-sec-tag">三层结构 · 阶层性 · 上升通道</span></div>
+    <p class="jr-disclaimer top">注记(分析边界):本节将兵源结构作为军队最社会学的维度——<b>谁来当兵、为什么、当兵意味着什么</b>——来分析,关注参军作为县域/农村青年的结构性上升通道;<b>不涉及任何编制、兵种部署、战备等军事信息</b>,聚焦征兵的社会学与阶层性。</p>
+    <p class="jr-lede">兵源结构是军队作为人群最社会学的维度——<b style="color:var(--zhu);">义务兵 + 士官(志愿兵)+ 军官三层;兵源主要来自农村、县域(↗ GY-20)与职教序列青年(↗ GY-11),同时大学生征兵比例上升</b>。参军对农村/县域青年是重要的上升通道(士官路线、考军校、退役安置 ↗ GY-12),是「组织训练 + 国家叙事身份」的获得途径。军队从被定价最低的人群里,招募并训练出系统最忠诚、最有组织力的零件。</p>
+
+    <h3 class="jr-h3">三层结构:人力的三层</h3>
+    <div class="jr-tri">
+      <div class="jr-tri-card"><h6>第一层</h6><span class="jr-tri-pole">义务兵</span><p><b>义务兵(2 年)</b>——人力循环的入口;主要来自农村、县域、职教青年(↗ GY-11/GY-20),参军是其少有的结构性上升通道。</p></div>
+      <div class="jr-tri-card mid"><h6>第二层</h6><span class="jr-tri-pole">士官(志愿兵)</span><p><b style="color:var(--zhu);">士官(志愿兵,长期)</b>——长期发展路线;留队即获得稳定的体制化身份与技能(↗ N5/形态γ)。</p></div>
+      <div class="jr-tri-card low"><h6>第三层</h6><span class="jr-tri-pole">军官</span><p><b>军官(军校 / 国防生 / 直招)</b>——考军校是兵源向上的关键跃迁;大学生入伍亦由此接续(↗ GY-03 青年就业)。</p></div>
+    </div>
+
+    <h3 class="jr-h3">兵源的阶层性:从被定价最低的人群招募</h3>
+    <div class="jr-rows">
+      <div class="jr-row peak"><span class="jr-row-k">阶层性</span><span class="jr-row-v"><b style="color:var(--zhu);">义务兵与士官主要来自农村、县域、职教青年——参军是这些人群的上升通道之一</b>(↗ GY-11 J5 职校生的体制旁路 / GY-20 县域青年的出路)。</span></div>
+      <div class="jr-row"><span class="jr-row-k">大学生征兵</span><span class="jr-row-v">大学生入伍比例上升、征兵优待政策——<b>提升兵员素质 + 给大学生一条出路</b>(↗ GY-03 青年就业 / 形态γ)。</span></div>
+      <div class="jr-row peak"><span class="jr-row-k">综合获得</span><span class="jr-row-v"><b style="color:var(--zhu);">士官长期发展、考军校、退役安置(↗ GY-12)、政治身份(党员发展)——参军是「组织训练 + 国家叙事身份 + 退役通道」的综合获得</b>。</span></div>
+      <div class="jr-row"><span class="jr-row-k">与 GY-11 接通</span><span class="jr-row-v">这与 GY-11 职校生「唯一获得组织训练 + 国家身份的通道」的判断接通——<b>军队从被定价最低的人群里,招募训练出系统最忠诚、最有组织力的零件</b>(↗ watch 修正)。</span></div>
+    </div>
+
+    <h3 class="jr-h3">上升通道:平民社会与内核态的接口</h3>
+    <div class="jr-dual">
+      <div class="jr-dual-a"><h6>来处 · <b>用户态</b></h6><span class="jr-dual-pole">县域 / 农村 / 职教青年</span><p><b style="color:var(--qing);">兵源来自被定价最低的人群——对他们,参军是少有的结构性上升路径</b>(↗ GY-11/GY-20)。</p></div>
+      <div class="jr-dual-mid">↗</div>
+      <div class="jr-dual-b"><h6>去处 · <b>上升</b></h6><span class="jr-dual-pole">组织训练 + 国家身份 + 退役通道</span><p><b style="color:var(--zhu);">能换来组织训练、国家叙事的身份、和一条退役安置的出路(↗ GY-12)——难得的结构性上升</b>。</p></div>
+    </div>
+
+    <div class="jr-art">
+      <h5><b>谁来当兵,是军队最社会学的问题</b>军队从被定价最低的人群里,招募并训练出系统最忠诚、最有组织力的零件</h5>
+      <p>谁来当兵,是军队最社会学的问题。答案很大程度上是:<b style="color:var(--zhu);">农村的、县域的、职教序列的青年(↗ GY-11/GY-20)——对他们,参军是少有的结构性上升通道,能换来组织训练、国家叙事的身份、和一条退役安置的出路(↗ GY-12)。这与 GY-11 职校生「唯一获得组织训练 + 国家身份的通道」的判断接通:军队从被定价最低的人群里,招募并训练出系统最忠诚、最有组织力的零件。</b>(↗ GY-11/GY-20 兵源 / ↗ GY-12 退役通道 / ↗ N5 契约)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="jr-xref">↗ GY-11 · 职校生(体制旁路)</span>
+      <span class="jr-xref">↗ GY-20 · 县域青年(出路)</span>
+      <span class="jr-xref">↗ GY-12 · 退役安置</span>
+    </div>
+
+    <div class="jr-verdict">
+      <span class="jr-verdict-tag">N4 判词</span>
+      谁来当兵,是军队最社会学的问题。答案很大程度上是:农村的、县域的、职教序列的青年(↗ GY-11/GY-20)——对他们,参军是少有的结构性上升通道,能换来组织训练、国家叙事的身份、和一条退役安置的出路(↗ GY-12)。这与 GY-11 职校生「唯一获得组织训练 + 国家身份的通道」的判断接通:<b style="color:var(--zhu);">军队从被定价最低的人群里,招募并训练出系统最忠诚、最有组织力的零件。</b>
+      <span class="jr-xref">↗ N5 · 社会契约:尊崇与保障</span>
+    </div>
+  </section>
+
+  <!-- ════ N5 社会契约尊崇与保障 ════ -->
+  <section class="jr-panel" id="jr-p-n5">
+    <div class="jr-sec-head"><h2>N5 · 社会契约:尊崇与保障</h2><span class="jr-sec-tag">尊崇换奉献 · 前端与后端必须连上</span></div>
+    <p class="jr-disclaimer top">注记(分析边界):本节将军人与系统之间的「尊崇—保障」关系作为<b>社会契约</b>分析,关注现役保障(前端)与退役安置兑现(后端)的传导;<b>不涉及任何军事信息</b>,聚焦征兵吸引力与退役安置可信度的制度逻辑。</p>
+    <p class="jr-lede">军人与系统之间是一份「尊崇—保障」的社会契约——<b style="color:var(--zhu);">军人地位与待遇(让军人成为全社会尊崇的职业)、军属随军与优待、服役保障、退役安置(↗ GY-12)</b>。这份契约的前端(现役的尊崇与保障)与后端(退役的安置兑现 ↗ GY-12 V3/V4)共同构成「国防采购的售后条款」(↗ GY-12 V3)。两端必须连上——因为今天征兵的吸引力,取决于年轻人看到的退役军人过得怎么样。当兵光荣这句话,要在一个人脱下军装之后,依然成立。</p>
+
+    <h3 class="jr-h3">契约的两端:前端尊崇,后端兑现</h3>
+    <div class="jr-dual">
+      <div class="jr-dual-a"><h6>前端 · <b>现役</b></h6><span class="jr-dual-pole">尊崇 + 保障</span><p><b style="color:var(--qing);">现役的荣誉与保障——「让军人成为全社会尊崇的职业」、军属优待、完整的服役保障</b>(↗ 尊崇 rows)。</p></div>
+      <div class="jr-dual-mid">↔</div>
+      <div class="jr-dual-b"><h6>后端 · <b>↗GY-12</b></h6><span class="jr-dual-pole">退役安置兑现</span><p><b style="color:var(--zhu);">退役的安置兑现(↗ GY-12 V3/V4)——「当兵光荣」的承诺必须在退役时兑现;前端吸引力依赖后端可信度</b>。</p></div>
+    </div>
+
+    <h3 class="jr-h3">尊崇与保障:契约的内容</h3>
+    <div class="jr-rows">
+      <div class="jr-row peak"><span class="jr-row-k">尊崇职业</span><span class="jr-row-v"><b style="color:var(--zhu);">「让军人成为全社会尊崇的职业」——尊崇叙事</b>(↗ GY-12 V3 / 与 GY-37 医护英雄叙事同构,但军人是制度化的最高尊崇)。</span></div>
+      <div class="jr-row"><span class="jr-row-k">军属与优待</span><span class="jr-row-v">随军家属安置、军人子女教育优待、军属保障——<b>契约延伸到军人家庭</b>(↗ N6 军民关系)。</span></div>
+      <div class="jr-row peak"><span class="jr-row-k">服役保障</span><span class="jr-row-v"><b style="color:var(--zhu);">军人保险、医疗、住房等保障体系——封闭而完整的保障</b>(与平民社会的保障体系平行,↗ N2 独立体系)。</span></div>
+      <div class="jr-row"><span class="jr-row-k">两端的传导</span><span class="jr-row-v">现役尊崇保障(前端)+ 退役安置兑现(后端 ↗ GY-12 V3/V4)——<b>前端的征兵吸引力依赖后端的安置可信度</b>(↗ GY-12 V4 安置成色)。</span></div>
+    </div>
+
+    <div class="jr-breaking">
+      <span class="jr-breaking-tag">! 今天征兵的吸引力,取决于年轻人看到的退役军人过得怎么样</span>
+      军人与系统签的是一份「尊崇换奉献」的契约——现役时是全社会尊崇的职业、有完整的保障和军属优待。<b>但这份契约有前后两端:前端是现役的荣誉与保障,后端是退役的安置兑现(↗ GY-12)。两端必须连上——因为今天征兵的吸引力,取决于年轻人看到的退役军人过得怎么样。当兵光荣这句话,要在一个人脱下军装之后,依然成立。</b>
+    </div>
+
+    <div class="jr-art">
+      <h5><b>军人与系统签的是一份「尊崇换奉献」的契约</b>当兵光荣这句话,要在一个人脱下军装之后,依然成立</h5>
+      <p>军人与系统签的是一份「尊崇换奉献」的契约——现役时是全社会尊崇的职业、有完整的保障和军属优待。<b style="color:var(--zhu);">但这份契约有前后两端:前端是现役的荣誉与保障,后端是退役的安置兑现(↗ GY-12)。两端必须连上——因为今天征兵的吸引力,取决于年轻人看到的退役军人过得怎么样。当兵光荣这句话,要在一个人脱下军装之后,依然成立。</b>(↗ GY-12 安置兑现 / ↗ GY-37 尊崇叙事 / ↗ N4 征兵吸引力)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="jr-xref">↗ GY-12 · 安置兑现(V3/V4)</span>
+      <span class="jr-xref">↗ GY-37 · 尊崇叙事(同构)</span>
+      <span class="jr-xref">↗ N6 · 政治与社会角色</span>
+    </div>
+
+    <div class="jr-verdict">
+      <span class="jr-verdict-tag">N5 判词</span>
+      军人与系统签的是一份「尊崇换奉献」的契约——现役时是全社会尊崇的职业、有完整的保障和军属优待。但这份契约有前后两端:前端是现役的荣誉与保障,后端是退役的安置兑现(↗ GY-12)。两端必须连上——因为今天征兵的吸引力,取决于年轻人看到的退役军人过得怎么样。<b style="color:var(--zhu);">当兵光荣这句话,要在一个人脱下军装之后,依然成立。</b>
+      <span class="jr-xref">↗ N6 · 政治与社会角色</span>
+    </div>
+  </section>
+
+  <!-- ════ N6 政治与社会角色 ════ -->
+  <section class="jr-panel" id="jr-p-n6">
+    <div class="jr-sec-head"><h2>N6 · 政治与社会角色:内核的多重功能</h2><span class="jr-sec-tag">政治象征 · 国家在场 · 叙事载体</span></div>
+    <p class="jr-disclaimer top">注记(分析边界):本节仅就军队的<b>社会—政治角色</b>分析——政治象征、国内应急在场、国防动员的社会接口、爱国叙事的载体;<b>不涉及国防职能细节、作战、部署、编制等军事信息</b>,聚焦其作为社会—政治制度的位置。</p>
+    <p class="jr-lede">军队作为内核态进程承担多重制度功能——<b style="color:var(--zhu);">政治象征(党/国家的最高强制后盾)、国内应急在场(抢险救灾的国家在场)、国防动员体系(民兵预备役,连接平民社会)、爱国主义叙事的人格化载体(↗ GY-02/GY-36)</b>。本片仅就其社会—政治角色分析,不涉军事职能细节。系统极少直接调用这个内核态进程,但它的存在为一切兜底——它在系统中的位置,是「最高权限、受保护、为一切兜底的最终层」。</p>
+
+    <h3 class="jr-h3">多重角色:内核承担的远不止国防</h3>
+    <div class="jr-rows">
+      <div class="jr-row peak"><span class="jr-row-k">政治象征</span><span class="jr-row-v"><b style="color:var(--zhu);">军队是党与国家最高强制力的象征与后盾——系统稳定的终极保障(内核为一切兜底)</b>(↗ N3 党指挥枪)。</span></div>
+      <div class="jr-row"><span class="jr-row-k">国内应急在场</span><span class="jr-row-v">抢险救灾、应急救援——<b>军队是「国家在场」最有力的象征</b>;灾难中的军队形象是爱国叙事的核心素材(↗ GY-02)。</span></div>
+      <div class="jr-row peak"><span class="jr-row-k">国防动员体系</span><span class="jr-row-v"><b style="color:var(--zhu);">民兵、预备役连接平民社会与军队——内核态与用户态之间的接口层</b>(↗ 签名图边界 / N2)。</span></div>
+      <div class="jr-row"><span class="jr-row-k">叙事载体</span><span class="jr-row-v">军队是爱国主义、民族主义叙事的人格化载体——<b>军旅题材、军人形象在舆论场(↗ GY-36)的特殊地位;「涉军舆情」的高敏感度</b>(↗ GY-12 W-08 / watch 修正)。</span></div>
+    </div>
+
+    <h3 class="jr-h3">与全光谱:系统内核与多条人群线的交汇</h3>
+    <div class="jr-rows">
+      <div class="jr-row peak"><span class="jr-row-k">兜底层</span><span class="jr-row-v"><b style="color:var(--zhu);">系统极少直接调用这个内核态进程,但它的存在为一切兜底——「最高权限、受保护、为一切兜底的最终层」</b>(↗ N3 稳定器)。</span></div>
+      <div class="jr-row"><span class="jr-row-k">叙事最高规格</span><span class="jr-row-v">军人形象在舆论场的特殊地位、涉军舆情的高敏感——<b>是 GY-02 叙事组件的最高规格素材</b>(↗ GY-02/GY-36)。</span></div>
+      <div class="jr-row peak"><span class="jr-row-k">多线交汇</span><span class="jr-row-v"><b style="color:var(--zhu);">现役军人是 GY-12(退役)的前端、GY-11/GY-20(兵源)的出口、GY-02/GY-36(叙事/舆论)的载体、GY-07(政治忠诚筛选)的最高形态——系统的内核与多条人群线的交汇</b>。</span></div>
+      <div class="jr-row"><span class="jr-row-k">分析到此</span><span class="jr-row-v">本片只就它作为社会—政治制度的角色分析到此——<b>它在系统中的位置,是「最高权限、受保护、为一切兜底的最终层」</b>(↗ N7/watch)。</span></div>
+    </div>
+
+    <div class="jr-art">
+      <h5><b>军队作为内核,承担的远不止国防</b>系统极少直接调用这个内核态进程,但它的存在为一切兜底</h5>
+      <p>军队作为内核,承担的远不止国防——<b style="color:var(--zhu);">它是党和国家最高强制力的象征、是灾难中「国家在场」最有力的形象、是爱国叙事的人格化载体(↗ GY-02/GY-36)。系统极少直接调用这个内核态进程,但它的存在为一切兜底。本片只就它作为社会—政治制度的角色分析到此——它在系统中的位置,是「最高权限、受保护、为一切兜底的最终层」。</b>(↗ GY-02/GY-36 叙事 / ↗ GY-07 忠诚 / ↗ N3 党指挥枪)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="jr-xref">↗ GY-02/GY-36 · 叙事载体</span>
+      <span class="jr-xref">↗ GY-07 · 忠诚筛选</span>
+      <span class="jr-xref">↗ N7 · 形态推演</span>
+    </div>
+
+    <div class="jr-verdict">
+      <span class="jr-verdict-tag">N6 判词</span>
+      军队作为内核,承担的远不止国防——它是党和国家最高强制力的象征、是灾难中「国家在场」最有力的形象、是爱国叙事的人格化载体(↗ GY-02/GY-36)。系统极少直接调用这个内核态进程,但它的存在为一切兜底。<b style="color:var(--zhu);">本片只就它作为社会—政治制度的角色分析到此——它在系统中的位置,是「最高权限、受保护、为一切兜底的最终层」。</b>
+      <span class="jr-xref">↗ N7 · 形态推演</span>
+    </div>
+  </section>
+
+  <!-- ════ N7 形态推演 ════ -->
+  <section class="jr-panel" id="jr-p-n7">
+    <div class="jr-sec-head"><h2>N7 · 形态推演(三态)</h2><span class="jr-sec-tag">制度稳定 / 兵源与安置压力 / 专业化人力结构</span></div>
+    <p class="jr-disclaimer top">注记(分析边界):本节仅就军队作为人群的<b>制度社会学维度</b>推演(人力循环、兵源、安置、人力结构),<b>不涉军事现代化的具体内容、装备、部署、编制等军事信息</b>。</p>
+    <p class="jr-lede">现役军人这个「内核态进程」作为人群/制度的未来走向,取决于三股力量的相对强弱——<b style="color:var(--zhu);">征兵—服役—退役人力循环的稳定运行、兵源与退役安置的压力传导、军队现代化带来的人力结构调整</b>。三态推演如下,概率最高的是人力循环稳定运行、尊崇保障契约延续、党指挥枪原则不变的基准态。本片仅就人群与制度维度推演,不涉军事现代化具体内容。</p>
+
+    <h3 class="jr-h3">三态:α 制度稳定 / β 兵源与安置压力 / γ 专业化人力结构</h3>
+    <div class="jr-form">
+      <h5>形态 α · 基准 · 制度稳定(概率最高)</h5>
+      <p>征兵—服役—退役人力循环稳定运行、尊崇保障契约延续、党对军队绝对领导原则不变;<b style="color:var(--zhu);">兵源持续依赖县域/职教青年(↗ GY-11/GY-20)+ 大学生征兵</b>。概率最高(↗ W-01/W-03)。</p>
+    </div>
+    <div class="jr-form" style="border-color:var(--zhu-dim); background:rgba(181,72,58,.08);">
+      <h5 style="color:var(--zhu);">形态 β · 压力 · 兵源与安置压力</h5>
+      <p>若退役安置成色下降(↗ GY-12 V4/形态β)影响征兵吸引力,或青年人口下降(↗ GY-03/GY-25)影响兵源——<b style="color:var(--zhu);">倒逼提升军人地位待遇、强化安置兑现</b>;标志:征兵优待加码、退役安置改革(↗ W-02/W-04)。</p>
+    </div>
+    <div class="jr-form" style="border-color:var(--jin-dim); background:rgba(110,93,56,.10);">
+      <h5 style="color:var(--jin);">形态 γ · 调整 · 专业化与人力结构调整</h5>
+      <p>军队现代化带来的人力结构变化(士官专业化、技术兵种、文职)——<b style="color:var(--jin);">对兵员素质要求提高,兵源结构向高学历倾斜</b>;与退役军人技能转化(↗ GY-12)的衔接成为长期课题(本片仅就人力结构推演,不涉军事现代化具体内容)(↗ W-07)。</p>
+    </div>
+
+    <h3 class="jr-h3">三态的共同底色:内核态进程的位置不变</h3>
+    <div class="jr-rows">
+      <div class="jr-row peak"><span class="jr-row-k">位置是底色</span><span class="jr-row-v"><b style="color:var(--zhu);">无论哪种形态,军队作为内核态进程的位置都在——最高权限、受保护、为一切兜底,党指挥枪不变</b>(↗ N3/N6)。</span></div>
+      <div class="jr-row"><span class="jr-row-k">兵源是变量</span><span class="jr-row-v">青年人口与退役安置成色(↗ GY-03/GY-12)是外生变量——<b>它决定兵源吸引力与契约可信度,而非命题</b>(↗ N5)。</span></div>
+      <div class="jr-row peak"><span class="jr-row-k">专业化是远景</span><span class="jr-row-v"><b style="color:var(--zhu);">士官专业化、高学历兵员、文职——人力结构向高素质倾斜,退役技能转化成为长期课题</b>;形态γ 是长期方向(↗ GY-12)。</span></div>
+    </div>
+
+    <div class="jr-art">
+      <h5><b>无论哪种形态,这个内核态进程的位置都在</b>差异只在兵源吸引力、安置可信度与人力结构</h5>
+      <p>三态推演的共同底色是:<b style="color:var(--zhu);">军队作为内核态进程的位置始终在,党指挥枪原则不变,差异只在制度稳定、兵源与安置压力还是专业化人力结构调整。基准是人力循环稳定运行、尊崇保障契约延续;压力态里退役安置成色或青年人口下降影响兵源,倒逼提升军人地位待遇、强化安置兑现;调整态里军队现代化带来士官专业化、高学历兵员,兵源结构向高素质倾斜,与退役技能转化的衔接成为长期课题。本片仅就人群与制度维度推演,不涉军事现代化具体内容。</b>(↗ GY-03/GY-25 兵源 / ↗ GY-12 安置 / ↗ watch 收官)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="jr-xref">↗ GY-03/GY-25 · 青年人口(兵源变量)</span>
+      <span class="jr-xref">↗ GY-12 · 退役安置(契约后端)</span>
+      <span class="jr-xref">↗ watch · 合成观测哨</span>
+    </div>
+
+    <div class="jr-verdict">
+      <span class="jr-verdict-tag">N7 判词</span>
+      三态推演的共同底色是:军队作为内核态进程的位置始终在,党指挥枪原则不变,差异只在制度稳定、兵源与安置压力还是专业化人力结构调整。基准是人力循环稳定运行;压力态里退役安置成色或青年人口下降影响兵源,倒逼提升军人地位待遇、强化安置兑现;调整态里士官专业化、高学历兵员使人力结构向高素质倾斜。<b style="color:var(--zhu);">系统不取消这个内核态进程的位置,它只决定兵源的吸引力、契约的可信度与人力的结构。</b>
+      <span class="jr-xref">↗ watch · 合成观测哨</span>
+    </div>
+  </section>
+
+  <!-- ════ 合成 · 观测哨 ════ -->
+  <section class="jr-panel" id="jr-p-watch">
+    <div class="jr-sec-head"><h2>N8 · 合成与观测哨</h2><span class="jr-sec-tag">内核态特权进程 · 第四十五子集 · 年度对账</span></div>
+    <p class="jr-disclaimer top">注记(分析边界):全片以政治社会学与制度分析框架处理,「内核态特权进程」「访问控制」「兜底层」作为机制描述,聚焦军人作为人群/制度的结构成因,<b>不涉及任何作战能力、装备、部署、编制番号、战备等军事信息</b>。形态推演与观测哨为机制研判,数据为现役约 200 万的公开口径、兵役与国防建设的社会—制度常识与训练知识基线,标量级、待权威口径回填,精确口径与量级估算严格区分。</p>
+
+    <div class="jr-verdict" style="margin-top:14px; margin-bottom:34px;">
+      <span class="jr-verdict-tag">N8 · 总判词 · 内核态特权进程</span>
+      现役军人是 China OS 运行在 Ring 0 的内核态进程——最高权限、运行在与平民社会隔离的受保护空间、为一切兜底的最终强制层,其唯一不可绕过的访问控制是「党指挥枪」。<br><br>
+      <b style="color:var(--zhu);">本片严格作为政治社会学分析:把军队当作一个有清晰生命周期的人群——从县域与职教青年(↗ GY-11/GY-20)应征入伍,经军营封闭社会化(这正是 GY-12 退役军人「预装组织力」的出厂安装),到退役回归平民社会(↗ GY-12)。它与系统签的是「尊崇换奉献」的社会契约,而这份契约的前端(现役尊崇保障)与后端(退役安置兑现 ↗ GY-12)必须连上——今天征兵的吸引力,取决于退役军人过得怎么样。军队从被定价最低的人群里,招募训练出系统最忠诚、最有组织力的零件,这是它最深的人力悖论,也是 GY-11/GY-12 那条线的核心接口。本片不谈一兵一卒的战力,只画出这个内核态进程在人群系统中的位置:最高权限、受最严格政治控制、为整个系统兜底、却以最普通人家的子弟为血肉。</b><br><br>
+      与全系列合观:GY-12 退役军人是本片的后端,现役(本片)与退役(GY-12)是同一人力循环的前后端,军营的封闭社会化是 GY-12「预装组织力」的来源;GY-11 职校生、GY-20 县域青年是本片的兵源端,参军是这些被定价最低的人群的体制化上升旁路;GY-02/GY-36 叙事/舆论以军人形象为最高规格素材;GY-07 政治忠诚筛选在军队中是最高形态(党指挥枪)。作为人群画像分层第四十五子集,本片补上整张图谱的「系统内核」——<b>它不是又一个孤立人群,而是系统强制力的终极所在:最高权限的内核层,与极贫(GY-43 底板)相对的另一极,组织化潜能元变量的源头(军队制造组织力,GY-12 赎买它)。注:本片仅作政治社会学与制度分析,不涉作战能力、装备、部署、编制等军事信息。</b>
+    </div>
+
+    <h3 class="jr-h3">对 GY 系列的五条修正</h3>
+    <div class="jr-fix">
+      <h5><b>修正 · GY-12</b>军人人力循环的现役端与退役端</h5>
+      <p>现役(本片)与退役(GY-12)是同一人力循环的前后端——军营的封闭社会化(N2)是 GY-12「预装组织力」(V2)的来源;<b style="color:var(--zhu);">现役尊崇保障(N5)与退役安置兑现(GY-12 V3/V4)是「尊崇换奉献」契约的两端</b>;建议 GY-12↔GY-47 链接为「军人人力循环的现役端与退役端」。</p>
+    </div>
+    <div class="jr-fix">
+      <h5><b>修正 · GY-11 + GY-20</b>体制化上升旁路</h5>
+      <p>参军是职校生(GY-11 J5)与县域青年(GY-20)的重要上升通道——<b>军队从被定价最低的人群招募训练</b>;建议作为这些人群的「体制化上升旁路」接口,与 GY-11「唯一获得组织训练 + 国家身份的通道」接通。</p>
+    </div>
+    <div class="jr-fix">
+      <h5><b>修正 · GY-02 + GY-36</b>叙事的最高规格素材</h5>
+      <p>军队是爱国/民族主义叙事的人格化载体——<b style="color:var(--zhu);">军人形象在舆论场(↗ GY-36)的特殊地位、涉军舆情的高敏感是 GY-02 叙事组件的最高规格素材</b>;建议 GY-02/GY-36 以此标注其涉军叙事端。</p>
+    </div>
+    <div class="jr-fix">
+      <h5><b>修正 · GY-07</b>政治忠诚筛选的最高形态</h5>
+      <p>政治建军(党指挥枪)是「政治忠诚筛选优先」(GY-07)的最高形态——<b>军队是忠诚筛选最严格的制度</b>;建议 GY-07 以此标注军队为其忠诚筛选的最高规格场域。</p>
+    </div>
+    <div class="jr-fix">
+      <h5><b>修正 · 母框架</b>系统内核 · 组织化潜能的源头</h5>
+      <p>现役军人补「系统内核」——它是组织化潜能元变量的源头(军队制造组织力,GY-12 赎买它);<b style="color:var(--zhu);">在「系统上下界」上,它与极贫(GY-43 底板)不同,是「最高权限的内核层」,是系统强制力的终极所在</b>。</p>
+    </div>
+
+    <div class="jr-watch-intro">
+      <p>这个人群的处境变动,关键看三组指针:人力循环(征兵兵源、退役衔接、人力结构)、契约两端(军人地位待遇、兵源吸引力)、社会接口(涉军叙事、国防动员、军民关系)。逐项标注状态、记录证据,年度与 GY 系列同步对账。状态与备注自动保存在本机。数据敏感处标量级,待权威口径回填,精确口径与量级估算严格区分;本片仅作政治社会学与制度分析,不涉军事信息。</p>
+      <span class="jr-storage-state" id="jr-storage-state"></span>
+    </div>
+
+    <div class="jr-watch" id="jr-watch-list">
+      <div class="jr-watch-item" data-key="w1">
+        <div><h5><b>W-01</b>征兵与兵源</h5><p class="jr-watch-desc">征兵规模、大学生入伍比例、兵源结构——<b>人力循环入口(接 N4)。</b></p></div>
+        <div class="jr-watch-ctrl"><div class="jr-status-row"><button class="jr-status-btn" data-status="good">向好</button><button class="jr-status-btn" data-status="flat">中性</button><button class="jr-status-btn" data-status="bad">恶化</button></div><textarea class="jr-watch-note" placeholder="证据与备注…"></textarea><div class="jr-watch-stamp"></div></div>
+      </div>
+      <div class="jr-watch-item" data-key="w2">
+        <div><h5><b>W-02</b>退役衔接</h5><p class="jr-watch-desc">现役—退役的安置衔接、安置满意度(↗ GY-12)——<b>契约后端兑现。</b></p></div>
+        <div class="jr-watch-ctrl"><div class="jr-status-row"><button class="jr-status-btn" data-status="good">向好</button><button class="jr-status-btn" data-status="flat">中性</button><button class="jr-status-btn" data-status="bad">恶化</button></div><textarea class="jr-watch-note" placeholder="证据与备注…"></textarea><div class="jr-watch-stamp"></div></div>
+      </div>
+      <div class="jr-watch-item" data-key="w3">
+        <div><h5><b>W-03</b>军人地位待遇</h5><p class="jr-watch-desc">军人荣誉制度、待遇、军属优待——<b>N5 尊崇契约。</b></p></div>
+        <div class="jr-watch-ctrl"><div class="jr-status-row"><button class="jr-status-btn" data-status="good">向好</button><button class="jr-status-btn" data-status="flat">中性</button><button class="jr-status-btn" data-status="bad">恶化</button></div><textarea class="jr-watch-note" placeholder="证据与备注…"></textarea><div class="jr-watch-stamp"></div></div>
+      </div>
+      <div class="jr-watch-item" data-key="w4">
+        <div><h5><b>W-04</b>兵源吸引力</h5><p class="jr-watch-desc">参军意愿、士官留队率——<b>契约前端的吸引力。</b></p></div>
+        <div class="jr-watch-ctrl"><div class="jr-status-row"><button class="jr-status-btn" data-status="good">向好</button><button class="jr-status-btn" data-status="flat">中性</button><button class="jr-status-btn" data-status="bad">恶化</button></div><textarea class="jr-watch-note" placeholder="证据与备注…"></textarea><div class="jr-watch-stamp"></div></div>
+      </div>
+      <div class="jr-watch-item" data-key="w5">
+        <div><h5><b>W-05</b>涉军叙事</h5><p class="jr-watch-desc">军人形象、军旅题材、涉军舆情(↗ GY-36/GY-12 W-08)——<b>叙事载体。</b></p></div>
+        <div class="jr-watch-ctrl"><div class="jr-status-row"><button class="jr-status-btn" data-status="good">向好</button><button class="jr-status-btn" data-status="flat">中性</button><button class="jr-status-btn" data-status="bad">恶化</button></div><textarea class="jr-watch-note" placeholder="证据与备注…"></textarea><div class="jr-watch-stamp"></div></div>
+      </div>
+      <div class="jr-watch-item" data-key="w6">
+        <div><h5><b>W-06</b>国防动员</h5><p class="jr-watch-desc">民兵预备役、国防教育——<b>内核与用户态的接口。</b></p></div>
+        <div class="jr-watch-ctrl"><div class="jr-status-row"><button class="jr-status-btn" data-status="good">向好</button><button class="jr-status-btn" data-status="flat">中性</button><button class="jr-status-btn" data-status="bad">恶化</button></div><textarea class="jr-watch-note" placeholder="证据与备注…"></textarea><div class="jr-watch-stamp"></div></div>
+      </div>
+      <div class="jr-watch-item" data-key="w7">
+        <div><h5><b>W-07</b>人力结构</h5><p class="jr-watch-desc">士官专业化、文职、高学历兵员——<b>形态γ。</b></p></div>
+        <div class="jr-watch-ctrl"><div class="jr-status-row"><button class="jr-status-btn" data-status="good">向好</button><button class="jr-status-btn" data-status="flat">中性</button><button class="jr-status-btn" data-status="bad">恶化</button></div><textarea class="jr-watch-note" placeholder="证据与备注…"></textarea><div class="jr-watch-stamp"></div></div>
+      </div>
+      <div class="jr-watch-item" data-key="w8">
+        <div><h5><b>W-08</b>军民关系</h5><p class="jr-watch-desc">拥军优属、军民融合(社会层面)——<b>制度的社会接口。</b></p></div>
+        <div class="jr-watch-ctrl"><div class="jr-status-row"><button class="jr-status-btn" data-status="good">向好</button><button class="jr-status-btn" data-status="flat">中性</button><button class="jr-status-btn" data-status="bad">恶化</button></div><textarea class="jr-watch-note" placeholder="证据与备注…"></textarea><div class="jr-watch-stamp"></div></div>
+      </div>
+    </div>
+
+    <h3 class="jr-h3">章节规划 · 登记表</h3>
+    <div class="jr-plan">
+      <div class="jr-plan-row"><span class="jr-plan-k">CH-01</span><span class="jr-plan-v"><b>人力循环</b> — 征兵—服役—退役的完整循环、兵源阶层性,接 GY-11/GY-20/GY-12。</span><span class="jr-plan-tag">待建</span></div>
+      <div class="jr-plan-row"><span class="jr-plan-k">CH-02</span><span class="jr-plan-v"><b>封闭社会化</b> — 军营的社会化机制与预装组织力的来源,接 GY-12 V2。</span><span class="jr-plan-tag">待建</span></div>
+      <div class="jr-plan-row"><span class="jr-plan-k">CH-03</span><span class="jr-plan-v"><b>尊崇契约</b> — 现役保障与退役兑现的两端、征兵吸引力的传导,接 GY-12。</span><span class="jr-plan-tag">待建</span></div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="jr-foot">
+    <p>方法论:现役军人以「内核态特权进程(Kernel-Mode / Ring-0 Process)」模型刻画——现役军人是 China OS 运行在 Ring 0 的内核态进程拥有最高权限运行在与平民社会用户态隔离的受保护空间军营封闭性是系统极少直接调用却为一切兜底的最终强制层其唯一不可绕过的访问控制是党指挥枪党对军队绝对领导签名图系统分层为用户态平民社会各人群与内核态军队约 200 万现役二者之间一道受保护边界军营封闭性内核态进程标 RING 0 最高权限受保护其上方一道访问控制门党指挥枪绝对领导是唯一入口征召为入退役为出构成完整的人力循环底注作为人群制度分析非军事信息 GY-12 退役军人的前端。核心命题:约 200 万现役军人作为一个人群制度而非军事力量来分析它们是系统的内核态进程运行在与平民社会用户态隔离的封闭空间享有最高的制度地位与最严格的政治访问控制党对军队绝对领导本片把军队当作一个有清晰生命周期的人群从县域与职教青年 GY-11 GY-20 应征入伍经军营封闭社会化这正是 GY-12 退役军人预装组织力的出厂安装到退役回归平民社会 GY-12 它与系统签的是尊崇换奉献的社会契约这份契约的前端现役尊崇保障与后端退役安置兑现 GY-12 必须连上今天征兵的吸引力取决于退役军人过得怎么样军队从被定价最低的人群里招募训练出系统最忠诚最有组织力的零件这是它最深的人力悖论本片不谈一兵一卒的战力只画出这个内核态进程在人群系统中的位置最高权限受最严格政治控制为整个系统兜底却以最普通人家的子弟为血肉。数据锚定(现役约 200 万公开口径加兵役与国防建设的社会制度常识加训练知识基线,待权威口径回填):现役约 200 万公开口径历经多轮精简义务兵加士官加军官三层结构党对军队绝对领导党指挥枪政治建军兵源主要来自农村县域职教青年大学生征兵比例上升让军人成为全社会尊崇的职业军属优待退役安置 GY-12。注:本片仅作政治社会学与制度分析,不涉作战能力、装备、部署、编制等军事信息,聚焦军人作为人群与制度的维度,不针对具体个人、不展示个案,精确口径与量级估算严格区分。作为人群画像分层第四十五子集,与 GY-12 退役军人(军人人力循环的现役端与退役端)、GY-11/GY-20(兵源的体制化上升旁路)、GY-02/GY-36(涉军叙事的最高规格素材)、GY-07(政治忠诚筛选的最高形态)、母框架(系统内核·组织化潜能的源头)等耦合,是系统强制力的终极所在。来源:现役约 200 万的公开口径、兵役制度与国防建设的社会—制度常识、训练知识基线。</p>
+    <div class="jr-foot-meta">
+      ChinaOS · GY-47 · v1.0.0<br>
+      生成 2026-06 丙午年<br>
+      人群画像 第四十五子集 · 关联模块 → GY-02/07/11/12/20<br>
+      注记:仅政治社会学/制度分析,不涉军事信息
+    </div>
+  </footer>
+
+</div>

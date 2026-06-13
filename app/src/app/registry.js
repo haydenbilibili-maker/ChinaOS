@@ -47,6 +47,11 @@ export const MODULES = [
     component: lazy(() => import('../modules/dashboard/LiveChinaMapPage.jsx')),
   },
   {
+    id: 'econdash', path: '/econ-dashboard', group: 'home',
+    title: '经济大盘', subtitle: '三次产业 · 核心指标 · 金丝雀监测', icon: 'LineChart',
+    component: lazy(() => import('../modules/econdash/Page.jsx')),
+  },
+  {
     id: 'cognition', path: '/cognition', group: 'cognition',
     title: '康波周期', subtitle: '康德拉季耶夫 · 长波 · 创新潮', icon: 'Waves',
     component: lazy(() => import('../modules/cognition/Page.jsx')),
@@ -678,6 +683,15 @@ export const MODULES = [
     subtitle: '进程回收器 · 送最后一程 · GY-46',
     icon: 'Heart',
     component: lazy(() => import('../modules/binzang/Page.jsx')),
+  },
+  {
+    id: 'junren',
+    path: '/modules/junren',
+    group: 'population',
+    title: '现役军人',
+    subtitle: '内核态特权进程 · 党指挥枪 · GY-47',
+    icon: 'Shield',
+    component: lazy(() => import('../modules/junren/Page.jsx')),
   },
   { id: 'manufacturing', path: '/manufacturing', group: 'industry', title: '制造强国', subtitle: '规模优势 · GVC位势 · 转型升级', icon: 'Factory', component: lazy(() => import('../modules/manufacturing/Page.jsx')) },
   { id: 'robotics', path: '/robotics', group: 'industry', title: '机器人', subtitle: '装机密度 · 人形整机 · 核心部件', icon: 'Bot', component: lazy(() => import('../modules/robotics/Page.jsx')) },
