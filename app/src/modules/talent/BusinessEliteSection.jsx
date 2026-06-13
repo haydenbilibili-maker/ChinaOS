@@ -20,6 +20,8 @@ import {
   BE_SECTOR_LABEL,
   resolveBeRoleKey,
   classifyBusinessSector,
+  BE_OWNERSHIP_CATS,
+  BE_OWNERSHIP_LABEL,
 } from '../../lib/db/businessEliteSeed.js';
 import TalentDetailPanel, { ExpandableText } from './TalentDetailPanel.jsx';
 import { applyTalentEnrichment } from '../../lib/talent/talentEnrich.js';
@@ -151,6 +153,7 @@ export default function BusinessEliteSection() {
   const [industry, setIndustry] = useState('');
   const [province, setProvince] = useState('');
   const [honor, setHonor] = useState('');
+  const [ownership, setOwnership] = useState('');
   const [sort, setSort] = useState('name');
   const [view, setView] = useState('list');
   const [sel, setSel] = useState(null);
@@ -186,8 +189,10 @@ export default function BusinessEliteSection() {
     const out = tabList.filter((r) => {
       const hay = [r.name, r.company, r.industry, r.title, r.achievements, r.honors, r.background, r.province, r.notes, r.source].join(' ');
       const honorMatch = !honor || honorTags(r).includes(honor);
+      const ownershipMatch = !ownership || (r.enterpriseType || 'private') === ownership;
       const sectorMatch = dimMode !== 'role' || !sectorTab || sectorOf(r) === sectorTab;
       return sectorMatch
+        && ownershipMatch
         && (!industry || r.industry === industry)
         && (!province || r.province === province)
         && honorMatch
@@ -198,7 +203,7 @@ export default function BusinessEliteSection() {
     else if (sort === 'province') out.sort((a, b) => (a.province || '').localeCompare(b.province || '', 'zh'));
     else if (sort === 'sector') out.sort((a, b) => sectorOf(a).localeCompare(sectorOf(b)));
     return out;
-  }, [tabList, q, industry, province, honor, sort, dimMode, sectorTab]);
+  }, [tabList, q, industry, province, honor, ownership, sort, dimMode, sectorTab]);
 
   useEffect(() => {
     if (filtered.length) prefetchFigureAvatars(filtered, 56);
@@ -287,13 +292,14 @@ export default function BusinessEliteSection() {
     setLoading(false);
   };
 
-  const clearAll = () => { setQ(''); setIndustry(''); setProvince(''); setHonor(''); setSectorTab(''); setSel(null); };
+  const clearAll = () => { setQ(''); setIndustry(''); setProvince(''); setHonor(''); setOwnership(''); setSectorTab(''); setSel(null); };
 
   const activeChips = [
     q && ['搜索', `“${q}”`, () => setQ('')],
     industry && ['行业', industry, () => setIndustry('')],
     province && ['省份', short(province), () => setProvince('')],
     honor && ['标签', honor, () => setHonor('')],
+    ownership && ['所有制', BE_OWNERSHIP_LABEL[ownership], () => setOwnership('')],
     dimMode === 'role' && sectorTab && ['板块', BE_SECTOR_LABEL[sectorTab], () => setSectorTab('')],
   ].filter(Boolean);
 
@@ -413,6 +419,7 @@ export default function BusinessEliteSection() {
                 <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="姓名 / 公司 / 行业 / 成就" style={{ ...inp, background: 'transparent', border: 'none', flex: 1, padding: '6px 0' }} />
               </div>
               <select value={industry} onChange={(e) => setIndustry(e.target.value)} style={inp}><option value="">全部行业</option>{industries.map((d) => <option key={d} value={d}>{d}</option>)}</select>
+              <select value={ownership} onChange={(e) => setOwnership(e.target.value)} style={inp}><option value="">全部所有制</option>{BE_OWNERSHIP_CATS.map((k) => <option key={k} value={k}>{BE_OWNERSHIP_LABEL[k]}</option>)}</select>
               <select value={province} onChange={(e) => setProvince(e.target.value)} style={inp}><option value="">全部省份</option>{provinces.map((p) => <option key={p} value={p}>{short(p) || p}</option>)}</select>
               {honorOpts.length > 0 && (
                 <select value={honor} onChange={(e) => setHonor(e.target.value)} style={inp}><option value="">全部标签</option>{honorOpts.map((h) => <option key={h} value={h}>{h}</option>)}</select>

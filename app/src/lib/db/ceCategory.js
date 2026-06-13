@@ -22,6 +22,13 @@ export const CE_TAB_LABEL = {
   religion: '宗教界人士',
 };
 
+/** 知识传播 · 体制内 vs 独立（与自媒体队列分轨） */
+export const CE_MEDIA_SUBTYPES = ['institutional', 'independent'];
+export const CE_MEDIA_SUBTYPE_LABEL = {
+  institutional: '体制内媒体',
+  independent: '独立传播',
+};
+
 const SOCIAL_KW = [
   '经济', '法学', '社会', '政治', '管理', '人类学', '国际关系', '教育', '心理',
   '商业科普', '农业经济', '地理', '统计', '公共管理', '财政', '金融', '贸易',

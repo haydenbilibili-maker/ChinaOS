@@ -14,6 +14,7 @@ import { FIGURE_MILITARY_2026, FIGURE_MILITARY_META, FIGURE_MILITARY_COUNT } fro
 import { FIGURE_POLITICAL_STRUCTURE_2026, FIGURE_POLITICAL_STRUCTURE_META, FIGURE_POLITICAL_STRUCTURE_COUNT } from './figurePoliticalStructure2026.js';
 import { FIGURE_EXPANSION_2026 } from './figureExpansion2026.js';
 import { FIGURE_MILITARY_EXPANSION_3 } from './talentBulkExpansion2026_part3.js';
+import { FIGURE_EXPANSION_4, FIGURE_MILITARY_EXPANSION_4 } from './talentBulkExpansion2026_part4.js';
 import { enrichTalentList } from '../talent/talentEnrich.js';
 
 const FIGURE_SEED_BASE = [
@@ -29,6 +30,8 @@ const FIGURE_SEED_BASE = [
   ...FIGURE_ORG_TIER2_2026,
   ...FIGURE_MILITARY_2026,
   ...FIGURE_MILITARY_EXPANSION_3,
+  ...FIGURE_MILITARY_EXPANSION_4,
+  ...FIGURE_EXPANSION_4,
   ...FIGURE_EXPANSION_2026,
 ];
 

@@ -37,6 +37,14 @@ export const BE_SECTOR_LABEL = {
   other: '综合其他',
 };
 
+/** 所有制维度（央企/国企 vs 民营） */
+export const BE_OWNERSHIP_CATS = ['private', 'state_owned', 'mixed'];
+export const BE_OWNERSHIP_LABEL = {
+  private: '民营私营',
+  state_owned: '央企国企',
+  mixed: '混合所有制',
+};
+
 const TECH_KW = [
   '互联网', '人工智能', '软件', '网络安全', '教育科技', '无人机', '机器人', '通信',
   '科技', '消费电子', '打印', '传媒', '文化传媒', '游戏', '云计算', '大数据',
@@ -97,9 +105,11 @@ export function resolveBeSectorKey(key) {
   return BE_SECTOR_CATS.includes(key) ? key : '';
 }
 
-/** 运行时补全 sectorKey */
+/** 运行时补全 sectorKey / enterpriseType */
 export function enrichBusinessEliteRow(r) {
   if (!r) return r;
   const sectorKey = r.sectorKey || classifyBusinessSector(r.industry);
-  return { ...r, sectorKey };
+  const enterpriseType = r.enterpriseType
+    || (/(央企|国有|国资|中石油|中石化|国家电网|中国移动|中国建筑|中铁|中车|中核|中广核)/.test(`${r.company || ''}${r.industry || ''}${r.honors || ''}`) ? 'state_owned' : 'private');
+  return { ...r, sectorKey, enterpriseType };
 }

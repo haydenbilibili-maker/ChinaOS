@@ -2,6 +2,7 @@
 // 反腐名单 · 独立数据集封装（与人才库 figures 隔离）
 // ============================================================================
 import { ANTI_CORRUPTION_2026, ANTI_CORRUPTION_META, ANTI_CORRUPTION_RAW_COUNT as RAW_IN_FILE } from './figureAntiCorruption2026.js';
+import { ANTI_CORRUPTION_EXPANSION_4 } from './talentBulkExpansion2026_part4.js';
 import { enrichTalentList } from '../talent/talentEnrich.js';
 
 export const ANTI_CORRUPTION_DATASET_ID = ANTI_CORRUPTION_META.id;
@@ -40,7 +41,7 @@ export function dedupeAntiCorruption(list) {
 }
 
 export function buildAntiCorruptionSeed() {
-  const { rows, dupeCount, rawCount } = dedupeAntiCorruption(ANTI_CORRUPTION_2026);
+  const { rows, dupeCount, rawCount } = dedupeAntiCorruption([...ANTI_CORRUPTION_2026, ...ANTI_CORRUPTION_EXPANSION_4]);
   return {
     id: ANTI_CORRUPTION_DATASET_ID,
     name: ANTI_CORRUPTION_META.label,

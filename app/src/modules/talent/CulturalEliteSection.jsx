@@ -25,6 +25,7 @@ import {
   CE_TAB_LEGACY_ALIASES,
   resolveCeTabKey,
 } from '../../lib/db/culturalEliteSeed.js';
+import { CE_MEDIA_SUBTYPES, CE_MEDIA_SUBTYPE_LABEL } from '../../lib/db/ceCategory.js';
 
 const short = (p) => (p || '').replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '');
 const inp = { background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', borderRadius: 6, padding: '6px 10px', fontSize: 13 };
@@ -156,6 +157,7 @@ export default function CulturalEliteSection() {
   const [honor, setHonor] = useState('');
   const [tradition, setTradition] = useState('');
   const [academyOnly, setAcademyOnly] = useState(false);
+  const [mediaSubtype, setMediaSubtype] = useState('');
   const [sort, setSort] = useState('name');
   const [view, setView] = useState('list');
   const [sel, setSel] = useState(null);
@@ -186,6 +188,7 @@ export default function CulturalEliteSection() {
       const honorMatch = !honor || honorTags(r).includes(honor);
       const traditionMatch = !tradition || r.field === tradition || r.discipline === tradition;
       const academyMatch = !academyOnly || isAcademician(r);
+      const mediaSubMatch = !mediaSubtype || r.mediaSubtype === mediaSubtype || (mediaSubtype === 'institutional' && /总台|央视|新华社|人民日报|CGTN|体制内/.test(`${r.institution || ''}${r.source || ''}`));
       return (!discipline || r.discipline === discipline || r.field === discipline)
         && (!region || r.region === region)
         && (!tier || r.tier === tier)
@@ -193,13 +196,14 @@ export default function CulturalEliteSection() {
         && honorMatch
         && traditionMatch
         && academyMatch
+        && mediaSubMatch
         && (!q || hay.toLowerCase().includes(q.toLowerCase()));
     });
     if (sort === 'name') out.sort((a, b) => a.name.localeCompare(b.name, 'zh'));
     else if (sort === 'tier') out.sort((a, b) => (TIER_RANK[a.tier] ?? 9) - (TIER_RANK[b.tier] ?? 9));
     else if (sort === 'region') out.sort((a, b) => (a.region || '').localeCompare(b.region || '', 'zh'));
     return out;
-  }, [tabList, q, discipline, region, tier, decade, honor, tradition, academyOnly, sort]);
+  }, [tabList, q, discipline, region, tier, decade, honor, tradition, academyOnly, mediaSubtype, sort]);
 
   useEffect(() => {
     if (filtered.length) prefetchFigureAvatars(filtered, 56);
@@ -285,7 +289,7 @@ export default function CulturalEliteSection() {
   };
 
   const academyCount = useMemo(() => tabList.filter(isAcademician).length, [tabList]);
-  const clearAll = () => { setQ(''); setDiscipline(''); setRegion(''); setTier(''); setDecade(''); setHonor(''); setTradition(''); setAcademyOnly(false); setSel(null); };
+  const clearAll = () => { setQ(''); setDiscipline(''); setRegion(''); setTier(''); setDecade(''); setHonor(''); setTradition(''); setAcademyOnly(false); setMediaSubtype(''); setSel(null); };
   const traditionCounts = useMemo(() => {
     if (catTab !== 'religion') return [];
     return RELIGION_TRADITIONS.map((t) => [t, tabList.filter((r) => r.field === t || r.discipline === t).length]).filter(([, n]) => n > 0);
@@ -299,6 +303,7 @@ export default function CulturalEliteSection() {
     decade && ['年代', decade, () => setDecade('')],
     honor && ['荣誉', honor, () => setHonor('')],
     academyOnly && ['两院院士', '仅院士', () => setAcademyOnly(false)],
+    mediaSubtype && ['媒体带', CE_MEDIA_SUBTYPE_LABEL[mediaSubtype], () => setMediaSubtype('')],
   ].filter(Boolean);
 
   const pickByIndex = useCallback((idx) => {
@@ -409,6 +414,16 @@ export default function CulturalEliteSection() {
               {honorOpts.length > 0 && (
                 <select value={honor} onChange={(e) => setHonor(e.target.value)} style={inp}><option value="">全部荣誉</option>{honorOpts.map((h) => <option key={h} value={h}>{h}</option>)}</select>
               )}
+              {catTab === 'media' && CE_MEDIA_SUBTYPES.map((k) => (
+                <button key={k} type="button" onClick={() => setMediaSubtype((v) => v === k ? '' : k)} style={{
+                  ...inp, cursor: 'pointer',
+                  color: mediaSubtype === k ? '#e8a317' : 'var(--text-secondary)',
+                  borderColor: mediaSubtype === k ? 'rgba(232,163,23,0.45)' : 'var(--border-subtle)',
+                  background: mediaSubtype === k ? 'rgba(232,163,23,0.12)' : 'var(--bg-base)',
+                }}>
+                  {CE_MEDIA_SUBTYPE_LABEL[k]}
+                </button>
+              ))}
               {ACADEMY_TABS.has(catTab) && academyCount > 0 && (
                 <button type="button" onClick={() => setAcademyOnly((v) => !v)} style={{
                   ...inp, cursor: 'pointer',

@@ -42,7 +42,7 @@ const short = (p) => (p || '').replace(/(省|市|自治区|回族|壮族|维吾�
 const inp = { background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', borderRadius: 'var(--radius-sm)', padding: '6px 10px', fontSize: 'var(--text-sm)' };
 
 const ROLE_OPTS = ['总书记', '总理', '副总理', '国务委员', '人大委员长', '政协主席', '政协副主席', '政协秘书长', '纪委书记', '外交部长', '政法委书记', '中组部部长', '组织部部长', '统战部部长', '中宣部部长', '宣传部长', '人大副委员长', '人大秘书长', '监委主任', '军委副主席', '军委委员', '港澳办主任', '党委书记', '市委书记', '省委副书记', '省长', '市长', '常务副省长', '常务副市长', '常务副主席', '自治区主席', '部长', '副部长', '国防部长', '战区司令员', '战区政治委员', '战区副司令员', '参谋长', '政治工作部主任', '副司令员', '副政委', '署长', '局长', '主任', '副主任', '副秘书长', '秘书长', '主席', '董事长', '总经理', '最高法院长', '最高检检察长', '专门委员会主任', '专门委员会副主任', '政协常委', '常委会委员'];
-const INSTITUTION_TYPE_OPTS = ['人大', '政协', '部委', '中直'];
+const INSTITUTION_TYPE_OPTS = ['人大', '政协', '部委', '中直', '司法', '央企', '地方人大政协'];
 const SECTOR_OPTS = ['国务院', '党中央', '国家机关', '全国政协', '国务院直属机构', '央企', '省属国企', '军队', '地方'];
 const LEVEL_RANK = { '党和国家领导人': 0, '副国级': 1, '上将': 1, '正部级': 2, '中将': 2, '省部级': 3, '少将': 3, '副部级': 4, '正厅级': 5 };
 
@@ -289,6 +289,9 @@ export default function Page() {
       const cppccMatch = quickFilter !== 'cppcc' || instType === '政协' || f.sector === '全国政协' || ['政协副主席', '政协秘书长', '政协常委', '专门委员会主任', '专门委员会副主任'].includes(f.role);
       const ministryMatch = quickFilter !== 'ministry' || instType === '部委' || (f.sector === '国务院' && ['部长', '副部长', '署长', '局长'].includes(f.role));
       const centralMatch = quickFilter !== 'centralParty' || instType === '中直' || (f.province === '中央' && f.sector === '党中央');
+      const judicialMatch = quickFilter !== 'judicial' || instType === '司法' || ['最高法院长', '最高检检察长'].includes(f.role) || f.org?.includes('法院') || f.org?.includes('检察院') || f.org?.includes('司法部');
+      const soeMatch = quickFilter !== 'soe' || instType === '央企' || f.sector === '央企';
+      const provLegMatch = quickFilter !== 'provLeg' || instType === '地方人大政协';
       const instTypeMatch = !institutionType || instType === institutionType;
       return (!prov || f.province === prov)
         && (!level || f.level === level)
@@ -302,6 +305,9 @@ export default function Page() {
         && cppccMatch
         && ministryMatch
         && centralMatch
+        && judicialMatch
+        && soeMatch
+        && provLegMatch
         && instTypeMatch
         && (!q || hay.toLowerCase().includes(q.toLowerCase()));
     });
@@ -344,6 +350,9 @@ export default function Page() {
     quickFilter === 'cppcc' && ['快捷', '仅政协体系', () => setQuickFilter('')],
     quickFilter === 'ministry' && ['快捷', '仅部委体系', () => setQuickFilter('')],
     quickFilter === 'centralParty' && ['快捷', '仅中直机关', () => setQuickFilter('')],
+    quickFilter === 'judicial' && ['快捷', '仅司法体系', () => setQuickFilter('')],
+    quickFilter === 'soe' && ['快捷', '仅央企体系', () => setQuickFilter('')],
+    quickFilter === 'provLeg' && ['快捷', '仅地方人大政协', () => setQuickFilter('')],
     institutionType && ['机构带', institutionType, () => setInstitutionType('')],
   ].filter(Boolean);
 
@@ -552,6 +561,9 @@ export default function Page() {
               <button onClick={() => { setQuickFilter((v) => v === 'cppcc' ? '' : 'cppcc'); setInstitutionType(''); }} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'cppcc' ? 'rgba(34,211,238,0.15)' : 'var(--bg-base)', color: quickFilter === 'cppcc' ? '#22d3ee' : 'var(--text-secondary)', borderColor: quickFilter === 'cppcc' ? '#22d3ee' : 'var(--border-subtle)' }}>政协</button>
               <button onClick={() => { setQuickFilter((v) => v === 'ministry' ? '' : 'ministry'); setInstitutionType(''); }} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'ministry' ? 'rgba(16,185,129,0.15)' : 'var(--bg-base)', color: quickFilter === 'ministry' ? '#10b981' : 'var(--text-secondary)', borderColor: quickFilter === 'ministry' ? '#10b981' : 'var(--border-subtle)' }}>部委</button>
               <button onClick={() => { setQuickFilter((v) => v === 'centralParty' ? '' : 'centralParty'); setInstitutionType(''); }} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'centralParty' ? 'rgba(139,92,246,0.15)' : 'var(--bg-base)', color: quickFilter === 'centralParty' ? '#8b5cf6' : 'var(--text-secondary)', borderColor: quickFilter === 'centralParty' ? '#8b5cf6' : 'var(--border-subtle)' }}>中直</button>
+              <button onClick={() => { setQuickFilter((v) => v === 'judicial' ? '' : 'judicial'); setInstitutionType(''); }} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'judicial' ? 'rgba(99,102,241,0.15)' : 'var(--bg-base)', color: quickFilter === 'judicial' ? '#6366f1' : 'var(--text-secondary)', borderColor: quickFilter === 'judicial' ? '#6366f1' : 'var(--border-subtle)' }}>司法</button>
+              <button onClick={() => { setQuickFilter((v) => v === 'soe' ? '' : 'soe'); setInstitutionType(''); }} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'soe' ? 'rgba(232,163,23,0.15)' : 'var(--bg-base)', color: quickFilter === 'soe' ? '#e8a317' : 'var(--text-secondary)', borderColor: quickFilter === 'soe' ? '#e8a317' : 'var(--border-subtle)' }}>央企</button>
+              <button onClick={() => { setQuickFilter((v) => v === 'provLeg' ? '' : 'provLeg'); setInstitutionType(''); }} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'provLeg' ? 'rgba(34,211,238,0.12)' : 'var(--bg-base)', color: quickFilter === 'provLeg' ? '#22d3ee' : 'var(--text-secondary)', borderColor: quickFilter === 'provLeg' ? '#22d3ee' : 'var(--border-subtle)' }}>地方人大政协</button>
               <select value={sort} onChange={(e) => setSort(e.target.value)} style={inp}>
                 <option value="default">默认排序</option><option value="ageAsc">年龄 ↑</option><option value="ageDesc">年龄 ↓</option><option value="level">按层级</option><option value="name">按姓名</option>
               </select>

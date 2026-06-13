@@ -8,6 +8,7 @@ import {
 } from './figureOverseasTalent2026.js';
 import { OVERSEAS_TALENT_EXPANSION } from './talentBulkExpansion2026.js';
 import { OVERSEAS_TALENT_EXPANSION_2 } from './talentBulkExpansion2026_part2.js';
+import { OVERSEAS_TALENT_EXPANSION_4 } from './talentBulkExpansion2026_part4.js';
 import { enrichTalentList } from '../talent/talentEnrich.js';
 import { CULTURAL_ELITE_2026 } from './figureCulturalElite2026.js';
 import { BUSINESS_ELITE_2026 } from './figureBusinessElite2026.js';
@@ -94,7 +95,7 @@ export function dedupeOverseasTalent(list) {
 }
 
 export function buildOverseasTalentSeed() {
-  const { rows, dupeCount, rawCount } = dedupeOverseasTalent([...OVERSEAS_TALENT_2026, ...OVERSEAS_TALENT_EXPANSION, ...OVERSEAS_TALENT_EXPANSION_2]);
+  const { rows, dupeCount, rawCount } = dedupeOverseasTalent([...OVERSEAS_TALENT_2026, ...OVERSEAS_TALENT_EXPANSION, ...OVERSEAS_TALENT_EXPANSION_2, ...OVERSEAS_TALENT_EXPANSION_4]);
   return {
     id: OVERSEAS_TALENT_DATASET_ID,
     name: OVERSEAS_TALENT_META.label,

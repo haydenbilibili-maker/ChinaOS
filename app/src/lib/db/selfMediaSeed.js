@@ -6,6 +6,7 @@ import {
   SELF_MEDIA_META,
   SELF_MEDIA_COUNT,
 } from './figureSelfMedia2026.js';
+import { SELF_MEDIA_EXPANSION_4 } from './talentBulkExpansion2026_part4.js';
 import { enrichTalentList } from '../talent/talentEnrich.js';
 import {
   SM_SUB_CATS,
@@ -72,7 +73,7 @@ export function dedupeSelfMedia(list) {
 
 export function buildSelfMediaSeed() {
   const migrated = buildMigratedSelfMediaRows();
-  const { rows, dupeCount, rawCount } = dedupeSelfMedia([...SELF_MEDIA_2026, ...migrated]);
+  const { rows, dupeCount, rawCount } = dedupeSelfMedia([...SELF_MEDIA_2026, ...SELF_MEDIA_EXPANSION_4, ...migrated]);
   return {
     id: SELF_MEDIA_DATASET_ID,
     name: SELF_MEDIA_META.label,
