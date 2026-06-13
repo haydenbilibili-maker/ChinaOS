@@ -63,13 +63,15 @@ function GroupBlock({ group, onNavigate }) {
   if (!mods.length) return null;
   return (
     <div className="mb-5">
-      <div className="px-3 mb-2 flex items-center gap-2">
-        <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: group.accent }} />
-        <span className="text-xs font-semibold tracking-wide" style={{ color: 'var(--text-secondary)' }}>
-          {group.label}
-        </span>
-        <span className="text-[10px] truncate" style={{ color: 'var(--text-tertiary)' }}>{group.desc}</span>
-        <span className="text-[10px] mono ml-auto" style={{ color: 'var(--text-tertiary)' }}>{mods.length}</span>
+      <div className="os-group-header px-3 mb-2">
+        <div className="os-group-header__row">
+          <span className="os-group-header__dot" style={{ background: group.accent }} />
+          <span className="os-group-header__title">{group.label}</span>
+          <span className="os-group-header__count mono">{mods.length}</span>
+        </div>
+        {group.desc ? (
+          <div className="os-group-header__desc">{group.desc}</div>
+        ) : null}
       </div>
       <nav className="space-y-0.5">
         {mods.map((m) => (
