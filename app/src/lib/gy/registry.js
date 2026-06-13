@@ -42,6 +42,16 @@ export const GY_MODULES = {
   '34': { id: 'manjiu', path: '/modules/manjiu', label: '慢就业青年', group: 'population' },
   '35': { id: 'xinnong', path: '/modules/xinnong', label: '职业农民', group: 'population' },
   '36': { id: 'yulun', path: '/modules/yulun', label: '网络舆论场', group: 'population' },
+  '37': { id: 'yihu', path: '/modules/yihu', label: '医护人员', group: 'population' },
+  '38': { id: 'jiaoshi', path: '/modules/jiaoshi', label: '中小学教师', group: 'population' },
+  '39': { id: 'baoan', path: '/modules/baoan', label: '保安群体', group: 'population' },
+  '40': { id: 'wangyue', path: '/modules/wangyue', label: '网约车司机', group: 'population' },
+  '41': { id: 'baoxian', path: '/modules/baoxian', label: '保险代理', group: 'population' },
+  '42': { id: 'minqi', path: '/modules/minqi', label: '中小民企主', group: 'population' },
+  '43': { id: 'jipin', path: '/modules/jipin', label: '城市极贫', group: 'population' },
+  '44': { id: 'jiaozheng', path: '/modules/jiaozheng', label: '社区矫正', group: 'population' },
+  '45': { id: 'funv', path: '/modules/funv', label: '留守妇女', group: 'population' },
+  '46': { id: 'binzang', path: '/modules/binzang', label: '殡葬临终', group: 'population' },
 };
 
 /** GY-03…36 已上线人群切片编号（不含 GY-00 母索引） */
