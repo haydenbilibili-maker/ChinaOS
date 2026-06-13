@@ -12,6 +12,9 @@ import SectionDivergence from './SectionDivergence.jsx';
 import SectionCatalog from './SectionCatalog.jsx';
 import SectionRegional from './SectionRegional.jsx';
 import SectionCompare from './SectionCompare.jsx';
+import SectionWatch from './SectionWatch.jsx';
+import SectionDiscipline from './SectionDiscipline.jsx';
+import { buildPanoramaReport } from './econReport.js';
 
 // ============================================================================
 // 经济大盘 · 全景与实时监测
@@ -297,7 +300,10 @@ export default function Page({ embedded = false }) {
   }, []);
 
   // —— ⑥ 报告 ——
-  const genReport = () => setReportMd(buildEconReport({ wb: wbData, asOf: ECON_AS_OF }));
+  const genReport = () => {
+    try { setReportMd(buildPanoramaReport()); }
+    catch { setReportMd(buildEconReport({ wb: wbData, asOf: ECON_AS_OF })); }
+  };
   const copyReport = () => {
     navigator.clipboard?.writeText(reportMd);
     setCopied(true);
@@ -347,6 +353,9 @@ export default function Page({ embedded = false }) {
 
       {/* 00 当前主线 · 通缩与资金活化 */}
       <div className="mb-6"><SectionDeflation /></div>
+
+      {/* ! 经济异动监测 · 全盘聚合 */}
+      <div className="mb-6"><SectionWatch /></div>
 
       {/* ① 三次产业结构 */}
       <Card title="① 三次产业结构 · 经济在做什么">
@@ -613,6 +622,9 @@ export default function Page({ embedded = false }) {
           >{reportMd}</pre>
         )}
       </Card>
+
+      {/* § 数据使用纪律 */}
+      <div className="mb-6"><SectionDiscipline /></div>
 
       {/* 框架三卡 + 页脚 */}
       <FrameworkTrio cards={[
