@@ -1,0 +1,456 @@
+<div class="xm-shell">
+
+  <!-- 题头 -->
+  <header class="xm-mast">
+    <div>
+      <div class="xm-mast-meta">ChinaOS · MODULE <b>GY-21</b> · 人群画像分层 · 第十九子集</div>
+      <h1 class="xm-title">城市新移民与夹心层 · 有城无籍<span class="xm-title-sub">无持久化的访客会话 · 贡献全额，权限受限</span></h1>
+    </div>
+    <div class="xm-mast-seal">交税不落户</div>
+  </header>
+
+  <!-- 无持久化的访客会话签名图 -->
+  <div class="xm-found" aria-label="无持久化的访客会话示意图:主机「北上广」上挂着一个访客会话框,会话向主机注入三股满额流「税收→」「劳动→」「消费→」;会话试图写入注册表「落户」处显示 permission denied 锁;会话派生的子进程标注「继承 guest 标志(随迁子女)」;底注「贡献与权利的制度性错位·中国版无代表的纳税·常住67% vs 户籍<50%」">
+    <svg viewBox="0 0 1000 470" xmlns="http://www.w3.org/2000/svg" role="img">
+      <text x="500" y="20" font-size="11" fill="#8f897d" text-anchor="middle" font-family="mono" letter-spacing="2">ChinaOS · GUEST SESSION WITHOUT PERSISTENCE · 无持久化的访客会话</text>
+      <text x="500" y="44" font-size="9.5" fill="#7d6a3a" text-anchor="middle" font-family="sans-serif">— 全额贡献算力,却没有对注册表的写权限:登出即清空 —</text>
+
+      <!-- 主机:北上广 -->
+      <rect x="120" y="64" width="360" height="220" rx="8" fill="#1b2028" stroke="#5e8c7a" stroke-width="1.8"/>
+      <text x="300" y="90" font-size="14" fill="#d6cfc2" text-anchor="middle" font-family="serif" letter-spacing="1">主机 · 北上广(HOST)</text>
+      <text x="300" y="110" font-size="9" fill="#5e8c7a" text-anchor="middle" font-family="mono" letter-spacing="1">超大城市 · 提供一切服务,不授予持久化</text>
+
+      <!-- 注册表:落户 permission denied -->
+      <rect x="150" y="130" width="300" height="58" rx="5" fill="#0f1318" stroke="#b5483a" stroke-width="1.4" stroke-dasharray="5 4"/>
+      <text x="300" y="153" font-size="11" fill="#b5483a" text-anchor="middle" font-family="mono" letter-spacing="1">registry.write(户籍 / 落户)</text>
+      <text x="300" y="174" font-size="11" fill="#d6cfc2" text-anchor="middle" font-family="mono" letter-spacing="1">→ permission denied &#128274;</text>
+
+      <!-- 派生子进程:随迁子女 -->
+      <rect x="150" y="206" width="300" height="58" rx="5" fill="#15171b" stroke="#5d7489" stroke-width="1.3"/>
+      <text x="300" y="229" font-size="10.5" fill="#8a96a4" text-anchor="middle" font-family="mono" letter-spacing="1">fork(child) · 派生子进程</text>
+      <text x="300" y="249" font-size="10" fill="#8a96a4" text-anchor="middle" font-family="sans-serif">继承 guest 标志(随迁子女)</text>
+
+      <!-- 访客会话框 -->
+      <rect x="640" y="100" width="250" height="150" rx="8" fill="#15171b" stroke="#4a4a4a" stroke-width="2" stroke-dasharray="6 4"/>
+      <text x="765" y="128" font-size="13" fill="#8a8a8a" text-anchor="middle" font-family="serif" letter-spacing="1">访客会话(GUEST)</text>
+      <text x="765" y="148" font-size="9" fill="#b5483a" text-anchor="middle" font-family="mono" letter-spacing="1">NO PERSISTENCE · 事实市民,法律外人</text>
+      <text x="765" y="174" font-size="9.5" fill="#6e6e6e" text-anchor="middle" font-family="sans-serif">常住、就业、纳税、消费</text>
+      <text x="765" y="194" font-size="9.5" fill="#6e6e6e" text-anchor="middle" font-family="sans-serif">登出(离城)→ 一切清空</text>
+      <text x="765" y="222" font-size="9" fill="#7d6a3a" text-anchor="middle" font-family="sans-serif">约 2.5 亿「半市民化」</text>
+
+      <!-- 三股满额流注入主机 -->
+      <line x1="640" y1="135" x2="480" y2="120" stroke="#5e8c7a" stroke-width="1.6"/>
+      <text x="560" y="113" font-size="10" fill="#5e8c7a" text-anchor="middle" font-family="mono">税收 →</text>
+      <line x1="640" y1="175" x2="480" y2="160" stroke="#5e8c7a" stroke-width="1.6"/>
+      <text x="560" y="160" font-size="10" fill="#5e8c7a" text-anchor="middle" font-family="mono">劳动 →</text>
+      <line x1="640" y1="215" x2="480" y2="200" stroke="#5e8c7a" stroke-width="1.6"/>
+      <text x="560" y="207" font-size="10" fill="#5e8c7a" text-anchor="middle" font-family="mono">消费 →</text>
+
+      <!-- 底注 -->
+      <line x1="120" y1="320" x2="880" y2="320" stroke="#3d4c5a" stroke-width="1" stroke-dasharray="3 5"/>
+      <text x="500" y="350" font-size="11" fill="#b5483a" text-anchor="middle" font-family="serif" letter-spacing="1">贡献与权利的制度性错位 · 中国版「无代表的纳税」</text>
+      <text x="500" y="378" font-size="9.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">价值在 A 地(流入城市)创造,权利在 B 地(户籍地)或无处兑现——贡献者不是权利人</text>
+      <text x="500" y="404" font-size="9.5" fill="#7d6a3a" text-anchor="middle" font-family="mono" letter-spacing="1">常住城镇化率 67%(城镇常住 9.435 亿)vs 户籍城镇化率 &lt; 50% · 差值约 2.5 亿</text>
+      <text x="500" y="430" font-size="9" fill="#6e6e6e" text-anchor="middle" font-family="sans-serif">他们建设了城市,却不被城市登记为市民;子女继承访客标志,登出即清空</text>
+      <line x1="120" y1="450" x2="880" y2="450" stroke="#3d4c5a" stroke-width="1" stroke-dasharray="3 5"/>
+    </svg>
+    <div class="xm-found-caption">模块隐喻是<b>无持久化的访客会话(Guest Session without Persistence)</b>:这个人群在「北上广」这台主机上以访客身份登录——全额贡献算力(劳动)、税、消费,却没有对系统注册表(户籍)的<b>写权限</b>:你可以使用一切服务(在此工作生活),但任何东西都无法持久化(落户、子女学籍、社保归属),一旦登出(离开城市)全部清空,且子女继承「访客」标志。签名图:一台主机「北上广」,一个访客会话框,向主机注入三股满额流「税收 →」「劳动 →」「消费 →」;会话试图写入「注册表 · 落户」处显示「permission denied &#128274;」;会话派生的子进程标注「继承 guest 标志(随迁子女)」;底部小字「贡献与权利的制度性错位 · 中国版『无代表的纳税』 · 常住城镇化 67% vs 户籍 &lt; 50%」。<b>贡献是全额的,权限是受限的;在这里创造价值,却不在这里享有权利。</b></div>
+  </div>
+
+  <!-- 页签 -->
+  <nav class="xm-nav" role="tablist">
+    <button role="tab" data-panel="xm-p-p1" class="is-active">事实市民</button>
+    <button role="tab" data-panel="xm-p-p2">无代表的纳税</button>
+    <button role="tab" data-panel="xm-p-p3">积分玻璃天花板</button>
+    <button role="tab" data-panel="xm-p-p4">教育难民</button>
+    <button role="tab" data-panel="xm-p-p5">社保损耗与钟摆</button>
+    <button role="tab" data-panel="xm-p-p6">政治形态学</button>
+    <button role="tab" data-panel="xm-p-p7">形态推演</button>
+    <button role="tab" data-panel="xm-p-watch">合成 · 观测哨</button>
+  </nav>
+
+  <!-- ════ P1 2.5亿事实市民 ════ -->
+  <section class="xm-panel is-active" id="xm-p-p1">
+    <div class="xm-sec-head"><h2>P1 · 规模与定位</h2><span class="xm-sec-tag">2.5 亿的事实市民</span></div>
+    <p class="xm-lede">常住城镇化率 <b>67%</b> 与户籍城镇化率<b>不足 50%</b> 之间的约 <b style="color:var(--zhu);">2.5 亿</b>差值,就是这个人群——他们在城市常住、就业、纳税、消费,却不拥有本地户籍所附带的公共服务权利,是<b style="color:var(--zhu);">「事实市民、法律外人」</b>。城镇化率统计的是「人在哪里」,户籍统计的是「权利在哪里」——两者差出的这一截,就是被制度悬置的人群规模。</p>
+    <div class="xm-disclaimer">说明:本片规模、落户、教育与社保读数为<b>训练知识基线 + 公开政策与统计</b>(国家统计局 2024 城镇化数据、新型城镇化五年行动计划、迟福林测算)。城镇化口径与「半市民化」边界宽窄不一——相应数字标注「约」,并在观测哨留有回填槽。</div>
+
+    <h3 class="xm-h3">三个数据锚点:常住 · 户籍 · 差值</h3>
+    <div class="xm-data3">
+      <div class="xm-stat">
+        <span class="xm-eyebrow">常住城镇化率</span>
+        <span class="xm-stat-n">67%</span>
+        <span class="xm-stat-u">城镇常住 9.435 亿(2024 末)</span>
+        <p>统计「人在哪里」——这个人群<b>常住、就业、纳税、消费都在城市</b>。</p>
+      </div>
+      <div class="xm-stat">
+        <span class="xm-eyebrow">户籍城镇化率</span>
+        <span class="xm-stat-n">&lt; 50%</span>
+        <span class="xm-stat-u">权利附着于户籍所在地</span>
+        <p>统计「权利在哪里」——城市公共服务权利<b>系于户籍,而非常住地</b>。</p>
+      </div>
+      <div class="xm-stat">
+        <span class="xm-eyebrow">有城无籍人群</span>
+        <span class="xm-stat-n">约 2.5 亿</span>
+        <span class="xm-stat-u">常住与户籍城镇化率的差值</span>
+        <p>这个差值不是统计误差,是<b style="color:var(--zhu);">一个被制度悬置人群的精确规模</b>。</p>
+      </div>
+    </div>
+
+    <h3 class="xm-h3">能见度悖论:在城市常住 vs 不被登记为市民</h3>
+    <div class="xm-paradox">
+      <div class="xm-par-a"><h6>常住事实</h6><span class="xm-par-n">2.5 亿</span><p>在城市<b>常住、就业、纳税、消费</b>——以任何生活事实衡量都是这座城市的市民。</p></div>
+      <div class="xm-par-mid">≠</div>
+      <div class="xm-par-b"><h6>法律身份</h6><span class="xm-par-n">外人</span><p><b style="color:var(--zhu);">不拥有本地户籍所附带的公共服务权利</b>——子女教育、保障房、医保统筹、社保转移全部受限。事实市民,法律外人。</p></div>
+    </div>
+
+    <h3 class="xm-h3">构成的双层:农民工 vs 白领新移民</h3>
+    <div class="xm-rows">
+      <div class="xm-row"><span class="xm-row-k">底层</span><span class="xm-row-v">农民工(农村户籍、劳动密集)——「农村→城市」的劳动迁移与半市民化,由 <b>GY-06</b> 切(↗ GY-06)。</span></div>
+      <div class="xm-row"><span class="xm-row-k">上层</span><span class="xm-row-v">城市新移民/白领夹心层(外地城镇户籍、专业技能、在大城市无本地户籍)——<b style="color:var(--zhu);">本片重点是后者,并把户籍断层本身作为分析对象</b>。</span></div>
+      <div class="xm-row"><span class="xm-row-k">横跨阶层</span><span class="xm-row-v">本片切的是「户籍墙」这条制度断层本身——<b>它同时困住农民工和白领新移民,是一条横跨阶层的硬约束</b>。</span></div>
+      <div class="xm-row peak" style="border-left:3px solid var(--zhu);"><span class="xm-row-k">夹心层</span><span class="xm-row-v">收入上够不到买房落户的门槛、又高于政策保障的下限——<b style="color:var(--zhu);">两头不靠,是城市里最大的「悬置市民」群体</b>。</span></div>
+    </div>
+
+    <div class="xm-art">
+      <h5><b>多数派的悬置</b>建设了城市,却不被城市登记为市民</h5>
+      <p>这个人群既不在政策保障的下限(够不到保障房、低保的资格),也够不到买房落户的门槛——<b style="color:var(--zhu);">两头不靠的「夹心层」是城市里最大的悬置市民群体</b>。农民工模块切的是劳动迁移与半市民化,本片切的是户籍墙这条制度断层本身:它既困住底层的农民工,也困住上层的白领新移民——是一条贯穿城市所有外来者的硬约束(↗ GY-06 户籍墙的乡—城端 / ↗ GY-08 中产户籍变体)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="xm-xref">↗ GY-06 · 户籍墙的乡—城端</span>
+      <span class="xm-xref">↗ GY-08 · 中产户籍变体</span>
+      <span class="xm-xref">↗ P2 · 贡献与权利的错位</span>
+    </div>
+
+    <div class="xm-verdict">
+      <span class="xm-verdict-tag">P1 判词</span>
+      城镇化率统计的是「人在哪里」,户籍统计的是「权利在哪里」,两者差出 2.5 亿——<b style="color:var(--zhu);">这个差值不是统计误差,是一个被制度悬置的人群的精确规模。他们建设了城市,却不被城市登记为市民。</b>
+      <span class="xm-xref">↗ P2 · 无代表的纳税</span>
+    </div>
+  </section>
+
+  <!-- ════ P2 无代表的纳税 ════ -->
+  <section class="xm-panel" id="xm-p-p2">
+    <div class="xm-sec-head"><h2>P2 · 贡献与权利的错位</h2><span class="xm-sec-tag">中国版「无代表的纳税」</span></div>
+    <p class="xm-lede">本片核心机制——<b style="color:var(--zhu);">你在哪里创造价值,和你在哪里享有权利,被户籍强行分离</b>。这个人群在城市全额纳税、消费、贡献 GDP,却无法在创造价值的地方享有对应的公共服务,是一种制度性的「贡献—权利错位」:贡献者不是权利人,这是户籍制度最根本的张力。</p>
+
+    <h3 class="xm-h3">错位结构:价值在 A 地创造,权利在 B 地兑现</h3>
+    <div class="xm-dual">
+      <div class="xm-dual-a"><h6>贡献端 · <b>全额注入流入城市</b></h6><span class="xm-dual-pole">labor + tax + consumption</span><p>劳动、税收、消费<b>全额贡献给流入城市</b>——城市享受劳动力红利、消费基数、税基。这是访客会话注入主机的三股满额流。</p></div>
+      <div class="xm-dual-mid">⟂</div>
+      <div class="xm-dual-b"><h6>权利端 · <b>系于户籍所在地</b></h6><span class="xm-dual-pole">registry.write = denied</span><p><b style="color:var(--zhu);">子女教育、保障房、医保统筹、养老领取却系于户籍所在地</b>——价值在 A 地(流入城市)创造,权利在 B 地(户籍地)或无处兑现。</p></div>
+    </div>
+
+    <h3 class="xm-h3">无代表的纳税 · 城市的精算 · 内需的反噬</h3>
+    <div class="xm-rows">
+      <div class="xm-row"><span class="xm-row-k">无代表的纳税</span><span class="xm-row-v">对城市财政有贡献、对城市公共决策无影响、对城市公共服务无完整权利——<b style="color:var(--zhu);">贡献者不是权利人</b>,这是户籍制度最根本的张力。</span></div>
+      <div class="xm-row"><span class="xm-row-k">系统的算计</span><span class="xm-row-v">城市享受劳动力红利、规避市民化成本——<b>每个不落户的常住者,城市每年节省数万元公共服务支出</b>;2.5 亿人 × 多年,是城市化的核心隐性补贴(↗ GY-06 M2)。</span></div>
+      <div class="xm-row"><span class="xm-row-k">内需的反噬</span><span class="xm-row-v">户籍城镇化率每提升,释放数万亿消费——<b style="color:var(--zhu);">半市民化压制了内需:一个不确定能否留下的人不会安心消费</b>(↗ GY-08 / 迟福林测算)。</span></div>
+      <div class="xm-row peak" style="border-left:3px solid var(--zhu);"><span class="xm-row-k">天花板的成因</span><span class="xm-row-v">户籍墙是内需天花板的<b>制度成因之一</b>——城市省下的市民化成本,正在以内需萎缩的形式连本带利地讨回。</span></div>
+    </div>
+
+    <div class="xm-art">
+      <h5><b>完美精算的长期账单</b>城市拿走贡献,把成本退回原籍</h5>
+      <p>户籍制度的精算是完美的——它让城市拿走贡献、把成本退回原籍。但这笔精算有个长期账单:<b style="color:var(--zhu);">一个被告知「你不是这里的人」的人,不会把这里当家来建设、消费、生育</b>。城市省下的市民化成本,正在以内需萎缩和归属感缺失的形式,连本带利地讨回(↗ P6 归属赤字 / ↗ GY-08 中产消费)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="xm-xref">↗ GY-06 M2 · 户籍机器的精算</span>
+      <span class="xm-xref">↗ GY-08 · 内需与消费天花板</span>
+      <span class="xm-xref">↗ P6 · 归属赤字与内需抑制</span>
+    </div>
+
+    <div class="xm-verdict">
+      <span class="xm-verdict-tag">P2 判词</span>
+      户籍制度的精算是完美的——它让城市拿走贡献、把成本退回原籍。但这笔精算有个长期账单:一个被告知「你不是这里的人」的人,不会把这里当家来建设、消费、生育。<b style="color:var(--zhu);">城市省下的市民化成本,正在以内需萎缩和归属感缺失的形式,连本带利地讨回。</b>
+      <span class="xm-xref">↗ P3 · 积分落户的玻璃天花板</span>
+    </div>
+  </section>
+
+  <!-- ════ P3 积分落户玻璃天花板 ════ -->
+  <section class="xm-panel" id="xm-p-p3">
+    <div class="xm-sec-head"><h2>P3 · 积分落户</h2><span class="xm-sec-tag">放开的地方没人去</span></div>
+    <p class="xm-lede">户籍改革的「放开」是<b>结构性的错位</b>——300 万以下城市放开落户,但人口涌向的恰是 500 万以上的超大城市;积分落户制度用学历、社保年限、房产、年龄设门槛,<b style="color:var(--zhu);">把超大城市的户籍变成一道精确筛选的玻璃天花板</b>:你看得见城市的完整权利,够不着。</p>
+
+    <h3 class="xm-h3">积分的筛子:不是降门槛,是按人力资本分层</h3>
+    <div class="xm-sieve">
+      <div class="xm-sieve-card">
+        <span class="xm-eyebrow">放开的错位</span>
+        <span class="xm-sieve-formula">放开 ≠ 想去</span>
+        <p>中小城市全面放开/放宽落户,但<b>放开的地方没人去,想去的地方(超大城市)不放开</b>——改革的口子开在了人口不去的地方(↗ GY-06 M2)。</p>
+      </div>
+      <div class="xm-sieve-card">
+        <span class="xm-eyebrow">筛选逻辑</span>
+        <span class="xm-sieve-formula">学历+社保+房产</span>
+        <p>积分按学历、社保缴纳年限、房产、年龄、专业评定——<b style="color:var(--zhu);">不是降低门槛,是把门槛改造成按人力资本分层的筛子</b>。</p>
+      </div>
+      <div class="xm-sieve-card">
+        <span class="xm-eyebrow">人才 vs 人口</span>
+        <span class="xm-sieve-formula">抢人才,不要人</span>
+        <p>城市争抢高学历人才(落户绿色通道),同时排斥普通劳动力——<b>同一座城市,对你是抢还是拒,取决于学历和纳税额</b>。</p>
+      </div>
+    </div>
+
+    <h3 class="xm-h3">玻璃天花板:差一点是积分制的常态设计</h3>
+    <div class="xm-rows">
+      <div class="xm-row"><span class="xm-row-k">体感</span><span class="xm-row-v">在超大城市工作十年、社保连续缴纳、却因学历或房产差一点而落户无望——<b style="color:var(--zhu);">「差一点」是积分制的常态设计:门槛永远略高于多数人的可达范围</b>。</span></div>
+      <div class="xm-row"><span class="xm-row-k">看得见,够不着</span><span class="xm-row-v">积分落户把户籍从一道墙改造成一面玻璃天花板——<b>你看得见城市的完整权利,够不着</b>。</span></div>
+      <div class="xm-row"><span class="xm-row-k">它不说「不」</span><span class="xm-row-v">它说「再攒几分」——而分数线的设计,<b>恰好保证多数人永远在攒的路上</b>。</span></div>
+      <div class="xm-row peak" style="border-left:3px solid var(--zhu);"><span class="xm-row-k">最体面的排斥</span><span class="xm-row-v">这是最体面的排斥:<b style="color:var(--zhu);">让你以为是自己还不够努力</b>(↔ P6 叙事吸收的内化)。</span></div>
+    </div>
+
+    <div class="xm-art">
+      <h5><b>玻璃天花板</b>看得见城市的完整权利,够不着</h5>
+      <p>积分落户把户籍从一道墙改造成一面玻璃天花板——你看得见城市的完整权利,够不着。它不说「不」,它说「再攒几分」;而分数线的设计,恰好保证多数人永远在攒的路上。<b style="color:var(--zhu);">这是最体面的排斥:让你以为是自己还不够努力</b>(↗ P6 「落不了户是你还不够努力」的叙事内化)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="xm-xref">↗ GY-06 M2 · 放开的结构性错位</span>
+      <span class="xm-xref">↗ P6 · 玻璃天花板的内化</span>
+      <span class="xm-xref">↗ P7 · 形态β 落户实质松动</span>
+    </div>
+
+    <div class="xm-verdict">
+      <span class="xm-verdict-tag">P3 判词</span>
+      积分落户把户籍从一道墙改造成一面玻璃天花板——你看得见城市的完整权利,够不着。它不说「不」,它说「再攒几分」——而分数线的设计,恰好保证多数人永远在攒的路上。<b style="color:var(--zhu);">这是最体面的排斥:让你以为是自己还不够努力。</b>
+      <span class="xm-xref">↗ P4 · 随迁子女教育难民</span>
+    </div>
+  </section>
+
+  <!-- ════ P4 随迁子女教育难民 ════ -->
+  <section class="xm-panel" id="xm-p-p4">
+    <div class="xm-sec-head"><h2>P4 · 随迁子女</h2><span class="xm-sec-tag">教育的「难民」</span></div>
+    <p class="xm-lede">随迁子女的教育是户籍墙最痛的切口——可以在城市读完义务教育,但<b style="color:var(--zhu);">中高考多数必须返回户籍地</b>,使数千万随迁子女面临「教育难民」困境:要么留守、要么随迁后被迫返乡考试,教育在最关键的衔接点被户籍强制中断。</p>
+
+    <h3 class="xm-h3">教育难民的轨迹链:入学 → 中高考壁垒 → 两难</h3>
+    <div class="xm-chain">
+      <div class="xm-chain-row"><span class="xm-chain-step">① 入学门槛</span><span class="xm-chain-v">随迁子女在流入地入学需满足社保、居住证、积分等条件,公办学位紧张,部分被挤入民办或返乡——<b>入学就是第一道筛选</b>。</span></div>
+      <div class="xm-chain-row peak"><span class="xm-chain-step">② 中高考壁垒</span><span class="xm-chain-v">异地高考政策松动有限,多数随迁子女中高考须返回户籍地——<b style="color:var(--zhu);">课标不衔接 + 家庭分离 + 录取线差异的三重惩罚</b>,在升学最关键节点强制「换页」(↗ GY-06 M4)。</span></div>
+      <div class="xm-chain-row"><span class="xm-chain-step">③ 留守 vs 随迁</span><span class="xm-chain-v">把孩子留在老家(留守儿童的心理与教育代价)或带在身边(随迁后中高考返乡)——<b>户籍墙强加给家庭一道无解的选择题</b>。</span></div>
+      <div class="xm-chain-row"><span class="xm-chain-step">④ 难民的规模</span><span class="xm-chain-v">随迁子女与留守儿童合计数千万——<b style="color:var(--zhu);">这是户籍墙在下一代身上的直接成本,也是阶层固化的制度通道</b>(↗ GY-11 普职分流的户籍前置版)。</span></div>
+    </div>
+
+    <h3 class="xm-h3">两难的两面:留守的代价 vs 随迁的代价</h3>
+    <div class="xm-twin">
+      <div class="xm-twin-a"><h6>留守的代价</h6><p><b>留守儿童的心理与教育代价</b>——把孩子留在老家以保住户籍地的考试资格,换来的是长期的家庭分离与隔代抚养。</p></div>
+      <div class="xm-twin-mid">↔</div>
+      <div class="xm-twin-b"><h6>随迁的代价</h6><p><b style="color:var(--zhu);">随迁后中高考被迫返乡</b>——在城市长大、说着城市口音,却必须回从未生活过的「老家」参加一场课标不衔接的考试。</p></div>
+    </div>
+    <div class="xm-art" style="margin-top:14px;">
+      <h5><b>分流之前的户籍筛选</b>能不能在本地考,先于能不能上普高</h5>
+      <p>随迁子女的教育难民困境是 <b>GY-11 编译期定价的户籍前置版</b>——普职分流(↗ GY-11)之前,先有「能不能在本地考」的户籍筛选。一个孩子在十五岁的分流判决之前,已经被一道更早的户籍门槛筛过一遍:<b style="color:var(--zhu);">户籍墙把账单转嫁给了下一代,在他出生前就决定了他人生最关键一场考试的难度</b>。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="xm-xref">↗ GY-06 M4 · 异地中高考壁垒</span>
+      <span class="xm-xref">↗ GY-11 · 普职分流的户籍前置版</span>
+      <span class="xm-xref">↗ P5 · 教育驱动的钟摆</span>
+    </div>
+
+    <div class="xm-verdict">
+      <span class="xm-verdict-tag">P4 判词</span>
+      户籍墙最残忍的地方不在它挡住了大人,在它把账单转嫁给了孩子。<b style="color:var(--zhu);">一个在城市长大、说着城市口音、却必须回从未生活过的「老家」参加高考的孩子,是户籍制度最沉默的受害者——他被一道他出生前就存在的墙,决定了人生最关键一场考试的难度。</b>
+      <span class="xm-xref">↗ P5 · 社保损耗与钟摆</span>
+    </div>
+  </section>
+
+  <!-- ════ P5 社保损耗与逃离逃回钟摆 ════ -->
+  <section class="xm-panel" id="xm-p-p5">
+    <div class="xm-sec-head"><h2>P5 · 社保损耗与钟摆</h2><span class="xm-sec-tag">逃离 / 逃回北上广</span></div>
+    <p class="xm-lede">社保跨省转移的损耗(统筹账户难带走)使这个人群的流动伴随权益折损;叠加大城市高成本与户籍无望,催生「逃离北上广」与「逃回北上广」的钟摆——<b style="color:var(--zhu);">大城市留不下、小城市放不下,在两种不如意间反复</b>。</p>
+
+    <h3 class="xm-h3">逃离 ⇌ 逃回:钟摆的两端都不是归宿</h3>
+    <div class="xm-pendulum">
+      <div class="xm-pend-a">
+        <h6>逃离北上广 · <b>推力</b></h6>
+        <p>高房价、户籍无望、35 岁焦虑(↗ GY-08 Z4)→ 离开超大城市,回到二线或县域。逃离端的终点,是县域青年的「留下」起点(↗ GY-20 返乡端)。</p>
+      </div>
+      <div class="xm-pend-mid">⇌</div>
+      <div class="xm-pend-b">
+        <h6>逃回北上广 · <b>拉力</b></h6>
+        <p><b style="color:var(--zhu);">二线/县域的机会稀薄、关系社会(↗ GY-20 X2)、收入落差</b> → 又回到超大城市。钟摆往复,两端都不是归宿。</p>
+      </div>
+    </div>
+
+    <h3 class="xm-h3">社保的损耗:每一次转移都掉一块肉</h3>
+    <div class="xm-rows">
+      <div class="xm-row"><span class="xm-row-k">养老转移</span><span class="xm-row-v">养老保险跨省转移时,个人账户可带走、<b style="color:var(--zhu);">统筹账户部分留存</b>——每一次跨城流动都伴随社保权益的折损。</span></div>
+      <div class="xm-row"><span class="xm-row-k">医保公积金</span><span class="xm-row-v">医保、公积金的跨地接续<b>同样摩擦巨大</b>——权益在城市间迁移的过程中持续损耗。</span></div>
+      <div class="xm-row"><span class="xm-row-k">逃离的推力</span><span class="xm-row-v">高房价 + 户籍无望 + 35 岁焦虑(↗ GY-08 Z4)→ 逃离超大城市,<b>回到二线或县域</b>(↗ GY-20 返乡端)。</span></div>
+      <div class="xm-row peak" style="border-left:3px solid var(--zhu);"><span class="xm-row-k">逃回的拉力</span><span class="xm-row-v">二线/县域机会稀薄、关系社会、收入落差(↗ GY-20 X2)→ 又回到超大城市——<b style="color:var(--zhu);">钟摆往复,两端都不是归宿</b>。</span></div>
+    </div>
+
+    <div class="xm-art">
+      <h5><b>同一个钟摆的城乡两端</b>城市端是 GY-21,县域端是 GY-20</h5>
+      <p>城市新移民的「逃离」终点是县域青年的「留下」起点——<b style="color:var(--zhu);">同一个钟摆,城市端是 GY-21,县域端是 GY-20</b>;两片是城乡迁移的一体两面(↗ GY-20 X6)。社保的每一次转移都掉一块肉,每一次往返都重置一次积累:这个人群不是在迁移,是在两种「待不住」之间被来回弹射。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="xm-xref">↗ GY-20 X6 · 钟摆的县域端</span>
+      <span class="xm-xref">↗ GY-08 Z4 · 35 岁焦虑</span>
+      <span class="xm-xref">↗ P7 · 形态γ 城市群一体化</span>
+    </div>
+
+    <div class="xm-verdict">
+      <span class="xm-verdict-tag">P5 判词</span>
+      这个人群的人生被一道户籍墙逼成了钟摆——往大城市去,权利落不了地;往小城市退,理想放不下来。社保的每一次转移都掉一块肉,每一次往返都重置一次积累。<b style="color:var(--zhu);">他们不是在迁移,是在两种「待不住」之间被来回弹射。</b>
+      <span class="xm-xref">↗ P6 · 政治形态学</span>
+    </div>
+  </section>
+
+  <!-- ════ P6 政治形态学 ════ -->
+  <section class="xm-panel" id="xm-p-p6">
+    <div class="xm-sec-head"><h2>P6 · 政治形态学</h2><span class="xm-sec-tag">悬置者的沉默与归属赤字</span></div>
+    <p class="xm-lede">城市新移民几乎没有集体行动——分散、流动、被「奋斗者/新市民」叙事吸收、且户籍诉求高度个体化(各自攒积分)。但这个人群的<b style="color:var(--zhu);">「归属赤字」</b>是城市社会的隐性裂缝:一个不确定能否留下的群体,不会对城市产生完整的认同与长期投入。</p>
+
+    <h3 class="xm-h3">无组织的结构:个体化设计消解了集体诉求</h3>
+    <div class="xm-nest">
+      <div class="xm-nest-row"><span class="xm-nest-k">诉求个体化</span><span class="xm-nest-v">诉求高度个体化(每个人攒自己的积分、办自己的居住证)——<b style="color:var(--zhu);">没有共同诉求语言,户籍是个人闯关而非集体议题</b>。</span></div>
+      <div class="xm-nest-row"><span class="xm-nest-k">叙事吸收</span><span class="xm-nest-v">「新市民」「奋斗者」「城市建设者」的正面叙事,把户籍诉求转化为个人奋斗叙事——<b>「落不了户是你还不够努力」</b>(↔ P3 玻璃天花板的内化)。</span></div>
+      <div class="xm-nest-row"><span class="xm-nest-k">归属赤字</span><span class="xm-nest-v">常住而无籍 → 不确定能否留下 → 不安心生育、消费、长期投入——<b style="color:var(--zhu);">归属感的缺失是这个人群对城市的隐性疏离</b>,也是内需与生育的隐性抑制(↗ GY-03 / GY-19)。</span></div>
+    </div>
+
+    <h3 class="xm-h3">政策的善意与局限 · 全光谱的位置</h3>
+    <div class="xm-rows">
+      <div class="xm-row"><span class="xm-row-k">政策的善意</span><span class="xm-row-v">新型城镇化五年行动计划(2024-07)推动农业转移人口市民化、目标户籍城镇化率近 70%——<b>方向正确</b>。</span></div>
+      <div class="xm-row"><span class="xm-row-k">政策的局限</span><span class="xm-row-v"><b style="color:var(--zhu);">但超大城市的落户仍是硬约束</b>——政策能改善边际,动不了核心城市的玻璃天花板。</span></div>
+      <div class="xm-row peak" style="border-left:3px solid var(--zhu);"><span class="xm-row-k">最硬的制度轴</span><span class="xm-row-v">户籍墙是 GY-06(农民工)、GY-08(中产户籍变体)、GY-20(县域反向流动目的地)、GY-21(白领新移民)<b style="color:var(--zhu);">共同的制度断层</b>——本片是「户籍」这条中国最硬制度轴的专属承载片。</span></div>
+    </div>
+
+    <div class="xm-art">
+      <h5><b>不开发票的长期利息</b>几亿建设者始终是访客,城市得不到完整的忠诚</h5>
+      <p>这个人群的沉默来自户籍的个体化设计——它把一个集体困境拆成了几亿场个人闯关,于是没有人为「户籍墙」发声,只有每个人为自己攒分。但归属赤字会以另一种方式结算:<b style="color:var(--zhu);">当一座城市最有活力的几亿建设者始终是「访客」,城市就永远得不到他们完整的忠诚、消费与生育——这是户籍墙向城市收取的、不开发票的长期利息</b>(↗ GY-03 不婚不育 / ↗ GY-19 退出常态化)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="xm-xref">↗ GY-03 · 归属赤字与不婚不育</span>
+      <span class="xm-xref">↗ GY-19 · 退出常态化</span>
+      <span class="xm-xref">↗ GY-08 · 户籍墙的最硬制度轴</span>
+    </div>
+
+    <div class="xm-verdict">
+      <span class="xm-verdict-tag">P6 判词</span>
+      这个人群的沉默来自户籍的个体化设计——它把一个集体困境拆成了几亿场个人闯关,于是没有人为「户籍墙」发声,只有每个人为自己攒分。但归属赤字会以另一种方式结算:<b style="color:var(--zhu);">当一座城市最有活力的几亿建设者始终是「访客」,城市就永远得不到他们完整的忠诚、消费与生育——这是户籍墙向城市收取的、不开发票的长期利息。</b>
+      <span class="xm-xref">↗ P7 · 形态推演(三态)</span>
+    </div>
+  </section>
+
+  <!-- ════ P7 形态推演 ════ -->
+  <section class="xm-panel" id="xm-p-p7">
+    <div class="xm-sec-head"><h2>P7 · 形态推演</h2><span class="xm-sec-tag">三态 · α 渐进松绑 / β 内需倒逼 / γ 城市群重构</span></div>
+    <p class="xm-lede">城市新移民的演化路径,按概率拆成三态。三态共享同一个起点(<b>贡献—权利错位、积分玻璃天花板、随迁子女教育难民、社保损耗钟摆</b>),<b style="color:var(--zhu);">分岔点在于:超大城市落户会否实质松动、市民化成本分担机制能否破题、户籍墙会否在城市群内部一体化。</b></p>
+
+    <div class="xm-form">
+      <h5>形态 α · 基准 · 渐进松绑(概率最高)</h5>
+      <p>中小城市落户持续放开、超大城市积分制边际放宽、随迁子女政策小步改善;<b>户籍城镇化率向 70% 缓慢爬升,但超大城市玻璃天花板长期存在</b>。三态中概率最高(↗ W-01/W-02)。</p>
+    </div>
+    <div class="xm-form" style="border-color:var(--jin-dim); background:rgba(110,93,56,.10);">
+      <h5 style="color:var(--jin);">形态 β · 压力 · 内需倒逼</h5>
+      <p>经济下行使「释放内需」压力剧增,户籍改革被作为内需工具加速——超大城市落户实质性松动、市民化成本由中央/地方分担机制破题;<b style="color:var(--jin);">标志:核心城市积分门槛显著下调或社保年限挂钩落户落地</b>(↗ W-02/W-05/W-07)。</p>
+    </div>
+    <div class="xm-form" style="border-color:var(--zhu-dim); background:rgba(181,72,58,.08);">
+      <h5 style="color:var(--zhu);">形态 γ · 长期 · 城市群重构</h5>
+      <p>人口向城市群/都市圈集聚,户籍在城市群内部一体化(社保、教育跨城互认)——<b style="color:var(--zhu);">户籍墙从「城市墙」退为「城市群墙」</b>,部分缓解但不消除;与县域分化(↗ GY-20 形态γ)同步重塑人口版图(↗ W-08)。</p>
+    </div>
+
+    <div style="margin-top:14px;">
+      <span class="xm-xref">↗ GY-20 · 形态γ 县域分化同步</span>
+      <span class="xm-xref">↗ W-02/W-05/W-07 · 三态逼近速度仪表</span>
+      <span class="xm-xref">↗ W-08 · 城市群一体化进度</span>
+    </div>
+
+    <div class="xm-verdict">
+      <span class="xm-verdict-tag">P7 判词</span>
+      三态的分岔不在贡献—权利错位是否存在(它由户籍制度结构性确立),<b>在超大城市落户会否实质松动、成本分担会否破题、户籍墙会否退为城市群墙</b>。形态 α 是玻璃天花板长期存在的渐进松绑,形态 β 是内需倒逼下的实质性破题,形态 γ 是户籍墙从城市墙退为城市群墙。<b style="color:var(--zhu);">这个人群能否落地,最大的变量可能不是自己攒够多少分,而是经济需不需要它的内需、城市群愿不愿意互认它的权利。</b>
+      <span class="xm-xref">↗ watch · 总判词与耦合修正</span>
+    </div>
+  </section>
+
+  <!-- ════ 合成 · 观测哨 ════ -->
+  <section class="xm-panel" id="xm-p-watch">
+    <div class="xm-sec-head"><h2>P8 · 合成与观测哨</h2><span class="xm-sec-tag">无持久化的访客会话 · 第十九子集 · 年度对账</span></div>
+
+    <div class="xm-verdict" style="margin-top:0; margin-bottom:34px;">
+      <span class="xm-verdict-tag">总判词 · 无持久化的访客会话</span>
+      城市新移民是 China OS 在超大城市上运行的<b>访客会话</b>——全额注入税收、劳动、消费,却没有对系统注册表(户籍)的写权限,任何贡献都无法持久化,子女继承访客标志。<br><br>
+      <b style="color:var(--zhu);">这个人群是「户籍」这条中国最硬制度断层的专属承载片:它用约 2.5 亿人的「贡献—权利错位」演示了什么是中国版的『无代表的纳税』。户籍墙的精算曾经完美——城市拿走贡献、把成本退回原籍;但账单正在到期:被压制的不只是 2.5 亿人的权利,还有数万亿的内需、一代随迁子女的教育公平、和几亿建设者对城市的完整忠诚。当一座城市最有活力的人始终是访客,它收获的是 GDP,失去的是归属——而归属,恰恰是消费、生育与长期投入的前提。户籍墙向城市收取的长期利息,正在以内需萎缩的形式连本带利地讨回。</b><br><br>
+      与全系列合观:GY-06 在乡—城端切了农民工的劳动迁移与半市民化,GY-21 在城—城端补全了白领新移民的「户籍墙作为制度轴」总论——两片是户籍墙的乡—城与城—城两端;GY-20 在县域承接了「逃离北上广」的钟摆终点,GY-21 在城市承接了它的起点。户籍墙不开发票,因此不预警;它压制的是内需、教育公平与归属,因此一旦兑付,连本带利。
+    </div>
+
+    <h3 class="xm-h3">对 GY 系列的五条修正</h3>
+    <div class="xm-fix">
+      <h5><b>修正 · GY-06</b>户籍机器须区分两个承载人群</h5>
+      <p>户籍机器(M2)的分析应区分两个承载人群——农民工(农村户籍、劳动迁移)与城市新移民(城镇户籍、白领夹心);本片承接白领端与「户籍墙作为制度轴」的总论,<b style="color:var(--zhu);">建议 GY-06↔GY-21 双向链接为户籍墙的「乡—城」与「城—城」两端</b>。</p>
+    </div>
+    <div class="xm-fix">
+      <h5><b>修正 · GY-08</b>中产的户籍维度由本片承接</h5>
+      <p>中产的户籍维度(异地中产的落户焦虑)由本片承接——<b style="color:var(--zhu);">「有钱买房却落不了户」是中产户籍变体</b>;建议 Z 系列补户籍墙对中产资产/教育决策的约束。</p>
+    </div>
+    <div class="xm-fix">
+      <h5><b>修正 · GY-20</b>出走—返乡钟摆的城市端正式接通</h5>
+      <p>城市新移民的「逃离北上广」终点是县域,「逃回」起点也是县域——<b>两片是城乡迁移钟摆的一体两面</b>:城市端是 GY-21,县域端是 GY-20。</p>
+    </div>
+    <div class="xm-fix">
+      <h5><b>修正 · GY-03/GY-19</b>归属赤字是不婚不育的隐性推力</h5>
+      <p>归属赤字与户籍不确定性是青年不婚不育(↗ GY-03 CH-01 / GY-19)的隐性推力之一——<b style="color:var(--zhu);">「连户口都没有,拿什么结婚生子」</b>;建议生育意愿模型补户籍变量。</p>
+    </div>
+    <div class="xm-fix">
+      <h5><b>修正 · GY-11</b>随迁子女是编译期定价的户籍前置版</h5>
+      <p>随迁子女的教育难民困境(P4)是 GY-11 编译期定价的户籍前置版——<b>分流之前先有「能不能在本地考」的户籍筛选</b>。</p>
+    </div>
+
+    <div class="xm-watch-intro">
+      <p>这个人群的处境变动,关键看三组指针:剪刀差总仪表(城镇化率剪刀差 / 超大城市落户 / 市民化成本分担)、教育与权益(随迁子女异地中高考 / 社保跨省转移)、破题信号(逃离/逃回钟摆 / 内需与户籍 / 城市群户籍一体化)。逐项标注状态、记录证据,年度与 GY 系列同步对账。状态与备注自动保存在本机。口径敏感者标「约」,待权威年度数据回填。</p>
+      <span class="xm-storage-state" id="xm-storage-state"></span>
+    </div>
+
+    <div class="xm-watch" id="xm-watch-list">
+      <div class="xm-watch-item" data-key="w1">
+        <div><h5><b>W-01</b>城镇化率剪刀差</h5><p class="xm-watch-desc">常住 67% 与户籍城镇化率的差值收窄速度——<b>市民化真实进度</b>(与 GY-06 W-02 共享)。</p></div>
+        <div class="xm-watch-ctrl"><div class="xm-status-row"><button class="xm-status-btn" data-status="good">向好</button><button class="xm-status-btn" data-status="flat">中性</button><button class="xm-status-btn" data-status="bad">恶化</button></div><textarea class="xm-watch-note" placeholder="证据与备注…"></textarea><div class="xm-watch-stamp"></div></div>
+      </div>
+      <div class="xm-watch-item" data-key="w2">
+        <div><h5><b>W-02</b>超大城市落户</h5><p class="xm-watch-desc">核心城市积分门槛、社保年限挂钩落户的实质松动——<b>玻璃天花板的开度。</b></p></div>
+        <div class="xm-watch-ctrl"><div class="xm-status-row"><button class="xm-status-btn" data-status="good">向好</button><button class="xm-status-btn" data-status="flat">中性</button><button class="xm-status-btn" data-status="bad">恶化</button></div><textarea class="xm-watch-note" placeholder="证据与备注…"></textarea><div class="xm-watch-stamp"></div></div>
+      </div>
+      <div class="xm-watch-item" data-key="w3">
+        <div><h5><b>W-03</b>随迁子女异地中高考</h5><p class="xm-watch-desc">政策是否触碰录取线结构(而非只开报名)——<b>P4 切口的松动。</b></p></div>
+        <div class="xm-watch-ctrl"><div class="xm-status-row"><button class="xm-status-btn" data-status="good">向好</button><button class="xm-status-btn" data-status="flat">中性</button><button class="xm-status-btn" data-status="bad">恶化</button></div><textarea class="xm-watch-note" placeholder="证据与备注…"></textarea><div class="xm-watch-stamp"></div></div>
+      </div>
+      <div class="xm-watch-item" data-key="w4">
+        <div><h5><b>W-04</b>社保跨省转移</h5><p class="xm-watch-desc">统筹账户可携带性、跨地接续摩擦的改善——<b>权益损耗的修复。</b></p></div>
+        <div class="xm-watch-ctrl"><div class="xm-status-row"><button class="xm-status-btn" data-status="good">向好</button><button class="xm-status-btn" data-status="flat">中性</button><button class="xm-status-btn" data-status="bad">恶化</button></div><textarea class="xm-watch-note" placeholder="证据与备注…"></textarea><div class="xm-watch-stamp"></div></div>
+      </div>
+      <div class="xm-watch-item" data-key="w5">
+        <div><h5><b>W-05</b>市民化成本分担</h5><p class="xm-watch-desc">中央—地方市民化成本分担机制的落地——<b>形态β 的破题信号。</b></p></div>
+        <div class="xm-watch-ctrl"><div class="xm-status-row"><button class="xm-status-btn" data-status="good">向好</button><button class="xm-status-btn" data-status="flat">中性</button><button class="xm-status-btn" data-status="bad">恶化</button></div><textarea class="xm-watch-note" placeholder="证据与备注…"></textarea><div class="xm-watch-stamp"></div></div>
+      </div>
+      <div class="xm-watch-item" data-key="w6">
+        <div><h5><b>W-06</b>逃离/逃回钟摆</h5><p class="xm-watch-desc">超大城市人口净流入/出、二线抢人战果——<b>钟摆方向的读数。</b></p></div>
+        <div class="xm-watch-ctrl"><div class="xm-status-row"><button class="xm-status-btn" data-status="good">向好</button><button class="xm-status-btn" data-status="flat">中性</button><button class="xm-status-btn" data-status="bad">恶化</button></div><textarea class="xm-watch-note" placeholder="证据与备注…"></textarea><div class="xm-watch-stamp"></div></div>
+      </div>
+      <div class="xm-watch-item" data-key="w7">
+        <div><h5><b>W-07</b>内需与户籍</h5><p class="xm-watch-desc">户籍城镇化提升对应的消费释放(迟福林式测算的兑现)——<b>P2 内需反噬的验证。</b></p></div>
+        <div class="xm-watch-ctrl"><div class="xm-status-row"><button class="xm-status-btn" data-status="good">向好</button><button class="xm-status-btn" data-status="flat">中性</button><button class="xm-status-btn" data-status="bad">恶化</button></div><textarea class="xm-watch-note" placeholder="证据与备注…"></textarea><div class="xm-watch-stamp"></div></div>
+      </div>
+      <div class="xm-watch-item" data-key="w8">
+        <div><h5><b>W-08</b>城市群户籍一体化</h5><p class="xm-watch-desc">都市圈内社保/教育跨城互认进展——<b>形态γ 的进度。</b></p></div>
+        <div class="xm-watch-ctrl"><div class="xm-status-row"><button class="xm-status-btn" data-status="good">向好</button><button class="xm-status-btn" data-status="flat">中性</button><button class="xm-status-btn" data-status="bad">恶化</button></div><textarea class="xm-watch-note" placeholder="证据与备注…"></textarea><div class="xm-watch-stamp"></div></div>
+      </div>
+    </div>
+
+    <h3 class="xm-h3">章节规划 · 登记表</h3>
+    <div class="xm-plan">
+      <div class="xm-plan-row"><span class="xm-plan-k">CH-01</span><span class="xm-plan-v"><b>户籍墙制度史</b> — 积分落户各城对比、放开错位的政策考古、市民化成本测算。</span><span class="xm-plan-tag">待建</span></div>
+      <div class="xm-plan-row"><span class="xm-plan-k">CH-02</span><span class="xm-plan-v"><b>教育难民田野</b> — 随迁子女入学—中高考返乡的轨迹、留守 vs 随迁的家庭决策。</span><span class="xm-plan-tag">待建</span></div>
+      <div class="xm-plan-row"><span class="xm-plan-k">CH-03</span><span class="xm-plan-v"><b>钟摆人口学</b> — 逃离/逃回北上广的迁移数据、与县域承接的对账,接 GY-20。</span><span class="xm-plan-tag">待建</span></div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="xm-foot">
+    <p>方法论:城市新移民以「无持久化的访客会话(Guest Session without Persistence)」模型刻画——这个人群在「北上广」这台主机上以访客身份登录,全额贡献算力(劳动)、税、消费却没有对系统注册表(户籍)的写权限,你可以使用一切服务(在此工作生活)但任何东西都无法持久化(落户、子女学籍、社保归属),一旦登出(离开城市)全部清空且子女继承访客标志,贡献是全额的权限是受限的,在这里创造价值却不在这里享有权利。核心命题:几亿在大城市工作多年却拿不到本地户籍的人——他们交税、消费、贡献 GDP,却被户籍墙挡在子女教育、购房、社保转移之外,是「事实市民、法律外人」;本片是「户籍」这条中国最硬制度断层的专属承载片,用约 2.5 亿人的「贡献—权利错位」演示了什么是中国版的「无代表的纳税」,户籍墙的精算曾经完美城市拿走贡献把成本退回原籍但账单正在到期,被压制的不只是 2.5 亿人的权利还有数万亿内需、一代随迁子女教育公平、和几亿建设者对城市的完整忠诚,当一座城市最有活力的人始终是访客它收获的是 GDP 失去的是归属而归属恰恰是消费生育与长期投入的前提。P1 规模与定位:常住城镇化率 67%(城镇常住 9.435 亿 2024 末)与户籍城镇化率不足 50% 之间约 2.5 亿差值就是这个人群、城镇化率统计人在哪里户籍统计权利在哪里两者差出 2.5 亿不是统计误差是被制度悬置人群的精确规模、构成双层(底层农民工农村户籍劳动密集 ↗GY-06、上层城市新移民白领夹心外地城镇户籍专业技能在大城市无本地户籍本片重点是后者)、与农民工区分(GY-06 切农村→城市劳动迁移与半市民化本片切户籍墙这条制度断层本身它同时困住农民工和白领新移民是横跨阶层的硬约束)、夹心层(收入上够不到买房落户门槛又高于政策保障下限两头不靠是城市里最大的悬置市民群体)。P2 贡献与权利错位中国版无代表的纳税:你在哪里创造价值和你在哪里享有权利被户籍强行分离,错位结构(劳动税收消费贡献给流入城市子女教育保障房医保统筹养老领取却系于户籍所在地价值在 A 地创造权利在 B 地或无兑现)、无代表的纳税(对城市财政有贡献对城市公共决策无影响对城市公共服务无完整权利贡献者不是权利人是户籍制度最根本张力)、系统的算计 ↗GY-06 M2(城市享受劳动力红利规避市民化成本每个不落户常住者城市每年节省数万元公共服务支出 2.5 亿人×多年是城市化核心隐性补贴)、内需反噬 ↗GY-08 迟福林测算(户籍城镇化率每提升释放数万亿消费半市民化压制内需一个不确定能否留下的人不会安心消费户籍墙是内需天花板制度成因之一);户籍制度精算完美让城市拿走贡献把成本退回原籍但有长期账单一个被告知你不是这里的人不会把这里当家来建设消费生育城市省下的市民化成本正在以内需萎缩和归属感缺失形式连本带利讨回。P3 积分落户玻璃天花板放开的地方没人去:户籍改革放开是结构性错位 300 万以下城市放开落户但人口涌向恰是 500 万以上超大城市积分落户用学历社保年限房产年龄设门槛把超大城市户籍变成精确筛选玻璃天花板,放开错位 ↗GY-06 M2(中小城市全面放开放宽但放开的地方没人去想去的地方超大城市不放开改革口子开在人口不去的地方)、积分筛选逻辑(学历社保缴纳年限房产年龄专业积分落户不是降低门槛是把门槛改造成按人力资本分层的筛子抢人才不要人)、人才与人口二分(城市争抢高学历人才落户绿色通道同时排斥普通劳动力同一座城市对你是抢还是拒取决于学历和纳税额)、玻璃天花板体感(在超大城市工作十年社保连续缴纳却因学历或房产差一点而落户无望差一点是积分制常态设计门槛永远略高于多数人可达范围);积分落户把户籍从一道墙改造成一面玻璃天花板你看得见城市完整权利够不着它不说不它说再攒几分而分数线设计恰好保证多数人永远在攒的路上这是最体面的排斥让你以为是自己还不够努力。P4 随迁子女教育难民:随迁子女教育是户籍墙最痛切口可以在城市读完义务教育但中高考多数必须返回户籍地使数千万随迁子女面临教育难民困境,入学门槛(随迁子女在流入地入学需满足社保居住证积分等条件公办学位紧张部分被挤入民办或返乡入学就是第一道筛选)、中高考壁垒 ↗GY-06 M4(异地高考政策松动有限多数随迁子女中高考须返回户籍地课标不衔接+家庭分离+录取线差异三重惩罚在升学最关键节点强制换页)、留守vs随迁两难(把孩子留在老家留守儿童心理与教育代价或带在身边随迁后中高考返乡户籍墙强加给家庭无解选择题)、难民规模(随迁子女与留守儿童合计数千万是户籍墙在下一代身上直接成本也是阶层固化制度通道 ↗GY-11 普职分流户籍前置版);户籍墙最残忍不在挡住大人在把账单转嫁给孩子一个在城市长大说着城市口音却必须回从未生活过的老家参加高考的孩子是户籍制度最沉默受害者被一道他出生前就存在的墙决定人生最关键一场考试难度。P5 社保转移损耗与逃离逃回钟摆:社保跨省转移损耗统筹账户难带走使这个人群流动伴随权益折损叠加大城市高成本与户籍无望催生逃离北上广与逃回北上广钟摆,社保损耗(养老保险跨省转移个人账户可带走统筹账户部分留存每次跨城流动伴随社保权益折损医保公积金跨地接续同样摩擦巨大)、逃离北上广(高房价户籍无望 35 岁焦虑 ↗GY-08 Z4 离开超大城市回到二线或县域 ↗GY-20 返乡端)、逃回北上广(二线县域机会稀薄关系社会 ↗GY-20 X2 收入落差又回到超大城市钟摆往复两端都不是归宿)、与县域青年钟摆接口 ↗GY-20 X6(城市新移民逃离终点是县域青年留下起点同一个钟摆城市端是 GY-21 县域端是 GY-20 两片是城乡迁移一体两面);这个人群人生被一道户籍墙逼成钟摆往大城市去权利落不了地往小城市退理想放不下来社保每次转移都掉一块肉每次往返都重置一次积累他们不是在迁移是在两种待不住之间被来回弹射。P6 政治形态学悬置者的沉默与归属赤字:城市新移民几乎没有集体行动分散流动被奋斗者新市民叙事吸收且户籍诉求高度个体化各自攒积分但归属赤字是城市社会隐性裂缝,无组织结构(诉求高度个体化每个人攒自己积分办自己居住证没有共同诉求语言户籍是个人闯关而非集体议题)、叙事吸收(新市民奋斗者城市建设者正面叙事把户籍诉求转化为个人奋斗叙事落不了户是你还不够努力↔P3 玻璃天花板内化)、归属赤字(常住而无籍不确定能否留下不安心生育消费长期投入归属感缺失是对城市隐性疏离也是内需与生育隐性抑制 ↗GY-03/GY-19)、政策善意与局限(新型城镇化五年行动计划 2024-07 推动农业转移人口市民化目标户籍城镇化率近 70% 方向正确但超大城市落户仍是硬约束政策能改善边际动不了核心城市玻璃天花板)、与全光谱位置(户籍墙是 GY-06 农民工 GY-08 中产户籍变体 GY-20 县域反向流动目的地 GY-21 白领新移民共同制度断层本片是户籍这条中国最硬制度轴专属承载片);这个人群沉默来自户籍个体化设计它把集体困境拆成几亿场个人闯关于是没有人为户籍墙发声只有每个人为自己攒分但归属赤字会以另一种方式结算当一座城市最有活力的几亿建设者始终是访客城市就永远得不到他们完整的忠诚消费与生育这是户籍墙向城市收取的不开发票的长期利息。P7 形态推演:α 渐进松绑(中小城市落户持续放开超大城市积分制边际放宽随迁子女政策小步改善户籍城镇化率向 70% 缓慢爬升但超大城市玻璃天花板长期存在概率最高)/β 内需倒逼(经济下行使释放内需压力剧增户籍改革被作为内需工具加速超大城市落户实质性松动市民化成本由中央地方分担机制破题标志核心城市积分门槛显著下调或社保年限挂钩落户落地)/γ 城市群重构(人口向城市群都市圈集聚户籍在城市群内部一体化社保教育跨城互认户籍墙从城市墙退为城市群墙部分缓解但不消除与县域分化 ↗GY-20 形态γ 同步重塑人口版图)。数据锚定(2024/2025+训练知识基线,待权威年度数据回填):2024 末常住城镇化率 67%(城镇常住 9.435 亿)户籍城镇化率<50% 差值约 2.5 亿半市民化、迟福林测算户籍城镇化率达 65% 可释放数万亿消费需求、深入实施以人为本的新型城镇化战略五年行动计划 2024-07 目标户籍城镇化率近 70%、积分落户按学历社保年限房产年龄筛选随迁子女异地中高考受限。注:城镇化口径与半市民化边界宽窄不一、最新数据以观测哨逐年回填、规模为常住人口量级估算不等同于本人群个体。作为人群画像分层第十九子集,与 GY-06 农民工(户籍机器 M2 区分两个承载人群农民工农村户籍劳动迁移与城市新移民城镇户籍白领夹心本片承接白领端与户籍墙作为制度轴总论双向链接为乡—城与城—城两端)、GY-08 中产(户籍维度异地中产落户焦虑由本片承接有钱买房却落不了户是中产户籍变体)、GY-20 县域青年(出走—返乡钟摆城市端正式接通逃离北上广终点是县域逃回起点也是县域两片是城乡迁移钟摆一体两面城市端 GY-21 县域端 GY-20)、GY-03/GY-19(归属赤字与户籍不确定性是青年不婚不育隐性推力之一连户口都没有拿什么结婚生子建议生育意愿模型补户籍变量)、GY-11 职校生(随迁子女教育难民困境是编译期定价户籍前置版分流之前先有能不能在本地考的户籍筛选)五处耦合。来源:用户规划简报、国家统计局 2024 城镇化数据(2025-01)、深入实施以人为本的新型城镇化战略五年行动计划、21 经济网迟福林访谈、训练知识基线。</p>
+    <div class="xm-foot-meta">
+      ChinaOS · GY-21 · v1.0.0<br>
+      生成 2026-06 丙午年<br>
+      人群画像 子集XIX · 关联模块 → GY-06/08/11/20/03<br>
+      注记:城镇化口径分散,数据以观测哨逐年回填
+    </div>
+  </footer>
+
+</div>
