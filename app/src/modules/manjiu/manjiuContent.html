@@ -1,0 +1,438 @@
+<div class="mj-shell">
+
+  <!-- 题头 -->
+  <header class="mj-mast">
+    <div>
+      <div class="mj-mast-meta">ChinaOS · MODULE <b>GY-34</b> · 人群画像分层 · 第三十二子集</div>
+      <h1 class="mj-title">慢就业青年 · 全职儿女 · NEET<span class="mj-title-sub">主动挂起的进程 · 从调度队列里退出</span></h1>
+    </div>
+    <div class="mj-mast-seal">暂不上线</div>
+  </header>
+  <p class="mj-mast-note">注记(敏感度处理):本片以<b>青年就业与代际关系的社会结构</b>视角分析,不道德化「躺平/啃老」、不污名化个体;区分主动选择(间隔年、探索)与被动困境(找不到工作),聚焦结构成因与代际支持机制。</p>
+
+  <!-- 主动挂起进程签名图 -->
+  <div class="mj-found" aria-label="主动挂起进程示意图:劳动调度器的运行队列里一个进程被移出标 SUSPENDED SLEEP 它没有被 kill 仍从家庭供电啃老或全职儿女补贴拉电也没有在 run 不在就业教育而是停在 sleep 三种状态分支慢就业暂缓调度观望全职儿女家庭 OS 内重注册为 daemon NEET 长期挂起底注 2024 应届慢就业率 19.1 躺平的建制化退出轴主动下线">
+    <svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg" role="img">
+      <text x="500" y="20" font-size="11" fill="#8f897d" text-anchor="middle" font-family="mono" letter-spacing="2">ChinaOS · SUSPENDED PROCESS · 主动挂起的进程</text>
+      <text x="500" y="44" font-size="9.5" fill="#7d6a3a" text-anchor="middle" font-family="sans-serif">— 从劳动调度器的运行队列里移出,没被 kill,没在 run,停在 sleep 状态 —</text>
+
+      <!-- 运行队列 run queue -->
+      <rect x="50" y="78" width="300" height="120" rx="8" fill="#1c241f" stroke="#41594e" stroke-width="1.6"/>
+      <text x="200" y="100" font-size="11" fill="#5e8c7a" text-anchor="middle" font-family="serif" letter-spacing="1">劳动调度器 · RUN QUEUE</text>
+      <rect x="70" y="116" width="120" height="28" rx="4" fill="#0f1410" stroke="#5e8c7a" stroke-width="1.2"/>
+      <text x="130" y="134" font-size="9" fill="#7d9488" text-anchor="middle" font-family="mono">在职 · RUNNING</text>
+      <rect x="210" y="116" width="120" height="28" rx="4" fill="#0f1410" stroke="#5e8c7a" stroke-width="1.2"/>
+      <text x="270" y="134" font-size="9" fill="#7d9488" text-anchor="middle" font-family="mono">在校 · RUNNING</text>
+      <rect x="70" y="154" width="120" height="28" rx="4" fill="#0f1410" stroke="#5e8c7a" stroke-width="1.2"/>
+      <text x="130" y="172" font-size="9" fill="#7d9488" text-anchor="middle" font-family="mono">培训 · RUNNING</text>
+      <rect x="210" y="154" width="120" height="28" rx="4" fill="#2a1818" stroke="#b5483a" stroke-width="1.4" stroke-dasharray="4 3"/>
+      <text x="270" y="172" font-size="9" fill="#c2786e" text-anchor="middle" font-family="mono">移出 →</text>
+
+      <!-- 被移出 -->
+      <line x1="350" y1="168" x2="430" y2="168" stroke="#b5483a" stroke-width="1.6"/>
+      <polygon points="430,168 418,162 418,174" fill="#b5483a"/>
+      <text x="500" y="92" font-size="10" fill="#c2786e" text-anchor="middle" font-family="serif" letter-spacing="2">进程被移出 · 标 SUSPENDED / SLEEP</text>
+
+      <!-- 挂起进程 -->
+      <rect x="440" y="120" width="220" height="92" rx="10" fill="#221818" stroke="#b5483a" stroke-width="2"/>
+      <text x="550" y="150" font-size="13" fill="#c2786e" text-anchor="middle" font-family="serif" letter-spacing="1">青年进程 · PROC</text>
+      <text x="550" y="174" font-size="11" fill="#b5483a" text-anchor="middle" font-family="mono" letter-spacing="2">SUSPENDED / SLEEP</text>
+      <text x="550" y="196" font-size="9" fill="#8f897d" text-anchor="middle" font-family="sans-serif">没被 kill · 没在 run · 停在 sleep</text>
+
+      <!-- 家庭供电 -->
+      <rect x="720" y="118" width="220" height="96" rx="8" fill="#2a2418" stroke="#b39657" stroke-width="1.6"/>
+      <text x="830" y="146" font-size="11" fill="#c9b87a" text-anchor="middle" font-family="serif" letter-spacing="1">家庭供电 · POWER</text>
+      <text x="830" y="170" font-size="9.5" fill="#a89968" text-anchor="middle" font-family="sans-serif">啃老 / 全职儿女补贴</text>
+      <text x="830" y="194" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="mono">代际财富反向转移</text>
+      <line x1="720" y1="166" x2="664" y2="166" stroke="#b39657" stroke-width="1.6" stroke-dasharray="3 3"/>
+      <polygon points="664,166 676,160 676,172" fill="#b39657"/>
+      <text x="692" y="156" font-size="8" fill="#b39657" text-anchor="middle" font-family="mono">拉电 ⚡</text>
+
+      <!-- 三状态分支 -->
+      <text x="500" y="262" font-size="11" fill="#b5483a" text-anchor="middle" font-family="serif" letter-spacing="2">挂起的三种状态分支</text>
+      <line x1="550" y1="212" x2="550" y2="240" stroke="#5d4a4a" stroke-width="1.2"/>
+      <line x1="200" y1="282" x2="800" y2="282" stroke="#5d4a4a" stroke-width="1.2"/>
+      <line x1="200" y1="282" x2="200" y2="300" stroke="#5d4a4a" stroke-width="1.2"/>
+      <line x1="500" y1="282" x2="500" y2="300" stroke="#5d4a4a" stroke-width="1.2"/>
+      <line x1="800" y1="282" x2="800" y2="300" stroke="#5d4a4a" stroke-width="1.2"/>
+      <line x1="550" y1="282" x2="550" y2="240" stroke="#5d4a4a" stroke-width="1.2"/>
+
+      <rect x="80" y="300" width="240" height="96" rx="8" fill="#1c241f" stroke="#41594e" stroke-width="1.4"/>
+      <text x="200" y="328" font-size="12" fill="#5e8c7a" text-anchor="middle" font-family="serif" letter-spacing="1">慢就业</text>
+      <text x="200" y="352" font-size="9.5" fill="#7d9488" text-anchor="middle" font-family="sans-serif">暂缓调度 · 观望</text>
+      <text x="200" y="376" font-size="8.5" fill="#5e8c7a" text-anchor="middle" font-family="mono">SLEEP(timeout)</text>
+
+      <rect x="380" y="300" width="240" height="96" rx="8" fill="#2a2418" stroke="#b39657" stroke-width="1.4"/>
+      <text x="500" y="328" font-size="12" fill="#c9b87a" text-anchor="middle" font-family="serif" letter-spacing="1">全职儿女</text>
+      <text x="500" y="352" font-size="9.5" fill="#a89968" text-anchor="middle" font-family="sans-serif">家庭 OS 内重注册为 daemon</text>
+      <text x="500" y="376" font-size="8.5" fill="#b39657" text-anchor="middle" font-family="mono">re-register → daemon</text>
+
+      <rect x="680" y="300" width="240" height="96" rx="8" fill="#2a1818" stroke="#b5483a" stroke-width="1.4"/>
+      <text x="800" y="328" font-size="12" fill="#c2786e" text-anchor="middle" font-family="serif" letter-spacing="1">NEET</text>
+      <text x="800" y="352" font-size="9.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">长期挂起</text>
+      <text x="800" y="376" font-size="8.5" fill="#b5483a" text-anchor="middle" font-family="mono">SLEEP(uninterruptible)</text>
+
+      <text x="500" y="430" font-size="9.5" fill="#7d9488" text-anchor="middle" font-family="sans-serif">三者程度递增,共同点是从劳动市场「下线」、依赖代际支持生存——连续谱而非离散类别</text>
+
+      <line x1="100" y1="468" x2="900" y2="468" stroke="#3d4c5a" stroke-width="1" stroke-dasharray="3 5"/>
+      <text x="500" y="494" font-size="10.5" fill="#b5483a" text-anchor="middle" font-family="serif" letter-spacing="2">— 2024 应届慢就业率 19.1% · 躺平的建制化 · 退出轴 · 主动下线 —</text>
+      <text x="500" y="518" font-size="9" fill="#7d6a3a" text-anchor="middle" font-family="mono" letter-spacing="1">不是懒,是高风险高压社会里的一种退出策略:回报不足以匹配投入时,把自己挂起</text>
+      <text x="500" y="548" font-size="9" fill="#7d9488" text-anchor="middle" font-family="sans-serif">是 GY-03 躺平话语里「完全退出劳动」那一端的行为建制化</text>
+    </svg>
+    <div class="mj-found-caption">模块隐喻是<b>主动挂起的进程(Suspended Process)</b>:慢就业/全职儿女/NEET 是 China OS 里被挂起、从劳动调度器的运行队列里移出的进程——它没有被 kill(仍在消耗家庭供电:啃老或领「全职儿女工资」),也没有在 run(不在就业/教育),而是停在 sleep 状态。<b>其中「全职儿女」是把自己在家庭 OS 内重新注册为守护进程(家庭内部劳动市场)。</b>签名图:劳动调度器的 run queue 里,一个进程被移出、标 <b>SUSPENDED / SLEEP</b>,仍从「家庭供电(啃老 / 全职儿女补贴)」拉电;三种状态分支「慢就业(暂缓调度·观望)/ 全职儿女(家庭 OS 内重注册为 daemon)/ NEET(长期挂起)」;底注「2024 应届慢就业率 19.1% · 躺平的建制化 · 退出轴 · 主动下线」。<b>这不是懒,是高风险高压社会里的一种退出策略——当劳动市场的回报不足以匹配投入,年轻人选择把自己从调度队列里挂起;它是 GY-03 躺平话语里「完全退出劳动」那一端的行为建制化。</b></div>
+  </div>
+
+  <!-- 页签 -->
+  <nav class="mj-nav" role="tablist">
+    <button role="tab" data-panel="mj-p-m1" class="is-active">退出光谱</button>
+    <button role="tab" data-panel="mj-p-m2">投入产出倒挂</button>
+    <button role="tab" data-panel="mj-p-m3">全职儿女</button>
+    <button role="tab" data-panel="mj-p-m4">代际反向转移</button>
+    <button role="tab" data-panel="mj-p-m5">政治形态学</button>
+    <button role="tab" data-panel="mj-p-m6">形态推演</button>
+    <button role="tab" data-panel="mj-p-watch">合成 · 观测哨</button>
+  </nav>
+
+  <!-- ════ M1 退出光谱 ════ -->
+  <section class="mj-panel is-active" id="mj-p-m1">
+    <div class="mj-sec-head"><h2>M1 · 规模与谱系:从慢就业到 NEET 的退出光谱</h2><span class="mj-sec-tag">下线程度递增 · 连续谱而非标签</span></div>
+    <p class="mj-lede">这是一条退出光谱——<b style="color:var(--zhu);">慢就业(暂缓就业、观望,2024 应届 19.1%)→ 全职儿女(在家承担家务换取父母供养)→ NEET(长期不就业不上学不培训,依赖父母)</b>。三者程度递增,共同点是从劳动市场「下线」、依赖代际支持生存。「过剩」式的标签是误读:它更像一群年轻人在高风险高压的劳动市场前,集体按下了暂停键——不是不想跑,是算过这趟跑不划算。</p>
+    <p class="mj-disclaimer top">注记(敏感度处理):本片以青年就业与代际关系的社会结构框架处理,不道德化「躺平/啃老」、不污名化个体;区分主动选择(间隔年、考研考公二战、探索)与被动困境(找不到合意工作);慢就业/NEET 精确规模与口径因统计差异需谨慎,数据为招聘平台 2024 应届就业报告与训练知识基线,标「约」、留观测哨回填。</p>
+
+    <h3 class="mj-h3">量级锚定:近五分之一应届生暂缓就业</h3>
+    <div class="mj-data3">
+      <div class="mj-stat">
+        <span class="mj-eyebrow">2024 应届慢就业率</span>
+        <span class="mj-stat-n">19.1%</span>
+        <span class="mj-stat-u">较 2022 升 3.2pct</span>
+        <p>2024 应届毕业生慢就业率 19.1%——<b style="color:var(--zhu);">近五分之一应届生选择/被迫暂缓就业</b>;既有主动(二战、间隔年)也有被动(找不到合意工作)。</p>
+      </div>
+      <div class="mj-stat">
+        <span class="mj-eyebrow">毕业生基数</span>
+        <span class="mj-stat-n">1179 万</span>
+        <span class="mj-stat-u">退出光谱的总盘</span>
+        <p>2024 毕业生 1179 万——<b>慢就业率乘以基数,是退出光谱的起点规模</b>;暂缓就业不是边缘现象,是结构性的一大块。</p>
+      </div>
+      <div class="mj-stat">
+        <span class="mj-eyebrow">全球 NEET(量级)</span>
+        <span class="mj-stat-n">约 2.6 亿</span>
+        <span class="mj-stat-u">中国尼特率上升</span>
+        <p>全球 NEET 约 2.6 亿、中国尼特率上升——<b style="color:var(--zhu);">退出光谱的最深端(精确口径待回填)</b>。</p>
+      </div>
+    </div>
+
+    <h3 class="mj-h3">退出光谱:慢就业 → 全职儿女 → NEET</h3>
+    <div class="mj-chain">
+      <div class="mj-chain-row v1"><span class="mj-chain-t">慢就业</span><span class="mj-chain-v"><b style="color:var(--zhu);">暂缓就业、观望(2024 应届 19.1%)</b> — 既有主动(考研考公二战、间隔年、探索)也有被动(找不到合意工作);退出光谱的起点。</span></div>
+      <div class="mj-chain-row v2"><span class="mj-chain-t">全职儿女</span><span class="mj-chain-v"><b>在家承担家务/照护,父母给予生活费/「工资」</b> — 家庭内部劳动市场:用家务换供养,是慢就业与啃老之间的「体面缓冲」。</span></div>
+      <div class="mj-chain-row v2"><span class="mj-chain-t">NEET</span><span class="mj-chain-v"><b style="color:var(--zhu);">不就业、不上学、不培训,长期依赖父母</b> — 退出光谱的最深端;全球约 2.6 亿,中国尼特率上升。</span></div>
+    </div>
+    <div class="mj-breaking">
+      <span class="mj-breaking-tag">! 三者是连续谱而非离散类别 · 同一个年轻人可能在三态之间滑动</span>
+      谱系而非标签——<b>同一个年轻人可能在慢就业→全职儿女→NEET 之间滑动</b>;关键变量是家庭经济承受力与代际关系质量。把这条光谱简单贴上「懒」或「啃老」是误读。
+    </div>
+
+    <h3 class="mj-h3">三态的同与异:都从劳动市场下线</h3>
+    <div class="mj-nest">
+      <div class="mj-nest-row"><span class="mj-nest-k">共同点</span><span class="mj-nest-v">三者都<b style="color:var(--zhu);">从劳动市场「下线」、依赖代际支持生存</b>——没被 kill(仍消耗家庭供电),也没在 run(不在就业/教育)。</span></div>
+      <div class="mj-nest-row"><span class="mj-nest-k">程度递增</span><span class="mj-nest-v">从暂缓(慢就业)到体面缓冲(全职儿女)到长期挂起(NEET)——<b>「下线」程度沿光谱递增</b>。</span></div>
+      <div class="mj-nest-row"><span class="mj-nest-k">滑动变量</span><span class="mj-nest-v"><b style="color:var(--zhu);">家庭经济承受力 + 代际关系质量</b>决定一个人在光谱上停在哪一段、是否向更深端滑动。</span></div>
+    </div>
+
+    <div class="mj-art">
+      <h5><b>集体按下暂停键</b>起点是近五分之一应届生的暂缓,终点是长期挂起</h5>
+      <p>从慢就业到全职儿女到 NEET,是一条「下线」程度递增的光谱。<b style="color:var(--zhu);">它的起点是近五分之一应届生的暂缓,终点是长期挂起。</b>把这条光谱简单贴上「懒」或「啃老」的标签,是误读——它更像一群年轻人在高风险高压的劳动市场前,集体按下了暂停键:不是不想跑,是算过这趟跑不划算(↗ GY-03 躺平话语 / ↗ M2 投入产出倒挂)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="mj-xref">↗ GY-03 · 躺平话语的退出端</span>
+      <span class="mj-xref">↗ M2 · 退出的理性</span>
+      <span class="mj-xref">↗ M3 · 全职儿女建制</span>
+    </div>
+
+    <div class="mj-verdict">
+      <span class="mj-verdict-tag">M1 判词</span>
+      从慢就业到全职儿女到 NEET,是一条「下线」程度递增的光谱。它的起点是近五分之一应届生的暂缓,终点是长期挂起。把这条光谱简单贴上「懒」或「啃老」的标签,是误读——<b style="color:var(--zhu);">它更像一群年轻人在高风险高压的劳动市场前,集体按下了暂停键:不是不想跑,是算过这趟跑不划算。</b>
+      <span class="mj-xref">↗ M2 · 当投入产出比倒挂</span>
+    </div>
+  </section>
+
+  <!-- ════ M2 投入产出倒挂 ════ -->
+  <section class="mj-panel" id="mj-p-m2">
+    <div class="mj-sec-head"><h2>M2 · 退出的理性:当投入产出比倒挂</h2><span class="mj-sec-tag">不是非理性懒惰 · 是算过账的退出</span></div>
+    <p class="mj-lede">本片独特机制——慢就业/NEET 不是非理性的懒惰,而是「投入产出比倒挂」下的理性退出:<b style="color:var(--zhu);">当就业的回报(薪资、发展、尊严)不足以匹配投入(学历成本、工作强度、35 岁风险),且家庭能提供缓冲时,「暂时不就业」成为成本收益计算的结果</b>(↗ GY-03 剪刀差的就业决策版)。退出是对一个回报倒挂的劳动市场,最沉默的差评。</p>
+
+    <h3 class="mj-h3">投入产出倒挂:回报配不上投入</h3>
+    <div class="mj-rows">
+      <div class="mj-row peak"><span class="mj-row-k">投入端 · 高</span><span class="mj-row-v"><b style="color:var(--zhu);">高学历高投入(↗ GY-08 教育军备 / GY-33 博士过剩)+ 工作强度(996)</b>——读书的时间成本、加班的体力成本持续抬高。</span></div>
+      <div class="mj-row"><span class="mj-row-k">产出端 · 低</span><span class="mj-row-v">撞上低质量岗位、低起薪、35 岁墙(↗ GY-08 Z4)——<b>就业的预期回报下降</b>;薪资、发展、尊严都配不上投入。</span></div>
+      <div class="mj-row peak"><span class="mj-row-k">理性内核(↗ GY-03)</span><span class="mj-row-v"><b style="color:var(--zhu);">当努力的边际回报趋零,降低预期、退出竞争是理性自保</b>——慢就业是这种理性在就业决策上的实现。</span></div>
+      <div class="mj-row"><span class="mj-row-k">家庭缓冲前提</span><span class="mj-row-v">退出的可行性取决于家庭能否供养——<b>「啃老」的前提是「老」啃得起</b>;使退出高度依赖家庭经济(↗ GY-08 中产 / 城乡差异)。</span></div>
+    </div>
+    <div class="mj-breaking">
+      <span class="mj-breaking-tag">! 当性价比被算出来不值得挤,「先不上班」就是理性选择</span>
+      慢就业的内核是一道算术题——<b>当就业能换来的薪资、发展和尊严,配不上读书的投入、加班的强度和 35 岁的风险,而家里又供得起,那么「先不上班」就是算过账的理性选择</b>。
+    </div>
+
+    <h3 class="mj-h3">主动 vs 被动:多数处在两者之间</h3>
+    <div class="mj-dual">
+      <div class="mj-dual-a"><h6>主动选择 · <b>探索/休整</b></h6><span class="mj-dual-pole">考研二战 · 间隔年</span><p>考研二战、考公备考、间隔年探索——<b style="color:var(--qing);">是主动的、有目标的暂缓</b>,把暂缓当作下一步的准备期。</p></div>
+      <div class="mj-dual-mid">↔</div>
+      <div class="mj-dual-b"><h6>被动困境 · <b>找不到工作</b></h6><span class="mj-dual-pole">先被动,后合理化</span><p><b style="color:var(--zhu);">找不到合意工作是被动;多数处在两者之间——先被动(没找到),后合理化为主动(先休整)</b>。</p></div>
+    </div>
+
+    <div class="mj-art">
+      <h5><b>对一个回报倒挂的劳动市场最沉默的差评</b>不是躺平一代变懒了,是这趟班车的性价比被算出来不值得挤</h5>
+      <p>慢就业的内核是一道算术题——<b style="color:var(--zhu);">当就业能换来的薪资、发展和尊严,配不上读书的投入、加班的强度和 35 岁的风险,而家里又供得起,那么「先不上班」就是算过账的理性选择</b>。这不是躺平一代变懒了,是这趟班车的性价比,被他们算出来不值得挤了。退出是对一个回报倒挂的劳动市场,最沉默的差评(↗ GY-03 剪刀差 / ↗ GY-08 教育军备 / ↗ GY-33 博士过剩)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="mj-xref">↗ GY-03 · 剪刀差的就业决策版</span>
+      <span class="mj-xref">↗ GY-08 · 教育军备与 35 岁墙</span>
+      <span class="mj-xref">↗ M3 · 全职儿女</span>
+    </div>
+
+    <div class="mj-verdict">
+      <span class="mj-verdict-tag">M2 判词</span>
+      慢就业的内核是一道算术题——当就业能换来的薪资、发展和尊严,配不上读书的投入、加班的强度和 35 岁的风险,而家里又供得起,那么「先不上班」就是算过账的理性选择。这不是躺平一代变懒了,是这趟班车的性价比,被他们算出来不值得挤了。<b style="color:var(--zhu);">退出是对一个回报倒挂的劳动市场,最沉默的差评。</b>
+      <span class="mj-xref">↗ M3 · 家庭内部劳动市场的兴起</span>
+    </div>
+  </section>
+
+  <!-- ════ M3 全职儿女 ════ -->
+  <section class="mj-panel" id="mj-p-m3">
+    <div class="mj-sec-head"><h2>M3 · 全职儿女:家庭内部劳动市场的兴起</h2><span class="mj-sec-tag">体面缓冲 · 自家照护的青年版 · 倒挂</span></div>
+    <p class="mj-lede">「全职儿女」是退出光谱里最具中国特色的建制——<b style="color:var(--zhu);">子女为父母提供家务、照护、陪伴,父母支付生活费/「工资」,形成一个家庭内部的微型劳动市场</b>。它是慢就业与啃老之间的「体面缓冲」,也是代际财富与照护的内部再分配(↗ GY-17 照护 / GY-09 养老)。它体面、缓冲、充满温情,却也藏着一个倒挂:本该靠子女养老的父母,正在用养老金养着成年的子女。</p>
+
+    <h3 class="mj-h3">家庭内部劳动市场:用家务换供养</h3>
+    <div class="mj-dual">
+      <div class="mj-dual-a"><h6>子女端 · <b>提供劳动</b></h6><span class="mj-dual-pole">家务/陪护/采买/行政</span><p>子女做家务、陪护、采买、家庭行政——<b style="color:var(--qing);">把外部劳动市场的失败,转化为家庭内部的雇佣</b>;体面化了「待业在家」。</p></div>
+      <div class="mj-dual-mid">↔</div>
+      <div class="mj-dual-b"><h6>父母端 · <b>支付工资</b></h6><span class="mj-dual-pole">生活费 / 「工资」</span><p><b style="color:var(--zhu);">父母付生活费/「工资」,把「啃老」重新包装成「在家工作」</b>——慢就业与啃老之间的体面缓冲。</p></div>
+    </div>
+
+    <h3 class="mj-h3">照护的代际互补与性别维度</h3>
+    <div class="mj-rows">
+      <div class="mj-row peak"><span class="mj-row-k">照护互补(↗ GY-17/09)</span><span class="mj-row-v"><b style="color:var(--zhu);">全职儿女承担了部分老人照护(父母年迈)</b>——与家政工(↗ GY-31)形成对照:一个雇外人,一个用子女;全职儿女是「自家照护」的青年版。</span></div>
+      <div class="mj-row"><span class="mj-row-k">性别化(↗ GY-17)</span><span class="mj-row-v">全职儿女中女性占比可能更高(家务照护的性别化)——<b>「全职女儿」是中年女性无偿照护(↗ GY-17)的青年前传</b>。</span></div>
+      <div class="mj-row peak"><span class="mj-row-k">脆弱性</span><span class="mj-row-v"><b style="color:var(--zhu);">依赖父母经济(退休金/积蓄)和代际关系——父母一旦失能或经济恶化,缓冲消失</b>;全职儿女是没有社保、没有积累的「家庭雇员」(↗ GY-09 倒挂)。</span></div>
+      <div class="mj-row"><span class="mj-row-k">倒挂</span><span class="mj-row-v">本该靠子女养老的父母,正在用养老金养着成年的子女——<b>这个家庭内部劳动市场能运转多久,取决于父母的钱包和身体</b>。</span></div>
+    </div>
+    <div class="mj-breaking">
+      <span class="mj-breaking-tag">! 它是缓冲,不是出路 · 运转多久取决于父母的钱包和身体</span>
+      全职儿女体面、缓冲、充满温情,却也藏着一个倒挂——<b>本该靠子女养老的父母,正在用养老金养着成年的子女</b>。它是缓冲,不是出路。
+    </div>
+
+    <div class="mj-art">
+      <h5><b>中国家庭对就业失败的温柔托底</b>子女做家务陪父母,父母发生活费</h5>
+      <p>全职儿女是中国家庭对就业失败的温柔托底——<b style="color:var(--zhu);">把「待业在家」重新包装成「在家工作」,子女做家务陪父母,父母发生活费</b>。它体面、缓冲、充满温情,却也藏着一个倒挂:本该靠子女养老的父母,正在用养老金养着成年的子女。这个家庭内部劳动市场能运转多久,取决于父母的钱包和身体——它是缓冲,不是出路(↗ GY-17 照护性别化 / ↗ GY-09 养老倒挂 / ↗ GY-31 家政对照)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="mj-xref">↗ GY-17 · 照护性别化前传</span>
+      <span class="mj-xref">↗ GY-09 · 养老金养子女的倒挂</span>
+      <span class="mj-xref">↗ M4 · 代际反向转移</span>
+    </div>
+
+    <div class="mj-verdict">
+      <span class="mj-verdict-tag">M3 判词</span>
+      全职儿女是中国家庭对就业失败的温柔托底——把「待业在家」重新包装成「在家工作」,子女做家务陪父母,父母发生活费。它体面、缓冲、充满温情,却也藏着一个倒挂:本该靠子女养老的父母,正在用养老金养着成年的子女。<b style="color:var(--zhu);">这个家庭内部劳动市场能运转多久,取决于父母的钱包和身体——它是缓冲,不是出路。</b>
+      <span class="mj-xref">↗ M4 · 代际财富的反向转移</span>
+    </div>
+  </section>
+
+  <!-- ════ M4 代际反向转移 ════ -->
+  <section class="mj-panel" id="mj-p-m4">
+    <div class="mj-sec-head"><h2>M4 · 代际财富的反向转移:啃老的结构成因</h2><span class="mj-sec-tag">强家庭兜底 · 退出是有家底者的特权</span></div>
+    <p class="mj-lede">慢就业/全职儿女/NEET 依赖的是代际财富的反向转移——<b style="color:var(--zhu);">父母(多为有积蓄的 60/70 后,↗ GY-09 最富一代老人)供养成年子女</b>。这是中国高储蓄、强家庭的特殊产物:家庭成为青年就业风险的最后兜底,也使「退出」对中产以上家庭可行、对底层家庭奢侈。退出从来不是人人能选的——它是有家底者的特权,是父母用养老钱买给孩子的一段喘息。</p>
+
+    <h3 class="mj-h3">反向转移链:从老向小的财富流动</h3>
+    <div class="mj-chain">
+      <div class="mj-chain-row v2"><span class="mj-chain-t">反向转移</span><span class="mj-chain-v"><b style="color:var(--zhu);">父母积蓄/退休金供养成年子女</b> — 「啃老」是代际财富从老向小的转移(↗ GY-09 L5 最富一代老人的财富,部分流向供养子女)。</span></div>
+      <div class="mj-chain-row v2"><span class="mj-chain-t">强家庭兜底</span><span class="mj-chain-v"><b>中国家庭的强纽带 + 高储蓄使家庭成为青年失业的缓冲器</b> — 家庭替代了不足的青年失业保障:社会不兜底,家庭兜。</span></div>
+      <div class="mj-chain-row v1"><span class="mj-chain-t">代际张力</span><span class="mj-chain-v"><b style="color:var(--zhu);">供养伴随控制与冲突(催就业、催婚、代际观念差)</b> — 家庭缓冲的代价是代际张力(↗ GY-19 催婚 / GY-03)。</span></div>
+    </div>
+
+    <h3 class="mj-h3">阶层分化:退出是有家底者的特权</h3>
+    <div class="mj-dual">
+      <div class="mj-dual-a"><h6>中产以上 · <b>退出可行</b></h6><span class="mj-dual-pole">供得起</span><p>中产家庭的孩子可以「先休整两年」——<b style="color:var(--qing);">「慢就业/全职儿女」是有家庭缓冲者的特权</b>,父母用储蓄补上了不足的青年失业保障。</p></div>
+      <div class="mj-dual-mid">↔</div>
+      <div class="mj-dual-b"><h6>底层家庭 · <b>退出奢侈</b></h6><span class="mj-dual-pole">必须打工</span><p><b style="color:var(--zhu);">底层青年只能进厂/送外卖(↗ GY-05/GY-11)</b>——下了考场就得进厂,没有「先休整」的缓冲资格。</p></div>
+    </div>
+
+    <div class="mj-art">
+      <h5><b>父母用养老钱买给孩子的一段喘息</b>社会没给足保障,家庭用三十年的储蓄补上了</h5>
+      <p>慢就业能成为一种选择,靠的是父母那代人的积蓄。<b style="color:var(--zhu);">这是中国独有的兜底——社会没给足青年失业保障,家庭用三十年的储蓄补上了</b>。但这道缓冲是分阶层的:中产家庭的孩子可以「先休整两年」,底层家庭的孩子下了考场就得进厂。退出从来不是人人能选的——它是有家底者的特权,是父母用养老钱买给孩子的一段喘息(↗ GY-09 最富一代老人 / ↗ GY-08 中产 / ↗ GY-19 催婚)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="mj-xref">↗ GY-09 · 最富一代老人的财富</span>
+      <span class="mj-xref">↗ GY-08 · 中产缓冲资源</span>
+      <span class="mj-xref">↗ M5 · 最安静的退出</span>
+    </div>
+
+    <div class="mj-verdict">
+      <span class="mj-verdict-tag">M4 判词</span>
+      慢就业能成为一种选择,靠的是父母那代人的积蓄。这是中国独有的兜底——社会没给足青年失业保障,家庭用三十年的储蓄补上了。但这道缓冲是分阶层的:中产家庭的孩子可以「先休整两年」,底层家庭的孩子下了考场就得进厂。<b style="color:var(--zhu);">退出从来不是人人能选的——它是有家底者的特权,是父母用养老钱买给孩子的一段喘息。</b>
+      <span class="mj-xref">↗ M5 · 退出而非反抗</span>
+    </div>
+  </section>
+
+  <!-- ════ M5 政治形态学 ════ -->
+  <section class="mj-panel" id="mj-p-m5">
+    <div class="mj-sec-head"><h2>M5 · 政治形态学:最安静的退出</h2><span class="mj-sec-tag">退出而非反抗 · 合法私人依赖家庭 · 慢性失血</span></div>
+    <p class="mj-lede">慢就业/全职儿女/NEET 是「退出」而非「反抗」——<b style="color:var(--zhu);">他们不上街、不发声,只是从劳动市场和竞争中安静下线</b>;这种退出完全合法、完全私人、且依赖家庭,是机器最难处置也最不警惕的形态,但其规模化对劳动供给、消费、生育、社会活力构成慢性影响(↗ GY-03 减压阀 / GY-19 不婚 / GY-08 静默赎回的就业版)。</p>
+
+    <h3 class="mj-h3">去政治化机制:合法、私人、分散的退出</h3>
+    <div class="mj-rows">
+      <div class="mj-row peak"><span class="mj-row-k">退出而非反抗</span><span class="mj-row-v"><b style="color:var(--zhu);">不参与竞争、不消费、不奋斗——「主动下线」是合法、私人、分散的退出</b>;机器无法强制就业。</span></div>
+      <div class="mj-row"><span class="mj-row-k">减压阀(↗ GY-03)</span><span class="mj-row-v">慢就业/全职儿女吸收了部分青年失业压力——<b>家庭兜底 + 体面叙事(全职儿女/间隔年)是青年失业的减压阀</b>;延缓了失业的显性化。</span></div>
+      <div class="mj-row peak"><span class="mj-row-k">慢性失血</span><span class="mj-row-v"><b style="color:var(--zhu);">规模化退出影响劳动供给、消费(不挣钱不消费)、生育(不就业难婚育 ↗ GY-19/GY-03)、社会活力</b>——是缓慢的、不可见的系统失血(↔ GY-08 静默赎回 / GY-19 婚育罢工 的就业版)。</span></div>
+      <div class="mj-row"><span class="mj-row-k">叙事暧昧</span><span class="mj-row-v">官方「慢就业」叙事既承认(缓冲)又警惕(怕躺平蔓延)——<b>「慢就业」一词本身是中性化处理</b>:把失业柔化为「慢」,把啃老柔化为「全职儿女」(↔ GY-05 灵活就业 / GY-12 退役安置 的语义工程)。</span></div>
+    </div>
+
+    <h3 class="mj-h3">退出方式价目表:最依赖家庭的一种</h3>
+    <div class="mj-nest">
+      <div class="mj-nest-row"><span class="mj-nest-k">就业退出端</span><span class="mj-nest-v">本片是退出轴的「就业退出」端——与离岸(↗ GY-16 物理退出)、不婚(↗ GY-19 婚育退出)、躺平(↗ GY-03 话语)、债务(↗ GY-32 被动退出)<b style="color:var(--zhu);">并列</b>。</span></div>
+      <div class="mj-nest-row"><span class="mj-nest-k">最依赖家庭</span><span class="mj-nest-v"><b>「主动下线」是退出方式价目表里最依赖家庭、也最安静的一种</b>——退出成本由家庭代际承担。</span></div>
+      <div class="mj-nest-row"><span class="mj-nest-k">会传染会累积</span><span class="mj-nest-v">这种安静是会传染的、会累积的——<b style="color:var(--zhu);">当越来越多年轻人算过账后选择下线,系统失去的是一代人继续投入的意愿</b>。</span></div>
+    </div>
+
+    <div class="mj-art">
+      <h5><b>最安静的退出</b>不抗议、不消费、不奋斗,只是从竞争里下线,回到父母家里</h5>
+      <p>慢就业是这个系统遇到的最安静的退出——<b style="color:var(--zhu);">他们不抗议、不消费、不奋斗,只是从竞争里下线,回到父母家里</b>。机器拿它没办法:不能强制就业,不能惩罚待业,连「躺平」都被「慢就业」「全职儿女」这些温柔的词包装了起来。但这种安静是会传染的、会累积的——当越来越多年轻人算过账后选择下线,系统失去的不是几个劳动力,是一代人继续投入的意愿。这是比任何抗议都更难逆转的失血(↗ GY-03 减压阀 / ↗ GY-19 不婚 / ↗ GY-08 静默赎回)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="mj-xref">↗ GY-03 · 减压阀机制</span>
+      <span class="mj-xref">↗ GY-19 · 婚育退出</span>
+      <span class="mj-xref">↗ M6 · 形态推演(三态)</span>
+    </div>
+
+    <div class="mj-verdict">
+      <span class="mj-verdict-tag">M5 判词</span>
+      慢就业是这个系统遇到的最安静的退出——他们不抗议、不消费、不奋斗,只是从竞争里下线,回到父母家里。机器拿它没办法:不能强制就业,不能惩罚待业,连「躺平」都被「慢就业」「全职儿女」这些温柔的词包装了起来。但这种安静是会传染的、会累积的——当越来越多年轻人算过账后选择下线,<b style="color:var(--zhu);">系统失去的不是几个劳动力,是一代人继续投入的意愿。这是比任何抗议都更难逆转的失血。</b>
+      <span class="mj-xref">↗ M6 · 形态推演(三态)</span>
+    </div>
+  </section>
+
+  <!-- ════ M6 形态推演 ════ -->
+  <section class="mj-panel" id="mj-p-m6">
+    <div class="mj-sec-head"><h2>M6 · 形态推演</h2><span class="mj-sec-tag">三态 · α 缓冲常态化 / β 缓冲失效 / γ 日本化 8050</span></div>
+    <p class="mj-lede">慢就业青年/全职儿女/NEET 的演化路径,按概率拆成三态——三态共享同一个起点(退出光谱、投入产出倒挂的理性退出、全职儿女的家庭内部劳动市场、代际财富反向转移、最安静的退出),分岔点在于:<b style="color:var(--zhu);">青年就业市场的好坏、父母代际供养能力的持续性、长期 NEET 是否固化叠加父母老去</b>。</p>
+
+    <div class="mj-form">
+      <h5>形态 α · 基准 · 缓冲常态化(概率最高)</h5>
+      <p>慢就业/全职儿女作为青年失业的家庭缓冲常态化,随就业市场波动起伏;<b>「全职儿女」「间隔年」叙事持续中性化处理</b>。概率最高(<b style="color:var(--zhu);">家庭兜底吸收青年失业压力,退出光谱在缓冲与困局之间长期摆动</b>,↗ W-01/W-03)。</p>
+    </div>
+    <div class="mj-form" style="border-color:var(--zhu-dim); background:rgba(181,72,58,.08);">
+      <h5 style="color:var(--zhu);">形态 β · 压力 · 缓冲失效</h5>
+      <p>若青年就业持续恶化 + 父母代际供养能力下降(养老金/积蓄收缩 ↗ GY-09),家庭缓冲失效——<b style="color:var(--zhu);">慢就业滑向长期 NEET,「啃老」从缓冲变成困局</b>;标志:青年长期脱离劳动市场规模化、代际供养危机显现(↗ W-04/W-06)。</p>
+    </div>
+    <div class="mj-form" style="border-color:var(--jin-dim); background:rgba(110,93,56,.10);">
+      <h5 style="color:var(--jin);">形态 γ · 日本化 · 蛰居与冰河期</h5>
+      <p>参照日本「蛰居族(hikikomori)」与就业冰河期世代(↗ GY-03 CH-02)——<b style="color:var(--jin);">长期 NEET 固化为终身脱离社会的群体,叠加父母老去形成「8050 问题」(80 岁父母养 50 岁子女)</b>;这是退出光谱最深端的长期风险(↗ W-07)。</p>
+    </div>
+
+    <div style="margin-top:14px;">
+      <span class="mj-xref">↗ W-01 · 慢就业率</span>
+      <span class="mj-xref">↗ W-06 · 缓冲可持续性</span>
+      <span class="mj-xref">↗ W-07 · 8050 风险</span>
+    </div>
+
+    <div class="mj-verdict">
+      <span class="mj-verdict-tag">M6 判词</span>
+      三态的分岔不在这个人群是否存在(它已由退出光谱、投入产出倒挂的理性退出、全职儿女的家庭内部劳动市场结构性确立),<b>在青年就业市场的好坏、父母代际供养能力的持续性、长期 NEET 是否固化叠加父母老去</b>。形态 α 是家庭缓冲常态化的渐进常态,形态 β 是缓冲失效、慢就业滑向长期困局,形态 γ 是日本化的蛰居与 8050 长期风险。<b style="color:var(--zhu);">他们既是主动挂起、从调度队列里退出的进程,也是被家庭供电托住的「全职儿女 daemon」——这是同一群人的两面;而当父母老去、缓冲失效,今天的温柔缓冲就会变成明天的代际困局。</b>
+      <span class="mj-xref">↗ watch · 总判词与耦合修正</span>
+    </div>
+  </section>
+
+  <!-- ════ 合成 · 观测哨 ════ -->
+  <section class="mj-panel" id="mj-p-watch">
+    <div class="mj-sec-head"><h2>M7 · 合成与观测哨</h2><span class="mj-sec-tag">主动挂起的进程 · 第三十二子集 · 年度对账</span></div>
+
+    <div class="mj-verdict" style="margin-top:0; margin-bottom:34px;">
+      <span class="mj-verdict-tag">总判词 · 最沉默的差评</span>
+      慢就业青年/全职儿女/NEET 是 China OS 里主动挂起、从劳动调度器运行队列里移出的进程——没被 kill(仍靠家庭供电),没在 run(不在就业教育),停在 sleep 状态。<br><br>
+      <b style="color:var(--zhu);">他们是青年躺平话语(↗ GY-03)里「完全退出劳动」的建制化那一端:慢就业(19.1%)是暂缓,全职儿女是家庭 OS 内的重新注册,NEET 是长期挂起。这不是懒,是投入产出比倒挂下的理性退出——当就业的回报配不上投入、强度和 35 岁风险,而家里供得起,「先不上班」就是算过账的选择。退出是对一个回报倒挂的劳动市场最沉默的差评。但这道缓冲是分阶层的特权(靠父母积蓄,↗ GY-09 最富一代老人的财富反向转移)、藏着一个倒挂(本该被子女养老的父母在养着成年子女),且会传染、会累积。它是退出方式价目表里最安静、最依赖家庭的一种——机器拿它没办法:不能强制就业、不能惩罚待业,连躺平都被「慢就业」「全职儿女」温柔地包装了。系统失去的不是几个劳动力,是一代人继续投入的意愿;而当父母老去、缓冲失效(8050),今天的温柔缓冲就会变成明天的代际困局。</b><br><br>
+      与全系列合观:GY-03 躺平话语的「完全退出劳动」端由本片建制化承接——躺平是话语与态度,慢就业/全职儿女/NEET 是其行为建制;GY-09 最富一代老人(L5)的财富部分反向转移供养成年子女,「啃老」是代际财富从老向小的流动,养老金养着成年子女的倒挂是 GY-09 财富占位的青年接口;GY-17「全职女儿」是中年女性无偿照护的青年前传,全职儿女承担家务照护的性别化是照护性别分工的代际延续;GY-08 慢就业是中产防御性收缩(Z5)的青年/家庭版,退出依赖中产家庭缓冲,是「防止下坠」资源的代际使用,底层无此特权;母框架退出方式价目表补「就业退出 + 家庭兜底」端,与离岸(↗ GY-16)、不婚(↗ GY-19)、债务(↗ GY-32)并列,慢就业是最依赖家庭缓冲、最安静的退出,退出成本由家庭代际承担。这个进程还停在 sleep、还在靠家庭供电,因此既是主动挂起的进程,又是被家庭托住的「全职儿女 daemon」;它最依赖家庭、最安静,因此一旦系统试图回答「如何让一代人重新愿意上线」,将直面这道由父母储蓄垫付、却终将随父母老去而失效的家庭缓冲。
+      <p class="mj-disclaimer top" style="margin-top:20px; margin-bottom:0;">注记(敏感度处理):全片以青年就业与代际关系框架处理,不道德化「躺平/啃老」、不污名化个体;区分主动选择与被动困境,聚焦结构成因与代际支持机制。慢就业/NEET 精确规模与口径因统计差异需谨慎(标「约」),数据为招聘平台 2024 应届就业报告与训练知识基线,待权威年度数据回填;量级估算与精确口径严格区分。</p>
+    </div>
+
+    <h3 class="mj-h3">对 GY 系列的五条修正</h3>
+    <div class="mj-fix">
+      <h5><b>修正 · GY-03</b>躺平的话语与建制</h5>
+      <p>躺平话语(GY-03)的「完全退出劳动」端由本片建制化承接——<b style="color:var(--zhu);">躺平是话语与态度,慢就业/全职儿女/NEET 是其行为建制</b>;建议 GY-03↔GY-34 链接为「躺平的话语与建制」。</p>
+    </div>
+    <div class="mj-fix">
+      <h5><b>修正 · GY-09</b>财富占位的青年接口</h5>
+      <p>最富一代老人(L5)的财富部分反向转移供养成年子女——<b>「啃老」是代际财富从老向小的流动;养老金养着成年子女的倒挂,是 GY-09 财富占位的青年接口</b>。</p>
+    </div>
+    <div class="mj-fix">
+      <h5><b>修正 · GY-17</b>照护性别化的青年前传</h5>
+      <p>「全职女儿」是中年女性无偿照护(GY-17)的青年前传——<b style="color:var(--zhu);">全职儿女承担家务照护的性别化,是照护性别分工的代际延续</b>。</p>
+    </div>
+    <div class="mj-fix">
+      <h5><b>修正 · GY-08</b>中产防御性收缩的青年版</h5>
+      <p>慢就业是中产防御性收缩(Z5)的青年/家庭版——<b>退出依赖中产家庭缓冲,是「防止下坠」资源的代际使用;底层无此特权</b>。</p>
+    </div>
+    <div class="mj-fix">
+      <h5><b>修正 · 母框架</b>退出方式价目表补「就业退出 + 家庭兜底」端</h5>
+      <p>退出方式价目表补「就业退出 + 家庭兜底」端——<b style="color:var(--zhu);">与离岸(↗ GY-16)、不婚(↗ GY-19)、债务(↗ GY-32)并列,慢就业是最依赖家庭缓冲、最安静的退出</b>;退出成本由家庭代际承担。</p>
+    </div>
+
+    <div class="mj-watch-intro">
+      <p>这个人群的处境变动,关键看三组指针:规模与压力(慢就业率 / 青年失业率 / NEET 率)、缓冲与流向(全职儿女现象 / 代际供养 / 缓冲可持续性)、风险与叙事(8050 风险 / 叙事处理)。逐项标注状态、记录证据,年度与 GY 系列同步对账。状态与备注自动保存在本机。数据敏感处标「约」,待权威年度数据回填,量级估算与精确口径严格区分。</p>
+      <span class="mj-storage-state" id="mj-storage-state"></span>
+    </div>
+
+    <div class="mj-watch" id="mj-watch-list">
+      <div class="mj-watch-item" data-key="w1">
+        <div><h5><b>W-01</b>慢就业率</h5><p class="mj-watch-desc">应届毕业生慢就业/缓就业比例——<b>退出光谱的总仪表。</b></p></div>
+        <div class="mj-watch-ctrl"><div class="mj-status-row"><button class="mj-status-btn" data-status="good">向好</button><button class="mj-status-btn" data-status="flat">中性</button><button class="mj-status-btn" data-status="bad">恶化</button></div><textarea class="mj-watch-note" placeholder="证据与备注…"></textarea><div class="mj-watch-stamp"></div></div>
+      </div>
+      <div class="mj-watch-item" data-key="w2">
+        <div><h5><b>W-02</b>青年失业率</h5><p class="mj-watch-desc">青年(含 16-24/25-29)失业率与口径——<b>被动退出的压力源。</b></p></div>
+        <div class="mj-watch-ctrl"><div class="mj-status-row"><button class="mj-status-btn" data-status="good">向好</button><button class="mj-status-btn" data-status="flat">中性</button><button class="mj-status-btn" data-status="bad">恶化</button></div><textarea class="mj-watch-note" placeholder="证据与备注…"></textarea><div class="mj-watch-stamp"></div></div>
+      </div>
+      <div class="mj-watch-item" data-key="w3">
+        <div><h5><b>W-03</b>全职儿女现象</h5><p class="mj-watch-desc">规模、性别构成、代际供养——<b>M3 缓冲的扩张。</b></p></div>
+        <div class="mj-watch-ctrl"><div class="mj-status-row"><button class="mj-status-btn" data-status="good">向好</button><button class="mj-status-btn" data-status="flat">中性</button><button class="mj-status-btn" data-status="bad">恶化</button></div><textarea class="mj-watch-note" placeholder="证据与备注…"></textarea><div class="mj-watch-stamp"></div></div>
+      </div>
+      <div class="mj-watch-item" data-key="w4">
+        <div><h5><b>W-04</b>NEET 率</h5><p class="mj-watch-desc">长期不就业不上学不培训的青年比例——<b>退出光谱深端。</b></p></div>
+        <div class="mj-watch-ctrl"><div class="mj-status-row"><button class="mj-status-btn" data-status="good">向好</button><button class="mj-status-btn" data-status="flat">中性</button><button class="mj-status-btn" data-status="bad">恶化</button></div><textarea class="mj-watch-note" placeholder="证据与备注…"></textarea><div class="mj-watch-stamp"></div></div>
+      </div>
+      <div class="mj-watch-item" data-key="w5">
+        <div><h5><b>W-05</b>代际供养</h5><p class="mj-watch-desc">父母供养成年子女的规模与阶层分布——<b>M4 反向转移读数。</b></p></div>
+        <div class="mj-watch-ctrl"><div class="mj-status-row"><button class="mj-status-btn" data-status="good">向好</button><button class="mj-status-btn" data-status="flat">中性</button><button class="mj-status-btn" data-status="bad">恶化</button></div><textarea class="mj-watch-note" placeholder="证据与备注…"></textarea><div class="mj-watch-stamp"></div></div>
+      </div>
+      <div class="mj-watch-item" data-key="w6">
+        <div><h5><b>W-06</b>缓冲可持续性</h5><p class="mj-watch-desc">父母养老金/积蓄与供养能力——<b>形态β 预警。</b></p></div>
+        <div class="mj-watch-ctrl"><div class="mj-status-row"><button class="mj-status-btn" data-status="good">向好</button><button class="mj-status-btn" data-status="flat">中性</button><button class="mj-status-btn" data-status="bad">恶化</button></div><textarea class="mj-watch-note" placeholder="证据与备注…"></textarea><div class="mj-watch-stamp"></div></div>
+      </div>
+      <div class="mj-watch-item" data-key="w7">
+        <div><h5><b>W-07</b>8050 风险</h5><p class="mj-watch-desc">长期 NEET + 父母老去的早期迹象——<b>形态γ 日本化信号。</b></p></div>
+        <div class="mj-watch-ctrl"><div class="mj-status-row"><button class="mj-status-btn" data-status="good">向好</button><button class="mj-status-btn" data-status="flat">中性</button><button class="mj-status-btn" data-status="bad">恶化</button></div><textarea class="mj-watch-note" placeholder="证据与备注…"></textarea><div class="mj-watch-stamp"></div></div>
+      </div>
+      <div class="mj-watch-item" data-key="w8">
+        <div><h5><b>W-08</b>叙事处理</h5><p class="mj-watch-desc">「慢就业/全职儿女」官方叙事 vs 就业实况——<b>语义工程的读数。</b></p></div>
+        <div class="mj-watch-ctrl"><div class="mj-status-row"><button class="mj-status-btn" data-status="good">向好</button><button class="mj-status-btn" data-status="flat">中性</button><button class="mj-status-btn" data-status="bad">恶化</button></div><textarea class="mj-watch-note" placeholder="证据与备注…"></textarea><div class="mj-watch-stamp"></div></div>
+      </div>
+    </div>
+
+    <h3 class="mj-h3">章节规划 · 登记表</h3>
+    <div class="mj-plan">
+      <div class="mj-plan-row"><span class="mj-plan-k">CH-01</span><span class="mj-plan-v"><b>退出的算术</b> — 投入产出倒挂的就业决策模型、主动 vs 被动,接 GY-03/GY-08。</span><span class="mj-plan-tag">待建</span></div>
+      <div class="mj-plan-row"><span class="mj-plan-k">CH-02</span><span class="mj-plan-v"><b>全职儿女田野</b> — 家庭内部劳动市场的运行、性别与代际关系,接 GY-17/GY-09。</span><span class="mj-plan-tag">待建</span></div>
+      <div class="mj-plan-row"><span class="mj-plan-k">CH-03</span><span class="mj-plan-v"><b>日本镜鉴</b> — 蛰居族/就业冰河期/8050 问题的对照与中国风险,接 GY-03 CH-02。</span><span class="mj-plan-tag">待建</span></div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="mj-foot">
+    <p>方法论:慢就业青年以「主动挂起的进程(Suspended Process)」模型刻画——慢就业全职儿女 NEET 是 China OS 里被挂起从劳动调度器的运行队列里移出的进程它没有被 kill 仍在消耗家庭供电啃老或领全职儿女工资也没有在 run 不在就业教育而是停在 sleep 状态其中全职儿女是把自己在家庭 OS 内重新注册为守护进程家庭内部劳动市场签名图劳动调度器的 run queue 里一个进程被移出标 SUSPENDED SLEEP 仍从家庭供电啃老或全职儿女补贴拉电三种状态分支慢就业暂缓调度观望全职儿女家庭 OS 内重注册为 daemon NEET 长期挂起底注 2024 应届慢就业率 19.1 躺平的建制化退出轴主动下线。核心命题:把青年躺平话语 GY-03 里完全退出劳动与教育的那一端单独放大慢就业 2024 应届慢就业率 19.1 全职儿女 NEET 不就业不上学不培训这不是懒是高风险高压社会里的一种退出策略当劳动市场的回报不足以匹配投入年轻人选择把自己从调度队列里挂起从慢就业到全职儿女到 NEET 是一条下线程度递增的光谱起点是近五分之一应届生的暂缓终点是长期挂起更像一群年轻人在高风险高压的劳动市场前集体按下了暂停键不是不想跑是算过这趟跑不划算慢就业的内核是一道算术题当就业能换来的薪资发展和尊严配不上读书的投入加班的强度和 35 岁的风险而家里又供得起那么先不上班就是算过账的理性选择退出是对一个回报倒挂的劳动市场最沉默的差评全职儿女是中国家庭对就业失败的温柔托底把待业在家重新包装成在家工作子女做家务陪父母父母发生活费它体面缓冲充满温情却也藏着一个倒挂本该靠子女养老的父母正在用养老金养着成年的子女它是缓冲不是出路慢就业能成为一种选择靠的是父母那代人的积蓄社会没给足青年失业保障家庭用三十年的储蓄补上了但这道缓冲是分阶层的中产家庭的孩子可以先休整两年底层家庭的孩子下了考场就得进厂退出从来不是人人能选的它是有家底者的特权是父母用养老钱买给孩子的一段喘息慢就业是这个系统遇到的最安静的退出他们不抗议不消费不奋斗只是从竞争里下线回到父母家里机器拿它没办法不能强制就业不能惩罚待业连躺平都被慢就业全职儿女这些温柔的词包装了起来但这种安静是会传染的会累积的当越来越多年轻人算过账后选择下线系统失去的不是几个劳动力是一代人继续投入的意愿这是比任何抗议都更难逆转的失血形态推演三态 α 基准缓冲常态化慢就业全职儿女作为青年失业的家庭缓冲常态化随就业市场波动起伏概率最高 β 压力缓冲失效若青年就业持续恶化加父母代际供养能力下降家庭缓冲失效慢就业滑向长期 NEET 啃老从缓冲变成困局 γ 日本化蛰居与冰河期参照日本蛰居族 hikikomori 与就业冰河期世代长期 NEET 固化为终身脱离社会的群体叠加父母老去形成 8050 问题 80 岁父母养 50 岁子女。数据锚定(招聘平台 2024 应届就业报告加青年慢就业研究加尼特族研究加训练知识基线,待权威年度数据回填):2024 应届毕业生慢就业率 19.1 较 2022 升 3.2pct 毕业生 1179 万全球 NEET 约 2.6 亿中国尼特率上升全职儿女作为家庭内部劳动市场兴起啃老依赖代际供养对中产以上家庭可行日本蛰居族与 8050 问题为参照。注:以青年就业与代际关系框架处理,不道德化躺平啃老不污名化个体区分主动选择与被动困境聚焦结构成因与代际支持机制慢就业 NEET 精确规模与口径因统计差异需谨慎数字标注量级并留观测哨回填量级估算与精确口径严格区分。作为人群画像分层第三十二子集,与 GY-03 躺平(躺平的话语与建制躺平是话语与态度慢就业全职儿女 NEET 是其行为建制)、GY-08 教育军备与中产(中产防御性收缩的青年版退出依赖中产家庭缓冲底层无此特权)、GY-09 养老(财富占位的青年接口最富一代老人的财富反向转移供养成年子女养老金养子女的倒挂)、GY-17 中年女性照护(照护性别化的青年前传全职女儿是中年女性无偿照护的青年前传)、GY-19 不婚(退出方式价目表的并列项就业退出与婚育退出并列)等耦合。来源:招聘平台 2024 应届就业报告、青年慢就业研究、尼特族研究(澎湃/维基/学术)、训练知识基线。</p>
+    <div class="mj-foot-meta">
+      ChinaOS · GY-34 · v1.0.0<br>
+      生成 2026-06 丙午年<br>
+      人群画像 第三十二子集 · 关联模块 → GY-03/08/09/17/19<br>
+      注记:青年就业与代际关系框架 · 不道德化躺平/啃老 · 量级估算待回填
+    </div>
+  </footer>
+
+</div>
