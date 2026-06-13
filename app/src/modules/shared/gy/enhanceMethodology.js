@@ -186,6 +186,25 @@ function formatBody(text) {
     .join('');
 }
 
+/**
+ * 把一段叙事拆成可扫读的「论点」列表（核心命题专用）。
+ * 每个句子是一个论点，首句作为题眼放大。
+ * @param {string} text
+ */
+function formatPoints(text) {
+  const pts = text
+    .split(/(?<=[。；;])\s*/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+  if (pts.length < 2) return `<div class="gy-method-prose">${formatBody(text)}</div>`;
+  return `<ol class="gy-method-points">${pts
+    .map(
+      (p, i) =>
+        `<li class="gy-method-point${i === 0 ? ' is-lead' : ''}"><span class="gy-method-point-no" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><span class="gy-method-point-text">${linkifyGy(highlightTerms(p))}</span></li>`,
+    )
+    .join('')}</ol>`;
+}
+
 /** @param {string} text */
 function findAppendixHits(text) {
   /** @type {{ key: string, index: number, len: number }[]} */
@@ -313,7 +332,8 @@ function buildAppendixGrid(blocks) {
   const keys = blocks.map((b) => b.key);
   const hasNote = keys.includes('note');
   const hasSources = keys.includes('sources');
-  const shortPair = hasNote && hasSources;
+  // 仅当整组就是「注记 + 来源」两块时才半分；多块时按各自 span 排布
+  const shortPair = blocks.length === 2 && hasNote && hasSources;
 
   return `<div class="gy-method-appendix-zone"><div class="gy-method-appendix-grid${shortPair ? ' gy-method-appendix-grid--paired' : ''}">${blocks
     .map((block) => {
@@ -380,7 +400,7 @@ function parseMeta(metaEl) {
 }
 
 /** @param {ReturnType<typeof parseMeta>} meta */
-function buildMetaRail(meta) {
+function buildMetaBar(meta) {
   const gyNum = normalizeGyNum(meta.gyCode);
   const self = gyNum ? GY_MODULES[gyNum] : null;
   const chips = meta.relatedNums
@@ -393,25 +413,23 @@ function buildMetaRail(meta) {
     })
     .join('');
 
-  const noteHtml = meta.notes.length
-    ? `<div class="gy-method-meta-notes">${meta.notes.map((n) => `<p>${n}</p>`).join('')}</div>`
+  const facts = [];
+  facts.push(
+    `<span class="gy-method-fact"><span class="gy-method-fact-k">模块</span><span class="gy-method-fact-v">${self ? `GY-${gyNum} · ${self.label}` : meta.raw[0] || '—'}</span></span>`,
+  );
+  if (meta.version) facts.push(`<span class="gy-method-fact"><span class="gy-method-fact-k">版本</span><span class="gy-method-fact-v gy-method-mono">${meta.version}</span></span>`);
+  if (meta.generated) facts.push(`<span class="gy-method-fact"><span class="gy-method-fact-k">生成</span><span class="gy-method-fact-v">${meta.generated}</span></span>`);
+  if (meta.subset) facts.push(`<span class="gy-method-fact"><span class="gy-method-fact-k">定位</span><span class="gy-method-fact-v">${meta.subset}</span></span>`);
+
+  const relHtml = chips
+    ? `<div class="gy-method-archive-rel"><span class="gy-method-fact-k">关联</span><div class="gy-method-chips">${chips}</div></div>`
     : '';
 
   return `
-    <aside class="gy-method-meta-rail" aria-label="模块元数据">
-      <div class="gy-method-meta-card">
-        <div class="gy-method-meta-head">模块档案</div>
-        <div class="gy-method-meta-row">
-          <span class="gy-method-meta-k">模块</span>
-          <span class="gy-method-meta-v">${self ? `GY-${gyNum} · ${self.label}` : meta.raw[0] || '—'}</span>
-        </div>
-        ${meta.version ? `<div class="gy-method-meta-row"><span class="gy-method-meta-k">版本</span><span class="gy-method-meta-v gy-method-mono">${meta.version}</span></div>` : ''}
-        ${meta.generated ? `<div class="gy-method-meta-row"><span class="gy-method-meta-k">生成</span><span class="gy-method-meta-v">${meta.generated}</span></div>` : ''}
-        ${meta.subset ? `<div class="gy-method-meta-row"><span class="gy-method-meta-k">定位</span><span class="gy-method-meta-v">${meta.subset}</span></div>` : ''}
-        ${chips ? `<div class="gy-method-meta-row gy-method-meta-row--chips"><span class="gy-method-meta-k">关联</span><div class="gy-method-chips">${chips}</div></div>` : ''}
-        ${noteHtml}
-      </div>
-    </aside>`;
+    <div class="gy-method-archive" aria-label="模块档案">
+      <div class="gy-method-archive-facts">${facts.join('<span class="gy-method-fact-div" aria-hidden="true">·</span>')}</div>
+      ${relHtml}
+    </div>`;
 }
 
 /** @param {ReturnType<typeof parseMeta>} meta */
@@ -483,14 +501,12 @@ function buildMethodologyPanel(footer, prefix) {
   const titleBlock = buildTitleBlock(model, modelEn);
   const headMeta = buildHeadMetaSummary(meta);
   const leadHtml = lead ? `<div class="gy-method-lead">${formatBody(lead)}</div>` : '';
-  const quoteHtml = quote
-    ? `<blockquote class="gy-method-pullquote"><span class="gy-method-pullquote-mark" aria-hidden="true">—</span>${linkifyGy(highlightTerms(quote))}</blockquote>`
-    : '';
 
   const tabsHtml = usePhaseTabs ? buildPhaseTabs(sections) : '';
   const chipsHtml = useNamedFilter ? buildSectionChips(sections) : '';
 
   let narrativeBody = '';
+  let coreEyebrow = '';
   if (usePhaseTabs) {
     narrativeBody = `<div class="gy-method-panels">${buildSectionPanels(sections, false)}</div>`;
   } else if (useNamedFilter) {
@@ -498,12 +514,16 @@ function buildMethodologyPanel(footer, prefix) {
   } else {
     const soloBody = sections[0]?.body || '';
     const soloTitle = sections[0]?.title;
-    if (mode === 'solo' && soloTitle === '方法论') {
-      narrativeBody = `<div class="gy-method-panels"><div class="gy-method-panel gy-method-panel--solo is-active">${formatBody(soloBody)}</div></div>`;
-    } else {
-      narrativeBody = `<div class="gy-method-panels gy-method-panels--named"><div class="gy-method-panel gy-method-sec-card is-active" role="tabpanel">${soloTitle && soloTitle !== '方法论' ? `<h4 class="gy-method-sec-label">${soloTitle}</h4>` : ''}<div class="gy-method-sec-body">${formatBody(soloBody)}</div></div></div>`;
+    if (soloTitle && soloTitle !== '方法论' && soloTitle !== '全文') {
+      coreEyebrow = `<div class="gy-method-core-eyebrow"><span class="gy-method-core-tick" aria-hidden="true"></span>${soloTitle}</div>`;
     }
+    narrativeBody = `<div class="gy-method-panels"><div class="gy-method-panel gy-method-panel--solo is-active">${formatPoints(soloBody)}</div></div>`;
   }
+
+  // 模型论点（tagline）提升为题眼，置于头部之下，不再做孤立的居中引用块
+  const thesisHtml = quote
+    ? `<blockquote class="gy-method-thesis"><span class="gy-method-thesis-bar" aria-hidden="true"></span><span class="gy-method-thesis-text">${linkifyGy(highlightTerms(quote))}</span></blockquote>`
+    : '';
 
   const appendixHtml = appendix ? buildAppendixGrid(parseAppendixBlocks(appendix)) : '';
 
@@ -529,16 +549,15 @@ function buildMethodologyPanel(footer, prefix) {
       </header>
       <div class="gy-method-collapsible${isMobile ? ' is-collapsed' : ''}">
         <div class="gy-method-collapsible-inner">
+          ${thesisHtml}
+          ${buildMetaBar(meta)}
+          ${leadHtml}
           ${tabsHtml}
-          <div class="gy-method-zones">
-            <div class="gy-method-narrative">
-              ${leadHtml}
-              ${chipsHtml}
-              ${narrativeBody}
-            </div>
-            ${buildMetaRail(meta)}
+          ${chipsHtml}
+          ${coreEyebrow}
+          <div class="gy-method-narrative">
+            ${narrativeBody}
           </div>
-          ${quoteHtml}
           ${appendixHtml}
         </div>
       </div>

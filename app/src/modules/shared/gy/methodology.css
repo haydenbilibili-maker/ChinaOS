@@ -177,26 +177,167 @@
   min-height: 0;
 }
 
-/* ── 主内容区：真网格，侧栏不侵入叙事 ── */
-.gy-method-zones {
-  display: grid;
-  grid-template-columns: 1fr min(280px, 32%);
-  gap: 24px 32px;
-  align-items: start;
+/* ── 题眼：模型论点提升为大字主张 ── */
+.gy-method-thesis {
+  position: relative;
+  margin: 0 0 20px;
+  padding: 2px 0 2px 20px;
+  font-family: var(--serif);
+  font-size: 17px;
+  font-style: normal;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  color: var(--xuanzhi);
 }
 
+.gy-method-thesis-bar {
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 3px;
+  border-radius: 2px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--jin) 80%, transparent),
+    color-mix(in srgb, var(--qing) 60%, transparent)
+  );
+}
+
+.gy-method-thesis .gy-method-term {
+  font-weight: 600;
+}
+
+/* ── 模块档案 · 横向缎带 ── */
+.gy-method-archive {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  margin-bottom: 22px;
+  padding: 11px 16px;
+  border: 1px solid var(--hairline);
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--xuan) 50%, transparent);
+}
+
+.gy-method-archive-facts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+}
+
+.gy-method-fact {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.gy-method-fact-k {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--xuanzhi-mute);
+}
+
+.gy-method-fact-v {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  color: var(--xuanzhi-dim);
+}
+
+.gy-method-fact-div {
+  color: var(--xuanzhi-mute);
+  opacity: 0.4;
+  font-size: 11px;
+}
+
+.gy-method-archive-rel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+/* ── 主内容区：叙事占满整宽 ── */
 .gy-method-narrative {
   min-width: 0;
-  grid-column: 1;
 }
 
-.gy-method-meta-rail {
-  grid-column: 2;
-  grid-row: 1;
-  position: sticky;
-  top: 20px;
-  align-self: start;
-  min-width: 0;
+/* ── 核心命题题眉 ── */
+.gy-method-core-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--xuanzhi);
+}
+
+.gy-method-core-tick {
+  width: 14px;
+  height: 2px;
+  border-radius: 1px;
+  background: color-mix(in srgb, var(--jin) 70%, transparent);
+}
+
+/* ── 核心命题 · 论点列表 ── */
+.gy-method-points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 10px 18px;
+}
+
+.gy-method-point {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: baseline;
+  padding: 11px 0;
+  border-top: 1px solid color-mix(in srgb, var(--hairline) 85%, transparent);
+}
+
+.gy-method-point-no {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--qing) 75%, transparent);
+  letter-spacing: 0.04em;
+  padding-top: 2px;
+}
+
+.gy-method-point-text {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: var(--xuanzhi-dim);
+  letter-spacing: 0.012em;
+}
+
+.gy-method-point.is-lead {
+  grid-column: 1 / -1;
+}
+
+.gy-method-point.is-lead .gy-method-point-text {
+  font-size: 15px;
+  line-height: 1.82;
+  color: var(--xuanzhi);
+}
+
+.gy-method-prose {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--xuanzhi-dim);
 }
 
 /* ── 引导段 ── */
@@ -333,31 +474,6 @@
   padding-top: 0;
 }
 
-/* ── 引用块（叙事与附录之间） ── */
-.gy-method-pullquote {
-  margin: 24px 0 0;
-  padding: 16px 20px;
-  border: 1px solid color-mix(in srgb, var(--jin) 18%, var(--hairline));
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--jin) 4%, transparent);
-  font-family: var(--serif);
-  font-size: 14px;
-  font-style: italic;
-  line-height: 1.75;
-  text-align: center;
-  color: var(--xuanzhi-mute);
-}
-
-.gy-method-pullquote-mark {
-  display: block;
-  margin-bottom: 6px;
-  font-family: var(--mono);
-  font-size: 13px;
-  font-style: normal;
-  color: color-mix(in srgb, var(--jin) 55%, transparent);
-  opacity: 0.55;
-}
-
 /* ── Y 阶段标签 ── */
 .gy-method-tabs {
   display: flex;
@@ -437,62 +553,7 @@
   margin: 0 2px;
 }
 
-/* ── 元数据侧栏 ── */
-.gy-method-meta-card {
-  padding: 14px 16px;
-  border: 1px solid var(--hairline);
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--xuan) 55%, transparent);
-  backdrop-filter: blur(8px);
-}
-
-.gy-method-meta-head {
-  margin-bottom: 10px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--hairline);
-  font-family: var(--mono);
-  font-size: 9.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--xuanzhi-mute);
-}
-
-.gy-method-meta-row {
-  display: grid;
-  grid-template-columns: 36px 1fr;
-  gap: 4px 10px;
-  align-items: baseline;
-  margin-bottom: 8px;
-  font-size: 11px;
-  line-height: 1.55;
-}
-
-.gy-method-meta-row:last-child {
-  margin-bottom: 0;
-}
-
-.gy-method-meta-row--chips {
-  grid-template-columns: 1fr;
-  gap: 6px;
-}
-
-.gy-method-meta-row--chips .gy-method-meta-k {
-  margin-bottom: 2px;
-}
-
-.gy-method-meta-k {
-  font-family: var(--mono);
-  font-size: 9.5px;
-  color: var(--xuanzhi-mute);
-  letter-spacing: 0.06em;
-}
-
-.gy-method-meta-v {
-  color: var(--xuanzhi-dim);
-  font-family: var(--sans);
-  font-size: 11px;
-}
-
+/* ── 档案缎带中的等宽值 ── */
 .gy-method-mono {
   font-family: var(--mono);
 }
@@ -522,19 +583,6 @@
   background: color-mix(in srgb, var(--qing) 8%, transparent);
 }
 
-.gy-method-meta-notes {
-  margin-top: 10px;
-  padding-top: 8px;
-  border-top: 1px dashed var(--hairline);
-}
-
-.gy-method-meta-notes p {
-  font-size: 10px;
-  color: var(--xuanzhi-mute);
-  line-height: 1.65;
-  margin-bottom: 3px;
-}
-
 /* ── 附录区（与叙事明确分隔） ── */
 .gy-method-appendix-zone {
   margin-top: 24px;
@@ -544,15 +592,16 @@
 
 .gy-method-appendix-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(12, 1fr);
   gap: 14px;
+  align-items: start;
 }
 
 .gy-method-appendix-cell {
+  grid-column: 1 / -1;
   display: flex;
   flex-direction: column;
-  min-height: 72px;
-  padding: 14px 16px;
+  padding: 15px 17px;
   border: 1px solid var(--hairline);
   border-radius: 10px;
   background: color-mix(in srgb, var(--xuan-raise) 50%, transparent);
@@ -563,8 +612,14 @@
   background: color-mix(in srgb, var(--qing) 5%, var(--xuan-raise));
 }
 
+/* 数据锚点 + 注记 并排：7/5 分栏，加起来正好 12 */
 .gy-method-appendix-cell--wide {
-  grid-column: 1;
+  grid-column: span 7;
+}
+
+.gy-method-appendix-cell--note {
+  grid-column: span 5;
+  background: color-mix(in srgb, var(--xuan-raise) 38%, transparent);
 }
 
 .gy-method-appendix-grid:not(:has(.gy-method-appendix-cell--note)) .gy-method-appendix-cell--anchors {
@@ -576,14 +631,15 @@
   border-style: dashed;
 }
 
-.gy-method-appendix-cell--note,
 .gy-method-appendix-cell--sources {
+  grid-column: 1 / -1;
   background: color-mix(in srgb, var(--xuan-raise) 38%, transparent);
 }
 
+/* 仅 注记 + 来源 两块时各占一半 */
 .gy-method-appendix-grid--paired .gy-method-appendix-cell--note,
 .gy-method-appendix-grid--paired .gy-method-appendix-cell--sources {
-  grid-column: span 1;
+  grid-column: span 6;
 }
 
 .gy-method-appendix-cell--full {
@@ -746,52 +802,32 @@
     display: none;
   }
 
-  .gy-method-zones {
+  .gy-method-thesis {
+    font-size: 15.5px;
+    padding-left: 16px;
+  }
+
+  .gy-method-archive {
+    gap: 8px 14px;
+    padding: 10px 13px;
+  }
+
+  .gy-method-archive-rel {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .gy-method-points {
     grid-template-columns: 1fr;
     gap: 0;
   }
 
-  .gy-method-narrative {
-    grid-column: 1;
-    order: 1;
+  .gy-method-point.is-lead .gy-method-point-text {
+    font-size: 14.5px;
   }
 
-  .gy-method-meta-rail {
-    grid-column: 1;
-    grid-row: auto;
-    position: static;
-    order: 3;
-    margin-top: 20px;
-    margin-bottom: 0;
-  }
-
-  .gy-method-meta-card {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 8px 16px;
-    padding: 12px 14px;
-  }
-
-  .gy-method-meta-head {
-    grid-column: 1 / -1;
-    margin-bottom: 4px;
-    padding-bottom: 6px;
-  }
-
-  .gy-method-meta-row {
-    margin-bottom: 0;
-    grid-template-columns: 1fr;
-    gap: 2px;
-  }
-
-  .gy-method-meta-row--chips {
-    grid-column: 1 / -1;
-  }
-
-  .gy-method-meta-notes {
-    grid-column: 1 / -1;
-    margin-top: 6px;
-    padding-top: 6px;
+  .gy-method-point-text {
+    font-size: 13px;
   }
 
   .gy-method-lead {
@@ -839,13 +875,6 @@
     flex-shrink: 0;
   }
 
-  .gy-method-pullquote {
-    order: 2;
-    margin-top: 18px;
-    text-align: left;
-    padding: 14px 16px;
-  }
-
   .gy-method-appendix-zone {
     margin-top: 20px;
     padding-top: 20px;
@@ -857,6 +886,7 @@
 
   .gy-method-appendix-cell--wide,
   .gy-method-appendix-cell--full,
+  .gy-method-appendix-cell--coupling,
   .gy-method-appendix-cell--note,
   .gy-method-appendix-cell--sources {
     grid-column: 1;
@@ -878,10 +908,6 @@
 
 @media (max-width: 480px) {
   .gy-method-stat-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .gy-method-meta-card {
     grid-template-columns: 1fr;
   }
 }
@@ -908,10 +934,6 @@
   background: color-mix(in srgb, var(--xuan-raise) 80%, #fff);
 }
 
-:root[data-theme='light'] .gy-method-meta-card {
-  background: color-mix(in srgb, var(--xuan-raise) 92%, #fff);
-}
-
 :root[data-theme='light'] .gy-method-appendix-cell {
   background: color-mix(in srgb, var(--xuan-raise) 75%, #fff);
 }
@@ -924,6 +946,6 @@
   background: color-mix(in srgb, #fff 85%, var(--xuan-raise));
 }
 
-:root[data-theme='light'] .gy-method-pullquote {
-  background: color-mix(in srgb, var(--jin) 6%, #fff);
+:root[data-theme='light'] .gy-method-archive {
+  background: color-mix(in srgb, var(--xuan-raise) 82%, #fff);
 }
