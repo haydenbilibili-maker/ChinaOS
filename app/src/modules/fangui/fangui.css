@@ -1,0 +1,212 @@
+@import "../shared/gy/tokens.css";
+
+#fg-app .fg-shell { max-width: 1060px; margin: 0 auto; padding: 0 28px 96px; }
+
+/* 题头 */
+#fg-app .fg-mast { padding: 56px 0 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+#fg-app .fg-mast-meta { font-family: var(--sans); font-size: 11px; letter-spacing: .22em; color: var(--xuanzhi-mute); text-transform: uppercase; }
+#fg-app .fg-mast-meta b { color: var(--jin); font-weight: 500; }
+#fg-app h1.fg-title { font-size: clamp(30px, 5vw, 46px); font-weight: 600; letter-spacing: .08em; line-height: 1.3; margin-top: 14px; }
+#fg-app h1.fg-title .fg-title-sub { display: block; font-size: 14px; font-weight: 400; color: var(--xuanzhi-dim); letter-spacing: .3em; margin-top: 10px; }
+#fg-app .fg-mast-seal { flex-shrink: 0; writing-mode: vertical-rl; font-size: 13px; letter-spacing: .35em; color: var(--qing); border: 1px solid var(--qing-dim); padding: 14px 8px; line-height: 1; user-select: none; }
+
+/* 题头下方敏感度声明 */
+#fg-app .fg-mast-note { font-family: var(--sans); font-size: 11.5px; color: var(--xuanzhi-mute); letter-spacing: .04em; line-height: 1.7; margin-top: 18px; border-left: 2px solid var(--jin-dim); padding: 5px 0 5px 12px; max-width: 80ch; }
+#fg-app .fg-mast-note b { color: var(--jin); font-weight: 500; }
+
+/* 签名图 */
+#fg-app .fg-found { margin-top: 32px; border: 1px solid var(--hairline); background: var(--xuan-deep); padding: 22px 24px 12px; }
+#fg-app .fg-found svg { width: 100%; height: auto; display: block; }
+#fg-app .fg-found-caption { font-family: var(--sans); font-size: 11.5px; color: var(--xuanzhi-mute); letter-spacing: .04em; padding: 8px 2px 6px; }
+#fg-app .fg-found-caption b { color: var(--xuanzhi); }
+
+/* 页签 */
+#fg-app .fg-nav { display: flex; flex-wrap: wrap; margin-top: 30px; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); position: sticky; top: 0; background: var(--xuan); z-index: 10; }
+#fg-app .fg-nav button { flex: 1 1 auto; background: none; border: none; border-right: 1px solid var(--hairline); color: var(--xuanzhi-dim); font-family: var(--serif); font-size: 14px; letter-spacing: .1em; padding: 15px 9px 13px; cursor: pointer; position: relative; transition: color .2s; white-space: nowrap; }
+#fg-app .fg-nav button:last-child { border-right: none; }
+#fg-app .fg-nav button:hover { color: var(--xuanzhi); }
+#fg-app .fg-nav button:focus-visible { outline: 1px solid var(--jin); outline-offset: -1px; }
+#fg-app .fg-nav button.is-active { color: var(--xuanzhi); }
+#fg-app .fg-nav button.is-active::after { content: ""; position: absolute; left: 14%; right: 14%; bottom: -1px; height: 2px; background: var(--qing); }
+
+/* 通用 */
+#fg-app section.fg-panel { display: none; padding-top: 50px; }
+#fg-app section.fg-panel.is-active { display: block; animation: fgFade .35s ease; }
+@keyframes fgFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { #fg-app section.fg-panel.is-active { animation: none; } }
+#fg-app .fg-sec-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 8px; flex-wrap: wrap; }
+#fg-app .fg-sec-head h2 { font-size: 23px; font-weight: 600; letter-spacing: .1em; }
+#fg-app .fg-sec-head .fg-sec-tag { font-family: var(--sans); font-size: 11px; letter-spacing: .18em; color: var(--xuanzhi-mute); }
+#fg-app .fg-lede { color: var(--xuanzhi-dim); font-size: 15px; max-width: 76ch; margin-bottom: 34px; }
+#fg-app .fg-lede b { color: var(--xuanzhi); font-weight: 600; }
+#fg-app h3.fg-h3 { font-size: 17px; font-weight: 600; letter-spacing: .08em; margin: 40px 0 18px; display: flex; align-items: center; gap: 12px; }
+#fg-app h3.fg-h3::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
+#fg-app .fg-card { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 20px 22px; }
+#fg-app .fg-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+#fg-app .fg-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+#fg-app .fg-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+#fg-app .fg-card p { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.78; }
+#fg-app .fg-card p b { color: var(--xuanzhi); font-weight: 600; }
+#fg-app .fg-card .fg-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .24em; color: var(--xuanzhi-mute); display: block; margin-bottom: 10px; }
+#fg-app .fg-verdict { margin-top: 38px; border-left: 2px solid var(--jin); background: var(--xuan-deep); padding: 22px 26px; font-size: 15px; line-height: 2; }
+#fg-app .fg-verdict .fg-verdict-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .3em; color: var(--jin); display: block; margin-bottom: 8px; }
+#fg-app .fg-verdict b { color: var(--xuanzhi); font-weight: 600; }
+#fg-app .fg-xref { display: inline-block; margin-top: 10px; font-family: var(--sans); font-size: 10.5px; letter-spacing: .12em; color: var(--jin); border: 1px solid var(--jin-dim); padding: 3px 9px; margin-right: 6px; }
+
+/* 数据卡 */
+#fg-app .fg-data3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+#fg-app .fg-stat { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 18px 20px; border-top: 3px solid var(--qing); }
+#fg-app .fg-stat.alt { border-top-color: var(--zhu); }
+#fg-app .fg-stat .fg-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .22em; color: var(--xuanzhi-mute); display: block; margin-bottom: 9px; }
+#fg-app .fg-stat .fg-stat-n { font-family: var(--mono); font-size: 27px; color: var(--qing); line-height: 1.1; display: block; }
+#fg-app .fg-stat.alt .fg-stat-n { color: var(--zhu); }
+#fg-app .fg-stat .fg-stat-u { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .08em; display: block; margin-top: 4px; }
+#fg-app .fg-stat p { font-size: 12px; color: var(--xuanzhi-dim); line-height: 1.7; margin-top: 10px; }
+#fg-app .fg-stat p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 占比对比卡 */
+#fg-app .fg-compare { display: grid; grid-template-columns: 1fr 56px 1fr; border: 1px solid var(--hairline); margin-top: 4px; align-items: stretch; }
+#fg-app .fg-compare > div { padding: 20px 22px; }
+#fg-app .fg-compare .fg-compare-a { background: var(--xuan-raise); border-top: 3px solid var(--qing); }
+#fg-app .fg-compare .fg-compare-mid { background: var(--xuan-deep); display: flex; align-items: center; justify-content: center; font-family: var(--mono); color: var(--qing); font-size: 26px; }
+#fg-app .fg-compare .fg-compare-b { background: var(--xuan-raise); border-top: 3px solid var(--zhu); }
+#fg-app .fg-compare h6 { font-family: var(--sans); font-size: 10.5px; letter-spacing: .16em; color: var(--xuanzhi-mute); margin-bottom: 8px; }
+#fg-app .fg-compare .fg-compare-a h6 b { color: var(--qing); }
+#fg-app .fg-compare .fg-compare-b h6 b { color: var(--zhu); }
+#fg-app .fg-compare .fg-compare-n { font-family: var(--mono); font-size: 30px; line-height: 1.1; display: block; margin-bottom: 6px; }
+#fg-app .fg-compare .fg-compare-a .fg-compare-n { color: var(--qing); }
+#fg-app .fg-compare .fg-compare-b .fg-compare-n { color: var(--zhu); }
+#fg-app .fg-compare p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#fg-app .fg-compare p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 构成 rows */
+#fg-app .fg-rows { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#fg-app .fg-row { padding: 13px 18px; border-bottom: 1px solid var(--hairline); font-size: 13px; display: grid; grid-template-columns: 132px 1fr; gap: 16px; align-items: baseline; }
+#fg-app .fg-row:last-child { border-bottom: none; }
+#fg-app .fg-row .fg-row-k { font-family: var(--mono); font-size: 12px; color: var(--qing); }
+#fg-app .fg-row .fg-row-v { color: var(--xuanzhi-dim); line-height: 1.74; }
+#fg-app .fg-row .fg-row-v b { color: var(--xuanzhi); font-weight: 600; }
+#fg-app .fg-row.peak { border-left: 3px solid var(--qing); }
+#fg-app .fg-row.peak .fg-row-v b { color: var(--qing); }
+
+/* 序列图 / 进程链(寻址擦除链) */
+#fg-app .fg-chain { border: 1px solid var(--hairline); background: var(--xuan-raise); margin-top: 4px; }
+#fg-app .fg-chain-row { padding: 14px 18px; border-bottom: 1px solid var(--hairline); display: grid; grid-template-columns: 130px 1fr; gap: 16px; align-items: baseline; }
+#fg-app .fg-chain-row:last-child { border-bottom: none; }
+#fg-app .fg-chain-row .fg-chain-t { font-family: var(--mono); font-size: 12.5px; color: var(--dai); flex-shrink: 0; }
+#fg-app .fg-chain-row .fg-chain-v { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.74; }
+#fg-app .fg-chain-row .fg-chain-v b { color: var(--xuanzhi); font-weight: 600; }
+#fg-app .fg-chain-row.v1 { border-left: 3px solid var(--qing); }
+#fg-app .fg-chain-row.v1 .fg-chain-t { color: var(--qing); }
+#fg-app .fg-chain-row.v2 { border-left: 3px solid var(--zhu); }
+#fg-app .fg-chain-row.v2 .fg-chain-t { color: var(--zhu); }
+#fg-app .fg-chain-row.v2 .fg-chain-v b { color: var(--zhu); }
+
+/* 中性提示带(非戏剧化) */
+#fg-app .fg-breaking { margin-top: 14px; border: 1px solid var(--jin); background: rgba(110,93,56,.10); padding: 14px 18px; font-family: var(--mono); font-size: 13px; color: var(--xuanzhi); line-height: 1.7; }
+#fg-app .fg-breaking b { color: var(--jin); }
+#fg-app .fg-breaking .fg-breaking-tag { display: block; font-size: 10.5px; letter-spacing: .26em; color: var(--jin); margin-bottom: 7px; }
+
+/* dual 对照(寻址擦除/团圆/法律讨论,中性双栏) */
+#fg-app .fg-dual { display: grid; grid-template-columns: 1fr 60px 1fr; border: 1px solid var(--hairline); margin-top: 4px; }
+#fg-app .fg-dual > div { padding: 16px 18px; }
+#fg-app .fg-dual .fg-dual-a { background: var(--xuan-raise); border-right: 1px solid var(--hairline); border-top: 3px solid var(--qing); }
+#fg-app .fg-dual .fg-dual-mid { background: var(--xuan-deep); display: flex; align-items: center; justify-content: center; font-family: var(--mono); color: var(--dai); font-size: 18px; }
+#fg-app .fg-dual .fg-dual-b { background: var(--xuan-raise); border-left: 1px solid var(--hairline); border-top: 3px solid var(--zhu); }
+#fg-app .fg-dual h6 { font-family: var(--sans); font-size: 10.5px; letter-spacing: .16em; color: var(--xuanzhi-mute); margin-bottom: 8px; }
+#fg-app .fg-dual .fg-dual-a h6 b { color: var(--qing); }
+#fg-app .fg-dual .fg-dual-b h6 b { color: var(--zhu); }
+#fg-app .fg-dual .fg-dual-pole { font-family: var(--mono); font-size: 11px; display: block; margin-bottom: 6px; }
+#fg-app .fg-dual .fg-dual-a .fg-dual-pole { color: var(--qing); }
+#fg-app .fg-dual .fg-dual-b .fg-dual-pole { color: var(--zhu); }
+#fg-app .fg-dual p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#fg-app .fg-dual p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 立场归因小字 */
+#fg-app .fg-attrib { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .04em; line-height: 1.7; margin-bottom: 18px; border: 1px dashed var(--jin-dim); padding: 9px 14px; background: var(--xuan-deep); }
+#fg-app .fg-attrib b { color: var(--jin); font-weight: 500; }
+
+/* 论点卡 */
+#fg-app .fg-art { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 18px 20px; margin-bottom: 12px; border-left: 3px solid var(--qing); }
+#fg-app .fg-art h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 6px; display: flex; gap: 11px; align-items: baseline; }
+#fg-app .fg-art h5 b { font-family: var(--mono); color: var(--qing); font-size: 12px; font-weight: 500; }
+#fg-app .fg-art p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#fg-app .fg-art p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 方法论卡(妇女儿童权益与反拐制度取向) */
+#fg-app .fg-form { border: 1px solid var(--qing-dim); background: rgba(65, 89, 78, .08); padding: 18px 20px; margin-bottom: 12px; }
+#fg-app .fg-form h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 6px; color: var(--qing); }
+#fg-app .fg-form p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#fg-app .fg-form p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 修正卡 */
+#fg-app .fg-fix { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 16px 20px; margin-bottom: 12px; border-left: 3px solid var(--jin); }
+#fg-app .fg-fix h5 { font-size: 14px; font-weight: 600; margin-bottom: 6px; display: flex; gap: 11px; align-items: baseline; }
+#fg-app .fg-fix h5 b { font-family: var(--mono); color: var(--jin); font-size: 12px; font-weight: 500; }
+#fg-app .fg-fix p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#fg-app .fg-fix p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 章节规划登记表 */
+#fg-app .fg-plan { border: 1px solid var(--hairline); }
+#fg-app .fg-plan-row { padding: 14px 18px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); display: flex; gap: 16px; align-items: baseline; }
+#fg-app .fg-plan-row:last-child { border-bottom: none; }
+#fg-app .fg-plan-k { font-family: var(--mono); font-size: 12px; color: var(--qing); flex-shrink: 0; width: 76px; }
+#fg-app .fg-plan-v { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#fg-app .fg-plan-v b { color: var(--xuanzhi); font-weight: 600; }
+#fg-app .fg-plan-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .14em; color: var(--xuanzhi-mute); border: 1px solid var(--hairline); padding: 2px 8px; flex-shrink: 0; }
+
+/* 观测哨 */
+#fg-app .fg-watch-intro { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 22px; }
+#fg-app .fg-watch-intro p { font-size: 13.5px; color: var(--xuanzhi-dim); max-width: 64ch; }
+#fg-app .fg-storage-state { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .08em; }
+#fg-app .fg-watch { border: 1px solid var(--hairline); }
+#fg-app .fg-watch-item { display: grid; grid-template-columns: 1fr 320px; gap: 18px; padding: 18px 22px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); }
+#fg-app .fg-watch-item:last-child { border-bottom: none; }
+#fg-app .fg-watch-item h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 5px; }
+#fg-app .fg-watch-item h5 b { font-family: var(--mono); color: var(--jin); font-weight: 500; font-size: 12px; margin-right: 8px; }
+#fg-app .fg-watch-item .fg-watch-desc { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.75; }
+#fg-app .fg-watch-ctrl { display: flex; flex-direction: column; gap: 9px; }
+#fg-app .fg-status-row { display: flex; gap: 6px; }
+#fg-app .fg-status-btn { flex: 1; font-family: var(--sans); font-size: 11.5px; letter-spacing: .08em; padding: 7px 0; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi-mute); cursor: pointer; transition: all .15s; }
+#fg-app .fg-status-btn:hover { color: var(--xuanzhi); }
+#fg-app .fg-status-btn:focus-visible { outline: 1px solid var(--jin); }
+#fg-app .fg-status-btn.on-good { background: var(--qing-dim); border-color: var(--qing); color: var(--xuanzhi); }
+#fg-app .fg-status-btn.on-flat { background: #3a3f33; border-color: var(--xuanzhi-mute); color: var(--xuanzhi); }
+#fg-app .fg-status-btn.on-bad { background: var(--zhu-dim); border-color: var(--zhu); color: var(--xuanzhi); }
+#fg-app .fg-watch-note { width: 100%; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi); font-family: var(--sans); font-size: 12.5px; padding: 8px 10px; resize: vertical; min-height: 38px; line-height: 1.6; }
+#fg-app .fg-watch-note:focus { outline: 1px solid var(--jin); }
+#fg-app .fg-watch-note::placeholder { color: var(--xuanzhi-mute); }
+#fg-app .fg-watch-stamp { font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); text-align: right; min-height: 14px; }
+
+/* 页脚 */
+#fg-app .fg-foot { margin-top: 66px; border-top: 1px solid var(--hairline); padding-top: 24px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+#fg-app .fg-foot p { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .06em; line-height: 1.9; max-width: 66ch; }
+#fg-app .fg-foot .fg-foot-meta { text-align: right; font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); line-height: 2; flex-shrink: 0; }
+
+/* 诚实标注 */
+#fg-app .fg-disclaimer { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .04em; margin-top: -22px; margin-bottom: 30px; line-height: 1.7; border-left: 2px solid var(--jin-dim); padding: 4px 0 4px 12px; }
+#fg-app .fg-disclaimer b { color: var(--jin); font-weight: 500; }
+#fg-app .fg-disclaimer.top { margin-top: 0; margin-bottom: 30px; }
+
+/* 题头下方显著 disclaimer(分析立场声明) */
+#fg-app .fg-mast-disclaimer { font-family: var(--sans); font-size: 12px; color: var(--xuanzhi-dim); letter-spacing: .03em; line-height: 1.85; margin-top: 30px; border: 1px solid var(--qing-dim); border-left: 3px solid var(--qing); padding: 16px 20px; background: var(--xuan-deep); max-width: 82ch; }
+#fg-app .fg-mast-disclaimer .fg-disclaimer-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .3em; color: var(--qing); display: block; margin-bottom: 10px; text-transform: uppercase; }
+#fg-app .fg-mast-disclaimer b { color: var(--xuanzhi); font-weight: 600; }
+
+@media (max-width: 860px) {
+  #fg-app .fg-grid-2, #fg-app .fg-grid-3, #fg-app .fg-data3 { grid-template-columns: 1fr; }
+  #fg-app .fg-watch-item { grid-template-columns: 1fr; }
+  #fg-app .fg-mast-seal { display: none; }
+  #fg-app .fg-nav button { flex: 1 1 30%; font-size: 12.5px; letter-spacing: .04em; }
+  #fg-app .fg-row, #fg-app .fg-chain-row { grid-template-columns: 1fr; gap: 4px; }
+  #fg-app .fg-dual, #fg-app .fg-compare { grid-template-columns: 1fr; }
+  #fg-app .fg-plan-row { flex-direction: column; gap: 3px; }
+  #fg-app .fg-plan-k { width: auto; }
+}
+
+#fg-app { border-radius: var(--radius-lg); }
+
+.fangui-module-wrap {
+  margin: calc(-1 * var(--card-padding)) calc(-1 * var(--card-padding));
+  max-width: none;
+}

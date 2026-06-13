@@ -1,0 +1,402 @@
+<div class="fg-shell">
+
+  <!-- 题头 -->
+  <header class="fg-mast">
+    <div>
+      <div class="fg-mast-meta">ChinaOS · MODULE <b>GY-52</b> · 人群画像分层 · 第五十子集</div>
+      <h1 class="fg-title">被拐卖与反拐救助对象<span class="fg-title-sub">被非法迁移、地址被改写的进程 · 寻址丢失</span></h1>
+    </div>
+    <div class="fg-mast-seal">回家的路</div>
+  </header>
+
+  <!-- 题头下方分析立场声明 -->
+  <div class="fg-mast-disclaimer">
+    <span class="fg-disclaimer-tag">注记 · 分析立场</span>
+    本片以<b>妇女儿童权益保护与反拐制度</b>视角分析,把被拐卖者作为<b>受害者</b>对待,聚焦救助、团圆、预防与法律完善——这是唯一恰当的视角。本片把被拐卖的妇女与儿童理解为<b>被非法迁移、原有身份与家庭联系被改写、与原生家庭失联的进程</b>,反拐制度(团圆行动、打拐 DNA 库、多部门协作)是努力把他们重新定位、接回原生家庭的「寻址恢复」机制。本片<b>不渲染、不消费任何具体个案,不复述任何具体事件作为裁决依据</b>;涉及法律量刑等存在讨论处,以<b>归因呈现、不裁决</b>的方式处理;语气庄重克制。
+  </div>
+
+  <!-- 寻址丢失 签名图 -->
+  <div class="fg-found" aria-label="寻址丢失示意图:一个进程被非法迁移到陌生节点,其寻址(身份/家庭联系)被擦除或改写,从原生集群失联(失踪);一个恢复守护进程(团圆行动·打拐DNA库)尝试重新定位并重连原生集群;部分进程在数十年后成功重连(最长30年);底注妇女儿童权益加反拐制度·受害者视角·不渲染个案。庄重克制,无煽情猎奇元素">
+    <svg viewBox="0 0 1000 660" xmlns="http://www.w3.org/2000/svg" role="img">
+      <text x="500" y="22" font-size="11" fill="#8f897d" text-anchor="middle" font-family="mono" letter-spacing="2">ChinaOS · FORCIBLY MIGRATED PROCESS WITH ERASED ADDRESSING · 寻址丢失</text>
+      <text x="500" y="46" font-size="9.5" fill="#5e8c7a" text-anchor="middle" font-family="sans-serif">— 一个进程被非法迁移到陌生节点,寻址(身份/家庭联系)被擦除,与原生集群失联;恢复守护进程努力重新定位并接它回家 —</text>
+
+      <!-- 原生集群 -->
+      <rect x="60" y="86" width="250" height="78" rx="6" fill="#1a2620" stroke="#5e8c7a" stroke-width="1.6"/>
+      <text x="185" y="110" font-size="11" fill="#5e8c7a" text-anchor="middle" font-family="mono">home cluster · 原生家庭</text>
+      <text x="185" y="129" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">原有身份 · 家庭联系</text>
+      <text x="185" y="144" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">寻址表中的一个进程</text>
+
+      <!-- 非法迁移 -->
+      <line x1="310" y1="125" x2="375" y2="125" stroke="#b5483a" stroke-width="1.3" marker-end="url(#fgArrowRed)"/>
+      <rect x="375" y="86" width="250" height="78" rx="6" fill="#26201a" stroke="#b5483a" stroke-width="1.6"/>
+      <text x="500" y="110" font-size="11" fill="#c0584a" text-anchor="middle" font-family="mono">illegal migrate(拐卖)</text>
+      <text x="500" y="129" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">被强制迁移到陌生节点</text>
+      <text x="500" y="144" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">受控制 · 受害者</text>
+
+      <!-- 寻址被擦除 -->
+      <line x1="625" y1="125" x2="690" y2="125" stroke="#b5483a" stroke-width="1.3" marker-end="url(#fgArrowRed)"/>
+      <rect x="690" y="86" width="250" height="78" rx="6" fill="#26201a" stroke="#b5483a" stroke-width="1.6"/>
+      <text x="815" y="110" font-size="11" fill="#c0584a" text-anchor="middle" font-family="mono">addr.erase(寻址擦除)</text>
+      <text x="815" y="129" font-size="8.5" fill="#d8d2c4" text-anchor="middle" font-family="sans-serif">身份/姓名/联系被改写</text>
+      <text x="815" y="144" font-size="8.5" fill="#d8d2c4" text-anchor="middle" font-family="sans-serif">从原生集群失联(失踪)</text>
+
+      <!-- 失联状态 -->
+      <line x1="500" y1="164" x2="500" y2="204" stroke="#b5483a" stroke-width="1.3" stroke-dasharray="5 3" marker-end="url(#fgArrowRed)"/>
+      <rect x="160" y="206" width="680" height="74" rx="8" fill="#26201a" stroke="#b5483a" stroke-width="2"/>
+      <text x="500" y="234" font-size="12" fill="#c0584a" text-anchor="middle" font-family="mono" letter-spacing="1">unreachable · 与原生家庭失联(失踪)</text>
+      <text x="500" y="258" font-size="10.5" fill="#d8d2c4" text-anchor="middle" font-family="sans-serif">寻址被擦除是拐卖最深的伤害——失联可长达数十年,记忆模糊、线索断裂,已难凭记忆定位</text>
+
+      <!-- 恢复守护进程 -->
+      <line x1="500" y1="280" x2="500" y2="320" stroke="#5e8c7a" stroke-width="1.3" stroke-dasharray="5 3" marker-end="url(#fgArrowGreen)"/>
+      <rect x="220" y="322" width="560" height="74" rx="8" fill="#1a2620" stroke="#5e8c7a" stroke-width="2"/>
+      <text x="500" y="350" font-size="12" fill="#5e8c7a" text-anchor="middle" font-family="mono" letter-spacing="1">recovery daemon · 团圆行动 · 打拐 DNA 库</text>
+      <text x="500" y="374" font-size="10.5" fill="#d8d2c4" text-anchor="middle" font-family="sans-serif">恢复守护进程尝试 re-address:DNA 比对重新定位、重连原生集群(双向寻亲)</text>
+
+      <!-- 两条出路 -->
+      <line x1="380" y1="396" x2="300" y2="436" stroke="#5e8c7a" stroke-width="1.3" stroke-dasharray="5 3" marker-end="url(#fgArrowGreen)"/>
+      <rect x="80" y="438" width="380" height="64" rx="8" fill="#1a2620" stroke="#5e8c7a" stroke-width="1.6"/>
+      <text x="270" y="466" font-size="10.5" fill="#5e8c7a" text-anchor="middle" font-family="mono">re-addressed · 成功重连原生集群</text>
+      <text x="270" y="487" font-size="10" fill="#7d9488" text-anchor="middle" font-family="sans-serif">部分进程数十年后回家(最长 30 年 ↗ F1)</text>
+
+      <line x1="620" y1="396" x2="700" y2="436" stroke="#b39657" stroke-width="1.3" stroke-dasharray="5 3" marker-end="url(#fgArrowGold)"/>
+      <rect x="540" y="438" width="380" height="64" rx="8" fill="#23201a" stroke="#b39657" stroke-width="1.6"/>
+      <text x="730" y="466" font-size="10.5" fill="#c2a052" text-anchor="middle" font-family="mono">re-adaptation · 团圆不是终点</text>
+      <text x="730" y="487" font-size="10" fill="#8f897d" text-anchor="middle" font-family="sans-serif">身份断裂、两个家庭、回归再适应(↗ F2)</text>
+
+      <defs>
+        <marker id="fgArrowGreen" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5e8c7a"/></marker>
+        <marker id="fgArrowRed" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#b5483a"/></marker>
+        <marker id="fgArrowGold" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#b39657"/></marker>
+      </defs>
+
+      <text x="500" y="546" font-size="10.5" fill="#5d7489" text-anchor="middle" font-family="serif" letter-spacing="2">— 把寻址恢复(把人接回家) ↔ 把人生缝合(回归后的再适应) 的双重任务 —</text>
+      <text x="500" y="570" font-size="9" fill="#7d9488" text-anchor="middle" font-family="sans-serif">把人接回家是把寻址恢复了;把人生缝合起来,是更长的事——而让没有人再被拐走,才是反拐的目的</text>
+      <text x="500" y="594" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="mono">妇女儿童权益 + 反拐制度 · 受害者视角 · 不渲染、不消费个案</text>
+    </svg>
+    <div class="fg-found-caption">模块隐喻是<b>被非法迁移、地址被改写、与原集群失联的进程(Forcibly Migrated Process with Erased Addressing)</b>:被拐卖者是 China OS 里被非法 migrate 到另一节点的进程——原有寻址(<b>身份、家庭联系</b>)被擦除或改写,从原生家庭集群中失联(失踪),失联可长达数十年。反拐救助(<b>团圆行动 + 打拐 DNA 库</b>)是「寻址恢复守护进程」,努力重新定位并把它重连回原生集群——有的重连发生在失联数十年之后(最长 30 年)。本片以妇女儿童权益与反拐制度视角主张:把他们当作应被找回、被保护的受害者;拐卖最深的伤害是把一个人从原本的人生里抹掉,所以团圆既靠技术(DNA 寻址),也需要漫长的人生缝合——而预防,比找回更重要。本片不渲染、不消费任何具体个案。</div>
+  </div>
+
+  <!-- 页签 -->
+  <nav class="fg-nav" role="tablist">
+    <button role="tab" data-panel="fg-p-f1" class="is-active">反拐成效与制度</button>
+    <button role="tab" data-panel="fg-p-f2">寻址丢失身份擦除</button>
+    <button role="tab" data-panel="fg-p-f3">预防与脆弱性</button>
+    <button role="tab" data-panel="fg-p-f4">法律完善讨论</button>
+    <button role="tab" data-panel="fg-p-f5">政治形态学</button>
+    <button role="tab" data-panel="fg-p-watch">合成 · 观测哨</button>
+  </nav>
+
+  <!-- ════ F1 反拐成效与制度(事实层) ════ -->
+  <section class="fg-panel is-active" id="fg-p-f1">
+    <div class="fg-sec-head"><h2>F1 · 反拐成效与制度(事实层)</h2><span class="fg-sec-tag">2024 侦破现案积案 550 余起 · 多部门协作制度</span></div>
+    <p class="fg-disclaimer top">注记(分析立场):本节锚定的是<b>制度事实与反拐成效</b>。先记成绩——2024 年公安机关侦破了一批拐卖现案积案,找回了一批被拐妇女儿童,反拐已是一套多部门协作、辅以 DNA 库和团圆系统的制度。本片把被拐卖者当作受害者、当作应被找回与保护的人来写。</p>
+    <p class="fg-lede">关于这个人群,第一个事实是成效与制度:<b style="color:var(--qing);">2024 年全国公安机关累计侦破拐卖现案、积案 550 余起,找回一批失踪被拐妇女儿童,部分案件被拐时间长达 30 年(公安部)</b>——这是积案攻坚与技术寻亲的成果。制度上,反拐已形成「打击 + 预防 + 救助 + 团圆」的多部门协作框架:公安、两高、教育、民政、妇联协同,辅以<b>打拐 DNA 库、「团圆」系统、反拐 DNA 查询小程序</b>等技术手段。这些是实打实的进展。本片把被拐卖妇女、被拐卖/失踪儿童作为受害者、作为应被找回与保护的对象来分析——这是唯一恰当的视角,而非给受害者贴标签。</p>
+
+    <h3 class="fg-h3">最重要的定位:应被找回与保护的受害者</h3>
+    <div class="fg-compare">
+      <div class="fg-compare-a">
+        <h6>成效 · <b>2024 反拐</b></h6>
+        <span class="fg-compare-n">550 余起</span>
+        <p><b>2024 全国公安侦破拐卖现案积案 550 余起,找回一批被拐妇女儿童(部分被拐长达 30 年)</b>——积案攻坚 + 技术寻亲的成果;这是反拐的实打实进展。</p>
+      </div>
+      <div class="fg-compare-mid">⇄</div>
+      <div class="fg-compare-b">
+        <h6>制度 · <b>多部门协作</b></h6>
+        <span class="fg-compare-n">打击+救助+团圆</span>
+        <p><b>公安 + 两高 + 教育 + 民政 + 妇联多部门协作</b>——「打击—预防—救助—团圆」的反拐协作机制,辅以 DNA 库与团圆系统。这是事实层的地基。</p>
+      </div>
+    </div>
+
+    <h3 class="fg-h3">三个制度锚点</h3>
+    <div class="fg-data3">
+      <div class="fg-stat"><span class="fg-eyebrow">反拐成效</span><span class="fg-stat-n">550 余起</span><span class="fg-stat-u">2024 侦破现案积案</span><p>2024 全国公安侦破拐卖现案、积案<b>550 余起</b>,找回一批被拐妇女儿童——积案攻坚 + 技术寻亲的成果。</p></div>
+      <div class="fg-stat alt"><span class="fg-eyebrow">寻亲时长</span><span class="fg-stat-n">最长 30 年</span><span class="fg-stat-u">部分案件被拐时长</span><p>部分案件<b>被拐时间长达 30 年</b>才回家——失联之久,正说明寻址恢复(团圆)之难,也说明技术寻亲的价值。</p></div>
+      <div class="fg-stat"><span class="fg-eyebrow">技术手段</span><span class="fg-stat-n">DNA 库</span><span class="fg-stat-u">团圆系统 · 查询小程序</span><p>打拐 DNA 库、「团圆」系统、反拐 DNA 查询小程序——<b>技术寻亲(寻址恢复)的关键工具</b>。</p></div>
+    </div>
+
+    <h3 class="fg-h3">制度框架:反拐协作的几条</h3>
+    <div class="fg-rows">
+      <div class="fg-row peak"><span class="fg-row-k">成效锚定</span><span class="fg-row-v"><b style="color:var(--qing);">2024 侦破拐卖现案积案 550 余起,找回一批被拐妇女儿童(部分被拐长达 30 年,公安部)</b>——积案攻坚 + 技术寻亲。</span></div>
+      <div class="fg-row"><span class="fg-row-k">制度协作</span><span class="fg-row-v">公安 + 两高 + 教育 + 民政 + 妇联多部门——<b>「打击—预防—救助—团圆」的反拐协作机制</b>。</span></div>
+      <div class="fg-row peak"><span class="fg-row-k">技术手段</span><span class="fg-row-v"><b style="color:var(--qing);">打拐 DNA 库、「团圆」系统、反拐 DNA 查询小程序——技术寻亲(寻址恢复)</b>;让一些人在数十年后回了家。</span></div>
+      <div class="fg-row"><span class="fg-row-k">受害者主体</span><span class="fg-row-v">被拐卖妇女、被拐卖/失踪儿童——<b>本片作为受害者、作为应被找回与保护的对象分析,不贴标签</b>。</span></div>
+    </div>
+
+    <div class="fg-art">
+      <h5><b>先记成绩:550 余起破案、有人被拐 30 年才回家</b>本片把被拐卖者当作受害者来写</h5>
+      <p>关于这个人群,先把成绩记在最前面:2024 年公安机关破获拐卖现案积案 550 余起,找回了一批被拐的妇女和儿童,有的人被拐了 30 年才回家。反拐已经是一套多部门协作、辅以 DNA 库和团圆系统的制度。<b style="color:var(--qing);">这些是实打实的进展。本片把被拐卖者当作受害者、当作应被找回和保护的人来写——这是唯一恰当的视角。</b>(↗ F2 寻址丢失 / ↗ F3 预防与脆弱性)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="fg-xref">↗ F2 · 寻址丢失:身份与联系的擦除</span>
+      <span class="fg-xref">↗ F3 · 预防与脆弱性</span>
+      <span class="fg-xref">↗ GY-43 · 社会救助</span>
+    </div>
+
+    <div class="fg-verdict">
+      <span class="fg-verdict-tag">F1 判词</span>
+      先记成绩:2024 年公安机关破获拐卖现案积案 550 余起,找回了一批被拐的妇女和儿童,有的人被拐了 30 年才回家。反拐已经是一套多部门协作、辅以 DNA 库和团圆系统的制度。这些是实打实的进展。<b style="color:var(--qing);">本片把被拐卖者当作受害者、当作应被找回和保护的人来写——这是唯一恰当的视角。</b>
+      <span class="fg-xref">↗ F2 · 寻址丢失:拐卖最深的伤害</span>
+    </div>
+  </section>
+
+  <!-- ════ F2 寻址丢失:身份与联系的擦除 ════ -->
+  <section class="fg-panel" id="fg-p-f2">
+    <div class="fg-sec-head"><h2>F2 · 寻址丢失:身份与联系的擦除</h2><span class="fg-sec-tag">本片独特机制 · 抹掉一个人的寻址</span></div>
+    <p class="fg-disclaimer top">注记(分析立场):本节呈现本片的独特机制——寻址被擦除。这不是为了渲染,而是因为「身份与联系的擦除」正是拐卖最深的伤害,也是团圆最大的技术难题;理解它,才能理解这个群体的核心处境。本片以受害者视角处理,不复述具体个案。</p>
+    <p class="fg-lede">拐卖的本质是<b style="color:var(--qing);">「寻址丢失」——被拐者被强制迁移到陌生环境,原有身份、家庭联系、甚至姓名被擦除或改写,使其从原生家庭的「寻址表」中消失</b>。这种身份与联系的擦除,是拐卖造成的最深伤害,也是团圆最大的技术难题:失联数十年后,记忆早已模糊、线索断裂,已难凭记忆定位,只能依赖 DNA 比对来重新「寻址」(打拐 DNA 库)。寻亲是双向的——被拐者寻找原生家庭、原生家庭寻找被拐者,团圆系统对接双方。而即便找到,团圆也不是故事的结尾:一个被拐数十年的人,要面对身份的断裂、两个家庭(原生 + 现处)的情感纠葛、和回归后漫长的再适应。把人接回来,只是把寻址恢复了;把人生缝合起来,是更长的事。</p>
+
+    <h3 class="fg-h3">寻址擦除 vs 寻址恢复</h3>
+    <div class="fg-dual">
+      <div class="fg-dual-a"><h6>恢复端 · <b>团圆与寻亲</b></h6><span class="fg-dual-pole">DNA 比对·双向</span><p><b style="color:var(--qing);">打拐 DNA 库 + 团圆系统:重新定位、重连原生集群——双向寻亲(被拐者找家 + 家找被拐者),「寻址恢复」的关键技术</b>。</p></div>
+      <div class="fg-dual-mid">↔</div>
+      <div class="fg-dual-b"><h6>伤害端 · <b>寻址被擦除</b></h6><span class="fg-dual-pole">身份/联系被改写</span><p><b style="color:var(--zhu);">被强制迁移,身份、家庭联系、姓名被擦除或改写——从原生家庭寻址表中消失;这是拐卖最深的伤害</b>。</p></div>
+    </div>
+
+    <h3 class="fg-h3">寻址丢失的进程链:迁移 → 擦除 → 失联 → 团圆 → 再适应</h3>
+    <div class="fg-chain">
+      <div class="fg-chain-row v2"><span class="fg-chain-t">强制迁移</span><span class="fg-chain-v"><b>被拐者被非法迁移到陌生环境——被控制、与原生家庭物理隔离</b>(本片以受害者视角呈现,不渲染个案)。</span></div>
+      <div class="fg-chain-row v2"><span class="fg-chain-t">寻址擦除</span><span class="fg-chain-v"><b>原身份、家庭联系、甚至姓名被擦除或改写——从原生家庭的「寻址表」中消失</b>;这是拐卖造成的最深伤害。</span></div>
+      <div class="fg-chain-row v2"><span class="fg-chain-t">长期失联</span><span class="fg-chain-v"><b>失联可长达数十年——记忆模糊、线索断裂,已难凭记忆定位</b>;这是团圆最大的技术难题。</span></div>
+      <div class="fg-chain-row v1"><span class="fg-chain-t">寻址恢复</span><span class="fg-chain-v">DNA 比对 + 团圆系统双向对接 → <b>重新定位、重连原生集群——部分进程在数十年后成功重连</b>(↗ F1 最长 30 年)。</span></div>
+      <div class="fg-chain-row v1"><span class="fg-chain-t">回归再适应</span><span class="fg-chain-v">团圆不是终点 → <b>身份断裂、两个家庭的情感、回归后的再适应——把人生缝合起来是更长的事</b>(↗ GY-43 救助支持)。</span></div>
+    </div>
+
+    <h3 class="fg-h3">寻址丢失的几条事实</h3>
+    <div class="fg-rows">
+      <div class="fg-row peak"><span class="fg-row-k">强制迁移+擦除</span><span class="fg-row-v"><b style="color:var(--qing);">被拐者被迁移,原身份/家庭联系/姓名被改写——「寻址被擦除」,从原生家庭失联</b>。</span></div>
+      <div class="fg-row"><span class="fg-row-k">团圆技术难题</span><span class="fg-row-v">失联数十年后,记忆模糊、线索断裂——<b>DNA 比对成为「寻址恢复」的关键技术(打拐 DNA 库)</b>。</span></div>
+      <div class="fg-row peak"><span class="fg-row-k">双向寻亲</span><span class="fg-row-v"><b style="color:var(--qing);">被拐者寻找原生家庭 + 原生家庭寻找被拐者——双向的寻址恢复;团圆系统对接双方</b>。</span></div>
+      <div class="fg-row"><span class="fg-row-k">伤害的深层</span><span class="fg-row-v">身份的断裂、两个家庭(原生 + 现处)的情感纠葛、回归后的再适应——<b>团圆不是终点,是另一段适应的开始</b>。</span></div>
+    </div>
+
+    <div class="fg-breaking">
+      <span class="fg-breaking-tag">· 拐卖最深的伤害,是把一个人「抹掉」</span>
+      <b>改了名字、断了联系、换了环境,让一个人从原生家庭的寻址表里消失。这就是团圆为什么那么难:失联几十年后,记忆早已模糊,只能靠 DNA 比对重新「寻址」。本片以受害者视角呈现这一机制,不复述、不消费任何具体个案。</b>
+    </div>
+
+    <div class="fg-art">
+      <h5><b>把人接回来,只是把寻址恢复了;把人生缝合起来,是更长的事</b></h5>
+      <p>拐卖最深的伤害,是把一个人从他原本的人生里「抹掉」——改了名字、断了联系、换了环境,让他从原生家庭的寻址表里消失。<b style="color:var(--qing);">这就是为什么团圆那么难:失联几十年后,记忆早已模糊,只能靠 DNA 比对重新「寻址」。而即便找到了,团圆也不是故事的结尾——一个被拐几十年的人,要面对身份的断裂、两个家庭的情感、和回归后漫长的再适应。把人接回来,只是把寻址恢复了;把人生缝合起来,是更长的事。</b>(↗ F1 团圆成效 / ↗ F3 预防 / ↗ GY-43 救助)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="fg-xref">↗ F1 · 反拐成效与制度</span>
+      <span class="fg-xref">↗ F3 · 预防与脆弱性</span>
+      <span class="fg-xref">↗ GY-43 · 社会救助(回归再适应)</span>
+    </div>
+
+    <div class="fg-verdict">
+      <span class="fg-verdict-tag">F2 判词</span>
+      拐卖最深的伤害,是把一个人从他原本的人生里「抹掉」——改了名字、断了联系、换了环境,让他从原生家庭的寻址表里消失。这就是为什么团圆那么难:失联几十年后,记忆早已模糊,只能靠 DNA 比对重新「寻址」。而即便找到了,团圆也不是故事的结尾——一个被拐几十年的人,要面对身份的断裂、两个家庭的情感、和回归后漫长的再适应。<b style="color:var(--qing);">把人接回来,只是把寻址恢复了;把人生缝合起来,是更长的事。</b>
+      <span class="fg-xref">↗ F3 · 预防:哪些环节容易丢失</span>
+    </div>
+  </section>
+
+  <!-- ════ F3 预防与脆弱性 ════ -->
+  <section class="fg-panel" id="fg-p-f3">
+    <div class="fg-sec-head"><h2>F3 · 预防与脆弱性:哪些环节容易丢失</h2><span class="fg-sec-tag">从事后打击到事前预防 · 接 GY-54</span></div>
+    <p class="fg-disclaimer top">注记(分析立场):本节分析反拐重心从「事后打击」向「事前预防」的前移,以及被拐风险与社会脆弱性的相关——预防即降低这些环节的「丢失概率」。本片以儿童权益与保护视角处理,不渲染。</p>
+    <p class="fg-lede">反拐的重心正从「事后打击」向「事前预防」前移——<b style="color:var(--qing);">儿童安全教育、农村/流动儿童(↗ GY-54)的脆弱性防护、收养与户籍管理的规范</b>。被拐风险与社会脆弱性相关:流动/留守儿童(监护薄弱)、偏远地区、监护薄弱处更易成为目标。预防,就是降低这些环节的「丢失概率」,同时堵住户籍、收养、出生医学证明上让「身份被改写」得以洗白的制度漏洞。被拐儿童的预防与流动/留守儿童(↗ GY-54)的保护同源——监护与儿童权益是共同地基。保护孩子不被拐走,比把被拐的孩子找回来,重要得多。</p>
+
+    <h3 class="fg-h3">预防前移 vs 制度堵漏</h3>
+    <div class="fg-dual">
+      <div class="fg-dual-a"><h6>预防前移 · <b>降低丢失概率</b></h6><span class="fg-dual-pole">安全教育·脆弱防护</span><p><b style="color:var(--qing);">儿童安全教育(覆盖大量中小学)、防拐宣传、脆弱环节防护——把重心从事后打击移向事前预防,降低「丢失概率」</b>。</p></div>
+      <div class="fg-dual-mid">+</div>
+      <div class="fg-dual-b"><h6>制度堵漏 · <b>防止身份洗白</b></h6><span class="fg-dual-pole">收养·户籍·出生证</span><p><b style="color:var(--zhu);">收养规范、户籍管理(防止被拐儿童「落户洗白」)、出生医学证明管理——堵住「身份改写」的制度漏洞</b>。</p></div>
+    </div>
+
+    <h3 class="fg-h3">脆弱性与预防的几条(接 GY-54)</h3>
+    <div class="fg-rows">
+      <div class="fg-row peak"><span class="fg-row-k">预防前移</span><span class="fg-row-v"><b style="color:var(--qing);">儿童安全教育(覆盖大量中小学)、防拐宣传——把重心从事后打击移向事前预防,降低「丢失概率」</b>。</span></div>
+      <div class="fg-row"><span class="fg-row-k">脆弱环节(↗GY-54)</span><span class="fg-row-v">流动儿童、留守儿童(监护薄弱)、偏远地区——<b>脆弱性与被拐风险相关;预防应聚焦脆弱环节</b>。</span></div>
+      <div class="fg-row peak"><span class="fg-row-k">制度堵漏</span><span class="fg-row-v"><b style="color:var(--qing);">收养规范、户籍管理(防「落户洗白」)、出生医学证明管理——堵住「身份改写」的制度漏洞</b>。</span></div>
+      <div class="fg-row"><span class="fg-row-k">儿童保护接口</span><span class="fg-row-v">被拐儿童的预防与流动/留守儿童(↗ GY-54)的保护同源——<b>监护与儿童权益是共同地基</b>。</span></div>
+    </div>
+
+    <div class="fg-form">
+      <h5>反拐最好的成果,是没有发生的拐卖</h5>
+      <p>重心正从事后打击往事前预防移——给孩子上安全课,给监护薄弱的环节补防护。被拐从来不是随机的:流动的、留守的、监护薄弱的孩子(↗ GY-54),更容易成为目标。<b style="color:var(--qing);">预防,就是降低这些环节的「丢失概率」,同时堵住户籍、收养上让「身份被改写」得以洗白的制度漏洞。保护孩子不被拐走,比把被拐的孩子找回来,重要得多。</b></p>
+    </div>
+
+    <div class="fg-art">
+      <h5><b>被拐从来不是随机的——脆弱的环节更容易丢失</b>预防即降低这些环节的丢失概率</h5>
+      <p>反拐最好的成果,是没有发生的拐卖。重心正从事后打击往事前预防移——给孩子上安全课,给监护薄弱的环节补防护。<b style="color:var(--qing);">被拐从来不是随机的:流动的、留守的、监护薄弱的孩子(↗ GY-54),更容易成为目标。预防,就是降低这些环节的「丢失概率」,同时堵住户籍、收养上让「身份被改写」得以洗白的制度漏洞。保护孩子不被拐走,比把被拐的孩子找回来,重要得多。</b>(↗ F2 寻址擦除 / ↗ GY-54 儿童保护)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="fg-xref">↗ F2 · 寻址丢失</span>
+      <span class="fg-xref">↗ GY-54 · 流动/留守儿童保护</span>
+      <span class="fg-xref">↗ F4 · 法律完善讨论</span>
+    </div>
+
+    <div class="fg-verdict">
+      <span class="fg-verdict-tag">F3 判词</span>
+      反拐最好的成果,是没有发生的拐卖。重心正从事后打击往事前预防移——给孩子上安全课,给监护薄弱的环节补防护。被拐从来不是随机的:流动的、留守的、监护薄弱的孩子(↗ GY-54),更容易成为目标。预防,就是降低这些环节的「丢失概率」,同时堵住户籍、收养上让「身份被改写」得以洗白的制度漏洞。<b style="color:var(--qing);">保护孩子不被拐走,比把被拐的孩子找回来,重要得多。</b>
+      <span class="fg-xref">↗ F4 · 法律完善的讨论(归因)</span>
+    </div>
+  </section>
+
+  <!-- ════ F4 法律完善的讨论(归因呈现) ════ -->
+  <section class="fg-panel" id="fg-p-f4">
+    <div class="fg-sec-head"><h2>F4 · 法律完善的讨论(归因呈现)</h2><span class="fg-sec-tag">收买罪量刑讨论 · 两种考量并置 · 不裁决</span></div>
+    <p class="fg-attrib"><b>归因声明:本节内容为归因并置,非本片断言。</b>围绕拐卖犯罪的法律存在持续讨论,焦点之一是「收买被拐卖妇女、儿童罪」的量刑——本片把「买卖同罪同罚」的社会呼声与「从法律技术等角度的不同考量」两种立场并列呈现,标注为「正在进行的法律与社会讨论」,<b>不复述任何具体个案作为事实、不裁决具体立法主张</b>。</p>
+    <p class="fg-lede">围绕拐卖犯罪的法律,存在一场持续的讨论,焦点之一是<b style="color:var(--qing);">「收买被拐卖妇女、儿童罪」的量刑</b>——一种广泛的社会呼声主张「买卖同罪同罚」(提高收买方刑责),认为需求端的低成本助长拐卖;也存在从法律技术、解救配合等角度的不同考量。本片在这里采取归因、并置、不裁决的处理:呈现这场讨论的存在和它的核心关切(需求端治理),把具体的立法判断留给立法过程和读者。反拐从供给端(拐卖者)向需求端(收买者)延伸——打击买方、铲除「买方市场」,是这场讨论指向的方向。一个朴素的共识是:要真正遏制拐卖,光打拐卖者不够,还要让「买」这件事不再低成本、不再被默许。</p>
+
+    <h3 class="fg-h3">两种考量并置(归因)</h3>
+    <div class="fg-grid-2">
+      <div class="fg-card" style="border-top:3px solid var(--zhu);"><span class="fg-eyebrow">一种呼声(归因)</span><h4>「买卖同罪同罚」· 提高收买方刑责</h4><p>一种广泛的社会呼声主张<b>「买卖同罪同罚」</b>(提高收买被拐卖妇女、儿童罪的刑责)——认为需求端的低成本助长拐卖。本片<b>归因呈现,不断言</b>。</p></div>
+      <div class="fg-card" style="border-top:3px solid var(--qing);"><span class="fg-eyebrow">不同考量(归因)</span><h4>法律技术 · 解救配合等角度</h4><p>也存在从<b>法律技术、解救配合等角度的不同考量</b>。本片<b>并置呈现</b>,与上一种呼声并列,标注为「正在进行的讨论」,不裁决孰是孰非。</p></div>
+    </div>
+
+    <h3 class="fg-h3">法律讨论的几条(归因)</h3>
+    <div class="fg-rows">
+      <div class="fg-row peak"><span class="fg-row-k">讨论焦点</span><span class="fg-row-v"><b style="color:var(--qing);">「收买被拐卖妇女、儿童罪」的量刑——「买卖同罪同罚」的社会呼声(认为需求端低成本助长拐卖)</b>。</span></div>
+      <div class="fg-row"><span class="fg-row-k">不同考量</span><span class="fg-row-v">也存在从法律技术、解救配合等角度的不同考量——<b>本片并置,不裁决</b>。</span></div>
+      <div class="fg-row peak"><span class="fg-row-k">需求端治理</span><span class="fg-row-v"><b style="color:var(--qing);">打击买方、铲除「买方市场」——反拐从供给端(拐卖者)向需求端(收买者)延伸的方向</b>。</span></div>
+      <div class="fg-row"><span class="fg-row-k">本片立场</span><span class="fg-row-v">归因呈现这一持续的法律与社会讨论——<b>不复述具体个案、不裁决立法主张;标注为「正在进行的讨论」</b>。</span></div>
+    </div>
+
+    <div class="fg-breaking">
+      <span class="fg-breaking-tag">· 一场指向需求端的讨论(归因并置)</span>
+      <b>围绕收买方的刑责,存在「买卖同罪同罚」的呼声与从法律技术角度的不同考量。本片在此采取归因、并置、不裁决的处理:呈现讨论的存在与核心关切(需求端治理),把具体立法判断留给立法过程与读者。</b>
+    </div>
+
+    <div class="fg-art">
+      <h5><b>呈现讨论的存在与关切,把具体立法判断留给立法过程</b>归因、并置、不裁决</h5>
+      <p>关于拐卖的法律,有一场持续的讨论,焦点是收买方的刑责——很多人主张「买卖同罪同罚」,认为只要买方的成本足够低,拐卖的需求就不会消失;也有从法律技术角度的不同考量。<b style="color:var(--qing);">本片在这里采取归因、并置、不裁决的处理:呈现这场讨论的存在和它的核心关切(需求端治理),把具体的立法判断留给立法过程和读者。一个朴素的共识是:要真正遏制拐卖,光打拐卖者不够,还要让「买」这件事不再低成本、不再被默许。</b>(↗ F3 预防 / ↗ F5 政治形态学)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="fg-xref">↗ F3 · 预防与脆弱性</span>
+      <span class="fg-xref">↗ F5 · 政治形态学</span>
+      <span class="fg-xref">↗ GY-45/GY-17 · 妇女权益</span>
+    </div>
+
+    <div class="fg-verdict">
+      <span class="fg-verdict-tag">F4 判词(归因并置)</span>
+      关于拐卖的法律,有一场持续的讨论,焦点是收买方的刑责——很多人主张「买卖同罪同罚」,认为只要买方的成本足够低,拐卖的需求就不会消失;也有从法律技术角度的不同考量。本片在这里采取归因、并置、不裁决的处理:呈现这场讨论的存在和它的核心关切(需求端治理),把具体的立法判断留给立法过程和读者。<b style="color:var(--qing);">一个朴素的共识是:要真正遏制拐卖,光打拐卖者不够,还要让「买」这件事不再低成本、不再被默许。</b>
+      <span class="fg-xref">↗ F5 · 政治形态学:最无法自我发声的受害者</span>
+    </div>
+  </section>
+
+  <!-- ════ F5 政治形态学 · 合成 ════ -->
+  <section class="fg-panel" id="fg-p-f5">
+    <div class="fg-sec-head"><h2>F5 · 政治形态学:最无法自我发声的受害者</h2><span class="fg-sec-tag">全链条保护 · 被侵害者保护轴</span></div>
+    <p class="fg-disclaimer top">注记(分析立场):本节分析这个人群的政治形态与本片主张。被拐卖者是几乎完全无法自我发声的受害者,其权益依赖反拐制度、寻亲技术、社会关注与法律完善。本片以妇女儿童权益视角主张「打击 + 预防 + 救助 + 团圆 + 法律完善」的全链条;社会关注的双刃需以不渲染、保护受害者尊严为原则。</p>
+    <p class="fg-lede">被拐卖者是几乎完全无法自我发声的受害者——<b style="color:var(--qing);">被控制、失联、身份被改写,其权益完全依赖外部救助与制度</b>。本片以妇女儿童权益视角主张:打击(破案)+ 预防(降风险)+ 救助(解救)+ 团圆(寻亲)+ 法律完善(含需求端治理)的全链条,是保护这个人群的方向。社会关注是双刃:公共关注推动反拐进步,但也需防止对个案的消费与对受害者的二次伤害——本片以不渲染、保护受害者尊严为原则。被拐卖问题与儿童保护(↗ GY-54)、妇女权益(↗ GY-45 留守妇女 / GY-17,以及 GY-03 CH-01 婚姻挤压的需求侧背景)、社会救助(↗ GY-43)耦合——这是「被侵害者保护」的反拐端。</p>
+
+    <h3 class="fg-h3">政治形态学:五条</h3>
+    <div class="fg-rows">
+      <div class="fg-row peak"><span class="fg-row-k">无法自我发声</span><span class="fg-row-v"><b style="color:var(--qing);">被控制、失联、身份被改写——最无法自我发声的受害者;权益完全依赖外部救助与制度</b>。</span></div>
+      <div class="fg-row"><span class="fg-row-k">全链条保护</span><span class="fg-row-v">打击(破案)+ 预防(降风险)+ 救助(解救)+ 团圆(寻亲)+ 法律完善(需求端)——<b>反拐的全链条</b>。</span></div>
+      <div class="fg-row peak"><span class="fg-row-k">社会关注的双刃</span><span class="fg-row-v"><b style="color:var(--qing);">公共关注推动反拐进步,但也需防止对个案的消费与二次伤害——本片以不渲染、保护受害者尊严为原则</b>。</span></div>
+      <div class="fg-row"><span class="fg-row-k">与全光谱</span><span class="fg-row-v">被拐卖者与儿童保护(↗ GY-54)、妇女权益(↗ GY-45/GY-17/GY-03)、社会救助(↗ GY-43)耦合——<b>「被侵害者保护」的反拐端</b>。</span></div>
+      <div class="fg-row"><span class="fg-row-k">本片主张</span><span class="fg-row-v">把被拐卖者当作应被找回、被保护的受害者——<b>全链条保护,是这个最无法为自己发声的群体唯一的依靠</b>。</span></div>
+    </div>
+
+    <div class="fg-art">
+      <h5><b>最无法为自己发声的受害群体,权益完全依赖制度与社会</b>全链条保护是唯一的依靠</h5>
+      <p>被拐卖者是几乎完全无法自我发声的受害者——被控制、失联、身份被改写。<b style="color:var(--qing);">本片以妇女儿童权益视角主张:打击、预防、救助、团圆、法律完善这条全链条,是保护这个人群的方向。社会关注是双刃——它推动反拐进步,但也需防止对个案的消费与对受害者的二次伤害。本片以不渲染、保护受害者尊严为原则。</b>(↗ F1 成效 / ↗ F3 预防 / ↗ GY-54/45/43 全光谱)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="fg-xref">↗ GY-54 · 流动/留守儿童</span>
+      <span class="fg-xref">↗ GY-45 · 留守妇女 / ↗ GY-17 · 妇女权益</span>
+      <span class="fg-xref">↗ GY-43 · 社会救助 / ↗ GY-03 · 婚姻挤压(背景)</span>
+    </div>
+
+    <div class="fg-verdict">
+      <span class="fg-verdict-tag">F5 判词</span>
+      被拐卖者是几乎完全无法自我发声的受害者——被控制、失联、身份被改写,其权益完全依赖外部救助与制度。本片以妇女儿童权益视角主张:打击、预防、救助、团圆、法律完善(含需求端治理)的全链条,是保护这个人群的方向。社会关注是双刃,需防止对个案的消费与二次伤害——本片以不渲染、保护受害者尊严为原则。<b style="color:var(--qing);">被拐卖者是「被侵害者保护」的反拐端,与儿童保护、妇女权益、社会救助深度耦合。</b>
+      <span class="fg-xref">↗ watch · 合成总判词与观测哨</span>
+    </div>
+  </section>
+
+  <!-- ════ 合成 · 观测哨(含合成总判词) ════ -->
+  <section class="fg-panel" id="fg-p-watch">
+    <div class="fg-sec-head"><h2>合成与观测哨</h2><span class="fg-sec-tag">妇女儿童权益与反拐制度框架 · 第五十子集</span></div>
+    <div class="fg-attrib"><b>再次声明:本片以妇女儿童权益保护与反拐制度框架处理,把被拐卖者作为受害者对待。</b>聚焦救助、团圆、预防与法律完善;不渲染、不消费任何具体个案,不复述任何具体事件作为裁决依据;涉及法律量刑等存在讨论处,以归因呈现、不裁决的方式处理。语气庄重克制。</div>
+
+    <div class="fg-verdict" style="margin-top:14px; margin-bottom:34px;">
+      <span class="fg-verdict-tag">合成总判词 · 寻址恢复 · 人生缝合 · 预防优先 · 全链条保护</span>
+      被拐卖与反拐救助对象,是 China OS 里被非法迁移、原有寻址(身份与家庭联系)被擦除、从原生家庭集群中失联的进程——有的失联长达数十年。反拐制度是努力把他们重新定位、重连回家的「寻址恢复」机制:2024 年破获 550 余起、DNA 库与团圆系统让一些人在几十年后回了家。本片只有一个恰当的视角——把他们当作应被找回、被保护的受害者。<br><br>
+      <b style="color:var(--qing);">拐卖最深的伤害是把一个人从原本的人生里抹掉,所以团圆既靠技术(DNA 寻址),也需要漫长的人生缝合。反拐的重心正从事后打击移向事前预防——保护监护薄弱的流动/留守儿童(↗ GY-54),不让拐卖发生,比找回更重要。而要真正遏制拐卖,社会有一场持续的讨论指向需求端:让「买」不再低成本(本片归因呈现,不裁决具体立法)。</b><br><br>
+      <b style="color:var(--jin);">打击、预防、救助、团圆、法律完善——这条全链条,是这个最无法为自己发声的受害群体,唯一的依靠。把人接回家是成绩,让没有人再被拐走才是目的。</b><br><br>
+      与全系列合观:作为人群画像分层第五十子集,被拐卖与反拐救助对象与儿童保护(GY-54)、妇女权益(GY-45/GY-17)、社会救助(GY-43)、婚姻挤压背景(GY-03)耦合,是「被侵害者保护」轴的反拐端。注:本片以妇女儿童权益保护与反拐制度框架处理,受害者视角,不渲染、不消费个案,法律讨论归因不裁决。
+    </div>
+
+    <h3 class="fg-h3">对 GY 系列的修正</h3>
+    <div class="fg-fix">
+      <h5><b>修正 · GY-54</b>儿童保护的反拐端与监护端</h5>
+      <p>被拐儿童的预防与流动/留守儿童(GY-54)保护同源——<b>监护薄弱是被拐风险的关键;建议 GY-52↔GY-54 链接为「儿童保护的反拐端与监护端」</b>。</p>
+    </div>
+    <div class="fg-fix">
+      <h5><b>修正 · GY-45 + GY-17 + GY-03</b>被拐卖妇女与妇女权益、婚姻挤压背景</h5>
+      <p>被拐卖妇女与妇女权益(GY-45 留守妇女 / GY-17)、婚姻挤压背景(GY-03 CH-01 的需求侧)相关——<b style="color:var(--qing);">本片归因呈现背景,不渲染、不裁决具体个案</b>。</p>
+    </div>
+    <div class="fg-fix">
+      <h5><b>修正 · GY-43</b>被解救者的回归安置与社会救助</h5>
+      <p>被解救者的回归安置与社会救助(GY-43)、再适应支持相关——<b>团圆后的人生缝合需要救助与社会支持</b>。</p>
+    </div>
+    <div class="fg-fix">
+      <h5><b>修正 · 母框架(被侵害者保护轴)</b>补「被侵害者保护」轴</h5>
+      <p>被拐卖者补「被侵害者保护」轴——<b style="color:var(--qing);">与受污名疾病(GY-57)、极贫(GY-43)等「最弱势、最需保护」人群同属一类;核心是「最无法自我发声者的权益依赖制度与社会」</b>。</p>
+    </div>
+
+    <div class="fg-watch-intro">
+      <p>说明:逐项标注状态、记录证据,年度与 GY 系列同步对账。状态与备注自动保存在本机。本片以妇女儿童权益与反拐制度取向并列呈现成效、寻址丢失、预防、法律讨论各维度,法律讨论归因并置、不裁决具体个案,不渲染、不消费个案。</p>
+      <span class="fg-storage-state" id="fg-storage-state"></span>
+    </div>
+
+    <div class="fg-watch" id="fg-watch-list">
+      <div class="fg-watch-item" data-key="w1">
+        <div><h5><b>W-01</b>反拐成效</h5><p class="fg-watch-desc">破案数、找回被拐妇女儿童数、积案攻坚——<b>F1 总仪表。</b></p></div>
+        <div class="fg-watch-ctrl"><div class="fg-status-row"><button class="fg-status-btn" data-status="good">向好</button><button class="fg-status-btn" data-status="flat">中性</button><button class="fg-status-btn" data-status="bad">恶化</button></div><textarea class="fg-watch-note" placeholder="证据与备注…"></textarea><div class="fg-watch-stamp"></div></div>
+      </div>
+      <div class="fg-watch-item" data-key="w2">
+        <div><h5><b>W-02</b>团圆与寻亲</h5><p class="fg-watch-desc">DNA 库比对、团圆系统寻亲成功数——<b>F2 寻址恢复。</b></p></div>
+        <div class="fg-watch-ctrl"><div class="fg-status-row"><button class="fg-status-btn" data-status="good">向好</button><button class="fg-status-btn" data-status="flat">中性</button><button class="fg-status-btn" data-status="bad">恶化</button></div><textarea class="fg-watch-note" placeholder="证据与备注…"></textarea><div class="fg-watch-stamp"></div></div>
+      </div>
+      <div class="fg-watch-item" data-key="w3">
+        <div><h5><b>W-03</b>预防前移</h5><p class="fg-watch-desc">儿童安全教育覆盖、防拐宣传、脆弱环节防护(↗ GY-54)——<b>F3 降风险。</b></p></div>
+        <div class="fg-watch-ctrl"><div class="fg-status-row"><button class="fg-status-btn" data-status="good">向好</button><button class="fg-status-btn" data-status="flat">中性</button><button class="fg-status-btn" data-status="bad">恶化</button></div><textarea class="fg-watch-note" placeholder="证据与备注…"></textarea><div class="fg-watch-stamp"></div></div>
+      </div>
+      <div class="fg-watch-item" data-key="w4">
+        <div><h5><b>W-04</b>制度堵漏</h5><p class="fg-watch-desc">收养/户籍/出生证明管理、防止身份洗白——<b>F3 堵漏。</b></p></div>
+        <div class="fg-watch-ctrl"><div class="fg-status-row"><button class="fg-status-btn" data-status="good">向好</button><button class="fg-status-btn" data-status="flat">中性</button><button class="fg-status-btn" data-status="bad">恶化</button></div><textarea class="fg-watch-note" placeholder="证据与备注…"></textarea><div class="fg-watch-stamp"></div></div>
+      </div>
+      <div class="fg-watch-item" data-key="w5">
+        <div><h5><b>W-05</b>法律讨论(归因)</h5><p class="fg-watch-desc">收买罪量刑讨论、需求端治理——<b>F4 归因呈现,不裁决。</b></p></div>
+        <div class="fg-watch-ctrl"><div class="fg-status-row"><button class="fg-status-btn" data-status="good">向好</button><button class="fg-status-btn" data-status="flat">中性</button><button class="fg-status-btn" data-status="bad">恶化</button></div><textarea class="fg-watch-note" placeholder="证据与备注…"></textarea><div class="fg-watch-stamp"></div></div>
+      </div>
+      <div class="fg-watch-item" data-key="w6">
+        <div><h5><b>W-06</b>解救后安置</h5><p class="fg-watch-desc">被解救者的回归、再适应、救助支持(↗ GY-43)——<b>团圆后的人生缝合。</b></p></div>
+        <div class="fg-watch-ctrl"><div class="fg-status-row"><button class="fg-status-btn" data-status="good">向好</button><button class="fg-status-btn" data-status="flat">中性</button><button class="fg-status-btn" data-status="bad">恶化</button></div><textarea class="fg-watch-note" placeholder="证据与备注…"></textarea><div class="fg-watch-stamp"></div></div>
+      </div>
+      <div class="fg-watch-item" data-key="w7">
+        <div><h5><b>W-07</b>多部门协作</h5><p class="fg-watch-desc">公安/民政/妇联/教育的协作成效——<b>全链条。</b></p></div>
+        <div class="fg-watch-ctrl"><div class="fg-status-row"><button class="fg-status-btn" data-status="good">向好</button><button class="fg-status-btn" data-status="flat">中性</button><button class="fg-status-btn" data-status="bad">恶化</button></div><textarea class="fg-watch-note" placeholder="证据与备注…"></textarea><div class="fg-watch-stamp"></div></div>
+      </div>
+      <div class="fg-watch-item" data-key="w8">
+        <div><h5><b>W-08</b>受害者保护</h5><p class="fg-watch-desc">防止个案消费与二次伤害、隐私保护——<b>尊严原则。</b></p></div>
+        <div class="fg-watch-ctrl"><div class="fg-status-row"><button class="fg-status-btn" data-status="good">向好</button><button class="fg-status-btn" data-status="flat">中性</button><button class="fg-status-btn" data-status="bad">恶化</button></div><textarea class="fg-watch-note" placeholder="证据与备注…"></textarea><div class="fg-watch-stamp"></div></div>
+      </div>
+    </div>
+
+    <h3 class="fg-h3">章节规划 · 登记表(均待建)</h3>
+    <div class="fg-plan">
+      <div class="fg-plan-row"><span class="fg-plan-k">CH-01</span><span class="fg-plan-v"><b>寻址恢复</b> — DNA 库/团圆系统的寻亲机制与团圆后的人生缝合。</span><span class="fg-plan-tag">待建</span></div>
+      <div class="fg-plan-row"><span class="fg-plan-k">CH-02</span><span class="fg-plan-v"><b>预防前移</b> — 脆弱环节与制度堵漏,接 GY-54。</span><span class="fg-plan-tag">待建</span></div>
+      <div class="fg-plan-row"><span class="fg-plan-k">CH-03</span><span class="fg-plan-v"><b>法律讨论</b> — 收买罪量刑与需求端治理的讨论,归因呈现。</span><span class="fg-plan-tag">待建</span></div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="fg-foot">
+    <p>方法论:被拐卖与反拐救助对象以「被非法迁移、地址被改写的进程(Forcibly Migrated Process with Erased Addressing)」模型刻画——被拐卖者是被非法迁移到另一节点原有寻址身份与家庭联系被擦除或改写从原生家庭集群中失联失踪的进程失联可长达数十年反拐救助团圆行动加打拐DNA库是寻址恢复守护进程努力重新定位并把它重连回原生集群有的重连发生在失联数十年之后最长30年签名图一个进程被非法migrate到陌生节点其寻址身份家庭联系被erase或rewrite从原生集群失联失踪一个恢复守护进程团圆行动打拐DNA库尝试re-address并重连原生集群部分进程在数十年后成功重连底注妇女儿童权益加反拐制度受害者视角不渲染个案。核心命题:被拐卖的妇女与儿童是被非法迁移原有身份与家庭联系被改写与原生家庭失联的人有的失联长达数十年反拐制度团圆行动打拐DNA库多部门协作是寻址恢复机制努力把他们重新定位并接回原生家庭本片以妇女儿童权益与反拐制度视角把他们当作应被保护被找回的受害者不渲染个案拐卖最深的伤害是把一个人从原本的人生里抹掉改了名字断了联系换了环境所以团圆既靠技术DNA寻址也需要漫长的人生缝合反拐的重心正从事后打击移向事前预防保护监护薄弱的流动留守儿童不让拐卖发生比找回更重要要真正遏制拐卖社会有一场持续的讨论指向需求端让买不再低成本本片归因呈现不裁决具体立法打击预防救助团圆法律完善这条全链条是这个最无法为自己发声的受害群体唯一的依靠把人接回家是成绩让没有人再被拐走才是目的。数据锚定(2024 加制度层):2024全国公安侦破拐卖现案积案550余起找回一批被拐妇女儿童部分被拐长达30年公安部多部门协作公安两高教育民政妇联打拐DNA库团圆系统反拐DNA查询小程序预防儿童安全教育覆盖大量中小学法律讨论收买被拐卖妇女儿童罪量刑归因不裁决。注:以妇女儿童权益保护与反拐制度框架处理,受害者视角,不渲染、不消费个案,法律讨论归因不裁决。作为人群画像分层第五十子集,与 GY-54(流动/留守儿童)、GY-45/GY-17(妇女权益)、GY-43(社会救助)、GY-03(婚姻挤压背景)等耦合,是「被侵害者保护」轴的反拐端。来源:公安部 2024 反拐成效(澎湃/新华网/中新网 2025-02)、团圆行动与打拐 DNA 库、训练知识基线。</p>
+    <div class="fg-foot-meta">
+      ChinaOS · GY-52 · v1.0.0<br>
+      生成 2026-06 丙午年<br>
+      人群画像 第五十子集 · 关联模块 → GY-03/17/43/45/54<br>
+      注记:妇女儿童权益保护与反拐制度框架,受害者视角,不渲染不消费个案
+    </div>
+  </footer>
+
+</div>
