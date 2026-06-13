@@ -1,5 +1,5 @@
 /**
- * GY 系列模块路由注册表 · 人群切片 GY-03–16 + 推演 GY-01/02
+ * GY 系列模块路由注册表 · 人群切片 GY-03–26 + 推演 GY-01/02
  * 供方法论脚注 GY-xx 交叉引用链接化
  */
 
@@ -21,6 +21,16 @@ export const GY_MODULES = {
   '14': { id: 'liupiao', path: '/modules/liupiao', label: '创作者', group: 'population' },
   '15': { id: 'yibao', path: '/modules/yibao', label: '医保群体', group: 'population' },
   '16': { id: 'lian', path: '/modules/lian', label: '离岸华人', group: 'population' },
+  '17': { id: 'zhongnv', path: '/modules/zhongnv', label: '中年女性', group: 'population' },
+  '18': { id: 'canzhang', path: '/modules/canzhang', label: '残障人群', group: 'population' },
+  '19': { id: 'danshen', path: '/modules/danshen', label: '单身女性', group: 'population' },
+  '20': { id: 'xianyu', path: '/modules/xianyu', label: '县域青年', group: 'population' },
+  '21': { id: 'xinyimin', path: '/modules/xinyimin', label: '城市新移民', group: 'population' },
+  '22': { id: 'jigong', path: '/modules/jigong', label: '技术工人', group: 'population' },
+  '23': { id: 'manbing', path: '/modules/manbing', label: '带病青年', group: 'population' },
+  '24': { id: 'moshao', path: '/modules/moshao', label: '治理末梢', group: 'population' },
+  '25': { id: 'shidu', path: '/modules/shidu', label: '计生后遗', group: 'population' },
+  '26': { id: 'shuzi', path: '/modules/shuzi', label: '数字原住民', group: 'population' },
 };
 
 /** @param {string} num two-digit string e.g. "03" */
