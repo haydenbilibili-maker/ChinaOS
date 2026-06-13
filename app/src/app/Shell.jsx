@@ -2,13 +2,34 @@ import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 import { NavLink, Link, Outlet, useLocation } from 'react-router-dom';
 import * as Lucide from 'lucide-react';
 import { GROUPS, modulesByGroup } from './registry.js';
-import { buildBreadcrumbs } from './breadcrumb.js';
+import { buildBreadcrumbs, resolveModuleByPath } from './breadcrumb.js';
 import GlobalSearch from './GlobalSearch.jsx';
 import SiteFooter from './SiteFooter.jsx';
 import { buildSearchIndex } from '../lib/search/buildIndex.js';
 import { getTheme, toggleTheme, subscribeTheme } from '../lib/theme.js';
 
 const IS_MAC = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent || '');
+const HOME_GROUP_ID = 'home';
+const SIDEBAR_EXPANDED_KEY = 'c2os-sidebar-expanded';
+
+function loadExpandedGroups() {
+  try {
+    const raw = localStorage.getItem(SIDEBAR_EXPANDED_KEY);
+    if (raw) {
+      const arr = JSON.parse(raw);
+      if (Array.isArray(arr)) {
+        return new Set(arr.filter((id) => id && id !== HOME_GROUP_ID));
+      }
+    }
+  } catch (_) { /* 隐私模式等场景静默跳过 */ }
+  return new Set();
+}
+
+function persistExpandedGroups(set) {
+  try {
+    localStorage.setItem(SIDEBAR_EXPANDED_KEY, JSON.stringify([...set]));
+  } catch (_) { /* 隐私模式等场景静默跳过 */ }
+}
 
 function Icon({ name, size = 16 }) {
   const Cmp = Lucide[name] || Lucide.Square;
@@ -58,38 +79,72 @@ function BreadcrumbNav({ items }) {
   );
 }
 
-function GroupBlock({ group, onNavigate }) {
+function GroupBlock({ group, expanded, onToggle, onNavigate, alwaysShowModules }) {
   const mods = modulesByGroup(group.id);
   if (!mods.length) return null;
-  return (
-    <div className="mb-5">
-      <div className="os-group-header px-3 mb-2">
-        <div className="os-group-header__row">
-          <span className="os-group-header__dot" style={{ background: group.accent }} />
-          <span className="os-group-header__title">{group.label}</span>
-          <span className="os-group-header__count mono">{mods.length}</span>
-        </div>
-        {group.desc ? (
-          <div className="os-group-header__desc">{group.desc}</div>
+
+  const collapsible = !alwaysShowModules;
+  const showModules = alwaysShowModules || expanded;
+
+  const headerInner = (
+    <>
+      <div className="os-group-header__row">
+        <span className="os-group-header__dot" style={{ background: group.accent }} />
+        <span className="os-group-header__title">{group.label}</span>
+        <span className="os-group-header__count mono">{mods.length}</span>
+        {collapsible ? (
+          <Lucide.ChevronDown
+            size={14}
+            className={`os-group-header__chevron shrink-0 ${expanded ? 'is-expanded' : ''}`}
+            aria-hidden="true"
+          />
         ) : null}
       </div>
-      <nav className="space-y-0.5">
-        {mods.map((m) => (
-          <NavLink
-            key={m.id}
-            to={m.path}
-            onClick={onNavigate}
-            className={({ isActive }) => `nav-item flex items-center gap-3 px-3 py-2 rounded-lg text-sm ${isActive ? 'is-active' : ''}`}
-            style={({ isActive }) => ({
-              color: isActive ? 'var(--nav-active-text)' : 'var(--text-secondary)',
-              borderLeft: `2px solid ${isActive ? group.accent : 'transparent'}`,
-            })}
-          >
-            <Icon name={m.icon} />
-            <span className="flex-1 truncate">{m.title}</span>
-          </NavLink>
-        ))}
-      </nav>
+      {group.desc ? (
+        <div className="os-group-header__desc">{group.desc}</div>
+      ) : null}
+    </>
+  );
+
+  return (
+    <div className={`mb-5 os-group-block ${showModules ? '' : 'os-group-collapsed'}`}>
+      {collapsible ? (
+        <button
+          type="button"
+          className="os-group-header os-group-header--toggle px-3 mb-2"
+          onClick={onToggle}
+          aria-expanded={expanded}
+          aria-controls={`sidebar-group-${group.id}`}
+        >
+          {headerInner}
+        </button>
+      ) : (
+        <div className="os-group-header px-3 mb-2" aria-label={group.label}>
+          {headerInner}
+        </div>
+      )}
+      <div
+        id={`sidebar-group-${group.id}`}
+        className={`os-group-modules ${showModules ? 'is-expanded' : ''}`}
+      >
+        <nav className="space-y-0.5">
+          {mods.map((m) => (
+            <NavLink
+              key={m.id}
+              to={m.path}
+              onClick={onNavigate}
+              className={({ isActive }) => `nav-item flex items-center gap-3 px-3 py-2 rounded-lg text-sm ${isActive ? 'is-active' : ''}`}
+              style={({ isActive }) => ({
+                color: isActive ? 'var(--nav-active-text)' : 'var(--text-secondary)',
+                borderLeft: `2px solid ${isActive ? group.accent : 'transparent'}`,
+              })}
+            >
+              <Icon name={m.icon} />
+              <span className="flex-1 truncate">{m.title}</span>
+            </NavLink>
+          ))}
+        </nav>
+      </div>
     </div>
   );
 }
@@ -104,11 +159,36 @@ export default function Shell() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [theme, setThemeState] = useState(() => getTheme());
+  const [expandedGroups, setExpandedGroups] = useState(() => loadExpandedGroups());
+
+  const toggleGroup = useCallback((groupId) => {
+    if (groupId === HOME_GROUP_ID) return;
+    setExpandedGroups((prev) => {
+      const next = new Set(prev);
+      if (next.has(groupId)) next.delete(groupId);
+      else next.add(groupId);
+      persistExpandedGroups(next);
+      return next;
+    });
+  }, []);
 
   // 路由切换：内容区滚回顶部；同时收起移动端抽屉
   useEffect(() => {
     mainRef.current?.scrollTo({ top: 0 });
     setDrawerOpen(false);
+  }, [loc.pathname]);
+
+  // 当前模块所在分组自动展开（看板分组模块常驻，无需写入）
+  useEffect(() => {
+    const mod = resolveModuleByPath(loc.pathname);
+    if (!mod || mod.group === HOME_GROUP_ID) return;
+    setExpandedGroups((prev) => {
+      if (prev.has(mod.group)) return prev;
+      const next = new Set(prev);
+      next.add(mod.group);
+      persistExpandedGroups(next);
+      return next;
+    });
   }, [loc.pathname]);
 
   // 访问足迹：记录最近访问的模块路径（中枢看板「最近访问」直达条的数据源）
@@ -193,7 +273,16 @@ export default function Shell() {
           </button>
         </div>
         <div className="flex-1 overflow-y-auto py-4 min-h-0">
-          {GROUPS.map((g) => <GroupBlock key={g.id} group={g} onNavigate={closeDrawer} />)}
+          {GROUPS.map((g) => (
+            <GroupBlock
+              key={g.id}
+              group={g}
+              expanded={expandedGroups.has(g.id)}
+              onToggle={() => toggleGroup(g.id)}
+              onNavigate={closeDrawer}
+              alwaysShowModules={g.id === HOME_GROUP_ID}
+            />
+          ))}
         </div>
       </aside>
 

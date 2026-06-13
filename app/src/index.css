@@ -1118,6 +1118,50 @@ textarea:focus {
   white-space: nowrap;
 }
 
+/* 侧栏 · 可折叠分组 */
+.os-group-header--toggle {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0.375rem 0.75rem 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+  transition: background 0.15s ease;
+}
+.os-group-header--toggle:hover {
+  background: var(--nav-hover-bg);
+}
+.os-group-header--toggle:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.os-group-header__chevron {
+  color: var(--text-tertiary);
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.os-group-header__chevron.is-expanded {
+  transform: rotate(180deg);
+}
+.os-group-modules {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.os-group-modules.is-expanded {
+  grid-template-rows: 1fr;
+}
+.os-group-modules > nav {
+  overflow: hidden;
+  min-height: 0;
+}
+.os-group-block.os-group-collapsed .os-group-header__desc {
+  display: none;
+}
+
 /* AI 助手 · 主题化阴影 */
 .os-ai-fab {
   box-shadow: var(--shadow-glow-cyan), var(--fab-shadow);
