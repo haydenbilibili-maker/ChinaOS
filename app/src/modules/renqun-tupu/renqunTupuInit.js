@@ -6,7 +6,7 @@ import { withGyInit } from '../shared/gy/enhanceMethodology.js';
 const NS = 'chinaos.atlas.v2';
 const NS_LEGACY = 'chinaos.atlas.v1';
 
-/** GY-03…28 全部已上线人群切片 */
+/** GY-03…36 全部已上线人群切片 */
 const DEFAULT_LIT = Object.entries(GY_MODULES)
   .filter(([, m]) => m.group === 'population' && m.id !== 'renqunTupu')
   .map(([num]) => `GY-${num}`)

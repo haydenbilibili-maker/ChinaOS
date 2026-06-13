@@ -278,7 +278,7 @@ export const MODULES = [
     path: '/modules/renqun-tupu',
     group: 'population',
     title: '人群画像总图谱',
-    subtitle: '26 片切片 · 八轴全光谱 · 母索引',
+    subtitle: '34 片切片 · 八轴全光谱 · 母索引',
     icon: 'Network',
     component: lazy(() => import('../modules/renqun-tupu/Page.jsx')),
   },
