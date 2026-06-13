@@ -127,6 +127,7 @@ function figureTags(r) {
     r.sector,
     r.province,
     r.fields?.rank,
+    r.fields?.institutionType,
     r.org,
   ).filter((t) => t && t !== '—' && t.length < 20);
 }

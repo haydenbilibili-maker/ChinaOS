@@ -41,7 +41,8 @@ const CUR_YEAR = 2026;
 const short = (p) => (p || '').replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '');
 const inp = { background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', borderRadius: 'var(--radius-sm)', padding: '6px 10px', fontSize: 'var(--text-sm)' };
 
-const ROLE_OPTS = ['总书记', '总理', '副总理', '国务委员', '人大委员长', '政协主席', '政协副主席', '政协秘书长', '纪委书记', '外交部长', '政法委书记', '中组部部长', '组织部部长', '统战部部长', '中宣部部长', '宣传部长', '人大副委员长', '人大秘书长', '监委主任', '军委副主席', '军委委员', '港澳办主任', '党委书记', '市委书记', '省委副书记', '省长', '市长', '常务副省长', '常务副市长', '常务副主席', '自治区主席', '部长', '国防部长', '战区司令员', '战区政治委员', '战区副司令员', '参谋长', '政治工作部主任', '副司令员', '副政委', '署长', '局长', '主任', '主席', '董事长', '总经理', '最高法院长', '最高检检察长'];
+const ROLE_OPTS = ['总书记', '总理', '副总理', '国务委员', '人大委员长', '政协主席', '政协副主席', '政协秘书长', '纪委书记', '外交部长', '政法委书记', '中组部部长', '组织部部长', '统战部部长', '中宣部部长', '宣传部长', '人大副委员长', '人大秘书长', '监委主任', '军委副主席', '军委委员', '港澳办主任', '党委书记', '市委书记', '省委副书记', '省长', '市长', '常务副省长', '常务副市长', '常务副主席', '自治区主席', '部长', '副部长', '国防部长', '战区司令员', '战区政治委员', '战区副司令员', '参谋长', '政治工作部主任', '副司令员', '副政委', '署长', '局长', '主任', '副主任', '副秘书长', '秘书长', '主席', '董事长', '总经理', '最高法院长', '最高检检察长', '专门委员会主任', '专门委员会副主任', '政协常委', '常委会委员'];
+const INSTITUTION_TYPE_OPTS = ['人大', '政协', '部委', '中直'];
 const SECTOR_OPTS = ['国务院', '党中央', '国家机关', '全国政协', '国务院直属机构', '央企', '省属国企', '军队', '地方'];
 const LEVEL_RANK = { '党和国家领导人': 0, '副国级': 1, '上将': 1, '正部级': 2, '中将': 2, '省部级': 3, '少将': 3, '副部级': 4, '正厅级': 5 };
 
@@ -255,6 +256,7 @@ export default function Page() {
   const [sector, setSector] = useState('');
   const [decade, setDecade] = useState('');
   const [minority, setMinority] = useState(false);
+  const [institutionType, setInstitutionType] = useState('');
   const [quickFilter, setQuickFilter] = useState('');
   const [sort, setSort] = useState('default');
   const [view, setView] = useState('list');
@@ -282,6 +284,12 @@ export default function Page() {
       const sectorMatch = !sector || f.sector === sector || (sector === '地方' && f.province && f.province !== '中央');
       const milMatch = quickFilter !== 'military' || (f.sector === '军队' && ['上将', '中将', '少将'].includes(f.level));
       const localMatch = quickFilter !== 'localChief' || (f.province && f.province !== '中央' && ['党委书记', '省长', '市长', '自治区主席'].includes(f.role));
+      const instType = f.fields?.institutionType;
+      const npcMatch = quickFilter !== 'npc' || instType === '人大' || f.org?.includes('人大') || ['人大副委员长', '人大秘书长', '专门委员会主任', '专门委员会副主任', '常委会委员'].includes(f.role);
+      const cppccMatch = quickFilter !== 'cppcc' || instType === '政协' || f.sector === '全国政协' || ['政协副主席', '政协秘书长', '政协常委', '专门委员会主任', '专门委员会副主任'].includes(f.role);
+      const ministryMatch = quickFilter !== 'ministry' || instType === '部委' || (f.sector === '国务院' && ['部长', '副部长', '署长', '局长'].includes(f.role));
+      const centralMatch = quickFilter !== 'centralParty' || instType === '中直' || (f.province === '中央' && f.sector === '党中央');
+      const instTypeMatch = !institutionType || instType === institutionType;
       return (!prov || f.province === prov)
         && (!level || f.level === level)
         && (!role || f.role === role)
@@ -290,6 +298,11 @@ export default function Page() {
         && (!minority || (f.fields?.ethnic && f.fields.ethnic !== '汉族'))
         && milMatch
         && localMatch
+        && npcMatch
+        && cppccMatch
+        && ministryMatch
+        && centralMatch
+        && instTypeMatch
         && (!q || hay.toLowerCase().includes(q.toLowerCase()));
     });
     if (sort === 'ageAsc') list.sort((a, b) => (ageOf(a) || 999) - (ageOf(b) || 999));
@@ -297,7 +310,7 @@ export default function Page() {
     else if (sort === 'level') list.sort((a, b) => (LEVEL_RANK[a.level] ?? 9) - (LEVEL_RANK[b.level] ?? 9));
     else if (sort === 'name') list.sort((a, b) => a.name.localeCompare(b.name, 'zh'));
     return list;
-  }, [figures, q, prov, level, role, sector, decade, minority, quickFilter, sort]);
+  }, [figures, q, prov, level, role, sector, decade, minority, institutionType, quickFilter, sort]);
 
   useEffect(() => {
     if (tab === 'resume' && filtered.length) prefetchFigureAvatars(filtered, 56);
@@ -327,6 +340,11 @@ export default function Page() {
     minority && ['民族', '少数民族', () => setMinority(false)],
     quickFilter === 'military' && ['快捷', '仅军事将官', () => setQuickFilter('')],
     quickFilter === 'localChief' && ['快捷', '仅地方主官', () => setQuickFilter('')],
+    quickFilter === 'npc' && ['快捷', '仅人大体系', () => setQuickFilter('')],
+    quickFilter === 'cppcc' && ['快捷', '仅政协体系', () => setQuickFilter('')],
+    quickFilter === 'ministry' && ['快捷', '仅部委体系', () => setQuickFilter('')],
+    quickFilter === 'centralParty' && ['快捷', '仅中直机关', () => setQuickFilter('')],
+    institutionType && ['机构带', institutionType, () => setInstitutionType('')],
   ].filter(Boolean);
 
   // 先清空再以稳定 id 写入：彻底幂等，多次载入不再累积重复
@@ -337,7 +355,7 @@ export default function Page() {
     for (const r of FIGURE_SEED) await DB.putFigure({ ...r, id: r.id || figKey(r), updatedAt: ts++ });
     setLoading(false);
   };
-  const clearAll = () => { setQ(''); setProv(''); setLevel(''); setRole(''); setSector(''); setDecade(''); setMinority(false); setQuickFilter(''); };
+  const clearAll = () => { setQ(''); setProv(''); setLevel(''); setRole(''); setSector(''); setDecade(''); setMinority(false); setInstitutionType(''); setQuickFilter(''); };
 
   const pickFigure = useCallback((idx) => {
     const f = filtered[idx];
@@ -501,7 +519,7 @@ export default function Page() {
       {figures.length < 10 && (
         <Card title="一键载入中国政要" className="mb-4">
           <p className="text-sm mb-3" style={{ color: 'var(--text-secondary)' }}>
-            内置 {FIGURE_SEED.length} 条：省级 {FIGURE_CATALOG_META.breakdown?.provincial} + 人大政协 {FIGURE_CATALOG_META.breakdown?.provincialExtended} + 常委岗位 {FIGURE_CATALOG_META.breakdown?.provincialStanding} + 中央 {FIGURE_CATALOG_META.breakdown?.central} + 扩展 {FIGURE_CATALOG_META.breakdown?.extended} + 城市 {FIGURE_CATALOG_META.breakdown?.municipal} + 地级市 {FIGURE_CATALOG_META.breakdown?.prefectureCity} + 机构 {FIGURE_CATALOG_META.breakdown?.org} + 二层 {FIGURE_CATALOG_META.breakdown?.orgTier2} + 军事 {FIGURE_CATALOG_META.breakdown?.military}。来源：{FIGURE_CATALOG_META.sources.join('、')}。
+            内置 {FIGURE_SEED.length} 条：省级 {FIGURE_CATALOG_META.breakdown?.provincial} + 人大政协 {FIGURE_CATALOG_META.breakdown?.provincialExtended} + 常委岗位 {FIGURE_CATALOG_META.breakdown?.provincialStanding} + 中央 {FIGURE_CATALOG_META.breakdown?.central} + 扩展 {FIGURE_CATALOG_META.breakdown?.extended} + 结构补全 {FIGURE_CATALOG_META.breakdown?.politicalStructure} + 城市 {FIGURE_CATALOG_META.breakdown?.municipal} + 地级市 {FIGURE_CATALOG_META.breakdown?.prefectureCity} + 机构 {FIGURE_CATALOG_META.breakdown?.org} + 二层 {FIGURE_CATALOG_META.breakdown?.orgTier2} + 军事 {FIGURE_CATALOG_META.breakdown?.military}。来源：{FIGURE_CATALOG_META.sources.join('、')}。
             也可到 <Link to="/foundation" className="mono" style={{ color: 'var(--cyber-cyan)' }}>数据底座 · 人才精英</Link> 增量导入或粘贴更新。
           </p>
           <Button variant="primary" onClick={loadSeed} disabled={loading}>
@@ -524,11 +542,16 @@ export default function Page() {
               <select value={prov} onChange={(e) => setProv(e.target.value)} style={inp}><option value="">全部省份</option>{provinces.map((p) => <option key={p} value={p}>{short(p)}</option>)}</select>
               <select value={sector} onChange={(e) => setSector(e.target.value)} style={inp}><option value="">全部系统</option>{[...SECTOR_OPTS, ...sectors.filter((s) => !SECTOR_OPTS.includes(s))].map((s) => <option key={s} value={s}>{s}</option>)}</select>
               <select value={level} onChange={(e) => setLevel(e.target.value)} style={inp}><option value="">全部层级</option>{levels.map((l) => <option key={l} value={l}>{l}</option>)}</select>
+              <select value={institutionType} onChange={(e) => { setInstitutionType(e.target.value); setQuickFilter(''); }} style={inp}><option value="">全部机构带</option>{INSTITUTION_TYPE_OPTS.map((t) => <option key={t} value={t}>{t}</option>)}</select>
               <select value={role} onChange={(e) => setRole(e.target.value)} style={inp}><option value="">全部职务</option>{ROLE_OPTS.map((r) => <option key={r} value={r}>{r}</option>)}</select>
               <select value={decade} onChange={(e) => setDecade(e.target.value)} style={inp}><option value="">全部年代</option>{decades.map((d) => <option key={d} value={d}>{d}</option>)}</select>
               <button onClick={() => setMinority((v) => !v)} style={{ ...inp, cursor: 'pointer', background: minority ? 'rgba(251,146,60,0.18)' : 'var(--bg-base)', color: minority ? '#fb923c' : 'var(--text-secondary)', borderColor: minority ? '#fb923c' : 'var(--border-subtle)' }}>少数民族</button>
               <button onClick={() => setQuickFilter((v) => v === 'military' ? '' : 'military')} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'military' ? 'rgba(85,107,47,0.2)' : 'var(--bg-base)', color: quickFilter === 'military' ? '#556b2f' : 'var(--text-secondary)', borderColor: quickFilter === 'military' ? '#556b2f' : 'var(--border-subtle)' }}>仅军事将官</button>
               <button onClick={() => setQuickFilter((v) => v === 'localChief' ? '' : 'localChief')} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'localChief' ? 'rgba(232,163,23,0.18)' : 'var(--bg-base)', color: quickFilter === 'localChief' ? '#e8a317' : 'var(--text-secondary)', borderColor: quickFilter === 'localChief' ? '#e8a317' : 'var(--border-subtle)' }}>仅地方主官</button>
+              <button onClick={() => { setQuickFilter((v) => v === 'npc' ? '' : 'npc'); setInstitutionType(''); }} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'npc' ? 'rgba(196,30,58,0.15)' : 'var(--bg-base)', color: quickFilter === 'npc' ? '#c41e3a' : 'var(--text-secondary)', borderColor: quickFilter === 'npc' ? '#c41e3a' : 'var(--border-subtle)' }}>人大</button>
+              <button onClick={() => { setQuickFilter((v) => v === 'cppcc' ? '' : 'cppcc'); setInstitutionType(''); }} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'cppcc' ? 'rgba(34,211,238,0.15)' : 'var(--bg-base)', color: quickFilter === 'cppcc' ? '#22d3ee' : 'var(--text-secondary)', borderColor: quickFilter === 'cppcc' ? '#22d3ee' : 'var(--border-subtle)' }}>政协</button>
+              <button onClick={() => { setQuickFilter((v) => v === 'ministry' ? '' : 'ministry'); setInstitutionType(''); }} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'ministry' ? 'rgba(16,185,129,0.15)' : 'var(--bg-base)', color: quickFilter === 'ministry' ? '#10b981' : 'var(--text-secondary)', borderColor: quickFilter === 'ministry' ? '#10b981' : 'var(--border-subtle)' }}>部委</button>
+              <button onClick={() => { setQuickFilter((v) => v === 'centralParty' ? '' : 'centralParty'); setInstitutionType(''); }} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'centralParty' ? 'rgba(139,92,246,0.15)' : 'var(--bg-base)', color: quickFilter === 'centralParty' ? '#8b5cf6' : 'var(--text-secondary)', borderColor: quickFilter === 'centralParty' ? '#8b5cf6' : 'var(--border-subtle)' }}>中直</button>
               <select value={sort} onChange={(e) => setSort(e.target.value)} style={inp}>
                 <option value="default">默认排序</option><option value="ageAsc">年龄 ↑</option><option value="ageDesc">年龄 ↓</option><option value="level">按层级</option><option value="name">按姓名</option>
               </select>
