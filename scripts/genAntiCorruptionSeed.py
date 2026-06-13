@@ -19,7 +19,7 @@ import { AS_OF } from './figureCommon.js';
 export const ANTI_CORRUPTION_META = {
   id: 'political_anticorruption-2026-06',
   asOf: AS_OF,
-  label: '反腐名单 · 历年汇总 · 2012–2026',
+  label: '反腐名单 · 历年汇总 · 2012–2026（337案）',
   sources: ['中央纪委国家监委网站', '新华社', '人民网', '央视网', '中国新闻网'],
   scope: '副省部级及以上为主，含全国性影响典型案例；按官宣日期归年',
   notes: '非穷尽名录；同一人物多阶段通报合并为首次「落马/被查」记录；司法细节以司法机关公开信息为准；研究用途，不代表官方立场。',

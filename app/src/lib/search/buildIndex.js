@@ -16,7 +16,7 @@ import {
   CULTURAL_ELITE_META,
   CULTURAL_ELITE_DEDUPED_COUNT,
 } from '../db/culturalEliteSeed.js';
-import { acKey as antiCorruptionKey } from '../db/antiCorruptionSeed.js';
+import { acKey as antiCorruptionKey, ANTI_CORRUPTION_COUNT } from '../db/antiCorruptionSeed.js';
 import { otKey } from '../db/overseasTalentSeed.js';
 import { dcKey, DC_TAB_LABEL, DIPLOMATIC_CORPS_SEED_PKG } from '../db/diplomaticCorpsSeed.js';
 import { dvKey, DISSIDENT_DEDUPED_COUNT } from '../db/dissidentSeed.js';
@@ -71,7 +71,7 @@ export function buildModuleRecords() {
 }
 
 /** 种子变更时递增，使模块级索引缓存在 HMR / 热更新后失效 */
-export const SEARCH_INDEX_REVISION = `v18:political-structure-2026-06:${GLOSSARY_COUNT}:${SELF_MEDIA_DEDUPED_COUNT.total}:${CULTURAL_ELITE_DEDUPED_COUNT.total}:${DIPLOMATIC_CORPS_SEED_PKG?.rows?.length ?? 0}:${DISSIDENT_DEDUPED_COUNT.total}:${TAIWAN_POLITICAL_DEDUPED_COUNT.total}:${FIGURE_SEED_COUNT}`;
+export const SEARCH_INDEX_REVISION = `v19:anticorruption-2026-06:${ANTI_CORRUPTION_COUNT}:${GLOSSARY_COUNT}:${SELF_MEDIA_DEDUPED_COUNT.total}:${CULTURAL_ELITE_DEDUPED_COUNT.total}:${DIPLOMATIC_CORPS_SEED_PKG?.rows?.length ?? 0}:${DISSIDENT_DEDUPED_COUNT.total}:${TAIWAN_POLITICAL_DEDUPED_COUNT.total}:${FIGURE_SEED_COUNT}`;
 
 let _indexPromise = null;
 let _indexRevision = null;

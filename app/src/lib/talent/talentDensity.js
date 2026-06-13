@@ -333,14 +333,20 @@ function dissidentTimeline(r) {
 }
 
 function anticorruptionBio(r) {
+  const charges = r.category && r.category !== '严重违纪违法' ? `涉嫌：${r.category}` : '';
+  const detail = r.notes && !/^历史|^重复/.test(r.notes) ? r.notes : '';
   return [
     r.formerRole && `原任：${r.formerRole}`,
     r.org && `原机构：${r.org}`,
     r.province && `关联地域：${r.province}`,
     r.level && `原级别：${r.level}`,
+    r.sector && `系统条线：${r.sector}`,
+    charges,
     r.caseType && `案件类型：${r.caseType}`,
     r.status && `进展：${r.status}`,
-    r.year && `${r.year}年度公开通报节点`,
+    r.announcementDate && `官宣节点：${r.announcementDate}`,
+    r.year && `${r.year}年度公开通报`,
+    detail,
     '信息以中央纪委国家监委等机关公开通报为准。',
   ].filter(Boolean).join('。');
 }
@@ -348,13 +354,24 @@ function anticorruptionBio(r) {
 function anticorruptionTimeline(r) {
   const events = [];
   if (r.announcementDate) {
-    events.push({ from: yearOf(r.announcementDate) || '', to: '', desc: `官宣：${r.formerRole || r.name}接受调查/处分（${r.announcementDate}）` });
+    events.push({
+      from: yearOf(r.announcementDate) || '',
+      to: '',
+      desc: `官宣：${r.formerRole || r.name} — ${r.status || '接受审查调查'}（${r.announcementDate}）`,
+    });
   }
   if (r.formerRole) {
     events.push({ from: '', to: r.announcementDate ? yearOf(r.announcementDate) : '', desc: `原职：${r.formerRole}` });
   }
   if (r.org) {
     events.push({ from: '', to: '', desc: `原任职机构：${r.org}` });
+  }
+  if (r.category && r.category !== '严重违纪违法') {
+    events.push({ from: '', to: '', desc: `公开表述：${r.category}` });
+  }
+  if (r.notes && r.notes.length > 12) {
+    const snippet = r.notes.length > 120 ? `${r.notes.slice(0, 118)}…` : r.notes;
+    events.push({ from: '', to: '', desc: snippet });
   }
   return events.length >= 2 ? events : null;
 }
