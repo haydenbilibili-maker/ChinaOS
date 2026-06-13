@@ -1,0 +1,201 @@
+@import "../shared/gy/tokens.css";
+
+#cz-app .cz-shell { max-width: 1060px; margin: 0 auto; padding: 0 28px 96px; }
+
+/* 题头 */
+#cz-app .cz-mast { padding: 56px 0 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+#cz-app .cz-mast-meta { font-family: var(--sans); font-size: 11px; letter-spacing: .22em; color: var(--xuanzhi-mute); text-transform: uppercase; }
+#cz-app .cz-mast-meta b { color: var(--jin); font-weight: 500; }
+#cz-app h1.cz-title { font-size: clamp(30px, 5vw, 46px); font-weight: 600; letter-spacing: .08em; line-height: 1.3; margin-top: 14px; }
+#cz-app h1.cz-title .cz-title-sub { display: block; font-size: 14px; font-weight: 400; color: var(--xuanzhi-dim); letter-spacing: .3em; margin-top: 10px; }
+#cz-app .cz-mast-seal { flex-shrink: 0; writing-mode: vertical-rl; font-size: 13px; letter-spacing: .35em; color: var(--zhu); border: 1px solid var(--zhu-dim); padding: 14px 8px; line-height: 1; user-select: none; }
+
+/* 未挂载设备签名图 */
+#cz-app .cz-found { margin-top: 44px; border: 1px solid var(--hairline); background: var(--xuan-deep); padding: 22px 24px 12px; }
+#cz-app .cz-found svg { width: 100%; height: auto; display: block; }
+#cz-app .cz-found-caption { font-family: var(--sans); font-size: 11.5px; color: var(--xuanzhi-mute); letter-spacing: .04em; padding: 8px 2px 6px; }
+#cz-app .cz-found-caption b { color: var(--xuanzhi); }
+
+/* 页签 */
+#cz-app .cz-nav { display: flex; flex-wrap: wrap; margin-top: 30px; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); position: sticky; top: 0; background: var(--xuan); z-index: 10; }
+#cz-app .cz-nav button { flex: 1 1 auto; background: none; border: none; border-right: 1px solid var(--hairline); color: var(--xuanzhi-dim); font-family: var(--serif); font-size: 14px; letter-spacing: .1em; padding: 15px 9px 13px; cursor: pointer; position: relative; transition: color .2s; white-space: nowrap; }
+#cz-app .cz-nav button:last-child { border-right: none; }
+#cz-app .cz-nav button:hover { color: var(--xuanzhi); }
+#cz-app .cz-nav button:focus-visible { outline: 1px solid var(--jin); outline-offset: -1px; }
+#cz-app .cz-nav button.is-active { color: var(--xuanzhi); }
+#cz-app .cz-nav button.is-active::after { content: ""; position: absolute; left: 14%; right: 14%; bottom: -1px; height: 2px; background: var(--zhu); }
+
+/* 通用 */
+#cz-app section.cz-panel { display: none; padding-top: 50px; }
+#cz-app section.cz-panel.is-active { display: block; animation: czFade .35s ease; }
+@keyframes czFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { #cz-app section.cz-panel.is-active { animation: none; } }
+#cz-app .cz-sec-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 8px; flex-wrap: wrap; }
+#cz-app .cz-sec-head h2 { font-size: 23px; font-weight: 600; letter-spacing: .1em; }
+#cz-app .cz-sec-head .cz-sec-tag { font-family: var(--sans); font-size: 11px; letter-spacing: .18em; color: var(--xuanzhi-mute); }
+#cz-app .cz-lede { color: var(--xuanzhi-dim); font-size: 15px; max-width: 76ch; margin-bottom: 34px; }
+#cz-app .cz-lede b { color: var(--xuanzhi); font-weight: 600; }
+#cz-app h3.cz-h3 { font-size: 17px; font-weight: 600; letter-spacing: .08em; margin: 40px 0 18px; display: flex; align-items: center; gap: 12px; }
+#cz-app h3.cz-h3::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
+#cz-app .cz-card { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 20px 22px; }
+#cz-app .cz-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+#cz-app .cz-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+#cz-app .cz-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+#cz-app .cz-card p { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.78; }
+#cz-app .cz-card p b { color: var(--xuanzhi); font-weight: 600; }
+#cz-app .cz-card .cz-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .24em; color: var(--xuanzhi-mute); display: block; margin-bottom: 10px; }
+#cz-app .cz-verdict { margin-top: 38px; border-left: 2px solid var(--jin); background: var(--xuan-deep); padding: 22px 26px; font-size: 15px; line-height: 2; }
+#cz-app .cz-verdict .cz-verdict-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .3em; color: var(--jin); display: block; margin-bottom: 8px; }
+#cz-app .cz-verdict b { color: var(--xuanzhi); font-weight: 600; }
+#cz-app .cz-xref { display: inline-block; margin-top: 10px; font-family: var(--sans); font-size: 10.5px; letter-spacing: .12em; color: var(--jin); border: 1px solid var(--jin-dim); padding: 3px 9px; margin-right: 6px; }
+
+/* 数据卡 · 大号锚定数 */
+#cz-app .cz-data3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+#cz-app .cz-stat { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 18px 20px; border-top: 3px solid var(--zhu); }
+#cz-app .cz-stat .cz-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .22em; color: var(--xuanzhi-mute); display: block; margin-bottom: 9px; }
+#cz-app .cz-stat .cz-stat-n { font-family: var(--mono); font-size: 27px; color: var(--zhu); line-height: 1.1; display: block; }
+#cz-app .cz-stat .cz-stat-u { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .08em; display: block; margin-top: 4px; }
+#cz-app .cz-stat p { font-size: 12px; color: var(--xuanzhi-dim); line-height: 1.7; margin-top: 10px; }
+#cz-app .cz-stat p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 能见度悖论卡(C1) */
+#cz-app .cz-paradox { border: 1px solid var(--hairline); background: var(--xuan-raise); display: grid; grid-template-columns: 1fr 60px 1fr; }
+#cz-app .cz-paradox > div { padding: 18px 20px; }
+#cz-app .cz-paradox .cz-par-a { border-right: 1px solid var(--hairline); }
+#cz-app .cz-paradox .cz-par-mid { background: var(--xuan-deep); display: flex; align-items: center; justify-content: center; font-family: var(--mono); color: var(--zhu); font-size: 16px; }
+#cz-app .cz-paradox h6 { font-family: var(--sans); font-size: 10.5px; letter-spacing: .16em; color: var(--xuanzhi-mute); margin-bottom: 8px; }
+#cz-app .cz-paradox .cz-par-n { font-family: var(--mono); font-size: 24px; color: var(--zhu); display: block; margin-bottom: 6px; }
+#cz-app .cz-paradox .cz-par-b .cz-par-n { color: var(--dai); }
+#cz-app .cz-paradox p { font-size: 12px; color: var(--xuanzhi-dim); line-height: 1.7; }
+#cz-app .cz-paradox p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 默认排斥三层 nest */
+#cz-app .cz-nest { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#cz-app .cz-nest-row { padding: 13px 18px; border-bottom: 1px solid var(--hairline); font-size: 13px; display: flex; gap: 14px; align-items: baseline; }
+#cz-app .cz-nest-row:last-child { border-bottom: none; }
+#cz-app .cz-nest-row .cz-nest-k { font-family: var(--mono); font-size: 12px; color: var(--zhu); flex-shrink: 0; width: 140px; }
+#cz-app .cz-nest-row .cz-nest-v { color: var(--xuanzhi-dim); line-height: 1.72; }
+#cz-app .cz-nest-row .cz-nest-v b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 制度空转 rows(C3) */
+#cz-app .cz-rows { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#cz-app .cz-row { padding: 13px 18px; border-bottom: 1px solid var(--hairline); font-size: 13px; display: grid; grid-template-columns: 132px 1fr; gap: 16px; align-items: baseline; }
+#cz-app .cz-row:last-child { border-bottom: none; }
+#cz-app .cz-row .cz-row-k { font-family: var(--mono); font-size: 12px; color: var(--zhu); }
+#cz-app .cz-row .cz-row-v { color: var(--xuanzhi-dim); line-height: 1.74; }
+#cz-app .cz-row .cz-row-v b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 起点分轨 chain(C4) */
+#cz-app .cz-chain { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#cz-app .cz-chain-row { padding: 13px 18px; border-bottom: 1px solid var(--hairline); font-size: 13px; display: flex; gap: 16px; align-items: baseline; position: relative; }
+#cz-app .cz-chain-row:last-child { border-bottom: none; }
+#cz-app .cz-chain-row .cz-chain-step { font-family: var(--mono); font-size: 12px; color: var(--zhu); flex-shrink: 0; width: 120px; }
+#cz-app .cz-chain-row .cz-chain-v { color: var(--xuanzhi-dim); line-height: 1.74; }
+#cz-app .cz-chain-row .cz-chain-v b { color: var(--xuanzhi); font-weight: 600; }
+#cz-app .cz-chain-row.peak { border-left: 3px solid var(--zhu); }
+#cz-app .cz-chain-row.peak .cz-chain-v b { color: var(--zhu); }
+
+/* 组织化两极对照 GY-12↔GY-18 dual(C6) */
+#cz-app .cz-dual { display: grid; grid-template-columns: 1fr 60px 1fr; border: 1px solid var(--hairline); margin-top: 4px; }
+#cz-app .cz-dual > div { padding: 16px 18px; }
+#cz-app .cz-dual .cz-dual-a { background: var(--xuan-raise); border-right: 1px solid var(--hairline); border-top: 3px solid var(--qing); }
+#cz-app .cz-dual .cz-dual-mid { background: var(--xuan-deep); display: flex; align-items: center; justify-content: center; font-family: var(--mono); color: var(--zhu); font-size: 18px; }
+#cz-app .cz-dual .cz-dual-b { background: var(--xuan-raise); border-left: 1px solid var(--hairline); border-top: 3px solid var(--zhu); }
+#cz-app .cz-dual h6 { font-family: var(--sans); font-size: 10.5px; letter-spacing: .16em; color: var(--xuanzhi-mute); margin-bottom: 8px; }
+#cz-app .cz-dual .cz-dual-a h6 b { color: var(--qing); }
+#cz-app .cz-dual .cz-dual-b h6 b { color: var(--zhu); }
+#cz-app .cz-dual .cz-dual-pole { font-family: var(--mono); font-size: 11px; display: block; margin-bottom: 6px; }
+#cz-app .cz-dual .cz-dual-a .cz-dual-pole { color: var(--qing); }
+#cz-app .cz-dual .cz-dual-b .cz-dual-pole { color: var(--zhu); }
+#cz-app .cz-dual p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#cz-app .cz-dual p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 双重态对照 twin */
+#cz-app .cz-twin { display: grid; grid-template-columns: 1fr 60px 1fr; gap: 0; border: 1px solid var(--hairline); margin-top: 4px; }
+#cz-app .cz-twin > div { padding: 16px 18px; }
+#cz-app .cz-twin .cz-twin-a { background: var(--xuan-raise); border-right: 1px solid var(--hairline); }
+#cz-app .cz-twin .cz-twin-mid { background: var(--xuan-deep); display: flex; align-items: center; justify-content: center; font-family: var(--mono); color: var(--zhu); font-size: 18px; }
+#cz-app .cz-twin .cz-twin-b { background: var(--xuan-raise); border-left: 1px solid var(--hairline); }
+#cz-app .cz-twin h6 { font-family: var(--sans); font-size: 10.5px; letter-spacing: .16em; color: var(--xuanzhi-mute); margin-bottom: 8px; }
+#cz-app .cz-twin p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.7; }
+#cz-app .cz-twin p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 谱系卡 / 论点卡 */
+#cz-app .cz-art { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 18px 20px; margin-bottom: 12px; border-left: 3px solid var(--zhu); }
+#cz-app .cz-art h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 6px; display: flex; gap: 11px; align-items: baseline; }
+#cz-app .cz-art h5 b { font-family: var(--mono); color: var(--zhu); font-size: 12px; font-weight: 500; }
+#cz-app .cz-art p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#cz-app .cz-art p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 三形态卡 α/β/γ(C7) */
+#cz-app .cz-form { border: 1px solid var(--qing-dim); background: rgba(65, 89, 78, .08); padding: 18px 20px; margin-bottom: 12px; }
+#cz-app .cz-form h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 6px; color: var(--qing); }
+#cz-app .cz-form p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#cz-app .cz-form p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 修正卡 */
+#cz-app .cz-fix { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 16px 20px; margin-bottom: 12px; border-left: 3px solid var(--jin); }
+#cz-app .cz-fix h5 { font-size: 14px; font-weight: 600; margin-bottom: 6px; display: flex; gap: 11px; align-items: baseline; }
+#cz-app .cz-fix h5 b { font-family: var(--mono); color: var(--jin); font-size: 12px; font-weight: 500; }
+#cz-app .cz-fix p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#cz-app .cz-fix p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 章节规划登记表 */
+#cz-app .cz-plan { border: 1px solid var(--hairline); }
+#cz-app .cz-plan-row { padding: 14px 18px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); display: flex; gap: 16px; align-items: baseline; }
+#cz-app .cz-plan-row:last-child { border-bottom: none; }
+#cz-app .cz-plan-k { font-family: var(--mono); font-size: 12px; color: var(--zhu); flex-shrink: 0; width: 76px; }
+#cz-app .cz-plan-v { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#cz-app .cz-plan-v b { color: var(--xuanzhi); font-weight: 600; }
+#cz-app .cz-plan-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .14em; color: var(--xuanzhi-mute); border: 1px solid var(--hairline); padding: 2px 8px; flex-shrink: 0; }
+
+/* 观测哨 */
+#cz-app .cz-watch-intro { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 22px; }
+#cz-app .cz-watch-intro p { font-size: 13.5px; color: var(--xuanzhi-dim); max-width: 64ch; }
+#cz-app .cz-storage-state { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .08em; }
+#cz-app .cz-watch { border: 1px solid var(--hairline); }
+#cz-app .cz-watch-item { display: grid; grid-template-columns: 1fr 320px; gap: 18px; padding: 18px 22px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); }
+#cz-app .cz-watch-item:last-child { border-bottom: none; }
+#cz-app .cz-watch-item h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 5px; }
+#cz-app .cz-watch-item h5 b { font-family: var(--mono); color: var(--jin); font-weight: 500; font-size: 12px; margin-right: 8px; }
+#cz-app .cz-watch-item .cz-watch-desc { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.75; }
+#cz-app .cz-watch-ctrl { display: flex; flex-direction: column; gap: 9px; }
+#cz-app .cz-status-row { display: flex; gap: 6px; }
+#cz-app .cz-status-btn { flex: 1; font-family: var(--sans); font-size: 11.5px; letter-spacing: .08em; padding: 7px 0; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi-mute); cursor: pointer; transition: all .15s; }
+#cz-app .cz-status-btn:hover { color: var(--xuanzhi); }
+#cz-app .cz-status-btn:focus-visible { outline: 1px solid var(--jin); }
+#cz-app .cz-status-btn.on-good { background: var(--qing-dim); border-color: var(--qing); color: var(--xuanzhi); }
+#cz-app .cz-status-btn.on-flat { background: #3a3f33; border-color: var(--xuanzhi-mute); color: var(--xuanzhi); }
+#cz-app .cz-status-btn.on-bad { background: var(--zhu-dim); border-color: var(--zhu); color: var(--xuanzhi); }
+#cz-app .cz-watch-note { width: 100%; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi); font-family: var(--sans); font-size: 12.5px; padding: 8px 10px; resize: vertical; min-height: 38px; line-height: 1.6; }
+#cz-app .cz-watch-note:focus { outline: 1px solid var(--jin); }
+#cz-app .cz-watch-note::placeholder { color: var(--xuanzhi-mute); }
+#cz-app .cz-watch-stamp { font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); text-align: right; min-height: 14px; }
+
+/* 页脚 */
+#cz-app .cz-foot { margin-top: 66px; border-top: 1px solid var(--hairline); padding-top: 24px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+#cz-app .cz-foot p { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .06em; line-height: 1.9; max-width: 66ch; }
+#cz-app .cz-foot .cz-foot-meta { text-align: right; font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); line-height: 2; flex-shrink: 0; }
+
+/* 诚实标注小字 */
+#cz-app .cz-disclaimer { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .04em; margin-top: -22px; margin-bottom: 30px; line-height: 1.7; border-left: 2px solid var(--jin-dim); padding: 4px 0 4px 12px; }
+#cz-app .cz-disclaimer b { color: var(--jin); font-weight: 500; }
+
+@media (max-width: 860px) {
+  #cz-app .cz-grid-2, #cz-app .cz-grid-3, #cz-app .cz-data3 { grid-template-columns: 1fr; }
+  #cz-app .cz-watch-item { grid-template-columns: 1fr; }
+  #cz-app .cz-mast-seal { display: none; }
+  #cz-app .cz-nav button { flex: 1 1 30%; font-size: 12.5px; letter-spacing: .04em; }
+  #cz-app .cz-row { grid-template-columns: 1fr; gap: 4px; }
+  #cz-app .cz-twin, #cz-app .cz-dual, #cz-app .cz-paradox { grid-template-columns: 1fr; }
+  #cz-app .cz-twin .cz-twin-mid, #cz-app .cz-dual .cz-dual-mid, #cz-app .cz-paradox .cz-par-mid { padding: 6px; }
+  #cz-app .cz-nest-row, #cz-app .cz-plan-row, #cz-app .cz-chain-row { flex-direction: column; gap: 3px; }
+  #cz-app .cz-nest-row .cz-nest-k, #cz-app .cz-plan-k, #cz-app .cz-chain-row .cz-chain-step { width: auto; }
+}
+
+#cz-app { border-radius: var(--radius-lg); }
+
+.canzhang-module-wrap {
+  margin: calc(-1 * var(--card-padding)) calc(-1 * var(--card-padding));
+  max-width: none;
+}
