@@ -14,6 +14,8 @@ import SectionRegional from './SectionRegional.jsx';
 import SectionCompare from './SectionCompare.jsx';
 import SectionWatch from './SectionWatch.jsx';
 import SectionDiscipline from './SectionDiscipline.jsx';
+import SectionCycle from './SectionCycle.jsx';
+import SectionFiveYear from './SectionFiveYear.jsx';
 import { buildPanoramaReport } from './econReport.js';
 
 // ============================================================================
@@ -622,6 +624,12 @@ export default function Page({ embedded = false }) {
           >{reportMd}</pre>
         )}
       </Card>
+
+      {/* ↻ 历史周期对照 */}
+      <div className="mb-6"><SectionCycle /></div>
+
+      {/* ◷ 五年规划目标达成度 */}
+      <div className="mb-6"><SectionFiveYear /></div>
 
       {/* § 数据使用纪律 */}
       <div className="mb-6"><SectionDiscipline /></div>
