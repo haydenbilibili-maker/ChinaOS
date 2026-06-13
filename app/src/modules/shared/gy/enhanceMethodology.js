@@ -9,6 +9,7 @@ const POPULATION_ROOTS = new Set([
   'qn-app', 'xs-app', 'lg-app', 'nm-app', 'tz-app', 'zc-app', 'ln-app',
   'tj-app', 'zx-app', 'ty-app', 'ym-app', 'lp-app', 'yb-app', 'la-app',
   'zn-app', 'cz-app', 'ds-app', 'xy-app', 'xm-app', 'jg-app', 'mb-app', 'ms-app', 'sd-app', 'sz-app',
+  'hc-app', 'cx-app', 'gt-app', 'll-app', 'jz-app', 'zw-app', 'qj-app', 'mj-app', 'xn-app', 'yl-app',
 ]);
 
 const PHASE_RE = /\b([YHX]\d+)\s+([^:：]+):/g;
@@ -632,6 +633,7 @@ export function enhanceMethodology(root) {
     qn: 'qn', xs: 'xs', lg: 'lg', nm: 'nm', tz: 'tz', zc: 'zc', ln: 'ln',
     tj: 'tj', zx: 'zx', ty: 'ty', ym: 'ym', lp: 'lp', yb: 'yb', la: 'la',
     zn: 'zn', cz: 'cz', ds: 'ds', xy: 'xy', xm: 'xm', jg: 'jg', mb: 'mb', ms: 'ms', sd: 'sd', sz: 'sz',
+    hc: 'hc', cx: 'cx', gt: 'gt', ll: 'll', jz: 'jz', zw: 'zw', qj: 'qj', mj: 'mj', xn: 'xn', yl: 'yl',
   };
   const pfx = prefixMap[prefix];
   if (!pfx) return undefined;

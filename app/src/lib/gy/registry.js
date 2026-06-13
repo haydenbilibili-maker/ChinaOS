@@ -32,6 +32,16 @@ export const GY_MODULES = {
   '24': { id: 'moshao', path: '/modules/moshao', label: '治理末梢', group: 'population' },
   '25': { id: 'shidu', path: '/modules/shidu', label: '计生后遗', group: 'population' },
   '26': { id: 'shuzi', path: '/modules/shuzi', label: '数字原住民', group: 'population' },
+  '27': { id: 'huoche', path: '/modules/huoche', label: '货车司机', group: 'population' },
+  '28': { id: 'chengxu', path: '/modules/chengxu', label: '程序员', group: 'population' },
+  '29': { id: 'getihu', path: '/modules/getihu', label: '个体户', group: 'population' },
+  '30': { id: 'liushou', path: '/modules/liushou', label: '留守老人', group: 'population' },
+  '31': { id: 'jiazheng', path: '/modules/jiazheng', label: '家政照护工', group: 'population' },
+  '32': { id: 'zhaiwu', path: '/modules/zhaiwu', label: '债务人群', group: 'population' },
+  '33': { id: 'qingjiao', path: '/modules/qingjiao', label: '高校青椒', group: 'population' },
+  '34': { id: 'manjiu', path: '/modules/manjiu', label: '慢就业青年', group: 'population' },
+  '35': { id: 'xinnong', path: '/modules/xinnong', label: '职业农民', group: 'population' },
+  '36': { id: 'yulun', path: '/modules/yulun', label: '网络舆论场', group: 'population' },
 };
 
 /** @param {string} num two-digit string e.g. "03" */
