@@ -7,6 +7,8 @@ import {
   ECON_AS_OF, SECTOR_STRUCTURE, SECTORS, KEY_INDICATORS, CANARY_SIGNALS,
   INCOME_DIST, NEW_ECONOMY, indicatorVerdict, canaryTally, buildEconReport,
 } from './econData.js';
+import SectionDeflation from './SectionDeflation.jsx';
+import SectionDivergence from './SectionDivergence.jsx';
 
 // ============================================================================
 // 经济大盘 · 全景与实时监测
@@ -340,6 +342,9 @@ export default function Page({ embedded = false }) {
         <Stat value={ECON_AS_OF} label="快照基准日" accent="#10b981" />
       </Grid>
 
+      {/* 00 当前主线 · 通缩与资金活化 */}
+      <div className="mb-6"><SectionDeflation /></div>
+
       {/* ① 三次产业结构 */}
       <Card title="① 三次产业结构 · 经济在做什么">
         <div className="flex items-center justify-between gap-2 flex-wrap mb-3">
@@ -529,6 +534,9 @@ export default function Page({ embedded = false }) {
           // 信号灯仅为领先信号示意，非官方景气判断 —— 公开数据派生 · 非预测
         </p>
       </Card>
+
+      {/* ★ 背离监测 · 叙事×现实 */}
+      <div className="mb-6"><SectionDivergence /></div>
 
       {/* ⑤ 收入分配与新经济 */}
       <Card title="⑤ 收入分配与新经济 · 增长落到谁身上">
