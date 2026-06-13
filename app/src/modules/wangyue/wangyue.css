@@ -1,0 +1,207 @@
+@import "../shared/gy/tokens.css";
+
+#wy-app .wy-shell { max-width: 1060px; margin: 0 auto; padding: 0 28px 96px; }
+
+/* 题头 */
+#wy-app .wy-mast { padding: 56px 0 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+#wy-app .wy-mast-meta { font-family: var(--sans); font-size: 11px; letter-spacing: .22em; color: var(--xuanzhi-mute); text-transform: uppercase; }
+#wy-app .wy-mast-meta b { color: var(--jin); font-weight: 500; }
+#wy-app h1.wy-title { font-size: clamp(30px, 5vw, 46px); font-weight: 600; letter-spacing: .08em; line-height: 1.3; margin-top: 14px; }
+#wy-app h1.wy-title .wy-title-sub { display: block; font-size: 14px; font-weight: 400; color: var(--xuanzhi-dim); letter-spacing: .3em; margin-top: 10px; }
+#wy-app .wy-mast-seal { flex-shrink: 0; writing-mode: vertical-rl; font-size: 13px; letter-spacing: .35em; color: var(--zhu); border: 1px solid var(--zhu-dim); padding: 14px 8px; line-height: 1; user-select: none; }
+
+/* 题头下方敏感度声明 */
+#wy-app .wy-mast-note { font-family: var(--sans); font-size: 11.5px; color: var(--xuanzhi-mute); letter-spacing: .04em; line-height: 1.7; margin-top: 18px; border-left: 2px solid var(--jin-dim); padding: 5px 0 5px 12px; max-width: 80ch; }
+#wy-app .wy-mast-note b { color: var(--jin); font-weight: 500; }
+
+/* 待命进程签名图 */
+#wy-app .wy-found { margin-top: 32px; border: 1px solid var(--hairline); background: var(--xuan-deep); padding: 22px 24px 12px; }
+#wy-app .wy-found svg { width: 100%; height: auto; display: block; }
+#wy-app .wy-found-caption { font-family: var(--sans); font-size: 11.5px; color: var(--xuanzhi-mute); letter-spacing: .04em; padding: 8px 2px 6px; }
+#wy-app .wy-found-caption b { color: var(--xuanzhi); }
+
+/* 页签 */
+#wy-app .wy-nav { display: flex; flex-wrap: wrap; margin-top: 30px; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); position: sticky; top: 0; background: var(--xuan); z-index: 10; }
+#wy-app .wy-nav button { flex: 1 1 auto; background: none; border: none; border-right: 1px solid var(--hairline); color: var(--xuanzhi-dim); font-family: var(--serif); font-size: 14px; letter-spacing: .1em; padding: 15px 9px 13px; cursor: pointer; position: relative; transition: color .2s; white-space: nowrap; }
+#wy-app .wy-nav button:last-child { border-right: none; }
+#wy-app .wy-nav button:hover { color: var(--xuanzhi); }
+#wy-app .wy-nav button:focus-visible { outline: 1px solid var(--jin); outline-offset: -1px; }
+#wy-app .wy-nav button.is-active { color: var(--xuanzhi); }
+#wy-app .wy-nav button.is-active::after { content: ""; position: absolute; left: 14%; right: 14%; bottom: -1px; height: 2px; background: var(--zhu); }
+
+/* 通用 */
+#wy-app section.wy-panel { display: none; padding-top: 50px; }
+#wy-app section.wy-panel.is-active { display: block; animation: wyFade .35s ease; }
+@keyframes wyFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { #wy-app section.wy-panel.is-active { animation: none; } }
+#wy-app .wy-sec-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 8px; flex-wrap: wrap; }
+#wy-app .wy-sec-head h2 { font-size: 23px; font-weight: 600; letter-spacing: .1em; }
+#wy-app .wy-sec-head .wy-sec-tag { font-family: var(--sans); font-size: 11px; letter-spacing: .18em; color: var(--xuanzhi-mute); }
+#wy-app .wy-lede { color: var(--xuanzhi-dim); font-size: 15px; max-width: 76ch; margin-bottom: 34px; }
+#wy-app .wy-lede b { color: var(--xuanzhi); font-weight: 600; }
+#wy-app h3.wy-h3 { font-size: 17px; font-weight: 600; letter-spacing: .08em; margin: 40px 0 18px; display: flex; align-items: center; gap: 12px; }
+#wy-app h3.wy-h3::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
+#wy-app .wy-card { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 20px 22px; }
+#wy-app .wy-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+#wy-app .wy-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+#wy-app .wy-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+#wy-app .wy-card p { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.78; }
+#wy-app .wy-card p b { color: var(--xuanzhi); font-weight: 600; }
+#wy-app .wy-card .wy-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .24em; color: var(--xuanzhi-mute); display: block; margin-bottom: 10px; }
+#wy-app .wy-verdict { margin-top: 38px; border-left: 2px solid var(--jin); background: var(--xuan-deep); padding: 22px 26px; font-size: 15px; line-height: 2; }
+#wy-app .wy-verdict .wy-verdict-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .3em; color: var(--jin); display: block; margin-bottom: 8px; }
+#wy-app .wy-verdict b { color: var(--xuanzhi); font-weight: 600; }
+#wy-app .wy-xref { display: inline-block; margin-top: 10px; font-family: var(--sans); font-size: 10.5px; letter-spacing: .12em; color: var(--jin); border: 1px solid var(--jin-dim); padding: 3px 9px; margin-right: 6px; }
+
+/* 数据卡 */
+#wy-app .wy-data3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+#wy-app .wy-stat { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 18px 20px; border-top: 3px solid var(--zhu); }
+#wy-app .wy-stat .wy-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .22em; color: var(--xuanzhi-mute); display: block; margin-bottom: 9px; }
+#wy-app .wy-stat .wy-stat-n { font-family: var(--mono); font-size: 27px; color: var(--zhu); line-height: 1.1; display: block; }
+#wy-app .wy-stat .wy-stat-u { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .08em; display: block; margin-top: 4px; }
+#wy-app .wy-stat p { font-size: 12px; color: var(--xuanzhi-dim); line-height: 1.7; margin-top: 10px; }
+#wy-app .wy-stat p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 构成 rows */
+#wy-app .wy-rows { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#wy-app .wy-row { padding: 13px 18px; border-bottom: 1px solid var(--hairline); font-size: 13px; display: grid; grid-template-columns: 132px 1fr; gap: 16px; align-items: baseline; }
+#wy-app .wy-row:last-child { border-bottom: none; }
+#wy-app .wy-row .wy-row-k { font-family: var(--mono); font-size: 12px; color: var(--zhu); }
+#wy-app .wy-row .wy-row-v { color: var(--xuanzhi-dim); line-height: 1.74; }
+#wy-app .wy-row .wy-row-v b { color: var(--xuanzhi); font-weight: 600; }
+#wy-app .wy-row.peak { border-left: 3px solid var(--zhu); }
+#wy-app .wy-row.peak .wy-row-v b { color: var(--zhu); }
+
+/* nest */
+#wy-app .wy-nest { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#wy-app .wy-nest-row { padding: 13px 18px; border-bottom: 1px solid var(--hairline); font-size: 13px; display: flex; gap: 14px; align-items: baseline; }
+#wy-app .wy-nest-row:last-child { border-bottom: none; }
+#wy-app .wy-nest-row .wy-nest-k { font-family: var(--mono); font-size: 12px; color: var(--zhu); flex-shrink: 0; width: 140px; }
+#wy-app .wy-nest-row .wy-nest-v { color: var(--xuanzhi-dim); line-height: 1.72; }
+#wy-app .wy-nest-row .wy-nest-v b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 前瞻定位卡 */
+#wy-app .wy-shift { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+#wy-app .wy-shift-card { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 18px 20px; border-top: 3px solid var(--zhu); }
+#wy-app .wy-shift-card .wy-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .22em; color: var(--xuanzhi-mute); display: block; margin-bottom: 9px; }
+#wy-app .wy-shift-card .wy-shift-n { font-family: var(--mono); font-size: 18px; color: var(--zhu); line-height: 1.3; display: block; margin-bottom: 8px; }
+#wy-app .wy-shift-card p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#wy-app .wy-shift-card p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 序列图 / 进程链 */
+#wy-app .wy-chain { border: 1px solid var(--hairline); background: var(--xuan-raise); margin-top: 4px; }
+#wy-app .wy-chain-row { padding: 14px 18px; border-bottom: 1px solid var(--hairline); display: grid; grid-template-columns: 110px 1fr; gap: 16px; align-items: baseline; }
+#wy-app .wy-chain-row:last-child { border-bottom: none; }
+#wy-app .wy-chain-row .wy-chain-t { font-family: var(--mono); font-size: 12.5px; color: var(--dai); flex-shrink: 0; }
+#wy-app .wy-chain-row .wy-chain-v { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.74; }
+#wy-app .wy-chain-row .wy-chain-v b { color: var(--xuanzhi); font-weight: 600; }
+#wy-app .wy-chain-row.v1 { border-left: 3px solid var(--qing); }
+#wy-app .wy-chain-row.v1 .wy-chain-t { color: var(--qing); }
+#wy-app .wy-chain-row.v2 { border-left: 3px solid var(--zhu); }
+#wy-app .wy-chain-row.v2 .wy-chain-t { color: var(--zhu); }
+#wy-app .wy-chain-row.v2 .wy-chain-v b { color: var(--zhu); }
+
+/* 主横幅 */
+#wy-app .wy-breaking { margin-top: 14px; border: 1px solid var(--zhu); background: var(--zhu-dim); padding: 14px 18px; font-family: var(--mono); font-size: 13px; color: var(--xuanzhi); line-height: 1.7; }
+#wy-app .wy-breaking b { color: var(--zhu); }
+#wy-app .wy-breaking .wy-breaking-tag { display: block; font-size: 10.5px; letter-spacing: .26em; color: var(--zhu); margin-bottom: 7px; }
+
+/* dual 对照 */
+#wy-app .wy-dual { display: grid; grid-template-columns: 1fr 60px 1fr; border: 1px solid var(--hairline); margin-top: 4px; }
+#wy-app .wy-dual > div { padding: 16px 18px; }
+#wy-app .wy-dual .wy-dual-a { background: var(--xuan-raise); border-right: 1px solid var(--hairline); border-top: 3px solid var(--qing); }
+#wy-app .wy-dual .wy-dual-mid { background: var(--xuan-deep); display: flex; align-items: center; justify-content: center; font-family: var(--mono); color: var(--zhu); font-size: 18px; }
+#wy-app .wy-dual .wy-dual-b { background: var(--xuan-raise); border-left: 1px solid var(--hairline); border-top: 3px solid var(--zhu); }
+#wy-app .wy-dual h6 { font-family: var(--sans); font-size: 10.5px; letter-spacing: .16em; color: var(--xuanzhi-mute); margin-bottom: 8px; }
+#wy-app .wy-dual .wy-dual-a h6 b { color: var(--qing); }
+#wy-app .wy-dual .wy-dual-b h6 b { color: var(--zhu); }
+#wy-app .wy-dual .wy-dual-pole { font-family: var(--mono); font-size: 11px; display: block; margin-bottom: 6px; }
+#wy-app .wy-dual .wy-dual-a .wy-dual-pole { color: var(--qing); }
+#wy-app .wy-dual .wy-dual-b .wy-dual-pole { color: var(--zhu); }
+#wy-app .wy-dual p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#wy-app .wy-dual p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 论点卡 */
+#wy-app .wy-art { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 18px 20px; margin-bottom: 12px; border-left: 3px solid var(--zhu); }
+#wy-app .wy-art h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 6px; display: flex; gap: 11px; align-items: baseline; }
+#wy-app .wy-art h5 b { font-family: var(--mono); color: var(--zhu); font-size: 12px; font-weight: 500; }
+#wy-app .wy-art p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#wy-app .wy-art p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 虹吸/金字塔图 */
+#wy-app .wy-pyramid { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 22px 24px; margin-top: 4px; }
+#wy-app .wy-pyramid svg { width: 100%; height: auto; display: block; }
+
+/* 三形态卡 */
+#wy-app .wy-form { border: 1px solid var(--qing-dim); background: rgba(65, 89, 78, .08); padding: 18px 20px; margin-bottom: 12px; }
+#wy-app .wy-form h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 6px; color: var(--qing); }
+#wy-app .wy-form p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#wy-app .wy-form p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 修正卡 */
+#wy-app .wy-fix { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 16px 20px; margin-bottom: 12px; border-left: 3px solid var(--jin); }
+#wy-app .wy-fix h5 { font-size: 14px; font-weight: 600; margin-bottom: 6px; display: flex; gap: 11px; align-items: baseline; }
+#wy-app .wy-fix h5 b { font-family: var(--mono); color: var(--jin); font-size: 12px; font-weight: 500; }
+#wy-app .wy-fix p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#wy-app .wy-fix p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 章节规划登记表 */
+#wy-app .wy-plan { border: 1px solid var(--hairline); }
+#wy-app .wy-plan-row { padding: 14px 18px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); display: flex; gap: 16px; align-items: baseline; }
+#wy-app .wy-plan-row:last-child { border-bottom: none; }
+#wy-app .wy-plan-k { font-family: var(--mono); font-size: 12px; color: var(--zhu); flex-shrink: 0; width: 76px; }
+#wy-app .wy-plan-v { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#wy-app .wy-plan-v b { color: var(--xuanzhi); font-weight: 600; }
+#wy-app .wy-plan-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .14em; color: var(--xuanzhi-mute); border: 1px solid var(--hairline); padding: 2px 8px; flex-shrink: 0; }
+
+/* 观测哨 */
+#wy-app .wy-watch-intro { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 22px; }
+#wy-app .wy-watch-intro p { font-size: 13.5px; color: var(--xuanzhi-dim); max-width: 64ch; }
+#wy-app .wy-storage-state { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .08em; }
+#wy-app .wy-watch { border: 1px solid var(--hairline); }
+#wy-app .wy-watch-item { display: grid; grid-template-columns: 1fr 320px; gap: 18px; padding: 18px 22px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); }
+#wy-app .wy-watch-item:last-child { border-bottom: none; }
+#wy-app .wy-watch-item h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 5px; }
+#wy-app .wy-watch-item h5 b { font-family: var(--mono); color: var(--jin); font-weight: 500; font-size: 12px; margin-right: 8px; }
+#wy-app .wy-watch-item .wy-watch-desc { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.75; }
+#wy-app .wy-watch-ctrl { display: flex; flex-direction: column; gap: 9px; }
+#wy-app .wy-status-row { display: flex; gap: 6px; }
+#wy-app .wy-status-btn { flex: 1; font-family: var(--sans); font-size: 11.5px; letter-spacing: .08em; padding: 7px 0; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi-mute); cursor: pointer; transition: all .15s; }
+#wy-app .wy-status-btn:hover { color: var(--xuanzhi); }
+#wy-app .wy-status-btn:focus-visible { outline: 1px solid var(--jin); }
+#wy-app .wy-status-btn.on-good { background: var(--qing-dim); border-color: var(--qing); color: var(--xuanzhi); }
+#wy-app .wy-status-btn.on-flat { background: #3a3f33; border-color: var(--xuanzhi-mute); color: var(--xuanzhi); }
+#wy-app .wy-status-btn.on-bad { background: var(--zhu-dim); border-color: var(--zhu); color: var(--xuanzhi); }
+#wy-app .wy-watch-note { width: 100%; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi); font-family: var(--sans); font-size: 12.5px; padding: 8px 10px; resize: vertical; min-height: 38px; line-height: 1.6; }
+#wy-app .wy-watch-note:focus { outline: 1px solid var(--jin); }
+#wy-app .wy-watch-note::placeholder { color: var(--xuanzhi-mute); }
+#wy-app .wy-watch-stamp { font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); text-align: right; min-height: 14px; }
+
+/* 页脚 */
+#wy-app .wy-foot { margin-top: 66px; border-top: 1px solid var(--hairline); padding-top: 24px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+#wy-app .wy-foot p { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .06em; line-height: 1.9; max-width: 66ch; }
+#wy-app .wy-foot .wy-foot-meta { text-align: right; font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); line-height: 2; flex-shrink: 0; }
+
+/* 诚实标注 */
+#wy-app .wy-disclaimer { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .04em; margin-top: -22px; margin-bottom: 30px; line-height: 1.7; border-left: 2px solid var(--jin-dim); padding: 4px 0 4px 12px; }
+#wy-app .wy-disclaimer b { color: var(--jin); font-weight: 500; }
+#wy-app .wy-disclaimer.top { margin-top: 0; margin-bottom: 30px; }
+
+@media (max-width: 860px) {
+  #wy-app .wy-grid-2, #wy-app .wy-grid-3, #wy-app .wy-data3, #wy-app .wy-shift { grid-template-columns: 1fr; }
+  #wy-app .wy-watch-item { grid-template-columns: 1fr; }
+  #wy-app .wy-mast-seal { display: none; }
+  #wy-app .wy-nav button { flex: 1 1 30%; font-size: 12.5px; letter-spacing: .04em; }
+  #wy-app .wy-row, #wy-app .wy-chain-row { grid-template-columns: 1fr; gap: 4px; }
+  #wy-app .wy-dual { grid-template-columns: 1fr; }
+  #wy-app .wy-dual .wy-dual-mid { padding: 6px; }
+  #wy-app .wy-nest-row, #wy-app .wy-plan-row { flex-direction: column; gap: 3px; }
+  #wy-app .wy-nest-row .wy-nest-k, #wy-app .wy-plan-k { width: auto; }
+}
+
+#wy-app { border-radius: var(--radius-lg); }
+
+.wangyue-module-wrap {
+  margin: calc(-1 * var(--card-padding)) calc(-1 * var(--card-padding));
+  max-width: none;
+}

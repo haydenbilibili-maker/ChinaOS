@@ -1,0 +1,507 @@
+<div class="wy-shell">
+
+  <!-- 题头 -->
+  <header class="wy-mast">
+    <div>
+      <div class="wy-mast-meta">ChinaOS · MODULE <b>GY-40</b> · 人群画像分层 · 第三十八子集</div>
+      <h1 class="wy-title">网约车司机<span class="wy-title-sub">竞价实例 · 算法定价的方向盘</span></h1>
+    </div>
+    <div class="wy-mast-seal">一口价的运力</div>
+  </header>
+  <p class="wy-mast-note">注记(口径处理):本片以<b>平台经济劳动社会学与算法定价视角</b>分析网约车司机作为一个被算法按需召唤、按一口价计价、可随时被降级的「弹性竞价实例」,关注其竞价定价的运力机制、谁失业都能跑的蓄水池、自带车贷的重资产经营、运力饱和的池满预警、载人服务的特殊性、最原子化的方向盘的政治形态;不评判具体平台或个人,「内卷」「一口价」「以租代购」作为<b>结构问题</b>描述,不渲染个案、不归咎任何一方;数据为交通运输部网约车监管数据、运力饱和预警报道与训练知识基线,标「约」、留观测哨回填,量级估算与精确口径严格区分。</p>
+
+  <!-- 竞价实例签名图 -->
+  <div class="wy-found" aria-label="竞价实例示意图:一个弹性实例池标 网约车 约748万双证 被算法调度召唤,定价器显示一口价动态定价向下随供给泛滥而暴跌,平台抽成切走一刀,池子标 OVERSATURATED 运力饱和预警,司机自带车加车贷入场却只拿 spot 价,底注 载人平台劳动 vs GY-05配送 GY-27货运">
+    <svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg" role="img">
+      <text x="500" y="20" font-size="11" fill="#8f897d" text-anchor="middle" font-family="mono" letter-spacing="2">ChinaOS · SPOT INSTANCE · 价格=供给的瞬时函数,供给泛滥则暴跌</text>
+      <text x="500" y="44" font-size="9.5" fill="#7d6a3a" text-anchor="middle" font-family="sans-serif">— 一个被算法按需召唤、按动态/一口价计价、可随时被降级的弹性竞价实例 —</text>
+
+      <!-- 弹性实例池主体 -->
+      <rect x="80" y="80" width="300" height="120" rx="8" fill="#1c242e" stroke="#5e8c7a" stroke-width="2"/>
+      <text x="230" y="108" font-size="12" fill="#5e8c7a" text-anchor="middle" font-family="serif" letter-spacing="1">弹性实例池 · 网约车(spot)</text>
+      <text x="230" y="132" font-size="13" fill="#7d9488" text-anchor="middle" font-family="mono">POOL: 约 748 万双证</text>
+      <text x="230" y="156" font-size="9" fill="#8f897d" text-anchor="middle" font-family="sans-serif">被算法按需召唤 / 派单 / 动态调度 — 谁失业都能进池</text>
+      <text x="230" y="174" font-size="8.5" fill="#5e8c7a" text-anchor="middle" font-family="mono">CALLABLE 24h · 在线灯亮 ●</text>
+      <text x="230" y="190" font-size="8.5" fill="#b39657" text-anchor="middle" font-family="sans-serif">价值 = 在线接单,可随时被降级</text>
+
+      <!-- 定价器 一口价暴跌 -->
+      <text x="560" y="92" font-size="10" fill="#8f897d" font-family="mono">spot 价(单价) · 一口价/动态定价 ↓</text>
+      <rect x="560" y="100" width="360" height="22" rx="3" fill="#23201a" stroke="#3d4c5a" stroke-width="1"/>
+      <rect x="562" y="102" width="120" height="18" rx="2" fill="#b5483a" opacity="0.85"/>
+      <text x="930" y="116" font-size="9" fill="#c2786e" text-anchor="end" font-family="mono">随供给泛滥下探</text>
+      <text x="560" y="150" font-size="10" fill="#8f897d" font-family="mono">供给(运力) · 严重超供</text>
+      <rect x="560" y="158" width="360" height="22" rx="3" fill="#23201a" stroke="#3d4c5a" stroke-width="1"/>
+      <rect x="562" y="160" width="356" height="18" rx="2" fill="#b39657" opacity="0.8"/>
+      <text x="930" y="174" font-size="9" fill="#2a2418" text-anchor="end" font-family="mono">饱和</text>
+      <text x="740" y="196" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">供给越满,spot 价越低:这是竞价实例的宿命</text>
+
+      <!-- 算法调度召唤 -->
+      <rect x="120" y="232" width="340" height="60" rx="6" fill="#1c242e" stroke="#5d7489" stroke-width="1.4"/>
+      <text x="290" y="258" font-size="11" fill="#5d7489" text-anchor="middle" font-family="serif">算法调度 · 按需召唤</text>
+      <text x="290" y="278" font-size="8.5" fill="#7d9488" text-anchor="middle" font-family="sans-serif">一口价 · 动态调价 · 特惠快车 — 司机只能接或不接</text>
+
+      <!-- 平台抽成切走一刀 -->
+      <rect x="540" y="232" width="340" height="60" rx="6" fill="#2a1818" stroke="#b5483a" stroke-width="1.6"/>
+      <text x="710" y="256" font-size="11" fill="#c2786e" text-anchor="middle" font-family="serif">✂ 平台抽成 · 切走一刀</text>
+      <text x="710" y="276" font-size="8.5" fill="#c2a09a" text-anchor="middle" font-family="sans-serif">曾争议高至 30%+ · 阳光行动推动公开抽成、设上限</text>
+      <line x1="460" y1="262" x2="538" y2="262" stroke="#b5483a" stroke-width="1.6" stroke-dasharray="4 3" marker-end="url(#wyArrow)"/>
+      <defs>
+        <marker id="wyArrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#b5483a"/></marker>
+      </defs>
+
+      <!-- 饱和预警带 -->
+      <rect x="120" y="320" width="760" height="58" rx="8" fill="#2a2418" stroke="#b39657" stroke-width="1.6"/>
+      <text x="500" y="346" font-size="13" fill="#c9b87a" text-anchor="middle" font-family="serif" letter-spacing="2">OVERSATURATED · 运力饱和预警(暂停扩容)</text>
+      <text x="500" y="367" font-size="9.5" fill="#a89968" text-anchor="middle" font-family="sans-serif">多地暂停受理新增运输证 — 池子蓄满,存量司机在过剩中互相竞价、越卷越穷</text>
+
+      <!-- 自带车+车贷入场 -->
+      <text x="500" y="406" font-size="11" fill="#c2786e" text-anchor="middle" font-family="serif" letter-spacing="1">自带资本入场 · 拿的却是竞价市场的瞬时价</text>
+      <rect x="130" y="416" width="220" height="44" rx="4" fill="#1c242e" stroke="#5d7489" stroke-width="1.2"/><text x="240" y="436" font-size="9" fill="#7d9488" text-anchor="middle" font-family="sans-serif">车 + 车贷 ↗ GY-32</text><text x="240" y="451" font-size="8" fill="#8f897d" text-anchor="middle" font-family="mono">以租代购 / 0 首付陷阱</text>
+      <rect x="390" y="416" width="220" height="44" rx="4" fill="#1c242e" stroke="#5d7489" stroke-width="1.2"/><text x="500" y="436" font-size="9" fill="#7d9488" text-anchor="middle" font-family="sans-serif">失业涌入 ↗ GY-06/08/29</text><text x="500" y="451" font-size="8" fill="#8f897d" text-anchor="middle" font-family="mono">谁失业都能跑的蓄水池</text>
+      <rect x="650" y="416" width="220" height="44" rx="4" fill="#1c242e" stroke="#5d7489" stroke-width="1.2"/><text x="760" y="436" font-size="9" fill="#7d9488" text-anchor="middle" font-family="sans-serif">Robotaxi ↗ GY-22</text><text x="760" y="451" font-size="8" fill="#8f897d" text-anchor="middle" font-family="mono">自动驾驶的替代候选</text>
+
+      <line x1="100" y1="488" x2="900" y2="488" stroke="#3d4c5a" stroke-width="1" stroke-dasharray="3 5"/>
+      <text x="500" y="514" font-size="10.5" fill="#b5483a" text-anchor="middle" font-family="serif" letter-spacing="2">— 约 748 万双证 · 失业蓄水池 · 一口价竞价 · 越供越卷 —</text>
+      <text x="500" y="538" font-size="9" fill="#7d9488" text-anchor="middle" font-family="sans-serif">载人平台劳动 · vs GY-05 配送 / GY-27 货运</text>
+      <text x="500" y="560" font-size="9" fill="#8f897d" text-anchor="middle" font-family="sans-serif">握着方向盘,却握不住价格 — 算法在行程开始前一口价定死</text>
+      <text x="500" y="582" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="mono">注:内卷与债务陷阱作为结构问题描述,不渲染个案、不归咎任何一方</text>
+    </svg>
+    <div class="wy-found-caption">模块隐喻是<b>竞价实例(Spot Instance)</b>:网约车司机是 China OS 的弹性竞价算力——像云上的 spot 实例,被算法按需召唤、按动态/一口价计价、可随时被降级;供给一旦泛滥(运力饱和),spot 价(单价)就暴跌;司机自带资本(车、车贷)入场,拿的却是竞价市场的瞬时价。签名图:一个弹性实例池标 <b>网约车 · 约 748 万双证</b> 被算法调度召唤,定价器显示「一口价 / 动态定价 ↓」随供给泛滥而暴跌;平台抽成切走一刀;池子标 <b>OVERSATURATED · 运力饱和预警</b>(暂停扩容);司机自带「车 + 车贷」入场却只拿 spot 价;底注「载人平台劳动 · vs GY-05 配送 / GY-27 货运」。<b>这个人群是 GY-06(农民工)、GY-08(下沉白领)、GY-29(个体户)失业的共同蓄水池,本片最关键的判断是把「网约车自由灵活」重构为一种「越供越卷、越卷越穷」的弹性竞价劳动——供给泛滥使算法定价持续下探。</b></div>
+  </div>
+
+  <!-- 页签 -->
+  <nav class="wy-nav" role="tablist">
+    <button role="tab" data-panel="wy-p-w1" class="is-active">谁失业都能跑</button>
+    <button role="tab" data-panel="wy-p-w2">竞价定价一口价</button>
+    <button role="tab" data-panel="wy-p-w3">重资产车贷</button>
+    <button role="tab" data-panel="wy-p-w4">运力饱和池满</button>
+    <button role="tab" data-panel="wy-p-w5">载人特殊性</button>
+    <button role="tab" data-panel="wy-p-w6">政治形态学</button>
+    <button role="tab" data-panel="wy-p-w7">形态推演</button>
+    <button role="tab" data-panel="wy-p-watch">合成 · 观测哨</button>
+  </nav>
+
+  <!-- ════ W1 谁失业都能跑蓄水池 ════ -->
+  <section class="wy-panel is-active" id="wy-p-w1">
+    <div class="wy-sec-head"><h2>W1 · 规模与蓄水池:谁失业都能跑</h2><span class="wy-sec-tag">失业的最大海绵之一</span></div>
+    <p class="wy-lede">网约车驾驶员证约 748 万(2024,持续增发;实际跑单含兼职更多),是经济下行期最大的就业蓄水池之一——门槛低(有车有证即可)、即时结算、自由进入,使失业的农民工(↗ GY-06)、下沉白领(↗ GY-08 Z4)、关停的个体户(↗ GY-29)都涌入;<b style="color:var(--zhu);">「谁失业都能跑网约车」正是它内卷的根源</b>。它接住了失业,又用内卷把接住的人重新泡穷。</p>
+
+    <h3 class="wy-h3">总盘:约 748 万双证守着城市的出行</h3>
+    <div class="wy-data3">
+      <div class="wy-stat">
+        <span class="wy-eyebrow">网约车驾驶员证</span>
+        <span class="wy-stat-n">约 748 万</span>
+        <span class="wy-stat-u">2024 · 持续增发</span>
+        <p>网约车驾驶员证约 748 万(2024,持续增发),<b style="color:var(--zhu);">实际跑单含兼职更多</b>;数字标量级、留观测哨回填(↗ W-01)。</p>
+      </div>
+      <div class="wy-stat">
+        <span class="wy-eyebrow">蓄水池属性</span>
+        <span class="wy-stat-n">低门槛 / 即时</span>
+        <span class="wy-stat-u">自由进出</span>
+        <p>低门槛(车 + 双证)、即时结算、自由进出——<b>经济下行期的就业海绵</b>(↔ GY-05 L2 蓄水池的载人版)。</p>
+      </div>
+      <div class="wy-stat">
+        <span class="wy-eyebrow">流入来源</span>
+        <span class="wy-stat-n">多片汇流</span>
+        <span class="wy-stat-u">谁失业都能跑</span>
+        <p>失业农民工(↗ GY-06)、下沉白领(↗ GY-08/GY-28)、关停个体户(↗ GY-29)、退役(↗ GY-12)——<b style="color:var(--zhu);">「谁失业都能跑」是流入的写照</b>。</p>
+      </div>
+    </div>
+
+    <h3 class="wy-h3">蓄水池构成:多片失业在网约车汇流</h3>
+    <div class="wy-rows">
+      <div class="wy-row peak"><span class="wy-row-k">失业农民工 ↗ GY-06</span><span class="wy-row-v"><b style="color:var(--zhu);">进城进不了厂、年龄偏大</b>——网约车是城市就业的接收口之一;一辆车一本证就能上路。</span></div>
+      <div class="wy-row"><span class="wy-row-k">下沉白领 ↗ GY-08</span><span class="wy-row-v">下沉白领、程序员转行(↗ GY-28)——<b>「谁失业都能跑」把高低技能都吸进同一个池子</b>。</span></div>
+      <div class="wy-row peak"><span class="wy-row-k">关停个体户 ↗ GY-29</span><span class="wy-row-v"><b style="color:var(--zhu);">店关了、生意黄了 → 开网约车过渡</b>——关停个体户的灵活就业出口。</span></div>
+      <div class="wy-row"><span class="wy-row-k">内卷的根源</span><span class="wy-row-v">自由进入 + 失业涌入 → 运力过剩 → 单量被摊薄 → 收入下降 → 仍有人涌入——<b>蓄水池的开放性正是内卷的成因</b>。</span></div>
+    </div>
+    <div class="wy-breaking">
+      <span class="wy-breaking-tag">! 池子的门永远开着,水越蓄越满,每个人分到的单越来越少</span>
+      网约车是失业的最大海绵之一——<b>农民工、下沉白领、关停的小老板、退役军人,谁丢了工作都能有辆车就上路;可正是这份「谁都能跑」,注定了它的命运:池子的门永远开着,水越蓄越满,每个人能分到的单越来越少</b>。
+    </div>
+
+    <h3 class="wy-h3">就业海绵:接住失业,又用内卷把人泡穷</h3>
+    <div class="wy-dual">
+      <div class="wy-dual-a"><h6>接住 · <b>自由进入</b></h6><span class="wy-dual-pole">有车有证 / 即时结算</span><p>有车有证即可上路、即时结算——<b style="color:var(--qing);">它接住了从各片掉下来的失业者</b>;经济下行期的就业海绵(↗ GY-05 L2 的载人版)。</p></div>
+      <div class="wy-dual-mid">→</div>
+      <div class="wy-dual-b"><h6>泡穷 · <b>越供越卷</b></h6><span class="wy-dual-pole">运力过剩 / 单量摊薄</span><p><b style="color:var(--zhu);">自由进入使运力过剩,单量被越来越多的人摊薄</b>——它接住了失业,又用内卷把接住的人重新泡穷(↗ W4 饱和)。</p></div>
+    </div>
+
+    <div class="wy-art">
+      <h5><b>网约车是失业的最大海绵之一</b>谁丢了工作都能有辆车就上路</h5>
+      <p>网约车是失业的最大海绵之一——农民工、下沉白领、关停的小老板、退役军人,谁丢了工作都能有辆车就上路。<b style="color:var(--zhu);">可正是这份「谁都能跑」,注定了它的命运:池子的门永远开着,水越蓄越满,每个人能分到的单越来越少。它接住了失业,又用内卷把接住的人重新泡穷。</b>(↗ GY-06/GY-08/GY-29 · 多片失业汇流)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="wy-xref">↗ GY-06/08/29 · 失业蓄水池的多片来源</span>
+      <span class="wy-xref">↗ GY-05 · 平台蓄水池的载人版</span>
+      <span class="wy-xref">↗ W2 · 竞价定价</span>
+    </div>
+
+    <div class="wy-verdict">
+      <span class="wy-verdict-tag">W1 判词</span>
+      网约车是失业的最大海绵之一——农民工、下沉白领、关停的小老板、退役军人,谁丢了工作都能有辆车就上路。可正是这份「谁都能跑」,注定了它的命运:池子的门永远开着,水越蓄越满,每个人能分到的单越来越少。<b style="color:var(--zhu);">它接住了失业,又用内卷把接住的人重新泡穷。</b>
+      <span class="wy-xref">↗ W2 · 算法定价的方向盘</span>
+    </div>
+  </section>
+
+  <!-- ════ W2 竞价定价一口价 ════ -->
+  <section class="wy-panel" id="wy-p-w2">
+    <div class="wy-sec-head"><h2>W2 · 竞价定价:一口价与算法的方向盘</h2><span class="wy-sec-tag">本片独特机制 · 算法单方面定价</span></div>
+    <p class="wy-disclaimer top">注记(口径处理):本节将「竞价定价」作为一种平台<b>定价权机制</b>分析,关注算法单方面定价与供给泛滥使单价下探的逻辑,不针对具体平台或个人,不渲染个案;「一口价」「抽成」为平台经济描述,旨在理解这种劳动的真实议价结构。</p>
+    <p class="wy-lede">本片独特机制——网约车司机是「算法定价的方向盘」:<b style="color:var(--zhu);">单价由平台算法单方面决定(一口价、动态定价、特惠单),司机无议价权;运力越饱和,算法定价越低(竞价实例的 spot 价随供给暴跌)</b>。这是 GY-05(算法管理)的载人定价版、GY-27(运费内卷)的客运版。司机以为自己是个体经营者,其实是算法定价表上一个可随时被压价的弹性变量。</p>
+
+    <h3 class="wy-h3">算法定价 vs 司机议价:握着方向盘,握不住价格</h3>
+    <div class="wy-dual">
+      <div class="wy-dual-a"><h6>平台 · <b>单方面广播</b></h6><span class="wy-dual-pole">一口价 / 动态调价 / 特惠</span><p><b style="color:var(--qing);">单价由平台算法在行程开始前一口价定死</b>——一口价剥离里程/时长波动,动态调价、特惠快车,价格单方面广播。</p></div>
+      <div class="wy-dual-mid">↔</div>
+      <div class="wy-dual-b"><h6>司机 · <b>只能接或不接</b></h6><span class="wy-dual-pole">无议价权 / 弹性变量</span><p><b style="color:var(--zhu);">司机没有一个字的议价权,只能接或不接</b>——他握着方向盘,却握不住价格(↔ GY-05 L3 单价阴跌 / GY-27 H4 运费内卷的客运版)。</p></div>
+    </div>
+
+    <h3 class="wy-h3">竞价定价机制:运力越饱和,定价越低</h3>
+    <div class="wy-rows">
+      <div class="wy-row peak"><span class="wy-row-k">算法单方面定价</span><span class="wy-row-v"><b style="color:var(--zhu);">一口价(行程前定价)、动态调价、特惠快车</b>——单价由平台单方面广播,司机只能接或不接。</span></div>
+      <div class="wy-row"><span class="wy-row-k">竞价的 spot 逻辑</span><span class="wy-row-v">运力越饱和,平台越能压低派单价格——<b>供给泛滥使 spot 价(单价)持续下探;司机在过剩中互相竞价</b>。</span></div>
+      <div class="wy-row peak"><span class="wy-row-k">抽成问题</span><span class="wy-row-v"><b style="color:var(--zhu);">平台抽成(曾高至 30%+)引发争议</b> → 交通运输部推动「阳光行动」公开抽成、设上限;抽成透明化推进,但抽成 + 一口价双重压缩收入。</span></div>
+      <div class="wy-row"><span class="wy-row-k">流水≠到手</span><span class="wy-row-v">高流水 ≠ 高收入——<b>扣除抽成、油/电、车损/车贷(W3)后到手有限;「跑得多挣得少」是普遍体感</b>。</span></div>
+    </div>
+    <div class="wy-breaking">
+      <span class="wy-breaking-tag">! 运力越饱和,算法的定价就越低——竞价实例的宿命</span>
+      网约车司机握着方向盘,却握不住价格——<b>每一单多少钱,由算法在行程开始前一口价定死,他没有一个字的议价权;而运力越饱和,算法的定价就越低:供给泛滥时,spot 价只会往下走</b>。
+    </div>
+
+    <h3 class="wy-h3">抽成链:从流水到到手,平台切走一刀</h3>
+    <div class="wy-chain">
+      <div class="wy-chain-row v1"><span class="wy-chain-t">乘客付款</span><span class="wy-chain-v"><b>一口价定下的车费</b> — 行程开始前由算法定价,乘客与司机都只能接受这个数字。</span></div>
+      <div class="wy-chain-row v2"><span class="wy-chain-t">平台抽成</span><span class="wy-chain-v"><b style="color:var(--zhu);">曾争议高至 30%+</b> — 平台从车费中切走一刀;阳光行动推动公开抽成、设上限,但抽成压缩收入依旧。</span></div>
+      <div class="wy-chain-row v1"><span class="wy-chain-t">成本扣除</span><span class="wy-chain-v"><b>油/电、车损、车贷/租金(W3)</b> — 司机自带资本的固定成本从流水里再扣一道。</span></div>
+      <div class="wy-chain-row v2"><span class="wy-chain-t">到手所剩</span><span class="wy-chain-v"><b style="color:var(--zhu);">跑得多挣得少</b> — 高流水 ≠ 高收入,运力饱和时单量也降,双重挤压到手收入。</span></div>
+    </div>
+
+    <div class="wy-art">
+      <h5><b>司机以为自己是个体经营者,其实是算法定价表上一个可被压价的弹性变量</b></h5>
+      <p>网约车司机握着方向盘,却握不住价格——每一单多少钱,由算法在行程开始前一口价定死,他没有一个字的议价权。<b style="color:var(--zhu);">而运力越饱和,算法的定价就越低:这是竞价实例的宿命,供给泛滥时,spot 价只会往下走。司机以为自己是个体经营者,其实是算法定价表上一个可随时被压价的弹性变量。</b>(↗ GY-05 算法管理 / ↗ GY-27 运费内卷)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="wy-xref">↗ GY-05 · 算法管理的载人定价版</span>
+      <span class="wy-xref">↗ GY-27 · 运费内卷的客运版</span>
+      <span class="wy-xref">↗ W3 · 重资产与车贷</span>
+    </div>
+
+    <div class="wy-verdict">
+      <span class="wy-verdict-tag">W2 判词</span>
+      网约车司机握着方向盘,却握不住价格——每一单多少钱,由算法在行程开始前一口价定死,他没有一个字的议价权。而运力越饱和,算法的定价就越低:这是竞价实例的宿命,供给泛滥时,spot 价只会往下走。<b style="color:var(--zhu);">司机以为自己是个体经营者,其实是算法定价表上一个可随时被压价的弹性变量。</b>
+      <span class="wy-xref">↗ W3 · 自带本钱的弹性工</span>
+    </div>
+  </section>
+
+  <!-- ════ W3 重资产车贷以租代购 ════ -->
+  <section class="wy-panel" id="wy-p-w3">
+    <div class="wy-sec-head"><h2>W3 · 重资产与车贷:自带本钱的弹性工</h2><span class="wy-sec-tag">介于外卖与货车之间</span></div>
+    <p class="wy-disclaimer top">注记(口径处理):本节将网约车的重资产与债务作为<b>结构问题</b>分析,关注以租代购等债务陷阱与固定成本刚性的根源,不针对具体平台或个人,不渲染个案;旨在理解司机「为平台和车贷打工」的债务经营处境。</p>
+    <p class="wy-lede">网约车司机自带资本(车,多为贷款/租赁购置,部分为「以租代购」陷阱)入场——<b style="color:var(--zhu);">介于外卖(轻资产 ↗ GY-05)与货车(重资产 ↗ GY-27)之间</b>;车贷/租金的固定成本 + 一口价的收入下降,使司机陷入「为平台和车贷打工」的债务经营(↗ GY-32 债务)。这份债务把他焊在方向盘上,跑也不是,不跑也不是。</p>
+
+    <h3 class="wy-h3">轻重资产对照:外卖 ↔ 网约车 ↔ 货车</h3>
+    <div class="wy-dual">
+      <div class="wy-dual-a"><h6>外卖 · <b>轻资产</b></h6><span class="wy-dual-pole">电动车 / 即时配送 ↗ GY-05</span><p><b style="color:var(--qing);">外卖骑手骑电动车、轻资产即时配送</b>——入场成本低,无重资产债务(↗ GY-05 电动车)。</p></div>
+      <div class="wy-dual-mid">↔</div>
+      <div class="wy-dual-b"><h6>货车 · <b>重资产</b></h6><span class="wy-dual-pole">卡车 / 干线 ↗ GY-27</span><p><b style="color:var(--zhu);">货车司机自带卡车、重资产干线运输</b>——网约车介于两者之间:比外卖重、比货车轻,但债务陷阱(以租代购)独特(↗ GY-27 卡车)。</p></div>
+    </div>
+
+    <h3 class="wy-h3">自带本钱的弹性工:车贷压顶,单价下行</h3>
+    <div class="wy-rows">
+      <div class="wy-row peak"><span class="wy-row-k">自带资本</span><span class="wy-row-v"><b style="color:var(--zhu);">网约车需自购/租车——司机是带着车(和车贷)入场的弹性工</b>;「以租代购」「0 首付购车跑网约车」的陷阱使部分司机背上高息债务。</span></div>
+      <div class="wy-row"><span class="wy-row-k">介于轻重之间</span><span class="wy-row-v">比外卖(↗ GY-05 电动车)重、比货车(↗ GY-27 卡车)轻——<b>重资产程度中等,但债务陷阱(以租代购)独特</b>。</span></div>
+      <div class="wy-row peak"><span class="wy-row-k">固定成本刚性</span><span class="wy-row-v"><b style="color:var(--zhu);">车贷/租金、保险、油电、车损</b>——收入随一口价下降,成本刚性;运力饱和时单量也降,双重挤压。</span></div>
+      <div class="wy-row"><span class="wy-row-k">债务经营 ↗ GY-32</span><span class="wy-row-v">车贷压顶 + 收入下降 → 部分司机滑向负债(↗ GY-32 债务人群的职业入口)——<b>以租代购的纠纷是网约车特有的债务陷阱</b>。</span></div>
+    </div>
+    <div class="wy-breaking">
+      <span class="wy-breaking-tag">! 车贷是刚性的,单价是下行的,运力是饱和的</span>
+      网约车司机是自带本钱的弹性工——<b>他贷款买了车,或者掉进「以租代购」的坑里租了车,然后用这辆车去接算法派来的一口价订单;这份债务把他焊在方向盘上,跑也不是,不跑也不是——而平台只需要他在线,不需要他赚钱</b>。
+    </div>
+
+    <div class="wy-art">
+      <h5><b>他比外卖骑手多了一份资产,也多了一份债务</b>车贷把他焊在方向盘上,跑也不是,不跑也不是</h5>
+      <p>网约车司机是自带本钱的弹性工——他贷款买了车,或者掉进「以租代购」的坑里租了车,然后用这辆车去接算法派来的一口价订单。<b style="color:var(--zhu);">车贷是刚性的,单价是下行的,运力是饱和的。他比外卖骑手多了一份资产,也多了一份债务;这份债务把他焊在方向盘上,跑也不是,不跑也不是——而平台只需要他在线,不需要他赚钱。</b>(↗ GY-05 轻资产 / ↗ GY-27 重资产 / ↗ GY-32 债务)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="wy-xref">↗ GY-32 · 以租代购的债务陷阱</span>
+      <span class="wy-xref">↗ GY-05/27 · 轻重资产光谱</span>
+      <span class="wy-xref">↗ W4 · 运力饱和</span>
+    </div>
+
+    <div class="wy-verdict">
+      <span class="wy-verdict-tag">W3 判词</span>
+      网约车司机是自带本钱的弹性工——他贷款买了车,或者掉进「以租代购」的坑里租了车,然后用这辆车去接算法派来的一口价订单。车贷是刚性的,单价是下行的,运力是饱和的。他比外卖骑手多了一份资产,也多了一份债务;这份债务把他焊在方向盘上,跑也不是,不跑也不是——<b style="color:var(--zhu);">而平台只需要他在线,不需要他赚钱。</b>
+      <span class="wy-xref">↗ W4 · 暂停扩容的池子</span>
+    </div>
+  </section>
+
+  <!-- ════ W4 运力饱和池满 ════ -->
+  <section class="wy-panel" id="wy-p-w4">
+    <div class="wy-sec-head"><h2>W4 · 运力饱和:暂停扩容的池子</h2><span class="wy-sec-tag">蓄水池亮起的水位警报</span></div>
+    <p class="wy-lede">多地发布网约车运力饱和预警(暂停受理新增运输证、提示行业饱和)——<b style="color:var(--zhu);">这是「蓄水池蓄满」的官方信号</b>:当失业涌入使运力远超需求,平台与城市开始限制扩容,但存量司机的内卷已成定局。饱和预警是就业蓄水池接近极限的警报;池子蓄满的代价,是池子里每个人都得在水里泡得更久。</p>
+
+    <h3 class="wy-h3">饱和预警链:从池满到内卷定局</h3>
+    <div class="wy-chain">
+      <div class="wy-chain-row v1"><span class="wy-chain-t">饱和预警</span><span class="wy-chain-v"><b>多地交通部门发布运力饱和预警、暂停受理新增网约车运输证</b> — 「池子蓄满了」的官方信号。</span></div>
+      <div class="wy-chain-row v2"><span class="wy-chain-t">内卷定局</span><span class="wy-chain-v"><b style="color:var(--zhu);">限制新增挡不住存量内卷</b> — 已入场的几百万司机在过剩中互相摊薄;接单时长延长、收入下降。</span></div>
+      <div class="wy-chain-row v1"><span class="wy-chain-t">极限信号</span><span class="wy-chain-v"><b>网约车饱和 = 失业蓄水池接近极限</b> — 当连「谁都能跑」的池子都蓄满,失业的去处就更少了(↔ GY-05/GY-29/GY-34 叠加承压)。</span></div>
+      <div class="wy-chain-row v2"><span class="wy-chain-t">工时换收入</span><span class="wy-chain-v"><b style="color:var(--zhu);">为维持收入,司机延长在线时长(10-12 小时+)</b> — 用工时换收入,健康透支(↗ GY-23 / GY-27 H5 久坐疲劳)。</span></div>
+    </div>
+
+    <h3 class="wy-h3">池满的代价:限制新增挡不住存量内卷</h3>
+    <div class="wy-rows">
+      <div class="wy-row peak"><span class="wy-row-k">饱和预警</span><span class="wy-row-v"><b style="color:var(--zhu);">多地交通部门发布运力饱和预警、暂停受理新增网约车运输证</b>——「池子蓄满了」的官方信号。</span></div>
+      <div class="wy-row"><span class="wy-row-k">内卷已成定局</span><span class="wy-row-v">限制新增挡不住存量内卷——<b>已入场的几百万司机在过剩中互相摊薄;接单时长延长、收入下降</b>。</span></div>
+      <div class="wy-row peak"><span class="wy-row-k">蓄水池极限</span><span class="wy-row-v"><b style="color:var(--zhu);">网约车饱和 = 失业蓄水池接近极限</b>——当连「谁都能跑」的池子都蓄满,失业的去处就更少了(↔ GY-05/GY-29/GY-34 蓄水池叠加承压)。</span></div>
+      <div class="wy-row"><span class="wy-row-k">单量与时长</span><span class="wy-row-v">为维持收入,司机延长在线时长(10-12 小时+)——<b>用工时换收入,健康透支</b>(↗ GY-23 / GY-27 H5 久坐疲劳)。</span></div>
+    </div>
+    <div class="wy-breaking">
+      <span class="wy-breaking-tag">! 当连「谁都能跑」的池子都开始暂停进水,失业的去处快用完了</span>
+      网约车运力饱和预警,是失业蓄水池亮起的水位警报——<b>当连「谁都能跑」的池子都开始暂停进水,说明失业的去处快用完了;可限制新增挡不住存量内卷:几百万已经上路的司机,只能靠延长在线时长去抢越来越薄的单</b>。
+    </div>
+
+    <div class="wy-art">
+      <h5><b>池子蓄满的代价,是池子里每个人都得在水里泡得更久</b></h5>
+      <p>网约车运力饱和预警,是失业蓄水池亮起的水位警报——当连「谁都能跑」的池子都开始暂停进水,说明失业的去处快用完了。<b style="color:var(--zhu);">可限制新增挡不住存量内卷:几百万已经上路的司机,只能靠延长在线时长去抢越来越薄的单。池子蓄满的代价,是池子里每个人都得在水里泡得更久。</b>(↗ GY-05/GY-29/GY-34 蓄水池叠加 / ↗ GY-23 健康透支)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="wy-xref">↗ GY-05/29/34 · 蓄水池叠加承压</span>
+      <span class="wy-xref">↗ GY-23/27 · 久坐疲劳与健康透支</span>
+      <span class="wy-xref">↗ W5 · 载人的特殊性</span>
+    </div>
+
+    <div class="wy-verdict">
+      <span class="wy-verdict-tag">W4 判词</span>
+      网约车运力饱和预警,是失业蓄水池亮起的水位警报——当连「谁都能跑」的池子都开始暂停进水,说明失业的去处快用完了。可限制新增挡不住存量内卷:几百万已经上路的司机,只能靠延长在线时长去抢越来越薄的单。<b style="color:var(--zhu);">池子蓄满的代价,是池子里每个人都得在水里泡得更久。</b>
+      <span class="wy-xref">↗ W5 · 车里两个陌生人的相遇</span>
+    </div>
+  </section>
+
+  <!-- ════ W5 载人特殊性 ════ -->
+  <section class="wy-panel" id="wy-p-w5">
+    <div class="wy-sec-head"><h2>W5 · 载人的特殊性:乘客、安全与性别</h2><span class="wy-sec-tag">车上坐着一个会打分、会投诉、也可能有危险的人</span></div>
+    <p class="wy-disclaimer top">注记(口径处理):本节将载人服务的安全与情绪劳动作为<b>劳动形态</b>分析,关注乘客互动、双向安全与女性安全议题,不针对具体平台或个人,不渲染个案;女性乘客安全作为公共议题中性处理,旨在理解载人劳动独有的维度。</p>
+    <p class="wy-lede">与载货(↗ GY-27)、配送(↗ GY-05)不同,网约车是「载人」服务——<b style="color:var(--zhu);">直接的乘客互动(评分、投诉、纠纷)、安全责任(乘客与司机双向安全)、女性乘客安全议题、司机的情绪劳动(↗ GY-31)</b>,构成网约车独有的劳动维度。一辆车里两个陌生人的相遇,被平台用评分、录音、一键报警层层管理着,而管理的成本,最后也摊进了司机的单价里。</p>
+
+    <h3 class="wy-h3">载货 vs 载人:多出的情绪劳动与安全责任</h3>
+    <div class="wy-dual">
+      <div class="wy-dual-a"><h6>载货 · <b>货车 / 配送</b></h6><span class="wy-dual-pole">货物 / 时效 ↗ GY-27/05</span><p><b style="color:var(--qing);">货车司机(↗ GY-27)、外卖骑手(↗ GY-05)运的是货</b>——只对货物的时效、完好负责,无乘客互动。</p></div>
+      <div class="wy-dual-mid">↔</div>
+      <div class="wy-dual-b"><h6>载人 · <b>网约车</b></h6><span class="wy-dual-pole">评分 / 安全 / 情绪劳动</span><p><b style="color:var(--zhu);">网约车运的是人</b>——多了一重情绪劳动(看乘客脸色)和双向安全责任(为乘客安全负责,也要防备自己的风险 ↗ GY-31)。</p></div>
+    </div>
+
+    <h3 class="wy-h3">载人维度:乘客、双向安全、女性议题、合规双证</h3>
+    <div class="wy-rows">
+      <div class="wy-row peak"><span class="wy-row-k">乘客互动</span><span class="wy-row-v"><b style="color:var(--zhu);">评分、投诉、好评率——乘客评价直接影响派单与收入</b>(↔ GY-14 流量评分 / GY-05 算法评分的载人版);情绪劳动(看乘客脸色、服务态度)。</span></div>
+      <div class="wy-row"><span class="wy-row-k">双向安全</span><span class="wy-row-v">乘客安全(恶性事件后平台强化安全机制:行程录音、一键报警)+ 司机安全(深夜、醉客、纠纷)——<b>载人服务的安全责任双向</b>。</span></div>
+      <div class="wy-row peak"><span class="wy-row-k">女性安全议题</span><span class="wy-row-v"><b style="color:var(--zhu);">网约车安全(尤其女性乘客)是公共议题</b>——平台安全机制因恶性事件而强化,合规成本上升。</span></div>
+      <div class="wy-row"><span class="wy-row-k">合规双证</span><span class="wy-row-v">人证(驾驶员证)+ 车证(运输证)——<b>合规要求高于外卖(↗ GY-05)</b>;无证运营的灰色地带与合规成本的张力。</span></div>
+    </div>
+    <div class="wy-breaking">
+      <span class="wy-breaking-tag">! 载人和载货的根本区别,是车上坐着一个会打分、会投诉、也可能有危险的人</span>
+      网约车司机比货车司机(↗ GY-27)、外卖骑手(↗ GY-05)多了一重情绪劳动和安全责任——<b>他要看乘客的脸色,要为乘客的安全负责,也要防备深夜里自己的风险</b>。
+    </div>
+
+    <div class="wy-art">
+      <h5><b>一辆车里两个陌生人的相遇,被平台用评分、录音、一键报警层层管理着</b></h5>
+      <p>载人和载货的根本区别,是车上坐着一个会打分、会投诉、也可能有危险的人。网约车司机比货车司机(↗ GY-27)、外卖骑手(↗ GY-05)多了一重情绪劳动和安全责任——他要看乘客的脸色,要为乘客的安全负责,也要防备深夜里自己的风险。<b style="color:var(--zhu);">一辆车里两个陌生人的相遇,被平台用评分、录音、一键报警层层管理着,而管理的成本,最后也摊进了司机的单价里。</b>(↗ GY-14 流量评分 / ↗ GY-31 情绪劳动)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="wy-xref">↗ GY-14 · 评分的流量逻辑</span>
+      <span class="wy-xref">↗ GY-31 · 情绪劳动的同构</span>
+      <span class="wy-xref">↗ W6 · 原子化的方向盘</span>
+    </div>
+
+    <div class="wy-verdict">
+      <span class="wy-verdict-tag">W5 判词</span>
+      载人和载货的根本区别,是车上坐着一个会打分、会投诉、也可能有危险的人。网约车司机比货车司机(↗ GY-27)、外卖骑手(↗ GY-05)多了一重情绪劳动和安全责任——他要看乘客的脸色,要为乘客的安全负责,也要防备深夜里自己的风险。<b style="color:var(--zhu);">一辆车里两个陌生人的相遇,被平台用评分、录音、一键报警层层管理着,而管理的成本,最后也摊进了司机的单价里。</b>
+      <span class="wy-xref">↗ W6 · 一个人一辆车的原子</span>
+    </div>
+  </section>
+
+  <!-- ════ W6 政治形态学 ════ -->
+  <section class="wy-panel" id="wy-p-w6">
+    <div class="wy-sec-head"><h2>W6 · 政治形态学:原子化的方向盘</h2><span class="wy-sec-tag">一个人一辆车的原子</span></div>
+    <p class="wy-lede">网约车司机高度原子化、去政治化——<b style="color:var(--zhu);">单兵作业(一人一车)、流动、平台规则隔离、自雇身份(无劳动关系 ↗ GY-05 L4)</b>;其不满以退出(弃跑)、分散投诉、偶发的局部聚集(抗议抽成/一口价)表达,是 GY-05 算法原子化在客运的同构,且因载人的合规与安全而被更强监管。夹在监管两端中间的,还是那个握着方向盘、看着一口价、算着车贷的人。</p>
+
+    <h3 class="wy-h3">原子化的方向盘:单兵作业、自雇、难联合</h3>
+    <div class="wy-rows">
+      <div class="wy-row peak"><span class="wy-row-k">原子化</span><span class="wy-row-v"><b style="color:var(--zhu);">一人一车、单兵作业——比外卖(站点/众包)更分散</b>;连和同行说句话的机会都在红绿灯之间,难以形成集体。</span></div>
+      <div class="wy-row"><span class="wy-row-k">自雇身份 ↗ GY-05 L4</span><span class="wy-row-v">网约车司机多为自雇/灵活就业——<b>无劳动关系、无社保、自负盈亏;平台不认雇佣</b>。</span></div>
+      <div class="wy-row peak"><span class="wy-row-k">不满的表达</span><span class="wy-row-v"><b style="color:var(--zhu);">弃跑(用脚投票)、投诉抽成/一口价、偶发局部聚集</b>——分散、经济诉求、难联合(↔ GY-27 H6 货车司机 / GY-05 L6)。</span></div>
+      <div class="wy-row"><span class="wy-row-k">监管的双重性</span><span class="wy-row-v">网约车因载人安全被强监管(合规、安全、抽成阳光化)——<b>监管既约束司机(合规)也约束平台(抽成上限);是平台经济监管相对深入的领域</b>。</span></div>
+    </div>
+
+    <h3 class="wy-h3">监管的两端:压平台抽成 ↔ 压司机合规</h3>
+    <div class="wy-dual">
+      <div class="wy-dual-a"><h6>压平台 · <b>抽成上限</b></h6><span class="wy-dual-pole">阳光行动 / 抽成公开</span><p><b style="color:var(--qing);">监管推动抽成阳光化、设上限</b>——因载人安全的公共属性,网约车是平台经济监管相对深入的领域。</p></div>
+      <div class="wy-dual-mid">↔</div>
+      <div class="wy-dual-b"><h6>压司机 · <b>合规双证</b></h6><span class="wy-dual-pole">人证 / 车证 / 安全</span><p><b style="color:var(--zhu);">监管也压司机的合规(双证、安全)</b>——夹在两端中间的,还是那个握着方向盘、看着一口价、算着车贷的人。</p></div>
+    </div>
+    <div class="wy-breaking">
+      <span class="wy-breaking-tag">! 他的反抗只能是弃跑,或者在某个城市偶尔聚起来抗议一下抽成</span>
+      网约车司机是一个人一辆车的原子——<b>他在路上单兵作战,被平台规则隔离,连和同行说句话的机会都在红绿灯之间;他的反抗只能是弃跑,或者在某个城市偶尔聚起来抗议一下抽成</b>。
+    </div>
+
+    <h3 class="wy-h3">全光谱交点:失业蓄水池与平台劳动的客运节点</h3>
+    <div class="wy-rows">
+      <div class="wy-row peak"><span class="wy-row-k">平台劳动三类</span><span class="wy-row-v"><b style="color:var(--zhu);">网约车是 GY-05(零工)、GY-27(司机/平台定价)的客运节点</b>——一个被运费内卷,一个被一口价内卷,同构于平台定价权。</span></div>
+      <div class="wy-row"><span class="wy-row-k">失业多片汇流</span><span class="wy-row-v">GY-06(农民工)、GY-08(下沉)、GY-29(个体户)的共同蓄水池——<b>「谁失业都能跑」使它成为多人群失业的共同出口</b>。</span></div>
+      <div class="wy-row peak"><span class="wy-row-k">债务入口</span><span class="wy-row-v"><b style="color:var(--zhu);">GY-32(车贷债务)的职业入口之一</b>——以租代购的纠纷是网约车特有的债务陷阱。</span></div>
+    </div>
+
+    <div class="wy-art">
+      <h5><b>网约车因为载人,比外卖和货运受到更强的监管</b>而夹在中间的,还是那个握着方向盘、看着一口价、算着车贷的人</h5>
+      <p>网约车司机是一个人一辆车的原子——他在路上单兵作战,被平台规则隔离,连和同行说句话的机会都在红绿灯之间。他的反抗只能是弃跑,或者在某个城市偶尔聚起来抗议一下抽成。<b style="color:var(--zhu);">网约车因为载人,比外卖和货运受到更强的监管——这监管既压平台的抽成,也压司机的合规,而夹在中间的,还是那个握着方向盘、看着一口价、算着车贷的人。</b>(↗ GY-05 算法原子化 / ↗ GY-27 货车司机)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="wy-xref">↗ GY-05 · 算法原子化的客运同构</span>
+      <span class="wy-xref">↗ GY-27 · 货车司机的分散</span>
+      <span class="wy-xref">↗ W7 · 三态推演</span>
+    </div>
+
+    <div class="wy-verdict">
+      <span class="wy-verdict-tag">W6 判词</span>
+      网约车司机是一个人一辆车的原子——他在路上单兵作战,被平台规则隔离,连和同行说句话的机会都在红绿灯之间。他的反抗只能是弃跑,或者在某个城市偶尔聚起来抗议一下抽成。网约车因为载人,比外卖和货运受到更强的监管——这监管既压平台的抽成,也压司机的合规,<b style="color:var(--zhu);">而夹在中间的,还是那个握着方向盘、看着一口价、算着车贷的人。</b>
+      <span class="wy-xref">↗ W7 · 三态推演</span>
+    </div>
+  </section>
+
+  <!-- ════ W7 形态推演 ════ -->
+  <section class="wy-panel" id="wy-p-w7">
+    <div class="wy-sec-head"><h2>W7 · 形态推演(三态)</h2><span class="wy-sec-tag">饱和内卷常态 / 蓄水池溢出 / 自动驾驶替代</span></div>
+    <p class="wy-lede">网约车这个被算法按需召唤、按一口价计价、可随时被降级的弹性竞价实例的未来走向,取决于三股力量的相对强弱——<b style="color:var(--zhu);">运力饱和与一口价内卷的延续、经济下行使蓄水池溢出、自动驾驶(Robotaxi)对司机岗位的替代</b>。三态推演如下,概率最高的是饱和内卷常态的基准态。</p>
+
+    <h3 class="wy-h3">三态:α 饱和内卷常态 / β 蓄水池溢出 / γ 自动驾驶替代</h3>
+    <div class="wy-form">
+      <h5>形态 α · 基准 · 饱和内卷常态(概率最高)</h5>
+      <p>运力饱和、一口价内卷、抽成阳光化推进、收入低位;<b style="color:var(--zhu);">网约车作为失业蓄水池继续吸纳但越供越卷</b>。概率最高(平台劳动是失业的刚需出口,蓄水池功能短期难替代,↗ W-01/W-02/W-03)。</p>
+    </div>
+    <div class="wy-form" style="border-color:var(--zhu-dim); background:rgba(181,72,58,.08);">
+      <h5 style="color:var(--zhu);">形态 β · 压力 · 蓄水池溢出</h5>
+      <p>经济下行使更多失业涌入而运力已饱和——<b style="color:var(--zhu);">网约车「蓄不住水」(新人进不来、老人挣不到),失业压力回灌(↗ GY-05/GY-29/GY-34 蓄水池叠加溢出)</b>;标志:多地饱和预警普遍化、司机收入跌破临界、群体性抽成抗议增多(↗ W-05)。</p>
+    </div>
+    <div class="wy-form" style="border-color:var(--jin-dim); background:rgba(110,93,56,.10);">
+      <h5 style="color:var(--jin);">形态 γ · 技术 · 自动驾驶 Robotaxi 替代</h5>
+      <p>自动驾驶出租(Robotaxi)商业化推进,长期替代网约车司机岗位(↗ GY-27 H7 / GY-22 机器换人的客运版)——<b style="color:var(--jin);">司机既是被算法定价的弹性工,也是被自动驾驶替代的候选;萝卜快跑等已在试点引发司机替代焦虑</b>(↗ W-08)。</p>
+    </div>
+
+    <h3 class="wy-h3">三态的共同底色:被算法定价的弹性工,也是被替代的候选</h3>
+    <div class="wy-rows">
+      <div class="wy-row peak"><span class="wy-row-k">蓄水池刚需</span><span class="wy-row-v"><b style="color:var(--zhu);">无论哪种形态,网约车作为失业蓄水池的吸纳功能短期难替代</b>——三态的差异只在蓄水池如何被加压、被技术替代。</span></div>
+      <div class="wy-row"><span class="wy-row-k">经济下行是变量</span><span class="wy-row-v">经济下行是最大的外生变量——<b>形态 β 的触发点;饱和预警普遍化、收入跌破临界、群体抗议增多是最响的信号</b>(↗ W4)。</span></div>
+      <div class="wy-row peak"><span class="wy-row-k">Robotaxi 是远景</span><span class="wy-row-v"><b style="color:var(--zhu);">自动驾驶从远处驶来——他既是被算法定价的弹性工,也是被自己开的这门技术替代的候选</b>;形态 γ 是长期但确定的方向。</span></div>
+    </div>
+
+    <div class="wy-art">
+      <h5><b>自动驾驶正从远处驶来</b>他既是被算法定价的弹性工,也是被自己开的这门技术替代的候选</h5>
+      <p>三态推演的共同底色是:<b style="color:var(--zhu);">网约车作为失业蓄水池的吸纳功能短期难替代,差异只在蓄水池如何被加压、被技术替代。基准是饱和内卷常态;压力态里经济下行使蓄水池溢出、失业压力回灌;技术态里自动驾驶(Robotaxi)从远处驶来,长期替代司机岗位。他既是被算法定价的弹性工,也是被自己开的这门技术替代的候选。</b>(↗ GY-22 机器换人 / ↗ GY-27 货运自动驾驶)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="wy-xref">↗ GY-22/27 · 自动驾驶的客运版</span>
+      <span class="wy-xref">↗ GY-29/34 · 蓄水池叠加溢出</span>
+      <span class="wy-xref">↗ watch · 总判词与观测哨</span>
+    </div>
+
+    <div class="wy-verdict">
+      <span class="wy-verdict-tag">W7 判词</span>
+      三态推演的共同底色是:网约车作为失业蓄水池的吸纳功能短期难替代,差异只在蓄水池如何被加压、被技术替代。基准是饱和内卷常态;压力态里经济下行使蓄水池溢出、失业压力回灌;技术态里自动驾驶(Robotaxi)从远处驶来,长期替代司机岗位。<b style="color:var(--zhu);">他既是被算法定价的弹性工,也是被自己开的这门技术替代的候选。</b>
+      <span class="wy-xref">↗ watch · 合成观测哨</span>
+    </div>
+  </section>
+
+  <!-- ════ 合成 · 观测哨 ════ -->
+  <section class="wy-panel" id="wy-p-watch">
+    <div class="wy-sec-head"><h2>W8 / W9 · 合成与观测哨</h2><span class="wy-sec-tag">竞价实例 · 第三十八子集 · 年度对账</span></div>
+    <p class="wy-disclaimer top">注记(口径处理):全片以平台经济劳动社会学与算法定价框架处理,不评判具体平台或个人,「内卷」「一口价」「以租代购」作为结构问题描述,不渲染个案、不归咎任何一方。形态推演与观测哨为机制研判,数据为交通运输部网约车监管数据、运力饱和预警报道与训练知识基线,标「约」、待权威年度数据回填,量级估算与精确口径严格区分。</p>
+
+    <div class="wy-verdict" style="margin-top:14px; margin-bottom:34px;">
+      <span class="wy-verdict-tag">W8 · 总判词 · 竞价实例</span>
+      网约车司机是 China OS 的弹性竞价实例——被算法按需召唤、按一口价计价、可随时被降级,供给一泛滥(运力饱和)spot 价就暴跌。<br><br>
+      <b style="color:var(--zhu);">他们是失业的最大海绵之一:农民工、下沉白领、关停的小老板、退役军人,谁丢了工作都能有辆车就上路;而正是这份「谁都能跑」,注定了越供越卷、越卷越穷。他握着方向盘却握不住价格——一口价在行程开始前定死,运力越饱和定价越低;他自带车和车贷入场(部分掉进以租代购的债务陷阱 ↗ GY-32),拿的却是竞价市场的瞬时价。运力饱和预警是失业蓄水池亮起的水位警报:当连「谁都能跑」的池子都暂停进水,失业的去处就更少了。他比外卖(↗ GY-05)、货运(↗ GY-27)多了一重载人的情绪劳动和安全责任,也因此被更强监管——而监管压平台抽成、也压司机合规,夹在中间的还是他。最后,自动驾驶(Robotaxi)正从远处驶来:他既是被算法定价的弹性工,也是被自己开的这门技术替代的候选。平台只需要他在线,不需要他赚钱;城市只需要运力,不问运力是谁。</b><br><br>
+      与全系列合观:GY-06 农民工、GY-08 下沉白领、GY-29 个体户是网约车蓄水池的共同来源,本片是它们失业的共同出口;GY-05 算法管理在网约车身上是「载人 + 中等重资产」型平台劳动的版本;GY-27 货车司机(载货/被运费内卷)与网约车(载人/被一口价内卷)构成平台运输劳动的两端;GY-32 债务以「以租代购」为网约车特有的债务入口;GY-22 机器换人在网约车是 Robotaxi 自动驾驶的客运版。作为人群画像分层第三十八子集,本片把平台载人劳动补进整张图谱——<b>它不是又一个孤立人群,而是多片失业在算法定价的弹性竞价场上的共同显影端,核心问题始终是:当平台只需要他在线、不需要他赚钱,城市只需要运力、不问运力是谁,这个池子里的人还撑得住吗。</b>
+    </div>
+
+    <h3 class="wy-h3">对 GY 系列的五条修正</h3>
+    <div class="wy-fix">
+      <h5><b>修正 · GY-05</b>补客运/货运/配送三分</h5>
+      <p>网约车是零工的「载人 + 中等重资产」版——与外卖配送(轻资产即时配送)、货运(↗ GY-27 重资产干线)并列三类平台劳动;<b style="color:var(--zhu);">建议 GY-05 补客运/货运/配送三分</b>。</p>
+    </div>
+    <div class="wy-fix">
+      <h5><b>修正 · GY-27</b>载货 vs 载人</h5>
+      <p>货车司机(被卫星监控的常驻进程/载货)与网约车(竞价实例/载人)是平台运输劳动的两类——<b>一个被运费内卷,一个被一口价内卷,同构于平台定价权;建议链接为「载货 vs 载人」</b>。</p>
+    </div>
+    <div class="wy-fix">
+      <h5><b>修正 · GY-32</b>以租代购的债务入口</h5>
+      <p>「以租代购」是网约车特有的债务陷阱——<b style="color:var(--zhu);">车贷/租金压顶使司机成为债务人群(GY-32)的职业入口之一</b>;建议 GY-32 以此标注职业入口。</p>
+    </div>
+    <div class="wy-fix">
+      <h5><b>修正 · GY-08/GY-06/GY-29</b>谁失业都能跑的共同出口</h5>
+      <p>网约车是下沉白领、失业农民工、关停个体户的共同蓄水池——<b>「谁失业都能跑」使它成为多人群失业的共同出口;蓄水池饱和是多片失业压力的共同警报</b>。</p>
+    </div>
+    <div class="wy-fix">
+      <h5><b>修正 · 母框架</b>补「弹性竞价劳动」形态</h5>
+      <p>网约车补「弹性竞价劳动」形态——<b style="color:var(--zhu);">供给泛滥使算法定价(spot 价)持续下探,是平台经济「越蓄水越内卷」机制的客运样本</b>;与 GY-14(流量彩票)、GY-27(运费内卷)同属平台把海量个体装进竞价场的逻辑。</p>
+    </div>
+
+    <div class="wy-watch-intro">
+      <p>这个人群的处境变动,关键看三组指针:规模与定价(双证规模 / 单价 / 抽成)、收入与债务(到手收入 / 在线时长 / 以租代购)、饱和与替代(运力饱和预警 / 安全合规 / Robotaxi)。逐项标注状态、记录证据,年度与 GY 系列同步对账。状态与备注自动保存在本机。数据敏感处标「约」,待权威年度数据回填,量级估算与精确口径严格区分;内卷与债务陷阱作为结构问题观测,不渲染个案。</p>
+      <span class="wy-storage-state" id="wy-storage-state"></span>
+    </div>
+
+    <div class="wy-watch" id="wy-watch-list">
+      <div class="wy-watch-item" data-key="w1">
+        <div><h5><b>W-01</b>网约车证与跑单规模</h5><p class="wy-watch-desc">双证数、活跃司机数——<b>蓄水池水位。</b></p></div>
+        <div class="wy-watch-ctrl"><div class="wy-status-row"><button class="wy-status-btn" data-status="good">向好</button><button class="wy-status-btn" data-status="flat">中性</button><button class="wy-status-btn" data-status="bad">恶化</button></div><textarea class="wy-watch-note" placeholder="证据与备注…"></textarea><div class="wy-watch-stamp"></div></div>
+      </div>
+      <div class="wy-watch-item" data-key="w2">
+        <div><h5><b>W-02</b>运力饱和预警</h5><p class="wy-watch-desc">发布饱和预警/暂停发证的城市数——<b>W4 池满信号。</b></p></div>
+        <div class="wy-watch-ctrl"><div class="wy-status-row"><button class="wy-status-btn" data-status="good">向好</button><button class="wy-status-btn" data-status="flat">中性</button><button class="wy-status-btn" data-status="bad">恶化</button></div><textarea class="wy-watch-note" placeholder="证据与备注…"></textarea><div class="wy-watch-stamp"></div></div>
+      </div>
+      <div class="wy-watch-item" data-key="w3">
+        <div><h5><b>W-03</b>单价与一口价</h5><p class="wy-watch-desc">单均价、一口价/特惠单占比——<b>W2 竞价定价读数。</b></p></div>
+        <div class="wy-watch-ctrl"><div class="wy-status-row"><button class="wy-status-btn" data-status="good">向好</button><button class="wy-status-btn" data-status="flat">中性</button><button class="wy-status-btn" data-status="bad">恶化</button></div><textarea class="wy-watch-note" placeholder="证据与备注…"></textarea><div class="wy-watch-stamp"></div></div>
+      </div>
+      <div class="wy-watch-item" data-key="w4">
+        <div><h5><b>W-04</b>抽成</h5><p class="wy-watch-desc">平台抽成率、阳光行动/抽成上限落地——<b>抽成压缩的矫正。</b></p></div>
+        <div class="wy-watch-ctrl"><div class="wy-status-row"><button class="wy-status-btn" data-status="good">向好</button><button class="wy-status-btn" data-status="flat">中性</button><button class="wy-status-btn" data-status="bad">恶化</button></div><textarea class="wy-watch-note" placeholder="证据与备注…"></textarea><div class="wy-watch-stamp"></div></div>
+      </div>
+      <div class="wy-watch-item" data-key="w5">
+        <div><h5><b>W-05</b>司机收入</h5><p class="wy-watch-desc">到手收入、在线时长——<b>内卷强度。</b></p></div>
+        <div class="wy-watch-ctrl"><div class="wy-status-row"><button class="wy-status-btn" data-status="good">向好</button><button class="wy-status-btn" data-status="flat">中性</button><button class="wy-status-btn" data-status="bad">恶化</button></div><textarea class="wy-watch-note" placeholder="证据与备注…"></textarea><div class="wy-watch-stamp"></div></div>
+      </div>
+      <div class="wy-watch-item" data-key="w6">
+        <div><h5><b>W-06</b>以租代购</h5><p class="wy-watch-desc">车贷/租车纠纷、债务陷阱——<b>W3 债务读数(接 GY-32)。</b></p></div>
+        <div class="wy-watch-ctrl"><div class="wy-status-row"><button class="wy-status-btn" data-status="good">向好</button><button class="wy-status-btn" data-status="flat">中性</button><button class="wy-status-btn" data-status="bad">恶化</button></div><textarea class="wy-watch-note" placeholder="证据与备注…"></textarea><div class="wy-watch-stamp"></div></div>
+      </div>
+      <div class="wy-watch-item" data-key="w7">
+        <div><h5><b>W-07</b>安全与合规</h5><p class="wy-watch-desc">安全机制、合规双证、女性安全事件——<b>W5 载人维度。</b></p></div>
+        <div class="wy-watch-ctrl"><div class="wy-status-row"><button class="wy-status-btn" data-status="good">向好</button><button class="wy-status-btn" data-status="flat">中性</button><button class="wy-status-btn" data-status="bad">恶化</button></div><textarea class="wy-watch-note" placeholder="证据与备注…"></textarea><div class="wy-watch-stamp"></div></div>
+      </div>
+      <div class="wy-watch-item" data-key="w8">
+        <div><h5><b>W-08</b>Robotaxi</h5><p class="wy-watch-desc">自动驾驶出租试点与替代——<b>形态γ 进度(接 GY-22)。</b></p></div>
+        <div class="wy-watch-ctrl"><div class="wy-status-row"><button class="wy-status-btn" data-status="good">向好</button><button class="wy-status-btn" data-status="flat">中性</button><button class="wy-status-btn" data-status="bad">恶化</button></div><textarea class="wy-watch-note" placeholder="证据与备注…"></textarea><div class="wy-watch-stamp"></div></div>
+      </div>
+    </div>
+
+    <h3 class="wy-h3">章节规划 · 登记表</h3>
+    <div class="wy-plan">
+      <div class="wy-plan-row"><span class="wy-plan-k">CH-01</span><span class="wy-plan-v"><b>竞价实例</b> — 一口价/动态定价/抽成的算法定价机制,接 GY-05/GY-27。</span><span class="wy-plan-tag">待建</span></div>
+      <div class="wy-plan-row"><span class="wy-plan-k">CH-02</span><span class="wy-plan-v"><b>蓄水池水位</b> — 失业涌入与运力饱和、谁失业都能跑的内卷,接 GY-06/GY-08/GY-29。</span><span class="wy-plan-tag">待建</span></div>
+      <div class="wy-plan-row"><span class="wy-plan-k">CH-03</span><span class="wy-plan-v"><b>以租代购</b> — 网约车债务陷阱与重资产经营,接 GY-32。</span><span class="wy-plan-tag">待建</span></div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="wy-foot">
+    <p>方法论:网约车司机以「竞价实例(Spot Instance)」模型刻画——网约车司机是 China OS 的弹性竞价算力像云上的 spot 实例被算法按需召唤按动态一口价计价可随时被降级供给一旦泛滥运力饱和 spot 价单价就暴跌司机自带资本车车贷入场拿的却是竞价市场的瞬时价签名图一个弹性实例池标网约车约 748 万双证被算法调度召唤定价器显示一口价动态定价向下随供给泛滥而暴跌平台抽成切走一刀池子标 OVERSATURATED 运力饱和预警暂停扩容司机自带车车贷入场却只拿 spot 价底注载人平台劳动 vs GY-05 配送 GY-27 货运。核心命题:网约车驾驶员证约 748 万实际跑单者更多是失业潮的最大蓄水池之一农民工 GY-06 下沉白领 GY-08 关停个体户 GY-29 谁失业都能跑他们是按需召唤算法定价严重超供的弹性运力一口价压低单价平台抽成运力饱和预警使这个谁失业都能跑的池子陷入越供越卷越卷越穷的内卷他握着方向盘却握不住价格一口价在行程开始前定死运力越饱和定价越低他自带车和车贷入场部分掉进以租代购的债务陷阱 GY-32 拿的却是竞价市场的瞬时价运力饱和预警是失业蓄水池亮起的水位警报当连谁都能跑的池子都暂停进水失业的去处就更少了他比外卖 GY-05 货运 GY-27 多了一重载人的情绪劳动和安全责任也因此被更强监管而监管压平台抽成也压司机合规夹在中间的还是他最后自动驾驶 Robotaxi 正从远处驶来他既是被算法定价的弹性工也是被自己开的这门技术替代的候选平台只需要他在线不需要他赚钱城市只需要运力不问运力是谁。数据锚定(交通运输部网约车监管数据加运力饱和预警报道加训练知识基线,待权威年度数据回填):网约车驾驶员证约 748 万 2024 持续增发多地发布运力饱和预警暂停受理新增运输证平台抽成阳光行动推动公开抽成与设上限曾争议高至 30%+ 一口价特惠单压低单价合规双证驾驶员证加车辆运输证以租代购债务陷阱 Robotaxi 自动驾驶出租试点。注:网约车证数与最新运力收入数据因检索通道不稳未在线核验,数字标注量级并留观测哨回填,以平台劳动框架处理,内卷与债务陷阱作为结构问题描述不渲染个案不归咎任何一方,精确口径与量级估算严格区分。作为人群画像分层第三十八子集,与 GY-06 农民工 GY-08 下沉白领 GY-29 个体户(网约车蓄水池的共同来源)、GY-05 算法管理(网约车是载人加中等重资产型平台劳动)、GY-27 货车司机(载货 vs 载人构成平台运输劳动两端)、GY-32 债务(以租代购的债务入口)、GY-22 机器换人(Robotaxi 自动驾驶的客运版)等耦合。来源:交通运输部网约车监管数据、运力饱和预警报道、抽成阳光行动、训练知识基线。</p>
+    <div class="wy-foot-meta">
+      ChinaOS · GY-40 · v1.0.0<br>
+      生成 2026-06 丙午年<br>
+      人群画像 第三十八子集 · 关联模块 → GY-05/06/08/27/32<br>
+      注记:平台经济劳动社会学框架 · 内卷与债务作结构问题描述 · 不归咎任何一方
+    </div>
+  </footer>
+
+</div>
