@@ -52,6 +52,8 @@ export const GY_MODULES = {
   '44': { id: 'jiaozheng', path: '/modules/jiaozheng', label: '社区矫正', group: 'population' },
   '45': { id: 'funv', path: '/modules/funv', label: '留守妇女', group: 'population' },
   '46': { id: 'binzang', path: '/modules/binzang', label: '殡葬临终', group: 'population' },
+  '47': { id: 'junren', path: '/modules/junren', label: '现役军人', group: 'population' },
+  '48': { id: 'bianjiang', path: '/modules/bianjiang', label: '边疆民族', group: 'population' },
 };
 
 /** GY-03…46 已上线人群切片编号（不含 GY-00 母索引） */
