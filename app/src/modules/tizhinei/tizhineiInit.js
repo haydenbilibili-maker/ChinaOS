@@ -1,11 +1,12 @@
 /** 体制内人群 GY-07 · 页签 / 观测哨(命名空间 chinaos.tz.v1) */
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 import { tizhineiPanelId } from '../../lib/tizhinei/routing.js';
+import { withGyInit } from '../shared/gy/enhanceMethodology.js';
 
 const NS = 'chinaos.tz.v1';
 
 /** @param {HTMLElement | null} root @param {{ tab?: string }} deepLink */
-export function initTizhinei(root, deepLink = {}) {
+function initTizhineiCore(root, deepLink = {}) {
   if (!root) return () => {};
 
   const cleanups = [];
@@ -120,3 +121,5 @@ export function initTizhinei(root, deepLink = {}) {
 
   return () => cleanups.forEach((fn) => fn());
 }
+
+export const initTizhinei = withGyInit(initTizhineiCore);

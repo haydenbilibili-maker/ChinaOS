@@ -1,11 +1,12 @@
 /** 塔尖 · 高净值与企业家 GY-10 · 页签 / 观测哨(命名空间 chinaos.tj.v1) */
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 import { tajianPanelId } from '../../lib/tajian/routing.js';
+import { withGyInit } from '../shared/gy/enhanceMethodology.js';
 
 const NS = 'chinaos.tj.v1';
 
 /** @param {HTMLElement | null} root @param {{ tab?: string }} deepLink */
-export function initTajian(root, deepLink = {}) {
+function initTajianCore(root, deepLink = {}) {
   if (!root) return () => {};
 
   const cleanups = [];
@@ -120,3 +121,5 @@ export function initTajian(root, deepLink = {}) {
 
   return () => cleanups.forEach((fn) => fn());
 }
+
+export const initTajian = withGyInit(initTajianCore);

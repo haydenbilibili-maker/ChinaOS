@@ -1,11 +1,12 @@
 /** 流量彩票 · 主播与创作者 GY-14 · 页签 / 观测哨(命名空间 chinaos.lp.v1) */
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 import { liupiaoPanelId } from '../../lib/liupiao/routing.js';
+import { withGyInit } from '../shared/gy/enhanceMethodology.js';
 
 const NS = 'chinaos.lp.v1';
 
 /** @param {HTMLElement | null} root @param {{ tab?: string }} deepLink */
-export function initLiupiao(root, deepLink = {}) {
+function initLiupiaoCore(root, deepLink = {}) {
   if (!root) return () => {};
 
   const cleanups = [];
@@ -120,3 +121,5 @@ export function initLiupiao(root, deepLink = {}) {
 
   return () => cleanups.forEach((fn) => fn());
 }
+
+export const initLiupiao = withGyInit(initLiupiaoCore);

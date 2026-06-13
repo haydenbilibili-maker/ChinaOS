@@ -1,11 +1,12 @@
 /** 青年 GY-03 · 页签 / 章节跳转 / 观测哨（命名空间 chinaos.qingnian.v1） */
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 import { qingnianPanelId, resolveQingnianTab } from '../../lib/qingnian/routing.js';
+import { withGyInit } from '../shared/gy/enhanceMethodology.js';
 
 const NS = 'chinaos.qingnian.v1';
 
 /** @param {HTMLElement | null} root @param {{ tab?: string }} deepLink */
-export function initQingnian(root, deepLink = {}) {
+function initQingnianCore(root, deepLink = {}) {
   if (!root) return () => {};
 
   const cleanups = [];
@@ -161,3 +162,5 @@ export function initQingnian(root, deepLink = {}) {
 
   return () => cleanups.forEach((fn) => fn());
 }
+
+export const initQingnian = withGyInit(initQingnianCore);

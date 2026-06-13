@@ -1,11 +1,12 @@
 /** 零工经济人群 GY-05 · 页签 / 观测哨（命名空间 chinaos.lg.v1） */
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 import { linggongPanelId } from '../../lib/linggong/routing.js';
+import { withGyInit } from '../shared/gy/enhanceMethodology.js';
 
 const NS = 'chinaos.lg.v1';
 
 /** @param {HTMLElement | null} root @param {{ tab?: string }} deepLink */
-export function initLinggong(root, deepLink = {}) {
+function initLinggongCore(root, deepLink = {}) {
   if (!root) return () => {};
 
   const cleanups = [];
@@ -120,3 +121,5 @@ export function initLinggong(root, deepLink = {}) {
 
   return () => cleanups.forEach((fn) => fn());
 }
+
+export const initLinggong = withGyInit(initLinggongCore);

@@ -1,11 +1,12 @@
 /** 职校生 · 被分流的一半 GY-11 · 页签 / 观测哨(命名空间 chinaos.zx.v1) */
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 import { zhixiaoPanelId } from '../../lib/zhixiao/routing.js';
+import { withGyInit } from '../shared/gy/enhanceMethodology.js';
 
 const NS = 'chinaos.zx.v1';
 
 /** @param {HTMLElement | null} root @param {{ tab?: string }} deepLink */
-export function initZhixiao(root, deepLink = {}) {
+function initZhixiaoCore(root, deepLink = {}) {
   if (!root) return () => {};
 
   const cleanups = [];
@@ -120,3 +121,5 @@ export function initZhixiao(root, deepLink = {}) {
 
   return () => cleanups.forEach((fn) => fn());
 }
+
+export const initZhixiao = withGyInit(initZhixiaoCore);

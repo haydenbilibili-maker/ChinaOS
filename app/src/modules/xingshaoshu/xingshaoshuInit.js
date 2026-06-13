@@ -1,11 +1,12 @@
 /** 性少数群像 GY-04 · 页签 / 观测哨（命名空间 chinaos.xss.v1） */
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 import { xingshaoshuPanelId } from '../../lib/xingshaoshu/routing.js';
+import { withGyInit } from '../shared/gy/enhanceMethodology.js';
 
 const NS = 'chinaos.xss.v1';
 
 /** @param {HTMLElement | null} root @param {{ tab?: string }} deepLink */
-export function initXingshaoshu(root, deepLink = {}) {
+function initXingshaoshuCore(root, deepLink = {}) {
   if (!root) return () => {};
 
   const cleanups = [];
@@ -120,3 +121,5 @@ export function initXingshaoshu(root, deepLink = {}) {
 
   return () => cleanups.forEach((fn) => fn());
 }
+
+export const initXingshaoshu = withGyInit(initXingshaoshuCore);

@@ -1,0 +1,356 @@
+/* 人群切片方法论页脚 · 共享布局（GY-03–16） */
+
+#qn-app .gy-method,
+#xs-app .gy-method,
+#lg-app .gy-method,
+#nm-app .gy-method,
+#tz-app .gy-method,
+#zc-app .gy-method,
+#ln-app .gy-method,
+#tj-app .gy-method,
+#zx-app .gy-method,
+#ty-app .gy-method,
+#ym-app .gy-method,
+#lp-app .gy-method,
+#yb-app .gy-method,
+#la-app .gy-method {
+  margin-top: 66px;
+  border-top: 1px solid var(--hairline);
+  padding-top: 28px;
+}
+
+#qn-app .gy-method.is-enhanced,
+#xs-app .gy-method.is-enhanced,
+#lg-app .gy-method.is-enhanced,
+#nm-app .gy-method.is-enhanced,
+#tz-app .gy-method.is-enhanced,
+#zc-app .gy-method.is-enhanced,
+#ln-app .gy-method.is-enhanced,
+#tj-app .gy-method.is-enhanced,
+#zx-app .gy-method.is-enhanced,
+#ty-app .gy-method.is-enhanced,
+#ym-app .gy-method.is-enhanced,
+#lp-app .gy-method.is-enhanced,
+#yb-app .gy-method.is-enhanced,
+#la-app .gy-method.is-enhanced {
+  display: block;
+}
+
+.gy-method-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
+  gap: 28px 32px;
+  align-items: start;
+}
+
+.gy-method-main {
+  min-width: 0;
+}
+
+.gy-method-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.gy-method-head-left {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  min-width: 0;
+}
+
+.gy-method-title {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--xuanzhi);
+}
+
+.gy-method-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 1px solid var(--qing-dim);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--qing-dim) 18%, transparent);
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--qing);
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  max-width: 100%;
+}
+
+.gy-method-badge-sub {
+  font-family: var(--mono);
+  font-size: 10px;
+  opacity: 0.85;
+  color: var(--xuanzhi-dim);
+}
+
+.gy-method-toggle {
+  flex-shrink: 0;
+  padding: 6px 12px;
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+  background: var(--xuan-raise);
+  color: var(--xuanzhi-dim);
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.gy-method-toggle:hover {
+  border-color: var(--qing);
+  color: var(--xuanzhi);
+}
+
+.gy-method-body {
+  overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.25s ease;
+}
+
+.gy-method-body.is-collapsed {
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gy-method-body:not(.is-collapsed) {
+  max-height: none;
+  opacity: 1;
+}
+
+.gy-method-intro,
+.gy-method-panel,
+.gy-method-appendix {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.95;
+  color: var(--xuanzhi-dim);
+  letter-spacing: 0.02em;
+  max-width: 72ch;
+}
+
+.gy-method-intro {
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--hairline);
+  color: var(--xuanzhi);
+}
+
+.gy-method-intro p,
+.gy-method-panel p,
+.gy-method-appendix p {
+  margin-bottom: 0.65em;
+}
+
+.gy-method-intro p:last-child,
+.gy-method-panel p:last-child,
+.gy-method-appendix p:last-child {
+  margin-bottom: 0;
+}
+
+.gy-method-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.gy-method-tab {
+  padding: 5px 11px;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--xuanzhi-mute);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.gy-method-tab:hover {
+  border-color: var(--dai);
+  color: var(--xuanzhi-dim);
+}
+
+.gy-method-tab.is-active {
+  border-color: var(--zhu-dim);
+  background: color-mix(in srgb, var(--zhu-dim) 22%, transparent);
+  color: var(--zhu);
+}
+
+.gy-method-panels {
+  position: relative;
+}
+
+.gy-method-panel {
+  display: none;
+}
+
+.gy-method-panel.is-active {
+  display: block;
+}
+
+.gy-method-appendix {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--hairline);
+  font-size: 12px;
+  color: var(--xuanzhi-mute);
+}
+
+.gy-method-term {
+  background: color-mix(in srgb, var(--jin-dim) 35%, transparent);
+  color: var(--jin);
+  padding: 0 2px;
+  border-radius: 2px;
+  font-style: normal;
+}
+
+.gy-method-link {
+  color: var(--qing);
+  text-decoration: none;
+  border-bottom: 1px dotted color-mix(in srgb, var(--qing) 50%, transparent);
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.gy-method-link:hover {
+  color: var(--zhu);
+  border-bottom-color: var(--zhu);
+}
+
+.gy-method-sep {
+  color: var(--xuanzhi-mute);
+  margin: 0 1px;
+}
+
+/* ── 元数据侧栏 ── */
+.gy-method-meta-card {
+  padding: 16px 18px;
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--xuan-raise) 88%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+.gy-method-meta-row {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 8px 12px;
+  align-items: start;
+  margin-bottom: 10px;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.gy-method-meta-row:last-child {
+  margin-bottom: 0;
+}
+
+.gy-method-meta-row--chips {
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.gy-method-meta-k {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--xuanzhi-mute);
+  letter-spacing: 0.06em;
+}
+
+.gy-method-meta-v {
+  color: var(--xuanzhi-dim);
+  font-family: var(--sans);
+}
+
+.gy-method-mono {
+  font-family: var(--mono);
+}
+
+.gy-method-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.gy-method-chip {
+  display: inline-block;
+  padding: 3px 8px;
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--xuanzhi-dim);
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.gy-method-chip:hover {
+  border-color: var(--qing);
+  color: var(--qing);
+}
+
+.gy-method-meta-notes {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--hairline);
+}
+
+.gy-method-meta-notes p {
+  font-size: 10.5px;
+  color: var(--xuanzhi-mute);
+  line-height: 1.75;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 768px) {
+  .gy-method-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .gy-method-meta {
+    order: -1;
+  }
+
+  .gy-method-meta-card {
+    padding: 12px 14px;
+  }
+
+  .gy-method-tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .gy-method-tab {
+    flex-shrink: 0;
+  }
+
+  .gy-method-body:not(.is-collapsed) .gy-method-panel.is-active {
+    max-height: 420px;
+    overflow-y: auto;
+    padding-right: 4px;
+  }
+}
+
+:root[data-theme='light'] .gy-method-badge {
+  background: color-mix(in srgb, var(--qing-dim) 45%, transparent);
+}
+
+:root[data-theme='light'] .gy-method-meta-card {
+  background: color-mix(in srgb, var(--xuan-raise) 95%, #fff);
+}

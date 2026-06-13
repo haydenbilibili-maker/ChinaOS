@@ -1,11 +1,12 @@
 /** 中产阶层 GY-08 · 页签 / 观测哨(命名空间 chinaos.zc.v1) */
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 import { zhongchanPanelId } from '../../lib/zhongchan/routing.js';
+import { withGyInit } from '../shared/gy/enhanceMethodology.js';
 
 const NS = 'chinaos.zc.v1';
 
 /** @param {HTMLElement | null} root @param {{ tab?: string }} deepLink */
-export function initZhongchan(root, deepLink = {}) {
+function initZhongchanCore(root, deepLink = {}) {
   if (!root) return () => {};
 
   const cleanups = [];
@@ -120,3 +121,5 @@ export function initZhongchan(root, deepLink = {}) {
 
   return () => cleanups.forEach((fn) => fn());
 }
+
+export const initZhongchan = withGyInit(initZhongchanCore);

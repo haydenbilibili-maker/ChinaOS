@@ -1,11 +1,12 @@
 /** 离岸中国人 · 境外节点与未结清的账户 GY-16 · 页签 / 观测哨(命名空间 chinaos.la.v1) */
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 import { lianPanelId } from '../../lib/lian/routing.js';
+import { withGyInit } from '../shared/gy/enhanceMethodology.js';
 
 const NS = 'chinaos.la.v1';
 
 /** @param {HTMLElement | null} root @param {{ tab?: string }} deepLink */
-export function initLian(root, deepLink = {}) {
+function initLianCore(root, deepLink = {}) {
   if (!root) return () => {};
 
   const cleanups = [];
@@ -120,3 +121,5 @@ export function initLian(root, deepLink = {}) {
 
   return () => cleanups.forEach((fn) => fn());
 }
+
+export const initLian = withGyInit(initLianCore);

@@ -1,11 +1,12 @@
 /** 老年群体 GY-09 · 页签 / 观测哨(命名空间 chinaos.ln.v1) */
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 import { laonianPanelId } from '../../lib/laonian/routing.js';
+import { withGyInit } from '../shared/gy/enhanceMethodology.js';
 
 const NS = 'chinaos.ln.v1';
 
 /** @param {HTMLElement | null} root @param {{ tab?: string }} deepLink */
-export function initLaonian(root, deepLink = {}) {
+function initLaonianCore(root, deepLink = {}) {
   if (!root) return () => {};
 
   const cleanups = [];
@@ -120,3 +121,5 @@ export function initLaonian(root, deepLink = {}) {
 
   return () => cleanups.forEach((fn) => fn());
 }
+
+export const initLaonian = withGyInit(initLaonianCore);

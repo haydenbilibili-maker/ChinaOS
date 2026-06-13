@@ -1,11 +1,12 @@
 /** 农民工(新生代) GY-06 · 页签 / 观测哨(命名空间 chinaos.nm.v1) */
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 import { nongmingongPanelId } from '../../lib/nongmingong/routing.js';
+import { withGyInit } from '../shared/gy/enhanceMethodology.js';
 
 const NS = 'chinaos.nm.v1';
 
 /** @param {HTMLElement | null} root @param {{ tab?: string }} deepLink */
-export function initNongmingong(root, deepLink = {}) {
+function initNongmingongCore(root, deepLink = {}) {
   if (!root) return () => {};
 
   const cleanups = [];
@@ -120,3 +121,5 @@ export function initNongmingong(root, deepLink = {}) {
 
   return () => cleanups.forEach((fn) => fn());
 }
+
+export const initNongmingong = withGyInit(initNongmingongCore);

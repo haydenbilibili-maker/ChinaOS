@@ -1,11 +1,12 @@
 /** 意义市场 · 信仰人群 GY-13 · 页签 / 观测哨(命名空间 chinaos.ym.v1) */
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 import { yiyiPanelId } from '../../lib/yiyi/routing.js';
+import { withGyInit } from '../shared/gy/enhanceMethodology.js';
 
 const NS = 'chinaos.ym.v1';
 
 /** @param {HTMLElement | null} root @param {{ tab?: string }} deepLink */
-export function initYiyi(root, deepLink = {}) {
+function initYiyiCore(root, deepLink = {}) {
   if (!root) return () => {};
 
   const cleanups = [];
@@ -120,3 +121,5 @@ export function initYiyi(root, deepLink = {}) {
 
   return () => cleanups.forEach((fn) => fn());
 }
+
+export const initYiyi = withGyInit(initYiyiCore);
