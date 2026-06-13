@@ -3,6 +3,7 @@
 // ============================================================================
 import * as DB from './localdb.js';
 import { FIGURE_SEED, FIGURE_CATALOG_META } from './figureSeed.js';
+import { figureStableId } from './figureDedupe.js';
 import { ANTI_CORRUPTION_SEED_PKG, ANTI_CORRUPTION_META, ANTI_CORRUPTION_COUNT } from './antiCorruptionSeed.js';
 import { HIGHER_EDUCATION_SEED_PKG, HIGHER_EDUCATION_META, HIGHER_EDUCATION_COUNT } from './higherEducationSeed.js';
 import { THINK_TANK_SEED_PKG, THINK_TANK_META, THINK_TANK_DEDUPED_COUNT } from './thinkTankSeed.js';
@@ -71,7 +72,7 @@ export async function loadAllTalentEliteSeeds({ onProgress } = {}) {
       let count;
       if (queue.type === 'figures') {
         let ts = Date.now();
-        for (const r of FIGURE_SEED) await DB.putFigure({ ...r, updatedAt: ts++ });
+        for (const r of FIGURE_SEED) await DB.putFigure({ ...r, id: figureStableId(r), updatedAt: ts++ });
         count = FIGURE_SEED.length;
       } else {
         await DB.putDataset({ ...queue.pkg, stampMs: Date.now() });

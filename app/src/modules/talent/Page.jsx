@@ -20,6 +20,7 @@ import { figureAvatarProps, prefetchFigureAvatars } from '../../lib/ui/figureAva
 import EChart from '../../lib/viz/EChart.jsx';
 import { useFigures } from '../../lib/db/useDataset.js';
 import * as DB from '../../lib/db/localdb.js';
+import { figureStableId } from '../../lib/db/figureDedupe.js';
 import { FIGURE_SEED, FIGURE_CATALOG_META } from '../../lib/db/figureSeed.js';
 import { CULTURAL_ELITE_DEDUPED_COUNT, CE_SUB_CATS, CE_TAB_LABEL } from '../../lib/db/culturalEliteSeed.js';
 import { BUSINESS_ELITE_DEDUPED_COUNT } from '../../lib/db/businessEliteSeed.js';
@@ -52,18 +53,6 @@ const ageOf = (f) => { const y = birthYear(f); return y ? CUR_YEAR - y : null; }
 const decadeOf = (f) => { const y = birthYear(f); return y ? `${String(Math.floor(y / 10) * 10).slice(2)}后` : '未知'; };
 const nativeProv = (f) => { const n = f.fields?.native || ''; const m = n.match(/^(北京|上海|天津|重庆|河北|山西|辽宁|吉林|黑龙江|江苏|浙江|安徽|福建|江西|山东|河南|湖北|湖南|广东|广西|海南|四川|贵州|云南|陕西|甘肃|青海|宁夏|新疆|西藏|内蒙古)/); return m ? m[1] : (n ? '其他' : '未知'); };
 const tenureYears = (f) => { const cur = (f.career || []).find((c) => !c.to); if (!cur) return null; const m = (cur.from || '').match(/(\d{4})/); return m ? CUR_YEAR - +m[1] : null; };
-
-// 唯一键 + 去重：同一人同一任职只展示一条（修历史载入累积的重复），保留 updatedAt 最新者
-const figKey = (f) => `${f.name}#${f.fields?.birth || ''}#${f.province || ''}#${f.role || ''}#${f.org || f.fields?.title || ''}`;
-function dedupeFigures(list) {
-  const seen = new Map();
-  for (const f of list || []) {
-    const k = figKey(f);
-    const prev = seen.get(k);
-    if (!prev || (f.updatedAt || 0) >= (prev.updatedAt || 0)) seen.set(k, f);
-  }
-  return [...seen.values()];
-}
 
 // 分布统计
 function tally(arr, keyFn) {
@@ -246,9 +235,8 @@ export default function Page() {
   const tabs = useMemo(() => buildTalentTabs(), []);
 
   const figuresRaw = useFigures();
-  // 前端按唯一键去重展示（不改库，立即消除历史重复）
-  const figures = useMemo(() => (figuresRaw == null ? figuresRaw : dedupeFigures(figuresRaw)), [figuresRaw]);
-  const dupCount = figuresRaw && figures ? figuresRaw.length - figures.length : 0;
+  const figures = figuresRaw;
+  const dupCount = 0;
   const [q, setQ] = useState(() => searchParams.get('q') || '');
   const [prov, setProv] = useState('');
   const [level, setLevel] = useState('');
@@ -361,7 +349,7 @@ export default function Page() {
     setLoading(true);
     await DB.clearFigures();
     let ts = Date.now();
-    for (const r of FIGURE_SEED) await DB.putFigure({ ...r, id: r.id || figKey(r), updatedAt: ts++ });
+    for (const r of FIGURE_SEED) await DB.putFigure({ ...r, id: figureStableId(r), updatedAt: ts++ });
     setLoading(false);
   };
   const clearAll = () => { setQ(''); setProv(''); setLevel(''); setRole(''); setSector(''); setDecade(''); setMinority(false); setInstitutionType(''); setQuickFilter(''); };

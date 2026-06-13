@@ -13,6 +13,7 @@ import { DISSIDENT_DATASET_ID, DISSIDENT_SEED_PKG } from './dissidentSeed.js';
 import { TAIWAN_POLITICAL_DATASET_ID, TAIWAN_POLITICAL_SEED_PKG, dedupeTaiwanPolitical } from './taiwanPoliticalSeed.js';
 import { DIPLOMATIC_CORPS_DATASET_ID, DIPLOMATIC_CORPS_SEED_PKG, dedupeDiplomaticCorps } from './diplomaticCorpsSeed.js';
 import { SELF_MEDIA_DATASET_ID, SELF_MEDIA_SEED_PKG, dedupeSelfMedia } from './selfMediaSeed.js';
+import { dedupeFigures } from './figureDedupe.js';
 
 // 响应式读取本地库数据集：写入（编辑/导入/删除）即自动刷新 → 模块前台即时更新。
 // seed: 库中无此 id 时自动播种（{name,category,source,rows,...}），保证开箱即用。
@@ -40,7 +41,10 @@ export function useFigures() {
   const [figs, setFigs] = useState(null);
   useEffect(() => {
     let alive = true;
-    const load = async () => { const f = await DB.listFigures(); if (alive) setFigs(f); };
+    const load = async () => {
+      const raw = await DB.listFigures();
+      if (alive) setFigs(raw == null ? raw : dedupeFigures(raw).rows);
+    };
     load();
     const unsub = DB.subscribe((id) => { if (id === '__figures__' || !id) load(); });
     return () => { alive = false; unsub(); };

@@ -6,6 +6,8 @@
 // 支持：上传导入、行级编辑、删除、聚合分析、存量录入。
 // ============================================================================
 
+import { figureStableId } from './figureDedupe.js';
+
 const DB_NAME = 'china-os-db';
 const DB_VER = 2;
 // 本库依赖的对象存储；缺任一即触发升级建表（兼容历史/并发改动留下的不完整 schema）
@@ -137,7 +139,7 @@ export async function listFigures() {
   return (await reqP(s.getAll())).sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
 }
 export async function putFigure(fig) {
-  const id = fig.id || uid('fig');
+  const id = figureStableId(fig);
   const db = await open();
   await reqP(db.transaction('figures', 'readwrite').objectStore('figures').put({ ...fig, id }));
   notify('__figures__');

@@ -16,6 +16,7 @@ import { FIGURE_EXPANSION_2026 } from './figureExpansion2026.js';
 import { FIGURE_MILITARY_EXPANSION_3 } from './talentBulkExpansion2026_part3.js';
 import { FIGURE_EXPANSION_4, FIGURE_MILITARY_EXPANSION_4 } from './talentBulkExpansion2026_part4.js';
 import { enrichTalentList } from '../talent/talentEnrich.js';
+import { dedupeFigures } from './figureDedupe.js';
 
 const FIGURE_SEED_BASE = [
   ...FIGURE_PROVINCIAL_2026,
@@ -35,7 +36,7 @@ const FIGURE_SEED_BASE = [
   ...FIGURE_EXPANSION_2026,
 ];
 
-export const FIGURE_SEED = enrichTalentList(FIGURE_SEED_BASE, { queue: 'figures' });
+export const FIGURE_SEED = enrichTalentList(dedupeFigures(FIGURE_SEED_BASE).rows, { queue: 'figures' });
 
 export const FIGURE_CATALOG_META = {
   id: 'figures-2026-06',

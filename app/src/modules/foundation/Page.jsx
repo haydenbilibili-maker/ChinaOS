@@ -7,6 +7,7 @@ import * as DB from '../../lib/db/localdb.js';
 import { parseCSV, parseJSON, parseFigure, parseManyFigures, parseDoc } from '../../lib/db/parse.js';
 import { STOCK_CATALOG } from '../../lib/db/stock.js';
 import { FIGURE_SEED, FIGURE_CATALOG_META } from '../../lib/db/figureSeed.js';
+import { figureStableId } from '../../lib/db/figureDedupe.js';
 import { DOC_SEED, DOC_CATALOG_META, GWR_METRICS, TYPE_COLOR } from '../../lib/db/docSeed.js';
 import { PRIVATE_ENTERPRISE_META, loadPrivateEnterprise500 } from '../../lib/db/privateEnterpriseSeed.js';
 import { ANTI_CORRUPTION_SEED_PKG, ANTI_CORRUPTION_META, ANTI_CORRUPTION_COUNT } from '../../lib/db/antiCorruptionSeed.js';
@@ -520,7 +521,7 @@ function Figures({ figures, refresh, flash, datasets }) {
   const loadSeed = async (replace = false) => {
     if (replace && figures.length && !window.confirm(`将覆盖/更新 ${FIGURE_SEED.length} 条省部级中国政要（${FIGURE_CATALOG_META.asOf}），继续？`)) return;
     let ts = Date.now();
-    for (const r of FIGURE_SEED) await DB.putFigure({ ...r, updatedAt: ts++ });
+    for (const r of FIGURE_SEED) await DB.putFigure({ ...r, id: figureStableId(r), updatedAt: ts++ });
     await refresh();
     flash(`已载入 ${FIGURE_CATALOG_META.label}：${FIGURE_SEED.length} 条（截至 ${FIGURE_CATALOG_META.asOf}）`);
   };
