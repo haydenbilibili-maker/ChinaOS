@@ -1,0 +1,541 @@
+<div class="cx-shell">
+
+  <!-- 题头 -->
+  <header class="cx-mast">
+    <div>
+      <div class="cx-mast-meta">ChinaOS · MODULE <b>GY-28</b> · 人群画像分层 · 第二十六子集</div>
+      <h1 class="cx-title">程序员与大厂白领<span class="cx-title-sub">自我弃用的进程 · 写自己 deprecation 的人</span></h1>
+    </div>
+    <div class="cx-mast-seal">造效率者被效率折旧</div>
+  </header>
+  <p class="cx-mast-note">注记(口径与敏感度):本片量级为<b>工信部软件业从业口径 + 2024 程序员幸福指数调研口径 + 训练知识基线</b>,标「约」「余」者待权威年度数据回填;以<b>劳动结构与公共政策视角</b>处理,不渲染、不悲情化,「自我弃用」是技术发展主义人力代价的写实刻画而非道德修辞;量级估算与精确口径严格区分。</p>
+
+  <!-- 自我弃用的进程签名图 -->
+  <div class="cx-found" aria-label="自我弃用的进程示意图:一个进程在写代码代码输出回环指向 deprecate self 调用旁边 AI Copilot 举效率加 34% 牌 headcount 进度条下降进程身上红色时间戳标签 35 岁 End-of-Life 底注造效率的人被效率折旧 940 万软件从业 50% 以上担心被 AI 取代 降本增效等于增效裁本">
+    <svg viewBox="0 0 1000 540" xmlns="http://www.w3.org/2000/svg" role="img">
+      <text x="500" y="20" font-size="11" fill="#8f897d" text-anchor="middle" font-family="mono" letter-spacing="2">ChinaOS · SELF-DEPRECATING PROCESS · 自我弃用的进程</text>
+      <text x="500" y="44" font-size="9.5" fill="#7d6a3a" text-anchor="middle" font-family="sans-serif">— 一个负责写效率代码的进程:它的产出反过来给自己打上 deprecated 标记,还自带 35 岁的 EOL 时间戳 —</text>
+
+      <!-- 进程主体:在写代码 -->
+      <rect x="160" y="92" width="420" height="120" rx="8" fill="#1a1414" stroke="#b5483a" stroke-width="1.8"/>
+      <text x="370" y="118" font-size="13" fill="#c2786e" text-anchor="middle" font-family="serif" letter-spacing="2">PROC · 程序员进程 · running 大厂工位</text>
+      <text x="370" y="142" font-size="10" fill="#d6cfc2" text-anchor="middle" font-family="mono">task: 写自动化 · 训 AI · 降本增效工具</text>
+      <text x="370" y="162" font-size="10" fill="#d6cfc2" text-anchor="middle" font-family="mono">output → efficiency(+) → headcount(-)</text>
+      <text x="370" y="186" font-size="9.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">940 万软件从业 · 曾是「学好编程,年薪百万」的阶层电梯</text>
+
+      <!-- 35 岁 EOL 时间戳标签(贴在进程上) -->
+      <rect x="178" y="78" width="170" height="26" rx="4" fill="#2a1414" stroke="#b5483a" stroke-width="1.6"/>
+      <text x="263" y="96" font-size="11" fill="#d4655a" text-anchor="middle" font-family="mono" letter-spacing="1">35岁 · End-of-Life</text>
+
+      <!-- 输出回环箭头指向 deprecate(self) -->
+      <path d="M 370 212 C 370 250, 370 250, 370 270" fill="none" stroke="#b5483a" stroke-width="1.6"/>
+      <path d="M 370 270 C 370 300, 250 300, 250 270" fill="none" stroke="#b5483a" stroke-width="1.6" stroke-dasharray="5 4"/>
+      <polygon points="250,270 244,282 256,282" fill="#b5483a"/>
+      <text x="500" y="290" font-size="10.5" fill="#c2786e" text-anchor="middle" font-family="mono" letter-spacing="1">output 回环 → deprecate(self)</text>
+
+      <!-- deprecate(self) 调用框 -->
+      <rect x="160" y="300" width="420" height="60" rx="6" fill="#1b2028" stroke="#b5483a" stroke-width="1.6"/>
+      <text x="370" y="324" font-size="12.5" fill="#d4655a" text-anchor="middle" font-family="mono" letter-spacing="1">call: deprecate(self)</text>
+      <text x="370" y="346" font-size="9.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">造自动化的人,第一个被自动化 · 懂 AI 的人最早被 AI 折旧</text>
+
+      <!-- AI Copilot 举牌(右) -->
+      <rect x="640" y="92" width="260" height="80" rx="6" fill="#16201b" stroke="#5e8c7a" stroke-width="1.6"/>
+      <text x="770" y="116" font-size="10.5" fill="#7fae9c" text-anchor="middle" font-family="mono" letter-spacing="1">AI Copilot</text>
+      <text x="770" y="138" font-size="13" fill="#9fd0bd" text-anchor="middle" font-family="serif" letter-spacing="2">「效率 +34%」</text>
+      <text x="770" y="160" font-size="9" fill="#8f897d" text-anchor="middle" font-family="sans-serif">大模型给工程师约 34% 提效</text>
+
+      <!-- headcount 进度条下降(右下) -->
+      <rect x="640" y="200" width="260" height="74" rx="6" fill="#1b2028" stroke="#b5483a" stroke-width="1.6"/>
+      <text x="770" y="222" font-size="10.5" fill="#c2786e" text-anchor="middle" font-family="mono" letter-spacing="1">headcount 进度条</text>
+      <rect x="660" y="234" width="220" height="12" rx="3" fill="#2a1414" stroke="#5d4a4a" stroke-width="1"/>
+      <rect x="660" y="234" width="96" height="12" rx="3" fill="#b5483a"/>
+      <polygon points="772,240 758,234 758,246" fill="#b5483a"/>
+      <text x="770" y="264" font-size="9" fill="#8f897d" text-anchor="middle" font-family="sans-serif">降本增效 = 增效裁本 · HC 冻结 / 裁员</text>
+
+      <!-- 效率→裁本连线 -->
+      <line x1="770" y1="172" x2="770" y2="200" stroke="#5d7489" stroke-width="1.4" stroke-dasharray="4 4"/>
+      <text x="838" y="190" font-size="9" fill="#7fa0bc" text-anchor="middle" font-family="mono">提效↓岗</text>
+
+      <text x="500" y="404" font-size="10.5" fill="#b5483a" text-anchor="middle" font-family="serif" letter-spacing="3">— GY-02 组件四(技术发展主义)写给它最忠诚执行者的判决书 —</text>
+      <line x1="100" y1="426" x2="900" y2="426" stroke="#3d4c5a" stroke-width="1" stroke-dasharray="3 5"/>
+      <text x="500" y="450" font-size="9.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">造效率的人被效率折旧 · 940 万软件从业 · 50%+ 担心被 AI 取代 · 降本增效 = 增效裁本</text>
+      <text x="500" y="472" font-size="9" fill="#7d6a3a" text-anchor="middle" font-family="mono" letter-spacing="1">他写的最后一行代码,是 deprecate(self) · 高薪是周期顺风车票 + 分期预付的遣散费</text>
+    </svg>
+    <div class="cx-found-caption">模块隐喻是<b>自我弃用的进程(Self-Deprecating Process)</b>:程序员是 China OS 一个特殊的进程——<b>它的工作就是写出提升效率、实现自动化、训练 AI 的代码,而这些产出反过来给它自己打上 deprecated 标记</b>;它还自带一个 35 岁的 EOL(end-of-life)时间戳。签名图:一个进程正在写代码,代码的输出回环指向一个 <b>deprecate(self)</b> 调用;旁边一个 AI Copilot 举着「效率 +34%」的牌子,同时 headcount(人头)进度条在下降;进程身上一枚红色时间戳标签「35 岁 · End-of-Life」;底注「造效率的人被效率折旧 · 940 万软件从业 · 50%+ 担心被 AI 取代 · 降本增效 = 增效裁本」。<b>他们是 GY-02 组件四(技术发展主义)最核心的人力执行者,却正在被自己写出的效率亲手弃用——造自动化的人,第一个被自动化。</b></div>
+  </div>
+
+  <!-- 页签 -->
+  <nav class="cx-nav" role="tablist">
+    <button role="tab" data-panel="cx-p-c1" class="is-active">贵族幻觉</button>
+    <button role="tab" data-panel="cx-p-c2">自我弃用</button>
+    <button role="tab" data-panel="cx-p-c3">35岁EOL</button>
+    <button role="tab" data-panel="cx-p-c4">螺丝钉化</button>
+    <button role="tab" data-panel="cx-p-c5">35岁后去哪</button>
+    <button role="tab" data-panel="cx-p-c6">政治形态学</button>
+    <button role="tab" data-panel="cx-p-c7">形态推演</button>
+    <button role="tab" data-panel="cx-p-watch">合成 · 观测哨</button>
+  </nav>
+
+  <!-- ════ C1 贵族幻觉 ════ -->
+  <section class="cx-panel is-active" id="cx-p-c1">
+    <div class="cx-sec-head"><h2>C1 · 规模与「贵族」幻觉的形成</h2><span class="cx-sec-tag">周期定价的技术新贵</span></div>
+    <p class="cx-lede">软件开发者 <b style="color:var(--zhu);">940 万+</b>(工信部口径),曾是改开后最成功的「技术新贵」——高薪、期权、阶层跃升的样板;但这个「工人贵族」身份是<b style="color:var(--zhu);">特定周期(互联网高增长 + 资本扩张)的产物</b>,周期一过,幻觉破裂。这是 GY-08 职业悬崖(Z4)的职业纵深——专门解剖「最被向往的职业」如何幻灭。</p>
+    <p class="cx-disclaimer">注记(口径与敏感度):本片量级为<b>工信部软件业从业口径 + 2024 程序员幸福指数调研 + 训练知识基线</b>,标「约」「余」者待权威年度数据回填;以劳动结构与公共政策视角处理,不悲情化、不渲染。</p>
+
+    <h3 class="cx-h3">量级锚定:曾经的「学好编程,年薪百万」</h3>
+    <div class="cx-data3">
+      <div class="cx-stat">
+        <span class="cx-eyebrow">软件开发从业者</span>
+        <span class="cx-stat-n">940 万+</span>
+        <span class="cx-stat-u">工信部口径</span>
+        <p>广义互联网/IT 白领规模更大——<b>曾是做题家(↗ GY-11)的最优出口、农家子弟跃迁的电梯</b>。</p>
+      </div>
+      <div class="cx-stat">
+        <span class="cx-eyebrow">担心被 AI 取代</span>
+        <span class="cx-stat-n">50%+</span>
+        <span class="cx-stat-u">2024 程序员幸福指数 · 8734 样本</span>
+        <p>过半从业者担心被 AI 取代——<b style="color:var(--zhu);">最被向往的职业,正在被自己造的工具反噬</b>。</p>
+      </div>
+      <div class="cx-stat">
+        <span class="cx-eyebrow">幻觉的支点</span>
+        <span class="cx-stat-n">三前提坍塌</span>
+        <span class="cx-stat-u">资本 + 增长 + 期权</span>
+        <p><b style="color:var(--zhu);">2021 后反垄断、裁员、增长见顶、期权缩水</b>——三个前提同时坍塌(↗ GY-08 Z4 引擎熄火)。</p>
+      </div>
+    </div>
+
+    <h3 class="cx-h3">「贵族」三前提坍塌:周期定价,不是技能定价</h3>
+    <div class="cx-rows">
+      <div class="cx-row"><span class="cx-row-k">前提一 · 资本扩张</span><span class="cx-row-v">2010s 风险资本涌入互联网,堆出高薪与期权——<b>资本扩张支撑了「码农年薪百万」的定价</b>;2021 后反垄断与资本退潮,第一根支柱抽走。</span></div>
+      <div class="cx-row"><span class="cx-row-k">前提二 · 用户增长</span><span class="cx-row-v">移动互联网高增长造就「人口红利 + 流量红利」,业务扩张需要海量工程师——<b style="color:var(--zhu);">增长见顶后,扩招逻辑反转为提效逻辑</b>,第二根支柱抽走。</span></div>
+      <div class="cx-row peak"><span class="cx-row-k">前提三 · 期权兑现</span><span class="cx-row-v"><b style="color:var(--zhu);">期权造富神话依赖上市/估值上行</b>;增长见顶、估值缩水后期权大幅贬值——第三根支柱抽走,「财富自由」的故事熄火(↗ GY-08 Z4)。</span></div>
+    </div>
+
+    <h3 class="cx-h3">与中产的关系:市场型中产的核心样本</h3>
+    <div class="cx-shift">
+      <div class="cx-shift-card">
+        <span class="cx-eyebrow">阶层电梯</span>
+        <span class="cx-shift-n">做题家的最优出口</span>
+        <p>刷题进大厂曾是做题家逻辑的延续——<b style="color:var(--zhu);">一度是农家子弟跃迁的电梯</b>(↗ GY-11 / GY-03)。</p>
+      </div>
+      <div class="cx-shift-card">
+        <span class="cx-eyebrow">中产样本</span>
+        <span class="cx-shift-n">市场型中产核心</span>
+        <p>程序员是市场型中产的核心样本——<b>本片是 GY-08 职业悬崖(Z4)的职业纵深</b>。</p>
+      </div>
+      <div class="cx-shift-card">
+        <span class="cx-eyebrow">幻觉性质</span>
+        <span class="cx-shift-n">周期定价 · 非技能定价</span>
+        <p>高薪建立在资本、增长、期权三个前提上——<b style="color:var(--zhu);">周期一过,幻觉破裂</b>。</p>
+      </div>
+      <div class="cx-shift-card">
+        <span class="cx-eyebrow">图谱位置</span>
+        <span class="cx-shift-n">第 26 子集 · 技术中产交点</span>
+        <p>专门解剖「最被向往的职业」如何幻灭——<b>GY-08 中产职业悬崖的高位标本</b>。</p>
+      </div>
+    </div>
+
+    <div class="cx-art">
+      <h5><b>买的是阶层电梯,租的是周期顺风车</b>三股风停了,码农从云端跌回工位</h5>
+      <p>程序员的高薪从来不是技能定价,是周期定价——<b style="color:var(--zhu);">是资本、增长、期权三股风同时吹起的</b>。这个「工人贵族」身份是互联网高增长 + 资本扩张特定周期的产物,周期一过,幻觉破裂(↗ GY-08 Z4 引擎熄火 / ↗ GY-11 做题家出口)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="cx-xref">↗ GY-08 · Z4 职业悬崖(三引擎熄火)</span>
+      <span class="cx-xref">↗ GY-11 · 做题家的最优出口</span>
+      <span class="cx-xref">↗ C2 · 自我弃用</span>
+    </div>
+
+    <div class="cx-verdict">
+      <span class="cx-verdict-tag">C1 判词</span>
+      程序员的高薪从来不是技能定价,是周期定价——是资本、增长、期权三股风同时吹起的。当三股风停了,「码农」从云端跌回工位:<b style="color:var(--zhu);">他们以为自己买的是阶层的电梯,其实租的是周期的顺风车。</b>
+      <span class="cx-xref">↗ C2 · 自我弃用:造效率被折旧</span>
+    </div>
+  </section>
+
+  <!-- ════ C2 自我弃用 ════ -->
+  <section class="cx-panel" id="cx-p-c2">
+    <div class="cx-sec-head"><h2>C2 · 自我弃用:造效率的人被效率折旧</h2><span class="cx-sec-tag">写自己 deprecation 的工种</span></div>
+    <p class="cx-lede">本片独特机制——程序员的劳动产出(自动化、AI、降本增效工具)<b style="color:var(--zhu);">反过来折旧他们自己</b>。50%+ 程序员担心被 AI 取代,而 AI 编程效率提升约 34%——他们是历史上少见的「亲手写下自己 deprecation 代码」的工种(↗ GY-02 组件四 / GY-22 机器换人的白领版)。</p>
+
+    <h3 class="cx-h3">自指的悖论:最容易被自动化的,是编程本身</h3>
+    <div class="cx-chain">
+      <div class="cx-chain-row v1"><span class="cx-chain-t">task</span><span class="cx-chain-v"><b>程序员的工作是消灭重复劳动、实现自动化</b> — 把「自动化一切」写成代码。</span></div>
+      <div class="cx-chain-row v1"><span class="cx-chain-t">output</span><span class="cx-chain-v"><b>AI 编程(Copilot 类)使初级编码大幅提效</b> — 而最容易被自动化消灭的,正是重复性的编程劳动本身。</span></div>
+      <div class="cx-chain-row v2"><span class="cx-chain-t">return</span><span class="cx-chain-v"><b>效率提升 = 人头需求下降</b> — 大模型给工程师带来约 34% 效率提升(华为口径),提效直接转化为岗位收缩。</span></div>
+      <div class="cx-chain-row v2"><span class="cx-chain-t">deprecate(self)</span><span class="cx-chain-v"><b style="color:var(--zhu);">产出回环给自己打上 deprecated 标记</b> — 这是历史上少见的「亲手写下自己 deprecation 代码」的工种(↗ GY-02 组件四)。</span></div>
+    </div>
+    <div class="cx-breaking">
+      <span class="cx-breaking-tag">! 造自动化的人第一个被自动化 · 技术发展主义的核心悖论</span>
+      没有哪个工种比程序员更清楚 AI 能做什么,也没有哪个工种比他们更早被自己的产出反噬。<b>他们用十年时间把「自动化一切」写成代码,现在轮到了自己。</b>
+    </div>
+
+    <h3 class="cx-h3">「降本增效」的真义:增效与裁本是同一枚硬币</h3>
+    <div class="cx-dual">
+      <div class="cx-dual-a"><h6>增效 · <b>靠 AI 工具</b></h6><span class="cx-dual-pole">大模型 · Copilot · 提效约 34%</span><p>大厂「降本增效」的「增效」靠 AI 工具——<b>而提效的工具,正是程序员自己造的</b>。</p></div>
+      <div class="cx-dual-mid">=</div>
+      <div class="cx-dual-b"><h6>降本 · <b>靠裁人</b></h6><span class="cx-dual-pole">HC 冻结 · 裁员 · 优化</span><p><b style="color:var(--zhu);">「降本」靠裁人——增效与裁本是同一枚硬币</b>;他们造的工具,折旧了他们的岗位。</p></div>
+    </div>
+
+    <h3 class="cx-h3">数据锚定:50%+ 担心 / 34% 提效</h3>
+    <div class="cx-data3">
+      <div class="cx-stat">
+        <span class="cx-eyebrow">担心被 AI 取代</span>
+        <span class="cx-stat-n">50%+</span>
+        <span class="cx-stat-u">2024 程序员幸福指数 · 8734 样本</span>
+        <p>过半从业者担心被 AI 取代——<b>焦虑不是空穴来风</b>。</p>
+      </div>
+      <div class="cx-stat">
+        <span class="cx-eyebrow">AI 给工程师提效</span>
+        <span class="cx-stat-n">约 34%</span>
+        <span class="cx-stat-u">华为口径</span>
+        <p>大模型给工程师约 34% 效率提升——<b style="color:var(--zhu);">效率提升 = 人头需求下降</b>。</p>
+      </div>
+      <div class="cx-stat">
+        <span class="cx-eyebrow">机制定性</span>
+        <span class="cx-stat-n">自指悖论</span>
+        <span class="cx-stat-u">GY-02 组件四</span>
+        <p>消灭重复劳动的工作,<b>最先消灭了重复性的编程劳动本身</b>。</p>
+      </div>
+    </div>
+
+    <h3 class="cx-h3">与技工的镜像:机器换人 vs AI 换人</h3>
+    <div class="cx-dual">
+      <div class="cx-dual-a"><h6>技工(↗ GY-22) · <b>被需要不被向往</b></h6><span class="cx-dual-pole">被机器换人威胁(蓝领)</span><p>技工是「被需要却不被向往」——<b>蓝领被机器换人威胁</b>。</p></div>
+      <div class="cx-dual-mid">↔</div>
+      <div class="cx-dual-b"><h6>程序员 · <b>曾被向往正被折旧</b></h6><span class="cx-dual-pole">被 AI 换人威胁(白领)</span><p><b style="color:var(--zhu);">白领被 AI 换人威胁</b>——同属 GY-02 组件四技术发展主义的人力代价。</p></div>
+    </div>
+
+    <div class="cx-art">
+      <h5><b>最锋利的隐喻</b>懂自动化的人最早被自己的产出反噬</h5>
+      <p>程序员是这个时代最锋利的隐喻——<b style="color:var(--zhu);">他们用十年时间把「自动化一切」写成代码,现在轮到了自己</b>。没有哪个工种比他们更清楚 AI 能做什么,也没有哪个工种比他们更早被自己的产出反噬。造效率的人被效率折旧,是技术发展主义写给它最忠诚的执行者的判决书(↗ GY-02 组件四 / ↗ GY-22 机器换人的白领版)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="cx-xref">↗ GY-02 · 组件四 技术发展主义</span>
+      <span class="cx-xref">↗ GY-22 · 机器换人的白领镜像</span>
+      <span class="cx-xref">↗ C3 · 35 岁 EOL</span>
+    </div>
+
+    <div class="cx-verdict">
+      <span class="cx-verdict-tag">C2 判词</span>
+      程序员是这个时代最锋利的隐喻——他们用十年时间把「自动化一切」写成代码,现在轮到了自己。没有哪个工种比他们更清楚 AI 能做什么,也没有哪个工种比他们更早被自己的产出反噬。<b style="color:var(--zhu);">造效率的人被效率折旧,是技术发展主义写给它最忠诚的执行者的判决书。</b>
+      <span class="cx-xref">↗ C3 · 35 岁 EOL</span>
+    </div>
+  </section>
+
+  <!-- ════ C3 35岁EOL ════ -->
+  <section class="cx-panel" id="cx-p-c3">
+    <div class="cx-sec-head"><h2>C3 · 35 岁 EOL:内置的报废时间戳</h2><span class="cx-sec-tag">职业自带报废日期</span></div>
+    <p class="cx-lede">「35 岁危机」是程序员职业最残酷的内置参数——<b style="color:var(--zhu);">高强度(996)+ 技术快速迭代 + 年龄歧视,使这个工种被预设了一个 35 岁的报废时间戳</b>;35 岁前用健康换高薪,35 岁后被高薪反噬(贵且「老」,优先优化对象)。这是 GY-08 Z4「35 岁墙」最典型的工种。</p>
+
+    <h3 class="cx-h3">EOL 时间戳:35 岁前是资产,35 岁后是成本</h3>
+    <div class="cx-chain">
+      <div class="cx-chain-row v1"><span class="cx-chain-t">&lt; 35 岁</span><span class="cx-chain-v"><b>资产期</b> — 体力好、肯加班、薪资性价比高,是大厂偏好的「年轻劳动力」。</span></div>
+      <div class="cx-chain-row v1"><span class="cx-chain-t">转换点</span><span class="cx-chain-v"><b style="color:var(--zhu);">晋升通道收窄(管理岗稀缺)+ 技术迭代压力 + 性价比下降(资深=贵)</b> — 35 岁成为程序员的事实 EOL 时间戳(↗ GY-08 Z4)。</span></div>
+      <div class="cx-chain-row v2"><span class="cx-chain-t">&gt; 35 岁</span><span class="cx-chain-v"><b>成本期</b> — 被高薪定义为「贵」而优先裁掉;健康透支与职业报废同时到账。</span></div>
+      <div class="cx-chain-row v2"><span class="cx-chain-t">EOL</span><span class="cx-chain-v"><b style="color:var(--zhu);">35 岁的 EOL 写在行业的默认参数里</b> — 年轻时是资产,年长时是成本,而中间的转换点早被标好。</span></div>
+    </div>
+    <div class="cx-breaking">
+      <span class="cx-breaking-tag">! 高薪是分期预付的遣散费 · 自带报废日期的工种</span>
+      程序员是少数职业生涯自带报废日期的工种——35 岁的 EOL 写在行业的默认参数里。<b>他们 35 岁前用健康换高薪,35 岁后被高薪定义为「贵」而优先裁掉。</b>
+    </div>
+
+    <h3 class="cx-h3">996 的健康预支:高薪是预支健康的贴现</h3>
+    <div class="cx-rows">
+      <div class="cx-row"><span class="cx-row-k">高薪对应高强度</span><span class="cx-row-v">用 35 岁前的健康(↗ GY-23 带病青年)换取收入——<b>高薪是预支健康的贴现</b>。</span></div>
+      <div class="cx-row"><span class="cx-row-k">向上管理独木桥</span><span class="cx-row-v">技术线天花板低,多数人挤管理岗,挤不上即面临优化——<b style="color:var(--zhu);">金字塔结构注定多数人到不了顶</b>。</span></div>
+      <div class="cx-row peak"><span class="cx-row-k">双账同时到账</span><span class="cx-row-v"><b style="color:var(--zhu);">35 岁后健康透支与职业报废同时到账</b>——高薪从来不是奖赏,是分期预付的遣散费。</span></div>
+    </div>
+
+    <h3 class="cx-h3">与做题家的闭环:卷进去,还要被优化出来</h3>
+    <div class="cx-nest">
+      <div class="cx-nest-row"><span class="cx-nest-k">卷进去</span><span class="cx-nest-v">程序员曾是做题家逻辑的延续(刷题进大厂)——<b>考试的尽头进了大厂</b>(↗ GY-11 / GY-03)。</span></div>
+      <div class="cx-nest-row"><span class="cx-nest-k">优化出来</span><span class="cx-nest-v"><b style="color:var(--zhu);">「卷进去」之后发现 35 岁还要被「优化出来」</b>——考试的尽头不是终点,是另一场淘汰的起点。</span></div>
+      <div class="cx-nest-row"><span class="cx-nest-k">闭环</span><span class="cx-nest-v">做题家用考试卷进电梯,却在 35 岁被告知电梯只到这一层——<b>另一场淘汰从这里开始</b>。</span></div>
+    </div>
+
+    <div class="cx-art">
+      <h5><b>年轻时是资产,年长时是成本</b>转换点早被标好</h5>
+      <p>程序员是少数职业生涯自带报废日期的工种——<b style="color:var(--zhu);">35 岁的 EOL 写在行业的默认参数里</b>。他们 35 岁前用健康换高薪,35 岁后被高薪定义为「贵」而优先裁掉:年轻时是资产,年长时是成本,而中间的转换点早被标好。高薪从来不是奖赏,是分期预付的遣散费(↗ GY-08 Z4 35 岁墙 / ↗ GY-23 健康预支)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="cx-xref">↗ GY-08 · Z4 35 岁墙(最典型工种)</span>
+      <span class="cx-xref">↗ GY-23 · 健康预支的贴现</span>
+      <span class="cx-xref">↗ GY-11 · 做题家的闭环</span>
+    </div>
+
+    <div class="cx-verdict">
+      <span class="cx-verdict-tag">C3 判词</span>
+      程序员是少数职业生涯自带报废日期的工种——35 岁的 EOL 写在行业的默认参数里。他们 35 岁前用健康换高薪,35 岁后被高薪定义为「贵」而优先裁掉:年轻时是资产,年长时是成本,而中间的转换点早被标好。<b style="color:var(--zhu);">高薪从来不是奖赏,是分期预付的遣散费。</b>
+      <span class="cx-xref">↗ C4 · 螺丝钉化与异化</span>
+    </div>
+  </section>
+
+  <!-- ════ C4 螺丝钉化 ════ -->
+  <section class="cx-panel" id="cx-p-c4">
+    <div class="cx-sec-head"><h2>C4 · 螺丝钉化与异化:大厂工位的劳动真相</h2><span class="cx-sec-tag">穿着格子衫的产业工人</span></div>
+    <p class="cx-lede">「大厂」光环下的真相是高度分工的螺丝钉化——<b style="color:var(--zhu);">程序员被切割为流水线上的标准化模块(前端/后端/测试/运维)</b>,KPI/OKR 量化考核、赛马淘汰、加班文化,使「知识工作」呈现出工业流水线的异化特征(↗ GY-05 算法管理的白领版)。</p>
+
+    <h3 class="cx-h3">螺丝钉化:可替换性高,议价权低</h3>
+    <div class="cx-rows">
+      <div class="cx-row"><span class="cx-row-k">标准化模块</span><span class="cx-row-v">超大型协作下,个体被切成标准化的功能模块(前端/后端/测试/运维)——<b>「螺丝钉」是程序员的自我描述</b>。</span></div>
+      <div class="cx-row"><span class="cx-row-k">可替换性</span><span class="cx-row-v">模块化使个体可替换性高——<b style="color:var(--zhu);">议价权低</b>,谁都能被换下产线。</span></div>
+      <div class="cx-row peak"><span class="cx-row-k">异化体感</span><span class="cx-row-v"><b style="color:var(--zhu);">「为不知道意义的需求写不知道用途的代码」</b>——「码农」「程序猿」自嘲文化的根源。</span></div>
+    </div>
+
+    <h3 class="cx-h3">量化管理:知识劳动被工业化量化</h3>
+    <div class="cx-dual">
+      <div class="cx-dual-a"><h6>指标 · <b>OKR / KPI</b></h6><span class="cx-dual-pole">代码量 · 需求交付 · 赛马</span><p>OKR/KPI、代码量、需求交付、赛马机制——<b>知识劳动被工业化量化</b>。</p></div>
+      <div class="cx-dual-mid">↔</div>
+      <div class="cx-dual-b"><h6>白领版 · <b>算法管理</b></h6><span class="cx-dual-pole">数据指标管控(↔ GY-05/GY-27)</span><p><b style="color:var(--zhu);">用数据指标管控知识工作者</b>——GY-05 算法管理 / GY-27 北斗监控的白领版。</p></div>
+    </div>
+
+    <h3 class="cx-h3">加班文化:用高薪购买无限工时</h3>
+    <div class="cx-nest">
+      <div class="cx-nest-row"><span class="cx-nest-k">996 / 大小周</span><span class="cx-nest-v">虽部分被整治,但「自愿」加班、奋斗者协议常态化——<b style="color:var(--zhu);">用高薪购买无限工时</b>。</span></div>
+      <div class="cx-nest-row"><span class="cx-nest-k">赛马淘汰</span><span class="cx-nest-v">赛马机制、同事即竞争对手——<b>用赛马淘汰、用数据考核</b>,把人推向自我加压。</span></div>
+      <div class="cx-nest-row"><span class="cx-nest-k">高薪掩盖</span><span class="cx-nest-v">高薪掩盖下的劳动异化——<b>「码农」「程序猿」自嘲是精准的</b>:农的是别人的地,种的是不知用途的代码。</span></div>
+    </div>
+
+    <div class="cx-art">
+      <h5><b>把知识工作做成了流水线</b>工位更体面,异化逻辑一模一样</h5>
+      <p>大厂把知识工作做成了流水线——<b style="color:var(--zhu);">把人切成模块、用数据考核、用赛马淘汰、用高薪赎买工时</b>。程序员是穿着格子衫的产业工人:工位更体面、薪水更高、异化的逻辑却一模一样。「码农」这个自嘲是精准的——农的是别人的地,种的是不知用途的代码(↗ GY-05 算法管理的白领版 / ↗ GY-27 数据指标管控)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="cx-xref">↗ GY-05 · 算法管理(白领版)</span>
+      <span class="cx-xref">↗ GY-27 · 北斗监控的数据指标镜像</span>
+      <span class="cx-xref">↗ C5 · 35 岁后去哪</span>
+    </div>
+
+    <div class="cx-verdict">
+      <span class="cx-verdict-tag">C4 判词</span>
+      大厂把知识工作做成了流水线——把人切成模块、用数据考核、用赛马淘汰、用高薪赎买工时。程序员是穿着格子衫的产业工人:工位更体面、薪水更高、异化的逻辑却一模一样。<b style="color:var(--zhu);">「码农」这个自嘲是精准的——农的是别人的地,种的是不知用途的代码。</b>
+      <span class="cx-xref">↗ C5 · 出路与下沉</span>
+    </div>
+  </section>
+
+  <!-- ════ C5 35岁后去哪 ════ -->
+  <section class="cx-panel" id="cx-p-c5">
+    <div class="cx-sec-head"><h2>C5 · 出路与下沉:35 岁之后去哪</h2><span class="cx-sec-tag">市场化精英的退路困境</span></div>
+    <p class="cx-lede">35 岁后的程序员面临与下沉白领(↗ GY-08 Z4)相同的出路困境——<b style="color:var(--zhu);">转管理(独木桥)、考公考编(↗ GY-07,求稳)、创业(高风险)、外包/降薪再就业、转行、润(↗ GY-16)</b>;高薪积累是其唯一的缓冲垫,也使其下沉落差最大。</p>
+
+    <h3 class="cx-h3">出路谱系:从管理岗到「润」</h3>
+    <div class="cx-art">
+      <h5><b>路径 1</b>管理岗 · 少数人的独木桥</h5>
+      <p>挤上管理岗是技术线天花板后的首选,但<b style="color:var(--zhu);">管理岗稀缺、金字塔结构注定多数人到不了顶</b>——挤不上即面临优化(↗ C3)。</p>
+    </div>
+    <div class="cx-art">
+      <h5><b>路径 2</b>考公考编 · 安全偏好的回流</h5>
+      <p>部分程序员回流考公考编(↗ GY-07 安全偏好)——<b>「宇宙的尽头是编制」对程序员同样成立</b>:连最市场化、最高薪的工种,最终也向刚兑靠拢。</p>
+    </div>
+    <div class="cx-art">
+      <h5><b>路径 3</b>创业 / 独立开发 · 高风险</h5>
+      <p>独立开发、创业是技能变现的尝试,但<b style="color:var(--zhu);">高风险</b>——多数难以复制大厂期的收入水平。</p>
+    </div>
+    <div class="cx-art">
+      <h5><b>路径 4</b>外包 / 降薪续命 · 转行</h5>
+      <p>外包公司降薪续命,或转行(自媒体↗GY-14 / 开店↗GY-29 / 送外卖↗GY-05 / 保险/网约车)——<b>从写字楼向更下沉的劳动市场流动</b>。</p>
+    </div>
+    <div class="cx-art">
+      <h5><b>路径 5</b>润 · 技术移民的高可行通道</h5>
+      <p>程序员是最有能力物理退出的白领之一(技能可迁移、远程友好、技术移民通道)——<b style="color:var(--zhu);">是 GY-16 离岸的高可行性人群</b>。</p>
+    </div>
+
+    <h3 class="cx-h3">缓冲垫与落差:下沉落差最大</h3>
+    <div class="cx-dual">
+      <div class="cx-dual-a"><h6>缓冲垫 · <b>高薪积累</b></h6><span class="cx-dual-pole">房 · 存款</span><p>高薪期的积累(房、存款)是缓冲——<b>比一般下沉白领多一层垫子</b>。</p></div>
+      <div class="cx-dual-mid">↔</div>
+      <div class="cx-dual-b"><h6>落差 · <b>向下流动剧烈</b></h6><span class="cx-dual-pole">年薪百万 → 月入万元</span><p><b style="color:var(--zhu);">从年薪百万到月入万元的「向下流动」体感剧烈</b>——下沉时的心理落差最大(↗ GY-08 中产滑落的高位样本)。</p></div>
+    </div>
+
+    <h3 class="cx-h3">与考编的合流:宇宙尽头是编制</h3>
+    <div class="cx-nest">
+      <div class="cx-nest-row"><span class="cx-nest-k">最市场化</span><span class="cx-nest-v">程序员曾是离体制最远、最相信市场和技术的一群人——<b>最市场化、最高薪的工种</b>。</span></div>
+      <div class="cx-nest-row"><span class="cx-nest-k">向刚兑靠拢</span><span class="cx-nest-v"><b style="color:var(--zhu);">部分程序员回流考公考编</b>——「宇宙的尽头是编制」对程序员同样成立(↗ GY-07/GY-03)。</span></div>
+      <div class="cx-nest-row"><span class="cx-nest-k">最强注脚</span><span class="cx-nest-v">连最市场化、最高薪的工种最终也向刚兑靠拢——<b>是 GY-07 论断的最强注脚</b>。</span></div>
+    </div>
+
+    <div class="cx-art">
+      <h5><b>照出整个市场化精英的退路困境</b>连赢家都在准备迫降</h5>
+      <p>程序员的下沉是一面镜子——<b style="color:var(--zhu);">照出整个市场化精英的退路困境</b>。他们曾是离体制最远、最相信市场和技术的一群人;35 岁后,他们也开始考编、开店、做自媒体、或者润。当最相信市场的人都开始找退路,这个信号比任何宏观数据都响:连赢家都在准备 35 岁之后的迫降(↗ GY-07 安全偏好 / ↗ GY-16 离岸 / ↗ GY-14 自媒体 / ↗ GY-29 开店)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="cx-xref">↗ GY-07 · 考编(宇宙尽头是编制)</span>
+      <span class="cx-xref">↗ GY-16 · 润(高可行白领)</span>
+      <span class="cx-xref">↗ GY-08 · 中产滑落的高位样本</span>
+    </div>
+
+    <div class="cx-verdict">
+      <span class="cx-verdict-tag">C5 判词</span>
+      程序员的下沉是一面镜子——照出整个市场化精英的退路困境。他们曾是离体制最远、最相信市场和技术的一群人;35 岁后,他们也开始考编、开店、做自媒体、或者润。<b style="color:var(--zhu);">当最相信市场的人都开始找退路,这个信号比任何宏观数据都响:连赢家都在准备 35 岁之后的迫降。</b>
+      <span class="cx-xref">↗ C6 · 政治形态学</span>
+    </div>
+  </section>
+
+  <!-- ════ C6 政治形态学 ════ -->
+  <section class="cx-panel" id="cx-p-c6">
+    <div class="cx-sec-head"><h2>C6 · 政治形态学</h2><span class="cx-sec-tag">高薪赎买的沉默与「打工人」自觉</span></div>
+    <p class="cx-lede">程序员政治上高度沉默——<b style="color:var(--zhu);">高薪赎买、个体化竞争、技术理性、企业文化吸纳</b>;其不满以「打工人」自嘲、反 996 话语(如曾经的 996.ICU)、用脚投票(跳槽/躺平/润)表达,是「被高薪驯化的劳动者」的典型(↗ GY-08 静默赎回 / GY-03 躺平)。</p>
+
+    <h3 class="cx-h3">高薪赎买:集体行动缺乏动机</h3>
+    <div class="cx-rows">
+      <div class="cx-row"><span class="cx-row-k">赎买机制</span><span class="cx-row-v">用远超平均的薪资换取对劳动条件(工时、异化)的忍受——<b style="color:var(--zhu);">赎买机制使集体行动缺乏动机</b>。</span></div>
+      <div class="cx-row"><span class="cx-row-k">个体化竞争</span><span class="cx-row-v">赛马机制、同事即竞争对手——<b>原子化使横向团结困难</b>(↔ GY-05 算法原子化的白领版)。</span></div>
+      <div class="cx-row peak"><span class="cx-row-k">企业文化吸纳</span><span class="cx-row-v"><b style="color:var(--zhu);">技术理性 + 奋斗者文化</b>——把不满消解为个体竞争,而非结构追问。</span></div>
+    </div>
+
+    <h3 class="cx-h3">996.ICU 的昙花:唯一一次集体发声</h3>
+    <div class="cx-dual">
+      <div class="cx-dual-a"><h6>2019 · <b>行业自觉</b></h6><span class="cx-dual-pole">996.ICU · GitHub 项目</span><p>2019 程序员发起的反 996 行动是少见的行业自觉——<b>劳动议题世代化的第一声</b>(↗ GY-03 CH-02)。</p></div>
+      <div class="cx-dual-mid">→</div>
+      <div class="cx-dual-b"><h6>很快 · <b>沉寂</b></h6><span class="cx-dual-pole">高度线上 · 无组织</span><p><b style="color:var(--zhu);">高度线上、无组织、随关注消退而沉寂</b>——一次发声后归于静默。</p></div>
+    </div>
+
+    <h3 class="cx-h3">退出而非发声:赫希曼三角选退出</h3>
+    <div class="cx-nest">
+      <div class="cx-nest-row"><span class="cx-nest-k">跳槽</span><span class="cx-nest-v">用市场议价表达不满——<b>退出(exit)而非发声(voice)</b>。</span></div>
+      <div class="cx-nest-row"><span class="cx-nest-k">躺平</span><span class="cx-nest-v">消极抵抗、降低投入(↗ GY-03)——<b style="color:var(--zhu);">用退出回应处境</b>。</span></div>
+      <div class="cx-nest-row"><span class="cx-nest-k">润</span><span class="cx-nest-v">物理退出(↗ GY-16)——<b>赫希曼三角里选退出,不选发声</b>;技术—中产—退出三轴的白领交点。</span></div>
+    </div>
+
+    <div class="cx-art">
+      <h5><b>被高薪驯化得最彻底的劳动者</b>聪明到能造 AI,却用跳槽和润回应</h5>
+      <p>程序员是被高薪驯化得最彻底的劳动者——<b style="color:var(--zhu);">他们写代码反抗重复,却不反抗 996;他们精通逻辑,却用「打工人」自嘲消解了所有该有的追问</b>。996.ICU 是他们集体发声的唯一一次,很快沉寂。当一个工种聪明到能造出 AI、却选择用跳槽和润来回应自己的处境,说明高薪这剂麻醉,比任何工种都打得深(↗ GY-08 静默赎回 / ↗ GY-03 躺平 / ↗ GY-16 退出)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="cx-xref">↗ GY-08 · 静默赎回</span>
+      <span class="cx-xref">↗ GY-03 · CH-02 躺平 / 996</span>
+      <span class="cx-xref">↗ GY-16 · 退出(润)</span>
+    </div>
+
+    <div class="cx-verdict">
+      <span class="cx-verdict-tag">C6 判词</span>
+      程序员是被高薪驯化得最彻底的劳动者——他们写代码反抗重复,却不反抗 996;他们精通逻辑,却用「打工人」自嘲消解了所有该有的追问。996.ICU 是他们集体发声的唯一一次,很快沉寂。<b style="color:var(--zhu);">当一个工种聪明到能造出 AI、却选择用跳槽和润来回应自己的处境,说明高薪这剂麻醉,比任何工种都打得深。</b>
+      <span class="cx-xref">↗ C7 · 形态推演(三态)</span>
+    </div>
+  </section>
+
+  <!-- ════ C7 形态推演 ════ -->
+  <section class="cx-panel" id="cx-p-c7">
+    <div class="cx-sec-head"><h2>C7 · 形态推演</h2><span class="cx-sec-tag">三态 · α 结构收缩 / β 替代焦虑显形 / γ 两极分化</span></div>
+    <p class="cx-lede">程序员的演化路径,按概率拆成三态——三态共享同一个起点(贵族幻觉破裂、自我弃用、35 岁 EOL、螺丝钉化、下沉退路、高薪赎买的沉默),分岔点在于:<b style="color:var(--zhu);">AI 编程能力是否跨越临界点、行业是提效不增岗还是大规模替代、技能是否两极分化</b>。</p>
+
+    <div class="cx-form">
+      <h5>形态 α · 基准 · AI 协作下的结构收缩(概率最高)</h5>
+      <p>AI 编程提效使初级岗位需求下降、行业从「扩招」转向「提效」,<b>35 岁问题延续,高薪向头部 AI/算法人才集中</b>;多数程序员面临「提效不增岗」。<b>概率最高</b>(↗ W-01/W-02)。</p>
+    </div>
+    <div class="cx-form" style="border-color:var(--zhu-dim); background:rgba(181,72,58,.08);">
+      <h5 style="color:var(--zhu);">形态 β · 压力 · 大规模替代焦虑显形</h5>
+      <p>若 AI 编程能力跨越临界点,<b style="color:var(--zhu);">初中级开发岗位大规模收缩</b>——「程序员失业」从焦虑变成统计,倒逼转型与再就业;标志:科班计算机毕业生就业率显著下滑、培训班退潮(↗ W-06)。</p>
+    </div>
+    <div class="cx-form" style="border-color:var(--jin-dim); background:rgba(110,93,56,.10);">
+      <h5 style="color:var(--jin);">形态 γ · 分化 · 两极</h5>
+      <p>顶尖 AI/算法/架构人才身价更高(稀缺),普通 CRUD 程序员被 AI + 外包双重挤压——<b style="color:var(--jin);">程序员内部分化为「驾驭 AI 的人」与「被 AI 替代的人」两端</b>(↗ GY-22 J5 技工分化的白领版 / GY-23 健康 / GY-08 阶层的技能版 / ↗ W-08)。</p>
+    </div>
+
+    <div style="margin-top:14px;">
+      <span class="cx-xref">↗ GY-22 · J5 技工分化的白领版</span>
+      <span class="cx-xref">↗ GY-08 · 阶层分化的技能版</span>
+      <span class="cx-xref">↗ W-08 · 技能两极分化</span>
+    </div>
+
+    <div class="cx-verdict">
+      <span class="cx-verdict-tag">C7 判词</span>
+      三态的分岔不在这个人群是否存在(它已由 940 万从业、技术发展主义的人力执行结构性确立),<b>在 AI 编程是否跨越临界点、行业是提效不增岗还是大规模替代、技能是否两极分化</b>。形态 α 是结构收缩的渐进常态,形态 β 是替代焦虑变成统计,形态 γ 是「驾驭 AI 的人」与「被 AI 替代的人」的两极分化。<b style="color:var(--zhu);">他既是写效率代码的人,也是被效率折旧的候选——这是同一个进程的两端。</b>
+      <span class="cx-xref">↗ watch · 总判词与耦合修正</span>
+    </div>
+  </section>
+
+  <!-- ════ 合成 · 观测哨 ════ -->
+  <section class="cx-panel" id="cx-p-watch">
+    <div class="cx-sec-head"><h2>C8 · 合成与观测哨</h2><span class="cx-sec-tag">自我弃用的进程 · 第二十六子集 · 年度对账</span></div>
+
+    <div class="cx-verdict" style="margin-top:0; margin-bottom:34px;">
+      <span class="cx-verdict-tag">总判词 · 自我弃用的进程</span>
+      程序员是 China OS 一个自我弃用的进程——他们的工作是写出提升效率、实现自动化、训练 AI 的代码,而这些产出反过来给自己打上 deprecated 标记,外加一个 35 岁的内置 EOL 时间戳。<br><br>
+      <b style="color:var(--zhu);">他们曾是改开技术新贵的样板、做题家的最优出口、农家子弟的跃迁电梯;如今撞上 35 岁折旧 + AI 替代 + 降本增效的三重报废。这个人群是 GY-02 组件四(技术发展主义)写给它最忠诚执行者的判决书:造效率的人被效率折旧,懂自动化的人最早被自动化。它也是市场化精英退路困境的镜子——当最相信市场和技术、最高薪、离体制最远的一群人,也开始考编(↗ GY-07)、开店(↗ GY-29)、做自媒体(↗ GY-14)、或者润(↗ GY-16),这个信号比任何宏观数据都响:连赢家都在准备 35 岁之后的迫降。高薪从来不是技能的奖赏,是周期的顺风车票和分期预付的遣散费——风停了,票到期了,他们才发现自己写的最后一行代码,是 deprecate(self)。</b><br><br>
+      与全系列合观:GY-08 的职业悬崖(Z4 三引擎熄火)在本片找到「最被向往职业的幻灭」专题纵深——互联网引擎熄火的人力代价集中在此;GY-02 的技术发展主义(组件四)在本片找到核心悖论——造效率者被效率折旧;GY-22 的机器换人在本片找到白领镜像——技工被机器换人、程序员被 AI 换人,是组件四的蓝白领两面;GY-07 的「宇宙尽头是编制」在本片找到最强注脚——连最市场化、最高薪的工种也向刚兑靠拢;GY-16 的退出能力在本片找到白领峰值样本——程序员是离岸可行性最高的白领。这个进程还在运行,因此既不报错也不停机;它被 AI 提效与 35 岁 EOL 持续折旧,因此一旦 AI 编程能力的某根弦绷断,系统将直面一个聪明到能造 AI、却只会用跳槽和润回应自身报废的高薪大军。
+      <p class="cx-disclaimer top" style="margin-top:20px; margin-bottom:0;">注记(口径与敏感度):全片量级为工信部软件业从业口径 + 2024 程序员幸福指数调研口径 + 训练知识基线,标「约」「余」者待权威年度数据回填;以劳动结构与公共政策视角处理,不悲情化、不渲染;量级估算与精确口径严格区分。</p>
+    </div>
+
+    <h3 class="cx-h3">对 GY 系列的五条修正</h3>
+    <div class="cx-fix">
+      <h5><b>修正 · GY-08</b>职业悬崖应把程序员作为「最被向往职业的幻灭」专题纵深</h5>
+      <p>职业悬崖(Z4 三引擎熄火)应把程序员作为「最被向往职业的幻灭」专题纵深——<b style="color:var(--zhu);">互联网引擎熄火的人力代价集中在此</b>;建议 GY-08↔GY-28 链接为「中产职业悬崖的标本」。</p>
+    </div>
+    <div class="cx-fix">
+      <h5><b>修正 · GY-02</b>组件四的人力代价是双向的</h5>
+      <p>组件四(技术发展主义)的人力代价是双向的——<b>技工被机器换人(↗ GY-22)、程序员被 AI 换人(本片)</b>;建议把「造效率者被效率折旧」作为组件四的核心悖论显式入框。</p>
+    </div>
+    <div class="cx-fix">
+      <h5><b>修正 · GY-22</b>技工与程序员是组件四的蓝白领两面</h5>
+      <p>技工(被需要不被向往)与程序员(曾被向往正被折旧)是 GY-02 组件四的蓝白领两面——<b style="color:var(--zhu);">机器换人与 AI 换人同源</b>;建议双向链接为「换人的两端」。</p>
+    </div>
+    <div class="cx-fix">
+      <h5><b>修正 · GY-07</b>程序员回流考编是「宇宙尽头是编制」的最强注脚</h5>
+      <p>程序员回流考编是「宇宙尽头是编制」的最强注脚——<b>连最市场化、最高薪的工种也向刚兑靠拢,印证激励结构的总损益</b>(GY-07 B2)。</p>
+    </div>
+    <div class="cx-fix">
+      <h5><b>修正 · GY-16</b>程序员是离岸(润)可行性最高的白领</h5>
+      <p>程序员是离岸(润)可行性最高的白领——<b style="color:var(--zhu);">技能可迁移、远程友好、技术移民通道,是 GY-16 退出能力在白领中的峰值样本</b>。</p>
+    </div>
+
+    <div class="cx-watch-intro">
+      <p>这个人群的处境变动,关键看三组指针:规模与替代(从业规模/招聘 / AI 编程渗透 / 计算机专业就业)、年龄与折旧(35 岁问题 / 大厂裁员降本增效)、退路与分化(程序员转向 / 反 996 话语 / 技能两极分化)。逐项标注状态、记录证据,年度与 GY 系列同步对账。状态与备注自动保存在本机。口径敏感者标「约」,待权威年度数据回填,量级估算与精确口径严格区分。</p>
+      <span class="cx-storage-state" id="cx-storage-state"></span>
+    </div>
+
+    <div class="cx-watch" id="cx-watch-list">
+      <div class="cx-watch-item" data-key="w1">
+        <div><h5><b>W-01</b>软件从业规模与招聘</h5><p class="cx-watch-desc">从业人数、大厂招聘量、校招规模——<b>结构收缩的总仪表。</b></p></div>
+        <div class="cx-watch-ctrl"><div class="cx-status-row"><button class="cx-status-btn" data-status="good">向好</button><button class="cx-status-btn" data-status="flat">中性</button><button class="cx-status-btn" data-status="bad">恶化</button></div><textarea class="cx-watch-note" placeholder="证据与备注…"></textarea><div class="cx-watch-stamp"></div></div>
+      </div>
+      <div class="cx-watch-item" data-key="w2">
+        <div><h5><b>W-02</b>AI 编程渗透</h5><p class="cx-watch-desc">AI 工具使用率、效率提升、对岗位需求的影响——<b>C2 自我弃用进度。</b></p></div>
+        <div class="cx-watch-ctrl"><div class="cx-status-row"><button class="cx-status-btn" data-status="good">向好</button><button class="cx-status-btn" data-status="flat">中性</button><button class="cx-status-btn" data-status="bad">恶化</button></div><textarea class="cx-watch-note" placeholder="证据与备注…"></textarea><div class="cx-watch-stamp"></div></div>
+      </div>
+      <div class="cx-watch-item" data-key="w3">
+        <div><h5><b>W-03</b>35 岁问题</h5><p class="cx-watch-desc">35+ 程序员就业状况、年龄歧视——<b>EOL 时间戳的松紧。</b></p></div>
+        <div class="cx-watch-ctrl"><div class="cx-status-row"><button class="cx-status-btn" data-status="good">向好</button><button class="cx-status-btn" data-status="flat">中性</button><button class="cx-status-btn" data-status="bad">恶化</button></div><textarea class="cx-watch-note" placeholder="证据与备注…"></textarea><div class="cx-watch-stamp"></div></div>
+      </div>
+      <div class="cx-watch-item" data-key="w4">
+        <div><h5><b>W-04</b>大厂裁员/降本增效</h5><p class="cx-watch-desc">裁员规模、HC 冻结、降本增效动作——<b>C2/C5 压力。</b></p></div>
+        <div class="cx-watch-ctrl"><div class="cx-status-row"><button class="cx-status-btn" data-status="good">向好</button><button class="cx-status-btn" data-status="flat">中性</button><button class="cx-status-btn" data-status="bad">恶化</button></div><textarea class="cx-watch-note" placeholder="证据与备注…"></textarea><div class="cx-watch-stamp"></div></div>
+      </div>
+      <div class="cx-watch-item" data-key="w5">
+        <div><h5><b>W-05</b>程序员转向</h5><p class="cx-watch-desc">考编/创业/转行/润 的流向——<b>C5 出路读数。</b></p></div>
+        <div class="cx-watch-ctrl"><div class="cx-status-row"><button class="cx-status-btn" data-status="good">向好</button><button class="cx-status-btn" data-status="flat">中性</button><button class="cx-status-btn" data-status="bad">恶化</button></div><textarea class="cx-watch-note" placeholder="证据与备注…"></textarea><div class="cx-watch-stamp"></div></div>
+      </div>
+      <div class="cx-watch-item" data-key="w6">
+        <div><h5><b>W-06</b>计算机专业就业</h5><p class="cx-watch-desc">科班毕业生就业率、培训班景气——<b>形态β 信号。</b></p></div>
+        <div class="cx-watch-ctrl"><div class="cx-status-row"><button class="cx-status-btn" data-status="good">向好</button><button class="cx-status-btn" data-status="flat">中性</button><button class="cx-status-btn" data-status="bad">恶化</button></div><textarea class="cx-watch-note" placeholder="证据与备注…"></textarea><div class="cx-watch-stamp"></div></div>
+      </div>
+      <div class="cx-watch-item" data-key="w7">
+        <div><h5><b>W-07</b>反 996/劳动话语</h5><p class="cx-watch-desc">劳动权益话语热度、加班治理——<b>C6 政治形态。</b></p></div>
+        <div class="cx-watch-ctrl"><div class="cx-status-row"><button class="cx-status-btn" data-status="good">向好</button><button class="cx-status-btn" data-status="flat">中性</button><button class="cx-status-btn" data-status="bad">恶化</button></div><textarea class="cx-watch-note" placeholder="证据与备注…"></textarea><div class="cx-watch-stamp"></div></div>
+      </div>
+      <div class="cx-watch-item" data-key="w8">
+        <div><h5><b>W-08</b>技能两极分化</h5><p class="cx-watch-desc">AI/算法人才身价 vs 普通开发——<b>形态γ 分化速度。</b></p></div>
+        <div class="cx-watch-ctrl"><div class="cx-status-row"><button class="cx-status-btn" data-status="good">向好</button><button class="cx-status-btn" data-status="flat">中性</button><button class="cx-status-btn" data-status="bad">恶化</button></div><textarea class="cx-watch-note" placeholder="证据与备注…"></textarea><div class="cx-watch-stamp"></div></div>
+      </div>
+    </div>
+
+    <h3 class="cx-h3">章节规划 · 登记表</h3>
+    <div class="cx-plan">
+      <div class="cx-plan-row"><span class="cx-plan-k">CH-01</span><span class="cx-plan-v"><b>自我弃用机制</b> — AI 编程对岗位的替代路径、造效率被折旧的悖论,接 GY-02/GY-22。</span><span class="cx-plan-tag">待建</span></div>
+      <div class="cx-plan-row"><span class="cx-plan-k">CH-02</span><span class="cx-plan-v"><b>35 岁 EOL</b> — 程序员年龄结构、晋升金字塔、健康预支账本,接 GY-23。</span><span class="cx-plan-tag">待建</span></div>
+      <div class="cx-plan-row"><span class="cx-plan-k">CH-03</span><span class="cx-plan-v"><b>下沉与退路</b> — 35 岁后的流向田野:考编/创业/自媒体/润,接 GY-07/GY-16。</span><span class="cx-plan-tag">待建</span></div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="cx-foot">
+    <p>方法论:程序员以「自我弃用的进程(Self-Deprecating Process)」模型刻画——程序员是 China OS 一个特殊的进程它的工作就是写出提升效率实现自动化训练 AI 的代码而这些产出反过来给它自己打上 deprecated 标记它还自带一个 35 岁的 EOL 时间戳签名图一个进程正在写代码代码的输出回环指向一个 deprecate self 调用旁边一个 AI Copilot 举着效率加 34% 的牌子同时 headcount 人头进度条在下降进程身上一枚红色时间戳标签 35 岁 End-of-Life 底注造效率的人被效率折旧 940 万软件从业 50% 以上担心被 AI 取代降本增效等于增效裁本。核心命题:940 万以上软件开发者曾是新工人贵族高薪期权被向往如今撞上 35 岁 EOL 加 AI 替代加降本增效三重折旧他们是 GY-02 组件四技术发展主义最核心的人力执行者却正在被自己写出的效率亲手弃用造自动化的人第一个被自动化软件开发者 940 万以上曾是改开后最成功的技术新贵高薪期权阶层跃升的样板但这个工人贵族身份是特定周期互联网高增长加资本扩张的产物周期一过幻觉破裂程序员的高薪从来不是技能定价是周期定价是资本增长期权三股风同时吹起的当三股风停了码农从云端跌回工位他们以为自己买的是阶层的电梯其实租的是周期的顺风车本片独特机制程序员的劳动产出自动化 AI 降本增效工具反过来折旧他们自己 50% 以上程序员担心被 AI 取代而 AI 编程效率提升约 34% 他们是历史上少见的亲手写下自己 deprecation 代码的工种最容易被自动化消灭的正是重复性的编程劳动本身降本增效的增效靠 AI 工具降本靠裁人增效与裁本是同一枚硬币提效的工具是程序员自己造的造效率的人被效率折旧是技术发展主义写给它最忠诚的执行者的判决书 35 岁危机是程序员职业最残酷的内置参数高强度 996 加技术快速迭代加年龄歧视使这个工种被预设了一个 35 岁的报废时间戳 35 岁前用健康换高薪 35 岁后被高薪反噬程序员是少数职业生涯自带报废日期的工种 35 岁的 EOL 写在行业的默认参数里年轻时是资产年长时是成本而中间的转换点早被标好高薪从来不是奖赏是分期预付的遣散费大厂光环下的真相是高度分工的螺丝钉化程序员被切割为流水线上的标准化模块前端后端测试运维 KPI OKR 量化考核赛马淘汰加班文化使知识工作呈现出工业流水线的异化特征大厂把知识工作做成了流水线把人切成模块用数据考核用赛马淘汰用高薪赎买工时程序员是穿着格子衫的产业工人码农这个自嘲是精准的农的是别人的地种的是不知用途的代码 35 岁后的程序员面临与下沉白领相同的出路困境转管理独木桥考公考编求稳创业高风险外包降薪再就业转行自媒体开店送外卖润高薪积累是其唯一的缓冲垫也使其下沉落差最大宇宙的尽头是编制对程序员同样成立程序员的下沉是一面镜子照出整个市场化精英的退路困境当最相信市场的人都开始找退路这个信号比任何宏观数据都响连赢家都在准备 35 岁之后的迫降程序员政治上高度沉默高薪赎买个体化竞争技术理性企业文化吸纳其不满以打工人自嘲反 996 话语用脚投票跳槽躺平润表达 996 ICU 是他们集体发声的唯一一次很快沉寂当一个工种聪明到能造出 AI 却选择用跳槽和润来回应自己的处境说明高薪这剂麻醉比任何工种都打得深形态推演三态 α 基准 AI 协作下的结构收缩 AI 编程提效使初级岗位需求下降行业从扩招转向提效 35 岁问题延续高薪向头部 AI 算法人才集中概率最高 β 压力大规模替代焦虑显形若 AI 编程能力跨越临界点初中级开发岗位大规模收缩程序员失业从焦虑变成统计 γ 分化两极顶尖 AI 算法架构人才身价更高普通 CRUD 程序员被 AI 加外包双重挤压程序员内部分化为驾驭 AI 的人与被 AI 替代的人两端。数据锚定(工信部软件业从业口径加 2024 程序员幸福指数调研口径加训练知识基线,待权威年度数据回填):软件开发从业者 940 万以上工信部 35 岁瓶颈 30 加焦虑为行业普遍话题 50% 以上程序员担心被 AI 取代 2024 程序员幸福指数 8734 样本大模型给工程师约 34% 效率提升华为口径 2019 996 ICU 反加班行动 2021 后反垄断加裁员加期权缩水。注:本片以劳动结构与公共政策视角处理,不渲染、不悲情化,自我弃用是技术发展主义人力代价的写实刻画而非道德修辞;量级估算与精确口径严格区分,标约以上者待权威年度数据回填。作为人群画像分层第二十六子集,与 GY-08 中产职业悬崖(应把程序员作为最被向往职业的幻灭专题纵深)、GY-02 技术发展主义(组件四的人力代价是双向的造效率者被效率折旧应作为核心悖论入框)、GY-22 机器换人(技工与程序员是组件四的蓝白领两面机器换人与 AI 换人同源)、GY-07 考编(程序员回流考编是宇宙尽头是编制的最强注脚)、GY-16 离岸(程序员是离岸可行性最高的白领是退出能力在白领中的峰值样本)等耦合。来源:工信部软件业从业数据、2024 程序员幸福指数调研(澎湃/网易,8734 样本)、AI 编程效率报道(华为口径约 34%)、训练知识基线。</p>
+    <div class="cx-foot-meta">
+      ChinaOS · GY-28 · v1.0.0<br>
+      生成 2026-06 丙午年<br>
+      人群画像 第二十六子集 · 关联模块 → GY-02/07/08/16/22<br>
+      注记:劳动结构/公共政策框架 · 量级估算与精确口径严格区分
+    </div>
+  </footer>
+
+</div>
