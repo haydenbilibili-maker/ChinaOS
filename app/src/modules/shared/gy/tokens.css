@@ -29,7 +29,8 @@
 #hc-app,
 #cx-app,
 #gt-app,
-#ll-app {
+#ll-app,
+#jz-app {
   --xuan: var(--bg-base);
   --xuan-deep: var(--bg-inset);
   --xuan-raise: var(--bg-elevated);
@@ -88,7 +89,8 @@
 :root[data-theme='light'] #hc-app,
 :root[data-theme='light'] #cx-app,
 :root[data-theme='light'] #gt-app,
-:root[data-theme='light'] #ll-app {
+:root[data-theme='light'] #ll-app,
+:root[data-theme='light'] #jz-app {
   --qing: #3d7a66;
   --qing-dim: #c8e4d8;
   --zhu-dim: #f0d0cc;
@@ -125,7 +127,8 @@
 #hc-app *,
 #cx-app *,
 #gt-app *,
-#ll-app * {
+#ll-app *,
+#jz-app * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -160,7 +163,8 @@
 #hc-app ::selection,
 #cx-app ::selection,
 #gt-app ::selection,
-#ll-app ::selection {
+#ll-app ::selection,
+#jz-app ::selection {
   background: var(--zhu-dim);
   color: var(--xuanzhi);
 }
