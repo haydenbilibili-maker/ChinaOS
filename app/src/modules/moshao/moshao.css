@@ -1,0 +1,191 @@
+@import "../shared/gy/tokens.css";
+
+#ms-app .ms-shell { max-width: 1060px; margin: 0 auto; padding: 0 28px 96px; }
+
+/* 题头 */
+#ms-app .ms-mast { padding: 56px 0 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+#ms-app .ms-mast-meta { font-family: var(--sans); font-size: 11px; letter-spacing: .22em; color: var(--xuanzhi-mute); text-transform: uppercase; }
+#ms-app .ms-mast-meta b { color: var(--jin); font-weight: 500; }
+#ms-app h1.ms-title { font-size: clamp(30px, 5vw, 46px); font-weight: 600; letter-spacing: .08em; line-height: 1.3; margin-top: 14px; }
+#ms-app h1.ms-title .ms-title-sub { display: block; font-size: 14px; font-weight: 400; color: var(--xuanzhi-dim); letter-spacing: .3em; margin-top: 10px; }
+#ms-app .ms-mast-seal { flex-shrink: 0; writing-mode: vertical-rl; font-size: 13px; letter-spacing: .35em; color: var(--zhu); border: 1px solid var(--zhu-dim); padding: 14px 8px; line-height: 1; user-select: none; }
+
+/* 借权代理进程签名图 */
+#ms-app .ms-found { margin-top: 44px; border: 1px solid var(--hairline); background: var(--xuan-deep); padding: 22px 24px 12px; }
+#ms-app .ms-found svg { width: 100%; height: auto; display: block; }
+#ms-app .ms-found-caption { font-family: var(--sans); font-size: 11.5px; color: var(--xuanzhi-mute); letter-spacing: .04em; padding: 8px 2px 6px; }
+#ms-app .ms-found-caption b { color: var(--xuanzhi); }
+
+/* 页签 */
+#ms-app .ms-nav { display: flex; flex-wrap: wrap; margin-top: 30px; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); position: sticky; top: 0; background: var(--xuan); z-index: 10; }
+#ms-app .ms-nav button { flex: 1 1 auto; background: none; border: none; border-right: 1px solid var(--hairline); color: var(--xuanzhi-dim); font-family: var(--serif); font-size: 14px; letter-spacing: .1em; padding: 15px 9px 13px; cursor: pointer; position: relative; transition: color .2s; white-space: nowrap; }
+#ms-app .ms-nav button:last-child { border-right: none; }
+#ms-app .ms-nav button:hover { color: var(--xuanzhi); }
+#ms-app .ms-nav button:focus-visible { outline: 1px solid var(--jin); outline-offset: -1px; }
+#ms-app .ms-nav button.is-active { color: var(--xuanzhi); }
+#ms-app .ms-nav button.is-active::after { content: ""; position: absolute; left: 14%; right: 14%; bottom: -1px; height: 2px; background: var(--zhu); }
+
+/* 通用 */
+#ms-app section.ms-panel { display: none; padding-top: 50px; }
+#ms-app section.ms-panel.is-active { display: block; animation: msFade .35s ease; }
+@keyframes msFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { #ms-app section.ms-panel.is-active { animation: none; } }
+#ms-app .ms-sec-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 8px; flex-wrap: wrap; }
+#ms-app .ms-sec-head h2 { font-size: 23px; font-weight: 600; letter-spacing: .1em; }
+#ms-app .ms-sec-head .ms-sec-tag { font-family: var(--sans); font-size: 11px; letter-spacing: .18em; color: var(--xuanzhi-mute); }
+#ms-app .ms-lede { color: var(--xuanzhi-dim); font-size: 15px; max-width: 76ch; margin-bottom: 34px; }
+#ms-app .ms-lede b { color: var(--xuanzhi); font-weight: 600; }
+#ms-app h3.ms-h3 { font-size: 17px; font-weight: 600; letter-spacing: .08em; margin: 40px 0 18px; display: flex; align-items: center; gap: 12px; }
+#ms-app h3.ms-h3::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
+#ms-app .ms-card { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 20px 22px; }
+#ms-app .ms-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+#ms-app .ms-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+#ms-app .ms-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+#ms-app .ms-card p { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.78; }
+#ms-app .ms-card p b { color: var(--xuanzhi); font-weight: 600; }
+#ms-app .ms-card .ms-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .24em; color: var(--xuanzhi-mute); display: block; margin-bottom: 10px; }
+#ms-app .ms-verdict { margin-top: 38px; border-left: 2px solid var(--jin); background: var(--xuan-deep); padding: 22px 26px; font-size: 15px; line-height: 2; }
+#ms-app .ms-verdict .ms-verdict-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .3em; color: var(--jin); display: block; margin-bottom: 8px; }
+#ms-app .ms-verdict b { color: var(--xuanzhi); font-weight: 600; }
+#ms-app .ms-xref { display: inline-block; margin-top: 10px; font-family: var(--sans); font-size: 10.5px; letter-spacing: .12em; color: var(--jin); border: 1px solid var(--jin-dim); padding: 3px 9px; margin-right: 6px; }
+
+/* 数据卡 · 大号锚定数 */
+#ms-app .ms-data3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+#ms-app .ms-stat { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 18px 20px; border-top: 3px solid var(--zhu); }
+#ms-app .ms-stat .ms-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .22em; color: var(--xuanzhi-mute); display: block; margin-bottom: 9px; }
+#ms-app .ms-stat .ms-stat-n { font-family: var(--mono); font-size: 27px; color: var(--zhu); line-height: 1.1; display: block; }
+#ms-app .ms-stat .ms-stat-u { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .08em; display: block; margin-top: 4px; }
+#ms-app .ms-stat p { font-size: 12px; color: var(--xuanzhi-dim); line-height: 1.7; margin-top: 10px; }
+#ms-app .ms-stat p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 构成谱系 rows */
+#ms-app .ms-rows { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#ms-app .ms-row { padding: 13px 18px; border-bottom: 1px solid var(--hairline); font-size: 13px; display: grid; grid-template-columns: 132px 1fr; gap: 16px; align-items: baseline; }
+#ms-app .ms-row:last-child { border-bottom: none; }
+#ms-app .ms-row .ms-row-k { font-family: var(--mono); font-size: 12px; color: var(--zhu); }
+#ms-app .ms-row .ms-row-v { color: var(--xuanzhi-dim); line-height: 1.74; }
+#ms-app .ms-row .ms-row-v b { color: var(--xuanzhi); font-weight: 600; }
+#ms-app .ms-row.peak { border-left: 3px solid var(--zhu); }
+#ms-app .ms-row.peak .ms-row-v b { color: var(--zhu); }
+
+/* nest 多层 */
+#ms-app .ms-nest { border: 1px solid var(--hairline); background: var(--xuan-raise); }
+#ms-app .ms-nest-row { padding: 13px 18px; border-bottom: 1px solid var(--hairline); font-size: 13px; display: flex; gap: 14px; align-items: baseline; }
+#ms-app .ms-nest-row:last-child { border-bottom: none; }
+#ms-app .ms-nest-row .ms-nest-k { font-family: var(--mono); font-size: 12px; color: var(--zhu); flex-shrink: 0; width: 140px; }
+#ms-app .ms-nest-row .ms-nest-v { color: var(--xuanzhi-dim); line-height: 1.72; }
+#ms-app .ms-nest-row .ms-nest-v b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 构成谱系卡(M1) */
+#ms-app .ms-shift { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+#ms-app .ms-shift-card { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 18px 20px; border-top: 3px solid var(--zhu); }
+#ms-app .ms-shift-card .ms-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .22em; color: var(--xuanzhi-mute); display: block; margin-bottom: 9px; }
+#ms-app .ms-shift-card .ms-shift-n { font-family: var(--mono); font-size: 18px; color: var(--zhu); line-height: 1.3; display: block; margin-bottom: 8px; }
+#ms-app .ms-shift-card p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#ms-app .ms-shift-card p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* dual 对照(M2 平台↔体制 / M3 编内外玻璃墙) */
+#ms-app .ms-dual { display: grid; grid-template-columns: 1fr 60px 1fr; border: 1px solid var(--hairline); margin-top: 4px; }
+#ms-app .ms-dual > div { padding: 16px 18px; }
+#ms-app .ms-dual .ms-dual-a { background: var(--xuan-raise); border-right: 1px solid var(--hairline); border-top: 3px solid var(--dai); }
+#ms-app .ms-dual .ms-dual-mid { background: var(--xuan-deep); display: flex; align-items: center; justify-content: center; font-family: var(--mono); color: var(--zhu); font-size: 18px; }
+#ms-app .ms-dual .ms-dual-b { background: var(--xuan-raise); border-left: 1px solid var(--hairline); border-top: 3px solid var(--zhu); }
+#ms-app .ms-dual h6 { font-family: var(--sans); font-size: 10.5px; letter-spacing: .16em; color: var(--xuanzhi-mute); margin-bottom: 8px; }
+#ms-app .ms-dual .ms-dual-a h6 b { color: var(--dai); }
+#ms-app .ms-dual .ms-dual-b h6 b { color: var(--zhu); }
+#ms-app .ms-dual .ms-dual-pole { font-family: var(--mono); font-size: 11px; display: block; margin-bottom: 6px; }
+#ms-app .ms-dual .ms-dual-a .ms-dual-pole { color: var(--dai); }
+#ms-app .ms-dual .ms-dual-b .ms-dual-pole { color: var(--zhu); }
+#ms-app .ms-dual p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#ms-app .ms-dual p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 四因子筛卡 */
+#ms-app .ms-sieve { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+#ms-app .ms-sieve-card { background: var(--xuan-raise); border: 1px solid var(--hairline); padding: 18px 20px; border-top: 3px solid var(--dai); }
+#ms-app .ms-sieve-card.fail { border-top-color: var(--zhu); }
+#ms-app .ms-sieve-card .ms-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: .22em; color: var(--xuanzhi-mute); display: block; margin-bottom: 9px; }
+#ms-app .ms-sieve-card .ms-sieve-formula { font-family: var(--mono); font-size: 15px; color: var(--dai); line-height: 1.3; display: block; margin-bottom: 8px; }
+#ms-app .ms-sieve-card.fail .ms-sieve-formula { color: var(--zhu); }
+#ms-app .ms-sieve-card p { font-size: 12px; color: var(--xuanzhi-dim); line-height: 1.7; }
+#ms-app .ms-sieve-card p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 谱系卡 / 论点卡 */
+#ms-app .ms-art { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 18px 20px; margin-bottom: 12px; border-left: 3px solid var(--zhu); }
+#ms-app .ms-art h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 6px; display: flex; gap: 11px; align-items: baseline; }
+#ms-app .ms-art h5 b { font-family: var(--mono); color: var(--zhu); font-size: 12px; font-weight: 500; }
+#ms-app .ms-art p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#ms-app .ms-art p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 三形态卡 α/β/γ(M6) */
+#ms-app .ms-form { border: 1px solid var(--qing-dim); background: rgba(65, 89, 78, .08); padding: 18px 20px; margin-bottom: 12px; }
+#ms-app .ms-form h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 6px; color: var(--qing); }
+#ms-app .ms-form p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#ms-app .ms-form p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 修正卡 */
+#ms-app .ms-fix { border: 1px solid var(--hairline); background: var(--xuan-raise); padding: 16px 20px; margin-bottom: 12px; border-left: 3px solid var(--jin); }
+#ms-app .ms-fix h5 { font-size: 14px; font-weight: 600; margin-bottom: 6px; display: flex; gap: 11px; align-items: baseline; }
+#ms-app .ms-fix h5 b { font-family: var(--mono); color: var(--jin); font-size: 12px; font-weight: 500; }
+#ms-app .ms-fix p { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.8; }
+#ms-app .ms-fix p b { color: var(--xuanzhi); font-weight: 600; }
+
+/* 章节规划登记表 */
+#ms-app .ms-plan { border: 1px solid var(--hairline); }
+#ms-app .ms-plan-row { padding: 14px 18px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); display: flex; gap: 16px; align-items: baseline; }
+#ms-app .ms-plan-row:last-child { border-bottom: none; }
+#ms-app .ms-plan-k { font-family: var(--mono); font-size: 12px; color: var(--zhu); flex-shrink: 0; width: 76px; }
+#ms-app .ms-plan-v { font-size: 13px; color: var(--xuanzhi-dim); line-height: 1.72; }
+#ms-app .ms-plan-v b { color: var(--xuanzhi); font-weight: 600; }
+#ms-app .ms-plan-tag { font-family: var(--sans); font-size: 10px; letter-spacing: .14em; color: var(--xuanzhi-mute); border: 1px solid var(--hairline); padding: 2px 8px; flex-shrink: 0; }
+
+/* 观测哨 */
+#ms-app .ms-watch-intro { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 22px; }
+#ms-app .ms-watch-intro p { font-size: 13.5px; color: var(--xuanzhi-dim); max-width: 64ch; }
+#ms-app .ms-storage-state { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .08em; }
+#ms-app .ms-watch { border: 1px solid var(--hairline); }
+#ms-app .ms-watch-item { display: grid; grid-template-columns: 1fr 320px; gap: 18px; padding: 18px 22px; border-bottom: 1px solid var(--hairline); background: var(--xuan-raise); }
+#ms-app .ms-watch-item:last-child { border-bottom: none; }
+#ms-app .ms-watch-item h5 { font-size: 14.5px; font-weight: 600; margin-bottom: 5px; }
+#ms-app .ms-watch-item h5 b { font-family: var(--mono); color: var(--jin); font-weight: 500; font-size: 12px; margin-right: 8px; }
+#ms-app .ms-watch-item .ms-watch-desc { font-size: 12.5px; color: var(--xuanzhi-dim); line-height: 1.75; }
+#ms-app .ms-watch-ctrl { display: flex; flex-direction: column; gap: 9px; }
+#ms-app .ms-status-row { display: flex; gap: 6px; }
+#ms-app .ms-status-btn { flex: 1; font-family: var(--sans); font-size: 11.5px; letter-spacing: .08em; padding: 7px 0; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi-mute); cursor: pointer; transition: all .15s; }
+#ms-app .ms-status-btn:hover { color: var(--xuanzhi); }
+#ms-app .ms-status-btn:focus-visible { outline: 1px solid var(--jin); }
+#ms-app .ms-status-btn.on-good { background: var(--qing-dim); border-color: var(--qing); color: var(--xuanzhi); }
+#ms-app .ms-status-btn.on-flat { background: #3a3f33; border-color: var(--xuanzhi-mute); color: var(--xuanzhi); }
+#ms-app .ms-status-btn.on-bad { background: var(--zhu-dim); border-color: var(--zhu); color: var(--xuanzhi); }
+#ms-app .ms-watch-note { width: 100%; background: var(--xuan-deep); border: 1px solid var(--hairline); color: var(--xuanzhi); font-family: var(--sans); font-size: 12.5px; padding: 8px 10px; resize: vertical; min-height: 38px; line-height: 1.6; }
+#ms-app .ms-watch-note:focus { outline: 1px solid var(--jin); }
+#ms-app .ms-watch-note::placeholder { color: var(--xuanzhi-mute); }
+#ms-app .ms-watch-stamp { font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); text-align: right; min-height: 14px; }
+
+/* 页脚 */
+#ms-app .ms-foot { margin-top: 66px; border-top: 1px solid var(--hairline); padding-top: 24px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+#ms-app .ms-foot p { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .06em; line-height: 1.9; max-width: 66ch; }
+#ms-app .ms-foot .ms-foot-meta { text-align: right; font-family: var(--mono); font-size: 10.5px; color: var(--xuanzhi-mute); line-height: 2; flex-shrink: 0; }
+
+/* 诚实标注 / 敏感度处理小字 */
+#ms-app .ms-disclaimer { font-family: var(--sans); font-size: 11px; color: var(--xuanzhi-mute); letter-spacing: .04em; margin-top: -22px; margin-bottom: 30px; line-height: 1.7; border-left: 2px solid var(--jin-dim); padding: 4px 0 4px 12px; }
+#ms-app .ms-disclaimer b { color: var(--jin); font-weight: 500; }
+#ms-app .ms-disclaimer.top { margin-top: 0; margin-bottom: 30px; }
+
+@media (max-width: 860px) {
+  #ms-app .ms-grid-2, #ms-app .ms-grid-3, #ms-app .ms-data3, #ms-app .ms-sieve, #ms-app .ms-shift { grid-template-columns: 1fr; }
+  #ms-app .ms-watch-item { grid-template-columns: 1fr; }
+  #ms-app .ms-mast-seal { display: none; }
+  #ms-app .ms-nav button { flex: 1 1 30%; font-size: 12.5px; letter-spacing: .04em; }
+  #ms-app .ms-row { grid-template-columns: 1fr; gap: 4px; }
+  #ms-app .ms-dual { grid-template-columns: 1fr; }
+  #ms-app .ms-dual .ms-dual-mid { padding: 6px; }
+  #ms-app .ms-nest-row, #ms-app .ms-plan-row { flex-direction: column; gap: 3px; }
+  #ms-app .ms-nest-row .ms-nest-k, #ms-app .ms-plan-k { width: auto; }
+}
+
+#ms-app { border-radius: var(--radius-lg); }
+
+.moshao-module-wrap {
+  margin: calc(-1 * var(--card-padding)) calc(-1 * var(--card-padding));
+  max-width: none;
+}
