@@ -1,0 +1,383 @@
+<div class="hj-shell">
+
+  <!-- 题头 -->
+  <header class="hj-mast">
+    <div>
+      <div class="hj-mast-meta">ChinaOS · MODULE <b>GY-53</b> · 人群画像分层 · 第五十一子集</div>
+      <h1 class="hj-title">罕见病与大病自救群体<span class="hj-title-sub">低概率分支 · 缺专用 handler 的进程</span></h1>
+    </div>
+    <div class="hj-mast-seal">个体罕见，群体庞大</div>
+  </header>
+
+  <!-- 题头下方分析立场声明 -->
+  <div class="hj-mast-disclaimer">
+    <span class="hj-disclaimer-tag">注记 · 分析立场</span>
+    本片以<b>健康与医保救助</b>视角分析罕见病与大病自救群体,聚焦诊断、用药可及与保障机制;尊重患者、不渲染,强调<b>「个体罕见、群体庞大」</b>这一悖论与制度补位的进展。本片把罕见病患者理解为<b>落在系统低概率分支上、长期缺少专用「处理程序」的进程</b>:每种病罕见到没人专门为它投入(诊断难、缺医少药、孤儿药因患者少而无人研发=市场失灵),但 1400 多种合起来是 2000 万人。近年罕见病目录、医保谈判、诊疗协作网正逐步为这些低频分支补上 handler。本片<b>尊重患者、不渲染苦难、不消费个案</b>,强调制度补位进展与「让罕见被看见、被专门对待」的诉求。
+  </div>
+
+  <!-- 低概率分支 签名图 -->
+  <div class="hj-found" aria-label="低概率分支示意图:一个进程落在标着 rare branch 发病率极低的低概率分支上,旁边无专用 handler(诊断难/缺药/孤儿药市场失灵);所有罕见分支汇总超过1400种超过2000万人;系统正逐步添加 handler(目录207种·医保逾80种药·协作网419家医院);底注健康加医保救助·个体罕见群体庞大。庄重克制,尊重患者">
+    <svg viewBox="0 0 1000 660" xmlns="http://www.w3.org/2000/svg" role="img">
+      <text x="500" y="22" font-size="11" fill="#8f897d" text-anchor="middle" font-family="mono" letter-spacing="2">ChinaOS · LOW-PROBABILITY BRANCH, NO DEDICATED HANDLER · 低概率分支</text>
+      <text x="500" y="46" font-size="9.5" fill="#5e8c7a" text-anchor="middle" font-family="sans-serif">— 一个进程落在统计上罕见的代码分支上,系统因「太罕见」长期没有为之投入专用处理程序;但这些低频分支合起来是 2000 万人 —</text>
+
+      <!-- 调度入口 -->
+      <rect x="375" y="74" width="250" height="62" rx="6" fill="#1a2620" stroke="#5e8c7a" stroke-width="1.6"/>
+      <text x="500" y="98" font-size="11" fill="#5e8c7a" text-anchor="middle" font-family="mono">scheduler · 健康系统分支调度</text>
+      <text x="500" y="118" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">按发病率把进程分流到常见/罕见分支</text>
+
+      <!-- 常见分支 -->
+      <line x1="430" y1="136" x2="260" y2="178" stroke="#5e8c7a" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#hjArrowGreen)"/>
+      <rect x="80" y="180" width="280" height="66" rx="6" fill="#1a2620" stroke="#5e8c7a" stroke-width="1.4"/>
+      <text x="220" y="204" font-size="10.5" fill="#5e8c7a" text-anchor="middle" font-family="mono">common branch · 常见病</text>
+      <text x="220" y="225" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">有成熟 handler:医生经验、市场、认知</text>
+
+      <!-- 罕见分支 -->
+      <line x1="570" y1="136" x2="740" y2="178" stroke="#b5483a" stroke-width="1.3" marker-end="url(#hjArrowRed)"/>
+      <rect x="640" y="180" width="280" height="66" rx="6" fill="#26201a" stroke="#b5483a" stroke-width="1.6"/>
+      <text x="780" y="204" font-size="10.5" fill="#c0584a" text-anchor="middle" font-family="mono">rare branch · 发病率极低</text>
+      <text x="780" y="225" font-size="8.5" fill="#d8d2c4" text-anchor="middle" font-family="sans-serif">单病罕见,落在低概率分支上</text>
+
+      <!-- 无专用 handler -->
+      <line x1="780" y1="246" x2="780" y2="284" stroke="#b5483a" stroke-width="1.3" stroke-dasharray="5 3" marker-end="url(#hjArrowRed)"/>
+      <rect x="540" y="286" width="400" height="86" rx="8" fill="#26201a" stroke="#b5483a" stroke-width="2"/>
+      <text x="740" y="312" font-size="12" fill="#c0584a" text-anchor="middle" font-family="mono" letter-spacing="1">no dedicated handler · 无专用处理程序</text>
+      <text x="740" y="334" font-size="9.5" fill="#d8d2c4" text-anchor="middle" font-family="sans-serif">诊断难(医生少经验) · 缺医少药</text>
+      <text x="740" y="352" font-size="9.5" fill="#d8d2c4" text-anchor="middle" font-family="sans-serif">孤儿药因患者少无人研发 = 市场失灵</text>
+
+      <!-- 罕见分支汇总 -->
+      <rect x="60" y="286" width="400" height="86" rx="8" fill="#23201a" stroke="#b39657" stroke-width="2"/>
+      <text x="260" y="312" font-size="12" fill="#c2a052" text-anchor="middle" font-family="mono" letter-spacing="1">aggregate · 所有罕见分支汇总</text>
+      <text x="260" y="334" font-size="11" fill="#d8d2c4" text-anchor="middle" font-family="sans-serif">&gt;1400 种 · &gt;2000 万人</text>
+      <text x="260" y="352" font-size="9" fill="#8f897d" text-anchor="middle" font-family="sans-serif">个体罕见,群体庞大——这是核心悖论</text>
+
+      <!-- 系统正补 handler -->
+      <line x1="260" y1="372" x2="450" y2="416" stroke="#5e8c7a" stroke-width="1.3" stroke-dasharray="5 3" marker-end="url(#hjArrowGreen)"/>
+      <line x1="740" y1="372" x2="550" y2="416" stroke="#5e8c7a" stroke-width="1.3" stroke-dasharray="5 3" marker-end="url(#hjArrowGreen)"/>
+      <rect x="180" y="418" width="640" height="92" rx="8" fill="#1a2620" stroke="#5e8c7a" stroke-width="2"/>
+      <text x="500" y="446" font-size="12" fill="#5e8c7a" text-anchor="middle" font-family="mono" letter-spacing="1">system.addHandler() · 系统正为低频分支补 handler</text>
+      <text x="500" y="470" font-size="10" fill="#d8d2c4" text-anchor="middle" font-family="sans-serif">罕见病目录 207 种 · 医保谈判纳入逾 80 种药 · 诊疗协作网 419 家医院</text>
+      <text x="500" y="490" font-size="9.5" fill="#7d9488" text-anchor="middle" font-family="sans-serif">从「太罕见而无人投入」到「制度专门补位」——补 handler 的进展</text>
+
+      <defs>
+        <marker id="hjArrowGreen" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5e8c7a"/></marker>
+        <marker id="hjArrowRed" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#b5483a"/></marker>
+      </defs>
+
+      <text x="500" y="552" font-size="10.5" fill="#5d7489" text-anchor="middle" font-family="serif" letter-spacing="2">— 为「太罕见而无市场」的少数补 handler ↔ 而非把命交给市场 —</text>
+      <text x="500" y="576" font-size="9" fill="#7d9488" text-anchor="middle" font-family="sans-serif">一个系统愿不愿意为最不具规模效益的少数投入,是它文明程度的一个刻度</text>
+      <text x="500" y="600" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="mono">健康 + 医保救助 · 个体罕见、群体庞大 · 尊重患者、不渲染</text>
+    </svg>
+    <div class="hj-found-caption">模块隐喻是<b>落在低概率分支、缺专用 handler 的进程(Low-Probability Branch, No Dedicated Handler)</b>:罕见病患者是 China OS 里落在统计上罕见代码分支上的进程——每种病发病率极低,系统因「太罕见」而长期没有为之投入专用处理程序(<b>诊断难、缺医少药、孤儿药因患者少而无人研发 = 市场失灵</b>);但这些低频分支合起来是 <b>1400 多种、2000 万人</b>。系统正逐步补 handler:罕见病目录(207 种)、医保谈判纳入(逾 80 种药)、诊疗协作网(419 家医院)。本片以健康与医保救助视角主张:为「太罕见而无利可图」的少数补 handler(而非交给市场),是制度文明的体现;「个体罕见、群体庞大」既是这个人群所有困境的根源,也是它不能被交给市场、需要专门制度的理由。本片尊重患者、不渲染苦难。</div>
+  </div>
+
+  <!-- 页签 -->
+  <nav class="hj-nav" role="tablist">
+    <button role="tab" data-panel="hj-p-h1" class="is-active">2000 万悖论</button>
+    <button role="tab" data-panel="hj-p-h2">诊断奥德赛</button>
+    <button role="tab" data-panel="hj-p-h3">孤儿药与砍价</button>
+    <button role="tab" data-panel="hj-p-h4">患者自救</button>
+    <button role="tab" data-panel="hj-p-h5">政治形态学</button>
+    <button role="tab" data-panel="hj-p-watch">合成 · 观测哨</button>
+  </nav>
+
+  <!-- ════ H1 个体罕见群体庞大:2000 万悖论 ════ -->
+  <section class="hj-panel is-active" id="hj-p-h1">
+    <div class="hj-sec-head"><h2>H1 · 个体罕见、群体庞大:2000 万的悖论</h2><span class="hj-sec-tag">&gt;1400 种 · &gt;2000 万人 · 市场失灵的根源</span></div>
+    <p class="hj-disclaimer top">注记(分析立场):本节锚定这个人群最核心的悖论——「个体罕见、群体庞大」。本片以健康与医保救助视角呈现这一规模事实,它是罕见病所有困境(诊断难、缺药、贵)的根源,也是为何需要专门制度的理由。尊重患者、不渲染。</p>
+    <p class="hj-lede">关于这个人群,第一个事实是规模悖论:<b style="color:var(--qing);">已知罕见病超 1400 种、患者超 2000 万——单种病罕见到在任一医院都难遇见、难积累经验、难有市场,但 1400 多种合起来是 2000 万人</b>。这就是「个体罕见、群体庞大」。这个悖论是罕见病所有困境的根源:因「单病罕见」,医生缺经验、药企无市场、社会少认知——罕见性本身就制造了诊断难、缺药、贵。它也是为什么罕见病不能交给市场:患者太少,市场不会自发给答案——这是「市场失灵」,需政策补位(孤儿药激励、医保兜底)。2000 万人长期落在系统的低概率分支上,不被看见;「让罕见被看见、被专门对待」,是这个人群最朴素的诉求。</p>
+
+    <h3 class="hj-h3">核心定位:单病罕见 vs 群体庞大</h3>
+    <div class="hj-dual">
+      <div class="hj-dual-a"><h6>群体端 · <b>庞大</b></h6><span class="hj-dual-pole">&gt;1400 种 · &gt;2000 万人</span><p><b style="color:var(--qing);">1400 多种罕见病合起来是 2000 万人——这是一个庞大的群体,不应因「分散」而不被看见;「让罕见被看见」是核心诉求</b>。</p></div>
+      <div class="hj-dual-mid">↔</div>
+      <div class="hj-dual-b"><h6>个体端 · <b>罕见</b></h6><span class="hj-dual-pole">发病率极低 · 单病罕见</span><p><b style="color:var(--zhu);">单种病罕见到难遇见、难积累经验、难有市场——罕见性本身制造了诊断难、缺药、贵;这是市场失灵的根源</b>。</p></div>
+    </div>
+
+    <h3 class="hj-h3">三个规模锚点</h3>
+    <div class="hj-data3">
+      <div class="hj-stat"><span class="hj-eyebrow">病种规模</span><span class="hj-stat-n">&gt;1400 种</span><span class="hj-stat-u">已知罕见病种数</span><p>已知罕见病<b>超 1400 种</b>;两批罕见病目录共纳入 207 种——单病罕见,但种类繁多。</p></div>
+      <div class="hj-stat alt"><span class="hj-eyebrow">患者规模</span><span class="hj-stat-n">&gt;2000 万</span><span class="hj-stat-u">罕见病患者群体</span><p>患者群体<b>超 2000 万人</b>——「个体罕见、群体庞大」;这是一个不应被忽略的庞大群体。</p></div>
+      <div class="hj-stat"><span class="hj-eyebrow">困境根源</span><span class="hj-stat-n">市场失灵</span><span class="hj-stat-u">患者少 = 无人投入</span><p>因单病患者太少,市场不会自发给答案——<b>这是「市场失灵」,需政策补位</b>。</p></div>
+    </div>
+
+    <h3 class="hj-h3">悖论的逻辑:几条</h3>
+    <div class="hj-rows">
+      <div class="hj-row peak"><span class="hj-row-k">规模悖论</span><span class="hj-row-v"><b style="color:var(--qing);">单病罕见(发病率极低)vs 群体庞大(&gt;1400 种、&gt;2000 万人)——「个体罕见、群体庞大」</b>。</span></div>
+      <div class="hj-row"><span class="hj-row-k">困境的根源</span><span class="hj-row-v">因「单病罕见」→ 医生少经验、药企无市场、社会少认知——<b>罕见性本身制造了诊断难、缺药、贵</b>。</span></div>
+      <div class="hj-row peak"><span class="hj-row-k">需要专门制度</span><span class="hj-row-v"><b style="color:var(--qing);">市场不会自发为罕见病提供解决方案(患者太少无利可图)——「市场失灵」,需政策补位</b>(孤儿药激励、医保兜底)。</span></div>
+      <div class="hj-row"><span class="hj-row-k">被看见的诉求</span><span class="hj-row-v">2000 万人长期不被看见(个体分散、病种罕见)——<b>「让罕见被看见」是这个人群的核心诉求</b>。</span></div>
+    </div>
+
+    <div class="hj-art">
+      <h5><b>每一种都罕见到没人为它专门投入,合起来却是 2000 万人</b>这是罕见病所有困境的根源</h5>
+      <p>罕见病的悖论是:每一种都罕见到没人为它专门投入,合起来却是 2000 万人。<b style="color:var(--qing);">正因为单病罕见,医生缺经验、药企没市场、社会没认知——罕见性本身就是困境的根源。这也是为什么罕见病不能交给市场:患者太少,市场不会自发给答案。2000 万人长期落在系统的低概率分支上,不被看见。让罕见被看见、被专门对待,是这个人群最朴素的诉求。</b>(↗ H2 诊断奥德赛 / ↗ H3 孤儿药与砍价)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="hj-xref">↗ H2 · 诊断奥德赛</span>
+      <span class="hj-xref">↗ H3 · 孤儿药天价与医保砍价</span>
+      <span class="hj-xref">↗ GY-23 · 健康阶层化</span>
+    </div>
+
+    <div class="hj-verdict">
+      <span class="hj-verdict-tag">H1 判词</span>
+      罕见病的悖论是:每一种都罕见到没人为它专门投入,合起来却是 2000 万人。正因为单病罕见,医生缺经验、药企没市场、社会没认知——罕见性本身就是困境的根源。这也是为什么罕见病不能交给市场:患者太少,市场不会自发给答案。2000 万人长期落在系统的低概率分支上,不被看见。<b style="color:var(--qing);">让罕见被看见、被专门对待,是这个人群最朴素的诉求。</b>
+      <span class="hj-xref">↗ H2 · 找到正确分支的漫长</span>
+    </div>
+  </section>
+
+  <!-- ════ H2 诊断奥德赛 ════ -->
+  <section class="hj-panel" id="hj-p-h2">
+    <div class="hj-sec-head"><h2>H2 · 诊断难:找到正确分支的漫长</h2><span class="hj-sec-tag">诊断奥德赛 · 协作网 324→419 家医院</span></div>
+    <p class="hj-disclaimer top">注记(分析立场):本节分析罕见病的第一道关——诊断。本片以健康视角呈现「诊断奥德赛」这一机制,它是「找到正确分支」的漫长;理解它,才能理解确诊本身就是治疗的开始。尊重患者、不渲染。</p>
+    <p class="hj-lede">罕见病的第一道关是诊断——<b style="color:var(--qing);">因医生缺乏经验、症状非特异,患者常经历多年、多次误诊才确诊,这就是「诊断奥德赛」</b>。诊断难是「找到正确分支」的漫长:在确诊之前,患者在错误的处理路径上反复,延误治疗、耗尽积蓄。成因是诊断能力的稀缺:医生少经验(单病罕见)、症状非特异、检测能力分布不均。代价是实打实的伤害:延误治疗(错过窗口)、误诊误治、确诊前已耗资耗时——诊断难本身就是伤害。制度正在补位:罕见病诊疗协作网(从 324 家扩容到 419 家医院,2024)、基因检测普及、双向转诊,正在缩短这条路。对罕见病,确诊本身就是治疗的开始。</p>
+
+    <h3 class="hj-h3">诊断奥德赛的进程链:症状 → 误诊 → 辗转 → 确诊 → 缩短</h3>
+    <div class="hj-chain">
+      <div class="hj-chain-row v2"><span class="hj-chain-t">症状非特异</span><span class="hj-chain-v"><b>症状不典型、与常见病相似——进程被分流到错误的处理路径上</b>;诊断的第一道障碍。</span></div>
+      <div class="hj-chain-row v2"><span class="hj-chain-t">多次误诊</span><span class="hj-chain-v"><b>医生缺经验(单病罕见)、检测能力分布不均——患者被反复误诊、辗转多家医院</b>;这是「找到正确分支」的漫长。</span></div>
+      <div class="hj-chain-row v2"><span class="hj-chain-t">代价累积</span><span class="hj-chain-v"><b>延误治疗(错过窗口)、误诊误治、确诊前已耗资耗时——诊断难本身就是伤害</b>。</span></div>
+      <div class="hj-chain-row v1"><span class="hj-chain-t">基因确诊</span><span class="hj-chain-v">基因检测普及 → <b>定位「正确分支」、终于确诊——对罕见病,确诊本身就是治疗的开始</b>(↗ H3 用药)。</span></div>
+      <div class="hj-chain-row v1"><span class="hj-chain-t">缩短奥德赛</span><span class="hj-chain-v">罕见病诊疗协作网(324→419 家医院,2024 扩容)、双向转诊 → <b>把诊断奥德赛缩短——制度为低频分支补诊断 handler</b>。</span></div>
+    </div>
+
+    <h3 class="hj-h3">诊断难的几条</h3>
+    <div class="hj-rows">
+      <div class="hj-row peak"><span class="hj-row-k">诊断奥德赛</span><span class="hj-row-v"><b style="color:var(--qing);">平均确诊耗时长、多次误诊——「找到正确分支」的漫长;确诊前在错误路径上反复</b>。</span></div>
+      <div class="hj-row"><span class="hj-row-k">成因</span><span class="hj-row-v">医生少经验(单病罕见)、症状非特异、检测能力分布不均——<b>诊断能力的稀缺</b>。</span></div>
+      <div class="hj-row peak"><span class="hj-row-k">代价</span><span class="hj-row-v"><b style="color:var(--qing);">延误治疗(错过窗口)、误诊误治、确诊前已耗资耗时——诊断难本身就是伤害</b>。</span></div>
+      <div class="hj-row"><span class="hj-row-k">制度补位</span><span class="hj-row-v">罕见病诊疗协作网(324→419 家医院,2024 扩容)、基因检测普及、双向转诊——<b>缩短诊断奥德赛</b>。</span></div>
+    </div>
+
+    <div class="hj-breaking">
+      <span class="hj-breaking-tag">· 对罕见病,确诊本身就是治疗的开始</span>
+      <b>因为太罕见,医生没见过、症状不典型,患者常要跑很多家医院、被误诊很多次、花很多年才确诊。在确诊之前,他一直在错误的路径上治,延误了窗口、耗尽了积蓄。诊疗协作网扩容到 419 家、基因检测普及,正在缩短这条路。</b>
+    </div>
+
+    <div class="hj-art">
+      <h5><b>第一道关,是找到自己到底得了什么病</b>诊疗协作网与基因检测正缩短这条路</h5>
+      <p>罕见病的第一道关,是找到自己到底得了什么病。因为太罕见,医生没见过、症状不典型,患者常常要跑很多家医院、被误诊很多次、花很多年,才终于确诊——这就是「诊断奥德赛」。<b style="color:var(--qing);">在确诊之前,他一直在错误的路径上治,延误了窗口、耗尽了积蓄。诊疗协作网扩容到 419 家、基因检测普及,正在缩短这条路——因为对罕见病,确诊本身就是治疗的开始。</b>(↗ H1 悖论 / ↗ H3 用药)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="hj-xref">↗ H1 · 2000 万悖论</span>
+      <span class="hj-xref">↗ H3 · 孤儿药与医保砍价</span>
+      <span class="hj-xref">↗ GY-23 · 健康阶层化</span>
+    </div>
+
+    <div class="hj-verdict">
+      <span class="hj-verdict-tag">H2 判词</span>
+      罕见病的第一道关,是找到自己到底得了什么病。因为太罕见,医生没见过、症状不典型,患者常常要跑很多家医院、被误诊很多次、花很多年,才终于确诊——这就是「诊断奥德赛」。在确诊之前,他一直在错误的路径上治,延误了窗口、耗尽了积蓄。<b style="color:var(--qing);">诊疗协作网扩容到 419 家、基因检测普及,正在缩短这条路——因为对罕见病,确诊本身就是治疗的开始。</b>
+      <span class="hj-xref">↗ H3 · 市场失灵与医保砍价</span>
+    </div>
+  </section>
+
+  <!-- ════ H3 孤儿药天价与医保砍价 ════ -->
+  <section class="hj-panel" id="hj-p-h3">
+    <div class="hj-sec-head"><h2>H3 · 孤儿药与天价:市场失灵与医保砍价</h2><span class="hj-sec-tag">逾 80 种罕见病药入医保 · 接 GY-15 灵魂砍价</span></div>
+    <p class="hj-disclaimer top">注记(分析立场):本节分析罕见病用药的核心矛盾——孤儿药的市场失灵与医保的「灵魂砍价」。本片以健康与医保救助视角呈现供给端与支付端两条解法,这是 GY-15(医保谈判)在罕见病端的集中体现。尊重患者、不渲染。</p>
+    <p class="hj-lede">罕见病用药的核心矛盾是<b style="color:var(--qing);">「孤儿药」的市场失灵——研发成本高、患者少,使药企缺乏研发动力,已上市的常是天价(年治疗费数十万至上百万)</b>。解决靠两端:供给端(孤儿药研发激励:优先审评、去中心化临床试验、本土研发,2024 多款国产上市)+ 支付端(医保谈判「灵魂砍价」把天价药纳入医保、逾 80 种罕见病药已入目录)。这是 GY-15(医保谈判)在罕见病端的集中体现——逾 80 种罕见病药进了医保目录,意味着一些曾经「买不起的命」变成了「医保管的病」。在医保之外,还有大病保险、医疗救助、惠民保、慈善构成多层次支付(↗ GY-15 Y6 / GY-43 救助)。把命交给市场,市场不接;只能靠制度从两端使劲。这是制度为低概率分支补 handler 最实在的一步。</p>
+
+    <h3 class="hj-h3">市场失灵 vs 医保砍价</h3>
+    <div class="hj-dual">
+      <div class="hj-dual-a"><h6>支付端 · <b>医保砍价</b></h6><span class="hj-dual-pole">逾 80 种药入医保</span><p><b style="color:var(--qing);">医保谈判「灵魂砍价」把天价药砍到可及、逾 80 种罕见病药入目录——从「天价药」到「医保药」(↗ GY-15);支付端兜底</b>。</p></div>
+      <div class="hj-dual-mid">↔</div>
+      <div class="hj-dual-b"><h6>矛盾端 · <b>市场失灵</b></h6><span class="hj-dual-pole">研发贵 · 患者少 · 天价</span><p><b style="color:var(--zhu);">研发成本高 + 患者少 → 药企无动力 → 缺药;已上市孤儿药常年治疗费数十万至上百万——「买得起命吗」的极端</b>(↗ GY-23)。</p></div>
+    </div>
+
+    <h3 class="hj-h3">多层次支付保障</h3>
+    <div class="hj-rows">
+      <div class="hj-row peak"><span class="hj-row-k">市场失灵</span><span class="hj-row-v"><b style="color:var(--qing);">研发成本高 + 患者少 → 药企无动力 → 缺药——孤儿药的市场失灵;把命交给市场,市场不接</b>。</span></div>
+      <div class="hj-row"><span class="hj-row-k">天价</span><span class="hj-row-v">已上市孤儿药常年治疗费数十万至上百万——<b>「买得起命吗」的极端</b>(↗ GY-15/GY-23 健康阶层化的罕见病端)。</span></div>
+      <div class="hj-row peak"><span class="hj-row-k">供给端激励</span><span class="hj-row-v"><b style="color:var(--qing);">孤儿药研发激励、优先审评、去中心化临床试验、本土研发(2024 多款国产)——鼓励研发</b>。</span></div>
+      <div class="hj-row"><span class="hj-row-k">支付端(↗GY-15)</span><span class="hj-row-v">医保谈判「灵魂砍价」把天价药砍到可及、逾 80 种罕见病药入目录——<b>支付端兜底;从「天价药」到「医保药」的转变</b>。</span></div>
+      <div class="hj-row peak"><span class="hj-row-k">多层保障</span><span class="hj-row-v"><b style="color:var(--qing);">基本医保 + 大病保险 + 医疗救助 + 惠民保 + 慈善——多层次支付</b>(↗ GY-15 Y6 / GY-43 救助)。</span></div>
+    </div>
+
+    <div class="hj-breaking">
+      <span class="hj-breaking-tag">· 从「买不起的命」到「医保管的病」</span>
+      <b>孤儿药因为患者少、研发贵,要么没人做,要么贵到天价。这是典型的市场失灵:把命交给市场,市场不接。解决只能靠两端使劲——一端激励药企研发,一端用医保谈判把天价砍下来。逾 80 种罕见病药进了医保目录,意味着一些曾经买不起的命变成了医保管的病。</b>
+    </div>
+
+    <div class="hj-art">
+      <h5><b>最尖锐的矛盾在药——市场不接,只能靠制度从两端使劲</b>这是为低频分支补 handler 最实在的一步</h5>
+      <p>罕见病最尖锐的矛盾在药——孤儿药因为患者少、研发贵,要么没人做,要么贵到天价(一年几十万上百万)。这是典型的市场失灵:把命交给市场,市场不接。<b style="color:var(--qing);">解决只能靠两端使劲:一端激励药企研发,一端用医保谈判把天价砍下来(↗ GY-15「灵魂砍价」)。逾 80 种罕见病药进了医保目录,意味着一些曾经「买不起的命」变成了「医保管的病」。这是制度为低概率分支补 handler 最实在的一步。</b>(↗ H1 市场失灵 / ↗ GY-43 多层保障)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="hj-xref">↗ GY-15 · 医保谈判/灵魂砍价</span>
+      <span class="hj-xref">↗ GY-43 · 大病救助/多层保障</span>
+      <span class="hj-xref">↗ GY-23 · 健康阶层化</span>
+    </div>
+
+    <div class="hj-verdict">
+      <span class="hj-verdict-tag">H3 判词</span>
+      罕见病最尖锐的矛盾在药——孤儿药因为患者少、研发贵,要么没人做,要么贵到天价(一年几十万上百万)。这是典型的市场失灵:把命交给市场,市场不接。解决只能靠两端使劲:一端激励药企研发,一端用医保谈判把天价砍下来(↗ GY-15「灵魂砍价」)。逾 80 种罕见病药进了医保目录,意味着一些曾经「买不起的命」变成了「医保管的病」。<b style="color:var(--qing);">这是制度为低概率分支补 handler 最实在的一步。</b>
+      <span class="hj-xref">↗ H4 · 低频分支的自组织</span>
+    </div>
+  </section>
+
+  <!-- ════ H4 患者自救与病友组织 ════ -->
+  <section class="hj-panel" id="hj-p-h4">
+    <div class="hj-sec-head"><h2>H4 · 患者自救与病友组织:低频分支的自组织</h2><span class="hj-sec-tag">健康公益赋权样本 · 与 GY-13 对照</span></div>
+    <p class="hj-disclaimer top">注记(分析立场):本节分析罕见病患者群体独特的「自救」形态——病友组织与患者社群。本片以健康公益视角呈现这种低频分支用户的自组织,它是中国少有的、相对获得空间的议题性自组织。尊重患者、不渲染。</p>
+    <p class="hj-lede">罕见病患者群体发展出独特的「自救」形态——<b style="color:var(--qing);">病友组织(按病种聚集)、患者社群、罕见病关爱组织,承担信息互助、推动诊疗、倡导政策、对接药企与医保的功能</b>。因为单病分散、不被关注,患者必须自己组织起来「被看见」——这是低频分支用户的自组织。他们把「被看见」从等待变成了争取:罕见病日、患者故事、公益倡导,让罕见被纳入议程。罕见病关爱作为健康公益议题,相对获得发展空间——这是中国相对少见的、获得了发展空间的议题性自组织(健康公益赋权样本)。与零工的原子化(↗ GY-05)、失独的维权(↗ GY-25)对照,展示了一种相对成功的患者赋权。罕见病患者教给所有低频分支上的人一件事:当系统因为你太少而忽略你时,把分散的少数聚成可见的群体,本身就是补 handler 的第一步。</p>
+
+    <h3 class="hj-h3">患者自救的几条</h3>
+    <div class="hj-rows">
+      <div class="hj-row peak"><span class="hj-row-k">病友组织</span><span class="hj-row-v"><b style="color:var(--qing);">按病种聚集的患者社群——信息互助、经验分享、心理支持</b>。</span></div>
+      <div class="hj-row"><span class="hj-row-k">自救功能</span><span class="hj-row-v">推动诊疗、倡导政策(推动目录/医保)、对接药企与临床试验——<b>患者从被动求医到主动倡导</b>。</span></div>
+      <div class="hj-row peak"><span class="hj-row-k">被看见的策略</span><span class="hj-row-v"><b style="color:var(--qing);">罕见病日、患者故事、公益倡导——让罕见被看见、被纳入议程</b>。</span></div>
+      <div class="hj-row"><span class="hj-row-k">相对组织空间</span><span class="hj-row-v">罕见病关爱作为健康公益议题,相对获得发展空间——<b>议题性自组织在健康领域的样本</b>(与 GY-13 防火墙规则对照:健康公益是被允许的组织化)。</span></div>
+      <div class="hj-row peak"><span class="hj-row-k">与全光谱</span><span class="hj-row-v"><b style="color:var(--qing);">罕见病患者组织是「自救型」群体——与零工的原子化(↗ GY-05)、失独的维权(↗ GY-25)对照,展示了一种相对成功的患者赋权</b>。</span></div>
+    </div>
+
+    <h3 class="hj-h3">对照 · 健康公益是被允许的组织化(↗ GY-13)</h3>
+    <div class="hj-grid-2">
+      <div class="hj-card" style="border-top:3px solid var(--qing);"><span class="hj-eyebrow">罕见病关爱(本片)</span><h4>健康公益 · 相对获得空间</h4><p>罕见病关爱作为<b>健康公益议题</b>,相对获得发展空间——病友组织推动诊疗、倡导目录与医保。这是中国相对少见的、<b>获得了发展空间的议题性自组织</b>。</p></div>
+      <div class="hj-card" style="border-top:3px solid var(--dai);"><span class="hj-eyebrow">防火墙规则(↗ GY-13)</span><h4>组织化的边界</h4><p>对照 GY-13 的「防火墙规则」:并非所有组织化都被允许——<b>健康公益是相对被允许的组织化形态</b>。罕见病自组织是这条边界内的赋权样本。</p></div>
+    </div>
+
+    <div class="hj-form">
+      <h5>把分散的少数聚成可见的群体,本身就是补 handler 的第一步</h5>
+      <p>因为每种病都太罕见、太分散、不被关注,患者只能自己组织起来:建病友群、办关爱组织、推动诊疗和医保、对接药企。他们把「被看见」从等待变成了争取。<b style="color:var(--qing);">这是中国相对少见的、获得了发展空间的议题性自组织——健康公益的赋权样本。当系统因为你太少而忽略你时,把分散的少数聚成可见的群体,本身就是补 handler 的第一步。</b></p>
+    </div>
+
+    <div class="hj-art">
+      <h5><b>罕见病群体走出了一条独特的路——自救</b>从被动求医到主动倡导</h5>
+      <p>罕见病群体走出了一条独特的路——自救。因为每种病都太罕见、太分散、不被关注,患者只能自己组织起来:建病友群、办关爱组织、推动诊疗和医保、对接药企。<b style="color:var(--qing);">他们把「被看见」从等待变成了争取。这是中国相对少见的、获得了发展空间的议题性自组织——健康公益的赋权样本。罕见病患者教给所有低频分支上的人一件事:当系统因为你太少而忽略你时,把分散的少数聚成可见的群体,本身就是补 handler 的第一步。</b>(↗ H3 用药 / ↗ GY-13 组织化规则)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="hj-xref">↗ GY-13 · 防火墙规则(组织化)</span>
+      <span class="hj-xref">↗ GY-05 · 零工原子化(对照)</span>
+      <span class="hj-xref">↗ GY-25 · 失独维权(对照)</span>
+    </div>
+
+    <div class="hj-verdict">
+      <span class="hj-verdict-tag">H4 判词</span>
+      罕见病群体走出了一条独特的路——自救。因为每种病都太罕见、太分散、不被关注,患者只能自己组织起来:建病友群、办关爱组织、推动诊疗和医保、对接药企。他们把「被看见」从等待变成了争取。这是中国相对少见的、获得了发展空间的议题性自组织——健康公益的赋权样本。<b style="color:var(--qing);">罕见病患者教给所有低频分支上的人一件事:当系统因为你太少而忽略你时,把分散的少数聚成可见的群体,本身就是补 handler 的第一步。</b>
+      <span class="hj-xref">↗ H5 · 政治形态学</span>
+    </div>
+  </section>
+
+  <!-- ════ H5 政治形态学 · 合成 ════ -->
+  <section class="hj-panel" id="hj-p-h5">
+    <div class="hj-sec-head"><h2>H5 · 政治形态学:为低频分支补 handler</h2><span class="hj-sec-tag">制度补位四端 · 健康风险兜底轴</span></div>
+    <p class="hj-disclaimer top">注记(分析立场):本节分析这个人群的政治形态与本片主张。罕见病与大病群体的处境取决于「个体罕见、群体庞大」能否转化为制度补位。本片以健康与医保救助视角主张:为低频分支补 handler(而非交给市场)是文明的体现。尊重患者、不渲染。</p>
+    <p class="hj-lede">罕见病与大病群体的处境,取决于「个体罕见、群体庞大」能否转化为制度补位——<b style="color:var(--qing);">诊断(协作网)、用药(研发激励+医保谈判)、保障(多层支付)、赋权(患者组织)四端的进展,决定 2000 万人是否被接住</b>。本片以健康+医保救助视角主张:为低频分支补 handler(而非交给市场)是文明的体现。一个系统是否愿为「太罕见而无市场」的少数投入,是衡量制度文明的一个刻度(↔ GY-43 底板 / GY-18「没有痛苦这个变量」的健康版)。罕见病是「大病」的极端,普通大病同样面对治疗贵、致贫致债——罕见病的解法(多层保障)对一切大病有借鉴(↗ GY-15/GY-43/GY-32)。这个人群是 GY-15(医保谈判/目录)、GY-43(大病致贫救助)、GY-23(健康阶层化)、GY-18(致残)、GY-32(治疗致债)的交汇——「健康风险兜底」的罕见病/大病端。</p>
+
+    <h3 class="hj-h3">制度补位四端</h3>
+    <div class="hj-rows">
+      <div class="hj-row peak"><span class="hj-row-k">诊断端</span><span class="hj-row-v"><b style="color:var(--qing);">诊疗协作网(324→419 家)+ 基因检测——缩短诊断奥德赛,为低频分支补诊断 handler</b>(↗ H2)。</span></div>
+      <div class="hj-row"><span class="hj-row-k">用药端</span><span class="hj-row-v">孤儿药研发激励 + 医保「灵魂砍价」(逾 80 种药入目录)——<b>供给端 + 支付端,让天价药变医保药</b>(↗ H3/GY-15)。</span></div>
+      <div class="hj-row peak"><span class="hj-row-k">保障端</span><span class="hj-row-v"><b style="color:var(--qing);">基本医保 + 大病保险 + 医疗救助 + 惠民保 + 慈善——多层支付兜底大病致贫</b>(↗ GY-43/GY-32)。</span></div>
+      <div class="hj-row"><span class="hj-row-k">赋权端</span><span class="hj-row-v">病友组织、关爱公益、政策倡导——<b>患者把分散的少数聚成可见的群体,健康公益赋权样本</b>(↗ H4)。</span></div>
+      <div class="hj-row peak"><span class="hj-row-k">文明的刻度</span><span class="hj-row-v"><b style="color:var(--qing);">系统是否愿为「太罕见而无市场」的少数投入——衡量制度文明的一个刻度</b>(↔ GY-43 底板 / GY-18 健康版反题)。</span></div>
+    </div>
+
+    <div class="hj-art">
+      <h5><b>愿不愿为「太罕见而无利可图」的少数投入,是文明程度的一个刻度</b>大病的普遍接口</h5>
+      <p>罕见病与大病群体的处境,取决于「个体罕见、群体庞大」能否转化为制度补位——诊断、用药、保障、赋权四端的进展,决定 2000 万人是否被接住。<b style="color:var(--qing);">一个系统愿不愿意为「太罕见而无利可图」的少数投入,是它文明程度的一个刻度——和它怎么对待极贫(↗ GY-43)、残障(↗ GY-18)一样。罕见病是「大病」的极端,普通大病同样面对治疗贵、致贫致债——罕见病的解法(多层保障)对一切大病有借鉴。</b>(↗ H1~H4 / ↗ GY-15/43/23/18/32 全光谱)</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="hj-xref">↗ GY-15 · 医保谈判 / ↗ GY-43 · 大病救助</span>
+      <span class="hj-xref">↗ GY-23 · 健康阶层化 / ↗ GY-32 · 治疗致债</span>
+      <span class="hj-xref">↗ GY-18 · 致残(健康版反题)</span>
+    </div>
+
+    <div class="hj-verdict">
+      <span class="hj-verdict-tag">H5 判词</span>
+      罕见病与大病群体的处境,取决于「个体罕见、群体庞大」能否转化为制度补位——诊断(协作网)、用药(研发激励+医保谈判)、保障(多层支付)、赋权(患者组织)四端的进展,决定 2000 万人是否被接住。本片以健康+医保救助视角主张:为低频分支补 handler(而非交给市场)是文明的体现。<b style="color:var(--qing);">一个系统是否愿为「太罕见而无市场」的少数投入,是衡量制度文明的一个刻度——这个人群是「健康风险兜底」的罕见病/大病端,与 GY-15、GY-43、GY-23、GY-18、GY-32 深度耦合。</b>
+      <span class="hj-xref">↗ watch · 合成总判词与观测哨</span>
+    </div>
+  </section>
+
+  <!-- ════ 合成 · 观测哨(含合成总判词) ════ -->
+  <section class="hj-panel" id="hj-p-watch">
+    <div class="hj-sec-head"><h2>合成与观测哨</h2><span class="hj-sec-tag">健康与医保救助框架 · 第五十一子集</span></div>
+    <div class="hj-attrib"><b>再次声明:本片以健康与医保救助框架处理,尊重患者、不渲染。</b>聚焦诊断、用药可及与保障机制,强调「个体罕见、群体庞大」这一悖论与制度补位的进展;不消费个案、不渲染苦难,以「让罕见被看见、被专门对待」与「为低频分支补 handler」为主张。语气克制、立场清晰。</div>
+
+    <div class="hj-verdict" style="margin-top:14px; margin-bottom:34px;">
+      <span class="hj-verdict-tag">合成总判词 · 个体罕见群体庞大 · 市场失灵 · 制度补位四端 · 文明刻度</span>
+      罕见病与大病自救群体,是 China OS 里落在低概率分支、长期缺少专用 handler 的进程——每种病罕见到没人专门投入(诊断难、缺药、孤儿药市场失灵),合起来却是 2000 万人。这个「个体罕见、群体庞大」的悖论,是它所有困境的根源,也是它不能被交给市场的理由:患者太少,市场不接,只能靠制度补位。<br><br>
+      <b style="color:var(--qing);">补 handler 的进展发生在四端——诊疗协作网缩短「诊断奥德赛」、孤儿药研发激励+医保「灵魂砍价」(↗ GY-15)让天价药变成医保药、多层保障兜底大病致贫(↗ GY-43)、患者组织把分散的少数聚成可见的群体。一个系统愿不愿意为「太罕见而无利可图」的少数投入,是它文明程度的一个刻度——和它怎么对待极贫(↗ GY-43)、残障(↗ GY-18)一样,衡量的是它对最不具规模效益的人的态度。</b><br><br>
+      <b style="color:var(--jin);">2000 万人落在低概率分支上,他们要的不是奇迹,是系统承认:罕见,不等于不被处理。</b><br><br>
+      与全系列合观:作为人群画像分层第五十一子集,罕见病与大病自救群体与医保谈判(GY-15)、大病救助(GY-43)、治疗致债(GY-32)、健康阶层化(GY-23)、致残(GY-18)耦合,是「健康风险兜底」轴的罕见病/大病端。注:本片以健康与医保救助框架处理,尊重患者、不渲染、不消费个案,强调制度补位进展。
+    </div>
+
+    <h3 class="hj-h3">对 GY 系列的修正</h3>
+    <div class="hj-fix">
+      <h5><b>修正 · GY-15</b>医保支付的常见病端与罕见病端</h5>
+      <p>罕见病用药是医保谈判(GY-15 Y3 集采/谈判)的极端端——「灵魂砍价」把孤儿药从天价变成医保药;<b style="color:var(--qing);">建议 GY-15↔GY-53 链接为「医保支付的常见病端与罕见病端」</b>。</p>
+    </div>
+    <div class="hj-fix">
+      <h5><b>修正 · GY-43 + GY-32</b>因病致贫致债的高发源</h5>
+      <p>罕见病/大病是因病致贫(GY-43)、致债(GY-32)的高发源——<b>多层保障是防止「病一场穷一生」的关键;罕见病的多层支付对一切大病有借鉴</b>。</p>
+    </div>
+    <div class="hj-fix">
+      <h5><b>修正 · GY-23 + GY-18</b>健康阶层化的极端与致残接口</h5>
+      <p>罕见病是健康阶层化(GY-23「买得起健康」)的极端(买得起命吗),部分罕见病致残接入 GY-18;<b style="color:var(--qing);">「为低频分支补 handler」是 GY-18「没有痛苦这个变量」的健康版反题</b>。</p>
+    </div>
+    <div class="hj-fix">
+      <h5><b>修正 · 母框架(健康风险兜底轴)</b>为无规模效益者投入的刻度</h5>
+      <p>罕见病/大病补「健康风险兜底」轴的极端端——<b style="color:var(--qing);">「个体罕见、群体庞大」+「为少数补 handler」是衡量制度是否愿为无规模效益者投入的刻度;患者自组织是健康公益赋权的样本(与 GY-13 防火墙规则对照)</b>。</p>
+    </div>
+
+    <div class="hj-watch-intro">
+      <p>说明:逐项标注状态、记录证据,年度与 GY 系列同步对账。状态与备注自动保存在本机。本片以健康与医保救助取向并列呈现规模悖论、诊断、用药、保障、自组织各维度,尊重患者、不渲染、不消费个案,强调制度补位进展。</p>
+      <span class="hj-storage-state" id="hj-storage-state"></span>
+    </div>
+
+    <div class="hj-watch" id="hj-watch-list">
+      <div class="hj-watch-item" data-key="w1">
+        <div><h5><b>W-01</b>罕见病规模与认知</h5><p class="hj-watch-desc">病种数、患者数、社会认知——<b>「被看见」程度(H1)。</b></p></div>
+        <div class="hj-watch-ctrl"><div class="hj-status-row"><button class="hj-status-btn" data-status="good">向好</button><button class="hj-status-btn" data-status="flat">中性</button><button class="hj-status-btn" data-status="bad">恶化</button></div><textarea class="hj-watch-note" placeholder="证据与备注…"></textarea><div class="hj-watch-stamp"></div></div>
+      </div>
+      <div class="hj-watch-item" data-key="w2">
+        <div><h5><b>W-02</b>诊断能力</h5><p class="hj-watch-desc">诊疗协作网、确诊周期、基因检测——<b>H2 诊断奥德赛。</b></p></div>
+        <div class="hj-watch-ctrl"><div class="hj-status-row"><button class="hj-status-btn" data-status="good">向好</button><button class="hj-status-btn" data-status="flat">中性</button><button class="hj-status-btn" data-status="bad">恶化</button></div><textarea class="hj-watch-note" placeholder="证据与备注…"></textarea><div class="hj-watch-stamp"></div></div>
+      </div>
+      <div class="hj-watch-item" data-key="w3">
+        <div><h5><b>W-03</b>孤儿药研发</h5><p class="hj-watch-desc">罕见病药获批数、本土研发、激励政策——<b>H3 供给端。</b></p></div>
+        <div class="hj-watch-ctrl"><div class="hj-status-row"><button class="hj-status-btn" data-status="good">向好</button><button class="hj-status-btn" data-status="flat">中性</button><button class="hj-status-btn" data-status="bad">恶化</button></div><textarea class="hj-watch-note" placeholder="证据与备注…"></textarea><div class="hj-watch-stamp"></div></div>
+      </div>
+      <div class="hj-watch-item" data-key="w4">
+        <div><h5><b>W-04</b>医保纳入</h5><p class="hj-watch-desc">罕见病药入医保目录数、谈判砍价(↗ GY-15)——<b>H3 支付端。</b></p></div>
+        <div class="hj-watch-ctrl"><div class="hj-status-row"><button class="hj-status-btn" data-status="good">向好</button><button class="hj-status-btn" data-status="flat">中性</button><button class="hj-status-btn" data-status="bad">恶化</button></div><textarea class="hj-watch-note" placeholder="证据与备注…"></textarea><div class="hj-watch-stamp"></div></div>
+      </div>
+      <div class="hj-watch-item" data-key="w5">
+        <div><h5><b>W-05</b>多层保障</h5><p class="hj-watch-desc">大病保险/医疗救助/惠民保/慈善对罕见病的覆盖(↗ GY-43)。</p></div>
+        <div class="hj-watch-ctrl"><div class="hj-status-row"><button class="hj-status-btn" data-status="good">向好</button><button class="hj-status-btn" data-status="flat">中性</button><button class="hj-status-btn" data-status="bad">恶化</button></div><textarea class="hj-watch-note" placeholder="证据与备注…"></textarea><div class="hj-watch-stamp"></div></div>
+      </div>
+      <div class="hj-watch-item" data-key="w6">
+        <div><h5><b>W-06</b>患者组织</h5><p class="hj-watch-desc">病友组织、关爱公益、政策倡导——<b>H4 自组织赋权。</b></p></div>
+        <div class="hj-watch-ctrl"><div class="hj-status-row"><button class="hj-status-btn" data-status="good">向好</button><button class="hj-status-btn" data-status="flat">中性</button><button class="hj-status-btn" data-status="bad">恶化</button></div><textarea class="hj-watch-note" placeholder="证据与备注…"></textarea><div class="hj-watch-stamp"></div></div>
+      </div>
+      <div class="hj-watch-item" data-key="w7">
+        <div><h5><b>W-07</b>致贫致债</h5><p class="hj-watch-desc">罕见病/大病家庭的因病致贫致债(↗ GY-43/GY-32)。</p></div>
+        <div class="hj-watch-ctrl"><div class="hj-status-row"><button class="hj-status-btn" data-status="good">向好</button><button class="hj-status-btn" data-status="flat">中性</button><button class="hj-status-btn" data-status="bad">恶化</button></div><textarea class="hj-watch-note" placeholder="证据与备注…"></textarea><div class="hj-watch-stamp"></div></div>
+      </div>
+      <div class="hj-watch-item" data-key="w8">
+        <div><h5><b>W-08</b>罕见病目录</h5><p class="hj-watch-desc">目录扩容、保障机制(罕见病用药保障专项探索)——<b>制度补位。</b></p></div>
+        <div class="hj-watch-ctrl"><div class="hj-status-row"><button class="hj-status-btn" data-status="good">向好</button><button class="hj-status-btn" data-status="flat">中性</button><button class="hj-status-btn" data-status="bad">恶化</button></div><textarea class="hj-watch-note" placeholder="证据与备注…"></textarea><div class="hj-watch-stamp"></div></div>
+      </div>
+    </div>
+
+    <h3 class="hj-h3">章节规划 · 登记表(均待建)</h3>
+    <div class="hj-plan">
+      <div class="hj-plan-row"><span class="hj-plan-k">CH-01</span><span class="hj-plan-v"><b>个体罕见群体庞大</b> — 悖论与市场失灵、为少数补 handler 的逻辑。</span><span class="hj-plan-tag">待建</span></div>
+      <div class="hj-plan-row"><span class="hj-plan-k">CH-02</span><span class="hj-plan-v"><b>诊断与用药</b> — 诊断奥德赛、孤儿药与医保砍价,接 GY-15。</span><span class="hj-plan-tag">待建</span></div>
+      <div class="hj-plan-row"><span class="hj-plan-k">CH-03</span><span class="hj-plan-v"><b>患者自救</b> — 病友组织的赋权样本,与 GY-13 组织化规则对照。</span><span class="hj-plan-tag">待建</span></div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="hj-foot">
+    <p>方法论:罕见病与大病自救群体以「低概率分支、缺专用 handler 的进程(Low-Probability Branch, No Dedicated Handler)」模型刻画——罕见病患者是落在统计上罕见代码分支上的进程每种病发病率极低系统因太罕见而长期没有为之投入专用处理程序诊断难缺医少药孤儿药因患者少而无人研发等于市场失灵但这些低频分支合起来是1400多种2000万人系统正逐步补handler罕见病目录207种医保谈判纳入逾80种药诊疗协作网419家医院签名图一个进程落在标着rare branch发病率极低的低概率分支上旁边无专用handler诊断难缺药孤儿药市场失灵但所有罕见分支汇总大于1400种大于2000万人系统正添加handler目录207医保逾80药协作网419院底注健康加医保救助个体罕见群体庞大。核心命题:已知罕见病超1400种患者群体超2000万个体罕见群体庞大是这个人群的悖论每种病罕见到没人专门为它投入诊断难缺医少药孤儿药天价但合起来是2000万人他们落在系统的低概率分支上曾长期缺少专用处理程序近年医保谈判罕见病目录诊疗协作网正逐步为这些低频分支补上handler这个个体罕见群体庞大的悖论是它所有困境的根源也是它不能被交给市场的理由患者太少市场不接只能靠制度补位补handler的进展发生在四端诊疗协作网缩短诊断奥德赛孤儿药研发激励加医保灵魂砍价让天价药变成医保药多层保障兜底大病致贫患者组织把分散的少数聚成可见的群体一个系统愿不愿意为太罕见而无利可图的少数投入是它文明程度的一个刻度2000万人落在低概率分支上他们要的不是奇迹是系统承认罕见不等于不被处理。数据锚定(2024/2025):已知罕见病超过1400种患者超过2000万两批罕见病目录共207种医保目录内逾80种罕见病药2023新增15个诊疗协作网324到419家医院2024扩容2024多款国产罕见病药上市孤儿药研发激励优先审评去中心化临床试验。注:以健康与医保救助框架处理,尊重患者、不渲染,强调制度补位进展。作为人群画像分层第五十一子集,与 GY-15(医保谈判)、GY-43(大病救助)、GY-32(治疗致债)、GY-23(健康阶层化)、GY-18(致残)等耦合,是「健康风险兜底」轴的罕见病/大病端。来源:新华网「2000 万罕见病人」报道(2025-01)、罕见病政策与目录、医保谈判、训练知识基线。</p>
+    <div class="hj-foot-meta">
+      ChinaOS · GY-53 · v1.0.0<br>
+      生成 2026-06 丙午年<br>
+      人群画像 第五十一子集 · 关联模块 → GY-15/18/23/32/43<br>
+      注记:健康与医保救助框架,尊重患者、不渲染、不消费个案
+    </div>
+  </footer>
+
+</div>
