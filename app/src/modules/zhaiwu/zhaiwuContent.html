@@ -1,0 +1,471 @@
+<div class="zw-shell">
+
+  <!-- 题头 -->
+  <header class="zw-mast">
+    <div>
+      <div class="zw-mast-meta">ChinaOS · MODULE <b>GY-32</b> · 人群画像分层 · 第三十子集</div>
+      <h1 class="zw-title">失信被执行人与债务人群<span class="zw-title-sub">被标记的账户 · 一次违约触发系统性降权</span></h1>
+    </div>
+    <div class="zw-mast-seal">信用即权限</div>
+  </header>
+  <p class="zw-mast-note">注记(敏感度处理):本片以<b>征信制度与债务治理的制度分析</b>框架展开,严格遵循官方对「失信被执行人」(有履行能力而拒不履行)与「失能被执行人」(确无履行能力)的区分(最高法 2024 典型案例确立);不污名化债务人、不渲染个体困境,聚焦制度机制与信用修复。</p>
+
+  <!-- 被标记的账户签名图 -->
+  <div class="zw-found" aria-label="被标记的账户示意图:一个账户被打上红色失信标记向下级联撤销一串权限令牌高铁飞机禁止高消费禁止新增信贷禁止部分任职禁止限高令旁边一条信用修复通道显示部分账户解除标记 282 万加 35.4% 同时区分两类账户失信有能力拒不履行与失能确无能力底注 856 万被标记账户更广债务人群信用卡房贷网贷为逾期重灾区权限的连锁冻结">
+    <svg viewBox="0 0 1000 580" xmlns="http://www.w3.org/2000/svg" role="img">
+      <text x="500" y="20" font-size="11" fill="#8f897d" text-anchor="middle" font-family="mono" letter-spacing="2">ChinaOS · BLACKLISTED ACCOUNT · 被标记的账户</text>
+      <text x="500" y="44" font-size="9.5" fill="#7d6a3a" text-anchor="middle" font-family="sans-serif">— 一次司法认定的违约,在系统里打一个标记,随之连锁撤销一串社会权限 —</text>
+
+      <!-- 被标记的账户 -->
+      <rect x="380" y="70" width="240" height="70" rx="10" fill="#2a1818" stroke="#b5483a" stroke-width="2"/>
+      <text x="500" y="100" font-size="13" fill="#c2786e" text-anchor="middle" font-family="serif" letter-spacing="1">某账户 · ACCOUNT</text>
+      <rect x="540" y="80" width="68" height="24" rx="4" fill="#b5483a"/>
+      <text x="574" y="97" font-size="11" fill="#1a1414" text-anchor="middle" font-family="mono" letter-spacing="1">失信</text>
+      <text x="500" y="124" font-size="9" fill="#8f897d" text-anchor="middle" font-family="sans-serif">司法认定违约 → flag 置位</text>
+
+      <!-- 级联撤销权限令牌 -->
+      <line x1="500" y1="140" x2="500" y2="178" stroke="#b5483a" stroke-width="1.6"/>
+      <polygon points="500,178 494,166 506,166" fill="#b5483a"/>
+      <text x="500" y="200" font-size="10" fill="#c2786e" text-anchor="middle" font-family="serif" letter-spacing="2">连锁撤销权限令牌 · permission revoke</text>
+
+      <rect x="92" y="218" width="160" height="40" rx="5" fill="#221818" stroke="#5d4a4a" stroke-width="1.2"/>
+      <text x="172" y="243" font-size="11" fill="#c2786e" text-anchor="middle" font-family="sans-serif">高铁 / 飞机 ✗</text>
+      <rect x="272" y="218" width="160" height="40" rx="5" fill="#221818" stroke="#5d4a4a" stroke-width="1.2"/>
+      <text x="352" y="243" font-size="11" fill="#c2786e" text-anchor="middle" font-family="sans-serif">高消费 ✗</text>
+      <rect x="452" y="218" width="160" height="40" rx="5" fill="#221818" stroke="#5d4a4a" stroke-width="1.2"/>
+      <text x="532" y="243" font-size="11" fill="#c2786e" text-anchor="middle" font-family="sans-serif">新增信贷 ✗</text>
+      <rect x="632" y="218" width="160" height="40" rx="5" fill="#221818" stroke="#5d4a4a" stroke-width="1.2"/>
+      <text x="712" y="243" font-size="11" fill="#c2786e" text-anchor="middle" font-family="sans-serif">部分任职 ✗</text>
+      <rect x="812" y="218" width="96" height="40" rx="5" fill="#2a1818" stroke="#b5483a" stroke-width="1.4"/>
+      <text x="860" y="243" font-size="11" fill="#c2786e" text-anchor="middle" font-family="mono">限高令</text>
+
+      <!-- 信用修复通道 -->
+      <rect x="150" y="300" width="700" height="58" rx="8" fill="#1c241f" stroke="#41594e" stroke-width="1.4"/>
+      <text x="500" y="324" font-size="11" fill="#5e8c7a" text-anchor="middle" font-family="serif" letter-spacing="2">信用修复通道 · 部分账户解除标记</text>
+      <text x="500" y="344" font-size="9.5" fill="#7d9488" text-anchor="middle" font-family="mono" letter-spacing="1">2024 修复 282 万人次 · +35.4% · 标记不再必然永久</text>
+
+      <!-- 两类账户区分 -->
+      <rect x="92" y="392" width="380" height="100" rx="8" fill="#221818" stroke="#5d4a4a" stroke-width="1.2"/>
+      <text x="282" y="418" font-size="11.5" fill="#c2786e" text-anchor="middle" font-family="serif" letter-spacing="1">失信(有能力拒不履行)</text>
+      <text x="282" y="442" font-size="9.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">有履行能力而拒不履行</text>
+      <text x="282" y="462" font-size="9.5" fill="#a89968" text-anchor="middle" font-family="sans-serif">→ 应惩戒(联合惩戒的正当对象)</text>
+      <text x="282" y="481" font-size="8.5" fill="#7d6a3a" text-anchor="middle" font-family="mono">老赖 · 拒不履行</text>
+
+      <rect x="528" y="392" width="380" height="100" rx="8" fill="#1c241f" stroke="#41594e" stroke-width="1.2"/>
+      <text x="718" y="418" font-size="11.5" fill="#5e8c7a" text-anchor="middle" font-family="serif" letter-spacing="1">失能(确无能力)</text>
+      <text x="718" y="442" font-size="9.5" fill="#7d9488" text-anchor="middle" font-family="sans-serif">确无履行能力的「诚实而不幸」者</text>
+      <text x="718" y="462" font-size="9.5" fill="#7d9488" text-anchor="middle" font-family="sans-serif">→ 应救济与修复(非惩戒对象)</text>
+      <text x="718" y="481" font-size="8.5" fill="#5e8c7a" text-anchor="middle" font-family="mono">还不起 ≠ 老赖</text>
+
+      <line x1="100" y1="520" x2="900" y2="520" stroke="#3d4c5a" stroke-width="1" stroke-dasharray="3 5"/>
+      <text x="500" y="544" font-size="10.5" fill="#b5483a" text-anchor="middle" font-family="serif" letter-spacing="2">— 856 万被标记账户 · 更广债务人群 · 信用卡/房贷/网贷为逾期重灾区 —</text>
+      <text x="500" y="566" font-size="9" fill="#7d6a3a" text-anchor="middle" font-family="mono" letter-spacing="1">权限的连锁冻结 · 一处失信、处处受限 · 数字治理时代的社会性约束</text>
+    </svg>
+    <div class="zw-found-caption">模块隐喻是<b>被标记的账户(Blacklisted Account)</b>:债务人尤其失信被执行人,是 China OS 里被打上 flag、随之连锁冻结多项权限的账户——<b>一次司法认定的违约,触发一连串 permission revoke(限高、出行、信贷、任职、招投标,乃至衍生约束)</b>。签名图:一个账户被打上红色「失信」标记,向下级联撤销一串权限令牌「高铁/飞机✗」「高消费✗」「新增信贷✗」「部分任职✗」「限高令」;旁边一条「信用修复」通道显示部分账户解除标记(282 万 +35.4%);同时区分两类账户「失信(有能力拒不履行)」与「失能(确无能力)」;底注「856 万被标记账户 · 更广债务人群 · 信用卡/房贷/网贷为逾期重灾区 · 权限的连锁冻结」。<b>这个人群是全光谱风险的最终货币化终端:失业、断供(↗ GY-08)、经营失败(↗ GY-29/GY-27)、因病致贫(↗ GY-15)最后都可能沉淀为同一个东西——还不上的账。</b></div>
+  </div>
+
+  <!-- 页签 -->
+  <nav class="zw-nav" role="tablist">
+    <button role="tab" data-panel="zw-p-z1" class="is-active">规模分层与失信失能区分</button>
+    <button role="tab" data-panel="zw-p-z2">权限系统性降级</button>
+    <button role="tab" data-panel="zw-p-z3">债务来源风险货币化</button>
+    <button role="tab" data-panel="zw-p-z4">以贷养贷金融下沉</button>
+    <button role="tab" data-panel="zw-p-z5">信用修复与个人破产</button>
+    <button role="tab" data-panel="zw-p-z6">政治形态学</button>
+    <button role="tab" data-panel="zw-p-z7">形态推演</button>
+    <button role="tab" data-panel="zw-p-watch">合成 · 观测哨</button>
+  </nav>
+
+  <!-- ════ Z1 规模分层与失信失能区分 ════ -->
+  <section class="zw-panel is-active" id="zw-p-z1">
+    <div class="zw-sec-head"><h2>Z1 · 规模与口径:从 856 万到更广的债务光谱</h2><span class="zw-sec-tag">分层是认知前提</span></div>
+    <p class="zw-lede">失信被执行人约 <b style="color:var(--zhu);">856.36 万(2025.5)</b>,是债务人群里被司法标记的「尖端」;其下是更广泛的逾期/负债光谱(信用卡、房贷、网贷、消费贷)。规模须严格分层:<b>失信被执行人 ≠ 所有负债人,更 ≠ 失能者</b>;口径混用是这个议题最大的认知陷阱。一旦把三者混为一谈,要么制造「全民老赖」的恐慌,要么把「还不起的人」和「不愿还的人」一锅烩。</p>
+    <p class="zw-disclaimer top">注记(敏感度处理):本片以征信制度与债务治理框架处理,严守「失信(有能力拒不履行)vs 失能(确无能力)」区分(最高法 2024 典型案例确立);不污名化债务人、不渲染个体困境,聚焦制度机制与信用修复。数据为失信大数据(搜狐/腾讯 2025-05)、最高法典型案例与训练知识基线,精确口径待权威年度数据回填。</p>
+
+    <h3 class="zw-h3">量级锚定:被司法标记的尖端</h3>
+    <div class="zw-data3">
+      <div class="zw-stat">
+        <span class="zw-eyebrow">失信被执行人(2025.5)</span>
+        <span class="zw-stat-n">约 856 万</span>
+        <span class="zw-stat-u">司法标记的尖端</span>
+        <p>被司法认定、纳入失信名单的被执行人——<b style="color:var(--zhu);">债务人群里被打 flag 的最尖端,远小于整体负债人群</b>。</p>
+      </div>
+      <div class="zw-stat">
+        <span class="zw-eyebrow">2024 新纳入</span>
+        <span class="zw-stat-n">245.7 万人次</span>
+        <span class="zw-stat-u">同比 -23.4%</span>
+        <p>新纳入失信名单的人次同比下降——<b>惩戒+修复双机制下,趋势出现拐点</b>。</p>
+      </div>
+      <div class="zw-stat">
+        <span class="zw-eyebrow">2024 信用修复</span>
+        <span class="zw-stat-n">282.1 万人次</span>
+        <span class="zw-stat-u">+35.4% · 首超新增</span>
+        <p>通过信用修复回归市场的人次首超新增——<b style="color:var(--zhu);">名单人数十年来首次下降</b>。</p>
+      </div>
+    </div>
+
+    <h3 class="zw-h3">债务光谱:三层须严格分层</h3>
+    <div class="zw-rows">
+      <div class="zw-row peak"><span class="zw-row-k">尖端 · 失信名单</span><span class="zw-row-v"><b style="color:var(--zhu);">约 856 万失信被执行人</b>——司法认定、被打 flag 的最尖端,联合惩戒的正当对象(限于有能力拒不履行者)。</span></div>
+      <div class="zw-row"><span class="zw-row-k">中层 · 逾期人群</span><span class="zw-row-v">信用卡、房贷、网贷、消费贷的逾期人群,规模远大于失信名单——<b>逾期 ≠ 失信:多数逾期未进入司法失信名单</b>。</span></div>
+      <div class="zw-row"><span class="zw-row-k">底层 · 正常负债</span><span class="zw-row-v">流传的「负债人群 8 亿」含房贷等正常负债——<b style="color:var(--zhu);">不能等同于「债务困境人群」</b>;负债是现代金融常态,债务困境才是议题(本片拒绝口径恐慌)。</span></div>
+      <div class="zw-row"><span class="zw-row-k">重灾区</span><span class="zw-row-v">信用卡/房贷/网贷为逾期重灾区——<b>个人不良贷款逾期人数与逾期率 2024 上升</b>(待权威年度数据回填)。</span></div>
+    </div>
+
+    <h3 class="zw-h3">失信 vs 失能:整片的法理基石</h3>
+    <div class="zw-dual">
+      <div class="zw-dual-a"><h6>失能 · <b>确无履行能力</b></h6><span class="zw-dual-pole">「诚实而不幸」者</span><p>确无履行能力的债务人——<b style="color:var(--zhu);">最高法 2024 明确:应救济与修复,不是惩戒对象</b>;「还不起」不等于「老赖」。</p></div>
+      <div class="zw-dual-mid">≠</div>
+      <div class="zw-dual-b"><h6>失信 · <b>有能力拒不履行</b></h6><span class="zw-dual-pole">应惩戒的对象</span><p><b style="color:var(--zhu);">有履行能力而拒不履行</b>——联合惩戒的正当对象;这个区分避免把「还不起」污名为「老赖」。</p></div>
+    </div>
+
+    <div class="zw-art">
+      <h5><b>口径混用是最大的认知陷阱</b>不是所有还不上钱的人都是老赖</h5>
+      <p>谈债务人群,第一件事是分层——<b style="color:var(--zhu);">856 万失信被执行人是司法标记的尖端,其下是规模大得多的逾期人群,再下是更广的正常负债者</b>。把三者混为一谈,要么制造「全民老赖」的恐慌,要么把「还不起的人」和「不愿还的人」一锅烩。最高法区分失信与失能,正是这个议题的良心所在(↗ GY-15 因病致贫的失能来源 / ↗ Z5 出口探索)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="zw-xref">↗ GY-08 · 中产断供的债务终点</span>
+      <span class="zw-xref">↗ GY-15 · 因病致贫的失能来源</span>
+      <span class="zw-xref">↗ Z2 · 权限的系统性降级</span>
+    </div>
+
+    <div class="zw-verdict">
+      <span class="zw-verdict-tag">Z1 判词</span>
+      谈债务人群,第一件事是分层——856 万失信被执行人是司法标记的尖端,其下是规模大得多的逾期人群,再下是更广的正常负债者。把三者混为一谈,要么制造「全民老赖」的恐慌,要么把「还不起的人」和「不愿还的人」一锅烩。<b style="color:var(--zhu);">最高法区分失信与失能,正是这个议题的良心所在:不是所有还不上钱的人都是老赖。</b>
+      <span class="zw-xref">↗ Z2 · 权限的系统性降级:失信惩戒的机制</span>
+    </div>
+  </section>
+
+  <!-- ════ Z2 权限系统性降级 ════ -->
+  <section class="zw-panel" id="zw-p-z2">
+    <div class="zw-sec-head"><h2>Z2 · 权限的系统性降级:失信惩戒的机制</h2><span class="zw-sec-tag">一次认定 · 多项冻结 · 数字联合惩戒</span></div>
+    <p class="zw-lede">本片独特机制——失信被执行人受到的不是单一处罚,而是一套连锁的「权限降级」:<b style="color:var(--zhu);">限制高消费、限制出行(高铁飞机)、限制信贷、限制部分任职与招投标,乃至衍生影响</b>。这是一种通过系统性撤销社会权限实现的约束,效率极高,但也因「连坐」与边界问题引发争议。不必关押、不必没收,只要在系统里打一个标记,一个人的高铁、信贷、消费、任职就一起冻结。</p>
+
+    <h3 class="zw-h3">连锁降权:一次认定,多项权限同时冻结</h3>
+    <div class="zw-chain">
+      <div class="zw-chain-row v2"><span class="zw-chain-t">flag 置位</span><span class="zw-chain-v"><b style="color:var(--zhu);">司法认定违约 → 纳入失信名单</b> — 在系统里打一个「失信」标记,无须关押与没收。</span></div>
+      <div class="zw-chain-row v2"><span class="zw-chain-t">限高消费</span><span class="zw-chain-v"><b>限高令:不得高消费</b> — 高端酒店、旅游度假、子女就读高收费私立学校等被限制。</span></div>
+      <div class="zw-chain-row v2"><span class="zw-chain-t">限出行</span><span class="zw-chain-v"><b style="color:var(--zhu);">限制乘坐飞机、高铁/动车一等座</b> — 出行权限被降级。</span></div>
+      <div class="zw-chain-row v1"><span class="zw-chain-t">限信贷</span><span class="zw-chain-v"><b>限制新增贷款与授信</b> — 金融权限被冻结,再融资受阻。</span></div>
+      <div class="zw-chain-row v1"><span class="zw-chain-t">限任职</span><span class="zw-chain-v"><b>限制担任企业高管/法定代表人、限制招投标</b> — 职业与经营权限同时受限。</span></div>
+    </div>
+    <div class="zw-breaking">
+      <span class="zw-breaking-tag">! 一次认定,多项权限同时冻结 · 通过系统性撤销社会权限实现约束</span>
+      失信惩戒是数字治理时代最锋利的工具之一——<b>不必关押、不必没收,只要在系统里打一个标记,一个人的高铁、信贷、消费、任职就一起冻结</b>。它对「有钱不还」的老赖是正义的执行工具,大幅提高了执行效率(迫使有能力者履行)。
+    </div>
+
+    <h3 class="zw-h3">高效与争议并存:边界依赖失信/失能区分</h3>
+    <div class="zw-nest">
+      <div class="zw-nest-row"><span class="zw-nest-k">高效的工具</span><span class="zw-nest-v">联合惩戒大幅提高执行效率——<b style="color:var(--zhu);">迫使有能力者履行,对「有钱不还」者是正义</b>。</span></div>
+      <div class="zw-nest-row"><span class="zw-nest-k">边界问题</span><span class="zw-nest-v">「失信」标记的衍生影响(如对子女就学、对再就业的连带)触及边界——<b>需与失能严格区分(↗ Z1):机制的正当性高度依赖精准区分</b>。</span></div>
+      <div class="zw-nest-row"><span class="zw-nest-k">双刃的砝码</span><span class="zw-nest-v">同一套连锁降权,<b>砸在拒不履行者身上是公道,砸在确实还不起的人身上是深渊</b>。</span></div>
+    </div>
+
+    <h3 class="zw-h3">数字化联合惩戒:一处失信、处处受限</h3>
+    <div class="zw-dual">
+      <div class="zw-dual-a"><h6>对失信者 · <b>正义的执行工具</b></h6><span class="zw-dual-pole">有能力拒不履行</span><p>跨部门数据共享使惩戒自动化、全国联网——<b>对有能力拒不履行者,是高效的正义</b>。</p></div>
+      <div class="zw-dual-mid">↔</div>
+      <div class="zw-dual-b"><h6>对失能者 · <b>误伤即雪上加霜</b></h6><span class="zw-dual-pole">确无履行能力</span><p><b style="color:var(--zhu);">若误伤确无能力者,则是雪上加霜</b>——「一处失信、处处受限」是数字治理的典型样本,正当性系于区分(↗ GY-02 / GY-24)。</p></div>
+    </div>
+
+    <div class="zw-art">
+      <h5><b>在系统里打一个标记,就冻结一整套社会权限</b>效率越高,失信/失能的边界越要守得住</h5>
+      <p>失信惩戒是数字治理时代最锋利的工具之一——<b style="color:var(--zhu);">不必关押、不必没收,只要在系统里打一个标记,一个人的高铁、信贷、消费、任职就一起冻结</b>。它对「有钱不还」的老赖是正义;但它的效率越高,「失信」与「失能」的边界就越要守得住——因为同一套连锁降权,砸在拒不履行者身上是公道,砸在确实还不起的人身上是深渊(↗ GY-02 数字治理 / ↗ Z1 区分)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="zw-xref">↗ GY-02 · 组件三 数字治理的典型样本</span>
+      <span class="zw-xref">↗ Z1 · 失信/失能区分</span>
+      <span class="zw-xref">↗ Z3 · 债务的来源</span>
+    </div>
+
+    <div class="zw-verdict">
+      <span class="zw-verdict-tag">Z2 判词</span>
+      失信惩戒是数字治理时代最锋利的工具之一——不必关押、不必没收,只要在系统里打一个标记,一个人的高铁、信贷、消费、任职就一起冻结。它对「有钱不还」的老赖是正义;但它的效率越高,「失信」与「失能」的边界就越要守得住——<b style="color:var(--zhu);">因为同一套连锁降权,砸在拒不履行者身上是公道,砸在确实还不起的人身上是深渊。</b>
+      <span class="zw-xref">↗ Z3 · 债务的来源:风险的最终货币化</span>
+    </div>
+  </section>
+
+  <!-- ════ Z3 债务来源风险货币化 ════ -->
+  <section class="zw-panel" id="zw-p-z3">
+    <div class="zw-sec-head"><h2>Z3 · 债务的来源:断供、经营失败、网贷、医疗</h2><span class="zw-sec-tag">风险的最终货币化 · 多人群困境的汇流</span></div>
+    <p class="zw-lede">债务困境的主要来源——<b style="color:var(--zhu);">房贷断供(↗ GY-08)、经营失败(↗ GY-29 个体户 / GY-27 货车司机)、网贷/消费贷陷阱、医疗支出(↗ GY-15 因病致贫)</b>;债务是多个人群困境的汇流点,是「风险最终货币化」的形态。失业、断供、生意垮了、生了场大病,最后都可能变成同一个东西:还不上的账。</p>
+
+    <h3 class="zw-h3">风险货币化汇流:四个来源沉淀为同一笔账</h3>
+    <div class="zw-chain">
+      <div class="zw-chain-row v2"><span class="zw-chain-t">房贷断供</span><span class="zw-chain-v"><b style="color:var(--zhu);">房价下行 + 收入下降 → 断供 → 法拍 → 负资产/失信</b> — 中产滑落的债务终点(↗ GY-08 Z2)。</span></div>
+      <div class="zw-chain-row v2"><span class="zw-chain-t">经营失败</span><span class="zw-chain-v"><b>个体户裸跑崩溃(无限责任 ↗ GY-29 G2)、货车司机车贷压顶(↗ GY-27 H3)→ 经营负债 → 失信</b> — 自雇者把市场风险背成个人债务。</span></div>
+      <div class="zw-chain-row v1"><span class="zw-chain-t">网贷陷阱</span><span class="zw-chain-v"><b>高息网贷、消费贷、套路贷 → 以贷养贷 → 债务螺旋</b> — 金融下沉把信贷推给最脆弱人群(年轻人、低收入者,↗ Z4)。</span></div>
+      <div class="zw-chain-row v1"><span class="zw-chain-t">医疗支出</span><span class="zw-chain-v"><b>大病自费击穿储蓄 → 借贷 → 因病致贫致债</b> — 健康风险货币化为债务(↗ GY-15 Y6 裸奔层)。</span></div>
+    </div>
+    <div class="zw-breaking">
+      <span class="zw-breaking-tag">! 各人群的困境最终都可能沉淀为债务 · 债务是社会风险的通用结算货币</span>
+      <b>失业、断供、经营失败、患病——各人群的困境最终都可能沉淀为债务</b>。债务是社会风险的通用结算货币,本片是这些风险的汇流终端。
+    </div>
+
+    <h3 class="zw-h3">汇流终端:债务是风险有没有被兜住的读数</h3>
+    <div class="zw-nest">
+      <div class="zw-nest-row"><span class="zw-nest-k">中产终点</span><span class="zw-nest-v">房贷逾期→法拍→失信是<b style="color:var(--zhu);">中产滑落的最终货币化</b>(↗ GY-08 Z2)。</span></div>
+      <div class="zw-nest-row"><span class="zw-nest-k">自雇结算</span><span class="zw-nest-v">个体户/货车司机把<b>市场风险背成个人债务</b>,本片是其结算终端(↗ GY-29/GY-27)。</span></div>
+      <div class="zw-nest-row"><span class="zw-nest-k">健康账单</span><span class="zw-nest-v">因病致贫致债——<b>两片在「风险货币化」处交汇</b>(↗ GY-15)。</span></div>
+    </div>
+
+    <div class="zw-art">
+      <h5><b>债务是所有风险的最终货币化形态</b>看一个社会有多少人陷入债务困境,就是看它的风险有多少没被兜住</h5>
+      <p>债务是所有风险的最终货币化形态——<b style="color:var(--zhu);">失业、断供、生意垮了、生了场大病,最后都可能变成同一个东西:还不上的账</b>。它是中产滑落的终点(↗ GY-08)、个体户崩溃的结算(↗ GY-29)、因病致贫的账单(↗ GY-15)的共同汇流处。看一个社会有多少人陷入债务困境,就是看它的风险有多少没有被任何保障兜住,而是直接压成了个人的负债。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="zw-xref">↗ GY-08 · 中产断供的债务终点</span>
+      <span class="zw-xref">↗ GY-29 · 个体户经营失败</span>
+      <span class="zw-xref">↗ GY-15 · 因病致贫致债</span>
+    </div>
+
+    <div class="zw-verdict">
+      <span class="zw-verdict-tag">Z3 判词</span>
+      债务是所有风险的最终货币化形态——失业、断供、生意垮了、生了场大病,最后都可能变成同一个东西:还不上的账。它是中产滑落的终点(↗ GY-08)、个体户崩溃的结算(↗ GY-29)、因病致贫的账单(↗ GY-15)的共同汇流处。<b style="color:var(--zhu);">看一个社会有多少人陷入债务困境,就是看它的风险有多少没有被任何保障兜住,而是直接压成了个人的负债。</b>
+      <span class="zw-xref">↗ Z4 · 以贷养贷与金融下沉</span>
+    </div>
+  </section>
+
+  <!-- ════ Z4 以贷养贷金融下沉 ════ -->
+  <section class="zw-panel" id="zw-p-z4">
+    <div class="zw-sec-head"><h2>Z4 · 以贷养贷与金融下沉:债务螺旋的制造</h2><span class="zw-sec-tag">未来收入提前贴现 · 风险留给借款人</span></div>
+    <p class="zw-lede">消费金融的下沉(花呗、借呗、网贷、信用卡分期)把信贷推向年轻人和低收入者,<b style="color:var(--zhu);">超前消费文化 + 高息 + 以贷养贷,制造了债务螺旋</b>;这是平台金融把「未来收入」提前贴现、把风险留给借款人的又一形态(↗ GY-14 平台逻辑 / GY-08 杠杆)。金融下沉给了所有人借钱的自由,却把还不起的风险,单独留给了最借不起的那些人。</p>
+
+    <h3 class="zw-h3">债务螺旋:从可得性到崩盘</h3>
+    <div class="zw-chain">
+      <div class="zw-chain-row v1"><span class="zw-chain-t">金融下沉</span><span class="zw-chain-v"><b>消费贷、网络小贷、信用卡分期渗透到年轻人和下沉市场</b> — 信贷可得性极大提高,门槛降低。</span></div>
+      <div class="zw-chain-row v1"><span class="zw-chain-t">超前消费</span><span class="zw-chain-v"><b style="color:var(--zhu);">超前消费文化 + 高息 + 多头借贷</b> — 把「想要」和「能买」之间那道墙拆了。</span></div>
+      <div class="zw-chain-row v2"><span class="zw-chain-t">以贷养贷</span><span class="zw-chain-v"><b>拆东墙补西墙 → 债务螺旋</b> — 借款人成了平台风险定价里永远在还利息的变量。</span></div>
+      <div class="zw-chain-row v2"><span class="zw-chain-t">崩盘</span><span class="zw-chain-v"><b style="color:var(--zhu);">螺旋一旦启动直到崩盘</b> — 最终沉淀为逾期与债务困境(↗ Z3)。</span></div>
+    </div>
+
+    <h3 class="zw-h3">平台金融的逻辑:未来收入的提前贴现</h3>
+    <div class="zw-dual">
+      <div class="zw-dual-a"><h6>借款人得到 · <b>借钱的自由</b></h6><span class="zw-dual-pole">每一次冲动都能立刻兑现</span><p>花呗/借呗等把消费信贷嵌入每一次支付——<b>每一次冲动都能立刻兑现</b>。</p></div>
+      <div class="zw-dual-mid">→</div>
+      <div class="zw-dual-b"><h6>平台留下 · <b>把风险转嫁</b></h6><span class="zw-dual-pole">把未来收入提前贴现</span><p><b style="color:var(--zhu);">把未来收入提前贴现,风险留给借款人</b>——与彩票化(↗ GY-14)同属平台把个体卷入的逻辑。</p></div>
+    </div>
+
+    <h3 class="zw-h3">年轻债务人群与监管整治</h3>
+    <div class="zw-rows">
+      <div class="zw-row"><span class="zw-row-k">负债青年</span><span class="zw-row-v">年轻人的网贷/消费贷困境——<b style="color:var(--zhu);">与剪刀差(↗ GY-03)、健康透支(↗ GY-23)并列,是青年困境的债务维度</b>。</span></div>
+      <div class="zw-row"><span class="zw-row-k">监管整治</span><span class="zw-row-v">网络小贷整顿、催收规范、利率上限、个人破产试点(深圳)——<b>制度在补救</b>。</span></div>
+      <div class="zw-row peak"><span class="zw-row-k">惯性犹存</span><span class="zw-row-v"><b style="color:var(--zhu);">金融下沉的惯性仍在</b>——可得性提高的另一面是脆弱人群被推向螺旋。</span></div>
+    </div>
+
+    <div class="zw-art">
+      <h5><b>把「想要」和「能买」之间的那道墙拆了</b>把还不起的风险,单独留给了最借不起的那些人</h5>
+      <p>消费金融把「想要」和「能买」之间的那道墙拆了——<b style="color:var(--zhu);">花呗借呗信用卡分期,让每一次冲动都能立刻兑现,代价是把未来的自己抵押出去</b>。以贷养贷的螺旋一旦启动,借款人就成了平台风险定价里那个永远在还利息的变量。金融下沉给了所有人借钱的自由,却把还不起的风险,单独留给了最借不起的那些人(↗ GY-14 平台逻辑 / ↗ Z3 网贷来源)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="zw-xref">↗ GY-14 · 平台金融的逻辑</span>
+      <span class="zw-xref">↗ GY-03 · 青年困境的债务维度</span>
+      <span class="zw-xref">↗ Z5 · 信用修复与个人破产</span>
+    </div>
+
+    <div class="zw-verdict">
+      <span class="zw-verdict-tag">Z4 判词</span>
+      消费金融把「想要」和「能买」之间的那道墙拆了——花呗借呗信用卡分期,让每一次冲动都能立刻兑现,代价是把未来的自己抵押出去。以贷养贷的螺旋一旦启动,借款人就成了平台风险定价里那个永远在还利息的变量。<b style="color:var(--zhu);">金融下沉给了所有人借钱的自由,却把还不起的风险,单独留给了最借不起的那些人。</b>
+      <span class="zw-xref">↗ Z5 · 信用修复与个人破产:出口的探索</span>
+    </div>
+  </section>
+
+  <!-- ════ Z5 信用修复与个人破产 ════ -->
+  <section class="zw-panel" id="zw-p-z5">
+    <div class="zw-sec-head"><h2>Z5 · 信用修复与个人破产:出口的探索</h2><span class="zw-sec-tag">从一旦失信永久受限 → 给失能者重生机会</span></div>
+    <p class="zw-lede">债务治理正从单纯惩戒转向「惩戒 + 修复 + 救济」——<b style="color:var(--zhu);">信用修复制度(2024 修复人数首超新增)、个人破产试点(深圳)为「诚实而不幸」的债务人提供出口</b>;这是从「一旦失信、永久受限」向「给失能者重生机会」的制度进化,但覆盖仍有限。债务治理最文明的进步,是承认有一种人「诚实而不幸」——他不是不想还,是真的还不起。</p>
+
+    <h3 class="zw-h3">出口探索:修复与破产两条通道</h3>
+    <div class="zw-rows">
+      <div class="zw-row peak"><span class="zw-row-k">信用修复</span><span class="zw-row-v"><b style="color:var(--zhu);">2024 通过信用修复回归市场 282.1 万人次(+35.4%),首超新增失信人数</b>——「标记」不再必然永久,修复通道在打开。</span></div>
+      <div class="zw-row"><span class="zw-row-k">个人破产</span><span class="zw-row-v">深圳个人破产条例(2021)等试点——<b>为「诚实而不幸」的债务人提供法律意义的「重生」</b>;是中国债务治理的重大制度探索。</span></div>
+      <div class="zw-row"><span class="zw-row-k">区分落地</span><span class="zw-row-v">最高法 2024 强调区分,对失能者倾向救济与修复(↗ Z1)——<b style="color:var(--zhu);">制度承认「还不起」不等于「老赖」</b>。</span></div>
+      <div class="zw-row"><span class="zw-row-k">出口有限</span><span class="zw-row-v">个人破产仅深圳等试点、信用修复有条件、衍生影响(已造成的污名、子女连带)难完全消除——<b>出口在打开,但远未覆盖所有债务困境者</b>。</span></div>
+    </div>
+
+    <h3 class="zw-h3">制度转身:从永世受限到一条活路</h3>
+    <div class="zw-dual">
+      <div class="zw-dual-b"><h6>旧逻辑 · <b>一次失信、永世受限</b></h6><span class="zw-dual-pole">标记必然永久</span><p>一旦失信、处处受限、永世不得翻身——<b style="color:var(--zhu);">标记一旦置位,几乎不可撤销</b>。</p></div>
+      <div class="zw-dual-mid">→</div>
+      <div class="zw-dual-a"><h6>新方向 · <b>给失能者一条活路</b></h6><span class="zw-dual-pole">修复 + 破产 + 救济</span><p><b style="color:var(--qing);">信用修复让标记不再永久,个人破产让重生有了法律入口</b>——转身已经开始,只是走得很慢、覆盖得很窄。</p></div>
+    </div>
+
+    <div class="zw-art">
+      <h5><b>承认有一种人「诚实而不幸」</b>制度早一年到达,就是早一年重新做人</h5>
+      <p>债务治理最文明的进步,是承认有一种人「诚实而不幸」——<b style="color:var(--zhu);">他不是不想还,是真的还不起</b>。信用修复让标记不再永久,个人破产让重生有了法律入口。这是从「一次失信、处处受限、永世不得翻身」向「给失能者一条活路」的转身。转身已经开始,只是还走得很慢、覆盖得很窄——而对一个被债务压住的人,制度早一年到达,就是早一年重新做人(↗ Z1 失信/失能 / ↗ GY-15 失能来源)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="zw-xref">↗ Z1 · 失信/失能区分的落地</span>
+      <span class="zw-xref">↗ GY-15 · 失能的健康来源</span>
+      <span class="zw-xref">↗ Z6 · 政治形态学</span>
+    </div>
+
+    <div class="zw-verdict">
+      <span class="zw-verdict-tag">Z5 判词</span>
+      债务治理最文明的进步,是承认有一种人「诚实而不幸」——他不是不想还,是真的还不起。信用修复让标记不再永久,个人破产让重生有了法律入口。这是从「一次失信、处处受限、永世不得翻身」向「给失能者一条活路」的转身。<b style="color:var(--zhu);">转身已经开始,只是还走得很慢、覆盖得很窄——而对一个被债务压住的人,制度早一年到达,就是早一年重新做人。</b>
+      <span class="zw-xref">↗ Z6 · 原子化的债务人与污名的重量</span>
+    </div>
+  </section>
+
+  <!-- ════ Z6 政治形态学 ════ -->
+  <section class="zw-panel" id="zw-p-z6">
+    <div class="zw-sec-head"><h2>Z6 · 政治形态学:原子化的债务人与污名的重量</h2><span class="zw-sec-tag">个人化归因 · 私力催收 · 几乎无集体行动</span></div>
+    <p class="zw-lede">债务人群高度原子化、去政治化——<b style="color:var(--zhu);">债务被视为个人失败(道德化)、「老赖」污名压制发声、催收的私力化使压力个体承受</b>;其表达是隐忍、逃避(跑路)、或极端个案,几乎无集体行动。债务的个人化归因,是这个议题去政治化的核心机制。债务是少数被彻底道德化的困境——一个人失业不全怪他,生病不怪他,但欠债,社会默认是他自己不争气。</p>
+
+    <h3 class="zw-h3">去政治化机制:个人化归因与污名</h3>
+    <div class="zw-rows">
+      <div class="zw-row"><span class="zw-row-k">个人化归因</span><span class="zw-row-v">债务被普遍归因为个人不理性/不努力/超前消费——<b style="color:var(--zhu);">结构性成因(金融下沉、失业、医疗、房价)被个人化、道德化</b>(↔ GY-23 健康 / GY-08 中产 自我归因的债务版)。</span></div>
+      <div class="zw-row peak"><span class="zw-row-k">「老赖」污名</span><span class="zw-row-v">失信名单的公示、「老赖」标签——<b style="color:var(--zhu);">污名压制发声,也使失能者蒙受不该有的羞耻</b>(↗ Z1 区分的现实意义)。</span></div>
+      <div class="zw-row"><span class="zw-row-k">催收私力化</span><span class="zw-row-v">暴力催收、电话轰炸、爆通讯录——<b>债务压力以私力催收的形式个体承受</b>;催收规范化在推进但乱象犹存。</span></div>
+      <div class="zw-row"><span class="zw-row-k">无组织无声音</span><span class="zw-row-v">债务人极度分散、羞于公开、各自挣扎——<b style="color:var(--zhu);">比多数人群更沉默</b>;表达多为隐忍、逃避或极端个案。</span></div>
+    </div>
+
+    <h3 class="zw-h3">退出轴的债务版:最不自愿的退出</h3>
+    <div class="zw-nest">
+      <div class="zw-nest-row"><span class="zw-nest-k">风险汇流</span><span class="zw-nest-v">债务人群是风险的最终汇流(↗ GY-08/GY-29/GY-27/GY-15)——<b>退出轴的债务版</b>。</span></div>
+      <div class="zw-nest-row"><span class="zw-nest-k">被动退出</span><span class="zw-nest-v">无力偿还 = 被动退出经济正常生活——<b style="color:var(--zhu);">「社会性死亡」是退出方式价目表里最不自愿的一种退出</b>。</span></div>
+      <div class="zw-nest-row"><span class="zw-nest-k">最难辩白</span><span class="zw-nest-v">最该被区分出来的「诚实而不幸」者,<b>恰恰最没有力气为自己辩白——他们连发声都觉得理亏</b>。</span></div>
+    </div>
+
+    <div class="zw-art">
+      <h5><b>债务是少数被彻底道德化的困境</b>最该被区分出来的失能者,恰恰最没有力气辩白</h5>
+      <p>债务是少数被彻底道德化的困境——<b style="color:var(--zhu);">一个人失业不全怪他,生病不怪他,但欠债,社会默认是他自己不争气</b>。这套个人化归因,把金融下沉、失业、医疗、房价这些结构性的账,全记到了借款人的品德上。于是债务人最沉默:他不仅要还钱,还要独自背负「老赖」的羞耻。而最该被区分出来的「诚实而不幸」者,恰恰最没有力气为自己辩白——他们连发声都觉得理亏(↗ Z1 失信/失能 / ↔ GY-23 自我归因)。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="zw-xref">↔ GY-23 · 自我归因的债务版</span>
+      <span class="zw-xref">↗ GY-08 · 中产自我归因</span>
+      <span class="zw-xref">↗ Z7 · 形态推演(三态)</span>
+    </div>
+
+    <div class="zw-verdict">
+      <span class="zw-verdict-tag">Z6 判词</span>
+      债务是少数被彻底道德化的困境——一个人失业不全怪他,生病不怪他,但欠债,社会默认是他自己不争气。这套个人化归因,把金融下沉、失业、医疗、房价这些结构性的账,全记到了借款人的品德上。于是债务人最沉默:他不仅要还钱,还要独自背负「老赖」的羞耻。<b style="color:var(--zhu);">而最该被区分出来的「诚实而不幸」者,恰恰最没有力气为自己辩白——他们连发声都觉得理亏。</b>
+      <span class="zw-xref">↗ Z7 · 形态推演(三态)</span>
+    </div>
+  </section>
+
+  <!-- ════ Z7 形态推演 ════ -->
+  <section class="zw-panel" id="zw-p-z7">
+    <div class="zw-sec-head"><h2>Z7 · 形态推演</h2><span class="zw-sec-tag">三态 · α 惩戒+修复并行 / β 债务困境扩大 / γ 信用社会双刃</span></div>
+    <p class="zw-lede">失信被执行人与债务人群的演化路径,按概率拆成三态——三态共享同一个起点(856 万尖端+更广债务光谱、权限的系统性降级、风险货币化的汇流终端、以贷养贷的金融下沉、修复与破产的出口探索),分岔点在于:<b style="color:var(--zhu);">经济波动与债务困境的规模、个人破产与信用修复的扩面速度、征信与社会权限挂钩的深度</b>。</p>
+
+    <div class="zw-form">
+      <h5>形态 α · 基准 · 惩戒+修复并行(概率最高)</h5>
+      <p>失信名单在惩戒+修复双机制下趋稳或微降、信用修复扩面、个人破产试点渐推;<b>债务困境随经济波动起伏</b>。象征性进步缓慢加压,但债务困境与连锁降权长期并存。概率最高(<b style="color:var(--zhu);">2024 名单首降已是信号</b>,↗ W-01/W-07)。</p>
+    </div>
+    <div class="zw-form" style="border-color:var(--zhu-dim); background:rgba(181,72,58,.08);">
+      <h5 style="color:var(--zhu);">形态 β · 压力 · 债务困境扩大</h5>
+      <p>若经济持续承压(失业、断供、个体出清 ↗ GY-08/GY-29),逾期与债务困境人群扩大——倒逼个人破产制度全国化、催收强监管、债务重组机制;<b style="color:var(--zhu);">标志:个人破产立法从试点走向全国、大规模债务纾困政策出台</b>(↗ W-03/W-04)。</p>
+    </div>
+    <div class="zw-form" style="border-color:var(--jin-dim); background:rgba(110,93,56,.10);">
+      <h5 style="color:var(--jin);">形态 γ · 长期 · 信用社会的双刃</h5>
+      <p>征信体系全面化、信用与更多社会权限挂钩——<b style="color:var(--jin);">信用治理深化既提升履约也放大「一处失信处处受限」的系统性风险</b>;信用修复与失信/失能区分的制度成熟度,决定这把双刃的朝向(↗ GY-02 数字治理 / ↗ W-08)。</p>
+    </div>
+
+    <div style="margin-top:14px;">
+      <span class="zw-xref">↗ W-03 · 个人破产进度</span>
+      <span class="zw-xref">↗ W-07 · 信用修复实效</span>
+      <span class="zw-xref">↗ W-08 · 信用社会扩展</span>
+    </div>
+
+    <div class="zw-verdict">
+      <span class="zw-verdict-tag">Z7 判词</span>
+      三态的分岔不在这个人群是否存在(它已由 856 万失信尖端、更广债务光谱、风险货币化的汇流结构性确立),<b>在经济波动与债务困境的规模、个人破产与信用修复的扩面速度、征信与社会权限挂钩的深度</b>。形态 α 是债务困境与连锁降权长期并存的渐进常态,形态 β 是债务困境从体感变成倒逼个人破产全国化的公共议题,形态 γ 是信用社会深化的双刃。<b style="color:var(--zhu);">它既是被打上标记、随之连锁冻结权限的账户,也是全光谱风险的最终货币化终端——这是同一群人的两面。</b>
+      <span class="zw-xref">↗ watch · 总判词与耦合修正</span>
+    </div>
+  </section>
+
+  <!-- ════ 合成 · 观测哨 ════ -->
+  <section class="zw-panel" id="zw-p-watch">
+    <div class="zw-sec-head"><h2>Z8 · 合成与观测哨</h2><span class="zw-sec-tag">被标记的账户 · 第三十子集 · 年度对账</span></div>
+
+    <div class="zw-verdict" style="margin-top:0; margin-bottom:34px;">
+      <span class="zw-verdict-tag">总判词 · 被标记的账户</span>
+      失信被执行人与债务人群是 China OS 里被打上标记、随之连锁冻结权限的账户——一次司法认定的违约,触发限高、出行、信贷、任职的系统性降权,构成数字治理时代一种新的社会性约束。<br><br>
+      <b style="color:var(--zhu);">这个人群是全光谱风险的最终货币化终端:失业、断供(↗ GY-08)、经营失败(↗ GY-29/GY-27)、因病致贫(↗ GY-15)最后都可能沉淀为同一个东西——还不上的账。它是退出方式价目表里最不自愿的一种退出(社会性降权 = 被动退出经济正常生活)。这个议题的全部良心,系于一个区分:失信(有能力拒不履行)与失能(确无能力)——前者该惩戒,后者该救济。856 万这个数字十年来首次下降、信用修复首超新增、个人破产开始试点,说明系统正从「一次失信、永世受限」向「给诚实而不幸者一条活路」转身。但债务被彻底道德化的现实仍在:社会默认欠债是个人不争气,于是把金融下沉、失业、医疗、房价的结构性账,全记到了借款人的品德上——而最该被区分出来、最值得救济的失能者,恰恰最没有力气为自己辩白。一个社会如何对待还不起钱的人,尤其如何区分「不想还」与「还不起」,是它文明程度的精确刻度。</b><br><br>
+      与全系列合观:GY-08 的中产断供在本片找到债务终点——房贷逾期→法拍→失信是中产滑落的最终货币化;GY-29 个体户裸跑崩溃(G2 无限责任)、GY-27 货车司机车贷压顶(H3)是债务人群的职业入口,自雇者把市场风险背成个人债务,本片是其结算终端;GY-15 因病致贫致债(Y6 裸奔层)是债务的健康来源,两片在「风险货币化」处交汇;GY-02 的数字治理(组件三)在本片找到典型样本——失信联合惩戒展示了数字治理的效率与边界风险,「一处失信处处受限」的正当性系于信用修复与失信/失能区分;GY-14 的平台逻辑在本片找到金融下沉版——花呗借呗把未来收入提前贴现,把风险留给借款人。这个账户还在被标记、被连锁降权,因此既是惩戒工具又是社会性约束;它被风险货币化与个人化归因持续挤压,因此一旦系统试图回答「如何对待还不起钱的人」,将直面这个最该被区分、却最没力气辩白的失能者底盘——而最该被救济的失能者,恰恰最没有力气为自己辩白。
+      <p class="zw-disclaimer top" style="margin-top:20px; margin-bottom:0;">注记(敏感度处理):全片以征信制度与债务治理框架处理,严守失信(有能力拒不履行)与失能(确无能力)的区分(最高法 2024 典型案例确立);不污名化债务人、不渲染个体困境,聚焦制度机制与信用修复。「负债 8 亿」类口径含正常负债,不等于债务困境人群;精确口径待权威年度数据回填,量级估算与精确口径严格区分。</p>
+    </div>
+
+    <h3 class="zw-h3">对 GY 系列的五条修正</h3>
+    <div class="zw-fix">
+      <h5><b>修正 · GY-08</b>中产滑落的债务出口</h5>
+      <p>中产断供(Z2)的债务终点由本片承接——<b style="color:var(--zhu);">房贷逾期→法拍→失信是中产滑落的最终货币化</b>;建议 GY-08↔GY-32 链接为「中产滑落的债务出口」。</p>
+    </div>
+    <div class="zw-fix">
+      <h5><b>修正 · GY-29/GY-27</b>债务人群的职业入口</h5>
+      <p>个体户裸跑崩溃(GY-29 G2 无限责任)、货车司机车贷压顶(GY-27 H3)是债务人群的职业入口——<b>自雇者把市场风险背成个人债务,本片是其结算终端</b>。</p>
+    </div>
+    <div class="zw-fix">
+      <h5><b>修正 · GY-15</b>债务的健康来源</h5>
+      <p>因病致贫致债(Y6 裸奔层)是债务的健康来源——<b style="color:var(--zhu);">医疗风险货币化为债务;两片在「风险货币化」处交汇</b>。</p>
+    </div>
+    <div class="zw-fix">
+      <h5><b>修正 · GY-02</b>数字治理的典型样本</h5>
+      <p>失信联合惩戒是数字治理(组件三)的典型样本——<b>「一处失信处处受限」展示了数字治理的效率与边界风险</b>;信用修复与失信/失能区分是其正当性的关键。</p>
+    </div>
+    <div class="zw-fix">
+      <h5><b>修正 · 母框架</b>退出轴的「被动/强制」端</h5>
+      <p>债务是退出方式价目表的「被动退出」极——<b style="color:var(--zhu);">与离岸(↗ GY-16 主动物理退出)、不婚(↗ GY-19 主动建制退出)、躺平(↗ GY-03)相对,债务困境是非自愿的社会性降权</b>;建议作为退出轴的「被动/强制」端补全。</p>
+    </div>
+
+    <div class="zw-watch-intro">
+      <p>这个人群的处境变动,关键看三组指针:规模与区分(失信名单 / 失信失能区分落地 / 逾期与债务困境)、出口与抑制(个人破产 / 金融下沉与监管 / 信用修复实效)、机制与边界(联合惩戒边界 / 信用社会扩展)。逐项标注状态、记录证据,年度与 GY 系列同步对账。状态与备注自动保存在本机。口径敏感者标「约」,待权威年度数据回填,严守失信/失能区分。</p>
+      <span class="zw-storage-state" id="zw-storage-state"></span>
+    </div>
+
+    <div class="zw-watch" id="zw-watch-list">
+      <div class="zw-watch-item" data-key="w1">
+        <div><h5><b>W-01</b>失信被执行人规模</h5><p class="zw-watch-desc">名单人数、新增 vs 修复——<b>惩戒+修复机制的总仪表。</b></p></div>
+        <div class="zw-watch-ctrl"><div class="zw-status-row"><button class="zw-status-btn" data-status="good">向好</button><button class="zw-status-btn" data-status="flat">中性</button><button class="zw-status-btn" data-status="bad">恶化</button></div><textarea class="zw-watch-note" placeholder="证据与备注…"></textarea><div class="zw-watch-stamp"></div></div>
+      </div>
+      <div class="zw-watch-item" data-key="w2">
+        <div><h5><b>W-02</b>失信/失能区分落地</h5><p class="zw-watch-desc">救济与修复对失能者的覆盖——<b>Z1 法理基石的实践。</b></p></div>
+        <div class="zw-watch-ctrl"><div class="zw-status-row"><button class="zw-status-btn" data-status="good">向好</button><button class="zw-status-btn" data-status="flat">中性</button><button class="zw-status-btn" data-status="bad">恶化</button></div><textarea class="zw-watch-note" placeholder="证据与备注…"></textarea><div class="zw-watch-stamp"></div></div>
+      </div>
+      <div class="zw-watch-item" data-key="w3">
+        <div><h5><b>W-03</b>个人破产</h5><p class="zw-watch-desc">试点扩面、立法进展、适用案例——<b>Z5 出口进度。</b></p></div>
+        <div class="zw-watch-ctrl"><div class="zw-status-row"><button class="zw-status-btn" data-status="good">向好</button><button class="zw-status-btn" data-status="flat">中性</button><button class="zw-status-btn" data-status="bad">恶化</button></div><textarea class="zw-watch-note" placeholder="证据与备注…"></textarea><div class="zw-watch-stamp"></div></div>
+      </div>
+      <div class="zw-watch-item" data-key="w4">
+        <div><h5><b>W-04</b>逾期与债务困境</h5><p class="zw-watch-desc">信用卡/房贷/网贷逾期率、债务困境人群——<b>Z3 风险货币化读数。</b></p></div>
+        <div class="zw-watch-ctrl"><div class="zw-status-row"><button class="zw-status-btn" data-status="good">向好</button><button class="zw-status-btn" data-status="flat">中性</button><button class="zw-status-btn" data-status="bad">恶化</button></div><textarea class="zw-watch-note" placeholder="证据与备注…"></textarea><div class="zw-watch-stamp"></div></div>
+      </div>
+      <div class="zw-watch-item" data-key="w5">
+        <div><h5><b>W-05</b>金融下沉与监管</h5><p class="zw-watch-desc">网络小贷整顿、利率上限、催收规范——<b>Z4 螺旋制造的抑制。</b></p></div>
+        <div class="zw-watch-ctrl"><div class="zw-status-row"><button class="zw-status-btn" data-status="good">向好</button><button class="zw-status-btn" data-status="flat">中性</button><button class="zw-status-btn" data-status="bad">恶化</button></div><textarea class="zw-watch-note" placeholder="证据与备注…"></textarea><div class="zw-watch-stamp"></div></div>
+      </div>
+      <div class="zw-watch-item" data-key="w6">
+        <div><h5><b>W-06</b>联合惩戒边界</h5><p class="zw-watch-desc">限高衍生影响(子女/任职)的争议与规范——<b>Z2 边界守护。</b></p></div>
+        <div class="zw-watch-ctrl"><div class="zw-status-row"><button class="zw-status-btn" data-status="good">向好</button><button class="zw-status-btn" data-status="flat">中性</button><button class="zw-status-btn" data-status="bad">恶化</button></div><textarea class="zw-watch-note" placeholder="证据与备注…"></textarea><div class="zw-watch-stamp"></div></div>
+      </div>
+      <div class="zw-watch-item" data-key="w7">
+        <div><h5><b>W-07</b>信用修复实效</h5><p class="zw-watch-desc">修复人数、修复后再融资/再就业——<b>「重生」的真实性。</b></p></div>
+        <div class="zw-watch-ctrl"><div class="zw-status-row"><button class="zw-status-btn" data-status="good">向好</button><button class="zw-status-btn" data-status="flat">中性</button><button class="zw-status-btn" data-status="bad">恶化</button></div><textarea class="zw-watch-note" placeholder="证据与备注…"></textarea><div class="zw-watch-stamp"></div></div>
+      </div>
+      <div class="zw-watch-item" data-key="w8">
+        <div><h5><b>W-08</b>信用社会扩展</h5><p class="zw-watch-desc">征信与社会权限挂钩的范围——<b>形态γ 双刃朝向(接 GY-02)。</b></p></div>
+        <div class="zw-watch-ctrl"><div class="zw-status-row"><button class="zw-status-btn" data-status="good">向好</button><button class="zw-status-btn" data-status="flat">中性</button><button class="zw-status-btn" data-status="bad">恶化</button></div><textarea class="zw-watch-note" placeholder="证据与备注…"></textarea><div class="zw-watch-stamp"></div></div>
+      </div>
+    </div>
+
+    <h3 class="zw-h3">章节规划 · 登记表</h3>
+    <div class="zw-plan">
+      <div class="zw-plan-row"><span class="zw-plan-k">CH-01</span><span class="zw-plan-v"><b>失信 vs 失能</b> — 最高法区分的法理与实践、连锁惩戒的机制与边界。</span><span class="zw-plan-tag">待建</span></div>
+      <div class="zw-plan-row"><span class="zw-plan-k">CH-02</span><span class="zw-plan-v"><b>风险货币化</b> — 债务作为失业/断供/经营/医疗风险的汇流终端,接 GY-08/GY-29/GY-15。</span><span class="zw-plan-tag">待建</span></div>
+      <div class="zw-plan-row"><span class="zw-plan-k">CH-03</span><span class="zw-plan-v"><b>重生的入口</b> — 信用修复与个人破产试点的制度进化与覆盖缺口。</span><span class="zw-plan-tag">待建</span></div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="zw-foot">
+    <p>方法论:失信被执行人与债务人群以「被标记的账户(Blacklisted Account)」模型刻画——债务人尤其失信被执行人是 China OS 里被打上 flag、随之连锁冻结多项权限的账户一次司法认定的违约触发一连串 permission revoke 限高出行信贷任职招投标乃至衍生约束签名图一个账户被打上红色失信标记向下级联撤销一串权限令牌高铁飞机禁止高消费禁止新增信贷禁止部分任职禁止限高令旁边一条信用修复通道显示部分账户解除标记 282 万加 35.4 同时区分两类账户失信有能力拒不履行与失能确无能力底注 856 万被标记账户更广债务人群信用卡房贷网贷为逾期重灾区权限的连锁冻结。核心命题:约 856 万失信被执行人加更广泛的债务逾期人群一旦被标记失信系统会连锁撤销一系列权限高消费高铁飞机信贷部分任职形成一种权限的系统性降级债务正在从经济问题变成一种新的身份标记与社会性约束机制失信惩戒是数字治理时代最锋利的工具之一不必关押不必没收只要在系统里打一个标记一个人的高铁信贷消费任职就一起冻结它对有钱不还的老赖是正义但它的效率越高失信与失能的边界就越要守得住因为同一套连锁降权砸在拒不履行者身上是公道砸在确实还不起的人身上是深渊债务是所有风险的最终货币化形态失业断供生意垮了生了场大病最后都可能变成同一个东西还不上的账它是中产滑落的终点个体户崩溃的结算因病致贫的账单的共同汇流处消费金融把想要和能买之间的那道墙拆了让每一次冲动都能立刻兑现代价是把未来的自己抵押出去以贷养贷的螺旋一旦启动借款人就成了平台风险定价里那个永远在还利息的变量金融下沉给了所有人借钱的自由却把还不起的风险单独留给了最借不起的那些人债务治理最文明的进步是承认有一种人诚实而不幸他不是不想还是真的还不起信用修复让标记不再永久个人破产让重生有了法律入口债务是少数被彻底道德化的困境社会默认欠债是个人不争气于是把金融下沉失业医疗房价这些结构性的账全记到了借款人的品德上而最该被区分出来最值得救济的失能者恰恰最没有力气为自己辩白一个社会如何对待还不起钱的人尤其如何区分不想还与还不起是它文明程度的精确刻度形态推演三态 α 基准惩戒加修复并行失信名单趋稳或微降信用修复扩面个人破产试点渐推概率最高 2024 名单首降已是信号 β 压力债务困境扩大若经济持续承压逾期与债务困境人群扩大倒逼个人破产全国化催收强监管债务重组 γ 长期信用社会的双刃征信全面化信用与更多社会权限挂钩既提升履约也放大一处失信处处受限的系统性风险。数据锚定(失信大数据搜狐腾讯 2025-05 加最高法典型案例加个人贷款逾期报道加训练知识基线,待权威年度数据回填):失信被执行人约 856.36 万 2025.5 年 2024 新纳入 245.7 万人次同比下降 23.4 信用修复 282.1 万人次增长 35.4 名单十年来首次下降信用卡房贷网贷为逾期重灾区个人不良贷款逾期人数与逾期率 2024 上升最高法 2024 区分失信被执行人与失能被执行人典型案例深圳个人破产条例 2021 试点。注:全片以征信制度与债务治理框架处理,严守失信有能力拒不履行与失能确无能力的区分,不污名化债务人不渲染个体困境聚焦制度机制与信用修复;负债 8 亿类口径含正常负债不等于债务困境人群本片聚焦后者拒绝口径恐慌;失信精确规模与最新逾期数据因检索通道不稳未在线核验数字标注量级并留观测哨回填。作为人群画像分层第三十子集,与 GY-08 中产(中产滑落的债务出口房贷逾期到法拍到失信是中产滑落的最终货币化)、GY-29 加 GY-27 自雇(债务人群的职业入口个体户裸跑崩溃货车司机车贷压顶自雇者把市场风险背成个人债务本片是其结算终端)、GY-15 因病致贫(债务的健康来源医疗风险货币化为债务两片在风险货币化处交汇)、GY-02 数字治理(失信联合惩戒是数字治理组件三的典型样本一处失信处处受限展示数字治理的效率与边界风险)、母框架退出轴(债务是退出方式价目表的被动退出极非自愿的社会性降权)等耦合。来源:失信被执行人大数据(搜狐、腾讯 2025-05)、最高法失信/失能区分典型案例、个人贷款逾期报道、训练知识基线。</p>
+    <div class="zw-foot-meta">
+      ChinaOS · GY-32 · v1.0.0<br>
+      生成 2026-06 丙午年<br>
+      人群画像 第三十子集 · 关联模块 → GY-08/15/27/29/02<br>
+      注记:征信制度框架 · 严守失信/失能区分 · 不污名化债务人
+    </div>
+  </footer>
+
+</div>
