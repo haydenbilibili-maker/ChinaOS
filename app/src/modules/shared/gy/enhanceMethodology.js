@@ -32,7 +32,69 @@ const APPENDIX_MARKERS = [
 
 const LONG_PARA_THRESHOLD = 400;
 
+// 无标点长句软断点参数：中国人群分析素材常为长 run-on，需要可读化软断句。
+const SEG_MAX = 50;   // 单句软上限
+const SEG_MIN = 20;   // 软断点最小步长，避免碎句
+const PARA_MAX = 150; // 引导段/散文每段合并上限
+const PREFER_AFTER = '」』）)。.；;，,、！!？?％%‰万亿千百户元岁人次倍年月日号期家场';
+const TOKEN_CH = /[0-9A-Za-z.+%]/;
+
 const TIMELINE_RE = /^(\d{4}(?:-\d{2})?)\s+(.+)$/;
+
+/**
+ * 无标点（或少标点）长句软断句：在 [SEG_MIN, SEG_MAX] 窗口内寻找安全断点，
+ * 不切断「」括注、不切断拉丁词/数字 token，优先在 PREFER_AFTER 字符之后断开。
+ * @param {string} text @param {number} max
+ * @returns {string[]}
+ */
+function softWrap(text, max = SEG_MAX) {
+  const s = (text || '').trim();
+  if (s.length <= max) return s ? [s] : [];
+  const segs = [];
+  let start = 0;
+  while (start < s.length) {
+    if (s.length - start <= max) {
+      segs.push(s.slice(start).trim());
+      break;
+    }
+    const hardLimit = Math.min(s.length, start + max);
+    let depth = 0;
+    let prefer = -1; // 优先断点（落在 PREFER_AFTER 之后）
+    let ok = -1;     // 可用断点（不切断 token）
+    for (let j = start + 1; j <= hardLimit; j += 1) {
+      const ch = s[j];
+      if (ch === '「' || ch === '『' || ch === '（' || ch === '(') depth += 1;
+      else if (ch === '」' || ch === '』' || ch === '）' || ch === ')') depth = Math.max(0, depth - 1);
+      if (depth !== 0) continue;
+      if (j - start < SEG_MIN) continue;
+      if (TOKEN_CH.test(s[j - 1] || '') && TOKEN_CH.test(s[j] || '')) continue; // 勿切断词/数
+      ok = j;
+      if (PREFER_AFTER.includes(s[j - 1] || '')) prefer = j;
+    }
+    const cut = prefer > start ? prefer : ok > start ? ok : hardLimit;
+    segs.push(s.slice(start, cut).trim());
+    start = cut;
+  }
+  return segs.filter(Boolean);
+}
+
+/**
+ * 统一断句：先按硬标点断句，过长片段再软断。供论点列表 / 散文 / 引导段共用。
+ * @param {string} text
+ * @returns {string[]}
+ */
+function splitSentences(text) {
+  const s = (text || '').trim();
+  if (!s) return [];
+  const hard = s.split(/(?<=[。！？；;])\s*/).map((x) => x.trim()).filter(Boolean);
+  const base = hard.length ? hard : [s];
+  const out = [];
+  base.forEach((piece) => {
+    if (piece.length <= SEG_MAX + 12) out.push(piece);
+    else out.push(...softWrap(piece));
+  });
+  return out;
+}
 
 /** @param {string} text */
 function stripMethodologyPrefix(text) {
@@ -133,7 +195,8 @@ function extractPullQuote(intro) {
       .concat(intro.slice(dashMatch.index + dashMatch[0].length))
       .replace(/^——\s*/, '')
       .trim();
-    if (quote.length >= 8) return { lead, quote };
+    // 仅当题眼足够短促才作为引言金句；过长的 run-on 不吞成巨型斜体块，回落为引导段。
+    if (quote.length >= 8 && quote.length <= 52) return { lead, quote };
   }
 
   const termMatch = intro.match(/([^。；;]*「[^」]+」[^。；;]*[。；;])/);
@@ -187,33 +250,27 @@ function linkifyGy(text) {
  */
 function splitLongParagraphs(text) {
   if (!text?.trim()) return [];
-  const trimmed = text.trim();
-  if (trimmed.length <= LONG_PARA_THRESHOLD) return [trimmed];
+  const segs = splitSentences(text);
+  if (segs.length <= 1) return segs.length ? segs : [text.trim()];
 
-  const parts = trimmed
-    .split(/(?<=[。；;])\s*/)
-    .map((s) => s.trim())
-    .filter(Boolean);
-
-  if (parts.length <= 1) return [trimmed];
-
+  // 软断句合并成 ≤ PARA_MAX 的呼吸段落，长 run-on 不再堆成文字墙。
   /** @type {string[]} */
   const merged = [];
   let buf = '';
-  parts.forEach((part) => {
+  segs.forEach((seg) => {
     if (!buf) {
-      buf = part;
+      buf = seg;
       return;
     }
-    if (buf.length + part.length <= LONG_PARA_THRESHOLD) {
-      buf = `${buf}${part}`;
+    if (buf.length + seg.length <= PARA_MAX) {
+      buf = `${buf}${seg}`;
       return;
     }
     merged.push(buf);
-    buf = part;
+    buf = seg;
   });
   if (buf) merged.push(buf);
-  return merged.length ? merged : [trimmed];
+  return merged.length ? merged : [text.trim()];
 }
 
 /** @param {string} text */
@@ -230,10 +287,7 @@ function formatBody(text) {
  * @param {string} text
  */
 function formatPoints(text) {
-  const pts = text
-    .split(/(?<=[。；;])\s*/)
-    .map((s) => s.trim())
-    .filter(Boolean);
+  const pts = splitSentences(text);
   if (pts.length < 2) return `<div class="gy-method-prose">${formatBody(text)}</div>`;
   return `<ol class="gy-method-points">${pts
     .map(
