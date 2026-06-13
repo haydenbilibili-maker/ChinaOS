@@ -1,6 +1,6 @@
 /**
- * 人群切片方法论页脚 · DOM 增强器 v3
- * 真网格叙事/侧栏 · 章节单面板切换 · 子卡片分区
+ * 人群切片方法论页脚 · DOM 增强器 v4
+ * 核心命题卡片 · 长段自动拆段 · 均衡附录 2×2 网格
  */
 import { GY_MODULES, gyModulePath, normalizeGyNum, parseGyRefList } from '../../../lib/gy/registry.js';
 
@@ -23,11 +23,13 @@ const APPENDIX_RE =
 const MOBILE_MQ = '(max-width: 768px)';
 
 const APPENDIX_MARKERS = [
-  { key: 'anchors', label: '数据锚点', icon: '◇' },
-  { key: 'note', label: '注记', icon: '※' },
-  { key: 'coupling', label: '模块耦合', icon: '↔' },
-  { key: 'sources', label: '来源', icon: '◎' },
+  { key: 'anchors', label: '数据锚点', icon: '' },
+  { key: 'note', label: '注记', icon: '' },
+  { key: 'coupling', label: '模块耦合', icon: '' },
+  { key: 'sources', label: '来源', icon: '' },
 ];
+
+const LONG_PARA_THRESHOLD = 400;
 
 const TIMELINE_RE = /^(\d{4}(?:-\d{2})?)\s+(.+)$/;
 
@@ -177,14 +179,47 @@ function linkifyGy(text) {
   return out;
 }
 
+/**
+ * 长段按句界拆成多段，避免核心命题等出现「文字墙」。
+ * @param {string} text
+ * @returns {string[]}
+ */
+function splitLongParagraphs(text) {
+  if (!text?.trim()) return [];
+  const trimmed = text.trim();
+  if (trimmed.length <= LONG_PARA_THRESHOLD) return [trimmed];
+
+  const parts = trimmed
+    .split(/(?<=[。；;])\s*/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  if (parts.length <= 1) return [trimmed];
+
+  /** @type {string[]} */
+  const merged = [];
+  let buf = '';
+  parts.forEach((part) => {
+    if (!buf) {
+      buf = part;
+      return;
+    }
+    if (buf.length + part.length <= LONG_PARA_THRESHOLD) {
+      buf = `${buf}${part}`;
+      return;
+    }
+    merged.push(buf);
+    buf = part;
+  });
+  if (buf) merged.push(buf);
+  return merged.length ? merged : [trimmed];
+}
+
 /** @param {string} text */
 function formatBody(text) {
   if (!text) return '';
-  const linked = linkifyGy(highlightTerms(text));
-  return linked
-    .split(/(?<=[。；;])\s*/)
-    .filter(Boolean)
-    .map((p) => `<p>${p}</p>`)
+  return splitLongParagraphs(text)
+    .map((p) => `<p>${linkifyGy(highlightTerms(p))}</p>`)
     .join('');
 }
 
@@ -205,6 +240,15 @@ function formatPoints(text) {
         `<li class="gy-method-point${i === 0 ? ' is-lead' : ''}"><span class="gy-method-point-no" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><span class="gy-method-point-text">${linkifyGy(highlightTerms(p))}</span></li>`,
     )
     .join('')}</ol>`;
+}
+
+/**
+ * 核心命题专用容器：题眉 + 正文，与附录区视觉分隔。
+ * @param {string} eyebrowHtml
+ * @param {string} bodyHtml
+ */
+function wrapCoreCard(eyebrowHtml, bodyHtml) {
+  return `<section class="gy-method-core-card" aria-label="核心命题">${eyebrowHtml}<div class="gy-method-core-body">${bodyHtml}</div></section>`;
 }
 
 /** @param {string} text */
@@ -334,20 +378,34 @@ function buildAppendixGrid(blocks) {
   const keys = blocks.map((b) => b.key);
   const hasNote = keys.includes('note');
   const hasSources = keys.includes('sources');
-  // 仅当整组就是「注记 + 来源」两块时才半分；多块时按各自 span 排布
   const shortPair = blocks.length === 2 && hasNote && hasSources;
+  const classicQuad =
+    blocks.length === 4 &&
+    keys.includes('anchors') &&
+    keys.includes('note') &&
+    keys.includes('coupling') &&
+    keys.includes('sources');
+  const gridClass = [
+    shortPair ? 'gy-method-appendix-grid--paired' : '',
+    classicQuad ? 'gy-method-appendix-grid--quad' : '',
+    blocks.length === 1 ? 'gy-method-appendix-grid--solo' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
-  return `<div class="gy-method-appendix-zone"><div class="gy-method-appendix-grid${shortPair ? ' gy-method-appendix-grid--paired' : ''}">${blocks
+  return `<div class="gy-method-appendix-zone"><div class="gy-method-appendix-grid${gridClass ? ` ${gridClass}` : ''}">${blocks
     .map((block) => {
       const bodyHtml = formatAppendixBody(block.body, block.key);
       const spanClass =
-        block.key === 'anchors' && hasNote ? ' gy-method-appendix-cell--wide' :
-        block.key === 'coupling' ? ' gy-method-appendix-cell--full' :
-        block.key === 'note' || block.key === 'sources' ? ' gy-method-appendix-cell--half' : '';
+        block.key === 'coupling' && !classicQuad ? ' gy-method-appendix-cell--full' :
+        block.key === 'anchors' && hasNote && !classicQuad ? ' gy-method-appendix-cell--wide' : '';
+      const iconHtml = block.icon
+        ? `<span class="gy-method-appendix-icon" aria-hidden="true">${block.icon}</span>`
+        : '';
       return `
         <section class="gy-method-appendix-cell gy-method-appendix-cell--${block.key}${spanClass}">
           <h4 class="gy-method-appendix-label">
-            <span class="gy-method-appendix-icon" aria-hidden="true">${block.icon}</span>
+            ${iconHtml}
             ${block.label}
           </h4>
           <div class="gy-method-appendix-body">${bodyHtml}</div>
@@ -508,7 +566,6 @@ function buildMethodologyPanel(footer, prefix) {
   const chipsHtml = useNamedFilter ? buildSectionChips(sections) : '';
 
   let narrativeBody = '';
-  let coreEyebrow = '';
   if (usePhaseTabs) {
     narrativeBody = `<div class="gy-method-panels">${buildSectionPanels(sections, false)}</div>`;
   } else if (useNamedFilter) {
@@ -516,10 +573,13 @@ function buildMethodologyPanel(footer, prefix) {
   } else {
     const soloBody = sections[0]?.body || '';
     const soloTitle = sections[0]?.title;
+    const panelHtml = `<div class="gy-method-panels"><div class="gy-method-panel gy-method-panel--solo is-active">${formatPoints(soloBody)}</div></div>`;
     if (soloTitle && soloTitle !== '方法论' && soloTitle !== '全文') {
-      coreEyebrow = `<div class="gy-method-core-eyebrow"><span class="gy-method-core-tick" aria-hidden="true"></span>${soloTitle}</div>`;
+      const coreEyebrow = `<div class="gy-method-core-eyebrow"><span class="gy-method-core-tick" aria-hidden="true"></span>${soloTitle}</div>`;
+      narrativeBody = wrapCoreCard(coreEyebrow, panelHtml);
+    } else {
+      narrativeBody = panelHtml;
     }
-    narrativeBody = `<div class="gy-method-panels"><div class="gy-method-panel gy-method-panel--solo is-active">${formatPoints(soloBody)}</div></div>`;
   }
 
   // 模型论点（tagline）提升为题眼，置于头部之下，不再做孤立的居中引用块
@@ -531,7 +591,7 @@ function buildMethodologyPanel(footer, prefix) {
 
   const isMobile = typeof window !== 'undefined' && window.matchMedia(MOBILE_MQ).matches;
 
-  footer.classList.add('gy-method', 'is-enhanced', 'gy-method--v3');
+  footer.classList.add('gy-method', 'is-enhanced', 'gy-method--v4');
   footer.innerHTML = `
     <div class="gy-method-card">
       <header class="gy-method-head">
@@ -556,7 +616,6 @@ function buildMethodologyPanel(footer, prefix) {
           ${leadHtml}
           ${tabsHtml}
           ${chipsHtml}
-          ${coreEyebrow}
           <div class="gy-method-narrative">
             ${narrativeBody}
           </div>
