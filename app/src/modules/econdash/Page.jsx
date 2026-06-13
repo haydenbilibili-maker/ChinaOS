@@ -9,6 +9,7 @@ import {
 } from './econData.js';
 import SectionDeflation from './SectionDeflation.jsx';
 import SectionDivergence from './SectionDivergence.jsx';
+import SectionCatalog from './SectionCatalog.jsx';
 
 // ============================================================================
 // 经济大盘 · 全景与实时监测
@@ -534,6 +535,9 @@ export default function Page({ embedded = false }) {
           // 信号灯仅为领先信号示意，非官方景气判断 —— 公开数据派生 · 非预测
         </p>
       </Card>
+
+      {/* 01–10 共享宏观骨架 · 指标目录 */}
+      <div className="mb-6"><SectionCatalog /></div>
 
       {/* ★ 背离监测 · 叙事×现实 */}
       <div className="mb-6"><SectionDivergence /></div>
