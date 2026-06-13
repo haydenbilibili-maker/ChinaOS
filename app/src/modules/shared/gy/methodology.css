@@ -1,4 +1,4 @@
-/* 人群切片方法论页脚 · 共享布局（GY-03–16） */
+/* 人群切片方法论页脚 · v2 共享布局（GY-03–16 + YS） */
 
 #gy-app .gy-method,
 #ys-app .gy-method,
@@ -16,39 +16,39 @@
 #lp-app .gy-method,
 #yb-app .gy-method,
 #la-app .gy-method {
-  margin-top: 66px;
-  border-top: 1px solid var(--hairline);
-  padding-top: 28px;
-}
-
-#gy-app .gy-method.is-enhanced,
-#ys-app .gy-method.is-enhanced,
-#qn-app .gy-method.is-enhanced,
-#xs-app .gy-method.is-enhanced,
-#lg-app .gy-method.is-enhanced,
-#nm-app .gy-method.is-enhanced,
-#tz-app .gy-method.is-enhanced,
-#zc-app .gy-method.is-enhanced,
-#ln-app .gy-method.is-enhanced,
-#tj-app .gy-method.is-enhanced,
-#zx-app .gy-method.is-enhanced,
-#ty-app .gy-method.is-enhanced,
-#ym-app .gy-method.is-enhanced,
-#lp-app .gy-method.is-enhanced,
-#yb-app .gy-method.is-enhanced,
-#la-app .gy-method.is-enhanced {
+  margin-top: 56px;
+  padding: 0;
+  border: none;
   display: block;
 }
 
-.gy-method-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(200px, 248px);
-  gap: 24px 36px;
-  align-items: start;
+/* ── 玻璃容器 ── */
+.gy-method-card {
+  position: relative;
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 28px 32px 32px;
+  border: 1px solid var(--hairline);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--xuan-raise) 72%, transparent);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--xuanzhi) 4%, transparent);
 }
 
-.gy-method-main {
-  min-width: 0;
+.gy-method-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 24px;
+  right: 24px;
+  height: 2px;
+  border-radius: 0 0 2px 2px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--qing) 70%, transparent),
+    color-mix(in srgb, var(--jin) 55%, transparent),
+    color-mix(in srgb, var(--qing) 40%, transparent)
+  );
 }
 
 /* ── 标题行 ── */
@@ -57,7 +57,9 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--hairline);
 }
 
 .gy-method-head-left {
@@ -68,12 +70,20 @@
   min-width: 0;
 }
 
-.gy-method-title {
-  font-family: var(--serif);
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  color: var(--xuanzhi);
+.gy-method-head-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.gy-method-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--xuanzhi-mute);
 }
 
 .gy-method-badge {
@@ -81,7 +91,7 @@
   align-items: baseline;
   flex-wrap: wrap;
   gap: 5px 8px;
-  padding: 3px 11px;
+  padding: 4px 12px;
   border: 1px solid color-mix(in srgb, var(--qing) 28%, transparent);
   border-radius: 999px;
   background: color-mix(in srgb, var(--qing) 10%, transparent);
@@ -105,6 +115,14 @@
   color: var(--xuanzhi-mute);
 }
 
+.gy-method-head-meta {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--xuanzhi-mute);
+  white-space: nowrap;
+}
+
 .gy-method-toggle {
   flex-shrink: 0;
   display: inline-flex;
@@ -113,7 +131,7 @@
   padding: 6px 13px;
   border: 1px solid var(--hairline);
   border-radius: 8px;
-  background: var(--xuan-raise);
+  background: color-mix(in srgb, var(--xuan) 60%, transparent);
   color: var(--xuanzhi-dim);
   font-family: var(--sans);
   font-size: 11px;
@@ -123,10 +141,12 @@
 }
 
 .gy-method-toggle-icon {
-  font-family: var(--mono);
-  font-size: 12px;
-  line-height: 1;
-  opacity: 0.7;
+  transition: transform 0.3s ease;
+  opacity: 0.65;
+}
+
+.gy-method-collapsible.is-collapsed .gy-method-toggle-icon {
+  transform: rotate(-90deg);
 }
 
 .gy-method-toggle:hover {
@@ -135,65 +155,168 @@
   background: color-mix(in srgb, var(--qing) 8%, var(--xuan-raise));
 }
 
-/* ── 正文区 ── */
-.gy-method-body {
-  overflow: hidden;
-  transition: max-height 0.35s ease, opacity 0.25s ease;
+/* ── 折叠动画 ── */
+.gy-method-collapsible {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.38s ease, opacity 0.28s ease;
+  opacity: 1;
 }
 
-.gy-method-body.is-collapsed {
-  max-height: 0;
+.gy-method-collapsible.is-collapsed {
+  grid-template-rows: 0fr;
   opacity: 0;
   pointer-events: none;
 }
 
-.gy-method-body:not(.is-collapsed) {
-  max-height: none;
-  opacity: 1;
+.gy-method-collapsible-inner {
+  overflow: hidden;
+  min-height: 0;
 }
 
-.gy-method-intro,
+/* ── 主内容区 8+4 网格 ── */
+.gy-method-zones {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(180px, 1fr);
+  gap: 28px 36px;
+  align-items: start;
+}
+
+.gy-method-narrative {
+  min-width: 0;
+}
+
+/* ── 引导段 ── */
+.gy-method-lead {
+  margin-bottom: 18px;
+  font-family: var(--sans);
+  font-size: 14.5px;
+  line-height: 1.85;
+  color: var(--xuanzhi);
+  letter-spacing: 0.015em;
+}
+
+.gy-method-lead p {
+  margin-bottom: 0.65em;
+}
+
+.gy-method-lead p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── 章节芯片行 ── */
+.gy-method-section-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 20px;
+  padding-bottom: 4px;
+}
+
+.gy-method-sec-chip {
+  flex-shrink: 0;
+  padding: 5px 12px;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--xuanzhi-mute);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  line-height: 1.35;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.gy-method-sec-chip:hover,
+.gy-method-sec-chip.is-active {
+  border-color: color-mix(in srgb, var(--qing) 50%, transparent);
+  color: var(--qing);
+  background: color-mix(in srgb, var(--qing) 10%, transparent);
+}
+
+/* ── 堆叠章节 ── */
+.gy-method-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.gy-method-sec {
+  scroll-margin-top: 24px;
+}
+
+.gy-method-sec-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--xuanzhi-mute);
+}
+
+.gy-method-sec-icon {
+  font-size: 8px;
+  color: var(--qing);
+  opacity: 0.7;
+}
+
+.gy-method-sec-body,
 .gy-method-panel,
 .gy-method-appendix-body {
   font-family: var(--sans);
   font-size: 13.5px;
-  line-height: 1.8;
+  line-height: 1.85;
   color: var(--xuanzhi-dim);
   letter-spacing: 0.015em;
-  max-width: 68ch;
 }
 
-.gy-method-intro {
-  margin-bottom: 18px;
-  padding-bottom: 16px;
-  border-bottom: 1px dashed var(--hairline);
-  color: var(--xuanzhi);
-  line-height: 1.82;
-}
-
-.gy-method-intro p,
+.gy-method-sec-body p,
 .gy-method-panel p,
 .gy-method-appendix-body p {
   margin-bottom: 0.75em;
 }
 
-.gy-method-intro p:last-child,
+.gy-method-sec-body p:last-child,
 .gy-method-panel p:last-child,
 .gy-method-appendix-body p:last-child {
   margin-bottom: 0;
 }
 
-.gy-method-panel--solo {
-  padding-top: 2px;
+/* ── 引用块 ── */
+.gy-method-pullquote {
+  margin: 24px 0 0;
+  padding: 14px 16px 14px 18px;
+  border-left: 3px solid color-mix(in srgb, var(--jin) 55%, transparent);
+  border-radius: 0 8px 8px 0;
+  background: color-mix(in srgb, var(--jin) 5%, transparent);
+  font-family: var(--serif);
+  font-size: 13.5px;
+  font-style: italic;
+  line-height: 1.75;
+  color: var(--xuanzhi-mute);
 }
 
-/* ── 阶段标签 ── */
+.gy-method-pullquote-mark {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--mono);
+  font-size: 14px;
+  font-style: normal;
+  color: color-mix(in srgb, var(--jin) 70%, transparent);
+  opacity: 0.6;
+}
+
+/* ── Y 阶段标签 ── */
 .gy-method-tabs {
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
-  margin-bottom: 16px;
-  padding-bottom: 2px;
+  margin-bottom: 20px;
 }
 
 .gy-method-tab {
@@ -235,6 +358,10 @@
   display: block;
 }
 
+.gy-method-panel--solo {
+  padding-top: 0;
+}
+
 /* ── 术语高亮 ── */
 .gy-method-term {
   background: color-mix(in srgb, var(--jin) 12%, transparent);
@@ -259,127 +386,38 @@
   border-bottom-color: var(--zhu);
 }
 
+.gy-method-gy-chip {
+  display: inline-block;
+  padding: 1px 6px;
+  border: 1px solid color-mix(in srgb, var(--qing) 25%, transparent);
+  border-radius: 4px;
+  border-bottom-style: solid;
+  font-family: var(--mono);
+  font-size: 0.92em;
+  background: color-mix(in srgb, var(--qing) 6%, transparent);
+}
+
+.gy-method-gy-chip:hover {
+  background: color-mix(in srgb, var(--qing) 14%, transparent);
+}
+
 .gy-method-sep {
   color: var(--xuanzhi-mute);
   margin: 0 2px;
 }
 
-/* ── 附录区块 ── */
-.gy-method-appendix-wrap {
-  margin-top: 22px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  max-width: 72ch;
-}
-
-.gy-method-appendix-block {
-  padding: 12px 14px 13px;
-  border: 1px solid var(--hairline);
-  border-radius: 8px;
-  background: color-mix(in srgb, var(--xuan-raise) 55%, transparent);
-}
-
-.gy-method-appendix-block--anchors {
-  border-color: color-mix(in srgb, var(--qing) 22%, var(--hairline));
-  background: color-mix(in srgb, var(--qing) 5%, var(--xuan-raise));
-}
-
-.gy-method-appendix-block--coupling {
-  border-style: dashed;
-}
-
-.gy-method-appendix-block--sources,
-.gy-method-appendix-block--note {
-  background: color-mix(in srgb, var(--xuan-raise) 40%, transparent);
-}
-
-.gy-method-appendix-label {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  margin-bottom: 10px;
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--xuanzhi-mute);
-}
-
-.gy-method-appendix-icon {
-  font-size: 9px;
-  opacity: 0.65;
-  color: var(--qing);
-}
-
-.gy-method-appendix-body {
-  font-size: 12.5px;
-  line-height: 1.75;
-  color: var(--xuanzhi-mute);
-  max-width: none;
-}
-
-.gy-method-appendix-block--note .gy-method-appendix-body {
-  font-size: 11.5px;
-  line-height: 1.7;
-}
-
-/* ── 数据锚定统计网格 ── */
-.gy-method-stat-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 8px 12px;
-  margin: 0;
-}
-
-.gy-method-stat {
-  padding: 8px 10px;
-  border: 1px solid var(--hairline);
-  border-radius: 6px;
-  background: color-mix(in srgb, var(--xuan) 70%, transparent);
-  line-height: 1.55;
-}
-
-.gy-method-stat dt {
-  display: block;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--xuanzhi);
-  margin-bottom: 3px;
-  letter-spacing: 0.02em;
-}
-
-.gy-method-stat dd {
-  display: block;
-  margin: 0;
-  font-size: 11px;
-  color: var(--xuanzhi-mute);
-}
-
-.gy-method-stat--solo dd {
-  font-size: 11.5px;
-  color: var(--xuanzhi-dim);
-}
-
-.gy-method-stat .gy-method-term {
-  background: color-mix(in srgb, var(--jin) 10%, transparent);
-  border-bottom-color: color-mix(in srgb, var(--jin) 30%, transparent);
-}
-
 /* ── 元数据侧栏 ── */
-.gy-method-meta {
+.gy-method-meta-rail {
   position: sticky;
   top: 20px;
   align-self: start;
 }
 
 .gy-method-meta-card {
-  padding: 12px 14px;
+  padding: 14px 16px;
   border: 1px solid var(--hairline);
   border-radius: 10px;
-  background: color-mix(in srgb, var(--xuan-raise) 82%, transparent);
+  background: color-mix(in srgb, var(--xuan) 55%, transparent);
   backdrop-filter: blur(8px);
 }
 
@@ -442,9 +480,9 @@
 
 .gy-method-chip {
   display: inline-block;
-  padding: 3px 7px;
+  padding: 4px 8px;
   border: 1px solid var(--hairline);
-  border-radius: 5px;
+  border-radius: 6px;
   font-family: var(--mono);
   font-size: 9.5px;
   color: var(--xuanzhi-dim);
@@ -472,47 +510,243 @@
   margin-bottom: 3px;
 }
 
+/* ── 附录网格 ── */
+.gy-method-appendix-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--hairline);
+}
+
+.gy-method-appendix-cell {
+  display: flex;
+  flex-direction: column;
+  min-height: 72px;
+  padding: 14px 16px;
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--xuan-raise) 50%, transparent);
+}
+
+.gy-method-appendix-cell--anchors {
+  border-color: color-mix(in srgb, var(--qing) 22%, var(--hairline));
+  background: color-mix(in srgb, var(--qing) 5%, var(--xuan-raise));
+}
+
+.gy-method-appendix-cell--wide {
+  grid-column: 1;
+}
+
+.gy-method-appendix-grid:not(:has(.gy-method-appendix-cell--note)) .gy-method-appendix-cell--anchors {
+  grid-column: 1 / -1;
+}
+
+.gy-method-appendix-cell--coupling {
+  grid-column: 1 / -1;
+  border-style: dashed;
+}
+
+.gy-method-appendix-cell--note,
+.gy-method-appendix-cell--sources {
+  background: color-mix(in srgb, var(--xuan-raise) 38%, transparent);
+}
+
+.gy-method-appendix-grid--paired .gy-method-appendix-cell--note,
+.gy-method-appendix-grid--paired .gy-method-appendix-cell--sources {
+  grid-column: span 1;
+}
+
+.gy-method-appendix-cell--full {
+  grid-column: 1 / -1;
+}
+
+.gy-method-appendix-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--xuanzhi-mute);
+}
+
+.gy-method-appendix-icon {
+  font-size: 9px;
+  opacity: 0.65;
+  color: var(--qing);
+}
+
+.gy-method-appendix-body {
+  flex: 1;
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: var(--xuanzhi-mute);
+}
+
+.gy-method-appendix-cell--note .gy-method-appendix-body {
+  font-size: 11.5px;
+  line-height: 1.7;
+}
+
+.gy-method-coupling-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--hairline);
+}
+
+/* ── 数据锚点统计网格 ── */
+.gy-method-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px 10px;
+  margin: 0;
+}
+
+.gy-method-stat {
+  padding: 10px 12px;
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--xuan) 70%, transparent);
+  line-height: 1.5;
+}
+
+.gy-method-stat dt {
+  display: block;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--xuanzhi);
+  margin-bottom: 4px;
+  letter-spacing: 0.02em;
+}
+
+.gy-method-stat dd {
+  display: block;
+  margin: 0;
+  font-size: 11px;
+  color: var(--xuanzhi-mute);
+}
+
+.gy-method-stat--solo dd {
+  font-size: 12px;
+  color: var(--xuanzhi-dim);
+}
+
+.gy-method-stat .gy-method-term {
+  background: color-mix(in srgb, var(--jin) 10%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--jin) 30%, transparent);
+}
+
+/* ── 迷你时间线 ── */
+.gy-method-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.gy-method-timeline-item {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 10px 14px;
+  padding: 8px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--hairline) 80%, transparent);
+  align-items: baseline;
+}
+
+.gy-method-timeline-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.gy-method-timeline-item--plain {
+  grid-template-columns: 1fr;
+}
+
+.gy-method-timeline-date {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--qing);
+  letter-spacing: 0.02em;
+}
+
+.gy-method-timeline-text {
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--xuanzhi-dim);
+}
+
 /* ── 响应式 ── */
 @media (max-width: 768px) {
-  .gy-method-layout {
-    grid-template-columns: 1fr;
-    gap: 18px;
+  .gy-method-card {
+    padding: 22px 20px 24px;
+    border-radius: 12px;
   }
 
-  .gy-method-meta {
+  .gy-method-card::before {
+    left: 16px;
+    right: 16px;
+  }
+
+  .gy-method-head {
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+  }
+
+  .gy-method-head-meta {
+    display: none;
+  }
+
+  .gy-method-zones {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .gy-method-meta-rail {
     position: static;
     order: -1;
   }
 
-  .gy-method-meta-card {
-    padding: 11px 13px;
+  .gy-method-lead {
+    font-size: 14px;
   }
 
-  .gy-method-head {
-    margin-bottom: 14px;
-  }
-
-  .gy-method-intro,
+  .gy-method-sec-body,
   .gy-method-panel,
   .gy-method-appendix-body {
-    max-width: none;
     font-size: 13px;
-    line-height: 1.78;
+    line-height: 1.82;
   }
 
-  .gy-method-appendix-wrap {
-    max-width: none;
+  .gy-method-section-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
 
-  .gy-method-stat-grid {
-    grid-template-columns: 1fr;
+  .gy-method-section-chips::-webkit-scrollbar {
+    display: none;
   }
 
   .gy-method-tabs {
-    overflow-x: auto;
     flex-wrap: nowrap;
+    overflow-x: auto;
     padding-bottom: 6px;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
@@ -525,14 +759,40 @@
     flex-shrink: 0;
   }
 
-  .gy-method-body:not(.is-collapsed) .gy-method-panel.is-active {
-    max-height: 420px;
-    overflow-y: auto;
-    padding-right: 4px;
+  .gy-method-appendix-grid {
+    grid-template-columns: 1fr;
+    margin-top: 22px;
+    padding-top: 20px;
+  }
+
+  .gy-method-appendix-cell--wide,
+  .gy-method-appendix-cell--full,
+  .gy-method-appendix-cell--note,
+  .gy-method-appendix-cell--sources {
+    grid-column: 1;
+  }
+
+  .gy-method-stat-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .gy-method-timeline-item {
+    grid-template-columns: 64px 1fr;
+    gap: 8px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gy-method-stat-grid {
+    grid-template-columns: 1fr;
   }
 }
 
 /* ── 日览主题 ── */
+:root[data-theme='light'] .gy-method-card {
+  background: color-mix(in srgb, var(--xuan-raise) 88%, #fff);
+}
+
 :root[data-theme='light'] .gy-method-badge {
   background: color-mix(in srgb, var(--qing) 8%, #fff);
   border-color: color-mix(in srgb, var(--qing) 25%, transparent);
@@ -555,14 +815,18 @@
   background: color-mix(in srgb, var(--xuan-raise) 92%, #fff);
 }
 
-:root[data-theme='light'] .gy-method-appendix-block {
+:root[data-theme='light'] .gy-method-appendix-cell {
   background: color-mix(in srgb, var(--xuan-raise) 75%, #fff);
 }
 
-:root[data-theme='light'] .gy-method-appendix-block--anchors {
+:root[data-theme='light'] .gy-method-appendix-cell--anchors {
   background: color-mix(in srgb, var(--qing) 6%, #fff);
 }
 
 :root[data-theme='light'] .gy-method-stat {
   background: color-mix(in srgb, #fff 85%, var(--xuan-raise));
+}
+
+:root[data-theme='light'] .gy-method-pullquote {
+  background: color-mix(in srgb, var(--jin) 8%, #fff);
 }
