@@ -1,0 +1,468 @@
+<div class="ds-shell">
+
+  <!-- 题头 -->
+  <header class="ds-mast">
+    <div>
+      <div class="ds-mast-meta">ChinaOS · MODULE <b>GY-19</b> · 人群画像分层 · 第十七子集</div>
+      <h1 class="ds-title">单身女性与不婚者 · 主动退出的常态化<span class="ds-title-sub">独立运行实例 · 从默认服务解绑</span></h1>
+    </div>
+    <div class="ds-mast-seal">退出已成新格式</div>
+  </header>
+
+  <!-- 独立运行实例签名图 -->
+  <div class="ds-found" aria-label="独立运行实例示意图:左侧一个「婚育默认服务集群」(多进程互相依赖:婚姻主进程、生育子进程、家庭照护、姓氏继替),右侧一个从中解绑出来、独立运行的实例「单身女性 / 不婚者」,自带四个支撑库「单身经济 SDK」「一人户 runtime」「宠物伴侣库」「养老自筹模块」,状态标注 STANDALONE·稳定运行·非临时态;底注数据「2024 结婚登记 610.6 万对·1980 年来最低·一人户>1.25 亿」">
+    <svg viewBox="0 0 1000 470" xmlns="http://www.w3.org/2000/svg" role="img">
+      <text x="500" y="20" font-size="11" fill="#8f897d" text-anchor="middle" font-family="mono" letter-spacing="2">ChinaOS · STANDALONE INSTANCE · 独立运行实例</text>
+
+      <!-- 左:婚育默认服务集群(多进程互相依赖) -->
+      <rect x="60" y="70" width="320" height="320" rx="8" fill="#15171b" stroke="#4a4a4a" stroke-width="1.4" stroke-dasharray="5 4"/>
+      <text x="220" y="92" font-size="11.5" fill="#8a8a8a" text-anchor="middle" font-family="serif" letter-spacing="1">婚育默认服务集群</text>
+      <text x="220" y="108" font-size="8" fill="#6e6e6e" text-anchor="middle" font-family="mono">DEFAULT CLUSTER · 多进程互相依赖</text>
+
+      <rect x="90" y="128" width="120" height="44" rx="5" fill="#1b2028" stroke="#5d7489" stroke-width="1.4"/>
+      <text x="150" y="150" font-size="10" fill="#d6cfc2" text-anchor="middle" font-family="serif">婚姻主进程</text>
+      <text x="150" y="164" font-size="7.5" fill="#5d7489" text-anchor="middle" font-family="mono">PID 1 · 必装</text>
+      <rect x="230" y="128" width="120" height="44" rx="5" fill="#1b2028" stroke="#5d7489" stroke-width="1.4"/>
+      <text x="290" y="150" font-size="10" fill="#d6cfc2" text-anchor="middle" font-family="serif">生育子进程</text>
+      <text x="290" y="164" font-size="7.5" fill="#5d7489" text-anchor="middle" font-family="mono">fork()</text>
+      <rect x="90" y="200" width="120" height="44" rx="5" fill="#1b2028" stroke="#5d7489" stroke-width="1.4"/>
+      <text x="150" y="222" font-size="10" fill="#d6cfc2" text-anchor="middle" font-family="serif">家庭照护</text>
+      <text x="150" y="236" font-size="7.5" fill="#5d7489" text-anchor="middle" font-family="mono">养老 daemon</text>
+      <rect x="230" y="200" width="120" height="44" rx="5" fill="#1b2028" stroke="#5d7489" stroke-width="1.4"/>
+      <text x="290" y="222" font-size="10" fill="#d6cfc2" text-anchor="middle" font-family="serif">姓氏继替</text>
+      <text x="290" y="236" font-size="7.5" fill="#5d7489" text-anchor="middle" font-family="mono">血缘 link</text>
+      <!-- 进程互相依赖连线 -->
+      <line x1="150" y1="172" x2="150" y2="200" stroke="#5d7489" stroke-width="1.1"/>
+      <line x1="290" y1="172" x2="290" y2="200" stroke="#5d7489" stroke-width="1.1"/>
+      <line x1="210" y1="150" x2="230" y2="150" stroke="#5d7489" stroke-width="1.1"/>
+      <line x1="210" y1="222" x2="230" y2="222" stroke="#5d7489" stroke-width="1.1"/>
+      <text x="220" y="276" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">过去:单身 = 主进程崩溃前的临时态 · 等待重新入婚</text>
+      <text x="220" y="370" font-size="8" fill="#7d6a3a" text-anchor="middle" font-family="mono">DEFAULT · 默认必装 · 强耦合</text>
+
+      <!-- 解绑箭头 -->
+      <line x1="390" y1="230" x2="470" y2="230" stroke="#b5483a" stroke-width="1.6" stroke-dasharray="2 0"/>
+      <text x="430" y="222" font-size="9" fill="#b5483a" text-anchor="middle" font-family="mono">unbind()</text>
+      <polygon points="470,230 460,225 460,235" fill="#b5483a"/>
+      <text x="430" y="248" font-size="7.5" fill="#8f897d" text-anchor="middle" font-family="mono">解绑 / 退出</text>
+
+      <!-- 右:独立运行实例(单身女性 / 不婚者) -->
+      <rect x="490" y="70" width="450" height="320" rx="8" fill="#1b2028" stroke="#b5483a" stroke-width="2"/>
+      <text x="715" y="94" font-size="13" fill="#d6cfc2" text-anchor="middle" font-family="serif" letter-spacing="1">单身女性 / 不婚者</text>
+      <text x="715" y="111" font-size="9" fill="#b5483a" text-anchor="middle" font-family="mono" letter-spacing="1">STANDALONE · 稳定运行 · 非临时态</text>
+
+      <!-- 四支撑库 -->
+      <text x="715" y="140" font-size="8.5" fill="#7d6a3a" text-anchor="middle" font-family="mono">— 自带运行库 / BUNDLED LIBS —</text>
+      <rect x="515" y="152" width="190" height="56" rx="5" fill="#15171b" stroke="#5e8c7a" stroke-width="1.4"/>
+      <text x="610" y="176" font-size="10.5" fill="#d6cfc2" text-anchor="middle" font-family="serif">单身经济 SDK</text>
+      <text x="610" y="194" font-size="8" fill="#5e8c7a" text-anchor="middle" font-family="mono">单身公寓·小份餐·悦己</text>
+      <rect x="725" y="152" width="190" height="56" rx="5" fill="#15171b" stroke="#5e8c7a" stroke-width="1.4"/>
+      <text x="820" y="176" font-size="10.5" fill="#d6cfc2" text-anchor="middle" font-family="serif">一人户 runtime</text>
+      <text x="820" y="194" font-size="8" fill="#5e8c7a" text-anchor="middle" font-family="mono">小户型·迷你家电</text>
+      <rect x="515" y="224" width="190" height="56" rx="5" fill="#15171b" stroke="#5e8c7a" stroke-width="1.4"/>
+      <text x="610" y="248" font-size="10.5" fill="#d6cfc2" text-anchor="middle" font-family="serif">宠物伴侣库</text>
+      <text x="610" y="266" font-size="8" fill="#5e8c7a" text-anchor="middle" font-family="mono">关系需求 · 情感替代</text>
+      <rect x="725" y="224" width="190" height="56" rx="5" fill="#15171b" stroke="#6e5d38" stroke-width="1.4" stroke-dasharray="4 3"/>
+      <text x="820" y="248" font-size="10.5" fill="#d6cfc2" text-anchor="middle" font-family="serif">养老自筹模块</text>
+      <text x="820" y="266" font-size="8" fill="#7d6a3a" text-anchor="middle" font-family="mono">未成熟 · 最大缺口</text>
+
+      <text x="715" y="312" font-size="8.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">现在:四库一旦配齐 · 退出有了完整运行环境 · 从权宜变成常驻</text>
+      <text x="715" y="334" font-size="8.5" fill="#b5483a" text-anchor="middle" font-family="sans-serif">关键转折:退出从「等待重新入婚」的临时进程 → 有配套生态的常驻服务</text>
+      <text x="715" y="370" font-size="8" fill="#b5483a" text-anchor="middle" font-family="mono">不可逆性大幅上升</text>
+
+      <!-- 底注数据 -->
+      <line x1="120" y1="412" x2="880" y2="412" stroke="#3d4c5a" stroke-width="1" stroke-dasharray="3 5"/>
+      <text x="500" y="436" font-size="9.5" fill="#8f897d" text-anchor="middle" font-family="sans-serif">2024 结婚登记 610.6 万对 · 1980 年以来最低 · 同比约 -20%</text>
+      <text x="500" y="458" font-size="9" fill="#7d6a3a" text-anchor="middle" font-family="sans-serif">一人户 >1.25 亿 · 占家庭户约 1/4 · 单身不再是过渡章节而是完整篇章</text>
+    </svg>
+    <div class="ds-found-caption">模块隐喻是<b>独立运行实例(Standalone Instance)</b>:这个人群是从「婚育默认服务集群」里解绑、独立运行的实例——过去婚姻是必装的主进程,单身是它崩溃前的临时态;现在单身正在成为<b>自带完整运行库(单身经济、一人户家电、宠物、养老自筹)的稳定独立部署</b>。关键转折:当退出从「等待重新入婚」的临时进程,变成有配套生态支撑的常驻服务,<b style="color:var(--zhu);">它的不可逆性就大幅上升。</b>签名图:左侧「婚育默认集群」(多进程互相依赖),右侧解绑出来的独立实例「单身女性 / 不婚者」自带四个支撑库「单身经济 SDK」「一人户 runtime」「宠物伴侣库」「养老自筹模块」,状态标注「STANDALONE · 稳定运行 · 非临时态」;底注「2024 结婚登记 610.6 万对 · 1980 年来最低 · 一人户 >1.25 亿」。</div>
+  </div>
+
+  <!-- 页签 -->
+  <nav class="ds-nav" role="tablist">
+    <button role="tab" data-panel="ds-p-d1" class="is-active">罢工之后新建制</button>
+    <button role="tab" data-panel="ds-p-d2">退出建制化</button>
+    <button role="tab" data-panel="ds-p-d3">需求结构重组</button>
+    <button role="tab" data-panel="ds-p-d4">剩女到单身贵族</button>
+    <button role="tab" data-panel="ds-p-d5">养老自筹悬崖</button>
+    <button role="tab" data-panel="ds-p-d6">去政治化革命</button>
+    <button role="tab" data-panel="ds-p-d7">形态推演</button>
+    <button role="tab" data-panel="ds-p-watch">合成 · 观测哨</button>
+  </nav>
+
+  <!-- ════ D1 罢工之后新建制 ════ -->
+  <section class="ds-panel is-active" id="ds-p-d1">
+    <div class="ds-sec-head"><h2>D1 · 从冲突到稳态</h2><span class="ds-sec-tag">罢工之后的新建制</span></div>
+    <p class="ds-lede">青年性别分叉(↗ GY-03 CH-01)处理的是「冲突」——年轻女性为何退出婚育;本片处理的是「冲突之后」——退出正在固化为一种<b>有配套、有认同、可持续的稳定人生形态</b>。<b style="color:var(--zhu);">一旦退出建制化,它就从「问题」变成「结构」,不可逆性大幅上升。</b></p>
+    <div class="ds-disclaimer">说明:本片结婚登记、一人户、单身经济与养老读数为<b>训练知识基线 + 公开政策与统计</b>(民政部 2024 婚姻登记数据 2025-02 央视 / 财经口径、第七次人口普查一人户数据、单身经济行业报告),口径分散、统计边界宽窄不一——相应数字标注「约」,并在观测哨留有回填槽。本片聚焦女性侧主动退出的结构性建制化,与男性侧被动单身(县域过剩男性婚姻挤压)不可通约。</div>
+
+    <h3 class="ds-h3">三个数据锚点:登记低位 · 一人户 · 离结比</h3>
+    <div class="ds-data3">
+      <div class="ds-stat">
+        <span class="ds-eyebrow">结婚登记</span>
+        <span class="ds-stat-n">610.6 万对</span>
+        <span class="ds-stat-u">2024 全年 · 创 1980 年以来最低 · 同比约 -20%</span>
+        <p>结婚不再是人生必经程序——<b>登记数的塌方是退出建制化的总仪表</b>。</p>
+      </div>
+      <div class="ds-stat">
+        <span class="ds-eyebrow">一人户规模</span>
+        <span class="ds-stat-n">>1.25 亿</span>
+        <span class="ds-stat-u">占家庭户约 1/4(第七次普查口径及后续)</span>
+        <p>单身不再是人生的过渡章节——<b style="color:var(--zhu);">正在成为完整篇章</b>。</p>
+      </div>
+      <div class="ds-stat">
+        <span class="ds-eyebrow">关系稳定度</span>
+        <span class="ds-stat-n">约 57.5%</span>
+        <span class="ds-stat-u">离结比(当年离婚 ÷ 结婚的概数比值)</span>
+        <p>入婚的总量在降、退婚的相对比例在升——<b>两端共同抬高单身的稳态占比</b>。</p>
+      </div>
+    </div>
+
+    <h3 class="ds-h3">罢工 vs 稳态:还没结 vs 不打算结</h3>
+    <div class="ds-paradox">
+      <div class="ds-par-a"><h6>罢工(冲突)</h6><span class="ds-par-n">还没结</span><p>假设有谈判与复工的可能(<b>推迟婚育</b>)——退出是过程,终点仍预设回归婚姻。</p></div>
+      <div class="ds-par-mid">→</div>
+      <div class="ds-par-b"><h6>稳态(建制化)</h6><span class="ds-par-n">不打算结</span><p><b style="color:var(--zhu);">退出本身成为目的(选择不婚)</b>——关键判据是「还没结」还是「不打算结」,后者的人群正在扩大。</p></div>
+    </div>
+
+    <h3 class="ds-h3">两条人生路径:选择 vs 被剩下</h3>
+    <div class="ds-art">
+      <h5><b>不可通约</b>城市高学历女性是「选择」,县域过剩男性是「被剩下」</h5>
+      <p>同样是单身,两端不可通约——<b style="color:var(--zhu);">女性侧的退出更主动、更有意识形态自觉(受教育程度越高越明显);男性侧的「单身」更多是被动</b>(县域过剩男性的婚姻挤压,↗ GY-03 CH-01 双重错配)。本片处理的是前者:有配套、有认同、有资产化路径的主动退出,而非被动剩余。</p>
+    </div>
+
+    <h3 class="ds-h3">代际广告:上一代的承重</h3>
+    <div class="ds-art">
+      <h5><b>预防性规避</b>母辈的「夹心承重墙」是下一代退出的最强广告</h5>
+      <p>年轻女性看着母辈「夹心承重墙」的人生(↗ GY-17 M7),把不婚不育作为预防性规避——<b style="color:var(--zhu);">上一代的承重,是下一代退出的最强广告。</b>中年女性(承重)与单身女性(退出)是同一性别结构的两条人生路径:一条复制,一条拒绝复制。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="ds-xref">↗ GY-03 CH-01 · 退出的当下式(婚育罢工)</span>
+      <span class="ds-xref">↗ GY-17 M7 · 母辈承重 / 拒绝复制</span>
+      <span class="ds-xref">↗ D2 · 退出的建制化</span>
+    </div>
+
+    <div class="ds-verdict">
+      <span class="ds-verdict-tag">D1 判词</span>
+      婚育罢工是新闻,婚育罢工的建制化是历史。<b style="color:var(--zhu);">当一个社会为单身配齐了消费市场、居住产品、情感替代与养老方案,它就不再是在等待这些人回归婚姻——它在为一种新的人生默认值做基础设施。</b>
+      <span class="ds-xref">↗ D2 · 配套生态的四个支撑库</span>
+    </div>
+  </section>
+
+  <!-- ════ D2 退出建制化 ════ -->
+  <section class="ds-panel" id="ds-p-d2">
+    <div class="ds-sec-head"><h2>D2 · 退出的建制化</h2><span class="ds-sec-tag">配套生态的四个支撑库</span></div>
+    <p class="ds-lede">本片核心机制——退出从个体选择变成稳定形态,靠的是配套生态的成型:<b>单身经济、一人户居住产品、情感替代市场、养老自筹方案</b>四个支撑库一旦配齐,单身就获得了「可持续运行」的运行时,<b style="color:var(--zhu);">从而不可逆。</b></p>
+
+    <h3 class="ds-h3">四个支撑库:退出的运行时</h3>
+    <div class="ds-grid-2">
+      <div class="ds-card">
+        <span class="ds-eyebrow">支撑库一 · 单身经济 SDK</span>
+        <h4>消费基础设施是第一块地基</h4>
+        <p>单身公寓、小份餐、单人 KTV、一人游、悦己消费——<b style="color:var(--zhu);">市场用产品确认了这个人群的存在</b>。消费基础设施是退出建制化的第一块地基:被市场命名,就意味着被承认为常驻客户而非临时态。</p>
+      </div>
+      <div class="ds-card">
+        <span class="ds-eyebrow">支撑库二 · 一人户 runtime</span>
+        <h4>「一人户」从异常变成主流户型假设</h4>
+        <p>超 <b>1.25 亿</b>一人户重塑住房(小户型)、家电(迷你化)、家居——<b>「一人户」从异常变成主流户型假设</b>。当居住产品的默认规格按一个人来设计,退出就有了物理容器。</p>
+      </div>
+      <div class="ds-card">
+        <span class="ds-eyebrow">支撑库三 · 宠物伴侣库</span>
+        <h4>关系需求从婚姻里解绑</h4>
+        <p>宠物(「猫狗双全」作为关系替代)、亲密关系的多元化、姐妹支持网络、线上社群——<b style="color:var(--zhu);">关系需求被从婚姻里解绑,分散到多个非婚载体</b>。情感不再以婚姻为唯一供给。</p>
+      </div>
+      <div class="ds-card" style="border-left:3px solid var(--jin);">
+        <span class="ds-eyebrow">支撑库四 · 养老自筹模块</span>
+        <h4>最沉重也最不成熟的一个库</h4>
+        <p>不婚者(尤其女性,更长寿 + 无子女)的养老必须自筹——商业养老、抱团养老、单身养老社区的探索——<b style="color:var(--jin);">这是最沉重也最不成熟的一个库,是退出建制化的最大缺口(↗ D5)</b>。</p>
+      </div>
+    </div>
+
+    <h3 class="ds-h3">建制化 = 不可逆:退出从权宜变常驻</h3>
+    <div class="ds-art">
+      <h5><b>生态越成熟,退出越稳定</b>当四库齐备,回归婚姻的相对成本上升、必要性下降</h5>
+      <p>当四库齐备,退出有了完整运行环境,「回归婚姻」的相对成本上升、必要性下降——<b style="color:var(--zhu);">这与塔尖离岸(↗ GY-16)、躺平(↗ GY-03)同构:退出一旦有了配套,就从权宜变成常驻。</b>让退出不可逆的不是决心,是配套。当四库里三库(经济 / 居住 / 情感)已成型、养老库还几乎是空的(↗ D5),退出的「前半生配套」已经完工,缺口被推迟到尾部结算。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="ds-xref">↗ GY-16 · 塔尖物理离岸 / 退出有配套</span>
+      <span class="ds-xref">↗ GY-03 · 躺平 / 退出从权宜变常驻</span>
+      <span class="ds-xref">↗ D5 · 养老库的最大缺口</span>
+    </div>
+
+    <div class="ds-verdict">
+      <span class="ds-verdict-tag">D2 判词</span>
+      让退出不可逆的不是决心,是配套。<b style="color:var(--zhu);">当一个人不结婚也能买到房、吃到饭、养得起猫、攒得下养老钱,婚姻就从「人生必需品」降级为「可选项」——而市场,比任何人都更早确认了这个降级。</b>
+      <span class="ds-xref">↗ D3 · 需求版图的板块移动</span>
+    </div>
+  </section>
+
+  <!-- ════ D3 需求结构重组 ════ -->
+  <section class="ds-panel" id="ds-p-d3">
+    <div class="ds-sec-head"><h2>D3 · 需求结构的重组</h2><span class="ds-sec-tag">单身正在重写消费版图</span></div>
+    <p class="ds-lede">单身人群的崛起正在重组<b>住房、家电、消费、宠物、保险</b>五大需求结构——这不是边缘的「单身经济」噱头,是总需求版图的结构性位移,<b style="color:var(--zhu);">且与中产防御性收缩(↗ GY-08)叠加,共同改写内需的形态。</b></p>
+
+    <h3 class="ds-h3">需求版图的五块位移</h3>
+    <div class="ds-rows">
+      <div class="ds-row"><span class="ds-row-k">住房</span><span class="ds-row-v">小户型、一居室、单身公寓的需求上升;单身女性购房比例持续走高(已是青年模块观测指标,↗ GY-03 Q-06)——<b style="color:var(--zhu);">购房从「婚姻刚需 / 婚房」逻辑转向「个人资产 / 安全感」逻辑</b>。</span></div>
+      <div class="ds-row"><span class="ds-row-k">家电消费</span><span class="ds-row-v">迷你家电、单人厨电、智能家居(替代家庭分工)——<b>家庭规模缩小直接重塑耐用消费品的规格</b>;耐用品的「规格假设」从三 / 五口转向一口。</span></div>
+      <div class="ds-row"><span class="ds-row-k">宠物经济</span><span class="ds-row-v">宠物作为情感与陪伴的核心载体,宠物消费(食品、医疗、殡葬)成为高增长赛道——<b style="color:var(--zhu);">「毛孩子」是单身经济里增速最确定的一块</b>。</span></div>
+      <div class="ds-row"><span class="ds-row-k">保险与金融</span><span class="ds-row-v">无子女者对商业养老、健康险、长期护理的需求更刚性(无家庭兜底)——<b>单身者必须用金融产品替代子女的养老功能</b>(↗ D5)。</span></div>
+      <div class="ds-row"><span class="ds-row-k">反向叠加</span><span class="ds-row-v">单身的「悦己消费」与中产的「防御性收缩」(↗ GY-08 Z2/Z5)是内需的两股反向力——<b style="color:var(--zhu);">一边是单身在花、一边是家庭在省</b>,合成了一个结构高度分化的消费市场。</span></div>
+    </div>
+
+    <h3 class="ds-h3">不是细分市场,是板块移动</h3>
+    <div class="ds-art">
+      <h5><b>消费单元的塌缩</b>从「三口 / 五口」缩成「一口」,全部规格假设都要重写</h5>
+      <p>单身经济不是一个细分市场,是需求侧的板块移动——<b style="color:var(--zhu);">当家庭这个消费单元从「三口 / 五口」缩成「一口」,住房、家电、食品、保险的全部规格假设都要重写。</b>市场已经在重写了,政策还在按「家庭」做规划:需求版图的板块移动(家庭单元缩小)应升级为独立变量,先于收入分配影响消费结构。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="ds-xref">↗ GY-08 Z2/Z5 · 中产防御性收缩(反向双力)</span>
+      <span class="ds-xref">↗ GY-03 Q-06 · 单身女性购房比例</span>
+      <span class="ds-xref">↗ D5 · 金融替代子女养老功能</span>
+    </div>
+
+    <div class="ds-verdict">
+      <span class="ds-verdict-tag">D3 判词</span>
+      单身经济不是一个细分市场,是需求侧的板块移动。当家庭这个消费单元从「三口 / 五口」缩成「一口」,住房、家电、食品、保险的全部规格假设都要重写——<b style="color:var(--zhu);">市场已经在重写了,政策还在按「家庭」做规划。</b>
+      <span class="ds-xref">↗ D4 · 剩女到单身贵族的叙事战</span>
+    </div>
+  </section>
+
+  <!-- ════ D4 剩女到单身贵族 ════ -->
+  <section class="ds-panel" id="ds-p-d4">
+    <div class="ds-sec-head"><h2>D4 · 污名与自洽</h2><span class="ds-sec-tag">从「剩女」到「单身贵族」的叙事战</span></div>
+    <p class="ds-lede">单身女性经历了一场叙事战——从官方 / 家庭话语的<b>「剩女」污名</b>,到自我建构的<b>「单身贵族 / 独立女性」认同</b>。<b style="color:var(--zhu);">叙事的反转本身是退出建制化的意识形态工程:当污名失效、认同成型,退出就获得了心理可持续性。</b></p>
+
+    <h3 class="ds-h3">叙事的反转:污名 ↔ 认同</h3>
+    <div class="ds-dual">
+      <div class="ds-dual-a"><h6>旧叙事 · <b>「剩女」污名</b></h6><span class="ds-dual-pole">↓ 失败 / 缺陷</span><p>2007 年「剩女」入官方话语 → 催婚的社会动员 → <b>近年的反噬与失效</b>。污名是阻止退出的工具——<b style="color:var(--qing);">污名失效,是退出建制化的标志</b>。</p></div>
+      <div class="ds-dual-mid">↔</div>
+      <div class="ds-dual-b"><h6>新叙事 · <b>「单身贵族 / 独立女性」</b></h6><span class="ds-dual-pole">↑ 选择 / 能力</span><p>「独立女性」「单身贵族」「不将就」——<b style="color:var(--zhu);">单身从「失败 / 缺陷」重构为「选择 / 能力」</b>;影视、消费、社媒共同生产这套新认同。</p></div>
+    </div>
+    <div class="ds-disclaimer" style="margin-top:18px;">叙事战的胜负手:当被「剩下」变成「选择单身」,污名就再也没收不回这个人群的话语权了。这与公共叙事建制化、家庭场域仍是冲突前线两条战线并行。</div>
+
+    <h3 class="ds-h3">两条战线:公共已建制化,家庭仍是前线</h3>
+    <div class="ds-twin">
+      <div class="ds-twin-a"><h6>公共叙事 · 已建制化</h6><p>污名失效、独立女性认同成型——<b style="color:var(--zhu);">退出在公共话语中已获得心理可持续性</b>,「剩女」一词在主流媒体的使用正退潮。</p></div>
+      <div class="ds-twin-mid">vs</div>
+      <div class="ds-twin-b"><h6>家庭场域 · 冲突前线</h6><p>家庭(父母)仍是催婚主力,<b>春节相亲的年度战役</b>——退出在家庭场域仍是冲突前线(↔ GY-17 中年女性承重的下一代版)。</p></div>
+    </div>
+
+    <h3 class="ds-h3">政策的反向:国家要她们结婚,她们在建设不结婚也能过好</h3>
+    <div class="ds-art">
+      <h5><b>正面冲突</b>生育友好政策与这个人群的取向正面冲突</h5>
+      <p>生育友好政策、催婚催育的官方动员(↗ GY-03 CH-01 / GY-25 计生反转)与这个人群的取向正面冲突——<b style="color:var(--zhu);">国家要她们结婚生育,她们在建设不结婚也能过好的生活。</b>「剩女」是一个社会试图给退出者定价的词——把退出说成失败,以维持婚姻的默认地位;这个词的失效,是这场叙事战的胜负手。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="ds-xref">↗ GY-03 CH-01 / GY-25 · 催婚催育动员的反向</span>
+      <span class="ds-xref">↗ GY-17 · 家庭催婚 / 承重的下一代版</span>
+      <span class="ds-xref">↗ D6 · 去政治化的生活方式革命</span>
+    </div>
+
+    <div class="ds-verdict">
+      <span class="ds-verdict-tag">D4 判词</span>
+      「剩女」是一个社会试图给退出者定价的词——把退出说成失败,以维持婚姻的默认地位。<b style="color:var(--zhu);">这个词的失效,是这场叙事战的胜负手:当被「剩下」变成「选择单身」,污名就再也没收不回这个人群的话语权了。</b>
+      <span class="ds-xref">↗ D5 · 养老自筹的悬崖</span>
+    </div>
+  </section>
+
+  <!-- ════ D5 养老自筹悬崖 ════ -->
+  <section class="ds-panel" id="ds-p-d5">
+    <div class="ds-sec-head"><h2>D5 · 养老自筹的悬崖</h2><span class="ds-sec-tag">建制化的最大缺口</span></div>
+    <p class="ds-lede">单身建制化的四个支撑库里,养老自筹是最不成熟、最沉重的一个——无子女 + 女性更长寿,使不婚女性面临<b>「无家庭兜底的超长老年」</b>,<b style="color:var(--zhu);">这是退出方式价目表里被低估的尾部成本,也是这个人群真正的脆弱点。</b></p>
+    <div class="ds-disclaimer">框架说明:本节以制度分析框架处理养老缺口,讨论对象是商业养老渗透、养老社区供给、抱团养老与意定监护等制度安排,而非对个体选择的评判;相关渗透率与供给数为公开统计的概数,口径敏感者标「约」,待权威年度数据回填。</div>
+
+    <h3 class="ds-h3">养老算术:最长老年 × 最少兜底</h3>
+    <div class="ds-chain">
+      <div class="ds-chain-row"><span class="ds-chain-step">无家庭兜底</span><span class="ds-chain-v">无子女 = 无家庭照护兜底(↗ GY-09 L4 / GY-17 M3 照护链断裂)——失能后的照护、监护、决策代理失去家庭载体。</span></div>
+      <div class="ds-chain-row"><span class="ds-chain-step">最长老年</span><span class="ds-chain-v">女性平均预期寿命更长 = 更长的独居老年——<b style="color:var(--zhu);">单身女性是「最长老年 × 最少兜底」的组合</b>,尾部时长被拉到最大。</span></div>
+      <div class="ds-chain-row"><span class="ds-chain-step">自筹不成熟</span><span class="ds-chain-v">商业养老保险渗透低、养老社区供给少且贵、抱团养老多停留在试验——<b>四库里三库(经济 / 居住 / 情感)已成型,养老库还几乎是空的</b>。</span></div>
+      <div class="ds-chain-row"><span class="ds-chain-step">制度阴跌</span><span class="ds-chain-v">依赖个人养老金积累的不婚者,撞上养老金体系本身的不确定性(↗ GY-09 L2 缺口)——<b style="color:var(--zhu);">自筹的前提是制度可信,而制度正在阴跌</b>。</span></div>
+      <div class="ds-chain-row peak"><span class="ds-chain-step">代理空白</span><span class="ds-chain-v">无子女者失能后的监护、医疗决策、财产处置代理空白(↔ GY-18 C5 被监护困境的镜像:一个无人监护,一个被过度监护)——<b>意定监护等制度刚起步,远未普及</b>。</span></div>
+    </div>
+
+    <h3 class="ds-h3">镜像:无人监护 vs 被过度监护</h3>
+    <div class="ds-twin">
+      <div class="ds-twin-a"><h6>GY-19 · 单身无子女老年</h6><p><b style="color:var(--zhu);">无人监护</b>——失能后无家庭代理,意定监护尚未普及,决策与照护出现真空。</p></div>
+      <div class="ds-twin-mid">↔</div>
+      <div class="ds-twin-b"><h6>GY-18 C5 · 精神障碍者</h6><p><b>被过度监护</b>——自我决定权被监护制度代行。两片是监护制度两端的镜像缺口。</p></div>
+    </div>
+
+    <h3 class="ds-h3">尾部成本要到尾部才结算</h3>
+    <div class="ds-art">
+      <h5><b>前半生完工,后半生还是图纸</b>退出在青年和中年是自由,在老年是悬崖</h5>
+      <p>退出在青年和中年是自由,在老年是悬崖——<b style="color:var(--zhu);">单身建制化目前建好了前半生的全部配套,后半生的养老库还是图纸。</b>这个缺口不补上,今天的「单身贵族」就是三十年后「最长老年、最少兜底」的高危人群。退出的尾部成本,要到尾部才结算。</p>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="ds-xref">↗ GY-09 L2/L4 · 养老金缺口 / 照护悬崖</span>
+      <span class="ds-xref">↗ GY-17 M3 · 照护链断裂</span>
+      <span class="ds-xref">↗ GY-18 C5 · 被监护困境的镜像</span>
+    </div>
+
+    <div class="ds-verdict">
+      <span class="ds-verdict-tag">D5 判词</span>
+      退出在青年和中年是自由,在老年是悬崖。单身建制化目前建好了前半生的全部配套,后半生的养老库还是图纸——<b style="color:var(--zhu);">这个缺口不补上,今天的「单身贵族」就是三十年后「最长老年、最少兜底」的高危人群。退出的尾部成本,要到尾部才结算。</b>
+      <span class="ds-xref">↗ D6 · 去政治化的生活方式革命</span>
+    </div>
+  </section>
+
+  <!-- ════ D6 去政治化革命 ════ -->
+  <section class="ds-panel" id="ds-p-d6">
+    <div class="ds-sec-head"><h2>D6 · 政治形态学</h2><span class="ds-sec-tag">去政治化的生活方式革命</span></div>
+    <p class="ds-lede">这个人群没有也不寻求集体行动——她们的「革命」是去政治化的、以生活方式和消费选择为载体的<b>静默退出</b>。但其总和效应(生育率、家庭结构、需求版图)是系统级的,<b style="color:var(--zhu);">构成对「家庭作为社会基本单元」这一治理基设的釜底抽薪。</b></p>
+
+    <h3 class="ds-h3">静默退出的三重特征</h3>
+    <div class="ds-nest">
+      <div class="ds-nest-row"><span class="ds-nest-k">无组织无诉求</span><span class="ds-nest-v">单身不是一个有共同政治诉求的群体,而是无数个独立的个人选择的总和——<b style="color:var(--zhu);">它的力量恰恰来自分散与自愿,无法被针对、无法被劝退</b>(↔ GY-08 静默赎回的婚育版)。</span></div>
+      <div class="ds-nest-row"><span class="ds-nest-k">生活方式即立场</span><span class="ds-nest-v">不婚不育本身是最彻底的「用脚投票」——<b>不抗议、不发声,只是不参与</b>;这是机器最难处置的退出形态,因为它完全合法、完全私人。</span></div>
+      <div class="ds-nest-row"><span class="ds-nest-k">基设级冲击</span><span class="ds-nest-v">家庭长期是中国社会治理与福利的基本单元(养老靠家庭、维稳靠家庭、消费靠家庭)——<b style="color:var(--zhu);">单身化釜底抽薪了这个单元</b>,其长期后果是治理逻辑的被迫重写。</span></div>
+    </div>
+
+    <h3 class="ds-h3">与国家议程的正面对撞</h3>
+    <div class="ds-art">
+      <h5><b>解构家庭 vs 重建家庭</b>你可以补贴生育,但无法补贴出结婚意愿</h5>
+      <p>人口螺旋(↗ GY-01)、生育支持政策、催婚催育动员全都指向「重建家庭」,而这个人群在解构家庭——<b style="color:var(--zhu);">这是当前最根本、最无法用政策逆转的社会变迁之一:你可以补贴生育,但无法补贴出结婚意愿。</b>补贴可改成本,改不了「不结婚也能过好」这个已建制化的事实。</p>
+    </div>
+
+    <h3 class="ds-h3">同构对照:静默退出的两种形态</h3>
+    <div class="ds-twin">
+      <div class="ds-twin-a"><h6>资本 · 静默赎回(GY-08)</h6><p>中产以<b>防御性收缩 / 静默赎回</b>退出消费——不发声、只收缩,机器无从针对。</p></div>
+      <div class="ds-twin-mid">↔</div>
+      <div class="ds-twin-b"><h6>婚育 · 静默退出(GY-19)</h6><p><b style="color:var(--zhu);">单身以不婚不育退出家庭基设</b>——不抗议、只不参与,完全合法、完全私人,机器所有工具都失灵。</p></div>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="ds-xref">↗ GY-08 · 静默赎回的婚育版</span>
+      <span class="ds-xref">↗ GY-01 · 人口螺旋 / 重建家庭议程</span>
+      <span class="ds-xref">↗ GY-25 · 计生反转的生育意愿分母</span>
+    </div>
+
+    <div class="ds-verdict">
+      <span class="ds-verdict-tag">D6 判词</span>
+      这个人群从不上街,因为她们的武器是不参与。婚育罢工是合法、私人、分散、自愿的——机器面对它时所有的工具都失灵:不能强制结婚,不能惩罚单身,连污名都已失效。<b style="color:var(--zhu);">这是系统遇到的最安静、也最不可逆的一场革命。</b>
+      <span class="ds-xref">↗ D7 · 形态推演(三态)</span>
+    </div>
+  </section>
+
+  <!-- ════ D7 形态推演 ════ -->
+  <section class="ds-panel" id="ds-p-d7">
+    <div class="ds-sec-head"><h2>D7 · 形态推演</h2><span class="ds-sec-tag">三态 · α 缓慢建制化 / β 政策强干预 / γ 养老缺口显形</span></div>
+    <p class="ds-lede">这个人群的演化路径,按概率拆成三态。三态共享同一个起点(<b>结婚率持续低位、一人户继续上升、单身经济稳步成熟,而养老库长期滞后</b>),<b style="color:var(--zhu);">分岔点在于:政策会否从「鼓励生育」转向「不利单身」、养老缺口会否在第一批大规模不婚世代步入老年时集中爆发。</b></p>
+
+    <div class="ds-form">
+      <h5>形态 α · 基准 · 缓慢建制化(概率最高)</h5>
+      <p>结婚率持续低位、一人户继续上升、单身经济稳步成熟,养老库缓慢补建;催婚催育政策与人群取向持续对撞但<b style="color:var(--zhu);">无法逆转趋势</b>。退出建制化沿现有轨迹深化,默认值缓慢改写而非系统性翻转(↗ W-01/W-02/W-04)。</p>
+    </div>
+    <div class="ds-form" style="border-color:var(--jin-dim); background:rgba(110,93,56,.10);">
+      <h5 style="color:var(--jin);">形态 β · 压力 · 政策强干预</h5>
+      <p>生育率危机倒逼更强的婚育干预(更大补贴、税收倾斜、舆论动员,甚至对单身 / 丁克的隐性不利)——<b style="color:var(--jin);">干预可能延缓但难逆转,且可能激起反弹</b>(↗ GY-03 CH-01 / GY-25);标志:从「鼓励生育」转向「不利单身」的政策信号出现(↗ W-07)。</p>
+    </div>
+    <div class="ds-form" style="border-color:var(--zhu-dim); background:rgba(181,72,58,.08);">
+      <h5 style="color:var(--zhu);">形态 γ · 长期 · 养老缺口显形</h5>
+      <p>当第一批大规模不婚世代步入老年,养老自筹缺口(↗ D5)集中爆发——无子女老年人口的照护、监护、医疗代理需求<b style="color:var(--zhu);">倒逼社会化养老与意定监护制度提速</b>;这是单身建制化的终局考验,按人口曲线在 2040s 到达(↗ W-05)。</p>
+    </div>
+
+    <div style="margin-top:14px;">
+      <span class="ds-xref">↗ GY-03 CH-01 / GY-25 · 政策干预与反弹</span>
+      <span class="ds-xref">↗ D5 · 养老缺口的终局考验</span>
+      <span class="ds-xref">↗ W-05/W-07 · 三态逼近速度仪表</span>
+    </div>
+
+    <div class="ds-verdict">
+      <span class="ds-verdict-tag">D7 判词</span>
+      三态的分岔不在退出是否存在(它已由四库建制化结构性确立),<b>在政策能否从鼓励生育转向不利单身而不激起反弹、养老缺口会否在 2040s 集中爆发</b>。形态 α 是缓慢建制化,形态 β 是政策强干预的延缓赌局,形态 γ 是养老缺口的终局结算。<b style="color:var(--zhu);">退出已经完成,剩下的只是它的账单何时、以何种形式到达。</b>
+      <span class="ds-xref">↗ watch · 总判词与耦合修正</span>
+    </div>
+  </section>
+
+  <!-- ════ 合成 · 观测哨 ════ -->
+  <section class="ds-panel" id="ds-p-watch">
+    <div class="ds-sec-head"><h2>D8 · 合成与观测哨</h2><span class="ds-sec-tag">独立运行实例 · 第十七子集 · 年度对账</span></div>
+
+    <div class="ds-verdict" style="margin-top:0; margin-bottom:34px;">
+      <span class="ds-verdict-tag">总判词 · 退出的完成式</span>
+      单身女性与不婚者是 China OS 从「婚育默认服务」里解绑出来的<b>独立运行实例</b>——过去单身是婚姻崩溃前的临时态,现在它正在成为自带完整运行库的稳定常驻部署。<br><br>
+      <b style="color:var(--zhu);">这个人群的崛起是母框架「退出方式价目表」的一个全新条目:与塔尖的物理离岸(↗ GY-16)、青年的躺平(↗ GY-03)不同,她们的退出是建制化的、有配套生态支撑的、且几乎不可逆的——退出从一次性的选择变成了一种可持续的人生操作系统。它对系统的冲击不在声量而在基设:家庭作为社会治理与福利的基本单元正被釜底抽薪,而这是任何生育补贴都无法逆转的。唯一的尾部风险写在养老库的空白处——今天建制化的自由,要到三十年后的老年才结清它的账单。</b><br><br>
+      与全系列合观:GY-03 在青年证明了「退出的当下式」(婚育罢工 / 冲突),GY-19 在单身女性证明了这条命题的<b>完成式</b>——退出固化为有配套、有认同、可持续的稳态。婚育罢工(冲突)与单身建制化(稳态)是同一进程的两个阶段;退出方式价目表的三个条目(塔尖物理离岸、青年躺平、单身建制化)合观,价目表假说在「退出」这一维度被纵深锚定。单身建制化是其中最安静、也最釜底抽薪的那个条目:它不发声、不上街,只是把家庭这个治理基设悄悄抽空。
+    </div>
+
+    <h3 class="ds-h3">对 GY 系列的五条修正</h3>
+    <div class="ds-fix">
+      <h5><b>修正 · GY-03</b>性别分叉女性侧确立「冲突→稳态」纵深</h5>
+      <p>CH-01 性别分叉的女性侧应确立「冲突→稳态」的纵深——<b>婚育罢工(冲突)与单身建制化(稳态)是同一进程的两个阶段</b>;建议 GY-03↔GY-19 双向链接为<b style="color:var(--zhu);">「退出的当下式与完成式」</b>。</p>
+    </div>
+    <div class="ds-fix">
+      <h5><b>修正 · GY-17</b>中年承重与单身退出的路径对照</h5>
+      <p>中年女性(承重)与单身女性(退出)是同一性别结构的两条人生路径——<b style="color:var(--zhu);">上一代的承重是下一代退出的最强动因</b>;建议两片互为「复制 vs 拒绝复制」的路径对照。</p>
+    </div>
+    <div class="ds-fix">
+      <h5><b>修正 · GY-08</b>单身悦己与中产收缩作为反向双力</h5>
+      <p>内需分析须把「单身悦己消费」与「中产防御收缩」作为反向双力建模——<b>需求版图的板块移动(家庭单元缩小)应升级为独立变量</b>,<b style="color:var(--zhu);">先于收入分配影响消费结构</b>。</p>
+    </div>
+    <div class="ds-fix">
+      <h5><b>修正 · GY-09</b>L4 照护悬崖补「无子女老年」代理空白</h5>
+      <p>L4 照护悬崖应补「无子女老年」的代理空白维度——<b>单身建制化的养老库缺口是 L4 的未来放大版</b>;意定监护、社会化照护是两片共同的制度缺口(↔ GY-18 C5 监护镜像)。</p>
+    </div>
+    <div class="ds-fix">
+      <h5><b>修正 · GY-01 / GY-25</b>生育意愿分母的不可逆部分由本片承接</h5>
+      <p>人口螺旋(GY-01)与计生反转(GY-25)的「生育意愿」分母,其<b style="color:var(--zhu);">下行的结构性、不可逆部分由本片承接</b>——补贴可改成本,改不了「不结婚也能过好」这个已建制化的事实。</p>
+    </div>
+
+    <div class="ds-watch-intro">
+      <p>这个人群的处境变动,关键看三组指针:建制化总仪表(结婚登记 / 一人户占比 / 单身女性购房)、配套生态成熟度(单身经济规模 / 养老自筹供给)、破局与预警信号(「剩女」类话语权重 / 婚育干预政策 / 不婚的代际渗透)。逐项标注状态、记录证据,年度与 GY 系列同步对账。状态与备注自动保存在本机。口径敏感者标「约」,待权威年度数据回填。</p>
+      <span class="ds-storage-state" id="ds-storage-state"></span>
+    </div>
+
+    <div class="ds-watch" id="ds-watch-list">
+      <div class="ds-watch-item" data-key="w1">
+        <div><h5><b>W-01</b>结婚登记数</h5><p class="ds-watch-desc">年度对数与趋势(610.6 万对的后续斜率)——<b>建制化的总仪表。</b></p></div>
+        <div class="ds-watch-ctrl"><div class="ds-status-row"><button class="ds-status-btn" data-status="good">向好</button><button class="ds-status-btn" data-status="flat">中性</button><button class="ds-status-btn" data-status="bad">恶化</button></div><textarea class="ds-watch-note" placeholder="证据与备注…"></textarea><div class="ds-watch-stamp"></div></div>
+      </div>
+      <div class="ds-watch-item" data-key="w2">
+        <div><h5><b>W-02</b>一人户占比</h5><p class="ds-watch-desc">家庭户中一人户比例——<b>居住 runtime 的扩张。</b></p></div>
+        <div class="ds-watch-ctrl"><div class="ds-status-row"><button class="ds-status-btn" data-status="good">向好</button><button class="ds-status-btn" data-status="flat">中性</button><button class="ds-status-btn" data-status="bad">恶化</button></div><textarea class="ds-watch-note" placeholder="证据与备注…"></textarea><div class="ds-watch-stamp"></div></div>
+      </div>
+      <div class="ds-watch-item" data-key="w3">
+        <div><h5><b>W-03</b>单身女性购房比例</h5><p class="ds-watch-desc">女性独立购房占比(与 GY-03 Q-06 共享)——<b>退出的资产化程度。</b></p></div>
+        <div class="ds-watch-ctrl"><div class="ds-status-row"><button class="ds-status-btn" data-status="good">向好</button><button class="ds-status-btn" data-status="flat">中性</button><button class="ds-status-btn" data-status="bad">恶化</button></div><textarea class="ds-watch-note" placeholder="证据与备注…"></textarea><div class="ds-watch-stamp"></div></div>
+      </div>
+      <div class="ds-watch-item" data-key="w4">
+        <div><h5><b>W-04</b>单身经济规模</h5><p class="ds-watch-desc">单身导向消费、宠物经济、迷你家电的增速——<b>配套生态成熟度。</b></p></div>
+        <div class="ds-watch-ctrl"><div class="ds-status-row"><button class="ds-status-btn" data-status="good">向好</button><button class="ds-status-btn" data-status="flat">中性</button><button class="ds-status-btn" data-status="bad">恶化</button></div><textarea class="ds-watch-note" placeholder="证据与备注…"></textarea><div class="ds-watch-stamp"></div></div>
+      </div>
+      <div class="ds-watch-item" data-key="w5">
+        <div><h5><b>W-05</b>养老自筹供给</h5><p class="ds-watch-desc">商业养老、单身 / 抱团养老社区、意定监护普及——<b>D5 缺口的补建进度。</b></p></div>
+        <div class="ds-watch-ctrl"><div class="ds-status-row"><button class="ds-status-btn" data-status="good">向好</button><button class="ds-status-btn" data-status="flat">中性</button><button class="ds-status-btn" data-status="bad">恶化</button></div><textarea class="ds-watch-note" placeholder="证据与备注…"></textarea><div class="ds-watch-stamp"></div></div>
+      </div>
+      <div class="ds-watch-item" data-key="w6">
+        <div><h5><b>W-06</b>「剩女」类话语</h5><p class="ds-watch-desc">催婚污名 vs 独立女性认同的舆论权重——<b>叙事战的战况。</b></p></div>
+        <div class="ds-watch-ctrl"><div class="ds-status-row"><button class="ds-status-btn" data-status="good">向好</button><button class="ds-status-btn" data-status="flat">中性</button><button class="ds-status-btn" data-status="bad">恶化</button></div><textarea class="ds-watch-note" placeholder="证据与备注…"></textarea><div class="ds-watch-stamp"></div></div>
+      </div>
+      <div class="ds-watch-item" data-key="w7">
+        <div><h5><b>W-07</b>婚育干预政策</h5><p class="ds-watch-desc">从鼓励生育到「不利单身」的政策信号——<b>形态β 的预警。</b></p></div>
+        <div class="ds-watch-ctrl"><div class="ds-status-row"><button class="ds-status-btn" data-status="good">向好</button><button class="ds-status-btn" data-status="flat">中性</button><button class="ds-status-btn" data-status="bad">恶化</button></div><textarea class="ds-watch-note" placeholder="证据与备注…"></textarea><div class="ds-watch-stamp"></div></div>
+      </div>
+      <div class="ds-watch-item" data-key="w8">
+        <div><h5><b>W-08</b>不婚的代际渗透</h5><p class="ds-watch-desc">不婚意愿在更年轻队列的占比——<b>建制化的代际深度。</b></p></div>
+        <div class="ds-watch-ctrl"><div class="ds-status-row"><button class="ds-status-btn" data-status="good">向好</button><button class="ds-status-btn" data-status="flat">中性</button><button class="ds-status-btn" data-status="bad">恶化</button></div><textarea class="ds-watch-note" placeholder="证据与备注…"></textarea><div class="ds-watch-stamp"></div></div>
+      </div>
+    </div>
+
+    <h3 class="ds-h3">章节规划 · 登记表</h3>
+    <div class="ds-plan">
+      <div class="ds-plan-row"><span class="ds-plan-k">CH-01</span><span class="ds-plan-v"><b>配套生态田野</b> — 单身经济四库的市场结构:单身公寓 / 宠物 / 迷你家电 / 养老自筹的成熟度图谱。</span><span class="ds-plan-tag">待建</span></div>
+      <div class="ds-plan-row"><span class="ds-plan-k">CH-02</span><span class="ds-plan-v"><b>叙事战史</b> — 「剩女」话语的兴衰与「独立女性」认同的建构,催婚的代际拉锯田野。</span><span class="ds-plan-tag">待建</span></div>
+      <div class="ds-plan-row"><span class="ds-plan-k">CH-03</span><span class="ds-plan-v"><b>养老库缺口推演</b> — 无子女老年的照护 / 监护 / 代理空白,意定监护与社会化养老的制度赛跑。</span><span class="ds-plan-tag">待建</span></div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="ds-foot">
+    <p>方法论:单身女性与不婚者以「独立运行实例(Standalone Instance)」模型刻画——这个人群是从婚育默认服务集群里解绑、独立运行的实例,过去婚姻是必装的主进程单身是它崩溃前的临时态,现在单身正在成为自带完整运行库(单身经济、一人户家电、宠物、养老自筹)的稳定独立部署,关键转折是当退出从等待重新入婚的临时进程变成有配套生态支撑的常驻服务它的不可逆性就大幅上升。核心命题:把青年性别分叉里婚育罢工的女性侧(↗GY-03 CH-01)单独放大成一个正在形成的稳定人群——她们不是过渡状态而是一种新的、可持续的人生形态,且正在重组消费、住房、养老的需求结构;退出从个体选择变成稳定形态靠的是配套生态成型,单身经济、一人户居住产品、情感替代市场、养老自筹方案四个支撑库一旦配齐单身就获得了可持续运行的运行时从而不可逆;它对系统的冲击不在声量而在基设——家庭作为社会治理与福利的基本单元正被釜底抽薪而这是任何生育补贴都无法逆转的,唯一的尾部风险写在养老库的空白处今天建制化的自由要到三十年后的老年才结清它的账单。D1 从冲突到稳态:青年性别分叉处理冲突(年轻女性为何退出婚育)本片处理冲突之后(退出固化为有配套有认同可持续的稳定形态、一旦退出建制化就从问题变结构不可逆性大幅上升),数据拐点(2024 结婚登记 610.6 万对创 1980 年来最低同比约-20%、一人户超 1.25 亿占家庭户约 1/4、离结比约 57.5%),罢工 vs 稳态(罢工假设有谈判复工可能即推迟婚育、稳态是退出本身成为目的即选择不婚、关键判据是还没结还是不打算结),性别不对称(女性侧退出更主动更有意识形态自觉受教育程度越高越明显、男性侧单身更多是被动县域过剩男性婚姻挤压、城市高学历女性是选择县域男性是被剩下两端不可通约),与中年女性路径对照(↗GY-17 M7 母辈夹心承重墙、年轻女性把不婚不育作为预防性规避、上一代的承重是下一代退出的最强广告)。D2 退出的建制化:四个支撑库,单身经济 SDK(单身公寓小份餐单人 KTV 一人游悦己消费、市场用产品确认这个人群存在、消费基础设施是第一块地基)、一人户 runtime(超 1.25 亿一人户重塑住房小户型家电迷你化家居、一人户从异常变主流户型假设)、宠物伴侣库(宠物猫狗双全作关系替代、亲密关系多元化姐妹支持网络线上社群、关系需求从婚姻解绑分散到多个非婚载体)、养老自筹模块(不婚者尤其女性更长寿+无子女养老必须自筹、商业养老抱团养老单身养老社区探索、最沉重也最不成熟的库是最大缺口);建制化=不可逆(四库齐备退出有完整运行环境回归婚姻相对成本上升必要性下降、与塔尖离岸↗GY-16 躺平↗GY-03 同构退出一旦有配套就从权宜变常驻、让退出不可逆的不是决心是配套)。D3 需求结构重组:单身崛起重组住房家电消费宠物保险五大需求结构(不是边缘单身经济噱头是总需求版图结构性位移且与中产防御性收缩↗GY-08 叠加),住房(小户型一居室单身公寓需求上升、单身女性购房比例持续走高↗GY-03 Q-06、购房从婚姻刚需婚房逻辑转向个人资产安全感逻辑)、家电(迷你家电单人厨电智能家居替代家庭分工、家庭规模缩小重塑耐用消费品规格)、宠物经济(宠物作情感陪伴核心载体宠物消费食品医疗殡葬高增长、毛孩子是单身经济增速最确定一块)、保险金融(无子女者对商业养老健康险长期护理需求更刚性、单身者必须用金融产品替代子女养老功能)、与中产收缩叠加(↗GY-08 Z2/Z5 单身悦己消费与中产防御性收缩是内需两股反向力一边在花一边在省合成结构高度分化的消费市场);单身经济不是细分市场是需求侧板块移动家庭消费单元从三口五口缩成一口住房家电食品保险全部规格假设都要重写市场已在重写政策还在按家庭做规划。D4 污名与自洽:从剩女污名到单身贵族独立女性认同的叙事战(叙事反转本身是退出建制化的意识形态工程污名失效认同成型退出就获得心理可持续性),剩女话语衰落(2007 剩女入官方话语催婚社会动员近年反噬与失效、污名是阻止退出工具污名失效是退出建制化标志)、自我叙事建构(独立女性单身贵族不将就、单身从失败缺陷重构为选择能力、影视消费社媒共同生产新认同)、催婚代际拉锯(家庭父母仍是催婚主力春节相亲年度战役、退出在公共叙事已建制化在家庭场域仍是冲突前线↔GY-17)、政策反向(生育友好政策催婚催育官方动员↗GY-03 CH-01/GY-25 与人群取向正面冲突、国家要她们结婚生育她们在建设不结婚也能过好的生活);剩女是社会试图给退出者定价的词把退出说成失败以维持婚姻默认地位这个词失效是叙事战胜负手。D5 养老自筹悬崖:四库里养老自筹最不成熟最沉重(无子女+女性更长寿使不婚女性面临无家庭兜底的超长老年是退出方式价目表里被低估的尾部成本),算术困境(无子女=无家庭照护兜底↗GY-09 L4/GY-17 M3 照护链断裂、女性平均预期寿命更长=更长独居老年、单身女性是最长老年×最少兜底组合)、自筹不成熟(商业养老保险渗透低养老社区供给少且贵抱团养老多停留试验、四库里三库经济居住情感已成型养老库还几乎是空的)、与三轨养老金叠加(↗GY-09 L2 依赖个人养老金积累的不婚者撞上养老金体系本身不确定性、自筹前提是制度可信而制度正在阴跌)、失能时刻代理空白(无子女者失能后监护医疗决策财产处置代理空白↔GY-18 C5 被监护困境镜像一个无人监护一个被过度监护、意定监护等制度刚起步远未普及);退出在青年中年是自由在老年是悬崖单身建制化建好前半生全部配套后半生养老库还是图纸缺口不补今天的单身贵族就是三十年后最长老年最少兜底的高危人群退出的尾部成本要到尾部才结算。D6 去政治化生活方式革命:这个人群没有也不寻求集体行动革命是去政治化以生活方式和消费选择为载体的静默退出但总和效应生育率家庭结构需求版图是系统级的构成对家庭作为社会基本单元这一治理基设的釜底抽薪,无组织无诉求语言(单身不是有共同政治诉求的群体而是无数个独立个人选择的总和、力量来自分散与自愿无法被针对无法被劝退↔GY-08 静默赎回婚育版)、生活方式即立场(不婚不育是最彻底用脚投票不抗议不发声只是不参与是机器最难处置的退出形态因完全合法完全私人)、对治理基设冲击(家庭长期是中国社会治理与福利基本单元养老靠家庭维稳靠家庭消费靠家庭、单身化釜底抽薪了这个单元长期后果是治理逻辑被迫重写)、与国家议程正面对撞(人口螺旋↗GY-01 生育支持政策催婚催育动员全指向重建家庭而这个人群在解构家庭、最根本最无法用政策逆转的社会变迁之一你可以补贴生育但无法补贴出结婚意愿)。D7 形态推演:α 缓慢建制化(结婚率持续低位一人户继续上升单身经济稳步成熟养老库缓慢补建催婚催育政策与人群取向持续对撞但无法逆转趋势,概率最高)/β 政策强干预(生育率危机倒逼更强婚育干预更大补贴税收倾斜舆论动员甚至对单身丁克隐性不利、干预可能延缓但难逆转且可能激起反弹↗GY-03 CH-01/GY-25、标志是从鼓励生育转向不利单身的政策信号出现)/γ 养老缺口显形(第一批大规模不婚世代步入老年养老自筹缺口集中爆发、无子女老年人口照护监护医疗代理需求倒逼社会化养老与意定监护制度提速、单身建制化的终局考验按人口曲线 2040s 到达)。数据锚定(2024/2025+训练知识基线,待权威年度数据回填):2024 结婚登记 610.6 万对创 1980 年以来最低同比约-20%离结比约 57.5%、一人户超 1.25 亿占家庭户约 1/4 第七次普查口径及后续、单身女性购房比例持续走高↗GY-03 Q-06、宠物经济单身经济高增长、女性预期寿命高于男性无子女不婚女性面临最长独居老年。注:本片聚焦女性侧主动退出的结构性建制化,与男性侧被动单身不可通约;养老缺口以制度分析框架处理避免对个体选择的评判;最新结婚登记/单身经济/养老供给数据以观测哨逐年回填。作为人群画像分层第十七子集,与 GY-03 青年(性别分叉女性侧确立冲突→稳态纵深、婚育罢工冲突与单身建制化稳态是同一进程两阶段、双向链接为退出的当下式与完成式)、GY-08 内需(单身悦己消费与中产防御收缩作为反向双力建模、需求版图板块移动家庭单元缩小升级为独立变量先于收入分配影响消费结构)、GY-09 老年(L4 照护悬崖补无子女老年代理空白维度、单身建制化养老库缺口是 L4 未来放大版、意定监护社会化照护是共同制度缺口↔GY-18 C5 监护镜像)、GY-17 中年女性(中年承重与单身退出是同一性别结构两条人生路径上一代承重是下一代退出最强动因、互为复制 vs 拒绝复制的路径对照)、GY-25 计生反转/GY-01 人口螺旋(生育意愿分母下行的结构性不可逆部分由本片承接、补贴可改成本改不了不结婚也能过好这个已建制化的事实)五处耦合。总判词的退出方式价目表三条目:塔尖物理离岸(↗GY-16)、青年躺平(↗GY-03)、单身建制化(本片)——单身建制化是其中最安静也最釜底抽薪的条目它不发声不上街只是把家庭这个治理基设悄悄抽空。来源:用户规划简报、民政部 2024 婚姻登记数据(2025-02 央视/财经)、第七次人口普查一人户数据、单身经济行业报告、训练知识基线。</p>
+    <div class="ds-foot-meta">
+      ChinaOS · GY-19 · v1.0.0<br>
+      生成 2026-06 丙午年<br>
+      人群画像 子集XVII · 关联模块 → GY-03/08/09/17/25<br>
+      注记:聚焦女性侧主动退出的建制化,避免对个体选择的评判
+    </div>
+  </footer>
+
+</div>

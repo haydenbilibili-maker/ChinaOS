@@ -17,7 +17,8 @@
 #yb-app,
 #la-app,
 #zn-app,
-#cz-app {
+#cz-app,
+#ds-app {
   --xuan: var(--bg-base);
   --xuan-deep: var(--bg-inset);
   --xuan-raise: var(--bg-elevated);
@@ -64,7 +65,8 @@
 :root[data-theme='light'] #yb-app,
 :root[data-theme='light'] #la-app,
 :root[data-theme='light'] #zn-app,
-:root[data-theme='light'] #cz-app {
+:root[data-theme='light'] #cz-app,
+#ds-app {
   --qing: #3d7a66;
   --qing-dim: #c8e4d8;
   --zhu-dim: #f0d0cc;
@@ -89,7 +91,8 @@
 #yb-app *,
 #la-app *,
 #zn-app *,
-#cz-app * {
+#cz-app *,
+#ds-app * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -112,7 +115,8 @@
 #yb-app ::selection,
 #la-app ::selection,
 #zn-app ::selection,
-#cz-app ::selection {
+#cz-app ::selection,
+#ds-app ::selection {
   background: var(--zhu-dim);
   color: var(--xuanzhi);
 }
