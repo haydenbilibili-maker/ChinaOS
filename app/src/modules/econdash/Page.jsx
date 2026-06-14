@@ -16,7 +16,6 @@ import SectionWatch from './SectionWatch.jsx';
 import SectionDiscipline from './SectionDiscipline.jsx';
 import SectionCycle from './SectionCycle.jsx';
 import SectionFiveYear from './SectionFiveYear.jsx';
-import SectionDataHub from './SectionDataHub.jsx';
 import SectionNbsLatest from './SectionNbsLatest.jsx';
 import { buildPanoramaReport } from './econReport.js';
 
@@ -636,8 +635,23 @@ export default function Page({ embedded = false }) {
       {/* ◷ 五年规划目标达成度 */}
       <div className="mb-6"><SectionFiveYear /></div>
 
-      {/* ⌗ 经济数据底座 · 本地序列管理 */}
-      <div className="mb-6"><SectionDataHub /></div>
+      {/* ⌗ 经济数据底座 · 已迁移至 数据与系统 · 数据底座 */}
+      <div className="mb-6">
+        <a
+          href="#/foundation?tab=econ"
+          className="os-card p-5 block no-underline"
+          style={{ borderLeft: '3px solid #e8a317' }}
+        >
+          <div className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
+            ⌗ 经济数据底座 · 已迁移 →
+          </div>
+          <div className="text-xs" style={{ color: 'var(--text-tertiary)', lineHeight: 1.7 }}>
+            经济序列的上传 / 解析 / 编辑 / 多序列对比 / 导出 等完整数据管理能力，
+            已迁入「数据与系统 · 数据底座」的「经济数据」标签，与全站本地库统一管理。
+            <span style={{ color: '#e8a317' }}> 点此前往 →</span>
+          </div>
+        </a>
+      </div>
 
       {/* § 数据使用纪律 */}
       <div className="mb-6"><SectionDiscipline /></div>

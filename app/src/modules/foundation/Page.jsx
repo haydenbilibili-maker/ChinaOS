@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
+import EconDataTab from './EconDataTab.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import * as DB from '../../lib/db/localdb.js';
 import { parseCSV, parseJSON, parseFigure, parseManyFigures, parseDoc } from '../../lib/db/parse.js';
@@ -31,9 +32,10 @@ import { useWorldBank } from '../../lib/db/useDataset.js';
 import { WORLD_BANK_DATASET_ID, WORLD_BANK_META, WORLD_BANK_INDICATORS, WORLD_BANK_COUNTRIES, WORLD_BANK_SEED_PKG, WORLD_BANK_COUNT } from '../../lib/db/worldBankSeed.js';
 
 const TABS = [
-  ['overview', '总览'], ['datasets', '数据集'], ['worldbank', '世界银行'], ['upload', '上传导入'],
+  ['overview', '总览'], ['econ', '经济数据'], ['datasets', '数据集'], ['worldbank', '世界银行'], ['upload', '上传导入'],
   ['analyze', '解析分析'], ['figures', '人才精英'], ['docs', '政策文件'], ['stock', '存量队列'], ['tools', '备份 / 对账'],
 ];
+const TAB_KEYS = TABS.map(([k]) => k);
 const CATS = ['经济运行', '国家统计局', '海关总署', '世界银行', '科技指标', '地缘指标', '人才精英', '其他'];
 const btn = (active) => ({ background: active ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)', color: active ? 'var(--chip-active-text)' : 'var(--text-secondary)', border: 'none', cursor: 'pointer', borderRadius: 6 });
 const inp = { background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', borderRadius: 6, padding: '6px 8px', fontSize: 13, width: '100%' };
@@ -71,7 +73,11 @@ function DataTable({ rows, columns, onEdit, onDelRow }) {
 }
 
 export default function Page() {
-  const [tab, setTab] = useState('overview');
+  const [searchParams] = useSearchParams();
+  const [tab, setTab] = useState(() => {
+    const t = searchParams.get('tab');
+    return t && TAB_KEYS.includes(t) ? t : 'overview';
+  });
   const [datasets, setDatasets] = useState([]);
   const [figures, setFigures] = useState([]);
   const [docs, setDocs] = useState([]);
@@ -97,6 +103,7 @@ export default function Page() {
       {toast && <div className="mb-4 px-3 py-2 rounded text-sm mono" style={{ background: 'rgba(16,185,129,0.14)', color: '#10b981' }}>{toast}</div>}
 
       {tab === 'overview' && <Overview st={st} datasets={datasets} onGo={setTab} />}
+      {tab === 'econ' && <EconDataTab datasets={datasets} refresh={refresh} flash={flash} />}
       {tab === 'datasets' && <Datasets datasets={datasets} refresh={refresh} flash={flash} />}
       {tab === 'worldbank' && <WorldBank datasets={datasets} refresh={refresh} flash={flash} />}
       {tab === 'upload' && <Upload refresh={refresh} flash={flash} go={setTab} />}

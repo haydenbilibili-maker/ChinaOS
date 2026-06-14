@@ -144,11 +144,11 @@ export default function SectionNbsLatest() {
                 （{reason || 'NBS 浏览器端无 CORS · 直连受限'}）；可在
                 {' '}
                 <Link
-                  to="/econdash"
+                  to="/foundation?tab=econ"
                   className="underline underline-offset-2"
                   style={{ color: C.indigo || '#8090c6' }}
                 >
-                  『经济数据底座』
+                  『数据底座 · 经济数据』
                 </Link>
                 {' '}
                 粘贴官网序列接入最新值。
