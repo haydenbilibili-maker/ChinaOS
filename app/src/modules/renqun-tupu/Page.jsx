@@ -2,6 +2,9 @@ import { PageHeader } from '../../app/ui.jsx';
 import { POPULATION_SLICE_COUNT } from '../../lib/gy/registry.js';
 import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import RenqunTupuPanel from './RenqunTupuPanel.jsx';
+import SectionSpace3D from './SectionSpace3D.jsx';
+import SectionParallel from './SectionParallel.jsx';
+import SectionLens from './SectionLens.jsx';
 import './renqunTupu.css';
 
 /**
@@ -17,6 +20,11 @@ export default function RenqunTupuPage() {
         subtitle={`${POPULATION_SLICE_COUNT} 片切片 · 八轴全光谱 · 一张隐性价目表的全息验证`}
       />
       <RenqunTupuPanel />
+      <div className="mt-8 space-y-6">
+        <SectionSpace3D />
+        <SectionParallel />
+        <SectionLens />
+      </div>
       <ModuleFooter moduleId="renqunTupu" />
     </div>
   );

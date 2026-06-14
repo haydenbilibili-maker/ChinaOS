@@ -1,5 +1,6 @@
 import { lazy } from 'react';
 import { POPULATION_SLICE_COUNT } from '../lib/gy/registry.js';
+import { populationNavCompare } from '../lib/gy/navOrder.js';
 
 // ============================================================================
 // 模块注册表 · China OS 单一数据源
@@ -952,6 +953,12 @@ export const MODULES = [
   },
 ];
 
-export const modulesByGroup = (groupId) => MODULES.filter((m) => m.group === groupId);
+// 分组级排序器（仅 population 组按 语义簇/优先级/相似性/标题长度 重排，见 lib/gy/navOrder）
+const GROUP_COMPARATORS = { population: populationNavCompare };
+export const modulesByGroup = (groupId) => {
+  const list = MODULES.filter((m) => m.group === groupId);
+  const cmp = GROUP_COMPARATORS[groupId];
+  return cmp ? [...list].sort(cmp) : list;
+};
 export const moduleById = (id) => MODULES.find((m) => m.id === id);
 export const DEFAULT_MODULE = MODULES[0];
