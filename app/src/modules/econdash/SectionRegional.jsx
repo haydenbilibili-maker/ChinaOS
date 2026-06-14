@@ -1,11 +1,13 @@
 import React, { useState, useMemo } from 'react';
 import { Card } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import ChinaMap from '../../lib/viz/ChinaMap.jsx';
 import {
   ECON_COLORS, BandHead, Meter, SignalDot,
 } from './econUI.jsx';
 import {
   REGION_METRICS, REGIONS, regionStressTally, compareRegions,
+  REGION_MAP_METRICS, regionMapData,
 } from './econRegional.js';
 
 // ============================================================================
@@ -27,7 +29,8 @@ import {
 const DISCLAIMER = '公开统计梳理 · 示意标定 · 非投资建议 · 非预测 —— 区域指标为公开口径近似 + 示意标定';
 const AX = { line: '#27324a', text: '#93a1b5', split: 'rgba(148,163,184,0.1)' };
 const MAX_COMPARE = 3;
-const GROUP_ORDER = ['东北', '沿海', '中西部', '全国'];
+// 八大区 + 全国，对齐 econRegional.js 的 group 取值（chip 与地图共用排序）
+const GROUP_ORDER = ['东北', '华北', '华东', '华中', '华南', '西南', '西北', '全国'];
 
 // stress 档位 → 颜色（低→赭，中度→赭偏暖，高压/严重→朱砂）。赭→朱砂语义。
 function stressColor(stress) {
@@ -61,6 +64,30 @@ export default function SectionRegional() {
     : (regions[0]?.id || null);
   const [selected, setSelected] = useState(defaultId ? [defaultId] : []);
 
+  // —— 地图指标切换（综合承压 + 六维），默认综合承压 ——
+  const mapMetrics = Array.isArray(REGION_MAP_METRICS) ? REGION_MAP_METRICS : [];
+  const [mapMetricKey, setMapMetricKey] = useState(mapMetrics[0]?.key || 'composite');
+  const mapMetric = mapMetrics.find((m) => m.key === mapMetricKey) || mapMetrics[0] || null;
+
+  // 当前地图指标 → ChinaMap metrics（单指标，外部 SelectorBar 驱动切换）
+  const mapData = useMemo(() => {
+    if (!mapMetric) return [];
+    return [{
+      key: mapMetric.key,
+      label: mapMetric.label,
+      valueName: mapMetric.valueName,
+      max: mapMetric.max || 100,
+      data: regionMapData(mapMetric.key),
+    }];
+  }, [mapMetric]);
+
+  // mapName（DataV 全称）→ regionId，供点击省份联动选中
+  const mapNameToId = useMemo(() => {
+    const m = {};
+    for (const r of regions) if (r.mapName) m[r.mapName] = r.id;
+    return m;
+  }, [regions]);
+
   // 按 group 分组（保序）
   const grouped = useMemo(() => {
     const map = {};
@@ -86,6 +113,12 @@ export default function SectionRegional() {
       }
       return [...prev, id];
     });
+  }
+
+  // 点击地图省份 → 反查 regionId → 设为唯一选中省（驱动下方单省体检）
+  function onMapRegionClick(name) {
+    const id = mapNameToId[name];
+    if (id) setSelected([id]);
   }
 
   const isMulti = selected.length > 1;
@@ -148,6 +181,49 @@ export default function SectionRegional() {
         全国数据掩盖了区域分化 —— 下钻到省级，才看得见投资环境的真实约束。
         点选省份切换单省体检；最多选 <span className="mono">{MAX_COMPARE}</span> 个进入雷达对比。
       </p>
+
+      {/* —— 全省承压热力图：指标切换 SelectorBar + ChinaMap —— */}
+      {mapMetric && mapData.length > 0 && (
+        <div className="mb-5">
+          <div className="flex items-center justify-between gap-2 flex-wrap mb-2">
+            <span className="mono text-[11px]" style={{ color: 'var(--text-tertiary)' }}>
+              全省承压热力图 · {mapMetric.label}
+            </span>
+            <div className="flex items-center gap-1 flex-wrap">
+              {mapMetrics.map((mm) => {
+                const active = mm.key === mapMetricKey;
+                return (
+                  <button
+                    key={mm.key}
+                    type="button"
+                    onClick={() => setMapMetricKey(mm.key)}
+                    className="text-[11px] px-2 py-0.5 rounded mono transition-colors"
+                    style={{
+                      background: active ? 'rgba(196,78,61,0.18)' : 'var(--bg-elevated)',
+                      border: `1px solid ${active ? (ECON_COLORS.cinnabar || '#c44e3d') : 'var(--border-subtle)'}`,
+                      color: active ? (ECON_COLORS.cinnabar || '#c44e3d') : 'var(--text-secondary)',
+                      fontWeight: active ? 600 : 400,
+                      cursor: 'pointer',
+                    }}
+                    aria-pressed={active}
+                  >
+                    {mm.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+          <ChinaMap
+            metrics={mapData}
+            enableDrill={false}
+            onRegionClick={onMapRegionClick}
+            style={{ height: 460 }}
+          />
+          <p className="text-[11px] leading-relaxed mt-1" style={{ color: 'var(--text-tertiary)' }}>
+            颜色越深 = 投资环境越承压（示意）；点击省份可联动下方单省体检。全国基准不参与地图着色。
+          </p>
+        </div>
+      )}
 
       {/* —— 省份选择：按 group 分组 chip —— */}
       <div className="flex flex-col gap-2.5 mb-5">

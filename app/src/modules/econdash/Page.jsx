@@ -17,6 +17,7 @@ import SectionDiscipline from './SectionDiscipline.jsx';
 import SectionCycle from './SectionCycle.jsx';
 import SectionFiveYear from './SectionFiveYear.jsx';
 import SectionDataHub from './SectionDataHub.jsx';
+import SectionNbsLatest from './SectionNbsLatest.jsx';
 import { buildPanoramaReport } from './econReport.js';
 
 // ============================================================================
@@ -507,6 +508,9 @@ export default function Page({ embedded = false }) {
           </div>
         </Grid>
       </Card>
+
+      {/* ⊞ 国家统计局最新数据 · 2025/2026 */}
+      <div className="mb-6"><SectionNbsLatest /></div>
 
       {/* ◆ 国际对比 · 世界银行实时多国 */}
       <div className="mb-6"><SectionCompare /></div>
