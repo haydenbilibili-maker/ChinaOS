@@ -79,34 +79,23 @@ function BreadcrumbNav({ items }) {
   );
 }
 
-function SidebarTreeControls({ onExpandAll, onCollapseAll }) {
+function SidebarTreeControls({ anyExpanded, onToggleAll }) {
+  const collapseMode = anyExpanded;
   return (
     <div
       className="os-sidebar-tree-controls px-3 py-2 shrink-0 border-b"
       style={{ borderColor: 'var(--border-subtle)' }}
     >
-      <div className="flex items-center gap-1">
-        <button
-          type="button"
-          className="os-sidebar-tree-btn os-btn os-btn-ghost os-btn-sm flex-1"
-          onClick={onExpandAll}
-          aria-label="一键展开全部分组"
-          title="展开全部分组"
-        >
-          <Lucide.UnfoldVertical size={13} />
-          <span>一键展开</span>
-        </button>
-        <button
-          type="button"
-          className="os-sidebar-tree-btn os-btn os-btn-ghost os-btn-sm flex-1"
-          onClick={onCollapseAll}
-          aria-label="一键缩回全部分组"
-          title="缩回全部分组"
-        >
-          <Lucide.FoldVertical size={13} />
-          <span>一键缩回</span>
-        </button>
-      </div>
+      <button
+        type="button"
+        className="os-sidebar-tree-btn os-btn os-btn-ghost os-btn-sm w-full"
+        onClick={onToggleAll}
+        aria-label={collapseMode ? '一键缩回全部分组' : '一键展开全部分组'}
+        title={collapseMode ? '缩回全部分组' : '展开全部分组'}
+      >
+        {collapseMode ? <Lucide.FoldVertical size={13} /> : <Lucide.UnfoldVertical size={13} />}
+        <span>{collapseMode ? '一键缩回' : '一键展开'}</span>
+      </button>
     </div>
   );
 }
@@ -209,21 +198,19 @@ export default function Shell() {
     });
   }, []);
 
-  const expandAllGroups = useCallback(() => {
-    setExpandedGroups(() => {
-      const next = new Set(collapsibleGroupIds);
+  const anyGroupExpanded = useMemo(
+    () => collapsibleGroupIds.some((id) => expandedGroups.has(id)),
+    [collapsibleGroupIds, expandedGroups],
+  );
+
+  const toggleAllGroups = useCallback(() => {
+    setExpandedGroups((prev) => {
+      const anyExpanded = collapsibleGroupIds.some((id) => prev.has(id));
+      const next = anyExpanded ? new Set() : new Set(collapsibleGroupIds);
       persistExpandedGroups(next);
       return next;
     });
   }, [collapsibleGroupIds]);
-
-  const collapseAllGroups = useCallback(() => {
-    setExpandedGroups(() => {
-      const next = new Set();
-      persistExpandedGroups(next);
-      return next;
-    });
-  }, []);
 
   // 路由切换：内容区滚回顶部；同时收起移动端抽屉
   useEffect(() => {
@@ -325,7 +312,7 @@ export default function Shell() {
             <Lucide.X size={16} />
           </button>
         </div>
-        <SidebarTreeControls onExpandAll={expandAllGroups} onCollapseAll={collapseAllGroups} />
+        <SidebarTreeControls anyExpanded={anyGroupExpanded} onToggleAll={toggleAllGroups} />
         <div className="flex-1 overflow-y-auto py-4 min-h-0">
           {GROUPS.map((g) => (
             <GroupBlock
