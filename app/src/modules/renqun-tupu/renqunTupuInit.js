@@ -7,7 +7,7 @@ import { withGyInit } from '../shared/gy/enhanceMethodology.js';
 const NS = 'chinaos.atlas.v2';
 const NS_LEGACY = 'chinaos.atlas.v1';
 
-/** GY-03…46 全部已上线人群切片 */
+/** GY-03…58 全部已上线人群切片 */
 const DEFAULT_LIT = POPULATION_SLICE_GY_NUMS.map((num) => `GY-${num}`);
 const TOTAL = POPULATION_SLICE_COUNT;
 

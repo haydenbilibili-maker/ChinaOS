@@ -62,11 +62,11 @@ export const GY_MODULES = {
   '54': { id: 'ertong', path: '/modules/ertong', label: '流动留守儿童', group: 'population' },
   '55': { id: 'jingzhang', path: '/modules/jingzhang', label: '精神障碍与被监护', group: 'population' },
   '56': { id: 'gongyi', path: '/modules/gongyi', label: '工程移民', group: 'population' },
-  '57': { id: 'xinfang', path: '/modules/xinfang', label: '信访群体', group: 'population' },
-  '58': { id: 'ganran', path: '/modules/ganran', label: '受污名疾病群体', group: 'population' },
+  '57': { id: 'ganran', path: '/modules/ganran', label: '受污名疾病群体', group: 'population' },
+  '58': { id: 'xinfang', path: '/modules/xinfang', label: '信访群体', group: 'population' },
 };
 
-/** GY-03…46 已上线人群切片编号（不含 GY-00 母索引） */
+/** GY-03…58 已上线人群切片编号（不含 GY-00 母索引） */
 export const POPULATION_SLICE_GY_NUMS = Object.entries(GY_MODULES)
   .filter(([, m]) => m.group === 'population' && m.id !== 'renqunTupu')
   .map(([num]) => num)

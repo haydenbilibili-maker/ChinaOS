@@ -96,6 +96,28 @@ export const ATLAS_CLUSTERS = [
       { num: '46', axes: ['年龄', '终点'], blurb: '进程回收器 · 送最后一程。所有人群最终汇入的终点站。', sens: '收官' },
     ],
   },
+  {
+    head: '第五批 · 内核与边疆 · 两片',
+    slices: [
+      { num: '47', axes: ['政治', '内核'], blurb: '内核态特权进程 · 党指挥枪。受最严格访问控制的 Ring-0 层。', sens: '敏·中' },
+      { num: '48', axes: ['身份', '边疆'], blurb: '多框架并置 · 争议中的边疆。与 GY-58 同方法论不裁决。', sens: '敏·高' },
+    ],
+  },
+  {
+    head: '第六批 · 权利救济与脆弱群体 · 十片收官',
+    slices: [
+      { num: '49', axes: ['健康', '退出'], blurb: '被标记需修复的进程 · 戒断之后。公共卫生与社会矫治。' },
+      { num: '50', axes: ['劳动', '身体'], blurb: '延迟显现的硬件损耗 · 磨损不计入运行时。' },
+      { num: '51', axes: ['制度', '城乡'], blurb: '存储被征用 · 一次性置换。土地制度视角,争议并置不裁决。', sens: '敏·中' },
+      { num: '52', axes: ['身份', '保护'], blurb: '寻址丢失 · 回家的路。受害者保护框架。', sens: '敏·高' },
+      { num: '53', axes: ['健康', '财政'], blurb: '低概率分支 · 个体罕见群体庞大。大病自救与医保缺位。' },
+      { num: '54', axes: ['年龄', '城乡'], blurb: '亲代缺失/迁移的子进程 · 监护链断裂。儿童权益视角。', sens: '敏·中' },
+      { num: '55', axes: ['健康', '权利'], blurb: '执行权限被代理 · 替他做主之前。反污名与监护制度。', sens: '敏·中' },
+      { num: '56', axes: ['城乡', '制度'], blurb: '被整体迁移的进程集群 · 搬得出之后。移民安置制度。' },
+      { num: '57', axes: ['健康', '身份'], blurb: '被反复误报的良性进程 · 测不到即不传染。公卫与反歧视。', sens: '敏·中' },
+      { num: '58', axes: ['治理', '救济'], blurb: '系统的例外上报通道 · 下情上达。多视角并陈不裁决。', sens: '敏·高' },
+    ],
+  },
 ];
 
 /** @type {{ name: string, sub: string, nodes: { num: string, short: string }[] }[]} */
@@ -119,6 +141,7 @@ export const ATLAS_AXES = [
     sub: '10后 → 老去 → 送终',
     nodes: [
       { num: '26', short: '数字原住民' },
+      { num: '54', short: '流动留守' },
       { num: '03', short: '青年' },
       { num: '34', short: '慢就业' },
       { num: '17', short: '中年女性' },
@@ -148,6 +171,7 @@ export const ATLAS_AXES = [
       { num: '38', short: '中小学教师' },
       { num: '39', short: '保安' },
       { num: '12', short: '退役军人' },
+      { num: '47', short: '现役军人' },
     ],
   },
   {
@@ -159,6 +183,8 @@ export const ATLAS_AXES = [
       { num: '06', short: '农民工' },
       { num: '30', short: '留守老人' },
       { num: '35', short: '职业农民' },
+      { num: '51', short: '征地失地' },
+      { num: '56', short: '工程移民' },
     ],
   },
   {
@@ -169,6 +195,10 @@ export const ATLAS_AXES = [
       { num: '23', short: '带病青年' },
       { num: '37', short: '医护' },
       { num: '15', short: '医保' },
+      { num: '50', short: '职业病' },
+      { num: '53', short: '罕见大病' },
+      { num: '55', short: '精神障碍' },
+      { num: '57', short: '受污名疾病' },
     ],
   },
   {
@@ -189,6 +219,7 @@ export const ATLAS_AXES = [
       { num: '19', short: '不婚' },
       { num: '32', short: '失信' },
       { num: '44', short: '刑释矫正' },
+      { num: '49', short: '戒毒康复' },
       { num: '16', short: '离岸' },
       { num: '10', short: '塔尖外流' },
     ],
