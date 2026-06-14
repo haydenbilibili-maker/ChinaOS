@@ -537,7 +537,7 @@ export default function Page({ embedded = false }) {
         </div>
         <Grid cols={3} gap="0.75rem">
           {(CANARY_SIGNALS || []).map((c) => {
-            const light = LIGHT[c.light] || LIGHT.green;
+            const light = LIGHT[c.signal] || LIGHT.green;
             return (
               <div key={c.id} className="os-card p-3" style={{ borderLeft: `3px solid ${light.c}` }}>
                 <div className="flex items-center gap-2 mb-1.5">
