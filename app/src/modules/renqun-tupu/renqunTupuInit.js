@@ -6,10 +6,62 @@ import { withGyInit } from '../shared/gy/enhanceMethodology.js';
 
 const NS = 'chinaos.atlas.v2';
 const NS_LEGACY = 'chinaos.atlas.v1';
+const META_NS = 'chinaos.atlas.v2.meta';
 
 /** GY-03…58 全部已上线人群切片 */
 const DEFAULT_LIT = POPULATION_SLICE_GY_NUMS.map((num) => `GY-${num}`);
+const ALL_CODES = new Set(DEFAULT_LIT);
 const TOTAL = POPULATION_SLICE_COUNT;
+
+/** @returns {{ sliceCount?: number } | null} */
+function loadMeta() {
+  try {
+    const raw = localStorage.getItem(META_NS);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+/** @param {{ sliceCount: number }} meta */
+function saveMeta(meta) {
+  try {
+    localStorage.setItem(META_NS, JSON.stringify(meta));
+  } catch {
+    /* ignore quota */
+  }
+}
+
+/**
+ * 与 registry 对齐：剔除失效编号；registry 扩容时自动点亮新上线切片。
+ * @param {unknown} stored
+ * @returns {{ lit: string[], changed: boolean }}
+ */
+function normalizeLit(stored) {
+  const meta = loadMeta();
+  const prevCount = meta?.sliceCount ?? 0;
+  const arr = Array.isArray(stored) ? stored : [];
+  const valid = arr.filter((code) => ALL_CODES.has(code));
+  const litSet = new Set(valid);
+  let changed = valid.length !== arr.length;
+
+  if (TOTAL > prevCount) {
+    for (const code of DEFAULT_LIT) {
+      if (!litSet.has(code)) {
+        valid.push(code);
+        litSet.add(code);
+        changed = true;
+      }
+    }
+  }
+
+  if (prevCount !== TOTAL) {
+    saveMeta({ sliceCount: TOTAL });
+    changed = true;
+  }
+
+  return { lit: valid, changed };
+}
 
 /** @param {HTMLElement | null} root @param {{ tab?: string }} deepLink */
 function initRenqunTupuCore(root, deepLink = {}) {
@@ -38,9 +90,18 @@ function initRenqunTupuCore(root, deepLink = {}) {
   const load = () => {
     try {
       const v = localStorage.getItem(NS);
-      if (v) return JSON.parse(v);
+      if (v) {
+        const { lit, changed } = normalizeLit(JSON.parse(v));
+        if (changed) save(lit);
+        return lit;
+      }
       const legacy = localStorage.getItem(NS_LEGACY);
-      if (legacy) return JSON.parse(legacy);
+      if (legacy) {
+        const { lit, changed } = normalizeLit(JSON.parse(legacy));
+        save(lit);
+        return lit;
+      }
+      saveMeta({ sliceCount: TOTAL });
       return DEFAULT_LIT.slice();
     } catch {
       return memStore || DEFAULT_LIT.slice();
@@ -58,8 +119,10 @@ function initRenqunTupuCore(root, deepLink = {}) {
 
   const isLit = (code) => lit.indexOf(code) !== -1;
 
+  const litCount = () => lit.filter((code) => ALL_CODES.has(code)).length;
+
   const renderRing = () => {
-    const n = lit.length;
+    const n = litCount();
     const ring = root.querySelector('#at-ring');
     const circ = 169.6;
     if (ring) ring.setAttribute('stroke-dashoffset', (circ * (1 - n / TOTAL)).toFixed(1));
