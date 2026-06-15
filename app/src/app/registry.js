@@ -290,6 +290,15 @@ export const MODULES = [
     component: lazy(() => import('../modules/renqun-tupu/Page.jsx')),
   },
   {
+    id: 'haydenSlice',
+    path: '/modules/me',
+    group: 'population',
+    title: '私享切片',
+    subtitle: '李贺 / Hayden · 迁移日志 · 自画像',
+    icon: 'UserCircle',
+    component: lazy(() => import('../modules/me/Page.jsx')),
+  },
+  {
     id: 'qingnian',
     path: '/modules/qingnian',
     group: 'population',

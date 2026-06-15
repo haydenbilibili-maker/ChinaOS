@@ -67,6 +67,7 @@ const titleLen = (title) => (title ? [...title].length : 99);
  */
 export function populationNavRank(moduleId, title = '') {
   if (moduleId === ATLAS_ID) return -1;
+  if (moduleId === 'haydenSlice') return -0.5; // 私享切片：紧随母索引、置于公开切片之前
   const num = ID_TO_NUM[moduleId];
   if (!num) return 9_000_000;
   const numInt = parseInt(num, 10) || 0;
