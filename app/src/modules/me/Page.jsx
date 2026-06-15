@@ -9,6 +9,7 @@ import SectionAntifragile from './SectionAntifragile.jsx';
 import SectionValues from './SectionValues.jsx';
 import SectionRisk from './SectionRisk.jsx';
 import SectionPrinciples from './SectionPrinciples.jsx';
+import SectionShanhai from './SectionShanhai.jsx';
 
 // ============================================================================
 // 私享切片 · 李贺 / 独菽 / Hayden（GY-∞ · 不入公开图谱）
@@ -465,6 +466,9 @@ export default function Page() {
 
       {/* ⑮ 人生路径推演器（旗舰交互） */}
       <div className="mt-6"><SectionSimulator /></div>
+
+      {/* ㉑ 山海造物 · 副业实体（推演器「AI超级个体/东北落子」的现实落子） */}
+      <div className="mt-6"><SectionShanhai /></div>
 
       {/* ⑯ 能力资产负债表 */}
       <div className="mt-6"><SectionBalance /></div>
