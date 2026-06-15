@@ -3,6 +3,12 @@ import { Link } from 'react-router-dom';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
+import SectionSimulator from './SectionSimulator.jsx';
+import SectionBalance from './SectionBalance.jsx';
+import SectionAntifragile from './SectionAntifragile.jsx';
+import SectionValues from './SectionValues.jsx';
+import SectionRisk from './SectionRisk.jsx';
+import SectionPrinciples from './SectionPrinciples.jsx';
 
 // ============================================================================
 // 私享切片 · 李贺 / 独菽 / Hayden（GY-∞ · 不入公开图谱）
@@ -457,10 +463,28 @@ export default function Page() {
         </div>
       </Card>
 
+      {/* ⑮ 人生路径推演器（旗舰交互） */}
+      <div className="mt-6"><SectionSimulator /></div>
+
+      {/* ⑯ 能力资产负债表 */}
+      <div className="mt-6"><SectionBalance /></div>
+
+      {/* ⑰ 反脆弱杠铃 */}
+      <div className="mt-6"><SectionAntifragile /></div>
+
+      {/* ⑱ 价值观与驱动力 */}
+      <div className="mt-6"><SectionValues /></div>
+
+      {/* ⑲ 风险地图 */}
+      <div className="mt-6"><SectionRisk /></div>
+
+      {/* ⑳ 个人操作系统 · 决策原则（收尾） */}
+      <div className="mt-6"><SectionPrinciples /></div>
+
       <ModuleFooter
         moduleId="haydenSlice"
         disclaimer="私享自画像 · 本人自述与简历公开口径 · 仅自用，非任何机构人事评价"
-        sourceNote="数据锚点：个人简历（2026-01）· 迁徙/红利/雷达/趋势/路径为本人自评示意标定，非预测、非承诺"
+        sourceNote="数据锚点：个人简历（2026-01）· 迁徙/红利/雷达/趋势/路径/推演为本人自评示意标定，非预测、非承诺"
       />
     </div>
   );
