@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -145,12 +146,140 @@ function dividendOption() {
   };
 }
 
+// ============================================================================
+// 扩展层：时代背景 / 个人选择 / 代际与东北 / 未来趋势 / 未来路径 / 系统坐标
+// ============================================================================
+
+// —— ⑧ 时代背景：个人里程碑叠加宏观浪潮（示意标定）——
+const ERA_YEARS = ['1992', '1998', '2004', '2010', '2016', '2022', '2026'];
+const ERA_NET = [2, 8, 20, 38, 58, 75, 80];        // 中国互联网/移动互联网渗透大势（示意 %）
+const ERA_GLOBAL = [5, 12, 25, 40, 70, 55, 42];     // 中国 APP 出海窗口热度（示意）
+const ERA_MARKS = [
+  { year: '1992', label: '南方谈话·市场经济' },
+  { year: '2001', label: 'WTO 入世' },
+  { year: '2010', label: '移动互联网起飞' },
+  { year: '2018', label: '出海红利高峰' },
+  { year: '2022', label: '人口负增长·窗口收口' },
+];
+const ERA_NOTE = '出生即抽签：1992 年生人正好踩在「市场经济起飞 → 入世全球化 → 移动互联网 → APP 出海」这条上升直线上，又在 35 岁这年撞上人口拐点与出海退潮。个人努力是真的，但被时代抽中哪一段，先于努力。';
+
+// —— ⑨ 个人选择：关键分叉 + 反事实 ——
+const DECISIONS = [
+  { id: 'major', node: '专业 · 日语 vs 热门', taken: '选日语（小语种）', why: '高考分数与地域约束下的次优解',
+    counter: '若选金融/计算机：起点更高，但未必踩中出海——日语反成东亚出海的隐性凭证', color: '#22d3ee' },
+  { id: 'city', node: '毕业 · 北京 vs 留无锡', taken: '进京', why: '互联网内核只在一线挂载',
+    counter: '留长三角：生活成本更友好，但错过 2015-2018 的内容/出海风口窗口', color: '#10b981' },
+  { id: 'sea', node: '路线 · 出海 vs 国内', taken: '出海东亚东南亚', why: '增量在海外、竞争相对蓝海',
+    counter: '深耕国内大厂：稳定度更高，但天花板与不可替代性都更低', color: '#e8a317' },
+  { id: 'startup', node: '体制 · 大厂 vs 创业', taken: 'fork 创业（AI 社交）',
+    why: '想把调度权从平台收回自己手里', counter: '继续大厂：现金流确定，但 35 岁后的议价权随红利退潮下行', color: '#fb923c' },
+  { id: 'back', node: '地域 · 回东北 vs 留一线', taken: '回迁长春', why: '家庭/成本/赌区域低位',
+    counter: '留一线：资源密度高、但创业成本与同辈内卷也最高——回迁是一次高风险逆向下注', color: '#94a3b8' },
+];
+
+// —— ⑩ 代际与东北坐标（含跨切片链接）——
+const GENERATION = [
+  ['90 后 · 独生末班', '计划生育与城镇化交汇处出生，独生子女的全部期待与赡养压力一肩挑'],
+  ['迁徙的一代', '小镇 → 高校 → 一线 → 海外 → 回流：用脚投票的完整闭环，正反两个方向都走过'],
+  ['数字红利原住民前夜', '赶在移动互联网起飞前入场，吃到平台扩张期的全部弹性'],
+  ['35 岁结构性拐点', '红利退潮叠加年龄议价拐点，「中年」提前到来'],
+];
+const SLICE_LINKS = [
+  { to: '/modules/qingnian', label: 'GY-03 青年', note: '退出与迷茫的暗物质' },
+  { to: '/modules/zhongnv', label: 'GY-17 中年', note: '提前到来的中年坐标' },
+  { to: '/modules/minqi', label: 'GY-42 中小民企主', note: '自负盈亏的创业进程' },
+  { to: '/modules/manjiu', label: 'GY-34 慢就业青年', note: '红利退潮后的就业压力' },
+];
+const NORTHEAST = {
+  text: '我既是东北人口外流大潮里的一员（离开），又是逆流回迁的极少数（回来）。区域数据看东北是「财政承压·人口净流出·投资环境靠后」的样本，但个人微观的回迁，赌的正是这块洼地的低位与未被定价的机会——逆向下注与水土不服，是同一枚硬币。',
+  links: [
+    { to: '/econ-dashboard', label: '经济大盘 · 区域下钻', note: '辽宁/吉林承压热力图' },
+    { to: '/chronicle', label: '国运时间轴', note: '东北的兴衰长波' },
+  ],
+};
+
+// —— ⑪ 未来趋势：趋势强度 × 个人契合度（象限散点）——
+const TRENDS = [
+  { name: 'AI Agent / 超级个体', strength: 92, fit: 85, color: '#fb923c' },
+  { name: '中国品牌出海 2.0', strength: 78, fit: 88, color: '#e8a317' },
+  { name: '银发经济', strength: 70, fit: 40, color: '#10b981' },
+  { name: '东北/区域振兴', strength: 55, fit: 58, color: '#94a3b8' },
+  { name: '个人 IP / 内容创作', strength: 68, fit: 72, color: '#22d3ee' },
+  { name: '跨境电商 / 全球供给', strength: 74, fit: 62, color: '#8b5cf6' },
+];
+const TREND_NOTE = '右上象限（高趋势 × 高契合）是「AI 超级个体」与「出海 2.0」——十年出海操盘 + AIGC 实战正好叠在这条线上；银发经济趋势在但契合低；东北振兴契合中等、强度待验证。';
+
+// —— ⑫ 未来路径：35 → 45 的几种 fork（情景）——
+const PATHS = [
+  { id: 'super', label: 'AI 超级个体 · 一人公司', prob: 'A', fit: 90,
+    desc: '用 AI Agent 把「管 50 人团队」的能力压缩进一个人，做高毛利、轻团队的出海产品/工具。', risk: '现金流与孤独感是最大约束', color: '#fb923c' },
+  { id: 'sea2', label: '出海 2.0 操盘手', prob: 'A-', fit: 86,
+    desc: '回到「中国供给 × 全球市场」的增长操盘位，但这次为自己或小团队而非大厂打。', risk: '红利不如上一波、需找新蓝海', color: '#e8a317' },
+  { id: 'region', label: '区域产业 · 东北落子', prob: 'B', fit: 60,
+    desc: '把一线/海外方法论嫁接到东北某个细分产业（文旅/农产品上行/本地服务），做区域操盘。', risk: '人才与资本半径稀薄、节奏慢', color: '#94a3b8' },
+  { id: 'return', label: '回归平台 · 大厂出海线', prob: 'B', fit: 70,
+    desc: '重新挂载大厂出海/AI 业务的确定性，换现金流与体系，暂存创业野心。', risk: '议价权随年龄与红利下行', color: '#c41e3a' },
+];
+
+// —— ⑬ 系统坐标：这片切片在全站的位置 ——
+const SYSTEM_LINKS = [
+  { to: '/modules/renqun-tupu', label: '人群画像总图谱', note: '回到母索引看全部切片' },
+  { to: '/cognition', label: '康波周期', note: '个人节奏踩在长波的哪一段' },
+  { to: '/middleincometrap', label: '中等收入陷阱', note: '个人天花板 × 国家天花板' },
+  { to: '/econ-dashboard', label: '经济大盘', note: '出海退潮与红利收口的宏观底座' },
+  { to: '/techtree', label: '科技图谱', note: 'AI 攻关与超级个体的技术前提' },
+];
+
+function eraOption() {
+  return {
+    legend: { top: 0, textStyle: { color: AX.text, fontSize: 11 }, data: ['互联网渗透大势', 'APP 出海窗口热度'] },
+    grid: { left: 36, right: 16, top: 30, bottom: 28 },
+    tooltip: { trigger: 'axis' },
+    xAxis: { type: 'category', data: ERA_YEARS, boundaryGap: false, axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text }, axisTick: { show: false } },
+    yAxis: { type: 'value', max: 100, axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text }, splitLine: { lineStyle: { color: AX.split } } },
+    series: [
+      { name: '互联网渗透大势', type: 'line', smooth: true, symbol: 'none', areaStyle: { color: '#22d3ee', opacity: 0.12 }, lineStyle: { width: 2, color: '#22d3ee' }, data: ERA_NET },
+      { name: 'APP 出海窗口热度', type: 'line', smooth: true, symbol: 'none', lineStyle: { width: 2, color: '#e8a317' }, data: ERA_GLOBAL,
+        markLine: { silent: true, symbol: 'none', lineStyle: { color: 'rgba(148,163,184,0.4)', type: 'dashed' },
+          label: { color: AX.text, fontSize: 9, formatter: (p) => p.data.label },
+          data: ERA_MARKS.map((m) => ({ xAxis: m.year, label: { formatter: m.label } })) } },
+    ],
+  };
+}
+
+function trendQuadrantOption() {
+  return {
+    grid: { left: 48, right: 24, top: 24, bottom: 44 },
+    tooltip: { trigger: 'item', formatter: (p) => `${p.data.name}<br/>趋势强度 ${p.value[0]} · 个人契合 ${p.value[1]}` },
+    xAxis: { type: 'value', name: '趋势强度 →', min: 30, max: 100, nameTextStyle: { color: AX.text, fontSize: 10 }, axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text }, splitLine: { lineStyle: { color: AX.split } } },
+    yAxis: { type: 'value', name: '个人契合 →', min: 30, max: 100, nameTextStyle: { color: AX.text, fontSize: 10 }, axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text }, splitLine: { lineStyle: { color: AX.split } } },
+    series: [{
+      type: 'scatter',
+      symbolSize: (v) => 14 + (v[0] + v[1]) / 12,
+      label: { show: true, position: 'right', color: AX.text, fontSize: 10, formatter: (p) => p.data.name },
+      data: TRENDS.map((t) => ({ name: t.name, value: [t.strength, t.fit], itemStyle: { color: t.color } })),
+      markLine: { silent: true, symbol: 'none', lineStyle: { color: 'rgba(148,163,184,0.25)', type: 'dashed' }, data: [{ xAxis: 70 }, { yAxis: 65 }] },
+    }],
+  };
+}
+
 export default function Page() {
   const [stage, setStage] = useState(MIGRATION.length - 1); // 默认停在「回迁·长春」
+  const [decIdx, setDecIdx] = useState(0);
 
   const graphOpt = useMemo(migrationGraphOption, []);
   const radarOpt = useMemo(radarOption, []);
   const divOpt = useMemo(dividendOption, []);
+  const eraOpt = useMemo(eraOption, []);
+  const trendOpt = useMemo(trendQuadrantOption, []);
+
+  const LinkCard = ({ to, label, note }) => (
+    <Link to={to} className="os-card p-3 block no-underline" style={{ borderLeft: '3px solid #22d3ee' }}>
+      <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{label} <span style={{ color: '#22d3ee' }}>↗</span></div>
+      <div className="text-[11px] mt-0.5" style={{ color: 'var(--text-tertiary)' }}>{note}</div>
+    </Link>
+  );
+  const dec = DECISIONS[decIdx];
 
   return (
     <div>
@@ -237,10 +366,101 @@ export default function Page() {
         <FrameworkTrio cards={TENSIONS} />
       </div>
 
+      {/* ⑧ 时代背景 */}
+      <Card title="⑧ 时代背景 · 出生即抽签" className="mt-6">
+        <EChart option={eraOpt} style={{ height: 340 }} />
+        <p className="text-xs mt-2" style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>{ERA_NOTE}</p>
+      </Card>
+
+      {/* ⑨ 个人选择 · 分叉与反事实 */}
+      <Card title="⑨ 个人选择 · 关键分叉与反事实" className="mt-6">
+        <SelectorBar
+          items={DECISIONS.map((d) => ({ key: d.id, label: d.node, accent: d.color }))}
+          activeKey={dec.id}
+          onSelect={(k) => setDecIdx(DECISIONS.findIndex((d) => d.id === k))}
+        />
+        <div className="os-card p-4 mt-3" style={{ borderLeft: `3px solid ${dec.color}` }}>
+          <div className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{dec.node}</div>
+          <div className="grid md:grid-cols-3 gap-3 mt-3">
+            <div>
+              <div className="text-[11px] mono mb-1" style={{ color: dec.color }}>实际选择</div>
+              <div className="text-xs" style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>{dec.taken}<br /><span style={{ color: 'var(--text-tertiary)' }}>· {dec.why}</span></div>
+            </div>
+            <div className="md:col-span-2">
+              <div className="text-[11px] mono mb-1" style={{ color: '#94a3b8' }}>反事实 · 没走的那条路</div>
+              <div className="text-xs" style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>{dec.counter}</div>
+            </div>
+          </div>
+        </div>
+        <p className="text-xs mt-2" style={{ color: 'var(--text-tertiary)', lineHeight: 1.7 }}>
+          每一次分叉都不是「对错」，是「在当时的约束下选了哪条」。路径依赖让早年的次优选择（日语/出海）后来变成了独特凭证——这正是个人进程里最像「制度」的部分。
+        </p>
+      </Card>
+
+      {/* ⑩ 代际与东北坐标 */}
+      <Grid cols={2} className="mt-6">
+        <Card title="⑩ 代际坐标 · 1992 的世代签">
+          <div className="space-y-2">
+            {GENERATION.map(([t, d]) => (
+              <div key={t} className="os-card p-3">
+                <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{t}</div>
+                <div className="text-[11px] mt-0.5" style={{ color: 'var(--text-tertiary)', lineHeight: 1.6 }}>{d}</div>
+              </div>
+            ))}
+          </div>
+          <div className="text-[11px] mono mt-3 mb-2" style={{ color: 'var(--text-tertiary)' }}>同代切片 · 横向比对</div>
+          <div className="grid grid-cols-2 gap-2">
+            {SLICE_LINKS.map((l) => <LinkCard key={l.to} {...l} />)}
+          </div>
+        </Card>
+        <Card title="⑪ 东北性 · 离开与回来">
+          <p className="text-sm" style={{ color: 'var(--text-secondary)', lineHeight: 1.85 }}>{NORTHEAST.text}</p>
+          <div className="text-[11px] mono mt-3 mb-2" style={{ color: 'var(--text-tertiary)' }}>区域底座 · 把个人放回数据里</div>
+          <div className="space-y-2">
+            {NORTHEAST.links.map((l) => <LinkCard key={l.to} {...l} />)}
+          </div>
+        </Card>
+      </Grid>
+
+      {/* ⑫ 未来趋势 · 趋势×禀赋象限 */}
+      <Card title="⑫ 未来趋势 · 趋势强度 × 个人契合度" className="mt-6">
+        <EChart option={trendOpt} style={{ height: 400 }} />
+        <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>{TREND_NOTE}</p>
+      </Card>
+
+      {/* ⑬ 未来路径 · 35→45 的 fork */}
+      <Card title="⑬ 未来路径 · 35 → 45 的几种 fork" className="mt-6">
+        <div className="grid md:grid-cols-2 gap-3">
+          {PATHS.map((p) => (
+            <div key={p.id} className="os-card p-4" style={{ borderLeft: `3px solid ${p.color}` }}>
+              <div className="flex items-baseline justify-between gap-2">
+                <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{p.label}</span>
+                <span className="text-[11px] mono" style={{ color: p.color }}>可能性 {p.prob} · 契合 {p.fit}</span>
+              </div>
+              <div className="text-xs mt-1.5" style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>{p.desc}</div>
+              <div className="text-[11px] mt-1.5" style={{ color: '#c41e3a' }}>风险：{p.risk}</div>
+            </div>
+          ))}
+        </div>
+        <p className="text-xs mt-3" style={{ color: 'var(--text-tertiary)', lineHeight: 1.7 }}>
+          没有标准答案——四条路按「个人契合度 × 趋势强度」排序，超级个体与出海 2.0 在前。35 岁的优势是：第一次可以不为时钟、只为自己的禀赋曲线选择 fork。（情景示意，非承诺）
+        </p>
+      </Card>
+
+      {/* ⑭ 系统坐标 · 横向打通 */}
+      <Card title="⑭ 系统坐标 · 这片切片在全站的位置" className="mt-6">
+        <p className="text-xs mb-3" style={{ color: 'var(--text-tertiary)', lineHeight: 1.7 }}>
+          一个人不是孤立的进程：把自己接回康波长波、中等收入天花板、出海退潮的宏观底座，迷茫才有了可被定位的坐标系。
+        </p>
+        <div className="grid md:grid-cols-3 gap-2">
+          {SYSTEM_LINKS.map((l) => <LinkCard key={l.to} {...l} />)}
+        </div>
+      </Card>
+
       <ModuleFooter
         moduleId="haydenSlice"
         disclaimer="私享自画像 · 本人自述与简历公开口径 · 仅自用，非任何机构人事评价"
-        sourceNote="数据锚点：个人简历（2026-01）· 迁徙/红利/雷达为本人自评示意标定"
+        sourceNote="数据锚点：个人简历（2026-01）· 迁徙/红利/雷达/趋势/路径为本人自评示意标定，非预测、非承诺"
       />
     </div>
   );
