@@ -1,7 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import * as echarts from 'echarts';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import asiaGeo from './asia.geo.json';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import SectionSimulator from './SectionSimulator.jsx';
 import SectionBalance from './SectionBalance.jsx';
@@ -42,19 +44,24 @@ const MIGRATION = [
     desc: '回到东北，落在长春——距白泉镇 32 公里的原点附近。出海十年攒下的 SOP 在这里水土不服，红利窗口在身后关闭，35 岁的时钟里有迷茫，也有第一次为自己而非为平台调度资源的清醒。' },
 ];
 
-// —— 城市迁移图（语义布局：x 西→东 / y 北→南，海外聚在下方）——
-const CITY_NODES = [
-  { name: '白泉镇', x: 86, y: 8, kind: 'origin' },
-  { name: '长春', x: 82, y: 4, kind: 'now' },
-  { name: '北京', x: 60, y: 22 },
-  { name: '杭州', x: 70, y: 50 },
-  { name: '无锡', x: 73, y: 46 },
-  { name: '首尔', x: 92, y: 34 },
-  { name: '胡志明', x: 58, y: 88 },
-  { name: '雅加达', x: 70, y: 96 },
-  { name: '曼谷', x: 50, y: 86 },
-  { name: '新加坡', x: 64, y: 92 },
+// —— 城市迁移（真实经纬度，接入 ECharts geo 亚洲地图）——
+const ME_MAP = 'me-asia';
+if (!echarts.getMap(ME_MAP)) echarts.registerMap(ME_MAP, asiaGeo);
+
+const CITY_GEO = [
+  { name: '白泉镇', coord: [124.95, 42.98], kind: 'origin' },  // 吉林东辽县白泉镇
+  { name: '长春', coord: [125.32, 43.82], kind: 'now' },
+  { name: '无锡', coord: [120.31, 31.49] },
+  { name: '北京', coord: [116.40, 39.90] },
+  { name: '杭州', coord: [120.15, 30.27] },
+  { name: '首尔', coord: [126.98, 37.57] },
+  { name: '胡志明', coord: [106.63, 10.82] },
+  { name: '雅加达', coord: [106.85, -6.21] },
+  { name: '曼谷', coord: [100.50, 13.75] },
+  { name: '新加坡', coord: [103.82, 1.35] },
 ];
+const COORD_OF = Object.fromEntries(CITY_GEO.map((c) => [c.name, c.coord]));
+// 迁徙顺序（成段连线）：东北原点 → 江南 → 进京 → 出海东亚东南亚 → 回迁长春
 const CITY_EDGES = [
   ['白泉镇', '无锡'], ['无锡', '北京'], ['北京', '首尔'], ['北京', '胡志明'],
   ['首尔', '杭州'], ['杭州', '雅加达'], ['雅加达', '曼谷'], ['曼谷', '新加坡'],
@@ -95,24 +102,33 @@ const TENSIONS = [
     pillars: [['同辈时钟', '社会的默认计时器'], ['现金流', '自负盈亏的清醒'], ['主体性', '调度权的回收']] },
 ];
 
-function migrationGraphOption() {
-  const idx = Object.fromEntries(CITY_NODES.map((n, i) => [n.name, i]));
+function migrationMapOption() {
   const colorOf = (n) => (n.kind === 'now' ? '#22d3ee' : n.kind === 'origin' ? '#c41e3a' : '#e8a317');
+  const lines = CITY_EDGES.map(([s, t]) => ({ coords: [COORD_OF[s], COORD_OF[t]], fromName: s, toName: t }));
   return {
-    tooltip: { trigger: 'item', formatter: (p) => (p.dataType === 'edge' ? `${p.data.source} → ${p.data.target}` : p.name) },
-    xAxis: { show: false, min: 0, max: 100 },
-    yAxis: { show: false, min: 0, max: 100 },
-    grid: { left: 8, right: 8, top: 12, bottom: 12 },
-    series: [{
-      type: 'graph', coordinateSystem: 'cartesian2d', layout: 'none',
-      edgeSymbol: ['none', 'arrow'], edgeSymbolSize: 8,
-      lineStyle: { color: 'rgba(232,163,23,0.45)', width: 1.4, curveness: 0.18 },
-      label: { show: true, position: 'right', color: AX.text, fontSize: 11, fontFamily: 'var(--font-mono)' },
-      symbolSize: (v, p) => (CITY_NODES[p.dataIndex]?.kind ? 18 : 12),
-      itemStyle: { color: (p) => colorOf(CITY_NODES[p.dataIndex]) },
-      data: CITY_NODES.map((n) => ({ name: n.name, value: [n.x, n.y], itemStyle: { color: colorOf(n) } })),
-      links: CITY_EDGES.map(([s, t]) => ({ source: s, target: t })),
-    }],
+    backgroundColor: 'transparent',
+    tooltip: { trigger: 'item', formatter: (p) => (p.seriesType === 'lines' ? `${p.data.fromName} → ${p.data.toName}` : p.name) },
+    geo: {
+      map: ME_MAP, roam: false, zoom: 1.15, center: [114, 26],
+      itemStyle: { areaColor: '#141c2b', borderColor: 'rgba(148,163,184,0.22)', borderWidth: 0.5 },
+      emphasis: { disabled: true },
+      label: { show: false },
+    },
+    series: [
+      // 迁徙航线 + 动态拖尾
+      { type: 'lines', coordinateSystem: 'geo', zlevel: 1, data: lines,
+        effect: { show: true, period: 5, trailLength: 0.5, symbol: 'arrow', symbolSize: 6, color: '#e8a317' },
+        lineStyle: { color: 'rgba(232,163,23,0.45)', width: 1.4, curveness: 0.25 } },
+      // 城市节点
+      { type: 'scatter', coordinateSystem: 'geo', zlevel: 2,
+        symbolSize: (v, p) => (CITY_GEO[p.dataIndex]?.kind ? 13 : 9),
+        itemStyle: { color: (p) => colorOf(CITY_GEO[p.dataIndex]) },
+        label: { show: true, position: 'right', formatter: (p) => p.name, color: AX.text, fontSize: 11, fontFamily: 'var(--font-mono)' },
+        data: CITY_GEO.map((c) => ({ name: c.name, value: c.coord, itemStyle: { color: colorOf(c) } })) },
+      // 起点/终点高亮涟漪
+      { type: 'effectScatter', coordinateSystem: 'geo', zlevel: 3, rippleEffect: { scale: 3, brushType: 'stroke' },
+        symbolSize: 12, data: CITY_GEO.filter((c) => c.kind).map((c) => ({ name: c.name, value: c.coord, itemStyle: { color: colorOf(c) } })) },
+    ],
   };
 }
 
@@ -274,7 +290,7 @@ export default function Page() {
   const [stage, setStage] = useState(MIGRATION.length - 1); // 默认停在「回迁·长春」
   const [decIdx, setDecIdx] = useState(0);
 
-  const graphOpt = useMemo(migrationGraphOption, []);
+  const graphOpt = useMemo(migrationMapOption, []);
   const radarOpt = useMemo(radarOption, []);
   const divOpt = useMemo(dividendOption, []);
   const eraOpt = useMemo(eraOption, []);
@@ -316,8 +332,8 @@ export default function Page() {
 
       {/* ② 地理迁徙图 + 红利窗口 */}
       <Grid cols={2} className="mt-6">
-        <Card title="② 地理迁徙轨迹 · 换页路径">
-          <EChart option={graphOpt} style={{ height: 360 }} />
+        <Card title="② 地理迁徙轨迹 · 换页路径（真实地图）">
+          <EChart option={graphOpt} style={{ height: 420 }} />
           <p className="text-xs mt-2" style={{ color: 'var(--text-tertiary)', lineHeight: 1.7 }}>
             红=出生地（白泉镇）· 青=当前（长春）· 金=途经枢纽。出海十年把生活半径拉到五国，最后一条边又把它收回了东北原点附近。
           </p>
