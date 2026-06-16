@@ -13,6 +13,7 @@ import SectionValues from './SectionValues.jsx';
 import SectionRisk from './SectionRisk.jsx';
 import SectionPrinciples from './SectionPrinciples.jsx';
 import SectionShanhai from './SectionShanhai.jsx';
+import SectionLifePlan from './SectionLifePlan.jsx';
 
 // ============================================================================
 // 私享切片 · 李贺 / 独菽 / Hayden（GY-∞ · 不入公开图谱）
@@ -522,8 +523,11 @@ export default function Page() {
       {/* ⑲ 风险地图 */}
       <div className="mt-6"><SectionRisk /></div>
 
-      {/* ⑳ 个人操作系统 · 决策原则（收尾） */}
+      {/* ⑳ 个人操作系统 · 决策原则 */}
       <div className="mt-6"><SectionPrinciples /></div>
+
+      {/* ㉒ 人生决策框架 · 养老/医疗/教育/储蓄（收尾） */}
+      <div className="mt-6"><SectionLifePlan /></div>
 
       {/* 地图全屏覆盖层（Portal 到 body，规避祖先 transform 对 fixed 的限制）*/}
       {mapFull && createPortal(
