@@ -1,9 +1,10 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import * as echarts from 'echarts';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import asiaGeo from './asia.geo.json';
+import worldGeo from './world.geo.json';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import SectionSimulator from './SectionSimulator.jsx';
 import SectionBalance from './SectionBalance.jsx';
@@ -44,28 +45,33 @@ const MIGRATION = [
     desc: '回到东北，落在长春——距白泉镇 32 公里的原点附近。出海十年攒下的 SOP 在这里水土不服，红利窗口在身后关闭，35 岁的时钟里有迷茫，也有第一次为自己而非为平台调度资源的清醒。' },
 ];
 
-// —— 城市迁移（真实经纬度，接入 ECharts geo 亚洲地图）——
-const ME_MAP = 'me-asia';
-if (!echarts.getMap(ME_MAP)) echarts.registerMap(ME_MAP, asiaGeo);
+// —— 城市迁移（真实经纬度，接入 ECharts geo 世界地图）——
+const ME_MAP = 'me-world';
+if (!echarts.getMap(ME_MAP)) echarts.registerMap(ME_MAP, worldGeo);
 
 const CITY_GEO = [
   { name: '白泉镇', coord: [124.95, 42.98], kind: 'origin' },  // 吉林东辽县白泉镇
   { name: '长春', coord: [125.32, 43.82], kind: 'now' },
   { name: '无锡', coord: [120.31, 31.49] },
+  { name: '上海', coord: [121.47, 31.23] },
   { name: '北京', coord: [116.40, 39.90] },
   { name: '杭州', coord: [120.15, 30.27] },
   { name: '首尔', coord: [126.98, 37.57] },
+  { name: '东京', coord: [139.69, 35.68] },
   { name: '胡志明', coord: [106.63, 10.82] },
+  { name: '马尼拉', coord: [120.98, 14.60] },
   { name: '雅加达', coord: [106.85, -6.21] },
   { name: '曼谷', coord: [100.50, 13.75] },
   { name: '新加坡', coord: [103.82, 1.35] },
+  { name: '圣保罗', coord: [-46.63, -23.55] },  // 巴西
 ];
 const COORD_OF = Object.fromEntries(CITY_GEO.map((c) => [c.name, c.coord]));
-// 迁徙顺序（成段连线）：东北原点 → 江南 → 进京 → 出海东亚东南亚 → 回迁长春
+// 迁徙轨迹（成段连线）：东北原点 → 江南/进京 → 出海东亚东南亚 → 越洋巴西 → 回迁长春
 const CITY_EDGES = [
-  ['白泉镇', '无锡'], ['无锡', '北京'], ['北京', '首尔'], ['北京', '胡志明'],
-  ['首尔', '杭州'], ['杭州', '雅加达'], ['雅加达', '曼谷'], ['曼谷', '新加坡'],
-  ['新加坡', '长春'],
+  ['白泉镇', '无锡'], ['无锡', '上海'], ['上海', '北京'], ['北京', '首尔'],
+  ['首尔', '东京'], ['北京', '胡志明'], ['胡志明', '马尼拉'], ['首尔', '杭州'],
+  ['杭州', '雅加达'], ['雅加达', '曼谷'], ['曼谷', '新加坡'], ['新加坡', '圣保罗'],
+  ['圣保罗', '长春'],
 ];
 
 // —— 多维定位：出海期 vs 回迁期 ——
@@ -102,15 +108,16 @@ const TENSIONS = [
     pillars: [['同辈时钟', '社会的默认计时器'], ['现金流', '自负盈亏的清醒'], ['主体性', '调度权的回收']] },
 ];
 
-function migrationMapOption() {
+function migrationMapOption(full = false) {
   const colorOf = (n) => (n.kind === 'now' ? '#22d3ee' : n.kind === 'origin' ? '#c41e3a' : '#e8a317');
   const lines = CITY_EDGES.map(([s, t]) => ({ coords: [COORD_OF[s], COORD_OF[t]], fromName: s, toName: t }));
   return {
     backgroundColor: 'transparent',
     tooltip: { trigger: 'item', formatter: (p) => (p.seriesType === 'lines' ? `${p.data.fromName} → ${p.data.toName}` : p.name) },
     geo: {
-      map: ME_MAP, roam: false, zoom: 1.15, center: [114, 26],
-      itemStyle: { areaColor: '#141c2b', borderColor: 'rgba(148,163,184,0.22)', borderWidth: 0.5 },
+      map: ME_MAP, roam: true, zoom: full ? 1.05 : 0.9, center: [48, 14],
+      scaleLimit: { min: 0.6, max: 8 },
+      itemStyle: { areaColor: '#1b2740', borderColor: 'rgba(148,163,184,0.32)', borderWidth: 0.5 },
       emphasis: { disabled: true },
       label: { show: false },
     },
@@ -290,7 +297,15 @@ export default function Page() {
   const [stage, setStage] = useState(MIGRATION.length - 1); // 默认停在「回迁·长春」
   const [decIdx, setDecIdx] = useState(0);
 
-  const graphOpt = useMemo(migrationMapOption, []);
+  const [mapFull, setMapFull] = useState(false);
+  const graphOpt = useMemo(() => migrationMapOption(false), []);
+  const graphOptFull = useMemo(() => migrationMapOption(true), []);
+  useEffect(() => {
+    if (!mapFull) return undefined;
+    const onKey = (e) => { if (e.key === 'Escape') setMapFull(false); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [mapFull]);
   const radarOpt = useMemo(radarOption, []);
   const divOpt = useMemo(dividendOption, []);
   const eraOpt = useMemo(eraOption, []);
@@ -333,9 +348,18 @@ export default function Page() {
       {/* ② 地理迁徙图 + 红利窗口 */}
       <Grid cols={2} className="mt-6">
         <Card title="② 地理迁徙轨迹 · 换页路径（真实地图）">
-          <EChart option={graphOpt} style={{ height: 420 }} />
+          <div style={{ position: 'relative' }}>
+            <EChart option={graphOpt} style={{ height: 420 }} />
+            <button
+              type="button"
+              onClick={() => setMapFull(true)}
+              title="全屏查看"
+              className="mono text-xs"
+              style={{ position: 'absolute', top: 6, right: 6, zIndex: 5, padding: '4px 10px', borderRadius: 6, background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', color: 'var(--text-secondary)', cursor: 'pointer' }}
+            >⛶ 全屏</button>
+          </div>
           <p className="text-xs mt-2" style={{ color: 'var(--text-tertiary)', lineHeight: 1.7 }}>
-            红=出生地（白泉镇）· 青=当前（长春）· 金=途经枢纽。出海十年把生活半径拉到五国，最后一条边又把它收回了东北原点附近。
+            红=出生地（白泉镇）· 青=当前（长春）· 金=途经枢纽。轨迹从东北原点经江南与京沪，扩散到东亚、东南亚乃至越洋的圣保罗，最后一条边又把半径收回长春。可滚轮缩放 / 拖动平移，点「全屏」展开。
           </p>
         </Card>
         <Card title="③ 红利窗口 vs 个人节奏 · 踩在浪上的十年">
@@ -500,6 +524,29 @@ export default function Page() {
 
       {/* ⑳ 个人操作系统 · 决策原则（收尾） */}
       <div className="mt-6"><SectionPrinciples /></div>
+
+      {/* 地图全屏覆盖层（Portal 到 body，规避祖先 transform 对 fixed 的限制）*/}
+      {mapFull && createPortal(
+        <div
+          style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'var(--bg-base)', display: 'flex', flexDirection: 'column' }}
+          role="dialog"
+          aria-label="地理迁徙轨迹 · 全屏"
+        >
+          <div className="flex items-center justify-between px-4 py-2" style={{ borderBottom: '1px solid var(--border-subtle)', flex: '0 0 auto' }}>
+            <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>② 地理迁徙轨迹 · 全屏 <span className="text-xs mono" style={{ color: 'var(--text-tertiary)' }}>· 滚轮缩放 / 拖动平移</span></span>
+            <button
+              type="button"
+              onClick={() => setMapFull(false)}
+              className="mono text-xs"
+              style={{ padding: '5px 12px', borderRadius: 6, background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', color: 'var(--text-secondary)', cursor: 'pointer' }}
+            >✕ 退出全屏 (Esc)</button>
+          </div>
+          <div style={{ flex: '1 1 auto', minHeight: 0 }}>
+            <EChart option={graphOptFull} style={{ width: '100%', height: '100%' }} />
+          </div>
+        </div>,
+        document.body,
+      )}
 
       <ModuleFooter
         moduleId="haydenSlice"
