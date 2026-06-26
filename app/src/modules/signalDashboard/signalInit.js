@@ -110,7 +110,7 @@ export function initSignalDashboard(root) {
   let overrides = loadOverrides();
   const cleanups = [];
 
-  const $ = (id) => root.querySelector(`#${id}`);
+  const $ = (id) => root.querySelector(`#${String(id).replace(/^#/, '')}`);
 
   function statusOf(sig) { return overrides[sig.id] || sig.status; }
 
