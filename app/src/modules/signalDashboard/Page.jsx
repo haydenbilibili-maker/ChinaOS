@@ -9,7 +9,7 @@ export default function SignalDashboardPage() {
       <PageHeader
         badge="推演与训练 · 信号灯"
         title="宏观再平衡信号灯"
-        subtitle="A/B/C 三档信号 · 态势合成 · 超个体动作映射 · 2026 政府工作报告口径"
+        subtitle="A/B/C 三档信号 · 数据事实观察 · 态势合成 · 超个体动作映射 · 2026 政府工作报告口径"
       />
       <SignalDashboardPanel />
     </div>

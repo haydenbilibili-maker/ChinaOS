@@ -12,52 +12,103 @@
     </div>
   </header>
 
-  <section class="sd-verdict" id="sd-verdict">
-    <div class="sd-verdict-top">
-      <div>
-        <div class="sd-verdict-ey">当前态势 · REGIME</div>
-        <div class="sd-verdict-state">
-          <span class="sd-verdict-lamp" id="sd-vLamp"></span>
-          <span class="sd-verdict-word" id="sd-vWord">—</span>
+  <nav class="sd-tabs" role="tablist" aria-label="信号灯视图">
+    <button class="sd-tab on" type="button" data-tab="regime" role="tab" aria-selected="true">态势与信号</button>
+    <button class="sd-tab" type="button" data-tab="observe" role="tab" aria-selected="false">数据事实观察</button>
+  </nav>
+
+  <div id="sd-tab-regime">
+
+    <section class="sd-verdict" id="sd-verdict">
+      <div class="sd-verdict-top">
+        <div>
+          <div class="sd-verdict-ey">当前态势 · REGIME</div>
+          <div class="sd-verdict-state">
+            <span class="sd-verdict-lamp" id="sd-vLamp"></span>
+            <span class="sd-verdict-word" id="sd-vWord">—</span>
+          </div>
+          <div class="sd-verdict-sub" id="sd-vSub"></div>
         </div>
-        <div class="sd-verdict-sub" id="sd-vSub"></div>
+        <div class="sd-verdict-score">
+          <div class="n" id="sd-vScore">—</div>
+          <div class="l">治本进度 / 100</div>
+        </div>
       </div>
-      <div class="sd-verdict-score">
-        <div class="n" id="sd-vScore">—</div>
-        <div class="l">治本进度 / 100</div>
+      <div class="sd-track">
+        <div class="sd-track-rail"><div class="sd-track-knob" id="sd-vKnob" style="left:12%"></div></div>
+        <div class="sd-track-labels">
+          <b id="sd-lab-def">防御 · 治标买时间</b>
+          <b id="sd-lab-watch">观察 · 临界</b>
+          <b id="sd-lab-off">进攻 · 治本启动</b>
+        </div>
       </div>
-    </div>
-    <div class="sd-track">
-      <div class="sd-track-rail"><div class="sd-track-knob" id="sd-vKnob" style="left:12%"></div></div>
-      <div class="sd-track-labels">
-        <b id="sd-lab-def">防御 · 治标买时间</b>
-        <b id="sd-lab-watch">观察 · 临界</b>
-        <b id="sd-lab-off">进攻 · 治本启动</b>
+      <div class="sd-trigger" id="sd-vTrigger"></div>
+    </section>
+
+    <div id="sd-signals"></div>
+
+    <section class="sd-section">
+      <div class="sd-section-head">
+        <span class="sd-section-tier" style="background:var(--sd-brass);">个</span>
+        <h2>超个体动作映射</h2>
+        <span class="sd-desc">随态势自动切换 · 进攻版 / 防御版</span>
       </div>
+      <div class="sd-lanes" id="sd-lanes"></div>
+    </section>
+
+    <div class="sd-controls">
+      <button class="sd-btn" id="sd-resetBtn" type="button">↺ 复位至基准读数</button>
+      <span class="sd-hint">点击任一信号卡可循环切换 红 → 琥珀 → 绿，态势与动作将实时重算并本地保存。</span>
     </div>
-    <div class="sd-trigger" id="sd-vTrigger"></div>
-  </section>
 
-  <div id="sd-signals"></div>
+    <footer class="sd-foot">
+      <b>读法</b>　A 档（元改革）是态势总开关：A 不动、仅 B/C 微调 = 治标买时间，取防御；A 档换锚或 C1 平减指数连续转正 = 治本启动，方可转进攻。<br>
+      <b>免责</b>　本仪表盘为基于公开政策的结构性分析工具，非投资建议；个人仓位与负债决策需结合自身风险承受力与现金流，必要时咨询持牌顾问。<br>
+      <b>来源</b>　2026《政府工作报告》《关于2026年中央和地方预算草案的报告》(财政部) · 各项读数为编者按官方口径归纳。
+    </footer>
 
-  <section class="sd-section">
-    <div class="sd-section-head">
-      <span class="sd-section-tier" style="background:var(--sd-brass);">个</span>
-      <h2>超个体动作映射</h2>
-      <span class="sd-desc">随态势自动切换 · 进攻版 / 防御版</span>
-    </div>
-    <div class="sd-lanes" id="sd-lanes"></div>
-  </section>
-
-  <div class="sd-controls">
-    <button class="sd-btn" id="sd-resetBtn" type="button">↺ 复位至基准读数</button>
-    <span class="sd-hint">点击任一信号卡可循环切换 红 → 琥珀 → 绿，态势与动作将实时重算并本地保存。</span>
   </div>
 
-  <footer class="sd-foot">
-    <b>读法</b>　A 档（元改革）是态势总开关：A 不动、仅 B/C 微调 = 治标买时间，取防御；A 档换锚或 C1 平减指数连续转正 = 治本启动，方可转进攻。<br>
-    <b>免责</b>　本仪表盘为基于公开政策的结构性分析工具，非投资建议；个人仓位与负债决策需结合自身风险承受力与现金流，必要时咨询持牌顾问。<br>
-    <b>来源</b>　2026《政府工作报告》《关于2026年中央和地方预算草案的报告》(财政部) · 各项读数为编者按官方口径归纳。
-  </footer>
+  <div id="sd-tab-observe" hidden>
+
+    <section class="sd-obs-panel">
+      <div class="sd-obs-head">
+        <div>
+          <div class="sd-verdict-ey">数据事实 · OBSERVATIONS</div>
+          <h2 class="sd-obs-title">宏观观测指标盘</h2>
+          <p class="sd-obs-meta" id="sd-obsMeta">—</p>
+        </div>
+        <div class="sd-obs-actions">
+          <div class="sd-obs-summary" id="sd-obsSummary">—</div>
+          <button class="sd-btn" id="sd-obsRefreshBtn" type="button">↻ 刷新观测</button>
+          <span class="sd-obs-status" id="sd-obsStatus"></span>
+        </div>
+      </div>
+
+      <div class="sd-obs-table-wrap">
+        <table class="sd-obs-table">
+          <thead>
+            <tr>
+              <th>指标</th>
+              <th>最新值</th>
+              <th>同比</th>
+              <th>环比</th>
+              <th>观测期</th>
+              <th>信号倾向</th>
+              <th>研判依据</th>
+            </tr>
+          </thead>
+          <tbody id="sd-obsBody"></tbody>
+        </table>
+      </div>
+
+      <div class="sd-obs-foot">
+        <b>映射</b>　「关联信号」列示 A/B/C 档位编号；倾向由 observationLogic.js 阈值实时计算，与信号灯卡片语义对齐（红/琥珀/绿）。<br>
+        <b>刷新</b>　生产环境请运行 <code>npm run fetch:signals</code> 更新种子后重新部署；面板「刷新观测」尝试拉取 <code>/data/signal_observations.json</code>。<br>
+        <b>免责</b>　公开统计梳理 · 示意标定 · 非投资建议 · 非预测。
+      </div>
+    </section>
+
+  </div>
 
 </div>

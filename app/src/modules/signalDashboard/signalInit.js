@@ -1,5 +1,7 @@
 /** 宏观再平衡信号灯 · 态势合成与本地持久化（命名空间 chinaos.signals.v1） */
 
+import { bindSignalTabs, initObservationBoard } from './observationInit.js';
+
 const STORAGE_KEY = 'chinaos.signals.v1';
 
 const SECTIONS = [
@@ -260,6 +262,12 @@ export function initSignalDashboard(root) {
   cleanups.push(() => resetBtn?.removeEventListener('click', onReset));
 
   renderAll();
+
+  const tabCleanup = bindSignalTabs(root);
+  cleanups.push(tabCleanup);
+
+  const obsCleanup = initObservationBoard(root);
+  cleanups.push(obsCleanup);
 
   return () => cleanups.forEach((fn) => fn());
 }
