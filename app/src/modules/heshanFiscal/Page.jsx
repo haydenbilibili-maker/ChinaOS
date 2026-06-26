@@ -10,7 +10,7 @@ export default function HeshanFiscalPage() {
       <PageHeader
         badge="重构河山 · 财政"
         title="财政重构沙盘"
-        subtitle="区划是骨财政是血 · 因素法转移支付 · 减层节支 · 债务过渡测算"
+        subtitle="收支倒挂 · 因素法转移支付 · 减层节支 · 债务过渡 · 2025 财政口径"
       />
       <HeshanNav current="fiscal" />
       <HeshanFiscalPanel />

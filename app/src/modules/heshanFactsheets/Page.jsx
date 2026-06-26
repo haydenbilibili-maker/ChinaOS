@@ -10,7 +10,7 @@ export default function HeshanFactsheetsPage() {
       <PageHeader
         badge="重构河山 · 图册"
         title="新省图册"
-        subtitle="三十四份建省档案 · 人口 GDP 聚合 · 配套《重构山河》建议书"
+        subtitle="三十四份建省档案 · 2025 年报口径 · 人口 GDP 聚合 · 数据截至 2026-06"
       />
       <HeshanNav current="factsheets" />
       <HeshanFactsheetsPanel />

@@ -1,92 +1,82 @@
-/** 重构河山 · 交互初始化（自 0627.zip 迁移） */
+/** 重构河山 · 交互初始化 */
+import {
+  HESHAN_AS_OF,
+  HESHAN_CALIBRATION_REGIONS,
+  HESHAN_DATA_NOTE,
+} from '../shared/heshanData.js';
+
 export function initHeshanCalibration(root) {
   if (!root) return () => {};
   const cleanups = [];
   try {
-        // 单位：人口=万人, GDP=亿元 （均为公开数据约数）
-    const REGIONS=[
-     {name:"京津冀晋 · 华北",color:"#3a4a52",provs:[
-       {n:"京畿省",o:"原属河北",cities:[["保定",920,4500],["廊坊",550,3700],["张家口",440,1900],["承德",335,1800]]},
-       {n:"冀南省",o:"原属河北",cities:[["石家庄",1120,7500],["邯郸",940,4300],["邢台",710,2700],["衡水",420,1900]]},
-       {n:"冀东省",o:"原属河北",cities:[["唐山",770,9100],["沧州",730,4400],["秦皇岛",310,1900]]},
-     ]},
-     {name:"塞北 · 内蒙古三分",color:"#9a7b3f",note:"涉民族自治，缓议",provs:[
-       {n:"蒙东省",o:"原属内蒙古",cities:[["赤峰",400,2200],["通辽",280,1600],["呼伦贝尔",220,1500],["兴安盟",140,600]]},
-       {n:"蒙中省",o:"原属内蒙古",cities:[["呼和浩特",360,3600],["包头",270,4000],["鄂尔多斯",220,5600],["乌兰察布",170,1000],["锡林郭勒盟",110,1100]]},
-       {n:"蒙西省",o:"原属内蒙古",cities:[["巴彦淖尔",150,1100],["乌海",55,700],["阿拉善盟",26,400]]},
-     ]},
-     {name:"黄淮海 · 含旗舰新设",color:"#8a5a2b",provs:[
-       {n:"胶东省",o:"原属山东",cities:[["青岛",1030,16000],["烟台",710,10000],["威海",290,3500],["日照",300,2300]]},
-       {n:"鲁中省",o:"原属山东",cities:[["济南",940,12800],["泰安",540,3200],["淄博",470,4500],["滨州",390,3000],["东营",220,3800]]},
-       {n:"中原省",o:"原属河南",cities:[["郑州",1280,13600],["洛阳",705,5500],["新乡",615,3300],["平顶山",490,2900],["开封",480,2600],["许昌",440,3800],["焦作",350,2200],["漯河",240,1900],["济源",73,800]]},
-       {n:"豫西南省",o:"原属河南",cities:[["南阳",960,4500],["驻马店",690,3300],["信阳",620,3500],["三门峡",200,1600]]},
-       {n:"淮海省 ★",o:"苏鲁豫皖接合",flag:true,cities:[["徐州",900,8900],["济宁",830,5800],["商丘",780,3500],["宿迁",500,4400],["连云港",460,4400],["宿州",530,2400],["枣庄",380,2200],["蚌埠",330,2100],["淮北",200,1400]]},
-     ]},
-     {name:"江南 · 华东",color:"#3d5566",provs:[
-       {n:"苏南省",o:"原属江苏",cities:[["苏州",1290,25000],["无锡",750,15500],["常州",540,10200]]},
-       {n:"江淮省",o:"原属江苏",cities:[["南京",950,18500],["南通",770,11800],["扬州",460,7400],["泰州",450,6700],["镇江",320,5300]]},
-       {n:"浙北省",o:"原属浙江",cities:[["杭州",1240,20000],["宁波",970,16000],["绍兴",530,7900],["嘉兴",560,7000],["湖州",340,4000],["舟山",120,2100]]},
-       {n:"浙南省",o:"原属浙江",cities:[["温州",970,8700],["金华",710,6000],["台州",670,6300],["丽水",250,1900],["衢州",230,2100]]},
-       {n:"皖南省",o:"原属安徽",cities:[["芜湖",370,5000],["马鞍山",220,2600],["宣城",250,1900],["铜陵",130,1300],["池州",130,1100],["黄山",130,1000]]},
-       {n:"皖中省",o:"原属安徽",cities:[["合肥",985,12700],["滁州",400,3800],["安庆",530,2900],["六安",440,2100],["淮南",300,1600]]},
-     ]},
-     {name:"长江中游 · 湖北重组",color:"#7a5b30",provs:[
-       {n:"湖北省（重组）",o:"武汉城市圈",cities:[["武汉",1380,20000],["荆州",510,3300],["黄冈",590,3000],["孝感",430,3000],["黄石",240,2200],["咸宁",270,2000],["仙潜天",330,2200],["鄂州",110,1400]]},
-       {n:"鄂西省",o:"原属湖北",cities:[["襄阳",530,5800],["宜昌",400,5600],["十堰",320,2300],["荆门",250,2300],["恩施州",340,1400],["神农架",8,40]]},
-     ]},
-     {name:"东南沿海 · 闽",color:"#2f5a52",provs:[
-       {n:"闽东省",o:"原属福建",cities:[["福州",850,13000],["宁德",320,3800],["三明",250,3200],["莆田",320,3100],["南平",270,2300]]},
-       {n:"闽南省",o:"原属福建",cities:[["泉州",890,12000],["厦门",530,8000],["漳州",510,5700],["龙岩",270,3300]]},
-     ]},
-     {name:"岭南 · 华南",color:"#9e3b30",provs:[
-       {n:"深圳",o:"原属广东 · 新设直辖",muni:true,cities:[["深圳",1780,35000]]},
-       {n:"珠三角省",o:"原属广东",cities:[["广州",1880,30000],["佛山",960,13000],["东莞",1050,11500],["惠州",610,5600],["江门",480,4000],["中山",445,3900],["肇庆",410,2800],["珠海",250,4200]]},
-       {n:"潮汕省",o:"原属广东",cities:[["揭阳",560,2300],["汕头",550,3000],["汕尾",270,1400],["潮州",255,1300]]},
-       {n:"粤西省",o:"原属广东",cities:[["湛江",700,3800],["茂名",620,4000],["阳江",260,1600],["云浮",240,1200]]},
-       {n:"粤北省",o:"原属广东",cities:[["清远",400,2200],["梅州",390,1400],["韶关",285,1600],["河源",280,1300]]},
-     ]},
-     {name:"巴蜀 · 西南",color:"#4a5a36",provs:[
-       {n:"成都平原省",o:"原属四川",cities:[["成都",2140,22000],["绵阳",490,4000],["德阳",345,3000],["眉山",295,1800],["资阳",230,1100]]},
-       {n:"川南省",o:"原属四川",cities:[["宜宾",460,3800],["泸州",430,2800],["内江",310,1700],["自贡",250,1800]]},
-       {n:"攀西省",o:"原属四川 · 含藏彝区缓议",cities:[["凉山州",490,2200],["攀枝花",120,1300],["雅安",140,900],["甘孜州",110,500],["阿坝州",80,480]]},
-     ]},
-     {name:"西北 · 高原",color:"#86432e",provs:[
-       {n:"关中省",o:"原属陕西",cities:[["西安",1300,12000],["咸阳",540,2700],["渭南",470,2200],["宝鸡",330,2800],["铜川",70,500],["杨凌",25,200]]},
-       {n:"陕北省",o:"原属陕西",cities:[["榆林",360,7000],["延安",230,2200]]},
-       {n:"陕南省",o:"原属陕西",cities:[["汉中",320,2000],["安康",250,1300],["商洛",200,900]]},
-       {n:"陇右省",o:"原属甘肃",cities:[["兰州",440,3700],["天水",300,850],["庆阳",220,1000],["定西",250,650],["陇南",240,600],["临夏州",210,450],["平凉",190,600],["白银",150,700]]},
-       {n:"河西省",o:"原属甘肃",cities:[["酒泉",110,900],["武威",150,650],["张掖",110,600],["金昌",44,500],["嘉峪关",31,370]]},
-     ]},
-    ];
-    function fmtPop(w){return w>=10000?(w/10000).toFixed(2).replace(/\.?0+$/,'')+"亿":Math.round(w)+"万";}
-    function fmtGdp(y){return y>=10000?(y/10000).toFixed(2).replace(/\.?0+$/,'')+"万亿":Math.round(y)+"亿";}
+    const REGIONS = HESHAN_CALIBRATION_REGIONS;
+
+    function fmtPop(w) {
+      return w >= 10000
+        ? `${(w / 10000).toFixed(2).replace(/\.?0+$/, '')}亿`
+        : `${Math.round(w)}万`;
+    }
+    function fmtGdp(y) {
+      return y >= 10000
+        ? `${(y / 10000).toFixed(2).replace(/\.?0+$/, '')}万亿`
+        : `${Math.round(y)}亿`;
+    }
+
     const dataRoot = root.querySelector('#root');
     if (!dataRoot) return () => {};
-    REGIONS.forEach(reg=>{
-      const sec=document.createElement('div');sec.className='region';
-      let html=`<div class="region-head"><span class="rdot" style="background:${reg.color}"></span><h2>${reg.name}</h2></div>`;
-      reg.provs.forEach(p=>{
-        const tp=p.cities.reduce((a,c)=>a+c[1],0), tg=p.cities.reduce((a,c)=>a+c[2],0);
-        const cls=p.flag?'prov flag':(p.muni?'prov muni':'prov');
-        let chips=p.cities.map(c=>`<span class="city"><b>${c[0]}</b><span class="n">${Math.round(c[1])}万/${Math.round(c[2])}亿</span></span>`).join('');
-        html+=`<div class="${cls}"><div class="ph"><div class="pn">${p.n} <span style="font-size:11px;color:var(--muted);font-weight:400">${p.o}</span></div>
+
+    const asOfEl = root.querySelector('#hs-cal-asof');
+    if (asOfEl) asOfEl.textContent = HESHAN_AS_OF;
+    const noteEl = root.querySelector('#hs-cal-note');
+    if (noteEl) noteEl.textContent = HESHAN_DATA_NOTE;
+
+    REGIONS.forEach((reg) => {
+      const sec = document.createElement('div');
+      sec.className = 'region';
+      let html = `<div class="region-head"><span class="rdot" style="background:${reg.color}"></span><h2>${reg.name}</h2></div>`;
+      reg.provs.forEach((p) => {
+        const tp = p.cities.reduce((a, c) => a + c[1], 0);
+        const tg = p.cities.reduce((a, c) => a + c[2], 0);
+        const cls = p.flag ? 'prov flag' : p.muni ? 'prov muni' : 'prov';
+        const chips = p.cities
+          .map(
+            (c) =>
+              `<span class="city"><b>${c[0]}</b><span class="n">${Math.round(c[1])}万/${Math.round(c[2])}亿</span></span>`
+          )
+          .join('');
+        html += `<div class="${cls}"><div class="ph"><div class="pn">${p.n} <span style="font-size:11px;color:var(--muted);font-weight:400">${p.o}</span></div>
           <div class="pt">合计 ≈ <b>${fmtPop(tp)}</b> 人 · <b>${fmtGdp(tg)}</b></div></div>
           <div class="cities">${chips}</div>
-          ${reg.note?`<div class="note-row">⚑ ${reg.note}</div>`:''}</div>`;
+          ${reg.note ? `<div class="note-row">⚑ ${reg.note}</div>` : ''}</div>`;
       });
-      sec.innerHTML=html;dataRoot.appendChild(sec);
+      sec.innerHTML = html;
+      dataRoot.appendChild(sec);
     });
-    // grand totals
-    let allP=0,allG=0,cnt=0;REGIONS.forEach(r=>r.provs.forEach(p=>{allP+=p.cities.reduce((a,c)=>a+c[1],0);allG+=p.cities.reduce((a,c)=>a+c[2],0);cnt++;}));
-    const tot=document.createElement('div');tot.className='region';
-    tot.innerHTML=`<div class="prov" style="border-left-color:var(--cinnabar);text-align:center"><div class="pn" style="margin-bottom:6px">新设/重组单元小计</div>
+
+    let allP = 0;
+    let allG = 0;
+    let cnt = 0;
+    REGIONS.forEach((r) =>
+      r.provs.forEach((p) => {
+        allP += p.cities.reduce((a, c) => a + c[1], 0);
+        allG += p.cities.reduce((a, c) => a + c[2], 0);
+        cnt += 1;
+      })
+    );
+    const tot = document.createElement('div');
+    tot.className = 'region';
+    tot.innerHTML = `<div class="prov" style="border-left-color:var(--cinnabar);text-align:center"><div class="pn" style="margin-bottom:6px">新设/重组单元小计</div>
       <div class="pt" style="font-size:15px">共 <b>${cnt}</b> 个单元 · 覆盖人口 ≈ <b>${fmtPop(allP)}</b> · GDP ≈ <b>${fmtGdp(allG)}</b><br>
-      <span style="font-size:12px;color:var(--muted)">（其余约20个保留单元未计入此表）</span></div></div>`;
+      <span style="font-size:12px;color:var(--muted)">（其余约20个保留单元未计入 · 与<a href="/modules/heshan/fiscal" style="color:var(--cinnabar)">财政沙盘</a>底表同源）</span></div></div>`;
     dataRoot.appendChild(tot);
   } catch (err) {
     console.warn('[initHeshanCalibration]', err);
   }
   return () => {
-    cleanups.forEach((fn) => { try { fn(); } catch (_) {} });
+    cleanups.forEach((fn) => {
+      try {
+        fn();
+      } catch (_) {}
+    });
   };
 }

@@ -10,7 +10,7 @@ export default function HeshanReformPage() {
       <PageHeader
         badge="重构河山 · 建议书"
         title="重构山河"
-        subtitle="结构性诊断 · 区划调整建议 · 可视化底稿 · 财政配套三稿合一之核"
+        subtitle="结构性诊断 · 区划调整建议 · 可视化底稿 · 数据截至 2026-06 · 十五五区划改革窗口"
       />
       <HeshanNav current="reform" />
       <HeshanReformPanel />

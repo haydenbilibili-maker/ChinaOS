@@ -153,12 +153,34 @@ const MAP = {
   ],
   dashboard: [
     { to: '/modules/renqun-tupu', label: '人群画像总图谱 · GY-00', note: `中国人群分析组总入口，${SLICE_N} 片切片钻探进度。` },
+    { to: '/econ-dashboard', label: '经济大盘 · 2026 H1', note: 'NBS 快照 + 金丝雀监测 + 三次产业结构。' },
+    { to: '/modules/signal-dashboard', label: '宏观再平衡信号灯', note: 'A/B/C 信号与数据事实观测看板。' },
     { to: '/market-pulse', label: '全球资产脉搏 · 实时行情', note: '股债汇大宗 18 标的轮询。' },
     { to: '/diplomacy', label: '外交博弈 · 矢量盘', note: '战略态势速览数据源。' },
     { to: '/policydocs', label: '政策文库 · 施政基准', note: '政策脉搏活数据接口。' },
   ],
+  econdash: [
+    { to: '/dashboard', label: '中枢看板 · H1 读数', note: '全局宏观速览与模块入口。' },
+    { to: '/modules/signal-dashboard', label: '宏观再平衡信号灯', note: '金丝雀与观测数据交叉验证。' },
+    { to: '/debt', label: '地方债务 · 省际热力', note: '广义财政与化债方案。' },
+    { to: '/consumption', label: '扩大内需 · 消费率', note: '内需不足与消费占 GDP 比重。' },
+    { to: '/foreign-trade', label: '对外贸易 · 新三样', note: '外需与出口交货值领先指标。' },
+  ],
+  signalDashboard: [
+    { to: '/econ-dashboard', label: '经济大盘 · 金丝雀盘', note: 'CANARY_SIGNALS 与 KEY_INDICATORS 同源层。' },
+    { to: '/dashboard', label: '中枢看板 · 态势速览', note: '全局入口与 2026 H1 宏观条。' },
+    { to: '/policydocs', label: '政策文库 · 2026 政府工作报告', note: 'B1/B4 等政策信号的政策锚点。' },
+    { to: '/housing', label: '住房地产 · 百城房价', note: 'C3/C4 居民资产负债表信号。' },
+    { to: '/modules/guoyun', label: '国运模拟器 · 观测哨', note: '情景推演与信号灯联动。' },
+  ],
+  heshanReform: [
+    { to: '/modules/heshan/fiscal', label: '财政沙盘 · 收支倒挂', note: '建省方案配套的转移支付与减层节支。' },
+    { to: '/modules/heshan/factsheets', label: '新省图册 · 34 份档案', note: '逐省人口 GDP 与建省口径。' },
+    { to: '/regional', label: '区域协调 · 转移支付', note: '现行四大板块与财政再分配对照。' },
+    { to: '/debt', label: '地方债务 · 省际热力', note: '区划改革与隐性债务过渡方案。' },
+  ],
   foreignTrade: [
-    { to: '/market-pulse', label: '全球资产脉搏 · 汇率大宗', note: 'USD/CNY 与贸易定价基准。' },
+    { to: '/econ-dashboard', label: '经济大盘 · 出口交货值', note: '外需领先指标与金丝雀盘。' },
     { to: '/reform', label: '改革开放 · 入世红利', note: '外贸依存度峰值与回落。' },
     { to: '/bri', label: '一带一路', note: '贸易通道的陆海延伸。' },
     { to: '/marine', label: '海洋经济 · 航运', note: '海运通道与造船能力。' },
@@ -354,6 +376,7 @@ const MAP = {
     { to: '/gig', label: '灵活就业', note: '新业态纳入综治网格。' },
   ],
   infrastructure: [
+    { to: '/computing', label: '算力设施 · 东数西算', note: '十五五算力基建切换的主通道。' },
     { to: '/megaprojects', label: '超级工程', note: '基建项目的多维 ROI。' },
     { to: '/logistics', label: '物流枢纽', note: '多式联运物理网络。' },
     { to: '/regional', label: '区域协调', note: '专项债与区域基建。' },
@@ -384,6 +407,7 @@ const MAP = {
     { to: '/manufacturing', label: '制造业 · C919', note: '大飞机国产化的制造节点。' },
   ],
   regional: [
+    { to: '/modules/heshan/reform', label: '重构河山 · 区划诊断', note: '收支倒挂与转移支付的空间政治对照。' },
     { to: '/urban', label: '城镇化 · 城市群', note: '四大板块与都市圈。' },
     { to: '/demographic', label: '人口流动', note: '人往哪里去决定区域位势。' },
     { to: '/bri', label: '一带一路', note: '西部陆海新通道与开放格局。' },

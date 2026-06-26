@@ -1,13 +1,23 @@
 <div id="hs-fiscal-app">
 <header class="hero wrap">
   <div class="seal"><span>财政</span></div>
-  <div class="kicker">Fiscal Architecture · Interactive Sandbox · v0.1</div>
+  <div class="kicker">Fiscal Architecture · Interactive Sandbox · v0.2 · 数据截至 2026-06</div>
   <h1>财政重构<span class="accent">沙盘</span></h1>
   <p class="sub">区划是骨，财政是血。拖动参数，看"因素法转移支付"如何在五十余个新单元间再分配；并测算减层节支与债务过渡。</p>
-  <p class="disclaim">模型为简化教学型沙盘：标准支出＝人口×人均标准支出×区域成本系数；标准收入＝GDP×标准收入率；缺口经均等化力度填补即为转移支付。人口/GDP 用校准底表估算值，参数与系数为示意，非财政部口径。</p>
+  <p class="disclaim">模型为简化教学型沙盘：标准支出＝人口×人均标准支出×区域成本系数；标准收入＝GDP×标准收入率；缺口经均等化力度填补即为转移支付。人口/GDP 与<a href="/modules/heshan/calibration">数据校准底表</a>同源（各地 2024 统计公报聚合）。2025 年中央对地方转移支付公开口径约 <b>10.5 万亿</b>，本模型为示意重算而非财政部口径。</p>
 </header>
 
 <main class="wrap">
+  <div class="panel policy-panel">
+    <div class="panel-title">CONTEXT · 政策锚点</div>
+    <h2>2025—2026 财政配套语境</h2>
+    <div class="policy-grid">
+      <div class="policy-item"><b>省以下财政体制改革</b>省直管县扩面试点、转移支付因素法、县乡财政保障机制——与 MODEL Ⅰ 因素公式同构。</div>
+      <div class="policy-item"><b>消费税征收环节后移</b>讨论将部分消费税留给地方，为县级主体税种培育铺路（见建议书「税基下沉」条款）。</div>
+      <div class="policy-item"><b>城投隐性债务</b>2024—2025 置换降息持续推进；MODEL Ⅱ 债务过渡账户参数默认参照地级隐性债约 30 万亿、省级承接 80%。</div>
+      <div class="policy-item"><b>宏观态势</b>GDP 平减指数、居民中长期贷款等信号（<a href="/modules/signal-dashboard">信号仪表盘</a>）影响改革时序：承压期先减层，修复期再划小。</div>
+    </div>
+  </div>
   <!-- 转移支付模型 -->
   <div class="panel">
     <div class="panel-title">MODEL Ⅰ · 因素法转移支付</div>
@@ -60,7 +70,7 @@
 
 <footer>
   <div class="fseal">荒废斋</div><br>
-  财政重构沙盘 · Draft v0.1 · 配套《重构山河》建议书<br>
-  <span style="opacity:.6">简化教学模型 · 参数为示意 · 非财政部口径</span>
+  财政重构沙盘 · v0.2 · 最后更新 <span id="hs-fiscal-asof">2026-06-27</span> · 配套《重构山河》建议书<br>
+  <span style="opacity:.6">简化教学模型 · 与数据校准底表同源 · 非财政部口径 · 交叉参阅<a href="/modules/heshan/calibration" style="color:var(--cinnabar)">逐市加总</a></span>
 </footer>
 </div>

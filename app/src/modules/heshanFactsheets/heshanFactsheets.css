@@ -39,6 +39,8 @@
 .disclaim{border:1px solid rgba(158,43,37,.4);background:rgba(158,43,37,.06);border-radius:5px;
   padding:20px 24px;margin:30px 0 0;font-size:14px;color:var(--ink-soft);max-width:900px}
 .disclaim b{color:var(--cinnabar)}
+.policy-strip{display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:22px;font-size:13px;color:var(--ink-soft)}
+.policy-strip .ps-tag{background:rgba(158,43,37,.08);border:1px solid rgba(158,43,37,.25);border-radius:4px;padding:6px 12px;letter-spacing:.04em}
 
 /* region heading */
 .region{padding:54px 0 8px}

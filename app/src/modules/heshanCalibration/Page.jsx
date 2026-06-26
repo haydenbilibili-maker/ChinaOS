@@ -10,7 +10,7 @@ export default function HeshanCalibrationPage() {
       <PageHeader
         badge="重构河山 · 底表"
         title="数据校准底表"
-        subtitle="逐市加总 · 可审计可追溯 · 配套《新省图册》口径说明"
+        subtitle="逐市加总 · 可审计可追溯 · 2025 统计年鉴对齐 · 数据截至 2026-06"
       />
       <HeshanNav current="calibration" />
       <HeshanCalibrationPanel />
