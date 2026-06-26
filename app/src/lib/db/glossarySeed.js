@@ -5951,16 +5951,28 @@ export const GLOSSARY_ENTRIES = [
     "term": "十五五",
     "aliases": [],
     "category": "module",
-    "definition": "「十五五」为 China OS 模块「东北振兴」副题中的结构化关键词，用于在该专题内快速定位概念簇与交叉引用。其语义从属于「东北振兴」的整体分析框架，不宜脱离模块语境单独解读。关联概念包括东北振兴。China OS 模块语料中的操作化标签，便于跨模块检索与交叉引用。",
+    "definition": "第十五个五年规划（2026–2030），2026 年 3 月全国两会审议通过的国民经济和社会发展纲要。核心锚点：新质生产力、统一大市场、生育支持、算力主权与能源压舱石。China OS 各模块 2026-06 基准读数均对齐十五五开局首年政策排序。",
     "context": [
       {
         "moduleId": "northeastRevival",
         "label": "东北振兴",
         "path": "/northeast"
+      },
+      {
+        "moduleId": "econdash",
+        "label": "经济大盘",
+        "path": "/econ-dashboard"
+      },
+      {
+        "moduleId": "policydocs",
+        "label": "政令文库",
+        "path": "/policydocs"
       }
     ],
     "related": [
-      "东北振兴"
+      "东北振兴",
+      "新质生产力",
+      "统一大市场"
     ],
     "source": "China OS · 东北振兴",
     "initial": "S"

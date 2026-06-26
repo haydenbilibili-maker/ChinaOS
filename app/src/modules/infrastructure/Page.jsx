@@ -230,6 +230,7 @@ const STAGES = [
   { period: '2015–2019', title: '补短板 / 防风险', accent: '#e8a317', desc: '增速换挡后基建转向「补短板」叙事：中西部交通、农村水利、城市地下管网。同期 PPP 大起大落、专项债登场——融资纪律开始约束投资冲动，乘数递减首次被正面承认。' },
   { period: '2020–2022', title: '新基建定调', accent: '#10b981', desc: '5G、数据中心、特高压、充电桩被列为「新基建」七大领域，「东数西算」启动。基建的对象从物理空间切换到数据与算力——财政发力的通道换了赛道，逆周期逻辑未变。' },
   { period: '2023– ', title: '平急两用 / 存量运营时代', accent: '#22d3ee', desc: '增量空间收窄后转向三条出路：平急两用工程开辟新合规科目、城中村改造接续投资量、公募 REITs 把存量资产证券化回收资金。从「修出来」到「转起来」，基建进入运营本位。' },
+  { period: '2026– ', title: '十五五 · 算力基建切换', accent: '#c41e3a', desc: '规划纲要明确智算中心、特高压、新型储能与低空数字航路为新一轮发力通道。专项债额度维持高位，但投向从「铁公机」进一步向算力主权与能源压舱石倾斜。' },
 ];
 
 // ----------------------------------------------------------------------------
@@ -261,10 +262,21 @@ export default function Page() {
       <IntroCard>现实主义逻辑下，基建不只是交通工具，更是中枢对国土空间实施「物理级对齐」的工具——「Infrastructure as the hard operating system of a continental economy」。它同时是逆周期工具箱的核心抓手：每一轮增长失速，财政都通过这条通道向实体注入需求。但三十年高强度建设之后，乘数效应递减与债务约束构成双重天花板——投资的回报机制正从直接收费转向时空压缩带来的交易成本下降，发力对象正从物理联通切换到算力与数据联通，资产逻辑正从「修出来」转向「转起来」。</IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="~23 万亿" label="年基建投资规模（广义，示意）" accent="#c41e3a" />
-        <Stat value="3.9 万亿" label="地方专项债年度新增额度（示意）" accent="#e8a317" />
-        <Stat value="~1,700 亿" label="公募 REITs 发行规模（累计，示意）" accent="#22d3ee" />
-        <Stat value="18.4 万km" label="高速公路里程 · 全球第一" accent="#10b981" />
+        <Stat value="~24 万亿" label="年基建投资 (2025 · 广义示意)" accent="#c41e3a" />
+        <Stat value="4.0 万亿" label="专项债新增额度 (2026 预算 · 示意)" accent="#e8a317" />
+        <Stat value="~2,100 亿" label="公募 REITs 累计发行 (2025 · 示意)" accent="#22d3ee" />
+        <Stat value="19.5 万km" label="高速公路里程 · 全球第一" accent="#10b981" />
+      </Grid>
+
+      <Grid cols={3} className="mb-6">
+        {[['十五五新基建', '算力/储能/低空数字航路写入规划纲要 · 东数西算节点扩容', '#22d3ee'],
+          ['能源压舱石', '特高压外送 + 新型储能装机突破 100GW 量级 (示意)', '#e8a317'],
+          ['平急两用', '2026 预算靠前发力 · 城中村改造与 REITs 盘活存量并行', '#10b981']].map(([t, d, c]) => (
+          <div key={t} className="os-card p-4" style={{ borderLeft: `3px solid ${c}` }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>{t}</div>
+            <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
+          </div>
+        ))}
       </Grid>
 
       {/* ------------------------------------------------------------ */}

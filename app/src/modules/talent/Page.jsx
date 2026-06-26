@@ -505,6 +505,7 @@ export default function Page() {
         <>
       <StatGrid>
         <Stat value={figures.length} label="简历总数" accent="#22d3ee" />
+        <Stat value={FIGURE_SEED.length} label="内置种子" accent="#64748b" />
         <Stat value={viceCount || '—'} label="副国级" accent="#c41e3a" />
         <Stat value={milCount || shangCount || '—'} label="军事将官" accent="#556b2f" />
         <Stat value={ministerCount || '—'} label="中央部委/机关" accent="#10b981" />
@@ -512,6 +513,9 @@ export default function Page() {
         <Stat value={avgAge || '—'} label="平均年龄" accent="#8b5cf6" />
         <Stat value={minorityCount || '—'} label="少数民族" accent="#fb923c" />
       </StatGrid>
+      <p className="text-[11px] mono mb-4 -mt-2" style={{ color: 'var(--text-tertiary)' }}>
+        数据截至 {FIGURE_CATALOG_META.asOf || '2026-06-27'} · 省级/中央/军事队列 · 反腐/知识/商业/海外等分轨见 Tab
+      </p>
 
       {figures.length < 10 && (
         <Card title="一键载入中国政要" className="mb-4">

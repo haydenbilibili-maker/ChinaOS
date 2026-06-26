@@ -219,6 +219,7 @@ const TIMELINE = [
   { period: '2014–2019', title: '区域重大战略', accent: '#22d3ee', desc: '京津冀协同、长江经济带、粤港澳大湾区、长三角一体化、黄河流域——政策单元从「板块」细化为「功能区」，从给优惠转向立规则，城市群与都市圈成为承载主体。' },
   { period: '2017–2021', title: '主体功能区定型', accent: '#10b981', desc: '国土空间被划入优化开发/重点开发/限制开发/禁止开发四类：生态功能区放弃 GDP 考核、换取转移支付。这是对「每个县都要工业化」模式的制度性否定。' },
   { period: '2022–', title: '全国统一大市场', accent: '#a78bfa', desc: '公平竞争审查、招投标统一、要素市场化配置——矛头指向地方保护与「诸侯经济」。区域协调的终局命题浮出：在维持地方竞争活力的同时拆除其壁垒工具箱。' },
+  { period: '2026–', title: '十五五开局 · 空间再定价', accent: '#c41e3a', desc: '规划纲要审议后，区域政策从「给项目」转向「给规则+给账本」：统一大市场执行、转移支付与生态补偿挂钩、城市群承载新质生产力集群。收支倒挂省份的财政重整进入前台。' },
 ];
 
 // ---------------------------------------------------------------------------
@@ -265,8 +266,19 @@ export default function Page() {
       <Grid cols={4} className="mb-6">
         <Stat value="4 + 5" label="四大板块 + 五大区域重大战略" accent="#c41e3a" />
         <Stat value="19 个" label="国家级城市群（三档梯度）" accent="#22d3ee" />
-        <Stat value="~10 万亿" label="中央对地方转移支付规模/年（示意）" accent="#e8a317" />
-        <Stat value="65 : 35" label="南北 GDP 占比（约 · 示意）" accent="#10b981" />
+        <Stat value="~10.5 万亿" label="转移支付/年 (2025 · 示意)" accent="#e8a317" />
+        <Stat value="66 : 34" label="南北 GDP 占比 (2025 · 示意)" accent="#10b981" />
+      </Grid>
+
+      <Grid cols={3} className="mb-6">
+        {[['十五五区域命题', '统一大市场从「立规矩」进入「拆壁垒」执行期 · 要素市场化配置改革提速', '#a78bfa'],
+          ['城市群 GDP', '19 城市群占 GDP ~90% · 长三角/粤港澳/京津冀三极占 ~40%', '#22d3ee'],
+          ['收支倒挂带', '东北/部分中西部省份广义收支缺口仍依赖转移支付 · 见重构河山财政沙盘', '#c41e3a']].map(([t, d, c]) => (
+          <div key={t} className="os-card p-4" style={{ borderLeft: `3px solid ${c}` }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>{t}</div>
+            <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
+          </div>
+        ))}
       </Grid>
 
       {/* ============ 战略板块选择器 ============ */}

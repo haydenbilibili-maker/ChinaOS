@@ -234,7 +234,7 @@ export default function Page() {
 
       <IntroCard>
         以<strong style={{ color: 'var(--text-primary)' }}>结构化要点 + 本地原文库</strong>支撑政策研读：政府工作报告、中央经济工作会议、五年规划等支持历年比对与指标趋势；旗舰文件已入库
-        {' '}<span className="mono" style={{ color: '#10b981' }}>{corpusCount || 0}</span> 份扩展原文/节选，其余提供要点汇编 fallback。数据截至 <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>2026-06-11</span>。
+        {' '}<span className="mono" style={{ color: '#10b981' }}>{corpusCount || 0}</span> 份扩展原文/节选，其余提供要点汇编 fallback。数据截至 <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>2026-06-27</span>。
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
@@ -464,6 +464,7 @@ export default function Page() {
               <Card title="关键转折 · 自动洞察">
                 <div className="space-y-3">
                   {[
+                    ['十五五规划纲要', '#a78bfa', '2026 年 3 月两会审议通过，明确新质生产力、统一大市场、生育支持等十五五开局重点任务排序。'],
                     ['货币政策定调转向', '#22d3ee', '2025 年货币政策由「稳健」改为「适度宽松」——自 2011 年以来首次，标志宏观调控全面转入扩张周期。'],
                     ['赤字率台阶式抬升', '#c41e3a', '赤字率 2.6%(2018) → 3%(2023/24) → 4%左右(2025)，财政空间被结构性打开，从「去杠杆」转向「稳增长」。'],
                     ['GDP 目标下台阶并留弹性', '#e8a317', '增速目标 6.5%(2018) → 5%左右(2023–26)，并改用区间/「左右」表述，从保速度转向重质量与稳就业。'],

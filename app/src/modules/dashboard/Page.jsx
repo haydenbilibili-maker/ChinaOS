@@ -82,13 +82,44 @@ function Ticker() {
   );
 }
 
+// ── 2026 H1 宏观读数（NBS 公开口径近似 · Q2 判读） ─────────
+const MACRO_H1 = [
+  { k: 'GDP H1', v: '5.3%', note: '累计同比 · 十五五开局', c: COOL },
+  { k: 'CPI 5月', v: '0.3%', note: '同比近零 · 通缩压力', c: STEEL },
+  { k: 'PMI 5月', v: '49.8', note: '制造业 · 荣枯线下', c: HOLD },
+  { k: '社零 5月', v: '+4.6%', note: '以旧换新支撑', c: WARM },
+  { k: 'M2 5月', v: '7.2%', note: '宽货币 · 窄信用', c: STEEL },
+  { k: '青年失业', v: '16.8%', note: '16–24 岁 · 5月', c: '#c41e3a' },
+];
+
+function MacroH1Strip() {
+  return (
+    <div className="mt-5 pt-5" style={{ borderTop: '1px solid var(--border-subtle)' }}>
+      <div className="flex items-center gap-2 mb-3">
+        <Lucide.Gauge size={14} style={{ color: COOL }} />
+        <span className="text-xs font-semibold" style={{ color: 'var(--text-secondary)' }}>2026 H1 宏观读数</span>
+        <span className="text-[10px] mono ml-auto" style={{ color: 'var(--text-tertiary)' }}>数据截至 2026-06 · 详见 <Link to="/econ-dashboard" className="mono" style={{ color: STEEL }}>经济大盘</Link></span>
+      </div>
+      <div className="grid gap-2" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))' }}>
+        {MACRO_H1.map(({ k, v, note, c }) => (
+          <div key={k} className="rounded-lg px-3 py-2" style={{ background: 'var(--bg-elevated)', border: `1px solid ${c}33` }}>
+            <div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{k}</div>
+            <div className="mono text-base font-bold" style={{ color: c }}>{v}</div>
+            <div className="text-[10px] mt-0.5" style={{ color: 'var(--text-tertiary)' }}>{note}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ── 战略态势速览（镜像外交盘读数 · 2026-06 判读基准） ────────
 const VECTORS = [
-  ['中美', '竞合管控', HOLD, '→', '元首护栏在线，关税科技战未解'],
-  ['中俄', '深度协作', WARM, '→', '上不封顶，但不结盟红线未动'],
-  ['中欧', '摩擦中维系', COOL, '→', '电动车/产能之争，分化去风险阵线'],
-  ['中朝', '管控型同盟', WARM, '↗', '高规格再锚定，对冲向俄漂移'],
-  ['台海', '高压常态化', HOLD, '↗', '巡航成新常态，未越升级阈值'],
+  ['中美', '竞合管控', HOLD, '→', '301 关税续期谈判 · 科技出口管制未松'],
+  ['中俄', '深度协作', WARM, '→', '能源与稀土互补 · 不结盟红线未动'],
+  ['中欧', '摩擦中维系', COOL, '→', 'EV 反补贴终裁 · 去风险阵线分化'],
+  ['中朝', '管控型同盟', WARM, '↗', '高规格再锚定 · 对冲半岛变局'],
+  ['台海', '高压常态化', HOLD, '↗', '巡航成新常态 · 未越升级阈值'],
 ];
 
 function StrategyPulse() {
@@ -732,7 +763,7 @@ export default function DashboardPage() {
         <h1 className="os-page-title" style={{ fontSize: '2rem' }}>中国深度调研操作系统</h1>
         <p className="os-page-subtitle mt-2 max-w-3xl">
           冷峻现实主义视角 · 穿透宏观叙事，解析权力运作、产业链条与制度演进的底层代码。
-          {MODULE_COUNT} 个专题模块、{GROUP_COUNT} 大分组、{fmt(ENTRY_TOTAL)} 条结构化条目，统一数据底座、即插即用。
+          十五五开局（2026）· {MODULE_COUNT} 个专题模块、{GROUP_COUNT} 大分组、{fmt(ENTRY_TOTAL)} 条结构化条目，统一数据底座、即插即用。
         </p>
         <div className="os-stat-grid mt-6">
           {stats.map((s) => (
@@ -745,6 +776,8 @@ export default function DashboardPage() {
             </div>
           ))}
         </div>
+
+        <MacroH1Strip />
 
         {/* 时政要闻 · 主流媒体 RSS 跑马灯 */}
         <NewsMarquee />

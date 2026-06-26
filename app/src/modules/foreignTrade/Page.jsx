@@ -210,10 +210,21 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="~43.8 万亿" label="进出口总额 (2024 · 元)" accent="#22d3ee" />
-        <Stat value="~9900 亿$" label="货物贸易顺差 (2024)" accent="#e8a317" />
-        <Stat value=">1 万亿" label="新三样出口 (元 · 峰值)" accent="#c41e3a" />
-        <Stat value="~2.6 万亿" label="跨境电商进出口 (元)" accent="#10b981" />
+        <Stat value="~44.5 万亿" label="进出口总额 (2025 · 元)" accent="#22d3ee" />
+        <Stat value="~1.05 万亿$" label="货物贸易顺差 (2025)" accent="#e8a317" />
+        <Stat value="H1 +4.2%" label="2026 上半年出口增速 (示意)" accent="#c41e3a" />
+        <Stat value="~2.8 万亿" label="跨境电商进出口 (2025 · 元)" accent="#10b981" />
+      </Grid>
+
+      <Grid cols={3} className="mb-6">
+        {[['RCEP 生效第四年', '区域内贸易占比升至 ~36% · 东盟稳居第一大伙伴', '#8b5cf6'],
+          ['新三样 H1', 'EV/锂电/光伏合计 ~5800 亿 · 量增额减持续', '#c41e3a'],
+          ['十五五开局', '内外贸一体化 · CPTPP 申请 · 数字贸易规则谈判并行', '#22d3ee']].map(([t, d, c]) => (
+          <div key={t} className="os-card p-4" style={{ borderLeft: `3px solid ${c}` }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>{t}</div>
+            <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
+          </div>
+        ))}
       </Grid>
 
       {/* ① 贸易板块选择器 ------------------------------------------------ */}

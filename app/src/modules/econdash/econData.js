@@ -11,8 +11,10 @@
 // 确定性铁律：本层零随机、零当前时间；基准日用常量 ECON_AS_OF。
 // ============================================================================
 
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
+
 /** 基准快照日（所有 asOf 默认对齐此日；以官方发布为准） */
-export const ECON_AS_OF = '2026-06-11';
+export const ECON_AS_OF = AS_OF_BASELINE;
 
 // ---------------------------------------------------------------------------
 // 1. 三次产业结构（2018–2025，占 GDP 比重 % + 实际 GDP 增速 %）
@@ -40,6 +42,7 @@ export const SECTOR_STRUCTURE = [
   { year: 2023, agri: 7.1, ind: 38.3, srv: 54.6, gdpGrowth: 5.2 },
   { year: 2024, agri: 6.8, ind: 36.5, srv: 56.7, gdpGrowth: 5.0 },
   { year: 2025, agri: 6.7, ind: 36.0, srv: 57.3, gdpGrowth: 4.8, estimated: true },
+  { year: 2026, agri: 6.6, ind: 35.8, srv: 57.6, gdpGrowth: 5.3, estimated: true, note: '2026 H1 累计同比 · 十五五开局' },
 ];
 
 /**
@@ -128,9 +131,9 @@ export const KEY_INDICATORS = [
     id: 'pmi_mfg',
     label: '制造业 PMI',
     group: '景气',
-    value: 49.5,
+    value: 49.8,
     unit: '点',
-    yoy: -0.4,
+    yoy: -0.3,
     mom: -0.2,
     trend: 'down',
     threshold: 50,
@@ -223,6 +226,20 @@ export const KEY_INDICATORS = [
     note: '累计增速；制造业与基建撑盘，地产投资仍深度拖累；近似值。',
   },
   {
+    id: 'gdp_h1',
+    label: 'GDP 累计增速',
+    group: '需求',
+    value: 5.3,
+    unit: '% H1 同比',
+    yoy: 5.3,
+    mom: null,
+    trend: 'up',
+    threshold: null,
+    good: 'high',
+    asOf: ECON_AS_OF,
+    note: '2026 年上半年 · 十五五开局首读数；名义增速仍低于实际，平减指数偏负；近似值。',
+  },
+  {
     id: 'iva',
     label: '规上工业增加值',
     group: '需求',
@@ -289,7 +306,7 @@ export const CANARY_SIGNALS = [
     label: '全社会用电量',
     proxy: '实体生产真实活跃度',
     signal: 'green',
-    reading: '同比约 +6%，工业用电回暖',
+    reading: '同比约 +6.1%，工业用电回暖',
     lead: '比工业增加值更难注水，先于产出回升',
     source: '能源局 / 中电联 公开口径',
   },
@@ -298,7 +315,7 @@ export const CANARY_SIGNALS = [
     label: '铁路货运量',
     proxy: '大宗与重工业运输',
     signal: 'amber',
-    reading: '同比微增，煤炭运输偏弱',
+    reading: '同比微增 +1.8%，煤炭运输偏弱',
     lead: '反映重工业与基建实物量节奏',
     source: '国铁集团 公开口径',
   },
@@ -325,7 +342,7 @@ export const CANARY_SIGNALS = [
     label: 'PMI 新订单',
     proxy: '制造业需求前瞻',
     signal: 'amber',
-    reading: '新订单分项贴近 50 一线',
+    reading: '新订单分项 49.2 · 荣枯线下',
     lead: '领先工业产出与出口交货约 1–2 月',
     source: 'NBS 制造业 PMI 分项',
   },
@@ -361,7 +378,7 @@ export const CANARY_SIGNALS = [
     label: '青年失业率',
     proxy: '结构性就业压力',
     signal: 'red',
-    reading: '16–24 岁失业率仍偏高',
+    reading: '16–24 岁失业率 16.8%',
     lead: '领先消费信心与社会预期',
     source: 'NBS 分年龄调查口径',
   },
@@ -370,9 +387,27 @@ export const CANARY_SIGNALS = [
     label: '票房 / 餐饮景气',
     proxy: '居民消费意愿温度',
     signal: 'amber',
-    reading: '票房回落、餐饮客单价承压',
+    reading: '票房 H1 同比 −8% · 餐饮客单承压',
     lead: '高频反映服务消费冷热，先于零售月报',
     source: '猫眼 / 餐饮协会 公开口径',
+  },
+  {
+    id: 'export_resilience',
+    label: '出口交货值',
+    proxy: '外需与产业链韧性',
+    signal: 'green',
+    reading: 'H1 同比 +4.2% · 新三样支撑',
+    lead: '领先海关金额约 2 周，反映外需温度',
+    source: 'NBS 工业企业口径',
+  },
+  {
+    id: 'fiscal_pulse',
+    label: '广义财政支出',
+    proxy: '逆周期发力强度',
+    signal: 'amber',
+    reading: 'H1 支出 +3.8% · 专项债前置',
+    lead: '领先基建实物量 1–2 季，十五五开局财政靠前',
+    source: '财政部 公开口径',
   },
 ];
 

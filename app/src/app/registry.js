@@ -35,7 +35,7 @@ export const GROUPS = [
 export const MODULES = [
   {
     id: 'dashboard', path: '/dashboard', group: 'home',
-    title: '中枢看板', subtitle: '全局总揽 · 模块直达 · 实时大屏', icon: 'LayoutDashboard',
+    title: '中枢看板', subtitle: '十五五开局 · 全局总揽 · H1 读数', icon: 'LayoutDashboard',
     component: lazy(() => import('../modules/dashboard/Page.jsx')),
   },
   {
@@ -50,7 +50,7 @@ export const MODULES = [
   },
   {
     id: 'econdash', path: '/econ-dashboard', group: 'home',
-    title: '经济大盘', subtitle: '三次产业 · 核心指标 · 金丝雀监测', icon: 'LineChart',
+    title: '经济大盘', subtitle: '三次产业 · 金丝雀 · 2026 H1', icon: 'LineChart',
     component: lazy(() => import('../modules/econdash/Page.jsx')),
   },
   {
@@ -179,7 +179,7 @@ export const MODULES = [
   },
   {
     id: 'foreignTrade', path: '/foreign-trade', group: 'depthtopics',
-    title: '对外贸易', subtitle: '新三样 · RCEP · 跨境电商', icon: 'Ship',
+    title: '对外贸易', subtitle: '新三样 · RCEP · 2026 H1', icon: 'Ship',
     component: lazy(() => import('../modules/foreignTrade/Page.jsx')),
   },
   {
@@ -271,7 +271,7 @@ export const MODULES = [
     title: '统一大市场', subtitle: '五个统一 · 破除壁垒 · 要素流通', icon: 'Store', accent: '#e8a317',
     component: lazy(() => import('../modules/unifiedMarket/Page.jsx')),
   },
-  { id: 'demographic', path: '/demographic', group: 'society', title: '人口结构', subtitle: '负增长 · 抚养比 · 老龄化', icon: 'Users', component: lazy(() => import('../modules/demographic/Page.jsx')) },
+  { id: 'demographic', path: '/demographic', group: 'society', title: '人口结构', subtitle: '负增长 · 育儿补贴 · 老龄化', icon: 'Users', component: lazy(() => import('../modules/demographic/Page.jsx')) },
   { id: 'gig', path: '/gig', group: 'society', title: '零工经济', subtitle: '蓄水池 · 算法治理 · 新业态', icon: 'Bike', component: lazy(() => import('../modules/gig/Page.jsx')) },
   { id: 'healthcare', path: '/healthcare', group: 'society', title: '医疗医保', subtitle: 'DRG · 药品集采 · 分级诊疗', icon: 'Stethoscope', component: lazy(() => import('../modules/healthcare/Page.jsx')) },
   { id: 'socialgov', path: '/socialgov', group: 'society', title: '基层治理', subtitle: '网格管理 · 综治中心 · 枫桥经验', icon: 'LayoutGrid', component: lazy(() => import('../modules/socialgov/Page.jsx')) },
@@ -813,7 +813,7 @@ export const MODULES = [
   { id: 'computing', path: '/computing', group: 'industry', title: '算力设施', subtitle: '东数西算 · 智算中心 · 算力主权', icon: 'Server', component: lazy(() => import('../modules/computing/Page.jsx')) },
   { id: 'logistics', path: '/logistics', group: 'industry', title: '现代物流', subtitle: '多式联运 · 降本增效 · 冷链网络', icon: 'Truck', component: lazy(() => import('../modules/logistics/Page.jsx')) },
   { id: 'supplychain', path: '/supplychain', group: 'industry', title: '供应链', subtitle: '冗余备份 · 韧性安全 · 自主可控', icon: 'Link2', component: lazy(() => import('../modules/supplychain/Page.jsx')) },
-  { id: 'infrastructure', path: '/infrastructure', group: 'industry', title: '基础设施', subtitle: '新老基建 · 专项债 · 有效投资', icon: 'Construction', component: lazy(() => import('../modules/infrastructure/Page.jsx')) },
+  { id: 'infrastructure', path: '/infrastructure', group: 'industry', title: '基础设施', subtitle: '新老基建 · 算力 · 十五五', icon: 'Construction', component: lazy(() => import('../modules/infrastructure/Page.jsx')) },
   { id: 'megaprojects', path: '/megaprojects', group: 'industry', title: '超级工程', subtitle: '多维ROI · 国家账本 · 战略投资', icon: 'Hammer', component: lazy(() => import('../modules/megaprojects/Page.jsx')) },
   { id: 'space', path: '/space', group: 'industry', title: '航天产业', subtitle: '北斗组网 · 商业航天 · 深空探测', icon: 'Satellite', component: lazy(() => import('../modules/space/Page.jsx')) },
   { id: 'lowAltitude', path: '/low-altitude', group: 'industry', title: '低空经济', subtitle: 'eVTOL · 无人机 · 通用航空', icon: 'PlaneTakeoff', accent: '#22d3ee', component: lazy(() => import('../modules/lowAltitude/Page.jsx')) },
@@ -829,7 +829,7 @@ export const MODULES = [
   { id: 'benchmark', path: '/benchmark', group: 'region', title: '国际对标', subtitle: '中美日德 · 多维对标 · 全球坐标', icon: 'BarChart3', component: lazy(() => import('../modules/benchmark/Page.jsx')) },
   { id: 'rural', path: '/rural', group: 'region', title: '乡村振兴', subtitle: '县域经济 · 土地制度 · 城乡融合', icon: 'Tractor', component: lazy(() => import('../modules/rural/Page.jsx')) },
   { id: 'frontierGov', path: '/frontier-gov', group: 'region', title: '边疆治理', subtitle: '兴边富民 · 对口支援 · 共同体', icon: 'Mountain', component: lazy(() => import('../modules/frontierGov/Page.jsx')) },
-  { id: 'regional', path: '/regional', group: 'region', title: '区域协调', subtitle: '四大板块 · 转移支付 · 城市群', icon: 'Map', component: lazy(() => import('../modules/regional/Page.jsx')) },
+  { id: 'regional', path: '/regional', group: 'region', title: '区域协调', subtitle: '四大板块 · 十五五 · 转移支付', icon: 'Map', component: lazy(() => import('../modules/regional/Page.jsx')) },
   { id: 'northeastRevival', path: '/northeast', group: 'region', title: '东北振兴', subtitle: '老工业基地 · 全面振兴 · 十五五', icon: 'Factory', component: lazy(() => import('../modules/northeastRevival/Page.jsx')) },
   { id: 'marine', path: '/marine', group: 'region', title: '海洋经济', subtitle: '海洋权益 · 船舶制造 · 深海开发', icon: 'Anchor', component: lazy(() => import('../modules/marine/Page.jsx')) },
   { id: 'polar', path: '/polar', group: 'region', title: '极地战略', subtitle: '北极航道 · 极地科考 · 资源博弈', icon: 'Snowflake', component: lazy(() => import('../modules/polar/Page.jsx')) },
@@ -837,7 +837,7 @@ export const MODULES = [
   { id: 'offshore', path: '/offshore', group: 'region', title: '港澳离岸', subtitle: '普通法窗 · 离岸RMB · 资本通道', icon: 'Banknote', component: lazy(() => import('../modules/offshore/Page.jsx')) },
   {
     id: 'heshanReform', path: '/modules/heshan/reform', group: 'heshan',
-    title: '重构山河', subtitle: '区划诊断 · 调整建议 · 可视化底稿', icon: 'MapPinned', accent: '#9e2b25',
+    title: '重构山河', subtitle: '区划诊断 · 收支倒挂 · 建省沙盘', icon: 'MapPinned', accent: '#9e2b25',
     component: lazy(() => import('../modules/heshanReform/Page.jsx')),
   },
   {
@@ -952,7 +952,7 @@ export const MODULES = [
     path: '/modules/signal-dashboard',
     group: 'sim',
     title: '宏观再平衡信号灯',
-    subtitle: 'A/B/C 信号 · 态势合成 · 超个体决策',
+    subtitle: 'A/B/C 信号 · 观测哨 · 2026-06',
     icon: 'Gauge',
     component: lazy(() => import('../modules/signalDashboard/Page.jsx')),
   },

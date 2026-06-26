@@ -1,6 +1,7 @@
 import React from 'react';
 import { CrossLinks, Grid } from '../../app/ui.jsx';
 import { getCrossLinks } from './moduleCrossLinks.js';
+import { AS_OF_LABEL } from '../../lib/config/asOfBaseline.js';
 
 /** 专题页统一 intro 卡片 */
 export function IntroCard({ children, className = 'mb-8' }) {
@@ -108,7 +109,7 @@ export function ModuleFooter({ moduleId, links, disclaimer, sourceNote }) {
     <>
       {resolved.length > 0 && <CrossLinks className="mb-4" links={resolved} />}
       <p className="text-xs mt-6" style={{ color: 'var(--text-tertiary)' }}>
-        {text}{sourceNote ? ` · ${sourceNote}` : ''}
+        {text}{sourceNote ? ` · ${sourceNote}` : ''} · 数据截至 <span className="mono" style={{ color: 'var(--text-secondary)' }}>{AS_OF_LABEL}</span>
       </p>
     </>
   );

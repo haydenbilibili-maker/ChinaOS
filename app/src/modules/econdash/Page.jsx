@@ -325,7 +325,7 @@ export default function Page({ embedded = false }) {
         <PageHeader
           badge="Dashboard · 经济发展与监测大盘"
           title="经济大盘 · 全景与实时监测"
-          subtitle="把官方口径快照、世界银行实时长序列和领先指标合成一张盘——增长的来路、结构的变迁、过热与转冷的早信号，都在一屏里。"
+          subtitle="把官方口径快照、世界银行实时长序列和领先指标合成一张盘——十五五开局 2026 H1 读数、结构的变迁、过热与转冷的早信号，都在一屏里。"
         />
       )}
       <IntroCard>
