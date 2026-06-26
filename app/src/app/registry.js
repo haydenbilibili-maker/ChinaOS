@@ -927,6 +927,15 @@ export const MODULES = [
     component: lazy(() => import('../modules/yishixingtai/Page.jsx')),
   },
   {
+    id: 'signalDashboard',
+    path: '/modules/signal-dashboard',
+    group: 'sim',
+    title: '宏观再平衡信号灯',
+    subtitle: 'A/B/C 信号 · 态势合成 · 超个体决策',
+    icon: 'Gauge',
+    component: lazy(() => import('../modules/signalDashboard/Page.jsx')),
+  },
+  {
     id: 'leadership', path: '/leadership', group: 'sim',
     title: '领袖统治', subtitle: '权力结构 · 决策机制 · 12 图可视化 · 四区交互', icon: 'Crown',
     component: lazy(() => import('../modules/leadership/Page.jsx')),
