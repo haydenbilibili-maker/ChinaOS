@@ -154,6 +154,7 @@ const MAP = {
   dashboard: [
     { to: '/modules/renqun-tupu', label: '人群画像总图谱 · GY-00', note: `中国人群分析组总入口，${SLICE_N} 片切片钻探进度。` },
     { to: '/econ-dashboard', label: '经济大盘 · 2026 H1', note: 'NBS 快照 + 金丝雀监测 + 三次产业结构。' },
+    { to: '/wb-ce-report', label: '世行经济简报 · 2026-07', note: '世界银行月度中国经济简报：基线预测与政策研判。' },
     { to: '/modules/signal-dashboard', label: '宏观再平衡信号灯', note: 'A/B/C 信号与数据事实观测看板。' },
     { to: '/market-pulse', label: '全球资产脉搏 · 实时行情', note: '股债汇大宗 18 标的轮询。' },
     { to: '/diplomacy', label: '外交博弈 · 矢量盘', note: '战略态势速览数据源。' },
@@ -161,10 +162,18 @@ const MAP = {
   ],
   econdash: [
     { to: '/dashboard', label: '中枢看板 · H1 读数', note: '全局宏观速览与模块入口。' },
+    { to: '/wb-ce-report', label: '世行经济简报 · 2026-07', note: '世行月度研判：2026 基线预测 4.4% 与政策叙事。' },
     { to: '/modules/signal-dashboard', label: '宏观再平衡信号灯', note: '金丝雀与观测数据交叉验证。' },
     { to: '/debt', label: '地方债务 · 省际热力', note: '广义财政与化债方案。' },
     { to: '/consumption', label: '扩大内需 · 消费率', note: '内需不足与消费占 GDP 比重。' },
     { to: '/foreign-trade', label: '对外贸易 · 新三样', note: '外需与出口交货值领先指标。' },
+  ],
+  wbCeReport: [
+    { to: '/econ-dashboard', label: '经济大盘 · WDI 长序列', note: 'NBS 快照与世行 WDI 实时指标互补。' },
+    { to: '/foundation?tab=worldbank', label: '数据底座 · 世界银行 WDI', note: '本地 WDI 种子与指标目录。' },
+    { to: '/modules/signal-dashboard', label: '宏观再平衡信号灯', note: '内需再平衡与政策信号交叉验证。' },
+    { to: '/consumption', label: '扩大内需 · 消费率', note: '预防性储蓄与社保短板议题。' },
+    { to: '/housing', label: '住房地产 · 周期调整', note: '地产交付与「白名单」融资约束。' },
   ],
   signalDashboard: [
     { to: '/econ-dashboard', label: '经济大盘 · 金丝雀盘', note: 'CANARY_SIGNALS 与 KEY_INDICATORS 同源层。' },

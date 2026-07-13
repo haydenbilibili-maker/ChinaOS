@@ -54,6 +54,11 @@ export const MODULES = [
     component: lazy(() => import('../modules/econdash/Page.jsx')),
   },
   {
+    id: 'wbCeReport', path: '/wb-ce-report', group: 'home',
+    title: '世行经济简报', subtitle: '2026-07 · 供强需弱 · 基线预测', icon: 'FileBarChart',
+    component: lazy(() => import('../modules/wbCeReport/Page.jsx')),
+  },
+  {
     id: 'cognition', path: '/cognition', group: 'cognition',
     title: '康波周期', subtitle: '康德拉季耶夫 · 长波 · 创新潮', icon: 'Waves',
     component: lazy(() => import('../modules/cognition/Page.jsx')),
