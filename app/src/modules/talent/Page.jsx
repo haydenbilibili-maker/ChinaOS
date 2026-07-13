@@ -598,8 +598,8 @@ export default function Page() {
               </div>
             </div>
           ) : view === 'radar' ? (
-            <div className="grid gap-4 mb-4" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
-              <Card title={`人物选择 (${filtered.length})`}>
+            <div className="talent-split talent-split--balanced mb-4">
+              <Card title={`人物选择 (${filtered.length})`} asSection={false} className="talent-split__list-card">
                 <p className="text-[11px] mono mb-2" style={{ color: 'var(--text-tertiary)' }}>
                   // 关系雷达 · 六维启发式画像 · 可选第二人叠加对比
                 </p>
@@ -617,7 +617,7 @@ export default function Page() {
                     ))}
                   </select>
                 </div>
-                <div className="space-y-1.5" style={{ maxHeight: 480, overflowY: 'auto' }}>
+                <div className="talent-split__scroll space-y-1.5">
                   {filtered.map((f) => {
                     const on = detail?.id === f.id;
                     return (
@@ -634,12 +634,14 @@ export default function Page() {
                   {!filtered.length && <div className="py-12 text-center mono text-sm" style={{ color: 'var(--text-tertiary)' }}>// 无匹配</div>}
                 </div>
               </Card>
-              <FigureRadarChart
-                figure={detail ? applyTalentEnrichment(detail, { queue: 'figures' }) : null}
-                compareFigure={compareFigure ? applyTalentEnrichment(compareFigure, { queue: 'figures' }) : null}
-                cohortFigures={filtered}
-                antiCorruptionNames={antiCorruptionNames}
-              />
+              <div className="talent-split__detail">
+                <FigureRadarChart
+                  figure={detail ? applyTalentEnrichment(detail, { queue: 'figures' }) : null}
+                  compareFigure={compareFigure ? applyTalentEnrichment(compareFigure, { queue: 'figures' }) : null}
+                  cohortFigures={filtered}
+                  antiCorruptionNames={antiCorruptionNames}
+                />
+              </div>
             </div>
           ) : view === 'stats' ? (
             <div className="space-y-4 mb-4">
@@ -664,10 +666,10 @@ export default function Page() {
               <p className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>// 年龄按公开出生年份折算 · 任期按上任日期折算（截至 {CUR_YEAR}）· 中央委员身份据二十届名单 · 籍贯/任期数据覆盖率不一，未注明者不计入对应图</p>
             </div>
           ) : (
-            <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
-              <Card title={`检索结果 (${filtered.length}/${figures.length})`}>
+            <div className="talent-split talent-split--list-detail mb-4">
+              <Card title={`检索结果 (${filtered.length}/${figures.length})`} asSection={false} className="talent-split__list-card">
                 {view === 'grid' ? (
-                  <div className="grid gap-2" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(150px,1fr))', maxHeight: 540, overflowY: 'auto' }}>
+                  <div className="talent-split__scroll grid gap-2" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(150px,1fr))' }}>
                     {filtered.map((f) => (
                       <button key={f.id} onClick={() => selectEntity(f)} className={`os-list-item text-left p-2.5 rounded ${detail?.id === f.id ? 'is-selected' : ''}`}>
                         <div className="flex items-center gap-2 mb-1">
@@ -684,7 +686,7 @@ export default function Page() {
                     {!filtered.length && <div className="py-12 text-center mono text-sm col-span-full" style={{ color: 'var(--text-tertiary)' }}>// 无匹配</div>}
                   </div>
                 ) : (
-                  <div className="space-y-1.5" style={{ maxHeight: 560, overflowY: 'auto' }}>
+                  <div className="talent-split__scroll space-y-1.5">
                     {filtered.map((f) => {
                       const on = detail?.id === f.id; const age = ageOf(f);
                       return (
@@ -710,7 +712,7 @@ export default function Page() {
                 )}
               </Card>
 
-              <div className="space-y-4">
+              <div className="talent-split__detail space-y-4">
               <FigureRadarChart
                 figure={detail ? applyTalentEnrichment(detail, { queue: 'figures' }) : null}
                 cohortFigures={filtered}

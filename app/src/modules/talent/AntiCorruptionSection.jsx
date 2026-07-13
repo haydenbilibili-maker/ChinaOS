@@ -430,9 +430,9 @@ export default function AntiCorruptionSection() {
               <p className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>// 数据边界：{ANTI_CORRUPTION_META.notes}</p>
             </div>
           ) : (
-            <div className="grid gap-4" style={{ gridTemplateColumns: '1.25fr 1fr' }}>
-              <Card title={`检索结果 (${filtered.length}/${list.length})`}>
-                <div className="space-y-1.5" style={{ maxHeight: 560, overflowY: 'auto' }}>
+            <div className="talent-split talent-split--list-detail mb-4">
+              <Card title={`检索结果 (${filtered.length}/${list.length})`} asSection={false} className="talent-split__list-card">
+                <div className="talent-split__scroll space-y-1.5">
                   {filtered.map((r) => {
                     const on = detail === r;
                     return (
@@ -455,6 +455,7 @@ export default function AntiCorruptionSection() {
                 </div>
               </Card>
 
+              <div className="talent-split__detail">
               <Card title={detail ? `${detail.name} · 案件详情` : '选择一条'}>
                 {detail && (() => {
                   const d = applyTalentEnrichment(detail, { queue: 'anticorruption' });
@@ -511,6 +512,7 @@ export default function AntiCorruptionSection() {
                   );
                 })()}
               </Card>
+              </div>
             </div>
           )}
         </>

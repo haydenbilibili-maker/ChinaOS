@@ -1512,6 +1512,43 @@ textarea:focus {
   border: 1px solid var(--border-subtle);
 }
 
+/* Talent · list + detail split — desktop equal height, mobile natural stack */
+.talent-split {
+  display: grid;
+  gap: 1rem;
+  align-items: stretch;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .talent-split--list-detail {
+    grid-template-columns: minmax(280px, 1.25fr) minmax(280px, 1fr);
+  }
+
+  .talent-split--balanced {
+    grid-template-columns: minmax(280px, 1fr) minmax(320px, 1fr);
+  }
+}
+
+.talent-split__list-card {
+  height: 100%;
+  margin-bottom: 0 !important;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.talent-split__scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.talent-split__detail {
+  min-width: 0;
+}
+
 .os-list-item {
   background: var(--bg-elevated);
   border: 1px solid var(--border-subtle);
