@@ -270,3 +270,45 @@
 .hf-hub-foot a:hover {
   text-decoration: underline;
 }
+
+/* ── 门禁模态 · 入场 / 按钮触感 / 卡片辉光 ── */
+.hf-gate-card {
+  animation: os-fade-in 0.48s var(--ease-ink, cubic-bezier(0.22, 1, 0.36, 1)) both;
+}
+.hf-gate-mark {
+  transition: box-shadow 0.3s var(--ease-ink, ease), border-color 0.2s ease;
+  box-shadow: 0 0 0 0 var(--brass-glow, rgba(177, 138, 82, 0.2));
+}
+.hf-gate-wrap:focus-within .hf-gate-mark,
+.hf-gate-card:hover .hf-gate-mark {
+  box-shadow: 0 0 20px -4px var(--brass-glow, rgba(177, 138, 82, 0.35));
+  border-color: var(--brass);
+}
+.hf-gate-submit {
+  transition: filter 0.2s ease, transform 0.15s var(--ease-ink, ease);
+}
+.hf-gate-submit:not(:disabled):active {
+  transform: scale(0.98);
+}
+.hf-gate-input {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.hf-gate-input:focus {
+  box-shadow: 0 0 0 2px rgba(121, 164, 150, 0.28);
+  border-color: var(--celadon);
+}
+.hf-hub-card {
+  transition: border-color 0.2s var(--ease-ink, ease), transform 0.2s var(--ease-ink, ease), box-shadow 0.25s ease;
+}
+.hf-hub-card:hover {
+  box-shadow: 0 10px 28px -12px rgba(0, 0, 0, 0.45), 0 0 0 1px var(--brass-dim);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hf-gate-card {
+    animation: none;
+  }
+  .hf-gate-submit:not(:disabled):active,
+  .hf-hub-card:hover {
+    transform: none;
+  }
+}

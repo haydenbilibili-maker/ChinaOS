@@ -290,3 +290,45 @@
   .sp-v-score { text-align: left; }
   .sp-desc { display: none; }
 }
+
+/* ── 质感升级 · 错落入场 / 卡片抬升 / 仪表过渡 ── */
+.ink-observatory.sp-wrap {
+  animation: os-fade-in 0.42s var(--ease-ink, cubic-bezier(0.22, 1, 0.36, 1)) both;
+}
+.sp-grid {
+  animation: os-fade-in 0.4s var(--ease-ink, cubic-bezier(0.22, 1, 0.36, 1)) both;
+}
+.sp-grid .sp-card {
+  transition:
+    border-color var(--duration-fast, 0.18s) var(--ease-ink, ease),
+    background var(--duration-fast, 0.18s) var(--ease-ink, ease),
+    transform var(--duration-fast, 0.18s) var(--ease-ink, ease),
+    box-shadow var(--duration-fast, 0.18s) var(--ease-ink, ease);
+}
+.sp-grid .sp-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px -12px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--hair);
+}
+.sp-knob {
+  transition: left 0.55s var(--ease-ink, cubic-bezier(0.22, 1, 0.36, 1)), box-shadow 0.3s ease;
+}
+.sp-v-lamp {
+  transition: box-shadow 0.4s ease;
+}
+.sp-lanes .sp-lane {
+  transition: transform var(--duration-fast, 0.18s) var(--ease-ink, ease), border-color 0.2s ease;
+}
+.sp-lanes .sp-lane:hover {
+  transform: translateY(-1px);
+}
+.sp-btn:active {
+  transform: scale(0.98);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ink-observatory.sp-wrap,
+  .sp-grid .sp-card:hover,
+  .sp-lanes .sp-lane:hover {
+    animation: none;
+    transform: none;
+  }
+}

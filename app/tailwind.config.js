@@ -45,8 +45,26 @@ export default {
         '2xl': 'var(--radius-xl)',
       },
       transitionDuration: {
-        fast: '180ms',
-        base: '220ms',
+        fast: 'var(--duration-fast)',
+        base: 'var(--transition-base)',
+        slow: 'var(--duration-slow)',
+      },
+      transitionTimingFunction: {
+        ink: 'var(--ease-ink)',
+      },
+      boxShadow: {
+        ambient: 'var(--shadow-ambient)',
+        key: 'var(--shadow-key)',
+        glass: 'var(--shadow-glass)',
+      },
+      backdropBlur: {
+        glass: 'var(--glass-blur-md)',
+        'glass-sm': 'var(--glass-blur-sm)',
+        'glass-lg': 'var(--glass-blur-lg)',
+      },
+      letterSpacing: {
+        'ink-tight': 'var(--tracking-ink-tight)',
+        'ink-wide': 'var(--tracking-ink-wide)',
       },
     },
   },

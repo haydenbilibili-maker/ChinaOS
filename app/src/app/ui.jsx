@@ -52,9 +52,9 @@ export function CrossLinks({ title = '横向打通 · 关联模块', links = [],
   );
 }
 
-export function PageHeader({ badge, title, subtitle, children }) {
+export function PageHeader({ badge, title, subtitle, children, noAccent = false }) {
   return (
-    <header className="os-page-header mb-8 pb-5 border-b os-section" style={{ borderColor: 'var(--border-subtle)' }}>
+    <header className={`os-page-header mb-8 pb-5 border-b os-section ${noAccent ? 'os-page-header--no-accent' : ''}`} style={{ borderColor: 'var(--border-subtle)' }}>
       {badge && (
         <span
           className="inline-block text-xs font-semibold uppercase px-2 py-0.5 rounded mb-3 mono"
@@ -87,7 +87,7 @@ export function Card({ title, children, className = '', hover = false, asSection
 
 export function Stat({ value, label, accent }) {
   return (
-    <div className="os-card os-card-lift p-4 text-center" style={{ padding: 'var(--card-padding) 1rem' }}>
+    <div className="os-card os-card-lift os-stat-card p-4 text-center" style={{ padding: 'var(--card-padding) 1rem' }}>
       <div className="os-stat-value mono" style={{ color: accent || 'var(--text-primary)' }}>{value}</div>
       <div className="os-stat-label">{label}</div>
     </div>
@@ -228,10 +228,10 @@ export function Skeleton({ className = '', style }) {
 
 export function LoadingBlock({ label = '加载模块…' }) {
   return (
-    <div className="os-loading-block" role="status" aria-live="polite">
+    <div className="os-loading-block os-card" style={{ padding: 'var(--card-padding)' }} role="status" aria-live="polite">
       <Skeleton className="os-skeleton-line" />
       <Skeleton className="os-skeleton-line short" />
-      <span className="mono text-sm" style={{ color: 'var(--cyber-cyan)' }}>{label}</span>
+      <span className="mono text-sm" style={{ color: 'var(--celadon)' }}>{label}</span>
     </div>
   );
 }

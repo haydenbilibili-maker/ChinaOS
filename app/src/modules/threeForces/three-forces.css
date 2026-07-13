@@ -257,3 +257,29 @@
 @media (max-width: 560px) {
   .tf-win-score { text-align: left; }
 }
+
+/* ── 质感升级 · 窗口仪表 / 卡片抬升 ── */
+.ink-observatory.tf-wrap {
+  animation: os-fade-in 0.42s var(--ease-ink, cubic-bezier(0.22, 1, 0.36, 1)) both;
+}
+.tf-window,
+.tf-card {
+  transition:
+    border-color 0.2s var(--ease-ink, ease),
+    transform 0.2s var(--ease-ink, ease),
+    box-shadow 0.25s var(--ease-ink, ease);
+}
+.tf-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.5);
+}
+.tf-btn:active {
+  transform: scale(0.98);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ink-observatory.tf-wrap,
+  .tf-card:hover {
+    animation: none;
+    transform: none;
+  }
+}

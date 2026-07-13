@@ -94,7 +94,7 @@ export default function ObservatoryHome() {
   });
 
   return (
-    <div className="ink-observatory ob-wrap">
+    <div className="ink-observatory ob-wrap os-section">
       <div className="ob-inner">
         <header className="ob-top">
           <div className="ob-id">

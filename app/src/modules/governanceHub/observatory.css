@@ -506,3 +506,50 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ── 质感升级 · 错落入场 / 链路卡片 / 仪表读数 ── */
+.ink-observatory.ob-wrap {
+  animation: os-fade-in 0.44s var(--ease-ink, cubic-bezier(0.22, 1, 0.36, 1)) both;
+}
+.ink-observatory.ob-wrap .ob-chain {
+  animation: os-fade-in 0.4s var(--ease-ink, cubic-bezier(0.22, 1, 0.36, 1)) 0.08s both;
+}
+.ink-observatory.ob-wrap .ob-mod {
+  transition:
+    border-color 0.2s var(--ease-ink, ease),
+    background 0.2s var(--ease-ink, ease),
+    transform 0.2s var(--ease-ink, ease),
+    box-shadow 0.25s var(--ease-ink, ease);
+}
+.ink-observatory.ob-wrap .ob-mod:hover {
+  box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--brass-dim);
+}
+.ink-observatory.ob-wrap .ob-g-v .w {
+  transition: color 0.35s var(--ease-ink, ease), text-shadow 0.35s ease;
+}
+.ink-observatory.ob-wrap .ob-hero {
+  position: relative;
+  overflow: hidden;
+}
+.ink-observatory.ob-wrap .ob-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(177, 138, 82, 0.04) 50%, transparent 60%);
+  pointer-events: none;
+  animation: ob-hero-sheen 12s ease-in-out infinite;
+}
+@keyframes ob-hero-sheen {
+  0%, 100% { transform: translateX(-30%); opacity: 0.5; }
+  50% { transform: translateX(30%); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ink-observatory.ob-wrap,
+  .ink-observatory.ob-wrap .ob-chain,
+  .ink-observatory.ob-wrap .ob-hero::after {
+    animation: none !important;
+  }
+  .ink-observatory.ob-wrap .ob-mod:hover {
+    transform: none;
+  }
+}

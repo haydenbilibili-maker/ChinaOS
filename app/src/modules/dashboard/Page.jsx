@@ -748,7 +748,7 @@ export default function DashboardPage() {
 
       {/* ── 1. 项目总揽 · Hero ───────────────────────────── */}
       <section
-        className="os-card os-section mb-6 overflow-hidden relative"
+        className="os-card os-section os-hero-card mb-6 overflow-hidden relative"
         style={{
           padding: '2rem',
           background: 'radial-gradient(120% 140% at 0% 0%, rgba(196,30,58,0.16), transparent 55%), radial-gradient(120% 140% at 100% 0%, rgba(34,211,238,0.14), transparent 55%), var(--bg-surface)',
@@ -766,9 +766,9 @@ export default function DashboardPage() {
           冷峻现实主义视角 · 穿透宏观叙事，解析权力运作、产业链条与制度演进的底层代码。
           十五五开局（2026）· {MODULE_COUNT} 个专题模块、{GROUP_COUNT} 大分组、{fmt(ENTRY_TOTAL)} 条结构化条目，统一数据底座、即插即用。
         </p>
-        <div className="os-stat-grid mt-6">
+        <div className="os-stat-grid os-section-stagger mt-6">
           {stats.map((s) => (
-            <div key={s.label} className="os-card p-4" style={{ borderColor: `${s.accent}33` }}>
+            <div key={s.label} className="os-card os-stat-card os-card-lift p-4" style={{ borderColor: `${s.accent}33` }}>
               <div className="flex items-center gap-1.5 mb-1" style={{ color: s.accent }}>
                 <Icon name={s.icon} size={14} />
                 <span className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>{s.label}</span>
@@ -833,21 +833,21 @@ export default function DashboardPage() {
           <h2 className="os-card-title m-0">态势速览</h2>
           <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>// 外交矢量 · 施政基准 · 本地库活数据</span>
         </div>
-        <Grid cols={3} gap="0.85rem" className="dash-screen-grid">
+        <Grid cols={3} gap="0.85rem" className="dash-screen-grid os-section-stagger">
           <StrategyPulse />
           <PolicyPulse />
           <LiveDbStatus />
         </Grid>
-        <Grid cols={3} gap="0.85rem" className="dash-screen-grid mt-3">
+        <Grid cols={3} gap="0.85rem" className="dash-screen-grid os-section-stagger mt-3">
           <KondratievClock />
           <RiskRadar />
           <PolicyCalendar />
         </Grid>
-        <Grid cols={2} gap="0.85rem" className="dash-screen-grid mt-3">
+        <Grid cols={2} gap="0.85rem" className="dash-screen-grid os-section-stagger mt-3">
           <WatchPulse />
           <ChroniclePulse />
         </Grid>
-        <Grid cols={2} gap="0.85rem" className="dash-screen-grid mt-3">
+        <Grid cols={2} gap="0.85rem" className="dash-screen-grid os-section-stagger mt-3">
           <GdeltPulse />
           <PolyPulse />
         </Grid>
@@ -863,7 +863,7 @@ export default function DashboardPage() {
           <h2 className="os-card-title m-0">实时大屏</h2>
           <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>// LIVE · 种子计数</span>
         </div>
-        <Grid cols={3} gap="0.85rem" className="dash-screen-grid">
+        <Grid cols={3} gap="0.85rem" className="dash-screen-grid os-section-stagger">
           <ScreenCard title="中国政要分层构成" accent="#c41e3a" footer="政治权力队列 · 按层级聚合">
             <EChart option={opt.donut} style={{ height: 230 }} />
           </ScreenCard>

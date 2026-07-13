@@ -106,11 +106,11 @@ export function ModuleFooter({ moduleId, links, disclaimer, sourceNote }) {
   const resolved = links ?? getCrossLinks(moduleId);
   const text = disclaimer ?? '公开资料整理，示意非官方 · 仅供分析框架参考，非投资建议';
   return (
-    <>
+    <footer className="os-module-footer">
       {resolved.length > 0 && <CrossLinks className="mb-4" links={resolved} />}
-      <p className="text-xs mt-6" style={{ color: 'var(--text-tertiary)' }}>
+      <p className="text-xs m-0" style={{ color: 'var(--text-tertiary)' }}>
         {text}{sourceNote ? ` · ${sourceNote}` : ''} · 数据截至 <span className="mono" style={{ color: 'var(--text-secondary)' }}>{AS_OF_LABEL}</span>
       </p>
-    </>
+    </footer>
   );
 }
