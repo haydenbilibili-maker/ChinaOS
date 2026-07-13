@@ -4,6 +4,7 @@
 
 #hs-reform-app,
 #hs-factsheets-app,
+#hs-factsheets-shell,
 #hs-fiscal-app,
 #hs-calibration-app {
   /* 夜览默认 · 深墨纸夜 */
@@ -58,6 +59,7 @@
 
 :root[data-theme='light'] #hs-reform-app,
 :root[data-theme='light'] #hs-factsheets-app,
+:root[data-theme='light'] #hs-factsheets-shell,
 :root[data-theme='light'] #hs-fiscal-app,
 :root[data-theme='light'] #hs-calibration-app {
   /* 日览 · 暖宣纸朱砂 */
