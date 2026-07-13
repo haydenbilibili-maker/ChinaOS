@@ -145,6 +145,18 @@ export const MAP_LAYER_DEFS = /** @type {MapLayerDef[]} */ ([
     icon: 'Ship',
     desc: '上海/宁波/深圳等 12 港锚点 · AISHub（可选 secret）船位叠加',
   },
+  {
+    id: 'satellite-cloud',
+    name: '卫星云图',
+    type: 'overlay',
+    zIndex: 2,
+    defaultVisible: false,
+    toggleable: true,
+    dataSource: 'Worker /api/live/satellite',
+    legend: 'RainViewer / NASA GIBS · 红外/真彩色云图',
+    icon: 'Cloud',
+    desc: '实时卫星云图瓦片叠加 · 与地图漫游同步 · 可调透明度',
+  },
 ]);
 
 const DEFAULT_PREFS = Object.fromEntries(

@@ -5,6 +5,7 @@
  *   GET /api/live/weather  → Open-Meteo forecast（免 key）
  *   GET /api/live/aqi      → Open-Meteo air-quality；失败尝试 OpenAQ v2
  *   GET /api/live/shipping → 主要港口 + 可选 AISHub（secret: AIS_HUB_USERNAME）
+ *   GET /api/live/satellite → RainViewer 清单 + NASA GIBS 云图回退（免 key）
  * 可选 secret: WAQI_TOKEN（IQAir WAQI，未配置则跳过）
  */
 
@@ -13,6 +14,11 @@ const GEO_PROXY = /^\/api\/geo\/(\d+)(?:\.json)?$/i;
 const LIVE_WEATHER = /^\/api\/live\/weather$/i;
 const LIVE_AQI = /^\/api\/live\/aqi$/i;
 const LIVE_SHIPPING = /^\/api\/live\/shipping$/i;
+const LIVE_SATELLITE = /^\/api\/live\/satellite$/i;
+
+const RAINVIEWER_MANIFEST = 'https://api.rainviewer.com/public/weather-maps.json';
+const GIBS_HOST = 'https://gibs.earthdata.nasa.gov';
+const GIBS_CLOUD_LAYER = 'MODIS_Terra_CorrectedReflectance_TrueColor';
 
 const LIVE_TTL_MS = 10 * 60 * 1000;
 /** @type {Map<string, { body: string, status: number, ts: number }>} */
@@ -189,6 +195,69 @@ async function proxyLiveShipping(env) {
   return jsonLiveResponse(body);
 }
 
+/**
+ * 卫星云图清单：RainViewer 红外（若可用）→ NASA GIBS MODIS 真彩色回退
+ * RainViewer 卫星红外已于 2026-01 下线，manifest 中 infrared 常为空数组
+ */
+async function proxyLiveSatellite() {
+  const cacheKey = 'satellite';
+  const hit = liveMemCache.get(cacheKey);
+  if (hit && Date.now() - hit.ts < LIVE_TTL_MS) {
+    return jsonLiveResponse(hit.body, hit.status);
+  }
+
+  let rainviewer = null;
+  try {
+    const res = await fetch(RAINVIEWER_MANIFEST, {
+      headers: { Accept: 'application/json', 'User-Agent': 'ChinaOS-LiveProxy/1.0' },
+    });
+    if (res.ok) rainviewer = await res.json();
+  } catch { /* GIBS fallback */ }
+
+  const host = rainviewer?.host || 'https://tilecache.rainviewer.com';
+  const infrared = rainviewer?.satellite?.infrared;
+  const radarPast = rainviewer?.radar?.past;
+
+  let payload;
+  if (Array.isArray(infrared) && infrared.length) {
+    const latest = infrared[infrared.length - 1];
+    payload = {
+      source: 'rainviewer-satellite',
+      host,
+      path: latest.path,
+      timestamp: latest.time,
+      tileSize: 512,
+      maxZoom: 7,
+      color: 0,
+      options: '1_1',
+      legend: 'RainViewer · 红外云图',
+      note: null,
+      proxiedAt: new Date().toISOString(),
+    };
+  } else {
+    payload = {
+      source: 'gibs',
+      host: GIBS_HOST,
+      layer: GIBS_CLOUD_LAYER,
+      time: 'default',
+      tileMatrixSet: 'GoogleMapsCompatible_Level9',
+      ext: 'jpg',
+      maxZoom: 9,
+      timestamp: rainviewer?.generated || Math.floor(Date.now() / 1000),
+      legend: 'NASA GIBS · MODIS 真彩色云图',
+      note: 'RainViewer 卫星红外已下线，回退 NASA GIBS',
+      radar: Array.isArray(radarPast) && radarPast.length
+        ? { path: radarPast[radarPast.length - 1].path, time: radarPast[radarPast.length - 1].time }
+        : null,
+      proxiedAt: new Date().toISOString(),
+    };
+  }
+
+  const body = JSON.stringify(payload);
+  liveMemCache.set(cacheKey, { body, status: 200, ts: Date.now() });
+  return jsonLiveResponse(body);
+}
+
 /** DataV 区划边界代理 · 规避浏览器直连 CDN 的 CORS/403 */
 async function proxyRegionGeo(adcode) {
   const upstream = `https://geo.datav.aliyun.com/areas_v3/bound/${adcode}_full.json`;
@@ -266,6 +335,10 @@ export default {
 
     if (request.method === 'GET' && LIVE_SHIPPING.test(url.pathname)) {
       return proxyLiveShipping(env);
+    }
+
+    if (request.method === 'GET' && LIVE_SATELLITE.test(url.pathname)) {
+      return proxyLiveSatellite();
     }
 
     if ((request.method === 'GET' || request.method === 'HEAD') && LEGACY_ENTRY.test(url.pathname)) {

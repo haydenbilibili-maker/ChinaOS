@@ -1,6 +1,9 @@
 import React, { useMemo } from 'react';
 import * as Lucide from 'lucide-react';
 import { MAP_LAYER_DEFS } from './liveMapLayers.js';
+import {
+  MIN_SATELLITE_OPACITY, MAX_SATELLITE_OPACITY, DEFAULT_SATELLITE_OPACITY,
+} from './liveSatellite.js';
 
 const STEEL = '#22d3ee';
 
@@ -28,6 +31,8 @@ export default function LiveMapLayerPanel({
   fiscalMeta,
   overlayStatuses = {},
   compact = false,
+  satelliteOpacity = DEFAULT_SATELLITE_OPACITY,
+  onSatelliteOpacityChange,
 }) {
   const toggleable = useMemo(
     () => MAP_LAYER_DEFS.filter((d) => d.toggleable),
@@ -57,6 +62,7 @@ export default function LiveMapLayerPanel({
         {toggleable.map((def) => {
           const on = !!prefs[def.id];
           const isFiscal = def.id === 'fiscal-network';
+          const isSatellite = def.id === 'satellite-cloud';
           return (
             <li key={def.id} className={`lcm-layer-row ${on ? 'is-on' : ''}`}>
               <label className="lcm-layer-toggle">
@@ -93,6 +99,21 @@ export default function LiveMapLayerPanel({
                 }
                 return null;
               })()}
+              {isSatellite && on && onSatelliteOpacityChange && (
+                <label className="lcm-layer-opacity mono flex items-center gap-2 mt-1">
+                  <span style={{ color: 'var(--text-tertiary)', fontSize: 10 }}>透明度</span>
+                  <input
+                    type="range"
+                    min={MIN_SATELLITE_OPACITY}
+                    max={MAX_SATELLITE_OPACITY}
+                    step={0.05}
+                    value={satelliteOpacity}
+                    onChange={(e) => onSatelliteOpacityChange(parseFloat(e.target.value))}
+                    style={{ flex: 1, accentColor: STEEL }}
+                  />
+                  <span style={{ color: STEEL, fontSize: 10 }}>{Math.round(satelliteOpacity * 100)}%</span>
+                </label>
+              )}
               {!compact && def.desc && (
                 <p className="lcm-layer-desc">{def.desc}</p>
               )}

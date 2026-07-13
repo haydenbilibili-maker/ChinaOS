@@ -39,6 +39,12 @@ import {
   useLiveShipping, buildPortSeries, buildVesselSeries, portSymbolSize,
   formatPortTooltip, formatVesselTooltip,
 } from './liveShipping.js';
+import {
+  useLiveSatellite, loadSatelliteOpacity, saveSatelliteOpacity,
+  MIN_SATELLITE_OPACITY, MAX_SATELLITE_OPACITY,
+  formatSatelliteTime,
+} from './liveSatellite.js';
+import SatelliteCloudOverlay from './SatelliteCloudOverlay.jsx';
 
 // 种子层 + 实时层合并（综合态势置首，随后实测层，再接其余种子层）
 const ALL_LAYERS = [LAYERS[0], ...REAL_LAYERS, ...REAL_AQI_LAYERS, ...LAYERS.slice(1)];
@@ -152,9 +158,11 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
   const elRef = useRef(null);
   const chartRef = useRef(null);
   const [ready, setReady] = useState(false);
+  const [chartInstance, setChartInstance] = useState(null);
   const [err, setErr] = useState(null);
   const [geoSource, setGeoSource] = useState('');
   const [layerPrefs, setLayerPrefs] = useState(loadLayerPrefs);
+  const [satelliteOpacity, setSatelliteOpacity] = useState(loadSatelliteOpacity);
   const [fiscalData, setFiscalData] = useState(null);
   const [fiscalLoading, setFiscalLoading] = useState(false);
   const [layerId, setLayerId] = useState('composite');
@@ -191,15 +199,18 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
   const showQuakes = isLayerVisible('overlay-quakes', layerPrefs);
   const showFlights = isLayerVisible('overlay-flights', layerPrefs);
   const showShipping = isLayerVisible('overlay-shipping', layerPrefs);
+  const showSatellite = isLayerVisible('satellite-cloud', layerPrefs);
   const quakesState = useLiveQuakes(900000, showQuakes && !isCompact);
   const flightsState = useLiveFlights(600000, showFlights && !isCompact);
   const shippingState = useLiveShipping(600000, showShipping && !isCompact);
+  const satelliteState = useLiveSatellite(600000, showSatellite && !isCompact);
 
   const overlayStatuses = useMemo(() => ({
     'overlay-quakes': showQuakes ? quakesState : null,
     'overlay-flights': showFlights ? flightsState : null,
     'overlay-shipping': showShipping ? shippingState : null,
-  }), [showQuakes, showFlights, showShipping, quakesState, flightsState, shippingState]);
+    'satellite-cloud': showSatellite ? satelliteState : null,
+  }), [showQuakes, showFlights, showShipping, showSatellite, quakesState, flightsState, shippingState, satelliteState]);
 
   const liveMetricStatus = useMemo(() => {
     if (!isReal) return null;
@@ -303,6 +314,12 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
     });
   }, []);
 
+  const handleSatelliteOpacity = useCallback((v) => {
+    const n = Math.min(MAX_SATELLITE_OPACITY, Math.max(MIN_SATELLITE_OPACITY, v));
+    setSatelliteOpacity(n);
+    saveSatelliteOpacity(n);
+  }, []);
+
   useEffect(() => subscribeTheme((t) => {
     applyChartTheme(t);
     setThemeState(t);
@@ -347,6 +364,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
     if (!ready || !elRef.current) return undefined;
     const chart = echarts.init(elRef.current, null, { renderer: 'canvas' });
     chartRef.current = chart;
+    setChartInstance(chart);
     const ro = new ResizeObserver(() => chart.resize());
     ro.observe(elRef.current);
 
@@ -369,6 +387,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
       chart.off('click');
       chart.dispose();
       chartRef.current = null;
+      setChartInstance(null);
     };
   }, [ready]);
 
@@ -435,6 +454,8 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
             : undefined,
       };
     });
+
+    const choroplethDim = showSatellite ? 0.42 : 1;
 
     return {
       backgroundColor: 'transparent',
@@ -537,6 +558,8 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
           geoIndex: 0,
           data: seriesData,
           selectedMode: false,
+          itemStyle: { opacity: choroplethDim },
+          emphasis: { itemStyle: { opacity: Math.min(1, choroplethDim + 0.25) } },
         },
         ...['flow-migration', 'scatter-capitals', 'overlay-quakes', 'overlay-flights', 'overlay-shipping']
           .filter((id) => isLayerVisible(id, layerPrefs))
@@ -549,7 +572,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
           }) || []),
       ],
     };
-  }, [theme, layer, mapData, displayData, deltaMode, isReal, coloringFiscal, weather.data, weather.fetchedAt, airQuality.data, airQuality.fetchedAt, zoneId, layerId, palette, hotCoords, region, selectedProvince, isCompact, layerPrefs, showLabels, quakesState, flightsState, shippingState, buildQuakeSeries, quakeSymbolSize, quakeColor, buildFlightSeries, buildPortSeries, buildVesselSeries, portSymbolSize]);
+  }, [theme, layer, mapData, displayData, deltaMode, isReal, coloringFiscal, weather.data, weather.fetchedAt, airQuality.data, airQuality.fetchedAt, zoneId, layerId, palette, hotCoords, region, selectedProvince, isCompact, layerPrefs, showLabels, showSatellite, quakesState, flightsState, shippingState, buildQuakeSeries, quakeSymbolSize, quakeColor, buildFlightSeries, buildPortSeries, buildVesselSeries, portSymbolSize]);
 
   useEffect(() => {
     const chart = chartRef.current;
@@ -621,7 +644,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
             )}
           </div>
           <p className="text-xs m-0 mt-1.5" style={{ color: 'var(--text-tertiary)' }}>
-            {isCompact ? '省级动态预览 · 点击进入完整体验' : `实时动态中国 · Open-Meteo 气象/空气 + USGS 地震 + ADS-B 空情 + 航运港口 + 种子态势层 · AS_OF ${AS_OF}`}
+            {isCompact ? '省级动态预览 · 点击进入完整体验' : `实时动态中国 · Open-Meteo 气象/空气 + 卫星云图 + USGS 地震 + ADS-B 空情 + 航运港口 + 种子态势层 · AS_OF ${AS_OF}`}
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-3 shrink-0">
@@ -766,10 +789,40 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
             fiscalActive={coloringFiscal}
             fiscalMeta={fiscalData?.meta ? { year: fiscalData.meta.year, sourceNote: fiscalData.source } : null}
             overlayStatuses={overlayStatuses}
+            satelliteOpacity={satelliteOpacity}
+            onSatelliteOpacityChange={handleSatelliteOpacity}
           />
         )}
         <div className={`live-china-map-canvas relative min-w-0 ${isCompact ? 'live-china-map-canvas--compact' : ''}`}>
           <div ref={elRef} style={{ width: '100%', height: '100%' }} />
+          {!isCompact && (
+            <SatelliteCloudOverlay
+              chart={chartInstance}
+              config={satelliteState.config}
+              visible={showSatellite && !satelliteState.loading && !satelliteState.error}
+              opacity={satelliteOpacity}
+              theme={theme}
+            />
+          )}
+          {showSatellite && satelliteState.loading && (
+            <div className="mono text-xs absolute top-3 right-3 lcm-satellite-status" style={{ color: STEEL }}>
+              // 卫星云图拉取中…
+            </div>
+          )}
+          {showSatellite && satelliteState.error && (
+            <div className="mono text-xs absolute top-3 right-3 lcm-satellite-status" style={{ color: '#e8a317' }}>
+              {satelliteState.error}
+            </div>
+          )}
+          {showSatellite && satelliteState.config && !satelliteState.error && (
+            <div className="mono text-[10px] absolute bottom-2 right-2 lcm-satellite-legend px-2 py-1 rounded"
+              style={{ background: 'rgba(10,14,23,0.72)', color: 'var(--text-tertiary)', border: '1px solid var(--border-subtle)' }}>
+              {satelliteState.legend || '卫星云图'}
+              {formatSatelliteTime(satelliteState.timestamp) && (
+                <span> · {formatSatelliteTime(satelliteState.timestamp)}</span>
+              )}
+            </div>
+          )}
           {!ready && !err && (
             <div className="mono text-xs absolute top-3 left-3 lcm-geo-loading" style={{ color: 'var(--text-tertiary)' }}>
               // 正在从网络加载省界边界…
@@ -931,6 +984,14 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
             )}
             {showShipping && (
               <SourceBadge label="航运" loading={shippingState.loading} error={shippingState.error || shippingState.note} fetchedAt={shippingState.fetchedAt} />
+            )}
+            {showSatellite && (
+              <SourceBadge
+                label="云图"
+                loading={satelliteState.loading}
+                error={satelliteState.error}
+                fetchedAt={satelliteState.fetchedAt}
+              />
             )}
           </span>
         )}

@@ -1032,6 +1032,26 @@ textarea:focus {
     radial-gradient(ellipse 60% 40% at 88% 92%, rgba(212, 175, 55, 0.03), transparent 55%),
     var(--bg-elevated);
   border: 1px solid var(--border-subtle);
+  position: relative;
+}
+
+.lcm-satellite-overlay {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.25s ease;
+}
+
+.lcm-satellite-status,
+.lcm-satellite-legend {
+  z-index: 4;
+  pointer-events: none;
+}
+
+.lcm-layer-opacity input[type='range'] {
+  min-width: 72px;
 }
 
 .live-china-map-canvas--compact {

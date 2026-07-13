@@ -5,6 +5,7 @@
 //   GET /api/live/weather  → Open-Meteo forecast（免 key）
 //   GET /api/live/aqi      → Open-Meteo air-quality + OpenAQ 兜底
 //   GET /api/live/shipping → 主要港口 + 可选 AIS（AIS_HUB_USERNAME wrangler secret）
+//   GET /api/live/satellite → RainViewer 清单 + NASA GIBS 云图回退
 // 内存缓存 10 分钟；失败不抛，由调用方展示「数据暂不可用」。
 // ============================================================================
 
