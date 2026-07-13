@@ -30,6 +30,7 @@ export const GROUPS = [
   { id: 'population', label: '中国人群分析', desc: '人群画像总图谱 · 世代 · 阶层', accent: '#ec4899' },
   { id: 'sim', label: '推演与训练', desc: '沙盒 · 内参', accent: '#d4af37' },
   { id: 'governance', label: '治理结构', desc: '观象台 · 归因 · 信号 · 三力', accent: '#79a496' },
+  { id: 'huangfeizhai', label: '荒废斋', desc: '私人信息总入口 · 朱砂封印', accent: '#b18a52' },
   { id: 'foundation', label: '数据与系统', desc: '底座', accent: '#64748b' },
 ];
 
@@ -297,22 +298,34 @@ export const MODULES = [
     component: lazy(() => import('../modules/renqun-tupu/Page.jsx')),
   },
   {
-    id: 'haydenSlice',
-    path: '/modules/me',
-    group: 'population',
-    title: '私享切片',
-    subtitle: '李贺 / Hayden · 迁移日志 · 自画像',
-    icon: 'UserCircle',
-    component: lazy(() => import('../modules/me/Page.jsx')),
+    id: 'huangfeizhaiHub',
+    path: '/modules/huangfeizhai',
+    group: 'huangfeizhai',
+    title: '荒废斋',
+    subtitle: '私人信息总入口 · 总览',
+    icon: 'Lock',
+    accent: '#b18a52',
+    component: lazy(() => import('../modules/huangfeizhai/Page.jsx')),
   },
   {
     id: 'personalReview',
     path: '/modules/personal-review',
-    group: 'population',
+    group: 'huangfeizhai',
     title: '决策复盘',
     subtitle: '超个体 · 四层垫子 · 信号灯联动',
     icon: 'ClipboardCheck',
+    accent: '#b18a52',
     component: lazy(() => import('../modules/personalReview/Page.jsx')),
+  },
+  {
+    id: 'haydenSlice',
+    path: '/modules/me',
+    group: 'huangfeizhai',
+    title: '私享切片',
+    subtitle: '李贺 / Hayden · 迁移日志 · 自画像',
+    icon: 'UserCircle',
+    accent: '#79a496',
+    component: lazy(() => import('../modules/me/Page.jsx')),
   },
   {
     id: 'qingnian',
@@ -1055,10 +1068,13 @@ export const MODULES = [
 
 // 分组级排序器（仅 population 组按 语义簇/优先级/相似性/标题长度 重排，见 lib/gy/navOrder）
 const GROUP_COMPARATORS = { population: populationNavCompare };
+export const HUANGFEIZHAI_GROUP_ID = 'huangfeizhai';
+
 export const modulesByGroup = (groupId) => {
   const list = MODULES.filter((m) => m.group === groupId);
   const cmp = GROUP_COMPARATORS[groupId];
   return cmp ? [...list].sort(cmp) : list;
 };
 export const moduleById = (id) => MODULES.find((m) => m.id === id);
+export const isHuangfeizhaiModule = (mod) => mod?.group === HUANGFEIZHAI_GROUP_ID;
 export const DEFAULT_MODULE = MODULES[0];

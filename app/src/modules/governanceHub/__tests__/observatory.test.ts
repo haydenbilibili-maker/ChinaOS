@@ -15,6 +15,7 @@ const ROUTES = {
   premierRadius: '/modules/premier-radius',
   cushionMonitor: '/modules/cushion-monitor',
   personalReview: '/modules/personal-review',
+  huangfeizhai: '/modules/huangfeizhai',
 };
 
 describe('computeObservatoryVerdict', () => {
@@ -81,5 +82,6 @@ describe('buildObservatoryReading', () => {
     expect(reading.stages[0].modules[0].route).toBe('/modules/three-forces');
     expect(reading.stages[1].modules[1].readout.text).toContain('18 条已判定');
     expect(reading.stages[3].modules[0].route).toBe('/modules/personal-review');
+    expect(reading.stages[3].modules[1].route).toBe('/modules/huangfeizhai');
   });
 });

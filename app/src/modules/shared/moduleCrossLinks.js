@@ -240,6 +240,7 @@ const MAP = {
     { to: '/demographic', label: '人口结构 · 老龄化', note: '时间垫 · 未富先老速度对照。' },
   ],
   personalReview: [
+    { to: '/modules/huangfeizhai', label: '荒废斋 · 私人总入口', note: '决策复盘 · 自画像 · 迁移日志聚合。' },
     { to: '/modules/observatory', label: '观象台 · 治理总入口', note: '叙事链「我」段 · 宏观双仪表 → 个人姿态。' },
     { to: '/modules/signal-panel', label: '宏观再平衡信号灯', note: 'Regime 读数 → 个人守成/进攻矩阵。' },
     { to: '/modules/three-forces', label: '三力监测仪', note: 'Proximity 读数 → 备战/预热判词。' },

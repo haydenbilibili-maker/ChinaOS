@@ -204,6 +204,7 @@ export interface BuildObservatoryReadingInput {
     premierRadius: string;
     cushionMonitor: string;
     personalReview: string;
+    huangfeizhai: string;
   };
 }
 
@@ -326,6 +327,13 @@ export function buildObservatoryReading(input: BuildObservatoryReadingInput): Ob
             route: input.routes.personalReview,
             readout: { text: input.personalReadout, color: input.personalColor },
             highlight: true,
+          },
+          {
+            id: 'huangfeizhai',
+            name: '荒废斋 · 私人总入口',
+            question: '决策复盘 · 自画像 · 迁移日志',
+            route: input.routes.huangfeizhai,
+            readout: { text: '朱砂封印', color: 'var(--brass)' },
           },
           {
             id: 'ledger-test',

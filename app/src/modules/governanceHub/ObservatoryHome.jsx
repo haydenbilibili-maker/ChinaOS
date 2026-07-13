@@ -6,6 +6,7 @@ import {
   PREMIER_RADIUS_ROUTE,
   SIGNAL_PANEL_ROUTE,
   THREE_FORCES_ROUTE,
+  HUANGFEIZHAI_HUB_ROUTE,
 } from '../../domain/governance.ts';
 import {
   OBSERVATORY_MODULE_COUNT,
@@ -88,6 +89,7 @@ export default function ObservatoryHome() {
       premierRadius: PREMIER_RADIUS_ROUTE,
       cushionMonitor: CUSHION_MONITOR_ROUTE,
       personalReview: PERSONAL_REVIEW_ROUTE,
+      huangfeizhai: HUANGFEIZHAI_HUB_ROUTE,
     },
   });
 

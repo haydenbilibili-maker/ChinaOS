@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { NavLink, Link, Outlet, useLocation } from 'react-router-dom';
 import * as Lucide from 'lucide-react';
-import { GROUPS, modulesByGroup } from './registry.js';
+import { GROUPS, HUANGFEIZHAI_GROUP_ID, modulesByGroup } from './registry.js';
+import { useHuangfeizhaiAuth } from '../lib/huangfeizhai/useHuangfeizhaiAuth.js';
 import { buildBreadcrumbs, resolveModuleByPath } from './breadcrumb.js';
 import GlobalSearch from './GlobalSearch.jsx';
 import SiteFooter from './SiteFooter.jsx';
@@ -100,9 +101,14 @@ function SidebarTreeControls({ anyExpanded, onToggleAll }) {
   );
 }
 
-function GroupBlock({ group, expanded, onToggle, onNavigate, alwaysShowModules }) {
-  const mods = modulesByGroup(group.id);
-  if (!mods.length) return null;
+function GroupBlock({ group, expanded, onToggle, onNavigate, alwaysShowModules, huangfeizhaiUnlocked }) {
+  const allMods = modulesByGroup(group.id);
+  if (!allMods.length) return null;
+
+  const isPrivateGroup = group.id === HUANGFEIZHAI_GROUP_ID;
+  const mods = isPrivateGroup && !huangfeizhaiUnlocked
+    ? allMods.filter((m) => m.id === 'huangfeizhaiHub')
+    : allMods;
 
   const collapsible = !alwaysShowModules;
   const showModules = alwaysShowModules || expanded;
@@ -122,7 +128,10 @@ function GroupBlock({ group, expanded, onToggle, onNavigate, alwaysShowModules }
         ) : null}
       </div>
       {group.desc ? (
-        <div className="os-group-header__desc">{group.desc}</div>
+        <div className="os-group-header__desc">
+          {group.desc}
+          {isPrivateGroup && !huangfeizhaiUnlocked ? ' · 需密钥' : null}
+        </div>
       ) : null}
     </>
   );
@@ -181,6 +190,7 @@ export default function Shell() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [theme, setThemeState] = useState(() => getTheme());
   const [expandedGroups, setExpandedGroups] = useState(() => loadExpandedGroups());
+  const { authenticated: huangfeizhaiUnlocked, lock: lockHuangfeizhai } = useHuangfeizhaiAuth();
 
   const collapsibleGroupIds = useMemo(
     () => GROUPS.filter((g) => g.id !== HOME_GROUP_ID && modulesByGroup(g.id).length > 0).map((g) => g.id),
@@ -322,6 +332,7 @@ export default function Shell() {
               onToggle={() => toggleGroup(g.id)}
               onNavigate={closeDrawer}
               alwaysShowModules={g.id === HOME_GROUP_ID}
+              huangfeizhaiUnlocked={huangfeizhaiUnlocked}
             />
           ))}
         </div>
@@ -343,6 +354,18 @@ export default function Shell() {
           <BreadcrumbNav items={crumbs} />
 
           <div className="ml-auto flex items-center gap-2 shrink-0">
+            {huangfeizhaiUnlocked && resolveModuleByPath(loc.pathname)?.group === HUANGFEIZHAI_GROUP_ID ? (
+              <button
+                type="button"
+                onClick={lockHuangfeizhai}
+                className="os-btn os-btn-ghost os-btn-sm"
+                aria-label="荒废斋重新上锁"
+                title="荒废斋重新上锁"
+              >
+                <Lucide.Lock size={15} />
+                <span className="hidden sm:inline">上锁</span>
+              </button>
+            ) : null}
             <button
               type="button"
               onClick={() => setSearchOpen(true)}
