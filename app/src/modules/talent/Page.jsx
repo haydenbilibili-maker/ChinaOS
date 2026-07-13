@@ -13,7 +13,7 @@ import ThinkTankSection from './ThinkTankSection.jsx';
 import ResearchInstituteSection from './ResearchInstituteSection.jsx';
 import TalentDetailPanel from './TalentDetailPanel.jsx';
 import * as Lucide from 'lucide-react';
-import { PageHeader, Card, Grid, Stat, StatGrid, TabBar, Button } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid, TabBar, Button, DistBar } from '../../app/ui.jsx';
 import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import FigureAvatar from '../../lib/ui/FigureAvatar.jsx';
 import { figureAvatarProps, prefetchFigureAvatars } from '../../lib/ui/figureAvatarResolve.js';
@@ -61,25 +61,7 @@ function tally(arr, keyFn) {
   return [...m.entries()].sort((a, b) => b[1] - a[1]);
 }
 
-// 内联横条分布
-function DistBars({ data, color = '#22d3ee', max, onPick, active }) {
-  const top = max || (data[0]?.[1] || 1);
-  return (
-    <div className="space-y-1.5">
-      {data.map(([k, n]) => (
-        <button key={k} onClick={onPick ? () => onPick(k) : undefined} className="w-full flex items-center gap-2 text-left"
-          style={{ cursor: onPick ? 'pointer' : 'default', opacity: active && active !== k ? 0.45 : 1 }}>
-          <span className="text-[11px] mono shrink-0 text-right" style={{ width: 70, color: active === k ? color : 'var(--text-secondary)' }}>{k}</span>
-          <span className="flex-1 rounded-sm" style={{ height: 13, background: 'var(--bg-base)', position: 'relative', overflow: 'hidden' }}>
-            <span style={{ position: 'absolute', inset: 0, width: `${(n / top) * 100}%`, background: color, opacity: 0.7, borderRadius: 2 }} />
-          </span>
-          <span className="text-[11px] mono shrink-0" style={{ width: 26, color: 'var(--text-tertiary)' }}>{n}</span>
-        </button>
-      ))}
-    </div>
-  );
-}
-
+// 内联横条分布 → 共享 DistBar（ui.jsx）
 const TAB_DEFS = [
   { id: 'resume', baseLabel: '中国政要', accent: 'var(--cyber-cyan)', bg: 'rgba(34,211,238,0.16)' },
   { id: 'anticorruption', baseLabel: '反腐透视', accent: 'var(--china-red)', bg: 'rgba(196,30,58,0.16)' },
@@ -600,8 +582,8 @@ export default function Page() {
               <div className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>// 层级 × 系统 交叉矩阵 · 基于当前筛选 {filtered.length} 人 · 单元格数字=人数</div>
               <Card title="权力结构矩阵 · 层级 × 系统"><EChart option={matrixHeat} style={{ height: Math.max(280, MAT_LEVELS.length * 36 + 80) }} /></Card>
               <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px,1fr))' }}>
-                <Card title="层级（点选筛选）"><DistBars data={distLevel.filter(([k]) => k)} color="#c41e3a" onPick={(k) => setLevel(level === k ? '' : k)} active={level} /></Card>
-                <Card title="系统（点选筛选）"><DistBars data={distSector} color="#22d3ee" onPick={(k) => setSector(sector === k ? '' : k)} active={sector} /></Card>
+                <Card title="层级（点选筛选）"><DistBar data={distLevel.filter(([k]) => k)} color="#c41e3a" onPick={(k) => setLevel(level === k ? '' : k)} active={level} /></Card>
+                <Card title="系统（点选筛选）"><DistBar data={distSector} color="#22d3ee" onPick={(k) => setSector(sector === k ? '' : k)} active={sector} /></Card>
               </div>
             </div>
           ) : view === 'stats' ? (
@@ -620,9 +602,9 @@ export default function Page() {
                 <Card title="年龄 × 现职任期 · 晋升轨迹（按层级着色）"><EChart option={ageTenure} style={{ height: 270 }} /><p className="text-[10px] mono mt-1" style={{ color: 'var(--text-tertiary)' }}>// 左上=年轻且新任（上升势头）· 右下=年长且久任</p></Card>
               </div>
               <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px,1fr))' }}>
-                <Card title="层级（点选筛选）"><DistBars data={distLevel.filter(([k]) => k)} color="#c41e3a" onPick={(k) => setLevel(level === k ? '' : k)} active={level} /></Card>
-                <Card title="出生年代（点选筛选）"><DistBars data={distDecade} color="#8b5cf6" onPick={(k) => setDecade(decade === k ? '' : k)} active={decade} /></Card>
-                <Card title="现任地域 Top（点选筛选）"><DistBars data={distProv} color="#22d3ee" onPick={(k) => { const full = provinces.find((p) => short(p) === k); setProv(prov === full ? '' : full); }} active={short(prov)} /></Card>
+                <Card title="层级（点选筛选）"><DistBar data={distLevel.filter(([k]) => k)} color="#c41e3a" onPick={(k) => setLevel(level === k ? '' : k)} active={level} /></Card>
+                <Card title="出生年代（点选筛选）"><DistBar data={distDecade} color="#8b5cf6" onPick={(k) => setDecade(decade === k ? '' : k)} active={decade} /></Card>
+                <Card title="现任地域 Top（点选筛选）"><DistBar data={distProv} color="#22d3ee" onPick={(k) => { const full = provinces.find((p) => short(p) === k); setProv(prov === full ? '' : full); }} active={short(prov)} /></Card>
               </div>
               <p className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>// 年龄按公开出生年份折算 · 任期按上任日期折算（截至 {CUR_YEAR}）· 中央委员身份据二十届名单 · 籍贯/任期数据覆盖率不一，未注明者不计入对应图</p>
             </div>

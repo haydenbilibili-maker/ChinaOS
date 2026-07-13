@@ -22,7 +22,6 @@ export default function QingnianPanel() {
   return (
     <div className="qingnian-module-wrap">
       <div
-        id="qn-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

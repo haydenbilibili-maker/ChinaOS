@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import QingnianPanel from './QingnianPanel.jsx';
 import './qingnian.css';
 
@@ -8,13 +8,15 @@ import './qingnian.css';
  */
 export default function QingnianPage() {
   return (
-    <div className="qingnian-page">
-      <PageHeader
-        badge="GY-03 · 世代研究"
-        title="青年"
-        subtitle="机器的盲区 · 概率的暗物质 · 二亿人的退出"
-      />
+    <GySliceShell
+      badge="GY-03 · 世代研究"
+      title="青年"
+      subtitle="机器的盲区 · 概率的暗物质 · 二亿人的退出"
+      appId="qn-app"
+      moduleId="qingnian"
+      className="qingnian-page"
+    >
       <QingnianPanel />
-    </div>
+    </GySliceShell>
   );
 }

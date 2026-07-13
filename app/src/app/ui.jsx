@@ -227,11 +227,98 @@ export function Skeleton({ className = '', style }) {
 }
 
 export function LoadingBlock({ label = '加载模块…' }) {
+  return <LoadingSkeleton label={label} />;
+}
+
+export function LoadingSkeleton({ rows = 2, label, className = '' }) {
   return (
-    <div className="os-loading-block os-card" style={{ padding: 'var(--card-padding)' }} role="status" aria-live="polite">
-      <Skeleton className="os-skeleton-line" />
-      <Skeleton className="os-skeleton-line short" />
-      <span className="mono text-sm" style={{ color: 'var(--celadon)' }}>{label}</span>
+    <div className={`os-loading-skeleton os-card ${className}`} role="status" aria-live="polite">
+      {Array.from({ length: rows }, (_, i) => (
+        <Skeleton
+          key={i}
+          className={`os-skeleton-line${i === rows - 1 ? ' short' : ''}`}
+        />
+      ))}
+      {label && <span className="os-loading-skeleton__label">{label}</span>}
+    </div>
+  );
+}
+
+const BADGE_LABELS = { cas: '中科院院士', cae: '工程院院士', both: '两院院士' };
+const BADGE_COMPACT = { cas: 'CAS', cae: 'CAE', both: '两院' };
+
+/** 两院徽章 · CAS / CAE / BOTH（复用 --badge-* 令牌） */
+export function Badge({ kind, label, compact = false, size = 'sm', className = '', title }) {
+  if (!kind || !BADGE_LABELS[kind]) return null;
+  const display = label || (compact ? BADGE_COMPACT[kind] : BADGE_LABELS[kind]);
+  return (
+    <span
+      className={`os-badge mono ${size === 'md' ? 'os-badge--md' : 'os-badge--sm'} ${className}`}
+      data-kind={kind}
+      title={title || BADGE_LABELS[kind]}
+    >
+      {display}
+    </span>
+  );
+}
+
+/** 数据源徽章：实时（绿点）/ 快照（琥珀点） */
+export function SourceBadge({ live, asOf, className = '' }) {
+  const kind = live ? 'live' : 'snapshot';
+  const text = live ? 'World Bank · 实时' : `快照 · ${asOf}`;
+  return (
+    <span className={`os-source-badge mono ${className}`} data-kind={kind}>
+      <span className="os-source-badge__dot" aria-hidden="true" />
+      {text}
+    </span>
+  );
+}
+
+/** 横向分布条 · 点选筛选（talent DistBars 模式） */
+export function DistBar({
+  data = [],
+  color = 'var(--cyber-cyan)',
+  max,
+  onPick,
+  active,
+  labelWidth = 70,
+  labelFn = (k) => k,
+  className = '',
+}) {
+  const top = max || (data[0]?.[1] || 1);
+  return (
+    <div className={`os-dist-bar ${className}`} style={{ '--dist-bar-accent': color }}>
+      {data.map(([k, n]) => {
+        const clickable = Boolean(onPick);
+        const isActive = active === k;
+        const isDimmed = active && active !== k;
+        const Row = clickable ? 'button' : 'div';
+        return (
+          <Row
+            key={k}
+            type={clickable ? 'button' : undefined}
+            onClick={clickable ? () => onPick(k) : undefined}
+            className={`os-dist-bar__row${clickable ? ' is-clickable' : ''}${isActive ? ' is-active' : ''}${isDimmed ? ' is-dimmed' : ''}`}
+          >
+            <span className="os-dist-bar__label" style={{ width: labelWidth }}>{labelFn(k)}</span>
+            <span className="os-dist-bar__track">
+              <span className="os-dist-bar__fill" style={{ width: `${(n / top) * 100}%` }} />
+            </span>
+            <span className="os-dist-bar__count">{n}</span>
+          </Row>
+        );
+      })}
+    </div>
+  );
+}
+
+/** 空状态占位 */
+export function EmptyState({ title = '暂无数据', description, action, className = '' }) {
+  return (
+    <div className={`os-empty-state os-card os-section ${className}`} role="status">
+      <div className="os-empty-state__title">{title}</div>
+      {description && <p className="os-empty-state__desc">{description}</p>}
+      {action && <div className="mt-3">{action}</div>}
     </div>
   );
 }

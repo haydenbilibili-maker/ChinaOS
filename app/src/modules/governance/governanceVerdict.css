@@ -1,20 +1,15 @@
 .gv-panel.ink-observatory {
+  /* 布局局部令牌 · 语义色桥接 :root */
   --ink: #0d1417;
   --ink-2: #121d21;
   --hair: #24383d;
-  --io-text: #e7ecea;
-  --io-text-dim: #93a6a4;
-  --io-text-faint: #5f7370;
-  --brass: #b18a52;
-  --brass-dim: #6b5733;
-  --celadon: #79a496;
   --io-mono: ui-monospace, 'SF Mono', Menlo, monospace;
 
   background: linear-gradient(180deg, #15242a, #0f1c20);
   border: 1px solid var(--brass-dim);
   border-radius: 12px;
   padding: 18px 20px;
-  color: var(--io-text);
+  color: var(--text-primary);
   font-size: 13px;
   line-height: 1.6;
 }
@@ -38,7 +33,7 @@
 
 .gv-body {
   margin: 0 0 14px;
-  color: var(--io-text-dim);
+  color: var(--text-secondary);
   font-size: 12.5px;
   max-width: 72ch;
 }
@@ -63,7 +58,7 @@
   font-family: var(--io-mono);
   font-size: 9px;
   letter-spacing: 0.12em;
-  color: var(--io-text-faint);
+  color: var(--text-tertiary);
   text-transform: uppercase;
 }
 
@@ -83,7 +78,7 @@
 .gv-timing {
   margin: 0 0 12px;
   font-size: 12px;
-  color: var(--io-text-dim);
+  color: var(--text-secondary);
   border-top: 1px dashed var(--hair);
   padding-top: 12px;
 }
@@ -113,7 +108,7 @@
 
 .gv-links a:hover {
   border-color: var(--brass-dim);
-  color: var(--io-text);
+  color: var(--text-primary);
 }
 
 .gv-compact .gv-body {

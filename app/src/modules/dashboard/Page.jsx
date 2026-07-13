@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import * as Lucide from 'lucide-react';
-import { Card, Grid } from '../../app/ui.jsx';
+import { Card, Grid, Stat, StatGrid, EmptyState } from '../../app/ui.jsx';
 import { GROUPS, MODULES } from '../../app/registry.js';
 import EChart from '../../lib/viz/EChart.jsx';
 import { AXIS, GRID_LINE, LABEL } from '../shared/chartHelpers.js';
@@ -101,15 +101,21 @@ function MacroH1Strip() {
         <span className="text-xs font-semibold" style={{ color: 'var(--text-secondary)' }}>2026 H1 宏观读数</span>
         <span className="text-[10px] mono ml-auto" style={{ color: 'var(--text-tertiary)' }}>数据截至 2026-06 · 详见 <Link to="/econ-dashboard" className="mono" style={{ color: STEEL }}>经济大盘</Link></span>
       </div>
-      <div className="grid gap-2" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))' }}>
+      <StatGrid stagger={false}>
         {MACRO_H1.map(({ k, v, note, c }) => (
-          <div key={k} className="rounded-lg px-3 py-2" style={{ background: 'var(--bg-elevated)', border: `1px solid ${c}33` }}>
-            <div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{k}</div>
-            <div className="mono text-base font-bold" style={{ color: c }}>{v}</div>
-            <div className="text-[10px] mt-0.5" style={{ color: 'var(--text-tertiary)' }}>{note}</div>
-          </div>
+          <Stat
+            key={k}
+            value={v}
+            accent={c}
+            label={(
+              <>
+                {k}
+                <span className="block text-[10px] mt-0.5 font-normal" style={{ color: 'var(--text-tertiary)' }}>{note}</span>
+              </>
+            )}
+          />
         ))}
-      </div>
+      </StatGrid>
     </div>
   );
 }
@@ -719,9 +725,10 @@ function QuickNav() {
         </div>
       ))}
       {!groups.length && (
-        <div className="os-card p-6 text-sm text-center" style={{ color: 'var(--text-tertiary)' }}>
-          未找到匹配「{q}」的模块。
-        </div>
+        <EmptyState
+          title="未找到匹配模块"
+          description={`没有与「${q}」匹配的专题模块，请尝试其他关键词。`}
+        />
       )}
     </section>
   );

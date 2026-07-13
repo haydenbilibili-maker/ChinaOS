@@ -143,6 +143,15 @@ export function timelineMarkAreaOpt({ years, values, span, highlightColor = '#22
   };
 }
 
+/** 专题模块统一折线/柱图系列色（与旧 PALETTE 常量一致） */
+export const CHART_SERIES_PALETTE = [
+  '#c41e3a', '#22d3ee', '#e8a317', '#10b981', '#8b5cf6', '#fb923c', '#64748b',
+];
+
+export function chartSeriesColor(index = 0) {
+  return CHART_SERIES_PALETTE[((index % CHART_SERIES_PALETTE.length) + CHART_SERIES_PALETTE.length) % CHART_SERIES_PALETTE.length];
+}
+
 export function stackedBarOpt({ categories, series, horizontal = false }) {
   const cat = horizontal ? 'yAxis' : 'xAxis';
   const val = horizontal ? 'xAxis' : 'yAxis';

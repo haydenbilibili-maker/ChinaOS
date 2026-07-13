@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, SourceBadge } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, GRID_LINE, LABEL, LEGEND } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { WB_INDICATORS, useWorldBank, wbStat, fmtYoY } from './liveWorldBank.js';
 import {
@@ -32,23 +33,6 @@ import { buildPanoramaReport } from './econReport.js';
 // 声明：公开统计梳理 · 示意标定 · 非投资建议 · 非预测。
 // ============================================================================
 
-const AX = { line: '#27324a', text: '#93a1b5', split: 'rgba(148,163,184,0.1)' };
-const PALETTE = ['#c41e3a', '#22d3ee', '#e8a317', '#10b981', '#8b5cf6', '#fb923c', '#64748b'];
-
-// —— 数据源徽章：World Bank 走「实时」绿点，NBS 快照走「快照 · 基准日」 ——
-function SourceBadge({ live, asOf }) {
-  const color = live ? '#10b981' : '#e8a317';
-  const text = live ? 'World Bank · 实时' : `快照 · ${asOf}`;
-  return (
-    <span
-      className="inline-flex items-center gap-1.5 text-[10px] mono px-2 py-0.5 rounded"
-      style={{ background: `${color}1a`, color, border: `1px solid ${color}40` }}
-    >
-      <span style={{ width: 6, height: 6, borderRadius: '50%', background: color, display: 'inline-block' }} />
-      {text}
-    </span>
-  );
-}
 
 // —— 涨跌着色：增长型涨绿跌红 ——
 function toneOf(v) {
@@ -97,14 +81,14 @@ export default function Page({ embedded = false }) {
     }));
     return {
       tooltip: { trigger: 'item', formatter: '{b}<br/>占比 {c}% ({d}%)' },
-      legend: { bottom: 0, textStyle: { color: AX.text, fontSize: 11 }, data: SECTORS.map((s) => s.label) },
+      legend: { bottom: 0, textStyle: { ...LEGEND.textStyle, fontSize: 11 }, data: SECTORS.map((s) => s.label) },
       series: [{
         type: 'pie',
         radius: ['46%', '70%'],
         center: ['50%', '44%'],
         avoidLabelOverlap: true,
         itemStyle: { borderColor: 'var(--bg-surface)', borderWidth: 2 },
-        label: { color: AX.text, fontSize: 11, formatter: '{b}\n{c}%' },
+        label: { ...LABEL, fontSize: 11, formatter: '{b}\n{c}%' },
         labelLine: { length: 8, length2: 8 },
         data,
       }],
@@ -142,21 +126,21 @@ export default function Page({ embedded = false }) {
       });
     }
     return {
-      legend: { top: 0, textStyle: { color: AX.text, fontSize: 11 }, data: [...SECTORS.map((s) => s.label), ...(hasGrowth ? ['GDP 增速'] : [])] },
+      legend: { top: 0, textStyle: { ...LEGEND.textStyle, fontSize: 11 }, data: [...SECTORS.map((s) => s.label), ...(hasGrowth ? ['GDP 增速'] : [])] },
       grid: { left: 44, right: 48, top: 32, bottom: 28 },
       tooltip: { trigger: 'axis' },
       xAxis: {
         type: 'category', data: years, boundaryGap: false,
-        axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text }, axisTick: { show: false },
+        axisLine: AXIS, axisLabel: { ...LABEL, fontSize: 11 }, axisTick: { show: false },
       },
       yAxis: [
         {
-          type: 'value', name: '占比 %', max: 100, nameTextStyle: { color: AX.text, fontSize: 10 },
-          axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text }, splitLine: { lineStyle: { color: AX.split } },
+          type: 'value', name: '占比 %', max: 100, nameTextStyle: { ...LABEL, fontSize: 10 },
+          axisLine: AXIS, axisLabel: LABEL, splitLine: GRID_LINE,
         },
         {
-          type: 'value', name: '增速 %', nameTextStyle: { color: AX.text, fontSize: 10 },
-          axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text }, splitLine: { show: false }, scale: true,
+          type: 'value', name: '增速 %', nameTextStyle: { ...LABEL, fontSize: 10 },
+          axisLine: AXIS, axisLabel: LABEL, splitLine: { show: false }, scale: true,
         },
       ],
       series,
@@ -218,15 +202,15 @@ export default function Page({ embedded = false }) {
       },
       xAxis: {
         type: 'category', data: years, boundaryGap: false,
-        axisLine: { lineStyle: { color: AX.line } },
-        axisLabel: { color: AX.text, interval: Math.max(0, Math.floor(years.length / 8)) },
+        axisLine: AXIS,
+        axisLabel: { ...LABEL, interval: Math.max(0, Math.floor(years.length / 8)) },
         axisTick: { show: false },
       },
       yAxis: {
-        type: 'value', scale: true, nameTextStyle: { color: AX.text, fontSize: 10 },
-        axisLine: { lineStyle: { color: AX.line } },
-        axisLabel: { color: AX.text, formatter: axisFmt },
-        splitLine: { lineStyle: { color: AX.split } },
+        type: 'value', scale: true, nameTextStyle: { ...LABEL, fontSize: 10 },
+        axisLine: AXIS,
+        axisLabel: { ...LABEL, formatter: axisFmt },
+        splitLine: GRID_LINE,
       },
       series: [{
         type: 'line', data: vals, smooth: true, symbol: 'none',
@@ -259,11 +243,11 @@ export default function Page({ embedded = false }) {
       tooltip: { trigger: 'axis', formatter: (p) => `${p[0].axisValue}<br/>基尼系数 ${p[0].data}` },
       xAxis: {
         type: 'category', data: rows.map((r) => String(r.year)), boundaryGap: false,
-        axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text }, axisTick: { show: false },
+        axisLine: AXIS, axisLabel: { ...LABEL, fontSize: 11 }, axisTick: { show: false },
       },
       yAxis: {
         type: 'value', scale: true,
-        axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text }, splitLine: { lineStyle: { color: AX.split } },
+        axisLine: AXIS, axisLabel: LABEL, splitLine: GRID_LINE,
       },
       series: [{
         type: 'line', data: rows.map((r) => r.value), smooth: true, symbol: 'circle', symbolSize: 5,
@@ -284,16 +268,16 @@ export default function Page({ embedded = false }) {
     if (!rows.length) return null;
     const names = rows.map((r) => r.label);
     return {
-      legend: { top: 0, textStyle: { color: AX.text, fontSize: 11 }, data: ['占 GDP 比重 %', '同比增速 %'] },
+      legend: { top: 0, textStyle: { ...LEGEND.textStyle, fontSize: 11 }, data: ['占 GDP 比重 %', '同比增速 %'] },
       grid: { left: 92, right: 28, top: 30, bottom: 20 },
       tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
       xAxis: {
-        type: 'value', axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text },
-        splitLine: { lineStyle: { color: AX.split } },
+        type: 'value', axisLine: AXIS, axisLabel: LABEL,
+        splitLine: GRID_LINE,
       },
       yAxis: {
         type: 'category', data: names, inverse: true,
-        axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text }, axisTick: { show: false },
+        axisLine: AXIS, axisLabel: { ...LABEL, fontSize: 11 }, axisTick: { show: false },
       },
       series: [
         { name: '占 GDP 比重 %', type: 'bar', data: rows.map((r) => r.share), itemStyle: { color: '#22d3ee' }, barGap: 0, barWidth: 9 },

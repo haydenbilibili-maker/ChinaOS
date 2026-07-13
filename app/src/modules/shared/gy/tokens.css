@@ -1,4 +1,13 @@
-/* GY 系列共享设计令牌 · 玄青夜读 · 映射 China OS 日览/夜览（GY-01/02/03+） */
+/* GY 系列共享设计令牌 · 玄青夜读 · 映射 China OS 日览/夜览（GY-01/02/03+）
+ *
+ * 语义桥接（GY 局部名 → 全局 :root）：
+ *   --xuan / --xuan-deep / --xuan-raise → --bg-base / --bg-inset / --bg-elevated
+ *   --xuanzhi / --xuanzhi-dim / --xuanzhi-mute → --text-primary / --text-secondary / --text-tertiary
+ *   --zhu / --zhu-dim → --china-red / --china-deep
+ *   --jin / --jin-dim → --fire-gold / （日览覆盖见下方）
+ *   --hairline → --border-subtle
+ *   --serif / --sans / --mono → 书体 / --font-sans / --font-mono
+ */
 @import "./methodology.css";
 #gy-app,
 #ys-app,
@@ -73,6 +82,8 @@
   --dai: #5d7489;
   --dai-dim: #3d4c5a;
   --hairline: var(--border-subtle);
+  --gy-brass: var(--brass);
+  --gy-celadon: var(--celadon);
 
   --serif: "Songti SC", "Noto Serif CJK SC", "Noto Serif SC", "SimSun", "STSong", var(--font-sans);
   --sans: var(--font-sans);

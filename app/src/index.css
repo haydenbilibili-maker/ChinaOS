@@ -126,6 +126,13 @@
   --badge-both-fg: #d4af37;
   --badge-both-bg: rgba(212, 175, 55, 0.18);
   --badge-both-border: rgba(212, 175, 55, 0.45);
+  --source-live-fg: var(--market-up-intl);
+  --source-live-bg: rgba(16, 185, 129, 0.12);
+  --source-live-border: rgba(16, 185, 129, 0.35);
+  --source-snapshot-fg: var(--fire-gold);
+  --source-snapshot-bg: rgba(232, 163, 23, 0.12);
+  --source-snapshot-border: rgba(232, 163, 23, 0.35);
+  --signal-amber-bg: rgba(232, 163, 23, 0.12);
   --list-selected-bg: rgba(196, 30, 58, 0.14);
   --list-selected-border: var(--china-red);
 
@@ -214,6 +221,13 @@
   --badge-both-fg: #92680a;
   --badge-both-bg: rgba(146, 104, 10, 0.1);
   --badge-both-border: rgba(146, 104, 10, 0.28);
+  --source-live-fg: #047857;
+  --source-live-bg: rgba(4, 120, 87, 0.1);
+  --source-live-border: rgba(4, 120, 87, 0.28);
+  --source-snapshot-fg: #b45309;
+  --source-snapshot-bg: rgba(180, 83, 9, 0.1);
+  --source-snapshot-border: rgba(180, 83, 9, 0.28);
+  --signal-amber-bg: rgba(180, 83, 9, 0.1);
   --list-selected-bg: rgba(196, 30, 58, 0.08);
   --list-selected-border: rgba(196, 30, 58, 0.55);
 
@@ -1207,20 +1221,138 @@ textarea:focus {
 }
 
 /* 两院院士徽章 · 主题化 */
-.academy-badge[data-kind='cas'] {
+.academy-badge[data-kind='cas'],
+.os-badge[data-kind='cas'] {
   background: var(--badge-cas-bg);
   color: var(--badge-cas-fg);
   border-color: var(--badge-cas-border);
 }
-.academy-badge[data-kind='cae'] {
+.academy-badge[data-kind='cae'],
+.os-badge[data-kind='cae'] {
   background: var(--badge-cae-bg);
   color: var(--badge-cae-fg);
   border-color: var(--badge-cae-border);
 }
-.academy-badge[data-kind='both'] {
+.academy-badge[data-kind='both'],
+.os-badge[data-kind='both'] {
   background: var(--badge-both-bg);
   color: var(--badge-both-fg);
   border-color: var(--badge-both-border);
+}
+
+.os-badge {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: 1px solid;
+  border-radius: var(--radius-sm);
+}
+.os-badge--sm { font-size: 8px; padding: 1px 4px; }
+.os-badge--md { font-size: 10px; padding: 2px 6px; }
+
+.os-source-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 10px;
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid;
+}
+.os-source-badge[data-kind='live'] {
+  color: var(--source-live-fg);
+  background: var(--source-live-bg);
+  border-color: var(--source-live-border);
+}
+.os-source-badge[data-kind='snapshot'] {
+  color: var(--source-snapshot-fg);
+  background: var(--source-snapshot-bg);
+  border-color: var(--source-snapshot-border);
+}
+.os-source-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.os-dist-bar { display: flex; flex-direction: column; gap: 0.375rem; }
+.os-dist-bar__row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  border: none;
+  background: none;
+  padding: 0;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+.os-dist-bar__row.is-clickable { cursor: pointer; }
+.os-dist-bar__label {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  flex-shrink: 0;
+  text-align: right;
+  color: var(--text-secondary);
+}
+.os-dist-bar__row.is-active .os-dist-bar__label { color: var(--dist-bar-accent, var(--cyber-cyan)); }
+.os-dist-bar__row.is-dimmed { opacity: 0.45; }
+.os-dist-bar__track {
+  flex: 1;
+  height: 13px;
+  border-radius: 2px;
+  background: var(--bg-base);
+  position: relative;
+  overflow: hidden;
+}
+.os-dist-bar__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: 2px;
+  opacity: 0.7;
+  background: var(--dist-bar-accent, var(--cyber-cyan));
+}
+.os-dist-bar__count {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  flex-shrink: 0;
+  width: 26px;
+  color: var(--text-tertiary);
+}
+
+.os-empty-state {
+  padding: var(--card-padding);
+  text-align: center;
+  color: var(--text-tertiary);
+}
+.os-empty-state__title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.35rem;
+}
+.os-empty-state__desc {
+  font-size: var(--text-xs);
+  line-height: var(--leading-relaxed);
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
+.os-loading-skeleton {
+  padding: var(--card-padding);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.os-loading-skeleton__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--celadon);
+  margin-top: 0.25rem;
 }
 
 /* 看板发光卡 · 呼吸辉光 + 悬停加深 */
@@ -1461,6 +1593,20 @@ textarea:focus {
 }
 .os-group-block.os-group-collapsed .os-group-header__desc {
   display: none;
+}
+
+.os-group-block {
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast);
+}
+.os-group-block:hover {
+  background: var(--nav-hover-bg);
+}
+
+.os-search-trigger:focus-visible,
+.os-theme-toggle:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
 }
 
 /* AI 助手 · 主题化阴影 */

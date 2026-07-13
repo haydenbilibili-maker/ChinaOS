@@ -1,24 +1,11 @@
 /* 水墨观象台 · ink-observatory — observatory home */
 .ink-observatory.ob-wrap {
+  /* 布局专用局部令牌（≤5）· 语义色桥接至 :root */
   --ink: #0d1417;
   --ink-2: #121d21;
   --ink-3: #17252a;
   --hair: #24383d;
   --hair-soft: #1b2c31;
-  --text: #e7ecea;
-  --text-dim: #93a6a4;
-  --text-faint: #5f7370;
-  --brass: #b18a52;
-  --brass-dim: #6b5733;
-  --celadon: #79a496;
-  --red: #cf4a3d;
-  --red-bg: #2a1513;
-  --amber: #cf9a32;
-  --amber-bg: #29200f;
-  --green: #4f9e72;
-  --green-bg: #11241a;
-  --def: #7a8fb8;
-  --opt: #b07fc0;
   --mono: ui-monospace, 'SF Mono', Menlo, monospace;
   --sans: 'Inter', system-ui, -apple-system, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
 
@@ -26,7 +13,7 @@
     radial-gradient(1300px 700px at 78% -12%, #14262c 0%, transparent 58%),
     radial-gradient(900px 500px at 8% 108%, #111f24 0%, transparent 55%),
     var(--ink);
-  color: var(--text);
+  color: var(--text-primary);
   font-family: var(--sans);
   line-height: 1.5;
   padding: clamp(16px, 3vw, 44px);
@@ -73,7 +60,7 @@
 }
 
 .ink-observatory.ob-wrap .ob-id h1 span {
-  color: var(--text-dim);
+  color: var(--text-secondary);
   font-weight: 400;
   font-size: 0.72em;
   margin-left: 8px;
@@ -82,7 +69,7 @@
 .ink-observatory.ob-wrap .ob-stamp {
   font-family: var(--mono);
   font-size: 11px;
-  color: var(--text-faint);
+  color: var(--text-tertiary);
   text-align: right;
   line-height: 1.8;
 }
@@ -129,7 +116,7 @@
 
 .ink-observatory.ob-wrap .ob-g-k {
   font-size: 11.5px;
-  color: var(--text-faint);
+  color: var(--text-tertiary);
   display: flex;
   align-items: center;
   gap: 7px;
@@ -159,18 +146,18 @@
 .ink-observatory.ob-wrap .ob-g-v .n {
   font-family: var(--mono);
   font-size: 14px;
-  color: var(--text-faint);
+  color: var(--text-tertiary);
 }
 
 .ink-observatory.ob-wrap .ob-g-d {
   font-size: 11.5px;
-  color: var(--text-dim);
+  color: var(--text-secondary);
   margin-top: 9px;
   line-height: 1.6;
 }
 
 .ink-observatory.ob-wrap .ob-g-d b {
-  color: var(--text);
+  color: var(--text-primary);
   font-weight: 600;
 }
 
@@ -178,7 +165,7 @@
   margin-top: 16px;
   padding: 20px;
   border-radius: 11px;
-  background: var(--amber-bg);
+  background: var(--signal-amber-bg);
   border: 1px solid rgba(207, 154, 50, 0.3);
 }
 
@@ -186,7 +173,7 @@
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0.2em;
-  color: var(--amber);
+  color: var(--fire-gold);
   text-transform: uppercase;
 }
 
@@ -199,14 +186,14 @@
 
 .ink-observatory.ob-wrap .ob-combo .exp {
   font-size: 13px;
-  color: var(--text-dim);
+  color: var(--text-secondary);
   margin-top: 10px;
   line-height: 1.8;
   max-width: 74ch;
 }
 
 .ink-observatory.ob-wrap .ob-combo .exp b {
-  color: var(--text);
+  color: var(--text-primary);
   font-weight: 600;
 }
 
@@ -241,13 +228,13 @@
 
 .ink-observatory.ob-wrap .ob-act .d {
   font-size: 11.5px;
-  color: var(--text-dim);
+  color: var(--text-secondary);
   margin-top: 6px;
   line-height: 1.6;
 }
 
 .ink-observatory.ob-wrap .ob-act .d b {
-  color: var(--text);
+  color: var(--text-primary);
   font-weight: 600;
 }
 
@@ -256,7 +243,7 @@
   padding-top: 15px;
   border-top: 1px dashed var(--hair);
   font-size: 12px;
-  color: var(--text-dim);
+  color: var(--text-secondary);
   line-height: 1.75;
 }
 
@@ -284,20 +271,20 @@
 
 .ink-observatory.ob-wrap .ob-sec-hd .s {
   font-size: 12px;
-  color: var(--text-faint);
+  color: var(--text-tertiary);
   margin-left: auto;
 }
 
 .ink-observatory.ob-wrap .ob-sec-lead {
   font-size: 12.5px;
-  color: var(--text-dim);
+  color: var(--text-secondary);
   line-height: 1.75;
   max-width: 82ch;
   margin-bottom: 18px;
 }
 
 .ink-observatory.ob-wrap .ob-sec-lead b {
-  color: var(--text);
+  color: var(--text-primary);
   font-weight: 600;
 }
 
@@ -347,7 +334,7 @@
 
 .ink-observatory.ob-wrap .ob-st-hd .q {
   font-size: 10.5px;
-  color: var(--text-faint);
+  color: var(--text-tertiary);
   display: block;
   margin-top: 1px;
   font-weight: 400;
@@ -385,7 +372,7 @@
 
 .ink-observatory.ob-wrap .ob-mod .mq {
   font-size: 11px;
-  color: var(--text-faint);
+  color: var(--text-tertiary);
   margin-top: 5px;
   line-height: 1.55;
 }
@@ -458,7 +445,7 @@
 
 .ink-observatory.ob-wrap .ob-fc .d {
   font-size: 11px;
-  color: var(--text-faint);
+  color: var(--text-tertiary);
   margin-top: 5px;
   line-height: 1.55;
 }
@@ -469,11 +456,11 @@
   border-top: 1px dashed var(--hair);
   font-size: 14px;
   line-height: 1.9;
-  color: var(--text-dim);
+  color: var(--text-secondary);
 }
 
 .ink-observatory.ob-wrap .ob-kick b {
-  color: var(--text);
+  color: var(--text-primary);
   font-weight: 600;
 }
 
@@ -482,12 +469,12 @@
   padding-top: 17px;
   border-top: 1px solid var(--hair);
   font-size: 11px;
-  color: var(--text-faint);
+  color: var(--text-tertiary);
   line-height: 1.9;
 }
 
 .ink-observatory.ob-wrap .ob-foot b {
-  color: var(--text-dim);
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
