@@ -93,11 +93,11 @@ export function Stat({ value, label, accent, sub, trend, trendValue }) {
   return (
     <div className="os-card os-card-lift os-stat-card p-4 text-center" style={{ padding: 'var(--card-padding) 1rem' }}>
       <div className="flex items-center justify-center gap-1.5 flex-wrap">
-        <div className="os-stat-value mono" style={{ color: accent || 'var(--text-primary)' }}>{value}</div>
+        <div className="os-stat-value mono os-mono-tabular" style={{ color: accent || 'var(--text-primary)' }}>{value}</div>
         {trend && <StatTrend direction={trend} value={trendValue} />}
       </div>
-      <div className="os-stat-label">{label}</div>
-      {sub && <div className="text-[10px] mono mt-0.5 leading-snug" style={{ color: 'var(--text-tertiary)' }}>{sub}</div>}
+      <div className="os-stat-label os-label-slot">{label}</div>
+      {sub && <div className="text-[10px] mono os-mono-tabular mt-0.5 leading-snug" style={{ color: 'var(--text-tertiary)' }}>{sub}</div>}
     </div>
   );
 }

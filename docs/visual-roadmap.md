@@ -1,7 +1,7 @@
 # China OS 视觉路线图 · Round 2–5 追踪
 
 > 设计系统收敛计划 · 2026-07  
-> Round 2–4 已完成；Round 5 动效编排与页面过渡已交付。
+> Round 2–5 已完成；Round 6 排版密度与导出抛光已交付。
 
 ## Round 2 交付清单
 
@@ -44,7 +44,7 @@
 | `StatGrid` 模块数 | ≥15 | 3 | ✅ 23+ | ✅ 维持 |
 | GY GySliceShell 采用率 | 56/56 切片 | — | 1 试点 | ✅ 56/56 |
 | checklist 全项通过 | ≥90% 模块 | — | — | ✅ 91.7%（177/193） |
-| `npm run build` / vitest | 通过 | 待 CI | 待 CI | ✅ | ✅ R5 |
+| `npm run build` / vitest | 通过 | 待 CI | 待 CI | ✅ | ✅ R5 | ✅ R6 |
 
 ## Round 5 交付清单（动效编排与页面过渡）
 
@@ -55,7 +55,32 @@
 - [x] **prefers-reduced-motion** — 扩展覆盖 `os-page-enter` · stagger/reveal 子项 · ticker/marquee · lcm 卫星图层动画 · ob-hero sheen 循环
 - [x] **约束** — 未重引入神州粒子 120ms pulse；无新增 framer-motion；路由 enter ≤ 220ms
 
-## Round 6 预览（技术债）
+## Round 6 交付清单（排版密度、i18n 与导出抛光）
+
+- [x] **排版规则** — `index.css`：`.os-prose-table` 数据表 · `.os-mono-tabular` KPI 等宽数字 · `text-wrap: balance` + `@supports` 回退 · `.os-card-title` 字距收紧
+- [x] **密度模式** — `data-density="compact|comfortable"` on `<html>`；`--card-padding` / `--grid-gap` / `--space-section` 随密度切换；Shell 顶栏切换（舒适/紧凑）；`chinaos.density.v1` localStorage；默认舒适
+- [x] **打印样式** — `@media print`：隐藏侧栏/顶栏/ticker；白底黑字；去除 backdrop-filter；图表与模块内容可打印
+- [x] **导出皮肤** — `lib/exportBrand.js`；`buildPanoramaReport` · 看板 `buildBriefing` 插入 OS 品牌头
+- [x] **i18n 预备** — `.os-label-slot`（`min-width: 6ch`）；GY 竖排印玺窄屏横排回退（`tokens.css` + `qingnian` 去 `display:none`）
+- [x] **日览/夜览 parity** — 增补 `--status-positive/caution/negative`；治理/econdash 对比度修正；基线 10 页 checklist（见下）
+- [x] **模块抛光** — 看板 `Page.jsx` prose 表 + tabular nums；`ModuleFooter` 密度感知 padding；`ui.jsx` `Stat` tabular-nums
+
+### Round 6 日览/夜览基线页（10 页抽检）
+
+| # | 路由/模块 | 抽检项 |
+|---|-----------|--------|
+| 1 | `/dashboard` | Hero 副标题对比 · 宏观条 320px 无横滚 · Stat 数字对齐 |
+| 2 | `/` 或 home 组入口 | 分组 accent · 卡片 hover 日览可见 |
+| 3 | `/governance` | 图表轴标签 `LABEL` 令牌 · 层级卡正文对比 |
+| 4 | `/econ-dashboard` | 导出按钮 accent 随主题 · Stat `--status-positive` |
+| 5 | `/qingnian` | 印玺窄屏横排 · 页签 sticky 不溢出 |
+| 6 | `/signal-panel` | 治理链卡 mount 入场 · 黄铜语义色 |
+| 7 | `/talent` | StatGrid stagger · 列表-详情窄屏单列 |
+| 8 | `/military` | 图表 tooltip 令牌 · ModuleFooter |
+| 9 | `/powerlogic` | PageHeader brush 动画 · prose 可读性 |
+| 10 | `/foundation` | 表单控件 `.os-input` · 导出 JSON 不受密度影响 |
+
+## Round 6 预览（技术债 · 顺延 Round 7）
 
 - stylelint `color-no-hex` 警告级规则（模块 CSS 白名单除外）
 - `renqun-tupu/atlasViz.js` · `gametheory` 等残余 `#27324a`（系列色/非轴语义）

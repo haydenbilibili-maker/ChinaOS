@@ -306,7 +306,7 @@ export default function Page({ embedded = false }) {
     background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)',
     color: 'var(--text-secondary)', borderRadius: 6, padding: '4px 12px', fontSize: 12, cursor: 'pointer',
   };
-  const BTN_CYAN = { ...BTN, background: 'rgba(34,211,238,0.12)', border: '1px solid rgba(34,211,238,0.35)', color: '#22d3ee', fontWeight: 600 };
+  const BTN_CYAN = { ...BTN, background: 'var(--btn-primary-bg)', border: '1px solid var(--accent-border)', color: 'var(--cyber-cyan)', fontWeight: 600 };
 
   return (
     <div>

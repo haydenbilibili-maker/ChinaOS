@@ -19,6 +19,10 @@
           var r = document.documentElement;
           r.setAttribute('data-theme', t);
           r.classList.toggle('dark', t === 'dark');
+          var dk = 'chinaos.density.v1';
+          var dv = localStorage.getItem(dk);
+          var d = (dv === 'compact' || dv === 'comfortable') ? dv : 'comfortable';
+          r.setAttribute('data-density', d);
         } catch (e) { /* 隐私模式等 */ }
       })();
     </script>

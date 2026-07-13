@@ -26,6 +26,7 @@ import {
   REGIONS,
   regionStressTally,
 } from './econRegional.js';
+import { withExportBrand } from '../../lib/exportBrand.js';
 
 /** 报告基准日（与各数据层 *_ASOF 对齐；确定性常量，禁止取当前时间） */
 export const REPORT_ASOF = '2026-06-11';
@@ -186,5 +187,5 @@ export function buildPanoramaReport() {
   L.push('');
   L.push(`> ${DISCLAIMER}`);
 
-  return L.join('\n');
+  return withExportBrand(L.join('\n'), { subtitle: '经济大盘 · 全景速读导出' });
 }

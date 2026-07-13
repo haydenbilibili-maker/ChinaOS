@@ -8,6 +8,7 @@ import GlobalSearch from './GlobalSearch.jsx';
 import SiteFooter from './SiteFooter.jsx';
 import { buildSearchIndex } from '../lib/search/buildIndex.js';
 import { getTheme, toggleTheme, subscribeTheme } from '../lib/theme.js';
+import { getDensity, toggleDensity, subscribeDensity } from '../lib/density.js';
 
 const IS_MAC = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent || '');
 const HOME_GROUP_ID = 'home';
@@ -189,6 +190,7 @@ export default function Shell() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [theme, setThemeState] = useState(() => getTheme());
+  const [density, setDensityState] = useState(() => getDensity());
   const [expandedGroups, setExpandedGroups] = useState(() => loadExpandedGroups());
   const { authenticated: huangfeizhaiUnlocked, lock: lockHuangfeizhai } = useHuangfeizhaiAuth();
 
@@ -270,6 +272,7 @@ export default function Shell() {
 
   // 订阅主题变更，使切换按钮图标即时同步
   useEffect(() => subscribeTheme((t) => setThemeState(t)), []);
+  useEffect(() => subscribeDensity((d) => setDensityState(d)), []);
 
   // 空闲时预构建搜索索引，避免首次 ⌘K 仅搜到模块
   useEffect(() => {
@@ -283,10 +286,12 @@ export default function Shell() {
   }, []);
 
   const onThemeToggle = useCallback(() => { setThemeState(toggleTheme()); }, []);
+  const onDensityToggle = useCallback(() => { setDensityState(toggleDensity()); }, []);
   const closeSearch = useCallback(() => setSearchOpen(false), []);
   const closeDrawer = useCallback(() => setDrawerOpen(false), []);
 
   const isLight = theme === 'light';
+  const isCompact = density === 'compact';
 
   return (
     <div className="h-screen flex overflow-hidden" style={{ background: 'var(--bg-base)' }}>
@@ -377,6 +382,17 @@ export default function Shell() {
               <kbd className="mono os-search-trigger-kbd" style={{ background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', borderRadius: 4, padding: '1px 5px', fontSize: 10, color: 'var(--text-tertiary)' }}>
                 {IS_MAC ? '⌘K' : 'Ctrl K'}
               </kbd>
+            </button>
+            <button
+              type="button"
+              onClick={onDensityToggle}
+              className="os-density-toggle os-btn os-btn-ghost os-btn-sm"
+              aria-label={isCompact ? '切换到舒适密度' : '切换到紧凑密度'}
+              title={isCompact ? '切换到舒适密度' : '切换到紧凑密度'}
+              aria-pressed={isCompact}
+            >
+              {isCompact ? <Lucide.Rows3 size={15} /> : <Lucide.LayoutGrid size={15} />}
+              <span className="os-density-toggle-label">{isCompact ? '紧凑' : '舒适'}</span>
             </button>
             <button
               type="button"

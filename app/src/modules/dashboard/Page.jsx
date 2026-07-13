@@ -33,6 +33,7 @@ import NewsMarquee from './NewsMarquee.jsx';
 import LiveStreamsSection from './LiveStreamsSection.jsx';
 import LiveChinaMap from './LiveChinaMap.jsx';
 import GovernanceVerdict from '../governance/GovernanceVerdict.jsx';
+import { withExportBrand, EXPORT_DISCLAIMER } from '../../lib/exportBrand.js';
 
 function Icon({ name, size = 16 }) {
   const Cmp = Lucide[name] || Lucide.Square;
@@ -100,16 +101,16 @@ function MacroH1Strip({ kpis, asOf, lastRefresh, isRefreshing, secondsToNext, re
       className={`mt-5 pt-5 os-macro-strip${isRefreshing ? ' is-refreshing' : ''}`}
       style={{ borderTop: '1px solid var(--border-subtle)' }}
     >
-      <div className="flex items-center gap-2 mb-3 flex-wrap">
+      <div className="flex items-center gap-2 mb-3 flex-wrap min-w-0 max-w-full">
         <Lucide.Gauge size={14} style={{ color: COOL }} />
-        <span className="text-xs font-semibold" style={{ color: 'var(--text-secondary)' }}>2026 H1 宏观读数</span>
-        <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>
-          数据截至 <span className="mono">{asOf}</span>
+        <span className="text-xs font-semibold os-label-slot" style={{ color: 'var(--text-secondary)' }}>2026 H1 宏观读数</span>
+        <span className="text-[10px] mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>
+          数据截至 <span className="mono os-mono-tabular">{asOf}</span>
         </span>
-        <span key={tsKey} className="text-[10px] mono os-ts-flash" style={{ color: 'var(--text-tertiary)' }}>
+        <span key={tsKey} className="text-[10px] mono os-ts-flash shrink-0" style={{ color: 'var(--text-tertiary)' }}>
           上次刷新 {fmtTs}
         </span>
-        <span className="text-[10px] mono ml-auto" style={{ color: isRefreshing ? STEEL : 'var(--text-tertiary)' }}>
+        <span className="text-[10px] mono ml-auto shrink-0" style={{ color: isRefreshing ? STEEL : 'var(--text-tertiary)' }}>
           {isRefreshing ? '刷新中…' : `下次 ${secondsToNext}s`}
           {' · '}
           <Link to="/econ-dashboard" className="mono" style={{ color: STEEL }}>经济大盘</Link>
@@ -126,7 +127,7 @@ function MacroH1Strip({ kpis, asOf, lastRefresh, isRefreshing, secondsToNext, re
               {live && <span className="os-live-dot w-1.5 h-1.5 rounded-full shrink-0" style={{ background: WARM }} />}
               <span className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>{k}</span>
             </div>
-            <div key={`${id}v${v}-${refreshCount}`} className={refreshCount > 0 ? 'lcm-flash mono' : 'mono'} style={{ fontSize: '1.35rem', fontWeight: 700, color: c }}>{v}</div>
+            <div key={`${id}v${v}-${refreshCount}`} className={`${refreshCount > 0 ? 'lcm-flash ' : ''}mono os-mono-tabular`} style={{ fontSize: '1.35rem', fontWeight: 700, color: c }}>{v}</div>
             <span className="block text-[10px] mt-0.5 font-normal" style={{ color: 'var(--text-tertiary)' }}>{note}</span>
           </div>
         ))}

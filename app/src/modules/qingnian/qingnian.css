@@ -197,7 +197,6 @@
 @media (max-width: 860px) {
   #qn-app .qn-grid-2, #qn-app .qn-grid-4, #qn-app .qn-twin { grid-template-columns: 1fr; }
   #qn-app .qn-watch-item { grid-template-columns: 1fr; }
-  #qn-app .qn-mast-seal { display: none; }
   #qn-app .qn-nav button { letter-spacing: .06em; font-size: 13px; }
   #qn-app .qn-nav button small { display: none; }
   #qn-app .qn-ch { grid-template-columns: 1fr; gap: 8px; }

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, donutOpt, radarOpt, stackedBarOpt, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 /* ── 治理层级：中枢 → 网格，逐级下沉 ───────────────────────────── */
@@ -55,7 +55,7 @@ const effTrend = {
   grid: GRID,
   tooltip: { trigger: 'axis' },
   xAxis: categoryX(['2015', '2018', '2021', '2024']),
-  yAxis: valueY({ name: '天', nameTextStyle: { color: '#5b6a82' } }),
+  yAxis: valueY({ name: '天', nameTextStyle: { color: LABEL.color } }),
   series: [{ type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [18, 9, 4, 1.5], lineStyle: { color: '#22d3ee', width: 2 }, areaStyle: { color: 'rgba(34,211,238,0.1)' } }],
 };
 

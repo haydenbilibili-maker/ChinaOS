@@ -296,3 +296,17 @@
   /* #xx-app 由外壳承载 · Panel 内不再重复 id */
   min-height: 0;
 }
+
+/* GY 竖排印玺 · 窄屏横排回退（i18n 布局预备） */
+@media (max-width: 520px) {
+  [id$="-app"] [class*="-mast-seal"] {
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    letter-spacing: 0.14em;
+    padding: 6px 12px;
+    font-size: 11px;
+    line-height: 1.4;
+    align-self: flex-start;
+    max-width: 100%;
+  }
+}
