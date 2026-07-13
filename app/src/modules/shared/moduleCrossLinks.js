@@ -175,7 +175,15 @@ const MAP = {
     { to: '/consumption', label: '扩大内需 · 消费率', note: '预防性储蓄与社保短板议题。' },
     { to: '/housing', label: '住房地产 · 周期调整', note: '地产交付与「白名单」融资约束。' },
   ],
+  attribution: [
+    { to: '/govsystem', label: '政府体系 · 央地执行', note: '压力体制与执行算法，归因落点对照。' },
+    { to: '/powerlogic', label: '权力逻辑 · 统治成本', note: '路线层约束与数字利维坦。' },
+    { to: '/principalagent', label: '委托代理 · 信息不对称', note: '决策层与执行层的激励错位。' },
+    { to: '/modules/signal-dashboard', label: '宏观再平衡信号灯', note: '通缩/再平衡议题的层位交叉验证。' },
+    { to: '/reform', label: '改革开放 · 算法演进', note: '体制改革与决策层变迁。' },
+  ],
   signalDashboard: [
+    { to: '/modules/attribution', label: '三层归因分析器', note: '区分「没做成」与「没权做」。' },
     { to: '/econ-dashboard', label: '经济大盘 · 金丝雀盘', note: 'CANARY_SIGNALS 与 KEY_INDICATORS 同源层。' },
     { to: '/dashboard', label: '中枢看板 · 态势速览', note: '全局入口与 2026 H1 宏观条。' },
     { to: '/policydocs', label: '政策文库 · 2026 政府工作报告', note: 'B1/B4 等政策信号的政策锚点。' },

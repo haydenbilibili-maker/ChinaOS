@@ -962,6 +962,14 @@ export const MODULES = [
     component: lazy(() => import('../modules/signalDashboard/Page.jsx')),
   },
   {
+    id: 'attribution',
+    path: '/modules/attribution',
+    group: 'sim',
+    title: '三层归因',
+    subtitle: '路线 · 决策 · 执行 · 摆对被告席', icon: 'GitBranchPlus', accent: '#b18a52',
+    component: lazy(() => import('../modules/attribution/Page.jsx')),
+  },
+  {
     id: 'leadership', path: '/leadership', group: 'sim',
     title: '领袖统治', subtitle: '权力结构 · 决策机制 · 12 图可视化 · 四区交互', icon: 'Crown',
     component: lazy(() => import('../modules/leadership/Page.jsx')),

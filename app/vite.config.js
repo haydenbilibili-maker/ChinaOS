@@ -84,6 +84,10 @@ function buildIdPlugin() {
 export default defineConfig({
   plugins: [react(), streamProxyPlugin(), buildIdPlugin()],
   base: './',
+  test: {
+    environment: 'node',
+    include: ['src/**/*.test.{js,ts}'],
+  },
   build: {
     outDir: 'dist',
     emptyOutDir: true,
