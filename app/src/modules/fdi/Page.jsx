@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ── 方向选择器：六个观察视角，各自切换规模/结构/政策/约束叙事 ────────────────
@@ -107,7 +107,7 @@ export default function Page() {
   const flowDual = useMemo(() => ({
     grid: { ...GRID, top: 30 },
     tooltip: { trigger: 'axis' },
-    legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, icon: 'circle' },
+    legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, icon: 'circle' },
     xAxis: categoryX(FLOW_YEARS),
     yAxis: valueY({ axisLabel: { formatter: '{value}' } }),
     series: [
@@ -145,19 +145,19 @@ export default function Page() {
   const negativeList = useMemo(() => ({
     grid: { ...GRID, top: 30 },
     tooltip: { trigger: 'axis' },
-    legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, icon: 'circle' },
+    legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, icon: 'circle' },
     xAxis: categoryX(['2013', '2017', '2019', '2021', '2024']),
     yAxis: valueY(),
     series: [
       {
         name: '全国版', type: 'line', step: 'end', data: [190, 63, 40, 31, 29],
         lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' },
-        areaStyle: { color: 'rgba(232,163,23,0.1)' }, label: { show: true, color: '#93a1b5', fontSize: 10 },
+        areaStyle: { color: 'rgba(232,163,23,0.1)' }, label: { show: true, color: LABEL.color, fontSize: 10 },
       },
       {
         name: '自贸区版', type: 'line', step: 'end', data: [null, 95, 37, 30, 27],
         lineStyle: { color: '#10b981', width: 2 }, itemStyle: { color: '#10b981' },
-        label: { show: true, color: '#93a1b5', fontSize: 10 },
+        label: { show: true, color: LABEL.color, fontSize: 10 },
       },
     ],
   }), []);

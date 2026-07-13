@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ─── 阶段定义 · 1978 至今的「现实主义算法演进」五段 ───
@@ -58,8 +59,8 @@ function gdpTrendOpt(activeId) {
   return {
     grid: { left: 48, right: 16, top: 16, bottom: 24 },
     tooltip: { trigger: 'axis' },
-    xAxis: { type: 'category', data: TREND_YEARS, axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } },
-    yAxis: { type: 'log', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5' } },
+    xAxis: { type: 'category', data: TREND_YEARS, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
+    yAxis: { type: 'log', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color } },
     series: [{
       type: 'line', smooth: true, symbol: 'circle', symbolSize: 6,
       data: TREND_GDP.map((v, i) => ({
@@ -74,11 +75,11 @@ function gdpTrendOpt(activeId) {
 }
 
 const industryTrend = {
-  legend: { data: ['第一产业', '第二产业', '第三产业'], textStyle: { color: '#93a1b5' }, top: 0 },
+  legend: { data: ['第一产业', '第二产业', '第三产业'], textStyle: { color: LABEL.color }, top: 0 },
   grid: { left: 40, right: 16, top: 30, bottom: 24 },
   tooltip: { trigger: 'axis' },
-  xAxis: { type: 'category', data: ['1978', '1990', '2005', '2015', '2024'], axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } },
-  yAxis: { type: 'value', axisLabel: { formatter: '{value}%', color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+  xAxis: { type: 'category', data: ['1978', '1990', '2005', '2015', '2024'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
+  yAxis: { type: 'value', axisLabel: { formatter: '{value}%', color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
   series: [
     { name: '第一产业', type: 'line', stack: 't', areaStyle: { color: 'rgba(16,185,129,0.3)' }, data: [28, 27, 12, 9, 7], lineStyle: { color: '#10b981' }, itemStyle: { color: '#10b981' } },
     { name: '第二产业', type: 'line', stack: 't', areaStyle: { color: 'rgba(196,30,58,0.3)' }, data: [48, 41, 47, 41, 38], lineStyle: { color: '#c41e3a' }, itemStyle: { color: '#c41e3a' } },
@@ -88,13 +89,13 @@ const industryTrend = {
 
 // 开放度多维趋势：外贸依存度 / 实际利用外资 / 出口全球占比
 const opennessTrend = {
-  legend: { data: ['外贸依存度 %', '实际利用外资(十亿$)', '出口全球占比 %'], textStyle: { color: '#93a1b5' }, top: 0 },
+  legend: { data: ['外贸依存度 %', '实际利用外资(十亿$)', '出口全球占比 %'], textStyle: { color: LABEL.color }, top: 0 },
   grid: { left: 44, right: 44, top: 30, bottom: 24 },
   tooltip: { trigger: 'axis' },
-  xAxis: { type: 'category', data: ['1980', '1992', '2001', '2008', '2015', '2024'], axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } },
+  xAxis: { type: 'category', data: ['1980', '1992', '2001', '2008', '2015', '2024'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
   yAxis: [
-    { type: 'value', axisLabel: { formatter: '{value}%', color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
-    { type: 'value', axisLabel: { color: '#93a1b5' }, splitLine: { show: false } },
+    { type: 'value', axisLabel: { formatter: '{value}%', color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+    { type: 'value', axisLabel: { color: LABEL.color }, splitLine: { show: false } },
   ],
   series: [
     { name: '外贸依存度 %', type: 'line', smooth: true, data: [13, 35, 38, 57, 36, 33], lineStyle: { color: '#22d3ee' }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.08)' } },
@@ -104,7 +105,7 @@ const opennessTrend = {
 };
 
 const compRadar = {
-  radar: { indicator: [{ name: '市场化', max: 100 }, { name: '制度型开放', max: 100 }, { name: '产业链', max: 100 }, { name: '科技自立', max: 100 }, { name: '社会公平', max: 100 }, { name: '安全冗余', max: 100 }], axisName: { color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
+  radar: { indicator: [{ name: '市场化', max: 100 }, { name: '制度型开放', max: 100 }, { name: '产业链', max: 100 }, { name: '科技自立', max: 100 }, { name: '社会公平', max: 100 }, { name: '安全冗余', max: 100 }], axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
   series: [{ type: 'radar', data: [{ value: [82, 75, 95, 78, 65, 88], name: '中国式现代化', lineStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.12)' } }] }],
 };
 

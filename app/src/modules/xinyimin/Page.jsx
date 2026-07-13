@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import XinyiminPanel from './XinyiminPanel.jsx';
 import './xinyimin.css';
 
@@ -8,13 +8,15 @@ import './xinyimin.css';
  */
 export default function XinyiminPage() {
   return (
-    <div className="xinyimin-page">
-      <PageHeader
-        badge="GY-21 · 人群画像分层"
-        title="城市新移民与夹心层 · 有城无籍"
-        subtitle="无持久化的访客会话 · 贡献全额，权限受限"
-      />
+    <GySliceShell
+      badge="GY-21 · 人群画像分层"
+      title="城市新移民与夹心层 · 有城无籍"
+      subtitle="无持久化的访客会话 · 贡献全额，权限受限"
+      appId="xm-app"
+      moduleId="xinyimin"
+      className="xinyimin-page"
+    >
       <XinyiminPanel />
-    </div>
+    </GySliceShell>
   );
 }

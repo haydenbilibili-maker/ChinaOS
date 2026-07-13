@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import {
   REPORT_META,
@@ -26,19 +27,19 @@ function ForecastChart({ rows, years }) {
   const option = useMemo(() => ({
     backgroundColor: 'transparent',
     tooltip: { trigger: 'axis' },
-    legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 11 } },
+    legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 11 } },
     grid: { left: 48, right: 24, top: 28, bottom: 48 },
     xAxis: {
       type: 'category',
       data: years,
-      axisLine: { lineStyle: { color: '#27324a' } },
-      axisLabel: { color: '#93a1b5', fontSize: 11 },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
+      axisLabel: { color: LABEL.color, fontSize: 11 },
     },
     yAxis: {
       type: 'value',
       axisLine: { show: false },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.12)' } },
-      axisLabel: { color: '#93a1b5', fontSize: 11 },
+      axisLabel: { color: LABEL.color, fontSize: 11 },
     },
     series: rows.map((r) => ({
       name: r.label,

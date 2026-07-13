@@ -77,7 +77,7 @@ const depCompare = {
   tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: '{b}<br/>对外依存：{c}%' },
   grid: { left: 56, right: 24, top: 16, bottom: 24 },
   xAxis: valueY({ max: 100, axisLabel: { formatter: '{value}%' } }),
-  yAxis: { type: 'category', data: ['原油', '天然气', '铀料', '煤炭'], axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 11 } },
+  yAxis: { type: 'category', data: ['原油', '天然气', '铀料', '煤炭'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 11 } },
   series: [{
     type: 'bar', barWidth: 18,
     data: [
@@ -86,7 +86,7 @@ const depCompare = {
       { value: 30, itemStyle: { color: '#8b5cf6' } },
       { value: 8, itemStyle: { color: '#64748b' } },
     ],
-    label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10, formatter: '{c}%' },
+    label: { show: true, position: 'right', color: LABEL.color, fontSize: 10, formatter: '{c}%' },
   }],
 };
 
@@ -100,7 +100,7 @@ const channelDonut = donutOpt([
 // ── 碳市场趋势 ──────────────────────────────────────────────
 const carbonMarket = {
   tooltip: { trigger: 'axis' },
-  legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 } },
+  legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
   grid: GRID,
   xAxis: categoryX(['2021', '2022', '2023', '2024', '2025E']),
   yAxis: valueY(),
@@ -113,10 +113,10 @@ const carbonMarket = {
 // ── 装机容量增长 ────────────────────────────────────────────
 const capacityGrowth = {
   tooltip: { trigger: 'axis' },
-  legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+  legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
   grid: GRID,
   xAxis: categoryX(['2018', '2020', '2022', '2024', '2025E']),
-  yAxis: valueY({ name: '亿千瓦', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
+  yAxis: valueY({ name: '亿千瓦', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
   series: [
     { name: '风电装机', type: 'line', smooth: true, data: [1.8, 2.8, 3.7, 4.9, 5.6], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
     { name: '光伏装机', type: 'line', smooth: true, data: [1.7, 2.5, 3.9, 7.1, 9.0], lineStyle: { color: '#fb923c', width: 2 }, itemStyle: { color: '#fb923c' } },

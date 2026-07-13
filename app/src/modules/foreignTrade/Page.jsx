@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ---------------------------------------------------------------------------
@@ -136,7 +136,7 @@ export default function Page() {
   const aseanVsUs = useMemo(() => ({
     grid: GRID,
     tooltip: { trigger: 'axis' },
-    legend: { data: ['东盟', '美国'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { data: ['东盟', '美国'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     xAxis: categoryX(PARTNER_YEARS),
     yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
     series: [
@@ -149,7 +149,7 @@ export default function Page() {
   const new3Lines = useMemo(() => ({
     grid: GRID,
     tooltip: { trigger: 'axis' },
-    legend: { data: NEW3_LINES.map((l) => l.name), textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { data: NEW3_LINES.map((l) => l.name), textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     xAxis: categoryX(NEW3_YEARS),
     yAxis: logY({ axisLabel: { formatter: '{value}' } }),
     series: NEW3_LINES.map((l) => ({
@@ -162,7 +162,7 @@ export default function Page() {
   const structureLines = useMemo(() => ({
     grid: GRID,
     tooltip: { trigger: 'axis' },
-    legend: { data: ['一般贸易', '加工贸易', '高新技术产品'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { data: ['一般贸易', '加工贸易', '高新技术产品'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     xAxis: categoryX(['2010', '2014', '2018', '2020', '2022', '2024']),
     yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
     series: [
@@ -176,11 +176,11 @@ export default function Page() {
   const surplusOpt = useMemo(() => ({
     grid: { ...GRID, right: 44 },
     tooltip: { trigger: 'axis' },
-    legend: { data: ['贸易顺差(千亿美元)', '外贸依存度(%)'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { data: ['贸易顺差(千亿美元)', '外贸依存度(%)'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     xAxis: categoryX(['2006', '2010', '2015', '2019', '2022', '2024']),
     yAxis: [
       valueY(),
-      { type: 'value', position: 'right', splitLine: { show: false }, axisLabel: { color: '#93a1b5', fontSize: 10, formatter: '{value}%' } },
+      { type: 'value', position: 'right', splitLine: { show: false }, axisLabel: { color: LABEL.color, fontSize: 10, formatter: '{value}%' } },
     ],
     series: [
       { name: '贸易顺差(千亿美元)', type: 'bar', barWidth: 18, data: [1.8, 1.8, 5.9, 4.2, 8.4, 9.9], itemStyle: { color: 'rgba(232,163,23,0.85)' } },

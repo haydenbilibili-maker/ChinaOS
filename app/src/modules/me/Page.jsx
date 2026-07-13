@@ -14,6 +14,7 @@ import SectionRisk from './SectionRisk.jsx';
 import SectionPrinciples from './SectionPrinciples.jsx';
 import SectionShanhai from './SectionShanhai.jsx';
 import SectionLifePlan from './SectionLifePlan.jsx';
+import { AXIS, LABEL, GRID_LINE, CHART_SERIES_PALETTE } from '../shared/chartHelpers.js';
 
 // ============================================================================
 // 私享切片 · 李贺 / 独菽 / Hayden（GY-∞ · 不入公开图谱）
@@ -24,7 +25,6 @@ import SectionLifePlan from './SectionLifePlan.jsx';
 // 口径：本人自述 + 简历公开口径，自画像、仅自用；非任何机构人事评价。
 // ============================================================================
 
-const AX = { line: '#27324a', text: '#93a1b5', split: 'rgba(148,163,184,0.1)' };
 
 // —— 迁移日志（时间轴）——
 const MIGRATION = [
@@ -131,7 +131,7 @@ function migrationMapOption(full = false) {
       { type: 'scatter', coordinateSystem: 'geo', zlevel: 2,
         symbolSize: (v, p) => (CITY_GEO[p.dataIndex]?.kind ? 13 : 9),
         itemStyle: { color: (p) => colorOf(CITY_GEO[p.dataIndex]) },
-        label: { show: true, position: 'right', formatter: (p) => p.name, color: AX.text, fontSize: 11, fontFamily: 'var(--font-mono)' },
+        label: { show: true, position: 'right', formatter: (p) => p.name, color: LABEL.color, fontSize: 11, fontFamily: 'var(--font-mono)' },
         data: CITY_GEO.map((c) => ({ name: c.name, value: c.coord, itemStyle: { color: colorOf(c) } })) },
       // 起点/终点高亮涟漪
       { type: 'effectScatter', coordinateSystem: 'geo', zlevel: 3, rippleEffect: { scale: 3, brushType: 'stroke' },
@@ -143,12 +143,12 @@ function migrationMapOption(full = false) {
 function radarOption() {
   return {
     tooltip: { trigger: 'item' },
-    legend: { bottom: 0, textStyle: { color: AX.text, fontSize: 11 }, data: RADAR_SERIES.map((s) => s.name) },
+    legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 11 }, data: RADAR_SERIES.map((s) => s.name) },
     radar: {
       indicator: RADAR_DIMS.map((d) => ({ name: d, max: 100 })),
-      axisName: { color: AX.text, fontSize: 11 },
+      axisName: { color: LABEL.color, fontSize: 11 },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-      axisLine: { lineStyle: { color: AX.split } },
+      axisLine: { lineStyle: { color: GRID_LINE.lineStyle.color } },
       splitArea: { show: false },
     },
     series: [{
@@ -164,11 +164,11 @@ function radarOption() {
 
 function dividendOption() {
   return {
-    legend: { top: 0, textStyle: { color: AX.text, fontSize: 11 }, data: ['出海红利大势', '个人在浪上的位置'] },
+    legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 11 }, data: ['出海红利大势', '个人在浪上的位置'] },
     grid: { left: 36, right: 16, top: 30, bottom: 28 },
     tooltip: { trigger: 'axis' },
-    xAxis: { type: 'category', data: DIVIDEND_YEARS, boundaryGap: false, axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text }, axisTick: { show: false } },
-    yAxis: { type: 'value', max: 100, axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text }, splitLine: { lineStyle: { color: AX.split } } },
+    xAxis: { type: 'category', data: DIVIDEND_YEARS, boundaryGap: false, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color }, axisTick: { show: false } },
+    yAxis: { type: 'value', max: 100, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } } },
     series: [
       { name: '出海红利大势', type: 'line', smooth: true, symbol: 'none', areaStyle: { color: '#e8a317', opacity: 0.14 }, lineStyle: { width: 2, color: '#e8a317' }, data: DIVIDEND_WAVE,
         markLine: { silent: true, symbol: 'none', lineStyle: { color: 'rgba(196,30,58,0.5)', type: 'dashed' }, data: [{ xAxis: '2022', label: { formatter: '窗口收口', color: '#c41e3a', fontSize: 10 } }] } },
@@ -263,16 +263,16 @@ const SYSTEM_LINKS = [
 
 function eraOption() {
   return {
-    legend: { top: 0, textStyle: { color: AX.text, fontSize: 11 }, data: ['互联网渗透大势', 'APP 出海窗口热度'] },
+    legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 11 }, data: ['互联网渗透大势', 'APP 出海窗口热度'] },
     grid: { left: 36, right: 16, top: 30, bottom: 28 },
     tooltip: { trigger: 'axis' },
-    xAxis: { type: 'category', data: ERA_YEARS, boundaryGap: false, axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text }, axisTick: { show: false } },
-    yAxis: { type: 'value', max: 100, axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text }, splitLine: { lineStyle: { color: AX.split } } },
+    xAxis: { type: 'category', data: ERA_YEARS, boundaryGap: false, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color }, axisTick: { show: false } },
+    yAxis: { type: 'value', max: 100, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } } },
     series: [
       { name: '互联网渗透大势', type: 'line', smooth: true, symbol: 'none', areaStyle: { color: '#22d3ee', opacity: 0.12 }, lineStyle: { width: 2, color: '#22d3ee' }, data: ERA_NET },
       { name: 'APP 出海窗口热度', type: 'line', smooth: true, symbol: 'none', lineStyle: { width: 2, color: '#e8a317' }, data: ERA_GLOBAL,
         markLine: { silent: true, symbol: 'none', lineStyle: { color: 'rgba(148,163,184,0.4)', type: 'dashed' },
-          label: { color: AX.text, fontSize: 9, formatter: (p) => p.data.label },
+          label: { color: LABEL.color, fontSize: 9, formatter: (p) => p.data.label },
           data: ERA_MARKS.map((m) => ({ xAxis: m.year, label: { formatter: m.label } })) } },
     ],
   };
@@ -282,12 +282,12 @@ function trendQuadrantOption() {
   return {
     grid: { left: 48, right: 24, top: 24, bottom: 44 },
     tooltip: { trigger: 'item', formatter: (p) => `${p.data.name}<br/>趋势强度 ${p.value[0]} · 个人契合 ${p.value[1]}` },
-    xAxis: { type: 'value', name: '趋势强度 →', min: 30, max: 100, nameTextStyle: { color: AX.text, fontSize: 10 }, axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text }, splitLine: { lineStyle: { color: AX.split } } },
-    yAxis: { type: 'value', name: '个人契合 →', min: 30, max: 100, nameTextStyle: { color: AX.text, fontSize: 10 }, axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text }, splitLine: { lineStyle: { color: AX.split } } },
+    xAxis: { type: 'value', name: '趋势强度 →', min: 30, max: 100, nameTextStyle: { color: LABEL.color, fontSize: 10 }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } } },
+    yAxis: { type: 'value', name: '个人契合 →', min: 30, max: 100, nameTextStyle: { color: LABEL.color, fontSize: 10 }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } } },
     series: [{
       type: 'scatter',
       symbolSize: (v) => 14 + (v[0] + v[1]) / 12,
-      label: { show: true, position: 'right', color: AX.text, fontSize: 10, formatter: (p) => p.data.name },
+      label: { show: true, position: 'right', color: LABEL.color, fontSize: 10, formatter: (p) => p.data.name },
       data: TRENDS.map((t) => ({ name: t.name, value: [t.strength, t.fit], itemStyle: { color: t.color } })),
       markLine: { silent: true, symbol: 'none', lineStyle: { color: 'rgba(148,163,184,0.25)', type: 'dashed' }, data: [{ xAxis: 70 }, { yAxis: 65 }] },
     }],

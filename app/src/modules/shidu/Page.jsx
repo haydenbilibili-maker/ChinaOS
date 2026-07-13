@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import ShiduPanel from './ShiduPanel.jsx';
 import './shidu.css';
 
@@ -8,13 +8,15 @@ import './shidu.css';
  */
 export default function ShiduPage() {
   return (
-    <div className="shidu-page">
-      <PageHeader
-        badge="GY-25 · 人群画像分层"
-        title="失独与计生后遗人群 · 政策账单的活体"
-        subtitle="按已废弃契约编译的程序 · 人生不可重新编译"
-      />
+    <GySliceShell
+      badge="GY-25 · 人群画像分层"
+      title="失独与计生后遗人群 · 政策账单的活体"
+      subtitle="按已废弃契约编译的程序 · 人生不可重新编译"
+      appId="sd-app"
+      moduleId="shidu"
+      className="shidu-page"
+    >
       <ShiduPanel />
-    </div>
+    </GySliceShell>
   );
 }

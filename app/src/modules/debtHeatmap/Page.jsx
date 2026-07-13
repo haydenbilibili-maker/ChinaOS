@@ -47,11 +47,11 @@ const top10 = ['安徽', '甘肃', '海南', '天津', '广西', '吉林', '宁�
 const top10Val = [65, 68, 68, 68, 72, 72, 75, 78, 82, 88];
 const debtRank = {
   grid: { left: 64, right: 40, top: 12, bottom: 24 },
-  xAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5' } },
-  yAxis: { type: 'category', data: top10, axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } },
+  xAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color } },
+  yAxis: { type: 'category', data: top10, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
   series: [{
     type: 'bar', barWidth: 12, data: top10Val.map((v) => ({ value: v, itemStyle: { color: v >= 70 ? '#c41e3a' : '#e8a317', borderRadius: 3 } })),
-    label: { show: true, position: 'right', formatter: '{c}%', color: '#93a1b5' },
+    label: { show: true, position: 'right', formatter: '{c}%', color: LABEL.color },
   }],
 };
 
@@ -63,7 +63,7 @@ export default function Page() {
 
   const debtTrend = useMemo(() => ({
     grid: { ...GRID, top: 32 },
-    legend: { top: 0, textStyle: { color: '#93a1b5' }, itemWidth: 14 },
+    legend: { top: 0, textStyle: { color: LABEL.color }, itemWidth: 14 },
     tooltip: { trigger: 'axis' },
     xAxis: categoryX(['2019', '2020', '2021', '2022', '2023', '2024']),
     yAxis: valueY(),

@@ -131,7 +131,19 @@ export const MAP_LAYER_DEFS = /** @type {MapLayerDef[]} */ ([
     dataSource: 'airplanes.live',
     legend: '可见航班散点（稀疏）',
     icon: 'Plane',
-    desc: '社区 ADS-B 航班叠加',
+    desc: '社区 ADS-B 航班叠加 · airplanes.live 六大枢纽采样',
+  },
+  {
+    id: 'overlay-shipping',
+    name: '航运港口',
+    type: 'overlay',
+    zIndex: 4,
+    defaultVisible: false,
+    toggleable: true,
+    dataSource: 'Worker /api/live/shipping',
+    legend: '主要枢纽港 + 可选 AIS 船位',
+    icon: 'Ship',
+    desc: '上海/宁波/深圳等 12 港锚点 · AISHub（可选 secret）船位叠加',
   },
 ]);
 
@@ -210,9 +222,10 @@ export async function fetchFiscalChoropleth() {
 export function buildOverlaySeries(layerId, ctx) {
   const {
     theme, isCompact, STEEL, HOLD,
-    quakesState, flightsState,
+    quakesState, flightsState, shippingState,
     buildQuakeSeries, quakeSymbolSize, quakeColor,
     buildFlightSeries,
+    buildPortSeries, buildVesselSeries, portSymbolSize,
   } = ctx;
   const isDark = theme !== 'light';
 
@@ -282,6 +295,37 @@ export function buildOverlaySeries(layerId, ctx) {
         itemStyle: { color: isDark ? '#a5f3fc' : '#0e7490', opacity: 0.85, shadowBlur: 4, shadowColor: 'rgba(34,211,238,0.6)' },
         emphasis: { itemStyle: { color: HOLD, opacity: 1 } },
       }];
+
+    case 'overlay-shipping': {
+      if (isCompact) return null;
+      const ports = shippingState?.ports;
+      if (!ports?.length) return null;
+      const series = [{
+        name: 'ports',
+        type: 'effectScatter',
+        coordinateSystem: 'geo',
+        zlevel: 4,
+        symbol: 'circle',
+        symbolSize: (val) => portSymbolSize(val?.[2] || val?.rank || 5, isDark),
+        data: buildPortSeries(ports, isDark),
+        rippleEffect: { scale: 2.2, brushType: 'stroke', period: 5 },
+        itemStyle: { opacity: 0.9, shadowBlur: 8, shadowColor: 'rgba(56,189,248,0.45)' },
+      }];
+      const vessels = shippingState?.vessels;
+      if (vessels?.length) {
+        series.push({
+          name: 'vessels',
+          type: 'scatter',
+          coordinateSystem: 'geo',
+          zlevel: 5,
+          symbol: 'path://M0,-5 L4,5 L0,2 L-4,5 Z',
+          symbolSize: 6,
+          data: buildVesselSeries(vessels, isDark),
+          itemStyle: { opacity: 0.8 },
+        });
+      }
+      return series;
+    }
 
     default:
       return null;

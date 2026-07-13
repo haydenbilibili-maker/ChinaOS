@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { Card } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, LABEL, GRID_LINE, CHART_SERIES_PALETTE } from '../shared/chartHelpers.js';
 
 // ============================================================================
 // ⑯ 能力资产负债表 · 哪些在增值，哪些在折旧
@@ -10,7 +11,6 @@ import EChart from '../../lib/viz/EChart.jsx';
 // 「净值」读数——资产均值减负债均值，再落一句研判。口径：自评示意标定，非预测。
 // ============================================================================
 
-const AX = { line: '#27324a', text: '#93a1b5', split: 'rgba(148,163,184,0.1)' };
 
 // —— 资产：可转移 / 还在增值的能力（青/绿系）——
 const ASSETS = [
@@ -56,17 +56,17 @@ function balanceOption() {
         return `${p.name}<br/>${side} ${v}`;
       },
     },
-    legend: { top: 0, textStyle: { color: AX.text, fontSize: 11 }, data: ['资产强度', '折旧/风险'] },
+    legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 11 }, data: ['资产强度', '折旧/风险'] },
     xAxis: {
       type: 'value', min: -100, max: 100,
-      axisLine: { lineStyle: { color: AX.line } },
-      axisLabel: { color: AX.text, formatter: (v) => Math.abs(v) },
-      splitLine: { lineStyle: { color: AX.split } },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
+      axisLabel: { color: LABEL.color, formatter: (v) => Math.abs(v) },
+      splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } },
     },
     yAxis: {
       type: 'category', inverse: true, data: names,
-      axisLine: { lineStyle: { color: AX.line } },
-      axisLabel: { color: AX.text, fontSize: 10 },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
+      axisLabel: { color: LABEL.color, fontSize: 10 },
       axisTick: { show: false },
     },
     series: [

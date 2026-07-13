@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ---------------------------------------------------------------------------
@@ -105,7 +105,7 @@ export default function Page() {
   // --- 交互①：赛道热度多线（选中加粗） ---
   const trackHeat = useMemo(() => ({
     tooltip: { trigger: 'axis' },
-    legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+    legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
     grid: GRID,
     xAxis: categoryX(years),
     yAxis: valueY(),
@@ -124,14 +124,14 @@ export default function Page() {
     series: [{
       type: 'bar', barWidth: 14, itemStyle: { color: t.accent, borderRadius: 3 },
       data: t.constraints,
-      label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 },
+      label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 },
     }],
   }), [t]);
 
   // --- TFP 双线 ---
   const tfpLines = useMemo(() => ({
     tooltip: { trigger: 'axis' },
-    legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+    legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
     grid: GRID,
     xAxis: categoryX(TFP_YEARS),
     yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
@@ -165,8 +165,8 @@ export default function Page() {
       formatter: (p) => `${p.data[3]}<br/>产业化距离：约 ${p.data[0]} 年<br/>战略权重：${p.data[1]}`,
     },
     grid: { left: 48, right: 24, top: 24, bottom: 40 },
-    xAxis: { type: 'value', name: '产业化距离（年）', nameLocation: 'middle', nameGap: 26, nameTextStyle: { color: '#93a1b5', fontSize: 10 }, min: 0, max: 12, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
-    yAxis: { type: 'value', name: '战略权重', nameTextStyle: { color: '#93a1b5', fontSize: 10 }, min: 70, max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+    xAxis: { type: 'value', name: '产业化距离（年）', nameLocation: 'middle', nameGap: 26, nameTextStyle: { color: LABEL.color, fontSize: 10 }, min: 0, max: 12, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+    yAxis: { type: 'value', name: '战略权重', nameTextStyle: { color: LABEL.color, fontSize: 10 }, min: 70, max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     series: [{
       type: 'scatter',
       symbolSize: (d) => (d[2] === track ? 26 : 16),
@@ -187,7 +187,7 @@ export default function Page() {
     series: [{
       type: 'bar', barWidth: 18,
       data: TIERS.map((x) => ({ value: x.value, itemStyle: { color: x.color, borderRadius: 3 } })),
-      label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10, formatter: (p) => p.value.toLocaleString() },
+      label: { show: true, position: 'right', color: LABEL.color, fontSize: 10, formatter: (p) => p.value.toLocaleString() },
     }],
   }), []);
 

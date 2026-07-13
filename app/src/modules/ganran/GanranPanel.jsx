@@ -22,7 +22,6 @@ export default function GanranPanel() {
   return (
     <div className="ganran-module-wrap">
       <div
-        id="gr-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

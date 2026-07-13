@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import ManjiuPanel from './ManjiuPanel.jsx';
 import './manjiu.css';
 
@@ -8,13 +8,15 @@ import './manjiu.css';
  */
 export default function ManjiuPage() {
   return (
-    <div className="manjiu-page">
-      <PageHeader
-        badge="GY-34 · 人群画像分层"
-        title="慢就业青年 · 全职儿女 · NEET"
-        subtitle="主动挂起的进程 · 从调度队列里退出"
-      />
+    <GySliceShell
+      badge="GY-34 · 人群画像分层"
+      title="慢就业青年 · 全职儿女 · NEET"
+      subtitle="主动挂起的进程 · 从调度队列里退出"
+      appId="mj-app"
+      moduleId="manjiu"
+      className="manjiu-page"
+    >
       <ManjiuPanel />
-    </div>
+    </GySliceShell>
   );
 }

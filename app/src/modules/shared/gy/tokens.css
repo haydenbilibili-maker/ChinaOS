@@ -287,3 +287,12 @@
   background: var(--zhu-dim);
   color: var(--xuanzhi);
 }
+
+/* GySliceShell · Round 4 统一外壳 */
+.gy-slice-shell {
+  --gy-shell-pad: 0;
+}
+.gy-slice-app {
+  /* #xx-app 由外壳承载 · Panel 内不再重复 id */
+  min-height: 0;
+}

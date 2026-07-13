@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import GanranPanel from './GanranPanel.jsx';
 import './ganran.css';
 
@@ -11,13 +11,15 @@ import './ganran.css';
  */
 export default function GanranPage() {
   return (
-    <div className="ganran-page">
-      <PageHeader
-        badge="GY-57 · 人群画像分层"
-        title="受污名疾病与感染者群体"
-        subtitle="被反复误报的良性进程 · 医学风险与社会污名的脱节"
-      />
+    <GySliceShell
+      badge="GY-57 · 人群画像分层"
+      title="受污名疾病与感染者群体"
+      subtitle="被反复误报的良性进程 · 医学风险与社会污名的脱节"
+      appId="gr-app"
+      moduleId="ganran"
+      className="ganran-page"
+    >
       <GanranPanel />
-    </div>
+    </GySliceShell>
   );
 }

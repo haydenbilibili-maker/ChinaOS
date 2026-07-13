@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import ManbingPanel from './ManbingPanel.jsx';
 import './manbing.css';
 
@@ -8,13 +8,15 @@ import './manbing.css';
  */
 export default function ManbingPage() {
   return (
-    <div className="manbing-page">
-      <PageHeader
-        badge="GY-23 · 人群画像分层"
-        title="带病生存的年轻人 · 健康的阶层化"
-        subtitle="提前折旧的电池 · 健康度在年轻时就开始掉"
-      />
+    <GySliceShell
+      badge="GY-23 · 人群画像分层"
+      title="带病生存的年轻人 · 健康的阶层化"
+      subtitle="提前折旧的电池 · 健康度在年轻时就开始掉"
+      appId="mb-app"
+      moduleId="manbing"
+      className="manbing-page"
+    >
       <ManbingPanel />
-    </div>
+    </GySliceShell>
   );
 }

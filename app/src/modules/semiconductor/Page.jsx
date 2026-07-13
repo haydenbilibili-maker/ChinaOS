@@ -158,7 +158,7 @@ export default function Page() {
   // 制程追赶曲线（log y 轴，nm 越小越先进）
   const nodeChart = useMemo(() => ({
     tooltip: { trigger: 'axis', formatter: (ps) => ps.map((p) => `${p.seriesName}: ${p.value}nm`).join('<br/>') },
-    legend: { data: ['全球最先进量产', '中国最先进量产'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { data: ['全球最先进量产', '中国最先进量产'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     grid: { ...GRID, top: 30, left: 44 },
     xAxis: categoryX(NODE_YEARS),
     yAxis: logY({ name: 'nm(log)', nameTextStyle: { color: '#5b6a82', fontSize: 10 }, inverse: true }),
@@ -175,16 +175,16 @@ export default function Page() {
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: (ps) => { const i = ps[0].dataIndex; return `${BLOCKADE[i].name}：强度 ${BLOCKADE[i].v}<br/>${BLOCKADE[i].note}`; } },
     grid: { left: 100, right: 36, top: 8, bottom: 24 },
     xAxis: valueY({ max: 100 }),
-    yAxis: { type: 'category', data: BLOCKADE.map((b) => b.name).reverse(), axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+    yAxis: { type: 'category', data: BLOCKADE.map((b) => b.name).reverse(), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     series: [{ type: 'bar', barWidth: 12, data: BLOCKADE.map((b) => ({ value: b.v, itemStyle: { color: b.c, borderRadius: [0, 3, 3, 0] } })).reverse(), label: { show: true, position: 'right', color: '#5b6a82', fontSize: 9 } }],
   }), []);
 
   // 产业链自主度双系列雷达（中国 vs 全球第一梯队 · 内联）
   const dualRadar = useMemo(() => ({
-    legend: { data: ['中国', '全球第一梯队'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { data: ['中国', '全球第一梯队'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     radar: {
       indicator: [{ name: 'EDA', max: 100 }, { name: '设备', max: 100 }, { name: '材料', max: 100 }, { name: '制造', max: 100 }, { name: '设计', max: 100 }, { name: '封测', max: 100 }],
-      axisName: { color: '#93a1b5', fontSize: 10 }, radius: '62%',
+      axisName: { color: LABEL.color, fontSize: 10 }, radius: '62%',
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false },
     },
     series: [{
@@ -205,7 +205,7 @@ export default function Page() {
     series: [{
       type: 'bar', barWidth: 22,
       data: LOCALIZATION.map((d) => ({ value: d.v, itemStyle: { color: locColor(d.v), borderRadius: [3, 3, 0, 0] } })),
-      label: { show: true, position: 'top', color: '#93a1b5', fontSize: 9, formatter: '{c}%' },
+      label: { show: true, position: 'top', color: LABEL.color, fontSize: 9, formatter: '{c}%' },
       markLine: { silent: true, lineStyle: { color: 'rgba(232,163,23,0.5)', type: 'dashed' }, label: { color: '#e8a317', fontSize: 9, formatter: '安全线 35%' }, data: [{ yAxis: 35 }] },
     }],
   }), []);
@@ -215,7 +215,7 @@ export default function Page() {
 
   // 保留：IC 进出口 + 大基金一二三期结构
   const ieChart = useMemo(() => ({
-    legend: { data: ['进口', '出口'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { data: ['进口', '出口'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     grid: { left: 44, right: 16, top: 30, bottom: 24 },
     xAxis: categoryX(['2019', '2021', '2023', '2024E']),
     yAxis: valueY({ name: '亿$', nameTextStyle: { color: '#5b6a82', fontSize: 10 } }),

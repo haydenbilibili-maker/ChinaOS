@@ -22,7 +22,6 @@ export default function LinggongPanel() {
   return (
     <div className="linggong-module-wrap">
       <div
-        id="lg-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

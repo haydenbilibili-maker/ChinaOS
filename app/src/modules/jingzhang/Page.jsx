@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import JingzhangPanel from './JingzhangPanel.jsx';
 import './jingzhang.css';
 
@@ -11,13 +11,15 @@ import './jingzhang.css';
  */
 export default function JingzhangPage() {
   return (
-    <div className="jingzhang-page">
-      <PageHeader
-        badge="GY-55 · 人群画像分层"
-        title="精神障碍者与被监护人"
-        subtitle="执行权限被代理的进程 · 自主决定权的让渡"
-      />
+    <GySliceShell
+      badge="GY-55 · 人群画像分层"
+      title="精神障碍者与被监护人"
+      subtitle="执行权限被代理的进程 · 自主决定权的让渡"
+      appId="jh-app"
+      moduleId="jingzhang"
+      className="jingzhang-page"
+    >
       <JingzhangPanel />
-    </div>
+    </GySliceShell>
   );
 }

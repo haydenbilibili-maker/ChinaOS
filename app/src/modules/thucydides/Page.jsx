@@ -118,9 +118,9 @@ export default function Page() {
   const danger = useMemo(() => Math.max(0, Math.min(100, Math.round(100 - Math.abs(100 - gap) * 1.4))), [gap]);
 
   const cross = useMemo(() => ({
-    legend: { data: ['守成大国', '崛起大国'], textStyle: { color: '#93a1b5' }, top: 0 },
+    legend: { data: ['守成大国', '崛起大国'], textStyle: { color: LABEL.color }, top: 0 },
     grid: { left: 40, right: 16, top: 30, bottom: 24 },
-    xAxis: { type: 'category', data: ['T-20', 'T-15', 'T-10', 'T-5', '当前', 'T+5'], axisLine: { lineStyle: { color: '#27324a' } } },
+    xAxis: { type: 'category', data: ['T-20', 'T-15', 'T-10', 'T-5', '当前', 'T+5'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
     yAxis: { type: 'value', max: 120, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
     series: [
       { name: '守成大国', type: 'line', smooth: true, data: [100, 100, 99, 98, 97, 96], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
@@ -138,8 +138,8 @@ export default function Page() {
   // 因子贡献条形图（护栏取「缺口」即 100-guard）
   const factorBar = useMemo(() => ({
     grid: { left: 110, right: 36, top: 10, bottom: 24 },
-    xAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5' } },
-    yAxis: { type: 'category', data: ['护栏缺口', '摩擦频率', '联盟刚性', '收敛度'], axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } },
+    xAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color } },
+    yAxis: { type: 'category', data: ['护栏缺口', '摩擦频率', '联盟刚性', '收敛度'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
     series: [{
       type: 'bar', barWidth: 14,
       data: [
@@ -148,7 +148,7 @@ export default function Page() {
         { value: alliance, itemStyle: { color: '#e8a317' } },
         { value: conv, itemStyle: { color: '#c41e3a' } },
       ],
-      label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 },
+      label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 },
     }],
   }), [conv, alliance, friction, guard]);
 

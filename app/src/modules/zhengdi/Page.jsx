@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import ZhengdiPanel from './ZhengdiPanel.jsx';
 import './zhengdi.css';
 
@@ -10,13 +10,15 @@ import './zhengdi.css';
  */
 export default function ZhengdiPage() {
   return (
-    <div className="zhengdi-page">
-      <PageHeader
-        badge="GY-51 · 人群画像分层"
-        title="征地拆迁与失地农民"
-        subtitle="存储被征用的进程 · 一次性置换"
-      />
+    <GySliceShell
+      badge="GY-51 · 人群画像分层"
+      title="征地拆迁与失地农民"
+      subtitle="存储被征用的进程 · 一次性置换"
+      appId="zd-app"
+      moduleId="zhengdi"
+      className="zhengdi-page"
+    >
       <ZhengdiPanel />
-    </div>
+    </GySliceShell>
   );
 }

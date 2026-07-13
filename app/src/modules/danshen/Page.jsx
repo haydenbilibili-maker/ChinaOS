@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import DanshenPanel from './DanshenPanel.jsx';
 import './danshen.css';
 
@@ -8,13 +8,15 @@ import './danshen.css';
  */
 export default function DanshenPage() {
   return (
-    <div className="danshen-page">
-      <PageHeader
-        badge="GY-19 · 人群画像分层"
-        title="单身女性与不婚者 · 主动退出的常态化"
-        subtitle="独立运行实例 · 从默认服务解绑"
-      />
+    <GySliceShell
+      badge="GY-19 · 人群画像分层"
+      title="单身女性与不婚者 · 主动退出的常态化"
+      subtitle="独立运行实例 · 从默认服务解绑"
+      appId="ds-app"
+      moduleId="danshen"
+      className="danshen-page"
+    >
       <DanshenPanel />
-    </div>
+    </GySliceShell>
   );
 }

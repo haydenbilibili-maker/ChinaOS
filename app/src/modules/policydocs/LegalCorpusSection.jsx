@@ -130,7 +130,7 @@ export default function LegalCorpusSection() {
     grid: { left: 8, right: 8, top: 8, bottom: 8 },
     series: [{
       type: 'pie', radius: ['42%', '68%'],
-      label: { color: '#93a1b5', fontSize: 10 },
+      label: { color: LABEL.color, fontSize: 10 },
       data: Object.entries(typeCounts).map(([k, v]) => ({
         name: LS_TYPE_MAP[k], value: v,
         itemStyle: { color: TYPE_COLOR[k] },
@@ -140,12 +140,12 @@ export default function LegalCorpusSection() {
 
   const domainChart = useMemo(() => ({
     grid: { left: 88, right: 16, top: 8, bottom: 24 },
-    xAxis: { type: 'value', axisLabel: { color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+    xAxis: { type: 'value', axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
     yAxis: {
       type: 'category',
       data: [...LS_DOMAINS].reverse(),
-      axisLabel: { color: '#93a1b5', fontSize: 10 },
-      axisLine: { lineStyle: { color: '#27324a' } },
+      axisLabel: { color: LABEL.color, fontSize: 10 },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
     },
     series: [{
       type: 'bar', barWidth: 12,

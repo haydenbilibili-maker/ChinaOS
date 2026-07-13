@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Card } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { SelectorBar } from '../shared/ModuleParadigm.jsx';
+import { AXIS, LABEL, GRID_LINE, CHART_SERIES_PALETTE } from '../shared/chartHelpers.js';
 
 // ============================================================================
 // ㉒ 人生决策框架 · 养老 / 医疗 / 教育 / 储蓄
@@ -14,7 +15,6 @@ import { SelectorBar } from '../shared/ModuleParadigm.jsx';
 //      请以官方政策与持牌理财/保险/税务顾问意见为准。
 // ============================================================================
 
-const AX = { line: '#27324a', text: '#93a1b5', split: 'rgba(148,163,184,0.1)' };
 const C = { cinnabar: '#c41e3a', cyan: '#22d3ee', ochre: '#e8a317', green: '#10b981', violet: '#8b5cf6', slate: '#94a3b8' };
 
 const TABS = [
@@ -90,11 +90,11 @@ function bucketAreaOption() {
   const ages = ['35', '45', '55', '65'];
   const mk = (name, color, data) => ({ name, type: 'line', stack: 'b', areaStyle: { color, opacity: 0.5 }, lineStyle: { width: 1, color }, symbol: 'none', data });
   return {
-    legend: { top: 0, textStyle: { color: AX.text, fontSize: 10 }, data: ['应急金', '中期', '长期养老'] },
+    legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, data: ['应急金', '中期', '长期养老'] },
     grid: { left: 36, right: 16, top: 28, bottom: 24 },
     tooltip: { trigger: 'axis' },
-    xAxis: { type: 'category', data: ages, boundaryGap: false, name: '年龄', nameTextStyle: { color: AX.text, fontSize: 9 }, axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text }, axisTick: { show: false } },
-    yAxis: { type: 'value', max: 100, axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text, formatter: '{value}%' }, splitLine: { lineStyle: { color: AX.split } } },
+    xAxis: { type: 'category', data: ages, boundaryGap: false, name: '年龄', nameTextStyle: { color: LABEL.color, fontSize: 9 }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color }, axisTick: { show: false } },
+    yAxis: { type: 'value', max: 100, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, formatter: '{value}%' }, splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } } },
     series: [
       mk('应急金', C.cinnabar, [30, 20, 15, 12]),
       mk('中期', C.ochre, [45, 40, 30, 23]),

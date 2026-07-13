@@ -22,7 +22,6 @@ export default function ZhaiwuPanel() {
   return (
     <div className="zhaiwu-module-wrap">
       <div
-        id="zw-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

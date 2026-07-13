@@ -6,7 +6,7 @@ import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { AS_OF, ERAS, DOMAINS, EVENTS } from './data.js';
 
-const AXIS_LABEL = { color: '#93a1b5', fontSize: 10 };
+const AXIS_LABEL = { color: LABEL.color, fontSize: 10 };
 const SPLIT_LINE = { lineStyle: { color: 'rgba(148,163,184,0.1)' } };
 const TOOLTIP_SKIN = {
   backgroundColor: 'rgba(15, 22, 35, 0.94)',
@@ -53,11 +53,11 @@ export default function ChroniclePanel() {
       type: 'value', min: era ? era.range[0] - 1 : 1948, max: era ? era.range[1] + 1 : 2027,
       axisLabel: { ...AXIS_LABEL, formatter: (v) => String(v) },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.07)' } },
-      axisLine: { lineStyle: { color: '#27324a' } },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
     },
     yAxis: {
       type: 'category', data: DOMAINS.map((d) => d.label), inverse: true,
-      axisLine: { lineStyle: { color: '#27324a' } }, axisTick: { show: false },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisTick: { show: false },
       axisLabel: { ...AXIS_LABEL, fontSize: 11 }, splitLine: SPLIT_LINE,
     },
     dataZoom: [
@@ -86,7 +86,7 @@ export default function ChroniclePanel() {
     return {
       grid: { left: 36, right: 12, top: 12, bottom: 36 },
       tooltip: { ...TOOLTIP_SKIN, trigger: 'axis', axisPointer: { type: 'shadow' } },
-      xAxis: { type: 'category', data: labels, axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { ...AXIS_LABEL, fontSize: 9, rotate: 38 } },
+      xAxis: { type: 'category', data: labels, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { ...AXIS_LABEL, fontSize: 9, rotate: 38 } },
       yAxis: { type: 'value', splitLine: SPLIT_LINE, axisLabel: AXIS_LABEL },
       series: DOMAINS.map((d) => ({
         name: d.label, type: 'bar', stack: 'total', barWidth: '60%',

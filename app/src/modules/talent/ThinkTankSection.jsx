@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import * as Lucide from 'lucide-react';
-import { Card, Grid, Stat } from '../../app/ui.jsx';
+import { Card, Grid, Stat, DistBar } from '../../app/ui.jsx';
 import { useThinkTank } from '../../lib/db/useDataset.js';
 import * as DB from '../../lib/db/localdb.js';
 import {
@@ -28,24 +28,6 @@ function tally(arr, keyFn) {
   const m = new Map();
   arr.forEach((r) => { const k = keyFn(r); if (k) m.set(k, (m.get(k) || 0) + 1); });
   return [...m.entries()].sort((a, b) => b[1] - a[1]);
-}
-
-function DistBars({ data, color = '#22d3ee', max, onPick, active }) {
-  const top = max || (data[0]?.[1] || 1);
-  return (
-    <div className="space-y-1.5">
-      {data.map(([k, n]) => (
-        <button key={k} type="button" onClick={onPick ? () => onPick(k) : undefined} className="w-full flex items-center gap-2 text-left"
-          style={{ cursor: onPick ? 'pointer' : 'default', opacity: active && active !== k ? 0.45 : 1 }}>
-          <span className="text-[11px] mono shrink-0 text-right" style={{ width: 70, color: active === k ? color : 'var(--text-secondary)' }}>{k}</span>
-          <span className="flex-1 rounded-sm" style={{ height: 13, background: 'var(--bg-base)', position: 'relative', overflow: 'hidden' }}>
-            <span style={{ position: 'absolute', inset: 0, width: `${(n / top) * 100}%`, background: color, opacity: 0.75, borderRadius: 2 }} />
-          </span>
-          <span className="text-[11px] mono shrink-0" style={{ width: 26, color: 'var(--text-tertiary)' }}>{n}</span>
-        </button>
-      ))}
-    </div>
-  );
 }
 
 function TankCard({ r, on, onClick, dense = false }) {
@@ -235,8 +217,8 @@ export default function ThinkTankSection() {
 
           {view === 'stats' ? (
             <Grid cols={2}>
-              <Card title="研究领域"><DistBars data={distFocus.slice(0, 12)} onPick={(k) => setFocus(focus === k ? '' : k)} active={focus} /></Card>
-              <Card title="省份"><DistBars data={distProvince.slice(0, 12)} color="#a78bfa" onPick={(k) => { const full = provinces.find((p) => short(p) === k); setProvince(province === full ? '' : full); }} active={short(province)} /></Card>
+              <Card title="研究领域"><DistBar data={distFocus.slice(0, 12)} onPick={(k) => setFocus(focus === k ? '' : k)} active={focus} /></Card>
+              <Card title="省份"><DistBar data={distProvince.slice(0, 12)} color="#a78bfa" onPick={(k) => { const full = provinces.find((p) => short(p) === k); setProvince(province === full ? '' : full); }} active={short(province)} /></Card>
             </Grid>
           ) : view === 'grid' ? (
             <div className="grid gap-2 mb-4" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(220px,1fr))', maxHeight: 620, overflowY: 'auto' }}>

@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { EraTimeline } from './EraTimeline.jsx';
 import { useFigures } from '../../lib/db/useDataset.js';
@@ -424,18 +425,18 @@ function buildAttnBarOption(rows) {
       trigger: 'axis', axisPointer: { type: 'shadow' },
       backgroundColor: 'rgba(15,23,42,0.92)', borderColor: '#27324a', textStyle: { color: '#e2e8f0' },
     },
-    legend: { data: ['推进指数', '张力残量'], top: 0, textStyle: { color: '#93a1b5', fontSize: 11 }, itemWidth: 12, itemHeight: 8 },
+    legend: { data: ['推进指数', '张力残量'], top: 0, textStyle: { color: LABEL.color, fontSize: 11 }, itemWidth: 12, itemHeight: 8 },
     grid: { left: 8, right: 18, top: 30, bottom: 4, containLabel: true },
     xAxis: {
       type: 'value',
-      axisLine: { lineStyle: { color: '#27324a' } },
-      axisLabel: { color: '#93a1b5', fontSize: 10 },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
+      axisLabel: { color: LABEL.color, fontSize: 10 },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } },
     },
     yAxis: {
       type: 'category', data: rows.map((r) => r.label), inverse: true,
-      axisLine: { lineStyle: { color: '#27324a' } },
-      axisLabel: { color: '#93a1b5', fontSize: 11 },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
+      axisLabel: { color: LABEL.color, fontSize: 11 },
     },
     series: [
       { name: '推进指数', type: 'bar', barWidth: 9, itemStyle: { color: GREEN, borderRadius: [0, 3, 3, 0] }, data: rows.map((r) => round1(r.progress)) },

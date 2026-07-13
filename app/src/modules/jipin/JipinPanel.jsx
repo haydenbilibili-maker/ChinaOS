@@ -22,7 +22,6 @@ export default function JipinPanel() {
   return (
     <div className="jipin-module-wrap">
       <div
-        id="jp-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

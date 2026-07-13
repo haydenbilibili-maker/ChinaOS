@@ -22,7 +22,6 @@ export default function ShuziPanel() {
   return (
     <div className="shuzi-module-wrap">
       <div
-        id="sz-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

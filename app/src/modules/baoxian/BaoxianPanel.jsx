@@ -22,7 +22,6 @@ export default function BaoxianPanel() {
   return (
     <div className="baoxian-module-wrap">
       <div
-        id="bx-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import TuiyiPanel from './TuiyiPanel.jsx';
 import './tuiyi.css';
 
@@ -8,13 +8,15 @@ import './tuiyi.css';
  */
 export default function TuiyiPage() {
   return (
-    <div className="tuiyi-page">
-      <PageHeader
-        badge="GY-12 · 人群画像分层"
-        title="退役军人"
-        subtitle="预装组织力 · 被定向赎买的人群"
-      />
+    <GySliceShell
+      badge="GY-12 · 人群画像分层"
+      title="退役军人"
+      subtitle="预装组织力 · 被定向赎买的人群"
+      appId="ty-app"
+      moduleId="tuiyi"
+      className="tuiyi-page"
+    >
       <TuiyiPanel />
-    </div>
+    </GySliceShell>
   );
 }

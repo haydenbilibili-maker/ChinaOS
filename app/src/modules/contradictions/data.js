@@ -3,7 +3,7 @@
 // asOf: 2026-06-11 · 公开资料示意，非官方统计
 // ============================================================================
 
-import { categoryX, valueY, GRID, LEGEND, radarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, LEGEND, radarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 
 export const AS_OF = '2026-06-11';
 
@@ -20,7 +20,7 @@ export const DASHBOARD_CHARTS = {
         type: 'line', smooth: true, data: [2.79, 2.57, 2.42, 2.38, 2.56, 2.48],
         lineStyle: { color: '#22d3ee', width: 2 },
         areaStyle: { color: 'rgba(34,211,238,0.08)' },
-        markLine: { silent: true, data: [{ yAxis: 2.5, label: { formatter: '均衡参考 2.5', color: '#93a1b5' }, lineStyle: { color: '#e8a317', type: 'dashed' } }] },
+        markLine: { silent: true, data: [{ yAxis: 2.5, label: { formatter: '均衡参考 2.5', color: LABEL.color }, lineStyle: { color: '#e8a317', type: 'dashed' } }] },
       }],
     }),
   },
@@ -39,7 +39,7 @@ export const DASHBOARD_CHARTS = {
           { value: 6.1, itemStyle: { color: '#e8a317' } },
           { value: 5.4, itemStyle: { color: '#c41e3a' } },
         ],
-        label: { show: true, position: 'right', color: '#93a1b5', formatter: '{c}' },
+        label: { show: true, position: 'right', color: LABEL.color, formatter: '{c}' },
       }],
     }),
   },
@@ -69,7 +69,7 @@ export const DASHBOARD_CHARTS = {
         type: 'line', smooth: true, data: [0.417, 0.438, 0.474, 0.465, 0.468, 0.462],
         lineStyle: { color: '#e8a317', width: 2 },
         markArea: { silent: true, itemStyle: { color: 'rgba(232,163,23,0.06)' }, data: [[{ yAxis: 0.40 }, { yAxis: 0.45 }]] },
-        markLine: { silent: true, data: [{ yAxis: 0.40, label: { formatter: '警戒 0.40', color: '#93a1b5' }, lineStyle: { color: '#c41e3a', type: 'dashed' } }] },
+        markLine: { silent: true, data: [{ yAxis: 0.40, label: { formatter: '警戒 0.40', color: LABEL.color }, lineStyle: { color: '#c41e3a', type: 'dashed' } }] },
       }],
     }),
   },
@@ -109,7 +109,7 @@ export const CONTRADICTIONS = [
         yAxis: categoryX(['全行业', '制造业', '金融', '公共管理']),
         series: [{ type: 'bar', barWidth: 16, data: [84, 81, 78, 92],
           itemStyle: { color: (p) => ['#f0abfc', '#c41e3a', '#e8a317', '#10b981'][p.dataIndex] },
-          label: { show: true, position: 'right', color: '#93a1b5' } }],
+          label: { show: true, position: 'right', color: LABEL.color } }],
       })},
       { title: '矛盾强度雷达 · 示意', build: () => radarOpt(
         ['参与率落差', '薪酬差', '生育成本', '晋升壁垒', '舆论张力'],
@@ -229,7 +229,7 @@ export const CONTRADICTIONS = [
         yAxis: categoryX(['中国', '美国', '德国', '北欧均值']),
         series: [{ type: 'bar', barWidth: 16, data: [0.42, 0.34, 0.32, 0.25],
           itemStyle: { color: (p) => (p.dataIndex === 0 ? '#8b5cf6' : '#64748b') },
-          label: { show: true, position: 'right', color: '#93a1b5' } }],
+          label: { show: true, position: 'right', color: LABEL.color } }],
       })},
       { title: '公务员考试竞争比 · 示意', build: () => ({
         grid: GRID, tooltip: { trigger: 'axis' },
@@ -273,7 +273,7 @@ export const CONTRADICTIONS = [
         yAxis: valueY({ name: 'pp' }),
         series: [{ type: 'bar', barWidth: 18, data: [0.8, 1.2, 1.5, 1.8, 1.6],
           itemStyle: { color: '#22d3ee' },
-          label: { show: true, position: 'top', color: '#93a1b5' } }],
+          label: { show: true, position: 'top', color: LABEL.color } }],
       })},
       { title: '区域矛盾强度 · 雷达', build: () => radarOpt(
         ['人均差距', '南北差', '省会虹吸', '产业层级', '政策竞争'],
@@ -390,7 +390,7 @@ export const CONTRADICTIONS = [
         yAxis: categoryX(['快递外卖', '网约车', '网络直播', '其他零工']),
         xAxis: valueY({ name: '亿人' }),
         series: [{ type: 'bar', barWidth: 14, data: [0.85, 0.42, 0.38, 0.55],
-          itemStyle: { color: '#06b6d4' }, label: { show: true, position: 'right', color: '#93a1b5' } }],
+          itemStyle: { color: '#06b6d4' }, label: { show: true, position: 'right', color: LABEL.color } }],
       })},
       { title: '劳资矛盾强度 · 雷达', build: () => radarOpt(
         ['报酬份额', '工时违规', '灵活就业', '集体协商', '自动化替代'],
@@ -464,7 +464,7 @@ export const CONTRADICTIONS = [
         yAxis: categoryX(['西藏', '新疆', '青海', '宁夏', '内蒙古']),
         xAxis: valueY({ max: 100, name: '%' }),
         series: [{ type: 'bar', barWidth: 14, data: [55, 72, 68, 78, 85],
-          itemStyle: { color: '#d4af37' }, label: { show: true, position: 'right', color: '#93a1b5' } }],
+          itemStyle: { color: '#d4af37' }, label: { show: true, position: 'right', color: LABEL.color } }],
       })},
       { title: '对口支援投入 · 示意（亿元）', build: () => ({
         grid: GRID, tooltip: { trigger: 'axis' },

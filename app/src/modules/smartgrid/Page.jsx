@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // 环节选择器：从输到配到储到市场，每一环都是一种「调得动」的能力缺口
@@ -106,9 +106,9 @@ export default function Page() {
   const digitalImpact = useMemo(() => ({
     grid: { left: 40, right: 40, top: 30, bottom: 24 },
     tooltip: { trigger: 'axis' },
-    legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 } },
+    legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
     xAxis: categoryX(['预测', '调度', '保护', '计量', '市场']),
-    yAxis: [valueY({ max: 100, axisLabel: { formatter: '{value}%' } }), { type: 'value', splitLine: { show: false }, axisLabel: { color: '#93a1b5' } }],
+    yAxis: [valueY({ max: 100, axisLabel: { formatter: '{value}%' } }), { type: 'value', splitLine: { show: false }, axisLabel: { color: LABEL.color } }],
     series: [
       { name: '数字化覆盖', type: 'bar', barWidth: 18, data: [85, 72, 60, 45, 92].map((v) => ({ value: Math.round(v + (L.score - 80) / 4), itemStyle: { color: L.accent, borderRadius: 3 } })) },
       { name: '线损系数', type: 'line', yAxisIndex: 1, smooth: true, data: [1.2, 1.5, 2.1, 1.8, 1.1], lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' } },
@@ -124,7 +124,7 @@ export default function Page() {
     series: [{
       type: 'bar', barWidth: 18, itemStyle: { borderRadius: 3 },
       data: UHV_LINES.map((x) => ({ value: x.count, itemStyle: { color: x.accent } })),
-      label: { show: true, position: 'right', color: '#93a1b5', formatter: '{c} 条' },
+      label: { show: true, position: 'right', color: LABEL.color, formatter: '{c} 条' },
     }],
   }), []);
 
@@ -132,11 +132,11 @@ export default function Page() {
   const consumeChart = useMemo(() => ({
     grid: { left: 44, right: 48, top: 30, bottom: 24 },
     tooltip: { trigger: 'axis' },
-    legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 } },
+    legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
     xAxis: categoryX(['2018', '2020', '2022', '2024', '2026E', '2028E']),
     yAxis: [
-      valueY({ name: '装机 亿kW', nameTextStyle: { color: '#93a1b5', fontSize: 9 } }),
-      { type: 'value', min: 90, max: 100, splitLine: { show: false }, axisLabel: { color: '#93a1b5', formatter: '{value}%' } },
+      valueY({ name: '装机 亿kW', nameTextStyle: { color: LABEL.color, fontSize: 9 } }),
+      { type: 'value', min: 90, max: 100, splitLine: { show: false }, axisLabel: { color: LABEL.color, formatter: '{value}%' } },
     ],
     series: [
       { name: '风光累计装机', type: 'bar', barWidth: 16, data: [3.6, 5.3, 7.6, 11.0, 14.5, 18.0], itemStyle: { color: '#10b981', borderRadius: 3 } },

@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import GetihuPanel from './GetihuPanel.jsx';
 import './getihu.css';
 
@@ -8,13 +8,15 @@ import './getihu.css';
  */
 export default function GetihuPage() {
   return (
-    <div className="getihu-page">
-      <PageHeader
-        badge="GY-29 · 人群画像分层"
-        title="个体工商户与小微商家"
-        subtitle="无异常捕获的裸跑进程 · 自负盈亏到底"
-      />
+    <GySliceShell
+      badge="GY-29 · 人群画像分层"
+      title="个体工商户与小微商家"
+      subtitle="无异常捕获的裸跑进程 · 自负盈亏到底"
+      appId="gt-app"
+      moduleId="getihu"
+      className="getihu-page"
+    >
       <GetihuPanel />
-    </div>
+    </GySliceShell>
   );
 }

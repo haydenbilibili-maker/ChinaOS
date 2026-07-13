@@ -32,9 +32,9 @@ const RADAR_IND = [{ name: '人性悲观', max: 100 }, { name: '体系决定', m
 
 // 中美综合国力（示意，进攻性现实主义读法：逼近交叉=最危险窗口）
 const transition = {
-  legend: { data: ['美国', '中国'], textStyle: { color: '#93a1b5' }, top: 0 },
+  legend: { data: ['美国', '中国'], textStyle: { color: LABEL.color }, top: 0 },
   grid: { left: 40, right: 16, top: 30, bottom: 24 },
-  xAxis: { type: 'category', data: ['1990', '2000', '2010', '2020', '2030E', '2040E'], axisLine: { lineStyle: { color: '#27324a' } } },
+  xAxis: { type: 'category', data: ['1990', '2000', '2010', '2020', '2030E', '2040E'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
   yAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
   series: [
     { name: '美国', type: 'line', smooth: true, data: [100, 100, 95, 90, 86, 82], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
@@ -159,7 +159,7 @@ export default function Page() {
           </div>
         </Card>
         <Card title="流派立场画像（示意）">
-          <EChart option={{ radar: { indicator: RADAR_IND, axisName: { color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } }, series: [{ type: 'radar', data: [{ value: sc.radar, name: sc.label, lineStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.14)' } }] }] }} style={{ height: 260 }} />
+          <EChart option={{ radar: { indicator: RADAR_IND, axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } }, series: [{ type: 'radar', data: [{ value: sc.radar, name: sc.label, lineStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.14)' } }] }] }} style={{ height: 260 }} />
         </Card>
       </Grid>
 

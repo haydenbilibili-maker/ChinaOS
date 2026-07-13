@@ -2,6 +2,7 @@ import { PageHeader } from '../../app/ui.jsx';
 import HeshanNav from '../shared/HeshanNav.jsx';
 import HeshanFactsheetsPanel from './HeshanFactsheetsPanel.jsx';
 import './heshanFactsheets.css';
+import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 /** 新省图册 · 三十四份建省档案 */
 export default function HeshanFactsheetsPage() {
@@ -14,6 +15,8 @@ export default function HeshanFactsheetsPage() {
       />
       <HeshanNav current="factsheets" />
       <HeshanFactsheetsPanel />
+      <ModuleFooter moduleId="heshanFactsheets" />
+
     </div>
   );
 }

@@ -22,7 +22,6 @@ export default function ZhiyebingPanel() {
   return (
     <div className="zhiyebing-module-wrap">
       <div
-        id="zb-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

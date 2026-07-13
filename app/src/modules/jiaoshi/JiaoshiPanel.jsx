@@ -22,7 +22,6 @@ export default function JiaoshiPanel() {
   return (
     <div className="jiaoshi-module-wrap">
       <div
-        id="js-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

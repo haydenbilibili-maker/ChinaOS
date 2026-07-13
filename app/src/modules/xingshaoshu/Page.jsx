@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import XingshaoshuPanel from './XingshaoshuPanel.jsx';
 import './xingshaoshu.css';
 
@@ -8,13 +8,15 @@ import './xingshaoshu.css';
  */
 export default function XingshaoshuPage() {
   return (
-    <div className="xingshaoshu-page">
-      <PageHeader
-        badge="GY-04 · 人群画像分层"
-        title="性少数"
-        subtitle="挤压性存在 · 被允许的可见形态 = 被允许的存在形态"
-      />
+    <GySliceShell
+      badge="GY-04 · 人群画像分层"
+      title="性少数"
+      subtitle="挤压性存在 · 被允许的可见形态 = 被允许的存在形态"
+      appId="xs-app"
+      moduleId="xingshaoshu"
+      className="xingshaoshu-page"
+    >
       <XingshaoshuPanel />
-    </div>
+    </GySliceShell>
   );
 }

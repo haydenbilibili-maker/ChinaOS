@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import HanjianPanel from './HanjianPanel.jsx';
 import './hanjian.css';
 
@@ -10,13 +10,15 @@ import './hanjian.css';
  */
 export default function HanjianPage() {
   return (
-    <div className="hanjian-page">
-      <PageHeader
-        badge="GY-53 · 人群画像分层"
-        title="罕见病与大病自救群体"
-        subtitle="低概率分支 · 缺专用 handler 的进程"
-      />
+    <GySliceShell
+      badge="GY-53 · 人群画像分层"
+      title="罕见病与大病自救群体"
+      subtitle="低概率分支 · 缺专用 handler 的进程"
+      appId="hj-app"
+      moduleId="hanjian"
+      className="hanjian-page"
+    >
       <HanjianPanel />
-    </div>
+    </GySliceShell>
   );
 }

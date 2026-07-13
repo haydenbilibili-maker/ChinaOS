@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat, StatGrid, OsSparkline } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ----------------------------------------------------------------------------
@@ -77,7 +77,7 @@ const structOpt = stackedBarOpt({
 const CYCLE_YEARS = ['2008', '2010', '2012', '2014', '2016', '2018', '2020', '2022', '2024'];
 const cycleOpt = {
   tooltip: { trigger: 'axis' },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
   grid: { ...GRID, top: 30 },
   xAxis: categoryX(CYCLE_YEARS),
   yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
@@ -127,7 +127,7 @@ const reitsOpt = {
       { value: 540, itemStyle: { color: '#c41e3a' } },
     ],
     itemStyle: { borderRadius: 3 },
-    label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 },
+    label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 },
   }],
 };
 
@@ -148,7 +148,7 @@ const intlOpt = {
       { value: 96, itemStyle: { color: '#475569' } },
     ],
     itemStyle: { borderRadius: 3 },
-    label: { show: true, position: 'top', color: '#93a1b5', fontSize: 10 },
+    label: { show: true, position: 'top', color: LABEL.color, fontSize: 10 },
   }],
 };
 
@@ -159,7 +159,7 @@ const multiplierOpt = {
   tooltip: { trigger: 'axis' },
   grid: { ...GRID, top: 24 },
   xAxis: categoryX(['1998', '2003', '2008', '2013', '2018', '2023']),
-  yAxis: valueY({ name: '投资乘数', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
+  yAxis: valueY({ name: '投资乘数', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
   series: [{
     type: 'line', smooth: true, symbol: 'circle', symbolSize: 6,
     data: [3.2, 2.8, 2.4, 1.8, 1.3, 0.9],
@@ -169,7 +169,7 @@ const multiplierOpt = {
     markLine: {
       silent: true, symbol: 'none',
       lineStyle: { color: 'rgba(196,30,58,0.6)', type: 'dashed' },
-      label: { color: '#93a1b5', fontSize: 10, formatter: '乘数=1 · 投入产出临界线' },
+      label: { color: LABEL.color, fontSize: 10, formatter: '乘数=1 · 投入产出临界线' },
       data: [{ yAxis: 1 }],
     },
   }],
@@ -198,7 +198,7 @@ const hubBar = {
       { value: 82, itemStyle: { color: '#475569' } },
     ],
     itemStyle: { borderRadius: 3 },
-    label: { show: true, position: 'top', color: '#93a1b5', fontSize: 10 },
+    label: { show: true, position: 'top', color: LABEL.color, fontSize: 10 },
   }],
 };
 
@@ -246,12 +246,12 @@ export default function Page() {
     tooltip: { trigger: 'axis' },
     grid: { ...GRID, top: 20 },
     xAxis: categoryX(['2020', '2021', '2022', '2023', '2024']),
-    yAxis: valueY({ name: '万亿元', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
+    yAxis: valueY({ name: '万亿元', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
     series: [{
       type: 'bar', barWidth: 24,
       data: sector.trend,
       itemStyle: { color: sector.accent, borderRadius: 3 },
-      label: { show: true, position: 'top', color: '#93a1b5', fontSize: 10 },
+      label: { show: true, position: 'top', color: LABEL.color, fontSize: 10 },
     }],
   }), [sector]);
 

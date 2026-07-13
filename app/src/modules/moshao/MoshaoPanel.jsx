@@ -22,7 +22,6 @@ export default function MoshaoPanel() {
   return (
     <div className="moshao-module-wrap">
       <div
-        id="ms-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

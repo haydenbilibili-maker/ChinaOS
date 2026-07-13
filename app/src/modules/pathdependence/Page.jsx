@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ============================================================================
@@ -124,11 +124,11 @@ export default function Page() {
 
   // —— 图1：Polya 壶两技术竞争 ——
   const simOpt = {
-    legend: { data: ['技术A（质量较劣）', '技术B（质量较优）'], top: 0, textStyle: { color: '#93a1b5', fontSize: 10 } },
+    legend: { data: ['技术A（质量较劣）', '技术B（质量较优）'], top: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
     tooltip: { trigger: 'axis' },
     grid: { ...GRID, top: 30 },
     xAxis: categoryX(Array.from({ length: 60 }, (_, i) => i + 1), { interval: 9 }),
-    yAxis: valueY({ max: 100, name: '市场份额 %', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
+    yAxis: valueY({ max: 100, name: '市场份额 %', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
     series: [
       { name: '技术A（质量较劣）', type: 'line', smooth: true, symbol: 'none', data: sim.shareA,
         lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.07)' },
@@ -140,11 +140,11 @@ export default function Page() {
 
   // —— 图2：换道成本指数曲线 ——
   const costOpt = {
-    legend: { data: ['转换成本', '换道收益（近似恒定）'], top: 0, textStyle: { color: '#93a1b5', fontSize: 10 } },
+    legend: { data: ['转换成本', '换道收益（近似恒定）'], top: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
     tooltip: { trigger: 'axis' },
     grid: { ...GRID, top: 30, left: 44 },
     xAxis: categoryX(cx),
-    yAxis: logY({ name: '成本（对数轴）', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
+    yAxis: logY({ name: '成本（对数轴）', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
     series: [
       { name: '转换成本', type: 'line', smooth: true, symbol: 'none', data: cost,
         lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.07)' },
@@ -156,7 +156,7 @@ export default function Page() {
 
   // —— 图3：制度 vs 技术锁定对照（分组 bar，非堆叠） ——
   const contrastOpt = {
-    legend: { data: ['制度锁定', '技术锁定'], top: 0, textStyle: { color: '#93a1b5', fontSize: 10 } },
+    legend: { data: ['制度锁定', '技术锁定'], top: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
     grid: { ...GRID, top: 30 },
     xAxis: categoryX(CONTRAST_DIMS),

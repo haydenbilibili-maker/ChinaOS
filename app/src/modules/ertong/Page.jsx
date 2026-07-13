@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import ErtongPanel from './ErtongPanel.jsx';
 import './ertong.css';
 
@@ -11,13 +11,15 @@ import './ertong.css';
  */
 export default function ErtongPage() {
   return (
-    <div className="ertong-page">
-      <PageHeader
-        badge="GY-54 · 人群画像分层"
-        title="流动与留守儿童"
-        subtitle="亲代进程缺失/迁移的子进程 · 监护链断裂或受限"
-      />
+    <GySliceShell
+      badge="GY-54 · 人群画像分层"
+      title="流动与留守儿童"
+      subtitle="亲代进程缺失/迁移的子进程 · 监护链断裂或受限"
+      appId="et-app"
+      moduleId="ertong"
+      className="ertong-page"
+    >
       <ErtongPanel />
-    </div>
+    </GySliceShell>
   );
 }

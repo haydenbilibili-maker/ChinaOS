@@ -62,7 +62,7 @@ export default function Page() {
     yAxis: valueY({ name: '万人' }),
     series: [
       { name: '预备役', type: 'bar', stack: 'r', barWidth: 22, data: [50, 48, 45, 42, 40], itemStyle: { color: '#c41e3a' } },
-      { name: '民兵', type: 'bar', stack: 'r', data: [800, 750, 700, 680, 650], itemStyle: { color: '#27324a' } },
+      { name: '民兵', type: 'bar', stack: 'r', data: [800, 750, 700, 680, 650], itemStyle: { color: AXIS.lineStyle.color } },
     ],
   }), []);
 
@@ -85,7 +85,7 @@ export default function Page() {
         : domain === 'newdomain' ? [60, 68, 72, 65, 85, 88]
         : [78, 80, 72, 85, 75, 62],
       itemStyle: { color: d.accent, borderRadius: 3 },
-      label: { show: true, position: 'top', color: '#93a1b5', fontSize: 9 },
+      label: { show: true, position: 'top', color: LABEL.color, fontSize: 9 },
     }],
   }), [domain, d]);
 

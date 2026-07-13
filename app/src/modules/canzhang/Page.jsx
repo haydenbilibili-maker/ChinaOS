@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import CanzhangPanel from './CanzhangPanel.jsx';
 import './canzhang.css';
 
@@ -8,13 +8,15 @@ import './canzhang.css';
  */
 export default function CanzhangPage() {
   return (
-    <div className="canzhang-page">
-      <PageHeader
-        badge="GY-18 · 人群画像分层"
-        title="残障人群 · 可见性的零点"
-        subtitle="未挂载设备 · 没有驱动的外设"
-      />
+    <GySliceShell
+      badge="GY-18 · 人群画像分层"
+      title="残障人群 · 可见性的零点"
+      subtitle="未挂载设备 · 没有驱动的外设"
+      appId="cz-app"
+      moduleId="canzhang"
+      className="canzhang-page"
+    >
       <CanzhangPanel />
-    </div>
+    </GySliceShell>
   );
 }

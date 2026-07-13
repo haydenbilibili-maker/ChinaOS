@@ -148,13 +148,13 @@ export default function Page() {
   const optW = sweep.xs[optIdx];
 
   const chart = {
-    legend: { data: ['委托总成本', '代理人努力', '行为扭曲'], textStyle: { color: '#93a1b5' }, top: 0 },
+    legend: { data: ['委托总成本', '代理人努力', '行为扭曲'], textStyle: { color: LABEL.color }, top: 0 },
     grid: { left: 44, right: 44, top: 30, bottom: 28 },
     tooltip: { trigger: 'axis' },
-    xAxis: { type: 'category', name: '激励比例 %', nameTextStyle: { color: '#93a1b5' }, data: sweep.xs, axisLine: { lineStyle: { color: '#27324a' } } },
+    xAxis: { type: 'category', name: '激励比例 %', nameTextStyle: { color: LABEL.color }, data: sweep.xs, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
     yAxis: [
-      { type: 'value', name: '成本', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLine: { lineStyle: { color: '#27324a' } } },
-      { type: 'value', name: '努力/扭曲', max: 100, splitLine: { show: false }, axisLine: { lineStyle: { color: '#27324a' } } },
+      { type: 'value', name: '成本', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
+      { type: 'value', name: '努力/扭曲', max: 100, splitLine: { show: false }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
     ],
     series: [
       { name: '委托总成本', type: 'line', smooth: true, data: sweep.cost, lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.08)' },
@@ -170,7 +170,7 @@ export default function Page() {
     const fidelity = LEVELS.map((_, i) => Math.round(100 * Math.pow(retain, i) * 10) / 10);
     const weak = LEVELS.map((_, i) => Math.round(100 * Math.pow(0.66, i) * 10) / 10);
     return {
-      legend: { data: ['当前参数下保真度', '弱治理基准(66%/级)'], textStyle: { color: '#93a1b5' }, top: 0 },
+      legend: { data: ['当前参数下保真度', '弱治理基准(66%/级)'], textStyle: { color: LABEL.color }, top: 0 },
       tooltip: { trigger: 'axis', valueFormatter: (v) => v + '%' },
       grid: { ...GRID, top: 30, right: 24 },
       xAxis: categoryX(LEVELS),

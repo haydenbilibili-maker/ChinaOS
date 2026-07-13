@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import JieduPanel from './JieduPanel.jsx';
 import './jiedu.css';
 
@@ -10,13 +10,15 @@ import './jiedu.css';
  */
 export default function JieduPage() {
   return (
-    <div className="jiedu-page">
-      <PageHeader
-        badge="GY-49 · 人群画像分层"
-        title="戒毒与社区康复人员"
-        subtitle="被标记需修复的进程 · 残留标记与复发风险"
-      />
+    <GySliceShell
+      badge="GY-49 · 人群画像分层"
+      title="戒毒与社区康复人员"
+      subtitle="被标记需修复的进程 · 残留标记与复发风险"
+      appId="jd-app"
+      moduleId="jiedu"
+      className="jiedu-page"
+    >
       <JieduPanel />
-    </div>
+    </GySliceShell>
   );
 }

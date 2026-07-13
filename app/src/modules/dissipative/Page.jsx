@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ============================================================================
@@ -140,7 +140,7 @@ export default function Page() {
 
   const simOpt = {
     tooltip: { trigger: 'axis' },
-    legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+    legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
     grid: { left: 36, right: 16, top: 30, bottom: 24 },
     xAxis: categoryX(sim.order.map((_, i) => `t${i}`), { interval: 3 }),
     yAxis: valueY({ max: 100, min: 0 }),
@@ -162,7 +162,7 @@ export default function Page() {
     tooltip: { trigger: 'axis', formatter: (p) => `${p[0].name} 年：采用率 ${p[0].value}%` },
     grid: { left: 40, right: 16, top: 24, bottom: 24 },
     xAxis: categoryX(FLUCT_YEARS),
-    yAxis: valueY({ max: 100, name: '采用率 %', nameTextStyle: { color: '#93a1b5' } }),
+    yAxis: valueY({ max: 100, name: '采用率 %', nameTextStyle: { color: LABEL.color } }),
     series: [{
       type: 'line', smooth: true, data: FLUCT_ADOPT, symbol: 'circle', symbolSize: 7,
       lineStyle: { color: '#10b981', width: 2.5 }, itemStyle: { color: '#10b981' },

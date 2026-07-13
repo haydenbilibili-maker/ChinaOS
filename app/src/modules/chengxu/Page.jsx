@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import ChengxuPanel from './ChengxuPanel.jsx';
 import './chengxu.css';
 
@@ -8,13 +8,15 @@ import './chengxu.css';
  */
 export default function ChengxuPage() {
   return (
-    <div className="chengxu-page">
-      <PageHeader
-        badge="GY-28 · 人群画像分层"
-        title="程序员与大厂白领"
-        subtitle="自我弃用的进程 · 写自己 deprecation 的人"
-      />
+    <GySliceShell
+      badge="GY-28 · 人群画像分层"
+      title="程序员与大厂白领"
+      subtitle="自我弃用的进程 · 写自己 deprecation 的人"
+      appId="cx-app"
+      moduleId="chengxu"
+      className="chengxu-page"
+    >
       <ChengxuPanel />
-    </div>
+    </GySliceShell>
   );
 }

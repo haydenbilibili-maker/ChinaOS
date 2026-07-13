@@ -1,3 +1,4 @@
+import { AXIS, LABEL } from '../shared/chartHelpers.js';
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Grid, Stat, CrossLinks } from '../../app/ui.jsx';
@@ -60,7 +61,7 @@ export default function HandongSandbox() {
 
   const industryPieOption = useMemo(() => ({
     tooltip: { trigger: 'item' },
-    legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 } },
+    legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
     series: [{
       type: 'pie', radius: ['40%', '68%'],
       data: [
@@ -68,14 +69,14 @@ export default function HandongSandbox() {
         { name: '第二产业', value: config.industryMix.secondary, itemStyle: { color: '#c41e3a' } },
         { name: '第三产业', value: config.industryMix.tertiary, itemStyle: { color: '#22d3ee' } },
       ],
-      label: { color: '#93a1b5', fontSize: 10 },
+      label: { color: LABEL.color, fontSize: 10 },
     }],
   }), [config.industryMix]);
 
   const radarOption = useMemo(() => ({
     radar: {
       indicator: governanceScores.map((s) => ({ name: s.domain, max: 100 })),
-      axisName: { color: '#93a1b5', fontSize: 10 },
+      axisName: { color: LABEL.color, fontSize: 10 },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       splitArea: { show: false },
     },

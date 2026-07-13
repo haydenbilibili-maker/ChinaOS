@@ -22,7 +22,6 @@ export default function TizhineiPanel() {
   return (
     <div className="tizhinei-module-wrap">
       <div
-        id="tz-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

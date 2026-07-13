@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
+import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 /** @deprecated 已并入政令文库 · 保留路由重定向 */
 export default function Page() {

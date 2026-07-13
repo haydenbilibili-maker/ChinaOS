@@ -125,12 +125,12 @@ const TIMELINE = [
 const POOL_YEARS = ['2015', '2017', '2019', '2021', '2023', '2025E'];
 const poolTrend = {
   tooltip: { trigger: 'axis' },
-  legend: { data: ['灵活就业人数（亿人）', '城镇就业总量（亿人）', '灵活就业占比（%）'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+  legend: { data: ['灵活就业人数（亿人）', '城镇就业总量（亿人）', '灵活就业占比（%）'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
   grid: { left: 40, right: 44, top: 32, bottom: 28 },
   xAxis: categoryX(POOL_YEARS),
   yAxis: [
-    valueY({ name: '亿人', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
-    valueY({ name: '%', max: 60, nameTextStyle: { color: '#93a1b5', fontSize: 10 }, splitLine: { show: false } }),
+    valueY({ name: '亿人', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
+    valueY({ name: '%', max: 60, nameTextStyle: { color: LABEL.color, fontSize: 10 }, splitLine: { show: false } }),
   ],
   series: [
     { name: '灵活就业人数（亿人）', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [1.1, 1.4, 1.7, 2.0, 2.2, 2.4], lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.08)' } },
@@ -142,12 +142,12 @@ const poolTrend = {
 // 算法治理张力：配送时限压缩 vs 事故率（双轴，自写内联）
 const algoTension = {
   tooltip: { trigger: 'axis' },
-  legend: { data: ['平均配送时限（分钟）', '骑手交通事故率指数'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+  legend: { data: ['平均配送时限（分钟）', '骑手交通事故率指数'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
   grid: { left: 40, right: 44, top: 32, bottom: 28 },
   xAxis: categoryX(['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023']),
   yAxis: [
-    valueY({ name: '分钟', min: 20, nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
-    valueY({ name: '指数', nameTextStyle: { color: '#93a1b5', fontSize: 10 }, splitLine: { show: false } }),
+    valueY({ name: '分钟', min: 20, nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
+    valueY({ name: '指数', nameTextStyle: { color: LABEL.color, fontSize: 10 }, splitLine: { show: false } }),
   ],
   series: [
     { name: '平均配送时限（分钟）', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [38, 35, 32, 30, 28, 29, 30, 31], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' }, markPoint: { symbolSize: 1, label: { color: '#e8a317', fontSize: 10, formatter: '2021 算法新规\n时限回调' }, data: [{ coord: ['2021', 29] }] } },
@@ -171,7 +171,7 @@ const healthRadar = radarOpt(HEALTH_DIMS, [88, 52, 34, 30, 46, 25], { name: '系
 // 平台抽成趋势（监管介入前后）
 const takeRate = {
   tooltip: { trigger: 'axis' },
-  legend: { data: ['网约车平均抽成（%）', '外卖综合费率（%）'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+  legend: { data: ['网约车平均抽成（%）', '外卖综合费率（%）'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
   grid: GRID,
   xAxis: categoryX(['2018', '2019', '2020', '2021', '2022', '2023', '2024E']),
   yAxis: valueY({ max: 35 }),
@@ -189,7 +189,7 @@ const jobDistPie = {
   series: [{
     type: 'pie', radius: ['50%', '85%'], avoidLabelOverlap: false,
     itemStyle: { borderRadius: 2, borderColor: 'transparent', borderWidth: 2 },
-    label: { show: true, color: '#93a1b5', fontSize: 11 },
+    label: { show: true, color: LABEL.color, fontSize: 11 },
     data: [
       { value: 40, name: '外卖配送与物流', itemStyle: { color: '#c41e3a' } },
       { value: 25, name: '直播、自媒体与内容', itemStyle: { color: '#e8a317' } },
@@ -201,16 +201,16 @@ const jobDistPie = {
 const algRadar = {
   radar: {
     indicator: [{ name: '定价权分配', max: 100 }, { name: '劳动时间限制', max: 100 }, { name: '派单算法中立', max: 100 }, { name: '评价体系公正', max: 100 }, { name: '个人数据可携', max: 100 }, { name: '争议申诉效率', max: 100 }],
-    axisName: { color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false },
+    axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false },
   },
   series: [{ type: 'radar', data: [{ value: [65, 88, 75, 82, 40, 85], name: '治理水位', lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.1)' } }] }],
 };
 const bufferLogic = {
   tooltip: { trigger: 'axis' },
-  legend: { data: ['劳动力流入量', '就业吸纳耐性'], textStyle: { color: '#93a1b5', fontSize: 11 }, top: 0 },
+  legend: { data: ['劳动力流入量', '就业吸纳耐性'], textStyle: { color: LABEL.color, fontSize: 11 }, top: 0 },
   grid: { left: 44, right: 24, top: 32, bottom: 28 },
-  xAxis: { type: 'category', data: ['制造业低迷期', '服务业复苏期', '出口波动期', '节日需求峰值'], axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
-  yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5' } },
+  xAxis: { type: 'category', data: ['制造业低迷期', '服务业复苏期', '出口波动期', '节日需求峰值'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+  yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color } },
   series: [
     { name: '劳动力流入量', type: 'bar', data: [180, 120, 210, 150], barWidth: 22, itemStyle: { color: '#c41e3a', borderRadius: 3 } },
     { name: '就业吸纳耐性', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [90, 85, 95, 88], lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' } },

@@ -22,7 +22,6 @@ export default function WangyuePanel() {
   return (
     <div className="wangyue-module-wrap">
       <div
-        id="wy-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

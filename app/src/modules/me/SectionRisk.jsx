@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { Card } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, LABEL, GRID_LINE, CHART_SERIES_PALETTE } from '../shared/chartHelpers.js';
 
 // ============================================================================
 // ⑲ 风险地图 · 概率 × 影响
@@ -10,7 +11,6 @@ import EChart from '../../lib/viz/EChart.jsx';
 // 口径：私享自画像 · 本人自述 · 自评示意标定 · 非预测非承诺。
 // ============================================================================
 
-const AX = { line: '#27324a', text: '#93a1b5', split: 'rgba(148,163,184,0.1)' };
 const MID = 50; // 象限分割线
 
 // —— 风险点（prob/impact 0-100，自评示意）——
@@ -36,24 +36,24 @@ function scatterOption() {
     },
     xAxis: {
       type: 'value', min: 0, max: 100, name: '发生概率 →', nameGap: 26,
-      nameTextStyle: { color: AX.text, fontSize: 10 },
-      axisLine: { lineStyle: { color: AX.line } },
-      axisLabel: { color: AX.text, fontSize: 10 },
-      splitLine: { lineStyle: { color: AX.split } },
+      nameTextStyle: { color: LABEL.color, fontSize: 10 },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
+      axisLabel: { color: LABEL.color, fontSize: 10 },
+      splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } },
     },
     yAxis: {
       type: 'value', min: 0, max: 100, name: '影响烈度 ↑', nameGap: 18,
-      nameTextStyle: { color: AX.text, fontSize: 10, align: 'left' },
-      axisLine: { lineStyle: { color: AX.line } },
-      axisLabel: { color: AX.text, fontSize: 10 },
-      splitLine: { lineStyle: { color: AX.split } },
+      nameTextStyle: { color: LABEL.color, fontSize: 10, align: 'left' },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
+      axisLabel: { color: LABEL.color, fontSize: 10 },
+      splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } },
     },
     series: [{
       type: 'scatter',
       symbolSize: (v) => 14 + (v[0] * v[1]) / 320,
       label: {
         show: true, position: 'right', formatter: (p) => p.data.name,
-        color: AX.text, fontSize: 10,
+        color: LABEL.color, fontSize: 10,
       },
       labelLayout: { hideOverlap: true },
       data: RISKS.map((r) => ({

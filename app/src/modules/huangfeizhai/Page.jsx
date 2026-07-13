@@ -5,6 +5,7 @@ import { modulesByGroup } from '../../app/registry.js';
 import { HUANGFEIZHAI_GROUP_ID } from '../../domain/huangfeizhai.ts';
 import { useHuangfeizhaiAuth } from '../../lib/huangfeizhai/useHuangfeizhaiAuth.js';
 import './huangfeizhai.css';
+import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 const ENTRIES = [
   {
@@ -71,6 +72,8 @@ export default function HuangfeizhaiHubPage() {
           本斋聚合全部私人模块。
         </p>
       </footer>
+      <ModuleFooter moduleId="huangfeizhai" />
+
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { PageHeader } from '../../app/ui.jsx';
 import AttributionAnalyzer from './AttributionAnalyzer.jsx';
 import './attribution.css';
+import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 /** 三层归因分析器 · 路线/决策/执行权力落点判定 */
 export default function AttributionPage() {
@@ -12,6 +13,8 @@ export default function AttributionPage() {
         subtitle="路线 / 决策 / 执行 · 摆对被告席 · 区分「没做成」与「没权做」 · 规则判定非 LLM"
       />
       <AttributionAnalyzer />
+      <ModuleFooter moduleId="attribution" />
+
     </div>
   );
 }

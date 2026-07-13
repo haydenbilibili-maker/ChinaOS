@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
-import { categoryX, valueY, GRID, LEGEND, stackedBarOpt, radarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, LEGEND, stackedBarOpt, radarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 
 // ============================================================================
 // 资本市场 · 耐心资本 / 注册制 / 中长期资金入市
@@ -59,7 +59,7 @@ export default function Page() {
     categories: ['2015', '2018', '2021', '2024', '2026E'],
     series: [
       { name: '直接融资（股+债）', data: [18, 22, 28, 32, 36], itemStyle: { color: '#c41e3a' } },
-      { name: '间接融资（贷款）', data: [82, 78, 72, 68, 64], itemStyle: { color: '#27324a' } },
+      { name: '间接融资（贷款）', data: [82, 78, 72, 68, 64], itemStyle: { color: AXIS.lineStyle.color } },
     ],
   });
 

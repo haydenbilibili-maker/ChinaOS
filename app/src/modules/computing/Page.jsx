@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ---------------------------------------------------------------------------
@@ -110,10 +110,10 @@ const demandDonut = donutOpt([
 
 /** 中美算力竞争力雷达（双系列 · 自写内联，radarOpt 仅支持单系列） */
 const rivalryRadar = {
-  legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+  legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
   radar: {
     indicator: ['总规模', '智算规模', '芯片自主', '网络时延', '绿电比例', '调度能力'].map((n) => ({ name: n, max: 100 })),
-    axisName: { color: '#93a1b5', fontSize: 10 },
+    axisName: { color: LABEL.color, fontSize: 10 },
     splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
     axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
     splitArea: { show: false },
@@ -130,12 +130,12 @@ const rivalryRadar = {
 /** 总算力 + 智算占比 双轴 */
 const scaleTrendOpt = {
   tooltip: { trigger: 'axis' },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
   grid: { left: 48, right: 48, top: 30, bottom: 24 },
   xAxis: categoryX(YEARS),
   yAxis: [
-    valueY({ name: 'EFLOPS', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
-    valueY({ max: 60, splitLine: { show: false }, axisLabel: { formatter: '{value}%' }, name: '智算占比', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
+    valueY({ name: 'EFLOPS', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
+    valueY({ max: 60, splitLine: { show: false }, axisLabel: { formatter: '{value}%' }, name: '智算占比', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
   ],
   series: [
     { name: '总算力(EFLOPS)', type: 'bar', barWidth: 18, data: [134, 150, 202, 280, 380, 520], itemStyle: { color: '#22d3ee', borderRadius: 3 } },
@@ -146,7 +146,7 @@ const scaleTrendOpt = {
 /** 供需缺口 · 对数轴（训练需求指数级 vs 国产供给线性爬坡） */
 const gapOpt = {
   tooltip: { trigger: 'axis' },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
   grid: { left: 48, right: 16, top: 30, bottom: 24 },
   xAxis: categoryX(YEARS),
   yAxis: logY(),
@@ -170,12 +170,12 @@ const hubMixOpt = stackedBarOpt({
 /** 芯片生态 vs 出货 bar */
 const chipBarOpt = {
   tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
   grid: { left: 110, right: 36, top: 30, bottom: 16 },
   xAxis: valueY({ max: 100 }),
   yAxis: categoryX(CHIP_VENDORS.map((v) => v.name)),
   series: [
-    { name: '软件生态成熟度', type: 'bar', barWidth: 10, data: CHIP_VENDORS.map((v) => ({ value: v.eco, itemStyle: { color: v.accent, borderRadius: 3 } })), label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 } },
+    { name: '软件生态成熟度', type: 'bar', barWidth: 10, data: CHIP_VENDORS.map((v) => ({ value: v.eco, itemStyle: { color: v.accent, borderRadius: 3 } })), label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 } },
     { name: '国内智算出货份额(%)', type: 'bar', barWidth: 10, data: CHIP_VENDORS.map((v) => v.ship), itemStyle: { color: 'rgba(148,163,184,0.45)', borderRadius: 3 } },
   ],
 };
@@ -208,7 +208,7 @@ export default function Page() {
   /** 所选算力类型 · 供需对比 */
   const typeGapOpt = useMemo(() => ({
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-    legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+    legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
     grid: { left: 40, right: 16, top: 30, bottom: 24 },
     xAxis: categoryX(YEARS),
     yAxis: valueY(),
@@ -230,7 +230,7 @@ export default function Page() {
         value: n.value,
         itemStyle: { color: n.group === hubGroup ? G.accent : 'rgba(148,163,184,0.35)', borderRadius: 3 },
       })),
-      label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 },
+      label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 },
     }],
   }), [hubGroup, G]);
 

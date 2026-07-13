@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import YiyiPanel from './YiyiPanel.jsx';
 import './yiyi.css';
 
@@ -8,13 +8,15 @@ import './yiyi.css';
  */
 export default function YiyiPage() {
   return (
-    <div className="yiyi-page">
-      <PageHeader
-        badge="GY-13 · 人群画像分层"
-        title="信仰人群"
-        subtitle="无主端口 · 被许可的玄学"
-      />
+    <GySliceShell
+      badge="GY-13 · 人群画像分层"
+      title="信仰人群"
+      subtitle="无主端口 · 被许可的玄学"
+      appId="ym-app"
+      moduleId="yiyi"
+      className="yiyi-page"
+    >
       <YiyiPanel />
-    </div>
+    </GySliceShell>
   );
 }

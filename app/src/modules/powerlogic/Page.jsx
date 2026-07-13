@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, GRID, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ── 三内核切换（保留原数据）─────────────────────────────
@@ -75,7 +75,7 @@ const TIMELINE = [
 
 // ── 静态图表数据 ──────────────────────────────────────
 const costTrend = {
-  legend: { data: ['统治成本指数', '技术介入度'], textStyle: { color: '#93a1b5' }, top: 0 },
+  legend: { data: ['统治成本指数', '技术介入度'], textStyle: { color: LABEL.color }, top: 0 },
   grid: { left: 44, right: 16, top: 30, bottom: 24 },
   xAxis: categoryX(['2000', '2008', '2016', '2024']),
   yAxis: valueY(),
@@ -102,12 +102,12 @@ const dualRadarOpt = {
       { name: '汲取', max: 100 }, { name: '渗透', max: 100 }, { name: '动员', max: 100 },
       { name: '监控', max: 100 }, { name: '反馈', max: 100 }, { name: '纠错', max: 100 },
     ],
-    axisName: { color: '#93a1b5', fontSize: 10 },
+    axisName: { color: LABEL.color, fontSize: 10 },
     splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
     axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
     splitArea: { show: false },
   },
-  legend: { textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+  legend: { textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
   series: [{
     type: 'radar',
     data: [

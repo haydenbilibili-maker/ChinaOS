@@ -22,7 +22,6 @@ export default function BinzangPanel() {
   return (
     <div className="binzang-module-wrap">
       <div
-        id="bz-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

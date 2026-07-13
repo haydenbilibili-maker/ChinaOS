@@ -170,18 +170,18 @@ const rdBar = {
   series: [{
     type: 'bar', barWidth: 26,
     data: [4.9, 3.5, 3.3, 3.1, 2.6, 2.2, 0.7].map((v, i) => ({ value: v, itemStyle: { color: ['#a78bfa', '#22d3ee', '#e8a317', '#10b981', '#c41e3a', '#f472b6', '#93a1b5'][i], borderRadius: 4 } })),
-    label: { show: true, position: 'top', formatter: '{c}%', color: '#93a1b5', fontSize: 11 },
+    label: { show: true, position: 'top', formatter: '{c}%', color: LABEL.color, fontSize: 11 },
   }],
 };
 
 // 系统基准雷达（保留原三国版）
 const sysRadar = {
-  legend: { data: ['中国', '美国', '印度'], textStyle: { color: '#93a1b5', fontSize: 11 }, top: 0 },
+  legend: { data: ['中国', '美国', '印度'], textStyle: { color: LABEL.color, fontSize: 11 }, top: 0 },
   radar: {
     indicator: [{ name: '增速动能', max: 100 }, { name: '人口年轻度', max: 100 }, { name: '杠杆空间', max: 100 }, { name: '制造份额', max: 100 }],
-    radius: '62%', axisName: { color: '#93a1b5' },
+    radius: '62%', axisName: { color: LABEL.color },
     splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false },
-    axisLine: { lineStyle: { color: '#27324a' } },
+    axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
   },
   series: [{ type: 'radar', data: [
     { value: [72, 60, 70, 95], name: '中国', lineStyle: { color: '#c41e3a' }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.12)' } },
@@ -200,13 +200,13 @@ export default function Page() {
 
   // 多维国力雷达：中国 vs 选中国（双系列内联）
   const vsRadar = useMemo(() => ({
-    legend: { data: ['中国', peer.label], textStyle: { color: '#93a1b5', fontSize: 11 }, top: 0 },
+    legend: { data: ['中国', peer.label], textStyle: { color: LABEL.color, fontSize: 11 }, top: 0 },
     tooltip: { trigger: 'item' },
     radar: {
       indicator: RADAR_DIMS.map((n) => ({ name: n, max: 100 })),
-      radius: '62%', axisName: { color: '#93a1b5', fontSize: 10 },
+      radius: '62%', axisName: { color: LABEL.color, fontSize: 10 },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false },
-      axisLine: { lineStyle: { color: '#27324a' } },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
     },
     series: [{ type: 'radar', data: [
       { value: CHINA_RADAR, name: '中国', lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.14)' } },

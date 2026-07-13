@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import LiushouPanel from './LiushouPanel.jsx';
 import './liushou.css';
 
@@ -8,13 +8,15 @@ import './liushou.css';
  */
 export default function LiushouPage() {
   return (
-    <div className="liushou-page">
-      <PageHeader
-        badge="GY-30 · 人群画像分层"
-        title="农村留守老人"
-        subtitle="断电的边缘节点 · 被抽走供电的留守者"
-      />
+    <GySliceShell
+      badge="GY-30 · 人群画像分层"
+      title="农村留守老人"
+      subtitle="断电的边缘节点 · 被抽走供电的留守者"
+      appId="ll-app"
+      moduleId="liushou"
+      className="liushou-page"
+    >
       <LiushouPanel />
-    </div>
+    </GySliceShell>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 /* ──────────────────────────────────────────────────────────────────────────
@@ -114,8 +114,8 @@ export default function Page() {
 
   /* 全球行政效能对比雷达（保留原双系列对比） */
   const efficacyCompare = {
-    legend: { data: ['中国', '发达经济体均值'], textStyle: { color: '#93a1b5' }, top: 0 },
-    radar: { indicator: [{ name: '动员广度', max: 100 }, { name: '执行速度', max: 100 }, { name: '资源调配', max: 100 }, { name: '政策修正', max: 100 }, { name: '透明度', max: 100 }, { name: '容错弹性', max: 100 }], axisName: { color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
+    legend: { data: ['中国', '发达经济体均值'], textStyle: { color: LABEL.color }, top: 0 },
+    radar: { indicator: [{ name: '动员广度', max: 100 }, { name: '执行速度', max: 100 }, { name: '资源调配', max: 100 }, { name: '政策修正', max: 100 }, { name: '透明度', max: 100 }, { name: '容错弹性', max: 100 }], axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
     series: [{ type: 'radar', data: [
       { value: [98, 92, 95, 80, 55, 60], name: '中国', lineStyle: { color: rel.accent }, areaStyle: { color: 'rgba(196,30,58,0.12)' } },
       { value: [60, 55, 65, 80, 88, 82], name: '发达经济体均值', lineStyle: { color: '#22d3ee' } },
@@ -143,7 +143,7 @@ export default function Page() {
   const addOnPressure = {
     grid: GRID,
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-    legend: { textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     xAxis: categoryX(['中央', '省', '市', '县', '基层']),
     yAxis: valueY(),
     series: [

@@ -1,12 +1,13 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import * as Lucide from 'lucide-react';
-import { Card, Grid, Stat } from '../../app/ui.jsx';
+import { Card, Grid, Stat, DistBar } from '../../app/ui.jsx';
 import FigureAvatar from '../../lib/ui/FigureAvatar.jsx';
 import { figureAvatarProps, prefetchFigureAvatars } from '../../lib/ui/figureAvatarResolve.js';
 import AcademicianBadge from '../../lib/ui/AcademicianBadge.jsx';
 import { isAcademician } from '../../lib/db/academicianCommon.js';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, LABEL } from '../shared/chartHelpers.js';
 import { useCulturalElite } from '../../lib/db/useDataset.js';
 import * as DB from '../../lib/db/localdb.js';
 import TalentDetailPanel, { ExpandableText } from './TalentDetailPanel.jsx';
@@ -83,24 +84,6 @@ function honorTags(r) {
 function worksPreview(works, max = 48) {
   if (!works) return '';
   return works.length <= max ? works : `${works.slice(0, max)}…`;
-}
-
-function DistBars({ data, color = '#a78bfa', max, onPick, active }) {
-  const top = max || (data[0]?.[1] || 1);
-  return (
-    <div className="space-y-1.5">
-      {data.map(([k, n]) => (
-        <button key={k} type="button" onClick={onPick ? () => onPick(k) : undefined} className="w-full flex items-center gap-2 text-left"
-          style={{ cursor: onPick ? 'pointer' : 'default', opacity: active && active !== k ? 0.45 : 1 }}>
-          <span className="text-[11px] mono shrink-0 text-right" style={{ width: 70, color: active === k ? color : 'var(--text-secondary)' }}>{k}</span>
-          <span className="flex-1 rounded-sm" style={{ height: 13, background: 'var(--bg-base)', position: 'relative', overflow: 'hidden' }}>
-            <span style={{ position: 'absolute', inset: 0, width: `${(n / top) * 100}%`, background: color, opacity: 0.75, borderRadius: 2 }} />
-          </span>
-          <span className="text-[11px] mono shrink-0" style={{ width: 26, color: 'var(--text-tertiary)' }}>{n}</span>
-        </button>
-      ))}
-    </div>
-  );
 }
 
 function EliteCard({ r, on, onClick, dense = false }) {
@@ -267,7 +250,7 @@ export default function CulturalEliteSection() {
   const disciplineChart = {
     grid: { left: 100, right: 16, top: 12, bottom: 24 },
     xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
-    yAxis: { type: 'category', data: distDiscipline.slice(0, 12).map(([k]) => k).reverse(), axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+    yAxis: { type: 'category', data: distDiscipline.slice(0, 12).map(([k]) => k).reverse(), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     series: [{ type: 'bar', data: distDiscipline.slice(0, 12).map(([, n]) => n).reverse(), barWidth: 14, itemStyle: { color: '#a78bfa', borderRadius: 3 } }],
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
   };
@@ -276,8 +259,8 @@ export default function CulturalEliteSection() {
   const regionChart = regionMapData.length ? {
     tooltip: { trigger: 'item', formatter: '{b}: {c}' },
     grid: { left: 48, right: 16, top: 8, bottom: 24 },
-    xAxis: { type: 'category', data: regionMapData.map((d) => d.name), axisLabel: { color: '#93a1b5', fontSize: 10, rotate: 35 }, axisLine: { lineStyle: { color: '#27324a' } } },
-    yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+    xAxis: { type: 'category', data: regionMapData.map((d) => d.name), axisLabel: { color: LABEL.color, fontSize: 10, rotate: 35 }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
+    yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     series: [{ type: 'bar', data: regionMapData.map((d) => d.value), barWidth: '55%', itemStyle: { color: '#22d3ee', borderRadius: [3, 3, 0, 0] } }],
   } : null;
 
@@ -476,9 +459,9 @@ export default function CulturalEliteSection() {
                 {regionChart && <Card title="地域分布"><EChart option={regionChart} style={{ height: 260 }} /></Card>}
               </Grid>
               <Grid cols={2}>
-                {decades.length > 0 && <Card title="出生年代"><DistBars data={distDecade} color="#e8a317" onPick={(k) => setDecade(decade === k ? '' : k)} active={decade} /></Card>}
-                {distHonor.length > 0 && <Card title="荣誉类型"><DistBars data={distHonor.slice(0, 10)} color="#d4af37" onPick={(k) => setHonor(honor === k ? '' : k)} active={honor} /></Card>}
-                <Card title="学科（点选筛选）"><DistBars data={distDiscipline.slice(0, 10)} onPick={(k) => setDiscipline(discipline === k ? '' : k)} active={discipline} /></Card>
+                {decades.length > 0 && <Card title="出生年代"><DistBar data={distDecade} color="#e8a317" onPick={(k) => setDecade(decade === k ? '' : k)} active={decade} /></Card>}
+                {distHonor.length > 0 && <Card title="荣誉类型"><DistBar data={distHonor.slice(0, 10)} color="#d4af37" onPick={(k) => setHonor(honor === k ? '' : k)} active={honor} /></Card>}
+                <Card title="学科（点选筛选）"><DistBar data={distDiscipline.slice(0, 10)} onPick={(k) => setDiscipline(discipline === k ? '' : k)} active={discipline} /></Card>
               </Grid>
               <p className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>// 数据边界：{CULTURAL_ELITE_META.notes}</p>
             </div>

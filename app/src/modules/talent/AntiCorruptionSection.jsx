@@ -1,7 +1,8 @@
+import { AXIS, LABEL } from '../shared/chartHelpers.js';
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import * as Lucide from 'lucide-react';
-import { Card, Grid, Stat } from '../../app/ui.jsx';
+import { Card, Grid, Stat, DistBar } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { useDataset } from '../../lib/db/useDataset.js';
 import * as DB from '../../lib/db/localdb.js';
@@ -44,24 +45,6 @@ function tally(arr, keyFn) {
   const m = new Map();
   arr.forEach((r) => { const k = keyFn(r); if (k) m.set(k, (m.get(k) || 0) + 1); });
   return [...m.entries()].sort((a, b) => b[1] - a[1]);
-}
-
-function DistBars({ data, color = '#c41e3a', max, onPick, active }) {
-  const top = max || (data[0]?.[1] || 1);
-  return (
-    <div className="space-y-1.5">
-      {data.map(([k, n]) => (
-        <button key={k} onClick={onPick ? () => onPick(k) : undefined} className="w-full flex items-center gap-2 text-left"
-          style={{ cursor: onPick ? 'pointer' : 'default', opacity: active && active !== k ? 0.45 : 1 }}>
-          <span className="text-[11px] mono shrink-0 text-right" style={{ width: 56, color: active === k ? color : 'var(--text-secondary)' }}>{k}</span>
-          <span className="flex-1 rounded-sm" style={{ height: 13, background: 'var(--bg-base)', position: 'relative', overflow: 'hidden' }}>
-            <span style={{ position: 'absolute', inset: 0, width: `${(n / top) * 100}%`, background: color, opacity: 0.75, borderRadius: 2 }} />
-          </span>
-          <span className="text-[11px] mono shrink-0" style={{ width: 26, color: 'var(--text-tertiary)' }}>{n}</span>
-        </button>
-      ))}
-    </div>
-  );
 }
 
 function TypicalBadge() {
@@ -185,7 +168,7 @@ export default function AntiCorruptionSection() {
 
   const yearChart = {
     grid: { left: 40, right: 12, top: 12, bottom: 24 },
-    xAxis: { type: 'category', data: distYear.map(([y]) => y).reverse(), axisLine: { lineStyle: { color: '#27324a' } } },
+    xAxis: { type: 'category', data: distYear.map(([y]) => y).reverse(), axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
     yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
     series: [{ type: 'bar', data: distYear.map(([, n]) => n).reverse(), barWidth: 18, itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } }],
   };
@@ -344,12 +327,12 @@ export default function AntiCorruptionSection() {
               <div className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>// 历年汇总基于当前筛选 {filtered.length} 条；副省部级及以上力争全覆盖，厅局级仅含全国性典型</div>
               <Grid cols={2}>
                 <Card title="历年官宣数量"><EChart option={yearChart} style={{ height: 240 }} /></Card>
-                <Card title="届别/分期分布"><DistBars data={distBucket} color="#e8a317" onPick={(k) => setBucket(bucket === k ? '' : k)} active={bucket} /></Card>
+                <Card title="届别/分期分布"><DistBar data={distBucket} color="#e8a317" onPick={(k) => setBucket(bucket === k ? '' : k)} active={bucket} /></Card>
               </Grid>
               <Grid cols={3}>
-                <Card title="层级（点选筛选）"><DistBars data={distLevel} onPick={(k) => setLevel(level === k ? '' : k)} active={level} /></Card>
-                <Card title="系统（点选筛选）"><DistBars data={distSector} color="#22d3ee" onPick={(k) => setSector(sector === k ? '' : k)} active={sector} /></Card>
-                <Card title="年份（点选筛选）"><DistBars data={distYear} color="#8b5cf6" onPick={(k) => setYear(year === k ? '' : k)} active={year} /></Card>
+                <Card title="层级（点选筛选）"><DistBar data={distLevel} onPick={(k) => setLevel(level === k ? '' : k)} active={level} /></Card>
+                <Card title="系统（点选筛选）"><DistBar data={distSector} color="#22d3ee" onPick={(k) => setSector(sector === k ? '' : k)} active={sector} /></Card>
+                <Card title="年份（点选筛选）"><DistBar data={distYear} color="#8b5cf6" onPick={(k) => setYear(year === k ? '' : k)} active={year} /></Card>
               </Grid>
               <p className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>// 数据边界：{ANTI_CORRUPTION_META.notes}</p>
             </div>

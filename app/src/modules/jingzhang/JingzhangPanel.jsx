@@ -22,7 +22,6 @@ export default function JingzhangPanel() {
   return (
     <div className="jingzhang-module-wrap">
       <div
-        id="jh-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

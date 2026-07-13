@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import * as Lucide from 'lucide-react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';
 import { IntroCard, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { AS_OF, LEVELS, DOMAINS, INDICATORS, domainScore } from './data.js';
 

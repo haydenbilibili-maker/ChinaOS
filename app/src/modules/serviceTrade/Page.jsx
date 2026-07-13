@@ -62,7 +62,7 @@ export default function Page() {
     yAxis: valueY({ name: '亿美元' }),
     series: [
       { name: '服务出口', type: 'bar', barWidth: 16, data: [2660, 2800, 3200, 3800, 4500], itemStyle: { color: '#c41e3a', borderRadius: 3 } },
-      { name: '服务进口', type: 'bar', barWidth: 16, data: [5200, 4800, 4400, 4200, 4000], itemStyle: { color: '#27324a', borderRadius: 3 } },
+      { name: '服务进口', type: 'bar', barWidth: 16, data: [5200, 4800, 4400, 4200, 4000], itemStyle: { color: AXIS.lineStyle.color, borderRadius: 3 } },
     ],
   }), []);
 
@@ -83,7 +83,7 @@ export default function Page() {
       type: 'bar', barWidth: 18,
       data: seg === 'digital' ? [3200, 280, 185, 95, 420] : [2800, 250, 170, 88, 400],
       itemStyle: { color: s.accent, borderRadius: 3 },
-      label: { show: true, position: 'top', color: '#93a1b5', fontSize: 9 },
+      label: { show: true, position: 'top', color: LABEL.color, fontSize: 9 },
     }],
   }), [seg, s]);
 

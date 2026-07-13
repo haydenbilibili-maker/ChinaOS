@@ -1,10 +1,11 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import * as Lucide from 'lucide-react';
-import { Card, Grid, Stat } from '../../app/ui.jsx';
+import { Card, Grid, Stat, DistBar } from '../../app/ui.jsx';
 import FigureAvatar from '../../lib/ui/FigureAvatar.jsx';
 import { figureAvatarProps, prefetchFigureAvatars } from '../../lib/ui/figureAvatarResolve.js';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, LABEL } from '../shared/chartHelpers.js';
 import { useSelfMedia } from '../../lib/db/useDataset.js';
 import * as DB from '../../lib/db/localdb.js';
 import {
@@ -56,24 +57,6 @@ function tally(arr, keyFn) {
 function preview(text, max = 52) {
   if (!text) return '';
   return text.length <= max ? text : `${text.slice(0, max)}…`;
-}
-
-function DistBars({ data, color = '#f472b6', max, onPick, active, labelFn = (k) => k }) {
-  const top = max || (data[0]?.[1] || 1);
-  return (
-    <div className="space-y-1.5">
-      {data.map(([k, n]) => (
-        <button key={k} type="button" onClick={onPick ? () => onPick(k) : undefined} className="w-full flex items-center gap-2 text-left"
-          style={{ cursor: onPick ? 'pointer' : 'default', opacity: active && active !== k ? 0.45 : 1 }}>
-          <span className="text-[11px] mono shrink-0 text-right" style={{ width: 72, color: active === k ? color : 'var(--text-secondary)' }}>{labelFn(k)}</span>
-          <span className="flex-1 rounded-sm" style={{ height: 13, background: 'var(--bg-base)', position: 'relative', overflow: 'hidden' }}>
-            <span style={{ position: 'absolute', inset: 0, width: `${(n / top) * 100}%`, background: color, opacity: 0.75, borderRadius: 2 }} />
-          </span>
-          <span className="text-[11px] mono shrink-0" style={{ width: 26, color: 'var(--text-tertiary)' }}>{n}</span>
-        </button>
-      ))}
-    </div>
-  );
 }
 
 function MediaCard({ r, on, onClick, dense = false }) {
@@ -195,7 +178,7 @@ export default function SelfMediaSection() {
   const platformChart = {
     grid: { left: 72, right: 16, top: 12, bottom: 24 },
     xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
-    yAxis: { type: 'category', data: distPlatform.slice(0, 10).map(([k]) => SM_PLATFORM_LABEL[k] || k).reverse(), axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+    yAxis: { type: 'category', data: distPlatform.slice(0, 10).map(([k]) => SM_PLATFORM_LABEL[k] || k).reverse(), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     series: [{ type: 'bar', data: distPlatform.slice(0, 10).map(([, n]) => n).reverse(), barWidth: 14, itemStyle: { color: '#f472b6', borderRadius: 3 } }],
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
   };
@@ -339,9 +322,9 @@ export default function SelfMediaSection() {
             <div className="space-y-4 mb-4">
               <Grid cols={2}>
                 <Card title="平台分布"><EChart option={platformChart} style={{ height: Math.max(220, distPlatform.slice(0, 10).length * 22) }} /></Card>
-                <Card title="影响力层级"><DistBars data={distTier} color="#d4af37" onPick={(k) => setTier(tier === k ? '' : k)} active={tier} labelFn={(k) => SM_TIER_LABEL[k] || k} /></Card>
+                <Card title="影响力层级"><DistBar data={distTier} color="#d4af37" onPick={(k) => setTier(tier === k ? '' : k)} active={tier} labelFn={(k) => SM_TIER_LABEL[k] || k} /></Card>
               </Grid>
-              <Card title="垂类（点选筛选）"><DistBars data={distNiche.slice(0, 12)} onPick={(k) => setNiche(niche === k ? '' : k)} active={niche} /></Card>
+              <Card title="垂类（点选筛选）"><DistBar data={distNiche.slice(0, 12)} onPick={(k) => setNiche(niche === k ? '' : k)} active={niche} /></Card>
             </div>
           ) : view === 'grid' ? (
             <div className="grid gap-2 mb-4" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(220px,1fr))', maxHeight: 620, overflowY: 'auto' }}>

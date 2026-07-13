@@ -77,7 +77,7 @@ export default function Page() {
         : region === 'neimeng' ? [2100, 120, 90, 70, 180]
         : [150, 95, 920, 1100, 85],
       itemStyle: { color: r.accent, borderRadius: 3 },
-      label: { show: true, position: 'top', color: '#93a1b5', fontSize: 9 },
+      label: { show: true, position: 'top', color: LABEL.color, fontSize: 9 },
     }],
   }), [region, r]);
 
@@ -85,7 +85,7 @@ export default function Page() {
     categories: ['2010', '2015', '2020', '2025E'],
     series: [
       { name: '边疆九省区 GDP 占比', data: [8.5, 9.2, 9.8, 10.5], itemStyle: { color: '#22d3ee' } },
-      { name: '全国其余地区', data: [91.5, 90.8, 90.2, 89.5], itemStyle: { color: '#27324a' } },
+      { name: '全国其余地区', data: [91.5, 90.8, 90.2, 89.5], itemStyle: { color: AXIS.lineStyle.color } },
     ],
   });
 

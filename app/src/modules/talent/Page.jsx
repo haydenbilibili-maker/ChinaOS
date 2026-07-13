@@ -37,6 +37,7 @@ import { resolveTalentTab, useTalentDeepLink } from '../../lib/talent/routing.js
 import { applyTalentEnrichment } from '../../lib/talent/talentEnrich.js';
 import { buildTalentDetailSections, CrossRefLinks, eventsToTimeline } from '../../lib/talent/detailSections.jsx';
 import { buildDetailFooter, normalizeTags } from '../../lib/talent/metadata.jsx';
+import { AXIS, LABEL, GRID_LINE, CHART_SERIES_PALETTE } from '../shared/chartHelpers.js';
 
 const CUR_YEAR = 2026;
 const short = (p) => (p || '').replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '');
@@ -368,19 +369,17 @@ export default function Page() {
   })();
   const ageBar = {
     grid: { left: 34, right: 12, top: 12, bottom: 22 },
-    xAxis: { type: 'category', data: ageHist.map((b) => b[0]), axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+    xAxis: { type: 'category', data: ageHist.map((b) => b[0]), ...AXIS, axisLabel: { ...LABEL, fontSize: 10 } },
     yAxis: { type: 'value', axisLabel: { color: '#93a1b5', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
     series: [{ type: 'bar', data: ageHist.map((b) => b[1]), barWidth: '60%', itemStyle: { borderRadius: [3, 3, 0, 0], color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: '#c41e3a' }, { offset: 1, color: '#5e0f1d' }] } } }],
   };
 
   // ── 多维图表配置 ──────────────────────────────────────────────
-  const PAL = ['#c41e3a', '#22d3ee', '#e8a317', '#10b981', '#8b5cf6', '#fb923c', '#f0abfc'];
-  const AX = { axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } } };
-  const donut = (data, center = ['34%', '52%']) => ({
+      const donut = (data, center = ['34%', '52%']) => ({
     tooltip: { trigger: 'item', formatter: '{b}<br/>{c} 人 ({d}%)' },
-    legend: { type: 'scroll', orient: 'vertical', right: 2, top: 'center', textStyle: { color: '#93a1b5', fontSize: 10.5 }, itemWidth: 9, itemHeight: 9 },
-    series: [{ type: 'pie', radius: ['44%', '70%'], center, avoidLabelOverlap: true, itemStyle: { borderColor: '#0f1623', borderWidth: 2 }, label: { show: false }, data: data.map(([n, v], i) => ({ name: n, value: v, itemStyle: { color: PAL[i % PAL.length] } })) }],
+    legend: { type: 'scroll', orient: 'vertical', right: 2, top: 'center', textStyle: { color: LABEL.color, fontSize: 10.5 }, itemWidth: 9, itemHeight: 9 },
+    series: [{ type: 'pie', radius: ['44%', '70%'], center, avoidLabelOverlap: true, itemStyle: { borderColor: '#0f1623', borderWidth: 2 }, label: { show: false }, data: data.map(([n, v], i) => ({ name: n, value: v, itemStyle: { color: CHART_SERIES_PALETTE[i % CHART_SERIES_PALETTE.length] } })) }],
   });
   const levelDonut = donut(distLevel.filter(([k]) => k));
   const sectorDonut = donut(distSector);
@@ -392,19 +391,19 @@ export default function Page() {
   const LV_ORD = ['党和国家领导人', '副国级', '上将', '正部级', '中将', '省部级', '少将', '副部级', '正厅级'].filter((l) => filtered.some((f) => f.level === l));
   const decadeLevel = {
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-    legend: { type: 'scroll', top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
+    legend: { type: 'scroll', top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
     grid: { left: 32, right: 10, top: 30, bottom: 20 },
-    xAxis: { type: 'category', data: DEC, ...AX },
-    yAxis: { type: 'value', ...AX },
-    series: LV_ORD.map((lv, i) => ({ name: lv, type: 'bar', stack: 't', emphasis: { focus: 'series' }, itemStyle: { color: PAL[i % PAL.length] }, data: DEC.map((d) => filtered.filter((f) => decadeOf(f) === d && f.level === lv).length) })),
+    xAxis: { type: 'category', data: DEC, ...AXIS, axisLabel: LABEL },
+    yAxis: { type: 'value', ...AXIS, axisLabel: LABEL },
+    series: LV_ORD.map((lv, i) => ({ name: lv, type: 'bar', stack: 't', emphasis: { focus: 'series' }, itemStyle: { color: CHART_SERIES_PALETTE[i % CHART_SERIES_PALETTE.length] }, data: DEC.map((d) => filtered.filter((f) => decadeOf(f) === d && f.level === lv).length) })),
   };
   // 籍贯 Top 横向条
   const natSorted = [...distNative].slice(0, 12).reverse();
   const nativeBar = {
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
     grid: { left: 48, right: 24, top: 8, bottom: 20 },
-    xAxis: { type: 'value', ...AX },
-    yAxis: { type: 'category', data: natSorted.map((d) => d[0]), ...AX },
+    xAxis: { type: 'value', ...AXIS, axisLabel: LABEL },
+    yAxis: { type: 'category', data: natSorted.map((d) => d[0]), ...AXIS, axisLabel: LABEL },
     series: [{ type: 'bar', data: natSorted.map((d) => d[1]), barWidth: '62%', label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 }, itemStyle: { borderRadius: [0, 3, 3, 0], color: { type: 'linear', x: 0, y: 0, x2: 1, y2: 0, colorStops: [{ offset: 0, color: '#8a6510' }, { offset: 1, color: '#e8a317' }] } } }],
   };
   // 籍贯输出 ↔ 现任流入 对流
@@ -414,10 +413,10 @@ export default function Page() {
     .map((p) => [p, natMap[p] || 0, serveMap[p] || 0]).sort((a, b) => (b[1] + b[2]) - (a[1] + a[2])).slice(0, 12).reverse();
   const flowBar = {
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: (ps) => `${ps[0].name}<br/>籍贯输出 ${Math.abs(ps[0].value)}<br/>现任流入 ${ps[1] ? ps[1].value : 0}` },
-    legend: { data: ['籍贯·输出', '现任·流入'], top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
+    legend: { data: ['籍贯·输出', '现任·流入'], top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
     grid: { left: 46, right: 26, top: 28, bottom: 20 },
-    xAxis: { type: 'value', ...AX, axisLabel: { color: '#93a1b5', fontSize: 10, formatter: (v) => Math.abs(v) } },
-    yAxis: { type: 'category', data: flowProvs.map((d) => d[0]), ...AX },
+    xAxis: { type: 'value', ...AXIS, axisLabel: { ...LABEL, fontSize: 10, formatter: (v) => Math.abs(v) } },
+    yAxis: { type: 'category', data: flowProvs.map((d) => d[0]), ...AXIS, axisLabel: LABEL },
     series: [
       { name: '籍贯·输出', type: 'bar', stack: 't', data: flowProvs.map((d) => -d[1]), itemStyle: { color: '#e8a317' } },
       { name: '现任·流入', type: 'bar', stack: 't', data: flowProvs.map((d) => d[2]), itemStyle: { color: '#22d3ee' } },
@@ -427,11 +426,11 @@ export default function Page() {
   const tenureNow = (f) => { const m = (f.fields?.tookOffice || '').match(/(\d{4})/); return m ? CUR_YEAR - +m[1] : tenureYears(f); };
   const ageTenure = {
     tooltip: { formatter: (p) => `${p.data[2]}<br/>${p.data[0]} 岁 · 现职 ${p.data[1]} 年` },
-    legend: { type: 'scroll', top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
+    legend: { type: 'scroll', top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
     grid: { left: 34, right: 14, top: 28, bottom: 30 },
-    xAxis: { type: 'value', name: '年龄', nameGap: 18, nameTextStyle: { color: '#5b6a82', fontSize: 10 }, scale: true, ...AX },
-    yAxis: { type: 'value', name: '现职任期', nameTextStyle: { color: '#5b6a82', fontSize: 10 }, ...AX },
-    series: LV_ORD.map((lv, i) => ({ name: lv, type: 'scatter', symbolSize: 7, itemStyle: { color: PAL[i % PAL.length], opacity: 0.78 }, data: filtered.filter((f) => f.level === lv).map((f) => [ageOf(f), tenureNow(f), f.name]).filter((d) => d[0] && d[1] != null) })),
+    xAxis: { type: 'value', name: '年龄', nameGap: 18, nameTextStyle: { color: '#5b6a82', fontSize: 10 }, scale: true, ...AXIS, axisLabel: LABEL },
+    yAxis: { type: 'value', name: '现职任期', nameTextStyle: { color: '#5b6a82', fontSize: 10 }, ...AXIS, axisLabel: LABEL },
+    series: LV_ORD.map((lv, i) => ({ name: lv, type: 'scatter', symbolSize: 7, itemStyle: { color: CHART_SERIES_PALETTE[i % CHART_SERIES_PALETTE.length], opacity: 0.78 }, data: filtered.filter((f) => f.level === lv).map((f) => [ageOf(f), tenureNow(f), f.name]).filter((d) => d[0] && d[1] != null) })),
   };
   // 层级 × 系统 矩阵热力
   const MAT_SECTORS = [...new Set(filtered.map((f) => f.sector || (f.province && f.province !== '中央' ? '地方' : '其他')).filter(Boolean))].slice(0, 8);
@@ -441,7 +440,7 @@ export default function Page() {
     grid: { left: 72, right: 24, top: 12, bottom: 48 },
     xAxis: { type: 'category', data: MAT_SECTORS, splitArea: { show: true }, axisLabel: { color: '#93a1b5', fontSize: 10, rotate: 28 } },
     yAxis: { type: 'category', data: MAT_LEVELS, splitArea: { show: true }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
-    visualMap: { min: 0, max: Math.max(3, ...MAT_LEVELS.flatMap((lv, yi) => MAT_SECTORS.map((sec, xi) => filtered.filter((f) => f.level === lv && (f.sector === sec || (sec === '地方' && f.province && f.province !== '中央' && !f.sector))).length))), calculable: false, orient: 'horizontal', left: 'center', bottom: 0, inRange: { color: ['#0f1623', '#27324a', '#c41e3a', '#e8a317'] }, textStyle: { color: '#93a1b5', fontSize: 10 } },
+    visualMap: { min: 0, max: Math.max(3, ...MAT_LEVELS.flatMap((lv, yi) => MAT_SECTORS.map((sec, xi) => filtered.filter((f) => f.level === lv && (f.sector === sec || (sec === '地方' && f.province && f.province !== '中央' && !f.sector))).length))), calculable: false, orient: 'horizontal', left: 'center', bottom: 0, inRange: { color: ['#0f1623', AXIS.lineStyle.color, '#c41e3a', '#e8a317'] }, textStyle: { color: LABEL.color, fontSize: 10 } },
     series: [{ type: 'heatmap', data: MAT_LEVELS.flatMap((lv, yi) => MAT_SECTORS.map((sec, xi) => {
       const n = filtered.filter((f) => f.level === lv && (f.sector === sec || (sec === '地方' && f.province && f.province !== '中央' && (!f.sector || f.sector === '地方')))).length;
       return [xi, yi, n];

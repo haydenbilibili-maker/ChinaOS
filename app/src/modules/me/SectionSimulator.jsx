@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Card } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, LABEL, GRID_LINE, CHART_SERIES_PALETTE } from '../shared/chartHelpers.js';
 
 // ============================================================================
 // ⑮ 人生路径推演器 · 35→40 的五年推演
@@ -12,7 +13,6 @@ import EChart from '../../lib/viz/EChart.jsx';
 // 口径：私享自画像 · 本人自述 · 自评示意标定 · 非预测非承诺 · 仅供自我校准。
 // ============================================================================
 
-const AX = { line: '#27324a', text: '#93a1b5', split: 'rgba(148,163,184,0.1)' };
 
 // 色板（与全站一致）
 const C = {
@@ -155,9 +155,9 @@ function radarOption(result) {
       indicator: RESULT_DIMS.map((d) => ({ name: d, max: 100 })),
       center: ['50%', '54%'],
       radius: '66%',
-      axisName: { color: AX.text, fontSize: 11 },
+      axisName: { color: LABEL.color, fontSize: 11 },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-      axisLine: { lineStyle: { color: AX.split } },
+      axisLine: { lineStyle: { color: GRID_LINE.lineStyle.color } },
       splitArea: { show: false },
     },
     series: [{
@@ -168,7 +168,7 @@ function radarOption(result) {
         lineStyle: { color: C.cyan, width: 2 },
         itemStyle: { color: C.cyan },
         areaStyle: { color: C.cyan, opacity: 0.14 },
-        label: { show: true, color: AX.text, fontSize: 10, formatter: (p) => p.value },
+        label: { show: true, color: LABEL.color, fontSize: 10, formatter: (p) => p.value },
       }],
     }],
   };

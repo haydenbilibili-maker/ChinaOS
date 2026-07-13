@@ -136,10 +136,10 @@ export default function Page() {
   }));
 
   const chart = {
-    legend: { data: Object.values(STATES).map((s) => s.label), textStyle: { color: '#93a1b5' }, top: 0 },
+    legend: { data: Object.values(STATES).map((s) => s.label), textStyle: { color: LABEL.color }, top: 0 },
     grid: { left: 44, right: 18, top: 34, bottom: 30 },
-    xAxis: { type: 'value', name: '波动 →', nameTextStyle: { color: '#93a1b5' }, axisLine: { lineStyle: { color: '#27324a' } }, splitLine: { show: false } },
-    yAxis: { type: 'value', name: '收益', min: 20, max: 100, nameTextStyle: { color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLine: { lineStyle: { color: '#27324a' } } },
+    xAxis: { type: 'value', name: '波动 →', nameTextStyle: { color: LABEL.color }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, splitLine: { show: false } },
+    yAxis: { type: 'value', name: '收益', min: 20, max: 100, nameTextStyle: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
     series,
   };
 
@@ -155,7 +155,7 @@ export default function Page() {
 
   const barbellChart = useMemo(() => ({
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, valueFormatter: (v) => v.toFixed(1) + '%' },
-    legend: { data: ['杠铃配置', '中庸均衡'], textStyle: { color: '#93a1b5' }, top: 0 },
+    legend: { data: ['杠铃配置', '中庸均衡'], textStyle: { color: LABEL.color }, top: 0 },
     grid: { ...GRID, top: 30 },
     xAxis: categoryX(['平稳期收益', '黑天鹅期收益', '最大回撤']),
     yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
@@ -172,15 +172,15 @@ export default function Page() {
     tooltip: { trigger: 'item', formatter: (p) => p.seriesType === 'scatter'
       ? `${p.data[2]}<br/>已存活 ${p.data[0]} 年 → 预期再活 ≈ ${p.data[1]} 年` : '' },
     grid: { left: 56, right: 24, top: 28, bottom: 40 },
-    xAxis: { type: 'log', name: '已存活（年，对数）', nameLocation: 'middle', nameGap: 26, nameTextStyle: { color: '#93a1b5' },
-      min: 8, max: 4000, axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 }, splitLine: { show: false } },
-    yAxis: logY({ name: 'E[剩余寿命]（年）', nameTextStyle: { color: '#93a1b5' }, min: 8, max: 4000 }),
+    xAxis: { type: 'log', name: '已存活（年，对数）', nameLocation: 'middle', nameGap: 26, nameTextStyle: { color: LABEL.color },
+      min: 8, max: 4000, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 }, splitLine: { show: false } },
+    yAxis: logY({ name: 'E[剩余寿命]（年）', nameTextStyle: { color: LABEL.color }, min: 8, max: 4000 }),
     series: [
       { name: '林迪线 E[剩余]∝已存活', type: 'line', symbol: 'none',
         data: [[8, 8], [30, 30], [100, 100], [400, 400], [1200, 1200], [4000, 4000]],
         lineStyle: { color: '#e8a317', width: 2, type: 'dashed' } },
       { name: '案例', type: 'scatter', symbolSize: 11, itemStyle: { color: '#22d3ee' },
-        label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10, formatter: (p) => p.data[2] },
+        label: { show: true, position: 'right', color: LABEL.color, fontSize: 10, formatter: (p) => p.data[2] },
         data: LINDY_CASES.map((c) => [c.age, c.age, c.name]) },
     ],
   }), []);

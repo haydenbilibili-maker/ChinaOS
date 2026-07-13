@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import NongmingongPanel from './NongmingongPanel.jsx';
 import './nongmingong.css';
 
@@ -8,13 +8,15 @@ import './nongmingong.css';
  */
 export default function NongmingongPage() {
   return (
-    <div className="nongmingong-page">
-      <PageHeader
-        badge="GY-06 · 人群画像分层"
-        title="农民工"
-        subtitle="未完成的迁徙 · 系统的换页内存"
-      />
+    <GySliceShell
+      badge="GY-06 · 人群画像分层"
+      title="农民工"
+      subtitle="未完成的迁徙 · 系统的换页内存"
+      appId="nm-app"
+      moduleId="nongmingong"
+      className="nongmingong-page"
+    >
       <NongmingongPanel />
-    </div>
+    </GySliceShell>
   );
 }

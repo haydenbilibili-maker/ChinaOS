@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import WangyuePanel from './WangyuePanel.jsx';
 import './wangyue.css';
 
@@ -8,13 +8,15 @@ import './wangyue.css';
  */
 export default function WangyuePage() {
   return (
-    <div className="wangyue-page">
-      <PageHeader
-        badge="GY-40 · 人群画像分层"
-        title="网约车司机"
-        subtitle="竞价实例 · 算法定价的方向盘"
-      />
+    <GySliceShell
+      badge="GY-40 · 人群画像分层"
+      title="网约车司机"
+      subtitle="竞价实例 · 算法定价的方向盘"
+      appId="wy-app"
+      moduleId="wangyue"
+      className="wangyue-page"
+    >
       <WangyuePanel />
-    </div>
+    </GySliceShell>
   );
 }

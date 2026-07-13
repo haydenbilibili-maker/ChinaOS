@@ -13,15 +13,14 @@ const PALETTE = ['#c41e3a', '#22d3ee', ...];
 import { AXIS, LABEL, GRID_LINE, LEGEND, CHART_SERIES_PALETTE } from '../shared/chartHelpers.js';
 ```
 
-**仍含 `AX` / `#27324a` 的文件（待 Round 4 或专题清理）：**
+**仍含 `AX` / `#27324a` 的文件（待 Round 5 或专题清理）：**
 
-- ~~`app/src/modules/econdash/SectionCycle.jsx`~~ ✅ Round 3
-- ~~`app/src/modules/econdash/SectionRegional.jsx`~~ ✅ Round 3
-- ~~`app/src/modules/econdash/SectionCompare.jsx`~~ ✅ Round 3
-- ~~`app/src/modules/foundation/EconDataTab.jsx`~~ ✅ Round 3
-- ~~`app/src/modules/benchmark/Page.jsx`~~ ✅ Round 3
-- `app/src/modules/renqun-tupu/atlasViz.js`
-- 各 `talent/*Section.jsx` 内联 `DistBars` 副本（≥10 处）
+- ~~各 `econdash` Section~~ ✅ Round 3
+- ~~各 `talent/*Section.jsx` 内联 `DistBars`~~ ✅ Round 4 → `DistBar`
+- ~~`handong` · `wargame` · `macro` · `me` · `ruleoflaw` · `talent/Page` `const AX`~~ ✅ Round 4
+- `app/src/modules/renqun-tupu/atlasViz.js`（图谱 viz 专用）
+- `app/src/modules/gametheory/Page.jsx`（系列色残留，非轴常量）
+- 少量 industry 模块 `#27324a` 作系列/category 色（非 `const AX`）
 
 ## 模块内重复设计令牌（anti-pattern）
 
@@ -54,7 +53,7 @@ function DistBars({ data, color, ... }) { ... }
 import { DistBar } from '../../app/ui.jsx';
 ```
 
-**主副本：** `talent/Page.jsx` 已迁移；其余 Section 仍待批量替换。
+**主副本：** `talent/Page.jsx` 已迁移；11 个 Section ✅ Round 4 批量替换为 `DistBar`。
 
 ## 页头/页脚不统一（GY 模块）
 
@@ -65,7 +64,8 @@ import GySliceShell from '../shared/gy/GySliceShell.jsx';
 ```
 
 **已试点：** `qingnian`  
-**待迁移：** 其余 GY 人群模块（`laonian` · `zhongchan` · …）
+**已全量：** GY-03–58 共 56 切片（`GySliceShell`）  
+**例外：** `renqun-tupu`（GY-00 母索引，含 Section 扩展，手写 `ModuleFooter`）
 
 ## 数据源徽章（anti-pattern）
 

@@ -22,7 +22,6 @@ export default function XianyuPanel() {
   return (
     <div className="xianyu-module-wrap">
       <div
-        id="xy-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

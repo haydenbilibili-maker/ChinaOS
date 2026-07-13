@@ -22,7 +22,6 @@ export default function XingshaoshuPanel() {
   return (
     <div className="xingshaoshu-module-wrap">
       <div
-        id="xs-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

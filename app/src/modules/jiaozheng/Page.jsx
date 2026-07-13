@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import JiaozhengPanel from './JiaozhengPanel.jsx';
 import './jiaozheng.css';
 
@@ -8,13 +8,15 @@ import './jiaozheng.css';
  */
 export default function JiaozhengPage() {
   return (
-    <div className="jiaozheng-page">
-      <PageHeader
-        badge="GY-44 · 人群画像分层"
-        title="社区矫正与刑释人员"
-        subtitle="解除隔离后的权限残留 · 前科作为持久标记"
-      />
+    <GySliceShell
+      badge="GY-44 · 人群画像分层"
+      title="社区矫正与刑释人员"
+      subtitle="解除隔离后的权限残留 · 前科作为持久标记"
+      appId="jc-app"
+      moduleId="jiaozheng"
+      className="jiaozheng-page"
+    >
       <JiaozhengPanel />
-    </div>
+    </GySliceShell>
   );
 }

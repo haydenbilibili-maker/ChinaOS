@@ -22,7 +22,6 @@ export default function LiupiaoPanel() {
   return (
     <div className="liupiao-module-wrap">
       <div
-        id="lp-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import BianjiangPanel from './BianjiangPanel.jsx';
 import './bianjiang.css';
 
@@ -11,13 +11,15 @@ import './bianjiang.css';
  */
 export default function BianjiangPage() {
   return (
-    <div className="bianjiang-page">
-      <PageHeader
-        badge="GY-48 · 人群画像分层 · 封顶片"
-        title="边疆少数民族"
-        subtitle="多框架并置 · 一个被不同视角各执一词的人群"
-      />
+    <GySliceShell
+      badge="GY-48 · 人群画像分层 · 封顶片"
+      title="边疆少数民族"
+      subtitle="多框架并置 · 一个被不同视角各执一词的人群"
+      appId="bj-app"
+      moduleId="bianjiang"
+      className="bianjiang-page"
+    >
       <BianjiangPanel />
-    </div>
+    </GySliceShell>
   );
 }

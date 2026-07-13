@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, GRID_WIDE, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, GRID_WIDE, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // 赛道：规模(亿元示意)、国际地位、卡脖子点、出海进展
@@ -60,7 +60,7 @@ export default function Page() {
   const pipeline = useMemo(() => ({
     grid: GRID_WIDE,
     tooltip: { trigger: 'axis' },
-    legend: { textStyle: { color: '#93a1b5' }, top: 0 },
+    legend: { textStyle: { color: LABEL.color }, top: 0 },
     xAxis: categoryX(['2018', '2019', '2020', '2021', '2022', '2023', '2024']),
     yAxis: [valueY({ name: '个' }), valueY({ name: '亿美元', splitLine: { show: false } })],
     series: [
@@ -78,10 +78,10 @@ export default function Page() {
       : track === 'device' ? [50, 78, 85, 72, 65, 60]
       : [58, 82, 75, 68, 58, 62];
     return {
-      legend: { textStyle: { color: '#93a1b5' }, bottom: 0, data: ['中国', '美欧'] },
+      legend: { textStyle: { color: LABEL.color }, bottom: 0, data: ['中国', '美欧'] },
       radar: {
         indicator: ['原创靶点', '临床能力', '产业化', '审评效率', '支付环境', '国际化'].map((n) => ({ name: n, max: 100 })),
-        axisName: { color: '#93a1b5', fontSize: 10 },
+        axisName: { color: LABEL.color, fontSize: 10 },
         splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
         axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
         splitArea: { show: false },
@@ -117,7 +117,7 @@ export default function Page() {
   const dualTrack = useMemo(() => ({
     grid: GRID_WIDE,
     tooltip: { trigger: 'axis' },
-    legend: { textStyle: { color: '#93a1b5' }, top: 0 },
+    legend: { textStyle: { color: LABEL.color }, top: 0 },
     xAxis: categoryX(['2018', '2019', '2020', '2021', '2022', '2023']),
     yAxis: [valueY({ name: '降幅%', max: 100 }), valueY({ name: '准入数', splitLine: { show: false } })],
     series: [
@@ -138,7 +138,7 @@ export default function Page() {
         : track === 'cxo' ? [40, 30, 25, 35, 88]
         : track === 'vaccine' ? [80, 25, 30, 70, 55]
         : [75, 45, 35, 55, 60],
-      label: { show: true, position: 'right', color: '#93a1b5', formatter: '{c}' } }],
+      label: { show: true, position: 'right', color: LABEL.color, formatter: '{c}' } }],
   }), [track, t]);
 
   return (

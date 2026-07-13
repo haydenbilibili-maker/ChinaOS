@@ -1,4 +1,5 @@
 import { PageHeader } from '../../app/ui.jsx';
+import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import YishixingtaiPanel from './YishixingtaiPanel.jsx';
 import './yishixingtai.css';
 
@@ -12,6 +13,7 @@ export default function YishixingtaiPage() {
         subtitle="五组件剖面 · 优先序仲裁 · 与 GY-01 国运推演双向耦合"
       />
       <YishixingtaiPanel />
+      <ModuleFooter moduleId="yishixingtai" />
     </div>
   );
 }

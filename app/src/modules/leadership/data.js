@@ -259,7 +259,7 @@ export function buildDecisionSankey() {
       links: SANKEY_LINKS,
       nodeWidth: 14, nodeGap: 10,
       emphasis: { focus: 'adjacency' },
-      label: { color: '#93a1b5', fontSize: 10 },
+      label: { color: LABEL.color, fontSize: 10 },
       lineStyle: { color: 'gradient', curveness: 0.5, opacity: 0.45 },
     }],
   };
@@ -281,8 +281,8 @@ export function buildGenerationTimeline(highlightFrom = 2012, highlightTo = 2026
     yAxis: {
       type: 'category',
       data: gens,
-      axisLine: { lineStyle: { color: '#27324a' } },
-      axisLabel: { color: '#93a1b5', fontSize: 10 },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
+      axisLabel: { color: LABEL.color, fontSize: 10 },
     },
     series: [{
       type: 'scatter',
@@ -330,7 +330,7 @@ export function buildMeetingRadar(eraKey = 'all', meetingKey = 'psc') {
     legend: { ...LEGEND, top: 0, data: [era.label, mt.label] },
     radar: {
       indicator: indicators,
-      axisName: { color: '#93a1b5', fontSize: 10 },
+      axisName: { color: LABEL.color, fontSize: 10 },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       splitArea: { show: false },
@@ -355,13 +355,13 @@ export function buildTurnoverHeatmap() {
   return {
     grid: { left: 88, right: 16, top: 16, bottom: 56 },
     tooltip: { position: 'top', formatter: (p) => `${TURNOVER_POSITIONS[p.value[1]]} · ${TURNOVER_YEARS[p.value[0]]}<br/>轮换强度: ${p.value[2]}`, ...CHART_TOOLTIP },
-    xAxis: { type: 'category', data: TURNOVER_YEARS, axisLabel: { color: '#93a1b5', fontSize: 10 } },
-    yAxis: { type: 'category', data: TURNOVER_POSITIONS, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+    xAxis: { type: 'category', data: TURNOVER_YEARS, axisLabel: { color: LABEL.color, fontSize: 10 } },
+    yAxis: { type: 'category', data: TURNOVER_POSITIONS, axisLabel: { color: LABEL.color, fontSize: 10 } },
     visualMap: {
       min: 0, max: 10, calculable: true,
       orient: 'horizontal', left: 'center', bottom: 0,
       inRange: { color: ['#1e293b', '#22d3ee', '#c41e3a'] },
-      textStyle: { color: '#93a1b5', fontSize: 10 },
+      textStyle: { color: LABEL.color, fontSize: 10 },
     },
     series: [{ type: 'heatmap', data, label: { show: true, fontSize: 10, color: '#e8edf6' }, emphasis: { itemStyle: { shadowBlur: 6 } } }],
   };
@@ -412,7 +412,7 @@ export function buildInstitutionSunburst() {
       type: 'sunburst',
       radius: ['12%', '90%'],
       data: [INSTITUTION_TREE],
-      label: { color: '#93a1b5', fontSize: 10, rotate: 'radial' },
+      label: { color: LABEL.color, fontSize: 10, rotate: 'radial' },
       itemStyle: { borderWidth: 1, borderColor: 'rgba(15,22,35,0.6)' },
       emphasis: { focus: 'ancestor' },
       levels: [
@@ -432,7 +432,7 @@ export function buildGovGraph() {
       type: 'graph',
       layout: 'circular',
       roam: true,
-      label: { show: true, fontSize: 10, color: '#93a1b5' },
+      label: { show: true, fontSize: 10, color: LABEL.color },
       data: GOV_GRAPH.nodes,
       links: GOV_GRAPH.links,
       lineStyle: { color: '#64748b', width: 1.5, curveness: 0.15, opacity: 0.7 },

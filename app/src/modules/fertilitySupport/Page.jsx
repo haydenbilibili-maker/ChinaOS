@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
-import { categoryX, valueY, GRID, LEGEND, donutOpt, radarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, LEGEND, donutOpt, radarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 
 // ============================================================================
 // 生育支持 · 托育服务 —— 建设生育友好型社会，降低生育养育教育成本
@@ -23,7 +23,7 @@ const tfrOpt = {
   ],
   series: [
     { name: '总和生育率', type: 'line', smooth: true, data: [1.30, 1.18, 1.07, 1.05, 1.02, 1.00], lineStyle: { color: '#c41e3a', width: 2 },
-      markLine: { silent: true, data: [{ yAxis: 2.1, label: { formatter: '更替水平 2.1', color: '#93a1b5' }, lineStyle: { color: '#10b981', type: 'dashed' } }] } },
+      markLine: { silent: true, data: [{ yAxis: 2.1, label: { formatter: '更替水平 2.1', color: LABEL.color }, lineStyle: { color: '#10b981', type: 'dashed' } }] } },
     { name: '出生人口(万)', type: 'bar', yAxisIndex: 1, barWidth: 18, data: [1786, 1523, 1200, 956, 954, 920], itemStyle: { color: 'rgba(34,211,238,0.6)' } },
   ],
 };

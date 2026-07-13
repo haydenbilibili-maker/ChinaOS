@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ============================================================================
@@ -106,10 +106,10 @@ export default function Page() {
   // 多国轨迹（占美国比 %，log 轴 + 陷阱带 markArea）
   const trajOption = useMemo(() => ({
     tooltip: { trigger: 'axis', valueFormatter: (v) => v + '%' },
-    legend: { textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0, type: 'scroll' },
+    legend: { textStyle: { color: LABEL.color, fontSize: 10 }, top: 0, type: 'scroll' },
     grid: { left: 44, right: 16, top: 30, bottom: 24 },
     xAxis: categoryX(YEARS),
-    yAxis: logY({ name: '占美国人均GDP比(%)', nameTextStyle: { color: '#93a1b5', fontSize: 10 }, min: 1, max: 100 }),
+    yAxis: logY({ name: '占美国人均GDP比(%)', nameTextStyle: { color: LABEL.color, fontSize: 10 }, min: 1, max: 100 }),
     series: Object.entries(COUNTRIES).map(([key, v]) => ({
       type: 'line', name: v.label, data: v.traj, smooth: true, symbol: 'circle', symbolSize: key === ck ? 7 : 3,
       lineStyle: { color: v.accent, width: key === ck ? 3.5 : 1.4, opacity: key === ck ? 1 : 0.55 },
@@ -117,7 +117,7 @@ export default function Page() {
       emphasis: { focus: 'series' },
       ...(key === ck ? {
         areaStyle: { color: v.accent + '18' },
-        markArea: { silent: true, itemStyle: { color: 'rgba(196,30,58,0.07)' }, label: { color: '#93a1b5', fontSize: 10, position: 'insideTopRight' }, data: [[{ yAxis: 10, name: '陷阱带 10-30%' }, { yAxis: 30 }]] },
+        markArea: { silent: true, itemStyle: { color: 'rgba(196,30,58,0.07)' }, label: { color: LABEL.color, fontSize: 10, position: 'insideTopRight' }, data: [[{ yAxis: 10, name: '陷阱带 10-30%' }, { yAxis: 30 }]] },
       } : {}),
     })),
   }), [ck]);
@@ -125,7 +125,7 @@ export default function Page() {
   // 跨越要件对照 bar
   const reqOption = useMemo(() => ({
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-    legend: { textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     grid: { left: 36, right: 16, top: 30, bottom: 24 },
     xAxis: categoryX(REQUIREMENTS),
     yAxis: valueY({ max: 100 }),
@@ -138,10 +138,10 @@ export default function Page() {
   // 世行划档：中国人均 GNI 逼近高收入门槛
   const gniOption = useMemo(() => ({
     tooltip: { trigger: 'axis', valueFormatter: (v) => '$' + v + 'k' },
-    legend: { textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     grid: { left: 40, right: 48, top: 30, bottom: 24 },
     xAxis: categoryX(['2000', '2005', '2010', '2015', '2020', '2023', '2025E']),
-    yAxis: valueY({ name: '人均GNI(千美元)', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
+    yAxis: valueY({ name: '人均GNI(千美元)', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
     series: [
       {
         type: 'line', name: '中国人均GNI', data: [0.94, 1.76, 4.34, 7.94, 10.55, 13.4, 14.2], smooth: true,
@@ -153,15 +153,15 @@ export default function Page() {
           data: [{ yAxis: 14.0 }],
         },
       },
-      { type: 'line', name: '中高收入下限', data: [4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5], symbol: 'none', lineStyle: { color: '#93a1b5', type: 'dotted', width: 1 } },
+      { type: 'line', name: '中高收入下限', data: [4.5, 4.5, 4.5, 4.5, 4.5, 4.5, 4.5], symbol: 'none', lineStyle: { color: LABEL.color, type: 'dotted', width: 1 } },
     ],
   }), []);
 
   // 增长动力切换雷达（双系列内联：跨越国 vs 陷阱国）
   const RADAR_IND = ['要素投入依赖(逆)', '效率提升 TFP', '创新驱动', '人力资本', '出口复杂度', '制度适应力'].map((n) => ({ name: n, max: 100 }));
   const radarOption = useMemo(() => ({
-    legend: { textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
-    radar: { indicator: RADAR_IND, radius: '62%', axisName: { color: '#93a1b5', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
+    legend: { textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
+    radar: { indicator: RADAR_IND, radius: '62%', axisName: { color: LABEL.color, fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
     series: [{
       type: 'radar',
       data: [

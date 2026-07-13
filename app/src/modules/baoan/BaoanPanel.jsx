@@ -22,7 +22,6 @@ export default function BaoanPanel() {
   return (
     <div className="baoan-module-wrap">
       <div
-        id="ba-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

@@ -1,5 +1,6 @@
 import { PageHeader } from '../../app/ui.jsx';
 import CushionMonitor from './CushionMonitor.jsx';
+import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 /** 垫子厚度监测 · 治理结构模块 5 */
 export default function CushionMonitorPage() {
@@ -11,6 +12,8 @@ export default function CushionMonitorPage() {
         subtitle="未富先躺 · 四国锚点 · 命运矩阵 · 四层拆解"
       />
       <CushionMonitor />
+      <ModuleFooter moduleId="cushionMonitor" />
+
     </div>
   );
 }

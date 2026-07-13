@@ -22,7 +22,6 @@ export default function LaonianPanel() {
   return (
     <div className="laonian-module-wrap">
       <div
-        id="ln-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

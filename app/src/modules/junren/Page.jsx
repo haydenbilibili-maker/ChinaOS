@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import JunrenPanel from './JunrenPanel.jsx';
 import './junren.css';
 
@@ -9,13 +9,15 @@ import './junren.css';
  */
 export default function JunrenPage() {
   return (
-    <div className="junren-page">
-      <PageHeader
-        badge="GY-47 · 人群画像分层"
-        title="现役军人"
-        subtitle="内核态特权进程 · 受最严格访问控制"
-      />
+    <GySliceShell
+      badge="GY-47 · 人群画像分层"
+      title="现役军人"
+      subtitle="内核态特权进程 · 受最严格访问控制"
+      appId="jr-app"
+      moduleId="junren"
+      className="junren-page"
+    >
       <JunrenPanel />
-    </div>
+    </GySliceShell>
   );
 }

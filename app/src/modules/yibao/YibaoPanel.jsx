@@ -22,7 +22,6 @@ export default function YibaoPanel() {
   return (
     <div className="yibao-module-wrap">
       <div
-        id="yb-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

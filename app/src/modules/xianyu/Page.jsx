@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import XianyuPanel from './XianyuPanel.jsx';
 import './xianyu.css';
 
@@ -8,13 +8,15 @@ import './xianyu.css';
  */
 export default function XianyuPage() {
   return (
-    <div className="xianyu-page">
-      <PageHeader
-        badge="GY-20 · 人群画像分层"
-        title="县域青年 · 留下的人"
-        subtitle="未被监控的中间件 · 关系即调度器"
-      />
+    <GySliceShell
+      badge="GY-20 · 人群画像分层"
+      title="县域青年 · 留下的人"
+      subtitle="未被监控的中间件 · 关系即调度器"
+      appId="xy-app"
+      moduleId="xianyu"
+      className="xianyu-page"
+    >
       <XianyuPanel />
-    </div>
+    </GySliceShell>
   );
 }

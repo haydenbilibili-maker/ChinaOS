@@ -3,6 +3,7 @@ import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { CRISIS_DOMAINS, TOOLS } from '../sandbox/crisisData.js';
+import { AXIS, LABEL, GRID_LINE, CHART_SERIES_PALETTE } from '../shared/chartHelpers.js';
 import {
   HD_AS_OF, RESOURCE_TYPES, CAPITALS, POSTS, OFFICIALS, HD_SCENARIOS,
   computeBaseline, teamCompetence, hdEngine, meritDelta, promotionJudge, hdReport,
@@ -29,7 +30,6 @@ const HD_DOMAINS = ['科技产业', '经济', '社会民生', '外部环境', '�
 const TOOL_HD = { fiscal: '财政盘活', monetary: '金融工具', industry: '产业再造', diplomacy: '上级协调', mobilize: '社会动员' };
 const ACT_NAMES = ['起', '承', '转', '合'];
 const ACT_CN = ['一', '二', '三', '四'];
-const AX = { line: '#27324a', text: '#93a1b5', split: 'rgba(148,163,184,0.1)' };
 
 // 初始省情（与 P0 滑杆初值保持同一来源）：三表懒初始化以此为锚，
 // 任期内 P0 变更不重置三表——省情变更只对「下一届」生效。
@@ -587,26 +587,26 @@ export default function Page() {
     grid: { left: 70, right: 42, top: 8, bottom: 22 },
     xAxis: {
       type: 'value', min: -15, max: 15,
-      axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text },
-      splitLine: { lineStyle: { color: AX.split } },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color },
+      splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } },
     },
     yAxis: {
       type: 'category', data: HD_DOMAINS,
-      axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color },
     },
     series: [{
       type: 'bar', barWidth: 10,
       data: baselineMods.map((v) => ({ value: v, itemStyle: { color: v > 0 ? '#c41e3a' : '#10b981', borderRadius: 2 } })),
-      label: { show: true, position: 'right', color: AX.text, formatter: ({ value }) => (value > 0 ? `+${value}` : `${value}`) },
+      label: { show: true, position: 'right', color: LABEL.color, formatter: ({ value }) => (value > 0 ? `+${value}` : `${value}`) },
     }],
   }), [baselineMods]);
 
   const teamRadarOption = useMemo(() => ({
     radar: {
       indicator: HD_DOMAINS.map((n) => ({ name: n, max: 100 })),
-      axisName: { color: AX.text },
-      axisLine: { lineStyle: { color: AX.line } },
-      splitLine: { lineStyle: { color: AX.split } },
+      axisName: { color: LABEL.color },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
+      splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } },
       splitArea: { show: false },
     },
     series: [{
@@ -621,15 +621,15 @@ export default function Page() {
   }), [team]);
 
   const impactOption = useMemo(() => ({
-    legend: { data: ['应对前', '应对后'], textStyle: { color: AX.text }, top: 0 },
+    legend: { data: ['应对前', '应对后'], textStyle: { color: LABEL.color }, top: 0 },
     grid: { left: 40, right: 14, top: 32, bottom: 24 },
     xAxis: {
       type: 'category', data: HD_DOMAINS,
-      axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text, fontSize: 10, interval: 0 },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10, interval: 0 },
     },
     yAxis: {
       type: 'value', max: 100,
-      axisLabel: { color: AX.text }, splitLine: { lineStyle: { color: AX.split } },
+      axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } },
     },
     series: [
       { name: '应对前', type: 'bar', data: result.raw, barWidth: 11, itemStyle: { color: '#c41e3a', borderRadius: 2 } },
@@ -639,16 +639,16 @@ export default function Page() {
 
   // 年度曲线：净冲击（红实线 + 30/60 阈值虚线）vs 财政余力（金虚线）
   const termCurveOption = useMemo(() => ({
-    legend: { data: ['净冲击', '财政余力'], textStyle: { color: AX.text }, top: 0 },
+    legend: { data: ['净冲击', '财政余力'], textStyle: { color: LABEL.color }, top: 0 },
     grid: { left: 40, right: 16, top: 30, bottom: 24 },
     xAxis: {
       type: 'category', data: rounds.map((r) => `第${r.year ?? r.n}年`),
-      axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color },
     },
     yAxis: {
       type: 'value', min: 0, max: 100,
-      axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text },
-      splitLine: { lineStyle: { color: AX.split } },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color },
+      splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } },
     },
     series: [
       {
@@ -657,7 +657,7 @@ export default function Page() {
         markLine: {
           silent: true, symbol: 'none',
           lineStyle: { type: 'dashed', color: '#64748b' },
-          label: { color: AX.text, fontSize: 10, formatter: '{c}' },
+          label: { color: LABEL.color, fontSize: 10, formatter: '{c}' },
           data: [{ yAxis: 30 }, { yAxis: 60 }],
         },
       },
@@ -677,12 +677,12 @@ export default function Page() {
     grid: { left: 40, right: 16, top: 14, bottom: 24 },
     xAxis: {
       type: 'category', data: crossSeq.map((p) => p.x),
-      axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text, fontSize: 10 },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 },
     },
     yAxis: {
       type: 'value', min: 0, max: 100,
-      axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text },
-      splitLine: { lineStyle: { color: AX.split } },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color },
+      splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } },
     },
     series: [{
       type: 'line', data: crossSeq.map((p) => p.score),
@@ -690,7 +690,7 @@ export default function Page() {
       markLine: {
         silent: true, symbol: 'none',
         lineStyle: { type: 'dashed', color: '#64748b' },
-        label: { color: AX.text, fontSize: 10, formatter: '失守线 60' },
+        label: { color: LABEL.color, fontSize: 10, formatter: '失守线 60' },
         data: [{ yAxis: 60 }],
       },
     }],

@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react'
 import { Link, useSearchParams } from 'react-router-dom';
 import * as echarts from 'echarts';
 import * as Lucide from 'lucide-react';
-import { Card, Grid, Stat } from '../../app/ui.jsx';
+import { Card, Grid, Stat, DistBar } from '../../app/ui.jsx';
 import FigureAvatar from '../../lib/ui/FigureAvatar.jsx';
 import { figureAvatarProps, prefetchFigureAvatars } from '../../lib/ui/figureAvatarResolve.js';
 import EChart from '../../lib/viz/EChart.jsx';
@@ -89,24 +89,6 @@ function tally(arr, keyFn) {
   const m = new Map();
   arr.forEach((r) => { const k = keyFn(r); if (k) m.set(k, (m.get(k) || 0) + 1); });
   return [...m.entries()].sort((a, b) => b[1] - a[1]);
-}
-
-function DistBars({ data, color = ACCENT, max, onPick, active }) {
-  const top = max || (data[0]?.[1] || 1);
-  return (
-    <div className="space-y-1.5">
-      {data.map(([k, n]) => (
-        <button key={k} type="button" onClick={onPick ? () => onPick(k) : undefined} className="w-full flex items-center gap-2 text-left"
-          style={{ cursor: onPick ? 'pointer' : 'default', opacity: active && active !== k ? 0.45 : 1 }}>
-          <span className="text-[11px] mono shrink-0 text-right" style={{ width: 70, color: active === k ? color : 'var(--text-secondary)' }}>{k}</span>
-          <span className="flex-1 rounded-sm" style={{ height: 13, background: 'var(--bg-base)', position: 'relative', overflow: 'hidden' }}>
-            <span style={{ position: 'absolute', inset: 0, width: `${(n / top) * 100}%`, background: color, opacity: 0.75, borderRadius: 2 }} />
-          </span>
-          <span className="text-[11px] mono shrink-0" style={{ width: 26, color: 'var(--text-tertiary)' }}>{n}</span>
-        </button>
-      ))}
-    </div>
-  );
 }
 
 function EnvoyCard({ r, on, onClick, dense = false }) {
@@ -509,8 +491,8 @@ export default function DiplomaticCorpsSection() {
           ) : view === 'stats' ? (
             <div className="space-y-4 mb-4">
               <Grid cols={2}>
-                <Card title="大区分布"><DistBars data={distRegion} onPick={(k) => setRegionTab(k)} active={regionTab !== 'all' ? regionTab : ''} /></Card>
-                <Card title="职务分布"><DistBars data={distRole} color="#a78bfa" onPick={(k) => setRole(role === k ? '' : k)} active={role} /></Card>
+                <Card title="大区分布"><DistBar data={distRegion} onPick={(k) => setRegionTab(k)} active={regionTab !== 'all' ? regionTab : ''} /></Card>
+                <Card title="职务分布"><DistBar data={distRole} color="#a78bfa" onPick={(k) => setRole(role === k ? '' : k)} active={role} /></Card>
               </Grid>
             </div>
           ) : view === 'grid' ? (

@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import JiaoshiPanel from './JiaoshiPanel.jsx';
 import './jiaoshi.css';
 
@@ -8,13 +8,15 @@ import './jiaoshi.css';
  */
 export default function JiaoshiPage() {
   return (
-    <div className="jiaoshi-page">
-      <PageHeader
-        badge="GY-38 · 人群画像分层"
-        title="中小学教师"
-        subtitle="被中断抢占的进程 · 优先级反转"
-      />
+    <GySliceShell
+      badge="GY-38 · 人群画像分层"
+      title="中小学教师"
+      subtitle="被中断抢占的进程 · 优先级反转"
+      appId="js-app"
+      moduleId="jiaoshi"
+      className="jiaoshi-page"
+    >
       <JiaoshiPanel />
-    </div>
+    </GySliceShell>
   );
 }

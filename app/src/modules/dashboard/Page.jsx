@@ -255,7 +255,7 @@ function KondratievClock() {
     for (let y = 1990; y <= 2055; y += 1) pts.push([y, +Math.sin((2 * Math.PI * (y - 1788)) / 54).toFixed(3)]);
     return {
       grid: { left: 10, right: 10, top: 10, bottom: 20 },
-      xAxis: { type: 'value', min: 1990, max: 2055, interval: 20, axisLabel: { color: '#5b6a82', fontSize: 9, formatter: (v) => String(v) }, axisLine: { lineStyle: { color: '#27324a' } } },
+      xAxis: { type: 'value', min: 1990, max: 2055, interval: 20, axisLabel: { color: '#5b6a82', fontSize: 9, formatter: (v) => String(v) }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
       yAxis: { type: 'value', min: -1.35, max: 1.35, show: false },
       series: [{
         type: 'line', smooth: true, symbol: 'none', data: pts,
@@ -283,7 +283,7 @@ function RiskRadar() {
   const opt = useMemo(() => ({
     radar: {
       indicator: ['科技', '经济', '能源资源', '网络数据', '军事', '政治', '社会', '生物'].map((n) => ({ name: n, max: 5 })),
-      axisName: { color: '#93a1b5', fontSize: 10 },
+      axisName: { color: LABEL.color, fontSize: 10 },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       splitArea: { show: false }, radius: '66%',
@@ -369,7 +369,7 @@ function useOptions() {
   return useMemo(() => {
     const donut = {
       tooltip: { trigger: 'item', formatter: '{b}<br/>{c} 人 · {d}%' },
-      legend: { type: 'scroll', bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, icon: 'circle' },
+      legend: { type: 'scroll', bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 }, icon: 'circle' },
       series: [{
         type: 'pie', radius: ['46%', '70%'], center: ['50%', '42%'],
         avoidLabelOverlap: true, label: { show: false },
@@ -438,7 +438,7 @@ function useOptions() {
       yAxis: { type: 'category', inverse: true, data: DATASET_SCALE.map((d) => d.key), axisLine: AXIS, axisLabel: LABEL },
       series: [{
         type: 'bar', barWidth: '60%',
-        label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10, formatter: '{c}' },
+        label: { show: true, position: 'right', color: LABEL.color, fontSize: 10, formatter: '{c}' },
         data: DATASET_SCALE.map((d) => ({ value: d.value, itemStyle: { color: d.color, borderRadius: [0, 3, 3, 0] } })),
       }],
     };

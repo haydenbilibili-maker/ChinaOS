@@ -128,7 +128,7 @@ const resolveFunnel = {
 // 基层负担悖论 —— 考核/台账/政务 App 数量趋势（示意指数，2015=100）
 const burdenLines = {
   tooltip: { trigger: 'axis' },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
   grid: { left: 40, right: 16, top: 32, bottom: 24 },
   xAxis: categoryX(['2015', '2017', '2019', '2021', '2023', '2025']),
   yAxis: valueY({ name: '指数(2015=100)' }),
@@ -154,11 +154,11 @@ const gridWorkStack = stackedBarOpt({
 const tensionScatter = {
   tooltip: { trigger: 'item', formatter: (p) => `${p.value[2]}<br/>控制强度 ${p.value[0]} · 自治活力 ${p.value[1]}` },
   grid: { left: 44, right: 36, top: 24, bottom: 44 },
-  xAxis: valueY({ name: '控制强度 →', max: 100, nameLocation: 'middle', nameGap: 28, nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
+  xAxis: valueY({ name: '控制强度 →', max: 100, nameLocation: 'middle', nameGap: 28, nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
   yAxis: valueY({ name: '自治活力 →', max: 100 }),
   series: [{
     type: 'scatter', symbolSize: 18,
-    label: { show: true, position: 'top', fontSize: 10, color: '#93a1b5', formatter: (p) => p.value[2] },
+    label: { show: true, position: 'top', fontSize: 10, color: LABEL.color, formatter: (p) => p.value[2] },
     data: MECHANISMS.map((m) => ({ value: [m.ctrl, m.auto, m.label], itemStyle: { color: m.accent } })),
   }],
 };
@@ -193,10 +193,10 @@ export default function Page() {
   const compareRadar = useMemo(() => {
     const base = MECHANISMS[0];
     return {
-      legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12, data: [base.label + '（基线）', mech.label] },
+      legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12, data: [base.label + '（基线）', mech.label] },
       radar: {
         indicator: RADAR_DIMS.map((n) => ({ name: n, max: 100 })),
-        axisName: { color: '#93a1b5', fontSize: 10 },
+        axisName: { color: LABEL.color, fontSize: 10 },
         splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
         axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
         splitArea: { show: false },
@@ -215,10 +215,10 @@ export default function Page() {
   const mechBar = useMemo(() => ({
     grid: { left: 72, right: 32, top: 12, bottom: 24 },
     xAxis: valueY({ max: 100 }),
-    yAxis: { type: 'category', data: ['自治活力', '控制强度'], axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+    yAxis: { type: 'category', data: ['自治活力', '控制强度'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     series: [{
       type: 'bar', barWidth: 16,
-      label: { show: true, position: 'right', fontSize: 10, color: '#93a1b5' },
+      label: { show: true, position: 'right', fontSize: 10, color: LABEL.color },
       data: [
         { value: mech.auto, itemStyle: { color: '#10b981' } },
         { value: mech.ctrl, itemStyle: { color: mech.accent } },

@@ -3,6 +3,7 @@ import * as Lucide from 'lucide-react';
 import { PageHeader, Card, Grid, Stat, StatGrid, TabBar } from '../../app/ui.jsx';
 import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';
 import { useDataset } from '../../lib/db/useDataset.js';
 import * as DB from '../../lib/db/localdb.js';
 import {
@@ -234,14 +235,14 @@ export default function Page() {
       grid: { left: 72, right: 28, top: 8, bottom: 20 },
       animationDurationUpdate: 600,
       tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-      xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
-      yAxis: { type: 'category', data: top.map((a) => shortProv(a.province)), axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+      xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+      yAxis: { type: 'category', data: top.map((a) => shortProv(a.province)), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
       series: [{
         type: 'bar',
         data: top.map((a) => ({ value: a.count, itemStyle: { color: province === a.province ? '#22d3ee' : '#fb923c' } })),
         barWidth: 12,
         itemStyle: { borderRadius: 3 },
-        label: { show: true, position: 'right', formatter: '{c}', color: '#93a1b5', fontSize: 10 },
+        label: { show: true, position: 'right', formatter: '{c}', color: LABEL.color, fontSize: 10 },
       }],
     };
   }, [provAgg, province]);
@@ -249,8 +250,8 @@ export default function Page() {
   const tierSpark = useMemo(() => ({
     grid: { left: 36, right: 12, top: 16, bottom: 28 },
     tooltip: { trigger: 'axis' },
-    xAxis: { type: 'category', data: tierDist.map((t) => t.label), axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
-    yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+    xAxis: { type: 'category', data: tierDist.map((t) => t.label), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+    yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     series: [{
       type: 'bar',
       data: tierDist.map((t) => ({ value: t.count, itemStyle: { color: t.color, borderRadius: [4, 4, 0, 0] } })),
@@ -286,8 +287,8 @@ export default function Page() {
       tooltip: {
         formatter: (p) => `#${p.value[0]} ${p.value[2]}<br/>${shortProv(p.value[3])} · ${p.value[1]}亿`,
       },
-      xAxis: { type: 'value', name: '排名', inverse: true, min: 1, max: rankMax, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
-      yAxis: { type: 'value', name: '营收(亿)', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+      xAxis: { type: 'value', name: '排名', inverse: true, min: 1, max: rankMax, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+      yAxis: { type: 'value', name: '营收(亿)', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
       series: [{
         type: 'scatter',
         symbolSize: (d) => Math.max(6, Math.min(22, Math.sqrt(d[1]) / 8)),

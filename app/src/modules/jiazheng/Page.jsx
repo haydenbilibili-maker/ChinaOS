@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import JiazhengPanel from './JiazhengPanel.jsx';
 import './jiazheng.css';
 
@@ -8,13 +8,15 @@ import './jiazheng.css';
  */
 export default function JiazhengPage() {
   return (
-    <div className="jiazheng-page">
-      <PageHeader
-        badge="GY-31 · 人群画像分层"
-        title="家政与照护工人"
-        subtitle="出借的守护进程 · 照护别家，自家停摆"
-      />
+    <GySliceShell
+      badge="GY-31 · 人群画像分层"
+      title="家政与照护工人"
+      subtitle="出借的守护进程 · 照护别家，自家停摆"
+      appId="jz-app"
+      moduleId="jiazheng"
+      className="jiazheng-page"
+    >
       <JiazhengPanel />
-    </div>
+    </GySliceShell>
   );
 }

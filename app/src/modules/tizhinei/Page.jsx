@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import TizhineiPanel from './TizhineiPanel.jsx';
 import './tizhinei.css';
 
@@ -8,13 +8,15 @@ import './tizhinei.css';
  */
 export default function TizhineiPage() {
   return (
-    <div className="tizhinei-page">
-      <PageHeader
-        badge="GY-07 · 人群画像分层"
-        title="体制内"
-        subtitle="常驻内存 · 刚兑的最后分区"
-      />
+    <GySliceShell
+      badge="GY-07 · 人群画像分层"
+      title="体制内"
+      subtitle="常驻内存 · 刚兑的最后分区"
+      appId="tz-app"
+      moduleId="tizhinei"
+      className="tizhinei-page"
+    >
       <TizhineiPanel />
-    </div>
+    </GySliceShell>
   );
 }

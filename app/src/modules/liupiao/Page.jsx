@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import LiupiaoPanel from './LiupiaoPanel.jsx';
 import './liupiao.css';
 
@@ -8,13 +8,15 @@ import './liupiao.css';
  */
 export default function LiupiaoPage() {
   return (
-    <div className="liupiao-page">
-      <PageHeader
-        badge="GY-14 · 人群画像分层"
-        title="创作者"
-        subtitle="彩票调度 · 用中奖伪装的职业"
-      />
+    <GySliceShell
+      badge="GY-14 · 人群画像分层"
+      title="创作者"
+      subtitle="彩票调度 · 用中奖伪装的职业"
+      appId="lp-app"
+      moduleId="liupiao"
+      className="liupiao-page"
+    >
       <LiupiaoPanel />
-    </div>
+    </GySliceShell>
   );
 }

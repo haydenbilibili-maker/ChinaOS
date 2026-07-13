@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import MinqiPanel from './MinqiPanel.jsx';
 import './minqi.css';
 
@@ -8,13 +8,15 @@ import './minqi.css';
  */
 export default function MinqiPage() {
   return (
-    <div className="minqi-page">
-      <PageHeader
-        badge="GY-42 · 人群画像分层"
-        title="中小民营企业主"
-        subtitle="两头 I/O 阻塞的中间件进程 · 夹心资本"
-      />
+    <GySliceShell
+      badge="GY-42 · 人群画像分层"
+      title="中小民营企业主"
+      subtitle="两头 I/O 阻塞的中间件进程 · 夹心资本"
+      appId="mq-app"
+      moduleId="minqi"
+      className="minqi-page"
+    >
       <MinqiPanel />
-    </div>
+    </GySliceShell>
   );
 }

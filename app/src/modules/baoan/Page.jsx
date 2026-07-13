@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import BaoanPanel from './BaoanPanel.jsx';
 import './baoan.css';
 
@@ -8,13 +8,15 @@ import './baoan.css';
  */
 export default function BaoanPage() {
   return (
-    <div className="baoan-page">
-      <PageHeader
-        badge="GY-39 · 人群画像分层"
-        title="保安群体"
-        subtitle="空闲轮询的待命进程 · 在场即服务"
-      />
+    <GySliceShell
+      badge="GY-39 · 人群画像分层"
+      title="保安群体"
+      subtitle="空闲轮询的待命进程 · 在场即服务"
+      appId="ba-app"
+      moduleId="baoan"
+      className="baoan-page"
+    >
       <BaoanPanel />
-    </div>
+    </GySliceShell>
   );
 }

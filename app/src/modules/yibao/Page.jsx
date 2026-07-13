@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import YibaoPanel from './YibaoPanel.jsx';
 import './yibao.css';
 
@@ -8,13 +8,15 @@ import './yibao.css';
  */
 export default function YibaoPage() {
   return (
-    <div className="yibao-page">
-      <PageHeader
-        badge="GY-15 · 人群画像分层"
-        title="医保群体"
-        subtitle="全员接口 · 单方面改版的契约"
-      />
+    <GySliceShell
+      badge="GY-15 · 人群画像分层"
+      title="医保群体"
+      subtitle="全员接口 · 单方面改版的契约"
+      appId="yb-app"
+      moduleId="yibao"
+      className="yibao-page"
+    >
       <YibaoPanel />
-    </div>
+    </GySliceShell>
   );
 }

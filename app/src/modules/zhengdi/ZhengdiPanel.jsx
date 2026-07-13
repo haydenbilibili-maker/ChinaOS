@@ -22,7 +22,6 @@ export default function ZhengdiPanel() {
   return (
     <div className="zhengdi-module-wrap">
       <div
-        id="zd-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

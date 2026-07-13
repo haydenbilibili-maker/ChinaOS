@@ -22,7 +22,6 @@ export default function XinfangPanel() {
   return (
     <div className="xinfang-module-wrap">
       <div
-        id="xf-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

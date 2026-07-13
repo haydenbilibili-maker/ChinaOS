@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ── 材料门类（卡脖子 vs 反卡筹码）────────────────────────────────────
@@ -100,14 +100,14 @@ export default function Page() {
       trigger: 'item',
       formatter: (p) => `${p.data[3]}<br/>自主度 ${p.data[0]}% · 战略权重 ${p.data[1]}`,
     },
-    xAxis: valueY({ min: 0, max: 100, name: '自主度 →', nameLocation: 'middle', nameGap: 28, nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
-    yAxis: valueY({ min: 60, max: 100, name: '战略权重', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
+    xAxis: valueY({ min: 0, max: 100, name: '自主度 →', nameLocation: 'middle', nameGap: 28, nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
+    yAxis: valueY({ min: 60, max: 100, name: '战略权重', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
     series: [{
       type: 'scatter',
       symbolSize: (d) => (d[2] === track ? 26 : 15),
       label: {
         show: true, formatter: (p) => p.data[4], position: 'right', fontSize: 9,
-        color: '#93a1b5',
+        color: LABEL.color,
       },
       data: TRACKS.map((x) => [x.autonomy, x.weight, x.key, x.label, x.label]),
       itemStyle: {
@@ -141,12 +141,12 @@ export default function Page() {
           color: r.rate >= 70 ? '#10b981' : r.rate >= 40 ? '#e8a317' : '#c41e3a',
           borderRadius: [0, 3, 3, 0],
         },
-        label: { show: true, position: 'right', formatter: '{c}%', color: '#93a1b5', fontSize: 9 },
+        label: { show: true, position: 'right', formatter: '{c}%', color: LABEL.color, fontSize: 9 },
       })),
       markLine: {
         silent: true, symbol: 'none',
         lineStyle: { color: 'rgba(148,163,184,0.35)', type: 'dashed' },
-        data: [{ xAxis: 50, label: { formatter: '替代线', color: '#93a1b5', fontSize: 9 } }],
+        data: [{ xAxis: 50, label: { formatter: '替代线', color: LABEL.color, fontSize: 9 } }],
       },
     }],
   }), []);

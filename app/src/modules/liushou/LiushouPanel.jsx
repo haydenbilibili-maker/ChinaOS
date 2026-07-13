@@ -22,7 +22,6 @@ export default function LiushouPanel() {
   return (
     <div className="liushou-module-wrap">
       <div
-        id="ll-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ── 价值链环节（从算力底座到具身智能）──────────────────────────────
@@ -91,10 +91,10 @@ export default function Page() {
   // 中美实力雷达（双系列，内联 option）
   const powerRadar = useMemo(() => ({
     tooltip: { trigger: 'item' },
-    legend: { data: ['中国', '美国'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0, itemWidth: 12 },
+    legend: { data: ['中国', '美国'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0, itemWidth: 12 },
     radar: {
       indicator: POWER_DIMS.map((n) => ({ name: n, max: 100 })),
-      axisName: { color: '#93a1b5', fontSize: 10 },
+      axisName: { color: LABEL.color, fontSize: 10 },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       splitArea: { show: false },
@@ -112,12 +112,12 @@ export default function Page() {
   const modelScatter = useMemo(() => ({
     grid: { left: 48, right: 28, top: 24, bottom: 48 },
     tooltip: { trigger: 'item', formatter: (p) => `${p.data[3]}<br/>能力指数 ${p.data[0]} · 推理成本 ${p.data[1]}` },
-    xAxis: valueY({ min: 70, max: 100, name: '能力指数 →', nameLocation: 'middle', nameGap: 28, nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
-    yAxis: valueY({ min: 0, max: 100, name: '推理成本', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
+    xAxis: valueY({ min: 70, max: 100, name: '能力指数 →', nameLocation: 'middle', nameGap: 28, nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
+    yAxis: valueY({ min: 0, max: 100, name: '推理成本', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
     series: [{
       type: 'scatter',
       symbolSize: 18,
-      label: { show: true, formatter: (p) => p.data[3], position: 'right', fontSize: 9, color: '#93a1b5' },
+      label: { show: true, formatter: (p) => p.data[3], position: 'right', fontSize: 9, color: LABEL.color },
       data: MODELS.map((m) => [m.cap, m.cost, m.origin, m.name]),
       itemStyle: {
         color: (p) => (p.data[2] === 'cn' ? '#c41e3a' : '#22d3ee'),
@@ -134,7 +134,7 @@ export default function Page() {
   const supplyGap = useMemo(() => ({
     grid: { left: 48, right: 16, top: 30, bottom: 24 },
     tooltip: { trigger: 'axis' },
-    legend: { data: ['训练算力需求', '国产芯片可供', '受限缺口'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0, itemWidth: 12 },
+    legend: { data: ['训练算力需求', '国产芯片可供', '受限缺口'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0, itemWidth: 12 },
     xAxis: categoryX(['2022', '2023', '2024', '2025E', '2026E', '2027E']),
     yAxis: valueY({ name: 'EFLOPS' }),
     series: [
@@ -148,7 +148,7 @@ export default function Page() {
   const computeTrend = useMemo(() => ({
     grid: { left: 52, right: 44, top: 30, bottom: 24 },
     tooltip: { trigger: 'axis' },
-    legend: { data: ['总算力 EFLOPS', '智能算力 EFLOPS', '智算占比 %'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0, itemWidth: 12 },
+    legend: { data: ['总算力 EFLOPS', '智能算力 EFLOPS', '智算占比 %'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0, itemWidth: 12 },
     xAxis: categoryX(['2021', '2022', '2023', '2024', '2025E']),
     yAxis: [logY({ name: 'EFLOPS(log)' }), valueY({ axisLabel: { formatter: '{value}%' }, splitLine: { show: false }, max: 60 })],
     series: [
@@ -169,7 +169,7 @@ export default function Page() {
       data: PENETRATION.map((r) => ({
         value: r.rate,
         itemStyle: { color: r.rate >= 45 ? '#10b981' : r.rate >= 32 ? '#e8a317' : '#c41e3a', borderRadius: [0, 3, 3, 0] },
-        label: { show: true, position: 'right', formatter: '{c}%', color: '#93a1b5', fontSize: 9 },
+        label: { show: true, position: 'right', formatter: '{c}%', color: LABEL.color, fontSize: 9 },
       })),
     }],
   }), []);

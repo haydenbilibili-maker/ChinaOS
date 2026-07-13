@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import LianPanel from './LianPanel.jsx';
 import './lian.css';
 
@@ -8,13 +8,15 @@ import './lian.css';
  */
 export default function LianPage() {
   return (
-    <div className="lian-page">
-      <PageHeader
-        badge="GY-16 · 人群画像分层 · 系列收官"
-        title="离岸华人"
-        subtitle="境外节点 · 未结清的账户"
-      />
+    <GySliceShell
+      badge="GY-16 · 人群画像分层 · 系列收官"
+      title="离岸华人"
+      subtitle="境外节点 · 未结清的账户"
+      appId="la-app"
+      moduleId="lian"
+      className="lian-page"
+    >
       <LianPanel />
-    </div>
+    </GySliceShell>
   );
 }

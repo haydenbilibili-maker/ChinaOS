@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { PageHeader, Card, Grid, Stat, CrossLinks } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';
 import { FrameworkTrio, SelectorBar, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import {
   VOLUMES, STACK_ORDER, STACK_DISPLAY_TOPDOWN, CANONICAL_ORDER,
@@ -47,17 +48,17 @@ function buildFactorOption(c) {
     },
     xAxis: {
       type: 'value', max: 100, name: '病重度', nameTextStyle: { color: '#5b6a82' },
-      axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } },
     },
     yAxis: {
       type: 'category', data: rows.map((f) => f.label),
-      axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 11 },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 11 },
     },
     series: [{
       type: 'bar', barWidth: 14,
       data: rows.map((f) => ({ value: c.factors[f.key], itemStyle: { color: factorColor(c.factors[f.key]), borderRadius: [0, 3, 3, 0] } })),
-      label: { show: true, position: 'right', formatter: '{c}', color: '#93a1b5', fontSize: 10 },
+      label: { show: true, position: 'right', formatter: '{c}', color: LABEL.color, fontSize: 10 },
     }],
   };
 }
@@ -104,11 +105,11 @@ function buildCycleOption(sim) {
     },
     xAxis: {
       type: 'category', data: x,
-      axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 },
     },
     yAxis: {
       type: 'value', min: 0, max: 100, name: '健康度', nameTextStyle: { color: '#5b6a82' },
-      axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } },
     },
     series: [{
@@ -164,8 +165,8 @@ const COMPARE_TABLE = [
 ];
 const compareRadar = {
   tooltip: {},
-  radar: { indicator: COMPARE_DIMS, axisName: { color: '#93a1b5', fontSize: 11 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.2)' } } },
-  legend: { data: ['中华文明栈', '西方文明栈（理想型）'], textStyle: { color: '#93a1b5' }, bottom: 0 },
+  radar: { indicator: COMPARE_DIMS, axisName: { color: LABEL.color, fontSize: 11 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.2)' } } },
+  legend: { data: ['中华文明栈', '西方文明栈（理想型）'], textStyle: { color: LABEL.color }, bottom: 0 },
   series: [{
     type: 'radar',
     data: [

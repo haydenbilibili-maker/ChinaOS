@@ -22,7 +22,6 @@ export default function YulunPanel() {
   return (
     <div className="yulun-module-wrap">
       <div
-        id="yl-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

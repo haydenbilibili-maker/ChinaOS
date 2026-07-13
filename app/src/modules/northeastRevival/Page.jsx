@@ -55,7 +55,7 @@ export default function Page() {
     xAxis: categoryX(sim.years),
     yAxis: [
       valueY({ name: '份额 %', min: 2, max: 7 }),
-      { type: 'value', name: '人口指数', min: 60, max: 110, splitLine: { show: false }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+      { type: 'value', name: '人口指数', min: 60, max: 110, splitLine: { show: false }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     ],
     series: [
       { name: 'GDP 份额 %', type: 'line', smooth: true, symbol: 'none', data: sim.shares, lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.08)' } },
@@ -123,7 +123,7 @@ export default function Page() {
           borderRadius: v < 0 ? [0, 0, 3, 3] : [3, 3, 0, 0],
         },
       })),
-      label: { show: true, position: 'bottom', color: '#93a1b5', fontSize: 10, formatter: '{c}' },
+      label: { show: true, position: 'bottom', color: LABEL.color, fontSize: 10, formatter: '{c}' },
     }],
   }), []);
 
@@ -139,7 +139,7 @@ export default function Page() {
         value: v,
         itemStyle: { color: AGING_RATES.colors[i], borderRadius: 3 },
       })),
-      label: { show: true, position: 'top', color: '#93a1b5', fontSize: 10, formatter: '{c}%' },
+      label: { show: true, position: 'top', color: LABEL.color, fontSize: 10, formatter: '{c}%' },
     }],
   }), []);
 
@@ -323,7 +323,7 @@ export default function Page() {
                 value: v,
                 itemStyle: { color: v >= 0 ? '#10b981' : '#c41e3a', borderRadius: v >= 0 ? [3, 3, 0, 0] : [0, 0, 3, 3] },
               })),
-              markLine: { silent: true, symbol: 'none', data: [{ yAxis: 0, lineStyle: { color: '#27324a' }, label: { show: false } }] },
+              markLine: { silent: true, symbol: 'none', data: [{ yAxis: 0, lineStyle: { color: AXIS.lineStyle.color }, label: { show: false } }] },
             }],
           }} style={{ height: 240 }} />
           <p className="text-[11px] mt-1" style={{ color: 'var(--text-tertiary)' }}>

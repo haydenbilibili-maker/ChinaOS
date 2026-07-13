@@ -22,7 +22,6 @@ export default function GongyiPanel() {
   return (
     <div className="gongyi-module-wrap">
       <div
-        id="gc-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

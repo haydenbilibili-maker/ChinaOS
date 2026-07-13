@@ -51,7 +51,7 @@ const TRACKS = [
     desc: 'eVTOL / 无人机 / 通航打开三维交通新空间。国产化率天然较高，竞争焦点在适航规则、电池与运营场景。',
   },
   {
-    key: 'ga', name: '通用航空', color: '#93a1b5',
+    key: 'ga', name: '通用航空', color: LABEL.color,
     seat: '通航 + 公务机', stage: '低空开放牵引', progress: 30, localize: 55,
     market: '通航作业 + 飞行培训 + 应急救援',
     rival: '机队规模远低于美国通航存量',
@@ -81,7 +81,7 @@ const partsSource = donutOpt([
   { value: 22, name: '发动机 LEAP-1C（进口）', itemStyle: { color: '#c41e3a' } },
   { value: 18, name: '航电系统（合资/进口）', itemStyle: { color: '#e8a317' } },
   { value: 12, name: '飞控/液压/起落架（进口为主）', itemStyle: { color: '#f97316' } },
-  { value: 8, name: '其它机载（进口）', itemStyle: { color: '#93a1b5' } },
+  { value: 8, name: '其它机载（进口）', itemStyle: { color: LABEL.color } },
 ]);
 
 // 4) 大飞机产业链自主度雷达（单系列 · radarOpt）
@@ -96,18 +96,18 @@ const makerShare = donutOpt([
   { value: 45, name: 'Airbus（A320neo 家族）', itemStyle: { color: '#22d3ee' } },
   { value: 44, name: 'Boeing（737 MAX）', itemStyle: { color: '#e8a317' } },
   { value: 8, name: 'COMAC（C919）', itemStyle: { color: '#c41e3a' } },
-  { value: 3, name: '其它（庞巴迪/巴航等）', itemStyle: { color: '#93a1b5' } },
+  { value: 3, name: '其它（庞巴迪/巴航等）', itemStyle: { color: LABEL.color } },
 ]);
 
 // 6) 民航市场规模：机队规模 + 客运量趋势（双轴 · 自写内联 option）
 const fleetTrend = {
   tooltip: { trigger: 'axis' },
-  legend: { data: ['机队规模（架）', '客运量（亿人次）'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+  legend: { data: ['机队规模（架）', '客运量（亿人次）'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
   grid: { left: 48, right: 52, top: 30, bottom: 24 },
   xAxis: categoryX(['2019', '2023', '2027', '2031', '2035', '2043']),
   yAxis: [
-    { type: 'value', name: '架', nameTextStyle: { color: '#5b6a82' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5' } },
-    { type: 'value', name: '亿人次', nameTextStyle: { color: '#5b6a82' }, splitLine: { show: false }, axisLabel: { color: '#93a1b5' } },
+    { type: 'value', name: '架', nameTextStyle: { color: '#5b6a82' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color } },
+    { type: 'value', name: '亿人次', nameTextStyle: { color: '#5b6a82' }, splitLine: { show: false }, axisLabel: { color: LABEL.color } },
   ],
   series: [
     { name: '机队规模（架）', type: 'bar', barWidth: 22, data: [3800, 4200, 5200, 6300, 7400, 9900], itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } },
@@ -117,7 +117,7 @@ const fleetTrend = {
 
 // 7) 低空经济市场规模预测 bar（按细分 · 万亿元 · 示意）
 const lowAltitudeBar = {
-  legend: { data: ['2025', '2030'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+  legend: { data: ['2025', '2030'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
   grid: { left: 44, right: 16, top: 30, bottom: 24 },
   xAxis: categoryX(['无人机物流', 'eVTOL 载人', '通航作业', '应急救援', '飞行培训']),
   yAxis: valueY({ name: '千亿元', nameTextStyle: { color: '#5b6a82' } }),
@@ -145,13 +145,13 @@ export default function Page() {
   const trackBar = useMemo(() => ({
     grid: { left: 70, right: 40, top: 16, bottom: 24 },
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, valueFormatter: (v) => v + '%' },
-    xAxis: { type: 'value', max: 100, axisLabel: { formatter: '{value}%', color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
-    yAxis: { type: 'category', data: ['国产化率', '研制/商用进度'], axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } },
+    xAxis: { type: 'value', max: 100, axisLabel: { formatter: '{value}%', color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+    yAxis: { type: 'category', data: ['国产化率', '研制/商用进度'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
     series: [{
       type: 'bar', barWidth: 18,
       data: [track.localize, track.progress],
       itemStyle: { color: track.color, borderRadius: 4 },
-      label: { show: true, position: 'right', formatter: '{c}%', color: '#93a1b5', fontSize: 11 },
+      label: { show: true, position: 'right', formatter: '{c}%', color: LABEL.color, fontSize: 11 },
     }],
   }), [track]);
 

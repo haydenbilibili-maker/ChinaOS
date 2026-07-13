@@ -22,7 +22,6 @@ export default function JigongPanel() {
   return (
     <div className="jigong-module-wrap">
       <div
-        id="jg-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

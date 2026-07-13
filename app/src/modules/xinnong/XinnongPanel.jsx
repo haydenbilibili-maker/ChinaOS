@@ -22,7 +22,6 @@ export default function XinnongPanel() {
   return (
     <div className="xinnong-module-wrap">
       <div
-        id="xn-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

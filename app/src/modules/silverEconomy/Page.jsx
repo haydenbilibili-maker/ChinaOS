@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
-import { categoryX, valueY, GRID, LEGEND, donutOpt, radarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, LEGEND, donutOpt, radarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 
 // ============================================================================
 // 银发经济 · 养老服务体系 —— 把老龄化压力转化为产业增量
@@ -35,7 +35,7 @@ const marketOpt = {
   series: [{
     type: 'bar', barWidth: 30, data: [7, 12, 22, 30],
     itemStyle: { color: '#10b981', borderRadius: [3, 3, 0, 0] },
-    label: { show: true, position: 'top', color: '#93a1b5', formatter: '{c}' },
+    label: { show: true, position: 'top', color: LABEL.color, formatter: '{c}' },
   }],
 };
 

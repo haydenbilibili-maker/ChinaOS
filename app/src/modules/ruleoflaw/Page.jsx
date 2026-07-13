@@ -2,23 +2,22 @@ import React, { useState } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
+import { AXIS, LABEL, GRID_LINE, CHART_SERIES_PALETTE } from '../shared/chartHelpers.js';
 
-const AX = { axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } };
-const SPLIT = { splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } };
 
 // ── ① 营商法治 ──────────────────────────────
 const dividendTrend = {
   grid: { left: 44, right: 16, top: 16, bottom: 24 },
-  xAxis: { type: 'category', data: ['2018', '2020', '2022', '2024'], ...AX },
-  yAxis: { type: 'value', name: '指数', nameTextStyle: { color: '#5b6a82' }, axisLabel: { color: '#93a1b5' }, ...SPLIT },
+  xAxis: { type: 'category', data: ['2018', '2020', '2022', '2024'], ...AXIS, axisLabel: LABEL },
+  yAxis: { type: 'value', name: '指数', nameTextStyle: { color: '#5b6a82' }, axisLabel: { color: '#93a1b5' }, ...GRID_LINE },
   series: [{ type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [60, 72, 84, 95], lineStyle: { color: '#10b981', width: 2 }, itemStyle: { color: '#10b981' }, areaStyle: { color: 'rgba(16,185,129,0.1)' } }],
 };
 const bankruptcyOpt = {
   grid: { left: 44, right: 16, top: 30, bottom: 24 },
   legend: { textStyle: { color: '#93a1b5' }, top: 0, data: ['受理破产案', '重整成功率'] },
-  xAxis: { type: 'category', data: ['2019', '2021', '2023', '2025E'], ...AX },
+  xAxis: { type: 'category', data: ['2019', '2021', '2023', '2025E'], ...AXIS, axisLabel: LABEL },
   yAxis: [
-    { type: 'value', name: '万件', nameTextStyle: { color: '#5b6a82' }, axisLabel: { color: '#93a1b5' }, ...SPLIT },
+    { type: 'value', name: '万件', nameTextStyle: { color: '#5b6a82' }, axisLabel: { color: '#93a1b5' }, ...GRID_LINE },
     { type: 'value', name: '%', max: 100, nameTextStyle: { color: '#5b6a82' }, axisLabel: { color: '#93a1b5' }, splitLine: { show: false } },
   ],
   series: [
@@ -30,16 +29,16 @@ const bankruptcyOpt = {
 // ── ② 知产护城河 ────────────────────────────
 const ipBar = {
   grid: { left: 44, right: 16, top: 16, bottom: 24 },
-  xAxis: { type: 'category', data: ['2018', '2020', '2022', '2024'], ...AX },
-  yAxis: { type: 'value', name: '万元/件', nameTextStyle: { color: '#5b6a82' }, axisLabel: { color: '#93a1b5' }, ...SPLIT },
+  xAxis: { type: 'category', data: ['2018', '2020', '2022', '2024'], ...AXIS, axisLabel: LABEL },
+  yAxis: { type: 'value', name: '万元/件', nameTextStyle: { color: '#5b6a82' }, axisLabel: { color: '#93a1b5' }, ...GRID_LINE },
   series: [{ type: 'bar', data: [50, 110, 220, 400], barWidth: 28, itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } }],
 };
 const patentOpt = {
   grid: { left: 48, right: 16, top: 30, bottom: 24 },
   legend: { textStyle: { color: '#93a1b5' }, top: 0, data: ['发明专利授权', '平均确权周期'] },
-  xAxis: { type: 'category', data: ['2018', '2020', '2022', '2024'], ...AX },
+  xAxis: { type: 'category', data: ['2018', '2020', '2022', '2024'], ...AXIS, axisLabel: LABEL },
   yAxis: [
-    { type: 'value', name: '万件', nameTextStyle: { color: '#5b6a82' }, axisLabel: { color: '#93a1b5' }, ...SPLIT },
+    { type: 'value', name: '万件', nameTextStyle: { color: '#5b6a82' }, axisLabel: { color: '#93a1b5' }, ...GRID_LINE },
     { type: 'value', name: '月', max: 24, nameTextStyle: { color: '#5b6a82' }, axisLabel: { color: '#93a1b5' }, splitLine: { show: false } },
   ],
   series: [
@@ -65,15 +64,15 @@ const courtRadar = {
 };
 const onlineTrend = {
   grid: { left: 40, right: 16, top: 16, bottom: 24 },
-  xAxis: { type: 'category', data: ['2020', '2021', '2022', '2023', '2024'], ...AX },
-  yAxis: { type: 'value', name: '%', max: 100, nameTextStyle: { color: '#5b6a82' }, axisLabel: { color: '#93a1b5' }, ...SPLIT },
+  xAxis: { type: 'category', data: ['2020', '2021', '2022', '2023', '2024'], ...AXIS, axisLabel: LABEL },
+  yAxis: { type: 'value', name: '%', max: 100, nameTextStyle: { color: '#5b6a82' }, axisLabel: { color: '#93a1b5' }, ...GRID_LINE },
   series: [{ type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [54, 67, 78, 86, 91], lineStyle: { color: '#10b981', width: 2 }, itemStyle: { color: '#10b981' }, areaStyle: { color: 'rgba(16,185,129,0.1)' } }],
 };
 
 // ── ④ 涉外法治 ──────────────────────────────
 const sovToolkit = {
   grid: { left: 96, right: 24, top: 8, bottom: 24 },
-  xAxis: { type: 'value', max: 100, ...AX, ...SPLIT },
+  xAxis: { type: 'value', max: 100, ...AXIS, axisLabel: LABEL, ...GRID_LINE },
   yAxis: { type: 'category', data: ['长臂管辖反制', '数据跨境规则', '反外国制裁法', '阻断办法', 'CICC 商事仲裁'], axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } },
   series: [{ type: 'bar', barWidth: 16, data: [58, 64, 72, 67, 80], itemStyle: { color: '#c41e3a', borderRadius: [0, 3, 3, 0] } }],
 };

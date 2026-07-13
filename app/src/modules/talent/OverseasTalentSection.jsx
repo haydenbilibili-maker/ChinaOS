@@ -1,10 +1,11 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import * as Lucide from 'lucide-react';
-import { Card, Grid, Stat } from '../../app/ui.jsx';
+import { Card, Grid, Stat, DistBar } from '../../app/ui.jsx';
 import FigureAvatar from '../../lib/ui/FigureAvatar.jsx';
 import { figureAvatarProps, prefetchFigureAvatars } from '../../lib/ui/figureAvatarResolve.js';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, LABEL } from '../shared/chartHelpers.js';
 import { useOverseasTalent } from '../../lib/db/useDataset.js';
 import * as DB from '../../lib/db/localdb.js';
 import {
@@ -40,24 +41,6 @@ function tally(arr, keyFn) {
 function preview(text, max = 52) {
   if (!text) return '';
   return text.length <= max ? text : `${text.slice(0, max)}…`;
-}
-
-function DistBars({ data, color = '#0ea5e9', max, onPick, active }) {
-  const top = max || (data[0]?.[1] || 1);
-  return (
-    <div className="space-y-1.5">
-      {data.map(([k, n]) => (
-        <button key={k} type="button" onClick={onPick ? () => onPick(k) : undefined} className="w-full flex items-center gap-2 text-left"
-          style={{ cursor: onPick ? 'pointer' : 'default', opacity: active && active !== k ? 0.45 : 1 }}>
-          <span className="text-[11px] mono shrink-0 text-right" style={{ width: 70, color: active === k ? color : 'var(--text-secondary)' }}>{k}</span>
-          <span className="flex-1 rounded-sm" style={{ height: 13, background: 'var(--bg-base)', position: 'relative', overflow: 'hidden' }}>
-            <span style={{ position: 'absolute', inset: 0, width: `${(n / top) * 100}%`, background: color, opacity: 0.75, borderRadius: 2 }} />
-          </span>
-          <span className="text-[11px] mono shrink-0" style={{ width: 26, color: 'var(--text-tertiary)' }}>{n}</span>
-        </button>
-      ))}
-    </div>
-  );
 }
 
 function TalentCard({ r, on, onClick, dense = false }) {
@@ -171,7 +154,7 @@ export default function OverseasTalentSection() {
   const countryChart = {
     grid: { left: 48, right: 16, top: 12, bottom: 24 },
     xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
-    yAxis: { type: 'category', data: distCountry.slice(0, 12).map(([k]) => k).reverse(), axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+    yAxis: { type: 'category', data: distCountry.slice(0, 12).map(([k]) => k).reverse(), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     series: [{ type: 'bar', data: distCountry.slice(0, 12).map(([, n]) => n).reverse(), barWidth: 14, itemStyle: { color: '#0ea5e9', borderRadius: 3 } }],
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
   };
@@ -179,8 +162,8 @@ export default function OverseasTalentSection() {
   const fieldChart = distField.length ? {
     tooltip: { trigger: 'axis' },
     grid: { left: 48, right: 16, top: 8, bottom: 24 },
-    xAxis: { type: 'category', data: distField.slice(0, 14).map(([k]) => k), axisLabel: { color: '#93a1b5', fontSize: 10, rotate: 35 }, axisLine: { lineStyle: { color: '#27324a' } } },
-    yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+    xAxis: { type: 'category', data: distField.slice(0, 14).map(([k]) => k), axisLabel: { color: LABEL.color, fontSize: 10, rotate: 35 }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
+    yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     series: [{ type: 'bar', data: distField.slice(0, 14).map(([, n]) => n), barWidth: '55%', itemStyle: { color: '#22d3ee', borderRadius: [3, 3, 0, 0] } }],
   } : null;
 
@@ -332,8 +315,8 @@ export default function OverseasTalentSection() {
                 {fieldChart && <Card title="领域分布"><EChart option={fieldChart} style={{ height: 260 }} /></Card>}
               </Grid>
               <Grid cols={2}>
-                <Card title="驻留国（点选筛选）"><DistBars data={distCountry.slice(0, 10)} onPick={(k) => { const code = Object.entries(COUNTRY_LABEL).find(([, v]) => v === k)?.[0] || k; setCountry(country === code ? '' : code); }} active={COUNTRY_LABEL[country] || country} /></Card>
-                <Card title="领域（点选筛选）"><DistBars data={distField.slice(0, 10)} color="#a78bfa" onPick={(k) => setField(field === k ? '' : k)} active={field} /></Card>
+                <Card title="驻留国（点选筛选）"><DistBar data={distCountry.slice(0, 10)} onPick={(k) => { const code = Object.entries(COUNTRY_LABEL).find(([, v]) => v === k)?.[0] || k; setCountry(country === code ? '' : code); }} active={COUNTRY_LABEL[country] || country} /></Card>
+                <Card title="领域（点选筛选）"><DistBar data={distField.slice(0, 10)} color="#a78bfa" onPick={(k) => setField(field === k ? '' : k)} active={field} /></Card>
               </Grid>
               <p className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>// 数据边界：{OVERSEAS_TALENT_META.notes}</p>
             </div>

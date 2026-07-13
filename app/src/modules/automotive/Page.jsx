@@ -111,7 +111,7 @@ const BATTERY_DONUT = [
   { value: 13, name: 'LG 新能源', itemStyle: { color: '#64748b' } },
   { value: 7, name: '松下', itemStyle: { color: '#8b5cf6' } },
   { value: 7, name: 'SK On / 三星', itemStyle: { color: '#fb923c' } },
-  { value: 8, name: '其他', itemStyle: { color: '#27324a' } },
+  { value: 8, name: '其他', itemStyle: { color: AXIS.lineStyle.color } },
 ];
 
 // —— 产业实力雷达：中国 vs 德日传统强国（示意 0-100）——
@@ -201,9 +201,9 @@ export default function Page() {
   const exportRaceOpt = useMemo(() => ({
     grid: { left: 44, right: 24, top: 32, bottom: 24 },
     tooltip: { trigger: 'axis' },
-    legend: { data: ['中国', '日本', '德国'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { data: ['中国', '日本', '德国'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     xAxis: categoryX(EXP_YEARS),
-    yAxis: valueY({ name: '万辆', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
+    yAxis: valueY({ name: '万辆', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
     series: [
       { name: '中国', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: EXP_CN, lineStyle: { color: '#c41e3a', width: 2.5 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.10)' },
         markPoint: { symbolSize: 46, label: { fontSize: 9, color: '#fff' }, itemStyle: { color: '#c41e3a' }, data: [{ coord: ['2023', 491], name: '登顶', value: '超日本' }] } },
@@ -216,9 +216,9 @@ export default function Page() {
   const bydTeslaOpt = useMemo(() => ({
     grid: { left: 44, right: 24, top: 32, bottom: 24 },
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-    legend: { data: ['比亚迪', '特斯拉'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { data: ['比亚迪', '特斯拉'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     xAxis: categoryX(BT_YEARS),
-    yAxis: valueY({ name: '万辆', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
+    yAxis: valueY({ name: '万辆', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
     series: [
       { name: '比亚迪', type: 'bar', barWidth: 14, data: BT_BYD, itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } },
       { name: '特斯拉', type: 'bar', barWidth: 14, data: BT_TSLA, itemStyle: { color: '#64748b', borderRadius: [3, 3, 0, 0] } },
@@ -233,7 +233,7 @@ export default function Page() {
     categories: ['正极材料', '负极材料', '电解液', '隔膜', '电芯制造', '锂资源精炼'],
     series: [
       { name: '中国份额', data: [88, 92, 86, 80, 73, 68], itemStyle: { color: '#22d3ee', borderRadius: 0 } },
-      { name: '海外份额', data: [12, 8, 14, 20, 27, 32], itemStyle: { color: '#27324a' } },
+      { name: '海外份额', data: [12, 8, 14, 20, 27, 32], itemStyle: { color: AXIS.lineStyle.color } },
     ],
     horizontal: true,
   }), []);
@@ -241,13 +241,13 @@ export default function Page() {
   // —— 双系列产业实力雷达（自写内联）——
   const powerRadarOpt = useMemo(() => ({
     tooltip: { trigger: 'item' },
-    legend: { data: ['中国', '德日传统强国'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { data: ['中国', '德日传统强国'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     radar: {
       indicator: RADAR_INDS.map((n) => ({ name: n, max: 100 })),
       center: ['50%', '56%'], radius: '62%',
-      axisName: { color: '#93a1b5', fontSize: 10 },
-      splitLine: { lineStyle: { color: '#27324a' } },
-      axisLine: { lineStyle: { color: '#27324a' } },
+      axisName: { color: LABEL.color, fontSize: 10 },
+      splitLine: { lineStyle: { color: AXIS.lineStyle.color } },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
       splitArea: { show: false },
     },
     series: [{
@@ -264,11 +264,11 @@ export default function Page() {
     grid: { left: 76, right: 44, top: 16, bottom: 24 },
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
     xAxis: valueY({ max: Math.max(...seg.bars.map((b) => b.value)) + 12, axisLabel: { formatter: '{value}%' } }),
-    yAxis: { type: 'category', data: seg.bars.map((b) => b.name).reverse(), axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+    yAxis: { type: 'category', data: seg.bars.map((b) => b.name).reverse(), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     series: [{
       type: 'bar', barWidth: 14,
       data: seg.bars.map((b) => ({ value: b.value, itemStyle: { color: b.color, borderRadius: 3 } })).reverse(),
-      label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10, formatter: '{c}%' },
+      label: { show: true, position: 'right', color: LABEL.color, fontSize: 10, formatter: '{c}%' },
     }],
   }), [seg]);
 
@@ -284,7 +284,7 @@ export default function Page() {
         value: c.shareCN,
         itemStyle: { color: c.key === chain ? c.accent : '#27324a', borderRadius: [4, 4, 0, 0] },
       })),
-      label: { show: true, position: 'top', color: '#93a1b5', fontSize: 10, formatter: '{c}%' },
+      label: { show: true, position: 'top', color: LABEL.color, fontSize: 10, formatter: '{c}%' },
       markLine: {
         silent: true, symbol: 'none',
         lineStyle: { color: '#e8a317', type: 'dashed' },

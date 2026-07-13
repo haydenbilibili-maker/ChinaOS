@@ -22,7 +22,6 @@ export default function ManjiuPanel() {
   return (
     <div className="manjiu-module-wrap">
       <div
-        id="mj-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

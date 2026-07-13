@@ -68,7 +68,7 @@ export default function Page() {
 
   // 氢源结构 donut（随类型切换示意）
   const mixDonut = useMemo(() => donutOpt([
-    { value: h2 === 'grey' ? 75 : 62, name: '灰氢', itemStyle: { color: '#93a1b5' } },
+    { value: h2 === 'grey' ? 75 : 62, name: '灰氢', itemStyle: { color: LABEL.color } },
     { value: h2 === 'blue' ? 30 : 20, name: '蓝氢', itemStyle: { color: '#22d3ee' } },
     { value: h2 === 'green' ? 35 : 15, name: '绿氢', itemStyle: { color: '#10b981' } },
     { value: 3, name: '其他', itemStyle: { color: '#e8a317' } },
@@ -78,7 +78,7 @@ export default function Page() {
   const costTrend = useMemo(() => ({
     grid: GRID,
     tooltip: { trigger: 'axis' },
-    legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 } },
+    legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
     xAxis: categoryX(['2020', '2022', '2024', '2026E', '2030E']),
     yAxis: valueY({ name: '元/kg' }),
     series: [{ type: 'line', smooth: true, name: `${h.label}成本`,
@@ -104,7 +104,7 @@ export default function Page() {
   const greenCostDriver = useMemo(() => ({
     grid: GRID,
     tooltip: { trigger: 'axis' },
-    legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 } },
+    legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
     xAxis: categoryX(['2020', '2022', '2024', '2026E', '2028E', '2030E']),
     yAxis: logY({ name: '指数' }),
     series: [
@@ -123,11 +123,11 @@ export default function Page() {
   // 燃料电池关键部件自主度雷达
   const fcRadar = useMemo(() => ({
     ...radarOpt(FC_PARTS, FC_LOCAL, { name: '国产化率', color: '#c41e3a' }),
-    legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 } },
+    legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
     series: [{
       type: 'radar',
       data: [
-        { value: FC_INTL, name: '国际先进(100)', lineStyle: { color: '#27324a', width: 1, type: 'dashed' }, itemStyle: { color: '#27324a' }, areaStyle: { color: 'rgba(148,163,184,0.04)' } },
+        { value: FC_INTL, name: '国际先进(100)', lineStyle: { color: AXIS.lineStyle.color, width: 1, type: 'dashed' }, itemStyle: { color: AXIS.lineStyle.color }, areaStyle: { color: 'rgba(148,163,184,0.04)' } },
         { value: FC_LOCAL, name: '国产化率(%)', lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.12)' } },
       ],
     }],

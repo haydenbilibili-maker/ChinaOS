@@ -22,7 +22,6 @@ export default function JieduPanel() {
   return (
     <div className="jiedu-module-wrap">
       <div
-        id="jd-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

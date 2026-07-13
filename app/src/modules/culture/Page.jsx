@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ---------------------------------------------------------------------------
@@ -113,14 +113,14 @@ export default function Page() {
     yAxis: categoryX(['北美', '欧洲', '东南亚', '中东', '拉美']),
     series: [{ type: 'bar', barWidth: 14,
       data: t.markets.map((v) => ({ value: v, itemStyle: { color: t.accent, borderRadius: 3 } })),
-      label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 } }],
+      label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 } }],
   }), [t]);
 
   // -- 新文化出口三件套（多线，log 轴跨度大）
   const trioTrend = useMemo(() => ({
     grid: { ...GRID, top: 34 },
     tooltip: { trigger: 'axis' },
-    legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+    legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
     xAxis: categoryX(['2018', '2019', '2020', '2021', '2022', '2023', '2024']),
     yAxis: logY({ min: 1 }),
     series: [
@@ -134,7 +134,7 @@ export default function Page() {
   const guochaoBar = useMemo(() => ({
     grid: { ...GRID, top: 34 },
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-    legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+    legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
     xAxis: categoryX(GUOCHAO_YEARS),
     yAxis: valueY({ max: 100 }),
     series: GUOCHAO.map((s) => ({ name: s.name, type: 'bar', barWidth: 14, data: s.data, itemStyle: { color: s.color, borderRadius: [3, 3, 0, 0] } })),
@@ -143,10 +143,10 @@ export default function Page() {
   // -- 软实力雷达：中美双系列（radarOpt 仅单系列，故内联）
   const softRadar = useMemo(() => ({
     tooltip: { trigger: 'item' },
-    legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+    legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
     radar: {
       indicator: SOFT_DIMS.map((n) => ({ name: n, max: 100 })),
-      axisName: { color: '#93a1b5', fontSize: 10 },
+      axisName: { color: LABEL.color, fontSize: 10 },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       splitArea: { show: false },

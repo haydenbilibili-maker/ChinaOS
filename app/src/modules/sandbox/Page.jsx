@@ -3,6 +3,7 @@ import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import { IntroCard, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { CRISES, CRISIS_DOMAINS, mitigatedImpact, compositeImpact } from './crisisData.js';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';
 import ChinaMap from '../../lib/viz/ChinaMap.jsx';
 import DataBus from '../../lib/data/DataBus.js';
 import * as DB from '../../lib/db/localdb.js';
@@ -317,8 +318,8 @@ export default function Page() {
     return {
       grid: { left: 110, right: 30, top: 10, bottom: 24 },
       xAxis: { type: 'value', max: 80, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
-      yAxis: { type: 'category', data: top.map((p) => p.name.replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '')), axisLine: { lineStyle: { color: '#27324a' } } },
-      series: [{ type: 'bar', data: top.map((p) => p.entropy), barWidth: 12, itemStyle: { color: '#c41e3a', borderRadius: 3 }, label: { show: true, position: 'right', color: '#93a1b5' } }],
+      yAxis: { type: 'category', data: top.map((p) => p.name.replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '')), axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
+      series: [{ type: 'bar', data: top.map((p) => p.entropy), barWidth: 12, itemStyle: { color: '#c41e3a', borderRadius: 3 }, label: { show: true, position: 'right', color: LABEL.color } }],
     };
   }, [computed]);
 
@@ -429,7 +430,7 @@ export default function Page() {
             <>
               <p className="text-xs leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}><span className="font-semibold" style={{ color: 'var(--text-primary)' }}>挑战画像：</span>{cfg.challenge}</p>
               <EChart option={{
-                radar: { indicator: RADAR_IND, axisName: { color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
+                radar: { indicator: RADAR_IND, axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
                 series: [{ type: 'radar', data: [{ value: cfg.radar, name: sel, lineStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.12)' } }] }],
               }} style={{ height: 200 }} />
             </>

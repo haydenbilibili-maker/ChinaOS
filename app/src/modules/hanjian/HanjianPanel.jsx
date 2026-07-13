@@ -22,7 +22,6 @@ export default function HanjianPanel() {
   return (
     <div className="hanjian-module-wrap">
       <div
-        id="hj-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

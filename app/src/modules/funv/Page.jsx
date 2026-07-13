@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import FunvPanel from './FunvPanel.jsx';
 import './funv.css';
 
@@ -8,13 +8,15 @@ import './funv.css';
  */
 export default function FunvPage() {
   return (
-    <div className="funv-page">
-      <PageHeader
-        badge="GY-45 · 人群画像分层"
-        title="农村留守妇女"
-        subtitle="独自维持集群的主节点 · 一人承托全家"
-      />
+    <GySliceShell
+      badge="GY-45 · 人群画像分层"
+      title="农村留守妇女"
+      subtitle="独自维持集群的主节点 · 一人承托全家"
+      appId="fn-app"
+      moduleId="funv"
+      className="funv-page"
+    >
       <FunvPanel />
-    </div>
+    </GySliceShell>
   );
 }

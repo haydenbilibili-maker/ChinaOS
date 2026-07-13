@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import YihuPanel from './YihuPanel.jsx';
 import './yihu.css';
 
@@ -8,13 +8,15 @@ import './yihu.css';
  */
 export default function YihuPage() {
   return (
-    <div className="yihu-page">
-      <PageHeader
-        badge="GY-37 · 人群画像分层"
-        title="医护人员"
-        subtitle="永远满载的服务进程 · 请求队列溢出"
-      />
+    <GySliceShell
+      badge="GY-37 · 人群画像分层"
+      title="医护人员"
+      subtitle="永远满载的服务进程 · 请求队列溢出"
+      appId="yh-app"
+      moduleId="yihu"
+      className="yihu-page"
+    >
       <YihuPanel />
-    </div>
+    </GySliceShell>
   );
 }

@@ -22,7 +22,6 @@ export default function XinyiminPanel() {
   return (
     <div className="xinyimin-module-wrap">
       <div
-        id="xm-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

@@ -22,7 +22,6 @@ export default function TajianPanel() {
   return (
     <div className="tajian-module-wrap">
       <div
-        id="tj-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

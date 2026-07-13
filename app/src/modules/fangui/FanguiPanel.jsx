@@ -22,7 +22,6 @@ export default function FanguiPanel() {
   return (
     <div className="fangui-module-wrap">
       <div
-        id="fg-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

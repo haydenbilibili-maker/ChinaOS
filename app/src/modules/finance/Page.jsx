@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ── 风险领域：每个领域的等级 / 传导 / 处置工具 / 当前态势 ──────────────
@@ -92,7 +92,7 @@ const LEV_YEARS = ['2015', '2017', '2019', '2021', '2023', '2024'];
 const leverageOpt = {
   grid: GRID,
   tooltip: { trigger: 'axis' },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
   xAxis: categoryX(LEV_YEARS),
   yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
   series: [

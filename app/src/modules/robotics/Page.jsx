@@ -157,11 +157,11 @@ export default function Page() {
     grid: { left: 80, right: 24, top: 8, bottom: 16 },
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: '{b}: {c}%' },
     xAxis: valueY({ max: 100 }),
-    yAxis: { type: 'category', data: r.parts.map((p) => p[0]), axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+    yAxis: { type: 'category', data: r.parts.map((p) => p[0]), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     series: [{
       type: 'bar', barWidth: 14,
       data: r.parts.map((p) => ({ value: p[1], itemStyle: { color: p[1] >= 70 ? '#10b981' : p[1] >= 50 ? '#e8a317' : '#c41e3a', borderRadius: [0, 3, 3, 0] } })),
-      label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10, formatter: '{c}%' },
+      label: { show: true, position: 'right', color: LABEL.color, fontSize: 10, formatter: '{c}%' },
     }],
   }), [r]);
 
@@ -180,10 +180,10 @@ export default function Page() {
 
   // 核心零部件自主度雷达（中国 vs 全球第一梯队）
   const radarCompare = useMemo(() => ({
-    legend: { ...{ textStyle: { color: '#93a1b5', fontSize: 10 } }, bottom: 0 },
+    legend: { ...{ textStyle: { color: LABEL.color, fontSize: 10 } }, bottom: 0 },
     radar: {
       indicator: RADAR_INDS.map((n) => ({ name: n, max: 100 })),
-      axisName: { color: '#93a1b5', fontSize: 10 },
+      axisName: { color: LABEL.color, fontSize: 10 },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       splitArea: { show: false },

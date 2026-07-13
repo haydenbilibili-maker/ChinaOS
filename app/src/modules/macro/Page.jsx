@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
+import { AXIS, LABEL, GRID_LINE, CHART_SERIES_PALETTE } from '../shared/chartHelpers.js';
 import {
   MACRO_AS_OF, MACRO_INIT, POLICY_LEVERS, MACRO_STATES,
   defaultLevers, simulate, quadrant, buildMacroReport,
@@ -16,7 +17,6 @@ import {
 // 声明：示意模型 · 思想工具 · 非投资建议 · 非预测。
 // ============================================================================
 
-const AX = { line: '#27324a', text: '#93a1b5', split: 'rgba(148,163,184,0.1)' };
 const QUARTERS = ['Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8'];
 
 const BTN = {
@@ -145,32 +145,32 @@ export default function Page({ embedded = false }) {
       ...(markLine ? { markLine } : {}),
     });
     return {
-      legend: { data: MACRO_STATES.map((s) => s.label), textStyle: { color: AX.text, fontSize: 11 }, top: 0 },
+      legend: { data: MACRO_STATES.map((s) => s.label), textStyle: { color: LABEL.color, fontSize: 11 }, top: 0 },
       grid: { left: 48, right: 56, top: 36, bottom: 28 },
       tooltip: { trigger: 'axis' },
       xAxis: {
         type: 'category',
         data: QUARTERS,
-        axisLine: { lineStyle: { color: AX.line } },
-        axisLabel: { color: AX.text },
+        axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
+        axisLabel: { color: LABEL.color },
         axisTick: { show: false },
       },
       yAxis: [
         {
           type: 'value',
           name: '增长 / 物价（%）',
-          nameTextStyle: { color: AX.text, fontSize: 10 },
-          axisLine: { lineStyle: { color: AX.line } },
-          axisLabel: { color: AX.text },
-          splitLine: { lineStyle: { color: AX.split } },
+          nameTextStyle: { color: LABEL.color, fontSize: 10 },
+          axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
+          axisLabel: { color: LABEL.color },
+          splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } },
           scale: true,
         },
         {
           type: 'value',
           name: '就业 / 杠杆',
-          nameTextStyle: { color: AX.text, fontSize: 10 },
-          axisLine: { lineStyle: { color: AX.line } },
-          axisLabel: { color: AX.text },
+          nameTextStyle: { color: LABEL.color, fontSize: 10 },
+          axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
+          axisLabel: { color: LABEL.color },
           splitLine: { show: false },
           scale: true,
         },

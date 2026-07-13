@@ -1,3 +1,4 @@
+import { AXIS, LABEL } from '../shared/chartHelpers.js';
 // 红网 · 结构分析 · 数据层
 // ----------------------------------------------------------------------------
 // 把「红色巨网」作为党—国控制网络的结构现象建模：层级（L0–L6）、控制节点、
@@ -160,7 +161,7 @@ export function buildGraphOption(mechKey, selectedId) {
   });
   return {
     tooltip: { trigger: 'item', formatter: (p) => (p.dataType === 'edge' ? '' : `${p.data.name} · 强度 ${p.data.value}`) },
-    legend: [{ data: categories.map((c) => c.name), textStyle: { color: '#93a1b5', fontSize: 10 }, type: 'scroll', bottom: 0, icon: 'circle' }],
+    legend: [{ data: categories.map((c) => c.name), textStyle: { color: LABEL.color, fontSize: 10 }, type: 'scroll', bottom: 0, icon: 'circle' }],
     series: [{
       type: 'graph', layout: 'force', roam: true, draggable: true,
       categories,
@@ -202,7 +203,7 @@ export function buildSankeyOption() {
       data, links,
       nodeWidth: 12, nodeGap: 8,
       emphasis: { focus: 'adjacency' },
-      label: { color: '#93a1b5', fontSize: 10 },
+      label: { color: LABEL.color, fontSize: 10 },
       lineStyle: { color: 'gradient', curveness: 0.5 },
     }],
   };

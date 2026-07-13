@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import { IntroCard, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';
 import {
   PR_AS_OF,
   PR_SCENARIOS,

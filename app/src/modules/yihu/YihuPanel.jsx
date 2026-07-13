@@ -22,7 +22,6 @@ export default function YihuPanel() {
   return (
     <div className="yihu-module-wrap">
       <div
-        id="yh-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

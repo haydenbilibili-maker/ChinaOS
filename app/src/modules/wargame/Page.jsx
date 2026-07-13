@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
+import { AXIS, LABEL, GRID_LINE, CHART_SERIES_PALETTE } from '../shared/chartHelpers.js';
 import {
   WG_AS_OF, SIDES, CARDS, STRATEGIES, INIT, MAX_TURNS, AP_PER_TURN,
   THIRD_PARTIES, TECH_TRACKS, TILT_TIPPING, TILT_SIDED,
@@ -17,7 +18,6 @@ import {
 // 引擎全在 wargameData.js（确定性纯函数）；本页只做选牌-结算-呈现。
 // ============================================================================
 
-const AX = { line: '#27324a', text: '#93a1b5', split: 'rgba(148,163,184,0.1)' };
 
 const BTN = {
   background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)',
@@ -252,17 +252,17 @@ export default function Page({ embedded = false }) {
       ['美方经贸', 'usEcon', '#8b5cf6', 'dashed'],
     ];
     return {
-      legend: { data: lines.map((l) => l[0]), textStyle: { color: AX.text }, top: 0 },
+      legend: { data: lines.map((l) => l[0]), textStyle: { color: LABEL.color }, top: 0 },
       grid: { left: 40, right: 18, top: 34, bottom: 26 },
       xAxis: {
         type: 'category',
         data: game.history.map((h) => (h.turn === 0 ? '开局' : `第${h.turn}回合`)),
-        axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text },
+        axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color },
       },
       yAxis: {
         type: 'value', min: 0, max: 100,
-        axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text },
-        splitLine: { lineStyle: { color: AX.split } },
+        axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color },
+        splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } },
       },
       series: lines.map(([name, key, color, type]) => ({
         name, type: 'line', data: game.history.map((h) => h[key]),

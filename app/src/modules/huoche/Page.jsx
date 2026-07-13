@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import HuochePanel from './HuochePanel.jsx';
 import './huoche.css';
 
@@ -8,13 +8,15 @@ import './huoche.css';
  */
 export default function HuochePage() {
   return (
-    <div className="huoche-page">
-      <PageHeader
-        badge="GY-27 · 人群画像分层"
-        title="货车司机与公路货运劳动者"
-        subtitle="轮子上的实时进程 · 北斗即调度器"
-      />
+    <GySliceShell
+      badge="GY-27 · 人群画像分层"
+      title="货车司机与公路货运劳动者"
+      subtitle="轮子上的实时进程 · 北斗即调度器"
+      appId="hc-app"
+      moduleId="huoche"
+      className="huoche-page"
+    >
       <HuochePanel />
-    </div>
+    </GySliceShell>
   );
 }

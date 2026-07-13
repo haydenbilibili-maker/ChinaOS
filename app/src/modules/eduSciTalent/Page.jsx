@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
-import { categoryX, valueY, GRID, LEGEND, radarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, LEGEND, radarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 
 // ============================================================================
 // 教育科技人才一体化 · 三位一体 —— 教育链/创新链/人才链协同
@@ -37,7 +37,7 @@ const outputOpt = {
       { value: 72, itemStyle: { color: '#e8a317' } },
       { value: 92, itemStyle: { color: '#c41e3a' } },
     ],
-    label: { show: true, position: 'top', color: '#93a1b5' },
+    label: { show: true, position: 'top', color: LABEL.color },
   }],
 };
 

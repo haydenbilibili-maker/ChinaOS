@@ -1,11 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, GRID_LINE } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
-
-const AXIS = { lineStyle: { color: '#27324a' } };
-const SPLIT = { lineStyle: { color: 'rgba(148,163,184,0.1)' } };
 
 // ============================================================================
 // 一 · 工程选择器数据：八大超级工程档案（示意值，量级参考公开报道）
@@ -92,12 +89,12 @@ const PROJECTS = [
 const investBar = {
   tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: (ps) => `${ps[0].name}<br/>投资量级：约 ${ps[0].value} 万亿元（示意）` },
   grid: { left: 110, right: 40, top: 16, bottom: 24 },
-  xAxis: valueY({ name: '万亿元', nameTextStyle: { color: '#93a1b5' } }),
-  yAxis: { type: 'category', data: [...PROJECTS].sort((a, b) => a.invest - b.invest).map((p) => p.label), axisLine: AXIS, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+  xAxis: valueY({ name: '万亿元', nameTextStyle: { color: LABEL.color } }),
+  yAxis: { type: 'category', data: [...PROJECTS].sort((a, b) => a.invest - b.invest).map((p) => p.label), axisLine: AXIS, axisLabel: { color: LABEL.color, fontSize: 10 } },
   series: [{
     type: 'bar', barWidth: 14,
     data: [...PROJECTS].sort((a, b) => a.invest - b.invest).map((p) => ({ value: p.invest, itemStyle: { color: p.accent, borderRadius: 3, opacity: 0.9 } })),
-    label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10, formatter: '{c} 万亿' },
+    label: { show: true, position: 'right', color: LABEL.color, fontSize: 10, formatter: '{c} 万亿' },
   }],
 };
 
@@ -107,13 +104,13 @@ const investBar = {
 const HSR_YEARS = ['2008', '2010', '2012', '2014', '2016', '2018', '2020', '2022', '2024', '2025E'];
 const HSR_KM = [0.07, 0.5, 0.9, 1.6, 2.2, 2.9, 3.8, 4.2, 4.7, 4.8];
 const hsrGrowth = {
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 } },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
   tooltip: { trigger: 'axis' },
   grid: { left: 48, right: 48, top: 36, bottom: 24 },
   xAxis: categoryX(HSR_YEARS),
   yAxis: [
-    valueY({ name: '万公里', nameTextStyle: { color: '#93a1b5' } }),
-    { type: 'value', name: '网络效应指数', nameTextStyle: { color: '#93a1b5' }, splitLine: { show: false }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+    valueY({ name: '万公里', nameTextStyle: { color: LABEL.color } }),
+    { type: 'value', name: '网络效应指数', nameTextStyle: { color: LABEL.color }, splitLine: { show: false }, axisLabel: { color: LABEL.color, fontSize: 10 } },
   ],
   series: [
     { name: '高铁营业里程（万公里）', type: 'bar', barWidth: 16, data: HSR_KM, itemStyle: { color: '#c41e3a', borderRadius: 3, opacity: 0.85 } },
@@ -132,7 +129,7 @@ const HSR_CORRIDORS = [
 const spilloverBar = stackedBarOpt({
   categories: ['盾构机', '特高压', '桥梁工程', '高铁装备', '水电机组', '港口机械'],
   series: [
-    { name: '国内工程锤炼（能力积累指数）', data: [90, 95, 92, 95, 90, 88], itemStyle: { color: '#27324a', borderRadius: 0 } },
+    { name: '国内工程锤炼（能力积累指数）', data: [90, 95, 92, 95, 90, 88], itemStyle: { color: AXIS.lineStyle.color, borderRadius: 0 } },
     { name: '全球市场输出（份额/输出指数）', data: [70, 60, 55, 35, 45, 80], itemStyle: { color: '#e8a317', borderRadius: 3 } },
   ],
 });
@@ -166,12 +163,12 @@ const LOGICS = [
 // 投资重心演变：传统基建存量（柱）vs 新基建增速（线）—— 示意趋势（保留原有）
 const infraTrend = {
   grid: { left: 48, right: 48, top: 36, bottom: 24 },
-  legend: { top: 0, textStyle: { color: '#93a1b5' } },
+  legend: { top: 0, textStyle: { color: LABEL.color } },
   tooltip: { trigger: 'axis' },
   xAxis: { type: 'category', data: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024E', '2025E'], axisLine: AXIS },
   yAxis: [
-    { type: 'value', name: '存量(万亿)', nameTextStyle: { color: '#93a1b5' }, splitLine: SPLIT },
-    { type: 'value', name: '增速(%)', max: 35, nameTextStyle: { color: '#93a1b5' }, splitLine: { show: false } },
+    { type: 'value', name: '存量(万亿)', nameTextStyle: { color: LABEL.color }, splitLine: GRID_LINE },
+    { type: 'value', name: '增速(%)', max: 35, nameTextStyle: { color: LABEL.color }, splitLine: { show: false } },
   ],
   series: [
     { name: '传统基建投资存量估算（万亿元·示意）', type: 'bar', data: [12, 14, 16, 17.5, 18.2, 18.8, 19.5, 21, 22.5, 23.5, 24.5], barWidth: 14, itemStyle: { color: '#22d3ee', borderRadius: 3, opacity: 0.8 } },
@@ -181,10 +178,10 @@ const infraTrend = {
 
 // 多维 ROI：资本市场模型 vs 综合战略取向（保留原有，双系列内联）
 const roiRadarCompare = {
-  legend: { bottom: 0, textStyle: { color: '#93a1b5' } },
+  legend: { bottom: 0, textStyle: { color: LABEL.color } },
   radar: {
     indicator: [{ name: '直接财务回报', max: 100 }, { name: '产业链带动', max: 100 }, { name: '区域协调', max: 100 }, { name: '地缘与国防安全', max: 100 }, { name: '前沿技术突破', max: 100 }],
-    radius: '62%', axisName: { color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+    radius: '62%', axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
   },
   series: [{ type: 'radar', data: [
     { value: [30, 95, 90, 100, 95], name: '国家战略评估（示意）', lineStyle: { color: '#c41e3a' }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.18)' } },

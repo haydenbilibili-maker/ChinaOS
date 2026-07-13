@@ -8,16 +8,16 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 const triadGraph = {
   series: [{
     type: 'graph', layout: 'circular', symbolSize: 58, roam: false,
-    label: { show: true, fontSize: 10, color: '#93a1b5' },
+    label: { show: true, fontSize: 10, color: LABEL.color },
     data: [
       { name: '医疗服务', itemStyle: { color: '#c41e3a' } },
       { name: '医保基金', itemStyle: { color: '#10b981' } },
       { name: '医药流通', itemStyle: { color: '#e8a317' } },
     ],
     links: [
-      { source: '医药流通', target: '医保基金', label: { show: true, formatter: '挤水分', color: '#93a1b5' }, lineStyle: { curveness: 0.2, color: '#e8a317' } },
-      { source: '医保基金', target: '医疗服务', label: { show: true, formatter: '调价/支付', color: '#93a1b5' }, lineStyle: { curveness: 0.2, color: '#10b981' } },
-      { source: '医疗服务', target: '医药流通', label: { show: true, formatter: '处方外流', color: '#93a1b5' }, lineStyle: { curveness: 0.2, color: '#c41e3a' } },
+      { source: '医药流通', target: '医保基金', label: { show: true, formatter: '挤水分', color: LABEL.color }, lineStyle: { curveness: 0.2, color: '#e8a317' } },
+      { source: '医保基金', target: '医疗服务', label: { show: true, formatter: '调价/支付', color: LABEL.color }, lineStyle: { curveness: 0.2, color: '#10b981' } },
+      { source: '医疗服务', target: '医药流通', label: { show: true, formatter: '处方外流', color: LABEL.color }, lineStyle: { curveness: 0.2, color: '#c41e3a' } },
     ],
     lineStyle: { opacity: 0.9, width: 2 },
   }],
@@ -26,16 +26,16 @@ const triadGraph = {
 // ── 价值采购（VBP）：历批集采品种平均降幅 ──
 const vbpBar = {
   grid: { left: 40, right: 16, top: 20, bottom: 24 },
-  xAxis: { type: 'category', data: ['2019', '2021', '2023', '2024E'], axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } },
-  yAxis: { type: 'value', max: 100, axisLabel: { formatter: '{value}%', color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
-  series: [{ type: 'bar', data: [52, 56, 48, 55], barWidth: 22, itemStyle: { color: '#22d3ee', borderRadius: 3 }, label: { show: true, position: 'top', formatter: '-{c}%', color: '#93a1b5' } }],
+  xAxis: { type: 'category', data: ['2019', '2021', '2023', '2024E'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
+  yAxis: { type: 'value', max: 100, axisLabel: { formatter: '{value}%', color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+  series: [{ type: 'bar', data: [52, 56, 48, 55], barWidth: 22, itemStyle: { color: '#22d3ee', borderRadius: 3 }, label: { show: true, position: 'top', formatter: '-{c}%', color: LABEL.color } }],
 };
 
 // ── DRG/DIP 执行后的基金支出效率画像 ──
 const drgRadar = {
   radar: {
     indicator: [{ name: '基金结余率', max: 100 }, { name: '次均住院费降幅', max: 100 }, { name: '临床路径规范度', max: 100 }, { name: '患者满意度', max: 100 }, { name: '管理响应速度', max: 100 }],
-    axisName: { color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLine: { lineStyle: { color: '#27324a' } }, splitArea: { show: false },
+    axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, splitArea: { show: false },
   },
   series: [{ type: 'radar', data: [{ value: [92, 85, 95, 78, 90], name: 'DRG/DIP 执行后', lineStyle: { color: '#10b981' }, itemStyle: { color: '#10b981' }, areaStyle: { color: 'rgba(16,185,129,0.15)' } }] }],
 };
@@ -103,7 +103,7 @@ const POLICY_KEYS = Object.keys(POLICY);
 // ── 医保基金收入 / 支出 / 累计结余 趋势（多线，示意）──
 const fundTrend = {
   tooltip: { trigger: 'axis' },
-  legend: { textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0, itemWidth: 12 },
+  legend: { textStyle: { color: LABEL.color, fontSize: 10 }, top: 0, itemWidth: 12 },
   grid: { left: 48, right: 16, top: 30, bottom: 24 },
   xAxis: categoryX(['2018', '2019', '2020', '2021', '2022', '2023', '2024E']),
   yAxis: valueY({ axisLabel: { formatter: '{value} 万亿' } }),
@@ -117,12 +117,12 @@ const fundTrend = {
 // ── 老龄化压力：抚养比 vs 在职缴费人口（双轴，示意）──
 const agingDual = {
   tooltip: { trigger: 'axis' },
-  legend: { textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0, itemWidth: 12 },
+  legend: { textStyle: { color: LABEL.color, fontSize: 10 }, top: 0, itemWidth: 12 },
   grid: { left: 44, right: 48, top: 30, bottom: 24 },
   xAxis: categoryX(['2020', '2025', '2030E', '2035E', '2040E', '2050E']),
   yAxis: [
-    { type: 'value', name: '退休抚养比 %', nameTextStyle: { color: '#93a1b5', fontSize: 9 }, axisLabel: { color: '#93a1b5', formatter: '{value}%' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
-    { type: 'value', name: '缴费/退休比', nameTextStyle: { color: '#93a1b5', fontSize: 9 }, position: 'right', axisLabel: { color: '#93a1b5' }, splitLine: { show: false } },
+    { type: 'value', name: '退休抚养比 %', nameTextStyle: { color: LABEL.color, fontSize: 9 }, axisLabel: { color: LABEL.color, formatter: '{value}%' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+    { type: 'value', name: '缴费/退休比', nameTextStyle: { color: LABEL.color, fontSize: 9 }, position: 'right', axisLabel: { color: LABEL.color }, splitLine: { show: false } },
   ],
   series: [
     { name: '退休抚养比', type: 'bar', yAxisIndex: 0, barWidth: 18, data: [20, 25, 31, 38, 44, 52], itemStyle: { color: '#c41e3a', borderRadius: 3 } },
@@ -153,7 +153,7 @@ export default function Page() {
   const cutItems = POLICY_KEYS.filter((k) => POLICY[k].cut != null);
   const cutBar = useMemo(() => stackedBarOpt({
     categories: cutItems.map((k) => POLICY[k].label),
-    series: [{ name: '平均降幅 %', stack: undefined, data: cutItems.map((k) => POLICY[k].cut), itemStyle: { color: '#c41e3a' }, label: { show: true, position: 'right', formatter: '-{c}%', color: '#93a1b5', fontSize: 10 } }],
+    series: [{ name: '平均降幅 %', stack: undefined, data: cutItems.map((k) => POLICY[k].cut), itemStyle: { color: '#c41e3a' }, label: { show: true, position: 'right', formatter: '-{c}%', color: LABEL.color, fontSize: 10 } }],
     horizontal: true,
   }), []);
 

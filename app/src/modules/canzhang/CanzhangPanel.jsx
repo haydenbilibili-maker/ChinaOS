@@ -22,7 +22,6 @@ export default function CanzhangPanel() {
   return (
     <div className="canzhang-module-wrap">
       <div
-        id="cz-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

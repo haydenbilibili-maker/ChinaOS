@@ -64,11 +64,11 @@ const scatterOption = {
   },
   xAxis: {
     type: 'value', name: 'TRL 成熟度', min: 2, max: 9, nameTextStyle: { color: '#5b6a82' },
-    axisLine: { lineStyle: { color: '#27324a' } }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } },
+    axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } },
   },
   yAxis: {
     type: 'value', name: '自主度 %', min: 30, max: 100, nameTextStyle: { color: '#5b6a82' },
-    axisLine: { lineStyle: { color: '#27324a' } }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } },
+    axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } },
   },
   series: [{
     type: 'scatter',
@@ -78,7 +78,7 @@ const scatterOption = {
       itemStyle: { color: TIER_COLOR[d.tier], opacity: 0.85, borderColor: 'rgba(255,255,255,0.25)', borderWidth: 1 },
     })),
     label: {
-      show: true, position: 'top', formatter: (p) => p.data.name, fontSize: 10, color: '#93a1b5',
+      show: true, position: 'top', formatter: (p) => p.data.name, fontSize: 10, color: LABEL.color,
     },
     markArea: {
       silent: true,
@@ -94,11 +94,11 @@ const weightOption = {
   grid: { left: 110, right: 40, top: 12, bottom: 24 },
   tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, backgroundColor: 'rgba(15,23,42,0.92)', borderColor: '#27324a', textStyle: { color: '#e2e8f0' } },
   xAxis: { type: 'value', max: 100, name: '战略权重', nameTextStyle: { color: '#5b6a82' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } } },
-  yAxis: { type: 'category', data: sortedByWeight.map((d) => d.name), axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 11 } },
+  yAxis: { type: 'category', data: sortedByWeight.map((d) => d.name), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 11 } },
   series: [{
     type: 'bar', barWidth: 13,
     data: sortedByWeight.map((d) => ({ value: d.weight, itemStyle: { color: TIER_COLOR[d.tier], borderRadius: [0, 3, 3, 0] } })),
-    label: { show: true, position: 'right', formatter: '{c}', color: '#93a1b5', fontSize: 10 },
+    label: { show: true, position: 'right', formatter: '{c}', color: LABEL.color, fontSize: 10 },
   }],
 };
 
@@ -387,11 +387,11 @@ function buildSimOption(d, sim) {
     },
     xAxis: {
       type: 'category', data: years,
-      axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 },
     },
     yAxis: {
       type: 'value', min: 20, max: 100, name: '自主度 %', nameTextStyle: { color: '#5b6a82' },
-      axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } },
     },
     series: [{
@@ -529,9 +529,9 @@ export default function Page() {
 
   // ② 雷达 option（依赖选中域 + 主题）
   const radarOption = useMemo(() => ({
-    legend: { data: ['中国', '美国'], textStyle: { color: '#93a1b5' }, top: 0 },
+    legend: { data: ['中国', '美国'], textStyle: { color: LABEL.color }, top: 0 },
     radar: {
-      indicator: RADAR_IND, axisName: { color: '#93a1b5', fontSize: 11 }, radius: '62%',
+      indicator: RADAR_IND, axisName: { color: LABEL.color, fontSize: 11 }, radius: '62%',
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       splitArea: { show: true, areaStyle: { color: ['rgba(148,163,184,0.03)', 'transparent'] } },
       axisLine: { lineStyle: { color: 'rgba(148,163,184,0.2)' } },

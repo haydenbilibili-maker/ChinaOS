@@ -92,7 +92,7 @@ function DistBars({ data, color = '#c41e3a', max, labelW = 56 }) {
 function OverviewTab() {
   const budgetChart = {
     grid: { left: 44, right: 16, top: 16, bottom: 24 },
-    xAxis: { type: 'category', data: BUDGET_TREND.years, axisLine: { lineStyle: { color: '#27324a' } } },
+    xAxis: { type: 'category', data: BUDGET_TREND.years, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
     yAxis: { type: 'value', name: 'B$', nameTextStyle: { color: '#5b6a82' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
     series: [{ type: 'bar', data: BUDGET_TREND.values, barWidth: 26, itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } }],
   };
@@ -100,7 +100,7 @@ function OverviewTab() {
   const deterrenceRadar = {
     radar: {
       indicator: [{ name: '高超声速', max: 100 }, { name: '反舰打击', max: 100 }, { name: '态势感知', max: 100 }, { name: '区域拒止', max: 100 }, { name: '战略投送', max: 100 }],
-      axisName: { color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false },
+      axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false },
     },
     series: [{ type: 'radar', data: [{ value: [88, 90, 85, 92, 70], name: 'A2/AD 能力示意', lineStyle: { color: '#e8a317' }, areaStyle: { color: 'rgba(232,163,23,0.14)' } }] }],
   };
@@ -174,8 +174,8 @@ function PersonnelTab() {
   const s = SERVICES[svc];
   const pieChart = {
     tooltip: { trigger: 'item' },
-    legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 } },
-    series: [{ type: 'pie', radius: ['48%', '68%'], center: ['50%', '42%'], label: { color: '#93a1b5', fontSize: 10 },
+    legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
+    series: [{ type: 'pie', radius: ['48%', '68%'], center: ['50%', '42%'], label: { color: LABEL.color, fontSize: 10 },
       data: PERSONNEL.serviceShare.map((d) => ({ value: d.value, name: d.name, itemStyle: { color: d.color } })) }],
   };
 
@@ -233,7 +233,7 @@ function PersonnelTab() {
     grid: { left: 56, right: 36, top: 10, bottom: 20 },
     xAxis: { type: 'value', splitLine: GRID_LINE, axisLabel: LABEL },
     yAxis: { type: 'category', data: INTL_DEFENSE_COMPARE.data.map((d) => d.name).reverse(), axisLine: AXIS, axisLabel: LABEL },
-    series: [{ type: 'bar', barWidth: 13, label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 },
+    series: [{ type: 'bar', barWidth: 13, label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 },
       data: INTL_DEFENSE_COMPARE.data.map((d) => ({ value: d.value, itemStyle: { color: d.color, borderRadius: [0, 3, 3, 0] } })).reverse() }],
   };
 
@@ -357,14 +357,14 @@ function EquipmentTab() {
   const navyChart = {
     grid: { left: 80, right: 24, top: 16, bottom: 24 },
     xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
-    yAxis: { type: 'category', data: NAVY_BAR.categories, axisLine: { lineStyle: { color: '#27324a' } } },
-    series: [{ type: 'bar', data: NAVY_BAR.values, barWidth: 14, itemStyle: { color: '#22d3ee', borderRadius: 3 }, label: { show: true, position: 'right', color: '#93a1b5' } }],
+    yAxis: { type: 'category', data: NAVY_BAR.categories, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
+    series: [{ type: 'bar', data: NAVY_BAR.values, barWidth: 14, itemStyle: { color: '#22d3ee', borderRadius: 3 }, label: { show: true, position: 'right', color: LABEL.color } }],
   };
 
   const airChart = {
     tooltip: { trigger: 'item' },
-    legend: { bottom: 0, textStyle: { color: '#93a1b5' } },
-    series: [{ type: 'pie', radius: ['52%', '72%'], center: ['50%', '44%'], label: { color: '#93a1b5' },
+    legend: { bottom: 0, textStyle: { color: LABEL.color } },
+    series: [{ type: 'pie', radius: ['52%', '72%'], center: ['50%', '44%'], label: { color: LABEL.color },
       data: AIR_PIE.data.map((d) => ({ value: d.value, name: d.name, itemStyle: { color: d.color } })) }],
   };
 
@@ -374,7 +374,7 @@ function EquipmentTab() {
       type: 'tree', data: [EQUIPMENT_TREE], top: '2%', left: '14%', bottom: '2%', right: '18%',
       symbolSize: 7, orient: 'LR', initialTreeDepth: 2, expandAndCollapse: true,
       label: { position: 'left', verticalAlign: 'middle', align: 'right', fontSize: 10, color: '#e2e8f0' },
-      leaves: { label: { position: 'right', verticalAlign: 'middle', align: 'left', color: '#93a1b5', fontSize: 9 } },
+      leaves: { label: { position: 'right', verticalAlign: 'middle', align: 'left', color: LABEL.color, fontSize: 9 } },
       itemStyle: { color: '#c41e3a', borderColor: '#c41e3a' },
       lineStyle: { color: 'rgba(148,163,184,0.3)' },
       emphasis: { focus: 'descendant' },
@@ -386,7 +386,7 @@ function EquipmentTab() {
     grid: { left: 96, right: 48, top: 10, bottom: 24 },
     xAxis: { type: 'log', min: 10, splitLine: GRID_LINE, axisLabel: LABEL },
     yAxis: { type: 'category', data: EQUIPMENT_COMPARE.data.map((d) => d.name).reverse(), axisLine: AXIS, axisLabel: LABEL },
-    series: [{ type: 'bar', barWidth: 13, label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 },
+    series: [{ type: 'bar', barWidth: 13, label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 },
       data: EQUIPMENT_COMPARE.data.map((d) => ({ value: d.value, itemStyle: { color: d.color, borderRadius: [0, 3, 3, 0] } })).reverse() }],
   };
 
@@ -397,7 +397,7 @@ function EquipmentTab() {
     yAxis: { type: 'category', data: ['火箭军', '空军', '海军'], axisLine: AXIS, axisLabel: LABEL },
     series: [{
       type: 'scatter', symbolSize: 13,
-      label: { show: true, position: 'top', formatter: (p) => p.data.name, fontSize: 9, color: '#93a1b5' },
+      label: { show: true, position: 'top', formatter: (p) => p.data.name, fontSize: 9, color: LABEL.color },
       data: SERVICE_TIMELINE.map((t) => ({ name: t.name, value: [t.year, t.domain], itemStyle: { color: t.color } })),
     }],
   };
@@ -406,7 +406,7 @@ function EquipmentTab() {
     tooltip: { trigger: 'item' },
     legend: { ...LEGEND, top: 0 },
     radar: {
-      indicator: MODERNIZATION_RADAR.indicators, axisName: { color: '#93a1b5', fontSize: 10 },
+      indicator: MODERNIZATION_RADAR.indicators, axisName: { color: LABEL.color, fontSize: 10 },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false },
     },
     series: [{ type: 'radar', data: [
@@ -502,7 +502,7 @@ function TechTab() {
     grid: { left: 70, right: 20, top: 10, bottom: 80 },
     xAxis: { type: 'category', data: TRL_MATRIX.domains, axisLabel: { ...LABEL, rotate: 32, interval: 0 }, axisLine: AXIS, splitArea: { show: true } },
     yAxis: { type: 'category', data: TRL_MATRIX.stages, axisLabel: LABEL, axisLine: AXIS, splitArea: { show: true } },
-    visualMap: { min: 20, max: 100, calculable: true, orient: 'horizontal', left: 'center', bottom: 0, inRange: { color: ['#141c2b', '#7c2d12', '#e8a317', '#22d3ee'] }, textStyle: { color: '#93a1b5', fontSize: 10 } },
+    visualMap: { min: 20, max: 100, calculable: true, orient: 'horizontal', left: 'center', bottom: 0, inRange: { color: ['#141c2b', '#7c2d12', '#e8a317', '#22d3ee'] }, textStyle: { color: LABEL.color, fontSize: 10 } },
     series: [{ type: 'heatmap', data: heatData, label: { show: true, color: '#0a0e17', fontSize: 9 }, emphasis: { itemStyle: { shadowBlur: 6, shadowColor: 'rgba(0,0,0,0.5)' } } }],
   };
 
@@ -678,7 +678,7 @@ function LogisticsTab() {
     grid: { left: 70, right: 30, top: 10, bottom: 20 },
     xAxis: { type: 'value', max: 100, splitLine: GRID_LINE, axisLabel: LABEL },
     yAxis: { type: 'category', data: LIFT_STRENGTH.map((l) => l.name).reverse(), axisLine: AXIS, axisLabel: LABEL },
-    series: [{ type: 'bar', barWidth: 16, label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 },
+    series: [{ type: 'bar', barWidth: 16, label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 },
       data: LIFT_STRENGTH.map((l) => ({ value: l.val, itemStyle: { color: l.color, borderRadius: [0, 3, 3, 0] } })).reverse() }],
   };
 

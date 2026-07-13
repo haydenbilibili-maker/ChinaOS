@@ -22,7 +22,6 @@ export default function ZhongchanPanel() {
   return (
     <div className="zhongchan-module-wrap">
       <div
-        id="zc-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

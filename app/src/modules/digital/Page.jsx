@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ---------------------------------------------------------------------------
@@ -158,7 +158,7 @@ export default function Page() {
   // 图① 数字经济总规模（柱）+ GDP 占比（线 · 双轴）
   const scaleOpt = useMemo(() => ({
     tooltip: { trigger: 'axis' },
-    legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+    legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
     grid: { left: 44, right: 44, top: 30, bottom: 24 },
     xAxis: categoryX(YEARS),
     yAxis: [
@@ -212,16 +212,16 @@ export default function Page() {
     series: [{
       type: 'bar', barWidth: 14,
       data: FUSION_RATE.map((v) => ({ value: v, itemStyle: { color: v >= 50 ? '#10b981' : v >= 35 ? '#e8a317' : '#c41e3a', borderRadius: 3 } })),
-      label: { show: true, position: 'right', color: '#93a1b5', formatter: '{c}%' },
+      label: { show: true, position: 'right', color: LABEL.color, formatter: '{c}%' },
     }],
   }), []);
 
   // 图⑤ 中美数字经济对比雷达（双系列 → 内联 option）
   const cnUsRadarOpt = useMemo(() => ({
-    legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12, data: ['中国', '美国'] },
+    legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12, data: ['中国', '美国'] },
     radar: {
       indicator: CN_US_DIMS.map((n) => ({ name: n, max: 100 })),
-      axisName: { color: '#93a1b5', fontSize: 10 },
+      axisName: { color: LABEL.color, fontSize: 10 },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       splitArea: { show: false },
@@ -239,7 +239,7 @@ export default function Page() {
   // 图⑥ 电商渗透率 + 直播电商规模（双轴）
   const ecomOpt = useMemo(() => ({
     tooltip: { trigger: 'axis' },
-    legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+    legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
     grid: { left: 44, right: 44, top: 30, bottom: 24 },
     xAxis: categoryX(ECOM_YEARS),
     yAxis: [

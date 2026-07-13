@@ -22,7 +22,6 @@ export default function QingjiaoPanel() {
   return (
     <div className="qingjiao-module-wrap">
       <div
-        id="qj-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

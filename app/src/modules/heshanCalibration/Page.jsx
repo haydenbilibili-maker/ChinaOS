@@ -2,6 +2,7 @@ import { PageHeader } from '../../app/ui.jsx';
 import HeshanNav from '../shared/HeshanNav.jsx';
 import HeshanCalibrationPanel from './HeshanCalibrationPanel.jsx';
 import './heshanCalibration.css';
+import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 /** 数据校准底表 · 建省口径透明化 */
 export default function HeshanCalibrationPage() {
@@ -14,6 +15,8 @@ export default function HeshanCalibrationPage() {
       />
       <HeshanNav current="calibration" />
       <HeshanCalibrationPanel />
+      <ModuleFooter moduleId="heshanCalibration" />
+
     </div>
   );
 }

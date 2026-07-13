@@ -22,7 +22,6 @@ export default function GetihuPanel() {
   return (
     <div className="getihu-module-wrap">
       <div
-        id="gt-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ── 极地议题选择器：每个议题给出现状 / 中国布局 / 战略价值 / 约束 ──
@@ -96,13 +96,13 @@ export default function Page() {
   const routeCompare = useMemo(() => ({
     grid: GRID,
     tooltip: { trigger: 'axis' },
-    legend: { textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     xAxis: categoryX(ROUTES.map((r) => r.label)),
     yAxis: [valueY({ name: '海里', position: 'left' }), valueY({ name: '天', position: 'right', splitLine: { show: false } })],
     series: [
       { name: '航程 (海里)', type: 'bar', yAxisIndex: 0, barWidth: 44,
         data: ROUTES.map((r) => ({ value: r.distance, itemStyle: { color: r.key === routeKey ? r.accent : 'rgba(100,116,139,0.5)', borderRadius: [4, 4, 0, 0] } })),
-        label: { show: true, position: 'top', formatter: '{c} nm', color: '#93a1b5' } },
+        label: { show: true, position: 'top', formatter: '{c} nm', color: LABEL.color } },
       { name: '航时 (天)', type: 'line', yAxisIndex: 1, symbol: 'circle', symbolSize: 9,
         data: ROUTES.map((r) => r.days), lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' },
         label: { show: true, position: 'top', formatter: '{c}d', color: '#e8a317' } },
@@ -122,7 +122,7 @@ export default function Page() {
     const sets = radarKey === 'all' ? Object.values(RADAR_SETS) : [RADAR_SETS[radarKey]];
     const base = radarOpt(RADAR_DIMS, sets[0].value, { name: sets[0].name, color: sets[0].color });
     base.tooltip = { trigger: 'item' };
-    base.legend = { textStyle: { color: '#93a1b5', fontSize: 10 }, bottom: 0 };
+    base.legend = { textStyle: { color: LABEL.color, fontSize: 10 }, bottom: 0 };
     base.series[0].data = sets.map((s) => ({
       value: s.value, name: s.name,
       lineStyle: { color: s.color, width: 2 }, itemStyle: { color: s.color },
@@ -139,7 +139,7 @@ export default function Page() {
     yAxis: categoryX(['美国', '芬兰', '加拿大', '中国', '俄罗斯']),
     series: [{ type: 'bar', data: [2, 8, 12, 5, 40], barWidth: 14,
       itemStyle: { color: (p) => (p.dataIndex === 3 ? '#c41e3a' : '#334155'), borderRadius: [0, 4, 4, 0] },
-      label: { show: true, position: 'right', color: '#93a1b5' } }],
+      label: { show: true, position: 'right', color: LABEL.color } }],
   }), []);
 
   // 科考站布局时间线 bar
@@ -150,7 +150,7 @@ export default function Page() {
     yAxis: valueY({ name: '建成年', min: 1980, max: 2030 }),
     series: [{ type: 'bar', barWidth: 30,
       data: STATIONS.map((s) => ({ value: s.year, itemStyle: { color: s.accent, borderRadius: [4, 4, 0, 0] } })),
-      label: { show: true, position: 'top', formatter: '{c}', color: '#93a1b5', fontSize: 10 } }],
+      label: { show: true, position: 'top', formatter: '{c}', color: LABEL.color, fontSize: 10 } }],
   }), []);
 
   // 极地综合实力堆叠（中国 vs 俄 vs 美 分维度）

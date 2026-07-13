@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
-import { timelineMarkAreaOpt } from '../shared/chartHelpers.js';
+import { timelineMarkAreaOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import {
   AS_OF, MECHANISMS, LAYERS, NODES, EDGE_KIND,
   LAYER_RADAR, EMBED_ROWS, EMBED_COLS, EMBED_MATRIX,
@@ -16,10 +16,10 @@ const RADAR_DIMS = ['人事任免', '财权', '信息', '组织嵌入', '纪律'
 function buildRadarOption(mechIdx) {
   return {
     tooltip: { trigger: 'item' },
-    legend: { type: 'scroll', bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, icon: 'circle' },
+    legend: { type: 'scroll', bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 }, icon: 'circle' },
     radar: {
       indicator: RADAR_DIMS.map((name, i) => ({ name: i === mechIdx ? `▶ ${name}` : name, max: 100 })),
-      axisName: { color: '#93a1b5', fontSize: 10 },
+      axisName: { color: LABEL.color, fontSize: 10 },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       splitArea: { show: false },
@@ -39,9 +39,9 @@ function buildRadarOption(mechIdx) {
 const embedHeatmap = {
   tooltip: { position: 'top', formatter: (p) => `${EMBED_ROWS[p.value[1]]} · ${EMBED_COLS[p.value[0]]}: ${p.value[2]}%` },
   grid: { left: 80, right: 16, top: 8, bottom: 56 },
-  xAxis: { type: 'category', data: EMBED_COLS, splitArea: { show: true }, axisLabel: { color: '#93a1b5', fontSize: 10, rotate: 18 } },
-  yAxis: { type: 'category', data: EMBED_ROWS, splitArea: { show: true }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
-  visualMap: { min: 0, max: 100, calculable: false, orient: 'horizontal', left: 'center', bottom: 0, inRange: { color: ['#0f1623', '#27324a', '#8b5cf6', '#c41e3a'] }, textStyle: { color: '#93a1b5', fontSize: 10 } },
+  xAxis: { type: 'category', data: EMBED_COLS, splitArea: { show: true }, axisLabel: { color: LABEL.color, fontSize: 10, rotate: 18 } },
+  yAxis: { type: 'category', data: EMBED_ROWS, splitArea: { show: true }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+  visualMap: { min: 0, max: 100, calculable: false, orient: 'horizontal', left: 'center', bottom: 0, inRange: { color: ['#0f1623', '#27324a', '#8b5cf6', '#c41e3a'] }, textStyle: { color: LABEL.color, fontSize: 10 } },
   series: [{
     type: 'heatmap',
     data: EMBED_MATRIX.flatMap((row, yi) => row.map((v, xi) => [xi, yi, v])),

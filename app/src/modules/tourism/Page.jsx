@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ============================================================================
@@ -64,9 +64,9 @@ const SECTORS = [
 const recoveryDual = {
   grid: { left: 44, right: 16, top: 36, bottom: 24 },
   tooltip: { trigger: 'axis' },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
   xAxis: categoryX(['2019', '2020', '2021', '2022', '2023', '2024E', '2025E']),
-  yAxis: valueY({ name: '恢复度 %（2019=100）', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
+  yAxis: valueY({ name: '恢复度 %（2019=100）', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
   series: [
     { name: '出游人次恢复度', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [100, 39, 51, 36, 86, 98, 106], lineStyle: { color: '#e8a317', width: 3 }, itemStyle: { color: '#e8a317' }, areaStyle: { color: 'rgba(232,163,23,0.12)' } },
     { name: '旅游收入恢复度', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [100, 35, 46, 32, 76, 91, 100], lineStyle: { color: '#c41e3a', width: 3 }, itemStyle: { color: '#c41e3a' } },
@@ -79,7 +79,7 @@ const recoveryLine = {
   grid: { left: 40, right: 16, top: 20, bottom: 24 },
   tooltip: { trigger: 'axis' },
   xAxis: categoryX(['2019', '2020', '2021', '2022', '2023', '2024E']),
-  yAxis: valueY({ name: '亿人次', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
+  yAxis: valueY({ name: '亿人次', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
   series: [{ type: 'line', smooth: true, symbol: 'circle', symbolSize: 7, data: [60.1, 28.8, 32.5, 25.3, 48.9, 56.2], lineStyle: { color: '#e8a317', width: 3 }, itemStyle: { color: '#e8a317' }, areaStyle: { color: 'rgba(232,163,23,0.15)' } }],
 };
 
@@ -89,11 +89,11 @@ const recoveryLine = {
 const visaFreeDual = {
   grid: { left: 48, right: 56, top: 36, bottom: 24 },
   tooltip: { trigger: 'axis' },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
   xAxis: categoryX(['2023H1', '2023H2', '2024H1', '2024H2', '2025H1E', '2025H2E']),
   yAxis: [
-    valueY({ name: '入境外国人（百万 · 示意）', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
-    { type: 'value', name: '免签国家数', nameTextStyle: { color: '#93a1b5', fontSize: 10 }, axisLabel: { color: '#93a1b5', fontSize: 10 }, splitLine: { show: false } },
+    valueY({ name: '入境外国人（百万 · 示意）', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
+    { type: 'value', name: '免签国家数', nameTextStyle: { color: LABEL.color, fontSize: 10 }, axisLabel: { color: LABEL.color, fontSize: 10 }, splitLine: { show: false } },
   ],
   series: [
     { name: '入境外国人次', type: 'bar', barWidth: 18, data: [5.8, 8.0, 14.6, 12.3, 18.5, 20.0], itemStyle: { color: '#e8a317', borderRadius: 3 } },
@@ -131,9 +131,9 @@ const ageDonut = donutOpt([
 const hotspotBar = {
   grid: { left: 44, right: 16, top: 36, bottom: 24 },
   tooltip: { trigger: 'axis' },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
   xAxis: categoryX(['起势月', '爆发月', '峰值月', '回落月', '+6 个月']),
-  yAxis: valueY({ name: '热度指数', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
+  yAxis: valueY({ name: '热度指数', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
   series: [
     { name: '淄博烧烤', type: 'bar', data: [120, 480, 520, 310, 95], barWidth: 10, itemStyle: { color: '#e8a317', borderRadius: 3 } },
     { name: '哈尔滨冰雪', type: 'bar', data: [85, 620, 890, 450, 160], barWidth: 10, itemStyle: { color: '#22d3ee', borderRadius: 3 } },
@@ -166,9 +166,9 @@ const RADAR_CITIES = [
 const eventEconBar = {
   grid: { left: 48, right: 16, top: 36, bottom: 24 },
   tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
   xAxis: categoryX(['头部演唱会', '音乐节', '城市马拉松', '电竞赛事', '村超/村BA']),
-  yAxis: valueY({ name: '拉动倍数（票根=1 · 示意）', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
+  yAxis: valueY({ name: '拉动倍数（票根=1 · 示意）', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
   series: [
     { name: '直接票务', type: 'bar', stack: 't', barWidth: 22, data: [1, 1, 1, 1, 0.2], itemStyle: { color: '#c41e3a', borderRadius: 0 } },
     { name: '交通住宿', type: 'bar', stack: 't', barWidth: 22, data: [2.4, 2.0, 1.8, 1.2, 1.6], itemStyle: { color: '#e8a317' } },

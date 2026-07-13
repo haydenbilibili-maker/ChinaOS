@@ -1,7 +1,7 @@
-# China OS 视觉路线图 · Round 2–3 追踪
+# China OS 视觉路线图 · Round 2–4 追踪
 
 > 设计系统收敛计划 · 2026-07  
-> Round 2 已完成；Round 3 数据可视化质感统一已交付；Round 4 待办保留为 backlog。
+> Round 2–3 已完成；Round 4 模块视觉对齐清扫已交付。
 
 ## Round 2 交付清单
 
@@ -23,23 +23,35 @@
 - [x] **StatGrid 扩展** — ≥23 模块采用 `StatGrid`（home 组 · talent · military · infrastructure 等）
 - [x] **LiveChinaMap** — `lcm-map-shell` + `--chart-tooltip-*` 对齐地图 tooltip / drawer
 
+## Round 4 交付清单（模块视觉对齐清扫）
+
+- [x] **GY 全量 GySliceShell** — GY-03–58 共 56 切片 + `qingnian` 试点；`renqun-tupu`（GY-00）保留手写结构（含 Section 扩展）
+- [x] **talent DistBar 统一** — 11 个 `*Section.jsx` 内联 `DistBars` → `ui.DistBar`
+- [x] **ModuleFooter 补全** — heshan×4 · signalPanel · cushionMonitor · personalReview · attribution · threeForces · premierRadius · chronicle · huangfeizhai · legalStatutes · governanceHub · signalDashboard
+- [x] **const AX 清零** — handong · wargame · macro · me（+6 Section）· ruleoflaw · talent
+- [x] **图表轴色批量清理** — 117 文件 `#27324a` / `#93a1b5` → `AXIS` / `LABEL` token（`chartHelpers.js` 源定义保留）
+- [x] **GySliceShell CSS** — `tokens.css` 补充 `.gy-slice-shell` / `.gy-slice-app`
+- [x] **审计脚本** — `scripts/r4-checklist.mjs` + `r4-gy-migrate.mjs` 等 codemod 留存
+
 ## 成功指标
 
-| 指标 | 目标 | Round 2 | Round 3 |
-|------|------|---------|---------|
-| observatory 局部色变量 | ≤5（仅布局） | ✅ | — |
-| 新组件跨模块使用 | ≥3 模块 | ✅ | ✅ OsSparkline · StatTrend |
-| econdash 硬编码 `#27324a` | 0 | ✅ | ✅ |
-| home 模块 `const AX` | 0 | — | ✅ econdash 全清 |
-| `StatGrid` 模块数 | ≥15 | 3 | ✅ 23+ |
-| `npm run build` / vitest | 通过 | 待 CI | 待 CI |
+| 指标 | 目标 | Round 2 | Round 3 | Round 4 |
+|------|------|---------|---------|---------|
+| observatory 局部色变量 | ≤5（仅布局） | ✅ | — | ✅ |
+| 新组件跨模块使用 | ≥3 模块 | ✅ | ✅ | ✅ DistBar 11+ |
+| econdash 硬编码 `#27324a` | 0 | ✅ | ✅ | ✅ |
+| home 模块 `const AX` | 0 | — | ✅ | ✅ 全站模块级 AX=0 |
+| `StatGrid` 模块数 | ≥15 | 3 | ✅ 23+ | ✅ 维持 |
+| GY GySliceShell 采用率 | 56/56 切片 | — | 1 试点 | ✅ 56/56 |
+| checklist 全项通过 | ≥90% 模块 | — | — | ✅ ~92%（见 `r4-checklist.mjs`） |
+| `npm run build` / vitest | 通过 | 待 CI | 待 CI | ✅ |
 
-## Round 4 预览（未开始）
+## Round 5 预览（技术债）
 
 - stylelint `color-no-hex` 警告级规则（模块 CSS 白名单除外）
-- GY 全量迁移 `GySliceShell`
-- 各 `talent/*Section.jsx` 内联 `DistBars` 批量替换为 `DistBar`
+- `renqun-tupu/atlasViz.js` · `gametheory` 等残余 `#27324a`（系列色/非轴语义）
 - `signal-panel` / `cushion-monitor` / `personal-review` 局部 `--brass` 去重
+- industry 组 `StatGrid` 渐进补齐（当前 6/8 项通过为主）
 
 ## 相关文件
 
@@ -51,4 +63,5 @@
 | 可视化引擎 | `app/src/lib/viz/EChart.jsx` · `OsGauge` · `OsSparkline` · `StatTrend` |
 | GY 令牌 | `app/src/modules/shared/gy/tokens.css` |
 | GY 外壳 | `app/src/modules/shared/gy/GySliceShell.jsx` |
+| Round 4 脚本 | `scripts/r4-*.mjs` |
 | 遗留清单 | `docs/LEGACY_PATTERNS.md` |

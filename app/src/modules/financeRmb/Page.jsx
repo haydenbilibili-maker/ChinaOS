@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 /* ── 职能维度：人民币国际化的六条战线 ──────────────────────────── */
@@ -88,7 +88,7 @@ export default function Page() {
       series: [{
         type: 'bar', barWidth: 16, itemStyle: { borderRadius: 3 },
         data: order.slice().reverse().map((k) => ({ value: d[k], itemStyle: { color: colorMap[k] } })),
-        label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10, formatter: '{c}%' },
+        label: { show: true, position: 'right', color: LABEL.color, fontSize: 10, formatter: '{c}%' },
       }],
     };
   }, [shareMetric]);
@@ -107,7 +107,7 @@ export default function Page() {
   const rmbIndex = useMemo(() => ({
     grid: GRID,
     tooltip: { trigger: 'axis' },
-    legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+    legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
     xAxis: categoryX(['2010', '2013', '2016', '2019', '2022', '2025E']),
     yAxis: valueY(),
     series: [
@@ -120,10 +120,10 @@ export default function Page() {
   /* 交互⑤ · 六维货币权力雷达 CNY vs USD */
   const powerRadar = useMemo(() => ({
     tooltip: { trigger: 'item' },
-    legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+    legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
     radar: {
       indicator: RADAR_DIMS.map((n) => ({ name: n, max: 100 })),
-      axisName: { color: '#93a1b5', fontSize: 10 },
+      axisName: { color: LABEL.color, fontSize: 10 },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       splitArea: { show: false },
@@ -141,14 +141,14 @@ export default function Page() {
   const progressGauge = useMemo(() => ({
     grid: { left: 8, right: 36, top: 8, bottom: 8 },
     xAxis: valueY({ max: f.ceiling, show: false, splitLine: { show: false } }),
-    yAxis: { type: 'category', data: ['天花板', '当前'], axisLine: { show: false }, axisTick: { show: false }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+    yAxis: { type: 'category', data: ['天花板', '当前'], axisLine: { show: false }, axisTick: { show: false }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     series: [{
       type: 'bar', barWidth: 18, itemStyle: { borderRadius: 3 },
       data: [
         { value: f.ceiling, itemStyle: { color: 'rgba(148,163,184,0.18)' } },
         { value: f.share, itemStyle: { color: f.accent } },
       ],
-      label: { show: true, position: 'right', color: '#93a1b5', fontSize: 11, formatter: '{c}%' },
+      label: { show: true, position: 'right', color: LABEL.color, fontSize: 11, formatter: '{c}%' },
     }],
   }), [f]);
 

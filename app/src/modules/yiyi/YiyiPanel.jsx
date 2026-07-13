@@ -22,7 +22,6 @@ export default function YiyiPanel() {
   return (
     <div className="yiyi-module-wrap">
       <div
-        id="ym-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

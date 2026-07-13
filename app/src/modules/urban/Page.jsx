@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import ChinaMap from '../../lib/viz/ChinaMap.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ---------------------------------------------------------------------------
@@ -144,7 +144,7 @@ export default function Page() {
   // 剪刀差双线（自写内联：双系列）
   const scissorsChart = useMemo(() => ({
     tooltip: { trigger: 'axis' },
-    legend: { data: ['常住人口城镇化率', '户籍人口城镇化率'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { data: ['常住人口城镇化率', '户籍人口城镇化率'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     grid: { left: 40, right: 16, top: 30, bottom: 24 },
     xAxis: categoryX(GAP_YEARS),
     yAxis: valueY({ min: 30, max: 75, axisLabel: { formatter: '{value}%' } }),
@@ -164,14 +164,14 @@ export default function Page() {
       type: 'bar', barWidth: 22,
       data: GAP_YEARS.map((_, i) => +(RESIDENT_RATE[i] - HUKOU_RATE[i]).toFixed(1)),
       itemStyle: { color: '#e8a317', borderRadius: [3, 3, 0, 0] },
-      label: { show: true, position: 'top', color: '#93a1b5', fontSize: 9, formatter: '{c}' },
+      label: { show: true, position: 'top', color: LABEL.color, fontSize: 9, formatter: '{c}' },
     }],
   }), []);
 
   // 城市群「19+2」人口/GDP 集中度（双系列分组 bar）
   const clusterChart = useMemo(() => ({
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: (ps) => ps.map((p) => `${p.seriesName} ${p.name}: ${p.value}%`).join('<br/>') },
-    legend: { data: ['人口占比', 'GDP 占比'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { data: ['人口占比', 'GDP 占比'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     grid: { left: 36, right: 16, top: 30, bottom: 50 },
     xAxis: categoryX(CLUSTERS19.map((x) => x.name), { rotate: 32, fontSize: 9 }),
     yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
@@ -190,7 +190,7 @@ export default function Page() {
     series: [{
       type: 'bar', barWidth: 28,
       data: FLOW_TIERS.map((x) => ({ value: x.value, itemStyle: { color: x.color, borderRadius: x.value >= 0 ? [3, 3, 0, 0] : [0, 0, 3, 3] } })),
-      label: { show: true, position: 'top', color: '#93a1b5', fontSize: 9, formatter: ({ value }) => (value > 0 ? `+${value}` : `${value}`) },
+      label: { show: true, position: 'top', color: LABEL.color, fontSize: 9, formatter: ({ value }) => (value > 0 ? `+${value}` : `${value}`) },
       markLine: { silent: true, symbol: 'none', lineStyle: { color: 'rgba(148,163,184,0.4)', type: 'dashed' }, label: { show: false }, data: [{ yAxis: 0 }] },
     }],
   }), []);

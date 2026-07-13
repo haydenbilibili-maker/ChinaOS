@@ -22,7 +22,6 @@ export default function TuiyiPanel() {
   return (
     <div className="tuiyi-module-wrap">
       <div
-        id="ty-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

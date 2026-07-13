@@ -67,14 +67,14 @@ export default function Page() {
     return {
       grid: { ...GRID, right: 44, bottom: 50 },
       tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-      legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 } },
+      legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
       xAxis: categoryX(years),
       yAxis: [
-        valueY({ name: 'GW', nameTextStyle: { color: '#93a1b5', fontSize: 9 }, axisLabel: { formatter: '{value}' } }),
-        valueY({ name: '在建台', nameTextStyle: { color: '#93a1b5', fontSize: 9 }, position: 'right', splitLine: { show: false }, axisLabel: { formatter: '{value}' } }),
+        valueY({ name: 'GW', nameTextStyle: { color: LABEL.color, fontSize: 9 }, axisLabel: { formatter: '{value}' } }),
+        valueY({ name: '在建台', nameTextStyle: { color: LABEL.color, fontSize: 9 }, position: 'right', splitLine: { show: false }, axisLabel: { formatter: '{value}' } }),
       ],
       series: [
-        { name: '在建机组(台)', type: 'bar', yAxisIndex: 1, barWidth: 16, data: building, itemStyle: { color: '#27324a', borderRadius: 3 } },
+        { name: '在建机组(台)', type: 'bar', yAxisIndex: 1, barWidth: 16, data: building, itemStyle: { color: AXIS.lineStyle.color, borderRadius: 3 } },
         { name: '核电装机(GW)', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, yAxisIndex: 0, data: capacity,
           lineStyle: { color: g.accent, width: 2.5 }, itemStyle: { color: g.accent }, areaStyle: { color: `${g.accent}14` } },
       ],
@@ -86,12 +86,12 @@ export default function Page() {
     grid: { left: 70, right: 24, top: 12, bottom: 12 },
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: '{b}: {c}%' },
     xAxis: valueY({ max: 100, axisLabel: { formatter: '{value}%' } }),
-    yAxis: { type: 'category', data: ['商业化进度', '自主化率', '技术成熟度'], axisLabel: { color: '#93a1b5', fontSize: 10 }, axisLine: { lineStyle: { color: '#27324a' } } },
+    yAxis: { type: 'category', data: ['商业化进度', '自主化率', '技术成熟度'], axisLabel: { color: LABEL.color, fontSize: 10 }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
     series: [{
       type: 'bar', barWidth: 16,
       data: [g.commercial, g.autonomy, g.maturity],
       itemStyle: { color: g.accent, borderRadius: 3 },
-      label: { show: true, position: 'right', formatter: '{c}%', color: '#93a1b5', fontSize: 10 },
+      label: { show: true, position: 'right', formatter: '{c}%', color: LABEL.color, fontSize: 10 },
     }],
   }), [g]);
 

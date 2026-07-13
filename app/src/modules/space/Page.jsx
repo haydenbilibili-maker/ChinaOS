@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ---------------------------------------------------------------------------
@@ -65,7 +65,7 @@ const SECTORS = [
 // 1. 年发射次数中美对比：中国 vs 美国总计 vs 其中 SpaceX
 const launchRace = {
   tooltip: { trigger: 'axis' },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
   grid: { ...GRID, top: 32 },
   xAxis: categoryX(['2016', '2018', '2020', '2021', '2022', '2023', '2024', '2025(E)']),
   yAxis: valueY(),
@@ -85,23 +85,23 @@ const orbitalAssets = {
   series: [{
     type: 'bar', barWidth: 22,
     data: [
-      { value: 2600, itemStyle: { color: '#93a1b5' } },
+      { value: 2600, itemStyle: { color: LABEL.color } },
       { value: 1000, itemStyle: { color: '#c41e3a' } },
       { value: 7000, itemStyle: { color: '#22d3ee' } },
     ],
-    label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10, formatter: '{c} 颗' },
+    label: { show: true, position: 'right', color: LABEL.color, fontSize: 10, formatter: '{c} 颗' },
   }],
 };
 
 // 3. 航天综合实力雷达（双系列 · 内联）
 const powerRadar = {
-  legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+  legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
   radar: {
     indicator: [
       { name: '运载能力', max: 100 }, { name: '载人航天', max: 100 }, { name: '深空探测', max: 100 },
       { name: '导航星座', max: 100 }, { name: '商业化', max: 100 }, { name: '可复用技术', max: 100 },
     ],
-    radius: '62%', axisName: { color: '#93a1b5', fontSize: 10 },
+    radius: '62%', axisName: { color: LABEL.color, fontSize: 10 },
     splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
     axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
     splitArea: { show: false },
@@ -133,7 +133,7 @@ const beidouDonut = donutOpt([
   { value: 12, name: '测绘与高精度', itemStyle: { color: '#e8a317' } },
   { value: 8, name: '农业与无人机', itemStyle: { color: '#c41e3a' } },
   { value: 7, name: '电力/金融授时', itemStyle: { color: '#8b5cf6' } },
-  { value: 5, name: '海事与应急短报文', itemStyle: { color: '#93a1b5' } },
+  { value: 5, name: '海事与应急短报文', itemStyle: { color: LABEL.color } },
 ]);
 
 // 6. 商业航天赛道融资结构（亿元 · 示意 · stackedBar）
@@ -157,7 +157,7 @@ const costEvolution = {
     { name: '中国（主力构型）', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [20000, 15000, 8000, 6000, 4500, 1500], lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.1)' } },
     { name: 'SpaceX（猎鹰/星舰）', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [10000, 4000, 2700, 2200, 1500, 200], lineStyle: { color: '#22d3ee', width: 2, type: 'dashed' }, itemStyle: { color: '#22d3ee' } },
   ],
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
 };
 
 // 8. 民营火箭主力构型对比（LEO 运力 · 吨 · 示意）
@@ -176,7 +176,7 @@ const rocketLineup = {
       { value: 22, itemStyle: { color: '#22d3ee' } },
       { value: 150, itemStyle: { color: 'rgba(34,211,238,0.45)' } },
     ],
-    label: { show: true, position: 'top', color: '#93a1b5', fontSize: 10, formatter: '{c}t' },
+    label: { show: true, position: 'top', color: LABEL.color, fontSize: 10, formatter: '{c}t' },
   }],
 };
 

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ============================================================================
@@ -230,8 +230,8 @@ export default function Page() {
   const x = IDEOLOGIES[k];
   const issue = ISSUES[issueKey];
   const compare = useMemo(() => ({
-    legend: { data: Object.values(IDEOLOGIES).map((v) => v.label), textStyle: { color: '#93a1b5' }, top: 0 },
-    radar: { indicator: RADAR_IND, axisName: { color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
+    legend: { data: Object.values(IDEOLOGIES).map((v) => v.label), textStyle: { color: LABEL.color }, top: 0 },
+    radar: { indicator: RADAR_IND, axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
     series: [{ type: 'radar', data: Object.values(IDEOLOGIES).map((v) => ({ value: v.radar, name: v.label, lineStyle: { color: v.color }, areaStyle: { color: v.color + '22' } })) }],
   }), []);
   return (

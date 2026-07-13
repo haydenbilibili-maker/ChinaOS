@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import TajianPanel from './TajianPanel.jsx';
 import './tajian.css';
 
@@ -8,13 +8,15 @@ import './tajian.css';
  */
 export default function TajianPage() {
   return (
-    <div className="tajian-page">
-      <PageHeader
-        badge="GY-10 · 人群画像分层"
-        title="塔尖阶层"
-        subtitle="可迁移进程 · 要钱不要人的塔尖"
-      />
+    <GySliceShell
+      badge="GY-10 · 人群画像分层"
+      title="塔尖阶层"
+      subtitle="可迁移进程 · 要钱不要人的塔尖"
+      appId="tj-app"
+      moduleId="tajian"
+      className="tajian-page"
+    >
       <TajianPanel />
-    </div>
+    </GySliceShell>
   );
 }

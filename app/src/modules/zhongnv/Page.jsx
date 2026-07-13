@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import ZhongnvPanel from './ZhongnvPanel.jsx';
 import './zhongnv.css';
 
@@ -8,13 +8,15 @@ import './zhongnv.css';
  */
 export default function ZhongnvPage() {
   return (
-    <div className="zhongnv-page">
-      <PageHeader
-        badge="GY-17 · 人群画像分层"
-        title="中年女性 · 被折叠的一代"
-        subtitle="后台守护进程 · 维持系统的不可见线程"
-      />
+    <GySliceShell
+      badge="GY-17 · 人群画像分层"
+      title="中年女性 · 被折叠的一代"
+      subtitle="后台守护进程 · 维持系统的不可见线程"
+      appId="zn-app"
+      moduleId="zhongnv"
+      className="zhongnv-page"
+    >
       <ZhongnvPanel />
-    </div>
+    </GySliceShell>
   );
 }

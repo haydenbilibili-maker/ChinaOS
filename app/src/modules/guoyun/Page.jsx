@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { PageHeader, TabBar } from '../../app/ui.jsx';
+import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { GUOYUN_TABS, resolveGuoyunTab } from '../../lib/guoyun/routing.js';
 import ChroniclePanel from '../chronicle/ChroniclePanel.jsx';
 import GuoyunSimPanel from './GuoyunSimPanel.jsx';
@@ -52,6 +53,7 @@ export default function GuoyunPage() {
       </div>
 
       {tab === 'timeline' ? <ChroniclePanel /> : <GuoyunSimPanel />}
+      <ModuleFooter moduleId="guoyun" />
     </div>
   );
 }

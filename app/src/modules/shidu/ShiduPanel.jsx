@@ -22,7 +22,6 @@ export default function ShiduPanel() {
   return (
     <div className="shidu-module-wrap">
       <div
-        id="sd-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

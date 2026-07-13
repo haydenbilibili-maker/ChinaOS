@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ── 功能定位选择器：港澳在不同功能维度上的角色 / 不可替代性 / 风险 ──
@@ -106,7 +106,7 @@ export default function Page() {
   // 港 vs 新加坡 国际金融中心竞争力（双系列，自写内联 option）
   const ifcCompete = useMemo(() => ({
     grid: GRID,
-    legend: { data: ['香港', '新加坡'], textStyle: { color: '#93a1b5' }, top: 0 },
+    legend: { data: ['香港', '新加坡'], textStyle: { color: LABEL.color }, top: 0 },
     tooltip: { trigger: 'axis' },
     radar: {
       indicator: [
@@ -115,7 +115,7 @@ export default function Page() {
         { name: '连接性', max: 100 }, { name: '监管稳定', max: 100 },
       ],
       center: ['50%', '56%'], radius: '64%',
-      axisName: { color: '#93a1b5', fontSize: 11 },
+      axisName: { color: LABEL.color, fontSize: 11 },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.18)' } },
       splitArea: { areaStyle: { color: ['rgba(34,211,238,0.03)', 'transparent'] } },
     },
@@ -131,7 +131,7 @@ export default function Page() {
   // 不可替代性 vs 风险（随功能高亮）
   const riskBar = useMemo(() => ({
     grid: { ...GRID, bottom: 36 },
-    legend: { data: ['不可替代性', '地位风险'], textStyle: { color: '#93a1b5' }, top: 0 },
+    legend: { data: ['不可替代性', '地位风险'], textStyle: { color: LABEL.color }, top: 0 },
     tooltip: { trigger: 'axis' },
     xAxis: categoryX(FUNCTIONS.map((x) => x.label)),
     yAxis: valueY({ max: 100 }),
@@ -158,7 +158,7 @@ export default function Page() {
     series: [{
       type: 'bar', barWidth: 30,
       data: [10000, 6500, 250, 1200].map((v) => ({ value: v, itemStyle: { color: '#22d3ee', borderRadius: 4 } })),
-      label: { show: true, position: 'top', color: '#93a1b5', fontSize: 10 },
+      label: { show: true, position: 'top', color: LABEL.color, fontSize: 10 },
     }],
   }), []);
 
@@ -171,7 +171,7 @@ export default function Page() {
     series: [{
       type: 'bar', barWidth: 26,
       data: GBA_CITIES.map((c) => ({ value: c.gdp, itemStyle: { color: c.accent, borderRadius: 4 } })),
-      label: { show: true, position: 'top', color: '#93a1b5', fontSize: 10 },
+      label: { show: true, position: 'top', color: LABEL.color, fontSize: 10 },
     }],
   }), []);
 

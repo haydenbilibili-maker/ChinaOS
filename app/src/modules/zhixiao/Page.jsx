@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import ZhixiaoPanel from './ZhixiaoPanel.jsx';
 import './zhixiao.css';
 
@@ -8,13 +8,15 @@ import './zhixiao.css';
  */
 export default function ZhixiaoPage() {
   return (
-    <div className="zhixiao-page">
-      <PageHeader
-        badge="GY-11 · 人群画像分层"
-        title="职校生"
-        subtitle="编译期定价 · 十五岁的一次性判决"
-      />
+    <GySliceShell
+      badge="GY-11 · 人群画像分层"
+      title="职校生"
+      subtitle="编译期定价 · 十五岁的一次性判决"
+      appId="zx-app"
+      moduleId="zhixiao"
+      className="zhixiao-page"
+    >
       <ZhixiaoPanel />
-    </div>
+    </GySliceShell>
   );
 }

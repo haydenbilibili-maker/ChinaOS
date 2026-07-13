@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 /* ============ 品类主数据（示意值） ============ */
@@ -136,10 +136,10 @@ const SECTOR_STACK = stackedBarOpt({
 /* ============ 能力雷达（中国 vs 国际，双系列内联） ============ */
 const RADAR_INDICATORS = ['几何内核', '求解器', '数据格式', '生态兼容', '行业积累', '人才储备'];
 const CAPABILITY_RADAR = {
-  legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+  legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
   radar: {
     indicator: RADAR_INDICATORS.map((n) => ({ name: n, max: 100 })),
-    axisName: { color: '#93a1b5', fontSize: 10 },
+    axisName: { color: LABEL.color, fontSize: 10 },
     splitLine: { lineStyle: { color: 'rgba(148,163,184,0.25)' } },
     axisLine: { lineStyle: { color: 'rgba(148,163,184,0.25)' } },
     splitArea: { show: false },
@@ -170,7 +170,7 @@ const LOCAL_BAR = {
     data: [...CATS].sort((a, b) => a.local - b.local).map((c) => ({
       value: c.local, itemStyle: { color: localColor(c.local), borderRadius: 3 },
     })),
-    label: { show: true, position: 'right', formatter: '{c}%', color: '#93a1b5', fontSize: 10 },
+    label: { show: true, position: 'right', formatter: '{c}%', color: LABEL.color, fontSize: 10 },
   }],
 };
 
@@ -180,13 +180,13 @@ const SCATTER_OPT = {
   grid: { left: 48, right: 32, top: 32, bottom: 44 },
   xAxis: {
     type: 'value', name: '替代难度 →', nameLocation: 'middle', nameGap: 28, min: 20, max: 100,
-    nameTextStyle: { color: '#93a1b5', fontSize: 10 },
-    splitLine: { lineStyle: { color: 'rgba(148,163,184,0.12)' } }, axisLabel: { color: '#93a1b5', fontSize: 10 },
+    nameTextStyle: { color: LABEL.color, fontSize: 10 },
+    splitLine: { lineStyle: { color: 'rgba(148,163,184,0.12)' } }, axisLabel: { color: LABEL.color, fontSize: 10 },
   },
   yAxis: {
     type: 'value', name: '战略权重 →', nameLocation: 'middle', nameGap: 34, min: 40, max: 105,
-    nameTextStyle: { color: '#93a1b5', fontSize: 10 },
-    splitLine: { lineStyle: { color: 'rgba(148,163,184,0.12)' } }, axisLabel: { color: '#93a1b5', fontSize: 10 },
+    nameTextStyle: { color: LABEL.color, fontSize: 10 },
+    splitLine: { lineStyle: { color: 'rgba(148,163,184,0.12)' } }, axisLabel: { color: LABEL.color, fontSize: 10 },
   },
   series: [{
     type: 'scatter',
@@ -216,7 +216,7 @@ const SCALE_LOG = {
       data: [180, 210, 250, 295, 350, 480],
       itemStyle: { color: '#22d3ee' }, lineStyle: { color: '#22d3ee', width: 2 } },
   ],
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
 };
 
 export default function Page() {
@@ -232,7 +232,7 @@ export default function Page() {
     series: [{
       type: 'bar', data: c.maturity, barWidth: '52%',
       itemStyle: { color: c.accent, borderRadius: [4, 4, 0, 0] },
-      label: { show: true, position: 'top', formatter: '{c}%', color: '#93a1b5', fontSize: 10 },
+      label: { show: true, position: 'top', formatter: '{c}%', color: LABEL.color, fontSize: 10 },
     }],
   }), [c]);
 

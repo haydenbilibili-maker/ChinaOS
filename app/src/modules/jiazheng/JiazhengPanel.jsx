@@ -22,7 +22,6 @@ export default function JiazhengPanel() {
   return (
     <div className="jiazheng-module-wrap">
       <div
-        id="jz-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

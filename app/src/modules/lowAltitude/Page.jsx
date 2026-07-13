@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
-import { categoryX, valueY, GRID, donutOpt, radarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, donutOpt, radarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 
 // ============================================================================
 // 低空经济 · eVTOL / 无人机 / 通航 —— 空域改革驱动的万亿赛道
@@ -20,8 +20,8 @@ const scaleOpt = {
     type: 'bar', barWidth: 24,
     data: [0.50, 0.67, 0.85, 1.05, 1.80, 3.50],
     itemStyle: { color: '#22d3ee', borderRadius: [3, 3, 0, 0] },
-    label: { show: true, position: 'top', color: '#93a1b5', formatter: '{c}' },
-    markLine: { silent: true, data: [{ yAxis: 1.0, label: { formatter: '万亿门槛', color: '#93a1b5' }, lineStyle: { color: '#e8a317', type: 'dashed' } }] },
+    label: { show: true, position: 'top', color: LABEL.color, formatter: '{c}' },
+    markLine: { silent: true, data: [{ yAxis: 1.0, label: { formatter: '万亿门槛', color: LABEL.color }, lineStyle: { color: '#e8a317', type: 'dashed' } }] },
   }],
 };
 

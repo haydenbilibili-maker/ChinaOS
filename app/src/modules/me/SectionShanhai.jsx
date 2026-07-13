@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Card } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { SelectorBar, TimelineBar } from '../shared/ModuleParadigm.jsx';
+import { AXIS, LABEL, GRID_LINE, CHART_SERIES_PALETTE } from '../shared/chartHelpers.js';
 
 // ============================================================================
 // ㉑ 山海造物 · 副业实体 · 把山海带回家
@@ -13,7 +14,6 @@ import { SelectorBar, TimelineBar } from '../shared/ModuleParadigm.jsx';
 // 非投资建议；合伙人以角色代称，不披露第三方个人信息。
 // ============================================================================
 
-const AX = { line: '#27324a', text: '#93a1b5', split: 'rgba(148,163,184,0.1)' };
 const C = { cinnabar: '#c41e3a', cyan: '#22d3ee', ochre: '#e8a317', green: '#10b981', violet: '#8b5cf6', slate: '#94a3b8' };
 
 const SUBTABS = [
@@ -75,9 +75,9 @@ function financeBarOption() {
   return {
     grid: { left: 40, right: 16, top: 28, bottom: 24 },
     tooltip: { trigger: 'axis' },
-    legend: { top: 0, textStyle: { color: AX.text, fontSize: 10 }, data: ['月营收(万)', '月净利(万)'] },
-    xAxis: { type: 'category', data: ['2025.11', '2025.12'], axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text } },
-    yAxis: { type: 'value', axisLine: { lineStyle: { color: AX.line } }, axisLabel: { color: AX.text }, splitLine: { lineStyle: { color: AX.split } } },
+    legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, data: ['月营收(万)', '月净利(万)'] },
+    xAxis: { type: 'category', data: ['2025.11', '2025.12'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
+    yAxis: { type: 'value', axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } } },
     series: [
       { name: '月营收(万)', type: 'bar', barWidth: 22, data: [6.83, 10.07], itemStyle: { color: C.cyan } },
       { name: '月净利(万)', type: 'bar', barWidth: 22, data: [3.2, 4.1], itemStyle: { color: C.green } },
@@ -88,14 +88,14 @@ function financeBarOption() {
 function siteRadarOption() {
   return {
     tooltip: {},
-    legend: { bottom: 0, textStyle: { color: AX.text, fontSize: 10 }, data: SITES.map((s) => s.name) },
+    legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 }, data: SITES.map((s) => s.name) },
     radar: {
       indicator: [
         { name: '决策得分', max: 4 }, { name: '年营收(百万)', max: 4 }, { name: '年净现金(十万)', max: 5 },
         { name: '调性匹配', max: 100 }, { name: '交通', max: 100 },
       ],
-      axisName: { color: AX.text, fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-      axisLine: { lineStyle: { color: AX.split } }, splitArea: { show: false },
+      axisName: { color: LABEL.color, fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+      axisLine: { lineStyle: { color: GRID_LINE.lineStyle.color } }, splitArea: { show: false },
     },
     series: [{
       type: 'radar', data: [

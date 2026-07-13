@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import JipinPanel from './JipinPanel.jsx';
 import './jipin.css';
 
@@ -8,13 +8,15 @@ import './jipin.css';
  */
 export default function JipinPage() {
   return (
-    <div className="jipin-page">
-      <PageHeader
-        badge="GY-43 · 人群画像分层"
-        title="城市极贫与救助对象"
-        subtitle="最低保活进程 · keep-alive 兜底"
-      />
+    <GySliceShell
+      badge="GY-43 · 人群画像分层"
+      title="城市极贫与救助对象"
+      subtitle="最低保活进程 · keep-alive 兜底"
+      appId="jp-app"
+      moduleId="jipin"
+      className="jipin-page"
+    >
       <JipinPanel />
-    </div>
+    </GySliceShell>
   );
 }

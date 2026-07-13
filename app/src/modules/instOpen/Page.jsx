@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
-import { categoryX, valueY, GRID, LEGEND, radarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, LEGEND, radarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 
 // ============================================================================
 // 制度型开放 · 自贸试验区 / 海南自贸港 / 规则对接
@@ -75,7 +75,7 @@ export default function Page() {
       data: [190, 122, 40, 31, 27],
       lineStyle: { color: '#10b981', width: 2 },
       areaStyle: { color: 'rgba(16,185,129,0.1)' },
-      label: { show: true, position: 'top', color: '#93a1b5', fontSize: 9 },
+      label: { show: true, position: 'top', color: LABEL.color, fontSize: 9 },
     }],
   }), []);
 
@@ -92,7 +92,7 @@ export default function Page() {
     series: [{
       type: 'bar', barWidth: 14, itemStyle: { borderRadius: 3, color: z.accent },
       data: zone === 'shanghai' ? [92, 88, 95, 85, 80] : zone === 'hainan' ? [90, 85, 78, 70, 75] : [80, 82, 72, 68, 78],
-      label: { show: true, position: 'right', color: '#93a1b5', fontSize: 9 },
+      label: { show: true, position: 'right', color: LABEL.color, fontSize: 9 },
     }],
   }), [zone, z]);
 

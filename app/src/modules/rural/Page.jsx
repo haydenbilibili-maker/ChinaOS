@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ============================================================================
@@ -70,12 +70,12 @@ const STAGES = [
 // 城乡收入比 + 农村转移性收入占比（双轴双线）
 const incomeGapOpt = {
   tooltip: { trigger: 'axis' },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
   grid: { left: 44, right: 48, top: 32, bottom: 24 },
   xAxis: categoryX(['2010', '2013', '2016', '2019', '2021', '2023']),
   yAxis: [
-    valueY({ min: 2.2, max: 3.4, name: '收入比', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
-    valueY({ min: 0, max: 30, name: '转移占比%', nameTextStyle: { color: '#93a1b5', fontSize: 10 }, splitLine: { show: false } }),
+    valueY({ min: 2.2, max: 3.4, name: '收入比', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
+    valueY({ min: 0, max: 30, name: '转移占比%', nameTextStyle: { color: LABEL.color, fontSize: 10 }, splitLine: { show: false } }),
   ],
   series: [
     { name: '城乡收入比(农村=1)', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [3.23, 3.03, 2.72, 2.64, 2.50, 2.39], lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' } },
@@ -86,7 +86,7 @@ const incomeGapOpt = {
 // 县域分化 · 百强县 vs 一般农业县 vs 人口流出县（人均指标 bar）
 const countyDivergeOpt = {
   tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
   grid: { left: 44, right: 16, top: 32, bottom: 24 },
   xAxis: categoryX(['人均GDP(万元)', '财政自给率(%)/10', '人口增长指数', '工业占比(%)/10']),
   yAxis: valueY(),
@@ -100,12 +100,12 @@ const countyDivergeOpt = {
 // 乡村人口 + 老龄化率（柱线双轴）
 const ruralPopOpt = {
   tooltip: { trigger: 'axis' },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
   grid: { left: 44, right: 48, top: 32, bottom: 24 },
   xAxis: categoryX(['2010', '2015', '2018', '2020', '2022', '2023']),
   yAxis: [
-    valueY({ min: 0, max: 8, name: '亿人', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
-    valueY({ min: 0, max: 30, name: '60+占比%', nameTextStyle: { color: '#93a1b5', fontSize: 10 }, splitLine: { show: false } }),
+    valueY({ min: 0, max: 8, name: '亿人', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
+    valueY({ min: 0, max: 30, name: '60+占比%', nameTextStyle: { color: LABEL.color, fontSize: 10 }, splitLine: { show: false } }),
   ],
   series: [
     { name: '乡村常住人口(亿)', type: 'bar', barWidth: 18, data: [6.71, 6.03, 5.64, 5.10, 4.91, 4.77], itemStyle: { color: 'rgba(139,92,246,0.55)', borderRadius: 3 } },
@@ -154,7 +154,7 @@ const techBar = {
   grid: { left: 80, right: 40, top: 16, bottom: 24 },
   xAxis: valueY({ max: 100, axisLabel: { formatter: '{value}%' } }),
   yAxis: categoryX(['遥感监测', '冷链覆盖', '益农信息社', '宽带通达', '电商服务站']),
-  series: [{ type: 'bar', data: [38, 45, 60, 85, 92], barWidth: 14, itemStyle: { color: '#22d3ee', borderRadius: 3 }, label: { show: true, position: 'right', formatter: '{c}%', color: '#93a1b5' } }],
+  series: [{ type: 'bar', data: [38, 45, 60, 85, 92], barWidth: 14, itemStyle: { color: '#22d3ee', borderRadius: 3 }, label: { show: true, position: 'right', formatter: '{c}%', color: LABEL.color } }],
 };
 
 // 土地制度三栏

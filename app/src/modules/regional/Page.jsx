@@ -110,7 +110,7 @@ const perCapitaOpt = {
       { value: 7.1, itemStyle: { color: '#e8a317', borderRadius: 4 } },
       { value: 6.3, itemStyle: { color: '#10b981', borderRadius: 4 } },
     ],
-    label: { show: true, position: 'top', color: '#93a1b5', fontSize: 10, formatter: '{c} 万' },
+    label: { show: true, position: 'top', color: LABEL.color, fontSize: 10, formatter: '{c} 万' },
   }],
 };
 
@@ -118,7 +118,7 @@ const perCapitaOpt = {
 const gdpStack = {
   grid: { left: 40, right: 16, top: 32, bottom: 24 },
   tooltip: { trigger: 'axis' },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 11 }, itemWidth: 12, itemHeight: 8 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 11 }, itemWidth: 12, itemHeight: 8 },
   xAxis: categoryX(['2000', '2005', '2010', '2015', '2020', '2024']),
   yAxis: valueY({ max: 100, axisLabel: { formatter: '{value}%' } }),
   series: [
@@ -135,7 +135,7 @@ const gdpStack = {
 const northSouthOpt = {
   tooltip: { trigger: 'axis' },
   grid: { left: 44, right: 16, top: 32, bottom: 24 },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 11 }, itemWidth: 12, itemHeight: 8 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 11 }, itemWidth: 12, itemHeight: 8 },
   xAxis: categoryX(['2000', '2005', '2010', '2013', '2016', '2019', '2022', '2024']),
   yAxis: valueY({ min: 30, max: 70, axisLabel: { formatter: '{value}%' } }),
   series: [
@@ -155,7 +155,7 @@ const northSouthOpt = {
 const transferScaleOpt = {
   tooltip: { trigger: 'axis' },
   grid: { left: 48, right: 16, top: 32, bottom: 24 },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 11 }, itemWidth: 12, itemHeight: 8 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 11 }, itemWidth: 12, itemHeight: 8 },
   xAxis: categoryX(['2012', '2015', '2018', '2020', '2022', '2024', '2025E']),
   yAxis: valueY({ axisLabel: { formatter: '{value} 万亿' } }),
   series: [
@@ -168,14 +168,14 @@ const fiscalFlowOpt = {
   tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: (ps) => ps.map((p) => `${p.name}: ${p.value > 0 ? '+' : ''}${p.value} 千亿（示意）`).join('<br/>') },
   grid: { left: 60, right: 36, top: 16, bottom: 24 },
   xAxis: valueY({ axisLabel: { formatter: '{value}' } }),
-  yAxis: { type: 'category', data: ['黑龙江', '甘肃', '广西', '河南', '四川', '辽宁', '山东', '江苏', '浙江', '北京', '上海', '广东'].reverse(), axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+  yAxis: { type: 'category', data: ['黑龙江', '甘肃', '广西', '河南', '四川', '辽宁', '山东', '江苏', '浙江', '北京', '上海', '广东'].reverse(), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
   series: [{
     type: 'bar', barWidth: 12,
     data: [9.5, 8.0, 5.5, 4.0, 3.0, 2.5, -1.5, -5.0, -5.5, -6.0, -8.0, -10.0].reverse().map((v) => ({
       value: v,
       itemStyle: { color: v > 0 ? '#e8a317' : '#22d3ee', borderRadius: v > 0 ? [0, 3, 3, 0] : [3, 0, 0, 3] },
     })),
-    label: { show: true, position: 'right', color: '#93a1b5', fontSize: 9, formatter: ({ value }) => (value > 0 ? `+${value}` : `${value}`) },
+    label: { show: true, position: 'right', color: LABEL.color, fontSize: 9, formatter: ({ value }) => (value > 0 ? `+${value}` : `${value}`) },
   }],
 };
 
@@ -193,12 +193,12 @@ const metroBarOpt = {
   tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
   grid: { left: 64, right: 36, top: 16, bottom: 24 },
   xAxis: valueY(),
-  yAxis: { type: 'category', data: ['西安', '成都', '重庆', '武汉', '郑州', '长株潭', '南京', '福州', '深圳', '广州'].reverse(), axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+  yAxis: { type: 'category', data: ['西安', '成都', '重庆', '武汉', '郑州', '长株潭', '南京', '福州', '深圳', '广州'].reverse(), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
   series: [{
     type: 'bar', barWidth: 10,
     data: [1.3, 2.7, 2.0, 1.8, 1.6, 1.7, 2.3, 1.2, 3.5, 3.0].reverse(),
     itemStyle: { color: '#22d3ee', borderRadius: [0, 3, 3, 0] },
-    label: { show: true, position: 'right', color: '#93a1b5', fontSize: 9, formatter: '{c} 万亿' },
+    label: { show: true, position: 'right', color: LABEL.color, fontSize: 9, formatter: '{c} 万亿' },
   }],
 };
 
@@ -207,7 +207,7 @@ const urbanBar = {
   grid: { left: 40, right: 16, top: 20, bottom: 24 },
   xAxis: categoryX(['户籍城镇化', '城区人口', '都市圈', '县域载体'], { fontSize: 11 }),
   yAxis: valueY({ min: 55, max: 70, axisLabel: { formatter: '{value}%' } }),
-  series: [{ type: 'bar', data: [60.2, 63.9, 65.2, 66.2], barWidth: 28, itemStyle: { color: '#22d3ee', borderRadius: 4 }, label: { show: true, position: 'top', color: '#93a1b5', fontSize: 10, formatter: '{c}%' } }],
+  series: [{ type: 'bar', data: [60.2, 63.9, 65.2, 66.2], barWidth: 28, itemStyle: { color: '#22d3ee', borderRadius: 4 }, label: { show: true, position: 'top', color: LABEL.color, fontSize: 10, formatter: '{c}%' } }],
 };
 
 // ---------------------------------------------------------------------------
@@ -254,7 +254,7 @@ export default function Page() {
         { value: strat.gdpShare, itemStyle: { color: strat.accent, borderRadius: 4 } },
         { value: strat.popShare, itemStyle: { color: '#475569', borderRadius: 4 } },
       ],
-      label: { show: true, position: 'top', color: '#93a1b5', fontSize: 11, formatter: '{c}%' },
+      label: { show: true, position: 'top', color: LABEL.color, fontSize: 11, formatter: '{c}%' },
     }],
   }), [strat]);
 

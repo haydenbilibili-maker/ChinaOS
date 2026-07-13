@@ -22,7 +22,6 @@ export default function HuochePanel() {
   return (
     <div className="huoche-module-wrap">
       <div
-        id="hc-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

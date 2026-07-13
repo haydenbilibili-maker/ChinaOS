@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
-
-const AXIS = '#27324a';
-const SPLIT = 'rgba(148,163,184,0.1)';
-const TXT = '#93a1b5';
 
 // ── 人口金字塔数据（示意值，单位：百万人；男性取负数用于双向条形）──
 const AGE_BANDS = ['0-9', '10-19', '20-29', '30-39', '40-49', '50-59', '60-69', '70-79', '80+'];
@@ -26,10 +23,10 @@ function buildPyramid(year) {
       const f = p.find((x) => x.seriesName === '女性')?.value ?? 0;
       return `${band} 岁<br/>男性 ${m} 百万<br/>女性 ${f} 百万`;
     } },
-    legend: { data: ['男性', '女性'], top: 0, textStyle: { color: TXT }, itemWidth: 12, itemHeight: 12 },
+    legend: { data: ['男性', '女性'], top: 0, textStyle: { color: LABEL.color }, itemWidth: 12, itemHeight: 12 },
     grid: { left: 56, right: 28, top: 30, bottom: 24 },
-    xAxis: { type: 'value', axisLine: { lineStyle: { color: AXIS } }, axisLabel: { color: TXT, formatter: (v) => Math.abs(v) }, splitLine: { lineStyle: { color: SPLIT } } },
-    yAxis: { type: 'category', data: AGE_BANDS, axisLine: { lineStyle: { color: AXIS } }, axisLabel: { color: TXT }, axisTick: { show: false } },
+    xAxis: { type: 'value', axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, formatter: (v) => Math.abs(v) }, splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } } },
+    yAxis: { type: 'category', data: AGE_BANDS, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color }, axisTick: { show: false } },
     series: [
       { name: '男性', type: 'bar', stack: 'pop', data: d.male, itemStyle: { color: '#22d3ee' }, barWidth: '64%' },
       { name: '女性', type: 'bar', stack: 'pop', data: d.female, itemStyle: { color: '#c41e3a' }, barWidth: '64%' },
@@ -40,10 +37,10 @@ function buildPyramid(year) {
 // ── 抚养比演进（保留原老年抚养比，补充少儿与总抚养比）──
 const dependencyLine = {
   tooltip: { trigger: 'axis' },
-  legend: { data: ['少儿抚养比', '老年抚养比', '总抚养比'], top: 0, textStyle: { color: TXT }, itemWidth: 12, itemHeight: 12 },
+  legend: { data: ['少儿抚养比', '老年抚养比', '总抚养比'], top: 0, textStyle: { color: LABEL.color }, itemWidth: 12, itemHeight: 12 },
   grid: { left: 44, right: 24, top: 30, bottom: 28 },
-  xAxis: { type: 'category', data: ['2010', '2015', '2020', '2025E', '2030E', '2035E'], axisLine: { lineStyle: { color: AXIS } }, axisLabel: { color: TXT } },
-  yAxis: { type: 'value', axisLabel: { formatter: '{value}%', color: TXT }, splitLine: { lineStyle: { color: SPLIT } } },
+  xAxis: { type: 'category', data: ['2010', '2015', '2020', '2025E', '2030E', '2035E'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
+  yAxis: { type: 'value', axisLabel: { formatter: '{value}%', color: LABEL.color }, splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } } },
   series: [
     { name: '少儿抚养比', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [22.3, 22.6, 26.2, 25.0, 23.5, 22.0], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
     { name: '老年抚养比', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [11.9, 14.3, 19.7, 24.5, 28.2, 34.0], lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' }, areaStyle: { color: 'rgba(232,163,23,0.12)' } },
@@ -54,12 +51,12 @@ const dependencyLine = {
 // ── 多维趋势：TFR / 老龄化率 / 城镇化率 ──
 const multiTrend = {
   tooltip: { trigger: 'axis' },
-  legend: { data: ['总和生育率(TFR)', '老龄化率(65+)', '城镇化率'], top: 0, textStyle: { color: TXT }, itemWidth: 12, itemHeight: 12 },
+  legend: { data: ['总和生育率(TFR)', '老龄化率(65+)', '城镇化率'], top: 0, textStyle: { color: LABEL.color }, itemWidth: 12, itemHeight: 12 },
   grid: { left: 44, right: 44, top: 30, bottom: 28 },
-  xAxis: { type: 'category', data: ['2000', '2010', '2020', '2024', '2035E'], axisLine: { lineStyle: { color: AXIS } }, axisLabel: { color: TXT } },
+  xAxis: { type: 'category', data: ['2000', '2010', '2020', '2024', '2035E'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
   yAxis: [
-    { type: 'value', name: 'TFR', min: 0, max: 2.2, axisLabel: { color: TXT }, splitLine: { lineStyle: { color: SPLIT } } },
-    { type: 'value', name: '%', axisLabel: { formatter: '{value}%', color: TXT }, splitLine: { show: false } },
+    { type: 'value', name: 'TFR', min: 0, max: 2.2, axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } } },
+    { type: 'value', name: '%', axisLabel: { formatter: '{value}%', color: LABEL.color }, splitLine: { show: false } },
   ],
   series: [
     { name: '总和生育率(TFR)', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, yAxisIndex: 0, data: [1.45, 1.18, 1.30, 1.00, 1.10], lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, markLine: { silent: true, symbol: 'none', lineStyle: { color: '#fb923c', type: 'dashed' }, data: [{ yAxis: 2.1, label: { formatter: '更替水平 2.1', color: '#fb923c', fontSize: 10 } }] } },
@@ -79,26 +76,26 @@ function buildRegion(mode) {
   return {
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: (p) => `${p[0].axisValue}<br/>净迁移 ${p[0].value} 万人/年` },
     grid: { left: 64, right: 36, top: 16, bottom: 24 },
-    xAxis: { type: 'value', axisLine: { lineStyle: { color: AXIS } }, axisLabel: { color: TXT, formatter: (v) => Math.abs(v) }, splitLine: { lineStyle: { color: SPLIT } } },
-    yAxis: { type: 'category', data: sorted.map((x) => x[0]), axisLine: { lineStyle: { color: AXIS } }, axisLabel: { color: TXT }, axisTick: { show: false } },
-    series: [{ type: 'bar', data: sorted.map((x) => x[1]), barWidth: '56%', itemStyle: { color: cfg.color, borderRadius: 4 }, label: { show: true, position: mode === 'inflow' ? 'right' : 'left', formatter: (p) => Math.abs(p.value), color: TXT, fontSize: 11 } }],
+    xAxis: { type: 'value', axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, formatter: (v) => Math.abs(v) }, splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } } },
+    yAxis: { type: 'category', data: sorted.map((x) => x[0]), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color }, axisTick: { show: false } },
+    series: [{ type: 'bar', data: sorted.map((x) => x[1]), barWidth: '56%', itemStyle: { color: cfg.color, borderRadius: 4 }, label: { show: true, position: mode === 'inflow' ? 'right' : 'left', formatter: (p) => Math.abs(p.value), color: LABEL.color, fontSize: 11 } }],
   };
 }
 
 const talentBar = {
   tooltip: { trigger: 'axis' },
   grid: { left: 40, right: 24, top: 20, bottom: 28 },
-  xAxis: { type: 'category', data: ['2010', '2015', '2020', '2024'], axisLine: { lineStyle: { color: AXIS } }, axisLabel: { color: TXT } },
-  yAxis: { type: 'value', axisLabel: { formatter: '{value}%', color: TXT }, splitLine: { lineStyle: { color: SPLIT } } },
-  series: [{ name: '本科以上学历占比', type: 'bar', data: [8.9, 11.5, 15.5, 19.8], barWidth: 22, itemStyle: { color: '#c41e3a', borderRadius: 4 }, label: { show: true, position: 'top', formatter: '{c}%', color: TXT } }],
+  xAxis: { type: 'category', data: ['2010', '2015', '2020', '2024'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
+  yAxis: { type: 'value', axisLabel: { formatter: '{value}%', color: LABEL.color }, splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } } },
+  series: [{ name: '本科以上学历占比', type: 'bar', data: [8.9, 11.5, 15.5, 19.8], barWidth: 22, itemStyle: { color: '#c41e3a', borderRadius: 4 }, label: { show: true, position: 'top', formatter: '{c}%', color: LABEL.color } }],
 };
 const silverPie = {
   tooltip: { trigger: 'item' },
   series: [{
     type: 'pie', radius: ['40%', '70%'], avoidLabelOverlap: false,
     itemStyle: { borderRadius: 10, borderColor: 'transparent', borderWidth: 2 },
-    label: { show: true, color: TXT }, emphasis: { label: { show: true, fontSize: 14, fontWeight: 'bold' } },
-    labelLine: { lineStyle: { color: AXIS } },
+    label: { show: true, color: LABEL.color }, emphasis: { label: { show: true, fontSize: 14, fontWeight: 'bold' } },
+    labelLine: { lineStyle: { color: AXIS.lineStyle.color } },
     data: [
       { value: 40, name: '医疗保健与医药', itemStyle: { color: '#c41e3a' } },
       { value: 25, name: '养老金融服务', itemStyle: { color: '#e8a317' } },

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ============================================================================
@@ -99,7 +99,7 @@ export default function Page() {
 
   const simOpt = useMemo(() => ({
     tooltip: { trigger: 'axis' },
-    legend: { textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0, itemWidth: 12 },
+    legend: { textStyle: { color: LABEL.color, fontSize: 10 }, top: 0, itemWidth: 12 },
     grid: { ...GRID, top: 28 },
     xAxis: categoryX(simCurves.xs, { interval: 9 }),
     yAxis: valueY(),
@@ -107,7 +107,7 @@ export default function Page() {
       { name: '统治成本', type: 'line', smooth: true, symbol: 'none', data: simCurves.costs, lineStyle: { color: '#e8a317', width: 2 } },
       { name: '反弹势能', type: 'line', smooth: true, symbol: 'none', data: simCurves.rebounds, lineStyle: { color: '#8b5cf6', width: 2 } },
       { name: '净确定性', type: 'line', smooth: true, symbol: 'none', data: simCurves.nets, lineStyle: { color: '#10b981', width: 2.5 }, areaStyle: { color: 'rgba(16,185,129,0.08)' },
-        markLine: { silent: true, symbol: 'none', label: { color: '#93a1b5', fontSize: 10 },
+        markLine: { silent: true, symbol: 'none', label: { color: LABEL.color, fontSize: 10 },
           data: [
             { xAxis: String(simCurves.peakX), label: { formatter: `临界点 ${simCurves.peakX}` }, lineStyle: { color: '#c41e3a', type: 'dashed' } },
             { xAxis: String(Math.round(ctrl / 2) * 2), label: { formatter: `当前 ${ctrl}` }, lineStyle: { color: '#22d3ee', type: 'solid' } },
@@ -127,13 +127,13 @@ export default function Page() {
     grid: { left: 96, right: 32, top: 16, bottom: 24 },
     xAxis: logY({ name: '存续(年,对数)', nameTextStyle: { color: '#5b6a82', fontSize: 10 } }),
     yAxis: categoryX(Object.values(REGIMES).map((r) => r.label.split(' ')[0])),
-    series: [{ type: 'bar', barWidth: 12, data: Object.entries(REGIMES).map(([k, r]) => ({ value: r.span, itemStyle: { color: k === regimeKey ? r.accent : 'rgba(100,116,139,0.45)' } })), label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10, formatter: '{c} 年' } }],
+    series: [{ type: 'bar', barWidth: 12, data: Object.entries(REGIMES).map(([k, r]) => ({ value: r.span, itemStyle: { color: k === regimeKey ? r.accent : 'rgba(100,116,139,0.45)' } })), label: { show: true, position: 'right', color: LABEL.color, fontSize: 10, formatter: '{c} 年' } }],
   }), [regimeKey]);
 
   // —— 力场空间衰减：P(d) = 100·e^(−λd)，λ 由控制技术决定 ——
   const decayOpt = useMemo(() => ({
     tooltip: { trigger: 'axis' },
-    legend: { textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0, itemWidth: 12, type: 'scroll' },
+    legend: { textStyle: { color: LABEL.color, fontSize: 10 }, top: 0, itemWidth: 12, type: 'scroll' },
     grid: { ...GRID, top: 28 },
     xAxis: categoryX(LEVELS),
     yAxis: valueY({ max: 100 }),
@@ -160,7 +160,7 @@ export default function Page() {
       data: Object.entries(REGIMES).map(([k, r]) => ({
         value: [r.control, r.vitality, r.span, r.label],
         itemStyle: { color: r.accent, opacity: k === regimeKey ? 0.95 : 0.45, borderColor: k === regimeKey ? '#e8edf6' : 'transparent', borderWidth: 1.5 },
-        label: { show: true, position: 'top', color: '#93a1b5', fontSize: 10, formatter: r.label.split(' ')[0] },
+        label: { show: true, position: 'top', color: LABEL.color, fontSize: 10, formatter: r.label.split(' ')[0] },
       })),
       markLine: { silent: true, symbol: 'none', lineStyle: { color: 'rgba(196,30,58,0.5)', type: 'dashed' }, label: { color: '#5b6a82', fontSize: 10, formatter: '过控警戒线' }, data: [{ xAxis: 75 }] },
     }],
@@ -168,13 +168,13 @@ export default function Page() {
 
   // —— 原力场雷达 + 仪表（保留） ——
   const radar = useMemo(() => ({
-    radar: { indicator: [{ name: '强制力', max: 100 }, { name: '合法性', max: 100 }, { name: '信息穿透', max: 100 }, { name: '社会摩擦', max: 100 }], axisName: { color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
+    radar: { indicator: [{ name: '强制力', max: 100 }, { name: '合法性', max: 100 }, { name: '信息穿透', max: 100 }, { name: '社会摩擦', max: 100 }], axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
     series: [{ type: 'radar', data: [{ value: [p.coercion, p.legit, p.penetration, p.friction], name: '力场', lineStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.14)' } }] }],
   }), [p]);
   const gauge = useMemo(() => ({
     series: [{ type: 'gauge', min: 0, max: 100, progress: { show: true, width: 14, itemStyle: { color: eff > 70 ? '#10b981' : eff > 45 ? '#e8a317' : '#c41e3a' } },
       axisLine: { lineStyle: { width: 14, color: [[1, '#1a2333']] } }, axisLabel: { color: '#5b6a82', fontSize: 10 }, axisTick: { show: false }, splitLine: { show: false },
-      pointer: { itemStyle: { color: '#93a1b5' } }, detail: { valueAnimation: true, color: '#e8edf6', fontSize: 28, offsetCenter: [0, '40%'] }, data: [{ value: eff }] }],
+      pointer: { itemStyle: { color: LABEL.color } }, detail: { valueAnimation: true, color: '#e8edf6', fontSize: 28, offsetCenter: [0, '40%'] }, data: [{ value: eff }] }],
   }), [eff]);
 
   const Slider = ({ k, label }) => (

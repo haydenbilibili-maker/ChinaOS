@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import ChinaMap from '../../lib/viz/ChinaMap.jsx';
-import { categoryX, valueY, GRID, donutOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, donutOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 const GRAIN = [
@@ -111,7 +111,7 @@ export default function Page() {
     series: [{ type: 'bar', barWidth: 16, data: SELF_BARS.map((x) => ({
       value: x.rate,
       itemStyle: { color: x.rate >= 90 ? '#10b981' : x.rate >= 50 ? '#e8a317' : '#c41e3a', borderRadius: 3 },
-    })), label: { show: true, position: 'right', formatter: '{c}%', color: '#93a1b5', fontSize: 11 },
+    })), label: { show: true, position: 'right', formatter: '{c}%', color: LABEL.color, fontSize: 11 },
       markLine: { silent: true, symbol: 'none', label: { formatter: '95%', color: '#64748b', fontSize: 10 },
         lineStyle: { color: '#64748b', type: 'dashed' }, data: [{ xAxis: 95 }] } }],
   }), []);
@@ -145,9 +145,9 @@ export default function Page() {
     };
     const ringColor = 'rgba(148,163,184,0.25)';
     return {
-      legend: { data: ['粮食总盘子', c.label], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0, itemWidth: 12 },
+      legend: { data: ['粮食总盘子', c.label], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0, itemWidth: 12 },
       radar: {
-        indicator: inds, axisName: { color: '#93a1b5', fontSize: 10 },
+        indicator: inds, axisName: { color: LABEL.color, fontSize: 10 },
         splitLine: { lineStyle: { color: ringColor } }, axisLine: { lineStyle: { color: ringColor } },
         splitArea: { show: false }, center: ['50%', '54%'], radius: '62%',
       },
@@ -164,14 +164,14 @@ export default function Page() {
   // 耕地红线 + 粮食总产趋势（双轴）
   const acreageYield = useMemo(() => ({
     grid: { ...GRID, right: 56 },
-    legend: { data: ['粮食总产(亿吨)', '耕地面积(亿亩)'], textStyle: { color: '#93a1b5' }, top: 0 },
+    legend: { data: ['粮食总产(亿吨)', '耕地面积(亿亩)'], textStyle: { color: LABEL.color }, top: 0 },
     xAxis: categoryX(['2015', '2017', '2019', '2021', '2023', '2024']),
     yAxis: [
       { type: 'value', name: '总产/亿吨', min: 6, max: 7, position: 'left',
-        axisLabel: { color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.12)' } },
+        axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.12)' } },
         nameTextStyle: { color: '#64748b' } },
       { type: 'value', name: '耕地/亿亩', min: 18, max: 20, position: 'right',
-        axisLabel: { color: '#93a1b5' }, splitLine: { show: false }, nameTextStyle: { color: '#64748b' } },
+        axisLabel: { color: LABEL.color }, splitLine: { show: false }, nameTextStyle: { color: '#64748b' } },
     ],
     series: [
       { name: '粮食总产(亿吨)', type: 'bar', yAxisIndex: 0, barWidth: 22,

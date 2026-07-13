@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ---------------------------------------------------------------------------
@@ -129,7 +129,7 @@ export default function Page() {
         value: v,
         itemStyle: { color: i === 3 ? '#c41e3a' : c.accent, opacity: i === 3 ? 0.9 : 1 },
       })),
-      label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 },
+      label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 },
     }],
   }), [c]);
 
@@ -144,19 +144,19 @@ export default function Page() {
         value: x.dims[2],
         itemStyle: { color: x.accent, opacity: x.key === corridor ? 1 : 0.4 },
       })),
-      label: { show: true, position: 'top', color: '#93a1b5', fontSize: 9 },
+      label: { show: true, position: 'top', color: LABEL.color, fontSize: 9 },
     }],
   }), [corridor]);
 
   // 中欧班列：开行量（柱）+ 回程比例（线 · 右轴）
   const creOpt = useMemo(() => ({
     tooltip: { trigger: 'axis' },
-    legend: { textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12, top: 0 },
+    legend: { textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12, top: 0 },
     grid: { left: 44, right: 44, top: 30, bottom: 24 },
     xAxis: categoryX(CRE_YEARS),
     yAxis: [
-      valueY({ name: '千列', nameTextStyle: { color: '#93a1b5', fontSize: 9 } }),
-      valueY({ max: 100, splitLine: { show: false }, name: '%', nameTextStyle: { color: '#93a1b5', fontSize: 9 } }),
+      valueY({ name: '千列', nameTextStyle: { color: LABEL.color, fontSize: 9 } }),
+      valueY({ max: 100, splitLine: { show: false }, name: '%', nameTextStyle: { color: LABEL.color, fontSize: 9 } }),
     ],
     series: [
       { name: '年开行量（千列）', type: 'bar', barWidth: 16, data: CRE_TRIPS,
@@ -180,7 +180,7 @@ export default function Page() {
     series: [{
       type: 'bar', barWidth: 16, itemStyle: { borderRadius: 3 },
       data: PORTS.map((p) => ({ value: p.metric, itemStyle: { color: p.accent } })),
-      label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 },
+      label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 },
     }],
   }), []);
 

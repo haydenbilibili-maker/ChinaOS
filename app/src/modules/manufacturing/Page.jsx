@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
-
-const AXIS = '#27324a';
-const SPLIT = 'rgba(148,163,184,0.1)';
-const TXT = '#93a1b5';
 
 const scaleBar = {
   tooltip: { trigger: 'axis' },
   grid: { left: 48, right: 40, top: 16, bottom: 24 },
-  xAxis: { type: 'value', splitLine: { lineStyle: { color: SPLIT } }, axisLabel: { show: false } },
-  yAxis: { type: 'category', data: ['德国', '日本', '美国', '中国'], axisLine: { lineStyle: { color: AXIS } }, axisLabel: { color: TXT } },
-  series: [{ type: 'bar', data: [800, 1000, 2500, 4500], barWidth: 18, itemStyle: { color: (p) => (p.dataIndex === 3 ? '#c41e3a' : '#64748b'), borderRadius: [0, 4, 4, 0] }, label: { show: true, position: 'right', color: TXT, fontSize: 10 } }],
+  xAxis: { type: 'value', splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } }, axisLabel: { show: false } },
+  yAxis: { type: 'category', data: ['德国', '日本', '美国', '中国'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
+  series: [{ type: 'bar', data: [800, 1000, 2500, 4500], barWidth: 18, itemStyle: { color: (p) => (p.dataIndex === 3 ? '#c41e3a' : '#64748b'), borderRadius: [0, 4, 4, 0] }, label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 } }],
 };
 const valueChainRadar = {
-  radar: { indicator: [{ name: '原始研发', max: 100 }, { name: '高价值设计', max: 100 }, { name: '精密制造', max: 100 }, { name: '品牌影响力', max: 100 }, { name: '全球化服务', max: 100 }], axisName: { color: TXT, fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
+  radar: { indicator: [{ name: '原始研发', max: 100 }, { name: '高价值设计', max: 100 }, { name: '精密制造', max: 100 }, { name: '品牌影响力', max: 100 }, { name: '全球化服务', max: 100 }], axisName: { color: LABEL.color, fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
   series: [{ type: 'radar', data: [
     { value: [30, 40, 95, 20, 25], name: '2015 状态', lineStyle: { color: '#64748b' }, itemStyle: { color: '#64748b' } },
     { value: [75, 82, 98, 65, 78], name: '2024 现状', lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.1)' } },
@@ -23,7 +20,7 @@ const valueChainRadar = {
 };
 const giantsPie = {
   tooltip: { trigger: 'item' },
-  series: [{ type: 'pie', radius: ['40%', '70%'], itemStyle: { borderRadius: 2, borderColor: 'transparent', borderWidth: 2 }, label: { show: true, fontSize: 10, color: TXT }, data: [
+  series: [{ type: 'pie', radius: ['40%', '70%'], itemStyle: { borderRadius: 2, borderColor: 'transparent', borderWidth: 2 }, label: { show: true, fontSize: 10, color: LABEL.color }, data: [
     { value: 35, name: '高端装备', itemStyle: { color: '#c41e3a' } },
     { value: 25, name: '新一代信息技术', itemStyle: { color: '#22d3ee' } },
     { value: 15, name: '新材料', itemStyle: { color: '#e8a317' } },
@@ -35,12 +32,12 @@ const giantsPie = {
 // 制造业增加值规模 / 全球占比趋势
 const shareTrend = {
   tooltip: { trigger: 'axis' },
-  legend: { data: ['增加值（万亿美元）', '全球占比 %'], textStyle: { color: TXT, fontSize: 10 }, top: 0 },
+  legend: { data: ['增加值（万亿美元）', '全球占比 %'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
   grid: { left: 44, right: 44, top: 32, bottom: 24 },
-  xAxis: { type: 'category', data: ['2004', '2008', '2012', '2016', '2020', '2024'], axisLine: { lineStyle: { color: AXIS } }, axisLabel: { color: TXT, fontSize: 10 } },
+  xAxis: { type: 'category', data: ['2004', '2008', '2012', '2016', '2020', '2024'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
   yAxis: [
-    { type: 'value', name: '万亿$', nameTextStyle: { color: TXT, fontSize: 9 }, splitLine: { lineStyle: { color: SPLIT } }, axisLabel: { color: TXT, fontSize: 10 } },
-    { type: 'value', name: '%', nameTextStyle: { color: TXT, fontSize: 9 }, splitLine: { show: false }, axisLabel: { color: TXT, fontSize: 10 } },
+    { type: 'value', name: '万亿$', nameTextStyle: { color: LABEL.color, fontSize: 9 }, splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+    { type: 'value', name: '%', nameTextStyle: { color: LABEL.color, fontSize: 9 }, splitLine: { show: false }, axisLabel: { color: LABEL.color, fontSize: 10 } },
   ],
   series: [
     { name: '增加值（万亿美元）', type: 'bar', data: [0.8, 1.7, 2.9, 3.2, 3.9, 4.7], barWidth: 16, itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } },
@@ -77,10 +74,10 @@ function buildSmile(active) {
   }
   return {
     tooltip: { trigger: 'axis' },
-    legend: { data: ['中国当前位势', '攀升目标', '发达经济体形态'], textStyle: { color: TXT, fontSize: 10 }, top: 0 },
+    legend: { data: ['中国当前位势', '攀升目标', '发达经济体形态'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     grid: { left: 48, right: 24, top: 34, bottom: 40 },
-    xAxis: { type: 'category', data: smileStages, axisLine: { lineStyle: { color: AXIS } }, axisLabel: { color: TXT, fontSize: 10, interval: 0 } },
-    yAxis: { type: 'value', name: '附加值率', nameTextStyle: { color: TXT, fontSize: 9 }, min: 30, max: 100, splitLine: { lineStyle: { color: SPLIT } }, axisLabel: { color: TXT, fontSize: 10 } },
+    xAxis: { type: 'category', data: smileStages, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10, interval: 0 } },
+    yAxis: { type: 'value', name: '附加值率', nameTextStyle: { color: LABEL.color, fontSize: 9 }, min: 30, max: 100, splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     series,
   };
 }
@@ -114,12 +111,12 @@ function sectorScaleBar(active) {
   return {
     tooltip: { trigger: 'axis' },
     grid: { left: 48, right: 40, top: 16, bottom: 24 },
-    xAxis: { type: 'value', splitLine: { lineStyle: { color: SPLIT } }, axisLabel: { show: false } },
-    yAxis: { type: 'category', data: sectorKeys, axisLine: { lineStyle: { color: AXIS } }, axisLabel: { color: TXT, fontSize: 11 } },
+    xAxis: { type: 'value', splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } }, axisLabel: { show: false } },
+    yAxis: { type: 'category', data: sectorKeys, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 11 } },
     series: [{
       type: 'bar', barWidth: 16,
       data: sectorKeys.map((k) => ({ value: sectors[k].robot, itemStyle: { color: k === active ? sectors[k].color : '#3a4660', borderRadius: [0, 4, 4, 0] } })),
-      label: { show: true, position: 'right', color: TXT, fontSize: 10, formatter: '{c} 台/万人' },
+      label: { show: true, position: 'right', color: LABEL.color, fontSize: 10, formatter: '{c} 台/万人' },
     }],
   };
 }

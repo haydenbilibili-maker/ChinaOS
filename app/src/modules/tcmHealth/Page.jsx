@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
-import { categoryX, valueY, GRID, LEGEND, stackedBarOpt, radarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, LEGEND, stackedBarOpt, radarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 
 // ============================================================================
 // 中医药振兴 · 重大工程 / 传承创新 / 健康消费
@@ -83,7 +83,7 @@ export default function Page() {
     series: [{
       type: 'bar', barWidth: 14, itemStyle: { borderRadius: 3, color: t.accent },
       data: track === 'culture' ? [92, 85, 55, 35, 70] : [80, 72, 48, 30, 60],
-      label: { show: true, position: 'right', color: '#93a1b5', fontSize: 9 },
+      label: { show: true, position: 'right', color: LABEL.color, fontSize: 9 },
     }],
   }), [track, t]);
 

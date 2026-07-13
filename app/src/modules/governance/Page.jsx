@@ -61,7 +61,7 @@ const effTrend = {
 
 /* 一网通办 / 最多跑一次 渗透率（示意） */
 const onlineTrend = {
-  legend: { data: ['一网通办事项占比', '零跑动办结率'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+  legend: { data: ['一网通办事项占比', '零跑动办结率'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
   grid: { left: 40, right: 16, top: 30, bottom: 30 },
   tooltip: { trigger: 'axis' },
   xAxis: categoryX(['2015', '2018', '2021', '2024']),
@@ -89,7 +89,7 @@ const gridDonut = donutOpt([
   { name: '网格内自处置', value: 62, itemStyle: { color: '#f472b6' } },
   { name: '街道吹哨派单', value: 24, itemStyle: { color: '#a78bfa' } },
   { name: '区县协同处置', value: 11, itemStyle: { color: '#22d3ee' } },
-  { name: '上行未闭环', value: 3, itemStyle: { color: '#27324a' } },
+  { name: '上行未闭环', value: 3, itemStyle: { color: AXIS.lineStyle.color } },
 ]);
 
 /* ── 治理范式时间线 ───────────────────────────────────────────── */

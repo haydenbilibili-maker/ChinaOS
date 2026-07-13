@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import MoshaoPanel from './MoshaoPanel.jsx';
 import './moshao.css';
 
@@ -8,13 +8,15 @@ import './moshao.css';
  */
 export default function MoshaoPage() {
   return (
-    <div className="moshao-page">
-      <PageHeader
-        badge="GY-24 · 人群画像分层"
-        title="基层治理末梢 · 网格员、辅警、社工、协管"
-        subtitle="借权代理进程 · 执行权力，不拥有账户"
-      />
+    <GySliceShell
+      badge="GY-24 · 人群画像分层"
+      title="基层治理末梢 · 网格员、辅警、社工、协管"
+      subtitle="借权代理进程 · 执行权力，不拥有账户"
+      appId="ms-app"
+      moduleId="moshao"
+      className="moshao-page"
+    >
       <MoshaoPanel />
-    </div>
+    </GySliceShell>
   );
 }

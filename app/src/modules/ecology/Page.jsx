@@ -135,12 +135,12 @@ export default function Page() {
     grid: { left: 48, right: 16, top: 28, bottom: 24 },
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
     xAxis: categoryX(camp.bars.cats),
-    yAxis: valueY({ name: camp.bars.unit, nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
+    yAxis: valueY({ name: camp.bars.unit, nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
     series: [{
       type: 'bar', barWidth: 22,
       data: camp.bars.vals,
       itemStyle: { color: camp.accent, borderRadius: [3, 3, 0, 0] },
-      label: { show: true, position: 'top', color: '#93a1b5', fontSize: 10 },
+      label: { show: true, position: 'top', color: LABEL.color, fontSize: 10 },
     }],
   }), [camp]);
 
@@ -148,7 +148,7 @@ export default function Page() {
   const carbonPathOpt = useMemo(() => ({
     grid: { left: 44, right: 20, top: 30, bottom: 24 },
     tooltip: { trigger: 'axis' },
-    legend: { data: ['碳排放总量（亿吨 · 示意）'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { data: ['碳排放总量（亿吨 · 示意）'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     xAxis: categoryX(CARBON_PATH.years),
     yAxis: valueY(),
     series: [{
@@ -181,11 +181,11 @@ export default function Page() {
   const airOpt = useMemo(() => ({
     grid: { left: 44, right: 48, top: 30, bottom: 24 },
     tooltip: { trigger: 'axis' },
-    legend: { data: ['PM2.5 均值 (μg/m³)', '优良天数比例 (%)'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { data: ['PM2.5 均值 (μg/m³)', '优良天数比例 (%)'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     xAxis: categoryX(AIR_YEARS),
     yAxis: [
-      valueY({ name: 'μg/m³', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
-      { type: 'value', min: 60, max: 100, splitLine: { show: false }, axisLabel: { color: '#93a1b5', fontSize: 10, formatter: '{value}%' } },
+      valueY({ name: 'μg/m³', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
+      { type: 'value', min: 60, max: 100, splitLine: { show: false }, axisLabel: { color: LABEL.color, fontSize: 10, formatter: '{value}%' } },
     ],
     series: [
       { name: 'PM2.5 均值 (μg/m³)', type: 'bar', barWidth: 16, data: AIR_PM25, itemStyle: { color: '#22d3ee', borderRadius: [3, 3, 0, 0] } },
@@ -197,7 +197,7 @@ export default function Page() {
   const energyOpt = useMemo(() => ({
     grid: { left: 44, right: 20, top: 30, bottom: 24 },
     tooltip: { trigger: 'axis' },
-    legend: { data: ['煤炭占一次能源消费 %', '非化石能源占比 %'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { data: ['煤炭占一次能源消费 %', '非化石能源占比 %'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     xAxis: categoryX(ENERGY_YEARS),
     yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
     series: [
@@ -211,12 +211,12 @@ export default function Page() {
   const carbonPriceOpt = useMemo(() => ({
     grid: { left: 96, right: 36, top: 16, bottom: 24 },
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-    xAxis: valueY({ name: '€/t（折合 · 示意）', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
+    xAxis: valueY({ name: '€/t（折合 · 示意）', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
     yAxis: categoryX(CARBON_PRICE.map((d) => d.name)),
     series: [{
       type: 'bar', barWidth: 14,
       data: CARBON_PRICE.map((d) => ({ value: d.val, itemStyle: { color: d.color, borderRadius: [0, 3, 3, 0] } })),
-      label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10, formatter: '€{c}' },
+      label: { show: true, position: 'right', color: LABEL.color, fontSize: 10, formatter: '€{c}' },
     }],
   }), []);
 
@@ -230,12 +230,12 @@ export default function Page() {
       grid: { left: 44, right: 16, top: 28, bottom: 24 },
       tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
       xAxis: categoryX(g.bars.cats),
-      yAxis: valueY({ name: '相对规模（示意）', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
+      yAxis: valueY({ name: '相对规模（示意）', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
       series: [{
         type: 'bar', barWidth: 24,
         data: g.bars.vals,
         itemStyle: { color: '#e8a317', borderRadius: [3, 3, 0, 0] },
-        label: { show: true, position: 'top', color: '#93a1b5', fontSize: 10 },
+        label: { show: true, position: 'top', color: LABEL.color, fontSize: 10 },
       }],
     };
   }, []);
@@ -252,12 +252,12 @@ export default function Page() {
   }), [p]);
 
   const speciesChart = {
-    legend: { data: ['2000 基准', '2024 现状'], textStyle: { color: '#93a1b5' }, top: 0 },
+    legend: { data: ['2000 基准', '2024 现状'], textStyle: { color: LABEL.color }, top: 0 },
     grid: { left: 60, right: 16, top: 30, bottom: 24 },
     xAxis: valueY(),
     yAxis: categoryX(['藏羚羊', '东北虎', '大熊猫', '朱鹮']),
     series: [
-      { name: '2000 基准', type: 'bar', data: [100, 100, 100, 100], barWidth: 9, itemStyle: { color: '#27324a' } },
+      { name: '2000 基准', type: 'bar', data: [100, 100, 100, 100], barWidth: 9, itemStyle: { color: AXIS.lineStyle.color } },
       { name: '2024 现状', type: 'bar', data: [300, 180, 165, 250], barWidth: 9, itemStyle: { color: p.accent } },
     ],
   };

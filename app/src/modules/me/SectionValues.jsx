@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, LABEL, GRID_LINE, CHART_SERIES_PALETTE } from '../shared/chartHelpers.js';
 
 // ============================================================================
 // ⑱ 价值观与驱动力 · 为什么这样选
@@ -11,7 +12,6 @@ import EChart from '../../lib/viz/EChart.jsx';
 // 口径：私享自画像 · 本人自述 · 自评示意标定 · 非预测非承诺。
 // ============================================================================
 
-const AX = { text: '#93a1b5', split: 'rgba(148,163,184,0.1)', splitStrong: 'rgba(148,163,184,0.15)' };
 
 // —— 驱动力六维（自评示意 0-100）——
 const DRIVE_DIMS = ['自主性', '影响力', '意义感', '成长', '安全感', '连接'];
@@ -33,9 +33,9 @@ function radarOption() {
     radar: {
       indicator: DRIVE_DIMS.map((d) => ({ name: d, max: 100 })),
       radius: '66%',
-      axisName: { color: AX.text, fontSize: 11 },
-      splitLine: { lineStyle: { color: AX.splitStrong } },
-      axisLine: { lineStyle: { color: AX.split } },
+      axisName: { color: LABEL.color, fontSize: 11 },
+      splitLine: { lineStyle: { color: GRID_LINE.lineStyle.colorStrong } },
+      axisLine: { lineStyle: { color: GRID_LINE.lineStyle.color } },
       splitArea: { show: false },
     },
     series: [{
@@ -53,12 +53,12 @@ function radarOption() {
 function donutOption() {
   return {
     tooltip: { trigger: 'item', formatter: '{b}: {c}%' },
-    legend: { bottom: 0, textStyle: { color: AX.text, fontSize: 11 }, icon: 'circle', data: ALLOC.map((a) => a.name) },
+    legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 11 }, icon: 'circle', data: ALLOC.map((a) => a.name) },
     series: [{
       type: 'pie', radius: ['46%', '70%'], center: ['50%', '44%'],
       avoidLabelOverlap: true,
-      label: { show: true, formatter: '{b}\n{c}%', color: AX.text, fontSize: 10, lineHeight: 14 },
-      labelLine: { length: 8, length2: 8, lineStyle: { color: AX.split } },
+      label: { show: true, formatter: '{b}\n{c}%', color: LABEL.color, fontSize: 10, lineHeight: 14 },
+      labelLine: { length: 8, length2: 8, lineStyle: { color: GRID_LINE.lineStyle.color } },
       itemStyle: { borderColor: 'var(--bg-base, #0b1220)', borderWidth: 2 },
       data: ALLOC.map((a) => ({ name: a.name, value: a.value, itemStyle: { color: a.color } })),
     }],

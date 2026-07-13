@@ -4,7 +4,7 @@
 // 刻画网络经济、网络世界、网络传媒、社交舆情、数字治理五维塑造的数字中国
 // ============================================================================
 
-import { categoryX, valueY, GRID, LEGEND, radarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, LEGEND, radarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 
 export const AS_OF = '2026-06-11';
 
@@ -289,7 +289,7 @@ export const CHARTS = {
       markLine: {
         silent: true,
         data: [
-          { yAxis: 80, label: { formatter: '强监管带', color: '#93a1b5' }, lineStyle: { color: '#c41e3a', type: 'dashed' } },
+          { yAxis: 80, label: { formatter: '强监管带', color: LABEL.color }, lineStyle: { color: '#c41e3a', type: 'dashed' } },
         ],
       },
     }],
@@ -306,7 +306,7 @@ export const CHARTS = {
         value: v,
         itemStyle: { color: i === 0 ? '#8b5cf6' : i < 4 ? '#22d3ee' : '#64748b', borderRadius: [3, 3, 0, 0] },
       })),
-      label: { show: true, position: 'top', color: '#93a1b5', fontSize: 10 },
+      label: { show: true, position: 'top', color: LABEL.color, fontSize: 10 },
     }],
   }),
 
@@ -327,10 +327,10 @@ export const CHARTS = {
 export function buildGiantWebRadar() {
   return {
     tooltip: { trigger: 'item' },
-    legend: { type: 'scroll', bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, icon: 'circle' },
+    legend: { type: 'scroll', bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 }, icon: 'circle' },
     radar: {
       indicator: GIANT_WEB_RADAR.dims.map((n) => ({ name: n, max: 100 })),
-      axisName: { color: '#93a1b5', fontSize: 10 },
+      axisName: { color: LABEL.color, fontSize: 10 },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       splitArea: { show: false },
@@ -349,10 +349,10 @@ export function buildGiantWebRadar() {
 export function buildSovereigntyRadar() {
   return {
     tooltip: { trigger: 'item' },
-    legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 } },
+    legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
     radar: {
       indicator: SOVEREIGNTY_DIMS.map((n) => ({ name: n, max: 100 })),
-      axisName: { color: '#93a1b5', fontSize: 10 },
+      axisName: { color: LABEL.color, fontSize: 10 },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       splitArea: { show: false },
     },
@@ -376,7 +376,7 @@ export function buildFeedbackSankey() {
       emphasis: { focus: 'adjacency' },
       nodeAlign: 'left',
       lineStyle: { color: 'gradient', curveness: 0.5, opacity: 0.35 },
-      label: { color: '#93a1b5', fontSize: 10 },
+      label: { color: LABEL.color, fontSize: 10 },
       data: FEEDBACK_LOOP.map((n) => ({ name: n.name })),
       links: FEEDBACK_LINKS,
       itemStyle: { borderWidth: 0 },

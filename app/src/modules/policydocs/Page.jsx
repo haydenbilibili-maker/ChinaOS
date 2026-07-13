@@ -4,6 +4,7 @@ import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import { IntroCard, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import DocumentViewer, { ReadDocumentButton } from '../shared/DocumentViewer.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';
 import { useDocs } from '../../lib/db/useDataset.js';
 import * as DB from '../../lib/db/localdb.js';
 import { hasEmbeddedBody } from '../../lib/doc/documentContent.js';
@@ -203,9 +204,9 @@ export default function Page() {
   const trendOption = {
     grid: { left: 44, right: 18, top: 16, bottom: 26 },
     tooltip: { trigger: 'axis' },
-    xAxis: { type: 'category', data: gwr.map((d) => d.year), axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } },
-    yAxis: { type: 'value', name: mMeta?.unit, nameTextStyle: { color: '#5b6a82' }, axisLabel: { color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
-    series: [{ type: 'line', smooth: true, symbol: 'circle', symbolSize: 7, connectNulls: false, data: gwr.map((d) => d.metrics?.[metric] ?? null), lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.08)' }, label: { show: true, color: '#93a1b5', fontSize: 10 } }],
+    xAxis: { type: 'category', data: gwr.map((d) => d.year), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
+    yAxis: { type: 'value', name: mMeta?.unit, nameTextStyle: { color: '#5b6a82' }, axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+    series: [{ type: 'line', smooth: true, symbol: 'circle', symbolSize: 7, connectNulls: false, data: gwr.map((d) => d.metrics?.[metric] ?? null), lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.08)' }, label: { show: true, color: LABEL.color, fontSize: 10 } }],
   };
 
   // 洞察：货币/财政定调时间线 + 关键转折

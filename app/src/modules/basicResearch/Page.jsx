@@ -62,7 +62,7 @@ export default function Page() {
     yAxis: categoryX(['经费占比', 'SCI 论文份额', '发明专利份额']),
     series: [{ type: 'bar', barWidth: 16,
       data: [f.funding, f.papers, f.patents].map((v) => ({ value: v, itemStyle: { color: f.accent, borderRadius: 3 } })),
-      label: { show: true, position: 'right', formatter: '{c}%', color: '#93a1b5' } }],
+      label: { show: true, position: 'right', formatter: '{c}%', color: LABEL.color } }],
   }), [f]);
 
   // ① 学科：国际地位 vs 短板缺口 仪表式对照
@@ -76,14 +76,14 @@ export default function Page() {
         { value: f.rank, itemStyle: { color: '#22d3ee', borderRadius: 3 } },
         { value: f.gap, itemStyle: { color: '#c41e3a', borderRadius: 3 } },
       ],
-      label: { show: true, position: 'right', color: '#93a1b5' } }],
+      label: { show: true, position: 'right', color: LABEL.color } }],
   }), [f]);
 
   // ② R&D 三层结构 donut（基础研究占比偏低）
   const rdDonut = useMemo(() => donutOpt([
     { value: 6.9, name: '基础研究', itemStyle: { color: '#c41e3a' } },
     { value: 12, name: '应用研究', itemStyle: { color: '#22d3ee' } },
-    { value: 81.1, name: '试验发展', itemStyle: { color: '#27324a' } },
+    { value: 81.1, name: '试验发展', itemStyle: { color: AXIS.lineStyle.color } },
   ]), []);
 
   // ② 国际对照：基础研究占 R&D 比重（中国偏低）
@@ -95,7 +95,7 @@ export default function Page() {
     series: [{ type: 'bar', barWidth: 14,
       data: [6.9, 14.9, 12.3, 15.0, 16.6, 22.5].map((v, i) => ({
         value: v, itemStyle: { color: i === 0 ? '#c41e3a' : '#64748b', borderRadius: 3 } })),
-      label: { show: true, position: 'right', formatter: '{c}%', color: '#93a1b5' } }],
+      label: { show: true, position: 'right', formatter: '{c}%', color: LABEL.color } }],
   }), []);
 
   // ③ 基础研究投入趋势：经费(柱) + 占 R&D 比重(线) 双轴
@@ -106,10 +106,10 @@ export default function Page() {
     return {
       grid: { left: 52, right: 52, top: 24, bottom: 24 },
       tooltip: { trigger: 'axis', axisPointer: { type: 'cross' } },
-      legend: { textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0, icon: 'circle' },
+      legend: { textStyle: { color: LABEL.color, fontSize: 10 }, top: 0, icon: 'circle' },
       xAxis: categoryX(years),
       yAxis: [
-        valueY({ name: '亿元', nameTextStyle: { color: '#93a1b5', fontSize: 9 } }),
+        valueY({ name: '亿元', nameTextStyle: { color: LABEL.color, fontSize: 9 } }),
         valueY({ max: 8, min: 4, position: 'right', splitLine: { show: false }, axisLabel: { formatter: '{value}%' } }),
       ],
       series: [
@@ -125,9 +125,9 @@ export default function Page() {
   const qualityBar = useMemo(() => ({
     grid: { left: 40, right: 16, top: 30, bottom: 24 },
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-    legend: { textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0, icon: 'circle' },
+    legend: { textStyle: { color: LABEL.color, fontSize: 10 }, top: 0, icon: 'circle' },
     xAxis: categoryX(['中国', '美国', '英国', '德国']),
-    yAxis: valueY({ name: '指数', nameTextStyle: { color: '#93a1b5', fontSize: 9 } }),
+    yAxis: valueY({ name: '指数', nameTextStyle: { color: LABEL.color, fontSize: 9 } }),
     series: [
       { name: '高被引论文', type: 'bar', barWidth: 12, data: [42, 45, 14, 12], itemStyle: { color: '#c41e3a', borderRadius: 2 } },
       { name: '自然指数', type: 'bar', barWidth: 12, data: [24, 22, 9, 8], itemStyle: { color: '#22d3ee', borderRadius: 2 } },
@@ -141,7 +141,7 @@ export default function Page() {
     categories: ['论文总量', '高被引论文', '自然指数', '诺奖级原创', '高端仪器自给'],
     series: [
       { name: '已达成', data: [98, 75, 70, 12, 35], itemStyle: { color: '#22d3ee' } },
-      { name: '缺口', data: [2, 25, 30, 88, 65], itemStyle: { color: '#27324a' } },
+      { name: '缺口', data: [2, 25, 30, 88, 65], itemStyle: { color: AXIS.lineStyle.color } },
     ],
   }), []);
 
@@ -161,7 +161,7 @@ export default function Page() {
     series: [{ type: 'bar',
       data: (actor === 'lab' ? [80, 60, 65, 90] : actor === 'uni' ? [55, 75, 85, 70] : [65, 50, 70, 75])
         .map((v) => ({ value: v, itemStyle: { color: a.accent, borderRadius: 3 } })),
-      label: { show: true, position: 'right', formatter: '{c}%', color: '#93a1b5' } }],
+      label: { show: true, position: 'right', formatter: '{c}%', color: LABEL.color } }],
   }), [actor, a]);
 
   // 体制视角（保留）：技术就绪度 TRL 曲线

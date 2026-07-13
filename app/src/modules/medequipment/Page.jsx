@@ -105,7 +105,7 @@ const marketScale = {
 
 const localizationBar = {
   tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-  legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
+  legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
   grid: { left: 40, right: 16, top: 16, bottom: 46 },
   xAxis: categoryX(['体外诊断', '1.5T MRI', '3.0T MRI', '64排 CT', 'PET-CT', '手术机器人'], { fontSize: 10, interval: 0 }),
   yAxis: valueY({ max: 100, axisLabel: { formatter: '{value}%' } }),
@@ -129,11 +129,11 @@ const gpsDonut = donutOpt([
 const AUTONOMY_INDICATORS = ['核心部件', '整机集成', '软件算法', '临床认证', '服务网络', '高端市场'];
 const autonomyRadar = {
   tooltip: { trigger: 'item' },
-  legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
+  legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
   radar: {
     indicator: AUTONOMY_INDICATORS.map((n) => ({ name: n, max: 100 })),
     radius: '62%', center: ['50%', '46%'],
-    axisName: { color: '#93a1b5', fontSize: 10 },
+    axisName: { color: LABEL.color, fontSize: 10 },
     splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
     axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
     splitArea: { show: false },
@@ -150,12 +150,12 @@ const autonomyRadar = {
 // 市场规模 + 出口双轴
 const exportDual = {
   tooltip: { trigger: 'axis' },
-  legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
+  legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
   grid: { left: 48, right: 52, top: 20, bottom: 46 },
   xAxis: categoryX(['2019', '2020', '2021', '2022', '2023', '2024E', '2025E']),
   yAxis: [
-    valueY({ name: '国内市场(万亿)', nameTextStyle: { color: '#93a1b5', fontSize: 10 } }),
-    { type: 'value', name: '出口(千亿)', nameTextStyle: { color: '#93a1b5', fontSize: 10 }, axisLabel: { color: '#93a1b5' }, splitLine: { show: false } },
+    valueY({ name: '国内市场(万亿)', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
+    { type: 'value', name: '出口(千亿)', nameTextStyle: { color: LABEL.color, fontSize: 10 }, axisLabel: { color: LABEL.color }, splitLine: { show: false } },
   ],
   series: [
     { name: '国内市场规模', type: 'bar', barWidth: 16, data: [0.63, 0.73, 0.85, 0.98, 1.27, 1.45, 1.65], itemStyle: { color: 'rgba(196,30,58,0.65)', borderRadius: 3 } },
@@ -167,12 +167,12 @@ const exportDual = {
 // 集采降价 vs 创新械获批
 const tensionBar = {
   tooltip: { trigger: 'axis' },
-  legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
+  legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
   grid: { left: 40, right: 44, top: 20, bottom: 46 },
   xAxis: categoryX(['2019', '2020', '2021', '2022', '2023', '2024']),
   yAxis: [
     valueY({ max: 100, axisLabel: { formatter: '-{value}%' } }),
-    { type: 'value', axisLabel: { color: '#93a1b5' }, splitLine: { show: false } },
+    { type: 'value', axisLabel: { color: LABEL.color }, splitLine: { show: false } },
   ],
   series: [
     { name: '集采平均降幅(%)', type: 'bar', barWidth: 14, data: [0, 93, 82, 84, 70, 63], itemStyle: { color: 'rgba(196,30,58,0.7)', borderRadius: 3 } },
@@ -210,14 +210,14 @@ export default function Page() {
       tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: (p) => `${p[0].name}<br/>国产化率：${p[0].value}%` },
       grid: { left: 92, right: 36, top: 8, bottom: 24 },
       xAxis: valueY({ max: 100, axisLabel: { formatter: '{value}%' } }),
-      yAxis: { type: 'category', data: sorted.map((c) => c.label), axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+      yAxis: { type: 'category', data: sorted.map((c) => c.label), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
       series: [{
         type: 'bar', barWidth: 14,
         data: sorted.map((c) => ({
           value: c.localization,
           itemStyle: { color: c.key === catKey ? '#fff' : TIER_COLOR(c.localization), borderRadius: 3, borderColor: c.key === catKey ? c.accent : 'transparent', borderWidth: c.key === catKey ? 0 : 0, opacity: c.key === catKey ? 1 : 0.85 },
         })),
-        label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10, formatter: '{c}%' },
+        label: { show: true, position: 'right', color: LABEL.color, fontSize: 10, formatter: '{c}%' },
       }],
     };
   }, [catKey]);
@@ -242,7 +242,7 @@ export default function Page() {
     categories: ['冠脉支架', '骨科关节', '脊柱耗材', '电生理', '化学发光', '人工晶体'],
     series: [
       { name: '集采后国产份额', data: [72, 58, 55, 35, 42, 45], itemStyle: { color: '#c41e3a', borderRadius: 0 } },
-      { name: '外资剩余份额', data: [28, 42, 45, 65, 58, 55], itemStyle: { color: '#27324a' } },
+      { name: '外资剩余份额', data: [28, 42, 45, 65, 58, 55], itemStyle: { color: AXIS.lineStyle.color } },
     ],
   }), []);
 
@@ -408,7 +408,7 @@ export default function Page() {
           <div className="space-y-2">
             <div style={{ borderLeft: '2px solid #10b981', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>腔镜手术机器人</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>机械臂精度、力反馈与视觉融合决定临床可替代空间；培训与跟台体系是商业化关键变量。</p></div>
             <div style={{ borderLeft: '2px solid #22d3ee', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>5G 远程主从手术</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>端到端时延需稳定低于约 10ms 量级方可主从同步；当前多用于指导与部分术式验证。</p></div>
-            <div className="text-[10px] mono mt-2" style={{ color: '#93a1b5' }}>精度: 追赶 · 装机: 放量 · 术式: 拓展</div>
+            <div className="text-[10px] mono mt-2" style={{ color: LABEL.color }}>精度: 追赶 · 装机: 放量 · 术式: 拓展</div>
           </div>
         </Card>
       </Grid>

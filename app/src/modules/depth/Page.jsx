@@ -4,6 +4,7 @@ import * as Lucide from 'lucide-react';
 import { PageHeader, Card, Stat } from '../../app/ui.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';
 import { GROUPS, MODULES, modulesByGroup, moduleById } from '../../app/registry.js';
 import { DIM_PROFILE, DIM_LINKS, dimRadarOf } from './depthDeep.js';
 
@@ -92,8 +93,8 @@ function DimRadar({ dim }) {
         radius: '62%',
         center: ['50%', '52%'],
         splitNumber: 4,
-        axisName: { color: '#93a1b5', fontSize: 11 },
-        axisLine: { lineStyle: { color: '#27324a' } },
+        axisName: { color: LABEL.color, fontSize: 11 },
+        axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
         splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } },
         splitArea: { show: false },
       },
@@ -230,15 +231,15 @@ function TensionBar() {
       grid: { left: 96, right: 84, top: 8, bottom: 24 },
       xAxis: {
         type: 'value', max: 100,
-        axisLine: { lineStyle: { color: '#27324a' } },
-        axisLabel: { color: '#93a1b5' },
+        axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
+        axisLabel: { color: LABEL.color },
         splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } },
       },
       yAxis: {
         type: 'category',
         data: sorted.map((d) => d.label),
-        axisLine: { lineStyle: { color: '#27324a' } },
-        axisLabel: { color: '#93a1b5', fontSize: 11 },
+        axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
+        axisLabel: { color: LABEL.color, fontSize: 11 },
         axisTick: { show: false },
       },
       series: [{
@@ -250,7 +251,7 @@ function TensionBar() {
         })),
         label: {
           show: true, position: 'right', fontSize: 10, fontFamily: 'monospace',
-          color: '#93a1b5',
+          color: LABEL.color,
           formatter: (p) => `${p.value} · ${sorted[p.dataIndex].momentum}`,
         },
       }],

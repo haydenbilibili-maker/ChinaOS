@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import ZhiyebingPanel from './ZhiyebingPanel.jsx';
 import './zhiyebing.css';
 
@@ -10,13 +10,15 @@ import './zhiyebing.css';
  */
 export default function ZhiyebingPage() {
   return (
-    <div className="zhiyebing-page">
-      <PageHeader
-        badge="GY-50 · 人群画像分层"
-        title="尘肺与职业病/工伤群体"
-        subtitle="延迟显现的硬件损耗 · 磨损不计入运行时"
-      />
+    <GySliceShell
+      badge="GY-50 · 人群画像分层"
+      title="尘肺与职业病/工伤群体"
+      subtitle="延迟显现的硬件损耗 · 磨损不计入运行时"
+      appId="zb-app"
+      moduleId="zhiyebing"
+      className="zhiyebing-page"
+    >
       <ZhiyebingPanel />
-    </div>
+    </GySliceShell>
   );
 }

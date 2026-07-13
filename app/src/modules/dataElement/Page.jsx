@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ---------------------------------------------------------------------------
@@ -104,7 +104,7 @@ export default function Page() {
   // -- 市场规模：双轴（交易规模 bar + 数据产量 line） ------------------------
   const marketTrend = useMemo(() => ({
     tooltip: { trigger: 'axis' },
-    legend: { data: ['交易规模(亿元)', '数据产量(ZB)'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { data: ['交易规模(亿元)', '数据产量(ZB)'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     grid: { left: 44, right: 44, top: 30, bottom: 24 },
     xAxis: categoryX(MARKET_YEARS),
     yAxis: [valueY(), { ...valueY(), splitLine: { show: false } }],
@@ -129,7 +129,7 @@ export default function Page() {
   // -- 制度切面：成熟度 vs 摩擦度（横向对比 bar） ----------------------------
   const regimeCompare = useMemo(() => ({
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-    legend: { data: ['制度成熟度', '现实摩擦度'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { data: ['制度成熟度', '现实摩擦度'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     grid: { left: 96, right: 36, top: 30, bottom: 24 },
     xAxis: valueY({ max: 100 }),
     yAxis: categoryX(REGIMES.map((r) => r.label.split(' · ')[0])),
@@ -151,13 +151,13 @@ export default function Page() {
         yAxis: valueY(),
         series: [{ type: 'bar', barWidth: 22,
           data: HUBS.map((h) => ({ value: h.racks, itemStyle: { color: HUB_COLORS[h.type], borderRadius: [3, 3, 0, 0] } })),
-          label: { show: true, position: 'top', color: '#93a1b5', fontSize: 10 } }],
+          label: { show: true, position: 'top', color: LABEL.color, fontSize: 10 } }],
       };
     }
     // flow：东部需求 vs 西部承接（电价/PUE 套利空间）
     return {
       tooltip: { trigger: 'axis' },
-      legend: { data: ['东部算力需求指数', '西部承接能力指数'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+      legend: { data: ['东部算力需求指数', '西部承接能力指数'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
       grid: { left: 44, right: 24, top: 30, bottom: 24 },
       xAxis: categoryX(['2022', '2023', '2024', '2025E', '2026E', '2027E']),
       yAxis: valueY(),
@@ -171,7 +171,7 @@ export default function Page() {
   // -- 交易所：挂牌 vs 成交（双轴揭示撮合困境） ------------------------------
   const exchangeBar = useMemo(() => ({
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-    legend: { data: ['挂牌产品数', '累计交易额(亿元)'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { data: ['挂牌产品数', '累计交易额(亿元)'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     grid: { left: 44, right: 44, top: 30, bottom: 42 },
     xAxis: categoryX(EXCHANGES.map((x) => x.name), { rotate: 20 }),
     yAxis: [valueY(), { ...valueY(), splitLine: { show: false } }],
@@ -195,10 +195,10 @@ export default function Page() {
 
   // -- 数据要素生态雷达（2024 vs 2021 · 双系列自写内联） ---------------------
   const ecoRadar = useMemo(() => ({
-    legend: { data: ['2024', '2021'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { data: ['2024', '2021'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     radar: {
       indicator: ['确权制度', '交易流通', '安全合规', '技术底座', '入表实践', '跨境机制'].map((n) => ({ name: n, max: 100 })),
-      axisName: { color: '#93a1b5', fontSize: 10 },
+      axisName: { color: LABEL.color, fontSize: 10 },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       splitArea: { show: false },
@@ -250,7 +250,7 @@ export default function Page() {
             <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{regime.blocker}</p>
           </div>
           <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #64748b' }}>
-            <div className="text-xs font-semibold mb-1 mono" style={{ color: '#93a1b5' }}>切片样本</div>
+            <div className="text-xs font-semibold mb-1 mono" style={{ color: LABEL.color }}>切片样本</div>
             <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{regime.caseNote}</p>
           </div>
         </Grid>

@@ -33,12 +33,12 @@ const salesArea = [12.8, 14.4, 17.2, 17.9, 11.2, 8.6];   // 亿㎡ 商品房销�
 const salesValue = [8.7, 11.0, 16.0, 18.2, 11.7, 9.4];   // 万亿元 销售额
 const cycleOpt = {
   tooltip: { trigger: 'axis' },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 14 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 14 },
   grid: { left: 44, right: 48, top: 30, bottom: 24 },
   xAxis: categoryX(cycleYears),
   yAxis: [
-    valueY({ name: '亿㎡', nameTextStyle: { color: '#93a1b5', fontSize: 9 } }),
-    valueY({ name: '万亿元', nameTextStyle: { color: '#93a1b5', fontSize: 9 }, position: 'right', splitLine: { show: false } }),
+    valueY({ name: '亿㎡', nameTextStyle: { color: LABEL.color, fontSize: 9 } }),
+    valueY({ name: '万亿元', nameTextStyle: { color: LABEL.color, fontSize: 9 }, position: 'right', splitLine: { show: false } }),
   ],
   series: [
     { name: '销售面积(亿㎡)', type: 'bar', data: salesArea, barWidth: 16, itemStyle: { color: RED, borderRadius: 3 } },
@@ -65,12 +65,12 @@ const landRevenue = [3.3, 5.2, 7.3, 8.7, 6.7, 5.8, 4.6]; // 万亿元
 const landShare = [38, 46, 53, 56, 48, 42, 34];           // % 占地方综合财力
 const landOpt = {
   tooltip: { trigger: 'axis' },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 14 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 14 },
   grid: { left: 44, right: 48, top: 30, bottom: 24 },
   xAxis: categoryX(landYears),
   yAxis: [
-    valueY({ name: '万亿元', nameTextStyle: { color: '#93a1b5', fontSize: 9 } }),
-    valueY({ name: '占比%', nameTextStyle: { color: '#93a1b5', fontSize: 9 }, position: 'right', max: 60, splitLine: { show: false }, axisLabel: { formatter: '{value}%' } }),
+    valueY({ name: '万亿元', nameTextStyle: { color: LABEL.color, fontSize: 9 } }),
+    valueY({ name: '占比%', nameTextStyle: { color: LABEL.color, fontSize: 9 }, position: 'right', max: 60, splitLine: { show: false }, axisLabel: { formatter: '{value}%' } }),
   ],
   series: [
     { name: '土地出让收入', type: 'bar', data: landRevenue, barWidth: 16, itemStyle: { color: GOLD, borderRadius: 3 } },
@@ -83,7 +83,7 @@ const provDepOpt = {
   tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: '{b}: {c}%' },
   grid: { left: 56, right: 24, top: 12, bottom: 24 },
   xAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
-  yAxis: { type: 'category', data: ['江苏', '浙江', '福建', '安徽', '四川', '辽宁'], axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+  yAxis: { type: 'category', data: ['江苏', '浙江', '福建', '安徽', '四川', '辽宁'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
   series: [{
     type: 'bar', barWidth: 14,
     data: [58, 55, 51, 49, 38, 24].map((v) => ({ value: v, itemStyle: { color: v > 50 ? RED : v > 40 ? GOLD : CYAN, borderRadius: 3 } })),
@@ -94,7 +94,7 @@ const provDepOpt = {
 const riskClearOpt = {
   tooltip: { trigger: 'axis' },
   grid: { left: 44, right: 16, top: 30, bottom: 24 },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 14 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 14 },
   xAxis: categoryX(['2021', '2022', '2023', '2024', '2025E']),
   yAxis: valueY(),
   series: [
@@ -160,13 +160,13 @@ const rentOpt = {
 // ---- 城中村改造：21 城投资强度（雷达双维 · 自写内联）----
 const villageOpt = {
   tooltip: {},
-  legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+  legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
   radar: {
     indicator: [
       { name: '净地出让', max: 100 }, { name: '房票安置', max: 100 },
       { name: '产业导入', max: 100 }, { name: '配套补短板', max: 100 }, { name: '原住民回迁', max: 100 },
     ],
-    axisName: { color: '#93a1b5', fontSize: 10 },
+    axisName: { color: LABEL.color, fontSize: 10 },
     splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
     axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
     splitArea: { show: false },

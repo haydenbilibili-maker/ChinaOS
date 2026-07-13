@@ -70,10 +70,10 @@ export default function SandboxToolkit({
     if (!engine) return null;
     return {
       tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-      legend: { data: ['应对前', '应对后'], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0, itemWidth: 10, itemHeight: 10 },
+      legend: { data: ['应对前', '应对后'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0, itemWidth: 10, itemHeight: 10 },
       grid: { left: 72, right: 24, top: 26, bottom: 16 },
-      xAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
-      yAxis: { type: 'category', data: [...domains].reverse(), axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+      xAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+      yAxis: { type: 'category', data: [...domains].reverse(), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
       series: [
         { name: '应对前', type: 'bar', barWidth: 8, data: [...engine.raw].reverse(), itemStyle: { color: 'rgba(196,30,58,0.35)', borderRadius: [0, 3, 3, 0] } },
         { name: '应对后', type: 'bar', barWidth: 8, data: [...engine.net].reverse(), itemStyle: { color: '#c41e3a', borderRadius: [0, 3, 3, 0] } },
@@ -199,7 +199,7 @@ export default function SandboxToolkit({
           )}
         </div>
         <div>
-          <div className="text-[10px] mono uppercase mb-1" style={{ color: '#93a1b5' }}>冲击域 · 应对前 vs 后</div>
+          <div className="text-[10px] mono uppercase mb-1" style={{ color: LABEL.color }}>冲击域 · 应对前 vs 后</div>
           {crisisOption && <EChart option={crisisOption} style={{ height: 200 }} />}
           <div className="p-3 rounded mt-3" style={{ background: 'var(--bg-elevated)', border: '1px solid rgba(212,175,55,0.25)' }}>
             <span className="text-[10px] mono uppercase" style={{ color: 'var(--fire-gold)' }}>应对小组自动组建 · Top5</span>

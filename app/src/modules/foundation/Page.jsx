@@ -4,6 +4,7 @@ import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import EconDataTab from './EconDataTab.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';
 import * as DB from '../../lib/db/localdb.js';
 import { parseCSV, parseJSON, parseFigure, parseManyFigures, parseDoc } from '../../lib/db/parse.js';
 import { STOCK_CATALOG } from '../../lib/db/stock.js';
@@ -198,8 +199,8 @@ function Overview({ st, datasets, onGo }) {
   const catOption = useMemo(() => {
     if (!st) return null;
     const e = Object.entries(st.byCategory);
-    return { tooltip: { trigger: 'item' }, legend: { bottom: 0, textStyle: { color: '#93a1b5' } },
-      series: [{ type: 'pie', radius: ['44%', '70%'], center: ['50%', '44%'], label: { color: '#93a1b5' },
+    return { tooltip: { trigger: 'item' }, legend: { bottom: 0, textStyle: { color: LABEL.color } },
+      series: [{ type: 'pie', radius: ['44%', '70%'], center: ['50%', '44%'], label: { color: LABEL.color },
         data: e.map(([k, v], i) => ({ name: k, value: v, itemStyle: { color: ['#c41e3a', '#22d3ee', '#e8a317', '#10b981', '#8b5cf6', '#fb923c', '#64748b'][i % 7] } })) }] };
   }, [st]);
   return (
@@ -326,10 +327,10 @@ function WorldBank({ datasets, refresh, flash }) {
     });
     return {
       tooltip: { trigger: 'axis' },
-      legend: { show: chartCountries.length > 1, top: 0, textStyle: { color: '#93a1b5' } },
+      legend: { show: chartCountries.length > 1, top: 0, textStyle: { color: LABEL.color } },
       grid: { left: 64, right: 24, top: chartCountries.length > 1 ? 32 : 12, bottom: 28 },
-      xAxis: { type: 'category', data: xYears, axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } },
-      yAxis: { type: 'value', scale: true, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5' } },
+      xAxis: { type: 'category', data: xYears, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
+      yAxis: { type: 'value', scale: true, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color } },
       series,
     };
   }, [filtered, chartCountries, xYears, ind]);
@@ -487,8 +488,8 @@ function Analyze({ datasets }) {
     if (!result.length) return null;
     const top = result.slice(0, 20).reverse();
     return { grid: { left: 120, right: 36, top: 10, bottom: 24 }, xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
-      yAxis: { type: 'category', data: top.map((x) => String(x.key)), axisLine: { lineStyle: { color: '#27324a' } } },
-      series: [{ type: 'bar', data: top.map((x) => x.value), barWidth: 12, itemStyle: { color: '#22d3ee', borderRadius: 3 }, label: { show: true, position: 'right', color: '#93a1b5' } }] };
+      yAxis: { type: 'category', data: top.map((x) => String(x.key)), axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
+      series: [{ type: 'bar', data: top.map((x) => x.value), barWidth: 12, itemStyle: { color: '#22d3ee', borderRadius: 3 }, label: { show: true, position: 'right', color: LABEL.color } }] };
   }, [result]);
   return (
     <Card title="解析分析 · 分组聚合">

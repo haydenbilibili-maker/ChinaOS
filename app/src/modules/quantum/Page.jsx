@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 const ROUTES = [
@@ -65,23 +65,23 @@ export default function Page() {
       value: x.key === route ? x.maturity + 8 : x.maturity,
       itemStyle: { color: x.accent, borderRadius: 3 },
     })),
-    label: { show: true, position: 'right', formatter: '{c}%', color: '#93a1b5' } }],
+    label: { show: true, position: 'right', formatter: '{c}%', color: LABEL.color } }],
   }), [route]);
 
   // 量子计算硬件路线对比（散点：比特数 × 相干/可扩展性）
   const hwScatter = useMemo(() => ({
     grid: { left: 56, right: 28, top: 28, bottom: 40 },
     tooltip: { trigger: 'item', formatter: (p) => `${p.data.name}<br/>比特:${p.data.value[0]} / 相干:${p.data.value[1]} / 扩展:${p.data.value[2]}<br/>${p.data.cn}` },
-    xAxis: { type: 'log', name: '比特/光子数(log)', nameTextStyle: { color: '#93a1b5' }, axisLabel: { color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } } },
-    yAxis: { type: 'value', name: hwMetric === 'qubits' ? '相干质量' : '可扩展性', min: 0, max: 100, nameTextStyle: { color: '#93a1b5' }, axisLabel: { color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } } },
+    xAxis: { type: 'log', name: '比特/光子数(log)', nameTextStyle: { color: LABEL.color }, axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } } },
+    yAxis: { type: 'value', name: hwMetric === 'qubits' ? '相干质量' : '可扩展性', min: 0, max: 100, nameTextStyle: { color: LABEL.color }, axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } } },
     series: [{ type: 'scatter',
       data: HW_PLATFORMS.map((p) => ({ name: p.name, cn: p.cn, value: [p.qubits, hwMetric === 'qubits' ? p.coherence : p.scale, p.scale], itemStyle: { color: p.color, opacity: 0.85 } })),
       symbolSize: (v) => 14 + v[2] / 4,
-      label: { show: true, position: 'top', formatter: (p) => p.data.name.split('(')[0], color: '#93a1b5', fontSize: 10 } }],
+      label: { show: true, position: 'top', formatter: (p) => p.data.name.split('(')[0], color: LABEL.color, fontSize: 10 } }],
   }), [hwMetric]);
 
   const cnUsRadar = useMemo(() => ({
-    legend: { data: ['中国', '美国'], textStyle: { color: '#93a1b5' }, top: 0 },
+    legend: { data: ['中国', '美国'], textStyle: { color: LABEL.color }, top: 0 },
     ...radarOpt(['量子计算', '量子通信', '量子测量', '人才储备', '专利产出', '工程化'],
       [88, 96, 85, 72, 90, 58],
       { name: '基准', color: '#c41e3a' }),
@@ -100,13 +100,13 @@ export default function Page() {
     yAxis: categoryX(COMM_NODES.map((x) => x.name)),
     series: [{ type: 'bar', barWidth: 14, itemStyle: { borderRadius: 3 },
       data: COMM_NODES.map((x) => ({ value: x.value, itemStyle: { color: x.kind === '星地链路' ? '#8b5cf6' : x.kind === '城域网' ? '#22d3ee' : '#10b981' } })),
-      label: { show: true, position: 'right', color: '#93a1b5', formatter: '{c}' } }],
+      label: { show: true, position: 'right', color: LABEL.color, formatter: '{c}' } }],
   }), []);
 
   // 中美量子专利逐年趋势（多线）
   const patentTrend = useMemo(() => ({
     grid: GRID,
-    legend: { data: ['中国专利', '美国专利', '中国论文(右)'], textStyle: { color: '#93a1b5' }, top: 0 },
+    legend: { data: ['中国专利', '美国专利', '中国论文(右)'], textStyle: { color: LABEL.color }, top: 0 },
     tooltip: { trigger: 'axis' },
     xAxis: categoryX(['2016', '2018', '2020', '2022', '2024']),
     yAxis: [valueY({ name: '专利(件)' }), valueY({ name: '论文(篇)', position: 'right' })],

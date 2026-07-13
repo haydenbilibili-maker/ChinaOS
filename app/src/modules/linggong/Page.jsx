@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import LinggongPanel from './LinggongPanel.jsx';
 import './linggong.css';
 
@@ -8,13 +8,15 @@ import './linggong.css';
  */
 export default function LinggongPage() {
   return (
-    <div className="linggong-page">
-      <PageHeader
-        badge="GY-05 · 人群画像分层"
-        title="零工经济"
-        subtitle="悬空的基础设施 · 系统压在他们身上，他们不站在任何东西上"
-      />
+    <GySliceShell
+      badge="GY-05 · 人群画像分层"
+      title="零工经济"
+      subtitle="悬空的基础设施 · 系统压在他们身上，他们不站在任何东西上"
+      appId="lg-app"
+      moduleId="linggong"
+      className="linggong-page"
+    >
       <LinggongPanel />
-    </div>
+    </GySliceShell>
   );
 }

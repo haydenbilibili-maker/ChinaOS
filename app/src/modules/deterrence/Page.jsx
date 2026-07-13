@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, GRID, radarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, radarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ============================================================================
@@ -77,7 +77,7 @@ export default function Page() {
 
   const sweepOpt = {
     tooltip: { trigger: 'axis' },
-    legend: { textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     grid: { ...GRID, top: 28 },
     xAxis: categoryX(calc.xs),
     yAxis: valueY({ max: 100 }),
@@ -100,7 +100,7 @@ export default function Page() {
 
   const brinkOpt = {
     tooltip: { trigger: 'axis' },
-    legend: { textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+    legend: { textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     grid: { ...GRID, top: 28 },
     xAxis: categoryX(brinkData.xs, { interval: 3 }),
     yAxis: valueY({ max: 100 }),

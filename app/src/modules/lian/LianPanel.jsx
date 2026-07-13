@@ -22,7 +22,6 @@ export default function LianPanel() {
   return (
     <div className="lian-module-wrap">
       <div
-        id="la-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

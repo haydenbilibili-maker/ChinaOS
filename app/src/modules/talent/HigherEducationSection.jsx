@@ -1,8 +1,9 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import * as Lucide from 'lucide-react';
-import { Card, Grid, Stat } from '../../app/ui.jsx';
+import { Card, Grid, Stat, DistBar } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, LABEL } from '../shared/chartHelpers.js';
 import { useHigherEducation } from '../../lib/db/useDataset.js';
 import * as DB from '../../lib/db/localdb.js';
 import {
@@ -29,24 +30,6 @@ function tally(arr, keyFn) {
   const m = new Map();
   arr.forEach((r) => { const k = keyFn(r); if (k) m.set(k, (m.get(k) || 0) + 1); });
   return [...m.entries()].sort((a, b) => b[1] - a[1]);
-}
-
-function DistBars({ data, color = '#10b981', max, onPick, active }) {
-  const top = max || (data[0]?.[1] || 1);
-  return (
-    <div className="space-y-1.5">
-      {data.map(([k, n]) => (
-        <button key={k} type="button" onClick={onPick ? () => onPick(k) : undefined} className="w-full flex items-center gap-2 text-left"
-          style={{ cursor: onPick ? 'pointer' : 'default', opacity: active && active !== k ? 0.45 : 1 }}>
-          <span className="text-[11px] mono shrink-0 text-right" style={{ width: 70, color: active === k ? color : 'var(--text-secondary)' }}>{k}</span>
-          <span className="flex-1 rounded-sm" style={{ height: 13, background: 'var(--bg-base)', position: 'relative', overflow: 'hidden' }}>
-            <span style={{ position: 'absolute', inset: 0, width: `${(n / top) * 100}%`, background: color, opacity: 0.75, borderRadius: 2 }} />
-          </span>
-          <span className="text-[11px] mono shrink-0" style={{ width: 26, color: 'var(--text-tertiary)' }}>{n}</span>
-        </button>
-      ))}
-    </div>
-  );
 }
 
 function TagBadges({ r, dense = false }) {
@@ -145,7 +128,7 @@ export default function HigherEducationSection() {
   const disciplineChart = {
     grid: { left: 100, right: 16, top: 12, bottom: 24 },
     xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
-    yAxis: { type: 'category', data: distDiscipline.slice(0, 12).map(([k]) => k).reverse(), axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+    yAxis: { type: 'category', data: distDiscipline.slice(0, 12).map(([k]) => k).reverse(), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     series: [{ type: 'bar', data: distDiscipline.slice(0, 12).map(([, n]) => n).reverse(), barWidth: 14, itemStyle: { color: '#10b981', borderRadius: 3 } }],
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
   };
@@ -276,9 +259,9 @@ export default function HigherEducationSection() {
             <div className="space-y-4 mb-4">
               <Grid cols={2}>
                 <Card title="学科分布"><EChart option={disciplineChart} style={{ height: Math.max(240, distDiscipline.slice(0, 12).length * 22) }} /></Card>
-                <Card title="层级（C9/985/211/双一流）"><DistBars data={distTier} color="#e8a317" onPick={(k) => setTier(tier === k ? '' : k)} active={tier} /></Card>
+                <Card title="层级（C9/985/211/双一流）"><DistBar data={distTier} color="#e8a317" onPick={(k) => setTier(tier === k ? '' : k)} active={tier} /></Card>
               </Grid>
-              <Card title="地域（点选筛选）"><DistBars data={distRegion.slice(0, 12)} color="#22d3ee" onPick={(k) => { const full = regions.find((p) => short(p) === k); setRegion(region === full ? '' : full); }} active={short(region)} /></Card>
+              <Card title="地域（点选筛选）"><DistBar data={distRegion.slice(0, 12)} color="#22d3ee" onPick={(k) => { const full = regions.find((p) => short(p) === k); setRegion(region === full ? '' : full); }} active={short(region)} /></Card>
             </div>
           ) : view === 'grid' ? (
             <div className="grid gap-2 mb-4" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(220px,1fr))', maxHeight: 620, overflowY: 'auto' }}>

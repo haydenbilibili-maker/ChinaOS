@@ -22,7 +22,6 @@ export default function JunrenPanel() {
   return (
     <div className="junren-module-wrap">
       <div
-        id="jr-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

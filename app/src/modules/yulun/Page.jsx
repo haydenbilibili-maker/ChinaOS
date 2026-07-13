@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import YulunPanel from './YulunPanel.jsx';
 import './yulun.css';
 
@@ -8,13 +8,15 @@ import './yulun.css';
  */
 export default function YulunPage() {
   return (
-    <div className="yulun-page">
-      <PageHeader
-        badge="GY-36 · 人群画像分层 · 第三批收官"
-        title="网络舆论场人群"
-        subtitle="共享事件总线上的中断风暴 · 受众即弹药"
-      />
+    <GySliceShell
+      badge="GY-36 · 人群画像分层 · 第三批收官"
+      title="网络舆论场人群"
+      subtitle="共享事件总线上的中断风暴 · 受众即弹药"
+      appId="yl-app"
+      moduleId="yulun"
+      className="yulun-page"
+    >
       <YulunPanel />
-    </div>
+    </GySliceShell>
   );
 }

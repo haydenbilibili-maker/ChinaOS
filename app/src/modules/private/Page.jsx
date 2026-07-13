@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -79,7 +79,7 @@ const TOTAL_INVEST = [10.0, 8.1, 7.2, 5.9, 5.4, 2.9, 4.9, 5.1, 3.0, 3.2];
 const investTrend = {
   grid: { left: 40, right: 16, top: 30, bottom: 28 },
   tooltip: { trigger: 'axis' },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
   xAxis: categoryX(INVEST_YEARS),
   yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
   series: [
@@ -142,7 +142,7 @@ export default function Page() {
     return {
       radar: {
         indicator: dims.map((n) => ({ name: n, max: 100 })),
-        axisName: { color: '#93a1b5', fontSize: 10 },
+        axisName: { color: LABEL.color, fontSize: 10 },
         radius: '62%',
         splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
         axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
@@ -168,7 +168,7 @@ export default function Page() {
     series: [{
       type: 'bar', barWidth: 16,
       data: CONTRIB_56789.map((c) => ({ value: c.val, itemStyle: { color: c.accent, borderRadius: 3 } })),
-      label: { show: true, position: 'right', formatter: '{c}%+', color: '#93a1b5' },
+      label: { show: true, position: 'right', formatter: '{c}%+', color: LABEL.color },
     }],
   };
 

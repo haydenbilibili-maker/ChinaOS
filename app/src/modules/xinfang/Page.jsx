@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import XinfangPanel from './XinfangPanel.jsx';
 import './xinfang.css';
 
@@ -13,13 +13,15 @@ import './xinfang.css';
  */
 export default function XinfangPage() {
   return (
-    <div className="xinfang-page">
-      <PageHeader
-        badge="GY-58 · 人群画像分层"
-        title="信访群体"
-        subtitle="系统的例外上报通道 · 当常规处理器没有解决问题"
-      />
+    <GySliceShell
+      badge="GY-58 · 人群画像分层"
+      title="信访群体"
+      subtitle="系统的例外上报通道 · 当常规处理器没有解决问题"
+      appId="xf-app"
+      moduleId="xinfang"
+      className="xinfang-page"
+    >
       <XinfangPanel />
-    </div>
+    </GySliceShell>
   );
 }

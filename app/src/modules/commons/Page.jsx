@@ -107,13 +107,13 @@ export default function Page() {
 
   const chart = {
     grid: { left: 40, right: 16, top: 24, bottom: 24 },
-    xAxis: { type: 'category', boundaryGap: false, data: series.map((_, i) => i), axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } },
-    yAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5' } },
+    xAxis: { type: 'category', boundaryGap: false, data: series.map((_, i) => i), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
+    yAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color } },
     series: [{
       type: 'line', smooth: true, data: series, showSymbol: false,
       lineStyle: { color: collapsed ? '#c41e3a' : '#10b981', width: 2 },
       areaStyle: { color: collapsed ? 'rgba(196,30,58,0.12)' : 'rgba(16,185,129,0.12)' },
-      markLine: { silent: true, symbol: 'none', label: { color: '#93a1b5', fontSize: 10 }, lineStyle: { color: '#e8a317', type: 'dashed' }, data: [{ yAxis: 20, name: '临界存量' }] },
+      markLine: { silent: true, symbol: 'none', label: { color: LABEL.color, fontSize: 10 }, lineStyle: { color: '#e8a317', type: 'dashed' }, data: [{ yAxis: 20, name: '临界存量' }] },
     }],
   };
 
@@ -138,9 +138,9 @@ export default function Page() {
     const orgCost = sizes.map((n) => Math.round(8 + 14 * Math.log10(n) * Math.log10(n)));
     return {
       grid: { left: 44, right: 44, top: 36, bottom: 28 },
-      legend: { top: 4, textStyle: { color: '#93a1b5', fontSize: 10 }, data: ['搭便车率 %', '组织成本指数'] },
+      legend: { top: 4, textStyle: { color: LABEL.color, fontSize: 10 }, data: ['搭便车率 %', '组织成本指数'] },
       xAxis: categoryX(sizes.map(String)),
-      yAxis: [valueY({ max: 100, name: '搭便车率 %', nameTextStyle: { color: '#5b6a82' } }), { type: 'value', name: '组织成本', nameTextStyle: { color: '#5b6a82' }, splitLine: { show: false }, axisLabel: { color: '#93a1b5' } }],
+      yAxis: [valueY({ max: 100, name: '搭便车率 %', nameTextStyle: { color: '#5b6a82' } }), { type: 'value', name: '组织成本', nameTextStyle: { color: '#5b6a82' }, splitLine: { show: false }, axisLabel: { color: LABEL.color } }],
       series: [
         { name: '搭便车率 %', type: 'line', smooth: true, data: freeride, showSymbol: false, lineStyle: { color: '#c41e3a', width: 2 } },
         { name: '组织成本指数', type: 'line', smooth: true, yAxisIndex: 1, data: orgCost, showSymbol: false, lineStyle: { color: '#e8a317', width: 2, type: 'dashed' } },

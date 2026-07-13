@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 import * as Lucide from 'lucide-react';
 import * as echarts from 'echarts';
-import { CHART_TOOLTIP, applyChartTheme, chartTextColor } from '../shared/chartHelpers.js';
+import { CHART_TOOLTIP, applyChartTheme, chartTextColor, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { getTheme, subscribeTheme, THEME_EVENT } from '../../lib/theme.js';
 import {
   AS_OF,
@@ -23,17 +23,25 @@ import {
 import EChart from '../../lib/viz/EChart.jsx';
 import {
   useLiveWeather, REAL_LAYERS, REAL_PALETTES, REAL_PALETTES_LIGHT,
-  buildRealSeries, formatRealTooltip,
+  buildRealSeries, formatRealTooltip, formatLiveTime,
 } from './liveWeather.js';
+import {
+  useLiveAirQuality, REAL_AQI_LAYERS, AQI_PALETTES,
+  buildAqiSeries, formatAqiTooltip,
+} from './liveAirQuality.js';
 import {
   useLiveQuakes, buildQuakeSeries, quakeSymbolSize, quakeColor, formatQuakeTooltip,
 } from './liveQuakes.js';
 import {
   useLiveFlights, buildFlightSeries, formatFlightTooltip,
 } from './liveFlights.js';
+import {
+  useLiveShipping, buildPortSeries, buildVesselSeries, portSymbolSize,
+  formatPortTooltip, formatVesselTooltip,
+} from './liveShipping.js';
 
-// 种子层 + 实时层合并（综合态势置首，随后两个真实数据层，再接其余种子层）
-const ALL_LAYERS = [LAYERS[0], ...REAL_LAYERS, ...LAYERS.slice(1)];
+// 种子层 + 实时层合并（综合态势置首，随后实测层，再接其余种子层）
+const ALL_LAYERS = [LAYERS[0], ...REAL_LAYERS, ...REAL_AQI_LAYERS, ...LAYERS.slice(1)];
 import { getTimelineSeries, MONTH_COUNT, CURRENT_MONTH_INDEX } from './liveMapHistory.js';
 import LiveMapLayerBar from './LiveMapLayerBar.jsx';
 import LiveMapLayerPanel from './LiveMapLayerPanel.jsx';
@@ -157,12 +165,17 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
   const isReal = !!layer.live;
   const region = REGION_PRESETS.find((r) => r.id === regionId) || REGION_PRESETS[0];
 
-  // 真实数据源：Open-Meteo 气象/空气质量（实况层激活时取数）+ USGS 地震（开关激活时取数）
-  const weather = useLiveWeather();
+  // 真实数据源：Open-Meteo 气象/空气 + USGS 地震 + airplanes.live 空情 + 航运港口
+  const isLiveWeather = layerId === 'liveTemp' || layerId === 'livePrecip';
+  const isLiveAqi = layerId === 'livePm25';
+  const weather = useLiveWeather(600000, (isLiveWeather || isLiveAqi) && !isCompact);
+  const airQuality = useLiveAirQuality(600000, (isLiveAqi || isLiveWeather) && !isCompact);
   const showQuakes = isLayerVisible('overlay-quakes', layerPrefs);
   const showFlights = isLayerVisible('overlay-flights', layerPrefs);
+  const showShipping = isLayerVisible('overlay-shipping', layerPrefs);
   const quakesState = useLiveQuakes(900000, showQuakes && !isCompact);
   const flightsState = useLiveFlights(600000, showFlights && !isCompact);
+  const shippingState = useLiveShipping(600000, showShipping && !isCompact);
 
   // 头部实时时钟（30s 粒度足够）
   useEffect(() => {
@@ -197,11 +210,12 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
     });
   }, [deltaMode, layerId, isReal]);
 
-  // 实况层序列（Open-Meteo 实测；未就绪/失败 → 空序列 + 状态条提示）
+  // 实况层序列（Open-Meteo / OpenAQ 实测；未就绪/失败 → 空序列 + 状态条提示）
   const realSeries = useMemo(() => {
-    if (!isReal || !weather.data) return [];
+    if (!isReal) return [];
+    if (layerId === 'livePm25') return buildAqiSeries(airQuality.data);
     return buildRealSeries(layerId, weather.data);
-  }, [isReal, layerId, weather.data]);
+  }, [isReal, layerId, weather.data, airQuality.data]);
 
   const displayData = showFiscal && fiscalData?.series?.length
     ? fiscalData.series
@@ -213,9 +227,11 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
   const stats = useMemo(() => (statSeries.length ? getNationalStats(coloringFiscal ? 'fiscal' : layerId, statSeries) : { avg: '—', max: '—', min: '—', maxProv: '', minProv: '' }), [coloringFiscal, layerId, statSeries]);
   const palette = coloringFiscal
     ? FISCAL_PALETTE[theme === 'light' ? 'light' : 'dark']
-    : isReal
-      ? (theme === 'light' ? (REAL_PALETTES_LIGHT[layerId] || REAL_PALETTES[layerId]) : REAL_PALETTES[layerId])
-      : (PALETTES[theme === 'light' ? 'light' : 'dark'][layerId] || PALETTES.dark.composite);
+    : isReal && layerId === 'livePm25'
+      ? AQI_PALETTES[theme === 'light' ? 'light' : 'dark']
+      : isReal
+        ? (theme === 'light' ? (REAL_PALETTES_LIGHT[layerId] || REAL_PALETTES[layerId]) : REAL_PALETTES[layerId])
+        : (PALETTES[theme === 'light' ? 'light' : 'dark'][layerId] || PALETTES.dark.composite);
 
   const hotCoords = useMemo(() => {
     if (deltaMode || isReal) return [];
@@ -404,7 +420,16 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
           if (p.seriesType === 'lines') return '';
           if (p.seriesName === 'quakes') return formatQuakeTooltip(p);
           if (p.seriesName === 'flights') return formatFlightTooltip(p);
-          if (isReal) return formatRealTooltip(p.name, layerId, weather.data?.[p.name], weather.fetchedAt);
+          if (p.seriesName === 'ports') return formatPortTooltip(p);
+          if (p.seriesName === 'vessels') return formatVesselTooltip(p);
+          if (isReal && layerId === 'livePm25') {
+            return formatAqiTooltip(p.name, weather.data?.[p.name] ? airQuality.data?.[p.name] : airQuality.data?.[p.name], airQuality.fetchedAt);
+          }
+          if (isReal) {
+            return formatRealTooltip(
+              p.name, layerId, weather.data?.[p.name], weather.fetchedAt, airQuality.data?.[p.name],
+            );
+          }
           if (coloringFiscal) {
             const m = p.data?.metrics;
             return m
@@ -483,17 +508,18 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
           data: seriesData,
           selectedMode: false,
         },
-        ...['flow-migration', 'scatter-capitals', 'overlay-quakes', 'overlay-flights']
+        ...['flow-migration', 'scatter-capitals', 'overlay-quakes', 'overlay-flights', 'overlay-shipping']
           .filter((id) => isLayerVisible(id, layerPrefs))
           .flatMap((id) => buildOverlaySeries(id, {
             theme, isCompact, STEEL, HOLD,
-            quakesState, flightsState,
+            quakesState, flightsState, shippingState,
             buildQuakeSeries, quakeSymbolSize, quakeColor,
             buildFlightSeries,
+            buildPortSeries, buildVesselSeries, portSymbolSize,
           }) || []),
       ],
     };
-  }, [theme, layer, mapData, displayData, deltaMode, isReal, coloringFiscal, weather.data, weather.fetchedAt, zoneId, layerId, palette, hotCoords, region, selectedProvince, isCompact, layerPrefs, showLabels, quakesState, flightsState, buildQuakeSeries, quakeSymbolSize, quakeColor, buildFlightSeries]);
+  }, [theme, layer, mapData, displayData, deltaMode, isReal, coloringFiscal, weather.data, weather.fetchedAt, airQuality.data, airQuality.fetchedAt, zoneId, layerId, palette, hotCoords, region, selectedProvince, isCompact, layerPrefs, showLabels, quakesState, flightsState, shippingState, buildQuakeSeries, quakeSymbolSize, quakeColor, buildFlightSeries, buildPortSeries, buildVesselSeries, portSymbolSize]);
 
   useEffect(() => {
     const chart = chartRef.current;
@@ -521,14 +547,14 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
     return {
       grid: { left: 44, right: 20, top: 26, bottom: 32 },
       tooltip: { ...CHART_TOOLTIP, formatter: (p) => `<b>${p.name}</b><br/>${xl.label}：${p.value[0]}<br/>${yl.label}：${p.value[1]}` },
-      xAxis: { type: 'value', name: xl.label, nameGap: 22, nameTextStyle: { color: '#5b6a82', fontSize: 10 }, scale: true, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
-      yAxis: { type: 'value', name: yl.label, nameTextStyle: { color: '#5b6a82', fontSize: 10 }, scale: true, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+      xAxis: { type: 'value', name: xl.label, nameGap: 22, nameTextStyle: { color: '#5b6a82', fontSize: 10 }, scale: true, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+      yAxis: { type: 'value', name: yl.label, nameTextStyle: { color: '#5b6a82', fontSize: 10 }, scale: true, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
       series: [{
         type: 'scatter',
         data: pts,
         symbolSize: 9,
         itemStyle: { color: STEEL, opacity: 0.8 },
-        label: { show: true, position: 'top', fontSize: 8.5, color: '#93a1b5', formatter: (p) => short(p.name) },
+        label: { show: true, position: 'top', fontSize: 8.5, color: LABEL.color, formatter: (p) => short(p.name) },
         emphasis: { itemStyle: { color: HOLD, opacity: 1 }, label: { color: HOLD } },
         markLine: {
           silent: true,
@@ -776,11 +802,11 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
             const sb = b.replace(/(省|市|自治区|壮族|回族|维吾尔)/g, '');
             const radar = {
               tooltip: {},
-              legend: { data: [sa, sb], textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0, itemWidth: 10, itemHeight: 10 },
+              legend: { data: [sa, sb], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0, itemWidth: 10, itemHeight: 10 },
               radar: {
                 indicator: RADAR_DIMS.map((d) => ({ name: d.label, max: 100 })),
                 radius: '64%',
-                axisName: { color: '#93a1b5', fontSize: 10 },
+                axisName: { color: LABEL.color, fontSize: 10 },
                 splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
                 axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
                 splitArea: { show: false },

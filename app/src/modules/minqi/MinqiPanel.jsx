@@ -22,7 +22,6 @@ export default function MinqiPanel() {
   return (
     <div className="minqi-module-wrap">
       <div
-        id="mq-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

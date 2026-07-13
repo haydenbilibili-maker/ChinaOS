@@ -61,18 +61,18 @@ const stemGrowth = {
 
 /* ============ 保留：职教地位升格雷达 ============ */
 const vocationalRadar = {
-  legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 } },
-  radar: { indicator: [{ name: '社会地位', max: 100 }, { name: '薪酬水平', max: 100 }, { name: '升学通道', max: 100 }, { name: '企业认可度', max: 100 }, { name: '实操设施', max: 100 }], axisName: { color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: '#27324a' } }, splitArea: { show: false } },
+  legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
+  radar: { indicator: [{ name: '社会地位', max: 100 }, { name: '薪酬水平', max: 100 }, { name: '升学通道', max: 100 }, { name: '企业认可度', max: 100 }, { name: '实操设施', max: 100 }], axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, splitArea: { show: false } },
   series: [{ type: 'radar', data: [
-    { value: [30, 45, 20, 55, 50], name: '2020', lineStyle: { color: '#93a1b5' }, itemStyle: { color: '#93a1b5' } },
+    { value: [30, 45, 20, 55, 50], name: '2020', lineStyle: { color: LABEL.color }, itemStyle: { color: LABEL.color } },
     { value: [65, 75, 80, 85, 92], name: '2024E', lineStyle: { color: '#22d3ee' }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.12)' } },
   ] }],
 };
 
 /* ============ 保留：家庭教育投入预期雷达（双减） ============ */
 const eduCostRadar = {
-  legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 } },
-  radar: { indicator: [{ name: '校外培训支出', max: 100 }, { name: '素质教育关注度', max: 100 }, { name: '职业技能投资', max: 100 }, { name: '校内资源利用率', max: 100 }, { name: '家庭心理压力', max: 100 }], axisName: { color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: '#27324a' } }, splitArea: { show: false } },
+  legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
+  radar: { indicator: [{ name: '校外培训支出', max: 100 }, { name: '素质教育关注度', max: 100 }, { name: '职业技能投资', max: 100 }, { name: '校内资源利用率', max: 100 }, { name: '家庭心理压力', max: 100 }], axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, splitArea: { show: false } },
   series: [{ type: 'radar', data: [
     { value: [95, 40, 30, 60, 98], name: '「双减」前', lineStyle: { color: '#c41e3a' }, itemStyle: { color: '#c41e3a' } },
     { value: [15, 85, 75, 92, 60], name: '「双减」后预期', lineStyle: { color: '#10b981' }, itemStyle: { color: '#10b981' }, areaStyle: { color: 'rgba(16,185,129,0.15)' } },
@@ -96,12 +96,12 @@ const splitOpt = {
 const gradYears = ['2015', '2017', '2019', '2021', '2023', '2024', '2025E'];
 const gradPressureOpt = {
   tooltip: { trigger: 'axis' },
-  legend: { textStyle: { color: '#93a1b5', fontSize: 10 }, top: 0 },
+  legend: { textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
   grid: { ...GRID, left: 44, right: 44, top: 30 },
   xAxis: categoryX(gradYears),
   yAxis: [
-    valueY({ name: '万人', nameTextStyle: { color: '#93a1b5' }, axisLabel: { color: '#93a1b5' } }),
-    valueY({ name: '%', position: 'right', splitLine: { show: false }, axisLabel: { formatter: '{value}%', color: '#93a1b5' } }),
+    valueY({ name: '万人', nameTextStyle: { color: LABEL.color }, axisLabel: { color: LABEL.color } }),
+    valueY({ name: '%', position: 'right', splitLine: { show: false }, axisLabel: { formatter: '{value}%', color: LABEL.color } }),
   ],
   series: [
     { name: '高校毕业生规模', type: 'bar', barWidth: 18, data: [749, 795, 834, 909, 1158, 1179, 1222], itemStyle: { color: '#e8a317' } },
@@ -123,7 +123,7 @@ const engineerBarOpt = {
   tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, valueFormatter: (v) => `${v} 万/年` },
   grid: { left: 64, right: 24, top: 16, bottom: 24 },
   xAxis: valueY(),
-  yAxis: { type: 'category', data: ['中国', '印度', '美国', '俄罗斯', '日本', '德国'], axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } },
+  yAxis: { type: 'category', data: ['中国', '印度', '美国', '俄罗斯', '日本', '德国'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
   series: [{
     type: 'bar', barWidth: 16,
     data: [
@@ -134,7 +134,7 @@ const engineerBarOpt = {
       { value: 34, itemStyle: { color: '#64748b' } },
       { value: 22, itemStyle: { color: '#64748b' } },
     ],
-    label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 },
+    label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 },
   }],
 };
 
@@ -171,12 +171,12 @@ export default function Page() {
 
   const compOpt = useMemo(() => {
     const base = {
-      legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 } },
+      legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
       radar: {
         indicator: compIndicators.map((n) => ({ name: n, max: 100 })),
-        axisName: { color: '#93a1b5', fontSize: 10 },
+        axisName: { color: LABEL.color, fontSize: 10 },
         splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-        axisLine: { lineStyle: { color: '#27324a' } },
+        axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
         splitArea: { show: false },
       },
     };

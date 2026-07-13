@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import XinnongPanel from './XinnongPanel.jsx';
 import './xinnong.css';
 
@@ -8,13 +8,15 @@ import './xinnong.css';
  */
 export default function XinnongPage() {
   return (
-    <div className="xinnong-page">
-      <PageHeader
-        badge="GY-35 · 人群画像分层"
-        title="职业农民与新农人"
-        subtitle="不可关闭的根服务 · 跑在老化硬件上"
-      />
+    <GySliceShell
+      badge="GY-35 · 人群画像分层"
+      title="职业农民与新农人"
+      subtitle="不可关闭的根服务 · 跑在老化硬件上"
+      appId="xn-app"
+      moduleId="xinnong"
+      className="xinnong-page"
+    >
       <XinnongPanel />
-    </div>
+    </GySliceShell>
   );
 }

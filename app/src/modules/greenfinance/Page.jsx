@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ── 工具选择器：六类绿色金融工具 ───────────────────────────────────────────
@@ -34,7 +34,7 @@ const TOOLS = [
 
 // ── 绿色融资规模趋势（保留原图，扩为三线 + log 可读） ───────────────────────
 const growthTrend = {
-  legend: { data: ['绿色贷款余额', '绿色债券存量', '碳市场累计成交'], textStyle: { color: '#93a1b5', fontSize: 11 }, top: 0 },
+  legend: { data: ['绿色贷款余额', '绿色债券存量', '碳市场累计成交'], textStyle: { color: LABEL.color, fontSize: 11 }, top: 0 },
   grid: { ...GRID, top: 32 },
   tooltip: { trigger: 'axis' },
   xAxis: categoryX(['2019', '2020', '2021', '2022', '2023', '2024(E)']),
@@ -52,13 +52,13 @@ const growthTrend = {
 
 // ── 碳价 × 成交量走势（双 Y 轴内联 option） ────────────────────────────────
 const carbonPriceTrend = {
-  legend: { data: ['CEA 碳价 (元/吨)', '月度成交量 (百万吨)'], textStyle: { color: '#93a1b5', fontSize: 11 }, top: 0 },
+  legend: { data: ['CEA 碳价 (元/吨)', '月度成交量 (百万吨)'], textStyle: { color: LABEL.color, fontSize: 11 }, top: 0 },
   grid: { left: 44, right: 48, top: 32, bottom: 36 },
   tooltip: { trigger: 'axis' },
   xAxis: categoryX(['21H2', '22H1', '22H2', '23H1', '23H2', '24H1', '24H2']),
   yAxis: [
-    { type: 'value', name: '元/吨', position: 'left', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
-    { type: 'value', name: '百万吨', position: 'right', splitLine: { show: false }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+    { type: 'value', name: '元/吨', position: 'left', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+    { type: 'value', name: '百万吨', position: 'right', splitLine: { show: false }, axisLabel: { color: LABEL.color, fontSize: 10 } },
   ],
   series: [
     { name: 'CEA 碳价 (元/吨)', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, yAxisIndex: 0,
@@ -72,10 +72,10 @@ const carbonPriceTrend = {
 // ── 绿色金融体系成熟度雷达（双系列：现状 vs 国际领先，内联 option） ─────────
 const SYSTEM_DIMS = ['标准统一', '信息披露', '产品丰富度', '碳定价有效', '激励约束', '国际接轨'];
 const systemRadar = {
-  legend: { data: ['中国现状', '国际领先基准'], textStyle: { color: '#93a1b5', fontSize: 11 }, top: 0 },
+  legend: { data: ['中国现状', '国际领先基准'], textStyle: { color: LABEL.color, fontSize: 11 }, top: 0 },
   radar: {
     indicator: SYSTEM_DIMS.map((n) => ({ name: n, max: 100 })),
-    axisName: { color: '#93a1b5', fontSize: 10 },
+    axisName: { color: LABEL.color, fontSize: 10 },
     splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
     axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
     splitArea: { show: false },
@@ -122,7 +122,7 @@ export default function Page() {
   const t = TOOLS.find((x) => x.key === tool) || TOOLS[2];
 
   const carbonSector = useMemo(() => ({
-    legend: { data: ['配额缺口压力 (%)', '履约完成度'], textStyle: { color: '#93a1b5', fontSize: 11 }, bottom: 0 },
+    legend: { data: ['配额缺口压力 (%)', '履约完成度'], textStyle: { color: LABEL.color, fontSize: 11 }, bottom: 0 },
     grid: { left: 100, right: 24, top: 12, bottom: 32 },
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
     xAxis: valueY(),

@@ -22,7 +22,6 @@ export default function ManbingPanel() {
   return (
     <div className="manbing-module-wrap">
       <div
-        id="mb-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

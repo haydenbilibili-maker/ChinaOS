@@ -22,7 +22,6 @@ export default function ChengxuPanel() {
   return (
     <div className="chengxu-module-wrap">
       <div
-        id="cx-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

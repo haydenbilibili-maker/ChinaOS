@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import FanguiPanel from './FanguiPanel.jsx';
 import './fangui.css';
 
@@ -10,13 +10,15 @@ import './fangui.css';
  */
 export default function FanguiPage() {
   return (
-    <div className="fangui-page">
-      <PageHeader
-        badge="GY-52 · 人群画像分层"
-        title="被拐卖与反拐救助对象"
-        subtitle="被非法迁移、地址被改写的进程 · 寻址丢失"
-      />
+    <GySliceShell
+      badge="GY-52 · 人群画像分层"
+      title="被拐卖与反拐救助对象"
+      subtitle="被非法迁移、地址被改写的进程 · 寻址丢失"
+      appId="fg-app"
+      moduleId="fangui"
+      className="fangui-page"
+    >
       <FanguiPanel />
-    </div>
+    </GySliceShell>
   );
 }

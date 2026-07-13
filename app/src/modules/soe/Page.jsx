@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 const profitTrend = {
-  legend: { data: ['总资产(万亿)', '净利润(万亿)'], textStyle: { color: '#93a1b5' }, top: 0 },
+  legend: { data: ['总资产(万亿)', '净利润(万亿)'], textStyle: { color: LABEL.color }, top: 0 },
   grid: { left: 44, right: 44, top: 30, bottom: 24 },
-  xAxis: { type: 'category', data: ['2015', '2018', '2021', '2024'], axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } },
-  yAxis: [{ type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5' } }, { type: 'value', splitLine: { show: false }, axisLabel: { color: '#93a1b5' } }],
+  xAxis: { type: 'category', data: ['2015', '2018', '2021', '2024'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
+  yAxis: [{ type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color } }, { type: 'value', splitLine: { show: false }, axisLabel: { color: LABEL.color } }],
   series: [
     { name: '总资产(万亿)', type: 'bar', data: [180, 210, 260, 300], barWidth: 24, itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } },
     { name: '净利润(万亿)', type: 'line', yAxisIndex: 1, smooth: true, data: [1.4, 1.7, 2.4, 2.6], lineStyle: { color: '#e8a317' }, itemStyle: { color: '#e8a317' } },
   ],
 };
 const investPie = {
-  tooltip: { trigger: 'item' }, legend: { bottom: 0, textStyle: { color: '#93a1b5' } },
-  series: [{ type: 'pie', radius: ['44%', '70%'], center: ['50%', '44%'], label: { color: '#93a1b5' }, data: [
+  tooltip: { trigger: 'item' }, legend: { bottom: 0, textStyle: { color: LABEL.color } },
+  series: [{ type: 'pie', radius: ['44%', '70%'], center: ['50%', '44%'], label: { color: LABEL.color }, data: [
     { value: 34, name: '战略性新兴产业', itemStyle: { color: '#c41e3a' } },
     { value: 24, name: '能源/资源', itemStyle: { color: '#e8a317' } },
     { value: 20, name: '基础设施', itemStyle: { color: '#22d3ee' } },
@@ -24,14 +25,14 @@ const investPie = {
   ] }],
 };
 const competeRadar = {
-  radar: { indicator: [{ name: '战略安全', max: 100 }, { name: '技术引领', max: 100 }, { name: '资本回报', max: 100 }, { name: '全员效率', max: 100 }, { name: '数字化', max: 100 }, { name: '链主带动', max: 100 }], axisName: { color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
+  radar: { indicator: [{ name: '战略安全', max: 100 }, { name: '技术引领', max: 100 }, { name: '资本回报', max: 100 }, { name: '全员效率', max: 100 }, { name: '数字化', max: 100 }, { name: '链主带动', max: 100 }], axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
   series: [{ type: 'radar', data: [{ value: [95, 78, 65, 70, 85, 88], name: '央企综合', lineStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.12)' } }] }],
 };
 
 // 板块资产占比 donut（示意）
 const sectorAssetPie = {
   tooltip: { trigger: 'item', formatter: '{b}: {c}%' },
-  legend: { type: 'scroll', bottom: 0, textStyle: { color: '#93a1b5' }, icon: 'circle' },
+  legend: { type: 'scroll', bottom: 0, textStyle: { color: LABEL.color }, icon: 'circle' },
   series: [{ type: 'pie', radius: ['42%', '68%'], center: ['50%', '42%'], label: { show: false }, data: [
     { value: 22, name: '能源电力', itemStyle: { color: '#c41e3a' } },
     { value: 24, name: '金融', itemStyle: { color: '#e8a317' } },
@@ -46,10 +47,10 @@ const sectorAssetPie = {
 // 板块战略权重条形（命脉控制力 vs 市场化空间，示意）
 const sectorWeightBar = {
   tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-  legend: { data: ['命脉控制力', '市场化空间'], textStyle: { color: '#93a1b5' }, top: 0 },
+  legend: { data: ['命脉控制力', '市场化空间'], textStyle: { color: LABEL.color }, top: 0 },
   grid: { left: 72, right: 24, top: 30, bottom: 16 },
-  xAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5' } },
-  yAxis: { type: 'category', data: ['装备制造', '资源矿产', '电信', '基建交通', '军工航天', '金融', '能源电力'], axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } },
+  xAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color } },
+  yAxis: { type: 'category', data: ['装备制造', '资源矿产', '电信', '基建交通', '军工航天', '金融', '能源电力'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
   series: [
     { name: '命脉控制力', type: 'bar', stack: 'total', data: [60, 78, 88, 70, 98, 82, 92], itemStyle: { color: '#c41e3a' }, barWidth: 14 },
     { name: '市场化空间', type: 'bar', stack: 'total', data: [40, 22, 12, 30, 2, 18, 8], itemStyle: { color: '#22d3ee' } },

@@ -3,7 +3,7 @@
 // asOf: 2026-06-11 · 教学用途示意，非真实组织系统
 // ============================================================================
 
-import { categoryX, valueY, GRID, LEGEND, donutOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, LEGEND, donutOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 
 export const AS_OF = '2026-06-11';
 
@@ -84,7 +84,7 @@ export function buildQueueSankey() {
       data: nodes, links,
       nodeWidth: 14, nodeGap: 10,
       emphasis: { focus: 'adjacency' },
-      label: { color: '#93a1b5', fontSize: 10 },
+      label: { color: LABEL.color, fontSize: 10 },
       lineStyle: { color: 'gradient', curveness: 0.5, opacity: 0.45 },
     }],
   };
@@ -133,9 +133,9 @@ export function buildFilterHeatmap(profiles) {
   return {
     grid: { left: 72, right: 16, top: 16, bottom: 48 },
     tooltip: { position: 'top' },
-    xAxis: { type: 'category', data: fields, axisLabel: { color: '#93a1b5', fontSize: 9, rotate: 30 } },
-    yAxis: { type: 'category', data: qLabels, axisLabel: { color: '#93a1b5', fontSize: 10 } },
-    visualMap: { min: 0, max: 5, calculable: true, orient: 'horizontal', left: 'center', bottom: 0, inRange: { color: ['#1e293b', '#22d3ee', '#c41e3a'] }, textStyle: { color: '#93a1b5' } },
+    xAxis: { type: 'category', data: fields, axisLabel: { color: LABEL.color, fontSize: 9, rotate: 30 } },
+    yAxis: { type: 'category', data: qLabels, axisLabel: { color: LABEL.color, fontSize: 10 } },
+    visualMap: { min: 0, max: 5, calculable: true, orient: 'horizontal', left: 'center', bottom: 0, inRange: { color: ['#1e293b', '#22d3ee', '#c41e3a'] }, textStyle: { color: LABEL.color } },
     series: [{ type: 'heatmap', data, label: { show: true, fontSize: 10, color: '#e8edf6' } }],
   };
 }

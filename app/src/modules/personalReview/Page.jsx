@@ -1,5 +1,6 @@
 import { PageHeader } from '../../app/ui.jsx';
 import PersonalReview from './PersonalReview.jsx';
+import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 /** 超个体决策复盘 · 私享模块 */
 export default function PersonalReviewPage() {
@@ -11,6 +12,8 @@ export default function PersonalReviewPage() {
         subtitle="四层垫子 / 账本测试 / 信号灯联动 · 本地私享"
       />
       <PersonalReview />
+      <ModuleFooter moduleId="personalReview" />
+
     </div>
   );
 }

@@ -9,6 +9,7 @@ import RadiusChart from './RadiusChart.jsx';
 import TermDetail from './TermDetail.jsx';
 import { GLOBAL_INFLECTIONS, PREMIER_TERMS, STRUCTURAL_DRIVERS } from './premiers.seed.js';
 import './premierRadius.css';
+import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 /** 总理权限半径图谱 · 1998—今四任职权收缩时序 */
 export default function PremierRadiusPage() {
@@ -54,6 +55,8 @@ export default function PremierRadiusPage() {
           </Link>
         </div>
       </div>
+      <ModuleFooter moduleId="premierRadius" />
+
     </div>
   );
 }

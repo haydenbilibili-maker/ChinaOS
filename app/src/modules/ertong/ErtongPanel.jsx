@@ -22,7 +22,6 @@ export default function ErtongPanel() {
   return (
     <div className="ertong-module-wrap">
       <div
-        id="et-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

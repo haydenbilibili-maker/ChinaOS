@@ -100,7 +100,7 @@ const CHAINS = [
 const plusOneYears = ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025E'];
 const plusOneOpt = {
   tooltip: { trigger: 'axis' },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12, itemHeight: 8 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12, itemHeight: 8 },
   grid: { left: 40, right: 16, top: 30, bottom: 24 },
   xAxis: categoryX(plusOneYears),
   yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
@@ -119,10 +119,10 @@ const stressOpt = {
   tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: '{b}: 冲击指数 {c}' },
   grid: { left: 110, right: 44, top: 16, bottom: 24 },
   xAxis: valueY({ max: 100 }),
-  yAxis: { type: 'category', data: ['航运通道封锁', '大豆全面断供', '关键矿产反制(对美)', '原料药断供(对美)', '高端芯片全面断供'], axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 11 } },
+  yAxis: { type: 'category', data: ['航运通道封锁', '大豆全面断供', '关键矿产反制(对美)', '原料药断供(对美)', '高端芯片全面断供'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 11 } },
   series: [{
     type: 'bar', barWidth: 16, itemStyle: { borderRadius: 3 },
-    label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 },
+    label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 },
     data: [
       { value: 88, itemStyle: { color: '#c41e3a' } },
       { value: 62, itemStyle: { color: '#e8a317' } },
@@ -137,14 +137,14 @@ const stressOpt = {
 // 四、供应链韧性雷达：中国 vs 美国（双系列 · 内联 option）
 // ============================================================================
 const resilienceRadarOpt = {
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12, itemHeight: 8, data: ['中国', '美国'] },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12, itemHeight: 8, data: ['中国', '美国'] },
   radar: {
     indicator: [
       { name: '采购多元化', max: 100 }, { name: '库存冗余', max: 100 }, { name: '国产备份深度', max: 100 },
       { name: '物流通道冗余', max: 100 }, { name: '盟友网络可用度', max: 100 }, { name: '数字可视化', max: 100 },
     ],
     radius: '62%',
-    axisName: { color: '#93a1b5', fontSize: 10 },
+    axisName: { color: LABEL.color, fontSize: 10 },
     splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
     axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
     splitArea: { show: false },
@@ -165,10 +165,10 @@ const stickinessOpt = {
   tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
   grid: { left: 100, right: 44, top: 16, bottom: 24 },
   xAxis: valueY({ max: 100 }),
-  yAxis: { type: 'category', data: ['汇率/政策稳定性', '内需市场就近', '响应速度(打样-量产)', '工程师红利', '基础设施密度', '产业集群完整度'], axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 11 } },
+  yAxis: { type: 'category', data: ['汇率/政策稳定性', '内需市场就近', '响应速度(打样-量产)', '工程师红利', '基础设施密度', '产业集群完整度'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 11 } },
   series: [{
     type: 'bar', barWidth: 14, itemStyle: { borderRadius: 3 },
-    label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 },
+    label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 },
     data: [
       { value: 60, itemStyle: { color: '#e8a317' } },
       { value: 78, itemStyle: { color: '#10b981' } },
@@ -194,18 +194,18 @@ const supplyRiskBar = stackedBarOpt({
 const chokeBar = {
   grid: { left: 90, right: 40, top: 16, bottom: 24 },
   xAxis: valueY({ max: 100 }),
-  yAxis: { type: 'category', data: ['成熟制程产能', '特种材料', '工业软件', 'EDA 全流程', 'EUV 光刻机'], axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 11 } },
+  yAxis: { type: 'category', data: ['成熟制程产能', '特种材料', '工业软件', 'EDA 全流程', 'EUV 光刻机'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 11 } },
   series: [{ type: 'bar', data: [
     { value: 45, itemStyle: { color: '#10b981' } },
     { value: 70, itemStyle: { color: '#e8a317' } },
     { value: 75, itemStyle: { color: '#e8a317' } },
     { value: 82, itemStyle: { color: '#e8a317' } },
     { value: 95, itemStyle: { color: '#c41e3a' } },
-  ], barWidth: 14, itemStyle: { borderRadius: 3 }, label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 } }],
+  ], barWidth: 14, itemStyle: { borderRadius: 3 }, label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 } }],
 };
 const resilienceLine = {
   grid: { left: 44, right: 16, top: 28, bottom: 24 },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 11 }, itemWidth: 12, itemHeight: 8 },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 11 }, itemWidth: 12, itemHeight: 8 },
   xAxis: categoryX(['2020', '2021', '2022', '2023', '2024', '2025(E)']),
   yAxis: valueY({ max: 100 }),
   series: [
@@ -267,12 +267,12 @@ export default function Page() {
     yAxis: {
       type: 'category',
       data: chain.breakpoints.map((b) => b[0]).reverse(),
-      axisLine: { lineStyle: { color: '#27324a' } },
-      axisLabel: { color: '#93a1b5', fontSize: 10 },
+      axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
+      axisLabel: { color: LABEL.color, fontSize: 10 },
     },
     series: [{
       type: 'bar', barWidth: 13, itemStyle: { borderRadius: 3 },
-      label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 },
+      label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 },
       data: chain.breakpoints.map((b) => ({ value: b[1], itemStyle: { color: b[2] } })).reverse(),
     }],
   }), [chainKey]);

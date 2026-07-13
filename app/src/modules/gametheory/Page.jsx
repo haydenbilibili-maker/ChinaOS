@@ -29,7 +29,7 @@ function mulberry32(seed) {
 const STRATEGIES = [
   { key: 'TFT', name: '以牙还牙', color: '#10b981', desc: '首轮合作，之后复制对方上一步' },
   { key: 'Grim', name: '冷酷触发', color: '#22d3ee', desc: '合作直到对方背叛一次，此后永远背叛' },
-  { key: 'AllC', name: '永远合作', color: '#93a1b5', desc: '无条件合作——善良但可被剥削' },
+  { key: 'AllC', name: '永远合作', color: LABEL.color, desc: '无条件合作——善良但可被剥削' },
   { key: 'AllD', name: '永远背叛', color: '#c41e3a', desc: '无条件背叛——短期占便宜，长期被孤立' },
   { key: 'Random', name: '随机策略', color: '#e8a317', desc: '每轮 50% 合作（固定种子伪随机）' },
   { key: 'Tester', name: '试探者', color: '#a78bfa', desc: '先背叛试探；对方报复就道歉并转向合作，不报复就持续剥削（阿克塞尔罗德 TESTER 型参赛者）' },
@@ -138,12 +138,12 @@ export default function Page() {
 
   const tourneyBar = useMemo(() => ({
     grid: { ...GRID, left: 90 },
-    xAxis: { type: 'value', axisLabel: { color: '#93a1b5' }, splitLine: { lineStyle: { color: 'rgba(147,161,181,0.12)' } }, name: '总得分', nameTextStyle: { color: '#93a1b5' } },
-    yAxis: { type: 'category', data: [...ranking].reverse().map((s) => s.name), axisLabel: { color: '#cdd6e4' }, axisLine: { lineStyle: { color: '#27324a' } } },
+    xAxis: { type: 'value', axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(147,161,181,0.12)' } }, name: '总得分', nameTextStyle: { color: LABEL.color } },
+    yAxis: { type: 'category', data: [...ranking].reverse().map((s) => s.name), axisLabel: { color: '#cdd6e4' }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
     series: [{
       type: 'bar', barWidth: 16,
       data: [...ranking].reverse().map((s) => ({ value: s.score, itemStyle: { color: s.color } })),
-      label: { show: true, position: 'right', color: '#93a1b5', fontSize: 11 },
+      label: { show: true, position: 'right', color: LABEL.color, fontSize: 11 },
     }],
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
   }), [ranking]);
@@ -185,8 +185,8 @@ export default function Page() {
 
   const line = {
     grid: GRID,
-    xAxis: { ...categoryX(rounds), name: '博弈轮数', nameTextStyle: { color: '#93a1b5' } },
-    yAxis: { ...valueY({ max: 100 }), name: '合作率%', nameTextStyle: { color: '#93a1b5' } },
+    xAxis: { ...categoryX(rounds), name: '博弈轮数', nameTextStyle: { color: LABEL.color } },
+    yAxis: { ...valueY({ max: 100 }), name: '合作率%', nameTextStyle: { color: LABEL.color } },
     series: [{ type: 'line', smooth: true, data: coopSeries, lineStyle: { color: stable ? '#10b981' : '#e8a317', width: 2 }, itemStyle: { color: stable ? '#10b981' : '#e8a317' }, areaStyle: { color: stable ? 'rgba(16,185,129,0.1)' : 'rgba(232,163,23,0.08)' } }],
   };
 
@@ -205,12 +205,12 @@ export default function Page() {
           <table className="w-full text-sm mono" style={{ borderCollapse: 'collapse', color: 'var(--text-secondary)' }}>
             <thead>
               <tr>
-                <th style={{ padding: 8, border: '1px solid #27324a', color: '#93a1b5' }}></th>
+                <th style={{ padding: 8, border: '1px solid #27324a', color: LABEL.color }}></th>
                 <th colSpan={2} style={{ padding: 8, border: '1px solid #27324a', color: 'var(--cyber-cyan)' }}>对方 ↓</th>
               </tr>
               <tr>
                 <th style={{ padding: 8, border: '1px solid #27324a', color: '#c41e3a' }}>我方 →</th>
-                {game.cols.map((c) => <th key={c} style={{ padding: 8, border: '1px solid #27324a', color: '#93a1b5' }}>{c}</th>)}
+                {game.cols.map((c) => <th key={c} style={{ padding: 8, border: '1px solid #27324a', color: LABEL.color }}>{c}</th>)}
               </tr>
             </thead>
             <tbody>
@@ -308,17 +308,17 @@ export default function Page() {
             <table className="w-full text-sm mono mt-2" style={{ borderCollapse: 'collapse', color: 'var(--text-secondary)' }}>
               <tbody>
                 <tr>
-                  <th style={{ padding: 6, border: '1px solid #27324a', color: '#93a1b5' }}></th>
-                  <th style={{ padding: 6, border: '1px solid #27324a', color: '#93a1b5' }}>对方合作</th>
-                  <th style={{ padding: 6, border: '1px solid #27324a', color: '#93a1b5' }}>对方背叛</th>
+                  <th style={{ padding: 6, border: '1px solid #27324a', color: LABEL.color }}></th>
+                  <th style={{ padding: 6, border: '1px solid #27324a', color: LABEL.color }}>对方合作</th>
+                  <th style={{ padding: 6, border: '1px solid #27324a', color: LABEL.color }}>对方背叛</th>
                 </tr>
                 <tr>
-                  <th style={{ padding: 6, border: '1px solid #27324a', color: '#93a1b5' }}>我合作</th>
+                  <th style={{ padding: 6, border: '1px solid #27324a', color: LABEL.color }}>我合作</th>
                   <td style={{ padding: 6, border: '1px solid #27324a', textAlign: 'center', color: 'var(--text-primary)' }}>({R}, {R})</td>
                   <td style={{ padding: 6, border: '1px solid #27324a', textAlign: 'center', color: 'var(--text-primary)' }}>({S}, {T})</td>
                 </tr>
                 <tr>
-                  <th style={{ padding: 6, border: '1px solid #27324a', color: '#93a1b5' }}>我背叛</th>
+                  <th style={{ padding: 6, border: '1px solid #27324a', color: LABEL.color }}>我背叛</th>
                   <td style={{ padding: 6, border: '1px solid #27324a', textAlign: 'center', color: 'var(--text-primary)' }}>({T}, {S})</td>
                   <td style={{ padding: 6, border: '1px solid #27324a', textAlign: 'center', color: 'var(--text-primary)' }}>({P}, {P})</td>
                 </tr>

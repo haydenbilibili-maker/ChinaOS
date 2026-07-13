@@ -2,6 +2,7 @@ import { PageHeader } from '../../app/ui.jsx';
 import HeshanNav from '../shared/HeshanNav.jsx';
 import HeshanReformPanel from './HeshanReformPanel.jsx';
 import './heshanReform.css';
+import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 /** 重构山河 · 中国省市行政区划调整建议书 */
 export default function HeshanReformPage() {
@@ -14,6 +15,8 @@ export default function HeshanReformPage() {
       />
       <HeshanNav current="reform" />
       <HeshanReformPanel />
+      <ModuleFooter moduleId="heshanReform" />
+
     </div>
   );
 }

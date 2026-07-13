@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import ZhongchanPanel from './ZhongchanPanel.jsx';
 import './zhongchan.css';
 
@@ -8,13 +8,15 @@ import './zhongchan.css';
  */
 export default function ZhongchanPage() {
   return (
-    <div className="zhongchan-page">
-      <PageHeader
-        badge="GY-08 · 人群画像分层"
-        title="中产"
-        subtitle="质押态进程 · 三张折价的凭证"
-      />
+    <GySliceShell
+      badge="GY-08 · 人群画像分层"
+      title="中产"
+      subtitle="质押态进程 · 三张折价的凭证"
+      appId="zc-app"
+      moduleId="zhongchan"
+      className="zhongchan-page"
+    >
       <ZhongchanPanel />
-    </div>
+    </GySliceShell>
   );
 }

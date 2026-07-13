@@ -147,7 +147,7 @@ export function buildLeaderboard(cohortKey) {
     series: [{
       type: 'bar', barWidth: 14,
       data: list.map((c) => ({ value: c.fit, itemStyle: { color: c.fit >= 90 ? '#10b981' : c.fit >= 85 ? '#22d3ee' : '#e8a317' } })),
-      label: { show: true, position: 'right', color: '#93a1b5', formatter: '{c}' },
+      label: { show: true, position: 'right', color: LABEL.color, formatter: '{c}' },
     }],
   };
 }
@@ -182,9 +182,9 @@ export function buildScheduleHeatmap() {
   return {
     grid: { left: 56, right: 16, top: 16, bottom: 48 },
     tooltip: { position: 'top' },
-    xAxis: { type: 'category', data: slots, axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
-    yAxis: { type: 'category', data: days, axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
-    visualMap: { min: 1, max: 7, calculable: false, orient: 'horizontal', left: 'center', bottom: 0, inRange: { color: ['#1e293b', '#c41e3a', '#e8a317', '#22d3ee'] }, textStyle: { color: '#93a1b5' } },
+    xAxis: { type: 'category', data: slots, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+    yAxis: { type: 'category', data: days, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+    visualMap: { min: 1, max: 7, calculable: false, orient: 'horizontal', left: 'center', bottom: 0, inRange: { color: ['#1e293b', '#c41e3a', '#e8a317', '#22d3ee'] }, textStyle: { color: LABEL.color } },
     series: [{ type: 'heatmap', data, label: { show: true, fontSize: 9, color: '#e8edf6' } }],
   };
 }

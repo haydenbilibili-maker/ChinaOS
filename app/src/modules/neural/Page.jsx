@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ── 技术路线（六条）：原理 / 成熟度 / 应用 / 风险伦理 ────────────────────────
@@ -96,13 +96,13 @@ export default function Page() {
       data: [t.maturity, t.bandwidth, 100 - t.trauma, t.metric[2]].map((v) => ({
         value: v, itemStyle: { color: t.accent, borderRadius: [4, 4, 0, 0] },
       })),
-      label: { show: true, position: 'top', color: '#93a1b5', fontSize: 10 },
+      label: { show: true, position: 'top', color: LABEL.color, fontSize: 10 },
     }],
   }), [t]);
 
   // 路线能力雷达：当前路线 vs 行业均值
   const trackRadar = useMemo(() => ({
-    legend: { top: 0, textStyle: { color: '#93a1b5' }, data: [t.label, '行业均值'] },
+    legend: { top: 0, textStyle: { color: LABEL.color }, data: [t.label, '行业均值'] },
     ...radarOpt(['信号带宽', '通道密度', '佩戴便利', '生物安全', '产业化'], t.metric, { name: t.label, color: t.accent }),
     series: [{
       type: 'radar', data: [
@@ -119,8 +119,8 @@ export default function Page() {
       formatter: (d) => `${d.data[2]}<br/>信号质量 ${d.data[0]} · 创伤风险 ${d.data[1]} · 成熟度 ${d.data[3]}`,
     },
     grid: { left: 48, right: 24, top: 24, bottom: 40 },
-    xAxis: valueY({ name: '信号质量 →', min: 0, max: 100, nameTextStyle: { color: '#93a1b5' } }),
-    yAxis: valueY({ name: '创伤/风险 →', min: 0, max: 100, nameTextStyle: { color: '#93a1b5' } }),
+    xAxis: valueY({ name: '信号质量 →', min: 0, max: 100, nameTextStyle: { color: LABEL.color } }),
+    yAxis: valueY({ name: '创伤/风险 →', min: 0, max: 100, nameTextStyle: { color: LABEL.color } }),
     series: [{
       type: 'scatter',
       symbolSize: (d) => 12 + d[3] * 0.4,
@@ -129,7 +129,7 @@ export default function Page() {
         itemStyle: { color: x.accent, opacity: x.key === track ? 1 : 0.45, borderColor: '#fff', borderWidth: x.key === track ? 1.5 : 0 },
       })),
       label: {
-        show: true, position: 'right', fontSize: 10, color: '#93a1b5',
+        show: true, position: 'right', fontSize: 10, color: LABEL.color,
         formatter: (d) => d.data.value[2],
       },
       markLine: {
@@ -141,10 +141,10 @@ export default function Page() {
 
   // 中美 BCI 实力雷达（双系列内联）
   const cnUsRadar = useMemo(() => ({
-    legend: { top: 0, textStyle: { color: '#93a1b5' }, data: ['美国', '中国'] },
+    legend: { top: 0, textStyle: { color: LABEL.color }, data: ['美国', '中国'] },
     radar: {
       indicator: ['电极材料', '芯片解码', '解码算法', '临床转化', '伦理治理', '产业化'].map((n) => ({ name: n, max: 100 })),
-      axisName: { color: '#93a1b5', fontSize: 10 },
+      axisName: { color: LABEL.color, fontSize: 10 },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       splitArea: { show: false },
@@ -163,7 +163,7 @@ export default function Page() {
   // 临床/产业进展趋势（log 轴：全球 vs 中国试验 + 中国植入案例）
   const trialTrend = useMemo(() => ({
     tooltip: { trigger: 'axis' },
-    legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, data: ['全球临床试验', '中国临床试验', '中国植入案例'] },
+    legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, data: ['全球临床试验', '中国临床试验', '中国植入案例'] },
     grid: { left: 44, right: 16, top: 30, bottom: 24 },
     xAxis: categoryX(TRIAL_YEARS),
     yAxis: logY({ name: '累计（示意）' }),

@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import BinzangPanel from './BinzangPanel.jsx';
 import './binzang.css';
 
@@ -8,13 +8,15 @@ import './binzang.css';
  */
 export default function BinzangPage() {
   return (
-    <div className="binzang-page">
-      <PageHeader
-        badge="GY-46 · 人群画像分层 · 第四批收官"
-        title="殡葬与临终关怀从业者"
-        subtitle="进程回收器 · 系统需要却避而不见"
-      />
+    <GySliceShell
+      badge="GY-46 · 人群画像分层 · 第四批收官"
+      title="殡葬与临终关怀从业者"
+      subtitle="进程回收器 · 系统需要却避而不见"
+      appId="bz-app"
+      moduleId="binzang"
+      className="binzang-page"
+    >
       <BinzangPanel />
-    </div>
+    </GySliceShell>
   );
 }

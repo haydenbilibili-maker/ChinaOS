@@ -22,7 +22,6 @@ export default function DanshenPanel() {
   return (
     <div className="danshen-module-wrap">
       <div
-        id="ds-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

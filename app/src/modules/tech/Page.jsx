@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ---------------------------------------------------------------------------
@@ -110,7 +110,7 @@ export default function Page() {
     series: [{
       type: 'bar', barWidth: 18,
       data: actor.bars.map(([, v]) => v).reverse().map((v) => ({ value: v, itemStyle: { color: actor.accent, borderRadius: 3 } })),
-      label: { show: true, position: 'right', formatter: '{c}%', color: '#93a1b5', fontSize: 10 },
+      label: { show: true, position: 'right', formatter: '{c}%', color: LABEL.color, fontSize: 10 },
     }],
   }), [actor]);
 
@@ -122,7 +122,7 @@ export default function Page() {
   const rdTrend = useMemo(() => ({
     grid: { left: 56, right: 44, top: 30, bottom: 24 },
     tooltip: { trigger: 'axis' },
-    legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 11 }, data: ['R&D 经费 (亿元)', 'R&D 强度 (%GDP)'] },
+    legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 11 }, data: ['R&D 经费 (亿元)', 'R&D 强度 (%GDP)'] },
     xAxis: categoryX(RD_YEARS),
     yAxis: [valueY({ name: '亿元' }), valueY({ name: '%', min: 1.5, max: 3, splitLine: { show: false } })],
     series: [
@@ -139,7 +139,7 @@ export default function Page() {
     series: [{
       type: 'bar', barWidth: 16,
       data: [77.7, 6.9, 90, domain === 'ai' ? 88 : 85].map((v) => ({ value: v, itemStyle: { color: d.accent, borderRadius: 3 } })),
-      label: { show: true, position: 'right', formatter: '{c}%', color: '#93a1b5', fontSize: 10 },
+      label: { show: true, position: 'right', formatter: '{c}%', color: LABEL.color, fontSize: 10 },
     }],
   }), [domain, d]);
 
@@ -151,7 +151,7 @@ export default function Page() {
   const intlBar = useMemo(() => ({
     grid: { ...GRID, top: 30 },
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-    legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 11 } },
+    legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 11 } },
     xAxis: categoryX(['中国', '美国', '日本', '德国', '韩国']),
     yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
     series: [
@@ -164,7 +164,7 @@ export default function Page() {
   const outputBar = useMemo(() => ({
     grid: { left: 48, right: 48, top: 30, bottom: 24 },
     tooltip: { trigger: 'axis' },
-    legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 11 } },
+    legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 11 } },
     xAxis: categoryX(['2016', '2018', '2020', '2022', '2024']),
     yAxis: [valueY({ name: '千件 / 家' }), valueY({ name: '%', max: 40, splitLine: { show: false } })],
     series: [
@@ -177,10 +177,10 @@ export default function Page() {
   /** 创新体系效能雷达 · 中国 vs 创新强国均值（双系列 · 自写内联 option） */
   const effRadar = useMemo(() => ({
     tooltip: {},
-    legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 11 } },
+    legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 11 } },
     radar: {
       indicator: ['投入强度', '产出质量', '转化效率', '企业主体性', '人才储备', '开放合作'].map((n) => ({ name: n, max: 100 })),
-      axisName: { color: '#93a1b5', fontSize: 10 },
+      axisName: { color: LABEL.color, fontSize: 10 },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       splitArea: { show: false },
@@ -221,7 +221,7 @@ export default function Page() {
     series: [{
       type: 'bar', barWidth: 18,
       data: FUNNEL.map(([, v, c]) => ({ value: v, itemStyle: { color: c, borderRadius: 3, opacity: 0.9 } })).reverse(),
-      label: { show: true, position: 'right', formatter: '{c} / 100', color: '#93a1b5', fontSize: 10 },
+      label: { show: true, position: 'right', formatter: '{c} / 100', color: LABEL.color, fontSize: 10 },
     }],
   }), []);
 
@@ -229,7 +229,7 @@ export default function Page() {
   const hteTrend = useMemo(() => ({
     grid: { left: 56, right: 24, top: 30, bottom: 24 },
     tooltip: { trigger: 'axis' },
-    legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 11 } },
+    legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 11 } },
     xAxis: categoryX(HTE_YEARS),
     yAxis: logY({ name: '家 (log)' }),
     series: [

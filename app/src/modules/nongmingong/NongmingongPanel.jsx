@@ -22,7 +22,6 @@ export default function NongmingongPanel() {
   return (
     <div className="nongmingong-module-wrap">
       <div
-        id="nm-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

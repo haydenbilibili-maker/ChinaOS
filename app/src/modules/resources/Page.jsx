@@ -108,7 +108,7 @@ const dependencyOverviewBar = {
       label: { formatter: '70% 安全警戒线', color: '#c41e3a', fontSize: 10, position: 'insideEndTop' },
       data: [{ yAxis: 70 }],
     },
-    label: { show: true, position: 'top', formatter: '{c}%', color: '#93a1b5', fontSize: 10 },
+    label: { show: true, position: 'top', formatter: '{c}%', color: LABEL.color, fontSize: 10 },
   }],
 };
 
@@ -126,11 +126,11 @@ const equityGapBar = stackedBarOpt({
 const resilienceTrend = {
   grid: GRID,
   tooltip: { trigger: 'axis' },
-  legend: { bottom: 0, textStyle: { color: '#93a1b5', fontSize: 10 } },
+  legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
   xAxis: categoryX(['2008', '2012', '2016', '2020', '2024', '2030E']),
   yAxis: valueY({ max: 100, axisLabel: { formatter: '{value}' } }),
   series: [
-    { name: '纯进口依赖指数', type: 'line', smooth: true, data: [88, 82, 75, 60, 48, 35], lineStyle: { color: '#93a1b5', type: 'dashed' }, itemStyle: { color: '#93a1b5' } },
+    { name: '纯进口依赖指数', type: 'line', smooth: true, data: [88, 82, 75, 60, 48, 35], lineStyle: { color: LABEL.color, type: 'dashed' }, itemStyle: { color: LABEL.color } },
     { name: '海外权益+冶炼覆盖', type: 'line', smooth: true, data: [8, 18, 32, 55, 78, 95], lineStyle: { color: '#22d3ee', width: 3 }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.08)' } },
     { name: '战略储备天数指数', type: 'line', smooth: true, data: [20, 30, 42, 55, 68, 82], lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' } },
   ],
@@ -152,7 +152,7 @@ const regionBar = {
   series: [{
     type: 'bar', barWidth: 30,
     data: REGIONS.map((r) => ({ value: r.weight, itemStyle: { color: r.accent, borderRadius: 3 } })),
-    label: { show: true, position: 'top', formatter: '{c}%', color: '#93a1b5', fontSize: 10 },
+    label: { show: true, position: 'top', formatter: '{c}%', color: LABEL.color, fontSize: 10 },
   }],
 };
 
@@ -160,11 +160,11 @@ const chokeBar = {
   grid: { left: 80, right: 30, top: 12, bottom: 16 },
   tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
   xAxis: valueY({ max: 100, axisLabel: { formatter: '{value}%' } }),
-  yAxis: { type: 'category', data: [...CHOKEPOINTS].reverse().map((c) => c.name), axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+  yAxis: { type: 'category', data: [...CHOKEPOINTS].reverse().map((c) => c.name), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
   series: [{
     type: 'bar', barWidth: 16,
     data: [...CHOKEPOINTS].reverse().map((c) => ({ value: c.share, itemStyle: { color: c.accent, borderRadius: 3 } })),
-    label: { show: true, position: 'right', formatter: '{c}%', color: '#93a1b5', fontSize: 10 },
+    label: { show: true, position: 'right', formatter: '{c}%', color: LABEL.color, fontSize: 10 },
   }],
 };
 
@@ -186,7 +186,7 @@ export default function Page() {
       text: `${c.sources[0][1]}%`, subtext: `首位 · ${c.sources[0][0]}`,
       left: 'center', top: '34%', textAlign: 'center',
       textStyle: { color: c.accent, fontSize: 22, fontWeight: 700 },
-      subtextStyle: { color: '#93a1b5', fontSize: 10 },
+      subtextStyle: { color: LABEL.color, fontSize: 10 },
     };
     return opt;
   }, [c]);

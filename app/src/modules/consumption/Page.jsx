@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
-import { categoryX, valueY, GRID, LEGEND, stackedBarOpt, radarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, LEGEND, stackedBarOpt, radarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 
 // ============================================================================
 // 扩大内需 · 消费 —— 从投资驱动转向消费主拉动的结构再平衡
@@ -25,7 +25,7 @@ const finalConsumeOpt = {
       { value: 66, itemStyle: { color: '#64748b' } },
       { value: 82, itemStyle: { color: '#64748b' } },
     ],
-    label: { show: true, position: 'top', color: '#93a1b5', formatter: '{c}%' },
+    label: { show: true, position: 'top', color: LABEL.color, formatter: '{c}%' },
   }],
 };
 

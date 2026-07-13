@@ -22,7 +22,6 @@ export default function FunvPanel() {
   return (
     <div className="funv-module-wrap">
       <div
-        id="fn-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
-import { categoryX, valueY, GRID, radarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, radarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 
 // ============================================================================
 // 未来产业 · 前沿赛道布局 —— 比新质生产力更前沿的「种子期」聚焦
@@ -68,8 +68,8 @@ const investOpt = {
   series: [{
     type: 'bar', barWidth: 30, data: [100, 142, 198, 235, 420],
     itemStyle: { color: '#8b5cf6', borderRadius: [3, 3, 0, 0] },
-    label: { show: true, position: 'top', color: '#93a1b5', formatter: '{c}' },
-    markLine: { silent: true, data: [{ yAxis: 200, label: { formatter: '倍增基线', color: '#93a1b5' }, lineStyle: { color: '#e8a317', type: 'dashed' } }] },
+    label: { show: true, position: 'top', color: LABEL.color, formatter: '{c}' },
+    markLine: { silent: true, data: [{ yAxis: 200, label: { formatter: '倍增基线', color: LABEL.color }, lineStyle: { color: '#e8a317', type: 'dashed' } }] },
   }],
 };
 
@@ -77,8 +77,8 @@ const investOpt = {
 const maturityOpt = {
   grid: { left: 44, right: 24, top: 24, bottom: 40 },
   tooltip: { trigger: 'item', formatter: (p) => `${p.data[2]}<br/>成熟度 TRL ${p.data[0]} · 潜力 ${p.data[1]}` },
-  xAxis: { type: 'value', name: 'TRL 成熟度', min: 2, max: 8, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5' }, nameTextStyle: { color: '#5b6a82' } },
-  yAxis: { type: 'value', name: '市场潜力', min: 40, max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: '#93a1b5' }, nameTextStyle: { color: '#5b6a82' } },
+  xAxis: { type: 'value', name: 'TRL 成熟度', min: 2, max: 8, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color }, nameTextStyle: { color: '#5b6a82' } },
+  yAxis: { type: 'value', name: '市场潜力', min: 40, max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color }, nameTextStyle: { color: '#5b6a82' } },
   series: [{
     type: 'scatter', symbolSize: (d) => d[3],
     data: [
@@ -89,7 +89,7 @@ const maturityOpt = {
       [4, 72, '脑机接口', 30, '#e8a317'],
       [6, 85, '新型储能/氢', 38, '#fb923c'],
     ].map((d) => ({ value: d, itemStyle: { color: d[4] } })),
-    label: { show: true, formatter: (p) => p.data.value[2], position: 'top', color: '#93a1b5', fontSize: 10 },
+    label: { show: true, formatter: (p) => p.data.value[2], position: 'top', color: LABEL.color, fontSize: 10 },
   }],
 };
 

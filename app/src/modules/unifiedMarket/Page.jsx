@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
-import { categoryX, valueY, GRID, radarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, radarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 
 // ============================================================================
 // 全国统一大市场 · 破除地方保护与市场分割 —— 制度型开放的内部底座
@@ -19,7 +19,7 @@ const fragOpt = {
   series: [{
     type: 'line', smooth: true, data: [0.92, 0.86, 0.80, 0.78, 0.72, 0.68],
     lineStyle: { color: '#e8a317', width: 2 }, areaStyle: { color: 'rgba(232,163,23,0.1)' },
-    markLine: { silent: true, data: [{ yAxis: 0.6, label: { formatter: '统一市场目标', color: '#93a1b5' }, lineStyle: { color: '#10b981', type: 'dashed' } }] },
+    markLine: { silent: true, data: [{ yAxis: 0.6, label: { formatter: '统一市场目标', color: LABEL.color }, lineStyle: { color: '#10b981', type: 'dashed' } }] },
   }],
 };
 
@@ -32,7 +32,7 @@ const barrierOpt = {
     type: 'bar', barWidth: 14,
     data: [78, 72, 45, 68, 52, 58],
     itemStyle: { color: (p) => ['#c41e3a', '#e8a317', '#10b981', '#8b5cf6', '#22d3ee', '#fb923c'][p.dataIndex] },
-    label: { show: true, position: 'right', color: '#93a1b5' },
+    label: { show: true, position: 'right', color: LABEL.color },
   }],
 };
 

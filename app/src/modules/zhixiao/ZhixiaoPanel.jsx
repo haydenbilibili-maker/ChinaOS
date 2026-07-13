@@ -22,7 +22,6 @@ export default function ZhixiaoPanel() {
   return (
     <div className="zhixiao-module-wrap">
       <div
-        id="zx-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

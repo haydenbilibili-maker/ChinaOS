@@ -22,7 +22,6 @@ export default function BianjiangPanel() {
   return (
     <div className="bianjiang-module-wrap">
       <div
-        id="bj-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

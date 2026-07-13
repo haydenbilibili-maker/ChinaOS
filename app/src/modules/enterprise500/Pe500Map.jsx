@@ -1,3 +1,4 @@
+import { AXIS, LABEL } from '../shared/chartHelpers.js';
 import React, { useEffect, useRef, useState } from 'react';
 import * as echarts from 'echarts';
 import DataBus from '../../lib/data/DataBus.js';
@@ -106,7 +107,7 @@ export default function Pe500Map({
         bottom: 8,
         calculable: true,
         inRange: { color: ['#141c2b', '#7c2d12', '#fb923c', '#fde68a'] },
-        textStyle: { color: '#93a1b5', fontSize: 10 },
+        textStyle: { color: LABEL.color, fontSize: 10 },
         text: ['高', '低'],
       },
       series: [{

@@ -54,11 +54,11 @@ const heatBarOpt = () => ({
   grid: { left: 86, right: 28, top: 8, bottom: 16 },
   tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: '{b}: 威胁热度 {c} · 示意' },
   xAxis: valueY({ max: 100 }),
-  yAxis: { type: 'category', data: [...DOMAINS].reverse().map((d) => d.label), axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
+  yAxis: { type: 'category', data: [...DOMAINS].reverse().map((d) => d.label), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
   series: [{
     type: 'bar', barWidth: 13,
     data: [...DOMAINS].reverse().map((d) => ({ value: d.heat, itemStyle: { color: d.accent, borderRadius: [0, 3, 3, 0] } })),
-    label: { show: true, position: 'right', formatter: '{c}', color: '#93a1b5', fontSize: 10 },
+    label: { show: true, position: 'right', formatter: '{c}', color: LABEL.color, fontSize: 10 },
   }],
 });
 
@@ -76,7 +76,7 @@ const grainChart = () => ({
   yAxis: valueY({ max: 110, axisLabel: { formatter: '{value}%' } }),
   series: [{ type: 'bar', data: [100, 95, 15, 30], barWidth: 28,
     itemStyle: { color: (p) => ['#10b981', '#10b981', '#c41e3a', '#e8a317'][p.dataIndex], borderRadius: [3, 3, 0, 0] },
-    label: { show: true, position: 'top', formatter: '{c}%', color: '#93a1b5' } }],
+    label: { show: true, position: 'top', formatter: '{c}%', color: LABEL.color } }],
 });
 
 const sprChart = () => ({
@@ -110,11 +110,11 @@ const tensionGaugeOpt = (val) => ({
     center: ['50%', '60%'], radius: '92%',
     axisLine: { lineStyle: { width: 14, color: [[0.4, '#22d3ee'], [0.6, '#e8a317'], [1, '#c41e3a']] } },
     pointer: { width: 5, itemStyle: { color: '#e2e8f0' } },
-    axisTick: { distance: -14, length: 5, lineStyle: { color: '#27324a' } },
-    splitLine: { distance: -14, length: 14, lineStyle: { color: '#27324a' } },
+    axisTick: { distance: -14, length: 5, lineStyle: { color: AXIS.lineStyle.color } },
+    splitLine: { distance: -14, length: 14, lineStyle: { color: AXIS.lineStyle.color } },
     axisLabel: { distance: 18, color: '#5b6a82', fontSize: 9,
       formatter: (v) => (v === 0 ? '发展' : v === 100 ? '安全' : '') },
-    detail: { valueAnimation: true, formatter: '安全权重 {value}', color: '#93a1b5', fontSize: 12, offsetCenter: [0, '36%'] },
+    detail: { valueAnimation: true, formatter: '安全权重 {value}', color: LABEL.color, fontSize: 12, offsetCenter: [0, '36%'] },
     data: [{ value: val }],
   }],
 });

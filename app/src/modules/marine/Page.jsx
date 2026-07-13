@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ── 海洋产业七支柱：规模 / 全球地位 / 卡位与痛点 ──────────────────────
@@ -80,7 +80,7 @@ const gopShareTrend = {
 const shipCompare = {
   grid: { left: 44, right: 16, top: 30, bottom: 24 },
   tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, valueFormatter: (v) => `${v}%` },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 } },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
   xAxis: categoryX(['造船完工量', '新接订单量', '手持订单量']),
   yAxis: valueY({ max: 100, axisLabel: { formatter: '{value}%' } }),
   series: [
@@ -116,12 +116,12 @@ const seaPowerRadar = {
       { name: '远洋渔业', max: 100 }, { name: '海工装备', max: 100 },
       { name: '港口枢纽', max: 100 }, { name: '海军投送', max: 100 },
     ],
-    axisName: { color: '#93a1b5', fontSize: 10 },
+    axisName: { color: LABEL.color, fontSize: 10 },
     splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
     axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
     splitArea: { show: false },
   },
-  legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 } },
+  legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
   series: [{
     type: 'radar',
     data: [

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, GRID, LEGEND } from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, LEGEND, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ============================================================================
@@ -142,7 +142,7 @@ export default function Page() {
   const nc = NORM_CASES[normIdx];
 
   const cultureRadar = useMemo(() => ({
-    radar: { indicator: RADAR_IND, axisName: { color: '#93a1b5', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
+    radar: { indicator: RADAR_IND, axisName: { color: LABEL.color, fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
     series: [{ type: 'radar', data: [{ value: cu.radar, name: cu.role, lineStyle: { color: cu.accent, width: 2 }, itemStyle: { color: cu.accent }, areaStyle: { color: 'rgba(196,30,58,0.1)' } }] }],
   }), [c]);
 
@@ -160,7 +160,7 @@ export default function Page() {
 
   const compareRadar = useMemo(() => ({
     legend: { ...LEGEND, top: 0, data: ['现实主义', '建构主义'] },
-    radar: { indicator: COMPARE_IND, radius: '62%', center: ['50%', '56%'], axisName: { color: '#93a1b5', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
+    radar: { indicator: COMPARE_IND, radius: '62%', center: ['50%', '56%'], axisName: { color: LABEL.color, fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
     series: [{
       type: 'radar',
       data: [

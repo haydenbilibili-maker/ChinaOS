@@ -68,10 +68,10 @@ const SWITCHES = [
 const NESTED = {
   grid: { left: 90, right: 40, top: 10, bottom: 24 },
   xAxis: { type: 'value', name: '年', nameTextStyle: { color: '#5b6a82' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
-  yAxis: { type: 'category', data: ['基钦(库存)', '朱格拉(设备)', '库兹涅茨(建筑)', '康波(长波)'], axisLine: { lineStyle: { color: '#27324a' } } },
+  yAxis: { type: 'category', data: ['基钦(库存)', '朱格拉(设备)', '库兹涅茨(建筑)', '康波(长波)'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
   series: [{ type: 'bar', data: [3.5, 9, 20, 55], barWidth: 16,
     itemStyle: { borderRadius: 3, color: (p) => ['#64748b', '#22d3ee', '#e8a317', '#c41e3a'][p.dataIndex] },
-    label: { show: true, position: 'right', formatter: '{c} 年', color: '#93a1b5' } }],
+    label: { show: true, position: 'right', formatter: '{c} 年', color: LABEL.color } }],
 };
 
 const NOW_YEAR = 2024;
@@ -94,7 +94,7 @@ const SEED_OPT = {
   series: [{
     type: 'bar', barWidth: 14, data: SEEDS.map((s) => s.score).reverse(),
     itemStyle: { borderRadius: 3, color: (p) => SEEDS[SEEDS.length - 1 - p.dataIndex].color },
-    label: { show: true, position: 'right', formatter: '{c}', color: '#93a1b5', fontSize: 10 },
+    label: { show: true, position: 'right', formatter: '{c}', color: LABEL.color, fontSize: 10 },
     markLine: { silent: true, symbol: 'none', data: [{ xAxis: 60, label: { formatter: '产业化门槛 60', color: '#e8a317', position: 'insideEndTop' }, lineStyle: { color: '#e8a317', type: 'dashed' } }] },
   }],
 };
@@ -115,13 +115,13 @@ export default function Page() {
     const seasonColors = ['rgba(16,185,129,0.10)', 'rgba(232,163,23,0.10)', 'rgba(196,30,58,0.10)', 'rgba(100,116,139,0.12)'];
     const seasonNames = ['春', '夏', '秋', '冬'];
     const areas = seasonNames.map((nm, i) => [
-      { xAxis: w.from + span * i, itemStyle: { color: seasonColors[i] }, label: { show: true, formatter: nm, color: '#93a1b5', position: 'insideTop' } },
+      { xAxis: w.from + span * i, itemStyle: { color: seasonColors[i] }, label: { show: true, formatter: nm, color: LABEL.color, position: 'insideTop' } },
       { xAxis: w.from + span * (i + 1) },
     ]);
     return {
       grid: { left: 30, right: 16, top: 24, bottom: 28 },
       tooltip: { trigger: 'axis', formatter: (p) => `${p[0].axisValue} 年` },
-      xAxis: { type: 'value', min: 1775, max: 2055, interval: 40, axisLabel: { formatter: (v) => String(v), color: '#5b6a82' }, axisLine: { lineStyle: { color: '#27324a' } } },
+      xAxis: { type: 'value', min: 1775, max: 2055, interval: 40, axisLabel: { formatter: (v) => String(v), color: '#5b6a82' }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
       yAxis: { type: 'value', min: -1.4, max: 1.4, axisLabel: { show: false }, splitLine: { show: false } },
       series: [{
         type: 'line', smooth: true, symbol: 'none', data: pts,
@@ -163,8 +163,8 @@ export default function Page() {
     const opt = {
       grid: { left: 36, right: 16, top: 30, bottom: 26 },
       tooltip: { trigger: 'axis', valueFormatter: (v) => (typeof v === 'number' ? v.toFixed(2) : v) },
-      legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 }, itemWidth: 12 },
-      xAxis: { type: 'value', min: SIM_YEAR, max: SIM_YEAR + 20, interval: 4, axisLabel: { formatter: (v) => String(v), color: '#5b6a82' }, axisLine: { lineStyle: { color: '#27324a' } } },
+      legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 12 },
+      xAxis: { type: 'value', min: SIM_YEAR, max: SIM_YEAR + 20, interval: 4, axisLabel: { formatter: (v) => String(v), color: '#5b6a82' }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
       yAxis: { type: 'value', min: -2.2, max: 2.2, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } }, axisLabel: { color: '#5b6a82', fontSize: 10 } },
       series: [
         ...cyc.map((c, i) => ({ name: c.name, type: 'line', smooth: true, symbol: 'none', data: parts[i], lineStyle: { color: c.color, width: 1, opacity: 0.45, type: 'dashed' } })),

@@ -22,7 +22,6 @@ export default function ZhongnvPanel() {
   return (
     <div className="zhongnv-module-wrap">
       <div
-        id="zn-app"
         ref={rootRef}
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ──────────────────────────────────────────────────────────────────────────
@@ -87,7 +87,7 @@ export default function Page() {
   const shareCompare = useMemo(() => ({
     grid: { left: 44, right: 16, top: 30, bottom: 24 },
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: (p) => p.map((x) => `${x.seriesName}: ${x.value}%`).join('<br/>') },
-    legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 } },
+    legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
     xAxis: categoryX(MODES.map((x) => x.label)),
     yAxis: valueY({ name: '%' }),
     series: [
@@ -107,7 +107,7 @@ export default function Page() {
   const costRatio = useMemo(() => ({
     grid: { left: 40, right: 16, top: 30, bottom: 24 },
     tooltip: { trigger: 'axis', valueFormatter: (v) => `${v}%` },
-    legend: { top: 0, textStyle: { color: '#93a1b5', fontSize: 10 } },
+    legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
     xAxis: categoryX(COST_RATIO_YEARS, { rotate: 24 }),
     yAxis: valueY({ name: '% of GDP' }),
     series: [
@@ -136,7 +136,7 @@ export default function Page() {
         { value: 12, itemStyle: { color: '#e8a317' } },
         { value: 8, itemStyle: { color: '#a78bfa' } },
       ],
-      label: { show: true, position: 'top', color: '#93a1b5', fontSize: 10 } }],
+      label: { show: true, position: 'top', color: LABEL.color, fontSize: 10 } }],
   }), []);
 
   // 物流效率雷达（随模式切换，单系列 radarOpt）

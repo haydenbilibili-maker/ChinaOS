@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import GySliceShell from '../shared/gy/GySliceShell.jsx';
 import GongyiPanel from './GongyiPanel.jsx';
 import './gongyi.css';
 
@@ -11,13 +11,15 @@ import './gongyi.css';
  */
 export default function GongyiPage() {
   return (
-    <div className="gongyi-page">
-      <PageHeader
-        badge="GY-56 · 人群画像分层"
-        title="工程移民与生态移民"
-        subtitle="被整体迁移的进程集群 · 物理重定位易，社会融合难"
-      />
+    <GySliceShell
+      badge="GY-56 · 人群画像分层"
+      title="工程移民与生态移民"
+      subtitle="被整体迁移的进程集群 · 物理重定位易，社会融合难"
+      appId="gc-app"
+      moduleId="gongyi"
+      className="gongyi-page"
+    >
       <GongyiPanel />
-    </div>
+    </GySliceShell>
   );
 }
