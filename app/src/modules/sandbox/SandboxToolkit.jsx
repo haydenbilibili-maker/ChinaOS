@@ -5,6 +5,7 @@ import EChart from '../../lib/viz/EChart.jsx';
 import { TOOLS, CRISIS_DOMAINS, mitigatedImpact, compositeImpact, buildCrisisReport } from './crisisData.js';
 import { HANDONG_TOOLS, HANDONG_DOMAINS } from './handongScenarios.js';
 import { handongMitigatedImpact, handongComposite } from './handongEngine.js';
+import { AXIS, LABEL } from '../shared/chartHelpers.js';
 
 /**
  * 四件套复用组件：政策资源配置器 · 复合危机叠加 · 应对小组 · 治理报告

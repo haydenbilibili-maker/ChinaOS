@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { CrossLinks, PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, GRID, LEGEND } from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, AXIS, LABEL, LEGEND } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ============================================================================

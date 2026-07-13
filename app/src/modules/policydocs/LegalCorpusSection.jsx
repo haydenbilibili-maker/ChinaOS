@@ -4,6 +4,7 @@ import { Card, Grid, Stat } from '../../app/ui.jsx';
 import { IntroCard, FrameworkTrio } from '../shared/ModuleParadigm.jsx';
 import DocumentViewer, { ReadDocumentButton } from '../shared/DocumentViewer.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
+import { AXIS, LABEL } from '../shared/chartHelpers.js';
 import { useLegalStatutes } from '../../lib/db/useDataset.js';
 import { hasEmbeddedBody } from '../../lib/doc/documentContent.js';
 import { loadLegalCorpusManifest, corpusListBadge } from '../../lib/doc/legalCorpus.js';

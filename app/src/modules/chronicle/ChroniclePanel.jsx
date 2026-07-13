@@ -5,6 +5,7 @@ import { Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { AS_OF, ERAS, DOMAINS, EVENTS } from './data.js';
+import { AXIS, LABEL } from '../shared/chartHelpers.js';
 
 const AXIS_LABEL = { color: LABEL.color, fontSize: 10 };
 const SPLIT_LINE = { lineStyle: { color: 'rgba(148,163,184,0.1)' } };

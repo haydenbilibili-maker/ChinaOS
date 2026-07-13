@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
-import { categoryX, valueY, GRID, LEGEND, stackedBarOpt, radarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, stackedBarOpt, radarOpt, AXIS, LABEL, LEGEND } from '../shared/chartHelpers.js';
 
 // ============================================================================
 // 服务贸易 · 数字贸易 / 服贸会 / 知识密集型出口

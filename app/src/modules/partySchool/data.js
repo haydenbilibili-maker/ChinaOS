@@ -3,7 +3,7 @@
 // asOf: 2026-06-11 · 教学用途示意，非真实组织系统
 // ============================================================================
 
-import { categoryX, valueY, GRID, LEGEND, radarOpt, donutOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, radarOpt, donutOpt, AXIS, LABEL, LEGEND } from '../shared/chartHelpers.js';
 
 export const AS_OF = '2026-06-11';
 

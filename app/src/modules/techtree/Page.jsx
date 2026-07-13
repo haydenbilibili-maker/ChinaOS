@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { getTheme, subscribeTheme } from '../../lib/theme.js';
-import { usFlagBlue, usFlagBlueAlpha } from '../shared/chartHelpers.js';
+import { usFlagBlue, usFlagBlueAlpha, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { DOMAINS, TIER_LABEL } from './domains.js';
 import { TECH_AS_OF, CHAIN_OF, NECK_ITEMS, MILESTONES, SCORECARD, DEPENDS, propagateRisk, simTech, buildTechReport } from './techDeep.js';

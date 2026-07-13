@@ -4,10 +4,7 @@
 // 口径：公开信息梳理 · 学理分析框架 · 非评价 · 非预测 · 非倡导
 // ============================================================================
 
-import {
-  categoryX, valueY, GRID, GRID_WIDE, LEGEND, CHART_TOOLTIP,
-  donutOpt, stackedBarOpt, timelineMarkAreaOpt,
-} from '../shared/chartHelpers.js';
+import { categoryX, valueY, GRID, GRID_WIDE, CHART_TOOLTIP, donutOpt, stackedBarOpt, timelineMarkAreaOpt, AXIS, LABEL, LEGEND } from '../shared/chartHelpers.js';
 
 export { LEAD_AS_OF, LEAD_DISCLAIMER, ERA_TIMELINE, TERM_SYSTEM, GOV_MODEL, BRAIN_TRUST, AGENDA, TRADEOFFS, agendaById, eraStagesForTimeline } from './leadershipData.js';
 
