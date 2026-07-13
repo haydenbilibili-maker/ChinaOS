@@ -41,6 +41,7 @@ export default function App() {
           <Route path="legal-statutes" element={<Navigate to="/policydocs?tab=legal" replace />} />
           <Route path="chronicle" element={<Navigate to="/modules/guoyun?tab=timeline" replace />} />
           <Route path="modules/yishixingtai-jiagou" element={<Navigate to="/modules/yishixingtai" replace />} />
+          <Route path="modules/signal-dashboard" element={<Navigate to="/modules/signal-panel" replace />} />
           <Route path="*" element={<Navigate to={DEFAULT_MODULE.path} replace />} />
         </Route>
       </Routes>

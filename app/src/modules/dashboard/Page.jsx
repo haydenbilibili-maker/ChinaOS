@@ -30,6 +30,7 @@ import {
 import NewsMarquee from './NewsMarquee.jsx';
 import LiveStreamsSection from './LiveStreamsSection.jsx';
 import LiveChinaMap from './LiveChinaMap.jsx';
+import GovernanceVerdict from '../governance/GovernanceVerdict.jsx';
 
 function Icon({ name, size = 16 }) {
   const Cmp = Lucide[name] || Lucide.Square;
@@ -778,6 +779,10 @@ export default function DashboardPage() {
         </div>
 
         <MacroH1Strip />
+
+        <div className="mt-5">
+          <GovernanceVerdict />
+        </div>
 
         {/* 时政要闻 · 主流媒体 RSS 跑马灯 */}
         <NewsMarquee />

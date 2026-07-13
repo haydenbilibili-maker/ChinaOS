@@ -154,5 +154,31 @@ export const PREMIER_RADIUS_THESIS =
   '——真正的问题不是「中国该怎么改」（药方人人会开），' +
   '而是「在一个诊断权与处方权已经分离的治理结构里，改革如何才可能发生」。';
 
+/** 宏观信号灯读数：green=政策向好（已启动），与三力 ForceLevel 语义相反 */
+export type SignalStatus = 'red' | 'amber' | 'green';
+
+/**
+ * 三力压力读数：near=窗口逼近（高压=好事，改革更近），calm=沉寂。
+ * ⚠ 与 SignalStatus 方向相反——勿将 near 着色为「坏消息」。
+ */
+export type ForceLevel = 'calm' | 'build' | 'near';
+
+/** 宏观再平衡态势合成 */
+export type Regime = 'defense' | 'watch' | 'offense';
+
+/** 改革窗口临近度分段 */
+export type Proximity = 'quiet' | 'building' | 'imminent';
+
+export const SIGNAL_STORAGE_KEY = 'chinaos.signals.v1';
+export const THREE_FORCES_STORAGE_KEY = 'chinaos.threeforces.v1';
+
 export const ATTRIBUTION_ROUTE = '/modules/attribution';
 export const PREMIER_RADIUS_ROUTE = '/modules/premier-radius';
+export const SIGNAL_PANEL_ROUTE = '/modules/signal-panel';
+export const THREE_FORCES_ROUTE = '/modules/three-forces';
+
+/** 信号卡与三层归因议题的跨模块联动 */
+export interface SignalAttributionLink {
+  issueId: string;
+  layer: PowerLayer;
+}

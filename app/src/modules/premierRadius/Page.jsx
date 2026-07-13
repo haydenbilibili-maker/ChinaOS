@@ -22,7 +22,7 @@ export default function PremierRadiusPage() {
   return (
     <div className="premier-radius-page">
       <PageHeader
-        badge="推演与训练 · 权限半径"
+        badge="治理结构 · 权限半径"
         title="总理权限半径图谱"
         subtitle="诊断权与处方权分离 · 制度变迁轨迹 · 非能力排序 · 1998—今"
       />

@@ -1,0 +1,125 @@
+.gv-panel.ink-observatory {
+  --ink: #0d1417;
+  --ink-2: #121d21;
+  --hair: #24383d;
+  --io-text: #e7ecea;
+  --io-text-dim: #93a6a4;
+  --io-text-faint: #5f7370;
+  --brass: #b18a52;
+  --brass-dim: #6b5733;
+  --celadon: #79a496;
+  --io-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+
+  background: linear-gradient(180deg, #15242a, #0f1c20);
+  border: 1px solid var(--brass-dim);
+  border-radius: 12px;
+  padding: 18px 20px;
+  color: var(--io-text);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.gv-ey {
+  font-family: var(--io-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--brass);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.gv-title {
+  font-size: clamp(16px, 2.5vw, 20px);
+  font-weight: 700;
+  margin: 0 0 10px;
+  letter-spacing: 0.02em;
+}
+
+.gv-body {
+  margin: 0 0 14px;
+  color: var(--io-text-dim);
+  font-size: 12.5px;
+  max-width: 72ch;
+}
+
+.gv-metrics {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.gv-metric {
+  background: var(--ink-2);
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+  padding: 10px 14px;
+  min-width: 120px;
+}
+
+.gv-m-label {
+  display: block;
+  font-family: var(--io-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--io-text-faint);
+  text-transform: uppercase;
+}
+
+.gv-m-val {
+  display: block;
+  font-family: var(--io-mono);
+  font-size: 26px;
+  font-weight: 600;
+  margin: 4px 0 2px;
+}
+
+.gv-m-sub {
+  font-size: 11px;
+  color: var(--celadon);
+}
+
+.gv-timing {
+  margin: 0 0 12px;
+  font-size: 12px;
+  color: var(--io-text-dim);
+  border-top: 1px dashed var(--hair);
+  padding-top: 12px;
+}
+
+.gv-timing b {
+  color: var(--celadon);
+  font-weight: 500;
+}
+
+.gv-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.gv-links a {
+  font-family: var(--io-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--celadon);
+  text-decoration: none;
+  padding: 4px 8px;
+  border: 1px solid var(--hair);
+  border-radius: 5px;
+  background: var(--ink-2);
+}
+
+.gv-links a:hover {
+  border-color: var(--brass-dim);
+  color: var(--io-text);
+}
+
+.gv-compact .gv-body {
+  display: none;
+}
+
+.gv-compact .gv-timing {
+  font-size: 11px;
+}

@@ -7,7 +7,7 @@ export default function AttributionPage() {
   return (
     <div className="attribution-page">
       <PageHeader
-        badge="推演与训练 · 归因"
+        badge="治理结构 · 归因"
         title="三层归因分析器"
         subtitle="路线 / 决策 / 执行 · 摆对被告席 · 区分「没做成」与「没权做」 · 规则判定非 LLM"
       />
