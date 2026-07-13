@@ -40,6 +40,8 @@
   --space-section: 2.5rem;
   --card-padding: 1.5rem;
   --grid-gap: 1.5rem;
+  --content-max-width: 1280px;
+  --page-padding-x: 2rem;
   --prose-max: 42rem;
   --radius-sm: 6px;
   --radius-md: 10px;
@@ -732,9 +734,86 @@ textarea:focus {
   gap: var(--grid-gap);
 }
 
+/* 响应式栅格 · Grid cols={{ sm, md, lg, xl, 2xl, 3xl }} */
+.os-grid-r {
+  grid-template-columns: repeat(var(--og-cols, 1), minmax(0, 1fr));
+}
+
+@media (min-width: 640px) {
+  .os-grid-r {
+    grid-template-columns: repeat(var(--og-cols-sm, var(--og-cols, 1)), minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
+  .os-grid-r {
+    grid-template-columns: repeat(var(--og-cols-md, var(--og-cols-sm, var(--og-cols, 1))), minmax(0, 1fr));
+  }
+}
+
 @media (min-width: 1024px) {
   :root {
     --grid-gap: 2rem;
+  }
+
+  .os-grid-r {
+    grid-template-columns: repeat(var(--og-cols-lg, var(--og-cols-md, var(--og-cols-sm, var(--og-cols, 1)))), minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .os-grid-r {
+    grid-template-columns: repeat(
+      var(--og-cols-xl, var(--og-cols-lg, var(--og-cols-md, var(--og-cols-sm, var(--og-cols, 1))))),
+      minmax(0, 1fr)
+    );
+  }
+}
+
+@media (min-width: 1536px) {
+  .os-grid-r {
+    grid-template-columns: repeat(
+      var(--og-cols-2xl, var(--og-cols-xl, var(--og-cols-lg, var(--og-cols-md, var(--og-cols-sm, var(--og-cols, 1)))))),
+      minmax(0, 1fr)
+    );
+  }
+}
+
+@media (min-width: 1920px) {
+  .os-grid-r {
+    grid-template-columns: repeat(
+      var(
+        --og-cols-3xl,
+        var(--og-cols-2xl, var(--og-cols-xl, var(--og-cols-lg, var(--og-cols-md, var(--og-cols-sm, var(--og-cols, 1))))))
+      ),
+      minmax(0, 1fr)
+    );
+  }
+}
+
+/* 图表容器 · 满宽 + 最小高度 */
+.os-chart-panel {
+  width: 100%;
+  min-height: 280px;
+}
+
+.os-chart-panel .os-chart {
+  width: 100% !important;
+  min-height: inherit;
+}
+
+.os-chart-row {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+@media (min-width: 1280px) {
+  .os-chart-row {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 2rem;
   }
 }
 
@@ -838,6 +917,30 @@ textarea:focus {
   position: relative;
   z-index: 1;
   animation: os-fade-in 0.38s var(--ease-ink) both;
+}
+
+/* 主内容区 · 随断点放大上限，超宽屏不再左侧扎堆 */
+.os-content-fluid {
+  width: 100%;
+  max-width: min(100%, var(--content-max-width));
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--page-padding-x);
+  padding-right: var(--page-padding-x);
+}
+
+@media (min-width: 1536px) {
+  :root {
+    --content-max-width: 1600px;
+    --page-padding-x: 2.25rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --content-max-width: 1920px;
+    --page-padding-x: 2.5rem;
+  }
 }
 
 .os-section {
@@ -1375,7 +1478,7 @@ textarea:focus {
 }
 
 .dash-screen-grid {
-  /* 看板栅格错落入场 */
+  /* 看板栅格错落入场 · 超宽屏由 Grid cols 响应式对象控制列数 */
 }
 
 .dash-screen-grid.os-section-stagger > * {
@@ -1625,9 +1728,9 @@ textarea:focus {
   -webkit-backdrop-filter: blur(var(--surface-glass-blur));
 }
 .os-site-footer-inner {
-  max-width: 72rem;
+  max-width: min(100%, var(--content-max-width));
   margin: 0 auto;
-  padding: 0.875rem 2rem 1.125rem;
+  padding: 0.875rem var(--page-padding-x) 1.125rem;
   font-size: 11px;
   line-height: 1.55;
   color: var(--text-tertiary);
@@ -1714,7 +1817,9 @@ textarea:focus-visible {
     gap: 0.375rem;
   }
   .os-page-enter {
-    padding: 1.25rem 1rem;
+    --page-padding-x: 1rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
   }
   .os-site-footer-inner {
     padding: 0.75rem 1rem 1rem;
@@ -1803,7 +1908,9 @@ textarea:focus-visible {
     grid-template-columns: 1fr;
   }
   .os-page-enter {
-    padding: 1rem 0.75rem;
+    --page-padding-x: 0.75rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
   .os-site-footer-inner {
     padding: 0.625rem 0.75rem 0.875rem;

@@ -334,7 +334,7 @@ export default function Page() {
         既看清十年攒下的资产，也直面 35 岁这次时钟中断里的迷茫与不适应。口径：本人自述 + 简历公开口径，自画像、仅自用。
       </IntroCard>
 
-      <Grid cols={4} className="mb-8">
+      <Grid cols={{ sm: 2, md: 4 }} className="mb-8">
         <Stat value="1992" label="启动年 · 东辽白泉镇" accent="#c41e3a" />
         <Stat value="7" label="迁居城市 · 含 5 国出海" accent="#22d3ee" />
         <Stat value="10年+" label="泛娱乐出海操盘" accent="#e8a317" />
@@ -347,10 +347,10 @@ export default function Page() {
       </Card>
 
       {/* ② 地理迁徙图 + 红利窗口 */}
-      <Grid cols={2} className="mt-6">
+      <Grid cols={{ sm: 1, lg: 2 }} className="mt-6">
         <Card title="② 地理迁徙轨迹 · 换页路径（真实地图）">
-          <div style={{ position: 'relative' }}>
-            <EChart option={graphOpt} style={{ height: 420 }} />
+          <div className="os-chart-panel" style={{ position: 'relative', minHeight: 420 }}>
+            <EChart option={graphOpt} style={{ height: '100%', minHeight: 420 }} />
             <button
               type="button"
               onClick={() => setMapFull(true)}
@@ -364,7 +364,9 @@ export default function Page() {
           </p>
         </Card>
         <Card title="③ 红利窗口 vs 个人节奏 · 踩在浪上的十年">
-          <EChart option={divOpt} style={{ height: 360 }} />
+          <div className="os-chart-panel" style={{ minHeight: 360 }}>
+            <EChart option={divOpt} style={{ height: '100%', minHeight: 360 }} />
+          </div>
           <p className="text-xs mt-2" style={{ color: 'var(--text-tertiary)', lineHeight: 1.7 }}>
             个人节奏几乎贴着出海红利大势爬升（2018–2021 同步见顶）；2022 窗口收口之后，势退而人未退——这正是回迁与迷茫的时间起点。（示意标定）
           </p>
@@ -373,11 +375,15 @@ export default function Page() {
 
       {/* ④ 多维定位雷达 */}
       <Card title="④ 多维定位 · 出海峰值期 vs 回迁创业期" className="mt-6">
-        <EChart option={radarOpt} style={{ height: 380 }} />
-        <p className="text-xs mt-1" style={{ color: 'var(--text-tertiary)', lineHeight: 1.7 }}>
+        <div className="os-chart-row">
+          <div className="os-chart-panel" style={{ minHeight: 380 }}>
+            <EChart option={radarOpt} style={{ height: '100%', minHeight: 380 }} />
+          </div>
+          <p className="text-xs m-0" style={{ color: 'var(--text-tertiary)', lineHeight: 1.7 }}>
           同一个进程，两个版本：出海期地域跨度/红利/规模拉满、风险敞口低；回迁创业期规模与红利收缩、风险敞口陡升，
           国际化的底子还在，但「本地适应」成了新的短板维度。（自评示意）
-        </p>
+          </p>
+        </div>
       </Card>
 
       {/* ⑤ 能力栈 */}
@@ -446,7 +452,7 @@ export default function Page() {
       </Card>
 
       {/* ⑩ 代际与东北坐标 */}
-      <Grid cols={2} className="mt-6">
+      <Grid cols={{ sm: 1, lg: 2 }} className="mt-6">
         <Card title="⑩ 代际坐标 · 1992 的世代签">
           <div className="space-y-2">
             {GENERATION.map(([t, d]) => (

@@ -23,7 +23,7 @@
 }
 
 .ink-observatory.ob-wrap .ob-inner {
-  max-width: 1200px;
+  max-width: min(100%, var(--content-max-width));
   margin: 0 auto;
 }
 

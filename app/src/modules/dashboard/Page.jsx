@@ -840,21 +840,21 @@ export default function DashboardPage() {
           <h2 className="os-card-title m-0">态势速览</h2>
           <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>// 外交矢量 · 施政基准 · 本地库活数据</span>
         </div>
-        <Grid cols={3} gap="0.85rem" className="dash-screen-grid os-section-stagger">
+        <Grid cols={{ sm: 1, md: 2, lg: 3, '2xl': 4 }} gap="0.85rem" className="dash-screen-grid os-section-stagger">
           <StrategyPulse />
           <PolicyPulse />
           <LiveDbStatus />
         </Grid>
-        <Grid cols={3} gap="0.85rem" className="dash-screen-grid os-section-stagger mt-3">
+        <Grid cols={{ sm: 1, md: 2, lg: 3, '2xl': 4 }} gap="0.85rem" className="dash-screen-grid os-section-stagger mt-3">
           <KondratievClock />
           <RiskRadar />
           <PolicyCalendar />
         </Grid>
-        <Grid cols={2} gap="0.85rem" className="dash-screen-grid os-section-stagger mt-3">
+        <Grid cols={{ sm: 1, lg: 2, '2xl': 3 }} gap="0.85rem" className="dash-screen-grid os-section-stagger mt-3">
           <WatchPulse />
           <ChroniclePulse />
         </Grid>
-        <Grid cols={2} gap="0.85rem" className="dash-screen-grid os-section-stagger mt-3">
+        <Grid cols={{ sm: 1, lg: 2, '2xl': 3 }} gap="0.85rem" className="dash-screen-grid os-section-stagger mt-3">
           <GdeltPulse />
           <PolyPulse />
         </Grid>
@@ -870,7 +870,7 @@ export default function DashboardPage() {
           <h2 className="os-card-title m-0">实时大屏</h2>
           <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>// LIVE · 种子计数</span>
         </div>
-        <Grid cols={3} gap="0.85rem" className="dash-screen-grid os-section-stagger">
+        <Grid cols={{ sm: 1, md: 2, lg: 3, '2xl': 4 }} gap="0.85rem" className="dash-screen-grid os-section-stagger">
           <ScreenCard title="中国政要分层构成" accent="#c41e3a" footer="政治权力队列 · 按层级聚合">
             <EChart option={opt.donut} style={{ height: 230 }} />
           </ScreenCard>

@@ -391,7 +391,7 @@ export default function Shell() {
             </button>
           </div>
         </header>
-        <div key={loc.pathname} className="os-page-enter px-8 py-8 max-w-6xl">
+        <div key={loc.pathname} className="os-page-enter os-content-fluid py-8">
           <Outlet />
         </div>
         <SiteFooter />

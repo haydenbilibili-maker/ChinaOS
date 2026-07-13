@@ -24,7 +24,7 @@
   --io-mono: ui-monospace, 'SF Mono', Menlo, monospace;
   --io-sans: Inter, system-ui, -apple-system, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
 
-  max-width: 1180px;
+  max-width: min(100%, var(--content-max-width));
   margin: 0 auto;
   padding: clamp(16px, 3vw, 24px);
   font-family: var(--io-sans);

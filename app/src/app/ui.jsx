@@ -1,5 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import StatTrend from '../lib/viz/StatTrend.jsx';
+export { default as OsGauge } from '../lib/viz/OsGauge.jsx';
+export { default as OsSparkline } from '../lib/viz/OsSparkline.jsx';
+export { default as StatTrend } from '../lib/viz/StatTrend.jsx';
 
 // 共享 UI 原子：模块页统一用这些，保证视觉一致、避免各模块各写一套。
 
@@ -85,11 +89,15 @@ export function Card({ title, children, className = '', hover = false, asSection
   );
 }
 
-export function Stat({ value, label, accent }) {
+export function Stat({ value, label, accent, sub, trend, trendValue }) {
   return (
     <div className="os-card os-card-lift os-stat-card p-4 text-center" style={{ padding: 'var(--card-padding) 1rem' }}>
-      <div className="os-stat-value mono" style={{ color: accent || 'var(--text-primary)' }}>{value}</div>
+      <div className="flex items-center justify-center gap-1.5 flex-wrap">
+        <div className="os-stat-value mono" style={{ color: accent || 'var(--text-primary)' }}>{value}</div>
+        {trend && <StatTrend direction={trend} value={trendValue} />}
+      </div>
       <div className="os-stat-label">{label}</div>
+      {sub && <div className="text-[10px] mono mt-0.5 leading-snug" style={{ color: 'var(--text-tertiary)' }}>{sub}</div>}
     </div>
   );
 }
@@ -102,14 +110,42 @@ export function StatGrid({ children, className = '', stagger = true }) {
   );
 }
 
+/** @typedef {{ sm?: number; md?: number; lg?: number; xl?: number; '2xl'?: number; '3xl'?: number; default?: number }} ResponsiveCols */
+
+/**
+ * 模块栅格 · 支持固定列数或断点对象
+ * @example <Grid cols={3} />
+ * @example <Grid cols={{ sm: 1, md: 2, lg: 3, '2xl': 4 }} />
+ */
 export function Grid({ cols = 3, children, className = '', gap }) {
   const gapCls = gap ? '' : 'gap-6 md:gap-6 lg:gap-8';
+  const gapStyle = gap ? { gap } : {};
+
+  if (cols && typeof cols === 'object') {
+    const base = cols.default ?? cols.sm ?? 1;
+    const style = {
+      '--og-cols': base,
+      ...(cols.sm != null ? { '--og-cols-sm': cols.sm } : {}),
+      ...(cols.md != null ? { '--og-cols-md': cols.md } : {}),
+      ...(cols.lg != null ? { '--og-cols-lg': cols.lg } : {}),
+      ...(cols.xl != null ? { '--og-cols-xl': cols.xl } : {}),
+      ...(cols['2xl'] != null ? { '--og-cols-2xl': cols['2xl'] } : {}),
+      ...(cols['3xl'] != null ? { '--og-cols-3xl': cols['3xl'] } : {}),
+      ...gapStyle,
+    };
+    return (
+      <div className={`grid os-grid os-grid-r ${gapCls} ${className}`} style={style}>
+        {children}
+      </div>
+    );
+  }
+
   return (
     <div
       className={`grid os-grid ${gapCls} ${className}`}
       style={{
         gridTemplateColumns: `repeat(${cols}, minmax(0,1fr))`,
-        ...(gap ? { gap } : {}),
+        ...gapStyle,
       }}
     >
       {children}

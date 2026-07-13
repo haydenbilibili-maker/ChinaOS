@@ -5,6 +5,12 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
+      screens: {
+        '3xl': '1920px',
+      },
+      maxWidth: {
+        content: 'var(--content-max-width)',
+      },
       colors: {
         china: {
           red: '#C41E3A',
