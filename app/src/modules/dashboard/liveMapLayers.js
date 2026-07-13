@@ -209,7 +209,7 @@ export async function fetchFiscalChoropleth() {
  */
 export function buildOverlaySeries(layerId, ctx) {
   const {
-    theme, isCompact, pulsePhase, STEEL, HOLD,
+    theme, isCompact, STEEL, HOLD,
     quakesState, flightsState,
     buildQuakeSeries, quakeSymbolSize, quakeColor,
     buildFlightSeries,
@@ -265,7 +265,7 @@ export function buildOverlaySeries(layerId, ctx) {
         zlevel: 4,
         data: buildQuakeSeries(quakesState.quakes).map((q) => ({ ...q, itemStyle: { color: quakeColor(q.mag) } })),
         symbolSize: quakeSymbolSize,
-        rippleEffect: { scale: 3.2, brushType: 'stroke', period: 3 },
+        rippleEffect: { scale: 2.4, brushType: 'stroke', period: 4 },
         itemStyle: { shadowBlur: 10, shadowColor: 'rgba(239,68,68,0.5)' },
       }];
 

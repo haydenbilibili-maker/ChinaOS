@@ -29,7 +29,7 @@ export default function LiveMapLayerBar({ layers, activeId, onSelect, accent = '
           >
             <Icon name={l.icon} />
             {l.label}
-            {l.live && <span className="lcm-live-dot" style={{ color: '#ef4444', width: 6, height: 6 }} />}
+            {l.live && <span className="lcm-live-dot" style={{ background: '#ef4444', width: 6, height: 6 }} />}
           </button>
         );
       })}

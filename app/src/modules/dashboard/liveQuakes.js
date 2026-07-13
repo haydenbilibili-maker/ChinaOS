@@ -84,15 +84,20 @@ async function fetchQuakes() {
  * React hook：USGS 地震实况（中国及周边 · 近 30 天 M4.0+）。
  * 模块级缓存 + 定时刷新；任何失败都不抛，仅置 error。
  * @param {number} [refreshMs=900000] 刷新间隔（默认 15 分钟）
+ * @param {boolean} [enabled=true] 图层关闭时不发起请求
  * @returns {{ quakes: QuakeItem[] | null, fetchedAt: Date | null, loading: boolean, error: string | null }}
  */
-export function useLiveQuakes(refreshMs = 900000) {
+export function useLiveQuakes(refreshMs = 900000, enabled = true) {
   const [state, setState] = useState(() => (cache
     ? { quakes: cache.quakes, fetchedAt: new Date(cache.fetchedAt), loading: false, error: null }
-    : { quakes: null, fetchedAt: null, loading: true, error: null }));
+    : { quakes: null, fetchedAt: null, loading: enabled, error: null }));
   const aliveRef = useRef(true);
 
   useEffect(() => {
+    if (!enabled) {
+      setState((s) => ({ ...s, loading: false }));
+      return undefined;
+    }
     aliveRef.current = true;
 
     const load = async (force = false) => {
@@ -137,7 +142,7 @@ export function useLiveQuakes(refreshMs = 900000) {
       aliveRef.current = false;
       clearInterval(timer);
     };
-  }, [refreshMs]);
+  }, [refreshMs, enabled]);
 
   return state;
 }

@@ -75,15 +75,19 @@ async function fetchFlights() {
 }
 
 /** 空情快照 hook：{ flights, fetchedAt, loading, error }，多实例共享缓存 */
-export function useLiveFlights(refreshMs = 600000) {
-  const [state, setState] = useState({ ..._cache, loading: !_cache.flights });
+export function useLiveFlights(refreshMs = 600000, enabled = true) {
+  const [state, setState] = useState({ ..._cache, loading: enabled && !_cache.flights });
   useEffect(() => {
+    if (!enabled) {
+      setState((s) => ({ ...s, loading: false }));
+      return undefined;
+    }
     let alive = true;
     const load = () => fetchFlights().then((c) => { if (alive) setState({ ...c, loading: false }); });
     load();
     const id = setInterval(load, refreshMs);
     return () => { alive = false; clearInterval(id); };
-  }, [refreshMs]);
+  }, [refreshMs, enabled]);
   return state;
 }
 

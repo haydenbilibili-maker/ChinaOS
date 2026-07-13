@@ -984,6 +984,11 @@ textarea:focus {
   min-height: 320px;
   border-radius: var(--radius-md, 8px);
   overflow: hidden;
+  background:
+    radial-gradient(ellipse 85% 55% at 50% 38%, rgba(34, 211, 238, 0.045), transparent 68%),
+    radial-gradient(ellipse 60% 40% at 88% 92%, rgba(212, 175, 55, 0.03), transparent 55%),
+    var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
 }
 
 .live-china-map-canvas--compact {
@@ -1959,30 +1964,10 @@ textarea:focus-visible {
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-/* 2. 地图画布 · 水平扫描光带（容器需相对定位裁剪） */
-.lcm-scan {
-  position: relative;
-  overflow: hidden;
-}
-.lcm-scan::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -20%;
-  height: 18%;
-  background: linear-gradient(180deg, transparent, rgba(34, 211, 238, 0.06), transparent);
-  animation: lcm-scan-y 9s linear infinite;
-  pointer-events: none;
-}
-@keyframes lcm-scan-y {
-  from { top: -20%; }
-  to { top: 120%; }
-}
+/* 2. 地图画布 · 静态水墨底（扫描光带已移除以减 repaint） */
 
-/* 3. 实时圆点 · 同心扩散环，颜色继承 currentColor */
+/* 3. 实时圆点 · 静态指示 */
 .lcm-live-dot {
-  position: relative;
   display: inline-block;
   width: 8px;
   height: 8px;
@@ -1990,17 +1975,8 @@ textarea:focus-visible {
   background: currentColor;
   flex-shrink: 0;
 }
-.lcm-live-dot::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 1px solid currentColor;
-  animation: lcm-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-@keyframes lcm-ping {
-  0% { transform: scale(1); opacity: 0.7; }
-  100% { transform: scale(2.4); opacity: 0; }
+.lcm-live-badge {
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.08);
 }
 
 /* 4. 微动效芯片 */
@@ -2047,30 +2023,11 @@ textarea:focus-visible {
   animation: lcm-slide-in 0.28s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
-/* 7. 列表项依次升入 · nth-child 1..8 递增 40ms */
-@keyframes lcm-rise {
-  from { transform: translateY(6px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-.lcm-rise {
-  animation: lcm-rise 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-.lcm-rise:nth-child(1) { animation-delay: 0.04s; }
-.lcm-rise:nth-child(2) { animation-delay: 0.08s; }
-.lcm-rise:nth-child(3) { animation-delay: 0.12s; }
-.lcm-rise:nth-child(4) { animation-delay: 0.16s; }
-.lcm-rise:nth-child(5) { animation-delay: 0.2s; }
-.lcm-rise:nth-child(6) { animation-delay: 0.24s; }
-.lcm-rise:nth-child(7) { animation-delay: 0.28s; }
-.lcm-rise:nth-child(8) { animation-delay: 0.32s; }
+/* 7. 列表项升入 · 已移除 stagger 动画以减首屏 repaint */
 
-/* 8. LIVE 徽章呼吸 · 青色辉光 0→8px 往复 */
-@keyframes lcm-breathe {
-  from { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
-  to { box-shadow: 0 0 8px 2px rgba(34, 211, 238, 0.38); }
-}
+/* 8. LIVE 徽章 · 静态辉光 */
 .lcm-breathe {
-  animation: lcm-breathe 2.6s ease-in-out infinite alternate;
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.1);
 }
 
 /* 10. 图层控制面板 · ink-observatory */
@@ -2184,17 +2141,12 @@ textarea:focus-visible {
 
 /* 9. 减弱动态偏好 · 关闭全部 lcm 动画与位移 */
 @media (prefers-reduced-motion: reduce) {
-  .lcm-scan::after,
-  .lcm-live-dot::after,
   .lcm-flash,
   .lcm-flash-gold,
-  .lcm-drawer-in,
-  .lcm-rise,
-  .lcm-breathe {
+  .lcm-drawer-in {
     animation: none !important;
   }
-  .lcm-drawer-in,
-  .lcm-rise {
+  .lcm-drawer-in {
     opacity: 1;
     transform: none;
   }
@@ -2269,6 +2221,12 @@ textarea:focus-visible {
   }
 }
 
+:root[data-theme='light'] .live-china-map-canvas {
+  background:
+    radial-gradient(ellipse 85% 55% at 50% 38%, rgba(8, 145, 178, 0.05), transparent 68%),
+    radial-gradient(ellipse 60% 40% at 88% 92%, rgba(212, 175, 55, 0.04), transparent 55%),
+    var(--bg-elevated);
+}
 :root[data-theme='light'] .lcm-premium {
   background:
     linear-gradient(var(--bg-surface), var(--bg-surface)) padding-box,
@@ -2278,8 +2236,8 @@ textarea:focus-visible {
     0 1px 4px -1px rgba(15, 23, 42, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
-:root[data-theme='light'] .lcm-scan::after {
-  background: linear-gradient(180deg, transparent, rgba(8, 145, 178, 0.04), transparent);
+:root[data-theme='light'] .lcm-live-badge {
+  box-shadow: 0 0 0 1px rgba(8, 145, 178, 0.12);
 }
 
 /* ═══ end lcm ═══ */
