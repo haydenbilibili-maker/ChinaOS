@@ -26,6 +26,7 @@ export default function LiveMapLayerPanel({
   activeMetricLabel,
   fiscalActive,
   fiscalMeta,
+  overlayStatuses = {},
   compact = false,
 }) {
   const toggleable = useMemo(
@@ -76,6 +77,22 @@ export default function LiveMapLayerPanel({
                   {fiscalMeta.year} · {fiscalActive ? '着色中' : '叠加'} · {fiscalMeta.sourceNote || '网络'}
                 </span>
               )}
+              {on && overlayStatuses[def.id] && (() => {
+                const st = overlayStatuses[def.id];
+                if (st.loading) {
+                  return <span className="lcm-layer-meta mono" style={{ color: STEEL }}>拉取中…</span>;
+                }
+                if (st.error) {
+                  return <span className="lcm-layer-meta mono" style={{ color: '#e8a317' }}>{st.error}</span>;
+                }
+                if (st.fetchedAt) {
+                  const t = st.fetchedAt instanceof Date
+                    ? st.fetchedAt.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })
+                    : '--:--';
+                  return <span className="lcm-layer-meta mono" style={{ color: '#10b981' }}>更新 {t}</span>;
+                }
+                return null;
+              })()}
               {!compact && def.desc && (
                 <p className="lcm-layer-desc">{def.desc}</p>
               )}

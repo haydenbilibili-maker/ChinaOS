@@ -64,6 +64,24 @@ const FISCAL_PALETTE = {
   light: ['#f8fafc', '#fde68a', '#f59e0b', '#b91c1c'],
 };
 
+function SourceBadge({ label, loading, error, fetchedAt, okColor = '#10b981', warnColor = '#e8a317' }) {
+  if (loading) {
+    return <span style={{ color: okColor }}>// {label} 拉取中…</span>;
+  }
+  if (error) {
+    return <span style={{ color: warnColor }}>{label}：{error}</span>;
+  }
+  if (fetchedAt) {
+    return (
+      <span className="inline-flex items-center gap-1" style={{ color: okColor }}>
+        <span className="lcm-live-dot" style={{ background: okColor }} />
+        {label} {formatLiveTime(fetchedAt)}
+      </span>
+    );
+  }
+  return null;
+}
+
 function Icon({ name, size = 14, style }) {
   const Cmp = Lucide[name] || Lucide.Square;
   return <Cmp size={size} strokeWidth={1.75} style={style} />;
@@ -176,6 +194,18 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
   const quakesState = useLiveQuakes(900000, showQuakes && !isCompact);
   const flightsState = useLiveFlights(600000, showFlights && !isCompact);
   const shippingState = useLiveShipping(600000, showShipping && !isCompact);
+
+  const overlayStatuses = useMemo(() => ({
+    'overlay-quakes': showQuakes ? quakesState : null,
+    'overlay-flights': showFlights ? flightsState : null,
+    'overlay-shipping': showShipping ? shippingState : null,
+  }), [showQuakes, showFlights, showShipping, quakesState, flightsState, shippingState]);
+
+  const liveMetricStatus = useMemo(() => {
+    if (!isReal) return null;
+    if (layerId === 'livePm25') return { label: 'PM2.5', ...airQuality };
+    return { label: '气象', ...weather };
+  }, [isReal, layerId, weather, airQuality]);
 
   // 头部实时时钟（30s 粒度足够）
   useEffect(() => {
@@ -423,7 +453,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
           if (p.seriesName === 'ports') return formatPortTooltip(p);
           if (p.seriesName === 'vessels') return formatVesselTooltip(p);
           if (isReal && layerId === 'livePm25') {
-            return formatAqiTooltip(p.name, weather.data?.[p.name] ? airQuality.data?.[p.name] : airQuality.data?.[p.name], airQuality.fetchedAt);
+            return formatAqiTooltip(p.name, airQuality.data?.[p.name], airQuality.fetchedAt);
           }
           if (isReal) {
             return formatRealTooltip(
@@ -583,7 +613,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
               <span className="lcm-live-dot" style={{ background: '#ef4444' }} />
               LIVE
             </span>
-            <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>{ALL_LAYERS.length} 层 · 其中 {REAL_LAYERS.length} 实测</span>
+            <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>{ALL_LAYERS.length} 层 · 其中 {REAL_LAYERS.length + REAL_AQI_LAYERS.length} 实测</span>
             {!isCompact && (
               <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>
                 {now.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })} CST
@@ -591,7 +621,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
             )}
           </div>
           <p className="text-xs m-0 mt-1.5" style={{ color: 'var(--text-tertiary)' }}>
-            {isCompact ? '省级动态预览 · 点击进入完整体验' : `实时动态中国 · Open-Meteo 实测气象/空气 + USGS 地震 + 种子态势层 · AS_OF ${AS_OF}`}
+            {isCompact ? '省级动态预览 · 点击进入完整体验' : `实时动态中国 · Open-Meteo 气象/空气 + USGS 地震 + ADS-B 空情 + 航运港口 + 种子态势层 · AS_OF ${AS_OF}`}
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-3 shrink-0">
@@ -649,16 +679,16 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
       {!isCompact ? (
         <div className="live-china-map-meta flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-3 mb-1">
           <span className="text-[10px] mono min-w-0 inline-flex items-center gap-2 flex-wrap" style={{ color: 'var(--text-tertiary)' }}>
-            {coloringFiscal ? '财政自给率（网络）' : layer.desc} · 数据源：<span style={{ color: coloringFiscal || isReal ? '#10b981' : 'var(--text-secondary)' }}>{coloringFiscal ? (fiscalData?.source === 'live' ? 'province-stats 网络' : 'province-stats 本地') : (layer.source === 'seed' ? '内置种子' : 'Open-Meteo 实测')}</span>
+            {coloringFiscal ? '财政自给率（网络）' : layer.desc} · 数据源：<span style={{ color: coloringFiscal || isReal ? '#10b981' : 'var(--text-secondary)' }}>{coloringFiscal ? (fiscalData?.source === 'live' ? 'province-stats 网络' : 'province-stats 本地') : (layer.source === 'seed' ? '内置种子' : layer.source || 'Open-Meteo')}</span>
             {geoSource && <span>· 边界 <span style={{ color: geoSource === 'network' ? '#10b981' : STEEL }}>{geoSource === 'network' ? 'DataV API' : geoSource === 'proxy' ? 'Worker' : '本地'}</span></span>}
             {showFiscal && fiscalLoading && <span style={{ color: STEEL }}>// 拉取财政层…</span>}
-            {isReal && weather.loading && <span style={{ color: STEEL }}>// 正在获取实测…</span>}
-            {isReal && weather.error && <span style={{ color: HOLD }}>实时源不可达：{weather.error} · 自动重试中</span>}
-            {isReal && !weather.error && weather.fetchedAt && (
-              <span className="inline-flex items-center gap-1" style={{ color: '#10b981' }}>
-                <span className="lcm-live-dot" style={{ background: '#10b981' }} />
-                实测 {weather.fetchedAt.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })} · 10min 自动刷新
-              </span>
+            {liveMetricStatus && (
+              <SourceBadge
+                label={liveMetricStatus.label}
+                loading={liveMetricStatus.loading}
+                error={liveMetricStatus.error}
+                fetchedAt={liveMetricStatus.fetchedAt}
+              />
             )}
           </span>
           <StatStrip stats={stats} layer={layer} simLive={simLive && !isReal} inline />
@@ -720,7 +750,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
           )}
           {isReal && (
             <div className="text-[10px] mono px-3 py-2 rounded-lg" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', color: 'var(--text-tertiary)' }}>
-              实况层为即时观测快照（无 12 月回放）· 悬停省份查看 气温/湿度/风速/降水/PM2.5 全要素 · 来源 Open-Meteo 公开气象 API，非官方气象部门发布口径
+              实况层为即时观测快照（无 12 月回放）· 悬停省份查看气温/湿度/风速/降水/PM2.5 全要素 · 来源 Open-Meteo / OpenAQ 公开 API，非官方发布口径
             </div>
           )}
         </div>
@@ -735,6 +765,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
             activeMetricLabel={coloringFiscal ? '财政自给率' : layer.label}
             fiscalActive={coloringFiscal}
             fiscalMeta={fiscalData?.meta ? { year: fiscalData.meta.year, sourceNote: fiscalData.source } : null}
+            overlayStatuses={overlayStatuses}
           />
         )}
         <div className={`live-china-map-canvas relative min-w-0 ${isCompact ? 'live-china-map-canvas--compact' : ''}`}>
@@ -881,6 +912,28 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
       )}
 
       <div className="live-china-map-footer flex flex-wrap items-center gap-x-4 gap-y-2 mt-6 pt-4 text-[10px]" style={{ borderTop: '1px solid var(--border-subtle)', color: 'var(--text-tertiary)' }}>
+        {!isCompact && (
+          <span className="mono inline-flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span>// 实况刷新</span>
+            {liveMetricStatus && (
+              <SourceBadge
+                label={liveMetricStatus.label}
+                loading={liveMetricStatus.loading}
+                error={liveMetricStatus.error}
+                fetchedAt={liveMetricStatus.fetchedAt}
+              />
+            )}
+            {showQuakes && (
+              <SourceBadge label="地震" loading={quakesState.loading} error={quakesState.error} fetchedAt={quakesState.fetchedAt} />
+            )}
+            {showFlights && (
+              <SourceBadge label="空情" loading={flightsState.loading} error={flightsState.error} fetchedAt={flightsState.fetchedAt} />
+            )}
+            {showShipping && (
+              <SourceBadge label="航运" loading={shippingState.loading} error={shippingState.error || shippingState.note} fetchedAt={shippingState.fetchedAt} />
+            )}
+          </span>
+        )}
         <span className="mono">// 纵深模块</span>
         <Link to="/regional" className="mono hover:underline" style={{ color: STEEL }}>区域协调 →</Link>
         <Link to="/northeast" className="mono hover:underline" style={{ color: STEEL }}>东北振兴 →</Link>
