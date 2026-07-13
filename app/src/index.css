@@ -1528,14 +1528,29 @@ textarea:focus {
   .talent-split--balanced {
     grid-template-columns: minmax(280px, 1fr) minmax(320px, 1fr);
   }
+
+  /* Row height follows right detail column; left must not expand the grid track */
+  .talent-split > * {
+    min-height: 0;
+  }
 }
 
 .talent-split__list-card {
-  height: 100%;
   margin-bottom: 0 !important;
   display: flex;
   flex-direction: column;
   min-height: 0;
+}
+
+@media (min-width: 768px) {
+  .talent-split__list-card {
+    overflow: hidden;
+    align-self: stretch;
+  }
+
+  .talent-split__list-card > :not(.talent-split__scroll) {
+    flex-shrink: 0;
+  }
 }
 
 .talent-split__scroll {
@@ -1547,6 +1562,7 @@ textarea:focus {
 
 .talent-split__detail {
   min-width: 0;
+  min-height: 0;
 }
 
 .os-list-item {
