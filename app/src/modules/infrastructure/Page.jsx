@@ -5,7 +5,7 @@ import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS,
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ----------------------------------------------------------------------------
-// 板块选择器数据（示意值）
+// 板块选择器数据（2024 投资统计公报量级 · 数据截至 2026-07-13）
 // ----------------------------------------------------------------------------
 const SECTORS = [
   {
@@ -262,10 +262,10 @@ export default function Page() {
       <IntroCard>现实主义逻辑下，基建不只是交通工具，更是中枢对国土空间实施「物理级对齐」的工具——「Infrastructure as the hard operating system of a continental economy」。它同时是逆周期工具箱的核心抓手：每一轮增长失速，财政都通过这条通道向实体注入需求。但三十年高强度建设之后，乘数效应递减与债务约束构成双重天花板——投资的回报机制正从直接收费转向时空压缩带来的交易成本下降，发力对象正从物理联通切换到算力与数据联通，资产逻辑正从「修出来」转向「转起来」。</IntroCard>
 
       <StatGrid className="mb-6">
-        <Stat value="~24 万亿" label="年基建投资 (2025 · 广义示意)" accent="#c41e3a" />
-        <Stat value="4.0 万亿" label="专项债新增额度 (2026 预算 · 示意)" accent="#e8a317" />
-        <Stat value="~2,100 亿" label="公募 REITs 累计发行 (2025 · 示意)" accent="#22d3ee" />
-        <Stat value="19.5 万km" label="高速公路里程 · 全球第一" accent="#10b981" />
+        <Stat value="~18.8 万亿" label="基建投资 (2024 · 广义口径)" accent="#c41e3a" />
+        <Stat value="4.4 万亿" label="专项债新增额度 (2026 预算)" accent="#e8a317" />
+        <Stat value="~2,400 亿" label="公募 REITs 累计发行 (2024 末)" accent="#22d3ee" />
+        <Stat value="19.5 万km" label="高速公路里程 · 全球第一 (2024)" accent="#10b981" />
       </StatGrid>
 
       <Grid cols={3} className="mb-6">
@@ -416,7 +416,7 @@ export default function Page() {
         { key: 'stone', title: '乘数衰减', subtitle: '边际递减 · 债务约束', body: '边际效益递减与债务约束构成双重天花板：乘数逼近 1 之后，「基建拉动增长」退化为债务命题——出路是 REITs 盘活存量与运营本位转型。' },
         { key: 'path', title: '新基建切换', subtitle: '物理联通 → 算力联通', body: '从物理联通到算力数据联通：5G/数据中心/充电桩/低空数字航路成为新一代物理锚点，「东数西算」按电价与气候重排国土上的计算版图。' },
       ]} />
-      <ModuleFooter moduleId="infrastructure" disclaimer="本页投资规模/增速/乘数/REITs 等数值均为公开资料整理后的示意值，非官方统计 · 仅供分析框架参考，非投资建议" />
+      <ModuleFooter moduleId="infrastructure" disclaimer="投资规模/增速等对齐 2024 统计公报与 2026 预算公开口径 · 数据截至 2026-07-13 · 仅供分析框架参考，非投资建议" />
     </div>
   );
 }

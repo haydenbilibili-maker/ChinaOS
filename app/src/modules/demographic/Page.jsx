@@ -43,8 +43,8 @@ const dependencyLine = {
   yAxis: { type: 'value', axisLabel: { formatter: '{value}%', color: LABEL.color }, splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } } },
   series: [
     { name: '少儿抚养比', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [22.3, 22.6, 26.2, 25.0, 23.5, 22.0], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
-    { name: '老年抚养比', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [11.9, 14.3, 19.7, 24.5, 28.2, 34.0], lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' }, areaStyle: { color: 'rgba(232,163,23,0.12)' } },
-    { name: '总抚养比', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [34.2, 36.9, 45.9, 49.5, 51.7, 56.0], lineStyle: { color: '#c41e3a', width: 2, type: 'dashed' }, itemStyle: { color: '#c41e3a' } },
+    { name: '老年抚养比', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [11.9, 14.3, 19.7, 22.0, 26.5, 32.0], lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' }, areaStyle: { color: 'rgba(232,163,23,0.12)' } },
+    { name: '总抚养比', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [34.2, 36.9, 45.9, 46.6, 50.2, 54.0], lineStyle: { color: '#c41e3a', width: 2, type: 'dashed' }, itemStyle: { color: '#c41e3a' } },
   ],
 };
 
@@ -67,8 +67,8 @@ const multiTrend = {
 
 // ── 区域人口分化（净流入/流出，示意，万人/年）──
 const REGION = {
-  inflow: { label: '人口净流入 TOP', data: [['广东', 152], ['浙江', 98], ['江苏', 56], ['上海', 42], ['福建', 28], ['北京', 16]], color: '#10b981' },
-  outflow: { label: '人口净流出 TOP', data: [['河南', -85], ['黑龙江', -62], ['甘肃', -48], ['吉林', -44], ['贵州', -38], ['广西', -33]], color: '#fb923c' },
+  inflow: { label: '人口净流入 TOP (2024)', data: [['广东', 74], ['浙江', 43], ['新疆', 25], ['江苏', 9], ['海南', 5], ['福建', 10]], color: '#10b981' },
+  outflow: { label: '人口净流出 TOP (2024)', data: [['河南', -30], ['山东', -43], ['黑龙江', -33], ['湖南', -28], ['辽宁', -27], ['河北', -15]], color: '#fb923c' },
 };
 function buildRegion(mode) {
   const cfg = REGION[mode];
@@ -135,9 +135,9 @@ export default function Page() {
 
       <StatGrid className="mb-6">
         <Stat value="14.05 亿" label="总人口 (2025 · 负增长延续)" accent="#c41e3a" />
-        <Stat value="15.8%" label="老龄化率 (65+) · 2025 年报" accent="#e8a317" />
-        <Stat value="~1.02" label="总和生育率 (TFR) · 2025 估算" accent="#22d3ee" />
-        <Stat value="50.2%" label="总抚养比 · 人口红利窗口关闭" accent="#10b981" />
+        <Stat value="15.8%" label="老龄化率 (65+) · 2025 公报" accent="#e8a317" />
+        <Stat value="1.00" label="总和生育率 (TFR) · 2024 NBS" accent="#22d3ee" />
+        <Stat value="46.6%" label="总抚养比 · 2024 公报" accent="#10b981" />
       </StatGrid>
 
       {/* ── 三大人口拐点指标卡 ── */}
@@ -245,7 +245,7 @@ export default function Page() {
         { key: 'stone', body: '人才红利密度对冲劳动力缺口。' },
         { key: 'path', body: '生育支持：成本—意愿函数系统校准。' },
       ]} />
-<ModuleFooter moduleId="demographic" sourceNote="由 china.html「人口」专题迁移" />
+<ModuleFooter moduleId="demographic" sourceNote="数据截至 2026-07-13 · NBS/统计公报公开口径" />
     </div>
   );
 }

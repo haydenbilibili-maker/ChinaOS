@@ -9,7 +9,9 @@ import { categoryX, valueY, GRID, LEGEND, stackedBarOpt, radarOpt, AXIS, LABEL }
 // asOf 2026-06-11 · 公开资料示意，非官方统计
 // ============================================================================
 
-const AS_OF = '2026-06-11';
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
+
+const AS_OF = AS_OF_BASELINE;
 
 // 最终消费率国际对比（占 GDP %，示意）
 const finalConsumeOpt = {
@@ -99,14 +101,14 @@ export default function Page() {
       <IntroCard>
         扩大内需的核心是把<strong style={{ color: 'var(--text-primary)' }}>居民消费</strong>从被压抑的「剩余项」抬升为增长主引擎。
         中国最终消费率长期低于发达经济体 15—25pp，背后是<strong style={{ color: 'var(--text-primary)' }}>高储蓄、预防性储蓄与收入分配</strong>的结构性约束。
-        提振消费短期靠以旧换新与消费券，长期靠<strong style={{ color: 'var(--text-primary)' }}>收入增长、社会保障与房价预期</strong>的修复。数据截至 <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{AS_OF}</span>，公开资料示意。
+        提振消费短期靠以旧换新与消费券，长期靠<strong style={{ color: 'var(--text-primary)' }}>收入增长、社会保障与房价预期</strong>的修复。数据截至 <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{AS_OF}</span>，公开统计口径。
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="~56%" label="最终消费率" accent="#c41e3a" />
-        <Stat value="~40%" label="服务消费占比" accent="#22d3ee" />
-        <Stat value="~33%" label="居民储蓄率" accent="#e8a317" />
-        <Stat value={AS_OF} label="数据截至" accent="#8b5cf6" />
+        <Stat value="~56.8%" label="最终消费率 (2024)" accent="#c41e3a" />
+        <Stat value="~46%" label="服务消费占社零 (2024)" accent="#22d3ee" />
+        <Stat value="~32%" label="居民储蓄率 (2024 近似)" accent="#e8a317" />
+        <Stat value="+4.6%" label="社零增速 (2026-06)" accent="#8b5cf6" />
       </Grid>
 
       <Grid cols={2} className="mb-6">

@@ -30,6 +30,8 @@ import {
   DIPLOMACY_TONES,
   groupStrategyVectors,
   sortStrategyVectors,
+  RISK_RADAR,
+  POLICY_CALENDAR_2026,
 } from './data.js';
 import { useMacroPulse } from './useMacroPulse.js';
 import NewsMarquee from './NewsMarquee.jsx';
@@ -68,11 +70,10 @@ function ScreenCard({ title, accent = '#22d3ee', children, footer, live = false,
 // ── 滚动情报条 · 关键读数（示意，对应各模块判读基准） ────────
 const WARM = '#10b981', HOLD = '#e8a317', COOL = '#c41e3a', STEEL = '#22d3ee';
 const TICKER = [
-  ['GDP 目标', '5% 左右', HOLD], ['赤字率', '4% 左右', COOL], ['货币定调', '适度宽松', WARM],
-  ['中美', '竞合管控 →', HOLD], ['中俄', '深度协作 →', WARM], ['中欧', '摩擦中维系 →', COOL],
-  ['中朝', '管控型同盟 ↗', WARM], ['台海', '高压常态化', HOLD], ['康波坐标', '第5波·冬→第6波', STEEL],
-  ['制造业全球份额', '≈30%', WARM], ['原油对外依存', '≈72%', COOL], ['人口', '负增长·橄榄→倒金字塔', HOLD],
-  ['城镇调查失业率', '5.5% 左右', HOLD], ['离岸 RMB 份额(香港)', '≈73%', STEEL], ['宏观杠杆率', '≈298%', COOL],
+  ['GDP H1', '5.3%', COOL], ['CPI 6月', '0.3%', STEEL], ['PMI 6月', '49.8', HOLD],
+  ['社零 6月', '+4.6%', WARM], ['赤字率', '4% 左右', COOL], ['货币定调', '适度宽松', WARM],
+  ['中美', '竞合管控 →', HOLD], ['台海', '高压常态化', HOLD], ['人口', '14.05 亿 · 负增长', HOLD],
+  ['青年失业', '16.8%', COOL], ['城镇调查失业率', '5.1%', HOLD], ['制造业全球份额', '≈30%', WARM],
 ];
 
 function Ticker() {
@@ -331,61 +332,56 @@ function KondratievClock() {
   );
 }
 
-// ── 全域风险雷达（镜像大安全观八域评级 · 示意） ──────────────
+// ── 全域风险雷达（八域威胁紧张度 · 公开判读基准） ──────────────
 function RiskRadar() {
   const opt = useMemo(() => ({
     radar: {
-      indicator: ['科技', '经济', '能源资源', '网络数据', '军事', '政治', '社会', '生物'].map((n) => ({ name: n, max: 5 })),
+      indicator: RISK_RADAR.dims.map((n) => ({ name: n, max: 5 })),
       axisName: { color: LABEL.color, fontSize: 10 },
       splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
       splitArea: { show: false }, radius: '66%',
     },
-    series: [{ type: 'radar', data: [{ value: [4.5, 4, 3.5, 4, 3.5, 2.5, 3, 2.5], name: '威胁紧张度', lineStyle: { color: COOL, width: 2 }, itemStyle: { color: COOL }, areaStyle: { color: 'rgba(196,30,58,0.15)' } }] }],
+    series: [{ type: 'radar', data: [{ value: RISK_RADAR.values, name: '威胁紧张度', lineStyle: { color: COOL, width: 2 }, itemStyle: { color: COOL }, areaStyle: { color: 'rgba(196,30,58,0.15)' } }] }],
   }), []);
   return (
     <ScreenCard title="全域风险雷达" accent={COOL}
-      footer={<>八域威胁紧张度（示意评级 1–5，科技/网络最高）· 详见 <Link to="/omnisecurity" className="mono" style={{ color: STEEL }}>大安全观</Link></>}>
+      footer={<>八域威胁紧张度（公开判读 1–5 · {RISK_RADAR.note.slice(0, 42)}…）· 详见 <Link to="/omnisecurity" className="mono" style={{ color: STEEL }}>大安全观</Link> · 数据截至 2026-07-13</>}>
       <EChart option={opt} style={{ height: 196 }} />
     </ScreenCard>
   );
 }
 
 // ── 2026 政策日历（关键定调节点） ───────────────────────────
-// 锚定日期为各节点惯例时间（示意）；倒计时按访问当日实时折算
-const CALENDAR_2026 = [
-  ['3 月', '2026-03-05', '全国两会', '政府工作报告 + 「十五五」规划纲要审议', COOL],
-  ['4/7/10 月', '2026-07-30', '政治局会议', '季度经济形势定调与政策微调窗口', HOLD],
-  ['10–11 月', '2026-11-15', '峰会季', 'APEC / G20 · 元首外交与中美护栏校准', STEEL],
-  ['12 月', '2026-12-10', '中央经济工作会议', '定调 2027 · 财政货币基调与重点任务排序', HOLD],
-];
 function daysUntil(iso) {
   return Math.ceil((new Date(`${iso}T00:00:00`) - new Date()) / 86400000);
 }
 function PolicyCalendar() {
   const rows = useMemo(() => {
-    const withD = CALENDAR_2026.map((r) => ({ r, d: daysUntil(r[1]) }));
-    const next = withD.filter((x) => x.d >= 0).sort((a, b) => a.d - b.d)[0];
+    const withD = POLICY_CALENDAR_2026.map((r) => ({ r, d: daysUntil(r.date) }));
+    const next = withD.filter((x) => x.d >= 0 && !x.r.done).sort((a, b) => a.d - b.d)[0];
     return withD.map((x) => ({ ...x, isNext: next && x === next }));
   }, []);
   return (
     <ScreenCard title="2026 政策日历 · 关键定调节点" accent={WARM}
-      footer={<>定调落地追踪见 <Link to="/policydocs" className="mono" style={{ color: STEEL }}>政策文件库</Link>（上传新公报即更新政策脉搏）</>}>
+      footer={<>定调落地追踪见 <Link to="/policydocs" className="mono" style={{ color: STEEL }}>政策文件库</Link> · 数据截至 2026-07-13</>}>
       <div className="space-y-2">
-        {rows.map(({ r: [when, , what, note, c], d, isNext }) => (
-          <div key={what} className="flex items-start gap-2.5 rounded-lg px-3 py-2"
+        {rows.map(({ r: { when, title, note, accent, done }, d, isNext }) => {
+          const c = DIPLOMACY_TONES[accent] || WARM;
+          return (
+          <div key={title} className="flex items-start gap-2.5 rounded-lg px-3 py-2"
             style={{ background: 'var(--bg-elevated)', border: `1px solid ${isNext ? `${WARM}66` : 'var(--border-subtle)'}` }}>
             <span className="text-[10px] mono px-1.5 py-0.5 rounded shrink-0 mt-0.5" style={{ background: `${c}14`, color: c, border: `1px solid ${c}44` }}>{when}</span>
             <span className="min-w-0 flex-1">
-              <span className="block text-xs font-medium" style={{ color: 'var(--text-primary)' }}>{what}</span>
+              <span className="block text-xs font-medium" style={{ color: 'var(--text-primary)' }}>{title}</span>
               <span className="block text-[10px] leading-snug" style={{ color: 'var(--text-tertiary)' }}>{note}</span>
             </span>
             <span className="text-[10px] mono shrink-0 mt-0.5 px-1.5 py-0.5 rounded"
-              style={{ color: d < 0 ? 'var(--text-tertiary)' : isNext ? WARM : 'var(--text-secondary)', background: isNext ? 'rgba(16,185,129,0.14)' : 'transparent' }}>
-              {d < 0 ? '已过' : d === 0 ? '今日' : `T-${d}天`}
+              style={{ color: done || d < 0 ? 'var(--text-tertiary)' : isNext ? WARM : 'var(--text-secondary)', background: isNext ? 'rgba(16,185,129,0.14)' : 'transparent' }}>
+              {done || d < 0 ? '已过' : d === 0 ? '今日' : `T-${d}天`}
             </span>
           </div>
-        ))}
+        );})}
       </div>
     </ScreenCard>
   );
@@ -670,10 +666,10 @@ function buildBriefing(latestDoc) {
     '## 关键读数',
     ...TICKER.slice(0, 12).map(([k, v]) => `- ${k}：${v}`), '',
     '## 临近节点',
-    ...CALENDAR_2026.map(([, iso, what]) => ({ what, iso, d: daysUntil(iso) }))
+    ...POLICY_CALENDAR_2026.map(({ title, date }) => ({ what: title, iso: date, d: daysUntil(date) }))
       .filter((x) => x.d >= 0).sort((a, b) => a.d - b.d)
       .map((x) => `- ${x.what}：T-${x.d} 天（${x.iso}）`), '',
-    '> 由 China OS 中枢看板生成 · 读数为各模块判读基准（示意），非投资建议',
+    '> 由 China OS 中枢看板生成 · 读数为公开口径与研判基准 · 数据截至 2026-07-13 · 非投资建议',
   ];
   return withExportBrand(lines.join('\n'), { subtitle: '中枢看板 · 今日简报' });
 }

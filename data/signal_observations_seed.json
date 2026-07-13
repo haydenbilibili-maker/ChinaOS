@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-06-27",
+  "asOf": "2026-07-13",
   "source": "NBS / 人民银行 / 财政部 / 中电联 公开口径近似快照",
   "note": "示意标定 · 以官方最新发布为准 · 运行 scripts/fetch_signal_observations.py 一键刷新",
   "observations": [
@@ -19,11 +19,11 @@
       "id": "retail_growth",
       "label": "社零总额增速",
       "group": "宏观确诊",
-      "value": 4.5,
+      "value": 4.6,
       "unit": "% 同比",
-      "yoy": 4.5,
-      "mom": 0.3,
-      "period": "2026-05",
+      "yoy": 4.6,
+      "mom": 0.2,
+      "period": "2026-06",
       "linkedSignals": ["C2"],
       "source": "NBS 月度"
     },
@@ -151,11 +151,11 @@
       "id": "cpi",
       "label": "CPI 居民消费价格",
       "group": "物价",
-      "value": 0.1,
+      "value": 0.3,
       "unit": "% 同比",
-      "yoy": 0.1,
-      "mom": -0.1,
-      "period": "2026-05",
+      "yoy": 0.3,
+      "mom": 0.1,
+      "period": "2026-06",
       "linkedSignals": ["C1"],
       "source": "NBS"
     },

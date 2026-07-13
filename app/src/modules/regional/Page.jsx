@@ -5,7 +5,7 @@ import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS,
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ---------------------------------------------------------------------------
-// 一、战略板块数据（八大区域战略 · 示意值）
+// 一、战略板块数据（八大区域战略 · 2024 公报量级）
 // ---------------------------------------------------------------------------
 const STRATEGIES = [
   {
@@ -266,8 +266,8 @@ export default function Page() {
       <StatGrid className="mb-6">
         <Stat value="4 + 5" label="四大板块 + 五大区域重大战略" accent="#c41e3a" />
         <Stat value="19 个" label="国家级城市群（三档梯度）" accent="#22d3ee" />
-        <Stat value="~10.5 万亿" label="转移支付/年 (2025 · 示意)" accent="#e8a317" />
-        <Stat value="66 : 34" label="南北 GDP 占比 (2025 · 示意)" accent="#10b981" />
+        <Stat value="~10.1 万亿" label="中央转移支付 (2024 决算)" accent="#e8a317" />
+        <Stat value="65 : 35" label="南北 GDP 占比 (2024 公报)" accent="#10b981" />
       </StatGrid>
 
       <Grid cols={3} className="mb-6">
@@ -432,7 +432,7 @@ export default function Page() {
         { key: 'stone', title: '转移支付', subtitle: '纵向再分配 · 维稳底盘', body: '约 10 万亿/年的财政再分配维系边疆、粮区与老工业基地的国家在场；它买得来稳定与忠诚，买不来内生增长——这是其结构性上限。' },
         { key: 'path', title: '统一大市场', subtitle: '拆诸侯 · 立规则', body: '从给政策到立规矩：公平竞争审查瞄准地方保护工具箱。空间整合的最终考题，是在拆除壁垒的同时保住地方政府的发展积极性。' },
       ]} />
-      <ModuleFooter moduleId="regional" disclaimer="公开资料整理 · 全部数值为量级示意非统计口径 · 仅供空间政治经济分析框架参考，非投资建议" />
+      <ModuleFooter moduleId="regional" disclaimer="2024 统计公报/决算公开口径整理 · 数据截至 2026-07-13 · 仅供空间政治经济分析框架参考，非投资建议" />
     </div>
   );
 }

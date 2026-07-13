@@ -1,7 +1,7 @@
 /**
  * 宏观指标单一数据源
  * C1/C3/C4（信号灯）与 F2a/F2d（三力）共享读数，避免两处文案漂移。
- * 基准：2026 政府工作报告 / 预算报告口径
+ * 基准：2026 政府工作报告 / NBS 2026 H1 公开口径 · 数据截至 2026-07-13
  */
 
 export interface MacroIndicator {
@@ -19,7 +19,7 @@ export interface MacroIndicator {
 export const MACRO_DEFLATION_GATE: MacroIndicator = {
   id: 'macro-gdp-deflator',
   name: 'GDP 平减指数',
-  read: '连续三年为负。报告称"有望 2026 二季度走出通缩"——当承诺核对。',
+  read: '2026 Q1 同比约 −0.6%；连续三年为负。政府工作报告称「有望 2026 二季度走出通缩」——当承诺核对。',
   signalIds: ['C1'],
   forceIds: ['F2a'],
 };
@@ -27,7 +27,7 @@ export const MACRO_DEFLATION_GATE: MacroIndicator = {
 export const MACRO_CONSUMPTION_SHARE: MacroIndicator = {
   id: 'macro-consumption-gdp',
   name: '居民消费占 GDP 比重',
-  read: '约 39%，主要经济体最低档（病根指标）。',
+  read: '约 39.2%（2025 支出法核算近似），主要经济体最低档（病根指标）。',
   signalIds: ['C3'],
   forceIds: [],
 };
@@ -35,7 +35,7 @@ export const MACRO_CONSUMPTION_SHARE: MacroIndicator = {
 export const MACRO_HOUSEHOLD_LOANS: MacroIndicator = {
   id: 'macro-residential-loans',
   name: '居民中长期贷款',
-  read: '信心体温计；资产负债表衰退是否缓解看此项。房价较峰值跌约 30%。',
+  read: '2026 年 5 月居民中长贷仍同比少增；信心体温计。房价较峰值跌约 30%（据公开监测口径）。',
   signalIds: ['C4'],
   forceIds: ['F2d'],
   cushionLayerNos: ['02'],
@@ -53,7 +53,7 @@ export const MACRO_SOCIAL_SAFETY_NET: MacroIndicator = {
 export const MACRO_DEMOGRAPHIC_CLOCK: MacroIndicator = {
   id: 'macro-demographic-clock',
   name: '时间垫 · 未富先老',
-  read: '老龄化 7%→14% 用时短于日本；2025 新生儿 793 万（1949 年以来最低）。',
+  read: '老龄化 7%→14% 用时短于日本；2025 年新生儿 793 万（1949 年以来最低）；总人口约 14.05 亿（2025 公报）。',
   signalIds: [],
   forceIds: ['F2c'],
   cushionLayerNos: ['04'],

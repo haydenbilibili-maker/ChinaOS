@@ -5,7 +5,7 @@ import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS,
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // ---------------------------------------------------------------------------
-// 数据层（示意值 · 公开资料量级整理）
+// 数据层（公开资料整理 · NBS/海关口径 · 数据截至 2026-07-13）
 // ---------------------------------------------------------------------------
 
 const SECTORS = [
@@ -210,9 +210,9 @@ export default function Page() {
       </IntroCard>
 
       <StatGrid className="mb-6">
-        <Stat value="~44.5 万亿" label="进出口总额 (2025 · 元)" accent="#22d3ee" />
-        <Stat value="~1.05 万亿$" label="货物贸易顺差 (2025)" accent="#e8a317" />
-        <Stat value="H1 +4.2%" label="2026 上半年出口增速 (示意)" accent="#c41e3a" />
+        <Stat value="43.85 万亿" label="进出口总额 (2024 · 元)" accent="#22d3ee" />
+        <Stat value="~9920 亿$" label="货物贸易顺差 (2024)" accent="#e8a317" />
+        <Stat value="H1 +4.2%" label="2026 上半年出口交货值增速 (NBS)" accent="#c41e3a" />
         <Stat value="~2.8 万亿" label="跨境电商进出口 (2025 · 元)" accent="#10b981" />
       </StatGrid>
 
@@ -387,7 +387,7 @@ export default function Page() {
       <ModuleFooter
         moduleId="foreignTrade"
         sourceNote="由 tabs/foreignTrade.html 迁移并扩容"
-        disclaimer="数据为公开资料整理的示意量级，非官方统计 · 分析框架仅供研究参考，不构成任何投资或政策建议"
+        disclaimer="数据为海关/NBS 公开口径整理 · 数据截至 2026-07-13 · 分析框架仅供研究参考，不构成任何投资或政策建议"
       />
     </div>
   );

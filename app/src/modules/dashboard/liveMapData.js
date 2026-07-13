@@ -1,5 +1,5 @@
 // ============================================================================
-// 神州活图 · 省级分层数据（种子示意 · AS_OF 2026-06-11）
+// 神州活图 · 省级分层数据（公开统计公报基准 · AS_OF 2026-07-13）
 // ----------------------------------------------------------------------------
 // 31 省区市 · 十二层指标 · 量级对齐公开统计公报与模块判读基准
 // 非实时 API；综合态势由多维度加权合成
@@ -76,7 +76,7 @@ export function getProvinceModuleLink(name) {
 
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 
-/** 各省核心指标（示意 · 公开资料整理量级） */
+/** 各省核心指标（公开资料整理 · 2024 公报/决算量级） */
 const RAW = {
   '北京市': { gdpG: 5.0, indHeat: 78, invHeat: 72, tempA: 1.8, precipA: -12, flow: 88, load: 82, policy: 85, rdPct: 6.8, patent: 88, hitech: 82, tradeIdx: 72, carbon: 42, renewPct: 28, tourSpend: 4200, tourRec: 92, disaster: 22, supply: 18 },
   '天津市': { gdpG: 4.5, indHeat: 65, invHeat: 58, tempA: 1.5, precipA: -18, flow: 62, load: 74, policy: 55, rdPct: 3.2, patent: 58, hitech: 55, tradeIdx: 78, carbon: 48, renewPct: 18, tourSpend: 2100, tourRec: 85, disaster: 28, supply: 32 },

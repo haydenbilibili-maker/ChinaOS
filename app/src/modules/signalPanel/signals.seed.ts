@@ -125,7 +125,7 @@ export const SIGNAL_SECTIONS: SignalSectionSeed[] = [
         name: '社零增速 vs 固投增速',
         w: 1,
         status: 'amber',
-        read: '需消费增速持续跑赢投资，才说明引擎真换了。',
+        read: '社零 6 月同比 +4.6% vs 固投累计 +3.6%：消费略跑赢投资，但差距未拉开，引擎切换待确认。',
         trig: '社零增速持续高于固定资产投资增速。',
         attribution: { issueId: 'dir-security-growth', layer: 'direction' },
       },

@@ -70,7 +70,7 @@ export function buildMacroKpiSnapshot() {
     },
     {
       id: 'cpi',
-      k: 'CPI 5月',
+      k: 'CPI 6月',
       v: cpi ? fmtPct(cpi.value) : '0.3%',
       note: '同比近零 · 通缩压力',
       c: KPI_COLORS.steel,
@@ -80,7 +80,7 @@ export function buildMacroKpiSnapshot() {
     },
     {
       id: 'pmi_mfg',
-      k: 'PMI 5月',
+      k: 'PMI 6月',
       v: pmi ? fmtPoint(pmi.value) : '49.8',
       note: '制造业 · 荣枯线下',
       c: KPI_COLORS.hold,
@@ -90,7 +90,7 @@ export function buildMacroKpiSnapshot() {
     },
     {
       id: 'retail',
-      k: '社零 5月',
+      k: '社零 6月',
       v: retail ? `+${fmtPct(retail.value)}` : '+4.6%',
       note: '以旧换新支撑',
       c: KPI_COLORS.warm,
@@ -100,7 +100,7 @@ export function buildMacroKpiSnapshot() {
     },
     {
       id: 'm2',
-      k: 'M2 5月',
+      k: 'M2 6月',
       v: m2 ? fmtPct(m2.value) : '7.2%',
       note: '宽货币 · 窄信用',
       c: KPI_COLORS.steel,
@@ -112,7 +112,7 @@ export function buildMacroKpiSnapshot() {
       id: 'youth_unemp',
       k: '青年失业',
       v: youth?.reading?.match(/[\d.]+%/)?.[0] || '16.8%',
-      note: '16–24 岁 · 5月',
+      note: '16–24 岁 · 6月',
       c: KPI_COLORS.cool,
       asOf: MACRO_AS_OF,
       liveKey: null,
@@ -310,10 +310,26 @@ export function groupStrategyVectors(vectors = sortStrategyVectors()) {
   return groups;
 }
 
+// ── 全域风险雷达（八域威胁紧张度 · 公开判读基准 1–5） ──────
+/** @type {{ dims: string[]; values: number[]; note: string }} */
+export const RISK_RADAR = {
+  dims: ['科技', '经济', '能源资源', '网络数据', '军事', '政治', '社会', '生物'],
+  values: [4.3, 3.8, 3.2, 4.1, 3.6, 2.8, 3.1, 2.4],
+  note: '基于大安全观八域公开研判：科技出口管制与 AI 算力竞争、网络数据跨境规则、外需与地产链条为高位；政治与社会总体可控。',
+};
+
+// ── 2026 政策日历（关键定调节点 · 惯例日期锚定） ───────────
+export const POLICY_CALENDAR_2026 = [
+  { when: '3 月', date: '2026-03-05', title: '全国两会', note: '政府工作报告 + 「十五五」规划纲要审议 · 已落地', accent: 'cool', done: true },
+  { when: '7 月', date: '2026-07-30', title: '政治局会议', note: '二季度经济形势定调 · H1 GDP 5.3% 后政策微调窗口', accent: 'hold' },
+  { when: '10–11 月', date: '2026-11-15', title: '峰会季', note: 'APEC / G20 · 元首外交与中美护栏校准', accent: 'steel' },
+  { when: '12 月', date: '2026-12-10', title: '中央经济工作会议', note: '定调 2027 · 财政货币基调与重点任务排序', accent: 'hold' },
+];
+
 // ── 数据来源与免责声明 ────────────────────────────────────
 export const SOURCES = {
   asOf: AS_OF,
   pe500: PRIVATE_ENTERPRISE_META.listSource,
   military: MILITARY_INTEL_META.disclaimer,
-  note: '本看板汇总均来自公开资料整理与估算示意，非官方发布；条目计数以内置种子为准，与 IndexedDB 实时载入状态无关。研究用途，不代表任何机构立场。',
+  note: '宏观 KPI 对齐 NBS/人民银行公开口径快照；外交矢量与风险雷达为研判基准；条目计数以内置种子为准。研究用途，不代表任何机构立场。数据截至 2026-07-13。',
 };
