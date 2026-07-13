@@ -1,0 +1,125 @@
+/* ink-observatory 日览模式 · 水墨观象台共享覆写
+ * 治理结构 / 荒废斋等 .ink-observatory 类族；与 #aa-app / #sd-app / #pr-app 局部覆写对齐 */
+
+:root[data-theme='light'] .ink-observatory.ob-wrap,
+:root[data-theme='light'] .ink-observatory.sp-wrap,
+:root[data-theme='light'] .ink-observatory.tf-wrap,
+:root[data-theme='light'] .ink-observatory.cm-wrap,
+:root[data-theme='light'] .ink-observatory.pr-wrap,
+:root[data-theme='light'] .ink-observatory.hf-gate-wrap,
+:root[data-theme='light'] .ink-observatory.hf-hub-wrap,
+:root[data-theme='light'] .gv-panel.ink-observatory {
+  --ink: #f4f1ea;
+  --ink-2: #ebe6dc;
+  --ink-3: #e2dcd0;
+  --hair: #c8bfb0;
+  --hair-soft: #d8d0c4;
+  --io-text: #1a2428;
+  --io-text-dim: #4a5c58;
+  --io-text-faint: #7a8a86;
+  --celadon: #4a7a6e;
+  --io-red-bg: #f5e8e6;
+  --io-amber-bg: #f5eed8;
+  --io-green-bg: #e4f0ea;
+  --calm-bg: #e4efec;
+  --build-bg: #f5eed8;
+  --near-bg: #f5e8e6;
+  --thin-bg: #f5e8e6;
+  --mid-bg: #f5eed8;
+  --thick-bg: #e4f0ea;
+  --def-bg: #e8edf4;
+  --off-bg: #e4f0ea;
+  --opt-bg: #f0e8f5;
+  --risk-bg: #f5e8e6;
+  --warn-bg: #f5eed8;
+  color: var(--io-text);
+}
+
+/* ── 各模块根背景 · 纸面径向渐变 ── */
+:root[data-theme='light'] .ink-observatory.ob-wrap {
+  background:
+    radial-gradient(1300px 700px at 78% -12%, #e8e4da 0%, transparent 58%),
+    radial-gradient(900px 500px at 8% 108%, #ebe6dc 0%, transparent 55%),
+    var(--ink);
+}
+
+:root[data-theme='light'] .ink-observatory.sp-wrap {
+  background:
+    radial-gradient(1200px 600px at 80% -10%, #e8e4da 0%, transparent 60%),
+    var(--ink);
+}
+
+:root[data-theme='light'] .ink-observatory.tf-wrap {
+  background:
+    radial-gradient(1100px 550px at 15% -10%, #e8e4da 0%, transparent 60%),
+    var(--ink);
+}
+
+:root[data-theme='light'] .ink-observatory.cm-wrap,
+:root[data-theme='light'] .ink-observatory.pr-wrap {
+  background:
+    radial-gradient(1100px 550px at 20% -10%, #e8e4da 0%, transparent 60%),
+    var(--ink);
+}
+
+:root[data-theme='light'] .ink-observatory.hf-gate-wrap,
+:root[data-theme='light'] .ink-observatory.hf-hub-wrap {
+  background:
+    radial-gradient(900px 480px at 15% -8%, #f0e6e4 0%, transparent 55%),
+    radial-gradient(700px 400px at 85% 0%, #e8e4da 0%, transparent 50%),
+    var(--ink);
+}
+
+/* ── 硬编码深色渐变面板 · 统一纸面渐变 ── */
+:root[data-theme='light'] .ink-observatory .ob-hero,
+:root[data-theme='light'] .ink-observatory .ob-core,
+:root[data-theme='light'] .ink-observatory .sp-verdict,
+:root[data-theme='light'] .ink-observatory .tf-window,
+:root[data-theme='light'] .ink-observatory .cm-matrix-wrap,
+:root[data-theme='light'] .ink-observatory .cm-verdict,
+:root[data-theme='light'] .ink-observatory .pr-thesis,
+:root[data-theme='light'] .ink-observatory .pr-verdict,
+:root[data-theme='light'] .ink-observatory .pr-final,
+:root[data-theme='light'] .gv-panel.ink-observatory {
+  background: linear-gradient(180deg, #ebe6dc, #e2dcd0);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* ── 半透明黑底卡片 · 换为纸面玻璃感 ── */
+:root[data-theme='light'] .ink-observatory .ob-gauge,
+:root[data-theme='light'] .ink-observatory .ob-act {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+/* ── 悬停阴影 · 降对比 ── */
+:root[data-theme='light'] .ink-observatory .sp-grid .sp-card:hover,
+:root[data-theme='light'] .ink-observatory .ob-mod:hover,
+:root[data-theme='light'] .ink-observatory .hf-hub-card:hover {
+  box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.12), 0 0 0 1px var(--hair);
+}
+
+:root[data-theme='light'] .ink-observatory .ob-hero {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme='light'] .ink-observatory .sp-verdict,
+:root[data-theme='light'] .ink-observatory .tf-window,
+:root[data-theme='light'] .ink-observatory .cm-matrix-wrap,
+:root[data-theme='light'] .ink-observatory .cm-verdict,
+:root[data-theme='light'] .ink-observatory .pr-thesis,
+:root[data-theme='light'] .ink-observatory .pr-verdict,
+:root[data-theme='light'] .ink-observatory .pr-final {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* ── 轨道旋钮 / 仪表阴影 ── */
+:root[data-theme='light'] .ink-observatory .sp-knob {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  border-color: var(--ink);
+}
+
+/* ── 荒废斋朱砂门 · 日览略加深 ── */
+:root[data-theme='light'] .ink-observatory.hf-gate-wrap .hf-gate-title,
+:root[data-theme='light'] .ink-observatory.hf-hub-wrap .hf-hub-card h2 {
+  color: #8a221c;
+}
