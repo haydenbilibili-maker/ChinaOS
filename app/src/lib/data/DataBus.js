@@ -40,19 +40,21 @@ async function worldBank(indicator, { country = 'CHN', from = 2018, to = 2024, t
   return Array.isArray(json) ? json[1] || [] : [];
 }
 
-// 行政区划地理边界：本地 GeoJSON 优先，DataV CDN 兜底（浏览器端常遇 403/CORS）
+// 行政区划地理边界：网络 API 优先，Worker 代理次之，本地 GeoJSON 兜底
 const REGION_GEO_URLS = {
   100000: [
-    '/geo/china-100000.json',
     'https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json',
+    '/api/geo/100000',
+    '/geo/china-100000.json',
   ],
 };
 
 async function regionGeo(adcode = '100000') {
   const key = String(adcode);
   const urls = REGION_GEO_URLS[key] || [
-    `/geo/china-${key}.json`,
     `https://geo.datav.aliyun.com/areas_v3/bound/${key}_full.json`,
+    `/api/geo/${key}`,
+    `/geo/china-${key}.json`,
   ];
   let lastErr;
   for (const url of urls) {

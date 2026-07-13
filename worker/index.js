@@ -3,6 +3,29 @@
  */
 
 const LEGACY_ENTRY = /^\/china(?:\.html)?$/i;
+const GEO_PROXY = /^\/api\/geo\/(\d+)(?:\.json)?$/i;
+
+/** DataV 区划边界代理 · 规避浏览器直连 CDN 的 CORS/403 */
+async function proxyRegionGeo(adcode) {
+  const upstream = `https://geo.datav.aliyun.com/areas_v3/bound/${adcode}_full.json`;
+  const res = await fetch(upstream, {
+    headers: { Accept: 'application/json', 'User-Agent': 'ChinaOS-GeoProxy/1.0' },
+  });
+  if (!res.ok) {
+    return new Response(JSON.stringify({ error: `upstream ${res.status}` }), {
+      status: res.status,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+  return new Response(res.body, {
+    status: 200,
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Cache-Control': 'public, max-age=86400',
+      'Access-Control-Allow-Origin': '*',
+    },
+  });
+}
 
 const INDEX_PATH_RE = /^\/(?:index\.html)?$/i;
 const IMMUTABLE_ASSET_RE =
@@ -43,6 +66,11 @@ function legacyChinaRedirect(url) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    if (request.method === 'GET' && GEO_PROXY.test(url.pathname)) {
+      const adcode = url.pathname.match(GEO_PROXY)[1];
+      return proxyRegionGeo(adcode);
+    }
 
     if ((request.method === 'GET' || request.method === 'HEAD') && LEGACY_ENTRY.test(url.pathname)) {
       if (request.method === 'HEAD') {

@@ -5,15 +5,16 @@ import { AS_OF, LAYERS } from './liveMapData.js';
 
 export default function LiveChinaMapPage() {
   return (
-    <div className="space-y-6">
+    <div className="ink-observatory lcm-page-wrap os-content-fluid space-y-6">
       <PageHeader
-        badge="省级动态 · 十二层指标"
+        badge="省级动态 · 图层架构"
         title="神州活图"
-        subtitle="产业投资 · 科创密度 · 口岸流量 · 电力碳排 · 文旅消费 · 风险态势"
+        subtitle="网络区划边界 · 可扩展图层 · 财政自给网络层 · 时间轴对比"
       />
       <p className="text-xs max-w-3xl" style={{ color: 'var(--text-tertiary)' }}>
-        覆盖 {LAYERS.length} 个省级分层指标，支持区域缩放、12 月时间轴回放、双省对比与省份详情雷达。
-        数据为内置种子示意（AS_OF {AS_OF}），模拟动态抖动仅供「实时」氛围演示，非真实 API 推送。
+        省界底图优先从阿里云 DataV API 加载（失败时经 Worker 代理或本地 GeoJSON 兜底）。
+        覆盖 {LAYERS.length} 个种子指标层 + 实测气象/空气层；图层控制面板可开关省名标注、财政自给率着色、迁徙弧线、省会点位等叠加层。
+        AS_OF {AS_OF}。
       </p>
       <LiveChinaMap variant="full" />
     </div>

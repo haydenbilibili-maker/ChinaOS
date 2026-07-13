@@ -1000,8 +1000,8 @@ textarea:focus {
 
 @media (min-width: 1024px) {
   .live-china-map-body--full {
-    grid-template-columns: minmax(0, 1fr) 280px;
-    gap: 1.5rem;
+    grid-template-columns: 220px minmax(0, 1fr) 280px;
+    gap: 1.25rem;
   }
 }
 
@@ -2071,6 +2071,115 @@ textarea:focus-visible {
 }
 .lcm-breathe {
   animation: lcm-breathe 2.6s ease-in-out infinite alternate;
+}
+
+/* 10. 图层控制面板 · ink-observatory */
+.lcm-page-wrap {
+  max-width: 100%;
+}
+.lcm-layer-panel {
+  padding: 0.75rem 0.875rem;
+  border-radius: 0.75rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+.lcm-layer-panel-hd {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.625rem;
+}
+.lcm-layer-panel-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.lcm-layer-panel-badge {
+  margin-left: auto;
+  font-size: 0.625rem;
+  color: var(--text-tertiary);
+}
+.lcm-layer-geo-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.375rem 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.375rem;
+  background: var(--bg-base);
+  border: 1px solid var(--border-subtle);
+}
+.lcm-layer-geo-pill {
+  font-weight: 600;
+}
+.lcm-layer-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  max-height: 320px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+.lcm-layer-row {
+  padding: 0.375rem 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.lcm-layer-row.is-on {
+  background: rgba(34, 211, 238, 0.06);
+  border-color: rgba(34, 211, 238, 0.18);
+}
+.lcm-layer-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  cursor: pointer;
+  font-size: 0.6875rem;
+  color: var(--text-secondary);
+}
+.lcm-layer-name {
+  font-weight: 500;
+}
+.lcm-layer-legend,
+.lcm-layer-meta {
+  display: block;
+  margin-top: 0.25rem;
+  margin-left: 1.375rem;
+  font-size: 0.625rem;
+  color: var(--text-tertiary);
+}
+.lcm-layer-desc {
+  margin: 0.25rem 0 0 1.375rem;
+  font-size: 0.625rem;
+  line-height: 1.45;
+  color: var(--text-tertiary);
+}
+.lcm-layer-metric {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.625rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+.lcm-geo-loading::after {
+  content: '';
+  display: inline-block;
+  width: 0.35em;
+  animation: lcm-dots 1.2s steps(4, end) infinite;
+}
+@keyframes lcm-dots {
+  0% { content: ''; }
+  25% { content: '.'; }
+  50% { content: '..'; }
+  75% { content: '...'; }
 }
 
 /* 9. 减弱动态偏好 · 关闭全部 lcm 动画与位移 */

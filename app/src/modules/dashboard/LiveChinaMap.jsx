@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 import * as Lucide from 'lucide-react';
 import * as echarts from 'echarts';
-import DataBus from '../../lib/data/DataBus.js';
 import { CHART_TOOLTIP, applyChartTheme, chartTextColor } from '../shared/chartHelpers.js';
 import { getTheme, subscribeTheme, THEME_EVENT } from '../../lib/theme.js';
 import {
@@ -30,41 +29,32 @@ import {
   useLiveQuakes, buildQuakeSeries, quakeSymbolSize, quakeColor, formatQuakeTooltip,
 } from './liveQuakes.js';
 import {
-  useLiveFlights, buildFlightSeries, flightStats, formatFlightTooltip,
+  useLiveFlights, buildFlightSeries, formatFlightTooltip,
 } from './liveFlights.js';
 
 // 种子层 + 实时层合并（综合态势置首，随后两个真实数据层，再接其余种子层）
 const ALL_LAYERS = [LAYERS[0], ...REAL_LAYERS, ...LAYERS.slice(1)];
 import { getTimelineSeries, MONTH_COUNT, CURRENT_MONTH_INDEX } from './liveMapHistory.js';
 import LiveMapLayerBar from './LiveMapLayerBar.jsx';
+import LiveMapLayerPanel from './LiveMapLayerPanel.jsx';
 import LiveMapTimeline from './LiveMapTimeline.jsx';
 import ProvinceDetailDrawer from './ProvinceDetailDrawer.jsx';
+import { loadChinaGeo } from './liveMapGeo.js';
+import {
+  loadLayerPrefs, saveLayerPrefs, isLayerVisible,
+  buildOverlaySeries, buildGeoLabelOption, fetchFiscalChoropleth,
+} from './liveMapLayers.js';
 
-const registered = new Set(['_init']);
 const STEEL = '#22d3ee';
 const HOLD = '#e8a317';
 const ROTATE_MS = 10000;
 const JITTER_MS = 30000;
 const TIMELINE_MS = 1200;
 
-// 省际迁徙流（七普口径主通道 · 权重为示意标定，驱动弧线粗细）
-const MIGRATION_FLOWS = [
-  ['河南省', '广东省', 10], ['湖南省', '广东省', 9], ['广西壮族自治区', '广东省', 9],
-  ['四川省', '广东省', 8], ['安徽省', '江苏省', 8], ['河南省', '浙江省', 8],
-  ['黑龙江省', '广东省', 8], ['河北省', '北京市', 7], ['安徽省', '上海市', 6],
-  ['江西省', '浙江省', 6], ['贵州省', '浙江省', 6], ['湖北省', '广东省', 6],
-  ['辽宁省', '北京市', 5], ['吉林省', '广东省', 5], ['黑龙江省', '山东省', 5],
-  ['甘肃省', '新疆维吾尔自治区', 4],
-];
-
-function loadChina() {
-  if (registered.has('china')) return Promise.resolve('china');
-  return DataBus.regionGeo('100000').then((geo) => {
-    echarts.registerMap('china', geo);
-    registered.add('china');
-    return 'china';
-  });
-}
+const FISCAL_PALETTE = {
+  dark: ['#0a1628', '#1e3a5f', '#b45309', '#dc2626'],
+  light: ['#f8fafc', '#fde68a', '#f59e0b', '#b91c1c'],
+};
 
 function Icon({ name, size = 14, style }) {
   const Cmp = Lucide[name] || Lucide.Square;
@@ -137,6 +127,10 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
   const chartRef = useRef(null);
   const [ready, setReady] = useState(false);
   const [err, setErr] = useState(null);
+  const [geoSource, setGeoSource] = useState('');
+  const [layerPrefs, setLayerPrefs] = useState(loadLayerPrefs);
+  const [fiscalData, setFiscalData] = useState(null);
+  const [fiscalLoading, setFiscalLoading] = useState(false);
   const [layerId, setLayerId] = useState('composite');
   const [autoRotate, setAutoRotate] = useState(false);
   const [simLive, setSimLive] = useState(!isCompact);
@@ -150,15 +144,15 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
   const [compareNames, setCompareNames] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(!isCompact);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [showFlows, setShowFlows] = useState(false);
   const [searchQ, setSearchQ] = useState('');
   const [deltaMode, setDeltaMode] = useState(false);
   const [zoneId, setZoneId] = useState('');
   const [xLayer, setXLayer] = useState('economy');
   const [yLayer, setYLayer] = useState('risk');
-  const [showQuakes, setShowQuakes] = useState(false);
-  const [showAir, setShowAir] = useState(false);
   const [now, setNow] = useState(() => new Date());
+
+  const showLabels = isLayerVisible('labels', layerPrefs);
+  const showFiscal = isLayerVisible('fiscal-network', layerPrefs);
 
   const layer = ALL_LAYERS.find((l) => l.id === layerId) || getLayerById(layerId);
   const isReal = !!layer.live;
@@ -168,7 +162,6 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
   const weather = useLiveWeather();
   const quakesState = useLiveQuakes();
   const flightsState = useLiveFlights();
-  const airStats = useMemo(() => flightStats(flightsState.flights), [flightsState.flights]);
 
   // 头部实时时钟（30s 粒度足够）
   useEffect(() => {
@@ -209,14 +202,19 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
     return buildRealSeries(layerId, weather.data);
   }, [isReal, layerId, weather.data]);
 
-  const displayData = isReal ? realSeries : (deltaMode && deltaData ? deltaData : mapData);
+  const displayData = showFiscal && fiscalData?.series?.length
+    ? fiscalData.series
+    : (isReal ? realSeries : (deltaMode && deltaData ? deltaData : mapData));
   const statSeries = useMemo(() => displayData.filter((d) => d.value != null), [displayData]);
+  const coloringFiscal = showFiscal && !!fiscalData?.series?.length;
 
-  const rankings = useMemo(() => getRankings(layerId, 5, statSeries), [layerId, statSeries]);
-  const stats = useMemo(() => (statSeries.length ? getNationalStats(layerId, statSeries) : { avg: '—', max: '—', min: '—', maxProv: '', minProv: '' }), [layerId, statSeries]);
-  const palette = isReal
-    ? (theme === 'light' ? (REAL_PALETTES_LIGHT[layerId] || REAL_PALETTES[layerId]) : REAL_PALETTES[layerId])
-    : (PALETTES[theme === 'light' ? 'light' : 'dark'][layerId] || PALETTES.dark.composite);
+  const rankings = useMemo(() => getRankings(coloringFiscal ? 'fiscal' : layerId, 5, statSeries), [coloringFiscal, layerId, statSeries]);
+  const stats = useMemo(() => (statSeries.length ? getNationalStats(coloringFiscal ? 'fiscal' : layerId, statSeries) : { avg: '—', max: '—', min: '—', maxProv: '', minProv: '' }), [coloringFiscal, layerId, statSeries]);
+  const palette = coloringFiscal
+    ? FISCAL_PALETTE[theme === 'light' ? 'light' : 'dark']
+    : isReal
+      ? (theme === 'light' ? (REAL_PALETTES_LIGHT[layerId] || REAL_PALETTES[layerId]) : REAL_PALETTES[layerId])
+      : (PALETTES[theme === 'light' ? 'light' : 'dark'][layerId] || PALETTES.dark.composite);
 
   const hotCoords = useMemo(() => {
     if (deltaMode || isReal) return [];
@@ -229,8 +227,33 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
 
   useEffect(() => {
     let alive = true;
-    loadChina().then(() => alive && setReady(true)).catch((e) => alive && setErr(String(e)));
+    loadChinaGeo('100000')
+      .then((meta) => {
+        if (!alive) return;
+        setGeoSource(meta.source);
+        setReady(true);
+      })
+      .catch((e) => alive && setErr(String(e)));
     return () => { alive = false; };
+  }, []);
+
+  useEffect(() => {
+    if (!showFiscal) return undefined;
+    let alive = true;
+    setFiscalLoading(true);
+    fetchFiscalChoropleth()
+      .then((data) => alive && setFiscalData(data))
+      .catch(() => alive && setFiscalData(null))
+      .finally(() => alive && setFiscalLoading(false));
+    return () => { alive = false; };
+  }, [showFiscal]);
+
+  const handleLayerPrefToggle = useCallback((id) => {
+    setLayerPrefs((prev) => {
+      const next = { ...prev, [id]: !prev[id] };
+      saveLayerPrefs(next);
+      return next;
+    });
   }, []);
 
   useEffect(() => subscribeTheme((t) => {
@@ -388,6 +411,12 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
           if (p.seriesName === 'quakes') return formatQuakeTooltip(p);
           if (p.seriesName === 'flights') return formatFlightTooltip(p);
           if (isReal) return formatRealTooltip(p.name, layerId, weather.data?.[p.name], weather.fetchedAt);
+          if (coloringFiscal) {
+            const m = p.data?.metrics;
+            return m
+              ? `<b>${p.name}</b><br/>财政自给：${m.fiscal_self}%<br/>人口：${m.pop}万 · 变动 ${m.pop_change > 0 ? '+' : ''}${m.pop_change}万`
+              : p.name;
+          }
           if (deltaMode) {
             const v = p.data?.value;
             return v == null ? p.name : `<b>${p.name}</b><br/>${layer.label} Δ12月：${v > 0 ? '+' : ''}${v}`;
@@ -396,7 +425,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
           return formatTooltip(p.name, layerId, p.data?.metrics);
         },
       },
-      visualMap: deltaMode && !isReal
+      visualMap: deltaMode && !isReal && !coloringFiscal
         ? {
           show: true,
           min: -15,
@@ -413,13 +442,13 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
         }
         : {
           show: true,
-          min: layer.min,
-          max: layer.max,
+          min: coloringFiscal ? 0 : layer.min,
+          max: coloringFiscal ? 100 : layer.max,
           left: 8,
           bottom: isCompact ? 4 : 8,
           calculable: false,
           inRange: { color: palette },
-          text: [`高${layer.unit ? ` (${layer.unit})` : ''}`, '低'],
+          text: coloringFiscal ? ['高自给 %', '低'] : [`高${layer.unit ? ` (${layer.unit})` : ''}`, '低'],
           textStyle: { color: labelColor, fontSize: 10 },
           itemWidth: 12,
           itemHeight: isCompact ? 56 : 80,
@@ -450,7 +479,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
           },
           label: { show: false },
         },
-        label: { show: false },
+        label: buildGeoLabelOption(showLabels, labelColor),
       },
       series: [
         {
@@ -460,7 +489,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
           data: seriesData,
           selectedMode: false,
         },
-        ...(isDark && hotCoords.length && !isCompact
+        ...(isDark && hotCoords.length && !isCompact && !coloringFiscal
           ? [{
             type: 'effectScatter',
             coordinateSystem: 'geo',
@@ -471,47 +500,17 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
             zlevel: 2,
           }]
           : []),
-        ...(showFlows && !isCompact
-          ? [{
-            type: 'lines',
-            coordinateSystem: 'geo',
-            zlevel: 3,
-            silent: true,
-            effect: { show: true, period: 5, trailLength: 0.45, symbol: 'arrow', symbolSize: 4.5, color: HOLD },
-            lineStyle: { color: HOLD, opacity: 0.22, curveness: 0.32 },
-            data: MIGRATION_FLOWS
-              .filter(([f, t]) => PROVINCE_COORDS[f] && PROVINCE_COORDS[t])
-              .map(([f, t, w]) => ({ coords: [PROVINCE_COORDS[f], PROVINCE_COORDS[t]], lineStyle: { width: 0.5 + w * 0.16 } })),
-          }]
-          : []),
-        ...(showQuakes && !isCompact && quakesState.quakes?.length
-          ? [{
-            name: 'quakes',
-            type: 'effectScatter',
-            coordinateSystem: 'geo',
-            zlevel: 4,
-            data: buildQuakeSeries(quakesState.quakes).map((q) => ({ ...q, itemStyle: { color: quakeColor(q.mag) } })),
-            symbolSize: quakeSymbolSize,
-            rippleEffect: { scale: 3.2, brushType: 'stroke', period: 3 },
-            itemStyle: { shadowBlur: 10, shadowColor: 'rgba(239,68,68,0.5)' },
-          }]
-          : []),
-        ...(showAir && !isCompact && flightsState.flights?.length
-          ? [{
-            name: 'flights',
-            type: 'scatter',
-            coordinateSystem: 'geo',
-            zlevel: 5,
-            symbol: 'path://M0,-7 L5,7 L0,4 L-5,7 Z',
-            symbolSize: 7,
-            data: buildFlightSeries(flightsState.flights),
-            itemStyle: { color: isDark ? '#a5f3fc' : '#0e7490', opacity: 0.85, shadowBlur: 4, shadowColor: 'rgba(34,211,238,0.6)' },
-            emphasis: { itemStyle: { color: HOLD, opacity: 1 } },
-          }]
-          : []),
+        ...['flow-migration', 'scatter-capitals', 'overlay-quakes', 'overlay-flights']
+          .filter((id) => isLayerVisible(id, layerPrefs))
+          .flatMap((id) => buildOverlaySeries(id, {
+            theme, isCompact, pulsePhase, STEEL, HOLD,
+            quakesState, flightsState,
+            buildQuakeSeries, quakeSymbolSize, quakeColor,
+            buildFlightSeries,
+          }) || []),
       ],
     };
-  }, [theme, layer, mapData, displayData, deltaMode, isReal, weather.data, weather.fetchedAt, zoneId, layerId, palette, hotCoords, pulsePhase, region, selectedProvince, isCompact, showFlows, showQuakes, quakesState.quakes, showAir, flightsState.flights]);
+  }, [theme, layer, mapData, displayData, deltaMode, isReal, coloringFiscal, weather.data, weather.fetchedAt, zoneId, layerId, palette, hotCoords, pulsePhase, region, selectedProvince, isCompact, layerPrefs, showLabels, quakesState, flightsState, buildQuakeSeries, quakeSymbolSize, quakeColor, buildFlightSeries]);
 
   useEffect(() => {
     const chart = chartRef.current;
@@ -609,21 +608,9 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
                   {PROVINCE_NAMES.map((n) => <option key={n} value={n.replace(/(省|市|自治区|壮族|回族|维吾尔)/g, '')} />)}
                 </datalist>
               </div>
-              <label className="inline-flex items-center gap-1.5 cursor-pointer select-none text-[10px] mono whitespace-nowrap" style={{ color: showFlows ? HOLD : 'var(--text-tertiary)' }}>
-                <input type="checkbox" checked={showFlows} onChange={(e) => setShowFlows(e.target.checked)} style={{ accentColor: HOLD }} />
-                迁徙流
-              </label>
               <label className="inline-flex items-center gap-1.5 select-none text-[10px] mono whitespace-nowrap" style={{ color: isReal ? 'var(--text-tertiary)' : deltaMode ? '#ef4444' : 'var(--text-tertiary)', opacity: isReal ? 0.4 : 1, cursor: isReal ? 'not-allowed' : 'pointer' }} title={isReal ? '实况层为即时读数，无环比' : '当前月 − 12 月前：红升蓝降'}>
-                <input type="checkbox" disabled={isReal} checked={deltaMode && !isReal} onChange={(e) => setDeltaMode(e.target.checked)} style={{ accentColor: '#ef4444' }} />
+                <input type="checkbox" disabled={isReal || coloringFiscal} checked={deltaMode && !isReal && !coloringFiscal} onChange={(e) => setDeltaMode(e.target.checked)} style={{ accentColor: '#ef4444' }} />
                 Δ环比
-              </label>
-              <label className="inline-flex items-center gap-1.5 cursor-pointer select-none text-[10px] mono whitespace-nowrap" style={{ color: showQuakes ? '#ef4444' : 'var(--text-tertiary)' }} title="USGS 30 天 M4+ 地震目录 · 周边 bbox">
-                <input type="checkbox" checked={showQuakes} onChange={(e) => setShowQuakes(e.target.checked)} style={{ accentColor: '#ef4444' }} />
-                地震{showQuakes && quakesState.quakes ? ` ${quakesState.quakes.length}` : ''}
-              </label>
-              <label className="inline-flex items-center gap-1.5 cursor-pointer select-none text-[10px] mono whitespace-nowrap" style={{ color: showAir ? '#a5f3fc' : 'var(--text-tertiary)' }} title={`airplanes.live 社区 ADS-B · 可见 ${airStats.total} 架 · 均高 ${airStats.avgAlt}km（大陆覆盖稀疏，示意）`}>
-                <input type="checkbox" checked={showAir} onChange={(e) => setShowAir(e.target.checked)} style={{ accentColor: '#22d3ee' }} />
-                ✈ 空情{showAir && airStats.total ? ` ${airStats.total}` : ''}
               </label>
               <label className="inline-flex items-center gap-1.5 cursor-pointer select-none text-[10px] mono whitespace-nowrap" style={{ color: 'var(--text-tertiary)' }}>
                 <input type="checkbox" checked={simLive} onChange={(e) => setSimLive(e.target.checked)} style={{ accentColor: STEEL }} />
@@ -652,8 +639,10 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
 
       {!isCompact ? (
         <div className="live-china-map-meta flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-3 mb-1">
-          <span className="text-[10px] mono min-w-0 inline-flex items-center gap-2" style={{ color: 'var(--text-tertiary)' }}>
-            {layer.desc} · 数据源：<span style={{ color: isReal ? '#10b981' : 'var(--text-secondary)' }}>{layer.source === 'seed' ? '内置种子' : 'Open-Meteo 实测'}</span>
+          <span className="text-[10px] mono min-w-0 inline-flex items-center gap-2 flex-wrap" style={{ color: 'var(--text-tertiary)' }}>
+            {coloringFiscal ? '财政自给率（网络）' : layer.desc} · 数据源：<span style={{ color: coloringFiscal || isReal ? '#10b981' : 'var(--text-secondary)' }}>{coloringFiscal ? (fiscalData?.source === 'live' ? 'province-stats 网络' : 'province-stats 本地') : (layer.source === 'seed' ? '内置种子' : 'Open-Meteo 实测')}</span>
+            {geoSource && <span>· 边界 <span style={{ color: geoSource === 'network' ? '#10b981' : STEEL }}>{geoSource === 'network' ? 'DataV API' : geoSource === 'proxy' ? 'Worker' : '本地'}</span></span>}
+            {showFiscal && fiscalLoading && <span style={{ color: STEEL }}>// 拉取财政层…</span>}
             {isReal && weather.loading && <span style={{ color: STEEL }}>// 正在获取实测…</span>}
             {isReal && weather.error && <span style={{ color: HOLD }}>实时源不可达：{weather.error} · 自动重试中</span>}
             {isReal && !weather.error && weather.fetchedAt && (
@@ -729,10 +718,22 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
       )}
 
       <div className={`live-china-map-body ${!isCompact ? 'live-china-map-body--full' : ''} mt-4`}>
+        {!isCompact && (
+          <LiveMapLayerPanel
+            prefs={layerPrefs}
+            onToggle={handleLayerPrefToggle}
+            geoSource={geoSource}
+            activeMetricLabel={coloringFiscal ? '财政自给率' : layer.label}
+            fiscalActive={coloringFiscal}
+            fiscalMeta={fiscalData?.meta ? { year: fiscalData.meta.year, sourceNote: fiscalData.source } : null}
+          />
+        )}
         <div className={`live-china-map-canvas lcm-scan relative min-w-0 ${isCompact ? 'live-china-map-canvas--compact' : ''}`}>
           <div ref={elRef} style={{ width: '100%', height: '100%' }} />
           {!ready && !err && (
-            <div className="mono text-xs absolute top-3 left-3" style={{ color: 'var(--text-tertiary)' }}>// 加载地图边界…</div>
+            <div className="mono text-xs absolute top-3 left-3 lcm-geo-loading" style={{ color: 'var(--text-tertiary)' }}>
+              // 正在从网络加载省界边界…
+            </div>
           )}
           {err && (
             <div className="mono text-xs absolute top-3 left-3" style={{ color: 'var(--text-tertiary)' }}>地图加载失败：{err}</div>
@@ -765,8 +766,8 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
               className={`live-china-map-rankings flex flex-row lg:flex-col gap-4 p-3 rounded-lg lg:max-h-[560px] lg:overflow-y-auto ${!sidebarOpen ? 'hidden lg:flex' : 'flex'}`}
               style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}
             >
-              <RankList title={`${layer.label} · Top5`} items={rankings.hot} accent={STEEL} />
-              <RankList title={`${layer.label} · Bottom5`} items={rankings.cold} accent="#64748b" />
+              <RankList title={`${coloringFiscal ? '财政自给' : layer.label} · Top5`} items={rankings.hot} accent={STEEL} />
+              <RankList title={`${coloringFiscal ? '财政自给' : layer.label} · Bottom5`} items={rankings.cold} accent="#64748b" />
             </div>
           </aside>
         )}
