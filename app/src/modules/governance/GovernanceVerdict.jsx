@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import {
   ATTRIBUTION_ROUTE,
+  CUSHION_MONITOR_ROUTE,
   PREMIER_RADIUS_ROUTE,
   SIGNAL_PANEL_ROUTE,
   THREE_FORCES_ROUTE,
@@ -79,6 +80,7 @@ export default function GovernanceVerdict({ compact = false }) {
         <Link to={PREMIER_RADIUS_ROUTE}>权限半径</Link>
         <Link to={SIGNAL_PANEL_ROUTE}>信号灯</Link>
         <Link to={THREE_FORCES_ROUTE}>三力监测</Link>
+        <Link to={CUSHION_MONITOR_ROUTE}>垫子监测</Link>
       </div>
     </section>
   );

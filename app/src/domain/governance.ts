@@ -176,9 +176,43 @@ export const ATTRIBUTION_ROUTE = '/modules/attribution';
 export const PREMIER_RADIUS_ROUTE = '/modules/premier-radius';
 export const SIGNAL_PANEL_ROUTE = '/modules/signal-panel';
 export const THREE_FORCES_ROUTE = '/modules/three-forces';
+export const CUSHION_MONITOR_ROUTE = '/modules/cushion-monitor';
 
 /** 信号卡与三层归因议题的跨模块联动 */
 export interface SignalAttributionLink {
   issueId: string;
   layer: PowerLayer;
 }
+
+/** 垫子厚度监测 · 四国对照锚点（躺下那一刻的初始条件） */
+export type CushionCountry = 'cn' | 'jp' | 'kr' | 'us';
+
+/** 单层垫子相对厚度（0–100，结构比较刻度，非精确数值） */
+export interface CushionScore {
+  s: number;
+  t: string;
+}
+
+/** 四层垫子之一：国家 / 家庭 / 制度 / 时间 */
+export interface CushionLayer {
+  no: string;
+  name: string;
+  q: string;
+  metric: string;
+  vals: Record<CushionCountry, CushionScore>;
+  verdict: string;
+}
+
+/**
+ * 命运矩阵象限：垫子厚度 × 新牌桌是否打开。
+ * 核心洞察：命运 = 垫子厚度 × 新牌桌（乘积，非加法）。
+ */
+export type CushionTableState = 'closed' | 'open';
+export type CushionThickness = 'thick' | 'thin';
+
+export const CUSHION_COUNTRY_COLORS: Record<CushionCountry, string> = {
+  cn: '#cf4a3d',
+  jp: '#7a8fb8',
+  kr: '#b07fc0',
+  us: '#4f9e72',
+};

@@ -1,0 +1,16 @@
+import { PageHeader } from '../../app/ui.jsx';
+import CushionMonitor from './CushionMonitor.jsx';
+
+/** 垫子厚度监测 · 治理结构模块 5 */
+export default function CushionMonitorPage() {
+  return (
+    <div className="cushion-monitor-page">
+      <PageHeader
+        badge="治理结构 · 垫子"
+        title="垫子厚度监测"
+        subtitle="未富先躺 · 四国锚点 · 命运矩阵 · 四层拆解"
+      />
+      <CushionMonitor />
+    </div>
+  );
+}

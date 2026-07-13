@@ -12,6 +12,8 @@ export interface MacroIndicator {
   signalIds: string[];
   /** 关联的三力指标 id（three-forces） */
   forceIds: string[];
+  /** 关联的垫子层编号（cushion-monitor，01–04） */
+  cushionLayerNos?: string[];
 }
 
 export const MACRO_DEFLATION_GATE: MacroIndicator = {
@@ -36,13 +38,40 @@ export const MACRO_HOUSEHOLD_LOANS: MacroIndicator = {
   read: '信心体温计；资产负债表衰退是否缓解看此项。房价较峰值跌约 30%。',
   signalIds: ['C4'],
   forceIds: ['F2d'],
+  cushionLayerNos: ['02'],
+};
+
+export const MACRO_SOCIAL_SAFETY_NET: MacroIndicator = {
+  id: 'macro-social-safety-net',
+  name: '制度垫 · 社保厚度',
+  read: '预防性储蓄与消费率病根；基础养老金与户籍市民权缺口。',
+  signalIds: ['C3'],
+  forceIds: ['F2b'],
+  cushionLayerNos: ['03'],
+};
+
+export const MACRO_DEMOGRAPHIC_CLOCK: MacroIndicator = {
+  id: 'macro-demographic-clock',
+  name: '时间垫 · 未富先老',
+  read: '老龄化 7%→14% 用时短于日本；2025 新生儿 793 万（1949 年以来最低）。',
+  signalIds: [],
+  forceIds: ['F2c'],
+  cushionLayerNos: ['04'],
 };
 
 export const MACRO_INDICATORS: MacroIndicator[] = [
   MACRO_DEFLATION_GATE,
   MACRO_CONSUMPTION_SHARE,
   MACRO_HOUSEHOLD_LOANS,
+  MACRO_SOCIAL_SAFETY_NET,
+  MACRO_DEMOGRAPHIC_CLOCK,
 ];
+
+export const MACRO_BY_CUSHION_LAYER = Object.fromEntries(
+  MACRO_INDICATORS.flatMap((m) =>
+    (m.cushionLayerNos ?? []).map((no) => [no, m]),
+  ),
+) as Record<string, MacroIndicator>;
 
 export const MACRO_BY_SIGNAL = Object.fromEntries(
   MACRO_INDICATORS.flatMap((m) => m.signalIds.map((sid) => [sid, m])),

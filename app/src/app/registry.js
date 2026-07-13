@@ -29,7 +29,7 @@ export const GROUPS = [
   { id: 'security', label: '安全与国防', desc: '军事 · 台海 · 大安全', accent: '#c41e3a' },
   { id: 'population', label: '中国人群分析', desc: '人群画像总图谱 · 世代 · 阶层', accent: '#ec4899' },
   { id: 'sim', label: '推演与训练', desc: '沙盒 · 内参', accent: '#d4af37' },
-  { id: 'governance', label: '治理结构', desc: '归因 · 权限 · 信号 · 三力', accent: '#79a496' },
+  { id: 'governance', label: '治理结构', desc: '归因 · 权限 · 信号 · 三力 · 垫子', accent: '#79a496' },
   { id: 'foundation', label: '数据与系统', desc: '底座', accent: '#64748b' },
 ];
 
@@ -988,6 +988,15 @@ export const MODULES = [
     subtitle: '职权收缩 · 制度轨迹 · 1998—今',
     icon: 'CircleDot',
     component: lazy(() => import('../modules/premierRadius/Page.jsx')),
+  },
+  {
+    id: 'cushionMonitor',
+    path: '/modules/cushion-monitor',
+    group: 'governance',
+    title: '垫子厚度监测',
+    subtitle: '未富先躺 · 四国锚点 · 命运矩阵',
+    icon: 'Layers',
+    component: lazy(() => import('../modules/cushionMonitor/Page.jsx')),
   },
   {
     id: 'leadership', path: '/leadership', group: 'sim',
