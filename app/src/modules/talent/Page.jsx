@@ -12,6 +12,7 @@ import HigherEducationSection from './HigherEducationSection.jsx';
 import ThinkTankSection from './ThinkTankSection.jsx';
 import ResearchInstituteSection from './ResearchInstituteSection.jsx';
 import TalentDetailPanel from './TalentDetailPanel.jsx';
+import FigureRadarChart from './FigureRadarChart.jsx';
 import * as Lucide from 'lucide-react';
 import { PageHeader, Card, Grid, Stat, StatGrid, TabBar, Button, DistBar } from '../../app/ui.jsx';
 import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -29,7 +30,7 @@ import { DIPLOMATIC_CORPS_DEDUPED_COUNT, DC_TAB_LABEL } from '../../lib/db/diplo
 import { HIGHER_EDUCATION_DEDUPED_COUNT } from '../../lib/db/higherEducationSeed.js';
 import { RESEARCH_INSTITUTE_DEDUPED_COUNT, RI_STATE_TYPES } from '../../lib/db/researchInstituteSeed.js';
 import { THINK_TANK_DEDUPED_COUNT } from '../../lib/db/thinkTankSeed.js';
-import { ANTI_CORRUPTION_COUNT } from '../../lib/db/antiCorruptionSeed.js';
+import { ANTI_CORRUPTION_COUNT, ANTI_CORRUPTION_SEED_PKG } from '../../lib/db/antiCorruptionSeed.js';
 import { DISSIDENT_DEDUPED_COUNT } from '../../lib/db/dissidentSeed.js';
 import { TAIWAN_POLITICAL_DEDUPED_COUNT, TW_TAB_LABEL } from '../../lib/db/taiwanPoliticalSeed.js';
 import { SELF_MEDIA_DEDUPED_COUNT, SM_TAB_LABEL, SM_SUB_CATS } from '../../lib/db/selfMediaSeed.js';
@@ -231,8 +232,14 @@ export default function Page() {
   const [quickFilter, setQuickFilter] = useState('');
   const [sort, setSort] = useState('default');
   const [view, setView] = useState('list');
+  const [compareId, setCompareId] = useState('');
   const [sel, setSel] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const antiCorruptionNames = useMemo(
+    () => new Set((ANTI_CORRUPTION_SEED_PKG.rows || []).map((r) => (r.name || '').trim()).filter(Boolean)),
+    [],
+  );
 
   const provinces = useMemo(() => [...new Set((figures || []).map((f) => f.province).filter(Boolean))].sort(), [figures]);
   const levels = useMemo(() => [...new Set((figures || []).map((f) => f.level).filter(Boolean))].sort((a, b) => (LEVEL_RANK[a] ?? 9) - (LEVEL_RANK[b] ?? 9)), [figures]);
@@ -294,6 +301,10 @@ export default function Page() {
   }, [tab, filtered]);
 
   const detail = sel || (searchParams.get('id') ? null : filtered[0]) || null;
+  const compareFigure = useMemo(
+    () => (compareId ? filtered.find((f) => f.id === compareId) : null) || null,
+    [compareId, filtered],
+  );
 
   const { selectEntity } = useTalentDeepLink({
     searchParams,
@@ -541,9 +552,10 @@ export default function Page() {
                 <option value="default">默认排序</option><option value="ageAsc">年龄 ↑</option><option value="ageDesc">年龄 ↓</option><option value="level">按层级</option><option value="name">按姓名</option>
               </select>
               <div className="flex rounded overflow-hidden" style={{ border: '1px solid var(--border-subtle)' }}>
-                {[['list', 'List'], ['grid', 'LayoutGrid'], ['stats', 'BarChart3'], ['matrix', 'Grid3x3']].map(([v, ic]) => {
+                {[['list', 'List'], ['grid', 'LayoutGrid'], ['stats', 'BarChart3'], ['matrix', 'Grid3x3'], ['radar', 'Hexagon']].map(([v, ic]) => {
                   const I = Lucide[ic]; const on = view === v;
-                  return <button key={v} onClick={() => setView(v)} title={v === 'matrix' ? '层级×系统矩阵' : v} style={{ padding: '6px 9px', background: on ? 'rgba(34,211,238,0.18)' : 'var(--bg-base)', color: on ? 'var(--cyber-cyan)' : 'var(--text-tertiary)', border: 'none', cursor: 'pointer' }}><I size={15} /></button>;
+                  const title = v === 'matrix' ? '层级×系统矩阵' : v === 'radar' ? '人物画像·关系雷达' : v;
+                  return <button key={v} onClick={() => setView(v)} title={title} style={{ padding: '6px 9px', background: on ? 'rgba(34,211,238,0.18)' : 'var(--bg-base)', color: on ? 'var(--cyber-cyan)' : 'var(--text-tertiary)', border: 'none', cursor: 'pointer' }}><I size={15} /></button>;
                 })}
               </div>
               {figures.length < FIGURE_SEED.length && (
@@ -584,6 +596,50 @@ export default function Page() {
                 <Card title="层级（点选筛选）"><DistBar data={distLevel.filter(([k]) => k)} color="#c41e3a" onPick={(k) => setLevel(level === k ? '' : k)} active={level} /></Card>
                 <Card title="系统（点选筛选）"><DistBar data={distSector} color="#22d3ee" onPick={(k) => setSector(sector === k ? '' : k)} active={sector} /></Card>
               </div>
+            </div>
+          ) : view === 'radar' ? (
+            <div className="grid gap-4 mb-4" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
+              <Card title={`人物选择 (${filtered.length})`}>
+                <p className="text-[11px] mono mb-2" style={{ color: 'var(--text-tertiary)' }}>
+                  // 关系雷达 · 六维启发式画像 · 可选第二人叠加对比
+                </p>
+                <div className="mb-3">
+                  <label className="text-[10px] mono block mb-1" style={{ color: 'var(--text-tertiary)' }}>对比人物（可选）</label>
+                  <select
+                    value={compareId}
+                    onChange={(e) => setCompareId(e.target.value)}
+                    style={inp}
+                    className="w-full"
+                  >
+                    <option value="">不对比 · 仅显示队列均值</option>
+                    {filtered.filter((f) => f.id !== detail?.id).map((f) => (
+                      <option key={f.id} value={f.id}>{f.name} · {short(f.province) || f.role || ''}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="space-y-1.5" style={{ maxHeight: 480, overflowY: 'auto' }}>
+                  {filtered.map((f) => {
+                    const on = detail?.id === f.id;
+                    return (
+                      <button key={f.id} onClick={() => selectEntity(f)} className={`os-list-item w-full text-left px-3 py-2 rounded ${on ? 'is-selected' : ''}`}>
+                        <div className="flex items-center gap-1.5">
+                          <FigureAvatar {...figureAvatarProps(f)} size={24} ring={on} />
+                          <span className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{f.name}</span>
+                          {f.level && <span className="text-[9px] mono px-1 rounded" style={{ background: 'rgba(196,30,58,0.12)', color: 'var(--china-red)' }}>{f.level}</span>}
+                        </div>
+                        <div className="text-[10px] mt-0.5 truncate" style={{ color: 'var(--text-tertiary)' }}>{f.fields?.title || f.org || ''}</div>
+                      </button>
+                    );
+                  })}
+                  {!filtered.length && <div className="py-12 text-center mono text-sm" style={{ color: 'var(--text-tertiary)' }}>// 无匹配</div>}
+                </div>
+              </Card>
+              <FigureRadarChart
+                figure={detail ? applyTalentEnrichment(detail, { queue: 'figures' }) : null}
+                compareFigure={compareFigure ? applyTalentEnrichment(compareFigure, { queue: 'figures' }) : null}
+                cohortFigures={filtered}
+                antiCorruptionNames={antiCorruptionNames}
+              />
             </div>
           ) : view === 'stats' ? (
             <div className="space-y-4 mb-4">
@@ -654,6 +710,13 @@ export default function Page() {
                 )}
               </Card>
 
+              <div className="space-y-4">
+              <FigureRadarChart
+                figure={detail ? applyTalentEnrichment(detail, { queue: 'figures' }) : null}
+                cohortFigures={filtered}
+                antiCorruptionNames={antiCorruptionNames}
+                showCohortAvg={false}
+              />
               <Card title={detail ? `${detail.name} · 履历详情` : '选择一位'}>
                 {detail && (() => {
                   const d = applyTalentEnrichment(detail, { queue: 'figures' });
@@ -717,6 +780,7 @@ export default function Page() {
                   );
                 })()}
               </Card>
+              </div>
             </div>
           )}
         </>
