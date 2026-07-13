@@ -1,23 +1,16 @@
+@import '../shared/heshan-theme.css';
+
 /* 重构河山 · heshanFactsheets · 样式隔离 */
 #hs-factsheets-app {
   border-radius: var(--radius-lg);
   overflow: hidden;
 }
 
-#hs-factsheets-app{
-  --paper:#efe7d8;--ink:#211d18;--ink-soft:#4a423a;--muted:#7c7264;--line:#cdc0a9;
-  --cinnabar:#9e2b25;--cinnabar-2:#b8403a;--dai:#33474a;--gold:#9a7b3f;
-  --c-north:#3a4a52;--c-saibei:#9a7b3f;--c-huanghuai:#8a5a2b;--c-jiangnan:#3d5566;
-  --c-zhongyou:#7a5b30;--c-dongnan:#2f5a52;--c-lingnan:#9e3b30;--c-bashu:#4a5a36;--c-xibei:#86432e;
-}
 *{margin:0;padding:0;box-sizing:border-box}
 #hs-factsheets-app{scroll-behavior:smooth}
 #hs-factsheets-app{font-family:"Noto Serif SC","EB Garamond",serif;background:var(--paper);color:var(--ink);
   line-height:1.8;-webkit-font-smoothing:antialiased;
-  background-image:
-    radial-gradient(circle at 15% 10%,rgba(158,43,37,.025),transparent 40%),
-    radial-gradient(circle at 85% 85%,rgba(51,71,74,.03),transparent 45%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");}
+  background-image:var(--paper-texture);}
 .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
 
 /* hero */
@@ -25,7 +18,7 @@
 .seal{position:absolute;top:60px;right:30px;width:104px;height:104px;border:2.5px solid var(--cinnabar);
   border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--cinnabar);
   font-family:"Ma Shan Zheng",serif;font-size:27px;transform:rotate(-3deg);opacity:.92;
-  box-shadow:inset 0 0 0 1px rgba(158,43,37,.35)}
+  box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--cinnabar) 35%, transparent)}
 .seal span{writing-mode:vertical-rl;text-orientation:upright;letter-spacing:2px}
 .kicker{font-family:"EB Garamond",serif;font-style:italic;letter-spacing:.3em;text-transform:uppercase;
   font-size:13px;color:var(--cinnabar);margin-bottom:22px}
@@ -36,11 +29,11 @@
 .hero .meta b{color:var(--ink);font-weight:600}
 
 /* disclaimer */
-.disclaim{border:1px solid rgba(158,43,37,.4);background:rgba(158,43,37,.06);border-radius:5px;
+.disclaim{border:1px solid color-mix(in srgb, var(--cinnabar) 40%, transparent);background:var(--caution-bg);border-radius:5px;
   padding:20px 24px;margin:30px 0 0;font-size:14px;color:var(--ink-soft);max-width:900px}
 .disclaim b{color:var(--cinnabar)}
 .policy-strip{display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:22px;font-size:13px;color:var(--ink-soft)}
-.policy-strip .ps-tag{background:rgba(158,43,37,.08);border:1px solid rgba(158,43,37,.25);border-radius:4px;padding:6px 12px;letter-spacing:.04em}
+.policy-strip .ps-tag{background:var(--policy-tag-bg);border:1px solid color-mix(in srgb, var(--cinnabar) 25%, transparent);border-radius:4px;padding:6px 12px;letter-spacing:.04em}
 
 /* region heading */
 .region{padding:54px 0 8px}
@@ -51,9 +44,9 @@
 
 /* card grid */
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
-.fc{background:rgba(255,253,247,.6);border:1px solid var(--line);border-radius:6px;padding:26px 26px 24px;
+.fc{background:var(--card-bg);border:1px solid var(--line);border-radius:6px;padding:26px 26px 24px;
   position:relative;overflow:hidden;transition:.4s;border-top:4px solid var(--gold)}
-.fc:hover{transform:translateY(-5px);box-shadow:0 22px 46px -28px rgba(33,29,24,.5);background:#fffdf7}
+.fc:hover{transform:translateY(-5px);box-shadow:0 22px 46px -28px var(--card-shadow);background:var(--card-bg-solid)}
 .fc .wmk{position:absolute;right:-6px;bottom:-18px;font-family:"Ma Shan Zheng",serif;font-size:96px;
   color:var(--ink);opacity:.04;line-height:1;pointer-events:none}
 .fc .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:4px}
@@ -64,17 +57,17 @@
 .fc .cap::before{content:"◉ 省会 ";color:var(--muted);font-size:11px}
 .fc .stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
   border-radius:4px;overflow:hidden;margin-bottom:18px}
-.fc .st{background:rgba(255,253,247,.7);padding:13px 14px;text-align:center}
+.fc .st{background:var(--card-bg-hover);padding:13px 14px;text-align:center}
 .fc .st .v{font-size:22px;font-weight:900;color:var(--ink);line-height:1.05}
 .fc .st .v small{font-size:12px;font-weight:400;color:var(--muted)}
 .fc .st .k{font-size:11px;color:var(--muted);margin-top:5px;letter-spacing:.08em}
 .fc .sect{font-size:11px;color:var(--muted);letter-spacing:.14em;margin-bottom:8px}
 .fc .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
-.fc .tag{font-size:12px;background:rgba(51,71,74,.08);color:var(--ink-soft);border-radius:3px;padding:3px 9px;letter-spacing:.02em}
+.fc .tag{font-size:12px;background:var(--tag-bg);color:var(--ink-soft);border-radius:3px;padding:3px 9px;letter-spacing:.02em}
 .fc .why{font-size:13.5px;color:var(--ink-soft);line-height:1.65;padding-top:14px;border-top:1px dashed var(--line)}
 .fc .why b{color:var(--ink);font-weight:600}
 /* special variants */
-.fc.flag{border-top-color:var(--cinnabar);background:linear-gradient(150deg,rgba(184,64,58,.09),rgba(255,253,247,.6))}
+.fc.flag{border-top-color:var(--cinnabar);background:linear-gradient(150deg,var(--flag-tint),var(--flag-grad-end))}
 .fc.flag h3{color:var(--cinnabar)}
 .fc.flag .badge{display:inline-block;font-size:10px;background:var(--cinnabar);color:#fff;border-radius:3px;padding:2px 7px;letter-spacing:.1em;margin-left:8px;vertical-align:middle}
 .fc.muni{border-top-color:var(--dai)}
@@ -82,13 +75,13 @@
 .fc .caution-mini{font-size:11.5px;color:var(--cinnabar);margin-top:10px;letter-spacing:.03em}
 
 /* kept list */
-.kept{margin-top:60px;padding:40px;background:var(--dai);border-radius:8px;color:#ece3d2}
-.kept h2{color:#f3ecdb;font-size:26px;margin-bottom:8px}
-.kept p{color:#d4c9b4;font-size:14px;max-width:760px;margin-bottom:22px}
+.kept{margin-top:60px;padding:40px;background:var(--dai);border-radius:8px;color:var(--disc-text)}
+.kept h2{color:var(--disc-heading);font-size:26px;margin-bottom:8px}
+.kept p{color:var(--disc-muted);font-size:14px;max-width:760px;margin-bottom:22px}
 .kept .klist{display:flex;flex-wrap:wrap;gap:10px}
-.kept .ki{font-size:13.5px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);
+.kept .ki{font-size:13.5px;background:var(--disc-li-bg);border:1px solid var(--disc-border);
   border-radius:4px;padding:7px 14px;letter-spacing:.04em}
-.kept .ki b{color:#fff}
+.kept .ki b{color:var(--disc-heading)}
 
 footer{text-align:center;padding:60px 20px 80px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;letter-spacing:.1em;margin-top:50px}
 footer .fseal{font-family:"Ma Shan Zheng",serif;color:var(--cinnabar);font-size:22px;display:inline-block;
@@ -100,8 +93,4 @@ footer .fseal{font-family:"Ma Shan Zheng",serif;color:var(--cinnabar);font-size:
 
 .heshanFactsheets-module-wrap {
   margin-top: -0.5rem;
-}
-
-:root[data-theme='dark'] #hs-factsheets-app {
-  filter: brightness(0.92) contrast(1.05);
 }

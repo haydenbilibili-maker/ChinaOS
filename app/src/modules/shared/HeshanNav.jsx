@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import './heshan-theme.css';
 
 /** 重构河山 · 四稿交叉导航 */
 export const HESHAN_MODULES = [
@@ -13,7 +14,6 @@ export default function HeshanNav({ current }) {
     <nav
       className="heshan-nav os-card mb-6 flex flex-wrap gap-2 p-2"
       aria-label="重构河山系列导航"
-      style={{ borderLeft: '3px solid #9e2b25' }}
     >
       {HESHAN_MODULES.map((m) => (
         <NavLink
@@ -22,11 +22,6 @@ export default function HeshanNav({ current }) {
           className={({ isActive }) => `heshan-nav__item rounded-lg px-3 py-2 text-xs no-underline transition-colors ${
             isActive || current === m.id ? 'is-active' : ''
           }`}
-          style={({ isActive }) => ({
-            background: isActive || current === m.id ? 'rgba(158,43,37,0.12)' : 'transparent',
-            color: isActive || current === m.id ? 'var(--text-primary)' : 'var(--text-secondary)',
-            border: `1px solid ${isActive || current === m.id ? 'rgba(158,43,37,0.35)' : 'var(--border-subtle)'}`,
-          })}
         >
           <span className="font-semibold block">{m.label}</span>
           <span className="opacity-70">{m.desc}</span>
@@ -36,11 +31,7 @@ export default function HeshanNav({ current }) {
         href="/heshan/重构山河-行政区划改革白皮书-合订本.pdf"
         target="_blank"
         rel="noopener noreferrer"
-        className="heshan-nav__item rounded-lg px-3 py-2 text-xs no-underline ml-auto"
-        style={{
-          color: 'var(--text-tertiary)',
-          border: '1px dashed var(--border-subtle)',
-        }}
+        className="heshan-nav__item heshan-nav__pdf rounded-lg px-3 py-2 text-xs no-underline ml-auto"
       >
         <span className="font-semibold block">PDF 合订本</span>
         <span className="opacity-70">离线阅读 · 荒废斋</span>

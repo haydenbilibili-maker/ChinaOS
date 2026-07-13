@@ -1,0 +1,157 @@
+/* 重构河山 · 宣纸朱砂双主题令牌
+ * 夜览：深墨纸夜（ink-observatory 兼容，朱砂不刺眼）
+ * 日览：暖宣纸 #f4f1ea / #efe7d8 */
+
+#hs-reform-app,
+#hs-factsheets-app,
+#hs-fiscal-app,
+#hs-calibration-app {
+  /* 夜览默认 · 深墨纸夜 */
+  --paper: #141c1f;
+  --paper-2: #1a2428;
+  --ink: #e8e4dc;
+  --ink-soft: #b8b0a4;
+  --muted: #8a8278;
+  --line: #3a4548;
+  --cinnabar: #d06058;
+  --cinnabar-2: #e07068;
+  --dai: #2a3d42;
+  --gold: #b89868;
+  --teal: #5a9a8e;
+  --card-bg: rgba(232, 228, 220, 0.06);
+  --card-bg-hover: rgba(232, 228, 220, 0.11);
+  --card-bg-solid: rgba(232, 228, 220, 0.09);
+  --card-shadow: rgba(0, 0, 0, 0.45);
+  --flag-tint: rgba(208, 96, 88, 0.12);
+  --flag-grad-end: rgba(232, 228, 220, 0.06);
+  --new-tint: rgba(208, 96, 88, 0.1);
+  --tag-bg: rgba(90, 154, 142, 0.12);
+  --bar-track: rgba(90, 154, 142, 0.1);
+  --caution-bg: rgba(208, 96, 88, 0.1);
+  --policy-tag-bg: rgba(208, 96, 88, 0.12);
+  --disc-text: #e6ddca;
+  --disc-muted: #c4b9a4;
+  --disc-heading: #f3ecdb;
+  --disc-accent: #e8b0a8;
+  --disc-border: rgba(255, 255, 255, 0.1);
+  --disc-li-bg: rgba(255, 255, 255, 0.05);
+  --prin-hover-text: #f0e9da;
+  --prin-hover-muted: #d9b6a8;
+  --hero-fade: rgba(232, 228, 220, 0.02);
+  --noise-opacity: 0.02;
+  --paper-texture:
+    radial-gradient(circle at 18% 12%, rgba(208, 96, 88, 0.06), transparent 40%),
+    radial-gradient(circle at 82% 78%, rgba(90, 154, 142, 0.05), transparent 45%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.02'/%3E%3C/svg%3E");
+  /* macro-region hues · 夜览略提亮 */
+  --c-north: #5a6a72;
+  --c-saibei: #b89868;
+  --c-dongbei: #5f7a6a;
+  --c-huanghuai: #aa7a4b;
+  --c-jiangnan: #5d7586;
+  --c-zhongyou: #9a7b50;
+  --c-dongnan: #4f7a72;
+  --c-lingnan: #c05a50;
+  --c-bashu: #6a7a56;
+  --c-xibei: #a6634e;
+}
+
+:root[data-theme='light'] #hs-reform-app,
+:root[data-theme='light'] #hs-factsheets-app,
+:root[data-theme='light'] #hs-fiscal-app,
+:root[data-theme='light'] #hs-calibration-app {
+  /* 日览 · 暖宣纸朱砂 */
+  --paper: #efe7d8;
+  --paper-2: #e8dfcd;
+  --ink: #211d18;
+  --ink-soft: #4a423a;
+  --muted: #7c7264;
+  --line: #cdc0a9;
+  --cinnabar: #9e2b25;
+  --cinnabar-2: #b8403a;
+  --dai: #33474a;
+  --gold: #9a7b3f;
+  --teal: #3a6b63;
+  --card-bg: rgba(255, 253, 247, 0.55);
+  --card-bg-hover: rgba(255, 253, 247, 0.85);
+  --card-bg-solid: #fffdf7;
+  --card-shadow: rgba(33, 29, 24, 0.4);
+  --flag-tint: rgba(184, 64, 58, 0.09);
+  --flag-grad-end: rgba(255, 253, 247, 0.6);
+  --new-tint: rgba(184, 64, 58, 0.07);
+  --tag-bg: rgba(51, 71, 74, 0.08);
+  --bar-track: rgba(51, 71, 74, 0.06);
+  --caution-bg: rgba(158, 43, 37, 0.06);
+  --policy-tag-bg: rgba(158, 43, 37, 0.08);
+  --disc-text: #ece3d2;
+  --disc-muted: #d4c9b4;
+  --disc-heading: #f3ecdb;
+  --disc-accent: #d9b6a8;
+  --disc-border: rgba(255, 255, 255, 0.12);
+  --disc-li-bg: rgba(255, 255, 255, 0.06);
+  --prin-hover-text: #f0e9da;
+  --prin-hover-muted: #d9b6a8;
+  --hero-fade: rgba(33, 29, 24, 0.02);
+  --noise-opacity: 0.035;
+  --paper-texture:
+    radial-gradient(circle at 18% 12%, rgba(158, 43, 37, 0.025), transparent 40%),
+    radial-gradient(circle at 82% 78%, rgba(51, 71, 74, 0.03), transparent 45%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+  --c-north: #3a4a52;
+  --c-saibei: #9a7b3f;
+  --c-dongbei: #3f5a4a;
+  --c-huanghuai: #8a5a2b;
+  --c-jiangnan: #3d5566;
+  --c-zhongyou: #7a5b30;
+  --c-dongnan: #2f5a52;
+  --c-lingnan: #9e3b30;
+  --c-bashu: #4a5a36;
+  --c-xibei: #86432e;
+}
+
+/* 河山交叉导航 · 与宣纸朱砂主题对齐 */
+.heshan-nav {
+  border-left: 3px solid var(--hs-cinnabar, #9e2b25) !important;
+  background: var(--hs-nav-bg, var(--bg-surface)) !important;
+}
+
+:root[data-theme='dark'] .heshan-nav,
+:root:not([data-theme]) .heshan-nav {
+  --hs-cinnabar: #d06058;
+  --hs-nav-bg: rgba(20, 28, 31, 0.85);
+}
+
+:root[data-theme='light'] .heshan-nav {
+  --hs-cinnabar: #9e2b25;
+  --hs-nav-bg: rgba(255, 253, 247, 0.72);
+}
+
+.heshan-nav__item {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.heshan-nav__item:hover {
+  background: var(--nav-hover-bg);
+  color: var(--text-primary);
+}
+
+.heshan-nav__item.is-active {
+  background: color-mix(in srgb, var(--hs-cinnabar, #9e2b25) 12%, transparent);
+  color: var(--text-primary);
+  border-color: color-mix(in srgb, var(--hs-cinnabar, #9e2b25) 35%, transparent);
+}
+
+.heshan-nav__pdf {
+  color: var(--text-tertiary);
+  border: 1px dashed var(--border-subtle);
+  text-decoration: none;
+}
+
+.heshan-nav__pdf:hover {
+  color: var(--text-secondary);
+  border-color: var(--border-strong);
+}

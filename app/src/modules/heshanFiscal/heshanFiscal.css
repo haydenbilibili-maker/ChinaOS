@@ -1,16 +1,15 @@
+@import '../shared/heshan-theme.css';
+
 /* 重构河山 · heshanFiscal · 样式隔离 */
 #hs-fiscal-app {
   border-radius: var(--radius-lg);
   overflow: hidden;
 }
 
-#hs-fiscal-app{--paper:#efe7d8;--ink:#211d18;--ink-soft:#4a423a;--muted:#7c7264;--line:#cdc0a9;
-  --cinnabar:#9e2b25;--cinnabar-2:#b8403a;--dai:#33474a;--gold:#9a7b3f;--teal:#3a6b63;}
 *{margin:0;padding:0;box-sizing:border-box}
 #hs-fiscal-app{font-family:"Noto Serif SC","Noto Serif CJK SC","EB Garamond",serif;background:var(--paper);color:var(--ink);
   line-height:1.7;-webkit-font-smoothing:antialiased;
-  background-image:radial-gradient(circle at 12% 8%,rgba(158,43,37,.022),transparent 42%),
-    radial-gradient(circle at 90% 92%,rgba(51,71,74,.028),transparent 46%);}
+  background-image:var(--paper-texture);}
 .wrap{max-width:1140px;margin:0 auto;padding:0 26px}
 .hero{padding:74px 0 28px;position:relative}
 .seal{position:absolute;top:54px;right:26px;width:98px;height:98px;border:2.5px solid var(--cinnabar);border-radius:8px;
@@ -24,11 +23,11 @@ h1 .accent{color:var(--cinnabar)}
 .disclaim a{color:var(--cinnabar)}
 .policy-panel{border-top:4px solid var(--cinnabar)}
 .policy-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 20px;margin-top:8px}
-.policy-item{font-size:13px;color:var(--ink-soft);padding:12px 14px;background:rgba(255,253,247,.5);border:1px solid var(--line);border-radius:5px;line-height:1.55}
+.policy-item{font-size:13px;color:var(--ink-soft);padding:12px 14px;background:var(--card-bg);border:1px solid var(--line);border-radius:5px;line-height:1.55}
 .policy-item b{display:block;color:var(--cinnabar);font-size:12px;letter-spacing:.08em;margin-bottom:4px}
 .policy-item a{color:var(--cinnabar)}
 @media(max-width:720px){.policy-grid{grid-template-columns:1fr}}
-.panel{background:rgba(255,253,247,.6);border:1px solid var(--line);border-radius:8px;padding:26px 28px;margin:26px 0}
+.panel{background:var(--card-bg);border:1px solid var(--line);border-radius:8px;padding:26px 28px;margin:26px 0}
 .panel-title{font-size:13px;color:var(--cinnabar);letter-spacing:.14em;margin-bottom:4px}
 .panel h2{font-size:23px;font-weight:700;letter-spacing:.04em;margin-bottom:16px}
 /* controls */
@@ -51,10 +50,10 @@ h1 .accent{color:var(--cinnabar)}
 .bars{margin-top:18px}
 .bar-row{display:grid;grid-template-columns:118px 1fr 92px;align-items:center;gap:12px;margin-bottom:5px;font-size:13px}
 .bar-row .nm{text-align:right;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.bar-track{position:relative;height:20px;background:rgba(51,71,74,.06);border-radius:3px;overflow:hidden}
+.bar-track{position:relative;height:20px;background:var(--bar-track);border-radius:3px;overflow:hidden}
 .bar-fill{position:absolute;left:0;top:0;height:100%;border-radius:3px;transition:width .35s ease}
 .bar-fill.recv{background:linear-gradient(90deg,var(--cinnabar-2),var(--cinnabar))}
-.bar-fill.give{background:linear-gradient(90deg,var(--teal),#2c5048)}
+.bar-fill.give{background:linear-gradient(90deg,var(--teal),color-mix(in srgb, var(--teal) 80%, #000))}
 .bar-row .val{font-weight:700;font-size:13px}
 .bar-row .val.recv{color:var(--cinnabar)}
 .bar-row .val.give{color:var(--teal)}
@@ -62,7 +61,7 @@ h1 .accent{color:var(--cinnabar)}
 .legend i{display:inline-block;width:14px;height:10px;border-radius:2px;margin-right:5px;vertical-align:middle}
 /* mini calc */
 .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:6px}
-.mini{background:rgba(255,253,247,.5);border:1px solid var(--line);border-radius:6px;padding:22px 24px;border-top:4px solid var(--gold)}
+.mini{background:var(--card-bg);border:1px solid var(--line);border-radius:6px;padding:22px 24px;border-top:4px solid var(--gold)}
 .mini h3{font-size:18px;font-weight:700;margin-bottom:14px}
 .mini .row{display:flex;justify-content:space-between;align-items:center;font-size:13.5px;margin-bottom:12px;gap:10px}
 .mini .row input[type=range]{flex:1;max-width:180px}
@@ -78,8 +77,4 @@ footer .fseal{font-family:"Ma Shan Zheng",serif;color:var(--cinnabar);font-size:
 
 .heshanFiscal-module-wrap {
   margin-top: -0.5rem;
-}
-
-:root[data-theme='dark'] #hs-fiscal-app {
-  filter: brightness(0.92) contrast(1.05);
 }

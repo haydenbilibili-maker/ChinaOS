@@ -1,31 +1,9 @@
+@import '../shared/heshan-theme.css';
+
 /* 重构河山 · heshanReform · 样式隔离 */
 #hs-reform-app {
   border-radius: var(--radius-lg);
   overflow: hidden;
-}
-
-#hs-reform-app{
-  --paper:#efe7d8;
-  --paper-2:#e8dfcd;
-  --ink:#211d18;
-  --ink-soft:#4a423a;
-  --muted:#7c7264;
-  --line:#cdc0a9;
-  --cinnabar:#9e2b25;       /* 朱砂 */
-  --cinnabar-2:#b8403a;
-  --dai:#33474a;            /* 黛青 */
-  --gold:#9a7b3f;
-  /* macro-region hues */
-  --c-north:#3a4a52;
-  --c-saibei:#9a7b3f;
-  --c-dongbei:#3f5a4a;
-  --c-huanghuai:#8a5a2b;
-  --c-jiangnan:#3d5566;
-  --c-zhongyou:#7a5b30;
-  --c-dongnan:#2f5a52;
-  --c-lingnan:#9e3b30;
-  --c-bashu:#4a5a36;
-  --c-xibei:#86432e;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 #hs-reform-app{scroll-behavior:smooth}
@@ -36,22 +14,19 @@
   line-height:1.85;
   font-weight:400;
   -webkit-font-smoothing:antialiased;
-  background-image:
-    radial-gradient(circle at 18% 12%, rgba(158,43,37,.025), transparent 40%),
-    radial-gradient(circle at 82% 78%, rgba(51,71,74,.03), transparent 45%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+  background-image: var(--paper-texture);
 }
 .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
 
 /* ---------- HERO ---------- */
 .hero{position:relative;min-height:88vh;display:flex;flex-direction:column;justify-content:center;padding:80px 0 60px;overflow:hidden}
 .hero::before{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,transparent,rgba(33,29,24,.02));pointer-events:none}
+  background:linear-gradient(180deg,transparent,var(--hero-fade));pointer-events:none}
 .seal{position:absolute;top:60px;right:30px;width:108px;height:108px;border:2.5px solid var(--cinnabar);
   border-radius:8px;display:flex;align-items:center;justify-content:center;
   color:var(--cinnabar);font-family:"Ma Shan Zheng",serif;font-size:30px;line-height:1.05;text-align:center;
   transform:rotate(-3deg);opacity:.92;letter-spacing:2px;
-  box-shadow:inset 0 0 0 1px rgba(158,43,37,.35)}
+  box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--cinnabar) 35%, transparent)}
 .seal span{writing-mode:vertical-rl;text-orientation:upright}
 .kicker{font-family:"EB Garamond",serif;font-style:italic;letter-spacing:.32em;text-transform:uppercase;
   font-size:13px;color:var(--cinnabar);margin-bottom:26px;opacity:0}
@@ -85,17 +60,17 @@ h2 .cn-num{color:var(--cinnabar);font-family:"Ma Shan Zheng",serif;margin-right:
 p{margin-bottom:18px;letter-spacing:.015em}
 .prose{max-width:780px}
 .prose p{font-size:16.5px;color:var(--ink-soft)}
-.prose strong{color:var(--ink);font-weight:600;border-bottom:1.5px solid rgba(158,43,37,.3)}
+.prose strong{color:var(--ink);font-weight:600;border-bottom:1.5px solid color-mix(in srgb, var(--cinnabar) 30%, transparent)}
 .pull{font-size:clamp(20px,3vw,28px);font-weight:600;color:var(--ink);line-height:1.5;
   margin:40px 0;padding:28px 0 28px 30px;border-left:4px solid var(--cinnabar);max-width:820px}
 .pull .small{display:block;font-size:14px;color:var(--muted);font-weight:400;font-style:italic;margin-top:14px;letter-spacing:.05em}
 
 /* ---------- DIAGNOSIS CARDS ---------- */
 .grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
-.card{background:rgba(255,253,247,.55);border:1px solid var(--line);border-radius:4px;padding:30px 28px;
+.card{background:var(--card-bg);border:1px solid var(--line);border-radius:4px;padding:30px 28px;
   position:relative;transition:.4s;overflow:hidden}
 .card::before{content:"";position:absolute;top:0;left:0;width:4px;height:100%;background:var(--cinnabar);opacity:.7}
-.card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -24px rgba(33,29,24,.4);background:rgba(255,253,247,.85)}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -24px var(--card-shadow);background:var(--card-bg-hover)}
 .card .ci{font-family:"Ma Shan Zheng",serif;font-size:42px;color:var(--cinnabar);opacity:.32;
   position:absolute;top:14px;right:22px;line-height:1}
 .card h3{font-size:21px;font-weight:700;margin-bottom:12px;letter-spacing:.03em}
@@ -104,9 +79,9 @@ p{margin-bottom:18px;letter-spacing:.015em}
 /* ---------- PRINCIPLES ---------- */
 .principles{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:8px}
 .prin{text-align:center;padding:34px 18px;border:1px solid var(--line);border-radius:4px;
-  background:rgba(255,253,247,.4);transition:.35s}
-.prin:hover{background:var(--dai);color:#f0e9da}
-.prin:hover .pn,.prin:hover small{color:#d9b6a8}
+  background:var(--card-bg);transition:.35s}
+.prin:hover{background:var(--dai);color:var(--prin-hover-text)}
+.prin:hover .pn,.prin:hover small{color:var(--prin-hover-muted)}
 .prin .pn{font-family:"Ma Shan Zheng",serif;font-size:48px;color:var(--cinnabar);line-height:1;margin-bottom:14px;transition:.35s}
 .prin h4{font-size:19px;font-weight:700;margin-bottom:8px;letter-spacing:.06em}
 .prin small{font-size:13.5px;color:var(--muted);line-height:1.6;display:block;transition:.35s}
@@ -138,26 +113,26 @@ p{margin-bottom:18px;letter-spacing:.015em}
 .region-head h3{font-size:20px;font-weight:700;letter-spacing:.06em}
 .region-head .rcount{font-size:12px;color:var(--muted);margin-left:auto;letter-spacing:.1em}
 .units{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:10px}
-.unit{border:1px solid var(--line);border-radius:4px;padding:13px 15px;background:rgba(255,253,247,.5);
+.unit{border:1px solid var(--line);border-radius:4px;padding:13px 15px;background:var(--card-bg);
   transition:.3s;position:relative;border-left-width:4px}
-.unit:hover{transform:translateY(-3px);box-shadow:0 12px 26px -18px rgba(0,0,0,.4);background:#fffdf7}
+.unit:hover{transform:translateY(-3px);box-shadow:0 12px 26px -18px var(--card-shadow);background:var(--card-bg-solid)}
 .unit .un{font-size:16px;font-weight:700;letter-spacing:.04em}
 .unit .uc{font-size:12.5px;color:var(--muted);margin-top:3px}
 .unit .ub{font-size:12px;color:var(--ink-soft);margin-top:7px;line-height:1.5;opacity:.92}
 .unit.keep{opacity:.78;border-left-color:var(--muted)!important}
 .unit.keep .un::after{content:"·留";font-size:11px;color:var(--muted);font-weight:400}
-.unit.new{border-left-color:var(--cinnabar)!important;background:rgba(184,64,58,.07)}
+.unit.new{border-left-color:var(--cinnabar)!important;background:var(--new-tint)}
 .unit.new .un{color:var(--cinnabar)}
 .unit.new .un::after{content:"·新设";font-size:11px;color:var(--cinnabar);font-weight:500}
 .badge-star{color:var(--cinnabar)}
 
 /* ---------- CASES ---------- */
 .cases{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
-.casebox{border:1px solid var(--line);border-radius:4px;padding:30px 28px;background:rgba(255,253,247,.5);position:relative}
+.casebox{border:1px solid var(--line);border-radius:4px;padding:30px 28px;background:var(--card-bg);position:relative}
 .casebox .tag{font-family:"EB Garamond",serif;font-style:italic;color:var(--cinnabar);font-size:13px;letter-spacing:.18em;text-transform:uppercase}
 .casebox h3{font-size:23px;font-weight:700;margin:8px 0 14px}
 .casebox p{font-size:15px;color:var(--ink-soft);margin-bottom:0;line-height:1.78}
-.casebox.flag{background:linear-gradient(135deg,rgba(184,64,58,.09),rgba(255,253,247,.5));border-color:rgba(158,43,37,.35)}
+.casebox.flag{background:linear-gradient(135deg,var(--flag-tint),var(--flag-grad-end));border-color:color-mix(in srgb, var(--cinnabar) 35%, transparent)}
 
 /* ---------- FISCAL ---------- */
 .fiscal{counter-reset:fc}
@@ -181,18 +156,19 @@ p{margin-bottom:18px;letter-spacing:.015em}
 .tstep p{font-size:15.5px;color:var(--ink-soft);max-width:720px;margin-bottom:0}
 
 /* ---------- DISCUSSION ---------- */
-.disc{background:var(--dai);color:#ece3d2;border-radius:6px;padding:44px 40px;margin-top:14px}
-.disc h2{color:#f3ecdb}
-.disc .sec-num{color:#d9b6a8}
+.disc{background:var(--dai);color:var(--disc-text);border-radius:6px;padding:44px 40px;margin-top:14px}
+.disc h2{color:var(--disc-heading)}
+.disc .sec-num{color:var(--disc-accent)}
+.disc .disc-lead{color:var(--disc-muted);max-width:720px;margin-top:10px}
 .disc ol{list-style:none;counter-reset:dq;margin-top:24px}
-.disc li{counter-increment:dq;padding:18px 0 18px 56px;position:relative;border-top:1px solid rgba(255,255,255,.12);
-  font-size:16.5px;color:#e6ddca;line-height:1.7}
+.disc li{counter-increment:dq;padding:18px 0 18px 56px;position:relative;border-top:1px solid var(--disc-border);
+  font-size:16.5px;color:var(--disc-text);line-height:1.7}
 .disc li:first-child{border-top:none}
 .disc li::before{content:"問 " counter(dq);position:absolute;left:0;top:18px;font-family:"Ma Shan Zheng",serif;
-  font-size:18px;color:var(--cinnabar-2);background:rgba(255,255,255,.06);padding:2px 8px;border-radius:3px}
+  font-size:18px;color:var(--cinnabar-2);background:var(--disc-li-bg);padding:2px 8px;border-radius:3px}
 
 /* caution box */
-.caution{border:1px solid rgba(158,43,37,.4);background:rgba(158,43,37,.06);border-radius:4px;
+.caution{border:1px solid color-mix(in srgb, var(--cinnabar) 40%, transparent);background:var(--caution-bg);border-radius:4px;
   padding:26px 28px;margin:34px 0;max-width:840px}
 .caution .ch{font-weight:700;color:var(--cinnabar);font-size:15px;letter-spacing:.1em;margin-bottom:8px;display:flex;align-items:center;gap:8px}
 .caution p{font-size:15px;color:var(--ink-soft);margin-bottom:0}
@@ -215,8 +191,4 @@ footer .fseal{font-family:"Ma Shan Zheng",serif;color:var(--cinnabar);font-size:
 
 .heshanReform-module-wrap {
   margin-top: -0.5rem;
-}
-
-:root[data-theme='dark'] #hs-reform-app {
-  filter: brightness(0.92) contrast(1.05);
 }
