@@ -9,6 +9,7 @@ import {
 import { BUSINESS_ELITE_EXPANSION } from './talentBulkExpansion2026.js';
 import { BUSINESS_ELITE_EXPANSION_2 } from './talentBulkExpansion2026_part2.js';
 import { BUSINESS_ELITE_EXPANSION_4 } from './talentBulkExpansion2026_part4.js';
+import { BUSINESS_ELITE_EXPANSION_5 } from './talentBulkExpansion2026_part5.js';
 import { mergeAcademiciansIntoBusinessElite } from './academicianMerge.js';
 import { enrichTalentList } from '../talent/talentEnrich.js';
 import {
@@ -81,7 +82,7 @@ export function dedupeBusinessElite(list) {
 }
 
 export function buildBusinessEliteSeed() {
-  const merged = mergeAcademiciansIntoBusinessElite([...BUSINESS_ELITE_2026, ...BUSINESS_ELITE_EXPANSION, ...BUSINESS_ELITE_EXPANSION_2, ...BUSINESS_ELITE_EXPANSION_4]);
+  const merged = mergeAcademiciansIntoBusinessElite([...BUSINESS_ELITE_2026, ...BUSINESS_ELITE_EXPANSION, ...BUSINESS_ELITE_EXPANSION_2, ...BUSINESS_ELITE_EXPANSION_4, ...BUSINESS_ELITE_EXPANSION_5]);
   const { rows, dupeCount, rawCount } = dedupeBusinessElite(merged);
   return {
     id: BUSINESS_ELITE_DATASET_ID,

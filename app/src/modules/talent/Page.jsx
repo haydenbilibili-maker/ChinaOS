@@ -114,7 +114,7 @@ const TAB_META = {
   },
   anticorruption: {
     title: '人才精英库 · 反腐透视',
-    subtitle: () => '权力纠错账本 · 十八大以来公开落马/被查案例历年汇总，与中国政要独立建档。',
+    subtitle: (n) => `权力纠错账本 · 十八大以来公开落马/被查案例历年汇总（内置 ${n ?? ANTI_CORRUPTION_COUNT} 条）—— 2026 H1 金融/国企/巡视通报密集期，与中国政要独立建档。`,
   },
   dissident: {
     title: '人才精英库 · 异见人士',

@@ -17,9 +17,9 @@ HEADER = """// =================================================================
 import { AS_OF } from './figureCommon.js';
 
 export const ANTI_CORRUPTION_META = {
-  id: 'political_anticorruption-2026-06',
+  id: 'political_anticorruption-2026-07',
   asOf: AS_OF,
-  label: '反腐名单 · 历年汇总 · 2012–2026（337案）',
+  label: '反腐名单 · 历年汇总 · 2012–2026（{count}案）',
   sources: ['中央纪委国家监委网站', '新华社', '人民网', '央视网', '中国新闻网'],
   scope: '副省部级及以上为主，含全国性影响典型案例；按官宣日期归年',
   notes: '非穷尽名录；同一人物多阶段通报合并为首次「落马/被查」记录；司法细节以司法机关公开信息为准；研究用途，不代表官方立场。',
@@ -89,7 +89,8 @@ def main():
     # 保留原始条目（含重复），去重由 antiCorruptionSeed.js buildAntiCorruptionSeed 负责
     cases = sorted(CASES, key=lambda x: x[6])
     unique = dedupe(CASES)
-    lines = [HEADER]
+    header = HEADER.replace('{count}', str(len(unique)))
+    lines = [header]
     cur_year = None
     for c in cases:
         y = c[6][:4]

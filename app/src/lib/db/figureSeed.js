@@ -15,6 +15,7 @@ import { FIGURE_POLITICAL_STRUCTURE_2026, FIGURE_POLITICAL_STRUCTURE_META, FIGUR
 import { FIGURE_EXPANSION_2026 } from './figureExpansion2026.js';
 import { FIGURE_MILITARY_EXPANSION_3 } from './talentBulkExpansion2026_part3.js';
 import { FIGURE_EXPANSION_4, FIGURE_MILITARY_EXPANSION_4 } from './talentBulkExpansion2026_part4.js';
+import { FIGURE_EXPANSION_5 } from './talentBulkExpansion2026_part5.js';
 import { enrichTalentList } from '../talent/talentEnrich.js';
 import { dedupeFigures } from './figureDedupe.js';
 
@@ -33,15 +34,16 @@ const FIGURE_SEED_BASE = [
   ...FIGURE_MILITARY_EXPANSION_3,
   ...FIGURE_MILITARY_EXPANSION_4,
   ...FIGURE_EXPANSION_4,
+  ...FIGURE_EXPANSION_5,
   ...FIGURE_EXPANSION_2026,
 ];
 
 export const FIGURE_SEED = enrichTalentList(dedupeFigures(FIGURE_SEED_BASE).rows, { queue: 'figures' });
 
 export const FIGURE_CATALOG_META = {
-  id: 'figures-2026-06',
-  asOf: '2026-06-11',
-  label: '全口径中国政要 · 2026-06',
+  id: 'figures-2026-07',
+  asOf: '2026-07-13',
+  label: '全口径中国政要 · 2026-07',
   sources: [...new Set([
     ...PROV_META.sources,
     ...FIGURE_PROVINCIAL_EXTENDED_META.sources,

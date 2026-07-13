@@ -1,4 +1,4 @@
-import { AXIS, LABEL } from '../shared/chartHelpers.js';
+import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import * as Lucide from 'lucide-react';
@@ -40,6 +40,41 @@ const LEVEL_TIERS = [
   { id: 'ting', label: '厅局级典型', match: (l) => ['正厅级', '副厅级'].includes(l) },
 ];
 const TYPICAL_BADGE = { background: 'rgba(232,163,23,0.18)', color: '#e8a317' };
+
+/** 2026 H1 政策锚点 · 公开表述摘要（研究口径） */
+const POLICY_ANCHORS_2026 = [
+  {
+    period: '2026-01',
+    title: '二十届中央纪委五次全会',
+    desc: '强调以更高标准推进全面从严治党，持续深化反腐败斗争，一体推进不敢腐、不能腐、不想腐，强化对权力运行的制约和监督。',
+    docId: 'gwr-2025',
+    docLabel: '政府工作报告 · 2025',
+  },
+  {
+    period: '2026-Q1',
+    title: '金融与国企领域高压态势',
+    desc: '国家金融监督管理总局、央企集团原「一把手」及省部级地方主官密集通报，巡视反馈与立案审查调查并行，形成「磁盘碎片整理」式权力纠错节奏。',
+    docId: null,
+    docLabel: null,
+  },
+  {
+    period: '2026-H1',
+    title: '巡视整改与通报机制',
+    desc: '中央纪委国家监委网站持续发布省部级及以上干部接受审查调查、开除党籍等通报；本库按首次官宣日期归年，司法细节以法院公开裁判为准。',
+    docId: 'plenum-20-4',
+    docLabel: '二十届四中全会 · 决议',
+  },
+];
+
+/** 2026 年以来典型节点（种子内置，公开报道口径） */
+const RECENT_CASE_SPOTLIGHT_2026 = [
+  { date: '2026-01-24', name: '张又侠', tag: '军队', level: '副国级' },
+  { date: '2026-01-31', name: '王祥喜', tag: '国务院', level: '正部级' },
+  { date: '2026-03-20', name: '胡衡华', tag: '党政', level: '副省级' },
+  { date: '2026-03-24', name: '周亮', tag: '金融', level: '副部级' },
+  { date: '2026-06-03', name: '杨燕子', tag: '金融', level: '正部级' },
+  { date: '2026-07-09', name: '刘建新', tag: '国企', level: '副部级' },
+];
 
 function tally(arr, keyFn) {
   const m = new Map();
@@ -168,8 +203,8 @@ export default function AntiCorruptionSection() {
 
   const yearChart = {
     grid: { left: 40, right: 12, top: 12, bottom: 24 },
-    xAxis: { type: 'category', data: distYear.map(([y]) => y).reverse(), axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
-    yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+    xAxis: { type: 'category', data: distYear.map(([y]) => y).reverse(), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
+    yAxis: { type: 'value', splitLine: { lineStyle: { color: GRID_LINE.color } }, axisLabel: { color: LABEL.color } },
     series: [{ type: 'bar', data: distYear.map(([, n]) => n).reverse(), barWidth: 18, itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } }],
   };
 
@@ -224,6 +259,64 @@ export default function AntiCorruptionSection() {
         <Stat value={years.length} label="覆盖年份" accent="#8b5cf6" />
         <Stat value={filtered.length} label="当前命中" />
       </div>
+
+      <Card title="2026 H1 政策锚点 · 权力纠错语境" className="mb-4">
+        <p className="text-[11px] mono mb-3" style={{ color: 'var(--text-tertiary)' }}>
+          反腐透视模块 · 公开政策话语与通报节奏摘要；不构成官方解读。完整条文见
+          {' '}<Link to="/policydocs" className="mono" style={{ color: 'var(--cyber-cyan)' }}>政策文档库</Link>。
+        </p>
+        <div className="space-y-3">
+          {POLICY_ANCHORS_2026.map((a) => (
+            <div key={a.period} className="rounded px-3 py-2.5" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #c41e3a' }}>
+              <div className="flex flex-wrap items-center gap-2 mb-1">
+                <span className="mono text-[11px] font-semibold" style={{ color: '#c41e3a' }}>{a.period}</span>
+                <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{a.title}</span>
+                {a.docId && (
+                  <Link to={`/policydocs?doc=${a.docId}`} className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)' }}>
+                    {a.docLabel}
+                  </Link>
+                )}
+              </div>
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{a.desc}</p>
+            </div>
+          ))}
+        </div>
+      </Card>
+
+      {list.length > 0 && (
+        <Card title="2026 年以来典型节点" className="mb-4">
+          <p className="text-[11px] mono mb-3" style={{ color: 'var(--text-tertiary)' }}>
+            点击卡片可跳转详情 · 数据截至 {ANTI_CORRUPTION_META.asOf} · 仅收录中央纪委国家监委等公开发布信息
+          </p>
+          <div className="grid gap-2" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))' }}>
+            {RECENT_CASE_SPOTLIGHT_2026.map((c) => {
+              const hit = list.find((r) => r.name === c.name);
+              return (
+                <button
+                  key={c.name}
+                  type="button"
+                  onClick={() => hit && pickEntity(hit)}
+                  disabled={!hit}
+                  className="text-left px-3 py-2 rounded"
+                  style={{
+                    background: hit ? 'rgba(196,30,58,0.1)' : 'var(--bg-elevated)',
+                    border: '1px solid var(--border-subtle)',
+                    cursor: hit ? 'pointer' : 'default',
+                    opacity: hit ? 1 : 0.55,
+                  }}
+                >
+                  <div className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>{c.date}</div>
+                  <div className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{c.name}</div>
+                  <div className="flex gap-1 mt-1 flex-wrap">
+                    <span className="text-[9px] mono px-1 py-0.5 rounded" style={{ background: 'rgba(196,30,58,0.12)', color: 'var(--china-red)' }}>{c.level}</span>
+                    <span className="text-[9px] mono px-1 py-0.5 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)' }}>{c.tag}</span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </Card>
+      )}
 
       {list.length < 10 && (
         <Card title="一键载入反腐名单" className="mb-4">
