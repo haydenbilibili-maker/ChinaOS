@@ -19,7 +19,9 @@ function isChunkLoadError(reason) {
     lower.includes('importing a module script failed') ||
     lower.includes('error loading dynamically imported module') ||
     lower.includes('loading chunk') ||
-    lower.includes('loading css chunk')
+    lower.includes('loading css chunk') ||
+    // stale chunk / 循环依赖时 React.lazy 常见症状
+    (lower.includes('cannot read properties of undefined') && lower.includes('default'))
   );
 }
 

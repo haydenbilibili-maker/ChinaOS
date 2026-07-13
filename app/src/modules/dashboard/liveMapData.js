@@ -5,9 +5,10 @@
 // 非实时 API；综合态势由多维度加权合成
 // ============================================================================
 
-import { AS_OF } from './data.js';
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
-export { AS_OF };
+// 勿从 data.js 导入 AS_OF —— data.js 依赖 registry，会形成 lazy 路由循环
+export const AS_OF = AS_OF_BASELINE;
 export const LAST_UPDATED = `${AS_OF} 08:00 CST`;
 
 /** DataV 全称 · 与 geo JSON name 一致 */
