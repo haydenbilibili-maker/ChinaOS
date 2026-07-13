@@ -27,6 +27,9 @@ import {
   FEATURED,
   SOURCES,
   LIVE_MODULE_CHIPS,
+  DIPLOMACY_TONES,
+  groupStrategyVectors,
+  sortStrategyVectors,
 } from './data.js';
 import { useMacroPulse } from './useMacroPulse.js';
 import NewsMarquee from './NewsMarquee.jsx';
@@ -43,21 +46,21 @@ function Icon({ name, size = 16 }) {
 const fmt = (n) => n.toLocaleString('en-US');
 
 // ── 实时大屏 · 发光指标卡 ─────────────────────────────────
-function ScreenCard({ title, accent = '#22d3ee', children, footer, live = false }) {
+function ScreenCard({ title, accent = '#22d3ee', children, footer, live = false, className = '' }) {
   return (
     <div
-      className={`os-card os-card-lift os-screen-card p-4 flex flex-col${live ? ' os-screen-card--live' : ''}`}
+      className={`os-card os-card-lift os-screen-card p-4 flex flex-col h-auto${live ? ' os-screen-card--live' : ''} ${className}`.trim()}
       style={{ '--screen-accent': accent }}
     >
-      <div className="flex items-center gap-2 mb-2">
+      <div className="flex items-center gap-2 mb-2 shrink-0">
         <span
           className={`w-1.5 h-1.5 rounded-full${live ? ' os-live-dot' : ''}`}
           style={{ background: accent, boxShadow: `0 0 8px ${accent}` }}
         />
         <h3 className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{title}</h3>
       </div>
-      <div className="flex-1 min-h-0">{children}</div>
-      {footer && <div className="text-[10px] mt-2 leading-snug" style={{ color: 'var(--text-tertiary)' }}>{footer}</div>}
+      <div className="min-h-0">{children}</div>
+      {footer && <div className="text-[10px] mt-2 leading-snug shrink-0" style={{ color: 'var(--text-tertiary)' }}>{footer}</div>}
     </div>
   );
 }
@@ -153,25 +156,43 @@ function LiveModuleChips() {
 }
 
 // ── 战略态势速览（镜像外交盘读数 · 2026-06 判读基准） ────────
-const VECTORS = [
-  ['中美', '竞合管控', HOLD, '→', '301 关税续期谈判 · 科技出口管制未松'],
-  ['中俄', '深度协作', WARM, '→', '能源与稀土互补 · 不结盟红线未动'],
-  ['中欧', '摩擦中维系', COOL, '→', 'EV 反补贴终裁 · 去风险阵线分化'],
-  ['中朝', '管控型同盟', WARM, '↗', '高规格再锚定 · 对冲半岛变局'],
-  ['台海', '高压常态化', HOLD, '↗', '巡航成新常态 · 未越升级阈值'],
+const STRATEGY_QUICK_LINKS = [
+  { to: '/diplomacy', label: '外交框架盘' },
+  { to: '/straits', label: '台海战略' },
+  { to: '/omnisecurity', label: '大安全观' },
 ];
 
 function StrategyPulse() {
+  const groups = useMemo(() => groupStrategyVectors(), []);
   return (
-    <ScreenCard title="战略态势速览" accent={COOL} footer={<>判读基准 2026-06 · 详见 <Link to="/diplomacy" className="mono" style={{ color: STEEL }}>外交全局框架盘</Link> 的矢量盘与情景评估</>}>
-      <div className="space-y-2">
-        {VECTORS.map(([nm, st, c, arrow, note]) => (
-          <Link key={nm} to="/diplomacy" className="flex items-center gap-2.5 rounded-lg px-3 py-2 os-card-interactive"
-            style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}>
-            <span className="text-sm font-semibold w-10 shrink-0" style={{ color: 'var(--text-primary)' }}>{nm}</span>
-            <span className="text-[10px] mono px-2 py-0.5 rounded-full shrink-0" style={{ border: `1px solid ${c}55`, background: `${c}14`, color: c }}>{st} {arrow}</span>
-            <span className="text-[11px] truncate" style={{ color: 'var(--text-tertiary)' }}>{note}</span>
-          </Link>
+    <ScreenCard title="战略态势速览" accent={COOL} footer={<>判读基准 2026-06 · 排序：圈层 → 紧张度 → 优先级 · 详见 <Link to="/diplomacy" className="mono" style={{ color: STEEL }}>外交全局框架盘</Link></>}>
+      <div className="strategy-pulse-grid">
+        {groups.map((g) => (
+          <div key={g.id} className="strategy-pulse-group">
+            <div className="strategy-pulse-group__label mono">{g.label}</div>
+            {g.items.map((v) => {
+              const c = DIPLOMACY_TONES[v.tone] || HOLD;
+              return (
+                <Link
+                  key={v.id}
+                  to="/diplomacy"
+                  className="dash-vector-row os-card-interactive"
+                  title={`${v.role} · ${v.note}`}
+                >
+                  <span className="dash-vector-row__name">{v.name}</span>
+                  <span className="dash-vector-row__pill mono" style={{ borderColor: `${c}55`, background: `${c}14`, color: c }}>
+                    {v.status} {v.trend}
+                  </span>
+                  <span className="dash-vector-row__note">{v.note}</span>
+                </Link>
+              );
+            })}
+          </div>
+        ))}
+      </div>
+      <div className="strategy-pulse-links">
+        {STRATEGY_QUICK_LINKS.map((l) => (
+          <Link key={l.to} to={l.to} className="strategy-pulse-link mono">{l.label} ↗</Link>
         ))}
       </div>
     </ScreenCard>
@@ -642,7 +663,7 @@ function buildBriefing(latestDoc) {
   const lines = [
     `# China OS 今日简报 · ${today}`, '',
     '## 战略态势',
-    ...VECTORS.map(([nm, st, , arrow, note]) => `- ${nm}：${st} ${arrow} —— ${note}`), '',
+    ...sortStrategyVectors().map((v) => `- ${v.name}：${v.status} ${v.trend} —— ${v.note}`), '',
     `## 施政基准（${latestDoc.year}）`,
     `- GDP 目标 ${m.gdpTarget ?? '—'}% 左右 · 赤字率 ${m.deficit ?? '—'}% 左右 · CPI ${m.cpi ?? '—'}% · 新增就业 ${m.jobs ?? '—'} 万+`,
     ...(latestDoc.stance ? [`- 财政：${latestDoc.stance.fiscal} · 货币：${latestDoc.stance.monetary}`] : []), '',
@@ -891,11 +912,11 @@ export default function DashboardPage() {
           <span className="text-[11px] mono min-w-0" style={{ color: 'var(--text-tertiary)' }}>// 外交矢量 · 施政基准 · 本地库活数据</span>
         </div>
         <Grid cols={{ sm: 1, md: 2, lg: 3, '2xl': 4 }} gap="0.85rem" className="dash-screen-grid os-section-stagger">
-          <StrategyPulse />
+          <div className="dash-card-span-2">
+            <StrategyPulse />
+          </div>
           <PolicyPulse />
           <LiveDbStatus />
-        </Grid>
-        <Grid cols={{ sm: 1, md: 2, lg: 3, '2xl': 4 }} gap="0.85rem" className="dash-screen-grid os-section-stagger mt-3">
           <KondratievClock />
           <RiskRadar />
           <PolicyCalendar />

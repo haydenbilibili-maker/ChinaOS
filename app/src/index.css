@@ -1768,11 +1768,146 @@ textarea:focus {
 }
 
 .dash-screen-grid {
-  /* 看板栅格错落入场 · 超宽屏由 Grid cols 响应式对象控制列数 */
+  align-items: start;
+  grid-auto-rows: min-content;
+}
+
+.dash-screen-grid > * {
+  min-height: 0;
+  height: auto;
+}
+
+.dash-screen-grid .os-screen-card:not(.os-screen-card--live) {
+  animation: os-screen-breathe 6s ease-in-out infinite;
+}
+
+.dash-screen-grid .os-screen-card:hover {
+  animation: none;
+}
+
+@media (min-width: 768px) {
+  .dash-screen-grid .dash-card-span-2 {
+    grid-row: span 2;
+  }
 }
 
 .dash-screen-grid.os-section-stagger > * {
   animation-duration: 0.42s;
+}
+
+/* 战略态势速览 · 分组双列自适应 */
+.strategy-pulse-grid {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 1280px) {
+  .strategy-pulse-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem 0.65rem;
+  }
+}
+
+.strategy-pulse-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.strategy-pulse-group__label {
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  padding: 0 0.15rem;
+  margin-top: 0.15rem;
+}
+
+.strategy-pulse-group:first-child .strategy-pulse-group__label {
+  margin-top: 0;
+}
+
+.dash-vector-row {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  gap: 0.45rem 0.5rem;
+  padding: 0.35rem 0.55rem;
+  border-radius: 0.5rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  text-decoration: none;
+  min-width: 0;
+}
+
+.dash-vector-row__name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.dash-vector-row__pill {
+  font-size: 9px;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid;
+  white-space: nowrap;
+}
+
+.dash-vector-row__note {
+  font-size: 10px;
+  color: var(--text-tertiary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+@media (max-width: 639px) {
+  .dash-vector-row {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .dash-vector-row__pill {
+    grid-column: 1;
+  }
+
+  .dash-vector-row__note {
+    grid-column: 1 / -1;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+}
+
+.strategy-pulse-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.strategy-pulse-link {
+  font-size: 9px;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.strategy-pulse-link:hover {
+  color: var(--cyber-cyan);
+  border-color: color-mix(in srgb, var(--cyber-cyan) 35%, transparent);
 }
 
 /* 顶栏 · 玻璃分层 */

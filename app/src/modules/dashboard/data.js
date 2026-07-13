@@ -251,6 +251,65 @@ export const FEATURED = [
   .map(pick)
   .filter(Boolean);
 
+// ── 战略态势矢量（镜像 diplomacy/Page.jsx · 看板排序与分组） ──
+export const DIPLOMACY_TONES = {
+  warm: KPI_COLORS.warm,
+  hold: KPI_COLORS.hold,
+  cool: KPI_COLORS.cool,
+  steel: KPI_COLORS.steel,
+};
+
+export const STRATEGY_VECTOR_GROUPS = {
+  power: '大国关系',
+  periphery: '周边',
+  hotspot: '热点',
+  global_south: '全球南方',
+};
+
+/** @typedef {{ id: string; name: string; group: keyof STRATEGY_VECTOR_GROUPS; role: string; status: string; tone: keyof DIPLOMACY_TONES; trend: string; note: string; priority: number }} StrategyVector */
+
+/** @type {StrategyVector[]} */
+export const STRATEGY_VECTORS = [
+  { id: 'us-cn', name: '中美', group: 'power', role: '总牵引', status: '竞合管控', tone: 'hold', trend: '→', note: '301 关税续期 · 科技出口管制未松', priority: 100 },
+  { id: 'eu-cn', name: '中欧', group: 'power', role: '争夺地', status: '摩擦中维系', tone: 'cool', trend: '→', note: 'EV 反补贴终裁 · 去风险阵线分化', priority: 90 },
+  { id: 'ru-cn', name: '中俄', group: 'power', role: '背靠背', status: '深度协作', tone: 'warm', trend: '→', note: '能源与稀土互补 · 不结盟红线未动', priority: 85 },
+  { id: 'tw', name: '台海', group: 'hotspot', role: '首要周边', status: '高压常态化', tone: 'hold', trend: '↗', note: '巡航成新常态 · 未越升级阈值', priority: 95 },
+  { id: 'dprk', name: '中朝', group: 'hotspot', role: '半岛', status: '管控型同盟', tone: 'warm', trend: '↗', note: '高规格再锚定 · 对冲平壤漂移', priority: 88 },
+  { id: 'ne-asia', name: '东北亚', group: 'periphery', role: '分线操作', status: '对朝↗·对日紧', tone: 'hold', trend: '↗', note: '日韩摇摆 · 朝俄热度对冲', priority: 75 },
+  { id: 'asean', name: '东盟', group: 'periphery', role: '经济整合', status: '经济拉动', tone: 'warm', trend: '↗', note: '自贸区 3.0 · 南海摩擦双轨', priority: 70 },
+  { id: 'in-cn', name: '中印', group: 'periphery', role: '慢解冻', status: '谨慎回暖', tone: 'hold', trend: '↗', note: '边境脱离接触 · 多向结盟变量', priority: 65 },
+  { id: 'global-south', name: '全球南方', group: 'global_south', role: '票仓', status: '系统加码', tone: 'warm', trend: '↗', note: '金砖扩容 · 对非零关税', priority: 60 },
+];
+
+const VECTOR_GROUP_ORDER = { power: 0, periphery: 1, hotspot: 2, global_south: 3 };
+const VECTOR_TONE_SEVERITY = { cool: 3, hold: 2, steel: 2, warm: 1 };
+
+/** 态势速览排序：圈层分组 → 紧张度（竞争>管控>合作）→ 优先级 */
+export function sortStrategyVectors(vectors = STRATEGY_VECTORS) {
+  return [...vectors].sort((a, b) => {
+    const g = VECTOR_GROUP_ORDER[a.group] - VECTOR_GROUP_ORDER[b.group];
+    if (g !== 0) return g;
+    const s = (VECTOR_TONE_SEVERITY[b.tone] ?? 0) - (VECTOR_TONE_SEVERITY[a.tone] ?? 0);
+    if (s !== 0) return s;
+    return b.priority - a.priority;
+  });
+}
+
+/** 按语义分组后的矢量（用于看板分组展示） */
+export function groupStrategyVectors(vectors = sortStrategyVectors()) {
+  /** @type {{ id: string; label: string; items: StrategyVector[] }[]} */
+  const groups = [];
+  for (const v of vectors) {
+    const last = groups[groups.length - 1];
+    if (!last || last.id !== v.group) {
+      groups.push({ id: v.group, label: STRATEGY_VECTOR_GROUPS[v.group], items: [v] });
+    } else {
+      last.items.push(v);
+    }
+  }
+  return groups;
+}
+
 // ── 数据来源与免责声明 ────────────────────────────────────
 export const SOURCES = {
   asOf: AS_OF,
