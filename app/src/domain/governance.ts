@@ -109,7 +109,7 @@ export interface Inflection {
 /** 任内权限半径分段（如前强后弱、决策层收缩） */
 export interface RadiusPhase {
   start: number;
-  end: number;
+  end: number | null;
   radius: PowerLayer[];
   /** 路线层是否部分触及（虚线/半透明带） */
   directionPartial?: boolean;

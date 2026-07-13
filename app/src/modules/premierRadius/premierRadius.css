@@ -1,0 +1,249 @@
+/* 总理权限半径 · 水墨观象台 #pr-app */
+
+#pr-app {
+  --pr-ink: #0d1417;
+  --pr-ink-2: #121d21;
+  --pr-ink-3: #17252a;
+  --pr-hair: #24383d;
+  --pr-text: #e7ecea;
+  --pr-text-dim: #93a6a4;
+  --pr-text-faint: #5f7370;
+  --pr-brass: #b18a52;
+  --pr-brass-dim: #6b5733;
+  --pr-celadon: #79a496;
+  --pr-red: #cf4a3d;
+  --pr-amber: #cf9a32;
+  --pr-green: #4f9e72;
+  --pr-shadow: 0 1px 0 rgba(255, 255, 255, .03), 0 8px 30px rgba(0, 0, 0, .45);
+  --pr-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
+  --pr-sans: "Inter", system-ui, "PingFang SC", "Noto Sans SC", sans-serif;
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(1200px 600px at 80% -10%, #13242a 0%, transparent 60%),
+    var(--pr-ink);
+  color: var(--pr-text);
+  font-family: var(--pr-sans);
+  padding: clamp(16px, 3vw, 32px);
+}
+
+:root[data-theme='light'] #pr-app {
+  --pr-ink: #f4f1ea;
+  --pr-ink-2: #ebe6dc;
+  --pr-ink-3: #e2dcd0;
+  --pr-hair: #c8bfb0;
+  --pr-text: #1a2428;
+  --pr-text-dim: #4a5c58;
+  --pr-text-faint: #7a8a86;
+  --pr-brass: #8a6838;
+  --pr-celadon: #4a7a6e;
+  --pr-shadow: 0 4px 20px rgba(0, 0, 0, .08);
+  background:
+    radial-gradient(1200px 600px at 80% -10%, #e8e4da 0%, transparent 60%),
+    var(--pr-ink);
+}
+
+#pr-app .pr-wrap { max-width: 1180px; margin: 0 auto; }
+
+#pr-app .pr-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+@media (min-width: 960px) {
+  #pr-app .pr-grid.has-sidebar {
+    grid-template-columns: 1fr 320px;
+  }
+}
+
+#pr-app .pr-panel {
+  border: 1px solid var(--pr-hair);
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--pr-ink-2), var(--pr-ink));
+  box-shadow: var(--pr-shadow);
+  padding: 18px 20px;
+}
+
+#pr-app .pr-panel-ey {
+  font-family: var(--pr-mono);
+  font-size: 10.5px;
+  letter-spacing: .18em;
+  color: var(--pr-brass);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+#pr-app .pr-panel h2 {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+#pr-app .pr-thesis {
+  margin-top: 24px;
+  border-left: 3px solid var(--pr-brass);
+  padding: 16px 20px;
+  background: rgba(177, 138, 82, .06);
+  border-radius: 0 8px 8px 0;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--pr-text-dim);
+}
+
+#pr-app .pr-thesis strong {
+  color: var(--pr-text);
+  font-weight: 600;
+}
+
+#pr-app .pr-chart-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+#pr-app .pr-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--pr-text-dim);
+}
+
+#pr-app .pr-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#pr-app .pr-legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+#pr-app .pr-driver {
+  border: 1px solid var(--pr-hair);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+
+#pr-app .pr-driver-btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--pr-ink-3);
+  border: none;
+  color: var(--pr-text);
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+}
+
+#pr-app .pr-driver-btn:hover {
+  background: rgba(121, 164, 150, .08);
+}
+
+#pr-app .pr-driver-body {
+  padding: 0 14px 14px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--pr-text-dim);
+}
+
+#pr-app .pr-driver-summary {
+  font-size: 12px;
+  color: var(--pr-celadon);
+  margin-top: 4px;
+}
+
+#pr-app .pr-term-detail {
+  position: sticky;
+  top: 16px;
+}
+
+#pr-app .pr-term-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--pr-brass);
+  margin-bottom: 4px;
+}
+
+#pr-app .pr-term-range {
+  font-family: var(--pr-mono);
+  font-size: 12px;
+  color: var(--pr-text-faint);
+  margin-bottom: 12px;
+}
+
+#pr-app .pr-policy-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#pr-app .pr-policy-item {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--pr-hair);
+}
+
+#pr-app .pr-policy-item:last-child {
+  border-bottom: none;
+}
+
+#pr-app .pr-policy-link {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  color: var(--pr-text);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#pr-app .pr-policy-link:hover {
+  color: var(--pr-celadon);
+  text-decoration: underline;
+}
+
+#pr-app .pr-policy-meta {
+  font-size: 11px;
+  font-family: var(--pr-mono);
+  margin-top: 4px;
+}
+
+#pr-app .pr-inflection-list {
+  margin-top: 16px;
+}
+
+#pr-app .pr-inflection-item {
+  font-size: 12px;
+  padding: 8px 0;
+  border-left: 2px solid var(--pr-hair);
+  padding-left: 10px;
+  margin-bottom: 8px;
+}
+
+#pr-app .pr-cross-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--pr-celadon);
+  text-decoration: none;
+}
+
+#pr-app .pr-cross-link:hover {
+  text-decoration: underline;
+}
+
+#pr-app .pr-tooltip {
+  pointer-events: none;
+  font-family: var(--pr-mono);
+  font-size: 11px;
+}
