@@ -70,7 +70,8 @@ function StatusPill({ status, mode, error, filterStats }) {
         style={{ background: 'rgba(16,185,129,0.14)', color: '#10b981' }}
         title={filtered ? `已滤除 ${filterStats.filteredOut} 条过期/无效（>${NEWS_MAX_AGE_DAYS}天）` : undefined}
       >
-        ● 实时 RSS
+        <span className="os-live-dot w-1.5 h-1.5 rounded-full shrink-0" style={{ background: '#10b981' }} aria-hidden="true" />
+        实时 RSS
         {filtered && (
           <span style={{ color: 'var(--text-tertiary)' }}>
             · 滤{filterStats.filteredOut}
@@ -90,8 +91,8 @@ function StatusPill({ status, mode, error, filterStats }) {
   );
 }
 
-export default function NewsMarquee() {
-  const { items, status, mode, error, filterStats } = useNewsFeed();
+export default function NewsMarquee({ refreshKey = 0 }) {
+  const { items, status, mode, error, filterStats } = useNewsFeed(refreshKey);
 
   const renderTrack = (dup) => items.map((item) => (
     <NewsChip key={`${dup}-${item.id}`} item={item} />

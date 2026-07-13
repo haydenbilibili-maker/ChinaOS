@@ -26,7 +26,9 @@ import {
   TOPIC_MODULES,
   FEATURED,
   SOURCES,
+  LIVE_MODULE_CHIPS,
 } from './data.js';
+import { useMacroPulse } from './useMacroPulse.js';
 import NewsMarquee from './NewsMarquee.jsx';
 import LiveStreamsSection from './LiveStreamsSection.jsx';
 import LiveChinaMap from './LiveChinaMap.jsx';
@@ -40,14 +42,17 @@ function Icon({ name, size = 16 }) {
 const fmt = (n) => n.toLocaleString('en-US');
 
 // ── 实时大屏 · 发光指标卡 ─────────────────────────────────
-function ScreenCard({ title, accent = '#22d3ee', children, footer }) {
+function ScreenCard({ title, accent = '#22d3ee', children, footer, live = false }) {
   return (
     <div
-      className="os-card os-card-lift os-screen-card p-4 flex flex-col"
+      className={`os-card os-card-lift os-screen-card p-4 flex flex-col${live ? ' os-screen-card--live' : ''}`}
       style={{ '--screen-accent': accent }}
     >
       <div className="flex items-center gap-2 mb-2">
-        <span className="w-1.5 h-1.5 rounded-full" style={{ background: accent, boxShadow: `0 0 8px ${accent}` }} />
+        <span
+          className={`w-1.5 h-1.5 rounded-full${live ? ' os-live-dot' : ''}`}
+          style={{ background: accent, boxShadow: `0 0 8px ${accent}` }}
+        />
         <h3 className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{title}</h3>
       </div>
       <div className="flex-1 min-h-0">{children}</div>
@@ -83,39 +88,65 @@ function Ticker() {
   );
 }
 
-// ── 2026 H1 宏观读数（NBS 公开口径近似 · Q2 判读） ─────────
-const MACRO_H1 = [
-  { k: 'GDP H1', v: '5.3%', note: '累计同比 · 十五五开局', c: COOL },
-  { k: 'CPI 5月', v: '0.3%', note: '同比近零 · 通缩压力', c: STEEL },
-  { k: 'PMI 5月', v: '49.8', note: '制造业 · 荣枯线下', c: HOLD },
-  { k: '社零 5月', v: '+4.6%', note: '以旧换新支撑', c: WARM },
-  { k: 'M2 5月', v: '7.2%', note: '宽货币 · 窄信用', c: STEEL },
-  { k: '青年失业', v: '16.8%', note: '16–24 岁 · 5月', c: '#c41e3a' },
-];
+// ── 2026 H1 宏观读数（NBS 公开口径 · 对齐经济大盘 KEY_INDICATORS） ──
+function MacroH1Strip({ kpis, asOf, lastRefresh, isRefreshing, secondsToNext, refreshCount }) {
+  const tsKey = lastRefresh ? lastRefresh.toISOString() : 'pending';
+  const fmtTs = lastRefresh
+    ? lastRefresh.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit', second: '2-digit' })
+    : '—';
 
-function MacroH1Strip() {
   return (
-    <div className="mt-5 pt-5" style={{ borderTop: '1px solid var(--border-subtle)' }}>
-      <div className="flex items-center gap-2 mb-3">
+    <div
+      className={`mt-5 pt-5 os-macro-strip${isRefreshing ? ' is-refreshing' : ''}`}
+      style={{ borderTop: '1px solid var(--border-subtle)' }}
+    >
+      <div className="flex items-center gap-2 mb-3 flex-wrap">
         <Lucide.Gauge size={14} style={{ color: COOL }} />
         <span className="text-xs font-semibold" style={{ color: 'var(--text-secondary)' }}>2026 H1 宏观读数</span>
-        <span className="text-[10px] mono ml-auto" style={{ color: 'var(--text-tertiary)' }}>数据截至 2026-06 · 详见 <Link to="/econ-dashboard" className="mono" style={{ color: STEEL }}>经济大盘</Link></span>
+        <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>
+          数据截至 <span className="mono">{asOf}</span>
+        </span>
+        <span key={tsKey} className="text-[10px] mono os-ts-flash" style={{ color: 'var(--text-tertiary)' }}>
+          上次刷新 {fmtTs}
+        </span>
+        <span className="text-[10px] mono ml-auto" style={{ color: isRefreshing ? STEEL : 'var(--text-tertiary)' }}>
+          {isRefreshing ? '刷新中…' : `下次 ${secondsToNext}s`}
+          {' · '}
+          <Link to="/econ-dashboard" className="mono" style={{ color: STEEL }}>经济大盘</Link>
+        </span>
       </div>
       <StatGrid stagger={false}>
-        {MACRO_H1.map(({ k, v, note, c }) => (
-          <Stat
-            key={k}
-            value={v}
-            accent={c}
-            label={(
-              <>
-                {k}
-                <span className="block text-[10px] mt-0.5 font-normal" style={{ color: 'var(--text-tertiary)' }}>{note}</span>
-              </>
-            )}
-          />
+        {kpis.map(({ id, k, v, note, c, live }) => (
+          <div
+            key={`${id}-${refreshCount}`}
+            className={`os-card os-stat-card os-card-lift p-4${refreshCount > 0 ? ' os-metric-pulse' : ''}`}
+            style={{ borderColor: `${c}33`, '--metric-accent': c }}
+          >
+            <div className="flex items-center gap-1.5 mb-1">
+              {live && <span className="os-live-dot w-1.5 h-1.5 rounded-full shrink-0" style={{ background: WARM }} />}
+              <span className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>{k}</span>
+            </div>
+            <div key={`${id}v${v}-${refreshCount}`} className={refreshCount > 0 ? 'lcm-flash mono' : 'mono'} style={{ fontSize: '1.35rem', fontWeight: 700, color: c }}>{v}</div>
+            <span className="block text-[10px] mt-0.5 font-normal" style={{ color: 'var(--text-tertiary)' }}>{note}</span>
+          </div>
         ))}
       </StatGrid>
+    </div>
+  );
+}
+
+function LiveModuleChips() {
+  return (
+    <div className="flex items-center gap-2 flex-wrap mt-5">
+      <span className="text-[10px] mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>活模块</span>
+      {LIVE_MODULE_CHIPS.map((chip) => (
+        <Link key={chip.id} to={chip.path} className="os-live-chip" title={chip.note}>
+          <span className={`os-live-chip__dot${chip.live ? ' is-live' : ''}`} aria-hidden="true" />
+          <Icon name={chip.icon} size={13} />
+          <span>{chip.title}</span>
+          <span className="text-[10px] mono opacity-70">{chip.note}</span>
+        </Link>
+      ))}
     </div>
   );
 }
@@ -162,7 +193,7 @@ function PolicyPulse() {
     ['新增就业', metrics.jobs != null ? `${metrics.jobs}万+` : '—', WARM],
   ];
   return (
-    <ScreenCard title={`政策脉搏 · ${latest.year} 施政基准`} accent={HOLD}
+    <ScreenCard title={`政策脉搏 · ${latest.year} 施政基准`} accent={HOLD} live={Boolean(liveGwr)}
       footer={<>
         <span className="mono px-1.5 py-0.5 rounded mr-1.5" style={{ background: liveGwr ? 'rgba(16,185,129,0.16)' : 'var(--bg-elevated)', color: liveGwr ? WARM : 'var(--text-tertiary)', fontSize: 9 }}>{liveGwr ? '● 本地库活数据' : '○ 内置种子'}</span>
         结构化要点 · 历年比对与提法变迁见 <Link to="/policydocs" className="mono" style={{ color: STEEL }}>政策文件库</Link>
@@ -171,7 +202,7 @@ function PolicyPulse() {
         {chips.map(([k, v, c]) => (
           <div key={k} className="rounded-lg px-3 py-2" style={{ background: 'var(--bg-elevated)', border: `1px solid ${c}33` }}>
             <div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{k}</div>
-            <div className="mono text-base font-bold" style={{ color: c }}>{v}</div>
+            <div className="mono text-base font-bold os-mono-tabular" style={{ color: c }}>{v}</div>
           </div>
         ))}
       </div>
@@ -207,7 +238,7 @@ function LiveDbStatus() {
     { label: '政策文件', value: st ? (st.docCount ?? 0) : '…', to: '/policydocs', accent: HOLD, icon: 'FileText' },
   ];
   return (
-    <ScreenCard title="数据底座 · 实时状态" accent={STEEL} footer="浏览器本地库（IndexedDB）实时计数 · 后台写入即刷新，点击直达管理">
+    <ScreenCard title="数据底座 · 实时状态" accent={STEEL} live footer="浏览器本地库（IndexedDB）实时计数 · 后台写入即刷新，点击直达管理">
       <div className="grid grid-cols-2 gap-2">
         {cells.map((c) => (
           <Link key={c.label} to={c.to} className="os-card-interactive rounded-lg px-3 py-3" style={{ background: 'var(--bg-elevated)', border: `1px solid ${c.accent}33` }}>
@@ -215,7 +246,7 @@ function LiveDbStatus() {
               <Icon name={c.icon} size={13} />
               <span className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{c.label}</span>
             </div>
-            <div className="mono text-xl font-bold" style={{ color: c.accent }}>{c.value}</div>
+            <div className="mono text-xl font-bold os-mono-tabular" style={{ color: c.accent }}>{c.value}</div>
           </Link>
         ))}
       </div>
@@ -504,7 +535,7 @@ function GdeltPulse() {
   const { articles, fetchedAt, source, loading, error } = useGdeltNews();
   const srcLabel = source === 'hn' ? 'HN 实时（技术面兜底）' : 'GDELT 实时';
   return (
-    <ScreenCard title="全球涉华舆情流" accent={STEEL}
+    <ScreenCard title="全球涉华舆情流" accent={STEEL} live={Boolean(articles?.length)}
       footer={<>
         <span className="mono px-1.5 py-0.5 rounded mr-1.5" style={{ background: articles?.length ? 'rgba(16,185,129,0.16)' : 'var(--bg-elevated)', color: articles?.length ? WARM : 'var(--text-tertiary)', fontSize: 9 }}>{articles?.length ? `● ${srcLabel} ${fetchedAt ? fetchedAt.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }) : ''}` : '○ 待接入'}</span>
         英文媒体涉华条目 · 双源（GDELT→HN）· 标题与立场来自第三方媒体，不代表本项目观点
@@ -534,7 +565,7 @@ function GdeltPulse() {
 function PolyPulse() {
   const { markets, fetchedAt, loading, error } = useLiveMarkets();
   return (
-    <ScreenCard title="预测市场速览 · 群体预期定价" accent="#8b5cf6"
+    <ScreenCard title="预测市场速览 · 群体预期定价" accent="#8b5cf6" live={Boolean(markets?.length)}
       footer={<>
         <span className="mono px-1.5 py-0.5 rounded mr-1.5" style={{ background: markets?.length ? 'rgba(16,185,129,0.16)' : 'var(--bg-elevated)', color: markets?.length ? WARM : 'var(--text-tertiary)', fontSize: 9 }}>{markets?.length ? `● Polymarket 实时 ${fetchedAt ? fetchedAt.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }) : ''}` : '○ 待接入'}</span>
         交易者聚合概率（宏观/科技类，已过滤地缘敏感）· 非本项目观点 · 非投资建议
@@ -622,7 +653,7 @@ function buildBriefing(latestDoc) {
       .map((x) => `- ${x.what}：T-${x.d} 天（${x.iso}）`), '',
     '> 由 China OS 中枢看板生成 · 读数为各模块判读基准（示意），非投资建议',
   ];
-  return lines.join('\n');
+  return withExportBrand(lines.join('\n'), { subtitle: '中枢看板 · 今日简报' });
 }
 
 function BriefingGenerator() {
@@ -736,6 +767,15 @@ function QuickNav() {
 
 export default function DashboardPage() {
   const opt = useOptions();
+  const macro = useMacroPulse();
+  const [heroPulse, setHeroPulse] = useState(false);
+
+  useEffect(() => {
+    if (!macro.refreshCount) return undefined;
+    setHeroPulse(true);
+    const t = setTimeout(() => setHeroPulse(false), 900);
+    return () => clearTimeout(t);
+  }, [macro.refreshCount]);
 
   const stats = [
     { value: MODULE_COUNT, label: '专题模块', accent: '#22d3ee', icon: 'LayoutGrid' },
@@ -755,7 +795,7 @@ export default function DashboardPage() {
 
       {/* ── 1. 项目总揽 · Hero ───────────────────────────── */}
       <section
-        className="os-card os-section os-hero-card mb-6 overflow-hidden relative"
+        className={`os-card os-section os-hero-card mb-6 overflow-hidden relative${heroPulse ? ' os-hero-card--pulse' : ''}`}
         style={{
           padding: '2rem',
           background: 'radial-gradient(120% 140% at 0% 0%, rgba(196,30,58,0.16), transparent 55%), radial-gradient(120% 140% at 100% 0%, rgba(34,211,238,0.14), transparent 55%), var(--bg-surface)',
@@ -780,22 +820,31 @@ export default function DashboardPage() {
                 <Icon name={s.icon} size={14} />
                 <span className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>{s.label}</span>
               </div>
-              <div className="mono" style={{ fontSize: s.mono ? '1.1rem' : '1.6rem', fontWeight: 700, color: s.accent }}>{s.value}</div>
+              <div className="mono os-mono-tabular" style={{ fontSize: s.mono ? '1.1rem' : '1.6rem', fontWeight: 700, color: s.accent }}>{s.value}</div>
             </div>
           ))}
         </div>
 
-        <MacroH1Strip />
+        <MacroH1Strip
+          kpis={macro.kpis}
+          asOf={macro.asOf}
+          lastRefresh={macro.lastRefresh}
+          isRefreshing={macro.isRefreshing}
+          secondsToNext={macro.secondsToNext}
+          refreshCount={macro.refreshCount}
+        />
+
+        <LiveModuleChips />
 
         <div className="mt-5">
-          <GovernanceVerdict />
+          <GovernanceVerdict pulseKey={macro.refreshCount} />
         </div>
 
         {/* 时政要闻 · 主流媒体 RSS 跑马灯 */}
-        <NewsMarquee />
+        <NewsMarquee refreshKey={macro.refreshCount} />
 
         {/* 神州实况 · 公共直播信号预览 */}
-        <LiveStreamsSection compact previewCount={8} />
+        <LiveStreamsSection compact previewCount={8} pulseKey={macro.refreshCount} />
 
         {/* 全球资产脉搏 · 独立模块入口 */}
         <Link
@@ -835,10 +884,10 @@ export default function DashboardPage() {
 
       {/* ── 2. 态势 · 政策 · 底座 三联速览 ─────────────────── */}
       <section className="mb-8">
-        <div className="flex items-center gap-2 mb-3">
+        <div className="os-section-heading mb-3">
           <Lucide.Radar size={16} style={{ color: 'var(--china-red)' }} />
           <h2 className="os-card-title m-0">态势速览</h2>
-          <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>// 外交矢量 · 施政基准 · 本地库活数据</span>
+          <span className="text-[11px] mono min-w-0" style={{ color: 'var(--text-tertiary)' }}>// 外交矢量 · 施政基准 · 本地库活数据</span>
         </div>
         <Grid cols={{ sm: 1, md: 2, lg: 3, '2xl': 4 }} gap="0.85rem" className="dash-screen-grid os-section-stagger">
           <StrategyPulse />
@@ -865,10 +914,10 @@ export default function DashboardPage() {
 
       {/* ── 3. 实时大屏 ──────────────────────────────────── */}
       <section className="mb-8">
-        <div className="flex items-center gap-2 mb-3">
+        <div className="os-section-heading mb-3">
           <Lucide.MonitorPlay size={16} style={{ color: 'var(--cyber-cyan)' }} />
           <h2 className="os-card-title m-0">实时大屏</h2>
-          <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>// LIVE · 种子计数</span>
+          <span className="text-[11px] mono min-w-0" style={{ color: 'var(--text-tertiary)' }}>// LIVE · 种子计数</span>
         </div>
         <Grid cols={{ sm: 1, md: 2, lg: 3, '2xl': 4 }} gap="0.85rem" className="dash-screen-grid os-section-stagger">
           <ScreenCard title="中国政要分层构成" accent="#c41e3a" footer="政治权力队列 · 按层级聚合">
@@ -900,11 +949,28 @@ export default function DashboardPage() {
 
       {/* ── 数据来源 / 免责声明 ──────────────────────────── */}
       <Card title="数据来源与免责声明" className="mb-2">
-        <ul className="text-xs space-y-1.5" style={{ color: 'var(--text-tertiary)' }}>
-          <li>· 数据基准 AS_OF：<span className="mono" style={{ color: 'var(--text-secondary)' }}>{SOURCES.asOf}</span></li>
+        <table className="os-prose-table mb-4">
+          <thead>
+            <tr>
+              <th>分组</th>
+              <th className="num">模块数</th>
+            </tr>
+          </thead>
+          <tbody>
+            {GROUP_COVERAGE.map((g) => (
+              <tr key={g.name}>
+                <td>{g.name}</td>
+                <td className="num os-mono-tabular">{g.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <ul className="text-xs space-y-1.5 m-0" style={{ color: 'var(--text-tertiary)' }}>
+          <li>· 数据基准 AS_OF：<span className="mono os-mono-tabular" style={{ color: 'var(--text-secondary)' }}>{SOURCES.asOf}</span></li>
           <li>· 民企500强：{SOURCES.pe500}</li>
           <li>· 军事相关：{SOURCES.military}</li>
           <li>· {SOURCES.note}</li>
+          <li>· {EXPORT_DISCLAIMER}</li>
         </ul>
       </Card>
     </div>

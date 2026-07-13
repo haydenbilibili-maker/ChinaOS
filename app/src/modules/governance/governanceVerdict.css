@@ -128,6 +128,11 @@
     border-color var(--duration-fast) var(--ease-ink),
     background var(--duration-fast) var(--ease-ink);
 }
+
+.gv-metric.gv-metric--pulse {
+  animation: os-metric-glow 0.85s ease-out 1;
+  --metric-accent: var(--celadon);
+}
 @media (prefers-reduced-motion: reduce) {
   .gv-panel.ink-observatory {
     animation: none !important;

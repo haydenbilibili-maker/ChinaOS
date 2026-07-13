@@ -19,8 +19,137 @@ import { LEGAL_STATUTE_DEDUPED_COUNT } from '../../lib/db/legalStatuteSeed.js';
 import { PRIVATE_ENTERPRISE_META, PE500_COMPANIES, PE500_DATASETS } from '../../lib/db/privateEnterpriseSeed.js';
 import { RANK_PYRAMID, MILITARY_INTEL_META } from '../../lib/db/militaryIntel2026.js';
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
+import { ECON_AS_OF, KEY_INDICATORS, CANARY_SIGNALS } from '../econdash/econData.js';
 
 export const AS_OF = AS_OF_BASELINE;
+export const MACRO_AS_OF = ECON_AS_OF;
+
+/** 宏观 KPI 自动刷新间隔（秒级倒计时 + DataBus 拉取） */
+export const DASHBOARD_REFRESH_MS = 60_000;
+
+const KPI_COLORS = {
+  warm: '#10b981',
+  hold: '#e8a317',
+  cool: '#c41e3a',
+  steel: '#22d3ee',
+};
+
+function pickIndicator(id) {
+  return KEY_INDICATORS.find((i) => i.id === id);
+}
+
+function fmtPct(v, digits = 1) {
+  if (v == null || Number.isNaN(v)) return '—';
+  return `${Number(v).toFixed(digits)}%`;
+}
+
+function fmtPoint(v, digits = 1) {
+  if (v == null || Number.isNaN(v)) return '—';
+  return Number(v).toFixed(digits);
+}
+
+/** 看板 Hero 宏观条 · 对齐经济大盘 KEY_INDICATORS 快照 */
+export function buildMacroKpiSnapshot() {
+  const gdp = pickIndicator('gdp_h1');
+  const cpi = pickIndicator('cpi');
+  const pmi = pickIndicator('pmi_mfg');
+  const retail = pickIndicator('retail');
+  const m2 = pickIndicator('m2');
+  const youth = CANARY_SIGNALS.find((s) => s.id === 'youth_unemp');
+
+  return [
+    {
+      id: 'gdp_h1',
+      k: 'GDP H1',
+      v: gdp ? fmtPct(gdp.value) : '5.3%',
+      note: '累计同比 · 十五五开局',
+      c: KPI_COLORS.cool,
+      asOf: gdp?.asOf || MACRO_AS_OF,
+      liveKey: 'gdpGrowth',
+      live: false,
+    },
+    {
+      id: 'cpi',
+      k: 'CPI 5月',
+      v: cpi ? fmtPct(cpi.value) : '0.3%',
+      note: '同比近零 · 通缩压力',
+      c: KPI_COLORS.steel,
+      asOf: cpi?.asOf || MACRO_AS_OF,
+      liveKey: null,
+      live: false,
+    },
+    {
+      id: 'pmi_mfg',
+      k: 'PMI 5月',
+      v: pmi ? fmtPoint(pmi.value) : '49.8',
+      note: '制造业 · 荣枯线下',
+      c: KPI_COLORS.hold,
+      asOf: pmi?.asOf || MACRO_AS_OF,
+      liveKey: null,
+      live: false,
+    },
+    {
+      id: 'retail',
+      k: '社零 5月',
+      v: retail ? `+${fmtPct(retail.value)}` : '+4.6%',
+      note: '以旧换新支撑',
+      c: KPI_COLORS.warm,
+      asOf: retail?.asOf || MACRO_AS_OF,
+      liveKey: null,
+      live: false,
+    },
+    {
+      id: 'm2',
+      k: 'M2 5月',
+      v: m2 ? fmtPct(m2.value) : '7.2%',
+      note: '宽货币 · 窄信用',
+      c: KPI_COLORS.steel,
+      asOf: m2?.asOf || MACRO_AS_OF,
+      liveKey: null,
+      live: false,
+    },
+    {
+      id: 'youth_unemp',
+      k: '青年失业',
+      v: youth?.reading?.match(/[\d.]+%/)?.[0] || '16.8%',
+      note: '16–24 岁 · 5月',
+      c: KPI_COLORS.cool,
+      asOf: MACRO_AS_OF,
+      liveKey: null,
+      live: false,
+    },
+  ];
+}
+
+export const MACRO_KPI_SNAPSHOT = buildMacroKpiSnapshot();
+
+/** 活模块快捷跳转 · 带实时状态标注 */
+export const LIVE_MODULE_CHIPS = [
+  {
+    id: 'shenzhou-live',
+    title: '神州活图',
+    path: '/shenzhou-live',
+    icon: 'Map',
+    live: true,
+    note: '多源图层 · 60s 刷新',
+  },
+  {
+    id: 'econdash',
+    title: '经济大盘',
+    path: '/econ-dashboard',
+    icon: 'LineChart',
+    live: false,
+    note: `NBS 快照 · ${MACRO_AS_OF}`,
+  },
+  {
+    id: 'observatory',
+    title: '观象台',
+    path: '/modules/observatory',
+    icon: 'Telescope',
+    live: true,
+    note: '治理链 · 双仪表合成',
+  },
+];
 
 // ── 基础计数 ──────────────────────────────────────────────
 const HOME_GROUP = 'home';

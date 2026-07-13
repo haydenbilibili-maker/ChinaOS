@@ -60,7 +60,7 @@ function StreamCard({ stream, onOpen }) {
           className="absolute top-2 left-2 text-[10px] mono px-1.5 py-0.5 rounded flex items-center gap-1"
           style={{ background: 'rgba(0,0,0,0.55)', color: '#fff' }}
         >
-          <Lucide.Circle size={6} fill="#ef4444" stroke="none" />
+          <span className="os-live-dot w-1.5 h-1.5 rounded-full shrink-0" style={{ background: '#ef4444' }} aria-hidden="true" />
           LIVE
         </span>
         <span
@@ -198,10 +198,10 @@ function StreamModal({ stream, onClose }) {
 }
 
 /**
- * @param {{ compact?: boolean, previewCount?: number }} props
+ * @param {{ compact?: boolean, previewCount?: number, pulseKey?: number }} props
  * compact=true 时用于中枢看板预览；false 时展示全量目录
  */
-export default function LiveStreamsSection({ compact = false, previewCount = 8 }) {
+export default function LiveStreamsSection({ compact = false, previewCount = 8, pulseKey = 0 }) {
   const [activeCat, setActiveCat] = useState('all');
   const [embedFilter, setEmbedFilter] = useState('all');
   const [selected, setSelected] = useState(null);
@@ -244,8 +244,9 @@ export default function LiveStreamsSection({ compact = false, previewCount = 8 }
         <h2 className="os-card-title m-0">{compact ? '神州实况' : '公共直播 · 神州实况'}</h2>
         {compact ? (
           <>
-            <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>
-              公开信号 · 来源标注
+            <span className="text-[11px] mono inline-flex items-center gap-1" style={{ color: 'var(--text-tertiary)' }}>
+              <span className="os-live-dot w-1.5 h-1.5 rounded-full shrink-0" style={{ background: '#34d399' }} aria-hidden="true" />
+              公开信号 · 看板同步 #{pulseKey || 0}
             </span>
             <span
               className="text-[10px] mono px-2 py-0.5 rounded"

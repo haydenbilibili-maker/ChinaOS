@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import {
   ATTRIBUTION_ROUTE,
   CUSHION_MONITOR_ROUTE,
@@ -44,7 +45,16 @@ const signalDefaults = Object.fromEntries(allSignals().map((s) => [s.id, s.statu
 const forceDefaults = Object.fromEntries(FORCES.flatMap((f) => f.inds.map((i) => [i.id, i.lv])));
 
 /** 双仪表合成读数 · 固定改革时序文案 */
-export default function GovernanceVerdict({ compact = false }) {
+export default function GovernanceVerdict({ compact = false, pulseKey = 0 }) {
+  const [metricPulse, setMetricPulse] = useState(false);
+
+  useEffect(() => {
+    if (!pulseKey) return undefined;
+    setMetricPulse(true);
+    const t = setTimeout(() => setMetricPulse(false), 900);
+    return () => clearTimeout(t);
+  }, [pulseKey]);
+
   const signalResolve = (id, fb) => defaultSignalResolve(id, signalDefaults[id] ?? fb);
   const forceResolve = (id, fb) => defaultForceResolve(id, forceDefaults[id] ?? fb);
 
@@ -62,14 +72,14 @@ export default function GovernanceVerdict({ compact = false }) {
         )}
       </div>
       <div className="gv-metrics">
-        <div className="gv-metric">
+        <div className={`gv-metric${metricPulse ? ' gv-metric--pulse' : ''}`}>
           <span className="gv-m-label">信号灯 · 治本进度</span>
-          <span className="gv-m-val">{regimeScore}</span>
+          <span key={`rs${pulseKey}`} className={`gv-m-val${metricPulse ? ' lcm-flash' : ''}`}>{regimeScore}</span>
           <span className="gv-m-sub">{regime === 'defense' ? '防御' : regime === 'watch' ? '观察' : '进攻'}</span>
         </div>
-        <div className="gv-metric">
+        <div className={`gv-metric${metricPulse ? ' gv-metric--pulse' : ''}`}>
           <span className="gv-m-label">三力 · 压力合成</span>
-          <span className="gv-m-val">{proximityScore}</span>
+          <span key={`ps${pulseKey}`} className={`gv-m-val${metricPulse ? ' lcm-flash' : ''}`}>{proximityScore}</span>
           <span className="gv-m-sub">{proximityScore < 34 ? '沉寂' : proximityScore < 62 ? '积蓄' : '逼近'}</span>
         </div>
       </div>

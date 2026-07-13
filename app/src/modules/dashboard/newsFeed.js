@@ -295,8 +295,13 @@ export async function fetchNewsFeed() {
 
 const INITIAL_SEED = prepareNewsPipeline(NEWS_SEED, { allowMissingDate: true });
 
+/** 清除 RSS 缓存（供看板周期刷新联动） */
+export function clearNewsCache() {
+  cache = null;
+}
+
 /** React hook：时政要闻列表 + 加载/离线状态 */
-export function useNewsFeed() {
+export function useNewsFeed(refreshKey = 0) {
   const [state, setState] = useState({
     items: INITIAL_SEED.items,
     status: 'loading',
@@ -307,6 +312,7 @@ export function useNewsFeed() {
 
   useEffect(() => {
     let alive = true;
+    if (refreshKey > 0) clearNewsCache();
     setState((s) => ({ ...s, status: 'loading' }));
     fetchNewsFeed()
       .then(({ items, mode, error, filterStats }) => {
@@ -344,7 +350,7 @@ export function useNewsFeed() {
       window.removeEventListener('offline', onOffline);
       window.removeEventListener('online', onOnline);
     };
-  }, []);
+  }, [refreshKey]);
 
   return state;
 }
