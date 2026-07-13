@@ -111,7 +111,7 @@ export default function Page() {
         <Stat value="100%" label="智慧法院 4.0 覆盖" accent="#e8a317" />
       </Grid>
 
-      <div className="flex flex-wrap gap-2 mb-6">
+      <div className="flex flex-wrap gap-2 mb-6 os-tab-bar">
         {TABS.map((t) => (
           <button key={t.id} onClick={() => setTab(t.id)} style={tabStyle(tab === t.id)}>{t.label}</button>
         ))}

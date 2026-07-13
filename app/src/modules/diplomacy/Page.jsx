@@ -206,7 +206,7 @@ export default function Page() {
         </Grid>
       </Card>
 
-      <div className="flex gap-1 flex-wrap mb-4">
+      <div className="flex gap-1 flex-wrap mb-4 os-tab-bar">
         {TABS.map(([k, label]) => <button key={k} onClick={() => setTab(k)} style={btn(k === tab)} className="mono">{label}</button>)}
       </div>
 

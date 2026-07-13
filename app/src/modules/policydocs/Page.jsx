@@ -265,7 +265,7 @@ export default function Page() {
 
       {all.length > 0 && (
         <>
-          <div className="flex gap-1 flex-wrap mb-4">
+          <div className="flex gap-1 flex-wrap mb-4 os-tab-bar">
             {TABS.map(([k, l]) => <button key={k} onClick={() => setTab(k)} style={tabBtn(k === tab)} className="mono">{l}</button>)}
           </div>
 

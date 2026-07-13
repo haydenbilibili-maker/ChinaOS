@@ -20,7 +20,7 @@ export default function RenqunTupuPage() {
         subtitle={`${POPULATION_SLICE_COUNT} 片切片 · 八轴全光谱 · 一张隐性价目表的全息验证`}
       />
       <RenqunTupuPanel />
-      <div className="mt-8 space-y-6">
+      <div className="mt-8 space-y-6 os-section-stagger">
         <SectionSpace3D />
         <SectionParallel />
         <SectionLens />

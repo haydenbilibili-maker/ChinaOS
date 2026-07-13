@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LockOpen, ClipboardCheck, UserCircle } from 'lucide-react';
+import { PageHeader } from '../../app/ui.jsx';
 import { modulesByGroup } from '../../app/registry.js';
 import { HUANGFEIZHAI_GROUP_ID } from '../../domain/huangfeizhai.ts';
 import { useHuangfeizhaiAuth } from '../../lib/huangfeizhai/useHuangfeizhaiAuth.js';
@@ -29,17 +30,17 @@ export default function HuangfeizhaiHubPage() {
 
   return (
     <div className="ink-observatory hf-hub-wrap">
-      <header className="hf-hub-top">
-        <div>
-          <span className="hf-hub-mark">ChinaOS · 私人分区</span>
-          <h1>荒废斋</h1>
-          <p className="hf-hub-sub">私人信息总入口 · 朱砂封印 · 黄铜门环</p>
-        </div>
+      <PageHeader
+        badge="ChinaOS · 私人分区"
+        title="荒废斋"
+        subtitle="私人信息总入口 · 朱砂封印 · 黄铜门环"
+        noAccent
+      >
         <button type="button" className="hf-lock-btn" onClick={lock} title="重新上锁">
           <LockOpen size={15} />
           重新上锁
         </button>
-      </header>
+      </PageHeader>
 
       <section className="hf-hub-lead">
         <p>
@@ -53,7 +54,7 @@ export default function HuangfeizhaiHubPage() {
           const m = modMap[id];
           if (!m) return null;
           return (
-            <Link key={m.id} to={m.path} className="hf-hub-card">
+            <Link key={m.id} to={m.path} className="hf-hub-card os-card">
               <span className="hf-hub-card-tag" style={{ color: accent }}>{tag}</span>
               <div className="hf-hub-card-icon" style={{ color: accent }}>
                 <Icon size={22} strokeWidth={1.5} />
@@ -73,7 +74,6 @@ export default function HuangfeizhaiHubPage() {
         </p>
       </footer>
       <ModuleFooter moduleId="huangfeizhai" />
-
     </div>
   );
 }

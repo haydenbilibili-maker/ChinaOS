@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import { PageHeader, Card } from '../../app/ui.jsx';
 import ThreeForcesMonitor from './ThreeForcesMonitor.jsx';
 import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
@@ -11,7 +11,9 @@ export default function ThreeForcesPage() {
         title="三力监测仪"
         subtitle="外部压力 / 内部危机 / 认知迭代 · 改革窗口压力读数 · 反直觉仪表"
       />
-      <ThreeForcesMonitor />
+      <Card asSection={false} className="!p-0 !mb-0 !bg-transparent !border-0 !shadow-none">
+        <ThreeForcesMonitor />
+      </Card>
       <ModuleFooter moduleId="threeForces" />
 
     </div>

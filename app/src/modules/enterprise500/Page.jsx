@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import * as Lucide from 'lucide-react';
-import { PageHeader, Card, Grid, Stat, StatGrid, TabBar } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid, TabBar, DistBar } from '../../app/ui.jsx';
 import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';
@@ -48,24 +48,6 @@ const btn = (active, accent = '#fb923c') => ({
 });
 
 const PAL = ['#fb923c', '#c41e3a', '#22d3ee', '#e8a317', '#10b981', '#8b5cf6', '#f0abfc', '#64748b', '#f97316', '#06b6d4'];
-
-function DistBars({ data, color = '#fb923c', max, onPick, active, labelW = 56 }) {
-  const top = max || (data[0]?.[1] || 1);
-  return (
-    <div className="space-y-1.5">
-      {data.map(([k, n]) => (
-        <button key={k} type="button" onClick={onPick ? () => onPick(k) : undefined} className="w-full flex items-center gap-2 text-left"
-          style={{ cursor: onPick ? 'pointer' : 'default', opacity: active && active !== k ? 0.45 : 1, background: 'none', border: 'none', padding: 0 }}>
-          <span className="text-[11px] mono shrink-0 text-right" style={{ width: labelW, color: active === k ? color : 'var(--text-secondary)' }}>{k}</span>
-          <span className="flex-1 rounded-sm" style={{ height: 13, background: 'var(--bg-base)', position: 'relative', overflow: 'hidden' }}>
-            <span style={{ position: 'absolute', inset: 0, width: `${(n / top) * 100}%`, background: color, opacity: 0.75, borderRadius: 2 }} />
-          </span>
-          <span className="text-[11px] mono shrink-0" style={{ width: 32, color: 'var(--text-tertiary)' }}>{n}</span>
-        </button>
-      ))}
-    </div>
-  );
-}
 
 const ROW_H = 52;
 const VISIBLE = 14;
@@ -621,10 +603,10 @@ export default function Page() {
           </div>
 
           <Card title="省份排行（点选筛选）" className="mb-4">
-            <DistBars
+            <DistBar
               data={provAgg.slice(0, 12).map((a) => [shortProv(a.province), a.count])}
               color="#22d3ee"
-              labelW={48}
+              labelWidth={48}
               active={province ? shortProv(province) : ''}
               onPick={(k) => {
                 const full = provinces.find((p) => shortProv(p) === k);

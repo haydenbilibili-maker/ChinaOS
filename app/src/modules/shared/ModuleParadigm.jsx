@@ -15,7 +15,7 @@ export function IntroCard({ children, className = 'mb-8' }) {
 /** pill 选择器条 */
 export function SelectorBar({ items, activeKey, onSelect, getKey = (i) => i.key, getLabel = (i) => i.label || i.name, getAccent = (i) => i.accent || i.color || 'var(--china-red)' }) {
   return (
-    <div className="flex flex-wrap gap-2 mb-4">
+    <div className="flex flex-wrap gap-2 mb-4 os-tab-bar">
       {items.map((item) => {
         const key = getKey(item);
         const active = key === activeKey;

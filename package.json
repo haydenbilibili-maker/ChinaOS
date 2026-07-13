@@ -6,7 +6,8 @@
     "build": "rm -rf app/dist && npm run build --prefix app",
     "deploy": "npm run build && wrangler deploy",
     "preview:worker": "npm run build && wrangler dev",
-    "fetch:signals": "python3 scripts/fetch_signal_observations.py"
+    "fetch:signals": "python3 scripts/fetch_signal_observations.py",
+    "check:ui": "node scripts/r4-checklist.mjs"
   },
   "devDependencies": {
     "wrangler": "^4.100.0"

@@ -84,8 +84,24 @@
 
 - stylelint `color-no-hex` 警告级规则（模块 CSS 白名单除外）
 - `renqun-tupu/atlasViz.js` · `gametheory` 等残余 `#27324a`（系列色/非轴语义）
-- `signal-panel` / `cushion-monitor` / `personal-review` 局部 `--brass` 去重
 - industry 组 `StatGrid` 渐进补齐（当前 6/8 项通过为主）
+
+## Final Polish 收官轮（2026-07 · 完成）
+
+- [x] **checklist 提升至 ≥95%** — 治理链 `Card` 包裹 · 页签 `os-tab-bar` · chronicle/huangfeizhai 页头页脚对齐
+- [x] **DistBar 清零** — `enterprise500` · `military` 内联 `DistBars` → `ui.DistBar`
+- [x] **局部 `--brass` 去重** — signal-panel · cushion-monitor · personal-review · three-forces · huangfeizhai 继承 `:root` 令牌
+- [x] **renqun-tupu** — Section 扩展区 `os-section-stagger` 错落入场
+- [x] **`npm run check:ui`** — `scripts/r4-checklist.mjs` 纳入根 `package.json`
+- [x] **china.html** — 治国沙盒「宏观再平衡信号灯」入口卡片与深度页 iframe
+- [x] **白屏修复已上线** — `d31ecd5` AXIS 导入 · `430cce0` 循环依赖断开
+
+### 仍已知债（上线后迭代）
+
+- `atlasViz.js` / `gametheory` 图谱系列色 `#27324a`（非轴语义，保留）
+- ink-observatory 布局渐变与 GY 书体美学色（`tokens.css` 白名单）
+- `policydocs` 内嵌筛选 chip 未统一 `TabBar`（主 Tab 已对齐）
+- stylelint `color-no-hex` 规则待引入
 
 ## 相关文件
 

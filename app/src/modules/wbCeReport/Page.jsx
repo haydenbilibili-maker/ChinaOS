@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid, TabBar } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';
-import { IntroCard, SelectorBar, ModuleFooter } from '../shared/ModuleParadigm.jsx';
+import { IntroCard, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import {
   REPORT_META,
   EXECUTIVE_SUMMARY,
@@ -125,7 +125,7 @@ export default function Page() {
         ))}
       </StatGrid>
 
-      <SelectorBar items={TABS.map(([id, label]) => ({ key: id, label }))} activeKey={tab} onSelect={setTab} getKey={(i) => i.key} getLabel={(i) => i.label} getAccent={() => '#22d3ee'} />
+      <TabBar tabs={TABS} value={tab} onChange={setTab} accent="#22d3ee" />
 
       {tab === 'overview' && (
         <>

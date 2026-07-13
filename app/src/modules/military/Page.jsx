@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { PageHeader, Card, Grid, Stat, StatGrid, TabBar } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid, TabBar, DistBar } from '../../app/ui.jsx';
 import { FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import MilitaryMap, { BaseTypeLegend, TheaterLegend } from './MilitaryMap.jsx';
@@ -65,28 +65,8 @@ function parseNum(v) {
   return Number.isFinite(n) ? n : 0;
 }
 
-function DistBars({ data, color = '#c41e3a', max, labelW = 56 }) {
-  const vals = data.map((row) => parseNum(row.share ?? row.count ?? row[1]));
-  const top = max || Math.max(...vals, 1);
-  return (
-    <div className="space-y-1.5">
-      {data.map((row, i) => {
-        const k = row.rank || row.name || row[0];
-        const n = row.share ?? row.count ?? row[1];
-        const note = row.note || row.label;
-        const v = parseNum(n);
-        return (
-          <div key={k || i} className="flex items-center gap-2">
-            <span className="text-[11px] mono shrink-0 text-right" style={{ width: labelW, color: 'var(--text-secondary)' }}>{k}</span>
-            <span className="flex-1 rounded-sm" style={{ height: 13, background: 'var(--bg-base)', position: 'relative', overflow: 'hidden' }}>
-              <span style={{ position: 'absolute', inset: 0, width: `${(v / top) * 100}%`, background: color, opacity: 0.75, borderRadius: 2 }} />
-            </span>
-            <span className="text-[10px] mono shrink-0 text-right" style={{ width: 72, color: 'var(--text-tertiary)' }}>{n}{note ? ` · ${note}` : ''}</span>
-          </div>
-        );
-      })}
-    </div>
-  );
+function rankDistPairs(rows) {
+  return rows.map((row) => [row.rank || row.name || row[0], parseNum(row.share ?? row.count ?? row[1])]);
 }
 
 function OverviewTab() {
@@ -282,10 +262,10 @@ function PersonnelTab() {
         </Card>
         <Card title="将官 / 校尉结构 · 公开估算">
           <p className="text-[10px] mb-2" style={{ color: 'var(--text-tertiary)' }}>{PERSONNEL.rankStructure.note}</p>
-          <DistBars data={PERSONNEL.rankStructure.general} color="#c41e3a" labelW={48} />
+          <DistBar data={rankDistPairs(PERSONNEL.rankStructure.general)} color="#c41e3a" labelWidth={48} />
           <div className="mt-4 pt-3 border-t" style={{ borderColor: 'var(--border-subtle)' }}>
             <p className="text-[10px] mb-2 font-semibold" style={{ color: 'var(--text-secondary)' }}>尉官以上占比示意</p>
-            <DistBars data={PERSONNEL.rankStructure.field} color="#22d3ee" labelW={72} />
+            <DistBar data={rankDistPairs(PERSONNEL.rankStructure.field)} color="#22d3ee" labelWidth={72} />
           </div>
         </Card>
       </Grid>

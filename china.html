@@ -3104,6 +3104,20 @@
                 case 'risksim':
                     html = getRiskSimulatorHTML();
                     break;
+                case 'signalDashboard':
+                    html = getDepthStandaloneReportHTML({
+                        h2: '宏观再平衡信号灯',
+                        desc: 'A/B/C 三档信号 · 态势合成 · 超个体动作映射 · 2026 政府工作报告口径',
+                        src: 'chinaos-signal-dashboard.html',
+                        iframeTitle: '宏观再平衡信号灯与超个体决策仪表盘',
+                        moduleTag: '治国沙盒',
+                        relateHtml: `
+                            <button type="button" onclick="switchTab('toolsHub'); closeAllNavDropdowns();" class="depth-relate-tag">治国沙盒中心</button>
+                            <button type="button" onclick="switchTab('risksim'); closeAllNavDropdowns();" class="depth-relate-tag">风险模拟</button>
+                            <button type="button" onclick="switchTab('scenario'); closeAllNavDropdowns();" class="depth-relate-tag">情景推演</button>
+                        `
+                    });
+                    break;
                 case 'scenario':
                     html = getScenarioHTML();
                     break;
@@ -5698,6 +5712,12 @@
                             <p class="text-xs text-stone-500 mb-3">债务 · 养老金 · NQPF 补丁窗口</p>
                             <div class="text-[10px] font-mono text-orange-600 dark:text-orange-400">年份 ${state.agingSimulatorYear || 2050}</div>
                         </div>
+                        <div onclick="switchTab('signalDashboard'); closeAllNavDropdowns();" class="tools-card report-card os-card p-5 rounded-2xl cursor-pointer group border-l-4 border-l-violet-500 bg-gradient-to-br from-violet-50/40 to-transparent dark:from-violet-950/15 dark:to-stone-900/40">
+                            <span class="text-[10px] font-bold text-violet-700 dark:text-violet-300 uppercase">B · 信号</span>
+                            <h3 class="font-bold text-stone-800 dark:text-stone-100 mt-1 mb-2">宏观再平衡信号灯</h3>
+                            <p class="text-xs text-stone-500 mb-3">A/B/C 改革信号 · 态势合成 · 超个体决策映射</p>
+                            <div class="text-[10px] font-mono text-violet-600 dark:text-violet-400">2026 政府工作报告口径</div>
+                        </div>
                         <div onclick="switchTab('dataaudit'); closeAllNavDropdowns();" class="tools-card report-card os-card p-5 rounded-2xl cursor-pointer group border-l-4 border-l-blue-500 bg-gradient-to-br from-blue-50/40 to-transparent dark:from-blue-950/20 dark:to-stone-900/40">
                             <span class="text-[10px] font-bold text-blue-700 dark:text-blue-300 uppercase">C · 审计</span>
                             <h3 class="font-bold text-stone-800 dark:text-stone-100 mt-1 mb-2">数据审计</h3>
@@ -5732,6 +5752,7 @@
                                     <div class="flex flex-wrap gap-2 mt-2">
                                         <button type="button" onclick="switchTab('entropyMonitor'); closeAllNavDropdowns();" class="depth-relate-tag text-[10px] py-1">熵监测</button>
                                         <button type="button" onclick="switchTab('risksim'); closeAllNavDropdowns();" class="depth-relate-tag text-[10px] py-1">风险</button>
+                                        <button type="button" onclick="switchTab('signalDashboard'); closeAllNavDropdowns();" class="depth-relate-tag text-[10px] py-1">信号灯</button>
                                         <button type="button" onclick="switchTab('bios'); closeAllNavDropdowns();" class="depth-relate-tag text-[10px] py-1">BIOS</button>
                                     </div>
                                 </div>

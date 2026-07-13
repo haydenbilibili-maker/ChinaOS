@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import { PageHeader, Card } from '../../app/ui.jsx';
 import CushionMonitor from './CushionMonitor.jsx';
 import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
@@ -11,7 +11,9 @@ export default function CushionMonitorPage() {
         title="垫子厚度监测"
         subtitle="未富先躺 · 四国锚点 · 命运矩阵 · 四层拆解"
       />
-      <CushionMonitor />
+      <Card asSection={false} className="!p-0 !mb-0 !bg-transparent !border-0 !shadow-none">
+        <CushionMonitor />
+      </Card>
       <ModuleFooter moduleId="cushionMonitor" />
 
     </div>

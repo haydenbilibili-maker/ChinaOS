@@ -313,7 +313,7 @@ export default function Page() {
         <Stat value="6 维" label="中西对照维度" accent="#10b981" />
       </StatGrid>
 
-      <div className="flex gap-1 flex-wrap mb-4">
+      <div className="flex gap-1 flex-wrap mb-4 os-tab-bar">
         {TABS.map(([k, label]) => <button key={k} onClick={() => setTab(k)} style={btn(k === tab)} className="mono">{label}</button>)}
       </div>
 

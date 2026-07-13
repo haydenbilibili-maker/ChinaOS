@@ -1,4 +1,4 @@
-import { PageHeader } from '../../app/ui.jsx';
+import { PageHeader, Card } from '../../app/ui.jsx';
 import PersonalReview from './PersonalReview.jsx';
 import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
@@ -11,7 +11,9 @@ export default function PersonalReviewPage() {
         title="超个体决策复盘系统"
         subtitle="四层垫子 / 账本测试 / 信号灯联动 · 本地私享"
       />
-      <PersonalReview />
+      <Card asSection={false} className="!p-0 !mb-0 !bg-transparent !border-0 !shadow-none">
+        <PersonalReview />
+      </Card>
       <ModuleFooter moduleId="personalReview" />
 
     </div>

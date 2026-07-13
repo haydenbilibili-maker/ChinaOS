@@ -98,7 +98,7 @@ export default function Page() {
     <div>
       <PageHeader badge="Data Console · 数据底座" title="本地数据库管理后台"
         subtitle="省市经济 · 国家统计局 · 海关总署 · 世界银行 · 人才精英 —— 上传 / 解析 / 编辑 / 分析（IndexedDB 本地持久化）" />
-      <div className="flex gap-1 flex-wrap mb-4">
+      <div className="flex gap-1 flex-wrap mb-4 os-tab-bar">
         {TABS.map(([k, label]) => <button key={k} onClick={() => setTab(k)} className="text-sm px-3 py-1.5 mono" style={btn(k === tab)}>{label}</button>)}
       </div>
       {toast && <div className="mb-4 px-3 py-2 rounded text-sm mono" style={{ background: 'rgba(16,185,129,0.14)', color: '#10b981' }}>{toast}</div>}

@@ -38,10 +38,11 @@ color: var(--gy-celadon);
 
 **仍局部定义 `--brass` / `--celadon` 的模块 CSS：**
 
-- `signal-panel/signal-panel.css`
-- `cushion-monitor/cushion-monitor.css`
-- `personal-review/personal-review.css`
-- `huangfeizhai/huangfeizhai.css`
+- ~~`signal-panel/signal-panel.css`~~ ✅ Final Polish
+- ~~`cushion-monitor/cushion-monitor.css`~~ ✅ Final Polish
+- ~~`personal-review/personal-review.css`~~ ✅ Final Polish
+- ~~`three-forces/three-forces.css`~~ ✅ Final Polish
+- ~~`huangfeizhai/huangfeizhai.css`~~ ✅ Final Polish（`--brass` 继承 `:root`）
 
 ## 内联 DistBars 组件（anti-pattern）
 

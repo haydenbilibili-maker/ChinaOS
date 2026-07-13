@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageHeader, Grid, Stat, StatGrid } from '../../app/ui.jsx';
+import { PageHeader, Grid, Stat, StatGrid, Card } from '../../app/ui.jsx';
 import { IntroCard, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import MarketTicker from '../shared/MarketTicker.jsx';
 import { AS_OF_MARKET, MARKET_SEED } from '../../lib/market/liveQuotes.js';
@@ -31,7 +31,9 @@ export default function Page() {
         <Stat value={commodityCount} label="大宗标的" accent="#10b981" />
       </StatGrid>
 
-      <MarketTicker variant="full" hideTitle className="mb-6" />
+      <Card title="实时行情">
+        <MarketTicker variant="full" hideTitle className="mb-0" />
+      </Card>
 
       <ModuleFooter
         moduleId="marketPulse"
