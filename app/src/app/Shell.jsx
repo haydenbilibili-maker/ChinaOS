@@ -222,9 +222,9 @@ export default function Shell() {
     });
   }, [collapsibleGroupIds]);
 
-  // 路由切换：内容区滚回顶部；同时收起移动端抽屉
+  // 路由切换：主内容区滚回顶部（仅滚动容器，不干扰入场动画）；同时收起移动端抽屉
   useEffect(() => {
-    mainRef.current?.scrollTo({ top: 0 });
+    mainRef.current?.scrollTo({ top: 0, behavior: 'instant' });
     setDrawerOpen(false);
   }, [loc.pathname]);
 

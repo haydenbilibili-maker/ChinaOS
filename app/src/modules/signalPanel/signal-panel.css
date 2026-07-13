@@ -293,30 +293,39 @@
 
 /* ── 质感升级 · 错落入场 / 卡片抬升 / 仪表过渡 ── */
 .ink-observatory.sp-wrap {
-  animation: os-fade-in 0.42s var(--ease-ink, cubic-bezier(0.22, 1, 0.36, 1)) both;
+  animation: os-fade-in var(--duration-slow) var(--ease-ink) both;
 }
 .sp-grid {
-  animation: os-fade-in 0.4s var(--ease-ink, cubic-bezier(0.22, 1, 0.36, 1)) both;
+  /* 信号卡错落入场 */
 }
 .sp-grid .sp-card {
+  animation: os-fade-in var(--duration-fast) var(--ease-ink) both;
+}
+.sp-grid .sp-card:nth-child(1) { animation-delay: 0.03s; }
+.sp-grid .sp-card:nth-child(2) { animation-delay: 0.06s; }
+.sp-grid .sp-card:nth-child(3) { animation-delay: 0.09s; }
+.sp-grid .sp-card:nth-child(4) { animation-delay: 0.12s; }
+.sp-grid .sp-card:nth-child(5) { animation-delay: 0.15s; }
+.sp-grid .sp-card:nth-child(6) { animation-delay: 0.18s; }
+.sp-grid .sp-card {
   transition:
-    border-color var(--duration-fast, 0.18s) var(--ease-ink, ease),
-    background var(--duration-fast, 0.18s) var(--ease-ink, ease),
-    transform var(--duration-fast, 0.18s) var(--ease-ink, ease),
-    box-shadow var(--duration-fast, 0.18s) var(--ease-ink, ease);
+    border-color var(--duration-fast) var(--ease-ink),
+    background var(--duration-fast) var(--ease-ink),
+    transform var(--duration-fast) var(--ease-ink),
+    box-shadow var(--duration-fast) var(--ease-ink);
 }
 .sp-grid .sp-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 28px -12px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--hair);
 }
 .sp-knob {
-  transition: left 0.55s var(--ease-ink, cubic-bezier(0.22, 1, 0.36, 1)), box-shadow 0.3s ease;
+  transition: left var(--duration-slow) var(--ease-ink), box-shadow var(--duration-fast) ease;
 }
 .sp-v-lamp {
-  transition: box-shadow 0.4s ease;
+  transition: box-shadow var(--duration-slow) ease;
 }
 .sp-lanes .sp-lane {
-  transition: transform var(--duration-fast, 0.18s) var(--ease-ink, ease), border-color 0.2s ease;
+  transition: transform var(--duration-fast) var(--ease-ink), border-color var(--duration-fast) var(--ease-ink);
 }
 .sp-lanes .sp-lane:hover {
   transform: translateY(-1px);
@@ -326,9 +335,10 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .ink-observatory.sp-wrap,
+  .sp-grid .sp-card,
   .sp-grid .sp-card:hover,
   .sp-lanes .sp-lane:hover {
-    animation: none;
+    animation: none !important;
     transform: none;
   }
 }

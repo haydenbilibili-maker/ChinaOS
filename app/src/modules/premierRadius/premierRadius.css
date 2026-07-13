@@ -290,3 +290,23 @@
   font-family: var(--pr-mono);
   font-size: 11px;
 }
+
+/* ── Round 5 · 治理链动效统一 ── */
+#pr-app .pr-wrap {
+  animation: os-fade-in var(--duration-slow) var(--ease-ink) both;
+}
+#pr-app .pr-grid > div {
+  animation: os-fade-in var(--duration-fast) var(--ease-ink) both;
+}
+#pr-app .pr-policy-item,
+#pr-app .pr-inflection-item {
+  transition:
+    border-color var(--duration-fast) var(--ease-ink),
+    color var(--duration-fast) var(--ease-ink);
+}
+@media (prefers-reduced-motion: reduce) {
+  #pr-app .pr-wrap,
+  #pr-app .pr-grid > div {
+    animation: none !important;
+  }
+}

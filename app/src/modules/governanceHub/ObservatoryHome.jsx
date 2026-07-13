@@ -116,8 +116,8 @@ export default function ObservatoryHome() {
           <div className="ob-hero-body">
             <div className="ob-ey">当前判读 · CURRENT READING</div>
 
-            <div className="ob-duo">
-              <div className="ob-gauge">
+            <div className="ob-duo os-reveal-stagger">
+              <div className="ob-gauge os-reveal">
                 <div className="ob-g-k">
                   <i style={{ background: reading.signalGauge.color }} />
                   {reading.signalGauge.label}
@@ -135,7 +135,7 @@ export default function ObservatoryHome() {
                   dangerouslySetInnerHTML={{ __html: reading.signalGauge.description }}
                 />
               </div>
-              <div className="ob-gauge">
+              <div className="ob-gauge os-reveal">
                 <div className="ob-g-k">
                   <i style={{ background: reading.forceGauge.color }} />
                   {reading.forceGauge.label}
@@ -196,7 +196,7 @@ export default function ObservatoryHome() {
             再看同类躺下时垫着什么，最后才回答——我该怎么办。</b>
           </p>
 
-          <div className="ob-chain">
+          <div className="ob-chain os-reveal-stagger">
             {reading.stages.map((stage) => (
               <div key={stage.id} className="ob-stage">
                 <div className="ob-st-hd">
@@ -212,7 +212,7 @@ export default function ObservatoryHome() {
                   <Link
                     key={mod.id}
                     to={mod.route}
-                    className={`ob-mod ${mod.highlight ? 'is-highlight' : ''}`}
+                    className={`ob-mod os-reveal ${mod.highlight ? 'is-highlight' : ''}`}
                   >
                     <div className="mn">{mod.name}</div>
                     <div className="mq">{mod.question}</div>
@@ -236,9 +236,9 @@ export default function ObservatoryHome() {
             故这剂 2007 年就已确诊的药，被反复推迟至今。
           </p>
 
-          <div className="ob-four">
+          <div className="ob-four os-reveal-stagger">
             {CORE_FOUR.map((item) => (
-              <div key={item.name} className="ob-fc">
+              <div key={item.name} className="ob-fc os-reveal">
                 <div className="n">{item.name}</div>
                 <div className="d">{item.desc}</div>
               </div>

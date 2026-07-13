@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useLayoutEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import StatTrend from '../lib/viz/StatTrend.jsx';
 export { default as OsGauge } from '../lib/viz/OsGauge.jsx';
@@ -117,9 +117,10 @@ export function StatGrid({ children, className = '', stagger = true }) {
  * @example <Grid cols={3} />
  * @example <Grid cols={{ sm: 1, md: 2, lg: 3, '2xl': 4 }} />
  */
-export function Grid({ cols = 3, children, className = '', gap }) {
+export function Grid({ cols = 3, children, className = '', gap, stagger = false }) {
   const gapCls = gap ? '' : 'gap-6 md:gap-6 lg:gap-8';
   const gapStyle = gap ? { gap } : {};
+  const staggerCls = stagger ? 'os-section-stagger' : '';
 
   if (cols && typeof cols === 'object') {
     const base = cols.default ?? cols.sm ?? 1;
@@ -134,7 +135,7 @@ export function Grid({ cols = 3, children, className = '', gap }) {
       ...gapStyle,
     };
     return (
-      <div className={`grid os-grid os-grid-r ${gapCls} ${className}`} style={style}>
+      <div className={`grid os-grid os-grid-r ${gapCls} ${staggerCls} ${className}`} style={style}>
         {children}
       </div>
     );
@@ -142,7 +143,7 @@ export function Grid({ cols = 3, children, className = '', gap }) {
 
   return (
     <div
-      className={`grid os-grid ${gapCls} ${className}`}
+      className={`grid os-grid ${gapCls} ${staggerCls} ${className}`}
       style={{
         gridTemplateColumns: `repeat(${cols}, minmax(0,1fr))`,
         ...gapStyle,
@@ -175,13 +176,52 @@ export function TabBar({
   className = '',
 }) {
   const normalized = tabs.map((t) => (Array.isArray(t) ? { id: t[0], label: t[1] } : t));
-  const barCls = variant === 'segment' ? 'os-tab-bar os-tab-bar-segment' : 'os-tab-bar';
+  const barRef = useRef(null);
+  const tabRefs = useRef([]);
+  const [indicator, setIndicator] = useState({ width: 0, left: 0, color: accent });
+  const isPill = variant === 'pill';
+  const barCls = variant === 'segment' ? 'os-tab-bar os-tab-bar-segment' : 'os-tab-bar os-tab-bar-pill';
   const wrapCls = sticky ? 'os-tab-sticky' : 'mb-6';
+
+  const activeIdx = normalized.findIndex((t) => t.id === value);
+  const activeTab = activeIdx >= 0 ? normalized[activeIdx] : null;
+  const indicatorColor = activeTab?.accent || accent;
+
+  useLayoutEffect(() => {
+    if (!isPill) return;
+    const el = tabRefs.current[activeIdx];
+    const bar = barRef.current;
+    if (!el || !bar || activeIdx < 0) return;
+    const barRect = bar.getBoundingClientRect();
+    const tabRect = el.getBoundingClientRect();
+    setIndicator({
+      width: tabRect.width,
+      left: tabRect.left - barRect.left,
+      color: indicatorColor,
+    });
+  }, [value, activeIdx, indicatorColor, isPill, normalized.length]);
 
   return (
     <div className={`${wrapCls} ${className}`}>
-      <div className={barCls} role="tablist">
-        {normalized.map(({ id, label, accent: tabAccent, bg }) => {
+      <div
+        className={barCls}
+        role="tablist"
+        ref={isPill ? barRef : undefined}
+        style={isPill ? { '--tab-indicator-color': indicatorColor } : undefined}
+      >
+        {isPill && indicator.width > 0 ? (
+          <span
+            className="os-tab-indicator"
+            aria-hidden="true"
+            style={{
+              width: indicator.width,
+              transform: `translateX(${indicator.left}px)`,
+              background: `color-mix(in srgb, ${indicator.color} 22%, transparent)`,
+              borderColor: indicator.color,
+            }}
+          />
+        ) : null}
+        {normalized.map(({ id, label, accent: tabAccent, bg }, idx) => {
           const on = value === id;
           const activeColor = tabAccent || accent;
           let activeStyle;
@@ -193,9 +233,9 @@ export function TabBar({
               };
             } else {
               activeStyle = {
-                background: bg || 'rgba(196, 30, 58, 0.22)',
                 color: tabAccent && tabAccent.startsWith('#') ? 'var(--tab-active-text)' : (tabAccent ? activeColor : 'var(--tab-active-text)'),
-                borderColor: activeColor,
+                background: 'transparent',
+                borderColor: 'transparent',
               };
             }
           } else if (variant === 'segment') {
@@ -207,6 +247,7 @@ export function TabBar({
               type="button"
               role="tab"
               aria-selected={on}
+              ref={(node) => { tabRefs.current[idx] = node; }}
               onClick={() => onChange(id)}
               className={`os-tab-item ${on ? 'is-active' : ''}`}
               style={activeStyle}

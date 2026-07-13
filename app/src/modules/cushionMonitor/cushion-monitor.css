@@ -290,3 +290,28 @@
   .cm-matrix { grid-template-columns: 52px 1fr 1fr; }
   .cm-bar-row { grid-template-columns: 96px 1fr 74px; }
 }
+
+/* ── Round 5 · 治理链动效统一 ── */
+.ink-observatory.cm-wrap {
+  animation: os-fade-in var(--duration-slow) var(--ease-ink) both;
+}
+.cm-layer,
+.cm-verdict {
+  animation: os-fade-in var(--duration-fast) var(--ease-ink) both;
+}
+.cm-layer,
+.cm-verdict,
+.cm-bar-fill {
+  transition:
+    border-color var(--duration-fast) var(--ease-ink),
+    transform var(--duration-fast) var(--ease-ink),
+    box-shadow var(--duration-slow) var(--ease-ink),
+    width var(--duration-slow) var(--ease-ink);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ink-observatory.cm-wrap,
+  .cm-layer,
+  .cm-verdict {
+    animation: none !important;
+  }
+}

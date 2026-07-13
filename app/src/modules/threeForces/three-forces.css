@@ -260,14 +260,15 @@
 
 /* ── 质感升级 · 窗口仪表 / 卡片抬升 ── */
 .ink-observatory.tf-wrap {
-  animation: os-fade-in 0.42s var(--ease-ink, cubic-bezier(0.22, 1, 0.36, 1)) both;
+  animation: os-fade-in var(--duration-slow) var(--ease-ink) both;
 }
 .tf-window,
 .tf-card {
+  animation: os-fade-in var(--duration-fast) var(--ease-ink) both;
   transition:
-    border-color 0.2s var(--ease-ink, ease),
-    transform 0.2s var(--ease-ink, ease),
-    box-shadow 0.25s var(--ease-ink, ease);
+    border-color var(--duration-fast) var(--ease-ink),
+    transform var(--duration-fast) var(--ease-ink),
+    box-shadow var(--duration-slow) var(--ease-ink);
 }
 .tf-card:hover {
   transform: translateY(-2px);
@@ -278,8 +279,10 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .ink-observatory.tf-wrap,
+  .tf-window,
+  .tf-card,
   .tf-card:hover {
-    animation: none;
+    animation: none !important;
     transform: none;
   }
 }

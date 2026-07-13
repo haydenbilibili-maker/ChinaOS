@@ -1,7 +1,7 @@
-# China OS 视觉路线图 · Round 2–4 追踪
+# China OS 视觉路线图 · Round 2–5 追踪
 
 > 设计系统收敛计划 · 2026-07  
-> Round 2–3 已完成；Round 4 模块视觉对齐清扫已交付。
+> Round 2–4 已完成；Round 5 动效编排与页面过渡已交付。
 
 ## Round 2 交付清单
 
@@ -43,10 +43,19 @@
 | home 模块 `const AX` | 0 | — | ✅ | ✅ 全站模块级 AX=0 |
 | `StatGrid` 模块数 | ≥15 | 3 | ✅ 23+ | ✅ 维持 |
 | GY GySliceShell 采用率 | 56/56 切片 | — | 1 试点 | ✅ 56/56 |
-| checklist 全项通过 | ≥90% 模块 | — | — | ✅ ~92%（见 `r4-checklist.mjs`） |
-| `npm run build` / vitest | 通过 | 待 CI | 待 CI | ✅ |
+| checklist 全项通过 | ≥90% 模块 | — | — | ✅ 91.7%（177/193） |
+| `npm run build` / vitest | 通过 | 待 CI | 待 CI | ✅ | ✅ R5 |
 
-## Round 5 预览（技术债）
+## Round 5 交付清单（动效编排与页面过渡）
+
+- [x] **Shell 路由过渡** — `<Outlet>` 外包 `os-page-enter`（opacity + translateY 8px · 220ms `--ease-ink`）；主内容区 `scrollTo(0)` 与入场动画解耦
+- [x] **区块错落入场** — 看板 `dash-screen-grid` 全量 `os-section-stagger`；观象台链路卡 `os-reveal`；home 组 live-feeds / econdash 通缩仪表栅格补齐 stagger
+- [x] **治理链动效统一** — signalPanel · threeForces · cushionMonitor · attribution · premierRadius · observatory · governanceVerdict：统一 `--ease-ink` + `--duration-fast/slow`；verdict / signal 卡 mount 入场
+- [x] **微交互** — `TabBar` pill 滑块指示器（CSS transform）；`os-filter-chip` 激活边框过渡；`os-btn` active `scale(0.98)` 已验证
+- [x] **prefers-reduced-motion** — 扩展覆盖 `os-page-enter` · stagger/reveal 子项 · ticker/marquee · lcm 卫星图层动画 · ob-hero sheen 循环
+- [x] **约束** — 未重引入神州粒子 120ms pulse；无新增 framer-motion；路由 enter ≤ 220ms
+
+## Round 6 预览（技术债）
 
 - stylelint `color-no-hex` 警告级规则（模块 CSS 白名单除外）
 - `renqun-tupu/atlasViz.js` · `gametheory` 等残余 `#27324a`（系列色/非轴语义）

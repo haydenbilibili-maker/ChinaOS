@@ -118,3 +118,18 @@
 .gv-compact .gv-timing {
   font-size: 11px;
 }
+
+/* ── Round 5 · 治理链动效统一 ── */
+.gv-panel.ink-observatory {
+  animation: os-fade-in var(--duration-slow) var(--ease-ink) both;
+}
+.gv-metric {
+  transition:
+    border-color var(--duration-fast) var(--ease-ink),
+    background var(--duration-fast) var(--ease-ink);
+}
+@media (prefers-reduced-motion: reduce) {
+  .gv-panel.ink-observatory {
+    animation: none !important;
+  }
+}

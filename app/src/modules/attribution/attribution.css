@@ -259,3 +259,30 @@
 }
 
 .attribution-page { display: flex; flex-direction: column; gap: 0; }
+
+/* ── Round 5 · 治理链动效统一 ── */
+#aa-app .aa-wrap {
+  animation: os-fade-in var(--duration-slow) var(--ease-ink) both;
+}
+#aa-app .aa-verdict {
+  animation: os-fade-in var(--duration-fast) var(--ease-ink) both;
+}
+#aa-app .aa-preset-card {
+  transition:
+    border-color var(--duration-fast) var(--ease-ink),
+    background var(--duration-fast) var(--ease-ink),
+    transform var(--duration-fast) var(--ease-ink),
+    box-shadow var(--duration-slow) var(--ease-ink);
+}
+#aa-app .aa-chip {
+  transition:
+    color var(--duration-fast) var(--ease-ink),
+    background var(--duration-fast) var(--ease-ink),
+    border-color var(--transition-base);
+}
+@media (prefers-reduced-motion: reduce) {
+  #aa-app .aa-wrap,
+  #aa-app .aa-verdict {
+    animation: none !important;
+  }
+}

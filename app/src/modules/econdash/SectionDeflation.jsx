@@ -52,7 +52,7 @@ export default function SectionDeflation() {
       <BandHead n="00" title="当前主线 · 通缩与资金活化" en="DEFLATION & LIQUIDITY" />
 
       {/* 四列表盘网格 —— 移动端 2 列、桌面 4 列 */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mt-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mt-4 os-section-stagger">
         {gauges.map((g, i) => {
           const series = g.series || g.points || [];
           const color = colorForSignal(g.signal);

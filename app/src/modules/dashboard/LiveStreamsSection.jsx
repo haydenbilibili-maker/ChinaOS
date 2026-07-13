@@ -311,7 +311,7 @@ export default function LiveStreamsSection({ compact = false, previewCount = 8 }
       </div>
 
       <div
-        className="grid gap-3"
+        className="grid gap-3 os-section-stagger"
         style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))' }}
       >
         {filtered.map((s) => (
