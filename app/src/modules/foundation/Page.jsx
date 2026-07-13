@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import EconDataTab from './EconDataTab.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
@@ -204,12 +204,12 @@ function Overview({ st, datasets, onGo }) {
   }, [st]);
   return (
     <div>
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value={st ? st.datasetCount : '…'} label="数据集" accent="#22d3ee" />
         <Stat value={st ? st.totalRows.toLocaleString() : '…'} label="数据行总数" accent="#c41e3a" />
         <Stat value={st ? st.figureCount : '…'} label="人才精英" accent="#e8a317" />
         <Stat value={st ? Object.keys(st.byCategory).length : '…'} label="数据分类" accent="#10b981" />
-      </Grid>
+      </StatGrid>
       <Grid cols={2} className="mb-6">
         <Card title="数据集分类构成">
           {catOption && Object.keys(st.byCategory).length ? <EChart option={catOption} style={{ height: 240 }} /> : <div className="py-16 text-center text-sm mono" style={{ color: 'var(--text-tertiary)' }}>// 暂无数据，去「存量队列」一键录入或「上传导入」</div>}
@@ -357,12 +357,12 @@ function WorldBank({ datasets, refresh, flash }) {
           数据自 <span className="mono">data/wb_api_*.csv</span>（世界发展指标 WDI）离线抽取并固化为种子，写入浏览器本地库（IndexedDB），下方浏览器实时读取本地数据 —— 无需联网。
           数据集 id：<span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{WORLD_BANK_DATASET_ID}</span>。
         </p>
-        <Grid cols={4} className="mb-3">
+        <StatGrid className="mb-3">
           <Stat value={ready ? data.length.toLocaleString() : '…'} label="本地记录行" accent="#c41e3a" />
           <Stat value={WORLD_BANK_COUNT.indicators} label="核心指标" accent="#22d3ee" />
           <Stat value={WORLD_BANK_COUNT.countries} label="国家 / 地区" accent="#e8a317" />
           <Stat value={`${WORLD_BANK_META.yearMin}–${WORLD_BANK_META.yearMax}`} label="年份覆盖" accent="#10b981" />
-        </Grid>
+        </StatGrid>
         <div className="flex items-center gap-2 flex-wrap">
           <span className="text-xs mono px-2 py-1 rounded" style={{ background: loaded ? 'rgba(16,185,129,0.14)' : 'var(--bg-elevated)', color: loaded ? '#10b981' : 'var(--text-tertiary)' }}>
             {loaded ? '✓ 已载入本地库' : '尚未载入'}

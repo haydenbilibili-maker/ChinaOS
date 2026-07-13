@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { categoryX, valueY, GRID, LEGEND, stackedBarOpt, radarOpt } from '../shared/chartHelpers.js';
@@ -171,12 +171,12 @@ export default function Page() {
         数据截至 <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{AS_OF}</span>，公开资料示意。
       </IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="~6 万亿" label="三省 GDP 合计（示意）" accent="#64748b" />
         <Stat value="~5%" label="占全国 GDP 比重（2025E）" accent="#c41e3a" />
         <Stat value="-165万" label="三省年净流出（示意）" accent="#e8a317" />
         <Stat value="~1/4" label="粮食调出占全国（北大仓）" accent="#10b981" />
-      </Grid>
+      </StatGrid>
 
       <Card title="视图切换 · 三省 / 产业 / 政策" className="mb-4">
         <SelectorBar items={VIEW_MODES} activeKey={viewMode} onSelect={setViewMode} />

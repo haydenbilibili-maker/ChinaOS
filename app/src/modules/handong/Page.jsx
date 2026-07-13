@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { CRISIS_DOMAINS, TOOLS } from '../sandbox/crisisData.js';
@@ -718,7 +718,7 @@ export default function Page() {
       <IntroCard>
         <strong style={{ color: 'var(--text-primary)' }}>虚构声明：</strong>汉东省及其下辖京州、吕州、林城均为虚构地名，十四名官员与六段剧情均为原创虚构，致敬经典政治叙事，与任何真实地区、机构、人物无关。本页把治国沙盒的四件套——省情参数、班子乘数、危机引擎、政策预算——装进同一个可配置省份，跑通「配置省情 → 组班子 → 年度危机 → 省态演化 → 五年大考」的任期治理周期：回合即年度，省态三表逐年演化、财政约束政策弹药、治理失分留余波、官员在岗成长亦会连任疲劳；你拧的每一根滑杆都是国情，你放的每一个人都是变量，五年届满交卷换届。班子可选接入人才库真实政要（仅公开履历生成的算法画像）；即便选用真实人物，全部推演、政绩与任免仍为虚构游戏机制。
       </IntroCard>
-      <Grid cols={4} className="mb-8">
+      <StatGrid className="mb-8">
         <Stat value={HD_AS_OF} label="推演基准日" accent="#22d3ee" />
         <Stat
           value={poolMode === 'real' ? `${realPool.count ?? basePool.length} 人` : `${OFFICIALS.length} 人`}
@@ -731,7 +731,7 @@ export default function Page() {
           label={termDone ? `任期届满 · 待换届 · 本届已推演 ${rounds.length} 年` : `任期进度 · 本届已推演 ${rounds.length} 年`}
           accent="#10b981"
         />
-      </Grid>
+      </StatGrid>
 
       {/* 1 —— 省情配置器 P0 */}
       <Card title="① 省情配置器 · 配置即国情">

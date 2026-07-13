@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -263,12 +263,12 @@ export default function Page() {
       <PageHeader badge="Regional · 区域协调" title="四大板块 · 区域重大战略 · 转移支付的空间政治" subtitle="东中西东北 / 南升北降 / 财政再分配 —— 从梯度让利到统一大市场的空间重组" />
       <IntroCard>区域协调不是地理问题，而是政治经济问题：谁集聚要素、谁守护底线、谁补贴谁。改革开放以梯度让利启动沿海，再以三大补偿性战略与逐年扩张的转移支付对冲分化；当下的统一大市场，则试图在不熄灭地方竞争引擎的前提下拆除其保护主义工具箱。本页以四大板块、八大战略、转移支付流向与城市群层级四个切面，呈现这套空间再分配机器的运行逻辑。数值均为示意。</IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="4 + 5" label="四大板块 + 五大区域重大战略" accent="#c41e3a" />
         <Stat value="19 个" label="国家级城市群（三档梯度）" accent="#22d3ee" />
         <Stat value="~10.5 万亿" label="转移支付/年 (2025 · 示意)" accent="#e8a317" />
         <Stat value="66 : 34" label="南北 GDP 占比 (2025 · 示意)" accent="#10b981" />
-      </Grid>
+      </StatGrid>
 
       <Grid cols={3} className="mb-6">
         {[['十五五区域命题', '统一大市场从「立规矩」进入「拆壁垒」执行期 · 要素市场化配置改革提速', '#a78bfa'],

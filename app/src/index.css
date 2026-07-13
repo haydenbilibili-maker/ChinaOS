@@ -865,10 +865,34 @@ textarea:focus {
 
 .os-stat-label {
   font-size: var(--text-xs);
-  margin-top: 0.25rem;
   color: var(--text-tertiary);
+  margin-top: 0.25rem;
+  line-height: var(--leading-snug);
   letter-spacing: 0.02em;
 }
+
+.os-gauge__fill {
+  transition: stroke-dashoffset 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .os-gauge__fill {
+    transition: none;
+  }
+}
+
+.os-sparkline {
+  opacity: 0.92;
+}
+
+.os-chart-tooltip,
+.lcm-province-drawer,
+.lcm-map-shell .echarts-tooltip {
+  background: var(--chart-tooltip-bg) !important;
+  border-color: var(--chart-tooltip-border) !important;
+  color: var(--chart-tooltip-text) !important;
+}
+
 
 /* ── Charts ────────────────────────────────────────────── */
 .os-chart {

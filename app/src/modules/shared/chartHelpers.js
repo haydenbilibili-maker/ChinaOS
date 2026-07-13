@@ -31,6 +31,33 @@ const CHART_PALETTE = {
 // 当前生效调色板（默认夜览），functions 在渲染期读取
 let C = CHART_PALETTE.dark;
 
+function readCssChartVar(name, fallback) {
+  if (typeof document === 'undefined') return fallback;
+  const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  return v || fallback;
+}
+
+/** 专题模块统一系列色 · power-red → cyber-cyan → fire-gold 语义序 */
+export const CHART_SERIES_COLORS = {
+  powerRed: '#c41e3a',
+  cyberCyan: '#22d3ee',
+  fireGold: '#e8a317',
+  emerald: '#10b981',
+  violet: '#8b5cf6',
+  orange: '#fb923c',
+  slate: '#64748b',
+};
+
+export const CHART_SERIES_PALETTE = [
+  CHART_SERIES_COLORS.powerRed,
+  CHART_SERIES_COLORS.cyberCyan,
+  CHART_SERIES_COLORS.fireGold,
+  CHART_SERIES_COLORS.emerald,
+  CHART_SERIES_COLORS.violet,
+  CHART_SERIES_COLORS.orange,
+  CHART_SERIES_COLORS.slate,
+];
+
 export const AXIS = { lineStyle: { color: C.axis } };
 export const GRID_LINE = { lineStyle: { color: C.split } };
 export const LABEL = { color: C.label, fontSize: 10 };
@@ -64,9 +91,9 @@ export function applyChartTheme(theme) {
   GRID_LINE.lineStyle.color = C.split;
   LABEL.color = C.label;
   LEGEND.textStyle.color = C.label;
-  CHART_TOOLTIP.backgroundColor = C.tooltipBg;
-  CHART_TOOLTIP.borderColor = C.tooltipBorder;
-  CHART_TOOLTIP.textStyle.color = C.tooltipText;
+  CHART_TOOLTIP.backgroundColor = readCssChartVar('--chart-tooltip-bg', C.tooltipBg);
+  CHART_TOOLTIP.borderColor = readCssChartVar('--chart-tooltip-border', C.tooltipBorder);
+  CHART_TOOLTIP.textStyle.color = readCssChartVar('--chart-tooltip-text', C.tooltipText);
 }
 
 export function categoryX(data, opts = {}) {
@@ -142,11 +169,6 @@ export function timelineMarkAreaOpt({ years, values, span, highlightColor = '#22
     }],
   };
 }
-
-/** 专题模块统一折线/柱图系列色（与旧 PALETTE 常量一致） */
-export const CHART_SERIES_PALETTE = [
-  '#c41e3a', '#22d3ee', '#e8a317', '#10b981', '#8b5cf6', '#fb923c', '#64748b',
-];
 
 export function chartSeriesColor(index = 0) {
   return CHART_SERIES_PALETTE[((index % CHART_SERIES_PALETTE.length) + CHART_SERIES_PALETTE.length) % CHART_SERIES_PALETTE.length];

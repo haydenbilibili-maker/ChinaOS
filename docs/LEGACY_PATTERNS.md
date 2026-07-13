@@ -13,13 +13,13 @@ const PALETTE = ['#c41e3a', '#22d3ee', ...];
 import { AXIS, LABEL, GRID_LINE, LEGEND, CHART_SERIES_PALETTE } from '../shared/chartHelpers.js';
 ```
 
-**仍含 `AX` / `#27324a` 的文件（待 Round 3）：**
+**仍含 `AX` / `#27324a` 的文件（待 Round 4 或专题清理）：**
 
-- `app/src/modules/econdash/SectionCycle.jsx`
-- `app/src/modules/econdash/SectionRegional.jsx`
-- `app/src/modules/econdash/SectionCompare.jsx`
-- `app/src/modules/foundation/EconDataTab.jsx`
-- `app/src/modules/benchmark/Page.jsx`
+- ~~`app/src/modules/econdash/SectionCycle.jsx`~~ ✅ Round 3
+- ~~`app/src/modules/econdash/SectionRegional.jsx`~~ ✅ Round 3
+- ~~`app/src/modules/econdash/SectionCompare.jsx`~~ ✅ Round 3
+- ~~`app/src/modules/foundation/EconDataTab.jsx`~~ ✅ Round 3
+- ~~`app/src/modules/benchmark/Page.jsx`~~ ✅ Round 3
 - `app/src/modules/renqun-tupu/atlasViz.js`
 - 各 `talent/*Section.jsx` 内联 `DistBars` 副本（≥10 处）
 

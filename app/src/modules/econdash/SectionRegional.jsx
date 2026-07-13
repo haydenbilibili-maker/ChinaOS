@@ -5,6 +5,7 @@ import ChinaMap from '../../lib/viz/ChinaMap.jsx';
 import {
   ECON_COLORS, BandHead, Meter, SignalDot,
 } from './econUI.jsx';
+import { LABEL, AXIS, GRID_LINE, LEGEND } from '../shared/chartHelpers.js';
 import {
   REGION_METRICS, REGIONS, regionStressTally, compareRegions,
   REGION_MAP_METRICS, regionMapData,
@@ -27,7 +28,6 @@ import {
 // ============================================================================
 
 const DISCLAIMER = '公开统计梳理 · 示意标定 · 非投资建议 · 非预测 —— 区域指标为公开口径近似 + 示意标定';
-const AX = { line: '#27324a', text: '#93a1b5', split: 'rgba(148,163,184,0.1)' };
 const MAX_COMPARE = 3;
 // 八大区 + 全国，对齐 econRegional.js 的 group 取值（chip 与地图共用排序）
 const GROUP_ORDER = ['东北', '华北', '华东', '华中', '华南', '西南', '西北', '全国'];
@@ -151,8 +151,8 @@ export default function SectionRegional() {
       tooltip: { trigger: 'item' },
       legend: {
         bottom: 0,
-        textStyle: { color: AX.text, fontSize: 11 },
-        itemWidth: 12,
+        ...LEGEND,
+        textStyle: { ...LEGEND.textStyle, fontSize: 11 },
         itemHeight: 8,
         data: selected.map((rid) => regions.find((r) => r.id === rid)?.name || rid),
       },
@@ -161,10 +161,10 @@ export default function SectionRegional() {
         center: ['50%', '46%'],
         radius: '64%',
         splitNumber: 4,
-        axisName: { color: AX.text, fontSize: 11 },
-        axisLine: { lineStyle: { color: AX.line } },
-        splitLine: { lineStyle: { color: AX.split } },
-        splitArea: { areaStyle: { color: ['transparent', AX.split] } },
+        axisName: { ...LABEL, fontSize: 11 },
+        axisLine: AXIS,
+        splitLine: GRID_LINE,
+        splitArea: { areaStyle: { color: ['transparent', GRID_LINE.lineStyle.color] } },
       },
       series: [{ type: 'radar', data: series }],
     };

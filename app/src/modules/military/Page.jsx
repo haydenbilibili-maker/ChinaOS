@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { PageHeader, Card, Grid, Stat, TabBar } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid, TabBar } from '../../app/ui.jsx';
 import { FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import MilitaryMap, { BaseTypeLegend, TheaterLegend } from './MilitaryMap.jsx';
@@ -118,11 +118,11 @@ function OverviewTab() {
           </Card>
         ))}
       </Grid>
-      <Grid cols={6} className="mb-6">
+      <StatGrid className="mb-6">
         {OVERVIEW_STATS.map((s) => (
           <Stat key={s.label} value={s.value} label={s.label} accent={s.accent} />
         ))}
-      </Grid>
+      </StatGrid>
       <Grid cols={2} className="mb-6">
         <Card title={`国防预算趋势 · ${BUDGET_TREND.asOf}（${BUDGET_TREND.unit}）`}>
           <EChart option={budgetChart} style={{ height: 240 }} />
@@ -239,12 +239,12 @@ function PersonnelTab() {
 
   return (
     <>
-      <Grid cols={4} className="mb-4">
+      <StatGrid className="mb-4">
         <Stat value={PERSONNEL.activeDuty.label} label="现役总兵力" accent="#c41e3a" />
         <Stat value={PERSONNEL.civilianStaff.total} label="文职人员" accent="#8b5cf6" />
         <Stat value={PERSONNEL.recruitment.annual} label="年征兵规模" accent="#22d3ee" />
         <Stat value={SERVICES.capf.stat.split(' ·')[0]} label="武警估算" />
-      </Grid>
+      </StatGrid>
       <Grid cols={2} className="mb-6">
         <Card title={`军种—兵种 旭日图 · ${PERSONNEL.asOf}`}>
           <EChart option={sunburst} style={{ height: 280 }} />

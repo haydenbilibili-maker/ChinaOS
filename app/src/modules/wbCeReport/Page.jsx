@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import {
@@ -118,11 +118,11 @@ export default function Page() {
         {' '}<a href={REPORT_META.pdfPath} download className="mono" style={{ color: 'var(--cyber-cyan)' }}>下载 PDF 原文</a>
       </IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         {KEY_READINGS.slice(0, 4).map((k) => (
           <Stat key={k.label} value={k.value} label={k.label} sub={k.sub} accent={k.accent} />
         ))}
-      </Grid>
+      </StatGrid>
 
       <SelectorBar items={TABS.map(([id, label]) => ({ key: id, label }))} activeKey={tab} onSelect={setTab} getKey={(i) => i.key} getLabel={(i) => i.label} getAccent={() => '#22d3ee'} />
 
@@ -193,11 +193,11 @@ export default function Page() {
           </Card>
 
           <Card title="关键读数速览" className="mt-6">
-            <Grid cols={4}>
+            <StatGrid>
               {KEY_READINGS.map((k) => (
                 <Stat key={k.label} value={k.value} label={k.label} sub={k.sub} accent={k.accent} />
               ))}
-            </Grid>
+            </StatGrid>
           </Card>
         </>
       )}

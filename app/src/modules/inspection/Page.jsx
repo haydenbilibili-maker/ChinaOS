@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { OFFICIALS, HD_SCENARIOS, HD_DOMAIN_LABELS } from '../handong/handongData.js';
 import {
@@ -154,12 +154,12 @@ export default function Page({ embedded = false }) {
         制度修复的速度永远慢于破坏的速度，这个时间差就是整改跟踪要盯住的东西。
         全部逻辑为确定性纯函数，同样的操作永远复现同样的底稿。
       </IntroCard>
-      <Grid cols={4} className="mb-8">
+      <StatGrid className="mb-8">
         <Stat value={INSPECT_AS_OF} label="进驻基准日" accent="#22d3ee" />
         <Stat value={`${clues.length} 条`} label="线索台账（三源 + 沙盘移送）" accent="#c41e3a" />
         <Stat value={`${OFFICIALS.length} 名`} label="虚构官员库（谈话对象池）" accent="#e8a317" />
         <Stat value="4 轮" label="整改销号周期" accent="#10b981" />
-      </Grid>
+      </StatGrid>
 
       {/* 1 —— 线索研判台 */}
       <Card title={`① 线索研判台 · 三源 12 条 + 沙盘移送 ${handoverClues.length} 条 —— 已入研判篮 ${selected.length}/${clues.length}`}>

@@ -562,7 +562,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
   return (
     <section
       ref={shellRef}
-      className={`os-card os-section live-china-map-shell lcm-premium p-4 md:p-5 lg:p-6 ${isFullscreen ? 'live-china-map-fullscreen' : ''} ${className || ''}`}
+      className={`os-card os-section live-china-map-shell lcm-map-shell lcm-premium p-4 md:p-5 lg:p-6 ${isFullscreen ? 'live-china-map-fullscreen' : ''} ${className || ''}`}
     >
       {/* Header: title left, controls right */}
       <div className="live-china-map-toolbar flex flex-wrap items-start justify-between gap-x-6 gap-y-3 mb-4">

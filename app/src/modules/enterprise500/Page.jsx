@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import * as Lucide from 'lucide-react';
-import { PageHeader, Card, Grid, Stat, TabBar } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid, TabBar } from '../../app/ui.jsx';
 import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { useDataset } from '../../lib/db/useDataset.js';
@@ -469,14 +469,14 @@ export default function Page() {
         </p>
       </Card>
 
-      <div className="grid gap-3 mb-4" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))' }}>
+      <StatGrid className="mb-4">
         <Stat value={String(cos.length)} label="上榜企业" accent="#fb923c" />
         <Stat value={String(filteredCos.length)} label="当前命中" accent="#22d3ee" />
         <Stat value={`${totalRevenue.toLocaleString()}亿`} label="筛选营收汇总" accent="#e8a317" />
         <Stat value={`${avgRevenue}亿`} label="均营收" />
         <Stat value={String(deepCount)} label="深度画像" accent="#10b981" />
         <Stat value={String(provAgg.length)} label="覆盖省份" accent="#8b5cf6" />
-      </div>
+      </StatGrid>
 
       {/* 粘性筛选栏 */}
       <div className="sticky z-20 mb-4" style={{ top: 0, background: 'var(--bg-surface)', paddingTop: 4, paddingBottom: 4 }}>

@@ -18,6 +18,13 @@ import {
   subscribe,
 } from '../../lib/db/localdb.js';
 import EChart from '../../lib/viz/EChart.jsx';
+import {
+  CHART_TOOLTIP,
+  LEGEND,
+  chartSeriesColor,
+  categoryX,
+  valueY,
+} from '../shared/chartHelpers.js';
 
 // ============================================================================
 // 数据底座 · 经济数据标签页（EconDataTab）—— 完整经济数据管理组件
@@ -51,10 +58,6 @@ const INP = {
   width: '100%',
   outline: 'none',
 };
-
-// —— 轴色规范 + 多序列色板（冷峻现实主义）——
-const AX = { line: '#27324a', text: '#93a1b5', split: 'rgba(148,163,184,0.1)' };
-const PALETTE = ['#c41e3a', '#22d3ee', '#e8a317', '#10b981', '#8b5cf6', '#fb923c', '#64748b'];
 
 // —— 解析格式档位 ——
 const FMT_TABS = [
@@ -315,27 +318,18 @@ export default function EconDataTab({ datasets, refresh, flash } = {}) {
 
   const chartOption = React.useMemo(() => {
     if (!points.length) return null;
+    const color = chartSeriesColor(0);
     return {
       grid: { left: 48, right: 18, top: 18, bottom: 28 },
-      tooltip: { trigger: 'axis' },
-      xAxis: {
-        type: 'category', data: points.map((p) => p.period),
-        axisLine: { lineStyle: { color: AX.line } },
-        axisLabel: { color: AX.text, fontSize: 10 },
-        axisTick: { show: false },
-      },
-      yAxis: {
-        type: 'value', scale: true,
-        axisLine: { show: false },
-        axisLabel: { color: AX.text, fontSize: 10 },
-        splitLine: { lineStyle: { color: AX.split } },
-      },
+      tooltip: { trigger: 'axis', ...CHART_TOOLTIP },
+      xAxis: { ...categoryX(points.map((p) => p.period)), axisTick: { show: false } },
+      yAxis: valueY({ scale: true, axisLine: { show: false } }),
       series: [{
         type: 'line', smooth: true, symbol: 'circle', symbolSize: 5,
         data: points.map((p) => p.value),
-        lineStyle: { color: PALETTE[0], width: 2 },
-        itemStyle: { color: PALETTE[0] },
-        areaStyle: { color: `${PALETTE[0]}1a` },
+        lineStyle: { color, width: 2 },
+        itemStyle: { color },
+        areaStyle: { color: `${color}1a` },
       }],
     };
   }, [points]);
@@ -611,7 +605,7 @@ export default function EconDataTab({ datasets, refresh, flash } = {}) {
         const first = data.find((v) => v != null && v !== 0);
         if (first != null) data = data.map((v) => (v == null ? null : Math.round((v / first) * 1000) / 10));
       }
-      const color = PALETTE[i % PALETTE.length];
+      const color = chartSeriesColor(i);
       return {
         name: s.name, type: 'line', smooth: true, symbol: 'circle', symbolSize: 4,
         connectNulls: true, data,
@@ -620,20 +614,14 @@ export default function EconDataTab({ datasets, refresh, flash } = {}) {
     });
     return {
       grid: { left: 48, right: 18, top: 36, bottom: 28 },
-      tooltip: { trigger: 'axis' },
-      legend: { top: 0, textStyle: { color: AX.text, fontSize: 10 }, type: 'scroll' },
-      xAxis: {
-        type: 'category', data: xs,
-        axisLine: { lineStyle: { color: AX.line } },
-        axisLabel: { color: AX.text, fontSize: 10 },
-        axisTick: { show: false },
-      },
-      yAxis: {
-        type: 'value', scale: true,
+      tooltip: { trigger: 'axis', ...CHART_TOOLTIP },
+      legend: { top: 0, ...LEGEND, type: 'scroll' },
+      xAxis: { ...categoryX(xs), axisTick: { show: false } },
+      yAxis: valueY({
+        scale: true,
         axisLine: { show: false },
-        axisLabel: { color: AX.text, fontSize: 10, formatter: normalize ? '{value}' : undefined },
-        splitLine: { lineStyle: { color: AX.split } },
-      },
+        axisLabel: { formatter: normalize ? '{value}' : undefined },
+      }),
       series,
     };
   }, [cmpSeries, normalize]);

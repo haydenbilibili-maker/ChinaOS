@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { EraTimeline } from './EraTimeline.jsx';
@@ -773,12 +773,12 @@ export default function Page() {
         <span style={{ color: GOLD }}> 非评价 · 非预测 · 非倡导</span>。
       </IntroCard>
 
-      <Grid cols={4} className="os-section mb-6">
+      <StatGrid className="os-section mb-6">
         <Stat value={LEAD_AS_OF} label="基准日" accent={CYAN} />
         <Stat value="12" label="ECharts 可视化" accent={RED} />
         <Stat value={SECTION_TABS.length} label="分析分区" accent={GOLD} />
         <Stat value={INSTITUTION_TOOLS.length} label="制度工具箱" accent={GREEN} />
-      </Grid>
+      </StatGrid>
 
       <FrameworkTrio cards={[LEADERSHIP_FRAMEWORK.salt, LEADERSHIP_FRAMEWORK.stone, LEADERSHIP_FRAMEWORK.path]} />
 

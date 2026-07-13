@@ -6,6 +6,7 @@ import {
   useWBCompare, wbCompareStat,
 } from './liveWBCompare.js';
 import { BandHead } from './econUI.jsx';
+import { categoryX, valueY, CHART_TOOLTIP, LEGEND } from '../shared/chartHelpers.js';
 
 // ============================================================================
 // 国际对比 · 世界银行（SectionCompare）
@@ -32,11 +33,6 @@ const COUNTRY_BY_ISO = COMPARE_COUNTRIES.reduce((m, c) => { m[c.iso] = c; return
 
 // 指标 key → 定义 速查
 const IND_BY_KEY = COMPARE_INDICATORS.reduce((m, i) => { m[i.key] = i; return m; }, {});
-
-/** 取共享轴 token（就地声明，避免额外耦合；EChart 内 textStyle 已统一） */
-const AXIS_LINE = '#27324a';
-const AXIS_LABEL = '#93a1b5';
-const SPLIT_LINE = 'rgba(148,163,184,0.1)';
 
 export default function SectionCompare() {
   const [indKey, setIndKey] = useState('gdpPerCap');
@@ -102,35 +98,25 @@ export default function SectionCompare() {
     const isPct = ind.kind === 'pct' || ind.kind === 'index';
     return {
       grid: { left: 48, right: 18, top: 30, bottom: 28 },
-      legend: {
-        top: 0,
-        textStyle: { color: AXIS_LABEL, fontSize: 10 },
-        itemWidth: 14,
-        itemHeight: 8,
-        icon: 'roundRect',
-      },
+      legend: { top: 0, ...LEGEND, itemHeight: 8, icon: 'roundRect' },
       tooltip: {
         trigger: 'axis',
+        ...CHART_TOOLTIP,
         valueFormatter: (v) => (v == null ? '—' : wbCompareStat(v, ind.kind)),
       },
       xAxis: {
-        type: 'category',
-        data: years.map(String),
+        ...categoryX(years.map(String)),
         boundaryGap: false,
-        axisLine: { lineStyle: { color: AXIS_LINE } },
-        axisLabel: { color: AXIS_LABEL, fontSize: 10 },
         axisTick: { show: false },
       },
       yAxis: {
-        type: 'value',
-        scale: !isPct, // 货币用 scale 突出差异，百分比留 0 基线
-        axisLine: { show: false },
-        axisLabel: {
-          color: AXIS_LABEL,
-          fontSize: 10,
-          formatter: (v) => (isPct ? `${v}` : wbCompareStat(v, ind.kind)),
-        },
-        splitLine: { lineStyle: { color: SPLIT_LINE } },
+        ...valueY({
+          scale: !isPct,
+          axisLine: { show: false },
+          axisLabel: {
+            formatter: (v) => (isPct ? `${v}` : wbCompareStat(v, ind.kind)),
+          },
+        }),
       },
       series,
     };

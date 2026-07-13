@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -209,12 +209,12 @@ export default function Page() {
         本页以板块、伙伴、结构、顺差四条线索拆解这台贸易机器的运转与软肋。
       </IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="~44.5 万亿" label="进出口总额 (2025 · 元)" accent="#22d3ee" />
         <Stat value="~1.05 万亿$" label="货物贸易顺差 (2025)" accent="#e8a317" />
         <Stat value="H1 +4.2%" label="2026 上半年出口增速 (示意)" accent="#c41e3a" />
         <Stat value="~2.8 万亿" label="跨境电商进出口 (2025 · 元)" accent="#10b981" />
-      </Grid>
+      </StatGrid>
 
       <Grid cols={3} className="mb-6">
         {[['RCEP 生效第四年', '区域内贸易占比升至 ~36% · 东盟稳居第一大伙伴', '#8b5cf6'],

@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import {
@@ -287,12 +287,12 @@ export default function Page({ embedded = false }) {
         博弈不是棋盘上的胜负，是两条供应链的耐力赛：谁的血条厚、谁的时间结构有利、谁先把敌意变现，比谁嗓门大重要得多。
         本轮扩容把两体博弈改成三体：欧盟与东盟作为摇摆方上桌——缓和与开放把它们拉过来，管制与胁迫把它们推出去，倾斜到位就逐回合给倾向侧的经贸线记账；「自主攻关」也不再是匀速直线，五条攻关目标线直接派生自科技树作战盘——受制卡脖子领域全员上桌，再补并跑区战略权重最高的几条，总量接近、时间结构天差地别——选哪条线，就是选押注哪一种耐心。
       </IntroCard>
-      <Grid cols={4} className="mb-8">
+      <StatGrid className="mb-8">
         <Stat value={WG_AS_OF} label="推演基准日" accent="#22d3ee" />
         <Stat value={`${CARDS.length} 张`} label="中性术语牌库" accent="#e8a317" />
         <Stat value={`${MAX_TURNS} 回合`} label={`回合制 · 每回合 ${AP_PER_TURN} 行动点`} accent="#c41e3a" />
         <Stat value={`${STRATEGIES.length} 档`} label="美方 AI 策略" accent="#10b981" />
-      </Grid>
+      </StatGrid>
 
       {/* 1 —— 对局设定 */}
       <Card title="① 对局设定 · 选定对手的性格">

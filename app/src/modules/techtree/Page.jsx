@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { getTheme, subscribeTheme } from '../../lib/theme.js';
 import { usFlagBlue, usFlagBlueAlpha } from '../shared/chartHelpers.js';
@@ -579,12 +579,12 @@ export default function Page() {
         <span style={{ color: '#c41e3a' }}> 红=受制卡脖子</span>守防御带等换道窗口。
       </IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="12" label={`战略科技领域 · 均 TRL ${avgTrl}`} accent="#e8a317" />
         <Stat value={cnt('locked')} label="受制卡脖子(领域)" accent="#c41e3a" />
         <Stat value={HARD_TOTAL} label="全库硬卡点(severity 3)" accent="#c41e3a" />
         <Stat value={`${avgAuto}%`} label="平均自主度(12 域)" accent="#22d3ee" />
-      </Grid>
+      </StatGrid>
 
       {/* ================= ① 矩阵 + 权重排序 ================= */}
       <Grid cols={2} className="mb-6">

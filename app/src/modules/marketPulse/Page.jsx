@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageHeader, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import { IntroCard, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import MarketTicker from '../shared/MarketTicker.jsx';
 import { AS_OF_MARKET, MARKET_SEED } from '../../lib/market/liveQuotes.js';
@@ -24,12 +24,12 @@ export default function Page() {
         数据基准 <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{AS_OF_MARKET}</span>，仅供研究判读，非投资建议。
       </IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value={equityCount} label="股市标的" accent="#c41e3a" />
         <Stat value={bondCount} label="债市标的" accent="#e8a317" />
         <Stat value={fxCount} label="汇市标的" accent="#22d3ee" />
         <Stat value={commodityCount} label="大宗标的" accent="#10b981" />
-      </Grid>
+      </StatGrid>
 
       <MarketTicker variant="full" hideTitle className="mb-6" />
 

@@ -1,14 +1,14 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
+import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, CHART_SERIES_PALETTE, AXIS, LABEL, GRID_LINE, LEGEND } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // 数据来源：china.html「国际对标」专题（WB/IMF/OECD 等公开口径教学示意，2023-2024 基准）
 const COUNTRIES = ['中国', '美国', '日本', '德国', '印度'];
-const PALETTE = ['#c41e3a', '#22d3ee', '#e8a317', '#10b981', '#93a1b5'];
-const AXIS = { axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } };
-const SPLIT = { splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } };
+const PALETTE = CHART_SERIES_PALETTE;
+const axisX = (data) => ({ type: 'category', data, axisLine: AXIS, axisLabel: LABEL });
+const axisY = (opts = {}) => ({ type: 'value', axisLabel: { ...LABEL, ...opts.axisLabel }, splitLine: GRID_LINE, ...opts });
 
 // ---------------------------------------------------------------------------
 // 对标国数据库（雷达 6 维：经济总量/制造业/科技创新/军事/人口结构/全球影响，归一化 0-100 示意）
@@ -115,16 +115,16 @@ const CATCHUP_STAGES = [
 // ---------------------------------------------------------------------------
 const gdpGrowthBar = {
   grid: { left: 40, right: 16, top: 20, bottom: 24 },
-  xAxis: { type: 'category', data: COUNTRIES, ...AXIS },
-  yAxis: { type: 'value', axisLabel: { formatter: '{value}%', color: '#93a1b5' }, ...SPLIT },
-  series: [{ type: 'bar', barWidth: 26, data: [5.2, 2.5, 1.0, 0.5, 7.2].map((v, i) => ({ value: v, itemStyle: { color: PALETTE[i], borderRadius: 4 } })), label: { show: true, position: 'top', formatter: '{c}%', color: '#93a1b5', fontSize: 11 } }],
+  xAxis: axisX(COUNTRIES),
+  yAxis: axisY({ axisLabel: { formatter: '{value}%' } }),
+  series: [{ type: 'bar', barWidth: 26, data: [5.2, 2.5, 1.0, 0.5, 7.2].map((v, i) => ({ value: v, itemStyle: { color: PALETTE[i], borderRadius: 4 } })), label: { show: true, position: 'top', formatter: '{c}%', color: LABEL.color, fontSize: 11 } }],
 };
 
 const agingDebtBar = {
-  legend: { data: ['老龄化率 (65+ %)', '政府债务/GDP (%)'], textStyle: { color: '#93a1b5', fontSize: 11 }, top: 0 },
+  legend: { data: ['老龄化率 (65+ %)', '政府债务/GDP (%)'], ...LEGEND, top: 0 },
   grid: { left: 44, right: 16, top: 34, bottom: 24 },
-  xAxis: { type: 'category', data: COUNTRIES, ...AXIS },
-  yAxis: { type: 'value', axisLabel: { color: '#93a1b5' }, ...SPLIT },
+  xAxis: axisX(COUNTRIES),
+  yAxis: axisY(),
   series: [
     { name: '老龄化率 (65+ %)', type: 'bar', barWidth: 16, data: [14.9, 17.4, 29.1, 22.3, 7.0], itemStyle: { color: '#e8a317', borderRadius: 3 } },
     { name: '政府债务/GDP (%)', type: 'bar', barWidth: 16, data: [77, 123, 264, 66, 82], itemStyle: { color: '#c41e3a', borderRadius: 3 } },
@@ -134,15 +134,15 @@ const agingDebtBar = {
 // GDP 总量 + 人均（双轴：总量 bar 左轴，人均 line 右轴）
 const gdpDualOpt = {
   tooltip: { trigger: 'axis' },
-  legend: { data: ['GDP 总量（万亿$）', '人均 GDP（万$）'], textStyle: { color: '#93a1b5', fontSize: 11 }, top: 0 },
+  legend: { data: ['GDP 总量（万亿$）', '人均 GDP（万$）'], ...LEGEND, top: 0 },
   grid: { left: 44, right: 48, top: 34, bottom: 24 },
-  xAxis: { type: 'category', data: COUNTRIES, ...AXIS },
+  xAxis: axisX(COUNTRIES),
   yAxis: [
-    { type: 'value', name: '总量', nameTextStyle: { color: '#93a1b5', fontSize: 10 }, axisLabel: { color: '#93a1b5' }, ...SPLIT },
-    { type: 'value', name: '人均', nameTextStyle: { color: '#93a1b5', fontSize: 10 }, axisLabel: { color: '#93a1b5' }, splitLine: { show: false } },
+    { ...axisY(), name: '总量', nameTextStyle: { ...LABEL } },
+    { ...axisY(), name: '人均', splitLine: { show: false } },
   ],
   series: [
-    { name: 'GDP 总量（万亿$）', type: 'bar', barWidth: 24, data: [17.8, 27.4, 4.2, 4.5, 3.6].map((v, i) => ({ value: v, itemStyle: { color: PALETTE[i], borderRadius: 4 } })), label: { show: true, position: 'top', color: '#93a1b5', fontSize: 10 } },
+    { name: 'GDP 总量（万亿$）', type: 'bar', barWidth: 24, data: [17.8, 27.4, 4.2, 4.5, 3.6].map((v, i) => ({ value: v, itemStyle: { color: PALETTE[i], borderRadius: 4 } })), label: { show: true, position: 'top', color: LABEL.color, fontSize: 10 } },
     { name: '人均 GDP（万$）', type: 'line', yAxisIndex: 1, data: [1.27, 8.2, 3.4, 5.3, 0.26], symbol: 'circle', symbolSize: 8, lineStyle: { color: '#fff', width: 1.5, type: 'dashed' }, itemStyle: { color: '#fff' }, label: { show: true, position: 'top', color: '#e8a317', fontSize: 10 } },
   ],
 };
@@ -151,12 +151,12 @@ const gdpDualOpt = {
 const mfgShareBar = {
   grid: { left: 40, right: 24, top: 20, bottom: 24 },
   tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-  xAxis: { type: 'category', data: ['中国', '美国', '日本', '德国', '韩国', '印度'], ...AXIS },
-  yAxis: { type: 'value', axisLabel: { formatter: '{value}%', color: '#93a1b5' }, ...SPLIT },
+  xAxis: axisX(['中国', '美国', '日本', '德国', '韩国', '印度']),
+  yAxis: axisY({ axisLabel: { formatter: '{value}%' } }),
   series: [{
     type: 'bar', barWidth: 28,
-    data: [30, 16, 6, 4, 3, 3].map((v, i) => ({ value: v, itemStyle: { color: ['#c41e3a', '#22d3ee', '#e8a317', '#10b981', '#a78bfa', '#93a1b5'][i], borderRadius: 4 } })),
-    label: { show: true, position: 'top', formatter: '{c}%', color: '#93a1b5', fontSize: 11 },
+    data: [30, 16, 6, 4, 3, 3].map((v, i) => ({ value: v, itemStyle: { color: PALETTE[i % PALETTE.length], borderRadius: 4 } })),
+    label: { show: true, position: 'top', formatter: '{c}%', color: LABEL.color, fontSize: 11 },
     markLine: { silent: true, symbol: 'none', lineStyle: { color: 'rgba(196,30,58,0.5)', type: 'dashed' }, label: { color: '#c41e3a', fontSize: 10, formatter: '美日德韩之和 ≈ 中国' }, data: [{ yAxis: 29 }] },
   }],
 };
@@ -165,8 +165,8 @@ const mfgShareBar = {
 const rdBar = {
   grid: { left: 40, right: 16, top: 20, bottom: 24 },
   tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-  xAxis: { type: 'category', data: ['韩国', '美国', '日本', '德国', '中国', '欧盟', '印度'], ...AXIS },
-  yAxis: { type: 'value', axisLabel: { formatter: '{value}%', color: '#93a1b5' }, ...SPLIT },
+  xAxis: axisX(['韩国', '美国', '日本', '德国', '中国', '欧盟', '印度']),
+  yAxis: axisY({ axisLabel: { formatter: '{value}%' } }),
   series: [{
     type: 'bar', barWidth: 26,
     data: [4.9, 3.5, 3.3, 3.1, 2.6, 2.2, 0.7].map((v, i) => ({ value: v, itemStyle: { color: ['#a78bfa', '#22d3ee', '#e8a317', '#10b981', '#c41e3a', '#f472b6', '#93a1b5'][i], borderRadius: 4 } })),

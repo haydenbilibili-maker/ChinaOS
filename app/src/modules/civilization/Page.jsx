@@ -305,12 +305,12 @@ export default function Page() {
         与「<Link to="/depth" className="mono" style={{ color: 'var(--cyber-cyan)' }}>深度透视</Link>」经济—地缘主线并列的文化战略长篇。核心隐喻：每一卷是一层，自下而上叠成全栈；<strong style={{ color: 'var(--text-primary)' }}>外儒内法剂之以道</strong>不是并列，而是<strong style={{ color: 'var(--text-primary)' }}>分时调度</strong>——顺境儒法扩张、逆境切道家熬冬。点击「逐卷精读」或「进入全文」可打开完整报告详情页。
         新增「王朝病理切片 / 治乱周期模拟器」为<strong style={{ color: 'var(--text-primary)' }}>理想型分析框架</strong>：朝代五因子为史学常识级粗粒度示意，推演为确定性纯函数（同输入恒同输出）——非实证史学、非现实影射。
       </p></Card>
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value={`${CIV_META.volumeCount}/${CIV_META.volumeCount}`} label="全栈卷数 · 已就绪" accent="#c41e3a" />
         <Stat value={`${CIV_META.stackDepth} 层`} label="OS 栈深度（9+总纲）" accent="#22d3ee" />
         <Stat value={`${Math.round(CIV_META.totalWords / 1000)}k`} label="总字数约" accent="#e8a317" />
         <Stat value="6 维" label="中西对照维度" accent="#10b981" />
-      </Grid>
+      </StatGrid>
 
       <div className="flex gap-1 flex-wrap mb-4">
         {TABS.map(([k, label]) => <button key={k} onClick={() => setTab(k)} style={btn(k === tab)} className="mono">{label}</button>)}

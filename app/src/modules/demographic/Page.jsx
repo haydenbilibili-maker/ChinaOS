@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
@@ -136,12 +136,12 @@ export default function Page() {
       <PageHeader badge="Demographic Balance & Future Resilience" title="人口负增长 · 结构转型" subtitle="抚养比 · 老龄化 · 生育支持 · 城镇化迁移 —— 人口结构与长寿红利博弈（DATA_ANCHOR: 7th_CENSUS_UPDATE）" />
       <IntroCard>现实主义逻辑认为，人口老龄化是文明演进的物理必然。四条主线展开应对：01 老龄化熵增对冲、02 人才红利迭代、03 银发经济算法、04 生育激励与成本。核心目标是维持基本医保与社保基金的精算平衡，防止「赡养比」崩塌引发的财政系统性风险。</IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="14.05 亿" label="总人口 (2025 · 负增长延续)" accent="#c41e3a" />
         <Stat value="15.8%" label="老龄化率 (65+) · 2025 年报" accent="#e8a317" />
         <Stat value="~1.02" label="总和生育率 (TFR) · 2025 估算" accent="#22d3ee" />
         <Stat value="50.2%" label="总抚养比 · 人口红利窗口关闭" accent="#10b981" />
-      </Grid>
+      </StatGrid>
 
       {/* ── 三大人口拐点指标卡 ── */}
       <Grid cols={3} className="mb-6">

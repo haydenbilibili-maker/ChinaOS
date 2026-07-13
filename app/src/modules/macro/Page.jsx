@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import {
@@ -212,12 +212,12 @@ export default function Page({ embedded = false }) {
         本页用一组确定性差分方程把这套时滞结构压进八个季度的推演里：拖动滑杆，看每个选择的全部账单。
         示意模型，思想工具，非投资建议、非预测。
       </IntroCard>
-      <Grid cols={4} className="mb-8">
+      <StatGrid className="mb-8">
         <Stat value={MACRO_AS_OF} label="推演基准日" accent="#22d3ee" />
         <Stat value="5 根" label="政策杆（财政/利率/专项债/汇率/产业）" accent="#c41e3a" />
         <Stat value="8 季" label="差分推演窗口" accent="#e8a317" />
         <Stat value="4 难" label="增长 · 物价 · 就业 · 杠杆" accent="#10b981" />
-      </Grid>
+      </StatGrid>
 
       {/* 1 —— 政策组合台 */}
       <Card title="① 政策组合台 · 五根杆与三套预设">

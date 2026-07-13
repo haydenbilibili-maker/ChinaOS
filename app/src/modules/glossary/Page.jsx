@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import * as Lucide from 'lucide-react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import { IntroCard, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import {
   GLOSSARY_ENTRIES,
@@ -230,12 +230,12 @@ export default function Page() {
         。
       </IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value={GLOSSARY_COUNT} label="词条总数" accent="var(--cyber-cyan)" />
         <Stat value={GLOSSARY_CATEGORIES.length} label="分类维度" accent="var(--fire-gold)" />
         <Stat value={filtered.length} label="当前筛选" accent="var(--china-red)" />
         <Stat value={initials.length} label="拼音索引档" accent="#10b981" />
-      </Grid>
+      </StatGrid>
 
       <div className="mb-4">
         <input

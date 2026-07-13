@@ -8,6 +8,7 @@ import {
 import {
   ECON_COLORS, BandHead, SignalDot,
 } from './econUI.jsx';
+import { categoryX, valueY, CHART_TOOLTIP } from '../shared/chartHelpers.js';
 
 // ============================================================================
 // 历史周期对照 · 我们在周期的哪一格（SectionCycle · Round6）
@@ -27,7 +28,6 @@ import {
 // ============================================================================
 
 const DISCLAIMER = '公开统计梳理 · 示意标定 · 非投资建议 · 非预测 —— 周期定位为历史框架对照 + 示意标定，非预测';
-const AX = { line: '#27324a', text: '#93a1b5', split: 'rgba(148,163,184,0.1)' };
 const HIGH_INCOME_LINE = 14000; // 世界银行高收入门槛（人均 GNI，示意标定）
 
 const C = ECON_COLORS || {};
@@ -148,6 +148,7 @@ export default function SectionCycle() {
       grid: { left: 56, right: 24, top: 22, bottom: 28 },
       tooltip: {
         trigger: 'axis',
+        ...CHART_TOOLTIP,
         formatter: (ps) => {
           const p = ps && ps[0];
           if (!p) return '';
@@ -155,19 +156,17 @@ export default function SectionCycle() {
         },
       },
       xAxis: {
-        type: 'category', data: years, boundaryGap: false,
-        axisLine: { lineStyle: { color: AX.line } },
-        axisLabel: { color: AX.text, interval: Math.max(0, Math.floor(years.length / 7)) },
+        ...categoryX(years, { interval: Math.max(0, Math.floor(years.length / 7)) }),
+        boundaryGap: false,
         axisTick: { show: false },
       },
       yAxis: {
-        type: 'value', scale: true,
-        axisLine: { lineStyle: { color: AX.line } },
-        axisLabel: {
-          color: AX.text,
-          formatter: (v) => (v >= 1000 ? `${(v / 1000).toFixed(0)}k` : String(v)),
-        },
-        splitLine: { lineStyle: { color: AX.split } },
+        ...valueY({
+          scale: true,
+          axisLabel: {
+            formatter: (v) => (v >= 1000 ? `${(v / 1000).toFixed(0)}k` : String(v)),
+          },
+        }),
       },
       series: [{
         type: 'line', data: vals, smooth: true, symbol: 'none',

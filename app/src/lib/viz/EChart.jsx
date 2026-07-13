@@ -8,14 +8,36 @@ import { getTheme, THEME_EVENT } from '../theme.js';
 // ----------------------------------------------------------------------------
 // 统一的图表组件：传入 option 即渲染，自动处理 resize 与 dispose（防内存泄漏）。
 // 地图、雷达、热力、关系图等都走同一封装，主题随日/夜切换即时重渲染。
-// 用法：<EChart option={option} style={{height: 320}} />
+// variant: default | compact | dashboard — 控制默认高度与动画节奏
+// 用法：<EChart option={option} variant="compact" />
 // ============================================================================
 
+const VARIANT_PRESETS = {
+  default: { height: 300, animationDuration: 500, fontSize: 11 },
+  compact: { height: 200, animationDuration: 400, fontSize: 10 },
+  dashboard: { height: 360, animationDuration: 600, fontSize: 11 },
+};
+
+function animationDuration(baseMs) {
+  if (typeof window === 'undefined') return baseMs;
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : baseMs;
+}
+
 // 注入统一基调，文本色随主题取自共享调色板；模块只需关心数据
-function withTheme(option) {
+function withTheme(option, variant = 'default') {
+  const preset = VARIANT_PRESETS[variant] || VARIANT_PRESETS.default;
+  const anim = animationDuration(preset.animationDuration);
   const base = {
     backgroundColor: 'transparent',
-    textStyle: { color: chartTextColor(), fontFamily: 'var(--font-sans), system-ui, sans-serif', fontSize: 11 },
+    textStyle: {
+      color: chartTextColor(),
+      fontFamily: 'var(--font-sans), system-ui, sans-serif',
+      fontSize: preset.fontSize,
+    },
+    animationDuration: anim,
+    animationDurationUpdate: anim,
+    animationEasing: 'cubicOut',
+    animationEasingUpdate: 'cubicOut',
   };
   const merged = { ...base, ...option };
   if (merged.tooltip && typeof merged.tooltip === 'object') {
@@ -26,10 +48,12 @@ function withTheme(option) {
   return merged;
 }
 
-export default function EChart({ option, style, className, onReady }) {
+export default function EChart({ option, style, className, onReady, variant = 'default' }) {
   const ref = useRef(null);
   const chartRef = useRef(null);
   const optionRef = useRef(option);
+  const variantRef = useRef(variant);
+  const preset = VARIANT_PRESETS[variant] || VARIANT_PRESETS.default;
 
   useEffect(() => {
     if (!ref.current) return;
@@ -44,7 +68,7 @@ export default function EChart({ option, style, className, onReady }) {
     const onTheme = () => {
       applyChartTheme(getTheme());
       if (chartRef.current && optionRef.current) {
-        chartRef.current.setOption(withTheme(optionRef.current), true);
+        chartRef.current.setOption(withTheme(optionRef.current, variantRef.current), true);
       }
     };
     window.addEventListener(THEME_EVENT, onTheme);
@@ -61,16 +85,17 @@ export default function EChart({ option, style, className, onReady }) {
 
   useEffect(() => {
     optionRef.current = option;
+    variantRef.current = variant;
     if (chartRef.current && option) {
-      chartRef.current.setOption(withTheme(option), true);
+      chartRef.current.setOption(withTheme(option, variant), true);
     }
-  }, [option]);
+  }, [option, variant]);
 
   return (
     <div
       ref={ref}
-      className={`os-chart ${className || ''}`.trim()}
-      style={{ width: '100%', height: 300, ...style }}
+      className={`os-chart os-chart--${variant} ${className || ''}`.trim()}
+      style={{ width: '100%', height: preset.height, ...style }}
     />
   );
 }

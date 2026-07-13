@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid, OsSparkline } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -261,12 +261,12 @@ export default function Page() {
 
       <IntroCard>现实主义逻辑下，基建不只是交通工具，更是中枢对国土空间实施「物理级对齐」的工具——「Infrastructure as the hard operating system of a continental economy」。它同时是逆周期工具箱的核心抓手：每一轮增长失速，财政都通过这条通道向实体注入需求。但三十年高强度建设之后，乘数效应递减与债务约束构成双重天花板——投资的回报机制正从直接收费转向时空压缩带来的交易成本下降，发力对象正从物理联通切换到算力与数据联通，资产逻辑正从「修出来」转向「转起来」。</IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="~24 万亿" label="年基建投资 (2025 · 广义示意)" accent="#c41e3a" />
         <Stat value="4.0 万亿" label="专项债新增额度 (2026 预算 · 示意)" accent="#e8a317" />
         <Stat value="~2,100 亿" label="公募 REITs 累计发行 (2025 · 示意)" accent="#22d3ee" />
         <Stat value="19.5 万km" label="高速公路里程 · 全球第一" accent="#10b981" />
-      </Grid>
+      </StatGrid>
 
       <Grid cols={3} className="mb-6">
         {[['十五五新基建', '算力/储能/低空数字航路写入规划纲要 · 东数西算节点扩容', '#22d3ee'],
@@ -291,7 +291,10 @@ export default function Page() {
               </div>
               <div className="p-3 rounded" style={{ background: 'var(--bg-elevated)', border: `1px solid ${sector.accent}40` }}>
                 <div className="text-[10px] mono uppercase" style={{ color: 'var(--text-tertiary)' }}>近年增速</div>
-                <div className="text-base font-bold mono mt-1" style={{ color: sector.accent }}>{sector.growth}</div>
+                <div className="flex items-center justify-between gap-2 mt-1">
+                  <div className="text-base font-bold mono" style={{ color: sector.accent }}>{sector.growth}</div>
+                  <OsSparkline points={sector.trend} color={sector.accent} width={72} height={22} fill />
+                </div>
               </div>
               <div className="p-3 rounded" style={{ background: 'var(--bg-elevated)', border: `1px solid ${sector.accent}40` }}>
                 <div className="text-[10px] mono uppercase" style={{ color: 'var(--text-tertiary)' }}>饱和度</div>

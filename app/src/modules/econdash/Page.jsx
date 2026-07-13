@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat, SourceBadge } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid, SourceBadge } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { AXIS, GRID_LINE, LABEL, LEGEND } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -62,6 +62,11 @@ export default function Page({ embedded = false }) {
   const wbData = wb.data || {};
   const gdpLatest = wbData.gdp?.latest || null;
   const gdpPcLatest = wbData.gdpPerCap?.latest || null;
+  const gdpYoY = useMemo(() => fmtYoY(wbData.gdp?.series), [wbData.gdp?.series]);
+  const gdpTrend = useMemo(() => {
+    if (!gdpYoY) return null;
+    return gdpYoY.startsWith('-') ? 'down' : 'up';
+  }, [gdpYoY]);
 
   // 第三产业最新占比（NBS 快照）：SECTOR_STRUCTURE 末年第三产业值
   const tertiaryLatest = useMemo(() => {
@@ -319,24 +324,26 @@ export default function Page({ embedded = false }) {
         收入分配与新经济看「增长落到谁身上、新动能在哪里」。
         口径声明：公开统计梳理 · 示意标定 · 非投资建议 · 非预测。
       </IntroCard>
-      <Grid cols={4} className="mb-8">
+      <StatGrid className="mb-8">
         <Stat
           value={wb.loading && !gdpLatest ? '载入中' : (gdpLatest ? wbStat(gdpLatest.value, 'money') : '—')}
           label="实时 GDP（World Bank · 现价美元）"
-          accent="#c41e3a"
+          accent="var(--china-red)"
+          trend={gdpTrend || undefined}
+          trendValue={gdpYoY || undefined}
         />
         <Stat
           value={wb.loading && !gdpPcLatest ? '载入中' : (gdpPcLatest ? wbStat(gdpPcLatest.value, 'money') : '—')}
           label="人均 GDP（World Bank · 现价美元）"
-          accent="#22d3ee"
+          accent="var(--cyber-cyan)"
         />
         <Stat
           value={tertiaryLatest != null ? `${tertiaryLatest}%` : '—'}
           label="第三产业占比（NBS 快照）"
-          accent="#e8a317"
+          accent="var(--fire-gold)"
         />
-        <Stat value={ECON_AS_OF} label="快照基准日" accent="#10b981" />
-      </Grid>
+        <Stat value={ECON_AS_OF} label="快照基准日" accent="var(--status-positive)" />
+      </StatGrid>
 
       {/* 00 当前主线 · 通缩与资金活化 */}
       <div className="mb-6"><SectionDeflation /></div>

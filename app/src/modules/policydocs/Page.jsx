@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import { IntroCard, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import DocumentViewer, { ReadDocumentButton } from '../shared/DocumentViewer.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
@@ -237,12 +237,12 @@ export default function Page() {
         {' '}<span className="mono" style={{ color: '#10b981' }}>{corpusCount || 0}</span> 份扩展原文/节选，其余提供要点汇编 fallback。数据截至 <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>2026-06-27</span>。
       </IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value={all.length} label="文件总数" accent="#22d3ee" />
         <Stat value={gwr.length} label="政府工作报告" accent="#c41e3a" />
         <Stat value={span} label="覆盖年份" accent="#e8a317" />
         <Stat value={new Set(all.map((d) => d.type)).size} label="文件类型" accent="#10b981" />
-      </Grid>
+      </StatGrid>
       {all.length > 0 && (
         <div className="flex gap-1 flex-wrap mb-4">
           {Object.entries(typeCounts).sort((a, b) => b[1] - a[1]).map(([t, n]) => (
