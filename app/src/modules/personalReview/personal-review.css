@@ -451,7 +451,100 @@
 .pr-foot a { color: var(--celadon); text-decoration: none; }
 .pr-foot a:hover { text-decoration: underline; }
 
+/* SVG 图表 · 原生无外部库 */
+.pr-section-charts { margin-bottom: 14px; }
+.pr-section-charts-split {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+}
+.pr-chart-wrap {
+  background: var(--ink-2);
+  border: 1px solid var(--hair-soft);
+  border-radius: 9px;
+  padding: 12px 14px;
+}
+.pr-chart-ey {
+  font-family: var(--io-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--brass);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.pr-chart-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.pr-chart-label {
+  font-size: 9px;
+  fill: var(--io-text-dim);
+  font-family: var(--io-sans);
+}
+.pr-chart-sublabel {
+  font-size: 8px;
+  fill: var(--io-text-faint);
+  font-family: var(--io-mono);
+}
+.pr-chart-val {
+  font-size: 8.5px;
+  fill: var(--io-text);
+  font-family: var(--io-mono);
+}
+.pr-chart-axis,
+.pr-chart-axis-h,
+.pr-chart-axis-v {
+  font-size: 9px;
+  fill: var(--io-text-faint);
+  font-family: var(--io-mono);
+}
+.pr-chart-legend {
+  font-size: 8px;
+  fill: var(--io-text-faint);
+  font-family: var(--io-mono);
+}
+.pr-chart-tick {
+  font-size: 8px;
+  fill: var(--io-text-faint);
+  font-family: var(--io-mono);
+}
+.pr-chart-row-label {
+  font-size: 10px;
+  fill: var(--io-text-dim);
+  font-family: var(--io-sans);
+}
+.pr-chart-quad-label {
+  font-size: 9px;
+  fill: var(--io-text-faint);
+  font-family: var(--io-mono);
+}
+.pr-chart-dot-label {
+  font-size: 8px;
+  fill: var(--io-text-dim);
+  font-family: var(--io-sans);
+}
+.pr-chart-target-label {
+  font-size: 8px;
+  fill: var(--warn);
+  font-family: var(--io-mono);
+}
+.pr-chart-cell-label {
+  font-size: 9px;
+  fill: var(--io-text-faint);
+  font-family: var(--io-mono);
+}
+.pr-chart-cell-label.active { fill: var(--io-text); font-weight: 600; }
+.pr-chart-cell-stance {
+  font-size: 11px;
+  font-family: var(--io-sans);
+  font-weight: 600;
+}
+.pr-chart-verdict { margin-bottom: 16px; }
+
 @media (max-width: 640px) {
+  .pr-section-charts-split { grid-template-columns: 1fr; }
   .pr-compass { grid-template-columns: 48px 1fr 1fr; }
   .pr-crow { grid-template-columns: 74px 1fr; }
   .pr-cverd { grid-column: 1 / -1; text-align: left; }

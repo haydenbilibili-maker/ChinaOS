@@ -330,7 +330,7 @@ export function blankDecisionTemplates(): Decision[] {
       deckCls: 'd-def',
       name: '白泉镇房产（全款）',
       transferable: false,
-      hasCashflow: false,
+      hasCashflow: true,
       fields: [
         { key: 'cost', label: '购入（万元）', value: '' },
         { key: 'now', label: '现估值（万元）', value: '' },

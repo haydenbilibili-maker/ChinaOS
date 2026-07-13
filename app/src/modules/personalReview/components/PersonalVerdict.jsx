@@ -5,6 +5,7 @@ import {
 } from '../../../domain/governance.ts';
 import { computePersonalVerdict } from '../../../domain/personal.ts';
 import { useGovernanceLinkage } from '../../../lib/governance/useGovernanceLinkage.ts';
+import VerdictLinkageChart from './charts/VerdictLinkageChart.jsx';
 
 export default function PersonalVerdict() {
   const { regime, regimeLabel, proximityScore, proximityLabel } =
@@ -16,6 +17,7 @@ export default function PersonalVerdict() {
       <div className="pr-verdict-ey">
         宏观联动 · {verdict.stance} · {regimeLabel} × {proximityLabel}
       </div>
+      <VerdictLinkageChart regime={regime} proximityScore={proximityScore} />
       <h2 className="pr-verdict-headline">{verdict.headline}</h2>
       <p className="pr-verdict-body" dangerouslySetInnerHTML={{ __html: verdict.body }} />
       <div className="pr-verdict-kick" dangerouslySetInnerHTML={{ __html: verdict.kick }} />

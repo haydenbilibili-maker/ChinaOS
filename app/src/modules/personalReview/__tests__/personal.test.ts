@@ -6,6 +6,14 @@ import {
   classifyCompassQuadrant,
   computePersonalVerdict,
 } from '../../../domain/personal.ts';
+import { seedPersonalState } from '../personalDefaults.seed.ts';
+import {
+  buildCompassDots,
+  buildCushionBarData,
+  buildDecisionMetricBars,
+  buildRunwayBarData,
+  buildVerdictLinkageCells,
+} from '../personalChartData.ts';
 
 describe('calcDecisionStats', () => {
   it('computes pension payback years and ROI', () => {
@@ -117,5 +125,56 @@ describe('computePersonalVerdict linkage matrix', () => {
     const v = computePersonalVerdict('offense', 10);
     expect(v.stance).toBe('进攻');
     expect(v.key).toBe('offense+any');
+  });
+});
+
+describe('seedPersonalState', () => {
+  it('loads Hayden demo defaults from reference HTML', () => {
+    const seed = seedPersonalState();
+    const pension = seed.decisions.find((d) => d.id === 'pension')!;
+    const store = seed.decisions.find((d) => d.id === 'store')!;
+    const house = seed.decisions.find((d) => d.id === 'house')!;
+
+    expect(pension.fields.find((f) => f.key === 'cost')?.value).toBe(15);
+    expect(pension.fields.find((f) => f.key === 'flow')?.value).toBe(2600);
+    expect(store.fields.find((f) => f.key === 'flow')?.value).toBe(20000);
+    expect(house.fields.find((f) => f.key === 'now')?.value).toBe(50);
+    expect(seed.cushions.find((c) => c.name === '制度垫')?.score).toBe(68);
+    expect(seed.runway.cash).toBe(20);
+    expect(seed.runway.stress).toBe(30);
+    expect(seed.pendingItems).toHaveLength(1);
+  });
+});
+
+describe('chart data builders', () => {
+  it('builds decision metric bars from seed', () => {
+    const bars = buildDecisionMetricBars(seedPersonalState().decisions);
+    expect(bars).toHaveLength(3);
+    expect(bars.find((b) => b.id === 'store')?.roiLabel).toBe('160%');
+  });
+
+  it('builds compass dots in productive/anchor quadrants', () => {
+    const dots = buildCompassDots(seedPersonalState().decisions);
+    expect(dots).toHaveLength(3);
+    expect(dots.some((d) => d.x > 0.5)).toBe(true);
+  });
+
+  it('builds cushion bar data with four layers', () => {
+    const bars = buildCushionBarData(seedPersonalState().cushions);
+    expect(bars).toHaveLength(4);
+    expect(bars.find((b) => b.name === '时间垫')?.score).toBe(72);
+  });
+
+  it('builds runway stress bars with capped infinity', () => {
+    const result = calcRunway(seedPersonalState().runway);
+    const bars = buildRunwayBarData(result);
+    expect(bars[0].months).toBe(Infinity);
+    expect(bars[0].cappedMonths).toBe(24);
+    expect(bars[2].display).toBe('13.3 月');
+  });
+
+  it('highlights defense+quiet cell for default governance read', () => {
+    const cells = buildVerdictLinkageCells('defense', 20);
+    expect(cells.find((c) => c.key === 'defense+quiet')?.active).toBe(true);
   });
 });

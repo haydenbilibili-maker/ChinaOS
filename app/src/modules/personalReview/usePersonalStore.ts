@@ -2,18 +2,18 @@ import { useCallback, useState } from 'react';
 import type { Decision, PersonalReviewState } from '../../domain/personal.ts';
 import {
   PERSONAL_STORAGE_KEY,
-  blankPersonalState,
 } from '../../domain/personal.ts';
+import { seedPersonalState } from './personalDefaults.seed.ts';
 
 function loadState(): PersonalReviewState {
   try {
     const raw = localStorage.getItem(PERSONAL_STORAGE_KEY);
-    if (!raw) return blankPersonalState();
+    if (!raw) return seedPersonalState();
     const parsed = JSON.parse(raw) as PersonalReviewState;
-    if (!parsed?.decisions?.length) return blankPersonalState();
+    if (!parsed?.decisions?.length) return seedPersonalState();
     return parsed;
   } catch {
-    return blankPersonalState();
+    return seedPersonalState();
   }
 }
 
@@ -116,8 +116,7 @@ export function usePersonalStore() {
   }, [persist]);
 
   const clearAll = useCallback(() => {
-    const blank = blankPersonalState();
-    persist(blank);
+    persist(seedPersonalState());
   }, [persist]);
 
   return {

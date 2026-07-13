@@ -11,6 +11,10 @@ import CushionCheck from './components/CushionCheck.jsx';
 import RunwayCalculator from './components/RunwayCalculator.jsx';
 import RiskPanel from './components/RiskPanel.jsx';
 import PersonalVerdict from './components/PersonalVerdict.jsx';
+import DecisionMetricsChart from './components/charts/DecisionMetricsChart.jsx';
+import CompassPlacementChart from './components/charts/CompassPlacementChart.jsx';
+import CushionBarChart from './components/charts/CushionBarChart.jsx';
+import RunwayStressChart from './components/charts/RunwayStressChart.jsx';
 import { usePersonalStore } from './usePersonalStore.ts';
 import { useGovernanceLinkage } from '../../lib/governance/useGovernanceLinkage.ts';
 import './personal-review.css';
@@ -60,7 +64,7 @@ export default function PersonalReview() {
 
       <div className="pr-data-bar">
         <span className="pr-data-note">
-          数据仅存本地 · <code>chinaos.personal.v1</code> · 不入库
+          数据仅存本地 · <code>chinaos.personal.v1</code> · 首次访问载入演示默认 · 不入库
         </span>
         <div className="pr-data-actions">
           <button type="button" className="pr-btn" onClick={exportJson}>
@@ -118,6 +122,9 @@ export default function PersonalReview() {
           <b>父母是东北下岗工人 → 小商贩 → 承包土地十年，供你上大学；毕业时家庭资产盈亏平衡。</b>
           这意味着<b>零家庭资本启动，且需反哺</b>。下面这三笔，全部是你用十年工资从零砌出来的。
         </p>
+        <div className="pr-section-charts">
+          <DecisionMetricsChart decisions={state.decisions} />
+        </div>
         <div className="pr-decks">
           {state.decisions.map((d) => (
             <DecisionCalculator
@@ -140,10 +147,13 @@ export default function PersonalReview() {
           <b>「不可迁移 且 不产生现金流」</b>的东西上——那是御宅族式的「精美收藏架」。
           看你的组合分布：<b>三笔决策全部落在有现金流的一侧。</b>
         </p>
-        <DecisionCompass
-          decisions={state.decisions}
-          pendingItems={state.pendingItems}
-        />
+        <div className="pr-section-charts pr-section-charts-split">
+          <DecisionCompass
+            decisions={state.decisions}
+            pendingItems={state.pendingItems}
+          />
+          <CompassPlacementChart decisions={state.decisions} />
+        </div>
       </section>
 
       <section className="pr-section">
@@ -158,6 +168,7 @@ export default function PersonalReview() {
           概念联动 →{' '}
           <Link to={CUSHION_MONITOR_ROUTE}>垫子厚度监测</Link>（国家对照版）
         </p>
+        <CushionBarChart layers={state.cushions} />
         <CushionCheck layers={state.cushions} onScoreChange={updateCushionScore} />
       </section>
 
@@ -169,6 +180,7 @@ export default function PersonalReview() {
         </div>
         <RiskPanel />
         <RunwayCalculator runway={state.runway} onChange={updateRunway} />
+        <RunwayStressChart runway={state.runway} />
       </section>
 
       <PersonalVerdict />
