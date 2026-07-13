@@ -122,6 +122,7 @@ const MAP = {
     { to: '/greenfinance', label: '绿色金融 · 碳定价', note: '双碳目标下的金融工具。' },
   ],
   governance: [
+    { to: '/modules/observatory', label: '观象台 · 治理总入口', note: '双仪表合成 · 叙事链 · 行动清单 · 第一屏即判读。' },
     { to: '/govsystem', label: '政府体系 · 压力型体制', note: '网格治理与科层执行的接口。' },
     { to: '/socialgov', label: '基层治理 · 综治', note: '最后一公里与数字政府下沉。' },
     { to: '/ruleoflaw', label: '法治建设', note: '治理现代化的法治约束。' },
@@ -152,6 +153,7 @@ const MAP = {
     { to: '/financeRmb', label: '人民币国际化', note: '项目融资与跨境清算。' },
   ],
   dashboard: [
+    { to: '/modules/observatory', label: '观象台 · 治理结构总入口', note: '双仪表判读 · 叙事链 · 世界→中国→同类→我。' },
     { to: '/modules/renqun-tupu', label: '人群画像总图谱 · GY-00', note: `中国人群分析组总入口，${SLICE_N} 片切片钻探进度。` },
     { to: '/econ-dashboard', label: '经济大盘 · 2026 H1', note: 'NBS 快照 + 金丝雀监测 + 三次产业结构。' },
     { to: '/wb-ce-report', label: '世行经济简报 · 2026-07', note: '世界银行月度中国经济简报：基线预测与政策研判。' },
@@ -177,7 +179,18 @@ const MAP = {
     { to: '/consumption', label: '扩大内需 · 消费率', note: '预防性储蓄与社保短板议题。' },
     { to: '/housing', label: '住房地产 · 周期调整', note: '地产交付与「白名单」融资约束。' },
   ],
+  observatory: [
+    { to: '/modules/signal-panel', label: '宏观再平衡信号灯', note: '改没改 · A/B/C 十二项信号态势合成。' },
+    { to: '/modules/three-forces', label: '三力监测仪', note: '何时被迫改 · 外部/内部/认知三力压力。' },
+    { to: '/modules/attribution', label: '三层归因分析器', note: '为什么动不了 · 路线/决策/执行落点。' },
+    { to: '/modules/premier-radius', label: '总理权限半径', note: '诊断权与处方权分离 · 1998→今。' },
+    { to: '/modules/cushion-monitor', label: '垫子厚度监测', note: '同类对照 · 中/日/韩/美四层垫子。' },
+    { to: '/modules/personal-review', label: '超个体决策复盘', note: '我该怎么办 · 罗盘/垫子/安全垫。' },
+    { to: '/cognition', label: '康波周期 · 长波定位', note: '叙事链「世界」· 第五轮尾部/第六轮安装期。' },
+    { to: '/dashboard', label: '中枢看板 · 双仪表合成', note: 'GovernanceVerdict 矩阵速览。' },
+  ],
   attribution: [
+    { to: '/modules/observatory', label: '观象台 · 治理总入口', note: '叙事链「中国」段 · 三层归因是动不了的原因解剖。' },
     { to: '/govsystem', label: '政府体系 · 央地执行', note: '压力体制与执行算法，归因落点对照。' },
     { to: '/powerlogic', label: '权力逻辑 · 统治成本', note: '路线层约束与数字利维坦。' },
     { to: '/principalagent', label: '委托代理 · 信息不对称', note: '决策层与执行层的激励错位。' },
@@ -186,6 +199,7 @@ const MAP = {
     { to: '/reform', label: '改革开放 · 算法演进', note: '体制改革与决策层变迁。' },
   ],
   signalPanel: [
+    { to: '/modules/observatory', label: '观象台 · 治理总入口', note: '信号灯 + 三力双仪表合成判读与行动清单。' },
     { to: '/modules/attribution', label: '三层归因分析器', note: '区分「没做成」与「没权做」。' },
     { to: '/modules/three-forces', label: '三力监测仪', note: '「改没改」与「何时被迫改」配对读数。' },
     { to: '/modules/personal-review', label: '超个体决策复盘', note: '宏观信号灯 → 个人仓位矩阵（守成/备战/预热/进攻）。' },
@@ -197,6 +211,7 @@ const MAP = {
     { to: '/housing', label: '住房地产 · 百城房价', note: 'C3/C4 居民资产负债表信号。' },
   ],
   threeForces: [
+    { to: '/modules/observatory', label: '观象台 · 治理总入口', note: '叙事链「世界」段 · 三力回答何时被迫改。' },
     { to: '/modules/signal-panel', label: '宏观再平衡信号灯', note: '互补仪表：「改没改」vs「何时被迫改」。' },
     { to: '/modules/personal-review', label: '超个体决策复盘', note: '三力临近度 → 个人备战/预热判词。' },
     { to: '/modules/cushion-monitor', label: '垫子厚度监测', note: '第六轮康波牌桌 × 垫子厚度命运矩阵。' },
@@ -206,6 +221,7 @@ const MAP = {
     { to: '/dashboard', label: '中枢看板 · 双仪表合成', note: 'GovernanceVerdict 改革时序文案。' },
   ],
   premierRadius: [
+    { to: '/modules/observatory', label: '观象台 · 治理总入口', note: '叙事链「中国」段 · 诊断权与处方权分离轨迹。' },
     { to: '/modules/attribution', label: '三层归因分析器', note: '政策落点与权限半径交叉验证。' },
     { to: '/modules/signal-panel', label: '宏观再平衡信号灯', note: '处方权上移后的政策读数。' },
     { to: '/modules/three-forces', label: '三力监测仪', note: '权限收缩与改革窗口压力。' },
@@ -214,6 +230,7 @@ const MAP = {
     { to: '/reform', label: '改革开放 · 算法演进', note: '朱镕基时代决策权对照。' },
   ],
   cushionMonitor: [
+    { to: '/modules/observatory', label: '观象台 · 治理总入口', note: '叙事链「同类」段 · 垫子 × 牌桌命运矩阵。' },
     { to: '/modules/three-forces', label: '三力监测仪', note: '第六轮康波牌桌会不会开、对谁开。' },
     { to: '/modules/personal-review', label: '超个体决策复盘', note: '国家四层垫子模型 → 个人垫子体检（含自砌制度垫）。' },
     { to: '/modules/signal-panel', label: '宏观再平衡信号灯', note: 'C4 家庭垫 · C3 制度垫同源宏观读数。' },
@@ -223,6 +240,7 @@ const MAP = {
     { to: '/demographic', label: '人口结构 · 老龄化', note: '时间垫 · 未富先老速度对照。' },
   ],
   personalReview: [
+    { to: '/modules/observatory', label: '观象台 · 治理总入口', note: '叙事链「我」段 · 宏观双仪表 → 个人姿态。' },
     { to: '/modules/signal-panel', label: '宏观再平衡信号灯', note: 'Regime 读数 → 个人守成/进攻矩阵。' },
     { to: '/modules/three-forces', label: '三力监测仪', note: 'Proximity 读数 → 备战/预热判词。' },
     { to: '/modules/cushion-monitor', label: '垫子厚度监测', note: '国家四层垫子对照 · 个人体检同源模型。' },

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import {
   ATTRIBUTION_ROUTE,
   CUSHION_MONITOR_ROUTE,
+  OBSERVATORY_ROUTE,
   PREMIER_RADIUS_ROUTE,
   SIGNAL_PANEL_ROUTE,
   THREE_FORCES_ROUTE,
@@ -76,6 +77,7 @@ export default function GovernanceVerdict({ compact = false }) {
         <b>改革时序</b> · {verdict.reformTiming}
       </p>
       <div className="gv-links">
+        <Link to={OBSERVATORY_ROUTE}>观象台</Link>
         <Link to={ATTRIBUTION_ROUTE}>三层归因</Link>
         <Link to={PREMIER_RADIUS_ROUTE}>权限半径</Link>
         <Link to={SIGNAL_PANEL_ROUTE}>信号灯</Link>

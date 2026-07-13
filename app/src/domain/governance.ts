@@ -172,11 +172,13 @@ export type Proximity = 'quiet' | 'building' | 'imminent';
 export const SIGNAL_STORAGE_KEY = 'chinaos.signals.v1';
 export const THREE_FORCES_STORAGE_KEY = 'chinaos.threeforces.v1';
 
+export const OBSERVATORY_ROUTE = '/modules/observatory';
 export const ATTRIBUTION_ROUTE = '/modules/attribution';
 export const PREMIER_RADIUS_ROUTE = '/modules/premier-radius';
 export const SIGNAL_PANEL_ROUTE = '/modules/signal-panel';
 export const THREE_FORCES_ROUTE = '/modules/three-forces';
 export const CUSHION_MONITOR_ROUTE = '/modules/cushion-monitor';
+export const PERSONAL_REVIEW_ROUTE = '/modules/personal-review';
 
 /** 信号卡与三层归因议题的跨模块联动 */
 export interface SignalAttributionLink {

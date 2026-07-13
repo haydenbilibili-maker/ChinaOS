@@ -29,7 +29,7 @@ export const GROUPS = [
   { id: 'security', label: '安全与国防', desc: '军事 · 台海 · 大安全', accent: '#c41e3a' },
   { id: 'population', label: '中国人群分析', desc: '人群画像总图谱 · 世代 · 阶层', accent: '#ec4899' },
   { id: 'sim', label: '推演与训练', desc: '沙盒 · 内参', accent: '#d4af37' },
-  { id: 'governance', label: '治理结构', desc: '归因 · 权限 · 信号 · 三力 · 垫子', accent: '#79a496' },
+  { id: 'governance', label: '治理结构', desc: '观象台 · 归因 · 信号 · 三力', accent: '#79a496' },
   { id: 'foundation', label: '数据与系统', desc: '底座', accent: '#64748b' },
 ];
 
@@ -961,6 +961,16 @@ export const MODULES = [
     subtitle: '意识形态架构 · 五组件 · GY-02',
     icon: 'Layers',
     component: lazy(() => import('../modules/yishixingtai/Page.jsx')),
+  },
+  {
+    id: 'observatory',
+    path: '/modules/observatory',
+    group: 'governance',
+    title: '观象台',
+    subtitle: '世界→中国→同类→我 · 判读先行',
+    icon: 'Telescope',
+    accent: '#b18a52',
+    component: lazy(() => import('../modules/governanceHub/Page.jsx')),
   },
   {
     id: 'signalPanel',
