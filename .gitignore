@@ -31,6 +31,11 @@ npm-debug.log*
 .env.*
 !.env.example
 
+# 私享模块导出（含个人财务数据，勿入库）
+chinaos-personal-*.json
+*personal*.export.json
+personal-review-export*.json
+
 # Python（构建脚本用）
 __pycache__/
 *.pyc

@@ -188,6 +188,7 @@ const MAP = {
   signalPanel: [
     { to: '/modules/attribution', label: '三层归因分析器', note: '区分「没做成」与「没权做」。' },
     { to: '/modules/three-forces', label: '三力监测仪', note: '「改没改」与「何时被迫改」配对读数。' },
+    { to: '/modules/personal-review', label: '超个体决策复盘', note: '宏观信号灯 → 个人仓位矩阵（守成/备战/预热/进攻）。' },
     { to: '/modules/cushion-monitor', label: '垫子厚度监测', note: 'C4 居民贷款与家庭垫同源读数。' },
     { to: '/modules/premier-radius', label: '总理权限半径', note: '诊断权与处方权分离的制度轨迹。' },
     { to: '/econ-dashboard', label: '经济大盘 · 金丝雀盘', note: 'CANARY_SIGNALS 与 KEY_INDICATORS 同源层。' },
@@ -197,6 +198,7 @@ const MAP = {
   ],
   threeForces: [
     { to: '/modules/signal-panel', label: '宏观再平衡信号灯', note: '互补仪表：「改没改」vs「何时被迫改」。' },
+    { to: '/modules/personal-review', label: '超个体决策复盘', note: '三力临近度 → 个人备战/预热判词。' },
     { to: '/modules/cushion-monitor', label: '垫子厚度监测', note: '第六轮康波牌桌 × 垫子厚度命运矩阵。' },
     { to: '/modules/attribution', label: '三层归因分析器', note: 'F2 内部危机的层位落点。' },
     { to: '/modules/premier-radius', label: '总理权限半径', note: '危机赋予改革者授权的历史模板。' },
@@ -213,11 +215,18 @@ const MAP = {
   ],
   cushionMonitor: [
     { to: '/modules/three-forces', label: '三力监测仪', note: '第六轮康波牌桌会不会开、对谁开。' },
+    { to: '/modules/personal-review', label: '超个体决策复盘', note: '国家四层垫子模型 → 个人垫子体检（含自砌制度垫）。' },
     { to: '/modules/signal-panel', label: '宏观再平衡信号灯', note: 'C4 家庭垫 · C3 制度垫同源宏观读数。' },
     { to: '/modules/attribution', label: '三层归因分析器', note: '制度垫议题的决策层/路线层落点。' },
     { to: '/consumption', label: '扩大内需 · 消费率', note: '制度垫薄 → 预防性储蓄逻辑链。' },
     { to: '/housing', label: '住房地产 · 百城房价', note: '家庭垫 · 单一资产押注与 -30% 读数。' },
     { to: '/demographic', label: '人口结构 · 老龄化', note: '时间垫 · 未富先老速度对照。' },
+  ],
+  personalReview: [
+    { to: '/modules/signal-panel', label: '宏观再平衡信号灯', note: 'Regime 读数 → 个人守成/进攻矩阵。' },
+    { to: '/modules/three-forces', label: '三力监测仪', note: 'Proximity 读数 → 备战/预热判词。' },
+    { to: '/modules/cushion-monitor', label: '垫子厚度监测', note: '国家四层垫子对照 · 个人体检同源模型。' },
+    { to: '/modules/me', label: '私享切片', note: 'Hayden 自画像 · 迁移日志。' },
   ],
   heshanReform: [
     { to: '/modules/heshan/fiscal', label: '财政沙盘 · 收支倒挂', note: '建省方案配套的转移支付与减层节支。' },

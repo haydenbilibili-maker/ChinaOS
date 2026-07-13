@@ -306,6 +306,15 @@ export const MODULES = [
     component: lazy(() => import('../modules/me/Page.jsx')),
   },
   {
+    id: 'personalReview',
+    path: '/modules/personal-review',
+    group: 'population',
+    title: '决策复盘',
+    subtitle: '超个体 · 四层垫子 · 信号灯联动',
+    icon: 'ClipboardCheck',
+    component: lazy(() => import('../modules/personalReview/Page.jsx')),
+  },
+  {
     id: 'qingnian',
     path: '/modules/qingnian',
     group: 'population',
