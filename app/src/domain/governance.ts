@@ -124,6 +124,8 @@ export interface PremierTerm {
   wikiTitle?: string;
   wikiLang?: string;
   avatarUrl?: string;
+  verifyTier?: string;
+  source?: string;
   start: number;
   end: number | null;
   radius: PowerLayer[];
