@@ -119,6 +119,11 @@ export interface RadiusPhase {
 export interface PremierTerm {
   id: string;
   name: string;
+  /** Wikimedia / 头像解析 */
+  nameEn?: string;
+  wikiTitle?: string;
+  wikiLang?: string;
+  avatarUrl?: string;
   start: number;
   end: number | null;
   radius: PowerLayer[];

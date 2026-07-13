@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { LAYER_META } from '../../domain/governance';
+import PremierAvatar from './PremierAvatar.jsx';
 import {
   CURRENT_YEAR,
   TIMELINE_END,
@@ -191,10 +192,11 @@ export default function RadiusChart({ terms, globalInflections, selectedId, onSe
           <button
             key={t.id}
             type="button"
-            className="pr-legend-item"
+            className={`pr-legend-item pr-legend-term${selectedId === t.id ? ' is-selected' : ''}`}
             style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'inherit' }}
             onClick={() => onSelectTerm(t.id)}
           >
+            <PremierAvatar term={t} size={24} />
             <span
               className="pr-legend-swatch"
               style={{ background: TERM_COLORS[t.id] }}

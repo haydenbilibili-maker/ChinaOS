@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PageHeader } from '../../app/ui.jsx';
 import { ATTRIBUTION_ROUTE, PREMIER_RADIUS_THESIS } from '../../domain/governance';
+import { prefetchFigureAvatars } from '../../lib/ui/figureAvatarResolve.js';
 import DriversPanel from './DriversPanel.jsx';
 import PolicyScatter from './PolicyScatter.jsx';
 import RadiusChart from './RadiusChart.jsx';
@@ -13,6 +14,10 @@ import './premierRadius.css';
 export default function PremierRadiusPage() {
   const [selectedId, setSelectedId] = useState('liqiang');
   const selectedTerm = PREMIER_TERMS.find((t) => t.id === selectedId) ?? PREMIER_TERMS[0];
+
+  useEffect(() => {
+    prefetchFigureAvatars(PREMIER_TERMS, 4);
+  }, []);
 
   return (
     <div className="premier-radius-page">

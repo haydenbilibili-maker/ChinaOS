@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ATTRIBUTION_ROUTE, LAYER_META } from '../../domain/governance';
+import PremierAvatar from './PremierAvatar.jsx';
 
 export default function TermDetail({ term, onClose }) {
   if (!term) return null;
@@ -7,9 +8,14 @@ export default function TermDetail({ term, onClose }) {
   return (
     <aside className="pr-panel pr-term-detail">
       <div className="pr-panel-ey">任期详情</div>
-      <div className="pr-term-name">{term.name}</div>
-      <div className="pr-term-range">
-        {term.start} — {term.end ?? '今'} · {term.radius.map((l) => LAYER_META[l].shortLabel).join(' + ')}
+      <div className="pr-term-header">
+        <PremierAvatar term={term} size={44} eager />
+        <div className="pr-term-header-text">
+          <div className="pr-term-name">{term.name}</div>
+          <div className="pr-term-range">
+            {term.start} — {term.end ?? '今'} · {term.radius.map((l) => LAYER_META[l].shortLabel).join(' + ')}
+          </div>
+        </div>
       </div>
       <p style={{ fontSize: 13, color: 'var(--pr-text-dim)', lineHeight: 1.6 }}>{term.radiusNote}</p>
 

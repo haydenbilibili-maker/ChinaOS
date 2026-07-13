@@ -8,6 +8,9 @@ export const PREMIER_TERMS = [
   {
     id: 'zhu',
     name: '朱镕基',
+    nameEn: 'Zhu Rongji',
+    wikiTitle: '朱镕基',
+    wikiLang: 'zh',
     start: 1998,
     end: 2003,
     radius: ['direction', 'decision', 'execution'],
@@ -33,6 +36,9 @@ export const PREMIER_TERMS = [
   {
     id: 'wen',
     name: '温家宝',
+    nameEn: 'Wen Jiabao',
+    wikiTitle: '温家宝',
+    wikiLang: 'zh',
     start: 2003,
     end: 2013,
     radius: ['decision', 'execution'],
@@ -59,6 +65,9 @@ export const PREMIER_TERMS = [
   {
     id: 'likeqiang',
     name: '李克强',
+    nameEn: 'Li Keqiang',
+    wikiTitle: '李克强',
+    wikiLang: 'zh',
     start: 2013,
     end: 2023,
     radius: ['decision', 'execution'],
@@ -85,6 +94,9 @@ export const PREMIER_TERMS = [
   {
     id: 'liqiang',
     name: '李强',
+    nameEn: 'Li Qiang',
+    wikiTitle: '李强 (1959年)',
+    wikiLang: 'zh',
     start: 2023,
     end: null,
     radius: ['execution'],
