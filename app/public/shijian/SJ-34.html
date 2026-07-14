@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-34 · 孝文帝改革</title>
+<meta name="description" content="ChinaOS 史鉴系列案例卷 SJ-34：孝文帝改革——合法性叙事重建 · 汉化改制 · 分裂期制度整合。史鉴台账七字段。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;--sj-ink-800:#1d1916;--sj-paper-100:#e8ddc7;--sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;--sj-celadon:#5f7a6f;--sj-ochre:#b8894a;--sj-line:#3a322b;
+  --sj-radius:6px;--sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c 0%,transparent 55%),var(--sj-ink-900);color:var(--sj-paper-100);font-family:var(--sj-serif);line-height:1.75}
+.sj-34-wrap{max-width:min(100%,1180px);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media(min-width:1280px){.sj-34-wrap{max-width:min(100%,1480px)}}
+@media(min-width:1536px){.sj-34-wrap{max-width:min(100%,1600px)}}
+.sj-page-layout{display:flex;flex-direction:column;gap:var(--sj-space)}
+@media(min-width:1280px){.sj-page-layout{display:grid;grid-template-columns:minmax(0,58fr) minmax(280px,38fr);gap:clamp(16px,2vw,28px);align-items:start}}
+.sj-main-col{min-width:0}
+.sj-rail{display:flex;flex-direction:column;gap:12px}
+@media(min-width:1280px){.sj-rail{position:sticky;top:1rem;align-self:start;max-height:calc(100vh - 2rem);overflow-y:auto}}
+@media(max-width:1279px){.sj-page-layout{flex-direction:column}.sj-main-col{display:contents}.sj-rail{order:2;margin:8px 0 20px}}
+.sj-rail-card{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px}
+.sj-rail-card .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-rail-toc{display:grid;gap:6px;margin-top:8px}
+.sj-rail-toc a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);padding:8px 10px;text-decoration:none;color:inherit;font-size:13px}
+.sj-rail-toc a:hover,.sj-rail-toc a:focus-visible,.sj-rail-toc a.is-active{border-color:var(--sj-ochre);outline:none}
+.sj-rail-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;margin:4px 4px 0 0}
+.sj-34-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px}
+.sj-34-mast .badge{font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-34-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em}
+.sj-34-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;font-size:.72em;display:block;margin-top:4px}
+.sj-34-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right}
+.sj-34-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;margin:2px}
+.sj-34-dynasty{color:var(--sj-ochre);border-color:var(--sj-ochre)}
+.sj-zhupi{color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:74ch}
+.sj-ledger{display:grid;gap:8px}
+.sj-ledger-field{margin:20px 0 8px;scroll-margin-top:24px}
+.sj-ledger-fh{display:flex;align-items:baseline;gap:12px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--sj-line)}
+.sj-ledger-fh .fnum{font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre);border:1px solid var(--sj-line);border-radius:4px;padding:1px 7px}
+.sj-ledger-fh h2{font-size:clamp(16px,2.1vw,19px);font-weight:600}
+.sj-34-prose{font-size:15.5px;max-width:74ch}
+.sj-34-hook{border:1px solid var(--sj-line);border-left:3px solid var(--sj-vermil);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:18px 22px}
+.sj-34-hook p{font-size:clamp(16px,2.3vw,20px);line-height:1.7}
+.sj-34-hook .yr{margin-top:10px;font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre)}
+.sj-34-stage{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:8px;overflow:auto}
+.sj-34-stage svg{display:block;width:100%;height:auto}
+.sj-node{cursor:pointer;transition:opacity .2s ease,filter .2s ease}
+.sj-node:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:4px}
+.sj-edge{transition:opacity .2s ease}
+.sj-34-stage.is-picking .sj-node{opacity:.3}
+.sj-34-stage.is-picking .sj-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px rgba(184,137,74,.4))}
+.sj-34-stage.is-picking .sj-edge{opacity:.16}
+.sj-34-stage.is-picking .sj-edge.is-hot{opacity:1}
+.sj-34-layout{display:grid;grid-template-columns:1fr minmax(240px,300px);gap:14px;margin-top:14px}
+.sj-34-aside{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px;min-height:140px}
+.sj-34-aside .k{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);margin-bottom:6px}
+.sj-34-aside h3{font-size:16px;margin-bottom:8px}
+.sj-34-aside p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.7}
+.sj-34-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+.sj-34-phase .pb{font-family:var(--sj-mono);font-size:12px;color:var(--sj-vermil);border:1px solid var(--sj-vermil);border-radius:20px;padding:6px 16px}
+.sj-34-table-wrap{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);overflow:auto}
+.sj-34-table{width:100%;border-collapse:collapse;font-size:13px}
+.sj-34-table th{background:var(--sj-ink-900);color:var(--sj-ochre);font-family:var(--sj-mono);font-size:10px;padding:10px 12px;text-align:left;border-bottom:1px solid var(--sj-line)}
+.sj-34-table td{padding:10px 12px;border-bottom:1px solid var(--sj-line);color:var(--sj-paper-300);vertical-align:top}
+.sj-34-table td:first-child{color:var(--sj-paper-100);font-weight:600}
+.sj-34-hist{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-34-hist article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-34-hist .who{font-size:14px;font-weight:600;color:var(--sj-celadon);margin-bottom:6px}
+.sj-34-hist .who span{font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);margin-left:6px}
+.sj-34-hist p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+.sj-34-verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sj-34-verdict article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-34-verdict .vh{font-family:var(--sj-mono);font-size:10px;margin-bottom:8px}
+.sj-34-verdict article.ok .vh{color:var(--sj-celadon)}
+.sj-34-verdict article.fail .vh{color:var(--sj-vermil)}
+.sj-34-verdict article.open .vh{color:var(--sj-ochre)}
+.sj-34-verdict p{font-size:13px;color:var(--sj-paper-300)}
+.sj-34-mirror{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-34-mirror article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-34-mirror .mh{font-family:var(--sj-mono);font-size:10px;margin-bottom:8px}
+.sj-34-mirror article.same .mh{color:var(--sj-celadon)}
+.sj-34-mirror article.diff .mh{color:var(--sj-ochre)}
+.sj-34-mirror p{font-size:13px;color:var(--sj-paper-100);line-height:1.68}
+.sj-34-xref{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.sj-34-xref a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit}
+.sj-34-xref .n{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);margin-bottom:4px}
+.sj-34-xref h3{font-size:14px;margin-bottom:6px}
+.sj-34-xref p{font-size:12.5px;color:var(--sj-paper-300)}
+.sj-34-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sj-34-foot a{color:var(--sj-celadon);text-decoration:none}
+@media(max-width:900px){.sj-34-layout{grid-template-columns:1fr}}
+@media(max-width:768px){.sj-34-hist,.sj-34-mirror,.sj-34-verdict,.sj-34-xref{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sj-node,.sj-edge{transition:none}}
+</style>
+</head>
+<body>
+<div class="sj-34-wrap" id="sj-34-top">
+<header class="sj-34-mast">
+  <div>
+    <div class="badge">SJ-34 · 合法性重建案例卷 · 北魏/南北朝</div>
+    <h1>孝文帝改革<em>合法性叙事重建 · 汉化改制 · 分裂期制度整合</em></h1>
+    <div>
+      <span class="sj-34-chip sj-34-dynasty" data-dynasty="sanguo">朝代 · 北魏/南北朝</span>
+      <span class="sj-34-chip">变法</span>
+      <a class="sj-34-chip" href="./SJ-00.html">↔ SJ-00</a>
+      <a class="sj-34-chip" href="./SJ-03.html">↔ SJ-03</a>
+      <a class="sj-34-chip" href="./SJ-04.html">↔ SJ-04</a>
+      <a class="sj-34-chip" href="./SJ-08.html">↔ SJ-08</a>
+    </div>
+  </div>
+  <div class="sj-34-meta">史鉴台账七字段 · 北魏<br/><b>AS_OF 2026-07-15</b> · v0.1</div>
+</header>
+<p class="sj-zhupi">朱批：本案是<strong>分裂期合法性叙事重建</strong>样本——拓跋鲜卑入主中原，孝文帝以改姓、汉化、均田试图绑定汉人士族与编户齐民。与 SJ-08 五代「合法性归零」形成对照：本案是<strong>主动重建叙事</strong>而非军事轮替。口径：《魏书·高祖纪》《食货志》；汉化程度与反弹规模〔部分存疑〕。</p>
+<article class="sj-ledger">
+<div class="sj-page-layout">
+<div class="sj-main-col">
+<section class="sj-ledger-field" id="f1"><div class="sj-ledger-fh"><span class="fnum">01</span><h2>一句话拐点</h2></div>
+  <div class="sj-34-hook"><p>北魏孝文帝（拓跋宏）以<b>迁都洛阳、改姓元、禁胡语胡服、推行均田</b>，试图将鲜卑军事贵族转化为中原正统王朝——合法性叙事力从「胡虏」转为「华夏」，但触怒鲜卑旧贵族，六镇之乱埋下分裂伏笔。</p><div class="yr">系年：太和十八年（494）迁都洛阳 · 出处《魏书·高祖纪》</div></div>
+</section>
+<section class="sj-ledger-field" id="f2"><div class="sj-ledger-fh"><span class="fnum">02</span><h2>结构切片</h2></div>
+  <p class="sj-34-prose">权力几何：<strong>孝文帝皇权</strong> → 汉化改制纵列 → 均田/三长下行 → <strong>鲜卑旧贵族/汉人士族</strong>双底盘。合法性（宣纸色）为主轴，朱批为六镇反弹。</p>
+  <div class="sj-34-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">结构切片 · 孝文帝改革</title>
+  <desc id="sj-desc">权力几何：孝文帝皇权 → 汉化改制纵列 → 均田/三长下行 → 鲜卑旧贵族/汉人士族双底盘。合法性（宣纸色）为主轴，朱批为六镇反弹。</desc>
+  <defs>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/></linearGradient>
+    <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+    <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+    <marker id="a-celadon" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-100)"/></marker>
+  </defs>
+  <rect width="820" height="600" fill="var(--sj-ink-900)"/>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,serif">结构切片 · 孝文帝改革</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,monospace">SJ-34 · 北魏/南北朝 · 变法</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">朱批 · 五力色义 · 点击节点交互</text>
+  <path class="sj-edge" data-edge="e1" d="M410,158 L218,220" stroke="var(--sj-paper-100)" stroke-width="2.4" marker-end="url(#a-paper)"/>
+<path class="sj-edge" data-edge="e2" d="M218,280 L410,330" stroke="var(--sj-celadon)" stroke-width="2" marker-end="url(#a-celadon)"/>
+<path class="sj-edge" data-edge="e3" d="M410,158 L607,220" stroke="var(--sj-vermil)" stroke-width="2.8" marker-end="url(#a-vermil)"/><text x="520" y="185" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">触怒</text>
+<path class="sj-edge" data-edge="e4" d="M410,280 L607,330" stroke="var(--sj-celadon)" stroke-width="2" marker-end="url(#a-celadon)"/>
+<path class="sj-edge" data-edge="e5" d="M410,390 L410,450" stroke="var(--sj-ochre)" stroke-width="2" marker-end="url(#a-ochre)"/>
+<path class="sj-edge" data-edge="e6" d="M607,280 L410,450" stroke="var(--sj-vermil)" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#a-vermil)"/><text x="520" y="380" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">六镇反弹</text>
+  <g class="sj-node" data-id="xiaowen" tabindex="0" role="button" aria-label="孝文帝 · 元宏">
+    <rect x="310" y="112" width="200" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-paper-100)" stroke-width="2.4"/>
+    <text x="410" y="140" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC,serif">孝文帝 · 元宏</text>
+    <text x="410" y="158" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">皇权 · 汉化</text>
+  </g>
+<g class="sj-node" data-id="hanhua" tabindex="0" role="button" aria-label="汉化改制">
+    <rect x="130" y="220" width="176" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-paper-100)" stroke-width="2.4"/>
+    <text x="218" y="248" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC,serif">汉化改制</text>
+    <text x="218" y="266" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">改姓 · 禁胡语</text>
+  </g>
+<g class="sj-node" data-id="juntian" tabindex="0" role="button" aria-label="均田 · 三长">
+    <rect x="310" y="330" width="200" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="410" y="358" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">均田 · 三长</text>
+    <text x="410" y="376" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">汲取重建</text>
+  </g>
+<g class="sj-node" data-id="xianbei" tabindex="0" role="button" aria-label="鲜卑旧贵族">
+    <rect x="514" y="220" width="186" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="607" y="248" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">鲜卑旧贵族</text>
+    <text x="607" y="266" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">六镇 · 反弹</text>
+  </g>
+<g class="sj-node" data-id="hanshi" tabindex="0" role="button" aria-label="汉人士族">
+    <rect x="514" y="330" width="186" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="607" y="358" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">汉人士族</text>
+    <text x="607" y="376" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">融合 · 通婚</text>
+  </g>
+<g class="sj-node" data-id="luoyang" tabindex="0" role="button" aria-label="洛阳 · 494">
+    <rect x="130" y="330" width="176" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="218" y="358" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">洛阳 · 494</text>
+    <text x="218" y="376" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">迁都 · 时点</text>
+  </g>
+<g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="编户齐民 · 北方基座">
+    <rect x="56" y="450" width="708" height="70" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="2.4"/>
+    <text x="410" y="482" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC,serif">编户齐民 · 北方基座</text>
+    <text x="410" y="500" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">均田农民底盘</text>
+  </g>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,monospace">viewBox 820×600 · SJ-34</text>
+</svg></div>
+  <div class="sj-34-layout">
+    <aside class="sj-34-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-34-aside-empty">点选切片中任一节点，展开机制链角色（NODE_DATA 交互）。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+      </div>
+    </aside>
+  </div>
+</section>
+</div>
+<aside class="sj-rail"><div class="sj-rail-card"><div class="k">台账 · 七字段</div>
+  <nav class="sj-rail-toc"><a href="#f1">01 · 拐点</a><a href="#f2">02 · 切片</a><a href="#f3">03 · 相位</a><a href="#f4">04 · 五力</a><a href="#f5">05 · 交锋</a><a href="#f6">06 · 成败</a><a href="#f7">07 · 映射</a></nav>
+  <a class="sj-rail-chip" href="./SJ-00.html#sec-case-hub">案例库 Hub</a>
+  <a class="sj-rail-chip" href="./SJ-03.html">SJ-03 五力</a>
+  <a class="sj-rail-chip" href="./SJ-04.html">SJ-04 相位盘</a>
+  <a class="sj-rail-chip" href="./SJ-08.html">SJ-08 分裂重整</a>
+</div></aside>
+</div>
+<section class="sj-ledger-field" id="f3"><div class="sj-ledger-fh"><span class="fnum">03</span><h2>相位定位</h2></div>
+  <div class="sj-34-phase"><span class="pb">分裂重整期 · 合法性重建</span></div>
+  <p class="sj-34-prose">南北朝处于<strong>长期分裂+重整尝试</strong>——孝文帝改革落于 SJ-04「重整期·合法性叙事重建」：以文化整合替代纯军事征服，但过度激进而引发反弹。</p>
+</section>
+<section class="sj-ledger-field" id="f4"><div class="sj-ledger-fh"><span class="fnum">04</span><h2>五力归因台账</h2></div>
+  <div class="sj-34-table-wrap"><table class="sj-34-table"><thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead><tbody><tr><td>财政汲取</td><td class="zheng">均田 · 三长制</td><td class="shi">均田制重建税基；三长制强化基层编户，汲取链向汉化政权集中</td></tr>
+<tr><td>精英循环</td><td class="zheng">改姓 · 通婚</td><td class="shi">鲜卑贵族改汉姓、与汉士族通婚，试图打开精英融合通道</td></tr>
+<tr><td>合法性叙事</td><td class="zheng">「华夏正统」</td><td class="shi">迁都洛阳、祭孔、改汉制——从「胡虏」叙事转为「魏」承「汉」正统</td></tr>
+<tr><td>边疆军事</td><td class="zheng">六镇</td><td class="shi">北方六镇鲜卑军户被汉化政策边缘化，军事力与合法性改革脱节——反弹伏笔</td></tr>
+<tr><td>生态—人口基座</td><td class="zheng">—</td><td class="shi">战乱后北方人口重新匹配；均田试图锁定税基〔实施范围存疑〕</td></tr></tbody></table></div>
+</section>
+<section class="sj-ledger-field" id="f5"><div class="sj-ledger-fh"><span class="fnum">05</span><h2>史家交锋</h2></div>
+  <div class="sj-34-hist"><article><div class="who">李敖式考据<span>祛魅</span></div><p>「汉化伟业」需剥离——改革触怒鲜卑基本盘，六镇之乱证明整合失败</p></article>
+<article><div class="who">钱穆<span>《国史大纲》</span></div><p>肯定孝文制度进步，但指出北齐北周仍须再整合；隋唐承其遗产</p></article>
+<article><div class="who">金观涛<span>超稳定结构</span></div><p>少数民族入主→汉化→再分裂的标准路径；文化整合难替代军事—财政整合</p></article>
+<article><div class="who">黄仁宇<span>数目字管理</span></div><p>均田+三长是数目字管理尝试；但汉化速度超过基层承载力</p></article>
+<article style="grid-column:1/-1"><div class="who">西方汉学<span>Sinicization</span></div><p>学界共识：孝文改革是 non-Han regime 合法性重建典型；Six Garrisons 反弹为后续研究重点。〔存疑〕</p></article></div>
+</section>
+<section class="sj-ledger-field" id="f6"><div class="sj-ledger-fh"><span class="fnum">06</span><h2>成败判定</h2></div>
+  <div class="sj-34-verdict">
+    <article class="ok"><div class="vh">已兑现</div><p>隋唐制度遗产</p><p>均田三长延续</p><p>汉化融合部分成功</p></article>
+    <article class="fail"><div class="vh">已失败</div><p>六镇之乱</p><p>北魏分裂</p><p>鲜卑旧贵族反扑</p></article>
+    <article class="open"><div class="vh">未决</div><p>〔反事实〕若渐进汉化而非激进迁都，能否避免六镇反弹？</p></article>
+  </div>
+</section>
+<section class="sj-ledger-field" id="f7"><div class="sj-ledger-fh"><span class="fnum">07</span><h2>古今映射</h2></div>
+  <div class="sj-34-mirror">
+    <article class="same"><div class="mh">相似机制</div><p>分裂期政权需重建合法性叙事；文化整合+制度移植；改革速度与基本盘承受力的张力。</p></article>
+    <article class="diff"><div class="mh">关键差异</div><p>现代民族国家有宪法框架整合多元群体；但「主流叙事重建→边缘群体反弹」仍可对读（→ SJ-20 政治映射）。</p></article>
+  </div>
+</section>
+<section class="sj-ledger-field" id="fx"><div class="sj-ledger-fh"><span class="fnum">◆</span><h2>交叉引用</h2></div>
+  <div class="sj-34-xref"><a href="./SJ-08.html"><div class="n">SJ-08 · 五代</div><h3>五代</h3><p>对照：本案重建合法性，五代合法性归零。</p></a>
+<a href="./SJ-35.html"><div class="n">SJ-35 · 隋初</div><h3>隋初</h3><p>均田—租庸调承北魏—隋制度链。</p></a>
+<a href="./SJ-04.html"><div class="n">SJ-04 · 相位盘</div><h3>相位盘</h3><p>重整期·合法性重建定位。</p></a></div>
+</section>
+</article>
+<footer class="sj-34-foot">
+  <span>ChinaOS · 史鉴 SJ-34 · v0.1 · 北魏/南北朝</span>
+  <span><a href="./SJ-00.html">← SJ-00</a> · <a href="./SJ-33.html">← SJ-33</a></span>
+  <span><a href="./SJ-35.html">SJ-35 →</a></span>
+</footer>
+</div>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const nodes = Array.from(stage.querySelectorAll('.sj-node'));
+  const edges = Array.from(stage.querySelectorAll('.sj-edge'));
+  const asideEmpty = document.getElementById('aside-empty');
+  const asideBody = document.getElementById('aside-body');
+  const NODE_DATA = {
+  "xiaowen": {
+    "name": "孝文帝 · 元宏",
+    "tag": "合法性",
+    "body": "拓跋宏改姓元，迁都洛阳，以汉化绑定中原正统。"
+  },
+  "hanhua": {
+    "name": "汉化改制",
+    "tag": "叙事重建",
+    "body": "改汉姓、穿汉服、说汉语、祭孔——合法性叙事从胡虏转为华夏。"
+  },
+  "juntian": {
+    "name": "均田 · 三长",
+    "tag": "财政",
+    "body": "均田制重建税基；三长制强化基层编户，为隋唐均田—租庸调奠基。"
+  },
+  "xianbei": {
+    "name": "鲜卑旧贵族",
+    "tag": "抵制",
+    "body": "北方六镇军户被边缘化；孝文死后鲜卑贵族反扑，六镇之乱引爆分裂。"
+  },
+  "hanshi": {
+    "name": "汉人士族",
+    "tag": "精英循环",
+    "body": "与鲜卑贵族通婚、共仕；精英循环通道部分打开。"
+  },
+  "luoyang": {
+    "name": "洛阳 · 494",
+    "tag": "时点标注",
+    "body": "太和十八年迁都洛阳，象征从平城草原帝国转向中原正统。"
+  },
+  "base": {
+    "name": "编户齐民 · 北方基座",
+    "tag": "基座",
+    "body": "战乱后北方人口与耕地重新匹配；均田试图锁定税基与合法性绑定。〔范围存疑〕"
+  }
+};
+  const NODE_EDGE = {
+  "xiaowen": [
+    "e1",
+    "e3"
+  ],
+  "hanhua": [
+    "e1",
+    "e4"
+  ],
+  "juntian": [
+    "e2",
+    "e5"
+  ],
+  "xianbei": [
+    "e3",
+    "e6"
+  ],
+  "hanshi": [
+    "e4"
+  ],
+  "luoyang": [
+    "e2"
+  ],
+  "base": [
+    "e5",
+    "e6"
+  ]
+};
+  function clearVisual(){ stage.classList.remove('is-picking'); nodes.forEach(n=>n.classList.remove('is-hot')); edges.forEach(e=>e.classList.remove('is-hot')); }
+  function showAside(id){ const d=NODE_DATA[id]; if(!d) return; asideEmpty.hidden=true; asideBody.hidden=false;
+    document.getElementById('aside-tag').textContent=d.tag; document.getElementById('aside-name').textContent=d.name; document.getElementById('aside-text').textContent=d.body; }
+  function pick(id){ if(!NODE_DATA[id]) return; clearVisual(); stage.classList.add('is-picking');
+    nodes.forEach(n=>n.classList.toggle('is-hot', n.dataset.id===id));
+    const hot=NODE_EDGE[id]||[]; edges.forEach(e=>e.classList.toggle('is-hot', hot.indexOf(e.dataset.edge)>=0));
+    showAside(id); }
+  nodes.forEach(n=>{ const act=()=>pick(n.dataset.id); n.addEventListener('click',act);
+    n.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); act(); } }); });
+})();
+</script>
+</body>
+</html>
