@@ -1,0 +1,1414 @@
+{
+  "stats": {
+    "generatedAt": "2026-07-14",
+    "seedTotal": 1597,
+    "priorityTotal": 209,
+    "attempted": 201,
+    "verifiedOk": 132,
+    "failed": 77,
+    "conflicts": 0,
+    "withVerifiedPortrait": 132,
+    "curatedFetchable": 170,
+    "outputIdEntries": 1499,
+    "outputNameEntries": 1088,
+    "uniqueNameOnly": true,
+    "failClosed": true
+  },
+  "results": [
+    {
+      "id": "习近平#1953年6月##总书记#中共中央总书记 · 国家主席 · 中央军委主席",
+      "name": "习近平",
+      "status": "ok",
+      "wikiTitle": "习近平",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Xi_Jinping_meets_Putin_May_2026.jpg/330px-Xi_Jinping_meets_Putin_May_2026.jpg",
+      "cached": true
+    },
+    {
+      "id": "李强#1959年7月##总理#国务院总理 · 党组书记",
+      "name": "李强",
+      "status": "ok",
+      "wikiTitle": "李强 (1959年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Li_Qiang_meets_Keir_Starmer_Jan_2026.jpg/330px-Li_Qiang_meets_Keir_Starmer_Jan_2026.jpg",
+      "cached": true
+    },
+    {
+      "id": "赵乐际#1957年3月##人大委员长#全国人大常委会委员长",
+      "name": "赵乐际",
+      "status": "ok",
+      "wikiTitle": "赵乐际",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Zhao_Leji_meets_Mohamed_Muizzu_%282%29%28crop%29.jpg/330px-Zhao_Leji_meets_Mohamed_Muizzu_%282%29%28crop%29.jpg",
+      "cached": true
+    },
+    {
+      "id": "王沪宁#1955年10月##政协主席#全国政协主席",
+      "name": "王沪宁",
+      "status": "ok",
+      "wikiTitle": "王沪宁",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Wang_Huning_2025_National_People%27s_Congress.jpg/330px-Wang_Huning_2025_National_People%27s_Congress.jpg",
+      "cached": true
+    },
+    {
+      "id": "蔡奇#1955年12月##书记处书记#中央书记处书记 · 中央办公厅主任",
+      "name": "蔡奇",
+      "status": "ok",
+      "wikiTitle": "蔡奇",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/2025%E5%B9%B4%E8%94%A1%E5%A5%87%E4%B9%A6%E8%AE%B0.jpg/330px-2025%E5%B9%B4%E8%94%A1%E5%A5%87%E4%B9%A6%E8%AE%B0.jpg",
+      "cached": true
+    },
+    {
+      "id": "丁薛祥#1962年9月##副总理#国务院常务副总理 · 党组副书记",
+      "name": "丁薛祥",
+      "status": "ok",
+      "wikiTitle": "丁薛祥",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Ding_Xuexiang_EU_2024_%28cropped%29.jpg/330px-Ding_Xuexiang_EU_2024_%28cropped%29.jpg",
+      "cached": true
+    },
+    {
+      "id": "李希#1956年10月##纪委书记#中央纪委书记",
+      "name": "李希",
+      "status": "ok",
+      "wikiTitle": "李希",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Li_Xi_%28cropped%29_%282025%29_01.jpg/330px-Li_Xi_%28cropped%29_%282025%29_01.jpg",
+      "cached": true
+    },
+    {
+      "id": "尹力#1962年8月#北京市#党委书记#北京市委书记",
+      "name": "尹力",
+      "status": "ok",
+      "wikiTitle": "尹力 (1962年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/%E5%B0%B9%E5%8A%9B_Yin_Li_2019.jpg/330px-%E5%B0%B9%E5%8A%9B_Yin_Li_2019.jpg",
+      "cached": true
+    },
+    {
+      "id": "陈敏尔#1960年9月#天津市#党委书记#天津市委书记",
+      "name": "陈敏尔",
+      "status": "ok",
+      "wikiTitle": "陈敏尔",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Chen_Miner.jpg/330px-Chen_Miner.jpg"
+    },
+    {
+      "id": "陈吉宁#1964年2月#上海市#党委书记#上海市委书记",
+      "name": "陈吉宁",
+      "status": "ok",
+      "wikiTitle": "陈吉宁",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/2/20/Chen_Jining%2C_Shanghai_Chinese_Communist_Party_Secretary%2C_in_Shanghai%2C_People%E2%80%99s_Republic_of_China%2C_April_25%2C_2024_%28cropped%29.jpg"
+    },
+    {
+      "id": "袁家军#1962年9月#重庆市#党委书记#重庆市委书记",
+      "name": "袁家军",
+      "status": "ok",
+      "wikiTitle": "袁家军",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Yuan_Jiajun.png/330px-Yuan_Jiajun.png"
+    },
+    {
+      "id": "倪岳峰#1964年9月#河北省#党委书记#河北省委书记",
+      "name": "倪岳峰",
+      "status": "ok",
+      "wikiTitle": "倪岳峰",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/0/06/Ngh%C3%AA_Nh%E1%BA%A1c_Phong_2019.jpg"
+    },
+    {
+      "id": "唐登杰#1964年6月#山西省#党委书记#山西省委书记",
+      "name": "唐登杰",
+      "status": "ok",
+      "wikiTitle": "唐登杰",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/%C4%90%C6%B0%E1%BB%9Dng_%C4%90%C4%83ng_Ki%E1%BB%87t%2C_2017.jpg/330px-%C4%90%C6%B0%E1%BB%9Dng_%C4%90%C4%83ng_Ki%E1%BB%87t%2C_2017.jpg"
+    },
+    {
+      "id": "许昆林#1965年5月#辽宁省#党委书记#辽宁省委书记",
+      "name": "许昆林",
+      "status": "ok",
+      "wikiTitle": "许昆林",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Jiangsu_Governor_Xu_Kunlin.jpg/330px-Jiangsu_Governor_Xu_Kunlin.jpg"
+    },
+    {
+      "id": "黄强#1963年4月#吉林省#党委书记#吉林省委书记",
+      "name": "黄强",
+      "status": "ok",
+      "wikiTitle": "黄强 (1963年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Huang_Qiang_2022_aug.jpg/330px-Huang_Qiang_2022_aug.jpg"
+    },
+    {
+      "id": "许勤#1961年10月#黑龙江省#党委书记#黑龙江省委书记",
+      "name": "许勤",
+      "status": "ok",
+      "wikiTitle": "许勤 (1961年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Xu_Qin_in_2014.jpg"
+    },
+    {
+      "id": "信长星#1963年12月#江苏省#党委书记#江苏省委书记",
+      "name": "信长星",
+      "status": "ok",
+      "wikiTitle": "信长星",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Xin_Changxing_-_2023_%28cropped%29.jpg/330px-Xin_Changxing_-_2023_%28cropped%29.jpg"
+    },
+    {
+      "id": "王浩#1963年10月#浙江省#党委书记#浙江省委书记",
+      "name": "王浩",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "梁言顺#1962年12月#安徽省#党委书记#安徽省委书记",
+      "name": "梁言顺",
+      "status": "ok",
+      "wikiTitle": "梁言顺",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/%E6%A2%81%E8%A8%80%E9%A1%BA_2019-10-29.jpg/330px-%E6%A2%81%E8%A8%80%E9%A1%BA_2019-10-29.jpg"
+    },
+    {
+      "id": "周祖翼#1965年1月#福建省#党委书记#福建省委书记",
+      "name": "周祖翼",
+      "status": "ok",
+      "wikiTitle": "周祖翼",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/6/69/Zhou_Zuyi_%2820221110%29.jpg"
+    },
+    {
+      "id": "尹弘#1963年6月#江西省#党委书记#江西省委书记",
+      "name": "尹弘",
+      "status": "ok",
+      "wikiTitle": "尹弘",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/%E5%B0%B9%E5%BC%98_2024-09-08.jpg/330px-%E5%B0%B9%E5%BC%98_2024-09-08.jpg"
+    },
+    {
+      "id": "林武#1962年2月#山东省#党委书记#山东省委书记",
+      "name": "林武",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "刘宁#1962年1月#河南省#党委书记#河南省委书记",
+      "name": "刘宁",
+      "status": "ok",
+      "wikiTitle": "刘宁 (1962年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Liu_Ning_in_2023.jpg/330px-Liu_Ning_in_2023.jpg"
+    },
+    {
+      "id": "关志鸥#1969年12月#湖北省#党委书记#湖北省委书记",
+      "name": "关志鸥",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "沈晓明#1963年5月#湖南省#党委书记#湖南省委书记",
+      "name": "沈晓明",
+      "status": "ok",
+      "wikiTitle": "沈晓明",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Shen_Xiaoming.png/330px-Shen_Xiaoming.png"
+    },
+    {
+      "id": "黄坤明#1956年11月#广东省#党委书记#广东省委书记",
+      "name": "黄坤明",
+      "status": "ok",
+      "wikiTitle": "黄坤明",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Huang_Kunming.jpg/330px-Huang_Kunming.jpg"
+    },
+    {
+      "id": "冯飞#1962年12月#海南省#党委书记#海南省委书记",
+      "name": "冯飞",
+      "status": "ok",
+      "wikiTitle": "冯飞",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Feng_Fei-20220422.png/330px-Feng_Fei-20220422.png"
+    },
+    {
+      "id": "王晓晖#1962年8月#四川省#党委书记#四川省委书记",
+      "name": "王晓晖",
+      "status": "ok",
+      "wikiTitle": "王晓晖",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/%E7%8E%8B%E6%99%93%E6%99%96.png/330px-%E7%8E%8B%E6%99%93%E6%99%96.png"
+    },
+    {
+      "id": "徐麟#1963年6月#贵州省#党委书记#贵州省委书记",
+      "name": "徐麟",
+      "status": "ok",
+      "wikiTitle": "徐麟 (1963年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/%E5%BE%90%E9%BA%9F.png/330px-%E5%BE%90%E9%BA%9F.png"
+    },
+    {
+      "id": "王宁#1961年4月#云南省#党委书记#云南省委书记",
+      "name": "王宁",
+      "status": "ok",
+      "wikiTitle": "王宁 (1961年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Wang_Ning.jpg/330px-Wang_Ning.jpg"
+    },
+    {
+      "id": "赵一德#1965年2月#陕西省#党委书记#陕西省委书记",
+      "name": "赵一德",
+      "status": "ok",
+      "wikiTitle": "赵一德",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Zhao_Yide_2025.jpg/330px-Zhao_Yide_2025.jpg"
+    },
+    {
+      "id": "胡昌升#1963年12月#甘肃省#党委书记#甘肃省委书记",
+      "name": "胡昌升",
+      "status": "ok",
+      "wikiTitle": "胡昌升",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Hu_Changsheng_2024.jpg/330px-Hu_Changsheng_2024.jpg"
+    },
+    {
+      "id": "吴晓军#1966年1月#青海省#党委书记#青海省委书记",
+      "name": "吴晓军",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "王伟中#1962年3月#内蒙古自治区#党委书记#内蒙古党委书记",
+      "name": "王伟中",
+      "status": "ok",
+      "wikiTitle": "王伟中",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Weizhong_Wang.jpg/330px-Weizhong_Wang.jpg"
+    },
+    {
+      "id": "陈刚#1965年4月#广西壮族自治区#党委书记#广西党委书记",
+      "name": "陈刚",
+      "status": "ok",
+      "wikiTitle": "陈刚 (1965年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Chen_Gang_2025.jpg/330px-Chen_Gang_2025.jpg"
+    },
+    {
+      "id": "王君正#1963年5月#西藏自治区#党委书记#西藏党委书记",
+      "name": "王君正",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "李邑飞#1964年1月#宁夏回族自治区#党委书记#宁夏党委书记",
+      "name": "李邑飞",
+      "status": "ok",
+      "wikiTitle": "李邑飞",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/%E6%9D%8E%E9%82%91%E9%A3%9E.jpg/330px-%E6%9D%8E%E9%82%91%E9%A3%9E.jpg"
+    },
+    {
+      "id": "陈小江#1962年6月#新疆维吾尔自治区#党委书记#新疆党委书记",
+      "name": "陈小江",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "殷勇#1969年8月#北京市#市长#北京市长",
+      "name": "殷勇",
+      "status": "ok",
+      "wikiTitle": "殷勇 (1969年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/%E6%AE%B7%E5%8B%87_2024-09-12.jpg/330px-%E6%AE%B7%E5%8B%87_2024-09-12.jpg"
+    },
+    {
+      "id": "张工#1961年8月#天津市#市长#天津市长",
+      "name": "张工",
+      "status": "ok",
+      "wikiTitle": "张工 (1961年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Zhang_Gong_%28born_1961%29_at_World_Economic_Forum_Annual_Meeting_of_the_New_Champions_2023.png/330px-Zhang_Gong_%28born_1961%29_at_World_Economic_Forum_Annual_Meeting_of_the_New_Champions_2023.png"
+    },
+    {
+      "id": "龚正#1960年3月#上海市#市长#上海市长",
+      "name": "龚正",
+      "status": "ok",
+      "wikiTitle": "龚正",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/%E9%BE%9A%E6%AD%A3_2023-12-09.jpg/330px-%E9%BE%9A%E6%AD%A3_2023-12-09.jpg"
+    },
+    {
+      "id": "王正谱#1963年8月#河北省#省长#河北省长",
+      "name": "王正谱",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "卢东亮#1973年12月#山西省#省长#山西省长",
+      "name": "卢东亮",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "王新伟#1967年8月#辽宁省#省长#辽宁省长",
+      "name": "王新伟",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "胡玉亭#1964年7月#吉林省#省长#吉林省长",
+      "name": "胡玉亭",
+      "status": "ok",
+      "wikiTitle": "胡玉亭",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Hu_Yuting_%28cropped%29.jpg/330px-Hu_Yuting_%28cropped%29.jpg"
+    },
+    {
+      "id": "梁惠玲#1962年8月#黑龙江省#省长#黑龙江省长",
+      "name": "梁惠玲",
+      "status": "ok",
+      "wikiTitle": "梁惠玲",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Liang_Huiling_%282024%29_cropped.jpg"
+    },
+    {
+      "id": "刘小涛#1970年7月#江苏省#省长#江苏省长",
+      "name": "刘小涛",
+      "status": "ok",
+      "wikiTitle": "刘小涛",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Liu_Xiaotao-20260307.png/330px-Liu_Xiaotao-20260307.png"
+    },
+    {
+      "id": "刘捷#1970年1月#浙江省#省长#浙江省长",
+      "name": "刘捷",
+      "status": "ok",
+      "wikiTitle": "刘捷 (1970年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Liu_Jie_2025.jpg/330px-Liu_Jie_2025.jpg"
+    },
+    {
+      "id": "王清宪#1963年7月#安徽省#省长#安徽省长",
+      "name": "王清宪",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "赵龙#1967年9月#福建省#省长#福建省长",
+      "name": "赵龙",
+      "status": "ok",
+      "wikiTitle": "赵龙 (1967年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/ZhaoLong-2025-05.jpg/330px-ZhaoLong-2025-05.jpg"
+    },
+    {
+      "id": "叶建春#1965年7月#江西省#省长#江西省长",
+      "name": "叶建春",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "周乃翔#1961年12月#山东省#省长#山东省长",
+      "name": "周乃翔",
+      "status": "ok",
+      "wikiTitle": "周乃翔",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Shandong_Governor_Zhou_Naixiang.jpg"
+    },
+    {
+      "id": "王凯#1962年7月#河南省#省长#河南省长",
+      "name": "王凯",
+      "status": "ok",
+      "wikiTitle": "王凯 (1962年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/%E6%B2%B3%E5%8D%97%E7%8E%8B%E5%87%AF.jpg/330px-%E6%B2%B3%E5%8D%97%E7%8E%8B%E5%87%AF.jpg"
+    },
+    {
+      "id": "李殿勋#1967年11月#湖北省#省长#湖北省长",
+      "name": "李殿勋",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "毛伟明#1961年5月#湖南省#省长#湖南省长",
+      "name": "毛伟明",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "孟凡利#1965年9月#广东省#省长#广东省长",
+      "name": "孟凡利",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "刘小明#1964年9月#海南省#省长#海南省长",
+      "name": "刘小明",
+      "status": "ok",
+      "wikiTitle": "刘小明",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/L%C6%B0u_Ti%E1%BB%83u_Minh.jpg/330px-L%C6%B0u_Ti%E1%BB%83u_Minh.jpg"
+    },
+    {
+      "id": "施小琳#1969年5月#四川省#省长#四川省长",
+      "name": "施小琳",
+      "status": "ok",
+      "wikiTitle": "施小琳",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/La_gobernadora_de_Sichuan_%2855213511438%29.jpg/330px-La_gobernadora_de_Sichuan_%2855213511438%29.jpg"
+    },
+    {
+      "id": "李炳军#1963年2月#贵州省#省长#贵州省长",
+      "name": "李炳军",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "王予波#1963年1月#云南省#省长#云南省长",
+      "name": "王予波",
+      "status": "ok",
+      "wikiTitle": "王予波",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Governor_Wang_Yubo_%28cropped%29.jpg/330px-Governor_Wang_Yubo_%28cropped%29.jpg"
+    },
+    {
+      "id": "赵刚#1968年6月#陕西省#省长#陕西省长",
+      "name": "赵刚",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "任振鹤#1964年2月#甘肃省#省长#甘肃省长",
+      "name": "任振鹤",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "罗东川#1965年10月#青海省#省长#青海省长",
+      "name": "罗东川",
+      "status": "ok",
+      "wikiTitle": "罗东川",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Luo_Dongchuan_2025.jpg/330px-Luo_Dongchuan_2025.jpg"
+    },
+    {
+      "id": "包钢#1969年5月#内蒙古自治区#自治区主席#内蒙古主席",
+      "name": "包钢",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "韦韬#1970年4月#广西壮族自治区#自治区主席#广西主席",
+      "name": "韦韬",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "嘎玛泽登#1967年12月#西藏自治区#自治区主席#西藏主席",
+      "name": "嘎玛泽登",
+      "status": "ok",
+      "wikiTitle": "嘎玛泽登",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Garma_Cedain_at_2025_National_People%27s_Congress.jpg/330px-Garma_Cedain_at_2025_National_People%27s_Congress.jpg"
+    },
+    {
+      "id": "张雨浦#1962年8月#宁夏回族自治区#自治区主席#宁夏主席",
+      "name": "张雨浦",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "艾尔肯·吐尼亚孜#1961年12月#新疆维吾尔自治区#自治区主席#新疆主席",
+      "name": "艾尔肯·吐尼亚孜",
+      "status": "ok",
+      "wikiTitle": "艾尔肯·吐尼亚孜",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/%E8%89%BE%E5%B0%94%E8%82%AF%C2%B7%E5%90%90%E5%B0%BC%E4%BA%9A%E5%AD%9C.jpg/330px-%E8%89%BE%E5%B0%94%E8%82%AF%C2%B7%E5%90%90%E5%B0%BC%E4%BA%9A%E5%AD%9C.jpg"
+    },
+    {
+      "id": "李秀领#1962年2月#北京市#人大委员长#北京市",
+      "name": "李秀领",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "喻云林#1960年11月#天津市#人大委员长#天津市",
+      "name": "喻云林",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "倪岳峰##河北省#人大委员长#河北省",
+      "name": "倪岳峰",
+      "status": "ok",
+      "wikiTitle": "倪岳峰",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/0/06/Ngh%C3%AA_Nh%E1%BA%A1c_Phong_2019.jpg"
+    },
+    {
+      "id": "唐登杰##山西省#人大委员长#山西省",
+      "name": "唐登杰",
+      "status": "ok",
+      "wikiTitle": "唐登杰",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/%C4%90%C6%B0%E1%BB%9Dng_%C4%90%C4%83ng_Ki%E1%BB%87t%2C_2017.jpg/330px-%C4%90%C6%B0%E1%BB%9Dng_%C4%90%C4%83ng_Ki%E1%BB%87t%2C_2017.jpg"
+    },
+    {
+      "id": "王伟中##内蒙古自治区#人大委员长#内蒙古自治区",
+      "name": "王伟中",
+      "status": "ok",
+      "wikiTitle": "王伟中",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Weizhong_Wang.jpg/330px-Weizhong_Wang.jpg"
+    },
+    {
+      "id": "许昆林##辽宁省#人大委员长#辽宁省",
+      "name": "许昆林",
+      "status": "ok",
+      "wikiTitle": "许昆林",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Jiangsu_Governor_Xu_Kunlin.jpg/330px-Jiangsu_Governor_Xu_Kunlin.jpg"
+    },
+    {
+      "id": "黄强##吉林省#人大委员长#吉林省",
+      "name": "黄强",
+      "status": "ok",
+      "wikiTitle": "黄强 (1963年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Huang_Qiang_2022_aug.jpg/330px-Huang_Qiang_2022_aug.jpg"
+    },
+    {
+      "id": "许勤##黑龙江省#人大委员长#黑龙江省",
+      "name": "许勤",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "黄莉新#1962年8月#上海市#人大委员长#上海市",
+      "name": "黄莉新",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "信长星##江苏省#人大委员长#江苏省",
+      "name": "信长星",
+      "status": "ok",
+      "wikiTitle": "信长星",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Xin_Changxing_-_2023_%28cropped%29.jpg/330px-Xin_Changxing_-_2023_%28cropped%29.jpg"
+    },
+    {
+      "id": "王浩##浙江省#人大委员长#浙江省",
+      "name": "王浩",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "梁言顺##安徽省#人大委员长#安徽省",
+      "name": "梁言顺",
+      "status": "ok",
+      "wikiTitle": "梁言顺",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/%E6%A2%81%E8%A8%80%E9%A1%BA_2019-10-29.jpg/330px-%E6%A2%81%E8%A8%80%E9%A1%BA_2019-10-29.jpg"
+    },
+    {
+      "id": "周祖翼##福建省#人大委员长#福建省",
+      "name": "周祖翼",
+      "status": "ok",
+      "wikiTitle": "周祖翼",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/6/69/Zhou_Zuyi_%2820221110%29.jpg"
+    },
+    {
+      "id": "尹弘##江西省#人大委员长#江西省",
+      "name": "尹弘",
+      "status": "ok",
+      "wikiTitle": "尹弘",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/%E5%B0%B9%E5%BC%98_2024-09-08.jpg/330px-%E5%B0%B9%E5%BC%98_2024-09-08.jpg"
+    },
+    {
+      "id": "林武##山东省#人大委员长#山东省",
+      "name": "林武",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "刘宁##河南省#人大委员长#河南省",
+      "name": "刘宁",
+      "status": "ok",
+      "wikiTitle": "刘宁 (1962年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Liu_Ning_in_2023.jpg/330px-Liu_Ning_in_2023.jpg"
+    },
+    {
+      "id": "王忠林#1962年8月#湖北省#人大委员长#湖北省",
+      "name": "王忠林",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "沈晓明##湖南省#人大委员长#湖南省",
+      "name": "沈晓明",
+      "status": "ok",
+      "wikiTitle": "沈晓明",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Shen_Xiaoming.png/330px-Shen_Xiaoming.png"
+    },
+    {
+      "id": "黄楚平#1963年9月#广东省#人大委员长#广东省",
+      "name": "黄楚平",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "陈刚##广西壮族自治区#人大委员长#广西壮族自治区",
+      "name": "陈刚",
+      "status": "ok",
+      "wikiTitle": "陈刚 (1965年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Chen_Gang_2025.jpg/330px-Chen_Gang_2025.jpg"
+    },
+    {
+      "id": "冯飞##海南省#人大委员长#海南省",
+      "name": "冯飞",
+      "status": "ok",
+      "wikiTitle": "冯飞",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Feng_Fei-20220422.png/330px-Feng_Fei-20220422.png"
+    },
+    {
+      "id": "王炯#1963年1月#重庆市#人大委员长#重庆市",
+      "name": "王炯",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "王晓晖##四川省#人大委员长#四川省",
+      "name": "王晓晖",
+      "status": "ok",
+      "wikiTitle": "王晓晖",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/%E7%8E%8B%E6%99%93%E6%99%96.png/330px-%E7%8E%8B%E6%99%93%E6%99%96.png"
+    },
+    {
+      "id": "徐麟##贵州省#人大委员长#贵州省",
+      "name": "徐麟",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "王宁##云南省#人大委员长#云南省",
+      "name": "王宁",
+      "status": "ok",
+      "wikiTitle": "王宁 (1961年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Wang_Ning.jpg/330px-Wang_Ning.jpg"
+    },
+    {
+      "id": "严金海#1967年3月#西藏自治区#人大委员长#西藏自治区",
+      "name": "严金海",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "赵一德##陕西省#人大委员长#陕西省",
+      "name": "赵一德",
+      "status": "ok",
+      "wikiTitle": "赵一德",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Zhao_Yide_2025.jpg/330px-Zhao_Yide_2025.jpg"
+    },
+    {
+      "id": "胡昌升##甘肃省#人大委员长#甘肃省",
+      "name": "胡昌升",
+      "status": "ok",
+      "wikiTitle": "胡昌升",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Hu_Changsheng_2024.jpg/330px-Hu_Changsheng_2024.jpg"
+    },
+    {
+      "id": "吴晓军##青海省#人大委员长#青海省",
+      "name": "吴晓军",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "李邑飞##宁夏回族自治区#人大委员长#宁夏回族自治区",
+      "name": "李邑飞",
+      "status": "ok",
+      "wikiTitle": "李邑飞",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/%E6%9D%8E%E9%82%91%E9%A3%9E.jpg/330px-%E6%9D%8E%E9%82%91%E9%A3%9E.jpg"
+    },
+    {
+      "id": "祖木热提·吾布力#1961年7月#新疆维吾尔自治区#人大委员长#新疆维吾尔自治区",
+      "name": "祖木热提·吾布力",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "何立峰#1955年2月#中央#副总理#国务院",
+      "name": "何立峰",
+      "status": "ok",
+      "wikiTitle": "何立峰",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/He_Lifeng_%28cropped%29_%282023%29.jpg/330px-He_Lifeng_%28cropped%29_%282023%29.jpg"
+    },
+    {
+      "id": "张国清#1964年8月#中央#副总理#国务院",
+      "name": "张国清",
+      "status": "ok",
+      "wikiTitle": "张国清",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Zhang_Guoqing_%28cropped%29.jpg/330px-Zhang_Guoqing_%28cropped%29.jpg"
+    },
+    {
+      "id": "刘国中#1962年7月#中央#副总理#国务院",
+      "name": "刘国中",
+      "status": "ok",
+      "wikiTitle": "刘国中",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Chinese_Vice_Premier_Liu_Guozhong.jpg/330px-Chinese_Vice_Premier_Liu_Guozhong.jpg"
+    },
+    {
+      "id": "王小洪#1957年7月#中央#国务委员#公安部",
+      "name": "王小洪",
+      "status": "ok",
+      "wikiTitle": "王小洪",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Minister_Wang_Xiaohong_of_China_in_Vienna%2C_Austria_on_18_February_2024_%28cropped%29.jpg/330px-Minister_Wang_Xiaohong_of_China_in_Vienna%2C_Austria_on_18_February_2024_%28cropped%29.jpg"
+    },
+    {
+      "id": "吴政隆#1964年11月#中央#国务委员#国务院办公厅",
+      "name": "吴政隆",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "谌贻琴#1959年12月#中央#国务委员#国务院",
+      "name": "谌贻琴",
+      "status": "ok",
+      "wikiTitle": "谌贻琴",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Shen_Yiqin_in_November_2023.jpg/330px-Shen_Yiqin_in_November_2023.jpg"
+    },
+    {
+      "id": "王毅#1953年10月#中央#外交部长#外交部",
+      "name": "王毅",
+      "status": "ok",
+      "wikiTitle": "王毅",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Jake_Sullivan_and_Wang_Yi_met_in_Bangkok_%282024%29_%28cropped%29.jpg/330px-Jake_Sullivan_and_Wang_Yi_met_in_Bangkok_%282024%29_%28cropped%29.jpg"
+    },
+    {
+      "id": "陈文清#1960年1月#中央#政法委书记#中央政法委",
+      "name": "陈文清",
+      "status": "ok",
+      "wikiTitle": "陈文清",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Chen_Wenqing_%282024%29.jpg/330px-Chen_Wenqing_%282024%29.jpg"
+    },
+    {
+      "id": "石泰峰#1956年9月#中央#中组部部长#中央组织部",
+      "name": "石泰峰",
+      "status": "ok",
+      "wikiTitle": "石泰峰",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Shi_Taifeng_2025.jpg/330px-Shi_Taifeng_2025.jpg"
+    },
+    {
+      "id": "李干杰#1964年11月#中央#统战部部长#中央统战部",
+      "name": "李干杰",
+      "status": "ok",
+      "wikiTitle": "李干杰",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Li_Ganjie.jpg/330px-Li_Ganjie.jpg"
+    },
+    {
+      "id": "李书磊#1964年1月#中央#中宣部部长#中央宣传部",
+      "name": "李书磊",
+      "status": "ok",
+      "wikiTitle": "李书磊",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3c/%E6%9D%8E%E4%B9%A6%E7%A3%8A%E7%85%A7%E7%89%87.jpg"
+    },
+    {
+      "id": "李鸿忠#1956年8月#中央#人大副委员长#全国人大常委会",
+      "name": "李鸿忠",
+      "status": "ok",
+      "wikiTitle": "李鸿忠",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Li_Hongzhong_%2854520503317%29.jpg/330px-Li_Hongzhong_%2854520503317%29.jpg"
+    },
+    {
+      "id": "刘金国#1955年4月#中央#监委主任#国家监察委员会",
+      "name": "刘金国",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "张升民#1958年8月#中央#军委副主席#中央军委",
+      "name": "张升民",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "张军#1956年10月#中央#最高法院长#最高人民法院",
+      "name": "张军",
+      "status": "ok",
+      "wikiTitle": "张军 (1956年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Zhang_Jun_in_2020.jpg"
+    },
+    {
+      "id": "应勇#1957年11月#中央#最高检检察长#最高人民检察院",
+      "name": "应勇",
+      "status": "ok",
+      "wikiTitle": "应勇",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Ying_Yong.jpg/330px-Ying_Yong.jpg"
+    },
+    {
+      "id": "董军#1961年#中央#国防部长#国防部",
+      "name": "董军",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "郑栅洁#1961年11月#中央#部长#国家发展改革委",
+      "name": "郑栅洁",
+      "status": "ok",
+      "wikiTitle": "郑栅洁",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Wang_Wentao_at_the_2024_BRICS_Summit_%28cropped%29.jpg/330px-Wang_Wentao_at_the_2024_BRICS_Summit_%28cropped%29.jpg"
+    },
+    {
+      "id": "怀进鹏#1962年12月#中央#部长#教育部",
+      "name": "怀进鹏",
+      "status": "ok",
+      "wikiTitle": "怀进鹏",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Minister_of_Education_Huai_Jinpeng.jpg"
+    },
+    {
+      "id": "阴和俊#1963年2月#中央#部长#科技部",
+      "name": "阴和俊",
+      "status": "ok",
+      "wikiTitle": "阴和俊",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Yin_Hejun_2025-05-12.jpg/330px-Yin_Hejun_2025-05-12.jpg"
+    },
+    {
+      "id": "李乐成#1965年3月#中央#部长#工业和信息化部",
+      "name": "李乐成",
+      "status": "ok",
+      "wikiTitle": "李乐成",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Koshachev_with_Li_Lecheng_%28cropped%29.jpg/330px-Koshachev_with_Li_Lecheng_%28cropped%29.jpg"
+    },
+    {
+      "id": "陈瑞峰#1966年5月#中央#部长#国家民委",
+      "name": "陈瑞峰",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "陈一新#1959年9月#中央#部长#国家安全部",
+      "name": "陈一新",
+      "status": "ok",
+      "wikiTitle": "陈一新 (1959年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Chen_Yixin.jpg"
+    },
+    {
+      "id": "陆治原#1964年8月#中央#部长#民政部",
+      "name": "陆治原",
+      "status": "ok",
+      "wikiTitle": "陆治原",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Lu_Zhiyuan-20240308.png/330px-Lu_Zhiyuan-20240308.png"
+    },
+    {
+      "id": "贺荣#1962年10月#中央#部长#司法部",
+      "name": "贺荣",
+      "status": "ok",
+      "wikiTitle": "贺荣",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/He_Rong-20221019.jpg/330px-He_Rong-20221019.jpg"
+    },
+    {
+      "id": "蓝佛安#1962年6月#中央#部长#财政部",
+      "name": "蓝佛安",
+      "status": "ok",
+      "wikiTitle": "蓝佛安",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Yallen_Lan_meeting_2024%28crop%29.jpg/330px-Yallen_Lan_meeting_2024%28crop%29.jpg"
+    },
+    {
+      "id": "王晓萍#1964年5月#中央#部长#人力资源和社会保障部",
+      "name": "王晓萍",
+      "status": "ok",
+      "wikiTitle": "王晓萍 (1964年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Wang_Xiaoping-20240309.png/330px-Wang_Xiaoping-20240309.png"
+    },
+    {
+      "id": "黄润秋#1963年8月#中央#部长#生态环境部",
+      "name": "黄润秋",
+      "status": "ok",
+      "wikiTitle": "黄润秋",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Huang_Runqiu_at_the_COP15_Opening_Press_Conference_%2852547184179%29_%28cropped%29.jpg/330px-Huang_Runqiu_at_the_COP15_Opening_Press_Conference_%2852547184179%29_%28cropped%29.jpg"
+    },
+    {
+      "id": "倪虹#1966年12月#中央#部长#住房城乡建设部",
+      "name": "倪虹",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "刘伟#1963年3月#中央#部长#交通运输部",
+      "name": "刘伟",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "李国英#1963年8月#中央#部长#水利部",
+      "name": "李国英",
+      "status": "ok",
+      "wikiTitle": "李国英 (1963年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Li_Guoying_2023.jpg/330px-Li_Guoying_2023.jpg"
+    },
+    {
+      "id": "韩俊#1963年11月#中央#部长#农业农村部",
+      "name": "韩俊",
+      "status": "ok",
+      "wikiTitle": "韩俊 (1963年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Han_Jun_2024.jpg/330px-Han_Jun_2024.jpg"
+    },
+    {
+      "id": "王文涛#1964年5月#中央#部长#商务部",
+      "name": "王文涛",
+      "status": "ok",
+      "wikiTitle": "王文涛",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Wang_Wentao_at_EC_%282024%29.jpg/330px-Wang_Wentao_at_EC_%282024%29.jpg"
+    },
+    {
+      "id": "孙业礼#1962年12月#中央#部长#文化和旅游部",
+      "name": "孙业礼",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "雷海潮#1968年4月#中央#部长#国家卫生健康委",
+      "name": "雷海潮",
+      "status": "ok",
+      "wikiTitle": "雷海潮",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Lei_Haichao_2020.jpg/330px-Lei_Haichao_2020.jpg"
+    },
+    {
+      "id": "张成中#1970年10月#中央#部长#应急管理部",
+      "name": "张成中",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "裴金佳#1964年4月#中央#部长#退役军人事务部",
+      "name": "裴金佳",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "潘功胜#1963年7月#中央#部长#中国人民银行",
+      "name": "潘功胜",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "侯凯#1970年6月#中央#部长#审计署",
+      "name": "侯凯",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "王东明#1956年7月#中央#人大副委员长#全国人大常委会",
+      "name": "王东明",
+      "status": "ok",
+      "wikiTitle": "王东明",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Wang_Dongming.jpg/330px-Wang_Dongming.jpg"
+    },
+    {
+      "id": "肖捷#1957年6月#中央#人大副委员长#全国人大常委会",
+      "name": "肖捷",
+      "status": "ok",
+      "wikiTitle": "肖捷",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Xiao_Jie_%28cropped%29.jpg/330px-Xiao_Jie_%28cropped%29.jpg"
+    },
+    {
+      "id": "郑建邦#1957年1月#中央#人大副委员长#全国人大常委会",
+      "name": "郑建邦",
+      "status": "ok",
+      "wikiTitle": "郑建邦",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Zheng_Jianbang_in_2023_%28cropped%29.jpg/330px-Zheng_Jianbang_in_2023_%28cropped%29.jpg"
+    },
+    {
+      "id": "丁仲礼#1957年1月#中央#人大副委员长#全国人大常委会",
+      "name": "丁仲礼",
+      "status": "ok",
+      "wikiTitle": "丁仲礼",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Ding_Zhongli2021.jpg/330px-Ding_Zhongli2021.jpg"
+    },
+    {
+      "id": "郝明金#1956年12月#中央#人大副委员长#全国人大常委会",
+      "name": "郝明金",
+      "status": "ok",
+      "wikiTitle": "郝明金",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Hao_Mingjin.jpg/330px-Hao_Mingjin.jpg"
+    },
+    {
+      "id": "蔡达峰#1960年6月#中央#人大副委员长#全国人大常委会",
+      "name": "蔡达峰",
+      "status": "ok",
+      "wikiTitle": "蔡达峰",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Cai_Dafeng.jpg/330px-Cai_Dafeng.jpg"
+    },
+    {
+      "id": "何维#1955年12月#中央#人大副委员长#全国人大常委会",
+      "name": "何维",
+      "status": "ok",
+      "wikiTitle": "何维",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/He_Wei_2023.jpg/330px-He_Wei_2023.jpg"
+    },
+    {
+      "id": "武维华#1956年9月#中央#人大副委员长#全国人大常委会",
+      "name": "武维华",
+      "status": "ok",
+      "wikiTitle": "武维华",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Wu_Weihua2021.jpg/330px-Wu_Weihua2021.jpg"
+    },
+    {
+      "id": "铁凝#1957年4月#中央#人大副委员长#全国人大常委会",
+      "name": "铁凝",
+      "status": "ok",
+      "wikiTitle": "铁凝",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/00_Tie_Ning_20171111_120324_%28cropped%29.jpg/330px-00_Tie_Ning_20171111_120324_%28cropped%29.jpg"
+    },
+    {
+      "id": "彭清华#1957年4月#中央#人大副委员长#全国人大常委会",
+      "name": "彭清华",
+      "status": "ok",
+      "wikiTitle": "彭清华",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Peng_Qinghua.png/330px-Peng_Qinghua.png"
+    },
+    {
+      "id": "张庆伟#1957年7月#中央#人大副委员长#全国人大常委会",
+      "name": "张庆伟",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "洛桑江村#1957年3月#中央#人大副委员长#全国人大常委会",
+      "name": "洛桑江村",
+      "status": "ok",
+      "wikiTitle": "洛桑江村",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Losang_Jamcan%27s_portrait_%282025.04%29.jpg/330px-Losang_Jamcan%27s_portrait_%282025.04%29.jpg"
+    },
+    {
+      "id": "雪克来提·扎克尔#1953年8月#中央#人大副委员长#全国人大常委会",
+      "name": "雪克来提·扎克尔",
+      "status": "ok",
+      "wikiTitle": "雪克来提·扎克尔",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/20190313%E6%96%B0%E7%96%86%E5%9B%A2%E5%BC%80%E6%94%BE%E6%97%A5%E5%8F%91%E2%80%9C%E9%82%80%E7%BA%A6%E2%80%9D%EF%BC%9A%E6%AC%A2%E8%BF%8E%E5%A4%9A%E6%9D%A5%E8%B5%B0%E4%B8%80%E8%B5%B0%E3%80%81%E7%9C%8B%E4%B8%80%E7%9C%8B.png/330px-20190313%E6%96%B0%E7%96%86%E5%9B%A2%E5%BC%80%E6%94%BE%E6%97%A5%E5%8F%91%E2%80%9C%E9%82%80%E7%BA%A6%E2%80%9D%EF%BC%9A%E6%AC%A2%E8%BF%8E%E5%A4%9A%E6%9D%A5%E8%B5%B0%E4%B8%80%E8%B5%B0%E3%80%81%E7%9C%8B%E4%B8%80%E7%9C%8B.png"
+    },
+    {
+      "id": "刘奇#1957年9月#中央#人大秘书长#全国人大常委会",
+      "name": "刘奇",
+      "status": "ok",
+      "wikiTitle": "刘奇",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Liu_Qi%27s_portrait_%282025.02%29.jpg"
+    },
+    {
+      "id": "胡春华#1963年4月#中央#政协副主席#全国政协",
+      "name": "胡春华",
+      "status": "ok",
+      "wikiTitle": "胡春华",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Hu_Chunhua_%282019-09-05%29_2.jpg/330px-Hu_Chunhua_%282019-09-05%29_2.jpg"
+    },
+    {
+      "id": "沈跃跃#1957年1月#中央#政协副主席#全国政协",
+      "name": "沈跃跃",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "王勇#1955年12月#中央#政协副主席#全国政协",
+      "name": "王勇",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "周强#1960年4月#中央#政协副主席#全国政协",
+      "name": "周强",
+      "status": "ok",
+      "wikiTitle": "周强",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/ZhouQiang.jpg/330px-ZhouQiang.jpg"
+    },
+    {
+      "id": "帕巴拉·格列朗杰#1940年2月#中央#政协副主席#全国政协",
+      "name": "帕巴拉·格列朗杰",
+      "status": "ok",
+      "wikiTitle": "帕巴拉·格列朗杰",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/1965-3_1965%E5%B9%B4_%E5%B8%95%E5%B7%B4%E6%8B%89%C2%B7%E6%A0%BC%E5%88%97%E6%9C%97%E6%9D%B0.jpg/330px-1965-3_1965%E5%B9%B4_%E5%B8%95%E5%B7%B4%E6%8B%89%C2%B7%E6%A0%BC%E5%88%97%E6%9C%97%E6%9D%B0.jpg"
+    },
+    {
+      "id": "何厚铧#1955年3月#中央#政协副主席#全国政协",
+      "name": "何厚铧",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "梁振英#1954年8月#中央#政协副主席#全国政协",
+      "name": "梁振英",
+      "status": "ok",
+      "wikiTitle": "梁振英",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Leung_Chun-ying_2017_3.jpg/330px-Leung_Chun-ying_2017_3.jpg"
+    },
+    {
+      "id": "巴特尔#1955年2月#中央#政协副主席#全国政协",
+      "name": "巴特尔",
+      "status": "ok",
+      "wikiTitle": "巴特尔 (1955年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Bater.png/330px-Bater.png"
+    },
+    {
+      "id": "苏辉#1956年5月#中央#政协副主席#全国政协",
+      "name": "苏辉",
+      "status": "ok",
+      "wikiTitle": "苏辉",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Su_Hui2023.jpg/330px-Su_Hui2023.jpg"
+    },
+    {
+      "id": "邵鸿#1962年4月#中央#政协副主席#全国政协",
+      "name": "邵鸿",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "高云龙#1958年12月#中央#政协副主席#全国政协",
+      "name": "高云龙",
+      "status": "ok",
+      "wikiTitle": "高云龙",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Gao_Yunlong_2025-05-12.jpg/330px-Gao_Yunlong_2025-05-12.jpg"
+    },
+    {
+      "id": "陈武#1962年9月#中央#政协副主席#全国政协",
+      "name": "陈武",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "穆虹#1956年12月#中央#政协副主席#全国政协",
+      "name": "穆虹",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "咸辉#1958年2月#中央#政协副主席#全国政协",
+      "name": "咸辉",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "王东峰#1958年4月#中央#政协秘书长#全国政协",
+      "name": "王东峰",
+      "status": "ok",
+      "wikiTitle": "王东峰",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/2/29/Wang_Dongfeng.jpg"
+    },
+    {
+      "id": "姜信治#1960年5月#中央#政协副主席#全国政协",
+      "name": "姜信治",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "蒋作君#1955年8月#中央#政协副主席#全国政协",
+      "name": "蒋作君",
+      "status": "ok",
+      "wikiTitle": "蒋作君",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Jiang_Zuojun_2023.jpg/330px-Jiang_Zuojun_2023.jpg"
+    },
+    {
+      "id": "何报翔#1964年7月#中央#政协副主席#全国政协",
+      "name": "何报翔",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "王光谦#1963年12月#中央#政协副主席#全国政协",
+      "name": "王光谦",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "秦博勇#1966年7月#中央#政协副主席#全国政协",
+      "name": "秦博勇",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "朱永新#1958年8月#中央#政协副主席#全国政协",
+      "name": "朱永新",
+      "status": "ok",
+      "wikiTitle": "朱永新",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Zhu_Yongxin_2025.jpg/330px-Zhu_Yongxin_2025.jpg"
+    },
+    {
+      "id": "杨震#1962年10月#中央#政协副主席#全国政协",
+      "name": "杨震",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "孙梅君#1965年4月#中央#署长#海关总署",
+      "name": "孙梅君",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "胡静林#1964年6月#中央#局长#国家税务总局",
+      "name": "胡静林",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "罗文#1964年12月#中央#局长#国家市场监督管理总局",
+      "name": "罗文",
+      "status": "ok",
+      "wikiTitle": "罗文 (1964年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Luo_Wen-20240308.png/330px-Luo_Wen-20240308.png"
+    },
+    {
+      "id": "曹淑敏#1966年7月#中央#局长#国家广播电视总局",
+      "name": "曹淑敏",
+      "status": "ok",
+      "wikiTitle": "曹淑敏",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Cao_Shumin%2C_2022.jpg/330px-Cao_Shumin%2C_2022.jpg"
+    },
+    {
+      "id": "高志丹#1963年1月#中央#局长#国家体育总局",
+      "name": "高志丹",
+      "status": "ok",
+      "wikiTitle": "高志丹",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Gao_Zhidan-20260311.png/330px-Gao_Zhidan-20260311.png"
+    },
+    {
+      "id": "康义#1966年8月#中央#局长#国家统计局",
+      "name": "康义",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "章轲#1968年5月#中央#局长#国家医疗保障局",
+      "name": "章轲",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "陈晓东#1965年12月#中央#署长#国家国际发展合作署",
+      "name": "陈晓东",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "李文章#1963年1月#中央#局长#国家信访局",
+      "name": "李文章",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "夏宝龙#1952年12月#中央#港澳办主任#国务院港澳办",
+      "name": "夏宝龙",
+      "status": "ok",
+      "wikiTitle": "夏宝龙",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/%E5%A4%8F%E5%AE%9D%E9%BE%99_2023.png/330px-%E5%A4%8F%E5%AE%9D%E9%BE%99_2023.png"
+    },
+    {
+      "id": "沈丹阳#1965年2月#中央#主任#国务院研究室",
+      "name": "沈丹阳",
+      "status": "ok",
+      "wikiTitle": "沈丹阳",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Shen_Danyang%2C_2019.png/330px-Shen_Danyang%2C_2019.png"
+    },
+    {
+      "id": "王永红#1969年6月#中央#局长#国家机关事务管理局",
+      "name": "王永红",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "邹晓东#1967年9月#中央#主任#国务院参事室",
+      "name": "邹晓东",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "吴清#1965年12月#中央#主席#中国证监会",
+      "name": "吴清",
+      "status": "ok",
+      "wikiTitle": "吴清",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Wu_Qing_2024.jpg/330px-Wu_Qing_2024.jpg"
+    },
+    {
+      "id": "李云泽#1970年9月#中央#局长#国家金融监督管理总局",
+      "name": "李云泽",
+      "status": "ok",
+      "wikiTitle": "李云泽",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Li_Yunze_2023.jpg/330px-Li_Yunze_2023.jpg"
+    },
+    {
+      "id": "申长雨#1963年6月#中央#局长#国家知识产权局",
+      "name": "申长雨",
+      "status": "ok",
+      "wikiTitle": "申长雨",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/%E7%94%B3%E9%95%BF%E9%9B%A8_2024-09-11.jpg/330px-%E7%94%B3%E9%95%BF%E9%9B%A8_2024-09-11.jpg"
+    },
+    {
+      "id": "古小玉#1963年#中央#常委会委员#全国人大常委会",
+      "name": "古小玉",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "郭雷#1964年#中央#常委会委员#全国人大常委会",
+      "name": "郭雷",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "欧阳昌琼#1963年#中央#常委会委员#全国人大常委会",
+      "name": "欧阳昌琼",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "许达哲#1956年#中央#常委会委员#全国人大常委会",
+      "name": "许达哲",
+      "status": "ok",
+      "wikiTitle": "许达哲",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Reuni%C3%A3o_com_o_Ministro_da_Ci%C3%AAncia_e_Tecnologia_e_Ind%C3%BAstria_de_Defesa_da_China%2C_Xu_Dazhe._%2817647090989%29_%28cropped%29.jpg/330px-Reuni%C3%A3o_com_o_Ministro_da_Ci%C3%AAncia_e_Tecnologia_e_Ind%C3%BAstria_de_Defesa_da_China%2C_Xu_Dazhe._%2817647090989%29_%28cropped%29.jpg"
+    },
+    {
+      "id": "李锦斌#1956年#中央#常委会委员#全国人大常委会",
+      "name": "李锦斌",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "楼阳生#1957年#中央#常委会委员#全国人大常委会",
+      "name": "楼阳生",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "林武#1962年#中央#常委会委员#全国人大常委会",
+      "name": "林武",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "易炼红#1959年#中央#常委会委员#全国人大常委会",
+      "name": "易炼红",
+      "status": "ok",
+      "wikiTitle": "易炼红",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Yi_Lianhong.jpg"
+    },
+    {
+      "id": "马兴瑞#1959年#中央#常委会委员#全国人大常委会",
+      "name": "马兴瑞",
+      "status": "ok",
+      "wikiTitle": "马兴瑞",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Ma_Xingrui.jpg/330px-Ma_Xingrui.jpg"
+    },
+    {
+      "id": "尹力#1962年#中央#常委会委员#全国人大常委会",
+      "name": "尹力",
+      "status": "ok",
+      "wikiTitle": "尹力 (1962年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/%E5%B0%B9%E5%8A%9B_Yin_Li_2019.jpg/330px-%E5%B0%B9%E5%8A%9B_Yin_Li_2019.jpg"
+    },
+    {
+      "id": "马培华#1949年#中央#政协常委#全国政协",
+      "name": "马培华",
+      "status": "ok",
+      "wikiTitle": "马培华",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Visita_de_Ma_Peihua_-i---i-_%2835245347016%29%28cropped%29.jpg/330px-Visita_de_Ma_Peihua_-i---i-_%2835245347016%29%28cropped%29.jpg"
+    },
+    {
+      "id": "王荣#1958年#中央#政协常委#全国政协",
+      "name": "王荣",
+      "status": "ok",
+      "wikiTitle": "王荣 (1958年)",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Wang_Rong_in_2008_Suzhou_Emex.jpg/330px-Wang_Rong_in_2008_Suzhou_Emex.jpg"
+    },
+    {
+      "id": "卢展工#1952年#中央#政协常委#全国政协",
+      "name": "卢展工",
+      "status": "ok",
+      "wikiTitle": "卢展工",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Lu_Zhangong.png/330px-Lu_Zhangong.png"
+    },
+    {
+      "id": "齐扎拉#1958年#中央#政协常委#全国政协",
+      "name": "齐扎拉",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "李惠东#1962年#中央#政协常委#全国政协",
+      "name": "李惠东",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "杨岳#1961年#中央#政协常委#全国政协",
+      "name": "杨岳",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "郑建闽#1962年#中央#政协常委#全国政协",
+      "name": "郑建闽",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "黄志贤#1955年#中央#政协常委#全国政协",
+      "name": "黄志贤",
+      "status": "fail",
+      "reason": "no_verified_portrait"
+    },
+    {
+      "id": "楼继伟#1950年#中央#政协常委#全国政协",
+      "name": "楼继伟",
+      "status": "ok",
+      "wikiTitle": "楼继伟",
+      "avatarUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Lou_Jiwei.jpg/330px-Lou_Jiwei.jpg"
+    }
+  ],
+  "conflicts": []
+}

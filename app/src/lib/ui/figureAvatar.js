@@ -9,7 +9,7 @@ import {
   wikiTitleMatchesPerson,
 } from './avatarVerify.js';
 
-const CACHE_KEY = 'c2os-avatar-cache-v3';
+const CACHE_KEY = 'c2os-avatar-cache-v4';
 const MISS = '__miss__';
 const CACHE_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 const QUEUE_DELAY_MS = 180;
@@ -70,7 +70,15 @@ function readCache(key) {
 function resolveMeta(meta) {
   const name = meta?.name || '';
   const id = meta?.id || '';
-  const ov = (id && AVATAR_OVERRIDES_BY_ID[id]) || AVATAR_OVERRIDES_BY_NAME[name] || {};
+  const ovById = (id && AVATAR_OVERRIDES_BY_ID[id]) || null;
+  const ovByName = !ovById && name ? AVATAR_OVERRIDES_BY_NAME[name] : null;
+  const ov = ovById || (
+    ovByName && (ovByName.verifyTier === VERIFY_TIER.VERIFIED || ovByName.source === 'curated')
+      ? ovByName
+      : {}
+  );
+  const portraitTier = meta?.verifyTier || ov.verifyTier || '';
+  const portraitSource = meta?.source || ov.source || '';
   return {
     id,
     name,
@@ -78,8 +86,8 @@ function resolveMeta(meta) {
     wikiTitle: meta?.wikiTitle || ov.wikiTitle || '',
     wikiLang: meta?.wikiLang || ov.wikiLang || 'zh',
     avatarUrl: meta?.avatarUrl || ov.avatarUrl || '',
-    verifyTier: meta?.verifyTier || ov.verifyTier || '',
-    source: meta?.source || ov.source || '',
+    verifyTier: portraitTier,
+    source: portraitSource,
   };
 }
 

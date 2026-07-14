@@ -13,6 +13,7 @@ import { VERIFY_TIER } from './avatarVerify.js';
  * @param {string} [props.wikiLang]
  * @param {string} [props.avatarUrl]
  * @param {string} [props.verifyTier]
+ * @param {string} [props.source] curated | zh-default | …
  * @param {number} [props.size=32]
  * @param {boolean} [props.ring]
  * @param {string} [props.className]
@@ -28,6 +29,7 @@ export default function FigureAvatar({
   wikiLang,
   avatarUrl,
   verifyTier: verifyTierProp,
+  source,
   size = 32,
   ring = false,
   className = '',
@@ -37,7 +39,7 @@ export default function FigureAvatar({
 }) {
   const rootRef = useRef(null);
   const [visible, setVisible] = useState(eager);
-  const meta = { id, name, nameEn, wikiTitle, wikiLang, avatarUrl, verifyTier: verifyTierProp };
+  const meta = { id, name, nameEn, wikiTitle, wikiLang, avatarUrl, verifyTier: verifyTierProp, source };
   const { url, verified, status } = useFigureAvatar(meta, avatarUrl, visible || eager);
   const [imgError, setImgError] = useState(false);
 

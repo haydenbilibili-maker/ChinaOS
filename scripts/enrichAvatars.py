@@ -49,7 +49,7 @@ FIGURE_FILES = [
 
 CURATED: dict[str, dict] = {
     "习近平": {"wikiTitle": "习近平", "wikiLang": "zh"},
-    "李强": {"wikiTitle": "李强", "wikiLang": "zh"},
+    "李强": {"wikiTitle": "李强 (1959年)", "wikiLang": "zh"},
     "赵乐际": {"wikiTitle": "赵乐际", "wikiLang": "zh"},
     "王沪宁": {"wikiTitle": "王沪宁", "wikiLang": "zh"},
     "蔡奇": {"wikiTitle": "蔡奇", "wikiLang": "zh"},

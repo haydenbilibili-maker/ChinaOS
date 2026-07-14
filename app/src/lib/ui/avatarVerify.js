@@ -64,8 +64,9 @@ export function wikiTitleMatchesPerson(wikiTitle, personName, nameEn = '') {
   }
 
   if (/[\u4e00-\u9fff]/.test(name)) {
-    if (title.includes(name) || name.includes(baseTitle)) return true;
-    if (name.length >= 2 && baseTitle.includes(name[0]) && baseTitle.length <= name.length + 8) return true;
+    // 严格：标题须包含完整姓名（允许括号消歧），禁止仅姓氏模糊匹配
+    if (title.includes(name)) return true;
+    if (baseTitle === name) return true;
     return false;
   }
 
