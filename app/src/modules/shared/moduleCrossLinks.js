@@ -212,6 +212,7 @@ const MAP = {
   ],
   threeForces: [
     { to: '/modules/observatory', label: '观象台 · 治理总入口', note: '叙事链「世界」段 · 三力回答何时被迫改。' },
+    { to: '/modules/anticorruption', label: '反腐结构观测', note: '内部危机维 · 官场躺平指数外部读数。' },
     { to: '/modules/signal-panel', label: '宏观再平衡信号灯', note: '互补仪表：「改没改」vs「何时被迫改」。' },
     { to: '/modules/personal-review', label: '超个体决策复盘', note: '三力临近度 → 个人备战/预热判词。' },
     { to: '/modules/cushion-monitor', label: '垫子厚度监测', note: '第六轮康波牌桌 × 垫子厚度命运矩阵。' },
@@ -241,11 +242,20 @@ const MAP = {
   ],
   personalReview: [
     { to: '/modules/huangfeizhai', label: '荒废斋 · 私人总入口', note: '决策复盘 · 自画像 · 迁移日志聚合。' },
+    { to: '/modules/anticorruption', label: '反腐结构观测', note: '官员躺平与年轻人躺平——同一种退出机制。' },
     { to: '/modules/observatory', label: '观象台 · 治理总入口', note: '叙事链「我」段 · 宏观双仪表 → 个人姿态。' },
     { to: '/modules/signal-panel', label: '宏观再平衡信号灯', note: 'Regime 读数 → 个人守成/进攻矩阵。' },
     { to: '/modules/three-forces', label: '三力监测仪', note: 'Proximity 读数 → 备战/预热判词。' },
     { to: '/modules/cushion-monitor', label: '垫子厚度监测', note: '国家四层垫子对照 · 个人体检同源模型。' },
     { to: '/modules/me', label: '私享切片', note: 'Hayden 自画像 · 迁移日志。' },
+  ],
+  anticorruption: [
+    { to: '/modules/huangfeizhai', label: '荒废斋 · 私人总入口', note: '结构观测 · 决策复盘 · 自画像聚合。' },
+    { to: '/modules/three-forces', label: '三力监测仪 · 内部危机', note: '官场躺平指数 → 内部危机维外部读数。' },
+    { to: '/modules/personal-review', label: '决策复盘', note: '张力二连回模块 04 · 同一种退出机制。' },
+    { to: '/modules/signal-panel', label: '宏观再平衡信号灯', note: '反腐不改变信号灯读数——属另一条战线。' },
+    { to: '/modules/observatory', label: '观象台 · 治理总入口', note: '第五种抄写 · 与再平衡、山海关卡同题。' },
+    { to: '/modules/attribution', label: '三层归因分析器', note: '治本之策的权力让渡落点。' },
   ],
   heshanReform: [
     { to: '/modules/heshan/fiscal', label: '财政沙盘 · 收支倒挂', note: '建省方案配套的转移支付与减层节支。' },

@@ -318,6 +318,16 @@ export const MODULES = [
     component: lazy(() => import('../modules/personalReview/Page.jsx')),
   },
   {
+    id: 'anticorruption',
+    path: '/modules/anticorruption',
+    group: 'huangfeizhai',
+    title: '反腐结构观测',
+    subtitle: '不数人头 · 只数租金面 · 第五种抄写',
+    icon: 'Scale',
+    accent: '#cf4a3d',
+    component: lazy(() => import('../modules/anticorruption/Page.jsx')),
+  },
+  {
     id: 'haydenSlice',
     path: '/modules/me',
     group: 'huangfeizhai',

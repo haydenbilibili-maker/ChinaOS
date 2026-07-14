@@ -4,6 +4,7 @@ import InvertedWarning from './components/InvertedWarning.jsx';
 import ProximityVerdict from './components/ProximityVerdict.jsx';
 import ForcePanels from './components/ForcePanels.jsx';
 import BetSection from './components/BetSection.jsx';
+import ExternalForceInputs from './components/ExternalForceInputs.jsx';
 import { FORCES } from './forces.seed.ts';
 import { useForceStore } from './useForceStore.ts';
 import './three-forces.css';
@@ -33,6 +34,7 @@ export default function ThreeForcesMonitor() {
         <InvertedWarning />
         <ProximityVerdict resolve={resolve} />
         <ForcePanels forces={FORCES} resolve={resolve} onCycle={cycle} />
+        <ExternalForceInputs dimension="internal_crisis" />
         <BetSection />
       </div>
 

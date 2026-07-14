@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LockOpen, ClipboardCheck, UserCircle } from 'lucide-react';
+import { LockOpen, ClipboardCheck, UserCircle, Scale } from 'lucide-react';
 import { PageHeader } from '../../app/ui.jsx';
 import { modulesByGroup } from '../../app/registry.js';
 import { HUANGFEIZHAI_GROUP_ID } from '../../domain/huangfeizhai.ts';
@@ -9,6 +9,12 @@ import './huangfeizhai.css';
 import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 const ENTRIES = [
+  {
+    id: 'anticorruption',
+    icon: Scale,
+    accent: 'var(--red)',
+    tag: '结构',
+  },
   {
     id: 'personalReview',
     icon: ClipboardCheck,

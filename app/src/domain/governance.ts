@@ -179,6 +179,7 @@ export const SIGNAL_PANEL_ROUTE = '/modules/signal-panel';
 export const THREE_FORCES_ROUTE = '/modules/three-forces';
 export const CUSHION_MONITOR_ROUTE = '/modules/cushion-monitor';
 export const PERSONAL_REVIEW_ROUTE = '/modules/personal-review';
+export const ANTICORRUPTION_ROUTE = '/modules/anticorruption';
 export const HUANGFEIZHAI_HUB_ROUTE = '/modules/huangfeizhai';
 
 /** 信号卡与三层归因议题的跨模块联动 */

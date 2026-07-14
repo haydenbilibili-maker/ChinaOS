@@ -252,6 +252,65 @@
 .tf-foot b { color: var(--io-text-dim); font-weight: 500; }
 .tf-foot a { color: var(--celadon); }
 
+.tf-ext {
+  margin-top: 22px;
+  padding: 16px 18px;
+  border-radius: 10px;
+  background: var(--ink-2, #121d21);
+  border: 1px solid var(--hair-soft, #1b2c31);
+  border-left: 2px solid var(--celadon, #79a496);
+}
+.tf-ext-hd {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.tf-ext-tag {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  color: var(--celadon, #79a496);
+  letter-spacing: 0.12em;
+}
+.tf-ext-hd h2 {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0;
+}
+.tf-ext-item + .tf-ext-item {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--hair-soft, #1b2c31);
+}
+.tf-ext-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.tf-ext-src {
+  font-size: 12.5px;
+  font-weight: 600;
+}
+.tf-ext-score {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--near, #cf4a3d);
+}
+.tf-ext-rationale {
+  font-size: 11.5px;
+  color: var(--io-text-dim, #93a6a4);
+  line-height: 1.7;
+  margin: 6px 0 0;
+}
+.tf-ext-link {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--celadon, #79a496);
+}
+
 @media (max-width: 560px) {
   .tf-win-score { text-align: left; }
 }

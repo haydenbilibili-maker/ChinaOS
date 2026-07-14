@@ -6,6 +6,7 @@
 :root[data-theme='light'] .ink-observatory.tf-wrap,
 :root[data-theme='light'] .ink-observatory.cm-wrap,
 :root[data-theme='light'] .ink-observatory.pr-wrap,
+:root[data-theme='light'] .ink-observatory.ac-wrap,
 :root[data-theme='light'] .ink-observatory.hf-gate-wrap,
 :root[data-theme='light'] .ink-observatory.hf-hub-wrap,
 :root[data-theme='light'] .gv-panel.ink-observatory {
@@ -56,7 +57,8 @@
 }
 
 :root[data-theme='light'] .ink-observatory.cm-wrap,
-:root[data-theme='light'] .ink-observatory.pr-wrap {
+:root[data-theme='light'] .ink-observatory.pr-wrap,
+:root[data-theme='light'] .ink-observatory.ac-wrap {
   background:
     radial-gradient(1100px 550px at 20% -10%, #e8e4da 0%, transparent 60%),
     var(--ink);
@@ -108,7 +110,9 @@
 :root[data-theme='light'] .ink-observatory .cm-verdict,
 :root[data-theme='light'] .ink-observatory .pr-thesis,
 :root[data-theme='light'] .ink-observatory .pr-verdict,
-:root[data-theme='light'] .ink-observatory .pr-final {
+:root[data-theme='light'] .ink-observatory .pr-final,
+:root[data-theme='light'] .ink-observatory .ac-eq-wrap,
+:root[data-theme='light'] .ink-observatory .ac-verdict {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
