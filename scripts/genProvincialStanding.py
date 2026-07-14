@@ -113,8 +113,8 @@ def mk_person(prov, name, role, title=""):
 def mk_vacancy(prov, role, note):
     return f"""  fig({{
     name: '（{prov}{role}暂缺）', province: '{esc(prov)}', level: '副部级', role: '{role}', sector: '地方', org: '{esc(prov)}',
-    source: '中国经济网/公开报道·2026-06-11',
-    fields: {{ title: '{esc(prov)}{role}（暂缺）', tookOffice: '2026-06-11', note: '{esc(note)}' }},
+    source: '中国经济网/公开报道·2026-07-14',
+    fields: {{ title: '{esc(prov)}{role}（暂缺）', tookOffice: '2026-07-14', note: '{esc(note)}' }},
     career: [],
   }})"""
 

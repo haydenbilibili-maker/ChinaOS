@@ -411,7 +411,7 @@ scope = (
 lines = [HEADER.replace(
     "scope: '维权律师 {lawyer} 人；记者 {journalist} 人；作家 {writer} 人；民运 {movement} 人；宗教 {religion} 人；劳工 {labor} 人；网络异议 {online} 人；流亡海外 {exile} 人'",
     f"scope: '{scope}'",
-).replace("{as_of}", "2026-06-11")]
+).replace("{as_of}", "2026-07-14")]
 
 lines.append("export const DISSIDENT_2026 = [")
 for e in filtered:

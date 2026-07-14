@@ -461,7 +461,7 @@ counts = Counter(e[7] for e in filtered)
 role_counts = Counter(e[4] for e in filtered)
 scope = "；".join(f"{r} {counts[r]} 处" for r in ["亚太", "欧洲", "北美", "拉美", "非洲", "中东", "国际组织"] if counts[r])
 
-body = HEADER.replace("{scope}", scope).replace("{as_of}", "2026-06-11")
+body = HEADER.replace("{scope}", scope).replace("{as_of}", "2026-07-14")
 body += "\nexport const DIPLOMATIC_CORPS_2026 = [\n"
 body += "\n".join(fmt_entry(e) for e in filtered)
 body += "\n];\n\n"

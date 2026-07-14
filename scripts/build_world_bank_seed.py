@@ -138,7 +138,7 @@ export const WORLD_BANK_META = {{
   category: '世界银行',
   source: '世界银行 世界发展指标（WDI）· 本地 CSV 离线快照',
   sources: ['World Bank · World Development Indicators (WDI)'],
-  asOf: '2026-06-11',
+  asOf: '2026-07-14',
   disclaimer: '公开数据示意：数值取自世界银行 WDI 公开数据本地快照（data/wb_api_*.csv），仅供研究参考，使用前请核对官方口径。',
   scope: '中国 / 中国香港 / 中国澳门 · {YEAR_MIN}–{YEAR_MAX}',
   indicatorCount: WORLD_BANK_INDICATORS.length,

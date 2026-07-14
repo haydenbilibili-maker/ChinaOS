@@ -8,7 +8,7 @@ from pathlib import Path
 import json
 
 OUT = Path(__file__).resolve().parents[1] / "app/src/lib/db/figureLegalStatute2026.js"
-AS_OF = "2026-06-11"
+AS_OF = "2026-07-14"
 
 # type: law | admin_regulation | judicial_interpretation
 # status: 现行有效 | 已修订 | 已废止

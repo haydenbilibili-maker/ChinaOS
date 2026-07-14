@@ -8,7 +8,7 @@ from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-AS_OF = "2026-06-11"
+AS_OF = "2026-07-14"
 DENSITY_THRESHOLD = 2000
 FULL_THRESHOLD = 8000
 OFFICIAL_MARKERS = ("corpusSource: official", "corpusTier: official")

@@ -193,7 +193,7 @@ def write_batch2(target: int = 70) -> int:
     count = 0
     for entry in candidates[:target]:
         eid = entry["id"]
-        meta = f"{entry['date']} · {entry['org']} · {entry['type']} · AS_OF 2026-06-11"
+        meta = f"{entry['date']} · {entry['org']} · {entry['type']} · AS_OF 2026-07-14"
         sections = build_sections(entry, raw_blocks.get(eid, ""))
         content = policy_doc(entry["title"], meta, sections)
         path = POLICIES / f"{eid}.md"

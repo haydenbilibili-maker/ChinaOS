@@ -906,7 +906,7 @@ def build():
 
     meta = {
         "id": "pe500-2024",
-        "asOf": "2026-06-11",
+        "asOf": "2026-07-14",
         "listYear": 2024,
         "listSource": "全国工商联《2024中国民营企业500强》",
         "listPublished": "2024-10-12",

@@ -570,7 +570,7 @@ scope = scope.format(
 )
 header = HEADER.replace(HEADER.split("scope: '")[1].split("'")[0], scope)
 notes_tpl = header.split("notes: '")[1].split("'")[0]
-header = header.replace(notes_tpl, notes_tpl.format(as_of="2026-06-11"))
+header = header.replace(notes_tpl, notes_tpl.format(as_of="2026-07-14"))
 
 lines = [header.rstrip()]
 

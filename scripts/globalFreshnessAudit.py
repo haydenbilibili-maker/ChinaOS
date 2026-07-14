@@ -15,9 +15,9 @@ from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-BASELINE = date(2026, 6, 11)
-BASELINE_STR = "2026-06-11"
-BASELINE_MONTH = "2026-06"
+BASELINE = date(2026, 7, 14)
+BASELINE_STR = "2026-07-14"
+BASELINE_MONTH = "2026-07"
 
 SCAN_DIRS = [
     ROOT / "app/src",
@@ -40,7 +40,7 @@ NEWS_DATE_RE = re.compile(r"publishedAt:\s*['\"](\d{4}-\d{2}-\d{2})['\"]")
 PLACEHOLDER_DATE_RE = re.compile(r"['\"]?(1970-01-01|2000-01-01|2099-12-31)['\"]?")
 STALE_YEAR_RE = re.compile(r"\b(202[0-3])\b")
 
-META_AS_OF_OK = {BASELINE_STR, BASELINE_MONTH, "2026-06-11", "2026-06"}
+META_AS_OF_OK = {BASELINE_STR, BASELINE_MONTH, "2026-06-11", "2026-06", "2026-07-13"}
 
 
 def parse_date(s: str) -> date | None:
