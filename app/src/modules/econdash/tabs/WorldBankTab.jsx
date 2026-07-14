@@ -339,10 +339,10 @@ export default function WorldBankTab({ wb }) {
               领先指标示意与 CEU 供强需弱叙事交叉验证。
             </p>
           </Link>
-          <Link to="/wb-ce-report" className="econ-hub-card" style={{ borderLeft: '3px solid #10b981' }}>
-            <div className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>世行简报独立页 ↗</div>
+          <Link to="/foundation?tab=worldbank" className="econ-hub-card" style={{ borderLeft: '3px solid #10b981' }}>
+            <div className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>数据底座 · 世行 WDI ↗</div>
             <p className="text-[11px] m-0 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
-              完整五段式阅读体验与 PDF 原文下载。
+              本地 WDI 种子与指标目录，与本简报 CEU 月度研判互补。
             </p>
           </Link>
           <a

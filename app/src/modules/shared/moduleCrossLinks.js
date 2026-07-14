@@ -156,7 +156,7 @@ const MAP = {
     { to: '/modules/observatory', label: '观象台 · 治理结构总入口', note: '双仪表判读 · 叙事链 · 世界→中国→同类→我。' },
     { to: '/modules/renqun-tupu', label: '人群画像总图谱 · GY-00', note: `中国人群分析组总入口，${SLICE_N} 片切片钻探进度。` },
     { to: '/econ-dashboard', label: '经济大盘 · 2026 H1', note: 'NBS 快照 + 金丝雀监测 + 三次产业结构。' },
-    { to: '/wb-ce-report', label: '世行经济简报 · 2026-07', note: '世界银行月度中国经济简报：基线预测与政策研判。' },
+    { to: '/econ-dashboard?tab=worldbank', label: '世行经济简报 · 2026-07', note: '世行月度研判：基线预测与政策叙事（经济大盘 Tab）。' },
     { to: '/modules/signal-panel', label: '宏观再平衡信号灯', note: 'A/B/C 信号 · 态势合成 · 超个体动作映射。' },
     { to: '/modules/three-forces', label: '三力监测仪', note: '改革窗口压力读数 · 与信号灯配对。' },
     { to: '/modules/cushion-monitor', label: '垫子厚度监测', note: '未富先躺 · 四国锚点 · 命运矩阵。' },
@@ -175,13 +175,6 @@ const MAP = {
     { to: '/governance', label: '治理现代化 · 数字政府', note: '结构矛盾落到执行精度的制度接口。' },
     { to: '/consumption', label: '扩大内需 · 消费率', note: '内需不足与消费占 GDP 比重。' },
     { to: '/foreign-trade', label: '对外贸易 · 新三样', note: '外需与出口交货值领先指标。' },
-  ],
-  wbCeReport: [
-    { to: '/econ-dashboard', label: '经济大盘 · WDI 长序列', note: 'NBS 快照与世行 WDI 实时指标互补。' },
-    { to: '/foundation?tab=worldbank', label: '数据底座 · 世界银行 WDI', note: '本地 WDI 种子与指标目录。' },
-    { to: '/modules/signal-panel', label: '宏观再平衡信号灯', note: '内需再平衡与政策信号交叉验证。' },
-    { to: '/consumption', label: '扩大内需 · 消费率', note: '预防性储蓄与社保短板议题。' },
-    { to: '/housing', label: '住房地产 · 周期调整', note: '地产交付与「白名单」融资约束。' },
   ],
   observatory: [
     { to: '/modules/signal-panel', label: '宏观再平衡信号灯', note: '改没改 · A/B/C 十二项信号态势合成。' },
