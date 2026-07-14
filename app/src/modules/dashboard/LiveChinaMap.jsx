@@ -161,12 +161,24 @@ export default function LiveChinaMap({
 }) {
   const isCompact = variant === 'compact';
   const showSituation = !isCompact && view === 'situation';
-  const showHeatmap = isCompact || view === 'heatmap' || view === 'signals' || view === 'timeline';
+  // 全国态势 / 区域热力 / 信号图层 / 时间轴 均挂载中国地图（研判下钻用散点）
+  const showMap = isCompact
+    || view === 'situation'
+    || view === 'heatmap'
+    || view === 'signals'
+    || view === 'timeline';
   const showSignals = !isCompact && view === 'signals';
   const showTimeline = !isCompact && view === 'timeline';
   const showAnalysis = !isCompact && view === 'analysis';
   const showLayerPanel = !isCompact && (view === 'heatmap' || view === 'signals');
   const showRankSidebar = !isCompact && (view === 'heatmap' || view === 'situation');
+  const mapGridMod = showSignals
+    ? 'lcm-map-grid--signals'
+    : showLayerPanel && showRankSidebar
+      ? 'lcm-map-grid--heatmap'
+      : showRankSidebar
+        ? 'lcm-map-grid--situation'
+        : 'lcm-map-grid--map-only';
   const searchInputRef = useRef(null);
   const shellRef = useRef(null);
   const elRef = useRef(null);
@@ -312,11 +324,11 @@ export default function LiveChinaMap({
     return () => { alive = false; };
   }, []);
 
-  // URL 深链 → 初始省份 / 图层
+  // URL 深链 → 初始省份 / 图层（缺省 layer 时强制综合态势，确保首屏即有色阶）
   useEffect(() => {
     if (!deepLink || isCompact) return undefined;
     skipDeepLinkWrite.current = true;
-    if (deepLink.layer) setLayerId(deepLink.layer);
+    setLayerId(deepLink.layer || 'composite');
     if (deepLink.province) {
       setSelectedProvince(deepLink.province);
       setSidebarOpen(false);
@@ -399,7 +411,7 @@ export default function LiveChinaMap({
   }, []);
 
   useEffect(() => {
-    if (!ready || !elRef.current || !showHeatmap) return undefined;
+    if (!ready || !elRef.current || !showMap) return undefined;
     let alive = true;
     let chart = null;
     let ro = null;
@@ -409,7 +421,9 @@ export default function LiveChinaMap({
       chart = echarts.init(elRef.current, null, { renderer: 'canvas' });
       chartRef.current = chart;
       setChartInstance(chart);
-      ro = new ResizeObserver(() => chart?.resize());
+      ro = new ResizeObserver(() => {
+        if (chart && !chart.isDisposed?.()) chart.resize();
+      });
       ro.observe(elRef.current);
 
       chart.on('click', (params) => {
@@ -417,6 +431,10 @@ export default function LiveChinaMap({
           setSelectedProvince(params.name);
           setSidebarOpen(false);
         }
+      });
+      // 初始化完成后立刻 resize，避免容器尚在布局中时画布为 0 宽
+      requestAnimationFrame(() => {
+        if (alive && chart && !chart.isDisposed?.()) chart.resize();
       });
     });
 
@@ -437,7 +455,21 @@ export default function LiveChinaMap({
       chartRef.current = null;
       setChartInstance(null);
     };
-  }, [ready, showHeatmap]);
+  }, [ready, showMap]);
+
+  // 视图切换 / 侧栏显隐后强制自适应，避免时间轴等单列布局残留旧尺寸
+  useEffect(() => {
+    if (!chartInstance || !showMap) return undefined;
+    const run = () => {
+      if (chartInstance && !chartInstance.isDisposed?.()) chartInstance.resize();
+    };
+    const raf = requestAnimationFrame(run);
+    const t = setTimeout(run, 120);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(t);
+    };
+  }, [chartInstance, showMap, view, mapGridMod, isFullscreen]);
 
   // 键盘：Esc 关抽屉 · ←→ 切省 · / 聚焦搜索
   useEffect(() => {
@@ -655,13 +687,17 @@ export default function LiveChinaMap({
     };
   }, [theme, layer, mapData, displayData, deltaMode, isReal, coloringFiscal, weather.data, weather.fetchedAt, airQuality.data, airQuality.fetchedAt, zoneId, layerId, palette, hotCoords, region, selectedProvince, isCompact, layerPrefs, showLabels, showSatellite, quakesState, flightsState, shippingState, buildQuakeSeries, quakeSymbolSize, quakeColor, buildFlightSeries, buildPortSeries, buildVesselSeries, portSymbolSize]);
 
+  // 依赖 chartInstance：echarts 异步 init 完成后必须再跑一遍，否则刷新后空白直至点图层
   useEffect(() => {
-    const chart = chartRef.current;
-    if (!chart || !ready || !showHeatmap) return;
+    const chart = chartRef.current || chartInstance;
+    if (!chart || !ready || !showMap) return;
     chart.showLoading('default', { text: '图层渲染中…', color: STEEL, textColor: chartTextColor(), maskColor: 'rgba(10,14,23,0.35)' });
     chart.setOption(buildOption(), { notMerge: false, lazyUpdate: false });
     chart.hideLoading();
-  }, [ready, showHeatmap, buildOption]);
+    requestAnimationFrame(() => {
+      if (chart && !chart.isDisposed?.()) chart.resize();
+    });
+  }, [ready, showMap, buildOption, chartInstance]);
 
   const handleLayerChange = (id) => {
     setLayerId(id);
@@ -895,8 +931,8 @@ export default function LiveChinaMap({
         />
       )}
 
-      {showHeatmap && (
-      <div className={`live-china-map-body lcm-section ${!isCompact ? 'live-china-map-body--full lcm-map-grid' : ''} ${showSignals ? 'lcm-map-grid--signals' : ''} mt-4`}>
+      {showMap && (
+      <div className={`live-china-map-body lcm-section ${!isCompact ? `live-china-map-body--full lcm-map-grid ${mapGridMod}` : ''} mt-4`}>
         {showLayerPanel && (
           <LiveMapLayerPanel
             className={showSignals ? '' : 'lcm-layer-panel--desktop-only'}
@@ -912,7 +948,7 @@ export default function LiveChinaMap({
             expanded={showSignals}
           />
         )}
-        <div className={`live-china-map-canvas relative min-w-0 ${isCompact ? 'live-china-map-canvas--compact' : ''}`}>
+        <div className={`live-china-map-canvas relative min-w-0 w-full ${isCompact ? 'live-china-map-canvas--compact' : ''}`}>
           <div ref={elRef} style={{ width: '100%', height: '100%' }} />
           {!isCompact && (
             <SatelliteCloudOverlay

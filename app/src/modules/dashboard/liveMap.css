@@ -150,16 +150,34 @@
   display: grid;
   gap: 1rem;
   align-items: start;
+  width: 100%;
+}
+
+.lcm-map-grid .live-china-map-canvas {
+  width: 100%;
+  min-width: 0;
 }
 
 @media (min-width: 1024px) {
-  .lcm-map-grid {
+  /* 默认（热力）：图层面板 + 地图 + 排行 */
+  .lcm-map-grid,
+  .lcm-map-grid--heatmap {
     grid-template-columns: minmax(200px, 220px) minmax(0, 1fr) minmax(240px, 280px);
     gap: 1.25rem;
   }
 
   .lcm-map-grid--signals {
     grid-template-columns: minmax(240px, 260px) minmax(0, 1fr);
+  }
+
+  /* 全国态势：地图 + 排行（无左侧图层面板） */
+  .lcm-map-grid--situation {
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 280px);
+  }
+
+  /* 时间轴等：地图占满主栏 */
+  .lcm-map-grid--map-only {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .lcm-map-grid--analysis {
@@ -436,7 +454,8 @@
   }
 
   .live-china-map-canvas {
-    height: clamp(420px, 52vh, 640px);
+    height: clamp(440px, 54vh, 640px);
+    min-height: 440px;
   }
 
   .lcm-situation-hero {

@@ -1317,8 +1317,9 @@ textarea:focus {
 }
 
 .live-china-map-canvas {
-  height: clamp(320px, 50vh, 560px);
-  min-height: 320px;
+  height: clamp(420px, 52vh, 560px);
+  min-height: 420px;
+  width: 100%;
   border-radius: var(--radius-md, 8px);
   overflow: hidden;
   background:
@@ -1358,12 +1359,27 @@ textarea:focus {
   grid-template-columns: 1fr;
   gap: 1rem;
   align-items: start;
+  width: 100%;
 }
 
+/* 列模板由 liveMap.css 的 .lcm-map-grid--* 修饰符接管，避免固定三列把单图挤到左侧窄栏 */
 @media (min-width: 1024px) {
-  .live-china-map-body--full {
+  .live-china-map-body--full.lcm-map-grid--heatmap {
     grid-template-columns: 220px minmax(0, 1fr) 280px;
     gap: 1.25rem;
+  }
+
+  .live-china-map-body--full.lcm-map-grid--signals {
+    grid-template-columns: minmax(240px, 260px) minmax(0, 1fr);
+  }
+
+  .live-china-map-body--full.lcm-map-grid--situation {
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 280px);
+  }
+
+  .live-china-map-body--full.lcm-map-grid--map-only,
+  .live-china-map-body--full.lcm-map-grid--analysis {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -1406,8 +1422,8 @@ textarea:focus {
 
 @media (max-width: 767px) {
   .live-china-map-canvas {
-    height: clamp(280px, 42vh, 400px);
-    min-height: 280px;
+    height: clamp(300px, 44vh, 420px);
+    min-height: 300px;
   }
 
   .live-china-map-canvas--compact {
