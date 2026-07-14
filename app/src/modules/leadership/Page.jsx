@@ -16,6 +16,7 @@ import {
 import { SIM_NOTE, TOPIC_PARAMS, simAttention, INTL_TERM_COMPARE, INTL_NOTE, buildLeadReport } from './leadershipSim.js';
 import LeadershipAiSim from './LeadershipAiSim.jsx';
 import LeadershipBanner from './LeadershipBanner.jsx';
+import GovernanceSimLab from './GovernanceSimLab.jsx';
 import './leadership.css';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -765,7 +766,7 @@ export default function Page() {
       <PageHeader
         badge="Sim · 领袖统治"
         title="领袖统治 · 权力结构与决策机制"
-        subtitle="权力金字塔 · 决策 Sankey · 人事矩阵 · 权威趋势 · 四区交互分析"
+        subtitle="权力结构 · 决策机制 · 治理推演台 · 诊断权/处方权 · 非评价非预测"
       />
 
       <LeadershipBanner />
@@ -774,6 +775,7 @@ export default function Page() {
         <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>定位声明：</span>
         本模块以<span style={{ color: CYAN }}>公开信息梳理与学理分析框架</span>解构最高领导层的权力结构、决策机制与人事布局——
         事实层取自党代会公报、宪法修正案、公开职务任免；分析层呈现制度逻辑与学界公开讨论的张力，两面都讲。
+        「治理推演」分区模拟制度位点—约束—选项—后果的结构权衡，评估的是建制位置而非个人能力。
         基准日 <span className="mono" style={{ color: GOLD }}>{LEAD_AS_OF}</span> ·
         <span style={{ color: GOLD }}> 非评价 · 非预测 · 非倡导</span>。
       </IntroCard>
@@ -809,7 +811,8 @@ export default function Page() {
       {section === 'history' && (
         <HistorySection eraIdx={eraIdx} setEraIdx={setEraIdx} agendaId={agendaId} setAgendaId={setAgendaId} />
       )}
-      {section === 'aisim' && <LeadershipAiSim />}
+      {section === 'govsim' && <GovernanceSimLab />}
+      {section === 'aisim' && <LeadershipAiSim onGotoGovSim={() => setSection('govsim')} />}
 
       <UpgradeSections
         eraLabel={activeEra?.label || '全周期'}

@@ -14,6 +14,7 @@ export const SECTION_TABS = [
   { key: 'decision', label: '决策机制', accent: '#22d3ee' },
   { key: 'personnel', label: '人事布局', accent: '#e8a317' },
   { key: 'history', label: '历史演进', accent: '#8b5cf6' },
+  { key: 'govsim', label: '治理推演', accent: '#fb923c' },
   { key: 'aisim', label: 'AI 推演', accent: '#10b981' },
 ];
 
@@ -33,6 +34,8 @@ export const INSTITUTION_TOOLS = [
   { key: 'party-school', label: '党校培训', accent: '#10b981', route: '/sandbox?tab=party-school', note: '干部意识形态与能力再生产' },
   { key: 'policy', label: '政令文库', accent: '#22d3ee', route: '/policydocs', note: '政策文本与立法迭代' },
   { key: 'diplomacy', label: '元首外交', accent: '#8b5cf6', route: '/diplomacy', note: '最高层对外校准器' },
+  { key: 'attribution', label: '三层归因', accent: '#cf4a3d', route: '/modules/attribution', note: '诊断结构位置 · 摆对被告席' },
+  { key: 'premier', label: '权限半径', accent: '#cf9a32', route: '/modules/premier-radius', note: '诊断权与处方权分离轨迹' },
 ];
 
 // ── 权力金字塔层级（示意权重 · 非人数统计） ─────────────────────────────────

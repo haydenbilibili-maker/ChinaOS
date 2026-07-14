@@ -538,6 +538,9 @@ const MAP = {
   ],
   leadership: [
     { to: '/talent', label: '人才精英库 · 中国政要', note: '政治局常委与省部级政要结构化图谱，与本模块人事布局同源。' },
+    { to: '/modules/attribution', label: '三层归因分析器', note: '路线/决策/执行结构位置判定，与治理推演台权力层同源。' },
+    { to: '/modules/premier-radius', label: '总理权限半径', note: '诊断权与处方权分离的制度变迁轨迹。' },
+    { to: '/modules/signal-panel', label: '宏观再平衡信号灯', note: '处方权上移后的政策读数与态势合成。' },
     { to: '/sandbox', label: '治国沙盒', note: '省域主官配置与危机情景推演，对接人事轮换逻辑。' },
     { to: '/sandbox?tab=inspection', label: '中央巡视沙盘', note: '巡视巡察作为制度工具箱的执行模拟。' },
     { to: '/diplomacy', label: '外交博弈 · 元首外交', note: '最高层对外校准与全球矢量盘。' },

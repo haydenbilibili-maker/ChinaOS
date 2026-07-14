@@ -521,3 +521,225 @@
     transition: none;
   }
 }
+
+/* ── 治理结构推演台 ───────────────────────────────────────────────────────── */
+.lead-gov-steps {
+  list-style: none;
+  margin: 0 0 0.5rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.lead-gov-step {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  text-align: left;
+  cursor: pointer;
+  padding: 0.55rem 0.6rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+  color: var(--text-tertiary);
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.lead-gov-step__n {
+  flex-shrink: 0;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-base);
+}
+
+.lead-gov-step__label {
+  display: block;
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--text-secondary);
+}
+
+.lead-gov-step__hint {
+  display: block;
+  font-size: 10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  margin-top: 0.15rem;
+  color: var(--text-tertiary);
+}
+
+.lead-gov-step.is-active {
+  border-color: color-mix(in srgb, #22d3ee 55%, transparent);
+  background: color-mix(in srgb, #22d3ee 10%, var(--bg-elevated));
+  color: #22d3ee;
+}
+
+.lead-gov-step.is-active .lead-gov-step__label {
+  color: var(--text-primary);
+}
+
+.lead-gov-step.is-active .lead-gov-step__n {
+  border-color: color-mix(in srgb, #22d3ee 55%, transparent);
+  color: #22d3ee;
+}
+
+.lead-gov-step.is-done .lead-gov-step__n {
+  border-color: color-mix(in srgb, #10b981 45%, transparent);
+  color: #10b981;
+}
+
+.lead-gov-method {
+  margin-bottom: 0.85rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+  overflow: hidden;
+}
+
+.lead-gov-method__toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  text-align: left;
+  cursor: pointer;
+  padding: 0.65rem 0.85rem;
+  border: 0;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.lead-gov-method__body {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 0.85rem;
+  padding: 0 0.85rem 0.85rem;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.75rem;
+}
+
+.lead-gov-method__list {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 11px;
+  line-height: 1.55;
+  color: var(--text-tertiary);
+}
+
+.lead-gov-caution {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+  padding: 0.7rem 0.85rem;
+  margin-bottom: 0.85rem;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, #e8a317 40%, transparent);
+  background: color-mix(in srgb, #e8a317 8%, var(--bg-elevated));
+}
+
+.lead-gov-loc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.55rem;
+}
+
+.lead-gov-card,
+.lead-gov-option {
+  text-align: left;
+  cursor: pointer;
+  padding: 0.75rem 0.8rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lead-gov-card.is-on,
+.lead-gov-option.is-on {
+  border-color: color-mix(in srgb, var(--card-accent, #22d3ee) 55%, transparent);
+  background: color-mix(in srgb, var(--card-accent, #22d3ee) 10%, var(--bg-elevated));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--card-accent, #22d3ee) 18%, transparent);
+}
+
+.lead-gov-brief {
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--bg-elevated) 92%, transparent), var(--bg-elevated)),
+    var(--bg-elevated);
+}
+
+.lead-gov-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 0.65rem;
+}
+
+.lead-gov-matrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  gap: 0.55rem;
+}
+
+.lead-gov-matrix__cell {
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+}
+
+.lead-gov-runs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.lead-gov-run {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+}
+
+.lead-gov-run__check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  cursor: pointer;
+  min-width: 0;
+}
+
+@media (max-width: 720px) {
+  .lead-gov-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .lead-gov-step__hint {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lead-gov-step,
+  .lead-gov-card,
+  .lead-gov-option {
+    transition: none;
+  }
+}
