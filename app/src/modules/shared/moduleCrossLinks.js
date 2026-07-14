@@ -170,7 +170,7 @@ const MAP = {
     { to: '/contradictions', label: '社会主要矛盾 · 结构图谱', note: '官民、城乡、区域、代际四维结构裂缝。' },
     { to: '/capital-market', label: '资本市场 · 耐心资本', note: '注册制、中长期资金与创投政策主线。' },
     { to: '/modules/signal-panel', label: '宏观再平衡信号灯', note: '金丝雀与观测数据交叉验证。' },
-    { to: '/wb-ce-report', label: '世行经济简报 · 2026-07', note: '世行月度研判：2026 基线预测 4.4% 与政策叙事。' },
+    { to: '/econ-dashboard?tab=worldbank', label: '世行经济简报 · 2026-07', note: '世行月度研判：2026 基线预测 4.4% 与政策叙事（经济大盘 Tab）。' },
     { to: '/debt', label: '地方债务 · 省际热力', note: '广义财政与化债方案。' },
     { to: '/governance', label: '治理现代化 · 数字政府', note: '结构矛盾落到执行精度的制度接口。' },
     { to: '/consumption', label: '扩大内需 · 消费率', note: '内需不足与消费占 GDP 比重。' },

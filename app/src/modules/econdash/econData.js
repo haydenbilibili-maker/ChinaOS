@@ -298,13 +298,14 @@ export const INDICATOR_SPARKLINES = {
   m2: [8.3, 8.1, 7.9, 7.6, 7.4, 7.1, 7.0, 7.2],
 };
 
-/** Tab 深链白名单 */
-export const ECON_TAB_IDS = ['macro', 'structure', 'finance', 'regional', 'canary'];
+/** Tab 深链白名单（worldbank 别名 wb 在 Page 路由层解析） */
+export const ECON_TAB_IDS = ['macro', 'structure', 'finance', 'regional', 'canary', 'worldbank'];
 
-/** 经济大盘路由 · tab=canary|macro|… */
+/** 经济大盘路由 · tab=canary|worldbank|macro|… */
 export function econTabPath(tab = 'macro') {
-  if (!tab || tab === 'macro' || !ECON_TAB_IDS.includes(tab)) return '/econ-dashboard';
-  return `/econ-dashboard?tab=${tab}`;
+  const id = tab === 'wb' ? 'worldbank' : tab;
+  if (!id || id === 'macro' || !ECON_TAB_IDS.includes(id)) return '/econ-dashboard';
+  return `/econ-dashboard?tab=${id}`;
 }
 
 /** 取指标火花线序列（无则 null） */

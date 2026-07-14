@@ -113,8 +113,10 @@ export default function Page() {
       <IntroCard>
         本页结构化呈现世界银行 {REPORT_META.edition}《{REPORT_META.title}》中文版要点：概述与基线预测、
         近期经济形势（供强需弱、地产调整、出口对冲、信贷与财政）、前景风险与政策考虑，以及
-        「弥合低碳转型技能缺口」专题。与世行 WDI 实时长序列（见
-        {' '}<Link to="/econ-dashboard" className="mono" style={{ color: 'var(--cyber-cyan)' }}>经济大盘</Link>）互补——
+        「弥合低碳转型技能缺口」专题。已融合入
+        {' '}<Link to="/econ-dashboard?tab=worldbank" className="mono" style={{ color: 'var(--cyber-cyan)' }}>经济大盘 · 世行经济简报 Tab</Link>；
+        与世行 WDI 实时长序列（见
+        {' '}<Link to="/econ-dashboard" className="mono" style={{ color: 'var(--cyber-cyan)' }}>宏观态势</Link>）互补——
         本简报侧重月度研判与政策叙事，WDI 侧重年度指标长序列。
         {' '}<a href={REPORT_META.pdfPath} download className="mono" style={{ color: 'var(--cyber-cyan)' }}>下载 PDF 原文</a>
       </IntroCard>

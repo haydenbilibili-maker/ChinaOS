@@ -12,11 +12,12 @@ const StructureTab = lazy(() => import('./tabs/StructureTab.jsx'));
 const FinanceTab = lazy(() => import('./tabs/FinanceTab.jsx'));
 const RegionalTab = lazy(() => import('./tabs/RegionalTab.jsx'));
 const CanaryTab = lazy(() => import('./tabs/CanaryTab.jsx'));
+const WorldBankTab = lazy(() => import('./tabs/WorldBankTab.jsx'));
 
 // ============================================================================
 // 经济大盘 · 全景与实时监测（ink-observatory Round 2）
 // ----------------------------------------------------------------------------
-// 五 Tab 层级：宏观态势 → 结构矛盾 → 资本市场 → 区域产业 → 信号金丝雀
+// 六 Tab 层级：宏观态势 → 结构矛盾 → 资本市场 → 区域产业 → 信号金丝雀 → 世行经济简报
 // 数据层不变：NBS 快照 + World Bank WDI 实时 + 领先指标示意
 // 声明：公开统计梳理 · 示意标定 · 非投资建议 · 非预测
 // ============================================================================
@@ -27,6 +28,7 @@ const TABS = [
   { id: 'finance', label: '资本市场', accent: '#8b5cf6' },
   { id: 'regional', label: '区域产业', accent: '#c99a4e' },
   { id: 'canary', label: '信号金丝雀', accent: 'var(--china-red)' },
+  { id: 'worldbank', label: '世行经济简报', accent: '#22d3ee' },
 ];
 
 function TabFallback() {
@@ -41,7 +43,8 @@ export default function Page({ embedded = false }) {
   const tab = useMemo(() => {
     if (embedded) return localTab;
     const raw = searchParams.get('tab');
-    return ECON_TAB_IDS.includes(raw) ? raw : 'macro';
+    const id = raw === 'wb' ? 'worldbank' : raw;
+    return ECON_TAB_IDS.includes(id) ? id : 'macro';
   }, [embedded, localTab, searchParams]);
 
   const setTab = useCallback((id) => {
@@ -70,6 +73,8 @@ export default function Page({ embedded = false }) {
         return <RegionalTab />;
       case 'canary':
         return <CanaryTab wbData={wb.data || {}} />;
+      case 'worldbank':
+        return <WorldBankTab wb={wb} />;
       default:
         return <MacroTab wb={wb} />;
     }
@@ -97,7 +102,7 @@ export default function Page({ embedded = false }) {
         本页以三层数据合成经济全景：国家统计局公开口径快照（标注基准日 {ECON_AS_OF}，以官方发布为准）、
         世界银行 WDI 实时长序列（直连取数、35 年序列）、以及公开数据派生的领先指标示意。
         三次产业结构的此消彼长看「经济在做什么」，核心指标盘看「当下的体温」，金丝雀监测盘看「转折的早信号」，
-        收入分配与新经济看「增长落到谁身上、新动能在哪里」。
+        世行经济简报看「月度研判与基线预测」，收入分配与新经济看「增长落到谁身上、新动能在哪里」。
         口径声明：公开统计梳理 · 示意标定 · 非投资建议 · 非预测。
       </IntroCard>
 
