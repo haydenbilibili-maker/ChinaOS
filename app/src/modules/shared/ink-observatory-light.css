@@ -7,6 +7,7 @@
 :root[data-theme='light'] .ink-observatory.cm-wrap,
 :root[data-theme='light'] .ink-observatory.pr-wrap,
 :root[data-theme='light'] .ink-observatory.ac-wrap,
+:root[data-theme='light'] .ink-observatory.aop-wrap,
 :root[data-theme='light'] .ink-observatory.hf-gate-wrap,
 :root[data-theme='light'] .ink-observatory.hf-hub-wrap,
 :root[data-theme='light'] .ink-observatory.mil-wrap,
@@ -65,6 +66,25 @@
     var(--ink);
 }
 
+:root[data-theme='light'] .ink-observatory.aop-wrap {
+  background:
+    radial-gradient(1100px 550px at 75% -8%, #f0e6e4 0%, transparent 58%),
+    radial-gradient(900px 500px at 12% 105%, #e8e4da 0%, transparent 55%),
+    var(--ink);
+}
+
+/* ── 反腐 / 能吏 · 信号灯与警示底（密度热力、象限、收缩条） ── */
+:root[data-theme='light'] .ink-observatory.ac-wrap,
+:root[data-theme='light'] .ink-observatory.aop-wrap {
+  --red: #b91c1c;
+  --amber: #b45309;
+  --green: #047857;
+  --red-bg: var(--io-red-bg);
+  --amber-bg: var(--io-amber-bg);
+  --green-bg: var(--io-green-bg);
+  --aop-void: #ede8e4;
+}
+
 :root[data-theme='light'] .ink-observatory.hf-gate-wrap,
 :root[data-theme='light'] .ink-observatory.hf-hub-wrap {
   background:
@@ -83,9 +103,15 @@
 :root[data-theme='light'] .ink-observatory .pr-thesis,
 :root[data-theme='light'] .ink-observatory .pr-verdict,
 :root[data-theme='light'] .ink-observatory .pr-final,
+:root[data-theme='light'] .ink-observatory .ac-map-wrap,
+:root[data-theme='light'] .ink-observatory .ac-eq-wrap,
+:root[data-theme='light'] .ink-observatory .ac-verdict,
+:root[data-theme='light'] .ink-observatory .aop-qw,
+:root[data-theme='light'] .ink-observatory .aop-verdict,
 :root[data-theme='light'] .gv-panel.ink-observatory {
   background: linear-gradient(180deg, #ebe6dc, #e2dcd0);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-color: var(--hair);
 }
 
 /* ── 半透明黑底卡片 · 换为纸面玻璃感 ── */
@@ -112,15 +138,20 @@
 :root[data-theme='light'] .ink-observatory .pr-thesis,
 :root[data-theme='light'] .ink-observatory .pr-verdict,
 :root[data-theme='light'] .ink-observatory .pr-final,
+:root[data-theme='light'] .ink-observatory .ac-map-wrap,
 :root[data-theme='light'] .ink-observatory .ac-eq-wrap,
-:root[data-theme='light'] .ink-observatory .ac-verdict {
+:root[data-theme='light'] .ink-observatory .ac-verdict,
+:root[data-theme='light'] .ink-observatory .aop-qw,
+:root[data-theme='light'] .ink-observatory .aop-verdict {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 /* 信号灯徽标文字：日览下 --ink 为纸色，需深墨字保证对比 */
 :root[data-theme='light'] .ink-observatory.sp-wrap .sp-glyph,
 :root[data-theme='light'] .ink-observatory.sp-wrap .sp-tier,
-:root[data-theme='light'] .ink-observatory.sp-wrap .sp-tag {
+:root[data-theme='light'] .ink-observatory.sp-wrap .sp-tag,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-mark,
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-mark {
   color: #1a2428;
 }
 
@@ -134,4 +165,217 @@
 :root[data-theme='light'] .ink-observatory.hf-gate-wrap .hf-gate-title,
 :root[data-theme='light'] .ink-observatory.hf-hub-wrap .hf-hub-card h2 {
   color: #8a221c;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   反腐结构观测 ac-wrap · 日览卡片 / 密度图 / 交互
+   ═══════════════════════════════════════════════════════════ */
+
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-discipline,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-backtest,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-eq-out,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-rent-quote {
+  background: var(--io-red-bg);
+  border-color: rgba(185, 28, 28, 0.28);
+}
+
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-thresh-fn {
+  background: var(--io-amber-bg);
+  border-color: rgba(180, 83, 9, 0.28);
+}
+
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-ph,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-ladder,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-thresh,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-cost,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-rent,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-cure,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-ten,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-fair,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-fair-card,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-debate {
+  background: rgba(255, 255, 255, 0.58);
+  border-color: var(--hair);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.72), 0 2px 10px -4px rgba(0, 0, 0, 0.07);
+}
+
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-thresh-q,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-cost-loop,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-ten-loop,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-factor {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: var(--hair-soft);
+}
+
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-minitrack,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-track,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-shrink {
+  background: rgba(255, 255, 255, 0.68);
+  border-color: var(--hair);
+}
+
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-shrink div {
+  color: #1a2428;
+}
+
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-grid-hd {
+  border-bottom-color: var(--hair);
+  color: var(--io-text-faint);
+}
+
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-srow {
+  border-bottom-color: var(--hair-soft);
+  transition:
+    background var(--duration-fast, 0.18s) var(--ease-ink, ease),
+    box-shadow var(--duration-fast, 0.18s) var(--ease-ink, ease);
+}
+
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-srow:hover,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-srow:focus-within {
+  background: rgba(74, 122, 110, 0.07);
+  box-shadow: inset 3px 0 0 var(--celadon);
+}
+
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-ph,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-rent,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-cure,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-fair-card {
+  transition:
+    border-color var(--duration-fast, 0.18s) var(--ease-ink, ease),
+    box-shadow var(--duration-fast, 0.18s) var(--ease-ink, ease),
+    transform var(--duration-fast, 0.18s) var(--ease-ink, ease);
+}
+
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-ph:hover,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-rent:hover,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-cure:hover,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-fair-card:hover {
+  border-color: var(--hair);
+  box-shadow: 0 6px 20px -8px rgba(0, 0, 0, 0.1), 0 0 0 1px var(--hair-soft);
+}
+
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-foot-link a,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-ten-link a {
+  border-radius: 3px;
+  transition: color var(--duration-fast, 0.18s) var(--ease-ink, ease);
+}
+
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-foot-link a:hover,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-ten-link a:hover {
+  color: #2d5c52;
+}
+
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-foot-link a:focus-visible,
+:root[data-theme='light'] .ink-observatory.ac-wrap .ac-ten-link a:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   能吏悖论 aop-wrap · 日览象限 / 机制卡 / 交互
+   ═══════════════════════════════════════════════════════════ */
+
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-guard,
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-qnote,
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-fkick,
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-mech-core {
+  background: var(--io-red-bg);
+  border-color: rgba(185, 28, 28, 0.28);
+}
+
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-tol-par,
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-fbox-old {
+  background: var(--io-amber-bg);
+  border-color: rgba(180, 83, 9, 0.28);
+}
+
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-tol-par-red {
+  background: var(--io-red-bg);
+  border-color: rgba(185, 28, 28, 0.28);
+}
+
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-cell,
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-mech,
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-flip,
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-tol,
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-fbox {
+  background: rgba(255, 255, 255, 0.58);
+  border-color: var(--hair);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.72), 0 2px 10px -4px rgba(0, 0, 0, 0.07);
+  transition:
+    border-color var(--duration-fast, 0.18s) var(--ease-ink, ease),
+    box-shadow var(--duration-fast, 0.18s) var(--ease-ink, ease),
+    transform var(--duration-fast, 0.18s) var(--ease-ink, ease);
+}
+
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-cell.aop-winner {
+  background: var(--io-amber-bg);
+  border-color: rgba(180, 83, 9, 0.32);
+}
+
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-cell.aop-survivor {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: var(--hair);
+}
+
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-cell.aop-void {
+  background:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 7px,
+      rgba(185, 28, 28, 0.06) 7px,
+      rgba(185, 28, 28, 0.06) 14px
+    ),
+    var(--io-red-bg);
+  border-color: rgba(185, 28, 28, 0.38);
+}
+
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-vx {
+  color: rgba(185, 28, 28, 0.42);
+}
+
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-fbox-new {
+  background: rgba(255, 255, 255, 0.72);
+}
+
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-cell:hover,
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-mech:hover,
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-flip:hover,
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-tol:hover {
+  border-color: var(--hair);
+  box-shadow: 0 6px 20px -8px rgba(0, 0, 0, 0.1), 0 0 0 1px var(--hair-soft);
+}
+
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-cell.aop-void:hover {
+  border-color: rgba(185, 28, 28, 0.48);
+  box-shadow: 0 6px 20px -8px rgba(185, 28, 28, 0.12), 0 0 0 1px rgba(185, 28, 28, 0.22);
+}
+
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-foot-link a {
+  border-radius: 3px;
+  transition: color var(--duration-fast, 0.18s) var(--ease-ink, ease);
+}
+
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-foot-link a:hover {
+  color: #2d5c52;
+}
+
+:root[data-theme='light'] .ink-observatory.aop-wrap .aop-foot-link a:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme='light'] .ink-observatory.ac-wrap .ac-srow,
+  :root[data-theme='light'] .ink-observatory.ac-wrap .ac-ph,
+  :root[data-theme='light'] .ink-observatory.ac-wrap .ac-rent,
+  :root[data-theme='light'] .ink-observatory.ac-wrap .ac-cure,
+  :root[data-theme='light'] .ink-observatory.ac-wrap .ac-fair-card,
+  :root[data-theme='light'] .ink-observatory.aop-wrap .aop-cell,
+  :root[data-theme='light'] .ink-observatory.aop-wrap .aop-mech,
+  :root[data-theme='light'] .ink-observatory.aop-wrap .aop-flip,
+  :root[data-theme='light'] .ink-observatory.aop-wrap .aop-tol {
+    transition: none;
+  }
 }
