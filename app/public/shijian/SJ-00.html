@@ -37,7 +37,10 @@ body{
   font-family:var(--sj-serif);
   line-height:1.75;
 }
-.sj-00-wrap{max-width:960px;margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+.sj-00-wrap{max-width:min(1080px,100%);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media (min-width:1536px){.sj-00-wrap{max-width:min(1280px,100%)}}
+@media (min-width:1920px){.sj-00-wrap{max-width:min(1440px,100%)}}
+@media (min-width:2560px){.sj-00-wrap{max-width:min(1600px,100%)}}
 
 /* 页眉 */
 .sj-00-mast{
@@ -205,7 +208,44 @@ body{
   .sj-00-step{border-right:none;border-bottom:1px solid var(--sj-line)}
   .sj-00-step:last-child{border-bottom:none}
 }
+
+/* 宣纸日览 · 由 ?theme=light 或 postMessage 切换 html[data-theme] */
+html[data-theme="light"]{
+  --sj-ink-900:#f4f1ea;
+  --sj-ink-800:#ebe6dc;
+  --sj-paper-100:#1a1814;
+  --sj-paper-300:#5a5348;
+  --sj-vermil:#9a3428;
+  --sj-celadon:#3f5f54;
+  --sj-ochre:#8a6528;
+  --sj-line:#c8bfb0;
+}
+html[data-theme="light"] body{
+  background:
+    radial-gradient(1000px 560px at 72% -8%, #e8e4da 0%, transparent 55%),
+    radial-gradient(700px 420px at 8% 90%, #ebe6dc 0%, transparent 50%),
+    var(--sj-ink-900);
+  color:var(--sj-paper-100);
+}
+html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
 </style>
+<script>
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){
+    document.documentElement.setAttribute('data-theme', t==='light' ? 'light' : 'dark');
+  }
+  try{
+    var q=new URLSearchParams(location.search).get('theme');
+    if(q==='light'||q==='dark') apply(q);
+  }catch(e){}
+  window.addEventListener('message', function(e){
+    var d=e&&e.data;
+    if(!d||d.type!==MSG) return;
+    apply(d.theme);
+  });
+})();
+</script>
 </head>
 <body>
 <div class="sj-00-wrap" id="sj-00-top">

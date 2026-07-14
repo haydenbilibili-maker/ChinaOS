@@ -32,7 +32,10 @@ body{
   font-family:var(--sj-serif);
   line-height:1.75;
 }
-.sj-01-wrap{max-width:1080px;margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+.sj-01-wrap{max-width:min(1180px,100%);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media (min-width:1536px){.sj-01-wrap{max-width:min(1360px,100%)}}
+@media (min-width:1920px){.sj-01-wrap{max-width:min(1520px,100%)}}
+@media (min-width:2560px){.sj-01-wrap{max-width:min(1680px,100%)}}
 
 /* 页眉 */
 .sj-01-mast{
@@ -106,28 +109,49 @@ body{
 .sj-01-btn:focus-visible{box-shadow:0 0 0 2px rgba(184,137,74,.35)}
 .sj-01-btn.is-on{border-color:var(--sj-vermil);color:var(--sj-vermil);background:color-mix(in srgb, var(--sj-vermil) 12%, var(--sj-ink-900))}
 
-/* 矩阵布局 */
+/* 矩阵布局：表优先，朱批不得压扁四栏；首列生平可换行，禁止 nowrap 撑出 ~1ch 竖排假象 */
 .sj-01-matrix-layout{
-  display:grid;grid-template-columns:1fr minmax(240px,300px);gap:14px;align-items:start;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(240px,300px);
+  gap:14px;align-items:start;
+}
+@media (min-width:1536px){
+  .sj-01-matrix-layout{grid-template-columns:minmax(0,1fr) minmax(260px,340px);gap:18px}
+}
+@media (min-width:1920px){
+  .sj-01-matrix-layout{grid-template-columns:minmax(0,1fr) minmax(280px,380px);gap:20px}
 }
 .sj-01-table-wrap{
   border:1px solid var(--sj-line);border-radius:var(--sj-radius);
-  background:var(--sj-ink-800);overflow:auto;max-height:min(70vh,640px);
+  background:var(--sj-ink-800);overflow:auto;max-height:min(72vh,760px);
+  min-width:0; /* grid 子项可收缩 → 内部横向滚动，而非压扁列宽 */
 }
-.sj-01-table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:720px}
+.sj-01-table{
+  width:max(100%,960px);
+  table-layout:fixed;
+  border-collapse:collapse;font-size:13.5px;
+}
+.sj-01-table col.col-name{width:12%}
+.sj-01-table col.col-cell{width:22%}
 .sj-01-table th{
   position:sticky;top:0;z-index:1;
   background:var(--sj-ink-900);color:var(--sj-ochre);
-  font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;font-weight:500;
+  font-family:var(--sj-mono);font-size:10px;letter-spacing:.08em;font-weight:500;
   text-align:left;padding:10px 12px;border-bottom:1px solid var(--sj-line);
+  white-space:nowrap;writing-mode:horizontal-tb;text-orientation:mixed;
 }
 .sj-01-table td{
   padding:12px;border-bottom:1px solid var(--sj-line);
   color:var(--sj-paper-300);vertical-align:top;line-height:1.65;
+  writing-mode:horizontal-tb;text-orientation:mixed;
+  word-break:normal;overflow-wrap:break-word;white-space:normal;
 }
 .sj-01-table td:first-child{
   color:var(--sj-paper-100);font-weight:600;letter-spacing:.06em;
-  white-space:nowrap;width:7.5em;
+  white-space:normal;overflow:hidden;
+}
+.sj-01-table .sj-name{
+  display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
 .sj-01-table tbody tr{
   cursor:pointer;transition:background .15s ease;
@@ -137,11 +161,13 @@ body{
 .sj-01-table tbody tr.is-hot{
   background:color-mix(in srgb, var(--sj-vermil) 14%, transparent);
 }
-.sj-01-table tbody tr.is-hot td:first-child{color:var(--sj-vermil)}
+.sj-01-table tbody tr.is-hot td:first-child,
+.sj-01-table tbody tr.is-hot .sj-name{color:var(--sj-vermil)}
 .sj-01-table .risk{color:color-mix(in srgb, var(--sj-vermil) 75%, var(--sj-paper-300))}
 .sj-01-table .src{
   display:block;margin-top:6px;font-family:var(--sj-mono);font-size:10px;
   color:var(--sj-celadon);letter-spacing:.04em;font-weight:400;
+  white-space:normal;overflow-wrap:anywhere;word-break:break-word;line-height:1.5;
 }
 
 /* 朱批栏 */
@@ -208,9 +234,11 @@ body{
   html{scroll-behavior:auto}
   .sj-pt,.sj-pt .sj-dot,.sj-01-table tbody tr,.sj-01-lens{transition:none}
 }
-@media (max-width:900px){
+@media (max-width:1100px){
   .sj-01-matrix-layout{grid-template-columns:1fr}
   .sj-01-aside{position:static}
+}
+@media (max-width:900px){
   .sj-01-bridge{grid-template-columns:1fr 1fr}
 }
 @media (max-width:768px){
@@ -218,7 +246,44 @@ body{
   .sj-01-mobile-list{display:flex}
   .sj-01-bridge{grid-template-columns:1fr}
 }
+
+/* 宣纸日览 · 由 ?theme=light 或 postMessage 切换 html[data-theme] */
+html[data-theme="light"]{
+  --sj-ink-900:#f4f1ea;
+  --sj-ink-800:#ebe6dc;
+  --sj-paper-100:#1a1814;
+  --sj-paper-300:#5a5348;
+  --sj-vermil:#9a3428;
+  --sj-celadon:#3f5f54;
+  --sj-ochre:#8a6528;
+  --sj-line:#c8bfb0;
+}
+html[data-theme="light"] body{
+  background:
+    radial-gradient(1000px 560px at 72% -8%, #e8e4da 0%, transparent 55%),
+    radial-gradient(700px 420px at 8% 90%, #ebe6dc 0%, transparent 50%),
+    var(--sj-ink-900);
+  color:var(--sj-paper-100);
+}
+html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
 </style>
+<script>
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){
+    document.documentElement.setAttribute('data-theme', t==='light' ? 'light' : 'dark');
+  }
+  try{
+    var q=new URLSearchParams(location.search).get('theme');
+    if(q==='light'||q==='dark') apply(q);
+  }catch(e){}
+  window.addEventListener('message', function(e){
+    var d=e&&e.data;
+    if(!d||d.type!==MSG) return;
+    apply(d.theme);
+  });
+})();
+</script>
 </head>
 <body>
 <div class="sj-01-wrap" id="sj-01-top">
@@ -231,7 +296,7 @@ body{
   </div>
   <div class="sj-01-meta">
     史学方法论工具箱 · 地基卷<br/>
-    <b>AS_OF 2026-07-14</b> · v0.1
+    <b>AS_OF 2026-07-14</b> · v0.1.1
   </div>
 </header>
 
@@ -396,6 +461,13 @@ body{
   <div class="sj-01-matrix-layout">
     <div class="sj-01-table-wrap">
       <table class="sj-01-table" id="matrix">
+        <colgroup>
+          <col class="col-name"/>
+          <col class="col-cell"/>
+          <col class="col-cell"/>
+          <col class="col-cell"/>
+          <col class="col-cell"/>
+        </colgroup>
         <thead>
           <tr>
             <th scope="col">史家 / 学派</th>
@@ -468,7 +540,7 @@ body{
 </section>
 
 <footer class="sj-01-foot">
-  <span>ChinaOS · 史鉴 SJ-01 · v0.1 · AS_OF 2026-07-14</span>
+  <span>ChinaOS · 史鉴 SJ-01 · v0.1.1 · AS_OF 2026-07-14</span>
   <span><a href="./SJ-00.html">← 返回 SJ-00</a> · <a href="#sj-01-top">↑ 顶</a></span>
   <span><a href="./SJ-01-spectrum-preview.html">签名预览</a> · <a href="./fangfa-guangpu.svg">方法光谱 SVG</a></span>
 </footer>
@@ -654,7 +726,7 @@ body{
     tr.setAttribute('role','button');
     tr.setAttribute('aria-label', d.name);
     tr.innerHTML =
-      '<td>' + esc(d.short) + '<span class="src">' + esc(d.life) + '</span></td>' +
+      '<td><span class="sj-name">' + esc(d.short) + '</span><span class="src">' + esc(d.life) + '</span></td>' +
       '<td>' + esc(d.method) + '</td>' +
       '<td>' + esc(d.thesis) + '</td>' +
       '<td>' + esc(d.scene) + '</td>' +
