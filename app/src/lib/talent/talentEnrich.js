@@ -15,7 +15,7 @@ import { buildDensityPatch } from './talentDensity.js';
 export const FLAGSHIP_ENRICH = {
   // —— 政治局常委 / 副国级 ——
   '习近平': {
-    verifyTier: 'official', verifiedAt: '2026-06-11', confidence: 'high',
+    verifyTier: 'official', confidence: 'high',
     provenance: '中共中央/新华社公开职务发布；不含非公开家庭与私人信息',
     lastPublicActivity: '2026-05 中央周边外交与重大会议公开报道',
     sources: ['新华社', '中国政府网', '人民网'],
@@ -30,7 +30,7 @@ export const FLAGSHIP_ENRICH = {
     bio: '现任中共中央总书记、国家主席、中央军委主席。公开履历以党代会与人代会公报、新华社人事发布为锚点；研究口径聚焦制度权力结构与公开政策议程，不含私人领域信息。',
   },
   '李强': {
-    verifyTier: 'official', verifiedAt: '2026-06-11', confidence: 'high',
+    verifyTier: 'official', confidence: 'high',
     provenance: '国务院/新华社公开任免',
     lastPublicActivity: '2026-05 国务院常务会及地方调研公开报道',
     sources: ['新华社', '中国政府网'],
@@ -38,34 +38,34 @@ export const FLAGSHIP_ENRICH = {
     bio: '现任国务院总理、党组书记。公开履历涵盖上海主政期与国务院系统任职；经济政策与就业、外贸为近期公开议程焦点。',
   },
   '赵乐际': {
-    verifyTier: 'official', verifiedAt: '2026-06-11', confidence: 'high',
+    verifyTier: 'official', confidence: 'high',
     provenance: '全国人大/新华社公开职务',
     sources: ['新华社', '中国人大网'],
     tags: ['人大常委会委员长', '二十届'],
     lastPublicActivity: '2026-05 立法监督与代表工作公开活动',
   },
   '王沪宁': {
-    verifyTier: 'official', verifiedAt: '2026-06-11', confidence: 'high',
+    verifyTier: 'official', confidence: 'high',
     sources: ['新华社', '全国政协网'],
     tags: ['政协主席', '二十届', '统战'],
     lastPublicActivity: '2026-05 政协协商与统战工作公开报道',
     provenance: '全国政协/新华社公开职务发布',
   },
   '蔡奇': {
-    verifyTier: 'official', verifiedAt: '2026-06-11', confidence: 'high',
+    verifyTier: 'official', confidence: 'high',
     sources: ['新华社'],
     tags: ['书记处', '二十届', '中办'],
     provenance: '中共中央公开人事发布',
     lastPublicActivity: '2026-05 中央办公厅与党建公开报道',
   },
   '丁薛祥': {
-    verifyTier: 'official', verifiedAt: '2026-06-11', confidence: 'high',
+    verifyTier: 'official', confidence: 'high',
     sources: ['新华社', '国务院'],
     tags: ['副总理', '二十届'],
     provenance: '国务院/新华社公开任免',
   },
   '何立峰': {
-    verifyTier: 'official', verifiedAt: '2026-06-11', confidence: 'high',
+    verifyTier: 'official', confidence: 'high',
     sources: ['新华社', '国家发改委'],
     tags: ['副总理', '财经', '二十届'],
     provenance: '国务院副总理公开职务；曾任发改委主任',
@@ -73,19 +73,19 @@ export const FLAGSHIP_ENRICH = {
     bio: '分管财经领域国务院副总理；公开履历含发改委主任期与地方主政经历；研究口径聚焦宏观政策与债务治理公开议程。',
   },
   '张国清': {
-    verifyTier: 'official', verifiedAt: '2026-06-11', confidence: 'high',
+    verifyTier: 'official', confidence: 'high',
     sources: ['新华社'],
     tags: ['副总理', '二十届', '国资'],
     provenance: '国务院公开任免；曾任辽宁省委书记',
   },
   '刘国中': {
-    verifyTier: 'official', verifiedAt: '2026-06-11', confidence: 'high',
+    verifyTier: 'official', confidence: 'high',
     sources: ['新华社'],
     tags: ['副总理', '二十届', '三农'],
     provenance: '国务院公开任免；曾任陕西省委书记',
   },
   '王毅': {
-    verifyTier: 'official', verifiedAt: '2026-06-11', confidence: 'high',
+    verifyTier: 'official', confidence: 'high',
     sources: ['外交部', '新华社'],
     tags: ['外交', '二十届', '政治局'],
     provenance: '外交部官网职务与新华社公开活动',
@@ -94,7 +94,7 @@ export const FLAGSHIP_ENRICH = {
   },
   // —— 商业龙头 ——
   'be-m-pony': {
-    verifyTier: 'media', verifiedAt: '2026-06-11', confidence: 'high',
+    verifyTier: 'media', confidence: 'high',
     provenance: '港交所披露/腾讯控股年报与公开财报电话会',
     sources: ['腾讯控股年报', '港交所', '新华社'],
     lastPublicActivity: '2025-2026 财报季与两会代表公开露面',
@@ -102,26 +102,26 @@ export const FLAGSHIP_ENRICH = {
     bio: '腾讯控股联合创始人、董事会主席兼CEO。公开节点含微信生态、游戏监管适应与资本配置；研究口径以财报与监管公开文件为锚。',
   },
   'be-m-yiming': {
-    verifyTier: 'media', verifiedAt: '2026-06-11', confidence: 'high',
+    verifyTier: 'media', confidence: 'high',
     provenance: '公开报道与商业榜单；公司非上市，财务以媒体报道为主',
     sources: ['福布斯', '胡润', '公开报道'],
     tags: ['字节跳动', '算法', '内容'],
     bio: '字节跳动创始人。公开信息以产品生态（抖音/TikTok）与算法推荐监管讨论为主；个人公开露面较少。',
   },
   'be-m-dinglei': {
-    verifyTier: 'official', verifiedAt: '2026-06-11', confidence: 'high',
+    verifyTier: 'official', confidence: 'high',
     sources: ['网易财报', '港交所', '人大公开代表信息'],
     provenance: '上市公司披露与代表公开信息',
     tags: ['网易', '游戏', '代表委员'],
   },
   '马化腾': {
-    verifyTier: 'media', verifiedAt: '2026-06-11', confidence: 'high',
+    verifyTier: 'media', confidence: 'high',
     sources: ['腾讯控股年报', '港交所'],
     provenance: '同上 be-m-pony',
     tags: ['互联网', '深圳'],
   },
   '马云': {
-    verifyTier: 'media', verifiedAt: '2026-06-11', confidence: 'medium',
+    verifyTier: 'media', confidence: 'medium',
     sources: ['阿里巴巴财报', '公开报道'],
     provenance: '阿里系公开披露；2020后公开露面显著减少',
     lastPublicActivity: '2024-2025 农业/教育公益与海外行程零星公开报道',
@@ -129,14 +129,14 @@ export const FLAGSHIP_ENRICH = {
     confidence: 'medium',
   },
   '雷军': {
-    verifyTier: 'official', verifiedAt: '2026-06-11', confidence: 'high',
+    verifyTier: 'official', confidence: 'high',
     sources: ['小米集团年报', '港交所', '公开发布会'],
     provenance: '上市公司披露与产品发布会公开信息',
     tags: ['小米', '造车', '硬件'],
     lastPublicActivity: '2025-2026 SU7 交付与财报公开活动',
   },
   '任正非': {
-    verifyTier: 'media', verifiedAt: '2026-06-11', confidence: 'high',
+    verifyTier: 'media', confidence: 'high',
     sources: ['华为官网', '公开采访', '新华社'],
     provenance: '非上市；以官网与公开采访为主',
     tags: ['华为', '通信', '制裁'],
@@ -144,32 +144,32 @@ export const FLAGSHIP_ENRICH = {
   },
   // —— 院士/知识精英 ——
   'ce-n-tu': {
-    verifyTier: 'official', verifiedAt: '2026-06-11', confidence: 'high',
+    verifyTier: 'official', confidence: 'high',
     sources: ['诺贝尔官网', '中国中医科学院', '新华社'],
     provenance: '诺奖委员会与中科院院士公开名录',
     tags: ['青蒿素', '诺奖', '药学'],
     bio: '2015年诺贝尔生理学或医学奖获得者；青蒿素发现与抗疟国际合作为公开学术史核心节点。',
   },
   '屠呦呦': {
-    verifyTier: 'official', verifiedAt: '2026-06-11', confidence: 'high',
+    verifyTier: 'official', confidence: 'high',
     sources: ['诺贝尔官网', '中国中医科学院'],
     provenance: '同上',
     tags: ['青蒿素', '诺奖'],
   },
   'ce-n-yuan': {
-    verifyTier: 'official', verifiedAt: '2026-06-11', confidence: 'high',
+    verifyTier: 'official', confidence: 'high',
     sources: ['新华社', '隆平高科', '公开纪念'],
     provenance: '国家最高科技奖与公开纪念报道',
     tags: ['杂交水稻', '粮食安全'],
     bio: '杂交水稻奠基人；2021年公开纪念后条目以历史节点与遗产口径维护。',
   },
   '袁隆平': {
-    verifyTier: 'official', verifiedAt: '2026-06-11', confidence: 'high',
+    verifyTier: 'official', confidence: 'high',
     sources: ['新华社', '国家最高科技奖'],
     tags: ['杂交水稻', '粮食安全', '已故'],
   },
   '钟南山': {
-    verifyTier: 'official', verifiedAt: '2026-06-11', confidence: 'high',
+    verifyTier: 'official', confidence: 'high',
     sources: ['广州医科大学', '新华社', '国家卫健委公开活动'],
     provenance: '工程院院士公开名录与抗疫公开报道',
     tags: ['呼吸', '抗疫', '院士'],
@@ -177,13 +177,13 @@ export const FLAGSHIP_ENRICH = {
     bio: '呼吸病学专家、中国工程院院士；公开节点含SARS与重大传染病抗疫专家组公开活动。',
   },
   'ce-n-zhong': {
-    verifyTier: 'official', verifiedAt: '2026-06-11', confidence: 'high',
+    verifyTier: 'official', confidence: 'high',
     sources: ['广州医科大学', '新华社'],
     tags: ['呼吸', '抗疫', '院士'],
   },
   // —— 异见/港澳台（存争议标注） ——
   'dv-xu-zhiyong': {
-    verifyTier: 'media', verifiedAt: '2026-06-11', confidence: 'medium',
+    verifyTier: 'media', confidence: 'medium',
     provenance: '公开判决与外媒/人权组织交叉记录；政治安全类案件',
     sources: ['公开判决', 'BBC', '路透社'],
     publicRecordNote: '案件性质与量刑以公开法律文书为准；叙事存在阵营化差异',
@@ -191,7 +191,7 @@ export const FLAGSHIP_ENRICH = {
     tags: ['新公民运动', '律师'],
   },
   'tw-lai-ching-te': {
-    verifyTier: 'official', verifiedAt: '2026-06-11', confidence: 'high',
+    verifyTier: 'official', confidence: 'high',
     sources: ['台湾地区领导人办公室', '新华社涉台报道'],
     provenance: '台湾当局公开职务与选举结果',
     tags: ['台湾', '总统', '民进党'],

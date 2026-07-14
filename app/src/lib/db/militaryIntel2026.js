@@ -112,13 +112,13 @@ export const SERVICES = {
 };
 
 export const PERSONNEL = {
-  asOf: '2019-07',
+  sourceAsOf: '2019-07', // historical-as-of · 国防白皮书发布月
   source: '《新时代的中国国防》白皮书',
   activeDuty: { value: 2000000, label: '~200万', note: '现役总兵力（不含武警）' },
   reserve: { value: 500000, label: '~50万', note: '预备役（估算区间）' },
   militia: { label: '民兵体系', note: '基层国防动员，人数随任务动态调整' },
   civilianStaff: {
-    asOf: '2023-03',
+    sourceAsOf: '2023-03', // historical-as-of · 文职制度公开招考口径
     label: '文职人员',
     total: '~30万',
     note: '2018年起统一面向社会公开招考；从事管理、专业技术与技能岗位',

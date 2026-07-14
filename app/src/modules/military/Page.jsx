@@ -229,7 +229,7 @@ function PersonnelTab() {
         <Stat value={SERVICES.capf.stat.split(' ·')[0]} label="武警估算" />
       </StatGrid>
       <Grid cols={2} className="mb-6">
-        <Card title={`军种—兵种 旭日图 · ${PERSONNEL.asOf}`}>
+        <Card title={`军种—兵种 旭日图 · ${PERSONNEL.sourceAsOf}`}>
           <EChart option={sunburst} style={{ height: 280 }} />
           <p className="text-[10px] mt-1" style={{ color: 'var(--text-tertiary)' }}>占比为开源估算示意，内环=军种，外环=主要兵种</p>
         </Card>
@@ -259,7 +259,7 @@ function PersonnelTab() {
         </Card>
       </Grid>
       <Grid cols={2} className="mb-6">
-        <Card title={`军种人员结构示意 · ${PERSONNEL.asOf}`}>
+        <Card title={`军种人员结构示意 · ${PERSONNEL.sourceAsOf}`}>
           <EChart option={pieChart} style={{ height: 220 }} />
           <p className="text-[10px] mt-2" style={{ color: 'var(--text-tertiary)' }}>来源：{PERSONNEL.source} · 占比为开源估算示意</p>
         </Card>
@@ -275,7 +275,7 @@ function PersonnelTab() {
       <Grid cols={2} className="mb-6">
         <Card title="文职人员体系">
           <p className="text-xs mb-2" style={{ color: 'var(--text-secondary)' }}>
-            {PERSONNEL.civilianStaff.label} · {PERSONNEL.civilianStaff.total}（{PERSONNEL.civilianStaff.asOf}）— {PERSONNEL.civilianStaff.note}
+            {PERSONNEL.civilianStaff.label} · {PERSONNEL.civilianStaff.total}（{PERSONNEL.civilianStaff.sourceAsOf}）— {PERSONNEL.civilianStaff.note}
           </p>
           <div className="space-y-2">
             {PERSONNEL.civilianStaff.categories.map((c) => (

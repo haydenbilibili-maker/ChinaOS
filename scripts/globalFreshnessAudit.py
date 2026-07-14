@@ -35,6 +35,10 @@ AS_OF_PATTERNS = [
     re.compile(r"AS_OF\s+(\d{4}-\d{2}(?:-\d{2})?)"),
 ]
 
+# Historical publication / source dates — not global baseline drift.
+SOURCE_AS_OF_RE = re.compile(r"sourceAsOf\s*[:=]\s*['\"]([^'\"]+)['\"]")
+HISTORICAL_AS_OF_LINE_RE = re.compile(r"historical-as-of|\[史料\]|source-date|史料口径")
+
 PANDEMIC_RE = re.compile(r"新冠|疫情封控|动态清零|核酸检测|方舱医院|封城|抢菜|健康码|行程码")
 NEWS_DATE_RE = re.compile(r"publishedAt:\s*['\"](\d{4}-\d{2}-\d{2})['\"]")
 PLACEHOLDER_DATE_RE = re.compile(r"['\"]?(1970-01-01|2000-01-01|2099-12-31)['\"]?")
@@ -85,12 +89,21 @@ def audit_file(path: Path) -> dict:
     findings: list[dict] = []
 
     for i, line in enumerate(lines, 1):
+        ctx = "\n".join(lines[max(0, i - 3) : min(len(lines), i + 1)])
+        is_historical_ctx = (
+            HISTORICAL_AS_OF_LINE_RE.search(line) is not None
+            or HISTORICAL_AS_OF_LINE_RE.search(ctx) is not None
+            or SOURCE_AS_OF_RE.search(line) is not None
+        )
+
         for pat in AS_OF_PATTERNS:
             for m in pat.finditer(line):
                 val = m.group(1)
                 if val in META_AS_OF_OK:
                     continue
                 if "示意" in val or "估算" in val or "IISS" in val or "SIPRI" in val:
+                    continue
+                if is_historical_ctx:
                     continue
                 d = parse_date(val)
                 if d and d < date(2026, 1, 1):
