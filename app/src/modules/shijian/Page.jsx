@@ -54,6 +54,8 @@ export default function ShijianPage() {
         亦可直接打开单页报告：
         {' '}
         <a href="/shijian/SJ-00.html" target="_blank" rel="noreferrer">/shijian/SJ-00.html</a>
+        {' · '}
+        <a href="/shijian/SJ-01.html" target="_blank" rel="noreferrer">/shijian/SJ-01.html</a>
       </p>
       <ModuleFooter moduleId="shijianSJ00" />
     </div>
