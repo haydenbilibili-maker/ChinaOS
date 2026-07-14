@@ -310,7 +310,16 @@ export default function Shell() {
       >
         <div className="px-4 py-4 border-b shrink-0 flex items-center" style={{ borderColor: 'var(--border-subtle)' }}>
           <div className="flex-1 min-w-0">
-            <Link to="/dashboard" className="flex items-center gap-2 os-link" style={{ textDecoration: 'none' }} onClick={closeDrawer}>
+            <Link to="/dashboard" className="flex items-center gap-2.5 os-link" style={{ textDecoration: 'none' }} onClick={closeDrawer}>
+              <img
+                src="/logo.svg"
+                alt=""
+                width={28}
+                height={28}
+                className="shrink-0"
+                style={{ borderRadius: 6 }}
+                aria-hidden="true"
+              />
               <span className="text-lg font-bold tracking-tight" style={{ color: 'var(--china-red)' }}>China OS</span>
               <span className="text-xs mono px-1.5 py-0.5 rounded" style={{ background: 'var(--bg-elevated)', color: 'var(--cyber-cyan)' }}>
                 v3

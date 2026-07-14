@@ -98,7 +98,10 @@ export default function ObservatoryHome() {
       <div className="ob-inner">
         <header className="ob-top">
           <div className="ob-id">
-            <span className="ob-mark">ChinaOS</span>
+            <span className="ob-mark">
+              <img src="/logo.svg" alt="" width={16} height={16} aria-hidden="true" />
+              ChinaOS
+            </span>
             <h1>
               观象台 <span>Observatory</span>
             </h1>
