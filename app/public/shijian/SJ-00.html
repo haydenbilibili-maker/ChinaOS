@@ -154,31 +154,63 @@ body{
 .sj-00-btn[data-phase="重整"].is-on{border-color:var(--sj-celadon);color:var(--sj-celadon)}
 
 /* 卷目 cards */
-.sj-00-vols{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:8px}
+.sj-00-vols{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:8px;
+  align-items:stretch;
+}
 .sj-00-card{
-  display:block;text-decoration:none;color:inherit;
+  display:flex;flex-direction:column;color:inherit;
   border:1px solid var(--sj-line);background:var(--sj-ink-800);
   border-radius:var(--sj-radius);padding:16px 16px 14px;
-  transition:border-color .18s, transform .18s;
-  position:relative;
+  min-height:168px;
+  transition:border-color .18s, box-shadow .18s;
 }
-.sj-00-card:hover,.sj-00-card:focus-visible{
-  border-color:var(--sj-ochre);outline:none;
+.sj-00-card:hover,.sj-00-card:focus-within{
+  border-color:var(--sj-ochre);
   box-shadow:0 4px 18px rgba(0,0,0,.22);
 }
-.sj-00-card:focus-visible{box-shadow:0 0 0 2px rgba(184,137,74,.35)}
-.sj-00-card .row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px}
+.sj-00-card:focus-within{box-shadow:0 0 0 2px rgba(184,137,74,.35),0 4px 18px rgba(0,0,0,.18)}
+.sj-00-card .row{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  margin-bottom:8px;flex-shrink:0;
+}
 .sj-00-card .vol{font-family:var(--sj-mono);font-size:11px;letter-spacing:.14em;color:var(--sj-ochre)}
+.sj-00-card-anchor{color:inherit;text-decoration:none}
+.sj-00-card-anchor:hover,.sj-00-card-anchor:focus-visible{color:var(--sj-paper-100);outline:none}
+.sj-00-card-anchor:focus-visible{text-decoration:underline;text-underline-offset:3px}
 .sj-00-tag{
   font-family:var(--sj-mono);font-size:10px;letter-spacing:.1em;
   padding:2px 8px;border-radius:999px;border:1px solid var(--sj-line);white-space:nowrap;
+  flex-shrink:0;
 }
 .sj-00-tag.is-done{color:var(--sj-celadon);border-color:var(--sj-celadon)}
 .sj-00-tag.is-dev{color:var(--sj-ochre);border-color:var(--sj-ochre)}
 .sj-00-tag.is-plan{color:var(--sj-paper-300)}
-.sj-00-card h3{font-size:16px;font-weight:600;letter-spacing:.08em;margin-bottom:6px}
-.sj-00-card p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.65}
-.sj-00-card .ids{margin-top:10px;font-family:var(--sj-mono);font-size:11px;color:var(--sj-celadon);letter-spacing:.06em}
+.sj-00-card h3{font-size:16px;font-weight:600;letter-spacing:.08em;margin-bottom:6px;flex-shrink:0}
+.sj-00-card p{
+  font-size:13.5px;color:var(--sj-paper-300);line-height:1.65;
+  flex:1;margin:0;
+}
+.sj-00-card .ids{
+  margin-top:auto;padding-top:12px;
+  display:flex;flex-wrap:wrap;gap:6px;align-items:center;
+  border-top:1px solid var(--sj-line);
+}
+.sj-00-chip{
+  display:inline-flex;align-items:center;
+  font-family:var(--sj-mono);font-size:10px;letter-spacing:.06em;
+  padding:4px 9px;border-radius:999px;
+  border:1px solid var(--sj-line);background:var(--sj-ink-900);
+  color:var(--sj-celadon);text-decoration:none;
+  transition:border-color .18s,color .18s,background .18s;
+}
+.sj-00-chip:hover,.sj-00-chip:focus-visible{
+  border-color:var(--sj-ochre);color:var(--sj-ochre);outline:none;
+}
+.sj-00-chip.is-plain{cursor:default;color:var(--sj-celadon)}
+.sj-00-chip.is-plain:hover,.sj-00-chip.is-plain:focus-visible{
+  border-color:var(--sj-line);color:var(--sj-celadon);
+}
 
 /* 占位锚点卡 */
 .sj-00-ph{
@@ -228,6 +260,13 @@ body{
   .sj-seg,.sj-00-card{transition:none}
   .sj-reveal-stagger > *{animation:none}
 }
+@media (min-width:1280px){
+  .sj-00-vols{grid-template-columns:repeat(4,1fr);gap:18px}
+}
+@media (min-width:1920px){
+  .sj-00-vols{gap:20px}
+  .sj-00-card{min-height:172px;padding:18px 18px 16px}
+}
 @media (max-width:768px){
   .sj-00-mast{align-items:flex-start}
   .sj-00-meta{text-align:left}
@@ -261,7 +300,7 @@ html[data-theme="light"] .sj-00-xref-box{
 }
 html[data-theme="light"] .sj-00-ph{background:rgba(235,230,220,.72)}
 html[data-theme="light"] .sj-00-card:hover,
-html[data-theme="light"] .sj-00-card:focus-visible{
+html[data-theme="light"] .sj-00-card:focus-within{
   box-shadow:0 4px 16px rgba(26,24,20,.1);
 }
 </style>
@@ -533,30 +572,59 @@ html[data-theme="light"] .sj-00-card:focus-visible{
   </div>
   <p class="sj-00-prose">方法 → 机制 → 案例验证 → 当代映射，再反过来修正方法。卡片链至已交付卷页；未交付条目仍保留占位锚点。</p>
   <div class="sj-00-vols">
-    <a class="sj-00-card" href="#vol-method" tabindex="0">
-      <div class="row"><span class="vol">方法论卷</span><span class="sj-00-tag is-done">已出 v0.1</span></div>
+    <article class="sj-00-card">
+      <div class="row">
+        <span class="vol"><a class="sj-00-card-anchor" href="#vol-method" tabindex="0">方法论卷</a></span>
+        <span class="sj-00-tag is-done">已出 v0.1</span>
+      </div>
       <h3>怎么看</h3>
       <p>史家方法对比矩阵与 ChinaOS 自有「史鉴引擎·四步法」，奠定全系列操作系统。</p>
-      <div class="ids">SJ-01（已出） · <a href="./SJ-02.html" style="color:inherit">SJ-02（已出）</a></div>
-    </a>
-    <a class="sj-00-card" href="#vol-cycle" tabindex="0">
-      <div class="row"><span class="vol">周期卷</span><span class="sj-00-tag is-done">已出 v0.1</span></div>
+      <div class="ids" aria-label="方法论卷子卷">
+        <span class="sj-00-chip is-plain">SJ-01（已出）</span>
+        <a class="sj-00-chip" href="./SJ-02.html" tabindex="0">SJ-02（已出）</a>
+      </div>
+    </article>
+    <article class="sj-00-card">
+      <div class="row">
+        <span class="vol"><a class="sj-00-card-anchor" href="#vol-cycle" tabindex="0">周期卷</a></span>
+        <span class="sj-00-tag is-done">已出 v0.1</span>
+      </div>
       <h3>机器如何运转与损坏</h3>
       <p>五力衰变模型与治乱循环相位盘——规律引擎的主体，对接 GY 时间轴与预测接口。</p>
-      <div class="ids">SJ-03（已出） · SJ-04（已出）</div>
-    </a>
-    <a class="sj-00-card" href="#vol-cases" tabindex="0">
-      <div class="row"><span class="vol">案例卷</span><span class="sj-00-tag is-done">已出 v0.1</span></div>
+      <div class="ids" aria-label="周期卷子卷">
+        <span class="sj-00-chip is-plain">SJ-03（已出）</span>
+        <span class="sj-00-chip is-plain">SJ-04（已出）</span>
+      </div>
+    </article>
+    <article class="sj-00-card">
+      <div class="row">
+        <span class="vol"><a class="sj-00-card-anchor" href="#vol-cases" tabindex="0">案例卷</a></span>
+        <span class="sj-00-tag is-done">已出 v0.1</span>
+      </div>
       <h3>史料证据</h3>
       <p>变法、盛衰拐点、王朝崩解，以及分裂期（魏晋南北朝、五代）作为超稳定结构的压力测试样本。</p>
-      <div class="ids"><a href="./SJ-05.html" style="color:inherit">SJ-05</a> · <a href="./SJ-06.html" style="color:inherit">SJ-06</a> · <a href="./SJ-07.html" style="color:inherit">SJ-07</a> · <a href="./SJ-08.html" style="color:inherit">SJ-08</a></div>
-    </a>
-    <a class="sj-00-card" href="#vol-mirror" tabindex="0">
-      <div class="row"><span class="vol">古今映射卷</span><span class="sj-00-tag is-dev">开发中</span></div>
+      <div class="ids" aria-label="案例卷子卷">
+        <a class="sj-00-chip" href="./SJ-05.html" tabindex="0">SJ-05</a>
+        <a class="sj-00-chip" href="./SJ-06.html" tabindex="0">SJ-06</a>
+        <a class="sj-00-chip" href="./SJ-07.html" tabindex="0">SJ-07</a>
+        <a class="sj-00-chip" href="./SJ-08.html" tabindex="0">SJ-08</a>
+      </div>
+    </article>
+    <article class="sj-00-card">
+      <div class="row">
+        <span class="vol"><a class="sj-00-card-anchor" href="#vol-mirror" tabindex="0">古今映射卷</a></span>
+        <span class="sj-00-tag is-dev">开发中</span>
+      </div>
       <h3>结论如何回流当代</h3>
       <p>政治 / 经济 / 文化 / 社会 / 外交五域对照台账；每条映射强制填写相似机制与关键差异。</p>
-      <div class="ids"><a href="./SJ-20.html" style="color:inherit">SJ-20</a> · <a href="./SJ-21.html" style="color:inherit">SJ-21</a> · SJ-22 · SJ-23 · SJ-24</div>
-    </a>
+      <div class="ids" aria-label="古今映射卷子卷">
+        <a class="sj-00-chip" href="./SJ-20.html" tabindex="0">SJ-20</a>
+        <a class="sj-00-chip" href="./SJ-21.html" tabindex="0">SJ-21</a>
+        <span class="sj-00-chip is-plain">SJ-22</span>
+        <span class="sj-00-chip is-plain">SJ-23</span>
+        <span class="sj-00-chip is-plain">SJ-24</span>
+      </div>
+    </article>
   </div>
 
   <div class="sj-00-ph" id="vol-method">
