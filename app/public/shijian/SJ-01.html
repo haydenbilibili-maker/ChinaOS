@@ -280,6 +280,25 @@ body{
 .sj-01-lens-subcard .field dd{font-size:12px;color:var(--sj-paper-300);line-height:1.55;margin:0}
 .sj-01-lens-subcard .field dd.risk{color:color-mix(in srgb, var(--sj-vermil) 75%, var(--sj-paper-300))}
 
+/* 侧栏分享 */
+.sj-01-share-bar{
+  margin-top:12px;padding-top:12px;border-top:1px dashed var(--sj-line);
+  display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+}
+.sj-01-share-bar .sj-01-btn{font-size:12px;padding:5px 10px}
+
+/* 复制反馈 toast */
+.sj-01-toast{
+  position:fixed;left:50%;bottom:max(16px,env(safe-area-inset-bottom));
+  transform:translateX(-50%) translateY(12px);
+  padding:8px 16px;border-radius:var(--sj-radius);
+  background:var(--sj-ink-800);border:1px solid var(--sj-ochre);
+  color:var(--sj-paper-100);font-family:var(--sj-mono);font-size:11px;
+  letter-spacing:.1em;opacity:0;pointer-events:none;z-index:99;
+  transition:opacity .2s ease, transform .2s ease;
+}
+.sj-01-toast.is-show{opacity:1;transform:translateX(-50%) translateY(0)}
+
 /* 史家评述 collapsible */
 .sj-01-comment{
   margin-top:12px;padding-top:10px;border-top:1px dashed var(--sj-line);
@@ -360,6 +379,7 @@ body{
   html{scroll-behavior:auto}
   .sj-pt,.sj-pt .sj-dot,.sj-pt-mini,.sj-pt-mini .sj-dot,.sj-01-table tbody tr,.sj-01-lens{transition:none}
   .sj-reveal-stagger > *{animation:none}
+  .sj-01-toast{transition:none}
 }
 @media (max-width:900px){
   .sj-01-bridge{grid-template-columns:1fr 1fr}
@@ -430,7 +450,7 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
   </div>
   <div class="sj-01-meta">
     史学方法论工具箱 · 地基卷<br/>
-    <b>AS_OF 2026-07-14</b> · v0.1.3
+    <b>AS_OF 2026-07-14</b> · v0.1.4
   </div>
 </header>
 
@@ -717,6 +737,10 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
           <div class="field"><dt>适用场景</dt><dd id="pair-primary-scene">—</dd></div>
           <div class="field"><dt>盲区风险</dt><dd id="pair-primary-blind" class="risk">—</dd></div>
         </dl>
+        <details class="sj-01-comment" id="pair-primary-comment">
+          <summary>史家评述</summary>
+          <p class="sj-zhupi" id="pair-primary-comment-text"></p>
+        </details>
       </article>
       <article class="sj-01-lens-subcard is-secondary" id="pair-secondary">
         <div class="role">补镜</div>
@@ -728,9 +752,17 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
           <div class="field"><dt>适用场景</dt><dd id="pair-secondary-scene">—</dd></div>
           <div class="field"><dt>盲区风险</dt><dd id="pair-secondary-blind" class="risk">—</dd></div>
         </dl>
+        <details class="sj-01-comment" id="pair-secondary-comment">
+          <summary>史家评述</summary>
+          <p class="sj-zhupi" id="pair-secondary-comment-text"></p>
+        </details>
       </article>
     </div>
+    <div class="sj-01-share-bar">
+      <button type="button" class="sj-01-btn" id="btn-share-link">复制当前镜头链接</button>
+    </div>
   </div>
+  <div class="sj-01-toast" id="sj-toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
   <div class="sj-01-mini-stage" id="mini-stage" aria-label="迷你方法光谱">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 640" role="img" aria-labelledby="mini-title mini-desc">
@@ -787,7 +819,7 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
 </div><!-- /.sj-01-page-layout -->
 
 <footer class="sj-01-foot">
-  <span>ChinaOS · 史鉴 SJ-01 · v0.1.3 · AS_OF 2026-07-14</span>
+  <span>ChinaOS · 史鉴 SJ-01 · v0.1.4 · AS_OF 2026-07-14</span>
   <span><a href="./SJ-00.html">← 返回 SJ-00</a> · <a href="#sj-01-top">↑ 顶</a></span>
   <span><a href="./SJ-01-spectrum-preview.html">签名预览</a> · <a href="./fangfa-spectrum.svg">方法光谱 SVG</a></span>
 </footer>
@@ -961,13 +993,21 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
   const qButtons = Array.from(document.querySelectorAll('.sj-01-controls .sj-01-btn'));
 
   const LENS_ALIASES = { kf: 'kongwei' };
+  const LENS_MSG = 'c2os-sj-lens';
   const SPY_PAUSE_MS = 900;
   const ABBREV_LEN = 72;
+  const VALID_Q = new Set(LENSES.map(L => L.id));
+  const tableWrap = document.querySelector('.sj-01-table-wrap');
+  const toastEl = document.getElementById('sj-toast');
+  const shareBtn = document.getElementById('btn-share-link');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   let activeId = '';
   let activeQ = '';
   let lensPair = null;
   let userPickUntil = 0;
+  let rowFocusIdx = 0;
+  let toastTimer = null;
   const rowVisibility = new Map();
 
   function esc(s){
@@ -991,13 +1031,90 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
     return ali && DATA[ali] ? ali : '';
   }
 
-  function updateLensUrl(id){
+  function resolveQuestionId(raw){
+    if(!raw) return '';
+    const key = String(raw).toLowerCase();
+    return VALID_Q.has(key) ? key : '';
+  }
+
+  function syncUrlParams(params){
     try{
       const u = new URL(location.href);
-      if(id) u.searchParams.set('lens', id);
-      else u.searchParams.delete('lens');
+      if(params.q){
+        u.searchParams.set('q', params.q);
+        u.searchParams.delete('lens');
+      } else if(params.lens){
+        u.searchParams.set('lens', params.lens);
+        u.searchParams.delete('q');
+      } else {
+        u.searchParams.delete('lens');
+        u.searchParams.delete('q');
+      }
       history.replaceState(null, '', u.pathname + u.search + u.hash);
     }catch(e){}
+  }
+
+  function notifyParent(params){
+    if(window.parent === window) return;
+    try{
+      const payload = { type: LENS_MSG };
+      if(params.q) payload.q = params.q;
+      else if(params.lens) payload.lens = params.lens;
+      window.parent.postMessage(payload, window.location.origin);
+    }catch(e){}
+  }
+
+  function buildShareUrl(){
+    try{
+      const base = window.parent !== window ? window.parent.location.href : location.href;
+      const u = new URL(base);
+      if(activeQ){
+        u.searchParams.set('q', activeQ);
+        u.searchParams.delete('lens');
+      } else if(activeId){
+        u.searchParams.set('lens', activeId);
+        u.searchParams.delete('q');
+      } else {
+        u.searchParams.delete('lens');
+        u.searchParams.delete('q');
+      }
+      return u.href;
+    }catch(e){
+      return location.href;
+    }
+  }
+
+  function showToast(msg){
+    if(!toastEl) return;
+    toastEl.textContent = msg;
+    toastEl.classList.add('is-show');
+    if(toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toastEl.classList.remove('is-show');
+      toastTimer = null;
+    }, 1800);
+  }
+
+  async function copyShareLink(){
+    const url = buildShareUrl();
+    try{
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        await navigator.clipboard.writeText(url);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = url;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+      showToast('已复制');
+    }catch(e){
+      showToast('复制失败');
+    }
   }
 
   function markUserPick(){
@@ -1013,6 +1130,23 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
     document.getElementById('pair-' + prefix + '-thesis').textContent = abbrev(d.thesis);
     document.getElementById('pair-' + prefix + '-scene').textContent = abbrev(d.scene);
     document.getElementById('pair-' + prefix + '-blind').textContent = abbrev(d.blind);
+    const commentEl = document.getElementById('pair-' + prefix + '-comment-text');
+    const commentWrap = document.getElementById('pair-' + prefix + '-comment');
+    if(commentEl) commentEl.textContent = d.comment;
+    if(commentWrap){
+      commentWrap.open = false;
+      commentWrap.hidden = !d.comment;
+    }
+  }
+
+  function syncRowTabIndex(idx){
+    rowFocusIdx = ((idx % rows.length) + rows.length) % rows.length;
+    rows.forEach((r, i) => { r.tabIndex = i === rowFocusIdx ? 0 : -1; });
+  }
+
+  function focusRow(idx){
+    syncRowTabIndex(idx);
+    rows[rowFocusIdx].focus();
   }
 
   // Build matrix
@@ -1020,7 +1154,7 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
     const d = DATA[id];
     const tr = document.createElement('tr');
     tr.dataset.id = id;
-    tr.tabIndex = 0;
+    tr.tabIndex = -1;
     tr.setAttribute('role','button');
     tr.setAttribute('aria-label', d.name);
     tr.innerHTML =
@@ -1041,6 +1175,7 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
   });
 
   const rows = Array.from(tbody.querySelectorAll('tr'));
+  syncRowTabIndex(0);
 
   LENSES.forEach(L => {
     const art = document.createElement('article');
@@ -1139,12 +1274,16 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
     syncQButtons();
     showLensCard(id);
     paintHighlights();
-    if(!o.skipUrl) updateLensUrl(id);
+    const rowIdx = rows.findIndex(r => r.dataset.id === id);
+    if(rowIdx >= 0) syncRowTabIndex(rowIdx);
+    if(!o.skipUrl) syncUrlParams({ lens: id });
+    if(!o.skipParent) notifyParent({ lens: id });
     const row = tbody.querySelector('tr[data-id="'+id+'"]');
     if(row && scrollMatrix) row.scrollIntoView({block:'nearest', behavior: motion()});
   }
 
-  function applyLens(L){
+  function applyLens(L, opts){
+    const o = opts || {};
     markUserPick();
     activeId = '';
     lensPair = L;
@@ -1153,10 +1292,12 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
     syncQButtons();
     showLensPairCard(L);
     paintHighlights();
-    updateLensUrl('');
+    if(!o.skipUrl) syncUrlParams({ q: L.id });
+    if(!o.skipParent) notifyParent({ q: L.id });
   }
 
-  function setQuestion(q){
+  function setQuestion(q, opts){
+    const o = opts || {};
     if(!q){
       markUserPick();
       activeQ = '';
@@ -1166,11 +1307,28 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
       syncQButtons();
       resetLensCard();
       paintHighlights();
-      updateLensUrl('');
+      if(!o.skipUrl) syncUrlParams({});
+      if(!o.skipParent) notifyParent({});
       return;
     }
     const match = LENSES.find(L => L.id === q);
-    if(match) applyLens(match);
+    if(match) applyLens(match, o);
+  }
+
+  function applyExternalLens(msg){
+    if(msg.q){
+      const qid = resolveQuestionId(msg.q);
+      if(qid) setQuestion(qid, { skipUrl: true, skipParent: true });
+      else setQuestion('', { skipUrl: true, skipParent: true });
+      return;
+    }
+    if(msg.lens){
+      const id = resolveLensId(msg.lens);
+      if(id) pick(id, { scrollMatrix: false, skipUrl: true, skipParent: true });
+      else setQuestion('', { skipUrl: true, skipParent: true });
+      return;
+    }
+    setQuestion('', { skipUrl: true, skipParent: true });
   }
 
   function bindPt(el){
@@ -1183,16 +1341,32 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
 
   pts.forEach(bindPt);
   miniPts.forEach(bindPt);
-  rows.forEach(r => {
+  rows.forEach((r, i) => {
     const act = () => pick(r.dataset.id);
     r.addEventListener('click', act);
+    r.addEventListener('focus', () => { syncRowTabIndex(i); });
     r.addEventListener('keydown', e => {
-      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); act(); }
+      if(e.key === 'ArrowDown'){
+        e.preventDefault();
+        focusRow(rowFocusIdx + 1);
+        return;
+      }
+      if(e.key === 'ArrowUp'){
+        e.preventDefault();
+        focusRow(rowFocusIdx - 1);
+        return;
+      }
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        act();
+      }
     });
   });
   qButtons.forEach(b => b.addEventListener('click', () => setQuestion(b.dataset.q || '')));
+  if(shareBtn) shareBtn.addEventListener('click', copyShareLink);
 
-  if(typeof IntersectionObserver !== 'undefined'){
+  if(typeof IntersectionObserver !== 'undefined' && !reducedMotion.matches){
+    const spyRoot = tableWrap || null;
     const spyObserver = new IntersectionObserver(entries => {
       entries.forEach(e => rowVisibility.set(e.target, e.isIntersecting ? e.intersectionRatio : 0));
       if(Date.now() < userPickUntil || lensPair) return;
@@ -1206,19 +1380,32 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
       });
       if(best && bestRatio > 0.15){
         const id = best.dataset.id;
-        if(id && id !== activeId) pick(id, { scrollMatrix: false, fromSpy: true, skipUrl: true });
+        if(id && id !== activeId) pick(id, { scrollMatrix: false, fromSpy: true, skipUrl: true, skipParent: true });
       }
     }, {
-      root: null,
-      rootMargin: '-38% 0px -38% 0px',
+      root: spyRoot,
+      rootMargin: spyRoot ? '-12% 0px -12% 0px' : '-38% 0px -38% 0px',
       threshold: [0, 0.1, 0.25, 0.5, 0.75, 1]
     });
     rows.forEach(r => spyObserver.observe(r));
   }
 
+  window.addEventListener('message', function(e){
+    if(e.origin !== window.location.origin) return;
+    const d = e && e.data;
+    if(!d || d.type !== LENS_MSG) return;
+    applyExternalLens(d);
+  });
+
   try{
-    const initial = resolveLensId(new URLSearchParams(location.search).get('lens'));
-    if(initial) pick(initial, { scrollMatrix: false });
+    const qs = new URLSearchParams(location.search);
+    const qInit = resolveQuestionId(qs.get('q'));
+    const lensInit = resolveLensId(qs.get('lens'));
+    if(qInit){
+      setQuestion(qInit, { skipUrl: true, skipParent: true });
+    } else if(lensInit){
+      pick(lensInit, { scrollMatrix: false, skipUrl: true, skipParent: true });
+    }
   }catch(e){}
 })();
 </script>
