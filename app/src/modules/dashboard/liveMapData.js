@@ -5,6 +5,8 @@
 // 非实时 API；综合态势由多维度加权合成
 // ============================================================================
 
+import { MAP_CHOROPLETH } from '../shared/chartHelpers.js';
+
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
 // 勿从 data.js 导入 AS_OF —— data.js 依赖 registry，会形成 lazy 路由循环
@@ -256,18 +258,18 @@ export const LAYERS = [
 /** 主题色带 · 每层独立尺度 */
 export const PALETTES = {
   dark: {
-    composite: ['#0a1628', '#134e4a', '#0e7490', '#22d3ee', '#e8a317'],
-    climate: ['#0a1628', '#1e3a5f', '#0369a1', '#38bdf8', '#bae6fd'],
-    economy: ['#0a1628', '#431407', '#9a3412', '#fb923c', '#fde68a'],
-    migration: ['#0a1628', '#14532d', '#15803d', '#22c55e', '#86efac'],
-    energy: ['#0a1628', '#312e81', '#4338ca', '#818cf8', '#c4b5fd'],
-    policy: ['#0a1628', '#450a0a', '#991b1b', '#c41e3a', '#fca5a5'],
-    industry: ['#0a1628', '#3b0764', '#6b21a8', '#a855f7', '#e9d5ff'],
-    innovation: ['#0a1628', '#0c4a6e', '#0284c7', '#38bdf8', '#7dd3fc'],
-    portflow: ['#0a1628', '#164e63', '#0e7490', '#22d3ee', '#a5f3fc'],
-    carbon: ['#0a1628', '#365314', '#4d7c0f', '#84cc16', '#d9f99d'],
-    tourism: ['#0a1628', '#713f12', '#b45309', '#f59e0b', '#fde68a'],
-    risk: ['#0a1628', '#422006', '#92400e', '#f97316', '#fed7aa'],
+    composite: [MAP_CHOROPLETH.dark[0], '#134e4a', '#0e7490', '#22d3ee', '#e8a317'],
+    climate: [MAP_CHOROPLETH.dark[0], '#1e3a5f', '#0369a1', '#38bdf8', '#bae6fd'],
+    economy: [MAP_CHOROPLETH.dark[0], '#431407', '#9a3412', '#fb923c', '#fde68a'],
+    migration: [MAP_CHOROPLETH.dark[0], '#14532d', '#15803d', '#22c55e', '#86efac'],
+    energy: [MAP_CHOROPLETH.dark[0], '#312e81', '#4338ca', '#818cf8', '#c4b5fd'],
+    policy: [MAP_CHOROPLETH.dark[0], '#450a0a', '#991b1b', '#c41e3a', '#fca5a5'],
+    industry: [MAP_CHOROPLETH.dark[0], '#3b0764', '#6b21a8', '#a855f7', '#e9d5ff'],
+    innovation: [MAP_CHOROPLETH.dark[0], '#0c4a6e', '#0284c7', '#38bdf8', '#7dd3fc'],
+    portflow: [MAP_CHOROPLETH.dark[0], '#164e63', '#0e7490', '#22d3ee', '#a5f3fc'],
+    carbon: [MAP_CHOROPLETH.dark[0], '#365314', '#4d7c0f', '#84cc16', '#d9f99d'],
+    tourism: [MAP_CHOROPLETH.dark[0], '#713f12', '#b45309', '#f59e0b', '#fde68a'],
+    risk: [MAP_CHOROPLETH.dark[0], '#422006', '#92400e', '#f97316', '#fed7aa'],
   },
   light: {
     composite: ['#f1f5f9', '#99f6e4', '#22d3ee', '#0891b2', '#0e7490'],

@@ -11,6 +11,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { PROVINCE_COORDS, PROVINCE_NAMES } from './liveMapData.js';
+import { MAP_CHOROPLETH } from '../shared/chartHelpers.js';
 import {
   cachedLiveFetch, fetchLiveJson, liveAbort, round1, asArray, formatLiveTime, DEFAULT_REFRESH_MS,
 } from './liveApi.js';
@@ -45,13 +46,13 @@ export const REAL_LAYERS = [
 ];
 
 export const REAL_PALETTES = {
-  livePrecip: ['#16203a', '#1e3a8a', '#1d4ed8', '#0891b2', '#22d3ee', '#a5f3fc'],
-  liveTemp: ['#312e81', '#1d4ed8', '#0891b2', '#10b981', '#facc15', '#f97316', '#dc2626'],
+  livePrecip: [MAP_CHOROPLETH.dark[0], '#1e3a8a', '#1d4ed8', '#0891b2', '#22d3ee', '#a5f3fc'],
+  liveTemp: [MAP_CHOROPLETH.dark[0], '#1d4ed8', '#0891b2', '#10b981', '#facc15', '#f97316', '#dc2626'],
 };
 
 export const REAL_PALETTES_LIGHT = {
-  livePrecip: ['#eef1f6', '#bfdbfe', '#60a5fa', '#2563eb', '#0891b2', '#155e75'],
-  liveTemp: ['#4f46e5', '#3b82f6', '#06b6d4', '#34d399', '#fde047', '#fb923c', '#ef4444'],
+  livePrecip: [MAP_CHOROPLETH.light[0], '#bfdbfe', '#60a5fa', '#2563eb', '#0891b2', '#155e75'],
+  liveTemp: [MAP_CHOROPLETH.light[0], '#3b82f6', '#06b6d4', '#34d399', '#fde047', '#fb923c', '#ef4444'],
 };
 
 export { WEATHER_CODE_LABEL };

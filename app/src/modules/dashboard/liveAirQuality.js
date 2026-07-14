@@ -34,6 +34,7 @@ export const REAL_AQI_LAYERS = [
 ];
 
 export const AQI_PALETTES = {
+  // WHO 语义序保留绿→黄→橙→红→紫；仅与共享地图夜间底色脱钩
   dark: ['#10b981', '#a3e635', '#facc15', '#fb923c', '#ef4444', '#a855f7'],
   light: ['#34d399', '#bef264', '#fde047', '#fdba74', '#f87171', '#c084fc'],
 };

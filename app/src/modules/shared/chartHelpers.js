@@ -68,6 +68,26 @@ export function mapChoropleth(theme = 'dark') {
   return MAP_CHOROPLETH[theme === 'light' ? 'light' : 'dark'];
 }
 
+/** Δ12 月发散序：降温蓝 → 中性底 → 升温暖（对齐 MAP_CHOROPLETH 端点） */
+export const MAP_DELTA_CHOROPLETH = {
+  dark: ['#3b82f6', MAP_CHOROPLETH.dark[0], MAP_CHOROPLETH.dark[3]],
+  light: ['#2563eb', MAP_CHOROPLETH.light[0], MAP_CHOROPLETH.light[3]],
+};
+
+export function mapDeltaChoropleth(theme = 'dark') {
+  return MAP_DELTA_CHOROPLETH[theme === 'light' ? 'light' : 'dark'];
+}
+
+/** 未着色省区 idle 底色 · 与 choropleth 低端同系 */
+export const MAP_AREA_IDLE = {
+  dark: MAP_CHOROPLETH.dark[0],
+  light: '#e8edf4',
+};
+
+export function mapAreaIdle(theme = 'dark') {
+  return MAP_AREA_IDLE[theme === 'light' ? 'light' : 'dark'];
+}
+
 export const AXIS = { lineStyle: { color: C.axis } };
 export const GRID_LINE = { lineStyle: { color: C.split } };
 export const LABEL = { color: C.label, fontSize: 10 };

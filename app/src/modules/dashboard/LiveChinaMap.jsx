@@ -2,7 +2,11 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 import * as Lucide from 'lucide-react';
 import * as echarts from 'echarts';
-import { CHART_TOOLTIP, applyChartTheme, chartTextColor, AXIS, LABEL } from '../shared/chartHelpers.js';
+import {
+  CHART_TOOLTIP, applyChartTheme, chartTextColor, AXIS, LABEL,
+  mapChoropleth, mapDeltaChoropleth, mapAreaIdle,
+} from '../shared/chartHelpers.js';
+import { EmptyState, LoadingSkeleton } from '../../app/ui.jsx';
 import { getTheme, subscribeTheme, THEME_EVENT } from '../../lib/theme.js';
 import {
   AS_OF,
@@ -64,11 +68,6 @@ const HOLD = '#e8a317';
 const ROTATE_MS = 10000;
 const JITTER_MS = 30000;
 const TIMELINE_MS = 1200;
-
-const FISCAL_PALETTE = {
-  dark: ['#0a1628', '#1e3a5f', '#b45309', '#dc2626'],
-  light: ['#f8fafc', '#fde68a', '#f59e0b', '#b91c1c'],
-};
 
 function SourceBadge({ label, loading, error, fetchedAt, okColor = '#10b981', warnColor = '#e8a317' }) {
   if (loading) {
@@ -266,13 +265,14 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
 
   const rankings = useMemo(() => getRankings(coloringFiscal ? 'fiscal' : layerId, 5, statSeries), [coloringFiscal, layerId, statSeries]);
   const stats = useMemo(() => (statSeries.length ? getNationalStats(coloringFiscal ? 'fiscal' : layerId, statSeries) : { avg: '—', max: '—', min: '—', maxProv: '', minProv: '' }), [coloringFiscal, layerId, statSeries]);
+  const themeKey = theme === 'light' ? 'light' : 'dark';
   const palette = coloringFiscal
-    ? FISCAL_PALETTE[theme === 'light' ? 'light' : 'dark']
+    ? mapChoropleth(themeKey)
     : isReal && layerId === 'livePm25'
-      ? AQI_PALETTES[theme === 'light' ? 'light' : 'dark']
+      ? AQI_PALETTES[themeKey]
       : isReal
-        ? (theme === 'light' ? (REAL_PALETTES_LIGHT[layerId] || REAL_PALETTES[layerId]) : REAL_PALETTES[layerId])
-        : (PALETTES[theme === 'light' ? 'light' : 'dark'][layerId] || PALETTES.dark.composite);
+        ? (themeKey === 'light' ? (REAL_PALETTES_LIGHT[layerId] || REAL_PALETTES[layerId]) : REAL_PALETTES[layerId])
+        : (PALETTES[themeKey][layerId] || mapChoropleth(themeKey));
 
   const hotCoords = useMemo(() => {
     if (deltaMode || isReal) return [];
@@ -435,8 +435,9 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
   const buildOption = useCallback(() => {
     const isDark = theme !== 'light';
     const borderBase = isDark ? 'rgba(148,163,184,0.22)' : 'rgba(58,70,89,0.18)';
-    const areaIdle = isDark ? '#141c2b' : '#e8edf4';
+    const areaIdle = mapAreaIdle(isDark ? 'dark' : 'light');
     const labelColor = chartTextColor();
+    const deltaPalette = mapDeltaChoropleth(isDark ? 'dark' : 'light');
     const seriesData = displayData.map((d) => {
       const isHot = hotCoords.some((h) => h.name === d.name);
       const isSelected = d.name === selectedProvince;
@@ -506,7 +507,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
           left: 8,
           bottom: isCompact ? 4 : 8,
           calculable: false,
-          inRange: { color: isDark ? ['#3b82f6', '#16203a', '#ef4444'] : ['#2563eb', '#eef1f6', '#dc2626'] },
+          inRange: { color: deltaPalette },
           text: ['升温 Δ', '降温'],
           textStyle: { color: labelColor, fontSize: 10 },
           itemWidth: 12,
@@ -827,12 +828,14 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
             </div>
           )}
           {!ready && !err && (
-            <div className="mono text-xs absolute top-3 left-3 lcm-geo-loading" style={{ color: 'var(--text-tertiary)' }}>
-              // 正在从网络加载省界边界…
+            <div className="absolute inset-0 flex items-center justify-center lcm-geo-loading pointer-events-none">
+              <LoadingSkeleton rows={2} label="正在从网络加载省界边界…" className="w-[min(320px,80%)]" />
             </div>
           )}
           {err && (
-            <div className="mono text-xs absolute top-3 left-3" style={{ color: 'var(--text-tertiary)' }}>地图加载失败：{err}</div>
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none px-4">
+              <EmptyState title="地图边界加载失败" description={err} />
+            </div>
           )}
           {selectedProvince && !isCompact && (
             <ProvinceDetailDrawer
