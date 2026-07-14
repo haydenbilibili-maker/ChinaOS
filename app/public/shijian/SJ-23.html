@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-23 · 社会映射</title>
+<meta name="description" content="ChinaOS 史鉴系列古今映射卷·社会：耕地承载→抚养比就业、流民→灵活就业、户籍编审→人口治理三组对照。基座力，禁裸类比。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;--sj-ink-800:#1d1916;--sj-paper-100:#e8ddc7;--sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;--sj-celadon:#5f7a6f;--sj-ochre:#b8894a;--sj-line:#3a322b;
+  --sj-radius:6px;--sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%, #2a221c 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #1a1612 0%, transparent 50%),var(--sj-ink-900);color:var(--sj-paper-100);font-family:var(--sj-serif);line-height:1.75}
+.sj-23-wrap{max-width:min(1180px,100%);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media (min-width:1536px){.sj-23-wrap{max-width:min(1360px,100%)}}
+@keyframes sj-fade-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.sj-reveal-stagger > header,.sj-reveal-stagger > .sj-zhupi,.sj-reveal-stagger > [class*="-sec"],.sj-reveal-stagger > footer{animation:sj-fade-in .34s cubic-bezier(.22,.61,.36,1) both}
+.sj-reveal-stagger > *:nth-child(1){animation-delay:.03s}.sj-reveal-stagger > *:nth-child(2){animation-delay:.06s}
+.sj-reveal-stagger > *:nth-child(3){animation-delay:.09s}.sj-reveal-stagger > *:nth-child(4){animation-delay:.12s}
+.sj-reveal-stagger > *:nth-child(5){animation-delay:.15s}.sj-reveal-stagger > *:nth-child(6){animation-delay:.18s}
+.sj-reveal-stagger > *:nth-child(7){animation-delay:.21s}.sj-reveal-stagger > *:nth-child(8){animation-delay:.24s}
+.sj-23-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px}
+.sj-23-mast .badge{font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-23-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em;line-height:1.3}
+.sj-23-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;letter-spacing:.08em;font-size:.72em;display:block;margin-top:4px}
+.sj-23-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right;line-height:1.7}
+.sj-23-meta b{color:var(--sj-ochre);font-weight:500}
+.sj-23-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sj-23-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;letter-spacing:.08em;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none}
+.sj-23-chip:hover,.sj-23-chip:focus-visible{border-color:var(--sj-ochre);color:var(--sj-ochre);outline:none}
+.sj-zhupi{color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:76ch}
+.sj-23-sec{margin:36px 0 28px;scroll-margin-top:24px}
+.sj-23-sec-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--sj-line)}
+.sj-23-sec-h .num{font-family:var(--sj-mono);font-size:11px;letter-spacing:.2em;color:var(--sj-ochre)}
+.sj-23-sec-h h2{font-size:clamp(17px,2.2vw,20px);font-weight:600;letter-spacing:.12em}
+.sj-23-prose{font-size:15.5px;color:var(--sj-paper-100);max-width:76ch}.sj-23-prose+.sj-23-prose{margin-top:12px}
+.sj-23-prose strong{color:var(--sj-ochre);font-weight:600}
+.sj-23-note{font-size:13px;color:var(--sj-paper-300);margin-top:12px;max-width:76ch}.sj-23-note b{color:var(--sj-paper-100);font-weight:600}
+.sj-23-stage{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));box-shadow:0 1px 0 rgba(232,221,199,.04),0 18px 48px rgba(0,0,0,.45);padding:8px 8px 4px;overflow:auto}
+.sj-23-stage svg{display:block;width:100%;height:auto;max-width:820px;margin:0 auto}
+.sj-row{cursor:pointer;transition:opacity .2s ease}.sj-row:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:2px}
+.sj-23-stage.is-picking .sj-row{opacity:.38}.sj-23-stage.is-picking .sj-row.is-hot{opacity:1}
+.sj-23-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:14px;align-items:start;margin-top:14px}
+.sj-23-aside{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px;position:sticky;top:12px;min-height:200px}
+.sj-23-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-23-aside h3{font-size:15px;letter-spacing:.06em;margin-bottom:8px}
+.sj-23-aside p{font-size:13px;color:var(--sj-paper-300);line-height:1.65;margin-bottom:6px}
+.sj-23-aside p b.same{color:var(--sj-celadon)}.sj-23-aside p b.diff{color:var(--sj-ochre)}
+.sj-23-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+.sj-23-pair{display:grid;gap:12px;margin-top:6px}
+.sj-23-pair article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:16px 18px}
+.sj-23-pair .ph{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;font-size:15px;font-weight:600;letter-spacing:.04em}
+.sj-23-pair .ph .gu{color:var(--sj-paper-100)}.sj-23-pair .ph .arrow{color:var(--sj-ochre);font-family:var(--sj-mono)}
+.sj-23-pair .ph .jin{color:var(--sj-celadon)}.sj-23-pair .ph .force{margin-left:auto;font-family:var(--sj-mono);font-size:10px;letter-spacing:.1em;color:var(--sj-paper-300);border:1px solid var(--sj-line);border-radius:20px;padding:2px 10px}
+.sj-23-pair .cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-23-pair .col{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-900);padding:12px 14px}
+.sj-23-pair .col .ch{font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;margin-bottom:6px}
+.sj-23-pair .col.same .ch{color:var(--sj-celadon)}.sj-23-pair .col.diff .ch{color:var(--sj-ochre)}
+.sj-23-pair .col p{font-size:13px;color:var(--sj-paper-100);line-height:1.65}.sj-23-pair .col p .lk{color:var(--sj-celadon)}
+.sj-23-refute{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.sj-23-refute article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-23-refute .rh{font-size:14px;font-weight:600;color:var(--sj-ochre);margin-bottom:6px}
+.sj-23-refute p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+.sj-23-xref{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.sj-23-xref a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit;transition:border-color .18s}
+.sj-23-xref a:hover,.sj-23-xref a:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-23-xref .n{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;color:var(--sj-ochre);margin-bottom:4px}
+.sj-23-xref h3{font-size:14px;letter-spacing:.06em;margin-bottom:6px}.sj-23-xref p{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6}
+.sj-23-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sj-23-foot a{color:var(--sj-celadon);text-decoration:none}.sj-23-foot a:hover{color:var(--sj-ochre)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sj-reveal-stagger>*{animation:none}.sj-row,.sj-23-chip{transition:none}}
+@media (max-width:900px){.sj-23-layout{grid-template-columns:1fr}.sj-23-aside{position:static}.sj-23-refute{grid-template-columns:1fr}.sj-23-xref{grid-template-columns:1fr 1fr}}
+@media (max-width:768px){.sj-23-meta{text-align:left}.sj-23-xref{grid-template-columns:1fr}.sj-23-pair .cols{grid-template-columns:1fr}}
+html[data-theme="light"]{--sj-ink-900:#f4f1ea;--sj-ink-800:#ebe6dc;--sj-paper-100:#1a1814;--sj-paper-300:#5a5348;--sj-vermil:#9a3428;--sj-celadon:#3f5f54;--sj-ochre:#8a6528;--sj-line:#c8bfb0}
+html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%, #e8e4da 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #ebe6dc 0%, transparent 50%),var(--sj-ink-900);color:var(--sj-paper-100)}
+</style>
+<script>
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){ document.documentElement.setAttribute('data-theme', t==='light' ? 'light' : 'dark'); }
+  try{ var q=new URLSearchParams(location.search).get('theme'); if(q==='light'||q==='dark') apply(q); }catch(e){}
+  window.addEventListener('message', function(e){
+    if(e.origin !== window.location.origin) return;
+    var d=e&&e.data; if(!d||d.type!==MSG) return; apply(d.theme); });
+})();
+</script>
+</head>
+<body>
+<div class="sj-23-wrap sj-reveal-stagger" id="sj-23-top">
+
+<header class="sj-23-mast">
+  <div>
+    <div class="badge">SJ-23 · 古今映射卷 · 社会域</div>
+    <h1>社会映射 · 古今对照<em>承载上限 · 流民变体 · 人口结构容错 · 慢变量约束</em></h1>
+    <div class="sj-23-chips">
+      <a class="P-chip" href="./SJ-00.html">↔ SJ-00 总索引</a>
+      <a class="P-chip" href="./SJ-03.html">↔ SJ-03 五力·基座</a>
+      <a class="P-chip" href="/modules/renqun-tupu">↔ GY-00 人群图谱</a>
+      <a class="P-chip" href="/modules/linggong">↔ GY-05 零工经济</a>
+      <a class="P-chip" href="/demographic">↔ 人口结构</a>
+    </div>
+  </div>
+  <div class="sj-23-meta">
+    生态—人口—技术基座力 · 禁裸类比<br/>
+    <b>AS_OF 2026-07-14</b> · v0.1
+  </div>
+</header>
+
+<p class="sj-zhupi">朱批：社会域映射的核心是<b>生态—人口—技术基座力</b>（SJ-03 五力之一）。历代承载上限以耕地与户籍度量，流民是承载越阈的显性信号；当代承载维度变为抚养比、就业与内需。本卷是分析读法；第 05 节并陈相反意见。真源：《母本》第五部社会行。</p>
+
+<section class="sj-23-sec" id="sec-intro" aria-labelledby="h-intro">
+  <div class="sj-23-sec-h"><span class="num">01 · 引言</span><h2 id="h-intro">社会域的古今接口</h2></div>
+  <p class="sj-23-prose">基座力是五力中最慢的变量——人口、耕地、生态承载决定系统<strong>容错空间</strong>。社会域因此聚焦承载上限与社会张力：当承载逼近阈值，流民、揭竿与当代的灵活就业、人口流动，是同一结构压力的不同显影。</p>
+  <p class="sj-23-prose">本卷延续「规律同构，参数迥异」：承载上限逼近→社会张力、人口结构决定容错——古今同构；但承载维度从「耕地」变为「抚养比/就业/内需」，流民变为人口流动与灵活就业（↔ <span class="lk">GY-05</span>）。</p>
+  <p class="sj-23-note">方法：史鉴引擎步骤④。三组对照各配「相似机制 / 关键差异」双栏；差异栏为硬约束，缺则不成立。</p>
+</section>
+
+<section class="sj-23-sec" id="sec-map" aria-labelledby="h-map">
+  <div class="sj-23-sec-h"><span class="num">02 · 签名视觉</span><h2 id="h-map">社会古今映射盘 · 差异闸</h2></div>
+  <p class="sj-23-prose">左列历史机制，右列当代形态；每组之间一道「差异闸」（Δ），映射须过闸方成立。点击任一行，展开该组相似机制与关键差异。</p>
+
+  <div class="sj-23-stage" id="stage">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 560" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">社会域古今映射盘</title>
+  <desc id="sj-desc">左列三个历史社会机制，右列三个当代形态，中间以差异闸相连。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%"><stop offset="0%" stop-color="var(--sj-ink-800)"/><stop offset="100%" stop-color="var(--sj-ink-900)"/></radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse"><line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/></pattern>
+    <marker id="a-map" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+  </defs>
+  <rect width="820" height="560" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="392" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="392" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="384" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="392" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="384" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC, Noto Serif SC, Source Han Serif SC, serif" letter-spacing="0.1em">古今映射盘 · 社会</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.08em">SJ-23 · 左=历史承载机制 右=当代形态</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">朱批：映射须过「差异闸」(Δ)——交代关键差异方成立 · 禁裸类比</text>
+  <text x="180" y="128" text-anchor="middle" fill="var(--sj-paper-300)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">历史机制（古）</text>
+  <text x="410" y="128" text-anchor="middle" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">差异闸 Δ</text>
+  <text x="640" y="128" text-anchor="middle" fill="var(--sj-paper-300)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">当代形态（今）</text>
+
+  <g class="sj-row" data-id="chengzai" tabindex="0" role="button" aria-label="承载上限 映射">
+    <rect x="44" y="158" width="732" height="86" rx="8" fill="var(--sj-ink-800)" opacity="0.3" pointer-events="all"/>
+    <rect x="56" y="174" width="248" height="54" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="1.8"/>
+    <text x="180" y="198" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">人口 · 耕地承载</text>
+    <text x="180" y="216" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">马尔萨斯压力 · 税役</text>
+    <line x1="304" y1="201" x2="384" y2="201" stroke="var(--sj-ochre)" stroke-width="1.6" marker-end="url(#a-map)"/>
+    <circle cx="410" cy="201" r="18" fill="var(--sj-ink-900)" stroke="var(--sj-ochre)" stroke-width="1.4"/>
+    <text x="410" y="206" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">Δ</text>
+    <line x1="436" y1="201" x2="516" y2="201" stroke="var(--sj-ochre)" stroke-width="1.6" marker-end="url(#a-map)"/>
+    <rect x="516" y="174" width="248" height="54" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="1.8"/>
+    <text x="640" y="198" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">抚养比 · 就业 · 内需</text>
+    <text x="640" y="216" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">老龄化 · 少子化</text>
+  </g>
+
+  <g class="sj-row" data-id="liumin" tabindex="0" role="button" aria-label="流民 映射">
+    <rect x="44" y="252" width="732" height="86" rx="8" fill="var(--sj-ink-800)" opacity="0.3" pointer-events="all"/>
+    <rect x="56" y="268" width="248" height="54" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="1.8"/>
+    <text x="180" y="292" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">流民 · 揭竿</text>
+    <text x="180" y="310" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">承载越阈 · 失序信号</text>
+    <line x1="304" y1="295" x2="384" y2="295" stroke="var(--sj-ochre)" stroke-width="1.6" marker-end="url(#a-map)"/>
+    <circle cx="410" cy="295" r="18" fill="var(--sj-ink-900)" stroke="var(--sj-ochre)" stroke-width="1.4"/>
+    <text x="410" y="300" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">Δ</text>
+    <line x1="436" y1="295" x2="516" y2="295" stroke="var(--sj-ochre)" stroke-width="1.6" marker-end="url(#a-map)"/>
+    <rect x="516" y="268" width="248" height="54" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="1.8"/>
+    <text x="640" y="292" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">人口流动 · 灵活就业</text>
+    <text x="640" y="310" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">零工 · 农民工 · 新移民</text>
+  </g>
+
+  <g class="sj-row" data-id="huji" tabindex="0" role="button" aria-label="户籍 映射">
+    <rect x="44" y="346" width="732" height="86" rx="8" fill="var(--sj-ink-800)" opacity="0.3" pointer-events="all"/>
+    <rect x="56" y="362" width="248" height="54" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="1.8"/>
+    <text x="180" y="386" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">黄册 · 户籍编审</text>
+    <text x="180" y="404" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">人地绑定 · 基层掌控</text>
+    <line x1="304" y1="389" x2="384" y2="389" stroke="var(--sj-ochre)" stroke-width="1.6" marker-end="url(#a-map)"/>
+    <circle cx="410" cy="389" r="18" fill="var(--sj-ink-900)" stroke="var(--sj-ochre)" stroke-width="1.4"/>
+    <text x="410" y="394" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">Δ</text>
+    <line x1="436" y1="389" x2="516" y2="389" stroke="var(--sj-ochre)" stroke-width="1.6" marker-end="url(#a-map)"/>
+    <rect x="516" y="362" width="248" height="54" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="1.8"/>
+    <text x="640" y="386" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">人口统计 · 网格治理</text>
+    <text x="640" y="404" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">数字身份 · 综治中心</text>
+  </g>
+  <text x="410" y="470" text-anchor="middle" fill="var(--sj-paper-300)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">规律同构 · 参数迥异 —— 承载维度从耕地变为抚养比/就业/内需</text>
+  <text x="764" y="500" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">viewBox 820×560</text>
+</svg>
+  </div>
+
+  <div class="sj-23-layout">
+    <div class="sj-23-note" style="margin-top:0">色义：承载/人口=赭金（基座）· 流民/流动=青瓷 · 户籍/治理=朱红。差异闸（Δ）：每组映射必须交代关键差异方成立。</div>
+    <aside class="sj-23-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-23-aside-empty">点选映射盘任一行，展开该组的相似机制与关键差异（母本第五部）。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-same"></p>
+        <p id="aside-diff"></p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="sj-23-sec" id="sec-pairs" aria-labelledby="h-pairs">
+  <div class="sj-23-sec-h"><span class="num">03 · 三组对照</span><h2 id="h-pairs">相似机制 / 关键差异 双栏</h2></div>
+  <div class="sj-23-pair">
+    <article>
+      <div class="ph"><span class="gu">人口 · 耕地承载</span><span class="arrow">→</span><span class="jin">抚养比 · 就业 · 内需</span><span class="force">基座力</span></div>
+      <div class="cols">
+        <div class="col same"><div class="ch">相似机制（古今相通）</div><p>承载上限逼近→社会张力；人口结构决定容错空间。「生齿日繁、地不加辟」↔ 抚养比抬升、就业压力与内需不足。</p></div>
+        <div class="col diff"><div class="ch">关键差异（不可裸类比）</div><p>承载维度从耕地/粮食变为抚养比/就业/内需；技术缓解粮食约束，但老龄化、少子化成新瓶颈。相似的是承载逻辑，不同的是度量维度。</p></div>
+      </div>
+    </article>
+
+    <article>
+      <div class="ph"><span class="gu">流民 · 揭竿</span><span class="arrow">→</span><span class="jin">人口流动 · 灵活就业</span><span class="force">基座力</span></div>
+      <div class="cols">
+        <div class="col same"><div class="ch">相似机制（古今相通）</div><p>承载越阈的人口以流动释放压力：流民、揭竿前奏 ↔ 大规模人口流动、灵活就业与「悬空的基础设施」。</p></div>
+        <div class="col diff"><div class="ch">关键差异（不可裸类比）</div><p>户籍改革、社保扩面、平台经济使流动不再等同脱籍失序；但保障与流动性的错位仍在（↔ <span class="lk">GY-05</span>）。相似的是越阈→流动，不同的是制度缓冲。</p></div>
+      </div>
+    </article>
+
+    <article>
+      <div class="ph"><span class="gu">黄册 · 户籍编审</span><span class="arrow">→</span><span class="jin">人口统计 · 网格治理</span><span class="force">社会治理基座</span></div>
+      <div class="cols">
+        <div class="col same"><div class="ch">相似机制（古今相通）</div><p>国家掌握人口底数以分配税役、维持秩序：黄册、保甲 ↔ 人口普查、网格化治理与综治中心。</p></div>
+        <div class="col diff"><div class="ch">关键差异（不可裸类比）</div><p>数目字管理使人口统计精度质变，与社保、信用等系统联通；目标从税役绑定扩展为服务+管控双轨。相似的是可见性需求，不同的是数据粒度。</p></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="sj-23-sec" id="sec-meta" aria-labelledby="h-meta">
+  <div class="sj-23-sec-h"><span class="num">04 · 元差异</span><h2 id="h-meta">社会域的参数迁移</h2></div>
+  <p class="sj-23-prose">三组对照的「关键差异」共享同一根源：当代<strong>数目字管理</strong>使人口与承载可精细计量，且<strong>承载维度本身已迁移</strong>（耕地→抚养比/就业）。</p>
+  <p class="sj-23-prose">但两样没变：<strong>慢变量的约束</strong>与<strong>承载越阈→社会张力</strong>的结构。社会域的断言收束为：<strong>规律同构，参数迥异</strong>。</p>
+</section>
+
+<section class="sj-23-sec" id="sec-refute" aria-labelledby="h-refute">
+  <div class="sj-23-sec-h"><span class="num">05 · 相反读法</span><h2 id="h-refute">对本卷映射的两种批评</h2></div>
+  <p class="sj-23-note">持平起见，社会映射同样须接受质疑。以下两种批评各有其力。</p>
+  <div class="sj-23-refute">
+    <article><div class="rh">批评一：马尔萨斯框架的过时</div><p>反对者认为，技术进步已使经典马尔萨斯约束大幅缓解，用耕地承载类比当代社会张力可能高估同构。本卷以「度量维度迁移」部分回应，但断裂是否已使类比失效，可争论。</p></article>
+    <article><div class="rh">批评二：流民—零工的过度简化</div><p>把流民直接映射为零工/农民工忽略了历史暴力的差异与现代流动的复杂动机。本卷强调机制层（承载越阈→流动），但不否认经验层面的断裂。</p></article>
+  </div>
+</section>
+
+<section class="sj-23-sec" id="sec-xref" aria-labelledby="h-xref">
+  <div class="sj-23-sec-h"><span class="num">06 · 交叉引用</span><h2 id="h-xref">映射的史料来源与当代接口</h2></div>
+  <div class="sj-23-xref">
+    <a href="./SJ-03.html"><div class="n">SJ-03 · 五力</div><h3>基座力</h3><p>生态—人口—技术基座力的定义与慢变量约束。</p></a>
+    <a href="/modules/renqun-tupu"><div class="n">GY-00 · 当代</div><h3>人群画像总图谱</h3><p>基座力在当代的人群切片接口；58 片切片母索引。</p></a>
+    <a href="/modules/linggong"><div class="n">GY-05 · 当代</div><h3>零工经济</h3><p>流民变体：灵活就业与「悬空的基础设施」。</p></a>
+    <a href="/demographic"><div class="n">GY · 当代</div><h3>人口结构</h3><p>老龄化、少子化与抚养比的宏观读数。</p></a>
+    <a href="./SJ-22.html"><div class="n">SJ-22 · 姊妹</div><h3>文化映射</h3><p>合法性叙事力与社会张力的交互。</p></a>
+    <a href="./SJ-00.html"><div class="n">SJ-00</div><h3>史鉴总索引</h3><p>映射卷入口；社会映射卡片已点亮本卷。</p></a>
+  </div>
+  <p class="sj-23-note">映射卷五域收束：<b>SJ-20 政治</b> · <b>SJ-21 经济</b> · <b>SJ-22 文化</b> · <b>SJ-23 社会</b> · <b>SJ-24 外交</b> —— 均基于《母本》第五部，强制双栏。</p>
+</section>
+
+<footer class="sj-23-foot">
+  <span>ChinaOS · 史鉴 SJ-23 · v0.1 · AS_OF 2026-07-14 · 真源《母本》第五部社会行</span>
+  <span><a href="./SJ-00.html">← 返回 SJ-00</a> · <a href="#sj-23-top">↑ 顶</a> · <a href="./SJ-22.html">文化映射</a></span>
+  <span>本地调试 · 未 push</span>
+</footer>
+
+</div>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const rows = Array.from(stage.querySelectorAll('.sj-row'));
+  const asideEmpty = document.getElementById('aside-empty');
+  const asideBody = document.getElementById('aside-body');
+  const MAP_DATA = {
+    chengzai: { name:'人口 · 耕地承载 → 抚养比 · 就业 · 内需',
+      same:'承载上限逼近→社会张力；人口结构决定系统容错空间。历史上的「生齿日繁、地不加辟」对应当代抚养比抬升、就业压力与内需不足——慢变量约束古今同构。',
+      diff:'承载维度从「耕地/粮食」变为「抚养比/就业/内需」；技术提升使粮食约束大幅缓解，但人口结构（老龄化、少子化）成为新瓶颈。相似的是承载逻辑，不同的是度量维度。' },
+    liumin: { name:'流民 · 揭竿 → 人口流动 · 灵活就业',
+      same:'承载越阈的人口以流动形式释放压力：历史上的流民、揭竿前奏，对应当代大规模人口流动、灵活就业与「悬空的基础设施」——压力未消失，只是形态改变。',
+      diff:'现代户籍改革、社保扩面、平台经济使流动不再等同「脱籍失序」；但社会保障与流动性的错位仍在（↔ <span class="lk">GY-05</span> 零工经济）。相似的是承载越阈→流动，不同的是制度缓冲。' },
+    huji: { name:'黄册 · 户籍编审 → 人口统计 · 网格治理',
+      same:'国家需掌握人口底数以分配税役、维持秩序：明代黄册、清代保甲，对应当代人口普查、网格化治理与综治中心——人口可见性是社会治理的前提。',
+      diff:'现代数目字管理使人口统计精度质变，且与社保、信用、医疗等系统联通；治理目标从「税役绑定」扩展为「服务+管控」双轨。相似的是人口可见性需求，不同的是数据粒度与用途。' }
+  };
+  function clearVisual(){ stage.classList.remove('is-picking'); rows.forEach(r=>r.classList.remove('is-hot')); }
+  function showAside(id){ const d=MAP_DATA[id]; if(!d) return; asideEmpty.hidden=true; asideBody.hidden=false;
+    document.getElementById('aside-tag').textContent='古今映射 · 社会';
+    document.getElementById('aside-name').textContent=d.name;
+    document.getElementById('aside-same').innerHTML='<b class="same">相似机制：</b>'+d.same;
+    document.getElementById('aside-diff').innerHTML='<b class="diff">关键差异：</b>'+d.diff; }
+  function pick(id){ if(!MAP_DATA[id]) return; clearVisual(); stage.classList.add('is-picking');
+    rows.forEach(r=>r.classList.toggle('is-hot', r.dataset.id===id)); showAside(id); }
+  rows.forEach(r=>{ const act=()=>pick(r.dataset.id); r.addEventListener('click',act);
+    r.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); act(); } }); });
+})();
+</script>
+</body>
+</html>
