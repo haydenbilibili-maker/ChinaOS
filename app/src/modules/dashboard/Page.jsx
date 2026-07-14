@@ -142,7 +142,7 @@ function MacroH1Strip({ kpis, asOf, lastRefresh, isRefreshing, secondsToNext, re
 
 function LiveModuleChips() {
   return (
-    <div className="flex items-center gap-2 flex-wrap mt-5">
+    <div className="flex items-center gap-2 flex-wrap mt-5 os-section-stagger">
       <span className="text-[10px] mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>活模块</span>
       {LIVE_MODULE_CHIPS.map((chip) => (
         <Link key={chip.id} to={chip.path} className="os-live-chip" title={chip.note}>
@@ -881,7 +881,7 @@ export default function DashboardPage() {
         {/* 重点模块精选 */}
         <div className="mt-6">
           <div className="os-section-heading__meta mb-2">重点模块</div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 os-section-stagger">
             {FEATURED.map((m) => (
               <Link
                 key={m.id}
@@ -944,22 +944,22 @@ export default function DashboardPage() {
         </div>
         <Grid cols={{ sm: 1, md: 2, lg: 3, '2xl': 4 }} gap="0.85rem" className="dash-screen-grid os-section-stagger">
           <ScreenCard title="中国政要分层构成" accent="#c41e3a" footer="政治权力队列 · 按层级聚合">
-            <EChart option={opt.donut} style={{ height: 230 }} />
+            <EChart option={opt.donut} variant="compact" style={{ height: 230 }} />
           </ScreenCard>
           <ScreenCard title="反腐历年趋势" accent="#e8a317" footer="副省部级及以上为主 · 按官宣年归集（2012 起）">
-            <EChart option={opt.acTrend} style={{ height: 230 }} />
+            <EChart option={opt.acTrend} variant="compact" style={{ height: 230 }} />
           </ScreenCard>
           <ScreenCard title="军衔结构（量级示意）" accent="#10b981" footer={RANK_STRUCTURE.note}>
-            <EChart option={opt.ranks} style={{ height: 230 }} />
+            <EChart option={opt.ranks} variant="compact" style={{ height: 230 }} />
           </ScreenCard>
           <ScreenCard title="民企500强 · 省份分布 Top12" accent="#fb923c" footer="工商联 2024 榜单 · 注册地口径">
-            <EChart option={opt.prov} style={{ height: 260 }} />
+            <EChart option={opt.prov} variant="compact" style={{ height: 260 }} />
           </ScreenCard>
           <ScreenCard title="模块分组覆盖" accent="#8b5cf6" footer="各专题分组下的模块数量">
-            <EChart option={opt.coverage} style={{ height: 260 }} />
+            <EChart option={opt.coverage} variant="compact" style={{ height: 260 }} />
           </ScreenCard>
           <ScreenCard title="数据集规模对比" accent="#22d3ee" footer="人物/企业画像条目（去重后）">
-            <EChart option={opt.scale} style={{ height: 260 }} />
+            <EChart option={opt.scale} variant="compact" style={{ height: 260 }} />
           </ScreenCard>
         </Grid>
       </section>

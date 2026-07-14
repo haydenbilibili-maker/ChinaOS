@@ -456,14 +456,17 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
     });
 
     const choroplethDim = showSatellite ? 0.42 : 1;
+    const reduceMotion = typeof window !== 'undefined'
+      && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const mapAnim = reduceMotion ? 0 : 600;
 
     return {
       backgroundColor: 'transparent',
-      animation: true,
-      animationDuration: 600,
-      animationDurationUpdate: 800,
+      animation: !reduceMotion,
+      animationDuration: mapAnim,
+      animationDurationUpdate: mapAnim,
       animationEasing: 'cubicOut',
-      animationEasingUpdate: 'cubicInOut',
+      animationEasingUpdate: 'cubicOut',
       tooltip: {
         trigger: 'item',
         ...CHART_TOOLTIP,

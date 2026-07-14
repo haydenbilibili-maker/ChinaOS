@@ -362,14 +362,14 @@ export default function Page({ embedded = false }) {
         <Grid cols={2} gap="1.25rem">
           <div className="min-w-0">
             <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-secondary)' }}>最新年三产占比</div>
-            {donutOption ? <EChart option={donutOption} style={{ height: 300 }} /> : <p className="text-xs mono" style={{ color: 'var(--text-tertiary)' }}>// 数据待载</p>}
+            {donutOption ? <EChart option={donutOption} variant="dashboard" style={{ height: 300 }} /> : <p className="text-xs mono" style={{ color: 'var(--text-tertiary)' }}>// 数据待载</p>}
           </div>
           <div className="min-w-0">
             <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-secondary)' }}>占比演变（近 8 年）+ GDP 增速副线</div>
-            {evolveOption ? <EChart option={evolveOption} style={{ height: 300 }} /> : <p className="text-xs mono" style={{ color: 'var(--text-tertiary)' }}>// 数据待载</p>}
+            {evolveOption ? <EChart option={evolveOption} variant="dashboard" style={{ height: 300 }} /> : <p className="text-xs mono" style={{ color: 'var(--text-tertiary)' }}>// 数据待载</p>}
           </div>
         </Grid>
-        <Grid cols={3} gap="0.75rem" className="mt-4">
+        <Grid cols={3} gap="0.75rem" className="mt-4" stagger>
           {sectorCards.map((s) => (
             <div key={s.id} className="os-card p-3" style={{ borderLeft: `3px solid ${s.color}` }}>
               <div className="text-sm font-semibold mb-1" style={{ color: s.color }}>{s.label}</div>
@@ -398,7 +398,7 @@ export default function Page({ embedded = false }) {
           />
           <SourceBadge live={false} asOf={ECON_AS_OF} />
         </div>
-        <Grid cols={3} gap="0.75rem">
+        <Grid cols={3} gap="0.75rem" stagger>
           {indicators.map((k) => {
             const verdict = indicatorVerdict ? indicatorVerdict(k) : null;
             const vTone = verdict?.tone || '#64748b';
@@ -471,7 +471,7 @@ export default function Page({ embedded = false }) {
                 <span className="mono" style={{ color: '#c41e3a' }}>// 实时取数失败</span> —— {String(wbSeries.error)}；该指标暂以降级态呈现，可稍后重试。
               </div>
             ) : wbLineOption ? (
-              <EChart option={wbLineOption} style={{ height: 300 }} />
+              <EChart option={wbLineOption} variant="dashboard" style={{ height: 300 }} />
             ) : (
               <p className="text-xs mono" style={{ color: 'var(--text-tertiary)' }}>// 暂无序列数据</p>
             )}
@@ -525,7 +525,7 @@ export default function Page({ embedded = false }) {
             <span className="text-sm font-semibold ml-auto" style={{ color: 'var(--text-secondary)' }}>{tally.mood}</span>
           )}
         </div>
-        <Grid cols={3} gap="0.75rem">
+        <Grid cols={3} gap="0.75rem" stagger>
           {(CANARY_SIGNALS || []).map((c) => {
             const light = LIGHT[c.signal] || LIGHT.green;
             return (

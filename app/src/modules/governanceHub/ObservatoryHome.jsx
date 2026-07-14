@@ -164,9 +164,9 @@ export default function ObservatoryHome() {
               />
             </div>
 
-            <div className="ob-acts">
+            <div className="ob-acts os-reveal-stagger">
               {reading.actions.map((act) => (
-                <div key={act.index} className="ob-act">
+                <div key={act.index} className="ob-act os-reveal">
                   <div className="t">
                     <span className="i">{act.index}</span>
                     {act.title}
