@@ -1,0 +1,147 @@
+/* 经济大盘 · ink-observatory Round 2 */
+
+.ink-observatory.econ-wrap {
+  --econ-cinnabar: #c44e3d;
+  --econ-teal: #62a89e;
+  --econ-ochre: #c99a4e;
+  --econ-indigo: #8090c6;
+  --econ-cyan: #22d3ee;
+  --econ-gold: #e8a317;
+}
+
+.ink-observatory.econ-wrap {
+  background:
+    radial-gradient(1100px 560px at 88% -6%, rgba(98, 168, 158, 0.07) 0%, transparent 58%),
+    radial-gradient(920px 500px at 4% 104%, rgba(201, 154, 78, 0.05) 0%, transparent 55%),
+    var(--bg-base);
+}
+
+.econ-wrap .econ-intro {
+  border-left: 3px solid var(--econ-teal);
+}
+
+.econ-wrap .econ-sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: 4px 0 8px;
+  margin-bottom: 1rem;
+  background: color-mix(in srgb, var(--bg-surface) 92%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.econ-wrap .econ-section {
+  scroll-margin-top: 5.5rem;
+}
+
+.econ-wrap .econ-hero-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .econ-wrap .econ-hero-stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.econ-wrap .econ-cross-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 11px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(98, 168, 158, 0.35);
+  background: rgba(98, 168, 158, 0.1);
+  color: var(--econ-teal);
+  text-decoration: none;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.econ-wrap .econ-cross-chip:hover,
+.econ-wrap .econ-cross-chip:focus-visible {
+  border-color: rgba(98, 168, 158, 0.55);
+  background: rgba(98, 168, 158, 0.16);
+}
+
+.econ-wrap .econ-cross-chip--amber {
+  border-color: rgba(201, 154, 78, 0.35);
+  background: rgba(201, 154, 78, 0.1);
+  color: var(--econ-ochre);
+}
+
+.econ-wrap .econ-cross-chip--amber:hover,
+.econ-wrap .econ-cross-chip--amber:focus-visible {
+  border-color: rgba(201, 154, 78, 0.55);
+  background: rgba(201, 154, 78, 0.16);
+}
+
+.econ-wrap .econ-hub-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .econ-wrap .econ-hub-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .econ-wrap .econ-hub-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.econ-wrap .econ-hub-card {
+  display: block;
+  padding: 1rem 1.125rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+  text-decoration: none;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+}
+
+.econ-wrap .econ-hub-card:hover,
+.econ-wrap .econ-hub-card:focus-visible {
+  border-color: rgba(98, 168, 158, 0.4);
+  background: rgba(98, 168, 158, 0.05);
+}
+
+.econ-wrap .econ-canary-mood {
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  background: color-mix(in srgb, var(--bg-elevated) 88%, transparent);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(6px);
+}
+
+.econ-wrap .econ-block {
+  margin-bottom: calc(var(--space-section) * 0.72);
+}
+
+@media (min-width: 1920px) {
+  .econ-wrap .econ-block {
+    margin-bottom: calc(var(--space-section) * 0.85);
+  }
+
+  .econ-wrap .econ-section > .os-card + .os-card,
+  .econ-wrap .econ-section > .econ-block + .econ-block,
+  .econ-wrap .econ-section > .econ-block + .os-card,
+  .econ-wrap .econ-section > .os-card + .econ-block {
+    margin-top: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .econ-wrap .econ-hub-card {
+    transition: none;
+  }
+}
