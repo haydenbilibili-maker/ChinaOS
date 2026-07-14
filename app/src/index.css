@@ -1859,24 +1859,99 @@ textarea:focus {
   animation: none;
 }
 
-@media (min-width: 768px) {
-  .dash-screen-grid .dash-card-span-2 {
-    grid-row: span 2;
-  }
-}
-
 .dash-screen-grid.os-section-stagger > * {
   animation-duration: 0.42s;
 }
 
-/* 战略态势速览 · 分组双列自适应 */
+/* 态势速览 · 主卡 + 侧栏密排（对齐自然高度，无 span 行空洞） */
+.dash-pulse-pack {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+}
+
+.dash-pulse-pack__hero {
+  min-width: 0;
+  container-type: inline-size;
+  container-name: dash-pulse-hero;
+}
+
+.dash-pulse-pack__hero > .os-screen-card,
+.dash-pulse-wide > .os-screen-card {
+  height: 100%;
+}
+
+.dash-pulse-pack__side {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  grid-auto-flow: dense;
+  min-width: 0;
+}
+
+.dash-pulse-wide {
+  min-width: 0;
+}
+
+@media (min-width: 640px) {
+  .dash-pulse-pack__side {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dash-pulse-pack__side > .dash-pulse-wide {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .dash-pulse-pack {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.8fr);
+  }
+}
+
+@media (min-width: 1536px) {
+  .dash-pulse-pack {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2.15fr);
+  }
+
+  .dash-pulse-pack__side {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .dash-pulse-pack__side > .dash-pulse-wide {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 1920px) {
+  .dash-pulse-pack {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr);
+  }
+}
+
+:root[data-density='compact'] .dash-pulse-pack,
+:root[data-density='compact'] .dash-pulse-pack__side {
+  gap: 0.65rem;
+}
+
+/* 战略态势速览 · 分组双列（按主卡容器宽度，避免窄栏硬拆双列） */
 .strategy-pulse-grid {
   display: grid;
   gap: 0.5rem;
   grid-template-columns: 1fr;
 }
 
-@media (min-width: 1280px) {
+@container dash-pulse-hero (min-width: 380px) {
+  .strategy-pulse-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem 0.65rem;
+  }
+}
+
+/* 主卡尚未进入两栏布局时（全宽堆叠）仍按视口启用双列分组 */
+@media (min-width: 768px) and (max-width: 1023px) {
   .strategy-pulse-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.5rem 0.65rem;

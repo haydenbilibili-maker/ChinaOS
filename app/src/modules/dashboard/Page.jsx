@@ -907,16 +907,21 @@ export default function DashboardPage() {
           <h2 className="os-card-title m-0">态势速览</h2>
           <span className="text-[11px] mono min-w-0" style={{ color: 'var(--text-tertiary)' }}>// 外交矢量 · 施政基准 · 本地库活数据</span>
         </div>
-        <Grid cols={{ sm: 1, md: 2, lg: 3, '2xl': 4 }} gap="0.85rem" className="dash-screen-grid os-section-stagger">
-          <div className="dash-card-span-2">
+        {/* 主卡 + 侧栏密排：取消 span-2 行占位，避免宽屏右下空洞 */}
+        <div className="dash-pulse-pack dash-screen-grid os-section-stagger">
+          <div className="dash-pulse-pack__hero">
             <StrategyPulse />
           </div>
-          <PolicyPulse />
-          <LiveDbStatus />
-          <KondratievClock />
-          <RiskRadar />
-          <PolicyCalendar />
-        </Grid>
+          <div className="dash-pulse-pack__side os-section-stagger">
+            <PolicyPulse />
+            <LiveDbStatus />
+            <KondratievClock />
+            <RiskRadar />
+            <div className="dash-pulse-wide">
+              <PolicyCalendar />
+            </div>
+          </div>
+        </div>
         <Grid cols={{ sm: 1, lg: 2, '2xl': 3 }} gap="0.85rem" className="dash-screen-grid os-section-stagger mt-3">
           <WatchPulse />
           <ChroniclePulse />
