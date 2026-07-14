@@ -3,6 +3,7 @@ import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
 // ── 人口金字塔数据（示意值，单位：百万人；男性取负数用于双向条形）──
 const AGE_BANDS = ['0-9', '10-19', '20-29', '30-39', '40-49', '50-59', '60-69', '70-79', '80+'];
@@ -130,8 +131,8 @@ export default function Page() {
 
   return (
     <div>
-      <PageHeader badge="Demographic Balance & Future Resilience" title="人口负增长 · 结构转型" subtitle="抚养比 · 老龄化 · 生育支持 · 城镇化迁移 —— 人口结构与长寿红利博弈（DATA_ANCHOR: 7th_CENSUS_UPDATE）" />
-      <IntroCard>现实主义逻辑认为，人口老龄化是文明演进的物理必然。四条主线展开应对：01 老龄化熵增对冲、02 人才红利迭代、03 银发经济算法、04 生育激励与成本。核心目标是维持基本医保与社保基金的精算平衡，防止「赡养比」崩塌引发的财政系统性风险。</IntroCard>
+      <PageHeader badge="Demographic Balance & Future Resilience" title="人口负增长 · 结构转型" subtitle="抚养比 · 老龄化 · 育儿补贴 · 城镇化迁移 —— 2026 十五五开局人口政策锚点" />
+      <IntroCard>现实主义逻辑认为，人口老龄化是文明演进的物理必然。2026 政府工作报告明确育儿补贴 3600 元/孩/年（据公开报道），与普惠托育、生育友好社会配套并行。四条主线：01 老龄化熵增对冲、02 人才红利迭代、03 银发经济算法、04 生育激励与成本。核心目标是维持基本医保与社保基金的精算平衡，防止「赡养比」崩塌引发的财政系统性风险。</IntroCard>
 
       <StatGrid className="mb-6">
         <Stat value="14.05 亿" label="总人口 (2025 · 负增长延续)" accent="#c41e3a" />
@@ -245,7 +246,7 @@ export default function Page() {
         { key: 'stone', body: '人才红利密度对冲劳动力缺口。' },
         { key: 'path', body: '生育支持：成本—意愿函数系统校准。' },
       ]} />
-<ModuleFooter moduleId="demographic" sourceNote="数据截至 2026-07-13 · NBS/统计公报公开口径" />
+<ModuleFooter moduleId="demographic" sourceNote={`数据截至 ${AS_OF_BASELINE} · NBS/统计公报公开口径 · 育儿补贴等政策锚定 2026 政府工作报告`} />
     </div>
   );
 }

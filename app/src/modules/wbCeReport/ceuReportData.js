@@ -9,7 +9,7 @@ export const REPORT_META = {
   title: '中国经济简报',
   titleEn: 'China Economic Update',
   edition: '2026 年 7 月',
-  asOf: '2026-06-30',
+  asOf: '2026-07-14',
   published: '2026-07',
   source: '世界银行 · 东亚与太平洋地区',
   pdfPath: '/reports/CEU-July-2026-CN.pdf',
@@ -81,7 +81,7 @@ export const KEY_READINGS = [
   { label: '1–5 月出口（美元）', value: '+15.5%', sub: '高技术制造 +31%', accent: '#e8a317' },
   { label: '预防性储蓄率', value: '32.4%', sub: 'Q1 · 高于疫情前 29.6%', accent: '#10b981' },
   { label: '城镇调查失业率', value: '5.1%', sub: '2026 年 5 月', accent: '#f472b6' },
-  { label: '青年失业率', value: '15.6%', sub: '2026 年 5 月', accent: '#a78bfa' },
+  { label: '青年失业率', value: '16.8%', sub: '2026 年 6 月 · NBS', accent: '#a78bfa' },
   { label: '非金融信贷增速', value: '7.7%', sub: '2026 年 5 月', accent: '#64748b' },
   { label: '土地出让收入', value: '-28.7%', sub: '前五个月累计同比', accent: '#ef4444' },
 ];

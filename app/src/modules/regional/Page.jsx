@@ -432,7 +432,7 @@ export default function Page() {
         { key: 'stone', title: '转移支付', subtitle: '纵向再分配 · 维稳底盘', body: '约 10 万亿/年的财政再分配维系边疆、粮区与老工业基地的国家在场；它买得来稳定与忠诚，买不来内生增长——这是其结构性上限。' },
         { key: 'path', title: '统一大市场', subtitle: '拆诸侯 · 立规则', body: '从给政策到立规矩：公平竞争审查瞄准地方保护工具箱。空间整合的最终考题，是在拆除壁垒的同时保住地方政府的发展积极性。' },
       ]} />
-      <ModuleFooter moduleId="regional" disclaimer="2024 统计公报/决算公开口径整理 · 数据截至 2026-07-13 · 仅供空间政治经济分析框架参考，非投资建议" />
+      <ModuleFooter moduleId="regional" disclaimer="2024 统计公报/决算公开口径整理 · 数据截至 2026-07-14 · 仅供空间政治经济分析框架参考，非投资建议" />
     </div>
   );
 }

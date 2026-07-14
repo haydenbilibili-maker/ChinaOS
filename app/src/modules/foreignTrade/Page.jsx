@@ -4,9 +4,9 @@ import EChart from '../../lib/viz/EChart.jsx';
 import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
-// ---------------------------------------------------------------------------
-// 数据层（公开资料整理 · NBS/海关口径 · 数据截至 2026-07-13）
-// ---------------------------------------------------------------------------
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
+
+const DATA_AS_OF = AS_OF_BASELINE;
 
 const SECTORS = [
   {
@@ -386,8 +386,8 @@ export default function Page() {
 
       <ModuleFooter
         moduleId="foreignTrade"
-        sourceNote="由 tabs/foreignTrade.html 迁移并扩容"
-        disclaimer="数据为海关/NBS 公开口径整理 · 数据截至 2026-07-13 · 分析框架仅供研究参考，不构成任何投资或政策建议"
+        sourceNote={`海关/NBS 公开口径 · 数据截至 ${DATA_AS_OF}`}
+        disclaimer={`进出口/伙伴/结构读数为公开资料整理 · 数据截至 ${DATA_AS_OF} · 分析框架仅供研究参考，不构成任何投资或政策建议`}
       />
     </div>
   );

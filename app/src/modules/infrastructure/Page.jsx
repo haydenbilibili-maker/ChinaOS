@@ -416,7 +416,7 @@ export default function Page() {
         { key: 'stone', title: '乘数衰减', subtitle: '边际递减 · 债务约束', body: '边际效益递减与债务约束构成双重天花板：乘数逼近 1 之后，「基建拉动增长」退化为债务命题——出路是 REITs 盘活存量与运营本位转型。' },
         { key: 'path', title: '新基建切换', subtitle: '物理联通 → 算力联通', body: '从物理联通到算力数据联通：5G/数据中心/充电桩/低空数字航路成为新一代物理锚点，「东数西算」按电价与气候重排国土上的计算版图。' },
       ]} />
-      <ModuleFooter moduleId="infrastructure" disclaimer="投资规模/增速等对齐 2024 统计公报与 2026 预算公开口径 · 数据截至 2026-07-13 · 仅供分析框架参考，非投资建议" />
+      <ModuleFooter moduleId="infrastructure" disclaimer="投资规模/增速等对齐 2024 统计公报与 2026 预算公开口径 · 数据截至 2026-07-14 · 仅供分析框架参考，非投资建议" />
     </div>
   );
 }
