@@ -1,10 +1,10 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { PageHeader, TabBar } from '../../app/ui.jsx';
-import { IntroCard, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
+import { FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import LiveChinaMap from './LiveChinaMap.jsx';
 import LiveMapTicker from './LiveMapTicker.jsx';
-import { AS_OF, LAYERS } from './liveMapData.js';
+import { AS_OF } from './liveMapData.js';
 import {
   LIVE_MAP_VIEWS,
   readDeepLinkFromParams,
@@ -16,7 +16,9 @@ import './liveMap.css';
 // 神州活图 · Live Map v2（ink-observatory Round 2）
 // ----------------------------------------------------------------------------
 // 五视图：全国态势 → 区域热力 → 信号图层 → 时间轴 → 研判下钻
-// URL 深链：?prov=广东省&layer=economy&view=heatmap
+// URL 深链：?prov=广东省&layer=economy&view=heatmap（实现细节，勿写入 UI intro）
+// 坪效原则：Intro/副标题只写用户能力（热力·实况·截至日）；文件路径、代理链、
+// 层清单、深链语法 → LIVE ticker / ModuleFooter「数据说明」，禁堆灰墙长文。
 // ============================================================================
 
 export { LIVE_MAP_VIEWS };
@@ -71,7 +73,7 @@ export default function LiveChinaMapPage() {
       <PageHeader
         badge="Dashboard · 省级动态 · 图层架构"
         title="神州活图"
-        subtitle={`本地省界优先 · 可分享深链 · 财政自给网络层 · 截至 ${AS_OF}`}
+        subtitle={`省级边界热力 · 实况气象/空气图层 · 截至 ${AS_OF}`}
       >
         <div className="flex flex-wrap gap-2 items-center">
           <Link to="/dashboard" className="lcm-cross-chip">中枢看板 ↗</Link>
@@ -81,14 +83,6 @@ export default function LiveChinaMapPage() {
           <Link to="/regional" className="lcm-cross-chip">区域协调 ↗</Link>
         </div>
       </PageHeader>
-
-      <IntroCard className="lcm-intro mb-4">
-        省界底图<strong style={{ color: 'var(--text-primary)' }}>优先从本地 bundled GeoJSON 加载</strong>（<code className="mono text-[10px]">/geo/china-100000.json</code>），
-        失败时经 Worker 代理或 DataV 回退。
-        覆盖 <strong style={{ color: 'var(--text-primary)' }}>{LAYERS.length} 个种子指标层</strong> + 实测气象/空气/地震/空情/航运/卫星云图层；
-        支持 URL 深链分享：<span className="mono text-[10px]" style={{ color: 'var(--text-tertiary)' }}>?prov=广东省&amp;layer=economy</span>
-        <span className="mono" style={{ color: 'var(--text-tertiary)' }}> · 口径：公开统计梳理 · 示意标定 · 非官方发布</span>
-      </IntroCard>
 
       <LiveMapTicker
         layerId={deepLink.layer || 'composite'}
@@ -146,8 +140,8 @@ export default function LiveChinaMapPage() {
 
       <ModuleFooter
         moduleId="shenzhou-live"
-        disclaimer="公开统计梳理 · 示意标定 · 非官方发布 · 实况 API 为第三方观测"
-        sourceNote={`数据源：统计公报种子 · 本地省界 GeoJSON · Open-Meteo/OpenAQ/USGS · 截至 ${AS_OF}`}
+        disclaimer="公开统计梳理 · 示意标定 · 非官方发布 · 实况观测为第三方公开接口（非官方权威发布）"
+        sourceNote={`数据说明：统计公报种子层 · 本地省界边界 · Open-Meteo / OpenAQ / USGS 等公开源 · 截至 ${AS_OF}`}
       />
     </div>
   );

@@ -763,7 +763,7 @@ export default function LiveChinaMap({
             )}
           </div>
           <p className="text-xs m-0 mt-1.5" style={{ color: 'var(--text-tertiary)' }}>
-            {isCompact ? '省级动态预览 · 点击进入完整体验' : `实时动态中国 · Open-Meteo 气象/空气 + 卫星云图 + USGS 地震 + ADS-B 空情 + 航运港口 + 种子态势层 · AS_OF ${AS_OF}`}
+            {isCompact ? '省级动态预览 · 点击进入完整体验' : `省级边界热力 · 实况气象/空气/地震图层 · 截至 ${AS_OF}`}
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-3 shrink-0">
@@ -841,8 +841,8 @@ export default function LiveChinaMap({
       {!isCompact ? (
         <div className="live-china-map-meta flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-3 mb-1">
           <span className="text-[10px] mono min-w-0 inline-flex items-center gap-2 flex-wrap" style={{ color: 'var(--text-tertiary)' }}>
-            {coloringFiscal ? '财政自给率（网络）' : layer.desc} · 数据源：<span style={{ color: coloringFiscal || isReal ? '#10b981' : 'var(--text-secondary)' }}>{coloringFiscal ? (fiscalData?.source === 'live' ? 'province-stats 网络' : 'province-stats 本地') : (layer.source === 'seed' ? '内置种子' : layer.source || 'Open-Meteo')}</span>
-            {geoSource && <span>· 边界 <span style={{ color: geoSource === 'local' ? STEEL : geoSource === 'network' ? '#10b981' : 'var(--text-secondary)' }}>{geoSource === 'local' ? '本地 GeoJSON' : geoSource === 'network' ? 'DataV API' : geoSource === 'proxy' ? 'Worker' : '缓存'}</span></span>}
+            {coloringFiscal ? '财政自给率' : layer.desc} · 数据源：<span style={{ color: coloringFiscal || isReal ? '#10b981' : 'var(--text-secondary)' }}>{coloringFiscal ? (fiscalData?.source === 'live' ? '网络' : '本地') : (layer.source === 'seed' ? '内置种子' : layer.source || '实况 API')}</span>
+            {geoSource && <span>· 边界 <span style={{ color: geoSource === 'local' ? STEEL : geoSource === 'network' ? '#10b981' : 'var(--text-secondary)' }}>{geoSource === 'local' ? '本地' : geoSource === 'network' ? '网络' : geoSource === 'proxy' ? '代理' : '缓存'}</span></span>}
             {showFiscal && fiscalLoading && <span style={{ color: STEEL }}>// 拉取财政层…</span>}
             {liveMetricStatus && (
               <SourceBadge

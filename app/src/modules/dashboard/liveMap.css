@@ -63,11 +63,6 @@
   color: var(--china-red, #c41e3a);
 }
 
-.lcm-intro {
-  max-width: 52rem;
-  line-height: 1.65;
-}
-
 /* ── 全国态势 Hero ── */
 .lcm-situation-hero {
   display: grid;
