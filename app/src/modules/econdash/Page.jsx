@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Suspense, lazy, useCallback, useMemo, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 // Layout: ink-observatory · os-card · os-reveal-stagger · TabBar (Round 2)
-import { PageHeader, TabBar } from '../../app/ui.jsx';
+import { PageHeader, TabBar, LoadingSkeleton } from '../../app/ui.jsx';
 import { IntroCard, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
-import { ECON_AS_OF } from './econData.js';
+import { ECON_AS_OF, ECON_TAB_IDS } from './econData.js';
 import { useWorldBank } from './liveWorldBank.js';
 import MacroTab from './tabs/MacroTab.jsx';
-import StructureTab from './tabs/StructureTab.jsx';
-import FinanceTab from './tabs/FinanceTab.jsx';
-import RegionalTab from './tabs/RegionalTab.jsx';
-import CanaryTab from './tabs/CanaryTab.jsx';
 import './econ.css';
+
+const StructureTab = lazy(() => import('./tabs/StructureTab.jsx'));
+const FinanceTab = lazy(() => import('./tabs/FinanceTab.jsx'));
+const RegionalTab = lazy(() => import('./tabs/RegionalTab.jsx'));
+const CanaryTab = lazy(() => import('./tabs/CanaryTab.jsx'));
 
 // ============================================================================
 // 经济大盘 · 全景与实时监测（ink-observatory Round 2）
@@ -28,9 +29,51 @@ const TABS = [
   { id: 'canary', label: '信号金丝雀', accent: 'var(--china-red)' },
 ];
 
+function TabFallback() {
+  return <LoadingSkeleton rows={3} label="板块载入中…" className="econ-tab-fallback" />;
+}
+
 export default function Page({ embedded = false }) {
   const wb = useWorldBank();
-  const [tab, setTab] = useState('macro');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [localTab, setLocalTab] = useState('macro');
+
+  const tab = useMemo(() => {
+    if (embedded) return localTab;
+    const raw = searchParams.get('tab');
+    return ECON_TAB_IDS.includes(raw) ? raw : 'macro';
+  }, [embedded, localTab, searchParams]);
+
+  const setTab = useCallback((id) => {
+    const next = ECON_TAB_IDS.includes(id) ? id : 'macro';
+    if (embedded) {
+      setLocalTab(next);
+      return;
+    }
+    setSearchParams((prev) => {
+      const params = new URLSearchParams(prev);
+      if (!next || next === 'macro') params.delete('tab');
+      else params.set('tab', next);
+      return params;
+    }, { replace: true });
+  }, [embedded, setSearchParams]);
+
+  const tabPanel = (() => {
+    switch (tab) {
+      case 'macro':
+        return <MacroTab wb={wb} />;
+      case 'structure':
+        return <StructureTab />;
+      case 'finance':
+        return <FinanceTab />;
+      case 'regional':
+        return <RegionalTab />;
+      case 'canary':
+        return <CanaryTab wbData={wb.data || {}} />;
+      default:
+        return <MacroTab wb={wb} />;
+    }
+  })();
 
   const shell = (
     <>
@@ -59,15 +102,13 @@ export default function Page({ embedded = false }) {
       </IntroCard>
 
       <div className="econ-sticky-nav">
-        <TabBar tabs={TABS} value={tab} onChange={setTab} accent="var(--cyber-cyan)" sticky />
+        <TabBar tabs={TABS} value={tab} onChange={setTab} accent="var(--cyber-cyan)" sticky className="econ-tab-bar" />
       </div>
 
       <div className="os-reveal-stagger">
-        {tab === 'macro' && <MacroTab wb={wb} />}
-        {tab === 'structure' && <StructureTab />}
-        {tab === 'finance' && <FinanceTab />}
-        {tab === 'regional' && <RegionalTab />}
-        {tab === 'canary' && <CanaryTab wbData={wb.data || {}} />}
+        <Suspense fallback={<TabFallback />}>
+          {tabPanel}
+        </Suspense>
       </div>
 
       <FrameworkTrio cards={[

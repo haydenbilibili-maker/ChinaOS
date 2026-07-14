@@ -8,6 +8,7 @@ import {
   ENTRY_TOTAL,
   MODULE_GATEWAY,
   SIGNAL_COLORS,
+  econTabPath,
 } from './data.js';
 import { CANARY_SIGNALS } from '../econdash/econData.js';
 
@@ -360,13 +361,13 @@ export function RecentSignalsStrip({ className = '' }) {
       <div className="dash-recent-signals__head">
         <Lucide.Bell size={13} style={{ color: '#e8a317' }} />
         <span>近期信号</span>
-        <Link to="/econ-dashboard" className="dash-recent-signals__more mono">经济大盘 →</Link>
+        <Link to={econTabPath('canary')} className="dash-recent-signals__more mono">经济大盘 →</Link>
       </div>
       <ul className="dash-recent-signals__list">
         {recent.map((s) => (
           <li key={s.id}>
             <Link
-              to="/econ-dashboard"
+              to={econTabPath('canary')}
               className="dash-recent-signals__item"
               title={`${s.reading} · ${s.lead}`}
             >
@@ -428,7 +429,7 @@ export function SignalFreshnessBar() {
         {signals.slice(0, 6).map((s) => (
           <Link
             key={s.id}
-            to="/econ-dashboard"
+            to={econTabPath('canary')}
             className="dash-signal-chip"
             style={{ '--chip-color': SIGNAL_COLORS[s.signal] }}
             title={`${s.reading} · ${s.lead}`}

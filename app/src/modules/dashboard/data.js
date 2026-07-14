@@ -19,7 +19,7 @@ import { LEGAL_STATUTE_DEDUPED_COUNT } from '../../lib/db/legalStatuteSeed.js';
 import { PRIVATE_ENTERPRISE_META, PE500_COMPANIES, PE500_DATASETS } from '../../lib/db/privateEnterpriseSeed.js';
 import { RANK_PYRAMID, MILITARY_INTEL_META } from '../../lib/db/militaryIntel2026.js';
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
-import { ECON_AS_OF, KEY_INDICATORS, CANARY_SIGNALS, SECTOR_STRUCTURE } from '../econdash/econData.js';
+import { ECON_AS_OF, KEY_INDICATORS, CANARY_SIGNALS, INDICATOR_SPARKLINES, econTabPath } from '../econdash/econData.js';
 
 export const AS_OF = AS_OF_BASELINE;
 export const MACRO_AS_OF = ECON_AS_OF;
@@ -41,15 +41,13 @@ export const SIGNAL_COLORS = {
   red: KPI_COLORS.cool,
 };
 
-/** KPI 迷你火花线序列（公开口径示意 · 非实时） */
+/** KPI 迷你火花线序列（公开口径示意 · 与 econdash INDICATOR_SPARKLINES 同源） */
 export const MACRO_SPARKLINES = {
-  gdp_h1: SECTOR_STRUCTURE.map((s) => s.gdpGrowth),
-  cpi: [2.1, 1.8, 0.2, 0.1, 0.0, -0.1, 0.1, 0.3],
-  pmi_mfg: [49.5, 49.2, 49.8, 50.1, 49.6, 49.4, 49.7, 49.8],
-  retail: [3.2, 4.1, 3.8, 5.2, 4.9, 4.3, 4.8, 4.6],
-  m2: [8.3, 8.1, 7.9, 7.6, 7.4, 7.1, 7.0, 7.2],
+  ...INDICATOR_SPARKLINES,
   youth_unemp: [21.3, 19.6, 18.2, 17.5, 17.1, 16.9, 17.0, 16.8],
 };
+
+export { econTabPath };
 
 function pickIndicator(id) {
   return KEY_INDICATORS.find((i) => i.id === id);
@@ -153,7 +151,7 @@ export const LIVE_MODULE_CHIPS = [
   {
     id: 'econdash',
     title: '经济大盘',
-    path: '/econ-dashboard',
+    path: econTabPath('canary'),
     icon: 'LineChart',
     live: false,
     note: `NBS 快照 · ${MACRO_AS_OF}`,

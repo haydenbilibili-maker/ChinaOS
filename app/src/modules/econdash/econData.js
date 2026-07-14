@@ -284,6 +284,36 @@ export const KEY_INDICATORS = [
 ];
 
 // ---------------------------------------------------------------------------
+// 2b. 核心指标近程序列（公开口径近似 · 近八期升序；无序列者不杜撰）
+//     gdp_h1 取自 SECTOR_STRUCTURE 增速；其余与 dashboard / 通缩主线同源。
+// ---------------------------------------------------------------------------
+
+/** @type {Record<string, number[]>} KEY_INDICATORS.id → 近八期读数（升序） */
+export const INDICATOR_SPARKLINES = {
+  gdp_h1: SECTOR_STRUCTURE.slice(-8).map((s) => s.gdpGrowth),
+  cpi: [2.1, 1.8, 0.2, 0.1, 0.0, -0.1, 0.1, 0.3],
+  ppi: [-2.5, -2.7, -3.0, -2.8, -3.1, -2.9, -2.8, -2.6],
+  pmi_mfg: [49.5, 49.2, 49.8, 50.1, 49.6, 49.4, 49.7, 49.8],
+  retail: [3.2, 4.1, 3.8, 5.2, 4.9, 4.3, 4.8, 4.6],
+  m2: [8.3, 8.1, 7.9, 7.6, 7.4, 7.1, 7.0, 7.2],
+};
+
+/** Tab 深链白名单 */
+export const ECON_TAB_IDS = ['macro', 'structure', 'finance', 'regional', 'canary'];
+
+/** 经济大盘路由 · tab=canary|macro|… */
+export function econTabPath(tab = 'macro') {
+  if (!tab || tab === 'macro' || !ECON_TAB_IDS.includes(tab)) return '/econ-dashboard';
+  return `/econ-dashboard?tab=${tab}`;
+}
+
+/** 取指标火花线序列（无则 null） */
+export function indicatorSparkline(id) {
+  const pts = INDICATOR_SPARKLINES[id];
+  return Array.isArray(pts) && pts.length ? pts : null;
+}
+
+// ---------------------------------------------------------------------------
 // 3. 金丝雀 / 领先指标盘（公开数据派生的领先信号示意，非官方分级）
 //    signal 三档示意研判：green 稳 / amber 转弱 / red 承压。
 // ---------------------------------------------------------------------------

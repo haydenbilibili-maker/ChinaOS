@@ -1,6 +1,8 @@
 import React from 'react';
 import { fmtYoY } from './liveWorldBank.js';
-import { indicatorVerdict } from './econData.js';
+import { indicatorVerdict, indicatorSparkline } from './econData.js';
+import { macroReadForIndicator } from './econMacroBridge.js';
+import { Sparkline } from './econUI.jsx';
 
 /** 涨跌着色：增长型涨绿跌红 */
 export function toneOf(v) {
@@ -52,28 +54,51 @@ export function filterIndicators(list, groupKey) {
   return g ? list.filter((k) => k.group === g) : list;
 }
 
+const VERDICT_META = {
+  positive: { color: '#10b981', label: '好转' },
+  caution: { color: '#e8a317', label: '警示' },
+  negative: { color: '#c41e3a', label: '承压' },
+  neutral: { color: '#64748b', label: '中性' },
+};
+
 export function IndicatorCard({ k }) {
   const verdict = indicatorVerdict ? indicatorVerdict(k) : null;
-  const vTone = verdict?.tone || '#64748b';
+  const vMeta = VERDICT_META[verdict?.tone] || VERDICT_META.neutral;
+  const vTone = vMeta.color;
   const isPmi = /pmi|景气|荣枯/i.test(`${k.id}${k.label}`) || k.threshold === 50;
+  const sparkPts = indicatorSparkline(k.id);
+  const sparkColor = toneOf(k.trend ?? k.yoy);
+  const sparkZero = k.group === '物价' || k.threshold === 0;
+  const macroCtx = macroReadForIndicator(k.id);
 
   return (
-    <div className="os-card p-3" style={{ borderLeft: `3px solid ${vTone}` }}>
-      <div className="flex items-center justify-between gap-2 mb-1.5">
+    <div className="os-card p-3 econ-indicator-card" style={{ borderLeft: `3px solid ${vTone}` }}>
+      <div className="flex items-start justify-between gap-2 mb-1.5">
         <span className="text-xs font-semibold" style={{ color: 'var(--text-secondary)' }}>{k.label}</span>
-        {verdict?.label && (
+        {verdict?.text && (
           <span
-            className="text-[10px] mono px-1.5 py-0.5 rounded"
+            className="text-[10px] mono px-1.5 py-0.5 rounded shrink-0"
             style={{ background: `${vTone}1f`, color: vTone, border: `1px solid ${vTone}45` }}
           >
-            {verdict.label}
+            {vMeta.label}
           </span>
         )}
       </div>
-      <div className="flex items-baseline gap-1.5 mb-1">
-        <span className="mono text-xl font-bold" style={{ color: 'var(--text-primary)' }}>{k.value}</span>
-        {k.unit && <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>{k.unit}</span>}
-        <span className="mono text-sm ml-1" style={{ color: toneOf(k.trend ?? k.yoy) }}>{ARROW(k.trend ?? k.yoy)}</span>
+      <div className="flex items-end justify-between gap-2 mb-1">
+        <div className="flex items-baseline gap-1.5 flex-wrap min-w-0">
+          <span className="mono text-xl font-bold" style={{ color: 'var(--text-primary)' }}>{k.value}</span>
+          {k.unit && <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>{k.unit}</span>}
+          <span className="mono text-sm ml-1" style={{ color: toneOf(k.trend ?? k.yoy) }}>{ARROW(k.trend ?? k.yoy)}</span>
+        </div>
+        {sparkPts && (
+          <Sparkline
+            points={sparkPts}
+            color={sparkColor}
+            zero={sparkZero}
+            width={88}
+            height={26}
+          />
+        )}
       </div>
       <div className="flex items-center gap-3 flex-wrap">
         {k.yoy != null && (
@@ -92,8 +117,15 @@ export function IndicatorCard({ k }) {
           </span>
         )}
       </div>
-      {verdict?.note && (
-        <p className="text-[11px] leading-relaxed mt-1.5" style={{ color: 'var(--text-tertiary)' }}>{verdict.note}</p>
+      {verdict?.text && (
+        <p className="text-[11px] leading-relaxed mt-1.5" style={{ color: 'var(--text-tertiary)' }}>{verdict.text}</p>
+      )}
+      {macroCtx && (
+        <p className="text-[10px] leading-relaxed mt-1.5 pt-1.5" style={{ color: 'var(--text-tertiary)', borderTop: '1px solid var(--border-subtle)' }}>
+          <span className="mono" style={{ color: '#8090c6' }}>{macroCtx.tag}</span>
+          {' · '}
+          {macroCtx.read}
+        </p>
       )}
     </div>
   );

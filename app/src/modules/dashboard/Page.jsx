@@ -33,6 +33,7 @@ import {
   RISK_RADAR,
   POLICY_CALENDAR_2026,
   MACRO_SPARKLINES,
+  econTabPath,
 } from './data.js';
 import { useMacroPulse } from './useMacroPulse.js';
 import NewsMarquee from './NewsMarquee.jsx';

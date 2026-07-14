@@ -1,14 +1,15 @@
-import React, { useMemo } from 'react';
+import React, { Suspense, lazy, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Card, Grid, SourceBadge } from '../../../app/ui.jsx';
+import { Card, Grid, SourceBadge, LoadingSkeleton } from '../../../app/ui.jsx';
 import EChart from '../../../lib/viz/EChart.jsx';
 import { AXIS, GRID_LINE, LABEL } from '../../shared/chartHelpers.js';
 import { ECON_AS_OF, INCOME_DIST, NEW_ECONOMY } from '../econData.js';
-import SectionCatalog from '../SectionCatalog.jsx';
 import SectionDivergence from '../SectionDivergence.jsx';
-import SectionCycle from '../SectionCycle.jsx';
-import SectionFiveYear from '../SectionFiveYear.jsx';
 import { toneOf } from '../econHelpers.jsx';
+
+const SectionCatalog = lazy(() => import('../SectionCatalog.jsx'));
+const SectionCycle = lazy(() => import('../SectionCycle.jsx'));
+const SectionFiveYear = lazy(() => import('../SectionFiveYear.jsx'));
 
 export default function StructureTab() {
   const giniOption = useMemo(() => {
@@ -85,7 +86,9 @@ export default function StructureTab() {
         </div>
       </Card>
 
-      <div className="econ-block"><SectionCatalog /></div>
+      <Suspense fallback={<LoadingSkeleton rows={2} label="指标目录载入中…" />}>
+        <div className="econ-block"><SectionCatalog /></div>
+      </Suspense>
 
       <Card title="收入分配与新经济 · 增长落到谁身上">
         <Grid cols={2} gap="1.25rem">
@@ -126,8 +129,12 @@ export default function StructureTab() {
         </Grid>
       </Card>
 
-      <div className="econ-block"><SectionCycle /></div>
-      <div className="econ-block"><SectionFiveYear /></div>
+      <Suspense fallback={<LoadingSkeleton rows={2} label="周期研判载入中…" />}>
+        <div className="econ-block"><SectionCycle /></div>
+      </Suspense>
+      <Suspense fallback={<LoadingSkeleton rows={2} label="十五五锚点载入中…" />}>
+        <div className="econ-block"><SectionFiveYear /></div>
+      </Suspense>
     </div>
   );
 }

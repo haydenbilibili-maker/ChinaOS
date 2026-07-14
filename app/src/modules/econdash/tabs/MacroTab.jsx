@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from 'react';
-import { Card, Grid, Stat, StatGrid, SourceBadge, EmptyState } from '../../../app/ui.jsx';
+import React, { Suspense, lazy, useMemo, useState } from 'react';
+import { Card, Grid, Stat, StatGrid, SourceBadge, EmptyState, LoadingSkeleton } from '../../../app/ui.jsx';
 import EChart from '../../../lib/viz/EChart.jsx';
 import { AXIS, GRID_LINE, LABEL, LEGEND } from '../../shared/chartHelpers.js';
 import { SelectorBar } from '../../shared/ModuleParadigm.jsx';
@@ -10,11 +10,12 @@ import {
 } from '../econData.js';
 import SectionDeflation from '../SectionDeflation.jsx';
 import SectionWatch from '../SectionWatch.jsx';
-import SectionNbsLatest from '../SectionNbsLatest.jsx';
-import SectionCompare from '../SectionCompare.jsx';
 import {
   toneOf, ARROW, INDICATOR_GROUPS, filterIndicators, IndicatorCard,
 } from '../econHelpers.jsx';
+
+const SectionNbsLatest = lazy(() => import('../SectionNbsLatest.jsx'));
+const SectionCompare = lazy(() => import('../SectionCompare.jsx'));
 
 export default function MacroTab({ wb }) {
   const [group, setGroup] = useState('all');
@@ -292,8 +293,12 @@ export default function MacroTab({ wb }) {
         </Grid>
       </Card>
 
-      <div className="econ-block"><SectionNbsLatest /></div>
-      <div className="econ-block"><SectionCompare /></div>
+      <Suspense fallback={<LoadingSkeleton rows={2} label="NBS 最新发布载入中…" />}>
+        <div className="econ-block"><SectionNbsLatest /></div>
+      </Suspense>
+      <Suspense fallback={<LoadingSkeleton rows={2} label="跨国对比载入中…" />}>
+        <div className="econ-block"><SectionCompare /></div>
+      </Suspense>
     </div>
   );
 }

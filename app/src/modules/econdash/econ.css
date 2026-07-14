@@ -29,6 +29,30 @@
   background: color-mix(in srgb, var(--bg-surface) 92%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.econ-wrap .econ-sticky-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.econ-wrap .econ-tab-bar.os-tab-sticky {
+  margin-bottom: 0;
+  min-width: min(100%, max-content);
+}
+
+.econ-wrap .econ-tab-bar .os-tab-bar-pill {
+  flex-wrap: nowrap;
+}
+
+.econ-wrap .econ-indicator-card svg {
+  flex-shrink: 0;
+}
+
+.econ-wrap .econ-tab-fallback {
+  margin-bottom: 1.25rem;
 }
 
 .econ-wrap .econ-section {

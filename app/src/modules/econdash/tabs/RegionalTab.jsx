@@ -1,11 +1,12 @@
-import React, { useMemo } from 'react';
+import React, { Suspense, lazy, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Card, Grid, SourceBadge } from '../../../app/ui.jsx';
+import { Card, Grid, SourceBadge, LoadingSkeleton } from '../../../app/ui.jsx';
 import EChart from '../../../lib/viz/EChart.jsx';
 import { AXIS, GRID_LINE, LABEL, LEGEND } from '../../shared/chartHelpers.js';
 import { ECON_AS_OF, SECTOR_STRUCTURE, SECTORS } from '../econData.js';
-import SectionRegional from '../SectionRegional.jsx';
 import { toneOf, ARROW } from '../econHelpers.jsx';
+
+const SectionRegional = lazy(() => import('../SectionRegional.jsx'));
 
 const REGIONAL_HUB = [
   { to: '/regional', label: '区域协调 · 四大板块', note: '东中西梯度、转移支付与全国统一大市场。', accent: '#c99a4e' },
@@ -119,7 +120,9 @@ export default function RegionalTab() {
         </Grid>
       </Card>
 
-      <div className="econ-block"><SectionRegional /></div>
+      <Suspense fallback={<LoadingSkeleton rows={3} label="区域下钻载入中…" />}>
+        <div className="econ-block"><SectionRegional /></div>
+      </Suspense>
 
       <Card title="区域产业 · 关联深潜">
         <div className="econ-hub-grid">
