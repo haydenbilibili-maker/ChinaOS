@@ -298,9 +298,31 @@ body{
   border-color:var(--sj-ochre);color:var(--sj-ochre);outline:none;
 }
 .sj-00-chip.is-plain{cursor:default;color:var(--sj-celadon)}
-.sj-00-chip.is-plain:hover,.sj-00-chip.is-plain:focus-visible{
-  border-color:var(--sj-line);color:var(--sj-celadon);
+.sj-00-pillar-icon{
+  font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;
+  color:var(--sj-celadon);margin-bottom:6px;display:block;
 }
+.sj-00-pillar-count{
+  font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);
+  margin-left:auto;
+}
+/* 对照索引表 */
+.sj-00-map-index{overflow:auto;margin-top:12px;border:1px solid var(--sj-line);border-radius:var(--sj-radius)}
+.sj-00-map-index table{width:100%;border-collapse:collapse;font-size:12.5px}
+.sj-00-map-index th,.sj-00-map-index td{padding:10px 12px;border-bottom:1px solid var(--sj-line);text-align:left;vertical-align:top}
+.sj-00-map-index th{font-family:var(--sj-mono);font-size:10px;letter-spacing:.1em;color:var(--sj-ochre);background:var(--sj-ink-800)}
+.sj-00-map-index td{color:var(--sj-paper-300)}
+.sj-00-map-index tr:last-child td{border-bottom:none}
+.sj-00-map-index a{color:var(--sj-celadon);text-decoration:none}
+.sj-00-map-index a:hover{color:var(--sj-ochre)}
+.sj-00-meta-block{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:var(--sj-ink-800);padding:18px 20px;margin-top:14px;
+}
+.sj-00-meta-block h3{font-size:16px;letter-spacing:.1em;margin-bottom:10px;color:var(--sj-paper-100)}
+.sj-00-meta-block p{font-size:14px;color:var(--sj-paper-100);line-height:1.75;max-width:76ch}
+.sj-00-meta-block p+p{margin-top:10px}
+.sj-00-meta-block strong{color:var(--sj-ochre)}
 
 /* 占位锚点卡 */
 .sj-00-ph{
@@ -351,7 +373,7 @@ body{
   .sj-reveal-stagger > *{animation:none}
 }
 @media (min-width:1280px){
-  .sj-00-vols{grid-template-columns:repeat(4,1fr);gap:18px}
+  .sj-00-vols{grid-template-columns:repeat(5,1fr);gap:14px}
 }
 @media (min-width:1920px){
   .sj-00-vols{gap:20px}
@@ -663,15 +685,16 @@ html[data-theme="light"] .sj-00-card:focus-within{
 
 </div><!-- /.sj-main-col -->
 
-<aside class="sj-rail" id="sj-rail" aria-label="四卷导航侧栏">
+<aside class="sj-rail" id="sj-rail" aria-label="五柱导航侧栏">
   <div class="sj-rail-card">
-    <div class="k">四卷闭环</div>
+    <div class="k">五柱枢纽</div>
     <h3>史鉴卷目快跳</h3>
-    <nav class="sj-rail-vols" aria-label="四卷导航">
-      <a class="sj-rail-vol" href="#vol-method"><span class="n">方法论卷</span> SJ-01 方法 · SJ-02 引擎</a>
-      <a class="sj-rail-vol" href="#vol-cycle"><span class="n">周期卷</span> SJ-03 五力 · SJ-04 罗盘</a>
-      <a class="sj-rail-vol" href="#vol-cases"><span class="n">案例卷</span> SJ-05–08 台账</a>
-      <a class="sj-rail-vol" href="#vol-mirror"><span class="n">映射卷</span> SJ-20–24 五域</a>
+    <nav class="sj-rail-vols" aria-label="五柱导航">
+      <a class="sj-rail-vol" href="#vol-overview"><span class="n">总论</span> SJ-00 索引</a>
+      <a class="sj-rail-vol" href="#vol-method"><span class="n">方法论</span> SJ-01 · SJ-02</a>
+      <a class="sj-rail-vol" href="#vol-cycle"><span class="n">周期机制</span> SJ-03 · SJ-04</a>
+      <a class="sj-rail-vol" href="#vol-cases"><span class="n">案例库</span> SJ-05–10</a>
+      <a class="sj-rail-vol" href="#vol-mirror"><span class="n">古今对照</span> SJ-20–24</a>
     </nav>
     <div class="sj-rail-chips">
       <a class="sj-rail-chip" href="./SJ-01.html">SJ-01</a>
@@ -695,9 +718,10 @@ html[data-theme="light"] .sj-00-card:focus-within{
     <div class="k">本页结构</div>
     <nav class="sj-rail-toc sj-rail-toc-struct" aria-label="章节目录"><a href="#sec-intro">01 · 引言</a>
       <a href="#sec-spiral">02 · 治乱螺旋</a>
-      <a href="#sec-vols">03 · 四卷卷目</a>
-      <a href="#sec-engine">04 · 史鉴引擎</a>
-      <a href="#sec-gy">05 · GY 交叉</a></nav>
+      <a href="#sec-vols">03 · 五柱卷目</a>
+      <a href="#sec-mapping-index">04 · 对照索引</a>
+      <a href="#sec-engine">05 · 史鉴引擎</a>
+      <a href="#sec-gy">06 · GY 交叉</a></nav>
   </div>
 </aside>
 </div><!-- /.sj-page-layout -->
@@ -705,87 +729,139 @@ html[data-theme="light"] .sj-00-card:focus-within{
 <section class="sj-00-sec" id="sec-vols" aria-labelledby="h-vols">
   <div class="sj-00-sec-h">
     <span class="num">03 · 卷目导航</span>
-    <h2 id="h-vols">四卷闭环</h2>
+    <h2 id="h-vols">五柱枢纽</h2>
   </div>
-  <p class="sj-00-prose">方法 → 机制 → 案例验证 → 当代映射，再反过来修正方法。卡片链至已交付卷页；未交付条目仍保留占位锚点。</p>
+  <p class="sj-00-prose">总论 → 方法论 → 周期机制 → 案例验证 → 古今映射，再回流修正方法。侧栏已按五柱分组；卡片链至已交付卷页。</p>
   <div class="sj-00-vols">
     <article class="sj-00-card">
       <div class="row">
-        <span class="vol"><a class="sj-00-card-anchor" href="#vol-method" tabindex="0">方法论卷</a></span>
-        <span class="sj-00-tag is-done">已出 v0.1</span>
+        <span class="vol"><a class="sj-00-card-anchor" href="#vol-overview" tabindex="0">总论</a></span>
+        <span class="sj-00-tag is-done">1 卷</span>
       </div>
-      <h3>怎么看</h3>
-      <p>史家方法对比矩阵与 ChinaOS 自有「史鉴引擎·四步法」，奠定全系列操作系统。</p>
-      <div class="ids" aria-label="方法论卷子卷">
-        <a class="sj-00-chip" href="/modules/shijian/sj-01" tabindex="0">SJ-01（已出）</a>
-        <a class="sj-00-chip" href="/modules/shijian/sj-02" tabindex="0">SJ-02（已出）</a>
-      </div>
-    </article>
-    <article class="sj-00-card">
-      <div class="row">
-        <span class="vol"><a class="sj-00-card-anchor" href="#vol-cycle" tabindex="0">周期卷</a></span>
-        <span class="sj-00-tag is-done">已出 v0.1</span>
-      </div>
-      <h3>机器如何运转与损坏</h3>
-      <p>五力衰变模型与治乱循环相位盘——规律引擎的主体，对接 GY 时间轴与预测接口。</p>
-      <div class="ids" aria-label="周期卷子卷">
-        <a class="sj-00-chip" href="/modules/shijian/sj-03" tabindex="0">SJ-03（已出）</a>
-        <a class="sj-00-chip" href="/modules/shijian/sj-04" tabindex="0">SJ-04（已出）</a>
+      <span class="sj-00-pillar-icon">◎ 门户</span>
+      <h3>从哪进</h3>
+      <p>治乱螺旋总览、五柱地图、对照索引与 GY 交叉引用——史鉴系列的唯一总入口。</p>
+      <div class="ids" aria-label="总论子卷">
+        <a class="sj-00-chip" href="/modules/shijian" tabindex="0">SJ-00（本卷）</a>
       </div>
     </article>
     <article class="sj-00-card">
       <div class="row">
-        <span class="vol"><a class="sj-00-card-anchor" href="#vol-cases" tabindex="0">案例卷</a></span>
-        <span class="sj-00-tag is-done">已出 v0.1</span>
+        <span class="vol"><a class="sj-00-card-anchor" href="#vol-method" tabindex="0">方法论</a></span>
+        <span class="sj-00-tag is-done">2 卷</span>
       </div>
-      <h3>史料证据</h3>
-      <p>变法、盛衰拐点、王朝崩解，以及分裂期（魏晋南北朝、五代）作为超稳定结构的压力测试样本。</p>
-      <div class="ids" aria-label="案例卷子卷">
-        <a class="sj-00-chip" href="/modules/shijian/sj-05" tabindex="0">SJ-05</a>
-        <a class="sj-00-chip" href="/modules/shijian/sj-06" tabindex="0">SJ-06</a>
-        <a class="sj-00-chip" href="/modules/shijian/sj-07" tabindex="0">SJ-07</a>
-        <a class="sj-00-chip" href="/modules/shijian/sj-08" tabindex="0">SJ-08</a>
+      <span class="sj-00-pillar-icon">◈ 怎么看</span>
+      <h3>镜头与引擎</h3>
+      <p>史家方法对比矩阵与史鉴引擎·四步法，奠定全系列操作系统与台账模板。</p>
+      <div class="ids" aria-label="方法论子卷">
+        <a class="sj-00-chip" href="/modules/shijian/sj-01" tabindex="0">SJ-01</a>
+        <a class="sj-00-chip" href="/modules/shijian/sj-02" tabindex="0">SJ-02</a>
       </div>
     </article>
     <article class="sj-00-card">
       <div class="row">
-        <span class="vol"><a class="sj-00-card-anchor" href="#vol-mirror" tabindex="0">古今映射卷</a></span>
-        <span class="sj-00-tag is-done">五域 v0.1</span>
+        <span class="vol"><a class="sj-00-card-anchor" href="#vol-cycle" tabindex="0">周期机制</a></span>
+        <span class="sj-00-tag is-done">2 卷</span>
       </div>
-      <h3>结论如何回流当代</h3>
-      <p>政治 / 经济 / 文化 / 社会 / 外交五域对照台账；每条映射强制填写相似机制与关键差异。</p>
-      <div class="ids" aria-label="古今映射卷子卷">
-        <a class="sj-00-chip" href="/modules/shijian/sj-20" tabindex="0">SJ-20</a>
-        <a class="sj-00-chip" href="/modules/shijian/sj-21" tabindex="0">SJ-21</a>
-        <a class="sj-00-chip" href="/modules/shijian/sj-22" tabindex="0">SJ-22</a>
-        <a class="sj-00-chip" href="/modules/shijian/sj-23" tabindex="0">SJ-23</a>
-        <a class="sj-00-chip" href="/modules/shijian/sj-24" tabindex="0">SJ-24</a>
+      <span class="sj-00-pillar-icon">◉ 怎么转</span>
+      <h3>规律引擎</h3>
+      <p>五力衰变模型与治乱循环相位盘——对接 GY 时间轴与预测接口。</p>
+      <div class="ids" aria-label="周期机制子卷">
+        <a class="sj-00-chip" href="/modules/shijian/sj-03" tabindex="0">SJ-03</a>
+        <a class="sj-00-chip" href="/modules/shijian/sj-04" tabindex="0">SJ-04</a>
+      </div>
+    </article>
+    <article class="sj-00-card">
+      <div class="row">
+        <span class="vol"><a class="sj-00-card-anchor" href="#vol-cases" tabindex="0">案例库</a></span>
+        <span class="sj-00-tag is-done">6 卷</span>
+      </div>
+      <span class="sj-00-pillar-icon">◆ 怎么证</span>
+      <h3>史料台账</h3>
+      <p>变法、拐点、崩解、分裂与明末共振——超稳定结构的压力测试样本库。</p>
+      <div class="ids" aria-label="案例库子卷">
+        <a class="sj-00-chip" href="/modules/shijian/sj-05" tabindex="0">05</a>
+        <a class="sj-00-chip" href="/modules/shijian/sj-06" tabindex="0">06</a>
+        <a class="sj-00-chip" href="/modules/shijian/sj-07" tabindex="0">07</a>
+        <a class="sj-00-chip" href="/modules/shijian/sj-08" tabindex="0">08</a>
+        <a class="sj-00-chip" href="/modules/shijian/sj-09" tabindex="0">09</a>
+        <a class="sj-00-chip" href="/modules/shijian/sj-10" tabindex="0">10</a>
+      </div>
+    </article>
+    <article class="sj-00-card">
+      <div class="row">
+        <span class="vol"><a class="sj-00-card-anchor" href="#vol-mirror" tabindex="0">古今对照</a></span>
+        <span class="sj-00-tag is-done">5 卷</span>
+      </div>
+      <span class="sj-00-pillar-icon">◇ 怎么鉴</span>
+      <h3>五域映射</h3>
+      <p>政治/经济/文化/社会/外交五域；每条映射强制相似机制与关键差异双栏。</p>
+      <div class="ids" aria-label="古今对照子卷">
+        <a class="sj-00-chip" href="/modules/shijian/sj-20" tabindex="0">20</a>
+        <a class="sj-00-chip" href="/modules/shijian/sj-21" tabindex="0">21</a>
+        <a class="sj-00-chip" href="/modules/shijian/sj-22" tabindex="0">22</a>
+        <a class="sj-00-chip" href="/modules/shijian/sj-23" tabindex="0">23</a>
+        <a class="sj-00-chip" href="/modules/shijian/sj-24" tabindex="0">24</a>
       </div>
     </article>
   </div>
 
+  <div class="sj-00-ph" id="vol-overview">
+    <h4>总论</h4>
+    <p>本卷（SJ-00）为史鉴系列唯一总入口：治乱螺旋签名图、五柱卷目、对照索引表、四步引擎总览与 GY 交叉引用。</p>
+  </div>
   <div class="sj-00-ph" id="vol-method">
-    <h4>方法论卷</h4>
+    <h4>方法论</h4>
     <p><a href="./SJ-01.html" style="color:var(--sj-celadon)">SJ-01 史家方法对比矩阵</a>（八家光谱 + 四栏矩阵 + 镜头指南）已交付 v0.1。<a href="./SJ-02.html" style="color:var(--sj-celadon)">SJ-02 史鉴引擎·四步法</a>（台账模板 + 操作规程）已交付 v0.1。</p>
   </div>
   <div class="sj-00-ph" id="vol-cycle">
-    <h4>周期卷</h4>
+    <h4>周期机制</h4>
     <p><a href="./SJ-03.html" style="color:var(--sj-celadon)">SJ-03 五力衰变模型</a>（力场签名 + 逐力解剖 + 耦合主链 + 相位/修复力契约）已交付 v0.1。<a href="./SJ-04.html" style="color:var(--sj-celadon)">SJ-04 治乱循环相位盘</a>（不等分罗盘 + 五相位判据 + 修复力诊断 + 共享契约 + 案例卷接口）已交付 v0.1。签名预览稿仍保留为对照：<a href="./SJ-04-compass-preview.html" style="color:var(--sj-ochre)">SJ-04-compass-preview</a>。</p>
   </div>
   <div class="sj-00-ph" id="vol-cases">
-    <h4>案例卷 · 首轮收束</h4>
-    <p><a href="./SJ-05.html" style="color:var(--sj-celadon)">SJ-05 王安石变法</a>（台账七字段首验）· <a href="./SJ-06.html" style="color:var(--sj-celadon)">SJ-06 天宝之乱</a>（拐点样板）· <a href="./SJ-07.html" style="color:var(--sj-celadon)">SJ-07 崩解对比</a>（跨案矩阵）· <a href="./SJ-08.html" style="color:var(--sj-celadon)">SJ-08 五代十国</a>（分裂重整）。单案卷统一输出史鉴台账七字段。</p>
+    <h4>案例库 · 扩充至 6 卷</h4>
+    <p><a href="./SJ-05.html" style="color:var(--sj-celadon)">SJ-05 王安石</a> · <a href="./SJ-06.html" style="color:var(--sj-celadon)">SJ-06 天宝</a> · <a href="./SJ-07.html" style="color:var(--sj-celadon)">SJ-07 崩解对比</a> · <a href="./SJ-08.html" style="color:var(--sj-celadon)">SJ-08 五代</a> · <a href="./SJ-09.html" style="color:var(--sj-celadon)">SJ-09 一条鞭</a> · <a href="./SJ-10.html" style="color:var(--sj-celadon)">SJ-10 明末</a>。单案卷统一七字段台账。</p>
   </div>
   <div class="sj-00-ph" id="vol-mirror">
-    <h4>古今映射卷 · 开篇</h4>
+    <h4>古今对照 · 五域</h4>
     <p><a href="./SJ-20.html" style="color:var(--sj-celadon)">SJ-20 政治</a> · <a href="./SJ-21.html" style="color:var(--sj-celadon)">SJ-21 经济</a> · <a href="./SJ-22.html" style="color:var(--sj-celadon)">SJ-22 文化</a> · <a href="./SJ-23.html" style="color:var(--sj-celadon)">SJ-23 社会</a> · <a href="./SJ-24.html" style="color:var(--sj-celadon)">SJ-24 外交</a> 五域映射卷 v0.1 已交付。每条映射强制相似机制与关键差异双栏。</p>
   </div>
 </section>
 
-<!-- 4 引擎总览 -->
+<!-- 4 对照索引 -->
+<section class="sj-00-sec" id="sec-mapping-index" aria-labelledby="h-map-index">
+  <div class="sj-00-sec-h">
+    <span class="num">04 · 对照索引</span>
+    <h2 id="h-map-index">五域映射母表 · 快查</h2>
+  </div>
+  <p class="sj-00-prose">压缩自《母本》第五部；每格链至对应映射卷 §03 对照组。全系列强制「相似机制 + 关键差异」双栏，禁裸类比。</p>
+  <div class="sj-00-map-index">
+    <table>
+      <thead><tr><th>域</th><th>历史机制</th><th>当代形态</th><th>卷页</th></tr></thead>
+      <tbody>
+        <tr><td>政治</td><td>科举精英循环</td><td>干部选拔与流动</td><td><a href="./SJ-20.html#pair-keju">SJ-20 ①</a></td></tr>
+        <tr><td>政治</td><td>天命合法性</td><td>绩效+意识形态</td><td><a href="./SJ-20.html#pair-hefaxing">SJ-20 ②</a></td></tr>
+        <tr><td>政治</td><td>央地钟摆</td><td>当代央地关系</td><td><a href="./SJ-20.html#pair-yangdi">SJ-20 ③</a></td></tr>
+        <tr><td>经济</td><td>盐铁专营</td><td>国资/垄断</td><td><a href="./SJ-21.html#pair-yantie">SJ-21 ①</a></td></tr>
+        <tr><td>经济</td><td>税制改革谱系</td><td>土地财政</td><td><a href="./SJ-21.html#pair-shuizhi">SJ-21 ②</a></td></tr>
+        <tr><td>经济</td><td>常平仓</td><td>宏观调控</td><td><a href="./SJ-21.html#pair-changping">SJ-21 ③</a></td></tr>
+        <tr><td>文化</td><td>天命正统</td><td>意识形态再生产</td><td><a href="./SJ-22.html#pair-tianming">SJ-22 ①</a></td></tr>
+        <tr><td>社会</td><td>承载上限</td><td>抚养比/就业承载</td><td><a href="./SJ-23.html#pair-chengzai">SJ-23 ①</a></td></tr>
+        <tr><td>外交</td><td>边疆周期</td><td>海洋/技术地缘</td><td><a href="./SJ-24.html#pair-neiya">SJ-24 ①</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="sj-00-meta-block">
+    <h3>元差异 · 贯穿五域</h3>
+    <p>现代国家补上两样古代所缺：<strong>数目字管理能力</strong>（黄仁宇缺口）与<strong>列宁式组织基层穿透</strong>（GY-02）。规律同构，参数迥异——详见各卷 §04 元差异。</p>
+    <p>跨域链接示例：政治「央地钟摆」（SJ-20 ③）↔ 经济「土地财政」（SJ-21 ②）共享财政—央地耦合；社会「承载上限」（SJ-23）↔ 案例 <a href="./SJ-10.html" style="color:var(--sj-celadon)">SJ-10 明末</a> 基座引燃链。</p>
+  </div>
+</section>
+
+<!-- 5 引擎总览 -->
 <section class="sj-00-sec" id="sec-engine" aria-labelledby="h-engine">
   <div class="sj-00-sec-h">
-    <span class="num">04 · 引擎总览</span>
+    <span class="num">05 · 引擎总览</span>
     <h2 id="h-engine">史鉴引擎 · 四步法</h2>
   </div>
   <p class="sj-00-prose"><strong>史鉴引擎·四步法</strong>为 ChinaOS 自有融合方法论（详细定义见 SJ-02）：把任一历史时点切成可对照、可证伪的一张史鉴台账。</p>
@@ -838,10 +914,10 @@ html[data-theme="light"] .sj-00-card:focus-within{
   <p class="sj-00-note">四步法的标准产物是一张<strong>史鉴台账</strong>（一句话拐点 / 结构切片图 / 相位 / 五力归因 / 史家交锋 / 成败三列 / 古今映射双栏）。案例卷与映射卷均以此为统一模板。</p>
 </section>
 
-<!-- 5 GY 交叉引用 -->
+<!-- 6 GY 交叉引用 -->
 <section class="sj-00-sec" id="sec-gy" aria-labelledby="h-gy">
   <div class="sj-00-sec-h">
-    <span class="num">05 · 与 GY 交叉引用</span>
+    <span class="num">06 · 与 GY 交叉引用</span>
     <h2 id="h-gy">史鉴 ↔ 人口图谱接口</h2>
   </div>
   <p class="sj-zhupi">本图为关系骨架：深链路由在对应模块就绪后接入；本轮不以出站跳转替代页内说明。</p>

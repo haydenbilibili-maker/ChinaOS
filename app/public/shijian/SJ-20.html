@@ -194,7 +194,18 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%, #2a221
 .sj-20-pair .col p .lk{color:var(--sj-celadon)}
 @media (max-width:720px){.sj-20-pair .cols{grid-template-columns:1fr}}
 
-.sj-20-refute{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.sj-20-pair article.is-hot-pair{border-color:var(--sj-vermil);box-shadow:0 0 0 1px var(--sj-vermil),0 8px 24px rgba(0,0,0,.35)}
+.sj-20-pair article.is-hot-pair .col.same{background:color-mix(in srgb,var(--sj-celadon) 12%,var(--sj-ink-900))}
+.sj-20-pair article.is-hot-pair .col.diff{background:color-mix(in srgb,var(--sj-ochre) 12%,var(--sj-ink-900))}
+.sj-20-meta-block{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
+  padding:20px 22px;margin-top:14px;
+}
+.sj-20-meta-block h3{font-size:17px;letter-spacing:.12em;margin-bottom:12px;color:var(--sj-paper-100);font-weight:600}
+.sj-20-meta-block p{font-size:15px;color:var(--sj-paper-100);line-height:1.8;max-width:76ch}
+.sj-20-meta-block p+p{margin-top:12px}
+.sj-20-meta-block strong{color:var(--sj-ochre);font-weight:600}
 .sj-20-refute article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
 .sj-20-refute .rh{font-size:14px;font-weight:600;color:var(--sj-ochre);margin-bottom:6px}
 .sj-20-refute p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
@@ -418,7 +429,7 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
     <p>三组对照各须过 Δ 闸；点击下方跳转 §03 双栏组。</p>
     <nav class="sj-rail-toc" aria-label="对照组目录"><a href="#pair-keju">① 科举 → 干部选拔</a>
     <a href="#pair-hefaxing">② 天命 → 绩效合法性</a>
-    <a href="#pair-yangdi">③ 央地 → 当代央地</a></nav>
+    <a href="#pair-dangzheng">④ 朋党 → 派系斗争</a></nav>
     <div class="sj-rail-chips" aria-label="交叉引用"><a class="sj-rail-chip" href="./SJ-03.html">SJ-03 五力</a>
     <a class="sj-rail-chip" href="./SJ-05.html">SJ-05 变法</a>
     <a class="sj-rail-chip" href="./SJ-08.html">SJ-08 央地</a>
@@ -450,7 +461,7 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
 </div><!-- /.sj-page-layout -->
 
 <section class="sj-20-sec" id="sec-pairs" aria-labelledby="h-pairs">
-  <div class="sj-20-sec-h"><span class="num">03 · 三组对照</span><h2 id="h-pairs">相似机制 / 关键差异 双栏</h2></div>
+  <div class="sj-20-sec-h"><span class="num">03 · 四组对照</span><h2 id="h-pairs">相似机制 / 关键差异 双栏</h2></div>
 
   <div class="sj-20-pair">
     <article id="pair-keju">
@@ -476,14 +487,26 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
         <div class="col diff"><div class="ch">关键差异（不可裸类比）</div><p>现代党军体制（党指挥枪）根除了军阀式地方军事化；数目字管理 + 转移支付使央地财政可精细调节，钟摆的摆幅与工具都已不同。相似的是钟摆本身，不同的是量程与刹车。</p></div>
       </div>
     </article>
+
+    <article id="pair-dangzheng">
+      <div class="ph"><span class="gu">朋党 · 党争</span><span class="arrow">→</span><span class="jin">派系斗争与流动性</span><span class="force">精英循环力</span></div>
+      <div class="cols">
+        <div class="col same"><div class="ch">相似机制（古今相通）</div><p>精英集团以道德旗号掩盖利益结构，通道堵塞则内部倾轧加剧。宋新旧党（<span class="lk">SJ-05</span>）、明末东林阉党（<span class="lk">SJ-10</span>）与当代派系分析共享同一结构语法。</p></div>
+        <div class="col diff"><div class="ch">关键差异（不可裸类比）</div><p>现代组织纪律与轮换制度使党争形态不同；但「通道是否堵塞」仍是离心力温度计（↔ <span class="lk">GY-03</span>）。</p></div>
+      </div>
+    </article>
   </div>
 </section>
 
 <!-- 4 元差异 -->
 <section class="sj-20-sec" id="sec-meta" aria-labelledby="h-meta">
-  <div class="sj-20-sec-h"><span class="num">04 · 元差异</span><h2 id="h-meta">贯穿三组的两样「新参数」</h2></div>
-  <p class="sj-20-prose">三组对照的「关键差异」栏共享同一根源。当代政治相对传统，补上了两样古代所缺：<strong>数目字管理能力</strong>（黄仁宇缺口）与<strong>列宁式组织的基层穿透</strong>。前者使央地财政、人事可被精细计量与调节；后者使中央意志能穿透到基层，古代「皇权不下县」的结构被改写。</p>
-  <p class="sj-20-prose">这两样使当代国家的执行力发生质变——但两样没变：<strong>慢变量（人口/社会结构）的约束</strong>与<strong>精英俘获的张力</strong>。史鉴系列的政治断言由此收束为一句：<strong>规律同构，参数迥异</strong>。把结构相似误读为同质，或把参数不同误读为规律失效，都是错读。</p>
+  <div class="sj-20-sec-h"><span class="num">04 · 元差异</span><h2 id="h-meta">贯穿四组的两样「新参数」</h2></div>
+  <div class="sj-20-meta-block">
+    <h3>数目字管理 + 列宁式穿透</h3>
+    <p>四组对照的「关键差异」栏共享同一根源。当代政治相对传统，补上了两样古代所缺：<strong>数目字管理能力</strong>（黄仁宇缺口）与<strong>列宁式组织的基层穿透</strong>。</p>
+    <p>前者使央地财政、人事可被精细计量与调节；后者使中央意志能穿透到基层，古代「皇权不下县」的结构被改写。但两样没变：<strong>慢变量（人口/社会结构）的约束</strong>与<strong>精英俘获的张力</strong>。</p>
+    <p>史鉴系列的政治断言由此收束为一句：<strong>规律同构，参数迥异</strong>。跨域链接：政治④朋党 ↔ 经济③与民争利（<a href="./SJ-21.html" style="color:var(--sj-celadon)">SJ-21</a>）共享既得利益抵制结构。</p>
+  </div>
 </section>
 
 <!-- 5 相反读法 -->
@@ -540,9 +563,17 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
       diff:'现代传播+组织化再生产能力远超古代；合法性来源更多元（发展、复兴、制度自信）。贬值规律不变，生产分发已工业化（↔ GY-02）。' },
     yangdi: { name:'央地：集权—分权钟摆',
       same:'过度授权→尾大不掉（SJ-06/08）；过度矫正→僵化/积弱（SJ-08 宋）。「过度矫正成下一病灶」元规律跨古今。',
-      diff:'现代党军体制根除军阀式地方军事化；数目字管理+转移支付使财政可精细调节。相似的是钟摆，不同的是量程与刹车。' }
+      diff:'现代党军体制根除军阀式地方军事化；数目字管理+转移支付使财政可精细调节。相似的是钟摆，不同的是量程与刹车。' },
+    dangzheng: { name:'朋党：党争 → 派系斗争',
+      same:'道德旗号掩盖利益结构；通道堵塞→内部倾轧。SJ-05 新旧党、SJ-10 东林阉党为史料源。',
+      diff:'现代组织纪律与轮换制度使形态不同；但「通道是否堵塞」仍是离心力温度计（↔ GY-03）。' }
   };
 
+  function highlightPair(id){
+    document.querySelectorAll('.sj-20-pair article').forEach(a=>a.classList.remove('is-hot-pair'));
+    const el=document.getElementById('pair-'+id);
+    if(el){ el.classList.add('is-hot-pair'); el.scrollIntoView({behavior:'smooth',block:'center'}); }
+  }
   function clearVisual(){ stage.classList.remove('is-picking'); rows.forEach(r=>r.classList.remove('is-hot')); }
   function showAside(id){ const d=MAP_DATA[id]; if(!d) return; asideEmpty.hidden=true; asideBody.hidden=false;
     document.getElementById('aside-tag').textContent='古今映射 · 政治';
@@ -550,9 +581,12 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
     document.getElementById('aside-same').innerHTML='<b class="same">相似机制：</b>'+d.same;
     document.getElementById('aside-diff').innerHTML='<b class="diff">关键差异：</b>'+d.diff; }
   function pick(id){ if(!MAP_DATA[id]) return; clearVisual(); stage.classList.add('is-picking');
-    rows.forEach(r=>r.classList.toggle('is-hot', r.dataset.id===id)); showAside(id); }
+    rows.forEach(r=>r.classList.toggle('is-hot', r.dataset.id===id)); showAside(id); highlightPair(id); }
   rows.forEach(r=>{ const act=()=>pick(r.dataset.id); r.addEventListener('click',act);
     r.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); act(); } }); });
+  document.querySelectorAll('.sj-rail-toc a[href^="#pair-"]').forEach(a=>{
+    a.addEventListener('click',e=>{ const id=a.getAttribute('href').slice(6); if(MAP_DATA[id]){ e.preventDefault(); pick(id); }});
+  });
 })();
 
   /* rail toc highlight */

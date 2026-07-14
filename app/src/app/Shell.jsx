@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 import { NavLink, Link, Outlet, useLocation } from 'react-router-dom';
 import * as Lucide from 'lucide-react';
 import { GROUPS, HUANGFEIZHAI_GROUP_ID, modulesByGroup } from './registry.js';
+import { shijianSubgroupLabel } from '../lib/shijian/navOrder.js';
 import { useHuangfeizhaiAuth } from '../lib/huangfeizhai/useHuangfeizhaiAuth.js';
 import { buildBreadcrumbs, resolveModuleByPath } from './breadcrumb.js';
 import GlobalSearch from './GlobalSearch.jsx';
@@ -116,6 +117,20 @@ function SidebarTreeControls({ anyExpanded, onToggleAll }) {
   );
 }
 
+function groupModsBySubgroup(mods) {
+  const sections = [];
+  let currentKey = null;
+  for (const m of mods) {
+    const key = m.subgroup || '';
+    if (key !== currentKey) {
+      sections.push({ key, label: key ? shijianSubgroupLabel(key) : '', mods: [] });
+      currentKey = key;
+    }
+    sections[sections.length - 1].mods.push(m);
+  }
+  return sections;
+}
+
 function GroupBlock({ group, expanded, onToggle, onNavigate, alwaysShowModules, huangfeizhaiUnlocked, narrow }) {
   const allMods = modulesByGroup(group.id);
   if (!allMods.length) return null;
@@ -127,6 +142,8 @@ function GroupBlock({ group, expanded, onToggle, onNavigate, alwaysShowModules, 
 
   const collapsible = !alwaysShowModules && !narrow;
   const showModules = alwaysShowModules || expanded || narrow;
+  const useSubgroups = group.id === 'shijian' && mods.some((m) => m.subgroup);
+  const sections = useSubgroups ? groupModsBySubgroup(mods) : [{ key: '', label: '', mods }];
 
   const headerInner = (
     <>
@@ -174,21 +191,34 @@ function GroupBlock({ group, expanded, onToggle, onNavigate, alwaysShowModules, 
         className={`os-group-modules ${showModules ? 'is-expanded' : ''}`}
       >
         <nav className="space-y-0.5">
-          {mods.map((m) => (
-            <NavLink
-              key={m.id}
-              to={m.path}
-              onClick={onNavigate}
-              title={narrow ? m.title : undefined}
-              className={({ isActive }) => `nav-item flex items-center gap-3 px-3 py-2 rounded-lg text-sm ${isActive ? 'is-active' : ''}`}
-              style={({ isActive }) => ({
-                color: isActive ? 'var(--nav-active-text)' : 'var(--text-secondary)',
-                '--nav-accent': group.accent,
-              })}
-            >
-              <Icon name={m.icon} />
-              <span className="nav-item__label flex-1 truncate">{m.title}</span>
-            </NavLink>
+          {sections.map((section) => (
+            <div key={section.key || 'default'} className={section.label ? 'os-subgroup-block' : ''}>
+              {section.label && !narrow ? (
+                <div
+                  className="os-subgroup-header px-3 pt-1.5 pb-1 text-[10px] mono tracking-wider uppercase"
+                  style={{ color: 'var(--text-tertiary)' }}
+                  aria-hidden="true"
+                >
+                  {section.label}
+                </div>
+              ) : null}
+              {section.mods.map((m) => (
+                <NavLink
+                  key={m.id}
+                  to={m.path}
+                  onClick={onNavigate}
+                  title={narrow ? m.title : undefined}
+                  className={({ isActive }) => `nav-item flex items-center gap-3 px-3 py-2 rounded-lg text-sm ${isActive ? 'is-active' : ''}`}
+                  style={({ isActive }) => ({
+                    color: isActive ? 'var(--nav-active-text)' : 'var(--text-secondary)',
+                    '--nav-accent': group.accent,
+                  })}
+                >
+                  <Icon name={m.icon} />
+                  <span className="nav-item__label flex-1 truncate">{m.title}</span>
+                </NavLink>
+              ))}
+            </div>
           ))}
         </nav>
       </div>

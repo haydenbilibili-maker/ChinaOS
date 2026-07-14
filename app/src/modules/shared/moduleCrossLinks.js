@@ -808,6 +808,16 @@ const MAP = {
     { to: '/modules/shijian/sj-20', label: 'SJ-20 · 政治映射', note: '央地钟摆与过度矫正元规律的原型。' },
     { to: '/govsystem', label: '政府体系 · 央地', note: '当代央地关系的制度透镜。' },
   ],
+  shijianSJ09: [
+    { to: '/modules/shijian/sj-05', label: 'SJ-05 · 王安石变法', note: '宋明变法对照：财政重建触动精英。' },
+    { to: '/modules/shijian/sj-10', label: 'SJ-10 · 明末衰变', note: '一条鞭未能阻止的三饷越阈终点。' },
+    { to: '/modules/shijian/sj-21', label: 'SJ-21 · 经济映射', note: '税制改革谱系古今对照。' },
+  ],
+  shijianSJ10: [
+    { to: '/modules/shijian/sj-07', label: 'SJ-07 · 崩解对比', note: '明行矩阵定位；本案为单案深描。' },
+    { to: '/modules/shijian/sj-09', label: 'SJ-09 · 一条鞭', note: '汲取改革谱系前史。' },
+    { to: '/modules/shijian/sj-23', label: 'SJ-23 · 社会映射', note: '基座承载上限古今对照。' },
+  ],
   shijianSJ20: [
     { to: '/modules/shijian/sj-03', label: 'SJ-03 · 五力衰变', note: '精英循环力、合法性叙事力的定义与指标。' },
     { to: '/modules/shijian/sj-05', label: 'SJ-05 · 王安石变法', note: '党争与精英循环力的单案史料源。' },

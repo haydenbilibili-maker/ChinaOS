@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 import { POPULATION_SLICE_COUNT } from '../lib/gy/registry.js';
 import { populationNavCompare } from '../lib/gy/navOrder.js';
+import { shijianNavCompare } from '../lib/shijian/navOrder.js';
 
 // ============================================================================
 // 模块注册表 · China OS 单一数据源
@@ -977,8 +978,10 @@ export const MODULES = [
     id: 'shijianSJ00',
     path: '/modules/shijian',
     group: 'shijian',
+    subgroup: 'overview',
+    navOrder: 0,
     title: '史鉴总索引',
-    subtitle: '治乱螺旋 · 四步引擎 · GY 交叉',
+    subtitle: '五柱枢纽 · 治乱螺旋 · GY 交叉',
     icon: 'ScrollText',
     accent: '#a83b2c',
     component: lazy(() => import('../modules/shijian/Page.jsx')),
@@ -987,6 +990,8 @@ export const MODULES = [
     id: 'shijianSJ01',
     path: '/modules/shijian/sj-01',
     group: 'shijian',
+    subgroup: 'method',
+    navOrder: 1,
     title: '史家方法对比矩阵',
     subtitle: '八家光谱 · 四栏矩阵 · 镜头指南',
     icon: 'Library',
@@ -997,6 +1002,8 @@ export const MODULES = [
     id: 'shijianSJ02',
     path: '/modules/shijian/sj-02',
     group: 'shijian',
+    subgroup: 'method',
+    navOrder: 2,
     title: '史鉴引擎 · 四步法',
     subtitle: '结构 → 周期 → 机制 → 映射 · 台账产物',
     icon: 'Workflow',
@@ -1007,6 +1014,8 @@ export const MODULES = [
     id: 'shijianSJ03',
     path: '/modules/shijian/sj-03',
     group: 'shijian',
+    subgroup: 'cycle',
+    navOrder: 3,
     title: '五力衰变模型',
     subtitle: '财政枢纽 · 慢变量基座 · 有向耦合',
     icon: 'GitBranch',
@@ -1017,6 +1026,8 @@ export const MODULES = [
     id: 'shijianSJ04',
     path: '/modules/shijian/sj-04',
     group: 'shijian',
+    subgroup: 'cycle',
+    navOrder: 4,
     title: '治乱循环相位盘',
     subtitle: '五相位罗盘 · 修复力诊断 · 双视图',
     icon: 'Compass',
@@ -1027,6 +1038,8 @@ export const MODULES = [
     id: 'shijianSJ05',
     path: '/modules/shijian/sj-05',
     group: 'shijian',
+    subgroup: 'cases',
+    navOrder: 5,
     title: '王安石变法',
     subtitle: '变法卷首案 · 史鉴台账七字段验证',
     icon: 'ScrollText',
@@ -1037,6 +1050,8 @@ export const MODULES = [
     id: 'shijianSJ06',
     path: '/modules/shijian/sj-06',
     group: 'shijian',
+    subgroup: 'cases',
+    navOrder: 6,
     title: '开元盛世 → 天宝之乱',
     subtitle: '盛衰拐点 · 内轻外重 · 强化单力反降稳定',
     icon: 'TrendingDown',
@@ -1047,6 +1062,8 @@ export const MODULES = [
     id: 'shijianSJ07',
     path: '/modules/shijian/sj-07',
     group: 'shijian',
+    subgroup: 'cases',
+    navOrder: 7,
     title: '秦汉唐明清 · 崩解对比',
     subtitle: '崩解归因矩阵 · 主链同构 · 反单因论',
     icon: 'GitCompare',
@@ -1057,6 +1074,8 @@ export const MODULES = [
     id: 'shijianSJ08',
     path: '/modules/shijian/sj-08',
     group: 'shijian',
+    subgroup: 'cases',
+    navOrder: 8,
     title: '五代十国 · 分裂与重整',
     subtitle: '军事力畸大 · 合法性归零 · 过度矫正=下一病灶',
     icon: 'Swords',
@@ -1064,9 +1083,35 @@ export const MODULES = [
     component: lazy(() => import('../modules/shijian/Sj08Page.jsx')),
   },
   {
+    id: 'shijianSJ09',
+    path: '/modules/shijian/sj-09',
+    group: 'shijian',
+    subgroup: 'cases',
+    navOrder: 9,
+    title: '张居正一条鞭法',
+    subtitle: '明中后期变法 · 税基重整 · 人亡政息',
+    icon: 'Scale',
+    accent: '#a83b2c',
+    component: lazy(() => import('../modules/shijian/Sj09Page.jsx')),
+  },
+  {
+    id: 'shijianSJ10',
+    path: '/modules/shijian/sj-10',
+    group: 'shijian',
+    subgroup: 'cases',
+    navOrder: 10,
+    title: '明末衰变 · 崇祯易代',
+    subtitle: '小冰期共振 · 三饷越阈 · 多力崩解单案',
+    icon: 'Flame',
+    accent: '#a83b2c',
+    component: lazy(() => import('../modules/shijian/Sj10Page.jsx')),
+  },
+  {
     id: 'shijianSJ20',
     path: '/modules/shijian/sj-20',
     group: 'shijian',
+    subgroup: 'mirror',
+    navOrder: 20,
     title: '政治映射 · 古今对照',
     subtitle: '精英循环 · 合法性叙事 · 央地钟摆',
     icon: 'Landmark',
@@ -1077,6 +1122,8 @@ export const MODULES = [
     id: 'shijianSJ21',
     path: '/modules/shijian/sj-21',
     group: 'shijian',
+    subgroup: 'mirror',
+    navOrder: 21,
     title: '经济映射 · 古今对照',
     subtitle: '盐铁→国资 · 税制→土地财政 · 常平仓→调控',
     icon: 'Coins',
@@ -1087,6 +1134,8 @@ export const MODULES = [
     id: 'shijianSJ22',
     path: '/modules/shijian/sj-22',
     group: 'shijian',
+    subgroup: 'mirror',
+    navOrder: 22,
     title: '文化映射 · 古今对照',
     subtitle: '象征通胀 · 文教投入 · 思想边界 · 意识形态再生产',
     icon: 'Sparkles',
@@ -1097,6 +1146,8 @@ export const MODULES = [
     id: 'shijianSJ23',
     path: '/modules/shijian/sj-23',
     group: 'shijian',
+    subgroup: 'mirror',
+    navOrder: 23,
     title: '社会映射 · 古今对照',
     subtitle: '承载上限 · 流民变体 · 人口结构容错',
     icon: 'Users',
@@ -1107,6 +1158,8 @@ export const MODULES = [
     id: 'shijianSJ24',
     path: '/modules/shijian/sj-24',
     group: 'shijian',
+    subgroup: 'mirror',
+    navOrder: 24,
     title: '外交映射 · 古今对照',
     subtitle: '边疆周期 · 朝贡秩序 · 军费财政 · 秩序话语',
     icon: 'Globe2',
@@ -1223,7 +1276,7 @@ export const MODULES = [
 ];
 
 // 分组级排序器（仅 population 组按 语义簇/优先级/相似性/标题长度 重排，见 lib/gy/navOrder）
-const GROUP_COMPARATORS = { population: populationNavCompare };
+const GROUP_COMPARATORS = { population: populationNavCompare, shijian: shijianNavCompare };
 export const HUANGFEIZHAI_GROUP_ID = 'huangfeizhai';
 
 export const modulesByGroup = (groupId) => {
