@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid, OsGauge } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { categoryX, valueY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -234,12 +234,12 @@ export default function Page() {
         <strong style={{ color: 'var(--text-primary)' }}>人形机器人的量产降本能力</strong>——谁掌握通用机器人量产，谁掌握未来 50 年的生产力主权。
       </IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="470 台" label="工业机器人密度/万人" accent="#22d3ee" />
         <Stat value="52%" label="全球工业装机份额" accent="#c41e3a" />
         <Stat value="45%" label="高端核心部件国产化率" accent="#e8a317" />
         <Stat value="2025—26" label="人形机器人小批量量产" accent="#10b981" />
-      </Grid>
+      </StatGrid>
 
       {/* ① 机器人类型选择器 */}
       <Card title="交互 · 机器人类型选择器" className="mb-6">
@@ -248,12 +248,14 @@ export default function Page() {
           <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{r.desc}</p>
         </div>
 
-        <Grid cols={4} className="mb-4">
+        <StatGrid className="mb-4">
           <Stat value={`${r.share}%`} label={`全球装机份额 · ${r.label}`} accent={r.accent} />
           <Stat value={`${r.density} 台`} label="装机密度/万人(示意)" accent="#22d3ee" />
           <Stat value={`${r.marketCN} 亿`} label="中国市场规模(示意)" accent="#e8a317" />
-          <Stat value={`${r.local}%`} label="本体国产化率" accent="#10b981" />
-        </Grid>
+          <div className="os-card os-stat-card p-4 flex flex-col items-center justify-center gap-1">
+            <OsGauge value={r.local} color={r.accent} size={84} label="本体国产化率" />
+          </div>
+        </StatGrid>
 
         <Grid cols={2} className="mb-4">
           <Card title="智能泛化能力指数（随类型切换）"><EChart option={intelligenceLine} style={{ height: 220 }} /></Card>

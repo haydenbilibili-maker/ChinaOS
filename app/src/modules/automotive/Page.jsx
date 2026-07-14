@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid, OsSparkline } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -282,7 +282,7 @@ export default function Page() {
       type: 'bar', barWidth: 22,
       data: CHAIN.map((c) => ({
         value: c.shareCN,
-        itemStyle: { color: c.key === chain ? c.accent : '#27324a', borderRadius: [4, 4, 0, 0] },
+        itemStyle: { color: c.key === chain ? c.accent : AXIS.lineStyle.color, borderRadius: [4, 4, 0, 0] },
       })),
       label: { show: true, position: 'top', color: LABEL.color, fontSize: 10, formatter: '{c}%' },
       markLine: {
@@ -303,12 +303,12 @@ export default function Page() {
       </IntroCard>
 
       {/* ====== 概览 Stat ====== */}
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="50%+" label="NEV 渗透率（2024 起常态过半）" accent="#c41e3a" />
         <Stat value="640 万+" label="年汽车出口量 · 全球第一" accent="#e8a317" />
         <Stat value="~65%" label="动力电池全球装机份额" accent="#22d3ee" />
         <Stat value="100+" label="在售新能源品牌（出清中）" accent="#8b5cf6" />
-      </Grid>
+      </StatGrid>
 
       {/* ====== 交互① 价值链选择器 ====== */}
       <Card title="交互① · 价值链权力地图（六环节）" className="mb-6">
@@ -320,9 +320,9 @@ export default function Page() {
           </div>
           <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{seg.verdict}</p>
         </div>
-        <Grid cols={4} className="mb-4">
+        <StatGrid className="mb-4">
           {seg.stats.map(([v, l]) => <Stat key={l} value={v} label={l} accent={seg.accent} />)}
-        </Grid>
+        </StatGrid>
         <Grid cols={2} className="mb-4">
           <Card title={seg.shareLabel}>
             <EChart option={chainBarOpt} style={{ height: 230 }} />
@@ -357,6 +357,9 @@ export default function Page() {
         </div>
         <Grid cols={2}>
           <Card title="NEV 渗透率曲线（% · 50% 替代拐点 markLine）">
+            <div className="flex items-center justify-end mb-1">
+              <OsSparkline points={PEN_VALUES} color="#c41e3a" width={88} height={22} fill />
+            </div>
             <EChart option={penetrationOpt} style={{ height: 250 }} />
           </Card>
           <Card title="对数视角 · 渗透率十年百倍（log 轴）">

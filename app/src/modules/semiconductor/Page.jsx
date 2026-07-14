@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid, OsGauge } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -245,12 +245,12 @@ export default function Page() {
         芯片是数字时代的<strong style={{ color: 'var(--text-primary)' }}>石油与火药</strong>：既是一切算力的燃料，也是大国博弈的武器。中国是全球最大芯片进口国（年进口额一度超过原油），却在 EDA、光刻机、高端材料上被「小院高墙」精准锁喉。这里没有温情叙事——只有<strong style={{ color: 'var(--text-primary)' }}>权力的物理学</strong>：谁控制 13.5nm 波长的极紫外光，谁就控制 7nm 以下的物理世界；而中国的回答是成熟制程产能包抄 + Chiplet 换道 + 万亿主权资本的全链替代消耗战。本页拆解七个产业链环节的封锁与突围。
       </IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="~20-25%" label="芯片自给率(口径存争议)" accent="#c41e3a" />
         <Stat value="3440 亿¥" label="大基金三期注册资本" accent="#e8a317" />
         <Stat value="~30%" label="全球晶圆产能份额(E·含外资在华)" accent="#22d3ee" />
         <Stat value="3000+" label="芯片设计企业数" accent="#8b5cf6" />
-      </Grid>
+      </StatGrid>
 
       {/* ====== 产业链环节选择器 ====== */}
       <Card title="产业链七环节 · 点选看封锁与突围" className="mb-6">
@@ -259,8 +259,11 @@ export default function Page() {
           <div>
             <div className="text-sm font-semibold mb-2" style={{ color: seg.accent }}>{seg.title}</div>
             <div className="flex items-center gap-3 mb-3">
-              <span className="text-2xl font-bold mono" style={{ color: locColor(seg.autonomy) }}>{seg.autonomy}%</span>
-              <span className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>自主度(示意) · 封锁强度 {seg.chokeLevel}/100</span>
+              <OsGauge value={seg.autonomy} color={locColor(seg.autonomy)} size={88} label="自主度" />
+              <div>
+                <span className="text-2xl font-bold mono" style={{ color: locColor(seg.autonomy) }}>{seg.autonomy}%</span>
+                <div className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>自主度(示意) · 封锁强度 {seg.chokeLevel}/100</div>
+              </div>
             </div>
             <div className="space-y-2">
               <div style={{ borderLeft: '2px solid #64748b', paddingLeft: 10 }}>

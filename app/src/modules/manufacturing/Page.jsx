@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid, OsGauge } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -137,26 +137,26 @@ export default function Page() {
     <div>
       <PageHeader badge="Manufacturing · New Quality Productive Forces" title="制造业规模 · 全球价值链位势" subtitle="GVC 微笑曲线 · 增加值全球份额 · 门类位势 —— 从世界工厂到制造强国的「非对称相互依赖」" />
       <IntroCard>中国制造业增加值占全球约 30%、连续 14 年居全球第一，且拥有联合国产业分类中全部工业门类。其转型主线是沿微笑曲线的纵向迁徙：组装中段已达绝对统治，真正的变量在于研发设计（左端）与品牌服务（右端）的爬升速度能否跑赢外部脱钩的速度。</IntroCard>
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="~30%" label="制造业增加值全球份额（连续 14 年第一）" accent="#e8a317" />
         <Stat value="+10.2%" label="高技术制造业增速 · 引领结构化升级" accent="#c41e3a" />
         <Stat value="12,000+" label="专精特新「小巨人」· 产业链关键节点掌控者" accent="#22d3ee" />
         <Stat value="392 台" label="工业机器人密度（每万名工人 · 全球领先）" accent="#10b981" />
-      </Grid>
+      </StatGrid>
 
       {/* 关键指标卡 */}
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         {[['增加值 / GDP', '约 27%', '制造业占国民经济比重 · 守住实体根基', '#c41e3a'],
           ['全球占比', '约 30%', '超美日德之和 · 连续 14 年第一', '#e8a317'],
           ['门类完整度', '100%', '全部 41 大类工业门类 · 唯一', '#22d3ee'],
           ['机器人密度', '392 台/万人', '超德日 · 自动化率全球领先', '#10b981']].map(([l, v, d, c]) => (
-          <div key={l} className="os-card p-5" style={{ borderLeft: `3px solid ${c}` }}>
+          <div key={l} className="os-card os-stat-card p-4" style={{ borderLeft: `3px solid ${c}` }}>
             <div className="text-[11px] uppercase tracking-wider mb-1" style={{ color: 'var(--text-tertiary)' }}>{l}</div>
-            <div className="text-2xl font-bold mb-1" style={{ color: c }}>{v}</div>
+            <div className="text-2xl font-bold mb-1 mono os-mono-tabular" style={{ color: c }}>{v}</div>
             <p className="text-[11px] leading-snug" style={{ color: 'var(--text-secondary)' }}>{d}</p>
           </div>
         ))}
-      </Grid>
+      </StatGrid>
 
       {/* GVC 微笑曲线交互 */}
       <Card title="01 · GVC 微笑曲线：价值链位势与「向两端攀升」" className="mb-6">
@@ -165,10 +165,11 @@ export default function Page() {
           {smileStages.map((s, i) => {
             const on = i === stage;
             return (
-              <button key={s} onClick={() => setStage(i)} className="text-xs font-semibold px-3 py-1.5 rounded transition-all" style={{
+              <button key={s} type="button" onClick={() => setStage(i)} className={`os-filter-chip mono ${on ? 'is-active' : ''}`} style={{
+                '--chip-accent': '#c41e3a',
                 background: on ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)',
-                color: on ? '#fff' : 'var(--text-secondary)',
-                border: on ? '1px solid #c41e3a' : '1px solid #27324a',
+                color: on ? 'var(--tab-active-text)' : 'var(--text-secondary)',
+                border: on ? '1px solid #c41e3a' : '1px solid var(--border-subtle)',
               }}>{s}</button>
             );
           })}
@@ -181,10 +182,11 @@ export default function Page() {
               <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded" style={{ color: stageDetail[stage].accent, border: `1px solid ${stageDetail[stage].accent}` }}>{stageDetail[stage].pos}</span>
             </div>
             <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>{stageDetail[stage].desc}</p>
-            <div className="flex gap-4">
+            <div className="flex gap-4 items-end flex-wrap">
               <div><div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>当前附加值率</div><div className="text-lg font-bold" style={{ color: '#c41e3a' }}>{smileChinaNow[stage]}</div></div>
               <div><div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>攀升目标</div><div className="text-lg font-bold" style={{ color: '#22d3ee' }}>{smileTarget[stage]}</div></div>
               <div><div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>发达经济体</div><div className="text-lg font-bold" style={{ color: '#5b6a82' }}>{smileGlobalLeader[stage]}</div></div>
+              <OsGauge value={smileChinaNow[stage]} max={100} color={stageDetail[stage].accent} size={78} label="当前位势" />
             </div>
           </div>
         </Grid>
@@ -196,10 +198,11 @@ export default function Page() {
           {sectorKeys.map((k) => {
             const on = k === sector;
             return (
-              <button key={k} onClick={() => setSector(k)} className="text-xs font-semibold px-4 py-1.5 rounded transition-all" style={{
+              <button key={k} type="button" onClick={() => setSector(k)} className={`os-filter-chip mono ${on ? 'is-active' : ''}`} style={{
+                '--chip-accent': '#c41e3a',
                 background: on ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)',
-                color: on ? '#fff' : 'var(--text-secondary)',
-                border: on ? '1px solid #c41e3a' : '1px solid #27324a',
+                color: on ? 'var(--tab-active-text)' : 'var(--text-secondary)',
+                border: on ? '1px solid #c41e3a' : '1px solid var(--border-subtle)',
               }}>{k}</button>
             );
           })}
@@ -270,7 +273,7 @@ export default function Page() {
         <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>中国不仅在补齐短板，更在强化长板。通过在新能源产业链、成熟制程芯片应用、以及高铁/盾构机等领域的绝对优势，构建一套「让外部无法脱钩」的物理阻尼。在现实主义博弈中，这种「不可替代性」是比关税更强大的谈判筹码。</p>
         <div className="flex flex-wrap gap-2">
           {['Digital Supply Chain Twins', 'Industrial Internet Synergy', 'Sovereign Manufacturing Bases'].map((t) => (
-            <span key={t} className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded" style={{ color: 'var(--text-tertiary)', border: '1px solid #27324a' }}>{t}</span>
+            <span key={t} className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded" style={{ color: 'var(--text-tertiary)', border: '1px solid var(--border-subtle)' }}>{t}</span>
           ))}
         </div>
       </Card>

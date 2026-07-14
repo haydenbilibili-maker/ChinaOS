@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import EChart from '../../lib/viz/EChart.jsx';
+import { LoadingSkeleton, EmptyState } from '../../app/ui.jsx';
 import { getTheme, subscribeTheme } from '../../lib/theme.js';
-import { CHART_TOOLTIP } from '../shared/chartHelpers.js';
+import { CHART_TOOLTIP, mapChoropleth, chartTextColor } from '../shared/chartHelpers.js';
 import { HESHAN_AS_OF } from '../shared/heshanData.js';
 import { loadHeshanReformGeo, HESHAN_MAP_NAME } from './heshanMapGeo.js';
 import {
@@ -97,9 +98,7 @@ export default function HeshanFactsheetMap({ onSelectUnit }) {
   const option = useMemo(() => {
     const muted = light ? '#7c7264' : '#8a8278';
     const line = light ? '#cdc0a9' : '#3a4548';
-    const palette = light
-      ? ['#f0e6d4', '#e0c090', '#c47a3a', '#9e2b25']
-      : ['#1e2a30', '#3d5560', '#9a6a40', '#d06058'];
+    const palette = mapChoropleth(light ? 'light' : 'dark');
 
     return {
       backgroundColor: 'transparent',
@@ -133,7 +132,7 @@ export default function HeshanFactsheetMap({ onSelectUnit }) {
         itemWidth: 14,
         itemHeight: 72,
         text: [formatMetric(maxV, metric), formatMetric(minV, metric)],
-        textStyle: { color: muted, fontSize: 10 },
+        textStyle: { color: chartTextColor(), fontSize: 10 },
         inRange: { color: palette },
         seriesIndex: 0,
       },
@@ -146,9 +145,9 @@ export default function HeshanFactsheetMap({ onSelectUnit }) {
           zoom: 1.12,
           center: [104.5, 36.2],
           selectedMode: 'single',
-          label: { show: false, fontSize: 9 },
+          label: { show: false, fontSize: 9, color: chartTextColor() },
           emphasis: {
-            label: { show: true, fontSize: 10 },
+            label: { show: true, fontSize: 10, color: chartTextColor() },
             itemStyle: { areaColor: light ? '#9e2b25' : '#d06058', borderWidth: 1.2 },
           },
           itemStyle: {
@@ -196,8 +195,21 @@ export default function HeshanFactsheetMap({ onSelectUnit }) {
       </div>
 
       <div className={`heshan-map-shell${loading ? ' is-loading' : ''}${error ? ' has-error' : ''}`}>
-        {loading && <div className="heshan-map-status">边界加载中…</div>}
-        {error && <div className="heshan-map-status is-error">{error}</div>}
+        {loading && (
+          <div className="heshan-map-status heshan-map-status--skeleton" role="status" aria-live="polite">
+            <LoadingSkeleton rows={3} label="边界加载中…" className="heshan-map-skeleton" />
+          </div>
+        )}
+        {error && (
+          <div className="heshan-map-status is-error">
+            <EmptyState title="地图边界加载失败" description={error} />
+          </div>
+        )}
+        {!loading && !error && featureMeta.length === 0 && (
+          <div className="heshan-map-status">
+            <EmptyState title="暂无边界要素" description="拟省底表未返回可渲染面，请稍后重试。" />
+          </div>
+        )}
         {!error && featureMeta.length > 0 && (
           <EChart
             option={option}

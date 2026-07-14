@@ -197,10 +197,23 @@ footer .fseal{font-family:"Ma Shan Zheng",serif;color:var(--cinnabar);font-size:
   letter-spacing: 0.1em;
   background: color-mix(in srgb, var(--paper) 88%, transparent);
   z-index: 2;
+  padding: 24px;
+}
+
+.heshan-map-status--skeleton {
+  letter-spacing: normal;
+}
+
+.heshan-map-skeleton {
+  width: min(100%, 420px);
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .heshan-map-status.is-error {
   color: var(--cinnabar);
+  letter-spacing: normal;
 }
 
 .heshan-map-foot {

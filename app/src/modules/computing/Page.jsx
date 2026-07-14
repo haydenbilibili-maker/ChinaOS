@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid, OsSparkline } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -251,12 +251,12 @@ export default function Page() {
       </IntroCard>
 
       {/* 概览 Stat */}
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="~520 EF" label="算力总规模（EFLOPS · 示意）" accent="#22d3ee" />
         <Stat value="~41%" label="智能算力占比（升势）" accent="#c41e3a" />
         <Stat value="8 + 10" label="枢纽节点 + 数据中心集群" accent="#e8a317" />
         <Stat value="250+" label="在建/已建智算中心（口径宽 · 示意）" accent="#10b981" />
-      </Grid>
+      </StatGrid>
 
       {/* 交互① 算力类型选择器 */}
       <Card title="交互① · 算力类型选择器（规模 / 增速 / 供需 / 瓶颈）" className="mb-6">
@@ -270,7 +270,12 @@ export default function Page() {
           <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{T.desc}</p>
         </div>
         <Grid cols={2} className="mb-4">
-          <Card title={`${T.label} · 规模趋势（指数 · 示意）`}><EChart option={typeTrendOpt} style={{ height: 220 }} /></Card>
+          <Card title={`${T.label} · 规模趋势（指数 · 示意）`}>
+            <div className="flex justify-end mb-1">
+              <OsSparkline points={T.trend} color={T.accent} width={88} height={22} fill />
+            </div>
+            <EChart option={typeTrendOpt} style={{ height: 220 }} />
+          </Card>
           <Card title={`${T.label} · 需求 vs 供给`}><EChart option={typeGapOpt} style={{ height: 220 }} /></Card>
         </Grid>
         <div className="os-card p-4" style={{ background: 'var(--bg-elevated)' }}>

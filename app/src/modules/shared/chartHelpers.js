@@ -58,6 +58,16 @@ export const CHART_SERIES_PALETTE = [
   CHART_SERIES_COLORS.slate,
 ];
 
+/** 地图 choropleth 日/夜视觉序 · 河山拟省图 & 神州活图可共用 */
+export const MAP_CHOROPLETH = {
+  dark: ['#1e2a30', '#3d5560', '#9a6a40', '#d06058'],
+  light: ['#f0e6d4', '#e0c090', '#c47a3a', '#9e2b25'],
+};
+
+export function mapChoropleth(theme = 'dark') {
+  return MAP_CHOROPLETH[theme === 'light' ? 'light' : 'dark'];
+}
+
 export const AXIS = { lineStyle: { color: C.axis } };
 export const GRID_LINE = { lineStyle: { color: C.split } };
 export const LABEL = { color: C.label, fontSize: 10 };
