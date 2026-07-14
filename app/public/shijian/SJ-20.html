@@ -23,93 +23,11 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%, #2a221c 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #1a1612 0%, transparent 50%),var(--sj-ink-900);color:var(--sj-paper-100);font-family:var(--sj-serif);line-height:1.75}
-.sj-20-wrap{max-width:min(1180px,100%);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
-@media (min-width:1280px){.sj-20-wrap{max-width:min(1400px,100%)}}
-@media (min-width:1536px){.sj-20-wrap{max-width:min(1480px,100%)}}
-@media (min-width:1920px){.sj-20-wrap{max-width:min(1560px,100%)}}
-@media (min-width:2560px){.sj-20-wrap{max-width:min(1680px,100%)}}
-
-/* 章节入场 · 尊重 prefers-reduced-motion */
-
-/* 宽屏双栏：主栏 ~58% + 粘性侧栏 ~38% */
-.sj-page-layout{display:flex;flex-direction:column;gap:var(--sj-space)}
-@media (min-width:1280px){
-  .sj-page-layout{
-    display:grid;
-    grid-template-columns:minmax(0,58fr) minmax(280px,38fr);
-    gap:clamp(16px,2vw,28px);
-    align-items:start;
-  }
-}
-.sj-main-col{min-width:0}
-.sj-rail{display:flex;flex-direction:column;gap:12px;min-width:0}
-@media (min-width:1280px){
-  .sj-rail{position:sticky;top:1rem;max-height:85vh;overflow-y:auto;overscroll-behavior:contain}
-}
-@media (max-width:1279px){
-  #sec-intro{order:1}
-  #sec-map{order:3}
-  .sj-page-layout{display:flex;flex-direction:column}
-  .sj-main-col{display:contents}
-  .sj-rail{order:2;margin:8px 0 20px}
-  .sj-rail-mini{display:none}
-}
-.sj-rail-card{
-  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
-  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
-  padding:14px 16px;
-}
-.sj-rail-card .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
-.sj-rail-card h3,.sj-rail-card h4{font-size:15px;letter-spacing:.06em;margin-bottom:8px;color:var(--sj-paper-100);font-weight:600}
-.sj-rail-card p,.sj-rail-card li{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
-.sj-rail-card dl{display:grid;gap:6px;margin:0}
-.sj-rail-card dt{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);letter-spacing:.06em}
-.sj-rail-card dd{font-size:12px;color:var(--sj-paper-300);margin:0;line-height:1.55}
-.sj-rail-toc{display:grid;gap:6px;margin-top:8px}
-.sj-rail-toc a{
-  display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
-  padding:8px 10px;text-decoration:none;color:inherit;font-size:13px;
-  transition:border-color .18s ease;
-}
-.sj-rail-toc a:hover,.sj-rail-toc a:focus-visible{border-color:var(--sj-ochre);outline:none}
-.sj-rail-toc a.is-active{border-color:var(--sj-vermil)}
-.sj-rail-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.sj-rail-chip,.sj-rail-chip:visited{
-  display:inline-block;font-family:var(--sj-mono);font-size:10px;letter-spacing:.06em;
-  color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;
-  border-radius:var(--sj-radius);text-decoration:none;
-}
-.sj-rail-chip:hover,.sj-rail-chip:focus-visible{border-color:var(--sj-ochre);color:var(--sj-ochre);outline:none}
-.sj-rail-mini{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-900);padding:6px 6px 2px;overflow:hidden}
-.sj-rail-mini svg{display:block;width:100%;height:auto}
-.sj-rail-mini-lbl{font-family:var(--sj-mono);font-size:9px;letter-spacing:.1em;color:var(--sj-paper-300);text-align:center;margin:4px 0 2px}
-.sj-rail-steps{display:grid;gap:6px}
-.sj-rail-step{
-  border:1px solid var(--sj-line);border-radius:var(--sj-radius);padding:8px 10px;
-  font-size:13px;color:var(--sj-paper-300);border-left:3px solid var(--sj-line);
-}
-.sj-rail-step.is-on{border-left-color:var(--sj-vermil);color:var(--sj-paper-100);background:color-mix(in srgb,var(--sj-vermil) 8%,var(--sj-ink-900))}
-.sj-rail-step .n{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);letter-spacing:.08em;display:block;margin-bottom:2px}
-.sj-rail-legend{display:grid;gap:4px;margin-top:8px}
-.sj-rail-legend span{font-size:12px;color:var(--sj-paper-300);padding-left:12px;border-left:3px solid var(--sj-line)}
-.sj-rail-legend .ochre{border-left-color:var(--sj-ochre)}
-.sj-rail-legend .celadon{border-left-color:var(--sj-celadon)}
-.sj-rail-legend .vermil{border-left-color:var(--sj-vermil)}
-.sj-rail-legend .paper{border-left-color:var(--sj-paper-100)}
-.sj-rail-legend .ink{border-left-color:var(--sj-paper-300)}
-.sj-rail-vols{display:grid;gap:6px}
-.sj-rail-vol{
-  display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
-  padding:8px 10px;text-decoration:none;color:inherit;font-size:13px;
-  transition:border-color .18s ease;
-}
-.sj-rail-vol:hover,.sj-rail-vol:focus-visible{border-color:var(--sj-ochre);outline:none}
-.sj-rail-vol .n{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);letter-spacing:.1em}
-@media (min-width:2560px){
-  .sj-rail{max-width:420px;margin-left:auto;width:100%}
-}
-
-@keyframes sj-fade-in{
+.sj-20-wrap{max-width:min(100%,1180px);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media (min-width:1280px){.sj-20-wrap{max-width:min(100%,1480px)}}
+@media (min-width:1536px){.sj-20-wrap{max-width:min(100%,1600px)}}
+@media (min-width:1920px){.sj-20-wrap{max-width:min(100%,1680px)}}
+@media (min-width:2560px){.sj-20-wrap{max-width:min(100%,1680px)}}@keyframes sj-fade-in{
   from{opacity:0;transform:translateY(8px)}
   to{opacity:1;transform:none}
 }
@@ -372,8 +290,7 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
 
 <aside class="sj-rail" id="sj-rail" aria-label="映射导航侧栏">
   <div class="sj-rail-mini sj-rail-card" aria-label="差异闸缩略">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 148" role="img" aria-labelledby="rail-mini-title">
-  <title id="rail-mini-title">差异闸 Δ · 政治</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 148" role="img"><title>差异闸 Δ · 政治</title>
   <rect width="184" height="148" fill="var(--sj-ink-900)"/>
   <text x="92" y="16" text-anchor="middle" fill="var(--sj-ochre)" font-size="8" font-family="monospace">Δ · 政治</text>
   <g opacity="0.9">
@@ -407,17 +324,35 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
     <div class="k">古今映射 · 政治域</div>
     <h3>差异闸导航</h3>
     <p>三组对照各须过 Δ 闸；点击下方跳转 §03 双栏组。</p>
-    <nav class="sj-rail-toc" aria-label="对照组目录">
-    <a href="#pair-keju" data-pair="keju">① 科举 → 干部选拔</a>
-    <a href="#pair-hefaxing" data-pair="hefaxing">② 天命 → 绩效合法性</a>
-    <a href="#pair-yangdi" data-pair="yangdi">③ 央地 → 当代央地</a>
-    </nav>
-    <div class="sj-rail-chips" aria-label="交叉引用">
-    <a class="sj-rail-chip" href="./SJ-03.html">SJ-03 五力</a>
+    <nav class="sj-rail-toc" aria-label="对照组目录"><a href="#pair-keju">① 科举 → 干部选拔</a>
+    <a href="#pair-hefaxing">② 天命 → 绩效合法性</a>
+    <a href="#pair-yangdi">③ 央地 → 当代央地</a></nav>
+    <div class="sj-rail-chips" aria-label="交叉引用"><a class="sj-rail-chip" href="./SJ-03.html">SJ-03 五力</a>
     <a class="sj-rail-chip" href="./SJ-05.html">SJ-05 变法</a>
     <a class="sj-rail-chip" href="./SJ-08.html">SJ-08 央地</a>
     <a class="sj-rail-chip" href="/modules/yishixingtai">GY-02 合法性</a>
-    </div>
+    <a class="sj-rail-chip" href="./SJ-00.html">SJ-00 索引</a>
+    <a class="sj-rail-chip" href="#sec-meta">§04 元差异</a>
+    <a class="sj-rail-chip" href="#sec-refute">§05 相反读法</a></div>
+  </div>
+  <div class="sj-rail-card">
+    <div class="k">元差异摘要</div>
+    <p>数目字管理能力与列宁式组织的基层穿透——两组新参数贯穿三组对照。</p>
+    <a class="sj-rail-chip" href="#sec-meta">§04 全文</a>
+  </div>
+  <div class="sj-rail-card">
+    <div class="k">相反读法</div>
+    <p class="sj-rail-refute">批评：结构相似≠同质；读法有选择性——本卷以双栏回应，非价值中立。</p>
+    <a class="sj-rail-chip" href="#sec-refute">§05 全文</a>
+  </div>
+  <div class="sj-rail-card">
+    <div class="k">本页结构</div>
+    <nav class="sj-rail-toc sj-rail-toc-struct" aria-label="章节目录"><a href="#sec-intro">01 · 引言</a>
+      <a href="#sec-map">02 · 签名映射盘</a>
+      <a href="#sec-pairs">03 · 三组对照</a>
+      <a href="#sec-meta">04 · 元差异</a>
+      <a href="#sec-refute">05 · 相反读法</a>
+      <a href="#sec-xref">06 · 交叉引用</a></nav>
   </div>
 </aside>
 </div><!-- /.sj-page-layout -->
@@ -530,7 +465,7 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
 
   /* rail toc highlight */
   (function(){
-    var links=document.querySelectorAll('.sj-rail-toc a[href^="#pair-"]');
+    var links=document.querySelectorAll('.sj-rail-toc a[href^="#"]');
     if(!links.length) return;
     var obs=new IntersectionObserver(function(entries){
       entries.forEach(function(e){

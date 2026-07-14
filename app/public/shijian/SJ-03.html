@@ -37,91 +37,11 @@ body{
   font-family:var(--sj-serif);
   line-height:1.75;
 }
-.sj-03-wrap{max-width:min(1180px,100%);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
-@media (min-width:1280px){.sj-03-wrap{max-width:min(1400px,100%)}}
-@media (min-width:1536px){.sj-03-wrap{max-width:min(1480px,100%)}}
-@media (min-width:1920px){.sj-03-wrap{max-width:min(1560px,100%)}}
-@media (min-width:2560px){.sj-03-wrap{max-width:min(1680px,100%)}}
-
-/* 章节入场 */
-
-/* 宽屏双栏：主栏 ~58% + 粘性侧栏 ~38% */
-.sj-page-layout{display:flex;flex-direction:column;gap:var(--sj-space)}
-@media (min-width:1280px){
-  .sj-page-layout{
-    display:grid;
-    grid-template-columns:minmax(0,58fr) minmax(280px,38fr);
-    gap:clamp(16px,2vw,28px);
-    align-items:start;
-  }
-}
-.sj-main-col{min-width:0}
-.sj-rail{display:flex;flex-direction:column;gap:12px;min-width:0}
-@media (min-width:1280px){
-  .sj-rail{position:sticky;top:1rem;max-height:85vh;overflow-y:auto;overscroll-behavior:contain}
-}
-@media (max-width:1279px){
-  #sec-intro{order:1}
-  #sec-forcefield{order:3}
-  .sj-page-layout{display:flex;flex-direction:column}
-  .sj-main-col{display:contents}
-  .sj-rail{order:2;margin:8px 0 20px}
-  .sj-rail-mini{display:none}
-}
-.sj-rail-card{
-  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
-  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
-  padding:14px 16px;
-}
-.sj-rail-card .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
-.sj-rail-card h3,.sj-rail-card h4{font-size:15px;letter-spacing:.06em;margin-bottom:8px;color:var(--sj-paper-100);font-weight:600}
-.sj-rail-card p,.sj-rail-card li{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
-.sj-rail-card dl{display:grid;gap:6px;margin:0}
-.sj-rail-card dt{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);letter-spacing:.06em}
-.sj-rail-card dd{font-size:12px;color:var(--sj-paper-300);margin:0;line-height:1.55}
-.sj-rail-toc{display:grid;gap:6px;margin-top:8px}
-.sj-rail-toc a{
-  display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
-  padding:8px 10px;text-decoration:none;color:inherit;font-size:13px;
-  transition:border-color .18s ease;
-}
-.sj-rail-toc a:hover,.sj-rail-toc a:focus-visible{border-color:var(--sj-ochre);outline:none}
-.sj-rail-toc a.is-active{border-color:var(--sj-vermil)}
-.sj-rail-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.sj-rail-chip,.sj-rail-chip:visited{
-  display:inline-block;font-family:var(--sj-mono);font-size:10px;letter-spacing:.06em;
-  color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;
-  border-radius:var(--sj-radius);text-decoration:none;
-}
-.sj-rail-chip:hover,.sj-rail-chip:focus-visible{border-color:var(--sj-ochre);color:var(--sj-ochre);outline:none}
-.sj-rail-mini{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-900);padding:6px 6px 2px;overflow:hidden}
-.sj-rail-mini svg{display:block;width:100%;height:auto}
-.sj-rail-mini-lbl{font-family:var(--sj-mono);font-size:9px;letter-spacing:.1em;color:var(--sj-paper-300);text-align:center;margin:4px 0 2px}
-.sj-rail-steps{display:grid;gap:6px}
-.sj-rail-step{
-  border:1px solid var(--sj-line);border-radius:var(--sj-radius);padding:8px 10px;
-  font-size:13px;color:var(--sj-paper-300);border-left:3px solid var(--sj-line);
-}
-.sj-rail-step.is-on{border-left-color:var(--sj-vermil);color:var(--sj-paper-100);background:color-mix(in srgb,var(--sj-vermil) 8%,var(--sj-ink-900))}
-.sj-rail-step .n{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);letter-spacing:.08em;display:block;margin-bottom:2px}
-.sj-rail-legend{display:grid;gap:4px;margin-top:8px}
-.sj-rail-legend span{font-size:12px;color:var(--sj-paper-300);padding-left:12px;border-left:3px solid var(--sj-line)}
-.sj-rail-legend .ochre{border-left-color:var(--sj-ochre)}
-.sj-rail-legend .celadon{border-left-color:var(--sj-celadon)}
-.sj-rail-legend .vermil{border-left-color:var(--sj-vermil)}
-.sj-rail-legend .paper{border-left-color:var(--sj-paper-100)}
-.sj-rail-legend .ink{border-left-color:var(--sj-paper-300)}
-.sj-rail-vols{display:grid;gap:6px}
-.sj-rail-vol{
-  display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
-  padding:8px 10px;text-decoration:none;color:inherit;font-size:13px;
-  transition:border-color .18s ease;
-}
-.sj-rail-vol:hover,.sj-rail-vol:focus-visible{border-color:var(--sj-ochre);outline:none}
-.sj-rail-vol .n{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);letter-spacing:.1em}
-@media (min-width:2560px){.sj-rail{max-width:420px;margin-left:auto;width:100%}}
-
-@keyframes sj-fade-in{
+.sj-03-wrap{max-width:min(100%,1180px);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media (min-width:1280px){.sj-03-wrap{max-width:min(100%,1480px)}}
+@media (min-width:1536px){.sj-03-wrap{max-width:min(100%,1600px)}}
+@media (min-width:1920px){.sj-03-wrap{max-width:min(100%,1680px)}}
+@media (min-width:2560px){.sj-03-wrap{max-width:min(100%,1680px)}}@keyframes sj-fade-in{
   from{opacity:0;transform:translateY(8px)}
   to{opacity:1;transform:none}
 }
@@ -662,10 +582,24 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
     </div>
     <p style="margin-top:10px">单力负相位可修复；三力及以上同时负相位 → 超稳定结构失修。</p>
   </div>
-  <div class="sj-rail-card" id="rail-snap-hint">
-    <div class="k">相位合约</div>
-    <p>点选 §02 力场节点或 §05 合约区，主栏展开 sj-snap 评分卡；与 SJ-04 共享数据结构。</p>
-    <a class="sj-rail-chip" href="./SJ-04.html">↔ SJ-04 罗盘</a>
+  <div class="sj-rail-card">
+    <div class="k">相位合约 · 侧栏 snap</div>
+    <p>点选 §02 力场节点或 §05 合约区，主栏与侧栏同步五力评分（示意 0–100）。</p>
+    <div class="sj-rail-snap sj-snap" id="rail-snap" aria-live="polite"></div>
+    <div class="sj-rail-chips">
+      <a class="sj-rail-chip" href="#sec-forcefield">§02 力场</a>
+      <a class="sj-rail-chip" href="#sec-phase">§05 合约</a>
+      <a class="sj-rail-chip" href="./SJ-04.html">↔ SJ-04 罗盘</a>
+    </div>
+  </div>
+  <div class="sj-rail-card">
+    <div class="k">本页结构</div>
+    <nav class="sj-rail-toc sj-rail-toc-struct" aria-label="章节目录"><a href="#sec-intro">01 · 引言</a>
+      <a href="#sec-forcefield">02 · 五力力场</a>
+      <a href="#sec-forces">03 · 逐力展开</a>
+      <a href="#sec-chain">04 · 衰变主链</a>
+      <a href="#sec-phase">05 · 相位合约</a>
+      <a href="#sec-xref">06 · 交叉引用</a></nav>
   </div>
 </aside>
 </div><!-- /.sj-page-layout -->
@@ -1104,6 +1038,7 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
     activeSample = key;
     const s = SAMPLES[key];
     const el = document.getElementById('contract-pre');
+    const railEl = document.getElementById('rail-snap');
     const rows = s.五力评分.map(function(v, i){
       const meta = FORCE_BARS[i];
       const empty = (v === null || v === undefined);
@@ -1122,6 +1057,7 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
       '</div>' +
       '<ul class="sj-snap-bars" role="list" aria-label="五力评分（示意 0–100）">'+rows+'</ul>' +
       '<p class="sj-snap-note sj-zhupi">朱批：'+s.note+'</p>';
+    if(railEl) railEl.innerHTML = el.innerHTML;
 
     document.querySelectorAll('[data-sample]').forEach(b => {
       b.classList.toggle('is-on', b.dataset.sample === key);

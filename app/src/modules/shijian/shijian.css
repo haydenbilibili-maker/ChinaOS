@@ -2,7 +2,7 @@
 
 .shijian-page {
   width: 100%;
-  max-width: min(100%, var(--content-max-width, 1280px));
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -189,10 +189,6 @@
 }
 
 @media (min-width: 1920px) {
-  .shijian-page {
-    max-width: min(100%, var(--content-max-width, 1920px));
-  }
-
   .shijian-frame-wrap {
     height: min(86vh, calc(100dvh - 180px));
   }
