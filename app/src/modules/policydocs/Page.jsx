@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid, TabBar, EmptyState, LoadingSkeleton } from '../../app/ui.jsx';
 import { IntroCard, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import DocumentViewer, { ReadDocumentButton } from '../shared/DocumentViewer.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
@@ -14,24 +14,14 @@ import { LEGAL_STATUTE_DEDUPED_COUNT } from '../../lib/db/legalStatuteSeed.js';
 import LegalCorpusSection from './LegalCorpusSection.jsx';
 
 const CORPUS_TABS = [
-  { id: 'policy', label: '政策文件', count: DOC_CATALOG_META.total, accent: '#c41e3a' },
-  { id: 'legal', label: '法律条文', count: LEGAL_STATUTE_DEDUPED_COUNT.total, accent: '#8b5cf6' },
+  { id: 'policy', label: `政策文件(${DOC_CATALOG_META.total})`, accent: '#c41e3a' },
+  { id: 'legal', label: `法律条文(${LEGAL_STATUTE_DEDUPED_COUNT.total})`, accent: '#8b5cf6' },
 ];
 
 const TYPES = ['全部', ...DOC_TYPES];
 const CATEGORIES = ['全部', ...DOC_CATEGORIES];
 const TABS = [['browse', '文件浏览'], ['compare', '历年比对'], ['trend', '指标趋势'], ['insight', '政策洞察']];
 const DETAIL_TABS = [['summary', '概要'], ['read', '阅读全文']];
-const tabBtn = (a) => ({ background: a ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)', color: a ? 'var(--chip-active-text)' : 'var(--text-secondary)', border: 'none', cursor: 'pointer', borderRadius: 6, padding: '6px 14px', fontSize: 13 });
-const detailTabBtn = (active) => ({
-  background: active ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)',
-  color: active ? 'var(--chip-active-text)' : 'var(--text-secondary)',
-  border: `1px solid ${active ? 'var(--china-red)' : 'transparent'}`,
-  cursor: 'pointer',
-  borderRadius: 6,
-  padding: '5px 12px',
-  fontSize: 12,
-});
 const pill = (c) => ({ fontSize: 10, fontFamily: 'monospace', padding: '2px 8px', borderRadius: 12, border: `1px solid ${c}55`, background: `${c}14`, color: c });
 const fmt = (v, u) => (v == null ? '—' : `${v}${u || ''}`);
 
@@ -174,27 +164,14 @@ export default function Page() {
       <div>
         <PageHeader badge="Sim · 政令文库" title="政令文库 · 政策文件与法律条文"
           subtitle={`政策语料 ${DOC_CATALOG_META.total} 份 · 法律语料 ${LEGAL_STATUTE_DEDUPED_COUNT.total} 部 —— 结构化要点 / 本地原文库 / 交叉检索`} />
-        <div className="flex gap-2 mb-6 flex-wrap">
-          {CORPUS_TABS.map((t) => (
-            <button key={t.id} type="button" onClick={() => setCorpusTab(t.id)}
-              className="text-sm px-4 py-2 rounded mono font-semibold"
-              style={{
-                background: corpusTab === t.id ? `${t.accent}22` : 'var(--bg-elevated)',
-                color: corpusTab === t.id ? t.accent : 'var(--text-secondary)',
-                border: corpusTab === t.id ? `1px solid ${t.accent}66` : '1px solid var(--border-subtle)',
-                cursor: 'pointer',
-              }}>
-              {t.label}({t.count})
-            </button>
-          ))}
-        </div>
+        <TabBar tabs={CORPUS_TABS} value={corpusTab} onChange={setCorpusTab} variant="segment" />
         <LegalCorpusSection />
         <ModuleFooter moduleId="policydocs" disclaimer="政策与法律语料均为公开发布文件的结构化要点综合；旗舰条目提供本地原文存档。正式引用请以官方发布文本为准。" />
       </div>
     );
   }
 
-  if (docs === null) return <div className="py-20 text-center mono text-sm" style={{ color: 'var(--text-tertiary)' }}>// 加载政策文件库…</div>;
+  if (docs === null) return <LoadingSkeleton rows={3} label="加载政策文件库…" className="my-12 max-w-lg mx-auto" />;
 
   const years = all.map((d) => d.year);
   const span = years.length ? `${Math.min(...years)}–${Math.max(...years)}` : '—';
@@ -218,20 +195,7 @@ export default function Page() {
       <PageHeader badge="Sim · 政令文库" title="政令文库 · 政策文件与法律条文"
         subtitle={`政策语料 ${DOC_CATALOG_META.total} 份 · 法律语料 ${LEGAL_STATUTE_DEDUPED_COUNT.total} 部 —— 报告比对 / 指标趋势 / 提法变迁 / 法律检索`} />
 
-      <div className="flex gap-2 mb-6 flex-wrap">
-        {CORPUS_TABS.map((t) => (
-          <button key={t.id} type="button" onClick={() => setCorpusTab(t.id)}
-            className="text-sm px-4 py-2 rounded mono font-semibold"
-            style={{
-              background: corpusTab === t.id ? `${t.accent}22` : 'var(--bg-elevated)',
-              color: corpusTab === t.id ? t.accent : 'var(--text-secondary)',
-              border: corpusTab === t.id ? `1px solid ${t.accent}66` : '1px solid var(--border-subtle)',
-              cursor: 'pointer',
-            }}>
-            {t.label}({t.count})
-          </button>
-        ))}
-      </div>
+      <TabBar tabs={CORPUS_TABS} value={corpusTab} onChange={setCorpusTab} variant="segment" />
 
       <IntroCard>
         以<strong style={{ color: 'var(--text-primary)' }}>结构化要点 + 本地原文库</strong>支撑政策研读：政府工作报告、中央经济工作会议、五年规划等支持历年比对与指标趋势；旗舰文件已入库
@@ -265,22 +229,37 @@ export default function Page() {
 
       {all.length > 0 && (
         <>
-          <div className="flex gap-1 flex-wrap mb-4 os-tab-bar">
-            {TABS.map(([k, l]) => <button key={k} onClick={() => setTab(k)} style={tabBtn(k === tab)} className="mono">{l}</button>)}
-          </div>
+          <TabBar tabs={TABS} value={tab} onChange={setTab} />
 
           {/* 文件浏览 */}
           {tab === 'browse' && (
             <div className="grid gap-4" style={{ gridTemplateColumns: '300px 1fr' }}>
               <Card title={`文件列表 (${list.length})`}>
-                <div className="flex gap-1 flex-wrap mb-2">
-                  {TYPES.map((t) => <button key={t} onClick={() => setTypeF(t)} className="text-[11px] mono px-2 py-0.5 rounded-full" style={{ background: t === typeF ? 'rgba(34,211,238,0.18)' : 'var(--bg-elevated)', color: t === typeF ? 'var(--cyber-cyan)' : 'var(--text-secondary)', border: `1px solid ${t === typeF ? 'var(--cyber-cyan)' : 'transparent'}`, cursor: 'pointer' }}>{t}{t !== '全部' && typeCounts[t] ? ` (${typeCounts[t]})` : ''}</button>)}
+                <div className="flex gap-1.5 flex-wrap mb-2">
+                  {TYPES.map((t) => {
+                    const on = t === typeF;
+                    return (
+                      <button key={t} type="button" onClick={() => setTypeF(t)} className={`os-filter-chip mono ${on ? 'is-active' : ''}`} style={{ '--chip-accent': 'var(--cyber-cyan)' }}>
+                        {t}{t !== '全部' && typeCounts[t] ? ` (${typeCounts[t]})` : ''}
+                      </button>
+                    );
+                  })}
                 </div>
-                <div className="flex gap-1 flex-wrap mb-3">
-                  {CATEGORIES.map((c) => <button key={c} onClick={() => setCatF(c)} className="text-[10px] mono px-2 py-0.5 rounded-full" style={{ background: c === catF ? `${CATEGORY_COLOR[c] || 'var(--cyber-cyan)'}22` : 'var(--bg-elevated)', color: c === catF ? (CATEGORY_COLOR[c] || 'var(--cyber-cyan)') : 'var(--text-tertiary)', border: `1px solid ${c === catF ? (CATEGORY_COLOR[c] || 'var(--cyber-cyan)') : 'transparent'}`, cursor: 'pointer' }}>{c}{c !== '全部' && catCounts[c] ? ` ${catCounts[c]}` : ''}</button>)}
+                <div className="flex gap-1.5 flex-wrap mb-3">
+                  {CATEGORIES.map((c) => {
+                    const on = c === catF;
+                    const accent = CATEGORY_COLOR[c] || 'var(--cyber-cyan)';
+                    return (
+                      <button key={c} type="button" onClick={() => setCatF(c)} className={`os-filter-chip mono ${on ? 'is-active' : ''}`} style={{ '--chip-accent': accent }}>
+                        {c}{c !== '全部' && catCounts[c] ? ` ${catCounts[c]}` : ''}
+                      </button>
+                    );
+                  })}
                 </div>
                 <div className="space-y-1.5" style={{ maxHeight: 520, overflowY: 'auto' }}>
-                  {list.map((d) => {
+                  {list.length === 0 ? (
+                    <EmptyState title="无匹配文件" description="尝试切换类型或主题筛选，或清空条件后重试。" />
+                  ) : list.map((d) => {
                     const on = sel?.id === d.id; const c = TYPE_COLOR[d.type] || '#64748b';
                     return (
                       <button key={d.id} onClick={() => {
@@ -311,11 +290,7 @@ export default function Page() {
                 {sel && (
                   <>
                     <div className="flex items-center justify-between gap-2 mb-3 flex-wrap">
-                      <div className="flex gap-1 flex-wrap">
-                        {DETAIL_TABS.map(([k, l]) => (
-                          <button key={k} type="button" onClick={() => setDetailTab(k)} style={detailTabBtn(detailTab === k)} className="mono">{l}</button>
-                        ))}
-                      </div>
+                      <TabBar tabs={DETAIL_TABS} value={detailTab} onChange={setDetailTab} variant="segment" className="mb-0" />
                       {detailTab === 'summary' && (
                         <ReadDocumentButton
                           onClick={openReader}
@@ -439,7 +414,14 @@ export default function Page() {
           {tab === 'trend' && (
             <div>
               <div className="flex gap-1.5 flex-wrap mb-4">
-                {GWR_METRICS.map((m) => <button key={m.key} onClick={() => setMetric(m.key)} className="text-xs mono px-3 py-1 rounded" style={{ background: metric === m.key ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)', color: metric === m.key ? 'var(--chip-active-text)' : 'var(--text-secondary)', border: `1px solid ${metric === m.key ? 'var(--china-red)' : 'transparent'}`, cursor: 'pointer' }}>{m.label}</button>)}
+                {GWR_METRICS.map((m) => {
+                  const on = metric === m.key;
+                  return (
+                    <button key={m.key} type="button" onClick={() => setMetric(m.key)} className={`os-filter-chip mono ${on ? 'is-active' : ''}`} style={{ '--chip-accent': 'var(--china-red)' }}>
+                      {m.label}
+                    </button>
+                  );
+                })}
               </div>
               <Card title={`政府工作报告 · ${mMeta?.label} 历年走势（${mMeta?.unit}）`} className="mb-4">
                 <EChart option={trendOption} style={{ height: 300 }} />

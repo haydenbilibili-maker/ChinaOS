@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import * as Lucide from 'lucide-react';
-import { Card, Grid, Stat, StatGrid, EmptyState } from '../../app/ui.jsx';
+import { Card, Grid, Stat, StatGrid, EmptyState, LoadingSkeleton } from '../../app/ui.jsx';
 import { GROUPS, MODULES } from '../../app/registry.js';
 import EChart from '../../lib/viz/EChart.jsx';
 import { AXIS, GRID_LINE, LABEL } from '../shared/chartHelpers.js';
@@ -558,8 +558,10 @@ function GdeltPulse() {
         <span className="mono px-1.5 py-0.5 rounded mr-1.5" style={{ background: articles?.length ? 'rgba(16,185,129,0.16)' : 'var(--bg-elevated)', color: articles?.length ? WARM : 'var(--text-tertiary)', fontSize: 9 }}>{articles?.length ? `● ${srcLabel} ${fetchedAt ? fetchedAt.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }) : ''}` : '○ 待接入'}</span>
         英文媒体涉华条目 · 双源（GDELT→HN）· 标题与立场来自第三方媒体，不代表本项目观点
       </>}>
-      {loading && <div className="text-[11px] mono py-6 text-center" style={{ color: 'var(--text-tertiary)' }}>{'// 正在拉取 GDELT 索引…'}</div>}
-      {!loading && error && !articles?.length && <div className="text-[11px] mono py-6 text-center" style={{ color: HOLD }}>实时源不可达：{error} · 自动重试中</div>}
+      {loading && <LoadingSkeleton rows={2} label="正在拉取 GDELT 索引…" />}
+      {!loading && error && !articles?.length && (
+        <EmptyState title="实时源不可达" description={`${error} · 自动重试中`} />
+      )}
       {!!articles?.length && (
         <div className="space-y-1.5" style={{ maxHeight: 252, overflowY: 'auto' }}>
           {articles.slice(0, 10).map((a) => (
@@ -588,8 +590,10 @@ function PolyPulse() {
         <span className="mono px-1.5 py-0.5 rounded mr-1.5" style={{ background: markets?.length ? 'rgba(16,185,129,0.16)' : 'var(--bg-elevated)', color: markets?.length ? WARM : 'var(--text-tertiary)', fontSize: 9 }}>{markets?.length ? `● Polymarket 实时 ${fetchedAt ? fetchedAt.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }) : ''}` : '○ 待接入'}</span>
         交易者聚合概率（宏观/科技类，已过滤地缘敏感）· 非本项目观点 · 非投资建议
       </>}>
-      {loading && <div className="text-[11px] mono py-6 text-center" style={{ color: 'var(--text-tertiary)' }}>{'// 正在拉取市场定价…'}</div>}
-      {!loading && error && !markets?.length && <div className="text-[11px] mono py-6 text-center" style={{ color: HOLD }}>实时源不可达：{error} · 自动重试中</div>}
+      {loading && <LoadingSkeleton rows={2} label="正在拉取市场定价…" />}
+      {!loading && error && !markets?.length && (
+        <EmptyState title="实时源不可达" description={`${error} · 自动重试中`} />
+      )}
       {!!markets?.length && (
         <div className="space-y-2">
           {markets.slice(0, 5).map((m) => (

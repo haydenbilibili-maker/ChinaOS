@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { Card, Grid, Stat } from '../../app/ui.jsx';
+import { Card, Grid, Stat, StatGrid, LoadingSkeleton } from '../../app/ui.jsx';
 import { IntroCard, FrameworkTrio } from '../shared/ModuleParadigm.jsx';
 import DocumentViewer, { ReadDocumentButton } from '../shared/DocumentViewer.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
@@ -34,13 +34,6 @@ const STATUS_FILTERS = ['全部', '现行有效', '已修订', '已废止'];
 const pill = (c) => ({
   fontSize: 10, fontFamily: 'monospace', padding: '2px 8px', borderRadius: 12,
   border: `1px solid ${c}55`, background: `${c}14`, color: c,
-});
-
-const chipBtn = (on, accent) => ({
-  fontSize: 11, fontFamily: 'monospace', padding: '4px 10px', borderRadius: 999, cursor: 'pointer',
-  background: on ? `${accent}22` : 'var(--bg-elevated)',
-  color: on ? accent : 'var(--text-secondary)',
-  border: `1px solid ${on ? accent : 'var(--border-subtle)'}`,
 });
 
 export default function LegalCorpusSection() {
@@ -156,7 +149,7 @@ export default function LegalCorpusSection() {
   }), [domainCounts]);
 
   if (!ready) {
-    return <div className="py-20 text-center mono text-sm" style={{ color: 'var(--text-tertiary)' }}>// 加载法律条文库…</div>;
+    return <LoadingSkeleton rows={3} label="加载法律条文库…" className="my-12 max-w-lg mx-auto" />;
   }
 
   return (
@@ -167,12 +160,12 @@ export default function LegalCorpusSection() {
         与「法治建设」模块互补——后者侧重制度红利与司法现代化态势，本库提供可检索的规范语料底座。数据截至 <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{AS_OF}</span>。
       </IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value={all.length || seedTotal} label="条文总数" accent="#c41e3a" />
         <Stat value={typeCounts.law || LEGAL_STATUTE_DEDUPED_COUNT.law} label="法律" accent="#c41e3a" />
         <Stat value={typeCounts.admin_regulation || LEGAL_STATUTE_DEDUPED_COUNT.admin_regulation} label="行政法规" accent="#22d3ee" />
         <Stat value={typeCounts.judicial_interpretation || LEGAL_STATUTE_DEDUPED_COUNT.judicial_interpretation} label="司法解释" accent="#8b5cf6" />
-      </Grid>
+      </StatGrid>
 
       <Grid cols={2} className="mb-6">
         <Card title="规范类型分布"><EChart option={typeChart} style={{ height: 200 }} /></Card>
@@ -197,23 +190,34 @@ export default function LegalCorpusSection() {
           className="w-full mb-3 px-3 py-2 rounded text-sm mono"
           style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)' }}
         />
-        <div className="flex flex-wrap gap-2 mb-2">
-          {TYPE_FILTERS.map(([k, l]) => (
-            <button key={k} onClick={() => setTypeF(k)} style={chipBtn(typeF === k, TYPE_COLOR[k] || '#64748b')}>{l}</button>
-          ))}
+        <div className="flex flex-wrap gap-1.5 mb-2">
+          {TYPE_FILTERS.map(([k, l]) => {
+            const on = typeF === k;
+            const accent = TYPE_COLOR[k] || '#64748b';
+            return (
+              <button key={k} type="button" onClick={() => setTypeF(k)} className={`os-filter-chip mono ${on ? 'is-active' : ''}`} style={{ '--chip-accent': accent }}>{l}</button>
+            );
+          })}
         </div>
-        <div className="flex flex-wrap gap-2 mb-2">
-          {STATUS_FILTERS.map((s) => (
-            <button key={s} onClick={() => setStatusF(s)} style={chipBtn(statusF === s, STATUS_COLOR[s] || '#64748b')}>{s}</button>
-          ))}
+        <div className="flex flex-wrap gap-1.5 mb-2">
+          {STATUS_FILTERS.map((s) => {
+            const on = statusF === s;
+            const accent = STATUS_COLOR[s] || '#64748b';
+            return (
+              <button key={s} type="button" onClick={() => setStatusF(s)} className={`os-filter-chip mono ${on ? 'is-active' : ''}`} style={{ '--chip-accent': accent }}>{s}</button>
+            );
+          })}
         </div>
         <div className="flex flex-wrap gap-1.5">
-          <button onClick={() => setDomainF('全部')} style={chipBtn(domainF === '全部', '#e8a317')}>全部领域</button>
-          {LS_DOMAINS.map((d) => (
-            <button key={d} onClick={() => setDomainF(d)} style={chipBtn(domainF === d, '#22d3ee')}>
-              {d} {domainCounts[d] || 0}
-            </button>
-          ))}
+          <button type="button" onClick={() => setDomainF('全部')} className={`os-filter-chip mono ${domainF === '全部' ? 'is-active' : ''}`} style={{ '--chip-accent': '#e8a317' }}>全部领域</button>
+          {LS_DOMAINS.map((d) => {
+            const on = domainF === d;
+            return (
+              <button key={d} type="button" onClick={() => setDomainF(d)} className={`os-filter-chip mono ${on ? 'is-active' : ''}`} style={{ '--chip-accent': '#22d3ee' }}>
+                {d} {domainCounts[d] || 0}
+              </button>
+            );
+          })}
         </div>
       </Card>
 

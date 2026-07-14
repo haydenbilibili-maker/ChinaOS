@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat, StatGrid, SourceBadge } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid, SourceBadge, LoadingSkeleton, EmptyState } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { AXIS, GRID_LINE, LABEL, LEGEND } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -465,15 +465,13 @@ export default function Page({ embedded = false }) {
         <Grid cols={2} gap="1.25rem">
           <div className="min-w-0" style={{ gridColumn: 'span 1' }}>
             {wb.loading && !wbSeries?.series?.length ? (
-              <div className="os-skeleton" style={{ height: 300, borderRadius: 8 }} aria-hidden="true" />
+              <LoadingSkeleton rows={4} label="World Bank 序列拉取中…" className="min-h-[300px]" />
             ) : wbSeries?.error ? (
-              <div className="rounded-lg p-5 text-sm" style={{ background: 'rgba(196,30,58,0.08)', border: '1px solid rgba(196,30,58,0.3)', color: 'var(--text-tertiary)' }}>
-                <span className="mono" style={{ color: '#c41e3a' }}>// 实时取数失败</span> —— {String(wbSeries.error)}；该指标暂以降级态呈现，可稍后重试。
-              </div>
+              <EmptyState title="实时取数失败" description={`${String(wbSeries.error)}；该指标暂以降级态呈现，可稍后重试。`} />
             ) : wbLineOption ? (
               <EChart option={wbLineOption} variant="dashboard" style={{ height: 300 }} />
             ) : (
-              <p className="text-xs mono" style={{ color: 'var(--text-tertiary)' }}>// 暂无序列数据</p>
+              <EmptyState title="暂无序列数据" description="当前指标未返回可用时间序列。" />
             )}
           </div>
           <div className="min-w-0 flex flex-col gap-3">
