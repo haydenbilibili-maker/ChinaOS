@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-00 · 史鉴总索引</title>
+<meta name="description" content="ChinaOS 史鉴系列门户：历史动力学引擎 × 史学方法论工具箱 × 古今五域对照台账"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;
+  --sj-ink-800:#1d1916;
+  --sj-paper-100:#e8ddc7;
+  --sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;
+  --sj-celadon:#5f7a6f;
+  --sj-ochre:#b8894a;
+  --sj-line:#3a322b;
+  --sj-radius:6px;
+  --sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+  --sj-phase-sheng:var(--sj-celadon);
+  --sj-phase-ding:var(--sj-ochre);
+  --sj-phase-jiang:var(--sj-paper-300);
+  --sj-phase-beng:var(--sj-vermil);
+  --sj-phase-chong:var(--sj-celadon);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(1000px 560px at 72% -8%, #2a221c 0%, transparent 55%),
+    radial-gradient(700px 420px at 8% 90%, #1a1612 0%, transparent 50%),
+    var(--sj-ink-900);
+  color:var(--sj-paper-100);
+  font-family:var(--sj-serif);
+  line-height:1.75;
+}
+.sj-00-wrap{max-width:960px;margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+
+/* 页眉 */
+.sj-00-mast{
+  display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;
+  padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px;
+}
+.sj-00-mast .badge{
+  font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px;
+}
+.sj-00-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em;line-height:1.3}
+.sj-00-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;letter-spacing:.08em;font-size:.72em;display:block;margin-top:4px}
+.sj-00-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right;line-height:1.7}
+.sj-00-meta b{color:var(--sj-ochre);font-weight:500}
+.sj-00-gy-chip{
+  display:inline-block;margin-top:8px;font-family:var(--sj-mono);font-size:10px;
+  letter-spacing:.08em;color:var(--sj-celadon);border:1px solid var(--sj-line);
+  padding:3px 8px;border-radius:var(--sj-radius);
+}
+
+/* 朱批 */
+.sj-zhupi{
+  color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;
+  padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:68ch;
+}
+
+/* 章 */
+.sj-00-sec{margin:36px 0 28px;scroll-margin-top:24px}
+.sj-00-sec-h{
+  display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--sj-line);
+}
+.sj-00-sec-h .num{font-family:var(--sj-mono);font-size:11px;letter-spacing:.2em;color:var(--sj-ochre)}
+.sj-00-sec-h h2{font-size:clamp(17px,2.2vw,20px);font-weight:600;letter-spacing:.12em}
+.sj-00-prose{font-size:15.5px;color:var(--sj-paper-100);max-width:68ch}
+.sj-00-prose + .sj-00-prose{margin-top:14px}
+.sj-00-prose strong{color:var(--sj-ochre);font-weight:600}
+
+/* 三位一体短签 */
+.sj-00-tri{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0 8px;
+}
+.sj-00-tri article{
+  border:1px solid var(--sj-line);background:var(--sj-ink-800);
+  border-radius:var(--sj-radius);padding:14px 14px 12px;
+  border-top:2px solid var(--sj-ochre);
+}
+.sj-00-tri article:nth-child(2){border-top-color:var(--sj-celadon)}
+.sj-00-tri article:nth-child(3){border-top-color:var(--sj-vermil)}
+.sj-00-tri .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-paper-300);margin-bottom:6px}
+.sj-00-tri h3{font-size:15px;font-weight:600;letter-spacing:.06em;margin-bottom:6px}
+.sj-00-tri p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+
+/* 螺旋舞台 */
+.sj-00-stage{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
+  box-shadow:0 1px 0 rgba(232,221,199,.04), 0 18px 48px rgba(0,0,0,.45);
+  padding:8px 8px 4px;overflow:auto;
+}
+.sj-00-stage svg{display:block;width:100%;height:auto;max-width:840px;margin:0 auto}
+.sj-seg{transition:opacity .22s ease, stroke-width .22s ease, filter .22s ease;cursor:pointer}
+.sj-seg:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:3px}
+.sj-00-stage.is-filtering .sj-seg{opacity:.18}
+.sj-00-stage.is-filtering .sj-seg.is-hot{
+  opacity:1;stroke-width:4.2;filter:drop-shadow(0 0 4px rgba(168,59,44,.35));
+}
+.sj-00-stage.is-filtering .sj-fenlie.is-hot{opacity:.95}
+.sj-00-controls{
+  display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px;align-items:center;
+}
+.sj-00-controls .lbl{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-paper-300);margin-right:4px}
+.sj-00-btn{
+  appearance:none;border:1px solid var(--sj-line);background:var(--sj-ink-800);
+  color:var(--sj-paper-100);font-family:var(--sj-serif);font-size:13px;
+  padding:6px 12px;border-radius:var(--sj-radius);cursor:pointer;
+  transition:border-color .18s, color .18s, background .18s;
+}
+.sj-00-btn:hover,.sj-00-btn:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-00-btn:focus-visible{box-shadow:0 0 0 2px rgba(184,137,74,.35)}
+.sj-00-btn.is-on{border-color:var(--sj-vermil);color:var(--sj-vermil);background:color-mix(in srgb, var(--sj-vermil) 12%, var(--sj-ink-900))}
+.sj-00-btn[data-phase="上升"].is-on{border-color:var(--sj-celadon);color:var(--sj-celadon)}
+.sj-00-btn[data-phase="鼎盛"].is-on{border-color:var(--sj-ochre);color:var(--sj-ochre)}
+.sj-00-btn[data-phase="僵化"].is-on{border-color:var(--sj-paper-300);color:var(--sj-paper-300)}
+.sj-00-btn[data-phase="崩解"].is-on{border-color:var(--sj-vermil);color:var(--sj-vermil)}
+.sj-00-btn[data-phase="重整"].is-on{border-color:var(--sj-celadon);color:var(--sj-celadon)}
+
+/* 卷目 cards */
+.sj-00-vols{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:8px}
+.sj-00-card{
+  display:block;text-decoration:none;color:inherit;
+  border:1px solid var(--sj-line);background:var(--sj-ink-800);
+  border-radius:var(--sj-radius);padding:16px 16px 14px;
+  transition:border-color .18s, transform .18s;
+  position:relative;
+}
+.sj-00-card:hover,.sj-00-card:focus-visible{
+  border-color:var(--sj-ochre);outline:none;
+  transform:translateY(-1px);
+}
+.sj-00-card:focus-visible{box-shadow:0 0 0 2px rgba(184,137,74,.35)}
+.sj-00-card .row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px}
+.sj-00-card .vol{font-family:var(--sj-mono);font-size:11px;letter-spacing:.14em;color:var(--sj-ochre)}
+.sj-00-tag{
+  font-family:var(--sj-mono);font-size:10px;letter-spacing:.1em;
+  padding:2px 8px;border-radius:999px;border:1px solid var(--sj-line);white-space:nowrap;
+}
+.sj-00-tag.is-done{color:var(--sj-celadon);border-color:var(--sj-celadon)}
+.sj-00-tag.is-dev{color:var(--sj-ochre);border-color:var(--sj-ochre)}
+.sj-00-tag.is-plan{color:var(--sj-paper-300)}
+.sj-00-card h3{font-size:16px;font-weight:600;letter-spacing:.08em;margin-bottom:6px}
+.sj-00-card p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.65}
+.sj-00-card .ids{margin-top:10px;font-family:var(--sj-mono);font-size:11px;color:var(--sj-celadon);letter-spacing:.06em}
+
+/* 占位锚点卡 */
+.sj-00-ph{
+  margin-top:22px;border:1px dashed var(--sj-line);border-radius:var(--sj-radius);
+  padding:14px 16px;background:rgba(29,25,22,.5);
+}
+.sj-00-ph h4{font-size:14px;letter-spacing:.1em;margin-bottom:6px;color:var(--sj-paper-100)}
+.sj-00-ph p{font-size:13px;color:var(--sj-paper-300);max-width:68ch}
+.sj-00-ph:target{border-color:var(--sj-vermil);box-shadow:inset 3px 0 0 var(--sj-vermil)}
+
+/* 四步法 flow */
+.sj-00-flow{
+  display:flex;flex-wrap:wrap;align-items:stretch;gap:0;margin:16px 0 8px;
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);overflow:hidden;
+  background:var(--sj-ink-800);
+}
+.sj-00-step{
+  flex:1 1 140px;padding:14px 14px 12px;min-width:140px;
+  border-right:1px solid var(--sj-line);position:relative;
+}
+.sj-00-step:last-child{border-right:none}
+.sj-00-step .n{font-family:var(--sj-mono);font-size:10px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:4px}
+.sj-00-step h3{font-size:15px;font-weight:600;letter-spacing:.06em;margin-bottom:6px}
+.sj-00-step p{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6}
+.sj-00-flow-svg{margin:14px 0 4px;width:100%;height:auto;display:block}
+.sj-00-note{font-size:13px;color:var(--sj-paper-300);margin-top:12px;max-width:68ch}
+.sj-00-note b{color:var(--sj-paper-100);font-weight:600}
+
+/* GY 交叉引用图 */
+.sj-00-xref-box{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:10px;overflow:auto;
+}
+.sj-00-xref-box svg{display:block;width:100%;height:auto;max-width:880px;margin:0 auto}
+
+/* 页脚 */
+.sj-00-foot{
+  margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);
+  font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+}
+.sj-00-foot a{color:var(--sj-celadon);text-decoration:none}
+.sj-00-foot a:hover{color:var(--sj-ochre)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .sj-seg,.sj-00-card{transition:none}
+}
+@media (max-width:768px){
+  .sj-00-mast{align-items:flex-start}
+  .sj-00-meta{text-align:left}
+  .sj-00-tri,.sj-00-vols{grid-template-columns:1fr}
+  .sj-00-step{border-right:none;border-bottom:1px solid var(--sj-line)}
+  .sj-00-step:last-child{border-bottom:none}
+}
+</style>
+</head>
+<body>
+<div class="sj-00-wrap" id="sj-00-top">
+
+<header class="sj-00-mast">
+  <div>
+    <div class="badge">SJ-00 · 史鉴总索引</div>
+    <h1>史鉴<em>历史动力学引擎 × 方法论工具箱 × 古今五域对照台账</em></h1>
+    <span class="sj-00-gy-chip">交叉引用 · GY-00 / GY-01 / GY-02</span>
+  </div>
+  <div class="sj-00-meta">
+    AS_OF <b>2026-07-14</b><br/>
+    版本 <b>v0.1</b> · Round 1 · <b style="color:var(--sj-celadon)">完成</b><br/>
+    本页即索引 · 无上级卷
+  </div>
+</header>
+
+<p class="sj-zhupi">门户一屏：先看「为何需要时间纵深」，再读治乱螺旋；卷目与引擎四步法给出地图，GY 交叉引用标明回流当代的接口。</p>
+
+<!-- 1 引言 -->
+<section class="sj-00-sec" id="sec-intro" aria-labelledby="h-intro">
+  <div class="sj-00-sec-h">
+    <span class="num">01 · 引言</span>
+    <h2 id="h-intro">史鉴要解决什么</h2>
+  </div>
+  <p class="sj-00-prose">ChinaOS 既有模块擅长解剖当代结构；史鉴系列补上<strong>时间纵深</strong>——把每一个当代判断，放回两千年治乱循环的坐标系里，追问这台机器历史上如何运转、如何磨损、如何被修复。它不是编年故事合集，而是一套可复用、可证伪的历史动力学与对照台账。</p>
+  <div class="sj-00-tri" role="list">
+    <article role="listitem">
+      <div class="k">定位 A</div>
+      <h3>历史规律引擎</h3>
+      <p>以兴衰周期机制为核心，抽象财政、精英、合法性、边疆、生态—人口基座的相互作用，给出可外推的相位判断。</p>
+    </article>
+    <article role="listitem">
+      <div class="k">定位 B</div>
+      <h3>案例库 + 方法论</h3>
+      <p>精选转折案例，携带史学方法论工具箱；每案输出史料—争议—借鉴的结构化解读，并标注方法的适用与盲区。</p>
+    </article>
+    <article role="listitem">
+      <div class="k">定位 C</div>
+      <h3>史鉴对照系统</h3>
+      <p>历史机制与当代政治、经济、文化、社会、外交五域一一对照；强制「相似机制 / 关键差异」双栏，禁止裸类比。</p>
+    </article>
+  </div>
+  <p class="sj-00-prose">三者不是并列栏目，而是同一引擎的三种输出。一句话：<strong>史鉴 = 历史动力学引擎 × 史学方法论工具箱 × 古今五域对照台账。</strong></p>
+</section>
+
+<!-- 2 签名图 -->
+<section class="sj-00-sec" id="sec-spiral" aria-labelledby="h-spiral">
+  <div class="sj-00-sec-h">
+    <span class="num">02 · 签名图</span>
+    <h2 id="h-spiral">治乱循环总螺旋</h2>
+  </div>
+  <p class="sj-zhupi">自内（秦统一）旋向外端「当代锚点」。实线为大一统主轴；虚线为分裂期对照样本。相位色段为周期骨架示意，非正式精确纪年。</p>
+  <div class="sj-00-controls" role="toolbar" aria-label="相位高亮">
+    <span class="lbl">相位</span>
+    <button type="button" class="sj-00-btn" data-phase="上升" tabindex="0">上升</button>
+    <button type="button" class="sj-00-btn" data-phase="鼎盛" tabindex="0">鼎盛</button>
+    <button type="button" class="sj-00-btn" data-phase="僵化" tabindex="0">僵化</button>
+    <button type="button" class="sj-00-btn" data-phase="崩解" tabindex="0">崩解</button>
+    <button type="button" class="sj-00-btn" data-phase="重整" tabindex="0">重整</button>
+    <button type="button" class="sj-00-btn" data-phase="" id="sj-btn-clear" tabindex="0">全部</button>
+  </div>
+  <div class="sj-00-stage" id="sj-stage">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 720" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">治乱循环总螺旋图</title>
+  <desc id="sj-desc">自内向外螺旋：秦汉、魏晋南北朝、隋唐、五代、宋元明清；虚线为分裂期；外端为当代锚点。</desc>
+
+  <defs>
+    <radialGradient id="sj-paper-glow" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)" stop-opacity="1"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)" stop-opacity="1"/>
+    </radialGradient>
+    <filter id="sj-soft" x="-5%" y="-5%" width="110%" height="110%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.35" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="840" height="720" fill="url(#sj-paper-glow)"/>
+  <!-- 宣纸肌理：稀疏横纹 -->
+  <g opacity="0.06" stroke="var(--sj-paper-100)" stroke-width="0.5">
+    <line x1="40" y1="100" x2="800" y2="100"/>
+<line x1="40" y1="116" x2="800" y2="116"/>
+<line x1="40" y1="132" x2="800" y2="132"/>
+<line x1="40" y1="148" x2="800" y2="148"/>
+<line x1="40" y1="164" x2="800" y2="164"/>
+<line x1="40" y1="180" x2="800" y2="180"/>
+<line x1="40" y1="196" x2="800" y2="196"/>
+<line x1="40" y1="212" x2="800" y2="212"/>
+<line x1="40" y1="228" x2="800" y2="228"/>
+<line x1="40" y1="244" x2="800" y2="244"/>
+<line x1="40" y1="260" x2="800" y2="260"/>
+<line x1="40" y1="276" x2="800" y2="276"/>
+<line x1="40" y1="292" x2="800" y2="292"/>
+<line x1="40" y1="308" x2="800" y2="308"/>
+<line x1="40" y1="324" x2="800" y2="324"/>
+<line x1="40" y1="340" x2="800" y2="340"/>
+<line x1="40" y1="356" x2="800" y2="356"/>
+<line x1="40" y1="372" x2="800" y2="372"/>
+<line x1="40" y1="388" x2="800" y2="388"/>
+<line x1="40" y1="404" x2="800" y2="404"/>
+<line x1="40" y1="420" x2="800" y2="420"/>
+<line x1="40" y1="436" x2="800" y2="436"/>
+<line x1="40" y1="452" x2="800" y2="452"/>
+<line x1="40" y1="468" x2="800" y2="468"/>
+<line x1="40" y1="484" x2="800" y2="484"/>
+<line x1="40" y1="500" x2="800" y2="500"/>
+<line x1="40" y1="516" x2="800" y2="516"/>
+<line x1="40" y1="532" x2="800" y2="532"/>
+<line x1="40" y1="548" x2="800" y2="548"/>
+<line x1="40" y1="564" x2="800" y2="564"/>
+<line x1="40" y1="580" x2="800" y2="580"/>
+<line x1="40" y1="596" x2="800" y2="596"/>
+<line x1="40" y1="612" x2="800" y2="612"/>
+<line x1="40" y1="628" x2="800" y2="628"/>
+<line x1="40" y1="644" x2="800" y2="644"/>
+<line x1="40" y1="660" x2="800" y2="660"/>
+  </g>
+
+  <!-- 卷轴两端轴头装饰（皮肤层） -->
+  <g class="sj-scroll-ends" opacity="0.55">
+    <rect x="18" y="110" width="14" height="480" rx="6" fill="var(--sj-line)"/>
+    <rect x="808" y="110" width="14" height="480" rx="6" fill="var(--sj-line)"/>
+    <circle cx="25" cy="110" r="10" fill="var(--sj-ochre)" opacity="0.7"/>
+    <circle cx="25" cy="590" r="10" fill="var(--sj-ochre)" opacity="0.7"/>
+    <circle cx="815" cy="110" r="10" fill="var(--sj-ochre)" opacity="0.7"/>
+    <circle cx="815" cy="590" r="10" fill="var(--sj-ochre)" opacity="0.7"/>
+  </g>
+
+  <g class="sj-title">
+    <text x="48" y="48" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC, Noto Serif SC, Source Han Serif SC, serif" letter-spacing="0.12em">治乱循环总螺旋图</text>
+    <text x="48" y="72" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.08em">SJ-00 · 史鉴总索引 · 治乱循环总螺旋</text>
+    <text x="48" y="92" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC, Noto Serif SC, serif" class="sj-zhupi">朱批：内→外为时间纵深；虚线为分裂期对照样本</text>
+  </g>
+  <g class="sj-spiral" filter="url(#sj-soft)">
+    <path class="sj-seg sj-phase-sheng" data-phase="上升" data-dynasty="qinhan" id="qinhan-sheng-0" d="M436.34,432.08 L435.28,433.07 L434.17,434.03 L433.00,434.95 L431.79,435.83 L430.53,436.67 L429.22,437.46 L427.86,438.21 L426.46,438.90 L425.02,439.55 L423.54,440.14 L422.02,440.67 L420.46,441.15 L418.87,441.57 L417.25,441.92 L415.60,442.21 L413.93,442.44 L412.23,442.60 L410.51,442.69 L408.77,442.71 L407.02,442.65 L405.25,442.53 L403.47,442.33 L401.69,442.06 L399.91,441.72 L398.12,441.30 L396.34,440.80 L394.56,440.23 L392.80,439.57 L391.04,438.85 L389.31,438.04 L387.59,437.16 L385.89,436.21" fill="none" stroke="var(--sj-phase-sheng)" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.92" />
+    <path class="sj-seg sj-phase-ding" data-phase="鼎盛" data-dynasty="qinhan" id="qinhan-ding-1" d="M385.89,436.21 L384.22,435.17 L382.59,434.06 L380.98,432.88 L379.41,431.63 L377.88,430.30 L376.39,428.90 L374.95,427.43 L373.55,425.89 L372.21,424.29 L370.93,422.62 L369.70,420.88 L368.53,419.09 L367.43,417.24 L366.40,415.33 L365.43,413.36 L364.54,411.35 L363.72,409.29 L362.98,407.17 L362.32,405.02 L361.74,402.83 L361.25,400.60 L360.84,398.33 L360.52,396.04 L360.28,393.72 L360.14,391.37 L360.10,389.01 L360.14,386.62 L360.28,384.23 L360.52,381.83 L360.86,379.42 L361.29,377.01 L361.82,374.61" fill="none" stroke="var(--sj-phase-ding)" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.92" />
+    <path class="sj-seg sj-phase-jiang" data-phase="僵化" data-dynasty="qinhan" id="qinhan-jiang-2" d="M361.82,374.61 L362.45,372.21 L363.18,369.82 L364.01,367.45 L364.93,365.10 L365.96,362.77 L367.08,360.47 L368.30,358.20 L369.62,355.97 L371.03,353.77 L372.54,351.62 L374.14,349.52 L375.83,347.47 L377.61,345.48 L379.48,343.54 L381.44,341.67 L383.48,339.87 L385.60,338.14 L387.80,336.49 L390.08,334.91 L392.43,333.41 L394.86,332.00 L397.35,330.68 L399.90,329.45 L402.52,328.31 L405.20,327.28 L407.93,326.34 L410.70,325.50 L413.53,324.78 L416.40,324.15 L419.30,323.64 L422.24,323.24 L425.21,322.96" fill="none" stroke="var(--sj-phase-jiang)" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.92" />
+    <path class="sj-seg sj-phase-beng" data-phase="崩解" data-dynasty="qinhan" id="qinhan-beng-3" d="M425.21,322.96 L428.21,322.79 L431.22,322.73 L434.25,322.80 L437.30,322.98 L440.34,323.28 L443.40,323.71 L446.44,324.26 L449.48,324.93 L452.51,325.72 L455.52,326.63 L458.51,327.67 L461.47,328.83 L464.40,330.11 L467.29,331.51 L470.14,333.03 L472.94,334.66 L475.69,336.42 L478.38,338.29 L481.01,340.27 L483.57,342.36 L486.06,344.57 L488.47,346.87 L490.81,349.29 L493.06,351.80 L495.22,354.42 L497.29,357.12 L499.26,359.92 L501.13,362.81 L502.89,365.79 L504.54,368.84 L506.08,371.97 L507.51,375.17" fill="none" stroke="var(--sj-phase-beng)" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.92" />
+    <path class="sj-seg sj-phase-beng sj-fenlie" data-phase="崩解" data-dynasty="weijin" id="weijin-beng-0" d="M507.51,375.17 L508.58,377.84 L509.58,380.56 L510.49,383.31 L511.31,386.11 L512.05,388.94 L512.71,391.80 L513.27,394.69 L513.74,397.61 L514.12,400.55 L514.41,403.51 L514.60,406.50 L514.70,409.50 L514.70,412.51 L514.61,415.53 L514.42,418.56 L514.14,421.59 L513.75,424.62 L513.27,427.65 L512.69,430.67 L512.02,433.68 L511.24,436.68 L510.37,439.66 L509.40,442.63 L508.33,445.57 L507.16,448.49 L505.90,451.38 L504.54,454.24 L503.09,457.06 L501.54,459.85 L499.90,462.59 L498.17,465.30 L496.34,467.95" fill="none" stroke="var(--sj-phase-beng)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.72" stroke-dasharray="5 4" />
+    <path class="sj-seg sj-phase-chong sj-fenlie" data-phase="重整" data-dynasty="weijin" id="weijin-chong-1" d="M496.34,467.95 L494.43,470.55 L492.43,473.10 L490.34,475.59 L488.17,478.03 L485.91,480.40 L483.57,482.70 L481.15,484.94 L478.65,487.11 L476.08,489.20 L473.43,491.22 L470.71,493.16 L467.92,495.02 L465.07,496.79 L462.15,498.48 L459.17,500.08 L456.13,501.59 L453.03,503.01 L449.88,504.33 L446.68,505.56 L443.43,506.69 L440.14,507.71 L436.80,508.64 L433.43,509.46 L430.02,510.18 L426.58,510.79 L423.11,511.29 L419.62,511.69 L416.11,511.97 L412.57,512.14 L409.03,512.21 L405.47,512.16 L401.90,511.99" fill="none" stroke="var(--sj-phase-chong)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.72" stroke-dasharray="5 4" />
+    <path class="sj-seg sj-phase-beng sj-fenlie" data-phase="崩解" data-dynasty="weijin" id="weijin-beng-2" d="M401.90,511.99 L398.33,511.71 L394.76,511.32 L391.19,510.82 L387.63,510.19 L384.08,509.46 L380.55,508.61 L377.03,507.64 L373.54,506.57 L370.07,505.37 L366.63,504.07 L363.22,502.65 L359.85,501.12 L356.52,499.48 L353.23,497.73 L349.99,495.87 L346.80,493.91 L343.67,491.84 L340.59,489.66 L337.58,487.38 L334.63,485.00 L331.75,482.52 L328.94,479.95 L326.21,477.27 L323.55,474.51 L320.98,471.65 L318.49,468.71 L316.09,465.68 L313.78,462.57 L311.56,459.37 L309.44,456.10 L307.41,452.76 L305.49,449.34" fill="none" stroke="var(--sj-phase-beng)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.72" stroke-dasharray="5 4" />
+    <path class="sj-seg sj-phase-chong sj-fenlie" data-phase="重整" data-dynasty="weijin" id="weijin-chong-3" d="M305.49,449.34 L303.67,445.85 L301.96,442.30 L300.36,438.69 L298.87,435.01 L297.49,431.28 L296.22,427.50 L295.08,423.67 L294.05,419.80 L293.14,415.88 L292.36,411.93 L291.70,407.94 L291.16,403.92 L290.75,399.88 L290.46,395.81 L290.31,391.73 L290.28,387.64 L290.38,383.53 L290.62,379.42 L290.98,375.30 L291.48,371.19 L292.10,367.09 L292.86,363.00 L293.75,358.92 L294.77,354.86 L295.92,350.82 L297.20,346.82 L298.61,342.84 L300.15,338.90 L301.82,335.01 L303.61,331.15 L305.53,327.35 L307.58,323.60" fill="none" stroke="var(--sj-phase-chong)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.72" stroke-dasharray="5 4" />
+    <path class="sj-seg sj-phase-chong" data-phase="重整" data-dynasty="suitang" id="suitang-chong-0" d="M307.58,323.60 L309.01,321.13 L310.49,318.68 L312.03,316.27 L313.62,313.88 L315.27,311.53 L316.97,309.20 L318.72,306.91 L320.52,304.65 L322.37,302.42 L324.26,300.23 L326.21,298.08 L328.21,295.97 L330.25,293.89 L332.34,291.86 L334.48,289.86 L336.66,287.91 L338.89,286.00 L341.16,284.14 L343.47,282.32 L345.83,280.54 L348.22,278.82 L350.65,277.14 L353.13,275.51 L355.64,273.93 L358.19,272.40 L360.77,270.92 L363.39,269.50 L366.04,268.13 L368.73,266.81 L371.44,265.54 L374.19,264.34 L376.97,263.19" fill="none" stroke="var(--sj-phase-chong)" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.92" />
+    <path class="sj-seg sj-phase-sheng" data-phase="上升" data-dynasty="suitang" id="suitang-sheng-1" d="M376.97,263.19 L379.77,262.09 L382.60,261.05 L385.46,260.07 L388.34,259.15 L391.25,258.29 L394.18,257.49 L397.12,256.75 L400.09,256.07 L403.08,255.46 L406.08,254.90 L409.10,254.41 L412.14,253.98 L415.18,253.61 L418.24,253.31 L421.31,253.07 L424.39,252.90 L427.48,252.79 L430.57,252.74 L433.67,252.76 L436.77,252.85 L439.88,253.00 L442.98,253.21 L446.09,253.50 L449.19,253.84 L452.29,254.26 L455.39,254.74 L458.48,255.28 L461.56,255.89 L464.63,256.57 L467.70,257.31 L470.75,258.12 L473.79,258.99" fill="none" stroke="var(--sj-phase-sheng)" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.92" />
+    <path class="sj-seg sj-phase-ding" data-phase="鼎盛" data-dynasty="suitang" id="suitang-ding-2" d="M473.79,258.99 L476.81,259.93 L479.82,260.94 L482.81,262.00 L485.79,263.14 L488.74,264.33 L491.67,265.59 L494.58,266.92 L497.47,268.30 L500.33,269.75 L503.16,271.26 L505.96,272.84 L508.74,274.47 L511.48,276.17 L514.20,277.92 L516.88,279.73 L519.52,281.61 L522.13,283.54 L524.70,285.53 L527.23,287.57 L529.72,289.67 L532.18,291.83 L534.58,294.04 L536.95,296.30 L539.27,298.62 L541.55,300.99 L543.78,303.40 L545.96,305.87 L548.09,308.39 L550.17,310.96 L552.20,313.57 L554.17,316.23 L556.10,318.93" fill="none" stroke="var(--sj-phase-ding)" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.92" />
+    <path class="sj-seg sj-phase-jiang" data-phase="僵化" data-dynasty="suitang" id="suitang-jiang-3" d="M556.10,318.93 L557.97,321.68 L559.78,324.47 L561.54,327.30 L563.24,330.18 L564.88,333.09 L566.46,336.04 L567.98,339.03 L569.44,342.05 L570.84,345.11 L572.18,348.20 L573.45,351.32 L574.66,354.47 L575.80,357.66 L576.88,360.87 L577.90,364.10 L578.84,367.37 L579.72,370.65 L580.53,373.96 L581.27,377.29 L581.94,380.64 L582.54,384.01 L583.08,387.39 L583.54,390.79 L583.93,394.20 L584.25,397.63 L584.50,401.07 L584.67,404.51 L584.78,407.97 L584.81,411.43 L584.77,414.89 L584.65,418.36 L584.46,421.83" fill="none" stroke="var(--sj-phase-jiang)" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.92" />
+    <path class="sj-seg sj-phase-beng" data-phase="崩解" data-dynasty="suitang" id="suitang-beng-4" d="M584.46,421.83 L584.20,425.30 L583.87,428.77 L583.46,432.23 L582.98,435.69 L582.43,439.15 L581.80,442.59 L581.10,446.03 L580.32,449.46 L579.48,452.88 L578.56,456.28 L577.56,459.66 L576.50,463.03 L575.36,466.38 L574.15,469.71 L572.87,473.02 L571.52,476.31 L570.10,479.57 L568.61,482.80 L567.05,486.01 L565.42,489.19 L563.72,492.34 L561.95,495.45 L560.11,498.54 L558.21,501.58 L556.24,504.59 L554.21,507.57 L552.11,510.50 L549.95,513.39 L547.72,516.24 L545.43,519.05 L543.08,521.81 L540.67,524.52" fill="none" stroke="var(--sj-phase-beng)" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.92" />
+    <path class="sj-seg sj-phase-beng sj-fenlie" data-phase="崩解" data-dynasty="wudai" id="wudai-beng-0" d="M540.67,524.52 L537.36,528.07 L533.95,531.53 L530.44,534.89 L526.83,538.17 L523.12,541.35 L519.31,544.42 L515.42,547.40 L511.44,550.27 L507.37,553.03 L503.21,555.68 L498.98,558.22 L494.67,560.64 L490.29,562.95 L485.83,565.13 L481.31,567.20 L476.72,569.14 L472.08,570.95 L467.37,572.64 L462.62,574.20 L457.81,575.62 L452.96,576.91 L448.06,578.07 L443.13,579.10 L438.15,579.98 L433.15,580.73 L428.12,581.34 L423.07,581.81 L418.00,582.13 L412.91,582.32 L407.81,582.36 L402.70,582.26 L397.59,582.02" fill="none" stroke="var(--sj-phase-beng)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.72" stroke-dasharray="5 4" />
+    <path class="sj-seg sj-phase-chong sj-fenlie" data-phase="重整" data-dynasty="wudai" id="wudai-chong-1" d="M397.59,582.02 L392.47,581.63 L387.37,581.10 L382.27,580.43 L377.18,579.61 L372.11,578.65 L367.06,577.54 L362.03,576.29 L357.03,574.90 L352.07,573.37 L347.14,571.70 L342.25,569.88 L337.41,567.93 L332.61,565.84 L327.87,563.61 L323.18,561.24 L318.56,558.74 L313.99,556.11 L309.50,553.35 L305.08,550.46 L300.73,547.44 L296.47,544.29 L292.28,541.03 L288.18,537.64 L284.18,534.13 L280.26,530.50 L276.44,526.76 L272.73,522.91 L269.11,518.95 L265.60,514.88 L262.21,510.72 L258.92,506.45 L255.75,502.08" fill="none" stroke="var(--sj-phase-chong)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.72" stroke-dasharray="5 4" />
+    <path class="sj-seg sj-phase-chong" data-phase="重整" data-dynasty="songqm" id="songqm-chong-0" d="M255.75,502.08 L249.41,492.49 L243.63,482.51 L238.44,472.16 L233.85,461.49 L229.90,450.53 L226.59,439.32 L223.94,427.89 L221.97,416.29 L220.69,404.55 L220.11,392.72 L220.23,380.83 L221.06,368.93 L222.60,357.07 L224.85,345.27 L227.81,333.60 L231.46,322.08 L235.81,310.76 L240.84,299.69 L246.54,288.90 L252.88,278.43 L259.86,268.33 L267.45,258.62 L275.63,249.36 L284.38,240.57 L293.65,232.29 L303.44,224.55 L313.70,217.38 L324.40,210.82 L335.51,204.88 L346.98,199.59 L358.79,194.99 L370.88,191.08" fill="none" stroke="var(--sj-phase-chong)" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.92" />
+    <path class="sj-seg sj-phase-sheng" data-phase="上升" data-dynasty="songqm" id="songqm-sheng-1" d="M370.88,191.08 L383.23,187.88 L395.78,185.41 L408.49,183.69 L421.32,182.73 L434.23,182.53 L447.16,183.09 L460.08,184.43 L472.94,186.54 L485.68,189.41 L498.27,193.05 L510.66,197.44 L522.80,202.58 L534.65,208.44 L546.17,215.02 L557.30,222.29 L568.02,230.23 L578.28,238.82 L588.04,248.03 L597.26,257.83 L605.91,268.19 L613.95,279.08 L621.35,290.46 L628.09,302.29 L634.12,314.54 L639.44,327.16 L644.01,340.11 L647.81,353.35 L650.83,366.82 L653.05,380.50 L654.46,394.31 L655.05,408.23 L654.81,422.20" fill="none" stroke="var(--sj-phase-sheng)" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.92" />
+    <path class="sj-seg sj-phase-ding" data-phase="鼎盛" data-dynasty="songqm" id="songqm-ding-2" d="M654.81,422.20 L653.74,436.16 L651.84,450.08 L649.10,463.90 L645.54,477.57 L641.17,491.04 L635.99,504.26 L630.01,517.19 L623.27,529.78 L615.76,541.98 L607.52,553.74 L598.58,565.03 L588.95,575.79 L578.68,585.99 L567.79,595.59 L556.31,604.55 L544.30,612.84 L531.78,620.41 L518.79,627.26 L505.39,633.33 L491.62,638.61 L477.51,643.08 L463.13,646.71 L448.52,649.49 L433.74,651.41 L418.82,652.44 L403.83,652.59 L388.82,651.85 L373.85,650.21 L358.95,647.69 L344.20,644.27 L329.63,639.97 L315.31,634.81" fill="none" stroke="var(--sj-phase-ding)" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.92" />
+    <path class="sj-seg sj-phase-jiang" data-phase="僵化" data-dynasty="songqm" id="songqm-jiang-3" d="M315.31,634.81 L301.28,628.79 L287.60,621.93 L274.32,614.25 L261.49,605.77 L249.15,596.52 L237.34,586.53 L226.13,575.84 L215.54,564.46 L205.62,552.45 L196.40,539.84 L187.93,526.68 L180.24,513.00 L173.35,498.85 L167.30,484.28 L162.12,469.34 L157.81,454.08 L154.41,438.56 L151.93,422.82 L150.39,406.92 L149.79,390.92 L150.14,374.88 L151.45,358.84 L153.71,342.87 L156.92,327.03 L161.07,311.36 L166.16,295.93 L172.17,280.80 L179.08,266.01 L186.88,251.62 L195.54,237.69 L205.03,224.26 L215.32,211.39" fill="none" stroke="var(--sj-phase-jiang)" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.92" />
+  </g>
+
+  <g class="sj-origin">
+    <circle cx="420" cy="400" r="5" fill="var(--sj-ochre)"/>
+    <text x="420" y="422" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">秦统一</text>
+  </g>
+  <g class="sj-dyn-labels">
+    <text class="sj-dyn-label" data-dynasty="qinhan" x="337.99" y="364.21" text-anchor="end" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC, Noto Serif SC, Source Han Serif SC, serif">秦汉</text>
+    <text class="sj-dyn-label sj-fenlie-label" data-dynasty="weijin" x="397.43" y="539.63" text-anchor="middle" fill="var(--sj-paper-300)" font-size="12" font-weight="400" font-family="Songti SC, Noto Serif SC, Source Han Serif SC, serif">魏晋南北朝<tspan class="sj-zhupi-mini" fill="var(--sj-vermil)" font-size="9" dx="4">〔分〕</tspan></text>
+    <text class="sj-dyn-label" data-dynasty="suitang" x="536.25" y="261.7" text-anchor="start" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC, Noto Serif SC, Source Han Serif SC, serif">隋唐</text>
+    <text class="sj-dyn-label sj-fenlie-label" data-dynasty="wudai" x="394.16" y="609.81" text-anchor="middle" fill="var(--sj-paper-300)" font-size="12" font-weight="400" font-family="Songti SC, Noto Serif SC, Source Han Serif SC, serif">五代<tspan class="sj-zhupi-mini" fill="var(--sj-vermil)" font-size="9" dx="4">〔分〕</tspan></text>
+    <text class="sj-dyn-label" data-dynasty="songqm" x="680.69" y="424.64" text-anchor="start" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC, Noto Serif SC, Source Han Serif SC, serif">宋元明清</text>
+  </g>
+
+  <g class="sj-tip" id="sj-dangdai">
+    <circle cx="286.84" cy="151.34" r="7" fill="var(--sj-vermil)" opacity="0.95"/>
+    <circle cx="286.84" cy="151.34" r="12" fill="none" stroke="var(--sj-vermil)" stroke-width="1.2" opacity="0.55"/>
+    <circle cx="286.84" cy="151.34" r="18" fill="none" stroke="var(--sj-ochre)" stroke-width="0.8" opacity="0.35" stroke-dasharray="2 3"/>
+    <line x1="286.84" y1="151.34" x2="322.84" y2="133.34" stroke="var(--sj-vermil)" stroke-width="1" opacity="0.7"/>
+    <text x="326.84" y="137.34" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC, Noto Serif SC, serif" letter-spacing="0.08em">当代锚点</text>
+    <text x="326.84" y="155.34" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">相位未定 · 对照台账位</text>
+  </g>
+
+  <g class="sj-legend" transform="translate(48, 640)">
+    <text fill="var(--sj-paper-300)" font-size="10" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.14em">相位</text>
+    <g transform="translate(0, 18)" class="sj-leg-item" data-phase="上升">
+      <line x1="0" y1="0" x2="22" y2="0" stroke="var(--sj-phase-sheng)" stroke-width="3" stroke-linecap="round"/>
+      <text x="28" y="4" fill="var(--sj-paper-100)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">上升</text>
+    </g>
+<g transform="translate(78, 18)" class="sj-leg-item" data-phase="鼎盛">
+      <line x1="0" y1="0" x2="22" y2="0" stroke="var(--sj-phase-ding)" stroke-width="3" stroke-linecap="round"/>
+      <text x="28" y="4" fill="var(--sj-paper-100)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">鼎盛</text>
+    </g>
+<g transform="translate(156, 18)" class="sj-leg-item" data-phase="僵化">
+      <line x1="0" y1="0" x2="22" y2="0" stroke="var(--sj-phase-jiang)" stroke-width="3" stroke-linecap="round"/>
+      <text x="28" y="4" fill="var(--sj-paper-100)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">僵化</text>
+    </g>
+<g transform="translate(234, 18)" class="sj-leg-item" data-phase="崩解">
+      <line x1="0" y1="0" x2="22" y2="0" stroke="var(--sj-phase-beng)" stroke-width="3" stroke-linecap="round"/>
+      <text x="28" y="4" fill="var(--sj-paper-100)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">崩解</text>
+    </g>
+<g transform="translate(312, 18)" class="sj-leg-item" data-phase="重整">
+      <line x1="0" y1="0" x2="22" y2="0" stroke="var(--sj-phase-chong)" stroke-width="3" stroke-linecap="round" stroke-dasharray="0"/>
+      <text x="28" y="4" fill="var(--sj-paper-100)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">重整</text>
+    </g>
+    <g transform="translate(0, 46)">
+      <line x1="0" y1="0" x2="28" y2="0" stroke="var(--sj-paper-300)" stroke-width="2.2" stroke-dasharray="5 4" opacity="0.85"/>
+      <text x="36" y="4" fill="var(--sj-paper-300)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">分裂期（魏晋南北朝 · 五代）</text>
+    </g>
+  </g>
+  <text x="792" y="700" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">相位为示意周期骨架 · 非精确纪年定位</text>
+</svg>
+  </div>
+  <p class="sj-00-note">相位高亮仅用于阅读治乱节律骨架；王朝边界、历时长短的几何比例为<strong>示意</strong>，不构成纪年度量。当代锚点标注「相位未定 · 对照台账位」——具体相位判断留给 SJ-04 与 GY-01 接口。</p>
+</section>
+
+<!-- 3 卷目导航 -->
+<section class="sj-00-sec" id="sec-vols" aria-labelledby="h-vols">
+  <div class="sj-00-sec-h">
+    <span class="num">03 · 卷目导航</span>
+    <h2 id="h-vols">四卷闭环</h2>
+  </div>
+  <p class="sj-00-prose">方法 → 机制 → 案例验证 → 当代映射，再反过来修正方法。本轮卡片仅作页内锚点占位，不跳转外部模块。</p>
+  <div class="sj-00-vols">
+    <a class="sj-00-card" href="#vol-method" tabindex="0">
+      <div class="row"><span class="vol">方法论卷</span><span class="sj-00-tag is-plan">规划</span></div>
+      <h3>怎么看</h3>
+      <p>史家方法对比矩阵与 ChinaOS 自有「史鉴引擎·四步法」，奠定全系列操作系统。</p>
+      <div class="ids">SJ-01 · SJ-02</div>
+    </a>
+    <a class="sj-00-card" href="#vol-cycle" tabindex="0">
+      <div class="row"><span class="vol">周期卷</span><span class="sj-00-tag is-plan">规划</span></div>
+      <h3>机器如何运转与损坏</h3>
+      <p>五力衰变模型与治乱循环相位盘——规律引擎的主体，对接 GY 时间轴与预测接口。</p>
+      <div class="ids">SJ-03 · SJ-04</div>
+    </a>
+    <a class="sj-00-card" href="#vol-cases" tabindex="0">
+      <div class="row"><span class="vol">案例卷</span><span class="sj-00-tag is-plan">规划</span></div>
+      <h3>史料证据</h3>
+      <p>变法、盛衰拐点、王朝崩解，以及分裂期（魏晋南北朝、五代）作为超稳定结构的压力测试样本。</p>
+      <div class="ids">SJ-05 · SJ-06 · SJ-07 · SJ-08</div>
+    </a>
+    <a class="sj-00-card" href="#vol-mirror" tabindex="0">
+      <div class="row"><span class="vol">古今映射卷</span><span class="sj-00-tag is-plan">规划</span></div>
+      <h3>结论如何回流当代</h3>
+      <p>政治 / 经济 / 文化 / 社会 / 外交五域对照台账；每条映射强制填写相似机制与关键差异。</p>
+      <div class="ids">SJ-20 · SJ-21 · SJ-22 · SJ-23 · SJ-24</div>
+    </a>
+  </div>
+
+  <div class="sj-00-ph" id="vol-method">
+    <h4>方法论卷 · 占位</h4>
+    <p>SJ-01 史家方法对比矩阵（李敖 / 钱穆 / 金观涛 / 黄仁宇 / 西方汉学）；SJ-02 史鉴引擎·四步法与史鉴台账模板。Round 2 优先出骨架。</p>
+  </div>
+  <div class="sj-00-ph" id="vol-cycle">
+    <h4>周期卷 · 占位</h4>
+    <p>SJ-03 五力衰变模型；SJ-04 治乱循环相位盘（上升 / 鼎盛 / 僵化 / 崩解 / 重建 + 超稳定修复力诊断）。</p>
+  </div>
+  <div class="sj-00-ph" id="vol-cases">
+    <h4>案例卷 · 占位（含分裂期）</h4>
+    <p>SJ-05 变法改革；SJ-06 盛衰拐点；SJ-07 王朝崩解；SJ-08 分裂—重整。统一输出史鉴台账字段。</p>
+  </div>
+  <div class="sj-00-ph" id="vol-mirror">
+    <h4>古今映射卷 · 占位</h4>
+    <p>SJ-20 政治 · SJ-21 经济 · SJ-22 文化 · SJ-23 社会 · SJ-24 外交。禁止缺「关键差异」栏的裸类比。</p>
+  </div>
+</section>
+
+<!-- 4 引擎总览 -->
+<section class="sj-00-sec" id="sec-engine" aria-labelledby="h-engine">
+  <div class="sj-00-sec-h">
+    <span class="num">04 · 引擎总览</span>
+    <h2 id="h-engine">史鉴引擎 · 四步法</h2>
+  </div>
+  <p class="sj-00-prose"><strong>史鉴引擎·四步法</strong>为 ChinaOS 自有融合方法论（详细定义见 SJ-02）：把任一历史时点切成可对照、可证伪的一张史鉴台账。</p>
+
+  <svg class="sj-00-flow-svg" viewBox="0 0 840 72" role="img" aria-label="四步法流程：结构切片 → 周期定位 → 机制归因 → 古今映射">
+    <defs>
+      <marker id="sj-arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="var(--sj-ochre)"/>
+      </marker>
+    </defs>
+    <rect x="8" y="14" width="170" height="44" rx="4" fill="var(--sj-ink-800)" stroke="var(--sj-line)"/>
+    <text x="93" y="32" text-anchor="middle" fill="var(--sj-ochre)" font-size="9" font-family="ui-monospace,monospace" letter-spacing="0.12em">01 STRUCTURE</text>
+    <text x="93" y="48" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC,serif">结构切片</text>
+    <line x1="186" y1="36" x2="216" y2="36" stroke="var(--sj-ochre)" stroke-width="1.4" marker-end="url(#sj-arr)"/>
+    <rect x="224" y="14" width="170" height="44" rx="4" fill="var(--sj-ink-800)" stroke="var(--sj-line)"/>
+    <text x="309" y="32" text-anchor="middle" fill="var(--sj-ochre)" font-size="9" font-family="ui-monospace,monospace" letter-spacing="0.12em">02 CYCLE</text>
+    <text x="309" y="48" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC,serif">周期定位</text>
+    <line x1="402" y1="36" x2="432" y2="36" stroke="var(--sj-ochre)" stroke-width="1.4" marker-end="url(#sj-arr)"/>
+    <rect x="440" y="14" width="170" height="44" rx="4" fill="var(--sj-ink-800)" stroke="var(--sj-line)"/>
+    <text x="525" y="32" text-anchor="middle" fill="var(--sj-ochre)" font-size="9" font-family="ui-monospace,monospace" letter-spacing="0.12em">03 MECHANISM</text>
+    <text x="525" y="48" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC,serif">机制归因</text>
+    <line x1="618" y1="36" x2="648" y2="36" stroke="var(--sj-ochre)" stroke-width="1.4" marker-end="url(#sj-arr)"/>
+    <rect x="656" y="14" width="170" height="44" rx="4" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)"/>
+    <text x="741" y="32" text-anchor="middle" fill="var(--sj-vermil)" font-size="9" font-family="ui-monospace,monospace" letter-spacing="0.12em">04 MIRROR</text>
+    <text x="741" y="48" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC,serif">古今映射</text>
+  </svg>
+
+  <div class="sj-00-flow">
+    <div class="sj-00-step">
+      <div class="n">01 · Structure</div>
+      <h3>结构切片</h3>
+      <p>把某一时点切成君权 / 官僚 / 军事 / 地方精英 / 生态基座的权力几何横截面。</p>
+    </div>
+    <div class="sj-00-step">
+      <div class="n">02 · Cycle</div>
+      <h3>周期定位</h3>
+      <p>将该切片放到治乱相位盘上，判断上升、鼎盛、僵化、崩解或重建。</p>
+    </div>
+    <div class="sj-00-step">
+      <div class="n">03 · Mechanism</div>
+      <h3>机制归因</h3>
+      <p>以五力模型做因果台账，区分「正史归因」与「结构实因」双列。</p>
+    </div>
+    <div class="sj-00-step">
+      <div class="n">04 · Mirror</div>
+      <h3>古今映射</h3>
+      <p>投射当代五域；每条对照必须同时填写相似机制与关键差异。</p>
+    </div>
+  </div>
+  <p class="sj-00-note">四步法的标准产物是一张<strong>史鉴台账</strong>（一句话拐点 / 结构切片图 / 相位 / 五力归因 / 史家交锋 / 成败三列 / 古今映射双栏）。案例卷与映射卷均以此为统一模板。</p>
+</section>
+
+<!-- 5 GY 交叉引用 -->
+<section class="sj-00-sec" id="sec-gy" aria-labelledby="h-gy">
+  <div class="sj-00-sec-h">
+    <span class="num">05 · 与 GY 交叉引用</span>
+    <h2 id="h-gy">史鉴 ↔ 人口图谱接口</h2>
+  </div>
+  <p class="sj-zhupi">本图为关系骨架：深链路由在对应模块就绪后接入；本轮不以出站跳转替代页内说明。</p>
+  <div class="sj-00-xref-box">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 340" role="img" aria-labelledby="xref-title xref-desc">
+  <title id="xref-title">史鉴与 GY 系列交叉引用图</title>
+  <desc id="xref-desc">SJ-03 连接 GY-02 合法性机器；SJ-04 连接 GY-01 国运时间轴与 2026–2036；生态—人口力连接 GY 人口图谱。</desc>
+  <defs>
+    <marker id="gy-arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="var(--sj-celadon)"/>
+    </marker>
+  </defs>
+  <rect width="880" height="340" fill="var(--sj-ink-900)"/>
+  <text x="32" y="36" fill="var(--sj-paper-100)" font-size="16" font-family="Songti SC,serif" letter-spacing="0.1em">史鉴 ↔ GY 交叉引用</text>
+  <text x="32" y="56" fill="var(--sj-ochre)" font-size="10" font-family="ui-monospace,monospace" letter-spacing="0.08em">关系骨架 · Round 1</text>
+
+  <!-- SJ 侧 -->
+  <rect x="40" y="90" width="200" height="56" rx="5" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)"/>
+  <text x="140" y="114" text-anchor="middle" fill="var(--sj-vermil)" font-size="10" font-family="ui-monospace,monospace">SJ-03</text>
+  <text x="140" y="132" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC,serif">五力衰变 · 合法性力</text>
+
+  <rect x="40" y="170" width="200" height="56" rx="5" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)"/>
+  <text x="140" y="194" text-anchor="middle" fill="var(--sj-ochre)" font-size="10" font-family="ui-monospace,monospace">SJ-04</text>
+  <text x="140" y="212" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC,serif">治乱循环相位盘</text>
+
+  <rect x="40" y="250" width="200" height="56" rx="5" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)"/>
+  <text x="140" y="274" text-anchor="middle" fill="var(--sj-celadon)" font-size="10" font-family="ui-monospace,monospace">五力 · 生态—人口基座</text>
+  <text x="140" y="292" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC,serif">全系列人口压舱</text>
+
+  <!-- GY 侧 -->
+  <rect x="640" y="90" width="200" height="56" rx="5" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)"/>
+  <text x="740" y="114" text-anchor="middle" fill="var(--sj-vermil)" font-size="10" font-family="ui-monospace,monospace">GY-02</text>
+  <text x="740" y="132" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC,serif">合法性机器</text>
+
+  <rect x="640" y="170" width="200" height="56" rx="5" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)"/>
+  <text x="740" y="194" text-anchor="middle" fill="var(--sj-ochre)" font-size="10" font-family="ui-monospace,monospace">GY-01</text>
+  <text x="740" y="212" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC,serif">国运时间轴 · 2026–2036</text>
+
+  <rect x="640" y="250" width="200" height="56" rx="5" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)"/>
+  <text x="740" y="274" text-anchor="middle" fill="var(--sj-celadon)" font-size="10" font-family="ui-monospace,monospace">GY-00+</text>
+  <text x="740" y="292" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC,serif">人口图谱全系列</text>
+
+  <!-- links -->
+  <path d="M250,118 H620" stroke="var(--sj-vermil)" stroke-width="1.5" fill="none" marker-end="url(#gy-arr)" opacity="0.85"/>
+  <text x="435" y="110" text-anchor="middle" fill="var(--sj-paper-300)" font-size="11" font-family="Songti SC,serif">合法性一力的当代形态</text>
+
+  <path d="M250,198 H620" stroke="var(--sj-ochre)" stroke-width="1.5" fill="none" marker-end="url(#gy-arr)" opacity="0.85"/>
+  <text x="435" y="190" text-anchor="middle" fill="var(--sj-paper-300)" font-size="11" font-family="Songti SC,serif">相位盘 ↔ 干支时间轴 / 概率预测</text>
+
+  <path d="M250,278 H620" stroke="var(--sj-celadon)" stroke-width="1.5" fill="none" marker-end="url(#gy-arr)" opacity="0.85"/>
+  <text x="435" y="270" text-anchor="middle" fill="var(--sj-paper-300)" font-size="11" font-family="Songti SC,serif">生态—人口力 ↔ 人群切片总盘</text>
+
+  <!-- center note -->
+  <circle cx="440" cy="70" r="3" fill="var(--sj-vermil)"/>
+  <text x="452" y="74" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">朱批：接口语义已冻结 · 深链待模块就绪</text>
+</svg>
+  </div>
+  <p class="sj-00-note">另：SJ-24 外交映射将对接未来地缘模块。接口以机制对照为准，不在本索引页做当代政治断言。</p>
+</section>
+
+<footer class="sj-00-foot">
+  <span>ChinaOS · 史鉴 SJ-00 · v0.1 · AS_OF 2026-07-14</span>
+  <span>返回本页顶端 · 本模块即索引 · 无上级</span>
+  <span><a href="#sj-00-top">↑ 顶</a> · <a href="./zhiliuan-spiral.svg">纯 SVG</a> · <a href="./SJ-00-spiral-preview.html">签名预览</a></span>
+</footer>
+
+</div>
+<script>
+(function(){
+  const stage = document.getElementById('sj-stage');
+  if(!stage) return;
+  const segs = Array.from(stage.querySelectorAll('.sj-seg'));
+  const buttons = Array.from(document.querySelectorAll('.sj-00-controls .sj-00-btn'));
+  let active = '';
+
+  function apply(phase){
+    active = phase || '';
+    buttons.forEach(b => {
+      const isClear = b.id === 'sj-btn-clear';
+      const on = active
+        ? ((b.dataset.phase || '') === active)
+        : isClear;
+      b.classList.toggle('is-on', on);
+    });
+    if(!active){
+      stage.classList.remove('is-filtering');
+      segs.forEach(s => s.classList.remove('is-hot'));
+      return;
+    }
+    stage.classList.add('is-filtering');
+    segs.forEach(s => s.classList.toggle('is-hot', s.dataset.phase === active));
+  }
+
+  buttons.forEach(b => b.addEventListener('click', () => apply(b.dataset.phase || '')));
+  segs.forEach(s => {
+    s.setAttribute('tabindex','0');
+    s.setAttribute('role','button');
+    s.setAttribute('aria-label', (s.dataset.dynasty || '') + ' · ' + s.dataset.phase);
+    const act = () => apply(s.dataset.phase);
+    s.addEventListener('click', act);
+    s.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); act(); }
+    });
+  });
+  document.getElementById('sj-btn-clear').classList.add('is-on');
+})();
+</script>
+</body>
+</html>

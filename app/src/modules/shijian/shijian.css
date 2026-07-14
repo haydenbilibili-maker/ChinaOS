@@ -1,0 +1,34 @@
+/* 史鉴 SJ-00 · 壳层样式（内容皮肤在 /shijian/SJ-00.html） */
+.shijian-page {
+  max-width: 1100px;
+}
+
+.shijian-frame-wrap {
+  padding: 0;
+  overflow: hidden;
+  background: #14110f;
+  border-color: #3a322b;
+}
+
+.shijian-frame {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: #14110f;
+  min-height: 1600px;
+}
+
+.shijian-open-hint {
+  margin: 12px 0 0;
+  font-size: 12px;
+  color: var(--text-tertiary, #93a1b5);
+}
+
+.shijian-open-hint a {
+  color: var(--cyber-cyan, #22d3ee);
+  text-decoration: none;
+}
+
+.shijian-open-hint a:hover {
+  text-decoration: underline;
+}

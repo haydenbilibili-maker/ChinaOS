@@ -697,12 +697,14 @@ const MAP = {
     { to: '/modules/binzang', label: '殡葬临终 · GY-46 收官', note: '进程回收器 · 年龄轴终点，所有人群最终汇入的终点站。' },
     { to: '/modules/guoyun', label: '国运推演 · GY-01', note: '与 GY-02 共用设计令牌与年度对账节奏。' },
     { to: '/modules/yishixingtai', label: '合法性机器 · GY-02', note: '母框架意识形态层，与人群价目表假说互证。' },
+    { to: '/modules/shijian', label: '史鉴总索引 · SJ-00', note: '生态—人口基座一力 ↔ 人群图谱；治乱螺旋的当代对照入口。' },
   ],
   guoyun: [
     { to: '/modules/renqun-tupu', label: '人群画像总图谱 · GY-00', note: `${SLICE_N} 片人群切片母索引，钻探进度与价目表假说验证结构。` },
     { to: '/modules/yishixingtai', label: '合法性机器 · GY-02', note: '意识形态五组件与张力层，与推演三变量四情景双向耦合。' },
-    { to: '/modules/yishixingtai?tab=tension&tension=t03', label: '张力 T-03 · 复兴叙事 ⟂ 停滞', note: '日本化情景的意识形态杀伤大于经济杀伤。' },
+    { to: '/modules/yishixingtai?tab=tension&tension=t03', label: '张力 T-03 · 复兴叙事 ✖️ 停滞', note: '日本化情景的意识形态杀伤大于经济杀伤。' },
     { to: '/modules/guoyun?tab=timeline', label: '国运时间轴 · 已发生', note: '1949→2026 七时代六域大事记谱系。' },
+    { to: '/modules/shijian', label: '史鉴总索引 · SJ-00', note: 'SJ-04 相位盘接口；国运时间轴 / 2026–2036 的历史纵深坐标。' },
     { to: '/modules/qingnian', label: '青年 · GY-03 子集 I', note: '人群画像第一子集，共享「被特定窗口看见」母命题。' },
     { to: '/modules/xingshaoshu', label: '性少数 · GY-04 子集 II', note: '挤压性存在，与 GY-01 人口螺旋、GY-03 CH-01 性别分叉耦合。' },
     { to: '/modules/linggong', label: '零工经济 · GY-05 子集 III', note: '悬空的基础设施，L8 变量 A 压力测试问二最先兑现现场。' },
@@ -739,8 +741,14 @@ const MAP = {
   yishixingtai: [
     { to: '/modules/guoyun', label: '国运推演 · GY-01', note: '三变量 × 四情景推演，张力层与观测哨年度对账联动。' },
     { to: '/modules/guoyun?panel=p-tuiyan&scenario=down', label: '情景三 · 日本化加深', note: '与张力 T-03 直接耦合的推演情景。' },
+    { to: '/modules/shijian', label: '史鉴总索引 · SJ-00', note: 'SJ-03 合法性力 ↔ GY-02 合法性机器；历史纵深对照入口。' },
     { to: '/powerlogic', label: '权力逻辑 · 儒表法里', note: '合法性机器的制度底层与统治成本。' },
     { to: '/ideology', label: '意识形态 · 理论透镜', note: '自由主义 / 马克思等对照阅读。' },
+  ],
+  shijianSJ00: [
+    { to: '/modules/guoyun', label: '国运模拟器 · GY-01', note: 'SJ-04 相位盘对接干支时间轴与 2026–2036 情景推演。' },
+    { to: '/modules/yishixingtai', label: '合法性机器 · GY-02', note: 'SJ-03 五力中合法性叙事力的当代形态。' },
+    { to: '/modules/renqun-tupu', label: '人群画像总图谱 · GY-00', note: '生态—人口—技术基座力与人群切片总盘互为里表。' },
   ],
 };
 
