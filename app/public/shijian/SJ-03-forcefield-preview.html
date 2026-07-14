@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-03 · 五力耦合力场（签名预览）</title>
+<style>
+/* 令牌契约：chinaos-shijian.mdc；色义固定见 docs/shijian/史鉴系列-签名视觉规格书.md */
+:root{
+  --sj-ink-900:#14110f;
+  --sj-ink-800:#1d1916;
+  --sj-paper-100:#e8ddc7;
+  --sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;
+  --sj-celadon:#5f7a6f;
+  --sj-ochre:#b8894a;
+  --sj-line:#3a322b;
+  --sj-radius:6px;
+  --sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(900px 500px at 70% -5%, #2a221c 0%, transparent 55%),
+    var(--sj-ink-900);
+  color:var(--sj-paper-100);
+  font-family:var(--sj-serif);
+  line-height:1.7;
+  padding:var(--sj-space);
+}
+.wrap{max-width:920px;margin:0 auto}
+.mast{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  gap:16px;flex-wrap:wrap;
+  padding-bottom:14px;border-bottom:1px solid var(--sj-line);margin-bottom:18px;
+}
+.mast h1{font-size:clamp(18px,2.4vw,22px);font-weight:600;letter-spacing:.14em}
+.mast h1 span{color:var(--sj-paper-300);font-weight:400;letter-spacing:.06em;font-size:.85em}
+.meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right;line-height:1.7}
+.meta b{color:var(--sj-ochre);font-weight:500}
+.zhupi{
+  color:var(--sj-vermil);font-size:13px;margin:0 0 14px;
+  padding-left:10px;border-left:2px solid var(--sj-vermil);
+  max-width:68ch;
+}
+.controls{
+  display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px;align-items:center;
+}
+.controls .lbl{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-paper-300);margin-right:4px}
+.btn{
+  appearance:none;border:1px solid var(--sj-line);background:var(--sj-ink-800);
+  color:var(--sj-paper-100);font-family:var(--sj-serif);font-size:13px;
+  padding:6px 12px;border-radius:var(--sj-radius);cursor:pointer;
+  transition:border-color .18s, color .18s, background .18s;
+}
+.btn:hover,.btn:focus-visible{border-color:var(--sj-ochre);outline:none}
+.btn:focus-visible{box-shadow:0 0 0 2px rgba(184,137,74,.35)}
+.btn.is-on{border-color:var(--sj-vermil);color:var(--sj-vermil);background:#241612}
+.btn#btn-chain.is-on{border-color:var(--sj-ochre);color:var(--sj-ochre)}
+.stage{
+  border:1px solid var(--sj-line);
+  border-radius:var(--sj-radius);
+  background:linear-gradient(180deg,#1f1a16,#14110f);
+  box-shadow:0 1px 0 rgba(232,221,199,.04), 0 18px 48px rgba(0,0,0,.45);
+  padding:8px 8px 4px;
+  overflow:auto;
+}
+.stage svg{display:block;width:100%;height:auto;max-width:800px;margin:0 auto}
+.sj-node{
+  cursor:pointer;
+  transition:opacity .2s ease, filter .2s ease;
+}
+.sj-node:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:4px}
+.sj-edge{
+  transition:opacity .2s ease, stroke-width .2s ease, filter .2s ease;
+}
+.stage.is-picking .sj-node{opacity:.28}
+.stage.is-picking .sj-node.is-hot{
+  opacity:1;
+  filter:drop-shadow(0 0 6px rgba(184,137,74,.4));
+}
+.stage.is-picking .sj-edge{opacity:.12}
+.stage.is-picking .sj-edge.is-hot{
+  opacity:1;
+  filter:drop-shadow(0 0 3px rgba(168,59,44,.35));
+}
+.stage.is-chain .sj-node{opacity:.22}
+.stage.is-chain .sj-edge{opacity:.1}
+.stage.is-chain .sj-node.is-chain-hot,
+.stage.is-chain .sj-edge.is-chain-hot{
+  opacity:1;
+  filter:drop-shadow(0 0 5px rgba(168,59,44,.45));
+}
+.card{
+  margin-top:16px;
+  border:1px solid var(--sj-line);
+  border-radius:var(--sj-radius);
+  background:var(--sj-ink-800);
+  padding:16px 18px 14px;
+  min-height:120px;
+}
+.card[hidden]{display:none}
+.card-head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;
+  margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--sj-line);
+}
+.card-head h2{font-size:17px;font-weight:600;letter-spacing:.1em}
+.card-head .tag{
+  font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;color:var(--sj-ochre);
+}
+.card p{font-size:13px;color:var(--sj-paper-300);line-height:1.7;max-width:72ch}
+.card p em{font-style:normal;color:var(--sj-paper-100)}
+.card .path{margin-top:8px;font-size:12px;color:var(--sj-vermil)}
+.hint{margin-top:10px;font-size:12px;color:var(--sj-paper-300);opacity:.85}
+.note{
+  margin-top:14px;font-size:13px;color:var(--sj-paper-300);max-width:72ch;
+}
+.note strong{color:var(--sj-paper-100);font-weight:600}
+.foot{
+  margin-top:22px;padding-top:12px;border-top:1px solid var(--sj-line);
+  font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+}
+.foot a{color:var(--sj-celadon);text-decoration:none}
+.foot a:hover{color:var(--sj-ochre)}
+@media (prefers-reduced-motion:reduce){
+  .sj-node,.sj-edge{transition:none}
+}
+@media (max-width:768px){
+  .mast{align-items:flex-start}
+  .meta{text-align:left}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <h1>SJ-03 <span>五力衰变模型 · 签名视觉</span></h1>
+    <div class="meta">STEP 1 / 先视觉后正文<br/><b>等确认后再写全文</b></div>
+  </header>
+
+  <p class="zhupi sj-zhupi">朱批：五力非并列清单——财政居枢纽，基座为慢变量底盘；箭头是有向耦合，线宽即强度。本图对齐规格书图 C，不取对称五边形。</p>
+
+  <div class="controls" role="toolbar" aria-label="力场操作">
+    <span class="lbl">演示</span>
+    <button type="button" class="btn" id="btn-chain" tabindex="0">衰变链演示</button>
+    <button type="button" class="btn" id="btn-clear" tabindex="0">全部</button>
+  </div>
+
+  <div class="stage" id="stage">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 720" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">五力耦合力场图</title>
+  <desc id="sj-desc">底盘为生态人口技术基座；中心为财政汲取力枢纽；精英、边疆军事、合法性环绕；崩解为出口；有向耦合边表达衰变主链。</desc>
+
+  <defs>
+    <radialGradient id="sj-paper-glow" cx="50%" cy="38%" r="68%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)" stop-opacity="1"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)" stop-opacity="1"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+    <linearGradient id="sj-base-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241e19"/>
+      <stop offset="100%" stop-color="#100e0c"/>
+    </linearGradient>
+    <marker id="arr-ochre" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/>
+    </marker>
+    <marker id="arr-vermil" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/>
+    </marker>
+    <marker id="arr-celadon" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/>
+    </marker>
+    <marker id="arr-paper" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-100)"/>
+    </marker>
+    <marker id="arr-ink" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-300)"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="720" fill="url(#sj-paper-glow)"/>
+  <rect x="48" y="96" width="704" height="580" fill="url(#sj-xuan)" opacity="0.045"/>
+
+  <!-- 卷轴轴头 -->
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="108" width="12" height="520" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="112" width="4" height="512" rx="2" fill="var(--sj-line)"/>
+    <rect x="772" y="108" width="12" height="520" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="776" y="112" width="4" height="512" rx="2" fill="var(--sj-line)"/>
+  </g>
+
+  <!-- 页眉 -->
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC, Noto Serif SC, Source Han Serif SC, serif" letter-spacing="0.12em">五力耦合力场</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.08em">SJ-03 · 五力衰变模型 · 签名视觉</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">朱批：点击力节点 → 出入边高亮；演示钮按主链点亮</text>
+
+  <!-- ========== 底盘层：生态—人口—技术 ========== -->
+  <g class="sj-node" data-id="base" id="node-base" tabindex="0" role="button" aria-label="生态人口技术基座">
+    <rect x="56" y="548" width="688" height="118" rx="6" fill="url(#sj-base-fill)" stroke="var(--sj-line)" stroke-width="1.4"/>
+    <!-- 慢变量正弦暗纹 -->
+    <path d="M80,600 C140,576 200,624 260,600 S380,576 440,600 S560,624 620,600 S700,576 730,594"
+          fill="none" stroke="var(--sj-paper-300)" stroke-width="1.2" opacity="0.35"/>
+    <path d="M80,620 C150,602 210,638 280,620 S400,602 470,620 S590,638 660,620 S720,602 730,614"
+          fill="none" stroke="var(--sj-line)" stroke-width="1" opacity="0.7"/>
+    <text x="400" y="580" text-anchor="middle" fill="var(--sj-paper-100)" font-size="15" font-family="Songti SC, Noto Serif SC, serif" letter-spacing="0.18em">生态 · 人口 · 技术基座</text>
+    <text x="400" y="602" text-anchor="middle" fill="var(--sj-paper-300)" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.1em">慢变量 · 长波包络 · 定天花板</text>
+    <text x="400" y="642" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif" opacity="0.85">气候相位 · 人口/耕地比 · 水利 · 技术—制度天花板</text>
+  </g>
+
+  <!-- ========== 耦合边层（先画边，后画节点） ========== -->
+  <g id="edges" fill="none" stroke-linecap="round">
+    <!-- 基座 → 边疆（气候同步上推） -->
+    <path class="sj-edge" data-edge="base-mil" data-from="base" data-to="mil"
+          d="M210,548 C190,500 175,430 198,300" stroke="var(--sj-paper-300)" stroke-width="2.4" marker-end="url(#arr-ink)" opacity="0.85"/>
+    <!-- 基座 → 人口/流民侧（分叉，落到财政附近示意） -->
+    <path class="sj-edge" data-edge="base-pop" data-from="base" data-to="fiscal"
+          d="M400,548 C400,500 390,440 370,360" stroke="var(--sj-paper-300)" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arr-ink)" opacity="0.7"/>
+    <!-- 边疆 → 财政（军费刚性，粗） -->
+    <path class="sj-edge" data-edge="mil-fiscal" data-from="mil" data-to="fiscal"
+          d="M250,250 C290,280 320,300 348,318" stroke="var(--sj-vermil)" stroke-width="3.6" marker-end="url(#arr-vermil)" opacity="0.95"/>
+    <!-- 财政 → 精英（改革走钢丝，粗） -->
+    <path class="sj-edge" data-edge="fiscal-elite" data-from="fiscal" data-to="elite"
+          d="M448,310 C500,280 530,250 560,232" stroke="var(--sj-ochre)" stroke-width="3.4" marker-end="url(#arr-ochre)" opacity="0.95"/>
+    <!-- 精英 → 合法性 -->
+    <path class="sj-edge" data-edge="elite-legit" data-from="elite" data-to="legit"
+          d="M560,190 C520,160 470,148 442,155" stroke="var(--sj-celadon)" stroke-width="2.2" marker-end="url(#arr-celadon)" opacity="0.9"/>
+    <!-- 合法性 → 崩解 -->
+    <path class="sj-edge" data-edge="legit-collapse" data-from="legit" data-to="collapse"
+          d="M448,168 C520,200 580,280 610,380" stroke="var(--sj-vermil)" stroke-width="2.6" stroke-dasharray="1 0" marker-end="url(#arr-vermil)" opacity="0.9"/>
+    <!-- 财政旁路亦可至崩解（弱） -->
+    <path class="sj-edge" data-edge="fiscal-collapse" data-from="fiscal" data-to="collapse"
+          d="M430,360 C500,390 560,410 590,430" stroke="var(--sj-ochre)" stroke-width="1.4" stroke-dasharray="4 5" marker-end="url(#arr-ochre)" opacity="0.45"/>
+  </g>
+
+  <!-- 边标签 / 朱批圈点 -->
+  <g font-family="Songti SC, Noto Serif SC, serif" font-size="11" fill="var(--sj-paper-300)">
+    <text x="128" y="420" fill="var(--sj-paper-300)">气候同步上推</text>
+    <circle cx="118" cy="416" r="4" fill="none" stroke="var(--sj-vermil)" stroke-width="1.2"/>
+    <text x="255" y="295" fill="var(--sj-vermil)">军费刚性</text>
+    <text x="500" y="268" fill="var(--sj-ochre)">改革走钢丝</text>
+    <text x="500" y="148" fill="var(--sj-celadon)">党争 · 绩效磨损</text>
+    <text x="545" y="330" fill="var(--sj-vermil)">崩解出口</text>
+  </g>
+
+  <!-- ========== 四力 + 崩解节点 ========== -->
+  <!-- 合法性叙事力（宣纸白）上 -->
+  <g class="sj-node" data-id="legit" id="node-legit" tabindex="0" role="button" aria-label="合法性叙事力">
+    <circle cx="400" cy="155" r="38" fill="var(--sj-ink-800)" stroke="var(--sj-paper-100)" stroke-width="2.2"/>
+    <circle cx="400" cy="155" r="30" fill="none" stroke="var(--sj-paper-100)" stroke-width="0.8" opacity="0.45"/>
+    <text x="400" y="150" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC, Noto Serif SC, serif">合法性</text>
+    <text x="400" y="168" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">叙事力</text>
+  </g>
+
+  <!-- 边疆—军事力（朱红）左 -->
+  <g class="sj-node" data-id="mil" id="node-mil" tabindex="0" role="button" aria-label="边疆军事压力">
+    <circle cx="210" cy="240" r="36" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.2"/>
+    <text x="210" y="234" text-anchor="middle" fill="var(--sj-vermil)" font-size="13" font-family="Songti SC, Noto Serif SC, serif">边疆</text>
+    <text x="210" y="252" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">军事压力</text>
+  </g>
+
+  <!-- 精英循环力（青瓷）右 -->
+  <g class="sj-node" data-id="elite" id="node-elite" tabindex="0" role="button" aria-label="精英循环力">
+    <circle cx="590" cy="210" r="36" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.2"/>
+    <text x="590" y="204" text-anchor="middle" fill="var(--sj-celadon)" font-size="13" font-family="Songti SC, Noto Serif SC, serif">精英</text>
+    <text x="590" y="222" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">循环力</text>
+  </g>
+
+  <!-- 财政汲取力（赭金枢纽，略大居中） -->
+  <g class="sj-node" data-id="fiscal" id="node-fiscal" tabindex="0" role="button" aria-label="财政汲取力枢纽">
+    <circle cx="400" cy="330" r="52" fill="#2a2218" stroke="var(--sj-ochre)" stroke-width="2.8"/>
+    <circle cx="400" cy="330" r="42" fill="none" stroke="var(--sj-ochre)" stroke-width="1" opacity="0.35"/>
+    <text x="400" y="320" text-anchor="middle" fill="var(--sj-ochre)" font-size="15" font-weight="600" font-family="Songti SC, Noto Serif SC, serif" letter-spacing="0.08em">财政汲取力</text>
+    <text x="400" y="342" text-anchor="middle" fill="var(--sj-paper-300)" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">枢纽</text>
+  </g>
+
+  <!-- 崩解出口 -->
+  <g class="sj-node" data-id="collapse" id="node-collapse" tabindex="0" role="button" aria-label="崩解或分裂出口">
+    <circle cx="630" cy="440" r="28" fill="#241612" stroke="var(--sj-vermil)" stroke-width="1.8"/>
+    <text x="630" y="444" text-anchor="middle" fill="var(--sj-vermil)" font-size="13" font-family="Songti SC, Noto Serif SC, serif">崩解</text>
+  </g>
+
+  <!-- 色义图例 -->
+  <g font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" font-size="9" letter-spacing="0.06em">
+    <circle cx="56" cy="690" r="4" fill="var(--sj-ochre)"/><text x="66" y="693" fill="var(--sj-paper-300)">财政</text>
+    <circle cx="120" cy="690" r="4" fill="var(--sj-celadon)"/><text x="130" y="693" fill="var(--sj-paper-300)">精英</text>
+    <circle cx="184" cy="690" r="4" fill="var(--sj-paper-100)"/><text x="194" y="693" fill="var(--sj-paper-300)">合法性</text>
+    <circle cx="264" cy="690" r="4" fill="var(--sj-vermil)"/><text x="274" y="693" fill="var(--sj-paper-300)">边疆军事</text>
+    <rect x="350" y="686" width="14" height="8" fill="var(--sj-ink-800)" stroke="var(--sj-line)"/><text x="370" y="693" fill="var(--sj-paper-300)">基座慢变量</text>
+  </g>
+
+  <text x="744" y="693" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">viewBox 800×720 · 规格书图 C</text>
+</svg>
+  </div>
+
+  <aside class="card" id="card" hidden aria-live="polite">
+    <div class="card-head">
+      <h2 id="card-name">—</h2>
+      <span class="tag" id="card-tag">—</span>
+    </div>
+    <p id="card-body">—</p>
+    <p class="path" id="card-path"></p>
+    <p class="hint">以上为签名预览 stub；逐力机制与指标正文待确认力场后再写（母本第一部）。</p>
+  </aside>
+
+  <p class="note"><strong>本轮交付范围</strong>：仅签名 SVG「五力耦合力场」与节点/衰变链交互 stub。未写 SJ-03 全文、相位联动与案例复用数据结构。附带 PNG 参考图节点名与规格书冲突，已按规格书/母本裁定（见下方架构师注）。本轮不上线、不 push。</p>
+
+  <footer class="foot">
+    <span>纯 SVG：<a href="./wuli-forcefield.svg">wuli-forcefield.svg</a> · <a href="./SJ-00.html">返回 SJ-00</a> · <a href="./SJ-01-spectrum-preview.html">SJ-01 光谱</a></span>
+    <span>ChinaOS · 史鉴 SJ · preview v0.1</span>
+  </footer>
+</div>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const card = document.getElementById('card');
+  const nodes = Array.from(stage.querySelectorAll('.sj-node'));
+  const edges = Array.from(stage.querySelectorAll('.sj-edge'));
+  const btnChain = document.getElementById('btn-chain');
+  const btnClear = document.getElementById('btn-clear');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const DATA = {
+    fiscal: {
+      name: '财政汲取力',
+      tag: '枢纽力 · 赭金',
+      body: '把经济剩余转化为可用中央财政、且政治成本可接受的能力。多数衰变链最终经由它传导并引爆——它是慢变量压力的政治变压器。',
+      path: '典型衰变：休养轻税 → 刚性支出膨胀 → 加征 → 税基侵蚀 → 越过民变阈值'
+    },
+    elite: {
+      name: '精英循环力',
+      tag: '快变量 · 青瓷',
+      body: '吸纳、轮换、退出精英而不让其固化为自利集团的能力。财政重建常须触动精英特权，故此力是变法最常见的死穴。',
+      path: '典型衰变：通道开放 → 制度俘获 → 通道堵塞 → 党争内耗 → 中央离心'
+    },
+    legit: {
+      name: '合法性叙事力',
+      tag: '快变量 · 宣纸白',
+      body: '天命/正统/意识形态对君—臣—民三方的绑定说服力。绩效枯竭时系统常加大象征投入，象征通胀加速话语贬值。',
+      path: '典型衰变：开国充盈 → 绩效磨损 → 象征通胀 → 话语空转 → 天命被夺'
+    },
+    mil: {
+      name: '边疆—军事压力',
+      tag: '快变量 · 朱红',
+      body: '外部/边疆压力及其军费—政治成本。常与财政强耦合；单独强化军事力而无制度制衡，反而是崩解触发器（天宝标本）。',
+      path: '两条路径：内重外轻→积弱｜外重内轻→军阀反噬'
+    },
+    base: {
+      name: '生态—人口—技术基座',
+      tag: '慢变量 · 深墨底盘',
+      body: '物质承载力——气候、耕地、人口负荷、技术天花板。以世纪尺度移动，设定其余四力的容错包络线。',
+      path: '逼近上限时：小冰期/大灾 → 流民与边疆压力气候同步 → 多力共振'
+    },
+    collapse: {
+      name: '崩解 / 分裂出口',
+      tag: '相位出口 · 朱红',
+      body: '三力及以上同时负相位 → 超稳定结构失修 → 崩解或分裂。分裂期是军事力区域畸大的失衡态，非历史空白。',
+      path: '判据：单力负相位=僵化/改革窗口；三力以上负=崩解风险'
+    }
+  };
+
+  const EDGE_MAP = {
+    fiscal: ['mil-fiscal','fiscal-elite','fiscal-collapse','base-pop'],
+    elite: ['fiscal-elite','elite-legit'],
+    legit: ['elite-legit','legit-collapse'],
+    mil: ['base-mil','mil-fiscal'],
+    base: ['base-mil','base-pop'],
+    collapse: ['legit-collapse','fiscal-collapse']
+  };
+
+  const els = {
+    name: document.getElementById('card-name'),
+    tag: document.getElementById('card-tag'),
+    body: document.getElementById('card-body'),
+    path: document.getElementById('card-path')
+  };
+
+  let chainTimer = null;
+
+  function clearVisual(){
+    if(chainTimer){ clearTimeout(chainTimer); chainTimer = null; }
+    stage.classList.remove('is-picking','is-chain');
+    nodes.forEach(n => n.classList.remove('is-hot','is-chain-hot'));
+    edges.forEach(e => e.classList.remove('is-hot','is-chain-hot'));
+    btnChain.classList.remove('is-on');
+  }
+
+  function pick(id){
+    const d = DATA[id];
+    if(!d) return;
+    clearVisual();
+    stage.classList.add('is-picking');
+    nodes.forEach(n => n.classList.toggle('is-hot', n.dataset.id === id));
+    const hotEdges = EDGE_MAP[id] || [];
+    edges.forEach(e => e.classList.toggle('is-hot', hotEdges.indexOf(e.dataset.edge) >= 0));
+    els.name.textContent = d.name;
+    els.tag.textContent = d.tag;
+    els.body.innerHTML = d.body;
+    els.path.textContent = d.path;
+    card.hidden = false;
+  }
+
+  /** 主链：基座 → 边疆 → 财政 → 精英 → 合法性 → 崩解 */
+  const CHAIN = [
+    { nodes:['base'], edges:['base-mil','base-pop'], label:'① 基座压力上推' },
+    { nodes:['mil','base'], edges:['base-mil','mil-fiscal'], label:'② 边疆/人口同步加压' },
+    { nodes:['fiscal','mil'], edges:['mil-fiscal','fiscal-elite'], label:'③ 财政枢纽过载' },
+    { nodes:['elite','fiscal'], edges:['fiscal-elite','elite-legit'], label:'④ 精英俘获与内耗' },
+    { nodes:['legit','elite'], edges:['elite-legit','legit-collapse'], label:'⑤ 合法性枯竭' },
+    { nodes:['collapse','legit'], edges:['legit-collapse'], label:'⑥ 崩解出口' }
+  ];
+
+  function runChain(){
+    clearVisual();
+    btnChain.classList.add('is-on');
+    stage.classList.add('is-chain');
+    card.hidden = false;
+
+    if(reduceMotion){
+      CHAIN.forEach((step, i) => {
+        step.nodes.forEach(id => {
+          const n = stage.querySelector('.sj-node[data-id="'+id+'"]');
+          if(n) n.classList.add('is-chain-hot');
+        });
+        step.edges.forEach(eid => {
+          const e = stage.querySelector('.sj-edge[data-edge="'+eid+'"]');
+          if(e) e.classList.add('is-chain-hot');
+        });
+      });
+      els.name.textContent = '衰变链（静态编号）';
+      els.tag.textContent = 'prefers-reduced-motion';
+      els.body.textContent = '基座 → 边疆/人口 → 财政 → 精英 → 合法性 → 崩解。完整动画已按可达性降级为一次点亮。';
+      els.path.textContent = '母本主链 · 规格书图 C';
+      return;
+    }
+
+    let i = 0;
+    function tick(){
+      nodes.forEach(n => n.classList.remove('is-chain-hot'));
+      edges.forEach(e => e.classList.remove('is-chain-hot'));
+      if(i >= CHAIN.length){
+        btnChain.classList.remove('is-on');
+        return;
+      }
+      const step = CHAIN[i];
+      step.nodes.forEach(id => {
+        const n = stage.querySelector('.sj-node[data-id="'+id+'"]');
+        if(n) n.classList.add('is-chain-hot');
+      });
+      step.edges.forEach(eid => {
+        const e = stage.querySelector('.sj-edge[data-edge="'+eid+'"]');
+        if(e) e.classList.add('is-chain-hot');
+      });
+      els.name.textContent = '衰变链演示';
+      els.tag.textContent = '步骤 '+(i+1)+' / '+CHAIN.length;
+      els.body.textContent = step.label;
+      els.path.textContent = '母本主链：基座 → 边疆/人口 → 财政 → 精英 → 合法性 → 崩解';
+      i += 1;
+      chainTimer = setTimeout(tick, 900);
+    }
+    tick();
+  }
+
+  nodes.forEach(n => {
+    const act = () => pick(n.dataset.id);
+    n.addEventListener('click', act);
+    n.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); act(); }
+    });
+  });
+  btnChain.addEventListener('click', runChain);
+  btnClear.addEventListener('click', () => {
+    clearVisual();
+    card.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>

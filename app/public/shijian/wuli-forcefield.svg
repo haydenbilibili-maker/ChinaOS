@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 720" role="img" aria-labelledby="t d">
+  <title id="t">”›&›:þ</title>
+  <desc id="d">SJ-03 ~ÆÉYH"?¢½ + ú§•Ø + 	&¤’HÁ SJ-03-forcefield-preview.html</desc>
+  <defs>
+    <style>
+      :root {
+        --sj-ink-900: #14110f;
+        --sj-ink-800: #1d1916;
+        --sj-paper-100: #e8ddc7;
+        --sj-paper-300: #cdbe9f;
+        --sj-vermil: #a83b2c;
+        --sj-celadon: #5f7a6f;
+        --sj-ochre: #b8894a;
+        --sj-line: #3a322b;
+      }
+    </style>
+    <radialGradient id="g" cx="50%" cy="38%" r="68%">
+      <stop offset="0%" stop-color="#1d1916"/>
+      <stop offset="100%" stop-color="#14110f"/>
+    </radialGradient>
+    <linearGradient id="base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241e19"/>
+      <stop offset="100%" stop-color="#100e0c"/>
+    </linearGradient>
+    <marker id="ao" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#b8894a"/></marker>
+    <marker id="av" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#a83b2c"/></marker>
+    <marker id="ac" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#5f7a6f"/></marker>
+    <marker id="ai" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#cdbe9f"/></marker>
+  </defs>
+  <rect width="800" height="720" fill="url(#g)"/>
+  <text x="48" y="40" fill="#e8ddc7" font-size="22" font-family="Songti SC, Noto Serif SC, serif" letter-spacing="0.12em">”›&›:</text>
+  <text x="48" y="62" fill="#b8894a" font-size="11" font-family="ui-monospace, monospace">SJ-03 · ”›pØ!‹ · ~ÆÉ</text>
+
+  <rect x="56" y="548" width="688" height="118" rx="6" fill="url(#base)" stroke="#3a322b" stroke-width="1.4"/>
+  <path d="M80,600 C140,576 200,624 260,600 S380,576 440,600 S560,624 620,600 S700,576 730,594" fill="none" stroke="#cdbe9f" stroke-width="1.2" opacity="0.35"/>
+  <text x="400" y="580" text-anchor="middle" fill="#e8ddc7" font-size="15" font-family="Songti SC, Noto Serif SC, serif" letter-spacing="0.18em"> · ºã · €/ú§</text>
+  <text x="400" y="602" text-anchor="middle" fill="#cdbe9f" font-size="11" font-family="ui-monospace, monospace">bØÏ · âÜ · š)±</text>
+
+  <g fill="none" stroke-linecap="round">
+    <path d="M210,548 C190,500 175,430 198,300" stroke="#cdbe9f" stroke-width="2.4" marker-end="url(#ai)" opacity="0.85"/>
+    <path d="M400,548 C400,500 390,440 370,360" stroke="#cdbe9f" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#ai)" opacity="0.7"/>
+    <path d="M250,250 C290,280 320,300 348,318" stroke="#a83b2c" stroke-width="3.6" marker-end="url(#av)" opacity="0.95"/>
+    <path d="M448,310 C500,280 530,250 560,232" stroke="#b8894a" stroke-width="3.4" marker-end="url(#ao)" opacity="0.95"/>
+    <path d="M560,190 C520,160 470,148 442,155" stroke="#5f7a6f" stroke-width="2.2" marker-end="url(#ac)" opacity="0.9"/>
+    <path d="M448,168 C520,200 580,280 610,380" stroke="#a83b2c" stroke-width="2.6" marker-end="url(#av)" opacity="0.9"/>
+  </g>
+
+  <circle cx="400" cy="155" r="38" fill="#1d1916" stroke="#e8ddc7" stroke-width="2.2"/>
+  <text x="400" y="150" text-anchor="middle" fill="#e8ddc7" font-size="13" font-family="Songti SC, Noto Serif SC, serif">Õ'</text>
+  <text x="400" y="168" text-anchor="middle" fill="#cdbe9f" font-size="10" font-family="Songti SC, Noto Serif SC, serif">Ù‹›</text>
+
+  <circle cx="210" cy="240" r="36" fill="#1d1916" stroke="#a83b2c" stroke-width="2.2"/>
+  <text x="210" y="234" text-anchor="middle" fill="#a83b2c" font-size="13" font-family="Songti SC, Noto Serif SC, serif">¹†</text>
+  <text x="210" y="252" text-anchor="middle" fill="#cdbe9f" font-size="10" font-family="Songti SC, Noto Serif SC, serif">›‹‹›</text>
+
+  <circle cx="590" cy="210" r="36" fill="#1d1916" stroke="#5f7a6f" stroke-width="2.2"/>
+  <text x="590" y="204" text-anchor="middle" fill="#5f7a6f" font-size="13" font-family="Songti SC, Noto Serif SC, serif">¾ñ</text>
+  <text x="590" y="222" text-anchor="middle" fill="#cdbe9f" font-size="10" font-family="Songti SC, Noto Serif SC, serif">ª¯›</text>
+
+  <circle cx="400" cy="330" r="52" fill="#2a2218" stroke="#b8894a" stroke-width="2.8"/>
+  <text x="400" y="320" text-anchor="middle" fill="#b8894a" font-size="15" font-weight="600" font-family="Songti SC, Noto Serif SC, serif">"?rÖ›</text>
+  <text x="400" y="342" text-anchor="middle" fill="#cdbe9f" font-size="11" font-family="ui-monospace, monospace">¢½</text>
+
+  <circle cx="630" cy="440" r="28" fill="#241612" stroke="#a83b2c" stroke-width="1.8"/>
+  <text x="630" y="444" text-anchor="middle" fill="#a83b2c" font-size="13" font-family="Songti SC, Noto Serif SC, serif">)ã</text>
+</svg>

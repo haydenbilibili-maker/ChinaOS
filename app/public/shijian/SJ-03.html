@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-03 · 五力衰变模型</title>
+<meta name="description" content="ChinaOS 史鉴系列周期卷：五力衰变模型——财政枢纽、基座慢变量、有向耦合与相位/修复力接口。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;
+  --sj-ink-800:#1d1916;
+  --sj-paper-100:#e8ddc7;
+  --sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;
+  --sj-celadon:#5f7a6f;
+  --sj-ochre:#b8894a;
+  --sj-line:#3a322b;
+  --sj-radius:6px;
+  --sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+  --sj-phase-up:#7a9488;
+  --sj-phase-peak:var(--sj-ochre);
+  --sj-phase-rig:#6a5f52;
+  --sj-phase-col:var(--sj-vermil);
+  --sj-phase-reb:var(--sj-celadon);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(1000px 560px at 72% -8%, #2a221c 0%, transparent 55%),
+    radial-gradient(700px 420px at 8% 90%, #1a1612 0%, transparent 50%),
+    var(--sj-ink-900);
+  color:var(--sj-paper-100);
+  font-family:var(--sj-serif);
+  line-height:1.75;
+}
+.sj-03-wrap{max-width:1080px;margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+
+.sj-03-mast{
+  display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;
+  padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px;
+}
+.sj-03-mast .badge{
+  font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px;
+}
+.sj-03-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em;line-height:1.3}
+.sj-03-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;letter-spacing:.08em;font-size:.72em;display:block;margin-top:4px}
+.sj-03-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right;line-height:1.7}
+.sj-03-meta b{color:var(--sj-ochre);font-weight:500}
+.sj-03-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sj-03-chip{
+  display:inline-block;font-family:var(--sj-mono);font-size:10px;
+  letter-spacing:.08em;color:var(--sj-celadon);border:1px solid var(--sj-line);
+  padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;
+}
+.sj-03-chip:hover,.sj-03-chip:focus-visible{border-color:var(--sj-ochre);color:var(--sj-ochre);outline:none}
+
+.sj-zhupi{
+  color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;
+  padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:72ch;
+}
+
+.sj-03-sec{margin:36px 0 28px;scroll-margin-top:24px}
+.sj-03-sec-h{
+  display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--sj-line);
+}
+.sj-03-sec-h .num{font-family:var(--sj-mono);font-size:11px;letter-spacing:.2em;color:var(--sj-ochre)}
+.sj-03-sec-h h2{font-size:clamp(17px,2.2vw,20px);font-weight:600;letter-spacing:.12em}
+.sj-03-prose{font-size:15.5px;color:var(--sj-paper-100);max-width:72ch}
+.sj-03-prose + .sj-03-prose{margin-top:14px}
+.sj-03-prose strong{color:var(--sj-ochre);font-weight:600}
+.sj-03-note{font-size:13px;color:var(--sj-paper-300);margin-top:12px;max-width:72ch}
+.sj-03-note b{color:var(--sj-paper-100);font-weight:600}
+
+.sj-03-controls{
+  display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px;align-items:center;
+}
+.sj-03-controls .lbl{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-paper-300);margin-right:4px}
+.sj-03-btn{
+  appearance:none;border:1px solid var(--sj-line);background:var(--sj-ink-800);
+  color:var(--sj-paper-100);font-family:var(--sj-serif);font-size:13px;
+  padding:6px 12px;border-radius:var(--sj-radius);cursor:pointer;
+  transition:border-color .18s, color .18s, background .18s;
+}
+.sj-03-btn:hover,.sj-03-btn:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-03-btn:focus-visible{box-shadow:0 0 0 2px rgba(184,137,74,.35)}
+.sj-03-btn.is-on{border-color:var(--sj-vermil);color:var(--sj-vermil);background:color-mix(in srgb, var(--sj-vermil) 12%, var(--sj-ink-900))}
+.sj-03-btn#btn-chain.is-on{border-color:var(--sj-ochre);color:var(--sj-ochre)}
+
+.sj-03-stage{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
+  box-shadow:0 1px 0 rgba(232,221,199,.04), 0 18px 48px rgba(0,0,0,.45);
+  padding:8px 8px 4px;overflow:auto;
+}
+.sj-03-stage svg{display:block;width:100%;height:auto;max-width:800px;margin:0 auto}
+.sj-node{cursor:pointer;transition:opacity .2s ease, filter .2s ease}
+.sj-node:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:4px}
+.sj-edge{transition:opacity .2s ease, stroke-width .2s ease, filter .2s ease}
+.sj-03-stage.is-picking .sj-node{opacity:.28}
+.sj-03-stage.is-picking .sj-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px rgba(184,137,74,.4))}
+.sj-03-stage.is-picking .sj-edge{opacity:.12}
+.sj-03-stage.is-picking .sj-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px rgba(168,59,44,.35))}
+.sj-03-stage.is-chain .sj-node{opacity:.22}
+.sj-03-stage.is-chain .sj-edge{opacity:.1}
+.sj-03-stage.is-chain .sj-node.is-chain-hot,
+.sj-03-stage.is-chain .sj-edge.is-chain-hot{opacity:1;filter:drop-shadow(0 0 5px rgba(168,59,44,.45))}
+
+.sj-03-layout{
+  display:grid;grid-template-columns:1fr minmax(240px,300px);gap:14px;align-items:start;margin-top:14px;
+}
+.sj-03-aside{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
+  padding:14px 16px;position:sticky;top:12px;min-height:160px;
+}
+.sj-03-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-03-aside h3{font-size:16px;letter-spacing:.1em;margin-bottom:8px}
+.sj-03-aside p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.7}
+.sj-03-aside .path{margin-top:10px;font-size:12.5px;color:var(--sj-vermil)}
+.sj-03-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+
+.sj-03-force-grid{display:grid;gap:10px;margin-top:14px}
+.sj-03-force{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:var(--sj-ink-800);padding:14px 16px;
+  cursor:pointer;transition:border-color .18s;
+}
+.sj-03-force:hover,.sj-03-force:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-03-force.is-on{border-color:var(--sj-vermil)}
+.sj-03-force .tag{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;margin-bottom:4px}
+.sj-03-force[data-id="fiscal"] .tag{color:var(--sj-ochre)}
+.sj-03-force[data-id="elite"] .tag{color:var(--sj-celadon)}
+.sj-03-force[data-id="legit"] .tag{color:var(--sj-paper-100)}
+.sj-03-force[data-id="mil"] .tag{color:var(--sj-vermil)}
+.sj-03-force[data-id="base"] .tag{color:var(--sj-paper-300)}
+.sj-03-force h3{font-size:15px;letter-spacing:.08em;margin-bottom:6px}
+.sj-03-force p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.65}
+.sj-03-force .ind{margin-top:8px;font-size:12.5px;color:var(--sj-celadon)}
+
+.sj-03-chain-box{
+  margin-top:14px;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:var(--sj-ink-800);padding:16px 18px;font-family:var(--sj-mono);
+  font-size:12.5px;line-height:1.85;color:var(--sj-paper-300);overflow:auto;
+}
+.sj-03-chain-box b{color:var(--sj-ochre);font-weight:500}
+.sj-03-chain-box .ver{color:var(--sj-vermil)}
+
+.sj-03-table-wrap{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:var(--sj-ink-800);overflow:auto;margin-top:14px;
+}
+.sj-03-table{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
+.sj-03-table th{
+  background:var(--sj-ink-900);color:var(--sj-ochre);
+  font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;font-weight:500;
+  text-align:left;padding:10px 12px;border-bottom:1px solid var(--sj-line);
+}
+.sj-03-table td{
+  padding:10px 12px;border-bottom:1px solid var(--sj-line);
+  color:var(--sj-paper-300);vertical-align:top;line-height:1.6;
+}
+.sj-03-table td:first-child{color:var(--sj-paper-100);font-weight:600;white-space:nowrap}
+.sj-03-table tbody tr{cursor:pointer;transition:background .15s}
+.sj-03-table tbody tr:hover{background:rgba(184,137,74,.06)}
+.sj-03-table tbody tr:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:-2px}
+.sj-03-table tbody tr.is-hot{background:color-mix(in srgb, var(--sj-vermil) 14%, transparent)}
+
+.sj-03-contract{
+  margin-top:14px;border:1px dashed var(--sj-line);border-radius:var(--sj-radius);
+  background:var(--sj-ink-800);padding:14px 16px;
+}
+.sj-03-contract .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;color:var(--sj-ochre);margin-bottom:8px}
+.sj-03-contract pre{
+  font-family:var(--sj-mono);font-size:11.5px;line-height:1.7;
+  color:var(--sj-paper-300);white-space:pre-wrap;word-break:break-word;
+}
+.sj-03-contract pre .key{color:var(--sj-celadon)}
+.sj-03-contract pre .str{color:var(--sj-ochre)}
+.sj-03-diag{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px;
+}
+.sj-03-diag article{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:var(--sj-ink-900);padding:12px;
+}
+.sj-03-diag .n{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;color:var(--sj-ochre);margin-bottom:4px}
+.sj-03-diag h3{font-size:14px;letter-spacing:.06em;margin-bottom:6px}
+.sj-03-diag p{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6}
+
+.sj-03-xref{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;
+}
+.sj-03-xref a{
+  display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit;
+  transition:border-color .18s;
+}
+.sj-03-xref a:hover,.sj-03-xref a:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-03-xref .n{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;color:var(--sj-ochre);margin-bottom:4px}
+.sj-03-xref h3{font-size:14px;letter-spacing:.06em;margin-bottom:6px}
+.sj-03-xref p{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6}
+
+.sj-03-foot{
+  margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);
+  font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+}
+.sj-03-foot a{color:var(--sj-celadon);text-decoration:none}
+.sj-03-foot a:hover{color:var(--sj-ochre)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .sj-node,.sj-edge,.sj-03-force,.sj-03-btn{transition:none}
+}
+@media (max-width:900px){
+  .sj-03-layout{grid-template-columns:1fr}
+  .sj-03-aside{position:static}
+  .sj-03-diag,.sj-03-xref{grid-template-columns:1fr 1fr}
+}
+@media (max-width:768px){
+  .sj-03-meta{text-align:left}
+  .sj-03-diag,.sj-03-xref{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="sj-03-wrap" id="sj-03-top">
+
+<header class="sj-03-mast">
+  <div>
+    <div class="badge">SJ-03 · 周期卷 · 规律引擎</div>
+    <h1>五力衰变模型<em>枢纽财政 · 慢变量基座 · 有向耦合</em></h1>
+    <div class="sj-03-chips">
+      <a class="sj-03-chip" href="./SJ-00.html">↔ SJ-00 总索引</a>
+      <a class="sj-03-chip" href="./SJ-01.html">↔ SJ-01 方法光谱</a>
+      <a class="sj-03-chip" href="./SJ-04.html">↔ SJ-04 相位罗盘</a>
+      <a class="sj-03-chip" href="/modules/yishixingtai">↔ GY-02 合法性机器</a>
+      <a class="sj-03-chip" href="/modules/guoyun">↔ GY-01 国运推演</a>
+    </div>
+  </div>
+  <div class="sj-03-meta">
+    兴衰是五力在相位上的耦合运动<br/>
+    <b>AS_OF 2026-07-14</b> · v0.1
+  </div>
+</header>
+
+<p class="sj-zhupi">朱批：五力不是并列清单。财政汲取力是枢纽变压器；生态—人口—技术基座是慢变量底盘。单力负相位可修复；三力及以上同时负相位，超稳定结构失修。</p>
+
+<!-- 1 引言 -->
+<section class="sj-03-sec" id="sec-intro" aria-labelledby="h-intro">
+  <div class="sj-03-sec-h">
+    <span class="num">01 · 引言</span>
+    <h2 id="h-intro">为什么是「五力」而非「一因」</h2>
+  </div>
+  <p class="sj-03-prose">传统兴衰叙事有两个通病：道德化（明君则兴、昏君则亡），与单因决定论（数目字管理、马尔萨斯人口、小冰期气候）。<strong>五力衰变模型</strong>的立场是：兴衰是五种力量在治乱相位上的耦合运动。单力失衡可被修复——这正是「变法」的位置；三力以上同时进入负相位，则超稳定结构失修，走向崩解或分裂。</p>
+  <p class="sj-03-prose">五力分两个时间尺度：基座（生态—人口—技术）是<strong>慢变量</strong>，以世纪为单位移动，决定系统天花板；其余四力是<strong>快变量</strong>，以数十年为单位波动，决定治乱节奏。慢变量设定包络线，快变量在包络线内共振——与长波思维同构。</p>
+  <p class="sj-03-prose">本卷给出可追踪机制与耦合主链；相位定位与修复力诊断的完整罗盘在 SJ-04。两卷共享同一份数据结构 stub，使「罗盘定相位、力场看五力」成为规律引擎的双视图。</p>
+  <p class="sj-03-note">术语首现：<b>五力衰变模型</b>＝以财政汲取力、精英循环力、合法性叙事力、边疆—军事压力、生态—人口—技术基座五维，追踪王朝（含分裂期）兴衰的耦合动力学。内容口径见《史鉴系列·核心分析母本》第一部。</p>
+</section>
+
+<!-- 2 签名 -->
+<section class="sj-03-sec" id="sec-forcefield" aria-labelledby="h-ff">
+  <div class="sj-03-sec-h">
+    <span class="num">02 · 签名视觉</span>
+    <h2 id="h-ff">五力耦合力场</h2>
+  </div>
+  <p class="sj-03-prose">画布分三层：底盘承托一切；四力节点不等权环绕，财政居中为枢纽；有向边表达耦合方向与强度。禁止对称五边形——那会抹掉分层与传导地位。</p>
+  <p class="sj-zhupi">点击力节点 → 出入边高亮；「衰变链演示」按母本主链依次点亮。移动端同样以点击操作为准。</p>
+
+  <div class="sj-03-controls" role="toolbar" aria-label="力场操作">
+    <span class="lbl">演示</span>
+    <button type="button" class="sj-03-btn" id="btn-chain" tabindex="0">衰变链演示</button>
+    <button type="button" class="sj-03-btn" id="btn-clear" tabindex="0">全部</button>
+  </div>
+
+  <div class="sj-03-stage" id="stage">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 720" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">五力耦合力场图</title>
+  <desc id="sj-desc">底盘为生态人口技术基座；中心为财政汲取力枢纽；精英、边疆军事、合法性环绕；崩解为出口；有向耦合边表达衰变主链。</desc>
+
+  <defs>
+    <radialGradient id="sj-paper-glow" cx="50%" cy="38%" r="68%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)" stop-opacity="1"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)" stop-opacity="1"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+    <linearGradient id="sj-base-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241e19"/>
+      <stop offset="100%" stop-color="#100e0c"/>
+    </linearGradient>
+    <marker id="arr-ochre" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/>
+    </marker>
+    <marker id="arr-vermil" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/>
+    </marker>
+    <marker id="arr-celadon" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/>
+    </marker>
+    <marker id="arr-paper" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-100)"/>
+    </marker>
+    <marker id="arr-ink" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-300)"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="720" fill="url(#sj-paper-glow)"/>
+  <rect x="48" y="96" width="704" height="580" fill="url(#sj-xuan)" opacity="0.045"/>
+
+  <!-- 卷轴轴头 -->
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="108" width="12" height="520" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="112" width="4" height="512" rx="2" fill="var(--sj-line)"/>
+    <rect x="772" y="108" width="12" height="520" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="776" y="112" width="4" height="512" rx="2" fill="var(--sj-line)"/>
+  </g>
+
+  <!-- 页眉 -->
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC, Noto Serif SC, Source Han Serif SC, serif" letter-spacing="0.12em">五力耦合力场</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.08em">SJ-03 · 五力衰变模型 · 规律引擎</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">朱批：点击力节点 → 出入边高亮；演示钮按主链点亮</text>
+
+  <!-- ========== 底盘层：生态—人口—技术 ========== -->
+  <g class="sj-node" data-id="base" id="node-base" tabindex="0" role="button" aria-label="生态人口技术基座">
+    <rect x="56" y="548" width="688" height="118" rx="6" fill="url(#sj-base-fill)" stroke="var(--sj-line)" stroke-width="1.4"/>
+    <!-- 慢变量正弦暗纹 -->
+    <path d="M80,600 C140,576 200,624 260,600 S380,576 440,600 S560,624 620,600 S700,576 730,594"
+          fill="none" stroke="var(--sj-paper-300)" stroke-width="1.2" opacity="0.35"/>
+    <path d="M80,620 C150,602 210,638 280,620 S400,602 470,620 S590,638 660,620 S720,602 730,614"
+          fill="none" stroke="var(--sj-line)" stroke-width="1" opacity="0.7"/>
+    <text x="400" y="580" text-anchor="middle" fill="var(--sj-paper-100)" font-size="15" font-family="Songti SC, Noto Serif SC, serif" letter-spacing="0.18em">生态 · 人口 · 技术基座</text>
+    <text x="400" y="602" text-anchor="middle" fill="var(--sj-paper-300)" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.1em">慢变量 · 长波包络 · 定天花板</text>
+    <text x="400" y="642" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif" opacity="0.85">气候相位 · 人口/耕地比 · 水利 · 技术—制度天花板</text>
+  </g>
+
+  <!-- ========== 耦合边层（先画边，后画节点） ========== -->
+  <g id="edges" fill="none" stroke-linecap="round">
+    <!-- 基座 → 边疆（气候同步上推） -->
+    <path class="sj-edge" data-edge="base-mil" data-from="base" data-to="mil"
+          d="M210,548 C190,500 175,430 198,300" stroke="var(--sj-paper-300)" stroke-width="2.4" marker-end="url(#arr-ink)" opacity="0.85"/>
+    <!-- 基座 → 人口/流民侧（分叉，落到财政附近示意） -->
+    <path class="sj-edge" data-edge="base-pop" data-from="base" data-to="fiscal"
+          d="M400,548 C400,500 390,440 370,360" stroke="var(--sj-paper-300)" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arr-ink)" opacity="0.7"/>
+    <!-- 边疆 → 财政（军费刚性，粗） -->
+    <path class="sj-edge" data-edge="mil-fiscal" data-from="mil" data-to="fiscal"
+          d="M250,250 C290,280 320,300 348,318" stroke="var(--sj-vermil)" stroke-width="3.6" marker-end="url(#arr-vermil)" opacity="0.95"/>
+    <!-- 财政 → 精英（改革走钢丝，粗） -->
+    <path class="sj-edge" data-edge="fiscal-elite" data-from="fiscal" data-to="elite"
+          d="M448,310 C500,280 530,250 560,232" stroke="var(--sj-ochre)" stroke-width="3.4" marker-end="url(#arr-ochre)" opacity="0.95"/>
+    <!-- 精英 → 合法性 -->
+    <path class="sj-edge" data-edge="elite-legit" data-from="elite" data-to="legit"
+          d="M560,190 C520,160 470,148 442,155" stroke="var(--sj-celadon)" stroke-width="2.2" marker-end="url(#arr-celadon)" opacity="0.9"/>
+    <!-- 合法性 → 崩解 -->
+    <path class="sj-edge" data-edge="legit-collapse" data-from="legit" data-to="collapse"
+          d="M448,168 C520,200 580,280 610,380" stroke="var(--sj-vermil)" stroke-width="2.6" stroke-dasharray="1 0" marker-end="url(#arr-vermil)" opacity="0.9"/>
+    <!-- 财政旁路亦可至崩解（弱） -->
+    <path class="sj-edge" data-edge="fiscal-collapse" data-from="fiscal" data-to="collapse"
+          d="M430,360 C500,390 560,410 590,430" stroke="var(--sj-ochre)" stroke-width="1.4" stroke-dasharray="4 5" marker-end="url(#arr-ochre)" opacity="0.45"/>
+  </g>
+
+  <!-- 边标签 / 朱批圈点 -->
+  <g font-family="Songti SC, Noto Serif SC, serif" font-size="11" fill="var(--sj-paper-300)">
+    <text x="128" y="420" fill="var(--sj-paper-300)">气候同步上推</text>
+    <circle cx="118" cy="416" r="4" fill="none" stroke="var(--sj-vermil)" stroke-width="1.2"/>
+    <text x="255" y="295" fill="var(--sj-vermil)">军费刚性</text>
+    <text x="500" y="268" fill="var(--sj-ochre)">改革走钢丝</text>
+    <text x="500" y="148" fill="var(--sj-celadon)">党争 · 绩效磨损</text>
+    <text x="545" y="330" fill="var(--sj-vermil)">崩解出口</text>
+  </g>
+
+  <!-- ========== 四力 + 崩解节点 ========== -->
+  <!-- 合法性叙事力（宣纸白）上 -->
+  <g class="sj-node" data-id="legit" id="node-legit" tabindex="0" role="button" aria-label="合法性叙事力">
+    <circle cx="400" cy="155" r="38" fill="var(--sj-ink-800)" stroke="var(--sj-paper-100)" stroke-width="2.2"/>
+    <circle cx="400" cy="155" r="30" fill="none" stroke="var(--sj-paper-100)" stroke-width="0.8" opacity="0.45"/>
+    <text x="400" y="150" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC, Noto Serif SC, serif">合法性</text>
+    <text x="400" y="168" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">叙事力</text>
+  </g>
+
+  <!-- 边疆—军事力（朱红）左 -->
+  <g class="sj-node" data-id="mil" id="node-mil" tabindex="0" role="button" aria-label="边疆军事压力">
+    <circle cx="210" cy="240" r="36" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.2"/>
+    <text x="210" y="234" text-anchor="middle" fill="var(--sj-vermil)" font-size="13" font-family="Songti SC, Noto Serif SC, serif">边疆</text>
+    <text x="210" y="252" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">军事压力</text>
+  </g>
+
+  <!-- 精英循环力（青瓷）右 -->
+  <g class="sj-node" data-id="elite" id="node-elite" tabindex="0" role="button" aria-label="精英循环力">
+    <circle cx="590" cy="210" r="36" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.2"/>
+    <text x="590" y="204" text-anchor="middle" fill="var(--sj-celadon)" font-size="13" font-family="Songti SC, Noto Serif SC, serif">精英</text>
+    <text x="590" y="222" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">循环力</text>
+  </g>
+
+  <!-- 财政汲取力（赭金枢纽，略大居中） -->
+  <g class="sj-node" data-id="fiscal" id="node-fiscal" tabindex="0" role="button" aria-label="财政汲取力枢纽">
+    <circle cx="400" cy="330" r="52" fill="#2a2218" stroke="var(--sj-ochre)" stroke-width="2.8"/>
+    <circle cx="400" cy="330" r="42" fill="none" stroke="var(--sj-ochre)" stroke-width="1" opacity="0.35"/>
+    <text x="400" y="320" text-anchor="middle" fill="var(--sj-ochre)" font-size="15" font-weight="600" font-family="Songti SC, Noto Serif SC, serif" letter-spacing="0.08em">财政汲取力</text>
+    <text x="400" y="342" text-anchor="middle" fill="var(--sj-paper-300)" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">枢纽</text>
+  </g>
+
+  <!-- 崩解出口 -->
+  <g class="sj-node" data-id="collapse" id="node-collapse" tabindex="0" role="button" aria-label="崩解或分裂出口">
+    <circle cx="630" cy="440" r="28" fill="#241612" stroke="var(--sj-vermil)" stroke-width="1.8"/>
+    <text x="630" y="444" text-anchor="middle" fill="var(--sj-vermil)" font-size="13" font-family="Songti SC, Noto Serif SC, serif">崩解</text>
+  </g>
+
+  <!-- 色义图例 -->
+  <g font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" font-size="9" letter-spacing="0.06em">
+    <circle cx="56" cy="690" r="4" fill="var(--sj-ochre)"/><text x="66" y="693" fill="var(--sj-paper-300)">财政</text>
+    <circle cx="120" cy="690" r="4" fill="var(--sj-celadon)"/><text x="130" y="693" fill="var(--sj-paper-300)">精英</text>
+    <circle cx="184" cy="690" r="4" fill="var(--sj-paper-100)"/><text x="194" y="693" fill="var(--sj-paper-300)">合法性</text>
+    <circle cx="264" cy="690" r="4" fill="var(--sj-vermil)"/><text x="274" y="693" fill="var(--sj-paper-300)">边疆军事</text>
+    <rect x="350" y="686" width="14" height="8" fill="var(--sj-ink-800)" stroke="var(--sj-line)"/><text x="370" y="693" fill="var(--sj-paper-300)">基座慢变量</text>
+  </g>
+
+  <text x="744" y="693" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">viewBox 800×720 · 规格书图 C</text>
+</svg>
+  </div>
+
+  <div class="sj-03-layout">
+    <div class="sj-03-note" style="margin-top:0">
+      色义全系列固定：财政=赭金 · 精英=青瓷 · 合法性=宣纸白 · 边疆军事=朱红 · 基座=深墨。边宽=耦合强度；粗箭头标「军费刚性」「改革走钢丝」。
+    </div>
+    <aside class="sj-03-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-03-aside-empty">点选力节点，展开机制 / 衰变路径（母本第一部）。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+        <p class="path" id="aside-path"></p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- 3 逐力 -->
+<section class="sj-03-sec" id="sec-forces" aria-labelledby="h-forces">
+  <div class="sj-03-sec-h">
+    <span class="num">03 · 逐力解剖</span>
+    <h2 id="h-forces">定义 · 指标 · 衰变路径</h2>
+  </div>
+  <p class="sj-03-prose">下列五条按母本逐力展开。点选可与力场高亮联动。修复史谱系（两税法、一条鞭、摊丁入亩）说明：每次重整税基都可延续寿命，却难以突破「汲取最终转嫁基层」的结构。</p>
+
+  <div class="sj-03-force-grid" id="force-grid" role="list">
+    <article class="sj-03-force" data-id="fiscal" tabindex="0" role="listitem">
+      <div class="tag">力一 · 枢纽 · 赭金</div>
+      <h3>财政汲取力</h3>
+      <p>国家把经济剩余转化为可用中央财政、且政治成本可接受的能力。多数衰变链最终经由它传导并引爆——慢变量压力的政治变压器。</p>
+      <p class="ind">指标：税基广度 · 货币化 · 央地分成 · 边际政治成本 · 货币稳定</p>
+    </article>
+    <article class="sj-03-force" data-id="elite" tabindex="0" role="listitem">
+      <div class="tag">力二 · 快变量 · 青瓷</div>
+      <h3>精英循环力</h3>
+      <p>吸纳、轮换、退出精英而不固化为自利集团的能力。财政重建常须触动特权，故此力是变法最常见的死穴；党争常以道德面目掩盖利益结构。</p>
+      <p class="ind">指标：科举开放度 · 荫补比 · 官僚膨胀 · 朋党化 · 土地兼并</p>
+    </article>
+    <article class="sj-03-force" data-id="legit" tabindex="0" role="listitem">
+      <div class="tag">力三 · 快变量 · 宣纸白</div>
+      <h3>合法性叙事力</h3>
+      <p>天命 / 正统 / 意识形态对君—臣—民三方的绑定说服力。与 GY-02「五组件合法性机器」为同一命题的古今两端：绩效枯竭时加大象征投入，象征通胀加速话语贬值。</p>
+      <p class="ind">指标：天命可信度 · 正统挑战 · 意识形态落差 · 象征性投入</p>
+    </article>
+    <article class="sj-03-force" data-id="mil" tabindex="0" role="listitem">
+      <div class="tag">力四 · 快变量 · 朱红</div>
+      <h3>边疆—军事压力</h3>
+      <p>外部 / 边疆压力及其军费—政治成本。常与财政强耦合。单独强化军事力而无制度制衡，反而是崩解触发器（天宝节度使标本）。</p>
+      <p class="ind">两条路径：内重外轻→积弱｜外重内轻→军阀反噬</p>
+    </article>
+    <article class="sj-03-force" data-id="base" tabindex="0" role="listitem">
+      <div class="tag">力五 · 慢变量 · 深墨底盘</div>
+      <h3>生态—人口—技术基座</h3>
+      <p>气候、耕地、人口负荷、技术天花板。移动缓慢，一旦逼近上限，会把其余四力容错空间压到极小；小冰期可使流民与边疆压力气候同步。</p>
+      <p class="ind">指标：气候相位 · 人口/耕地比 · 水利维护 · 技术—制度天花板</p>
+    </article>
+  </div>
+</section>
+
+<!-- 4 耦合 -->
+<section class="sj-03-sec" id="sec-chain" aria-labelledby="h-chain">
+  <div class="sj-03-sec-h">
+    <span class="num">04 · 耦合主链</span>
+    <h2 id="h-chain">衰变链与共振判据</h2>
+  </div>
+  <p class="sj-03-prose">最常见的崩解主链如下。财政因是枢纽，其负相位权重最高。分裂期不是「没有规律」，而是某力（几乎总是军事力）在区域层面畸大、压制其余四力的失衡态；再统一靠区域政权率先重建「财政 + 军事 + 合法性」三力平衡——宋对五代军事畸大的精确反向设计，同时埋下边疆积弱的下一病灶。</p>
+
+  <div class="sj-03-chain-box" role="figure" aria-label="崩解主链">
+    <b>生态压力（基座·慢）</b><br/>
+    └─ 气候寒冷期 → 灾荒 + 内亚游牧南压（气候同步）<br/>
+    <span class="ver">▼</span><br/>
+    人口/流民 ↑ &nbsp;＆&nbsp; 边疆—军事压力 ↑<br/>
+    <span class="ver">▼</span><br/>
+    <b>财政汲取力</b>：军费+赈灾双重刚性 → 加征 → 越过民变阈值<br/>
+    <span class="ver">▼</span><br/>
+    <b>精英循环力</b>：兼并加剧、通道堵塞、党争内耗<br/>
+    <span class="ver">▼</span><br/>
+    <b>合法性叙事力</b>：绩效枯竭、天命话语被夺<br/>
+    <span class="ver">▼</span><br/>
+    <span class="ver">崩解 / 分裂</span>
+  </div>
+  <p class="sj-03-note"><b>判据（供 SJ-04 相位盘）：</b>任一力负相位 → 僵化期，改革窗口开启；三力及以上同时负相位 → 超稳定结构失修 → 崩解或分裂。</p>
+</section>
+
+<!-- 5 相位接口 -->
+<section class="sj-03-sec" id="sec-phase" aria-labelledby="h-phase">
+  <div class="sj-03-sec-h">
+    <span class="num">05 · 相位与修复力接口</span>
+    <h2 id="h-phase">与 SJ-04 共享的数据契约</h2>
+  </div>
+  <p class="sj-03-prose">相位盘把任一时点定位到五相位之一，并给出五力状态的特征签名。鼎盛期是隐性拐点——五力尚在峰值，刚性支出与精英俘获已在积累。金观涛所谓超稳定结构的修复力来自官僚制模块化、意识形态再生产与小农经济自我回填；代价是每一次修复回到<strong>低水平均衡</strong>（金观涛 + 黄仁宇合题）。</p>
+
+  <div class="sj-03-table-wrap">
+    <table class="sj-03-table" id="phase-table">
+      <thead>
+        <tr>
+          <th>相位</th>
+          <th>财政</th>
+          <th>精英</th>
+          <th>合法性</th>
+          <th>边疆军事</th>
+          <th>基座</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-phase="上升" tabindex="0">
+          <td>上升期</td>
+          <td>轻税、税基清</td>
+          <td>通道开放</td>
+          <td>充盈</td>
+          <td>主动可控</td>
+          <td>承载宽松</td>
+        </tr>
+        <tr data-phase="鼎盛" tabindex="0">
+          <td>鼎盛期 · 隐性拐点</td>
+          <td>峰值，刚性开始积累</td>
+          <td>峰值，俘获萌芽</td>
+          <td>峰值</td>
+          <td>扩张</td>
+          <td>人口上升</td>
+        </tr>
+        <tr data-phase="僵化" tabindex="0">
+          <td>僵化期 · 改革窗口</td>
+          <td>刚性、加征、税基流失</td>
+          <td>俘获、党争</td>
+          <td>绩效磨损、象征通胀</td>
+          <td>外包或内耗</td>
+          <td>逼近上限</td>
+        </tr>
+        <tr data-phase="崩解" tabindex="0">
+          <td>崩解期</td>
+          <td>汲取越阈值</td>
+          <td>离心、地方坐大</td>
+          <td>天命被夺</td>
+          <td>反噬或崩溃</td>
+          <td>灾荒共振</td>
+        </tr>
+        <tr data-phase="重整" tabindex="0">
+          <td>重整期</td>
+          <td>区域重建</td>
+          <td>新精英上位</td>
+          <td>新叙事竞争</td>
+          <td>军事力主导</td>
+          <td>低水平恢复</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sj-03-contract" id="sj-shared-contract">
+    <div class="k">SJ-03 ↔ SJ-04 共享对象 · stub</div>
+    <pre id="contract-pre" aria-live="polite"></pre>
+    <div class="sj-03-controls" style="margin-top:12px" role="group" aria-label="样例时点">
+      <span class="lbl">样例</span>
+      <button type="button" class="sj-03-btn is-on" data-sample="kaikai" id="btn-s-kai">开元→天宝</button>
+      <button type="button" class="sj-03-btn" data-sample="xining">熙宁变法</button>
+      <button type="button" class="sj-03-btn" data-sample="wudai">五代十国</button>
+      <button type="button" class="sj-03-btn" data-sample="dangdai">当代锚点〔未定〕</button>
+    </div>
+  </div>
+
+  <div class="sj-03-diag">
+    <article>
+      <div class="n">修复力来源①</div>
+      <h3>官僚制模块化</h3>
+      <p>可换皇帝、换朝代，而不换郡县 + 科举 + 编户齐民这套操作系统。</p>
+    </article>
+    <article>
+      <div class="n">修复力来源②</div>
+      <h3>意识形态再生产</h3>
+      <p>儒家士绅每个周期重新生产合法性叙事与治理人才。</p>
+    </article>
+    <article>
+      <div class="n">修复力来源③</div>
+      <h3>小农自我回填</h3>
+      <p>战乱后人口与耕地重新匹配；代价是回到低水平均衡。</p>
+    </article>
+  </div>
+  <p class="sj-03-note">当代锚点的相位判定留给 SJ-04 罗盘与 GY-01；本卷只冻结契约字段。评分量纲为示意 0–100（负相位倾向低分），不作精确计量史学断言。</p>
+</section>
+
+<!-- 6 交叉 -->
+<section class="sj-03-sec" id="sec-xref" aria-labelledby="h-xref">
+  <div class="sj-03-sec-h">
+    <span class="num">06 · 交叉引用</span>
+    <h2 id="h-xref">SJ · GY 接口</h2>
+  </div>
+  <div class="sj-03-xref">
+    <a href="./SJ-00.html">
+      <div class="n">SJ-00</div>
+      <h3>史鉴总索引</h3>
+      <p>治乱螺旋与四步引擎入口；周期卷卡片已点亮本卷。</p>
+    </a>
+    <a href="./SJ-04.html">
+      <div class="n">SJ-04</div>
+      <h3>治乱循环相位盘</h3>
+      <p>罗盘定相位、中心诊断修复力；共享同一时点对象。</p>
+    </a>
+    <a href="/modules/yishixingtai">
+      <div class="n">GY-02</div>
+      <h3>合法性机器</h3>
+      <p>合法性叙事力的当代形态：列宁式组织补上古代缺失的基层穿透。</p>
+    </a>
+    <a href="/modules/guoyun">
+      <div class="n">GY-01</div>
+      <h3>国运时间轴</h3>
+      <p>相位盘定位的出口：喂给 2026–2036 概率预测（待 SJ-04 全文）。</p>
+    </a>
+    <a href="./SJ-01.html">
+      <div class="n">SJ-01</div>
+      <h3>方法光谱</h3>
+      <p>五力归因前须李敖式祛魅；正史归因与结构实因双列。</p>
+    </a>
+    <a href="./SJ-03-forcefield-preview.html">
+      <div class="n">PREVIEW</div>
+      <h3>力场签名原稿</h3>
+      <p>已确认的图 C 独立预览页，供对照。</p>
+    </a>
+  </div>
+</section>
+
+<footer class="sj-03-foot">
+  <span>ChinaOS · 史鉴 SJ-03 · v0.1 · AS_OF 2026-07-14</span>
+  <span><a href="./SJ-00.html">← 返回 SJ-00</a> · <a href="#sj-03-top">↑ 顶</a> · <a href="./wuli-forcefield.svg">纯 SVG</a></span>
+  <span>本地调试 · 未 push</span>
+</footer>
+
+</div>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const nodes = Array.from(stage.querySelectorAll('.sj-node'));
+  const edges = Array.from(stage.querySelectorAll('.sj-edge'));
+  const forceCards = Array.from(document.querySelectorAll('.sj-03-force'));
+  const phaseRows = Array.from(document.querySelectorAll('#phase-table tbody tr'));
+  const btnChain = document.getElementById('btn-chain');
+  const btnClear = document.getElementById('btn-clear');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const asideEmpty = document.getElementById('aside-empty');
+  const asideBody = document.getElementById('aside-body');
+
+  /** 五力衰变模型 · 节点文案（母本第一部） */
+  const FORCE_DATA = {
+    fiscal: {
+      name: '财政汲取力',
+      tag: '枢纽力 · 赭金',
+      body: '把经济剩余转化为可用中央财政、且政治成本可接受的能力。多数衰变链最终经由它传导并引爆——它是慢变量压力的政治变压器。',
+      path: '典型衰变：休养轻税 → 刚性支出膨胀 → 加征 → 税基侵蚀 → 越过民变阈值。修复谱系：两税法（780）· 一条鞭（1581 推广）· 摊丁入亩（雍正朝）。'
+    },
+    elite: {
+      name: '精英循环力',
+      tag: '快变量 · 青瓷',
+      body: '吸纳、轮换、退出精英而不让其固化为自利集团的能力。财政重建常须触动精英特权，故此力是变法最常见的死穴。',
+      path: '典型衰变：通道开放 → 制度俘获 → 通道堵塞 → 党争内耗 → 中央离心。锚点：唐门阀—科举、宋新旧党争、明东林—阉党、晚清督抚坐大。'
+    },
+    legit: {
+      name: '合法性叙事力',
+      tag: '快变量 · 宣纸白',
+      body: '天命/正统/意识形态对君—臣—民三方的绑定说服力。绩效枯竭时系统常加大象征投入，象征通胀加速话语贬值。当代形态见 GY-02。',
+      path: '典型衰变：开国充盈 → 绩效磨损 → 象征通胀 → 话语空转 → 天命被夺（黄巾「苍天已死」为叙事争夺标本）。'
+    },
+    mil: {
+      name: '边疆—军事压力',
+      tag: '快变量 · 朱红',
+      body: '外部/边疆压力及其军费—政治成本。常与财政强耦合；单独强化军事力而无制度制衡，反而是崩解触发器（天宝标本）。',
+      path: '两条路径：内重外轻→积弱（宋）｜外重内轻→军阀反噬（唐藩镇、五代）。'
+    },
+    base: {
+      name: '生态—人口—技术基座',
+      tag: '慢变量 · 深墨底盘',
+      body: '物质承载力——气候、耕地、人口负荷、技术天花板。以世纪尺度移动，设定其余四力的容错包络线。',
+      path: '逼近上限时：小冰期/大灾 → 流民与边疆压力气候同步 → 多力共振（明末致命共振示意）。'
+    },
+    collapse: {
+      name: '崩解 / 分裂出口',
+      tag: '相位出口 · 朱红',
+      body: '三力及以上同时负相位 → 超稳定结构失修 → 崩解或分裂。分裂期是军事力区域畸大的失衡态，非历史空白。',
+      path: '判据：单力负相位=僵化/改革窗口；三力以上负=崩解风险。'
+    }
+  };
+
+  const EDGE_MAP = {
+    fiscal: ['mil-fiscal','fiscal-elite','fiscal-collapse','base-pop'],
+    elite: ['fiscal-elite','elite-legit'],
+    legit: ['elite-legit','legit-collapse'],
+    mil: ['base-mil','mil-fiscal'],
+    base: ['base-mil','base-pop'],
+    collapse: ['legit-collapse','fiscal-collapse']
+  };
+
+  /**
+   * SJ-03 ↔ SJ-04 共享数据契约
+   * { 时点, 相位, 五力评分[财政,精英,合法性,边疆军事,基座], 修复力 }
+   * 评分 0–100 为示意相对值，非精确计量。
+   */
+  const SAMPLES = {
+    kaikai: {
+      时点: '开元末—天宝十四载（约 740–755）',
+      相位: '鼎盛',
+      五力评分: [72, 48, 62, 88, 70],
+      修复力: '中',
+      note: '边疆军事力畸强而内部制衡崩坏——盛极与转衰叠合。'
+    },
+    xining: {
+      时点: '熙宁二年始行新法（1069）',
+      相位: '僵化',
+      五力评分: [38, 32, 55, 45, 58],
+      修复力: '中',
+      note: '改革窗口：重建汲取力必然触动精英循环力。'
+    },
+    wudai: {
+      时点: '五代十国（约 907–960）',
+      相位: '重整',
+      五力评分: [28, 22, 8, 92, 35],
+      修复力: '弱',
+      note: '军事力区域畸大，合法性叙事力近零；修复力耗尽于短命政权轮替。'
+    },
+    dangdai: {
+      时点: '当代锚点（2026）',
+      相位: '未定',
+      五力评分: [null, null, null, null, null],
+      修复力: '待定',
+      note: '相位与评分留给 SJ-04 × GY-01；此处仅占契约位。'
+    }
+  };
+
+  let chainTimer = null;
+  let activeSample = 'kaikai';
+
+  function clearVisual(){
+    if(chainTimer){ clearTimeout(chainTimer); chainTimer = null; }
+    stage.classList.remove('is-picking','is-chain');
+    nodes.forEach(n => n.classList.remove('is-hot','is-chain-hot'));
+    edges.forEach(e => e.classList.remove('is-hot','is-chain-hot'));
+    forceCards.forEach(c => c.classList.remove('is-on'));
+    btnChain.classList.remove('is-on');
+  }
+
+  function showAside(id){
+    const d = FORCE_DATA[id];
+    if(!d) return;
+    asideEmpty.hidden = true;
+    asideBody.hidden = false;
+    document.getElementById('aside-tag').textContent = d.tag;
+    document.getElementById('aside-name').textContent = d.name;
+    document.getElementById('aside-text').textContent = d.body;
+    document.getElementById('aside-path').textContent = d.path;
+  }
+
+  function pick(id){
+    if(!FORCE_DATA[id]) return;
+    clearVisual();
+    stage.classList.add('is-picking');
+    nodes.forEach(n => n.classList.toggle('is-hot', n.dataset.id === id));
+    forceCards.forEach(c => c.classList.toggle('is-on', c.dataset.id === id));
+    const hotEdges = EDGE_MAP[id] || [];
+    edges.forEach(e => e.classList.toggle('is-hot', hotEdges.indexOf(e.dataset.edge) >= 0));
+    showAside(id);
+  }
+
+  const CHAIN = [
+    { nodes:['base'], edges:['base-mil','base-pop'], label:'① 基座压力上推' },
+    { nodes:['mil','base'], edges:['base-mil','mil-fiscal'], label:'② 边疆/人口同步加压' },
+    { nodes:['fiscal','mil'], edges:['mil-fiscal','fiscal-elite'], label:'③ 财政枢纽过载' },
+    { nodes:['elite','fiscal'], edges:['fiscal-elite','elite-legit'], label:'④ 精英俘获与内耗' },
+    { nodes:['legit','elite'], edges:['elite-legit','legit-collapse'], label:'⑤ 合法性枯竭' },
+    { nodes:['collapse','legit'], edges:['legit-collapse'], label:'⑥ 崩解出口' }
+  ];
+
+  function runChain(){
+    clearVisual();
+    btnChain.classList.add('is-on');
+    stage.classList.add('is-chain');
+    asideEmpty.hidden = true;
+    asideBody.hidden = false;
+
+    if(reduceMotion){
+      CHAIN.forEach(step => {
+        step.nodes.forEach(id => {
+          const n = stage.querySelector('.sj-node[data-id="'+id+'"]');
+          if(n) n.classList.add('is-chain-hot');
+        });
+        step.edges.forEach(eid => {
+          const e = stage.querySelector('.sj-edge[data-edge="'+eid+'"]');
+          if(e) e.classList.add('is-chain-hot');
+        });
+      });
+      document.getElementById('aside-tag').textContent = 'prefers-reduced-motion';
+      document.getElementById('aside-name').textContent = '衰变链（静态编号）';
+      document.getElementById('aside-text').textContent = '基座 → 边疆/人口 → 财政 → 精英 → 合法性 → 崩解。动画已降级为一次点亮。';
+      document.getElementById('aside-path').textContent = '母本主链 · 规格书图 C';
+      return;
+    }
+
+    let i = 0;
+    function tick(){
+      nodes.forEach(n => n.classList.remove('is-chain-hot'));
+      edges.forEach(e => e.classList.remove('is-chain-hot'));
+      if(i >= CHAIN.length){
+        btnChain.classList.remove('is-on');
+        return;
+      }
+      const step = CHAIN[i];
+      step.nodes.forEach(id => {
+        const n = stage.querySelector('.sj-node[data-id="'+id+'"]');
+        if(n) n.classList.add('is-chain-hot');
+      });
+      step.edges.forEach(eid => {
+        const e = stage.querySelector('.sj-edge[data-edge="'+eid+'"]');
+        if(e) e.classList.add('is-chain-hot');
+      });
+      document.getElementById('aside-tag').textContent = '步骤 '+(i+1)+' / '+CHAIN.length;
+      document.getElementById('aside-name').textContent = '衰变链演示';
+      document.getElementById('aside-text').textContent = step.label;
+      document.getElementById('aside-path').textContent = '母本主链：基座 → 边疆/人口 → 财政 → 精英 → 合法性 → 崩解';
+      i += 1;
+      chainTimer = setTimeout(tick, 900);
+    }
+    tick();
+  }
+
+  function renderContract(key){
+    activeSample = key;
+    const s = SAMPLES[key];
+    const labels = ['财政汲取','精英循环','合法性叙事','边疆军事','生态基座'];
+    const scores = s.五力评分.map(function(v, i){
+      return '    /* '+labels[i]+' */ ' + (v === null ? 'null' : v);
+    }).join(',\n');
+    document.getElementById('contract-pre').innerHTML =
+      '{\n' +
+      '  <span class="key">时点</span>: <span class="str">"'+s.时点+'"</span>,\n' +
+      '  <span class="key">相位</span>: <span class="str">"'+s.相位+'"</span>,\n' +
+      '  <span class="key">五力评分</span>: [\n'+scores+'\n  ],\n' +
+      '  <span class="key">修复力</span>: <span class="str">"'+s.修复力+'"</span>\n' +
+      '}\n' +
+      '<span style="color:var(--sj-paper-300)">// '+s.note+'</span>';
+
+    document.querySelectorAll('[data-sample]').forEach(b => {
+      b.classList.toggle('is-on', b.dataset.sample === key);
+    });
+    phaseRows.forEach(r => {
+      r.classList.toggle('is-hot', r.dataset.phase === s.相位);
+    });
+  }
+
+  nodes.forEach(n => {
+    const act = () => pick(n.dataset.id);
+    n.addEventListener('click', act);
+    n.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); act(); }
+    });
+  });
+  forceCards.forEach(c => {
+    const act = () => pick(c.dataset.id);
+    c.addEventListener('click', act);
+    c.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); act(); }
+    });
+  });
+  phaseRows.forEach(r => {
+    r.addEventListener('click', () => {
+      phaseRows.forEach(x => x.classList.remove('is-hot'));
+      r.classList.add('is-hot');
+    });
+    r.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        r.click();
+      }
+    });
+  });
+  btnChain.addEventListener('click', runChain);
+  btnClear.addEventListener('click', () => {
+    clearVisual();
+    asideEmpty.hidden = false;
+    asideBody.hidden = true;
+  });
+  document.querySelectorAll('[data-sample]').forEach(b => {
+    b.addEventListener('click', () => renderContract(b.dataset.sample));
+  });
+
+  renderContract('kaikai');
+
+  // 暴露契约供调试 / SJ-04 对齐（内存变量，无存储）
+  window.SJ_SHARED_SNAPSHOT = function(){ return SAMPLES[activeSample]; };
+})();
+</script>
+</body>
+</html>

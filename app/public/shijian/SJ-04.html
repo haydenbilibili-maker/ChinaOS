@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-04 · 治乱循环相位盘</title>
+<meta name="description" content="ChinaOS 史鉴系列周期卷：治乱循环相位盘——五相位罗盘、超稳定修复力诊断、与 SJ-03 五力双视图契约。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;
+  --sj-ink-800:#1d1916;
+  --sj-paper-100:#e8ddc7;
+  --sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;
+  --sj-celadon:#5f7a6f;
+  --sj-ochre:#b8894a;
+  --sj-line:#3a322b;
+  --sj-radius:6px;
+  --sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+  --sj-phase-up:#7a9488;
+  --sj-phase-peak:var(--sj-ochre);
+  --sj-phase-rig:#6a5f52;
+  --sj-phase-col:var(--sj-vermil);
+  --sj-phase-reb:var(--sj-celadon);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(1000px 560px at 72% -8%, #2a221c 0%, transparent 55%),
+    radial-gradient(700px 420px at 8% 90%, #1a1612 0%, transparent 50%),
+    var(--sj-ink-900);
+  color:var(--sj-paper-100);
+  font-family:var(--sj-serif);
+  line-height:1.75;
+}
+.sj-04-wrap{max-width:1080px;margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+
+.sj-04-mast{
+  display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;
+  padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px;
+}
+.sj-04-mast .badge{
+  font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px;
+}
+.sj-04-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em;line-height:1.3}
+.sj-04-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;letter-spacing:.08em;font-size:.72em;display:block;margin-top:4px}
+.sj-04-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right;line-height:1.7}
+.sj-04-meta b{color:var(--sj-ochre);font-weight:500}
+.sj-04-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sj-04-chip{
+  display:inline-block;font-family:var(--sj-mono);font-size:10px;
+  letter-spacing:.08em;color:var(--sj-celadon);border:1px solid var(--sj-line);
+  padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;
+}
+.sj-04-chip:hover,.sj-04-chip:focus-visible{border-color:var(--sj-ochre);color:var(--sj-ochre);outline:none}
+
+.sj-zhupi{
+  color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;
+  padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:72ch;
+}
+
+.sj-04-sec{margin:36px 0 28px;scroll-margin-top:24px}
+.sj-04-sec-h{
+  display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--sj-line);
+}
+.sj-04-sec-h .num{font-family:var(--sj-mono);font-size:11px;letter-spacing:.2em;color:var(--sj-ochre)}
+.sj-04-sec-h h2{font-size:clamp(17px,2.2vw,20px);font-weight:600;letter-spacing:.12em}
+.sj-04-prose{font-size:15.5px;color:var(--sj-paper-100);max-width:72ch}
+.sj-04-prose + .sj-04-prose{margin-top:14px}
+.sj-04-prose strong{color:var(--sj-ochre);font-weight:600}
+.sj-04-note{font-size:13px;color:var(--sj-paper-300);margin-top:12px;max-width:72ch}
+.sj-04-note b{color:var(--sj-paper-100);font-weight:600}
+
+.sj-04-controls{
+  display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px;align-items:center;
+}
+.sj-04-controls .lbl{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-paper-300);margin-right:4px}
+.sj-04-btn{
+  appearance:none;border:1px solid var(--sj-line);background:var(--sj-ink-800);
+  color:var(--sj-paper-100);font-family:var(--sj-serif);font-size:13px;
+  padding:6px 12px;border-radius:var(--sj-radius);cursor:pointer;
+  transition:border-color .18s, color .18s, background .18s;
+}
+.sj-04-btn:hover,.sj-04-btn:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-04-btn:focus-visible{box-shadow:0 0 0 2px rgba(184,137,74,.35)}
+.sj-04-btn.is-on{border-color:var(--sj-vermil);color:var(--sj-vermil);background:color-mix(in srgb, var(--sj-vermil) 12%, var(--sj-ink-900))}
+
+.sj-04-stage{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
+  box-shadow:0 1px 0 rgba(232,221,199,.04), 0 18px 48px rgba(0,0,0,.45);
+  padding:8px 8px 4px;overflow:auto;
+}
+.sj-04-stage svg{display:block;width:100%;height:auto;max-width:720px;margin:0 auto}
+.sj-needle{transform-origin:360px 360px;transition:transform .35s ease}
+.sj-sector{cursor:pointer;transition:opacity .2s ease, filter .2s ease}
+.sj-sector:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:2px}
+.sj-mark{cursor:pointer}
+.sj-mark:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:3px}
+.sj-04-stage.is-picking .sj-sector{opacity:.38}
+.sj-04-stage.is-picking .sj-sector.is-hot{
+  opacity:1;filter:drop-shadow(0 0 6px rgba(184,137,74,.35));
+}
+
+.sj-04-card{
+  margin-top:14px;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:var(--sj-ink-800);padding:16px 18px 14px;min-height:120px;
+}
+.sj-04-card-head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;
+  margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--sj-line);
+}
+.sj-04-card-head h3{font-size:17px;font-weight:600;letter-spacing:.1em}
+.sj-04-card-head .tag{
+  font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;color:var(--sj-ochre);
+}
+.sj-04-card p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.7;max-width:72ch}
+.sj-04-card pre{
+  margin-top:10px;font-family:var(--sj-mono);font-size:11.5px;line-height:1.65;
+  color:var(--sj-paper-300);white-space:pre-wrap;word-break:break-word;
+}
+.sj-04-card pre .key{color:var(--sj-celadon)}
+.sj-04-card pre .str{color:var(--sj-ochre)}
+
+.sj-04-mobile{display:none;margin:0 0 12px}
+.sj-04-mobile select{
+  width:100%;appearance:none;border:1px solid var(--sj-line);background:var(--sj-ink-800);
+  color:var(--sj-paper-100);font-family:var(--sj-serif);font-size:14px;
+  padding:8px 12px;border-radius:var(--sj-radius);
+}
+
+.sj-04-phase-grid{display:grid;gap:10px;margin-top:14px}
+.sj-04-phase{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:var(--sj-ink-800);padding:14px 16px;
+  cursor:pointer;transition:border-color .18s;
+}
+.sj-04-phase:hover,.sj-04-phase:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-04-phase.is-on{border-color:var(--sj-vermil)}
+.sj-04-phase .tag{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;margin-bottom:4px}
+.sj-04-phase[data-phase="上升"] .tag{color:var(--sj-phase-up)}
+.sj-04-phase[data-phase="鼎盛"] .tag{color:var(--sj-phase-peak)}
+.sj-04-phase[data-phase="僵化"] .tag{color:var(--sj-paper-300)}
+.sj-04-phase[data-phase="崩解"] .tag{color:var(--sj-phase-col)}
+.sj-04-phase[data-phase="重整"] .tag{color:var(--sj-phase-reb)}
+.sj-04-phase h3{font-size:15px;letter-spacing:.08em;margin-bottom:6px}
+.sj-04-phase p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.65}
+.sj-04-phase .evt{margin-top:8px;font-size:12.5px;color:var(--sj-celadon)}
+
+.sj-04-table-wrap{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:var(--sj-ink-800);overflow:auto;margin-top:14px;
+}
+.sj-04-table{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
+.sj-04-table th{
+  background:var(--sj-ink-900);color:var(--sj-ochre);
+  font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;font-weight:500;
+  text-align:left;padding:10px 12px;border-bottom:1px solid var(--sj-line);
+}
+.sj-04-table td{
+  padding:10px 12px;border-bottom:1px solid var(--sj-line);
+  color:var(--sj-paper-300);vertical-align:top;line-height:1.6;
+}
+.sj-04-table td:first-child{color:var(--sj-paper-100);font-weight:600;white-space:nowrap}
+.sj-04-table tbody tr{cursor:pointer;transition:background .15s}
+.sj-04-table tbody tr:hover{background:rgba(184,137,74,.06)}
+.sj-04-table tbody tr:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:-2px}
+.sj-04-table tbody tr.is-hot{background:color-mix(in srgb, var(--sj-vermil) 14%, transparent)}
+
+.sj-04-diag{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;
+}
+.sj-04-diag article{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:var(--sj-ink-900);padding:12px;
+}
+.sj-04-diag .n{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;color:var(--sj-ochre);margin-bottom:4px}
+.sj-04-diag h3{font-size:14px;letter-spacing:.06em;margin-bottom:6px}
+.sj-04-diag p{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6}
+
+.sj-04-mirror{
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;
+}
+.sj-04-mirror article{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:var(--sj-ink-800);padding:14px 16px;
+}
+.sj-04-mirror .n{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;margin-bottom:6px}
+.sj-04-mirror article:first-child .n{color:var(--sj-celadon)}
+.sj-04-mirror article:last-child .n{color:var(--sj-vermil)}
+.sj-04-mirror h3{font-size:14px;letter-spacing:.06em;margin-bottom:8px}
+.sj-04-mirror p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+
+.sj-04-contract{
+  margin-top:14px;border:1px dashed var(--sj-line);border-radius:var(--sj-radius);
+  background:var(--sj-ink-800);padding:14px 16px;
+}
+.sj-04-contract .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;color:var(--sj-ochre);margin-bottom:8px}
+.sj-04-contract pre{
+  font-family:var(--sj-mono);font-size:11.5px;line-height:1.7;
+  color:var(--sj-paper-300);white-space:pre-wrap;word-break:break-word;
+}
+.sj-04-contract pre .key{color:var(--sj-celadon)}
+.sj-04-contract pre .str{color:var(--sj-ochre)}
+
+.sj-04-xref{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;
+}
+.sj-04-xref a{
+  display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit;
+  transition:border-color .18s;
+}
+.sj-04-xref a:hover,.sj-04-xref a:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-04-xref .n{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;color:var(--sj-ochre);margin-bottom:4px}
+.sj-04-xref h3{font-size:14px;letter-spacing:.06em;margin-bottom:6px}
+.sj-04-xref p{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6}
+
+.sj-04-foot{
+  margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);
+  font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+}
+.sj-04-foot a{color:var(--sj-celadon);text-decoration:none}
+.sj-04-foot a:hover{color:var(--sj-ochre)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .sj-needle,.sj-sector,.sj-04-btn,.sj-04-phase{transition:none}
+}
+@media (max-width:900px){
+  .sj-04-diag,.sj-04-xref{grid-template-columns:1fr 1fr}
+  .sj-04-mirror{grid-template-columns:1fr}
+}
+@media (max-width:768px){
+  .sj-04-meta{text-align:left}
+  .sj-04-mobile{display:block}
+  .sj-04-diag,.sj-04-xref{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="sj-04-wrap" id="sj-04-top">
+
+<header class="sj-04-mast">
+  <div>
+    <div class="badge">SJ-04 · 周期卷 · 规律引擎</div>
+    <h1>治乱循环相位盘<em>五相位罗盘 · 修复力诊断 · 双视图契约</em></h1>
+    <div class="sj-04-chips">
+      <a class="sj-04-chip" href="./SJ-00.html">↔ SJ-00 总索引</a>
+      <a class="sj-04-chip" href="./SJ-03.html">↔ SJ-03 五力力场</a>
+      <a class="sj-04-chip" href="/modules/guoyun">↔ GY-01 国运推演</a>
+      <a class="sj-04-chip" href="/modules/yishixingtai">↔ GY-02 合法性机器</a>
+    </div>
+  </div>
+  <div class="sj-04-meta">
+    罗盘定相位 · 力场看五力<br/>
+    <b>AS_OF 2026-07-14</b> · v0.1
+  </div>
+</header>
+
+<p class="sj-zhupi">朱批：鼎盛期是最危险的相位——拐点是隐性的。扇区故意不均分；鼎盛→僵化用虚界。指针与样例时点共享 SJ-03 契约对象 <code>{时点, 相位, 五力评分[5], 修复力}</code>。</p>
+
+<!-- 1 引言 -->
+<section class="sj-04-sec" id="sec-intro" aria-labelledby="h-intro">
+  <div class="sj-04-sec-h">
+    <span class="num">01 · 引言</span>
+    <h2 id="h-intro">为何需要「相位」而非「兴衰故事」</h2>
+  </div>
+  <p class="sj-04-prose">兴衰叙事习惯把王朝写成命运弧线：开国、盛世、衰败、灭亡。这掩盖了一件更有操作意义的事——在同一条弧线上，系统其实落在可判定的<strong>治乱循环相位盘</strong>位置上。相位盘把任一历史时点（或当代时点）定位到五相位之一：上升、鼎盛、僵化、崩解、重整，并给出该相位下五力状态的特征签名。</p>
+  <p class="sj-04-prose">与 SJ-03<strong>五力衰变模型</strong>的分工是固定的：力场回答「哪些力在耦合、衰变沿哪条主链」；罗盘回答「此刻落在周期的哪一段、修复窗口还开不开」。二者共用同一份时点数据对象，形成规律引擎的双视图——罗盘定相位，力场看五力。</p>
+  <p class="sj-04-prose">关键读法只有一条：鼎盛期是最危险的相位。五力尚在峰值，刚性支出与精英俘获已在积累；开元、康乾都是「盛极」与「转衰」叠合的同一时点。相位盘不做道德判决，只做结构定位。</p>
+  <p class="sj-04-note">术语首现：<b>治乱循环相位盘</b>＝以五相位（上升 / 鼎盛 / 僵化 / 崩解 / 重整）定位任一时点的周期坐标，并输出修复力评级与五力特征签名的诊断工具。内容口径见《史鉴系列·核心分析母本》第二部。</p>
+</section>
+
+<!-- 2 签名视觉 -->
+<section class="sj-04-sec" id="sec-compass" aria-labelledby="h-compass">
+  <div class="sj-04-sec-h">
+    <span class="num">02 · 签名视觉</span>
+    <h2 id="h-compass">治乱相位罗盘</h2>
+  </div>
+  <p class="sj-04-prose">五分环形罗盘按典型停留时长配弧，禁止均分饼图。中心诊断盘显示超稳定结构修复力；外圈刻度挂历史时点。拖动指针、点击扇区或使用方向键切换相位；移动端改用下拉选择。</p>
+  <p class="sj-zhupi">样例时点：开元→天宝（鼎盛隐性拐点）、熙宁变法（僵化改革窗口）、五代十国（重整）、当代锚点（相位未定 · 对接 GY-01）。</p>
+
+  <div class="sj-04-mobile">
+    <label class="lbl" for="phase-select" style="font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-paper-300)">相位</label>
+    <select id="phase-select" aria-label="选择相位">
+      <option value="上升">上升</option>
+      <option value="鼎盛" selected>鼎盛</option>
+      <option value="僵化">僵化</option>
+      <option value="崩解">崩解</option>
+      <option value="重整">重整</option>
+    </select>
+  </div>
+
+  <div class="sj-04-controls" role="toolbar" aria-label="罗盘操作">
+    <span class="lbl">样例时点</span>
+    <button type="button" class="sj-04-btn is-on" data-sample="kaikai" tabindex="0">开元→天宝</button>
+    <button type="button" class="sj-04-btn" data-sample="xining" tabindex="0">熙宁变法</button>
+    <button type="button" class="sj-04-btn" data-sample="wudai" tabindex="0">五代十国</button>
+    <button type="button" class="sj-04-btn" data-sample="dangdai" tabindex="0">当代锚点</button>
+  </div>
+
+  <div class="sj-04-stage" id="stage">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">治乱相位罗盘</title>
+  <desc id="sj-desc">五相位不等分环形罗盘：上升、鼎盛、僵化、崩解、重整；中心指针与修复力诊断；外圈历史时点刻度。</desc>
+
+  <defs>
+    <radialGradient id="sj-paper-glow" cx="50%" cy="48%" r="62%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)" stop-opacity="1"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)" stop-opacity="1"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+  </defs>
+
+  <rect width="720" height="720" fill="url(#sj-paper-glow)"/>
+  <rect x="80" y="88" width="560" height="560" fill="url(#sj-xuan)" opacity="0.04"/>
+
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="18" y="120" width="12" height="480" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="22" y="124" width="4" height="472" rx="2" fill="var(--sj-line)"/>
+    <rect x="690" y="120" width="12" height="480" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="694" y="124" width="4" height="472" rx="2" fill="var(--sj-line)"/>
+  </g>
+
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC, Noto Serif SC, Source Han Serif SC, serif" letter-spacing="0.12em">治乱相位罗盘</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.08em">SJ-04 · 治乱循环相位盘 · 规律引擎</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">朱批：拖指针 / 点扇区 / ←→ 键 · 鼎盛→僵化为虚界</text>
+
+  <circle cx="360" cy="360" r="268" fill="none" stroke="var(--sj-line)" stroke-width="1" opacity="0.7"/>
+  <circle cx="360" cy="360" r="248" fill="none" stroke="var(--sj-line)" stroke-width="0.6" opacity="0.45"/>
+
+  <g id="sectors" fill-opacity="0.88">
+    <path class="sj-sector" data-phase="上升" id="sec-up" tabindex="0" role="button" aria-label="上升期"
+          d="M360,360 L360.0,112.0 A248,248 0 0,1 584.8,255.2 Z"
+          fill="var(--sj-phase-up)" stroke="var(--sj-line)" stroke-width="1.2"/>
+    <path class="sj-sector" data-phase="鼎盛" id="sec-peak" tabindex="0" role="button" aria-label="鼎盛期隐性拐点"
+          d="M360,360 L584.8,255.2 A248,248 0 0,1 588.3,456.9 Z"
+          fill="var(--sj-phase-peak)" stroke="var(--sj-line)" stroke-width="1.2"/>
+    <path class="sj-sector" data-phase="僵化" id="sec-rig" tabindex="0" role="button" aria-label="僵化期改革窗口"
+          d="M360,360 L588.3,456.9 A248,248 0 0,1 243.6,579.0 Z"
+          fill="var(--sj-phase-rig)" stroke="var(--sj-line)" stroke-width="1.2"/>
+    <path class="sj-sector" data-phase="崩解" id="sec-col" tabindex="0" role="button" aria-label="崩解期"
+          d="M360,360 L243.6,579.0 A248,248 0 0,1 112.6,377.3 Z"
+          fill="var(--sj-phase-col)" stroke="var(--sj-line)" stroke-width="1.2"/>
+    <path class="sj-sector" data-phase="重整" id="sec-reb" tabindex="0" role="button" aria-label="重整期"
+          d="M360,360 L112.6,377.3 A248,248 0 0,1 360.0,112.0 Z"
+          fill="var(--sj-phase-reb)" stroke="var(--sj-line)" stroke-width="1.2"/>
+  </g>
+
+  <line x1="360" y1="360" x2="588.3" y2="456.9"
+        stroke="var(--sj-paper-300)" stroke-width="1.6" stroke-dasharray="3 5" opacity="0.85"/>
+  <g stroke="var(--sj-ink-900)" stroke-width="1.4" opacity="0.55">
+    <line x1="360" y1="360" x2="360.0" y2="112.0"/>
+    <line x1="360" y1="360" x2="584.8" y2="255.2"/>
+    <line x1="360" y1="360" x2="243.6" y2="579.0"/>
+    <line x1="360" y1="360" x2="112.6" y2="377.3"/>
+  </g>
+
+  <g font-family="Songti SC, Noto Serif SC, serif" font-size="14" letter-spacing="0.12em" fill="var(--sj-paper-100)">
+    <text x="464.8" y="195.5" text-anchor="middle" fill="#d5e0db">上升</text>
+    <text x="555.0" y="356.6" text-anchor="middle" fill="#1d1916" font-weight="600">鼎盛</text>
+    <text x="425.1" y="543.8" text-anchor="middle" fill="var(--sj-paper-300)">僵化</text>
+    <text x="196.5" y="466.2" text-anchor="middle" fill="var(--sj-paper-100)">崩解</text>
+    <text x="217.4" y="227.0" text-anchor="middle" fill="var(--sj-paper-100)">重整</text>
+  </g>
+
+  <g id="inflection">
+    <circle cx="615.0" cy="355.5" r="7" fill="none" stroke="var(--sj-vermil)" stroke-width="1.6"/>
+    <circle cx="615.0" cy="355.5" r="2.5" fill="var(--sj-vermil)"/>
+    <path d="M625.0,349.5 C643.0,331.5 667.0,327.5 658.0,336.9" fill="none" stroke="var(--sj-vermil)" stroke-width="1"/>
+    <text x="662.0" y="334.9" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">隐性拐点</text>
+    <text x="662.0" y="350.9" fill="var(--sj-paper-300)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">盛极即转衰</text>
+  </g>
+
+  <g id="marks" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" font-size="9">
+    <g class="sj-mark" data-sample="kaikai" tabindex="0" role="button" aria-label="开元天宝时点">
+      <circle cx="628.0" cy="355.3" r="5" fill="var(--sj-ochre)" stroke="var(--sj-paper-100)" stroke-width="1"/>
+      <text x="640.0" y="361.3" fill="var(--sj-paper-300)">开元→天宝</text>
+    </g>
+    <g class="sj-mark" data-sample="xining" tabindex="0" role="button" aria-label="熙宁变法时点">
+      <circle cx="449.5" cy="612.6" r="5" fill="var(--sj-phase-rig)" stroke="var(--sj-paper-300)" stroke-width="1"/>
+      <text x="413.5" y="630.6" fill="var(--sj-paper-300)">熙宁 1069</text>
+    </g>
+    <g class="sj-mark" data-sample="wudai" tabindex="0" role="button" aria-label="五代十国时点">
+      <circle cx="164.0" cy="177.2" r="5" fill="var(--sj-celadon)" stroke="var(--sj-paper-100)" stroke-width="1"/>
+      <text x="114.0" y="181.2" fill="var(--sj-paper-300)">五代重整</text>
+    </g>
+    <g class="sj-mark" data-sample="dangdai" tabindex="0" role="button" aria-label="当代锚点">
+      <circle cx="399.2" cy="80.7" r="7" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="1.6"/>
+      <circle cx="399.2" cy="80.7" r="3.5" fill="var(--sj-vermil)"/>
+      <text x="413.2" y="76.7" fill="var(--sj-celadon)">当代 · GY-01</text>
+      <text x="413.2" y="90.7" fill="var(--sj-paper-300)">相位待定</text>
+    </g>
+  </g>
+
+  <circle cx="360" cy="360" r="108" fill="var(--sj-ink-900)" stroke="var(--sj-ochre)" stroke-width="1.4"/>
+  <circle cx="360" cy="360" r="98" fill="none" stroke="var(--sj-line)" stroke-width="0.8"/>
+  <text x="360" y="330" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.08em">超稳定结构修复力</text>
+  <text id="diag-repair" x="360" y="358" text-anchor="middle" fill="var(--sj-ochre)" font-size="22" font-family="Songti SC, Noto Serif SC, serif" letter-spacing="0.16em">中</text>
+  <text id="diag-cost" x="360" y="386" text-anchor="middle" fill="var(--sj-paper-300)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">修复代价：低水平均衡</text>
+  <text id="diag-phase" x="360" y="412" text-anchor="middle" fill="var(--sj-vermil)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">当前 · 鼎盛</text>
+
+  <g class="sj-needle" id="needle" tabindex="0" role="slider" aria-label="相位指针" aria-valuemin="0" aria-valuemax="4" aria-valuenow="1" aria-valuetext="鼎盛">
+    <polygon points="360,132 352,360 368,360" fill="var(--sj-celadon)" opacity="0.95"/>
+    <polygon points="360,368 352,360 368,360 360,392" fill="var(--sj-ochre)"/>
+    <circle cx="360" cy="360" r="10" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2"/>
+    <circle cx="360" cy="360" r="3.5" fill="var(--sj-celadon)"/>
+  </g>
+  <text id="needle-tail" x="360" y="448" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">当前：开元末—天宝</text>
+
+  <g font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" font-size="9" letter-spacing="0.06em">
+    <circle cx="48" cy="690" r="4" fill="var(--sj-phase-up)"/><text x="58" y="693" fill="var(--sj-paper-300)">上升</text>
+    <circle cx="108" cy="690" r="4" fill="var(--sj-phase-peak)"/><text x="118" y="693" fill="var(--sj-paper-300)">鼎盛</text>
+    <circle cx="168" cy="690" r="4" fill="var(--sj-phase-rig)"/><text x="178" y="693" fill="var(--sj-paper-300)">僵化</text>
+    <circle cx="228" cy="690" r="4" fill="var(--sj-phase-col)"/><text x="238" y="693" fill="var(--sj-paper-300)">崩解</text>
+    <circle cx="288" cy="690" r="4" fill="var(--sj-phase-reb)"/><text x="298" y="693" fill="var(--sj-paper-300)">重整</text>
+  </g>
+  <text x="672" y="693" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">viewBox 720×720 · 规格书图 D</text>
+</svg>
+  </div>
+
+  <aside class="sj-04-card" id="live-card" aria-live="polite">
+    <div class="sj-04-card-head">
+      <h3 id="card-name">鼎盛期</h3>
+      <span class="tag" id="card-tag">隐性拐点 · 赭金</span>
+    </div>
+    <p id="card-body">五力尚在峰值，但刚性支出与精英俘获已在积累。开元、康乾都是「盛极」与「转衰」叠合的同一时点。</p>
+    <pre id="card-contract"></pre>
+  </aside>
+</section>
+
+<!-- 3 五相位详解 -->
+<section class="sj-04-sec" id="sec-phases" aria-labelledby="h-phases">
+  <div class="sj-04-sec-h">
+    <span class="num">03 · 五相位详解</span>
+    <h2 id="h-phases">判据 · 五力签名 · 特征事件</h2>
+  </div>
+  <p class="sj-04-prose">下表给出每相位的五力特征签名。单元格是定性签名，不是量化史学断言；与上方罗盘 / SJ-03 力场联动时，可对照样例评分（0–100 示意相对值）。</p>
+
+  <div class="sj-04-table-wrap">
+    <table class="sj-04-table" id="phase-table">
+      <thead>
+        <tr>
+          <th>相位</th>
+          <th>财政汲取</th>
+          <th>精英循环</th>
+          <th>合法性叙事</th>
+          <th>边疆—军事</th>
+          <th>基座</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-phase="上升" tabindex="0">
+          <td>上升期</td>
+          <td>轻税、税基清</td>
+          <td>通道开放、寒门可上</td>
+          <td>充盈</td>
+          <td>主动可控</td>
+          <td>承载宽松</td>
+        </tr>
+        <tr data-phase="鼎盛" tabindex="0">
+          <td>鼎盛期 · 隐性拐点</td>
+          <td>峰值，刚性开始积累</td>
+          <td>峰值，俘获萌芽</td>
+          <td>峰值</td>
+          <td>扩张</td>
+          <td>人口上升</td>
+        </tr>
+        <tr data-phase="僵化" tabindex="0">
+          <td>僵化期 · 改革窗口</td>
+          <td>刚性、加征、税基流失</td>
+          <td>俘获、堵塞、党争</td>
+          <td>绩效磨损、象征通胀</td>
+          <td>外包或内耗</td>
+          <td>逼近上限</td>
+        </tr>
+        <tr data-phase="崩解" tabindex="0">
+          <td>崩解期</td>
+          <td>汲取越阈值</td>
+          <td>离心、地方坐大</td>
+          <td>天命被夺</td>
+          <td>反噬或崩溃</td>
+          <td>灾荒共振</td>
+        </tr>
+        <tr data-phase="重整" tabindex="0">
+          <td>重整期</td>
+          <td>区域重建</td>
+          <td>新精英上位</td>
+          <td>新叙事竞争</td>
+          <td>军事力主导</td>
+          <td>低水平恢复</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sj-04-phase-grid" id="phase-cards">
+    <article class="sj-04-phase" data-phase="上升" tabindex="0">
+      <div class="tag">青瓷渐亮</div>
+      <h3>上升期</h3>
+      <p>休养生息、开国之治的典型签名。财政汲取力尚未硬化，精英循环力通道开放，合法性叙事力充盈，边疆压力主动可控，基座承载尚有余量。</p>
+      <div class="evt">特征事件：文景休养 · 唐初贞观 · 洪武—永乐奠基（示意，非穷尽）</div>
+    </article>
+    <article class="sj-04-phase is-on" data-phase="鼎盛" tabindex="0">
+      <div class="tag">赭金 · 隐性拐点</div>
+      <h3>鼎盛期</h3>
+      <p>五力峰值与转衰起点叠合。看上去最稳的时点，往往正是刚性支出与精英俘获的积累期——罗盘上以虚界与朱批「隐性拐点」标出。</p>
+      <div class="evt">特征事件：开元→天宝 · 康乾盛极（系年口径见案例卷；此处作相位标本）</div>
+    </article>
+    <article class="sj-04-phase" data-phase="僵化" tabindex="0">
+      <div class="tag">灰褐 · 改革窗口</div>
+      <h3>僵化期</h3>
+      <p>任一力进入负相位即开启改革窗口。变法多发于此：能否重建财政汲取力、又不引爆精英循环力，决定窗口是修复还是加速崩解。</p>
+      <div class="evt">特征事件：熙宁变法（1069 始行）· 晚明财政加征争议（存疑细节留给案例卷）</div>
+    </article>
+    <article class="sj-04-phase" data-phase="崩解" tabindex="0">
+      <div class="tag">朱红 · 失修出口</div>
+      <h3>崩解期</h3>
+      <p>三力及以上同时负相位 → 超稳定结构失修。财政越阈值、地方离心、天命话语被夺、军事反噬与灾荒共振，往往同步兑现。</p>
+      <div class="evt">特征事件：黄巾以降叙事争夺 · 唐末藩镇 · 明末多力共振（母本规律第 2 条）</div>
+    </article>
+    <article class="sj-04-phase" data-phase="重整" tabindex="0">
+      <div class="tag">青瓷复现</div>
+      <h3>重整期</h3>
+      <p>区域重建财政与精英，新叙事竞争，军事力往往主导。分裂期（魏晋南北朝、五代十国）是超稳定结构的压力测试样本，不是历史空白。</p>
+      <div class="evt">特征事件：五代十国短命轮替 · 新朝奠基前的低水平回填</div>
+    </article>
+  </div>
+</section>
+
+<!-- 4 诊断与修复力 -->
+<section class="sj-04-sec" id="sec-repair" aria-labelledby="h-repair">
+  <div class="sj-04-sec-h">
+    <span class="num">04 · 诊断与修复力</span>
+    <h2 id="h-repair">超稳定结构从哪来、代价是什么</h2>
+  </div>
+  <p class="sj-04-prose">金观涛的洞察是：中国传统社会有超常的<strong>自我修复力</strong>，故能一治一乱两千年而结构骨架不变。罗盘中心的「修复力」评级，不是道德标签，而是对三类修复源是否仍可动员的压缩判断。</p>
+  <p class="sj-04-prose">判据与 SJ-03 对齐：任一力负相位 → 僵化期，改革窗口开启；三力及以上同时负相位 → 超稳定结构失修 → 崩解或分裂。财政汲取力因居枢纽，其负相位权重最高。</p>
+
+  <div class="sj-04-diag">
+    <article>
+      <div class="n">修复力来源①</div>
+      <h3>官僚制模块化</h3>
+      <p>可换皇帝、换朝代，而不换郡县 + 科举 + 编户齐民这套操作系统——制度可跨朝复用。</p>
+    </article>
+    <article>
+      <div class="n">修复力来源②</div>
+      <h3>意识形态再生产</h3>
+      <p>儒家士绅在每个周期重新生产合法性叙事与治理人才；当代形态对照 GY-02。</p>
+    </article>
+    <article>
+      <div class="n">修复力来源③</div>
+      <h3>小农自我回填</h3>
+      <p>战乱后人口与耕地重新匹配，经济基座自动回填；当代基座变量已转为抚养比 / 内需 / 就业承载。</p>
+    </article>
+  </div>
+
+  <p class="sj-04-prose" style="margin-top:16px">代价是金观涛与黄仁宇的合题：每一次修复都回到<strong>低水平均衡</strong>。超稳定等于治乱循环不突破技术—制度天花板——系统能无限重启，却难以升级。这是史鉴引擎对「李约瑟难题」的结构化读法：不是「中国缺科学精神」的文化判决，而是数目字管理缺失与超稳定修复机制互相锁死。</p>
+  <p class="sj-04-note"><b>评级口径：</b>强 / 中 / 弱 / 待定 为示意压缩；不对单一皇帝或事件做精确计量。当代锚点固定为「待定」，正式判定留给 GY-01 × 2026–2036。</p>
+</section>
+
+<!-- 5 与 SJ-03 耦合 -->
+<section class="sj-04-sec" id="sec-couple" aria-labelledby="h-couple">
+  <div class="sj-04-sec-h">
+    <span class="num">05 · 与 SJ-03 五力耦合</span>
+    <h2 id="h-couple">双视图如何读同一时点</h2>
+  </div>
+  <p class="sj-04-prose">打开 SJ-03 力场看传导链，打开本卷罗盘看相位落点——同一时点对象不得分叉。评分数组顺序固定为：财政汲取力 · 精英循环力 · 合法性叙事力 · 边疆—军事压力 · 生态—人口—技术基座。颜色语义全系列冻结：财政赭金、精英青瓷、合法性宣纸白、边疆军事朱红、基座深墨。</p>
+  <p class="sj-04-prose">读法示例：开元→天宝在罗盘上落在鼎盛（隐性拐点），在力场上则是边疆—军事压力畸强、内部制衡崩坏——两图合读才避免「盛世赞歌」或「藩镇单因」的片面收束。</p>
+
+  <div class="sj-04-mirror">
+    <article>
+      <div class="n">相似机制</div>
+      <h3>周期坐标可对接当代推演</h3>
+      <p>把任一时点压成「相位 + 五力签名 + 修复力」，与 GY-01 时间轴对接的接口语义相同：都是在慢变量包络内定位快变量共振的位置。</p>
+    </article>
+    <article>
+      <div class="n">关键差异</div>
+      <h3>古代操作系统不可直接外推</h3>
+      <p>古代修复依赖士绅再生与小农回填；当代合法性机器含列宁式组织穿透，基座变量从耕地承载变为抚养比 / 内需 / 就业。相位词汇可复用，机制载体不可裸类比。</p>
+    </article>
+  </div>
+</section>
+
+<!-- 6 共享契约 -->
+<section class="sj-04-sec" id="sec-contract" aria-labelledby="h-contract">
+  <div class="sj-04-sec-h">
+    <span class="num">06 · 共享数据契约</span>
+    <h2 id="h-contract">SJ-03 ↔ SJ-04 同一对象</h2>
+  </div>
+  <p class="sj-04-prose">下列 stub 与 SJ-03「相位与修复力接口」节字段一致。切换样例时，罗盘指针、中心诊断与契约预览同步更新；内存变量暴露为 <code>window.SJ_SHARED_SNAPSHOT()</code>，无浏览器存储。</p>
+
+  <div class="sj-04-contract" id="sj-shared-contract">
+    <div class="k">SJ-03 ↔ SJ-04 共享对象 · stub</div>
+    <pre id="contract-pre" aria-live="polite"></pre>
+    <div class="sj-04-controls" style="margin-top:12px" role="group" aria-label="契约样例">
+      <span class="lbl">样例</span>
+      <button type="button" class="sj-04-btn is-on" data-sample="kaikai">开元→天宝</button>
+      <button type="button" class="sj-04-btn" data-sample="xining">熙宁变法</button>
+      <button type="button" class="sj-04-btn" data-sample="wudai">五代十国</button>
+      <button type="button" class="sj-04-btn" data-sample="dangdai">当代锚点〔未定〕</button>
+    </div>
+  </div>
+  <p class="sj-04-note">评分量纲为示意 0–100（负相位倾向低分），不作精确计量史学断言。开元末—天宝系年取约 740–755 示意；熙宁二年（1069）始行新法；五代十国约 907–960——争议边界在案例卷并陈。</p>
+</section>
+
+<!-- 7 通往案例卷 -->
+<section class="sj-04-sec" id="sec-cases" aria-labelledby="h-cases">
+  <div class="sj-04-sec-h">
+    <span class="num">07 · 通往案例卷</span>
+    <h2 id="h-cases">台账字段「相位定位」的插座</h2>
+  </div>
+  <p class="sj-04-prose">史鉴引擎·四步法的第二步「周期定位」，产出写入史鉴台账的「相位定位」栏。案例卷（SJ-05 变法 · SJ-06 盛衰拐点 · SJ-07 王朝崩解 · SJ-08 分裂—重整）必须从本卷罗盘取相位坐标，并附五力签名与修复力——禁止另起兴衰叙事绕开相位盘。</p>
+  <p class="sj-04-prose">样板已经在母本跑通：王安石变法 → 僵化期早段；开元→天宝 → 鼎盛顶点转入崩解触发；五代十国 → 重整期。案例卷负责填充一句话拐点、结构切片、史家交锋、成败三列与古今映射双栏；本卷只冻结相位与修复力接口。</p>
+
+  <div class="sj-04-xref">
+    <a href="./SJ-00.html#vol-cases">
+      <div class="n">SJ-00 · 案例卷</div>
+      <h3>占位导航</h3>
+      <p>SJ-05–08 规划位；统一输出史鉴台账七字段。</p>
+    </a>
+    <a href="./SJ-03.html#sec-phase">
+      <div class="n">SJ-03 · 契约节</div>
+      <h3>力场侧 stub</h3>
+      <p>同一对象在力场页的镜像入口；两页样例键名对齐。</p>
+    </a>
+    <a href="/modules/guoyun">
+      <div class="n">GY-01</div>
+      <h3>当代相位出口</h3>
+      <p>当代锚点「未定」的正式判定喂给国运时间轴与 2026–2036。</p>
+    </a>
+  </div>
+</section>
+
+<!-- 8 交叉引用 -->
+<section class="sj-04-sec" id="sec-xref" aria-labelledby="h-xref">
+  <div class="sj-04-sec-h">
+    <span class="num">08 · 交叉引用</span>
+    <h2 id="h-xref">SJ · GY 接口</h2>
+  </div>
+  <div class="sj-04-xref">
+    <a href="./SJ-00.html">
+      <div class="n">SJ-00</div>
+      <h3>史鉴总索引</h3>
+      <p>治乱螺旋末端当代锚点指向本卷；周期卷卡片已点亮。</p>
+    </a>
+    <a href="./SJ-03.html">
+      <div class="n">SJ-03</div>
+      <h3>五力衰变模型</h3>
+      <p>双视图另一半：财政枢纽、主链、修复力来源文案同源。</p>
+    </a>
+    <a href="./SJ-01.html">
+      <div class="n">SJ-01</div>
+      <h3>方法光谱</h3>
+      <p>相位诊断前须李敖式祛魅；正史归因与结构实因双列。</p>
+    </a>
+    <a href="/modules/guoyun">
+      <div class="n">GY-01</div>
+      <h3>国运时间轴</h3>
+      <p>相位盘是史鉴与 GY 对接的主插座。</p>
+    </a>
+    <a href="/modules/yishixingtai">
+      <div class="n">GY-02</div>
+      <h3>合法性机器</h3>
+      <p>合法性叙事力的当代形态；修复力来源②的升级版。</p>
+    </a>
+    <a href="./SJ-04-compass-preview.html">
+      <div class="n">PREVIEW</div>
+      <h3>罗盘签名原稿</h3>
+      <p>已确认的图 D 独立预览页，供对照；侧栏不挂预览。</p>
+    </a>
+  </div>
+</section>
+
+<footer class="sj-04-foot">
+  <span>ChinaOS · 史鉴 SJ-04 · v0.1 · AS_OF 2026-07-14</span>
+  <span><a href="./SJ-00.html">← 返回 SJ-00</a> · <a href="#sj-04-top">↑ 顶</a> · <a href="./SJ-03.html">SJ-03 力场</a></span>
+  <span>本地调试 · 未 push</span>
+</footer>
+
+</div>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const needle = document.getElementById('needle');
+  const sectors = Array.from(stage.querySelectorAll('.sj-sector'));
+  const marks = Array.from(stage.querySelectorAll('.sj-mark'));
+  const sampleBtns = Array.from(document.querySelectorAll('[data-sample]'));
+  const phaseSelect = document.getElementById('phase-select');
+  const phaseRows = Array.from(document.querySelectorAll('#phase-table tbody tr'));
+  const phaseCards = Array.from(document.querySelectorAll('#phase-cards .sj-04-phase'));
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const PHASE_ANGLE = {
+    '上升': 32.5,
+    '鼎盛': 89,
+    '僵化': 160.5,
+    '崩解': 237,
+    '重整': 313
+  };
+  const PHASE_ORDER = ['上升','鼎盛','僵化','崩解','重整'];
+
+  const PHASE_COPY = {
+    '上升': {
+      name: '上升期',
+      tag: '青瓷渐亮 · 休养生息',
+      body: '轻税、通道开放、合法性充盈、军事主动可控、基座承载宽松。开国之治的典型签名。'
+    },
+    '鼎盛': {
+      name: '鼎盛期',
+      tag: '隐性拐点 · 赭金',
+      body: '五力尚在峰值，但刚性支出与精英俘获已在积累。开元、康乾都是「盛极」与「转衰」叠合的同一时点。'
+    },
+    '僵化': {
+      name: '僵化期',
+      tag: '改革窗口 · 灰褐',
+      body: '刚性加征、税基流失、党争、绩效磨损与象征通胀。变法多发于此——成败系于重建汲取力而不引爆精英循环力。'
+    },
+    '崩解': {
+      name: '崩解期',
+      tag: '失修出口 · 朱红',
+      body: '汲取越阈值、地方坐大、天命被夺、军事反噬或崩溃、灾荒共振。三力及以上同时负相位的兑现。'
+    },
+    '重整': {
+      name: '重整期',
+      tag: '低水平回填 · 青瓷复现',
+      body: '区域重建财政与精英、新叙事竞争、军事力往往主导。修复能重启系统，代价是回到低水平均衡。'
+    }
+  };
+
+  /** 与 SJ-03 对齐的共享契约样例 */
+  const SAMPLES = {
+    kaikai: {
+      时点: '开元末—天宝十四载（约 740–755）',
+      相位: '鼎盛',
+      五力评分: [72, 48, 62, 88, 70],
+      修复力: '中',
+      note: '边疆军事力畸强而内部制衡崩坏——盛极与转衰叠合。'
+    },
+    xining: {
+      时点: '熙宁二年始行新法（1069）',
+      相位: '僵化',
+      五力评分: [38, 32, 55, 45, 58],
+      修复力: '中',
+      note: '改革窗口：重建汲取力必然触动精英循环力。'
+    },
+    wudai: {
+      时点: '五代十国（约 907–960）',
+      相位: '重整',
+      五力评分: [28, 22, 8, 92, 35],
+      修复力: '弱',
+      note: '军事力区域畸大，合法性叙事力近零；修复力耗尽于短命政权轮替。'
+    },
+    dangdai: {
+      时点: '当代锚点（2026）',
+      相位: '未定',
+      五力评分: [null, null, null, null, null],
+      修复力: '待定',
+      note: '指针暂停上升扇北缘仅作占位；正式判定见 GY-01 / 2026–2036。',
+      needlePhase: '上升'
+    }
+  };
+
+  let currentPhase = '鼎盛';
+  let activeSample = 'kaikai';
+  let dragging = false;
+
+  function formatContract(s){
+    const labels = ['财政汲取','精英循环','合法性叙事','边疆军事','生态基座'];
+    const scores = s.五力评分.map(function(v,i){
+      return '    /* '+labels[i]+' */ ' + (v === null ? 'null' : v);
+    }).join(',\n');
+    return '{\n' +
+      '  <span class="key">时点</span>: <span class="str">"'+s.时点+'"</span>,\n' +
+      '  <span class="key">相位</span>: <span class="str">"'+s.相位+'"</span>,\n' +
+      '  <span class="key">五力评分</span>: [\n'+scores+'\n  ],\n' +
+      '  <span class="key">修复力</span>: <span class="str">"'+s.修复力+'"</span>\n' +
+      '}\n' +
+      '<span style="color:var(--sj-paper-300)">// '+s.note+'</span>';
+  }
+
+  function setNeedle(phase){
+    const ang = PHASE_ANGLE[phase] || 0;
+    if(reduceMotion) needle.style.transition = 'none';
+    needle.style.transform = 'rotate('+ang+'deg)';
+    needle.setAttribute('aria-valuenow', String(PHASE_ORDER.indexOf(phase)));
+    needle.setAttribute('aria-valuetext', phase);
+  }
+
+  function highlightPhase(phase){
+    stage.classList.add('is-picking');
+    sectors.forEach(s => s.classList.toggle('is-hot', s.dataset.phase === phase));
+    phaseRows.forEach(r => r.classList.toggle('is-hot', r.dataset.phase === phase));
+    phaseCards.forEach(c => c.classList.toggle('is-on', c.dataset.phase === phase));
+  }
+
+  function renderCard(sampleKey){
+    const s = SAMPLES[sampleKey];
+    const needlePhase = s.needlePhase || s.相位;
+    const copy = PHASE_COPY[needlePhase] || PHASE_COPY['上升'];
+    const display = s.相位;
+    document.getElementById('card-name').textContent = (s.相位 === '未定') ? '当代锚点〔相位未定〕' : copy.name;
+    document.getElementById('card-tag').textContent = (s.相位 === '未定') ? '占位 · 对接 GY-01' : copy.tag;
+    document.getElementById('card-body').textContent = s.note + (s.相位 === '未定' ? '' : (' ' + copy.body));
+    const html = formatContract(s);
+    document.getElementById('card-contract').innerHTML = html;
+    document.getElementById('contract-pre').innerHTML = html;
+
+    document.getElementById('diag-repair').textContent = s.修复力;
+    document.getElementById('diag-phase').textContent = '当前 · ' + display;
+    document.getElementById('needle-tail').textContent = '当前：' + s.时点.replace(/（.*）/,'').slice(0,14);
+    const costMap = { '强':'修复代价：回到低水平均衡', '中':'修复代价：低水平均衡', '弱':'修复代价：高 · 或无能修复', '待定':'修复代价：对照 GY-01' };
+    document.getElementById('diag-cost').textContent = costMap[s.修复力] || costMap['中'];
+  }
+
+  function applyPhase(phase, sampleKey){
+    currentPhase = phase;
+    if(sampleKey) activeSample = sampleKey;
+    setNeedle(phase);
+    highlightPhase(phase);
+    if(phaseSelect && PHASE_ORDER.indexOf(phase) >= 0) phaseSelect.value = phase;
+    sampleBtns.forEach(b => b.classList.toggle('is-on', b.dataset.sample === activeSample));
+    renderCard(activeSample);
+  }
+
+  function applySample(key){
+    const s = SAMPLES[key];
+    if(!s) return;
+    const needlePhase = s.needlePhase || s.相位;
+    applyPhase(needlePhase, key);
+  }
+
+  function angleFromEvent(e){
+    const svg = stage.querySelector('svg');
+    const rect = svg.getBoundingClientRect();
+    const cx = rect.left + rect.width/2;
+    const cy = rect.top + rect.height/2;
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    let deg = Math.atan2(clientX - cx, cy - clientY) * 180 / Math.PI;
+    if(deg < 0) deg += 360;
+    return deg;
+  }
+
+  function phaseFromAngle(deg){
+    if(deg < 65) return '上升';
+    if(deg < 113) return '鼎盛';
+    if(deg < 208) return '僵化';
+    if(deg < 266) return '崩解';
+    return '重整';
+  }
+
+  function onPointer(deg){
+    const phase = phaseFromAngle(deg);
+    const match = Object.keys(SAMPLES).find(k => SAMPLES[k].相位 === phase && k !== 'dangdai');
+    if(match){
+      applySample(match);
+    } else {
+      currentPhase = phase;
+      setNeedle(phase);
+      highlightPhase(phase);
+      if(phaseSelect) phaseSelect.value = phase;
+      const copy = PHASE_COPY[phase];
+      document.getElementById('card-name').textContent = copy.name;
+      document.getElementById('card-tag').textContent = copy.tag;
+      document.getElementById('card-body').textContent = copy.body + '（自由旋转；未绑定样例时点。）';
+      document.getElementById('diag-phase').textContent = '当前 · ' + phase;
+      document.getElementById('needle-tail').textContent = '当前：自由定位 · ' + phase;
+    }
+  }
+
+  sectors.forEach(s => {
+    const act = () => {
+      const phase = s.dataset.phase;
+      const match = Object.keys(SAMPLES).find(k => SAMPLES[k].相位 === phase);
+      if(match) applySample(match);
+      else applyPhase(phase, activeSample);
+    };
+    s.addEventListener('click', act);
+    s.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); act(); }
+    });
+  });
+
+  marks.forEach(m => {
+    const act = () => applySample(m.dataset.sample);
+    m.addEventListener('click', act);
+    m.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); act(); }
+    });
+  });
+
+  sampleBtns.forEach(b => b.addEventListener('click', () => applySample(b.dataset.sample)));
+
+  phaseCards.forEach(c => {
+    const act = () => {
+      const phase = c.dataset.phase;
+      const match = Object.keys(SAMPLES).find(k => SAMPLES[k].相位 === phase);
+      if(match) applySample(match);
+      else applyPhase(phase, activeSample);
+    };
+    c.addEventListener('click', act);
+    c.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); act(); }
+    });
+  });
+
+  phaseRows.forEach(r => {
+    const act = () => {
+      const phase = r.dataset.phase;
+      const match = Object.keys(SAMPLES).find(k => SAMPLES[k].相位 === phase);
+      if(match) applySample(match);
+      else applyPhase(phase, activeSample);
+    };
+    r.addEventListener('click', act);
+    r.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); act(); }
+    });
+  });
+
+  if(phaseSelect){
+    phaseSelect.addEventListener('change', () => {
+      const phase = phaseSelect.value;
+      const match = Object.keys(SAMPLES).find(k => SAMPLES[k].相位 === phase);
+      if(match) applySample(match);
+      else applyPhase(phase, activeSample);
+    });
+  }
+
+  function startDrag(e){
+    dragging = true;
+    onPointer(angleFromEvent(e));
+    e.preventDefault();
+  }
+  function moveDrag(e){
+    if(!dragging) return;
+    onPointer(angleFromEvent(e));
+  }
+  function endDrag(){ dragging = false; }
+
+  needle.addEventListener('mousedown', startDrag);
+  needle.addEventListener('touchstart', startDrag, {passive:false});
+  window.addEventListener('mousemove', moveDrag);
+  window.addEventListener('touchmove', moveDrag, {passive:false});
+  window.addEventListener('mouseup', endDrag);
+  window.addEventListener('touchend', endDrag);
+
+  needle.addEventListener('keydown', e => {
+    const idx = PHASE_ORDER.indexOf(currentPhase);
+    if(e.key === 'ArrowRight' || e.key === 'ArrowDown'){
+      e.preventDefault();
+      const next = PHASE_ORDER[(idx + 1) % 5];
+      const match = Object.keys(SAMPLES).find(k => SAMPLES[k].相位 === next);
+      if(match) applySample(match); else applyPhase(next, activeSample);
+    }
+    if(e.key === 'ArrowLeft' || e.key === 'ArrowUp'){
+      e.preventDefault();
+      const prev = PHASE_ORDER[(idx + 4) % 5];
+      const match = Object.keys(SAMPLES).find(k => SAMPLES[k].相位 === prev);
+      if(match) applySample(match); else applyPhase(prev, activeSample);
+    }
+  });
+
+  applySample('kaikai');
+  window.SJ_SHARED_SNAPSHOT = function(){ return SAMPLES[activeSample]; };
+})();
+</script>
+</body>
+</html>

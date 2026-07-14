@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-04 · 治乱相位罗盘（签名预览）</title>
+<style>
+/* 令牌契约：chinaos-shijian.mdc；色义/相位色阶见规格书图 D */
+:root{
+  --sj-ink-900:#14110f;
+  --sj-ink-800:#1d1916;
+  --sj-paper-100:#e8ddc7;
+  --sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;
+  --sj-celadon:#5f7a6f;
+  --sj-ochre:#b8894a;
+  --sj-line:#3a322b;
+  --sj-radius:6px;
+  --sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+  --sj-phase-up:#7a9488;
+  --sj-phase-peak:#b8894a;
+  --sj-phase-rig:#6a5f52;
+  --sj-phase-col:#a83b2c;
+  --sj-phase-reb:#5f7a6f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(900px 500px at 70% -5%, #2a221c 0%, transparent 55%),
+    var(--sj-ink-900);
+  color:var(--sj-paper-100);
+  font-family:var(--sj-serif);
+  line-height:1.7;
+  padding:var(--sj-space);
+}
+.wrap{max-width:920px;margin:0 auto}
+.mast{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  gap:16px;flex-wrap:wrap;
+  padding-bottom:14px;border-bottom:1px solid var(--sj-line);margin-bottom:18px;
+}
+.mast h1{font-size:clamp(18px,2.4vw,22px);font-weight:600;letter-spacing:.14em}
+.mast h1 span{color:var(--sj-paper-300);font-weight:400;letter-spacing:.06em;font-size:.85em}
+.meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right;line-height:1.7}
+.meta b{color:var(--sj-ochre);font-weight:500}
+.zhupi{
+  color:var(--sj-vermil);font-size:13px;margin:0 0 14px;
+  padding-left:10px;border-left:2px solid var(--sj-vermil);
+  max-width:68ch;
+}
+.controls{
+  display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px;align-items:center;
+}
+.controls .lbl{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-paper-300);margin-right:4px}
+.btn{
+  appearance:none;border:1px solid var(--sj-line);background:var(--sj-ink-800);
+  color:var(--sj-paper-100);font-family:var(--sj-serif);font-size:13px;
+  padding:6px 12px;border-radius:var(--sj-radius);cursor:pointer;
+  transition:border-color .18s, color .18s, background .18s;
+}
+.btn:hover,.btn:focus-visible{border-color:var(--sj-ochre);outline:none}
+.btn:focus-visible{box-shadow:0 0 0 2px rgba(184,137,74,.35)}
+.btn.is-on{border-color:var(--sj-vermil);color:var(--sj-vermil);background:#241612}
+.stage{
+  border:1px solid var(--sj-line);
+  border-radius:var(--sj-radius);
+  background:linear-gradient(180deg,#1f1a16,#14110f);
+  box-shadow:0 1px 0 rgba(232,221,199,.04), 0 18px 48px rgba(0,0,0,.45);
+  padding:8px 8px 4px;
+  overflow:auto;
+}
+.stage svg{display:block;width:100%;height:auto;max-width:720px;margin:0 auto}
+.sj-needle{
+  transform-origin:360px 360px;
+  transition:transform .35s ease;
+}
+.sj-sector{cursor:pointer;transition:opacity .2s ease, filter .2s ease}
+.sj-sector:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:2px}
+.sj-mark{cursor:pointer}
+.sj-mark:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:3px}
+.stage.is-picking .sj-sector{opacity:.38}
+.stage.is-picking .sj-sector.is-hot{
+  opacity:1;
+  filter:drop-shadow(0 0 6px rgba(184,137,74,.35));
+}
+.card{
+  margin-top:16px;
+  border:1px solid var(--sj-line);
+  border-radius:var(--sj-radius);
+  background:var(--sj-ink-800);
+  padding:16px 18px 14px;
+  min-height:120px;
+}
+.card-head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;
+  margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--sj-line);
+}
+.card-head h2{font-size:17px;font-weight:600;letter-spacing:.1em}
+.card-head .tag{
+  font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;color:var(--sj-ochre);
+}
+.card p{font-size:13px;color:var(--sj-paper-300);line-height:1.7;max-width:72ch}
+.card pre{
+  margin-top:10px;font-family:var(--sj-mono);font-size:11px;line-height:1.65;
+  color:var(--sj-paper-300);white-space:pre-wrap;word-break:break-word;
+}
+.card pre .key{color:var(--sj-celadon)}
+.card pre .str{color:var(--sj-ochre)}
+.hint{margin-top:10px;font-size:12px;color:var(--sj-paper-300);opacity:.85}
+.note{
+  margin-top:14px;font-size:13px;color:var(--sj-paper-300);max-width:72ch;
+}
+.note strong{color:var(--sj-paper-100);font-weight:600}
+.foot{
+  margin-top:22px;padding-top:12px;border-top:1px solid var(--sj-line);
+  font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+}
+.foot a{color:var(--sj-celadon);text-decoration:none}
+.foot a:hover{color:var(--sj-ochre)}
+.mobile-phase{display:none;margin:0 0 12px}
+.mobile-phase select{
+  width:100%;appearance:none;border:1px solid var(--sj-line);background:var(--sj-ink-800);
+  color:var(--sj-paper-100);font-family:var(--sj-serif);font-size:14px;
+  padding:8px 12px;border-radius:var(--sj-radius);
+}
+@media (prefers-reduced-motion:reduce){
+  .sj-needle,.sj-sector{transition:none}
+}
+@media (max-width:768px){
+  .mast{align-items:flex-start}
+  .meta{text-align:left}
+  .mobile-phase{display:block}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <h1>SJ-04 <span>治乱相位罗盘 · 签名视觉</span></h1>
+    <div class="meta">STEP 1 / 先视觉后正文<br/><b>等确认后再写全文</b></div>
+  </header>
+
+  <p class="zhupi sj-zhupi">朱批：五扇区故意不均分——僵化/重整偏长，鼎盛偏短；鼎盛→僵化分界用虚线，标「隐性拐点」。指针可拖/方向键旋转。数据契约与 SJ-03 对齐：<code>{时点, 相位, 五力评分[5], 修复力}</code>。</p>
+
+  <div class="mobile-phase">
+    <label class="lbl" for="phase-select" style="font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-paper-300)">相位</label>
+    <select id="phase-select" aria-label="选择相位">
+      <option value="上升">上升</option>
+      <option value="鼎盛" selected>鼎盛</option>
+      <option value="僵化">僵化</option>
+      <option value="崩解">崩解</option>
+      <option value="重整">重整</option>
+    </select>
+  </div>
+
+  <div class="controls" role="toolbar" aria-label="罗盘操作">
+    <span class="lbl">样例时点</span>
+    <button type="button" class="btn is-on" data-sample="kaikai" tabindex="0">开元→天宝</button>
+    <button type="button" class="btn" data-sample="xining" tabindex="0">熙宁变法</button>
+    <button type="button" class="btn" data-sample="wudai" tabindex="0">五代十国</button>
+    <button type="button" class="btn" data-sample="dangdai" tabindex="0">当代锚点</button>
+  </div>
+
+  <div class="stage" id="stage">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">治乱相位罗盘</title>
+  <desc id="sj-desc">五相位不等分环形罗盘：上升、鼎盛、僵化、崩解、重整；中心指针与修复力诊断；外圈历史时点刻度。</desc>
+
+  <defs>
+    <radialGradient id="sj-paper-glow" cx="50%" cy="48%" r="62%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)" stop-opacity="1"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)" stop-opacity="1"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+  </defs>
+
+  <rect width="720" height="720" fill="url(#sj-paper-glow)"/>
+  <rect x="80" y="88" width="560" height="560" fill="url(#sj-xuan)" opacity="0.04"/>
+
+  <!-- 卷轴轴头（左右） -->
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="18" y="120" width="12" height="480" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="22" y="124" width="4" height="472" rx="2" fill="var(--sj-line)"/>
+    <rect x="690" y="120" width="12" height="480" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="694" y="124" width="4" height="472" rx="2" fill="var(--sj-line)"/>
+  </g>
+
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC, Noto Serif SC, Source Han Serif SC, serif" letter-spacing="0.12em">治乱相位罗盘</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.08em">SJ-04 · 治乱循环相位盘 · 签名视觉</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">朱批：拖指针 / 点扇区 / ←→ 键 · 鼎盛→僵化为虚界</text>
+
+  <!-- 外圈刻度环 -->
+  <circle cx="360" cy="360" r="268" fill="none" stroke="var(--sj-line)" stroke-width="1" opacity="0.7"/>
+  <circle cx="360" cy="360" r="248" fill="none" stroke="var(--sj-line)" stroke-width="0.6" opacity="0.45"/>
+
+  <!--
+    扇区弧长（非均分，示意停留时长；0°=12点，顺时针）：
+    上升 65° | 鼎盛 48° | 僵化 95° | 崩解 58° | 重整 94° = 360°
+    起始角（从正上方顺时针）：上升从 -90°（SVG 常用数学角换算）
+    用 polar：角度从 12 点顺时针，θ=0 在顶。
+  -->
+  <g id="sectors" fill-opacity="0.88">
+    <path class="sj-sector" data-phase="上升" id="sec-up" tabindex="0" role="button" aria-label="上升期"
+          d="M360,360 L360.0,112.0 A248,248 0 0,1 584.8,255.2 Z"
+          fill="var(--sj-phase-up)" stroke="var(--sj-line)" stroke-width="1.2"/>
+    <path class="sj-sector" data-phase="鼎盛" id="sec-peak" tabindex="0" role="button" aria-label="鼎盛期隐性拐点"
+          d="M360,360 L584.8,255.2 A248,248 0 0,1 588.3,456.9 Z"
+          fill="var(--sj-phase-peak)" stroke="var(--sj-line)" stroke-width="1.2"/>
+    <path class="sj-sector" data-phase="僵化" id="sec-rig" tabindex="0" role="button" aria-label="僵化期改革窗口"
+          d="M360,360 L588.3,456.9 A248,248 0 0,1 243.6,579.0 Z"
+          fill="var(--sj-phase-rig)" stroke="var(--sj-line)" stroke-width="1.2"/>
+    <path class="sj-sector" data-phase="崩解" id="sec-col" tabindex="0" role="button" aria-label="崩解期"
+          d="M360,360 L243.6,579.0 A248,248 0 0,1 112.6,377.3 Z"
+          fill="var(--sj-phase-col)" stroke="var(--sj-line)" stroke-width="1.2"/>
+    <path class="sj-sector" data-phase="重整" id="sec-reb" tabindex="0" role="button" aria-label="重整期"
+          d="M360,360 L112.6,377.3 A248,248 0 0,1 360.0,112.0 Z"
+          fill="var(--sj-phase-reb)" stroke="var(--sj-line)" stroke-width="1.2"/>
+  </g>
+
+  <!-- 鼎盛→僵化隐蔽虚界（在 113°） -->
+  <line x1="360" y1="360" x2="588.3" y2="456.9"
+        stroke="var(--sj-paper-300)" stroke-width="1.6" stroke-dasharray="3 5" opacity="0.85"/>
+  <!-- 其余分界略实 -->
+  <g stroke="var(--sj-ink-900)" stroke-width="1.4" opacity="0.55">
+    <line x1="360" y1="360" x2="360.0" y2="112.0"/>
+    <line x1="360" y1="360" x2="584.8" y2="255.2"/>
+    <line x1="360" y1="360" x2="243.6" y2="579.0"/>
+    <line x1="360" y1="360" x2="112.6" y2="377.3"/>
+  </g>
+
+  <!-- 扇区标签（弧中） -->
+  <g font-family="Songti SC, Noto Serif SC, serif" font-size="14" letter-spacing="0.12em" fill="var(--sj-paper-100)">
+    <text x="464.8" y="195.5" text-anchor="middle" fill="#d5e0db">上升</text>
+    <text x="555.0" y="356.6" text-anchor="middle" fill="#1d1916" font-weight="600">鼎盛</text>
+    <text x="425.1" y="543.8" text-anchor="middle" fill="var(--sj-paper-300)">僵化</text>
+    <text x="196.5" y="466.2" text-anchor="middle" fill="var(--sj-paper-100)">崩解</text>
+    <text x="217.4" y="227.0" text-anchor="middle" fill="var(--sj-paper-100)">重整</text>
+  </g>
+
+  <!-- 隐性拐点朱批（鼎盛弧顶约 89°） -->
+  <g id="inflection">
+    <circle cx="615.0" cy="355.5" r="7" fill="none" stroke="var(--sj-vermil)" stroke-width="1.6"/>
+    <circle cx="615.0" cy="355.5" r="2.5" fill="var(--sj-vermil)"/>
+    <path d="M625.0,349.5 C643.0,331.5 667.0,327.5 658.0,336.9" fill="none" stroke="var(--sj-vermil)" stroke-width="1"/>
+    <text x="662.0" y="334.9" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">隐性拐点</text>
+    <text x="662.0" y="350.9" fill="var(--sj-paper-300)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">盛极即转衰</text>
+  </g>
+
+  <!-- 外圈历史时点 -->
+  <g id="marks" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" font-size="9">
+    <g class="sj-mark" data-sample="kaikai" tabindex="0" role="button" aria-label="开元天宝时点">
+      <circle cx="628.0" cy="355.3" r="5" fill="var(--sj-ochre)" stroke="var(--sj-paper-100)" stroke-width="1"/>
+      <text x="640.0" y="361.3" fill="var(--sj-paper-300)">开元→天宝</text>
+    </g>
+    <g class="sj-mark" data-sample="xining" tabindex="0" role="button" aria-label="熙宁变法时点">
+      <circle cx="449.5" cy="612.6" r="5" fill="var(--sj-phase-rig)" stroke="var(--sj-paper-300)" stroke-width="1"/>
+      <text x="413.5" y="630.6" fill="var(--sj-paper-300)">熙宁 1069</text>
+    </g>
+    <g class="sj-mark" data-sample="wudai" tabindex="0" role="button" aria-label="五代十国时点">
+      <circle cx="164.0" cy="177.2" r="5" fill="var(--sj-celadon)" stroke="var(--sj-paper-100)" stroke-width="1"/>
+      <text x="114.0" y="181.2" fill="var(--sj-paper-300)">五代重整</text>
+    </g>
+    <g class="sj-mark" data-sample="dangdai" tabindex="0" role="button" aria-label="当代锚点">
+      <circle cx="399.2" cy="80.7" r="7" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="1.6"/>
+      <circle cx="399.2" cy="80.7" r="3.5" fill="var(--sj-vermil)"/>
+      <text x="413.2" y="76.7" fill="var(--sj-celadon)">当代 · GY-01</text>
+      <text x="413.2" y="90.7" fill="var(--sj-paper-300)">相位待定</text>
+    </g>
+  </g>
+
+  <!-- 中心诊断盘 -->
+  <circle cx="360" cy="360" r="108" fill="var(--sj-ink-900)" stroke="var(--sj-ochre)" stroke-width="1.4"/>
+  <circle cx="360" cy="360" r="98" fill="none" stroke="var(--sj-line)" stroke-width="0.8"/>
+  <text x="360" y="330" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.08em">超稳定结构修复力</text>
+  <text id="diag-repair" x="360" y="358" text-anchor="middle" fill="var(--sj-ochre)" font-size="22" font-family="Songti SC, Noto Serif SC, serif" letter-spacing="0.16em">中</text>
+  <text id="diag-cost" x="360" y="386" text-anchor="middle" fill="var(--sj-paper-300)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">修复代价：低水平均衡</text>
+  <text id="diag-phase" x="360" y="412" text-anchor="middle" fill="var(--sj-vermil)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">当前 · 鼎盛</text>
+
+  <!-- 可旋转指针 -->
+  <g class="sj-needle" id="needle" tabindex="0" role="slider" aria-label="相位指针" aria-valuemin="0" aria-valuemax="4" aria-valuenow="1" aria-valuetext="鼎盛">
+    <polygon points="360,132 352,360 368,360" fill="var(--sj-celadon)" opacity="0.95"/>
+    <polygon points="360,368 352,360 368,360 360,392" fill="var(--sj-ochre)"/>
+    <circle cx="360" cy="360" r="10" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2"/>
+    <circle cx="360" cy="360" r="3.5" fill="var(--sj-celadon)"/>
+  </g>
+  <text id="needle-tail" x="360" y="448" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">当前：开元末—天宝</text>
+
+  <!-- 图例 -->
+  <g font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" font-size="9" letter-spacing="0.06em">
+    <circle cx="48" cy="690" r="4" fill="var(--sj-phase-up)"/><text x="58" y="693" fill="var(--sj-paper-300)">上升</text>
+    <circle cx="108" cy="690" r="4" fill="var(--sj-phase-peak)"/><text x="118" y="693" fill="var(--sj-paper-300)">鼎盛</text>
+    <circle cx="168" cy="690" r="4" fill="var(--sj-phase-rig)"/><text x="178" y="693" fill="var(--sj-paper-300)">僵化</text>
+    <circle cx="228" cy="690" r="4" fill="var(--sj-phase-col)"/><text x="238" y="693" fill="var(--sj-paper-300)">崩解</text>
+    <circle cx="288" cy="690" r="4" fill="var(--sj-phase-reb)"/><text x="298" y="693" fill="var(--sj-paper-300)">重整</text>
+  </g>
+  <text x="672" y="693" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">viewBox 720×720 · 规格书图 D</text>
+</svg>
+  </div>
+
+  <aside class="card" id="card" aria-live="polite">
+    <div class="card-head">
+      <h2 id="card-name">鼎盛期</h2>
+      <span class="tag" id="card-tag">隐性拐点 · 赭金</span>
+    </div>
+    <p id="card-body">五力尚在峰值，但刚性支出与精英俘获已在积累。开元、康乾都是「盛极」与「转衰」叠合的同一时点。</p>
+    <pre id="card-contract"></pre>
+    <p class="hint">签名预览 stub：指针 / 扇区 / 时点联动已就绪；全文（判据散文、与力场双视图深链）待确认后写。</p>
+  </aside>
+
+  <p class="note"><strong>本轮交付范围</strong>：仅签名 SVG「治乱相位罗盘」与指针/样例交互。未写 SJ-04 全文。五力术语对齐规格书（财政汲取力·精英循环力·合法性叙事力·边疆—军事压力·生态—人口—技术基座），不用异义标签。本轮不上线、不 push。</p>
+
+  <footer class="foot">
+    <span><a href="./SJ-03.html">SJ-03 五力全文</a> · <a href="./SJ-00.html">返回 SJ-00</a> · <a href="./SJ-03-forcefield-preview.html">力场预览</a></span>
+    <span>ChinaOS · 史鉴 SJ · compass preview v0.1</span>
+  </footer>
+</div>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const needle = document.getElementById('needle');
+  const sectors = Array.from(stage.querySelectorAll('.sj-sector'));
+  const marks = Array.from(stage.querySelectorAll('.sj-mark'));
+  const sampleBtns = Array.from(document.querySelectorAll('[data-sample].btn'));
+  const phaseSelect = document.getElementById('phase-select');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /** 扇区中心角（度，0=12点，顺时针）——对应不等分弧长 */
+  const PHASE_ANGLE = {
+    '上升': 32.5,
+    '鼎盛': 89,
+    '僵化': 160.5,
+    '崩解': 237,
+    '重整': 313
+  };
+  const PHASE_ORDER = ['上升','鼎盛','僵化','崩解','重整'];
+
+  const PHASE_COPY = {
+    '上升': {
+      name: '上升期',
+      tag: '青瓷渐亮 · 休养生息',
+      body: '轻税、通道开放、合法性充盈、军事主动可控、基座承载宽松。开国之治的典型签名。'
+    },
+    '鼎盛': {
+      name: '鼎盛期',
+      tag: '隐性拐点 · 赭金',
+      body: '五力尚在峰值，但刚性支出与精英俘获已在积累。开元、康乾都是「盛极」与「转衰」叠合的同一时点。'
+    },
+    '僵化': {
+      name: '僵化期',
+      tag: '改革窗口 · 灰褐',
+      body: '刚性加征、税基流失、党争、绩效磨损与象征通胀。变法多发于此——成败系于重建汲取力而不引爆精英循环力。'
+    },
+    '崩解': {
+      name: '崩解期',
+      tag: '失修出口 · 朱红',
+      body: '汲取越阈值、地方坐大、天命被夺、军事反噬或崩溃、灾荒共振。三力及以上同时负相位的兑现。'
+    },
+    '重整': {
+      name: '重整期',
+      tag: '低水平回填 · 青瓷复现',
+      body: '区域重建财政与精英、新叙事竞争、军事力往往主导。修复能重启系统，代价是回到低水平均衡。'
+    }
+  };
+
+  /** 与 SJ-03 对齐的共享契约样例 */
+  const SAMPLES = {
+    kaikai: {
+      时点: '开元末—天宝十四载（约 740–755）',
+      相位: '鼎盛',
+      五力评分: [72, 48, 62, 88, 70],
+      修复力: '中',
+      note: '边疆军事力畸强而内部制衡崩坏——盛极与转衰叠合。'
+    },
+    xining: {
+      时点: '熙宁二年始行新法（1069）',
+      相位: '僵化',
+      五力评分: [38, 32, 55, 45, 58],
+      修复力: '中',
+      note: '改革窗口：重建汲取力必然触动精英循环力。'
+    },
+    wudai: {
+      时点: '五代十国（约 907–960）',
+      相位: '重整',
+      五力评分: [28, 22, 8, 92, 35],
+      修复力: '弱',
+      note: '军事力区域畸大，合法性叙事力近零；修复力耗尽于短命政权轮替。'
+    },
+    dangdai: {
+      时点: '当代锚点（2026）',
+      相位: '未定',
+      五力评分: [null, null, null, null, null],
+      修复力: '待定',
+      note: '指针暂停上升扇北缘仅作占位；正式判定见 GY-01 / 2026–2036。',
+      needlePhase: '上升'
+    }
+  };
+
+  let currentPhase = '鼎盛';
+  let activeSample = 'kaikai';
+  let dragging = false;
+
+  function setNeedle(phase){
+    const ang = PHASE_ANGLE[phase] || 0;
+    if(reduceMotion){
+      needle.style.transition = 'none';
+    }
+    needle.style.transform = 'rotate('+ang+'deg)';
+    needle.setAttribute('aria-valuenow', String(PHASE_ORDER.indexOf(phase)));
+    needle.setAttribute('aria-valuetext', phase);
+  }
+
+  function highlightPhase(phase){
+    stage.classList.add('is-picking');
+    sectors.forEach(s => s.classList.toggle('is-hot', s.dataset.phase === phase));
+  }
+
+  function renderCard(sampleKey){
+    const s = SAMPLES[sampleKey];
+    const needlePhase = s.needlePhase || s.相位;
+    const copy = PHASE_COPY[needlePhase] || PHASE_COPY['上升'];
+    const display = s.相位;
+    document.getElementById('card-name').textContent = (s.相位 === '未定') ? '当代锚点〔相位未定〕' : copy.name;
+    document.getElementById('card-tag').textContent = (s.相位 === '未定') ? '占位 · 对接 GY-01' : copy.tag;
+    document.getElementById('card-body').textContent = s.note + (s.相位 === '未定' ? '' : (' ' + copy.body));
+    const labels = ['财政汲取','精英循环','合法性叙事','边疆军事','生态基座'];
+    const scores = s.五力评分.map(function(v,i){
+      return '    /* '+labels[i]+' */ ' + (v === null ? 'null' : v);
+    }).join(',\n');
+    document.getElementById('card-contract').innerHTML =
+      '{\n' +
+      '  <span class="key">时点</span>: <span class="str">"'+s.时点+'"</span>,\n' +
+      '  <span class="key">相位</span>: <span class="str">"'+s.相位+'"</span>,\n' +
+      '  <span class="key">五力评分</span>: [\n'+scores+'\n  ],\n' +
+      '  <span class="key">修复力</span>: <span class="str">"'+s.修复力+'"</span>\n' +
+      '}';
+
+    document.getElementById('diag-repair').textContent = s.修复力;
+    document.getElementById('diag-phase').textContent = '当前 · ' + display;
+    document.getElementById('needle-tail').textContent = '当前：' + s.时点.replace(/（.*）/,'').slice(0,14);
+    const costMap = { '强':'修复代价：回到低水平均衡', '中':'修复代价：低水平均衡', '弱':'修复代价：高 · 或无能修复', '待定':'修复代价：对照 GY-01' };
+    document.getElementById('diag-cost').textContent = costMap[s.修复力] || costMap['中'];
+  }
+
+  function applyPhase(phase, sampleKey){
+    currentPhase = phase;
+    if(sampleKey) activeSample = sampleKey;
+    setNeedle(phase);
+    highlightPhase(phase);
+    if(phaseSelect && PHASE_ORDER.indexOf(phase) >= 0) phaseSelect.value = phase;
+    sampleBtns.forEach(b => b.classList.toggle('is-on', b.dataset.sample === activeSample));
+    renderCard(activeSample);
+  }
+
+  function applySample(key){
+    const s = SAMPLES[key];
+    if(!s) return;
+    const needlePhase = s.needlePhase || s.相位;
+    applyPhase(needlePhase, key);
+  }
+
+  function angleFromEvent(e){
+    const svg = stage.querySelector('svg');
+    const rect = svg.getBoundingClientRect();
+    const cx = rect.left + rect.width/2;
+    const cy = rect.top + rect.height/2;
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    let deg = Math.atan2(clientX - cx, cy - clientY) * 180 / Math.PI;
+    if(deg < 0) deg += 360;
+    return deg;
+  }
+
+  function phaseFromAngle(deg){
+    // 升 0-65, 鼎 65-113, 僵 113-208, 崩 208-266, 重 266-360
+    if(deg < 65) return '上升';
+    if(deg < 113) return '鼎盛';
+    if(deg < 208) return '僵化';
+    if(deg < 266) return '崩解';
+    return '重整';
+  }
+
+  function onPointer(deg){
+    const phase = phaseFromAngle(deg);
+    // 指针拖动时切换相位，若匹配某样例则同步样例，否则保持样例但覆盖相位展示用临时对象
+    const match = Object.keys(SAMPLES).find(k => SAMPLES[k].相位 === phase && k !== 'dangdai');
+    if(match){
+      applySample(match);
+    } else {
+      currentPhase = phase;
+      setNeedle(phase);
+      highlightPhase(phase);
+      if(phaseSelect) phaseSelect.value = phase;
+      const copy = PHASE_COPY[phase];
+      document.getElementById('card-name').textContent = copy.name;
+      document.getElementById('card-tag').textContent = copy.tag;
+      document.getElementById('card-body').textContent = copy.body + '（自由旋转；未绑定样例时点。）';
+      document.getElementById('diag-phase').textContent = '当前 · ' + phase;
+      document.getElementById('needle-tail').textContent = '当前：自由定位 · ' + phase;
+    }
+  }
+
+  // 扇区点击
+  sectors.forEach(s => {
+    const act = () => {
+      const phase = s.dataset.phase;
+      const match = Object.keys(SAMPLES).find(k => SAMPLES[k].相位 === phase);
+      if(match) applySample(match);
+      else applyPhase(phase, activeSample);
+    };
+    s.addEventListener('click', act);
+    s.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); act(); }
+    });
+  });
+
+  marks.forEach(m => {
+    const act = () => applySample(m.dataset.sample);
+    m.addEventListener('click', act);
+    m.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); act(); }
+    });
+  });
+
+  sampleBtns.forEach(b => b.addEventListener('click', () => applySample(b.dataset.sample)));
+  if(phaseSelect){
+    phaseSelect.addEventListener('change', () => {
+      const phase = phaseSelect.value;
+      const match = Object.keys(SAMPLES).find(k => SAMPLES[k].相位 === phase);
+      if(match) applySample(match);
+      else applyPhase(phase, activeSample);
+    });
+  }
+
+  // 拖指针
+  function startDrag(e){
+    dragging = true;
+    onPointer(angleFromEvent(e));
+    e.preventDefault();
+  }
+  function moveDrag(e){
+    if(!dragging) return;
+    onPointer(angleFromEvent(e));
+  }
+  function endDrag(){ dragging = false; }
+
+  needle.addEventListener('mousedown', startDrag);
+  needle.addEventListener('touchstart', startDrag, {passive:false});
+  window.addEventListener('mousemove', moveDrag);
+  window.addEventListener('touchmove', moveDrag, {passive:false});
+  window.addEventListener('mouseup', endDrag);
+  window.addEventListener('touchend', endDrag);
+
+  needle.addEventListener('keydown', e => {
+    const idx = PHASE_ORDER.indexOf(currentPhase);
+    if(e.key === 'ArrowRight' || e.key === 'ArrowDown'){
+      e.preventDefault();
+      const next = PHASE_ORDER[(idx + 1) % 5];
+      const match = Object.keys(SAMPLES).find(k => SAMPLES[k].相位 === next);
+      if(match) applySample(match); else applyPhase(next, activeSample);
+    }
+    if(e.key === 'ArrowLeft' || e.key === 'ArrowUp'){
+      e.preventDefault();
+      const prev = PHASE_ORDER[(idx + 4) % 5];
+      const match = Object.keys(SAMPLES).find(k => SAMPLES[k].相位 === prev);
+      if(match) applySample(match); else applyPhase(prev, activeSample);
+    }
+  });
+
+  applySample('kaikai');
+  window.SJ_SHARED_SNAPSHOT = function(){ return SAMPLES[activeSample]; };
+})();
+</script>
+</body>
+</html>
