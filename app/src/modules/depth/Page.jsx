@@ -331,7 +331,7 @@ export default function Page() {
       </div>
 
       {/* ════ 三、八维张力总览 ════ */}
-      <SectionTitle icon="Gauge" title="八维张力总览" note="按张力排序 · 颜色 = 动量（绿上行 / 红承压 / 金胶着）" />
+      <SectionTitle icon="Gauge" title="八维张力总览" note="示意标定 · 按张力排序 · 颜色 = 动量（绿上行 / 红承压 / 金胶着）" />
       <Card className="mb-6">
         <TensionBar />
         <div className="flex gap-4 mt-1 flex-wrap">

@@ -235,6 +235,12 @@ export default function Page() {
   const [compareId, setCompareId] = useState('');
   const [sel, setSel] = useState(null);
   const [loading, setLoading] = useState(false);
+  const FIGURES_SEED_LS = 'chinaos.figures.seedId.v1';
+  const [localSeedId, setLocalSeedId] = useState(() => {
+    try { return localStorage.getItem(FIGURES_SEED_LS) || ''; } catch { return ''; }
+  });
+  const seedStale = figuresRaw != null && figuresRaw.length > 0
+    && (localSeedId !== FIGURE_CATALOG_META.id || figuresRaw.length < FIGURE_SEED.length);
 
   const antiCorruptionNames = useMemo(
     () => new Set((ANTI_CORRUPTION_SEED_PKG.rows || []).map((r) => (r.name || '').trim()).filter(Boolean)),
@@ -344,6 +350,8 @@ export default function Page() {
     await DB.clearFigures();
     let ts = Date.now();
     for (const r of FIGURE_SEED) await DB.putFigure({ ...r, id: figureStableId(r), updatedAt: ts++ });
+    try { localStorage.setItem(FIGURES_SEED_LS, FIGURE_CATALOG_META.id); } catch { /* ignore */ }
+    setLocalSeedId(FIGURE_CATALOG_META.id);
     setLoading(false);
   };
   const clearAll = () => { setQ(''); setProv(''); setLevel(''); setRole(''); setSector(''); setDecade(''); setMinority(false); setInstitutionType(''); setQuickFilter(''); };
@@ -507,16 +515,31 @@ export default function Page() {
       </StatGrid>
       <p className="text-[11px] mono mb-4 -mt-2" style={{ color: 'var(--text-tertiary)' }}>
         数据截至 {FIGURE_CATALOG_META.asOf || '2026-06-27'} · 省级/中央/军事队列 · 反腐/知识/商业/海外等分轨见 Tab
+        {' · '}地级市主官为公开名录简表（履历字段待逐步补全），不以示意人名占位省级正职。
       </p>
 
       {figures.length < 10 && (
         <Card title="一键载入中国政要" className="mb-4">
           <p className="text-sm mb-3" style={{ color: 'var(--text-secondary)' }}>
             内置 {FIGURE_SEED.length} 条：省级 {FIGURE_CATALOG_META.breakdown?.provincial} + 人大政协 {FIGURE_CATALOG_META.breakdown?.provincialExtended} + 常委岗位 {FIGURE_CATALOG_META.breakdown?.provincialStanding} + 中央 {FIGURE_CATALOG_META.breakdown?.central} + 扩展 {FIGURE_CATALOG_META.breakdown?.extended} + 结构补全 {FIGURE_CATALOG_META.breakdown?.politicalStructure} + 城市 {FIGURE_CATALOG_META.breakdown?.municipal} + 地级市 {FIGURE_CATALOG_META.breakdown?.prefectureCity} + 机构 {FIGURE_CATALOG_META.breakdown?.org} + 二层 {FIGURE_CATALOG_META.breakdown?.orgTier2} + 军事 {FIGURE_CATALOG_META.breakdown?.military}。来源：{FIGURE_CATALOG_META.sources.join('、')}。
-            也可到 <Link to="/foundation" className="mono" style={{ color: 'var(--cyber-cyan)' }}>数据底座 · 人才精英</Link> 增量导入或粘贴更新。
+            数据写入本机 IndexedDB；种子升级后若列表异常，请点下方覆盖载入或到 <Link to="/foundation" className="mono" style={{ color: 'var(--cyber-cyan)' }}>数据底座 · 人才精英</Link> 刷新。
           </p>
           <Button variant="primary" onClick={loadSeed} disabled={loading}>
             {loading ? '载入中…' : `载入 ${FIGURE_CATALOG_META.label}（${FIGURE_SEED.length} 条）`}
+          </Button>
+        </Card>
+      )}
+
+      {seedStale && figures.length >= 10 && (
+        <Card title="本地库种子可能过期" className="mb-4" style={{ borderColor: 'color-mix(in srgb, var(--status-caution, #cf9a32) 45%, transparent)' }}>
+          <p className="text-sm mb-3" style={{ color: 'var(--text-secondary)' }}>
+            内置种子已更新为 <span className="mono">{FIGURE_CATALOG_META.id}</span>（{FIGURE_SEED.length} 条 · {FIGURE_CATALOG_META.asOf}），
+            当前本机 IndexedDB 为 {figures.length} 条
+            {localSeedId ? <> · 标记 <span className="mono">{localSeedId}</span></> : ' · 尚未记录种子版本'}。
+            职务纠偏与近重复合并需覆盖刷新后生效；不会捏造新任免。
+          </p>
+          <Button variant="primary" onClick={loadSeed} disabled={loading}>
+            {loading ? '刷新中…' : `覆盖刷新为本机构建种子（${FIGURE_SEED.length} 条）`}
           </Button>
         </Card>
       )}
@@ -558,9 +581,9 @@ export default function Page() {
                   return <button key={v} onClick={() => setView(v)} title={title} style={{ padding: '6px 9px', background: on ? 'rgba(34,211,238,0.18)' : 'var(--bg-base)', color: on ? 'var(--cyber-cyan)' : 'var(--text-tertiary)', border: 'none', cursor: 'pointer' }}><I size={15} /></button>;
                 })}
               </div>
-              {figures.length < FIGURE_SEED.length && (
-                <button onClick={loadSeed} disabled={loading} title="补全到最新内置库" style={{ ...inp, cursor: 'pointer', color: '#10b981', borderColor: 'rgba(16,185,129,0.4)', display: 'flex', alignItems: 'center', gap: 4 }}>
-                  <Lucide.RefreshCw size={13} />{loading ? '载入中…' : `补全 ${FIGURE_SEED.length} 条`}
+              {(figures.length < FIGURE_SEED.length || seedStale) && (
+                <button onClick={loadSeed} disabled={loading} title="覆盖刷新到最新内置种子（本机 IndexedDB）" style={{ ...inp, cursor: 'pointer', color: '#10b981', borderColor: 'rgba(16,185,129,0.4)', display: 'flex', alignItems: 'center', gap: 4 }}>
+                  <Lucide.RefreshCw size={13} />{loading ? '载入中…' : seedStale ? '刷新种子' : `补全 ${FIGURE_SEED.length} 条`}
                 </button>
               )}
             </div>

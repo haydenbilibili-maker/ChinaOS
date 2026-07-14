@@ -480,7 +480,7 @@ export default function DiplomaticCorpsSection() {
                     footer={buildDetailFooter(detail)}
                   />
                 ) : (
-                  <div className="space-y-1.5" style={{ maxHeight: 400, overflowY: 'auto' }}>
+                  <div className="talent-split__scroll space-y-1.5" style={{ maxHeight: 'min(400px, 50vh)' }}>
                     {filtered.slice(0, 20).map((r) => (
                       <EnvoyCard key={dcKey(r)} r={r} on={false} onClick={() => selectEntity(r)} dense />
                     ))}

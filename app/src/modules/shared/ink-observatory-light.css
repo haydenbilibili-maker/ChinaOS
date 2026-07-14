@@ -112,6 +112,13 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
+/* 信号灯徽标文字：日览下 --ink 为纸色，需深墨字保证对比 */
+:root[data-theme='light'] .ink-observatory.sp-wrap .sp-glyph,
+:root[data-theme='light'] .ink-observatory.sp-wrap .sp-tier,
+:root[data-theme='light'] .ink-observatory.sp-wrap .sp-tag {
+  color: #1a2428;
+}
+
 /* ── 轨道旋钮 / 仪表阴影 ── */
 :root[data-theme='light'] .ink-observatory .sp-knob {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);

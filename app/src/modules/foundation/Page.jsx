@@ -530,6 +530,7 @@ function Figures({ figures, refresh, flash, datasets }) {
     if (replace && figures.length && !window.confirm(`将覆盖/更新 ${FIGURE_SEED.length} 条省部级中国政要（${FIGURE_CATALOG_META.asOf}），继续？`)) return;
     let ts = Date.now();
     for (const r of FIGURE_SEED) await DB.putFigure({ ...r, id: figureStableId(r), updatedAt: ts++ });
+    try { localStorage.setItem('chinaos.figures.seedId.v1', FIGURE_CATALOG_META.id); } catch { /* ignore */ }
     await refresh();
     flash(`已载入 ${FIGURE_CATALOG_META.label}：${FIGURE_SEED.length} 条（截至 ${FIGURE_CATALOG_META.asOf}）`);
   };

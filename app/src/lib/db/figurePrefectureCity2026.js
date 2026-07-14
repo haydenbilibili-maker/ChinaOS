@@ -13,7 +13,7 @@ export const FIGURE_PREFECTURE_CITY_META = {
   label: '地级市主官政要 · 2026-06',
   sources: ['中国经济网·地方党政领导人物库', 'district.ce.cn'],
   scope: '全国地级市/州/盟主官（书记+市长）',
-  notes: '不含已录入副省级市、省会/首府、直辖市市长；履历字段待逐步补全',
+  notes: '不含已录入副省级市、省会/首府、直辖市市长；公开名录简表（多数条目履历仅含任职起止示意），出生年月/籍贯待逐步补全；不以合成人名覆盖省级正职主源',
 };
 
 const M = (city, province, name, role, level, birth, native, rank, tookOffice, cityTier, career, extra = {}) =>
