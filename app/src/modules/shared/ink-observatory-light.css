@@ -9,6 +9,7 @@
 :root[data-theme='light'] .ink-observatory.ac-wrap,
 :root[data-theme='light'] .ink-observatory.hf-gate-wrap,
 :root[data-theme='light'] .ink-observatory.hf-hub-wrap,
+:root[data-theme='light'] .ink-observatory.mil-wrap,
 :root[data-theme='light'] .gv-panel.ink-observatory {
   --ink: #f4f1ea;
   --ink-2: #ebe6dc;

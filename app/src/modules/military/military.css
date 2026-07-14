@@ -1,0 +1,94 @@
+/* 军事力量全维度透视 · ink-observatory Round 2 */
+
+.ink-observatory.mil-wrap {
+  --mil-red: #c41e3a;
+  --mil-gold: #e8a317;
+  --mil-cyan: #22d3ee;
+}
+
+.ink-observatory.mil-wrap {
+  background:
+    radial-gradient(1200px 620px at 82% -8%, rgba(196, 30, 58, 0.06) 0%, transparent 58%),
+    radial-gradient(900px 480px at 6% 102%, rgba(34, 211, 238, 0.04) 0%, transparent 55%),
+    var(--bg-base);
+}
+
+.mil-wrap .mil-intro {
+  border-left: 3px solid var(--mil-red);
+}
+
+.mil-wrap .mil-sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: 4px 0 8px;
+  margin-bottom: 1rem;
+  background: color-mix(in srgb, var(--bg-surface) 92%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.mil-wrap .mil-section {
+  scroll-margin-top: 5.5rem;
+}
+
+.mil-wrap .mil-leader-row {
+  display: grid;
+  grid-template-columns: 72px 1fr auto;
+  gap: 0.5rem 0.75rem;
+  align-items: start;
+  padding: 0.5rem 0.625rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.mil-wrap .mil-leader-row:hover,
+.mil-wrap .mil-leader-row:focus-within {
+  border-color: rgba(196, 30, 58, 0.35);
+  background: rgba(196, 30, 58, 0.04);
+}
+
+.mil-wrap .mil-rank-badge {
+  font-size: 10px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.mil-wrap .mil-island-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 11px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(232, 163, 23, 0.35);
+  background: rgba(232, 163, 23, 0.1);
+  color: var(--mil-gold);
+  text-decoration: none;
+}
+
+.mil-wrap .mil-island-link:hover {
+  border-color: rgba(232, 163, 23, 0.55);
+  background: rgba(232, 163, 23, 0.16);
+}
+
+@media (min-width: 1024px) {
+  .mil-wrap .mil-leaders-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+    gap: 1rem;
+    align-items: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mil-wrap .mil-leader-row {
+    transition: none;
+  }
+}

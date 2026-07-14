@@ -665,3 +665,21 @@ export const ISLAND_CHAINS = {
     [142.0, 35.5], [142.5, 27.0], [145.7, 15.2], [144.8, 13.4], [138.0, 9.5], [134.5, 7.3],
   ],
 };
+
+/** 台海 / 岛链方向态势锚点 · 公开评估示意（与台海模块叙事衔接） */
+export const STRAITS_POSTURE = {
+  asOf: AS_OF_BASELINE,
+  anchors: [
+    { label: 'A2/AD 覆盖', value: '~3,000 km', note: 'IISS / DoD 公开评估区间示意', accent: '#22d3ee' },
+    { label: '岛链突破', value: '第一岛链', note: '地缘物理目标向量 · 深水通道', accent: '#c41e3a' },
+    { label: '常态巡航', value: '2016–', note: '绕岛 / 过中线巡航常态化', accent: '#e8a317' },
+    { label: '前沿基地', value: '8+', note: '东部 / 东南沿海公开标注设施', accent: '#10b981' },
+  ],
+  phases: [
+    { period: '2008–2016', title: '防独 · 红线威慑', accent: '#64748b', desc: '《反分裂国家法》+ 导弹覆盖形成底线，重心在阻止法理台独。' },
+    { period: '2016–2022', title: '促统 · 常态化巡航', accent: '#e8a317', desc: '绕岛巡航、越过海峡中线成为新常态，压缩离岸活动空间。' },
+    { period: '2022–至今', title: '收网 · 融合发展', accent: '#c41e3a', desc: '福建两岸融合发展示范区，军事威慑与制度性吸纳并行。' },
+  ],
+  frontlineRegions: ['福建', '浙江', '海南'],
+  note: '数值为公开资料整理示意，完整台海博弈模型见台海模块；不含未公开部署细节。',
+};

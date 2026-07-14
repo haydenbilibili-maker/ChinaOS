@@ -1,10 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { PageHeader, Card, Grid, Stat, StatGrid, TabBar, DistBar } from '../../app/ui.jsx';
-import { FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
+import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import MilitaryMap, { BaseTypeLegend, TheaterLegend } from './MilitaryMap.jsx';
-import { FIGURE_MILITARY_COUNT } from '../../lib/db/figureMilitary2026.js';
+import { FIGURE_MILITARY_2026, FIGURE_MILITARY_META, FIGURE_MILITARY_COUNT } from '../../lib/db/figureMilitary2026.js';
+import './military.css';
 import {
   MILITARY_INTEL_META,
   STRATEGY_MILESTONES,
@@ -34,18 +35,20 @@ import {
   RD_INVESTMENT_TREND,
   MCF_SANKEY,
   THEATER_FORCE,
+  STRAITS_POSTURE,
+  ISLAND_CHAINS,
 } from '../../lib/db/militaryIntel2026.js';
 import { AXIS, GRID_LINE, LABEL, LEGEND, categoryX, valueY, logY, radarOpt } from '../shared/chartHelpers.js';
 
 const TABS = [
-  ['overview', '总览'],
-  ['personnel', '人员'],
-  ['equipment', '装备'],
-  ['tech', '科技'],
-  ['theater', '战区'],
-  ['logistics', '联勤'],
-  ['bases', '基地'],
+  ['strategy', '战略态势'],
+  ['services', '军种结构'],
+  ['combat', '装备战力'],
+  ['island', '台海岛链'],
+  ['leaders', '人事将领'],
 ];
+
+const RANK_COLORS = { 上将: '#c41e3a', 中将: '#e8a317', 少将: '#22d3ee' };
 
 const tabBtn = (active) => ({
   background: active ? 'rgba(196,30,58,0.22)' : 'var(--bg-elevated)',
@@ -790,32 +793,363 @@ function BasesTab() {
   );
 }
 
-export default function Page() {
-  const [tab, setTab] = useState('overview');
+function ServicesTab() {
+  return (
+    <div className="mil-section space-y-6">
+      <PersonnelTab />
+      <Card title={`联勤保障概要 · ${LOGISTICS.asOf}`}>
+        <StatGrid className="mb-4">
+          <Stat value={LOGISTICS.hubs.length} label="联勤保障中心" accent="#10b981" />
+          <Stat value={LOGISTICS.transport.strategicAirlift.capacity.split(' ')[0]} label="战略空运" accent="#22d3ee" />
+          <Stat value="5" label="战区联勤中心" />
+        </StatGrid>
+        <Grid cols={2}>
+          <div>
+            <MilitaryMap mode="logistics" style={{ height: 260 }} />
+            <p className="text-[10px] mt-1" style={{ color: 'var(--text-tertiary)' }}>菱形标注为联勤保障中心驻地（公开报道量级）。</p>
+          </div>
+          <div className="space-y-2">
+            {LOGISTICS.structure.slice(0, 4).map((row, i) => (
+              <div key={row.level} className="flex gap-2 items-start text-xs">
+                <span className="mono shrink-0 w-5 text-center py-0.5 rounded" style={{ background: 'rgba(16,185,129,0.14)', color: '#10b981' }}>{i + 1}</span>
+                <div>
+                  <div className="font-semibold" style={{ color: 'var(--text-primary)' }}>{row.level}</div>
+                  <div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{row.role}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Grid>
+      </Card>
+    </div>
+  );
+}
+
+function CombatTab() {
+  return (
+    <div className="mil-section space-y-6">
+      <EquipmentTab />
+      <div className="pt-2 border-t" style={{ borderColor: 'var(--border-subtle)' }}>
+        <TechTab />
+      </div>
+    </div>
+  );
+}
+
+function IslandTab() {
+  const [sel, setSel] = useState('east');
+  const [baseSel, setBaseSel] = useState('');
+  const [phaseIdx, setPhaseIdx] = useState(STRAITS_POSTURE.phases.length - 1);
+  const th = THEATERS.find((x) => x.id === sel) || THEATERS[0];
+  const frontlineBases = useMemo(
+    () => MILITARY_BASES.filter((b) => STRAITS_POSTURE.frontlineRegions.includes(b.region)),
+    [],
+  );
+  const base = MILITARY_BASES.find((b) => b.id === baseSel);
+
+  const theaterForceChart = {
+    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+    legend: { ...LEGEND, top: 0 },
+    grid: { left: 40, right: 16, top: 30, bottom: 24 },
+    xAxis: categoryX(THEATER_FORCE.theaters, { interval: 0 }),
+    yAxis: valueY({ max: 280 }),
+    series: THEATER_FORCE.series.map((seg) => ({ name: seg.name, type: 'bar', stack: 't', barWidth: 30, data: seg.data, itemStyle: { color: seg.color } })),
+  };
+
+  const deterrenceRadar = {
+    radar: {
+      indicator: [{ name: '高超声速', max: 100 }, { name: '反舰打击', max: 100 }, { name: '态势感知', max: 100 }, { name: '区域拒止', max: 100 }, { name: '常态巡航', max: 100 }],
+      axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false },
+    },
+    series: [{ type: 'radar', data: [{ value: [88, 90, 85, 92, 95], name: 'A2/AD 气泡 · 公开评估', lineStyle: { color: '#e8a317' }, areaStyle: { color: 'rgba(232,163,23,0.14)' } }] }],
+  };
 
   return (
-    <div>
+    <>
+      <StatGrid className="mb-4">
+        {STRAITS_POSTURE.anchors.map((a) => (
+          <Stat key={a.label} value={a.value} label={a.label} accent={a.accent} />
+        ))}
+      </StatGrid>
+
+      <Card title={`台海 / 岛链战略阶段 · ${STRAITS_POSTURE.asOf}`} className="mb-4">
+        <TimelineBar stages={STRAITS_POSTURE.phases} activeIdx={phaseIdx} onSelect={setPhaseIdx} />
+        <p className="text-xs mt-3 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+          {STRAITS_POSTURE.phases[phaseIdx].desc}
+          <span className="block mt-2 text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{STRAITS_POSTURE.note}</span>
+        </p>
+        <div className="flex flex-wrap gap-2 mt-3">
+          <Link to="/straits" className="mil-island-link">台海重力博弈 · 完整模型 ↗</Link>
+          <span className="text-[10px] mono self-center" style={{ color: 'var(--text-tertiary)' }}>{ISLAND_CHAINS.note}</span>
+        </div>
+      </Card>
+
+      <Grid cols={2} className="mb-4">
+        <Card title="物理威慑 · A2/AD 能力雷达">
+          <EChart option={deterrenceRadar} style={{ height: 220 }} />
+        </Card>
+        <Card title={`战区力量侧重 · ${THEATER_FORCE.asOf}`}>
+          <EChart option={theaterForceChart} style={{ height: 220 }} />
+          <p className="text-[10px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{THEATER_FORCE.note}</p>
+        </Card>
+      </Grid>
+
+      <Card title="五大战区辖区 · 东部方向默认高亮" className="mb-4">
+        <TheaterLegend selected={sel} onSelect={setSel} />
+        <MilitaryMap mode="theater" selectedTheater={sel} onTheaterClick={setSel} style={{ height: 380, marginTop: 12 }} />
+      </Card>
+
+      <Grid cols={2} className="mb-4">
+        <Card title={th.name}>
+          <div className="space-y-2 text-xs">
+            <div><span className="font-semibold" style={{ color: 'var(--text-primary)' }}>机关驻地</span> · <span className="mono" style={{ color: th.color }}>{th.hq}</span></div>
+            <div><span className="font-semibold" style={{ color: 'var(--text-primary)' }}>战略方向</span> · {th.focus}</div>
+            <div><span className="font-semibold" style={{ color: 'var(--text-primary)' }}>司令</span> · {th.commander}</div>
+            <div><span className="font-semibold" style={{ color: 'var(--text-primary)' }}>海军</span> · {th.fleet}</div>
+            <p className="leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{th.note}</p>
+          </div>
+        </Card>
+        <Card title="辖区省份 · 集团军归属">
+          <div className="flex flex-wrap gap-1 mb-3">
+            {th.provinces.map((p) => (
+              <span key={p} className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: `${th.color}18`, color: th.color }}>{p}</span>
+            ))}
+          </div>
+          <div className="space-y-1.5">
+            {th.armyGroups.map((g) => (
+              <div key={g} className="text-[11px] mono px-2 py-1.5 rounded" style={{ background: 'var(--bg-elevated)', color: 'var(--text-secondary)' }}>{g}</div>
+            ))}
+          </div>
+        </Card>
+      </Grid>
+
+      <Card title="第一岛链前沿 · 公开标注基地" className="mb-4">
+        <BaseTypeLegend />
+        <div className="flex flex-wrap gap-2 mt-1 mb-2">
+          <span className="text-[10px] mono flex items-center gap-1" style={{ color: '#e8a317' }}><span style={{ width: 14, height: 0, borderTop: '2px dashed #e8a317', display: 'inline-block' }} />第一岛链</span>
+          <span className="text-[10px] mono flex items-center gap-1" style={{ color: '#22d3ee' }}><span style={{ width: 14, height: 0, borderTop: '2px dashed #22d3ee', display: 'inline-block' }} />第二岛链</span>
+        </div>
+        <MilitaryMap mode="bases-global" selectedBase={baseSel} onBaseClick={setBaseSel} style={{ height: 360, marginTop: 8 }} />
+        <p className="text-[10px] mt-2 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
+          坐标为公开报道/开源地图量级，<span className="mono" style={{ color: 'var(--china-red)' }}>非精确军事情报</span>。
+        </p>
+      </Card>
+
+      <Grid cols={2}>
+        <Card title={`东南沿海前沿 · ${frontlineBases.length} 处`}>
+          <div className="space-y-1 max-h-72 overflow-y-auto">
+            {frontlineBases.map((b) => (
+              <button
+                key={b.id}
+                type="button"
+                onClick={() => setBaseSel(b.id)}
+                className="w-full text-left px-2 py-1.5 rounded text-[11px]"
+                style={{
+                  background: baseSel === b.id ? 'rgba(34,211,238,0.12)' : 'var(--bg-elevated)',
+                  border: `1px solid ${baseSel === b.id ? '#22d3ee' : 'var(--border-subtle)'}`,
+                  cursor: 'pointer',
+                }}
+              >
+                <span className="mono font-medium" style={{ color: 'var(--text-primary)' }}>{b.name}</span>
+                <span className="mx-1" style={{ color: 'var(--text-tertiary)' }}>·</span>
+                <span style={{ color: 'var(--text-tertiary)' }}>{b.type} · {b.region}</span>
+              </button>
+            ))}
+          </div>
+        </Card>
+        <Card title={base ? base.name : '选择基地查看详情'}>
+          {base ? (
+            <div className="space-y-2 text-xs">
+              <div><span className="font-semibold" style={{ color: 'var(--text-primary)' }}>类型</span> · {base.type} / {base.branch}</div>
+              <div><span className="font-semibold" style={{ color: 'var(--text-primary)' }}>区域</span> · {base.region}</div>
+              <div><span className="font-semibold" style={{ color: 'var(--text-primary)' }}>坐标</span> · <span className="mono">{base.coord.join(', ')}</span>（公开参考）</div>
+              <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{base.note}</p>
+              <p className="text-[10px] pt-2 border-t" style={{ color: 'var(--text-tertiary)', borderColor: 'var(--border-subtle)' }}>来源：{base.source}</p>
+            </div>
+          ) : (
+            <p style={{ color: 'var(--text-tertiary)', fontSize: 12 }}>点击地图散点或左侧列表查看详情</p>
+          )}
+        </Card>
+      </Grid>
+    </>
+  );
+}
+
+function LeadersTab() {
+  const [rankF, setRankF] = useState('');
+  const [branchF, setBranchF] = useState('');
+  const [q, setQ] = useState('');
+
+  const branches = useMemo(
+    () => [...new Set(FIGURE_MILITARY_2026.map((f) => f.fields?.milBranch).filter(Boolean))].sort(),
+    [],
+  );
+
+  const rankCounts = useMemo(() => {
+    const counts = { 上将: 0, 中将: 0, 少将: 0 };
+    FIGURE_MILITARY_2026.forEach((f) => {
+      const r = f.fields?.milRank;
+      if (r && counts[r] != null) counts[r] += 1;
+    });
+    return counts;
+  }, []);
+
+  const filtered = useMemo(() => FIGURE_MILITARY_2026.filter((f) => {
+    const rank = f.fields?.milRank;
+    const branch = f.fields?.milBranch;
+    const role = f.fields?.role || f.role || '';
+    if (rankF && rank !== rankF) return false;
+    if (branchF && branch !== branchF) return false;
+    if (q.trim()) {
+      const needle = q.trim();
+      if (!f.name.includes(needle) && !role.includes(needle) && !(f.org || '').includes(needle)) return false;
+    }
+    return true;
+  }), [rankF, branchF, q]);
+
+  const rankChart = {
+    tooltip: { trigger: 'item' },
+    grid: { left: 44, right: 16, top: 16, bottom: 24 },
+    xAxis: categoryX(['上将', '中将', '少将']),
+    yAxis: valueY({ name: '人', nameTextStyle: { color: '#5b6a82' } }),
+    series: [{
+      type: 'bar',
+      barWidth: 36,
+      data: ['上将', '中将', '少将'].map((r) => ({
+        value: rankCounts[r] || 0,
+        itemStyle: { color: RANK_COLORS[r], borderRadius: [3, 3, 0, 0] },
+      })),
+      label: { show: true, position: 'top', color: LABEL.color, fontSize: 10 },
+    }],
+  };
+
+  const branchPie = {
+    tooltip: { trigger: 'item' },
+    legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
+    series: [{
+      type: 'pie',
+      radius: ['46%', '68%'],
+      center: ['50%', '42%'],
+      label: { color: LABEL.color, fontSize: 10 },
+      data: branches.map((b, i) => ({
+        name: b,
+        value: FIGURE_MILITARY_2026.filter((f) => f.fields?.milBranch === b).length,
+        itemStyle: { color: ['#c41e3a', '#22d3ee', '#8b5cf6', '#e8a317', '#10b981', '#64748b'][i % 6] },
+      })),
+    }],
+  };
+
+  const rankItems = [
+    { key: '', label: '全部军衔' },
+    { key: '上将', label: '上将', accent: RANK_COLORS.上将 },
+    { key: '中将', label: '中将', accent: RANK_COLORS.中将 },
+    { key: '少将', label: '少将', accent: RANK_COLORS.少将 },
+  ];
+
+  const branchItems = [{ key: '', label: '全部军种' }, ...branches.map((b) => ({ key: b, label: b }))];
+
+  return (
+    <>
+      <StatGrid className="mb-4">
+        <Stat value={String(rankCounts.上将 || 0)} label="上将（公开名录）" accent={RANK_COLORS.上将} />
+        <Stat value={String(rankCounts.中将 || 0)} label="中将" accent={RANK_COLORS.中将} />
+        <Stat value={String(rankCounts.少将 || 0)} label="少将（公开子集）" accent={RANK_COLORS.少将} />
+        <Stat value={String(FIGURE_MILITARY_COUNT)} label="库内总条数" accent="#8b5cf6" />
+      </StatGrid>
+
+      <p className="text-xs mb-4 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+        {FIGURE_MILITARY_META.notes} · 截至 {FIGURE_MILITARY_META.asOf}。本页仅展示 seed 库中可核实条目，<span className="mono" style={{ color: 'var(--china-red)' }}>非官方全集</span>。
+      </p>
+
+      <div className="mil-leaders-grid mb-4">
+        <Card title="军衔结构 · 公开名录统计">
+          <EChart option={rankChart} style={{ height: 200 }} />
+        </Card>
+        <Card title="军种分布 · 库内条目">
+          <EChart option={branchPie} style={{ height: 200 }} />
+        </Card>
+      </div>
+
+      <Card title="将官检索 · 库内条目" className="mb-4">
+        <div className="flex flex-wrap gap-2 mb-3 items-center">
+          <input
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            placeholder="检索姓名 / 职务…"
+            aria-label="检索将官"
+            className="text-xs mono px-2 py-1.5 rounded flex-1"
+            style={{ minWidth: 160, background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)' }}
+          />
+          <Link to="/talent" className="mil-island-link shrink-0">人才库全览 ↗</Link>
+        </div>
+        <SelectorBar items={rankItems} activeKey={rankF} onSelect={setRankF} />
+        <SelectorBar items={branchItems} activeKey={branchF} onSelect={setBranchF} />
+        <p className="text-[10px] mono mb-3" style={{ color: 'var(--text-tertiary)' }}>命中 {filtered.length} / {FIGURE_MILITARY_COUNT} 条</p>
+        <div className="space-y-1.5 max-h-[420px] overflow-y-auto">
+          {filtered.map((f) => {
+            const rank = f.fields?.milRank || '—';
+            const role = f.fields?.role || f.role || '—';
+            const branch = f.fields?.milBranch || '—';
+            return (
+              <div key={f.id || `${f.name}-${role}`} className="mil-leader-row" tabIndex={0}>
+                <span className="mil-rank-badge" style={{ background: `${RANK_COLORS[rank] || '#64748b'}22`, color: RANK_COLORS[rank] || '#64748b' }}>{rank}</span>
+                <div>
+                  <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{f.name}</div>
+                  <div className="text-[11px] leading-snug" style={{ color: 'var(--text-secondary)' }}>{role}</div>
+                  <div className="text-[10px] mono mt-0.5" style={{ color: 'var(--text-tertiary)' }}>{branch} · {f.source?.split('·')[0]?.trim() || '公开报道'}</div>
+                </div>
+                <Link to="/talent" className="text-[10px] mono shrink-0 self-center" style={{ color: 'var(--cyber-cyan)' }} aria-label={`${f.name} 人才库`}>↗</Link>
+              </div>
+            );
+          })}
+        </div>
+      </Card>
+
+      <Card title="军衔金字塔 · 编制结构示意">
+        <p className="text-[10px] mb-2" style={{ color: 'var(--text-tertiary)' }}>{RANK_PYRAMID.note}（{RANK_PYRAMID.asOf}）</p>
+        <RankPyramid levels={RANK_PYRAMID.levels} />
+      </Card>
+    </>
+  );
+}
+
+export default function Page() {
+  const [tab, setTab] = useState('strategy');
+
+  return (
+    <div className="ink-observatory mil-wrap">
       <PageHeader
-        badge="Military"
+        badge="Military · 全维度透视"
         title="中国军事力量全维度透视"
-        subtitle={`岛链突破 · 战区体制 · 算力主权 · 战略威慑 —— 公开资料整理 · 截至 ${MILITARY_INTEL_META.asOf}`}
+        subtitle={`岛链突破 · 战区体制 · A2/AD · 算力主权 —— 公开资料整理 · 截至 ${MILITARY_INTEL_META.asOf}`}
       >
         <div className="flex flex-wrap gap-2 items-center">
+          <Link to="/straits" className="mil-island-link">台海重力博弈 ↗</Link>
           <Link to="/talent" className="text-[11px] mono px-2 py-1 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: '#22d3ee', border: '1px solid rgba(34,211,238,0.3)' }}>
             军事将官人才库 · {FIGURE_MILITARY_COUNT} 条 ↗
           </Link>
         </div>
       </PageHeader>
 
-      <TabBar tabs={TABS} value={tab} onChange={setTab} accent="var(--china-red)" />
+      <IntroCard className="mb-6 mil-intro">
+        本模块以<strong style={{ color: 'var(--text-primary)' }}>公开 OSINT</strong>整理解放军五大战区、军种结构与主战装备谱系，锚定
+        <strong style={{ color: 'var(--china-red)' }}>岛链突破</strong>与
+        <strong style={{ color: 'var(--fire-gold)' }}>A2/AD</strong>物理威慑向量。
+        数值均标注 asOf / 估算区间，<span className="mono" style={{ color: 'var(--text-tertiary)' }}>不含涉密坐标或未公开编制</span>；
+        台海终局计算见<strong style={{ color: 'var(--cyber-cyan)' }}>台海模块</strong>，将官名录衔接<strong style={{ color: 'var(--cyber-cyan)' }}>人才库</strong> seed 数据。
+      </IntroCard>
 
-      {tab === 'overview' && <OverviewTab />}
-      {tab === 'personnel' && <PersonnelTab />}
-      {tab === 'equipment' && <EquipmentTab />}
-      {tab === 'tech' && <TechTab />}
-      {tab === 'theater' && <TheaterTab />}
-      {tab === 'logistics' && <LogisticsTab />}
-      {tab === 'bases' && <BasesTab />}
+      <div className="mil-sticky-nav">
+        <TabBar tabs={TABS} value={tab} onChange={setTab} accent="var(--china-red)" sticky />
+      </div>
+
+      <div className="os-reveal-stagger">
+        {tab === 'strategy' && <div className="mil-section"><OverviewTab /></div>}
+        {tab === 'services' && <ServicesTab />}
+        {tab === 'combat' && <CombatTab />}
+        {tab === 'island' && <div className="mil-section"><IslandTab /></div>}
+        {tab === 'leaders' && <div className="mil-section"><LeadersTab /></div>}
+      </div>
 
       <FrameworkTrio cards={[
         { title: '盐铁逻辑', subtitle: '命脉装备 · 战略底座', body: '导弹谱系、核威慑、A2/AD 能力是当代盐铁专营的军事映射——守成者最不愿失去的物理筹码。', pillars: [['核威慑', '二次打击可信。'], ['A2/AD', '区域拒止。'], ['联勤', '投送与补给。']] },
