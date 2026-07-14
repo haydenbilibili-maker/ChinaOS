@@ -169,3 +169,89 @@
     transition: none;
   }
 }
+
+/* 资本市场 Tab · 子导航 + 时间轴 */
+.econ-wrap .econ-finance-subnav {
+  position: sticky;
+  top: 3.25rem;
+  z-index: 15;
+  display: flex;
+  gap: 0.35rem;
+  padding: 6px 0 10px;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  background: color-mix(in srgb, var(--bg-surface) 90%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.econ-wrap .econ-finance-subnav::-webkit-scrollbar {
+  display: none;
+}
+
+.econ-wrap .econ-finance-subnav-btn {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.econ-wrap .econ-finance-subnav-btn:hover,
+.econ-wrap .econ-finance-subnav-btn:focus-visible {
+  border-color: rgba(98, 168, 158, 0.45);
+  color: var(--text-primary);
+}
+
+.econ-wrap .econ-finance-subnav-btn.is-active {
+  border-color: rgba(98, 168, 158, 0.55);
+  background: rgba(98, 168, 158, 0.12);
+  color: var(--econ-teal);
+}
+
+.econ-wrap .econ-finance-viz > * + * {
+  margin-top: 1rem;
+}
+
+.econ-wrap .econ-finance-section {
+  scroll-margin-top: 7rem;
+}
+
+.econ-wrap .econ-finance-timeline {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .econ-wrap .econ-finance-timeline {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .econ-wrap .econ-finance-timeline {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.econ-wrap .econ-finance-timeline-node {
+  padding: 0.875rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  border-left-width: 3px;
+  background: var(--bg-elevated);
+}
+
+@media (max-width: 639px) {
+  .econ-wrap .econ-finance-viz .os-card {
+    overflow-x: auto;
+  }
+}

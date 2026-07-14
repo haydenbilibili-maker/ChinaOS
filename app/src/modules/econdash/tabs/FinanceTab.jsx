@@ -1,10 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { Suspense, lazy, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Card, Grid, SourceBadge } from '../../../app/ui.jsx';
+import { Card, Grid, Stat, StatGrid, SourceBadge, LoadingSkeleton } from '../../../app/ui.jsx';
 import { ECON_AS_OF, KEY_INDICATORS } from '../econData.js';
-import { GaugeCard } from '../econUI.jsx';
-import { HEADLINE_GAUGES } from '../econDeflation.js';
 import { filterIndicators, IndicatorCard } from '../econHelpers.jsx';
+import { financeKpis } from '../finance/financeData.js';
+
+const FinanceVizPanel = lazy(() => import('../finance/FinanceVizPanel.jsx'));
 
 const FINANCE_HUB = [
   { to: '/capital-market', label: '资本市场 · 耐心资本', note: '注册制改革、中长期资金入市与创投政策主线。', accent: '#8b5cf6' },
@@ -15,27 +16,25 @@ const FINANCE_HUB = [
   { to: '/greenfinance', label: '绿色金融 · 碳定价', note: '双碳目标下的金融工具与碳市场接口。', accent: '#62a89e' },
 ];
 
-function liquidityGauges() {
-  const ids = new Set(['m1m2', 'bill_rate_vs_credit', 'afre_vs_household_loan']);
-  return (HEADLINE_GAUGES || []).filter((g) => ids.has(g.id) || /M1|M2|信贷|利率|流动性|社融/i.test(`${g.label}${g.sub || ''}`));
-}
-
-function lastValue(points) {
-  if (!Array.isArray(points) || !points.length) return null;
-  const last = points[points.length - 1];
-  if (typeof last === 'number') return last;
-  if (typeof last === 'object') return last.value ?? last.v ?? null;
-  return null;
-}
-
 export default function FinanceTab() {
   const moneyIndicators = useMemo(() => filterIndicators(KEY_INDICATORS, 'money'), []);
   const priceIndicators = useMemo(() => filterIndicators(KEY_INDICATORS, 'price'), []);
-  const gauges = useMemo(() => liquidityGauges(), []);
+  const kpis = useMemo(() => financeKpis(), []);
 
   return (
     <div className="econ-section">
-      <Card title="金融货币 · 资金活化读数">
+      <StatGrid className="econ-hero-stats">
+        <Stat value={`${kpis.m2}%`} label="M2 同比增速（近似）" accent="var(--fire-gold)" />
+        <Stat value={`${kpis.scissors} pct`} label="M1−M2 剪刀差" accent="var(--econ-indigo, #8090c6)" />
+        <Stat value={`${kpis.afre}%`} label="社融存量增速" accent="var(--china-red)" />
+        <Stat value={`${kpis.cpi}%`} label="CPI 同比" accent="var(--cyber-cyan)" />
+      </StatGrid>
+
+      <Suspense fallback={<LoadingSkeleton rows={4} label="资本市场可视化载入中…" />}>
+        <FinanceVizPanel />
+      </Suspense>
+
+      <Card title="金融货币 · 指标快照">
         <div className="flex items-center justify-between gap-2 flex-wrap mb-3">
           <p className="text-xs m-0" style={{ color: 'var(--text-tertiary)' }}>
             M2、社融与新增融资是「宽货币→宽信用→实体」传导链的关键节点——总量偏松但活化偏慢，是 2026 H1 主线之一。
@@ -46,33 +45,6 @@ export default function FinanceTab() {
           {moneyIndicators.map((k) => <IndicatorCard key={k.id} k={k} />)}
         </Grid>
       </Card>
-
-      {gauges.length > 0 && (
-        <Card title="流动性表盘 · 领先信号">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-            {gauges.map((g, i) => {
-              const series = g.series || g.points || [];
-              const latest = lastValue(series);
-              const unit = g.unit || '';
-              return (
-                <GaugeCard
-                  key={g.id || i}
-                  label={g.label}
-                  sub={g.sub}
-                  points={series}
-                  color="#8b5cf6"
-                  signal={g.signal}
-                  source={g.source}
-                  freq={g.freq}
-                  note={g.note}
-                  latest={latest != null ? `${latest}${unit}` : null}
-                  zero={g.zero}
-                />
-              );
-            })}
-          </div>
-        </Card>
-      )}
 
       <Card title="物价传导 · 金融定价锚">
         <Grid cols={2} gap="0.75rem" stagger>
