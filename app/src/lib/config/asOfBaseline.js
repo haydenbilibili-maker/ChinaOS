@@ -6,10 +6,10 @@
 // ============================================================================
 
 /** 完整基准日（ISO 日期） */
-export const AS_OF_BASELINE = '2026-07-13';
+export const AS_OF_BASELINE = '2026-07-14';
 
 /** 短格式（年月），用于政策/法律种子 frontmatter */
 export const AS_OF_MONTH = '2026-07';
 
 /** 展示用标签 */
-export const AS_OF_LABEL = '2026-07-13';
+export const AS_OF_LABEL = '2026-07-14';

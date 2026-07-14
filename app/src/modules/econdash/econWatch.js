@@ -10,12 +10,13 @@
 // 确定性铁律：本层零随机、零当前时间；id / 排序 / 计数全程确定，基准日用常量。
 // ============================================================================
 
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 import { KEY_INDICATORS, indicatorVerdict, CANARY_SIGNALS } from './econData.js';
 import { TENSIONS } from './econDeflation.js';
 import { REGIONS, regionStressTally } from './econRegional.js';
 
 /** 监测基准日（与各源层 ASOF 对齐；以官方发布为准） */
-export const WATCH_ASOF = '2026-06-11';
+export const WATCH_ASOF = AS_OF_BASELINE;
 
 // ---------------------------------------------------------------------------
 // 严重度档位：排序权重（降序）与可读标签集合。

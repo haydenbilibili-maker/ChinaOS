@@ -13,8 +13,10 @@
 // 确定性铁律：本层零随机、零当前时间；基准日用常量 CATALOG_ASOF。
 // ============================================================================
 
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
+
 /** 目录基准快照日（以官方发布为准） */
-export const CATALOG_ASOF = '2026-06-11';
+export const CATALOG_ASOF = AS_OF_BASELINE;
 
 /**
  * @typedef {('叙'|'域'|'双')} Lens 编目视角：叙事 / 区域 / 双侧

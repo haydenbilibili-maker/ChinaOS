@@ -1,7 +1,8 @@
 import React from 'react';
+import { AS_OF_BASELINE } from '../lib/config/asOfBaseline.js';
 
 const COPYRIGHT_START = 2024;
-const AS_OF = '2026-06-11';
+const AS_OF = AS_OF_BASELINE;
 const HOLDER = 'China2OS · 中国深度调研系列';
 
 export default function SiteFooter() {

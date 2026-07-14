@@ -10,9 +10,10 @@
 // ============================================================================
 
 import { listDatasets, getRows, putDataset } from '../../lib/db/localdb.js';
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
 /** 基准快照日（与经济大盘对齐；以官方发布为准） */
-export const ECON_AS_OF = '2026-06-11';
+export const ECON_AS_OF = AS_OF_BASELINE;
 
 // ---------------------------------------------------------------------------
 // 1. 经济类数据集分类白名单

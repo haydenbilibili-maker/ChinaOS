@@ -331,5 +331,5 @@ export const SOURCES = {
   asOf: AS_OF,
   pe500: PRIVATE_ENTERPRISE_META.listSource,
   military: MILITARY_INTEL_META.disclaimer,
-  note: '宏观 KPI 对齐 NBS/人民银行公开口径快照；外交矢量与风险雷达为研判基准；条目计数以内置种子为准。研究用途，不代表任何机构立场。数据截至 2026-07-13。',
+  note: `宏观 KPI 对齐 NBS/人民银行公开口径快照；外交矢量与风险雷达为研判基准；条目计数以内置种子为准。研究用途，不代表任何机构立场。数据截至 ${AS_OF}。`,
 };

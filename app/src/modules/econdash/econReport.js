@@ -27,9 +27,10 @@ import {
   regionStressTally,
 } from './econRegional.js';
 import { withExportBrand } from '../../lib/exportBrand.js';
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
 /** 报告基准日（与各数据层 *_ASOF 对齐；确定性常量，禁止取当前时间） */
-export const REPORT_ASOF = '2026-06-11';
+export const REPORT_ASOF = AS_OF_BASELINE;
 
 /** 尾注口径声明（全站统一话术） */
 const DISCLAIMER = '公开统计梳理 · 示意标定 · 非投资建议 · 非预测';

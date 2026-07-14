@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ECON_COLORS, BandHead, SignalDot } from './econUI.jsx';
-import { scanAlerts, watchSummary } from './econWatch.js';
+import { scanAlerts, watchSummary, WATCH_ASOF } from './econWatch.js';
 
 // ============================================================================
 // 经济观测台 · 经济异动监测 · 全盘聚合（自包含 Section，零数据自持）
@@ -232,7 +232,7 @@ export default function SectionWatch() {
             style={{ color: 'var(--text-tertiary)', borderTop: '1px solid var(--border-subtle)' }}
           >
             告警聚合自核心指标盘 / 金丝雀 / 背离监测 / 区域下钻；严重度分级为示意标定。
-            基准日 2026-06-11 · 公开统计梳理 · 示意标定 · 非投资建议 · 非预测。
+            基准日 {WATCH_ASOF} · 公开统计梳理 · 示意标定 · 非投资建议 · 非预测。
           </p>
         </>
       )}

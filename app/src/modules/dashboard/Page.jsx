@@ -346,7 +346,7 @@ function RiskRadar() {
   }), []);
   return (
     <ScreenCard title="全域风险雷达" accent={COOL}
-      footer={<>八域威胁紧张度（公开判读 1–5 · {RISK_RADAR.note.slice(0, 42)}…）· 详见 <Link to="/omnisecurity" className="mono" style={{ color: STEEL }}>大安全观</Link> · 数据截至 2026-07-13</>}>
+      footer={<>八域威胁紧张度（公开判读 1–5 · {RISK_RADAR.note.slice(0, 42)}…）· 详见 <Link to="/omnisecurity" className="mono" style={{ color: STEEL }}>大安全观</Link> · 数据截至 {AS_OF}</>}>
       <EChart option={opt} style={{ height: 196 }} />
     </ScreenCard>
   );
@@ -364,7 +364,7 @@ function PolicyCalendar() {
   }, []);
   return (
     <ScreenCard title="2026 政策日历 · 关键定调节点" accent={WARM}
-      footer={<>定调落地追踪见 <Link to="/policydocs" className="mono" style={{ color: STEEL }}>政策文件库</Link> · 数据截至 2026-07-13</>}>
+      footer={<>定调落地追踪见 <Link to="/policydocs" className="mono" style={{ color: STEEL }}>政策文件库</Link> · 数据截至 {AS_OF}</>}>
       <div className="space-y-2">
         {rows.map(({ r: { when, title, note, accent, done }, d, isNext }) => {
           const c = DIPLOMACY_TONES[accent] || WARM;
@@ -673,7 +673,7 @@ function buildBriefing(latestDoc) {
     ...POLICY_CALENDAR_2026.map(({ title, date }) => ({ what: title, iso: date, d: daysUntil(date) }))
       .filter((x) => x.d >= 0).sort((a, b) => a.d - b.d)
       .map((x) => `- ${x.what}：T-${x.d} 天（${x.iso}）`), '',
-    '> 由 China OS 中枢看板生成 · 读数为公开口径与研判基准 · 数据截至 2026-07-13 · 非投资建议',
+    `> 由 China OS 中枢看板生成 · 读数为公开口径与研判基准 · 数据截至 ${AS_OF} · 非投资建议`,
   ];
   return withExportBrand(lines.join('\n'), { subtitle: '中枢看板 · 今日简报' });
 }

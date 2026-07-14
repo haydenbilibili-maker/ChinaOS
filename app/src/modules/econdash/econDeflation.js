@@ -17,8 +17,10 @@
 //   视角 lens 三态 —— 叙 narrative(黛) / 域 regional(赭) / 双 both(黛+赭)。
 // ============================================================================
 
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
+
 /** 基准快照日（所有 asOf 默认对齐此日；以官方发布为准） */
-export const DEFLATION_ASOF = '2026-06-11';
+export const DEFLATION_ASOF = AS_OF_BASELINE;
 
 /** 四色语义令牌（与蓝图一致；供主线程接线复用，避免硬编码散落） */
 export const SIGNAL_COLORS = {

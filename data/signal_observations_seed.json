@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-07-13",
+  "asOf": "2026-07-14",
   "source": "NBS / 人民银行 / 财政部 / 中电联 公开口径近似快照",
   "note": "示意标定 · 以官方最新发布为准 · 运行 scripts/fetch_signal_observations.py 一键刷新",
   "observations": [
