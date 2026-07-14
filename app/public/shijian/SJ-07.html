@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-07 · 王朝崩解对比</title>
+<meta name="description" content="ChinaOS 史鉴系列崩解卷：秦汉唐明清崩解路径对比解剖——崩解主链同构，引燃点各异；反单因论。跨案综合模块。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;
+  --sj-ink-800:#1d1916;
+  --sj-paper-100:#e8ddc7;
+  --sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;
+  --sj-celadon:#5f7a6f;
+  --sj-ochre:#b8894a;
+  --sj-line:#3a322b;
+  --sj-radius:6px;
+  --sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%, #2a221c 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #1a1612 0%, transparent 50%),var(--sj-ink-900);color:var(--sj-paper-100);font-family:var(--sj-serif);line-height:1.75}
+.sj-07-wrap{max-width:min(1180px,100%);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media (min-width:1536px){.sj-07-wrap{max-width:min(1360px,100%)}}
+@media (min-width:1920px){.sj-07-wrap{max-width:min(1520px,100%)}}
+@media (min-width:2560px){.sj-07-wrap{max-width:min(1680px,100%)}}
+
+/* 章节入场 · 尊重 prefers-reduced-motion */
+@keyframes sj-fade-in{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+.sj-reveal-stagger > header,
+.sj-reveal-stagger > .sj-zhupi,
+.sj-reveal-stagger > .sj-ledger,
+.sj-reveal-stagger > [class*="-sec"],
+.sj-reveal-stagger > footer{
+  animation:sj-fade-in .34s cubic-bezier(.22,.61,.36,1) both;
+}
+.sj-reveal-stagger > *:nth-child(1){animation-delay:.03s}
+.sj-reveal-stagger > *:nth-child(2){animation-delay:.06s}
+.sj-reveal-stagger > *:nth-child(3){animation-delay:.09s}
+.sj-reveal-stagger > *:nth-child(4){animation-delay:.12s}
+.sj-reveal-stagger > *:nth-child(5){animation-delay:.15s}
+.sj-reveal-stagger > *:nth-child(6){animation-delay:.18s}
+.sj-reveal-stagger > *:nth-child(7){animation-delay:.21s}
+.sj-reveal-stagger > *:nth-child(8){animation-delay:.24s}
+
+.sj-07-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px}
+.sj-07-mast .badge{font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-07-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em;line-height:1.3}
+.sj-07-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;letter-spacing:.08em;font-size:.72em;display:block;margin-top:4px}
+.sj-07-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right;line-height:1.7}
+.sj-07-meta b{color:var(--sj-ochre);font-weight:500}
+.sj-07-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sj-07-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;letter-spacing:.08em;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none}
+.sj-07-chip:hover,.sj-07-chip:focus-visible{border-color:var(--sj-ochre);color:var(--sj-ochre);outline:none}
+
+.sj-zhupi{color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:74ch}
+
+.sj-07-sec{margin:36px 0 28px;scroll-margin-top:24px}
+.sj-07-sec-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--sj-line)}
+.sj-07-sec-h .num{font-family:var(--sj-mono);font-size:11px;letter-spacing:.2em;color:var(--sj-ochre)}
+.sj-07-sec-h h2{font-size:clamp(17px,2.2vw,20px);font-weight:600;letter-spacing:.12em}
+.sj-07-prose{font-size:15.5px;color:var(--sj-paper-100);max-width:74ch}
+.sj-07-prose + .sj-07-prose{margin-top:12px}
+.sj-07-prose strong{color:var(--sj-ochre);font-weight:600}
+.sj-07-note{font-size:13px;color:var(--sj-paper-300);margin-top:12px;max-width:74ch}
+.sj-07-note b{color:var(--sj-paper-100);font-weight:600}
+
+.sj-07-stage{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));box-shadow:0 1px 0 rgba(232,221,199,.04), 0 18px 48px rgba(0,0,0,.45);padding:8px 8px 4px;overflow:auto}
+.sj-07-stage svg{display:block;width:100%;height:auto;max-width:820px;margin:0 auto}
+.sj-row{cursor:pointer;transition:opacity .2s ease}
+.sj-row:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:2px}
+.sj-07-stage.is-picking .sj-row{opacity:.4}
+.sj-07-stage.is-picking .sj-row.is-hot{opacity:1}
+.sj-07-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:14px;align-items:start;margin-top:14px}
+.sj-07-aside{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px;position:sticky;top:12px;min-height:200px}
+.sj-07-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-07-aside h3{font-size:16px;letter-spacing:.08em;margin-bottom:8px}
+.sj-07-aside p{font-size:13px;color:var(--sj-paper-300);line-height:1.65;margin-bottom:6px}
+.sj-07-aside p b{color:var(--sj-paper-100);font-weight:600}
+.sj-07-aside .law{color:var(--sj-celadon)}
+.sj-07-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+
+.sj-07-table-wrap{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);overflow:auto;margin-top:6px;min-width:0}
+.sj-07-table{width:max(100%,780px);table-layout:fixed;border-collapse:collapse;font-size:13px}
+.sj-07-table th{background:var(--sj-ink-900);color:var(--sj-ochre);font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;font-weight:500;text-align:left;padding:10px 12px;border-bottom:1px solid var(--sj-line);white-space:nowrap}
+.sj-07-table td{padding:10px 12px;border-bottom:1px solid var(--sj-line);color:var(--sj-paper-300);vertical-align:top;line-height:1.6;overflow-wrap:break-word}
+.sj-07-table td:first-child{color:var(--sj-paper-100);font-weight:600;white-space:nowrap;min-width:5em}
+.sj-07-table .lead{color:var(--sj-vermil);font-weight:600}
+
+.sj-07-refute{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px}
+.sj-07-refute article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-07-refute .rh{font-size:14px;font-weight:600;color:var(--sj-ochre);margin-bottom:6px}
+.sj-07-refute .rh span{font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);letter-spacing:.08em;display:block;margin-top:2px}
+.sj-07-refute p{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6}
+.sj-07-refute p.no{margin-top:8px;padding-top:8px;border-top:1px solid var(--sj-line);color:var(--sj-vermil)}
+
+.sj-07-hist{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.sj-07-hist article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-07-hist .who{font-size:14px;font-weight:600;letter-spacing:.06em;color:var(--sj-celadon);margin-bottom:6px}
+.sj-07-hist .who span{font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);letter-spacing:.08em;margin-left:6px}
+.sj-07-hist p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+
+.sj-07-mirror{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.sj-07-mirror article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-07-mirror .mh{font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;margin-bottom:8px}
+.sj-07-mirror article.same .mh{color:var(--sj-celadon)}
+.sj-07-mirror article.diff .mh{color:var(--sj-ochre)}
+.sj-07-mirror p{font-size:13px;color:var(--sj-paper-100);line-height:1.68}
+.sj-07-mirror p .lk{color:var(--sj-celadon)}
+
+.sj-07-xref{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.sj-07-xref a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit;transition:border-color .18s}
+.sj-07-xref a:hover,.sj-07-xref a:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-07-xref .n{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;color:var(--sj-ochre);margin-bottom:4px}
+.sj-07-xref h3{font-size:14px;letter-spacing:.06em;margin-bottom:6px}
+.sj-07-xref p{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6}
+
+.sj-07-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sj-07-foot a{color:var(--sj-celadon);text-decoration:none}
+.sj-07-foot a:hover{color:var(--sj-ochre)}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto  .sj-reveal-stagger > *{animation:none}
+}.sj-row,.sj-07-chip{transition:none}}
+@media (max-width:900px){.sj-07-layout{grid-template-columns:1fr}.sj-07-aside{position:static}.sj-07-refute{grid-template-columns:1fr}.sj-07-hist,.sj-07-mirror{grid-template-columns:1fr}.sj-07-xref{grid-template-columns:1fr 1fr}}
+@media (max-width:768px){.sj-07-meta{text-align:left}.sj-07-xref{grid-template-columns:1fr}}
+
+html[data-theme="light"]{--sj-ink-900:#f4f1ea;--sj-ink-800:#ebe6dc;--sj-paper-100:#1a1814;--sj-paper-300:#5a5348;--sj-vermil:#9a3428;--sj-celadon:#3f5f54;--sj-ochre:#8a6528;--sj-line:#c8bfb0}
+html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%, #e8e4da 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #ebe6dc 0%, transparent 50%),var(--sj-ink-900);color:var(--sj-paper-100)}
+html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
+html[data-theme="light"] [class*="-stage"],
+html[data-theme="light"] [class*="-aside"],
+html[data-theme="light"] [class*="-table-wrap"],
+html[data-theme="light"] [class*="-hook"],
+html[data-theme="light"] [class*="-ledger"]{
+  box-shadow:0 1px 0 rgba(26,24,20,.05),0 12px 28px rgba(26,24,20,.08);
+}
+html[data-theme="light"] .sj-snap-track{background:var(--sj-ink-900);border-color:var(--sj-line)}
+html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
+
+</style>
+<script>
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){ document.documentElement.setAttribute('data-theme', t==='light' ? 'light' : 'dark'); }
+  try{ var q=new URLSearchParams(location.search).get('theme'); if(q==='light'||q==='dark') apply(q); }catch(e){}
+  window.addEventListener('message', function(e){
+    if(e.origin !== window.location.origin) return;
+    var d=e&&e.data; if(!d||d.type!==MSG) return; apply(d.theme); });
+})();
+</script>
+</head>
+<body>
+<div class="sj-07-wrap sj-reveal-stagger" id="sj-07-top">
+
+<header class="sj-07-mast">
+  <div>
+    <div class="badge">SJ-07 · 王朝崩解案例卷 · 跨案综合</div>
+    <h1>秦汉唐明清 · 崩解路径对比<em>主链同构 · 引燃点各异 · 反单因论</em></h1>
+    <div class="sj-07-chips">
+      <a class="sj-07-chip" href="./SJ-00.html">↔ SJ-00 总索引</a>
+      <a class="sj-07-chip" href="./SJ-03.html">↔ SJ-03 五力模型</a>
+      <a class="sj-07-chip" href="./SJ-06.html">↔ SJ-06 天宝拐点</a>
+      <a class="sj-07-chip" href="./SJ-08.html">↔ SJ-08 分裂重整</a>
+      <a class="sj-07-chip" href="./SJ-04.html">↔ SJ-04 相位罗盘</a>
+    </div>
+  </div>
+  <div class="sj-07-meta">
+    崩解是多力共振 · 非单因<br/>
+    <b>AS_OF 2026-07-14</b> · v0.1
+  </div>
+</header>
+
+<p class="sj-zhupi">朱批：本卷是跨案综合，非单案台账——五王朝的崩解各由不同「引燃点」触发，但主链结构同构。台账七字段用于单案（SJ-05/06/08）；此处以对比矩阵为核心。内容真源：《母本》第一部衰变链 + 第四部八规律。</p>
+
+<!-- 1 引言 -->
+<section class="sj-07-sec" id="sec-intro" aria-labelledby="h-intro">
+  <div class="sj-07-sec-h"><span class="num">01 · 引言</span><h2 id="h-intro">同一主链，五种引燃</h2></div>
+  <p class="sj-07-prose">崩解不是「亡国之君昏庸」的道德故事，也不是单一变量（纯气候、纯人口、纯道德）的决定论。母本的立场是：崩解是<strong>五力衰变链的多力共振</strong>——生态基座 → 边疆/人口 → 财政枢纽 → 精英离心 → 合法性被夺。五个王朝走的是<strong>同一条主链</strong>，区别只在<strong>由哪一力先「引燃」、共振到第几力</strong>。</p>
+  <p class="sj-07-prose">秦以合法性未立而速亡；汉末以灾荒与合法性共振而分裂；唐以边疆军事力畸大（承 SJ-06）而崩；明以基座（小冰期）与财政三饷的致命共振而易代；清则在传统主链之上叠加了「体系外变量」——现代性，使崩解一次性走向共和而非循环内易代。</p>
+  <p class="sj-07-note">术语：本卷「引燃点」＝崩解主链上最先进入负相位、并触发连锁的那一力（或两力共振）。判据延续 SJ-03：三力及以上同时负相位 → 超稳定结构失修 → 崩解或分裂。</p>
+</section>
+
+<!-- 2 签名 -->
+<section class="sj-07-sec" id="sec-matrix" aria-labelledby="h-matrix">
+  <div class="sj-07-sec-h"><span class="num">02 · 签名视觉</span><h2 id="h-matrix">崩解归因矩阵</h2></div>
+  <p class="sj-07-prose">行为五王朝，列为五力。实心大点＝该力是本朝崩解的<strong>主导（引燃）力</strong>；半透中点＝重要共振力；小点＝次要。右栏为崩解形态。点击任一行，展开该朝的引燃点、衰变链与印证规律。</p>
+
+  <div class="sj-07-stage" id="stage">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">秦汉唐明清崩解归因矩阵</title>
+  <desc id="sj-desc">五行为秦汉唐明清，五列为财政、精英、合法性、边疆军事、生态基座；点的大小与不透明度表示各力在该朝崩解中的角色；右栏为崩解形态。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%"><stop offset="0%" stop-color="var(--sj-ink-800)"/><stop offset="100%" stop-color="var(--sj-ink-900)"/></radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse"><line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/></pattern>
+  </defs>
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC, Noto Serif SC, Source Han Serif SC, serif" letter-spacing="0.1em">崩解归因矩阵</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.08em">SJ-07 · 秦汉唐明清 · 行=朝 列=力</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">朱批：实心＝引燃力 · 半透＝共振力 · 小点＝次要；点击行展开</text>
+
+  <!-- 列头 -->
+  <g font-family="Songti SC, Noto Serif SC, serif" font-size="12" text-anchor="middle">
+    <text x="190" y="150" fill="var(--sj-ochre)">财政</text>
+    <text x="290" y="150" fill="var(--sj-celadon)">精英</text>
+    <text x="390" y="150" fill="var(--sj-paper-100)">合法性</text>
+    <text x="490" y="150" fill="var(--sj-vermil)">边疆军事</text>
+    <text x="580" y="150" fill="var(--sj-paper-300)">基座</text>
+    <text x="700" y="150" fill="var(--sj-ochre)" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" font-size="11">崩解形态</text>
+  </g>
+  <line x1="44" y1="164" x2="796" y2="164" stroke="var(--sj-line)" stroke-width="1"/>
+
+  <!-- 秦 -->
+  <g class="sj-row" data-id="qin" tabindex="0" role="button" aria-label="秦 崩解归因">
+    <rect x="44" y="170" width="752" height="56" rx="6" fill="var(--sj-ink-800)" opacity="0.32" pointer-events="all"/>
+    <text x="60" y="202" fill="var(--sj-paper-100)" font-size="15" font-family="Songti SC, Noto Serif SC, serif">秦</text>
+    <text x="60" y="218" fill="var(--sj-paper-300)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">前221–前207</text>
+    <circle cx="190" cy="198" r="10" fill="var(--sj-ochre)" opacity="0.5"/>
+    <circle cx="290" cy="198" r="4" fill="var(--sj-celadon)" opacity="0.3"/>
+    <circle cx="390" cy="198" r="15" fill="var(--sj-paper-100)"/><circle cx="390" cy="198" r="19" fill="none" stroke="var(--sj-vermil)" stroke-width="1.4"/>
+    <circle cx="490" cy="198" r="4" fill="var(--sj-vermil)" opacity="0.3"/>
+    <circle cx="580" cy="198" r="4" fill="var(--sj-paper-300)" opacity="0.3"/>
+    <text x="648" y="202" fill="var(--sj-paper-300)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">速亡 · 易代(楚汉)</text>
+  </g>
+  <!-- 汉 -->
+  <g class="sj-row" data-id="han" tabindex="0" role="button" aria-label="东汉末 崩解归因">
+    <rect x="44" y="234" width="752" height="56" rx="6" fill="var(--sj-ink-800)" opacity="0.18" pointer-events="all"/>
+    <text x="60" y="266" fill="var(--sj-paper-100)" font-size="15" font-family="Songti SC, Noto Serif SC, serif">汉</text>
+    <text x="60" y="282" fill="var(--sj-paper-300)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">东汉末 ~220</text>
+    <circle cx="190" cy="262" r="4" fill="var(--sj-ochre)" opacity="0.3"/>
+    <circle cx="290" cy="262" r="10" fill="var(--sj-celadon)" opacity="0.55"/>
+    <circle cx="390" cy="262" r="15" fill="var(--sj-paper-100)"/><circle cx="390" cy="262" r="19" fill="none" stroke="var(--sj-vermil)" stroke-width="1.4"/>
+    <circle cx="490" cy="262" r="4" fill="var(--sj-vermil)" opacity="0.3"/>
+    <circle cx="580" cy="262" r="10" fill="var(--sj-paper-300)" opacity="0.55"/>
+    <text x="648" y="266" fill="var(--sj-paper-300)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">分裂(三国)</text>
+  </g>
+  <!-- 唐 -->
+  <g class="sj-row" data-id="tang" tabindex="0" role="button" aria-label="唐 崩解归因">
+    <rect x="44" y="298" width="752" height="56" rx="6" fill="var(--sj-ink-800)" opacity="0.32" pointer-events="all"/>
+    <text x="60" y="330" fill="var(--sj-paper-100)" font-size="15" font-family="Songti SC, Noto Serif SC, serif">唐</text>
+    <text x="60" y="346" fill="var(--sj-paper-300)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">755→907</text>
+    <circle cx="190" cy="326" r="10" fill="var(--sj-ochre)" opacity="0.5"/>
+    <circle cx="290" cy="326" r="10" fill="var(--sj-celadon)" opacity="0.5"/>
+    <circle cx="390" cy="326" r="10" fill="var(--sj-paper-100)" opacity="0.5"/>
+    <circle cx="490" cy="326" r="15" fill="var(--sj-vermil)"/><circle cx="490" cy="326" r="19" fill="none" stroke="var(--sj-vermil)" stroke-width="1.4"/>
+    <circle cx="580" cy="326" r="4" fill="var(--sj-paper-300)" opacity="0.3"/>
+    <text x="648" y="330" fill="var(--sj-paper-300)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">分裂→易代(五代)</text>
+  </g>
+  <!-- 明 -->
+  <g class="sj-row" data-id="ming" tabindex="0" role="button" aria-label="明 崩解归因">
+    <rect x="44" y="362" width="752" height="56" rx="6" fill="var(--sj-ink-800)" opacity="0.18" pointer-events="all"/>
+    <text x="60" y="394" fill="var(--sj-paper-100)" font-size="15" font-family="Songti SC, Noto Serif SC, serif">明</text>
+    <text x="60" y="410" fill="var(--sj-paper-300)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">1644</text>
+    <circle cx="190" cy="390" r="15" fill="var(--sj-ochre)"/><circle cx="190" cy="390" r="19" fill="none" stroke="var(--sj-vermil)" stroke-width="1.4"/>
+    <circle cx="290" cy="390" r="10" fill="var(--sj-celadon)" opacity="0.5"/>
+    <circle cx="390" cy="390" r="4" fill="var(--sj-paper-100)" opacity="0.3"/>
+    <circle cx="490" cy="390" r="10" fill="var(--sj-vermil)" opacity="0.55"/>
+    <circle cx="580" cy="390" r="15" fill="var(--sj-paper-300)"/><circle cx="580" cy="390" r="19" fill="none" stroke="var(--sj-vermil)" stroke-width="1.4"/>
+    <text x="648" y="394" fill="var(--sj-paper-300)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">易代(清) · 致命共振</text>
+  </g>
+  <!-- 清 -->
+  <g class="sj-row" data-id="qing" tabindex="0" role="button" aria-label="清 崩解归因">
+    <rect x="44" y="426" width="752" height="56" rx="6" fill="var(--sj-ink-800)" opacity="0.32" pointer-events="all"/>
+    <text x="60" y="458" fill="var(--sj-paper-100)" font-size="15" font-family="Songti SC, Noto Serif SC, serif">清</text>
+    <text x="60" y="474" fill="var(--sj-paper-300)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">1912</text>
+    <circle cx="190" cy="454" r="10" fill="var(--sj-ochre)" opacity="0.5"/>
+    <circle cx="290" cy="454" r="10" fill="var(--sj-celadon)" opacity="0.5"/>
+    <circle cx="390" cy="454" r="15" fill="var(--sj-paper-100)"/><circle cx="390" cy="454" r="19" fill="none" stroke="var(--sj-vermil)" stroke-width="1.4"/>
+    <circle cx="490" cy="454" r="10" fill="var(--sj-vermil)" opacity="0.55"/>
+    <circle cx="580" cy="454" r="4" fill="var(--sj-paper-300)" opacity="0.3"/>
+    <text x="648" y="458" fill="var(--sj-paper-300)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">易代→共和 · 体系外变量</text>
+  </g>
+
+  <!-- 图例 -->
+  <g font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" font-size="9">
+    <circle cx="60" cy="506" r="8" fill="var(--sj-paper-300)"/><text x="74" y="509" fill="var(--sj-paper-300)">引燃力(实心+朱环)</text>
+    <circle cx="230" cy="506" r="6" fill="var(--sj-paper-300)" opacity="0.5"/><text x="242" y="509" fill="var(--sj-paper-300)">共振力(半透)</text>
+    <circle cx="370" cy="506" r="3" fill="var(--sj-paper-300)" opacity="0.3"/><text x="380" y="509" fill="var(--sj-paper-300)">次要</text>
+    <text x="764" y="509" text-anchor="end" fill="var(--sj-line)">viewBox 820×600</text>
+  </g>
+</svg>
+  </div>
+
+  <div class="sj-07-layout">
+    <div class="sj-07-note" style="margin-top:0">
+      读法：合法性叙事力在秦/汉/清三度为引燃力（合法性被夺是最常见的崩解终点）；唐由边疆军事力引燃（承 SJ-06）；明是基座（小冰期）与财政（三饷）的双引燃「致命共振」。清多出一栏「体系外变量」——现代性，超出传统循环。
+    </div>
+    <aside class="sj-07-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-07-aside-empty">点选矩阵中任一朝，展开其引燃点、衰变链与印证规律（母本第一/四部）。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-chain"></p>
+        <p class="law" id="aside-law"></p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- 3 对比矩阵表 -->
+<section class="sj-07-sec" id="sec-table" aria-labelledby="h-table">
+  <div class="sj-07-sec-h"><span class="num">03 · 对比矩阵</span><h2 id="h-table">王朝 · 引燃点 · 主导力 · 链 · 形态</h2></div>
+  <div class="sj-07-table-wrap">
+    <table class="sj-07-table">
+      <thead><tr><th>王朝</th><th>引燃点</th><th>主导力</th><th>衰变链特征</th><th>崩解形态</th></tr></thead>
+      <tbody>
+        <tr><td>秦</td><td>汲取无度 + 苛政</td><td class="lead">合法性叙事</td><td>军事强、制度新，但合法性未及沉淀，汲取无度即崩；二世而亡</td><td>速亡·易代</td></tr>
+        <tr><td>汉（东汉末）</td><td>灾荒瘟疫 + 外戚宦官</td><td class="lead">合法性 + 精英/基座</td><td>基座灾荒与合法性磨损共振 → 黄巾「苍天已死」→ 军阀群雄</td><td>分裂（三国）</td></tr>
+        <tr><td>唐</td><td>藩镇 · 节度使</td><td class="lead">边疆军事</td><td>强化单力→内轻外重→安史→百年藩镇→朱温代唐（承 SJ-06）</td><td>分裂→易代</td></tr>
+        <tr><td>明</td><td>小冰期 + 三饷</td><td class="lead">基座 + 财政（共振）</td><td>基座（小冰期灾荒）与财政（辽饷剿饷练饷）致命共振，内流民外后金夹击</td><td>易代（清）</td></tr>
+        <tr><td>清</td><td>西方冲击 + 共和民族叙事</td><td class="lead">合法性 + 精英离心</td><td>传统天命被共和/民族叙事夺，督抚坐大；叠加体系外变量（现代性）</td><td>易代→共和</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="sj-07-note"><b>同构与差异：</b>五案共享同一主链（多力共振），差异只在引燃力与共振深度；唯清的崩解引入「体系外变量」现代性，走出传统循环内的易代，是古今映射的接口。</p>
+</section>
+
+<!-- 4 反单因论 -->
+<section class="sj-07-sec" id="sec-refute" aria-labelledby="h-refute">
+  <div class="sj-07-sec-h"><span class="num">04 · 反单因论</span><h2 id="h-refute">三种单因解释各自的解释力与不足</h2></div>
+  <p class="sj-07-prose">矩阵最有力的推论是对<strong>单因决定论</strong>的证伪：没有任何单一变量能解释全部五案。三种流行单因论各有局部解释力，但都不足以独立成立。</p>
+  <div class="sj-07-refute">
+    <article>
+      <div class="rh">气候单因<span>小冰期 / 竺可桢</span></div>
+      <p>解释力：明末小冰期与灾荒—流民链高度吻合，基座慢变量的经典证据。</p>
+      <p class="no">不足：秦速亡、清易代的气候并非主因；气候设定包络线，不决定节奏。</p>
+    </article>
+    <article>
+      <div class="rh">人口单因<span>马尔萨斯 / 承载上限</span></div>
+      <p>解释力：明清人口逼近耕地承载，边际报酬递减，社会张力可测。</p>
+      <p class="no">不足：汉末、唐之崩非纯人口驱动；人口压力须经财政枢纽才引爆。</p>
+    </article>
+    <article>
+      <div class="rh">道德单因<span>亡国之君昏庸</span></div>
+      <p>解释力：正史最爱——桀纣、隋炀、崇祯；叙事直观。</p>
+      <p class="no">不足：系统性偏精英书写，掩盖结构实因；须李敖式祛魅。最不足。</p>
+    </article>
+  </div>
+</section>
+
+<!-- 5 史家交锋 -->
+<section class="sj-07-sec" id="sec-hist" aria-labelledby="h-hist">
+  <div class="sj-07-sec-h"><span class="num">05 · 史家交锋</span><h2 id="h-hist">崩解的通则怎么看</h2></div>
+  <div class="sj-07-hist">
+    <article><div class="who">李敖式考据<span>祛魅</span></div><p>剥离「亡国之君昏庸」的道德叙事——崩解是结构现象，正史的个人归因往往是胜者与士大夫的书写。</p></article>
+    <article><div class="who">钱穆<span>《国史大纲》</span></div><p>各朝崩解当从制度演变读（唐藩镇、明财政）；温情于传统，但不回避制度性弊病。</p></article>
+    <article><div class="who">金观涛<span>超稳定结构</span></div><p>一治一乱：崩解后系统重启于低水平均衡；分裂＝修复力受损、军事力区域畸大的失衡态。</p></article>
+    <article><div class="who">黄仁宇<span>大历史 / 数目字</span></div><p>各朝财政与「数目字管理」缺口是共通的结构天花板；崩解常经由财政枢纽的失控引爆。</p></article>
+    <article style="grid-column:1/-1"><div class="who">西方汉学<span>费正清 × 加州学派</span></div><p>清之崩：费正清强调西方冲击（外因），加州学派强调内生结构（督抚、财政、人口）；二者互补，恰是史鉴引擎步骤④「外因×内生」的样本。</p></article>
+  </div>
+</section>
+
+<!-- 6 古今映射 -->
+<section class="sj-07-sec" id="sec-mirror" aria-labelledby="h-mirror">
+  <div class="sj-07-sec-h"><span class="num">06 · 古今映射</span><h2 id="h-mirror">崩解通则的古今对照</h2></div>
+  <p class="sj-07-note">硬约束：两栏成对，缺「关键差异」即为裸类比。</p>
+  <div class="sj-07-mirror">
+    <article class="same"><div class="mh">相似机制（古今相通）</div><p>政权崩溃/转型同为多力共振而非单因；合法性绩效枯竭 + 精英离心，是通用的崩解前兆；单因论（纯经济、纯外压）同样不足以预测。</p></article>
+    <article class="diff"><div class="mh">关键差异（不可裸类比）</div><p>清以降引入「体系外变量」——现代性、民族国家、意识形态，崩解可致<span class="lk">质变</span>（共和）而非循环内易代；当代有列宁式组织 + 数目字管理，修复力形态已升级（→ <span class="lk">SJ-04</span> 相位盘 / <span class="lk">GY-02</span>）。</p></article>
+  </div>
+</section>
+
+<!-- 7 交叉 -->
+<section class="sj-07-sec" id="sec-xref" aria-labelledby="h-xref">
+  <div class="sj-07-sec-h"><span class="num">07 · 交叉引用</span><h2 id="h-xref">崩解卷的上下游</h2></div>
+  <div class="sj-07-xref">
+    <a href="./SJ-03.html"><div class="n">SJ-03 · 主链</div><h3>五力衰变模型</h3><p>本卷矩阵的力维与衰变主链来源；崩解＝三力以上共振。</p></a>
+    <a href="./SJ-06.html"><div class="n">SJ-06 · 唐案</div><h3>天宝之乱</h3><p>唐由边疆军事力引燃的单案深描；本卷取其为一行。</p></a>
+    <a href="./SJ-08.html"><div class="n">SJ-08 · 承接</div><h3>分裂—重整</h3><p>崩解之后：五代十国的失衡态与再统一机制。</p></a>
+    <a href="./SJ-04.html"><div class="n">SJ-04 · 相位</div><h3>治乱相位罗盘</h3><p>崩解期在相位盘的位置；修复力受损诊断。</p></a>
+    <a href="./SJ-00.html"><div class="n">SJ-00</div><h3>史鉴总索引</h3><p>案例卷入口；崩解卷卡片已点亮本案。</p></a>
+    <a href="/modules/guoyun"><div class="n">GY-01</div><h3>国运时间轴</h3><p>崩解通则的当代接口：多力共振而非单因预测。</p></a>
+  </div>
+</section>
+
+<footer class="sj-07-foot">
+  <span>ChinaOS · 史鉴 SJ-07 · v0.1 · AS_OF 2026-07-14 · 真源《母本》第一/四部</span>
+  <span><a href="./SJ-00.html">← 返回 SJ-00</a> · <a href="#sj-07-top">↑ 顶</a> · <a href="./SJ-08.html">分裂重整 →</a></span>
+  <span>本地调试 · 未 push</span>
+</footer>
+
+</div>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const rows = Array.from(stage.querySelectorAll('.sj-row'));
+  const asideEmpty = document.getElementById('aside-empty');
+  const asideBody = document.getElementById('aside-body');
+
+  /** 五王朝崩解归因（母本第一部衰变链 + 第四部八规律） */
+  const DYN_DATA = {
+    qin: { name:'秦 · 前221–前207', tag:'引燃：合法性未立 + 汲取无度',
+      chain:'军事强、制度新，但开国合法性未及沉淀；徭役赋税汲取无度、严刑峻法无缓冲 → 陈胜吴广 → 二世而亡 → 楚汉易代。',
+      law:'印证规律②崩解多力共振（此为共振最浅、最速的一例）＋规律⑧正史偏精英书写（暴秦叙事）。' },
+    han: { name:'汉 · 东汉末 ~220', tag:'引燃：基座灾荒 + 合法性磨损',
+      chain:'基座（灾荒、瘟疫）与合法性（外戚宦官、绩效磨损）共振 → 黄巾「苍天已死，黄天当立」夺天命 → 军阀（董卓、群雄）→ 三国分裂。',
+      law:'印证规律②多力共振＋规律③合法性被夺（黄巾为叙事争夺标本）＋规律⑦分裂＝力的区域再配置。' },
+    tang: { name:'唐 · 755→907', tag:'引燃：边疆军事力畸大',
+      chain:'募兵制+节度使制→内轻外重→安史之乱→百年藩镇割据→黄巢→朱温代唐（详见 SJ-06）。',
+      law:'印证规律④强化单力反降稳定＋规律⑦分裂＝军事力区域畸大的失衡态。' },
+    ming: { name:'明 · 1644', tag:'引燃：小冰期 + 三饷（致命共振）',
+      chain:'基座（小冰期灾荒）与财政（辽饷、剿饷、练饷）致命共振：内有流民（李自成），外有后金；财政枢纽被三饷压垮越阈值 → 易代于清。',
+      law:'印证规律②多力共振（明末致命共振典例）＋规律③财政是枢纽力（经它引爆）＋规律①慢变量定天花板。' },
+    qing: { name:'清 · 1912', tag:'引燃：西方冲击 + 共和/民族叙事',
+      chain:'传统天命—夷夏合法性被现代共和/民族革命叙事夺取；督抚坐大、新式精英离心；叠加「体系外变量」现代性 → 易代而走向共和（非循环内易代）。',
+      law:'印证规律③合法性被夺＋规律⑧祛魅（超越「气数已尽」叙事）；并标出传统循环的边界——现代性变量。' }
+  };
+
+  function clearVisual(){ stage.classList.remove('is-picking'); rows.forEach(r=>r.classList.remove('is-hot')); }
+  function showAside(id){ const d=DYN_DATA[id]; if(!d) return; asideEmpty.hidden=true; asideBody.hidden=false;
+    document.getElementById('aside-tag').textContent=d.tag;
+    document.getElementById('aside-name').textContent=d.name;
+    document.getElementById('aside-chain').innerHTML='<b>衰变链：</b>'+d.chain;
+    document.getElementById('aside-law').textContent=d.law; }
+  function pick(id){ if(!DYN_DATA[id]) return; clearVisual(); stage.classList.add('is-picking');
+    rows.forEach(r=>r.classList.toggle('is-hot', r.dataset.id===id)); showAside(id); }
+  rows.forEach(r=>{ const act=()=>pick(r.dataset.id); r.addEventListener('click',act);
+    r.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); act(); } }); });
+})();
+</script>
+</body>
+</html>

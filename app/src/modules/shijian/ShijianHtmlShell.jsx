@@ -5,6 +5,7 @@ import { getTheme, subscribeTheme } from '../../lib/theme.js';
 import './shijian.css';
 
 const THEME_MSG = 'c2os-sj-theme';
+const LOAD_TIMEOUT_MS = 8000;
 
 function withThemeQuery(htmlSrc, theme) {
   const t = theme === 'light' ? 'light' : 'dark';
@@ -33,8 +34,10 @@ export default function ShijianHtmlShell({
   hintLinks = [],
 }) {
   const iframeRef = useRef(null);
+  const loadTimerRef = useRef(null);
   const [theme, setTheme] = useState(() => getTheme());
   const [frameState, setFrameState] = useState('loading');
+  const [retryKey, setRetryKey] = useState(0);
 
   useEffect(() => subscribeTheme(setTheme), []);
 
@@ -43,11 +46,18 @@ export default function ShijianHtmlShell({
 
   useEffect(() => {
     setFrameState('loading');
-  }, [frameSrc]);
+  }, [frameSrc, retryKey]);
 
   useEffect(() => {
     const iframe = iframeRef.current;
     if (!iframe) return undefined;
+
+    const clearLoadTimer = () => {
+      if (loadTimerRef.current) {
+        clearTimeout(loadTimerRef.current);
+        loadTimerRef.current = null;
+      }
+    };
 
     const post = () => {
       try {
@@ -61,19 +71,29 @@ export default function ShijianHtmlShell({
     };
 
     const onLoad = () => {
+      clearLoadTimer();
       setFrameState('ready');
       post();
     };
-    const onError = () => setFrameState('error');
+    const onError = () => {
+      clearLoadTimer();
+      setFrameState('error');
+    };
+
+    clearLoadTimer();
+    loadTimerRef.current = setTimeout(() => {
+      setFrameState((prev) => (prev === 'loading' ? 'error' : prev));
+    }, LOAD_TIMEOUT_MS);
 
     post();
     iframe.addEventListener('load', onLoad);
     iframe.addEventListener('error', onError);
     return () => {
+      clearLoadTimer();
       iframe.removeEventListener('load', onLoad);
       iframe.removeEventListener('error', onError);
     };
-  }, [theme, frameSrc]);
+  }, [theme, frameSrc, retryKey]);
 
   return (
     <div className="shijian-page">
@@ -90,15 +110,23 @@ export default function ShijianHtmlShell({
         )}
         {frameState === 'error' && (
           <div className="shijian-frame-status is-error-panel" role="alert">
-            <p className="shijian-frame-status-text">卷页载入失败</p>
+            <p className="shijian-frame-status-text">卷页载入失败或超时</p>
             <p className="shijian-frame-status-hint">
-              请
+              <button
+                type="button"
+                className="shijian-frame-retry"
+                onClick={() => setRetryKey((k) => k + 1)}
+              >
+                重试载入
+              </button>
+              或
               <a href={htmlSrc} target="_blank" rel="noreferrer">直接打开单页</a>
-              或刷新重试。
+              。
             </p>
           </div>
         )}
         <iframe
+          key={retryKey}
           ref={iframeRef}
           className="shijian-frame"
           title={frameTitle}

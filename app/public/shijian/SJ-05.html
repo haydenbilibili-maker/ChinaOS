@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-05 · 王安石变法</title>
+<meta name="description" content="ChinaOS 史鉴系列变法卷首案：王安石变法——财政重建 vs 精英抵制。史鉴台账七字段验证案，为案例卷冻结可复用模板。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;
+  --sj-ink-800:#1d1916;
+  --sj-paper-100:#e8ddc7;
+  --sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;
+  --sj-celadon:#5f7a6f;
+  --sj-ochre:#b8894a;
+  --sj-line:#3a322b;
+  --sj-radius:6px;
+  --sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(1000px 560px at 72% -8%, #2a221c 0%, transparent 55%),
+    radial-gradient(700px 420px at 8% 90%, #1a1612 0%, transparent 50%),
+    var(--sj-ink-900);
+  color:var(--sj-paper-100);
+  font-family:var(--sj-serif);
+  line-height:1.75;
+}
+.sj-05-wrap{max-width:min(1180px,100%);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media (min-width:1536px){.sj-05-wrap{max-width:min(1360px,100%)}}
+@media (min-width:1920px){.sj-05-wrap{max-width:min(1520px,100%)}}
+@media (min-width:2560px){.sj-05-wrap{max-width:min(1680px,100%)}}
+
+/* 章节入场 · 尊重 prefers-reduced-motion */
+@keyframes sj-fade-in{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+.sj-reveal-stagger > header,
+.sj-reveal-stagger > .sj-zhupi,
+.sj-reveal-stagger > .sj-ledger,
+.sj-reveal-stagger > [class*="-sec"],
+.sj-reveal-stagger > footer{
+  animation:sj-fade-in .34s cubic-bezier(.22,.61,.36,1) both;
+}
+.sj-reveal-stagger > *:nth-child(1){animation-delay:.03s}
+.sj-reveal-stagger > *:nth-child(2){animation-delay:.06s}
+.sj-reveal-stagger > *:nth-child(3){animation-delay:.09s}
+.sj-reveal-stagger > *:nth-child(4){animation-delay:.12s}
+.sj-reveal-stagger > *:nth-child(5){animation-delay:.15s}
+.sj-reveal-stagger > *:nth-child(6){animation-delay:.18s}
+.sj-reveal-stagger > *:nth-child(7){animation-delay:.21s}
+.sj-reveal-stagger > *:nth-child(8){animation-delay:.24s}
+
+.sj-05-mast{
+  display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;
+  padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px;
+}
+.sj-05-mast .badge{font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-05-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em;line-height:1.3}
+.sj-05-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;letter-spacing:.08em;font-size:.72em;display:block;margin-top:4px}
+.sj-05-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right;line-height:1.7}
+.sj-05-meta b{color:var(--sj-ochre);font-weight:500}
+.sj-05-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sj-05-chip{
+  display:inline-block;font-family:var(--sj-mono);font-size:10px;
+  letter-spacing:.08em;color:var(--sj-celadon);border:1px solid var(--sj-line);
+  padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;
+}
+.sj-05-chip:hover,.sj-05-chip:focus-visible{border-color:var(--sj-ochre);color:var(--sj-ochre);outline:none}
+
+.sj-zhupi{
+  color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;
+  padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:74ch;
+}
+
+/* ====== 可复用史鉴台账组件（SJ-05 验证 → 案例卷复用） ====== */
+.sj-ledger{display:grid;gap:8px}
+.sj-ledger-field{margin:20px 0 8px;scroll-margin-top:24px}
+.sj-ledger-fh{
+  display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--sj-line);
+}
+.sj-ledger-fh .fnum{
+  font-family:var(--sj-mono);font-size:11px;letter-spacing:.12em;color:var(--sj-ochre);
+  border:1px solid var(--sj-line);border-radius:4px;padding:1px 7px;
+}
+.sj-ledger-fh h2{font-size:clamp(16px,2.1vw,19px);font-weight:600;letter-spacing:.1em}
+.sj-ledger-fh .en{font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);letter-spacing:.14em}
+
+.sj-05-prose{font-size:15.5px;color:var(--sj-paper-100);max-width:74ch}
+.sj-05-prose + .sj-05-prose{margin-top:12px}
+.sj-05-prose strong{color:var(--sj-ochre);font-weight:600}
+.sj-05-note{font-size:13px;color:var(--sj-paper-300);margin-top:12px;max-width:74ch}
+.sj-05-note b{color:var(--sj-paper-100);font-weight:600}
+
+/* ① 一句话拐点 */
+.sj-05-hook{
+  border:1px solid var(--sj-line);border-left:3px solid var(--sj-vermil);
+  border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
+  padding:18px 22px;
+}
+.sj-05-hook p{font-size:clamp(16px,2.3vw,20px);line-height:1.7;color:var(--sj-paper-100);letter-spacing:.02em}
+.sj-05-hook p b{color:var(--sj-vermil);font-weight:600}
+.sj-05-hook .yr{margin-top:10px;font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre);letter-spacing:.06em}
+
+/* ② 结构切片 */
+.sj-05-stage{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
+  box-shadow:0 1px 0 rgba(232,221,199,.04), 0 18px 48px rgba(0,0,0,.45);
+  padding:8px 8px 4px;overflow:auto;
+}
+.sj-05-stage svg{display:block;width:100%;height:auto;max-width:820px;margin:0 auto}
+.sj-node{cursor:pointer;transition:opacity .2s ease, filter .2s ease}
+.sj-node:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:4px}
+.sj-edge{transition:opacity .2s ease, filter .2s ease}
+.sj-05-stage.is-picking .sj-node{opacity:.3}
+.sj-05-stage.is-picking .sj-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px rgba(184,137,74,.4))}
+.sj-05-stage.is-picking .sj-edge{opacity:.16}
+.sj-05-stage.is-picking .sj-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px rgba(168,59,44,.4))}
+.sj-05-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:14px;align-items:start;margin-top:14px}
+.sj-05-aside{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
+  padding:14px 16px;position:sticky;top:12px;min-height:150px;
+}
+.sj-05-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-05-aside h3{font-size:16px;letter-spacing:.08em;margin-bottom:8px}
+.sj-05-aside p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.7}
+.sj-05-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+
+/* ③ 相位 */
+.sj-05-phase{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+.sj-05-phase .pb{
+  font-family:var(--sj-mono);font-size:12px;letter-spacing:.1em;color:var(--sj-vermil);
+  border:1px solid var(--sj-vermil);border-radius:20px;padding:6px 16px;white-space:nowrap;
+}
+.sj-05-phase .pb b{color:var(--sj-ochre);font-weight:500}
+
+/* 表格（④五力 / ⑦映射复用） */
+.sj-05-table-wrap{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);overflow:auto;margin-top:6px;min-width:0}
+.sj-05-table{width:max(100%,720px);table-layout:fixed;border-collapse:collapse;font-size:13px}
+.sj-05-table th{
+  background:var(--sj-ink-900);color:var(--sj-ochre);font-family:var(--sj-mono);font-size:10px;
+  letter-spacing:.12em;font-weight:500;text-align:left;padding:10px 12px;border-bottom:1px solid var(--sj-line);white-space:nowrap;
+}
+.sj-05-table td{padding:10px 12px;border-bottom:1px solid var(--sj-line);color:var(--sj-paper-300);vertical-align:top;line-height:1.6;overflow-wrap:break-word}
+.sj-05-table td:first-child{color:var(--sj-paper-100);font-weight:600;white-space:nowrap;min-width:6em}
+.sj-05-table .zheng{color:var(--sj-paper-300)}
+.sj-05-table .shi{color:var(--sj-paper-100)}
+
+/* ⑤ 史家交锋 */
+.sj-05-hist{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.sj-05-hist article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-05-hist .who{font-size:14px;font-weight:600;letter-spacing:.06em;color:var(--sj-celadon);margin-bottom:6px}
+.sj-05-hist .who span{font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);letter-spacing:.08em;margin-left:6px}
+.sj-05-hist p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+
+/* ⑥ 成败三列 */
+.sj-05-verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px}
+.sj-05-verdict article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-05-verdict .vh{font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;margin-bottom:8px}
+.sj-05-verdict[data-x] .vh{color:var(--sj-paper-300)}
+.sj-05-verdict article.ok .vh{color:var(--sj-celadon)}
+.sj-05-verdict article.fail .vh{color:var(--sj-vermil)}
+.sj-05-verdict article.open .vh{color:var(--sj-ochre)}
+.sj-05-verdict p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+.sj-05-verdict p + p{margin-top:8px;padding-top:8px;border-top:1px solid var(--sj-line)}
+
+/* ⑦ 古今映射双栏 */
+.sj-05-mirror{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.sj-05-mirror article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-05-mirror .mh{font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;margin-bottom:8px}
+.sj-05-mirror article.same .mh{color:var(--sj-celadon)}
+.sj-05-mirror article.diff .mh{color:var(--sj-ochre)}
+.sj-05-mirror p{font-size:13px;color:var(--sj-paper-100);line-height:1.68}
+.sj-05-mirror p .lk{color:var(--sj-celadon)}
+
+.sj-05-xref{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.sj-05-xref a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit;transition:border-color .18s}
+.sj-05-xref a:hover,.sj-05-xref a:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-05-xref .n{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;color:var(--sj-ochre);margin-bottom:4px}
+.sj-05-xref h3{font-size:14px;letter-spacing:.06em;margin-bottom:6px}
+.sj-05-xref p{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6}
+
+.sj-05-foot{
+  margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);
+  font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+}
+.sj-05-foot a{color:var(--sj-celadon);text-decoration:none}
+.sj-05-foot a:hover{color:var(--sj-ochre)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto  .sj-reveal-stagger > *{animation:none}
+}
+  .sj-node,.sj-edge,.sj-05-chip{transition:none}
+}
+@media (max-width:900px){
+  .sj-05-layout{grid-template-columns:1fr}
+  .sj-05-aside{position:static}
+  .sj-05-hist,.sj-05-mirror{grid-template-columns:1fr}
+  .sj-05-verdict{grid-template-columns:1fr}
+  .sj-05-xref{grid-template-columns:1fr 1fr}
+}
+@media (max-width:768px){
+  .sj-05-meta{text-align:left}
+  .sj-05-xref{grid-template-columns:1fr}
+}
+
+/* 宣纸日览 · 由 ?theme=light 或 postMessage 切换 html[data-theme] */
+html[data-theme="light"]{
+  --sj-ink-900:#f4f1ea;
+  --sj-ink-800:#ebe6dc;
+  --sj-paper-100:#1a1814;
+  --sj-paper-300:#5a5348;
+  --sj-vermil:#9a3428;
+  --sj-celadon:#3f5f54;
+  --sj-ochre:#8a6528;
+  --sj-line:#c8bfb0;
+}
+html[data-theme="light"] body{
+  background:
+    radial-gradient(1000px 560px at 72% -8%, #e8e4da 0%, transparent 55%),
+    radial-gradient(700px 420px at 8% 90%, #ebe6dc 0%, transparent 50%),
+    var(--sj-ink-900);
+  color:var(--sj-paper-100);
+}
+html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
+html[data-theme="light"] [class*="-stage"],
+html[data-theme="light"] [class*="-aside"],
+html[data-theme="light"] [class*="-table-wrap"],
+html[data-theme="light"] [class*="-hook"],
+html[data-theme="light"] [class*="-ledger"]{
+  box-shadow:0 1px 0 rgba(26,24,20,.05),0 12px 28px rgba(26,24,20,.08);
+}
+html[data-theme="light"] .sj-snap-track{background:var(--sj-ink-900);border-color:var(--sj-line)}
+html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
+
+</style>
+<script>
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){ document.documentElement.setAttribute('data-theme', t==='light' ? 'light' : 'dark'); }
+  try{
+    var q=new URLSearchParams(location.search).get('theme');
+    if(q==='light'||q==='dark') apply(q);
+  }catch(e){}
+  window.addEventListener('message', function(e){
+    if(e.origin !== window.location.origin) return;
+    var d=e&&e.data;
+    if(!d||d.type!==MSG) return;
+    apply(d.theme);
+  });
+})();
+</script>
+</head>
+<body>
+<div class="sj-05-wrap sj-reveal-stagger" id="sj-05-top">
+
+<header class="sj-05-mast">
+  <div>
+    <div class="badge">SJ-05 · 变法改革案例卷 · 首案 · 台账验证</div>
+    <h1>王安石变法<em>财政重建 vs 精英抵制 · 史鉴台账验证案</em></h1>
+    <div class="sj-05-chips">
+      <a class="sj-05-chip" href="./SJ-00.html">↔ SJ-00 总索引</a>
+      <a class="sj-05-chip" href="./SJ-02.html">↔ SJ-02 四步引擎</a>
+      <a class="sj-05-chip" href="./SJ-03.html">↔ SJ-03 五力模型</a>
+      <a class="sj-05-chip" href="./SJ-04.html">↔ SJ-04 相位罗盘</a>
+      <a class="sj-05-chip" href="./SJ-01.html">↔ SJ-01 方法光谱</a>
+    </div>
+  </div>
+  <div class="sj-05-meta">
+    自上而下改革 · 触动精英循环力而败<br/>
+    <b>AS_OF 2026-07-14</b> · v0.1
+  </div>
+</header>
+
+<p class="sj-zhupi">朱批：本案是史鉴台账的验证案——跑通七字段（拐点 · 切片 · 相位 · 五力 · 交锋 · 成败 · 映射），模板即冻结，供 SJ-06/07/08 复用。内容真源：《母本》第三部样板 A，不作二次分析。</p>
+
+<article class="sj-ledger">
+
+<!-- ① 一句话拐点 -->
+<section class="sj-ledger-field" id="f1" aria-labelledby="h-f1">
+  <div class="sj-ledger-fh"><span class="fnum">01</span><h2 id="h-f1">一句话拐点</h2><span class="en">HOOK</span></div>
+  <div class="sj-05-hook">
+    <p>北宋中期「三冗」（冗官、冗兵、冗费）财政危机下，一场试图用国家能力重建<b>财政汲取力</b>的自上而下改革，因直接触动士大夫—兼并之家的<b>精英特权</b>而失败，并把新旧党争制度化，最终拖垮北宋。</p>
+    <div class="yr">系年：熙宁二年（1069）始行新法 · 元丰八年（1085）神宗去世 → 高太后主政、司马光主导「元祐更化」废新法</div>
+  </div>
+</section>
+
+<!-- ② 结构切片 -->
+<section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
+  <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
+  <p class="sj-05-prose">权力几何的要害：变法依赖皇帝（神宗）个人背书——一根<strong>脆弱的合法性竖轴</strong>（皇权→新党，虚线）、一条<strong>水平党争</strong>（新党↔旧党）、一支<strong>下行汲取</strong>（财政→胥吏→基层），以及一条致命的<strong>反弹回路</strong>（汲取触动兼并之家 → 回流为旧党抵制）。点击任一节点展开。</p>
+
+  <div class="sj-05-stage" id="stage">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">王安石变法权力几何结构切片图</title>
+  <desc id="sj-desc">顶点皇权神宗以虚线脆弱竖轴支撑左侧新党；新党与右侧旧党水平党争；汲取自新党下行经地方胥吏至编户与兼并之家底盘；兼并之家触动特权后以朱红粗回路反弹为旧党抵制，构成变法死穴。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/>
+    </linearGradient>
+    <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+    <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+    <marker id="a-paper" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-300)"/></marker>
+  </defs>
+
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+
+  <!-- 卷轴轴头 -->
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC, Noto Serif SC, Source Han Serif SC, serif" letter-spacing="0.1em">结构切片 · 王安石变法</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.08em">SJ-05 · 权力几何横截面 · 步骤①</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">朱批：脆弱竖轴(虚线) + 兼并反弹回路(朱红最重) = 变法死因</text>
+
+  <!-- 边层 -->
+  <g fill="none" stroke-linecap="round">
+    <!-- 脆弱竖轴 皇权→新党 -->
+    <path class="sj-edge" data-edge="spine" d="M360,158 L250,250" stroke="var(--sj-ochre)" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#a-ochre)" opacity="0.9"/>
+    <!-- 党争 新党↔旧党 -->
+    <path class="sj-edge" data-edge="zhengdang" d="M306,286 L462,286" stroke="var(--sj-paper-300)" stroke-width="2.2" marker-start="url(#a-paper)" marker-end="url(#a-paper)" opacity="0.9"/>
+    <!-- 汲取下行 新党→胥吏→底盘 -->
+    <path class="sj-edge" data-edge="jiqu1" d="M220,316 L220,372" stroke="var(--sj-celadon)" stroke-width="2.2" marker-end="url(#a-paper)" opacity="0.85"/>
+    <path class="sj-edge" data-edge="jiqu2" d="M220,422 L220,486" stroke="var(--sj-celadon)" stroke-width="2.2" marker-end="url(#a-paper)" opacity="0.85"/>
+    <!-- 反弹回路 兼并之家→旧党（死穴，最重） -->
+    <path class="sj-edge" data-edge="rebound" d="M640,498 C724,452 716,340 588,320" stroke="var(--sj-vermil)" stroke-width="3.6" marker-end="url(#a-vermil)" opacity="0.95"/>
+  </g>
+
+  <!-- 边标签 -->
+  <g font-family="Songti SC, Noto Serif SC, serif" font-size="11">
+    <text x="250" y="212" fill="var(--sj-ochre)">支柱脆弱 · 1085 抽走即翻盘</text>
+    <text x="384" y="278" text-anchor="middle" fill="var(--sj-paper-300)">义利之辩 · 党争制度化</text>
+    <text x="230" y="352" fill="var(--sj-celadon)">汲取</text>
+    <text x="230" y="462" fill="var(--sj-celadon)">转嫁基层</text>
+    <text x="700" y="360" text-anchor="end" fill="var(--sj-vermil)" font-size="12" font-weight="600">触动特权 → 精英反弹</text>
+    <text x="700" y="378" text-anchor="end" fill="var(--sj-vermil)">★ 变法死穴</text>
+    <circle cx="708" cy="392" r="5" fill="none" stroke="var(--sj-vermil)" stroke-width="1.4"/>
+  </g>
+
+  <!-- 皇权 顶点 -->
+  <g class="sj-node" data-id="huangquan" id="node-huangquan" tabindex="0" role="button" aria-label="皇权 神宗">
+    <rect x="320" y="112" width="180" height="46" rx="6" fill="#2a2218" stroke="var(--sj-ochre)" stroke-width="2.6"/>
+    <text x="410" y="134" text-anchor="middle" fill="var(--sj-ochre)" font-size="15" font-weight="600" font-family="Songti SC, Noto Serif SC, serif" letter-spacing="0.06em">皇权 · 神宗</text>
+    <text x="410" y="150" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">合法性支柱</text>
+  </g>
+
+  <!-- 新党 左 -->
+  <g class="sj-node" data-id="xindang" id="node-xindang" tabindex="0" role="button" aria-label="王安石 新党">
+    <rect x="130" y="250" width="176" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="218" y="278" text-anchor="middle" fill="var(--sj-celadon)" font-size="15" font-weight="600" font-family="Songti SC, Noto Serif SC, serif">王安石 · 新党</text>
+    <text x="218" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">技术官僚 · 财政重建</text>
+  </g>
+
+  <!-- 旧党 右 -->
+  <g class="sj-node" data-id="jiudang" id="node-jiudang" tabindex="0" role="button" aria-label="司马光 旧党">
+    <rect x="462" y="250" width="186" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="555" y="278" text-anchor="middle" fill="var(--sj-vermil)" font-size="15" font-weight="600" font-family="Songti SC, Noto Serif SC, serif">司马光 · 旧党</text>
+    <text x="555" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">士大夫共识 · 精英抵制</text>
+  </g>
+
+  <!-- 胥吏 中层 -->
+  <g class="sj-node" data-id="xuli" id="node-xuli" tabindex="0" role="button" aria-label="地方胥吏">
+    <rect x="132" y="372" width="176" height="50" rx="6" fill="#221d18" stroke="var(--sj-paper-300)" stroke-width="1.6"/>
+    <text x="220" y="393" text-anchor="middle" fill="var(--sj-paper-300)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">地方胥吏</text>
+    <text x="220" y="410" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif" opacity="0.85">执行层 · 青苗免役扭曲</text>
+  </g>
+
+  <!-- 底盘 -->
+  <g class="sj-node" data-id="base" id="node-base" tabindex="0" role="button" aria-label="编户齐民 客户 兼并之家">
+    <rect x="56" y="486" width="708" height="86" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="1.4"/>
+    <text x="240" y="520" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC, Noto Serif SC, serif" letter-spacing="0.06em">编户齐民 · 客户 · 兼并之家</text>
+    <text x="240" y="542" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">承托一切 · 汲取最终转嫁基层</text>
+    <!-- 兼并之家 高亮 -->
+    <rect x="556" y="494" width="196" height="70" rx="6" fill="none" stroke="var(--sj-vermil)" stroke-width="1.2" stroke-dasharray="5 4"/>
+    <text x="654" y="534" text-anchor="middle" fill="var(--sj-vermil)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">兼并之家</text>
+  </g>
+
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">viewBox 820×600 · 规格 §3</text>
+</svg>
+  </div>
+
+  <div class="sj-05-layout">
+    <div class="sj-05-note" style="margin-top:0">
+      色义：皇权=赭金 · 新党=青瓷 · 旧党=朱红 · 胥吏=灰 · 底盘=深墨。竖轴虚线＝依赖个人背书；反弹回路笔画最重＝变法死因，非「小人乱政」。
+    </div>
+    <aside class="sj-05-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-05-aside-empty">点选切片中任一节点，展开其在变法中的角色（母本样板 A）。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ③ 相位定位 -->
+<section class="sj-ledger-field" id="f3" aria-labelledby="h-f3">
+  <div class="sj-ledger-fh"><span class="fnum">03</span><h2 id="h-f3">相位定位</h2><span class="en">PHASE · 步骤②</span></div>
+  <div class="sj-05-phase">
+    <span class="pb">僵化期早段 · <b>改革窗口</b></span>
+    <a class="sj-05-chip" href="./SJ-04.html">在 SJ-04 相位盘定位 →</a>
+  </div>
+  <p class="sj-05-prose">承平百年、财政刚性（三冗）、西夏与辽的边疆压力并存——典型的改革窗口。在 SJ-04 相位盘上指针落于「僵化期·改革窗口」：单力（财政）负相位可修复，变法正是这一相位的修复尝试；但修复必然触动精英循环力，走钢丝由此开始。</p>
+</section>
+
+<!-- ④ 五力归因 -->
+<section class="sj-ledger-field" id="f4" aria-labelledby="h-f4">
+  <div class="sj-ledger-fh"><span class="fnum">04</span><h2 id="h-f4">五力归因台账</h2><span class="en">FORCES · 步骤③ · 正史 / 实因双列</span></div>
+  <p class="sj-05-prose">双轨意识：左列是旧党书写的<strong>正史归因</strong>，右列是剥离书写立场后的<strong>结构实因</strong>。核心病灶在财政汲取，死穴在精英循环。</p>
+  <div class="sj-05-table-wrap">
+    <table class="sj-05-table">
+      <thead><tr><th>力</th><th>正史归因（旧党书写）</th><th>结构实因</th></tr></thead>
+      <tbody>
+        <tr><td>财政汲取</td><td class="zheng">「聚敛」「与民争利」</td><td class="shi">三冗致刚性支出爆炸；青苗/免役/市易/方田均税全是汲取力重建工具——核心病灶在此</td></tr>
+        <tr><td>精英循环</td><td class="zheng">「小人乱政」</td><td class="shi">免役钱、方田均税直击士大夫—兼并之家的经济特权 → 精英集团集体反弹，这是变法真正的死穴</td></tr>
+        <tr><td>合法性叙事</td><td class="zheng">违背儒家义利之辨</td><td class="shi">神宗提供合法性支柱，但「与民争利」使变法在意识形态战场失分（司马光主攻点）</td></tr>
+        <tr><td>边疆军事</td><td class="zheng">穷兵黩武</td><td class="shi">保甲/将兵法 + 熙河开边，富国强兵有真实军事驱动，熙河拓边短期见效</td></tr>
+        <tr><td>生态—人口基座</td><td class="zheng">—</td><td class="shi">宋代货币化程度高、汲取条件本好，但小农—兼并结构使汲取最终转嫁基层，执行层（胥吏）扭曲</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ⑤ 史家交锋 -->
+<section class="sj-ledger-field" id="f5" aria-labelledby="h-f5">
+  <div class="sj-ledger-fh"><span class="fnum">05</span><h2 id="h-f5">史家交锋</h2><span class="en">HISTORIANS · 步骤③ · SJ-01</span></div>
+  <div class="sj-05-hist">
+    <article><div class="who">李敖式考据<span>祛魅</span></div><p>先剥离旧党书写立场——新法未必是「聚敛」，很大程度是士大夫阶级的利益叙事被写成了正史。</p></article>
+    <article><div class="who">钱穆<span>《国史大纲》</span></div><p>对新法持批评（理财过重、扰民），温情于士大夫传统；但也承认北宋财政确有沉疴。</p></article>
+    <article><div class="who">金观涛<span>超稳定结构</span></div><p>变法是超稳定结构的一次自我修复尝试，失败因它触动了地主—官僚一体化的根基，系统只能低水平修复，无法结构升级。</p></article>
+    <article><div class="who">黄仁宇<span>大历史 / 数目字</span></div><p>王安石试图「数目字管理」（青苗、免役皆量化财政工具），但缺乏基层组织与技术基础设施，超前于时代而必败。</p></article>
+    <article style="grid-column:1/-1"><div class="who">刘子健 James T.C. Liu<span>Reform in Sung China · 哈佛 1959</span></div><p>改革被官僚制本身消化，官僚政治的结构限制大于个人意志。</p></article>
+  </div>
+</section>
+
+<!-- ⑥ 成败判定 -->
+<section class="sj-ledger-field" id="f6" aria-labelledby="h-f6">
+  <div class="sj-ledger-fh"><span class="fnum">06</span><h2 id="h-f6">成败判定</h2><span class="en">VERDICT · 三列 · 禁虚假收束</span></div>
+  <div class="sj-05-verdict">
+    <article class="ok">
+      <div class="vh">已兑现</div>
+      <p>短期国库充盈</p><p>熙河拓边</p><p>部分水利工程</p>
+    </article>
+    <article class="fail">
+      <div class="vh">已失败</div>
+      <p>青苗/免役执行扭曲（强制配借、扰民）</p><p>新旧党争制度化，延续至北宋灭亡</p><p>士大夫精英共识彻底破裂</p>
+    </article>
+    <article class="open">
+      <div class="vh">未决〔反事实〕</div>
+      <p>若无党争内耗与徽宗昏政，变法路径能否支撑军事现代化以御金？</p>
+    </article>
+  </div>
+</section>
+
+<!-- ⑦ 古今映射 -->
+<section class="sj-ledger-field" id="f7" aria-labelledby="h-f7">
+  <div class="sj-ledger-fh"><span class="fnum">07</span><h2 id="h-f7">古今映射</h2><span class="en">MIRROR · 步骤④ · 相似 / 差异双栏</span></div>
+  <p class="sj-05-note">硬约束：两栏必须成对——只有「相似机制」而无「关键差异」即为裸类比，不成立。</p>
+  <div class="sj-05-mirror">
+    <article class="same">
+      <div class="mh">相似机制（古今相通）</div>
+      <p>国家能力（财政汲取）重建 vs 既得利益集团抵制；自上而下改革对最高权力背书的脆弱依赖；执行层走样。</p>
+    </article>
+    <article class="diff">
+      <div class="mh">关键差异（不可裸类比）</div>
+      <p>现代国家已补上数目字管理能力（黄仁宇缺口）+ 列宁式组织穿透基层（<span class="lk">GY-02</span>），执行穿透力远超王安石；但「与民争利」的国进民退张力仍在（→ SJ-21 经济映射）。</p>
+    </article>
+  </div>
+</section>
+
+</article>
+
+<!-- 交叉 -->
+<section class="sj-ledger-field" id="fx" aria-labelledby="h-fx">
+  <div class="sj-ledger-fh"><span class="fnum">◆</span><h2 id="h-fx">交叉引用与模板说明</h2><span class="en">XREF</span></div>
+  <p class="sj-05-note">本案七字段跑通后，<b>史鉴台账组件</b>（字段顺序、双列/三列/双栏规则）冻结为案例卷模板，SJ-06 盛衰拐点、SJ-07 王朝崩解、SJ-08 分裂—重整只换内容复用。</p>
+  <div class="sj-05-xref">
+    <a href="./SJ-02.html"><div class="n">SJ-02 · 引擎</div><h3>史鉴引擎四步法</h3><p>本案是四步引擎的首个完整落地：切片①→相位②→五力③→映射④。</p></a>
+    <a href="./SJ-03.html"><div class="n">SJ-03 · 步骤③</div><h3>五力衰变模型</h3><p>五力归因所用框架；本案病灶在财政、死穴在精英。</p></a>
+    <a href="./SJ-04.html"><div class="n">SJ-04 · 步骤②</div><h3>治乱相位罗盘</h3><p>本案定位于僵化期改革窗口。</p></a>
+    <a href="./SJ-00.html"><div class="n">SJ-00</div><h3>史鉴总索引</h3><p>案例卷入口；变法卷卡片已点亮本案。</p></a>
+    <a href="/modules/yishixingtai"><div class="n">GY-02</div><h3>合法性机器</h3><p>古今映射关键差异所指：列宁式组织的基层穿透。</p></a>
+    <a href="./SJ-01.html"><div class="n">SJ-01</div><h3>方法光谱</h3><p>史家交锋的镜头库；五力归因前先李敖式祛魅。</p></a>
+  </div>
+</section>
+
+<footer class="sj-05-foot">
+  <span>ChinaOS · 史鉴 SJ-05 · v0.1 · AS_OF 2026-07-14 · 真源《母本》第三部样板 A</span>
+  <span><a href="./SJ-00.html">← 返回 SJ-00</a> · <a href="#sj-05-top">↑ 顶</a> · <a href="./SJ-02.html">四步引擎</a></span>
+  <span>本地调试 · 未 push</span>
+</footer>
+
+</div>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const nodes = Array.from(stage.querySelectorAll('.sj-node'));
+  const edges = Array.from(stage.querySelectorAll('.sj-edge'));
+  const asideEmpty = document.getElementById('aside-empty');
+  const asideBody = document.getElementById('aside-body');
+
+  /** 结构切片节点文案（母本样板 A） */
+  const NODE_DATA = {
+    huangquan: {
+      name: '皇权 · 神宗',
+      tag: '合法性支柱 · 脆弱竖轴',
+      body: '变法依赖神宗个人背书。元丰八年（1085）神宗去世，支柱瞬时抽走 → 高太后主政、司马光「元祐更化」全面废新法。竖轴之脆弱正是自上而下改革的结构软肋。'
+    },
+    xindang: {
+      name: '王安石 · 新党',
+      tag: '技术官僚 · 财政重建',
+      body: '以青苗、免役、市易、方田均税重建财政汲取力，另以保甲/将兵法富国强兵、熙河开边短期见效。改革引擎，但其合法性全系于皇权一线。'
+    },
+    jiudang: {
+      name: '司马光 · 旧党',
+      tag: '士大夫共识 · 精英抵制',
+      body: '免役钱、方田均税直击士大夫—兼并之家的经济特权，触发集体反弹；以「与民争利」的义利之辨为意识形态主攻点。党争由此制度化。'
+    },
+    xuli: {
+      name: '地方胥吏',
+      tag: '执行层 · 扭曲',
+      body: '青苗强制配借、免役扰民——汲取在基层走样。执行层扭曲放大了「聚敛」口实，是正史归因与结构实因的落差所在。'
+    },
+    base: {
+      name: '编户齐民 · 客户 · 兼并之家',
+      tag: '底盘 · 汲取转嫁',
+      body: '宋代货币化程度高、汲取条件本好；但小农—兼并结构使汲取最终转嫁基层。兼并之家既是汲取对象，又是旧党的社会基础。'
+    },
+    rebound: {
+      name: '反弹回路 · 变法死穴',
+      tag: '兼并之家 → 旧党',
+      body: '财政重建触动兼并之家特权，回流为旧党抵制——这是变法真正的死因。把它读成「小人乱政」，正是正史对结构实因的遮蔽。'
+    }
+  };
+
+  const EDGE_NODE = { spine:'huangquan', zhengdang:'jiudang', jiqu1:'xindang', jiqu2:'base', rebound:'rebound' };
+  const NODE_EDGE = {
+    huangquan:['spine'], xindang:['spine','zhengdang','jiqu1'], jiudang:['zhengdang','rebound'],
+    xuli:['jiqu1','jiqu2'], base:['jiqu2','rebound'], rebound:['rebound']
+  };
+
+  function clearVisual(){
+    stage.classList.remove('is-picking');
+    nodes.forEach(n => n.classList.remove('is-hot'));
+    edges.forEach(e => e.classList.remove('is-hot'));
+  }
+  function showAside(id){
+    const d = NODE_DATA[id];
+    if(!d) return;
+    asideEmpty.hidden = true; asideBody.hidden = false;
+    document.getElementById('aside-tag').textContent = d.tag;
+    document.getElementById('aside-name').textContent = d.name;
+    document.getElementById('aside-text').textContent = d.body;
+  }
+  function pick(id){
+    if(!NODE_DATA[id]) return;
+    clearVisual();
+    stage.classList.add('is-picking');
+    nodes.forEach(n => n.classList.toggle('is-hot', n.dataset.id === id));
+    const hot = NODE_EDGE[id] || [];
+    edges.forEach(e => e.classList.toggle('is-hot', hot.indexOf(e.dataset.edge) >= 0));
+    showAside(id);
+  }
+  nodes.forEach(n => {
+    const act = () => pick(n.dataset.id);
+    n.addEventListener('click', act);
+    n.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); act(); } });
+  });
+  // 反弹回路边亦可点选（映射到死穴文案）
+  const reboundEdge = stage.querySelector('.sj-edge[data-edge="rebound"]');
+  if(reboundEdge){
+    reboundEdge.style.cursor = 'pointer';
+    reboundEdge.setAttribute('tabindex','0');
+    reboundEdge.setAttribute('role','button');
+    reboundEdge.setAttribute('aria-label','反弹回路 变法死穴');
+    const act = () => pick('rebound');
+    reboundEdge.addEventListener('click', act);
+    reboundEdge.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); act(); } });
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-06 · 天宝之乱</title>
+<meta name="description" content="ChinaOS 史鉴系列盛衰拐点卷：开元盛世→天宝之乱——边疆军事外包重建边防军事力，却摧毁内重外轻平衡，盛极而崩。史鉴台账七字段。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;
+  --sj-ink-800:#1d1916;
+  --sj-paper-100:#e8ddc7;
+  --sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;
+  --sj-celadon:#5f7a6f;
+  --sj-ochre:#b8894a;
+  --sj-line:#3a322b;
+  --sj-radius:6px;
+  --sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(1000px 560px at 72% -8%, #2a221c 0%, transparent 55%),
+    radial-gradient(700px 420px at 8% 90%, #1a1612 0%, transparent 50%),
+    var(--sj-ink-900);
+  color:var(--sj-paper-100);
+  font-family:var(--sj-serif);
+  line-height:1.75;
+}
+.sj-06-wrap{max-width:min(1180px,100%);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media (min-width:1536px){.sj-06-wrap{max-width:min(1360px,100%)}}
+@media (min-width:1920px){.sj-06-wrap{max-width:min(1520px,100%)}}
+@media (min-width:2560px){.sj-06-wrap{max-width:min(1680px,100%)}}
+
+/* 章节入场 · 尊重 prefers-reduced-motion */
+@keyframes sj-fade-in{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+.sj-reveal-stagger > header,
+.sj-reveal-stagger > .sj-zhupi,
+.sj-reveal-stagger > .sj-ledger,
+.sj-reveal-stagger > [class*="-sec"],
+.sj-reveal-stagger > footer{
+  animation:sj-fade-in .34s cubic-bezier(.22,.61,.36,1) both;
+}
+.sj-reveal-stagger > *:nth-child(1){animation-delay:.03s}
+.sj-reveal-stagger > *:nth-child(2){animation-delay:.06s}
+.sj-reveal-stagger > *:nth-child(3){animation-delay:.09s}
+.sj-reveal-stagger > *:nth-child(4){animation-delay:.12s}
+.sj-reveal-stagger > *:nth-child(5){animation-delay:.15s}
+.sj-reveal-stagger > *:nth-child(6){animation-delay:.18s}
+.sj-reveal-stagger > *:nth-child(7){animation-delay:.21s}
+.sj-reveal-stagger > *:nth-child(8){animation-delay:.24s}
+
+.sj-06-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px}
+.sj-06-mast .badge{font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-06-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em;line-height:1.3}
+.sj-06-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;letter-spacing:.08em;font-size:.72em;display:block;margin-top:4px}
+.sj-06-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right;line-height:1.7}
+.sj-06-meta b{color:var(--sj-ochre);font-weight:500}
+.sj-06-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sj-06-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;letter-spacing:.08em;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none}
+.sj-06-chip:hover,.sj-06-chip:focus-visible{border-color:var(--sj-ochre);color:var(--sj-ochre);outline:none}
+
+.sj-zhupi{color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:74ch}
+
+/* ====== 史鉴台账组件（SJ-05 冻结 · 本卷复用） ====== */
+.sj-ledger{display:grid;gap:8px}
+.sj-ledger-field{margin:20px 0 8px;scroll-margin-top:24px}
+.sj-ledger-fh{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--sj-line)}
+.sj-ledger-fh .fnum{font-family:var(--sj-mono);font-size:11px;letter-spacing:.12em;color:var(--sj-ochre);border:1px solid var(--sj-line);border-radius:4px;padding:1px 7px}
+.sj-ledger-fh h2{font-size:clamp(16px,2.1vw,19px);font-weight:600;letter-spacing:.1em}
+.sj-ledger-fh .en{font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);letter-spacing:.14em}
+
+.sj-06-prose{font-size:15.5px;color:var(--sj-paper-100);max-width:74ch}
+.sj-06-prose + .sj-06-prose{margin-top:12px}
+.sj-06-prose strong{color:var(--sj-ochre);font-weight:600}
+.sj-06-note{font-size:13px;color:var(--sj-paper-300);margin-top:12px;max-width:74ch}
+.sj-06-note b{color:var(--sj-paper-100);font-weight:600}
+
+.sj-06-hook{border:1px solid var(--sj-line);border-left:3px solid var(--sj-vermil);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:18px 22px}
+.sj-06-hook p{font-size:clamp(16px,2.3vw,20px);line-height:1.7;color:var(--sj-paper-100);letter-spacing:.02em}
+.sj-06-hook p b{color:var(--sj-vermil);font-weight:600}
+.sj-06-hook .yr{margin-top:10px;font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre);letter-spacing:.06em}
+
+.sj-06-stage{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));box-shadow:0 1px 0 rgba(232,221,199,.04), 0 18px 48px rgba(0,0,0,.45);padding:8px 8px 4px;overflow:auto}
+.sj-06-stage svg{display:block;width:100%;height:auto;max-width:820px;margin:0 auto}
+.sj-node{cursor:pointer;transition:opacity .2s ease, filter .2s ease}
+.sj-node:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:4px}
+.sj-edge{transition:opacity .2s ease, filter .2s ease}
+.sj-06-stage.is-picking .sj-node{opacity:.3}
+.sj-06-stage.is-picking .sj-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px rgba(184,137,74,.4))}
+.sj-06-stage.is-picking .sj-edge{opacity:.16}
+.sj-06-stage.is-picking .sj-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px rgba(168,59,44,.4))}
+.sj-06-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:14px;align-items:start;margin-top:14px}
+.sj-06-aside{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px;position:sticky;top:12px;min-height:150px}
+.sj-06-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-06-aside h3{font-size:16px;letter-spacing:.08em;margin-bottom:8px}
+.sj-06-aside p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.7}
+.sj-06-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+
+.sj-06-phase{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+.sj-06-phase .pb{font-family:var(--sj-mono);font-size:12px;letter-spacing:.1em;color:var(--sj-vermil);border:1px solid var(--sj-vermil);border-radius:20px;padding:6px 16px;white-space:nowrap}
+.sj-06-phase .pb b{color:var(--sj-ochre);font-weight:500}
+
+.sj-06-table-wrap{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);overflow:auto;margin-top:6px;min-width:0}
+.sj-06-table{width:max(100%,720px);table-layout:fixed;border-collapse:collapse;font-size:13px}
+.sj-06-table th{background:var(--sj-ink-900);color:var(--sj-ochre);font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;font-weight:500;text-align:left;padding:10px 12px;border-bottom:1px solid var(--sj-line);white-space:nowrap}
+.sj-06-table td{padding:10px 12px;border-bottom:1px solid var(--sj-line);color:var(--sj-paper-300);vertical-align:top;line-height:1.6;overflow-wrap:break-word}
+.sj-06-table td:first-child{color:var(--sj-paper-100);font-weight:600;white-space:nowrap;min-width:6em}
+.sj-06-table .shi{color:var(--sj-paper-100)}
+
+.sj-06-hist{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.sj-06-hist article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-06-hist .who{font-size:14px;font-weight:600;letter-spacing:.06em;color:var(--sj-celadon);margin-bottom:6px}
+.sj-06-hist .who span{font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);letter-spacing:.08em;margin-left:6px}
+.sj-06-hist p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+
+.sj-06-verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px}
+.sj-06-verdict article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-06-verdict .vh{font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;margin-bottom:8px}
+.sj-06-verdict article.ok .vh{color:var(--sj-celadon)}
+.sj-06-verdict article.fail .vh{color:var(--sj-vermil)}
+.sj-06-verdict article.open .vh{color:var(--sj-ochre)}
+.sj-06-verdict p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+.sj-06-verdict p + p{margin-top:8px;padding-top:8px;border-top:1px solid var(--sj-line)}
+
+.sj-06-mirror{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.sj-06-mirror article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-06-mirror .mh{font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;margin-bottom:8px}
+.sj-06-mirror article.same .mh{color:var(--sj-celadon)}
+.sj-06-mirror article.diff .mh{color:var(--sj-ochre)}
+.sj-06-mirror p{font-size:13px;color:var(--sj-paper-100);line-height:1.68}
+.sj-06-mirror p .lk{color:var(--sj-celadon)}
+
+.sj-06-xref{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.sj-06-xref a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit;transition:border-color .18s}
+.sj-06-xref a:hover,.sj-06-xref a:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-06-xref .n{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;color:var(--sj-ochre);margin-bottom:4px}
+.sj-06-xref h3{font-size:14px;letter-spacing:.06em;margin-bottom:6px}
+.sj-06-xref p{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6}
+
+.sj-06-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sj-06-foot a{color:var(--sj-celadon);text-decoration:none}
+.sj-06-foot a:hover{color:var(--sj-ochre)}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto  .sj-reveal-stagger > *{animation:none}
+}.sj-node,.sj-edge,.sj-06-chip{transition:none}}
+@media (max-width:900px){.sj-06-layout{grid-template-columns:1fr}.sj-06-aside{position:static}.sj-06-hist,.sj-06-mirror{grid-template-columns:1fr}.sj-06-verdict{grid-template-columns:1fr}.sj-06-xref{grid-template-columns:1fr 1fr}}
+@media (max-width:768px){.sj-06-meta{text-align:left}.sj-06-xref{grid-template-columns:1fr}}
+
+html[data-theme="light"]{--sj-ink-900:#f4f1ea;--sj-ink-800:#ebe6dc;--sj-paper-100:#1a1814;--sj-paper-300:#5a5348;--sj-vermil:#9a3428;--sj-celadon:#3f5f54;--sj-ochre:#8a6528;--sj-line:#c8bfb0}
+html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%, #e8e4da 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #ebe6dc 0%, transparent 50%),var(--sj-ink-900);color:var(--sj-paper-100)}
+html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
+html[data-theme="light"] [class*="-stage"],
+html[data-theme="light"] [class*="-aside"],
+html[data-theme="light"] [class*="-table-wrap"],
+html[data-theme="light"] [class*="-hook"],
+html[data-theme="light"] [class*="-ledger"]{
+  box-shadow:0 1px 0 rgba(26,24,20,.05),0 12px 28px rgba(26,24,20,.08);
+}
+html[data-theme="light"] .sj-snap-track{background:var(--sj-ink-900);border-color:var(--sj-line)}
+html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
+
+</style>
+<script>
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){ document.documentElement.setAttribute('data-theme', t==='light' ? 'light' : 'dark'); }
+  try{ var q=new URLSearchParams(location.search).get('theme'); if(q==='light'||q==='dark') apply(q); }catch(e){}
+  window.addEventListener('message', function(e){
+    if(e.origin !== window.location.origin) return;
+    var d=e&&e.data; if(!d||d.type!==MSG) return; apply(d.theme); });
+})();
+</script>
+</head>
+<body>
+<div class="sj-06-wrap sj-reveal-stagger" id="sj-06-top">
+
+<header class="sj-06-mast">
+  <div>
+    <div class="badge">SJ-06 · 盛衰拐点案例卷 · 天宝之乱</div>
+    <h1>开元盛世 → 天宝之乱<em>内轻外重 · 强化单力反降稳定 · 盛极而崩</em></h1>
+    <div class="sj-06-chips">
+      <a class="sj-06-chip" href="./SJ-00.html">↔ SJ-00 总索引</a>
+      <a class="sj-06-chip" href="./SJ-05.html">↔ SJ-05 变法首案</a>
+      <a class="sj-06-chip" href="./SJ-03.html">↔ SJ-03 五力模型</a>
+      <a class="sj-06-chip" href="./SJ-04.html">↔ SJ-04 相位罗盘</a>
+      <a class="sj-06-chip" href="./SJ-02.html">↔ SJ-02 四步引擎</a>
+    </div>
+  </div>
+  <div class="sj-06-meta">
+    鼎盛顶点的隐性拐点<br/>
+    <b>AS_OF 2026-07-14</b> · v0.1
+  </div>
+</header>
+
+<p class="sj-zhupi">朱批：拐点类案例，同样跑七字段。本案的元命题——强化单一之力（边疆军事）而无制度制衡，反而是崩解触发器。它是「强军＝更稳」直觉的反例标本。内容真源：《母本》第三部样板 B。</p>
+
+<article class="sj-ledger">
+
+<!-- ① 一句话拐点 -->
+<section class="sj-ledger-field" id="f1" aria-labelledby="h-f1">
+  <div class="sj-ledger-fh"><span class="fnum">01</span><h2 id="h-f1">一句话拐点</h2><span class="en">HOOK</span></div>
+  <div class="sj-06-hook">
+    <p>鼎盛期顶点的<b>隐性拐点</b>——边疆军事外包（节度使制）重建了强大边防军事力，却摧毁了「<b>内重外轻</b>」的权力平衡，盛极而崩。</p>
+    <div class="yr">系年：开元盛世（713–741）→ 天宝十四载（755）安禄山起兵 · 禄山一人兼范阳、平卢、河东三镇节度使</div>
+  </div>
+</section>
+
+<!-- ② 结构切片 -->
+<section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
+  <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
+  <p class="sj-06-prose">权力几何：中央（玄宗晚期怠政 → 李林甫、杨国忠把持中枢 → 禁军空虚）呈<strong>内轻</strong>；边镇节度使掌兵、财、民三权，安禄山一人兼三镇，呈<strong>外重</strong>。中心愈虚、边缘愈重，崩解只待一次触发。点击任一节点展开。</p>
+
+  <div class="sj-06-stage" id="stage">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">天宝之乱内轻外重结构切片图</title>
+  <desc id="sj-desc">中央纵列玄宗怠政、中枢李杨堵塞、禁军空虚，笔画轻；四围边镇节度使笔画重，安禄山兼三镇最重；崩解箭头自安禄山刺向中央两京。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="40%" r="72%"><stop offset="0%" stop-color="var(--sj-ink-800)"/><stop offset="100%" stop-color="var(--sj-ink-900)"/></radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse"><line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/></pattern>
+    <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+    <marker id="a-thin" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-300)"/></marker>
+  </defs>
+
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC, Noto Serif SC, Source Han Serif SC, serif" letter-spacing="0.1em">结构切片 · 内轻外重</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.08em">SJ-06 · 天宝之乱 · 步骤①</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">朱批：中心愈虚(内轻) · 边缘愈重(外重) · 崩解只待一次触发</text>
+
+  <!-- 中央虚化边框 -->
+  <rect x="300" y="106" width="220" height="360" rx="10" fill="none" stroke="var(--sj-line)" stroke-width="1" stroke-dasharray="3 4" opacity="0.7"/>
+  <text x="410" y="486" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" opacity="0.8">中央 · 内轻</text>
+
+  <!-- 授权边（thin，中央→边镇；却养大边镇） -->
+  <g fill="none" stroke-linecap="round">
+    <path class="sj-edge" data-edge="grant-nx" d="M300,300 L214,300" stroke="var(--sj-paper-300)" stroke-width="1.2" stroke-dasharray="4 5" marker-end="url(#a-thin)" opacity="0.6"/>
+    <path class="sj-edge" data-edge="grant-al" d="M520,300 L586,300" stroke="var(--sj-paper-300)" stroke-width="1.2" stroke-dasharray="4 5" marker-end="url(#a-thin)" opacity="0.6"/>
+    <path class="sj-edge" data-edge="grant-bz" d="M410,420 L410,452" stroke="var(--sj-paper-300)" stroke-width="1.2" stroke-dasharray="4 5" marker-end="url(#a-thin)" opacity="0.6"/>
+    <!-- 崩解箭头 安禄山→中央两京（最重） -->
+    <path class="sj-edge" data-edge="collapse" d="M600,332 C520,392 470,352 452,318" stroke="var(--sj-vermil)" stroke-width="3.6" marker-end="url(#a-vermil)" opacity="0.95"/>
+  </g>
+  <g font-family="Songti SC, Noto Serif SC, serif" font-size="11">
+    <text x="250" y="286" text-anchor="middle" fill="var(--sj-paper-300)">授权节度</text>
+    <text x="560" y="286" text-anchor="middle" fill="var(--sj-paper-300)">授权节度</text>
+    <text x="556" y="372" text-anchor="end" fill="var(--sj-vermil)" font-size="12" font-weight="600">755 起兵 → 两京陷落</text>
+  </g>
+
+  <!-- 中央纵列（内轻，笔画轻） -->
+  <g class="sj-node" data-id="xuanzong" id="node-xuanzong" tabindex="0" role="button" aria-label="唐玄宗 晚期怠政">
+    <rect x="316" y="118" width="188" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="1.4" opacity="0.85"/>
+    <text x="410" y="140" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">唐玄宗 · 晚期怠政</text>
+    <text x="410" y="156" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">合法性绩效磨损</text>
+  </g>
+  <g class="sj-node" data-id="zhongshu" id="node-zhongshu" tabindex="0" role="button" aria-label="中枢 李林甫 杨国忠">
+    <rect x="316" y="192" width="188" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="1.6"/>
+    <text x="410" y="214" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">中枢 · 李林甫→杨国忠</text>
+    <text x="410" y="230" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">精英循环堵塞</text>
+  </g>
+  <g class="sj-node" data-id="zhongyang" id="node-zhongyang" tabindex="0" role="button" aria-label="中央禁军 两京">
+    <circle cx="410" cy="300" r="34" fill="none" stroke="var(--sj-paper-300)" stroke-width="1.4" stroke-dasharray="3 3"/>
+    <text x="410" y="296" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC, Noto Serif SC, serif">中央 · 两京</text>
+    <text x="410" y="313" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">禁军空虚</text>
+  </g>
+
+  <!-- 边镇（外重，笔画重） -->
+  <g class="sj-node" data-id="anlushan" id="node-anlushan" tabindex="0" role="button" aria-label="安禄山 三镇">
+    <rect x="586" y="256" width="182" height="88" rx="8" fill="#2a1a16" stroke="var(--sj-vermil)" stroke-width="3"/>
+    <text x="677" y="288" text-anchor="middle" fill="var(--sj-vermil)" font-size="16" font-weight="600" font-family="Songti SC, Noto Serif SC, serif">安禄山 · 三镇</text>
+    <text x="677" y="308" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">范阳 · 平卢 · 河东</text>
+    <text x="677" y="326" text-anchor="middle" fill="var(--sj-paper-100)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">兵 · 财 · 民 三权</text>
+  </g>
+  <g class="sj-node" data-id="fanzhen" id="node-fanzhen" tabindex="0" role="button" aria-label="诸边镇 募兵">
+    <rect x="52" y="264" width="162" height="72" rx="8" fill="#241d18" stroke="var(--sj-vermil)" stroke-width="2.2"/>
+    <text x="133" y="294" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC, Noto Serif SC, serif">西北诸边镇</text>
+    <text x="133" y="313" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">河西 · 陇右 · 募兵</text>
+  </g>
+  <g class="sj-node" data-id="mubing" id="node-mubing" tabindex="0" role="button" aria-label="募兵制 节度使制">
+    <rect x="320" y="452" width="180" height="48" rx="8" fill="#241d18" stroke="var(--sj-vermil)" stroke-width="2"/>
+    <text x="410" y="473" text-anchor="middle" fill="var(--sj-vermil)" font-size="13" font-family="Songti SC, Noto Serif SC, serif">募兵制 · 节度使制</text>
+    <text x="410" y="490" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">军事外包 · 边防强化</text>
+  </g>
+
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">viewBox 820×600 · 内轻外重</text>
+</svg>
+  </div>
+
+  <div class="sj-06-layout">
+    <div class="sj-06-note" style="margin-top:0">
+      色义：中央（玄宗=赭金 · 中枢=青瓷 · 禁军=虚线灰）笔画轻＝内轻；边镇=朱红笔画重＝外重，安禄山三镇最重。授权边细（虚），却养出尾大不掉；崩解箭头自边镇刺向中央。
+    </div>
+    <aside class="sj-06-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-06-aside-empty">点选切片中任一节点，展开其在拐点中的角色（母本样板 B）。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ③ 相位定位 -->
+<section class="sj-ledger-field" id="f3" aria-labelledby="h-f3">
+  <div class="sj-ledger-fh"><span class="fnum">03</span><h2 id="h-f3">相位定位</h2><span class="en">PHASE · 步骤②</span></div>
+  <div class="sj-06-phase">
+    <span class="pb">鼎盛期<b>顶点</b> → 崩解期</span>
+    <a class="sj-06-chip" href="./SJ-04.html">在 SJ-04 相位盘定位 →</a>
+  </div>
+  <p class="sj-06-prose">拐点隐性正在于此：五力尚在峰值（开元繁盛、疆域扩张、府库殷实），刚性支出与边镇坐大已在积累。鼎盛与转衰叠合于同一时点——这正是相位盘上「鼎盛即隐性拐点」的教科书案例，指针一旦越过顶点即直坠崩解。</p>
+</section>
+
+<!-- ④ 五力归因 -->
+<section class="sj-ledger-field" id="f4" aria-labelledby="h-f4">
+  <div class="sj-ledger-fh"><span class="fnum">04</span><h2 id="h-f4">五力归因台账</h2><span class="en">FORCES · 步骤③ · 正史 / 实因双列</span></div>
+  <p class="sj-06-prose">本案主动力是<strong>边疆军事力</strong>：它被强化到压过内部制衡，本身成了崩解触发器。这是「强化单力反降稳定」的核心证据。</p>
+  <div class="sj-06-table-wrap">
+    <table class="sj-06-table">
+      <thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead>
+      <tbody>
+        <tr><td>边疆军事〔主动力〕</td><td>「安禄山包藏祸心」</td><td class="shi">募兵制 + 节度使制使边镇军事力区域畸大、军事集团政治化——单力过强即触发器</td></tr>
+        <tr><td>精英循环</td><td>「李杨奸相误国」</td><td class="shi">李林甫杜绝边将入相之路、杨国忠专权，中枢通道堵塞与朋党内耗，削弱协调力并助边将离心</td></tr>
+        <tr><td>合法性叙事</td><td>「女祸 · 贵妃惑主」</td><td class="shi">开元绩效在天宝渐磨损，玄宗晚期怠政使合法性绩效来源枯竭</td></tr>
+        <tr><td>财政汲取</td><td>「杨氏聚敛」</td><td class="shi">租庸调渐坏，节度使兼领财权，中央对边军的财政统驭失控（乱后以两税法重整）</td></tr>
+        <tr><td>生态—人口基座</td><td>—</td><td class="shi">盛唐人口峰值与开元繁盛掩盖结构失衡，拐点之隐性正源于表面之盛</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ⑤ 史家交锋 -->
+<section class="sj-ledger-field" id="f5" aria-labelledby="h-f5">
+  <div class="sj-ledger-fh"><span class="fnum">05</span><h2 id="h-f5">史家交锋</h2><span class="en">HISTORIANS · 步骤③ · SJ-01</span></div>
+  <div class="sj-06-hist">
+    <article><div class="who">李敖式考据<span>祛魅</span></div><p>剥离「红颜祸水」叙事——安史之乱的结构因是节度使制与内轻外重，非贵妃女祸或个人昏聩。</p></article>
+    <article><div class="who">钱穆<span>《国史大纲》</span></div><p>府兵制崩坏、募兵与藩镇之兴，是唐制度演变的结构后果；唐由盛转衰当从兵制财政的制度变迁读，非仅归咎人事。</p></article>
+    <article><div class="who">金观涛<span>超稳定结构</span></div><p>军事外包突破了中央—地方的平衡；安史后藩镇割据延续百余年，是超稳定结构修复力受损的长期表现。</p></article>
+    <article><div class="who">黄仁宇<span>大历史 / 数目字</span></div><p>唐缺乏对庞大边军的数目字管理与财政统驭，节度使兼领财权是财政—军事失控的结构性根源。</p></article>
+    <article style="grid-column:1/-1"><div class="who">蒲立本 E.G. Pulleyblank<span>The Background of the Rebellion of An Lu-shan · 牛津 1955</span></div><p>安禄山之乱的背景是东北边疆的族群、军事与财政结构，而非单纯宫廷腐败——西方汉学对「内因结构」的经典梳理（London Oriental Series 卷 4）。</p></article>
+  </div>
+</section>
+
+<!-- ⑥ 成败判定 -->
+<section class="sj-ledger-field" id="f6" aria-labelledby="h-f6">
+  <div class="sj-ledger-fh"><span class="fnum">06</span><h2 id="h-f6">成败判定</h2><span class="en">VERDICT · 节度使/军事外包这一制度选择 · 三列</span></div>
+  <div class="sj-06-verdict">
+    <article class="ok"><div class="vh">已兑现</div><p>开元天宝疆域扩张</p><p>边防一度强固、拓边见效</p><p>府库殷实、盛世表象</p></article>
+    <article class="fail"><div class="vh">已失败</div><p>内轻外重失衡 → 安史之乱、两京陷落、玄宗奔蜀</p><p>藩镇割据延续百余年</p><p>唐由盛转衰的总拐点</p></article>
+    <article class="open"><div class="vh">未决〔反事实〕</div><p>若及早削藩、或府兵未废，能否既守边又不失衡？强边与稳中央可否两全？</p></article>
+  </div>
+</section>
+
+<!-- ⑦ 古今映射 -->
+<section class="sj-ledger-field" id="f7" aria-labelledby="h-f7">
+  <div class="sj-ledger-fh"><span class="fnum">07</span><h2 id="h-f7">古今映射</h2><span class="en">MIRROR · 步骤④ · 相似 / 差异双栏</span></div>
+  <p class="sj-06-note">硬约束：两栏成对——只有「相似机制」而无「关键差异」即为裸类比，不成立。</p>
+  <div class="sj-06-mirror">
+    <article class="same"><div class="mh">相似机制（古今相通）</div><p>为应对外部压力而向地方/部门过度授权，削弱中央制衡，形成尾大不掉；单一维度（军事、某部门）的强化未必增稳。</p></article>
+    <article class="diff"><div class="mh">关键差异（不可裸类比）</div><p>现代党军关系（党指挥枪）是对「节度使问题」的制度性根除，内亚游牧威胁消失、边疆技术—后勤条件已逆转；但「强化单一维度反降系统稳定」这一元教训仍适用（→ <span class="lk">SJ-20</span> 政治映射）。</p></article>
+  </div>
+</section>
+
+</article>
+
+<section class="sj-ledger-field" id="fx" aria-labelledby="h-fx">
+  <div class="sj-ledger-fh"><span class="fnum">◆</span><h2 id="h-fx">交叉引用</h2><span class="en">XREF</span></div>
+  <p class="sj-06-note">本案与 <b>SJ-05 王安石变法</b> 构成台账模板的两类样张：一为「变法」（自上而下改革的成败），一为「拐点」（鼎盛顶点的隐性转折）；同一七字段结构可容两类，证明组件可迁移。</p>
+  <div class="sj-06-xref">
+    <a href="./SJ-05.html"><div class="n">SJ-05 · 姊妹案</div><h3>王安石变法</h3><p>变法类台账；与本案拐点类互为模板迁移的两张样张。</p></a>
+    <a href="./SJ-03.html"><div class="n">SJ-03 · 步骤③</div><h3>五力衰变模型</h3><p>本案主动力＝边疆军事力；「强化单力反降稳定」的标本。</p></a>
+    <a href="./SJ-04.html"><div class="n">SJ-04 · 步骤②</div><h3>治乱相位罗盘</h3><p>本案定位于鼎盛顶点→崩解；隐性拐点的教科书例。</p></a>
+    <a href="./SJ-00.html"><div class="n">SJ-00</div><h3>史鉴总索引</h3><p>案例卷入口；拐点卷卡片已点亮本案。</p></a>
+    <a href="./SJ-02.html"><div class="n">SJ-02 · 引擎</div><h3>史鉴引擎四步法</h3><p>切片①→相位②→五力③→映射④ 的又一次落地。</p></a>
+    <a href="./SJ-01.html"><div class="n">SJ-01</div><h3>方法光谱</h3><p>史家交锋镜头库；本案先李敖式剥离「女祸」叙事。</p></a>
+  </div>
+</section>
+
+<footer class="sj-06-foot">
+  <span>ChinaOS · 史鉴 SJ-06 · v0.1 · AS_OF 2026-07-14 · 真源《母本》第三部样板 B</span>
+  <span><a href="./SJ-00.html">← 返回 SJ-00</a> · <a href="#sj-06-top">↑ 顶</a> · <a href="./SJ-05.html">变法首案</a></span>
+  <span>本地调试 · 未 push</span>
+</footer>
+
+</div>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const nodes = Array.from(stage.querySelectorAll('.sj-node'));
+  const edges = Array.from(stage.querySelectorAll('.sj-edge'));
+  const asideEmpty = document.getElementById('aside-empty');
+  const asideBody = document.getElementById('aside-body');
+
+  /** 结构切片节点文案（母本样板 B） */
+  const NODE_DATA = {
+    xuanzong: { name:'唐玄宗 · 晚期怠政', tag:'合法性 · 绩效磨损', body:'开元之治的合法性在天宝渐磨损；晚期怠政、宠信，绩效来源枯竭，为崩解埋下合法性伏笔。' },
+    zhongshu: { name:'中枢 · 李林甫→杨国忠', tag:'精英循环 · 堵塞', body:'李林甫久任、杜绝边将入相之路，杨国忠继而专权；上升通道堵塞、朋党内耗，削弱中枢协调力并助边将离心。' },
+    zhongyang: { name:'中央 · 两京 · 禁军', tag:'内轻 · 空虚', body:'府兵制崩坏后中央武备空虚，禁军不敌边镇劲旅——「内轻」的致命一半。两京（长安、洛阳）是崩解箭头的靶心。' },
+    anlushan: { name:'安禄山 · 三镇', tag:'外重 · 兵财民三权', body:'一人兼范阳、平卢、河东三镇节度使，集兵、财、民三权；边镇军事力被强化到压过中央制衡。天宝十四载（755）起兵。' },
+    fanzhen: { name:'西北诸边镇', tag:'外重 · 募兵', body:'河西、陇右等边镇同样以募兵坐拥重兵；节度使体制普遍化，边防因此强固，却系统性造成外重。' },
+    mubing: { name:'募兵制 · 节度使制', tag:'制度 · 军事外包', body:'募兵制 + 节度使制把军事力外包给边镇，边防强化，却摧毁内重外轻的平衡——强化单力而无制衡，反降系统稳定。' }
+  };
+  const NODE_EDGE = {
+    xuanzong:[], zhongshu:[], zhongyang:['collapse','grant-nx','grant-al'],
+    anlushan:['collapse','grant-al'], fanzhen:['grant-nx'], mubing:['grant-bz']
+  };
+
+  function clearVisual(){ stage.classList.remove('is-picking'); nodes.forEach(n=>n.classList.remove('is-hot')); edges.forEach(e=>e.classList.remove('is-hot')); }
+  function showAside(id){ const d=NODE_DATA[id]; if(!d) return; asideEmpty.hidden=true; asideBody.hidden=false;
+    document.getElementById('aside-tag').textContent=d.tag; document.getElementById('aside-name').textContent=d.name; document.getElementById('aside-text').textContent=d.body; }
+  function pick(id){ if(!NODE_DATA[id]) return; clearVisual(); stage.classList.add('is-picking');
+    nodes.forEach(n=>n.classList.toggle('is-hot', n.dataset.id===id));
+    const hot=NODE_EDGE[id]||[]; edges.forEach(e=>e.classList.toggle('is-hot', hot.indexOf(e.dataset.edge)>=0));
+    showAside(id); }
+  nodes.forEach(n=>{ const act=()=>pick(n.dataset.id); n.addEventListener('click',act);
+    n.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); act(); } }); });
+})();
+</script>
+</body>
+</html>

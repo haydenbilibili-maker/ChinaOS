@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-21 · 经济映射</title>
+<meta name="description" content="ChinaOS 史鉴系列古今映射卷·经济：盐铁专营→国有资本、税制改革→央地/土地财政、常平仓→宏观调控三组古今对照。财政汲取力，禁裸类比。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;
+  --sj-ink-800:#1d1916;
+  --sj-paper-100:#e8ddc7;
+  --sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;
+  --sj-celadon:#5f7a6f;
+  --sj-ochre:#b8894a;
+  --sj-line:#3a322b;
+  --sj-radius:6px;
+  --sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%, #2a221c 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #1a1612 0%, transparent 50%),var(--sj-ink-900);color:var(--sj-paper-100);font-family:var(--sj-serif);line-height:1.75}
+.sj-21-wrap{max-width:min(1180px,100%);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media (min-width:1536px){.sj-21-wrap{max-width:min(1360px,100%)}}
+@media (min-width:1920px){.sj-21-wrap{max-width:min(1520px,100%)}}
+@media (min-width:2560px){.sj-21-wrap{max-width:min(1680px,100%)}}
+
+/* 章节入场 · 尊重 prefers-reduced-motion */
+@keyframes sj-fade-in{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+.sj-reveal-stagger > header,
+.sj-reveal-stagger > .sj-zhupi,
+.sj-reveal-stagger > .sj-ledger,
+.sj-reveal-stagger > [class*="-sec"],
+.sj-reveal-stagger > footer{
+  animation:sj-fade-in .34s cubic-bezier(.22,.61,.36,1) both;
+}
+.sj-reveal-stagger > *:nth-child(1){animation-delay:.03s}
+.sj-reveal-stagger > *:nth-child(2){animation-delay:.06s}
+.sj-reveal-stagger > *:nth-child(3){animation-delay:.09s}
+.sj-reveal-stagger > *:nth-child(4){animation-delay:.12s}
+.sj-reveal-stagger > *:nth-child(5){animation-delay:.15s}
+.sj-reveal-stagger > *:nth-child(6){animation-delay:.18s}
+.sj-reveal-stagger > *:nth-child(7){animation-delay:.21s}
+.sj-reveal-stagger > *:nth-child(8){animation-delay:.24s}
+
+.sj-21-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px}
+.sj-21-mast .badge{font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-21-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em;line-height:1.3}
+.sj-21-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;letter-spacing:.08em;font-size:.72em;display:block;margin-top:4px}
+.sj-21-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right;line-height:1.7}
+.sj-21-meta b{color:var(--sj-ochre);font-weight:500}
+.sj-21-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sj-21-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;letter-spacing:.08em;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none}
+.sj-21-chip:hover,.sj-21-chip:focus-visible{border-color:var(--sj-ochre);color:var(--sj-ochre);outline:none}
+
+.sj-zhupi{color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:76ch}
+
+.sj-21-sec{margin:36px 0 28px;scroll-margin-top:24px}
+.sj-21-sec-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--sj-line)}
+.sj-21-sec-h .num{font-family:var(--sj-mono);font-size:11px;letter-spacing:.2em;color:var(--sj-ochre)}
+.sj-21-sec-h h2{font-size:clamp(17px,2.2vw,20px);font-weight:600;letter-spacing:.12em}
+.sj-21-prose{font-size:15.5px;color:var(--sj-paper-100);max-width:76ch}
+.sj-21-prose + .sj-21-prose{margin-top:12px}
+.sj-21-prose strong{color:var(--sj-ochre);font-weight:600}
+.sj-21-note{font-size:13px;color:var(--sj-paper-300);margin-top:12px;max-width:76ch}
+.sj-21-note b{color:var(--sj-paper-100);font-weight:600}
+
+.sj-21-stage{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));box-shadow:0 1px 0 rgba(232,221,199,.04), 0 18px 48px rgba(0,0,0,.45);padding:8px 8px 4px;overflow:auto}
+.sj-21-stage svg{display:block;width:100%;height:auto;max-width:820px;margin:0 auto}
+.sj-row{cursor:pointer;transition:opacity .2s ease}
+.sj-row:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:2px}
+.sj-21-stage.is-picking .sj-row{opacity:.38}
+.sj-21-stage.is-picking .sj-row.is-hot{opacity:1}
+.sj-21-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:14px;align-items:start;margin-top:14px}
+.sj-21-aside{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px;position:sticky;top:12px;min-height:200px}
+.sj-21-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-21-aside h3{font-size:15px;letter-spacing:.06em;margin-bottom:8px}
+.sj-21-aside p{font-size:13px;color:var(--sj-paper-300);line-height:1.65;margin-bottom:6px}
+.sj-21-aside p b.same{color:var(--sj-celadon)}
+.sj-21-aside p b.diff{color:var(--sj-ochre)}
+.sj-21-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+
+.sj-21-pair{display:grid;gap:12px;margin-top:6px}
+.sj-21-pair article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:16px 18px}
+.sj-21-pair .ph{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;font-size:15px;font-weight:600;letter-spacing:.04em}
+.sj-21-pair .ph .gu{color:var(--sj-paper-100)}
+.sj-21-pair .ph .arrow{color:var(--sj-ochre);font-family:var(--sj-mono)}
+.sj-21-pair .ph .jin{color:var(--sj-celadon)}
+.sj-21-pair .ph .force{margin-left:auto;font-family:var(--sj-mono);font-size:10px;letter-spacing:.1em;color:var(--sj-paper-300);border:1px solid var(--sj-line);border-radius:20px;padding:2px 10px}
+.sj-21-pair .cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-21-pair .col{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-900);padding:12px 14px}
+.sj-21-pair .col .ch{font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;margin-bottom:6px}
+.sj-21-pair .col.same .ch{color:var(--sj-celadon)}
+.sj-21-pair .col.diff .ch{color:var(--sj-ochre)}
+.sj-21-pair .col p{font-size:13px;color:var(--sj-paper-100);line-height:1.65}
+.sj-21-pair .col p .lk{color:var(--sj-celadon)}
+@media (max-width:720px){.sj-21-pair .cols{grid-template-columns:1fr}}
+
+.sj-21-refute{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.sj-21-refute article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-21-refute .rh{font-size:14px;font-weight:600;color:var(--sj-ochre);margin-bottom:6px}
+.sj-21-refute p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+
+.sj-21-xref{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.sj-21-xref a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit;transition:border-color .18s}
+.sj-21-xref a:hover,.sj-21-xref a:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-21-xref .n{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;color:var(--sj-ochre);margin-bottom:4px}
+.sj-21-xref h3{font-size:14px;letter-spacing:.06em;margin-bottom:6px}
+.sj-21-xref p{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6}
+
+.sj-21-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sj-21-foot a{color:var(--sj-celadon);text-decoration:none}
+.sj-21-foot a:hover{color:var(--sj-ochre)}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto  .sj-reveal-stagger > *{animation:none}
+}.sj-row,.sj-21-chip{transition:none}}
+@media (max-width:900px){.sj-21-layout{grid-template-columns:1fr}.sj-21-aside{position:static}.sj-21-refute{grid-template-columns:1fr}.sj-21-xref{grid-template-columns:1fr 1fr}}
+@media (max-width:768px){.sj-21-meta{text-align:left}.sj-21-xref{grid-template-columns:1fr}}
+
+html[data-theme="light"]{--sj-ink-900:#f4f1ea;--sj-ink-800:#ebe6dc;--sj-paper-100:#1a1814;--sj-paper-300:#5a5348;--sj-vermil:#9a3428;--sj-celadon:#3f5f54;--sj-ochre:#8a6528;--sj-line:#c8bfb0}
+html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%, #e8e4da 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #ebe6dc 0%, transparent 50%),var(--sj-ink-900);color:var(--sj-paper-100)}
+html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
+html[data-theme="light"] [class*="-stage"],
+html[data-theme="light"] [class*="-aside"],
+html[data-theme="light"] [class*="-table-wrap"],
+html[data-theme="light"] [class*="-hook"],
+html[data-theme="light"] [class*="-ledger"]{
+  box-shadow:0 1px 0 rgba(26,24,20,.05),0 12px 28px rgba(26,24,20,.08);
+}
+html[data-theme="light"] .sj-snap-track{background:var(--sj-ink-900);border-color:var(--sj-line)}
+html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
+
+</style>
+<script>
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){ document.documentElement.setAttribute('data-theme', t==='light' ? 'light' : 'dark'); }
+  try{ var q=new URLSearchParams(location.search).get('theme'); if(q==='light'||q==='dark') apply(q); }catch(e){}
+  window.addEventListener('message', function(e){
+    if(e.origin !== window.location.origin) return;
+    var d=e&&e.data; if(!d||d.type!==MSG) return; apply(d.theme); });
+})();
+</script>
+</head>
+<body>
+<div class="sj-21-wrap sj-reveal-stagger" id="sj-21-top">
+
+<header class="sj-21-mast">
+  <div>
+    <div class="badge">SJ-21 · 古今映射卷 · 经济域</div>
+    <h1>经济映射 · 古今对照<em>财政汲取 · 与民争利之辩 · 汲取转嫁基层</em></h1>
+    <div class="sj-21-chips">
+      <a class="sj-21-chip" href="./SJ-00.html">↔ SJ-00 总索引</a>
+      <a class="sj-21-chip" href="./SJ-03.html">↔ SJ-03 五力·财政枢纽</a>
+      <a class="sj-21-chip" href="./SJ-05.html">↔ SJ-05 变法财政</a>
+      <a class="sj-21-chip" href="./SJ-20.html">↔ SJ-20 政治映射</a>
+      <a class="sj-21-chip" href="./SJ-07.html">↔ SJ-07 崩解·财政枢纽</a>
+    </div>
+  </div>
+  <div class="sj-21-meta">
+    财政汲取力＝枢纽力 · 禁裸类比<br/>
+    <b>AS_OF 2026-07-14</b> · v0.1
+  </div>
+</header>
+
+<p class="sj-zhupi">朱批：经济域映射的核心是<b>国家—市场的边界</b>。财政汲取力是五力中的枢纽（SJ-03），历代汲取工具的演进与「与民争利」之辩，在当代仍有回响。本卷是分析读法，非价值判断；第 05 节并陈相反意见。真源：《母本》第五部经济行。</p>
+
+<!-- 1 引言 -->
+<section class="sj-21-sec" id="sec-intro" aria-labelledby="h-intro">
+  <div class="sj-21-sec-h"><span class="num">01 · 引言</span><h2 id="h-intro">枢纽力的古今回响</h2></div>
+  <p class="sj-21-prose">财政汲取力是五力中的<strong>枢纽力</strong>——多数衰变链最终经它引爆（SJ-07 明末三饷、SJ-05 三冗）。经济域因此是把历史机制投射到当代的关键一域。历代围绕「国家如何从经济中汲取、汲取到什么程度、由谁承担」形成了一套工具谱系与一场持续两千年的辩论：<strong>「与民争利」的义利之辩</strong>（汉盐铁会议桑弘羊 vs 贤良文学）。</p>
+  <p class="sj-21-prose">本卷延续「规律同构，参数迥异」：国家—市场边界的张力、汲取转嫁基层的倾向古今同构；但当代补上了<strong>数目字管理</strong>（黄仁宇缺口）与土地财政等<strong>新汲取形式</strong>，汲取工具的技术水平发生质变。三组对照各以「关键差异」栏收束，防止把结构相似误读为同质。</p>
+  <p class="sj-21-note">方法：史鉴引擎步骤④。三组对照各配「相似机制 / 关键差异」双栏；差异栏为硬约束，缺则不成立。</p>
+</section>
+
+<!-- 2 签名 -->
+<section class="sj-21-sec" id="sec-map" aria-labelledby="h-map">
+  <div class="sj-21-sec-h"><span class="num">02 · 签名视觉</span><h2 id="h-map">经济古今映射盘 · 差异闸</h2></div>
+  <p class="sj-21-prose">左列历史汲取工具，右列当代形态；每组之间一道「差异闸」（Δ），映射须过闸方成立。点击任一行，展开该组相似机制与关键差异。</p>
+
+  <div class="sj-21-stage" id="stage">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 560" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">经济域古今映射盘</title>
+  <desc id="sj-desc">左列三个历史汲取工具（盐铁专营、税制改革谱系、常平仓与重农抑商），右列三个当代形态，中间以差异闸相连；映射须通过差异闸方成立。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%"><stop offset="0%" stop-color="var(--sj-ink-800)"/><stop offset="100%" stop-color="var(--sj-ink-900)"/></radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse"><line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/></pattern>
+    <marker id="a-map" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+  </defs>
+  <rect width="820" height="560" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="392" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="392" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="384" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="392" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="384" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC, Noto Serif SC, Source Han Serif SC, serif" letter-spacing="0.1em">古今映射盘 · 经济</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.08em">SJ-21 · 左=历史汲取工具 右=当代形态</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">朱批：映射须过「差异闸」(Δ)——交代关键差异方成立 · 禁裸类比</text>
+
+  <text x="180" y="128" text-anchor="middle" fill="var(--sj-paper-300)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">历史汲取工具（古）</text>
+  <text x="410" y="128" text-anchor="middle" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">差异闸 Δ</text>
+  <text x="640" y="128" text-anchor="middle" fill="var(--sj-paper-300)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">当代形态（今）</text>
+
+  <!-- Row 1 · 盐铁 -->
+  <g class="sj-row" data-id="yantie" tabindex="0" role="button" aria-label="盐铁专营 映射">
+    <rect x="44" y="158" width="732" height="86" rx="8" fill="var(--sj-ink-800)" opacity="0.3" pointer-events="all"/>
+    <rect x="56" y="174" width="248" height="54" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="1.8"/>
+    <text x="180" y="198" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">盐铁专营 · 官营</text>
+    <text x="180" y="216" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">桑弘羊 · 与民争利之辩</text>
+    <line x1="304" y1="201" x2="384" y2="201" stroke="var(--sj-ochre)" stroke-width="1.6" marker-end="url(#a-map)"/>
+    <circle cx="410" cy="201" r="18" fill="var(--sj-ink-900)" stroke="var(--sj-ochre)" stroke-width="1.4"/>
+    <text x="410" y="206" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">Δ</text>
+    <line x1="436" y1="201" x2="516" y2="201" stroke="var(--sj-ochre)" stroke-width="1.6" marker-end="url(#a-map)"/>
+    <rect x="516" y="174" width="248" height="54" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="1.8"/>
+    <text x="640" y="198" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">国有资本 · 国进民退</text>
+    <text x="640" y="216" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">关键行业 · 国资委</text>
+  </g>
+
+  <!-- Row 2 · 税制 -->
+  <g class="sj-row" data-id="shuizhi" tabindex="0" role="button" aria-label="税制改革 映射">
+    <rect x="44" y="252" width="732" height="86" rx="8" fill="var(--sj-ink-800)" opacity="0.16" pointer-events="all"/>
+    <rect x="56" y="268" width="248" height="54" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="1.8"/>
+    <text x="180" y="292" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">两税·一条鞭·摊丁</text>
+    <text x="180" y="310" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">汲取改革谱系</text>
+    <line x1="304" y1="295" x2="384" y2="295" stroke="var(--sj-ochre)" stroke-width="1.6" marker-end="url(#a-map)"/>
+    <circle cx="410" cy="295" r="18" fill="var(--sj-ink-900)" stroke="var(--sj-ochre)" stroke-width="1.4"/>
+    <text x="410" y="300" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">Δ</text>
+    <line x1="436" y1="295" x2="516" y2="295" stroke="var(--sj-ochre)" stroke-width="1.6" marker-end="url(#a-map)"/>
+    <rect x="516" y="268" width="248" height="54" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="1.8"/>
+    <text x="640" y="292" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">分税制 · 土地财政</text>
+    <text x="640" y="310" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">央地分成 · 地方债</text>
+  </g>
+
+  <!-- Row 3 · 常平仓 -->
+  <g class="sj-row" data-id="changping" tabindex="0" role="button" aria-label="常平仓 映射">
+    <rect x="44" y="346" width="732" height="86" rx="8" fill="var(--sj-ink-800)" opacity="0.3" pointer-events="all"/>
+    <rect x="56" y="362" width="248" height="54" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="1.8"/>
+    <text x="180" y="386" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">常平仓 · 重农抑商</text>
+    <text x="180" y="404" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">平抑 · 国家干预</text>
+    <line x1="304" y1="389" x2="384" y2="389" stroke="var(--sj-ochre)" stroke-width="1.6" marker-end="url(#a-map)"/>
+    <circle cx="410" cy="389" r="18" fill="var(--sj-ink-900)" stroke="var(--sj-ochre)" stroke-width="1.4"/>
+    <text x="410" y="394" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">Δ</text>
+    <line x1="436" y1="389" x2="516" y2="389" stroke="var(--sj-ochre)" stroke-width="1.6" marker-end="url(#a-map)"/>
+    <rect x="516" y="362" width="248" height="54" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="1.8"/>
+    <text x="640" y="386" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">宏观调控 · 产业政策</text>
+    <text x="640" y="404" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">五年规划 · 产业基金</text>
+  </g>
+
+  <text x="410" y="470" text-anchor="middle" fill="var(--sj-paper-300)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">规律同构 · 参数迥异 —— 差异来自数目字管理 + 新汲取形式（土地财政）</text>
+  <text x="764" y="500" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">viewBox 820×560</text>
+</svg>
+  </div>
+
+  <div class="sj-21-layout">
+    <div class="sj-21-note" style="margin-top:0">
+      色义：国家资本/垄断=赭金（财政汲取）· 税制/央地=青瓷 · 调控/干预=朱红。差异闸（Δ）：每组映射必须交代关键差异方成立。
+    </div>
+    <aside class="sj-21-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-21-aside-empty">点选映射盘任一行，展开该组的相似机制与关键差异（母本第五部）。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-same"></p>
+        <p id="aside-diff"></p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- 3 三组对照 -->
+<section class="sj-21-sec" id="sec-pairs" aria-labelledby="h-pairs">
+  <div class="sj-21-sec-h"><span class="num">03 · 三组对照</span><h2 id="h-pairs">相似机制 / 关键差异 双栏</h2></div>
+
+  <div class="sj-21-pair">
+    <article>
+      <div class="ph"><span class="gu">盐铁专营 · 官营</span><span class="arrow">→</span><span class="jin">国有资本 · 国进民退</span><span class="force">财政汲取力</span></div>
+      <div class="cols">
+        <div class="col same"><div class="ch">相似机制（古今相通）</div><p>国家垄断关键部门以充财政、并借此调控经济命脉；由此生出「与民争利」的义利之辩——汉盐铁会议（桑弘羊 vs 贤良文学）的辩题，在当代关于国有资本边界的讨论中仍有回响。国家资本与市场的张力古今同构。</p></div>
+        <div class="col diff"><div class="ch">关键差异（不可裸类比）</div><p>现代国有资本以公司制、资本市场、国资监管体系运作，治理形态与汉代官营迥异；其目标也不止于财政汲取（含战略、稳定、公共品）。相似的是「国家—市场边界」这一张力，不同的是资本的组织形态与工具。</p></div>
+      </div>
+    </article>
+
+    <article>
+      <div class="ph"><span class="gu">两税 · 一条鞭 · 摊丁入亩</span><span class="arrow">→</span><span class="jin">分税制 · 土地财政</span><span class="force">财政汲取力</span></div>
+      <div class="cols">
+        <div class="col same"><div class="ch">相似机制（古今相通）</div><p>汲取改革谱系的共同逻辑：每次重整税基都能延续财政寿命，却难改「汲取最终转嫁基层」的结构；央地分成的张力反复出现。历史的一条鞭（1581）↔ 当代的分税制（1994），都是一次汲取重整。</p></div>
+        <div class="col diff"><div class="ch">关键差异（不可裸类比）</div><p>现代已补上数目字管理（黄仁宇缺口）：税基可精细计量、征管信息化；并生出土地财政等古代所无的<span class="lk">新汲取形式</span>。汲取工具的技术水平质变，但转嫁基层与央地博弈的结构逻辑仍在。</p></div>
+      </div>
+    </article>
+
+    <article>
+      <div class="ph"><span class="gu">常平仓 · 重农抑商</span><span class="arrow">→</span><span class="jin">宏观调控 · 产业政策</span><span class="force">国家—市场干预</span></div>
+      <div class="cols">
+        <div class="col same"><div class="ch">相似机制（古今相通）</div><p>国家作为经济周期的平抑者与资源配置的引导者：常平仓平抑粮价、重农抑商引导产业，对应当代以财政/规划手段熨平周期、引导产业方向。国家「有形之手」的角色古今相通。</p></div>
+        <div class="col diff"><div class="ch">关键差异（不可裸类比）</div><p>现代宏观工具（货币政策、财政政策、产业基金）在规模、精度、传导速度上远超常平仓；且身处全球化开放经济，干预须应对外部约束。相似的是干预意图，不同的是工具箱与约束条件。</p></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 4 元差异 -->
+<section class="sj-21-sec" id="sec-meta" aria-labelledby="h-meta">
+  <div class="sj-21-sec-h"><span class="num">04 · 元差异</span><h2 id="h-meta">经济域的两样「新参数」</h2></div>
+  <p class="sj-21-prose">三组对照的「关键差异」共享同一根源。经济域相对传统补上了两样：<strong>数目字管理能力</strong>（税基计量、征管信息化、宏观统计）与<strong>新汲取/干预形式</strong>（土地财政、资本市场、产业基金），身处的<strong>开放经济</strong>又添了外部约束。这使汲取与干预的精度、规模发生质变。</p>
+  <p class="sj-21-prose">但两样没变：<strong>汲取最终转嫁基层的倾向</strong>与<strong>国家—市场边界的张力</strong>。经济域的断言同样收束为：<strong>规律同构，参数迥异</strong>。「与民争利」的古老辩题不会因工具现代化而消失，只会换一套语汇重演。</p>
+</section>
+
+<!-- 5 相反读法 -->
+<section class="sj-21-sec" id="sec-refute" aria-labelledby="h-refute">
+  <div class="sj-21-sec-h"><span class="num">05 · 相反读法</span><h2 id="h-refute">对本卷映射的两种批评</h2></div>
+  <p class="sj-21-note">持平起见，经济映射同样须接受质疑。以下两种批评各有其力。</p>
+  <div class="sj-21-refute">
+    <article>
+      <div class="rh">批评一：市场经济的本质断裂</div>
+      <p>反对者认为，当代身处全球化市场经济，与自然经济/官营为主的古代存在本质断裂——货币、金融、全球分工使「盐铁↔国资」的类比更多是修辞而非同构，古代工具的解释力有限。本卷以「关键差异」栏部分回应，但断裂是否已使相似失效，可争论。</p>
+    </article>
+    <article>
+      <div class="rh">批评二：术语的价值负载</div>
+      <p>「与民争利」「国进民退」等词本身承载立场，用它们对照易预置结论。本卷主张以机制层（汲取结构、央地博弈）对照、并强制双栏以降低负载，但不宣称价值中立——它是一种分析读法。</p>
+    </article>
+  </div>
+</section>
+
+<!-- 6 交叉 -->
+<section class="sj-21-sec" id="sec-xref" aria-labelledby="h-xref">
+  <div class="sj-21-sec-h"><span class="num">06 · 交叉引用</span><h2 id="h-xref">映射的史料来源与当代接口</h2></div>
+  <div class="sj-21-xref">
+    <a href="./SJ-03.html"><div class="n">SJ-03 · 枢纽</div><h3>五力·财政汲取力</h3><p>财政汲取力的定义、指标与修复谱系（两税/一条鞭/摊丁）。</p></a>
+    <a href="./SJ-05.html"><div class="n">SJ-05 · 变法</div><h3>王安石变法</h3><p>青苗/免役/市易——财政汲取重建的单案；「与民争利」的宋代回合。</p></a>
+    <a href="./SJ-07.html"><div class="n">SJ-07 · 崩解</div><h3>王朝崩解对比</h3><p>明末三饷：财政枢纽越阈值引爆崩解的极端例。</p></a>
+    <a href="./SJ-20.html"><div class="n">SJ-20 · 姊妹</div><h3>政治映射</h3><p>央地钟摆一组与本卷央地财政分成互为里表。</p></a>
+    <a href="./SJ-00.html"><div class="n">SJ-00</div><h3>史鉴总索引</h3><p>映射卷入口；经济映射卡片已点亮本卷。</p></a>
+    <a href="/modules/caizheng"><div class="n">GY · 当代</div><h3>财政/产业模块</h3><p>当代财政与产业政策的量化接口（若已建）。</p></a>
+  </div>
+  <p class="sj-21-note">后续映射卷：<b>SJ-22 文化</b>（意识形态再生产）· <b>SJ-23 社会</b>（人口承载 ↔ GY 图谱）· <b>SJ-24 外交</b>（朝贡 · 边疆秩序）。</p>
+</section>
+
+<footer class="sj-21-foot">
+  <span>ChinaOS · 史鉴 SJ-21 · v0.1 · AS_OF 2026-07-14 · 真源《母本》第五部经济行</span>
+  <span><a href="./SJ-00.html">← 返回 SJ-00</a> · <a href="#sj-21-top">↑ 顶</a> · <a href="./SJ-20.html">政治映射</a></span>
+  <span>本地调试 · 未 push</span>
+</footer>
+
+</div>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const rows = Array.from(stage.querySelectorAll('.sj-row'));
+  const asideEmpty = document.getElementById('aside-empty');
+  const asideBody = document.getElementById('aside-body');
+
+  /** 经济域三组古今对照（母本第五部经济行） */
+  const MAP_DATA = {
+    yantie: { name:'盐铁专营 → 国有资本',
+      same:'国家垄断关键部门以充财政、调控命脉；「与民争利」义利之辩（盐铁会议桑弘羊 vs 贤良文学）在当代国资边界讨论中回响。',
+      diff:'现代国有资本以公司制、资本市场、监管体系运作，目标不止汲取（含战略、稳定、公共品）。相似的是国家—市场边界，不同的是资本组织形态。' },
+    shuizhi: { name:'汲取改革谱系 → 分税制/土地财政',
+      same:'每次重整税基延续财政寿命，却难改「汲取转嫁基层」；央地分成张力反复。一条鞭（1581）↔ 分税制（1994）都是一次汲取重整。',
+      diff:'现代补上数目字管理：税基可精细计量、征管信息化；生出土地财政等新汲取形式。工具技术质变，转嫁与博弈结构仍在。' },
+    changping: { name:'常平仓/重农抑商 → 宏观调控/产业政策',
+      same:'国家作为周期平抑者与资源配置引导者：常平仓平抑粮价、重农抑商引导产业 ↔ 当代以财政/规划熨平周期、引导产业。',
+      diff:'现代宏观工具（货币/财政政策、产业基金）在规模、精度、传导上远超常平仓，且受全球化开放约束。相似的是干预意图，不同的是工具箱。' }
+  };
+
+  function clearVisual(){ stage.classList.remove('is-picking'); rows.forEach(r=>r.classList.remove('is-hot')); }
+  function showAside(id){ const d=MAP_DATA[id]; if(!d) return; asideEmpty.hidden=true; asideBody.hidden=false;
+    document.getElementById('aside-tag').textContent='古今映射 · 经济';
+    document.getElementById('aside-name').textContent=d.name;
+    document.getElementById('aside-same').innerHTML='<b class="same">相似机制：</b>'+d.same;
+    document.getElementById('aside-diff').innerHTML='<b class="diff">关键差异：</b>'+d.diff; }
+  function pick(id){ if(!MAP_DATA[id]) return; clearVisual(); stage.classList.add('is-picking');
+    rows.forEach(r=>r.classList.toggle('is-hot', r.dataset.id===id)); showAside(id); }
+  rows.forEach(r=>{ const act=()=>pick(r.dataset.id); r.addEventListener('click',act);
+    r.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); act(); } }); });
+})();
+</script>
+</body>
+</html>

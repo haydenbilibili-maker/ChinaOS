@@ -37,7 +37,10 @@ body{
   line-height:1.7;
   padding:var(--sj-space);
 }
-.wrap{max-width:920px;margin:0 auto}
+.wrap{max-width:min(1180px,100%);margin:0 auto}
+@media (min-width:1536px){.wrap{max-width:min(1360px,100%)}}
+@media (min-width:1920px){.wrap{max-width:min(1520px,100%)}}
+@media (min-width:2560px){.wrap{max-width:min(1680px,100%)}}
 .mast{
   display:flex;justify-content:space-between;align-items:flex-end;
   gap:16px;flex-wrap:wrap;
@@ -64,11 +67,11 @@ body{
 }
 .btn:hover,.btn:focus-visible{border-color:var(--sj-ochre);outline:none}
 .btn:focus-visible{box-shadow:0 0 0 2px rgba(184,137,74,.35)}
-.btn.is-on{border-color:var(--sj-vermil);color:var(--sj-vermil);background:#241612}
+.btn.is-on{border-color:var(--sj-vermil);color:var(--sj-vermil);background:color-mix(in srgb, var(--sj-vermil) 12%, var(--sj-ink-900))}
 .stage{
   border:1px solid var(--sj-line);
   border-radius:var(--sj-radius);
-  background:linear-gradient(180deg,#1f1a16,#14110f);
+  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
   box-shadow:0 1px 0 rgba(232,221,199,.04), 0 18px 48px rgba(0,0,0,.45);
   padding:8px 8px 4px;
   overflow:auto;
@@ -104,12 +107,45 @@ body{
   font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;color:var(--sj-ochre);
 }
 .card p{font-size:13px;color:var(--sj-paper-300);line-height:1.7;max-width:72ch}
-.card pre{
-  margin-top:10px;font-family:var(--sj-mono);font-size:11px;line-height:1.65;
-  color:var(--sj-paper-300);white-space:pre-wrap;word-break:break-word;
+.sj-snap{margin-top:12px}
+.sj-snap-meta{
+  display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px;
 }
-.card pre .key{color:var(--sj-celadon)}
-.card pre .str{color:var(--sj-ochre)}
+.sj-snap-phase{
+  font-family:var(--sj-mono);font-size:11px;letter-spacing:.12em;
+  color:var(--sj-ochre);border:1px solid var(--sj-ochre);
+  padding:3px 10px;border-radius:var(--sj-radius);
+}
+.sj-snap-time{
+  font-family:var(--sj-mono);font-size:11px;letter-spacing:.04em;color:var(--sj-paper-300);
+}
+.sj-snap-repair{
+  margin-left:auto;font-family:var(--sj-mono);font-size:11px;letter-spacing:.1em;
+  color:var(--sj-celadon);border:1px solid var(--sj-line);
+  padding:3px 10px;border-radius:var(--sj-radius);background:var(--sj-ink-900);
+}
+.sj-snap-bars{list-style:none;display:flex;flex-direction:column;gap:8px;margin:0;padding:0}
+.sj-snap-row{
+  display:grid;grid-template-columns:6em 1fr 2.4em;gap:8px;align-items:center;
+}
+.sj-snap-lab{font-family:var(--sj-mono);font-size:10px;letter-spacing:.06em}
+.sj-snap-track{
+  height:7px;background:var(--sj-ink-900);border:1px solid var(--sj-line);
+  border-radius:2px;overflow:hidden;
+}
+.sj-snap-fill{
+  display:block;height:100%;border-radius:1px;width:0;
+  transition:width .35s ease;
+}
+.sj-snap-val{
+  font-family:var(--sj-mono);font-size:11px;text-align:right;color:var(--sj-paper-300);
+}
+.sj-snap-row.is-empty .sj-snap-track{border-style:dashed;opacity:.7}
+.sj-snap-row.is-empty .sj-snap-val{color:var(--sj-line)}
+.sj-snap-note{
+  margin:12px 0 0;font-size:13px;max-width:68ch;
+  color:var(--sj-vermil);padding-left:10px;border-left:2px solid var(--sj-vermil);
+}
 .hint{margin-top:10px;font-size:12px;color:var(--sj-paper-300);opacity:.85}
 .note{
   margin-top:14px;font-size:13px;color:var(--sj-paper-300);max-width:72ch;
@@ -130,6 +166,7 @@ body{
 }
 @media (prefers-reduced-motion:reduce){
   .sj-needle,.sj-sector{transition:none}
+  .sj-snap-fill{transition:none}
 }
 @media (max-width:768px){
   .mast{align-items:flex-start}
@@ -310,8 +347,8 @@ body{
       <span class="tag" id="card-tag">隐性拐点 · 赭金</span>
     </div>
     <p id="card-body">五力尚在峰值，但刚性支出与精英俘获已在积累。开元、康乾都是「盛极」与「转衰」叠合的同一时点。</p>
-    <pre id="card-contract"></pre>
-    <p class="hint">签名预览 stub：指针 / 扇区 / 时点联动已就绪；全文（判据散文、与力场双视图深链）待确认后写。</p>
+    <div class="sj-snap" id="card-contract"></div>
+    <p class="hint">签名预览：指针 / 扇区 / 时点联动已就绪；诊断卡渲染共享契约对象。</p>
   </aside>
 
   <p class="note"><strong>本轮交付范围</strong>：仅签名 SVG「治乱相位罗盘」与指针/样例交互。未写 SJ-04 全文。五力术语对齐规格书（财政汲取力·精英循环力·合法性叙事力·边疆—军事压力·生态—人口—技术基座），不用异义标签。本轮不上线、不 push。</p>
@@ -421,6 +458,36 @@ body{
     sectors.forEach(s => s.classList.toggle('is-hot', s.dataset.phase === phase));
   }
 
+  const FORCE_BARS = [
+    { label: '财政汲取', color: 'var(--sj-ochre)' },
+    { label: '精英循环', color: 'var(--sj-celadon)' },
+    { label: '合法性叙事', color: 'var(--sj-paper-100)' },
+    { label: '边疆军事', color: 'var(--sj-vermil)' },
+    { label: '生态基座', color: 'var(--sj-paper-300)' }
+  ];
+
+  function renderSnap(el, s){
+    if(!el) return;
+    const rows = s.五力评分.map(function(v, i){
+      const meta = FORCE_BARS[i];
+      const empty = (v === null || v === undefined);
+      const pct = empty ? 0 : Math.max(0, Math.min(100, v));
+      return '<li class="sj-snap-row'+(empty ? ' is-empty' : '')+'">' +
+        '<span class="sj-snap-lab" style="color:'+meta.color+'">'+meta.label+'</span>' +
+        '<span class="sj-snap-track" aria-hidden="true"><span class="sj-snap-fill" style="width:'+pct+'%;background:'+meta.color+'"></span></span>' +
+        '<span class="sj-snap-val">'+(empty ? '—' : String(v))+'</span>' +
+        '</li>';
+    }).join('');
+    el.innerHTML =
+      '<div class="sj-snap-meta">' +
+        '<span class="sj-snap-phase">'+s.相位+'</span>' +
+        '<span class="sj-snap-time">'+s.时点+'</span>' +
+        '<span class="sj-snap-repair">修复力 · '+s.修复力+'</span>' +
+      '</div>' +
+      '<ul class="sj-snap-bars" role="list" aria-label="五力评分（示意 0–100）">'+rows+'</ul>' +
+      '<p class="sj-snap-note sj-zhupi">朱批：'+s.note+'</p>';
+  }
+
   function renderCard(sampleKey){
     const s = SAMPLES[sampleKey];
     const needlePhase = s.needlePhase || s.相位;
@@ -428,18 +495,10 @@ body{
     const display = s.相位;
     document.getElementById('card-name').textContent = (s.相位 === '未定') ? '当代锚点〔相位未定〕' : copy.name;
     document.getElementById('card-tag').textContent = (s.相位 === '未定') ? '占位 · 对接 GY-01' : copy.tag;
-    document.getElementById('card-body').textContent = s.note + (s.相位 === '未定' ? '' : (' ' + copy.body));
-    const labels = ['财政汲取','精英循环','合法性叙事','边疆军事','生态基座'];
-    const scores = s.五力评分.map(function(v,i){
-      return '    /* '+labels[i]+' */ ' + (v === null ? 'null' : v);
-    }).join(',\n');
-    document.getElementById('card-contract').innerHTML =
-      '{\n' +
-      '  <span class="key">时点</span>: <span class="str">"'+s.时点+'"</span>,\n' +
-      '  <span class="key">相位</span>: <span class="str">"'+s.相位+'"</span>,\n' +
-      '  <span class="key">五力评分</span>: [\n'+scores+'\n  ],\n' +
-      '  <span class="key">修复力</span>: <span class="str">"'+s.修复力+'"</span>\n' +
-      '}';
+    document.getElementById('card-body').textContent = (s.相位 === '未定')
+      ? '指针暂停作占位；正式相位判定对接 GY-01 / 2026–2036。'
+      : copy.body;
+    renderSnap(document.getElementById('card-contract'), s);
 
     document.getElementById('diag-repair').textContent = s.修复力;
     document.getElementById('diag-phase').textContent = '当前 · ' + display;

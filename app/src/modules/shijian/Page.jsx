@@ -1,10 +1,11 @@
 import ShijianHtmlShell from './ShijianHtmlShell.jsx';
 
 const HINT_LINKS = [
-  { href: '/shijian/SJ-00.html', label: '/shijian/SJ-00.html' },
-  { href: '/shijian/SJ-01.html', label: '/shijian/SJ-01.html' },
-  { href: '/shijian/SJ-03.html', label: '/shijian/SJ-03.html' },
-  { href: '/shijian/SJ-04.html', label: '/shijian/SJ-04.html' },
+  { href: '/shijian/SJ-00.html', label: 'SJ-00 总索引' },
+  { href: '/shijian/SJ-01.html', label: 'SJ-01 方法矩阵' },
+  { href: '/shijian/SJ-02.html', label: 'SJ-02 四步引擎' },
+  { href: '/shijian/SJ-03.html', label: 'SJ-03 五力模型' },
+  { href: '/shijian/SJ-04.html', label: 'SJ-04 相位罗盘' },
 ];
 
 /**

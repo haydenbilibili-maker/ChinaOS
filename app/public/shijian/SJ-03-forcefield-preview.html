@@ -32,7 +32,10 @@ body{
   line-height:1.7;
   padding:var(--sj-space);
 }
-.wrap{max-width:920px;margin:0 auto}
+.wrap{max-width:min(1180px,100%);margin:0 auto}
+@media (min-width:1536px){.wrap{max-width:min(1360px,100%)}}
+@media (min-width:1920px){.wrap{max-width:min(1520px,100%)}}
+@media (min-width:2560px){.wrap{max-width:min(1680px,100%)}}
 .mast{
   display:flex;justify-content:space-between;align-items:flex-end;
   gap:16px;flex-wrap:wrap;
@@ -59,12 +62,12 @@ body{
 }
 .btn:hover,.btn:focus-visible{border-color:var(--sj-ochre);outline:none}
 .btn:focus-visible{box-shadow:0 0 0 2px rgba(184,137,74,.35)}
-.btn.is-on{border-color:var(--sj-vermil);color:var(--sj-vermil);background:#241612}
+.btn.is-on{border-color:var(--sj-vermil);color:var(--sj-vermil);background:color-mix(in srgb, var(--sj-vermil) 12%, var(--sj-ink-900))}
 .btn#btn-chain.is-on{border-color:var(--sj-ochre);color:var(--sj-ochre)}
 .stage{
   border:1px solid var(--sj-line);
   border-radius:var(--sj-radius);
-  background:linear-gradient(180deg,#1f1a16,#14110f);
+  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
   box-shadow:0 1px 0 rgba(232,221,199,.04), 0 18px 48px rgba(0,0,0,.45);
   padding:8px 8px 4px;
   overflow:auto;
@@ -313,7 +316,7 @@ body{
 
   <footer class="foot">
     <span>纯 SVG：<a href="./wuli-forcefield.svg">wuli-forcefield.svg</a> · <a href="./SJ-00.html">返回 SJ-00</a> · <a href="./SJ-01-spectrum-preview.html">SJ-01 光谱</a></span>
-    <span>ChinaOS · 史鉴 SJ · preview v0.1</span>
+    <span><span class="draft" style="color:var(--sj-ochre);margin-right:8px">草稿预览</span>ChinaOS · 史鉴 SJ · preview v0.1</span>
   </footer>
 </div>
 <script>

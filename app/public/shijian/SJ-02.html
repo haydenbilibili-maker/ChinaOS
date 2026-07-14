@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-02 · 史鉴引擎·四步法</title>
+<meta name="description" content="ChinaOS 史鉴系列方法论卷：史鉴引擎四步法——结构切片→周期定位→机制归因→古今映射，融合诸家史学方法为可复用操作系统，产出史鉴台账。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;
+  --sj-ink-800:#1d1916;
+  --sj-paper-100:#e8ddc7;
+  --sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;
+  --sj-celadon:#5f7a6f;
+  --sj-ochre:#b8894a;
+  --sj-line:#3a322b;
+  --sj-radius:6px;
+  --sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(1000px 560px at 72% -8%, #2a221c 0%, transparent 55%),
+    radial-gradient(700px 420px at 8% 90%, #1a1612 0%, transparent 50%),
+    var(--sj-ink-900);
+  color:var(--sj-paper-100);
+  font-family:var(--sj-serif);
+  line-height:1.75;
+}
+.sj-02-wrap{max-width:min(1180px,100%);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media (min-width:1536px){.sj-02-wrap{max-width:min(1360px,100%)}}
+@media (min-width:1920px){.sj-02-wrap{max-width:min(1520px,100%)}}
+@media (min-width:2560px){.sj-02-wrap{max-width:min(1680px,100%)}}
+
+/* 章节入场 · 尊重 prefers-reduced-motion */
+@keyframes sj-fade-in{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+.sj-reveal-stagger > header,
+.sj-reveal-stagger > .sj-zhupi,
+.sj-reveal-stagger > .sj-ledger,
+.sj-reveal-stagger > [class*="-sec"],
+.sj-reveal-stagger > footer{
+  animation:sj-fade-in .34s cubic-bezier(.22,.61,.36,1) both;
+}
+.sj-reveal-stagger > *:nth-child(1){animation-delay:.03s}
+.sj-reveal-stagger > *:nth-child(2){animation-delay:.06s}
+.sj-reveal-stagger > *:nth-child(3){animation-delay:.09s}
+.sj-reveal-stagger > *:nth-child(4){animation-delay:.12s}
+.sj-reveal-stagger > *:nth-child(5){animation-delay:.15s}
+.sj-reveal-stagger > *:nth-child(6){animation-delay:.18s}
+.sj-reveal-stagger > *:nth-child(7){animation-delay:.21s}
+.sj-reveal-stagger > *:nth-child(8){animation-delay:.24s}
+
+.sj-02-mast{
+  display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;
+  padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px;
+}
+.sj-02-mast .badge{font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-02-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em;line-height:1.3}
+.sj-02-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;letter-spacing:.08em;font-size:.72em;display:block;margin-top:4px}
+.sj-02-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right;line-height:1.7}
+.sj-02-meta b{color:var(--sj-ochre);font-weight:500}
+.sj-02-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sj-02-chip{
+  display:inline-block;font-family:var(--sj-mono);font-size:10px;
+  letter-spacing:.08em;color:var(--sj-celadon);border:1px solid var(--sj-line);
+  padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;
+}
+.sj-02-chip:hover,.sj-02-chip:focus-visible{border-color:var(--sj-ochre);color:var(--sj-ochre);outline:none}
+
+.sj-zhupi{
+  color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;
+  padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:74ch;
+}
+
+.sj-02-sec{margin:36px 0 28px;scroll-margin-top:24px}
+.sj-02-sec-h{
+  display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--sj-line);
+}
+.sj-02-sec-h .num{font-family:var(--sj-mono);font-size:11px;letter-spacing:.2em;color:var(--sj-ochre)}
+.sj-02-sec-h h2{font-size:clamp(17px,2.2vw,20px);font-weight:600;letter-spacing:.12em}
+.sj-02-prose{font-size:15.5px;color:var(--sj-paper-100);max-width:74ch}
+.sj-02-prose + .sj-02-prose{margin-top:14px}
+.sj-02-prose strong{color:var(--sj-ochre);font-weight:600}
+.sj-02-note{font-size:13px;color:var(--sj-paper-300);margin-top:12px;max-width:74ch}
+.sj-02-note b{color:var(--sj-paper-100);font-weight:600}
+
+.sj-02-stage{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
+  box-shadow:0 1px 0 rgba(232,221,199,.04), 0 18px 48px rgba(0,0,0,.45);
+  padding:8px 8px 4px;overflow:auto;
+}
+.sj-02-stage svg{display:block;width:100%;height:auto;max-width:800px;margin:0 auto}
+.sj-node{cursor:pointer;transition:opacity .2s ease, filter .2s ease}
+.sj-node:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:4px}
+.sj-edge{transition:opacity .2s ease, filter .2s ease}
+.sj-02-stage.is-picking .sj-node{opacity:.3}
+.sj-02-stage.is-picking .sj-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px rgba(184,137,74,.4))}
+.sj-02-stage.is-picking .sj-edge{opacity:.18}
+.sj-02-stage.is-picking .sj-edge.is-hot{opacity:1}
+
+.sj-02-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:14px;align-items:start;margin-top:14px}
+.sj-02-aside{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
+  padding:14px 16px;position:sticky;top:12px;min-height:170px;
+}
+.sj-02-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-02-aside h3{font-size:16px;letter-spacing:.1em;margin-bottom:8px}
+.sj-02-aside p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.7}
+.sj-02-aside .prin{margin-top:10px;font-size:12.5px;color:var(--sj-celadon)}
+.sj-02-aside .blind{margin-top:8px;font-size:12.5px;color:var(--sj-vermil)}
+.sj-02-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+
+.sj-02-step-grid{display:grid;gap:10px;margin-top:14px;grid-template-columns:1fr 1fr}
+.sj-02-step{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:var(--sj-ink-800);padding:14px 16px;cursor:pointer;transition:border-color .18s;
+}
+.sj-02-step:hover,.sj-02-step:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-02-step.is-on{border-color:var(--sj-vermil)}
+.sj-02-step .tag{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;margin-bottom:4px}
+.sj-02-step[data-id="jiepian"] .tag{color:var(--sj-celadon)}
+.sj-02-step[data-id="dingwei"] .tag{color:var(--sj-ochre)}
+.sj-02-step[data-id="guiyin"] .tag{color:var(--sj-vermil)}
+.sj-02-step[data-id="yingshe"] .tag{color:var(--sj-paper-100)}
+.sj-02-step h3{font-size:15px;letter-spacing:.08em;margin-bottom:6px}
+.sj-02-step p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.65}
+.sj-02-step .src{margin-top:8px;font-size:12.5px;color:var(--sj-celadon)}
+
+.sj-02-table-wrap{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);overflow:auto;margin-top:14px;min-width:0}
+.sj-02-table{width:max(100%,680px);table-layout:fixed;border-collapse:collapse;font-size:13px}
+.sj-02-table th{
+  background:var(--sj-ink-900);color:var(--sj-ochre);font-family:var(--sj-mono);font-size:10px;
+  letter-spacing:.12em;font-weight:500;text-align:left;padding:10px 12px;border-bottom:1px solid var(--sj-line);white-space:nowrap;
+}
+.sj-02-table td{padding:10px 12px;border-bottom:1px solid var(--sj-line);color:var(--sj-paper-300);vertical-align:top;line-height:1.6;overflow-wrap:break-word}
+.sj-02-table td:first-child{color:var(--sj-paper-100);font-weight:600;white-space:nowrap}
+
+.sj-02-ledger{margin-top:14px;border:1px dashed var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:16px 18px}
+.sj-02-ledger .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;color:var(--sj-ochre);margin-bottom:10px}
+.sj-02-ledger ol{list-style:none;counter-reset:led;display:grid;gap:8px}
+.sj-02-ledger li{counter-increment:led;position:relative;padding-left:34px;font-size:13.5px;color:var(--sj-paper-100);line-height:1.6}
+.sj-02-ledger li::before{
+  content:counter(led,decimal-leading-zero);position:absolute;left:0;top:1px;
+  font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre);
+  border:1px solid var(--sj-line);border-radius:4px;padding:1px 5px;
+}
+.sj-02-ledger li b{color:var(--sj-celadon);font-weight:600}
+.sj-02-ledger li span{color:var(--sj-paper-300)}
+
+.sj-02-xref{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.sj-02-xref a{
+  display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit;transition:border-color .18s;
+}
+.sj-02-xref a:hover,.sj-02-xref a:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-02-xref .n{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;color:var(--sj-ochre);margin-bottom:4px}
+.sj-02-xref h3{font-size:14px;letter-spacing:.06em;margin-bottom:6px}
+.sj-02-xref p{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6}
+
+.sj-02-foot{
+  margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);
+  font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+}
+.sj-02-foot a{color:var(--sj-celadon);text-decoration:none}
+.sj-02-foot a:hover{color:var(--sj-ochre)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto  .sj-reveal-stagger > *{animation:none}
+}
+  .sj-node,.sj-edge,.sj-02-step,.sj-02-chip{transition:none}
+}
+@media (max-width:900px){
+  .sj-02-layout{grid-template-columns:1fr}
+  .sj-02-aside{position:static}
+  .sj-02-step-grid{grid-template-columns:1fr}
+  .sj-02-xref{grid-template-columns:1fr 1fr}
+}
+@media (max-width:768px){
+  .sj-02-meta{text-align:left}
+  .sj-02-xref{grid-template-columns:1fr}
+}
+
+/* 宣纸日览 · 由 ?theme=light 或 postMessage 切换 html[data-theme] */
+html[data-theme="light"]{
+  --sj-ink-900:#f4f1ea;
+  --sj-ink-800:#ebe6dc;
+  --sj-paper-100:#1a1814;
+  --sj-paper-300:#5a5348;
+  --sj-vermil:#9a3428;
+  --sj-celadon:#3f5f54;
+  --sj-ochre:#8a6528;
+  --sj-line:#c8bfb0;
+}
+html[data-theme="light"] body{
+  background:
+    radial-gradient(1000px 560px at 72% -8%, #e8e4da 0%, transparent 55%),
+    radial-gradient(700px 420px at 8% 90%, #ebe6dc 0%, transparent 50%),
+    var(--sj-ink-900);
+  color:var(--sj-paper-100);
+}
+html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
+html[data-theme="light"] .sj-02-stage,
+html[data-theme="light"] .sj-02-aside,
+html[data-theme="light"] .sj-02-table-wrap,
+html[data-theme="light"] .sj-02-ledger{
+  box-shadow:0 1px 0 rgba(26,24,20,.05),0 12px 28px rgba(26,24,20,.08);
+}
+html[data-theme="light"] [class*="-hook"],
+html[data-theme="light"] [class*="-ledger"]{
+  box-shadow:0 1px 0 rgba(26,24,20,.05),0 12px 28px rgba(26,24,20,.08);
+}
+html[data-theme="light"] .sj-snap-track{background:var(--sj-ink-900);border-color:var(--sj-line)}
+html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
+
+</style>
+<script>
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){
+    document.documentElement.setAttribute('data-theme', t==='light' ? 'light' : 'dark');
+  }
+  try{
+    var q=new URLSearchParams(location.search).get('theme');
+    if(q==='light'||q==='dark') apply(q);
+  }catch(e){}
+  window.addEventListener('message', function(e){
+    if(e.origin !== window.location.origin) return;
+    var d=e&&e.data;
+    if(!d||d.type!==MSG) return;
+    apply(d.theme);
+  });
+})();
+</script>
+</head>
+<body>
+<div class="sj-02-wrap sj-reveal-stagger" id="sj-02-top">
+
+<header class="sj-02-mast">
+  <div>
+    <div class="badge">SJ-02 · 方法论卷 · 引擎定义</div>
+    <h1>史鉴引擎 · 四步法<em>结构切片 · 周期定位 · 机制归因 · 古今映射</em></h1>
+    <div class="sj-02-chips">
+      <a class="sj-02-chip" href="./SJ-00.html">↔ SJ-00 总索引</a>
+      <a class="sj-02-chip" href="./SJ-01.html">↔ SJ-01 方法光谱</a>
+      <a class="sj-02-chip" href="./SJ-03.html">↔ SJ-03 五力模型</a>
+      <a class="sj-02-chip" href="./SJ-04.html">↔ SJ-04 相位罗盘</a>
+      <a class="sj-02-chip" href="./SJ-05.html">↔ SJ-05 台账首验</a>
+    </div>
+  </div>
+  <div class="sj-02-meta">
+    在诸家之上融合出的分析操作系统<br/>
+    <b>AS_OF 2026-07-14</b> · v0.1
+  </div>
+</header>
+
+<p class="sj-zhupi">朱批：SJ-01 陈列诸家镜头，本卷把它们融合成一台四步引擎。四步不是并列，而是一条流水线，且闭环——第四步「古今映射」反过来修正第一步的切片方式。产物是一张可复用的史鉴台账。</p>
+
+<!-- 1 引言 -->
+<section class="sj-02-sec" id="sec-intro" aria-labelledby="h-intro">
+  <div class="sj-02-sec-h">
+    <span class="num">01 · 引言</span>
+    <h2 id="h-intro">为什么要一台「引擎」</h2>
+  </div>
+  <p class="sj-02-prose">SJ-01 的方法对比矩阵回答「有哪些镜头、各自的盲区」；但研究一个具体历史时点，需要一套固定的操作顺序，把诸家镜头装配成一条可复用的流水线。<strong>史鉴引擎四步法</strong>就是这台操作系统：结构切片 → 周期定位 → 机制归因 → 古今映射。它不发明新方法，而是规定各家方法在何处、以何序被调用。</p>
+  <p class="sj-02-prose">四步各有主借的史家，且刻意让两家互补以补偿彼此盲区：系统论的宏观 × 微观权力的具体、长时段的纵深 × 相位的节律、考据的祛魅 × 义理的理解、中外互动的外因 × 加州学派的内生。这样每一步都不被单一镜头的盲区绑架。</p>
+  <p class="sj-02-note">术语首现：<b>史鉴引擎四步法</b>＝把《母本》诸家方法融合为「结构切片(Structure)→周期定位(Cycle)→机制归因(Mechanism)→古今映射(Mirror)」四步操作系统，产物为固定七字段的史鉴台账。口径见《史鉴系列·核心分析母本》第三部。</p>
+</section>
+
+<!-- 2 签名 -->
+<section class="sj-02-sec" id="sec-engine" aria-labelledby="h-engine">
+  <div class="sj-02-sec-h">
+    <span class="num">02 · 签名视觉</span>
+    <h2 id="h-engine">四步流水线与闭环</h2>
+  </div>
+  <p class="sj-02-prose">四步自左向右为流水线；顶部弧线为闭环——古今映射的证伪反过来修正切片方式。四步向下汇入同一产物：史鉴台账。点击任一步 → 展开其所借史家、操作与补偿的盲区。</p>
+
+  <div class="sj-02-stage" id="stage">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">史鉴引擎四步法流水线图</title>
+  <desc id="sj-desc">四步自左向右：结构切片、周期定位、机制归因、古今映射；顶部弧线为闭环反馈；四步向下汇入史鉴台账产物。</desc>
+
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="70%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+    <marker id="a-flow" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/>
+    </marker>
+    <marker id="a-loop" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/>
+    </marker>
+    <marker id="a-drop" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-300)"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="560" fill="url(#sj-glow)"/>
+  <rect x="40" y="96" width="720" height="360" fill="url(#sj-xuan)" opacity="0.05"/>
+
+  <!-- 卷轴轴头 -->
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="360" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="352" rx="2" fill="var(--sj-line)"/>
+    <rect x="772" y="104" width="12" height="360" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="776" y="108" width="4" height="352" rx="2" fill="var(--sj-line)"/>
+  </g>
+
+  <!-- 页眉 -->
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC, Noto Serif SC, Source Han Serif SC, serif" letter-spacing="0.12em">史鉴引擎 · 四步法</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.08em">SJ-02 · 方法论卷 · 分析操作系统</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">朱批：点击任一步 → 展开所借史家 · 操作 · 补偿盲区</text>
+
+  <!-- 闭环反馈弧（④ → ①） -->
+  <path class="sj-edge" data-edge="loop" d="M685,196 C685,132 560,120 400,120 C240,120 115,132 115,196"
+        fill="none" stroke="var(--sj-vermil)" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#a-loop)" opacity="0.85"/>
+  <text x="400" y="112" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">闭环 · 映射的证伪反过来修正切片方式</text>
+
+  <!-- 流水线横向边 -->
+  <g fill="none" stroke-linecap="round">
+    <path class="sj-edge" data-edge="e12" d="M192,250 L226,250" stroke="var(--sj-ochre)" stroke-width="2.6" marker-end="url(#a-flow)"/>
+    <path class="sj-edge" data-edge="e23" d="M382,250 L416,250" stroke="var(--sj-ochre)" stroke-width="2.6" marker-end="url(#a-flow)"/>
+    <path class="sj-edge" data-edge="e34" d="M572,250 L606,250" stroke="var(--sj-ochre)" stroke-width="2.6" marker-end="url(#a-flow)"/>
+  </g>
+
+  <!-- 汇入产物的下行边 -->
+  <g fill="none" stroke-linecap="round">
+    <path class="sj-edge" data-edge="d1" d="M115,306 C115,360 300,368 372,392" stroke="var(--sj-paper-300)" stroke-width="1.4" stroke-dasharray="4 5" marker-end="url(#a-drop)" opacity="0.6"/>
+    <path class="sj-edge" data-edge="d2" d="M305,306 C305,352 360,372 386,390" stroke="var(--sj-paper-300)" stroke-width="1.4" stroke-dasharray="4 5" marker-end="url(#a-drop)" opacity="0.6"/>
+    <path class="sj-edge" data-edge="d3" d="M495,306 C495,352 440,372 414,390" stroke="var(--sj-paper-300)" stroke-width="1.4" stroke-dasharray="4 5" marker-end="url(#a-drop)" opacity="0.6"/>
+    <path class="sj-edge" data-edge="d4" d="M685,306 C685,360 500,368 428,392" stroke="var(--sj-paper-300)" stroke-width="1.4" stroke-dasharray="4 5" marker-end="url(#a-drop)" opacity="0.6"/>
+  </g>
+
+  <!-- 四步节点 -->
+  <g class="sj-node" data-id="jiepian" id="node-jiepian" tabindex="0" role="button" aria-label="第一步 结构切片">
+    <rect x="40" y="204" width="152" height="102" rx="8" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.2"/>
+    <text x="116" y="234" text-anchor="middle" fill="var(--sj-celadon)" font-size="15" font-weight="600" font-family="Songti SC, Noto Serif SC, serif" letter-spacing="0.06em">① 结构切片</text>
+    <text x="116" y="252" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">Structure</text>
+    <text x="116" y="276" text-anchor="middle" fill="var(--sj-paper-100)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">切权力几何横截面</text>
+    <text x="116" y="294" text-anchor="middle" fill="var(--sj-celadon)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">借 金观涛 · 孔飞力</text>
+  </g>
+
+  <g class="sj-node" data-id="dingwei" id="node-dingwei" tabindex="0" role="button" aria-label="第二步 周期定位">
+    <rect x="230" y="204" width="152" height="102" rx="8" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.2"/>
+    <text x="306" y="234" text-anchor="middle" fill="var(--sj-ochre)" font-size="15" font-weight="600" font-family="Songti SC, Noto Serif SC, serif" letter-spacing="0.06em">② 周期定位</text>
+    <text x="306" y="252" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">Cycle</text>
+    <text x="306" y="276" text-anchor="middle" fill="var(--sj-paper-100)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">放上相位盘定相</text>
+    <text x="306" y="294" text-anchor="middle" fill="var(--sj-ochre)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">借 黄仁宇 · 金观涛</text>
+  </g>
+
+  <g class="sj-node" data-id="guiyin" id="node-guiyin" tabindex="0" role="button" aria-label="第三步 机制归因">
+    <rect x="420" y="204" width="152" height="102" rx="8" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.2"/>
+    <text x="496" y="234" text-anchor="middle" fill="var(--sj-vermil)" font-size="15" font-weight="600" font-family="Songti SC, Noto Serif SC, serif" letter-spacing="0.06em">③ 机制归因</text>
+    <text x="496" y="252" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">Mechanism</text>
+    <text x="496" y="276" text-anchor="middle" fill="var(--sj-paper-100)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">五力归因 · 双列台账</text>
+    <text x="496" y="294" text-anchor="middle" fill="var(--sj-vermil)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">借 李敖 · 钱穆</text>
+  </g>
+
+  <g class="sj-node" data-id="yingshe" id="node-yingshe" tabindex="0" role="button" aria-label="第四步 古今映射">
+    <rect x="610" y="204" width="152" height="102" rx="8" fill="var(--sj-ink-800)" stroke="var(--sj-paper-100)" stroke-width="2.2"/>
+    <text x="686" y="234" text-anchor="middle" fill="var(--sj-paper-100)" font-size="15" font-weight="600" font-family="Songti SC, Noto Serif SC, serif" letter-spacing="0.06em">④ 古今映射</text>
+    <text x="686" y="252" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">Mirror</text>
+    <text x="686" y="276" text-anchor="middle" fill="var(--sj-paper-100)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">投当代 · 相似/差异栏</text>
+    <text x="686" y="294" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">借 费正清 · 加州学派</text>
+  </g>
+
+  <!-- 产物：史鉴台账 -->
+  <g class="sj-node" data-id="ledger" id="node-ledger" tabindex="0" role="button" aria-label="产物 史鉴台账">
+    <rect x="300" y="392" width="200" height="88" rx="8" fill="#2a2218" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="400" y="424" text-anchor="middle" fill="var(--sj-ochre)" font-size="15" font-weight="600" font-family="Songti SC, Noto Serif SC, serif" letter-spacing="0.08em">产物 · 史鉴台账</text>
+    <text x="400" y="446" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">固定七字段 · 案例卷复用</text>
+    <text x="400" y="466" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif" opacity="0.85">拐点 · 切片 · 相位 · 五力 · 交锋 · 成败 · 映射</text>
+  </g>
+
+  <text x="752" y="502" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">viewBox 800×560 · 规格书 §3.2</text>
+</svg>
+  </div>
+
+  <div class="sj-02-layout">
+    <div class="sj-02-note" style="margin-top:0">
+      步色对应：结构=青瓷 · 周期=赭金 · 机制=朱红 · 映射=宣纸白。横向为流水线，顶部虚弧为闭环反馈，四步向下汇入同一台账。
+    </div>
+    <aside class="sj-02-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-02-aside-empty">点选四步中任一步，展开其史家来源、操作与补偿盲区（母本第三部）。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+        <p class="prin" id="aside-prin"></p>
+        <p class="blind" id="aside-blind"></p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- 3 逐步 -->
+<section class="sj-02-sec" id="sec-steps" aria-labelledby="h-steps">
+  <div class="sj-02-sec-h">
+    <span class="num">03 · 逐步解剖</span>
+    <h2 id="h-steps">四步 · 借鉴 · 操作 · 补偿</h2>
+  </div>
+  <p class="sj-02-prose">四步按序调用不同镜头；点选可与流水线高亮联动。每步都以「两家互补」抵消单镜头盲区——这正是把 SJ-01 方法矩阵落到操作层的方式。</p>
+
+  <div class="sj-02-step-grid" id="step-grid" role="list">
+    <article class="sj-02-step" data-id="jiepian" tabindex="0" role="listitem">
+      <div class="tag">第一步 · 青瓷</div>
+      <h3>① 结构切片 Structure</h3>
+      <p>把某一历史时点切成权力几何的横截面——君权 / 官僚 / 军事 / 地方精英 / 生态基座。对应 ChinaOS「结构优先于事件」。</p>
+      <p class="src">借 金观涛系统论 × 孔飞力微观权力（宏观抹平地方，以微观权力校正）</p>
+    </article>
+    <article class="sj-02-step" data-id="dingwei" tabindex="0" role="listitem">
+      <div class="tag">第二步 · 赭金</div>
+      <h3>② 周期定位 Cycle</h3>
+      <p>把切片放上治乱相位盘（SJ-04），判断处于上升 / 鼎盛 / 僵化 / 崩解 / 重整哪一相。对应 GY-01 时间轴思维。</p>
+      <p class="src">借 黄仁宇长时段 × 金观涛一治一乱（长时段易决定论，以相位而非单因定位）</p>
+    </article>
+    <article class="sj-02-step" data-id="guiyin" tabindex="0" role="listitem">
+      <div class="tag">第三步 · 朱红</div>
+      <h3>③ 机制归因 Mechanism</h3>
+      <p>用五力模型（SJ-03）做因果归因，并以台账区分「正史归因」与「结构实因」。对应双轨意识：官方史观 vs 实际运作。</p>
+      <p class="src">借 李敖考据祛魅 × 钱穆义理理解（先剥离书写立场，再理解制度内在逻辑）</p>
+    </article>
+    <article class="sj-02-step" data-id="yingshe" tabindex="0" role="listitem">
+      <div class="tag">第四步 · 宣纸白</div>
+      <h3>④ 古今映射 Mirror</h3>
+      <p>把机制结论投射到当代五域，强制填「相似机制 / 关键差异」两栏。对应可证伪的以史为鉴：禁止裸类比。</p>
+      <p class="src">借 费正清中外互动 × 加州学派内生视角（西方中心以内生视角平衡）</p>
+    </article>
+  </div>
+</section>
+
+<!-- 4 方法映射 -->
+<section class="sj-02-sec" id="sec-map" aria-labelledby="h-map">
+  <div class="sj-02-sec-h">
+    <span class="num">04 · 方法装配表</span>
+    <h2 id="h-map">每一步调用哪面镜头、补偿哪个盲区</h2>
+  </div>
+  <p class="sj-02-prose">这张表把 SJ-01 的方法矩阵「装配」进四步引擎：不评高下，只规定各镜头在何处被调用、以何镜头补偿其盲区。</p>
+  <div class="sj-02-table-wrap">
+    <table class="sj-02-table">
+      <thead>
+        <tr><th>步骤</th><th>主借史家</th><th>互补校正</th><th>对应 ChinaOS 原则</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>① 结构切片</td><td>金观涛（超稳定结构 / 系统论）</td><td>孔飞力（官僚—君主微观权力）补系统抹平地方之盲</td><td>结构优先于事件</td></tr>
+        <tr><td>② 周期定位</td><td>黄仁宇（大历史 / 长时段）</td><td>金观涛（一治一乱）以相位替单因，补长时段决定论之盲</td><td>台账 / 相位而非道德叙事</td></tr>
+        <tr><td>③ 机制归因</td><td>李敖（考据实证 / 祛魅）</td><td>钱穆（义理与文化生命）补纯祛魅无法理解制度逻辑之盲</td><td>双轨意识：官方史观 vs 实操</td></tr>
+        <tr><td>④ 古今映射</td><td>费正清（冲击—回应）</td><td>加州学派（内生视角）补西方中心之盲</td><td>可证伪的以史为鉴 · 禁裸类比</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="sj-02-note"><b>盲区总账：</b>四步的互补设计确保没有任何一步被单一镜头的盲区绑架——这是引擎相对于「单一史观」的核心优势。史家生平与代表命题的细目见 SJ-01。</p>
+</section>
+
+<!-- 5 产物 -->
+<section class="sj-02-sec" id="sec-ledger" aria-labelledby="h-ledger">
+  <div class="sj-02-sec-h">
+    <span class="num">05 · 产物</span>
+    <h2 id="h-ledger">史鉴台账 · 固定七字段</h2>
+  </div>
+  <p class="sj-02-prose">四步跑完，产物是一张<strong>史鉴台账</strong>：七字段、固定顺序。案例卷（SJ-05 起）全体复用同一模板，只换内容，使案例之间可比、可累积、可外推。字段与四步一一对应——切片来自①，相位来自②，五力与交锋来自③，映射来自④。</p>
+
+  <div class="sj-02-ledger" role="figure" aria-label="史鉴台账七字段">
+    <div class="k">SJ-LEDGER · 七字段模板（SJ-05 首验后冻结）</div>
+    <ol>
+      <li><b>一句话拐点</b> — <span>本案的核心张力（大字·朱批底）</span></li>
+      <li><b>结构切片图</b> — <span>该时点权力几何的签名 SVG（来自步骤①）</span></li>
+      <li><b>相位定位</b> — <span>在相位盘上的位置（来自步骤②，SJ-04）</span></li>
+      <li><b>五力归因台账</b> — <span>五力状态，分「正史归因 / 结构实因」双列（步骤③，SJ-03）</span></li>
+      <li><b>史家交锋</b> — <span>李敖 / 钱穆 / 金观涛 / 黄仁宇 / 汉学各家分歧（步骤③，SJ-01）</span></li>
+      <li><b>成败判定</b> — <span>「已兑现 / 已失败 / 未决」三列，禁止虚假收束</span></li>
+      <li><b>古今映射</b> — <span>投当代五域，「相似机制 / 关键差异」双栏（步骤④）</span></li>
+    </ol>
+  </div>
+  <p class="sj-02-note">硬约束：字段顺序不可改；④⑥⑦ 用表格，①③⑤ 用散文/卡片；⑥ 保留「未决」列；⑦ 每格必须成对「相似机制 + 关键差异」，缺「关键差异」即违规。SJ-05 王安石变法为该模板的验证案。</p>
+</section>
+
+<!-- 6 交叉 -->
+<section class="sj-02-sec" id="sec-xref" aria-labelledby="h-xref">
+  <div class="sj-02-sec-h">
+    <span class="num">06 · 交叉引用</span>
+    <h2 id="h-xref">引擎的上下游</h2>
+  </div>
+  <div class="sj-02-xref">
+    <a href="./SJ-01.html">
+      <div class="n">SJ-01 · 上游</div>
+      <h3>史家方法光谱</h3>
+      <p>提供四步所调用的镜头库；本卷把它装配成流水线。</p>
+    </a>
+    <a href="./SJ-03.html">
+      <div class="n">SJ-03 · 步骤③</div>
+      <h3>五力衰变模型</h3>
+      <p>机制归因所用的因果框架；正史归因与结构实因双列。</p>
+    </a>
+    <a href="./SJ-04.html">
+      <div class="n">SJ-04 · 步骤②</div>
+      <h3>治乱相位罗盘</h3>
+      <p>周期定位所用的相位盘；鼎盛即隐性拐点。</p>
+    </a>
+    <a href="./SJ-05.html">
+      <div class="n">SJ-05 · 下游</div>
+      <h3>王安石变法（台账首验）</h3>
+      <p>四步引擎的首个完整落地；验证并冻结七字段模板。</p>
+    </a>
+    <a href="./SJ-00.html">
+      <div class="n">SJ-00</div>
+      <h3>史鉴总索引</h3>
+      <p>治乱螺旋与四步引擎入口；方法论卷卡片已点亮本卷。</p>
+    </a>
+    <a href="/modules/yishixingtai">
+      <div class="n">GY-02</div>
+      <h3>合法性机器</h3>
+      <p>步骤④古今映射的当代落点之一：合法性叙事力的今形。</p>
+    </a>
+  </div>
+</section>
+
+<footer class="sj-02-foot">
+  <span>ChinaOS · 史鉴 SJ-02 · v0.1 · AS_OF 2026-07-14</span>
+  <span><a href="./SJ-00.html">← 返回 SJ-00</a> · <a href="#sj-02-top">↑ 顶</a> · <a href="./SJ-05.html">台账首验 →</a></span>
+  <span>本地调试 · 未 push</span>
+</footer>
+
+</div>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const nodes = Array.from(stage.querySelectorAll('.sj-node'));
+  const edges = Array.from(stage.querySelectorAll('.sj-edge'));
+  const stepCards = Array.from(document.querySelectorAll('.sj-02-step'));
+  const asideEmpty = document.getElementById('aside-empty');
+  const asideBody = document.getElementById('aside-body');
+
+  /** 史鉴引擎四步法 · 步骤文案（母本第三部） */
+  const STEP_DATA = {
+    jiepian: {
+      name: '① 结构切片 Structure',
+      tag: '借 金观涛系统论 + 孔飞力微观权力',
+      body: '把某一历史时点切成权力几何的横截面——君权 / 官僚 / 军事 / 地方精英 / 生态基座。',
+      prin: '对应原则：结构优先于事件。',
+      blind: '补偿盲区：系统论易抹平地方与偶然，故引孔飞力微观权力校正。'
+    },
+    dingwei: {
+      name: '② 周期定位 Cycle',
+      tag: '借 黄仁宇长时段 + 金观涛一治一乱',
+      body: '把切片放上治乱相位盘（SJ-04），判断处于上升 / 鼎盛 / 僵化 / 崩解 / 重整哪一相。',
+      prin: '对应原则：GY-01 时间轴思维。',
+      blind: '补偿盲区：长时段易滑向决定论，故以相位而非单因定位。'
+    },
+    guiyin: {
+      name: '③ 机制归因 Mechanism',
+      tag: '借 李敖考据祛魅 + 钱穆义理',
+      body: '用五力模型（SJ-03）做因果归因，并以台账区分「正史归因」与「结构实因」。',
+      prin: '对应原则：双轨意识——官方史观 vs 实际运作。',
+      blind: '补偿盲区：先李敖式剥离书写立场，再钱穆式理解制度内在逻辑。'
+    },
+    yingshe: {
+      name: '④ 古今映射 Mirror',
+      tag: '借 费正清互动 + 加州学派内生',
+      body: '把机制结论投射到当代五域，强制填「相似机制 / 关键差异」两栏。',
+      prin: '对应原则：可证伪的以史为鉴——禁止裸类比。',
+      blind: '补偿盲区：费正清易西方中心，故并入加州学派内生视角平衡。'
+    },
+    ledger: {
+      name: '产物 · 史鉴台账',
+      tag: '固定七字段 · 案例卷复用',
+      body: '四步的产物：一张七字段台账（拐点 · 切片 · 相位 · 五力 · 交锋 · 成败 · 映射），使案例之间可比、可累积、可外推。',
+      prin: '对应原则：台账思维——用显式列避免虚假收束。',
+      blind: '模板由 SJ-05 王安石变法验证后冻结，供案例卷全体复用。'
+    }
+  };
+
+  const EDGE_MAP = {
+    jiepian: ['e12','d1','loop'],
+    dingwei: ['e12','e23','d2'],
+    guiyin: ['e23','e34','d3'],
+    yingshe: ['e34','d4','loop'],
+    ledger: ['d1','d2','d3','d4']
+  };
+
+  function clearVisual(){
+    stage.classList.remove('is-picking');
+    nodes.forEach(n => n.classList.remove('is-hot'));
+    edges.forEach(e => e.classList.remove('is-hot'));
+    stepCards.forEach(c => c.classList.remove('is-on'));
+  }
+
+  function showAside(id){
+    const d = STEP_DATA[id];
+    if(!d) return;
+    asideEmpty.hidden = true;
+    asideBody.hidden = false;
+    document.getElementById('aside-tag').textContent = d.tag;
+    document.getElementById('aside-name').textContent = d.name;
+    document.getElementById('aside-text').textContent = d.body;
+    document.getElementById('aside-prin').textContent = d.prin;
+    document.getElementById('aside-blind').textContent = d.blind;
+  }
+
+  function pick(id){
+    if(!STEP_DATA[id]) return;
+    clearVisual();
+    stage.classList.add('is-picking');
+    nodes.forEach(n => n.classList.toggle('is-hot', n.dataset.id === id));
+    stepCards.forEach(c => c.classList.toggle('is-on', c.dataset.id === id));
+    const hot = EDGE_MAP[id] || [];
+    edges.forEach(e => e.classList.toggle('is-hot', hot.indexOf(e.dataset.edge) >= 0));
+    showAside(id);
+  }
+
+  function bind(el){
+    const act = () => pick(el.dataset.id);
+    el.addEventListener('click', act);
+    el.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); act(); }
+    });
+  }
+  nodes.forEach(bind);
+  stepCards.forEach(bind);
+})();
+</script>
+</body>
+</html>

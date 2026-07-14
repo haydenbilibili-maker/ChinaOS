@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-20 · 政治映射</title>
+<meta name="description" content="ChinaOS 史鉴系列古今映射卷·政治：精英循环、合法性叙事、央地钟摆三组古今对照。每组强制相似机制/关键差异双栏，禁裸类比。规律同构，参数迥异。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;
+  --sj-ink-800:#1d1916;
+  --sj-paper-100:#e8ddc7;
+  --sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;
+  --sj-celadon:#5f7a6f;
+  --sj-ochre:#b8894a;
+  --sj-line:#3a322b;
+  --sj-radius:6px;
+  --sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%, #2a221c 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #1a1612 0%, transparent 50%),var(--sj-ink-900);color:var(--sj-paper-100);font-family:var(--sj-serif);line-height:1.75}
+.sj-20-wrap{max-width:min(1180px,100%);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media (min-width:1536px){.sj-20-wrap{max-width:min(1360px,100%)}}
+@media (min-width:1920px){.sj-20-wrap{max-width:min(1520px,100%)}}
+@media (min-width:2560px){.sj-20-wrap{max-width:min(1680px,100%)}}
+
+/* 章节入场 · 尊重 prefers-reduced-motion */
+@keyframes sj-fade-in{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+.sj-reveal-stagger > header,
+.sj-reveal-stagger > .sj-zhupi,
+.sj-reveal-stagger > .sj-ledger,
+.sj-reveal-stagger > [class*="-sec"],
+.sj-reveal-stagger > footer{
+  animation:sj-fade-in .34s cubic-bezier(.22,.61,.36,1) both;
+}
+.sj-reveal-stagger > *:nth-child(1){animation-delay:.03s}
+.sj-reveal-stagger > *:nth-child(2){animation-delay:.06s}
+.sj-reveal-stagger > *:nth-child(3){animation-delay:.09s}
+.sj-reveal-stagger > *:nth-child(4){animation-delay:.12s}
+.sj-reveal-stagger > *:nth-child(5){animation-delay:.15s}
+.sj-reveal-stagger > *:nth-child(6){animation-delay:.18s}
+.sj-reveal-stagger > *:nth-child(7){animation-delay:.21s}
+.sj-reveal-stagger > *:nth-child(8){animation-delay:.24s}
+
+.sj-20-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px}
+.sj-20-mast .badge{font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-20-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em;line-height:1.3}
+.sj-20-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;letter-spacing:.08em;font-size:.72em;display:block;margin-top:4px}
+.sj-20-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right;line-height:1.7}
+.sj-20-meta b{color:var(--sj-ochre);font-weight:500}
+.sj-20-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sj-20-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;letter-spacing:.08em;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none}
+.sj-20-chip:hover,.sj-20-chip:focus-visible{border-color:var(--sj-ochre);color:var(--sj-ochre);outline:none}
+
+.sj-zhupi{color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:76ch}
+
+.sj-20-sec{margin:36px 0 28px;scroll-margin-top:24px}
+.sj-20-sec-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--sj-line)}
+.sj-20-sec-h .num{font-family:var(--sj-mono);font-size:11px;letter-spacing:.2em;color:var(--sj-ochre)}
+.sj-20-sec-h h2{font-size:clamp(17px,2.2vw,20px);font-weight:600;letter-spacing:.12em}
+.sj-20-prose{font-size:15.5px;color:var(--sj-paper-100);max-width:76ch}
+.sj-20-prose + .sj-20-prose{margin-top:12px}
+.sj-20-prose strong{color:var(--sj-ochre);font-weight:600}
+.sj-20-note{font-size:13px;color:var(--sj-paper-300);margin-top:12px;max-width:76ch}
+.sj-20-note b{color:var(--sj-paper-100);font-weight:600}
+
+.sj-20-stage{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));box-shadow:0 1px 0 rgba(232,221,199,.04), 0 18px 48px rgba(0,0,0,.45);padding:8px 8px 4px;overflow:auto}
+.sj-20-stage svg{display:block;width:100%;height:auto;max-width:820px;margin:0 auto}
+.sj-row{cursor:pointer;transition:opacity .2s ease}
+.sj-row:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:2px}
+.sj-20-stage.is-picking .sj-row{opacity:.38}
+.sj-20-stage.is-picking .sj-row.is-hot{opacity:1}
+.sj-20-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:14px;align-items:start;margin-top:14px}
+.sj-20-aside{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px;position:sticky;top:12px;min-height:200px}
+.sj-20-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-20-aside h3{font-size:15px;letter-spacing:.06em;margin-bottom:8px}
+.sj-20-aside p{font-size:13px;color:var(--sj-paper-300);line-height:1.65;margin-bottom:6px}
+.sj-20-aside p b.same{color:var(--sj-celadon)}
+.sj-20-aside p b.diff{color:var(--sj-ochre)}
+.sj-20-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+
+.sj-20-pair{display:grid;gap:12px;margin-top:6px}
+.sj-20-pair article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:16px 18px}
+.sj-20-pair .ph{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;font-size:15px;font-weight:600;letter-spacing:.04em}
+.sj-20-pair .ph .gu{color:var(--sj-paper-100)}
+.sj-20-pair .ph .arrow{color:var(--sj-ochre);font-family:var(--sj-mono)}
+.sj-20-pair .ph .jin{color:var(--sj-celadon)}
+.sj-20-pair .ph .force{margin-left:auto;font-family:var(--sj-mono);font-size:10px;letter-spacing:.1em;color:var(--sj-paper-300);border:1px solid var(--sj-line);border-radius:20px;padding:2px 10px}
+.sj-20-pair .cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-20-pair .col{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-900);padding:12px 14px}
+.sj-20-pair .col .ch{font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;margin-bottom:6px}
+.sj-20-pair .col.same .ch{color:var(--sj-celadon)}
+.sj-20-pair .col.diff .ch{color:var(--sj-ochre)}
+.sj-20-pair .col p{font-size:13px;color:var(--sj-paper-100);line-height:1.65}
+.sj-20-pair .col p .lk{color:var(--sj-celadon)}
+@media (max-width:720px){.sj-20-pair .cols{grid-template-columns:1fr}}
+
+.sj-20-refute{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.sj-20-refute article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-20-refute .rh{font-size:14px;font-weight:600;color:var(--sj-ochre);margin-bottom:6px}
+.sj-20-refute p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+
+.sj-20-xref{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.sj-20-xref a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit;transition:border-color .18s}
+.sj-20-xref a:hover,.sj-20-xref a:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-20-xref .n{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;color:var(--sj-ochre);margin-bottom:4px}
+.sj-20-xref h3{font-size:14px;letter-spacing:.06em;margin-bottom:6px}
+.sj-20-xref p{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6}
+
+.sj-20-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sj-20-foot a{color:var(--sj-celadon);text-decoration:none}
+.sj-20-foot a:hover{color:var(--sj-ochre)}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto  .sj-reveal-stagger > *{animation:none}
+}.sj-row,.sj-20-chip{transition:none}}
+@media (max-width:900px){.sj-20-layout{grid-template-columns:1fr}.sj-20-aside{position:static}.sj-20-refute{grid-template-columns:1fr}.sj-20-xref{grid-template-columns:1fr 1fr}}
+@media (max-width:768px){.sj-20-meta{text-align:left}.sj-20-xref{grid-template-columns:1fr}}
+
+html[data-theme="light"]{--sj-ink-900:#f4f1ea;--sj-ink-800:#ebe6dc;--sj-paper-100:#1a1814;--sj-paper-300:#5a5348;--sj-vermil:#9a3428;--sj-celadon:#3f5f54;--sj-ochre:#8a6528;--sj-line:#c8bfb0}
+html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%, #e8e4da 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #ebe6dc 0%, transparent 50%),var(--sj-ink-900);color:var(--sj-paper-100)}
+html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
+html[data-theme="light"] [class*="-stage"],
+html[data-theme="light"] [class*="-aside"],
+html[data-theme="light"] [class*="-table-wrap"],
+html[data-theme="light"] [class*="-hook"],
+html[data-theme="light"] [class*="-ledger"]{
+  box-shadow:0 1px 0 rgba(26,24,20,.05),0 12px 28px rgba(26,24,20,.08);
+}
+html[data-theme="light"] .sj-snap-track{background:var(--sj-ink-900);border-color:var(--sj-line)}
+html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
+
+</style>
+<script>
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){ document.documentElement.setAttribute('data-theme', t==='light' ? 'light' : 'dark'); }
+  try{ var q=new URLSearchParams(location.search).get('theme'); if(q==='light'||q==='dark') apply(q); }catch(e){}
+  window.addEventListener('message', function(e){
+    if(e.origin !== window.location.origin) return;
+    var d=e&&e.data; if(!d||d.type!==MSG) return; apply(d.theme); });
+})();
+</script>
+</head>
+<body>
+<div class="sj-20-wrap sj-reveal-stagger" id="sj-20-top">
+
+<header class="sj-20-mast">
+  <div>
+    <div class="badge">SJ-20 · 古今映射卷 · 政治域</div>
+    <h1>政治映射 · 古今对照<em>精英循环 · 合法性叙事 · 央地钟摆 · 规律同构参数迥异</em></h1>
+    <div class="sj-20-chips">
+      <a class="sj-20-chip" href="./SJ-00.html">↔ SJ-00 总索引</a>
+      <a class="sj-20-chip" href="./SJ-03.html">↔ SJ-03 五力模型</a>
+      <a class="sj-20-chip" href="./SJ-05.html">↔ SJ-05 变法党争</a>
+      <a class="sj-20-chip" href="./SJ-08.html">↔ SJ-08 央地失衡</a>
+      <a class="sj-20-chip" href="/modules/yishixingtai">↔ GY-02 合法性机器</a>
+    </div>
+  </div>
+  <div class="sj-20-meta">
+    以史为鉴 · 禁裸类比<br/>
+    <b>AS_OF 2026-07-14</b> · v0.1
+  </div>
+</header>
+
+<p class="sj-zhupi">朱批：映射卷是「以史为鉴」的落点，不是类比游戏。每一组古今对照都必须同时给出「相似机制」与「关键差异」——只有相似而无差异即为裸类比，本框架不承认。本卷呈现的是一种<b>分析读法</b>，非定论；第 05 节并陈相反意见。真源：《母本》第五部政治行。</p>
+
+<!-- 1 引言 -->
+<section class="sj-20-sec" id="sec-intro" aria-labelledby="h-intro">
+  <div class="sj-20-sec-h"><span class="num">01 · 引言</span><h2 id="h-intro">为什么政治域是映射卷首站</h2></div>
+  <p class="sj-20-prose">五力之中，<strong>精英循环力</strong>与<strong>合法性叙事力</strong>是最「政治」的两力；而央地集权—分权的钟摆，是崩解卷（SJ-06 天宝、SJ-07、SJ-08 五代）反复出现的共同变量。政治域因此是把历史机制投射到当代最直接的一域。</p>
+  <p class="sj-20-prose">本卷的核心断言延续母本第五部：<strong>规律同构，参数迥异</strong>。历史与当代共享同一套政治动力学（通道开放/堵塞、合法性绩效/象征、央地钟摆），但当代补上了两样古代所缺——数目字管理能力与列宁式组织的基层穿透，使执行力发生质变。因此每组对照都以「关键差异」栏收束，防止把结构相似误读为同质。</p>
+  <p class="sj-20-note">方法：本卷用史鉴引擎步骤④（古今映射）。三组对照各配「相似机制 / 关键差异」双栏；差异栏是硬约束，缺则不成立。</p>
+</section>
+
+<!-- 2 签名 -->
+<section class="sj-20-sec" id="sec-map" aria-labelledby="h-map">
+  <div class="sj-20-sec-h"><span class="num">02 · 签名视觉</span><h2 id="h-map">古今映射盘 · 差异闸</h2></div>
+  <p class="sj-20-prose">左列历史机制，右列当代形态；每组之间有一道「差异闸」（Δ）——映射必须通过它，即必须交代关键差异，方能成立。点击任一行，展开该组的相似机制与关键差异。</p>
+
+  <div class="sj-20-stage" id="stage">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 560" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">政治域古今映射盘</title>
+  <desc id="sj-desc">左列三个历史机制（科举精英循环、天命合法性、央地钟摆），右列三个当代形态，中间以差异闸相连；映射须通过差异闸方成立。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%"><stop offset="0%" stop-color="var(--sj-ink-800)"/><stop offset="100%" stop-color="var(--sj-ink-900)"/></radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse"><line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/></pattern>
+    <marker id="a-map" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+  </defs>
+  <rect width="820" height="560" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="392" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="392" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="384" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="392" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="384" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC, Noto Serif SC, Source Han Serif SC, serif" letter-spacing="0.1em">古今映射盘 · 政治</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.08em">SJ-20 · 左=历史机制 右=当代形态</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">朱批：映射须过「差异闸」(Δ)——交代关键差异方成立 · 禁裸类比</text>
+
+  <!-- 列头 -->
+  <text x="180" y="128" text-anchor="middle" fill="var(--sj-paper-300)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">历史机制（古）</text>
+  <text x="410" y="128" text-anchor="middle" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">差异闸 Δ</text>
+  <text x="640" y="128" text-anchor="middle" fill="var(--sj-paper-300)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">当代形态（今）</text>
+
+  <!-- Row 1 · 精英循环 -->
+  <g class="sj-row" data-id="keju" tabindex="0" role="button" aria-label="精英循环 映射">
+    <rect x="44" y="158" width="732" height="86" rx="8" fill="var(--sj-ink-800)" opacity="0.3" pointer-events="all"/>
+    <rect x="56" y="174" width="248" height="54" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="1.8"/>
+    <text x="180" y="198" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">科举 · 精英循环</text>
+    <text x="180" y="216" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">通道开放 ↔ 堵塞</text>
+    <line x1="304" y1="201" x2="384" y2="201" stroke="var(--sj-ochre)" stroke-width="1.6" marker-end="url(#a-map)"/>
+    <circle cx="410" cy="201" r="18" fill="var(--sj-ink-900)" stroke="var(--sj-ochre)" stroke-width="1.4"/>
+    <text x="410" y="206" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">Δ</text>
+    <line x1="436" y1="201" x2="516" y2="201" stroke="var(--sj-ochre)" stroke-width="1.6" marker-end="url(#a-map)"/>
+    <rect x="516" y="174" width="248" height="54" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="1.8"/>
+    <text x="640" y="198" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">干部选拔与流动</text>
+    <text x="640" y="216" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">组织部 · 任期 · 异地交流</text>
+  </g>
+
+  <!-- Row 2 · 合法性 -->
+  <g class="sj-row" data-id="hefaxing" tabindex="0" role="button" aria-label="合法性叙事 映射">
+    <rect x="44" y="252" width="732" height="86" rx="8" fill="var(--sj-ink-800)" opacity="0.16" pointer-events="all"/>
+    <rect x="56" y="268" width="248" height="54" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-paper-100)" stroke-width="1.8"/>
+    <text x="180" y="292" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">天命 · 正统叙事</text>
+    <text x="180" y="310" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">绩效 ↔ 象征</text>
+    <line x1="304" y1="295" x2="384" y2="295" stroke="var(--sj-ochre)" stroke-width="1.6" marker-end="url(#a-map)"/>
+    <circle cx="410" cy="295" r="18" fill="var(--sj-ink-900)" stroke="var(--sj-ochre)" stroke-width="1.4"/>
+    <text x="410" y="300" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">Δ</text>
+    <line x1="436" y1="295" x2="516" y2="295" stroke="var(--sj-ochre)" stroke-width="1.6" marker-end="url(#a-map)"/>
+    <rect x="516" y="268" width="248" height="54" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-paper-100)" stroke-width="1.8"/>
+    <text x="640" y="292" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">绩效 + 意识形态合法性</text>
+    <text x="640" y="310" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">↔ GY-02 合法性机器</text>
+  </g>
+
+  <!-- Row 3 · 央地 -->
+  <g class="sj-row" data-id="yangdi" tabindex="0" role="button" aria-label="央地钟摆 映射">
+    <rect x="44" y="346" width="732" height="86" rx="8" fill="var(--sj-ink-800)" opacity="0.3" pointer-events="all"/>
+    <rect x="56" y="362" width="248" height="54" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="1.8"/>
+    <text x="180" y="386" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">央地 · 集权—分权钟摆</text>
+    <text x="180" y="404" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">授权 ↔ 过度矫正</text>
+    <line x1="304" y1="389" x2="384" y2="389" stroke="var(--sj-ochre)" stroke-width="1.6" marker-end="url(#a-map)"/>
+    <circle cx="410" cy="389" r="18" fill="var(--sj-ink-900)" stroke="var(--sj-ochre)" stroke-width="1.4"/>
+    <text x="410" y="394" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">Δ</text>
+    <line x1="436" y1="389" x2="516" y2="389" stroke="var(--sj-ochre)" stroke-width="1.6" marker-end="url(#a-map)"/>
+    <rect x="516" y="362" width="248" height="54" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="1.8"/>
+    <text x="640" y="386" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">当代央地关系</text>
+    <text x="640" y="404" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">财政分成 · 条块 · 集权化</text>
+  </g>
+
+  <text x="410" y="470" text-anchor="middle" fill="var(--sj-paper-300)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">规律同构 · 参数迥异 —— 差异来自数目字管理 + 列宁式基层穿透</text>
+  <text x="764" y="500" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">viewBox 820×560</text>
+</svg>
+  </div>
+
+  <div class="sj-20-layout">
+    <div class="sj-20-note" style="margin-top:0">
+      色义沿用五力：精英=青瓷 · 合法性=宣纸白 · 央地（含财政/军事张力）=赭金。差异闸（Δ）是映射卷的招牌约束——每组映射必须过闸。
+    </div>
+    <aside class="sj-20-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-20-aside-empty">点选映射盘任一行，展开该组的相似机制与关键差异（母本第五部）。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-same"></p>
+        <p id="aside-diff"></p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- 3 三组对照 -->
+<section class="sj-20-sec" id="sec-pairs" aria-labelledby="h-pairs">
+  <div class="sj-20-sec-h"><span class="num">03 · 三组对照</span><h2 id="h-pairs">相似机制 / 关键差异 双栏</h2></div>
+
+  <div class="sj-20-pair">
+    <article>
+      <div class="ph"><span class="gu">科举 · 精英循环</span><span class="arrow">→</span><span class="jin">干部选拔与流动</span><span class="force">精英循环力</span></div>
+      <div class="cols">
+        <div class="col same"><div class="ch">相似机制（古今相通）</div><p>精英选拔通道的开放/堵塞决定系统离心力：通道开放则吸纳寒门、降低离心；堵塞则精英内部倾轧、地方坐大。历史的党争（SJ-05 新旧党）与门阀化，对应当代对派系与流动性的分析框架。</p></div>
+        <div class="col diff"><div class="ch">关键差异（不可裸类比）</div><p>列宁式组织提供了古代所无的基层穿透与纪律；精英轮换有制度化机制（任期、退休、异地交流）。「通道是否堵塞」这一张力仍在，但调节工具已质变（↔ <span class="lk">GY-03</span> 青年上升通道）。</p></div>
+      </div>
+    </article>
+
+    <article>
+      <div class="ph"><span class="gu">天命 · 正统叙事</span><span class="arrow">→</span><span class="jin">绩效 + 意识形态合法性</span><span class="force">合法性叙事力</span></div>
+      <div class="cols">
+        <div class="col same"><div class="ch">相似机制（古今相通）</div><p>合法性有「绩效」与「象征」两个来源；绩效枯竭时系统倾向加大象征投入，而象征通胀会加速话语贬值。这一机制古今同构，是 SJ-03 合法性叙事力的核心。</p></div>
+        <div class="col diff"><div class="ch">关键差异（不可裸类比）</div><p>现代传播技术 + 组织化叙事再生产能力远超古代；合法性来源更多元（发展绩效、民族复兴、制度自信）。象征通胀的贬值规律不变，但叙事的生产/分发已工业化（↔ <span class="lk">GY-02</span> 五组件合法性机器）。</p></div>
+      </div>
+    </article>
+
+    <article>
+      <div class="ph"><span class="gu">央地 · 集权—分权钟摆</span><span class="arrow">→</span><span class="jin">当代央地关系</span><span class="force">边疆/财政耦合</span></div>
+      <div class="cols">
+        <div class="col same"><div class="ch">相似机制（古今相通）</div><p>央地授权的钟摆：过度授权 → 尾大不掉（SJ-06 天宝、SJ-08 五代）；过度矫正 → 僵化/积弱（SJ-08 宋）。「对上一周期病灶的过度矫正成为下一周期病灶」这一元规律跨古今适用。</p></div>
+        <div class="col diff"><div class="ch">关键差异（不可裸类比）</div><p>现代党军体制（党指挥枪）根除了军阀式地方军事化；数目字管理 + 转移支付使央地财政可精细调节，钟摆的摆幅与工具都已不同。相似的是钟摆本身，不同的是量程与刹车。</p></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 4 元差异 -->
+<section class="sj-20-sec" id="sec-meta" aria-labelledby="h-meta">
+  <div class="sj-20-sec-h"><span class="num">04 · 元差异</span><h2 id="h-meta">贯穿三组的两样「新参数」</h2></div>
+  <p class="sj-20-prose">三组对照的「关键差异」栏共享同一根源。当代政治相对传统，补上了两样古代所缺：<strong>数目字管理能力</strong>（黄仁宇缺口）与<strong>列宁式组织的基层穿透</strong>。前者使央地财政、人事可被精细计量与调节；后者使中央意志能穿透到基层，古代「皇权不下县」的结构被改写。</p>
+  <p class="sj-20-prose">这两样使当代国家的执行力发生质变——但两样没变：<strong>慢变量（人口/社会结构）的约束</strong>与<strong>精英俘获的张力</strong>。史鉴系列的政治断言由此收束为一句：<strong>规律同构，参数迥异</strong>。把结构相似误读为同质，或把参数不同误读为规律失效，都是错读。</p>
+</section>
+
+<!-- 5 相反读法 -->
+<section class="sj-20-sec" id="sec-refute" aria-labelledby="h-refute">
+  <div class="sj-20-sec-h"><span class="num">05 · 相反读法</span><h2 id="h-refute">对本卷映射的两种批评</h2></div>
+  <p class="sj-20-note">持平起见，映射框架本身也须接受质疑。以下两种批评各有其力，读者可据以自行判断。</p>
+  <div class="sj-20-refute">
+    <article>
+      <div class="rh">批评一：结构相似 ≠ 同质</div>
+      <p>反对者认为，用历史机制解读当代，易高估「同构」而低估现代国家能力的质变——当参数变化足够大，古代类比可能失去解释力，甚至误导。本卷以「关键差异」栏部分回应，但差异是否已大到使相似无效，仍可争论。</p>
+    </article>
+    <article>
+      <div class="rh">批评二：读法的选择性</div>
+      <p>反对者亦指出，任何「古今对照」都涉及取舍：选哪段历史、映射到哪种当代形态，本身承载立场。本卷主张以机制层（而非表面事件）对照并强制双栏来降低选择性，但不宣称价值中立——它是一种分析读法，非唯一读法。</p>
+    </article>
+  </div>
+</section>
+
+<!-- 6 交叉 -->
+<section class="sj-20-sec" id="sec-xref" aria-labelledby="h-xref">
+  <div class="sj-20-sec-h"><span class="num">06 · 交叉引用</span><h2 id="h-xref">映射的史料来源与当代接口</h2></div>
+  <div class="sj-20-xref">
+    <a href="./SJ-05.html"><div class="n">SJ-05 · 精英</div><h3>王安石变法</h3><p>党争与精英循环力的单案深描；映射第一组的史料源。</p></a>
+    <a href="./SJ-08.html"><div class="n">SJ-08 · 央地</div><h3>五代分裂重整</h3><p>央地钟摆与过度矫正的原型；映射第三组的史料源。</p></a>
+    <a href="./SJ-03.html"><div class="n">SJ-03 · 五力</div><h3>五力衰变模型</h3><p>精英循环力、合法性叙事力的定义与指标。</p></a>
+    <a href="/modules/yishixingtai"><div class="n">GY-02 · 当代</div><h3>合法性机器</h3><p>合法性叙事力的当代形态：五组件合法性机器。</p></a>
+    <a href="/modules/qingnian"><div class="n">GY-03 · 当代</div><h3>青年上升通道</h3><p>精英循环通道当代形态；映射第一组的差异接口。</p></a>
+    <a href="./SJ-00.html"><div class="n">SJ-00</div><h3>史鉴总索引</h3><p>映射卷入口；政治映射卡片已点亮本卷。</p></a>
+  </div>
+  <p class="sj-20-note">后续映射卷：<b>SJ-21 经济</b>（财政汲取 · 国进民退）· <b>SJ-22 文化</b>（意识形态再生产）· <b>SJ-23 社会</b>（人口承载 ↔ GY 图谱）· <b>SJ-24 外交</b>（朝贡 · 边疆秩序）。</p>
+</section>
+
+<footer class="sj-20-foot">
+  <span>ChinaOS · 史鉴 SJ-20 · v0.1 · AS_OF 2026-07-14 · 真源《母本》第五部政治行</span>
+  <span><a href="./SJ-00.html">← 返回 SJ-00</a> · <a href="#sj-20-top">↑ 顶</a> · <a href="/modules/yishixingtai">GY-02 合法性机器</a></span>
+  <span>本地调试 · 未 push</span>
+</footer>
+
+</div>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const rows = Array.from(stage.querySelectorAll('.sj-row'));
+  const asideEmpty = document.getElementById('aside-empty');
+  const asideBody = document.getElementById('aside-body');
+
+  /** 政治域三组古今对照（母本第五部政治行） */
+  const MAP_DATA = {
+    keju: { name:'精英循环：科举 → 干部选拔',
+      same:'精英选拔通道的开放/堵塞决定离心力；堵塞→内部倾轧、地方坐大。历史党争（SJ-05）↔ 当代流动性与派系分析。',
+      diff:'列宁式组织提供古代所无的基层穿透与纪律；精英轮换有制度化机制（任期/退休/异地）。张力仍在，工具已变（↔ GY-03）。' },
+    hefaxing: { name:'合法性：天命 → 绩效+意识形态',
+      same:'合法性有绩效与象征两个来源；绩效枯竭时加大象征投入，象征通胀加速话语贬值——古今同构。',
+      diff:'现代传播+组织化再生产能力远超古代；合法性来源更多元（发展、复兴、制度自信）。贬值规律不变，生产分发已工业化（↔ GY-02）。' },
+    yangdi: { name:'央地：集权—分权钟摆',
+      same:'过度授权→尾大不掉（SJ-06/08）；过度矫正→僵化/积弱（SJ-08 宋）。「过度矫正成下一病灶」元规律跨古今。',
+      diff:'现代党军体制根除军阀式地方军事化；数目字管理+转移支付使财政可精细调节。相似的是钟摆，不同的是量程与刹车。' }
+  };
+
+  function clearVisual(){ stage.classList.remove('is-picking'); rows.forEach(r=>r.classList.remove('is-hot')); }
+  function showAside(id){ const d=MAP_DATA[id]; if(!d) return; asideEmpty.hidden=true; asideBody.hidden=false;
+    document.getElementById('aside-tag').textContent='古今映射 · 政治';
+    document.getElementById('aside-name').textContent=d.name;
+    document.getElementById('aside-same').innerHTML='<b class="same">相似机制：</b>'+d.same;
+    document.getElementById('aside-diff').innerHTML='<b class="diff">关键差异：</b>'+d.diff; }
+  function pick(id){ if(!MAP_DATA[id]) return; clearVisual(); stage.classList.add('is-picking');
+    rows.forEach(r=>r.classList.toggle('is-hot', r.dataset.id===id)); showAside(id); }
+  rows.forEach(r=>{ const act=()=>pick(r.dataset.id); r.addEventListener('click',act);
+    r.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); act(); } }); });
+})();
+</script>
+</body>
+</html>

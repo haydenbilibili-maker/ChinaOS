@@ -80,6 +80,31 @@
   margin: 0 0.2em;
 }
 
+.shijian-frame-retry {
+  appearance: none;
+  border: 1px solid #3a322b;
+  background: #1d1916;
+  color: #cdbe9f;
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 0.35em;
+}
+
+.shijian-frame-retry:hover,
+.shijian-frame-retry:focus-visible {
+  border-color: #b8894a;
+  color: #e8ddc7;
+  outline: none;
+}
+
+.shijian-frame-retry:focus-visible {
+  box-shadow: 0 0 0 2px rgba(184, 137, 74, 0.35);
+}
+
 .shijian-frame-status-hint a:hover {
   text-decoration: underline;
 }
@@ -133,6 +158,18 @@
 :root[data-theme='light'] .shijian-frame-skeleton-line {
   background: linear-gradient(90deg, #ebe6dc 0%, #d8d0c4 42%, #c8bfb0 50%, #d8d0c4 58%, #ebe6dc 100%);
   background-size: 200% 100%;
+}
+
+:root[data-theme='light'] .shijian-frame-retry {
+  background: #ebe6dc;
+  border-color: #c8bfb0;
+  color: #5a5348;
+}
+
+:root[data-theme='light'] .shijian-frame-retry:hover,
+:root[data-theme='light'] .shijian-frame-retry:focus-visible {
+  border-color: #8a6528;
+  color: #1a1814;
 }
 
 @media (prefers-reduced-motion: reduce) {
