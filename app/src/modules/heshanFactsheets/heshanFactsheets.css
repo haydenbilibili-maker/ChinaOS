@@ -169,6 +169,11 @@ footer .fseal{font-family:"Ma Shan Zheng",serif;color:var(--cinnabar);font-size:
   font-weight: 600;
 }
 
+.heshan-map-toggle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--cinnabar) 28%, transparent);
+}
+
 .heshan-map-shell {
   position: relative;
   border: 1px solid var(--line);
