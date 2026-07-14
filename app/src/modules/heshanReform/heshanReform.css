@@ -37,9 +37,10 @@
   max-width:680px;margin-top:24px;letter-spacing:.04em;opacity:0}
 .hero .thesis{margin-top:40px;padding-left:22px;border-left:3px solid var(--cinnabar);
   font-size:clamp(16px,2vw,19px);color:var(--ink-soft);max-width:640px;font-style:italic;opacity:0}
-.hero .meta{margin-top:54px;display:flex;gap:30px;flex-wrap:wrap;font-size:13px;color:var(--muted);
-  letter-spacing:.1em;opacity:0}
-.hero .meta b{color:var(--ink);font-weight:600}
+.hero .meta{margin-top:54px;display:flex;flex-direction:column;align-items:flex-start;gap:12px;
+  font-size:13.5px;color:var(--muted);letter-spacing:.06em;line-height:1.55;opacity:0;max-width:720px}
+.hero .meta > span{display:block;padding:2px 0}
+.hero .meta b{color:var(--ink);font-weight:600;margin-right:.35em}
 .scrolldot{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);font-size:12px;color:var(--muted);
   letter-spacing:.3em;writing-mode:vertical-rl;opacity:0;animation:fadeUp .9s 1.6s forwards}
 
@@ -190,5 +191,5 @@ footer .fseal{font-family:"Ma Shan Zheng",serif;color:var(--cinnabar);font-size:
 }
 
 .heshanReform-module-wrap {
-  margin-top: -0.5rem;
+  margin-top: 0.25rem;
 }

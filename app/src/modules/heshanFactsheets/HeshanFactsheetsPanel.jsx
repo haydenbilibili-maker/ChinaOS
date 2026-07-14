@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import contentHtml from './content.html?raw';
 import { initHeshanFactsheets } from './factsheetsInit.js';
 import HeshanFactsheetMap from './HeshanFactsheetMap.jsx';
@@ -7,12 +8,31 @@ import HeshanFactsheetMap from './HeshanFactsheetMap.jsx';
 export default function HeshanFactsheetsPanel() {
   const shellRef = useRef(null);
   const rootRef = useRef(null);
+  const [mapSlot, setMapSlot] = useState(null);
 
   useEffect(() => {
     const cleanup = initHeshanFactsheets(rootRef.current);
-    shellRef.current?.querySelector('.heshan-map-section')?.classList.add('in');
+    const slot = rootRef.current?.querySelector('#hs-factsheets-map-slot') || null;
+    setMapSlot(slot);
     return cleanup;
   }, []);
+
+  useEffect(() => {
+    if (!mapSlot) return undefined;
+    const section = mapSlot.querySelector('.heshan-map-section');
+    if (!section) return undefined;
+    // portal 后补观察入场（init 时 slot 尚空）
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    io.observe(section);
+    return () => io.disconnect();
+  }, [mapSlot]);
 
   const handleSelectUnit = useCallback((slug) => {
     const root = rootRef.current;
@@ -28,8 +48,13 @@ export default function HeshanFactsheetsPanel() {
   return (
     <div className="heshanFactsheets-module-wrap">
       <div id="hs-factsheets-shell" ref={shellRef}>
-        <HeshanFactsheetMap onSelectUnit={handleSelectUnit} />
         <div ref={rootRef} dangerouslySetInnerHTML={{ __html: contentHtml }} />
+        {mapSlot
+          ? createPortal(
+              <HeshanFactsheetMap onSelectUnit={handleSelectUnit} />,
+              mapSlot,
+            )
+          : null}
       </div>
     </div>
   );

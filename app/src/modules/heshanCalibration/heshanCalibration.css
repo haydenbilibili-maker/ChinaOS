@@ -11,18 +11,18 @@
   line-height:1.75;-webkit-font-smoothing:antialiased;
   background-image:var(--paper-texture);}
 .wrap{max-width:1100px;margin:0 auto;padding:0 28px}
-.hero{padding:80px 0 40px;position:relative}
+.hero{padding:68px 0 56px;position:relative}
 .seal{position:absolute;top:56px;right:28px;width:100px;height:100px;border:2.5px solid var(--cinnabar);border-radius:8px;
   display:flex;align-items:center;justify-content:center;color:var(--cinnabar);font-family:"Ma Shan Zheng",serif;
   font-size:24px;transform:rotate(-3deg);opacity:.9}
 .seal span{writing-mode:vertical-rl;text-orientation:upright;letter-spacing:2px}
-.kicker{font-family:"EB Garamond",serif;font-style:italic;letter-spacing:.3em;text-transform:uppercase;font-size:13px;color:var(--cinnabar);margin-bottom:20px}
-h1{font-size:clamp(38px,7vw,76px);font-weight:900;line-height:1;letter-spacing:.03em}
+.kicker{font-family:"EB Garamond",serif;font-style:italic;letter-spacing:.3em;text-transform:uppercase;font-size:13px;color:var(--cinnabar);margin-bottom:26px}
+h1{font-size:clamp(38px,7vw,76px);font-weight:900;line-height:1.05;letter-spacing:.03em}
 h1 .accent{color:var(--cinnabar)}
-.sub{font-size:clamp(15px,2.1vw,20px);color:var(--ink-soft);max-width:680px;margin-top:20px}
-.method{border:1px solid var(--line);background:var(--card-bg);border-radius:6px;padding:24px 26px;margin:30px 0 0;max-width:920px}
-.method h3{font-size:15px;color:var(--cinnabar);letter-spacing:.1em;margin-bottom:12px}
-.method p{font-size:13.5px;color:var(--ink-soft);margin-bottom:10px}
+.sub{font-size:clamp(15px,2.1vw,20px);color:var(--ink-soft);max-width:680px;margin-top:26px;line-height:1.7}
+.method{border:1px solid var(--line);background:var(--card-bg);border-radius:6px;padding:28px 30px;margin:44px 0 0;max-width:920px}
+.method h3{font-size:15px;color:var(--cinnabar);letter-spacing:.1em;margin-bottom:16px}
+.method p{font-size:13.5px;color:var(--ink-soft);margin-bottom:14px;line-height:1.75}
 .method p:last-child{margin-bottom:0}
 .method b{color:var(--ink)}
 .region{padding:46px 0 4px}
@@ -48,5 +48,5 @@ footer .fseal{font-family:"Ma Shan Zheng",serif;color:var(--cinnabar);font-size:
 @media print{.prov{break-inside:avoid}.region-head{break-after:avoid}}
 
 .heshanCalibration-module-wrap {
-  margin-top: -0.5rem;
+  margin-top: 0.25rem;
 }
