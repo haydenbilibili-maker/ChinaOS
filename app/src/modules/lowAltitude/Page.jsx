@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { categoryX, valueY, GRID, donutOpt, radarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
@@ -108,12 +108,12 @@ export default function Page() {
         以空域开放换产业增量。数据截至 <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{AS_OF}</span>，公开资料示意。
       </IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="~3.5万亿" label="2035E 产业规模" accent="#22d3ee" />
         <Stat value="<3000m" label="低空空域高度" accent="#10b981" />
         <Stat value="EH216-S" label="全球首张 eVTOL 三证" accent="#c41e3a" />
         <Stat value={AS_OF} label="数据截至" accent="#8b5cf6" />
-      </Grid>
+      </StatGrid>
 
       <Grid cols={2} className="mb-6">
         <Card title="低空经济规模 · 万亿元（示意）"><EChart option={scaleOpt} style={{ height: 240 }} /></Card>

@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -143,12 +143,12 @@ export default function Page() {
       <PageHeader badge="Quantum · 国家专项" title="量子计算 · 通信 · 测量 · 时频" subtitle="第二次量子革命 · 不对称卡位 · 容错奇点的终极赌注" />
       <IntroCard>第二次量子革命三线并进——计算、通信、测量。中国在 <strong style={{ color: 'var(--text-primary)' }}>量子通信(QKD)全球唯一领先</strong>，计算路线追赶且与美国差距集中在<strong style={{ color: 'var(--text-primary)' }}>工程化、软件栈与仪器自主</strong>。这是一场赌注极重、回报极远的长波竞赛：谁先抵达容错量子计算，谁就重写密码与算力的物理基础。</IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="255 光子" label="九章三号最大规模(示意)" accent="#22d3ee" />
         <Stat value="4,600 km+" label="量子保密通信干线" accent="#10b981" />
         <Stat value="≈40%" label="全球量子专利占比(示意)" accent="#c41e3a" />
         <Stat value="2+ 国家级" label="量子信息国家实验室(示意)" accent="#8b5cf6" />
-      </Grid>
+      </StatGrid>
 
       <Card title="交互① · 四条赛道选择器（计算/通信/测量/时频）" className="mb-6">
         <SelectorBar items={ROUTES} activeKey={route} onSelect={setRoute} />

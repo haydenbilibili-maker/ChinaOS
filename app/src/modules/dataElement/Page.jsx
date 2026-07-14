@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -226,12 +226,12 @@ export default function Page() {
         而公共数据授权运营正在长成<strong style={{ color: 'var(--text-primary)' }}>数字时代的盐铁专营</strong>。
       </IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="~12 ZB" label="2024 全国数据产量（示意）" accent="#22d3ee" />
         <Stat value="~1,600 亿" label="数据交易规模 (RMB · 示意)" accent="#c41e3a" />
         <Stat value="50+ 家" label="数据交易场所/平台" accent="#e8a317" />
         <Stat value="100+ 家" label="数据资源入表上市公司（示意）" accent="#10b981" />
-      </Grid>
+      </StatGrid>
 
       {/* ① 制度环节选择器 */}
       <Card title="交互① · 制度环节切面 — 设计 / 进展 / 堵点 / 案例" className="mb-6">

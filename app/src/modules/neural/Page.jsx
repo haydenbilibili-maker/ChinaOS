@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -194,12 +194,12 @@ export default function Page() {
         以及神经数据这一终极隐私的<strong style={{ color: 'var(--text-primary)' }}>主权归属</strong>。从医疗康复的福祉到认知操控的风险，技术的双刃在此处尤为锋利——伦理治理必须先行。
       </IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="340+" label="全球 BCI 临床试验（累计·示意）" accent="#22d3ee" />
         <Stat value="52" label="中国植入案例（累计·示意）" accent="#c41e3a" />
         <Stat value="类脑芯片" label="低功耗边缘解码底座" accent="#ec4899" />
         <Stat value="神经数据" label="新型敏感数据 · 待立规" accent="#10b981" />
-      </Grid>
+      </StatGrid>
 
       <Card title="交互① · 技术路线选择器" className="mb-6">
         <SelectorBar items={TRACKS} activeKey={track} onSelect={setTrack} />

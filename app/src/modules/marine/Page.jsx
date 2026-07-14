@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -171,12 +171,12 @@ export default function Page() {
         一个大陆国家正系统性地把自己改写为海洋国家，与台海、海外资源模块共同构成海权三角。下方为公开资料整理的示意框架。
       </IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="~10.5 万亿" label="海洋生产总值 GOP（2024 示意）" accent="#22d3ee" />
         <Stat value="50.2%" label="造船完工量全球份额" accent="#c41e3a" />
         <Stat value="170 亿吨" label="港口货物吞吐 · 全球第一" accent="#10b981" />
         <Stat value="~7.8%" label="海洋 GDP 占全国 GDP" accent="#e8a317" />
-      </Grid>
+      </StatGrid>
 
       {/* 1 · 海洋产业选择器 */}
       <Card title="交互 · 海洋产业七支柱 — 规模 / 全球地位 / 卡位与痛点" className="mb-6">
@@ -243,12 +243,12 @@ export default function Page() {
             约八成原油进口经马六甲海峡入境——"马六甲困局"是海权叙事的核心焦虑。中缅油气管道、瓜达尔港、北极航道为通道备份，
             海军前沿存在与亚丁湾常态护航则是"控得住"的硬支撑。蓝碳（红树林、海草床、盐沼）纳入双碳与生态补偿，固碳评估起步。
           </p>
-          <Grid cols={2}>
+          <StatGrid>
             <Stat value="~80%" label="原油进口经马六甲" accent="#c41e3a" />
             <Stat value="备份 3" label="陆桥 / 港口 / 北极航道" accent="#22d3ee" />
             <Stat value="护航 16y+" label="亚丁湾常态护航" accent="#e8a317" />
             <Stat value="蓝碳 85" label="生态监测指数 · 示意" accent="#10b981" />
-          </Grid>
+          </StatGrid>
         </Card>
       </Grid>
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { categoryX, valueY, GRID, radarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
@@ -111,12 +111,12 @@ export default function Page() {
         技术不确定性高、回报周期长，需国家以「耐心资本」与新型举国体制对冲风险，押注下一个技术革命的入场券。数据截至 <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{AS_OF}</span>，公开资料示意。
       </IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="6大赛道" label="前沿种子方向" accent="#22d3ee" />
         <Stat value="TRL 3—6" label="技术成熟度区间" accent="#e8a317" />
         <Stat value="耐心资本" label="新型举国体制" accent="#10b981" />
         <Stat value={AS_OF} label="数据截至" accent="#8b5cf6" />
-      </Grid>
+      </StatGrid>
 
       <Card title="未来产业赛道地图 · 成熟度 × 潜力（气泡=投入强度 · 示意）" className="mb-6">
         <EChart option={maturityOpt} style={{ height: 300 }} />

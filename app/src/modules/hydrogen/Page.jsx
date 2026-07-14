@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -152,12 +152,12 @@ export default function Page() {
       <PageHeader badge="Hydrogen · 双碳二次能源" title="绿氢 · 制储运加用全链条" subtitle="电解槽 · 绿氢降本 · 燃料电池 · 难脱碳场景" />
       <IntroCard>电解水制氢成本中<strong style={{ color: 'var(--text-primary)' }}>电力占比极高</strong>，与风光消纳、特高压送电及 CCUS 路径竞争。氢的产业化必须沿「制—储—运—加—用」全链条同步推进，任一环节短板都会抬高终端用氢成本。<strong style={{ color: 'var(--text-primary)' }}>氢不是能源，是能量载体</strong>——它的价值在于把难以直接电气化的领域（重卡、氢冶金、绿色化工）与廉价风光绿电耦合起来。</IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="~3700 万吨/年" label="制氢产量（全球第一·示意）" accent="#10b981" />
         <Stat value="400+ 座" label="加氢站建成（全球第一）" accent="#e8a317" />
         <Stat value="2 万+ 辆" label="燃料电池车保有（示意）" accent="#c41e3a" />
         <Stat value="<5%" label="绿氢占比（爬坡期·情景）" accent="#22d3ee" />
-      </Grid>
+      </StatGrid>
 
       {/* ── 交互① 产业链环节选择器 ── */}
       <Card title="交互① · 产业链环节选择器（制—储—运—加—用）" className="mb-6">
@@ -185,12 +185,12 @@ export default function Page() {
         <div className="os-card p-4 mb-4" style={{ background: 'var(--bg-elevated)', borderLeft: `3px solid ${h.accent}` }}>
           <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{h.desc}</p>
         </div>
-        <Grid cols={4} className="mb-4">
+        <StatGrid className="mb-4">
           <Stat value={`~${h.cost} 元/kg`} label={`${h.label}成本`} accent={h.accent} />
           <Stat value={`${h.co2} kgCO₂`} label="每 kg 氢碳排" accent="#c41e3a" />
           <Stat value={`${h.local}%`} label="装备国产化率" accent="#10b981" />
           <Stat value={`${h.share}%`} label="当前结构占比（示意）" accent="#22d3ee" />
-        </Grid>
+        </StatGrid>
         <Grid cols={2}>
           <Card title="氢源结构（随类型切换）"><EChart option={mixDonut} style={{ height: 240 }} /></Card>
           <Card title="制氢成本曲线（2020→2030E）"><EChart option={costTrend} style={{ height: 240 }} /></Card>

@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { categoryX, valueY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -173,12 +173,12 @@ export default function Page() {
       <PageHeader badge="Smart Grid · 新型电力系统" title="特高压骨干 · 储能调度" subtitle="特高压 · 配网数字化 · 新型储能 · 虚拟电厂 · 需求响应 · 电力市场" />
       <IntroCard>特高压把西部风光秒级搬到东部负荷中心，消解能源供需的<strong style={{ color: 'var(--text-primary)' }}>空间错配</strong>。但风光渗透率提高后，系统转动惯量下降，瓶颈从「输得出」转向「调得动」——抽蓄、储能、虚拟电厂、需求响应与数字化调度共同构成柔性电网，而市场机制是为这些灵活性<strong style={{ color: 'var(--text-primary)' }}>定价的总开关</strong>，与「东数西算」形成电力协同。</IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="4.8 万 km" label="特高压线路里程（量级）" accent="#22d3ee" />
         <Stat value="14 亿 kW+" label="新能源装机（风光，示意）" accent="#10b981" />
         <Stat value="9000 万 kW" label="新型+抽蓄储能（量级）" accent="#c41e3a" />
         <Stat value="95%+" label="风光消纳利用率" accent="#e8a317" />
-      </Grid>
+      </StatGrid>
 
       <Card title="交互 · 电网六环节选择器" className="mb-6">
         <SelectorBar items={LINKS} activeKey={link} onSelect={setLink} />
@@ -242,21 +242,21 @@ export default function Page() {
       <Grid cols={2} className="mb-6">
         <Card title="调度大脑 · AI 与边缘计算">
           <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>超短期功率预测、网络拓扑优化与故障定位依赖数据融合；虚拟电厂与分布式交易对计量与结算提出合规要求。源荷不分的双向潮流，让保护整定与状态估计从静态走向实时博弈。</p>
-          <Grid cols={2}>
+          <StatGrid>
             <Stat value="99.9%" label="城市配网供电可靠率" accent="#10b981" />
             <Stat value="VPP 5%" label="可调负荷渗透（示意）" accent="#e8a317" />
             <Stat value="95%+" label="超短期功率预测精度" accent="#22d3ee" />
             <Stat value="N-1" label="安稳极端天气底线" accent="#c41e3a" />
-          </Grid>
+          </StatGrid>
         </Card>
         <Card title="送受端博弈 · 调得动的制度成本">
           <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>特高压「输得出」之后，矛盾转入省间利益分配：送端要消纳窝电、受端要保本地电厂与就业，跨省现货与辅助服务分摊把物理潮流变成财政博弈。市场机制不通，物理灵活性就「建而不用」。</p>
-          <Grid cols={2}>
+          <StatGrid>
             <Stat value="省间壁垒" label="跨区交易最大摩擦" accent="#64748b" />
             <Stat value="容量电价" label="煤电托底机制" accent="#c41e3a" />
             <Stat value="辅助服务" label="调峰调频定价" accent="#e8a317" />
             <Stat value="绿电绿证" label="环境价值变现" accent="#10b981" />
-          </Grid>
+          </StatGrid>
         </Card>
       </Grid>
 

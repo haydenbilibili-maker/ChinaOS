@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -184,12 +184,12 @@ export default function Page() {
         论文与专利体量全球居前，但卡脖子的根在基础——从 1 到 0 的原始创新、高端仪器与原创靶点仍是短板。国家实验室重组、揭榜挂帅、破四唯评价改革并行，压缩从论文到样机的制度时滞。
       </IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="~2.68%" label="R&D 投入强度（占 GDP）" accent="#22d3ee" />
         <Stat value="~6.9%" label="基础研究占 R&D 比重" accent="#c41e3a" />
         <Stat value="20+" label="重组国家实验室（示意）" accent="#e8a317" />
         <Stat value="#1" label="高被引 / 自然指数排名" accent="#10b981" />
-      </Grid>
+      </StatGrid>
 
       <Card title="交互① · 学科领域诊断（投入 / 产出 / 国际地位 / 短板）" className="mb-6">
         <SelectorBar items={FIELDS} activeKey={field} onSelect={setField} />

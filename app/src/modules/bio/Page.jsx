@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { categoryX, valueY, logY, GRID, GRID_WIDE, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -146,12 +146,12 @@ export default function Page() {
       <PageHeader badge="Bio · 生命科技" title="生物医药 · 创新药与生物安全" subtitle="创新药 · 类似药 · 细胞基因 · 疫苗 · 器械 · 合成生物 · CXO" />
       <IntroCard>生物医药从仿制药红利转向<strong style={{ color: 'var(--text-primary)' }}>创新药与全球注册</strong>；集采挤泡沫、谈判促创新的双轨结构倒逼产业升级，工程师红利经 CXO「卖水人」变现，而疫苗、生物制造与基因数据则构成<strong style={{ color: 'var(--text-primary)' }}>生物安全</strong>的边界。</IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="1,700+" label="年度 IND 受理 (2024 示意)" accent="#22d3ee" />
         <Stat value="~520 亿$" label="License-out 交易额 (2024)" accent="#c41e3a" />
         <Stat value="~28%" label="CXO 全球份额" accent="#e8a317" />
         <Stat value="~4.5 万亿" label="医药市场规模 (2023)" accent="#10b981" />
-      </Grid>
+      </StatGrid>
 
       <Card title="交互① · 赛道选择器" className="mb-6">
         <SelectorBar items={TRACKS} activeKey={track} onSelect={setTrack} />
