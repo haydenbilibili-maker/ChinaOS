@@ -126,6 +126,7 @@ body{
 .sj-edge{transition:opacity .2s ease, stroke-width .2s ease, filter .2s ease}
 .sj-03-stage.is-picking .sj-node{opacity:.28}
 .sj-03-stage.is-picking .sj-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px rgba(184,137,74,.4))}
+.sj-node.is-contract-hot{opacity:1;filter:drop-shadow(0 0 5px rgba(95,122,111,.55))}
 .sj-03-stage.is-picking .sj-edge{opacity:.12}
 .sj-03-stage.is-picking .sj-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px rgba(168,59,44,.35))}
 .sj-03-stage.is-chain .sj-node{opacity:.22}
@@ -833,10 +834,13 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
   };
 
   /**
-   * SJ-03 ↔ SJ-04 共享数据契约
-   * { 时点, 相位, 五力评分[财政,精英,合法性,边疆军事,基座], 修复力 }
-   * 评分 0–100 为示意相对值，非精确计量。
+   * SJ-03 ↔ SJ-04 共享数据契约 v0.1
+   * 字段：{ 时点, 相位, 五力评分[财政,精英,合法性,边疆军事,基座], 修复力 }
+   * 样例键：kaikai | xining | wudai | dangdai
+   * API：window.SJ_SHARED_SNAPSHOT() → 当前样例对象（内存，无存储）
    */
+  const SJ_CONTRACT_SAMPLE_IDS = ['kaikai','xining','wudai','dangdai'];
+  const FORCE_NODE_IDS = ['fiscal','elite','legit','mil','base'];
   const SAMPLES = {
     kaikai: {
       时点: '开元末—天宝十四载（约 740–755）',
@@ -874,7 +878,7 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
   function clearVisual(){
     if(chainTimer){ clearTimeout(chainTimer); chainTimer = null; }
     stage.classList.remove('is-picking','is-chain');
-    nodes.forEach(n => n.classList.remove('is-hot','is-chain-hot'));
+    nodes.forEach(n => n.classList.remove('is-hot','is-chain-hot','is-contract-hot'));
     edges.forEach(e => e.classList.remove('is-hot','is-chain-hot'));
     forceCards.forEach(c => c.classList.remove('is-on'));
     btnChain.classList.remove('is-on');
@@ -971,6 +975,22 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
     { label: '生态基座', color: 'var(--sj-paper-300)' }
   ];
 
+  function highlightContractForces(scores){
+    nodes.forEach(n => n.classList.remove('is-contract-hot'));
+    if(!scores || !scores.some(v => v != null)) return;
+    const valid = scores.map(function(v, i){ return { v: v, i: i }; }).filter(function(x){ return x.v != null; });
+    if(valid.length < 2) return;
+    const max = Math.max.apply(null, valid.map(function(x){ return x.v; }));
+    const min = Math.min.apply(null, valid.map(function(x){ return x.v; }));
+    valid.forEach(function(x){
+      if(x.v === max || x.v === min){
+        const id = FORCE_NODE_IDS[x.i];
+        const n = stage.querySelector('.sj-node[data-id="'+id+'"]');
+        if(n) n.classList.add('is-contract-hot');
+      }
+    });
+  }
+
   function renderContract(key){
     activeSample = key;
     const s = SAMPLES[key];
@@ -1000,6 +1020,7 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
     phaseRows.forEach(r => {
       r.classList.toggle('is-hot', r.dataset.phase === s.相位);
     });
+    highlightContractForces(s.五力评分);
   }
 
   nodes.forEach(n => {

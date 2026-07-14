@@ -72,7 +72,8 @@ body{
   opacity:1;
   filter:drop-shadow(0 0 5px rgba(168,59,44,.45));
 }
-.stage.is-picking .sj-pt.is-hot .sj-dot{stroke-width:2.4}
+.stage.is-picking .sj-pt.is-hot .sj-dot{fill:var(--sj-vermil);stroke-width:2.4}
+.stage.is-picking .sj-pt.is-hot .sj-halo{opacity:.9;stroke:var(--sj-vermil)}
 
 .card{
   margin-top:16px;
@@ -235,46 +236,54 @@ body{
     <text x="102" y="536" text-anchor="end" fill="var(--sj-paper-300)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">微观个案</text>
     <text transform="translate(48,340) rotate(-90)" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.14em">Y · 时空尺度</text>
 
-    <!-- 点位：px=120+x*640, py=540-y*400 -->
-    <!-- 李敖 0.12, 0.32 → 197, 412 -->
-    <g class="sj-pt" data-id="liao" tabindex="0" role="button" aria-label="李敖">
-      <circle class="sj-dot" cx="197" cy="412" r="8" fill="var(--sj-vermil)" stroke="var(--sj-paper-100)" stroke-width="1.2"/>
-      <text x="197" y="436" text-anchor="middle" fill="var(--sj-paper-100)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">李敖</text>
+    <!-- 点位：px=120+x*640, py=540-y*400 · 描边青瓷 · 选中填朱红 -->
+    <g class="sj-pt" data-id="liao" tabindex="0" role="button" aria-label="李敖 · 考据·论战">
+      <circle class="sj-halo" cx="197" cy="412" r="16" fill="none" stroke="var(--sj-celadon)" stroke-width="1" stroke-dasharray="3 4" opacity="0.4"/>
+      <circle class="sj-dot" cx="197" cy="412" r="8" fill="var(--sj-celadon)" stroke="var(--sj-celadon)" stroke-width="1.2"/>
+      <text x="197" y="432" text-anchor="middle" fill="var(--sj-paper-100)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">李敖</text>
+      <text x="197" y="446" text-anchor="middle" fill="var(--sj-paper-300)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">考据·论战</text>
     </g>
-    <!-- 孔飞力·魏斐德 0.34, 0.14 → 338, 484 -->
-    <g class="sj-pt" data-id="kongwei" tabindex="0" role="button" aria-label="孔飞力·魏斐德">
-      <circle class="sj-dot" cx="338" cy="484" r="8" fill="var(--sj-celadon)" stroke="var(--sj-paper-100)" stroke-width="1.2"/>
-      <text x="338" y="508" text-anchor="middle" fill="var(--sj-paper-100)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">孔飞力·魏斐德</text>
+    <g class="sj-pt" data-id="kongwei" tabindex="0" role="button" aria-label="孔飞力·魏斐德 · 微观·权力">
+      <circle class="sj-halo" cx="338" cy="484" r="14" fill="none" stroke="var(--sj-celadon)" stroke-width="1" stroke-dasharray="3 4" opacity="0.35"/>
+      <circle class="sj-dot" cx="338" cy="484" r="8" fill="var(--sj-celadon)" stroke="var(--sj-celadon)" stroke-width="1.2"/>
+      <text x="338" y="504" text-anchor="middle" fill="var(--sj-paper-100)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">孔飞力·魏斐德</text>
+      <text x="338" y="518" text-anchor="middle" fill="var(--sj-paper-300)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">微观·权力</text>
     </g>
-    <!-- 施坚雅 0.40, 0.52 → 376, 332 -->
-    <g class="sj-pt" data-id="skinner" tabindex="0" role="button" aria-label="施坚雅">
-      <circle class="sj-dot" cx="376" cy="332" r="8" fill="var(--sj-celadon)" stroke="var(--sj-paper-100)" stroke-width="1.2"/>
+    <g class="sj-pt" data-id="skinner" tabindex="0" role="button" aria-label="施坚雅 · 区域·空间">
+      <circle class="sj-halo" cx="376" cy="332" r="18" fill="none" stroke="var(--sj-celadon)" stroke-width="1" stroke-dasharray="3 4" opacity="0.4"/>
+      <circle class="sj-dot" cx="376" cy="332" r="8" fill="var(--sj-celadon)" stroke="var(--sj-celadon)" stroke-width="1.2"/>
       <text x="376" y="318" text-anchor="middle" fill="var(--sj-paper-100)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">施坚雅</text>
+      <text x="376" y="304" text-anchor="middle" fill="var(--sj-paper-300)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">区域·空间</text>
     </g>
-    <!-- 加州学派 0.28, 0.78 → 299, 228 -->
-    <g class="sj-pt" data-id="california" tabindex="0" role="button" aria-label="加州学派">
-      <circle class="sj-dot" cx="299" cy="228" r="8" fill="var(--sj-ochre)" stroke="var(--sj-paper-100)" stroke-width="1.2"/>
+    <g class="sj-pt" data-id="california" tabindex="0" role="button" aria-label="加州学派 · 内生·比较">
+      <circle class="sj-halo" cx="299" cy="228" r="22" fill="none" stroke="var(--sj-celadon)" stroke-width="1" stroke-dasharray="3 4" opacity="0.4"/>
+      <circle class="sj-dot" cx="299" cy="228" r="8" fill="var(--sj-celadon)" stroke="var(--sj-celadon)" stroke-width="1.2"/>
       <text x="299" y="214" text-anchor="middle" fill="var(--sj-paper-100)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">加州学派</text>
+      <text x="299" y="200" text-anchor="middle" fill="var(--sj-paper-300)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">内生·比较</text>
     </g>
-    <!-- 金观涛 0.46, 0.92 → 414, 172 -->
-    <g class="sj-pt" data-id="jin" tabindex="0" role="button" aria-label="金观涛">
-      <circle class="sj-dot" cx="414" cy="172" r="8" fill="var(--sj-ochre)" stroke="var(--sj-paper-100)" stroke-width="1.2"/>
+    <g class="sj-pt" data-id="jin" tabindex="0" role="button" aria-label="金观涛 · 系统·超稳定">
+      <circle class="sj-halo" cx="414" cy="172" r="28" fill="none" stroke="var(--sj-celadon)" stroke-width="1.2" stroke-dasharray="3 4" opacity="0.45"/>
+      <circle class="sj-dot" cx="414" cy="172" r="8" fill="var(--sj-celadon)" stroke="var(--sj-celadon)" stroke-width="1.2"/>
       <text x="414" y="158" text-anchor="middle" fill="var(--sj-paper-100)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">金观涛</text>
+      <text x="414" y="144" text-anchor="middle" fill="var(--sj-paper-300)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">系统·超稳定</text>
     </g>
-    <!-- 黄仁宇 0.55, 0.84 → 472, 204 -->
-    <g class="sj-pt" data-id="huang" tabindex="0" role="button" aria-label="黄仁宇">
-      <circle class="sj-dot" cx="472" cy="204" r="8" fill="var(--sj-ochre)" stroke="var(--sj-paper-100)" stroke-width="1.2"/>
+    <g class="sj-pt" data-id="huang" tabindex="0" role="button" aria-label="黄仁宇 · 大历史·数目字">
+      <circle class="sj-halo" cx="472" cy="204" r="24" fill="none" stroke="var(--sj-celadon)" stroke-width="1" stroke-dasharray="3 4" opacity="0.42"/>
+      <circle class="sj-dot" cx="472" cy="204" r="8" fill="var(--sj-celadon)" stroke="var(--sj-celadon)" stroke-width="1.2"/>
       <text x="496" y="208" fill="var(--sj-paper-100)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">黄仁宇</text>
+      <text x="496" y="222" fill="var(--sj-paper-300)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">大历史·数目字</text>
     </g>
-    <!-- 费正清 0.68, 0.62 → 555, 292 -->
-    <g class="sj-pt" data-id="fairbank" tabindex="0" role="button" aria-label="费正清">
-      <circle class="sj-dot" cx="555" cy="292" r="8" fill="var(--sj-paper-300)" stroke="var(--sj-paper-100)" stroke-width="1.2"/>
+    <g class="sj-pt" data-id="fairbank" tabindex="0" role="button" aria-label="费正清 · 冲击—回应">
+      <circle class="sj-halo" cx="555" cy="292" r="20" fill="none" stroke="var(--sj-celadon)" stroke-width="1" stroke-dasharray="3 4" opacity="0.4"/>
+      <circle class="sj-dot" cx="555" cy="292" r="8" fill="var(--sj-celadon)" stroke="var(--sj-celadon)" stroke-width="1.2"/>
       <text x="555" y="278" text-anchor="middle" fill="var(--sj-paper-100)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">费正清</text>
+      <text x="555" y="264" text-anchor="middle" fill="var(--sj-paper-300)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">冲击—回应</text>
     </g>
-    <!-- 钱穆 0.90, 0.74 → 696, 244 -->
-    <g class="sj-pt" data-id="qian" tabindex="0" role="button" aria-label="钱穆">
-      <circle class="sj-dot" cx="696" cy="244" r="8" fill="var(--sj-ochre)" stroke="var(--sj-paper-100)" stroke-width="1.2"/>
+    <g class="sj-pt" data-id="qian" tabindex="0" role="button" aria-label="钱穆 · 义理·文化生命">
+      <circle class="sj-halo" cx="696" cy="244" r="22" fill="none" stroke="var(--sj-celadon)" stroke-width="1" stroke-dasharray="3 4" opacity="0.4"/>
+      <circle class="sj-dot" cx="696" cy="244" r="8" fill="var(--sj-celadon)" stroke="var(--sj-celadon)" stroke-width="1.2"/>
       <text x="696" y="230" text-anchor="middle" fill="var(--sj-paper-100)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">钱穆</text>
+      <text x="696" y="216" text-anchor="middle" fill="var(--sj-paper-300)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">义理·文化生命</text>
     </g>
   </g>
 
