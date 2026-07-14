@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 700" width="840" height="700" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">方法光谱图</title>
+  <desc id="sj-desc">二维方法光谱：横轴考据实证至义理诠释，纵轴微观个案至长时段系统；八点为史家或学派。坐标为方法取向示意，非正式打分。</desc>
+
+  <!--
+    令牌（与 GY/SJ 契约对齐，纯 SVG 落硬色便于独立打开）：
+    ink-900 #14110f · ink-800 #1d1916 · paper-100 #e8ddc7 · paper-300 #cdbe9f
+    vermil #a83b2c · celadon #5f7a6f · ochre #b8894a · line #3a322b
+    坐标口径：X 0=考据 … 100=义理；Y 0=微观 … 100=长时段
+    SVG：px=140+X*5.6；py=560-Y*4.1
+  -->
+
+  <defs>
+    <radialGradient id="sj-paper-glow" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#1d1916" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#14110f" stop-opacity="1"/>
+    </radialGradient>
+    <marker id="sj-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1.5 L8,5 L0,8.5 Z" fill="#cdbe9f"/>
+    </marker>
+  </defs>
+
+  <rect width="840" height="700" fill="url(#sj-paper-glow)"/>
+
+  <g opacity="0.06" stroke="#e8ddc7" stroke-width="0.5">
+    <line x1="40" y1="96" x2="800" y2="96"/>
+    <line x1="40" y1="112" x2="800" y2="112"/>
+    <line x1="40" y1="128" x2="800" y2="128"/>
+    <line x1="40" y1="144" x2="800" y2="144"/>
+    <line x1="40" y1="160" x2="800" y2="160"/>
+    <line x1="40" y1="176" x2="800" y2="176"/>
+    <line x1="40" y1="192" x2="800" y2="192"/>
+    <line x1="40" y1="208" x2="800" y2="208"/>
+    <line x1="40" y1="224" x2="800" y2="224"/>
+    <line x1="40" y1="240" x2="800" y2="240"/>
+    <line x1="40" y1="256" x2="800" y2="256"/>
+    <line x1="40" y1="272" x2="800" y2="272"/>
+    <line x1="40" y1="288" x2="800" y2="288"/>
+    <line x1="40" y1="304" x2="800" y2="304"/>
+    <line x1="40" y1="320" x2="800" y2="320"/>
+    <line x1="40" y1="336" x2="800" y2="336"/>
+    <line x1="40" y1="352" x2="800" y2="352"/>
+    <line x1="40" y1="368" x2="800" y2="368"/>
+    <line x1="40" y1="384" x2="800" y2="384"/>
+    <line x1="40" y1="400" x2="800" y2="400"/>
+    <line x1="40" y1="416" x2="800" y2="416"/>
+    <line x1="40" y1="432" x2="800" y2="432"/>
+    <line x1="40" y1="448" x2="800" y2="448"/>
+    <line x1="40" y1="464" x2="800" y2="464"/>
+    <line x1="40" y1="480" x2="800" y2="480"/>
+    <line x1="40" y1="496" x2="800" y2="496"/>
+    <line x1="40" y1="512" x2="800" y2="512"/>
+    <line x1="40" y1="528" x2="800" y2="528"/>
+    <line x1="40" y1="544" x2="800" y2="544"/>
+    <line x1="40" y1="560" x2="800" y2="560"/>
+    <line x1="40" y1="576" x2="800" y2="576"/>
+    <line x1="40" y1="592" x2="800" y2="592"/>
+    <line x1="40" y1="608" x2="800" y2="608"/>
+  </g>
+
+  <g class="sj-scroll-ends" opacity="0.55">
+    <rect x="18" y="118" width="14" height="460" rx="6" fill="#3a322b"/>
+    <rect x="808" y="118" width="14" height="460" rx="6" fill="#3a322b"/>
+    <circle cx="25" cy="118" r="10" fill="#b8894a" opacity="0.7"/>
+    <circle cx="25" cy="578" r="10" fill="#b8894a" opacity="0.7"/>
+    <circle cx="815" cy="118" r="10" fill="#b8894a" opacity="0.7"/>
+    <circle cx="815" cy="578" r="10" fill="#b8894a" opacity="0.7"/>
+  </g>
+
+  <g class="sj-title">
+    <text x="48" y="42" fill="#e8ddc7" font-size="22" font-weight="600" font-family="Songti SC, Noto Serif SC, Source Han Serif SC, serif" letter-spacing="0.12em">方法光谱图</text>
+    <text x="48" y="64" fill="#b8894a" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.08em">SJ-01 · 史家方法对比矩阵 · 签名视觉</text>
+    <text x="48" y="84" fill="#a83b2c" font-size="11" font-family="Songti SC, Noto Serif SC, serif">朱批：落点 = 方法取向示意 · 非正式得分</text>
+  </g>
+
+  <g opacity="0.07">
+    <rect x="140" y="150" width="280" height="205" fill="#5f7a6f"/>
+    <rect x="420" y="150" width="280" height="205" fill="#b8894a"/>
+    <rect x="140" y="355" width="280" height="205" fill="#a83b2c"/>
+    <rect x="420" y="355" width="280" height="205" fill="#cdbe9f"/>
+  </g>
+
+  <g class="sj-axes" stroke="#cdbe9f" stroke-width="1.2" fill="none">
+    <line x1="140" y1="560" x2="700" y2="560" marker-end="url(#sj-arrow)"/>
+    <line x1="140" y1="560" x2="140" y2="150" marker-end="url(#sj-arrow)"/>
+    <line x1="140" y1="355" x2="700" y2="355" stroke-dasharray="3 5" opacity="0.35"/>
+    <line x1="420" y1="150" x2="420" y2="560" stroke-dasharray="3 5" opacity="0.35"/>
+  </g>
+
+  <g class="sj-axis-labels" font-family="Songti SC, Noto Serif SC, Source Han Serif SC, serif">
+    <text x="140" y="586" text-anchor="start" fill="#b8894a" font-size="12">考据实证</text>
+    <text x="700" y="586" text-anchor="end" fill="#b8894a" font-size="12">义理诠释</text>
+    <text x="128" y="560" text-anchor="end" fill="#5f7a6f" font-size="12">微观个案</text>
+    <text x="128" y="158" text-anchor="end" fill="#5f7a6f" font-size="12">长时段系统</text>
+    <text x="420" y="608" text-anchor="middle" fill="#cdbe9f" font-size="10" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.12em">X · 证据—诠释</text>
+    <text x="52" y="360" text-anchor="middle" fill="#cdbe9f" font-size="10" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.1em" transform="rotate(-90 52 360)">Y · 尺度</text>
+  </g>
+
+  <g class="sj-points">
+    <g transform="translate(280,494.4)">
+      <circle r="14" fill="none" stroke="#5f7a6f" stroke-width="1" opacity="0.35"/>
+      <circle r="7" fill="#5f7a6f" stroke="#e8ddc7" stroke-width="1.2"/>
+      <text y="22" text-anchor="middle" fill="#e8ddc7" font-size="11" font-family="Songti SC, Noto Serif SC, serif">孔飞力·魏斐德</text>
+    </g>
+    <g transform="translate(207.2,469.8)">
+      <circle r="14" fill="none" stroke="#b8894a" stroke-width="1" opacity="0.35"/>
+      <circle r="7" fill="#b8894a" stroke="#e8ddc7" stroke-width="1.2"/>
+      <text y="-14" text-anchor="middle" fill="#e8ddc7" font-size="12" font-weight="600" font-family="Songti SC, Noto Serif SC, serif">李敖</text>
+    </g>
+    <g transform="translate(464.8,293.5)">
+      <circle r="14" fill="none" stroke="#5f7a6f" stroke-width="1" opacity="0.35"/>
+      <circle r="7" fill="#5f7a6f" stroke="#e8ddc7" stroke-width="1.2"/>
+      <text y="-14" text-anchor="middle" fill="#e8ddc7" font-size="12" font-weight="600" font-family="Songti SC, Noto Serif SC, serif">费正清</text>
+    </g>
+    <g transform="translate(632.8,264.8)">
+      <circle r="14" fill="none" stroke="#b8894a" stroke-width="1" opacity="0.35"/>
+      <circle r="7" fill="#b8894a" stroke="#e8ddc7" stroke-width="1.2"/>
+      <text y="-14" text-anchor="middle" fill="#e8ddc7" font-size="12" font-weight="600" font-family="Songti SC, Noto Serif SC, serif">钱穆</text>
+    </g>
+    <g transform="translate(330.4,240.2)">
+      <circle r="14" fill="none" stroke="#5f7a6f" stroke-width="1" opacity="0.35"/>
+      <circle r="7" fill="#5f7a6f" stroke="#e8ddc7" stroke-width="1.2"/>
+      <text x="16" y="4" text-anchor="start" fill="#e8ddc7" font-size="12" font-weight="600" font-family="Songti SC, Noto Serif SC, serif">施坚雅</text>
+    </g>
+    <g transform="translate(392,199.2)">
+      <circle r="14" fill="none" stroke="#5f7a6f" stroke-width="1" opacity="0.35"/>
+      <circle r="7" fill="#5f7a6f" stroke="#e8ddc7" stroke-width="1.2"/>
+      <text y="-14" text-anchor="middle" fill="#e8ddc7" font-size="11" font-weight="600" font-family="Songti SC, Noto Serif SC, serif">加州学派</text>
+    </g>
+    <g transform="translate(352.8,182.8)">
+      <circle r="14" fill="none" stroke="#b8894a" stroke-width="1" opacity="0.35"/>
+      <circle r="7" fill="#b8894a" stroke="#e8ddc7" stroke-width="1.2"/>
+      <text x="-16" y="4" text-anchor="end" fill="#e8ddc7" font-size="12" font-weight="600" font-family="Songti SC, Noto Serif SC, serif">金观涛</text>
+    </g>
+    <g transform="translate(375.2,166.4)">
+      <circle r="14" fill="none" stroke="#b8894a" stroke-width="1" opacity="0.35"/>
+      <circle r="7" fill="#b8894a" stroke="#e8ddc7" stroke-width="1.2"/>
+      <text y="-14" text-anchor="middle" fill="#e8ddc7" font-size="12" font-weight="600" font-family="Songti SC, Noto Serif SC, serif">黄仁宇</text>
+    </g>
+  </g>
+
+  <g transform="translate(48, 640)" font-family="Songti SC, Noto Serif SC, serif">
+    <circle cx="6" cy="0" r="5" fill="#b8894a"/>
+    <text x="16" y="4" fill="#e8ddc7" font-size="11">中文路径（李敖·钱穆·金观涛·黄仁宇）</text>
+    <circle cx="280" cy="0" r="5" fill="#5f7a6f"/>
+    <text x="290" y="4" fill="#e8ddc7" font-size="11">西方汉学四支</text>
+  </g>
+  <text x="792" y="680" text-anchor="end" fill="#3a322b" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">坐标为方法取向示意 · 非正式打分</text>
+</svg>
