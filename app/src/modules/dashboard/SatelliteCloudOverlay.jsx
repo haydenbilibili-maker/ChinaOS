@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import {
   buildTileUrl, estimateTileZoom, getVisibleTileRange, tileBounds,
+  isChartReadyForGeo, safeConvertToPixel,
 } from './liveSatellite.js';
 
 /**
@@ -13,18 +14,36 @@ export default function SatelliteCloudOverlay({ chart, config, visible, opacity,
 
   const effectiveOpacity = opacity * (theme === 'light' ? 0.82 : 1);
 
+  const clearTiles = useCallback(() => {
+    const layer = layerRef.current;
+    if (layer) layer.innerHTML = '';
+    tileElsRef.current.clear();
+  }, []);
+
   const syncTiles = useCallback(() => {
     const layer = layerRef.current;
     if (!layer || !chart || !config || !visible) {
-      if (layer) layer.innerHTML = '';
-      tileElsRef.current.clear();
+      clearTiles();
       return;
     }
 
-    const rawZ = estimateTileZoom(chart);
-    const maxZ = config.maxZoom || 7;
-    const z = Math.min(rawZ, maxZ);
-    const range = getVisibleTileRange(chart, z);
+    // 宽高为 0、实例已销毁、或 geo 尚未 setOption 完成时跳过，避免 queryComponents 崩溃
+    if (!isChartReadyForGeo(chart)) {
+      return;
+    }
+
+    let rawZ;
+    let range;
+    try {
+      rawZ = estimateTileZoom(chart);
+      const maxZ = config.maxZoom || 7;
+      const z = Math.min(rawZ, maxZ);
+      range = getVisibleTileRange(chart, z);
+    } catch {
+      return;
+    }
+
+    const z = range.z;
     const needed = new Set();
 
     for (let x = range.xMin; x <= range.xMax; x += 1) {
@@ -32,8 +51,8 @@ export default function SatelliteCloudOverlay({ chart, config, visible, opacity,
         const key = `${z}/${x}/${y}`;
         needed.add(key);
         const bounds = tileBounds(x, y, z);
-        const nw = chart.convertToPixel({ geoIndex: 0 }, [bounds.west, bounds.north]);
-        const se = chart.convertToPixel({ geoIndex: 0 }, [bounds.east, bounds.south]);
+        const nw = safeConvertToPixel(chart, [bounds.west, bounds.north]);
+        const se = safeConvertToPixel(chart, [bounds.east, bounds.south]);
         if (!nw || !se) continue;
 
         const left = nw[0];
@@ -75,29 +94,37 @@ export default function SatelliteCloudOverlay({ chart, config, visible, opacity,
         tileElsRef.current.delete(key);
       }
     }
-  }, [chart, config, visible]);
+  }, [chart, config, visible, clearTiles]);
 
   useEffect(() => {
-    if (!chart || !visible) return undefined;
+    if (!chart || !visible) {
+      clearTiles();
+      return undefined;
+    }
 
     const onRoam = () => syncTiles();
     const onFinished = () => syncTiles();
     chart.on('georoam', onRoam);
     chart.on('finished', onFinished);
 
-    const dom = chart.getDom();
-    const ro = dom ? new ResizeObserver(() => syncTiles()) : null;
+    const dom = chart.getDom?.();
+    const ro = dom ? new ResizeObserver(() => {
+      // 布局未完成（宽高 0）时不强制 sync，等下次有效尺寸
+      if (isChartReadyForGeo(chart)) syncTiles();
+    }) : null;
     if (dom && ro) ro.observe(dom);
 
     const raf = requestAnimationFrame(syncTiles);
 
     return () => {
       cancelAnimationFrame(raf);
-      chart.off('georoam', onRoam);
-      chart.off('finished', onFinished);
+      try {
+        chart.off('georoam', onRoam);
+        chart.off('finished', onFinished);
+      } catch { /* disposed */ }
       ro?.disconnect();
     };
-  }, [chart, visible, syncTiles]);
+  }, [chart, visible, syncTiles, clearTiles]);
 
   useEffect(() => {
     syncTiles();

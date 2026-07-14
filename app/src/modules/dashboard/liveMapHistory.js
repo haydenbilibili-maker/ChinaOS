@@ -34,13 +34,15 @@ function seriesKey(layerId, monthIdx) {
 }
 
 function monthValue(base, layerId, provinceName, monthIdx) {
-  const layer = getLayerById(layerId);
+  const layer = getLayerById(layerId) || getLayerById('composite');
+  const lo = layer?.min ?? 0;
+  const hi = layer?.max ?? 100;
   const seed = hashSeed(`${provinceName}:${layerId}`);
   const seasonal = Math.sin((monthIdx / 12) * Math.PI * 2 + (seed % 7) * 0.4) * 6;
   const noise = ((seed >> ((monthIdx * 3) % 12)) & 15) - 7;
   const trend = (monthIdx - 5.5) * 0.45;
   const layerBias = (hashSeed(layerId) % 5) - 2;
-  return Math.round(clamp(base + seasonal + noise + trend + layerBias, layer.min, layer.max));
+  return Math.round(clamp(base + seasonal + noise + trend + layerBias, lo, hi));
 }
 
 /** 单省单层 12 月序列 */

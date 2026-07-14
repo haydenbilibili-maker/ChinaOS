@@ -186,6 +186,8 @@ export default function LiveChinaMap({
   const skipDeepLinkWrite = useRef(true);
   const [ready, setReady] = useState(false);
   const [chartInstance, setChartInstance] = useState(null);
+  /** setOption 完成且容器有有效尺寸后，才允许卫星层 convertToPixel */
+  const [geoReady, setGeoReady] = useState(false);
   const [err, setErr] = useState(null);
   const [geoSource, setGeoSource] = useState('');
   const [layerPrefs, setLayerPrefs] = useState(loadLayerPrefs);
@@ -214,8 +216,8 @@ export default function LiveChinaMap({
   const showLabels = isLayerVisible('labels', layerPrefs);
   const showFiscal = isLayerVisible('fiscal-network', layerPrefs);
 
-  const layer = ALL_LAYERS.find((l) => l.id === layerId) || getLayerById(layerId);
-  const isReal = !!layer.live;
+  const layer = ALL_LAYERS.find((l) => l.id === layerId) || getLayerById(layerId) || getLayerById('composite');
+  const isReal = !!layer?.live;
   const region = REGION_PRESETS.find((r) => r.id === regionId) || REGION_PRESETS[0];
 
   // 真实数据源：Open-Meteo 气象/空气 + USGS 地震 + airplanes.live 空情 + 航运港口
@@ -285,10 +287,13 @@ export default function LiveChinaMap({
     return buildRealSeries(layerId, weather.data);
   }, [isReal, layerId, weather.data, airQuality.data]);
 
-  const displayData = showFiscal && fiscalData?.series?.length
-    ? fiscalData.series
-    : (isReal ? realSeries : (deltaMode && deltaData ? deltaData : mapData));
-  const statSeries = useMemo(() => displayData.filter((d) => d.value != null), [displayData]);
+  const displayData = useMemo(() => {
+    const raw = showFiscal && fiscalData?.series?.length
+      ? fiscalData.series
+      : (isReal ? realSeries : (deltaMode && deltaData ? deltaData : mapData));
+    return Array.isArray(raw) ? raw : [];
+  }, [showFiscal, fiscalData, isReal, realSeries, deltaMode, deltaData, mapData]);
+  const statSeries = useMemo(() => displayData.filter((d) => d?.value != null), [displayData]);
   const coloringFiscal = showFiscal && !!fiscalData?.series?.length;
 
   const rankings = useMemo(() => getRankings(coloringFiscal ? 'fiscal' : layerId, 5, statSeries), [coloringFiscal, layerId, statSeries]);
@@ -420,9 +425,14 @@ export default function LiveChinaMap({
       if (!alive || !elRef.current) return;
       chart = echarts.init(elRef.current, null, { renderer: 'canvas' });
       chartRef.current = chart;
+      setGeoReady(false);
       setChartInstance(chart);
       ro = new ResizeObserver(() => {
-        if (chart && !chart.isDisposed?.()) chart.resize();
+        if (chart && !chart.isDisposed?.()) {
+          const el = elRef.current;
+          if (el && (el.clientWidth === 0 || el.clientHeight === 0)) return;
+          chart.resize();
+        }
       });
       ro.observe(elRef.current);
 
@@ -434,7 +444,10 @@ export default function LiveChinaMap({
       });
       // 初始化完成后立刻 resize，避免容器尚在布局中时画布为 0 宽
       requestAnimationFrame(() => {
-        if (alive && chart && !chart.isDisposed?.()) chart.resize();
+        if (alive && chart && !chart.isDisposed?.()) {
+          const el = elRef.current;
+          if (el && el.clientWidth > 0 && el.clientHeight > 0) chart.resize();
+        }
       });
     });
 
@@ -454,6 +467,7 @@ export default function LiveChinaMap({
       }
       chartRef.current = null;
       setChartInstance(null);
+      setGeoReady(false);
     };
   }, [ready, showMap]);
 
@@ -547,11 +561,12 @@ export default function LiveChinaMap({
     const areaIdle = mapAreaIdle(isDark ? 'dark' : 'light');
     const labelColor = chartTextColor();
     const deltaPalette = mapDeltaChoropleth(isDark ? 'dark' : 'light');
-    const seriesData = displayData.map((d) => {
+    const seriesData = (displayData || []).filter((d) => d && d.name).map((d) => {
       const isHot = hotCoords.some((h) => h.name === d.name);
       const isSelected = d.name === selectedProvince;
       return {
         ...d,
+        value: d.value ?? null,
         itemStyle: isHot && isDark
           ? {
             borderColor: `${STEEL}${isSelected ? 'ff' : '88'}`,
@@ -602,7 +617,7 @@ export default function LiveChinaMap({
           }
           if (deltaMode) {
             const v = p.data?.value;
-            return v == null ? p.name : `<b>${p.name}</b><br/>${layer.label} Δ12月：${v > 0 ? '+' : ''}${v}`;
+            return v == null ? p.name : `<b>${p.name}</b><br/>${layer?.label || layerId} Δ12月：${v > 0 ? '+' : ''}${v}`;
           }
           if (p.seriesType === 'effectScatter') return formatTooltip(p.name, layerId, mapData.find((x) => x.name === p.name)?.metrics);
           return formatTooltip(p.name, layerId, p.data?.metrics);
@@ -625,13 +640,13 @@ export default function LiveChinaMap({
         }
         : {
           show: true,
-          min: coloringFiscal ? 0 : layer.min,
-          max: coloringFiscal ? 100 : layer.max,
+          min: coloringFiscal ? 0 : (layer?.min ?? 0),
+          max: coloringFiscal ? 100 : (layer?.max ?? 100),
           left: 8,
           bottom: isCompact ? 4 : 8,
           calculable: false,
-          inRange: { color: palette },
-          text: coloringFiscal ? ['高自给 %', '低'] : [`高${layer.unit ? ` (${layer.unit})` : ''}`, '低'],
+          inRange: { color: palette || mapChoropleth(isDark ? 'dark' : 'light') },
+          text: coloringFiscal ? ['高自给 %', '低'] : [`高${layer?.unit ? ` (${layer.unit})` : ''}`, '低'],
           textStyle: { color: labelColor, fontSize: 10 },
           itemWidth: 12,
           itemHeight: isCompact ? 56 : 80,
@@ -690,13 +705,45 @@ export default function LiveChinaMap({
   // 依赖 chartInstance：echarts 异步 init 完成后必须再跑一遍，否则刷新后空白直至点图层
   useEffect(() => {
     const chart = chartRef.current || chartInstance;
-    if (!chart || !ready || !showMap) return;
-    chart.showLoading('default', { text: '图层渲染中…', color: STEEL, textColor: chartTextColor(), maskColor: 'rgba(10,14,23,0.35)' });
-    chart.setOption(buildOption(), { notMerge: false, lazyUpdate: false });
-    chart.hideLoading();
-    requestAnimationFrame(() => {
-      if (chart && !chart.isDisposed?.()) chart.resize();
-    });
+    if (!chart || !ready || !showMap || chart.isDisposed?.()) return undefined;
+
+    let cancelled = false;
+    let retryRaf = 0;
+    let retryTimer = 0;
+
+    const apply = (allowRetry = true) => {
+      if (cancelled || chart.isDisposed?.()) return;
+      const el = elRef.current;
+      const w = el?.clientWidth ?? chart.getWidth?.() ?? 0;
+      const h = el?.clientHeight ?? chart.getHeight?.() ?? 0;
+      // 容器为 0 时 setOption/geo 坐标会不完整，延后到有尺寸再渲染
+      if (!(w > 0 && h > 0)) {
+        setGeoReady(false);
+        if (allowRetry) {
+          retryRaf = requestAnimationFrame(() => apply(false));
+          retryTimer = window.setTimeout(() => apply(false), 120);
+        }
+        return;
+      }
+      try {
+        if (!chart.isDisposed?.()) {
+          chart.resize();
+        }
+        chart.showLoading('default', { text: '图层渲染中…', color: STEEL, textColor: chartTextColor(), maskColor: 'rgba(10,14,23,0.35)' });
+        chart.setOption(buildOption(), { notMerge: false, lazyUpdate: false });
+        chart.hideLoading();
+        if (!cancelled && !chart.isDisposed?.()) setGeoReady(true);
+      } catch {
+        if (!cancelled) setGeoReady(false);
+      }
+    };
+
+    apply(true);
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(retryRaf);
+      clearTimeout(retryTimer);
+    };
   }, [ready, showMap, buildOption, chartInstance]);
 
   const handleLayerChange = (id) => {
@@ -952,9 +999,9 @@ export default function LiveChinaMap({
           <div ref={elRef} style={{ width: '100%', height: '100%' }} />
           {!isCompact && (
             <SatelliteCloudOverlay
-              chart={chartInstance}
+              chart={geoReady ? chartInstance : null}
               config={satelliteState.config}
-              visible={showSatellite && !satelliteState.loading && !satelliteState.error}
+              visible={showSatellite && geoReady && !satelliteState.loading && !satelliteState.error}
               opacity={satelliteOpacity}
               theme={theme}
             />

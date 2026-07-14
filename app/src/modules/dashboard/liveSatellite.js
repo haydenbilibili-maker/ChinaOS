@@ -95,12 +95,73 @@ export function tileBounds(x, y, z) {
 }
 
 /**
+ * geo 坐标变换就绪：地图已 setOption、容器非 0、实例未销毁。
+ * 在窄屏布局抖动 / setOption 前调用 convertToPixel 会踩 queryComponents。
+ * @param {import('echarts').ECharts | null | undefined} chart
+ */
+export function isChartReadyForGeo(chart) {
+  if (!chart) return false;
+  if (typeof chart.isDisposed === 'function' && chart.isDisposed()) return false;
+  const w = chart.getWidth?.() ?? 0;
+  const h = chart.getHeight?.() ?? 0;
+  if (!(w > 0 && h > 0)) return false;
+  try {
+    const probe = chart.convertToPixel({ geoIndex: 0 }, [105, 35]);
+    return Array.isArray(probe) && Number.isFinite(probe[0]) && Number.isFinite(probe[1]);
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * 安全 convertToPixel；未就绪或 ECharts 内部失败时返回 null。
+ * @param {import('echarts').ECharts} chart
+ * @param {[number, number]} lonLat
+ * @returns {[number, number] | null}
+ */
+export function safeConvertToPixel(chart, lonLat) {
+  if (!chart) return null;
+  if (typeof chart.isDisposed === 'function' && chart.isDisposed()) return null;
+  const w = chart.getWidth?.() ?? 0;
+  const h = chart.getHeight?.() ?? 0;
+  if (!(w > 0 && h > 0)) return null;
+  try {
+    const p = chart.convertToPixel({ geoIndex: 0 }, lonLat);
+    if (!Array.isArray(p) || !Number.isFinite(p[0]) || !Number.isFinite(p[1])) return null;
+    return /** @type {[number, number]} */ (p);
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * 安全 convertFromPixel
+ * @param {import('echarts').ECharts} chart
+ * @param {[number, number]} pixel
+ * @returns {[number, number] | null}
+ */
+export function safeConvertFromPixel(chart, pixel) {
+  if (!chart) return null;
+  if (typeof chart.isDisposed === 'function' && chart.isDisposed()) return null;
+  const w = chart.getWidth?.() ?? 0;
+  const h = chart.getHeight?.() ?? 0;
+  if (!(w > 0 && h > 0)) return null;
+  try {
+    const p = chart.convertFromPixel({ geoIndex: 0 }, pixel);
+    if (!Array.isArray(p) || !Number.isFinite(p[0]) || !Number.isFinite(p[1])) return null;
+    return /** @type {[number, number]} */ (p);
+  } catch {
+    return null;
+  }
+}
+
+/**
  * 由 ECharts geo 像素尺度估算 WebMercator 层级
  * @param {import('echarts').ECharts} chart
  */
 export function estimateTileZoom(chart) {
-  const p1 = chart.convertToPixel({ geoIndex: 0 }, [100, 30]);
-  const p2 = chart.convertToPixel({ geoIndex: 0 }, [120, 30]);
+  const p1 = safeConvertToPixel(chart, [100, 30]);
+  const p2 = safeConvertToPixel(chart, [120, 30]);
   if (!p1 || !p2) return 3;
   const pixelsPerDegLon = Math.abs(p2[0] - p1[0]) / 20;
   if (!pixelsPerDegLon) return 3;
@@ -114,13 +175,24 @@ export function estimateTileZoom(chart) {
  * @param {number} z
  */
 export function getVisibleTileRange(chart, z) {
-  const w = chart.getWidth();
-  const h = chart.getHeight();
+  const w = chart.getWidth?.() ?? 0;
+  const h = chart.getHeight?.() ?? 0;
+  if (!(w > 0 && h > 0) || !isChartReadyForGeo(chart)) {
+    const tl = lonLatToTile(70, 55, z);
+    const br = lonLatToTile(140, 15, z);
+    return {
+      xMin: Math.min(tl.x, br.x),
+      xMax: Math.max(tl.x, br.x),
+      yMin: Math.min(tl.y, br.y),
+      yMax: Math.max(tl.y, br.y),
+      z,
+    };
+  }
   const pts = [
-    chart.convertFromPixel({ geoIndex: 0 }, [0, 0]),
-    chart.convertFromPixel({ geoIndex: 0 }, [w, 0]),
-    chart.convertFromPixel({ geoIndex: 0 }, [0, h]),
-    chart.convertFromPixel({ geoIndex: 0 }, [w, h]),
+    safeConvertFromPixel(chart, [0, 0]),
+    safeConvertFromPixel(chart, [w, 0]),
+    safeConvertFromPixel(chart, [0, h]),
+    safeConvertFromPixel(chart, [w, h]),
   ].filter((p) => Array.isArray(p) && Number.isFinite(p[0]) && Number.isFinite(p[1]));
 
   if (!pts.length) {
