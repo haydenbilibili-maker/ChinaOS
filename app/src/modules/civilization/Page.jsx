@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { PageHeader, Card, Grid, Stat, CrossLinks } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid, CrossLinks } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';
 import { FrameworkTrio, SelectorBar, ModuleFooter } from '../shared/ModuleParadigm.jsx';
