@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LockOpen, ClipboardCheck, UserCircle, Scale } from 'lucide-react';
+import { LockOpen, ClipboardCheck, UserCircle, Scale, Users } from 'lucide-react';
 import { PageHeader } from '../../app/ui.jsx';
 import { modulesByGroup } from '../../app/registry.js';
 import { HUANGFEIZHAI_GROUP_ID } from '../../domain/huangfeizhai.ts';
@@ -13,7 +13,13 @@ const ENTRIES = [
     id: 'anticorruption',
     icon: Scale,
     accent: 'var(--red)',
-    tag: '结构',
+    tag: '结构 · v2',
+  },
+  {
+    id: 'ableOfficialParadox',
+    icon: Users,
+    accent: 'var(--amber)',
+    tag: '机制',
   },
   {
     id: 'personalReview',

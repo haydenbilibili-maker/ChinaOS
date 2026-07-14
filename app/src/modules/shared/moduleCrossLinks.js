@@ -247,6 +247,7 @@ const MAP = {
   personalReview: [
     { to: '/modules/huangfeizhai', label: '荒废斋 · 私人总入口', note: '决策复盘 · 自画像 · 迁移日志聚合。' },
     { to: '/modules/anticorruption', label: '反腐结构观测', note: '官员躺平与年轻人躺平——同一种退出机制。' },
+    { to: '/modules/able-official-paradox', label: '能吏悖论', note: '晋升锦标赛 · 结构性空缺象限。' },
     { to: '/modules/observatory', label: '观象台 · 治理总入口', note: '叙事链「我」段 · 宏观双仪表 → 个人姿态。' },
     { to: '/modules/signal-panel', label: '宏观再平衡信号灯', note: 'Regime 读数 → 个人守成/进攻矩阵。' },
     { to: '/modules/three-forces', label: '三力监测仪', note: 'Proximity 读数 → 备战/预热判词。' },
@@ -255,11 +256,19 @@ const MAP = {
   ],
   anticorruption: [
     { to: '/modules/huangfeizhai', label: '荒废斋 · 私人总入口', note: '结构观测 · 决策复盘 · 自画像聚合。' },
+    { to: '/modules/able-official-paradox', label: '能吏悖论', note: '模块 08 · 微观机制 · 晋升锦标赛筛选逻辑。' },
     { to: '/modules/three-forces', label: '三力监测仪 · 内部危机', note: '官场躺平指数 → 内部危机维外部读数。' },
-    { to: '/modules/personal-review', label: '决策复盘', note: '张力二连回模块 04 · 同一种退出机制。' },
+    { to: '/modules/personal-review', label: '决策复盘', note: '代价曲线回模块 04 · 同一种退出机制。' },
     { to: '/modules/signal-panel', label: '宏观再平衡信号灯', note: '反腐不改变信号灯读数——属另一条战线。' },
     { to: '/modules/observatory', label: '观象台 · 治理总入口', note: '第五种抄写 · 与再平衡、山海关卡同题。' },
     { to: '/modules/attribution', label: '三层归因分析器', note: '治本之策的权力让渡落点。' },
+  ],
+  ableOfficialParadox: [
+    { to: '/modules/anticorruption', label: '反腐结构观测 v2.0', note: '模块 07 · 腐败密度地图 · 宏观结构。' },
+    { to: '/modules/huangfeizhai', label: '荒废斋 · 私人总入口', note: '结构观测 · 决策复盘 · 自画像聚合。' },
+    { to: '/modules/three-forces', label: '三力监测仪 · 内部危机', note: '官僚执行力衰减 → 内部危机维读数。' },
+    { to: '/modules/personal-review', label: '决策复盘', note: '年轻人躺平 vs 官员躺平——同一种机制。' },
+    { to: '/modules/observatory', label: '观象台 · 治理总入口', note: '第五种抄写 · 更彻底的版本。' },
   ],
   heshanReform: [
     { to: '/modules/heshan/fiscal', label: '财政沙盘 · 收支倒挂', note: '建省方案配套的转移支付与减层节支。' },
