@@ -15,6 +15,8 @@ import {
 } from './data.js';
 import { SIM_NOTE, TOPIC_PARAMS, simAttention, INTL_TERM_COMPARE, INTL_NOTE, buildLeadReport } from './leadershipSim.js';
 import LeadershipAiSim from './LeadershipAiSim.jsx';
+import LeadershipBanner from './LeadershipBanner.jsx';
+import './leadership.css';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 领袖统治 · 权力结构 / 决策机制 / 人事布局 / 历史演进
@@ -765,6 +767,8 @@ export default function Page() {
         title="领袖统治 · 权力结构与决策机制"
         subtitle="权力金字塔 · 决策 Sankey · 人事矩阵 · 权威趋势 · 四区交互分析"
       />
+
+      <LeadershipBanner />
 
       <IntroCard>
         <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>定位声明：</span>
