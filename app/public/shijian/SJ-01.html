@@ -127,12 +127,14 @@ body{
   min-width:0; /* grid 子项可收缩 → 内部横向滚动，而非压扁列宽 */
 }
 .sj-01-table{
-  width:max(100%,960px);
+  /* 宽屏填满表槽；窄于可读门槛时横向滚动，避免列被压成单字竖排 */
+  width:100%;
+  min-width:920px;
   table-layout:fixed;
   border-collapse:collapse;font-size:13.5px;
 }
-.sj-01-table col.col-name{width:12%}
-.sj-01-table col.col-cell{width:22%}
+.sj-01-table col.col-name{width:14%}
+.sj-01-table col.col-cell{width:21.5%}
 .sj-01-table th{
   position:sticky;top:0;z-index:1;
   background:var(--sj-ink-900);color:var(--sj-ochre);
