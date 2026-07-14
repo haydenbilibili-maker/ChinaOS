@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 640" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">¹ÕI1</title>
+  <desc id="sj-desc">ŒôI1*tnÁóIàÊµt®Â*Hóöµûß¹M:k¶¹Õ\4:¤’„ÈÁ SJ-01-spectrum-preview.html</desc>
+  <style>
+    :root{
+      --sj-ink-900:#14110f;
+      --sj-ink-800:#1d1916;
+      --sj-paper-100:#e8ddc7;
+      --sj-paper-300:#cdbe9f;
+      --sj-vermil:#a83b2c;
+      --sj-celadon:#5f7a6f;
+      --sj-ochre:#b8894a;
+      --sj-line:#3a322b;
+    }
+  </style>
+  <defs>
+    <radialGradient id="sj-paper-glow" cx="48%" cy="42%" r="68%">
+      <stop offset="0%" stop-color="#1d1916" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#14110f" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="sj-axis-fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#5f7a6f" stop-opacity=".55"/>
+      <stop offset="50%" stop-color="#cdbe9f" stop-opacity=".25"/>
+      <stop offset="100%" stop-color="#b8894a" stop-opacity=".55"/>
+    </linearGradient>
+  </defs>
+  <rect width="880" height="640" fill="url(#sj-paper-glow)"/>
+  <g opacity="0.05" stroke="#e8ddc7" stroke-width="0.5">
+    <line x1="56" y1="108" x2="824" y2="108"/>
+    <line x1="56" y1="148" x2="824" y2="148"/>
+    <line x1="56" y1="188" x2="824" y2="188"/>
+    <line x1="56" y1="228" x2="824" y2="228"/>
+    <line x1="56" y1="268" x2="824" y2="268"/>
+    <line x1="56" y1="308" x2="824" y2="308"/>
+    <line x1="56" y1="348" x2="824" y2="348"/>
+    <line x1="56" y1="388" x2="824" y2="388"/>
+    <line x1="56" y1="428" x2="824" y2="428"/>
+    <line x1="56" y1="468" x2="824" y2="468"/>
+    <line x1="56" y1="508" x2="824" y2="508"/>
+    <line x1="56" y1="548" x2="824" y2="548"/>
+  </g>
+  <g aria-hidden="true">
+    <rect x="18" y="100" width="14" height="460" rx="6" fill="#3a322b"/>
+    <rect x="848" y="100" width="14" height="460" rx="6" fill="#3a322b"/>
+    <circle cx="25" cy="100" r="10" fill="#b8894a" opacity="0.7"/>
+    <circle cx="25" cy="560" r="10" fill="#b8894a" opacity="0.7"/>
+    <circle cx="855" cy="100" r="10" fill="#b8894a" opacity="0.7"/>
+    <circle cx="855" cy="560" r="10" fill="#b8894a" opacity="0.7"/>
+  </g>
+  <text x="56" y="42" fill="#e8ddc7" font-size="22" font-weight="600" font-family="Songti SC, Noto Serif SC, Source Han Serif SC, serif" letter-spacing="0.12em">¹ÕI1</text>
+  <text x="56" y="66" fill="#b8894a" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.08em">SJ-01 · ò¶¹ÕùÔé5 · ~ÆÉ</text>
+  <text x="56" y="86" fill="#a83b2c" font-size="11" font-family="Songti SC, Noto Serif SC, serif">1yP:¹Õ>: · ^Ï’M · ¤’Á HTML „È</text>
+  <g id="plot">
+    <rect x="120" y="140" width="320" height="200" fill="#5f7a6f" opacity="0.04"/>
+    <rect x="440" y="140" width="320" height="200" fill="#b8894a" opacity="0.04"/>
+    <rect x="120" y="340" width="320" height="200" fill="#5f7a6f" opacity="0.07"/>
+    <rect x="440" y="340" width="320" height="200" fill="#a83b2c" opacity="0.04"/>
+    <g stroke="#3a322b" stroke-width="1" opacity="0.55">
+      <line x1="120" y1="140" x2="760" y2="140"/>
+      <line x1="120" y1="240" x2="760" y2="240" stroke-dasharray="3 5"/>
+      <line x1="120" y1="340" x2="760" y2="340" stroke-dasharray="3 5"/>
+      <line x1="120" y1="440" x2="760" y2="440" stroke-dasharray="3 5"/>
+      <line x1="120" y1="540" x2="760" y2="540"/>
+      <line x1="120" y1="140" x2="120" y2="540"/>
+      <line x1="280" y1="140" x2="280" y2="540" stroke-dasharray="3 5"/>
+      <line x1="440" y1="140" x2="440" y2="540" stroke-dasharray="3 5"/>
+      <line x1="600" y1="140" x2="600" y2="540" stroke-dasharray="3 5"/>
+      <line x1="760" y1="140" x2="760" y2="540"/>
+    </g>
+    <line x1="120" y1="540" x2="760" y2="540" stroke="url(#sj-axis-fade)" stroke-width="2.2"/>
+    <line x1="120" y1="140" x2="120" y2="540" stroke="#5f7a6f" stroke-width="1.6" opacity="0.7"/>
+    <text x="120" y="568" fill="#5f7a6f" font-size="12" font-family="Songti SC, Noto Serif SC, serif">nÁ</text>
+    <text x="760" y="568" text-anchor="end" fill="#b8894a" font-size="12" font-family="Songti SC, Noto Serif SC, serif">IàÊ</text>
+    <text x="440" y="586" text-anchor="middle" fill="#cdbe9f" font-size="10" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.14em">X · ¤Æï„</text>
+    <text x="102" y="148" text-anchor="end" fill="#e8ddc7" font-size="12" font-family="Songti SC, Noto Serif SC, serif">öµûß</text>
+    <text x="102" y="536" text-anchor="end" fill="#cdbe9f" font-size="12" font-family="Songti SC, Noto Serif SC, serif">®Â*H</text>
+    <text transform="translate(48,340) rotate(-90)" text-anchor="middle" fill="#cdbe9f" font-size="10" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.14em">Y · öz:¦</text>
+    <g>
+      <circle cx="197" cy="412" r="8" fill="#a83b2c" stroke="#e8ddc7" stroke-width="1.2"/>
+      <text x="197" y="436" text-anchor="middle" fill="#e8ddc7" font-size="12" font-family="Songti SC, Noto Serif SC, serif">NV</text>
+    </g>
+    <g>
+      <circle cx="338" cy="484" r="8" fill="#5f7a6f" stroke="#e8ddc7" stroke-width="1.2"/>
+      <text x="338" y="508" text-anchor="middle" fill="#e8ddc7" font-size="11" font-family="Songti SC, Noto Serif SC, serif">TŞ›·O·</text>
+    </g>
+    <g>
+      <circle cx="376" cy="332" r="8" fill="#5f7a6f" stroke="#e8ddc7" stroke-width="1.2"/>
+      <text x="376" y="318" text-anchor="middle" fill="#e8ddc7" font-size="12" font-family="Songti SC, Noto Serif SC, serif">½ZÅ</text>
+    </g>
+    <g>
+      <circle cx="299" cy="228" r="8" fill="#b8894a" stroke="#e8ddc7" stroke-width="1.2"/>
+      <text x="299" y="214" text-anchor="middle" fill="#e8ddc7" font-size="12" font-family="Songti SC, Noto Serif SC, serif"> Şf></text>
+    </g>
+    <g>
+      <circle cx="414" cy="172" r="8" fill="#b8894a" stroke="#e8ddc7" stroke-width="1.2"/>
+      <text x="414" y="158" text-anchor="middle" fill="#e8ddc7" font-size="12" font-family="Songti SC, Noto Serif SC, serif">ÑÂ›</text>
+    </g>
+    <g>
+      <circle cx="472" cy="204" r="8" fill="#b8894a" stroke="#e8ddc7" stroke-width="1.2"/>
+      <text x="496" y="208" fill="#e8ddc7" font-size="12" font-family="Songti SC, Noto Serif SC, serif">ÄÁ‡</text>
+    </g>
+    <g>
+      <circle cx="555" cy="292" r="8" fill="#cdbe9f" stroke="#e8ddc7" stroke-width="1.2"/>
+      <text x="555" y="278" text-anchor="middle" fill="#e8ddc7" font-size="12" font-family="Songti SC, Noto Serif SC, serif">9c</text>
+    </g>
+    <g>
+      <circle cx="696" cy="244" r="8" fill="#b8894a" stroke="#e8ddc7" stroke-width="1.2"/>
+      <text x="696" y="230" text-anchor="middle" fill="#e8ddc7" font-size="12" font-family="Songti SC, Noto Serif SC, serif">±F</text>
+    </g>
+  </g>
+  <text x="824" y="620" text-anchor="end" fill="#3a322b" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">P:¹Õ>: · ^Ï’M</text>
+</svg>

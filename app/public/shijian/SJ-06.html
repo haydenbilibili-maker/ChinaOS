@@ -150,8 +150,11 @@ body{
 .sj-06-foot a{color:var(--sj-celadon);text-decoration:none}
 .sj-06-foot a:hover{color:var(--sj-ochre)}
 
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto  .sj-reveal-stagger > *{animation:none}
-}.sj-node,.sj-edge,.sj-06-chip{transition:none}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .sj-reveal-stagger > *{animation:none}
+  .sj-node,.sj-edge,.sj-06-chip{transition:none}
+}
 @media (max-width:900px){.sj-06-layout{grid-template-columns:1fr}.sj-06-aside{position:static}.sj-06-hist,.sj-06-mirror{grid-template-columns:1fr}.sj-06-verdict{grid-template-columns:1fr}.sj-06-xref{grid-template-columns:1fr 1fr}}
 @media (max-width:768px){.sj-06-meta{text-align:left}.sj-06-xref{grid-template-columns:1fr}}
 
