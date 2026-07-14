@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>SJ-00 · 史鉴总索引</title>
-<meta name="description" content="ChinaOS 史鉴系列门户：历史动力学引擎 × 史学方法论工具箱 × 古今五域对照台账"/>
+<title>SJ-00 · 治乱循环总螺旋图（规格修订预览）</title>
 <style>
+/* 令牌契约：chinaos-shijian.mdc；规格书图 A 对照修订 */
 :root{
   --sj-ink-900:#14110f;
   --sj-ink-800:#1d1916;
@@ -26,295 +26,129 @@
   --sj-phase-chong:var(--sj-celadon);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%}
 body{
   min-height:100vh;
   background:
-    radial-gradient(1000px 560px at 72% -8%, #2a221c 0%, transparent 55%),
-    radial-gradient(700px 420px at 8% 90%, #1a1612 0%, transparent 50%),
+    radial-gradient(900px 500px at 70% -5%, #2a221c 0%, transparent 55%),
     var(--sj-ink-900);
   color:var(--sj-paper-100);
   font-family:var(--sj-serif);
-  line-height:1.75;
+  line-height:1.7;
+  padding:var(--sj-space);
 }
-.sj-00-wrap{max-width:min(1080px,100%);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
-@media (min-width:1536px){.sj-00-wrap{max-width:min(1280px,100%)}}
-@media (min-width:1920px){.sj-00-wrap{max-width:min(1440px,100%)}}
-@media (min-width:2560px){.sj-00-wrap{max-width:min(1600px,100%)}}
-
-/* 页眉 */
-.sj-00-mast{
-  display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;
-  padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px;
+.wrap{max-width:960px;margin:0 auto}
+.mast{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  gap:16px;flex-wrap:wrap;
+  padding-bottom:14px;border-bottom:1px solid var(--sj-line);margin-bottom:18px;
 }
-.sj-00-mast .badge{
-  font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px;
+.mast h1{font-size:clamp(18px,2.4vw,22px);font-weight:600;letter-spacing:.14em}
+.mast h1 span{color:var(--sj-paper-300);font-weight:400;letter-spacing:.06em;font-size:.85em}
+.meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right;line-height:1.7}
+.meta b{color:var(--sj-ochre);font-weight:500}
+.zhupi{
+  color:var(--sj-vermil);font-size:13px;margin:0 0 14px;
+  padding-left:10px;border-left:2px solid var(--sj-vermil);
+  max-width:72ch;
 }
-.sj-00-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em;line-height:1.3}
-.sj-00-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;letter-spacing:.08em;font-size:.72em;display:block;margin-top:4px}
-.sj-00-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right;line-height:1.7}
-.sj-00-meta b{color:var(--sj-ochre);font-weight:500}
-.sj-00-gy-chip{
-  display:inline-block;margin-top:8px;font-family:var(--sj-mono);font-size:10px;
-  letter-spacing:.08em;color:var(--sj-celadon);border:1px solid var(--sj-line);
-  padding:3px 8px;border-radius:var(--sj-radius);
+.layout{
+  display:grid;grid-template-columns:1fr 220px;gap:14px;align-items:start;
 }
-
-/* 朱批 */
-.sj-zhupi{
-  color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;
-  padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:68ch;
-}
-
-/* 章 */
-.sj-00-sec{margin:36px 0 28px;scroll-margin-top:24px}
-.sj-00-sec-h{
-  display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
-  margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--sj-line);
-}
-.sj-00-sec-h .num{font-family:var(--sj-mono);font-size:11px;letter-spacing:.2em;color:var(--sj-ochre)}
-.sj-00-sec-h h2{font-size:clamp(17px,2.2vw,20px);font-weight:600;letter-spacing:.12em}
-.sj-00-prose{font-size:15.5px;color:var(--sj-paper-100);max-width:68ch}
-.sj-00-prose + .sj-00-prose{margin-top:14px}
-.sj-00-prose strong{color:var(--sj-ochre);font-weight:600}
-
-/* 三位一体短签 */
-.sj-00-tri{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0 8px;
-}
-.sj-00-tri article{
-  border:1px solid var(--sj-line);background:var(--sj-ink-800);
-  border-radius:var(--sj-radius);padding:14px 14px 12px;
-  border-top:2px solid var(--sj-ochre);
-}
-.sj-00-tri article:nth-child(2){border-top-color:var(--sj-celadon)}
-.sj-00-tri article:nth-child(3){border-top-color:var(--sj-vermil)}
-.sj-00-tri .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-paper-300);margin-bottom:6px}
-.sj-00-tri h3{font-size:15px;font-weight:600;letter-spacing:.06em;margin-bottom:6px}
-.sj-00-tri p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
-
-/* 螺旋舞台 */
-.sj-00-stage{
-  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
-  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
+.stage{
+  border:1px solid var(--sj-line);
+  border-radius:var(--sj-radius);
+  background:linear-gradient(180deg,#1f1a16,#14110f);
   box-shadow:0 1px 0 rgba(232,221,199,.04), 0 18px 48px rgba(0,0,0,.45);
-  padding:8px 8px 4px;overflow:auto;
+  padding:8px 8px 4px;
+  overflow:auto;
 }
-.sj-00-stage svg{display:block;width:100%;height:auto;max-width:900px;margin:0 auto}
+.stage svg{display:block;width:100%;height:auto;max-width:900px;margin:0 auto}
+.side{
+  border:1px solid var(--sj-line);
+  border-radius:var(--sj-radius);
+  background:var(--sj-ink-800);
+  padding:14px 14px 16px;
+  min-height:140px;
+}
+.side .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-paper-300);margin-bottom:8px}
+.side .t{font-size:15px;color:var(--sj-ochre);margin-bottom:6px;letter-spacing:.08em}
+.side .b{font-size:13px;color:var(--sj-paper-100);line-height:1.65}
+.side .hint{font-size:11px;color:var(--sj-paper-300);margin-top:10px}
 .sj-seg,.sj-dyn-label,.sj-prosper,.sj-tip{cursor:pointer}
 .sj-seg{transition:opacity .22s ease, stroke-width .22s ease, filter .22s ease}
-.sj-seg:focus-visible,.sj-dyn-label:focus-visible,.sj-prosper:focus-visible,.sj-tip:focus-visible{
+.sj-dyn-label:focus-visible,.sj-prosper:focus-visible,.sj-tip:focus-visible,.sj-seg:focus-visible{
   outline:2px solid var(--sj-ochre);outline-offset:3px;
 }
-.sj-00-stage.is-filtering .sj-seg{opacity:.18}
-.sj-00-stage.is-filtering .sj-seg.is-hot{
-  opacity:1;stroke-width:4.2;filter:drop-shadow(0 0 4px rgba(168,59,44,.35));
+.stage.is-filtering .sj-seg{opacity:.16}
+.stage.is-filtering .sj-seg.is-hot{
+  opacity:1;stroke-width:4.2;
+  filter:drop-shadow(0 0 4px rgba(168,59,44,.35));
 }
-.sj-00-stage.is-filtering .sj-fenlie.is-hot{opacity:.95}
-.sj-00-stage.is-dyn .sj-seg{opacity:.14}
-.sj-00-stage.is-dyn .sj-seg.is-dyn-hot{opacity:1;stroke-width:3.6}
+.stage.is-filtering .sj-fenlie.is-hot{opacity:.95}
+.stage.is-dyn .sj-seg{opacity:.14}
+.stage.is-dyn .sj-seg.is-dyn-hot{opacity:1;stroke-width:3.6}
 .sj-prosper.is-on .sj-zhupi-ring{stroke-width:1.8;opacity:1}
-.sj-00-controls{
+.controls{
   display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px;align-items:center;
 }
-.sj-00-controls .lbl{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-paper-300);margin-right:4px}
-.sj-00-btn{
+.controls .lbl{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-paper-300);margin-right:4px}
+.btn{
   appearance:none;border:1px solid var(--sj-line);background:var(--sj-ink-800);
   color:var(--sj-paper-100);font-family:var(--sj-serif);font-size:13px;
   padding:6px 12px;border-radius:var(--sj-radius);cursor:pointer;
   transition:border-color .18s, color .18s, background .18s;
 }
-.sj-00-btn:hover,.sj-00-btn:focus-visible{border-color:var(--sj-ochre);outline:none}
-.sj-00-btn:focus-visible{box-shadow:0 0 0 2px rgba(184,137,74,.35)}
-.sj-00-btn.is-on{border-color:var(--sj-vermil);color:var(--sj-vermil);background:color-mix(in srgb, var(--sj-vermil) 12%, var(--sj-ink-900))}
-.sj-00-btn[data-phase="上升"].is-on{border-color:var(--sj-celadon);color:var(--sj-celadon)}
-.sj-00-btn[data-phase="鼎盛"].is-on{border-color:var(--sj-ochre);color:var(--sj-ochre)}
-.sj-00-btn[data-phase="僵化"].is-on{border-color:var(--sj-paper-300);color:var(--sj-paper-300)}
-.sj-00-btn[data-phase="崩解"].is-on{border-color:var(--sj-vermil);color:var(--sj-vermil)}
-.sj-00-btn[data-phase="重整"].is-on{border-color:var(--sj-celadon);color:var(--sj-celadon)}
-
-/* 卷目 cards */
-.sj-00-vols{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:8px}
-.sj-00-card{
-  display:block;text-decoration:none;color:inherit;
-  border:1px solid var(--sj-line);background:var(--sj-ink-800);
-  border-radius:var(--sj-radius);padding:16px 16px 14px;
-  transition:border-color .18s, transform .18s;
-  position:relative;
+.btn:hover,.btn:focus-visible{border-color:var(--sj-ochre);outline:none}
+.btn:focus-visible{box-shadow:0 0 0 2px rgba(184,137,74,.35)}
+.btn.is-on{border-color:var(--sj-vermil);color:var(--sj-vermil);background:#241612}
+.btn[data-phase="上升"].is-on{border-color:var(--sj-celadon);color:var(--sj-celadon)}
+.btn[data-phase="鼎盛"].is-on{border-color:var(--sj-ochre);color:var(--sj-ochre)}
+.btn[data-phase="僵化"].is-on{border-color:var(--sj-paper-300);color:var(--sj-paper-300)}
+.btn[data-phase="崩解"].is-on{border-color:var(--sj-vermil);color:var(--sj-vermil)}
+.btn[data-phase="重整"].is-on{border-color:var(--sj-celadon);color:var(--sj-celadon)}
+.note{margin-top:14px;font-size:13px;color:var(--sj-paper-300);max-width:72ch}
+.note strong{color:var(--sj-paper-100);font-weight:600}
+.gap{margin-top:10px;font-size:12px;color:var(--sj-paper-300);max-width:72ch}
+.gap code{font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre)}
+.foot{
+  margin-top:22px;padding-top:12px;border-top:1px solid var(--sj-line);
+  font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
 }
-.sj-00-card:hover,.sj-00-card:focus-visible{
-  border-color:var(--sj-ochre);outline:none;
-  transform:translateY(-1px);
-}
-.sj-00-card:focus-visible{box-shadow:0 0 0 2px rgba(184,137,74,.35)}
-.sj-00-card .row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px}
-.sj-00-card .vol{font-family:var(--sj-mono);font-size:11px;letter-spacing:.14em;color:var(--sj-ochre)}
-.sj-00-tag{
-  font-family:var(--sj-mono);font-size:10px;letter-spacing:.1em;
-  padding:2px 8px;border-radius:999px;border:1px solid var(--sj-line);white-space:nowrap;
-}
-.sj-00-tag.is-done{color:var(--sj-celadon);border-color:var(--sj-celadon)}
-.sj-00-tag.is-dev{color:var(--sj-ochre);border-color:var(--sj-ochre)}
-.sj-00-tag.is-plan{color:var(--sj-paper-300)}
-.sj-00-card h3{font-size:16px;font-weight:600;letter-spacing:.08em;margin-bottom:6px}
-.sj-00-card p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.65}
-.sj-00-card .ids{margin-top:10px;font-family:var(--sj-mono);font-size:11px;color:var(--sj-celadon);letter-spacing:.06em}
-
-/* 占位锚点卡 */
-.sj-00-ph{
-  margin-top:22px;border:1px dashed var(--sj-line);border-radius:var(--sj-radius);
-  padding:14px 16px;background:rgba(29,25,22,.5);
-}
-.sj-00-ph h4{font-size:14px;letter-spacing:.1em;margin-bottom:6px;color:var(--sj-paper-100)}
-.sj-00-ph p{font-size:13px;color:var(--sj-paper-300);max-width:68ch}
-.sj-00-ph:target{border-color:var(--sj-vermil);box-shadow:inset 3px 0 0 var(--sj-vermil)}
-
-/* 四步法 flow */
-.sj-00-flow{
-  display:flex;flex-wrap:wrap;align-items:stretch;gap:0;margin:16px 0 8px;
-  border:1px solid var(--sj-line);border-radius:var(--sj-radius);overflow:hidden;
-  background:var(--sj-ink-800);
-}
-.sj-00-step{
-  flex:1 1 140px;padding:14px 14px 12px;min-width:140px;
-  border-right:1px solid var(--sj-line);position:relative;
-}
-.sj-00-step:last-child{border-right:none}
-.sj-00-step .n{font-family:var(--sj-mono);font-size:10px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:4px}
-.sj-00-step h3{font-size:15px;font-weight:600;letter-spacing:.06em;margin-bottom:6px}
-.sj-00-step p{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6}
-.sj-00-flow-svg{margin:14px 0 4px;width:100%;height:auto;display:block}
-.sj-00-note{font-size:13px;color:var(--sj-paper-300);margin-top:12px;max-width:68ch}
-.sj-00-note b{color:var(--sj-paper-100);font-weight:600}
-
-/* GY 交叉引用图 */
-.sj-00-xref-box{
-  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
-  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:10px;overflow:auto;
-}
-.sj-00-xref-box svg{display:block;width:100%;height:auto;max-width:880px;margin:0 auto}
-
-/* 页脚 */
-.sj-00-foot{
-  margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);
-  font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);
-  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
-}
-.sj-00-foot a{color:var(--sj-celadon);text-decoration:none}
-.sj-00-foot a:hover{color:var(--sj-ochre)}
-
+.foot a{color:var(--sj-celadon);text-decoration:none}
+.foot a:hover{color:var(--sj-ochre)}
 @media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .sj-seg,.sj-00-card{transition:none}
+  .sj-seg{transition:none}
 }
 @media (max-width:768px){
-  .sj-00-mast{align-items:flex-start}
-  .sj-00-meta{text-align:left}
-  .sj-00-tri,.sj-00-vols{grid-template-columns:1fr}
-  .sj-00-step{border-right:none;border-bottom:1px solid var(--sj-line)}
-  .sj-00-step:last-child{border-bottom:none}
+  .layout{grid-template-columns:1fr}
+  .mast{align-items:flex-start}
+  .meta{text-align:left}
+  .side{order:-1}
 }
-
-/* 宣纸日览 · 由 ?theme=light 或 postMessage 切换 html[data-theme] */
-html[data-theme="light"]{
-  --sj-ink-900:#f4f1ea;
-  --sj-ink-800:#ebe6dc;
-  --sj-paper-100:#1a1814;
-  --sj-paper-300:#5a5348;
-  --sj-vermil:#9a3428;
-  --sj-celadon:#3f5f54;
-  --sj-ochre:#8a6528;
-  --sj-line:#c8bfb0;
-}
-html[data-theme="light"] body{
-  background:
-    radial-gradient(1000px 560px at 72% -8%, #e8e4da 0%, transparent 55%),
-    radial-gradient(700px 420px at 8% 90%, #ebe6dc 0%, transparent 50%),
-    var(--sj-ink-900);
-  color:var(--sj-paper-100);
-}
-html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
 </style>
-<script>
-(function(){
-  var MSG='c2os-sj-theme';
-  function apply(t){
-    document.documentElement.setAttribute('data-theme', t==='light' ? 'light' : 'dark');
-  }
-  try{
-    var q=new URLSearchParams(location.search).get('theme');
-    if(q==='light'||q==='dark') apply(q);
-  }catch(e){}
-  window.addEventListener('message', function(e){
-    var d=e&&e.data;
-    if(!d||d.type!==MSG) return;
-    apply(d.theme);
-  });
-})();
-</script>
 </head>
 <body>
-<div class="sj-00-wrap" id="sj-00-top">
+<div class="wrap">
+  <header class="mast">
+    <h1>SJ-00 <span>图 A · 治乱循环总螺旋（规格修订）</span></h1>
+    <div class="meta">STEP 1 / 签名视觉对照规格书修订<br/><b>已回写</b> SJ-00.html · zhiliuan-spiral.svg · 本页作档</div>
+  </header>
 
-<header class="sj-00-mast">
-  <div>
-    <div class="badge">SJ-00 · 史鉴总索引</div>
-    <h1>史鉴<em>历史动力学引擎 × 方法论工具箱 × 古今五域对照台账</em></h1>
-    <span class="sj-00-gy-chip">交叉引用 · GY-00 / GY-01 / GY-02</span>
-  </div>
-  <div class="sj-00-meta">
-    AS_OF <b>2026-07-14</b><br/>
-    版本 <b>v0.2</b> · 图 A 螺旋回写 · <b style="color:var(--sj-celadon)">完成</b><br/>
-    本页即索引 · 无上级卷
-  </div>
-</header>
+  <p class="zhupi sj-zhupi">对照规格修订要点：viewBox 900×900 · 对数螺旋约 3.6 圈 · 宋/元/明/清分段 · 虚线分裂期 · 文景/开元/康乾盛世朱批节点 · 当代青瓷/朱红双色锚点「相位待定 → 见 SJ-04」。禁止闭合圆环。</p>
 
-<p class="sj-zhupi">门户一屏：先看「为何需要时间纵深」，再读治乱螺旋；卷目与引擎四步法给出地图，GY 交叉引用标明回流当代的接口。</p>
-
-<!-- 1 引言 -->
-<section class="sj-00-sec" id="sec-intro" aria-labelledby="h-intro">
-  <div class="sj-00-sec-h">
-    <span class="num">01 · 引言</span>
-    <h2 id="h-intro">史鉴要解决什么</h2>
-  </div>
-  <p class="sj-00-prose">ChinaOS 既有模块擅长解剖当代结构；史鉴系列补上<strong>时间纵深</strong>——把每一个当代判断，放回两千年治乱循环的坐标系里，追问这台机器历史上如何运转、如何磨损、如何被修复。它不是编年故事合集，而是一套可复用、可证伪的历史动力学与对照台账。</p>
-  <div class="sj-00-tri" role="list">
-    <article role="listitem">
-      <div class="k">定位 A</div>
-      <h3>历史规律引擎</h3>
-      <p>以兴衰周期机制为核心，抽象财政、精英、合法性、边疆、生态—人口基座的相互作用，给出可外推的相位判断。</p>
-    </article>
-    <article role="listitem">
-      <div class="k">定位 B</div>
-      <h3>案例库 + 方法论</h3>
-      <p>精选转折案例，携带史学方法论工具箱；每案输出史料—争议—借鉴的结构化解读，并标注方法的适用与盲区。</p>
-    </article>
-    <article role="listitem">
-      <div class="k">定位 C</div>
-      <h3>史鉴对照系统</h3>
-      <p>历史机制与当代政治、经济、文化、社会、外交五域一一对照；强制「相似机制 / 关键差异」双栏，禁止裸类比。</p>
-    </article>
-  </div>
-  <p class="sj-00-prose">三者不是并列栏目，而是同一引擎的三种输出。一句话：<strong>史鉴 = 历史动力学引擎 × 史学方法论工具箱 × 古今五域对照台账。</strong></p>
-</section>
-
-<!-- 2 签名图 -->
-<section class="sj-00-sec" id="sec-spiral" aria-labelledby="h-spiral">
-  <div class="sj-00-sec-h">
-    <span class="num">02 · 签名图</span>
-    <h2 id="h-spiral">治乱循环总螺旋</h2>
-  </div>
-  <p class="sj-zhupi">自内（秦统一）旋向外端「当代锚点」。实线为大一统主轴；虚线为分裂期对照样本；宋/元/明/清分色分段；文景·开元·康乾标鼎盛隐性拐点。相位色段为周期骨架示意，非正式精确纪年。</p>
-  <div class="sj-00-controls" role="toolbar" aria-label="相位高亮">
+  <div class="controls" role="toolbar" aria-label="相位高亮">
     <span class="lbl">相位</span>
-    <button type="button" class="sj-00-btn" data-phase="上升" tabindex="0">上升</button>
-    <button type="button" class="sj-00-btn" data-phase="鼎盛" tabindex="0">鼎盛</button>
-    <button type="button" class="sj-00-btn" data-phase="僵化" tabindex="0">僵化</button>
-    <button type="button" class="sj-00-btn" data-phase="崩解" tabindex="0">崩解</button>
-    <button type="button" class="sj-00-btn" data-phase="重整" tabindex="0">重整</button>
-    <button type="button" class="sj-00-btn" data-phase="" id="sj-btn-clear" tabindex="0">全部</button>
+    <button type="button" class="btn" data-phase="上升" tabindex="0">上升</button>
+    <button type="button" class="btn" data-phase="鼎盛" tabindex="0">鼎盛</button>
+    <button type="button" class="btn" data-phase="僵化" tabindex="0">僵化</button>
+    <button type="button" class="btn" data-phase="崩解" tabindex="0">崩解</button>
+    <button type="button" class="btn" data-phase="重整" tabindex="0">重整</button>
+    <button type="button" class="btn" data-phase="" id="btn-clear" tabindex="0">全部</button>
   </div>
-  <div class="sj-00-stage" id="sj-stage">
+
+  <div class="layout">
+    <div class="stage" id="stage">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" role="img" aria-labelledby="sj-title sj-desc">
   <title id="sj-title">治乱循环总螺旋图</title>
   <desc id="sj-desc">对数螺旋自内向外约三圈半：秦汉、魏晋南北朝、隋唐、五代、宋、元、明、清；虚线为分裂期；外端当代锚点。相位色为治乱周期示意，非正式精确纪年。</desc>
@@ -386,7 +220,7 @@ html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
 
   <g class="sj-title">
     <text x="56" y="48" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC, Noto Serif SC, Source Han Serif SC, serif" letter-spacing="0.12em">治乱循环总螺旋图</text>
-    <text x="56" y="72" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.08em">SJ-00 · 史鉴总索引 · 治乱循环总螺旋 · viewBox 900×900</text>
+    <text x="56" y="72" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.08em">SJ-00 · 规格书图 A · viewBox 900×900 · 中心 (450,450) · 已回写</text>
     <text x="56" y="92" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">朱批：重复而不闭合 · 内古外今 · 分裂虚线 · 鼎盛即隐性拐点</text>
   </g>
 
@@ -490,206 +324,33 @@ html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
   </g>
   <text x="844" y="876" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">规格书图 A · 对数螺旋示意 · 非精确纪年</text>
 </svg>
-  </div>
-  <p class="sj-00-note">相位高亮仅用于阅读治乱节律骨架；王朝边界、历时长短的几何比例为<strong>示意</strong>，不构成纪年度量。当代锚点为青瓷填 + 朱红描边，文案「当代:相位待定 → 见 SJ-04」——具体相位判断留给 SJ-04 与 GY-01 接口。</p>
-</section>
-
-<!-- 3 卷目导航 -->
-<section class="sj-00-sec" id="sec-vols" aria-labelledby="h-vols">
-  <div class="sj-00-sec-h">
-    <span class="num">03 · 卷目导航</span>
-    <h2 id="h-vols">四卷闭环</h2>
-  </div>
-  <p class="sj-00-prose">方法 → 机制 → 案例验证 → 当代映射，再反过来修正方法。本轮卡片仅作页内锚点占位，不跳转外部模块。</p>
-  <div class="sj-00-vols">
-    <a class="sj-00-card" href="#vol-method" tabindex="0">
-      <div class="row"><span class="vol">方法论卷</span><span class="sj-00-tag is-dev">开发中</span></div>
-      <h3>怎么看</h3>
-      <p>史家方法对比矩阵与 ChinaOS 自有「史鉴引擎·四步法」，奠定全系列操作系统。</p>
-      <div class="ids">SJ-01（已出） · SJ-02</div>
-    </a>
-    <a class="sj-00-card" href="#vol-cycle" tabindex="0">
-      <div class="row"><span class="vol">周期卷</span><span class="sj-00-tag is-done">已出 v0.1</span></div>
-      <h3>机器如何运转与损坏</h3>
-      <p>五力衰变模型与治乱循环相位盘——规律引擎的主体，对接 GY 时间轴与预测接口。</p>
-      <div class="ids">SJ-03（已出） · SJ-04（已出）</div>
-    </a>
-    <a class="sj-00-card" href="#vol-cases" tabindex="0">
-      <div class="row"><span class="vol">案例卷</span><span class="sj-00-tag is-plan">规划</span></div>
-      <h3>史料证据</h3>
-      <p>变法、盛衰拐点、王朝崩解，以及分裂期（魏晋南北朝、五代）作为超稳定结构的压力测试样本。</p>
-      <div class="ids">SJ-05 · SJ-06 · SJ-07 · SJ-08</div>
-    </a>
-    <a class="sj-00-card" href="#vol-mirror" tabindex="0">
-      <div class="row"><span class="vol">古今映射卷</span><span class="sj-00-tag is-plan">规划</span></div>
-      <h3>结论如何回流当代</h3>
-      <p>政治 / 经济 / 文化 / 社会 / 外交五域对照台账；每条映射强制填写相似机制与关键差异。</p>
-      <div class="ids">SJ-20 · SJ-21 · SJ-22 · SJ-23 · SJ-24</div>
-    </a>
-  </div>
-
-  <div class="sj-00-ph" id="vol-method">
-    <h4>方法论卷</h4>
-    <p><a href="./SJ-01.html" style="color:var(--sj-celadon)">SJ-01 史家方法对比矩阵</a>（八家光谱 + 四栏矩阵 + 镜头指南）已交付 v0.1。SJ-02 史鉴引擎·四步法与史鉴台账模板待建。</p>
-  </div>
-  <div class="sj-00-ph" id="vol-cycle">
-    <h4>周期卷</h4>
-    <p><a href="./SJ-03.html" style="color:var(--sj-celadon)">SJ-03 五力衰变模型</a>（力场签名 + 逐力解剖 + 耦合主链 + 相位/修复力契约）已交付 v0.1。<a href="./SJ-04.html" style="color:var(--sj-celadon)">SJ-04 治乱循环相位盘</a>（不等分罗盘 + 五相位判据 + 修复力诊断 + 共享契约 + 案例卷接口）已交付 v0.1。签名预览稿仍保留为对照：<a href="./SJ-04-compass-preview.html" style="color:var(--sj-ochre)">SJ-04-compass-preview</a>。</p>
-  </div>
-  <div class="sj-00-ph" id="vol-cases">
-    <h4>案例卷 · 占位（含分裂期）</h4>
-    <p>SJ-05 变法改革；SJ-06 盛衰拐点；SJ-07 王朝崩解；SJ-08 分裂—重整。统一输出史鉴台账字段。</p>
-  </div>
-  <div class="sj-00-ph" id="vol-mirror">
-    <h4>古今映射卷 · 占位</h4>
-    <p>SJ-20 政治 · SJ-21 经济 · SJ-22 文化 · SJ-23 社会 · SJ-24 外交。禁止缺「关键差异」栏的裸类比。</p>
-  </div>
-</section>
-
-<!-- 4 引擎总览 -->
-<section class="sj-00-sec" id="sec-engine" aria-labelledby="h-engine">
-  <div class="sj-00-sec-h">
-    <span class="num">04 · 引擎总览</span>
-    <h2 id="h-engine">史鉴引擎 · 四步法</h2>
-  </div>
-  <p class="sj-00-prose"><strong>史鉴引擎·四步法</strong>为 ChinaOS 自有融合方法论（详细定义见 SJ-02）：把任一历史时点切成可对照、可证伪的一张史鉴台账。</p>
-
-  <svg class="sj-00-flow-svg" viewBox="0 0 840 72" role="img" aria-label="四步法流程：结构切片 → 周期定位 → 机制归因 → 古今映射">
-    <defs>
-      <marker id="sj-arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-        <path d="M0,0 L6,3 L0,6 Z" fill="var(--sj-ochre)"/>
-      </marker>
-    </defs>
-    <rect x="8" y="14" width="170" height="44" rx="4" fill="var(--sj-ink-800)" stroke="var(--sj-line)"/>
-    <text x="93" y="32" text-anchor="middle" fill="var(--sj-ochre)" font-size="9" font-family="ui-monospace,monospace" letter-spacing="0.12em">01 STRUCTURE</text>
-    <text x="93" y="48" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC,serif">结构切片</text>
-    <line x1="186" y1="36" x2="216" y2="36" stroke="var(--sj-ochre)" stroke-width="1.4" marker-end="url(#sj-arr)"/>
-    <rect x="224" y="14" width="170" height="44" rx="4" fill="var(--sj-ink-800)" stroke="var(--sj-line)"/>
-    <text x="309" y="32" text-anchor="middle" fill="var(--sj-ochre)" font-size="9" font-family="ui-monospace,monospace" letter-spacing="0.12em">02 CYCLE</text>
-    <text x="309" y="48" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC,serif">周期定位</text>
-    <line x1="402" y1="36" x2="432" y2="36" stroke="var(--sj-ochre)" stroke-width="1.4" marker-end="url(#sj-arr)"/>
-    <rect x="440" y="14" width="170" height="44" rx="4" fill="var(--sj-ink-800)" stroke="var(--sj-line)"/>
-    <text x="525" y="32" text-anchor="middle" fill="var(--sj-ochre)" font-size="9" font-family="ui-monospace,monospace" letter-spacing="0.12em">03 MECHANISM</text>
-    <text x="525" y="48" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC,serif">机制归因</text>
-    <line x1="618" y1="36" x2="648" y2="36" stroke="var(--sj-ochre)" stroke-width="1.4" marker-end="url(#sj-arr)"/>
-    <rect x="656" y="14" width="170" height="44" rx="4" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)"/>
-    <text x="741" y="32" text-anchor="middle" fill="var(--sj-vermil)" font-size="9" font-family="ui-monospace,monospace" letter-spacing="0.12em">04 MIRROR</text>
-    <text x="741" y="48" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC,serif">古今映射</text>
-  </svg>
-
-  <div class="sj-00-flow">
-    <div class="sj-00-step">
-      <div class="n">01 · Structure</div>
-      <h3>结构切片</h3>
-      <p>把某一时点切成君权 / 官僚 / 军事 / 地方精英 / 生态基座的权力几何横截面。</p>
     </div>
-    <div class="sj-00-step">
-      <div class="n">02 · Cycle</div>
-      <h3>周期定位</h3>
-      <p>将该切片放到治乱相位盘上，判断上升、鼎盛、僵化、崩解或重建。</p>
-    </div>
-    <div class="sj-00-step">
-      <div class="n">03 · Mechanism</div>
-      <h3>机制归因</h3>
-      <p>以五力模型做因果台账，区分「正史归因」与「结构实因」双列。</p>
-    </div>
-    <div class="sj-00-step">
-      <div class="n">04 · Mirror</div>
-      <h3>古今映射</h3>
-      <p>投射当代五域；每条对照必须同时填写相似机制与关键差异。</p>
-    </div>
+
+    <aside class="side" id="side" aria-live="polite">
+      <div class="k">朱批栏 · 相位定位</div>
+      <div class="t" id="side-title">悬停 / 点击朝代段</div>
+      <div class="b" id="side-body">侧栏将给出该段一句话相位定位（示意骨架，非正式精确系年）。盛世节点展开「盛极即拐点」注解。</div>
+      <div class="hint">键盘：焦点 + Enter / Space</div>
+    </aside>
   </div>
-  <p class="sj-00-note">四步法的标准产物是一张<strong>史鉴台账</strong>（一句话拐点 / 结构切片图 / 相位 / 五力归因 / 史家交锋 / 成败三列 / 古今映射双栏）。案例卷与映射卷均以此为统一模板。</p>
-</section>
 
-<!-- 5 GY 交叉引用 -->
-<section class="sj-00-sec" id="sec-gy" aria-labelledby="h-gy">
-  <div class="sj-00-sec-h">
-    <span class="num">05 · 与 GY 交叉引用</span>
-    <h2 id="h-gy">史鉴 ↔ 人口图谱接口</h2>
-  </div>
-  <p class="sj-zhupi">本图为关系骨架：深链路由在对应模块就绪后接入；本轮不以出站跳转替代页内说明。</p>
-  <div class="sj-00-xref-box">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 340" role="img" aria-labelledby="xref-title xref-desc">
-  <title id="xref-title">史鉴与 GY 系列交叉引用图</title>
-  <desc id="xref-desc">SJ-03 连接 GY-02 合法性机器；SJ-04 连接 GY-01 国运时间轴与 2026–2036；生态—人口力连接 GY 人口图谱。</desc>
-  <defs>
-    <marker id="gy-arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
-      <path d="M0,0 L7,3.5 L0,7 Z" fill="var(--sj-celadon)"/>
-    </marker>
-  </defs>
-  <rect width="880" height="340" fill="var(--sj-ink-900)"/>
-  <text x="32" y="36" fill="var(--sj-paper-100)" font-size="16" font-family="Songti SC,serif" letter-spacing="0.1em">史鉴 ↔ GY 交叉引用</text>
-  <text x="32" y="56" fill="var(--sj-ochre)" font-size="10" font-family="ui-monospace,monospace" letter-spacing="0.08em">关系骨架 · Round 1</text>
+  <p class="note"><strong>归档说明</strong>：图 A 已回写 <code>SJ-00.html</code> 与 <code>zhiliuan-spiral.svg</code>（含架构师 3 条微调）。本页保留为规格确认对照档；正文以 SJ-00 为准。</p>
+  <p class="gap">相对旧版 gap：840×720→900×900；「宋元明清」合并段→四朝分色；补文景/开元/康乾「隐性拐点」朱批；当代改为青瓷填 + 朱红描边，贴合清末段开口。</p>
 
-  <!-- SJ 侧 -->
-  <rect x="40" y="90" width="200" height="56" rx="5" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)"/>
-  <text x="140" y="114" text-anchor="middle" fill="var(--sj-vermil)" font-size="10" font-family="ui-monospace,monospace">SJ-03</text>
-  <text x="140" y="132" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC,serif">五力衰变 · 合法性力</text>
-
-  <rect x="40" y="170" width="200" height="56" rx="5" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)"/>
-  <text x="140" y="194" text-anchor="middle" fill="var(--sj-ochre)" font-size="10" font-family="ui-monospace,monospace">SJ-04</text>
-  <text x="140" y="212" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC,serif">治乱循环相位盘</text>
-
-  <rect x="40" y="250" width="200" height="56" rx="5" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)"/>
-  <text x="140" y="274" text-anchor="middle" fill="var(--sj-celadon)" font-size="10" font-family="ui-monospace,monospace">五力 · 生态—人口基座</text>
-  <text x="140" y="292" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC,serif">全系列人口压舱</text>
-
-  <!-- GY 侧 -->
-  <rect x="640" y="90" width="200" height="56" rx="5" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)"/>
-  <text x="740" y="114" text-anchor="middle" fill="var(--sj-vermil)" font-size="10" font-family="ui-monospace,monospace">GY-02</text>
-  <text x="740" y="132" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC,serif">合法性机器</text>
-
-  <rect x="640" y="170" width="200" height="56" rx="5" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)"/>
-  <text x="740" y="194" text-anchor="middle" fill="var(--sj-ochre)" font-size="10" font-family="ui-monospace,monospace">GY-01</text>
-  <text x="740" y="212" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC,serif">国运时间轴 · 2026–2036</text>
-
-  <rect x="640" y="250" width="200" height="56" rx="5" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)"/>
-  <text x="740" y="274" text-anchor="middle" fill="var(--sj-celadon)" font-size="10" font-family="ui-monospace,monospace">GY-00+</text>
-  <text x="740" y="292" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC,serif">人口图谱全系列</text>
-
-  <!-- links -->
-  <path d="M250,118 H620" stroke="var(--sj-vermil)" stroke-width="1.5" fill="none" marker-end="url(#gy-arr)" opacity="0.85"/>
-  <text x="435" y="110" text-anchor="middle" fill="var(--sj-paper-300)" font-size="11" font-family="Songti SC,serif">合法性一力的当代形态</text>
-
-  <path d="M250,198 H620" stroke="var(--sj-ochre)" stroke-width="1.5" fill="none" marker-end="url(#gy-arr)" opacity="0.85"/>
-  <text x="435" y="190" text-anchor="middle" fill="var(--sj-paper-300)" font-size="11" font-family="Songti SC,serif">相位盘 ↔ 干支时间轴 / 概率预测</text>
-
-  <path d="M250,278 H620" stroke="var(--sj-celadon)" stroke-width="1.5" fill="none" marker-end="url(#gy-arr)" opacity="0.85"/>
-  <text x="435" y="270" text-anchor="middle" fill="var(--sj-paper-300)" font-size="11" font-family="Songti SC,serif">生态—人口力 ↔ 人群切片总盘</text>
-
-  <!-- center note -->
-  <circle cx="440" cy="70" r="3" fill="var(--sj-vermil)"/>
-  <text x="452" y="74" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">朱批：接口语义已冻结 · 深链待模块就绪</text>
-</svg>
-  </div>
-  <p class="sj-00-note">另：SJ-24 外交映射将对接未来地缘模块。接口以机制对照为准，不在本索引页做当代政治断言。</p>
-</section>
-
-<footer class="sj-00-foot">
-  <span>ChinaOS · 史鉴 SJ-00 · v0.2 · AS_OF 2026-07-14</span>
-  <span>返回本页顶端 · 本模块即索引 · 无上级</span>
-  <span><a href="#sj-00-top">↑ 顶</a> · <a href="./zhiliuan-spiral.svg">纯 SVG</a> · <a href="./SJ-00-spiral-rev-preview.html">修订预览(档)</a></span>
-</footer>
-
+  <footer class="foot">
+    <span>正文：<a href="./SJ-00.html">SJ-00.html</a> · 纯 SVG：<a href="./zhiliuan-spiral.svg">zhiliuan-spiral.svg</a> · 旧预览：<a href="./SJ-00-spiral-preview.html">spiral-preview</a></span>
+    <span>ChinaOS · 史鉴 SJ · 图 A 修订 archive v0.2</span>
+  </footer>
 </div>
 <script>
 (function(){
-  const BLURB = {
-    qinhan: '秦汉：上升→崩解的完整相位短循环样本（示意）',
-    weijin: '魏晋南北朝：分裂=失衡态；虚线对照超稳定结构压力测试',
-    suitang: '隋唐：重整后上升至开元鼎盛，再入僵化—崩解',
-    wudai: '五代：短暂崩解—重整，军事力畸大的极端样本',
-    song: '宋：对五代的反向设计；重整后长期僵化/积弱风险',
-    yuan: '元：短周期的上升—鼎盛—崩解压缩样本',
-    ming: '明：完整相位链；基座压力与合法性磨损叠合于晚期',
-    qing: '清：康乾为鼎盛隐性拐点；末端接当代开口'
-  };
+  const BLURB = {"qinhan": "秦汉：上升→崩解的完整相位短循环样本（示意）", "weijin": "魏晋南北朝：分裂=失衡态；虚线对照超稳定结构压力测试", "suitang": "隋唐：重整后上升至开元鼎盛，再入僵化—崩解", "wudai": "五代：短暂崩解—重整，军事力畸大的极端样本", "song": "宋：对五代的反向设计；重整后长期僵化/积弱风险", "yuan": "元：短周期的上升—鼎盛—崩解压缩样本", "ming": "明：完整相位链；基座压力与合法性磨损叠合于晚期", "qing": "清：康乾为鼎盛隐性拐点；末端接当代开口"};
   const NAMES = {qinhan:'秦汉',weijin:'魏晋南北朝',suitang:'隋唐',wudai:'五代',song:'宋',yuan:'元',ming:'明',qing:'清'};
-  const stage = document.getElementById('sj-stage');
-  if(!stage) return;
+  const stage = document.getElementById('stage');
   const segs = Array.from(stage.querySelectorAll('.sj-seg'));
-  const buttons = Array.from(document.querySelectorAll('.sj-00-controls .sj-00-btn'));
+  const buttons = Array.from(document.querySelectorAll('.controls .btn'));
+  const sideTitle = document.getElementById('side-title');
+  const sideBody = document.getElementById('side-body');
   let activePhase = '';
   let activeDyn = '';
 
@@ -700,32 +361,39 @@ html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
     stage.querySelectorAll('.sj-prosper').forEach(g => g.classList.remove('is-on'));
   }
 
+  function setSide(title, body){
+    sideTitle.textContent = title;
+    sideBody.textContent = body;
+  }
+
   function applyPhase(phase){
     activePhase = phase || '';
     clearDyn();
     buttons.forEach(b => {
-      const isClear = b.id === 'sj-btn-clear';
-      const on = activePhase ? ((b.dataset.phase || '') === activePhase) : isClear;
-      b.classList.toggle('is-on', on);
+      const on = activePhase ? (b.dataset.phase === activePhase) : (b.id === 'btn-clear');
+      b.classList.toggle('is-on', !!on);
     });
     if(!activePhase){
       stage.classList.remove('is-filtering');
       segs.forEach(s => s.classList.remove('is-hot'));
+      setSide('悬停 / 点击朝代段', '侧栏将给出该段一句话相位定位（示意骨架，非正式精确系年）。盛世节点展开「盛极即拐点」注解。');
       return;
     }
     stage.classList.add('is-filtering');
     segs.forEach(s => s.classList.toggle('is-hot', s.dataset.phase === activePhase));
+    setSide('相位筛选 · ' + activePhase, '高亮所有「' + activePhase + '」色段。王朝历时与几何比例为示意，不构成纪年度量。');
   }
 
   function highlightDynasty(dyn){
     if(!dyn || !BLURB[dyn]) return;
     activePhase = '';
-    buttons.forEach(b => b.classList.toggle('is-on', b.id === 'sj-btn-clear'));
+    buttons.forEach(b => b.classList.toggle('is-on', b.id === 'btn-clear'));
     stage.classList.remove('is-filtering');
     segs.forEach(s => s.classList.remove('is-hot'));
     activeDyn = dyn;
     stage.classList.add('is-dyn');
     segs.forEach(s => s.classList.toggle('is-dyn-hot', s.dataset.dynasty === dyn));
+    setSide(NAMES[dyn] || dyn, BLURB[dyn]);
   }
 
   buttons.forEach(b => b.addEventListener('click', () => applyPhase(b.dataset.phase || '')));
@@ -733,20 +401,19 @@ html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
   segs.forEach(s => {
     s.setAttribute('tabindex','0');
     s.setAttribute('role','button');
-    s.setAttribute('aria-label', (NAMES[s.dataset.dynasty] || s.dataset.dynasty || '') + ' · ' + s.dataset.phase);
+    s.setAttribute('aria-label', (NAMES[s.dataset.dynasty] || s.dataset.dynasty) + ' · ' + s.dataset.phase);
     const act = () => highlightDynasty(s.dataset.dynasty);
     s.addEventListener('click', act);
-    s.addEventListener('keydown', e => {
-      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); act(); }
-    });
+    s.addEventListener('mouseenter', act);
+    s.addEventListener('focus', act);
+    s.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); act(); }});
   });
 
   stage.querySelectorAll('.sj-dyn-label').forEach(el => {
     const act = () => highlightDynasty(el.dataset.dynasty);
     el.addEventListener('click', act);
-    el.addEventListener('keydown', e => {
-      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); act(); }
-    });
+    el.addEventListener('mouseenter', act);
+    el.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); act(); }});
   });
 
   stage.querySelectorAll('.sj-prosper').forEach(g => {
@@ -754,30 +421,24 @@ html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
       clearDyn();
       stage.classList.remove('is-filtering');
       segs.forEach(s => s.classList.remove('is-hot'));
-      buttons.forEach(b => b.classList.toggle('is-on', b.id === 'sj-btn-clear'));
       g.classList.add('is-on');
+      setSide('盛世节点 · ' + (g.querySelector('text')?.textContent || ''), g.dataset.note || '');
     };
     g.addEventListener('click', act);
-    g.addEventListener('keydown', e => {
-      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); act(); }
-    });
+    g.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); act(); }});
   });
 
   const tip = document.getElementById('sj-dangdai');
   if(tip){
     const act = () => {
       clearDyn();
-      stage.classList.remove('is-filtering');
-      segs.forEach(s => s.classList.remove('is-hot'));
-      buttons.forEach(b => b.classList.toggle('is-on', b.id === 'sj-btn-clear'));
+      setSide('当代锚点', tip.dataset.note || '当代:相位待定 → 见 SJ-04');
     };
     tip.addEventListener('click', act);
-    tip.addEventListener('keydown', e => {
-      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); act(); }
-    });
+    tip.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); act(); }});
   }
 
-  document.getElementById('sj-btn-clear').classList.add('is-on');
+  document.getElementById('btn-clear').classList.add('is-on');
 })();
 </script>
 </body>
