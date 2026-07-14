@@ -1512,7 +1512,11 @@ textarea:focus {
   border: 1px solid var(--border-subtle);
 }
 
-/* Talent · list + detail split — desktop equal height, mobile natural stack */
+/* Talent · list + detail split — desktop equal height, mobile natural stack
+   Key: auto-height CSS Grid rows size by ALL columns’ max-content. A 1600-row
+   left list therefore inflates the document unless its track contribution is
+   zeroed (height:0 + min-height:100%) so the right detail (or min-height floor)
+   sets row height and the left scrolls inside. */
 .talent-split {
   display: grid;
   gap: 1rem;
@@ -1532,24 +1536,20 @@ textarea:focus {
     min-height: min(480px, 68vh);
   }
 
-  /* Row height follows right detail (or min-height floor); left must not expand track */
   .talent-split > * {
     min-height: 0;
   }
-}
 
-.talent-split__list-card {
-  margin-bottom: 0 !important;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-
-@media (min-width: 768px) {
-  .talent-split__list-card {
+  /*
+   * Zero content contribution so left cannot expand the grid track.
+   * Spec-higher than `.talent-split > *` so min-height:100% wins.
+   */
+  .talent-split > .talent-split__list-card {
+    height: 0;
+    min-height: 100%;
+    max-height: 100%;
     overflow: hidden;
     align-self: stretch;
-    height: 100%;
   }
 
   .talent-split__list-card > :not(.talent-split__scroll) {
@@ -1559,6 +1559,26 @@ textarea:focus {
   .talent-split__list-card .os-card-title {
     margin-bottom: 0.75rem;
   }
+
+  /*
+   * Belt-and-suspenders: if an ancestor breaks the height:0 chain, still cap the
+   * scroll pane so 1600+ rows cannot inflate the document. Prefer matching the
+   * detail pane when stretch works (100% of constrained card).
+   */
+  .talent-split__scroll {
+    max-height: min(70vh, calc(100vh - 12rem));
+  }
+
+  .talent-split > .talent-split__detail {
+    align-self: stretch;
+  }
+}
+
+.talent-split__list-card {
+  margin-bottom: 0 !important;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .talent-split__scroll {
@@ -1576,12 +1596,6 @@ textarea:focus {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-}
-
-@media (min-width: 768px) {
-  .talent-split__detail {
-    align-self: stretch;
-  }
 }
 
 .os-list-item {
