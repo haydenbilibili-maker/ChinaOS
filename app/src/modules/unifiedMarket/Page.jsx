@@ -3,13 +3,14 @@ import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { categoryX, valueY, GRID, radarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
 // ============================================================================
 // 全国统一大市场 · 破除地方保护与市场分割 —— 制度型开放的内部底座
-// asOf 2026-06-11 · 公开资料示意，非官方统计
+// asOf 2026-07-14 · 公开资料示意，非官方统计
 // ============================================================================
 
-const AS_OF = '2026-06-11';
+const AS_OF = AS_OF_BASELINE;
 
 // 市场分割指数（示意，越高分割越严重）
 const fragOpt = {

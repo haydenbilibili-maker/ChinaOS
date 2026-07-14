@@ -13,7 +13,7 @@ import { categoryX, valueY, CHART_TOOLTIP } from '../shared/chartHelpers.js';
 // ============================================================================
 // 历史周期对照 · 我们在周期的哪一格（SectionCycle · Round6）
 // ----------------------------------------------------------------------------
-// 自包含 Section：内部直接取 econCycle.js 常量（确定性 seed，基准日 '2026-06-11'），
+// 自包含 Section：内部直接取 econCycle.js 常量（确定性 seed，基准日 '2026-07-14'），
 // 主线程 Page.jsx import 后 <SectionCycle/> 直接落位即可，无 props。
 //   · 顶部 BandHead 编号 ↻ 标题区 + cycleSummary 合成研判条
 //   · 三联：

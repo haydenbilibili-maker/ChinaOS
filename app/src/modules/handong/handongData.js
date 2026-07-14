@@ -13,10 +13,11 @@
 // ============================================================================
 
 import { CRISIS_DOMAINS, TOOLS } from '../sandbox/crisisData.js';
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
 export { CRISIS_DOMAINS, TOOLS };
 
-export const HD_AS_OF = '2026-06-11';
+export const HD_AS_OF = AS_OF_BASELINE;
 
 // 六域在汉东语境下的读法（序同 CRISIS_DOMAINS，数组本体不变）。
 export const HD_DOMAIN_LABELS = ['科技产业', '经济', '社会民生', '外部环境', '能源资源', '金融财政'];

@@ -1,12 +1,13 @@
 // ============================================================================
 // 数字巨网 · 结构化数据
-// asOf: 2026-06-11 · 公开资料示意（CNNIC/工信部/平台财报/政策文本整理）
+// asOf: 2026-07-14 · 公开资料示意（CNNIC/工信部/平台财报/政策文本整理）
 // 刻画网络经济、网络世界、网络传媒、社交舆情、数字治理五维塑造的数字中国
 // ============================================================================
 
 import { categoryX, valueY, GRID, LEGEND, radarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
-export const AS_OF = '2026-06-11';
+export const AS_OF = AS_OF_BASELINE;
 
 /** 五大研究切面 */
 export const DOMAINS = [

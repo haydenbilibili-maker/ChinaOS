@@ -1,0 +1,568 @@
+{
+  "baseline": "2026-07-14",
+  "files_scanned": 1221,
+  "files_flagged": 25,
+  "findings_by_kind": {
+    "pandemic_copy": 45,
+    "stale_as_of": 2,
+    "placeholder_date": 1
+  },
+  "baseline_config": {
+    "config_exists": true,
+    "expected": "2026-07-14"
+  },
+  "news_feed": {
+    "seed_count": 45,
+    "stale_pre_2024": [],
+    "has_60_day_filter": true,
+    "has_pandemic_filter": true,
+    "as_of_constant": "mismatch"
+  },
+  "top_flagged": [
+    {
+      "file": "app/src/lib/db/figureCulturalElite2026.js",
+      "count": 4,
+      "kinds": [
+        "pandemic_copy"
+      ]
+    },
+    {
+      "file": "scripts/genCulturalEliteSeed.py",
+      "count": 4,
+      "kinds": [
+        "pandemic_copy"
+      ]
+    },
+    {
+      "file": "scripts/genDissidentSeed.py",
+      "count": 4,
+      "kinds": [
+        "pandemic_copy"
+      ]
+    },
+    {
+      "file": "app/public/policy-corpus/policies/gwr-2024.md",
+      "count": 3,
+      "kinds": [
+        "pandemic_copy"
+      ]
+    },
+    {
+      "file": "app/public/policy-corpus/policies/policies/gwr-2024.md",
+      "count": 3,
+      "kinds": [
+        "pandemic_copy"
+      ]
+    },
+    {
+      "file": "app/src/lib/db/figureAcademician2026.js",
+      "count": 3,
+      "kinds": [
+        "pandemic_copy"
+      ]
+    },
+    {
+      "file": "scripts/genAcademicianSeed.py",
+      "count": 3,
+      "kinds": [
+        "pandemic_copy"
+      ]
+    },
+    {
+      "file": "app/src/lib/db/figureDissident2026.js",
+      "count": 2,
+      "kinds": [
+        "pandemic_copy"
+      ]
+    },
+    {
+      "file": "app/src/lib/db/militaryIntel2026.js",
+      "count": 2,
+      "kinds": [
+        "stale_as_of"
+      ]
+    },
+    {
+      "file": "app/src/lib/db/talentBulkExpansion2026.js",
+      "count": 2,
+      "kinds": [
+        "pandemic_copy"
+      ]
+    },
+    {
+      "file": "app/src/modules/chronicle/data.js",
+      "count": 2,
+      "kinds": [
+        "pandemic_copy"
+      ]
+    },
+    {
+      "file": "app/src/modules/digital/Page.jsx",
+      "count": 2,
+      "kinds": [
+        "pandemic_copy"
+      ]
+    },
+    {
+      "file": "scripts/globalFreshnessAudit.py",
+      "count": 2,
+      "kinds": [
+        "placeholder_date",
+        "pandemic_copy"
+      ]
+    },
+    {
+      "file": "app/src/lib/db/figureDiplomaticCorps2026.js",
+      "count": 1,
+      "kinds": [
+        "pandemic_copy"
+      ]
+    },
+    {
+      "file": "app/src/lib/talent/talentEnrich.js",
+      "count": 1,
+      "kinds": [
+        "pandemic_copy"
+      ]
+    },
+    {
+      "file": "app/src/modules/digitalGiantWeb/Page.jsx",
+      "count": 1,
+      "kinds": [
+        "pandemic_copy"
+      ]
+    },
+    {
+      "file": "app/src/modules/digitalGiantWeb/data.js",
+      "count": 1,
+      "kinds": [
+        "pandemic_copy"
+      ]
+    },
+    {
+      "file": "app/src/modules/guoyun/guoyunContent.html",
+      "count": 1,
+      "kinds": [
+        "pandemic_copy"
+      ]
+    },
+    {
+      "file": "app/src/modules/laonian/laonianContent.html",
+      "count": 1,
+      "kinds": [
+        "pandemic_copy"
+      ]
+    },
+    {
+      "file": "app/src/modules/socialgov/Page.jsx",
+      "count": 1,
+      "kinds": [
+        "pandemic_copy"
+      ]
+    },
+    {
+      "file": "app/src/modules/techtree/techDeep.js",
+      "count": 1,
+      "kinds": [
+        "pandemic_copy"
+      ]
+    },
+    {
+      "file": "app/src/modules/yishixingtai/yishixingtaiContent.html",
+      "count": 1,
+      "kinds": [
+        "pandemic_copy"
+      ]
+    },
+    {
+      "file": "app/src/modules/zhongchan/zhongchanContent.html",
+      "count": 1,
+      "kinds": [
+        "pandemic_copy"
+      ]
+    },
+    {
+      "file": "scripts/expandTalentBulk2026.py",
+      "count": 1,
+      "kinds": [
+        "pandemic_copy"
+      ]
+    },
+    {
+      "file": "scripts/genDiplomaticCorpsSeed.py",
+      "count": 1,
+      "kinds": [
+        "pandemic_copy"
+      ]
+    }
+  ],
+  "details": [
+    {
+      "file": "app/public/policy-corpus/policies/gwr-2024.md",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 22,
+          "snippet": "过去一年，是全面贯彻党的二十大精神的开局之年，是本届政府依法履职的第一年。面对异常复杂的国际环境和艰巨繁重的改革发展稳定任务，以习近平同志为核心的党中央团结带领全国各族人民，顶住外部压力、克服内部困难，付出艰辛努力，新冠疫情防控实现平稳转段"
+        },
+        {
+          "kind": "pandemic_copy",
+          "line": 38,
+          "snippet": "回顾过去一年，多重困难挑战交织叠加，我国经济波浪式发展、曲折式前进，成绩来之不易。从国际看，世界经济复苏乏力，地缘政治冲突加剧，保护主义、单边主义上升，外部环境对我国发展的不利影响持续加大。从国内看，经历三年新冠疫情冲击，经济恢复发展本身有"
+        },
+        {
+          "kind": "pandemic_copy",
+          "line": 50,
+          "snippet": "五是着力抓好民生保障，推进社会事业发展。聚焦群众关切，办好民生实事。高度重视稳就业，出台支持企业稳岗拓岗政策，加强高校毕业生等重点群体就业促进服务，脱贫人口务工规模超过3300万。强化义务教育薄弱环节建设，做好“双减”工作，国家助学贷款提标"
+        }
+      ]
+    },
+    {
+      "file": "app/public/policy-corpus/policies/policies/gwr-2024.md",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 22,
+          "snippet": "过去一年，是全面贯彻党的二十大精神的开局之年，是本届政府依法履职的第一年。面对异常复杂的国际环境和艰巨繁重的改革发展稳定任务，以习近平同志为核心的党中央团结带领全国各族人民，顶住外部压力、克服内部困难，付出艰辛努力，新冠疫情防控实现平稳转段"
+        },
+        {
+          "kind": "pandemic_copy",
+          "line": 38,
+          "snippet": "回顾过去一年，多重困难挑战交织叠加，我国经济波浪式发展、曲折式前进，成绩来之不易。从国际看，世界经济复苏乏力，地缘政治冲突加剧，保护主义、单边主义上升，外部环境对我国发展的不利影响持续加大。从国内看，经历三年新冠疫情冲击，经济恢复发展本身有"
+        },
+        {
+          "kind": "pandemic_copy",
+          "line": 50,
+          "snippet": "五是着力抓好民生保障，推进社会事业发展。聚焦群众关切，办好民生实事。高度重视稳就业，出台支持企业稳岗拓岗政策，加强高校毕业生等重点群体就业促进服务，脱贫人口务工规模超过3300万。强化义务教育薄弱环节建设，做好“双减”工作，国家助学贷款提标"
+        }
+      ]
+    },
+    {
+      "file": "app/src/lib/db/figureAcademician2026.js",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 48,
+          "snippet": "A('ac-cae-chen2', '陈薇', 'cae', '医学', '军事科学院', '医药卫生学部', '生物安全', '埃博拉与新冠疫苗研发', '60后', 2019, '工程院官网', '', 'ce-sci-chen2'),"
+        },
+        {
+          "kind": "pandemic_copy",
+          "line": 49,
+          "snippet": "A('ac-cae-zhong', '钟南山', 'cae', '医学', '广州呼吸疾病研究所', '医药卫生学部', '呼吸病学', '非典与新冠防控', '30后', 1996, '工程院官网', '', 'ce-sci-zhong'"
+        },
+        {
+          "kind": "pandemic_copy",
+          "line": 175,
+          "snippet": "A('ac-cae-zhang7', '张伯礼', 'cae', '医学', '天津中医药大学', '医药卫生学部', '中医', '中医药防治新冠肺炎', '40后', 2011, '工程院官网', ''),"
+        }
+      ]
+    },
+    {
+      "file": "app/src/lib/db/figureCulturalElite2026.js",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 413,
+          "snippet": "N('ce-sci-chen2', '陈薇', '医学', '军事科学院', '工程院院士·生物安全', '埃博拉与新冠疫苗研发', '60后', '工程院官网'),"
+        },
+        {
+          "kind": "pandemic_copy",
+          "line": 414,
+          "snippet": "N('ce-sci-zhong', '钟南山', '医学', '广州呼吸疾病研究所', '工程院院士·呼吸病学', '非典与新冠防控', '30后', '工程院官网'),"
+        },
+        {
+          "kind": "pandemic_copy",
+          "line": 487,
+          "snippet": "N('ce-sci-zhang7', '张文宏', '医学', '复旦大学附属华山医院', '感染病学专家', '新冠防控与公共卫生', '60后', '公开报道'),"
+        },
+        {
+          "kind": "pandemic_copy",
+          "line": 608,
+          "snippet": "N('ce-md-zhong', '钟南山', '呼吸病学', '广州呼吸疾病研究所', '呼吸病学专家', '非典与新冠防控', '30后', '工程院官网'),"
+        }
+      ]
+    },
+    {
+      "file": "app/src/lib/db/figureDiplomaticCorps2026.js",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 195,
+          "snippet": "D('io-who', '杨兆华', 'Yang Zhaohua', '男', '副常驻代表', 'WHO', '日内瓦', '国际组织', '2021-02', '2021-04', ['国家卫健委国际合作司'], '新冠疫情溯源与公共卫"
+        }
+      ]
+    },
+    {
+      "file": "app/src/lib/db/figureDissident2026.js",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 41,
+          "snippet": "D(\"dv-zhang-zhan\", \"张展\", \"Zhang Zhan\", \"lawyer\", \"维权律师\", \"上海律师/前金融从业者\", \"信息权\", \"武汉疫情现场记录\", \"在押\", \"境内·上海\", [{ from: \"2020"
+        },
+        {
+          "kind": "pandemic_copy",
+          "line": 57,
+          "snippet": "D(\"dv-fang-bin\", \"方斌\", \"Fang Bin\", \"journalist\", \"记者\", \"武汉服装商人\", \"公民记录\", \"武汉疫情封城记录\", \"在押\", \"境内·湖北\", [{ from: \"2020\", to:"
+        }
+      ]
+    },
+    {
+      "file": "app/src/lib/db/militaryIntel2026.js",
+      "findings": [
+        {
+          "kind": "stale_as_of",
+          "line": 115,
+          "value": "2019-07",
+          "snippet": "asOf: '2019-07',"
+        },
+        {
+          "kind": "stale_as_of",
+          "line": 121,
+          "value": "2023-03",
+          "snippet": "asOf: '2023-03',"
+        }
+      ]
+    },
+    {
+      "file": "app/src/lib/db/talentBulkExpansion2026.js",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 93,
+          "snippet": "works: '新冠防控与感染病', decade: '60后', source: '公开报道', region: '复旦大学',"
+        },
+        {
+          "kind": "pandemic_copy",
+          "line": 94,
+          "snippet": "verifyTier: 'academic', bio: '新冠防控与感染病', tags: '传染病' }),"
+        }
+      ]
+    },
+    {
+      "file": "app/src/lib/talent/talentEnrich.js",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 177,
+          "snippet": "bio: '呼吸病学专家、中国工程院院士；公开节点含SARS与新冠抗疫专家组公开活动。',"
+        }
+      ]
+    },
+    {
+      "file": "app/src/modules/chronicle/data.js",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 107,
+          "snippet": "{ y: 2020, domain: 'society', title: '新冠疫情暴发', desc: '武汉封城，举国动员防控，三年常态化防疫改变经济与社会运行轨迹。', w: 3 },"
+        },
+        {
+          "kind": "pandemic_copy",
+          "line": 111,
+          "snippet": "{ y: 2020, domain: 'world', title: '疫情全球大流行', desc: '新冠席卷全球，供应链断裂与货币大放水并行，各国内顾倾向加深。', w: 2 },"
+        }
+      ]
+    },
+    {
+      "file": "app/src/modules/digital/Page.jsx",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 110,
+          "snippet": "scale: '一体化政务平台注册用户 10 亿+', cases: '浙里办 / 粤省事 / 随申办 / 健康码遗产',"
+        },
+        {
+          "kind": "pandemic_copy",
+          "line": 112,
+          "snippet": "tension: '治理效率与个体数据权利的平衡未定型；健康码证明了动员能力，也留下了权力边界议题。',"
+        }
+      ]
+    },
+    {
+      "file": "app/src/modules/digitalGiantWeb/Page.jsx",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 236,
+          "snippet": "健康码证明数字治理的动员极限；社会信用、算法备案与数据分类分级把平台纳入科层接口——效率与权利的平衡仍是未闭合议题。"
+        }
+      ]
+    },
+    {
+      "file": "app/src/modules/digitalGiantWeb/data.js",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 66,
+          "snippet": "thesis: '数字政府从「一网通办」升级到「一网统管」：健康码证明动员能力，社会信用与平台监管构成「语义防火墙」的制度外延；算法备案、数据分类分级把平台纳入科层治理接口。',"
+        }
+      ]
+    },
+    {
+      "file": "app/src/modules/guoyun/guoyunContent.html",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 107,
+          "snippet": "<div class=\"gy-ledger-item\"><h5>动态清零后半段</h5><p>前两年是真成绩;2022年在成本收益已翻转后坚持过久、退出近乎踩踏。问题不在初始策略,在系统丧失了说「该转向了」的能力。</p></div>"
+        }
+      ]
+    },
+    {
+      "file": "app/src/modules/laonian/laonianContent.html",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 311,
+          "snippet": "<div class=\"ln-row\"><span class=\"ln-row-k k-zhu\">数字排斥</span><span class=\"ln-row-v\">健康码遗留的数字政务默认线上化、医院挂号 App 化、无现金场景——<b>"
+        }
+      ]
+    },
+    {
+      "file": "app/src/modules/socialgov/Page.jsx",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 174,
+          "snippet": "{ period: '2020–', title: '智慧治理 / 全要素网格', accent: '#c41e3a', desc: '疫情三年完成了治理基础设施的压力测试与极限扩容：健康码、门磁、社区团购链路证明网格可在 48 小时内切换"
+        }
+      ]
+    },
+    {
+      "file": "app/src/modules/techtree/techDeep.js",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 205,
+          "snippet": "{ year: 2020, event: '新冠灭活疫苗附条件上市' },"
+        }
+      ]
+    },
+    {
+      "file": "app/src/modules/yishixingtai/yishixingtaiContent.html",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 69,
+          "snippet": "<p>教培团灭(意识形态+人口安全框架)、平台数据治理、动态清零后期、外企尽调行业整顿——每一例都是安全逻辑对增长逻辑行使否决权,且无成本核算程序。</p>"
+        }
+      ]
+    },
+    {
+      "file": "app/src/modules/zhongchan/zhongchanContent.html",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 314,
+          "snippet": "<div class=\"zc-chain-row\"><span class=\"zc-chain-step\">村镇银行</span><span class=\"zc-chain-v\"><b>储户维权 · 健康码红码事件</b> — 暴露治理工具"
+        }
+      ]
+    },
+    {
+      "file": "scripts/expandTalentBulk2026.py",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 45,
+          "snippet": "(\"ce-x-md01\", \"张文宏\", \"传染病\", \"复旦大学\", \"教授\", \"新冠防控与感染病\", \"60后\", \"公开报道\", \"N\"),"
+        }
+      ]
+    },
+    {
+      "file": "scripts/genAcademicianSeed.py",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 58,
+          "snippet": "(\"ac-cae-chen2\", \"陈薇\", \"cae\", \"医学\", \"军事科学院\", \"医药卫生学部\", \"生物安全\", \"埃博拉与新冠疫苗研发\", \"60后\", 2019, \"工程院官网\", \"\", \"ce-sci-chen2\"),"
+        },
+        {
+          "kind": "pandemic_copy",
+          "line": 59,
+          "snippet": "(\"ac-cae-zhong\", \"钟南山\", \"cae\", \"医学\", \"广州呼吸疾病研究所\", \"医药卫生学部\", \"呼吸病学\", \"非典与新冠防控\", \"30后\", 1996, \"工程院官网\", \"\", \"ce-sci-zhong\")"
+        },
+        {
+          "kind": "pandemic_copy",
+          "line": 206,
+          "snippet": "(\"ac-cae-zhang7\", \"张伯礼\", \"cae\", \"医学\", \"天津中医药大学\", \"医药卫生学部\", \"中医\", \"中医药防治新冠肺炎\", \"40后\", 2011, \"工程院官网\", \"\"),"
+        }
+      ]
+    },
+    {
+      "file": "scripts/genCulturalEliteSeed.py",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 314,
+          "snippet": "(\"ce-sci-chen2\", \"陈薇\", \"医学\", \"军事科学院\", \"工程院院士·生物安全\", \"埃博拉与新冠疫苗研发\", \"60后\", \"工程院官网\"),"
+        },
+        {
+          "kind": "pandemic_copy",
+          "line": 315,
+          "snippet": "(\"ce-sci-zhong\", \"钟南山\", \"医学\", \"广州呼吸疾病研究所\", \"工程院院士·呼吸病学\", \"非典与新冠防控\", \"30后\", \"工程院官网\"),"
+        },
+        {
+          "kind": "pandemic_copy",
+          "line": 389,
+          "snippet": "(\"ce-sci-zhang7\", \"张文宏\", \"医学\", \"复旦大学附属华山医院\", \"感染病学专家\", \"新冠防控与公共卫生\", \"60后\", \"公开报道\"),"
+        },
+        {
+          "kind": "pandemic_copy",
+          "line": 706,
+          "snippet": "(\"ce-md-zhong\", \"钟南山\", \"呼吸病学\", \"广州呼吸疾病研究所\", \"呼吸病学专家\", \"非典与新冠防控\", \"30后\", \"工程院官网\"),"
+        }
+      ]
+    },
+    {
+      "file": "scripts/genDiplomaticCorpsSeed.py",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 375,
+          "snippet": "[\"国家卫健委国际合作司\"], \"新冠疫情溯源与公共卫生合作多边博弈。\", \"司局级\", 46.2044, 6.1432, \"世卫组织官网\"),"
+        }
+      ]
+    },
+    {
+      "file": "scripts/genDissidentSeed.py",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 67,
+          "snippet": "[(\"2020\", \"\", \"赴武汉记录封城\"), (\"2020\", \"\", \"以寻衅滋事罪被捕\"), (\"2021\", \"\", \"被判四年\")],"
+        },
+        {
+          "kind": "pandemic_copy",
+          "line": 68,
+          "snippet": "\"疫情记录,公民记者\", \"A\", \"公开判决\", \"以短视频记录武汉封城初期信息；案件被国际媒体广泛引用为信息管控案例。\", \"\"),"
+        },
+        {
+          "kind": "pandemic_copy",
+          "line": 115,
+          "snippet": "(\"dv-fang-bin\", \"方斌\", \"Fang Bin\", \"journalist\", \"记者\", \"武汉服装商人\", \"公民记录\", \"武汉疫情封城记录\", \"在押\", \"境内·湖北\","
+        },
+        {
+          "kind": "pandemic_copy",
+          "line": 117,
+          "snippet": "\"疫情记录,公民记者\", \"B\", \"公开报道\", \"与张展并列的武汉封城民间记录者。\", \"\"),"
+        }
+      ]
+    },
+    {
+      "file": "scripts/globalFreshnessAudit.py",
+      "findings": [
+        {
+          "kind": "pandemic_copy",
+          "line": 38,
+          "snippet": "PANDEMIC_RE = re.compile(r\"新冠|疫情封控|动态清零|核酸检测|方舱医院|封城|抢菜|健康码|行程码\")"
+        },
+        {
+          "kind": "placeholder_date",
+          "line": 40,
+          "snippet": "PLACEHOLDER_DATE_RE = re.compile(r\"['\\\"]?(1970-01-01|2000-01-01|2099-12-31)['\\\"]?\")"
+        }
+      ]
+    }
+  ]
+}

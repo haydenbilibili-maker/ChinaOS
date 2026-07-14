@@ -3,13 +3,14 @@ import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { categoryX, valueY, GRID, LEGEND, radarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
 // ============================================================================
 // 教育科技人才一体化 · 三位一体 —— 教育链/创新链/人才链协同
-// asOf 2026-06-11 · 公开资料示意，非官方统计
+// asOf 2026-07-14 · 公开资料示意，非官方统计
 // ============================================================================
 
-const AS_OF = '2026-06-11';
+const AS_OF = AS_OF_BASELINE;
 
 // 三大投入趋势（示意）
 const inputOpt = {

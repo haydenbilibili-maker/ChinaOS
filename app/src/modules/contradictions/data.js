@@ -1,11 +1,12 @@
 // ============================================================================
 // 矛盾论 · 社会矛盾体结构化数据
-// asOf: 2026-06-11 · 公开资料示意，非官方统计
+// asOf: 2026-07-14 · 公开资料示意，非官方统计
 // ============================================================================
 
 import { categoryX, valueY, GRID, LEGEND, radarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
-export const AS_OF = '2026-06-11';
+export const AS_OF = AS_OF_BASELINE;
 
 /** 全局仪表盘 · 四张示意趋势图 */
 export const DASHBOARD_CHARTS = {

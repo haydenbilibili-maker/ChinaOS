@@ -1,11 +1,12 @@
 // ============================================================================
 // 中央党校 · 推演沙盘结构化数据
-// asOf: 2026-06-11 · 教学用途示意，非真实组织系统
+// asOf: 2026-07-14 · 教学用途示意，非真实组织系统
 // ============================================================================
 
 import { categoryX, valueY, GRID, radarOpt, donutOpt, AXIS, LABEL, LEGEND } from '../shared/chartHelpers.js';
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
-export const AS_OF = '2026-06-11';
+export const AS_OF = AS_OF_BASELINE;
 
 export const COURSE_MODULES = [
   { key: 'marx', label: '马列经典', hours: 48, accent: '#c41e3a', desc: '马克思主义基本原理、政治经济学批判与历史唯物主义方法论。', tags: ['理论素养', '党性修养'] },

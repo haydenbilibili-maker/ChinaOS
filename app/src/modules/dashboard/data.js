@@ -19,7 +19,7 @@ import { LEGAL_STATUTE_DEDUPED_COUNT } from '../../lib/db/legalStatuteSeed.js';
 import { PRIVATE_ENTERPRISE_META, PE500_COMPANIES, PE500_DATASETS } from '../../lib/db/privateEnterpriseSeed.js';
 import { RANK_PYRAMID, MILITARY_INTEL_META } from '../../lib/db/militaryIntel2026.js';
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
-import { ECON_AS_OF, KEY_INDICATORS, CANARY_SIGNALS } from '../econdash/econData.js';
+import { ECON_AS_OF, KEY_INDICATORS, CANARY_SIGNALS, SECTOR_STRUCTURE } from '../econdash/econData.js';
 
 export const AS_OF = AS_OF_BASELINE;
 export const MACRO_AS_OF = ECON_AS_OF;
@@ -32,6 +32,23 @@ const KPI_COLORS = {
   hold: '#e8a317',
   cool: '#c41e3a',
   steel: '#22d3ee',
+};
+
+/** 信号语义色 · 绿/黄/红 */
+export const SIGNAL_COLORS = {
+  green: KPI_COLORS.warm,
+  amber: KPI_COLORS.hold,
+  red: KPI_COLORS.cool,
+};
+
+/** KPI 迷你火花线序列（公开口径示意 · 非实时） */
+export const MACRO_SPARKLINES = {
+  gdp_h1: SECTOR_STRUCTURE.map((s) => s.gdpGrowth),
+  cpi: [2.1, 1.8, 0.2, 0.1, 0.0, -0.1, 0.1, 0.3],
+  pmi_mfg: [49.5, 49.2, 49.8, 50.1, 49.6, 49.4, 49.7, 49.8],
+  retail: [3.2, 4.1, 3.8, 5.2, 4.9, 4.3, 4.8, 4.6],
+  m2: [8.3, 8.1, 7.9, 7.6, 7.4, 7.1, 7.0, 7.2],
+  youth_unemp: [21.3, 19.6, 18.2, 17.5, 17.1, 16.9, 17.0, 16.8],
 };
 
 function pickIndicator(id) {
@@ -250,6 +267,79 @@ export const FEATURED = [
 ]
   .map(pick)
   .filter(Boolean);
+
+/** 深度专题六大支柱 · 启动页核心跳转 */
+export const DEEP_LINK_PILLARS = [
+  {
+    id: 'powerlogic',
+    path: '/powerlogic',
+    title: '权力逻辑',
+    tag: '制度内核',
+    desc: '儒表法里 · 数字利维坦 · 统治成本推演',
+    icon: 'Cpu',
+    accent: '#e8a317',
+    signalLabel: '态势：制度演进',
+    live: false,
+  },
+  {
+    id: 'straits',
+    path: '/straits',
+    title: '台海局势',
+    tag: '地缘重力',
+    desc: '硅盾屏障 · 岛链突破 · 统一进程标定',
+    icon: 'Crosshair',
+    accent: '#c41e3a',
+    signalLabel: '态势：高压常态化',
+    live: true,
+  },
+  {
+    id: 'military',
+    path: '/military',
+    title: '军事力量',
+    tag: '战区布局',
+    desc: '联合战区 · 主战装备 · 联勤保障网络',
+    icon: 'Shield',
+    accent: '#10b981',
+    signalLabel: '态势：战备常态',
+    live: false,
+  },
+  {
+    id: 'heshanReform',
+    path: '/modules/heshan/reform',
+    title: '重构山河',
+    tag: '河山沙盘',
+    desc: '区划诊断 · 收支倒挂 · 建省推演',
+    icon: 'MapPinned',
+    accent: '#9e2b25',
+    signalLabel: '态势：财政重组',
+    live: false,
+  },
+  {
+    id: 'talent',
+    path: '/talent',
+    title: '人才精英库',
+    tag: '人力资本',
+    desc: '政要 · 知识生产 · 资本逻辑多维图谱',
+    icon: 'UsersRound',
+    accent: '#22d3ee',
+    signalLabel: '态势：结构化更新',
+    live: false,
+  },
+  {
+    id: 'leadership',
+    path: '/leadership',
+    title: '领袖统治',
+    tag: '决策机制',
+    desc: '权力结构 · 政策半径 · 治理仿真',
+    icon: 'Crown',
+    accent: '#d4af37',
+    signalLabel: '态势：中枢稳态',
+    live: false,
+  },
+].map((p) => {
+  const mod = pick(p.id);
+  return mod ? { ...p, title: mod.title, icon: mod.icon || p.icon } : p;
+});
 
 // ── 战略态势矢量（镜像 diplomacy/Page.jsx · 看板排序与分组） ──
 export const DIPLOMACY_TONES = {

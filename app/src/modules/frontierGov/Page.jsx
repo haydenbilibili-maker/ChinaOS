@@ -3,13 +3,14 @@ import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { categoryX, valueY, GRID, stackedBarOpt, radarOpt, AXIS, LABEL, LEGEND } from '../shared/chartHelpers.js';
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
 // ============================================================================
 // 边疆治理 · 兴边富民 / 铸牢共同体 / 对口支援
-// asOf 2026-06-11 · 公开资料示意
+// asOf 2026-07-14 · 公开资料示意
 // ============================================================================
 
-const AS_OF = '2026-06-11';
+const AS_OF = AS_OF_BASELINE;
 
 const REGIONS = [
   {

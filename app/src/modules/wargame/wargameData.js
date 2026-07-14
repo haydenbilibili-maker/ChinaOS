@@ -10,8 +10,9 @@
 // ============================================================================
 
 import { DOMAINS } from '../techtree/domains.js';
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
-export const WG_AS_OF = '2026-06-11';
+export const WG_AS_OF = AS_OF_BASELINE;
 
 export const MAX_TURNS = 5;     // 总回合数
 export const AP_PER_TURN = 3;   // 每回合行动点

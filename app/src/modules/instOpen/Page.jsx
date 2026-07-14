@@ -3,13 +3,14 @@ import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { categoryX, valueY, GRID, LEGEND, radarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
 // ============================================================================
 // 制度型开放 · 自贸试验区 / 海南自贸港 / 规则对接
-// asOf 2026-06-11 · 公开资料示意
+// asOf 2026-07-14 · 公开资料示意
 // ============================================================================
 
-const AS_OF = '2026-06-11';
+const AS_OF = AS_OF_BASELINE;
 
 const ZONES = [
   {

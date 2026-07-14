@@ -3,14 +3,15 @@ import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { categoryX, valueY, GRID, radarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
 // ============================================================================
 // 未来产业 · 前沿赛道布局 —— 比新质生产力更前沿的「种子期」聚焦
-// asOf 2026-06-11 · 公开资料示意，非官方统计
+// asOf 2026-07-14 · 公开资料示意，非官方统计
 // 与 npf（新质生产力）区分：本模块聚焦尚处实验室/中试的前沿种子赛道。
 // ============================================================================
 
-const AS_OF = '2026-06-11';
+const AS_OF = AS_OF_BASELINE;
 
 // 选择器联动雷达维度（示意评分 0—100）
 const DIMS = ['技术成熟', '市场潜力', '国家投入', '产业链就绪', '国际位势'];

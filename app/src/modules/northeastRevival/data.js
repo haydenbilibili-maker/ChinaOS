@@ -1,9 +1,10 @@
 // ============================================================================
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 // 东北振兴 · 结构化数据与图表构建
-// asOf 2026-06-11 · 公开资料示意
+// asOf 2026-07-14 · 公开资料示意
 // ============================================================================
 
-export const AS_OF = '2026-06-11';
+export const AS_OF = AS_OF_BASELINE;
 
 /** 政策演进阶段（TimelineBar ↔ markArea 联动） */
 export const PHASES = [

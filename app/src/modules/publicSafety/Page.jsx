@@ -3,13 +3,14 @@ import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { categoryX, valueY, GRID, donutOpt, radarOpt } from '../shared/chartHelpers.js';
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
 // ============================================================================
 // 平急两用 · 公共安全 —— 防灾减灾救灾 + 平急两用基础设施
-// asOf 2026-06-11 · 公开资料示意，非官方统计
+// asOf 2026-07-14 · 公开资料示意，非官方统计
 // ============================================================================
 
-const AS_OF = '2026-06-11';
+const AS_OF = AS_OF_BASELINE;
 
 // 自然灾害直接经济损失（亿元，示意）
 const lossOpt = {

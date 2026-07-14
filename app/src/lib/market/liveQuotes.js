@@ -1,9 +1,10 @@
 // ============================================================================
+import { AS_OF_BASELINE } from '../config/asOfBaseline.js';
 // 实时行情 · 多源聚合（Sina / Frankfurter / Yahoo 代理）+ 离线种子
-// AS_OF 2026-06-11 · 开发环境经 Vite 代理规避 CORS
+// AS_OF 2026-07-14 · 开发环境经 Vite 代理规避 CORS
 // ============================================================================
 
-export const AS_OF_MARKET = '2026-06-11';
+export const AS_OF_MARKET = AS_OF_BASELINE;
 export const REFRESH_INTERVAL_MS = 90_000;
 export const FETCH_TIMEOUT_MS = 8000;
 

@@ -1,11 +1,12 @@
 // ============================================================================
 // 组织部 · 推演沙盘结构化数据
-// asOf: 2026-06-11 · 教学用途示意，非真实组织系统
+// asOf: 2026-07-14 · 教学用途示意，非真实组织系统
 // ============================================================================
 
 import { categoryX, valueY, GRID, LEGEND, donutOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
-export const AS_OF = '2026-06-11';
+export const AS_OF = AS_OF_BASELINE;
 
 export const QUEUE_TYPES = [
   { key: 'resume', label: '中国政要', accent: '#c41e3a', count: 2840, tab: 'resume' },

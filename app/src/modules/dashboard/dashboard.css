@@ -1,0 +1,521 @@
+/* ============================================================================
+ * 中枢看板 v2 · 旗舰启动页
+ * 玻璃拟态 + 深邃科技感 · 与 Intelligence Atlas 审美对齐
+ * ============================================================================ */
+
+.dash-v2 {
+  --dash-accent: var(--cyber-cyan);
+  --dash-glow: rgba(34, 211, 238, 0.18);
+}
+
+/* ── 顶栏状态条 ─────────────────────────────────────────── */
+.dash-status-strip {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  flex-wrap: wrap;
+  padding: 0.65rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--bg-surface) 88%, transparent);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  box-shadow: var(--shadow-glass);
+}
+
+.dash-status-strip__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+.dash-status-strip__logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  padding: 4px;
+  background: radial-gradient(circle at 30% 30%, rgba(196, 30, 58, 0.25), transparent 60%),
+    radial-gradient(circle at 70% 70%, rgba(34, 211, 238, 0.2), transparent 55%),
+    var(--bg-elevated);
+  border: 1px solid rgba(34, 211, 238, 0.28);
+  box-shadow: 0 0 16px -4px rgba(34, 211, 238, 0.35);
+}
+
+.dash-status-strip__title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.dash-status-strip__title span {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 400;
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+}
+
+.dash-status-strip__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  flex-wrap: wrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.dash-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.65rem;
+  font-family: var(--font-mono);
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.dash-status-pill__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dash-status-pill__dot.is-live {
+  animation: os-live-breathe 3.8s ease-in-out infinite;
+}
+
+.dash-status-strip__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.dash-quick-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.dash-quick-btn:hover,
+.dash-quick-btn:focus-visible {
+  border-color: rgba(34, 211, 238, 0.45);
+  box-shadow: 0 0 20px -6px var(--dash-glow);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.dash-quick-btn:focus-visible {
+  box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.35), 0 0 20px -6px var(--dash-glow);
+}
+
+.dash-quick-btn--primary {
+  border-color: rgba(34, 211, 238, 0.35);
+  background: rgba(34, 211, 238, 0.08);
+  color: var(--cyber-cyan);
+}
+
+/* ── Hero v2 ─────────────────────────────────────────────── */
+.dash-hero-v2 {
+  position: relative;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background:
+    radial-gradient(120% 140% at 0% 0%, rgba(196, 30, 58, 0.14), transparent 55%),
+    radial-gradient(120% 140% at 100% 0%, rgba(34, 211, 238, 0.12), transparent 55%),
+    var(--bg-surface);
+  border: 1px solid rgba(34, 211, 238, 0.22);
+  box-shadow: var(--shadow-glass), 0 0 48px -16px rgba(34, 211, 238, 0.12);
+  animation: os-hero-breathe 6s ease-in-out infinite;
+}
+
+.dash-hero-v2.is-pulse {
+  animation: os-metric-glow 0.9s ease-out 1, os-hero-breathe 6s ease-in-out infinite;
+}
+
+.dash-hero-v2__grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .dash-hero-v2__grid {
+    grid-template-columns: 1fr minmax(200px, 280px);
+    align-items: start;
+  }
+}
+
+.dash-hero-v2__badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.75rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.1em;
+  background: rgba(196, 30, 58, 0.18);
+  color: var(--china-red);
+}
+
+.dash-hero-v2__health {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--bg-elevated) 70%, transparent);
+  border: 1px solid var(--border-subtle);
+}
+
+.dash-hero-v2__health-title {
+  font-size: 0.65rem;
+  font-family: var(--font-mono);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.dash-health-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.dash-health-row__label {
+  color: var(--text-secondary);
+}
+
+.dash-health-row__val {
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+/* ── 深度专题栅格（六大支柱） ─────────────────────────────── */
+.dash-pillar-section {
+  margin-bottom: 1.75rem;
+}
+
+.dash-pillar-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+}
+
+@media (min-width: 1280px) {
+  .dash-pillar-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.dash-pillar-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1rem 0.85rem 0.85rem;
+  min-height: 132px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: inherit;
+  background: color-mix(in srgb, var(--bg-elevated) 82%, transparent);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition:
+    transform var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
+  overflow: hidden;
+}
+
+.dash-pillar-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--pillar-accent) 12%, transparent), transparent 55%);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  pointer-events: none;
+}
+
+.dash-pillar-card:hover,
+.dash-pillar-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--pillar-accent) 45%, transparent);
+  box-shadow:
+    0 8px 28px -8px color-mix(in srgb, var(--pillar-accent) 28%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--pillar-accent) 18%, transparent);
+  outline: none;
+}
+
+.dash-pillar-card:hover::before,
+.dash-pillar-card:focus-visible::before {
+  opacity: 1;
+}
+
+.dash-pillar-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+
+.dash-pillar-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--pillar-accent) 14%, transparent);
+  color: var(--pillar-accent);
+}
+
+.dash-pillar-card__signal {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--pillar-accent) 50%, transparent);
+}
+
+.dash-pillar-card__signal.is-pulse {
+  animation: os-live-breathe 3.8s ease-in-out infinite;
+}
+
+.dash-pillar-card__tag {
+  font-size: 0.6rem;
+  font-family: var(--font-mono);
+  color: var(--pillar-accent);
+  letter-spacing: 0.04em;
+}
+
+.dash-pillar-card__title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.dash-pillar-card__desc {
+  font-size: 0.65rem;
+  line-height: 1.45;
+  color: var(--text-tertiary);
+  flex: 1;
+}
+
+.dash-pillar-card__go {
+  font-size: 0.65rem;
+  font-family: var(--font-mono);
+  color: var(--pillar-accent);
+  margin-top: auto;
+  opacity: 0.7;
+  transition: opacity var(--transition-fast);
+}
+
+.dash-pillar-card:hover .dash-pillar-card__go {
+  opacity: 1;
+}
+
+/* ── KPI 火花线 ─────────────────────────────────────────── */
+.dash-kpi-spark {
+  display: block;
+  width: 100%;
+  height: 28px;
+  margin-top: 0.35rem;
+  opacity: 0.85;
+}
+
+.dash-kpi-spark path {
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.dash-kpi-spark .spark-area {
+  fill: url(#dash-spark-grad);
+  stroke: none;
+  opacity: 0.25;
+}
+
+/* ── 金丝雀信号新鲜度条 ─────────────────────────────────── */
+.dash-signal-bar {
+  padding: 0.85rem 1rem;
+  margin: 1rem 0 0;
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+}
+
+.dash-signal-bar__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.65rem;
+}
+
+.dash-signal-bar__title {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.dash-signal-bar__counts {
+  display: flex;
+  gap: 0.4rem;
+  font-size: 0.6rem;
+  font-family: var(--font-mono);
+}
+
+.dash-signal-bar__track {
+  display: flex;
+  gap: 3px;
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--bg-base);
+}
+
+.dash-signal-bar__seg {
+  flex: 1;
+  min-width: 4px;
+  border-radius: 2px;
+  transition: opacity var(--transition-fast);
+}
+
+.dash-signal-bar__seg.is-pulse {
+  animation: os-live-breathe 3.8s ease-in-out infinite;
+}
+
+.dash-signal-bar__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.6rem;
+}
+
+.dash-signal-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.6rem;
+  font-family: var(--font-mono);
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-base);
+  color: var(--text-tertiary);
+  text-decoration: none;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.dash-signal-chip:hover,
+.dash-signal-chip:focus-visible {
+  border-color: color-mix(in srgb, var(--chip-color) 40%, transparent);
+  color: var(--text-secondary);
+  outline: none;
+}
+
+.dash-signal-chip__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--chip-color);
+}
+
+/* ── 信号流分区（从 Hero 拆出） ─────────────────────────── */
+.dash-signal-stream {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.dash-signal-stream__heading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  color: var(--text-tertiary);
+  letter-spacing: 0.06em;
+}
+
+/* ── 错落入场 · 页面级 ─────────────────────────────────── */
+.dash-v2-enter > section,
+.dash-v2-enter > .dash-status-strip {
+  animation: os-fade-in 0.42s var(--ease-ink) both;
+}
+
+.dash-v2-enter > *:nth-child(1) { animation-delay: 0.02s; }
+.dash-v2-enter > *:nth-child(2) { animation-delay: 0.06s; }
+.dash-v2-enter > *:nth-child(3) { animation-delay: 0.1s; }
+.dash-v2-enter > *:nth-child(4) { animation-delay: 0.14s; }
+.dash-v2-enter > *:nth-child(5) { animation-delay: 0.18s; }
+.dash-v2-enter > *:nth-child(6) { animation-delay: 0.22s; }
+.dash-v2-enter > *:nth-child(7) { animation-delay: 0.26s; }
+.dash-v2-enter > *:nth-child(8) { animation-delay: 0.3s; }
+
+/* ── 日览模式微调 ───────────────────────────────────────── */
+:root[data-theme='light'] .dash-hero-v2 {
+  background:
+    radial-gradient(120% 140% at 0% 0%, rgba(196, 30, 58, 0.06), transparent 55%),
+    radial-gradient(120% 140% at 100% 0%, rgba(34, 211, 238, 0.06), transparent 55%),
+    var(--bg-surface);
+}
+
+:root[data-theme='light'] .dash-pillar-card {
+  background: var(--bg-elevated);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dash-v2-enter > section,
+  .dash-v2-enter > .dash-status-strip,
+  .dash-pillar-card,
+  .dash-hero-v2 {
+    animation: none !important;
+  }
+
+  .dash-pillar-card:hover,
+  .dash-quick-btn:hover {
+    transform: none;
+  }
+}

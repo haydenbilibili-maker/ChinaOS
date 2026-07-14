@@ -1,4 +1,4 @@
-// 公共直播信号目录 · 经 curl 核查（2026-06-11）
+// 公共直播信号目录 · 经 curl 核查（2026-07-14）
 // Section A: VERIFIED_HLS — curl 200 + #EXTM3U，embedType: hls
 // Section B: EXTERNAL_INDEX — 官方页面外链，embedType: page
 // playVerified: true 表示 modal 内 hls.js 可播（CORS 开放或开发代理）
@@ -685,7 +685,7 @@ export function getStream(id) {
 
 /** 核查摘要（供页面展示） */
 export const STREAM_AUDIT = {
-  verifiedAt: '2026-06-11',
+  verifiedAt: '2026-07-14',
   verifiedHls: VERIFIED_HLS.length,
   playableInPage: countPlayable(),
   externalOnly: countExternal(),

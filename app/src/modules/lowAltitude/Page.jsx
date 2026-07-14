@@ -3,13 +3,14 @@ import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { categoryX, valueY, GRID, donutOpt, radarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
 // ============================================================================
 // 低空经济 · eVTOL / 无人机 / 通航 —— 空域改革驱动的万亿赛道
-// asOf 2026-06-11 · 公开资料示意，非官方统计
+// asOf 2026-07-14 · 公开资料示意，非官方统计
 // ============================================================================
 
-const AS_OF = '2026-06-11';
+const AS_OF = AS_OF_BASELINE;
 
 // 市场规模（万亿元，示意）
 const scaleOpt = {

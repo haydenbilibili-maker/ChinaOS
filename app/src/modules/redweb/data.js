@@ -1,13 +1,14 @@
 import { AXIS, LABEL } from '../shared/chartHelpers.js';
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 // 红网 · 结构分析 · 数据层
 // ----------------------------------------------------------------------------
 // 把「红色巨网」作为党—国控制网络的结构现象建模：层级（L0–L6）、控制节点、
 // 控制/反馈关系、控制机制与嵌入度。所有数值为公开资料示意（OSINT），用于
 // 揭示权力运作的底层拓扑，非对具体个人/机构的事实指认。
-// AS_OF 2026-06-11
+// AS_OF 2026-07-14
 // ============================================================================
 
-export const AS_OF = '2026-06-11';
+export const AS_OF = AS_OF_BASELINE;
 
 // 控制机制（6 维）—— SelectorBar 切换、雷达轴、节点 means 映射共用
 export const MECHANISMS = [

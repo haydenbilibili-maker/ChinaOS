@@ -1,10 +1,11 @@
 // 大事记数据 —— 公开史实策展（教科书/白皮书口径），用于长周期结构分析。
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 // 口径说明：以制度/经济/科技/外交/社会结构里程碑为主线，客观百科表述；
 // 曲折探索期事件按官方决议与教科书表述克制带过，不展开评价。
 // 字段契约：ERAS { id, range, label, accent, summary } / DOMAINS { id, label, accent }
 //          EVENTS { y, domain, title(≤14字), desc(≤56字), w(1|2|3), to(可选模块路由) } 按 y 升序
 
-export const AS_OF = '2026-06-11';
+export const AS_OF = AS_OF_BASELINE;
 
 export const ERAS = [
   { id: 'founding', range: [1949, 1957], label: '建国奠基', accent: '#c41e3a', summary: '开国奠基与制度移植：一五计划立起工业骨架，三大改造确立计划体制' },

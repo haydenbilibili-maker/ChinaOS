@@ -7,8 +7,9 @@
 // ============================================================================
 
 import { DOMAINS, TIER_LABEL } from './domains.js';
+import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
-export const TECH_AS_OF = '2026-06-11';
+export const TECH_AS_OF = AS_OF_BASELINE;
 
 const DOMAIN_BY_K = Object.fromEntries(DOMAINS.map((d) => [d.k, d]));
 const round1 = (v) => Math.round(v * 10) / 10;

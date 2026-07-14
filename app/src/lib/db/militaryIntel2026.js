@@ -5,10 +5,12 @@
 // 来源：国防白皮书、SIPRI、IISS Military Balance、DoD 中国军力报告、CSIS 等。
 // ============================================================================
 
+import { AS_OF_BASELINE } from '../config/asOfBaseline.js';
+
 export const MILITARY_INTEL_META = {
-  id: 'military-intel-2026-06',
-  asOf: '2026-06-11',
-  label: '军事力量公开情报 · 2026-06',
+  id: 'military-intel-2026-07',
+  asOf: AS_OF_BASELINE,
+  label: '军事力量公开情报 · 2026-07',
   sources: [
     '《新时代的中国国防》白皮书（2019）',
     'SIPRI 军费数据库',
@@ -133,7 +135,7 @@ export const PERSONNEL = {
     focus: ['理工类专业', '舰载机/无人机操作', '网络与电子对抗', '高原边防'],
   },
   rankStructure: {
-    asOf: '2026-06-11',
+    asOf: AS_OF_BASELINE,
     note: '将官总数公开估算；校尉军官为编制示意非精确',
     general: [
       { rank: '上将', count: '~38', note: '含军委、战区、军种主官' },
@@ -429,7 +431,7 @@ export const BASE_TYPE_COLORS = {
 
 /** 军衔金字塔 · 漏斗示意（人数为公开估算/编制示意，非精确） */
 export const RANK_PYRAMID = {
-  asOf: '2026-06-11',
+  asOf: AS_OF_BASELINE,
   note: '军衔层级人数为公开估算与编制示意，非官方精确数据；用于结构直观对比。',
   levels: [
     { rank: '上将', count: 38, label: '军委 / 战区 / 军种主官', color: '#c41e3a' },
@@ -641,7 +643,7 @@ export const MCF_SANKEY = {
 
 /** 战区兵力构成对比 · 堆叠（集团军/海空军侧重，相对强度示意 0-100） */
 export const THEATER_FORCE = {
-  asOf: '2026-06-11',
+  asOf: AS_OF_BASELINE,
   theaters: ['东部战区', '南部战区', '西部战区', '北部战区', '中部战区'],
   series: [
     { name: '陆军', color: '#c41e3a', data: [55, 45, 75, 60, 65] },

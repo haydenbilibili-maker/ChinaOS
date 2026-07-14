@@ -11,6 +11,7 @@ import { hasEmbeddedBody } from '../../lib/doc/documentContent.js';
 import { loadPolicyCorpusManifest, corpusListBadge } from '../../lib/doc/policyCorpus.js';
 import { DOC_SEED, GWR_METRICS, DOC_CATALOG_META, TYPE_COLOR, CATEGORY_COLOR, DOC_TYPES, DOC_CATEGORIES } from '../../lib/db/docSeed.js';
 import { LEGAL_STATUTE_DEDUPED_COUNT } from '../../lib/db/legalStatuteSeed.js';
+import { AS_OF_LABEL } from '../../lib/config/asOfBaseline.js';
 import LegalCorpusSection from './LegalCorpusSection.jsx';
 
 const CORPUS_TABS = [
@@ -199,7 +200,7 @@ export default function Page() {
 
       <IntroCard>
         以<strong style={{ color: 'var(--text-primary)' }}>结构化要点 + 本地原文库</strong>支撑政策研读：政府工作报告、中央经济工作会议、五年规划等支持历年比对与指标趋势；旗舰文件已入库
-        {' '}<span className="mono" style={{ color: '#10b981' }}>{corpusCount || 0}</span> 份扩展原文/节选，其余提供要点汇编 fallback。数据截至 <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>2026-06-27</span>。
+        {' '}<span className="mono" style={{ color: '#10b981' }}>{corpusCount || 0}</span> 份扩展原文/节选，其余提供要点汇编 fallback。数据截至 <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{AS_OF_LABEL}</span>。
       </IntroCard>
 
       <StatGrid className="mb-6">

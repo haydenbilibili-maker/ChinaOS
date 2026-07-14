@@ -16,7 +16,7 @@ export const DIPLOMATIC_CORPS_META = {
     '联合国/WTO/欧盟机构公开代表名录', '各国政府礼宾司公开国书呈递记录',
   ],
   scope: '亚太 44 处；欧洲 32 处；北美 12 处；拉美 15 处；非洲 51 处；中东 16 处；国际组织 20 处',
-  notes: '驻外使节公开任职图谱；与境内政要/知识精英/海外人才队列分轨；外交部长等境内主职见中国政要。研究用途，信息截至 2026-06-11。',
+  notes: '驻外使节公开任职图谱；与境内政要/知识精英/海外人才队列分轨；外交部长等境内主职见中国政要。研究用途，信息截至 2026-07-14。',
 };
 
 function D(id, name, nameEn, gender, role, hostCountry, hostCity, region, appointedDate, credentialsDate, previousPosts, careerHighlights, rank, lat, lng, source, notes = '', verifyTier = 'official') {
