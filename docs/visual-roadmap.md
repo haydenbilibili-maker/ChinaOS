@@ -82,10 +82,9 @@
 
 ## Round 6 预览（技术债 · 顺延 Round 7）
 
-- stylelint `color-no-hex` 警告级规则（模块 CSS 白名单除外）
+- ~~stylelint `color-no-hex` 警告级规则（模块 CSS 白名单除外）~~ ✅ 已引入 `npm run lint:css`
 - `renqun-tupu/atlasViz.js` · `gametheory` 等残余 `#27324a`（系列色/非轴语义，**有意保留**）
-- industry 组 `StatGrid` 渐进补齐 — ✅ `materials` · `logistics` · `supplychain` · `automotive` · `robotics` · `manufacturing` · `semiconductor` · `computing` KPI 行已迁入（2026-07-14）
-
+- ~~industry 组 `StatGrid` 渐进补齐~~ ✅ 两波收口完成（2026-07-14）
 ## Final Polish 收官轮（2026-07 · 完成）
 
 - [x] **checklist 提升至 ≥95%** — 治理链 `Card` 包裹 · 页签 `os-tab-bar` · chronicle/huangfeizhai 页头页脚对齐
@@ -100,10 +99,10 @@
 
 - `atlasViz.js` / `gametheory` 图谱系列色 `#27324a`（非轴语义，保留）
 - ink-observatory 布局渐变与 GY 书体美学色（`tokens.css` 白名单）
-- `policydocs` 内嵌筛选 chip 未统一 `TabBar`（主 Tab 已对齐）
-- stylelint `color-no-hex` 规则待引入
-- industry 组其余门类（氢能 / 量子 / 生物 / 低空等）StatGrid 渐进补齐
-- 神州活图部分实时图层视觉序仍用模块内 `PALETTES`；河山拟省已接 `mapChoropleth`
+- ~~`policydocs` 内嵌筛选 chip 未统一 `TabBar`~~ ✅ 主 Tab + 筛选 chip 已对齐（2026-07-14）
+- ~~stylelint `color-no-hex` 规则待引入~~ ✅ 警告级 `npm run lint:css`（`index.css` / `gy/tokens.css` 白名单）
+- ~~industry 组其余门类 StatGrid~~ ✅ 氢能/量子/生物/低空/神经/未来产业/数据要素/智能电网/海洋/基础研究（2026-07-14）
+- ~~神州活图部分实时图层视觉序~~ ✅ 财政/Δ/种子低端/气象低端接 `mapChoropleth`；AQI 保留 WHO 语义
 
 ### 上线后迭代 · 视觉续航轮（2026-07-14）
 
@@ -113,6 +112,12 @@
 - [x] **R4 可视化** — automotive/robotics/manufacturing/semiconductor/computing → StatGrid；OsGauge/OsSparkline 落点；`mapChoropleth` + 河山图 tooltip/visualMap 主题对齐
 - [x] **R5 微抛光** — 河山图加载骨架 / 空态；本路线图补记
 
+### 续航续轮（2026-07-14 · 第二波）
+
+- [x] **R1 产业 StatGrid 收口** — hydrogen / quantum / bio / lowAltitude / neural / futureIndustry / dataElement / smartgrid / marine / basicResearch
+- [x] **R2 神州活图色带** — `mapChoropleth` / `mapDeltaChoropleth` / `mapAreaIdle`；种子与气象低端对齐；AQI 语义保留
+- [x] **R3 政令文库 + 取数空态** — TabBar / os-filter-chip；econdash WB · 看板 GDELT/Polymarket → LoadingSkeleton/EmptyState
+- [x] **R4 stylelint** — `color-no-hex` 警告级 + `lint:css` 脚本
 ## 相关文件
 
 | 区域 | 路径 |
