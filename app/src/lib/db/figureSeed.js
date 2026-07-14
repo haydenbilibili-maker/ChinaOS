@@ -41,8 +41,8 @@ const FIGURE_SEED_BASE = [
 export const FIGURE_SEED = enrichTalentList(dedupeFigures(FIGURE_SEED_BASE).rows, { queue: 'figures' });
 
 export const FIGURE_CATALOG_META = {
-  id: 'figures-2026-07',
-  asOf: '2026-07-13',
+  id: 'figures-2026-07b',
+  asOf: '2026-07-14',
   label: '全口径中国政要 · 2026-07',
   sources: [...new Set([
     ...PROV_META.sources,
@@ -58,7 +58,7 @@ export const FIGURE_CATALOG_META = {
     '中国政协网', '海关总署', '国家税务总局', '证监会', '金融监管总局',
   ])],
   scope: `${PROV_META.scope}；${FIGURE_PROVINCIAL_EXTENDED_META.scope}；${FIGURE_PROVINCIAL_STANDING_META.scope}；${FIGURE_CENTRAL_META.scope}；${FIGURE_POLITICAL_STRUCTURE_META.scope}；人大政协/直属机构；${FIGURE_MUNICIPAL_META.scope}；${FIGURE_PREFECTURE_CITY_META.scope}；${FIGURE_ORG_META.scope}；${FIGURE_ORG_TIER2_META.scope}；${FIGURE_MILITARY_META.scope}`,
-  notes: [PROV_META.notes, FIGURE_PROVINCIAL_EXTENDED_META.notes, FIGURE_PROVINCIAL_STANDING_META.notes, FIGURE_CENTRAL_META.notes, FIGURE_POLITICAL_STRUCTURE_META.notes, FIGURE_MUNICIPAL_META.notes, FIGURE_PREFECTURE_CITY_META.notes, FIGURE_ORG_META.notes, FIGURE_ORG_TIER2_META.notes, FIGURE_MILITARY_META.notes, '政协主席王沪宁见政治局常委', '公开任免口径，以官方最新公告为准；扩展示意条不得覆盖省级正职主源'].filter(Boolean).join(' '),
+  notes: [PROV_META.notes, FIGURE_PROVINCIAL_EXTENDED_META.notes, FIGURE_PROVINCIAL_STANDING_META.notes, FIGURE_CENTRAL_META.notes, FIGURE_POLITICAL_STRUCTURE_META.notes, FIGURE_MUNICIPAL_META.notes, FIGURE_PREFECTURE_CITY_META.notes, FIGURE_ORG_META.notes, FIGURE_ORG_TIER2_META.notes, FIGURE_MILITARY_META.notes, '政协主席王沪宁见政治局常委', '直辖市市长以省级库为主源；seed 经 figureDedupe 近重复合并', '公开任免口径，以官方最新公告为准；扩展示意条不得覆盖省级正职主源'].filter(Boolean).join(' '),
   breakdown: {
     provincial: PROV_COUNT,
     provincialExtended: FIGURE_PROVINCIAL_EXTENDED_COUNT,

@@ -1,0 +1,122 @@
+{
+  "asOf": "2026-07-14",
+  "seedCount": 1597,
+  "removedAtSeed": 3,
+  "gongZhengFixed": true,
+  "gongZheng": [
+    {
+      "verifyTier": "official",
+      "confidence": "high",
+      "provenance": "公开任职口径；来源锚点：新华网/中国政府网·2020-03-23；任免以官方发布为准；不含私人信息",
+      "verifiedAt": "2026-07-13",
+      "kind": "公开",
+      "asOf": "2026-07-13",
+      "fields": {
+        "title": "上海市长",
+        "birth": "1960年3月",
+        "native": "江苏苏州",
+        "rank": "二十届中央委员",
+        "tookOffice": "2020-03-23",
+        "ethnic": "汉族",
+        "note": ""
+      },
+      "career": [
+        {
+          "from": "2020",
+          "to": "",
+          "desc": "任上海市市长"
+        },
+        {
+          "from": "2017",
+          "to": "2020",
+          "desc": "任山东省省长"
+        },
+        {
+          "from": "2013",
+          "to": "2017",
+          "desc": "任山东省委常委、常务副省长"
+        }
+      ],
+      "keyEvents": [
+        {
+          "from": "2020",
+          "to": "",
+          "desc": "任上海市市长"
+        },
+        {
+          "from": "2017",
+          "to": "2020",
+          "desc": "任山东省省长"
+        },
+        {
+          "from": "2013",
+          "to": "2017",
+          "desc": "任山东省委常委、常务副省长"
+        }
+      ],
+      "sources": [
+        "新华网/中国政府网·2020-03-23"
+      ],
+      "source": "新华网/中国政府网·2020-03-23",
+      "name": "龚正",
+      "province": "上海市",
+      "level": "省部级",
+      "role": "市长",
+      "bio": "省部级·市长·上海市长。上海市。籍贯江苏苏州。二十届中央委员。公开履历含3个任职节点，现任职锚点：任上海市市长。研究口径聚焦公开权力结构与制度演进，不含私人领域信息。",
+      "tags": "省部级,市长,上海市,二十届中央委员",
+      "relatedEntities": [
+        "上海市"
+      ],
+      "lastPublicActivity": "2020-03-23 前后公开任职/通报节点"
+    }
+  ],
+  "uniqueOfficeCollisions": [],
+  "sameNameTitleCollisions": [
+    {
+      "key": "杜海洋#市长",
+      "figures": [
+        {
+          "province": "四川省",
+          "title": "宜宾市市长",
+          "org": "宜宾市"
+        },
+        {
+          "province": "湖北省",
+          "title": "襄阳市市长",
+          "org": "襄阳市"
+        }
+      ]
+    },
+    {
+      "key": "张涛#市长",
+      "figures": [
+        {
+          "province": "河北省",
+          "title": "张家口市市长",
+          "org": "张家口市"
+        },
+        {
+          "province": "黑龙江省",
+          "title": "七台河市市长",
+          "org": "七台河市"
+        }
+      ]
+    },
+    {
+      "key": "杨勇#市长",
+      "figures": [
+        {
+          "province": "湖北省",
+          "title": "潜江市市长",
+          "org": "潜江市"
+        },
+        {
+          "province": "黑龙江省",
+          "title": "牡丹江市市长",
+          "org": "牡丹江市"
+        }
+      ]
+    }
+  ],
+  "note": "直辖市市长改为仅保留省级库；dedupeFigures 增加 personOfficeNearKey 近重复合并；同名市长异地为真同名异人"
+}
