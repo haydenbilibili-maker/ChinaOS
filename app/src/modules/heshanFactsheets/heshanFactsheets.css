@@ -227,6 +227,223 @@ footer .fseal{font-family:"Ma Shan Zheng",serif;color:var(--cinnabar);font-size:
   border-top: 1px dashed var(--line);
 }
 
+/* 色带图例 · 高密度横条 */
+.heshan-map-legend {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  gap: 4px 12px;
+  align-items: center;
+  padding: 8px 16px 10px;
+  border-top: 1px dashed var(--line);
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+}
+
+.heshan-map-legend__label {
+  grid-row: 1 / span 2;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  justify-self: center;
+}
+
+.heshan-map-legend__track {
+  grid-column: 2;
+  padding: 2px 0;
+}
+
+.heshan-map-legend__bar {
+  height: 8px;
+  border-radius: 4px;
+  border: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.heshan-map-legend__ends {
+  grid-column: 2;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+/* 拟省档案抽屉 · 地图内浮层 */
+.heshan-map-shell.has-drawer .heshan-map-chart {
+  padding-right: 0;
+}
+
+.heshan-province-drawer {
+  position: absolute;
+  inset: 0 0 auto auto;
+  z-index: 4;
+  width: min(100%, 17rem);
+  max-height: calc(100% - 3.5rem);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-left: 1px solid var(--heshan-drawer-border, var(--line));
+  background: var(--heshan-drawer-bg, var(--card-bg-solid));
+  box-shadow: -10px 0 28px -12px var(--card-shadow);
+  animation: os-fade-in 0.24s var(--ease-ink) both;
+}
+
+.heshan-province-drawer__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  border-bottom: 1px dashed var(--line);
+}
+
+.heshan-province-drawer__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  line-height: 1.25;
+}
+
+.heshan-province-drawer__sub {
+  margin: 4px 0 0;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.heshan-province-drawer__close {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.heshan-province-drawer__close:hover {
+  border-color: var(--cinnabar);
+  color: var(--cinnabar);
+}
+
+.heshan-province-drawer__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px;
+}
+
+.heshan-province-drawer__hero {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.heshan-province-drawer__hero-val {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: var(--cinnabar);
+  line-height: 1;
+}
+
+.heshan-province-drawer__hero-unit {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+
+.heshan-province-drawer__grid {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.heshan-province-drawer__grid li {
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--card-bg-hover);
+}
+
+.heshan-province-drawer__k {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  margin-bottom: 3px;
+}
+
+.heshan-province-drawer__v {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.heshan-province-drawer__cta {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: 1px solid color-mix(in srgb, var(--cinnabar) 45%, transparent);
+  background: color-mix(in srgb, var(--cinnabar) 12%, transparent);
+  color: var(--cinnabar);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.heshan-province-drawer__cta:hover {
+  background: color-mix(in srgb, var(--cinnabar) 20%, transparent);
+  border-color: var(--cinnabar);
+}
+
+@media (max-width: 560px) {
+  .heshan-province-drawer {
+    width: 100%;
+    max-height: 52%;
+    inset: auto 0 2.5rem 0;
+    border-left: none;
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -8px 24px -10px var(--card-shadow);
+  }
+
+  .heshan-map-legend__label {
+    writing-mode: horizontal-tb;
+    transform: none;
+    grid-row: auto;
+    grid-column: 1 / -1;
+  }
+
+  .heshan-map-legend {
+    grid-template-columns: 1fr;
+  }
+
+  .heshan-map-legend__track,
+  .heshan-map-legend__ends {
+    grid-column: 1;
+  }
+}
+
 #hs-factsheets-app .fc.is-map-highlight {
   box-shadow: 0 0 0 2px var(--cinnabar), 0 22px 46px -20px var(--card-shadow);
   transform: translateY(-4px);

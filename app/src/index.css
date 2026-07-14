@@ -533,6 +533,48 @@ button.os-card:hover,
   padding-bottom: 0.85rem;
 }
 
+@media (min-width: 1920px) {
+  :root {
+    --text-xl: 1.625rem;
+    --text-lg: 1.1875rem;
+    --space-section: 2.75rem;
+  }
+
+  .os-page-header {
+    margin-bottom: calc(var(--space-section) * 1.08);
+    padding-bottom: 1.35rem;
+  }
+
+  .os-page-title {
+    font-size: clamp(1.625rem, 0.6vw + 1.35rem, 2rem);
+    letter-spacing: var(--tracking-ink-tight);
+  }
+
+  .os-page-subtitle {
+    font-size: var(--text-base);
+    max-width: 52rem;
+    margin-top: 0.65rem;
+  }
+
+  .os-page-badge {
+    margin-bottom: 0.85rem;
+  }
+
+  .os-section-heading {
+    margin-bottom: 0.9rem;
+    gap: 0.65rem;
+  }
+
+  .os-section-heading__title {
+    font-size: var(--text-base);
+    letter-spacing: var(--tracking-ink-wide);
+  }
+
+  .os-card-title {
+    font-size: var(--text-base);
+  }
+}
+
 @supports (text-wrap: balance) {
   .os-card-title,
   .os-page-subtitle,
@@ -1117,6 +1159,14 @@ textarea:focus {
 
 .os-chart-tooltip,
 .lcm-province-drawer,
+.live-map-drawer.lcm-province-drawer {
+  background: var(--chart-tooltip-bg);
+  border-color: var(--chart-tooltip-border);
+  color: var(--chart-tooltip-text);
+  backdrop-filter: blur(var(--glass-blur-md));
+  -webkit-backdrop-filter: blur(var(--glass-blur-md));
+}
+
 .lcm-map-shell .echarts-tooltip {
   background: var(--chart-tooltip-bg) !important;
   border-color: var(--chart-tooltip-border) !important;
@@ -1153,6 +1203,22 @@ textarea:focus {
   padding: 1rem;
   border: 1px dashed color-mix(in srgb, var(--celadon-border) 55%, var(--border-subtle));
   background: color-mix(in srgb, var(--bg-inset) 65%, transparent);
+}
+
+.os-chart--loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border: 1px solid var(--border-subtle);
+  background: color-mix(in srgb, var(--bg-inset) 55%, transparent);
+}
+
+.os-chart-loading-skeleton {
+  width: min(100%, 420px);
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .os-chart-empty__title {
@@ -2296,9 +2362,57 @@ textarea:focus {
 
 /* 侧栏 · 玻璃面板 */
 .os-sidebar {
+  width: 16rem;
   backdrop-filter: blur(var(--glass-blur-lg));
   -webkit-backdrop-filter: blur(var(--glass-blur-lg));
   box-shadow: var(--sidebar-shadow);
+  transition: width 0.26s var(--ease-ink);
+}
+
+@media (min-width: 769px) {
+  .os-sidebar-collapse {
+    display: inline-flex !important;
+  }
+
+  .os-sidebar.is-narrow {
+    width: 4.25rem;
+  }
+
+  .os-sidebar.is-narrow .os-sidebar-brand-text,
+  .os-sidebar.is-narrow .os-group-header__title,
+  .os-sidebar.is-narrow .os-group-header__desc,
+  .os-sidebar.is-narrow .os-group-header__count,
+  .os-sidebar.is-narrow .os-group-header__chevron,
+  .os-sidebar.is-narrow .nav-item__label {
+    display: none;
+  }
+
+  .os-sidebar.is-narrow .os-sidebar-brand {
+    flex: 0;
+  }
+
+  .os-sidebar.is-narrow .os-group-header__row {
+    justify-content: center;
+  }
+
+  .os-sidebar.is-narrow .os-group-header {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .os-sidebar.is-narrow .nav-item {
+    justify-content: center;
+    padding-left: 0.65rem;
+    padding-right: 0.65rem;
+  }
+
+  .os-sidebar.is-narrow .os-group-block--narrow {
+    margin-bottom: 0.75rem;
+  }
+}
+
+.os-sidebar-collapse {
+  display: none;
 }
 
 /* 模块页脚 · 随密度收紧 */

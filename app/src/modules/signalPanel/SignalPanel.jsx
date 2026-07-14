@@ -12,7 +12,7 @@ export default function SignalPanel() {
 
   return (
     <div className="ink-observatory sp-wrap">
-      <header className="sp-masthead">
+      <header className="sp-masthead os-reveal">
         <div className="sp-brand">
           <span className="sp-glyph">ChinaOS</span>
           <h1>
@@ -28,32 +28,34 @@ export default function SignalPanel() {
         </div>
       </header>
 
-      <RegimeVerdict resolve={resolve} />
+      <div className="os-reveal-stagger">
+        <RegimeVerdict resolve={resolve} />
 
-      {SIGNAL_SECTIONS.map((sec) => (
-        <section key={sec.tier} className="sp-section">
-          <div className="sp-s-head">
-            <span className="sp-tier">{sec.tier}</span>
-            <h2>{sec.title}</h2>
-            <span className="sp-desc">{sec.desc}</span>
-          </div>
-          <div className="sp-grid">
-            {sec.signals.map((sig) => {
-              const status = resolve(sig.id, sig.status);
-              return (
-                <SignalCard
-                  key={sig.id}
-                  signal={sig}
-                  status={status}
-                  onCycle={() => cycle(sig.id, status)}
-                />
-              );
-            })}
-          </div>
-        </section>
-      ))}
+        {SIGNAL_SECTIONS.map((sec) => (
+          <section key={sec.tier} className="sp-section os-reveal">
+            <div className="sp-s-head">
+              <span className="sp-tier">{sec.tier}</span>
+              <h2>{sec.title}</h2>
+              <span className="sp-desc">{sec.desc}</span>
+            </div>
+            <div className="sp-grid">
+              {sec.signals.map((sig) => {
+                const status = resolve(sig.id, sig.status);
+                return (
+                  <SignalCard
+                    key={sig.id}
+                    signal={sig}
+                    status={status}
+                    onCycle={() => cycle(sig.id, status)}
+                  />
+                );
+              })}
+            </div>
+          </section>
+        ))}
 
-      <DecisionLanes resolve={resolve} />
+        <DecisionLanes resolve={resolve} />
+      </div>
 
       <div className="sp-controls">
         <button type="button" className="sp-btn" onClick={reset}>

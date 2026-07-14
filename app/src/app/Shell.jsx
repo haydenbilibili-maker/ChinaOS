@@ -13,6 +13,7 @@ import { getDensity, toggleDensity, subscribeDensity } from '../lib/density.js';
 const IS_MAC = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent || '');
 const HOME_GROUP_ID = 'home';
 const SIDEBAR_EXPANDED_KEY = 'c2os-sidebar-expanded';
+const SIDEBAR_NARROW_KEY = 'c2os-sidebar-narrow';
 
 function loadExpandedGroups() {
   try {
@@ -30,6 +31,19 @@ function loadExpandedGroups() {
 function persistExpandedGroups(set) {
   try {
     localStorage.setItem(SIDEBAR_EXPANDED_KEY, JSON.stringify([...set]));
+  } catch (_) { /* 隐私模式等场景静默跳过 */ }
+}
+
+function loadSidebarNarrow() {
+  try {
+    return localStorage.getItem(SIDEBAR_NARROW_KEY) === '1';
+  } catch (_) { /* 隐私模式等场景静默跳过 */ }
+  return false;
+}
+
+function persistSidebarNarrow(narrow) {
+  try {
+    localStorage.setItem(SIDEBAR_NARROW_KEY, narrow ? '1' : '0');
   } catch (_) { /* 隐私模式等场景静默跳过 */ }
 }
 
@@ -102,7 +116,7 @@ function SidebarTreeControls({ anyExpanded, onToggleAll }) {
   );
 }
 
-function GroupBlock({ group, expanded, onToggle, onNavigate, alwaysShowModules, huangfeizhaiUnlocked }) {
+function GroupBlock({ group, expanded, onToggle, onNavigate, alwaysShowModules, huangfeizhaiUnlocked, narrow }) {
   const allMods = modulesByGroup(group.id);
   if (!allMods.length) return null;
 
@@ -111,8 +125,8 @@ function GroupBlock({ group, expanded, onToggle, onNavigate, alwaysShowModules, 
     ? allMods.filter((m) => m.id === 'huangfeizhaiHub')
     : allMods;
 
-  const collapsible = !alwaysShowModules;
-  const showModules = alwaysShowModules || expanded;
+  const collapsible = !alwaysShowModules && !narrow;
+  const showModules = alwaysShowModules || expanded || narrow;
 
   const headerInner = (
     <>
@@ -128,7 +142,7 @@ function GroupBlock({ group, expanded, onToggle, onNavigate, alwaysShowModules, 
           />
         ) : null}
       </div>
-      {group.desc ? (
+      {!narrow && group.desc ? (
         <div className="os-group-header__desc">
           {group.desc}
           {isPrivateGroup && !huangfeizhaiUnlocked ? ' · 需密钥' : null}
@@ -138,7 +152,7 @@ function GroupBlock({ group, expanded, onToggle, onNavigate, alwaysShowModules, 
   );
 
   return (
-    <div className={`mb-5 os-group-block ${showModules ? '' : 'os-group-collapsed'}`}>
+    <div className={`mb-5 os-group-block ${showModules ? '' : 'os-group-collapsed'}${narrow ? ' os-group-block--narrow' : ''}`}>
       {collapsible ? (
         <button
           type="button"
@@ -146,11 +160,12 @@ function GroupBlock({ group, expanded, onToggle, onNavigate, alwaysShowModules, 
           onClick={onToggle}
           aria-expanded={expanded}
           aria-controls={`sidebar-group-${group.id}`}
+          title={narrow ? group.label : undefined}
         >
           {headerInner}
         </button>
       ) : (
-        <div className="os-group-header px-3 mb-2" aria-label={group.label}>
+        <div className="os-group-header px-3 mb-2" aria-label={group.label} title={narrow ? group.label : undefined}>
           {headerInner}
         </div>
       )}
@@ -164,6 +179,7 @@ function GroupBlock({ group, expanded, onToggle, onNavigate, alwaysShowModules, 
               key={m.id}
               to={m.path}
               onClick={onNavigate}
+              title={narrow ? m.title : undefined}
               className={({ isActive }) => `nav-item flex items-center gap-3 px-3 py-2 rounded-lg text-sm ${isActive ? 'is-active' : ''}`}
               style={({ isActive }) => ({
                 color: isActive ? 'var(--nav-active-text)' : 'var(--text-secondary)',
@@ -171,7 +187,7 @@ function GroupBlock({ group, expanded, onToggle, onNavigate, alwaysShowModules, 
               })}
             >
               <Icon name={m.icon} />
-              <span className="flex-1 truncate">{m.title}</span>
+              <span className="nav-item__label flex-1 truncate">{m.title}</span>
             </NavLink>
           ))}
         </nav>
@@ -192,6 +208,7 @@ export default function Shell() {
   const [theme, setThemeState] = useState(() => getTheme());
   const [density, setDensityState] = useState(() => getDensity());
   const [expandedGroups, setExpandedGroups] = useState(() => loadExpandedGroups());
+  const [sidebarNarrow, setSidebarNarrow] = useState(() => loadSidebarNarrow());
   const { authenticated: huangfeizhaiUnlocked, lock: lockHuangfeizhai } = useHuangfeizhaiAuth();
 
   const collapsibleGroupIds = useMemo(
@@ -286,6 +303,13 @@ export default function Shell() {
 
   const onThemeToggle = useCallback(() => { setThemeState(toggleTheme()); }, []);
   const onDensityToggle = useCallback(() => { setDensityState(toggleDensity()); }, []);
+  const toggleSidebarNarrow = useCallback(() => {
+    setSidebarNarrow((prev) => {
+      const next = !prev;
+      persistSidebarNarrow(next);
+      return next;
+    });
+  }, []);
   const closeSearch = useCallback(() => setSearchOpen(false), []);
   const closeDrawer = useCallback(() => setDrawerOpen(false), []);
 
@@ -304,11 +328,11 @@ export default function Shell() {
       )}
 
       <aside
-        className={`os-sidebar w-64 shrink-0 border-r flex flex-col h-full relative z-[1] ${drawerOpen ? 'is-open' : ''}`}
+        className={`os-sidebar shrink-0 border-r flex flex-col h-full relative z-[1] ${drawerOpen ? 'is-open' : ''}${sidebarNarrow ? ' is-narrow' : ''}`}
         style={{ borderColor: 'var(--border-subtle)', background: 'var(--surface-glass)' }}
       >
-        <div className="px-4 py-4 border-b shrink-0 flex items-center" style={{ borderColor: 'var(--border-subtle)' }}>
-          <div className="flex-1 min-w-0">
+        <div className="px-4 py-4 border-b shrink-0 flex items-center gap-2" style={{ borderColor: 'var(--border-subtle)' }}>
+          <div className="flex-1 min-w-0 os-sidebar-brand">
             <Link to="/dashboard" className="flex items-center gap-2.5 os-link" style={{ textDecoration: 'none' }} onClick={closeDrawer}>
               <img
                 src="/logo.svg"
@@ -319,13 +343,22 @@ export default function Shell() {
                 style={{ borderRadius: 6 }}
                 aria-hidden="true"
               />
-              <span className="text-lg font-bold tracking-tight" style={{ color: 'var(--china-red)' }}>China OS</span>
-              <span className="text-xs mono px-1.5 py-0.5 rounded" style={{ background: 'var(--bg-elevated)', color: 'var(--cyber-cyan)' }}>
+              <span className="os-sidebar-brand-text text-lg font-bold tracking-tight" style={{ color: 'var(--china-red)' }}>China OS</span>
+              <span className="os-sidebar-brand-text text-xs mono px-1.5 py-0.5 rounded" style={{ background: 'var(--bg-elevated)', color: 'var(--cyber-cyan)' }}>
                 v3
               </span>
             </Link>
-            <div className="text-xs mt-1.5" style={{ color: 'var(--text-tertiary)' }}>治大国如烹小鲜</div>
+            <div className="os-sidebar-brand-text text-xs mt-1.5" style={{ color: 'var(--text-tertiary)' }}>治大国如烹小鲜</div>
           </div>
+          <button
+            type="button"
+            className="os-sidebar-collapse os-btn os-btn-ghost os-btn-sm shrink-0"
+            onClick={toggleSidebarNarrow}
+            aria-label={sidebarNarrow ? '展开侧栏' : '收起侧栏为窄栏'}
+            title={sidebarNarrow ? '展开侧栏' : '窄栏模式'}
+          >
+            {sidebarNarrow ? <Lucide.PanelLeftOpen size={16} /> : <Lucide.PanelLeftClose size={16} />}
+          </button>
           <button
             type="button"
             className="os-drawer-close os-btn os-btn-ghost os-btn-sm"
@@ -335,7 +368,9 @@ export default function Shell() {
             <Lucide.X size={16} />
           </button>
         </div>
-        <SidebarTreeControls anyExpanded={anyGroupExpanded} onToggleAll={toggleAllGroups} />
+        {!sidebarNarrow ? (
+          <SidebarTreeControls anyExpanded={anyGroupExpanded} onToggleAll={toggleAllGroups} />
+        ) : null}
         <div className="flex-1 overflow-y-auto py-4 min-h-0">
           {GROUPS.map((g) => (
             <GroupBlock
@@ -346,6 +381,7 @@ export default function Shell() {
               onNavigate={closeDrawer}
               alwaysShowModules={g.id === HOME_GROUP_ID}
               huangfeizhaiUnlocked={huangfeizhaiUnlocked}
+              narrow={sidebarNarrow}
             />
           ))}
         </div>

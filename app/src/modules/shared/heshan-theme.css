@@ -55,6 +55,10 @@
   --c-lingnan: #c05a50;
   --c-bashu: #6a7a56;
   --c-xibei: #a6634e;
+  /* 拟省 drawer · 与 lcm-province-drawer 语义对齐 */
+  --heshan-drawer-bg: rgba(232, 228, 220, 0.94);
+  --heshan-drawer-border: rgba(58, 69, 72, 0.55);
+  --heshan-legend-track: rgba(90, 154, 142, 0.15);
 }
 
 :root[data-theme='light'] #hs-reform-app,
@@ -109,6 +113,9 @@
   --c-lingnan: #9e3b30;
   --c-bashu: #4a5a36;
   --c-xibei: #86432e;
+  --heshan-drawer-bg: rgba(255, 253, 247, 0.94);
+  --heshan-drawer-border: rgba(205, 192, 169, 0.85);
+  --heshan-legend-track: rgba(51, 71, 74, 0.08);
 }
 
 /* 河山交叉导航 · 与宣纸朱砂主题对齐 */

@@ -63,15 +63,15 @@ export default function GovernanceVerdict({ compact = false, pulseKey = 0 }) {
   const verdict = computeGovernanceVerdict(regime, proximityScore);
 
   return (
-    <section className={`gv-panel ink-observatory ${compact ? 'gv-compact' : ''}`}>
-      <div className="gv-head">
+    <section className={`gv-panel ink-observatory os-reveal-stagger ${compact ? 'gv-compact' : ''}`}>
+      <div className="gv-head os-reveal">
         <span className="gv-ey">治理结构 · 双仪表合成</span>
         <h2 className="gv-title">{verdict.headline}</h2>
         {!compact && (
           <p className="gv-body">{verdict.body}</p>
         )}
       </div>
-      <div className="gv-metrics">
+      <div className="gv-metrics os-reveal">
         <div className={`gv-metric${metricPulse ? ' gv-metric--pulse' : ''}`}>
           <span className="gv-m-label">信号灯 · 治本进度</span>
           <span key={`rs${pulseKey}`} className={`gv-m-val${metricPulse ? ' lcm-flash' : ''}`}>{regimeScore}</span>
@@ -83,10 +83,10 @@ export default function GovernanceVerdict({ compact = false, pulseKey = 0 }) {
           <span className="gv-m-sub">{proximityScore < 34 ? '沉寂' : proximityScore < 62 ? '积蓄' : '逼近'}</span>
         </div>
       </div>
-      <p className="gv-timing">
+      <p className="gv-timing os-reveal">
         <b>改革时序</b> · {verdict.reformTiming}
       </p>
-      <div className="gv-links">
+      <div className="gv-links os-reveal">
         <Link to={OBSERVATORY_ROUTE}>观象台</Link>
         <Link to={ATTRIBUTION_ROUTE}>三层归因</Link>
         <Link to={PREMIER_RADIUS_ROUTE}>权限半径</Link>

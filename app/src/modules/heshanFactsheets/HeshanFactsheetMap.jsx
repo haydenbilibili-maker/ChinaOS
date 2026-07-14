@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import * as Lucide from 'lucide-react';
 import EChart from '../../lib/viz/EChart.jsx';
 import { LoadingSkeleton, EmptyState } from '../../app/ui.jsx';
 import { getTheme, subscribeTheme } from '../../lib/theme.js';
@@ -6,7 +7,7 @@ import { CHART_TOOLTIP, mapChoropleth, chartTextColor } from '../shared/chartHel
 import { HESHAN_AS_OF } from '../shared/heshanData.js';
 import { loadHeshanReformGeo, HESHAN_MAP_NAME } from './heshanMapGeo.js';
 import {
-  HESHAN_UNITS,
+  getUnitMeta,
   metricForUnit,
 } from './heshanProvinceGroups.js';
 
@@ -22,6 +23,62 @@ function formatMetric(v, metric) {
   return `${Math.round(v).toLocaleString()} 万`;
 }
 
+function HeshanProvinceDrawer({ unitName, metric, onClose, onScrollToCard }) {
+  const meta = getUnitMeta(unitName);
+  if (!meta) return null;
+  const m = METRICS.find((x) => x.id === metric);
+
+  return (
+    <aside
+      className="heshan-province-drawer lcm-province-drawer"
+      aria-label={`${unitName} 拟省档案`}
+    >
+      <div className="heshan-province-drawer__head">
+        <div className="min-w-0">
+          <h3 className="heshan-province-drawer__title">{unitName}</h3>
+          <p className="heshan-province-drawer__sub">拟省单元 · {m?.label} 着色</p>
+        </div>
+        <button
+          type="button"
+          className="heshan-province-drawer__close"
+          onClick={onClose}
+          aria-label="关闭档案"
+        >
+          <Lucide.X size={15} />
+        </button>
+      </div>
+      <div className="heshan-province-drawer__body">
+        <div className="heshan-province-drawer__hero">
+          <span className="heshan-province-drawer__hero-val">{formatMetric(meta.gdp, 'gdp')}</span>
+          <span className="heshan-province-drawer__hero-unit">GDP</span>
+        </div>
+        <ul className="heshan-province-drawer__grid">
+          <li>
+            <span className="heshan-province-drawer__k">人口</span>
+            <span className="heshan-province-drawer__v">{formatMetric(meta.pop, 'pop')}</span>
+          </li>
+          <li>
+            <span className="heshan-province-drawer__k">财政成本</span>
+            <span className="heshan-province-drawer__v">{formatMetric(meta.cost, 'gdp')}</span>
+          </li>
+          <li>
+            <span className="heshan-province-drawer__k">{m?.label}</span>
+            <span className="heshan-province-drawer__v">{formatMetric(metricForUnit(unitName, metric), metric)}</span>
+          </li>
+        </ul>
+        <button
+          type="button"
+          className="heshan-province-drawer__cta"
+          onClick={() => onScrollToCard?.(meta.slug, unitName)}
+        >
+          定位建省档案
+          <Lucide.ArrowDown size={12} />
+        </button>
+      </div>
+    </aside>
+  );
+}
+
 export default function HeshanFactsheetMap({ onSelectUnit }) {
   const chartRef = useRef(null);
   const [metric, setMetric] = useState('gdp');
@@ -31,6 +88,7 @@ export default function HeshanFactsheetMap({ onSelectUnit }) {
   const [geoMeta, setGeoMeta] = useState(null);
   const [theme, setThemeState] = useState(getTheme);
   const [selectedSlug, setSelectedSlug] = useState(null);
+  const [selectedUnit, setSelectedUnit] = useState(null);
 
   useEffect(() => subscribeTheme(setThemeState), []);
 
@@ -94,11 +152,11 @@ export default function HeshanFactsheetMap({ onSelectUnit }) {
   const metricValues = seriesData.map((d) => d.value).filter((v) => v != null && v > 0);
   const minV = metricValues.length ? Math.min(...metricValues) : 0;
   const maxV = metricValues.length ? Math.max(...metricValues) : 1;
+  const palette = useMemo(() => mapChoropleth(light ? 'light' : 'dark'), [light]);
 
   const option = useMemo(() => {
     const muted = light ? '#7c7264' : '#8a8278';
     const line = light ? '#cdc0a9' : '#3a4548';
-    const palette = mapChoropleth(light ? 'light' : 'dark');
 
     return {
       backgroundColor: 'transparent',
@@ -126,13 +184,7 @@ export default function HeshanFactsheetMap({ onSelectUnit }) {
         min: minV,
         max: maxV,
         calculable: false,
-        orient: 'horizontal',
-        left: 'center',
-        bottom: 6,
-        itemWidth: 14,
-        itemHeight: 72,
-        text: [formatMetric(maxV, metric), formatMetric(minV, metric)],
-        textStyle: { color: chartTextColor(), fontSize: 10 },
+        show: false,
         inRange: { color: palette },
         seriesIndex: 0,
       },
@@ -158,18 +210,27 @@ export default function HeshanFactsheetMap({ onSelectUnit }) {
         },
       ],
     };
-  }, [light, metric, minV, maxV, seriesData]);
+  }, [light, metric, minV, maxV, palette, seriesData]);
 
   const handleReady = useCallback((chart) => {
     chartRef.current = chart;
     chart.off('click');
     chart.on('click', (params) => {
       const slug = params?.data?.slug;
+      const unitName = params?.data?.unitName;
       if (!slug) return;
       setSelectedSlug(slug);
-      onSelectUnit?.(slug, params.data?.unitName);
+      setSelectedUnit(unitName || null);
+      onSelectUnit?.(slug, unitName);
     });
   }, [onSelectUnit]);
+
+  const closeDrawer = useCallback(() => {
+    setSelectedSlug(null);
+    setSelectedUnit(null);
+  }, []);
+
+  const activeMetric = METRICS.find((x) => x.id === metric);
 
   return (
     <section className="heshan-map-section wrap reveal" aria-label="拟省合并示意地图">
@@ -194,7 +255,7 @@ export default function HeshanFactsheetMap({ onSelectUnit }) {
         </div>
       </div>
 
-      <div className={`heshan-map-shell${loading ? ' is-loading' : ''}${error ? ' has-error' : ''}`}>
+      <div className={`heshan-map-shell${loading ? ' is-loading' : ''}${error ? ' has-error' : ''}${selectedUnit ? ' has-drawer' : ''}`}>
         {loading && (
           <div className="heshan-map-status heshan-map-status--skeleton" role="status" aria-live="polite">
             <LoadingSkeleton rows={3} label="边界加载中…" className="heshan-map-skeleton" />
@@ -211,17 +272,40 @@ export default function HeshanFactsheetMap({ onSelectUnit }) {
           </div>
         )}
         {!error && featureMeta.length > 0 && (
-          <EChart
-            option={option}
-            variant="dashboard"
-            className="heshan-map-chart"
-            style={{ height: 'min(62vh, 520px)', minHeight: 320 }}
-            onReady={handleReady}
+          <>
+            <EChart
+              option={option}
+              variant="dashboard"
+              className="heshan-map-chart"
+              style={{ height: 'min(62vh, 520px)', minHeight: 320 }}
+              onReady={handleReady}
+            />
+            <div className="heshan-map-legend" role="img" aria-label={`${activeMetric?.label} 色带图例`}>
+              <span className="heshan-map-legend__label">{activeMetric?.label}</span>
+              <div className="heshan-map-legend__track">
+                <div
+                  className="heshan-map-legend__bar"
+                  style={{ background: `linear-gradient(90deg, ${palette.join(', ')})` }}
+                />
+              </div>
+              <div className="heshan-map-legend__ends">
+                <span>{formatMetric(minV, metric)}</span>
+                <span>{formatMetric(maxV, metric)}</span>
+              </div>
+            </div>
+          </>
+        )}
+        {selectedUnit && !loading && !error && (
+          <HeshanProvinceDrawer
+            unitName={selectedUnit}
+            metric={metric}
+            onClose={closeDrawer}
+            onScrollToCard={onSelectUnit}
           />
         )}
         <div className="heshan-map-foot">
           <span>底图 geo.datav.aliyun.com · Worker 代理兜底</span>
-          <span>点击拟省区域定位建省档案</span>
+          <span>点击拟省区域打开档案抽屉</span>
           {geoMeta?.featureCount ? <span>{geoMeta.featureCount} 个面要素</span> : null}
         </div>
       </div>

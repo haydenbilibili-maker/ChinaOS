@@ -13,7 +13,7 @@ export default function ThreeForcesMonitor() {
 
   return (
     <div className="ink-observatory tf-wrap">
-      <header className="tf-masthead">
+      <header className="tf-masthead os-reveal">
         <div className="tf-brand">
           <span className="tf-glyph">ChinaOS</span>
           <h1>
@@ -29,10 +29,12 @@ export default function ThreeForcesMonitor() {
         </div>
       </header>
 
-      <InvertedWarning />
-      <ProximityVerdict resolve={resolve} />
-      <ForcePanels forces={FORCES} resolve={resolve} onCycle={cycle} />
-      <BetSection />
+      <div className="os-reveal-stagger">
+        <InvertedWarning />
+        <ProximityVerdict resolve={resolve} />
+        <ForcePanels forces={FORCES} resolve={resolve} onCycle={cycle} />
+        <BetSection />
+      </div>
 
       <div className="tf-controls">
         <button type="button" className="tf-btn" onClick={reset}>

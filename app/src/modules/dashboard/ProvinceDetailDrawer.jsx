@@ -132,7 +132,7 @@ export default function ProvinceDetailDrawer({
 
   return (
     <div
-      className="live-map-drawer lcm-drawer-in absolute inset-y-0 right-0 z-20 flex flex-col w-full sm:w-80 lg:w-96 overflow-hidden"
+      className="live-map-drawer lcm-drawer-in lcm-province-drawer absolute inset-y-0 right-0 z-20 flex flex-col w-full sm:w-80 lg:w-96 overflow-hidden"
       style={{
         background: 'var(--bg-base)',
         borderLeft: '1px solid var(--border-subtle)',

@@ -119,10 +119,7 @@
   font-size: 11px;
 }
 
-/* ── Round 5 · 治理链动效统一 ── */
-.gv-panel.ink-observatory {
-  animation: os-fade-in var(--duration-slow) var(--ease-ink) both;
-}
+/* ── Round 5 · 治理链动效统一 · Round 2 UI 改由 os-reveal-stagger 子项入场 ── */
 .gv-metric {
   transition:
     border-color var(--duration-fast) var(--ease-ink),
@@ -132,9 +129,4 @@
 .gv-metric.gv-metric--pulse {
   animation: os-metric-glow 0.85s ease-out 1;
   --metric-accent: var(--celadon);
-}
-@media (prefers-reduced-motion: reduce) {
-  .gv-panel.ink-observatory {
-    animation: none !important;
-  }
 }

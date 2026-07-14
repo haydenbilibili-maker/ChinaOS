@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import * as echarts from 'echarts';
+import { LoadingSkeleton } from '../../app/ui.jsx';
 import { applyChartTheme, chartTextColor, CHART_TOOLTIP } from '../../modules/shared/chartHelpers.js';
 import { getTheme, THEME_EVENT } from '../theme.js';
 
@@ -75,6 +76,8 @@ export default function EChart({
   variant = 'default',
   emptyTitle = '暂无图表数据',
   emptyDescription,
+  loading = false,
+  loadingLabel = '图表加载中…',
 }) {
   const ref = useRef(null);
   const chartRef = useRef(null);
@@ -123,6 +126,19 @@ export default function EChart({
       chartRef.current.setOption(withTheme(option, variant), true);
     }
   }, [option, variant, isEmpty]);
+
+  if (loading) {
+    return (
+      <div
+        className={`os-chart os-chart--${variant} os-chart--loading ${className || ''}`.trim()}
+        style={{ width: '100%', height: preset.height, ...style }}
+        role="status"
+        aria-live="polite"
+      >
+        <LoadingSkeleton rows={3} label={loadingLabel} className="os-chart-loading-skeleton" />
+      </div>
+    );
+  }
 
   if (isEmpty) {
     return (
