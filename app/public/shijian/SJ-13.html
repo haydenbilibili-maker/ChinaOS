@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-13 · 王莽改制</title>
+<meta name="description" content="ChinaOS 史鉴变法卷新莽案：王莽托古改制与豪强反弹。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;
+  --sj-ink-800:#1d1916;
+  --sj-paper-100:#e8ddc7;
+  --sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;
+  --sj-celadon:#5f7a6f;
+  --sj-ochre:#b8894a;
+  --sj-line:#3a322b;
+  --sj-radius:6px;
+  --sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(1000px 560px at 72% -8%, #2a221c 0%, transparent 55%),
+    radial-gradient(700px 420px at 8% 90%, #1a1612 0%, transparent 50%),
+    var(--sj-ink-900);
+  color:var(--sj-paper-100);
+  font-family:var(--sj-serif);
+  line-height:1.75;
+}
+.13-wrap{max-width:min(100%,1180px);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media (min-width:1280px){.13-wrap{max-width:min(100%,1480px)}}
+@media (min-width:1536px){.13-wrap{max-width:min(100%,1600px)}}
+@media (min-width:1920px){.13-wrap{max-width:min(100%,1680px)}}
+@media (min-width:2560px){.13-wrap{max-width:min(100%,1680px)}}/* 宽屏双栏：主栏 ~58% + 粘性侧栏 ~38% */
+.sj-page-layout{display:flex;flex-direction:column;gap:var(--sj-space)}
+@media (min-width:1280px){
+  .sj-page-layout{
+    display:grid;
+    grid-template-columns:minmax(0,58fr) minmax(280px,38fr);
+    gap:clamp(16px,2vw,28px);
+    align-items:start;
+  }
+}
+.sj-main-col{min-width:0;width:100%}
+.sj-rail{
+  display:flex;flex-direction:column;gap:12px;
+  min-width:0;width:100%;
+}
+@media (min-width:1280px){
+  .sj-rail{
+    position:sticky;top:1rem;align-self:start;
+    max-height:calc(100vh - 2rem);overflow-y:auto;overscroll-behavior:contain;
+  }
+}
+@media (max-width:1279px){
+  .sj-page-layout{display:flex;flex-direction:column}
+  .sj-main-col{display:contents}
+  .sj-rail{order:2;margin:8px 0 20px}
+  .sj-rail-mini{display:none}
+}
+.sj-rail-card{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
+  padding:14px 16px;
+}
+.sj-rail-card .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-rail-card h3,.sj-rail-card h4{font-size:15px;letter-spacing:.06em;margin-bottom:8px;color:var(--sj-paper-100);font-weight:600}
+.sj-rail-card p,.sj-rail-card li{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+.sj-rail-card dl{display:grid;gap:6px;margin:0}
+.sj-rail-card dt{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);letter-spacing:.06em}
+.sj-rail-card dd{font-size:12px;color:var(--sj-paper-300);margin:0;line-height:1.55}
+.sj-rail-toc{display:grid;gap:6px;margin-top:8px}
+.sj-rail-toc a{
+  display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  padding:8px 10px;text-decoration:none;color:inherit;font-size:13px;
+  transition:border-color .18s ease;
+}
+.sj-rail-toc a:hover,.sj-rail-toc a:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-rail-toc a.is-active{border-color:var(--sj-vermil)}
+.sj-rail-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.sj-rail-chip,.sj-rail-chip:visited{
+  display:inline-block;font-family:var(--sj-mono);font-size:10px;letter-spacing:.06em;
+  color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;
+  border-radius:var(--sj-radius);text-decoration:none;
+}
+.sj-rail-chip:hover,.sj-rail-chip:focus-visible{border-color:var(--sj-ochre);color:var(--sj-ochre);outline:none}
+.sj-rail-mini{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-900);padding:6px 6px 2px;overflow:hidden}
+.sj-rail-mini svg{display:block;width:100%;height:auto;max-height:200px}
+.sj-rail-mini-lbl{font-family:var(--sj-mono);font-size:9px;letter-spacing:.1em;color:var(--sj-paper-300);text-align:center;margin:4px 0 2px}
+.sj-rail-steps{display:grid;gap:6px}
+.sj-rail-step{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);padding:8px 10px;
+  font-size:13px;color:var(--sj-paper-300);border-left:3px solid var(--sj-line);
+  text-decoration:none;
+}
+.sj-rail-step.is-on{border-left-color:var(--sj-vermil);color:var(--sj-paper-100);background:color-mix(in srgb,var(--sj-vermil) 8%,var(--sj-ink-900))}
+.sj-rail-step .n{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);letter-spacing:.08em;display:block;margin-bottom:2px}
+.sj-rail-legend{display:grid;gap:4px;margin-top:8px}
+.sj-rail-legend span{font-size:12px;color:var(--sj-paper-300);padding-left:12px;border-left:3px solid var(--sj-line)}
+.sj-rail-legend .ochre{border-left-color:var(--sj-ochre)}
+.sj-rail-legend .celadon{border-left-color:var(--sj-celadon)}
+.sj-rail-legend .vermil{border-left-color:var(--sj-vermil)}
+.sj-rail-legend .paper{border-left-color:var(--sj-paper-100)}
+.sj-rail-legend .ink{border-left-color:var(--sj-paper-300)}
+.sj-rail-vols{display:grid;gap:6px}
+.sj-rail-vol{
+  display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  padding:8px 10px;text-decoration:none;color:inherit;font-size:13px;
+  transition:border-color .18s ease;
+}
+.sj-rail-vol:hover,.sj-rail-vol:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-rail-vol .n{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);letter-spacing:.1em}
+.sj-rail-snap .sj-snap-note{font-size:11px;line-height:1.5}
+.sj-rail-snap .sj-snap-bars{gap:5px}
+.sj-rail-refute{font-size:12px;color:var(--sj-paper-300);line-height:1.6;font-style:italic}
+.sj-rail-phase-btns{display:grid;gap:6px;margin-top:8px}
+.sj-rail-phase-btn{
+  appearance:none;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  padding:8px 10px;background:var(--sj-ink-900);color:var(--sj-paper-300);
+  font-family:var(--sj-serif);font-size:12px;text-align:left;cursor:pointer;
+  transition:border-color .18s ease,color .18s ease;
+}
+.sj-rail-phase-btn:hover,.sj-rail-phase-btn:focus-visible{border-color:var(--sj-ochre);color:var(--sj-paper-100);outline:none}
+.sj-rail-phase-btn.is-on{border-color:var(--sj-vermil);color:var(--sj-paper-100)}
+
+@keyframes sj-fade-in{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+.sj-reveal-stagger > header,
+.sj-reveal-stagger > .sj-zhupi,
+.sj-reveal-stagger > .sj-ledger,
+.sj-reveal-stagger > [class*="-sec"],
+.sj-reveal-stagger > footer{
+  animation:sj-fade-in .34s cubic-bezier(.22,.61,.36,1) both;
+}
+.sj-reveal-stagger > *:nth-child(1){animation-delay:.03s}
+.sj-reveal-stagger > *:nth-child(2){animation-delay:.06s}
+.sj-reveal-stagger > *:nth-child(3){animation-delay:.09s}
+.sj-reveal-stagger > *:nth-child(4){animation-delay:.12s}
+.sj-reveal-stagger > *:nth-child(5){animation-delay:.15s}
+.sj-reveal-stagger > *:nth-child(6){animation-delay:.18s}
+.sj-reveal-stagger > *:nth-child(7){animation-delay:.21s}
+.sj-reveal-stagger > *:nth-child(8){animation-delay:.24s}
+
+.13-mast{
+  display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;
+  padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px;
+}
+.13-mast .badge{font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px}
+.13-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em;line-height:1.3}
+.13-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;letter-spacing:.08em;font-size:.72em;display:block;margin-top:4px}
+.13-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right;line-height:1.7}
+.13-meta b{color:var(--sj-ochre);font-weight:500}
+.13-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sj-xlinks a,.sj-xlinks a:visited{color:var(--sj-celadon);text-decoration:none}
+.sj-xlinks a:hover,.sj-xlinks a:focus-visible{outline:none}
+.13-chip,.13-chip:visited{
+  display:inline-block;font-family:var(--sj-mono);font-size:10px;
+  letter-spacing:.08em;color:var(--sj-celadon);border:1px solid var(--sj-line);
+  padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;
+}
+.13-chip:hover,.13-chip:focus-visible{border-color:var(--sj-ochre);color:var(--sj-ochre);outline:none}
+
+.sj-zhupi{
+  color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;
+  padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:74ch;
+}
+
+/* ====== 可复用史鉴台账组件（SJ-09 验证 → 案例卷复用） ====== */
+.sj-ledger{display:grid;gap:8px}
+.sj-ledger-field{margin:20px 0 8px;scroll-margin-top:24px}
+.sj-ledger-fh{
+  display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--sj-line);
+}
+.sj-ledger-fh .fnum{
+  font-family:var(--sj-mono);font-size:11px;letter-spacing:.12em;color:var(--sj-ochre);
+  border:1px solid var(--sj-line);border-radius:4px;padding:1px 7px;
+}
+.sj-ledger-fh h2{font-size:clamp(16px,2.1vw,19px);font-weight:600;letter-spacing:.1em}
+.sj-ledger-fh .en{font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);letter-spacing:.14em}
+
+.13-prose{font-size:15.5px;color:var(--sj-paper-100);max-width:74ch}
+.13-prose + .13-prose{margin-top:12px}
+.13-prose strong{color:var(--sj-ochre);font-weight:600}
+.13-note{font-size:13px;color:var(--sj-paper-300);margin-top:12px;max-width:74ch}
+.13-note b{color:var(--sj-paper-100);font-weight:600}
+
+/* ① 一句话拐点 */
+.13-hook{
+  border:1px solid var(--sj-line);border-left:3px solid var(--sj-vermil);
+  border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
+  padding:18px 22px;
+}
+.13-hook p{font-size:clamp(16px,2.3vw,20px);line-height:1.7;color:var(--sj-paper-100);letter-spacing:.02em}
+.13-hook p b{color:var(--sj-vermil);font-weight:600}
+.13-hook .yr{margin-top:10px;font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre);letter-spacing:.06em}
+
+/* ② 结构切片 */
+.13-stage{width:100%;max-width:100%;
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
+  box-shadow:0 1px 0 rgba(232,221,199,.04), 0 18px 48px rgba(0,0,0,.45);
+  padding:8px 8px 4px;overflow:auto;
+}
+.13-stage svg{display:block;width:100%;height:auto;max-width:100%;margin:0 auto}
+.sj-node{cursor:pointer;transition:opacity .2s ease, filter .2s ease}
+.sj-node:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:4px}
+.sj-edge{transition:opacity .2s ease, filter .2s ease}
+.13-stage.is-picking .sj-node{opacity:.3}
+.13-stage.is-picking .sj-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px rgba(184,137,74,.4))}
+.13-stage.is-picking .sj-edge{opacity:.16}
+.13-stage.is-picking .sj-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px rgba(168,59,44,.4))}
+.13-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:14px;align-items:start;margin-top:14px}
+.13-aside{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
+  padding:14px 16px;position:sticky;top:12px;min-height:150px;
+}
+.13-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.13-aside h3{font-size:16px;letter-spacing:.08em;margin-bottom:8px}
+.13-aside p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.7}
+.13-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+
+/* ③ 相位 */
+.13-phase{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+.13-phase .pb{
+  font-family:var(--sj-mono);font-size:12px;letter-spacing:.1em;color:var(--sj-vermil);
+  border:1px solid var(--sj-vermil);border-radius:20px;padding:6px 16px;white-space:nowrap;
+}
+.13-phase .pb b{color:var(--sj-ochre);font-weight:500}
+
+/* 表格（④五力 / ⑦映射复用） */
+.13-table-wrap{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);overflow:auto;margin-top:6px;min-width:0}
+.13-table{width:max(100%,720px);table-layout:fixed;border-collapse:collapse;font-size:13px}
+.13-table th{
+  background:var(--sj-ink-900);color:var(--sj-ochre);font-family:var(--sj-mono);font-size:10px;
+  letter-spacing:.12em;font-weight:500;text-align:left;padding:10px 12px;border-bottom:1px solid var(--sj-line);white-space:nowrap;
+}
+.13-table td{padding:10px 12px;border-bottom:1px solid var(--sj-line);color:var(--sj-paper-300);vertical-align:top;line-height:1.6;overflow-wrap:break-word}
+.13-table td:first-child{color:var(--sj-paper-100);font-weight:600;white-space:nowrap;min-width:6em}
+.13-table .zheng{color:var(--sj-paper-300)}
+.13-table .shi{color:var(--sj-paper-100)}
+
+/* ⑤ 史家交锋 */
+.13-hist{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.13-hist article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.13-hist .who{font-size:14px;font-weight:600;letter-spacing:.06em;color:var(--sj-celadon);margin-bottom:6px}
+.13-hist .who span{font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);letter-spacing:.08em;margin-left:6px}
+.13-hist p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+
+/* ⑥ 成败三列 */
+.13-verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px}
+.13-verdict article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.13-verdict .vh{font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;margin-bottom:8px}
+.13-verdict[data-x] .vh{color:var(--sj-paper-300)}
+.13-verdict article.ok .vh{color:var(--sj-celadon)}
+.13-verdict article.fail .vh{color:var(--sj-vermil)}
+.13-verdict article.open .vh{color:var(--sj-ochre)}
+.13-verdict p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+.13-verdict p + p{margin-top:8px;padding-top:8px;border-top:1px solid var(--sj-line)}
+
+/* ⑦ 古今映射双栏 */
+.13-mirror{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.13-mirror article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.13-mirror .mh{font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;margin-bottom:8px}
+.13-mirror article.same .mh{color:var(--sj-celadon)}
+.13-mirror article.diff .mh{color:var(--sj-ochre)}
+.13-mirror p{font-size:13px;color:var(--sj-paper-100);line-height:1.68}
+.13-mirror p .lk{color:var(--sj-celadon)}
+
+.13-xref{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.13-xref a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit;transition:border-color .18s}
+.13-xref a:hover,.13-xref a:focus-visible{border-color:var(--sj-ochre);outline:none}
+.13-xref .n{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;color:var(--sj-ochre);margin-bottom:4px}
+.13-xref h3{font-size:14px;letter-spacing:.06em;margin-bottom:6px}
+.13-xref p{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6}
+
+.13-foot{
+  margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);
+  font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+}
+.13-foot a{color:var(--sj-celadon);text-decoration:none}
+.13-foot a:hover{color:var(--sj-ochre)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .sj-reveal-stagger > *{animation:none}
+  .sj-node,.sj-edge,.13-chip{transition:none}
+}
+@media (max-width:900px){
+  .13-layout{grid-template-columns:1fr}
+  .13-aside{position:static}
+  .13-hist,.13-mirror{grid-template-columns:1fr}
+  .13-verdict{grid-template-columns:1fr}
+  .13-xref{grid-template-columns:1fr 1fr}
+}
+@media (max-width:768px){
+  .13-meta{text-align:left}
+  .13-xref{grid-template-columns:1fr}
+}
+
+/* 宣纸日览 · 由 ?theme=light 或 postMessage 切换 html[data-theme] */
+html[data-theme="light"] .sj-rail-card{box-shadow:0 1px 0 rgba(26,24,20,.05),0 12px 28px rgba(26,24,20,.08)}
+html[data-theme="light"] .sj-rail-mini{background:var(--sj-ink-800)}
+html[data-theme="light"]{
+  --sj-ink-900:#f4f1ea;
+  --sj-ink-800:#ebe6dc;
+  --sj-paper-100:#1a1814;
+  --sj-paper-300:#5a5348;
+  --sj-vermil:#9a3428;
+  --sj-celadon:#3f5f54;
+  --sj-ochre:#8a6528;
+  --sj-line:#c8bfb0;
+}
+html[data-theme="light"] body{
+  background:
+    radial-gradient(1000px 560px at 72% -8%, #e8e4da 0%, transparent 55%),
+    radial-gradient(700px 420px at 8% 90%, #ebe6dc 0%, transparent 50%),
+    var(--sj-ink-900);
+  color:var(--sj-paper-100);
+}
+html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
+html[data-theme="light"] [class*="-stage"],
+html[data-theme="light"] [class*="-aside"],
+html[data-theme="light"] [class*="-table-wrap"],
+html[data-theme="light"] [class*="-hook"],
+html[data-theme="light"] [class*="-ledger"]{
+  box-shadow:0 1px 0 rgba(26,24,20,.05),0 12px 28px rgba(26,24,20,.08);
+}
+html[data-theme="light"] .sj-snap-track{background:var(--sj-ink-900);border-color:var(--sj-line)}
+html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
+
+</style>
+<script>
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){ document.documentElement.setAttribute('data-theme', t==='light' ? 'light' : 'dark'); }
+  try{
+    var q=new URLSearchParams(location.search).get('theme');
+    if(q==='light'||q==='dark') apply(q);
+  }catch(e){}
+  window.addEventListener('message', function(e){
+    if(e.origin !== window.location.origin) return;
+    var d=e&&e.data;
+    if(!d||d.type!==MSG) return;
+    apply(d.theme);
+  });
+})();
+</script>
+</head>
+<body>
+<div class="sj-13-wrap sj-reveal-stagger" id="sj-13-top">
+<header class="sj-13-mast">
+  <div>
+    <div class="badge">SJ-13 · 变法改革案例卷 · 新莽案</div>
+    <h1>王莽改制<em>托古改制 · 豪强反弹 · 新莽速亡</em></h1>
+    <div class="sj-13-chips sj-xlinks"><a class="sj-13-chip" href="./SJ-00.html">↔ SJ-00</a><a class="sj-13-chip" href="./SJ-05.html">↔ SJ-05</a><a class="sj-13-chip" href="./SJ-21.html">↔ SJ-21</a></div>
+  </div>
+  <div class="sj-13-meta">西汉末僵化期末端改革<br/><b>AS_OF 2026-07-15</b> · v0.1</div>
+</header>
+<p class="sj-zhupi">朱批：本案是僵化期末端「托古改制」——以《汉书·王莽传》为口径，与 SJ-05 王安石同构「财政重建触动豪强」结构，但篡位合法性污点是额外死穴。</p>
+<article class="sj-ledger">
+<div class="sj-page-layout">
+<div class="sj-main-col">
+<section class="sj-ledger-field" id="f1" aria-labelledby="h-f1">
+  <div class="sj-ledger-fh"><span class="fnum">01</span><h2 id="h-f1">一句话拐点</h2><span class="en">HOOK</span></div>
+  <div class="sj-13-hook"><p>西汉末土地兼并、币制混乱，王莽以<b>托古改制</b>（王田、私属、币制等）试图重整汲取，却触动豪强利益、改革执行混乱，<b>篡汉</b>合法性迅速破产，绿林赤眉起而新莽亡。</p><div class="yr">系年：始建国元年（9）王莽代汉 · 天凤年间改制全面推行（《汉书·王莽传》）</div></div>
+</section>
+<section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
+  <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
+  <p class="sj-13-prose">权力几何：王莽（禅让包装的合法性）→ 儒生官僚 → 王田/币制改革下行 → 豪强底盘强烈反弹。</p>
+  <div class="sj-13-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-label="SJ-13 · 新莽权力几何 · 托古改制">
+  <rect width="800" height="520" fill="var(--sj-ink-900)"/>
+  <text x="48" y="48" fill="var(--sj-ochre)" font-size="11" font-family="ui-monospace,monospace">SJ-13 · 新莽权力几何 · 托古改制</text>
+  
+  <g class="sj-node" data-id="wang" tabindex="0" role="button"><rect x="290" y="55" width="220" height="50" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="1.4" stroke-dasharray="5 4"/><text x="400" y="86" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-family="serif">王莽 · 禅让合法性</text></g>
+  <g class="sj-node" data-id="reform" tabindex="0" role="button"><rect x="270" y="150" width="260" height="54" rx="8" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2"/><text x="400" y="182" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-family="serif">王田 · 币制 · 托古改制</text></g>
+  <g class="sj-node" data-id="haoqiang" tabindex="0" role="button"><rect x="60" y="290" width="220" height="54" rx="8" fill="#2a1a16" stroke="var(--sj-vermil)" stroke-width="3"/><text x="170" y="322" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-family="serif">豪强 · 土地兼并</text></g>
+  <g class="sj-node" data-id="min" tabindex="0" role="button"><rect x="520" y="290" width="200" height="54" rx="8" fill="var(--sj-ink-800)" stroke="var(--sj-paper-300)" stroke-width="1.4"/><text x="620" y="322" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="serif">编户 · 流民</text></g>
+</svg></div>
+  <div class="sj-13-layout">
+    <div class="sj-13-note" style="margin-top:0">色义：王莽=赭金虚线（篡位合法性脆弱）；豪强反弹=朱红回路最重。</div>
+    <aside class="sj-13-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-13-aside-empty">点选切片节点查看角色说明。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+      </div>
+    </aside>
+  </div>
+</section>
+</div>
+<aside class="sj-rail" aria-label="台账导航侧栏">
+  <div class="sj-rail-card">
+    <div class="k">史鉴台账 · 七字段</div>
+    <h3>本案导航</h3>
+    <nav class="sj-rail-toc" aria-label="台账字段">
+      <a href="#f1">01 · 一句话拐点</a>
+      <a href="#f2">02 · 结构切片</a>
+      <a href="#f3">03 · 相位定位</a>
+      <a href="#f4">04 · 五力归因</a>
+      <a href="#f5">05 · 史家交锋</a>
+      <a href="#f6">06 · 成败判定</a>
+      <a href="#f7">07 · 古今映射</a>
+    </nav>
+  </div>
+  <div class="sj-rail-chips"><a class="sj-rail-chip" href="./SJ-05.html">SJ-05</a></div>
+</aside>
+</div>
+<section class="sj-ledger-field" id="f3" aria-labelledby="h-f3">
+  <div class="sj-ledger-fh"><span class="fnum">03</span><h2 id="h-f3">相位定位</h2><span class="en">PHASE · 步骤②</span></div>
+  <div class="sj-13-phase"><span class="pb">僵化期末端 · <b>改革窗口（篡位合法性）</b></span><a class="sj-13-chip" href="./SJ-04.html">在 SJ-04 相位盘定位 →</a></div>
+  <p class="sj-13-prose">西汉末僵化期末端，土地兼并与币制混乱开启改革窗口；但王莽篡位使合法性叙事先天不足，改革更易被解读为「僭越」。</p>
+</section>
+<section class="sj-ledger-field" id="f4" aria-labelledby="h-f4">
+  <div class="sj-ledger-fh"><span class="fnum">04</span><h2 id="h-f4">五力归因台账</h2><span class="en">FORCES · 步骤③</span></div>
+  <div class="sj-13-table-wrap"><table class="sj-13-table"><thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead><tbody><tr><td>财政汲取</td><td>「复古」</td><td class="shi">王田、均输平准式改革试图重整税基与货币</td></tr>
+<tr><td>精英循环〔死穴〕</td><td>「侵夺富民」</td><td class="shi">王田触动豪强土地特权，精英联盟反扑</td></tr>
+<tr><td>合法性叙事</td><td>「禅让」</td><td class="shi">篡汉污名使改革失去正统支撑，绿林赤眉夺话语</td></tr>
+<tr><td>边疆军事</td><td>「四夷」</td><td class="shi">匈奴等边疆压力消耗财政，改革未能稳边</td></tr>
+<tr><td>生态—人口基座</td><td>灾荒</td><td class="shi">黄河改道等灾荒叠加，流民引爆〔具体系年存疑〕</td></tr></tbody></table></div>
+</section>
+<section class="sj-ledger-field" id="f5" aria-labelledby="h-f5">
+  <div class="sj-ledger-fh"><span class="fnum">05</span><h2 id="h-f5">史家交锋</h2><span class="en">HISTORIANS</span></div>
+  <div class="sj-13-hist"><article><div class="who">李敖式考据</div><p>剥离儒家「篡贼」道德叙事，仍可见改革触动豪强之结构实因。</p></article>
+<article><div class="who">钱穆</div><p>对王莽托古批评甚烈，视为儒生理想脱离现实的典型。</p></article>
+<article><div class="who">金观涛</div><p>又一次低水平修复失败，未能突破地主—官僚结构。</p></article>
+<article><div class="who">黄仁宇</div><p>改制缺乏可操作的数目字管理，币制反复加剧混乱。</p></article>
+<article style="grid-column:1/-1"><div class="who">西方汉学</div><p>Han studies：王莽改革是儒家乌托邦与政治现实碰撞的案例。</p></article></div>
+</section>
+<section class="sj-ledger-field" id="f6" aria-labelledby="h-f6">
+  <div class="sj-ledger-fh"><span class="fnum">06</span><h2 id="h-f6">成败判定</h2><span class="en">VERDICT</span></div>
+  <div class="sj-13-verdict"><article class="ok"><div class="vh">已兑现</div><p>儒生理想话语短暂实践</p><p>部分土地政策尝试</p></article>
+<article class="fail"><div class="vh">已失败</div><p>新莽速亡</p><p>币制混乱</p><p>豪强反弹</p></article>
+<article class="open"><div class="vh">未决〔反事实〕</div><p>若无篡位污名、渐进改革，能否延续西汉修复路径？</p></article></div>
+</section>
+<section class="sj-ledger-field" id="f7" aria-labelledby="h-f7">
+  <div class="sj-ledger-fh"><span class="fnum">07</span><h2 id="h-f7">古今映射</h2><span class="en">MIRROR</span></div>
+  <div class="sj-13-mirror"><article class="same"><div class="mh">相似机制</div><p>顶层设计改革 vs 豪强抵制；货币与土地政策牵动汲取枢纽。</p></article>
+<article class="diff"><div class="mh">关键差异</div><p>现代土地制度、货币主权与宏观调控工具已质变（→ SJ-21）。</p></article></div>
+</section>
+</article>
+<section class="sj-ledger-field" id="fx"><div class="sj-ledger-fh"><span class="fnum">◆</span><h2>交叉引用</h2></div>
+  <div class="sj-13-xref"><a href="./SJ-05.html"><div class="n">SJ-05</div><h3>王安石</h3><p>跨时代变法对照。</p></a>
+<a href="./SJ-21.html"><div class="n">SJ-21</div><h3>经济映射</h3><p>货币与汲取映射。</p></a></div>
+</section>
+<footer class="sj-13-foot">
+  <span>ChinaOS · 史鉴 SJ-13 · v0.1 · AS_OF 2026-07-15 · 真源《汉书·王莽传》</span>
+  <span><a href="./SJ-00.html">← 返回 SJ-00</a> · <a href="#sj-13-top">↑ 顶</a></span>
+  <span><a href="./SJ-14.html">下一案 SJ-14 →</a></span>
+</footer>
+</div>
+<script>
+(function(){
+  const stage=document.getElementById('stage');
+  if(!stage) return;
+  const nodes=Array.from(stage.querySelectorAll('.sj-node'));
+  const NODE_DATA={"wang":{"name":"王莽","tag":"篡位合法性","body":"禅让叙事难掩篡汉污名，改革失去正统支柱。"},"reform":{"name":"托古改制","tag":"财政工具","body":"王田、币制等试图重整汲取，执行混乱。"},"haoqiang":{"name":"豪强","tag":"精英抵制","body":"土地兼并利益集团强烈反弹，是改制死穴。"},"min":{"name":"编户流民","tag":"底盘","body":"灾荒与改制失败叠加，流民成为起义基础。"}};
+  const asideEmpty=document.getElementById('aside-empty');
+  const asideBody=document.getElementById('aside-body');
+  function showAside(id){
+    const d=NODE_DATA[id]; if(!d) return;
+    asideEmpty.hidden=true; asideBody.hidden=false;
+    document.getElementById('aside-tag').textContent=d.tag;
+    document.getElementById('aside-name').textContent=d.name;
+    document.getElementById('aside-text').textContent=d.body;
+  }
+  nodes.forEach(n=>{
+    const act=()=>{ nodes.forEach(x=>x.classList.remove('is-hot')); n.classList.add('is-hot'); showAside(n.dataset.id); };
+    n.addEventListener('click',act);
+    n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});
+  });
+})();
+
+  (function(){
+    var links=document.querySelectorAll('.sj-rail-toc a[href^="#"]');
+    if(!links.length) return;
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(a){a.classList.toggle('is-active',a.getAttribute('href')==='#'+e.target.id);});
+        }
+      });
+    },{rootMargin:'-20% 0px -60% 0px',threshold:0});
+    links.forEach(function(a){
+      var t=document.querySelector(a.getAttribute('href'));
+      if(t) obs.observe(t);
+    });
+  })();
+</script>
+</body>
+</html>

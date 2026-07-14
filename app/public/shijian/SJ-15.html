@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-15 · 辛亥革命</title>
+<meta name="description" content="ChinaOS 史鉴系列案例卷 SJ-15：辛亥革命——帝制终结 · 合法性破产 · 重建未竟。史鉴台账七字段。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;--sj-ink-800:#1d1916;--sj-paper-100:#e8ddc7;--sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;--sj-celadon:#5f7a6f;--sj-ochre:#b8894a;--sj-line:#3a322b;
+  --sj-radius:6px;--sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c 0%,transparent 55%),var(--sj-ink-900);color:var(--sj-paper-100);font-family:var(--sj-serif);line-height:1.75}
+.sj-15-wrap{max-width:min(100%,1180px);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+.sj-page-layout{display:flex;flex-direction:column;gap:var(--sj-space)}
+@media(min-width:1280px){.sj-page-layout{display:grid;grid-template-columns:minmax(0,58fr) minmax(280px,38fr);gap:clamp(16px,2vw,28px);align-items:start}}
+.sj-main-col{min-width:0}
+.sj-rail{display:flex;flex-direction:column;gap:12px}
+@media(min-width:1280px){.sj-rail{position:sticky;top:1rem;align-self:start;max-height:calc(100vh - 2rem);overflow-y:auto}}
+@media(max-width:1279px){.sj-page-layout{flex-direction:column}.sj-main-col{display:contents}.sj-rail{order:2;margin:8px 0 20px}}
+.sj-rail-card{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px}
+.sj-rail-card .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-rail-toc{display:grid;gap:6px;margin-top:8px}
+.sj-rail-toc a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);padding:8px 10px;text-decoration:none;color:inherit;font-size:13px}
+.sj-rail-toc a:hover,.sj-rail-toc a:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-rail-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;margin:4px 4px 0 0}
+.sj-15-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px}
+.sj-15-mast .badge{font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-15-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em}
+.sj-15-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;font-size:.72em;display:block;margin-top:4px}
+.sj-15-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right}
+.sj-15-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;margin:2px}
+.sj-15-dynasty{color:var(--sj-ochre);border-color:var(--sj-ochre)}
+.sj-zhupi{color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:74ch}
+.sj-ledger{display:grid;gap:8px}
+.sj-ledger-field{margin:20px 0 8px;scroll-margin-top:24px}
+.sj-ledger-fh{display:flex;align-items:baseline;gap:12px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--sj-line)}
+.sj-ledger-fh .fnum{font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre);border:1px solid var(--sj-line);border-radius:4px;padding:1px 7px}
+.sj-ledger-fh h2{font-size:clamp(16px,2.1vw,19px);font-weight:600}
+.sj-15-prose{font-size:15.5px;max-width:74ch}
+.sj-15-hook{border:1px solid var(--sj-line);border-left:3px solid var(--sj-vermil);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:18px 22px}
+.sj-15-hook p{font-size:clamp(16px,2.3vw,20px);line-height:1.7}
+.sj-15-hook .yr{margin-top:10px;font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre)}
+.sj-15-stage{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:8px;overflow:auto}
+.sj-15-stage svg{display:block;width:100%;height:auto}
+.sj-15-phase .pb{font-family:var(--sj-mono);font-size:12px;color:var(--sj-vermil);border:1px solid var(--sj-vermil);border-radius:20px;padding:6px 16px}
+.sj-15-table-wrap{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);overflow:auto}
+.sj-15-table{width:100%;border-collapse:collapse;font-size:13px}
+.sj-15-table th{background:var(--sj-ink-900);color:var(--sj-ochre);font-family:var(--sj-mono);font-size:10px;padding:10px 12px;text-align:left;border-bottom:1px solid var(--sj-line)}
+.sj-15-table td{padding:10px 12px;border-bottom:1px solid var(--sj-line);color:var(--sj-paper-300);vertical-align:top}
+.sj-15-table td:first-child{color:var(--sj-paper-100);font-weight:600}
+.sj-15-hist{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-15-hist article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-15-hist .who{font-size:14px;font-weight:600;color:var(--sj-celadon);margin-bottom:6px}
+.sj-15-hist .who span{font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);margin-left:6px}
+.sj-15-hist p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+.sj-15-verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sj-15-verdict article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-15-verdict .vh{font-family:var(--sj-mono);font-size:10px;margin-bottom:8px}
+.sj-15-verdict article.ok .vh{color:var(--sj-celadon)}
+.sj-15-verdict article.fail .vh{color:var(--sj-vermil)}
+.sj-15-verdict article.open .vh{color:var(--sj-ochre)}
+.sj-15-verdict p{font-size:13px;color:var(--sj-paper-300)}
+.sj-15-mirror{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-15-mirror article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-15-mirror .mh{font-family:var(--sj-mono);font-size:10px;margin-bottom:8px}
+.sj-15-mirror article.same .mh{color:var(--sj-celadon)}
+.sj-15-mirror article.diff .mh{color:var(--sj-ochre)}
+.sj-15-mirror p{font-size:13px;color:var(--sj-paper-100);line-height:1.68}
+.sj-15-xref{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.sj-15-xref a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit}
+.sj-15-xref .n{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);margin-bottom:4px}
+.sj-15-xref h3{font-size:14px;margin-bottom:6px}
+.sj-15-xref p{font-size:12.5px;color:var(--sj-paper-300)}
+.sj-15-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sj-15-foot a{color:var(--sj-celadon);text-decoration:none}
+@media(max-width:768px){.sj-15-hist,.sj-15-mirror,.sj-15-verdict{grid-template-columns:1fr}.sj-15-xref{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="sj-15-wrap" id="sj-15-top">
+<header class="sj-15-mast">
+  <div>
+    <div class="badge">SJ-15 · 王朝崩解案例卷 · 近代</div>
+    <h1>辛亥革命<em>帝制终结 · 合法性破产 · 重建未竟</em></h1>
+    <div>
+      <span class="sj-15-chip sj-15-dynasty" data-dynasty="jindai">朝代 · 近代</span>
+      <span class="sj-15-chip">崩解</span>
+      <a class="sj-15-chip" href="./SJ-00.html">↔ SJ-00</a>
+      <a class="sj-15-chip" href="./SJ-03.html">↔ SJ-03</a>
+      <a class="sj-15-chip" href="./SJ-04.html">↔ SJ-04</a>
+    </div>
+  </div>
+  <div class="sj-15-meta">史鉴台账七字段 · 近代<br/><b>AS_OF 2026-07-15</b> · v0.1</div>
+</header>
+<p class="sj-zhupi">朱批：辛亥革命是<strong>帝制合法性彻底破产</strong>后的重建尝试——革命叙事取代天命，但五力再平衡未竟。口径：《清史稿·宣统本纪》、学界共识〔细节存疑〕。</p>
+<article class="sj-ledger">
+<div class="sj-page-layout">
+<div class="sj-main-col">
+<section class="sj-ledger-field" id="f1"><div class="sj-ledger-fh"><span class="fnum">01</span><h2>一句话拐点</h2></div>
+  <div class="sj-15-hook"><p>清末<strong>僵化—崩解</strong>叠加：外债、铁路国有化、新军离心与革命党渗透共振，1911 年<b>武昌起义</b>引发连锁响应，<b>清帝退位</b>（1912）终结两千年帝制；但<strong>五力再平衡未竟</strong>，后续进入长期重整。</p><div class="yr">系年：宣统三年九月（1911.10）武昌起义 · 1912.2.12 清帝退位 · 出处《清史稿》及学界研究</div></div>
+</section>
+<section class="sj-ledger-field" id="f2"><div class="sj-ledger-fh"><span class="fnum">02</span><h2>结构切片</h2></div>
+  <p class="sj-15-prose">权力几何：清廷（空）→ 各省督抚（割据）→ 新军/革命党 → 民众底盘。帝制合法性归零，「革命」叙事接棒但未完成制度建构。</p>
+  <div class="sj-15-stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">结构切片 · 辛亥革命</title>
+  <desc id="sj-desc">权力几何：清廷（空）→ 各省督抚（割据）→ 新军/革命党 → 民众底盘。帝制合法性归零，「革命」叙事接棒但未完成制度建构。</desc>
+  <defs>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/></linearGradient>
+    <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+    <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+  </defs>
+  <rect width="820" height="600" fill="var(--sj-ink-900)"/>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,serif">结构切片 · 辛亥革命</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,monospace">SJ-15 · 近代 · 崩解</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">朱批：多力共振 · 崩解链</text>
+  <path class="sj-edge" d="M360,158 L250,250" stroke="var(--sj-ochre)" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#a-ochre)"/>
+  <path class="sj-edge" d="M306,286 L462,286" stroke="var(--sj-paper-300)" stroke-width="2.2"/>
+  <path class="sj-edge" d="M640,498 C724,452 716,340 588,320" stroke="var(--sj-vermil)" stroke-width="3.2" marker-end="url(#a-vermil)"/>
+  <g class="sj-node" data-id="qingting" tabindex="0" role="button" aria-label="清廷 · 空壳">
+    <rect x="320" y="112" width="180" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="410" y="140" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">清廷 · 空壳</text>
+    <text x="410" y="158" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">帝制合法性归零</text>
+  </g>
+<g class="sj-node" data-id="dufu" tabindex="0" role="button" aria-label="各省督抚">
+    <rect x="130" y="250" width="176" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="218" y="278" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">各省督抚</text>
+    <text x="218" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">地方割据 · 观望</text>
+  </g>
+<g class="sj-node" data-id="geming" tabindex="0" role="button" aria-label="革命党 · 新军">
+    <rect x="462" y="250" width="186" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="555" y="278" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">革命党 · 新军</text>
+    <text x="555" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">武昌首义 · 连锁响应</text>
+  </g>
+<g class="sj-node" data-id="xinjun" tabindex="0" role="button" aria-label="铁路/外债">
+    <rect x="132" y="372" width="176" height="50" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-paper-300)" stroke-width="2.4"/>
+    <text x="220" y="400" text-anchor="middle" fill="var(--sj-paper-300)" font-size="14" font-weight="600" font-family="Songti SC,serif">铁路/外债</text>
+    <text x="220" y="418" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">财政引爆 · 民变</text>
+  </g>
+<g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="绅商 · 会党 · 民众">
+    <rect x="56" y="486" width="708" height="86" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="2.4"/>
+    <text x="410" y="514" text-anchor="middle" fill="var(--sj-line)" font-size="14" font-weight="600" font-family="Songti SC,serif">绅商 · 会党 · 民众</text>
+    <text x="410" y="532" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">多元底盘</text>
+  </g>
+</svg></div>
+</section>
+</div>
+<aside class="sj-rail"><div class="sj-rail-card"><div class="k">台账 · 七字段</div>
+  <nav class="sj-rail-toc"><a href="#f1">01 · 拐点</a><a href="#f2">02 · 切片</a><a href="#f3">03 · 相位</a><a href="#f4">04 · 五力</a><a href="#f5">05 · 交锋</a><a href="#f6">06 · 成败</a><a href="#f7">07 · 映射</a></nav>
+  <a class="sj-rail-chip" href="./SJ-00.html#sec-case-hub">案例库 Hub</a>
+</div></aside>
+</div>
+<section class="sj-ledger-field" id="f3"><div class="sj-ledger-fh"><span class="fnum">03</span><h2>相位定位</h2></div>
+  <div class="sj-15-phase"><span class="pb">崩解期 → 重整期</span></div>
+  <p class="sj-15-prose">清末处于<strong>崩解期</strong>，辛亥是崩解的显性节点；帝制终结后进入<strong>重整期</strong>，但五力再平衡远未完成。</p>
+</section>
+<section class="sj-ledger-field" id="f4"><div class="sj-ledger-fh"><span class="fnum">04</span><h2>五力归因台账</h2></div>
+  <div class="sj-15-table-wrap"><table class="sj-15-table"><thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead><tbody><tr><td>财政汲取</td><td class="zheng">外债 · 厘金</td><td class="shi">《辛丑条约》赔款 + 铁路国有化触发动员；财政枢纽越阈是引爆点之一</td></tr>
+<tr><td>精英循环</td><td class="zheng">新军 · 留学生</td><td class="shi">新军与革命党吸纳部分精英，但科举废除后通道重构未完成</td></tr>
+<tr><td>合法性叙事</td><td class="zheng">「天命」→「革命」</td><td class="shi">帝制「天命」叙事破产；「共和」「民族」叙事接棒但未完成制度内化</td></tr>
+<tr><td>边疆军事</td><td class="zheng">新军离心</td><td class="shi">武昌新军首义；各省新军响应或观望——军事力决定政治正统</td></tr>
+<tr><td>生态—人口基座</td><td class="zheng">—</td><td class="shi">人口压力与财政负担叠加；但崩解主因是五力共振而非单因〔人口存疑〕</td></tr></tbody></table></div>
+</section>
+<section class="sj-ledger-field" id="f5"><div class="sj-ledger-fh"><span class="fnum">05</span><h2>史家交锋</h2></div>
+  <div class="sj-15-hist"><article><div class="who">李敖式考据<span>祛魅</span></div><p>剥离「革命」与「改良」的道德对立——辛亥是多重力量共振，非单一政党功劳。</p></article>
+<article><div class="who">钱穆<span>《国史大纲》</span></div><p>对帝制终结持复杂态度；强调革命后重建比革命本身更难。</p></article>
+<article><div class="who">金观涛<span>超稳定结构</span></div><p>帝制超稳定结构终结，但新结构未立——进入长期「重整期」失衡。</p></article>
+<article><div class="who">黄仁宇<span>数目字管理</span></div><p>清末已开始数目字管理（海关、预算），但官僚体系整体未能完成转型。</p></article>
+<article style="grid-column:1/-1"><div class="who">西方汉学<span>1911 Revolution</span></div><p>学界共识：辛亥是帝制合法性破产的必然结果；但后续重建路径有广泛争论。〔存疑〕</p></article></div>
+</section>
+<section class="sj-ledger-field" id="f6"><div class="sj-ledger-fh"><span class="fnum">06</span><h2>成败判定</h2></div>
+  <div class="sj-15-verdict">
+    <article class="ok"><div class="vh">已兑现</div><p>帝制终结</p><p>共和叙事确立</p><p>现代国家建构起步</p></article>
+    <article class="fail"><div class="vh">已失败</div><p>五力再平衡未竟</p><p>军阀割据</p><p>外债与主权问题延续</p></article>
+    <article class="open"><div class="vh">未决</div><p>〔未决〕重整期能否完成五力再平衡？此为当代仍在回答的问题。</p></article>
+  </div>
+</section>
+<section class="sj-ledger-field" id="f7"><div class="sj-ledger-fh"><span class="fnum">07</span><h2>古今映射</h2></div>
+  <div class="sj-15-mirror">
+    <article class="same"><div class="mh">相似机制</div><p>合法性叙事破产引发崩解；军事力决定政治正统；精英循环通道重构。</p></article>
+    <article class="diff"><div class="mh">关键差异</div><p>当代已完成主权国家建构与组织化穿透；但「崩解后重整」的长周期规律仍值得对照（→ SJ-08 分裂重整）。</p></article>
+  </div>
+</section>
+<section class="sj-ledger-field" id="fx"><div class="sj-ledger-fh"><span class="fnum">◆</span><h2>交叉引用</h2></div>
+  <div class="sj-15-xref"><a href="./SJ-14.html"><div class="n">SJ-14 · 洋务</div><h3>洋务</h3><p>改革—革命因果链上游。</p></a>
+<a href="./SJ-08.html"><div class="n">SJ-08 · 五代</div><h3>五代</h3><p>分裂—重整样本对照。</p></a>
+<a href="./SJ-20.html"><div class="n">SJ-20 · 政治映射</div><h3>政治映射</h3><p>精英循环与合法性叙事当代形态。</p></a></div>
+</section>
+</article>
+<footer class="sj-15-foot">
+  <span>ChinaOS · 史鉴 SJ-15 · v0.1 · 近代</span>
+  <span><a href="./SJ-00.html">← SJ-00</a> · <a href="./SJ-14.html">← SJ-14</a></span>
+  <span><a href="./SJ-00.html">SJ-00 →</a></span>
+</footer>
+</div>
+</body>
+</html>

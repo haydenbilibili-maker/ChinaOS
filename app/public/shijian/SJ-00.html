@@ -276,6 +276,79 @@ body{
 .sj-00-tag.is-done{color:var(--sj-celadon);border-color:var(--sj-celadon)}
 .sj-00-tag.is-dev{color:var(--sj-ochre);border-color:var(--sj-ochre)}
 .sj-00-tag.is-plan{color:var(--sj-paper-300)}
+
+/* 案例库 Hub */
+.sj-00-case-stats{
+  display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 16px;
+}
+.sj-00-case-stat{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:var(--sj-ink-800);padding:10px 14px;min-width:120px;
+}
+.sj-00-case-stat .n{font-family:var(--sj-mono);font-size:20px;color:var(--sj-ochre);letter-spacing:.06em}
+.sj-00-case-stat .l{font-size:12px;color:var(--sj-paper-300);margin-top:2px}
+.sj-00-case-timeline{
+  display:flex;flex-wrap:wrap;gap:6px;margin:14px 0;
+  padding:12px;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:var(--sj-ink-800);overflow-x:auto;
+}
+.sj-00-case-era{
+  appearance:none;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:var(--sj-ink-900);color:var(--sj-paper-300);
+  font-family:var(--sj-mono);font-size:10px;letter-spacing:.06em;
+  padding:6px 10px;cursor:pointer;white-space:nowrap;
+  transition:border-color .18s,color .18s;
+}
+.sj-00-case-era:hover,.sj-00-case-era:focus-visible{border-color:var(--sj-ochre);color:var(--sj-paper-100);outline:none}
+.sj-00-case-era.is-on{border-color:var(--sj-vermil);color:var(--sj-vermil)}
+.sj-00-case-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;
+}
+.sj-00-case-card{
+  display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit;
+  transition:border-color .18s,opacity .18s;
+}
+.sj-00-case-card:hover,.sj-00-case-card:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-00-case-card.is-hidden{opacity:.22;pointer-events:none}
+.sj-00-case-card.is-plan{opacity:.55;border-style:dashed}
+.sj-00-case-card .era{font-family:var(--sj-mono);font-size:9px;letter-spacing:.12em;color:var(--sj-ochre);margin-bottom:4px}
+.sj-00-case-card .sj{font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);margin-bottom:6px}
+.sj-00-case-card h4{font-size:14px;letter-spacing:.06em;margin-bottom:6px}
+.sj-00-case-card p{font-size:12px;color:var(--sj-paper-300);line-height:1.55}
+.sj-00-case-card .st{
+  display:inline-block;margin-top:8px;font-family:var(--sj-mono);font-size:9px;
+  letter-spacing:.08em;padding:2px 7px;border-radius:999px;border:1px solid var(--sj-line);
+}
+.sj-00-case-card .st.done{color:var(--sj-celadon);border-color:var(--sj-celadon)}
+.sj-00-case-card .st.plan{color:var(--sj-paper-300)}
+
+/* 案例库 Hub */
+.sj-00-case-stats{
+  display:flex;flex-wrap:wrap;gap:12px;margin:12px 0 16px;
+  font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);
+}
+.sj-00-case-stats b{color:var(--sj-ochre);font-weight:500}
+.sj-00-case-filter{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;align-items:center}
+.sj-00-case-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;
+}
+.sj-00-case-card{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:var(--sj-ink-800);padding:14px 16px;
+  transition:opacity .22s ease,border-color .18s ease;
+}
+.sj-00-case-card.is-hidden{opacity:.22;pointer-events:none}
+.sj-00-case-card.is-hot{border-color:var(--sj-vermil)}
+.sj-00-case-card .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.sj-00-case-card .sj-num{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);letter-spacing:.12em}
+.sj-00-case-card .dyn{font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:2px 6px;border-radius:4px}
+.sj-00-case-card h3{font-size:15px;font-weight:600;margin-bottom:4px}
+.sj-00-case-card h3 a{color:inherit;text-decoration:none}
+.sj-00-case-card h3 a:hover{color:var(--sj-ochre)}
+.sj-00-case-card p{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6}
+.sj-00-case-card .type{font-family:var(--sj-mono);font-size:9px;color:var(--sj-paper-300);margin-top:8px;letter-spacing:.08em}
+
 .sj-00-card h3{font-size:16px;font-weight:600;letter-spacing:.08em;margin-bottom:6px;flex-shrink:0}
 .sj-00-card p{
   font-size:13.5px;color:var(--sj-paper-300);line-height:1.65;
@@ -683,6 +756,102 @@ html[data-theme="light"] .sj-00-card:focus-within{
 
 <!-- 3 卷目导航 -->
 
+<!-- 3b 案例库 Hub -->
+<section class="sj-00-sec" id="sec-case-hub" aria-labelledby="h-case-hub">
+  <div class="sj-00-sec-h">
+    <span class="num">03b · 案例库 Hub</span>
+    <h2 id="h-case-hub">朝代时间轴 · 案例卡片</h2>
+  </div>
+  <p class="sj-00-prose">按朝代筛选已建/规划案例卷；状态存于 JS 内存，无浏览器存储。完整路线图见 <code style="font-family:var(--sj-mono);font-size:12px;color:var(--sj-celadon)">docs/shijian/案例库-朝代路线图.md</code>。</p>
+  <div class="sj-00-case-stats" id="sj-case-stats" aria-live="polite">
+    <span>已建 <b id="sj-stat-built">11</b> 卷</span>
+    <span>显示 <b id="sj-stat-visible">11</b> / <b id="sj-stat-total">11</b></span>
+    <span>规划 <b>29+</b> 卷（Round 2–4）</span>
+  </div>
+  <div class="sj-00-case-filter" role="group" aria-label="朝代筛选">
+    <span class="lbl">朝代</span>
+    <button type="button" class="sj-00-btn is-on" id="sj-case-all" data-dyn="">全部</button>
+    <button type="button" class="sj-00-btn" data-dyn="chunqiu">春秋战国</button>
+    <button type="button" class="sj-00-btn" data-dyn="qin">秦</button>
+    <button type="button" class="sj-00-btn" data-dyn="han">两汉</button>
+    <button type="button" class="sj-00-btn" data-dyn="tang">唐</button>
+    <button type="button" class="sj-00-btn" data-dyn="wudai">五代</button>
+    <button type="button" class="sj-00-btn" data-dyn="song">宋</button>
+    <button type="button" class="sj-00-btn" data-dyn="ming">明</button>
+    <button type="button" class="sj-00-btn" data-dyn="qing">清</button>
+    <button type="button" class="sj-00-btn" data-dyn="jindai">近代</button>
+    <button type="button" class="sj-00-btn" data-dyn="cross">跨朝</button>
+  </div>
+  <div class="sj-00-case-grid" id="sj-case-grid">
+    <article class="sj-00-case-card" data-dynasty="song" data-built="1">
+      <div class="top"><span class="sj-num">SJ-05</span><span class="dyn">北宋</span></div>
+      <h3><a href="/modules/shijian/sj-05">王安石变法</a></h3>
+      <p>三冗财政危机下汲取力重建，触动精英循环而败，党争制度化。</p>
+      <div class="type">变法 · 台账验证首案</div>
+    </article>
+    <article class="sj-00-case-card" data-dynasty="tang" data-built="1">
+      <div class="top"><span class="sj-num">SJ-06</span><span class="dyn">唐</span></div>
+      <h3><a href="/modules/shijian/sj-06">开元 → 天宝之乱</a></h3>
+      <p>节度使制强化边疆军事力，内轻外重，盛极而崩。</p>
+      <div class="type">拐点 · 强化单力反降稳定</div>
+    </article>
+    <article class="sj-00-case-card" data-dynasty="cross" data-built="1">
+      <div class="top"><span class="sj-num">SJ-07</span><span class="dyn">跨朝</span></div>
+      <h3><a href="/modules/shijian/sj-07">秦汉唐明清 · 崩解对比</a></h3>
+      <p>五力崩解归因矩阵，反单因论，跨案同构解剖。</p>
+      <div class="type">崩解 · 对比矩阵卷</div>
+    </article>
+    <article class="sj-00-case-card" data-dynasty="wudai" data-built="1">
+      <div class="top"><span class="sj-num">SJ-08</span><span class="dyn">五代十国</span></div>
+      <h3><a href="/modules/shijian/sj-08">分裂与重整</a></h3>
+      <p>军事力畸大、合法性归零；宋以反向设计再统一。</p>
+      <div class="type">分裂 · 过度矫正样本</div>
+    </article>
+    <article class="sj-00-case-card" data-dynasty="ming" data-built="1">
+      <div class="top"><span class="sj-num">SJ-09</span><span class="dyn">明</span></div>
+      <h3><a href="/modules/shijian/sj-09">张居正一条鞭法</a></h3>
+      <p>税基重整 vs 士绅抵制，人亡政息。</p>
+      <div class="type">变法 · 宋明对照</div>
+    </article>
+    <article class="sj-00-case-card" data-dynasty="ming" data-built="1">
+      <div class="top"><span class="sj-num">SJ-10</span><span class="dyn">明</span></div>
+      <h3><a href="/modules/shijian/sj-10">明末衰变 · 崇祯易代</a></h3>
+      <p>小冰期 + 三饷，多力共振崩解。</p>
+      <div class="type">崩解 · 单案深描</div>
+    </article>
+    <article class="sj-00-case-card" data-dynasty="chunqiu" data-built="1">
+      <div class="top"><span class="sj-num">SJ-11</span><span class="dyn">春秋战国</span></div>
+      <h3><a href="/modules/shijian/sj-11">商鞅变法</a></h3>
+      <p>军功爵制重建汲取力，为秦统一奠基。</p>
+      <div class="type">变法 · 先秦首案</div>
+    </article>
+    <article class="sj-00-case-card" data-dynasty="qin" data-built="1">
+      <div class="top"><span class="sj-num">SJ-12</span><span class="dyn">秦</span></div>
+      <h3><a href="/modules/shijian/sj-12">秦末崩解</a></h3>
+      <p>大一统 15 年速亡，汲取过载 + 合法性耗尽。</p>
+      <div class="type">崩解 · 最短命大一统</div>
+    </article>
+    <article class="sj-00-case-card" data-dynasty="han" data-built="1">
+      <div class="top"><span class="sj-num">SJ-13</span><span class="dyn">两汉</span></div>
+      <h3><a href="/modules/shijian/sj-13">王莽改制</a></h3>
+      <p>复古理想 vs 现实结构，新朝 15 年而亡。</p>
+      <div class="type">变法 · 僵化期试错</div>
+    </article>
+    <article class="sj-00-case-card" data-dynasty="qing" data-built="1">
+      <div class="top"><span class="sj-num">SJ-14</span><span class="dyn">清</span></div>
+      <h3><a href="/modules/shijian/sj-14">洋务运动</a></h3>
+      <p>中体西用局部现代化，甲午证明不足救崩解。</p>
+      <div class="type">变法 · 近代化局部修复</div>
+    </article>
+    <article class="sj-00-case-card" data-dynasty="jindai" data-built="1">
+      <div class="top"><span class="sj-num">SJ-15</span><span class="dyn">近代</span></div>
+      <h3><a href="/modules/shijian/sj-15">辛亥革命</a></h3>
+      <p>帝制终结，合法性破产，五力再平衡未竟。</p>
+      <div class="type">崩解 → 重整</div>
+    </article>
+  </div>
+</section>
+
 </div><!-- /.sj-main-col -->
 
 <aside class="sj-rail" id="sj-rail" aria-label="五柱导航侧栏">
@@ -693,7 +862,7 @@ html[data-theme="light"] .sj-00-card:focus-within{
       <a class="sj-rail-vol" href="#vol-overview"><span class="n">总论</span> SJ-00 索引</a>
       <a class="sj-rail-vol" href="#vol-method"><span class="n">方法论</span> SJ-01 · SJ-02</a>
       <a class="sj-rail-vol" href="#vol-cycle"><span class="n">周期机制</span> SJ-03 · SJ-04</a>
-      <a class="sj-rail-vol" href="#vol-cases"><span class="n">案例库</span> SJ-05–10</a>
+      <a class="sj-rail-vol" href="#vol-cases"><span class="n">案例库</span> SJ-05–15</a>
       <a class="sj-rail-vol" href="#vol-mirror"><span class="n">古今对照</span> SJ-20–24</a>
     </nav>
     <div class="sj-rail-chips">
@@ -718,6 +887,7 @@ html[data-theme="light"] .sj-00-card:focus-within{
     <div class="k">本页结构</div>
     <nav class="sj-rail-toc sj-rail-toc-struct" aria-label="章节目录"><a href="#sec-intro">01 · 引言</a>
       <a href="#sec-spiral">02 · 治乱螺旋</a>
+      <a href="#sec-case-hub">03b · 案例库 Hub</a>
       <a href="#sec-vols">03 · 五柱卷目</a>
       <a href="#sec-mapping-index">04 · 对照索引</a>
       <a href="#sec-engine">05 · 史鉴引擎</a>
@@ -774,11 +944,11 @@ html[data-theme="light"] .sj-00-card:focus-within{
     <article class="sj-00-card">
       <div class="row">
         <span class="vol"><a class="sj-00-card-anchor" href="#vol-cases" tabindex="0">案例库</a></span>
-        <span class="sj-00-tag is-done">6 卷</span>
+        <span class="sj-00-tag is-done">11 卷</span>
       </div>
       <span class="sj-00-pillar-icon">◆ 怎么证</span>
       <h3>史料台账</h3>
-      <p>变法、拐点、崩解、分裂与明末共振——超稳定结构的压力测试样本库。</p>
+      <p>春秋战国至近代跨朝代样本：变法、拐点、崩解、分裂与近代化——超稳定结构压力测试库。</p>
       <div class="ids" aria-label="案例库子卷">
         <a class="sj-00-chip" href="/modules/shijian/sj-05" tabindex="0">05</a>
         <a class="sj-00-chip" href="/modules/shijian/sj-06" tabindex="0">06</a>
@@ -786,6 +956,11 @@ html[data-theme="light"] .sj-00-card:focus-within{
         <a class="sj-00-chip" href="/modules/shijian/sj-08" tabindex="0">08</a>
         <a class="sj-00-chip" href="/modules/shijian/sj-09" tabindex="0">09</a>
         <a class="sj-00-chip" href="/modules/shijian/sj-10" tabindex="0">10</a>
+        <a class="sj-00-chip" href="/modules/shijian/sj-11" tabindex="0">11</a>
+        <a class="sj-00-chip" href="/modules/shijian/sj-12" tabindex="0">12</a>
+        <a class="sj-00-chip" href="/modules/shijian/sj-13" tabindex="0">13</a>
+        <a class="sj-00-chip" href="/modules/shijian/sj-14" tabindex="0">14</a>
+        <a class="sj-00-chip" href="/modules/shijian/sj-15" tabindex="0">15</a>
       </div>
     </article>
     <article class="sj-00-card">
@@ -819,8 +994,19 @@ html[data-theme="light"] .sj-00-card:focus-within{
     <p><a href="./SJ-03.html" style="color:var(--sj-celadon)">SJ-03 五力衰变模型</a>（力场签名 + 逐力解剖 + 耦合主链 + 相位/修复力契约）已交付 v0.1。<a href="./SJ-04.html" style="color:var(--sj-celadon)">SJ-04 治乱循环相位盘</a>（不等分罗盘 + 五相位判据 + 修复力诊断 + 共享契约 + 案例卷接口）已交付 v0.1。签名预览稿仍保留为对照：<a href="./SJ-04-compass-preview.html" style="color:var(--sj-ochre)">SJ-04-compass-preview</a>。</p>
   </div>
   <div class="sj-00-ph" id="vol-cases">
-    <h4>案例库 · 扩充至 6 卷</h4>
-    <p><a href="./SJ-05.html" style="color:var(--sj-celadon)">SJ-05 王安石</a> · <a href="./SJ-06.html" style="color:var(--sj-celadon)">SJ-06 天宝</a> · <a href="./SJ-07.html" style="color:var(--sj-celadon)">SJ-07 崩解对比</a> · <a href="./SJ-08.html" style="color:var(--sj-celadon)">SJ-08 五代</a> · <a href="./SJ-09.html" style="color:var(--sj-celadon)">SJ-09 一条鞭</a> · <a href="./SJ-10.html" style="color:var(--sj-celadon)">SJ-10 明末</a>。单案卷统一七字段台账。</p>
+    <h4>案例库 · 扩充至 11 卷</h4>
+    <p><a href="#sec-case-hub" style="color:var(--sj-celadon)">案例库 Hub</a>（朝代 filter）·
+    <a href="./SJ-05.html" style="color:var(--sj-celadon)">SJ-05 王安石</a> ·
+    <a href="./SJ-06.html" style="color:var(--sj-celadon)">SJ-06 天宝</a> ·
+    <a href="./SJ-07.html" style="color:var(--sj-celadon)">SJ-07 崩解对比</a> ·
+    <a href="./SJ-08.html" style="color:var(--sj-celadon)">SJ-08 五代</a> ·
+    <a href="./SJ-09.html" style="color:var(--sj-celadon)">SJ-09 一条鞭</a> ·
+    <a href="./SJ-10.html" style="color:var(--sj-celadon)">SJ-10 明末</a> ·
+    <a href="./SJ-11.html" style="color:var(--sj-celadon)">SJ-11 商鞅</a> ·
+    <a href="./SJ-12.html" style="color:var(--sj-celadon)">SJ-12 秦末</a> ·
+    <a href="./SJ-13.html" style="color:var(--sj-celadon)">SJ-13 王莽</a> ·
+    <a href="./SJ-14.html" style="color:var(--sj-celadon)">SJ-14 洋务</a> ·
+    <a href="./SJ-15.html" style="color:var(--sj-celadon)">SJ-15 辛亥</a>。单案卷统一七字段台账。</p>
   </div>
   <div class="sj-00-ph" id="vol-mirror">
     <h4>古今对照 · 五域</h4>
@@ -1090,6 +1276,31 @@ html[data-theme="light"] .sj-00-card:focus-within{
   }
 
   document.getElementById('sj-btn-clear').classList.add('is-on');
+})();
+
+(function(){
+  var grid = document.getElementById('sj-case-grid');
+  if(!grid) return;
+  var cards = Array.from(grid.querySelectorAll('.sj-00-case-card'));
+  var btns = Array.from(document.querySelectorAll('.sj-00-case-filter .sj-00-btn'));
+  var visEl = document.getElementById('sj-stat-visible');
+  function apply(dyn){
+    btns.forEach(function(b){
+      var isAll = b.id === 'sj-case-all';
+      b.classList.toggle('is-on', dyn ? b.dataset.dyn === dyn : isAll);
+    });
+    var vis = 0;
+    cards.forEach(function(c){
+      var show = !dyn || c.dataset.dynasty === dyn;
+      c.classList.toggle('is-hidden', !show);
+      c.classList.toggle('is-hot', !!dyn && show);
+      if(show) vis++;
+    });
+    if(visEl) visEl.textContent = String(vis);
+  }
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){ apply(b.dataset.dyn || ''); });
+  });
 })();
 
   /* rail toc highlight */

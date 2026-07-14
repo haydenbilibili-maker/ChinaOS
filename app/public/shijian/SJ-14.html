@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-14 · 洋务运动</title>
+<meta name="description" content="ChinaOS 史鉴改革卷近代案：洋务运动与甲午证伪。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;
+  --sj-ink-800:#1d1916;
+  --sj-paper-100:#e8ddc7;
+  --sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;
+  --sj-celadon:#5f7a6f;
+  --sj-ochre:#b8894a;
+  --sj-line:#3a322b;
+  --sj-radius:6px;
+  --sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(1000px 560px at 72% -8%, #2a221c 0%, transparent 55%),
+    radial-gradient(700px 420px at 8% 90%, #1a1612 0%, transparent 50%),
+    var(--sj-ink-900);
+  color:var(--sj-paper-100);
+  font-family:var(--sj-serif);
+  line-height:1.75;
+}
+.14-wrap{max-width:min(100%,1180px);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media (min-width:1280px){.14-wrap{max-width:min(100%,1480px)}}
+@media (min-width:1536px){.14-wrap{max-width:min(100%,1600px)}}
+@media (min-width:1920px){.14-wrap{max-width:min(100%,1680px)}}
+@media (min-width:2560px){.14-wrap{max-width:min(100%,1680px)}}/* 宽屏双栏：主栏 ~58% + 粘性侧栏 ~38% */
+.sj-page-layout{display:flex;flex-direction:column;gap:var(--sj-space)}
+@media (min-width:1280px){
+  .sj-page-layout{
+    display:grid;
+    grid-template-columns:minmax(0,58fr) minmax(280px,38fr);
+    gap:clamp(16px,2vw,28px);
+    align-items:start;
+  }
+}
+.sj-main-col{min-width:0;width:100%}
+.sj-rail{
+  display:flex;flex-direction:column;gap:12px;
+  min-width:0;width:100%;
+}
+@media (min-width:1280px){
+  .sj-rail{
+    position:sticky;top:1rem;align-self:start;
+    max-height:calc(100vh - 2rem);overflow-y:auto;overscroll-behavior:contain;
+  }
+}
+@media (max-width:1279px){
+  .sj-page-layout{display:flex;flex-direction:column}
+  .sj-main-col{display:contents}
+  .sj-rail{order:2;margin:8px 0 20px}
+  .sj-rail-mini{display:none}
+}
+.sj-rail-card{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
+  padding:14px 16px;
+}
+.sj-rail-card .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-rail-card h3,.sj-rail-card h4{font-size:15px;letter-spacing:.06em;margin-bottom:8px;color:var(--sj-paper-100);font-weight:600}
+.sj-rail-card p,.sj-rail-card li{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+.sj-rail-card dl{display:grid;gap:6px;margin:0}
+.sj-rail-card dt{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);letter-spacing:.06em}
+.sj-rail-card dd{font-size:12px;color:var(--sj-paper-300);margin:0;line-height:1.55}
+.sj-rail-toc{display:grid;gap:6px;margin-top:8px}
+.sj-rail-toc a{
+  display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  padding:8px 10px;text-decoration:none;color:inherit;font-size:13px;
+  transition:border-color .18s ease;
+}
+.sj-rail-toc a:hover,.sj-rail-toc a:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-rail-toc a.is-active{border-color:var(--sj-vermil)}
+.sj-rail-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.sj-rail-chip,.sj-rail-chip:visited{
+  display:inline-block;font-family:var(--sj-mono);font-size:10px;letter-spacing:.06em;
+  color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;
+  border-radius:var(--sj-radius);text-decoration:none;
+}
+.sj-rail-chip:hover,.sj-rail-chip:focus-visible{border-color:var(--sj-ochre);color:var(--sj-ochre);outline:none}
+.sj-rail-mini{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-900);padding:6px 6px 2px;overflow:hidden}
+.sj-rail-mini svg{display:block;width:100%;height:auto;max-height:200px}
+.sj-rail-mini-lbl{font-family:var(--sj-mono);font-size:9px;letter-spacing:.1em;color:var(--sj-paper-300);text-align:center;margin:4px 0 2px}
+.sj-rail-steps{display:grid;gap:6px}
+.sj-rail-step{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);padding:8px 10px;
+  font-size:13px;color:var(--sj-paper-300);border-left:3px solid var(--sj-line);
+  text-decoration:none;
+}
+.sj-rail-step.is-on{border-left-color:var(--sj-vermil);color:var(--sj-paper-100);background:color-mix(in srgb,var(--sj-vermil) 8%,var(--sj-ink-900))}
+.sj-rail-step .n{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);letter-spacing:.08em;display:block;margin-bottom:2px}
+.sj-rail-legend{display:grid;gap:4px;margin-top:8px}
+.sj-rail-legend span{font-size:12px;color:var(--sj-paper-300);padding-left:12px;border-left:3px solid var(--sj-line)}
+.sj-rail-legend .ochre{border-left-color:var(--sj-ochre)}
+.sj-rail-legend .celadon{border-left-color:var(--sj-celadon)}
+.sj-rail-legend .vermil{border-left-color:var(--sj-vermil)}
+.sj-rail-legend .paper{border-left-color:var(--sj-paper-100)}
+.sj-rail-legend .ink{border-left-color:var(--sj-paper-300)}
+.sj-rail-vols{display:grid;gap:6px}
+.sj-rail-vol{
+  display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  padding:8px 10px;text-decoration:none;color:inherit;font-size:13px;
+  transition:border-color .18s ease;
+}
+.sj-rail-vol:hover,.sj-rail-vol:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-rail-vol .n{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);letter-spacing:.1em}
+.sj-rail-snap .sj-snap-note{font-size:11px;line-height:1.5}
+.sj-rail-snap .sj-snap-bars{gap:5px}
+.sj-rail-refute{font-size:12px;color:var(--sj-paper-300);line-height:1.6;font-style:italic}
+.sj-rail-phase-btns{display:grid;gap:6px;margin-top:8px}
+.sj-rail-phase-btn{
+  appearance:none;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  padding:8px 10px;background:var(--sj-ink-900);color:var(--sj-paper-300);
+  font-family:var(--sj-serif);font-size:12px;text-align:left;cursor:pointer;
+  transition:border-color .18s ease,color .18s ease;
+}
+.sj-rail-phase-btn:hover,.sj-rail-phase-btn:focus-visible{border-color:var(--sj-ochre);color:var(--sj-paper-100);outline:none}
+.sj-rail-phase-btn.is-on{border-color:var(--sj-vermil);color:var(--sj-paper-100)}
+
+@keyframes sj-fade-in{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+.sj-reveal-stagger > header,
+.sj-reveal-stagger > .sj-zhupi,
+.sj-reveal-stagger > .sj-ledger,
+.sj-reveal-stagger > [class*="-sec"],
+.sj-reveal-stagger > footer{
+  animation:sj-fade-in .34s cubic-bezier(.22,.61,.36,1) both;
+}
+.sj-reveal-stagger > *:nth-child(1){animation-delay:.03s}
+.sj-reveal-stagger > *:nth-child(2){animation-delay:.06s}
+.sj-reveal-stagger > *:nth-child(3){animation-delay:.09s}
+.sj-reveal-stagger > *:nth-child(4){animation-delay:.12s}
+.sj-reveal-stagger > *:nth-child(5){animation-delay:.15s}
+.sj-reveal-stagger > *:nth-child(6){animation-delay:.18s}
+.sj-reveal-stagger > *:nth-child(7){animation-delay:.21s}
+.sj-reveal-stagger > *:nth-child(8){animation-delay:.24s}
+
+.14-mast{
+  display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;
+  padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px;
+}
+.14-mast .badge{font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px}
+.14-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em;line-height:1.3}
+.14-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;letter-spacing:.08em;font-size:.72em;display:block;margin-top:4px}
+.14-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right;line-height:1.7}
+.14-meta b{color:var(--sj-ochre);font-weight:500}
+.14-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sj-xlinks a,.sj-xlinks a:visited{color:var(--sj-celadon);text-decoration:none}
+.sj-xlinks a:hover,.sj-xlinks a:focus-visible{outline:none}
+.14-chip,.14-chip:visited{
+  display:inline-block;font-family:var(--sj-mono);font-size:10px;
+  letter-spacing:.08em;color:var(--sj-celadon);border:1px solid var(--sj-line);
+  padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;
+}
+.14-chip:hover,.14-chip:focus-visible{border-color:var(--sj-ochre);color:var(--sj-ochre);outline:none}
+
+.sj-zhupi{
+  color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;
+  padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:74ch;
+}
+
+/* ====== 可复用史鉴台账组件（SJ-09 验证 → 案例卷复用） ====== */
+.sj-ledger{display:grid;gap:8px}
+.sj-ledger-field{margin:20px 0 8px;scroll-margin-top:24px}
+.sj-ledger-fh{
+  display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--sj-line);
+}
+.sj-ledger-fh .fnum{
+  font-family:var(--sj-mono);font-size:11px;letter-spacing:.12em;color:var(--sj-ochre);
+  border:1px solid var(--sj-line);border-radius:4px;padding:1px 7px;
+}
+.sj-ledger-fh h2{font-size:clamp(16px,2.1vw,19px);font-weight:600;letter-spacing:.1em}
+.sj-ledger-fh .en{font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);letter-spacing:.14em}
+
+.14-prose{font-size:15.5px;color:var(--sj-paper-100);max-width:74ch}
+.14-prose + .14-prose{margin-top:12px}
+.14-prose strong{color:var(--sj-ochre);font-weight:600}
+.14-note{font-size:13px;color:var(--sj-paper-300);margin-top:12px;max-width:74ch}
+.14-note b{color:var(--sj-paper-100);font-weight:600}
+
+/* ① 一句话拐点 */
+.14-hook{
+  border:1px solid var(--sj-line);border-left:3px solid var(--sj-vermil);
+  border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
+  padding:18px 22px;
+}
+.14-hook p{font-size:clamp(16px,2.3vw,20px);line-height:1.7;color:var(--sj-paper-100);letter-spacing:.02em}
+.14-hook p b{color:var(--sj-vermil);font-weight:600}
+.14-hook .yr{margin-top:10px;font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre);letter-spacing:.06em}
+
+/* ② 结构切片 */
+.14-stage{width:100%;max-width:100%;
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
+  box-shadow:0 1px 0 rgba(232,221,199,.04), 0 18px 48px rgba(0,0,0,.45);
+  padding:8px 8px 4px;overflow:auto;
+}
+.14-stage svg{display:block;width:100%;height:auto;max-width:100%;margin:0 auto}
+.sj-node{cursor:pointer;transition:opacity .2s ease, filter .2s ease}
+.sj-node:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:4px}
+.sj-edge{transition:opacity .2s ease, filter .2s ease}
+.14-stage.is-picking .sj-node{opacity:.3}
+.14-stage.is-picking .sj-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px rgba(184,137,74,.4))}
+.14-stage.is-picking .sj-edge{opacity:.16}
+.14-stage.is-picking .sj-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px rgba(168,59,44,.4))}
+.14-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:14px;align-items:start;margin-top:14px}
+.14-aside{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
+  padding:14px 16px;position:sticky;top:12px;min-height:150px;
+}
+.14-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.14-aside h3{font-size:16px;letter-spacing:.08em;margin-bottom:8px}
+.14-aside p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.7}
+.14-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+
+/* ③ 相位 */
+.14-phase{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+.14-phase .pb{
+  font-family:var(--sj-mono);font-size:12px;letter-spacing:.1em;color:var(--sj-vermil);
+  border:1px solid var(--sj-vermil);border-radius:20px;padding:6px 16px;white-space:nowrap;
+}
+.14-phase .pb b{color:var(--sj-ochre);font-weight:500}
+
+/* 表格（④五力 / ⑦映射复用） */
+.14-table-wrap{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);overflow:auto;margin-top:6px;min-width:0}
+.14-table{width:max(100%,720px);table-layout:fixed;border-collapse:collapse;font-size:13px}
+.14-table th{
+  background:var(--sj-ink-900);color:var(--sj-ochre);font-family:var(--sj-mono);font-size:10px;
+  letter-spacing:.12em;font-weight:500;text-align:left;padding:10px 12px;border-bottom:1px solid var(--sj-line);white-space:nowrap;
+}
+.14-table td{padding:10px 12px;border-bottom:1px solid var(--sj-line);color:var(--sj-paper-300);vertical-align:top;line-height:1.6;overflow-wrap:break-word}
+.14-table td:first-child{color:var(--sj-paper-100);font-weight:600;white-space:nowrap;min-width:6em}
+.14-table .zheng{color:var(--sj-paper-300)}
+.14-table .shi{color:var(--sj-paper-100)}
+
+/* ⑤ 史家交锋 */
+.14-hist{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.14-hist article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.14-hist .who{font-size:14px;font-weight:600;letter-spacing:.06em;color:var(--sj-celadon);margin-bottom:6px}
+.14-hist .who span{font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);letter-spacing:.08em;margin-left:6px}
+.14-hist p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+
+/* ⑥ 成败三列 */
+.14-verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px}
+.14-verdict article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.14-verdict .vh{font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;margin-bottom:8px}
+.14-verdict[data-x] .vh{color:var(--sj-paper-300)}
+.14-verdict article.ok .vh{color:var(--sj-celadon)}
+.14-verdict article.fail .vh{color:var(--sj-vermil)}
+.14-verdict article.open .vh{color:var(--sj-ochre)}
+.14-verdict p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+.14-verdict p + p{margin-top:8px;padding-top:8px;border-top:1px solid var(--sj-line)}
+
+/* ⑦ 古今映射双栏 */
+.14-mirror{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.14-mirror article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.14-mirror .mh{font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;margin-bottom:8px}
+.14-mirror article.same .mh{color:var(--sj-celadon)}
+.14-mirror article.diff .mh{color:var(--sj-ochre)}
+.14-mirror p{font-size:13px;color:var(--sj-paper-100);line-height:1.68}
+.14-mirror p .lk{color:var(--sj-celadon)}
+
+.14-xref{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.14-xref a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit;transition:border-color .18s}
+.14-xref a:hover,.14-xref a:focus-visible{border-color:var(--sj-ochre);outline:none}
+.14-xref .n{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;color:var(--sj-ochre);margin-bottom:4px}
+.14-xref h3{font-size:14px;letter-spacing:.06em;margin-bottom:6px}
+.14-xref p{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6}
+
+.14-foot{
+  margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);
+  font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+}
+.14-foot a{color:var(--sj-celadon);text-decoration:none}
+.14-foot a:hover{color:var(--sj-ochre)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .sj-reveal-stagger > *{animation:none}
+  .sj-node,.sj-edge,.14-chip{transition:none}
+}
+@media (max-width:900px){
+  .14-layout{grid-template-columns:1fr}
+  .14-aside{position:static}
+  .14-hist,.14-mirror{grid-template-columns:1fr}
+  .14-verdict{grid-template-columns:1fr}
+  .14-xref{grid-template-columns:1fr 1fr}
+}
+@media (max-width:768px){
+  .14-meta{text-align:left}
+  .14-xref{grid-template-columns:1fr}
+}
+
+/* 宣纸日览 · 由 ?theme=light 或 postMessage 切换 html[data-theme] */
+html[data-theme="light"] .sj-rail-card{box-shadow:0 1px 0 rgba(26,24,20,.05),0 12px 28px rgba(26,24,20,.08)}
+html[data-theme="light"] .sj-rail-mini{background:var(--sj-ink-800)}
+html[data-theme="light"]{
+  --sj-ink-900:#f4f1ea;
+  --sj-ink-800:#ebe6dc;
+  --sj-paper-100:#1a1814;
+  --sj-paper-300:#5a5348;
+  --sj-vermil:#9a3428;
+  --sj-celadon:#3f5f54;
+  --sj-ochre:#8a6528;
+  --sj-line:#c8bfb0;
+}
+html[data-theme="light"] body{
+  background:
+    radial-gradient(1000px 560px at 72% -8%, #e8e4da 0%, transparent 55%),
+    radial-gradient(700px 420px at 8% 90%, #ebe6dc 0%, transparent 50%),
+    var(--sj-ink-900);
+  color:var(--sj-paper-100);
+}
+html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
+html[data-theme="light"] [class*="-stage"],
+html[data-theme="light"] [class*="-aside"],
+html[data-theme="light"] [class*="-table-wrap"],
+html[data-theme="light"] [class*="-hook"],
+html[data-theme="light"] [class*="-ledger"]{
+  box-shadow:0 1px 0 rgba(26,24,20,.05),0 12px 28px rgba(26,24,20,.08);
+}
+html[data-theme="light"] .sj-snap-track{background:var(--sj-ink-900);border-color:var(--sj-line)}
+html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
+
+</style>
+<script>
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){ document.documentElement.setAttribute('data-theme', t==='light' ? 'light' : 'dark'); }
+  try{
+    var q=new URLSearchParams(location.search).get('theme');
+    if(q==='light'||q==='dark') apply(q);
+  }catch(e){}
+  window.addEventListener('message', function(e){
+    if(e.origin !== window.location.origin) return;
+    var d=e&&e.data;
+    if(!d||d.type!==MSG) return;
+    apply(d.theme);
+  });
+})();
+</script>
+</head>
+<body>
+<div class="sj-14-wrap sj-reveal-stagger" id="sj-14-top">
+<header class="sj-14-mast">
+  <div>
+    <div class="badge">SJ-14 · 改革案例卷 · 洋务案</div>
+    <h1>洋务运动<em>中体西用 · 体系外冲击 · 甲午证伪</em></h1>
+    <div class="sj-14-chips sj-xlinks"><a class="sj-14-chip" href="./SJ-00.html">↔ SJ-00</a><a class="sj-14-chip" href="./SJ-07.html">↔ SJ-07 清行</a><a class="sj-14-chip" href="./SJ-24.html">↔ SJ-24</a></div>
+  </div>
+  <div class="sj-14-meta">近代前夜 · 体系外变量<br/><b>AS_OF 2026-07-15</b> · v0.1</div>
+</header>
+<p class="sj-zhupi">朱批：本案引入母本清行「体系外变量」——鸦片战争后的冲击-回应改革。口径：《清史稿》洋务诸传 + 费正清框架，保守推演。</p>
+<article class="sj-ledger">
+<div class="sj-page-layout">
+<div class="sj-main-col">
+<section class="sj-ledger-field" id="f1" aria-labelledby="h-f1">
+  <div class="sj-ledger-fh"><span class="fnum">01</span><h2 id="h-f1">一句话拐点</h2><span class="en">HOOK</span></div>
+  <div class="sj-14-hook"><p>鸦片战争后列强冲击下，清廷洋务派以<b>「自强求富」「中体西用」</b>兴办军工、航运、电报，北洋水师等短期见效；然制度未变，<b>甲午战败</b>证伪「只强器物」路径，边疆军事力仍不足以支撑合法性。</p><div class="yr">系年：同治元年（1862）设总理衙门 · 1894 甲午战争战败（《清史稿》）</div></div>
+</section>
+<section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
+  <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
+  <p class="sj-14-prose">权力几何：慈禧皇权 → 奕訢·李鸿章洋务派 → 江南制造局/北洋水师 → 顽固派与地方督抚；外环列强军事财政压力。</p>
+  <div class="sj-14-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-label="SJ-14 · 洋务权力几何 · 中体西用">
+  <rect width="800" height="520" fill="var(--sj-ink-900)"/>
+  <text x="48" y="48" fill="var(--sj-ochre)" font-size="11" font-family="ui-monospace,monospace">SJ-14 · 洋务权力几何 · 中体西用</text>
+  
+  <g class="sj-node" data-id="cixi" tabindex="0" role="button"><rect x="300" y="40" width="200" height="44" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="1.4"/><text x="400" y="68" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-family="serif">慈禧 · 皇权</text></g>
+  <g class="sj-node" data-id="yangwu" tabindex="0" role="button"><rect x="250" y="130" width="300" height="56" rx="8" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.2"/><text x="400" y="162" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-family="serif">奕訢 · 李鸿章 · 洋务派</text></g>
+  <g class="sj-node" data-id="industry" tabindex="0" role="button"><rect x="200" y="230" width="400" height="48" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="1.8"/><text x="400" y="260" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-family="serif">军工 · 航运 · 电报 · 北洋水师</text></g>
+  <g class="sj-node" data-id="powers" tabindex="0" role="button"><rect x="220" y="340" width="360" height="52" rx="8" fill="#2a1a16" stroke="var(--sj-vermil)" stroke-width="3"/><text x="400" y="372" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="serif">甲午战败 · 列强压力外环</text></g>
+</svg></div>
+  <div class="sj-14-layout">
+    <div class="sj-14-note" style="margin-top:0">色义：洋务派=青瓷；列强压力=朱红外环；甲午战败=朱红引爆。</div>
+    <aside class="sj-14-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-14-aside-empty">点选切片节点查看角色说明。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+      </div>
+    </aside>
+  </div>
+</section>
+</div>
+<aside class="sj-rail" aria-label="台账导航侧栏">
+  <div class="sj-rail-card">
+    <div class="k">史鉴台账 · 七字段</div>
+    <h3>本案导航</h3>
+    <nav class="sj-rail-toc" aria-label="台账字段">
+      <a href="#f1">01 · 一句话拐点</a>
+      <a href="#f2">02 · 结构切片</a>
+      <a href="#f3">03 · 相位定位</a>
+      <a href="#f4">04 · 五力归因</a>
+      <a href="#f5">05 · 史家交锋</a>
+      <a href="#f6">06 · 成败判定</a>
+      <a href="#f7">07 · 古今映射</a>
+    </nav>
+  </div>
+  <div class="sj-rail-chips"><a class="sj-rail-chip" href="./SJ-24.html">SJ-24</a><a class="sj-rail-chip" href="./SJ-07.html">SJ-07</a></div>
+</aside>
+</div>
+<section class="sj-ledger-field" id="f3" aria-labelledby="h-f3">
+  <div class="sj-ledger-fh"><span class="fnum">03</span><h2 id="h-f3">相位定位</h2><span class="en">PHASE · 步骤②</span></div>
+  <div class="sj-14-phase"><span class="pb">僵化期末端 · <b>被动改革（体系外变量）</b></span><a class="sj-14-chip" href="./SJ-04.html">在 SJ-04 相位盘定位 →</a></div>
+  <p class="sj-14-prose">清晚期僵化期末端叠加体系外冲击（现代性），洋务是被动改革窗口；财政—军事现代化未能同步制度变革。</p>
+</section>
+<section class="sj-ledger-field" id="f4" aria-labelledby="h-f4">
+  <div class="sj-ledger-fh"><span class="fnum">04</span><h2 id="h-f4">五力归因台账</h2><span class="en">FORCES · 步骤③</span></div>
+  <div class="sj-14-table-wrap"><table class="sj-14-table"><thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead><tbody><tr><td>财政汲取</td><td>「自强」</td><td class="shi">官督商办、关税、厘金支撑军工，汲取未能支撑全面现代化</td></tr>
+<tr><td>精英循环</td><td>「顽固派」</td><td class="shi">满汉精英分裂，顽固派抵制，洋务派系个人权威集合</td></tr>
+<tr><td>合法性叙事</td><td>「中体西用」</td><td class="shi">甲午战败使「自强」叙事破产，合法性绩效枯竭</td></tr>
+<tr><td>边疆军事〔引燃〕</td><td>「甲午」</td><td class="shi">北洋水师覆没，军事现代化证伪，引爆后续维新思潮</td></tr>
+<tr><td>生态—人口基座</td><td>—</td><td class="shi">人口压力与财政负担仍在；工业化初启〔存疑〕</td></tr></tbody></table></div>
+</section>
+<section class="sj-ledger-field" id="f5" aria-labelledby="h-f5">
+  <div class="sj-ledger-fh"><span class="fnum">05</span><h2 id="h-f5">史家交锋</h2><span class="en">HISTORIANS</span></div>
+  <div class="sj-14-hist"><article><div class="who">李敖式考据</div><p>剥离「卖国」标签，可见洋务派在体制约束内的真实努力与结构局限。</p></article>
+<article><div class="who">钱穆</div><p>中国近代史脉络中，洋务为传统政体最后一次自我修补。</p></article>
+<article><div class="who">金观涛</div><p>低水平均衡上的局部技术引进，未触及操作系统升级。</p></article>
+<article><div class="who">黄仁宇</div><p>数目字管理仍不足，近代会计与组织未能建立。</p></article>
+<article style="grid-column:1/-1"><div class="who">费正清</div><p>冲击-回应：西方压力倒逼改革，但回应停留在器物层，制度惰性致失败。</p></article></div>
+</section>
+<section class="sj-ledger-field" id="f6" aria-labelledby="h-f6">
+  <div class="sj-ledger-fh"><span class="fnum">06</span><h2 id="h-f6">成败判定</h2><span class="en">VERDICT</span></div>
+  <div class="sj-14-verdict"><article class="ok"><div class="vh">已兑现</div><p>江南制造局等工业启蒙</p><p>新式海军与人才</p><p>「自强」话语开启近代思潮</p></article>
+<article class="fail"><div class="vh">已失败</div><p>甲午战败</p><p>制度未变</p><p>主权丧失加剧</p></article>
+<article class="open"><div class="vh">未决〔反事实〕</div><p>若戊戌级制度改革与洋务同步，清末路径会否不同？</p></article></div>
+</section>
+<section class="sj-ledger-field" id="f7" aria-labelledby="h-f7">
+  <div class="sj-ledger-fh"><span class="fnum">07</span><h2 id="h-f7">古今映射</h2><span class="en">MIRROR</span></div>
+  <div class="sj-14-mirror"><article class="same"><div class="mh">相似机制</div><p>外部压力倒逼改革；军事—财政—合法性三联共振。</p></article>
+<article class="diff"><div class="mh">关键差异</div><p>当代自主创新与举国体制已非「中体西用」；体系外变量形态变为技术—金融地缘（→ SJ-24）。</p></article></div>
+</section>
+</article>
+<section class="sj-ledger-field" id="fx"><div class="sj-ledger-fh"><span class="fnum">◆</span><h2>交叉引用</h2></div>
+  <div class="sj-14-xref"><a href="./SJ-07.html"><div class="n">SJ-07</div><h3>崩解矩阵</h3><p>清行体系外变量。</p></a>
+<a href="./SJ-24.html"><div class="n">SJ-24</div><h3>外交映射</h3><p>冲击-回应当代接口。</p></a></div>
+</section>
+<footer class="sj-14-foot">
+  <span>ChinaOS · 史鉴 SJ-14 · v0.1 · AS_OF 2026-07-15 · 真源《清史稿》+ 费正清冲击-回应</span>
+  <span><a href="./SJ-00.html">← 返回 SJ-00</a> · <a href="#sj-14-top">↑ 顶</a></span>
+  <span><a href="./SJ-00.html#sec-case-hub">案例库 Hub →</a></span>
+</footer>
+</div>
+<script>
+(function(){
+  const stage=document.getElementById('stage');
+  if(!stage) return;
+  const nodes=Array.from(stage.querySelectorAll('.sj-node'));
+  const NODE_DATA={"cixi":{"name":"慈禧","tag":"皇权","body":"在顽固派与洋务派之间钟摆，改革缺乏制度化保障。"},"yangwu":{"name":"洋务派","tag":"技术官僚","body":"奕訢、李鸿章等推动军工航运，个人权威驱动。"},"industry":{"name":"洋务企业","tag":"汲取工具","body":"官督商办模式，财政与工业汲取的近代形态。"},"powers":{"name":"列强/甲午","tag":"体系外压力","body":"1894 战败证伪「只强器物」，引爆维新思潮。"}};
+  const asideEmpty=document.getElementById('aside-empty');
+  const asideBody=document.getElementById('aside-body');
+  function showAside(id){
+    const d=NODE_DATA[id]; if(!d) return;
+    asideEmpty.hidden=true; asideBody.hidden=false;
+    document.getElementById('aside-tag').textContent=d.tag;
+    document.getElementById('aside-name').textContent=d.name;
+    document.getElementById('aside-text').textContent=d.body;
+  }
+  nodes.forEach(n=>{
+    const act=()=>{ nodes.forEach(x=>x.classList.remove('is-hot')); n.classList.add('is-hot'); showAside(n.dataset.id); };
+    n.addEventListener('click',act);
+    n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});
+  });
+})();
+
+  (function(){
+    var links=document.querySelectorAll('.sj-rail-toc a[href^="#"]');
+    if(!links.length) return;
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(a){a.classList.toggle('is-active',a.getAttribute('href')==='#'+e.target.id);});
+        }
+      });
+    },{rootMargin:'-20% 0px -60% 0px',threshold:0});
+    links.forEach(function(a){
+      var t=document.querySelector(a.getAttribute('href'));
+      if(t) obs.observe(t);
+    });
+  })();
+</script>
+</body>
+</html>
