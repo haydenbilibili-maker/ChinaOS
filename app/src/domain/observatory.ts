@@ -2,7 +2,7 @@ import type { Proximity, Regime } from './governance.ts';
 import { proximityBand } from './governanceVerdict.ts';
 import { computePersonalVerdict } from './personal.ts';
 
-export const OBSERVATORY_AS_OF = '2026-07-13';
+export const OBSERVATORY_AS_OF = '2026-07-14';
 export const OBSERVATORY_MODULE_COUNT = 6;
 
 export interface ObservatoryGauge {
@@ -66,10 +66,10 @@ export interface ObservatoryReading {
 
 const SIGNAL_GAUGE_DESC =
   '中央加杠杆已实质推进（赤字率 4%，增量全由中央承担），' +
-  '但钱仍流向"物"而非"人"——20 万亿城市更新 vs 1000 亿育儿补贴。<b>治本未启动。</b>';
+  '但钱仍流向"物"而非"人"——20 万亿城市更新 vs 约 1000 亿育儿补贴（2026 政府工作报告口径）。<b>治本未启动。</b>';
 
 const FORCE_GAUGE_DESC =
-  '外需贡献率骤降至不足 15%、通缩连续三年、新生儿 793 万创新低。' +
+  '外需贡献率骤降至不足 15%、通缩 H1 仍偏负、新生儿 793 万创新低（2025 公报）。' +
   '压力在升，但体制的慢性化能力极强。<b>窗口未开，代价在累积。</b>';
 
 export const OBSERVATORY_ACTIONS: ObservatoryAction[] = [
