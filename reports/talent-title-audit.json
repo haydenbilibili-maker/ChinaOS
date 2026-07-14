@@ -1,0 +1,854 @@
+{
+  "asOfHint": "2026-07",
+  "disclaimer": "公开任免口径，以官方最新公告为准；本审计为静态启发式，不构成任职证明。",
+  "filesScanned": 52,
+  "titleRoleHits": 118,
+  "uniqueOfficeCollisions": {},
+  "collisionCount": 0,
+  "syntheticNameHits": [],
+  "placeholderHintFiles": [],
+  "anchors": {
+    "周明理": {
+      "entries": [
+        {
+          "file": "app/src/lib/db/figureExpansion2026.js",
+          "id": "fig-exp-zhouml",
+          "name": "周明理",
+          "province": "广东省",
+          "role": "原市委书记",
+          "title": "原湛江市委书记",
+          "status": "former",
+          "source": "object"
+        }
+      ],
+      "ok": true
+    },
+    "胡玉亭": {
+      "entries": [
+        {
+          "file": "app/src/lib/db/figureProvincial2026.js",
+          "id": "",
+          "name": "胡玉亭",
+          "province": "吉林省",
+          "role": "省长",
+          "title": "省长",
+          "status": "",
+          "source": "tuple"
+        }
+      ],
+      "ok": true
+    },
+    "吉林省长单一性": {
+      "holders": [
+        {
+          "name": "胡玉亭",
+          "file": "app/src/lib/db/figureProvincial2026.js",
+          "title": "省长"
+        }
+      ],
+      "ok": true
+    }
+  },
+  "sampleFocus": [
+    {
+      "file": "app/src/lib/db/figureCentral2026.js",
+      "id": "",
+      "name": "王小洪",
+      "province": "",
+      "role": "国务委员",
+      "title": "国务委员 · 公安部部长 · 党组书记",
+      "status": "",
+      "source": "object"
+    },
+    {
+      "file": "app/src/lib/db/figureCentral2026.js",
+      "id": "",
+      "name": "王毅",
+      "province": "",
+      "role": "外交部长",
+      "title": "中央政治局委员 · 外交部部长 · 党委书记",
+      "status": "",
+      "source": "object"
+    },
+    {
+      "file": "app/src/lib/db/figureCentral2026.js",
+      "id": "",
+      "name": "石泰峰",
+      "province": "",
+      "role": "中组部部长",
+      "title": "中央政治局委员 · 中央书记处书记 · 中央组织部部长 · 全国政协副主席",
+      "status": "",
+      "source": "object"
+    },
+    {
+      "file": "app/src/lib/db/figureCentral2026.js",
+      "id": "",
+      "name": "李干杰",
+      "province": "",
+      "role": "统战部部长",
+      "title": "中央政治局委员 · 中央书记处书记 · 中央统战部部长",
+      "status": "",
+      "source": "object"
+    },
+    {
+      "file": "app/src/lib/db/figureCentral2026.js",
+      "id": "",
+      "name": "李书磊",
+      "province": "",
+      "role": "中宣部部长",
+      "title": "中央政治局委员 · 中央书记处书记 · 中央宣传部部长",
+      "status": "",
+      "source": "object"
+    },
+    {
+      "file": "app/src/lib/db/figureCentral2026.js",
+      "id": "",
+      "name": "张升民",
+      "province": "",
+      "role": "军委副主席",
+      "title": "中央军委副主席 · 军委纪委书记 · 监委主任（上将）",
+      "status": "",
+      "source": "object"
+    },
+    {
+      "file": "app/src/lib/db/figureCentral2026.js",
+      "id": "",
+      "name": "（自然资源部部长暂缺）",
+      "province": "",
+      "role": "部长",
+      "title": "自然资源部部长（暂缺）",
+      "status": "",
+      "source": "object"
+    },
+    {
+      "file": "app/src/lib/db/figureCentralExtended2026.js",
+      "id": "",
+      "name": "吴清",
+      "province": "",
+      "role": "主席",
+      "title": "中国证监会主席 · 党委书记",
+      "status": "",
+      "source": "object"
+    },
+    {
+      "file": "app/src/lib/db/figureCentralExtended2026.js",
+      "id": "",
+      "name": "李云泽",
+      "province": "",
+      "role": "局长",
+      "title": "国家金融监督管理总局局长 · 党委书记",
+      "status": "",
+      "source": "object"
+    },
+    {
+      "file": "app/src/lib/db/figureExpansion2026.js",
+      "id": "fig-exp-zhouml",
+      "name": "周明理",
+      "province": "广东省",
+      "role": "原市委书记",
+      "title": "原湛江市委书记",
+      "status": "former",
+      "source": "object"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "尹力",
+      "province": "北京市",
+      "role": "北京市委书记",
+      "title": "北京市委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "陈敏尔",
+      "province": "天津市",
+      "role": "天津市委书记",
+      "title": "天津市委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "陈吉宁",
+      "province": "上海市",
+      "role": "上海市委书记",
+      "title": "上海市委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "袁家军",
+      "province": "重庆市",
+      "role": "重庆市委书记",
+      "title": "重庆市委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "倪岳峰",
+      "province": "河北省",
+      "role": "河北省委书记",
+      "title": "河北省委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "唐登杰",
+      "province": "山西省",
+      "role": "山西省委书记",
+      "title": "山西省委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "许昆林",
+      "province": "辽宁省",
+      "role": "辽宁省委书记",
+      "title": "辽宁省委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "黄强",
+      "province": "吉林省",
+      "role": "吉林省委书记",
+      "title": "吉林省委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "许勤",
+      "province": "黑龙江省",
+      "role": "黑龙江省委书记",
+      "title": "黑龙江省委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "信长星",
+      "province": "江苏省",
+      "role": "江苏省委书记",
+      "title": "江苏省委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "王浩",
+      "province": "浙江省",
+      "role": "浙江省委书记",
+      "title": "浙江省委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "梁言顺",
+      "province": "安徽省",
+      "role": "安徽省委书记",
+      "title": "安徽省委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "周祖翼",
+      "province": "福建省",
+      "role": "福建省委书记",
+      "title": "福建省委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "尹弘",
+      "province": "江西省",
+      "role": "江西省委书记",
+      "title": "江西省委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "林武",
+      "province": "山东省",
+      "role": "山东省委书记",
+      "title": "山东省委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "刘宁",
+      "province": "河南省",
+      "role": "河南省委书记",
+      "title": "河南省委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "关志鸥",
+      "province": "湖北省",
+      "role": "湖北省委书记",
+      "title": "湖北省委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "沈晓明",
+      "province": "湖南省",
+      "role": "湖南省委书记",
+      "title": "湖南省委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "黄坤明",
+      "province": "广东省",
+      "role": "广东省委书记",
+      "title": "广东省委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "冯飞",
+      "province": "海南省",
+      "role": "海南省委书记",
+      "title": "海南省委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "王晓晖",
+      "province": "四川省",
+      "role": "四川省委书记",
+      "title": "四川省委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "徐麟",
+      "province": "贵州省",
+      "role": "贵州省委书记",
+      "title": "贵州省委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "王宁",
+      "province": "云南省",
+      "role": "云南省委书记",
+      "title": "云南省委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "赵一德",
+      "province": "陕西省",
+      "role": "陕西省委书记",
+      "title": "陕西省委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "胡昌升",
+      "province": "甘肃省",
+      "role": "甘肃省委书记",
+      "title": "甘肃省委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "吴晓军",
+      "province": "青海省",
+      "role": "青海省委书记",
+      "title": "青海省委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "王伟中",
+      "province": "内蒙古自治区",
+      "role": "内蒙古党委书记",
+      "title": "内蒙古党委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "陈刚",
+      "province": "广西壮族自治区",
+      "role": "广西党委书记",
+      "title": "广西党委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "王君正",
+      "province": "西藏自治区",
+      "role": "西藏党委书记",
+      "title": "西藏党委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "李邑飞",
+      "province": "宁夏回族自治区",
+      "role": "宁夏党委书记",
+      "title": "宁夏党委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "陈小江",
+      "province": "新疆维吾尔自治区",
+      "role": "新疆党委书记",
+      "title": "新疆党委书记",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "殷勇",
+      "province": "北京市",
+      "role": "市长",
+      "title": "市长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "张工",
+      "province": "天津市",
+      "role": "市长",
+      "title": "市长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "龚正",
+      "province": "上海市",
+      "role": "市长",
+      "title": "市长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "王正谱",
+      "province": "河北省",
+      "role": "省长",
+      "title": "省长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "卢东亮",
+      "province": "山西省",
+      "role": "省长",
+      "title": "省长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "王新伟",
+      "province": "辽宁省",
+      "role": "省长",
+      "title": "省长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "胡玉亭",
+      "province": "吉林省",
+      "role": "省长",
+      "title": "省长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "梁惠玲",
+      "province": "黑龙江省",
+      "role": "省长",
+      "title": "省长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "刘小涛",
+      "province": "江苏省",
+      "role": "省长",
+      "title": "省长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "刘捷",
+      "province": "浙江省",
+      "role": "省长",
+      "title": "省长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "王清宪",
+      "province": "安徽省",
+      "role": "省长",
+      "title": "省长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "赵龙",
+      "province": "福建省",
+      "role": "省长",
+      "title": "省长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "叶建春",
+      "province": "江西省",
+      "role": "省长",
+      "title": "省长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "周乃翔",
+      "province": "山东省",
+      "role": "省长",
+      "title": "省长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "王凯",
+      "province": "河南省",
+      "role": "省长",
+      "title": "省长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "李殿勋",
+      "province": "湖北省",
+      "role": "省长",
+      "title": "省长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "毛伟明",
+      "province": "湖南省",
+      "role": "省长",
+      "title": "省长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "孟凡利",
+      "province": "广东省",
+      "role": "省长",
+      "title": "省长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "刘小明",
+      "province": "海南省",
+      "role": "省长",
+      "title": "省长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "施小琳",
+      "province": "四川省",
+      "role": "省长",
+      "title": "省长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "李炳军",
+      "province": "贵州省",
+      "role": "省长",
+      "title": "省长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "王予波",
+      "province": "云南省",
+      "role": "省长",
+      "title": "省长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "赵刚",
+      "province": "陕西省",
+      "role": "省长",
+      "title": "省长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "任振鹤",
+      "province": "甘肃省",
+      "role": "省长",
+      "title": "省长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "罗东川",
+      "province": "青海省",
+      "role": "省长",
+      "title": "省长",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "包钢",
+      "province": "内蒙古自治区",
+      "role": "主席",
+      "title": "主席",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "韦韬",
+      "province": "广西壮族自治区",
+      "role": "主席",
+      "title": "主席",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "嘎玛泽登",
+      "province": "西藏自治区",
+      "role": "主席",
+      "title": "主席",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "张雨浦",
+      "province": "宁夏回族自治区",
+      "role": "主席",
+      "title": "主席",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "艾尔肯·吐尼亚孜",
+      "province": "新疆维吾尔自治区",
+      "role": "主席",
+      "title": "主席",
+      "status": "",
+      "source": "tuple"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "习近平",
+      "province": "",
+      "role": "总书记",
+      "title": "中共中央总书记 · 国家主席 · 中央军委主席",
+      "status": "",
+      "source": "object"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "王沪宁",
+      "province": "",
+      "role": "政协主席",
+      "title": "全国政协主席",
+      "status": "",
+      "source": "object"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincial2026.js",
+      "id": "",
+      "name": "（重庆市长暂缺）",
+      "province": "重庆市",
+      "role": "市长",
+      "title": "重庆市市长（暂缺）",
+      "status": "",
+      "source": "object"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincialStanding2026.js",
+      "id": "",
+      "name": "（山东省宣传部长暂缺）",
+      "province": "山东省",
+      "role": "宣传部长",
+      "title": "山东省宣传部长（暂缺）",
+      "status": "",
+      "source": "object"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincialStanding2026.js",
+      "id": "",
+      "name": "（四川省组织部部长暂缺）",
+      "province": "四川省",
+      "role": "组织部部长",
+      "title": "四川省组织部部长（暂缺）",
+      "status": "",
+      "source": "object"
+    },
+    {
+      "file": "app/src/lib/db/figureProvincialStanding2026.js",
+      "id": "",
+      "name": "（新疆维吾尔自治区组织部部长暂缺）",
+      "province": "新疆维吾尔自治区",
+      "role": "组织部部长",
+      "title": "新疆维吾尔自治区组织部部长（暂缺）",
+      "status": "",
+      "source": "object"
+    },
+    {
+      "file": "app/src/lib/db/talentBulkExpansion2026_part3.js",
+      "id": "mil-x3-07",
+      "name": "何卫东",
+      "province": "中央",
+      "role": "军委副主席",
+      "title": "军委副主席",
+      "status": "",
+      "source": "object"
+    },
+    {
+      "file": "app/src/lib/db/talentBulkExpansion2026_part3.js",
+      "id": "mil-x3-08",
+      "name": "李尚福",
+      "province": "中央",
+      "role": "前国防部长",
+      "title": "前国防部长",
+      "status": "",
+      "source": "object"
+    },
+    {
+      "file": "app/src/lib/db/talentBulkExpansion2026_part4.js",
+      "id": "fig-j-16",
+      "name": "赵大程",
+      "province": "中央",
+      "role": "副部长",
+      "title": "副部长",
+      "status": "",
+      "source": "object"
+    }
+  ]
+}

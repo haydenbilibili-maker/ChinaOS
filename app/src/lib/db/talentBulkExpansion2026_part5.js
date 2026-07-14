@@ -6,10 +6,7 @@ import { withProvenance, fig } from './figureCommon.js';
 
 export const FIGURE_EXPANSION_5 = [
   // —— 2026 H1 省级班子补缺 ——
-  fig({ id: 'fig-exp5-chenmb-mayor', name: '陈鸣波', province: '重庆市', level: '副省级', role: '市长', sector: '地方', org: '重庆市政府',
-    source: '公开任职·2026-06-15', verifyTier: 'official',
-    fields: { title: '重庆市委副书记、代市长', birth: '1968年7月', native: '江苏', rank: '二十届中央委员', tookOffice: '2026-06-15', institution: '重庆市政府', institutionType: '部委', note: '胡衡华被查后补缺；代市长身份待市人大依法选举确认' },
-    career: [{ from: '2026', to: '', desc: '任重庆市委副书记、代市长' }, { from: '2025', to: '2026', desc: '任重庆市委常委、常务副市长' }, { from: '2023', to: '2025', desc: '任上海市副市长' }] }),
+  // 陈鸣波：禁止标重庆代市长；2024-03起任中国航天科技集团董事长（见 figureOrg2026 SOE_CHAIRMEN）
   fig({ id: 'fig-exp5-luowq', name: '罗文全', province: '四川省', level: '副部级', role: '组织部部长', sector: '地方', org: '四川省委',
     source: '公开任职·2026-06-20', verifyTier: 'official',
     fields: { title: '四川省委组织部部长', birth: '1967年5月', native: '四川', rank: '二十届中央候补委员', tookOffice: '2026-06-20', institution: '四川省委', institutionType: '部委' },
@@ -38,16 +35,9 @@ export const FIGURE_EXPANSION_5 = [
     source: '公开任职·2026-04-10', verifyTier: 'official',
     fields: { title: '国家金融监督管理总局副局长', birth: '1966年8月', native: '北京', rank: '二十届中央候补委员', tookOffice: '2026-04-10', institution: '国家金融监督管理总局', institutionType: '部委', note: '周亮被查后班子调整' },
     career: [{ from: '2026', to: '', desc: '任国家金融监督管理总局副局长' }, { from: '2020', to: '2026', desc: '任中国银保监会副主席' }] }),
-  fig({ id: 'fig-exp5-wangsw', name: '王素文', province: '河北省', level: '正厅级', role: '市长', sector: '地方', org: '石家庄市人民政府',
-    source: '公开任职·2026-06-28', verifyTier: 'official',
-    fields: { title: '石家庄市人民政府市长', birth: '1971年6月', native: '河北', rank: '二十届中央候补委员', tookOffice: '2026-06-28', institution: '石家庄市人民政府', institutionType: '部委', note: '代市长转正式当选' },
-    career: [{ from: '2026', to: '', desc: '当选石家庄市人民政府市长' }, { from: '2026', to: '2026', desc: '任石家庄市委副书记、代市长' }] }),
-  fig({ id: 'fig-exp5-duxl', name: '杜旭亮', province: '浙江省', level: '副省级', role: '市长', sector: '地方', org: '杭州市人民政府',
-    source: '公开任职·2026-06-30', verifyTier: 'official',
-    fields: { title: '杭州市人民政府市长', birth: '1971年9月', native: '浙江', rank: '二十届中央候补委员', tookOffice: '2026-06-30', institution: '杭州市人民政府', institutionType: '部委', note: '代市长转正式当选' },
-    career: [{ from: '2026', to: '', desc: '当选杭州市人民政府市长' }, { from: '2026', to: '2026', desc: '任杭州市委副书记、代市长' }] }),
+  // 王素文/杜旭亮市长条以 figureMunicipal2026 为准（含代市长标注），此处不再重复写入
 ];
-export const FIGURE_EXPANSION_5_COUNT = 10;
+export const FIGURE_EXPANSION_5_COUNT = FIGURE_EXPANSION_5.length;
 
 export const CULTURAL_ELITE_EXPANSION_5 = [
   withProvenance({ id: 'ce-p5-01', name: '鄂维南', sector: '文化', category: 'basicsci', institution: '北京大学', field: '计算数学', works: '深度学习与科学计算', source: '2021年中科院院士', region: '北京', bio: '中科院院士；机器学习与偏微分方程交叉研究。' }),
