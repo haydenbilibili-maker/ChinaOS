@@ -376,23 +376,88 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
 </section>
 <section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
   <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
-  <p class="sj-11-prose">权力几何：秦孝公皇权背书 → 商鞅技术官僚纵列 → 县制/军功爵/连坐法下行汲取 → 旧贵族底盘。朱红反弹回路标示变法死穴——触动世卿世禄。</p>
-  <div class="sj-11-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-label="SJ-11 · 权力几何 · 军功爵纵列">
-  <rect width="800" height="520" fill="var(--sj-ink-900)"/>
-  <text x="48" y="48" fill="var(--sj-ochre)" font-size="11" font-family="ui-monospace,monospace">SJ-11 · 权力几何 · 军功爵纵列</text>
-  
-  <g class="sj-node" data-id="duke" tabindex="0" role="button"><rect x="310" y="60" width="180" height="44" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="1.6"/><text x="400" y="88" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-family="serif">秦孝公 · 皇权背书</text></g>
-  <g class="sj-node" data-id="shang" tabindex="0" role="button"><rect x="280" y="150" width="240" height="56" rx="8" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.2"/><text x="400" y="182" text-anchor="middle" fill="var(--sj-celadon)" font-size="15" font-family="serif">商鞅 · 县制军功爵</text></g>
-  <g class="sj-node" data-id="noble" tabindex="0" role="button"><rect x="80" y="280" width="200" height="52" rx="8" fill="#2a1a16" stroke="var(--sj-vermil)" stroke-width="2.8"/><text x="180" y="312" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-family="serif">旧贵族 · 世卿世禄</text></g>
-  <g class="sj-node" data-id="base" tabindex="0" role="button"><rect x="520" y="280" width="200" height="52" rx="8" fill="var(--sj-ink-800)" stroke="var(--sj-paper-300)" stroke-width="1.4"/><text x="620" y="312" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="serif">编户齐民 · 农战底盘</text></g>
-  <path d="M400,104 L400,150" stroke="var(--sj-ochre)" stroke-width="1.4" stroke-dasharray="4 4"/>
-  <path d="M400,206 L180,280" stroke="var(--sj-vermil)" stroke-width="3" marker-end="url(#none)"/>
-  <text x="260" y="250" fill="var(--sj-vermil)" font-size="12" font-family="serif">触动特权 → 反弹</text>
+  <p class="sj-11-prose">权力几何：秦孝公皇权背书（虚线）→ 商鞅技术官僚纵列 → 军功爵/县制/连坐法下行 → 编户齐民农战底盘。旧贵族世卿世禄以朱红回路反弹，标示变法死穴——触动特权结构。</p>
+  <div class="sj-11-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">商鞅变法军功爵结构切片图</title>
+  <desc id="sj-desc">秦孝公虚线背书商鞅；军功爵县制连坐法下行至编户农战底盘；旧贵族触动特权后以朱红回路反弹。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/>
+    </linearGradient>
+    <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+    <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+    <marker id="a-celadon" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-300)"/></marker>
+  </defs>
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,Noto Serif SC,serif" letter-spacing="0.1em">结构切片 · 军功爵纵列</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,JetBrains Mono,monospace" letter-spacing="0.08em">SJ-11 · 商鞅变法 · 步骤①</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,Noto Serif SC,serif">朱批：脆弱竖轴(虚线) + 世卿反弹(朱红最重) = 变法死穴</text>
+  <g fill="none" stroke-linecap="round">
+    <path class="sj-edge" data-edge="spine" d="M360,158 L250,250" stroke="var(--sj-ochre)" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#a-ochre)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="down1" d="M220,310 L220,372" stroke="var(--sj-celadon)" stroke-width="2.4" marker-end="url(#a-celadon)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="down2" d="M220,422 L220,486" stroke="var(--sj-celadon)" stroke-width="2.2" marker-end="url(#a-paper)" opacity="0.85"/>
+    <path class="sj-edge" data-edge="military" d="M306,286 L462,286" stroke="var(--sj-ochre)" stroke-width="2" marker-end="url(#a-ochre)" opacity="0.85"/>
+    <path class="sj-edge" data-edge="rebound" d="M180,310 C120,250 120,180 310,158" stroke="var(--sj-vermil)" stroke-width="3.6" marker-end="url(#a-vermil)" opacity="0.95"/></g>
+  <g font-family="Songti SC,Noto Serif SC,serif" font-size="11">
+    <text x="250" y="212" fill="var(--sj-ochre)">前338 孝公卒 · 竖轴抽走</text>
+    <text x="384" y="278" text-anchor="middle" fill="var(--sj-ochre)">耕战合一 · 军功爵</text>
+    <text x="230" y="352" fill="var(--sj-celadon)">县制下行</text>
+    <text x="230" y="462" fill="var(--sj-celadon)">编户汲取</text>
+    <text x="120" y="200" fill="var(--sj-vermil)" font-size="12" font-weight="600">触动世卿 → 车裂</text>
+    <circle cx="128" cy="214" r="5" fill="none" stroke="var(--sj-vermil)" stroke-width="1.4"/></g>
+
+  <g class="sj-node" data-id="duke" tabindex="0" role="button" aria-label="秦孝公">
+    <rect x="320" y="112" width="180" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2" stroke-dasharray="5 4"/>
+    <text x="410" y="140" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">秦孝公</text>
+    <text x="410" y="158" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">皇权背书</text>
+  </g>
+  <g class="sj-node" data-id="shang" tabindex="0" role="button" aria-label="商鞅">
+    <rect x="130" y="250" width="176" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="218" y="278" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">商鞅</text>
+    <text x="218" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">变法引擎 · 县制</text>
+  </g>
+  <g class="sj-node" data-id="junxian" tabindex="0" role="button" aria-label="军功爵 · 县制">
+    <rect x="132" y="372" width="176" height="50" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="220" y="400" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">军功爵 · 县制</text>
+    <text x="220" y="418" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">汲取—军事枢纽</text>
+  </g>
+  <g class="sj-node" data-id="lianzuo" tabindex="0" role="button" aria-label="连坐法 · 严刑">
+    <rect x="462" y="372" width="186" height="50" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-paper-300)" stroke-width="1.6"/>
+    <text x="555" y="400" text-anchor="middle" fill="var(--sj-paper-300)" font-size="14" font-weight="600" font-family="Songti SC,serif">连坐法 · 严刑</text>
+    <text x="555" y="418" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">合法性工具 · 短期有效</text>
+  </g>
+  <g class="sj-node" data-id="noble" tabindex="0" role="button" aria-label="旧贵族">
+    <rect x="462" y="250" width="186" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="3"/>
+    <text x="555" y="278" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">旧贵族</text>
+    <text x="555" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">世卿世禄 · 精英抵制</text>
+  </g>
+  <g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="编户齐民 · 农战底盘">
+    <rect x="56" y="486" width="708" height="86" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="1.4"/>
+    <text x="410" y="514" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC,serif">编户齐民 · 农战底盘</text>
+    <text x="410" y="532" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">承托汲取与动员 · 承受严刑高压</text>
+    
+  </g>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,JetBrains Mono,monospace">viewBox 820×600 · 军功爵</text>
 </svg></div>
   <div class="sj-11-layout">
-    <div class="sj-11-note" style="margin-top:0">色义：皇权=赭金；商鞅新法=青瓷；旧贵族反弹=朱红粗回路（视觉最重）。</div>
+    <div class="sj-11-note" style="margin-top:0">色义：皇权=赭金虚线 · 商鞅新法=青瓷 · 军功爵=赭金 · 旧贵族=朱红粗回路 · 底盘=深墨。竖轴虚线＝依赖个人背书；反弹回路笔画最重。</div>
     <aside class="sj-11-aside" id="aside" aria-live="polite">
-      <div id="aside-empty" class="sj-11-aside-empty">点选切片节点查看角色说明。</div>
+      <div id="aside-empty" class="sj-11-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
       <div id="aside-body" hidden>
         <div class="k" id="aside-tag">—</div>
         <h3 id="aside-name">—</h3>
@@ -401,6 +466,7 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
     </aside>
   </div>
 </section>
+<!--SLICE_RAIL:孝公背书 → 商鞅军功爵县制 → 旧贵族反弹；前356 变法。-->
 </div>
 <aside class="sj-rail" aria-label="台账导航侧栏">
   <div class="sj-rail-card">
@@ -415,6 +481,7 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
       <a href="#f6">06 · 成败判定</a>
       <a href="#f7">07 · 古今映射</a>
     </nav>
+  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p style="font-size:12.5px;color:var(--sj-paper-300);line-height:1.6">孝公背书 → 商鞅军功爵县制 → 旧贵族反弹；前356 变法。</p></div>
   </div>
   <div class="sj-rail-chips"><a class="sj-rail-chip" href="./SJ-05.html">SJ-05</a><a class="sj-rail-chip" href="./SJ-12.html">SJ-12</a></div>
 </aside>

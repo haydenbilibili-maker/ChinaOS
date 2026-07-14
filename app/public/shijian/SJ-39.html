@@ -48,6 +48,24 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
 .sj-39-hook .yr{margin-top:10px;font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre)}
 .sj-39-stage{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:8px;overflow:auto}
 .sj-39-stage svg{display:block;width:100%;height:auto}
+.sj-39-stage{width:100%;max-width:100%;border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));box-shadow:0 1px 0 rgba(232,221,199,.04),0 18px 48px rgba(0,0,0,.45);padding:8px 8px 4px;overflow:auto}
+.sj-39-stage svg{display:block;width:100%;height:auto;max-width:100%;margin:0 auto}
+.sj-node{cursor:pointer;transition:opacity .2s ease,filter .2s ease}
+.sj-node:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:4px}
+.sj-edge{transition:opacity .2s ease,filter .2s ease}
+.sj-39-stage.is-picking .sj-node{opacity:.3}
+.sj-39-stage.is-picking .sj-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px rgba(184,137,74,.4))}
+.sj-39-stage.is-picking .sj-edge{opacity:.16}
+.sj-39-stage.is-picking .sj-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px rgba(168,59,44,.4))}
+.sj-39-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:14px;align-items:start;margin-top:14px}
+.sj-39-aside{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px;position:sticky;top:12px;min-height:150px}
+.sj-39-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-39-aside h3{font-size:16px;letter-spacing:.08em;margin-bottom:8px}
+.sj-39-aside p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.7}
+.sj-39-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+.sj-39-note{font-size:13px;color:var(--sj-paper-300);line-height:1.65;max-width:74ch}
+@media(max-width:900px){.sj-39-layout{grid-template-columns:1fr}.sj-39-aside{position:static}}
+@media(prefers-reduced-motion:reduce){.sj-node,.sj-edge{transition:none}}
 .sj-39-phase .pb{font-family:var(--sj-mono);font-size:12px;color:var(--sj-vermil);border:1px solid var(--sj-vermil);border-radius:20px;padding:6px 16px}
 .sj-39-table-wrap{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);overflow:auto}
 .sj-39-table{width:100%;border-collapse:collapse;font-size:13px}
@@ -81,6 +99,7 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
 .sj-39-foot a{color:var(--sj-celadon);text-decoration:none}
 @media(max-width:768px){.sj-39-hist,.sj-39-mirror,.sj-39-verdict{grid-template-columns:1fr}.sj-39-xref{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.sj-rail-mini{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6;margin-top:6px}
 </style>
 </head>
 <body>
@@ -106,53 +125,101 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
 <section class="sj-ledger-field" id="f1"><div class="sj-ledger-fh"><span class="fnum">01</span><h2>一句话拐点</h2></div>
   <div class="sj-39-hook"><p>安史之乱后租庸调因均田瓦解、户籍流散而名存实亡，杨炎以<b>两税法</b>（建中元年 780）改按资产与土产分夏税秋粮征调，不问户籍人丁——税基从「人」转向「地+财」，是财政汲取力的结构性重整，延续唐祚但未能突破「汲取转嫁基层」的母结构。</p><div class="yr">系年：建中元年（780）杨炎奏两税法 · 出处《旧唐书·杨炎传》《新唐书·食货志》</div></div>
 </section>
-<section class="sj-ledger-field" id="f2"><div class="sj-ledger-fh"><span class="fnum">02</span><h2>结构切片</h2></div>
-  <p class="sj-39-prose">权力几何：德宗皇权 → 杨炎改革纵列 → 两税下行征调 → 藩镇/豪强底盘。税基重整（赭金）为主轴，藩镇截留（朱红）为执行阻力。</p>
-  <div class="sj-39-stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
-  <title id="sj-title">结构切片 · 两税法</title>
-  <desc id="sj-desc">权力几何：德宗皇权 → 杨炎改革纵列 → 两税下行征调 → 藩镇/豪强底盘。税基重整（赭金）为主轴，藩镇截留（朱红）为执行阻力。</desc>
+<section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
+  <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
+  <p class="sj-39-prose">权力几何：德宗皇权背书 → 杨炎两税法纵列 → 夏税秋粮按资产征调下行 → 藩镇截留（朱红最重）。建中元年（780）税基从人丁转向资产，是僵化期汲取力修复窗口。</p>
+  <div class="sj-39-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">两税法税基重整结构切片图</title>
+  <desc id="sj-desc">德宗背书杨炎两税法；夏税秋粮下行；藩镇截留以朱红回路分割中央汲取。</desc>
   <defs>
-    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/></linearGradient>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/>
+    </linearGradient>
     <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
     <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+    <marker id="a-celadon" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-300)"/></marker>
   </defs>
-  <rect width="820" height="600" fill="var(--sj-ink-900)"/>
-  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,serif">结构切片 · 两税法</text>
-  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,monospace">SJ-39 · 唐 · 变法</text>
-  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">朱批：财政/制度重建 vs 既得利益</text>
-  <path class="sj-edge" d="M360,158 L250,250" stroke="var(--sj-ochre)" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#a-ochre)"/>
-  <path class="sj-edge" d="M306,286 L462,286" stroke="var(--sj-paper-300)" stroke-width="2.2"/>
-  <path class="sj-edge" d="M640,498 C724,452 716,340 588,320" stroke="var(--sj-vermil)" stroke-width="3.2" marker-end="url(#a-vermil)"/>
-  <g class="sj-node" data-id="huangquan" tabindex="0" role="button" aria-label="德宗 · 皇权">
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,Noto Serif SC,serif" letter-spacing="0.1em">结构切片 · 税基重整</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,JetBrains Mono,monospace" letter-spacing="0.08em">SJ-39 · 两税法 · 步骤①</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,Noto Serif SC,serif">朱批：税基重整(赭金) + 藩镇截留(朱红最重) = 僵化期修复窗口</text>
+  <g fill="none" stroke-linecap="round">
+    <path class="sj-edge" data-edge="spine" d="M360,158 L250,250" stroke="var(--sj-ochre)" stroke-width="2" marker-end="url(#a-ochre)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="down1" d="M220,310 L220,372" stroke="var(--sj-celadon)" stroke-width="2.4" marker-end="url(#a-celadon)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="down2" d="M220,422 L410,486" stroke="var(--sj-ochre)" stroke-width="2.4" marker-end="url(#a-ochre)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="clash" d="M306,286 L462,286" stroke="var(--sj-vermil)" stroke-width="2.8" marker-start="url(#a-vermil)" marker-end="url(#a-vermil)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="rebound" d="M640,498 C724,452 716,340 588,320" stroke="var(--sj-vermil)" stroke-width="3.6" marker-end="url(#a-vermil)" opacity="0.95"/></g>
+  <g font-family="Songti SC,Noto Serif SC,serif" font-size="11">
+    <text x="250" y="212" fill="var(--sj-ochre)">780 建中改税</text>
+    <text x="384" y="278" text-anchor="middle" fill="var(--sj-vermil)">藩镇截留两税</text>
+    <text x="230" y="352" fill="var(--sj-celadon)">夏税秋粮下行</text>
+    <text x="700" y="360" text-anchor="end" fill="var(--sj-vermil)" font-size="12" font-weight="600">★ 汲取分割</text></g>
+
+  <g class="sj-node" data-id="huangquan" tabindex="0" role="button" aria-label="德宗">
     <rect x="320" y="112" width="180" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
-    <text x="410" y="140" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">德宗 · 皇权</text>
+    <text x="410" y="140" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">德宗</text>
     <text x="410" y="158" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">改革背书</text>
   </g>
-<g class="sj-node" data-id="liangshui" tabindex="0" role="button" aria-label="杨炎 · 两税法">
+  <g class="sj-node" data-id="liangshui" tabindex="0" role="button" aria-label="杨炎 · 两税法">
     <rect x="130" y="250" width="176" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
     <text x="218" y="278" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">杨炎 · 两税法</text>
     <text x="218" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">税基重整 · 纵列</text>
   </g>
-<g class="sj-node" data-id="fanzen" tabindex="0" role="button" aria-label="藩镇 · 豪强">
-    <rect x="462" y="250" width="186" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+  <g class="sj-node" data-id="fanzhen" tabindex="0" role="button" aria-label="藩镇 · 豪强">
+    <rect x="462" y="250" width="186" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="3"/>
     <text x="555" y="278" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">藩镇 · 豪强</text>
     <text x="555" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">截留 · 抵制</text>
   </g>
-<g class="sj-node" data-id="xiashang" tabindex="0" role="button" aria-label="夏税 · 秋粮">
-    <rect x="132" y="372" width="176" height="50" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-paper-300)" stroke-width="2.4"/>
-    <text x="220" y="400" text-anchor="middle" fill="var(--sj-paper-300)" font-size="14" font-weight="600" font-family="Songti SC,serif">夏税 · 秋粮</text>
+  <g class="sj-node" data-id="xiashang" tabindex="0" role="button" aria-label="夏税 · 秋粮">
+    <rect x="132" y="372" width="176" height="50" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="220" y="400" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">夏税 · 秋粮</text>
     <text x="220" y="418" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">按资产征调 · 下行</text>
   </g>
-<g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="编户 · 地主 · 商人">
-    <rect x="56" y="486" width="708" height="86" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="2.4"/>
-    <text x="410" y="514" text-anchor="middle" fill="var(--sj-line)" font-size="14" font-weight="600" font-family="Songti SC,serif">编户 · 地主 · 商人</text>
-    <text x="410" y="532" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">新税基底盘</text>
+  <g class="sj-node" data-id="xuli" tabindex="0" role="button" aria-label="转运使 · 胥吏">
+    <rect x="462" y="372" width="186" height="50" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-paper-300)" stroke-width="1.6"/>
+    <text x="555" y="400" text-anchor="middle" fill="var(--sj-paper-300)" font-size="14" font-weight="600" font-family="Songti SC,serif">转运使 · 胥吏</text>
+    <text x="555" y="418" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">执行层 · 加派</text>
   </g>
+  <g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="编户 · 地主 · 商人">
+    <rect x="56" y="486" width="708" height="86" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="1.4"/>
+    <text x="410" y="514" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC,serif">编户 · 地主 · 商人</text>
+    <text x="410" y="532" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">新税基底盘 · 均田瓦解后</text>
+    
+  </g>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,JetBrains Mono,monospace">viewBox 820×600 · 两税法</text>
 </svg></div>
+  <div class="sj-39-layout">
+    <div class="sj-39-note" style="margin-top:0">色义：皇权=赭金 · 杨炎=青瓷 · 两税下行=赭金 · 藩镇=朱红截留 · 底盘=深墨。藩镇截留回路最重＝执行阻力。</div>
+    <aside class="sj-39-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-39-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+      </div>
+    </aside>
+  </div>
 </section>
+<!--SLICE_RAIL:德宗背书 → 杨炎两税法 → 藩镇截留；780 建中改税。-->
 </div>
 <aside class="sj-rail"><div class="sj-rail-card"><div class="k">台账 · 七字段</div>
   <nav class="sj-rail-toc"><a href="#f1">01 · 拐点</a><a href="#f2">02 · 切片</a><a href="#f3">03 · 相位</a><a href="#f4">04 · 五力</a><a href="#f5">05 · 交锋</a><a href="#f6">06 · 成败</a><a href="#f7">07 · 映射</a></nav>
+  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p style="font-size:12.5px;color:var(--sj-paper-300);line-height:1.6">德宗背书 → 杨炎两税法 → 藩镇截留；780 建中改税。</p></div>
   <a class="sj-rail-chip" href="./SJ-00.html#sec-case-hub">案例库 Hub</a>
   <a class="sj-rail-chip" href="./SJ-03.html">SJ-03 五力</a>
   <a class="sj-rail-chip" href="./SJ-04.html">SJ-04 相位盘</a>
@@ -201,5 +268,85 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
   <span><a href="./SJ-41.html">SJ-41 →</a></span>
 </footer>
 </div>
+<script>
+(function(){
+  const stage=document.getElementById('stage');
+  if(!stage) return;
+  const nodes=Array.from(stage.querySelectorAll('.sj-node'));
+  const edges=Array.from(stage.querySelectorAll('.sj-edge'));
+  const asideEmpty=document.getElementById('aside-empty');
+  const asideBody=document.getElementById('aside-body');
+  const NODE_DATA={
+  "huangquan": {
+    "name": "德宗",
+    "tag": "皇权 · 改革背书",
+    "body": "建中元年（780）杨炎奏两税法，皇权背书税基重整（《旧唐书·杨炎传》）。"
+  },
+  "liangshui": {
+    "name": "杨炎 · 两税法",
+    "tag": "技术官僚 · 税基重整",
+    "body": "按资产与土产分夏税秋粮征调，不问户籍人丁——汲取力结构性重整。"
+  },
+  "fanzhen": {
+    "name": "藩镇 · 豪强",
+    "tag": "截留 · 抵制",
+    "body": "藩镇截留两税，中央汲取力被分割——军事力与财政耦合并轨。"
+  },
+  "xiashang": {
+    "name": "夏税 · 秋粮",
+    "tag": "下行征调",
+    "body": "税基从「人」转向「地+财」，适应均田瓦解后的基座变迁。"
+  },
+  "xuli": {
+    "name": "转运使 · 胥吏",
+    "tag": "执行层",
+    "body": "两税执行中仍有加派，杨炎后被贬——精英循环内耗。"
+  },
+  "base": {
+    "name": "编户 · 地主 · 商人",
+    "tag": "新税基底盘",
+    "body": "安史乱后户籍流散，旧均田基座瓦解——两税法是对基座变迁的适应〔人口存疑〕。"
+  },
+  "rebound": {
+    "name": "截留回路",
+    "tag": "藩镇 → 中央汲取分割",
+    "body": "藩镇军事—财政合一，使中央汲取力结构性衰减——两税法未能突破「分割」母结构。"
+  }
+};
+  const NODE_EDGE={
+  "huangquan": [
+    "spine"
+  ],
+  "liangshui": [
+    "spine",
+    "down1",
+    "clash"
+  ],
+  "fanzhen": [
+    "clash",
+    "rebound"
+  ],
+  "xiashang": [
+    "down1",
+    "down2"
+  ],
+  "xuli": [
+    "down2"
+  ],
+  "base": [
+    "down2",
+    "rebound"
+  ],
+  "rebound": [
+    "rebound"
+  ]
+};
+  function clearVisual(){stage.classList.remove('is-picking');nodes.forEach(n=>n.classList.remove('is-hot'));edges.forEach(e=>e.classList.remove('is-hot'));}
+  function showAside(id){const d=NODE_DATA[id];if(!d)return;asideEmpty.hidden=true;asideBody.hidden=false;document.getElementById('aside-tag').textContent=d.tag;document.getElementById('aside-name').textContent=d.name;document.getElementById('aside-text').textContent=d.body;}
+  function pick(id){if(!NODE_DATA[id])return;clearVisual();stage.classList.add('is-picking');nodes.forEach(n=>n.classList.toggle('is-hot',n.dataset.id===id));const hot=NODE_EDGE[id]||[];edges.forEach(e=>e.classList.toggle('is-hot',hot.indexOf(e.dataset.edge)>=0));showAside(id);}
+  nodes.forEach(n=>{const act=()=>pick(n.dataset.id);n.addEventListener('click',act);n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});});
+  edges.forEach(e=>{if(!e.dataset.edge||!NODE_DATA[e.dataset.edge])return;const act=()=>pick(e.dataset.edge);e.style.cursor='pointer';e.setAttribute('tabindex','0');e.setAttribute('role','button');e.addEventListener('click',act);e.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();act();}});});
+})();
+</script>
 </body>
 </html>

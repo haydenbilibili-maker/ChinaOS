@@ -1,5 +1,7 @@
 #!/usr/bin/env node
-/** Generate SJ-27/35/38/39/41/49 case volumes (Round 2). */
+/** Generate SJ-27/35/38/39/41/49 case volumes (Round 2).
+ *  NOTE: §02 structure slices are maintained by scripts/patch-sj-slices.mjs
+ *  using scripts/lib/sj-premium-slice.mjs — do not regenerate slices from this file. */
 import { writeFileSync, mkdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';

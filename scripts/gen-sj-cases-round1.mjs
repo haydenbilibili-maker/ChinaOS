@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+/** Generate SJ-11~14 case volumes (Round 1).
+ *  NOTE: §02 structure slices are maintained by scripts/patch-sj-slices.mjs
+ *  using scripts/lib/sj-premium-slice.mjs — do not regenerate slices from this file. */
 /**
  * Round 1 · 生成 SJ-11~14 案例卷 HTML（自足单文件，七字段台账）
  */

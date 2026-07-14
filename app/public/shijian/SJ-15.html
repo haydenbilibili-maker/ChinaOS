@@ -48,6 +48,24 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
 .sj-15-hook .yr{margin-top:10px;font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre)}
 .sj-15-stage{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:8px;overflow:auto}
 .sj-15-stage svg{display:block;width:100%;height:auto}
+.sj-15-stage{width:100%;max-width:100%;border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));box-shadow:0 1px 0 rgba(232,221,199,.04),0 18px 48px rgba(0,0,0,.45);padding:8px 8px 4px;overflow:auto}
+.sj-15-stage svg{display:block;width:100%;height:auto;max-width:100%;margin:0 auto}
+.sj-node{cursor:pointer;transition:opacity .2s ease,filter .2s ease}
+.sj-node:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:4px}
+.sj-edge{transition:opacity .2s ease,filter .2s ease}
+.sj-15-stage.is-picking .sj-node{opacity:.3}
+.sj-15-stage.is-picking .sj-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px rgba(184,137,74,.4))}
+.sj-15-stage.is-picking .sj-edge{opacity:.16}
+.sj-15-stage.is-picking .sj-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px rgba(168,59,44,.4))}
+.sj-15-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:14px;align-items:start;margin-top:14px}
+.sj-15-aside{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px;position:sticky;top:12px;min-height:150px}
+.sj-15-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-15-aside h3{font-size:16px;letter-spacing:.08em;margin-bottom:8px}
+.sj-15-aside p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.7}
+.sj-15-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+.sj-15-note{font-size:13px;color:var(--sj-paper-300);line-height:1.65;max-width:74ch}
+@media(max-width:900px){.sj-15-layout{grid-template-columns:1fr}.sj-15-aside{position:static}}
+@media(prefers-reduced-motion:reduce){.sj-node,.sj-edge{transition:none}}
 .sj-15-phase .pb{font-family:var(--sj-mono);font-size:12px;color:var(--sj-vermil);border:1px solid var(--sj-vermil);border-radius:20px;padding:6px 16px}
 .sj-15-table-wrap{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);overflow:auto}
 .sj-15-table{width:100%;border-collapse:collapse;font-size:13px}
@@ -81,6 +99,7 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
 .sj-15-foot a{color:var(--sj-celadon);text-decoration:none}
 @media(max-width:768px){.sj-15-hist,.sj-15-mirror,.sj-15-verdict{grid-template-columns:1fr}.sj-15-xref{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.sj-rail-mini{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6;margin-top:6px}
 </style>
 </head>
 <body>
@@ -106,53 +125,101 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
 <section class="sj-ledger-field" id="f1"><div class="sj-ledger-fh"><span class="fnum">01</span><h2>一句话拐点</h2></div>
   <div class="sj-15-hook"><p>清末<strong>僵化—崩解</strong>叠加：外债、铁路国有化、新军离心与革命党渗透共振，1911 年<b>武昌起义</b>引发连锁响应，<b>清帝退位</b>（1912）终结两千年帝制；但<strong>五力再平衡未竟</strong>，后续进入长期重整。</p><div class="yr">系年：宣统三年九月（1911.10）武昌起义 · 1912.2.12 清帝退位 · 出处《清史稿》及学界研究</div></div>
 </section>
-<section class="sj-ledger-field" id="f2"><div class="sj-ledger-fh"><span class="fnum">02</span><h2>结构切片</h2></div>
-  <p class="sj-15-prose">权力几何：清廷（空）→ 各省督抚（割据）→ 新军/革命党 → 民众底盘。帝制合法性归零，「革命」叙事接棒但未完成制度建构。</p>
-  <div class="sj-15-stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
-  <title id="sj-title">结构切片 · 辛亥革命</title>
-  <desc id="sj-desc">权力几何：清廷（空）→ 各省督抚（割据）→ 新军/革命党 → 民众底盘。帝制合法性归零，「革命」叙事接棒但未完成制度建构。</desc>
+<section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
+  <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
+  <p class="sj-15-prose">权力几何：清廷帝制合法性归零（空壳）→ 各省督抚割据观望 → 革命党/新军武昌首义 → 铁路外债民变引爆。五力共振：财政越阈、军事离心、叙事破产同步。</p>
+  <div class="sj-15-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">辛亥革命五力共振结构切片图</title>
+  <desc id="sj-desc">清廷空壳虚化，督抚割据与革命党新军对峙；铁路外债引爆，五力共振导致帝制终结。</desc>
   <defs>
-    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/></linearGradient>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/>
+    </linearGradient>
     <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
     <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+    <marker id="a-celadon" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-300)"/></marker>
   </defs>
-  <rect width="820" height="600" fill="var(--sj-ink-900)"/>
-  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,serif">结构切片 · 辛亥革命</text>
-  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,monospace">SJ-15 · 近代 · 崩解</text>
-  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">朱批：多力共振 · 崩解链</text>
-  <path class="sj-edge" d="M360,158 L250,250" stroke="var(--sj-ochre)" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#a-ochre)"/>
-  <path class="sj-edge" d="M306,286 L462,286" stroke="var(--sj-paper-300)" stroke-width="2.2"/>
-  <path class="sj-edge" d="M640,498 C724,452 716,340 588,320" stroke="var(--sj-vermil)" stroke-width="3.2" marker-end="url(#a-vermil)"/>
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,Noto Serif SC,serif" letter-spacing="0.1em">结构切片 · 帝制终结</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,JetBrains Mono,monospace" letter-spacing="0.08em">SJ-15 · 辛亥革命 · 步骤①</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,Noto Serif SC,serif">朱批：合法性归零(虚) + 武昌首义(朱红) + 外债引爆(赭金) = 崩解显性节点</text>
+  <g fill="none" stroke-linecap="round">
+    <path class="sj-edge" data-edge="spine" d="M360,158 L250,250" stroke="var(--sj-ochre)" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#a-ochre)" opacity="0.7"/>
+    <path class="sj-edge" data-edge="clash" d="M306,286 L462,286" stroke="var(--sj-vermil)" stroke-width="2.8" marker-start="url(#a-vermil)" marker-end="url(#a-vermil)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="down1" d="M220,310 L220,372" stroke="var(--sj-ochre)" stroke-width="2.4" marker-end="url(#a-ochre)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="down2" d="M220,422 L410,486" stroke="var(--sj-paper-300)" stroke-width="2" marker-end="url(#a-paper)" opacity="0.8"/>
+    <path class="sj-edge" data-edge="ignite" d="M220,372 C300,400 380,420 462,310" stroke="var(--sj-vermil)" stroke-width="2.6" marker-end="url(#a-vermil)" opacity="0.85"/>
+    <path class="sj-edge" data-edge="collapse" d="M555,310 C500,380 450,440 410,486" stroke="var(--sj-vermil)" stroke-width="3.4" marker-end="url(#a-vermil)" opacity="0.95"/></g>
+  <g font-family="Songti SC,Noto Serif SC,serif" font-size="11">
+    <text x="384" y="278" text-anchor="middle" fill="var(--sj-vermil)">1911.10 武昌首义</text>
+    <text x="230" y="352" fill="var(--sj-ochre)">铁路国有化 · 外债</text>
+    <text x="480" y="400" fill="var(--sj-vermil)" font-size="12" font-weight="600">1912 清帝退位</text></g>
+
   <g class="sj-node" data-id="qingting" tabindex="0" role="button" aria-label="清廷 · 空壳">
-    <rect x="320" y="112" width="180" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <rect x="320" y="112" width="180" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="1.4" stroke-dasharray="4 4"/>
     <text x="410" y="140" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">清廷 · 空壳</text>
     <text x="410" y="158" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">帝制合法性归零</text>
   </g>
-<g class="sj-node" data-id="dufu" tabindex="0" role="button" aria-label="各省督抚">
+  <g class="sj-node" data-id="dufu" tabindex="0" role="button" aria-label="各省督抚">
     <rect x="130" y="250" width="176" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
     <text x="218" y="278" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">各省督抚</text>
-    <text x="218" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">地方割据 · 观望</text>
+    <text x="218" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">割据 · 观望</text>
   </g>
-<g class="sj-node" data-id="geming" tabindex="0" role="button" aria-label="革命党 · 新军">
-    <rect x="462" y="250" width="186" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+  <g class="sj-node" data-id="geming" tabindex="0" role="button" aria-label="革命党 · 新军">
+    <rect x="462" y="250" width="186" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="3"/>
     <text x="555" y="278" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">革命党 · 新军</text>
-    <text x="555" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">武昌首义 · 连锁响应</text>
+    <text x="555" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">武昌首义 · 连锁</text>
   </g>
-<g class="sj-node" data-id="xinjun" tabindex="0" role="button" aria-label="铁路/外债">
-    <rect x="132" y="372" width="176" height="50" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-paper-300)" stroke-width="2.4"/>
-    <text x="220" y="400" text-anchor="middle" fill="var(--sj-paper-300)" font-size="14" font-weight="600" font-family="Songti SC,serif">铁路/外债</text>
+  <g class="sj-node" data-id="xinjun" tabindex="0" role="button" aria-label="铁路 · 外债">
+    <rect x="132" y="372" width="176" height="50" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="220" y="400" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">铁路 · 外债</text>
     <text x="220" y="418" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">财政引爆 · 民变</text>
   </g>
-<g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="绅商 · 会党 · 民众">
-    <rect x="56" y="486" width="708" height="86" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="2.4"/>
-    <text x="410" y="514" text-anchor="middle" fill="var(--sj-line)" font-size="14" font-weight="600" font-family="Songti SC,serif">绅商 · 会党 · 民众</text>
-    <text x="410" y="532" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">多元底盘</text>
+  <g class="sj-node" data-id="hui" tabindex="0" role="button" aria-label="绅商 · 会党">
+    <rect x="462" y="372" width="186" height="50" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="1.8"/>
+    <text x="555" y="400" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">绅商 · 会党</text>
+    <text x="555" y="418" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">精英旁路 · 动员</text>
   </g>
+  <g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="绅商 · 会党 · 民众">
+    <rect x="56" y="486" width="708" height="86" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="1.4"/>
+    <text x="410" y="514" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC,serif">绅商 · 会党 · 民众</text>
+    <text x="410" y="532" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">多元底盘 · 五力共振</text>
+    
+  </g>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,JetBrains Mono,monospace">viewBox 820×600 · 辛亥革命</text>
 </svg></div>
+  <div class="sj-15-layout">
+    <div class="sj-15-note" style="margin-top:0">色义：清廷=赭金虚线 · 督抚=青瓷 · 革命党/新军=朱红 · 铁路外债=赭金引爆 · 底盘=深墨。帝制合法性归零后军事力决定正统。</div>
+    <aside class="sj-15-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-15-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+      </div>
+    </aside>
+  </div>
 </section>
+<!--SLICE_RAIL:清廷空壳 → 督抚割据 → 武昌首义；1911.10 起义。-->
 </div>
 <aside class="sj-rail"><div class="sj-rail-card"><div class="k">台账 · 七字段</div>
   <nav class="sj-rail-toc"><a href="#f1">01 · 拐点</a><a href="#f2">02 · 切片</a><a href="#f3">03 · 相位</a><a href="#f4">04 · 五力</a><a href="#f5">05 · 交锋</a><a href="#f6">06 · 成败</a><a href="#f7">07 · 映射</a></nav>
+  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p style="font-size:12.5px;color:var(--sj-paper-300);line-height:1.6">清廷空壳 → 督抚割据 → 武昌首义；1911.10 起义。</p></div>
   <a class="sj-rail-chip" href="./SJ-00.html#sec-case-hub">案例库 Hub</a>
 </div></aside>
 </div>
@@ -199,5 +266,84 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
   <span><a href="./SJ-00.html">SJ-00 →</a></span>
 </footer>
 </div>
+<script>
+(function(){
+  const stage=document.getElementById('stage');
+  if(!stage) return;
+  const nodes=Array.from(stage.querySelectorAll('.sj-node'));
+  const edges=Array.from(stage.querySelectorAll('.sj-edge'));
+  const asideEmpty=document.getElementById('aside-empty');
+  const asideBody=document.getElementById('aside-body');
+  const NODE_DATA={
+  "qingting": {
+    "name": "清廷 · 空壳",
+    "tag": "合法性归零",
+    "body": "帝制「天命」叙事破产，清廷中枢无法有效动员。宣统三年（1911）武昌起义后连锁响应。"
+  },
+  "dufu": {
+    "name": "各省督抚",
+    "tag": "地方割据 · 观望",
+    "body": "地方精英在革命与保皇之间钟摆，军事—财政事实自治。"
+  },
+  "geming": {
+    "name": "革命党 · 新军",
+    "tag": "武昌首义",
+    "body": "1911 年10 月武昌新军起义，革命叙事取代天命——军事力决定政治正统。"
+  },
+  "xinjun": {
+    "name": "铁路 · 外债",
+    "tag": "财政引爆",
+    "body": "铁路国有化与《辛丑条约》赔款叠加，财政枢纽越阈触发动员。"
+  },
+  "hui": {
+    "name": "绅商 · 会党",
+    "tag": "精英旁路",
+    "body": "绅商与会党提供资金与动员网络，填补帝制合法性真空。"
+  },
+  "base": {
+    "name": "民众底盘",
+    "tag": "多元底盘",
+    "body": "人口压力与财政负担叠加，但崩解主因是五力共振而非单因〔人口存疑〕。"
+  },
+  "collapse": {
+    "name": "崩解链",
+    "tag": "五力共振",
+    "body": "1912.2.12 清帝退位终结两千年帝制，但五力再平衡远未完成。"
+  }
+};
+  const NODE_EDGE={
+  "qingting": [
+    "spine"
+  ],
+  "dufu": [
+    "spine",
+    "clash"
+  ],
+  "geming": [
+    "clash",
+    "collapse",
+    "ignite"
+  ],
+  "xinjun": [
+    "down1",
+    "ignite"
+  ],
+  "hui": [
+    "down1"
+  ],
+  "base": [
+    "down2"
+  ],
+  "collapse": [
+    "collapse"
+  ]
+};
+  function clearVisual(){stage.classList.remove('is-picking');nodes.forEach(n=>n.classList.remove('is-hot'));edges.forEach(e=>e.classList.remove('is-hot'));}
+  function showAside(id){const d=NODE_DATA[id];if(!d)return;asideEmpty.hidden=true;asideBody.hidden=false;document.getElementById('aside-tag').textContent=d.tag;document.getElementById('aside-name').textContent=d.name;document.getElementById('aside-text').textContent=d.body;}
+  function pick(id){if(!NODE_DATA[id])return;clearVisual();stage.classList.add('is-picking');nodes.forEach(n=>n.classList.toggle('is-hot',n.dataset.id===id));const hot=NODE_EDGE[id]||[];edges.forEach(e=>e.classList.toggle('is-hot',hot.indexOf(e.dataset.edge)>=0));showAside(id);}
+  nodes.forEach(n=>{const act=()=>pick(n.dataset.id);n.addEventListener('click',act);n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});});
+  edges.forEach(e=>{if(!e.dataset.edge||!NODE_DATA[e.dataset.edge])return;const act=()=>pick(e.dataset.edge);e.style.cursor='pointer';e.setAttribute('tabindex','0');e.setAttribute('role','button');e.addEventListener('click',act);e.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();act();}});});
+})();
+</script>
 </body>
 </html>
