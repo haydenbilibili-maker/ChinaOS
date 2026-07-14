@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { PageHeader, TabBar } from '../../app/ui.jsx';
 import { IntroCard, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import LiveChinaMap from './LiveChinaMap.jsx';
+import LiveMapTicker from './LiveMapTicker.jsx';
 import { AS_OF, LAYERS } from './liveMapData.js';
 import {
   LIVE_MAP_VIEWS,
@@ -81,13 +82,18 @@ export default function LiveChinaMapPage() {
         </div>
       </PageHeader>
 
-      <IntroCard className="lcm-intro mb-5">
+      <IntroCard className="lcm-intro mb-4">
         省界底图<strong style={{ color: 'var(--text-primary)' }}>优先从本地 bundled GeoJSON 加载</strong>（<code className="mono text-[10px]">/geo/china-100000.json</code>），
         失败时经 Worker 代理或 DataV 回退。
         覆盖 <strong style={{ color: 'var(--text-primary)' }}>{LAYERS.length} 个种子指标层</strong> + 实测气象/空气/地震/空情/航运/卫星云图层；
         支持 URL 深链分享：<span className="mono text-[10px]" style={{ color: 'var(--text-tertiary)' }}>?prov=广东省&amp;layer=economy</span>
         <span className="mono" style={{ color: 'var(--text-tertiary)' }}> · 口径：公开统计梳理 · 示意标定 · 非官方发布</span>
       </IntroCard>
+
+      <LiveMapTicker
+        layerId={deepLink.layer || 'composite'}
+        className="mb-4"
+      />
 
       <div className="lcm-sticky-nav">
         <TabBar tabs={TABS} value={view} onChange={setView} accent="var(--cyber-cyan)" sticky className="lcm-tab-bar" />
