@@ -38,11 +38,89 @@ body{
   line-height:1.75;
 }
 .sj-00-wrap{max-width:min(1180px,100%);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
-@media (min-width:1536px){.sj-00-wrap{max-width:min(1360px,100%)}}
-@media (min-width:1920px){.sj-00-wrap{max-width:min(1520px,100%)}}
+@media (min-width:1280px){.sj-00-wrap{max-width:min(1400px,100%)}}
+@media (min-width:1536px){.sj-00-wrap{max-width:min(1480px,100%)}}
+@media (min-width:1920px){.sj-00-wrap{max-width:min(1560px,100%)}}
 @media (min-width:2560px){.sj-00-wrap{max-width:min(1680px,100%)}}
 
 /* 章节入场 · 尊重 prefers-reduced-motion */
+
+/* 宽屏双栏：主栏 ~58% + 粘性侧栏 ~38% */
+.sj-page-layout{display:flex;flex-direction:column;gap:var(--sj-space)}
+@media (min-width:1280px){
+  .sj-page-layout{
+    display:grid;
+    grid-template-columns:minmax(0,58fr) minmax(280px,38fr);
+    gap:clamp(16px,2vw,28px);
+    align-items:start;
+  }
+}
+.sj-main-col{min-width:0}
+.sj-rail{display:flex;flex-direction:column;gap:12px;min-width:0}
+@media (min-width:1280px){
+  .sj-rail{position:sticky;top:1rem;max-height:85vh;overflow-y:auto;overscroll-behavior:contain}
+}
+@media (max-width:1279px){
+  #sec-intro{order:1}
+  #sec-spiral{order:3}
+  .sj-page-layout{display:flex;flex-direction:column}
+  .sj-main-col{display:contents}
+  .sj-rail{order:2;margin:8px 0 20px}
+  .sj-rail-mini{display:none}
+}
+.sj-rail-card{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
+  padding:14px 16px;
+}
+.sj-rail-card .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-rail-card h3,.sj-rail-card h4{font-size:15px;letter-spacing:.06em;margin-bottom:8px;color:var(--sj-paper-100);font-weight:600}
+.sj-rail-card p,.sj-rail-card li{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+.sj-rail-card dl{display:grid;gap:6px;margin:0}
+.sj-rail-card dt{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);letter-spacing:.06em}
+.sj-rail-card dd{font-size:12px;color:var(--sj-paper-300);margin:0;line-height:1.55}
+.sj-rail-toc{display:grid;gap:6px;margin-top:8px}
+.sj-rail-toc a{
+  display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  padding:8px 10px;text-decoration:none;color:inherit;font-size:13px;
+  transition:border-color .18s ease;
+}
+.sj-rail-toc a:hover,.sj-rail-toc a:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-rail-toc a.is-active{border-color:var(--sj-vermil)}
+.sj-rail-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.sj-rail-chip,.sj-rail-chip:visited{
+  display:inline-block;font-family:var(--sj-mono);font-size:10px;letter-spacing:.06em;
+  color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;
+  border-radius:var(--sj-radius);text-decoration:none;
+}
+.sj-rail-chip:hover,.sj-rail-chip:focus-visible{border-color:var(--sj-ochre);color:var(--sj-ochre);outline:none}
+.sj-rail-mini{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-900);padding:6px 6px 2px;overflow:hidden}
+.sj-rail-mini svg{display:block;width:100%;height:auto}
+.sj-rail-mini-lbl{font-family:var(--sj-mono);font-size:9px;letter-spacing:.1em;color:var(--sj-paper-300);text-align:center;margin:4px 0 2px}
+.sj-rail-steps{display:grid;gap:6px}
+.sj-rail-step{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);padding:8px 10px;
+  font-size:13px;color:var(--sj-paper-300);border-left:3px solid var(--sj-line);
+}
+.sj-rail-step.is-on{border-left-color:var(--sj-vermil);color:var(--sj-paper-100);background:color-mix(in srgb,var(--sj-vermil) 8%,var(--sj-ink-900))}
+.sj-rail-step .n{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);letter-spacing:.08em;display:block;margin-bottom:2px}
+.sj-rail-legend{display:grid;gap:4px;margin-top:8px}
+.sj-rail-legend span{font-size:12px;color:var(--sj-paper-300);padding-left:12px;border-left:3px solid var(--sj-line)}
+.sj-rail-legend .ochre{border-left-color:var(--sj-ochre)}
+.sj-rail-legend .celadon{border-left-color:var(--sj-celadon)}
+.sj-rail-legend .vermil{border-left-color:var(--sj-vermil)}
+.sj-rail-legend .paper{border-left-color:var(--sj-paper-100)}
+.sj-rail-legend .ink{border-left-color:var(--sj-paper-300)}
+.sj-rail-vols{display:grid;gap:6px}
+.sj-rail-vol{
+  display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  padding:8px 10px;text-decoration:none;color:inherit;font-size:13px;
+  transition:border-color .18s ease;
+}
+.sj-rail-vol:hover,.sj-rail-vol:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-rail-vol .n{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);letter-spacing:.1em}
+@media (min-width:2560px){.sj-rail{max-width:420px;margin-left:auto;width:100%}}
+
 @keyframes sj-fade-in{
   from{opacity:0;transform:translateY(8px)}
   to{opacity:1;transform:none}
@@ -276,6 +354,8 @@ body{
 }
 
 /* 宣纸日览 · 由 ?theme=light 或 postMessage 切换 html[data-theme] */
+html[data-theme="light"] .sj-rail-card{box-shadow:0 1px 0 rgba(26,24,20,.05),0 12px 28px rgba(26,24,20,.08)}
+html[data-theme="light"] .sj-rail-mini{background:var(--sj-ink-800)}
 html[data-theme="light"]{
   --sj-ink-900:#f4f1ea;
   --sj-ink-800:#ebe6dc;
@@ -340,6 +420,9 @@ html[data-theme="light"] .sj-00-card:focus-within{
 </header>
 
 <p class="sj-zhupi">门户一屏：先看「为何需要时间纵深」，再读治乱螺旋；卷目与引擎四步法给出地图，GY 交叉引用标明回流当代的接口。</p>
+
+<div class="sj-page-layout">
+<div class="sj-main-col">
 
 <!-- 1 引言 -->
 <section class="sj-00-sec" id="sec-intro" aria-labelledby="h-intro">
@@ -565,6 +648,40 @@ html[data-theme="light"] .sj-00-card:focus-within{
 </section>
 
 <!-- 3 卷目导航 -->
+
+</div><!-- /.sj-main-col -->
+
+<aside class="sj-rail" id="sj-rail" aria-label="四卷导航侧栏">
+  <div class="sj-rail-card">
+    <div class="k">四卷闭环</div>
+    <h3>史鉴卷目快跳</h3>
+    <nav class="sj-rail-vols" aria-label="四卷导航">
+      <a class="sj-rail-vol" href="#vol-method"><span class="n">方法论卷</span> SJ-01 方法 · SJ-02 引擎</a>
+      <a class="sj-rail-vol" href="#vol-cycle"><span class="n">周期卷</span> SJ-03 五力 · SJ-04 罗盘</a>
+      <a class="sj-rail-vol" href="#vol-cases"><span class="n">案例卷</span> SJ-05–08 台账</a>
+      <a class="sj-rail-vol" href="#vol-mirror"><span class="n">映射卷</span> SJ-20–24 五域</a>
+    </nav>
+    <div class="sj-rail-chips">
+      <a class="sj-rail-chip" href="./SJ-01.html">SJ-01</a>
+      <a class="sj-rail-chip" href="./SJ-02.html">SJ-02</a>
+      <a class="sj-rail-chip" href="./SJ-03.html">SJ-03</a>
+      <a class="sj-rail-chip" href="./SJ-20.html">SJ-20</a>
+    </div>
+  </div>
+  <div class="sj-rail-mini sj-rail-card" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" role="img"><title>四卷闭环</title>
+      <rect width="160" height="100" fill="var(--sj-ink-900)"/>
+      <circle cx="80" cy="50" r="32" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <text x="80" y="28" text-anchor="middle" fill="var(--sj-celadon)" font-size="8">方法</text>
+      <text x="118" y="54" fill="var(--sj-ochre)" font-size="8">周期</text>
+      <text x="80" y="82" text-anchor="middle" fill="var(--sj-vermil)" font-size="8">案例</text>
+      <text x="38" y="54" text-anchor="end" fill="var(--sj-paper-100)" font-size="8">映射</text>
+    </svg>
+    <p class="sj-rail-mini-lbl">四卷闭环示意</p>
+  </div>
+</aside>
+</div><!-- /.sj-page-layout -->
+
 <section class="sj-00-sec" id="sec-vols" aria-labelledby="h-vols">
   <div class="sj-00-sec-h">
     <span class="num">03 · 卷目导航</span>
@@ -878,6 +995,23 @@ html[data-theme="light"] .sj-00-card:focus-within{
 
   document.getElementById('sj-btn-clear').classList.add('is-on');
 })();
+
+  /* rail toc highlight */
+  (function(){
+    var links=document.querySelectorAll('.sj-rail-toc a[href^="#"]');
+    if(!links.length) return;
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(a){a.classList.toggle('is-active',a.getAttribute('href')==='#'+e.target.id);});
+        }
+      });
+    },{rootMargin:'-20% 0px -60% 0px',threshold:0});
+    links.forEach(function(a){
+      var t=document.querySelector(a.getAttribute('href'));
+      if(t) obs.observe(t);
+    });
+  })();
 </script>
 </body>
 </html>

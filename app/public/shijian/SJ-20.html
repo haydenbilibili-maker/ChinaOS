@@ -24,11 +24,91 @@
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%, #2a221c 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #1a1612 0%, transparent 50%),var(--sj-ink-900);color:var(--sj-paper-100);font-family:var(--sj-serif);line-height:1.75}
 .sj-20-wrap{max-width:min(1180px,100%);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
-@media (min-width:1536px){.sj-20-wrap{max-width:min(1360px,100%)}}
-@media (min-width:1920px){.sj-20-wrap{max-width:min(1520px,100%)}}
+@media (min-width:1280px){.sj-20-wrap{max-width:min(1400px,100%)}}
+@media (min-width:1536px){.sj-20-wrap{max-width:min(1480px,100%)}}
+@media (min-width:1920px){.sj-20-wrap{max-width:min(1560px,100%)}}
 @media (min-width:2560px){.sj-20-wrap{max-width:min(1680px,100%)}}
 
 /* 章节入场 · 尊重 prefers-reduced-motion */
+
+/* 宽屏双栏：主栏 ~58% + 粘性侧栏 ~38% */
+.sj-page-layout{display:flex;flex-direction:column;gap:var(--sj-space)}
+@media (min-width:1280px){
+  .sj-page-layout{
+    display:grid;
+    grid-template-columns:minmax(0,58fr) minmax(280px,38fr);
+    gap:clamp(16px,2vw,28px);
+    align-items:start;
+  }
+}
+.sj-main-col{min-width:0}
+.sj-rail{display:flex;flex-direction:column;gap:12px;min-width:0}
+@media (min-width:1280px){
+  .sj-rail{position:sticky;top:1rem;max-height:85vh;overflow-y:auto;overscroll-behavior:contain}
+}
+@media (max-width:1279px){
+  #sec-intro{order:1}
+  #sec-map{order:3}
+  .sj-page-layout{display:flex;flex-direction:column}
+  .sj-main-col{display:contents}
+  .sj-rail{order:2;margin:8px 0 20px}
+  .sj-rail-mini{display:none}
+}
+.sj-rail-card{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
+  padding:14px 16px;
+}
+.sj-rail-card .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-rail-card h3,.sj-rail-card h4{font-size:15px;letter-spacing:.06em;margin-bottom:8px;color:var(--sj-paper-100);font-weight:600}
+.sj-rail-card p,.sj-rail-card li{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+.sj-rail-card dl{display:grid;gap:6px;margin:0}
+.sj-rail-card dt{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);letter-spacing:.06em}
+.sj-rail-card dd{font-size:12px;color:var(--sj-paper-300);margin:0;line-height:1.55}
+.sj-rail-toc{display:grid;gap:6px;margin-top:8px}
+.sj-rail-toc a{
+  display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  padding:8px 10px;text-decoration:none;color:inherit;font-size:13px;
+  transition:border-color .18s ease;
+}
+.sj-rail-toc a:hover,.sj-rail-toc a:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-rail-toc a.is-active{border-color:var(--sj-vermil)}
+.sj-rail-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.sj-rail-chip,.sj-rail-chip:visited{
+  display:inline-block;font-family:var(--sj-mono);font-size:10px;letter-spacing:.06em;
+  color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;
+  border-radius:var(--sj-radius);text-decoration:none;
+}
+.sj-rail-chip:hover,.sj-rail-chip:focus-visible{border-color:var(--sj-ochre);color:var(--sj-ochre);outline:none}
+.sj-rail-mini{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-900);padding:6px 6px 2px;overflow:hidden}
+.sj-rail-mini svg{display:block;width:100%;height:auto}
+.sj-rail-mini-lbl{font-family:var(--sj-mono);font-size:9px;letter-spacing:.1em;color:var(--sj-paper-300);text-align:center;margin:4px 0 2px}
+.sj-rail-steps{display:grid;gap:6px}
+.sj-rail-step{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);padding:8px 10px;
+  font-size:13px;color:var(--sj-paper-300);border-left:3px solid var(--sj-line);
+}
+.sj-rail-step.is-on{border-left-color:var(--sj-vermil);color:var(--sj-paper-100);background:color-mix(in srgb,var(--sj-vermil) 8%,var(--sj-ink-900))}
+.sj-rail-step .n{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);letter-spacing:.08em;display:block;margin-bottom:2px}
+.sj-rail-legend{display:grid;gap:4px;margin-top:8px}
+.sj-rail-legend span{font-size:12px;color:var(--sj-paper-300);padding-left:12px;border-left:3px solid var(--sj-line)}
+.sj-rail-legend .ochre{border-left-color:var(--sj-ochre)}
+.sj-rail-legend .celadon{border-left-color:var(--sj-celadon)}
+.sj-rail-legend .vermil{border-left-color:var(--sj-vermil)}
+.sj-rail-legend .paper{border-left-color:var(--sj-paper-100)}
+.sj-rail-legend .ink{border-left-color:var(--sj-paper-300)}
+.sj-rail-vols{display:grid;gap:6px}
+.sj-rail-vol{
+  display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  padding:8px 10px;text-decoration:none;color:inherit;font-size:13px;
+  transition:border-color .18s ease;
+}
+.sj-rail-vol:hover,.sj-rail-vol:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-rail-vol .n{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);letter-spacing:.1em}
+@media (min-width:2560px){
+  .sj-rail{max-width:420px;margin-left:auto;width:100%}
+}
+
 @keyframes sj-fade-in{
   from{opacity:0;transform:translateY(8px)}
   to{opacity:1;transform:none}
@@ -128,6 +208,8 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%, #2a221
 @media (max-width:900px){.sj-20-layout{grid-template-columns:1fr}.sj-20-aside{position:static}.sj-20-refute{grid-template-columns:1fr}.sj-20-xref{grid-template-columns:1fr 1fr}}
 @media (max-width:768px){.sj-20-meta{text-align:left}.sj-20-xref{grid-template-columns:1fr}}
 
+html[data-theme="light"] .sj-rail-card{box-shadow:0 1px 0 rgba(26,24,20,.05),0 12px 28px rgba(26,24,20,.08)}
+html[data-theme="light"] .sj-rail-mini{background:var(--sj-ink-800)}
 html[data-theme="light"]{--sj-ink-900:#f4f1ea;--sj-ink-800:#ebe6dc;--sj-paper-100:#1a1814;--sj-paper-300:#5a5348;--sj-vermil:#9a3428;--sj-celadon:#3f5f54;--sj-ochre:#8a6528;--sj-line:#c8bfb0}
 html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%, #e8e4da 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #ebe6dc 0%, transparent 50%),var(--sj-ink-900);color:var(--sj-paper-100)}
 html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
@@ -175,6 +257,9 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
 </header>
 
 <p class="sj-zhupi">朱批：映射卷是「以史为鉴」的落点，不是类比游戏。每一组古今对照都必须同时给出「相似机制」与「关键差异」——只有相似而无差异即为裸类比，本框架不承认。本卷呈现的是一种<b>分析读法</b>，非定论；第 05 节并陈相反意见。真源：《母本》第五部政治行。</p>
+
+<div class="sj-page-layout">
+<div class="sj-main-col">
 
 <!-- 1 引言 -->
 <section class="sj-20-sec" id="sec-intro" aria-labelledby="h-intro">
@@ -282,11 +367,66 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
 </section>
 
 <!-- 3 三组对照 -->
+
+</div><!-- /.sj-main-col -->
+
+<aside class="sj-rail" id="sj-rail" aria-label="映射导航侧栏">
+  <div class="sj-rail-mini sj-rail-card" aria-label="差异闸缩略">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 148" role="img" aria-labelledby="rail-mini-title">
+  <title id="rail-mini-title">差异闸 Δ · 政治</title>
+  <rect width="184" height="148" fill="var(--sj-ink-900)"/>
+  <text x="92" y="16" text-anchor="middle" fill="var(--sj-ochre)" font-size="8" font-family="monospace">Δ · 政治</text>
+  <g opacity="0.9">
+    <rect x="8" y="38" width="72" height="22" rx="4" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="1.2"/>
+    <text x="44" y="52" text-anchor="middle" fill="var(--sj-celadon)" font-size="7" font-family="Songti SC,serif">科举</text>
+    <circle cx="92" cy="52" r="8" fill="var(--sj-ink-900)" stroke="var(--sj-ochre)" stroke-width="1"/>
+    <text x="92" y="55" text-anchor="middle" fill="var(--sj-ochre)" font-size="8" font-family="monospace">Δ</text>
+    <rect x="104" y="38" width="72" height="22" rx="4" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="1.2"/>
+    <text x="140" y="52" text-anchor="middle" fill="var(--sj-celadon)" font-size="7" font-family="Songti SC,serif">干部</text>
+  </g>
+  <g opacity="0.9">
+    <rect x="8" y="74" width="72" height="22" rx="4" fill="var(--sj-ink-800)" stroke="var(--sj-paper-100)" stroke-width="1.2"/>
+    <text x="44" y="88" text-anchor="middle" fill="var(--sj-paper-100)" font-size="7" font-family="Songti SC,serif">天命</text>
+    <circle cx="92" cy="88" r="8" fill="var(--sj-ink-900)" stroke="var(--sj-ochre)" stroke-width="1"/>
+    <text x="92" y="91" text-anchor="middle" fill="var(--sj-ochre)" font-size="8" font-family="monospace">Δ</text>
+    <rect x="104" y="74" width="72" height="22" rx="4" fill="var(--sj-ink-800)" stroke="var(--sj-paper-100)" stroke-width="1.2"/>
+    <text x="140" y="88" text-anchor="middle" fill="var(--sj-paper-100)" font-size="7" font-family="Songti SC,serif">绩效</text>
+  </g>
+  <g opacity="0.9">
+    <rect x="8" y="110" width="72" height="22" rx="4" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <text x="44" y="124" text-anchor="middle" fill="var(--sj-ochre)" font-size="7" font-family="Songti SC,serif">央地</text>
+    <circle cx="92" cy="124" r="8" fill="var(--sj-ink-900)" stroke="var(--sj-ochre)" stroke-width="1"/>
+    <text x="92" y="127" text-anchor="middle" fill="var(--sj-ochre)" font-size="8" font-family="monospace">Δ</text>
+    <rect x="104" y="110" width="72" height="22" rx="4" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <text x="140" y="124" text-anchor="middle" fill="var(--sj-ochre)" font-size="7" font-family="Songti SC,serif">条块</text>
+  </g>
+</svg>
+<p class="sj-rail-mini-lbl">差异闸缩略 · 点击 §03 对照组</p>
+</div>
+  <div class="sj-rail-card">
+    <div class="k">古今映射 · 政治域</div>
+    <h3>差异闸导航</h3>
+    <p>三组对照各须过 Δ 闸；点击下方跳转 §03 双栏组。</p>
+    <nav class="sj-rail-toc" aria-label="对照组目录">
+    <a href="#pair-keju" data-pair="keju">① 科举 → 干部选拔</a>
+    <a href="#pair-hefaxing" data-pair="hefaxing">② 天命 → 绩效合法性</a>
+    <a href="#pair-yangdi" data-pair="yangdi">③ 央地 → 当代央地</a>
+    </nav>
+    <div class="sj-rail-chips" aria-label="交叉引用">
+    <a class="sj-rail-chip" href="./SJ-03.html">SJ-03 五力</a>
+    <a class="sj-rail-chip" href="./SJ-05.html">SJ-05 变法</a>
+    <a class="sj-rail-chip" href="./SJ-08.html">SJ-08 央地</a>
+    <a class="sj-rail-chip" href="/modules/yishixingtai">GY-02 合法性</a>
+    </div>
+  </div>
+</aside>
+</div><!-- /.sj-page-layout -->
+
 <section class="sj-20-sec" id="sec-pairs" aria-labelledby="h-pairs">
   <div class="sj-20-sec-h"><span class="num">03 · 三组对照</span><h2 id="h-pairs">相似机制 / 关键差异 双栏</h2></div>
 
   <div class="sj-20-pair">
-    <article>
+    <article id="pair-keju">
       <div class="ph"><span class="gu">科举 · 精英循环</span><span class="arrow">→</span><span class="jin">干部选拔与流动</span><span class="force">精英循环力</span></div>
       <div class="cols">
         <div class="col same"><div class="ch">相似机制（古今相通）</div><p>精英选拔通道的开放/堵塞决定系统离心力：通道开放则吸纳寒门、降低离心；堵塞则精英内部倾轧、地方坐大。历史的党争（SJ-05 新旧党）与门阀化，对应当代对派系与流动性的分析框架。</p></div>
@@ -294,7 +434,7 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
       </div>
     </article>
 
-    <article>
+    <article id="pair-hefaxing">
       <div class="ph"><span class="gu">天命 · 正统叙事</span><span class="arrow">→</span><span class="jin">绩效 + 意识形态合法性</span><span class="force">合法性叙事力</span></div>
       <div class="cols">
         <div class="col same"><div class="ch">相似机制（古今相通）</div><p>合法性有「绩效」与「象征」两个来源；绩效枯竭时系统倾向加大象征投入，而象征通胀会加速话语贬值。这一机制古今同构，是 SJ-03 合法性叙事力的核心。</p></div>
@@ -302,7 +442,7 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
       </div>
     </article>
 
-    <article>
+    <article id="pair-yangdi">
       <div class="ph"><span class="gu">央地 · 集权—分权钟摆</span><span class="arrow">→</span><span class="jin">当代央地关系</span><span class="force">边疆/财政耦合</span></div>
       <div class="cols">
         <div class="col same"><div class="ch">相似机制（古今相通）</div><p>央地授权的钟摆：过度授权 → 尾大不掉（SJ-06 天宝、SJ-08 五代）；过度矫正 → 僵化/积弱（SJ-08 宋）。「对上一周期病灶的过度矫正成为下一周期病灶」这一元规律跨古今适用。</p></div>
@@ -387,6 +527,23 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
   rows.forEach(r=>{ const act=()=>pick(r.dataset.id); r.addEventListener('click',act);
     r.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); act(); } }); });
 })();
+
+  /* rail toc highlight */
+  (function(){
+    var links=document.querySelectorAll('.sj-rail-toc a[href^="#pair-"]');
+    if(!links.length) return;
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(a){a.classList.toggle('is-active',a.getAttribute('href')==='#'+e.target.id);});
+        }
+      });
+    },{rootMargin:'-20% 0px -60% 0px',threshold:0});
+    links.forEach(function(a){
+      var t=document.querySelector(a.getAttribute('href'));
+      if(t) obs.observe(t);
+    });
+  })();
 </script>
 </body>
 </html>
