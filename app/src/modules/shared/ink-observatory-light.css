@@ -11,6 +11,7 @@
 :root[data-theme='light'] .ink-observatory.hf-gate-wrap,
 :root[data-theme='light'] .ink-observatory.hf-hub-wrap,
 :root[data-theme='light'] .ink-observatory.mil-wrap,
+:root[data-theme='light'] .ink-observatory.lcm-wrap,
 :root[data-theme='light'] .gv-panel.ink-observatory {
   --ink: #f4f1ea;
   --ink-2: #ebe6dc;
@@ -364,6 +365,52 @@
 :root[data-theme='light'] .ink-observatory.aop-wrap .aop-foot-link a:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   神州活图 lcm-wrap · 日览
+   ═══════════════════════════════════════════════════════════ */
+
+:root[data-theme='light'] .ink-observatory.lcm-wrap {
+  background:
+    radial-gradient(1200px 620px at 72% -8%, rgba(74, 122, 110, 0.12), transparent 58%),
+    radial-gradient(900px 480px at 8% 105%, rgba(180, 83, 9, 0.06), transparent 55%),
+    var(--ink);
+  --lcm-drawer-bg: rgba(255, 253, 247, 0.94);
+  --lcm-drawer-border: rgba(205, 192, 169, 0.85);
+}
+
+:root[data-theme='light'] .lcm-situation-hero,
+:root[data-theme='light'] .lcm-layer-panel,
+:root[data-theme='light'] .lcm-timeline,
+:root[data-theme='light'] .lcm-kbd-hint {
+  background: rgba(255, 255, 255, 0.58);
+  border-color: var(--hair);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.72), 0 2px 10px -4px rgba(0, 0, 0, 0.07);
+}
+
+:root[data-theme='light'] .lcm-province-drawer {
+  background: var(--lcm-drawer-bg, rgba(255, 253, 247, 0.94));
+  border-left-color: var(--lcm-drawer-border);
+  box-shadow: -8px 0 24px -8px rgba(0, 0, 0, 0.12);
+}
+
+:root[data-theme='light'] .lcm-cross-chip {
+  background: rgba(74, 122, 110, 0.1);
+  border-color: rgba(74, 122, 110, 0.28);
+  color: #2d5c52;
+}
+
+:root[data-theme='light'] .lcm-cross-chip--amber {
+  background: rgba(180, 83, 9, 0.08);
+  border-color: rgba(180, 83, 9, 0.25);
+  color: #92400e;
+}
+
+:root[data-theme='light'] .lcm-cross-chip--red {
+  background: rgba(185, 28, 28, 0.08);
+  border-color: rgba(185, 28, 28, 0.22);
+  color: #991b1b;
 }
 
 @media (prefers-reduced-motion: reduce) {

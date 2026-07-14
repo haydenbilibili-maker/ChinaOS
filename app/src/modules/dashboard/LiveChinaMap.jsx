@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as Lucide from 'lucide-react';
-import * as echarts from 'echarts';
 import {
   CHART_TOOLTIP, applyChartTheme, chartTextColor, AXIS, LABEL,
   mapChoropleth, mapDeltaChoropleth, mapAreaIdle,
@@ -56,6 +55,7 @@ import { getTimelineSeries, MONTH_COUNT, CURRENT_MONTH_INDEX } from './liveMapHi
 import LiveMapLayerBar from './LiveMapLayerBar.jsx';
 import LiveMapLayerPanel from './LiveMapLayerPanel.jsx';
 import LiveMapTimeline from './LiveMapTimeline.jsx';
+import LiveMapSituationHero from './LiveMapSituationHero.jsx';
 import ProvinceDetailDrawer from './ProvinceDetailDrawer.jsx';
 import { loadChinaGeo } from './liveMapGeo.js';
 import {
@@ -151,8 +151,16 @@ function StatStrip({ stats, layer, simLive, inline = false }) {
   );
 }
 
-export default function LiveChinaMap({ className, variant = 'full' }) {
+export default function LiveChinaMap({ className, variant = 'full', view = 'heatmap' }) {
   const isCompact = variant === 'compact';
+  const showSituation = !isCompact && view === 'situation';
+  const showHeatmap = isCompact || view === 'heatmap' || view === 'signals' || view === 'timeline';
+  const showSignals = !isCompact && view === 'signals';
+  const showTimeline = !isCompact && view === 'timeline';
+  const showAnalysis = !isCompact && view === 'analysis';
+  const showLayerPanel = !isCompact && (view === 'heatmap' || view === 'signals');
+  const showRankSidebar = !isCompact && (view === 'heatmap' || view === 'situation');
+  const searchInputRef = useRef(null);
   const shellRef = useRef(null);
   const elRef = useRef(null);
   const chartRef = useRef(null);
@@ -361,18 +369,25 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
   }, []);
 
   useEffect(() => {
-    if (!ready || !elRef.current) return undefined;
-    const chart = echarts.init(elRef.current, null, { renderer: 'canvas' });
-    chartRef.current = chart;
-    setChartInstance(chart);
-    const ro = new ResizeObserver(() => chart.resize());
-    ro.observe(elRef.current);
+    if (!ready || !elRef.current || !showHeatmap) return undefined;
+    let alive = true;
+    let chart = null;
+    let ro = null;
 
-    chart.on('click', (params) => {
-      if (params.name) {
-        setSelectedProvince(params.name);
-        setSidebarOpen(false);
-      }
+    import('echarts').then((echarts) => {
+      if (!alive || !elRef.current) return;
+      chart = echarts.init(elRef.current, null, { renderer: 'canvas' });
+      chartRef.current = chart;
+      setChartInstance(chart);
+      ro = new ResizeObserver(() => chart?.resize());
+      ro.observe(elRef.current);
+
+      chart.on('click', (params) => {
+        if (params.name) {
+          setSelectedProvince(params.name);
+          setSidebarOpen(false);
+        }
+      });
     });
 
     const onTheme = () => {
@@ -382,14 +397,46 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
     window.addEventListener(THEME_EVENT, onTheme);
 
     return () => {
-      ro.disconnect();
+      alive = false;
+      ro?.disconnect();
       window.removeEventListener(THEME_EVENT, onTheme);
-      chart.off('click');
-      chart.dispose();
+      if (chart) {
+        chart.off('click');
+        chart.dispose();
+      }
       chartRef.current = null;
       setChartInstance(null);
     };
-  }, [ready]);
+  }, [ready, showHeatmap]);
+
+  // 键盘：Esc 关抽屉 · ←→ 切省 · / 聚焦搜索
+  useEffect(() => {
+    if (isCompact) return undefined;
+    const onKey = (e) => {
+      if (e.target.matches('input, textarea, select')) return;
+      if (e.key === 'Escape') {
+        setSelectedProvince(null);
+        return;
+      }
+      if (e.key === '/' && !e.metaKey && !e.ctrlKey) {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+        return;
+      }
+      if ((e.key === 'ArrowLeft' || e.key === 'ArrowRight') && PROVINCE_NAMES.length) {
+        const idx = selectedProvince
+          ? PROVINCE_NAMES.indexOf(selectedProvince)
+          : -1;
+        const next = e.key === 'ArrowRight'
+          ? PROVINCE_NAMES[(idx + 1) % PROVINCE_NAMES.length]
+          : PROVINCE_NAMES[(idx <= 0 ? PROVINCE_NAMES.length : idx) - 1];
+        setSelectedProvince(next);
+        setSidebarOpen(false);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isCompact, selectedProvince]);
 
   const toggleCompare = useCallback((name) => {
     setCompareNames((prev) => {
@@ -580,9 +627,11 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
 
   useEffect(() => {
     const chart = chartRef.current;
-    if (!chart || !ready) return;
+    if (!chart || !ready || !showHeatmap) return;
+    chart.showLoading('default', { text: '图层渲染中…', color: STEEL, textColor: chartTextColor(), maskColor: 'rgba(10,14,23,0.35)' });
     chart.setOption(buildOption(), { notMerge: false, lazyUpdate: false });
-  }, [ready, buildOption]);
+    chart.hideLoading();
+  }, [ready, showHeatmap, buildOption]);
 
   const handleLayerChange = (id) => {
     setLayerId(id);
@@ -663,12 +712,14 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
               <div className="relative">
                 <Lucide.Search size={12} style={{ position: 'absolute', left: 7, top: 7, color: 'var(--text-tertiary)' }} />
                 <input
+                  ref={searchInputRef}
                   value={searchQ}
                   onChange={(e) => handleSearch(e.target.value)}
                   placeholder="定位省份…"
                   list="shenzhou-prov-list"
                   className="text-[10px] mono rounded"
                   style={{ width: 110, padding: '5px 8px 5px 24px', background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)' }}
+                  aria-label="搜索省份"
                 />
                 <datalist id="shenzhou-prov-list">
                   {PROVINCE_NAMES.map((n) => <option key={n} value={n.replace(/(省|市|自治区|壮族|回族|维吾尔)/g, '')} />)}
@@ -703,6 +754,24 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
 
       <LiveMapLayerBar layers={ALL_LAYERS} activeId={layerId} onSelect={handleLayerChange} accent={STEEL} compact={isCompact} />
 
+      {showSituation && (
+        <div className="lcm-section mt-4">
+          <LiveMapSituationHero
+            layerId={coloringFiscal ? 'fiscal' : layerId}
+            statSeries={statSeries}
+            layerLabel={coloringFiscal ? '财政自给' : layer.label}
+          />
+        </div>
+      )}
+
+      {!isCompact && (
+        <div className="lcm-kbd-hint mt-3" aria-hidden="false">
+          <span><kbd>Esc</kbd> 关闭抽屉</span>
+          <span><kbd>←</kbd><kbd>→</kbd> 切换省份</span>
+          <span><kbd>/</kbd> 搜索定位</span>
+        </div>
+      )}
+
       {!isCompact ? (
         <div className="live-china-map-meta flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-3 mb-1">
           <span className="text-[10px] mono min-w-0 inline-flex items-center gap-2 flex-wrap" style={{ color: 'var(--text-tertiary)' }}>
@@ -729,44 +798,48 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
         </>
       )}
 
-      {!isCompact && (
-        <div className="live-china-map-controls space-y-3 mt-3">
-          <div className="live-china-map-regions flex flex-wrap gap-1.5">
-            {REGION_PRESETS.map((r) => (
-              <button
-                key={r.id}
-                type="button"
-                onClick={() => setRegionId(r.id)}
-                className="lcm-chip text-[10px] mono px-2 py-0.5 rounded-full touch-manipulation"
-                style={{
-                  background: regionId === r.id ? 'rgba(34,211,238,0.18)' : 'var(--bg-elevated)',
-                  border: `1px solid ${regionId === r.id ? 'rgba(34,211,238,0.45)' : 'var(--border-subtle)'}`,
-                  color: regionId === r.id ? STEEL : 'var(--text-secondary)',
-                }}
-              >
-                {r.label}
-              </button>
-            ))}
-          </div>
-          <div className="flex flex-wrap gap-1.5 items-center">
-            <span className="text-[10px] mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>战略带</span>
-            {Object.keys(POLICY_ZONES).map((z) => (
-              <button
-                key={z}
-                type="button"
-                onClick={() => setZoneId(zoneId === z ? '' : z)}
-                className="lcm-chip text-[10px] mono px-2 py-0.5 rounded-full touch-manipulation"
-                style={{
-                  background: zoneId === z ? 'rgba(212,175,55,0.18)' : 'var(--bg-elevated)',
-                  border: `1px solid ${zoneId === z ? 'rgba(212,175,55,0.5)' : 'var(--border-subtle)'}`,
-                  color: zoneId === z ? '#d4af37' : 'var(--text-secondary)',
-                }}
-              >
-                {z}
-              </button>
-            ))}
-          </div>
-          {!isReal && (
+      {!isCompact && (view === 'heatmap' || view === 'situation' || view === 'signals' || view === 'timeline') && (
+        <div className="live-china-map-controls space-y-3 mt-3 lcm-section">
+          {(view === 'heatmap' || view === 'situation') && (
+            <>
+              <div className="live-china-map-regions flex flex-wrap gap-1.5">
+                {REGION_PRESETS.map((r) => (
+                  <button
+                    key={r.id}
+                    type="button"
+                    onClick={() => setRegionId(r.id)}
+                    className="lcm-chip text-[10px] mono px-2 py-0.5 rounded-full touch-manipulation"
+                    style={{
+                      background: regionId === r.id ? 'rgba(34,211,238,0.18)' : 'var(--bg-elevated)',
+                      border: `1px solid ${regionId === r.id ? 'rgba(34,211,238,0.45)' : 'var(--border-subtle)'}`,
+                      color: regionId === r.id ? STEEL : 'var(--text-secondary)',
+                    }}
+                  >
+                    {r.label}
+                  </button>
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-1.5 items-center">
+                <span className="text-[10px] mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>战略带</span>
+                {Object.keys(POLICY_ZONES).map((z) => (
+                  <button
+                    key={z}
+                    type="button"
+                    onClick={() => setZoneId(zoneId === z ? '' : z)}
+                    className="lcm-chip text-[10px] mono px-2 py-0.5 rounded-full touch-manipulation"
+                    style={{
+                      background: zoneId === z ? 'rgba(212,175,55,0.18)' : 'var(--bg-elevated)',
+                      border: `1px solid ${zoneId === z ? 'rgba(212,175,55,0.5)' : 'var(--border-subtle)'}`,
+                      color: zoneId === z ? '#d4af37' : 'var(--text-secondary)',
+                    }}
+                  >
+                    {z}
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
+          {(showTimeline || view === 'heatmap') && !isReal && (
             <LiveMapTimeline
               monthIndex={monthIndex}
               onChange={(m) => { setMonthIndex(m); setTimelinePlaying(false); }}
@@ -775,7 +848,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
               accent={STEEL}
             />
           )}
-          {isReal && (
+          {isReal && view !== 'situation' && (
             <div className="text-[10px] mono px-3 py-2 rounded-lg" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', color: 'var(--text-tertiary)' }}>
               实况层为即时观测快照（无 12 月回放）· 悬停省份查看气温/湿度/风速/降水/PM2.5 全要素 · 来源 Open-Meteo / OpenAQ 公开 API，非官方发布口径
             </div>
@@ -783,9 +856,11 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
         </div>
       )}
 
-      <div className={`live-china-map-body ${!isCompact ? 'live-china-map-body--full' : ''} mt-4`}>
-        {!isCompact && (
+      {showHeatmap && (
+      <div className={`live-china-map-body lcm-section ${!isCompact ? 'live-china-map-body--full lcm-map-grid' : ''} ${showSignals ? 'lcm-map-grid--signals' : ''} mt-4`}>
+        {showLayerPanel && (
           <LiveMapLayerPanel
+            className={showSignals ? '' : 'lcm-layer-panel--desktop-only'}
             prefs={layerPrefs}
             onToggle={handleLayerPrefToggle}
             geoSource={geoSource}
@@ -795,6 +870,7 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
             overlayStatuses={overlayStatuses}
             satelliteOpacity={satelliteOpacity}
             onSatelliteOpacityChange={handleSatelliteOpacity}
+            expanded={showSignals}
           />
         )}
         <div className={`live-china-map-canvas relative min-w-0 ${isCompact ? 'live-china-map-canvas--compact' : ''}`}>
@@ -850,8 +926,8 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
           )}
         </div>
 
-        {!isCompact && (
-          <aside className={`live-china-map-sidebar ${sidebarOpen ? 'block' : 'hidden lg:block'}`}>
+        {!isCompact && showRankSidebar && (
+          <aside className={`live-china-map-sidebar ${sidebarOpen ? 'block' : 'hidden lg:block'} ${!sidebarOpen ? 'lcm-sidebar--collapsed' : ''}`}>
             <button
               type="button"
               className="lg:hidden w-full text-[10px] mono mb-2 py-1.5 rounded flex items-center justify-center gap-1"
@@ -871,8 +947,8 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
           </aside>
         )}
       </div>
-
-      {compareNames.length > 0 && !isCompact && (
+      )}
+      {(compareNames.length > 0) && !isCompact && (
         <div className="mt-4 p-3 rounded-lg"
           style={{ background: 'rgba(34,211,238,0.08)', border: '1px solid rgba(34,211,238,0.2)' }}>
           <div className="text-[10px] mono flex flex-wrap gap-2 items-center">
@@ -940,8 +1016,8 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
         </div>
       )}
 
-      {!isCompact && (
-        <div className="mt-5 p-3 rounded-lg" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}>
+      {showAnalysis && !isCompact && (
+        <div className="mt-5 p-3 rounded-lg lcm-section" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}>
           <div className="flex flex-wrap items-center gap-2 mb-2">
             <Lucide.ScatterChart size={14} style={{ color: STEEL }} />
             <span className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>象限研判 · 图层 × 图层</span>
@@ -1002,9 +1078,9 @@ export default function LiveChinaMap({ className, variant = 'full' }) {
           </span>
         )}
         <span className="mono">// 纵深模块</span>
-        <Link to="/regional" className="mono hover:underline" style={{ color: STEEL }}>区域协调 →</Link>
-        <Link to="/northeast" className="mono hover:underline" style={{ color: STEEL }}>东北振兴 →</Link>
-        <Link to="/enterprise500" className="mono hover:underline" style={{ color: STEEL }}>民企500强地图 →</Link>
+        <Link to="/modules/heshan/factsheets" className="mono hover:underline" style={{ color: STEEL }}>重构河山 ↗</Link>
+        <Link to="/modules/observatory" className="mono hover:underline" style={{ color: STEEL }}>观象台 ↗</Link>
+        <Link to="/econ-dashboard?tab=regional" className="mono hover:underline" style={{ color: STEEL }}>经济大盘 · 区域 ↗</Link>
         {!isCompact && <Link to="/shenzhou-live" className="mono hover:underline" style={{ color: STEEL }}>神州活图全屏页 →</Link>}
       </div>
     </section>

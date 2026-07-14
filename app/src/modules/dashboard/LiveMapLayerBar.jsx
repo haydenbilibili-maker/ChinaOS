@@ -19,6 +19,8 @@ export default function LiveMapLayerBar({ layers, activeId, onSelect, accent = '
             className={`lcm-chip inline-flex items-center gap-1 rounded-full font-medium transition-all touch-manipulation ${
               compact ? 'px-2.5 py-1 text-[11px]' : 'px-2.5 py-1.5 text-[11px] sm:text-xs'
             }`}
+            aria-pressed={active}
+            aria-label={`${l.label}图层${l.live ? ' · 实测' : ''}`}
             style={{
               background: active ? `${accent}2e` : 'var(--bg-elevated)',
               border: `1px solid ${active ? `${accent}73` : 'var(--border-subtle)'}`,

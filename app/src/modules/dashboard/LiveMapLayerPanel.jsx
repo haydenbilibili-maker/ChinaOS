@@ -33,6 +33,8 @@ export default function LiveMapLayerPanel({
   compact = false,
   satelliteOpacity = DEFAULT_SATELLITE_OPACITY,
   onSatelliteOpacityChange,
+  className = '',
+  expanded = false,
 }) {
   const toggleable = useMemo(
     () => MAP_LAYER_DEFS.filter((d) => d.toggleable),
@@ -42,7 +44,7 @@ export default function LiveMapLayerPanel({
   const visibleCount = toggleable.filter((d) => prefs[d.id]).length;
 
   return (
-    <aside className="live-map-layer-panel ink-observatory lcm-layer-panel">
+    <aside className={`live-map-layer-panel ink-observatory lcm-layer-panel ${expanded ? 'lcm-layer-panel--expanded' : ''} ${className}`.trim()}>
       <div className="lcm-layer-panel-hd">
         <Icon name="Layers" size={14} style={{ color: STEEL }} />
         <span className="lcm-layer-panel-title">图层控制</span>
