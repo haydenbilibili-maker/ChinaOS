@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -285,12 +285,12 @@ export default function Page() {
       </IntroCard>
 
       {/* 概览 Stat */}
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="~30%" label="全球制造业增加值份额（示意）" accent="#c41e3a" />
         <Stat value="~20%" label="全球中间品出口占比（示意）" accent="#22d3ee" />
         <Stat value="200+" label="国家级先进制造业集群/基地（示意）" accent="#10b981" />
         <Stat value="60%+" label="重点链路备份覆盖率（目标 · 示意）" accent="#e8a317" />
-      </Grid>
+      </StatGrid>
 
       {/* ============ 链路选择器：六大关键链路 ============ */}
       <Card title="交互 · 六大关键链路扫描（中国位置 / 断点 / 备份 / 对手出招）" className="mb-6">

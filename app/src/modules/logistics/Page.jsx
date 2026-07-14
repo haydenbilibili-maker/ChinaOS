@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -171,12 +171,12 @@ export default function Page() {
         「公转铁、公转水」不是口号，而是一笔能耗、成本与碳的同一张账单。规模红利见顶之后，竞争从「跑得多」转向「调得准、扛得住」。
       </IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="352 万亿" label="社会物流总额 (2023 示意)" accent="#c41e3a" />
         <Stat value="14.4%" label="物流总费用 / GDP" accent="#e8a317" />
         <Stat value="125 座" label="国家物流枢纽 (示意)" accent="#22d3ee" />
         <Stat value="1,320+ 亿件" label="快递业务量 · 全球第一" accent="#10b981" />
-      </Grid>
+      </StatGrid>
 
       {/* 运输方式选择器 */}
       <Card title="交互 · 运输方式选择器（份额 / 成本 / 效率 / 痛点）" className="mb-6">

@@ -83,8 +83,8 @@
 ## Round 6 预览（技术债 · 顺延 Round 7）
 
 - stylelint `color-no-hex` 警告级规则（模块 CSS 白名单除外）
-- `renqun-tupu/atlasViz.js` · `gametheory` 等残余 `#27324a`（系列色/非轴语义）
-- industry 组 `StatGrid` 渐进补齐（当前 6/8 项通过为主）
+- `renqun-tupu/atlasViz.js` · `gametheory` 等残余 `#27324a`（系列色/非轴语义，**有意保留**）
+- industry 组 `StatGrid` 渐进补齐 — ✅ `materials` · `logistics` · `supplychain` KPI 行已迁入（2026-07-14）
 
 ## Final Polish 收官轮（2026-07 · 完成）
 

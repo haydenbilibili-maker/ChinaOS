@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
+import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { categoryX, valueY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS, LABEL } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -207,12 +207,12 @@ export default function Page() {
         现实主义逻辑下，材料是所有技术的<strong style={{ color: 'var(--text-primary)' }}>最上游容器</strong>——一片光刻胶、一根碳纤维、一块单晶叶片，决定整条产业链的物理上限。卡脖子的本质不是芯片本身，而是配方、提纯与专用装备的<strong style={{ color: 'var(--cyber-cyan)' }}>非对称壁垒</strong>。与此对称，<strong style={{ color: '#10b981' }}>稀土与镓锗</strong>则是在岸系统手中的反向筹码：冶炼分离 90% 的全球份额，使「替代」从单向焦虑变为双向博弈。以下按门类拆解：谁仍受制、谁已突破、谁能反卡。
       </IntroCard>
 
-      <Grid cols={4} className="mb-6">
+      <StatGrid className="mb-6">
         <Stat value="~45%" label="关键材料整体自给率（示意）" accent="#e8a317" />
         <Stat value="90%" label="稀土冶炼分离全球份额" accent="#10b981" />
         <Stat value={`${breakthroughCount} 类`} label="已突破门类（自主≥60%）" accent="#22d3ee" />
         <Stat value={`${choke} 类`} label="高危卡脖子门类（自主<50%）" accent="#c41e3a" />
-      </Grid>
+      </StatGrid>
 
       <Card title="交互① · 材料门类选择器（受制 ↔ 反卡）" className="mb-6">
         <SelectorBar items={TRACKS} activeKey={track} onSelect={setTrack} getLabel={(i) => `${i.label}`} />
