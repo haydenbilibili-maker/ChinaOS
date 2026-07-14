@@ -32,6 +32,7 @@ import {
   sortStrategyVectors,
   RISK_RADAR,
   POLICY_CALENDAR_2026,
+  MACRO_SPARKLINES,
 } from './data.js';
 import { useMacroPulse } from './useMacroPulse.js';
 import NewsMarquee from './NewsMarquee.jsx';
@@ -39,6 +40,15 @@ import LiveStreamsSection from './LiveStreamsSection.jsx';
 import LiveChinaMap from './LiveChinaMap.jsx';
 import GovernanceVerdict from '../governance/GovernanceVerdict.jsx';
 import { withExportBrand, EXPORT_DISCLAIMER } from '../../lib/exportBrand.js';
+import './dashboard.css';
+import {
+  StatusStrip,
+  DeepLinkLattice,
+  SignalFreshnessBar,
+  SystemHealthPanel,
+  CountUp,
+  KpiSparkline,
+} from './dashboardParts.jsx';
 
 function Icon({ name, size = 16 }) {
   const Cmp = Lucide[name] || Lucide.Square;
@@ -120,7 +130,7 @@ function MacroH1Strip({ kpis, asOf, lastRefresh, isRefreshing, secondsToNext, re
           <Link to="/econ-dashboard" className="mono" style={{ color: STEEL }}>经济大盘</Link>
         </span>
       </div>
-      <StatGrid stagger={false}>
+      <StatGrid stagger className="dash-kpi-grid">
         {kpis.map(({ id, k, v, note, c, live }) => (
           <div
             key={`${id}-${refreshCount}`}
@@ -132,10 +142,12 @@ function MacroH1Strip({ kpis, asOf, lastRefresh, isRefreshing, secondsToNext, re
               <span className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>{k}</span>
             </div>
             <div key={`${id}v${v}-${refreshCount}`} className={`${refreshCount > 0 ? 'lcm-flash ' : ''}mono os-mono-tabular`} style={{ fontSize: '1.35rem', fontWeight: 700, color: c }}>{v}</div>
+            {MACRO_SPARKLINES[id] && <KpiSparkline data={MACRO_SPARKLINES[id]} color={c} />}
             <span className="block text-[10px] mt-0.5 font-normal" style={{ color: 'var(--text-tertiary)' }}>{note}</span>
           </div>
         ))}
       </StatGrid>
+      <SignalFreshnessBar />
     </div>
   );
 }
@@ -799,91 +811,99 @@ export default function DashboardPage() {
     return () => clearTimeout(t);
   }, [macro.refreshCount]);
 
+  const liveKpiCount = macro.kpis.filter((k) => k.live).length;
+
   const stats = [
-    { value: MODULE_COUNT, label: '专题模块', accent: '#22d3ee', icon: 'LayoutGrid' },
-    { value: fmt(ENTRY_TOTAL), label: '数据集条目', accent: '#c41e3a', icon: 'Database' },
-    { value: GROUP_COUNT, label: '专题分组', accent: '#e8a317', icon: 'FolderTree' },
-    { value: AS_OF, label: '数据基准 AS_OF', accent: '#10b981', icon: 'CalendarClock', mono: true },
+    { value: MODULE_COUNT, label: '专题模块', accent: '#22d3ee', icon: 'LayoutGrid', countUp: true },
+    { value: ENTRY_TOTAL, label: '数据集条目', accent: '#c41e3a', icon: 'Database', countUp: true },
+    { value: GROUP_COUNT, label: '专题分组', accent: '#e8a317', icon: 'FolderTree', countUp: true },
+    { value: AS_OF, label: '数据基准 AS_OF', accent: '#10b981', icon: 'CalendarClock', mono: true, countUp: false },
   ];
 
   return (
-    <div>
+    <div className="dash-v2 dash-v2-enter">
       {/* ── 0. 滚动情报条 ────────────────────────────────── */}
       <Ticker />
+
+      <StatusStrip
+        asOf={macro.asOf}
+        lastRefresh={macro.lastRefresh}
+        isRefreshing={macro.isRefreshing}
+        onRefresh={macro.refresh}
+        liveKpiCount={liveKpiCount}
+      />
 
       {/* ── 0.5 关注清单 + 最近访问足迹 ──────────────────── */}
       <FavStrip />
       <RecentVisits />
 
-      {/* ── 1. 项目总揽 · Hero ───────────────────────────── */}
-      <section
-        className={`os-card os-section os-hero-card mb-6 overflow-hidden relative${heroPulse ? ' os-hero-card--pulse' : ''}`}
-        style={{
-          padding: '2rem',
-          background: 'radial-gradient(120% 140% at 0% 0%, rgba(196,30,58,0.16), transparent 55%), radial-gradient(120% 140% at 100% 0%, rgba(34,211,238,0.14), transparent 55%), var(--bg-surface)',
-          borderColor: 'rgba(34,211,238,0.22)',
-        }}
-      >
-        <span
-          className="inline-block text-xs font-semibold uppercase px-2 py-0.5 rounded mb-3 mono"
-          style={{ background: 'rgba(196,30,58,0.18)', color: 'var(--china-red)', letterSpacing: '0.1em' }}
-        >
-          CHINA OS · 看板
-        </span>
-        <h1 className="os-page-title" style={{ fontSize: '2rem' }}>中国深度调研操作系统</h1>
-        <p className="os-page-subtitle mt-2 max-w-3xl">
-          冷峻现实主义视角 · 穿透宏观叙事，解析权力运作、产业链条与制度演进的底层代码。
-          十五五开局（2026）· {MODULE_COUNT} 个专题模块、{GROUP_COUNT} 大分组、{fmt(ENTRY_TOTAL)} 条结构化条目，统一数据底座、即插即用。
-        </p>
-        <div className="os-stat-grid os-section-stagger mt-6">
-          {stats.map((s) => (
-            <div key={s.label} className="os-card os-stat-card os-card-lift p-4" style={{ borderColor: `${s.accent}33` }}>
-              <div className="flex items-center gap-1.5 mb-1" style={{ color: s.accent }}>
-                <Icon name={s.icon} size={14} />
-                <span className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>{s.label}</span>
-              </div>
-              <div className="mono os-mono-tabular" style={{ fontSize: s.mono ? '1.1rem' : '1.6rem', fontWeight: 700, color: s.accent }}>{s.value}</div>
+      {/* ── 1. 项目总揽 · Hero v2 ─────────────────────────── */}
+      <section className={`dash-hero-v2${heroPulse ? ' is-pulse' : ''}`}>
+        <div className="dash-hero-v2__grid">
+          <div>
+            <span className="dash-hero-v2__badge">CHINA OS · 中枢看板</span>
+            <h1 className="os-page-title" style={{ fontSize: '2rem' }}>中国深度调研操作系统</h1>
+            <p className="os-page-subtitle mt-2 max-w-3xl">
+              冷峻现实主义视角 · 穿透宏观叙事，解析权力运作、产业链条与制度演进的底层代码。
+              十五五开局（2026）· 统一数据底座、即插即用。
+            </p>
+            <div className="os-stat-grid os-section-stagger mt-6">
+              {stats.map((s) => (
+                <div key={s.label} className="os-card os-stat-card os-card-lift p-4" style={{ borderColor: `${s.accent}33` }}>
+                  <div className="flex items-center gap-1.5 mb-1" style={{ color: s.accent }}>
+                    <Icon name={s.icon} size={14} />
+                    <span className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>{s.label}</span>
+                  </div>
+                  <div className="mono os-mono-tabular" style={{ fontSize: s.mono ? '1.1rem' : '1.6rem', fontWeight: 700, color: s.accent }}>
+                    {s.countUp ? <CountUp value={s.value} /> : s.value}
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+
+            <MacroH1Strip
+              kpis={macro.kpis}
+              asOf={macro.asOf}
+              lastRefresh={macro.lastRefresh}
+              isRefreshing={macro.isRefreshing}
+              secondsToNext={macro.secondsToNext}
+              refreshCount={macro.refreshCount}
+            />
+
+            <LiveModuleChips />
+
+            <div className="mt-5">
+              <GovernanceVerdict pulseKey={macro.refreshCount} />
+            </div>
+          </div>
+
+          <SystemHealthPanel entryTotal={ENTRY_TOTAL} refreshCount={macro.refreshCount} />
         </div>
 
-        <MacroH1Strip
-          kpis={macro.kpis}
-          asOf={macro.asOf}
-          lastRefresh={macro.lastRefresh}
-          isRefreshing={macro.isRefreshing}
-          secondsToNext={macro.secondsToNext}
-          refreshCount={macro.refreshCount}
-        />
-
-        <LiveModuleChips />
-
-        <div className="mt-5">
-          <GovernanceVerdict pulseKey={macro.refreshCount} />
+        {/* 信号流 · 从 Hero 拆出减轻拥挤 */}
+        <div className="dash-signal-stream">
+          <div className="dash-signal-stream__heading">
+            <Lucide.Waves size={13} style={{ color: STEEL }} />
+            实时信号流 · 时政 · 直播 · 资产
+          </div>
+          <NewsMarquee refreshKey={macro.refreshCount} />
+          <LiveStreamsSection compact previewCount={8} pulseKey={macro.refreshCount} />
+          <Link
+            to="/market-pulse"
+            className="os-card-interactive mt-3 flex items-center justify-between rounded-lg px-4 py-3"
+            style={{ background: 'var(--bg-elevated)', border: '1px solid rgba(34,211,238,0.28)' }}
+          >
+            <span className="flex items-center gap-2">
+              <Lucide.Activity size={16} style={{ color: STEEL }} />
+              <span className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>全球资产脉搏</span>
+              <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>股市 · 债市 · 汇市 · 大宗</span>
+            </span>
+            <span className="text-xs mono" style={{ color: STEEL }}>进入模块 →</span>
+          </Link>
         </div>
-
-        {/* 时政要闻 · 主流媒体 RSS 跑马灯 */}
-        <NewsMarquee refreshKey={macro.refreshCount} />
-
-        {/* 神州实况 · 公共直播信号预览 */}
-        <LiveStreamsSection compact previewCount={8} pulseKey={macro.refreshCount} />
-
-        {/* 全球资产脉搏 · 独立模块入口 */}
-        <Link
-          to="/market-pulse"
-          className="os-card-interactive mt-5 flex items-center justify-between rounded-lg px-4 py-3"
-          style={{ background: 'var(--bg-elevated)', border: '1px solid rgba(34,211,238,0.28)' }}
-        >
-          <span className="flex items-center gap-2">
-            <Lucide.Activity size={16} style={{ color: STEEL }} />
-            <span className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>全球资产脉搏</span>
-            <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>股市 · 债市 · 汇市 · 大宗</span>
-          </span>
-          <span className="text-xs mono" style={{ color: STEEL }}>进入模块 →</span>
-        </Link>
 
         {/* 重点模块精选 */}
-        <div className="mt-6">
+        <div className="mt-5 pt-4" style={{ borderTop: '1px solid var(--border-subtle)' }}>
           <div className="os-section-heading__meta mb-2">重点模块</div>
           <div className="flex flex-wrap gap-2 os-section-stagger">
             {FEATURED.map((m) => (
@@ -900,6 +920,9 @@ export default function DashboardPage() {
           </div>
         </div>
       </section>
+
+      {/* ── 1.5 深度专题六大支柱 ─────────────────────────── */}
+      <DeepLinkLattice />
 
       {/* ── 1.5 神州活图 · 紧凑预览 ───────────────────────── */}
       <LiveChinaMap className="mb-8" variant="compact" />
