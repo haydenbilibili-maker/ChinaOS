@@ -58,22 +58,15 @@ export function CrossLinks({ title = '横向打通 · 关联模块', links = [],
 
 export function PageHeader({ badge, title, subtitle, children, noAccent = false }) {
   return (
-    <header className={`os-page-header mb-8 pb-5 border-b os-section ${noAccent ? 'os-page-header--no-accent' : ''}`} style={{ borderColor: 'var(--border-subtle)' }}>
+    <header className={`os-page-header os-section ${noAccent ? 'os-page-header--no-accent' : ''}`}>
       {badge && (
-        <span
-          className="inline-block text-xs font-semibold uppercase px-2 py-0.5 rounded mb-3 mono"
-          style={{
-            background: 'rgba(196,30,58,0.14)',
-            color: 'var(--china-red)',
-            letterSpacing: '0.08em',
-          }}
-        >
+        <span className="os-page-badge mono">
           {badge}
         </span>
       )}
       <h1 className="os-page-title">{title}</h1>
-      {subtitle && <p className="os-page-subtitle mt-2 max-w-3xl">{subtitle}</p>}
-      {children && <div className="mt-4">{children}</div>}
+      {subtitle && <p className="os-page-subtitle">{subtitle}</p>}
+      {children && <div className="os-page-header__actions">{children}</div>}
     </header>
   );
 }

@@ -880,7 +880,7 @@ export default function DashboardPage() {
 
         {/* 重点模块精选 */}
         <div className="mt-6">
-          <div className="text-xs mb-2" style={{ color: 'var(--text-secondary)' }}>重点模块</div>
+          <div className="os-section-heading__meta mb-2">重点模块</div>
           <div className="flex flex-wrap gap-2">
             {FEATURED.map((m) => (
               <Link
@@ -902,10 +902,10 @@ export default function DashboardPage() {
 
       {/* ── 2. 态势 · 政策 · 底座 三联速览 ─────────────────── */}
       <section className="mb-8">
-        <div className="os-section-heading mb-3">
+        <div className="os-section-heading">
           <Lucide.Radar size={16} style={{ color: 'var(--china-red)' }} />
-          <h2 className="os-card-title m-0">态势速览</h2>
-          <span className="text-[11px] mono min-w-0" style={{ color: 'var(--text-tertiary)' }}>// 外交矢量 · 施政基准 · 本地库活数据</span>
+          <h2 className="os-section-heading__title m-0">态势速览</h2>
+          <span className="os-section-heading__meta min-w-0">// 外交矢量 · 施政基准 · 本地库活数据</span>
         </div>
         {/* 主卡 + 侧栏密排：取消 span-2 行占位，避免宽屏右下空洞 */}
         <div className="dash-pulse-pack dash-screen-grid os-section-stagger">
@@ -932,15 +932,15 @@ export default function DashboardPage() {
         </Grid>
       </section>
 
-            {/* ── 2.5 今日简报生成器 ───────────────────────────── */}
+      {/* ── 2.5 今日简报生成器 ───────────────────────────── */}
       <BriefingGenerator />
 
       {/* ── 3. 实时大屏 ──────────────────────────────────── */}
       <section className="mb-8">
-        <div className="os-section-heading mb-3">
+        <div className="os-section-heading">
           <Lucide.MonitorPlay size={16} style={{ color: 'var(--cyber-cyan)' }} />
-          <h2 className="os-card-title m-0">实时大屏</h2>
-          <span className="text-[11px] mono min-w-0" style={{ color: 'var(--text-tertiary)' }}>// LIVE · 种子计数</span>
+          <h2 className="os-section-heading__title m-0">实时大屏</h2>
+          <span className="os-section-heading__meta min-w-0">// LIVE · 种子计数</span>
         </div>
         <Grid cols={{ sm: 1, md: 2, lg: 3, '2xl': 4 }} gap="0.85rem" className="dash-screen-grid os-section-stagger">
           <ScreenCard title="中国政要分层构成" accent="#c41e3a" footer="政治权力队列 · 按层级聚合">

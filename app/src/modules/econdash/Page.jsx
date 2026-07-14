@@ -324,7 +324,7 @@ export default function Page({ embedded = false }) {
         收入分配与新经济看「增长落到谁身上、新动能在哪里」。
         口径声明：公开统计梳理 · 示意标定 · 非投资建议 · 非预测。
       </IntroCard>
-      <StatGrid className="mb-8">
+      <StatGrid>
         <Stat
           value={wb.loading && !gdpLatest ? '载入中' : (gdpLatest ? wbStat(gdpLatest.value, 'money') : '—')}
           label="实时 GDP（World Bank · 现价美元）"
@@ -346,10 +346,10 @@ export default function Page({ embedded = false }) {
       </StatGrid>
 
       {/* 00 当前主线 · 通缩与资金活化 */}
-      <div className="mb-6"><SectionDeflation /></div>
+      <div className="os-econ-block"><SectionDeflation /></div>
 
       {/* ! 经济异动监测 · 全盘聚合 */}
-      <div className="mb-6"><SectionWatch /></div>
+      <div className="os-econ-block"><SectionWatch /></div>
 
       {/* ① 三次产业结构 */}
       <Card title="① 三次产业结构 · 经济在做什么">
@@ -500,10 +500,10 @@ export default function Page({ embedded = false }) {
       </Card>
 
       {/* ⊞ 国家统计局最新数据 · 2025/2026 */}
-      <div className="mb-6"><SectionNbsLatest /></div>
+      <div className="os-econ-block"><SectionNbsLatest /></div>
 
       {/* ◆ 国际对比 · 世界银行实时多国 */}
-      <div className="mb-6"><SectionCompare /></div>
+      <div className="os-econ-block"><SectionCompare /></div>
 
       {/* ④ 金丝雀监测盘 */}
       <Card title="④ 金丝雀监测盘 · 转折的早信号">
@@ -548,13 +548,13 @@ export default function Page({ embedded = false }) {
       </Card>
 
       {/* 01–10 共享宏观骨架 · 指标目录 */}
-      <div className="mb-6"><SectionCatalog /></div>
+      <div className="os-econ-block"><SectionCatalog /></div>
 
       {/* ★ 背离监测 · 叙事×现实 */}
-      <div className="mb-6"><SectionDivergence /></div>
+      <div className="os-econ-block"><SectionDivergence /></div>
 
       {/* ▲ 区域下钻 · 投资环境压力 */}
-      <div className="mb-6"><SectionRegional /></div>
+      <div className="os-econ-block"><SectionRegional /></div>
 
       {/* ⑤ 收入分配与新经济 */}
       <Card title="⑤ 收入分配与新经济 · 增长落到谁身上">
@@ -621,13 +621,13 @@ export default function Page({ embedded = false }) {
       </Card>
 
       {/* ↻ 历史周期对照 */}
-      <div className="mb-6"><SectionCycle /></div>
+      <div className="os-econ-block"><SectionCycle /></div>
 
       {/* ◷ 五年规划目标达成度 */}
-      <div className="mb-6"><SectionFiveYear /></div>
+      <div className="os-econ-block"><SectionFiveYear /></div>
 
       {/* ⌗ 经济数据底座 · 已迁移至 数据与系统 · 数据底座 */}
-      <div className="mb-6">
+      <div className="os-econ-block">
         <a
           href="#/foundation?tab=econ"
           className="os-card p-5 block no-underline"
@@ -645,7 +645,7 @@ export default function Page({ embedded = false }) {
       </div>
 
       {/* § 数据使用纪律 */}
-      <div className="mb-6"><SectionDiscipline /></div>
+      <div className="os-econ-block"><SectionDiscipline /></div>
 
       {/* 框架三卡 + 页脚 */}
       <FrameworkTrio cards={[

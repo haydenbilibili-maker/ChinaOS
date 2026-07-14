@@ -421,8 +421,9 @@ button.os-card:hover,
 /* ── Typography utilities ──────────────────────────────── */
 .os-page-header {
   position: relative;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
+  margin-bottom: var(--space-section);
+  padding-bottom: 1.15rem;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .os-page-header::after {
@@ -450,6 +451,19 @@ button.os-card:hover,
   border-bottom-color: var(--border-strong);
 }
 
+.os-page-badge {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.7rem;
+  background: rgba(196, 30, 58, 0.14);
+  color: var(--china-red);
+}
+
 .os-page-title {
   font-size: var(--text-xl);
   font-weight: 700;
@@ -459,9 +473,15 @@ button.os-card:hover,
 }
 
 .os-page-subtitle {
+  margin-top: 0.5rem;
+  max-width: 48rem;
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
   color: var(--text-secondary);
+}
+
+.os-page-header__actions {
+  margin-top: 0.9rem;
 }
 
 .os-card-title {
@@ -479,6 +499,38 @@ button.os-card:hover,
   flex-wrap: wrap;
   min-width: 0;
   max-width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+.os-section-heading__title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: var(--tracking-ink-wide);
+  color: var(--text-primary);
+}
+
+.os-section-heading__meta {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--text-tertiary);
+  letter-spacing: 0.04em;
+}
+
+.os-label-hierarchy {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-tertiary);
+}
+
+/* 经济大盘区块节奏 · 对齐 --space-section */
+.os-econ-block {
+  margin-bottom: calc(var(--space-section) * 0.72);
+}
+
+:root[data-density='compact'] .os-page-header {
+  margin-bottom: var(--space-section);
+  padding-bottom: 0.85rem;
 }
 
 @supports (text-wrap: balance) {
@@ -958,21 +1010,31 @@ textarea:focus {
 /* ── Stats ─────────────────────────────────────────────── */
 .os-stat-grid {
   display: grid;
-  gap: 1rem;
+  gap: 0.85rem;
   grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
   margin-bottom: var(--space-section);
 }
 
+.os-stat-grid .os-stat-label,
+.os-stat-grid .os-label-slot {
+  font-size: 11px;
+  line-height: 1.35;
+}
+
 @media (min-width: 768px) {
   .os-stat-grid {
-    gap: 1.25rem;
+    gap: 1rem;
   }
 }
 
 @media (min-width: 1024px) {
   .os-stat-grid {
-    gap: 1.5rem;
+    gap: 1.15rem;
   }
+}
+
+:root[data-density='compact'] .os-stat-grid {
+  gap: 0.65rem;
 }
 
 .os-stat-value {
