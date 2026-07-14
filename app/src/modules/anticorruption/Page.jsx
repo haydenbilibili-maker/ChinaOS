@@ -9,7 +9,7 @@ export default function AnticorruptionPage() {
       <PageHeader
         badge="荒废斋 · 结构观测"
         title="反腐结构观测"
-        subtitle="不数人头，只数租金面 · 官方通报措辞解码"
+        subtitle="v2.0 · 腐败密度地图 · 2012—2026 系统化回测"
         noAccent
       />
       <Card asSection={false} className="!p-0 !mb-0 !bg-transparent !border-0 !shadow-none">

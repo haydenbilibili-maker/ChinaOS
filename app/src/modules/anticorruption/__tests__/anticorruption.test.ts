@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import {
+  ANTICORRUPTION_VERSION,
+  CORRUPTION_DENSITY_EQUATION,
   FORBIDDEN_MODULE_FIELDS,
+  SECTOR_DENSITY,
   bureaucraticParalysisIndex,
   getModuleSchema,
   RENT_SOURCES,
@@ -14,6 +17,16 @@ describe('anticorruption module schema', () => {
     FORBIDDEN_MODULE_FIELDS.forEach((field) => {
       expect(schema).not.toHaveProperty(field);
     });
+  });
+
+  it('v2.0 exposes sector density map sorted by density', () => {
+    expect(ANTICORRUPTION_VERSION).toBe('v2.0');
+    expect(CORRUPTION_DENSITY_EQUATION).toContain('腐败密度');
+    expect(SECTOR_DENSITY.length).toBeGreaterThanOrEqual(7);
+    expect(SECTOR_DENSITY[0].epicenter).toBe(true);
+    for (let i = 1; i < SECTOR_DENSITY.length; i += 1) {
+      expect(SECTOR_DENSITY[i - 1].density).toBeGreaterThanOrEqual(SECTOR_DENSITY[i].density);
+    }
   });
 
   it('exposes rent sources from official terminology only', () => {
