@@ -1,11 +1,72 @@
 /* ============================================================================
- * 中枢看板 v2 · 旗舰启动页
+ * 中枢看板 v2 · Round 2 — 活感深化
  * 玻璃拟态 + 深邃科技感 · 与 Intelligence Atlas 审美对齐
  * ============================================================================ */
 
 .dash-v2 {
   --dash-accent: var(--cyber-cyan);
   --dash-glow: rgba(34, 211, 238, 0.18);
+  max-width: 1680px;
+  margin-inline: auto;
+}
+
+@media (min-width: 1920px) {
+  .dash-v2 {
+    max-width: 1760px;
+    padding-inline: 0.5rem;
+  }
+
+  .dash-hero-v2 {
+    padding: 2.25rem 2.5rem;
+  }
+
+  .dash-gateway-grid {
+    gap: 1rem;
+  }
+
+  .dash-pillar-card {
+    min-height: 138px;
+    padding: 1.1rem 1rem 0.95rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .dash-v2 {
+    padding-inline: 0;
+  }
+
+  .dash-status-strip {
+    padding: 0.55rem 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .dash-status-strip__actions {
+    width: 100%;
+    flex-wrap: wrap;
+    margin-left: 0;
+  }
+
+  .dash-hero-v2 {
+    padding: 1.25rem 1rem;
+  }
+
+  .dash-gateway-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.55rem;
+  }
+
+  .dash-pillar-card {
+    min-height: 118px;
+    padding: 0.75rem 0.65rem;
+  }
+
+  .dash-pillar-card__desc {
+    display: none;
+  }
+
+  .dash-recent-signals {
+    margin-top: 1rem;
+  }
 }
 
 /* ── 顶栏状态条 ─────────────────────────────────────────── */
@@ -92,6 +153,32 @@
 
 .dash-status-pill__dot.is-live {
   animation: os-live-breathe 3.8s ease-in-out infinite;
+}
+
+.dash-status-pill--canary {
+  gap: 0.25rem;
+}
+
+.dash-canary-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.1rem;
+  height: 1.1rem;
+  padding: 0 0.2rem;
+  border-radius: 999px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  background: var(--bg-base);
+  border: 1px solid var(--border-subtle);
+}
+
+.dash-canary-dot.is-green { color: #10b981; }
+.dash-canary-dot.is-amber { color: #e8a317; }
+.dash-canary-dot.is-red { color: #c41e3a; }
+
+.dash-canary-dot.is-pulse {
+  animation: dash-canary-pulse 2.6s ease-in-out infinite;
 }
 
 .dash-status-strip__actions {
@@ -205,6 +292,16 @@
   letter-spacing: 0.08em;
 }
 
+.dash-hero-v2__aside {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.dash-hero-v2__aside .dash-recent-signals {
+  flex: 1;
+}
+
 .dash-health-row {
   display: flex;
   align-items: center;
@@ -222,20 +319,37 @@
   font-weight: 600;
 }
 
-/* ── 深度专题栅格（六大支柱） ─────────────────────────────── */
+/* ── 模块门户栅格（八大跳转） ─────────────────────────────── */
 .dash-pillar-section {
   margin-bottom: 1.75rem;
 }
 
+.dash-gateway-grid,
 .dash-pillar-grid {
   display: grid;
   gap: 0.75rem;
   grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
 }
 
+@media (min-width: 900px) {
+  .dash-gateway-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 @media (min-width: 1280px) {
+  .dash-gateway-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
   .dash-pillar-grid {
     grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (min-width: 1536px) {
+  .dash-gateway-grid {
+    grid-template-columns: repeat(8, 1fr);
   }
 }
 
@@ -258,6 +372,7 @@
     border-color var(--transition-base),
     box-shadow var(--transition-base);
   overflow: hidden;
+  animation-delay: var(--reveal-delay, 0s);
 }
 
 .dash-pillar-card::before {
@@ -272,12 +387,18 @@
 
 .dash-pillar-card:hover,
 .dash-pillar-card:focus-visible {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   border-color: color-mix(in srgb, var(--pillar-accent) 45%, transparent);
   box-shadow:
-    0 8px 28px -8px color-mix(in srgb, var(--pillar-accent) 28%, transparent),
+    0 12px 32px -10px color-mix(in srgb, var(--pillar-accent) 32%, transparent),
     0 0 0 1px color-mix(in srgb, var(--pillar-accent) 18%, transparent);
   outline: none;
+}
+
+.dash-pillar-card:focus-visible {
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--pillar-accent) 55%, transparent),
+    0 12px 32px -10px color-mix(in srgb, var(--pillar-accent) 32%, transparent);
 }
 
 .dash-pillar-card:hover::before,
@@ -389,6 +510,123 @@
   margin-bottom: 0.65rem;
 }
 
+/* ── 新鲜度仪表 ─────────────────────────────────────────── */
+.dash-freshness-gauge {
+  position: relative;
+  width: 72px;
+  height: 44px;
+  flex-shrink: 0;
+}
+
+.dash-freshness-gauge__svg {
+  width: 100%;
+  height: 100%;
+}
+
+.dash-freshness-gauge__arc {
+  filter: drop-shadow(0 0 4px currentColor);
+  transition: stroke-dashoffset 0.8s var(--ease-ink);
+}
+
+.dash-freshness-gauge__score {
+  position: absolute;
+  left: 50%;
+  bottom: 2px;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.dash-freshness-gauge__legend {
+  position: absolute;
+  right: -2px;
+  bottom: 0;
+  display: flex;
+  gap: 0.15rem;
+  font-size: 0.5rem;
+  font-family: var(--font-mono);
+}
+
+/* ── 近期信号条 ─────────────────────────────────────────── */
+.dash-recent-signals {
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+}
+
+.dash-recent-signals__head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.55rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.dash-recent-signals__more {
+  margin-left: auto;
+  font-size: 0.6rem;
+  color: var(--cyber-cyan);
+  text-decoration: none;
+}
+
+.dash-recent-signals__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.dash-recent-signals__item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  color: inherit;
+  background: var(--bg-base);
+  border: 1px solid transparent;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.dash-recent-signals__item:hover,
+.dash-recent-signals__item:focus-visible {
+  border-color: var(--border-subtle);
+  background: color-mix(in srgb, var(--bg-elevated) 80%, transparent);
+  outline: none;
+}
+
+.dash-recent-signals__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dash-recent-signals__dot.is-pulse {
+  animation: os-live-breathe 3.8s ease-in-out infinite;
+}
+
+.dash-recent-signals__label {
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dash-recent-signals__reading {
+  font-size: 0.6rem;
+  flex-shrink: 0;
+}
+
 .dash-signal-bar__title {
   font-size: 0.7rem;
   font-weight: 600;
@@ -461,6 +699,10 @@
   background: var(--chip-color);
 }
 
+.dash-signal-chip__dot.is-pulse {
+  animation: os-live-breathe 3.8s ease-in-out infinite;
+}
+
 /* ── 信号流分区（从 Hero 拆出） ─────────────────────────── */
 .dash-signal-stream {
   margin-top: 1.25rem;
@@ -477,6 +719,35 @@
   font-family: var(--font-mono);
   color: var(--text-tertiary);
   letter-spacing: 0.06em;
+}
+
+/* ── 滚动错落揭示 ─────────────────────────────────────────── */
+.dash-scroll-reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.48s var(--ease-ink),
+    transform 0.48s var(--ease-ink);
+}
+
+.dash-scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dash-gateway-grid .dash-pillar-card.os-reveal {
+  animation: none;
+}
+
+.dash-gateway-grid .dash-scroll-reveal.is-visible .dash-pillar-card,
+.dash-scroll-reveal.is-visible .dash-pillar-card {
+  animation: os-fade-in 0.32s var(--ease-ink) both;
+  animation-delay: var(--reveal-delay, 0s);
+}
+
+@keyframes dash-canary-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 transparent; }
+  50% { opacity: 0.75; box-shadow: 0 0 6px 1px currentColor; }
 }
 
 /* ── 错落入场 · 页面级 ─────────────────────────────────── */
@@ -510,12 +781,22 @@
   .dash-v2-enter > section,
   .dash-v2-enter > .dash-status-strip,
   .dash-pillar-card,
-  .dash-hero-v2 {
+  .dash-hero-v2,
+  .dash-scroll-reveal {
     animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 
   .dash-pillar-card:hover,
   .dash-quick-btn:hover {
     transform: none;
+  }
+
+  .dash-canary-dot.is-pulse,
+  .dash-signal-bar__seg.is-pulse,
+  .dash-recent-signals__dot.is-pulse {
+    animation: none !important;
   }
 }

@@ -43,11 +43,14 @@ import { withExportBrand, EXPORT_DISCLAIMER } from '../../lib/exportBrand.js';
 import './dashboard.css';
 import {
   StatusStrip,
-  DeepLinkLattice,
+  ModuleGatewayLattice,
   SignalFreshnessBar,
   SystemHealthPanel,
   CountUp,
   KpiSparkline,
+  AnimatedMetric,
+  RecentSignalsStrip,
+  useScrollReveal,
 } from './dashboardParts.jsx';
 
 function Icon({ name, size = 16 }) {
@@ -141,7 +144,9 @@ function MacroH1Strip({ kpis, asOf, lastRefresh, isRefreshing, secondsToNext, re
               {live && <span className="os-live-dot w-1.5 h-1.5 rounded-full shrink-0" style={{ background: WARM }} />}
               <span className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>{k}</span>
             </div>
-            <div key={`${id}v${v}-${refreshCount}`} className={`${refreshCount > 0 ? 'lcm-flash ' : ''}mono os-mono-tabular`} style={{ fontSize: '1.35rem', fontWeight: 700, color: c }}>{v}</div>
+            <div key={`${id}v${v}-${refreshCount}`} className={`${refreshCount > 0 ? 'lcm-flash ' : ''}mono os-mono-tabular`} style={{ fontSize: '1.35rem', fontWeight: 700, color: c }}>
+              <AnimatedMetric value={v} duration={refreshCount > 0 ? 600 : 900} />
+            </div>
             {MACRO_SPARKLINES[id] && <KpiSparkline data={MACRO_SPARKLINES[id]} color={c} />}
             <span className="block text-[10px] mt-0.5 font-normal" style={{ color: 'var(--text-tertiary)' }}>{note}</span>
           </div>
@@ -803,6 +808,7 @@ export default function DashboardPage() {
   const opt = useOptions();
   const macro = useMacroPulse();
   const [heroPulse, setHeroPulse] = useState(false);
+  useScrollReveal();
 
   useEffect(() => {
     if (!macro.refreshCount) return undefined;
@@ -826,7 +832,6 @@ export default function DashboardPage() {
       <Ticker />
 
       <StatusStrip
-        asOf={macro.asOf}
         lastRefresh={macro.lastRefresh}
         isRefreshing={macro.isRefreshing}
         onRefresh={macro.refresh}
@@ -838,7 +843,7 @@ export default function DashboardPage() {
       <RecentVisits />
 
       {/* ── 1. 项目总揽 · Hero v2 ─────────────────────────── */}
-      <section className={`dash-hero-v2${heroPulse ? ' is-pulse' : ''}`}>
+      <section className={`dash-hero-v2 dash-scroll-reveal is-visible${heroPulse ? ' is-pulse' : ''}`}>
         <div className="dash-hero-v2__grid">
           <div>
             <span className="dash-hero-v2__badge">CHINA OS · 中枢看板</span>
@@ -877,7 +882,10 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          <SystemHealthPanel entryTotal={ENTRY_TOTAL} refreshCount={macro.refreshCount} />
+          <div className="dash-hero-v2__aside">
+            <SystemHealthPanel entryTotal={ENTRY_TOTAL} refreshCount={macro.refreshCount} />
+            <RecentSignalsStrip />
+          </div>
         </div>
 
         {/* 信号流 · 从 Hero 拆出减轻拥挤 */}
@@ -921,14 +929,16 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      {/* ── 1.5 深度专题六大支柱 ─────────────────────────── */}
-      <DeepLinkLattice />
+      {/* ── 1.5 模块门户 · 八大跳转 ─────────────────────────── */}
+      <ModuleGatewayLattice />
 
-      {/* ── 1.5 神州活图 · 紧凑预览 ───────────────────────── */}
-      <LiveChinaMap className="mb-8" variant="compact" />
+      {/* ── 1.6 神州活图 · 紧凑预览 ───────────────────────── */}
+      <div className="dash-scroll-reveal">
+        <LiveChinaMap className="mb-8" variant="compact" />
+      </div>
 
       {/* ── 2. 态势 · 政策 · 底座 三联速览 ─────────────────── */}
-      <section className="mb-8">
+      <section className="mb-8 dash-scroll-reveal">
         <div className="os-section-heading">
           <Lucide.Radar size={16} style={{ color: 'var(--china-red)' }} />
           <h2 className="os-section-heading__title m-0">态势速览</h2>
@@ -960,10 +970,12 @@ export default function DashboardPage() {
       </section>
 
       {/* ── 2.5 今日简报生成器 ───────────────────────────── */}
-      <BriefingGenerator />
+      <div className="dash-scroll-reveal">
+        <BriefingGenerator />
+      </div>
 
       {/* ── 3. 实时大屏 ──────────────────────────────────── */}
-      <section className="mb-8">
+      <section className="mb-8 dash-scroll-reveal">
         <div className="os-section-heading">
           <Lucide.MonitorPlay size={16} style={{ color: 'var(--cyber-cyan)' }} />
           <h2 className="os-section-heading__title m-0">实时大屏</h2>

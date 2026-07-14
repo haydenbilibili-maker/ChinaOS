@@ -268,8 +268,8 @@ export const FEATURED = [
   .map(pick)
   .filter(Boolean);
 
-/** 深度专题六大支柱 · 启动页核心跳转 */
-export const DEEP_LINK_PILLARS = [
+/** 模块门户 · 八大核心跳转（权力/台海/军事/河山/人才/领袖/信号/治理） */
+export const MODULE_GATEWAY = [
   {
     id: 'powerlogic',
     path: '/powerlogic',
@@ -336,10 +336,35 @@ export const DEEP_LINK_PILLARS = [
     signalLabel: '态势：中枢稳态',
     live: false,
   },
+  {
+    id: 'signalPanel',
+    path: '/modules/signal-panel',
+    title: '宏观信号灯',
+    tag: '信号合成',
+    desc: 'A/B/C 档 · 宏观再平衡 · 态势判读',
+    icon: 'Gauge',
+    accent: '#79a496',
+    signalLabel: '信号：再平衡监测',
+    live: true,
+  },
+  {
+    id: 'observatory',
+    path: '/modules/observatory',
+    title: '观象台',
+    tag: '治理工具',
+    desc: '世界→中国→同类→我 · 归因链路',
+    icon: 'Telescope',
+    accent: '#b18a52',
+    signalLabel: '治理：H1 判读',
+    live: false,
+  },
 ].map((p) => {
   const mod = pick(p.id);
   return mod ? { ...p, title: mod.title, icon: mod.icon || p.icon } : p;
 });
+
+/** @deprecated 使用 MODULE_GATEWAY · 保留兼容别名 */
+export const DEEP_LINK_PILLARS = MODULE_GATEWAY.slice(0, 6);
 
 // ── 战略态势矢量（镜像 diplomacy/Page.jsx · 看板排序与分组） ──
 export const DIPLOMACY_TONES = {
