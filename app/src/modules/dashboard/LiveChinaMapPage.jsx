@@ -4,16 +4,21 @@ import { PageHeader, TabBar } from '../../app/ui.jsx';
 import { IntroCard, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import LiveChinaMap from './LiveChinaMap.jsx';
 import { AS_OF, LAYERS } from './liveMapData.js';
+import {
+  LIVE_MAP_VIEWS,
+  readDeepLinkFromParams,
+  writeDeepLinkToParams,
+} from './liveMapDeepLink.js';
 import './liveMap.css';
 
 // ============================================================================
 // 神州活图 · Live Map v2（ink-observatory Round 2）
 // ----------------------------------------------------------------------------
 // 五视图：全国态势 → 区域热力 → 信号图层 → 时间轴 → 研判下钻
-// 数据：种子层 + Open-Meteo/USGS/ADS-B 实测 · AS_OF 来自 asOfBaseline
+// URL 深链：?prov=广东省&layer=economy&view=heatmap
 // ============================================================================
 
-export const LIVE_MAP_VIEWS = ['situation', 'heatmap', 'signals', 'timeline', 'analysis'];
+export { LIVE_MAP_VIEWS };
 
 const TABS = [
   { id: 'situation', label: '全国态势', accent: 'var(--cyber-cyan)' },
@@ -32,6 +37,8 @@ export default function LiveChinaMapPage() {
     return LIVE_MAP_VIEWS.includes(raw) ? raw : localView;
   }, [searchParams, localView]);
 
+  const deepLink = useMemo(() => readDeepLinkFromParams(searchParams), [searchParams]);
+
   const setView = useCallback((id) => {
     const next = LIVE_MAP_VIEWS.includes(id) ? id : 'heatmap';
     setLocalView(next);
@@ -43,12 +50,27 @@ export default function LiveChinaMapPage() {
     }, { replace: true });
   }, [setSearchParams]);
 
+  const onDeepLinkChange = useCallback(({ province, layer }) => {
+    setSearchParams((prev) => {
+      const params = new URLSearchParams(prev);
+      writeDeepLinkToParams(params, { province, layer });
+      return params;
+    }, { replace: true });
+  }, [setSearchParams]);
+
+  const shareUrl = useMemo(() => {
+    if (typeof window === 'undefined') return '';
+    const hashPath = window.location.hash.split('?')[0] || '#/shenzhou-live';
+    const qs = searchParams.toString();
+    return `${window.location.origin}${window.location.pathname}${window.location.search}${hashPath}${qs ? `?${qs}` : ''}`;
+  }, [searchParams]);
+
   return (
     <div className="ink-observatory lcm-wrap lcm-page-wrap os-content-fluid">
       <PageHeader
         badge="Dashboard · 省级动态 · 图层架构"
         title="神州活图"
-        subtitle={`网络区划边界 · 可扩展图层 · 财政自给网络层 · 时间轴对比 · 截至 ${AS_OF}`}
+        subtitle={`本地省界优先 · 可分享深链 · 财政自给网络层 · 截至 ${AS_OF}`}
       >
         <div className="flex flex-wrap gap-2 items-center">
           <Link to="/dashboard" className="lcm-cross-chip">中枢看板 ↗</Link>
@@ -60,11 +82,11 @@ export default function LiveChinaMapPage() {
       </PageHeader>
 
       <IntroCard className="lcm-intro mb-5">
-        省界底图优先从阿里云 DataV API 加载（失败时经 Worker 代理或本地 GeoJSON 兜底）。
+        省界底图<strong style={{ color: 'var(--text-primary)' }}>优先从本地 bundled GeoJSON 加载</strong>（<code className="mono text-[10px]">/geo/china-100000.json</code>），
+        失败时经 Worker 代理或 DataV 回退。
         覆盖 <strong style={{ color: 'var(--text-primary)' }}>{LAYERS.length} 个种子指标层</strong> + 实测气象/空气/地震/空情/航运/卫星云图层；
-        图层控制面板可开关省名标注、财政自给率着色、迁徙弧线、省会点位等叠加层。
-        点击省份打开下钻抽屉（雷达 + 12 月 sparkline），支持双省对比与象限研判。
-        <span className="mono" style={{ color: 'var(--text-tertiary)' }}> 口径：公开统计梳理 · 示意标定 · 非官方发布</span>
+        支持 URL 深链分享：<span className="mono text-[10px]" style={{ color: 'var(--text-tertiary)' }}>?prov=广东省&amp;layer=economy</span>
+        <span className="mono" style={{ color: 'var(--text-tertiary)' }}> · 口径：公开统计梳理 · 示意标定 · 非官方发布</span>
       </IntroCard>
 
       <div className="lcm-sticky-nav">
@@ -72,8 +94,31 @@ export default function LiveChinaMapPage() {
       </div>
 
       <div className="os-reveal-stagger">
-        <LiveChinaMap variant="full" view={view} />
+        <LiveChinaMap
+          variant="full"
+          view={view}
+          deepLink={deepLink}
+          onDeepLinkChange={onDeepLinkChange}
+        />
       </div>
+
+      {(deepLink.province || deepLink.layer) && (
+        <p className="text-[10px] mono mt-3 px-1" style={{ color: 'var(--text-tertiary)' }}>
+          深链状态：
+          {deepLink.province && <span style={{ color: 'var(--cyber-cyan)' }}> {deepLink.province}</span>}
+          {deepLink.layer && <span> · 图层 {deepLink.layer}</span>}
+          {shareUrl && (
+            <button
+              type="button"
+              className="ml-2 underline"
+              style={{ color: 'var(--text-secondary)' }}
+              onClick={() => navigator.clipboard?.writeText(shareUrl)}
+            >
+              复制分享链接
+            </button>
+          )}
+        </p>
+      )}
 
       <FrameworkTrio cards={[
         {
@@ -96,7 +141,7 @@ export default function LiveChinaMapPage() {
       <ModuleFooter
         moduleId="shenzhou-live"
         disclaimer="公开统计梳理 · 示意标定 · 非官方发布 · 实况 API 为第三方观测"
-        sourceNote={`数据源：统计公报种子 · DataV 省界 · Open-Meteo/OpenAQ/USGS · 截至 ${AS_OF}`}
+        sourceNote={`数据源：统计公报种子 · 本地省界 GeoJSON · Open-Meteo/OpenAQ/USGS · 截至 ${AS_OF}`}
       />
     </div>
   );

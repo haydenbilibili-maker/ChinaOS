@@ -45,6 +45,7 @@ export default function ProvinceDetailDrawer({
   onClose,
   onToggleCompare,
   theme,
+  sheet = false,
 }) {
   const radarRef = useRef(null);
   const sparkRef = useRef(null);
@@ -158,7 +159,7 @@ export default function ProvinceDetailDrawer({
 
   return (
     <div
-      className="live-map-drawer lcm-drawer-in lcm-province-drawer absolute inset-y-0 right-0 z-20 flex flex-col w-full sm:w-80 lg:w-96 overflow-hidden"
+      className={`live-map-drawer lcm-drawer-in lcm-province-drawer absolute inset-y-0 right-0 z-20 flex flex-col w-full sm:w-80 lg:w-96 overflow-hidden${sheet ? ' lcm-province-drawer--sheet' : ''}`}
       role="dialog"
       aria-modal="true"
       aria-labelledby="lcm-drawer-title"
@@ -233,6 +234,13 @@ export default function ProvinceDetailDrawer({
               {moduleLink.label} <Lucide.ArrowUpRight size={10} />
             </Link>
           )}
+          <Link
+            to={`/shenzhou-live?prov=${encodeURIComponent(provinceName)}&layer=${encodeURIComponent(layerId)}`}
+            className="lcm-province-drawer__cta"
+            style={{ borderColor: 'rgba(34,211,238,0.35)', color: STEEL, background: 'rgba(34,211,238,0.08)' }}
+          >
+            分享活图深链 ↗
+          </Link>
           <Link to="/modules/heshan/factsheets" className="lcm-province-drawer__cta" style={{ borderColor: 'rgba(196,30,58,0.35)', color: 'var(--china-red, #c41e3a)', background: 'rgba(196,30,58,0.08)' }}>
             重构河山 ↗
           </Link>

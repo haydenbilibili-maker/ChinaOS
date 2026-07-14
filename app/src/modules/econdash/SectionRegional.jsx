@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { Card } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import ChinaMap from '../../lib/viz/ChinaMap.jsx';
@@ -286,6 +287,19 @@ export default function SectionRegional() {
                 <p className="text-xs leading-relaxed mt-1" style={{ color: 'var(--text-secondary)' }}>
                   {single.headline ? `${single.headline}。` : ''}{tally.text}
                 </p>
+                {single.mapName && (
+                  <Link
+                    to={`/shenzhou-live?prov=${encodeURIComponent(single.mapName)}&layer=economy&view=heatmap`}
+                    className="inline-flex items-center gap-1 mt-2 text-[10px] mono px-2 py-1 rounded-full"
+                    style={{
+                      background: 'rgba(34,211,238,0.12)',
+                      border: '1px solid rgba(34,211,238,0.35)',
+                      color: 'var(--cyber-cyan, #22d3ee)',
+                    }}
+                  >
+                    神州活图 · {single.name} 深链 ↗
+                  </Link>
+                )}
               </div>
             </div>
           )}

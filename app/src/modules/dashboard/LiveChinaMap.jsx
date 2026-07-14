@@ -56,6 +56,7 @@ import LiveMapLayerBar from './LiveMapLayerBar.jsx';
 import LiveMapLayerPanel from './LiveMapLayerPanel.jsx';
 import LiveMapTimeline from './LiveMapTimeline.jsx';
 import LiveMapSituationHero from './LiveMapSituationHero.jsx';
+import LiveMapSignalSummary from './LiveMapSignalSummary.jsx';
 import ProvinceDetailDrawer from './ProvinceDetailDrawer.jsx';
 import { loadChinaGeo } from './liveMapGeo.js';
 import {
@@ -151,7 +152,13 @@ function StatStrip({ stats, layer, simLive, inline = false }) {
   );
 }
 
-export default function LiveChinaMap({ className, variant = 'full', view = 'heatmap' }) {
+export default function LiveChinaMap({
+  className,
+  variant = 'full',
+  view = 'heatmap',
+  deepLink,
+  onDeepLinkChange,
+}) {
   const isCompact = variant === 'compact';
   const showSituation = !isCompact && view === 'situation';
   const showHeatmap = isCompact || view === 'heatmap' || view === 'signals' || view === 'timeline';
@@ -164,6 +171,7 @@ export default function LiveChinaMap({ className, variant = 'full', view = 'heat
   const shellRef = useRef(null);
   const elRef = useRef(null);
   const chartRef = useRef(null);
+  const skipDeepLinkWrite = useRef(true);
   const [ready, setReady] = useState(false);
   const [chartInstance, setChartInstance] = useState(null);
   const [err, setErr] = useState(null);
@@ -298,10 +306,32 @@ export default function LiveChinaMap({ className, variant = 'full', view = 'heat
         if (!alive) return;
         setGeoSource(meta.source);
         setReady(true);
+        setErr(null);
       })
       .catch((e) => alive && setErr(String(e)));
     return () => { alive = false; };
   }, []);
+
+  // URL 深链 → 初始省份 / 图层
+  useEffect(() => {
+    if (!deepLink || isCompact) return undefined;
+    skipDeepLinkWrite.current = true;
+    if (deepLink.layer) setLayerId(deepLink.layer);
+    if (deepLink.province) {
+      setSelectedProvince(deepLink.province);
+      setSidebarOpen(false);
+    }
+    const id = requestAnimationFrame(() => {
+      skipDeepLinkWrite.current = false;
+    });
+    return () => cancelAnimationFrame(id);
+  }, [deepLink?.province, deepLink?.layer, isCompact]);
+
+  // 省份 / 图层变更 → 写回 URL
+  useEffect(() => {
+    if (!onDeepLinkChange || isCompact || skipDeepLinkWrite.current) return;
+    onDeepLinkChange({ province: selectedProvince, layer: layerId });
+  }, [selectedProvince, layerId, onDeepLinkChange, isCompact]);
 
   useEffect(() => {
     if (!showFiscal) return undefined;
@@ -776,7 +806,7 @@ export default function LiveChinaMap({ className, variant = 'full', view = 'heat
         <div className="live-china-map-meta flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-3 mb-1">
           <span className="text-[10px] mono min-w-0 inline-flex items-center gap-2 flex-wrap" style={{ color: 'var(--text-tertiary)' }}>
             {coloringFiscal ? '财政自给率（网络）' : layer.desc} · 数据源：<span style={{ color: coloringFiscal || isReal ? '#10b981' : 'var(--text-secondary)' }}>{coloringFiscal ? (fiscalData?.source === 'live' ? 'province-stats 网络' : 'province-stats 本地') : (layer.source === 'seed' ? '内置种子' : layer.source || 'Open-Meteo')}</span>
-            {geoSource && <span>· 边界 <span style={{ color: geoSource === 'network' ? '#10b981' : STEEL }}>{geoSource === 'network' ? 'DataV API' : geoSource === 'proxy' ? 'Worker' : '本地'}</span></span>}
+            {geoSource && <span>· 边界 <span style={{ color: geoSource === 'local' ? STEEL : geoSource === 'network' ? '#10b981' : 'var(--text-secondary)' }}>{geoSource === 'local' ? '本地 GeoJSON' : geoSource === 'network' ? 'DataV API' : geoSource === 'proxy' ? 'Worker' : '缓存'}</span></span>}
             {showFiscal && fiscalLoading && <span style={{ color: STEEL }}>// 拉取财政层…</span>}
             {liveMetricStatus && (
               <SourceBadge
@@ -856,6 +886,15 @@ export default function LiveChinaMap({ className, variant = 'full', view = 'heat
         </div>
       )}
 
+      {showSignals && !isCompact && (
+        <LiveMapSignalSummary
+          prefs={layerPrefs}
+          overlayStatuses={overlayStatuses}
+          geoSource={geoSource}
+          activeMetricLabel={coloringFiscal ? '财政自给率' : layer.label}
+        />
+      )}
+
       {showHeatmap && (
       <div className={`live-china-map-body lcm-section ${!isCompact ? 'live-china-map-body--full lcm-map-grid' : ''} ${showSignals ? 'lcm-map-grid--signals' : ''} mt-4`}>
         {showLayerPanel && (
@@ -905,24 +944,38 @@ export default function LiveChinaMap({ className, variant = 'full', view = 'heat
           )}
           {!ready && !err && (
             <div className="absolute inset-0 flex items-center justify-center lcm-geo-loading pointer-events-none">
-              <LoadingSkeleton rows={2} label="正在从网络加载省界边界…" className="w-[min(320px,80%)]" />
+              <LoadingSkeleton rows={2} label="正在加载省界边界（本地优先）…" className="w-[min(320px,80%)]" />
             </div>
           )}
           {err && (
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none px-4">
-              <EmptyState title="地图边界加载失败" description={err} />
+            <div className="absolute inset-0 flex items-center justify-center px-4 z-10">
+              <div className="lcm-geo-error-banner pointer-events-auto max-w-md w-full">
+                <EmptyState
+                  title="地图边界加载失败"
+                  description={`${err}。已尝试本地 /geo/china-100000.json、Worker 代理与 DataV。请刷新或检查网络。`}
+                />
+              </div>
             </div>
           )}
           {selectedProvince && !isCompact && (
-            <ProvinceDetailDrawer
-              key={selectedProvince}
-              provinceName={selectedProvince}
-              layerId={isReal ? 'climate' : layerId}
-              compareNames={compareNames}
-              onClose={() => setSelectedProvince(null)}
-              onToggleCompare={toggleCompare}
-              theme={theme}
-            />
+            <>
+              <button
+                type="button"
+                className="lcm-drawer-backdrop lg:hidden"
+                aria-label="关闭省份详情"
+                onClick={() => setSelectedProvince(null)}
+              />
+              <ProvinceDetailDrawer
+                key={selectedProvince}
+                provinceName={selectedProvince}
+                layerId={isReal ? 'climate' : layerId}
+                compareNames={compareNames}
+                onClose={() => setSelectedProvince(null)}
+                onToggleCompare={toggleCompare}
+                theme={theme}
+                sheet
+              />
+            </>
           )}
         </div>
 

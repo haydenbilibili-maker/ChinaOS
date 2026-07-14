@@ -258,23 +258,45 @@ async function proxyLiveSatellite() {
   return jsonLiveResponse(body);
 }
 
-/** DataV 区划边界代理 · 规避浏览器直连 CDN 的 CORS/403 */
-async function proxyRegionGeo(adcode) {
+/** DataV 区划边界代理 · 上游 403 时回退本地 /geo/china-*.json */
+async function proxyRegionGeo(adcode, env, origin) {
   const upstream = `https://geo.datav.aliyun.com/areas_v3/bound/${adcode}_full.json`;
-  const res = await fetch(upstream, {
-    headers: { Accept: 'application/json', 'User-Agent': 'ChinaOS-GeoProxy/1.0' },
-  });
-  if (!res.ok) {
-    return new Response(JSON.stringify({ error: `upstream ${res.status}` }), {
-      status: res.status,
-      headers: { 'Content-Type': 'application/json' },
+  try {
+    const res = await fetch(upstream, {
+      headers: { Accept: 'application/json', 'User-Agent': 'ChinaOS-GeoProxy/1.0' },
+    });
+    if (res.ok) {
+      return new Response(res.body, {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          'Cache-Control': 'public, max-age=86400',
+          'Access-Control-Allow-Origin': '*',
+        },
+      });
+    }
+  } catch {
+    /* 上游不可达 → 本地兜底 */
+  }
+
+  const localPath = `/geo/china-${adcode}.json`;
+  const local = await env.ASSETS.fetch(new Request(`${origin}${localPath}`));
+  if (local.ok) {
+    return new Response(local.body, {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Cache-Control': 'public, max-age=86400',
+        'Access-Control-Allow-Origin': '*',
+        'X-ChinaOS-Geo-Source': 'local-fallback',
+      },
     });
   }
-  return new Response(res.body, {
-    status: 200,
+
+  return new Response(JSON.stringify({ error: `geo ${adcode} unavailable (upstream + local)` }), {
+    status: 502,
     headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-      'Cache-Control': 'public, max-age=86400',
+      'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
     },
   });
@@ -322,7 +344,7 @@ export default {
 
     if (request.method === 'GET' && GEO_PROXY.test(url.pathname)) {
       const adcode = url.pathname.match(GEO_PROXY)[1];
-      return proxyRegionGeo(adcode);
+      return proxyRegionGeo(adcode, env, url.origin);
     }
 
     if (request.method === 'GET' && LIVE_WEATHER.test(url.pathname)) {

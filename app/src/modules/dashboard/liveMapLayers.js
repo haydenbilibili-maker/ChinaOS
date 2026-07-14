@@ -47,10 +47,10 @@ export const MAP_LAYER_DEFS = /** @type {MapLayerDef[]} */ ([
     zIndex: 0,
     defaultVisible: true,
     toggleable: false,
-    dataSource: 'geo.datav.aliyun.com',
-    legend: '阿里云 DataV 区划边界',
+    dataSource: 'local GeoJSON /geo/china-100000.json',
+    legend: '本地 bundled 省界 · DataV 可选',
     icon: 'Map',
-    desc: '全国省级边界 · 网络加载，失败回退本地 GeoJSON',
+    desc: '全国省级边界 · 本地优先加载，失败回退 Worker / DataV',
   },
   {
     id: 'choropleth',

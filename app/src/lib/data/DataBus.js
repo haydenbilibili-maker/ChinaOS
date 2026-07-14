@@ -40,26 +40,31 @@ async function worldBank(indicator, { country = 'CHN', from = 2018, to = 2024, t
   return Array.isArray(json) ? json[1] || [] : [];
 }
 
-// 行政区划地理边界：网络 API 优先，Worker 代理次之，本地 GeoJSON 兜底
-const REGION_GEO_URLS = {
-  100000: [
-    'https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json',
-    '/api/geo/100000',
-    '/geo/china-100000.json',
-  ],
-};
+// 行政区划地理边界：本地 GeoJSON 优先，Worker 代理次之，DataV 可选（Referer 403 常见）
+function regionGeoUrls(adcode) {
+  const key = String(adcode);
+  const origin = typeof window !== 'undefined' && window.location?.origin
+    ? window.location.origin
+    : '';
+  const local = origin ? `${origin}/geo/china-${key}.json` : `/geo/china-${key}.json`;
+  return [
+    local,
+    `/api/geo/${key}`,
+    `https://geo.datav.aliyun.com/areas_v3/bound/${key}_full.json`,
+  ];
+}
 
 async function regionGeo(adcode = '100000') {
   const key = String(adcode);
-  const urls = REGION_GEO_URLS[key] || [
-    `https://geo.datav.aliyun.com/areas_v3/bound/${key}_full.json`,
-    `/api/geo/${key}`,
-    `/geo/china-${key}.json`,
-  ];
+  const urls = regionGeoUrls(key);
   let lastErr;
   for (const url of urls) {
     try {
-      return await getJSON(url, { ttlMs: 24 * 60 * 60 * 1000 });
+      const geo = await getJSON(url, { ttlMs: 24 * 60 * 60 * 1000, timeoutMs: 12000 });
+      if (!geo || geo.type !== 'FeatureCollection' || !Array.isArray(geo.features) || !geo.features.length) {
+        throw new Error('invalid GeoJSON');
+      }
+      return geo;
     } catch (e) {
       lastErr = e;
     }
