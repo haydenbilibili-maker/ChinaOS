@@ -220,18 +220,23 @@ export default function ThinkTankSection() {
               <Card title="研究领域"><DistBar data={distFocus.slice(0, 12)} onPick={(k) => setFocus(focus === k ? '' : k)} active={focus} /></Card>
               <Card title="省份"><DistBar data={distProvince.slice(0, 12)} color="#a78bfa" onPick={(k) => { const full = provinces.find((p) => short(p) === k); setProvince(province === full ? '' : full); }} active={short(province)} /></Card>
             </Grid>
-          ) : view === 'grid' ? (
-            <div className="grid gap-2 mb-4" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(220px,1fr))', maxHeight: 620, overflowY: 'auto' }}>
-              {filtered.map((r) => <TankCard key={r.id || r.name} r={r} on={detail === r} onClick={() => selectEntity(r)} dense />)}
-            </div>
           ) : (
-            <div className="grid gap-4" style={{ gridTemplateColumns: '1.25fr 1fr' }}>
-              <Card title={`${TYPE_SHORT[typeTab]} (${filtered.length}/${tabList.length})`}>
-                <div className="space-y-1.5" style={{ maxHeight: 560, overflowY: 'auto' }}>
-                  {filtered.map((r) => <TankCard key={r.id || r.name} r={r} on={detail === r} onClick={() => selectEntity(r)} />)}
-                </div>
+            <div className="talent-split talent-split--list-detail mb-4">
+              <Card title={`检索结果 (${filtered.length}/${tabList.length})`} asSection={false} className="talent-split__list-card">
+                {view === 'grid' ? (
+                  <div className="talent-split__scroll grid gap-2" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(150px,1fr))' }}>
+                    {filtered.map((r) => <TankCard key={r.id || r.name} r={r} on={detail === r} onClick={() => selectEntity(r)} dense />)}
+                    {!filtered.length && <div className="py-12 text-center mono text-sm col-span-full" style={{ color: 'var(--text-tertiary)' }}>// 无匹配</div>}
+                  </div>
+                ) : (
+                  <div className="talent-split__scroll space-y-1.5">
+                    {filtered.map((r) => <TankCard key={r.id || r.name} r={r} on={detail === r} onClick={() => selectEntity(r)} />)}
+                    {!filtered.length && <div className="py-12 text-center mono text-sm" style={{ color: 'var(--text-tertiary)' }}>// 无匹配</div>}
+                  </div>
+                )}
               </Card>
-              <Card title={detail ? `${detail.name} · 详情` : '选择一家'}>
+              <div className="talent-split__detail">
+              <Card title={detail ? `${detail.name} · 详情` : '选择一家'} asSection={false}>
                 {detail && (() => {
                   const d = applyTalentEnrichment(detail, { queue: 'thinktank' });
                   return (
@@ -273,6 +278,7 @@ export default function ThinkTankSection() {
                   );
                 })()}
               </Card>
+              </div>
             </div>
           )}
         </>

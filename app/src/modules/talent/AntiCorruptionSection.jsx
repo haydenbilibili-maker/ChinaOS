@@ -436,8 +436,7 @@ export default function AntiCorruptionSection() {
                   {filtered.map((r) => {
                     const on = detail === r;
                     return (
-                      <button key={acKey(r)} onClick={() => pickEntity(r)} className="w-full text-left px-3 py-2 rounded"
-                        style={{ background: on ? 'rgba(196,30,58,0.14)' : 'var(--bg-elevated)', border: `1px solid ${on ? 'var(--china-red)' : 'transparent'}`, cursor: 'pointer' }}>
+                      <button key={acKey(r)} onClick={() => pickEntity(r)} className={`os-list-item w-full text-left px-3 py-2 rounded ${on ? 'is-selected' : ''}`}>
                         <div className="flex items-center gap-1.5 flex-wrap">
                           <FigureAvatar {...figureAvatarProps(r)} size={28} ring={on} />
                           <span className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{r.name}</span>
@@ -456,7 +455,7 @@ export default function AntiCorruptionSection() {
               </Card>
 
               <div className="talent-split__detail">
-              <Card title={detail ? `${detail.name} · 案件详情` : '选择一条'}>
+              <Card title={detail ? `${detail.name} · 案件详情` : '选择一条'} asSection={false}>
                 {detail && (() => {
                   const d = applyTalentEnrichment(detail, { queue: 'anticorruption' });
                   return (

@@ -495,20 +495,23 @@ export default function DiplomaticCorpsSection() {
                 <Card title="职务分布"><DistBar data={distRole} color="#a78bfa" onPick={(k) => setRole(role === k ? '' : k)} active={role} /></Card>
               </Grid>
             </div>
-          ) : view === 'grid' ? (
-            <div className="grid gap-2 mb-4" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(220px,1fr))', maxHeight: 620, overflowY: 'auto' }}>
-              {filtered.map((r) => <EnvoyCard key={dcKey(r)} r={r} on={detail === r} onClick={() => selectEntity(r)} dense />)}
-              {!filtered.length && <div className="py-12 text-center mono text-sm col-span-full" style={{ color: 'var(--text-tertiary)' }}>// 无匹配</div>}
-            </div>
           ) : (
-            <div className="grid gap-4" style={{ gridTemplateColumns: '1.25fr 1fr' }}>
-              <Card title={`使节列表 (${filtered.length}/${tabList.length})`}>
-                <div className="space-y-1.5" style={{ maxHeight: 560, overflowY: 'auto' }}>
-                  {filtered.map((r) => <EnvoyCard key={dcKey(r)} r={r} on={detail === r} onClick={() => selectEntity(r)} />)}
-                  {!filtered.length && <div className="py-12 text-center mono text-sm" style={{ color: 'var(--text-tertiary)' }}>// 无匹配</div>}
-                </div>
+            <div className="talent-split talent-split--list-detail mb-4">
+              <Card title={`检索结果 (${filtered.length}/${tabList.length})`} asSection={false} className="talent-split__list-card">
+                {view === 'grid' ? (
+                  <div className="talent-split__scroll grid gap-2" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(150px,1fr))' }}>
+                    {filtered.map((r) => <EnvoyCard key={dcKey(r)} r={r} on={detail === r} onClick={() => selectEntity(r)} dense />)}
+                    {!filtered.length && <div className="py-12 text-center mono text-sm col-span-full" style={{ color: 'var(--text-tertiary)' }}>// 无匹配</div>}
+                  </div>
+                ) : (
+                  <div className="talent-split__scroll space-y-1.5">
+                    {filtered.map((r) => <EnvoyCard key={dcKey(r)} r={r} on={detail === r} onClick={() => selectEntity(r)} />)}
+                    {!filtered.length && <div className="py-12 text-center mono text-sm" style={{ color: 'var(--text-tertiary)' }}>// 无匹配</div>}
+                  </div>
+                )}
               </Card>
-              <Card title={detail ? `${detail.name} · 详情` : '选择使节'}>
+              <div className="talent-split__detail">
+              <Card title={detail ? `${detail.name} · 详情` : '选择使节'} asSection={false}>
                 {detail && (
                   <TalentDetailPanel
                     name={detail.name}
@@ -525,6 +528,7 @@ export default function DiplomaticCorpsSection() {
                   />
                 )}
               </Card>
+              </div>
             </div>
           )}
         </>

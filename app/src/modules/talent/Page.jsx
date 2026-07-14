@@ -712,14 +712,14 @@ export default function Page() {
                 )}
               </Card>
 
-              <div className="talent-split__detail space-y-4">
+              <div className="talent-split__detail">
               <FigureRadarChart
                 figure={detail ? applyTalentEnrichment(detail, { queue: 'figures' }) : null}
                 cohortFigures={filtered}
                 antiCorruptionNames={antiCorruptionNames}
                 showCohortAvg={false}
               />
-              <Card title={detail ? `${detail.name} · 履历详情` : '选择一位'}>
+              <Card title={detail ? `${detail.name} · 履历详情` : '选择一位'} asSection={false}>
                 {detail && (() => {
                   const d = applyTalentEnrichment(detail, { queue: 'figures' });
                   const age = ageOf(d);

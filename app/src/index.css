@@ -1523,13 +1523,16 @@ textarea:focus {
 @media (min-width: 768px) {
   .talent-split--list-detail {
     grid-template-columns: minmax(280px, 1.25fr) minmax(280px, 1fr);
+    /* Floor avoids “dropdown” collapse when detail pane is short */
+    min-height: min(560px, 72vh);
   }
 
   .talent-split--balanced {
     grid-template-columns: minmax(280px, 1fr) minmax(320px, 1fr);
+    min-height: min(480px, 68vh);
   }
 
-  /* Row height follows right detail column; left must not expand the grid track */
+  /* Row height follows right detail (or min-height floor); left must not expand track */
   .talent-split > * {
     min-height: 0;
   }
@@ -1546,10 +1549,15 @@ textarea:focus {
   .talent-split__list-card {
     overflow: hidden;
     align-self: stretch;
+    height: 100%;
   }
 
   .talent-split__list-card > :not(.talent-split__scroll) {
     flex-shrink: 0;
+  }
+
+  .talent-split__list-card .os-card-title {
+    margin-bottom: 0.75rem;
   }
 }
 
@@ -1557,12 +1565,23 @@ textarea:focus {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
+  overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
+  padding-right: 2px;
 }
 
 .talent-split__detail {
   min-width: 0;
   min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .talent-split__detail {
+    align-self: stretch;
+  }
 }
 
 .os-list-item {
