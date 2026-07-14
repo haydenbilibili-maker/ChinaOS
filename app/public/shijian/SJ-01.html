@@ -36,7 +36,14 @@ body{
 @media (min-width:1280px){.sj-01-wrap{max-width:min(1400px,100%)}}
 @media (min-width:1536px){.sj-01-wrap{max-width:min(1480px,100%)}}
 @media (min-width:1920px){.sj-01-wrap{max-width:min(1560px,100%)}}
-@media (min-width:2560px){.sj-01-wrap{max-width:min(1680px,100%)}}
+@media (min-width:2560px){
+  .sj-01-wrap{max-width:min(1680px,100%)}
+  .sj-01-rail{max-width:420px;margin-left:auto;width:100%}
+  .sj-01-mini-stage{max-width:100%}
+  .sj-01-mini-stage svg text{font-size:8.5px}
+  .sj-01-mini-stage .sj-pt-mini[data-id="huang"] text:first-of-type{transform:translate(6px,0)}
+  .sj-01-mini-stage .sj-pt-mini[data-id="california"] text{transform:translate(0,-2px)}
+}
 
 /* 宽屏双栏：主栏 ~58% + 粘性侧栏 ~38% */
 .sj-01-page-layout{display:flex;flex-direction:column;gap:var(--sj-space)}
@@ -248,6 +255,48 @@ body{
 .sj-01-lens-card .legend dt{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);letter-spacing:.06em}
 .sj-01-lens-card .legend dd{font-size:12px;color:var(--sj-paper-300);margin:0 0 0 0;line-height:1.55}
 
+/* 双镜模式 · 主镜 + 补镜 */
+.sj-01-lens-pair .pair-head{
+  font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;color:var(--sj-celadon);margin-bottom:10px;
+}
+.sj-01-lens-subcard{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:var(--sj-ink-900);padding:12px 14px;margin-bottom:10px;
+}
+.sj-01-lens-subcard:last-child{margin-bottom:0}
+.sj-01-lens-subcard.is-primary{border-color:color-mix(in srgb, var(--sj-vermil) 45%, var(--sj-line))}
+.sj-01-lens-subcard.is-secondary{border-color:color-mix(in srgb, var(--sj-celadon) 45%, var(--sj-line))}
+.sj-01-lens-subcard .role{
+  font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;margin-bottom:4px;
+}
+.sj-01-lens-subcard.is-primary .role{color:var(--sj-vermil)}
+.sj-01-lens-subcard.is-secondary .role{color:var(--sj-celadon)}
+.sj-01-lens-subcard h4{font-size:14px;letter-spacing:.08em;margin-bottom:4px}
+.sj-01-lens-subcard .coord{font-family:var(--sj-mono);font-size:9px;color:var(--sj-paper-300);margin-bottom:8px}
+.sj-01-lens-subcard .field-grid{display:grid;gap:6px}
+.sj-01-lens-subcard .field dt{
+  font-family:var(--sj-mono);font-size:9px;letter-spacing:.1em;color:var(--sj-ochre);margin-bottom:2px;
+}
+.sj-01-lens-subcard .field dd{font-size:12px;color:var(--sj-paper-300);line-height:1.55;margin:0}
+.sj-01-lens-subcard .field dd.risk{color:color-mix(in srgb, var(--sj-vermil) 75%, var(--sj-paper-300))}
+
+/* 史家评述 collapsible */
+.sj-01-comment{
+  margin-top:12px;padding-top:10px;border-top:1px dashed var(--sj-line);
+}
+.sj-01-comment summary{
+  cursor:pointer;font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;
+  color:var(--sj-vermil);list-style:none;user-select:none;
+}
+.sj-01-comment summary::-webkit-details-marker{display:none}
+.sj-01-comment summary::before{content:"▸ ";display:inline-block;transition:transform .15s ease}
+.sj-01-comment[open] summary::before{transform:rotate(90deg)}
+.sj-01-comment summary:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:2px;border-radius:2px}
+.sj-01-comment .sj-zhupi{
+  margin:8px 0 0;padding-left:10px;border-left:2px solid var(--sj-vermil);
+  font-size:13px;line-height:1.65;
+}
+
 /* 迷你方法光谱 */
 .sj-01-mini-stage{
   border:1px solid var(--sj-line);border-radius:var(--sj-radius);
@@ -381,7 +430,7 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
   </div>
   <div class="sj-01-meta">
     史学方法论工具箱 · 地基卷<br/>
-    <b>AS_OF 2026-07-14</b> · v0.1.2
+    <b>AS_OF 2026-07-14</b> · v0.1.3
   </div>
 </header>
 
@@ -651,6 +700,35 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
         <h4>该镜头会看漏什么</h4>
         <p id="lens-miss">—</p>
       </div>
+      <details class="sj-01-comment" id="lens-comment" hidden>
+        <summary>史家评述</summary>
+        <p class="sj-zhupi" id="lens-comment-text"></p>
+      </details>
+    </div>
+    <div class="sj-01-lens-pair" id="lens-pair" hidden>
+      <div class="pair-head">双镜模式 · 主镜 + 补镜</div>
+      <article class="sj-01-lens-subcard is-primary" id="pair-primary">
+        <div class="role">主镜</div>
+        <h4 id="pair-primary-name">—</h4>
+        <div class="coord" id="pair-primary-coord">—</div>
+        <dl class="field-grid">
+          <div class="field"><dt>核心方法</dt><dd id="pair-primary-method">—</dd></div>
+          <div class="field"><dt>代表命题</dt><dd id="pair-primary-thesis">—</dd></div>
+          <div class="field"><dt>适用场景</dt><dd id="pair-primary-scene">—</dd></div>
+          <div class="field"><dt>盲区风险</dt><dd id="pair-primary-blind" class="risk">—</dd></div>
+        </dl>
+      </article>
+      <article class="sj-01-lens-subcard is-secondary" id="pair-secondary">
+        <div class="role">补镜</div>
+        <h4 id="pair-secondary-name">—</h4>
+        <div class="coord" id="pair-secondary-coord">—</div>
+        <dl class="field-grid">
+          <div class="field"><dt>核心方法</dt><dd id="pair-secondary-method">—</dd></div>
+          <div class="field"><dt>代表命题</dt><dd id="pair-secondary-thesis">—</dd></div>
+          <div class="field"><dt>适用场景</dt><dd id="pair-secondary-scene">—</dd></div>
+          <div class="field"><dt>盲区风险</dt><dd id="pair-secondary-blind" class="risk">—</dd></div>
+        </dl>
+      </article>
     </div>
   </div>
 
@@ -709,7 +787,7 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
 </div><!-- /.sj-01-page-layout -->
 
 <footer class="sj-01-foot">
-  <span>ChinaOS · 史鉴 SJ-01 · v0.1.2 · AS_OF 2026-07-14</span>
+  <span>ChinaOS · 史鉴 SJ-01 · v0.1.3 · AS_OF 2026-07-14</span>
   <span><a href="./SJ-00.html">← 返回 SJ-00</a> · <a href="#sj-01-top">↑ 顶</a></span>
   <span><a href="./SJ-01-spectrum-preview.html">签名预览</a> · <a href="./fangfa-spectrum.svg">方法光谱 SVG</a></span>
 </footer>
@@ -876,16 +954,65 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
   const tbody = document.getElementById('matrix-body');
   const lensDefault = document.getElementById('lens-default');
   const lensSelected = document.getElementById('lens-selected');
+  const lensPairEl = document.getElementById('lens-pair');
+  const lensComment = document.getElementById('lens-comment');
   const mobileList = document.getElementById('mobile-list');
   const lensGrid = document.getElementById('lens-grid');
   const qButtons = Array.from(document.querySelectorAll('.sj-01-controls .sj-01-btn'));
 
+  const LENS_ALIASES = { kf: 'kongwei' };
+  const SPY_PAUSE_MS = 900;
+  const ABBREV_LEN = 72;
+
   let activeId = '';
   let activeQ = '';
   let lensPair = null;
+  let userPickUntil = 0;
+  const rowVisibility = new Map();
 
   function esc(s){
     return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function abbrev(s, max){
+    const t = String(s);
+    const lim = max || ABBREV_LEN;
+    if(t.length <= lim) return t;
+    const cut = t.slice(0, lim - 1);
+    const sp = cut.lastIndexOf(' ');
+    return (sp > lim * 0.55 ? cut.slice(0, sp) : cut).replace(/[，。；、]$/, '') + '…';
+  }
+
+  function resolveLensId(raw){
+    if(!raw) return '';
+    const key = String(raw).toLowerCase();
+    if(DATA[key]) return key;
+    const ali = LENS_ALIASES[key];
+    return ali && DATA[ali] ? ali : '';
+  }
+
+  function updateLensUrl(id){
+    try{
+      const u = new URL(location.href);
+      if(id) u.searchParams.set('lens', id);
+      else u.searchParams.delete('lens');
+      history.replaceState(null, '', u.pathname + u.search + u.hash);
+    }catch(e){}
+  }
+
+  function markUserPick(){
+    userPickUntil = Date.now() + SPY_PAUSE_MS;
+  }
+
+  function fillSubcard(prefix, id){
+    const d = DATA[id];
+    if(!d) return;
+    document.getElementById('pair-' + prefix + '-name').textContent = d.name;
+    document.getElementById('pair-' + prefix + '-coord').textContent = d.coord;
+    document.getElementById('pair-' + prefix + '-method').textContent = abbrev(d.method);
+    document.getElementById('pair-' + prefix + '-thesis').textContent = abbrev(d.thesis);
+    document.getElementById('pair-' + prefix + '-scene').textContent = abbrev(d.scene);
+    document.getElementById('pair-' + prefix + '-blind').textContent = abbrev(d.blind);
   }
 
   // Build matrix
@@ -973,6 +1100,7 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
     if(!d) return;
     lensDefault.hidden = true;
     lensSelected.hidden = false;
+    lensPairEl.hidden = true;
     document.getElementById('lens-name').textContent = d.name;
     document.getElementById('lens-coord').textContent = d.coord;
     document.getElementById('lens-method').textContent = d.method;
@@ -980,15 +1108,30 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
     document.getElementById('lens-scene').textContent = d.scene;
     document.getElementById('lens-blind').textContent = d.blind;
     document.getElementById('lens-miss').textContent = d.miss;
+    document.getElementById('lens-comment-text').textContent = d.comment;
+    lensComment.hidden = false;
+    lensComment.open = false;
+  }
+
+  function showLensPairCard(L){
+    lensDefault.hidden = true;
+    lensSelected.hidden = true;
+    lensPairEl.hidden = false;
+    fillSubcard('primary', L.primary);
+    fillSubcard('secondary', L.secondary);
   }
 
   function resetLensCard(){
     lensDefault.hidden = false;
     lensSelected.hidden = true;
+    lensPairEl.hidden = true;
+    lensComment.hidden = true;
   }
 
   function pick(id, opts){
-    const scrollMatrix = !opts || opts.scrollMatrix !== false;
+    const o = opts || {};
+    const scrollMatrix = o.scrollMatrix !== false;
+    if(!o.fromSpy) markUserPick();
     activeId = id;
     activeQ = '';
     lensPair = null;
@@ -996,22 +1139,26 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
     syncQButtons();
     showLensCard(id);
     paintHighlights();
+    if(!o.skipUrl) updateLensUrl(id);
     const row = tbody.querySelector('tr[data-id="'+id+'"]');
     if(row && scrollMatrix) row.scrollIntoView({block:'nearest', behavior: motion()});
   }
 
   function applyLens(L){
+    markUserPick();
     activeId = '';
     lensPair = L;
     activeQ = L.id;
     Array.from(lensGrid.children).forEach(el => el.classList.toggle('is-on', el.dataset.lens === L.id));
     syncQButtons();
-    showLensCard(L.primary);
+    showLensPairCard(L);
     paintHighlights();
+    updateLensUrl('');
   }
 
   function setQuestion(q){
     if(!q){
+      markUserPick();
       activeQ = '';
       activeId = '';
       lensPair = null;
@@ -1019,6 +1166,7 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
       syncQButtons();
       resetLensCard();
       paintHighlights();
+      updateLensUrl('');
       return;
     }
     const match = LENSES.find(L => L.id === q);
@@ -1043,6 +1191,35 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
     });
   });
   qButtons.forEach(b => b.addEventListener('click', () => setQuestion(b.dataset.q || '')));
+
+  if(typeof IntersectionObserver !== 'undefined'){
+    const spyObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => rowVisibility.set(e.target, e.isIntersecting ? e.intersectionRatio : 0));
+      if(Date.now() < userPickUntil || lensPair) return;
+      let best = null;
+      let bestRatio = 0;
+      rowVisibility.forEach((ratio, row) => {
+        if(ratio > bestRatio){
+          bestRatio = ratio;
+          best = row;
+        }
+      });
+      if(best && bestRatio > 0.15){
+        const id = best.dataset.id;
+        if(id && id !== activeId) pick(id, { scrollMatrix: false, fromSpy: true, skipUrl: true });
+      }
+    }, {
+      root: null,
+      rootMargin: '-38% 0px -38% 0px',
+      threshold: [0, 0.1, 0.25, 0.5, 0.75, 1]
+    });
+    rows.forEach(r => spyObserver.observe(r));
+  }
+
+  try{
+    const initial = resolveLensId(new URLSearchParams(location.search).get('lens'));
+    if(initial) pick(initial, { scrollMatrix: false });
+  }catch(e){}
 })();
 </script>
 </body>

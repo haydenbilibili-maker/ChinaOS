@@ -12,6 +12,10 @@ function withThemeQuery(htmlSrc, theme) {
   try {
     const u = new URL(htmlSrc, typeof window !== 'undefined' ? window.location.origin : 'http://local');
     u.searchParams.set('theme', t);
+    if (typeof window !== 'undefined') {
+      const lens = new URLSearchParams(window.location.search).get('lens');
+      if (lens) u.searchParams.set('lens', lens);
+    }
     return `${u.pathname}${u.search}${u.hash}`;
   } catch {
     const sep = htmlSrc.includes('?') ? '&' : '?';
