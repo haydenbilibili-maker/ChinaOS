@@ -202,7 +202,7 @@ export const MILESTONES = {
     { year: 2024, event: '嫦娥六号月背采样返回' },
   ],
   biotech: [
-    { year: 2020, event: '新冠灭活疫苗附条件上市' },
+    { year: 2020, event: '[史料] 灭活疫苗附条件上市' },
     { year: 2021, event: '二氧化碳人工合成淀粉发表' },
     { year: 2023, event: '国产 mRNA 疫苗获紧急使用' },
   ],

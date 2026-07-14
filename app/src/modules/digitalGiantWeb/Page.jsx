@@ -233,7 +233,7 @@ export default function Page() {
           <div className="text-xs font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>平台监管执法强度 · 六维雷达</div>
           <EChart option={platformRegRadar} style={{ height: 260 }} />
           <p className="text-[11px] mt-1" style={{ color: 'var(--text-tertiary)' }}>
-            健康码证明数字治理的动员极限；社会信用、算法备案与数据分类分级把平台纳入科层接口——效率与权利的平衡仍是未闭合议题。
+            疫情期数字通行凭证证明数字治理的动员极限；社会信用、算法备案与数据分类分级把平台纳入科层接口——效率与权利的平衡仍是未闭合议题。
           </p>
         </div>
       </Card>

@@ -174,7 +174,7 @@ export const FLAGSHIP_ENRICH = {
     provenance: '工程院院士公开名录与抗疫公开报道',
     tags: ['呼吸', '抗疫', '院士'],
     lastPublicActivity: '2025-2026 公共卫生与呼吸疾病公开学术活动',
-    bio: '呼吸病学专家、中国工程院院士；公开节点含SARS与新冠抗疫专家组公开活动。',
+    bio: '呼吸病学专家、中国工程院院士；公开节点含SARS与重大传染病抗疫专家组公开活动。',
   },
   'ce-n-zhong': {
     verifyTier: 'official', verifiedAt: '2026-06-11', confidence: 'high',
