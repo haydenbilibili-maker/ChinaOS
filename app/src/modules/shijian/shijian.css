@@ -9,6 +9,7 @@
 }
 
 .shijian-frame-wrap {
+  position: relative;
   padding: 0;
   overflow: hidden;
   background: #14110f;
@@ -18,12 +19,83 @@
   min-height: 480px;
 }
 
+.shijian-frame-wrap.is-loading .shijian-frame,
+.shijian-frame-wrap.is-error .shijian-frame {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.shijian-frame-status {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  text-align: center;
+  background: #14110f;
+}
+
+.shijian-frame-skeleton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: min(240px, 60%);
+}
+
+.shijian-frame-skeleton-line {
+  display: block;
+  height: 0.5rem;
+  width: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #2a221c 0%, #3a322b 42%, #4a4038 50%, #3a322b 58%, #2a221c 100%);
+  background-size: 200% 100%;
+  animation: shijian-skeleton-shimmer 1.5s ease infinite;
+}
+
+.shijian-frame-skeleton-line.short {
+  width: 55%;
+}
+
+.shijian-frame-status-text {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: #cdbe9f;
+}
+
+.shijian-frame-status-hint {
+  margin: 0;
+  font-size: 11px;
+  color: #8a7f6e;
+}
+
+.shijian-frame-status-hint a {
+  color: #5f7a6f;
+  text-decoration: none;
+  margin: 0 0.2em;
+}
+
+.shijian-frame-status-hint a:hover {
+  text-decoration: underline;
+}
+
+@keyframes shijian-skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
 .shijian-frame {
   display: block;
   width: 100%;
   height: 100%;
   border: 0;
   background: #14110f;
+  transition: opacity 0.2s ease;
 }
 
 .shijian-open-hint {
@@ -48,6 +120,29 @@
 
 :root[data-theme='light'] .shijian-frame {
   background: #f4f1ea;
+}
+
+:root[data-theme='light'] .shijian-frame-status {
+  background: #f4f1ea;
+}
+
+:root[data-theme='light'] .shijian-frame-status-text {
+  color: #5a5348;
+}
+
+:root[data-theme='light'] .shijian-frame-skeleton-line {
+  background: linear-gradient(90deg, #ebe6dc 0%, #d8d0c4 42%, #c8bfb0 50%, #d8d0c4 58%, #ebe6dc 100%);
+  background-size: 200% 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shijian-frame-skeleton-line {
+    animation: none;
+  }
+
+  .shijian-frame {
+    transition: none;
+  }
 }
 
 @media (min-width: 1536px) {

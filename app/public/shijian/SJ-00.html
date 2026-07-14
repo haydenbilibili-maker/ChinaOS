@@ -37,10 +37,30 @@ body{
   font-family:var(--sj-serif);
   line-height:1.75;
 }
-.sj-00-wrap{max-width:min(1080px,100%);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
-@media (min-width:1536px){.sj-00-wrap{max-width:min(1280px,100%)}}
-@media (min-width:1920px){.sj-00-wrap{max-width:min(1440px,100%)}}
-@media (min-width:2560px){.sj-00-wrap{max-width:min(1600px,100%)}}
+.sj-00-wrap{max-width:min(1180px,100%);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media (min-width:1536px){.sj-00-wrap{max-width:min(1360px,100%)}}
+@media (min-width:1920px){.sj-00-wrap{max-width:min(1520px,100%)}}
+@media (min-width:2560px){.sj-00-wrap{max-width:min(1680px,100%)}}
+
+/* 章节入场 · 尊重 prefers-reduced-motion */
+@keyframes sj-fade-in{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+.sj-reveal-stagger > header,
+.sj-reveal-stagger > .sj-zhupi,
+.sj-reveal-stagger > .sj-00-sec,
+.sj-reveal-stagger > footer{
+  animation:sj-fade-in .34s cubic-bezier(.22,.61,.36,1) both;
+}
+.sj-reveal-stagger > *:nth-child(1){animation-delay:.03s}
+.sj-reveal-stagger > *:nth-child(2){animation-delay:.06s}
+.sj-reveal-stagger > *:nth-child(3){animation-delay:.09s}
+.sj-reveal-stagger > *:nth-child(4){animation-delay:.12s}
+.sj-reveal-stagger > *:nth-child(5){animation-delay:.15s}
+.sj-reveal-stagger > *:nth-child(6){animation-delay:.18s}
+.sj-reveal-stagger > *:nth-child(7){animation-delay:.21s}
+.sj-reveal-stagger > *:nth-child(8){animation-delay:.24s}
 
 /* 页眉 */
 .sj-00-mast{
@@ -102,7 +122,7 @@ body{
 }
 .sj-00-stage svg{display:block;width:100%;height:auto;max-width:900px;margin:0 auto}
 .sj-seg,.sj-dyn-label,.sj-prosper,.sj-tip{cursor:pointer}
-.sj-seg{transition:opacity .22s ease, stroke-width .22s ease, filter .22s ease}
+.sj-seg{transition:opacity .22s ease, stroke-width .22s ease, filter .22s ease;transform:translateZ(0)}
 .sj-seg:focus-visible,.sj-dyn-label:focus-visible,.sj-prosper:focus-visible,.sj-tip:focus-visible{
   outline:2px solid var(--sj-ochre);outline-offset:3px;
 }
@@ -144,7 +164,7 @@ body{
 }
 .sj-00-card:hover,.sj-00-card:focus-visible{
   border-color:var(--sj-ochre);outline:none;
-  transform:translateY(-1px);
+  box-shadow:0 4px 18px rgba(0,0,0,.22);
 }
 .sj-00-card:focus-visible{box-shadow:0 0 0 2px rgba(184,137,74,.35)}
 .sj-00-card .row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px}
@@ -206,6 +226,7 @@ body{
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .sj-seg,.sj-00-card{transition:none}
+  .sj-reveal-stagger > *{animation:none}
 }
 @media (max-width:768px){
   .sj-00-mast{align-items:flex-start}
@@ -234,6 +255,15 @@ html[data-theme="light"] body{
   color:var(--sj-paper-100);
 }
 html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
+html[data-theme="light"] .sj-00-stage,
+html[data-theme="light"] .sj-00-xref-box{
+  box-shadow:0 1px 0 rgba(26,24,20,.05),0 12px 28px rgba(26,24,20,.08);
+}
+html[data-theme="light"] .sj-00-ph{background:rgba(235,230,220,.72)}
+html[data-theme="light"] .sj-00-card:hover,
+html[data-theme="light"] .sj-00-card:focus-visible{
+  box-shadow:0 4px 16px rgba(26,24,20,.1);
+}
 </style>
 <script>
 (function(){
@@ -246,6 +276,7 @@ html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
     if(q==='light'||q==='dark') apply(q);
   }catch(e){}
   window.addEventListener('message', function(e){
+    if(e.origin !== window.location.origin) return;
     var d=e&&e.data;
     if(!d||d.type!==MSG) return;
     apply(d.theme);
@@ -254,7 +285,7 @@ html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
 </script>
 </head>
 <body>
-<div class="sj-00-wrap" id="sj-00-top">
+<div class="sj-00-wrap sj-reveal-stagger" id="sj-00-top">
 
 <header class="sj-00-mast">
   <div>
@@ -506,7 +537,7 @@ html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
       <div class="row"><span class="vol">方法论卷</span><span class="sj-00-tag is-dev">开发中</span></div>
       <h3>怎么看</h3>
       <p>史家方法对比矩阵与 ChinaOS 自有「史鉴引擎·四步法」，奠定全系列操作系统。</p>
-      <div class="ids">SJ-01（已出） · SJ-02</div>
+      <div class="ids">SJ-01（已出） · <a href="./SJ-02.html" style="color:inherit">SJ-02（已出）</a></div>
     </a>
     <a class="sj-00-card" href="#vol-cycle" tabindex="0">
       <div class="row"><span class="vol">周期卷</span><span class="sj-00-tag is-done">已出 v0.1</span></div>
@@ -530,7 +561,7 @@ html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
 
   <div class="sj-00-ph" id="vol-method">
     <h4>方法论卷</h4>
-    <p><a href="./SJ-01.html" style="color:var(--sj-celadon)">SJ-01 史家方法对比矩阵</a>（八家光谱 + 四栏矩阵 + 镜头指南）已交付 v0.1。SJ-02 史鉴引擎·四步法与史鉴台账模板待建。</p>
+    <p><a href="./SJ-01.html" style="color:var(--sj-celadon)">SJ-01 史家方法对比矩阵</a>（八家光谱 + 四栏矩阵 + 镜头指南）已交付 v0.1。<a href="./SJ-02.html" style="color:var(--sj-celadon)">SJ-02 史鉴引擎·四步法</a>（台账模板 + 操作规程）已交付 v0.1。</p>
   </div>
   <div class="sj-00-ph" id="vol-cycle">
     <h4>周期卷</h4>

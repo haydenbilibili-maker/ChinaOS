@@ -42,6 +42,26 @@ body{
 @media (min-width:1920px){.sj-03-wrap{max-width:min(1520px,100%)}}
 @media (min-width:2560px){.sj-03-wrap{max-width:min(1680px,100%)}}
 
+/* 章节入场 */
+@keyframes sj-fade-in{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+.sj-reveal-stagger > header,
+.sj-reveal-stagger > .sj-zhupi,
+.sj-reveal-stagger > .sj-03-sec,
+.sj-reveal-stagger > footer{
+  animation:sj-fade-in .34s cubic-bezier(.22,.61,.36,1) both;
+}
+.sj-reveal-stagger > *:nth-child(1){animation-delay:.03s}
+.sj-reveal-stagger > *:nth-child(2){animation-delay:.06s}
+.sj-reveal-stagger > *:nth-child(3){animation-delay:.09s}
+.sj-reveal-stagger > *:nth-child(4){animation-delay:.12s}
+.sj-reveal-stagger > *:nth-child(5){animation-delay:.15s}
+.sj-reveal-stagger > *:nth-child(6){animation-delay:.18s}
+.sj-reveal-stagger > *:nth-child(7){animation-delay:.21s}
+.sj-reveal-stagger > *:nth-child(8){animation-delay:.24s}
+
 .sj-03-mast{
   display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;
   padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px;
@@ -101,7 +121,7 @@ body{
   padding:8px 8px 4px;overflow:auto;
 }
 .sj-03-stage svg{display:block;width:100%;height:auto;max-width:800px;margin:0 auto}
-.sj-node{cursor:pointer;transition:opacity .2s ease, filter .2s ease}
+.sj-node{cursor:pointer;transition:opacity .2s ease, filter .2s ease;transform:translateZ(0)}
 .sj-node:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:4px}
 .sj-edge{transition:opacity .2s ease, stroke-width .2s ease, filter .2s ease}
 .sj-03-stage.is-picking .sj-node{opacity:.28}
@@ -116,10 +136,20 @@ body{
 .sj-03-layout{
   display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:14px;align-items:start;margin-top:14px;
 }
+@media (min-width:1536px){
+  .sj-03-layout{grid-template-columns:minmax(0,1fr) minmax(260px,340px);gap:18px}
+}
+@media (min-width:1920px){
+  .sj-03-layout{grid-template-columns:minmax(0,1fr) minmax(280px,380px);gap:20px}
+}
 .sj-03-aside{
   border:1px solid var(--sj-line);border-radius:var(--sj-radius);
   background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
   padding:14px 16px;position:sticky;top:12px;min-height:160px;
+  max-height:min(72vh,640px);overflow-y:auto;overscroll-behavior:contain;
+}
+@media (min-width:1536px){
+  .sj-03-aside{top:16px;max-height:min(78vh,720px)}
 }
 .sj-03-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
 .sj-03-aside h3{font-size:16px;letter-spacing:.1em;margin-bottom:8px}
@@ -178,16 +208,49 @@ body{
 .sj-03-table tbody tr.is-hot{background:color-mix(in srgb, var(--sj-vermil) 14%, transparent)}
 
 .sj-03-contract{
-  margin-top:14px;border:1px dashed var(--sj-line);border-radius:var(--sj-radius);
+  margin-top:14px;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
   background:var(--sj-ink-800);padding:14px 16px;
 }
 .sj-03-contract .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;color:var(--sj-ochre);margin-bottom:8px}
-.sj-03-contract pre{
-  font-family:var(--sj-mono);font-size:11.5px;line-height:1.7;
-  color:var(--sj-paper-300);white-space:pre-wrap;word-break:break-word;
+.sj-snap{margin-top:4px}
+.sj-snap-meta{
+  display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px;
 }
-.sj-03-contract pre .key{color:var(--sj-celadon)}
-.sj-03-contract pre .str{color:var(--sj-ochre)}
+.sj-snap-phase{
+  font-family:var(--sj-mono);font-size:11px;letter-spacing:.12em;
+  color:var(--sj-ochre);border:1px solid var(--sj-ochre);
+  padding:3px 10px;border-radius:var(--sj-radius);
+}
+.sj-snap-time{
+  font-family:var(--sj-mono);font-size:11px;letter-spacing:.04em;color:var(--sj-paper-300);
+}
+.sj-snap-repair{
+  margin-left:auto;font-family:var(--sj-mono);font-size:11px;letter-spacing:.1em;
+  color:var(--sj-celadon);border:1px solid var(--sj-line);
+  padding:3px 10px;border-radius:var(--sj-radius);background:var(--sj-ink-900);
+}
+.sj-snap-bars{list-style:none;display:flex;flex-direction:column;gap:8px;margin:0;padding:0}
+.sj-snap-row{
+  display:grid;grid-template-columns:6em 1fr 2.4em;gap:8px;align-items:center;
+}
+.sj-snap-lab{font-family:var(--sj-mono);font-size:10px;letter-spacing:.06em}
+.sj-snap-track{
+  height:7px;background:var(--sj-ink-900);border:1px solid var(--sj-line);
+  border-radius:2px;overflow:hidden;
+}
+.sj-snap-fill{
+  display:block;height:100%;border-radius:1px;width:0;
+  transition:width .35s ease;
+}
+.sj-snap-val{
+  font-family:var(--sj-mono);font-size:11px;text-align:right;color:var(--sj-paper-300);
+}
+.sj-snap-row.is-empty .sj-snap-track{border-style:dashed;opacity:.7}
+.sj-snap-row.is-empty .sj-snap-val{color:var(--sj-line)}
+.sj-snap-note{
+  margin:12px 0 0;font-size:13px;max-width:68ch;
+  color:var(--sj-vermil);padding-left:10px;border-left:2px solid var(--sj-vermil);
+}
 .sj-03-diag{
   display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px;
 }
@@ -222,7 +285,8 @@ body{
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .sj-node,.sj-edge,.sj-03-force,.sj-03-btn{transition:none}
+  .sj-node,.sj-edge,.sj-03-force,.sj-03-btn,.sj-snap-fill{transition:none}
+  .sj-reveal-stagger > *{animation:none}
 }
 @media (max-width:900px){
   .sj-03-layout{grid-template-columns:1fr}
@@ -253,6 +317,14 @@ html[data-theme="light"] body{
   color:var(--sj-paper-100);
 }
 html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
+html[data-theme="light"] .sj-03-stage,
+html[data-theme="light"] .sj-03-table-wrap,
+html[data-theme="light"] .sj-03-aside,
+html[data-theme="light"] .sj-03-contract{
+  box-shadow:0 1px 0 rgba(26,24,20,.05),0 12px 28px rgba(26,24,20,.08);
+}
+html[data-theme="light"] .sj-snap-track{background:var(--sj-ink-900);border-color:var(--sj-line)}
+html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
 </style>
 <script>
 (function(){
@@ -265,6 +337,7 @@ html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
     if(q==='light'||q==='dark') apply(q);
   }catch(e){}
   window.addEventListener('message', function(e){
+    if(e.origin !== window.location.origin) return;
     var d=e&&e.data;
     if(!d||d.type!==MSG) return;
     apply(d.theme);
@@ -273,7 +346,7 @@ html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
 </script>
 </head>
 <body>
-<div class="sj-03-wrap" id="sj-03-top">
+<div class="sj-03-wrap sj-reveal-stagger" id="sj-03-top">
 
 <header class="sj-03-mast">
   <div>
@@ -619,8 +692,8 @@ html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
   </div>
 
   <div class="sj-03-contract" id="sj-shared-contract">
-    <div class="k">SJ-03 ↔ SJ-04 共享对象 · stub</div>
-    <pre id="contract-pre" aria-live="polite"></pre>
+    <div class="k">SJ-03 ↔ SJ-04 共享对象 · 诊断卡</div>
+    <div class="sj-snap" id="contract-pre" aria-live="polite"></div>
     <div class="sj-03-controls" style="margin-top:12px" role="group" aria-label="样例时点">
       <span class="lbl">样例</span>
       <button type="button" class="sj-03-btn is-on" data-sample="kaikai" id="btn-s-kai">开元→天宝</button>
@@ -890,21 +963,36 @@ html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
     tick();
   }
 
+  const FORCE_BARS = [
+    { label: '财政汲取', color: 'var(--sj-ochre)' },
+    { label: '精英循环', color: 'var(--sj-celadon)' },
+    { label: '合法性叙事', color: 'var(--sj-paper-100)' },
+    { label: '边疆军事', color: 'var(--sj-vermil)' },
+    { label: '生态基座', color: 'var(--sj-paper-300)' }
+  ];
+
   function renderContract(key){
     activeSample = key;
     const s = SAMPLES[key];
-    const labels = ['财政汲取','精英循环','合法性叙事','边疆军事','生态基座'];
-    const scores = s.五力评分.map(function(v, i){
-      return '    /* '+labels[i]+' */ ' + (v === null ? 'null' : v);
-    }).join(',\n');
-    document.getElementById('contract-pre').innerHTML =
-      '{\n' +
-      '  <span class="key">时点</span>: <span class="str">"'+s.时点+'"</span>,\n' +
-      '  <span class="key">相位</span>: <span class="str">"'+s.相位+'"</span>,\n' +
-      '  <span class="key">五力评分</span>: [\n'+scores+'\n  ],\n' +
-      '  <span class="key">修复力</span>: <span class="str">"'+s.修复力+'"</span>\n' +
-      '}\n' +
-      '<span style="color:var(--sj-paper-300)">// '+s.note+'</span>';
+    const el = document.getElementById('contract-pre');
+    const rows = s.五力评分.map(function(v, i){
+      const meta = FORCE_BARS[i];
+      const empty = (v === null || v === undefined);
+      const pct = empty ? 0 : Math.max(0, Math.min(100, v));
+      return '<li class="sj-snap-row'+(empty ? ' is-empty' : '')+'">' +
+        '<span class="sj-snap-lab" style="color:'+meta.color+'">'+meta.label+'</span>' +
+        '<span class="sj-snap-track" aria-hidden="true"><span class="sj-snap-fill" style="width:'+pct+'%;background:'+meta.color+'"></span></span>' +
+        '<span class="sj-snap-val">'+(empty ? '—' : String(v))+'</span>' +
+        '</li>';
+    }).join('');
+    el.innerHTML =
+      '<div class="sj-snap-meta">' +
+        '<span class="sj-snap-phase">'+s.相位+'</span>' +
+        '<span class="sj-snap-time">'+s.时点+'</span>' +
+        '<span class="sj-snap-repair">修复力 · '+s.修复力+'</span>' +
+      '</div>' +
+      '<ul class="sj-snap-bars" role="list" aria-label="五力评分（示意 0–100）">'+rows+'</ul>' +
+      '<p class="sj-snap-note sj-zhupi">朱批：'+s.note+'</p>';
 
     document.querySelectorAll('[data-sample]').forEach(b => {
       b.classList.toggle('is-on', b.dataset.sample === key);

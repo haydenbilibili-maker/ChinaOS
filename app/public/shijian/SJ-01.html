@@ -37,6 +37,26 @@ body{
 @media (min-width:1920px){.sj-01-wrap{max-width:min(1520px,100%)}}
 @media (min-width:2560px){.sj-01-wrap{max-width:min(1680px,100%)}}
 
+/* 章节入场 */
+@keyframes sj-fade-in{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+.sj-reveal-stagger > header,
+.sj-reveal-stagger > .sj-zhupi,
+.sj-reveal-stagger > .sj-01-sec,
+.sj-reveal-stagger > footer{
+  animation:sj-fade-in .34s cubic-bezier(.22,.61,.36,1) both;
+}
+.sj-reveal-stagger > *:nth-child(1){animation-delay:.03s}
+.sj-reveal-stagger > *:nth-child(2){animation-delay:.06s}
+.sj-reveal-stagger > *:nth-child(3){animation-delay:.09s}
+.sj-reveal-stagger > *:nth-child(4){animation-delay:.12s}
+.sj-reveal-stagger > *:nth-child(5){animation-delay:.15s}
+.sj-reveal-stagger > *:nth-child(6){animation-delay:.18s}
+.sj-reveal-stagger > *:nth-child(7){animation-delay:.21s}
+.sj-reveal-stagger > *:nth-child(8){animation-delay:.24s}
+
 /* 页眉 */
 .sj-01-mast{
   display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;
@@ -82,7 +102,7 @@ body{
   padding:8px 8px 4px;overflow:auto;
 }
 .sj-01-stage svg{display:block;width:100%;height:auto;max-width:880px;margin:0 auto}
-.sj-pt{cursor:pointer;transition:opacity .2s ease, filter .2s ease}
+.sj-pt{cursor:pointer;transition:opacity .2s ease, filter .2s ease;transform:translateZ(0)}
 .sj-pt:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:3px}
 .sj-pt .sj-dot{transition:r .18s ease, stroke-width .18s ease, fill .18s ease}
 .sj-pt .sj-halo{transition:opacity .18s ease, stroke .18s ease}
@@ -177,6 +197,10 @@ body{
   border:1px solid var(--sj-line);border-radius:var(--sj-radius);
   background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
   padding:14px 16px;position:sticky;top:12px;min-height:220px;
+  max-height:min(72vh,640px);overflow-y:auto;overscroll-behavior:contain;
+}
+@media (min-width:1536px){
+  .sj-01-aside{top:16px;max-height:min(78vh,720px)}
 }
 .sj-01-aside[hidden]{display:none}
 .sj-01-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
@@ -235,6 +259,7 @@ body{
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .sj-pt,.sj-pt .sj-dot,.sj-01-table tbody tr,.sj-01-lens{transition:none}
+  .sj-reveal-stagger > *{animation:none}
 }
 @media (max-width:1100px){
   .sj-01-matrix-layout{grid-template-columns:1fr}
@@ -268,6 +293,13 @@ html[data-theme="light"] body{
   color:var(--sj-paper-100);
 }
 html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
+html[data-theme="light"] .sj-01-stage,
+html[data-theme="light"] .sj-01-table-wrap,
+html[data-theme="light"] .sj-01-aside{
+  box-shadow:0 1px 0 rgba(26,24,20,.05),0 12px 28px rgba(26,24,20,.08);
+}
+html[data-theme="light"] .sj-01-table th{background:var(--sj-ink-900)}
+html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj-vermil) 10%, var(--sj-ink-900))}
 </style>
 <script>
 (function(){
@@ -280,6 +312,7 @@ html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
     if(q==='light'||q==='dark') apply(q);
   }catch(e){}
   window.addEventListener('message', function(e){
+    if(e.origin !== window.location.origin) return;
     var d=e&&e.data;
     if(!d||d.type!==MSG) return;
     apply(d.theme);
@@ -288,7 +321,7 @@ html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
 </script>
 </head>
 <body>
-<div class="sj-01-wrap" id="sj-01-top">
+<div class="sj-01-wrap sj-reveal-stagger" id="sj-01-top">
 
 <header class="sj-01-mast">
   <div>
@@ -538,7 +571,7 @@ html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
     </article>
   </div>
   <p class="sj-01-note">接口声明：SJ-01 输出「推荐镜头组合」；SJ-02 接收后写入<strong>史鉴台账</strong>的「史家交锋」栏。案例卷（SJ-05+）开案前，默认过一遍本卷选型。</p>
-  <p class="sj-zhupi">SJ-02 尚未交付。本页不跳转空链——返回 SJ-00 卷目等待骨架。</p>
+  <p class="sj-zhupi">四步法已在 <a href="./SJ-02.html" style="color:inherit;text-decoration:underline;text-underline-offset:3px">SJ-02</a> 交付台账模板——本卷镜头组合写入台账「史家交锋」栏后，即可开案。</p>
 </section>
 
 <footer class="sj-01-foot">

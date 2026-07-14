@@ -42,6 +42,26 @@ body{
 @media (min-width:1920px){.sj-04-wrap{max-width:min(1520px,100%)}}
 @media (min-width:2560px){.sj-04-wrap{max-width:min(1680px,100%)}}
 
+/* 章节入场 */
+@keyframes sj-fade-in{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+.sj-reveal-stagger > header,
+.sj-reveal-stagger > .sj-zhupi,
+.sj-reveal-stagger > .sj-04-sec,
+.sj-reveal-stagger > footer{
+  animation:sj-fade-in .34s cubic-bezier(.22,.61,.36,1) both;
+}
+.sj-reveal-stagger > *:nth-child(1){animation-delay:.03s}
+.sj-reveal-stagger > *:nth-child(2){animation-delay:.06s}
+.sj-reveal-stagger > *:nth-child(3){animation-delay:.09s}
+.sj-reveal-stagger > *:nth-child(4){animation-delay:.12s}
+.sj-reveal-stagger > *:nth-child(5){animation-delay:.15s}
+.sj-reveal-stagger > *:nth-child(6){animation-delay:.18s}
+.sj-reveal-stagger > *:nth-child(7){animation-delay:.21s}
+.sj-reveal-stagger > *:nth-child(8){animation-delay:.24s}
+
 .sj-04-mast{
   display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;
   padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px;
@@ -100,8 +120,8 @@ body{
   padding:8px 8px 4px;overflow:auto;
 }
 .sj-04-stage svg{display:block;width:100%;height:auto;max-width:720px;margin:0 auto}
-.sj-needle{transform-origin:360px 360px;transition:transform .35s ease}
-.sj-sector{cursor:pointer;transition:opacity .2s ease, filter .2s ease}
+.sj-needle{transform-origin:360px 360px;transition:transform .35s ease;will-change:transform}
+.sj-sector{cursor:pointer;transition:opacity .2s ease, filter .2s ease;transform:translateZ(0)}
 .sj-sector:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:2px}
 .sj-mark{cursor:pointer}
 .sj-mark:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:3px}
@@ -123,12 +143,46 @@ body{
   font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;color:var(--sj-ochre);
 }
 .sj-04-card p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.7;max-width:72ch}
-.sj-04-card pre{
-  margin-top:10px;font-family:var(--sj-mono);font-size:11.5px;line-height:1.65;
-  color:var(--sj-paper-300);white-space:pre-wrap;word-break:break-word;
+
+.sj-snap{margin-top:12px}
+.sj-snap-meta{
+  display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px;
 }
-.sj-04-card pre .key{color:var(--sj-celadon)}
-.sj-04-card pre .str{color:var(--sj-ochre)}
+.sj-snap-phase{
+  font-family:var(--sj-mono);font-size:11px;letter-spacing:.12em;
+  color:var(--sj-ochre);border:1px solid var(--sj-ochre);
+  padding:3px 10px;border-radius:var(--sj-radius);
+}
+.sj-snap-time{
+  font-family:var(--sj-mono);font-size:11px;letter-spacing:.04em;color:var(--sj-paper-300);
+}
+.sj-snap-repair{
+  margin-left:auto;font-family:var(--sj-mono);font-size:11px;letter-spacing:.1em;
+  color:var(--sj-celadon);border:1px solid var(--sj-line);
+  padding:3px 10px;border-radius:var(--sj-radius);background:var(--sj-ink-900);
+}
+.sj-snap-bars{list-style:none;display:flex;flex-direction:column;gap:8px;margin:0;padding:0}
+.sj-snap-row{
+  display:grid;grid-template-columns:6em 1fr 2.4em;gap:8px;align-items:center;
+}
+.sj-snap-lab{font-family:var(--sj-mono);font-size:10px;letter-spacing:.06em}
+.sj-snap-track{
+  height:7px;background:var(--sj-ink-900);border:1px solid var(--sj-line);
+  border-radius:2px;overflow:hidden;
+}
+.sj-snap-fill{
+  display:block;height:100%;border-radius:1px;width:0;
+  transition:width .35s ease;
+}
+.sj-snap-val{
+  font-family:var(--sj-mono);font-size:11px;text-align:right;color:var(--sj-paper-300);
+}
+.sj-snap-row.is-empty .sj-snap-track{border-style:dashed;opacity:.7}
+.sj-snap-row.is-empty .sj-snap-val{color:var(--sj-line)}
+.sj-snap-note{
+  margin:12px 0 0;font-size:13px;max-width:68ch;
+  color:var(--sj-vermil);padding-left:10px;border-left:2px solid var(--sj-vermil);
+}
 
 .sj-04-mobile{display:none;margin:0 0 12px}
 .sj-04-mobile select{
@@ -204,16 +258,11 @@ body{
 .sj-04-mirror p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
 
 .sj-04-contract{
-  margin-top:14px;border:1px dashed var(--sj-line);border-radius:var(--sj-radius);
+  margin-top:14px;border:1px solid var(--sj-line);border-radius:var(--sj-radius);
   background:var(--sj-ink-800);padding:14px 16px;
 }
 .sj-04-contract .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;color:var(--sj-ochre);margin-bottom:8px}
-.sj-04-contract pre{
-  font-family:var(--sj-mono);font-size:11.5px;line-height:1.7;
-  color:var(--sj-paper-300);white-space:pre-wrap;word-break:break-word;
-}
-.sj-04-contract pre .key{color:var(--sj-celadon)}
-.sj-04-contract pre .str{color:var(--sj-ochre)}
+.sj-04-contract .sj-snap{margin-top:4px}
 
 .sj-04-xref{
   display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;
@@ -238,7 +287,8 @@ body{
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .sj-needle,.sj-sector,.sj-04-btn,.sj-04-phase{transition:none}
+  .sj-needle,.sj-sector,.sj-04-btn,.sj-04-phase,.sj-snap-fill{transition:none}
+  .sj-reveal-stagger > *{animation:none}
 }
 @media (max-width:900px){
   .sj-04-diag,.sj-04-xref{grid-template-columns:1fr 1fr}
@@ -269,6 +319,14 @@ html[data-theme="light"] body{
   color:var(--sj-paper-100);
 }
 html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
+html[data-theme="light"] .sj-04-stage,
+html[data-theme="light"] .sj-04-card,
+html[data-theme="light"] .sj-04-table-wrap,
+html[data-theme="light"] .sj-04-contract{
+  box-shadow:0 1px 0 rgba(26,24,20,.05),0 12px 28px rgba(26,24,20,.08);
+}
+html[data-theme="light"] .sj-snap-track{background:var(--sj-ink-900);border-color:var(--sj-line)}
+html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
 </style>
 <script>
 (function(){
@@ -281,6 +339,7 @@ html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
     if(q==='light'||q==='dark') apply(q);
   }catch(e){}
   window.addEventListener('message', function(e){
+    if(e.origin !== window.location.origin) return;
     var d=e&&e.data;
     if(!d||d.type!==MSG) return;
     apply(d.theme);
@@ -289,7 +348,7 @@ html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
 </script>
 </head>
 <body>
-<div class="sj-04-wrap" id="sj-04-top">
+<div class="sj-04-wrap sj-reveal-stagger" id="sj-04-top">
 
 <header class="sj-04-mast">
   <div>
@@ -478,7 +537,7 @@ html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
       <span class="tag" id="card-tag">隐性拐点 · 赭金</span>
     </div>
     <p id="card-body">五力尚在峰值，但刚性支出与精英俘获已在积累。开元、康乾都是「盛极」与「转衰」叠合的同一时点。</p>
-    <pre id="card-contract"></pre>
+    <div class="sj-snap" id="card-contract" aria-live="polite"></div>
   </aside>
 </section>
 
@@ -641,11 +700,11 @@ html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
     <span class="num">06 · 共享数据契约</span>
     <h2 id="h-contract">SJ-03 ↔ SJ-04 同一对象</h2>
   </div>
-  <p class="sj-04-prose">下列 stub 与 SJ-03「相位与修复力接口」节字段一致。切换样例时，罗盘指针、中心诊断与契约预览同步更新；内存变量暴露为 <code>window.SJ_SHARED_SNAPSHOT()</code>，无浏览器存储。</p>
+  <p class="sj-04-prose">下列诊断卡与 SJ-03「相位与修复力接口」节字段一致（<code>{时点, 相位, 五力评分[5], 修复力}</code>）。切换样例时，罗盘指针、中心诊断与五力条形诊断同步更新；内存变量暴露为 <code>window.SJ_SHARED_SNAPSHOT()</code>，无浏览器存储。</p>
 
   <div class="sj-04-contract" id="sj-shared-contract">
-    <div class="k">SJ-03 ↔ SJ-04 共享对象 · stub</div>
-    <pre id="contract-pre" aria-live="polite"></pre>
+    <div class="k">SJ-03 ↔ SJ-04 共享对象 · 诊断卡</div>
+    <div class="sj-snap" id="contract-pre" aria-live="polite"></div>
     <div class="sj-04-controls" style="margin-top:12px" role="group" aria-label="契约样例">
       <span class="lbl">样例</span>
       <button type="button" class="sj-04-btn is-on" data-sample="kaikai">开元→天宝</button>
@@ -818,18 +877,34 @@ html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
   let activeSample = 'kaikai';
   let dragging = false;
 
-  function formatContract(s){
-    const labels = ['财政汲取','精英循环','合法性叙事','边疆军事','生态基座'];
-    const scores = s.五力评分.map(function(v,i){
-      return '    /* '+labels[i]+' */ ' + (v === null ? 'null' : v);
-    }).join(',\n');
-    return '{\n' +
-      '  <span class="key">时点</span>: <span class="str">"'+s.时点+'"</span>,\n' +
-      '  <span class="key">相位</span>: <span class="str">"'+s.相位+'"</span>,\n' +
-      '  <span class="key">五力评分</span>: [\n'+scores+'\n  ],\n' +
-      '  <span class="key">修复力</span>: <span class="str">"'+s.修复力+'"</span>\n' +
-      '}\n' +
-      '<span style="color:var(--sj-paper-300)">// '+s.note+'</span>';
+  const FORCE_BARS = [
+    { label: '财政汲取', color: 'var(--sj-ochre)' },
+    { label: '精英循环', color: 'var(--sj-celadon)' },
+    { label: '合法性叙事', color: 'var(--sj-paper-100)' },
+    { label: '边疆军事', color: 'var(--sj-vermil)' },
+    { label: '生态基座', color: 'var(--sj-paper-300)' }
+  ];
+
+  function renderSnap(el, s){
+    if(!el) return;
+    const rows = s.五力评分.map(function(v, i){
+      const meta = FORCE_BARS[i];
+      const empty = (v === null || v === undefined);
+      const pct = empty ? 0 : Math.max(0, Math.min(100, v));
+      return '<li class="sj-snap-row'+(empty ? ' is-empty' : '')+'">' +
+        '<span class="sj-snap-lab" style="color:'+meta.color+'">'+meta.label+'</span>' +
+        '<span class="sj-snap-track" aria-hidden="true"><span class="sj-snap-fill" style="width:'+pct+'%;background:'+meta.color+'"></span></span>' +
+        '<span class="sj-snap-val">'+(empty ? '—' : String(v))+'</span>' +
+        '</li>';
+    }).join('');
+    el.innerHTML =
+      '<div class="sj-snap-meta">' +
+        '<span class="sj-snap-phase">'+s.相位+'</span>' +
+        '<span class="sj-snap-time">'+s.时点+'</span>' +
+        '<span class="sj-snap-repair">修复力 · '+s.修复力+'</span>' +
+      '</div>' +
+      '<ul class="sj-snap-bars" role="list" aria-label="五力评分（示意 0–100）">'+rows+'</ul>' +
+      '<p class="sj-snap-note sj-zhupi">朱批：'+s.note+'</p>';
   }
 
   function setNeedle(phase){
@@ -854,10 +929,11 @@ html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
     const display = s.相位;
     document.getElementById('card-name').textContent = (s.相位 === '未定') ? '当代锚点〔相位未定〕' : copy.name;
     document.getElementById('card-tag').textContent = (s.相位 === '未定') ? '占位 · 对接 GY-01' : copy.tag;
-    document.getElementById('card-body').textContent = s.note + (s.相位 === '未定' ? '' : (' ' + copy.body));
-    const html = formatContract(s);
-    document.getElementById('card-contract').innerHTML = html;
-    document.getElementById('contract-pre').innerHTML = html;
+    document.getElementById('card-body').textContent = (s.相位 === '未定')
+      ? '指针暂停作占位；正式相位判定对接 GY-01 / 2026–2036。'
+      : copy.body;
+    renderSnap(document.getElementById('card-contract'), s);
+    renderSnap(document.getElementById('contract-pre'), s);
 
     document.getElementById('diag-repair').textContent = s.修复力;
     document.getElementById('diag-phase').textContent = '当前 · ' + display;

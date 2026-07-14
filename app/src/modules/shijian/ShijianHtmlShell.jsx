@@ -34,11 +34,16 @@ export default function ShijianHtmlShell({
 }) {
   const iframeRef = useRef(null);
   const [theme, setTheme] = useState(() => getTheme());
+  const [frameState, setFrameState] = useState('loading');
 
   useEffect(() => subscribeTheme(setTheme), []);
 
   // 仅在换卷时重建 src；主题切换走 postMessage，避免整页重载回路
   const frameSrc = useMemo(() => withThemeQuery(htmlSrc, getTheme()), [htmlSrc]);
+
+  useEffect(() => {
+    setFrameState('loading');
+  }, [frameSrc]);
 
   useEffect(() => {
     const iframe = iframeRef.current;
@@ -55,20 +60,50 @@ export default function ShijianHtmlShell({
       }
     };
 
+    const onLoad = () => {
+      setFrameState('ready');
+      post();
+    };
+    const onError = () => setFrameState('error');
+
     post();
-    iframe.addEventListener('load', post);
-    return () => iframe.removeEventListener('load', post);
+    iframe.addEventListener('load', onLoad);
+    iframe.addEventListener('error', onError);
+    return () => {
+      iframe.removeEventListener('load', onLoad);
+      iframe.removeEventListener('error', onError);
+    };
   }, [theme, frameSrc]);
 
   return (
     <div className="shijian-page">
       <PageHeader badge={badge} title={title} subtitle={subtitle} />
-      <div className="shijian-frame-wrap os-card">
+      <div className={`shijian-frame-wrap os-card${frameState === 'loading' ? ' is-loading' : ''}${frameState === 'error' ? ' is-error' : ''}`}>
+        {frameState === 'loading' && (
+          <div className="shijian-frame-status" aria-live="polite" aria-busy="true">
+            <div className="shijian-frame-skeleton" aria-hidden="true">
+              <span className="shijian-frame-skeleton-line" />
+              <span className="shijian-frame-skeleton-line short" />
+            </div>
+            <p className="shijian-frame-status-text">载入卷页…</p>
+          </div>
+        )}
+        {frameState === 'error' && (
+          <div className="shijian-frame-status is-error-panel" role="alert">
+            <p className="shijian-frame-status-text">卷页载入失败</p>
+            <p className="shijian-frame-status-hint">
+              请
+              <a href={htmlSrc} target="_blank" rel="noreferrer">直接打开单页</a>
+              或刷新重试。
+            </p>
+          </div>
+        )}
         <iframe
           ref={iframeRef}
           className="shijian-frame"
           title={frameTitle}
           src={frameSrc}
+          hidden={frameState === 'error'}
         />
       </div>
       {hintLinks.length > 0 && (
