@@ -42,6 +42,11 @@ STALE_YEAR_RE = re.compile(r"\b(202[0-3])\b")
 
 META_AS_OF_OK = {BASELINE_STR, BASELINE_MONTH, "2026-06-11", "2026-06", "2026-07-13"}
 
+# Regex / filter definition lines and verbatim policy corpus are not stale UI copy.
+PANDEMIC_DEF_RE = re.compile(r"(?:PANDEMIC_RE|STALE_PANDEMIC_RE)\s*=")
+PLACEHOLDER_DEF_RE = re.compile(r"PLACEHOLDER_DATE_RE\s*=")
+POLICY_CORPUS_PART = "app/public/policy-corpus"
+
 
 def parse_date(s: str) -> date | None:
     s = (s or "").strip()
@@ -96,7 +101,13 @@ def audit_file(path: Path) -> dict:
                         "snippet": line.strip()[:120],
                     })
 
-        if PANDEMIC_RE.search(line) and "STALE_PANDEMIC" not in line and "疫情/封控" not in line:
+        if (
+            PANDEMIC_RE.search(line)
+            and "STALE_PANDEMIC" not in line
+            and "疫情/封控" not in line
+            and not PANDEMIC_DEF_RE.search(line)
+            and POLICY_CORPUS_PART not in rel
+        ):
             if path.name != "newsFeed.js" or "seed" in line.lower():
                 findings.append({
                     "kind": "pandemic_copy",
@@ -114,7 +125,7 @@ def audit_file(path: Path) -> dict:
                     "snippet": line.strip()[:120],
                 })
 
-        if PLACEHOLDER_DATE_RE.search(line):
+        if PLACEHOLDER_DATE_RE.search(line) and not PLACEHOLDER_DEF_RE.search(line):
             findings.append({
                 "kind": "placeholder_date",
                 "line": i,
@@ -125,6 +136,7 @@ def audit_file(path: Path) -> dict:
 
 
 def audit_news_feed() -> dict:
+    """Accept literal AS_OF_NEWS date or import alias: AS_OF_NEWS = AS_OF_BASELINE."""
     nf = ROOT / "app/src/modules/dashboard/newsFeed.js"
     if not nf.is_file():
         return {"error": "newsFeed.js missing"}
@@ -133,12 +145,19 @@ def audit_news_feed() -> dict:
     stale = [d for d in seeds if parse_date(d) and parse_date(d) < date(2024, 1, 1)]
     has_filter = "NEWS_MAX_AGE_DAYS" in text and "filterTimelyNews" in text
     has_pandemic = "STALE_PANDEMIC_RE" in text
+    literal_ok = f"AS_OF_NEWS = '{BASELINE_STR}'" in text or f'AS_OF_NEWS = "{BASELINE_STR}"' in text
+    alias_ok = (
+        "AS_OF_NEWS = AS_OF_BASELINE" in text
+        and "asOfBaseline" in text
+        and BASELINE_STR in (ROOT / "app/src/lib/config/asOfBaseline.js").read_text(encoding="utf-8")
+    )
+    as_of_status = BASELINE_STR if (literal_ok or alias_ok) else "mismatch"
     return {
         "seed_count": len(seeds),
         "stale_pre_2024": stale,
         "has_60_day_filter": has_filter,
         "has_pandemic_filter": has_pandemic,
-        "as_of_constant": BASELINE_STR if f"AS_OF_NEWS = '{BASELINE_STR}'" in text or f'AS_OF_NEWS = "{BASELINE_STR}"' in text else "mismatch",
+        "as_of_constant": as_of_status,
     }
 
 
