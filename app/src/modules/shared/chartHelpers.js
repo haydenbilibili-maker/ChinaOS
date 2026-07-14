@@ -101,7 +101,7 @@ export const CHART_TOOLTIP = {
   borderColor: C.tooltipBorder,
   borderWidth: 1,
   textStyle: { color: C.tooltipText, fontSize: 11 },
-  extraCssText: 'border-radius: 8px; box-shadow: 0 4px 16px -4px rgba(15,23,42,0.15);',
+  extraCssText: 'border-radius: 8px; padding: 8px 12px; line-height: 1.45; box-shadow: 0 4px 16px -4px rgba(15,23,42,0.15);',
 };
 
 /** 折线/散点高亮描边色 */

@@ -23,6 +23,25 @@ function animationDuration(baseMs) {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : baseMs;
 }
 
+function seriesHasData(series) {
+  if (!series) return false;
+  const list = Array.isArray(series) ? series : [series];
+  return list.some((s) => {
+    const data = s?.data;
+    if (Array.isArray(data)) return data.length > 0;
+    if (data && typeof data === 'object') return Object.keys(data).length > 0;
+    return false;
+  });
+}
+
+export function isChartOptionEmpty(option) {
+  if (!option) return true;
+  if (seriesHasData(option.series)) return false;
+  if (option.dataset?.source?.length) return false;
+  if (option.dataset?.length) return false;
+  return true;
+}
+
 // 注入统一基调，文本色随主题取自共享调色板；模块只需关心数据
 function withTheme(option, variant = 'default') {
   const preset = VARIANT_PRESETS[variant] || VARIANT_PRESETS.default;
@@ -48,15 +67,24 @@ function withTheme(option, variant = 'default') {
   return merged;
 }
 
-export default function EChart({ option, style, className, onReady, variant = 'default' }) {
+export default function EChart({
+  option,
+  style,
+  className,
+  onReady,
+  variant = 'default',
+  emptyTitle = '暂无图表数据',
+  emptyDescription,
+}) {
   const ref = useRef(null);
   const chartRef = useRef(null);
   const optionRef = useRef(option);
   const variantRef = useRef(variant);
   const preset = VARIANT_PRESETS[variant] || VARIANT_PRESETS.default;
+  const isEmpty = isChartOptionEmpty(option);
 
   useEffect(() => {
-    if (!ref.current) return;
+    if (!ref.current || isEmpty) return undefined;
     const chart = echarts.init(ref.current, null, { renderer: 'canvas' });
     chartRef.current = chart;
     if (onReady) onReady(chart);
@@ -81,20 +109,38 @@ export default function EChart({ option, style, className, onReady, variant = 'd
     };
     // 仅在挂载时初始化；option 更新走下面的 effect
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isEmpty]);
 
   useEffect(() => {
     optionRef.current = option;
     variantRef.current = variant;
+    if (isEmpty) {
+      chartRef.current?.dispose();
+      chartRef.current = null;
+      return;
+    }
     if (chartRef.current && option) {
       chartRef.current.setOption(withTheme(option, variant), true);
     }
-  }, [option, variant]);
+  }, [option, variant, isEmpty]);
+
+  if (isEmpty) {
+    return (
+      <div
+        className={`os-chart os-chart--${variant} os-chart--empty ${className || ''}`.trim()}
+        style={{ width: '100%', height: preset.height, ...style }}
+        role="status"
+      >
+        <span className="os-chart-empty__title">{emptyTitle}</span>
+        {emptyDescription ? <span className="os-chart-empty__desc">{emptyDescription}</span> : null}
+      </div>
+    );
+  }
 
   return (
     <div
       ref={ref}
-      className={`os-chart os-chart--${variant} ${className || ''}`.trim()}
+      className={`os-chart os-chart--${variant} os-chart-enter ${className || ''}`.trim()}
       style={{ width: '100%', height: preset.height, ...style }}
     />
   );

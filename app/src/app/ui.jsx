@@ -180,6 +180,34 @@ export function TabBar({
   const activeTab = activeIdx >= 0 ? normalized[activeIdx] : null;
   const indicatorColor = activeTab?.accent || accent;
 
+  const focusTab = (idx) => {
+    const id = normalized[idx]?.id;
+    if (id == null) return;
+    onChange(id);
+    tabRefs.current[idx]?.focus();
+  };
+
+  const onTabKeyDown = (e, idx) => {
+    const last = normalized.length - 1;
+    let next = idx;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      next = idx >= last ? 0 : idx + 1;
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      next = idx <= 0 ? last : idx - 1;
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      next = 0;
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      next = last;
+    } else {
+      return;
+    }
+    focusTab(next);
+  };
+
   useLayoutEffect(() => {
     if (!isPill) return;
     const el = tabRefs.current[activeIdx];
@@ -240,8 +268,10 @@ export function TabBar({
               type="button"
               role="tab"
               aria-selected={on}
+              tabIndex={on ? 0 : -1}
               ref={(node) => { tabRefs.current[idx] = node; }}
               onClick={() => onChange(id)}
+              onKeyDown={(e) => onTabKeyDown(e, idx)}
               className={`os-tab-item ${on ? 'is-active' : ''}`}
               style={activeStyle}
             >

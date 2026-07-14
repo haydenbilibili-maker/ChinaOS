@@ -230,14 +230,13 @@ export default function Shell() {
     setDrawerOpen(false);
   }, [loc.pathname]);
 
-  // 当前模块所在分组自动展开（看板分组模块常驻，无需写入）
+  // 智能侧栏：路由切换时仅保留当前分组展开，减少长列表干扰（一键展开可恢复全部分组）
   useEffect(() => {
     const mod = resolveModuleByPath(loc.pathname);
     if (!mod || mod.group === HOME_GROUP_ID) return;
     setExpandedGroups((prev) => {
-      if (prev.has(mod.group)) return prev;
-      const next = new Set(prev);
-      next.add(mod.group);
+      if (prev.size === 1 && prev.has(mod.group)) return prev;
+      const next = new Set([mod.group]);
       persistExpandedGroups(next);
       return next;
     });

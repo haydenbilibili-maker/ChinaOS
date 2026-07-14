@@ -923,11 +923,28 @@ textarea:focus {
 
 .os-tab-sticky {
   position: sticky;
+  top: 0;
   z-index: 20;
   padding: 0.5rem 0;
   margin-bottom: var(--space-section);
-  background: linear-gradient(180deg, var(--bg-page) 88%, transparent);
-  backdrop-filter: blur(10px);
+  margin-left: calc(-1 * var(--page-padding-x));
+  margin-right: calc(-1 * var(--page-padding-x));
+  padding-left: var(--page-padding-x);
+  padding-right: var(--page-padding-x);
+  background: linear-gradient(180deg, var(--bg-page) 72%, transparent);
+  backdrop-filter: blur(var(--glass-blur-sm));
+  -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.os-tab-sticky:has(.os-tab-item.is-active) {
+  border-bottom-color: var(--border-subtle);
+  box-shadow: 0 6px 16px -12px rgba(0, 0, 0, 0.35);
+}
+
+:root[data-theme='light'] .os-tab-sticky:has(.os-tab-item.is-active) {
+  box-shadow: 0 4px 12px -8px rgba(15, 23, 42, 0.1);
 }
 
 /* ── Grids · 模块内卡片栅格统一间距 ─────────────────────── */
@@ -1104,6 +1121,9 @@ textarea:focus {
   background: var(--chart-tooltip-bg) !important;
   border-color: var(--chart-tooltip-border) !important;
   color: var(--chart-tooltip-text) !important;
+  padding: 8px 12px !important;
+  line-height: 1.45 !important;
+  border-radius: 8px !important;
 }
 
 
@@ -1117,6 +1137,39 @@ textarea:focus {
 .os-chart:hover {
   border-color: var(--card-hover-border);
   box-shadow: var(--shadow-glow-cyan);
+}
+
+.os-chart-enter {
+  animation: os-fade-in-soft 0.32s var(--ease-ink) both;
+}
+
+.os-chart--empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  text-align: center;
+  padding: 1rem;
+  border: 1px dashed color-mix(in srgb, var(--celadon-border) 55%, var(--border-subtle));
+  background: color-mix(in srgb, var(--bg-inset) 65%, transparent);
+}
+
+.os-chart-empty__title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.os-chart-empty__desc {
+  font-size: var(--text-xs);
+  line-height: var(--leading-relaxed);
+  color: var(--text-tertiary);
+  max-width: 18rem;
+}
+
+:root[data-theme='light'] .os-chart--empty {
+  background: color-mix(in srgb, var(--bg-inset) 40%, var(--bg-elevated));
 }
 
 /* ── Motion ────────────────────────────────────────────── */
@@ -1402,6 +1455,7 @@ textarea:focus {
   .os-section-stagger > *,
   .os-reveal,
   .os-reveal-stagger > *,
+  .os-chart-enter,
   .c2os-avatar-shimmer,
   .os-skeleton,
   .os-ticker-track,
@@ -1674,6 +1728,20 @@ textarea:focus {
   padding-right: 2px;
   scrollbar-width: thin;
   scrollbar-color: color-mix(in srgb, var(--celadon) 35%, transparent) transparent;
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0,
+    #000 10px,
+    #000 calc(100% - 12px),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    transparent 0,
+    #000 10px,
+    #000 calc(100% - 12px),
+    transparent 100%
+  );
 }
 
 .talent-split__scroll::-webkit-scrollbar {
@@ -1706,6 +1774,14 @@ textarea:focus {
     border-color var(--transition-fast),
     box-shadow var(--transition-fast),
     transform var(--transition-fast);
+}
+
+@media (max-width: 768px) {
+  .os-list-item {
+    min-height: 2.75rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
 }
 
 .os-list-item:hover:not(.is-selected) {
