@@ -8,17 +8,17 @@ import { join } from 'path';
 
 const ROOT = join(import.meta.dirname, '..', 'app', 'public', 'shijian');
 
-const SHARED_CSS = `/* 宽屏双栏：主栏弹性 + 比例侧栏 */
+const SHARED_CSS = `/* 宽屏双栏：主栏 ~58% + 粘性侧栏 ~38% */
 .sj-page-layout{display:flex;flex-direction:column;gap:var(--sj-space)}
 @media (min-width:1280px){
   .sj-page-layout{
     display:grid;
-    grid-template-columns:minmax(0,1fr) clamp(300px,32%,440px);
+    grid-template-columns:minmax(0,58fr) minmax(280px,38fr);
     gap:clamp(16px,2vw,28px);
     align-items:start;
   }
 }
-.sj-main-col{min-width:0}
+.sj-main-col{min-width:0;width:100%}
 .sj-rail{
   display:flex;flex-direction:column;gap:12px;
   min-width:0;width:100%;
@@ -465,7 +465,8 @@ function fixWrapMaxWidth(html, prefix) {
 @media (min-width:1280px){.${prefix}-wrap{max-width:min(100%,1480px)}}
 @media (min-width:1536px){.${prefix}-wrap{max-width:min(100%,1600px)}}
 @media (min-width:1920px){.${prefix}-wrap{max-width:min(100%,1680px)}}
-@media (min-width:2560px){.${prefix}-wrap{max-width:min(100%,1680px)}}`;
+@media (min-width:2560px){.${prefix}-wrap{max-width:min(100%,1680px)}}
+`;
   return html.replace(
     new RegExp(`\\.${prefix}-wrap\\{max-width:min\\([^}]+\\}[^@]*(@media[^@]*)*`),
     block,
@@ -473,8 +474,38 @@ function fixWrapMaxWidth(html, prefix) {
 }
 
 function replaceSharedCss(html) {
-  if (!html.includes('/* 宽屏双栏')) return html;
-  return html.replace(/\/\* 宽屏双栏[\s\S]*?(?=@keyframes sj-fade-in)/, SHARED_CSS + '\n');
+  if (html.includes('/* 宽屏双栏')) {
+    return html.replace(
+      /\/\* 宽屏双栏[\s\S]*?(?=@keyframes sj-fade-in)/,
+      SHARED_CSS + '\n',
+    );
+  }
+  if (html.includes('.sj-page-layout{display:flex')) {
+    return html.replace(
+      /\.sj-page-layout\{display:flex[\s\S]*?\.sj-rail-phase-btn\.is-on\{[^}]+\}\s*/,
+      SHARED_CSS + '\n',
+    );
+  }
+  if (html.includes('class="sj-page-layout"')) {
+    return html.replace(/(@keyframes sj-fade-in)/, `\n${SHARED_CSS}\n$1`);
+  }
+  return html;
+}
+
+/** 签名视觉 stage：填满主栏宽度，不再锁死 720/800px */
+function fixStageSvgWidth(html) {
+  let out = html.replace(
+    /\.(sj-\d{2}-stage)\{([^}]*)\}/g,
+    (full, cls, body) => {
+      if (/width:100%/.test(body)) return full;
+      return `.${cls}{width:100%;max-width:100%;${body}}`;
+    },
+  );
+  out = out.replace(
+    /\.(sj-\d{2}-stage) svg\{display:block;width:100%;height:auto;max-width:\d+px;margin:0 auto\}/g,
+    '.$1 svg{display:block;width:100%;height:auto;max-width:100%;margin:0 auto}',
+  );
+  return out;
 }
 
 function replaceRail(html, rail) {
@@ -572,6 +603,7 @@ for (const vol of FILES) {
 
   html = fixWrapMaxWidth(html, prefix);
   html = replaceSharedCss(html);
+  html = fixStageSvgWidth(html);
 
   let rail = RAILS[vol];
   if (!rail && MAPPING[vol]) {
