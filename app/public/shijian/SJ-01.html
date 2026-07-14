@@ -33,9 +33,39 @@ body{
   line-height:1.75;
 }
 .sj-01-wrap{max-width:min(1180px,100%);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
-@media (min-width:1536px){.sj-01-wrap{max-width:min(1360px,100%)}}
-@media (min-width:1920px){.sj-01-wrap{max-width:min(1520px,100%)}}
+@media (min-width:1280px){.sj-01-wrap{max-width:min(1400px,100%)}}
+@media (min-width:1536px){.sj-01-wrap{max-width:min(1480px,100%)}}
+@media (min-width:1920px){.sj-01-wrap{max-width:min(1560px,100%)}}
 @media (min-width:2560px){.sj-01-wrap{max-width:min(1680px,100%)}}
+
+/* 宽屏双栏：主栏 ~58% + 粘性侧栏 ~38% */
+.sj-01-page-layout{display:flex;flex-direction:column;gap:var(--sj-space)}
+@media (min-width:1280px){
+  .sj-01-page-layout{
+    display:grid;
+    grid-template-columns:minmax(0,58fr) minmax(280px,38fr);
+    gap:clamp(16px,2vw,28px);
+    align-items:start;
+  }
+}
+.sj-01-main-col{min-width:0}
+.sj-01-rail{
+  display:flex;flex-direction:column;gap:12px;min-width:0;
+}
+@media (min-width:1280px){
+  .sj-01-rail{
+    position:sticky;top:1rem;
+    max-height:85vh;overflow-y:auto;overscroll-behavior:contain;
+  }
+}
+@media (max-width:1279px){
+  .sj-01-page-layout{display:flex;flex-direction:column}
+  .sj-01-main-col{display:contents}
+  #sec-intro{order:1}
+  .sj-01-rail{order:2;margin:8px 0 20px}
+  #sec-spectrum,#sec-matrix,#sec-lens,#sec-bridge{order:3}
+  .sj-01-mini-stage{display:none}
+}
 
 /* 章节入场 */
 @keyframes sj-fade-in{
@@ -132,18 +162,7 @@ body{
 .sj-01-btn:focus-visible{box-shadow:0 0 0 2px rgba(184,137,74,.35)}
 .sj-01-btn.is-on{border-color:var(--sj-vermil);color:var(--sj-vermil);background:color-mix(in srgb, var(--sj-vermil) 12%, var(--sj-ink-900))}
 
-/* 矩阵布局：表优先，朱批不得压扁四栏；首列生平可换行，禁止 nowrap 撑出 ~1ch 竖排假象 */
-.sj-01-matrix-layout{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(240px,300px);
-  gap:14px;align-items:start;
-}
-@media (min-width:1536px){
-  .sj-01-matrix-layout{grid-template-columns:minmax(0,1fr) minmax(260px,340px);gap:18px}
-}
-@media (min-width:1920px){
-  .sj-01-matrix-layout{grid-template-columns:minmax(0,1fr) minmax(280px,380px);gap:20px}
-}
+/* 矩阵：全宽表槽（朱批/当前镜头已迁至页级侧栏） */
 .sj-01-table-wrap{
   border:1px solid var(--sj-line);border-radius:var(--sj-radius);
   background:var(--sj-ink-800);overflow:auto;max-height:min(72vh,760px);
@@ -195,30 +214,59 @@ body{
   white-space:normal;overflow-wrap:anywhere;word-break:break-word;line-height:1.5;
 }
 
-/* 朱批栏 */
-.sj-01-aside{
+/* 当前镜头诊断卡 */
+.sj-01-lens-card{
   border:1px solid var(--sj-line);border-radius:var(--sj-radius);
   background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));
-  padding:14px 16px;position:sticky;top:12px;min-height:220px;
-  max-height:min(72vh,640px);overflow-y:auto;overscroll-behavior:contain;
+  padding:14px 16px;
 }
-@media (min-width:1536px){
-  .sj-01-aside{top:16px;max-height:min(78vh,720px)}
+.sj-01-lens-card .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-01-lens-card h3{font-size:16px;letter-spacing:.1em;margin-bottom:6px}
+.sj-01-lens-card .coord{font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);margin-bottom:10px}
+.sj-01-lens-card .intro{font-size:13.5px;color:var(--sj-paper-300);line-height:1.7}
+.sj-01-lens-card .field-grid{display:grid;gap:10px;margin-top:4px}
+.sj-01-lens-card .field dt{
+  font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;color:var(--sj-ochre);margin-bottom:3px;
 }
-.sj-01-aside[hidden]{display:none}
-.sj-01-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
-.sj-01-aside h3{font-size:16px;letter-spacing:.1em;margin-bottom:8px}
-.sj-01-aside .coord{font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);margin-bottom:12px}
-.sj-01-aside .miss{
+.sj-01-lens-card .field dd{font-size:13px;color:var(--sj-paper-300);line-height:1.65;margin:0}
+.sj-01-lens-card .field dd.risk{color:color-mix(in srgb, var(--sj-vermil) 75%, var(--sj-paper-300))}
+.sj-01-lens-card .miss{
   margin-top:12px;padding-top:12px;border-top:1px dashed var(--sj-line);
 }
-.sj-01-aside .miss h4{
+.sj-01-lens-card .miss h4{
   font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;
   color:var(--sj-vermil);font-weight:500;margin-bottom:6px;
 }
-.sj-01-aside p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.7}
-.sj-01-aside p em{font-style:normal;color:var(--sj-paper-100)}
-.sj-01-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+.sj-01-lens-card .miss p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.7;margin:0}
+.sj-01-lens-card .legend{
+  margin-top:12px;padding-top:10px;border-top:1px dashed var(--sj-line);
+}
+.sj-01-lens-card .legend .leg-title{
+  font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;color:var(--sj-celadon);margin-bottom:8px;
+}
+.sj-01-lens-card .legend dl{display:grid;gap:6px}
+.sj-01-lens-card .legend dt{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);letter-spacing:.06em}
+.sj-01-lens-card .legend dd{font-size:12px;color:var(--sj-paper-300);margin:0 0 0 0;line-height:1.55}
+
+/* 迷你方法光谱 */
+.sj-01-mini-stage{
+  border:1px solid var(--sj-line);border-radius:var(--sj-radius);
+  background:var(--sj-ink-800);padding:6px;
+  max-width:400px;width:100%;margin:0 auto;
+}
+.sj-01-mini-stage svg{display:block;width:100%;height:auto;aspect-ratio:400/280;max-height:280px}
+.sj-01-mini-stage .sj-pt-mini{cursor:pointer;transition:opacity .2s ease, filter .2s ease;transform:translateZ(0)}
+.sj-01-mini-stage .sj-pt-mini:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:2px}
+.sj-01-mini-stage .sj-pt-mini .sj-dot{transition:r .18s ease, stroke-width .18s ease, fill .18s ease}
+.sj-01-mini-stage.is-picking .sj-pt-mini{opacity:.28}
+.sj-01-mini-stage.is-picking .sj-pt-mini.is-hot{
+  opacity:1;filter:drop-shadow(0 0 4px rgba(168,59,44,.4));
+}
+.sj-01-mini-stage.is-picking .sj-pt-mini.is-hot .sj-dot{fill:var(--sj-vermil);stroke-width:2.2}
+.sj-01-mini-lbl{
+  font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;color:var(--sj-paper-300);
+  text-align:center;margin-top:4px;
+}
 
 /* 镜头指南 */
 .sj-01-lens-grid{display:grid;gap:10px;margin-top:14px}
@@ -261,12 +309,8 @@ body{
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .sj-pt,.sj-pt .sj-dot,.sj-01-table tbody tr,.sj-01-lens{transition:none}
+  .sj-pt,.sj-pt .sj-dot,.sj-pt-mini,.sj-pt-mini .sj-dot,.sj-01-table tbody tr,.sj-01-lens{transition:none}
   .sj-reveal-stagger > *{animation:none}
-}
-@media (max-width:1100px){
-  .sj-01-matrix-layout{grid-template-columns:1fr}
-  .sj-01-aside{position:static}
 }
 @media (max-width:900px){
   .sj-01-bridge{grid-template-columns:1fr 1fr}
@@ -298,7 +342,8 @@ html[data-theme="light"] body{
 html[data-theme="light"] .sj-zhupi{color:var(--sj-vermil)}
 html[data-theme="light"] .sj-01-stage,
 html[data-theme="light"] .sj-01-table-wrap,
-html[data-theme="light"] .sj-01-aside{
+html[data-theme="light"] .sj-01-lens-card,
+html[data-theme="light"] .sj-01-mini-stage{
   box-shadow:0 1px 0 rgba(26,24,20,.05),0 12px 28px rgba(26,24,20,.08);
 }
 html[data-theme="light"] .sj-01-table th{background:var(--sj-ink-900)}
@@ -336,11 +381,14 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
   </div>
   <div class="sj-01-meta">
     史学方法论工具箱 · 地基卷<br/>
-    <b>AS_OF 2026-07-14</b> · v0.1.1
+    <b>AS_OF 2026-07-14</b> · v0.1.2
   </div>
 </header>
 
 <p class="sj-zhupi">朱批：本卷是方法光谱，不是排行榜。八家并置，只为帮你在开案之前先问——这道题该用哪副镜头，而那副镜头注定会看漏什么。</p>
+
+<div class="sj-01-page-layout">
+<div class="sj-01-main-col">
 
 <!-- 1 引言 -->
 <section class="sj-01-sec" id="sec-intro" aria-labelledby="h-intro">
@@ -361,7 +409,7 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
     <h2 id="h-spectrum">方法光谱</h2>
   </div>
   <p class="sj-01-prose">横轴是认识路径：左考据实证，右义理诠释。纵轴是时空尺度：下微观个案，上长时段系统。圈点只标取向，节点大小与颜色不暗示对错；虚线光晕越大，外推到帝国全景时的风险越高。</p>
-  <p class="sj-zhupi">点选光谱节点 → 高亮矩阵对应行，并在右侧朱批栏展开「该镜头会看漏什么」。移动端可先点下方名单。</p>
+  <p class="sj-zhupi">点选光谱节点 → 高亮矩阵对应行，侧栏「当前镜头」展开四栏字段与「该镜头会看漏什么」。移动端可先点下方名单。</p>
 
   <div class="sj-01-mobile-list" id="mobile-list" aria-label="史家快选"></div>
 
@@ -504,10 +552,9 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
     <span class="num">03 · 矩阵主体</span>
     <h2 id="h-matrix">八家四栏对比</h2>
   </div>
-  <p class="sj-01-prose">下表是本卷的硬交付：行是镜头，列是选型所需的四道题。点击任一行，朱批栏给出短评与「该镜头会看漏什么」——盲区栏写实，不回避各家硬伤。</p>
+  <p class="sj-01-prose">下表是本卷的硬交付：行是镜头，列是选型所需的四道题。点击任一行，侧栏「当前镜头」给出四栏字段与「该镜头会看漏什么」——盲区栏写实，不回避各家硬伤。</p>
 
-  <div class="sj-01-matrix-layout">
-    <div class="sj-01-table-wrap">
+  <div class="sj-01-table-wrap">
       <table class="sj-01-table" id="matrix">
         <colgroup>
           <col class="col-name"/>
@@ -527,20 +574,6 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
         </thead>
         <tbody id="matrix-body"></tbody>
       </table>
-    </div>
-    <aside class="sj-01-aside" id="aside" aria-live="polite">
-      <div class="sj-01-aside-empty" id="aside-empty">点击光谱节点或矩阵行，展开朱批评述。</div>
-      <div id="aside-body" hidden>
-        <div class="k">朱批 · 镜头评述</div>
-        <h3 id="aside-name">—</h3>
-        <div class="coord" id="aside-coord">—</div>
-        <p id="aside-comment">—</p>
-        <div class="miss">
-          <h4>该镜头会看漏什么</h4>
-          <p id="aside-miss">—</p>
-        </div>
-      </div>
-    </aside>
   </div>
 </section>
 
@@ -587,8 +620,96 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
   <p class="sj-zhupi">四步法已在 <a href="./SJ-02.html" style="color:inherit;text-decoration:underline;text-underline-offset:3px">SJ-02</a> 交付台账模板——本卷镜头组合写入台账「史家交锋」栏后，即可开案。</p>
 </section>
 
+</div><!-- /.sj-01-main-col -->
+
+<aside class="sj-01-rail" id="sj-rail" aria-label="当前镜头侧栏">
+  <div class="sj-01-lens-card" id="lens-card" aria-live="polite">
+    <div id="lens-default">
+      <div class="k">当前镜头</div>
+      <p class="intro">选镜头不是修辞偏好，而是<strong style="color:var(--sj-ochre);font-weight:600">认知契约</strong>：你默认用哪副镜头，就默认接受哪类盲区会伪装成「没有看见的事实」。点选下方迷你光谱、§02 主光谱或 §03 矩阵行，侧栏将展开该镜头的四栏字段。</p>
+      <div class="legend">
+        <div class="leg-title">矩阵四栏 · 字段说明</div>
+        <dl>
+          <div><dt>核心方法</dt><dd>该学派/史家的认识路径与操作手法。</dd></div>
+          <div><dt>代表命题</dt><dd>一句可检验或可辩论的核心主张。</dd></div>
+          <div><dt>适用场景</dt><dd>开案时优先启用的题型与史料类型。</dd></div>
+          <div><dt>盲区风险</dt><dd>单独使用时会系统性看漏什么——选型必读。</dd></div>
+        </dl>
+      </div>
+    </div>
+    <div id="lens-selected" hidden>
+      <div class="k">当前镜头</div>
+      <h3 id="lens-name">—</h3>
+      <div class="coord" id="lens-coord">—</div>
+      <dl class="field-grid">
+        <div class="field"><dt>核心方法</dt><dd id="lens-method">—</dd></div>
+        <div class="field"><dt>代表命题</dt><dd id="lens-thesis">—</dd></div>
+        <div class="field"><dt>适用场景</dt><dd id="lens-scene">—</dd></div>
+        <div class="field"><dt>盲区风险</dt><dd id="lens-blind" class="risk">—</dd></div>
+      </dl>
+      <div class="miss">
+        <h4>该镜头会看漏什么</h4>
+        <p id="lens-miss">—</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sj-01-mini-stage" id="mini-stage" aria-label="迷你方法光谱">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 640" role="img" aria-labelledby="mini-title mini-desc">
+      <title id="mini-title">迷你方法光谱</title>
+      <desc id="mini-desc">与 §02 同坐标系的方法光谱缩略图；点选节点同步主光谱与矩阵。</desc>
+      <rect width="880" height="640" fill="var(--sj-ink-900)"/>
+      <g stroke="var(--sj-line)" stroke-width="1" opacity="0.45">
+        <line x1="120" y1="540" x2="760" y2="540"/>
+        <line x1="120" y1="140" x2="120" y2="540"/>
+        <line x1="120" y1="340" x2="760" y2="340" stroke-dasharray="3 5"/>
+        <line x1="440" y1="140" x2="440" y2="540" stroke-dasharray="3 5"/>
+      </g>
+      <text x="120" y="568" fill="var(--sj-celadon)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">考据</text>
+      <text x="760" y="568" text-anchor="end" fill="var(--sj-ochre)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">义理</text>
+      <text x="108" y="148" text-anchor="end" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">系统</text>
+      <text x="108" y="536" text-anchor="end" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">微观</text>
+      <g class="sj-pt-mini" data-id="liao" tabindex="0" role="button" aria-label="李敖">
+        <circle class="sj-dot" cx="197" cy="412" r="7" fill="var(--sj-celadon)" stroke="var(--sj-celadon)" stroke-width="1.2"/>
+        <text x="197" y="430" text-anchor="middle" fill="var(--sj-paper-100)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">李敖</text>
+      </g>
+      <g class="sj-pt-mini" data-id="kongwei" tabindex="0" role="button" aria-label="孔飞力·魏斐德">
+        <circle class="sj-dot" cx="338" cy="484" r="7" fill="var(--sj-celadon)" stroke="var(--sj-celadon)" stroke-width="1.2"/>
+        <text x="338" y="502" text-anchor="middle" fill="var(--sj-paper-100)" font-size="9" font-family="Songti SC, Noto Serif SC, serif">孔魏</text>
+      </g>
+      <g class="sj-pt-mini" data-id="skinner" tabindex="0" role="button" aria-label="施坚雅">
+        <circle class="sj-dot" cx="376" cy="332" r="7" fill="var(--sj-celadon)" stroke="var(--sj-celadon)" stroke-width="1.2"/>
+        <text x="376" y="318" text-anchor="middle" fill="var(--sj-paper-100)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">施坚雅</text>
+      </g>
+      <g class="sj-pt-mini" data-id="california" tabindex="0" role="button" aria-label="加州学派">
+        <circle class="sj-dot" cx="299" cy="228" r="7" fill="var(--sj-celadon)" stroke="var(--sj-celadon)" stroke-width="1.2"/>
+        <text x="299" y="214" text-anchor="middle" fill="var(--sj-paper-100)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">加州</text>
+      </g>
+      <g class="sj-pt-mini" data-id="jin" tabindex="0" role="button" aria-label="金观涛">
+        <circle class="sj-dot" cx="414" cy="172" r="7" fill="var(--sj-celadon)" stroke="var(--sj-celadon)" stroke-width="1.2"/>
+        <text x="414" y="158" text-anchor="middle" fill="var(--sj-paper-100)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">金观涛</text>
+      </g>
+      <g class="sj-pt-mini" data-id="huang" tabindex="0" role="button" aria-label="黄仁宇">
+        <circle class="sj-dot" cx="472" cy="204" r="7" fill="var(--sj-celadon)" stroke="var(--sj-celadon)" stroke-width="1.2"/>
+        <text x="488" y="208" fill="var(--sj-paper-100)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">黄仁宇</text>
+      </g>
+      <g class="sj-pt-mini" data-id="fairbank" tabindex="0" role="button" aria-label="费正清">
+        <circle class="sj-dot" cx="555" cy="292" r="7" fill="var(--sj-celadon)" stroke="var(--sj-celadon)" stroke-width="1.2"/>
+        <text x="555" y="278" text-anchor="middle" fill="var(--sj-paper-100)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">费正清</text>
+      </g>
+      <g class="sj-pt-mini" data-id="qian" tabindex="0" role="button" aria-label="钱穆">
+        <circle class="sj-dot" cx="696" cy="244" r="7" fill="var(--sj-celadon)" stroke="var(--sj-celadon)" stroke-width="1.2"/>
+        <text x="696" y="230" text-anchor="middle" fill="var(--sj-paper-100)" font-size="10" font-family="Songti SC, Noto Serif SC, serif">钱穆</text>
+      </g>
+    </svg>
+    <p class="sj-01-mini-lbl">迷你光谱 · 与 §02 同坐标</p>
+  </div>
+</aside>
+
+</div><!-- /.sj-01-page-layout -->
+
 <footer class="sj-01-foot">
-  <span>ChinaOS · 史鉴 SJ-01 · v0.1.1 · AS_OF 2026-07-14</span>
+  <span>ChinaOS · 史鉴 SJ-01 · v0.1.2 · AS_OF 2026-07-14</span>
   <span><a href="./SJ-00.html">← 返回 SJ-00</a> · <a href="#sj-01-top">↑ 顶</a></span>
   <span><a href="./SJ-01-spectrum-preview.html">签名预览</a> · <a href="./fangfa-spectrum.svg">方法光谱 SVG</a></span>
 </footer>
@@ -749,10 +870,12 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
   ];
 
   const stage = document.getElementById('sj-stage');
+  const miniStage = document.getElementById('mini-stage');
   const pts = Array.from(stage.querySelectorAll('.sj-pt'));
+  const miniPts = Array.from(miniStage.querySelectorAll('.sj-pt-mini'));
   const tbody = document.getElementById('matrix-body');
-  const asideEmpty = document.getElementById('aside-empty');
-  const asideBody = document.getElementById('aside-body');
+  const lensDefault = document.getElementById('lens-default');
+  const lensSelected = document.getElementById('lens-selected');
   const mobileList = document.getElementById('mobile-list');
   const lensGrid = document.getElementById('lens-grid');
   const qButtons = Array.from(document.querySelectorAll('.sj-01-controls .sj-01-btn'));
@@ -825,41 +948,56 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
       const hot = new Set([lensPair.primary, lensPair.secondary]);
       stage.classList.add('is-picking');
       pts.forEach(p => p.classList.toggle('is-hot', hot.has(p.dataset.id)));
+      miniStage.classList.add('is-picking');
+      miniPts.forEach(p => p.classList.toggle('is-hot', hot.has(p.dataset.id)));
       rows.forEach(r => r.classList.toggle('is-hot', hot.has(r.dataset.id)));
       return;
     }
     if(activeId){
       stage.classList.add('is-picking');
       pts.forEach(p => p.classList.toggle('is-hot', p.dataset.id === activeId));
+      miniStage.classList.add('is-picking');
+      miniPts.forEach(p => p.classList.toggle('is-hot', p.dataset.id === activeId));
       rows.forEach(r => r.classList.toggle('is-hot', r.dataset.id === activeId));
       return;
     }
     stage.classList.remove('is-picking');
+    miniStage.classList.remove('is-picking');
     pts.forEach(p => p.classList.remove('is-hot'));
+    miniPts.forEach(p => p.classList.remove('is-hot'));
     rows.forEach(r => r.classList.remove('is-hot'));
   }
 
-  function showAside(id){
+  function showLensCard(id){
     const d = DATA[id];
     if(!d) return;
-    asideEmpty.hidden = true;
-    asideBody.hidden = false;
-    document.getElementById('aside-name').textContent = d.name;
-    document.getElementById('aside-coord').textContent = d.coord;
-    document.getElementById('aside-comment').textContent = d.comment;
-    document.getElementById('aside-miss').textContent = d.miss;
+    lensDefault.hidden = true;
+    lensSelected.hidden = false;
+    document.getElementById('lens-name').textContent = d.name;
+    document.getElementById('lens-coord').textContent = d.coord;
+    document.getElementById('lens-method').textContent = d.method;
+    document.getElementById('lens-thesis').textContent = d.thesis;
+    document.getElementById('lens-scene').textContent = d.scene;
+    document.getElementById('lens-blind').textContent = d.blind;
+    document.getElementById('lens-miss').textContent = d.miss;
   }
 
-  function pick(id){
+  function resetLensCard(){
+    lensDefault.hidden = false;
+    lensSelected.hidden = true;
+  }
+
+  function pick(id, opts){
+    const scrollMatrix = !opts || opts.scrollMatrix !== false;
     activeId = id;
     activeQ = '';
     lensPair = null;
     Array.from(lensGrid.children).forEach(el => el.classList.remove('is-on'));
     syncQButtons();
-    showAside(id);
+    showLensCard(id);
     paintHighlights();
     const row = tbody.querySelector('tr[data-id="'+id+'"]');
-    if(row) row.scrollIntoView({block:'nearest', behavior: motion()});
+    if(row && scrollMatrix) row.scrollIntoView({block:'nearest', behavior: motion()});
   }
 
   function applyLens(L){
@@ -868,7 +1006,7 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
     activeQ = L.id;
     Array.from(lensGrid.children).forEach(el => el.classList.toggle('is-on', el.dataset.lens === L.id));
     syncQButtons();
-    showAside(L.primary);
+    showLensCard(L.primary);
     paintHighlights();
   }
 
@@ -879,6 +1017,7 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
       lensPair = null;
       Array.from(lensGrid.children).forEach(el => el.classList.remove('is-on'));
       syncQButtons();
+      resetLensCard();
       paintHighlights();
       return;
     }
@@ -886,13 +1025,16 @@ html[data-theme="light"] .sj-01-btn.is-on{background:color-mix(in srgb, var(--sj
     if(match) applyLens(match);
   }
 
-  pts.forEach(p => {
-    const act = () => pick(p.dataset.id);
-    p.addEventListener('click', act);
-    p.addEventListener('keydown', e => {
+  function bindPt(el){
+    const act = () => pick(el.dataset.id);
+    el.addEventListener('click', act);
+    el.addEventListener('keydown', e => {
       if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); act(); }
     });
-  });
+  }
+
+  pts.forEach(bindPt);
+  miniPts.forEach(bindPt);
   rows.forEach(r => {
     const act = () => pick(r.dataset.id);
     r.addEventListener('click', act);
