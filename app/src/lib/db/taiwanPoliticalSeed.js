@@ -11,6 +11,7 @@ import { TAIWAN_POLITICAL_EXPANSION_2 } from './talentBulkExpansion2026_part2.js
 import { TAIWAN_POLITICAL_EXPANSION_3 } from './talentBulkExpansion2026_part3.js';
 import { TAIWAN_POLITICAL_EXPANSION_4 } from './talentBulkExpansion2026_part4.js';
 import { enrichTalentList } from '../talent/talentEnrich.js';
+import { isSyntheticNumberedTalentName } from './figureDedupe.js';
 import { FIGURE_SEED } from './figureSeed.js';
 import { DISSIDENT_2026 } from './figureDissident2026.js';
 
@@ -160,7 +161,7 @@ export function filterOtherQueueDuplicates(list) {
 
 /** @returns {{ rows: object[], dupeCount: number, rawCount: number }} */
 export function dedupeTaiwanPolitical(list) {
-  const raw = filterOtherQueueDuplicates(list);
+  const raw = filterOtherQueueDuplicates(list).filter((r) => !isSyntheticNumberedTalentName(r.name));
   const byName = new Map();
   for (const row of raw) {
     const cat = normalizeTaiwanCategory(row);

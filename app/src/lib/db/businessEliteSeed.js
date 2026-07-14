@@ -12,6 +12,7 @@ import { BUSINESS_ELITE_EXPANSION_4 } from './talentBulkExpansion2026_part4.js';
 import { BUSINESS_ELITE_EXPANSION_5 } from './talentBulkExpansion2026_part5.js';
 import { mergeAcademiciansIntoBusinessElite } from './academicianMerge.js';
 import { enrichTalentList } from '../talent/talentEnrich.js';
+import { isSyntheticNumberedTalentName } from './figureDedupe.js';
 import {
   BE_ROLE_CATS,
   BE_ROLE_LEGACY_ALIASES,
@@ -67,7 +68,7 @@ function pickBest(a, b) {
 
 /** @returns {{ rows: object[], dupeCount: number, rawCount: number }} */
 export function dedupeBusinessElite(list) {
-  const raw = list || [];
+  const raw = (list || []).filter((r) => !isSyntheticNumberedTalentName(r.name));
   const byKey = new Map();
   for (const row of raw) {
     const cat = normalizeBusinessEliteCategory(row);

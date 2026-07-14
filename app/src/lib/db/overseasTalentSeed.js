@@ -10,6 +10,7 @@ import { OVERSEAS_TALENT_EXPANSION } from './talentBulkExpansion2026.js';
 import { OVERSEAS_TALENT_EXPANSION_2 } from './talentBulkExpansion2026_part2.js';
 import { OVERSEAS_TALENT_EXPANSION_4 } from './talentBulkExpansion2026_part4.js';
 import { enrichTalentList } from '../talent/talentEnrich.js';
+import { isSyntheticNumberedTalentName } from './figureDedupe.js';
 import { CULTURAL_ELITE_2026 } from './figureCulturalElite2026.js';
 import { BUSINESS_ELITE_2026 } from './figureBusinessElite2026.js';
 
@@ -80,7 +81,7 @@ export function filterDomesticDuplicates(list) {
 
 /** @returns {{ rows: object[], dupeCount: number, rawCount: number }} */
 export function dedupeOverseasTalent(list) {
-  const raw = filterDomesticDuplicates(list);
+  const raw = filterDomesticDuplicates(list).filter((r) => !isSyntheticNumberedTalentName(r.name));
   const byKey = new Map();
   for (const row of raw) {
     const cat = normalizeOverseasCategory(row);

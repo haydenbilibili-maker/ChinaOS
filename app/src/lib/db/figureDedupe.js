@@ -1,5 +1,12 @@
 // 中国政要 · 唯一键与去重（IndexedDB 历史重复载入兜底）
 
+/** 编号合成假名（如 海外人才0001 / 异议人士007 / 学者0123），不得进入活跃种子 */
+const SYNTHETIC_NUMBERED_NAME_RE = /^(海外人才|异议人士|学者|企业家|台政要)\d{3,}$/;
+
+export function isSyntheticNumberedTalentName(name) {
+  return SYNTHETIC_NUMBERED_NAME_RE.test(String(name || '').trim());
+}
+
 /** 同一人同一任职的唯一键 */
 export function figureKey(f) {
   return `${f.name}#${f.fields?.birth || ''}#${f.province || ''}#${f.role || ''}#${f.org || f.fields?.title || ''}`;

@@ -12,6 +12,7 @@ import { CULTURAL_ELITE_EXPANSION_4 } from './talentBulkExpansion2026_part4.js';
 import { CULTURAL_ELITE_EXPANSION_5 } from './talentBulkExpansion2026_part5.js';
 import { mergeAcademiciansIntoCulturalElite } from './academicianMerge.js';
 import { enrichTalentList } from '../talent/talentEnrich.js';
+import { isSyntheticNumberedTalentName } from './figureDedupe.js';
 import { isSelfMediaPrimary } from './selfMediaPrimary.js';
 import {
   CE_SUB_CATS,
@@ -51,7 +52,7 @@ function pickBest(a, b) {
 
 /** @returns {{ rows: object[], dupeCount: number, rawCount: number }} */
 export function dedupeCulturalElite(list) {
-  const raw = list || [];
+  const raw = (list || []).filter((r) => !isSyntheticNumberedTalentName(r.name));
   const byKey = new Map();
   for (const row of raw) {
     const cat = normalizeCulturalEliteCategory(row);
