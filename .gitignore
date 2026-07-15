@@ -41,3 +41,16 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+
+# 编辑器/工具本地配置（勿入库）
+.cursor/settings.json
+.dash.json
+
+# Vite 临时时间戳文件（中断的 dev 运行产物）
+**/vite.config.*.timestamp-*.mjs
+
+# 一次性审计/密度快照（transient；tracked 的 *-after/*-pass/round* 需保留）
+reports/density-before.json
+reports/density-after.json
+reports/density-final.json
+reports/freshness-audit-before.json
