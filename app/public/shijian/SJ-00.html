@@ -311,6 +311,9 @@ body{
 .sj-00-case-card h3 a:hover{color:var(--sj-ochre)}
 .sj-00-case-card p{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6}
 .sj-00-case-card .type{font-family:var(--sj-mono);font-size:9px;color:var(--sj-paper-300);margin-top:8px;letter-spacing:.08em}
+.sj-00-case-card .t1-badge{font-family:var(--sj-mono);font-size:9px;color:var(--sj-vermil);border:1px solid var(--sj-vermil);padding:2px 6px;border-radius:4px;margin-left:6px}
+.sj-00-case-card[data-tier="t1plus"]{border-left:3px solid var(--sj-vermil)}
+.sj-00-case-card .yr-badge{font-family:var(--sj-mono);font-size:9px;color:var(--sj-ochre);border:1px solid var(--sj-line);padding:2px 6px;border-radius:4px}
 .sj-00-case-card[data-built="0"]{opacity:.55;border-style:dashed}
 .sj-00-case-card[data-built="0"] .sj-num{color:var(--sj-paper-300)}
 .sj-00-case-card[data-built="0"] .pending-badge{font-family:var(--sj-mono);font-size:9px;color:var(--sj-paper-300);border:1px solid var(--sj-line);padding:2px 6px;border-radius:4px;margin-left:6px}
@@ -757,15 +760,20 @@ html[data-theme="light"] .sj-00-card:focus-within{
     <button type="button" class="sj-00-btn" data-type="case">单案台账</button>
     <button type="button" class="sj-00-btn" data-type="synthesis">综合矩阵</button>
   </div>
+  <div class="sj-00-case-filter" role="group" aria-label="T1+ 精选">
+    <span class="lbl">Tier</span>
+    <button type="button" class="sj-00-btn is-on" id="sj-tier-all" data-tier="">全部</button>
+    <button type="button" class="sj-00-btn" data-tier="t1plus">T1+ 精选</button>
+  </div>
   <div class="sj-00-case-grid" id="sj-case-grid">
-    <article class="sj-00-case-card" data-dynasty="song" data-built="1" data-year="1069">
-      <div class="top"><span class="sj-num">SJ-05</span><span class="dyn">北宋</span><span class="yr-badge">1069</span></div>
+    <article class="sj-00-case-card" data-tier="t1plus" data-dynasty="song" data-built="1" data-year="1069">
+      <div class="top"><span class="sj-num">SJ-05</span><span class="t1-badge">T1+</span><span class="dyn">北宋</span><span class="yr-badge">1069</span></div>
       <h3><a href="/modules/shijian/sj-05">王安石变法</a></h3>
       <p>三冗财政危机下汲取力重建，触动精英循环而败，党争制度化。</p>
       <div class="type">变法 · 台账验证首案</div>
     </article>
-    <article class="sj-00-case-card" data-dynasty="tang" data-built="1" data-year="755">
-      <div class="top"><span class="sj-num">SJ-06</span><span class="dyn">唐</span><span class="yr-badge">755</span></div>
+    <article class="sj-00-case-card" data-tier="t1plus" data-dynasty="tang" data-built="1" data-year="755">
+      <div class="top"><span class="sj-num">SJ-06</span><span class="t1-badge">T1+</span><span class="dyn">唐</span><span class="yr-badge">755</span></div>
       <h3><a href="/modules/shijian/sj-06">开元 → 天宝之乱</a></h3>
       <p>节度使制强化边疆军事力，内轻外重，盛极而崩。</p>
       <div class="type">拐点 · 强化单力反降稳定</div>
@@ -776,20 +784,20 @@ html[data-theme="light"] .sj-00-card:focus-within{
       <p>五力崩解归因矩阵，反单因论，跨案同构解剖。</p>
       <div class="type">综合层 · 崩解归因 · 成员 SJ-12/10/06/49/15</div>
     </article>
-    <article class="sj-00-case-card" data-dynasty="wudai" data-built="1" data-year="907">
-      <div class="top"><span class="sj-num">SJ-08</span><span class="dyn">五代十国</span><span class="yr-badge">907</span></div>
+    <article class="sj-00-case-card" data-tier="t1plus" data-dynasty="wudai" data-built="1" data-year="907">
+      <div class="top"><span class="sj-num">SJ-08</span><span class="t1-badge">T1+</span><span class="dyn">五代十国</span><span class="yr-badge">907</span></div>
       <h3><a href="/modules/shijian/sj-08">分裂与重整</a></h3>
       <p>军事力畸大、合法性归零；宋以反向设计再统一。</p>
       <div class="type">分裂 · 过度矫正样本</div>
     </article>
-    <article class="sj-00-case-card" data-dynasty="ming" data-built="1" data-year="1581">
-      <div class="top"><span class="sj-num">SJ-09</span><span class="dyn">明</span><span class="yr-badge">1581</span></div>
+    <article class="sj-00-case-card" data-tier="t1plus" data-dynasty="ming" data-built="1" data-year="1581">
+      <div class="top"><span class="sj-num">SJ-09</span><span class="t1-badge">T1+</span><span class="dyn">明</span><span class="yr-badge">1581</span></div>
       <h3><a href="/modules/shijian/sj-09">张居正一条鞭法</a></h3>
       <p>税基重整 vs 士绅抵制，人亡政息。</p>
       <div class="type">变法 · 宋明对照</div>
     </article>
-    <article class="sj-00-case-card" data-dynasty="ming" data-built="1" data-year="1644">
-      <div class="top"><span class="sj-num">SJ-10</span><span class="dyn">明</span><span class="yr-badge">1644</span></div>
+    <article class="sj-00-case-card" data-tier="t1plus" data-dynasty="ming" data-built="1" data-year="1644">
+      <div class="top"><span class="sj-num">SJ-10</span><span class="t1-badge">T1+</span><span class="dyn">明</span><span class="yr-badge">1644</span></div>
       <h3><a href="/modules/shijian/sj-10">明末衰变 · 崇祯易代</a></h3>
       <p>小冰期 + 三饷，多力共振崩解。</p>
       <div class="type">崩解 · 单案深描</div>
@@ -860,8 +868,8 @@ html[data-theme="light"] .sj-00-card:focus-within{
       <p>按资产征调，税基重整，汲取力改革谱系第一环。</p>
       <div class="type">变法 · 税基重整</div>
     </article>
-    <article class="sj-00-case-card" data-dynasty="song" data-built="1" data-year="1127">
-      <div class="top"><span class="sj-num">SJ-41</span><span class="dyn">北宋</span><span class="yr-badge">1127</span></div>
+    <article class="sj-00-case-card" data-tier="t1plus" data-dynasty="song" data-built="1" data-year="1127">
+      <div class="top"><span class="sj-num">SJ-41</span><span class="t1-badge">T1+</span><span class="dyn">北宋</span><span class="yr-badge">1127</span></div>
       <h3><a href="/modules/shijian/sj-41">靖康之耻</a></h3>
       <p>联金灭辽外交误判，军事力不足，积弱总清算。</p>
       <div class="type">崩解 · 过度矫正后果</div>
@@ -1000,44 +1008,44 @@ html[data-theme="light"] .sj-00-card:focus-within{
       <div class="type">军事 · 西征</div>
     </article>
     
-    <article class="sj-00-case-card" data-dynasty="qin" data-built="1" data-year="-221">
-      <div class="top"><span class="sj-num">SJ-25</span><span class="dyn">秦</span><span class="yr-badge">前221</span></div>
+    <article class="sj-00-case-card" data-tier="t1plus" data-dynasty="qin" data-built="1" data-year="-221">
+      <div class="top"><span class="sj-num">SJ-25</span><span class="t1-badge">T1+</span><span class="dyn">秦</span><span class="yr-badge">前221</span></div>
       <h3><a href="/modules/shijian/sj-25">秦统一六国</a></h3>
       <p>前221 称皇帝，郡县度量衡统一，制度封装与征服同步。</p>
       <div class="type">上升 · 统一奠基</div>
     </article>
-    <article class="sj-00-case-card" data-dynasty="qin" data-built="1" data-year="-213">
-      <div class="top"><span class="sj-num">SJ-26</span><span class="dyn">秦</span><span class="yr-badge">前213</span></div>
+    <article class="sj-00-case-card" data-tier="t1plus" data-dynasty="qin" data-built="1" data-year="-213">
+      <div class="top"><span class="sj-num">SJ-26</span><span class="t1-badge">T1+</span><span class="dyn">秦</span><span class="yr-badge">前213</span></div>
       <h3><a href="/modules/shijian/sj-26">焚书坑儒</a></h3>
       <p>前213 焚书、前212 坑诸生，合法性叙事自我封缄。</p>
       <div class="type">合法性 · 思想封缄</div>
     </article>
-    <article class="sj-00-case-card" data-dynasty="han" data-built="1" data-year="166">
-      <div class="top"><span class="sj-num">SJ-29</span><span class="dyn">东汉</span><span class="yr-badge">166</span></div>
+    <article class="sj-00-case-card" data-tier="t1plus" data-dynasty="han" data-built="1" data-year="166">
+      <div class="top"><span class="sj-num">SJ-29</span><span class="t1-badge">T1+</span><span class="dyn">东汉</span><span class="yr-badge">166</span></div>
       <h3><a href="/modules/shijian/sj-29">东汉党锢</a></h3>
       <p>延熹九年诏捕党人，清流与宦官恶斗，精英循环堵塞。</p>
       <div class="type">精英 · 党锢</div>
     </article>
-    <article class="sj-00-case-card" data-dynasty="han" data-built="1" data-year="184">
-      <div class="top"><span class="sj-num">SJ-30</span><span class="dyn">东汉</span><span class="yr-badge">184</span></div>
+    <article class="sj-00-case-card" data-tier="t1plus" data-dynasty="han" data-built="1" data-year="184">
+      <div class="top"><span class="sj-num">SJ-30</span><span class="t1-badge">T1+</span><span class="dyn">东汉</span><span class="yr-badge">184</span></div>
       <h3><a href="/modules/shijian/sj-30">黄巾起义</a></h3>
       <p>太平道「苍天已死」起事，东汉崩解总引爆。</p>
       <div class="type">崩解 · 基座引燃</div>
     </article>
-    <article class="sj-00-case-card" data-dynasty="sui" data-built="1" data-year="618">
-      <div class="top"><span class="sj-num">SJ-37</span><span class="dyn">隋</span><span class="yr-badge">618</span></div>
+    <article class="sj-00-case-card" data-tier="t1plus" data-dynasty="sui" data-built="1" data-year="618">
+      <div class="top"><span class="sj-num">SJ-37</span><span class="t1-badge">T1+</span><span class="dyn">隋</span><span class="yr-badge">618</span></div>
       <h3><a href="/modules/shijian/sj-37">隋末崩解</a></h3>
       <p>江都兵变炀帝被杀，运河+三征高句丽双透支总清算。</p>
       <div class="type">崩解 · 多力共振</div>
     </article>
-    <article class="sj-00-case-card" data-dynasty="ming" data-built="1" data-year="1405">
-      <div class="top"><span class="sj-num">SJ-48</span><span class="dyn">明</span><span class="yr-badge">1405</span></div>
+    <article class="sj-00-case-card" data-tier="t1plus" data-dynasty="ming" data-built="1" data-year="1405">
+      <div class="top"><span class="sj-num">SJ-48</span><span class="t1-badge">T1+</span><span class="dyn">明</span><span class="yr-badge">1405</span></div>
       <h3><a href="/modules/shijian/sj-48">郑和下西洋</a></h3>
       <p>永乐三年首航，朝贡秩序与合法性象征投入达峰。</p>
       <div class="type">外交 · 朝贡</div>
     </article>
-    <article class="sj-00-case-card" data-dynasty="ming" data-built="1" data-year="1449">
-      <div class="top"><span class="sj-num">SJ-47</span><span class="dyn">明</span><span class="yr-badge">1449</span></div>
+    <article class="sj-00-case-card" data-tier="t1plus" data-dynasty="ming" data-built="1" data-year="1449">
+      <div class="top"><span class="sj-num">SJ-47</span><span class="t1-badge">T1+</span><span class="dyn">明</span><span class="yr-badge">1449</span></div>
       <h3><a href="/modules/shijian/sj-47">土木之变</a></h3>
       <p>正统十四年土木堡兵败，英宗被俘，精锐尽丧。</p>
       <div class="type">军事 · 决策失败</div>
@@ -1505,9 +1513,11 @@ html[data-theme="light"] .sj-00-card:focus-within{
   var cards = Array.from(grid.querySelectorAll('.sj-00-case-card'));
   var dynBtns = Array.from(document.querySelectorAll('.sj-00-case-filter[aria-label="朝代筛选"] .sj-00-btn'));
   var typeBtns = Array.from(document.querySelectorAll('.sj-00-case-filter[aria-label="类型筛选"] .sj-00-btn'));
+  var tierBtns = Array.from(document.querySelectorAll('.sj-00-case-filter[aria-label="T1+ 精选"] .sj-00-btn'));
   var visEl = document.getElementById('sj-stat-visible');
   var dyn = '';
   var type = '';
+  var tier = '';
   function apply(){
     dynBtns.forEach(function(b){
       var isAll = b.id === 'sj-case-all';
@@ -1517,12 +1527,17 @@ html[data-theme="light"] .sj-00-card:focus-within{
       var isAll = b.id === 'sj-type-all';
       b.classList.toggle('is-on', type ? b.dataset.type === type : isAll);
     });
+    tierBtns.forEach(function(b){
+      var isAll = b.id === 'sj-tier-all';
+      b.classList.toggle('is-on', tier ? b.dataset.tier === tier : isAll);
+    });
     var vis = 0;
     cards.forEach(function(c){
       var cardType = c.dataset.type || 'case';
-      var show = (!dyn || c.dataset.dynasty === dyn) && (!type || cardType === type);
+      var cardTier = c.dataset.tier || '';
+      var show = (!dyn || c.dataset.dynasty === dyn) && (!type || cardType === type) && (!tier || cardTier === tier);
       c.classList.toggle('is-hidden', !show);
-      c.classList.toggle('is-hot', !!(dyn || type) && show);
+      c.classList.toggle('is-hot', !!(dyn || type || tier) && show);
       if(show) vis++;
     });
     if(visEl) visEl.textContent = String(vis);
@@ -1532,6 +1547,9 @@ html[data-theme="light"] .sj-00-card:focus-within{
   });
   typeBtns.forEach(function(b){
     b.addEventListener('click', function(){ type = b.dataset.type || ''; apply(); });
+  });
+  tierBtns.forEach(function(b){
+    b.addEventListener('click', function(){ tier = b.dataset.tier || ''; apply(); });
   });
 })();
 
