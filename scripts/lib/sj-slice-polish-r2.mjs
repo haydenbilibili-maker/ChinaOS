@@ -8,6 +8,7 @@ import { ROUND5_CASES } from '../data/round5-cases.mjs';
 import { ROUND6_CASES } from '../data/round6-cases.mjs';
 import { ROUND4_CASES } from '../data/round4-cases.mjs';
 import { ROUND4_CHUNQIU } from '../data/round4-cases-chunqiu.mjs';
+import { ROUND8_SLICE_POLISH } from '../data/sj-round8-deepen.mjs';
 
 const CASE_BY_NUM = Object.fromEntries(
   [...ROUND5_CASES, ...ROUND4_CASES, ...ROUND4_CHUNQIU, ...ROUND6_CASES].map((c) => [c.num, c]),
@@ -218,6 +219,16 @@ const POLISH_META = {
     },
   },
 };
+
+// Round 8 · 切片精绘补债（合并 edgeLabels / nodeBoost）
+for (const [num, r8] of Object.entries(ROUND8_SLICE_POLISH)) {
+  if (!POLISH_META[num]) POLISH_META[num] = {};
+  const m = POLISH_META[num];
+  if (r8.edgeLabels) {
+    m.edgeLabels = (m.edgeLabels || '') + r8.edgeLabels;
+  }
+  m.nodeBoost = { ...(m.nodeBoost || {}), ...(r8.nodeBoost || {}) };
+}
 
 function buildPolishedConfig(num) {
   const c = CASE_BY_NUM[num];
