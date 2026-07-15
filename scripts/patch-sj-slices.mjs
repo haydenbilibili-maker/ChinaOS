@@ -31,12 +31,16 @@ const ROUND_SLICE_CONFIGS = buildRoundSliceConfigs([
   ...ROUND6_CASES,
 ]);
 
-/** Geometry spec (§1) wins over legacy premium configs; never re-apply vertical-spine clone. */
+/**
+ * Geometry spec (§1) wins over legacy premium / round-data / polish configs.
+ * GEOMETRY_SLICE_CONFIGS is spread LAST so architect-locked geometry (e.g. SJ-53/54)
+ * is authoritative and never reverts to a vertical-spine round-data clone.
+ */
 const ALL_SLICE_CONFIGS = {
   ...SLICE_CONFIGS,
-  ...GEOMETRY_SLICE_CONFIGS,
   ...ROUND_SLICE_CONFIGS,
   ...POLISH_SLICE_CONFIGS,
+  ...GEOMETRY_SLICE_CONFIGS,
 };
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -165,6 +169,7 @@ for (const num of TARGETS) {
   html = injectScript(html, config);
   html = updateRail(html, config);
   html = dedupeSliceRail(html);
+  html = html.replace(/(?:[ \t]*\n){3,}/g, '\n\n'); // collapse accumulating blank/whitespace-only lines — keep re-runs idempotent
   assertHtmlIntegrity(num, html);
   writeFileSync(path, html, 'utf8');
   const nodeCount = Object.keys(config.nodeData).length;

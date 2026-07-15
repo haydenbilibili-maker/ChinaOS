@@ -2,7 +2,7 @@
  * Case-specific structure-slice geometries — true source: docs/shijian/结构切片几何规格.md
  * Do NOT clone SJ-05 vertical-axis template across cases; read spec §0–§1 before regenerating.
  */
-import { buildSvg, nodeRect, nodeBase, nodeCircle } from './sj-premium-slice.mjs';
+import { buildSvg, nodeRect, nodeBase, nodeCircle, stripUnusedMarkers } from './sj-premium-slice.mjs';
 import { POLISH_SLICE_CONFIGS } from './sj-slice-polish-r2.mjs';
 
 export const GEOMETRY_SPEC_VERSION = '1.0';
@@ -629,4 +629,211 @@ ${nodeBase('base', '士绅 · 编户底盘', '科举—土地未动', '')}`,
   },
 
   ...POLISH_SLICE_CONFIGS,
+
+  // ── 架构师改定几何（规格 §1）· 必须覆盖 ROUND/POLISH 的 round-data 克隆，勿回退为竖轴 ──
+  '53': {
+    prefix: 'sj-53',
+    prose: '权力几何——<strong>北上统一（军事力定正统）</strong>：广州誓师（南端·起点）→ 国民革命军北上主轴（朱红粗箭）各个击破军阀（吴佩孚/孙传芳）→ 东北易帜（北端·形式统一）。国共合作为执行链汇入主轴；四一二为侧向断裂切断国共链；农民底盘土地未解＝形式统一下深层分裂。非竖轴纵列。',
+    railSummary: '广州誓师 → 北上各个击破军阀 → 1928 东北易帜形式统一；四一二国共破裂，土地未解＝深层分裂。',
+    legend: '色义：广州/军阀=赭金 · 国民革命军/四一二=朱红主轴与断裂 · 国共合作/东北易帜=青瓷执行链与形式统一 · 底盘=深墨。南→北纵向推进，非王安石竖轴克隆。',
+    nodeData: {
+      guangzhou: { name: '广州国民政府', tag: '正统争夺 · 誓师起点', body: '孙中山遗产 + 国共合作；1926.7.9 蒋介石就国民革命军总司令誓师北伐——南端起点。' },
+      beifajun: { name: '国民革命军 · 主轴', tag: '军事主轴 · 组织度', body: '政治工作 + 精锐部队，汀泗桥、贺胜桥等决战取胜；组织度胜过军阀松散联盟，军事力定正统的近代样本。' },
+      junfa: { name: '吴佩孚 · 孙传芳', tag: '军阀联盟 · 被击破', body: '军阀联盟松散、政治腐败；北伐军各个击破——旧秩序被军事力重排。' },
+      guogong: { name: '国共合作', tag: '精英双轨 · 执行链', body: '共产党员参与军政与群众动员，汇入北伐主轴；1927.4.12 后断裂。' },
+      siyi: { name: '四一二 · 1927', tag: '分裂拐点 · 侧向断裂', body: '蒋介石上海政变，国共合作破裂——重整链侧向断裂点，切断群众动员执行链。' },
+      yizhi: { name: '东北易帜', tag: '形式统一 · 北端', body: '1928.12 张学良宣布服从国民政府——北伐形式完成统一，为北上主轴终点。' },
+      base: { name: '农民 · 战乱底盘', tag: '基座未整合', body: '北伐未解决土地问题，农民承受战乱代价——形式统一下的深层分裂。' },
+    },
+    nodeEdge: {
+      guangzhou: ['spine1'], beifajun: ['spine1', 'spine2', 'jipuo', 'dongyuan'],
+      junfa: ['jipuo'], guogong: ['dongyuan', 'duanlie'], siyi: ['duanlie'],
+      yizhi: ['spine2'], base: [],
+    },
+    svg: () => stripUnusedMarkers(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">结构切片 · 北伐战争</title>
+  <desc id="sj-desc">权力几何：南→北统一推进——广州誓师（起点）→ 国民革命军北上主轴（朱红）各个击破军阀 → 东北易帜形式统一（北端）；国共合作为执行链，四一二侧向断裂，土地未解＝形式统一下深层分裂。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/>
+    </linearGradient>
+    <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+    <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+    <marker id="a-celadon" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+  </defs>
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,Noto Serif SC,serif" letter-spacing="0.1em">结构切片 · 北上统一</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,JetBrains Mono,monospace" letter-spacing="0.08em">SJ-53 · 北伐 · 军事力定正统</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,Noto Serif SC,serif">朱批：广州誓师 → 北上各个击破军阀 → 东北易帜形式统一；四一二国共破裂，土地未解＝形式统一下深层分裂</text>
+  <g fill="none" stroke-linecap="round">
+    <path class="sj-edge" data-edge="spine1" d="M410,428 L410,364" stroke="var(--sj-vermil)" stroke-width="3.4" marker-end="url(#a-vermil)"/>
+    <path class="sj-edge" data-edge="spine2" d="M410,300 L410,172" stroke="var(--sj-vermil)" stroke-width="3.4" marker-end="url(#a-vermil)"/>
+    <path class="sj-edge" data-edge="jipuo" d="M510,330 L546,330" stroke="var(--sj-vermil)" stroke-width="2.6" marker-end="url(#a-vermil)"/>
+    <path class="sj-edge" data-edge="dongyuan" d="M206,384 C260,360 285,348 310,342" stroke="var(--sj-celadon)" stroke-width="2.2" marker-end="url(#a-celadon)"/>
+    <path class="sj-edge" data-edge="duanlie" d="M560,404 C440,388 340,378 262,388" stroke="var(--sj-vermil)" stroke-width="2.2" stroke-dasharray="5 4" marker-end="url(#a-vermil)"/>
+  </g>
+  <g font-family="Songti SC,Noto Serif SC,serif" font-size="11">
+    <text x="424" y="400" fill="var(--sj-vermil)" font-weight="600">北上</text>
+    <text x="424" y="244" fill="var(--sj-vermil)" font-weight="600">定正统</text>
+    <text x="512" y="318" fill="var(--sj-vermil)">各个击破</text>
+    <text x="214" y="352" fill="var(--sj-celadon)">群众动员</text>
+    <text x="360" y="372" text-anchor="middle" fill="var(--sj-vermil)">1927 国共破裂</text>
+  </g>
+  <g class="sj-node" data-id="yizhi" tabindex="0" role="button" aria-label="东北易帜">
+    <rect x="310" y="120" width="200" height="48" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="410" y="144" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">东北易帜 · 形式统一</text>
+    <text x="410" y="162" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">1928.12 · 北伐终点</text>
+  </g>
+  <g class="sj-node" data-id="beifajun" tabindex="0" role="button" aria-label="国民革命军">
+    <rect x="310" y="300" width="200" height="64" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="3"/>
+    <text x="410" y="328" text-anchor="middle" fill="var(--sj-vermil)" font-size="15" font-weight="600" font-family="Songti SC,serif">国民革命军 · 主轴</text>
+    <text x="410" y="347" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">组织度 &gt; 军阀松散联盟</text>
+  </g>
+  <g class="sj-node" data-id="junfa" tabindex="0" role="button" aria-label="吴佩孚 · 孙传芳">
+    <rect x="546" y="302" width="210" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2" stroke-dasharray="5 4"/>
+    <text x="651" y="326" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">吴佩孚 · 孙传芳</text>
+    <text x="651" y="344" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">军阀联盟 · 各个击破</text>
+    <line x1="556" y1="308" x2="746" y2="352" stroke="var(--sj-vermil)" stroke-width="1.2"/>
+  </g>
+  <g class="sj-node" data-id="siyi" tabindex="0" role="button" aria-label="四一二">
+    <rect x="546" y="392" width="210" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.6"/>
+    <text x="651" y="416" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">四一二 · 1927</text>
+    <text x="651" y="434" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">国共破裂 · 重整链断</text>
+  </g>
+  <g class="sj-node" data-id="guogong" tabindex="0" role="button" aria-label="国共合作">
+    <rect x="56" y="360" width="150" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.2"/>
+    <text x="131" y="384" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">国共合作</text>
+    <text x="131" y="402" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">政治工作 · 工农</text>
+  </g>
+  <g class="sj-node" data-id="guangzhou" tabindex="0" role="button" aria-label="广州国民政府">
+    <rect x="310" y="428" width="200" height="52" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="410" y="452" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">广州国民政府</text>
+    <text x="410" y="470" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">1926.7 誓师北伐 · 起点</text>
+  </g>
+  <g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="农民 · 战乱底盘">
+    <rect x="56" y="506" width="708" height="64" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="1.4"/>
+    <text x="240" y="534" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC,serif">农民 · 战乱底盘</text>
+    <text x="240" y="552" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">土地未均 · 基座未整合</text>
+  </g>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,JetBrains Mono,monospace">viewBox 820×600 · 北上统一</text>
+</svg>`),
+  },
+
+  '54': {
+    prefix: 'sj-54',
+    prose: '权力几何——<strong>削禄与伏尸</strong>：楚悼王（背书·虚线）授权吴起（令尹·引擎）；削疏远公族之禄（青瓷精英）抽入强兵（朱红军事）＝汲取转向军事 → 助赵伐魏（短期兑现）。旧贵族反扑害吴起；悼王一卒即伏尸——射王尸者后皆夷三族，死穴与反噬同体。非商鞅阶梯、非竖轴。',
+    railSummary: '削疏远公族之禄养战士＝汲取转向军事；悼王一卒伏尸，射王尸者夷三族，死穴与反噬同体。',
+    legend: '色义：楚悼王=赭金虚线背书 · 吴起/助赵伐魏=青瓷 · 强兵/旧贵族反扑/伏尸=朱红 · 底盘=深墨。削禄 siphon 由青瓷→朱红体现汲取转向；死穴＝反噬同体，非竖轴克隆。',
+    nodeData: {
+      daowang: { name: '楚悼王', tag: '皇权背书 · 虚线', body: '素闻吴起贤，至则相楚——变法系于悼王个人支持；前381 悼王卒即引爆反噬。' },
+      wuqi: { name: '吴起 · 令尹', tag: '变法枢纽', body: '明法审令、捐不急之官、废公族疏远者，以抚养战斗之士（《史记·孙子吴起列传》）。' },
+      guizu: { name: '旧贵族 · 封君', tag: '精英反扑 · 死穴', body: '楚之贵戚尽欲害吴起——世袭封君禄被削，变法死穴在触动世卿；射王尸者后皆夷三族。' },
+      qiangbing: { name: '强兵抚战', tag: '汲取转向军事 · 签名', body: '节俸养士、废疏远公族禄以充军费——汲取链军事化，青瓷精英之禄抽入朱红军事。' },
+      zhanguo: { name: '助赵伐魏', tag: '军事兑现', body: '变法后楚助赵伐魏、南平百越——前381 短期军事成果，未能延续。' },
+      fanpu: { name: '悼王卒 · 伏尸', tag: '机制引爆 · 反噬同体', body: '悼王死，宗室攻吴起，吴起伏王尸——乱箭射中王尸，吴起遇害；射王尸者后皆夷三族（70余家），死穴与反噬同体。' },
+      base: { name: '楚国王族 · 封君底盘', tag: '基座 · 既得利益网络', body: '楚国贵族封君体系深厚——变法触动基座上的既得利益网络，反弹力最强。' },
+    },
+    nodeEdge: {
+      daowang: ['auth', 'trigger'], wuqi: ['auth', 'drive', 'rebound'],
+      guizu: ['rebound', 'fushi'], qiangbing: ['drive', 'siphon', 'win'],
+      fanpu: ['trigger', 'fushi'], zhanguo: ['win'], base: ['siphon'],
+    },
+    svg: () => stripUnusedMarkers(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">结构切片 · 吴起变法</title>
+  <desc id="sj-desc">权力几何：吴起削疏远公族之禄（青瓷精英）抽入强兵（朱红军事）＝汲取转向；旧贵族反扑为死穴，悼王一卒即伏尸——吴起以身拉贵族陪葬，射王尸者后皆夷三族，死穴与反噬同体。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/>
+    </linearGradient>
+    <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+    <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+    <marker id="a-celadon" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+  </defs>
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,Noto Serif SC,serif" letter-spacing="0.1em">结构切片 · 削禄与伏尸</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,JetBrains Mono,monospace" letter-spacing="0.08em">SJ-54 · 吴起变法 · 削封君禄→强兵·反噬同体</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,Noto Serif SC,serif">朱批：削疏远公族之禄以养战士＝汲取转向军事；悼王一卒，旧贵族乱箭害吴起——吴起伏王尸，射王尸者后皆夷三族，死穴与反噬同体</text>
+  <g fill="none" stroke-linecap="round">
+    <path class="sj-edge" data-edge="auth" d="M400,158 C330,180 300,210 292,236" stroke="var(--sj-ochre)" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#a-ochre)"/>
+    <path class="sj-edge" data-edge="drive" d="M218,300 L218,378" stroke="var(--sj-celadon)" stroke-width="2.4" marker-end="url(#a-celadon)"/>
+    <path class="sj-edge" data-edge="siphon" d="M360,486 C300,470 260,454 236,436" stroke="var(--sj-celadon)" stroke-width="2.8" marker-end="url(#a-vermil)"/>
+    <path class="sj-edge" data-edge="win" d="M316,407 L322,407" stroke="var(--sj-vermil)" stroke-width="2.4" marker-end="url(#a-vermil)"/>
+    <path class="sj-edge" data-edge="rebound" d="M504,268 L318,268" stroke="var(--sj-vermil)" stroke-width="2.6" marker-end="url(#a-vermil)"/>
+    <path class="sj-edge" data-edge="trigger" d="M494,150 C640,180 664,300 622,378" stroke="var(--sj-vermil)" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#a-vermil)"/>
+    <path class="sj-edge" data-edge="fushi" d="M560,378 L560,302" stroke="var(--sj-vermil)" stroke-width="2.8" marker-end="url(#a-vermil)"/>
+  </g>
+  <g font-family="Songti SC,Noto Serif SC,serif" font-size="11">
+    <text x="300" y="204" fill="var(--sj-ochre)">授权变法</text>
+    <text x="248" y="352" fill="var(--sj-celadon)">强兵</text>
+    <text x="250" y="474" fill="var(--sj-vermil)" font-weight="600">削封君禄→养战士</text>
+    <text x="404" y="266" text-anchor="middle" fill="var(--sj-vermil)">尽欲害吴起</text>
+    <text x="640" y="250" fill="var(--sj-vermil)">悼王卒·前381</text>
+    <text x="574" y="342" fill="var(--sj-vermil)" font-weight="600">伏尸·射者夷三族</text>
+  </g>
+  <g class="sj-node" data-id="daowang" tabindex="0" role="button" aria-label="楚悼王">
+    <rect x="310" y="112" width="200" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="1.6" stroke-dasharray="5 4"/>
+    <text x="410" y="138" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">楚悼王 · 授权</text>
+    <text x="410" y="154" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">前401–381 · 系于一人</text>
+  </g>
+  <g class="sj-node" data-id="wuqi" tabindex="0" role="button" aria-label="吴起 · 令尹">
+    <rect x="120" y="236" width="196" height="64" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.6"/>
+    <text x="218" y="264" text-anchor="middle" fill="var(--sj-celadon)" font-size="15" font-weight="600" font-family="Songti SC,serif">吴起 · 令尹</text>
+    <text x="218" y="283" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">明法审令 · 废疏远公族</text>
+  </g>
+  <g class="sj-node" data-id="guizu" tabindex="0" role="button" aria-label="旧贵族 · 封君">
+    <rect x="504" y="236" width="216" height="64" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.6"/>
+    <text x="612" y="264" text-anchor="middle" fill="var(--sj-celadon)" font-size="15" font-weight="600" font-family="Songti SC,serif">旧贵族 · 封君</text>
+    <text x="612" y="283" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">世袭禄被削 · 尽欲害吴起</text>
+  </g>
+  <g class="sj-node" data-id="qiangbing" tabindex="0" role="button" aria-label="强兵抚战">
+    <rect x="120" y="378" width="196" height="58" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="218" y="404" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">强兵抚战</text>
+    <text x="218" y="422" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">削禄养战士 · 汲取军事化</text>
+  </g>
+  <g class="sj-node" data-id="zhanguo" tabindex="0" role="button" aria-label="助赵伐魏">
+    <rect x="322" y="378" width="176" height="58" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.2"/>
+    <text x="410" y="404" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">助赵伐魏</text>
+    <text x="410" y="422" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">前381 · 短期兑现</text>
+  </g>
+  <g class="sj-node" data-id="fanpu" tabindex="0" role="button" aria-label="悼王卒 · 伏尸">
+    <rect x="504" y="378" width="216" height="58" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.6"/>
+    <text x="612" y="404" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">悼王卒 · 伏尸</text>
+    <text x="612" y="422" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">前381 · 死穴＝反噬</text>
+  </g>
+  <g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="楚国王族 · 封君底盘">
+    <rect x="56" y="486" width="708" height="74" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="1.4"/>
+    <text x="410" y="516" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC,serif">楚国王族 · 封君底盘</text>
+    <text x="410" y="536" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">公族世袭封地 · 变法触动的既得利益网络</text>
+  </g>
+  <text x="764" y="586" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,JetBrains Mono,monospace">viewBox 820×600 · 削禄·伏尸</text>
+</svg>`),
+  },
 };

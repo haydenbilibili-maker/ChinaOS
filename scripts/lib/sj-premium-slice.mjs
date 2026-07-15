@@ -71,8 +71,20 @@ export function sliceScript(nodeData, nodeEdge) {
 </script>`;
 }
 
+/**
+ * Remove `<marker id="X">…</marker>` defs whose `url(#X)` is never referenced elsewhere
+ * in the SVG. Keeps regeneration idempotent so re-running patch never re-adds the
+ * unused markers (a-paper 等) that the architect cleaned by hand (待办 §3b execution constraint).
+ */
+export function stripUnusedMarkers(svg) {
+  return svg.replace(/^\s*<marker id="([^"]+)"[^>]*>[\s\S]*?<\/marker>\n?/gm, (whole, id) => {
+    const refRe = new RegExp(`url\\(#${id}\\)`);
+    return refRe.test(svg) ? whole : '';
+  });
+}
+
 export function buildSvg({ title, desc, header, sub, zhupi, edges, edgeLabels, nodes, footer }) {
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
   <title id="sj-title">${title}</title>
   <desc id="sj-desc">${desc}</desc>
 ${DEFS}
@@ -87,6 +99,7 @@ ${SCROLL}
 ${nodes}
   <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,JetBrains Mono,monospace">${footer}</text>
 </svg>`;
+  return stripUnusedMarkers(svg);
 }
 
 export function buildF2Section(prefix, { prose, svg, legend, nodeData, nodeEdge, railSummary }) {
@@ -438,7 +451,7 @@ ${nodeBase('base', '厘金 · 关税底盘', '支撑军工 · 汲取近代化', 
       qingting: { name: '清廷 · 空壳', tag: '合法性归零', body: '帝制「天命」叙事破产，清廷中枢无法有效动员。宣统三年（1911）武昌起义后连锁响应。' },
       dufu: { name: '各省督抚', tag: '地方割据 · 观望', body: '地方精英在革命与保皇之间钟摆，军事—财政事实自治。' },
       geming: { name: '革命党 · 新军', tag: '武昌首义', body: '1911 年10 月武昌新军起义，革命叙事取代天命——军事力决定政治正统。' },
-      xinjun: { name: '铁路 · 外债', tag: '财政引爆', body: '铁路国有化与《辛丑条约》赔款叠加，财政枢纽越阈触发动员。' },
+      xinjun: { name: '铁路 · 外债', tag: '财政引爆', body: '1911.5 铁路国有化诏引发四川保路运动，抽调湖北新军入川致武昌空虚；与《辛丑条约》赔款叠加，财政枢纽越阈触发起义。' },
       hui: { name: '绅商 · 会党', tag: '精英旁路', body: '绅商与会党提供资金与动员网络，填补帝制合法性真空。' },
       base: { name: '民众底盘', tag: '多元底盘', body: '人口压力与财政负担叠加，但崩解主因是五力共振而非单因〔人口存疑〕。' },
       collapse: { name: '崩解链', tag: '五力共振', body: '1912.2.12 清帝退位终结两千年帝制，但五力再平衡远未完成。' },
@@ -625,8 +638,8 @@ ${nodeBase('base', '编户 · 地主 · 商人', '新税基底盘 · 均田瓦�
       huangquan: { name: '徽宗 · 钦宗', tag: '皇权 · 空壳', body: '联金灭辽外交策略失误，皇权中枢无法有效应对军事危机。' },
       cai: { name: '蔡京 · 童贯', tag: '中枢纵列', body: '花石纲、联金外交等政策消耗民力与军事信任。' },
       jinjun: { name: '禁军 · 两京', tag: '军事虚弱 · 重文抑武', body: '北宋重文抑武，禁军战斗力不足，开封防务不可靠。' },
-      lianjin: { name: '联金灭辽', tag: '外交误判', body: '试图联金灭辽收复燕云，却养大金国威胁——战略误判。' },
-      jin: { name: '金军 · 完颜', tag: '边疆军事 · 外压', body: '1127 靖康之变，徽钦二帝被俘、汴京陷落，北宋灭亡。' },
+      lianjin: { name: '联金灭辽', tag: '外交误判', body: '海上之盟联金灭辽（1125 辽亡）收复燕云，却养大金国威胁——战略误判，与 SJ-24 误判链同型：以短期收益忽略结构性风险。' },
+      jin: { name: '金军 · 完颜', tag: '边疆军事 · 外压', body: '1126 金军两次南下，1127 靖康之变徽钦二帝被俘、汴京陷落，北宋灭亡——误判兑现为亡国代价。' },
       base: { name: '汴京 · 漕运底盘', tag: '财政—军事耦合', body: '漕运支撑汴京，但军事力不足使财政枢纽无防务保障。' },
       collapse: { name: '崩解链', tag: '军事力不足 → 亡国', body: '靖康之耻是军事力不足与外交误判共振，非单一昏君叙事。' },
     },
@@ -649,7 +662,7 @@ ${nodeBase('base', '编户 · 地主 · 商人', '新税基底盘 · 均田瓦�
     <path class="sj-edge" data-edge="collapse" d="M586,320 C520,360 470,400 452,332" stroke="var(--sj-vermil)" stroke-width="3.6" marker-end="url(#a-vermil)" opacity="0.95"/>
     <path class="sj-edge" data-edge="outer" d="M520,318 L586,318" stroke="var(--sj-vermil)" stroke-width="2.8" marker-end="url(#a-vermil)" opacity="0.9"/>`,
       edgeLabels: `
-    <text x="384" y="278" text-anchor="middle" fill="var(--sj-ochre)">联金灭辽 · 误判</text>
+    <text x="384" y="278" text-anchor="middle" fill="var(--sj-ochre)">1125 联金灭辽 · 误判</text>
     <text x="556" y="372" text-anchor="end" fill="var(--sj-vermil)" font-size="12" font-weight="600">1127 靖康 · 二帝北狩</text>
     <text x="410" y="486" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10">中央 · 重文抑武</text>`,
       nodes: `
