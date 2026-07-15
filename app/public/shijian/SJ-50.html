@@ -109,10 +109,10 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
     <div>
       <span class="sj-50-chip sj-50-dynasty" data-dynasty="qing">朝代 · 清</span>
       <span class="sj-50-chip">崩解</span>
-      <a class="sj-50-chip" href="./SJ-00.html">↔ SJ-00</a>
-      <a class="sj-50-chip" href="./SJ-03.html">↔ SJ-03</a>
-      <a class="sj-50-chip" href="./SJ-04.html">↔ SJ-04</a>
-      <a class="sj-50-chip" href="./SJ-49.html">↔ SJ-49</a>
+      <a class="sj-50-chip" href="/modules/shijian/sj-00">↔ SJ-00</a>
+      <a class="sj-50-chip" href="/modules/shijian/sj-03">↔ SJ-03</a>
+      <a class="sj-50-chip" href="/modules/shijian/sj-04">↔ SJ-04</a>
+      <a class="sj-50-chip" href="/modules/shijian/sj-49">↔ SJ-49</a>
     </div>
   </div>
   <div class="sj-50-meta">史鉴台账七字段 · 清<br/><b>AS_OF 2026-07-15</b> · v0.1</div>
@@ -122,22 +122,29 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
 <div class="sj-page-layout">
 <div class="sj-main-col">
 <section class="sj-ledger-field" id="f1"><div class="sj-ledger-fh"><span class="fnum">01</span><h2>一句话拐点</h2></div>
-  <div class="sj-50-hook"><p>嘉道以降，人口逼近承载、鸦片贸易与白银外流、吏治腐败，清帝国进入隐性崩解。咸丰元年（1851）<b>洪秀全</b>于广西金田起义，建号<b>太平天国</b>，以宗教—平均主义叙事动员流民；虽最终被湘淮军与洋枪队镇压，但战祸遍及江南，人口损失学界估算约五千万至七千万〔存疑，须标出处〕——是清帝国最大的内部军事震荡，直接通向洋务—维新—辛亥链（SJ-14→SJ-51→SJ-15）。</p><div class="yr">系年：咸丰元年（1851.1.11）金田起义 · 同治三年（1864）天京陷 · 出处《清史稿·洪秀全传》</div></div>
+  <div class="sj-50-hook"><p>嘉道以降，人口逼近承载、鸦片贸易与白银外流、吏治腐败，清帝国进入隐性崩解。咸丰元年（1851）<b>洪秀全</b>于广西金田起义，建号<b>太平天国</b>，以宗教—平均主义叙事动员流民；虽最终被湘淮军与洋枪队镇压，但战祸遍及江南，人口损失学界估算约五千万至七千万（曹树基《中国人口史》等，标估算）——是清帝国最大的内部军事震荡，直接通向洋务—维新—辛亥链（SJ-14→SJ-51→SJ-15）。</p><div class="yr">系年：咸丰元年（1851.1.11）金田起义 · 同治三年（1864）天京陷 · 出处《清史稿·洪秀全传》</div></div>
 </section>
 <section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
   <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
-  <p class="sj-50-prose">权力几何：<strong>清廷/咸丰</strong>（虚化）→ 团练/湘淮（青瓷）对垒 <strong>洪秀全/天朝</strong>（朱红）→ 江南基座（人口+战祸）越阈。承 SJ-49 人口慢变量，军事消耗为快变量引爆。</p>
+  <p class="sj-50-prose">权力几何——中央「清廷·咸丰」被<strong>四力向心合围</strong>：基座(人口压力承 SJ-49)与财政(厘金筹饷)双引燃，军事(洪秀全天朝)与精英(湘淮督抚)同时施压，江南战祸经枢纽汇聚。箭头向心汇聚，非军事对峙竖轴。</p>
   <div class="sj-50-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
-  <title id="sj-title">结构切片 · 太平天国</title>
-  <desc id="sj-desc">权力几何：清廷/咸丰（虚化）→ 团练/湘淮（青瓷）对垒 洪秀全/天朝（朱红）→ 江南基座（人口+战祸）越阈。承 SJ-49 人口慢变量，军事消耗为快变量引爆。</desc>
+  <title id="sj-title">太平天国 · 四力共振合围结构切片图</title>
+  <desc id="sj-desc">清廷咸丰虚弱居中；人口压力、厘金、天朝、湘淮、战祸五向箭头经战祸枢纽向心合围中央。</desc>
   <defs>
-    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%"><stop offset="0%" stop-color="var(--sj-ink-800)"/><stop offset="100%" stop-color="var(--sj-ink-900)"/></radialGradient>
-    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse"><line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/></pattern>
-    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/></linearGradient>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/>
+    </linearGradient>
     <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
     <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
-    <marker id="a-celadon" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
-    <marker id="a-paper" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-100)"/></marker>
+    <marker id="a-celadon" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-300)"/></marker>
   </defs>
   <rect width="820" height="600" fill="url(#sj-glow)"/>
   <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
@@ -147,55 +154,64 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
     <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
     <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
   </g>
-  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,serif">结构切片 · 太平天国</text>
-  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,monospace">SJ-50 · 清 · 崩解</text>
-  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">朱批 · 五力色义 · 点击节点交互</text>
-  <g fill="none" stroke-linecap="round"><path class="sj-edge" data-edge="e1" d="M410,158 L218,220" stroke="var(--sj-ochre)" stroke-width="1.4" stroke-dasharray="4 4" marker-end="url(#a-ochre)"/>
-<path class="sj-edge" data-edge="e2" d="M306,250 L514,250" stroke="var(--sj-vermil)" stroke-width="3" marker-end="url(#a-vermil)"/><text x="410" y="242" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">1851 对峙</text>
-<path class="sj-edge" data-edge="e3" d="M607,292 L410,340" stroke="var(--sj-vermil)" stroke-width="2.6" marker-end="url(#a-vermil)"/>
-<path class="sj-edge" data-edge="e4" d="M410,400 L410,452" stroke="var(--sj-vermil)" stroke-width="2.4" marker-end="url(#a-vermil)"/>
-<path class="sj-edge" data-edge="e5" d="M607,366 L410,420" stroke="var(--sj-vermil)" stroke-width="2.8" marker-end="url(#a-vermil)"/><text x="520" y="400" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">人口〔存疑〕</text>
-<path class="sj-edge" data-edge="e6" d="M218,280 L218,340" stroke="var(--sj-ochre)" stroke-width="2" marker-end="url(#a-ochre)"/>
-<path class="sj-edge" data-edge="e7" d="M410,158 C480,200 520,260 607,256" stroke="var(--sj-vermil)" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#a-vermil)"/></g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,Noto Serif SC,serif" letter-spacing="0.1em">结构切片 · 四力合围</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,JetBrains Mono,monospace" letter-spacing="0.08em">SJ-50 · 清 · 崩解</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,Noto Serif SC,serif">朱批：基座(人口)+财政(厘金)双引燃 · 天朝叙事 · 湘淮变轨 · 四力共振合围</text>
+  <g fill="none" stroke-linecap="round">
+    <path class="sj-edge" data-edge="conv1" d="M607,266 C520,280 480,290 460,280" stroke="var(--sj-vermil)" stroke-width="3" marker-end="url(#a-vermil)" opacity="0.95"/>
+    <path class="sj-edge" data-edge="conv2" d="M218,280 C300,285 360,288 380,282" stroke="var(--sj-celadon)" stroke-width="2.4" marker-end="url(#a-celadon)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="conv3" d="M133,310 C220,300 300,290 360,280" stroke="var(--sj-vermil)" stroke-width="2.8" marker-end="url(#a-vermil)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="conv4" d="M677,320 C580,310 480,300 460,310" stroke="var(--sj-ochre)" stroke-width="2.6" marker-end="url(#a-ochre)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="conv5" d="M410,400 C410,360 410,340 410,318" stroke="var(--sj-vermil)" stroke-width="3.2" marker-end="url(#a-vermil)" opacity="0.95"/>
+    <path class="sj-edge" data-edge="ignite" d="M607,292 L460,300" stroke="var(--sj-vermil)" stroke-width="2" marker-end="url(#a-vermil)" opacity="0.85"/>
+    <path class="sj-edge" data-edge="hub" d="M410,252 L410,268" stroke="var(--sj-ochre)" stroke-width="2" marker-end="url(#a-ochre)" opacity="0.8"/></g>
+  <g font-family="Songti SC,Noto Serif SC,serif" font-size="11">
+    <text x="540" y="270" fill="var(--sj-vermil)">1851 天朝</text>
+    <text x="280" y="268" fill="var(--sj-celadon)">湘淮变轨</text>
+    <text x="240" y="300" fill="var(--sj-vermil)">人口压力</text>
+    <text x="580" y="310" fill="var(--sj-ochre)">厘金筹饷</text>
+    <text x="430" y="360" fill="var(--sj-vermil)" font-size="12" font-weight="600">江南战祸</text></g>
+
   <g class="sj-node" data-id="qingting" tabindex="0" role="button" aria-label="清廷 · 咸丰">
-    <rect x="310" y="112" width="200" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <rect x="310" y="112" width="200" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="1.4" stroke-dasharray="5 4"/>
     <text x="410" y="140" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">清廷 · 咸丰</text>
-    <text x="410" y="158" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">合法性动摇</text>
+    <text x="410" y="158" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">中央被围 · 虚弱</text>
   </g>
-<g class="sj-node" data-id="hong" tabindex="0" role="button" aria-label="洪秀全 · 天朝">
-    <rect x="514" y="220" width="186" height="72" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
-    <text x="607" y="252" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">洪秀全 · 天朝</text>
-    <text x="607" y="270" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">1851 金田 · 拜上帝</text>
+  <g class="sj-node" data-id="zhanhuo" tabindex="0" role="button" aria-label="江南 · 战祸">
+    <circle cx="410" cy="290" r="44" fill="none" stroke="var(--sj-vermil)" stroke-width="2" stroke-dasharray="4 3"/>
+    <text x="410" y="286" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC,serif">江南 · 战祸</text>
+    <text x="410" y="304" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">1864 天京陷 · 枢纽</text>
   </g>
-<g class="sj-node" data-id="xianghuai" tabindex="0" role="button" aria-label="湘淮 · 曾李">
-    <rect x="130" y="220" width="176" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
-    <text x="218" y="248" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">湘淮 · 曾李</text>
-    <text x="218" y="266" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">团练 · 督抚</text>
+  <g class="sj-node" data-id="hong" tabindex="0" role="button" aria-label="洪秀全 · 天朝">
+    <rect x="514" y="230" width="186" height="72" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.8"/>
+    <text x="607" y="258" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">洪秀全 · 天朝</text>
+    <text x="607" y="276" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">1851 金田 · 引爆</text>
   </g>
-<g class="sj-node" data-id="zhanhuo" tabindex="0" role="button" aria-label="江南 · 战祸">
-    <rect x="310" y="340" width="200" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
-    <text x="410" y="368" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">江南 · 战祸</text>
-    <text x="410" y="386" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">1864 天京陷</text>
+  <g class="sj-node" data-id="xianghuai" tabindex="0" role="button" aria-label="湘淮 · 曾李">
+    <rect x="130" y="230" width="176" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="218" y="258" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">湘淮 · 曾李</text>
+    <text x="218" y="276" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">团练 · 督抚</text>
   </g>
-<g class="sj-node" data-id="renkou" tabindex="0" role="button" aria-label="人口损失">
-    <rect x="514" y="340" width="186" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
-    <text x="607" y="368" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">人口损失</text>
-    <text x="607" y="386" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">5000万–7000万〔存疑〕</text>
+  <g class="sj-node" data-id="renkou" tabindex="0" role="button" aria-label="人口压力">
+    <rect x="56" y="360" width="176" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="144" y="388" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">人口压力</text>
+    <text x="144" y="406" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">承 SJ-49 · 估算</text>
   </g>
-<g class="sj-node" data-id="yangwu" tabindex="0" role="button" aria-label="厘金 · 筹饷">
-    <rect x="130" y="340" width="176" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
-    <text x="218" y="368" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">厘金 · 筹饷</text>
-    <text x="218" y="386" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">财政被迫调整</text>
+  <g class="sj-node" data-id="yangwu" tabindex="0" role="button" aria-label="厘金 · 筹饷">
+    <rect x="600" y="340" width="186" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="693" y="368" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">厘金 · 筹饷</text>
+    <text x="693" y="386" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">财政被迫调整</text>
   </g>
-<g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="广西 · 江南底盘">
-    <rect x="56" y="452" width="708" height="60" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="2.4"/>
-    <text x="410" y="480" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC,serif">广西 · 江南底盘</text>
-    <text x="410" y="498" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">灾荒 · 流民 · 土地</text>
+  <g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="广西 · 江南底盘">
+    <rect x="56" y="486" width="708" height="86" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="1.4"/>
+    <text x="410" y="514" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC,serif">广西 · 江南底盘</text>
+    <text x="410" y="532" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">灾荒 · 流民 · 土地</text>
+    
   </g>
-  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,monospace">viewBox 820×600 · SJ-50</text>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,JetBrains Mono,monospace">viewBox 820×600 · 四力合围</text>
 </svg></div>
   <div class="sj-50-layout">
-    <div class="sj-50-note" style="margin-top:0">点选节点展开机制链；色义见 premium 切片图例（patch 后更新）。</div>
+    <div class="sj-50-note" style="margin-top:0">色义：清廷=赭金虚线 · 战祸=朱红枢纽 · 人口/天朝/厘金=朱红向心 · 湘淮=青瓷 · 底盘=深墨。合围非对峙。</div>
     <aside class="sj-50-aside" id="aside" aria-live="polite">
       <div id="aside-empty" class="sj-50-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
       <div id="aside-body" hidden>
@@ -206,12 +222,16 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
     </aside>
   </div>
 </section>
+<!--SLICE_RAIL:四力合围清廷 · 1851 金田引爆 · 承康乾拐点。-->
+<!--SLICE_RAIL:四力合围清廷 · 1851 金田引爆 · 承康乾拐点。-->
 </div>
 <aside class="sj-rail"><div class="sj-rail-card"><div class="k">台账 · 七字段</div>
   <nav class="sj-rail-toc"><a href="#f1">01 · 拐点</a><a href="#f2">02 · 切片</a><a href="#f3">03 · 相位</a><a href="#f4">04 · 五力</a><a href="#f5">05 · 交锋</a><a href="#f6">06 · 成败</a><a href="#f7">07 · 映射</a></nav>
-  <a class="sj-rail-chip" href="./SJ-00.html#sec-case-hub">案例库 Hub</a>
-  <a class="sj-rail-chip" href="./SJ-03.html">SJ-03 五力</a>
-  <a class="sj-rail-chip" href="./SJ-04.html">SJ-04 相位盘</a>
+  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p class="sj-rail-mini">四力合围清廷 · 1851 金田引爆 · 承康乾拐点。</p></div>
+  
+  <a class="sj-rail-chip" href="/modules/shijian/sj-00#sec-case-hub">案例库 Hub</a>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-03">SJ-03 五力</a>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-04">SJ-04 相位盘</a>
 </div></aside>
 </div>
 <section class="sj-ledger-field" id="f3"><div class="sj-ledger-fh"><span class="fnum">03</span><h2>相位定位</h2></div>
@@ -230,7 +250,7 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
 <article><div class="who">钱穆<span>《国史大纲》续论</span></div><p>太平天国为清衰关键事件；汉人督抚坐大影响晚清政治结构。</p></article>
 <article><div class="who">金观涛<span>超稳定结构</span></div><p>内部战争为超稳定结构释放压力的方式；未能突破农业帝国天花板。</p></article>
 <article><div class="who">黄仁宇<span>数目字管理</span></div><p>战争暴露清后期数目字管理仍不足以支撑现代战争财政。</p></article>
-<article style="grid-column:1/-1"><div class="who">西方汉学<span>Taiping</span></div><p>学界对人口损失与革命性质争议大；与 SJ-49 人口拐点构成因果讨论。〔存疑〕</p></article></div>
+<article style="grid-column:1/-1"><div class="who">西方汉学<span>Taiping</span></div><p>学界对人口损失与革命性质争议大；与 SJ-49 人口拐点构成因果讨论。（学界对人口损失与革命性质争议大）</p></article></div>
 </section>
 <section class="sj-ledger-field" id="f6"><div class="sj-ledger-fh"><span class="fnum">06</span><h2>成败判定</h2></div>
   <div class="sj-50-verdict">
@@ -246,17 +266,19 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
   </div>
 </section>
 <section class="sj-ledger-field" id="fx"><div class="sj-ledger-fh"><span class="fnum">◆</span><h2>交叉引用</h2></div>
-  <div class="sj-50-xref"><a href="./SJ-49.html"><div class="n">SJ-49 · 康乾拐点</div><h3>康乾</h3><p>人口/僵化上游；隐性拐点下游。</p></a>
-<a href="./SJ-14.html"><div class="n">SJ-14 · 洋务</div><h3>洋务</h3><p>战争后局部现代化；中体西用。</p></a>
-<a href="./SJ-07.html"><div class="n">SJ-07 · 崩解矩阵</div><h3>崩解矩阵</h3><p>清行崩解深描之一。</p></a></div>
+  <div class="sj-50-xref"><a href="/modules/shijian/sj-49"><div class="n">SJ-49 · 康乾拐点</div><h3>康乾</h3><p>人口/僵化上游；隐性拐点下游。</p></a>
+<a href="/modules/shijian/sj-14"><div class="n">SJ-14 · 洋务</div><h3>洋务</h3><p>战争后局部现代化；中体西用。</p></a>
+<a href="/modules/shijian/sj-07"><div class="n">SJ-07 · 崩解矩阵</div><h3>崩解矩阵</h3><p>清行崩解深描之一。</p></a></div>
 </section>
 </article>
 <footer class="sj-50-foot">
   <span>ChinaOS · 史鉴 SJ-50 · v0.1 · 清</span>
-  <span><a href="./SJ-00.html">← SJ-00</a> · <a href="./SJ-46.html">← SJ-46</a></span>
-  <span><a href="./SJ-51.html">SJ-51 →</a></span>
+  <span><a href="/modules/shijian/sj-00">← SJ-00</a> · <a href="/modules/shijian/sj-46">← SJ-46</a></span>
+  <span><a href="/modules/shijian/sj-51">SJ-51 →</a></span>
 </footer>
 </div>
+
+
 <script>
 (function(){
   const stage=document.getElementById('stage');
@@ -268,33 +290,33 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
   const NODE_DATA={
   "qingting": {
     "name": "清廷 · 咸丰",
-    "tag": "皇权危机",
-    "body": "鸦片战争后财政与合法性受创，咸丰年间内忧外患并发。"
+    "tag": "中央被围 · 虚弱",
+    "body": "鸦片战争后财政与合法性受创，咸丰年间内忧外患并发——被四力合围的虚线中央。"
   },
   "hong": {
     "name": "洪秀全 · 天朝",
     "tag": "叙事夺权",
-    "body": "金田起义建号太平天国，以宗教+平均主义动员——合法性被体系外叙事夺取。"
+    "body": "1851 金田起义建号太平天国，以宗教+平均主义动员——合法性被体系外叙事夺取。"
   },
   "xianghuai": {
     "name": "湘淮 · 曾李",
     "tag": "精英—军事",
     "body": "曾国藩、李鸿章等以地方团练崛起，汉人督抚权力膨胀——精英循环变轨。"
   },
-  "zhanhuo": {
-    "name": "江南 · 战祸",
-    "tag": "军事消耗",
-    "body": "战争遍及苏皖浙赣，长期拉锯消耗双方——军事力与财政双透支。"
-  },
   "renkou": {
-    "name": "人口损失",
-    "tag": "基座引燃",
-    "body": "学界估算人口损失约五千万至七千万（曹树基等），须标「估算」与出处。"
+    "name": "人口压力",
+    "tag": "基座慢变量",
+    "body": "承 SJ-49 康乾拐点；学界估战祸人口损失约 5000万–7000万（曹树基《中国人口史》等，标估算）。"
   },
   "yangwu": {
     "name": "厘金 · 筹饷",
-    "tag": "财政",
-    "body": "战争推动厘金等近代化汲取工具——局部制度回应。"
+    "tag": "财政引燃",
+    "body": "战争推动厘金等近代化汲取工具——财政被迫调整以应军事消耗。"
+  },
+  "zhanhuo": {
+    "name": "江南 · 战祸",
+    "tag": "军事枢纽",
+    "body": "战争遍及苏皖浙赣，1864 天京陷——军事消耗与财政双透支的汇聚点。"
   },
   "base": {
     "name": "广西 · 江南底盘",
@@ -304,32 +326,29 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
 };
   const NODE_EDGE={
   "qingting": [
-    "e1",
-    "e7"
+    "hub"
   ],
   "hong": [
-    "e2",
-    "e3",
-    "e7"
+    "conv1",
+    "ignite"
   ],
   "xianghuai": [
-    "e1",
-    "e2",
-    "e6"
-  ],
-  "zhanhuo": [
-    "e3",
-    "e4"
+    "conv2"
   ],
   "renkou": [
-    "e5"
+    "conv3"
   ],
   "yangwu": [
-    "e6"
+    "conv4",
+    "hub"
+  ],
+  "zhanhuo": [
+    "hub",
+    "conv5"
   ],
   "base": [
-    "e4",
-    "e5"
+    "conv3",
+    "conv5"
   ]
 };
   function clearVisual(){stage.classList.remove('is-picking');nodes.forEach(n=>n.classList.remove('is-hot'));edges.forEach(e=>e.classList.remove('is-hot'));}

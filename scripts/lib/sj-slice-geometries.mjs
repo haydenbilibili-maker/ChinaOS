@@ -424,4 +424,206 @@ ${nodeBase('base', '编户齐民 · 北方基座', '均田农民底盘', '')}`,
       footer: 'viewBox 820×600 · 合法性桥接',
     }),
   },
+
+  '45': {
+    prefix: 'sj-45',
+    prose: '权力几何——<strong>制度长时段曲线</strong>：行省初为「因事而设」的临时派出（左端开放）→ 至元二十四年（1287）改行中书省为定制 → 沿曲线右移固化为「腹里+十行省」格局。青瓷为制度轨迹，朱批为蒙古—汉地双轨张力。非竖轴纵列。',
+    railSummary: '因事而设 → 1287 定制 → 十行省固化。',
+    legend: '色义：中书=赭金 · 制度曲线=青瓷（左开右固）· 达鲁花赤=灰白双轨 · 四等人制=朱红隐患 · 底盘=深墨。横轴=时间，曲线初临时后常设。',
+    nodeData: {
+      zhongshu: { name: '中书省 · 皇帝', tag: '皇权 · 授权', body: '元废三省留中书，为最高政务机关；腹里（今华北一带）由中书省直辖。' },
+      yinshi: { name: '因事而设', tag: '曲线开放端', body: '初为平定叛乱、经理财赋的临时派出机构——「行动的中书省」，非一开始就常设。' },
+      dingzhi: { name: '1287 定制', tag: '制度拐点', body: '至元二十四年改行尚书省为行中书省，渐成定制——曲线中段枢纽（《元史·百官志》）。' },
+      xingsheng: { name: '行中书省', tag: '制度枢纽', body: '掌一路以上军民钱粮，由只管军事到兼管民政——元帝国空间治理的核心模块。' },
+      daru: { name: '达鲁花赤', tag: '精英双轨', body: '各路设蒙古监官，与汉官并置——保障蒙古利益的双轨结构。' },
+      shiyi: { name: '十行省格局', tag: '固化端', body: '至顺元年（1330）约一中书省+十行省——曲线右端锁定的空间分块格局。' },
+      base: { name: '编户 · 腹里与行省底盘', tag: '基座', body: '统一后括户、赋役试图锁定税基；行省分块使大帝国治理成为可能。' },
+    },
+    nodeEdge: {
+      zhongshu: ['c1'], yinshi: ['c1', 'c2'], dingzhi: ['c2', 'c3'],
+      xingsheng: ['c3', 'c4', 'c5'], daru: ['c4'], shiyi: ['c5'], base: ['c6'],
+    },
+    svg: () => buildSvg({
+      title: '行省制度 · 制度曲线结构切片图',
+      desc: '因事而设开放端沿曲线右移至1287定制与十行省固化；达鲁花赤双轨为执行张力。',
+      header: '结构切片 · 制度曲线',
+      sub: 'SJ-45 · 元 · 制度演变',
+      zhupi: '朱批：初临时→终固化 · 1287 定制＝曲线拐点 · 非竖轴',
+      edges: `
+    <path class="sj-edge" data-edge="c1" d="M120,380 C200,340 280,300 360,260" stroke="var(--sj-celadon)" stroke-width="2.4" marker-end="url(#a-celadon)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="c2" d="M360,260 C440,240 500,250 520,280" stroke="var(--sj-celadon)" stroke-width="2.6" marker-end="url(#a-celadon)" opacity="0.95"/>
+    <path class="sj-edge" data-edge="c3" d="M520,280 C580,300 620,320 640,340" stroke="var(--sj-celadon)" stroke-width="2.6" marker-end="url(#a-celadon)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="c4" d="M640,340 L640,280" stroke="var(--sj-paper-300)" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#a-paper)" opacity="0.8"/>
+    <path class="sj-edge" data-edge="c5" d="M640,340 C680,360 720,400 740,420" stroke="var(--sj-vermil)" stroke-width="2.4" marker-end="url(#a-vermil)" opacity="0.85"/>
+    <path class="sj-edge" data-edge="c6" d="M740,420 L410,486" stroke="var(--sj-ochre)" stroke-width="2" marker-end="url(#a-ochre)" opacity="0.85"/>
+    <path d="M100,400 C240,320 400,220 560,240 C680,260 740,340 760,420" fill="none" stroke="var(--sj-line)" stroke-width="1" stroke-dasharray="4 6" opacity="0.5"/>`,
+      edgeLabels: `
+    <text x="200" y="320" fill="var(--sj-celadon)">因事而设 · 开放</text>
+    <text x="480" y="230" fill="var(--sj-celadon)">1287 定制</text>
+    <text x="680" y="360" fill="var(--sj-vermil)" font-size="12" font-weight="600">十行省固化</text>
+    <text x="560" y="300" fill="var(--sj-paper-300)">达鲁花赤双轨</text>`,
+      nodes: `
+${nodeRect('zhongshu', 56, 360, 160, 46, 'var(--sj-ochre)', '中书省 · 皇帝', '腹里直辖 · 授权')}
+${nodeRect('yinshi', 280, 280, 160, 56, 'var(--sj-celadon)', '因事而设', '临时派出 · 开放端')}
+${nodeRect('dingzhi', 480, 240, 180, 64, 'var(--sj-celadon)', '1287 定制', '行中书省 · 拐点', { sw: '2.6' })}
+${nodeRect('xingsheng', 600, 300, 186, 64, 'var(--sj-celadon)', '行中书省', '军民钱粮 · 枢纽', { sw: '2.4' })}
+${nodeRect('daru', 600, 220, 160, 50, 'var(--sj-paper-300)', '达鲁花赤', '蒙古监官 · 双轨')}
+${nodeRect('shiyi', 640, 380, 186, 56, 'var(--sj-vermil)', '十行省格局', '1330 约定型 · 固化', { sw: '2.4' })}
+${nodeBase('base', '编户 · 腹里与行省底盘', '税基 · 多民族帝国', '')}`,
+      footer: 'viewBox 820×600 · 制度曲线',
+    }),
+  },
+
+  '46': {
+    prefix: 'sj-46',
+    prose: '权力几何——中央「大都·顺帝」被<strong>四力向心合围</strong>：基座(流民灾荒)与财政(变钞通胀)双引燃，合法性(白莲明王)与军事(刘福通红巾)同时施压，治河征发经枢纽汇聚；群雄割据击穿元廷。箭头一律向心汇聚，非竖轴。',
+    railSummary: '四力合围大都 · 1351 颍州引爆 · 元亡明兴。',
+    legend: '色义：顺帝=赭金虚线 · 治河=赭金枢纽 · 基座/红巾/通胀=朱红向心 · 白莲=宣纸 · 群雄=青瓷。合围箭头向心。',
+    nodeData: {
+      shundi: { name: '元顺帝', tag: '中央被围 · 虚弱', body: '元末顺帝朝政腐败，权臣专擅，无法有效应对民变——合法性绩效破产，被四力合围的虚线中央。' },
+      zhihe: { name: '治黄河 · 开河', tag: '财政引燃', body: '至正十一年征十五万民夫治河，克扣工食，「石人一只眼，挑动黄河天下反」——汲取越阈引爆点。' },
+      bianchao: { name: '变钞 · 通胀', tag: '财政共振', body: '滥发纸币、物价飞腾，与治河征发叠加——财政多线越阈。' },
+      bailian: { name: '白莲 · 明王', tag: '叙事夺权', body: '「弥勒下生、明王出世」提供反抗合法性，与元正统叙事对垒。' },
+      liufutong: { name: '刘福通 · 红巾', tag: '军事—叙事', body: '1351 颍州起义，红巾为号，建小明宋——夺「天命」话语的引爆点。' },
+      qunxiong: { name: '徐寿辉 · 朱元璋', tag: '精英旁路', body: '南方红巾、朱元璋等集团各自发展，元无法逐一扑灭——军事力碎片化。' },
+      liumin: { name: '流民 · 灾荒', tag: '基座引燃', body: '黄河决口、饥荒瘟疫制造大量流民——崩解的底盘引燃力。' },
+      base: { name: '编户 · 灾荒底盘', tag: '基座', body: '黄河泛滥、旱疫与征发叠加，编户承载崩溃——合围的底盘。' },
+    },
+    nodeEdge: {
+      shundi: ['hub'], zhihe: ['conv1', 'hub'], bianchao: ['conv2', 'hub'],
+      bailian: ['conv3'], liufutong: ['conv4', 'ignite'], qunxiong: ['conv5'],
+      liumin: ['conv1', 'ignite'], base: ['ignite'],
+    },
+    svg: () => buildSvg({
+      title: '红巾起义 · 四力共振合围结构切片图',
+      desc: '元顺帝虚弱居中；治河、变钞、白莲、红巾、流民五向箭头经治河枢纽向心合围中央。',
+      header: '结构切片 · 四力合围',
+      sub: 'SJ-46 · 元末 · 崩解',
+      zhupi: '朱批：基座(流民)+财政(变钞/治河)双引燃 · 白莲叙事 · 红巾引爆 · 四力共振合围',
+      edges: `
+    <path class="sj-edge" data-edge="conv1" d="M133,310 C220,300 300,290 360,280" stroke="var(--sj-vermil)" stroke-width="2.8" marker-end="url(#a-vermil)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="conv2" d="M677,280 C580,285 480,285 460,280" stroke="var(--sj-vermil)" stroke-width="2.8" marker-end="url(#a-vermil)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="conv3" d="M410,200 C410,220 410,240 410,252" stroke="var(--sj-paper-100)" stroke-width="2.2" marker-end="url(#a-paper)" opacity="0.85"/>
+    <path class="sj-edge" data-edge="conv4" d="M607,292 C520,320 480,340 460,318" stroke="var(--sj-vermil)" stroke-width="3.2" marker-end="url(#a-vermil)" opacity="0.95"/>
+    <path class="sj-edge" data-edge="conv5" d="M607,366 C520,400 480,420 460,420" stroke="var(--sj-celadon)" stroke-width="2" marker-end="url(#a-celadon)" opacity="0.85"/>
+    <path class="sj-edge" data-edge="ignite" d="M300,452 L360,420" stroke="var(--sj-vermil)" stroke-width="2.4" marker-end="url(#a-vermil)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="hub" d="M410,252 L410,268" stroke="var(--sj-ochre)" stroke-width="2" marker-end="url(#a-ochre)" opacity="0.8"/>`,
+      edgeLabels: `
+    <text x="240" y="268" fill="var(--sj-vermil)">基座引燃</text>
+    <text x="580" y="268" fill="var(--sj-vermil)">变钞通胀</text>
+    <text x="430" y="230" fill="var(--sj-paper-100)">白莲叙事</text>
+    <text x="540" y="340" fill="var(--sj-vermil)" font-size="12" font-weight="600">1351 引爆</text>
+    <text x="520" y="400" fill="var(--sj-celadon)">群雄割据</text>`,
+      nodes: `
+${nodeRect('shundi', 310, 112, 200, 46, 'var(--sj-ochre)', '元顺帝 · 大都', '中央被围 · 虚弱', { dash: '5 4', sw: '1.4' })}
+${nodeCircle('zhihe', 410, 290, 44, 'var(--sj-ochre)', '治河 · 开河', '至正十一年 · 枢纽')}
+${nodeRect('bianchao', 600, 220, 176, 60, 'var(--sj-vermil)', '变钞 · 通胀', '财政共振 · 外压')}
+${nodeRect('bailian', 310, 168, 200, 46, 'var(--sj-paper-100)', '白莲 · 明王', '合法性叙事 · 上压')}
+${nodeRect('liufutong', 514, 250, 186, 72, 'var(--sj-vermil)', '刘福通 · 红巾', '1351 颍州 · 引爆', { sw: '2.8' })}
+${nodeRect('qunxiong', 514, 360, 186, 56, 'var(--sj-celadon)', '徐寿辉 · 朱元璋', '群雄割据')}
+${nodeRect('liumin', 56, 360, 176, 60, 'var(--sj-vermil)', '流民 · 灾荒', '基座引燃 · 左压', { sw: '2.4' })}
+${nodeBase('base', '编户 · 灾荒底盘', '黄河 · 旱疫 · 编户崩溃', '')}`,
+      footer: 'viewBox 820×600 · 四力合围',
+    }),
+  },
+
+  '50': {
+    prefix: 'sj-50',
+    prose: '权力几何——中央「清廷·咸丰」被<strong>四力向心合围</strong>：基座(人口压力承 SJ-49)与财政(厘金筹饷)双引燃，军事(洪秀全天朝)与精英(湘淮督抚)同时施压，江南战祸经枢纽汇聚。箭头向心汇聚，非军事对峙竖轴。',
+    railSummary: '四力合围清廷 · 1851 金田引爆 · 承康乾拐点。',
+    legend: '色义：清廷=赭金虚线 · 战祸=朱红枢纽 · 人口/天朝/厘金=朱红向心 · 湘淮=青瓷 · 底盘=深墨。合围非对峙。',
+    nodeData: {
+      qingting: { name: '清廷 · 咸丰', tag: '中央被围 · 虚弱', body: '鸦片战争后财政与合法性受创，咸丰年间内忧外患并发——被四力合围的虚线中央。' },
+      hong: { name: '洪秀全 · 天朝', tag: '叙事夺权', body: '1851 金田起义建号太平天国，以宗教+平均主义动员——合法性被体系外叙事夺取。' },
+      xianghuai: { name: '湘淮 · 曾李', tag: '精英—军事', body: '曾国藩、李鸿章等以地方团练崛起，汉人督抚权力膨胀——精英循环变轨。' },
+      renkou: { name: '人口压力', tag: '基座慢变量', body: '承 SJ-49 康乾拐点；学界估战祸人口损失约 5000万–7000万（曹树基《中国人口史》等，标估算）。' },
+      yangwu: { name: '厘金 · 筹饷', tag: '财政引燃', body: '战争推动厘金等近代化汲取工具——财政被迫调整以应军事消耗。' },
+      zhanhuo: { name: '江南 · 战祸', tag: '军事枢纽', body: '战争遍及苏皖浙赣，1864 天京陷——军事消耗与财政双透支的汇聚点。' },
+      base: { name: '广西 · 江南底盘', tag: '慢变量', body: '承 SJ-49 人口压力；广西起事、江南决战——基座承载越阈的地理表现。' },
+    },
+    nodeEdge: {
+      qingting: ['hub'], hong: ['conv1', 'ignite'], xianghuai: ['conv2'],
+      renkou: ['conv3'], yangwu: ['conv4', 'hub'], zhanhuo: ['hub', 'conv5'], base: ['conv3', 'conv5'],
+    },
+    svg: () => buildSvg({
+      title: '太平天国 · 四力共振合围结构切片图',
+      desc: '清廷咸丰虚弱居中；人口压力、厘金、天朝、湘淮、战祸五向箭头经战祸枢纽向心合围中央。',
+      header: '结构切片 · 四力合围',
+      sub: 'SJ-50 · 清 · 崩解',
+      zhupi: '朱批：基座(人口)+财政(厘金)双引燃 · 天朝叙事 · 湘淮变轨 · 四力共振合围',
+      edges: `
+    <path class="sj-edge" data-edge="conv1" d="M607,266 C520,280 480,290 460,280" stroke="var(--sj-vermil)" stroke-width="3" marker-end="url(#a-vermil)" opacity="0.95"/>
+    <path class="sj-edge" data-edge="conv2" d="M218,280 C300,285 360,288 380,282" stroke="var(--sj-celadon)" stroke-width="2.4" marker-end="url(#a-celadon)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="conv3" d="M133,310 C220,300 300,290 360,280" stroke="var(--sj-vermil)" stroke-width="2.8" marker-end="url(#a-vermil)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="conv4" d="M677,320 C580,310 480,300 460,310" stroke="var(--sj-ochre)" stroke-width="2.6" marker-end="url(#a-ochre)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="conv5" d="M410,400 C410,360 410,340 410,318" stroke="var(--sj-vermil)" stroke-width="3.2" marker-end="url(#a-vermil)" opacity="0.95"/>
+    <path class="sj-edge" data-edge="ignite" d="M607,292 L460,300" stroke="var(--sj-vermil)" stroke-width="2" marker-end="url(#a-vermil)" opacity="0.85"/>
+    <path class="sj-edge" data-edge="hub" d="M410,252 L410,268" stroke="var(--sj-ochre)" stroke-width="2" marker-end="url(#a-ochre)" opacity="0.8"/>`,
+      edgeLabels: `
+    <text x="540" y="270" fill="var(--sj-vermil)">1851 天朝</text>
+    <text x="280" y="268" fill="var(--sj-celadon)">湘淮变轨</text>
+    <text x="240" y="300" fill="var(--sj-vermil)">人口压力</text>
+    <text x="580" y="310" fill="var(--sj-ochre)">厘金筹饷</text>
+    <text x="430" y="360" fill="var(--sj-vermil)" font-size="12" font-weight="600">江南战祸</text>`,
+      nodes: `
+${nodeRect('qingting', 310, 112, 200, 46, 'var(--sj-ochre)', '清廷 · 咸丰', '中央被围 · 虚弱', { dash: '5 4', sw: '1.4' })}
+${nodeCircle('zhanhuo', 410, 290, 44, 'var(--sj-vermil)', '江南 · 战祸', '1864 天京陷 · 枢纽')}
+${nodeRect('hong', 514, 230, 186, 72, 'var(--sj-vermil)', '洪秀全 · 天朝', '1851 金田 · 引爆', { sw: '2.8' })}
+${nodeRect('xianghuai', 130, 230, 176, 60, 'var(--sj-celadon)', '湘淮 · 曾李', '团练 · 督抚')}
+${nodeRect('renkou', 56, 360, 176, 60, 'var(--sj-vermil)', '人口压力', '承 SJ-49 · 估算', { sw: '2.4' })}
+${nodeRect('yangwu', 600, 340, 186, 56, 'var(--sj-ochre)', '厘金 · 筹饷', '财政被迫调整')}
+${nodeBase('base', '广西 · 江南底盘', '灾荒 · 流民 · 土地', '')}`,
+      footer: 'viewBox 820×600 · 四力合围',
+    }),
+  },
+
+  '51': {
+    prefix: 'sj-51',
+    prose: '权力几何——<strong>103 日改革窗口</strong>：光绪（虚线背书）授权康梁推行废八股/大学堂/裁冗下行；守旧派（慈禧）以粗朱红回路反扑（1898.9.21 政变）。甲午外环施压；死穴在「无制度化改革保障」。因案而异，非王安石竖轴。',
+    railSummary: '103 日窗口 → 触动科举 → 政变反扑 · 承 SJ-14 甲午。',
+    legend: '色义：光绪=赭金虚线 · 康梁=青瓷改革窗 · 慈禧=朱红粗回路 · 甲午=朱红外环 · 底盘=深墨。窗口+回路，非竖轴纵列。',
+    nodeData: {
+      guangxu: { name: '光绪帝', tag: '合法性背书', body: '1898.6.11 颁明定国是诏，但人事军政仍受慈禧制约——改革背书脆弱。' },
+      kangliang: { name: '康有为 · 梁启超', tag: '改革引擎', body: '保国会、变法奏议；推动废八股、设大学堂、裁冗——体制突破尝试。' },
+      cixi: { name: '慈禧 · 守旧派', tag: '精英反扑', body: '1898.9.21 发动政变，训政，杀谭嗣同等——变法真正的结构死穴。' },
+      reform: { name: '废八股 · 大学堂', tag: '制度下行', body: '废八股触动士绅通道；京师大学堂等为少数存续遗产。' },
+      jiawu: { name: '甲午 · 1894', tag: '上游引爆', body: '甲午战败证伪洋务-only 路径，催生维新——体系外压力内化（SJ-14 外环）。' },
+      tans: { name: '谭嗣同 · 六君子', tag: '失败代价', body: '政变后六君子遇害，改良路线受挫，革命思潮上升。' },
+      base: { name: '士绅 · 编户底盘', tag: '基座未改', body: '变法未触及土地与基层汲取；人口压力与财政危机仍在——基座矛盾留给 SJ-15。' },
+    },
+    nodeEdge: {
+      guangxu: ['back', 'window'], kangliang: ['back', 'window', 'touch', 'down'],
+      cixi: ['touch', 'coup', 'kill'], reform: ['down'], jiawu: ['pressure'],
+      tans: ['kill'], base: ['down'],
+    },
+    svg: () => buildSvg({
+      title: '戊戌变法 · 改革窗口结构切片图',
+      desc: '光绪虚线背书；康梁 103 日改革窗口下行；慈禧粗回路反扑；甲午外环施压。',
+      header: '结构切片 · 改革窗口',
+      sub: 'SJ-51 · 清 · 变法',
+      zhupi: '朱批：103 日窗口 · 触动科举死穴 · 政变粗回路反扑 · 非竖轴',
+      edges: `
+    <path class="sj-edge" data-edge="back" d="M360,158 L250,250" stroke="var(--sj-ochre)" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#a-ochre)" opacity="0.85"/>
+    <path class="sj-edge" data-edge="window" d="M218,310 L218,372" stroke="var(--sj-celadon)" stroke-width="2.6" marker-end="url(#a-celadon)" opacity="0.95"/>
+    <path class="sj-edge" data-edge="touch" d="M306,286 L462,286" stroke="var(--sj-vermil)" stroke-width="3.2" marker-end="url(#a-vermil)" opacity="0.95"/>
+    <path class="sj-edge" data-edge="down" d="M220,422 L410,486" stroke="var(--sj-ochre)" stroke-width="2.2" marker-end="url(#a-ochre)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="coup" d="M640,498 C724,452 716,340 588,320" stroke="var(--sj-vermil)" stroke-width="3.6" marker-end="url(#a-vermil)" opacity="0.95"/>
+    <path class="sj-edge" data-edge="pressure" d="M133,308 C200,280 280,260 360,158" stroke="var(--sj-vermil)" stroke-width="2.4" marker-end="url(#a-vermil)" opacity="0.85"/>
+    <path class="sj-edge" data-edge="kill" d="M555,310 L555,372" stroke="var(--sj-vermil)" stroke-width="2" marker-end="url(#a-vermil)" opacity="0.9"/>`,
+      edgeLabels: `
+    <text x="280" y="210" fill="var(--sj-ochre)">103 日窗口</text>
+    <text x="384" y="278" text-anchor="middle" fill="var(--sj-vermil)" font-size="12" font-weight="600">触动科举</text>
+    <text x="700" y="400" fill="var(--sj-vermil)" font-size="12" font-weight="600">★ 政变反扑</text>
+    <text x="180" y="240" fill="var(--sj-vermil)">甲午外环</text>`,
+      nodes: `
+${nodeRect('guangxu', 320, 112, 180, 46, 'var(--sj-ochre)', '光绪帝', '明定国是 · 脆弱', { dash: '5 4', sw: '2.4' })}
+${nodeRect('kangliang', 130, 250, 176, 60, 'var(--sj-celadon)', '康有为 · 梁启超', '维新引擎 · 窗口')}
+${nodeRect('cixi', 462, 250, 186, 60, 'var(--sj-vermil)', '慈禧 · 守旧派', '1898.9.21 政变', { sw: '2.8' })}
+${nodeRect('reform', 132, 372, 176, 50, 'var(--sj-ochre)', '废八股 · 大学堂', '制度下行')}
+${nodeRect('jiawu', 52, 280, 162, 56, 'var(--sj-vermil)', '甲午 · 1894', 'SJ-14 外环', { sw: '2.4' })}
+${nodeRect('tans', 462, 372, 186, 50, 'var(--sj-vermil)', '谭嗣同 · 六君子', '1898.9.28')}
+${nodeBase('base', '士绅 · 编户底盘', '科举—土地未动', '')}`,
+      footer: 'viewBox 820×600 · 改革窗口',
+    }),
+  },
 };

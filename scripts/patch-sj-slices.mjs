@@ -28,7 +28,21 @@ const TARGETS = [
   '09', '10', '11', '12', '13', '14', '15',
   '27', '31', '32', '33', '34',
   '35', '38', '39', '41', '49',
+  '45', '46', '50', '51',
 ];
+
+/** Post-patch structural assertions — blank-page regression guard */
+function assertHtmlIntegrity(num, html) {
+  const required = ['<body', '<header', 'id="stage"', '</html>'];
+  for (const frag of required) {
+    if (!html.includes(frag)) {
+      throw new Error(`SJ-${num} patch regression: missing ${frag}`);
+    }
+  }
+  if (!/<section class="sj-ledger-field" id="f2"/.test(html)) {
+    throw new Error(`SJ-${num} patch regression: f2 section missing`);
+  }
+}
 
 function assertGeometryCompliance(num, config) {
   const prose = config.prose || '';
@@ -86,19 +100,14 @@ function injectScript(html, config) {
 
 function updateRail(html, config) {
   const summary = config.railSummary;
-  const miniRe = /<div class="sj-rail-card">\s*<div class="k">结构切片<\/div>[\s\S]*?<\/div>/;
-  const mini = `<div class="sj-rail-card">
-    <div class="k">结构切片</div>
-    <p class="sj-rail-mini">${summary}</p>
-  </div>`;
-  if (miniRe.test(html)) {
-    return html.replace(miniRe, mini);
-  }
+  const miniRe = /<div class="sj-rail-card"[^>]*>\s*<div class="k">结构切片<\/div>[\s\S]*?<\/div>/g;
+  const mini = `<div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p class="sj-rail-mini">${summary}</p></div>`;
+  let cleaned = html.replace(miniRe, '');
   const tocRe = /(<nav class="sj-rail-toc"[^>]*>[\s\S]*?<\/nav>)/;
-  if (tocRe.test(html)) {
-    return html.replace(tocRe, `$1\n  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p style="font-size:12.5px;color:var(--sj-paper-300);line-height:1.6">${summary}</p></div>`);
+  if (tocRe.test(cleaned)) {
+    return cleaned.replace(tocRe, `$1\n  ${mini}`);
   }
-  return html;
+  return cleaned;
 }
 
 function addRailMiniCss(html) {
@@ -122,6 +131,7 @@ for (const num of TARGETS) {
   html = replaceF2(html, config);
   html = injectScript(html, config);
   html = updateRail(html, config);
+  assertHtmlIntegrity(num, html);
   writeFileSync(path, html, 'utf8');
   const nodeCount = Object.keys(config.nodeData).length;
   console.log(`Patched SJ-${num}.html · ${nodeCount} nodes`);

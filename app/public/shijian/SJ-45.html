@@ -109,9 +109,9 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
     <div>
       <span class="sj-45-chip sj-45-dynasty" data-dynasty="yuan">朝代 · 元</span>
       <span class="sj-45-chip">制度</span>
-      <a class="sj-45-chip" href="./SJ-00.html">↔ SJ-00</a>
-      <a class="sj-45-chip" href="./SJ-03.html">↔ SJ-03</a>
-      <a class="sj-45-chip" href="./SJ-04.html">↔ SJ-04</a>
+      <a class="sj-45-chip" href="/modules/shijian/sj-00">↔ SJ-00</a>
+      <a class="sj-45-chip" href="/modules/shijian/sj-03">↔ SJ-03</a>
+      <a class="sj-45-chip" href="/modules/shijian/sj-04">↔ SJ-04</a>
       
     </div>
   </div>
@@ -126,18 +126,25 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
 </section>
 <section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
   <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
-  <p class="sj-45-prose">权力几何：<strong>中书省/皇帝</strong>授权<strong>行中书省</strong>纵列 → 路府州县下行治理 → <strong>腹里与行省</strong>双底盘。制度纵列（青瓷）为主轴，蒙古—汉地精英博弈（朱批）为执行张力。</p>
+  <p class="sj-45-prose">权力几何——<strong>制度长时段曲线</strong>：行省初为「因事而设」的临时派出（左端开放）→ 至元二十四年（1287）改行中书省为定制 → 沿曲线右移固化为「腹里+十行省」格局。青瓷为制度轨迹，朱批为蒙古—汉地双轨张力。非竖轴纵列。</p>
   <div class="sj-45-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
-  <title id="sj-title">结构切片 · 行省制度</title>
-  <desc id="sj-desc">权力几何：中书省/皇帝授权行中书省纵列 → 路府州县下行治理 → 腹里与行省双底盘。制度纵列（青瓷）为主轴，蒙古—汉地精英博弈（朱批）为执行张力。</desc>
+  <title id="sj-title">行省制度 · 制度曲线结构切片图</title>
+  <desc id="sj-desc">因事而设开放端沿曲线右移至1287定制与十行省固化；达鲁花赤双轨为执行张力。</desc>
   <defs>
-    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%"><stop offset="0%" stop-color="var(--sj-ink-800)"/><stop offset="100%" stop-color="var(--sj-ink-900)"/></radialGradient>
-    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse"><line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/></pattern>
-    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/></linearGradient>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/>
+    </linearGradient>
     <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
     <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
-    <marker id="a-celadon" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
-    <marker id="a-paper" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-100)"/></marker>
+    <marker id="a-celadon" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-300)"/></marker>
   </defs>
   <rect width="820" height="600" fill="url(#sj-glow)"/>
   <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
@@ -147,54 +154,63 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
     <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
     <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
   </g>
-  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,serif">结构切片 · 行省制度</text>
-  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,monospace">SJ-45 · 元 · 制度</text>
-  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">朱批 · 五力色义 · 点击节点交互</text>
-  <g fill="none" stroke-linecap="round"><path class="sj-edge" data-edge="e1" d="M410,158 L218,220" stroke="var(--sj-ochre)" stroke-width="2.4" marker-end="url(#a-ochre)"/><text x="310" y="195" text-anchor="middle" fill="var(--sj-ochre)" font-size="11" font-family="Songti SC,serif">派出行省</text>
-<path class="sj-edge" data-edge="e2" d="M218,280 L410,330" stroke="var(--sj-celadon)" stroke-width="2.6" marker-end="url(#a-celadon)"/><text x="310" y="310" text-anchor="middle" fill="var(--sj-celadon)" font-size="11" font-family="Songti SC,serif">路府下行</text>
-<path class="sj-edge" data-edge="e3" d="M410,390 L410,450" stroke="var(--sj-ochre)" stroke-width="2.2" marker-end="url(#a-ochre)"/>
-<path class="sj-edge" data-edge="e4" d="M306,250 L514,250" stroke="var(--sj-paper-300)" stroke-width="2" marker-end="url(#a-paper)"/>
-<path class="sj-edge" data-edge="e5" d="M607,280 L510,330" stroke="var(--sj-vermil)" stroke-width="2" marker-end="url(#a-vermil)"/><text x="570" y="305" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">等级张力</text>
-<path class="sj-edge" data-edge="e6" d="M218,330 L310,330" stroke="var(--sj-celadon)" stroke-width="1.8"/></g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,Noto Serif SC,serif" letter-spacing="0.1em">结构切片 · 制度曲线</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,JetBrains Mono,monospace" letter-spacing="0.08em">SJ-45 · 元 · 制度演变</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,Noto Serif SC,serif">朱批：初临时→终固化 · 1287 定制＝曲线拐点 · 非竖轴</text>
+  <g fill="none" stroke-linecap="round">
+    <path class="sj-edge" data-edge="c1" d="M120,380 C200,340 280,300 360,260" stroke="var(--sj-celadon)" stroke-width="2.4" marker-end="url(#a-celadon)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="c2" d="M360,260 C440,240 500,250 520,280" stroke="var(--sj-celadon)" stroke-width="2.6" marker-end="url(#a-celadon)" opacity="0.95"/>
+    <path class="sj-edge" data-edge="c3" d="M520,280 C580,300 620,320 640,340" stroke="var(--sj-celadon)" stroke-width="2.6" marker-end="url(#a-celadon)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="c4" d="M640,340 L640,280" stroke="var(--sj-paper-300)" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#a-paper)" opacity="0.8"/>
+    <path class="sj-edge" data-edge="c5" d="M640,340 C680,360 720,400 740,420" stroke="var(--sj-vermil)" stroke-width="2.4" marker-end="url(#a-vermil)" opacity="0.85"/>
+    <path class="sj-edge" data-edge="c6" d="M740,420 L410,486" stroke="var(--sj-ochre)" stroke-width="2" marker-end="url(#a-ochre)" opacity="0.85"/>
+    <path d="M100,400 C240,320 400,220 560,240 C680,260 740,340 760,420" fill="none" stroke="var(--sj-line)" stroke-width="1" stroke-dasharray="4 6" opacity="0.5"/></g>
+  <g font-family="Songti SC,Noto Serif SC,serif" font-size="11">
+    <text x="200" y="320" fill="var(--sj-celadon)">因事而设 · 开放</text>
+    <text x="480" y="230" fill="var(--sj-celadon)">1287 定制</text>
+    <text x="680" y="360" fill="var(--sj-vermil)" font-size="12" font-weight="600">十行省固化</text>
+    <text x="560" y="300" fill="var(--sj-paper-300)">达鲁花赤双轨</text></g>
+
   <g class="sj-node" data-id="zhongshu" tabindex="0" role="button" aria-label="中书省 · 皇帝">
-    <rect x="310" y="112" width="200" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
-    <text x="410" y="140" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">中书省 · 皇帝</text>
-    <text x="410" y="158" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">中央中枢 · 腹里</text>
+    <rect x="56" y="360" width="160" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="136" y="388" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">中书省 · 皇帝</text>
+    <text x="136" y="406" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">腹里直辖 · 授权</text>
   </g>
-<g class="sj-node" data-id="xingsheng" tabindex="0" role="button" aria-label="行中书省">
-    <rect x="130" y="220" width="176" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
-    <text x="218" y="248" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">行中书省</text>
-    <text x="218" y="266" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">1287 定制 · 纵列</text>
+  <g class="sj-node" data-id="yinshi" tabindex="0" role="button" aria-label="因事而设">
+    <rect x="280" y="280" width="160" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="360" y="308" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">因事而设</text>
+    <text x="360" y="326" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">临时派出 · 开放端</text>
   </g>
-<g class="sj-node" data-id="lufu" tabindex="0" role="button" aria-label="路 · 府 · 州">
-    <rect x="310" y="330" width="200" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
-    <text x="410" y="358" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">路 · 府 · 州</text>
-    <text x="410" y="376" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">汲取下行</text>
+  <g class="sj-node" data-id="dingzhi" tabindex="0" role="button" aria-label="1287 定制">
+    <rect x="480" y="240" width="180" height="64" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.6"/>
+    <text x="570" y="268" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">1287 定制</text>
+    <text x="570" y="286" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">行中书省 · 拐点</text>
   </g>
-<g class="sj-node" data-id="daru" tabindex="0" role="button" aria-label="达鲁花赤">
-    <rect x="514" y="220" width="186" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-paper-300)" stroke-width="2.4"/>
-    <text x="607" y="248" text-anchor="middle" fill="var(--sj-paper-300)" font-size="14" font-weight="600" font-family="Songti SC,serif">达鲁花赤</text>
-    <text x="607" y="266" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">蒙古监官 · 双轨</text>
+  <g class="sj-node" data-id="xingsheng" tabindex="0" role="button" aria-label="行中书省">
+    <rect x="600" y="300" width="186" height="64" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="693" y="328" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">行中书省</text>
+    <text x="693" y="346" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">军民钱粮 · 枢纽</text>
   </g>
-<g class="sj-node" data-id="menfa" tabindex="0" role="button" aria-label="色目 · 南人">
-    <rect x="514" y="330" width="186" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
-    <text x="607" y="358" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">色目 · 南人</text>
-    <text x="607" y="376" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">四等人制 · 张力</text>
+  <g class="sj-node" data-id="daru" tabindex="0" role="button" aria-label="达鲁花赤">
+    <rect x="600" y="220" width="160" height="50" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-paper-300)" stroke-width="2.4"/>
+    <text x="680" y="248" text-anchor="middle" fill="var(--sj-paper-300)" font-size="14" font-weight="600" font-family="Songti SC,serif">达鲁花赤</text>
+    <text x="680" y="266" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">蒙古监官 · 双轨</text>
   </g>
-<g class="sj-node" data-id="shiyi" tabindex="0" role="button" aria-label="十行省格局">
-    <rect x="130" y="330" width="176" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
-    <text x="218" y="358" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">十行省格局</text>
-    <text x="218" y="376" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">1330 约定型</text>
+  <g class="sj-node" data-id="shiyi" tabindex="0" role="button" aria-label="十行省格局">
+    <rect x="640" y="380" width="186" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="733" y="408" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">十行省格局</text>
+    <text x="733" y="426" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">1330 约定型 · 固化</text>
   </g>
-<g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="编户 · 腹里与行省底盘">
-    <rect x="56" y="450" width="708" height="70" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="2.4"/>
-    <text x="410" y="482" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC,serif">编户 · 腹里与行省底盘</text>
-    <text x="410" y="500" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">税基 · 多民族帝国</text>
+  <g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="编户 · 腹里与行省底盘">
+    <rect x="56" y="486" width="708" height="86" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="1.4"/>
+    <text x="410" y="514" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC,serif">编户 · 腹里与行省底盘</text>
+    <text x="410" y="532" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">税基 · 多民族帝国</text>
+    
   </g>
-  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,monospace">viewBox 820×600 · SJ-45</text>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,JetBrains Mono,monospace">viewBox 820×600 · 制度曲线</text>
 </svg></div>
   <div class="sj-45-layout">
-    <div class="sj-45-note" style="margin-top:0">点选节点展开机制链；色义见 premium 切片图例（patch 后更新）。</div>
+    <div class="sj-45-note" style="margin-top:0">色义：中书=赭金 · 制度曲线=青瓷（左开右固）· 达鲁花赤=灰白双轨 · 四等人制=朱红隐患 · 底盘=深墨。横轴=时间，曲线初临时后常设。</div>
     <aside class="sj-45-aside" id="aside" aria-live="polite">
       <div id="aside-empty" class="sj-45-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
       <div id="aside-body" hidden>
@@ -205,12 +221,16 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
     </aside>
   </div>
 </section>
+<!--SLICE_RAIL:因事而设 → 1287 定制 → 十行省固化。-->
+<!--SLICE_RAIL:因事而设 → 1287 定制 → 十行省固化。-->
 </div>
 <aside class="sj-rail"><div class="sj-rail-card"><div class="k">台账 · 七字段</div>
   <nav class="sj-rail-toc"><a href="#f1">01 · 拐点</a><a href="#f2">02 · 切片</a><a href="#f3">03 · 相位</a><a href="#f4">04 · 五力</a><a href="#f5">05 · 交锋</a><a href="#f6">06 · 成败</a><a href="#f7">07 · 映射</a></nav>
-  <a class="sj-rail-chip" href="./SJ-00.html#sec-case-hub">案例库 Hub</a>
-  <a class="sj-rail-chip" href="./SJ-03.html">SJ-03 五力</a>
-  <a class="sj-rail-chip" href="./SJ-04.html">SJ-04 相位盘</a>
+  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p class="sj-rail-mini">因事而设 → 1287 定制 → 十行省固化。</p></div>
+  
+  <a class="sj-rail-chip" href="/modules/shijian/sj-00#sec-case-hub">案例库 Hub</a>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-03">SJ-03 五力</a>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-04">SJ-04 相位盘</a>
 </div></aside>
 </div>
 <section class="sj-ledger-field" id="f3"><div class="sj-ledger-fh"><span class="fnum">03</span><h2>相位定位</h2></div>
@@ -229,7 +249,7 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
 <article><div class="who">钱穆<span>《国史大纲》</span></div><p>强调行省对后世地方行政的深远影响；元制承金、启明。</p></article>
 <article><div class="who">金观涛<span>超稳定结构</span></div><p>官僚模块化在疆域扩张下的「分块治理」——行省是超稳定结构的空间复制。</p></article>
 <article><div class="who">黄仁宇<span>数目字管理</span></div><p>元试图以行省统合数目字管理，但基层会计仍薄；与明清省制有连续也有断裂。</p></article>
-<article style="grid-column:1/-1"><div class="who">西方汉学<span>Yuan provinces</span></div><p>学界共识：行省制是 Medieval China 地方行政的关键创新；1287 改制为重要节点。〔存疑〕</p></article></div>
+<article style="grid-column:1/-1"><div class="who">西方汉学<span>Yuan provinces</span></div><p>学界共识：行省制是 Medieval China 地方行政的关键创新；1287 改制为重要节点。（通说，1287/1330 系年已核）</p></article></div>
 </section>
 <section class="sj-ledger-field" id="f6"><div class="sj-ledger-fh"><span class="fnum">06</span><h2>成败判定</h2></div>
   <div class="sj-45-verdict">
@@ -245,17 +265,19 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
   </div>
 </section>
 <section class="sj-ledger-field" id="fx"><div class="sj-ledger-fh"><span class="fnum">◆</span><h2>交叉引用</h2></div>
-  <div class="sj-45-xref"><a href="./SJ-35.html"><div class="n">SJ-35 · 隋文帝</div><h3>隋初</h3><p>三省六部为中枢模块化上游。</p></a>
-<a href="./SJ-39.html"><div class="n">SJ-39 · 两税法</div><h3>两税</h3><p>藩镇截留 vs 行省统辖的对照。</p></a>
-<a href="./SJ-04.html"><div class="n">SJ-04 · 相位盘</div><h3>相位盘</h3><p>鼎盛期·制度奠基定位。</p></a></div>
+  <div class="sj-45-xref"><a href="/modules/shijian/sj-35"><div class="n">SJ-35 · 隋文帝</div><h3>隋初</h3><p>三省六部为中枢模块化上游。</p></a>
+<a href="/modules/shijian/sj-39"><div class="n">SJ-39 · 两税法</div><h3>两税</h3><p>藩镇截留 vs 行省统辖的对照。</p></a>
+<a href="/modules/shijian/sj-04"><div class="n">SJ-04 · 相位盘</div><h3>相位盘</h3><p>鼎盛期·制度奠基定位。</p></a></div>
 </section>
 </article>
 <footer class="sj-45-foot">
   <span>ChinaOS · 史鉴 SJ-45 · v0.1 · 元</span>
-  <span><a href="./SJ-00.html">← SJ-00</a> · <a href="./SJ-34.html">← SJ-34</a></span>
-  <span><a href="./SJ-46.html">SJ-46 →</a></span>
+  <span><a href="/modules/shijian/sj-00">← SJ-00</a> · <a href="/modules/shijian/sj-34">← SJ-34</a></span>
+  <span><a href="/modules/shijian/sj-46">SJ-46 →</a></span>
 </footer>
 </div>
+
+
 <script>
 (function(){
   const stage=document.getElementById('stage');
@@ -267,66 +289,65 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
   const NODE_DATA={
   "zhongshu": {
     "name": "中书省 · 皇帝",
-    "tag": "皇权",
+    "tag": "皇权 · 授权",
     "body": "元废三省留中书，为最高政务机关；腹里（今华北一带）由中书省直辖。"
+  },
+  "yinshi": {
+    "name": "因事而设",
+    "tag": "曲线开放端",
+    "body": "初为平定叛乱、经理财赋的临时派出机构——「行动的中书省」，非一开始就常设。"
+  },
+  "dingzhi": {
+    "name": "1287 定制",
+    "tag": "制度拐点",
+    "body": "至元二十四年改行尚书省为行中书省，渐成定制——曲线中段枢纽（《元史·百官志》）。"
   },
   "xingsheng": {
     "name": "行中书省",
     "tag": "制度枢纽",
-    "body": "「行动的中书省」——初临时、后常设，掌一路以上军民钱粮。至元二十四年改行尚书省为行中书省（《元史·百官志》）。"
-  },
-  "lufu": {
-    "name": "路 · 府 · 州",
-    "tag": "财政链",
-    "body": "行省之下设路府州县，税粮、徭役经路府征解至行省再解中央——汲取纵列。"
+    "body": "掌一路以上军民钱粮，由只管军事到兼管民政——元帝国空间治理的核心模块。"
   },
   "daru": {
     "name": "达鲁花赤",
     "tag": "精英双轨",
-    "body": "各路设蒙古监官，与汉官并置——精英循环的双轨结构，保障蒙古利益。"
-  },
-  "menfa": {
-    "name": "色目 · 南人",
-    "tag": "合法性隐患",
-    "body": "民族等级使合法性叙事与基层承受力脱节，为元末矛盾埋伏笔。"
+    "body": "各路设蒙古监官，与汉官并置——保障蒙古利益的双轨结构。"
   },
   "shiyi": {
     "name": "十行省格局",
-    "tag": "空间分块",
-    "body": "岭北、辽阳、河南、陕西、甘肃、江浙、江西、湖广、四川、云南等——约十一行省（含腹里为中书直辖）。"
+    "tag": "固化端",
+    "body": "至顺元年（1330）约一中书省+十行省——曲线右端锁定的空间分块格局。"
   },
   "base": {
     "name": "编户 · 腹里与行省底盘",
     "tag": "基座",
-    "body": "统一后括户、赋役试图锁定税基；行省分块使大帝国治理成为可能。〔户数存疑〕"
+    "body": "统一后括户、赋役试图锁定税基；行省分块使大帝国治理成为可能。"
   }
 };
   const NODE_EDGE={
   "zhongshu": [
-    "e1"
+    "c1"
+  ],
+  "yinshi": [
+    "c1",
+    "c2"
+  ],
+  "dingzhi": [
+    "c2",
+    "c3"
   ],
   "xingsheng": [
-    "e1",
-    "e2",
-    "e4",
-    "e6"
-  ],
-  "lufu": [
-    "e2",
-    "e3",
-    "e5"
+    "c3",
+    "c4",
+    "c5"
   ],
   "daru": [
-    "e4"
-  ],
-  "menfa": [
-    "e5"
+    "c4"
   ],
   "shiyi": [
-    "e6"
+    "c5"
   ],
   "base": [
-    "e3"
+    "c6"
   ]
 };
   function clearVisual(){stage.classList.remove('is-picking');nodes.forEach(n=>n.classList.remove('is-hot'));edges.forEach(e=>e.classList.remove('is-hot'));}

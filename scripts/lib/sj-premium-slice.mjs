@@ -491,7 +491,7 @@ ${nodeBase('base', '绅商 · 会党 · 民众', '多元底盘 · 五力共振',
     },
     nodeEdge: {
       huangquan: ['spine'], zhidu: ['spine', 'down1'], menfa: ['clash'],
-      juntian: ['down1', 'down2'], keju: ['spine', 'clash'], base: ['down2'], yangdi: ['risk'],
+      juntian: ['down1', 'down2'], keju: ['spine', 'clash'], base: ['down2'], yangdi: ['yangdi-risk', 'risk'],
     },
     svg: () => buildSvg({
       title: '隋文帝改革制度重建结构切片图',
@@ -504,7 +504,8 @@ ${nodeBase('base', '绅商 · 会党 · 民众', '多元底盘 · 五力共振',
     <path class="sj-edge" data-edge="down1" d="M220,310 L220,372" stroke="var(--sj-celadon)" stroke-width="2.4" marker-end="url(#a-celadon)" opacity="0.9"/>
     <path class="sj-edge" data-edge="down2" d="M220,422 L410,486" stroke="var(--sj-ochre)" stroke-width="2.6" marker-end="url(#a-ochre)" opacity="0.9"/>
     <path class="sj-edge" data-edge="clash" d="M306,286 L462,286" stroke="var(--sj-vermil)" stroke-width="2" marker-end="url(#a-vermil)" opacity="0.8"/>
-    <path class="sj-edge" data-edge="risk" d="M500,158 C620,200 680,280 650,360" stroke="var(--sj-vermil)" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#a-vermil)" opacity="0.7"/>`,
+    <path class="sj-edge" data-edge="risk" d="M500,158 C620,200 680,280 650,360" stroke="var(--sj-vermil)" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#a-vermil)" opacity="0.7"/>
+    <path class="sj-edge" data-edge="yangdi-risk" d="M650,360 L600,345" stroke="var(--sj-vermil)" stroke-width="1.4" stroke-dasharray="4 4" opacity="0.6"/>`,
       edgeLabels: `
     <text x="250" y="212" fill="var(--sj-ochre)">589 灭陈统一</text>
     <text x="384" y="278" text-anchor="middle" fill="var(--sj-vermil)">门阀抵制</text>
@@ -516,6 +517,7 @@ ${nodeRect('zhidu', 130, 250, 176, 60, 'var(--sj-celadon)', '三省六部', '官
 ${nodeRect('menfa', 462, 250, 186, 60, 'var(--sj-vermil)', '门阀 · 豪强', '均田限田 · 抵制')}
 ${nodeRect('juntian', 132, 372, 176, 50, 'var(--sj-ochre)', '均田 · 租庸调', '汲取重建 · 下行')}
 ${nodeRect('keju', 462, 372, 186, 50, 'var(--sj-celadon)', '科举雏形', '精英循环 · 通道', { sw: '1.8' })}
+${nodeRect('yangdi', 600, 320, 160, 50, 'var(--sj-vermil)', '炀帝病灶', '工程过载 · 预埋', { dash: '5 4', sw: '1.8' })}
 ${nodeBase('base', '编户齐民 · 均田农民', '税基底盘 · 人口匹配', '')}`,
       footer: 'viewBox 820×600 · 隋初改革',
     }),

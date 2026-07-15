@@ -311,6 +311,9 @@ body{
 .sj-00-case-card h3 a:hover{color:var(--sj-ochre)}
 .sj-00-case-card p{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6}
 .sj-00-case-card .type{font-family:var(--sj-mono);font-size:9px;color:var(--sj-paper-300);margin-top:8px;letter-spacing:.08em}
+.sj-00-case-card[data-built="0"]{opacity:.55;border-style:dashed}
+.sj-00-case-card[data-built="0"] .sj-num{color:var(--sj-paper-300)}
+.sj-00-case-card[data-built="0"] .pending-badge{font-family:var(--sj-mono);font-size:9px;color:var(--sj-paper-300);border:1px solid var(--sj-line);padding:2px 6px;border-radius:4px;margin-left:6px}
 
 .sj-00-card h3{font-size:16px;font-weight:600;letter-spacing:.08em;margin-bottom:6px;flex-shrink:0}
 .sj-00-card p{
@@ -728,9 +731,9 @@ html[data-theme="light"] .sj-00-card:focus-within{
   <p class="sj-00-prose">按朝代筛选已建/规划案例卷；状态存于 JS 内存，无浏览器存储。完整路线图见 <code style="font-family:var(--sj-mono);font-size:12px;color:var(--sj-celadon)">docs/shijian/案例库-朝代路线图.md</code>。</p>
   <div class="sj-00-case-stats" id="sj-case-stats" aria-live="polite">
     <span>已建 <b id="sj-stat-built">27</b> 卷</span>
-    <span>显示 <b id="sj-stat-visible">27</b> / <b id="sj-stat-total">27</b></span>
-    <span>综合矩阵 <b>3</b>（SJ-07/16/17）</span>
-    <span>规划 <b>23+</b> 卷（Round 3–4）</span>
+    <span>单案 <b>24</b> · 综合矩阵 <b>3</b></span>
+    <span>显示 <b id="sj-stat-visible">27</b> / <b id="sj-stat-total">29</b></span>
+    <span>待建 <b>2</b> 综合层（SJ-18/19）</span>
   </div>
   <div class="sj-00-case-filter" role="group" aria-label="朝代筛选">
     <span class="lbl">朝代</span>
@@ -917,6 +920,18 @@ html[data-theme="light"] .sj-00-card:focus-within{
       <h3><a href="/modules/shijian/sj-51">戊戌变法</a></h3>
       <p>1898 百日维新，体制突破失败，衔接洋务→辛亥链。</p>
       <div class="type">变法 · 体制突破型失败</div>
+    </article>
+    <article class="sj-00-case-card" data-dynasty="cross" data-type="synthesis" data-built="0">
+      <div class="top"><span class="sj-num">SJ-18</span><span class="dyn">跨朝</span><span class="pending-badge">待建</span></div>
+      <h3>拐点谱系矩阵</h3>
+      <p>天宝/康乾等鼎盛隐性拐点跨案对比——规律提炼层。</p>
+      <div class="type">综合层 · 拐点谱系 · Round 4</div>
+    </article>
+    <article class="sj-00-case-card" data-dynasty="cross" data-type="synthesis" data-built="0">
+      <div class="top"><span class="sj-num">SJ-19</span><span class="dyn">跨朝</span><span class="pending-badge">待建</span></div>
+      <h3>分裂—重整矩阵</h3>
+      <p>五代/官渡/淝水等分裂期决胜与重整链——与 SJ-08/31 衔接。</p>
+      <div class="type">综合层 · 分裂重整 · Round 4</div>
     </article>
   </div>
 </section>

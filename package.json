@@ -8,6 +8,7 @@
     "preview:worker": "npm run build && wrangler dev",
     "fetch:signals": "python3 scripts/fetch_signal_observations.py",
     "check:ui": "node scripts/r4-checklist.mjs",
+    "check:shijian": "node scripts/verify-sj-html.mjs",
     "avatars:verify": "node scripts/resolveVerifiedAvatars.mjs --delay 2000",
     "lint:css": "stylelint \"app/src/**/*.css\" --allow-empty-input"
   },

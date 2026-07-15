@@ -111,14 +111,14 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
     <div>
       <span class="sj-35-chip sj-35-dynasty" data-dynasty="sui">朝代 · 隋</span>
       <span class="sj-35-chip">变法</span>
-      <a class="sj-35-chip" href="./SJ-00.html">↔ SJ-00</a>
-      <a class="sj-35-chip" href="./SJ-03.html">↔ SJ-03</a>
-      <a class="sj-35-chip" href="./SJ-04.html">↔ SJ-04</a>
+      <a class="sj-35-chip" href="/modules/shijian/sj-00">↔ SJ-00</a>
+      <a class="sj-35-chip" href="/modules/shijian/sj-03">↔ SJ-03</a>
+      <a class="sj-35-chip" href="/modules/shijian/sj-04">↔ SJ-04</a>
     </div>
   </div>
   <div class="sj-35-meta">史鉴台账七字段 · 隋<br/><b>AS_OF 2026-07-15</b> · v0.1</div>
 </header>
-<p class="sj-zhupi">朱批：隋文帝改革是<strong>分裂后重整期制度升级</strong>样本——均田、租庸调、三省六部、科举雏形同步重建财政汲取与精英循环。口径：《隋书·食货志》《高祖纪》；具体户数〔存疑〕。</p>
+<p class="sj-zhupi">朱批：隋文帝改革是<strong>分裂后重整期制度升级</strong>样本——均田、租庸调、三省六部、科举雏形同步重建财政汲取与精英循环。口径：《隋书·食货志》《高祖纪》；具体户数学界估算差异大。</p>
 <article class="sj-ledger">
 <div class="sj-page-layout">
 <div class="sj-main-col">
@@ -163,7 +163,8 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
     <path class="sj-edge" data-edge="down1" d="M220,310 L220,372" stroke="var(--sj-celadon)" stroke-width="2.4" marker-end="url(#a-celadon)" opacity="0.9"/>
     <path class="sj-edge" data-edge="down2" d="M220,422 L410,486" stroke="var(--sj-ochre)" stroke-width="2.6" marker-end="url(#a-ochre)" opacity="0.9"/>
     <path class="sj-edge" data-edge="clash" d="M306,286 L462,286" stroke="var(--sj-vermil)" stroke-width="2" marker-end="url(#a-vermil)" opacity="0.8"/>
-    <path class="sj-edge" data-edge="risk" d="M500,158 C620,200 680,280 650,360" stroke="var(--sj-vermil)" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#a-vermil)" opacity="0.7"/></g>
+    <path class="sj-edge" data-edge="risk" d="M500,158 C620,200 680,280 650,360" stroke="var(--sj-vermil)" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#a-vermil)" opacity="0.7"/>
+    <path class="sj-edge" data-edge="yangdi-risk" d="M650,360 L600,345" stroke="var(--sj-vermil)" stroke-width="1.4" stroke-dasharray="4 4" opacity="0.6"/></g>
   <g font-family="Songti SC,Noto Serif SC,serif" font-size="11">
     <text x="250" y="212" fill="var(--sj-ochre)">589 灭陈统一</text>
     <text x="384" y="278" text-anchor="middle" fill="var(--sj-vermil)">门阀抵制</text>
@@ -195,6 +196,11 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
     <text x="555" y="400" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">科举雏形</text>
     <text x="555" y="418" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">精英循环 · 通道</text>
   </g>
+  <g class="sj-node" data-id="yangdi" tabindex="0" role="button" aria-label="炀帝病灶">
+    <rect x="600" y="320" width="160" height="50" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="1.8" stroke-dasharray="5 4"/>
+    <text x="680" y="348" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">炀帝病灶</text>
+    <text x="680" y="366" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">工程过载 · 预埋</text>
+  </g>
   <g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="编户齐民 · 均田农民">
     <rect x="56" y="486" width="708" height="86" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="1.4"/>
     <text x="410" y="514" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC,serif">编户齐民 · 均田农民</text>
@@ -220,17 +226,21 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
 <!--SLICE_RAIL:隋文帝 → 三省六部 → 均田租庸调；581 开皇统一。-->
 <!--SLICE_RAIL:隋文帝 → 三省六部 → 均田租庸调；581 开皇统一。-->
 <!--SLICE_RAIL:隋文帝 → 三省六部 → 均田租庸调；581 开皇统一。-->
+<!--SLICE_RAIL:隋文帝 → 三省六部 → 均田租庸调；581 开皇统一。-->
+<!--SLICE_RAIL:隋文帝 → 三省六部 → 均田租庸调；581 开皇统一。-->
 </div>
 <aside class="sj-rail"><div class="sj-rail-card"><div class="k">台账 · 七字段</div>
   <nav class="sj-rail-toc"><a href="#f1">01 · 拐点</a><a href="#f2">02 · 切片</a><a href="#f3">03 · 相位</a><a href="#f4">04 · 五力</a><a href="#f5">05 · 交锋</a><a href="#f6">06 · 成败</a><a href="#f7">07 · 映射</a></nav>
-  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p style="font-size:12.5px;color:var(--sj-paper-300);line-height:1.6">隋文帝 → 三省六部 → 均田租庸调；581 开皇统一。</p></div>
-  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p style="font-size:12.5px;color:var(--sj-paper-300);line-height:1.6">隋文帝 → 三省六部 → 均田租庸调；581 开皇统一。</p></div>
-  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p style="font-size:12.5px;color:var(--sj-paper-300);line-height:1.6">隋文帝 → 三省六部 → 均田租庸调；581 开皇统一。</p></div>
-  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p style="font-size:12.5px;color:var(--sj-paper-300);line-height:1.6">隋文帝 → 三省六部 → 均田租庸调；581 开皇统一。</p></div>
-  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p style="font-size:12.5px;color:var(--sj-paper-300);line-height:1.6">隋文帝 → 三省六部 → 均田租庸调；581 开皇统一。</p></div>
-  <a class="sj-rail-chip" href="./SJ-00.html#sec-case-hub">案例库 Hub</a>
-  <a class="sj-rail-chip" href="./SJ-03.html">SJ-03 五力</a>
-  <a class="sj-rail-chip" href="./SJ-04.html">SJ-04 相位盘</a>
+  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p class="sj-rail-mini">隋文帝 → 三省六部 → 均田租庸调；581 开皇统一。</p></div>
+  
+  
+  
+  
+  
+  
+  <a class="sj-rail-chip" href="/modules/shijian/sj-00#sec-case-hub">案例库 Hub</a>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-03">SJ-03 五力</a>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-04">SJ-04 相位盘</a>
 </div></aside>
 </div>
 <section class="sj-ledger-field" id="f3"><div class="sj-ledger-fh"><span class="fnum">03</span><h2>相位定位</h2></div>
@@ -249,7 +259,7 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
 <article><div class="who">钱穆<span>《国史大纲》</span></div><p>肯定隋初制度进步，但指出炀帝暴政使隋速亡；文帝改革遗产为唐所承。</p></article>
 <article><div class="who">金观涛<span>超稳定结构</span></div><p>分裂后再统一的制度升级——均田+租庸调是超稳定结构的标准重启包。</p></article>
 <article><div class="who">黄仁宇<span>数目字管理</span></div><p>三省六部是数目字管理的官僚基础；租庸调以人丁计征，基层会计仍薄。</p></article>
-<article style="grid-column:1/-1"><div class="who">西方汉学<span>Sui reunification</span></div><p>学界共识：隋初改革是 Medieval China reunification 的制度模板；炀帝工程过载是隋亡主因。〔存疑〕</p></article></div>
+<article style="grid-column:1/-1"><div class="who">西方汉学<span>Sui reunification</span></div><p>学界共识：隋初改革是 Medieval China reunification 的制度模板；炀帝工程过载是隋亡主因。（通说）</p></article></div>
 </section>
 <section class="sj-ledger-field" id="f6"><div class="sj-ledger-fh"><span class="fnum">06</span><h2>成败判定</h2></div>
   <div class="sj-35-verdict">
@@ -265,17 +275,19 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
   </div>
 </section>
 <section class="sj-ledger-field" id="fx"><div class="sj-ledger-fh"><span class="fnum">◆</span><h2>交叉引用</h2></div>
-  <div class="sj-35-xref"><a href="./SJ-08.html"><div class="n">SJ-08 · 五代</div><h3>五代</h3><p>分裂—重整对照上游。</p></a>
-<a href="./SJ-38.html"><div class="n">SJ-38 · 贞观</div><h3>贞观</h3><p>隋制遗产为唐所承。</p></a>
-<a href="./SJ-04.html"><div class="n">SJ-04 · 相位盘</div><h3>相位盘</h3><p>重整期·制度奠基定位。</p></a></div>
+  <div class="sj-35-xref"><a href="/modules/shijian/sj-08"><div class="n">SJ-08 · 五代</div><h3>五代</h3><p>分裂—重整对照上游。</p></a>
+<a href="/modules/shijian/sj-38"><div class="n">SJ-38 · 贞观</div><h3>贞观</h3><p>隋制遗产为唐所承。</p></a>
+<a href="/modules/shijian/sj-04"><div class="n">SJ-04 · 相位盘</div><h3>相位盘</h3><p>重整期·制度奠基定位。</p></a></div>
 </section>
 </article>
 <footer class="sj-35-foot">
   <span>ChinaOS · 史鉴 SJ-35 · v0.1 · 隋</span>
-  <span><a href="./SJ-00.html">← SJ-00</a> · <a href="./SJ-27.html">← SJ-27</a></span>
-  <span><a href="./SJ-38.html">SJ-38 →</a></span>
+  <span><a href="/modules/shijian/sj-00">← SJ-00</a> · <a href="/modules/shijian/sj-27">← SJ-27</a></span>
+  <span><a href="/modules/shijian/sj-38">SJ-38 →</a></span>
 </footer>
 </div>
+
+
 
 
 
@@ -348,6 +360,7 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
     "down2"
   ],
   "yangdi": [
+    "yangdi-risk",
     "risk"
   ]
 };
