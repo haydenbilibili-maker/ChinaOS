@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-47 · 土木之变</title>
+<meta name="description" content="ChinaOS 史鉴系列案例卷 SJ-47：土木之变——军事决策失败 · 英宗被俘。史鉴台账七字段。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;--sj-ink-800:#1d1916;--sj-paper-100:#e8ddc7;--sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;--sj-celadon:#5f7a6f;--sj-ochre:#b8894a;--sj-line:#3a322b;
+  --sj-radius:6px;--sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c 0%,transparent 55%),var(--sj-ink-900);color:var(--sj-paper-100);font-family:var(--sj-serif);line-height:1.75}
+.sj-47-wrap{max-width:min(100%,1180px);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media(min-width:1280px){.sj-47-wrap{max-width:min(100%,1480px)}}
+.sj-page-layout{display:flex;flex-direction:column;gap:var(--sj-space)}
+@media(min-width:1280px){.sj-page-layout{display:grid;grid-template-columns:minmax(0,58fr) minmax(280px,38fr);gap:clamp(16px,2vw,28px);align-items:start}}
+.sj-main-col{min-width:0}
+.sj-rail{display:flex;flex-direction:column;gap:12px}
+@media(min-width:1280px){.sj-rail{position:sticky;top:1rem;align-self:start;max-height:calc(100vh - 2rem);overflow-y:auto}}
+@media(max-width:1279px){.sj-page-layout{flex-direction:column}.sj-main-col{display:contents}.sj-rail{order:2;margin:8px 0 20px}}
+.sj-rail-card{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px}
+.sj-rail-card .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-rail-toc{display:grid;gap:6px;margin-top:8px}
+.sj-rail-toc a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);padding:8px 10px;text-decoration:none;color:inherit;font-size:13px}
+.sj-rail-toc a:hover,.sj-rail-toc a:focus-visible,.sj-rail-toc a.is-active{border-color:var(--sj-ochre);outline:none}
+.sj-rail-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;margin:4px 4px 0 0}
+.sj-47-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px}
+.sj-47-mast .badge{font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-47-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em}
+.sj-47-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;font-size:.72em;display:block;margin-top:4px}
+.sj-47-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right}
+.sj-47-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;margin:2px}
+.sj-47-dynasty{color:var(--sj-ochre);border-color:var(--sj-ochre)}
+.sj-zhupi{color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:74ch}
+.sj-ledger{display:grid;gap:8px}
+.sj-ledger-field{margin:20px 0 8px;scroll-margin-top:24px}
+.sj-ledger-fh{display:flex;align-items:baseline;gap:12px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--sj-line)}
+.sj-ledger-fh .fnum{font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre);border:1px solid var(--sj-line);border-radius:4px;padding:1px 7px}
+.sj-ledger-fh h2{font-size:clamp(16px,2.1vw,19px);font-weight:600}
+.sj-47-prose{font-size:15.5px;max-width:74ch}
+.sj-47-hook{border:1px solid var(--sj-line);border-left:3px solid var(--sj-vermil);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:18px 22px}
+.sj-47-hook p{font-size:clamp(16px,2.3vw,20px);line-height:1.7}
+.sj-47-hook .yr{margin-top:10px;font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre)}
+.sj-47-stage{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:8px;overflow:auto}
+.sj-47-stage svg{display:block;width:100%;height:auto}
+.sj-node{cursor:pointer;transition:opacity .2s ease,filter .2s ease}
+.sj-node:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:4px}
+.sj-edge{transition:opacity .2s ease,filter .2s ease}
+.sj-47-stage.is-picking .sj-node{opacity:.3}
+.sj-47-stage.is-picking .sj-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px rgba(184,137,74,.4))}
+.sj-47-stage.is-picking .sj-edge{opacity:.16}
+.sj-47-stage.is-picking .sj-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px rgba(168,59,44,.4))}
+.sj-47-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:14px;align-items:start;margin-top:14px}
+.sj-47-aside{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px;position:sticky;top:12px;min-height:150px}
+.sj-47-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-47-aside h3{font-size:16px;letter-spacing:.08em;margin-bottom:8px}
+.sj-47-aside p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.7}
+.sj-47-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+.sj-47-note{font-size:13px;color:var(--sj-paper-300);line-height:1.65;max-width:74ch}
+@media(max-width:900px){.sj-47-layout{grid-template-columns:1fr}.sj-47-aside{position:static}}
+.sj-47-phase .pb{font-family:var(--sj-mono);font-size:12px;color:var(--sj-vermil);border:1px solid var(--sj-vermil);border-radius:20px;padding:6px 16px}
+.sj-47-table-wrap{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);overflow:auto}
+.sj-47-table{width:100%;border-collapse:collapse;font-size:13px}
+.sj-47-table th{background:var(--sj-ink-900);color:var(--sj-ochre);font-family:var(--sj-mono);font-size:10px;padding:10px 12px;text-align:left;border-bottom:1px solid var(--sj-line)}
+.sj-47-table td{padding:10px 12px;border-bottom:1px solid var(--sj-line);color:var(--sj-paper-300);vertical-align:top}
+.sj-47-table td:first-child{color:var(--sj-paper-100);font-weight:600}
+.sj-47-hist{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-47-hist article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-47-hist .who{font-size:14px;font-weight:600;color:var(--sj-celadon);margin-bottom:6px}
+.sj-47-hist .who span{font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);margin-left:6px}
+.sj-47-hist p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+.sj-47-verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sj-47-verdict article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-47-verdict .vh{font-family:var(--sj-mono);font-size:10px;margin-bottom:8px}
+.sj-47-verdict article.ok .vh{color:var(--sj-celadon)}
+.sj-47-verdict article.fail .vh{color:var(--sj-vermil)}
+.sj-47-verdict article.open .vh{color:var(--sj-ochre)}
+.sj-47-verdict p{font-size:13px;color:var(--sj-paper-300)}
+.sj-47-mirror{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-47-mirror article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-47-mirror .mh{font-family:var(--sj-mono);font-size:10px;margin-bottom:8px}
+.sj-47-mirror article.same .mh{color:var(--sj-celadon)}
+.sj-47-mirror article.diff .mh{color:var(--sj-ochre)}
+.sj-47-mirror p{font-size:13px;color:var(--sj-paper-100);line-height:1.68}
+.sj-47-xref{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.sj-47-xref a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit}
+.sj-47-xref .n{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);margin-bottom:4px}
+.sj-47-xref h3{font-size:14px;margin-bottom:6px}
+.sj-47-xref p{font-size:12.5px;color:var(--sj-paper-300)}
+.sj-47-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sj-47-foot a{color:var(--sj-celadon);text-decoration:none}
+@media(max-width:768px){.sj-47-hist,.sj-47-mirror,.sj-47-verdict,.sj-47-xref{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sj-node,.sj-edge{transition:none}}
+.sj-rail-mini{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="sj-47-wrap" id="sj-47-top">
+<header class="sj-47-mast">
+  <div>
+    <div class="badge">SJ-47 · 明案例卷 · 土木</div>
+    <h1>土木之变<em>军事决策失败 · 英宗被俘</em></h1>
+    <div>
+      <span class="sj-47-chip sj-47-dynasty" data-dynasty="ming">朝代 · 明</span>
+      <span class="sj-47-chip">军事</span>
+      <a class="sj-47-chip" href="/modules/shijian/sj-00">↔ SJ-00</a>
+      <a class="sj-47-chip" href="/modules/shijian/sj-03">↔ SJ-03</a>
+      <a class="sj-47-chip" href="/modules/shijian/sj-04">↔ SJ-04</a>
+      
+    </div>
+  </div>
+  <div class="sj-47-meta">史鉴台账七字段 · 明<br/><b>AS_OF 2026-07-15</b> · v0.1</div>
+</header>
+<p class="sj-zhupi">朱批：本案是<strong>军事决策失败</strong>样本——正统十四年（1449）英宗在王振怂恿下御驾亲征瓦剌，土木堡兵败被俘，京师精锐尽丧。口径：《明史·英宗本纪》《明英宗实录》。</p>
+<article class="sj-ledger">
+<div class="sj-page-layout">
+<div class="sj-main-col">
+<section class="sj-ledger-field" id="f1"><div class="sj-ledger-fh"><span class="fnum">01</span><h2>一句话拐点</h2></div>
+  <div class="sj-47-hook"><p>正统十四年（1449），瓦剌也先大举犯边。明英宗朱祁镇在宦官王振怂恿下御驾亲征，五十余万大军仓促集结，王振专断行军路线，至土木堡遭也先包围——<b>八月十五日兵败，英宗被俘</b>，兵部尚书邝埜等重臣战死，京师精锐几乎全灭。郕王朱祁钰即位、于谦北京保卫战方稳住局面，明朝由攻转守（→ SJ-48 下西洋象征投入、SJ-10 明末对照）。</p><div class="yr">系年：1449.7 亲征 · 1449.8.15 土木堡兵败 · 出处《明史·英宗本纪》</div></div>
+</section>
+<section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
+  <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
+  <p class="sj-47-prose">权力几何：两军对峙——<strong>明军亲征纵列</strong>（朱红）在土木堡被<strong>瓦剌也先</strong>（朱红外压）包围击穿；王振（青瓷宦官）劫持决策链。军事决战母题。</p>
+  <div class="sj-47-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">结构切片 · 土木之变</title>
+  <desc id="sj-desc">权力几何：两军对峙——明军亲征纵列（朱红）在土木堡被瓦剌也先（朱红外压）包围击穿；王振（青瓷宦官）劫持决策链。军事决战母题。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%"><stop offset="0%" stop-color="var(--sj-ink-800)"/><stop offset="100%" stop-color="var(--sj-ink-900)"/></radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse"><line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/></pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/></linearGradient>
+    <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+    <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+    <marker id="a-celadon" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-100)"/></marker>
+  </defs>
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,serif">结构切片 · 土木之变</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,monospace">SJ-47 · 明 · 军事</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">朱批 · 五力色义 · 点击节点交互</text>
+  <g fill="none" stroke-linecap="round"><path class="sj-edge" data-edge="e1" d="M410,158 L218,250" stroke="var(--sj-ochre)" stroke-width="2.4" marker-end="url(#a-ochre)"/>
+<path class="sj-edge" data-edge="e2" d="M306,286 L514,286" stroke="var(--sj-vermil)" stroke-width="3.2" marker-end="url(#a-vermil)"/><text x="410" y="275" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">土木堡决战</text>
+<path class="sj-edge" data-edge="e3" d="M410,158 L410,360" stroke="var(--sj-celadon)" stroke-width="2" stroke-dasharray="5 4"/>
+<path class="sj-edge" data-edge="e4" d="M410,360 L310,310" stroke="var(--sj-celadon)" stroke-width="2.2" marker-end="url(#a-celadon)"/>
+<path class="sj-edge" data-edge="e5" d="M410,310 L410,250" stroke="var(--sj-vermil)" stroke-width="2.6" marker-end="url(#a-vermil)"/>
+<path class="sj-edge" data-edge="e6" d="M607,360 L410,452" stroke="var(--sj-celadon)" stroke-width="2" marker-end="url(#a-celadon)"/>
+<path class="sj-edge" data-edge="e7" d="M410,416 L410,452" stroke="var(--sj-vermil)" stroke-width="2.2" marker-end="url(#a-vermil)"/></g>
+  <g class="sj-node" data-id="yingzong" tabindex="0" role="button" aria-label="明英宗">
+    <rect x="310" y="112" width="200" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="410" y="140" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">明英宗</text>
+    <text x="410" y="158" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">御驾亲征</text>
+  </g>
+<g class="sj-node" data-id="mingjun" tabindex="0" role="button" aria-label="明军亲征">
+    <rect x="130" y="250" width="176" height="72" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="218" y="282" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">明军亲征</text>
+    <text x="218" y="300" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">五十余万</text>
+  </g>
+<g class="sj-node" data-id="yexian" tabindex="0" role="button" aria-label="也先 · 瓦剌">
+    <rect x="514" y="250" width="186" height="72" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="607" y="282" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">也先 · 瓦剌</text>
+    <text x="607" y="300" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">1449</text>
+  </g>
+<g class="sj-node" data-id="wangzhen" tabindex="0" role="button" aria-label="王振">
+    <rect x="310" y="360" width="200" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="410" y="388" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">王振</text>
+    <text x="410" y="406" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">宦官专断</text>
+  </g>
+<g class="sj-node" data-id="tumubao" tabindex="0" role="button" aria-label="土木堡">
+    <rect x="310" y="250" width="200" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="410" y="278" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">土木堡</text>
+    <text x="410" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">8.15 兵败</text>
+  </g>
+<g class="sj-node" data-id="yuqian" tabindex="0" role="button" aria-label="于谦 · 北京">
+    <rect x="514" y="360" width="186" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="607" y="388" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">于谦 · 北京</text>
+    <text x="607" y="406" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">保卫战</text>
+  </g>
+<g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="北方边防">
+    <rect x="56" y="452" width="708" height="60" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="2.4"/>
+    <text x="410" y="480" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC,serif">北方边防</text>
+    <text x="410" y="498" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">由攻转守</text>
+  </g>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,monospace">viewBox 820×600 · SJ-47</text>
+</svg></div>
+  <div class="sj-47-layout">
+    <div class="sj-47-note" style="margin-top:0">点选节点展开机制链；色义见 premium 切片图例。</div>
+    <aside class="sj-47-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-47-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+      </div>
+    </aside>
+  </div>
+</section>
+</div>
+<aside class="sj-rail"><div class="sj-rail-card"><div class="k">台账 · 七字段</div>
+  <nav class="sj-rail-toc"><a href="#f1">01 · 拐点</a><a href="#f2">02 · 切片</a><a href="#f3">03 · 相位</a><a href="#f4">04 · 五力</a><a href="#f5">05 · 交锋</a><a href="#f6">06 · 成败</a><a href="#f7">07 · 映射</a></nav>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-00#sec-case-hub">案例库 Hub</a>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-03">SJ-03 五力</a>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-04">SJ-04 相位盘</a>
+</div></aside>
+</div>
+<section class="sj-ledger-field" id="f3"><div class="sj-ledger-fh"><span class="fnum">03</span><h2>相位定位</h2></div>
+  <div class="sj-47-phase"><span class="pb">僵化期 · 军事误判</span></div>
+  <p class="sj-47-prose">明英宗朝处于<strong>僵化期</strong>——土木之变落于 SJ-04「军事力误判」：亲征决策链被宦官王振劫持，精锐一战丧尽。正统十四年七月英宗仓促亲征，五十余万大军后勤不济，王振屡改行军路线，至土木堡无水无援遭也先包围，八月十五日兵败英宗被俘。郕王朱祁钰即位、于谦北京保卫战方稳住局面——明朝由攻转守，京师长期暴露于边墙，与 SJ-48 永乐象征投入形成「耗费巨万却未固边防」对照。</p>
+</section>
+<section class="sj-ledger-field" id="f4"><div class="sj-ledger-fh"><span class="fnum">04</span><h2>五力归因台账</h2></div>
+  <div class="sj-47-table-wrap"><table class="sj-47-table"><thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead><tbody><tr><td>财政汲取</td><td class="zheng">亲征耗费</td><td class="shi">五十万大军仓促出征，后勤不济，耗费巨大</td></tr>
+<tr><td>精英循环</td><td class="zheng">王振专断</td><td class="shi">宦官王振劫持军务，文武大臣无法有效纠偏</td></tr>
+<tr><td>合法性叙事</td><td class="zheng">御驾亲征</td><td class="shi">英宗亲征本为合法性绩效，兵败反成合法性破产</td></tr>
+<tr><td>边疆军事</td><td class="zheng">土木堡败</td><td class="shi">京师三大营精锐几乎全灭，由攻转守</td></tr>
+<tr><td>生态—人口基座</td><td class="zheng">—</td><td class="shi">北方战区承荷战事破坏，边防布局长期改变</td></tr></tbody></table></div>
+</section>
+<section class="sj-ledger-field" id="f5"><div class="sj-ledger-fh"><span class="fnum">05</span><h2>史家交锋</h2></div>
+  <div class="sj-47-hist"><article><div class="who">李敖式考据<span>祛魅</span></div><p>剥离「昏君+奸宦」单一叙事——须见亲征决策链与边防结构问题。</p></article>
+<article><div class="who">钱穆<span>《国史大纲》</span></div><p>土木之变明由盛转衰关键，此后边防重心内移。</p></article>
+<article><div class="who">金观涛<span>超稳定结构</span></div><p>宦官专权+军事误判是僵化期典型组合。</p></article>
+<article><div class="who">黄仁宇<span>数目字管理</span></div><p>明初数目字管理在亲征决策中失效，后勤会计崩溃。</p></article>
+<article style="grid-column:1/-1"><div class="who">西方汉学<span>Tumu crisis</span></div><p>1449.8.15 土木堡兵败已核验；兵力数字〔存疑〕。</p></article></div>
+</section>
+<section class="sj-ledger-field" id="f6"><div class="sj-ledger-fh"><span class="fnum">06</span><h2>成败判定</h2></div>
+  <div class="sj-47-verdict">
+    <article class="ok"><div class="vh">已兑现</div><p>北京保卫战稳住</p><p>于谦挽局</p><p>边防体系调整</p></article>
+    <article class="fail"><div class="vh">已失败</div><p>英宗被俘</p><p>精锐尽丧</p><p>由攻转守</p></article>
+    <article class="open"><div class="vh">未决</div><p>〔未决〕若无王振专断、持重守关，能否避免惨败？</p></article>
+  </div>
+</section>
+<section class="sj-ledger-field" id="f7"><div class="sj-ledger-fh"><span class="fnum">07</span><h2>古今映射</h2></div>
+  <div class="sj-47-mirror">
+    <article class="same"><div class="mh">相似机制</div><p>决策链被非专业代理人劫持；亲征象征化导致军事灾难；一战丧尽精锐。</p></article>
+    <article class="diff"><div class="mh">关键差异</div><p>现代有专业参谋体系、文官控军与情报系统；但「政治代理人劫持军事决策」仍须警戒。</p></article>
+  </div>
+</section>
+<section class="sj-ledger-field" id="fx"><div class="sj-ledger-fh"><span class="fnum">◆</span><h2>交叉引用</h2></div>
+  <div class="sj-47-xref"><a href="/modules/shijian/sj-48"><div class="n">SJ-48 · 下西洋</div><h3>下西洋</h3><p>永乐象征投入对照。</p></a>
+<a href="/modules/shijian/sj-10"><div class="n">SJ-10 · 明末</div><h3>明末</h3><p>崩解下游。</p></a>
+<a href="/modules/shijian/sj-06"><div class="n">SJ-06 · 天宝</div><h3>天宝</h3><p>内轻外重另一路径。</p></a></div>
+</section>
+</article>
+<footer class="sj-47-foot">
+  <span>ChinaOS · 史鉴 SJ-47 · v0.1 · 明</span>
+  <span><a href="/modules/shijian/sj-00">← SJ-00</a> · <a href="/modules/shijian/sj-46">← SJ-46</a></span>
+  <span><a href="/modules/shijian/sj-48">SJ-48 →</a></span>
+</footer>
+</div>
+<script>
+(function(){
+  const stage=document.getElementById('stage');
+  if(!stage) return;
+  const nodes=Array.from(stage.querySelectorAll('.sj-node'));
+  const edges=Array.from(stage.querySelectorAll('.sj-edge'));
+  const asideEmpty=document.getElementById('aside-empty');
+  const asideBody=document.getElementById('aside-body');
+  const NODE_DATA={
+  "yingzong": {
+    "name": "明英宗",
+    "tag": "决策中枢",
+    "body": "在王振怂恿下亲征，土木堡兵败被俘。"
+  },
+  "mingjun": {
+    "name": "明军亲征",
+    "tag": "明军",
+    "body": "仓促集结，王振专断路线，至土木堡饥渴不堪。"
+  },
+  "yexian": {
+    "name": "也先 · 瓦剌",
+    "tag": "外压",
+    "body": "瓦剌也先包围土木堡，八月十五日大破明军。"
+  },
+  "wangzhen": {
+    "name": "王振",
+    "tag": "决策劫持",
+    "body": "劫持军务决策，屡改行军路线，致大军疲惫。"
+  },
+  "tumubao": {
+    "name": "土木堡",
+    "tag": "决胜点",
+    "body": "无水无援，瓦剌围攻，英宗被俘，精锐尽丧。"
+  },
+  "yuqian": {
+    "name": "于谦 · 北京",
+    "tag": "挽局",
+    "body": "郕王即位后于谦组织北京保卫战，稳住局面。"
+  },
+  "base": {
+    "name": "北方边防",
+    "tag": "基座",
+    "body": "京师精锐丧尽，明朝边防重心内移，退守长城。"
+  }
+};
+  const NODE_EDGE={
+  "yingzong": [
+    "e1",
+    "e3"
+  ],
+  "mingjun": [
+    "e1",
+    "e2",
+    "e5"
+  ],
+  "yexian": [
+    "e2"
+  ],
+  "wangzhen": [
+    "e3",
+    "e4"
+  ],
+  "tumubao": [
+    "e4",
+    "e5",
+    "e7"
+  ],
+  "yuqian": [
+    "e6"
+  ],
+  "base": [
+    "e6",
+    "e7"
+  ]
+};
+  function clearVisual(){stage.classList.remove('is-picking');nodes.forEach(n=>n.classList.remove('is-hot'));edges.forEach(e=>e.classList.remove('is-hot'));}
+  function showAside(id){const d=NODE_DATA[id];if(!d)return;asideEmpty.hidden=true;asideBody.hidden=false;document.getElementById('aside-tag').textContent=d.tag;document.getElementById('aside-name').textContent=d.name;document.getElementById('aside-text').textContent=d.body;}
+  function pick(id){if(!NODE_DATA[id])return;clearVisual();stage.classList.add('is-picking');nodes.forEach(n=>n.classList.toggle('is-hot',n.dataset.id===id));const hot=NODE_EDGE[id]||[];edges.forEach(e=>e.classList.toggle('is-hot',hot.indexOf(e.dataset.edge)>=0));showAside(id);}
+  nodes.forEach(n=>{const act=()=>pick(n.dataset.id);n.addEventListener('click',act);n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});});
+  edges.forEach(e=>{if(!e.dataset.edge||!NODE_DATA[e.dataset.edge])return;const act=()=>pick(e.dataset.edge);e.style.cursor='pointer';e.setAttribute('tabindex','0');e.setAttribute('role','button');e.addEventListener('click',act);e.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();act();}});});
+})();
+</script>
+</body>
+</html>

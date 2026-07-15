@@ -11,6 +11,10 @@ export const SHIJIAN_CASE_EVENT_YEARS = {
   shijianSJ11: -350,   // 商鞅变法（前350 系年）
   shijianSJ12: -209,   // 陈胜起义
   shijianSJ13: 9,      // 王莽称帝
+  shijianSJ25: -221,   // 秦统一六国 · 称皇帝
+  shijianSJ26: -213,   // 焚书令
+  shijianSJ29: 166,    // 第一次党锢
+  shijianSJ30: 184,    // 黄巾起义
   shijianSJ14: 1861,   // 洋务运动开端
   shijianSJ15: 1911,   // 辛亥革命
   shijianSJ27: -180,   // 文景之治中段
@@ -21,6 +25,7 @@ export const SHIJIAN_CASE_EVENT_YEARS = {
   shijianSJ34: 494,    // 孝文帝迁都洛阳
   shijianSJ35: 581,    // 隋文帝建隋
   shijianSJ36: 605,    // 大运河开凿（大业元年）
+  shijianSJ37: 618,    // 江都兵变 · 隋亡
   shijianSJ38: 627,    // 贞观之治
   shijianSJ39: 780,    // 两税法
   shijianSJ40: 875,    // 黄巢起义
@@ -30,6 +35,8 @@ export const SHIJIAN_CASE_EVENT_YEARS = {
   shijianSJ44: 1219,   // 蒙古西征花剌子模
   shijianSJ45: 1271,   // 行省制成熟（元世祖）
   shijianSJ46: 1351,   // 红巾起义
+  shijianSJ47: 1449,   // 土木堡之变
+  shijianSJ48: 1405,   // 郑和首次下西洋
   shijianSJ49: 1750,   // 康乾鼎盛隐性拐点（人口峰值段）
   shijianSJ50: 1851,   // 太平天国金田起义
   shijianSJ51: 1898,   // 戊戌变法

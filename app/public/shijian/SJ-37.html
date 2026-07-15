@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-37 · 隋末崩解</title>
+<meta name="description" content="ChinaOS 史鉴系列案例卷 SJ-37：隋末崩解——工程过载+军事透支 · 江都之变。史鉴台账七字段。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;--sj-ink-800:#1d1916;--sj-paper-100:#e8ddc7;--sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;--sj-celadon:#5f7a6f;--sj-ochre:#b8894a;--sj-line:#3a322b;
+  --sj-radius:6px;--sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c 0%,transparent 55%),var(--sj-ink-900);color:var(--sj-paper-100);font-family:var(--sj-serif);line-height:1.75}
+.sj-37-wrap{max-width:min(100%,1180px);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media(min-width:1280px){.sj-37-wrap{max-width:min(100%,1480px)}}
+.sj-page-layout{display:flex;flex-direction:column;gap:var(--sj-space)}
+@media(min-width:1280px){.sj-page-layout{display:grid;grid-template-columns:minmax(0,58fr) minmax(280px,38fr);gap:clamp(16px,2vw,28px);align-items:start}}
+.sj-main-col{min-width:0}
+.sj-rail{display:flex;flex-direction:column;gap:12px}
+@media(min-width:1280px){.sj-rail{position:sticky;top:1rem;align-self:start;max-height:calc(100vh - 2rem);overflow-y:auto}}
+@media(max-width:1279px){.sj-page-layout{flex-direction:column}.sj-main-col{display:contents}.sj-rail{order:2;margin:8px 0 20px}}
+.sj-rail-card{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px}
+.sj-rail-card .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-rail-toc{display:grid;gap:6px;margin-top:8px}
+.sj-rail-toc a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);padding:8px 10px;text-decoration:none;color:inherit;font-size:13px}
+.sj-rail-toc a:hover,.sj-rail-toc a:focus-visible,.sj-rail-toc a.is-active{border-color:var(--sj-ochre);outline:none}
+.sj-rail-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;margin:4px 4px 0 0}
+.sj-37-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px}
+.sj-37-mast .badge{font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-37-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em}
+.sj-37-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;font-size:.72em;display:block;margin-top:4px}
+.sj-37-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right}
+.sj-37-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;margin:2px}
+.sj-37-dynasty{color:var(--sj-ochre);border-color:var(--sj-ochre)}
+.sj-zhupi{color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:74ch}
+.sj-ledger{display:grid;gap:8px}
+.sj-ledger-field{margin:20px 0 8px;scroll-margin-top:24px}
+.sj-ledger-fh{display:flex;align-items:baseline;gap:12px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--sj-line)}
+.sj-ledger-fh .fnum{font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre);border:1px solid var(--sj-line);border-radius:4px;padding:1px 7px}
+.sj-ledger-fh h2{font-size:clamp(16px,2.1vw,19px);font-weight:600}
+.sj-37-prose{font-size:15.5px;max-width:74ch}
+.sj-37-hook{border:1px solid var(--sj-line);border-left:3px solid var(--sj-vermil);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:18px 22px}
+.sj-37-hook p{font-size:clamp(16px,2.3vw,20px);line-height:1.7}
+.sj-37-hook .yr{margin-top:10px;font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre)}
+.sj-37-stage{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:8px;overflow:auto}
+.sj-37-stage svg{display:block;width:100%;height:auto}
+.sj-node{cursor:pointer;transition:opacity .2s ease,filter .2s ease}
+.sj-node:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:4px}
+.sj-edge{transition:opacity .2s ease,filter .2s ease}
+.sj-37-stage.is-picking .sj-node{opacity:.3}
+.sj-37-stage.is-picking .sj-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px rgba(184,137,74,.4))}
+.sj-37-stage.is-picking .sj-edge{opacity:.16}
+.sj-37-stage.is-picking .sj-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px rgba(168,59,44,.4))}
+.sj-37-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:14px;align-items:start;margin-top:14px}
+.sj-37-aside{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px;position:sticky;top:12px;min-height:150px}
+.sj-37-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-37-aside h3{font-size:16px;letter-spacing:.08em;margin-bottom:8px}
+.sj-37-aside p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.7}
+.sj-37-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+.sj-37-note{font-size:13px;color:var(--sj-paper-300);line-height:1.65;max-width:74ch}
+@media(max-width:900px){.sj-37-layout{grid-template-columns:1fr}.sj-37-aside{position:static}}
+.sj-37-phase .pb{font-family:var(--sj-mono);font-size:12px;color:var(--sj-vermil);border:1px solid var(--sj-vermil);border-radius:20px;padding:6px 16px}
+.sj-37-table-wrap{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);overflow:auto}
+.sj-37-table{width:100%;border-collapse:collapse;font-size:13px}
+.sj-37-table th{background:var(--sj-ink-900);color:var(--sj-ochre);font-family:var(--sj-mono);font-size:10px;padding:10px 12px;text-align:left;border-bottom:1px solid var(--sj-line)}
+.sj-37-table td{padding:10px 12px;border-bottom:1px solid var(--sj-line);color:var(--sj-paper-300);vertical-align:top}
+.sj-37-table td:first-child{color:var(--sj-paper-100);font-weight:600}
+.sj-37-hist{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-37-hist article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-37-hist .who{font-size:14px;font-weight:600;color:var(--sj-celadon);margin-bottom:6px}
+.sj-37-hist .who span{font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);margin-left:6px}
+.sj-37-hist p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+.sj-37-verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sj-37-verdict article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-37-verdict .vh{font-family:var(--sj-mono);font-size:10px;margin-bottom:8px}
+.sj-37-verdict article.ok .vh{color:var(--sj-celadon)}
+.sj-37-verdict article.fail .vh{color:var(--sj-vermil)}
+.sj-37-verdict article.open .vh{color:var(--sj-ochre)}
+.sj-37-verdict p{font-size:13px;color:var(--sj-paper-300)}
+.sj-37-mirror{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-37-mirror article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-37-mirror .mh{font-family:var(--sj-mono);font-size:10px;margin-bottom:8px}
+.sj-37-mirror article.same .mh{color:var(--sj-celadon)}
+.sj-37-mirror article.diff .mh{color:var(--sj-ochre)}
+.sj-37-mirror p{font-size:13px;color:var(--sj-paper-100);line-height:1.68}
+.sj-37-xref{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.sj-37-xref a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit}
+.sj-37-xref .n{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);margin-bottom:4px}
+.sj-37-xref h3{font-size:14px;margin-bottom:6px}
+.sj-37-xref p{font-size:12.5px;color:var(--sj-paper-300)}
+.sj-37-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sj-37-foot a{color:var(--sj-celadon);text-decoration:none}
+@media(max-width:768px){.sj-37-hist,.sj-37-mirror,.sj-37-verdict,.sj-37-xref{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sj-node,.sj-edge{transition:none}}
+.sj-rail-mini{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="sj-37-wrap" id="sj-37-top">
+<header class="sj-37-mast">
+  <div>
+    <div class="badge">SJ-37 · 隋案例卷 · 崩解</div>
+    <h1>隋末崩解<em>工程过载+军事透支 · 江都之变</em></h1>
+    <div>
+      <span class="sj-37-chip sj-37-dynasty" data-dynasty="sui">朝代 · 隋</span>
+      <span class="sj-37-chip">崩解</span>
+      <a class="sj-37-chip" href="/modules/shijian/sj-00">↔ SJ-00</a>
+      <a class="sj-37-chip" href="/modules/shijian/sj-03">↔ SJ-03</a>
+      <a class="sj-37-chip" href="/modules/shijian/sj-04">↔ SJ-04</a>
+      
+    </div>
+  </div>
+  <div class="sj-37-meta">史鉴台账七字段 · 隋<br/><b>AS_OF 2026-07-15</b> · v0.1</div>
+</header>
+<p class="sj-zhupi">朱批：本案是<strong>崩解期多力共振</strong>样本——大业十四年（618）宇文化及江都兵变，隋炀帝被杀，隋亡。上游 SJ-36 运河与三征高句丽透支在此总清算。口径：《隋书·宇文化及传》《炀帝纪》。</p>
+<article class="sj-ledger">
+<div class="sj-page-layout">
+<div class="sj-main-col">
+<section class="sj-ledger-field" id="f1"><div class="sj-ledger-fh"><span class="fnum">01</span><h2>一句话拐点</h2></div>
+  <div class="sj-37-hook"><p>隋炀帝大运河、三征高句丽、江都巡游使民力枯竭，关陇贵族与骁果禁军离心。大业七年（611）王薄等起义，天下大乱，豪强并起。大业十四年（618）三月，<b>宇文化及发动江都兵变，隋炀帝被杀</b>——工程过载、军事透支、财政汲取越阈与合法性破产四力共振，隋王朝速亡。运河漕运空转、辽东远征失败与江都营建耗费形成死亡螺旋（→ SJ-36 运河、SJ-35 改革上游）。</p><div class="yr">系年：618 江都兵变 · 隋炀帝被杀 · 出处《隋书·宇文化及传》</div></div>
+</section>
+<section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
+  <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
+  <p class="sj-37-prose">权力几何：江都<strong>隋炀帝</strong>（虚弱赭金）被四力向心合围——运河工程（基座）、三征高句丽（军事）、民变（朱红）、关陇离心（精英）经骁果军变汇聚。崩解合围母题。</p>
+  <div class="sj-37-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">结构切片 · 隋末崩解</title>
+  <desc id="sj-desc">权力几何：江都隋炀帝（虚弱赭金）被四力向心合围——运河工程（基座）、三征高句丽（军事）、民变（朱红）、关陇离心（精英）经骁果军变汇聚。崩解合围母题。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%"><stop offset="0%" stop-color="var(--sj-ink-800)"/><stop offset="100%" stop-color="var(--sj-ink-900)"/></radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse"><line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/></pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/></linearGradient>
+    <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+    <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+    <marker id="a-celadon" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-100)"/></marker>
+  </defs>
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,serif">结构切片 · 隋末崩解</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,monospace">SJ-37 · 隋 · 崩解</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">朱批 · 五力色义 · 点击节点交互</text>
+  <g fill="none" stroke-linecap="round"><path class="sj-edge" data-edge="e1" d="M133,324 C220,300 300,290 360,280" stroke="var(--sj-vermil)" stroke-width="2.8" marker-end="url(#a-vermil)"/>
+<path class="sj-edge" data-edge="e2" d="M677,324 C580,285 480,285 460,280" stroke="var(--sj-vermil)" stroke-width="2.8" marker-end="url(#a-vermil)"/>
+<path class="sj-edge" data-edge="e3" d="M410,314 L410,268" stroke="var(--sj-ochre)" stroke-width="2" marker-end="url(#a-ochre)"/>
+<path class="sj-edge" data-edge="e4" d="M410,420 L410,314" stroke="var(--sj-vermil)" stroke-width="3.2" marker-end="url(#a-vermil)"/><text x="430" y="370" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">兵变</text>
+<path class="sj-edge" data-edge="e5" d="M607,360 L460,290" stroke="var(--sj-celadon)" stroke-width="2.4" marker-end="url(#a-celadon)"/>
+<path class="sj-edge" data-edge="e6" d="M133,324 L300,420" stroke="var(--sj-vermil)" stroke-width="2"/></g>
+  <g class="sj-node" data-id="yangdi" tabindex="0" role="button" aria-label="隋炀帝 · 江都">
+    <rect x="310" y="118" width="200" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="410" y="146" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">隋炀帝 · 江都</text>
+    <text x="410" y="164" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">618 被杀</text>
+  </g>
+<g class="sj-node" data-id="yunhe" tabindex="0" role="button" aria-label="运河工程">
+    <rect x="52" y="252" width="162" height="72" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="133" y="284" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">运河工程</text>
+    <text x="133" y="302" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">基座过载</text>
+  </g>
+<g class="sj-node" data-id="gaoli" tabindex="0" role="button" aria-label="三征高句丽">
+    <rect x="586" y="252" width="182" height="72" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="677" y="284" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">三征高句丽</text>
+    <text x="677" y="302" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">军事透支</text>
+  </g>
+<g class="sj-node" data-id="minbian" tabindex="0" role="button" aria-label="民变蜂起">
+    <rect x="310" y="420" width="220" height="52" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="420" y="448" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">民变蜂起</text>
+    <text x="420" y="466" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">王薄 · 翟让</text>
+  </g>
+<g class="sj-node" data-id="guanlong" tabindex="0" role="button" aria-label="关陇离心">
+    <rect x="514" y="360" width="186" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="607" y="388" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">关陇离心</text>
+    <text x="607" y="406" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">骁果军变</text>
+  </g>
+<g class="sj-node" data-id="yuhua" tabindex="0" role="button" aria-label="江都兵变">
+    <rect x="300" y="268" width="220" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="410" y="296" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">江都兵变</text>
+    <text x="410" y="314" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">618.3</text>
+  </g>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,monospace">viewBox 820×600 · SJ-37</text>
+</svg></div>
+  <div class="sj-37-layout">
+    <div class="sj-37-note" style="margin-top:0">点选节点展开机制链；色义见 premium 切片图例。</div>
+    <aside class="sj-37-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-37-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+      </div>
+    </aside>
+  </div>
+</section>
+</div>
+<aside class="sj-rail"><div class="sj-rail-card"><div class="k">台账 · 七字段</div>
+  <nav class="sj-rail-toc"><a href="#f1">01 · 拐点</a><a href="#f2">02 · 切片</a><a href="#f3">03 · 相位</a><a href="#f4">04 · 五力</a><a href="#f5">05 · 交锋</a><a href="#f6">06 · 成败</a><a href="#f7">07 · 映射</a></nav>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-00#sec-case-hub">案例库 Hub</a>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-03">SJ-03 五力</a>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-04">SJ-04 相位盘</a>
+</div></aside>
+</div>
+<section class="sj-ledger-field" id="f3"><div class="sj-ledger-fh"><span class="fnum">03</span><h2>相位定位</h2></div>
+  <div class="sj-37-phase"><span class="pb">崩解期 · 多力共振</span></div>
+  <p class="sj-37-prose">隋代末年处于<strong>崩解期</strong>——江都之变落于 SJ-07 崩解矩阵「工程+军事双透支」类型。大业七年（611）王薄起义后天下大乱，运河漕运空转、三征高句丽军事失败、江都巡游耗费巨万，关陇勋贵与骁果禁军离心。大业十四年（618）三月宇文化及发动兵变杀隋炀帝——四力向心合围之总清算，唐朝接续统一但隋制遗产（运河、科举雏形等）延续。</p>
+</section>
+<section class="sj-ledger-field" id="f4"><div class="sj-ledger-fh"><span class="fnum">04</span><h2>五力归因台账</h2></div>
+  <div class="sj-37-table-wrap"><table class="sj-37-table"><thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead><tbody><tr><td>财政汲取</td><td class="zheng">运河 · 巡游</td><td class="shi">大运河与江都营建消耗巨万，漕运空转</td></tr>
+<tr><td>精英循环</td><td class="zheng">关陇离心</td><td class="shi">关陇勋贵与骁果禁军离心，宇文化及为代表</td></tr>
+<tr><td>合法性叙事</td><td class="zheng">大业叙事破产</td><td class="shi">「示天下富强」工程叙事被民变击穿</td></tr>
+<tr><td>边疆军事</td><td class="zheng">三征高句丽</td><td class="shi">三次远征辽东失败，军事力透支</td></tr>
+<tr><td>生态—人口基座</td><td class="zheng">民变蜂起</td><td class="shi">王薄、翟让、李密等起义，基座承载崩溃</td></tr></tbody></table></div>
+</section>
+<section class="sj-ledger-field" id="f5"><div class="sj-ledger-fh"><span class="fnum">05</span><h2>史家交锋</h2></div>
+  <div class="sj-37-hist"><article><div class="who">李敖式考据<span>祛魅</span></div><p>炀帝非单一「昏君」——须见制度惯性、关陇结构与其个人决策之交织。</p></article>
+<article><div class="who">钱穆<span>《国史大纲》</span></div><p>隋文帝奠基、炀帝急政致亡，亦承认运河长期价值。</p></article>
+<article><div class="who">金观涛<span>超稳定结构</span></div><p>大一统后基建+军事双透支是崩解典型链，隋为标本。</p></article>
+<article><div class="who">黄仁宇<span>数目字管理</span></div><p>隋代数目字管理未成熟，无法缓冲超级工程成本。</p></article>
+<article style="grid-column:1/-1"><div class="who">西方汉学<span>Sui collapse</span></div><p>618 江都之变纪年已核验；民变起年〔611 通说〕。</p></article></div>
+</section>
+<section class="sj-ledger-field" id="f6"><div class="sj-ledger-fh"><span class="fnum">06</span><h2>成败判定</h2></div>
+  <div class="sj-37-verdict">
+    <article class="ok"><div class="vh">已兑现</div><p>唐朝接续统一</p><p>运河等制度遗产延续</p></article>
+    <article class="fail"><div class="vh">已失败</div><p>隋炀帝被杀</p><p>隋速亡</p><p>民变席卷天下</p></article>
+    <article class="open"><div class="vh">未决</div><p>〔未决〕若炀帝在运河后停征高句丽、还都关中，隋能否延续？</p><p>〔未决〕运河长期收益是否足以抵消短期崩解成本？须分时段评估。</p></article>
+  </div>
+</section>
+<section class="sj-ledger-field" id="f7"><div class="sj-ledger-fh"><span class="fnum">07</span><h2>古今映射</h2></div>
+  <div class="sj-37-mirror">
+    <article class="same"><div class="mh">相似机制</div><p>超级工程+军事远征双透支；绩效叙事掩盖汲取成本；精英离心引爆政变。</p></article>
+    <article class="diff"><div class="mh">关键差异</div><p>现代有国债、环评与军事问责；但「基建冲动+战争透支」共振仍须警戒。</p></article>
+  </div>
+</section>
+<section class="sj-ledger-field" id="fx"><div class="sj-ledger-fh"><span class="fnum">◆</span><h2>交叉引用</h2></div>
+  <div class="sj-37-xref"><a href="/modules/shijian/sj-36"><div class="n">SJ-36 · 运河</div><h3>运河</h3><p>工程过载上游。</p></a>
+<a href="/modules/shijian/sj-35"><div class="n">SJ-35 · 隋文帝</div><h3>隋文帝</h3><p>制度奠基对照。</p></a>
+<a href="/modules/shijian/sj-07"><div class="n">SJ-07 · 崩解矩阵</div><h3>崩解矩阵</h3><p>隋行深描。</p></a></div>
+</section>
+</article>
+<footer class="sj-37-foot">
+  <span>ChinaOS · 史鉴 SJ-37 · v0.1 · 隋</span>
+  <span><a href="/modules/shijian/sj-00">← SJ-00</a> · <a href="/modules/shijian/sj-36">← SJ-36</a></span>
+  <span><a href="/modules/shijian/sj-38">SJ-38 →</a></span>
+</footer>
+</div>
+<script>
+(function(){
+  const stage=document.getElementById('stage');
+  if(!stage) return;
+  const nodes=Array.from(stage.querySelectorAll('.sj-node'));
+  const edges=Array.from(stage.querySelectorAll('.sj-edge'));
+  const asideEmpty=document.getElementById('aside-empty');
+  const asideBody=document.getElementById('aside-body');
+  const NODE_DATA={
+  "yangdi": {
+    "name": "隋炀帝 · 江都",
+    "tag": "中央被围",
+    "body": "江都巡游中遭宇文化及兵变被杀，隋亡。"
+  },
+  "yunhe": {
+    "name": "运河工程",
+    "tag": "引燃①",
+    "body": "大运河开凿役使过重，与 SJ-36 同构。"
+  },
+  "gaoli": {
+    "name": "三征高句丽",
+    "tag": "引燃②",
+    "body": "三次远征辽东失败，军事力与财政双空。"
+  },
+  "minbian": {
+    "name": "民变蜂起",
+    "tag": "击穿点",
+    "body": "611 起王薄等起义，天下大乱。"
+  },
+  "guanlong": {
+    "name": "关陇离心",
+    "tag": "精英反扑",
+    "body": "关陇勋贵与骁果禁军离心，宇文化及为代表。"
+  },
+  "yuhua": {
+    "name": "江都兵变",
+    "tag": "枢纽",
+    "body": "宇文化及杀隋炀帝，崩解总引爆。"
+  }
+};
+  const NODE_EDGE={
+  "yangdi": [
+    "e3"
+  ],
+  "yunhe": [
+    "e1",
+    "e6"
+  ],
+  "gaoli": [
+    "e2"
+  ],
+  "minbian": [
+    "e4",
+    "e6"
+  ],
+  "guanlong": [
+    "e5"
+  ],
+  "yuhua": [
+    "e1",
+    "e2",
+    "e3",
+    "e4",
+    "e5"
+  ]
+};
+  function clearVisual(){stage.classList.remove('is-picking');nodes.forEach(n=>n.classList.remove('is-hot'));edges.forEach(e=>e.classList.remove('is-hot'));}
+  function showAside(id){const d=NODE_DATA[id];if(!d)return;asideEmpty.hidden=true;asideBody.hidden=false;document.getElementById('aside-tag').textContent=d.tag;document.getElementById('aside-name').textContent=d.name;document.getElementById('aside-text').textContent=d.body;}
+  function pick(id){if(!NODE_DATA[id])return;clearVisual();stage.classList.add('is-picking');nodes.forEach(n=>n.classList.toggle('is-hot',n.dataset.id===id));const hot=NODE_EDGE[id]||[];edges.forEach(e=>e.classList.toggle('is-hot',hot.indexOf(e.dataset.edge)>=0));showAside(id);}
+  nodes.forEach(n=>{const act=()=>pick(n.dataset.id);n.addEventListener('click',act);n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});});
+  edges.forEach(e=>{if(!e.dataset.edge||!NODE_DATA[e.dataset.edge])return;const act=()=>pick(e.dataset.edge);e.style.cursor='pointer';e.setAttribute('tabindex','0');e.setAttribute('role','button');e.addEventListener('click',act);e.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();act();}});});
+})();
+</script>
+</body>
+</html>

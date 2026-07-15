@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-26 · 焚书坑儒</title>
+<meta name="description" content="ChinaOS 史鉴系列案例卷 SJ-26：焚书坑儒——合法性叙事力自毁 · 思想封缄。史鉴台账七字段。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;--sj-ink-800:#1d1916;--sj-paper-100:#e8ddc7;--sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;--sj-celadon:#5f7a6f;--sj-ochre:#b8894a;--sj-line:#3a322b;
+  --sj-radius:6px;--sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c 0%,transparent 55%),var(--sj-ink-900);color:var(--sj-paper-100);font-family:var(--sj-serif);line-height:1.75}
+.sj-26-wrap{max-width:min(100%,1180px);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media(min-width:1280px){.sj-26-wrap{max-width:min(100%,1480px)}}
+.sj-page-layout{display:flex;flex-direction:column;gap:var(--sj-space)}
+@media(min-width:1280px){.sj-page-layout{display:grid;grid-template-columns:minmax(0,58fr) minmax(280px,38fr);gap:clamp(16px,2vw,28px);align-items:start}}
+.sj-main-col{min-width:0}
+.sj-rail{display:flex;flex-direction:column;gap:12px}
+@media(min-width:1280px){.sj-rail{position:sticky;top:1rem;align-self:start;max-height:calc(100vh - 2rem);overflow-y:auto}}
+@media(max-width:1279px){.sj-page-layout{flex-direction:column}.sj-main-col{display:contents}.sj-rail{order:2;margin:8px 0 20px}}
+.sj-rail-card{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px}
+.sj-rail-card .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-rail-toc{display:grid;gap:6px;margin-top:8px}
+.sj-rail-toc a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);padding:8px 10px;text-decoration:none;color:inherit;font-size:13px}
+.sj-rail-toc a:hover,.sj-rail-toc a:focus-visible,.sj-rail-toc a.is-active{border-color:var(--sj-ochre);outline:none}
+.sj-rail-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;margin:4px 4px 0 0}
+.sj-26-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px}
+.sj-26-mast .badge{font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-26-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em}
+.sj-26-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;font-size:.72em;display:block;margin-top:4px}
+.sj-26-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right}
+.sj-26-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;margin:2px}
+.sj-26-dynasty{color:var(--sj-ochre);border-color:var(--sj-ochre)}
+.sj-zhupi{color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:74ch}
+.sj-ledger{display:grid;gap:8px}
+.sj-ledger-field{margin:20px 0 8px;scroll-margin-top:24px}
+.sj-ledger-fh{display:flex;align-items:baseline;gap:12px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--sj-line)}
+.sj-ledger-fh .fnum{font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre);border:1px solid var(--sj-line);border-radius:4px;padding:1px 7px}
+.sj-ledger-fh h2{font-size:clamp(16px,2.1vw,19px);font-weight:600}
+.sj-26-prose{font-size:15.5px;max-width:74ch}
+.sj-26-hook{border:1px solid var(--sj-line);border-left:3px solid var(--sj-vermil);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:18px 22px}
+.sj-26-hook p{font-size:clamp(16px,2.3vw,20px);line-height:1.7}
+.sj-26-hook .yr{margin-top:10px;font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre)}
+.sj-26-stage{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:8px;overflow:auto}
+.sj-26-stage svg{display:block;width:100%;height:auto}
+.sj-node{cursor:pointer;transition:opacity .2s ease,filter .2s ease}
+.sj-node:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:4px}
+.sj-edge{transition:opacity .2s ease,filter .2s ease}
+.sj-26-stage.is-picking .sj-node{opacity:.3}
+.sj-26-stage.is-picking .sj-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px rgba(184,137,74,.4))}
+.sj-26-stage.is-picking .sj-edge{opacity:.16}
+.sj-26-stage.is-picking .sj-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px rgba(168,59,44,.4))}
+.sj-26-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:14px;align-items:start;margin-top:14px}
+.sj-26-aside{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px;position:sticky;top:12px;min-height:150px}
+.sj-26-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-26-aside h3{font-size:16px;letter-spacing:.08em;margin-bottom:8px}
+.sj-26-aside p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.7}
+.sj-26-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+.sj-26-note{font-size:13px;color:var(--sj-paper-300);line-height:1.65;max-width:74ch}
+@media(max-width:900px){.sj-26-layout{grid-template-columns:1fr}.sj-26-aside{position:static}}
+.sj-26-phase .pb{font-family:var(--sj-mono);font-size:12px;color:var(--sj-vermil);border:1px solid var(--sj-vermil);border-radius:20px;padding:6px 16px}
+.sj-26-table-wrap{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);overflow:auto}
+.sj-26-table{width:100%;border-collapse:collapse;font-size:13px}
+.sj-26-table th{background:var(--sj-ink-900);color:var(--sj-ochre);font-family:var(--sj-mono);font-size:10px;padding:10px 12px;text-align:left;border-bottom:1px solid var(--sj-line)}
+.sj-26-table td{padding:10px 12px;border-bottom:1px solid var(--sj-line);color:var(--sj-paper-300);vertical-align:top}
+.sj-26-table td:first-child{color:var(--sj-paper-100);font-weight:600}
+.sj-26-hist{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-26-hist article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-26-hist .who{font-size:14px;font-weight:600;color:var(--sj-celadon);margin-bottom:6px}
+.sj-26-hist .who span{font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);margin-left:6px}
+.sj-26-hist p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+.sj-26-verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sj-26-verdict article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-26-verdict .vh{font-family:var(--sj-mono);font-size:10px;margin-bottom:8px}
+.sj-26-verdict article.ok .vh{color:var(--sj-celadon)}
+.sj-26-verdict article.fail .vh{color:var(--sj-vermil)}
+.sj-26-verdict article.open .vh{color:var(--sj-ochre)}
+.sj-26-verdict p{font-size:13px;color:var(--sj-paper-300)}
+.sj-26-mirror{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-26-mirror article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-26-mirror .mh{font-family:var(--sj-mono);font-size:10px;margin-bottom:8px}
+.sj-26-mirror article.same .mh{color:var(--sj-celadon)}
+.sj-26-mirror article.diff .mh{color:var(--sj-ochre)}
+.sj-26-mirror p{font-size:13px;color:var(--sj-paper-100);line-height:1.68}
+.sj-26-xref{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.sj-26-xref a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit}
+.sj-26-xref .n{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);margin-bottom:4px}
+.sj-26-xref h3{font-size:14px;margin-bottom:6px}
+.sj-26-xref p{font-size:12.5px;color:var(--sj-paper-300)}
+.sj-26-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sj-26-foot a{color:var(--sj-celadon);text-decoration:none}
+@media(max-width:768px){.sj-26-hist,.sj-26-mirror,.sj-26-verdict,.sj-26-xref{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sj-node,.sj-edge{transition:none}}
+.sj-rail-mini{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="sj-26-wrap" id="sj-26-top">
+<header class="sj-26-mast">
+  <div>
+    <div class="badge">SJ-26 · 秦案例卷 · 焚坑</div>
+    <h1>焚书坑儒<em>合法性叙事力自毁 · 思想封缄</em></h1>
+    <div>
+      <span class="sj-26-chip sj-26-dynasty" data-dynasty="qin">朝代 · 秦</span>
+      <span class="sj-26-chip">合法性</span>
+      <a class="sj-26-chip" href="/modules/shijian/sj-00">↔ SJ-00</a>
+      <a class="sj-26-chip" href="/modules/shijian/sj-03">↔ SJ-03</a>
+      <a class="sj-26-chip" href="/modules/shijian/sj-04">↔ SJ-04</a>
+      
+    </div>
+  </div>
+  <div class="sj-26-meta">史鉴台账七字段 · 秦<br/><b>AS_OF 2026-07-15</b> · v0.1</div>
+</header>
+<p class="sj-zhupi">朱批：本案是<strong>合法性叙事力自我封缄</strong>样本——始皇三十四年（前213）李斯奏焚诗书百家语，次年坑咸阳诸生四百六十余人〔坑儒细节学界有争议，须并陈「坑术士」说〕。口径：《史记·秦始皇本纪》《儒林列传》。</p>
+<article class="sj-ledger">
+<div class="sj-page-layout">
+<div class="sj-main-col">
+<section class="sj-ledger-field" id="f1"><div class="sj-ledger-fh"><span class="fnum">01</span><h2>一句话拐点</h2></div>
+  <div class="sj-26-hook"><p>秦统一后，丞相李斯以「私学诽谤朝政、以古非今」为由，建议焚毁《诗》《书》及百家语（医药卜筮种树之书除外）。<b>始皇三十四年（前213）颁焚书令</b>，次年因方士卢生等诽谤，御史拷问诸生，坑杀四百六十余人于咸阳——<strong>合法性叙事从「以法为教」滑向思想封缄</strong>，扶苏谏「诸生皆诵法孔子，今上皆重法绳之，臣恐天下不安」被斥北监上郡。思想控制短期强化皇权，长期削弱统治弹性（→ SJ-25 统一上游、SJ-12 崩解）。</p><div class="yr">系年：前213 焚书 · 前212 坑诸生〔存疑：坑术士 vs 坑儒〕 · 出处《史记·秦始皇本纪》</div></div>
+</section>
+<section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
+  <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
+  <p class="sj-26-prose">权力几何：顶部<strong>焚书令</strong>（赭金）自上封锁知识通道；中部<strong>坑杀节点</strong>（朱红）斩断异议；底部<strong>编户底盘</strong>（深墨）被迫「以吏为师」。思想封缄母题，非竖轴。</p>
+  <div class="sj-26-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">结构切片 · 焚书坑儒</title>
+  <desc id="sj-desc">权力几何：顶部焚书令（赭金）自上封锁知识通道；中部坑杀节点（朱红）斩断异议；底部编户底盘（深墨）被迫「以吏为师」。思想封缄母题，非竖轴。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%"><stop offset="0%" stop-color="var(--sj-ink-800)"/><stop offset="100%" stop-color="var(--sj-ink-900)"/></radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse"><line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/></pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/></linearGradient>
+    <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+    <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+    <marker id="a-celadon" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-100)"/></marker>
+  </defs>
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,serif">结构切片 · 焚书坑儒</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,monospace">SJ-26 · 秦 · 合法性</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">朱批 · 五力色义 · 点击节点交互</text>
+  <g fill="none" stroke-linecap="round"><path class="sj-edge" data-edge="e1" d="M410,158 L218,250" stroke="var(--sj-vermil)" stroke-width="2.6" marker-end="url(#a-vermil)"/>
+<path class="sj-edge" data-edge="e2" d="M410,158 L607,250" stroke="var(--sj-vermil)" stroke-width="2.6" marker-end="url(#a-vermil)"/>
+<path class="sj-edge" data-edge="e3" d="M218,322 L310,360" stroke="var(--sj-celadon)" stroke-width="2" marker-end="url(#a-celadon)"/>
+<path class="sj-edge" data-edge="e4" d="M218,322 L218,360" stroke="var(--sj-paper-100)" stroke-width="2" stroke-dasharray="5 4"/>
+<path class="sj-edge" data-edge="e5" d="M607,322 L607,360" stroke="var(--sj-celadon)" stroke-width="2" marker-end="url(#a-celadon)"/>
+<path class="sj-edge" data-edge="e6" d="M410,416 L410,452" stroke="var(--sj-ochre)" stroke-width="2" marker-end="url(#a-ochre)"/>
+<path class="sj-edge" data-edge="e7" d="M607,416 L410,452" stroke="var(--sj-vermil)" stroke-width="1.8"/></g>
+  <g class="sj-node" data-id="qinshi" tabindex="0" role="button" aria-label="秦始皇">
+    <rect x="310" y="112" width="200" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="410" y="140" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">秦始皇</text>
+    <text x="410" y="158" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">李斯奏议</text>
+  </g>
+<g class="sj-node" data-id="fenshu" tabindex="0" role="button" aria-label="焚书令">
+    <rect x="130" y="250" width="176" height="72" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="218" y="282" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">焚书令</text>
+    <text x="218" y="300" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">前213</text>
+  </g>
+<g class="sj-node" data-id="keng" tabindex="0" role="button" aria-label="坑杀咸阳">
+    <rect x="514" y="250" width="186" height="72" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="607" y="282" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">坑杀咸阳</text>
+    <text x="607" y="300" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">前212 · 460余人</text>
+  </g>
+<g class="sj-node" data-id="lisi" tabindex="0" role="button" aria-label="李斯">
+    <rect x="310" y="360" width="200" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="410" y="388" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">李斯</text>
+    <text x="410" y="406" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">以吏为师</text>
+  </g>
+<g class="sj-node" data-id="fusu" tabindex="0" role="button" aria-label="扶苏谏言">
+    <rect x="130" y="360" width="176" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-paper-100)" stroke-width="2.4"/>
+    <text x="218" y="388" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC,serif">扶苏谏言</text>
+    <text x="218" y="406" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">斥北监上郡</text>
+  </g>
+<g class="sj-node" data-id="sixin" tabindex="0" role="button" aria-label="私学通道">
+    <rect x="514" y="360" width="186" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="607" y="388" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">私学通道</text>
+    <text x="607" y="406" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">被封缄</text>
+  </g>
+<g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="黔首底盘">
+    <rect x="56" y="452" width="708" height="60" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="2.4"/>
+    <text x="410" y="480" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC,serif">黔首底盘</text>
+    <text x="410" y="498" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">以吏为师</text>
+  </g>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,monospace">viewBox 820×600 · SJ-26</text>
+</svg></div>
+  <div class="sj-26-layout">
+    <div class="sj-26-note" style="margin-top:0">点选节点展开机制链；色义见 premium 切片图例。</div>
+    <aside class="sj-26-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-26-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+      </div>
+    </aside>
+  </div>
+</section>
+</div>
+<aside class="sj-rail"><div class="sj-rail-card"><div class="k">台账 · 七字段</div>
+  <nav class="sj-rail-toc"><a href="#f1">01 · 拐点</a><a href="#f2">02 · 切片</a><a href="#f3">03 · 相位</a><a href="#f4">04 · 五力</a><a href="#f5">05 · 交锋</a><a href="#f6">06 · 成败</a><a href="#f7">07 · 映射</a></nav>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-00#sec-case-hub">案例库 Hub</a>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-03">SJ-03 五力</a>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-04">SJ-04 相位盘</a>
+</div></aside>
+</div>
+<section class="sj-ledger-field" id="f3"><div class="sj-ledger-fh"><span class="fnum">03</span><h2>相位定位</h2></div>
+  <div class="sj-26-phase"><span class="pb">上升期后段 · 叙事封缄</span></div>
+  <p class="sj-26-prose">秦代统一后进入<strong>上升期后段</strong>——焚坑落于 SJ-04「单力强化」警示：合法性叙事力过度封缄，反削弱统治弹性与人才循环。</p>
+</section>
+<section class="sj-ledger-field" id="f4"><div class="sj-ledger-fh"><span class="fnum">04</span><h2>五力归因台账</h2></div>
+  <div class="sj-26-table-wrap"><table class="sj-26-table"><thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead><tbody><tr><td>财政汲取</td><td class="zheng">—</td><td class="shi">焚书不直接改税，但「以吏为师」强化官僚控制汲取通道</td></tr>
+<tr><td>精英循环</td><td class="zheng">博士 · 诸生</td><td class="shi">博士官藏书保留，私学通道被封；精英循环从开放滑向封闭</td></tr>
+<tr><td>合法性叙事</td><td class="zheng">焚书坑儒</td><td class="shi">以思想统制替代多元叙事；扶苏谏言被斥，合法性内部撕裂</td></tr>
+<tr><td>边疆军事</td><td class="zheng">扶苏北监</td><td class="shi">扶苏被遣北监蒙恬，继承人布局受扰</td></tr>
+<tr><td>生态—人口基座</td><td class="zheng">黔首</td><td class="shi">「偶语诗书者弃市」——基层话语空间被压缩</td></tr></tbody></table></div>
+</section>
+<section class="sj-ledger-field" id="f5"><div class="sj-ledger-fh"><span class="fnum">05</span><h2>史家交锋</h2></div>
+  <div class="sj-26-hist"><article><div class="who">李敖式考据<span>祛魅</span></div><p>《儒林列传》作「坑术士」；《本纪》作坑诸生——须并陈两说，勿择一断言。</p></article>
+<article><div class="who">钱穆<span>《国史大纲》</span></div><p>批评秦政峻急、思想封缄，为秦速亡重要因。</p></article>
+<article><div class="who">金观涛<span>超稳定结构</span></div><p>思想统制是超稳定结构维持手段，但过度封缄削弱系统纠错能力。</p></article>
+<article><div class="who">黄仁宇<span>数目字管理</span></div><p>焚书意在统一思想以利行政，但阻碍知识积累与制度迭代。</p></article>
+<article style="grid-column:1/-1"><div class="who">西方汉学<span>Burning books</span></div><p>学界区分焚书（213）与坑儒（212）性质；坑杀对象〔有争议〕。</p></article></div>
+</section>
+<section class="sj-ledger-field" id="f6"><div class="sj-ledger-fh"><span class="fnum">06</span><h2>成败判定</h2></div>
+  <div class="sj-26-verdict">
+    <article class="ok"><div class="vh">已兑现</div><p>短期统一思想</p><p>压制私学非议</p><p>强化皇权话语</p></article>
+    <article class="fail"><div class="vh">已失败</div><p>思想封缄</p><p>扶苏远谪</p><p>统治弹性下降</p><p>民心暗怨</p></article>
+    <article class="open"><div class="vh">未决</div><p>〔未决〕坑杀对象为术士抑或儒生？对秦亡因果权重多大？</p></article>
+  </div>
+</section>
+<section class="sj-ledger-field" id="f7"><div class="sj-ledger-fh"><span class="fnum">07</span><h2>古今映射</h2></div>
+  <div class="sj-26-mirror">
+    <article class="same"><div class="mh">相似机制</div><p>政权以思想统制巩固合法性；压制异议短期有效、长期损弹性。</p></article>
+    <article class="diff"><div class="mh">关键差异</div><p>现代有宪法权利、学术自由与信息多元；但「以安全之名封缄话语」仍须警戒。</p></article>
+  </div>
+</section>
+<section class="sj-ledger-field" id="fx"><div class="sj-ledger-fh"><span class="fnum">◆</span><h2>交叉引用</h2></div>
+  <div class="sj-26-xref"><a href="/modules/shijian/sj-25"><div class="n">SJ-25 · 统一</div><h3>统一</h3><p>制度封装上游。</p></a>
+<a href="/modules/shijian/sj-12"><div class="n">SJ-12 · 秦末</div><h3>秦末</h3><p>崩解下游。</p></a>
+<a href="/modules/shijian/sj-57"><div class="n">SJ-57 · 百家争鸣</div><h3>百家争鸣</h3><p>思想竞争对照。</p></a></div>
+</section>
+</article>
+<footer class="sj-26-foot">
+  <span>ChinaOS · 史鉴 SJ-26 · v0.1 · 秦</span>
+  <span><a href="/modules/shijian/sj-00">← SJ-00</a> · <a href="/modules/shijian/sj-25">← SJ-25</a></span>
+  <span><a href="/modules/shijian/sj-27">SJ-27 →</a></span>
+</footer>
+</div>
+<script>
+(function(){
+  const stage=document.getElementById('stage');
+  if(!stage) return;
+  const nodes=Array.from(stage.querySelectorAll('.sj-node'));
+  const edges=Array.from(stage.querySelectorAll('.sj-edge'));
+  const asideEmpty=document.getElementById('aside-empty');
+  const asideBody=document.getElementById('aside-body');
+  const NODE_DATA={
+  "qinshi": {
+    "name": "秦始皇",
+    "tag": "决策中枢",
+    "body": "采纳李斯焚书建议，次年因方士事坑杀诸生。"
+  },
+  "fenshu": {
+    "name": "焚书令",
+    "tag": "叙事封缄",
+    "body": "非秦记及《诗》《书》百家语悉焚；偶语诗书者弃市。"
+  },
+  "keng": {
+    "name": "坑杀咸阳",
+    "tag": "暴力封口",
+    "body": "御史拷问诸生，坑杀四百六十余人——〔坑术士/坑儒争议〕。"
+  },
+  "lisi": {
+    "name": "李斯",
+    "tag": "制度推手",
+    "body": "主张禁私学、焚书，欲统一思想以利行政。"
+  },
+  "fusu": {
+    "name": "扶苏谏言",
+    "tag": "内部分裂",
+    "body": "谏「恐天下不安」被怒斥，遣北监蒙恬——继承人布局受扰。"
+  },
+  "sixin": {
+    "name": "私学通道",
+    "tag": "精英死穴",
+    "body": "民间诗书百家语通道被封，博士官藏书独存——精英循环堵塞。"
+  },
+  "base": {
+    "name": "黔首底盘",
+    "tag": "基座",
+    "body": "学法令以吏为师，基层话语与知识空间被压缩。"
+  }
+};
+  const NODE_EDGE={
+  "qinshi": [
+    "e1",
+    "e2"
+  ],
+  "fenshu": [
+    "e1",
+    "e3",
+    "e4"
+  ],
+  "keng": [
+    "e2",
+    "e5"
+  ],
+  "lisi": [
+    "e3",
+    "e6"
+  ],
+  "fusu": [
+    "e4"
+  ],
+  "sixin": [
+    "e5",
+    "e7"
+  ],
+  "base": [
+    "e6",
+    "e7"
+  ]
+};
+  function clearVisual(){stage.classList.remove('is-picking');nodes.forEach(n=>n.classList.remove('is-hot'));edges.forEach(e=>e.classList.remove('is-hot'));}
+  function showAside(id){const d=NODE_DATA[id];if(!d)return;asideEmpty.hidden=true;asideBody.hidden=false;document.getElementById('aside-tag').textContent=d.tag;document.getElementById('aside-name').textContent=d.name;document.getElementById('aside-text').textContent=d.body;}
+  function pick(id){if(!NODE_DATA[id])return;clearVisual();stage.classList.add('is-picking');nodes.forEach(n=>n.classList.toggle('is-hot',n.dataset.id===id));const hot=NODE_EDGE[id]||[];edges.forEach(e=>e.classList.toggle('is-hot',hot.indexOf(e.dataset.edge)>=0));showAside(id);}
+  nodes.forEach(n=>{const act=()=>pick(n.dataset.id);n.addEventListener('click',act);n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});});
+  edges.forEach(e=>{if(!e.dataset.edge||!NODE_DATA[e.dataset.edge])return;const act=()=>pick(e.dataset.edge);e.style.cursor='pointer';e.setAttribute('tabindex','0');e.setAttribute('role','button');e.addEventListener('click',act);e.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();act();}});});
+})();
+</script>
+</body>
+</html>
