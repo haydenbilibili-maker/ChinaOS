@@ -126,6 +126,19 @@ function addRailMiniCss(html) {
   return html.replace('</style>', `.sj-rail-mini{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6;margin-top:6px}\n</style>`);
 }
 
+function dedupeSliceRail(html) {
+  const rails = html.match(/<!--SLICE_RAIL:[^>]+-->/g);
+  if (!rails?.length) return html;
+  const unique = rails[rails.length - 1];
+  let out = html.replace(/<!--SLICE_RAIL:[^>]+-->\n?/g, '');
+  const f2End = out.indexOf('</section>', out.indexOf('id="f2"'));
+  if (f2End !== -1) {
+    const insertAt = f2End + '</section>'.length;
+    out = `${out.slice(0, insertAt)}\n${unique}${out.slice(insertAt)}`;
+  }
+  return out;
+}
+
 console.log(`Geometry spec v${GEOMETRY_SPEC_VERSION} · forbidden motif: ${FORBIDDEN_CLONE_MOTIF}`);
 
 for (const num of TARGETS) {
@@ -142,6 +155,7 @@ for (const num of TARGETS) {
   html = replaceF2(html, config);
   html = injectScript(html, config);
   html = updateRail(html, config);
+  html = dedupeSliceRail(html);
   assertHtmlIntegrity(num, html);
   writeFileSync(path, html, 'utf8');
   const nodeCount = Object.keys(config.nodeData).length;

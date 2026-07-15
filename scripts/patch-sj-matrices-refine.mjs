@@ -1,8 +1,9 @@
 #!/usr/bin/env node
-/** Phase D · 综合矩阵轻量精调（SJ-07/16/17/18/19） */
+/** Phase E · 综合矩阵精修第二轮（SJ-07/16/17/18/19） */
 import { readFileSync, writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { MATRIX_INSIGHT_R2 } from './data/sj-refine2-deepen.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'app/public/shijian');
@@ -55,8 +56,19 @@ const ROW_SHI_PATCH = [
 
 function bumpVersion(html) {
   return html
-    .replace(/\bv0\.1\b/g, 'v0.2')
-    .replace(/AS_OF 2026-07-15(?! · 精调轮)/g, 'AS_OF 2026-07-15 · 精调轮');
+    .replace(/\bv0\.1\b/g, 'v0.3')
+    .replace(/\bv0\.2\b/g, 'v0.3')
+    .replace(/AS_OF 2026-07-15 · 精调轮/g, 'AS_OF 2026-07-15 · 精修轮')
+    .replace(/AS_OF 2026-07-15(?! · 精修轮)/g, 'AS_OF 2026-07-15 · 精修轮');
+}
+
+function injectInsightR2(html, num) {
+  const insight = MATRIX_INSIGHT_R2[num];
+  if (!insight || html.includes(insight.slice(0, 24))) return html;
+  const para = `<p class="sj-${num}-prose" style="margin-top:14px;font-style:italic">${insight}</p>`;
+  const anchor = html.match(/<p class="sj-\d+-note"[^>]*>[^<]*收束[^<]*<\/p>/);
+  if (anchor) return html.replace(anchor[0], anchor[0] + para);
+  return html.replace('</article>', `${para}\n</article>`);
 }
 
 for (const num of ['07', '16', '17', '18', '19']) {
@@ -80,9 +92,10 @@ for (const num of ['07', '16', '17', '18', '19']) {
       return pre + `${cell.trim()} ${patch.append}` + post;
     });
   }
+  html = injectInsightR2(html, num);
   html = bumpVersion(html);
   writeFileSync(path, html, 'utf8');
   console.log(`Refined SJ-${num}.html (matrix)`);
 }
 
-console.log('Done: 5 matrix volumes · Phase D');
+console.log('Done: 5 matrix volumes · Phase E 精修轮');

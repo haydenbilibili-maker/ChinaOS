@@ -3,6 +3,7 @@
  * Do NOT clone SJ-05 vertical-axis template across cases; read spec §0–§1 before regenerating.
  */
 import { buildSvg, nodeRect, nodeBase, nodeCircle } from './sj-premium-slice.mjs';
+import { POLISH_SLICE_CONFIGS } from './sj-slice-polish-r2.mjs';
 
 export const GEOMETRY_SPEC_VERSION = '1.0';
 export const FORBIDDEN_CLONE_MOTIF = 'wang-anshi-vertical-spine';
@@ -626,4 +627,6 @@ ${nodeBase('base', '士绅 · 编户底盘', '科举—土地未动', '')}`,
       footer: 'viewBox 820×600 · 改革窗口',
     }),
   },
+
+  ...POLISH_SLICE_CONFIGS,
 };
