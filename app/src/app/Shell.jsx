@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 import { NavLink, Link, Outlet, useLocation } from 'react-router-dom';
 import * as Lucide from 'lucide-react';
 import { GROUPS, HUANGFEIZHAI_GROUP_ID, modulesByGroup } from './registry.js';
-import { shijianSubgroupLabel } from '../lib/shijian/navOrder.js';
+import { shijianSubgroupLabel, shijianCasesBandLabel } from '../lib/shijian/navOrder.js';
+import { isSynthesisCase } from '../lib/shijian/caseYears.js';
 import { useHuangfeizhaiAuth } from '../lib/huangfeizhai/useHuangfeizhaiAuth.js';
 import { buildBreadcrumbs, resolveModuleByPath } from './breadcrumb.js';
 import GlobalSearch from './GlobalSearch.jsx';
@@ -117,14 +118,21 @@ function SidebarTreeControls({ anyExpanded, onToggleAll }) {
   );
 }
 
-function groupModsBySubgroup(mods) {
+function groupModsBySubgroup(mods, { splitCasesBands = false } = {}) {
   const sections = [];
   let currentKey = null;
   for (const m of mods) {
     const key = m.subgroup || '';
-    if (key !== currentKey) {
-      sections.push({ key, label: key ? shijianSubgroupLabel(key) : '', mods: [] });
-      currentKey = key;
+    const band = splitCasesBands && key === 'cases'
+      ? (isSynthesisCase(m) ? 'synthesis' : 'single')
+      : '';
+    const sectionKey = splitCasesBands && key === 'cases' ? `${key}:${band}` : key;
+    if (sectionKey !== currentKey) {
+      const label = splitCasesBands && key === 'cases' && band
+        ? shijianCasesBandLabel(band)
+        : (key ? shijianSubgroupLabel(key) : '');
+      sections.push({ key: sectionKey, label, mods: [] });
+      currentKey = sectionKey;
     }
     sections[sections.length - 1].mods.push(m);
   }
@@ -143,7 +151,9 @@ function GroupBlock({ group, expanded, onToggle, onNavigate, alwaysShowModules, 
   const collapsible = !alwaysShowModules && !narrow;
   const showModules = alwaysShowModules || expanded || narrow;
   const useSubgroups = group.id === 'shijian' && mods.some((m) => m.subgroup);
-  const sections = useSubgroups ? groupModsBySubgroup(mods) : [{ key: '', label: '', mods }];
+  const sections = useSubgroups
+    ? groupModsBySubgroup(mods, { splitCasesBands: group.id === 'shijian' })
+    : [{ key: '', label: '', mods }];
 
   const headerInner = (
     <>

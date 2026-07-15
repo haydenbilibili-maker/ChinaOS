@@ -1274,7 +1274,20 @@ export const MODULES = [
     accent: '#a83b2c',
     component: lazy(() => import('../modules/shijian/Sj27Page.jsx')),
   },
+
   {
+    id: 'shijianSJ28',
+    path: '/modules/shijian/sj-28',
+    group: 'shijian',
+    subgroup: 'cases',
+    navOrder: 28,
+    eventYear: -119,
+    title: '汉武帝扩张',
+    subtitle: '军事力强化 vs 财政越阈',
+    icon: 'Swords',
+    accent: '#a83b2c',
+    component: lazy(() => import('../modules/shijian/Sj28Page.jsx')),
+  },  {
     id: 'shijianSJ35',
     path: '/modules/shijian/sj-35',
     group: 'shijian',
@@ -1286,7 +1299,20 @@ export const MODULES = [
     accent: '#a83b2c',
     component: lazy(() => import('../modules/shijian/Sj35Page.jsx')),
   },
+
   {
+    id: 'shijianSJ36',
+    path: '/modules/shijian/sj-36',
+    group: 'shijian',
+    subgroup: 'cases',
+    navOrder: 36,
+    eventYear: 605,
+    title: '大运河',
+    subtitle: '基座—财政耦合 · 工程过载',
+    icon: 'Route',
+    accent: '#a83b2c',
+    component: lazy(() => import('../modules/shijian/Sj36Page.jsx')),
+  },  {
     id: 'shijianSJ38',
     path: '/modules/shijian/sj-38',
     group: 'shijian',
@@ -1310,7 +1336,20 @@ export const MODULES = [
     accent: '#a83b2c',
     component: lazy(() => import('../modules/shijian/Sj39Page.jsx')),
   },
+
   {
+    id: 'shijianSJ40',
+    path: '/modules/shijian/sj-40',
+    group: 'shijian',
+    subgroup: 'cases',
+    navOrder: 40,
+    eventYear: 875,
+    title: '黄巢起义',
+    subtitle: '崩解期基座引燃',
+    icon: 'Flame',
+    accent: '#a83b2c',
+    component: lazy(() => import('../modules/shijian/Sj40Page.jsx')),
+  },  {
     id: 'shijianSJ41',
     path: '/modules/shijian/sj-41',
     group: 'shijian',
@@ -1322,7 +1361,46 @@ export const MODULES = [
     accent: '#a83b2c',
     component: lazy(() => import('../modules/shijian/Sj41Page.jsx')),
   },
+
   {
+    id: 'shijianSJ42',
+    path: '/modules/shijian/sj-42',
+    group: 'shijian',
+    subgroup: 'cases',
+    navOrder: 42,
+    eventYear: 1138,
+    title: '南宋偏安',
+    subtitle: '区域再配置 · 守江必守淮',
+    icon: 'Map',
+    accent: '#a83b2c',
+    component: lazy(() => import('../modules/shijian/Sj42Page.jsx')),
+  },
+  {
+    id: 'shijianSJ43',
+    path: '/modules/shijian/sj-43',
+    group: 'shijian',
+    subgroup: 'cases',
+    navOrder: 43,
+    eventYear: 1005,
+    title: '澶渊之盟',
+    subtitle: '边疆—财政交易 · 岁币换和平',
+    icon: 'Globe2',
+    accent: '#a83b2c',
+    component: lazy(() => import('../modules/shijian/Sj43Page.jsx')),
+  },
+  {
+    id: 'shijianSJ44',
+    path: '/modules/shijian/sj-44',
+    group: 'shijian',
+    subgroup: 'cases',
+    navOrder: 44,
+    eventYear: 1219,
+    title: '蒙古西征',
+    subtitle: '军事力扩张极限 · 花剌子模',
+    icon: 'Globe2',
+    accent: '#a83b2c',
+    component: lazy(() => import('../modules/shijian/Sj44Page.jsx')),
+  },  {
     id: 'shijianSJ49',
     path: '/modules/shijian/sj-49',
     group: 'shijian',
@@ -1625,6 +1703,13 @@ export const MODULES = [
 
 // 分组级排序器（仅 population 组按 语义簇/优先级/相似性/标题长度 重排，见 lib/gy/navOrder）
 const GROUP_COMPARATORS = { population: populationNavCompare, shijian: shijianNavCompare };
+export { getShijianEventYear, formatEventYear, SHIJIAN_CASE_EVENT_YEARS } from '../lib/shijian/caseYears.js';
+
+/** 案例库模块按事件时间序（单案升序 + 综合矩阵底栏） */
+export function shijianCasesByTime(mods) {
+  const cmp = GROUP_COMPARATORS.shijian;
+  return mods.filter((m) => m.subgroup === 'cases').sort(cmp);
+}
 export const HUANGFEIZHAI_GROUP_ID = 'huangfeizhai';
 
 export const modulesByGroup = (groupId) => {

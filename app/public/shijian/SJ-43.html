@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-43 · 澶渊之盟</title>
+<meta name="description" content="ChinaOS 史鉴系列案例卷 SJ-43：澶渊之盟——边疆—财政交易 · 岁币换和平。史鉴台账七字段。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;--sj-ink-800:#1d1916;--sj-paper-100:#e8ddc7;--sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;--sj-celadon:#5f7a6f;--sj-ochre:#b8894a;--sj-line:#3a322b;
+  --sj-radius:6px;--sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c 0%,transparent 55%),var(--sj-ink-900);color:var(--sj-paper-100);font-family:var(--sj-serif);line-height:1.75}
+.sj-43-wrap{max-width:min(100%,1180px);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media(min-width:1280px){.sj-43-wrap{max-width:min(100%,1480px)}}
+.sj-page-layout{display:flex;flex-direction:column;gap:var(--sj-space)}
+@media(min-width:1280px){.sj-page-layout{display:grid;grid-template-columns:minmax(0,58fr) minmax(280px,38fr);gap:clamp(16px,2vw,28px);align-items:start}}
+.sj-main-col{min-width:0}
+.sj-rail{display:flex;flex-direction:column;gap:12px}
+@media(min-width:1280px){.sj-rail{position:sticky;top:1rem;align-self:start;max-height:calc(100vh - 2rem);overflow-y:auto}}
+@media(max-width:1279px){.sj-page-layout{flex-direction:column}.sj-main-col{display:contents}.sj-rail{order:2;margin:8px 0 20px}}
+.sj-rail-card{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px}
+.sj-rail-card .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-rail-toc{display:grid;gap:6px;margin-top:8px}
+.sj-rail-toc a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);padding:8px 10px;text-decoration:none;color:inherit;font-size:13px}
+.sj-rail-toc a:hover,.sj-rail-toc a:focus-visible,.sj-rail-toc a.is-active{border-color:var(--sj-ochre);outline:none}
+.sj-rail-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;margin:4px 4px 0 0}
+.sj-43-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px}
+.sj-43-mast .badge{font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-43-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em}
+.sj-43-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;font-size:.72em;display:block;margin-top:4px}
+.sj-43-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right}
+.sj-43-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;margin:2px}
+.sj-43-dynasty{color:var(--sj-ochre);border-color:var(--sj-ochre)}
+.sj-zhupi{color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:74ch}
+.sj-ledger{display:grid;gap:8px}
+.sj-ledger-field{margin:20px 0 8px;scroll-margin-top:24px}
+.sj-ledger-fh{display:flex;align-items:baseline;gap:12px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--sj-line)}
+.sj-ledger-fh .fnum{font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre);border:1px solid var(--sj-line);border-radius:4px;padding:1px 7px}
+.sj-ledger-fh h2{font-size:clamp(16px,2.1vw,19px);font-weight:600}
+.sj-43-prose{font-size:15.5px;max-width:74ch}
+.sj-43-hook{border:1px solid var(--sj-line);border-left:3px solid var(--sj-vermil);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:18px 22px}
+.sj-43-hook p{font-size:clamp(16px,2.3vw,20px);line-height:1.7}
+.sj-43-hook .yr{margin-top:10px;font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre)}
+.sj-43-stage{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:8px;overflow:auto}
+.sj-43-stage svg{display:block;width:100%;height:auto}
+.sj-node{cursor:pointer;transition:opacity .2s ease,filter .2s ease}
+.sj-node:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:4px}
+.sj-edge{transition:opacity .2s ease,filter .2s ease}
+.sj-43-stage.is-picking .sj-node{opacity:.3}
+.sj-43-stage.is-picking .sj-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px rgba(184,137,74,.4))}
+.sj-43-stage.is-picking .sj-edge{opacity:.16}
+.sj-43-stage.is-picking .sj-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px rgba(168,59,44,.4))}
+.sj-43-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:14px;align-items:start;margin-top:14px}
+.sj-43-aside{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px;position:sticky;top:12px;min-height:150px}
+.sj-43-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-43-aside h3{font-size:16px;letter-spacing:.08em;margin-bottom:8px}
+.sj-43-aside p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.7}
+.sj-43-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+.sj-43-note{font-size:13px;color:var(--sj-paper-300);line-height:1.65;max-width:74ch}
+@media(max-width:900px){.sj-43-layout{grid-template-columns:1fr}.sj-43-aside{position:static}}
+.sj-43-phase .pb{font-family:var(--sj-mono);font-size:12px;color:var(--sj-vermil);border:1px solid var(--sj-vermil);border-radius:20px;padding:6px 16px}
+.sj-43-table-wrap{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);overflow:auto}
+.sj-43-table{width:100%;border-collapse:collapse;font-size:13px}
+.sj-43-table th{background:var(--sj-ink-900);color:var(--sj-ochre);font-family:var(--sj-mono);font-size:10px;padding:10px 12px;text-align:left;border-bottom:1px solid var(--sj-line)}
+.sj-43-table td{padding:10px 12px;border-bottom:1px solid var(--sj-line);color:var(--sj-paper-300);vertical-align:top}
+.sj-43-table td:first-child{color:var(--sj-paper-100);font-weight:600}
+.sj-43-hist{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-43-hist article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-43-hist .who{font-size:14px;font-weight:600;color:var(--sj-celadon);margin-bottom:6px}
+.sj-43-hist .who span{font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);margin-left:6px}
+.sj-43-hist p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+.sj-43-verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sj-43-verdict article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-43-verdict .vh{font-family:var(--sj-mono);font-size:10px;margin-bottom:8px}
+.sj-43-verdict article.ok .vh{color:var(--sj-celadon)}
+.sj-43-verdict article.fail .vh{color:var(--sj-vermil)}
+.sj-43-verdict article.open .vh{color:var(--sj-ochre)}
+.sj-43-verdict p{font-size:13px;color:var(--sj-paper-300)}
+.sj-43-mirror{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-43-mirror article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-43-mirror .mh{font-family:var(--sj-mono);font-size:10px;margin-bottom:8px}
+.sj-43-mirror article.same .mh{color:var(--sj-celadon)}
+.sj-43-mirror article.diff .mh{color:var(--sj-ochre)}
+.sj-43-mirror p{font-size:13px;color:var(--sj-paper-100);line-height:1.68}
+.sj-43-xref{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.sj-43-xref a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit}
+.sj-43-xref .n{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);margin-bottom:4px}
+.sj-43-xref h3{font-size:14px;margin-bottom:6px}
+.sj-43-xref p{font-size:12.5px;color:var(--sj-paper-300)}
+.sj-43-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sj-43-foot a{color:var(--sj-celadon);text-decoration:none}
+@media(max-width:768px){.sj-43-hist,.sj-43-mirror,.sj-43-verdict,.sj-43-xref{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sj-node,.sj-edge{transition:none}}
+.sj-rail-mini{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="sj-43-wrap" id="sj-43-top">
+<header class="sj-43-mast">
+  <div>
+    <div class="badge">SJ-43 · 辽宋案例卷 · 澶渊</div>
+    <h1>澶渊之盟<em>边疆—财政交易 · 岁币换和平</em></h1>
+    <div>
+      <span class="sj-43-chip sj-43-dynasty" data-dynasty="liaosong">朝代 · 辽宋</span>
+      <span class="sj-43-chip">外交</span>
+      <a class="sj-43-chip" href="/modules/shijian/sj-00">↔ SJ-00</a>
+      <a class="sj-43-chip" href="/modules/shijian/sj-03">↔ SJ-03</a>
+      <a class="sj-43-chip" href="/modules/shijian/sj-04">↔ SJ-04</a>
+      <a class="sj-43-chip" href="/modules/shijian/sj-24">↔ SJ-24</a>
+    </div>
+  </div>
+  <div class="sj-43-meta">史鉴台账七字段 · 辽宋<br/><b>AS_OF 2026-07-15</b> · v0.1</div>
+</header>
+<p class="sj-zhupi">朱批：本案是<strong>边疆军事力与财政交易</strong>的宋辽样本——景德元年（1004）辽军南下至澶州，1005 年订盟：宋每年输辽岁币银十万两、绢二十万匹，换取百年和平。口径：《辽史·圣宗本纪》《续资治通鉴长编》。</p>
+<article class="sj-ledger">
+<div class="sj-page-layout">
+<div class="sj-main-col">
+<section class="sj-ledger-field" id="f1"><div class="sj-ledger-fh"><span class="fnum">01</span><h2>一句话拐点</h2></div>
+  <div class="sj-43-hook"><p>北宋开国后长期与辽对峙，景德元年（1004）辽圣宗与萧太后率大军南下，抵澶州城下。床弩射杀辽将萧挞凛后，双方议和。景德二年（1005）订立<b>澶渊之盟</b>：宋辽约为兄弟之国，宋每年输岁币银十万两、绢二十万匹，以白沟河为界——<strong>以财政交易换军事和平</strong>，开启宋辽百年无大战局面，亦埋下「积弱」路径（→ SJ-05 三冗背景、SJ-41 靖康下游）。</p><div class="yr">系年：1004 辽军至澶州 · 1005 订盟 · 出处《辽史·圣宗本纪》《续资治通鉴长编》</div></div>
+</section>
+<section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
+  <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
+  <p class="sj-43-prose">权力几何：<strong>汴京宋廷</strong>（赭金）↔ <strong>澶州前线</strong>（朱红军事节点）↔ <strong>辽南京</strong>（朱红外压）；岁币（赭金财政流）为交易枢纽。外交—财政双轨，非纯军事决胜。</p>
+  <div class="sj-43-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">结构切片 · 澶渊之盟</title>
+  <desc id="sj-desc">权力几何：汴京宋廷（赭金）↔ 澶州前线（朱红军事节点）↔ 辽南京（朱红外压）；岁币（赭金财政流）为交易枢纽。外交—财政双轨，非纯军事决胜。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%"><stop offset="0%" stop-color="var(--sj-ink-800)"/><stop offset="100%" stop-color="var(--sj-ink-900)"/></radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse"><line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/></pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/></linearGradient>
+    <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+    <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+    <marker id="a-celadon" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-100)"/></marker>
+  </defs>
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,serif">结构切片 · 澶渊之盟</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,monospace">SJ-43 · 辽宋 · 外交</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">朱批 · 五力色义 · 点击节点交互</text>
+  <g fill="none" stroke-linecap="round"><path class="sj-edge" data-edge="e1" d="M410,158 L410,250" stroke="var(--sj-ochre)" stroke-width="2.4" marker-end="url(#a-ochre)"/>
+<path class="sj-edge" data-edge="e2" d="M218,280 L310,280" stroke="var(--sj-celadon)" stroke-width="2" marker-end="url(#a-celadon)"/>
+<path class="sj-edge" data-edge="e3" d="M510,280 L514,280" stroke="var(--sj-vermil)" stroke-width="2.8" marker-end="url(#a-vermil)"/>
+<path class="sj-edge" data-edge="e4" d="M410,310 L410,370" stroke="var(--sj-ochre)" stroke-width="2.6" marker-end="url(#a-ochre)"/><text x="430" y="340" text-anchor="middle" fill="var(--sj-ochre)" font-size="11" font-family="Songti SC,serif">1005盟约</text>
+<path class="sj-edge" data-edge="e5" d="M410,426 L410,452" stroke="var(--sj-ochre)" stroke-width="2" marker-end="url(#a-ochre)"/>
+<path class="sj-edge" data-edge="e6" d="M607,426 L410,452" stroke="var(--sj-celadon)" stroke-width="1.8"/>
+<path class="sj-edge" data-edge="e7" d="M607,310 L607,370" stroke="var(--sj-celadon)" stroke-width="2" marker-end="url(#a-celadon)"/></g>
+  <g class="sj-node" data-id="zhenzong" tabindex="0" role="button" aria-label="宋真宗 · 汴京">
+    <rect x="310" y="112" width="200" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="410" y="140" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">宋真宗 · 汴京</text>
+    <text x="410" y="158" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">亲征澶州</text>
+  </g>
+<g class="sj-node" data-id="chanzhou" tabindex="0" role="button" aria-label="澶州前线">
+    <rect x="310" y="250" width="200" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="410" y="278" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">澶州前线</text>
+    <text x="410" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">1004</text>
+  </g>
+<g class="sj-node" data-id="liao" tabindex="0" role="button" aria-label="辽圣宗 · 萧太后">
+    <rect x="514" y="250" width="186" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="607" y="278" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">辽圣宗 · 萧太后</text>
+    <text x="607" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">南京</text>
+  </g>
+<g class="sj-node" data-id="suibi" tabindex="0" role="button" aria-label="岁币交易">
+    <rect x="310" y="370" width="200" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="410" y="398" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">岁币交易</text>
+    <text x="410" y="416" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">银10万 · 绢20万</text>
+  </g>
+<g class="sj-node" data-id="kouzhun" tabindex="0" role="button" aria-label="寇准">
+    <rect x="130" y="250" width="176" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="218" y="278" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">寇准</text>
+    <text x="218" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">力主亲征</text>
+  </g>
+<g class="sj-node" data-id="quechang" tabindex="0" role="button" aria-label="榷场贸易">
+    <rect x="514" y="370" width="186" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="607" y="398" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">榷场贸易</text>
+    <text x="607" y="416" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">边境互市</text>
+  </g>
+<g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="河北民力">
+    <rect x="56" y="452" width="708" height="60" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="2.4"/>
+    <text x="410" y="480" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC,serif">河北民力</text>
+    <text x="410" y="498" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">战后恢复</text>
+  </g>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,monospace">viewBox 820×600 · SJ-43</text>
+</svg></div>
+  <div class="sj-43-layout">
+    <div class="sj-43-note" style="margin-top:0">点选节点展开机制链；色义见 premium 切片图例。</div>
+    <aside class="sj-43-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-43-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+      </div>
+    </aside>
+  </div>
+</section>
+</div>
+<aside class="sj-rail"><div class="sj-rail-card"><div class="k">台账 · 七字段</div>
+  <nav class="sj-rail-toc"><a href="#f1">01 · 拐点</a><a href="#f2">02 · 切片</a><a href="#f3">03 · 相位</a><a href="#f4">04 · 五力</a><a href="#f5">05 · 交锋</a><a href="#f6">06 · 成败</a><a href="#f7">07 · 映射</a></nav>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-00#sec-case-hub">案例库 Hub</a>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-03">SJ-03 五力</a>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-04">SJ-04 相位盘</a>
+</div></aside>
+</div>
+<section class="sj-ledger-field" id="f3"><div class="sj-ledger-fh"><span class="fnum">03</span><h2>相位定位</h2></div>
+  <div class="sj-43-phase"><span class="pb">僵化期早段 · 交易换和平</span></div>
+  <p class="sj-43-prose">北宋真宗朝处于<strong>僵化期早段</strong>——澶渊之盟以财政交易锁定边疆，换取长期和平，但军事力建设动机随之衰减（→ SJ-41 积弱总清算）。</p>
+</section>
+<section class="sj-ledger-field" id="f4"><div class="sj-ledger-fh"><span class="fnum">04</span><h2>五力归因台账</h2></div>
+  <div class="sj-43-table-wrap"><table class="sj-43-table"><thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead><tbody><tr><td>财政汲取</td><td class="zheng">岁币 · 榷场</td><td class="shi">岁币年输银十万两、绢二十万匹；榷场贸易部分对冲财政流出</td></tr>
+<tr><td>精英循环</td><td class="zheng">寇准 · 主和</td><td class="shi">寇准力主真宗亲征，但议和派最终主导；文武精英对战争—和平分歧制度化</td></tr>
+<tr><td>合法性叙事</td><td class="zheng">兄弟之国</td><td class="shi">「兄宋弟辽」面子叙事；真宗亲征绩效与岁币现实并存</td></tr>
+<tr><td>边疆军事</td><td class="zheng">澶州之战</td><td class="shi">床弩射杀萧挞凛扭转士气；辽军未能破城，军事僵持促成议和</td></tr>
+<tr><td>生态—人口基座</td><td class="zheng">—</td><td class="shi">河北战区人口承荷战乱；和议后边境恢复生产</td></tr></tbody></table></div>
+</section>
+<section class="sj-ledger-field" id="f5"><div class="sj-ledger-fh"><span class="fnum">05</span><h2>史家交锋</h2></div>
+  <div class="sj-43-hist"><article><div class="who">李敖式考据<span>祛魅</span></div><p>「屈辱和议」叙事含南宋正统需要；但岁币成本低于长期战争〔有争议〕。</p></article>
+<article><div class="who">钱穆<span>《国史大纲》</span></div><p>肯定和平收益，批评此后武备松弛。</p></article>
+<article><div class="who">金观涛<span>超稳定结构</span></div><p>以财政交易买和平是僵化期典型策略，代价是军事力萎缩。</p></article>
+<article><div class="who">黄仁宇<span>数目字管理</span></div><p>岁币是数目字化的边疆交易成本，宋廷有能力支付但削弱战争意愿。</p></article>
+<article style="grid-column:1/-1"><div class="who">西方汉学<span>Chanyuan Treaty</span></div><p>学界共识：1005 条约稳定宋辽关系逾百年。〔岁币数字已核验〕</p></article></div>
+</section>
+<section class="sj-ledger-field" id="f6"><div class="sj-ledger-fh"><span class="fnum">06</span><h2>成败判定</h2></div>
+  <div class="sj-43-verdict">
+    <article class="ok"><div class="vh">已兑现</div><p>宋辽百年和平</p><p>边境榷场贸易</p><p>财政成本可控</p></article>
+    <article class="fail"><div class="vh">已失败</div><p>武备松弛</p><p>「积弱」路径依赖</p><p>面子叙事掩盖实力差距</p></article>
+    <article class="open"><div class="vh">未决</div><p>〔未决〕若宋廷以和平期强化北伐能力，能否避免靖康级失败？</p></article>
+  </div>
+</section>
+<section class="sj-ledger-field" id="f7"><div class="sj-ledger-fh"><span class="fnum">07</span><h2>古今映射</h2></div>
+  <div class="sj-43-mirror">
+    <article class="same"><div class="mh">相似机制</div><p>军事僵持下以财政交易买和平；面子外交与实力差距并存；和平期武备松弛风险。</p></article>
+    <article class="diff"><div class="mh">关键差异</div><p>现代有国际条约、集体安全与核威慑；但「以财买安」的逻辑在地缘博弈中仍可见（→ SJ-24 外交映射）。</p></article>
+  </div>
+</section>
+<section class="sj-ledger-field" id="fx"><div class="sj-ledger-fh"><span class="fnum">◆</span><h2>交叉引用</h2></div>
+  <div class="sj-43-xref"><a href="/modules/shijian/sj-05"><div class="n">SJ-05 · 王安石</div><h3>王安石</h3><p>三冗财政背景。</p></a>
+<a href="/modules/shijian/sj-41"><div class="n">SJ-41 · 靖康</div><h3>靖康</h3><p>积弱下游清算。</p></a>
+<a href="/modules/shijian/sj-42"><div class="n">SJ-42 · 南宋偏安</div><h3>南宋偏安</h3><p>宋金和平模式对照。</p></a></div>
+</section>
+</article>
+<footer class="sj-43-foot">
+  <span>ChinaOS · 史鉴 SJ-43 · v0.1 · 辽宋</span>
+  <span><a href="/modules/shijian/sj-00">← SJ-00</a> · <a href="/modules/shijian/sj-42">← SJ-42</a></span>
+  <span><a href="/modules/shijian/sj-44">SJ-44 →</a></span>
+</footer>
+</div>
+<script>
+(function(){
+  const stage=document.getElementById('stage');
+  if(!stage) return;
+  const nodes=Array.from(stage.querySelectorAll('.sj-node'));
+  const edges=Array.from(stage.querySelectorAll('.sj-edge'));
+  const asideEmpty=document.getElementById('aside-empty');
+  const asideBody=document.getElementById('aside-body');
+  const NODE_DATA={
+  "zhenzong": {
+    "name": "宋真宗 · 汴京",
+    "tag": "决策中枢",
+    "body": "在寇准力劝下亲征澶州，最终以议和收场。"
+  },
+  "chanzhou": {
+    "name": "澶州前线",
+    "tag": "军事节点",
+    "body": "辽军南下抵此，床弩射杀萧挞凛，战局僵持。"
+  },
+  "liao": {
+    "name": "辽圣宗 · 萧太后",
+    "tag": "外压",
+    "body": "率大军南下，萧挞凛阵亡后议和意愿上升。"
+  },
+  "suibi": {
+    "name": "岁币交易",
+    "tag": "财政枢纽",
+    "body": "1005 盟约核心：以岁币换和平，财政—边疆交易枢纽。"
+  },
+  "kouzhun": {
+    "name": "寇准",
+    "tag": "精英推动",
+    "body": "力劝真宗亲征，稳定前线士气——文武精英战争意志的代表。"
+  },
+  "quechang": {
+    "name": "榷场贸易",
+    "tag": "对冲机制",
+    "body": "和议后边境榷场繁荣，部分对冲岁币财政流出。"
+  },
+  "base": {
+    "name": "河北民力",
+    "tag": "基座",
+    "body": "河北战区承荷战事，和议后生产恢复——和平红利。"
+  }
+};
+  const NODE_EDGE={
+  "zhenzong": [
+    "e1"
+  ],
+  "chanzhou": [
+    "e1",
+    "e2",
+    "e3",
+    "e4"
+  ],
+  "liao": [
+    "e3",
+    "e7"
+  ],
+  "suibi": [
+    "e4",
+    "e5"
+  ],
+  "kouzhun": [
+    "e2"
+  ],
+  "quechang": [
+    "e6",
+    "e7"
+  ],
+  "base": [
+    "e5",
+    "e6"
+  ]
+};
+  function clearVisual(){stage.classList.remove('is-picking');nodes.forEach(n=>n.classList.remove('is-hot'));edges.forEach(e=>e.classList.remove('is-hot'));}
+  function showAside(id){const d=NODE_DATA[id];if(!d)return;asideEmpty.hidden=true;asideBody.hidden=false;document.getElementById('aside-tag').textContent=d.tag;document.getElementById('aside-name').textContent=d.name;document.getElementById('aside-text').textContent=d.body;}
+  function pick(id){if(!NODE_DATA[id])return;clearVisual();stage.classList.add('is-picking');nodes.forEach(n=>n.classList.toggle('is-hot',n.dataset.id===id));const hot=NODE_EDGE[id]||[];edges.forEach(e=>e.classList.toggle('is-hot',hot.indexOf(e.dataset.edge)>=0));showAside(id);}
+  nodes.forEach(n=>{const act=()=>pick(n.dataset.id);n.addEventListener('click',act);n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});});
+  edges.forEach(e=>{if(!e.dataset.edge||!NODE_DATA[e.dataset.edge])return;const act=()=>pick(e.dataset.edge);e.style.cursor='pointer';e.setAttribute('tabindex','0');e.setAttribute('role','button');e.addEventListener('click',act);e.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();act();}});});
+})();
+</script>
+</body>
+</html>

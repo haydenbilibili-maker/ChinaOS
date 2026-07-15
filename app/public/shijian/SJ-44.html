@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-44 · 蒙古西征</title>
+<meta name="description" content="ChinaOS 史鉴系列案例卷 SJ-44：蒙古西征——军事力扩张极限 · 花剌子模。史鉴台账七字段。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;--sj-ink-800:#1d1916;--sj-paper-100:#e8ddc7;--sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;--sj-celadon:#5f7a6f;--sj-ochre:#b8894a;--sj-line:#3a322b;
+  --sj-radius:6px;--sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c 0%,transparent 55%),var(--sj-ink-900);color:var(--sj-paper-100);font-family:var(--sj-serif);line-height:1.75}
+.sj-44-wrap{max-width:min(100%,1180px);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media(min-width:1280px){.sj-44-wrap{max-width:min(100%,1480px)}}
+.sj-page-layout{display:flex;flex-direction:column;gap:var(--sj-space)}
+@media(min-width:1280px){.sj-page-layout{display:grid;grid-template-columns:minmax(0,58fr) minmax(280px,38fr);gap:clamp(16px,2vw,28px);align-items:start}}
+.sj-main-col{min-width:0}
+.sj-rail{display:flex;flex-direction:column;gap:12px}
+@media(min-width:1280px){.sj-rail{position:sticky;top:1rem;align-self:start;max-height:calc(100vh - 2rem);overflow-y:auto}}
+@media(max-width:1279px){.sj-page-layout{flex-direction:column}.sj-main-col{display:contents}.sj-rail{order:2;margin:8px 0 20px}}
+.sj-rail-card{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px}
+.sj-rail-card .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-rail-toc{display:grid;gap:6px;margin-top:8px}
+.sj-rail-toc a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);padding:8px 10px;text-decoration:none;color:inherit;font-size:13px}
+.sj-rail-toc a:hover,.sj-rail-toc a:focus-visible,.sj-rail-toc a.is-active{border-color:var(--sj-ochre);outline:none}
+.sj-rail-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;margin:4px 4px 0 0}
+.sj-44-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px}
+.sj-44-mast .badge{font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-44-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em}
+.sj-44-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;font-size:.72em;display:block;margin-top:4px}
+.sj-44-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right}
+.sj-44-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;margin:2px}
+.sj-44-dynasty{color:var(--sj-ochre);border-color:var(--sj-ochre)}
+.sj-zhupi{color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:74ch}
+.sj-ledger{display:grid;gap:8px}
+.sj-ledger-field{margin:20px 0 8px;scroll-margin-top:24px}
+.sj-ledger-fh{display:flex;align-items:baseline;gap:12px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--sj-line)}
+.sj-ledger-fh .fnum{font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre);border:1px solid var(--sj-line);border-radius:4px;padding:1px 7px}
+.sj-ledger-fh h2{font-size:clamp(16px,2.1vw,19px);font-weight:600}
+.sj-44-prose{font-size:15.5px;max-width:74ch}
+.sj-44-hook{border:1px solid var(--sj-line);border-left:3px solid var(--sj-vermil);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:18px 22px}
+.sj-44-hook p{font-size:clamp(16px,2.3vw,20px);line-height:1.7}
+.sj-44-hook .yr{margin-top:10px;font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre)}
+.sj-44-stage{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:8px;overflow:auto}
+.sj-44-stage svg{display:block;width:100%;height:auto}
+.sj-node{cursor:pointer;transition:opacity .2s ease,filter .2s ease}
+.sj-node:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:4px}
+.sj-edge{transition:opacity .2s ease,filter .2s ease}
+.sj-44-stage.is-picking .sj-node{opacity:.3}
+.sj-44-stage.is-picking .sj-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px rgba(184,137,74,.4))}
+.sj-44-stage.is-picking .sj-edge{opacity:.16}
+.sj-44-stage.is-picking .sj-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px rgba(168,59,44,.4))}
+.sj-44-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:14px;align-items:start;margin-top:14px}
+.sj-44-aside{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px;position:sticky;top:12px;min-height:150px}
+.sj-44-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-44-aside h3{font-size:16px;letter-spacing:.08em;margin-bottom:8px}
+.sj-44-aside p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.7}
+.sj-44-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+.sj-44-note{font-size:13px;color:var(--sj-paper-300);line-height:1.65;max-width:74ch}
+@media(max-width:900px){.sj-44-layout{grid-template-columns:1fr}.sj-44-aside{position:static}}
+.sj-44-phase .pb{font-family:var(--sj-mono);font-size:12px;color:var(--sj-vermil);border:1px solid var(--sj-vermil);border-radius:20px;padding:6px 16px}
+.sj-44-table-wrap{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);overflow:auto}
+.sj-44-table{width:100%;border-collapse:collapse;font-size:13px}
+.sj-44-table th{background:var(--sj-ink-900);color:var(--sj-ochre);font-family:var(--sj-mono);font-size:10px;padding:10px 12px;text-align:left;border-bottom:1px solid var(--sj-line)}
+.sj-44-table td{padding:10px 12px;border-bottom:1px solid var(--sj-line);color:var(--sj-paper-300);vertical-align:top}
+.sj-44-table td:first-child{color:var(--sj-paper-100);font-weight:600}
+.sj-44-hist{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-44-hist article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-44-hist .who{font-size:14px;font-weight:600;color:var(--sj-celadon);margin-bottom:6px}
+.sj-44-hist .who span{font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);margin-left:6px}
+.sj-44-hist p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+.sj-44-verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sj-44-verdict article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-44-verdict .vh{font-family:var(--sj-mono);font-size:10px;margin-bottom:8px}
+.sj-44-verdict article.ok .vh{color:var(--sj-celadon)}
+.sj-44-verdict article.fail .vh{color:var(--sj-vermil)}
+.sj-44-verdict article.open .vh{color:var(--sj-ochre)}
+.sj-44-verdict p{font-size:13px;color:var(--sj-paper-300)}
+.sj-44-mirror{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-44-mirror article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-44-mirror .mh{font-family:var(--sj-mono);font-size:10px;margin-bottom:8px}
+.sj-44-mirror article.same .mh{color:var(--sj-celadon)}
+.sj-44-mirror article.diff .mh{color:var(--sj-ochre)}
+.sj-44-mirror p{font-size:13px;color:var(--sj-paper-100);line-height:1.68}
+.sj-44-xref{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.sj-44-xref a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit}
+.sj-44-xref .n{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);margin-bottom:4px}
+.sj-44-xref h3{font-size:14px;margin-bottom:6px}
+.sj-44-xref p{font-size:12.5px;color:var(--sj-paper-300)}
+.sj-44-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sj-44-foot a{color:var(--sj-celadon);text-decoration:none}
+@media(max-width:768px){.sj-44-hist,.sj-44-mirror,.sj-44-verdict,.sj-44-xref{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sj-node,.sj-edge{transition:none}}
+.sj-rail-mini{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="sj-44-wrap" id="sj-44-top">
+<header class="sj-44-mast">
+  <div>
+    <div class="badge">SJ-44 · 蒙古案例卷 · 西征</div>
+    <h1>蒙古西征<em>军事力扩张极限 · 花剌子模</em></h1>
+    <div>
+      <span class="sj-44-chip sj-44-dynasty" data-dynasty="yuan">朝代 · 蒙古</span>
+      <span class="sj-44-chip">军事</span>
+      <a class="sj-44-chip" href="/modules/shijian/sj-00">↔ SJ-00</a>
+      <a class="sj-44-chip" href="/modules/shijian/sj-03">↔ SJ-03</a>
+      <a class="sj-44-chip" href="/modules/shijian/sj-04">↔ SJ-04</a>
+      
+    </div>
+  </div>
+  <div class="sj-44-meta">史鉴台账七字段 · 蒙古<br/><b>AS_OF 2026-07-15</b> · v0.1</div>
+</header>
+<p class="sj-zhupi">朱批：本案是<strong>军事力扩张极限</strong>样本——1219 年成吉思汗因花剌子模杀害商队与使团，亲率大军西征，两年内灭花剌子模，哲别、速不台远征至里海—高加索。口径：《元史·太祖本纪》、波斯史家志费尼《世界征服者史》。</p>
+<article class="sj-ledger">
+<div class="sj-page-layout">
+<div class="sj-main-col">
+<section class="sj-ledger-field" id="f1"><div class="sj-ledger-fh"><span class="fnum">01</span><h2>一句话拐点</h2></div>
+  <div class="sj-44-hook"><p>1218 年花剌子模边将劫杀蒙古商队、杀害成吉思汗使团，1219 年成吉思汗亲率主力西征。两年内攻陷撒马尔罕、玉龙杰赤等城，花剌子模摩诃末西逃病死，哲别、速不台率偏师追至里海—高加索，1223 年败俄罗斯联军于迦勒迦河——<b>军事力扩张达欧亚内陆峰值</b>，但过度延伸亦暴露后勤与统治成本极限（→ SJ-45 行省制度后续整合）。</p><div class="yr">系年：1219 西征始 · 1220 陷撒马尔罕 · 1223 迦勒迦河 · 出处《元史·太祖本纪》</div></div>
+</section>
+<section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
+  <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
+  <p class="sj-44-prose">权力几何：<strong>成吉思汗中枢</strong>（赭金）→ 多路远征军（朱红）→ 花剌子模疆域（被击穿）→ 欧亚草原底盘。两军对峙+追击曲线，军事力主轴。</p>
+  <div class="sj-44-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">结构切片 · 蒙古西征</title>
+  <desc id="sj-desc">权力几何：成吉思汗中枢（赭金）→ 多路远征军（朱红）→ 花剌子模疆域（被击穿）→ 欧亚草原底盘。两军对峙+追击曲线，军事力主轴。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%"><stop offset="0%" stop-color="var(--sj-ink-800)"/><stop offset="100%" stop-color="var(--sj-ink-900)"/></radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse"><line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/></pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/></linearGradient>
+    <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+    <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+    <marker id="a-celadon" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-100)"/></marker>
+  </defs>
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,serif">结构切片 · 蒙古西征</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,monospace">SJ-44 · 蒙古 · 军事</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">朱批 · 五力色义 · 点击节点交互</text>
+  <g fill="none" stroke-linecap="round"><path class="sj-edge" data-edge="e1" d="M410,158 L218,250" stroke="var(--sj-ochre)" stroke-width="2.4" marker-end="url(#a-ochre)"/>
+<path class="sj-edge" data-edge="e2" d="M306,286 L514,286" stroke="var(--sj-vermil)" stroke-width="3.2" marker-end="url(#a-vermil)"/><text x="410" y="275" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">1219西征</text>
+<path class="sj-edge" data-edge="e3" d="M218,322 L218,370" stroke="var(--sj-vermil)" stroke-width="2" marker-end="url(#a-vermil)"/>
+<path class="sj-edge" data-edge="e4" d="M410,322 L410,370" stroke="var(--sj-celadon)" stroke-width="2.2" marker-end="url(#a-celadon)"/>
+<path class="sj-edge" data-edge="e5" d="M607,158 L607,250" stroke="var(--sj-vermil)" stroke-width="2" stroke-dasharray="5 4"/>
+<path class="sj-edge" data-edge="e6" d="M410,426 L410,452" stroke="var(--sj-ochre)" stroke-width="2" marker-end="url(#a-ochre)"/>
+<path class="sj-edge" data-edge="e7" d="M218,426 L410,452" stroke="var(--sj-vermil)" stroke-width="1.8"/></g>
+  <g class="sj-node" data-id="chengjis" tabindex="0" role="button" aria-label="成吉思汗">
+    <rect x="310" y="112" width="200" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="410" y="140" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">成吉思汗</text>
+    <text x="410" y="158" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">1219 亲征</text>
+  </g>
+<g class="sj-node" data-id="xiyuan" tabindex="0" role="button" aria-label="西征大军">
+    <rect x="130" y="250" width="176" height="72" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="218" y="282" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">西征大军</text>
+    <text x="218" y="300" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">术赤 · 拖雷</text>
+  </g>
+<g class="sj-node" data-id="hualazi" tabindex="0" role="button" aria-label="花剌子模">
+    <rect x="514" y="250" width="186" height="72" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="607" y="282" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">花剌子模</text>
+    <text x="607" y="300" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">摩诃末</text>
+  </g>
+<g class="sj-node" data-id="zhebie" tabindex="0" role="button" aria-label="哲别 · 速不台">
+    <rect x="130" y="370" width="176" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="218" y="398" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">哲别 · 速不台</text>
+    <text x="218" y="416" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">1223 迦勒迦河</text>
+  </g>
+<g class="sj-node" data-id="samar" tabindex="0" role="button" aria-label="撒马尔罕">
+    <rect x="310" y="370" width="200" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="410" y="398" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">撒马尔罕</text>
+    <text x="410" y="416" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">1220 陷落</text>
+  </g>
+<g class="sj-node" data-id="shangdui" tabindex="0" role="button" aria-label="商队 · 使团">
+    <rect x="514" y="112" width="186" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="607" y="140" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">商队 · 使团</text>
+    <text x="607" y="158" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">讹答剌事件</text>
+  </g>
+<g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="欧亚草原底盘">
+    <rect x="56" y="452" width="708" height="60" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="2.4"/>
+    <text x="410" y="480" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC,serif">欧亚草原底盘</text>
+    <text x="410" y="498" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">游牧动员</text>
+  </g>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,monospace">viewBox 820×600 · SJ-44</text>
+</svg></div>
+  <div class="sj-44-layout">
+    <div class="sj-44-note" style="margin-top:0">点选节点展开机制链；色义见 premium 切片图例。</div>
+    <aside class="sj-44-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-44-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+      </div>
+    </aside>
+  </div>
+</section>
+</div>
+<aside class="sj-rail"><div class="sj-rail-card"><div class="k">台账 · 七字段</div>
+  <nav class="sj-rail-toc"><a href="#f1">01 · 拐点</a><a href="#f2">02 · 切片</a><a href="#f3">03 · 相位</a><a href="#f4">04 · 五力</a><a href="#f5">05 · 交锋</a><a href="#f6">06 · 成败</a><a href="#f7">07 · 映射</a></nav>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-00#sec-case-hub">案例库 Hub</a>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-03">SJ-03 五力</a>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-04">SJ-04 相位盘</a>
+</div></aside>
+</div>
+<section class="sj-ledger-field" id="f3"><div class="sj-ledger-fh"><span class="fnum">03</span><h2>相位定位</h2></div>
+  <div class="sj-44-phase"><span class="pb">上升期 · 军事扩张峰值</span></div>
+  <p class="sj-44-prose">蒙古帝国处于<strong>上升期军事扩张峰值</strong>——西征落于 SJ-04「上升期·单力极致」：军事力可达空前范围，但统治成本与后勤极限同步显现。</p>
+</section>
+<section class="sj-ledger-field" id="f4"><div class="sj-ledger-fh"><span class="fnum">04</span><h2>五力归因台账</h2></div>
+  <div class="sj-44-table-wrap"><table class="sj-44-table"><thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead><tbody><tr><td>财政汲取</td><td class="zheng">战利品 · 分封</td><td class="shi">以战养战、分封诸子；征服收益支撑短期扩张，难以制度化长期汲取</td></tr>
+<tr><td>精英循环</td><td class="zheng">千户—万户</td><td class="shi">蒙古贵族军事精英循环；被征服区精英尚未整合</td></tr>
+<tr><td>合法性叙事</td><td class="zheng">天命 · 复仇</td><td class="shi">「奉天讨罪」叙事，使团被杀为战争合法性</td></tr>
+<tr><td>边疆军事</td><td class="zheng">西征大军</td><td class="shi">多路合击，速不台、哲别远征欧洲——军事力几何级扩张</td></tr>
+<tr><td>生态—人口基座</td><td class="zheng">草原动员</td><td class="shi">游牧动员力达峰值；过度延伸后后勤线脆弱</td></tr></tbody></table></div>
+</section>
+<section class="sj-ledger-field" id="f5"><div class="sj-ledger-fh"><span class="fnum">05</span><h2>史家交锋</h2></div>
+  <div class="sj-44-hist"><article><div class="who">李敖式考据<span>祛魅</span></div><p>剥离「无敌征服」神话——须并陈屠城代价与统治整合失败案例。</p></article>
+<article><div class="who">钱穆<span>—</span></div><p>钱穆对蒙古西征着墨较少，多从中原正统视角论元灭宋。</p></article>
+<article><div class="who">金观涛<span>超稳定结构</span></div><p>军事扩张型帝国可达地域极限，但制度化整合跟不上征服速度。</p></article>
+<article><div class="who">黄仁宇<span>数目字管理</span></div><p>蒙古征服缺乏数目字管理，依赖分封与当地代理统治。</p></article>
+<article style="grid-column:1/-1"><div class="who">西方汉学<span>Mongol conquest</span></div><p>学界共识：1219–21 灭花剌子模为蒙古西征关键；哲别速不台远征开辟欧洲通道。〔细节存疑〕</p></article></div>
+</section>
+<section class="sj-ledger-field" id="f6"><div class="sj-ledger-fh"><span class="fnum">06</span><h2>成败判定</h2></div>
+  <div class="sj-44-verdict">
+    <article class="ok"><div class="vh">已兑现</div><p>灭花剌子模</p><p>开辟欧亚通道</p><p>军事战术创新</p></article>
+    <article class="fail"><div class="vh">已失败</div><p>屠城代价</p><p>统治整合不足</p><p>过度延伸后勤脆弱</p></article>
+    <article class="open"><div class="vh">未决</div><p>〔未决〕若成吉思汗在世完成欧亚制度化整合，帝国能否稳定延续？</p></article>
+  </div>
+</section>
+<section class="sj-ledger-field" id="f7"><div class="sj-ledger-fh"><span class="fnum">07</span><h2>古今映射</h2></div>
+  <div class="sj-44-mirror">
+    <article class="same"><div class="mh">相似机制</div><p>军事力短期达地理极限；以复仇叙事动员；征服快于整合。</p></article>
+    <article class="diff"><div class="mh">关键差异</div><p>现代有国际法、核威慑与全球供应链；但「军事胜利≠制度整合」仍值得警戒（→ SJ-19 分裂矩阵）。</p></article>
+  </div>
+</section>
+<section class="sj-ledger-field" id="fx"><div class="sj-ledger-fh"><span class="fnum">◆</span><h2>交叉引用</h2></div>
+  <div class="sj-44-xref"><a href="/modules/shijian/sj-45"><div class="n">SJ-45 · 行省</div><h3>行省</h3><p>征服后制度整合下游。</p></a>
+<a href="/modules/shijian/sj-56"><div class="n">SJ-56 · 长平</div><h3>长平</h3><p>军事消耗战对照。</p></a>
+<a href="/modules/shijian/sj-24"><div class="n">SJ-24 · 外交映射</div><h3>外交映射</h3><p>欧亚秩序对照。</p></a></div>
+</section>
+</article>
+<footer class="sj-44-foot">
+  <span>ChinaOS · 史鉴 SJ-44 · v0.1 · 蒙古</span>
+  <span><a href="/modules/shijian/sj-00">← SJ-00</a> · <a href="/modules/shijian/sj-43">← SJ-43</a></span>
+  <span><a href="/modules/shijian/sj-45">SJ-45 →</a></span>
+</footer>
+</div>
+<script>
+(function(){
+  const stage=document.getElementById('stage');
+  if(!stage) return;
+  const nodes=Array.from(stage.querySelectorAll('.sj-node'));
+  const edges=Array.from(stage.querySelectorAll('.sj-edge'));
+  const asideEmpty=document.getElementById('aside-empty');
+  const asideBody=document.getElementById('aside-body');
+  const NODE_DATA={
+  "chengjis": {
+    "name": "成吉思汗",
+    "tag": "决策中枢",
+    "body": "因使团被杀亲率主力西征，开启蒙古第一次西征。"
+  },
+  "xiyuan": {
+    "name": "西征大军",
+    "tag": "军事主轴",
+    "body": "多路合击，两年内攻陷撒马尔罕等重镇。"
+  },
+  "hualazi": {
+    "name": "花剌子模",
+    "tag": "被征服",
+    "body": "中亚强国，杀害商队与使团引发战争，两年内覆灭。"
+  },
+  "zhebie": {
+    "name": "哲别 · 速不台",
+    "tag": "远征偏师",
+    "body": "率偏师西越里海，败俄罗斯联军——军事力延伸极限。"
+  },
+  "samar": {
+    "name": "撒马尔罕",
+    "tag": "决胜点",
+    "body": "花剌子模都城，陷落标志中亚征服完成。"
+  },
+  "shangdui": {
+    "name": "商队 · 使团",
+    "tag": "战争引信",
+    "body": "1218 商队与使团被杀，成为西征合法性引信。"
+  },
+  "base": {
+    "name": "欧亚草原底盘",
+    "tag": "基座",
+    "body": "草原游牧动员力支撑远征，亦限制统治整合深度。"
+  }
+};
+  const NODE_EDGE={
+  "chengjis": [
+    "e1"
+  ],
+  "xiyuan": [
+    "e1",
+    "e2",
+    "e3",
+    "e4"
+  ],
+  "hualazi": [
+    "e2",
+    "e5"
+  ],
+  "zhebie": [
+    "e3",
+    "e7"
+  ],
+  "samar": [
+    "e4",
+    "e6"
+  ],
+  "shangdui": [
+    "e5"
+  ],
+  "base": [
+    "e6",
+    "e7"
+  ]
+};
+  function clearVisual(){stage.classList.remove('is-picking');nodes.forEach(n=>n.classList.remove('is-hot'));edges.forEach(e=>e.classList.remove('is-hot'));}
+  function showAside(id){const d=NODE_DATA[id];if(!d)return;asideEmpty.hidden=true;asideBody.hidden=false;document.getElementById('aside-tag').textContent=d.tag;document.getElementById('aside-name').textContent=d.name;document.getElementById('aside-text').textContent=d.body;}
+  function pick(id){if(!NODE_DATA[id])return;clearVisual();stage.classList.add('is-picking');nodes.forEach(n=>n.classList.toggle('is-hot',n.dataset.id===id));const hot=NODE_EDGE[id]||[];edges.forEach(e=>e.classList.toggle('is-hot',hot.indexOf(e.dataset.edge)>=0));showAside(id);}
+  nodes.forEach(n=>{const act=()=>pick(n.dataset.id);n.addEventListener('click',act);n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});});
+  edges.forEach(e=>{if(!e.dataset.edge||!NODE_DATA[e.dataset.edge])return;const act=()=>pick(e.dataset.edge);e.style.cursor='pointer';e.setAttribute('tabindex','0');e.setAttribute('role','button');e.addEventListener('click',act);e.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();act();}});});
+})();
+</script>
+</body>
+</html>
