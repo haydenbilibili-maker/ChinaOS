@@ -58,6 +58,11 @@ export const MODULES = [
     component: lazy(() => import('../modules/econdash/Page.jsx')),
   },
   {
+    id: 'econH1Review', path: '/econ-h1-review', group: 'home',
+    title: '半年经济解读', subtitle: '三驾马车 · 结构信号 · 2026 H1', icon: 'BookOpenText',
+    component: lazy(() => import('../modules/econH1Review/Page.jsx')),
+  },
+  {
     id: 'cognition', path: '/cognition', group: 'cognition',
     title: '康波周期', subtitle: '康德拉季耶夫 · 长波 · 创新潮', icon: 'Waves',
     component: lazy(() => import('../modules/cognition/Page.jsx')),

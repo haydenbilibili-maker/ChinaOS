@@ -84,6 +84,17 @@ export const NBS_LATEST = [
   { id: 'pmiM',        label: '制造业采购经理指数 PMI', group: '产业',  period: '2026年5月', value: 49.8,  unit: '点',    yoy: null, source: '国家统计局', note: NOTE },
   { id: 'retailM',     label: '社会消费品零售总额（当月同比）', group: '投资消费', period: '2026年5月', value: 4.6, unit: '%', yoy: null, source: '国家统计局', note: NOTE },
   { id: 'indVAM',      label: '规上工业增加值（当月同比）', group: '产业', period: '2026年5月', value: 5.9, unit: '%',   yoy: null, source: '国家统计局', note: NOTE },
+
+  // —— 2026 上半年（H1）——（period '2026年上半年'；2026-07-15 国家统计局发布）
+  { id: 'gdpH1',       label: 'GDP（上半年，实际同比）', group: '增长',     period: '2026年上半年', value: 4.7,  unit: '%',     yoy: null, source: '国家统计局', note: '上半年 695704 亿元；一季 5.0 / 二季 4.3 · 以国家统计局发布为准' },
+  { id: 'indVAH1',     label: '规上工业增加值（上半年同比）', group: '产业', period: '2026年上半年', value: 5.4,  unit: '%',     yoy: null, source: '国家统计局', note: '高技术制造 +13.3% · 装备制造 +9.3% · 以国家统计局发布为准' },
+  { id: 'cpiH1',       label: '居民消费价格 CPI（上半年同比）', group: '物价', period: '2026年上半年', value: 1.0,  unit: '%',   yoy: null, source: '国家统计局', note: '核心 CPI +1.2% · 以国家统计局发布为准' },
+  { id: 'ppiH1',       label: '工业生产者出厂价 PPI（上半年同比）', group: '物价', period: '2026年上半年', value: 1.5, unit: '%', yoy: null, source: '国家统计局', note: '6 月当月 +4.1%，PPI 转正 · 以国家统计局发布为准' },
+  { id: 'unempH1',     label: '城镇调查失业率（上半年均值）', group: '就业', period: '2026年上半年', value: 5.2,  unit: '%',   yoy: null, source: '国家统计局', note: '6 月 5.0% · 以国家统计局发布为准' },
+  { id: 'faiH1',       label: '固定资产投资（上半年同比）', group: '投资消费', period: '2026年上半年', value: -5.7, unit: '%', yoy: null, source: '国家统计局', note: '扣除地产 −2.7%；地产开发投资 −18.0% · 以国家统计局发布为准' },
+  { id: 'retailH1',    label: '社会消费品零售总额（上半年同比）', group: '投资消费', period: '2026年上半年', value: 1.3, unit: '%', yoy: null, source: '国家统计局', note: '248722 亿元；服务零售 +5.3% · 以国家统计局发布为准' },
+  { id: 'tradeH1',     label: '货物进出口总额（上半年）', group: '对外',   period: '2026年上半年', value: 25.47, unit: '万亿元', yoy: 16.9, source: '国家统计局', note: '出口 +13.4% / 进口 +22.1%（海关总署） · 以国家统计局发布为准' },
+  { id: 'incomeH1',    label: '居民人均可支配收入（上半年，实际同比）', group: '就业', period: '2026年上半年', value: 4.2, unit: '%', yoy: null, source: '国家统计局', note: '22981 元，名义 +5.2% · 以国家统计局发布为准' },
 ];
 
 const FETCH_TIMEOUT_MS = 8000; // 8s 超时（任务约定）
