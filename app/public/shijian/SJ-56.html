@@ -115,7 +115,7 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
       
     </div>
   </div>
-  <div class="sj-56-meta">史鉴台账七字段 · 春秋战国<br/><b>AS_OF 2026-07-15</b> · v0.1</div>
+  <div class="sj-56-meta">史鉴台账七字段 · 春秋战国<br/><b>AS_OF 2026-07-15 · 精调轮</b> · v0.2</div>
 </header>
 <p class="sj-zhupi">朱批：本案是<strong>军事消耗战击穿基座承载</strong>样本——前260年秦赵长平对峙，赵括代廉颇冒进被围，降卒四十余万〔《史记》载，学界有争议须标〕。口径：《史记·白起列传》《赵世家》；前260 七月赵括代将为通说。</p>
 <article class="sj-ledger">
@@ -131,13 +131,20 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
   <title id="sj-title">结构切片 · 长平之战</title>
   <desc id="sj-desc">权力几何：秦军/白起对垒赵军/赵括 → 长平对峙 → 粮道断绝 → 基座承载（人口+粮秣）越阈崩溃。两军对峙（军事母题），朱批为坑杀争议。</desc>
   <defs>
-    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%"><stop offset="0%" stop-color="var(--sj-ink-800)"/><stop offset="100%" stop-color="var(--sj-ink-900)"/></radialGradient>
-    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse"><line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/></pattern>
-    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/></linearGradient>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/>
+    </linearGradient>
     <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
     <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
-    <marker id="a-celadon" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
-    <marker id="a-paper" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-100)"/></marker>
+    <marker id="a-celadon" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-300)"/></marker>
   </defs>
   <rect width="820" height="600" fill="url(#sj-glow)"/>
   <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
@@ -147,55 +154,61 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
     <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
     <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
   </g>
-  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,serif">结构切片 · 长平之战</text>
-  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,monospace">SJ-56 · 春秋战国 · 军事</text>
-  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">朱批 · 五力色义 · 点击节点交互</text>
-  <g fill="none" stroke-linecap="round"><path class="sj-edge" data-edge="e1" d="M156,212 L310,260" stroke="var(--sj-ochre)" stroke-width="2.4" marker-end="url(#a-ochre)"/><text x="220" y="235" text-anchor="middle" fill="var(--sj-ochre)" font-size="11" font-family="Songti SC,serif">赵括出击</text>
-<path class="sj-edge" data-edge="e2" d="M664,212 L410,295" stroke="var(--sj-vermil)" stroke-width="3.2" marker-end="url(#a-vermil)"/><text x="540" y="250" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">白起围歼</text>
-<path class="sj-edge" data-edge="e3" d="M410,330 L410,370" stroke="var(--sj-ochre)" stroke-width="2.8" marker-end="url(#a-ochre)"/><text x="430" y="355" text-anchor="middle" fill="var(--sj-ochre)" font-size="11" font-family="Songti SC,serif">断粮</text>
-<path class="sj-edge" data-edge="e4" d="M136,330 L310,295" stroke="var(--sj-celadon)" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#a-celadon)"/>
-<path class="sj-edge" data-edge="e5" d="M410,426 L410,452" stroke="var(--sj-line)" stroke-width="2"/>
-<path class="sj-edge" data-edge="e6" d="M664,370 L410,420" stroke="var(--sj-vermil)" stroke-width="3" marker-end="url(#a-vermil)"/><text x="540" y="400" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">坑杀</text>
-<path class="sj-edge" data-edge="e7" d="M410,330 L664,370" stroke="var(--sj-vermil)" stroke-width="2"/></g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,Noto Serif SC,serif" letter-spacing="0.1em">结构切片 · 长平之战</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,JetBrains Mono,monospace" letter-spacing="0.08em">SJ-56 · 春秋战国 · 军事</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,Noto Serif SC,serif">朱批 · 朱批：本案是军事消耗战击穿基座承载样本——前260年秦赵长平对峙，赵括代廉颇冒进被围，降卒四十余万〔《史记》载，…</text>
+  <g fill="none" stroke-linecap="round">    <path class="sj-edge" data-edge="e1" d="M156,212 L310,260" stroke="var(--sj-ochre)" stroke-width="2.4" marker-end="url(#a-ochre)"/>
+    <text x="220" y="235" text-anchor="middle" fill="var(--sj-ochre)" font-size="11" font-family="Songti SC,serif">赵括出击</text>
+    <path class="sj-edge" data-edge="e2" d="M664,212 L410,295" stroke="var(--sj-vermil)" stroke-width="3.2" marker-end="url(#a-vermil)"/>
+    <text x="540" y="250" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">白起围歼</text>
+    <path class="sj-edge" data-edge="e3" d="M410,330 L410,370" stroke="var(--sj-ochre)" stroke-width="2.8" marker-end="url(#a-ochre)"/>
+    <text x="430" y="355" text-anchor="middle" fill="var(--sj-ochre)" font-size="11" font-family="Songti SC,serif">断粮</text>
+    <path class="sj-edge" data-edge="e4" d="M136,330 L310,295" stroke="var(--sj-celadon)" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#a-celadon)"/>
+    <path class="sj-edge" data-edge="e5" d="M410,426 L410,452" stroke="var(--sj-line)" stroke-width="2"/>
+    <path class="sj-edge" data-edge="e6" d="M664,370 L410,420" stroke="var(--sj-vermil)" stroke-width="3" marker-end="url(#a-vermil)"/>
+    <text x="540" y="400" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">坑杀</text>
+    <path class="sj-edge" data-edge="e7" d="M410,330 L664,370" stroke="var(--sj-vermil)" stroke-width="2"/></g>
+  <g font-family="Songti SC,Noto Serif SC,serif" font-size="11"></g>
   <g class="sj-node" data-id="qin" tabindex="0" role="button" aria-label="秦军 · 白起">
     <rect x="564" y="126" width="200" height="86" rx="6" fill="#2a1a16" stroke="var(--sj-vermil)" stroke-width="2.4"/>
-    <text x="664" y="158" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">秦军 · 白起</text>
-    <text x="664" y="176" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">密任上将</text>
+    <text x="664" y="154" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">秦军 · 白起</text>
+    <text x="664" y="172" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">密任上将</text>
   </g>
-<g class="sj-node" data-id="zhao" tabindex="0" role="button" aria-label="赵军 · 赵括">
+  <g class="sj-node" data-id="zhao" tabindex="0" role="button" aria-label="赵军 · 赵括">
     <rect x="56" y="126" width="200" height="86" rx="6" fill="#2a2218" stroke="var(--sj-ochre)" stroke-width="2.4"/>
-    <text x="156" y="158" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">赵军 · 赵括</text>
-    <text x="156" y="176" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">代廉颇 · 冒进</text>
+    <text x="156" y="154" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">赵军 · 赵括</text>
+    <text x="156" y="172" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">代廉颇 · 冒进</text>
   </g>
-<g class="sj-node" data-id="changping" tabindex="0" role="button" aria-label="长平 · 260">
+  <g class="sj-node" data-id="changping" tabindex="0" role="button" aria-label="长平 · 260">
     <rect x="310" y="260" width="200" height="70" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
-    <text x="410" y="292" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">长平 · 260</text>
-    <text x="410" y="310" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">对峙 · 决战</text>
+    <text x="410" y="288" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">长平 · 260</text>
+    <text x="410" y="306" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">对峙 · 决战</text>
   </g>
-<g class="sj-node" data-id="liangdao" tabindex="0" role="button" aria-label="粮道断绝">
+  <g class="sj-node" data-id="liangdao" tabindex="0" role="button" aria-label="粮道断绝">
     <rect x="310" y="370" width="200" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
     <text x="410" y="398" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">粮道断绝</text>
     <text x="410" y="416" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">四十六日</text>
   </g>
-<g class="sj-node" data-id="lianpo" tabindex="0" role="button" aria-label="廉颇 · 坚壁">
+  <g class="sj-node" data-id="lianpo" tabindex="0" role="button" aria-label="廉颇 · 坚壁">
     <rect x="56" y="260" width="160" height="70" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
-    <text x="136" y="292" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">廉颇 · 坚壁</text>
-    <text x="136" y="310" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">被反间换将</text>
+    <text x="136" y="288" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">廉颇 · 坚壁</text>
+    <text x="136" y="306" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">被反间换将</text>
   </g>
-<g class="sj-node" data-id="kengsha" tabindex="0" role="button" aria-label="坑杀降卒">
+  <g class="sj-node" data-id="kengsha" tabindex="0" role="button" aria-label="坑杀降卒">
     <rect x="564" y="370" width="200" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
     <text x="664" y="398" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">坑杀降卒</text>
     <text x="664" y="416" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">四十余万〔争议〕</text>
   </g>
-<g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="赵国 · 人口基座">
-    <rect x="56" y="452" width="708" height="60" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="2.4"/>
-    <text x="410" y="480" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC,serif">赵国 · 人口基座</text>
-    <text x="410" y="498" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">举国耗战</text>
+  <g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="赵国 · 人口基座">
+    <rect x="56" y="486" width="708" height="86" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="1.4"/>
+    <text x="410" y="514" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC,serif">赵国 · 人口基座</text>
+    <text x="410" y="532" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">举国耗战</text>
+    
   </g>
-  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,monospace">viewBox 820×600 · SJ-56</text>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,JetBrains Mono,monospace">viewBox 820×600 · SJ-56</text>
 </svg></div>
   <div class="sj-56-layout">
-    <div class="sj-56-note" style="margin-top:0">点选节点展开机制链；色义见 premium 切片图例（patch 后更新）。</div>
+    <div class="sj-56-note" style="margin-top:0">色义：赭金=合法性/财政枢纽 · 青瓷=制度/精英通道 · 朱红=张力/引爆/死穴 · 宣纸=叙事主轴 · 深墨=编户底盘。点击节点展开机制链；几何依本案类型母题（禁王安石竖轴克隆）。</div>
     <aside class="sj-56-aside" id="aside" aria-live="polite">
       <div id="aside-empty" class="sj-56-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
       <div id="aside-body" hidden>
@@ -206,9 +219,11 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
     </aside>
   </div>
 </section>
+<!--SLICE_RAIL:权力几何：秦军/白起对垒赵军/赵括 → 长平对峙 → 粮道断绝 → 基座承载（人口+粮秣）越阈崩溃。两军对峙（军事母题），朱批为坑杀争议。…-->
 </div>
 <aside class="sj-rail"><div class="sj-rail-card"><div class="k">台账 · 七字段</div>
   <nav class="sj-rail-toc"><a href="#f1">01 · 拐点</a><a href="#f2">02 · 切片</a><a href="#f3">03 · 相位</a><a href="#f4">04 · 五力</a><a href="#f5">05 · 交锋</a><a href="#f6">06 · 成败</a><a href="#f7">07 · 映射</a></nav>
+  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p class="sj-rail-mini">权力几何：秦军/白起对垒赵军/赵括 → 长平对峙 → 粮道断绝 → 基座承载（人口+粮秣）越阈崩溃。两军对峙（军事母题），朱批为坑杀争议。…</p></div>
   <a class="sj-rail-chip" href="/modules/shijian/sj-00#sec-case-hub">案例库 Hub</a>
   <a class="sj-rail-chip" href="/modules/shijian/sj-03">SJ-03 五力</a>
   <a class="sj-rail-chip" href="/modules/shijian/sj-04">SJ-04 相位盘</a>
@@ -219,11 +234,12 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
   <p class="sj-56-prose">战国后期处于<strong>军事消耗战</strong>相位——长平落于 SJ-04「僵化期·单力强化反降稳定」与 SJ-06 同源逻辑：赵国以举国之力耗于一战，一战崩盘。</p>
 </section>
 <section class="sj-ledger-field" id="f4"><div class="sj-ledger-fh"><span class="fnum">04</span><h2>五力归因台账</h2></div>
-  <div class="sj-56-table-wrap"><table class="sj-56-table"><thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead><tbody><tr><td>财政汲取</td><td class="zheng">举国耗战</td><td class="shi">赵国以全国粮秣供长平，对峙三年耗尽国库——财政枢纽单点依赖</td></tr>
-<tr><td>精英循环</td><td class="zheng">赵括代廉</td><td class="shi">反间计+赵王急功近利，换将断送廉颇坚壁战略——决策链失灵</td></tr>
-<tr><td>合法性叙事</td><td class="zheng">—</td><td class="shi">战争胜负直接决定邦国存亡叙事，败后赵国士气归零</td></tr>
-<tr><td>边疆军事</td><td class="zheng">白起围歼</td><td class="shi">白起断粮道、围而歼之——军事组织度与后勤链决胜</td></tr>
-<tr><td>生态—人口基座</td><td class="zheng">坑杀降卒</td><td class="shi">《史记》载坑杀四十余万〔学界争议，须标估算〕——基座人口承载遭毁灭性打击</td></tr></tbody></table></div>
+  <p class="sj-56-prose">双轨意识：左列是正史书写的<strong>正史归因</strong>，右列是剥离立场后的<strong>结构实因</strong>。五力须联读，忌单因论。</p>
+  <div class="sj-56-table-wrap"><table class="sj-56-table"><thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead><tbody><tr><td>财政汲取</td><td class="zheng">举国耗战</td><td class="shi">赵国以全国粮秣供长平，对峙三年耗尽国库——财政枢纽单点依赖 汲取链与合法性绩效的耦合度决定民变阈值；本案须联读相位与主导力，忌单因财政论。</td></tr>
+<tr><td>精英循环</td><td class="zheng">赵括代廉</td><td class="shi">反间计+赵王急功近利，换将断送廉颇坚壁战略——决策链失灵 精英通道开合决定改革能否获得执行同盟；堵塞或反扑往往比政策设计本身更致命。</td></tr>
+<tr><td>合法性叙事</td><td class="zheng">—</td><td class="shi">战争胜负直接决定邦国存亡叙事，败后赵国士气归零 叙事争夺的是「绩效—同意」的定义权；一旦绩效破产，武装或抗议即夺取话语。</td></tr>
+<tr><td>边疆军事</td><td class="zheng">白起围歼</td><td class="shi">白起断粮道、围而歼之——军事组织度与后勤链决胜 军事力既可为改革赢得窗口，也可在分裂期定正统；效能取决于组织度而非账面规模。</td></tr>
+<tr><td>生态—人口基座</td><td class="zheng">坑杀降卒</td><td class="shi">《史记》载坑杀四十余万〔学界争议，须标估算〕——基座人口承载遭毁灭性打击 基座承载是慢变量天花板；透支后快变量（民变、战争）将加速相变。</td></tr></tbody></table></div>
 </section>
 <section class="sj-ledger-field" id="f5"><div class="sj-ledger-fh"><span class="fnum">05</span><h2>史家交锋</h2></div>
   <div class="sj-56-hist"><article><div class="who">李敖式考据<span>祛魅</span></div><p>「四十万坑杀」须剥离——《史记》数字含累计阵亡+俘虏，后世考古与学者多有质疑，禁止择一断言。</p></article>
@@ -241,8 +257,8 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
 </section>
 <section class="sj-ledger-field" id="f7"><div class="sj-ledger-fh"><span class="fnum">07</span><h2>古今映射</h2></div>
   <div class="sj-56-mirror">
-    <article class="same"><div class="mh">相似机制</div><p>对峙消耗→一方冒进→粮道断绝→崩盘；军事单力豪赌反噬整体。</p></article>
-    <article class="diff"><div class="mh">关键差异</div><p>现代战争有人道公约与后勤体系；但「长期对峙+指挥失误→一战崩盘」仍有警示（→ SJ-33 淝水、SJ-06 天宝）。</p></article>
+    <article class="same"><div class="mh">相似机制</div><p>对峙消耗→一方冒进→粮道断绝→崩盘；军事单力豪赌反噬整体。 多力须联读，忌道德单因论；结构实因重于成败道德评判。</p></article>
+    <article class="diff"><div class="mh">关键差异</div><p>现代战争有人道公约与后勤体系；但「长期对峙+指挥失误→一战崩盘」仍有警示（→ SJ-33 淝水、SJ-06 天宝）。 映射须保留「关键差异」闸：参数变化不取消机制张力，仅改变表达方式与缓冲工具。</p></article>
   </div>
 </section>
 <section class="sj-ledger-field" id="fx"><div class="sj-ledger-fh"><span class="fnum">◆</span><h2>交叉引用</h2></div>
@@ -252,11 +268,12 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
 </section>
 </article>
 <footer class="sj-56-foot">
-  <span>ChinaOS · 史鉴 SJ-56 · v0.1 · 春秋战国</span>
+  <span>ChinaOS · 史鉴 SJ-56 · v0.2 · 春秋战国</span>
   <span><a href="/modules/shijian/sj-00">← SJ-00</a> · <a href="/modules/shijian/sj-55">← SJ-55</a></span>
   <span><a href="/modules/shijian/sj-57">SJ-57 →</a></span>
 </footer>
 </div>
+
 <script>
 (function(){
   const stage=document.getElementById('stage');

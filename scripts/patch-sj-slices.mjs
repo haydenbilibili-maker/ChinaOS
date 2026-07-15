@@ -17,18 +17,29 @@ import {
   GEOMETRY_SPEC_VERSION,
   FORBIDDEN_CLONE_MOTIF,
 } from './lib/sj-slice-geometries.mjs';
+import { buildRoundSliceConfigs } from './lib/case-to-slice-config.mjs';
+import { ROUND4_CASES } from './data/round4-cases.mjs';
+import { ROUND4_CHUNQIU } from './data/round4-cases-chunqiu.mjs';
+import { ROUND5_CASES } from './data/round5-cases.mjs';
+
+const ROUND_SLICE_CONFIGS = buildRoundSliceConfigs([
+  ...ROUND4_CASES,
+  ...ROUND4_CHUNQIU,
+  ...ROUND5_CASES,
+]);
 
 /** Geometry spec (§1) wins over legacy premium configs; never re-apply vertical-spine clone. */
-const ALL_SLICE_CONFIGS = { ...SLICE_CONFIGS, ...GEOMETRY_SLICE_CONFIGS };
+const ALL_SLICE_CONFIGS = { ...SLICE_CONFIGS, ...GEOMETRY_SLICE_CONFIGS, ...ROUND_SLICE_CONFIGS };
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'app/public/shijian');
 
 const TARGETS = [
   '09', '10', '11', '12', '13', '14', '15',
-  '27', '31', '32', '33', '34',
-  '35', '38', '39', '41', '49',
+  '27', '28', '31', '32', '33', '34', '35', '36',
+  '38', '39', '40', '41', '42', '43', '44', '49',
   '45', '46', '50', '51',
+  '52', '53', '54', '55', '56', '57',
 ];
 
 /** Post-patch structural assertions — blank-page regression guard */

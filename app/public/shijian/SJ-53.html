@@ -115,7 +115,7 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
       
     </div>
   </div>
-  <div class="sj-53-meta">史鉴台账七字段 · 近代<br/><b>AS_OF 2026-07-15</b> · v0.1</div>
+  <div class="sj-53-meta">史鉴台账七字段 · 近代<br/><b>AS_OF 2026-07-15 · 精调轮</b> · v0.2</div>
 </header>
 <p class="sj-zhupi">朱批：本案是<strong>分裂期军事力定正统</strong>的近代样本——1926 国民革命军誓师北伐，国共合作下连克武汉南京，1928 东北易帜形式统一。口径：1926.7.9 誓师、1928.12 东北易帜为通说；四一二后国共分裂须并陈。</p>
 <article class="sj-ledger">
@@ -131,13 +131,20 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
   <title id="sj-title">结构切片 · 北伐战争</title>
   <desc id="sj-desc">权力几何：广州国民政府 → 北伐军纵列 → 击溃吴佩孚/孙传芳 → 宁汉对峙/东北易帜。军事力（朱红）为主轴，国共合作为执行链。</desc>
   <defs>
-    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%"><stop offset="0%" stop-color="var(--sj-ink-800)"/><stop offset="100%" stop-color="var(--sj-ink-900)"/></radialGradient>
-    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse"><line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/></pattern>
-    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/></linearGradient>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/>
+    </linearGradient>
     <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
     <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
-    <marker id="a-celadon" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
-    <marker id="a-paper" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-100)"/></marker>
+    <marker id="a-celadon" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-300)"/></marker>
   </defs>
   <rect width="820" height="600" fill="url(#sj-glow)"/>
   <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
@@ -147,55 +154,58 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
     <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
     <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
   </g>
-  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,serif">结构切片 · 北伐战争</text>
-  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,monospace">SJ-53 · 近代 · 军事</text>
-  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">朱批 · 五力色义 · 点击节点交互</text>
-  <g fill="none" stroke-linecap="round"><path class="sj-edge" data-edge="e1" d="M410,158 L218,230" stroke="var(--sj-ochre)" stroke-width="2.4" marker-end="url(#a-ochre)"/>
-<path class="sj-edge" data-edge="e2" d="M306,266 L514,266" stroke="var(--sj-vermil)" stroke-width="3.2" marker-end="url(#a-vermil)"/><text x="410" y="255" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">北伐</text>
-<path class="sj-edge" data-edge="e3" d="M218,302 L218,370" stroke="var(--sj-celadon)" stroke-width="2" marker-end="url(#a-celadon)"/>
-<path class="sj-edge" data-edge="e4" d="M607,302 L607,370" stroke="var(--sj-vermil)" stroke-width="2.6" marker-end="url(#a-vermil)"/>
-<path class="sj-edge" data-edge="e5" d="M410,426 L410,452" stroke="var(--sj-celadon)" stroke-width="2.2" marker-end="url(#a-celadon)"/>
-<path class="sj-edge" data-edge="e6" d="M218,426 L410,452" stroke="var(--sj-celadon)" stroke-width="1.8"/>
-<path class="sj-edge" data-edge="e7" d="M410,340 L410,370" stroke="var(--sj-celadon)" stroke-width="2" marker-end="url(#a-celadon)"/></g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,Noto Serif SC,serif" letter-spacing="0.1em">结构切片 · 北伐战争</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,JetBrains Mono,monospace" letter-spacing="0.08em">SJ-53 · 近代 · 军事</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,Noto Serif SC,serif">朱批 · 朱批：本案是分裂期军事力定正统的近代样本——1926 国民革命军誓师北伐，国共合作下连克武汉南京，1928 东北…</text>
+  <g fill="none" stroke-linecap="round">    <path class="sj-edge" data-edge="e1" d="M410,158 L218,230" stroke="var(--sj-ochre)" stroke-width="2.4" marker-end="url(#a-ochre)"/>
+    <path class="sj-edge" data-edge="e2" d="M306,266 L514,266" stroke="var(--sj-vermil)" stroke-width="3.2" marker-end="url(#a-vermil)"/>
+    <text x="410" y="255" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">北伐</text>
+    <path class="sj-edge" data-edge="e3" d="M218,302 L218,370" stroke="var(--sj-celadon)" stroke-width="2" marker-end="url(#a-celadon)"/>
+    <path class="sj-edge" data-edge="e4" d="M607,302 L607,370" stroke="var(--sj-vermil)" stroke-width="2.6" marker-end="url(#a-vermil)"/>
+    <path class="sj-edge" data-edge="e5" d="M410,426 L410,452" stroke="var(--sj-celadon)" stroke-width="2.2" marker-end="url(#a-celadon)"/>
+    <path class="sj-edge" data-edge="e6" d="M218,426 L410,452" stroke="var(--sj-celadon)" stroke-width="1.8"/>
+    <path class="sj-edge" data-edge="e7" d="M410,340 L410,370" stroke="var(--sj-celadon)" stroke-width="2" marker-end="url(#a-celadon)"/></g>
+  <g font-family="Songti SC,Noto Serif SC,serif" font-size="11"></g>
   <g class="sj-node" data-id="guangzhou" tabindex="0" role="button" aria-label="广州国民政府">
     <rect x="310" y="112" width="200" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
     <text x="410" y="140" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">广州国民政府</text>
     <text x="410" y="158" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">1926 誓师</text>
   </g>
-<g class="sj-node" data-id="beifajun" tabindex="0" role="button" aria-label="国民革命军">
+  <g class="sj-node" data-id="beifajun" tabindex="0" role="button" aria-label="国民革命军">
     <rect x="130" y="230" width="176" height="72" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
-    <text x="218" y="262" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">国民革命军</text>
-    <text x="218" y="280" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">第四军等</text>
+    <text x="218" y="258" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">国民革命军</text>
+    <text x="218" y="276" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">第四军等</text>
   </g>
-<g class="sj-node" data-id="junfa" tabindex="0" role="button" aria-label="吴佩孚 · 孙传芳">
+  <g class="sj-node" data-id="junfa" tabindex="0" role="button" aria-label="吴佩孚 · 孙传芳">
     <rect x="514" y="230" width="186" height="72" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
-    <text x="607" y="262" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">吴佩孚 · 孙传芳</text>
-    <text x="607" y="280" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">北洋军阀</text>
+    <text x="607" y="258" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">吴佩孚 · 孙传芳</text>
+    <text x="607" y="276" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">北洋军阀</text>
   </g>
-<g class="sj-node" data-id="guogong" tabindex="0" role="button" aria-label="国共合作">
+  <g class="sj-node" data-id="guogong" tabindex="0" role="button" aria-label="国共合作">
     <rect x="130" y="370" width="176" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
     <text x="218" y="398" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">国共合作</text>
     <text x="218" y="416" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">政治部 · 工农</text>
   </g>
-<g class="sj-node" data-id="siyi" tabindex="0" role="button" aria-label="四一二">
+  <g class="sj-node" data-id="siyi" tabindex="0" role="button" aria-label="四一二">
     <rect x="514" y="370" width="186" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
     <text x="607" y="398" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">四一二</text>
     <text x="607" y="416" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">1927.4.12</text>
   </g>
-<g class="sj-node" data-id="yizhi" tabindex="0" role="button" aria-label="东北易帜">
+  <g class="sj-node" data-id="yizhi" tabindex="0" role="button" aria-label="东北易帜">
     <rect x="310" y="370" width="200" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
     <text x="410" y="398" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">东北易帜</text>
     <text x="410" y="416" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">1928.12</text>
   </g>
-<g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="农民 · 战乱底盘">
-    <rect x="56" y="452" width="708" height="60" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="2.4"/>
-    <text x="410" y="480" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC,serif">农民 · 战乱底盘</text>
-    <text x="410" y="498" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">土地未均</text>
+  <g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="农民 · 战乱底盘">
+    <rect x="56" y="486" width="708" height="86" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="1.4"/>
+    <text x="410" y="514" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC,serif">农民 · 战乱底盘</text>
+    <text x="410" y="532" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">土地未均</text>
+    
   </g>
-  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,monospace">viewBox 820×600 · SJ-53</text>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,JetBrains Mono,monospace">viewBox 820×600 · SJ-53</text>
 </svg></div>
   <div class="sj-53-layout">
-    <div class="sj-53-note" style="margin-top:0">点选节点展开机制链；色义见 premium 切片图例（patch 后更新）。</div>
+    <div class="sj-53-note" style="margin-top:0">色义：赭金=合法性/财政枢纽 · 青瓷=制度/精英通道 · 朱红=张力/引爆/死穴 · 宣纸=叙事主轴 · 深墨=编户底盘。点击节点展开机制链；几何依本案类型母题（禁王安石竖轴克隆）。</div>
     <aside class="sj-53-aside" id="aside" aria-live="polite">
       <div id="aside-empty" class="sj-53-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
       <div id="aside-body" hidden>
@@ -206,9 +216,11 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
     </aside>
   </div>
 </section>
+<!--SLICE_RAIL:权力几何：广州国民政府 → 北伐军纵列 → 击溃吴佩孚/孙传芳 → 宁汉对峙/东北易帜。军事力（朱红）为主轴，国共合作为执行链。…-->
 </div>
 <aside class="sj-rail"><div class="sj-rail-card"><div class="k">台账 · 七字段</div>
   <nav class="sj-rail-toc"><a href="#f1">01 · 拐点</a><a href="#f2">02 · 切片</a><a href="#f3">03 · 相位</a><a href="#f4">04 · 五力</a><a href="#f5">05 · 交锋</a><a href="#f6">06 · 成败</a><a href="#f7">07 · 映射</a></nav>
+  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p class="sj-rail-mini">权力几何：广州国民政府 → 北伐军纵列 → 击溃吴佩孚/孙传芳 → 宁汉对峙/东北易帜。军事力（朱红）为主轴，国共合作为执行链。…</p></div>
   <a class="sj-rail-chip" href="/modules/shijian/sj-00#sec-case-hub">案例库 Hub</a>
   <a class="sj-rail-chip" href="/modules/shijian/sj-03">SJ-03 五力</a>
   <a class="sj-rail-chip" href="/modules/shijian/sj-04">SJ-04 相位盘</a>
@@ -219,11 +231,12 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
   <p class="sj-53-prose">近代军阀割据落于<strong>分裂期</strong>——北伐是 SJ-04「分裂期·军事决胜→重整」的近代变体。与 SJ-31 官渡（单战锁定）、SJ-08 五代（制度轮替）构成分裂—重整矩阵成员链。</p>
 </section>
 <section class="sj-ledger-field" id="f4"><div class="sj-ledger-fh"><span class="fnum">04</span><h2>五力归因台账</h2></div>
-  <div class="sj-53-table-wrap"><table class="sj-53-table"><thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead><tbody><tr><td>财政汲取</td><td class="zheng">筹饷 · 厘金</td><td class="shi">两广税基+苏联援助支撑北伐军费；占领区开厘金扩汲取</td></tr>
-<tr><td>精英循环</td><td class="zheng">国共合作</td><td class="shi">共产党员在国民革命军政治部、工人运动中活跃；四一二后精英通道断裂</td></tr>
-<tr><td>合法性叙事</td><td class="zheng">国民革命</td><td class="shi">「打倒列强，除军阀」夺正统叙事；东北易帜完成形式统一</td></tr>
-<tr><td>边疆军事</td><td class="zheng">北伐军</td><td class="shi">汀泗桥、贺胜桥等决战；组织度+政治工作胜过军阀松散联盟</td></tr>
-<tr><td>生态—人口基座</td><td class="zheng">—</td><td class="shi">战乱区人口流离，农民问题未解——重整流于形式（→ 土地革命）</td></tr></tbody></table></div>
+  <p class="sj-53-prose">双轨意识：左列是正史书写的<strong>正史归因</strong>，右列是剥离立场后的<strong>结构实因</strong>。五力须联读，忌单因论。</p>
+  <div class="sj-53-table-wrap"><table class="sj-53-table"><thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead><tbody><tr><td>财政汲取</td><td class="zheng">筹饷 · 厘金</td><td class="shi">两广税基+苏联援助支撑北伐军费；占领区开厘金扩汲取 汲取链与合法性绩效的耦合度决定民变阈值；本案须联读相位与主导力，忌单因财政论。</td></tr>
+<tr><td>精英循环</td><td class="zheng">国共合作</td><td class="shi">共产党员在国民革命军政治部、工人运动中活跃；四一二后精英通道断裂 精英通道开合决定改革能否获得执行同盟；堵塞或反扑往往比政策设计本身更致命。</td></tr>
+<tr><td>合法性叙事</td><td class="zheng">国民革命</td><td class="shi">「打倒列强，除军阀」夺正统叙事；东北易帜完成形式统一 叙事争夺的是「绩效—同意」的定义权；一旦绩效破产，武装或抗议即夺取话语。</td></tr>
+<tr><td>边疆军事</td><td class="zheng">北伐军</td><td class="shi">汀泗桥、贺胜桥等决战；组织度+政治工作胜过军阀松散联盟 军事力既可为改革赢得窗口，也可在分裂期定正统；效能取决于组织度而非账面规模。</td></tr>
+<tr><td>生态—人口基座</td><td class="zheng">—</td><td class="shi">战乱区人口流离，农民问题未解——重整流于形式（→ 土地革命） 基座承载是慢变量天花板；透支后快变量（民变、战争）将加速相变。</td></tr></tbody></table></div>
 </section>
 <section class="sj-ledger-field" id="f5"><div class="sj-ledger-fh"><span class="fnum">05</span><h2>史家交锋</h2></div>
   <div class="sj-53-hist"><article><div class="who">李敖式考据<span>祛魅</span></div><p>剥离「北伐=共产党领导」单因论——国民党军事主体+国共合作为结构实因。</p></article>
@@ -241,8 +254,8 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
 </section>
 <section class="sj-ledger-field" id="f7"><div class="sj-ledger-fh"><span class="fnum">07</span><h2>古今映射</h2></div>
   <div class="sj-53-mirror">
-    <article class="same"><div class="mh">相似机制</div><p>分裂期军事集团定正统；政治工作+组织度胜过账面兵力；统一后仍藏分裂隐患。</p></article>
-    <article class="diff"><div class="mh">关键差异</div><p>现代国家有宪法与政党制度；但「军事胜利≠制度整合」仍值得警戒（→ SJ-08 过度矫正、SJ-19 分裂矩阵）。</p></article>
+    <article class="same"><div class="mh">相似机制</div><p>分裂期军事集团定正统；政治工作+组织度胜过账面兵力；统一后仍藏分裂隐患。 多力须联读，忌道德单因论；结构实因重于成败道德评判。</p></article>
+    <article class="diff"><div class="mh">关键差异</div><p>现代国家有宪法与政党制度；但「军事胜利≠制度整合」仍值得警戒（→ SJ-08 过度矫正、SJ-19 分裂矩阵）。 映射须保留「关键差异」闸：参数变化不取消机制张力，仅改变表达方式与缓冲工具。</p></article>
   </div>
 </section>
 <section class="sj-ledger-field" id="fx"><div class="sj-ledger-fh"><span class="fnum">◆</span><h2>交叉引用</h2></div>
@@ -252,11 +265,12 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
 </section>
 </article>
 <footer class="sj-53-foot">
-  <span>ChinaOS · 史鉴 SJ-53 · v0.1 · 近代</span>
+  <span>ChinaOS · 史鉴 SJ-53 · v0.2 · 近代</span>
   <span><a href="/modules/shijian/sj-00">← SJ-00</a> · <a href="/modules/shijian/sj-52">← SJ-52</a></span>
   <span><a href="/modules/shijian/sj-54">SJ-54 →</a></span>
 </footer>
 </div>
+
 <script>
 (function(){
   const stage=document.getElementById('stage');

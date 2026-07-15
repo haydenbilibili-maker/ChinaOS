@@ -115,7 +115,7 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
       
     </div>
   </div>
-  <div class="sj-42-meta">史鉴台账七字段 · 南宋<br/><b>AS_OF 2026-07-15</b> · v0.1</div>
+  <div class="sj-42-meta">史鉴台账七字段 · 南宋<br/><b>AS_OF 2026-07-15 · 精调轮</b> · v0.2</div>
 </header>
 <p class="sj-zhupi">朱批：本案是<strong>崩解后区域再配置</strong>样本——靖康后宋室南渡，1138 定都临安，形成「守江必守淮」空间格局；军事力不足与财政江南化并存。口径：《宋史·高宗本纪》《建炎以来系年要录》。</p>
 <article class="sj-ledger">
@@ -131,13 +131,20 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
   <title id="sj-title">结构切片 · 南宋偏安</title>
   <desc id="sj-desc">权力几何：临安中枢（赭金虚线）→ 淮上防线（朱红军事）→ 江南漕赋网（赭金汲取）→ 主战/主和精英分裂（青瓷）。区域再配置母题，非大一统竖轴。</desc>
   <defs>
-    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%"><stop offset="0%" stop-color="var(--sj-ink-800)"/><stop offset="100%" stop-color="var(--sj-ink-900)"/></radialGradient>
-    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse"><line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/></pattern>
-    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/></linearGradient>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/>
+    </linearGradient>
     <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
     <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
-    <marker id="a-celadon" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
-    <marker id="a-paper" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-100)"/></marker>
+    <marker id="a-celadon" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-300)"/></marker>
   </defs>
   <rect width="820" height="600" fill="url(#sj-glow)"/>
   <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
@@ -147,56 +154,59 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
     <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
     <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
   </g>
-  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,serif">结构切片 · 南宋偏安</text>
-  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,monospace">SJ-42 · 南宋 · 偏安</text>
-  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">朱批 · 五力色义 · 点击节点交互</text>
-  <g fill="none" stroke-linecap="round"><path class="sj-edge" data-edge="e1" d="M410,158 L218,250" stroke="var(--sj-vermil)" stroke-width="2.6" marker-end="url(#a-vermil)"/>
-<path class="sj-edge" data-edge="e2" d="M306,280 L514,280" stroke="var(--sj-vermil)" stroke-width="2.8" marker-end="url(#a-vermil)"/><text x="410" y="268" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">淮上对峙</text>
-<path class="sj-edge" data-edge="e3" d="M218,310 L218,370" stroke="var(--sj-ochre)" stroke-width="2" marker-end="url(#a-ochre)"/>
-<path class="sj-edge" data-edge="e4" d="M410,158 L410,370" stroke="var(--sj-celadon)" stroke-width="2" marker-end="url(#a-celadon)"/>
-<path class="sj-edge" data-edge="e5" d="M607,310 L607,370" stroke="var(--sj-vermil)" stroke-width="2" marker-end="url(#a-vermil)"/>
-<path class="sj-edge" data-edge="e6" d="M410,426 L410,452" stroke="var(--sj-ochre)" stroke-width="2" marker-end="url(#a-ochre)"/>
-<path class="sj-edge" data-edge="e7" d="M218,426 L410,452" stroke="var(--sj-ochre)" stroke-width="1.8"/>
-<path class="sj-edge" data-edge="e8" d="M410,370 L607,370" stroke="var(--sj-vermil)" stroke-width="2" stroke-dasharray="5 4"/></g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,Noto Serif SC,serif" letter-spacing="0.1em">结构切片 · 南宋偏安</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,JetBrains Mono,monospace" letter-spacing="0.08em">SJ-42 · 南宋 · 偏安</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,Noto Serif SC,serif">朱批 · 朱批：本案是崩解后区域再配置样本——靖康后宋室南渡，1138 定都临安，形成「守江必守淮」空间格局；军事力不足与…</text>
+  <g fill="none" stroke-linecap="round">    <path class="sj-edge" data-edge="e1" d="M410,158 L218,250" stroke="var(--sj-vermil)" stroke-width="2.6" marker-end="url(#a-vermil)"/>
+    <path class="sj-edge" data-edge="e2" d="M306,280 L514,280" stroke="var(--sj-vermil)" stroke-width="2.8" marker-end="url(#a-vermil)"/>
+    <text x="410" y="268" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">淮上对峙</text>
+    <path class="sj-edge" data-edge="e3" d="M218,310 L218,370" stroke="var(--sj-ochre)" stroke-width="2" marker-end="url(#a-ochre)"/>
+    <path class="sj-edge" data-edge="e4" d="M410,158 L410,370" stroke="var(--sj-celadon)" stroke-width="2" marker-end="url(#a-celadon)"/>
+    <path class="sj-edge" data-edge="e5" d="M607,310 L607,370" stroke="var(--sj-vermil)" stroke-width="2" marker-end="url(#a-vermil)"/>
+    <path class="sj-edge" data-edge="e6" d="M410,426 L410,452" stroke="var(--sj-ochre)" stroke-width="2" marker-end="url(#a-ochre)"/>
+    <path class="sj-edge" data-edge="e7" d="M218,426 L410,452" stroke="var(--sj-ochre)" stroke-width="1.8"/>
+    <path class="sj-edge" data-edge="e8" d="M410,370 L607,370" stroke="var(--sj-vermil)" stroke-width="2" stroke-dasharray="5 4"/></g>
+  <g font-family="Songti SC,Noto Serif SC,serif" font-size="11"></g>
   <g class="sj-node" data-id="linan" tabindex="0" role="button" aria-label="临安 · 南宋">
     <rect x="310" y="112" width="200" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
     <text x="410" y="140" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">临安 · 南宋</text>
     <text x="410" y="158" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">1138 定都</text>
   </g>
-<g class="sj-node" data-id="huaihe" tabindex="0" role="button" aria-label="淮河防线">
+  <g class="sj-node" data-id="huaihe" tabindex="0" role="button" aria-label="淮河防线">
     <rect x="130" y="250" width="176" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
     <text x="218" y="278" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">淮河防线</text>
     <text x="218" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">守江必守淮</text>
   </g>
-<g class="sj-node" data-id="jin" tabindex="0" role="button" aria-label="金国">
+  <g class="sj-node" data-id="jin" tabindex="0" role="button" aria-label="金国">
     <rect x="514" y="250" width="186" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
     <text x="607" y="278" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">金国</text>
     <text x="607" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">北方压力</text>
   </g>
-<g class="sj-node" data-id="caoyun" tabindex="0" role="button" aria-label="江南漕赋">
+  <g class="sj-node" data-id="caoyun" tabindex="0" role="button" aria-label="江南漕赋">
     <rect x="130" y="370" width="176" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
     <text x="218" y="398" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">江南漕赋</text>
     <text x="218" y="416" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">东南财赋</text>
   </g>
-<g class="sj-node" data-id="yuefei" tabindex="0" role="button" aria-label="岳飞 · 主战">
+  <g class="sj-node" data-id="yuefei" tabindex="0" role="button" aria-label="岳飞 · 主战">
     <rect x="310" y="370" width="200" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
     <text x="410" y="398" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">岳飞 · 主战</text>
     <text x="410" y="416" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">1142 遇害</text>
   </g>
-<g class="sj-node" data-id="qin" tabindex="0" role="button" aria-label="秦桧 · 主和">
+  <g class="sj-node" data-id="qin" tabindex="0" role="button" aria-label="秦桧 · 主和">
     <rect x="514" y="370" width="186" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
     <text x="607" y="398" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">秦桧 · 主和</text>
     <text x="607" y="416" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">1141 和议</text>
   </g>
-<g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="江南移民底盘">
-    <rect x="56" y="452" width="708" height="60" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="2.4"/>
-    <text x="410" y="480" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC,serif">江南移民底盘</text>
-    <text x="410" y="498" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">土地 · 商业</text>
+  <g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="江南移民底盘">
+    <rect x="56" y="486" width="708" height="86" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="1.4"/>
+    <text x="410" y="514" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC,serif">江南移民底盘</text>
+    <text x="410" y="532" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">土地 · 商业</text>
+    
   </g>
-  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,monospace">viewBox 820×600 · SJ-42</text>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,JetBrains Mono,monospace">viewBox 820×600 · SJ-42</text>
 </svg></div>
   <div class="sj-42-layout">
-    <div class="sj-42-note" style="margin-top:0">点选节点展开机制链；色义见 premium 切片图例。</div>
+    <div class="sj-42-note" style="margin-top:0">色义：赭金=合法性/财政枢纽 · 青瓷=制度/精英通道 · 朱红=张力/引爆/死穴 · 宣纸=叙事主轴 · 深墨=编户底盘。点击节点展开机制链；几何依本案类型母题（禁王安石竖轴克隆）。</div>
     <aside class="sj-42-aside" id="aside" aria-live="polite">
       <div id="aside-empty" class="sj-42-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
       <div id="aside-body" hidden>
@@ -207,9 +217,11 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
     </aside>
   </div>
 </section>
+<!--SLICE_RAIL:权力几何：临安中枢（赭金虚线）→ 淮上防线（朱红军事）→ 江南漕赋网（赭金汲取）→ 主战/主和精英分裂（青瓷）。区域再配置母题，非大一统竖轴。…-->
 </div>
 <aside class="sj-rail"><div class="sj-rail-card"><div class="k">台账 · 七字段</div>
   <nav class="sj-rail-toc"><a href="#f1">01 · 拐点</a><a href="#f2">02 · 切片</a><a href="#f3">03 · 相位</a><a href="#f4">04 · 五力</a><a href="#f5">05 · 交锋</a><a href="#f6">06 · 成败</a><a href="#f7">07 · 映射</a></nav>
+  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p class="sj-rail-mini">权力几何：临安中枢（赭金虚线）→ 淮上防线（朱红军事）→ 江南漕赋网（赭金汲取）→ 主战/主和精英分裂（青瓷）。区域再配置母题，非大一统竖轴。…</p></div>
   <a class="sj-rail-chip" href="/modules/shijian/sj-00#sec-case-hub">案例库 Hub</a>
   <a class="sj-rail-chip" href="/modules/shijian/sj-03">SJ-03 五力</a>
   <a class="sj-rail-chip" href="/modules/shijian/sj-04">SJ-04 相位盘</a>
@@ -220,11 +232,12 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
   <p class="sj-42-prose">南宋落于<strong>重整期·区域化</strong>——未能恢复中原，但以空间换时间，在江南重建财政—军事耦合，代价是军事力长期不足（→ SJ-41 过度矫正后果）。</p>
 </section>
 <section class="sj-ledger-field" id="f4"><div class="sj-ledger-fh"><span class="fnum">04</span><h2>五力归因台账</h2></div>
-  <div class="sj-42-table-wrap"><table class="sj-42-table"><thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead><tbody><tr><td>财政汲取</td><td class="zheng">江南漕赋</td><td class="shi">财政重心南移，依赖东南漕运；军费与岁币双重压力</td></tr>
-<tr><td>精英循环</td><td class="zheng">主战 · 主和</td><td class="shi">岳飞—秦桧路线斗争，精英循环被皇权操控分裂</td></tr>
-<tr><td>合法性叙事</td><td class="zheng">中兴 · 正统</td><td class="shi">「恢复中原」叙事与偏安现实撕裂；绍兴和议换取绩效和平</td></tr>
-<tr><td>边疆军事</td><td class="zheng">守江必守淮</td><td class="shi">岳飞、刘锜等曾有效防御；削兵权后防线弹性下降</td></tr>
-<tr><td>生态—人口基座</td><td class="zheng">南渡移民</td><td class="shi">北方移民涌入江南，基座短期扩容但土地压力上升</td></tr></tbody></table></div>
+  <p class="sj-42-prose">双轨意识：左列是正史书写的<strong>正史归因</strong>，右列是剥离立场后的<strong>结构实因</strong>。五力须联读，忌单因论。</p>
+  <div class="sj-42-table-wrap"><table class="sj-42-table"><thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead><tbody><tr><td>财政汲取</td><td class="zheng">江南漕赋</td><td class="shi">财政重心南移，依赖东南漕运；军费与岁币双重压力 汲取链与合法性绩效的耦合度决定民变阈值；本案须联读相位与主导力，忌单因财政论。</td></tr>
+<tr><td>精英循环</td><td class="zheng">主战 · 主和</td><td class="shi">岳飞—秦桧路线斗争，精英循环被皇权操控分裂 精英通道开合决定改革能否获得执行同盟；堵塞或反扑往往比政策设计本身更致命。</td></tr>
+<tr><td>合法性叙事</td><td class="zheng">中兴 · 正统</td><td class="shi">「恢复中原」叙事与偏安现实撕裂；绍兴和议换取绩效和平 叙事争夺的是「绩效—同意」的定义权；一旦绩效破产，武装或抗议即夺取话语。</td></tr>
+<tr><td>边疆军事</td><td class="zheng">守江必守淮</td><td class="shi">岳飞、刘锜等曾有效防御；削兵权后防线弹性下降 军事力既可为改革赢得窗口，也可在分裂期定正统；效能取决于组织度而非账面规模。</td></tr>
+<tr><td>生态—人口基座</td><td class="zheng">南渡移民</td><td class="shi">北方移民涌入江南，基座短期扩容但土地压力上升 基座承载是慢变量天花板；透支后快变量（民变、战争）将加速相变。</td></tr></tbody></table></div>
 </section>
 <section class="sj-ledger-field" id="f5"><div class="sj-ledger-fh"><span class="fnum">05</span><h2>史家交锋</h2></div>
   <div class="sj-42-hist"><article><div class="who">李敖式考据<span>祛魅</span></div><p>剥离「秦桧奸臣」单一叙事——主和路线含财政—军事现实计算，但杀岳飞为结构性错误。</p></article>
@@ -242,8 +255,8 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
 </section>
 <section class="sj-ledger-field" id="f7"><div class="sj-ledger-fh"><span class="fnum">07</span><h2>古今映射</h2></div>
   <div class="sj-42-mirror">
-    <article class="same"><div class="mh">相似机制</div><p>崩解后政权空间收缩换生存；财政依赖富庶区；文武路线分裂。</p></article>
-    <article class="diff"><div class="mh">关键差异</div><p>现代有联邦制、海权与核威慑；但「富庶区养不起国防」的张力仍可对读（→ SJ-24 外交映射）。</p></article>
+    <article class="same"><div class="mh">相似机制</div><p>崩解后政权空间收缩换生存；财政依赖富庶区；文武路线分裂。 多力须联读，忌道德单因论；结构实因重于成败道德评判。</p></article>
+    <article class="diff"><div class="mh">关键差异</div><p>现代有联邦制、海权与核威慑；但「富庶区养不起国防」的张力仍可对读（→ SJ-24 外交映射）。 映射须保留「关键差异」闸：参数变化不取消机制张力，仅改变表达方式与缓冲工具。</p></article>
   </div>
 </section>
 <section class="sj-ledger-field" id="fx"><div class="sj-ledger-fh"><span class="fnum">◆</span><h2>交叉引用</h2></div>
@@ -253,11 +266,12 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
 </section>
 </article>
 <footer class="sj-42-foot">
-  <span>ChinaOS · 史鉴 SJ-42 · v0.1 · 南宋</span>
+  <span>ChinaOS · 史鉴 SJ-42 · v0.2 · 南宋</span>
   <span><a href="/modules/shijian/sj-00">← SJ-00</a> · <a href="/modules/shijian/sj-41">← SJ-41</a></span>
   <span><a href="/modules/shijian/sj-43">SJ-43 →</a></span>
 </footer>
 </div>
+
 <script>
 (function(){
   const stage=document.getElementById('stage');
