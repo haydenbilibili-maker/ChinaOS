@@ -340,6 +340,203 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
 
 .sj-rail-mini{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6;margin-top:6px}
 </style>
+<script>
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){ document.documentElement.setAttribute('data-theme', t==='light' ? 'light' : 'dark'); }
+  try{
+    var q=new URLSearchParams(location.search).get('theme');
+    if(q==='light'||q==='dark') apply(q);
+  }catch(e){}
+  window.addEventListener('message', function(e){
+    if(e.origin !== window.location.origin) return;
+    var d=e&&e.data;
+    if(!d||d.type!==MSG) return;
+    apply(d.theme);
+  });
+})();
+</script>
+</head>
+<body>
+<div class="sj-13-wrap sj-reveal-stagger" id="sj-13-top">
+<header class="sj-13-mast">
+  <div>
+    <div class="badge">SJ-13 · 变法改革案例卷 · 新莽案</div>
+    <h1>王莽改制<em>托古改制 · 豪强反弹 · 新莽速亡</em></h1>
+    <div class="sj-13-chips sj-xlinks"><a class="sj-13-chip" href="./SJ-00.html">↔ SJ-00</a><a class="sj-13-chip" href="./SJ-05.html">↔ SJ-05</a><a class="sj-13-chip" href="./SJ-21.html">↔ SJ-21</a></div>
+  </div>
+  <div class="sj-13-meta">西汉末僵化期末端改革<br/><b>AS_OF 2026-07-15</b> · v0.1</div>
+</header>
+<p class="sj-zhupi">朱批：本案是僵化期末端「托古改制」——以《汉书·王莽传》为口径，与 SJ-05 王安石同构「财政重建触动豪强」结构，但篡位合法性污点是额外死穴。</p>
+<article class="sj-ledger">
+<div class="sj-page-layout">
+<div class="sj-main-col">
+<section class="sj-ledger-field" id="f1" aria-labelledby="h-f1">
+  <div class="sj-ledger-fh"><span class="fnum">01</span><h2 id="h-f1">一句话拐点</h2><span class="en">HOOK</span></div>
+  <div class="sj-13-hook"><p>西汉末土地兼并、币制混乱，王莽以<b>托古改制</b>（王田、私属、币制等）试图重整汲取，却触动豪强利益、改革执行混乱，<b>篡汉</b>合法性迅速破产，绿林赤眉起而新莽亡。</p><div class="yr">系年：始建国元年（9）王莽代汉 · 天凤年间改制全面推行（《汉书·王莽传》）</div></div>
+</section>
+<section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
+  <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
+  <p class="sj-13-prose">权力几何——<strong>理想与现实的断层</strong>：顶部「复古蓝图」(王田/周礼/五均六筦) 自上强加；中部锯齿断层线分隔理想/现实——错位；现实层为豪族兼并(死穴)+币制屡改；灾荒叠加→编户流民→赤眉绿林→新莽亡(23)。</p>
+  <div class="sj-13-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">王莽改制 · 理想现实断层结构切片图</title>
+  <desc id="sj-desc">复古蓝图自上强加；锯齿断层分隔理想与现实；豪族兼并与币制紊乱引燃流民起义。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/>
+    </linearGradient>
+    <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+    <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+    <marker id="a-celadon" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-300)"/></marker>
+  </defs>
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,Noto Serif SC,serif" letter-spacing="0.1em">结构切片 · 理想断层</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,JetBrains Mono,monospace" letter-spacing="0.08em">SJ-13 · 王莽改制 · 步骤①</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,Noto Serif SC,serif">朱批：复古蓝图压在现实结构上→错位 · 币制屡改致紊乱 · 灾荒民变引爆速亡</text>
+  <g fill="none" stroke-linecap="round">
+    <path class="sj-edge" data-edge="down" d="M410,158 L410,220" stroke="var(--sj-ochre)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#a-ochre)" opacity="0.8"/>
+    <path class="sj-edge" data-edge="fault" d="M410,220 L410,300" stroke="var(--sj-vermil)" stroke-width="2.4" marker-end="url(#a-vermil)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="rebound" d="M580,360 C640,280 520,180 410,158" stroke="var(--sj-vermil)" stroke-width="3.2" marker-end="url(#a-vermil)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="ignite" d="M410,420 L410,486" stroke="var(--sj-vermil)" stroke-width="2.6" marker-end="url(#a-vermil)" opacity="0.85"/></g>
+  <g font-family="Songti SC,Noto Serif SC,serif" font-size="11">
+    <text x="430" y="200" fill="var(--sj-ochre)">禅让包装 · 篡汉</text>
+    <text x="430" y="268" fill="var(--sj-vermil)" font-size="12" font-weight="600">★ 错位断层</text>
+    <text x="600" y="320" fill="var(--sj-vermil)">豪族死穴</text></g>
+
+  <g class="sj-node" data-id="wangmang" tabindex="0" role="button" aria-label="王莽">
+    <rect x="320" y="112" width="180" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="1.6" stroke-dasharray="5 4"/>
+    <text x="410" y="140" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">王莽</text>
+    <text x="410" y="158" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">篡位合法性</text>
+  </g>
+  <g class="sj-node" data-id="lantu" tabindex="0" role="button" aria-label="复古蓝图">
+    <rect x="280" y="168" width="260" height="52" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2"/>
+    <line x1="290" y1="182" x2="530" y2="182" stroke="var(--sj-celadon)" stroke-width="0.5" opacity="0.3"/>
+    <line x1="290" y1="198" x2="530" y2="198" stroke="var(--sj-celadon)" stroke-width="0.5" opacity="0.3"/>
+    <text x="410" y="192" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">复古蓝图 · 王田周礼</text>
+    <text x="410" y="210" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">五均六筦 · 理想层</text>
+  </g>
+  <g class="sj-node" data-id="duanceng" tabindex="0" role="button" aria-label="错位断层">
+    <path d="M120,280 L200,260 L280,290 L360,250 L440,285 L520,255 L600,275 L680,265" fill="none" stroke="var(--sj-vermil)" stroke-width="2.8"/>
+    <text x="410" y="248" text-anchor="middle" fill="var(--sj-vermil)" font-size="13" font-weight="600" font-family="Songti SC,serif">错位断层 · 签名</text>
+  </g>
+  <g class="sj-node" data-id="bizhi" tabindex="0" role="button" aria-label="币制屡改">
+    <rect x="130" y="320" width="160" height="50" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="210" y="348" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">币制屡改</text>
+    <text x="210" y="366" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">刀布→货泉 · 紊乱</text>
+  </g>
+  <g class="sj-node" data-id="haoqiang" tabindex="0" role="button" aria-label="豪族兼并">
+    <rect x="530" y="320" width="186" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="3"/>
+    <text x="623" y="348" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">豪族兼并</text>
+    <text x="623" y="366" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">死穴 · 抵制</text>
+  </g>
+  <g class="sj-node" data-id="minluan" tabindex="0" role="button" aria-label="流民→赤眉绿林">
+    <rect x="310" y="380" width="200" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="410" y="408" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">流民→赤眉绿林</text>
+    <text x="410" y="426" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">起义 · 夺天命</text>
+  </g>
+  <g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="编户齐民底盘">
+    <rect x="56" y="486" width="708" height="86" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="1.4"/>
+    <text x="410" y="514" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC,serif">编户齐民底盘</text>
+    <text x="410" y="532" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">承受改制混乱与灾荒</text>
+    
+  </g>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,JetBrains Mono,monospace">viewBox 820×600 · 理想断层</text>
+</svg></div>
+  <div class="sj-13-layout">
+    <div class="sj-13-note" style="margin-top:0">色义：王莽=赭金虚线 · 蓝图=青瓷 · 断层=朱红锯齿 · 豪族=朱红 · 流民=灰 · 底盘=深墨。断层线=签名，非竖轴。</div>
+    <aside class="sj-13-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-13-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+      </div>
+    </aside>
+  </div>
+</section>
+<!--SLICE_RAIL:复古蓝图压现实 → 币制紊乱 · 豪族死穴 → 新莽速亡。-->
+<!--SLICE_RAIL:复古蓝图压现实 → 币制紊乱 · 豪族死穴 → 新莽速亡。-->
+<!--SLICE_RAIL:复古蓝图 vs 现实结构错位 → 币制屡改致紊乱 → 灾荒民变速亡（23）。-->
+</div>
+<aside class="sj-rail" aria-label="台账导航侧栏">
+  <div class="sj-rail-card">
+    <div class="k">史鉴台账 · 七字段</div>
+    <h3>本案导航</h3>
+    <nav class="sj-rail-toc" aria-label="台账字段">
+      <a href="#f1">01 · 一句话拐点</a>
+      <a href="#f2">02 · 结构切片</a>
+      <a href="#f3">03 · 相位定位</a>
+      <a href="#f4">04 · 五力归因</a>
+      <a href="#f5">05 · 史家交锋</a>
+      <a href="#f6">06 · 成败判定</a>
+      <a href="#f7">07 · 古今映射</a>
+    </nav>
+  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p style="font-size:12.5px;color:var(--sj-paper-300);line-height:1.6">复古蓝图压现实 → 币制紊乱 · 豪族死穴 → 新莽速亡。</p></div>
+  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p style="font-size:12.5px;color:var(--sj-paper-300);line-height:1.6">复古蓝图压现实 → 币制紊乱 · 豪族死穴 → 新莽速亡。</p></div>
+  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p style="font-size:12.5px;color:var(--sj-paper-300);line-height:1.6">复古蓝图强加于现实结构而错位；币制屡改致紊乱；灾荒民变起赤眉绿林，新莽速亡（23）。</p></div>
+  </div>
+  <div class="sj-rail-chips"><a class="sj-rail-chip" href="./SJ-05.html">SJ-05</a></div>
+</aside>
+</div>
+<section class="sj-ledger-field" id="f3" aria-labelledby="h-f3">
+  <div class="sj-ledger-fh"><span class="fnum">03</span><h2 id="h-f3">相位定位</h2><span class="en">PHASE · 步骤②</span></div>
+  <div class="sj-13-phase"><span class="pb">僵化期末端 · <b>改革窗口（篡位合法性）</b></span><a class="sj-13-chip" href="./SJ-04.html">在 SJ-04 相位盘定位 →</a></div>
+  <p class="sj-13-prose">西汉末僵化期末端，土地兼并与币制混乱开启改革窗口；但王莽篡位使合法性叙事先天不足，改革更易被解读为「僭越」。</p>
+</section>
+<section class="sj-ledger-field" id="f4" aria-labelledby="h-f4">
+  <div class="sj-ledger-fh"><span class="fnum">04</span><h2 id="h-f4">五力归因台账</h2><span class="en">FORCES · 步骤③</span></div>
+  <div class="sj-13-table-wrap"><table class="sj-13-table"><thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead><tbody><tr><td>财政汲取</td><td>「复古」</td><td class="shi">王田、均输平准式改革试图重整税基与货币</td></tr>
+<tr><td>精英循环〔死穴〕</td><td>「侵夺富民」</td><td class="shi">王田触动豪强土地特权，精英联盟反扑</td></tr>
+<tr><td>合法性叙事</td><td>「禅让」</td><td class="shi">篡汉污名使改革失去正统支撑，绿林赤眉夺话语</td></tr>
+<tr><td>边疆军事</td><td>「四夷」</td><td class="shi">匈奴等边疆压力消耗财政，改革未能稳边</td></tr>
+<tr><td>生态—人口基座</td><td>灾荒</td><td class="shi">黄河改道等灾荒叠加，流民引爆〔具体系年存疑〕</td></tr></tbody></table></div>
+</section>
+<section class="sj-ledger-field" id="f5" aria-labelledby="h-f5">
+  <div class="sj-ledger-fh"><span class="fnum">05</span><h2 id="h-f5">史家交锋</h2><span class="en">HISTORIANS</span></div>
+  <div class="sj-13-hist"><article><div class="who">李敖式考据</div><p>剥离儒家「篡贼」道德叙事，仍可见改革触动豪强之结构实因。</p></article>
+<article><div class="who">钱穆</div><p>对王莽托古批评甚烈，视为儒生理想脱离现实的典型。</p></article>
+<article><div class="who">金观涛</div><p>又一次低水平修复失败，未能突破地主—官僚结构。</p></article>
+<article><div class="who">黄仁宇</div><p>改制缺乏可操作的数目字管理，币制反复加剧混乱。</p></article>
+<article style="grid-column:1/-1"><div class="who">西方汉学</div><p>Han studies：王莽改革是儒家乌托邦与政治现实碰撞的案例。</p></article></div>
+</section>
+<section class="sj-ledger-field" id="f6" aria-labelledby="h-f6">
+  <div class="sj-ledger-fh"><span class="fnum">06</span><h2 id="h-f6">成败判定</h2><span class="en">VERDICT</span></div>
+  <div class="sj-13-verdict"><article class="ok"><div class="vh">已兑现</div><p>儒生理想话语短暂实践</p><p>部分土地政策尝试</p></article>
+<article class="fail"><div class="vh">已失败</div><p>新莽速亡</p><p>币制混乱</p><p>豪强反弹</p></article>
+<article class="open"><div class="vh">未决〔反事实〕</div><p>若无篡位污名、渐进改革，能否延续西汉修复路径？</p></article></div>
+</section>
+<section class="sj-ledger-field" id="f7" aria-labelledby="h-f7">
+  <div class="sj-ledger-fh"><span class="fnum">07</span><h2 id="h-f7">古今映射</h2><span class="en">MIRROR</span></div>
+  <div class="sj-13-mirror"><article class="same"><div class="mh">相似机制</div><p>顶层设计改革 vs 豪强抵制；货币与土地政策牵动汲取枢纽。</p></article>
+<article class="diff"><div class="mh">关键差异</div><p>现代土地制度、货币主权与宏观调控工具已质变（→ SJ-21）。</p></article></div>
+</section>
+</article>
+<section class="sj-ledger-field" id="fx"><div class="sj-ledger-fh"><span class="fnum">◆</span><h2>交叉引用</h2></div>
+  <div class="sj-13-xref"><a href="./SJ-05.html"><div class="n">SJ-05</div><h3>王安石</h3><p>跨时代变法对照。</p></a>
+<a href="./SJ-21.html"><div class="n">SJ-21</div><h3>经济映射</h3><p>货币与汲取映射。</p></a></div>
+</section>
+<footer class="sj-13-foot">
+  <span>ChinaOS · 史鉴 SJ-13 · v0.1 · AS_OF 2026-07-15 · 真源《汉书·王莽传》</span>
+  <span><a href="./SJ-00.html">← 返回 SJ-00</a> · <a href="#sj-13-top">↑ 顶</a></span>
+  <span><a href="./SJ-14.html">下一案 SJ-14 →</a></span>
+</footer>
+</div>
+
 
 <script>
 (function(){

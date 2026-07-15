@@ -267,7 +267,286 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
 
 .sj-rail-mini{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6;margin-top:6px}
 </style>
+<script>
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){ document.documentElement.setAttribute('data-theme', t==='light' ? 'light' : 'dark'); }
+  try{ var q=new URLSearchParams(location.search).get('theme'); if(q==='light'||q==='dark') apply(q); }catch(e){}
+  window.addEventListener('message', function(e){
+    if(e.origin !== window.location.origin) return;
+    var d=e&&e.data; if(!d||d.type!==MSG) return; apply(d.theme); });
+})();
+</script>
+</head>
+<body>
+<div class="sj-10-wrap sj-reveal-stagger" id="sj-10-top">
 
+<header class="sj-10-mast">
+  <div>
+    <div class="badge">SJ-10 · 崩解单案 · 明末易代</div>
+    <h1>明末衰变 · 崇祯易代<em>小冰期共振 · 三饷越阈 · 多力崩解</em></h1>
+    <div class="sj-10-chips sj-xlinks">
+      <span class="sj-10-chip" style="color:var(--sj-ochre);border-color:var(--sj-ochre)" data-dynasty="ming">朝代 · 明</span>
+      <a class="sj-10-chip" href="./SJ-00.html">↔ SJ-00 总索引</a>
+      <a class="sj-10-chip" href="./SJ-07.html">↔ SJ-07 崩解对比</a>
+      <a class="sj-10-chip" href="./SJ-09.html">↔ SJ-09 一条鞭</a>
+      <a class="sj-10-chip" href="./SJ-03.html">↔ SJ-03 五力模型</a>
+      <a class="sj-10-chip" href="./SJ-23.html">↔ SJ-23 社会映射</a>
+    </div>
+  </div>
+  <div class="sj-10-meta">
+    基座+财政双引燃 · 致命共振<br/>
+    <b>AS_OF 2026-07-15</b> · v0.1
+  </div>
+</header>
+
+<p class="sj-zhupi">朱批：崩解单案，跑七字段。本案是母本衰变链与 SJ-07 明行的深描——<b>小冰期（基座）</b>与<b>三饷（财政枢纽）</b>致命共振，内有流民、外有后金，印证规律②多力共振。数字口径保守，〔存疑〕处标存疑。</p>
+
+<article class="sj-ledger">
+
+<div class="sj-page-layout">
+<div class="sj-main-col">
+
+<!-- ① 一句话拐点 -->
+<section class="sj-ledger-field" id="f1" aria-labelledby="h-f1">
+  <div class="sj-ledger-fh"><span class="fnum">01</span><h2 id="h-f1">一句话拐点</h2><span class="en">HOOK</span></div>
+  <div class="sj-10-hook">
+    <p>承平百年后人口逼近耕地承载、小冰期灾荒与<b>三饷</b>（辽饷、剿饷、练饷）财政越阈共振——内有流民（李自成），外有后金（辽东军费）——多力同时负相位，明王朝于崇祯十七年（1644）易代。</p>
+    <div class="yr">系年：崇祯即位（1628）→ 三饷加派加剧 → 1644 李自成入北京、崇祯自缢 · 同年清兵入关</div>
+  </div>
+</section>
+
+<!-- ② 结构切片 -->
+<section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
+  <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
+  <p class="sj-10-prose">权力几何——中央「京师·崇祯」被<strong>四力向心合围</strong>：基座(小冰期大旱)与财政(三饷)双引燃，边疆(后金辽东)与精英(东林阉党党争)同时施压，四力经三饷枢纽汇聚；流民李自成破京(1644)。箭头一律向心汇聚，非竖轴、非天宝旧 id。</p>
+  <div class="sj-10-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">崇祯易代 · 四力共振合围结构切片图</title>
+  <desc id="sj-desc">京师崇祯虚弱居中；小冰期、三饷、后金、党争、流民五向箭头经三饷枢纽向心合围中央。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/>
+    </linearGradient>
+    <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+    <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+    <marker id="a-celadon" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-300)"/></marker>
+  </defs>
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,Noto Serif SC,serif" letter-spacing="0.1em">结构切片 · 四力合围</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,JetBrains Mono,monospace" letter-spacing="0.08em">SJ-10 · 崇祯易代 · 步骤①</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,Noto Serif SC,serif">朱批：基座(小冰期)+财政(三饷)双引燃 · 边疆后金 · 精英党争 · 四力共振合围京师</text>
+  <g fill="none" stroke-linecap="round">
+    <path class="sj-edge" data-edge="conv1" d="M133,280 C220,300 300,290 360,280" stroke="var(--sj-vermil)" stroke-width="2.8" marker-end="url(#a-vermil)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="conv2" d="M677,280 C580,285 480,285 460,280" stroke="var(--sj-vermil)" stroke-width="2.8" marker-end="url(#a-vermil)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="conv3" d="M410,200 C410,220 410,240 410,252" stroke="var(--sj-celadon)" stroke-width="2.2" marker-end="url(#a-celadon)" opacity="0.85"/>
+    <path class="sj-edge" data-edge="conv4" d="M410,420 C410,380 410,340 410,318" stroke="var(--sj-vermil)" stroke-width="3.2" marker-end="url(#a-vermil)" opacity="0.95"/>
+    <path class="sj-edge" data-edge="ignite-base" d="M133,310 L133,280" stroke="var(--sj-vermil)" stroke-width="1.6" marker-end="url(#a-vermil)" opacity="0.7"/>
+    <path class="sj-edge" data-edge="ignite-liu" d="M300,452 L360,420" stroke="var(--sj-vermil)" stroke-width="2" marker-end="url(#a-vermil)" opacity="0.85"/>
+    <path class="sj-edge" data-edge="hub" d="M410,252 L410,268" stroke="var(--sj-ochre)" stroke-width="2" marker-end="url(#a-ochre)" opacity="0.8"/></g>
+  <g font-family="Songti SC,Noto Serif SC,serif" font-size="11">
+    <text x="240" y="268" fill="var(--sj-vermil)">基座引燃</text>
+    <text x="580" y="268" fill="var(--sj-vermil)">辽饷外压</text>
+    <text x="430" y="218" fill="var(--sj-celadon)">党争内耗</text>
+    <text x="430" y="400" fill="var(--sj-vermil)" font-size="12" font-weight="600">1644 破京</text></g>
+
+  <g class="sj-node" data-id="jingshi" tabindex="0" role="button" aria-label="京师 · 崇祯">
+    <rect x="310" y="118" width="200" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="1.4" stroke-dasharray="5 4"/>
+    <text x="410" y="146" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">京师 · 崇祯</text>
+    <text x="410" y="164" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">中央被围 · 虚弱</text>
+  </g>
+  <g class="sj-node" data-id="xiaobingqi" tabindex="0" role="button" aria-label="小冰期 · 大旱">
+    <rect x="52" y="252" width="162" height="72" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="133" y="280" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">小冰期 · 大旱</text>
+    <text x="133" y="298" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">基座慢变量 · 引燃</text>
+  </g>
+  <g class="sj-node" data-id="sanxiang" tabindex="0" role="button" aria-label="三饷 · 财政枢纽">
+    <circle cx="410" cy="290" r="40" fill="none" stroke="var(--sj-ochre)" stroke-width="2" stroke-dasharray="4 3"/>
+    <text x="410" y="286" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC,serif">三饷 · 财政枢纽</text>
+    <text x="410" y="304" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">汲取越阈 · 变压器</text>
+  </g>
+  <g class="sj-node" data-id="houjin" tabindex="0" role="button" aria-label="后金 · 辽东">
+    <rect x="586" y="252" width="182" height="72" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.8"/>
+    <text x="677" y="280" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">后金 · 辽东</text>
+    <text x="677" y="298" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">边疆军事 · 外压</text>
+  </g>
+  <g class="sj-node" data-id="dangzheng" tabindex="0" role="button" aria-label="东林 · 阉党">
+    <rect x="310" y="168" width="200" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="410" y="196" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">东林 · 阉党</text>
+    <text x="410" y="214" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">精英内耗 · 党争</text>
+  </g>
+  <g class="sj-node" data-id="liukou" tabindex="0" role="button" aria-label="流民 · 李自成">
+    <rect x="300" y="420" width="220" height="52" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.6"/>
+    <text x="410" y="448" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">流民 · 李自成</text>
+    <text x="410" y="466" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">内崩引爆 · 破京</text>
+  </g>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,JetBrains Mono,monospace">viewBox 820×600 · 四力合围</text>
+</svg></div>
+  <div class="sj-10-layout">
+    <div class="sj-10-note" style="margin-top:0">色义：京师=赭金虚线 · 三饷=赭金枢纽圆 · 基座/边疆/流民=朱红向心 · 党争=青瓷。合围箭头向心，禁止竖轴纵列。</div>
+    <aside class="sj-10-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-10-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+      </div>
+    </aside>
+  </div>
+</section>
+<!--SLICE_RAIL:四力合围京师 · 三饷枢纽 · 1644 易代。-->
+<!--SLICE_RAIL:四力合围京师 · 三饷枢纽 · 1644 易代。-->
+
+<!-- ③ 相位定位 -->
+
+</div><!-- /.sj-main-col -->
+
+<aside class="sj-rail" id="sj-rail" aria-label="台账导航侧栏">
+  <div class="sj-rail-card">
+    <div class="k">史鉴台账 · 七字段</div>
+    <h3>本案导航</h3>
+    <p>崩解单案：小冰期与三饷双引燃，内外夹击多力共振。</p>
+    <nav class="sj-rail-toc" aria-label="台账字段"><a href="#f1">01 · 一句话拐点</a>
+    <a href="#f2">02 · 结构切片</a>
+    <a href="#f3">03 · 相位定位</a>
+    <a href="#f4">04 · 五力归因</a>
+    <a href="#f5">05 · 史家交锋</a>
+    <a href="#f6">06 · 成败判定</a>
+    <a href="#f7">07 · 古今映射</a></nav>
+  </div>
+  <div class="sj-rail-card">
+    <div class="k">本页结构</div>
+    <nav class="sj-rail-toc sj-rail-toc-struct" aria-label="章节目录"><a href="#f1">01 · 一句话拐点</a>
+      <a href="#f2">02 · 结构切片</a>
+      <a href="#f3">03 · 相位定位</a>
+      <a href="#f4">04 · 五力归因</a>
+      <a href="#f5">05 · 史家交锋</a>
+      <a href="#f6">06 · 成败判定</a>
+      <a href="#f7">07 · 古今映射</a></nav>
+  </div>
+  <div class="sj-rail-card">
+    <div class="k">结构切片</div>
+    <p class="sj-rail-mini">四力合围京师 · 三饷枢纽 · 1644 易代。</p>
+  </div>
+</aside>
+</div><!-- /.sj-page-layout -->
+
+<section class="sj-ledger-field" id="f3" aria-labelledby="h-f3">
+  <div class="sj-ledger-fh"><span class="fnum">03</span><h2 id="h-f3">相位定位</h2><span class="en">PHASE · 步骤②</span></div>
+  <div class="sj-10-phase">
+    <span class="pb">崩解期 · <b>多力共振</b></span>
+    <a class="sj-10-chip" href="./SJ-04.html">在 SJ-04 相位盘定位 →</a>
+  </div>
+  <p class="sj-10-prose">基座（小冰期灾荒）与财政（三饷）双引燃，精英内耗（东林阉党）削弱协调，边疆军事（辽东）与流民内外夹击——三力及以上负相位，超稳定结构失修。SJ-07 矩阵中「明」行的单案深描。</p>
+</section>
+
+<!-- ④ 五力归因 -->
+<section class="sj-ledger-field" id="f4" aria-labelledby="h-f4">
+  <div class="sj-ledger-fh"><span class="fnum">04</span><h2 id="h-f4">五力归因台账</h2><span class="en">FORCES · 步骤③ · 正史 / 实因双列</span></div>
+  <p class="sj-10-prose">本案是<b>多力共振</b>标本：基座与财政双引燃，精英与军事共振放大——印证母本规律②③，非单因论可释。</p>
+  <div class="sj-10-table-wrap">
+    <table class="sj-10-table">
+      <thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead>
+      <tbody>
+        <tr><td>财政汲取〔引燃〕</td><td>「苛捐杂税」「民不聊生」</td><td class="shi">辽饷、剿饷、练饷三重刚性，汲取越民变阈值——枢纽力引爆</td></tr>
+        <tr><td>精英循环</td><td>「阉党误国」「东林空谈」</td><td class="shi">东林阉党轮番专权，通道堵塞、党争内耗，无力协调救灾与军事</td></tr>
+        <tr><td>合法性叙事</td><td>「崇祯虽勤而亡」</td><td class="shi">勤政未能转化为绩效；合法性叙事与亡国结局撕裂</td></tr>
+        <tr><td>边疆军事</td><td>「辽东失事」</td><td class="shi">后金崛起、辽东军费吞噬财政，与三饷形成死亡螺旋</td></tr>
+        <tr><td>生态—人口基座〔引燃〕</td><td>「天灾」</td><td class="shi">小冰期灾荒 + 人口逼近承载上限 → 流民——与财政、军事同步共振</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ⑤ 史家交锋 -->
+<section class="sj-ledger-field" id="f5" aria-labelledby="h-f5">
+  <div class="sj-ledger-fh"><span class="fnum">05</span><h2 id="h-f5">史家交锋</h2><span class="en">HISTORIANS · 步骤③ · SJ-01</span></div>
+  <div class="sj-10-hist">
+    <article><div class="who">李敖式考据<span>祛魅</span></div><p>剥离「崇祯一人之失」的道德归因——明末崩解是多力共振的结构后果，非单君之责。</p></article>
+    <article><div class="who">钱穆<span>《国史大纲》</span></div><p>明亡当从制度演变读：财政、党争、边事交织；对东林有温情，但不回避制度沉疴。</p></article>
+    <article><div class="who">金观涛<span>超稳定结构</span></div><p>明末是小冰期压力下超稳定结构失修的典型案例；修复力不足以应对多力同时负相位。</p></article>
+    <article><div class="who">黄仁宇<span>大历史 / 数目字</span></div><p>明代中后期数目字管理有进步（一条鞭），但崇祯朝财政—军事仍缺乏有效统驭，三饷暴露汲取体系的极限。</p></article>
+    <article style="grid-column:1/-1"><div class="who">气候史研究<span>小冰期</span></div><p>明末寒冷期与灾荒—流民链高度吻合，基座慢变量证据；与财政、军事共振时容错空间极小。〔具体量化存疑〕</p></article>
+  </div>
+</section>
+
+<!-- ⑥ 成败判定 -->
+<section class="sj-ledger-field" id="f6" aria-labelledby="h-f6">
+  <div class="sj-ledger-fh"><span class="fnum">06</span><h2 id="h-f6">成败判定</h2><span class="en">VERDICT · 三饷加派与救灾协调能否避阈 · 三列</span></div>
+  <div class="sj-10-verdict">
+    <article class="ok"><div class="vh">已兑现</div><p>一条鞭等前期改革延续部分税基</p><p>袁崇焕等辽东短期稳边</p><p>崇祯勤政表象维持部分合法性</p></article>
+    <article class="fail"><div class="vh">已失败</div><p>三饷越阈引发民变</p><p>1644 京师陷落、明亡</p><p>流民武装与后金内外夹击成功</p></article>
+    <article class="open"><div class="vh">未决〔反事实〕</div><p>若明末能完成类似张居正式汲取重整而不越阈值，能否避免易代？</p></article>
+  </div>
+</section>
+
+<!-- ⑦ 古今映射 -->
+<section class="sj-ledger-field" id="f7" aria-labelledby="h-f7">
+  <div class="sj-ledger-fh"><span class="fnum">07</span><h2 id="h-f7">古今映射</h2><span class="en">MIRROR · 步骤④ · 相似 / 差异双栏</span></div>
+  <p class="sj-10-note">硬约束：两栏成对——只有「相似机制」而无「关键差异」即为裸类比，不成立。</p>
+  <div class="sj-10-mirror">
+    <article class="same"><div class="mh">相似机制（古今相通）</div><p>慢变量（气候/人口承载）逼近上限时，快变量（财政汲取、军事、流民）共振引爆；多力同时负相位则系统失修——规律②③古今同构。</p></article>
+    <article class="diff"><div class="mh">关键差异（不可裸类比）</div><p>当代承载维度从「耕地」变为抚养比/就业/内需（→ <span class="lk">SJ-23</span>）；数目字管理与社会保障工具已质变，但「财政枢纽越阈」张力仍在（→ <span class="lk">SJ-21</span>）。</p></article>
+  </div>
+</section>
+
+</article>
+
+<section class="sj-ledger-field" id="fx" aria-labelledby="h-fx">
+  <div class="sj-ledger-fh"><span class="fnum">◆</span><h2 id="h-fx">交叉引用</h2><span class="en">XREF</span></div>
+  <p class="sj-10-note">本案是 <b>SJ-07 崩解对比</b> 中「明」行的单案深描，与 <b>SJ-09 一条鞭</b> 构成「改革未能阻止崩解」的前后链。</p>
+  <div class="sj-10-xref">
+    <a href="./SJ-07.html"><div class="n">SJ-07 · 矩阵</div><h3>崩解对比</h3><p>明行：基座+三饷双引燃的跨案定位。</p></a>
+    <a href="./SJ-09.html"><div class="n">SJ-09 · 前史</div><h3>张居正一条鞭</h3><p>汲取力改革谱系；未能阻止三饷越阈。</p></a>
+    <a href="./SJ-03.html"><div class="n">SJ-03 · 步骤③</div><h3>五力衰变模型</h3><p>本案主动力＝边疆军事力；「强化单力反降稳定」的标本。</p></a>
+    <a href="./SJ-04.html"><div class="n">SJ-04 · 步骤②</div><h3>治乱相位罗盘</h3><p>本案定位于崩解期·多力共振；基座+财政双引燃典例。</p></a>
+    <a href="./SJ-00.html"><div class="n">SJ-00</div><h3>史鉴总索引</h3><p>案例卷入口；拐点卷卡片已点亮本案。</p></a>
+    <a href="./SJ-02.html"><div class="n">SJ-02 · 引擎</div><h3>史鉴引擎四步法</h3><p>切片①→相位②→五力③→映射④ 的又一次落地。</p></a>
+    <a href="./SJ-01.html"><div class="n">SJ-01</div><h3>方法光谱</h3><p>史家交锋镜头库；本案先李敖式剥离「女祸」叙事。</p></a>
+  </div>
+</section>
+
+<footer class="sj-10-foot">
+  <span>ChinaOS · 史鉴 SJ-10 · v0.1 · AS_OF 2026-07-15 · 真源《母本》衰变链 + SJ-07 明行</span>
+  <span><a href="./SJ-00.html">← 返回 SJ-00</a> · <a href="#sj-10-top">↑ 顶</a> · <a href="./SJ-07.html">崩解矩阵</a></span>
+  <span>本地调试 · 未 push</span>
+</footer>
+
+</div>
+
+
+<script>
+/* rail toc highlight */
+  (function(){
+    var links=document.querySelectorAll('.sj-rail-toc a[href^="#"]');
+    if(!links.length) return;
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(a){a.classList.toggle('is-active',a.getAttribute('href')==='#'+e.target.id);});
+        }
+      });
+    },{rootMargin:'-20% 0px -60% 0px',threshold:0});
+    links.forEach(function(a){
+      var t=document.querySelector(a.getAttribute('href'));
+      if(t) obs.observe(t);
+    });
+  })();
+</script>
 <script>
 (function(){
   const stage=document.getElementById('stage');
@@ -339,24 +618,6 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
   nodes.forEach(n=>{const act=()=>pick(n.dataset.id);n.addEventListener('click',act);n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});});
   edges.forEach(e=>{if(!e.dataset.edge||!NODE_DATA[e.dataset.edge])return;const act=()=>pick(e.dataset.edge);e.style.cursor='pointer';e.setAttribute('tabindex','0');e.setAttribute('role','button');e.addEventListener('click',act);e.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();act();}});});
 })();
-</script>
-<script>
-/* rail toc highlight */
-  (function(){
-    var links=document.querySelectorAll('.sj-rail-toc a[href^="#"]');
-    if(!links.length) return;
-    var obs=new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){
-          links.forEach(function(a){a.classList.toggle('is-active',a.getAttribute('href')==='#'+e.target.id);});
-        }
-      });
-    },{rootMargin:'-20% 0px -60% 0px',threshold:0});
-    links.forEach(function(a){
-      var t=document.querySelector(a.getAttribute('href'));
-      if(t) obs.observe(t);
-    });
-  })();
 </script>
 </body>
 </html>

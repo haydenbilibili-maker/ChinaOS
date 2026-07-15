@@ -340,6 +340,205 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
 
 .sj-rail-mini{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6;margin-top:6px}
 </style>
+<script>
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){ document.documentElement.setAttribute('data-theme', t==='light' ? 'light' : 'dark'); }
+  try{
+    var q=new URLSearchParams(location.search).get('theme');
+    if(q==='light'||q==='dark') apply(q);
+  }catch(e){}
+  window.addEventListener('message', function(e){
+    if(e.origin !== window.location.origin) return;
+    var d=e&&e.data;
+    if(!d||d.type!==MSG) return;
+    apply(d.theme);
+  });
+})();
+</script>
+</head>
+<body>
+<div class="sj-14-wrap sj-reveal-stagger" id="sj-14-top">
+<header class="sj-14-mast">
+  <div>
+    <div class="badge">SJ-14 · 改革案例卷 · 洋务案</div>
+    <h1>洋务运动<em>中体西用 · 体系外冲击 · 甲午证伪</em></h1>
+    <div class="sj-14-chips sj-xlinks"><a class="sj-14-chip" href="./SJ-00.html">↔ SJ-00</a><a class="sj-14-chip" href="./SJ-07.html">↔ SJ-07 清行</a><a class="sj-14-chip" href="./SJ-24.html">↔ SJ-24</a></div>
+  </div>
+  <div class="sj-14-meta">近代前夜 · 体系外变量<br/><b>AS_OF 2026-07-15</b> · v0.1</div>
+</header>
+<p class="sj-zhupi">朱批：本案引入母本清行「体系外变量」——鸦片战争后的冲击-回应改革。口径：《清史稿》洋务诸传 + 费正清框架，保守推演。</p>
+<article class="sj-ledger">
+<div class="sj-page-layout">
+<div class="sj-main-col">
+<section class="sj-ledger-field" id="f1" aria-labelledby="h-f1">
+  <div class="sj-ledger-fh"><span class="fnum">01</span><h2 id="h-f1">一句话拐点</h2><span class="en">HOOK</span></div>
+  <div class="sj-14-hook"><p>鸦片战争后列强冲击下，清廷洋务派以<b>「自强求富」「中体西用」</b>兴办军工、航运、电报，北洋水师等短期见效；然制度未变，<b>甲午战败</b>证伪「只强器物」路径，边疆军事力仍不足以支撑合法性。</p><div class="yr">系年：同治元年（1862）设总理衙门 · 1894 甲午战争战败（《清史稿》）</div></div>
+</section>
+<section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
+  <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
+  <p class="sj-14-prose">权力几何：慈禧皇权钟摆 → 洋务派技术官僚 → 军工航运电报北洋下行 → 顽固派抵制；外环列强压力与甲午战败（朱红最重）证伪「中体西用」。</p>
+  <div class="sj-14-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">洋务运动中体西用结构切片图</title>
+  <desc id="sj-desc">慈禧背书洋务派推动军工北洋下行；顽固派抵制；外环列强甲午压力引爆崩解链。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/>
+    </linearGradient>
+    <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+    <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+    <marker id="a-celadon" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-300)"/></marker>
+  </defs>
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,Noto Serif SC,serif" letter-spacing="0.1em">结构切片 · 中体西用</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,JetBrains Mono,monospace" letter-spacing="0.08em">SJ-14 · 洋务运动 · 步骤①</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,Noto Serif SC,serif">朱批：器物层改革(青瓷) + 甲午外环引爆(朱红最重) = 被动改革失败</text>
+  <g fill="none" stroke-linecap="round">
+    <path class="sj-edge" data-edge="spine" d="M360,158 L250,250" stroke="var(--sj-ochre)" stroke-width="1.8" marker-end="url(#a-ochre)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="clash" d="M306,286 L462,286" stroke="var(--sj-paper-300)" stroke-width="2.2" marker-start="url(#a-paper)" marker-end="url(#a-paper)" opacity="0.85"/>
+    <path class="sj-edge" data-edge="down1" d="M220,310 L220,372" stroke="var(--sj-celadon)" stroke-width="2.4" marker-end="url(#a-celadon)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="down2" d="M220,422 L410,486" stroke="var(--sj-ochre)" stroke-width="2.2" marker-end="url(#a-ochre)" opacity="0.85"/>
+    <path class="sj-edge" data-edge="outer" d="M586,300 C680,340 700,400 650,460" stroke="var(--sj-vermil)" stroke-width="3.2" marker-end="url(#a-vermil)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="collapse" d="M400,486 C400,420 500,360 586,320" stroke="var(--sj-vermil)" stroke-width="3.6" marker-end="url(#a-vermil)" opacity="0.95"/></g>
+  <g font-family="Songti SC,Noto Serif SC,serif" font-size="11">
+    <text x="384" y="278" text-anchor="middle" fill="var(--sj-paper-300)">顽固派抵制</text>
+    <text x="230" y="352" fill="var(--sj-celadon)">官督商办下行</text>
+    <text x="680" y="400" fill="var(--sj-vermil)">列强外压</text>
+    <text x="520" y="400" fill="var(--sj-vermil)" font-size="12" font-weight="600">1894 甲午证伪</text></g>
+
+  <g class="sj-node" data-id="cixi" tabindex="0" role="button" aria-label="慈禧 · 皇权">
+    <rect x="320" y="112" width="180" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="410" y="140" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">慈禧 · 皇权</text>
+    <text x="410" y="158" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">钟摆 · 无制度保障</text>
+  </g>
+  <g class="sj-node" data-id="yangwu" tabindex="0" role="button" aria-label="奕訢 · 李鸿章">
+    <rect x="130" y="250" width="176" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="218" y="278" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">奕訢 · 李鸿章</text>
+    <text x="218" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">洋务派 · 技术官僚</text>
+  </g>
+  <g class="sj-node" data-id="wangu" tabindex="0" role="button" aria-label="顽固派">
+    <rect x="462" y="250" width="186" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="555" y="278" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">顽固派</text>
+    <text x="555" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">精英抵制 · 中体</text>
+  </g>
+  <g class="sj-node" data-id="industry" tabindex="0" role="button" aria-label="军工 · 航运">
+    <rect x="132" y="372" width="176" height="50" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="220" y="400" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">军工 · 航运</text>
+    <text x="220" y="418" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">江南局 · 招商局</text>
+  </g>
+  <g class="sj-node" data-id="beiyang" tabindex="0" role="button" aria-label="北洋水师">
+    <rect x="462" y="372" width="186" height="50" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="555" y="400" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">北洋水师</text>
+    <text x="555" y="418" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">军事现代化 · 边疆</text>
+  </g>
+  <g class="sj-node" data-id="powers" tabindex="0" role="button" aria-label="甲午 · 列强">
+    <rect x="586" y="256" width="182" height="88" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="3"/>
+    <text x="677" y="284" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">甲午 · 列强</text>
+    <text x="677" y="302" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">体系外变量 · 引爆</text>
+  </g>
+  <g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="厘金 · 关税底盘">
+    <rect x="56" y="486" width="708" height="86" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="1.4"/>
+    <text x="410" y="514" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC,serif">厘金 · 关税底盘</text>
+    <text x="410" y="532" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">支撑军工 · 汲取近代化</text>
+    
+  </g>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,JetBrains Mono,monospace">viewBox 820×600 · 洋务运动</text>
+</svg></div>
+  <div class="sj-14-layout">
+    <div class="sj-14-note" style="margin-top:0">色义：皇权=赭金 · 洋务派=青瓷 · 军工=赭金 · 列强/甲午=朱红外环 · 底盘=深墨。外环朱红＝体系外变量，甲午为引爆。</div>
+    <aside class="sj-14-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-14-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+      </div>
+    </aside>
+  </div>
+</section>
+<!--SLICE_RAIL:慈禧钟摆 → 洋务军工 → 甲午证伪；1862 总理衙门。-->
+<!--SLICE_RAIL:慈禧钟摆 → 洋务军工 → 甲午证伪；1862 总理衙门。-->
+<!--SLICE_RAIL:慈禧钟摆 → 洋务军工 → 甲午证伪；1862 总理衙门。-->
+</div>
+<aside class="sj-rail" aria-label="台账导航侧栏">
+  <div class="sj-rail-card">
+    <div class="k">史鉴台账 · 七字段</div>
+    <h3>本案导航</h3>
+    <nav class="sj-rail-toc" aria-label="台账字段">
+      <a href="#f1">01 · 一句话拐点</a>
+      <a href="#f2">02 · 结构切片</a>
+      <a href="#f3">03 · 相位定位</a>
+      <a href="#f4">04 · 五力归因</a>
+      <a href="#f5">05 · 史家交锋</a>
+      <a href="#f6">06 · 成败判定</a>
+      <a href="#f7">07 · 古今映射</a>
+    </nav>
+  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p style="font-size:12.5px;color:var(--sj-paper-300);line-height:1.6">慈禧钟摆 → 洋务军工 → 甲午证伪；1862 总理衙门。</p></div>
+  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p style="font-size:12.5px;color:var(--sj-paper-300);line-height:1.6">慈禧钟摆 → 洋务军工 → 甲午证伪；1862 总理衙门。</p></div>
+  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p style="font-size:12.5px;color:var(--sj-paper-300);line-height:1.6">慈禧钟摆 → 洋务军工 → 甲午证伪；1862 总理衙门。</p></div>
+  </div>
+  <div class="sj-rail-chips"><a class="sj-rail-chip" href="./SJ-24.html">SJ-24</a><a class="sj-rail-chip" href="./SJ-07.html">SJ-07</a></div>
+</aside>
+</div>
+<section class="sj-ledger-field" id="f3" aria-labelledby="h-f3">
+  <div class="sj-ledger-fh"><span class="fnum">03</span><h2 id="h-f3">相位定位</h2><span class="en">PHASE · 步骤②</span></div>
+  <div class="sj-14-phase"><span class="pb">僵化期末端 · <b>被动改革（体系外变量）</b></span><a class="sj-14-chip" href="./SJ-04.html">在 SJ-04 相位盘定位 →</a></div>
+  <p class="sj-14-prose">清晚期僵化期末端叠加体系外冲击（现代性），洋务是被动改革窗口；财政—军事现代化未能同步制度变革。</p>
+</section>
+<section class="sj-ledger-field" id="f4" aria-labelledby="h-f4">
+  <div class="sj-ledger-fh"><span class="fnum">04</span><h2 id="h-f4">五力归因台账</h2><span class="en">FORCES · 步骤③</span></div>
+  <div class="sj-14-table-wrap"><table class="sj-14-table"><thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead><tbody><tr><td>财政汲取</td><td>「自强」</td><td class="shi">官督商办、关税、厘金支撑军工，汲取未能支撑全面现代化</td></tr>
+<tr><td>精英循环</td><td>「顽固派」</td><td class="shi">满汉精英分裂，顽固派抵制，洋务派系个人权威集合</td></tr>
+<tr><td>合法性叙事</td><td>「中体西用」</td><td class="shi">甲午战败使「自强」叙事破产，合法性绩效枯竭</td></tr>
+<tr><td>边疆军事〔引燃〕</td><td>「甲午」</td><td class="shi">北洋水师覆没，军事现代化证伪，引爆后续维新思潮</td></tr>
+<tr><td>生态—人口基座</td><td>—</td><td class="shi">人口压力与财政负担仍在；工业化初启〔存疑〕</td></tr></tbody></table></div>
+</section>
+<section class="sj-ledger-field" id="f5" aria-labelledby="h-f5">
+  <div class="sj-ledger-fh"><span class="fnum">05</span><h2 id="h-f5">史家交锋</h2><span class="en">HISTORIANS</span></div>
+  <div class="sj-14-hist"><article><div class="who">李敖式考据</div><p>剥离「卖国」标签，可见洋务派在体制约束内的真实努力与结构局限。</p></article>
+<article><div class="who">钱穆</div><p>中国近代史脉络中，洋务为传统政体最后一次自我修补。</p></article>
+<article><div class="who">金观涛</div><p>低水平均衡上的局部技术引进，未触及操作系统升级。</p></article>
+<article><div class="who">黄仁宇</div><p>数目字管理仍不足，近代会计与组织未能建立。</p></article>
+<article style="grid-column:1/-1"><div class="who">费正清</div><p>冲击-回应：西方压力倒逼改革，但回应停留在器物层，制度惰性致失败。</p></article></div>
+</section>
+<section class="sj-ledger-field" id="f6" aria-labelledby="h-f6">
+  <div class="sj-ledger-fh"><span class="fnum">06</span><h2 id="h-f6">成败判定</h2><span class="en">VERDICT</span></div>
+  <div class="sj-14-verdict"><article class="ok"><div class="vh">已兑现</div><p>江南制造局等工业启蒙</p><p>新式海军与人才</p><p>「自强」话语开启近代思潮</p></article>
+<article class="fail"><div class="vh">已失败</div><p>甲午战败</p><p>制度未变</p><p>主权丧失加剧</p></article>
+<article class="open"><div class="vh">未决〔反事实〕</div><p>若戊戌级制度改革与洋务同步，清末路径会否不同？</p></article></div>
+</section>
+<section class="sj-ledger-field" id="f7" aria-labelledby="h-f7">
+  <div class="sj-ledger-fh"><span class="fnum">07</span><h2 id="h-f7">古今映射</h2><span class="en">MIRROR</span></div>
+  <div class="sj-14-mirror"><article class="same"><div class="mh">相似机制</div><p>外部压力倒逼改革；军事—财政—合法性三联共振。</p></article>
+<article class="diff"><div class="mh">关键差异</div><p>当代自主创新与举国体制已非「中体西用」；体系外变量形态变为技术—金融地缘（→ SJ-24）。</p></article></div>
+</section>
+</article>
+<section class="sj-ledger-field" id="fx"><div class="sj-ledger-fh"><span class="fnum">◆</span><h2>交叉引用</h2></div>
+  <div class="sj-14-xref"><a href="./SJ-07.html"><div class="n">SJ-07</div><h3>崩解矩阵</h3><p>清行体系外变量。</p></a>
+<a href="./SJ-24.html"><div class="n">SJ-24</div><h3>外交映射</h3><p>冲击-回应当代接口。</p></a></div>
+</section>
+<footer class="sj-14-foot">
+  <span>ChinaOS · 史鉴 SJ-14 · v0.1 · AS_OF 2026-07-15 · 真源《清史稿》+ 费正清冲击-回应</span>
+  <span><a href="./SJ-00.html">← 返回 SJ-00</a> · <a href="#sj-14-top">↑ 顶</a></span>
+  <span><a href="./SJ-00.html#sec-case-hub">案例库 Hub →</a></span>
+</footer>
+</div>
+
 
 <script>
 (function(){

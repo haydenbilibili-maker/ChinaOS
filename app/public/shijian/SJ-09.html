@@ -340,6 +340,314 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
 
 .sj-rail-mini{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6;margin-top:6px}
 </style>
+<script>
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){ document.documentElement.setAttribute('data-theme', t==='light' ? 'light' : 'dark'); }
+  try{
+    var q=new URLSearchParams(location.search).get('theme');
+    if(q==='light'||q==='dark') apply(q);
+  }catch(e){}
+  window.addEventListener('message', function(e){
+    if(e.origin !== window.location.origin) return;
+    var d=e&&e.data;
+    if(!d||d.type!==MSG) return;
+    apply(d.theme);
+  });
+})();
+</script>
+</head>
+<body>
+<div class="sj-09-wrap sj-reveal-stagger" id="sj-09-top">
+
+<header class="sj-09-mast">
+  <div>
+    <div class="badge">SJ-09 · 变法改革案例卷 · 第二案</div>
+    <h1>张居正一条鞭法<em>税基重整 vs 士绅抵制 · 人亡政息</em></h1>
+    <div class="sj-09-chips sj-xlinks">
+      <span class="sj-09-chip" style="color:var(--sj-ochre);border-color:var(--sj-ochre)" data-dynasty="ming">朝代 · 明</span>
+      <a class="sj-09-chip" href="./SJ-00.html">↔ SJ-00 总索引</a>
+      <a class="sj-09-chip" href="./SJ-05.html">↔ SJ-05 王安石</a>
+      <a class="sj-09-chip" href="./SJ-03.html">↔ SJ-03 五力模型</a>
+      <a class="sj-09-chip" href="./SJ-04.html">↔ SJ-04 相位罗盘</a>
+      <a class="sj-09-chip" href="./SJ-21.html">↔ SJ-21 经济映射</a>
+    </div>
+  </div>
+  <div class="sj-09-meta">
+    明中后期汲取力改革 · 张居正身后翻盘<br/>
+    <b>AS_OF 2026-07-15</b> · v0.1
+  </div>
+</header>
+
+<p class="sj-zhupi">朱批：本案是母本「财政汲取力改革谱系」（两税→一条鞭→摊丁入亩）的第二验证案——与 SJ-05 王安石构成宋明变法对照。七字段台账复用冻结组件，内容口径：《母本》第一部力一修复史 + 规律⑤，保守推演，数字标〔存疑〕处开发时二次核实。</p>
+
+<article class="sj-ledger">
+
+<div class="sj-page-layout">
+<div class="sj-main-col">
+
+<!-- ① 一句话拐点 -->
+<section class="sj-ledger-field" id="f1" aria-labelledby="h-f1">
+  <div class="sj-ledger-fh"><span class="fnum">01</span><h2 id="h-f1">一句话拐点</h2><span class="en">HOOK</span></div>
+  <div class="sj-09-hook">
+    <p>明中后期财政刚性（边饷、皇室、官俸）与税基流失（隐田、诡寄）压力下，首辅张居正以<b>一条鞭法</b>统合赋役、以银两计征，试图重建<b>财政汲取力</b>；改革短期见效，却因清丈田亩触动士绅经济特权、且高度依赖皇帝与首辅个人权威，于张居正身后遭全面翻盘——典型「人亡政息」。</p>
+    <div class="yr">系年：万历九年（1581）一条鞭法推广全国（母本力一修复史）· 万历十年（1582）张居正卒 → 后继全面反张</div>
+  </div>
+</section>
+
+<!-- ② 结构切片 -->
+<section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
+  <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
+  <p class="sj-09-prose">权力几何——<strong>考成 × 清丈 双网格</strong>：张居正以首辅实权、幼帝万历摄政背书，织两张网——考成法问责网格穿透官僚层、清丈网格覆于土地清查隐田，两网合力把税基统合为一条鞭折银。士绅—隐田地主抵制清丈；居正身后（1582）遭清算，然一条鞭作为制度部分延续。</p>
+  <div class="sj-09-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">张居正一条鞭法 · 考成清丈双网格结构切片图</title>
+  <desc id="sj-desc">万历虚线背书张居正；考成与清丈双网格合力下行至一条鞭折银底盘；士绅抵制清丈后以朱红回路反扑。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/>
+    </linearGradient>
+    <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+    <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+    <marker id="a-celadon" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-300)"/></marker>
+  </defs>
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,Noto Serif SC,serif" letter-spacing="0.1em">结构切片 · 一条鞭法</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,JetBrains Mono,monospace" letter-spacing="0.08em">SJ-09 · 张居正改革 · 步骤①</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,Noto Serif SC,serif">朱批：考成×清丈双网格 · 士绅抵制隐田 → 1582 身后清算 · 一条鞭部分延续</text>
+  <g fill="none" stroke-linecap="round">
+    <path class="sj-edge" data-edge="beishu" d="M360,156 C280,182 240,196 224,214" stroke="var(--sj-ochre)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#a-ochre)" opacity="0.85"/>
+    <path class="sj-edge" data-edge="drive-kc" d="M226,224 L298,232" stroke="var(--sj-celadon)" stroke-width="2.2" marker-end="url(#a-celadon)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="drive-qz" d="M226,252 L298,330" stroke="var(--sj-celadon)" stroke-width="2.2" marker-end="url(#a-celadon)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="resist" d="M566,308 L502,336" stroke="var(--sj-vermil)" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#a-vermil)" opacity="0.85"/>
+    <path class="sj-edge" data-edge="output" d="M400,378 L410,416" stroke="var(--sj-ochre)" stroke-width="2.2" marker-end="url(#a-ochre)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="rebound" d="M600,326 C420,344 260,268 224,244" stroke="var(--sj-vermil)" stroke-width="3.4" marker-end="url(#a-vermil)" opacity="0.95"/></g>
+  <g font-family="Songti SC,Noto Serif SC,serif" font-size="11">
+    <text x="250" y="192" fill="var(--sj-ochre)">摄政背书 · 1582抽走</text>
+    <text x="520" y="322" fill="var(--sj-vermil)">抵制清丈</text>
+    <text x="424" y="404" fill="var(--sj-ochre)">折银汲取</text>
+    <text x="330" y="270" fill="var(--sj-vermil)" font-size="12" font-weight="600">身后清算 · 人亡政息</text></g>
+
+  <g class="sj-node" data-id="wanli" tabindex="0" role="button" aria-label="万历 · 幼帝">
+    <rect x="310" y="110" width="200" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="1.6" stroke-dasharray="5 4"/>
+    <text x="410" y="138" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">万历 · 幼帝</text>
+    <text x="410" y="156" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">摄政合法性 · 脆弱</text>
+  </g>
+  <g class="sj-node" data-id="zhangjuzheng" tabindex="0" role="button" aria-label="张居正 · 首辅">
+    <rect x="56" y="206" width="170" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.6"/>
+    <text x="141" y="234" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">张居正 · 首辅</text>
+    <text x="141" y="252" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">首辅实权 · 穿透</text>
+  </g>
+  <g class="sj-node" data-id="kaocheng" tabindex="0" role="button" aria-label="考成法 问责网格">
+    <rect x="300" y="196" width="200" height="76" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2"/>
+    <line x1="366" y1="200" x2="366" y2="268" stroke="var(--sj-ochre)" stroke-width="0.6" opacity="0.3"/>
+    <line x1="434" y1="200" x2="434" y2="268" stroke="var(--sj-ochre)" stroke-width="0.6" opacity="0.3"/>
+    <line x1="304" y1="234" x2="496" y2="234" stroke="var(--sj-ochre)" stroke-width="0.6" opacity="0.25"/>
+    <text x="400" y="222" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">考成法 · 问责网格</text>
+    <text x="400" y="258" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">考核官僚 · 压惰政</text>
+  </g>
+  <g class="sj-node" data-id="qingzhang" tabindex="0" role="button" aria-label="清丈 丈量网格">
+    <rect x="300" y="300" width="200" height="76" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2"/>
+    <line x1="366" y1="304" x2="366" y2="372" stroke="var(--sj-ochre)" stroke-width="0.6" opacity="0.3"/>
+    <line x1="434" y1="304" x2="434" y2="372" stroke="var(--sj-ochre)" stroke-width="0.6" opacity="0.3"/>
+    <line x1="304" y1="338" x2="496" y2="338" stroke="var(--sj-ochre)" stroke-width="0.6" opacity="0.25"/>
+    <text x="400" y="326" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">清丈 · 丈量网格</text>
+    <text x="400" y="362" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">丈量隐田 · 扩税基（1581）</text>
+  </g>
+  <g class="sj-node" data-id="shishen" tabindex="0" role="button" aria-label="士绅 · 隐田地主">
+    <rect x="566" y="250" width="196" height="76" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4" stroke-dasharray="5 4"/>
+    <text x="664" y="278" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">士绅 · 隐田地主</text>
+    <text x="664" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">抵制清丈 · 死穴</text>
+  </g>
+  <g class="sj-node" data-id="yitiaobian" tabindex="0" role="button" aria-label="一条鞭 折银 底盘">
+    <rect x="56" y="420" width="708" height="86" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="1.4"/>
+    <text x="410" y="450" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC,serif">一条鞭 · 赋役折银 · 编户底盘</text>
+    <text x="410" y="470" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">两网合力→折银汲取 · 转嫁基层结构未变</text>
+    <text x="410" y="490" text-anchor="middle" fill="var(--sj-celadon)" font-size="10" font-family="Songti SC,serif">身后一条鞭部分延续 —— 不同于王安石之全废</text>
+  </g>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,JetBrains Mono,monospace">viewBox 820×600 · 考成清丈双网格</text>
+</svg></div>
+  <div class="sj-09-layout">
+    <div class="sj-09-note" style="margin-top:0">色义：万历=赭金虚线 · 张居正=青瓷 · 双网格=赭金 # 线 · 士绅=朱红 · 底盘=深墨。双网格≠王安石竖轴；一条鞭部分延续为与 SJ-05 关键差异。</div>
+    <aside class="sj-09-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-09-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+      </div>
+    </aside>
+  </div>
+</section>
+<!--SLICE_RAIL:考成×清丈双网格 → 士绅抵制隐田 → 1582 身后清算，一条鞭部分延续。-->
+<!--SLICE_RAIL:考成×清丈双网格 → 士绅抵制隐田 → 1582 身后清算，一条鞭部分延续。-->
+<!--SLICE_RAIL:万历背书 → 张居正清丈一条鞭 → 士绅隐田反弹；1582 人亡政息。-->
+
+<!-- ③ 相位定位 -->
+
+</div><!-- /.sj-main-col -->
+
+<aside class="sj-rail" id="sj-rail" aria-label="台账导航侧栏">
+  <div class="sj-rail-card">
+    <div class="k">史鉴台账 · 七字段</div>
+    <h3>本案导航</h3>
+    <p>财政重建 vs 精英抵制——台账验证首案。</p>
+    <nav class="sj-rail-toc" aria-label="台账字段"><a href="#f1">01 · 一句话拐点</a>
+    <a href="#f2">02 · 结构切片</a>
+    <a href="#f3">03 · 相位定位</a>
+    <a href="#f4">04 · 五力归因</a>
+    <a href="#f5">05 · 史家交锋</a>
+    <a href="#f6">06 · 成败判定</a>
+    <a href="#f7">07 · 古今映射</a></nav>
+  </div>
+  <div class="sj-rail-card">
+    <div class="k">本页结构</div>
+    <nav class="sj-rail-toc sj-rail-toc-struct" aria-label="章节目录"><a href="#f1">01 · 一句话拐点</a>
+      <a href="#f2">02 · 结构切片</a>
+      <a href="#f3">03 · 相位定位</a>
+      <a href="#f4">04 · 五力归因</a>
+      <a href="#f5">05 · 史家交锋</a>
+      <a href="#f6">06 · 成败判定</a>
+      <a href="#f7">07 · 古今映射</a></nav>
+  </div>
+  <div class="sj-rail-card">
+    <div class="k">结构切片</div>
+    <p class="sj-rail-mini">考成×清丈双网格 → 士绅抵制隐田 → 1582 身后清算，一条鞭部分延续。</p>
+  </div>
+</aside>
+</div><!-- /.sj-page-layout -->
+
+<section class="sj-ledger-field" id="f3" aria-labelledby="h-f3">
+  <div class="sj-ledger-fh"><span class="fnum">03</span><h2 id="h-f3">相位定位</h2><span class="en">PHASE · 步骤②</span></div>
+  <div class="sj-09-phase">
+    <span class="pb">僵化期中后段 · <b>改革窗口</b></span>
+    <a class="sj-09-chip" href="./SJ-04.html">在 SJ-04 相位盘定位 →</a>
+  </div>
+  <p class="sj-09-prose">承平百年后财政刚性（边饷为主）、税基流失与一条鞭统合赋役的改革窗口——<strong>僵化期中后段</strong>。在 SJ-04 相位盘上落于「僵化期·改革窗口」后半：汲取力负相位可修复，但精英俘获已深。</p>
+</section>
+
+<!-- ④ 五力归因 -->
+<section class="sj-ledger-field" id="f4" aria-labelledby="h-f4">
+  <div class="sj-ledger-fh"><span class="fnum">04</span><h2 id="h-f4">五力归因台账</h2><span class="en">FORCES · 步骤③ · 正史 / 实因双列</span></div>
+  <p class="sj-09-prose">双轨意识：左列是旧党书写的<strong>正史归因</strong>，右列是剥离书写立场后的<strong>结构实因</strong>。核心病灶在财政汲取，死穴在精英循环。</p>
+  <div class="sj-09-table-wrap">
+    <table class="sj-09-table">
+      <thead><tr><th>力</th><th>正史归因（旧党书写）</th><th>结构实因</th></tr></thead>
+      <tbody>
+        <tr><td>财政汲取</td><td class="zheng">「苛政」「与民争利」</td><td class="shi">边饷刚性 + 税基流失；一条鞭、清丈田亩、考成法是汲取力重整工具——母本修复史第二环</td></tr>
+        <tr><td>精英循环</td><td class="zheng">「专权」「侵夺士绅」</td><td class="shi">清丈直击士绅免税隐田特权 → 官僚—地主联盟反扑；张居正身后全面翻盘</td></tr>
+        <tr><td>合法性叙事</td><td class="zheng">违背祖制、侵夺权利</td><td class="shi">万历初年皇权背书充足；张居正卒后合法性支柱抽走，「侵夺」叙事主导反张舆论</td></tr>
+        <tr><td>边疆军事</td><td class="zheng">修边费巨</td><td class="shi">俺答封贡后北疆压力暂缓，但边饷仍是财政刚性主因之一，改革有真实军费驱动</td></tr>
+        <tr><td>生态—人口基座</td><td class="zheng">—</td><td class="shi">明代中后期人口上升、货币化（银两）程度高，一条鞭以银计征顺应趋势，但小农负担仍经胥吏转嫁</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ⑤ 史家交锋 -->
+<section class="sj-ledger-field" id="f5" aria-labelledby="h-f5">
+  <div class="sj-ledger-fh"><span class="fnum">05</span><h2 id="h-f5">史家交锋</h2><span class="en">HISTORIANS · 步骤③ · SJ-01</span></div>
+  <div class="sj-09-hist">
+    <article><div class="who">李敖式考据<span>祛魅</span></div><p>剥离「侵夺士绅」的道德书写——清丈与一条鞭很大程度是财政重整的必要工具，反张叙事含既得利益集团的利益编码。</p></article>
+    <article><div class="who">钱穆<span>《国史大纲》</span></div><p>对明代财政沉疴有清醒认识；对张居正专权持批评，但也承认一条鞭为制度进步。</p></article>
+    <article><div class="who">金观涛<span>超稳定结构</span></div><p>与王安石同构：超稳定结构的一次汲取力修复，触动地主—官僚一体化根基后只能人亡政息，无法升级。</p></article>
+    <article><div class="who">黄仁宇<span>大历史 / 数目字</span></div><p>一条鞭以银两统一计量，是明代「数目字管理」的重要一步；但基层组织与会计能力仍不足，执行走样难免。</p></article>
+    <article style="grid-column:1/-1"><div class="who">西方汉学<span>明史财政研究</span></div><p>学界共识：一条鞭法延续王朝寿命，但未能突破「汲取转嫁基层」结构；张居正个人权威是双刃剑。〔具体卷名存疑，口径保守〕</p></article>
+  </div>
+</section>
+
+<!-- ⑥ 成败判定 -->
+<section class="sj-ledger-field" id="f6" aria-labelledby="h-f6">
+  <div class="sj-ledger-fh"><span class="fnum">06</span><h2 id="h-f6">成败判定</h2><span class="en">VERDICT · 三列 · 禁虚假收束</span></div>
+  <div class="sj-09-verdict">
+    <article class="ok">
+      <div class="vh">已兑现</div>
+      <p>国库短中期充盈</p><p>一条鞭推广、考成法督吏</p><p>北疆边事暂安</p>
+    </article>
+    <article class="fail">
+      <div class="vh">已失败</div>
+      <p>张居正卒后改革全面翻盘</p><p>清丈触动士绅引发长期反弹</p><p>人亡政息，未能制度化延续</p>
+    </article>
+    <article class="open">
+      <div class="vh">未决〔反事实〕</div>
+      <p>若张居正后继者能制度化延续而非人治依赖，明中后期能否避免三饷越阈？</p>
+    </article>
+  </div>
+</section>
+
+<!-- ⑦ 古今映射 -->
+<section class="sj-ledger-field" id="f7" aria-labelledby="h-f7">
+  <div class="sj-ledger-fh"><span class="fnum">07</span><h2 id="h-f7">古今映射</h2><span class="en">MIRROR · 步骤④ · 相似 / 差异双栏</span></div>
+  <p class="sj-09-note">硬约束：两栏必须成对——只有「相似机制」而无「关键差异」即为裸类比，不成立。</p>
+  <div class="sj-09-mirror">
+    <article class="same">
+      <div class="mh">相似机制（古今相通）</div>
+      <p>税基重整 vs 士绅抵制；自上而下改革对个人权威（皇帝+首辅）的脆弱依赖；执行层胥吏走样。</p>
+    </article>
+    <article class="diff">
+      <div class="mh">关键差异（不可裸类比）</div>
+      <p>现代土地财政、数目字管理与转移支付工具已质变；但「财政汲取重建触动既得利益」张力同构（→ <span class="lk">SJ-21</span> 经济映射）。明代银两货币化是参数差异，非规律失效。</p>
+    </article>
+  </div>
+</section>
+
+</article>
+
+<!-- 交叉 -->
+<section class="sj-ledger-field" id="fx" aria-labelledby="h-fx">
+  <div class="sj-ledger-fh"><span class="fnum">◆</span><h2 id="h-fx">交叉引用与模板说明</h2><span class="en">XREF</span></div>
+  <p class="sj-09-note">本案与 <b>SJ-05 王安石变法</b> 构成宋明变法对照：同一七字段、同一「财政重建触动精英」结构，证明台账可跨朝代迁移。</p>
+  <div class="sj-09-xref">
+    <a href="./SJ-05.html"><div class="n">SJ-05 · 姊妹案</div><h3>王安石变法</h3><p>宋变法首案；与本案构成汲取力改革谱系对照。</p></a>
+    <a href="./SJ-10.html"><div class="n">SJ-10 · 后续</div><h3>明末衰变</h3><p>一条鞭未能阻止的财政越阈终点——三饷与易代。</p></a>
+    <a href="./SJ-03.html"><div class="n">SJ-03 · 步骤③</div><h3>五力衰变模型</h3><p>五力归因所用框架；本案病灶在财政、死穴在精英。</p></a>
+    <a href="./SJ-04.html"><div class="n">SJ-04 · 步骤②</div><h3>治乱相位罗盘</h3><p>本案定位于僵化期改革窗口。</p></a>
+    <a href="./SJ-00.html"><div class="n">SJ-00</div><h3>史鉴总索引</h3><p>案例卷入口；变法卷卡片已点亮本案。</p></a>
+    <a href="/modules/yishixingtai"><div class="n">GY-02</div><h3>合法性机器</h3><p>古今映射关键差异所指：列宁式组织的基层穿透。</p></a>
+    <a href="./SJ-01.html"><div class="n">SJ-01</div><h3>方法光谱</h3><p>史家交锋的镜头库；五力归因前先李敖式祛魅。</p></a>
+  </div>
+</section>
+
+<footer class="sj-09-foot">
+  <span>ChinaOS · 史鉴 SJ-09 · v0.1 · AS_OF 2026-07-15 · 真源《母本》力一修复史</span>
+  <span><a href="./SJ-00.html">← 返回 SJ-00</a> · <a href="#sj-09-top">↑ 顶</a> · <a href="./SJ-05.html">姊妹案 SJ-05</a></span>
+  <span><a href="./SJ-10.html">下一案 SJ-10 →</a></span>
+</footer>
+
+</div>
+<script>
+  /* rail toc highlight */
+  (function(){
+    var links=document.querySelectorAll('.sj-rail-toc a[href^="#"]');
+    if(!links.length) return;
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(a){a.classList.toggle('is-active',a.getAttribute('href')==='#'+e.target.id);});
+        }
+      });
+    },{rootMargin:'-20% 0px -60% 0px',threshold:0});
+    links.forEach(function(a){
+      var t=document.querySelector(a.getAttribute('href'));
+      if(t) obs.observe(t);
+    });
+  })();
+</script>
+
 
 <script>
 (function(){
@@ -413,24 +721,6 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
   nodes.forEach(n=>{const act=()=>pick(n.dataset.id);n.addEventListener('click',act);n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});});
   edges.forEach(e=>{if(!e.dataset.edge||!NODE_DATA[e.dataset.edge])return;const act=()=>pick(e.dataset.edge);e.style.cursor='pointer';e.setAttribute('tabindex','0');e.setAttribute('role','button');e.addEventListener('click',act);e.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();act();}});});
 })();
-</script>
-<script>
-/* rail toc highlight */
-  (function(){
-    var links=document.querySelectorAll('.sj-rail-toc a[href^="#"]');
-    if(!links.length) return;
-    var obs=new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){
-          links.forEach(function(a){a.classList.toggle('is-active',a.getAttribute('href')==='#'+e.target.id);});
-        }
-      });
-    },{rootMargin:'-20% 0px -60% 0px',threshold:0});
-    links.forEach(function(a){
-      var t=document.querySelector(a.getAttribute('href'));
-      if(t) obs.observe(t);
-    });
-  })();
 </script>
 </body>
 </html>

@@ -340,6 +340,199 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
 
 .sj-rail-mini{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6;margin-top:6px}
 </style>
+<script>
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){ document.documentElement.setAttribute('data-theme', t==='light' ? 'light' : 'dark'); }
+  try{
+    var q=new URLSearchParams(location.search).get('theme');
+    if(q==='light'||q==='dark') apply(q);
+  }catch(e){}
+  window.addEventListener('message', function(e){
+    if(e.origin !== window.location.origin) return;
+    var d=e&&e.data;
+    if(!d||d.type!==MSG) return;
+    apply(d.theme);
+  });
+})();
+</script>
+</head>
+<body>
+<div class="sj-12-wrap sj-reveal-stagger" id="sj-12-top">
+<header class="sj-12-mast">
+  <div>
+    <div class="badge">SJ-12 · 崩解案例卷 · 秦案</div>
+    <h1>秦末崩解<em>合法性未立 · 汲取无度 · 二世而亡</em></h1>
+    <div class="sj-12-chips sj-xlinks"><a class="sj-12-chip" href="./SJ-00.html">↔ SJ-00</a><a class="sj-12-chip" href="./SJ-11.html">↔ SJ-11 商鞅</a><a class="sj-12-chip" href="./SJ-07.html">↔ SJ-07 矩阵</a></div>
+  </div>
+  <div class="sj-12-meta">SJ-07 秦行单案深描<br/><b>AS_OF 2026-07-15</b> · v0.1</div>
+</header>
+<p class="sj-zhupi">朱批：本案是 SJ-07 崩解矩阵「秦」行之单案深描——统一后合法性未及沉淀，汲取无度即崩，印证母本规律②多力共振（共振最浅最速例）。</p>
+<article class="sj-ledger">
+<div class="sj-page-layout">
+<div class="sj-main-col">
+<section class="sj-ledger-field" id="f1" aria-labelledby="h-f1">
+  <div class="sj-ledger-fh"><span class="fnum">01</span><h2 id="h-f1">一句话拐点</h2><span class="en">HOOK</span></div>
+  <div class="sj-12-hook"><p>秦灭六国后军事强、制度新，但<b>开国合法性未及沉淀</b>；修阿房、戍边、严刑峻法使汲取越过民变阈值，前209 陈胜吴广揭竿，<b>二世而亡</b>——传统循环中最速崩解样本。</p><div class="yr">系年：前209 大泽乡起义 · 前207 秦王子婴降刘邦（《史记·陈涉世家》）</div></div>
+</section>
+<section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
+  <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
+  <p class="sj-12-prose">权力几何：秦二世合法性透支 → 李斯中枢专权 → 郡县汲取/工程过载下行 → 编户底盘越阈。陈胜吴广戍卒起义为引爆点，「王侯将相宁有种乎」夺合法性话语。</p>
+  <div class="sj-12-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">秦末崩解汲取越阈结构切片图</title>
+  <desc id="sj-desc">秦二世中枢虚化，郡县汲取工程过载下行压垮编户底盘；陈胜吴广起义引爆崩解链。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/>
+    </linearGradient>
+    <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+    <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+    <marker id="a-celadon" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-300)"/></marker>
+  </defs>
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,Noto Serif SC,serif" letter-spacing="0.1em">结构切片 · 汲取越阈</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,JetBrains Mono,monospace" letter-spacing="0.08em">SJ-12 · 秦末崩解 · 步骤①</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,Noto Serif SC,serif">朱批：汲取越阈下行(赭金) + 戍卒起义引爆(朱红最重) = 速亡</text>
+  <g fill="none" stroke-linecap="round">
+    <path class="sj-edge" data-edge="spine" d="M360,158 L250,250" stroke="var(--sj-ochre)" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#a-ochre)" opacity="0.8"/>
+    <path class="sj-edge" data-edge="down1" d="M220,310 L220,372" stroke="var(--sj-ochre)" stroke-width="2.8" marker-end="url(#a-ochre)" opacity="0.95"/>
+    <path class="sj-edge" data-edge="down2" d="M220,422 L220,486" stroke="var(--sj-ochre)" stroke-width="2.4" marker-end="url(#a-paper)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="collapse" d="M220,498 C180,420 140,360 133,336" stroke="var(--sj-vermil)" stroke-width="3.6" marker-end="url(#a-vermil)" opacity="0.95"/>
+    <path class="sj-edge" data-edge="ignite" d="M133,336 C200,300 280,280 360,250" stroke="var(--sj-vermil)" stroke-width="2.8" marker-end="url(#a-vermil)" opacity="0.9"/></g>
+  <g font-family="Songti SC,Noto Serif SC,serif" font-size="11">
+    <text x="230" y="352" fill="var(--sj-ochre)">阿房 · 骊山 · 戍役</text>
+    <text x="230" y="462" fill="var(--sj-ochre)">汲取越阈</text>
+    <text x="150" y="380" fill="var(--sj-vermil)" font-size="12" font-weight="600">前209 大泽乡</text>
+    <text x="280" y="268" fill="var(--sj-vermil)">合法性话语夺权</text></g>
+
+  <g class="sj-node" data-id="qin" tabindex="0" role="button" aria-label="秦二世">
+    <rect x="320" y="112" width="180" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="1.6" stroke-dasharray="4 4"/>
+    <text x="410" y="140" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">秦二世</text>
+    <text x="410" y="158" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">合法性透支</text>
+  </g>
+  <g class="sj-node" data-id="lishi" tabindex="0" role="button" aria-label="李斯 · 中枢">
+    <rect x="130" y="250" width="176" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="218" y="278" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">李斯 · 中枢</text>
+    <text x="218" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">专权 · 堵塞</text>
+  </g>
+  <g class="sj-node" data-id="junxian" tabindex="0" role="button" aria-label="郡县汲取 · 工程">
+    <rect x="132" y="372" width="176" height="50" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="220" y="400" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">郡县汲取 · 工程</text>
+    <text x="220" y="418" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">阿房骊山 · 过载</text>
+  </g>
+  <g class="sj-node" data-id="chen" tabindex="0" role="button" aria-label="陈胜吴广">
+    <rect x="52" y="280" width="162" height="72" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="3"/>
+    <text x="133" y="308" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">陈胜吴广</text>
+    <text x="133" y="326" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">戍卒起义 · 引爆</text>
+  </g>
+  <g class="sj-node" data-id="liuxiang" tabindex="0" role="button" aria-label="刘邦 · 项羽">
+    <rect x="462" y="250" width="186" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2"/>
+    <text x="555" y="278" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">刘邦 · 项羽</text>
+    <text x="555" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">军事力重分正统</text>
+  </g>
+  <g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="编户 · 流民底盘">
+    <rect x="56" y="486" width="708" height="86" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="1.4"/>
+    <text x="410" y="514" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC,serif">编户 · 流民底盘</text>
+    <text x="410" y="532" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">承受力崩溃 · 起义基础</text>
+    
+  </g>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,JetBrains Mono,monospace">viewBox 820×600 · 秦末崩解</text>
+</svg></div>
+  <div class="sj-12-layout">
+    <div class="sj-12-note" style="margin-top:0">色义：皇权=赭金 · 中枢=青瓷 · 郡县汲取=赭金下行 · 起义=朱红引爆 · 底盘=深墨。汲取越阈箭头最重＝崩解主链。</div>
+    <aside class="sj-12-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-12-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+      </div>
+    </aside>
+  </div>
+</section>
+<!--SLICE_RAIL:秦二世透支 → 郡县汲取越阈 → 戍卒起义引爆；前209 陈胜吴广。-->
+<!--SLICE_RAIL:秦二世透支 → 郡县汲取越阈 → 戍卒起义引爆；前209 陈胜吴广。-->
+<!--SLICE_RAIL:秦二世透支 → 郡县汲取越阈 → 戍卒起义引爆；前209 陈胜吴广。-->
+</div>
+<aside class="sj-rail" aria-label="台账导航侧栏">
+  <div class="sj-rail-card">
+    <div class="k">史鉴台账 · 七字段</div>
+    <h3>本案导航</h3>
+    <nav class="sj-rail-toc" aria-label="台账字段">
+      <a href="#f1">01 · 一句话拐点</a>
+      <a href="#f2">02 · 结构切片</a>
+      <a href="#f3">03 · 相位定位</a>
+      <a href="#f4">04 · 五力归因</a>
+      <a href="#f5">05 · 史家交锋</a>
+      <a href="#f6">06 · 成败判定</a>
+      <a href="#f7">07 · 古今映射</a>
+    </nav>
+  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p style="font-size:12.5px;color:var(--sj-paper-300);line-height:1.6">秦二世透支 → 郡县汲取越阈 → 戍卒起义引爆；前209 陈胜吴广。</p></div>
+  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p style="font-size:12.5px;color:var(--sj-paper-300);line-height:1.6">秦二世透支 → 郡县汲取越阈 → 戍卒起义引爆；前209 陈胜吴广。</p></div>
+  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p style="font-size:12.5px;color:var(--sj-paper-300);line-height:1.6">秦二世透支 → 郡县汲取越阈 → 戍卒起义引爆；前209 陈胜吴广。</p></div>
+  </div>
+  <div class="sj-rail-chips"><a class="sj-rail-chip" href="./SJ-07.html">SJ-07</a><a class="sj-rail-chip" href="./SJ-11.html">SJ-11</a></div>
+</aside>
+</div>
+<section class="sj-ledger-field" id="f3" aria-labelledby="h-f3">
+  <div class="sj-ledger-fh"><span class="fnum">03</span><h2 id="h-f3">相位定位</h2><span class="en">PHASE · 步骤②</span></div>
+  <div class="sj-12-phase"><span class="pb">崩解期 · <b>速亡</b></span><a class="sj-12-chip" href="./SJ-04.html">在 SJ-04 相位盘定位 →</a></div>
+  <p class="sj-12-prose">上升期未及沉淀即进入崩解：合法性叙事与财政汲取双引燃，军事强未能转化为统治合法性。SJ-07 矩阵秦行深描。</p>
+</section>
+<section class="sj-ledger-field" id="f4" aria-labelledby="h-f4">
+  <div class="sj-ledger-fh"><span class="fnum">04</span><h2 id="h-f4">五力归因台账</h2><span class="en">FORCES · 步骤③</span></div>
+  <div class="sj-12-table-wrap"><table class="sj-12-table"><thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead><tbody><tr><td>财政汲取〔引燃〕</td><td>「暴政」「苛税」</td><td class="shi">阿房、骊山、戍边徭役，汲取无缓冲直达基层</td></tr>
+<tr><td>精英循环</td><td>「奸臣」</td><td class="shi">李斯专权、赵高篡诏，精英通道封闭为宫廷斗争</td></tr>
+<tr><td>合法性叙事〔引燃〕</td><td>「失德」</td><td class="shi">统一后天命叙事未及沉淀；陈胜「王侯将相宁有种乎」夺话语</td></tr>
+<tr><td>边疆军事</td><td>「戍边」</td><td class="shi">军事强但戍卒起义显示军队未能维系认同</td></tr>
+<tr><td>生态—人口基座</td><td>—</td><td class="shi">连年大型工程叠加，基层承载逼近极限〔存疑〕</td></tr></tbody></table></div>
+</section>
+<section class="sj-ledger-field" id="f5" aria-labelledby="h-f5">
+  <div class="sj-ledger-fh"><span class="fnum">05</span><h2 id="h-f5">史家交锋</h2><span class="en">HISTORIANS</span></div>
+  <div class="sj-12-hist"><article><div class="who">李敖式考据</div><p>「暴秦」叙事含汉初政治合法化书写，但汲取无度与严刑结构属实。</p></article>
+<article><div class="who">钱穆</div><p>秦制严酷、统一过速，未能与编户齐民建立绩效合法性。</p></article>
+<article><div class="who">金观涛</div><p>超稳定结构重启前的最短崩解：制度新但修复力未建立。</p></article>
+<article><div class="who">黄仁宇</div><p>秦缺乏数目字管理与中层组织，以严刑替代，统一后迅速失控。</p></article>
+<article style="grid-column:1/-1"><div class="who">西方汉学</div><p>秦汉帝国研究：秦亡是「国家能力过强但合法性不足」的经典悖论。</p></article></div>
+</section>
+<section class="sj-ledger-field" id="f6" aria-labelledby="h-f6">
+  <div class="sj-ledger-fh"><span class="fnum">06</span><h2 id="h-f6">成败判定</h2><span class="en">VERDICT</span></div>
+  <div class="sj-12-verdict"><article class="ok"><div class="vh">已兑现</div><p>郡县制遗产</p><p>统一度量衡</p><p>中央集权范式</p></article>
+<article class="fail"><div class="vh">已失败</div><p>二世而亡</p><p>陈胜吴广起义</p><p>楚汉易代</p></article>
+<article class="open"><div class="vh">未决〔反事实〕</div><p>若始皇后收敛大型工程与严刑，秦祚能否延续至制度化沉淀？</p></article></div>
+</section>
+<section class="sj-ledger-field" id="f7" aria-labelledby="h-f7">
+  <div class="sj-ledger-fh"><span class="fnum">07</span><h2 id="h-f7">古今映射</h2><span class="en">MIRROR</span></div>
+  <div class="sj-12-mirror"><article class="same"><div class="mh">相似机制</div><p>汲取越民变阈值引爆；合法性绩效枯竭先于崩解。</p></article>
+<article class="diff"><div class="mh">关键差异</div><p>现代数目字管理、社会保障与舆情回应机制已质变（→ SJ-21）。</p></article></div>
+</section>
+</article>
+<section class="sj-ledger-field" id="fx"><div class="sj-ledger-fh"><span class="fnum">◆</span><h2>交叉引用</h2></div>
+  <div class="sj-12-xref"><a href="./SJ-07.html"><div class="n">SJ-07</div><h3>崩解矩阵</h3><p>秦行定位。</p></a>
+<a href="./SJ-11.html"><div class="n">SJ-11</div><h3>商鞅变法</h3><p>前史：制度奠基与残暴化隐患。</p></a></div>
+</section>
+<footer class="sj-12-foot">
+  <span>ChinaOS · 史鉴 SJ-12 · v0.1 · AS_OF 2026-07-15 · 真源《史记》+ SJ-07 秦行</span>
+  <span><a href="./SJ-00.html">← 返回 SJ-00</a> · <a href="#sj-12-top">↑ 顶</a></span>
+  <span><a href="./SJ-13.html">下一案 SJ-13 →</a></span>
+</footer>
+</div>
+
 
 <script>
 (function(){

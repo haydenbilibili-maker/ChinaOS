@@ -73,7 +73,10 @@ function extractRailToc(html) {
 function injectScript(html, config) {
   const script = sliceScript(config.nodeData, config.nodeEdge);
   const railToc = extractRailToc(html);
-  let cleaned = html.replace(/<script>[\s\S]*?getElementById\(['"]stage['"]\)[\s\S]*?<\/script>/g, '');
+  // Anchor on stage IIFE — must not span from <head> theme script across the whole document.
+  const stageScriptRe =
+    /<script>\s*\(function\(\)\{\s*const stage\s*=\s*document\.getElementById\(['"]stage['"]\)[\s\S]*?NODE_DATA[\s\S]*?<\/script>/g;
+  let cleaned = html.replace(stageScriptRe, '');
   const blocks = [script];
   if (railToc && !cleaned.includes('rail toc highlight')) {
     blocks.push(`<script>\n${railToc}</script>`);

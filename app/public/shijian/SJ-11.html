@@ -340,6 +340,202 @@ html[data-theme="light"] .sj-snap-repair{background:var(--sj-ink-800)}
 
 .sj-rail-mini{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6;margin-top:6px}
 </style>
+<script>
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){ document.documentElement.setAttribute('data-theme', t==='light' ? 'light' : 'dark'); }
+  try{
+    var q=new URLSearchParams(location.search).get('theme');
+    if(q==='light'||q==='dark') apply(q);
+  }catch(e){}
+  window.addEventListener('message', function(e){
+    if(e.origin !== window.location.origin) return;
+    var d=e&&e.data;
+    if(!d||d.type!==MSG) return;
+    apply(d.theme);
+  });
+})();
+</script>
+</head>
+<body>
+<div class="sj-11-wrap sj-reveal-stagger" id="sj-11-top">
+<header class="sj-11-mast">
+  <div>
+    <div class="badge">SJ-11 · 变法改革案例卷 · 先秦案</div>
+    <h1>商鞅变法<em>军功爵 · 编户齐民 · 废世卿世禄</em></h1>
+    <div class="sj-11-chips sj-xlinks"><a class="sj-11-chip" href="./SJ-00.html">↔ SJ-00</a><a class="sj-11-chip" href="./SJ-12.html">↔ SJ-12 秦末</a><a class="sj-11-chip" href="./SJ-05.html">↔ SJ-05 王安石</a></div>
+  </div>
+  <div class="sj-11-meta">战国秦国制度奠基 · 竞争态跃迁<br/><b>AS_OF 2026-07-15</b> · v0.1</div>
+</header>
+<p class="sj-zhupi">朱批：本案是先秦「上升期制度奠基」而非僵化期修补——以《史记·商君列传》为口径，与 SJ-05/09 构成跨时代变法谱系。七字段台账复用冻结组件。</p>
+<article class="sj-ledger">
+<div class="sj-page-layout">
+<div class="sj-main-col">
+<section class="sj-ledger-field" id="f1" aria-labelledby="h-f1">
+  <div class="sj-ledger-fh"><span class="fnum">01</span><h2 id="h-f1">一句话拐点</h2><span class="en">HOOK</span></div>
+  <div class="sj-11-hook"><p>列国竞争压力下，秦孝公任用商鞅推行<b>军功爵</b>、<b>编户齐民</b>、废井田开阡陌，摧毁世卿世禄，把秦国改造成高动员的战争—农业国家，为统一奠基；然严刑峻法、触动旧贵族，孝公身后遭反扑，秦政残暴化亦埋秦末速亡之种。</p><div class="yr">系年：前356 第一次变法 · 前350 迁都咸阳、第二次变法（《史记·商君列传》）</div></div>
+</section>
+<section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
+  <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
+  <p class="sj-11-prose">权力几何——<strong>通道置换</strong>：军功爵化作上升阶梯（寒门→斩首授爵→田宅→爵位），从编户耕战底盘拾级而上；「斩」箭头斩断右上「世卿世禄」世袭通道。死穴：孝公卒（前338）→ 世卿反扑 → 车裂。</p>
+  <div class="sj-11-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">商鞅变法 · 军功爵通道置换结构切片图</title>
+  <desc id="sj-desc">军功爵阶梯自编户耕战底盘上升；斩首箭头斩断世卿世禄世袭通道；孝公虚线背书。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/>
+    </linearGradient>
+    <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+    <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+    <marker id="a-celadon" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-300)"/></marker>
+  </defs>
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,Noto Serif SC,serif" letter-spacing="0.1em">结构切片 · 通道置换</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,JetBrains Mono,monospace" letter-spacing="0.08em">SJ-11 · 商鞅变法 · 步骤①</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,Noto Serif SC,serif">朱批：军功爵阶梯斩断世卿世禄＝通道置换 · 死穴在孝公卒后车裂</text>
+  <g fill="none" stroke-linecap="round">
+    <path class="sj-edge" data-edge="back" d="M320,158 L220,220" stroke="var(--sj-ochre)" stroke-width="1.6" stroke-dasharray="6 5" marker-end="url(#a-ochre)" opacity="0.85"/>
+    <path class="sj-edge" data-edge="ladder" d="M220,280 L280,340 L340,400 L400,440" stroke="var(--sj-ochre)" stroke-width="2.6" marker-end="url(#a-ochre)" opacity="0.95"/>
+    <path class="sj-edge" data-edge="cut" d="M400,360 L580,220" stroke="var(--sj-vermil)" stroke-width="3.6" marker-end="url(#a-vermil)" opacity="0.95"/>
+    <path class="sj-edge" data-edge="down" d="M280,440 L410,486" stroke="var(--sj-celadon)" stroke-width="2.2" marker-end="url(#a-celadon)" opacity="0.85"/>
+    <path class="sj-edge" data-edge="rebound" d="M580,260 C520,180 400,150 320,158" stroke="var(--sj-vermil)" stroke-width="2.4" stroke-dasharray="5 4" marker-end="url(#a-vermil)" opacity="0.8"/></g>
+  <g font-family="Songti SC,Noto Serif SC,serif" font-size="11">
+    <text x="260" y="200" fill="var(--sj-ochre)">前338 孝公卒</text>
+    <text x="320" y="400" fill="var(--sj-ochre)">寒门→爵位</text>
+    <text x="500" y="280" fill="var(--sj-vermil)" font-size="12" font-weight="600">斩 · 世卿通道</text>
+    <text x="480" y="180" fill="var(--sj-vermil)">反扑 → 车裂</text></g>
+
+  <g class="sj-node" data-id="xiaogong" tabindex="0" role="button" aria-label="秦孝公">
+    <rect x="320" y="112" width="180" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="1.8" stroke-dasharray="5 4"/>
+    <text x="410" y="140" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">秦孝公</text>
+    <text x="410" y="158" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">背书 · 虚线</text>
+  </g>
+  <g class="sj-node" data-id="shangyang" tabindex="0" role="button" aria-label="商鞅">
+    <rect x="130" y="220" width="176" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="218" y="248" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">商鞅</text>
+    <text x="218" y="266" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">变法引擎 · 县制</text>
+  </g>
+  <g class="sj-node" data-id="jueti" tabindex="0" role="button" aria-label="军功爵阶梯">
+    <rect x="260" y="300" width="200" height="120" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <line x1="280" y1="400" x2="440" y2="320" stroke="var(--sj-ochre)" stroke-width="1.2" opacity="0.5"/>
+    <line x1="280" y1="360" x2="400" y2="300" stroke="var(--sj-ochre)" stroke-width="1" opacity="0.35"/>
+    <text x="360" y="340" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">军功爵阶梯</text>
+    <text x="360" y="360" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">斩首授爵 · 累进田宅</text>
+  </g>
+  <g class="sj-node" data-id="shiqing" tabindex="0" role="button" aria-label="世卿世禄">
+    <rect x="564" y="200" width="186" height="72" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="3"/>
+    <text x="657" y="228" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">世卿世禄</text>
+    <text x="657" y="246" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">世袭通道 · 被斩</text>
+  </g>
+  <g class="sj-node" data-id="lianzuo" tabindex="0" role="button" aria-label="连坐什伍">
+    <rect x="130" y="360" width="120" height="50" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-paper-300)" stroke-width="1.6"/>
+    <text x="190" y="388" text-anchor="middle" fill="var(--sj-paper-300)" font-size="14" font-weight="600" font-family="Songti SC,serif">连坐什伍</text>
+    <text x="190" y="406" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">严刑 · 什伍</text>
+  </g>
+  <g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="编户耕战底盘">
+    <rect x="56" y="486" width="708" height="86" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="1.4"/>
+    <text x="410" y="514" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC,serif">编户耕战底盘</text>
+    <text x="410" y="532" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">承托汲取与动员 · 承受严刑高压</text>
+    
+  </g>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,JetBrains Mono,monospace">viewBox 820×600 · 通道置换</text>
+</svg></div>
+  <div class="sj-11-layout">
+    <div class="sj-11-note" style="margin-top:0">色义：孝公=赭金虚线 · 商鞅=青瓷 · 军功爵阶梯=赭金签名 · 世卿=朱红 · 连坐=灰 · 底盘=深墨。阶梯+斩断=通道置换，非王安石竖轴。</div>
+    <aside class="sj-11-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-11-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+      </div>
+    </aside>
+  </div>
+</section>
+<!--SLICE_RAIL:孝公背书 → 军功爵阶梯斩断世卿 → 前338 车裂。-->
+<!--SLICE_RAIL:孝公背书 → 军功爵阶梯斩断世卿 → 前338 车裂。-->
+<!--SLICE_RAIL:孝公背书 → 商鞅军功爵县制 → 旧贵族反弹；前356 变法。-->
+</div>
+<aside class="sj-rail" aria-label="台账导航侧栏">
+  <div class="sj-rail-card">
+    <div class="k">史鉴台账 · 七字段</div>
+    <h3>本案导航</h3>
+    <nav class="sj-rail-toc" aria-label="台账字段">
+      <a href="#f1">01 · 一句话拐点</a>
+      <a href="#f2">02 · 结构切片</a>
+      <a href="#f3">03 · 相位定位</a>
+      <a href="#f4">04 · 五力归因</a>
+      <a href="#f5">05 · 史家交锋</a>
+      <a href="#f6">06 · 成败判定</a>
+      <a href="#f7">07 · 古今映射</a>
+    </nav>
+  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p style="font-size:12.5px;color:var(--sj-paper-300);line-height:1.6">孝公背书 → 军功爵阶梯斩断世卿 → 前338 车裂。</p></div>
+  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p style="font-size:12.5px;color:var(--sj-paper-300);line-height:1.6">孝公背书 → 军功爵阶梯斩断世卿 → 前338 车裂。</p></div>
+  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p style="font-size:12.5px;color:var(--sj-paper-300);line-height:1.6">孝公背书 → 商鞅军功爵县制 → 旧贵族反弹；前356 变法。</p></div>
+  </div>
+  <div class="sj-rail-chips"><a class="sj-rail-chip" href="./SJ-05.html">SJ-05</a><a class="sj-rail-chip" href="./SJ-12.html">SJ-12</a></div>
+</aside>
+</div>
+<section class="sj-ledger-field" id="f3" aria-labelledby="h-f3">
+  <div class="sj-ledger-fh"><span class="fnum">03</span><h2 id="h-f3">相位定位</h2><span class="en">PHASE · 步骤②</span></div>
+  <div class="sj-11-phase"><span class="pb">上升期 · <b>制度奠基窗口</b></span><a class="sj-11-chip" href="./SJ-04.html">在 SJ-04 相位盘定位 →</a></div>
+  <p class="sj-11-prose">战国竞争态下的制度跃迁，非僵化期修补。秦国由弱转强，五力中财政汲取与军事动员同步强化，精英循环被军功爵打开但旧贵族遭摧毁性打击。</p>
+</section>
+<section class="sj-ledger-field" id="f4" aria-labelledby="h-f4">
+  <div class="sj-ledger-fh"><span class="fnum">04</span><h2 id="h-f4">五力归因台账</h2><span class="en">FORCES · 步骤③</span></div>
+  <div class="sj-11-table-wrap"><table class="sj-11-table"><thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead><tbody><tr><td>财政汲取</td><td>「苛政」「重农」</td><td class="shi">废井田、统一度量衡、县制直控编户，汲取与动员合一</td></tr>
+<tr><td>精英循环</td><td>「刑过于德」</td><td class="shi">军功爵打开上升通道，世卿世禄遭摧毁——变法真正触及的利益结构</td></tr>
+<tr><td>合法性叙事</td><td>「霸道」</td><td class="shi">法家富国强兵叙事取代周礼贵族秩序，孝公在世时合法性充足</td></tr>
+<tr><td>边疆军事</td><td>「耕战」</td><td class="shi">农战体制直接服务兼并战争，军事力与汲取同步强化</td></tr>
+<tr><td>生态—人口基座</td><td>—</td><td class="shi">关中农业基座+水利；〔人口具体数字存疑〕</td></tr></tbody></table></div>
+</section>
+<section class="sj-ledger-field" id="f5" aria-labelledby="h-f5">
+  <div class="sj-ledger-fh"><span class="fnum">05</span><h2 id="h-f5">史家交锋</h2><span class="en">HISTORIANS</span></div>
+  <div class="sj-11-hist"><article><div class="who">李敖式考据</div><p>剥离「暴秦」道德叙事——商鞅变法是先秦制度竞争的结构选择，非单纯暴君意志。</p></article>
+<article><div class="who">钱穆</div><p>《国史大纲》对秦制批评与对其统一贡献并存；强调变法对贵族秩序的破坏。</p></article>
+<article><div class="who">金观涛</div><p>秦国完成了一次「操作系统」级制度跃迁，为后世郡县制奠基；但仍未突破低水平均衡天花板。</p></article>
+<article><div class="who">黄仁宇</div><p>秦制缺乏数目字管理的精细会计，以严刑弥补组织不足——统一后迅速透支。</p></article>
+<article style="grid-column:1/-1"><div class="who">西方汉学</div><p>Legalism studies：商鞅改革是「国家建构」(state-building) 经典案例，军功爵是可计量的激励接口。</p></article></div>
+</section>
+<section class="sj-ledger-field" id="f6" aria-labelledby="h-f6">
+  <div class="sj-ledger-fh"><span class="fnum">06</span><h2 id="h-f6">成败判定</h2><span class="en">VERDICT</span></div>
+  <div class="sj-11-verdict"><article class="ok"><div class="vh">已兑现</div><p>秦国由弱转强</p><p>统一六国制度奠基</p><p>军功爵通道打开</p></article>
+<article class="fail"><div class="vh">已失败</div><p>商鞅车裂</p><p>严刑峻法残暴化</p><p>旧贵族反扑埋秦末隐患</p></article>
+<article class="open"><div class="vh">未决〔反事实〕</div><p>若统一后收敛汲取、沉淀合法性，能否避免二世而亡？</p></article></div>
+</section>
+<section class="sj-ledger-field" id="f7" aria-labelledby="h-f7">
+  <div class="sj-ledger-fh"><span class="fnum">07</span><h2 id="h-f7">古今映射</h2><span class="en">MIRROR</span></div>
+  <div class="sj-11-mirror"><article class="same"><div class="mh">相似机制</div><p>自上而下制度重塑 vs 既得利益抵制；改革依赖最高权力个人背书。</p></article>
+<article class="diff"><div class="mh">关键差异</div><p>现代法治边界、组织穿透与数目字管理已质变；但「改革触动精英特权」张力同构（→ SJ-20）。</p></article></div>
+</section>
+</article>
+<section class="sj-ledger-field" id="fx"><div class="sj-ledger-fh"><span class="fnum">◆</span><h2>交叉引用</h2></div>
+  <div class="sj-11-xref"><a href="./SJ-12.html"><div class="n">SJ-12</div><h3>秦末崩解</h3><p>变法遗产与速亡的对照链。</p></a>
+<a href="./SJ-05.html"><div class="n">SJ-05</div><h3>王安石变法</h3><p>跨时代变法谱系对照。</p></a>
+<a href="./SJ-03.html"><div class="n">SJ-03</div><h3>五力模型</h3><p>本案病灶在汲取与精英。</p></a></div>
+</section>
+<footer class="sj-11-foot">
+  <span>ChinaOS · 史鉴 SJ-11 · v0.1 · AS_OF 2026-07-15 · 真源《史记·商君列传》+ 母本规律⑤</span>
+  <span><a href="./SJ-00.html">← 返回 SJ-00</a> · <a href="#sj-11-top">↑ 顶</a></span>
+  <span><a href="./SJ-12.html">下一案 SJ-12 →</a></span>
+</footer>
+</div>
+
 
 <script>
 (function(){
