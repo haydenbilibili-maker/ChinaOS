@@ -97,6 +97,7 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
 @media(max-width:900px){.sj-34-layout{grid-template-columns:1fr}}
 @media(max-width:768px){.sj-34-hist,.sj-34-mirror,.sj-34-verdict,.sj-34-xref{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sj-node,.sj-edge{transition:none}}
+.sj-rail-mini{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6;margin-top:6px}
 </style>
 </head>
 <body>
@@ -123,68 +124,94 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
 <section class="sj-ledger-field" id="f1"><div class="sj-ledger-fh"><span class="fnum">01</span><h2>一句话拐点</h2></div>
   <div class="sj-34-hook"><p>北魏孝文帝（拓跋宏）以<b>迁都洛阳、改姓元、禁胡语胡服、推行均田</b>，试图将鲜卑军事贵族转化为中原正统王朝——合法性叙事力从「胡虏」转为「华夏」，但触怒鲜卑旧贵族，六镇之乱埋下分裂伏笔。</p><div class="yr">系年：太和十八年（494）迁都洛阳 · 出处《魏书·高祖纪》</div></div>
 </section>
-<section class="sj-ledger-field" id="f2"><div class="sj-ledger-fh"><span class="fnum">02</span><h2>结构切片</h2></div>
-  <p class="sj-34-prose">权力几何：<strong>孝文帝皇权</strong> → 汉化改制纵列 → 均田/三长下行 → <strong>鲜卑旧贵族/汉人士族</strong>双底盘。合法性（宣纸色）为主轴，朱批为六镇反弹。</p>
+<section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
+  <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
+  <p class="sj-34-prose">权力几何——<strong>合法性叙事桥接</strong>：孝文帝（宣纸色）以汉化改制架桥连接鲜卑军事贵族与汉人士族；均田/三长下行汲取；朱批为六镇鲜卑旧贵族反弹。非竖轴纵列，而是 Y 形叙事桥+财政下行。</p>
   <div class="sj-34-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
-  <title id="sj-title">结构切片 · 孝文帝改革</title>
-  <desc id="sj-desc">权力几何：孝文帝皇权 → 汉化改制纵列 → 均田/三长下行 → 鲜卑旧贵族/汉人士族双底盘。合法性（宣纸色）为主轴，朱批为六镇反弹。</desc>
+  <title id="sj-title">孝文帝改革 · 合法性桥接结构切片图</title>
+  <desc id="sj-desc">孝文帝以汉化架桥连接鲜卑与汉士族；均田三长下行；六镇旧贵族朱红反弹。</desc>
   <defs>
-    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/></linearGradient>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/>
+    </linearGradient>
     <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
     <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
-    <marker id="a-celadon" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
-    <marker id="a-paper" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-100)"/></marker>
+    <marker id="a-celadon" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-300)"/></marker>
   </defs>
-  <rect width="820" height="600" fill="var(--sj-ink-900)"/>
-  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,serif">结构切片 · 孝文帝改革</text>
-  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,monospace">SJ-34 · 北魏/南北朝 · 变法</text>
-  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">朱批 · 五力色义 · 点击节点交互</text>
-  <path class="sj-edge" data-edge="e1" d="M410,158 L218,220" stroke="var(--sj-paper-100)" stroke-width="2.4" marker-end="url(#a-paper)"/>
-<path class="sj-edge" data-edge="e2" d="M218,280 L410,330" stroke="var(--sj-celadon)" stroke-width="2" marker-end="url(#a-celadon)"/>
-<path class="sj-edge" data-edge="e3" d="M410,158 L607,220" stroke="var(--sj-vermil)" stroke-width="2.8" marker-end="url(#a-vermil)"/><text x="520" y="185" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">触怒</text>
-<path class="sj-edge" data-edge="e4" d="M410,280 L607,330" stroke="var(--sj-celadon)" stroke-width="2" marker-end="url(#a-celadon)"/>
-<path class="sj-edge" data-edge="e5" d="M410,390 L410,450" stroke="var(--sj-ochre)" stroke-width="2" marker-end="url(#a-ochre)"/>
-<path class="sj-edge" data-edge="e6" d="M607,280 L410,450" stroke="var(--sj-vermil)" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#a-vermil)"/><text x="520" y="380" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">六镇反弹</text>
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,Noto Serif SC,serif" letter-spacing="0.1em">结构切片 · 合法性桥接</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,JetBrains Mono,monospace" letter-spacing="0.08em">SJ-34 · 北魏 · 变法</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,Noto Serif SC,serif">朱批：汉化桥接(宣纸) + 均田下行(赭金) + 六镇反弹(朱红)</text>
+  <g fill="none" stroke-linecap="round">
+    <path class="sj-edge" data-edge="b1" d="M410,158 L218,230" stroke="var(--sj-paper-100)" stroke-width="2.4" marker-end="url(#a-paper)" opacity="0.95"/>
+    <path class="sj-edge" data-edge="b2" d="M410,158 L607,230" stroke="var(--sj-vermil)" stroke-width="2.4" marker-end="url(#a-vermil)" opacity="0.85"/>
+    <path class="sj-edge" data-edge="b3" d="M410,158 L410,310" stroke="var(--sj-ochre)" stroke-width="2.2" marker-end="url(#a-ochre)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="b4" d="M218,280 L218,330" stroke="var(--sj-celadon)" stroke-width="2" marker-end="url(#a-celadon)" opacity="0.85"/>
+    <path class="sj-edge" data-edge="b5" d="M410,390 L410,450" stroke="var(--sj-ochre)" stroke-width="2.4" marker-end="url(#a-ochre)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="b6" d="M607,280 C520,360 480,400 460,330" stroke="var(--sj-vermil)" stroke-width="2.6" stroke-dasharray="5 4" marker-end="url(#a-vermil)" opacity="0.9"/></g>
+  <g font-family="Songti SC,Noto Serif SC,serif" font-size="11">
+    <text x="280" y="200" fill="var(--sj-paper-100)">汉化桥</text>
+    <text x="540" y="200" fill="var(--sj-vermil)">旧贵触怒</text>
+    <text x="430" y="280" fill="var(--sj-ochre)">均田下行</text>
+    <text x="540" y="360" fill="var(--sj-vermil)">六镇反弹</text></g>
+
   <g class="sj-node" data-id="xiaowen" tabindex="0" role="button" aria-label="孝文帝 · 元宏">
     <rect x="310" y="112" width="200" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-paper-100)" stroke-width="2.4"/>
     <text x="410" y="140" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC,serif">孝文帝 · 元宏</text>
-    <text x="410" y="158" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">皇权 · 汉化</text>
+    <text x="410" y="158" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">皇权 · 汉化桥</text>
   </g>
-<g class="sj-node" data-id="hanhua" tabindex="0" role="button" aria-label="汉化改制">
+  <g class="sj-node" data-id="hanhua" tabindex="0" role="button" aria-label="汉化改制">
     <rect x="130" y="220" width="176" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-paper-100)" stroke-width="2.4"/>
     <text x="218" y="248" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC,serif">汉化改制</text>
     <text x="218" y="266" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">改姓 · 禁胡语</text>
   </g>
-<g class="sj-node" data-id="juntian" tabindex="0" role="button" aria-label="均田 · 三长">
-    <rect x="310" y="330" width="200" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
-    <text x="410" y="358" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">均田 · 三长</text>
-    <text x="410" y="376" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">汲取重建</text>
+  <g class="sj-node" data-id="luoyang" tabindex="0" role="button" aria-label="洛阳 · 494">
+    <rect x="130" y="330" width="176" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2"/>
+    <text x="218" y="358" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">洛阳 · 494</text>
+    <text x="218" y="376" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">迁都 · 象征</text>
   </g>
-<g class="sj-node" data-id="xianbei" tabindex="0" role="button" aria-label="鲜卑旧贵族">
-    <rect x="514" y="220" width="186" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+  <g class="sj-node" data-id="juntian" tabindex="0" role="button" aria-label="均田 · 三长">
+    <rect x="310" y="310" width="200" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="410" y="338" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">均田 · 三长</text>
+    <text x="410" y="356" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">汲取重建 · 下行</text>
+  </g>
+  <g class="sj-node" data-id="xianbei" tabindex="0" role="button" aria-label="鲜卑旧贵族">
+    <rect x="514" y="220" width="186" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.8"/>
     <text x="607" y="248" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">鲜卑旧贵族</text>
     <text x="607" y="266" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">六镇 · 反弹</text>
   </g>
-<g class="sj-node" data-id="hanshi" tabindex="0" role="button" aria-label="汉人士族">
-    <rect x="514" y="330" width="186" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
-    <text x="607" y="358" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">汉人士族</text>
-    <text x="607" y="376" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">融合 · 通婚</text>
+  <g class="sj-node" data-id="hanshi" tabindex="0" role="button" aria-label="汉人士族">
+    <rect x="514" y="310" width="186" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="607" y="338" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">汉人士族</text>
+    <text x="607" y="356" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">融合 · 通婚</text>
   </g>
-<g class="sj-node" data-id="luoyang" tabindex="0" role="button" aria-label="洛阳 · 494">
-    <rect x="130" y="330" width="176" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
-    <text x="218" y="358" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">洛阳 · 494</text>
-    <text x="218" y="376" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">迁都 · 时点</text>
+  <g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="编户齐民 · 北方基座">
+    <rect x="56" y="486" width="708" height="86" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="1.4"/>
+    <text x="410" y="514" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC,serif">编户齐民 · 北方基座</text>
+    <text x="410" y="532" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">均田农民底盘</text>
+    
   </g>
-<g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="编户齐民 · 北方基座">
-    <rect x="56" y="450" width="708" height="70" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="2.4"/>
-    <text x="410" y="482" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC,serif">编户齐民 · 北方基座</text>
-    <text x="410" y="500" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">均田农民底盘</text>
-  </g>
-  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,monospace">viewBox 820×600 · SJ-34</text>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,JetBrains Mono,monospace">viewBox 820×600 · 合法性桥接</text>
 </svg></div>
   <div class="sj-34-layout">
+    <div class="sj-34-note" style="margin-top:0">色义：孝文帝=宣纸白 · 汉化=合法性桥 · 均田=赭金下行 · 鲜卑旧贵=朱红 · 汉士族=青瓷 · 底盘=深墨。</div>
     <aside class="sj-34-aside" id="aside" aria-live="polite">
-      <div id="aside-empty" class="sj-34-aside-empty">点选切片中任一节点，展开机制链角色（NODE_DATA 交互）。</div>
+      <div id="aside-empty" class="sj-34-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
       <div id="aside-body" hidden>
         <div class="k" id="aside-tag">—</div>
         <h3 id="aside-name">—</h3>
@@ -193,9 +220,11 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
     </aside>
   </div>
 </section>
+<!--SLICE_RAIL:汉化桥接 → 均田三长 → 六镇反弹。-->
 </div>
 <aside class="sj-rail"><div class="sj-rail-card"><div class="k">台账 · 七字段</div>
   <nav class="sj-rail-toc"><a href="#f1">01 · 拐点</a><a href="#f2">02 · 切片</a><a href="#f3">03 · 相位</a><a href="#f4">04 · 五力</a><a href="#f5">05 · 交锋</a><a href="#f6">06 · 成败</a><a href="#f7">07 · 映射</a></nav>
+  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p style="font-size:12.5px;color:var(--sj-paper-300);line-height:1.6">汉化桥接 → 均田三长 → 六镇反弹。</p></div>
   <a class="sj-rail-chip" href="./SJ-00.html#sec-case-hub">案例库 Hub</a>
   <a class="sj-rail-chip" href="./SJ-03.html">SJ-03 五力</a>
   <a class="sj-rail-chip" href="./SJ-04.html">SJ-04 相位盘</a>
@@ -245,87 +274,85 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
   <span><a href="./SJ-35.html">SJ-35 →</a></span>
 </footer>
 </div>
+
 <script>
 (function(){
-  const stage = document.getElementById('stage');
-  const nodes = Array.from(stage.querySelectorAll('.sj-node'));
-  const edges = Array.from(stage.querySelectorAll('.sj-edge'));
-  const asideEmpty = document.getElementById('aside-empty');
-  const asideBody = document.getElementById('aside-body');
-  const NODE_DATA = {
+  const stage=document.getElementById('stage');
+  if(!stage) return;
+  const nodes=Array.from(stage.querySelectorAll('.sj-node'));
+  const edges=Array.from(stage.querySelectorAll('.sj-edge'));
+  const asideEmpty=document.getElementById('aside-empty');
+  const asideBody=document.getElementById('aside-body');
+  const NODE_DATA={
   "xiaowen": {
     "name": "孝文帝 · 元宏",
-    "tag": "合法性",
-    "body": "拓跋宏改姓元，迁都洛阳，以汉化绑定中原正统。"
+    "tag": "合法性 · 桥接",
+    "body": "拓跋宏以汉化重建「华夏正统」叙事——从「胡虏」转为「魏承汉」。"
   },
   "hanhua": {
     "name": "汉化改制",
-    "tag": "叙事重建",
-    "body": "改汉姓、穿汉服、说汉语、祭孔——合法性叙事从胡虏转为华夏。"
-  },
-  "juntian": {
-    "name": "均田 · 三长",
-    "tag": "财政",
-    "body": "均田制重建税基；三长制强化基层编户，为隋唐均田—租庸调奠基。"
-  },
-  "xianbei": {
-    "name": "鲜卑旧贵族",
-    "tag": "抵制",
-    "body": "北方六镇军户被边缘化；孝文死后鲜卑贵族反扑，六镇之乱引爆分裂。"
-  },
-  "hanshi": {
-    "name": "汉人士族",
-    "tag": "精英循环",
-    "body": "与鲜卑贵族通婚、共仕；精英循环通道部分打开。"
+    "tag": "叙事桥 · 左支",
+    "body": "改姓、禁胡语胡服、祭孔——合法性叙事主动重建。"
   },
   "luoyang": {
     "name": "洛阳 · 494",
-    "tag": "时点标注",
-    "body": "太和十八年迁都洛阳，象征从平城草原帝国转向中原正统。"
+    "tag": "迁都 · 时点",
+    "body": "太和十八年（494）迁都洛阳——空间象征绑定汉地正统。"
+  },
+  "juntian": {
+    "name": "均田 · 三长",
+    "tag": "财政下行",
+    "body": "均田制重建税基；三长制强化基层编户，汲取链向汉化政权集中。"
+  },
+  "xianbei": {
+    "name": "鲜卑旧贵族",
+    "tag": "六镇 · 反弹",
+    "body": "北方六镇鲜卑军户被汉化政策边缘化——军事力与合法性改革脱节。"
+  },
+  "hanshi": {
+    "name": "汉人士族",
+    "tag": "融合 · 右支",
+    "body": "鲜卑贵族改汉姓、与汉士族通婚，试图打开精英融合通道。"
   },
   "base": {
     "name": "编户齐民 · 北方基座",
-    "tag": "基座",
-    "body": "战乱后北方人口与耕地重新匹配；均田试图锁定税基与合法性绑定。〔范围存疑〕"
+    "tag": "税基底盘",
+    "body": "战乱后北方人口重新匹配；均田试图锁定税基〔实施范围存疑〕。"
   }
 };
-  const NODE_EDGE = {
+  const NODE_EDGE={
   "xiaowen": [
-    "e1",
-    "e3"
+    "b1",
+    "b2",
+    "b3"
   ],
   "hanhua": [
-    "e1",
-    "e4"
-  ],
-  "juntian": [
-    "e2",
-    "e5"
-  ],
-  "xianbei": [
-    "e3",
-    "e6"
-  ],
-  "hanshi": [
-    "e4"
+    "b1",
+    "b4"
   ],
   "luoyang": [
-    "e2"
+    "b4"
+  ],
+  "juntian": [
+    "b3",
+    "b5"
+  ],
+  "xianbei": [
+    "b2",
+    "b6"
+  ],
+  "hanshi": [
+    "b2"
   ],
   "base": [
-    "e5",
-    "e6"
+    "b5"
   ]
 };
-  function clearVisual(){ stage.classList.remove('is-picking'); nodes.forEach(n=>n.classList.remove('is-hot')); edges.forEach(e=>e.classList.remove('is-hot')); }
-  function showAside(id){ const d=NODE_DATA[id]; if(!d) return; asideEmpty.hidden=true; asideBody.hidden=false;
-    document.getElementById('aside-tag').textContent=d.tag; document.getElementById('aside-name').textContent=d.name; document.getElementById('aside-text').textContent=d.body; }
-  function pick(id){ if(!NODE_DATA[id]) return; clearVisual(); stage.classList.add('is-picking');
-    nodes.forEach(n=>n.classList.toggle('is-hot', n.dataset.id===id));
-    const hot=NODE_EDGE[id]||[]; edges.forEach(e=>e.classList.toggle('is-hot', hot.indexOf(e.dataset.edge)>=0));
-    showAside(id); }
-  nodes.forEach(n=>{ const act=()=>pick(n.dataset.id); n.addEventListener('click',act);
-    n.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); act(); } }); });
+  function clearVisual(){stage.classList.remove('is-picking');nodes.forEach(n=>n.classList.remove('is-hot'));edges.forEach(e=>e.classList.remove('is-hot'));}
+  function showAside(id){const d=NODE_DATA[id];if(!d)return;asideEmpty.hidden=true;asideBody.hidden=false;document.getElementById('aside-tag').textContent=d.tag;document.getElementById('aside-name').textContent=d.name;document.getElementById('aside-text').textContent=d.body;}
+  function pick(id){if(!NODE_DATA[id])return;clearVisual();stage.classList.add('is-picking');nodes.forEach(n=>n.classList.toggle('is-hot',n.dataset.id===id));const hot=NODE_EDGE[id]||[];edges.forEach(e=>e.classList.toggle('is-hot',hot.indexOf(e.dataset.edge)>=0));showAside(id);}
+  nodes.forEach(n=>{const act=()=>pick(n.dataset.id);n.addEventListener('click',act);n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});});
+  edges.forEach(e=>{if(!e.dataset.edge||!NODE_DATA[e.dataset.edge])return;const act=()=>pick(e.dataset.edge);e.style.cursor='pointer';e.setAttribute('tabindex','0');e.setAttribute('role','button');e.addEventListener('click',act);e.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();act();}});});
 })();
 </script>
 </body>

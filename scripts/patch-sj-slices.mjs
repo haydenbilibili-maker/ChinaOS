@@ -1,5 +1,8 @@
 #!/usr/bin/env node
-/** Patch §02 structure slices for weak SJ case volumes to premium standard. */
+/**
+ * Patch §02 structure slices for SJ case volumes to premium + geometry-spec standard.
+ * True source: docs/shijian/结构切片几何规格.md — geometry configs override premium defaults.
+ */
 import { readFileSync, writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -9,11 +12,33 @@ import {
   sliceScript,
   buildF2Section,
 } from './lib/sj-premium-slice.mjs';
+import {
+  GEOMETRY_SLICE_CONFIGS,
+  GEOMETRY_SPEC_VERSION,
+  FORBIDDEN_CLONE_MOTIF,
+} from './lib/sj-slice-geometries.mjs';
+
+/** Geometry spec (§1) wins over legacy premium configs; never re-apply vertical-spine clone. */
+const ALL_SLICE_CONFIGS = { ...SLICE_CONFIGS, ...GEOMETRY_SLICE_CONFIGS };
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'app/public/shijian');
 
-const TARGETS = ['09', '11', '12', '13', '14', '15', '27', '35', '38', '39', '41', '49'];
+const TARGETS = [
+  '09', '10', '11', '12', '13', '14', '15',
+  '27', '31', '32', '33', '34',
+  '35', '38', '39', '41', '49',
+];
+
+function assertGeometryCompliance(num, config) {
+  const prose = config.prose || '';
+  if (num === '10' && /xuanzong|anlushan|fanzhen|mubing/.test(prose)) {
+    throw new Error(`SJ-10 config must not use 天宝旧 id (${FORBIDDEN_CLONE_MOTIF})`);
+  }
+  if (['11', '13'].includes(num) && /脆弱竖轴|首辅纵列|实线竖轴/.test(prose)) {
+    console.warn(`SJ-${num}: prose may still reference vertical-spine clone — check geometry spec`);
+  }
+}
 
 function injectCss(html, prefix) {
   const css = sliceCss(prefix);
@@ -78,12 +103,15 @@ function addRailMiniCss(html) {
   return html.replace('</style>', `.sj-rail-mini{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6;margin-top:6px}\n</style>`);
 }
 
+console.log(`Geometry spec v${GEOMETRY_SPEC_VERSION} · forbidden motif: ${FORBIDDEN_CLONE_MOTIF}`);
+
 for (const num of TARGETS) {
-  const config = SLICE_CONFIGS[num];
+  const config = ALL_SLICE_CONFIGS[num];
   if (!config) {
     console.warn('Skip', num, '— no config');
     continue;
   }
+  assertGeometryCompliance(num, config);
   const path = join(OUT, `SJ-${num}.html`);
   let html = readFileSync(path, 'utf8');
   html = addRailMiniCss(html);

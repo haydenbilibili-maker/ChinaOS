@@ -1,4 +1,8 @@
-/** Premium structure-slice builder for SJ case volumes. Zero CDN; all --sj-* tokens. */
+/**
+ * Premium structure-slice builder for SJ case volumes. Zero CDN; all --sj-* tokens.
+ * Case-specific geometry true source: docs/shijian/结构切片几何规格.md
+ * Do NOT clone SJ-05 vertical-axis motif — use scripts/lib/sj-slice-geometries.mjs for §1 cases.
+ */
 
 const SCROLL = `  <g aria-hidden="true" opacity="0.7">
     <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
@@ -106,7 +110,7 @@ export function buildF2Section(prefix, { prose, svg, legend, nodeData, nodeEdge,
 <!--SLICE_RAIL:${railSummary}-->`;
 }
 
-function nodeRect(id, x, y, w, h, stroke, label, sub, opts = {}) {
+export function nodeRect(id, x, y, w, h, stroke, label, sub, opts = {}) {
   const dash = opts.dash ? ` stroke-dasharray="${opts.dash}"` : '';
   const sw = opts.sw || '2.4';
   const fill = opts.fill || 'var(--sj-ink-800)';
@@ -118,7 +122,7 @@ function nodeRect(id, x, y, w, h, stroke, label, sub, opts = {}) {
   </g>`;
 }
 
-function nodeCircle(id, cx, cy, r, stroke, label, sub) {
+export function nodeCircle(id, cx, cy, r, stroke, label, sub) {
   return `  <g class="sj-node" data-id="${id}" tabindex="0" role="button" aria-label="${label}">
     <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${stroke}" stroke-width="2" stroke-dasharray="4 3"/>
     <text x="${cx}" y="${cy - 4}" text-anchor="middle" fill="var(--sj-paper-100)" font-size="13" font-family="Songti SC,serif">${label}</text>
@@ -126,7 +130,7 @@ function nodeCircle(id, cx, cy, r, stroke, label, sub) {
   </g>`;
 }
 
-function nodeBase(id, label, sub, highlight) {
+export function nodeBase(id, label, sub, highlight) {
   return `  <g class="sj-node" data-id="${id}" tabindex="0" role="button" aria-label="${label}">
     <rect x="56" y="486" width="708" height="86" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="1.4"/>
     <text x="410" y="514" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC,serif">${label}</text>

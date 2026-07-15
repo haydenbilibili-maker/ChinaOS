@@ -97,6 +97,7 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
 @media(max-width:900px){.sj-31-layout{grid-template-columns:1fr}}
 @media(max-width:768px){.sj-31-hist,.sj-31-mirror,.sj-31-verdict,.sj-31-xref{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sj-node,.sj-edge{transition:none}}
+.sj-rail-mini{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6;margin-top:6px}
 </style>
 </head>
 <body>
@@ -123,67 +124,92 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
 <section class="sj-ledger-field" id="f1"><div class="sj-ledger-fh"><span class="fnum">01</span><h2>一句话拐点</h2></div>
   <div class="sj-31-hook"><p>建安五年（200），袁绍率大军南下，曹操以<b>精兵+奇袭乌巢</b>焚其粮秣，以少胜多——北方主导权由袁转曹，三国鼎立格局由此锁定。本案是分裂期「区域军事力决胜」的教科书转折：资源占优≠军事效能，组织度与后勤链才是结构实因。</p><div class="yr">系年：建安五年（200）官渡 · 乌巢之战 · 出处《三国志·袁绍传》《曹操传》</div></div>
 </section>
-<section class="sj-ledger-field" id="f2"><div class="sj-ledger-fh"><span class="fnum">02</span><h2>结构切片</h2></div>
-  <p class="sj-31-prose">权力几何：<strong>袁绍北方资源盘</strong>（冀青幽并）对垒<strong>曹操中枢+精锐</strong>；乌巢粮道被焚为机制链枢纽，许都中枢维系曹军持续作战。点击节点展开五力角色。</p>
+<section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
+  <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
+  <p class="sj-31-prose">权力几何：<strong>袁绍北方资源盘</strong>（冀青幽并）对垒<strong>曹操中枢+精锐</strong>；乌巢粮道为机制链枢纽，许都中枢维系曹军持续作战。两军对峙+决胜点几何（非竖轴）。</p>
   <div class="sj-31-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
-  <title id="sj-title">结构切片 · 官渡之战</title>
-  <desc id="sj-desc">权力几何：袁绍北方资源盘（冀青幽并）对垒曹操中枢+精锐；乌巢粮道被焚为机制链枢纽，许都中枢维系曹军持续作战。点击节点展开五力角色。</desc>
+  <title id="sj-title">官渡之战 · 两军对峙结构切片图</title>
+  <desc id="sj-desc">袁绍北方资源盘对垒曹操精锐；乌巢粮道奇袭为决胜点；许都支撑曹家中枢。</desc>
   <defs>
-    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/></linearGradient>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%">
+      <stop offset="0%" stop-color="var(--sj-ink-800)"/>
+      <stop offset="100%" stop-color="var(--sj-ink-900)"/>
+    </radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/>
+    </linearGradient>
     <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
     <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
-    <marker id="a-celadon" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
-    <marker id="a-paper" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-100)"/></marker>
+    <marker id="a-celadon" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-300)"/></marker>
   </defs>
-  <rect width="820" height="600" fill="var(--sj-ink-900)"/>
-  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,serif">结构切片 · 官渡之战</text>
-  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,monospace">SJ-31 · 三国 · 军事</text>
-  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">朱批 · 五力色义 · 点击节点交互</text>
-  <path class="sj-edge" data-edge="e1" d="M156,212 L410,250" stroke="var(--sj-ochre)" stroke-width="2.2" stroke-dasharray="6 5" marker-end="url(#a-ochre)"/><text x="280" y="228" text-anchor="middle" fill="var(--sj-ochre)" font-size="11" font-family="Songti SC,serif">资源→粮道</text>
-<path class="sj-edge" data-edge="e2" d="M664,212 L410,285" stroke="var(--sj-vermil)" stroke-width="3.2" marker-end="url(#a-vermil)"/><text x="540" y="248" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">奇袭焚粮</text>
-<path class="sj-edge" data-edge="e3" d="M256,126 L220,360" stroke="var(--sj-ochre)" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#a-ochre)"/><text x="200" y="250" text-anchor="middle" fill="var(--sj-ochre)" font-size="11" font-family="Songti SC,serif">对峙</text>
-<path class="sj-edge" data-edge="e4" d="M664,316 L410,320" stroke="var(--sj-celadon)" stroke-width="2" marker-end="url(#a-celadon)"/><text x="540" y="310" text-anchor="middle" fill="var(--sj-celadon)" font-size="11" font-family="Songti SC,serif">中枢支撑</text>
-<path class="sj-edge" data-edge="e5" d="M410,320 L410,452" stroke="var(--sj-line)" stroke-width="1.6"/>
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,Noto Serif SC,serif" letter-spacing="0.1em">结构切片 · 官渡之战</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,JetBrains Mono,monospace" letter-spacing="0.08em">SJ-31 · 三国 · 军事决战</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,Noto Serif SC,serif">朱批：资源盘≠效能 · 乌巢粮道=机制枢纽 · 组织度决胜</text>
+  <g fill="none" stroke-linecap="round">
+    <path class="sj-edge" data-edge="e1" d="M156,212 L410,250" stroke="var(--sj-ochre)" stroke-width="2.2" stroke-dasharray="6 5" marker-end="url(#a-ochre)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="e2" d="M664,212 L410,285" stroke="var(--sj-vermil)" stroke-width="3.2" marker-end="url(#a-vermil)" opacity="0.95"/>
+    <path class="sj-edge" data-edge="e3" d="M156,212 L220,360" stroke="var(--sj-ochre)" stroke-width="1.8" marker-end="url(#a-ochre)" opacity="0.85"/>
+    <path class="sj-edge" data-edge="e4" d="M664,316 L410,320" stroke="var(--sj-celadon)" stroke-width="2" marker-end="url(#a-celadon)" opacity="0.9"/>
+    <path class="sj-edge" data-edge="e5" d="M410,320 L410,452" stroke="var(--sj-line)" stroke-width="1.6" marker-end="url(#a-paper)" opacity="0.7"/></g>
+  <g font-family="Songti SC,Noto Serif SC,serif" font-size="11">
+    <text x="280" y="228" text-anchor="middle" fill="var(--sj-ochre)">资源→粮道</text>
+    <text x="540" y="248" text-anchor="middle" fill="var(--sj-vermil)" font-size="12" font-weight="600">奇袭焚粮</text>
+    <text x="540" y="310" text-anchor="middle" fill="var(--sj-celadon)">许都支撑</text></g>
+
   <g class="sj-node" data-id="yuanshao" tabindex="0" role="button" aria-label="袁绍 · 北方">
-    <rect x="56" y="126" width="200" height="86" rx="6" fill="#2a2218" stroke="var(--sj-ochre)" stroke-width="2.4"/>
-    <text x="156" y="158" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">袁绍 · 北方</text>
-    <text x="156" y="176" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">冀青幽并 · 资源盘</text>
+    <rect x="56" y="126" width="200" height="86" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="156" y="154" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">袁绍 · 北方</text>
+    <text x="156" y="172" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">冀青幽并 · 资源盘</text>
   </g>
-<g class="sj-node" data-id="caocao" tabindex="0" role="button" aria-label="曹操 · 精锐">
-    <rect x="564" y="126" width="200" height="86" rx="6" fill="#2a1a16" stroke="var(--sj-vermil)" stroke-width="2.4"/>
-    <text x="664" y="158" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">曹操 · 精锐</text>
-    <text x="664" y="176" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">唯才是举 · 组织度</text>
+  <g class="sj-node" data-id="caocao" tabindex="0" role="button" aria-label="曹操 · 精锐">
+    <rect x="564" y="126" width="200" height="86" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="664" y="154" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">曹操 · 精锐</text>
+    <text x="664" y="172" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">唯才是举 · 组织度</text>
   </g>
-<g class="sj-node" data-id="wuchao" tabindex="0" role="button" aria-label="乌巢 · 粮道">
+  <g class="sj-node" data-id="wuchao" tabindex="0" role="button" aria-label="乌巢 · 粮道">
     <rect x="310" y="250" width="200" height="70" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
-    <text x="410" y="282" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">乌巢 · 粮道</text>
-    <text x="410" y="300" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">建安五年 · 奇袭</text>
+    <text x="410" y="278" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">乌巢 · 粮道</text>
+    <text x="410" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">建安五年 · 奇袭</text>
   </g>
-<g class="sj-node" data-id="xudu" tabindex="0" role="button" aria-label="许都 · 中枢">
+  <g class="sj-node" data-id="xudu" tabindex="0" role="button" aria-label="许都 · 中枢">
     <rect x="564" y="250" width="200" height="70" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
-    <text x="664" y="282" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">许都 · 中枢</text>
-    <text x="664" y="300" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">挟天子 · 名义合法性</text>
+    <text x="664" y="278" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">许都 · 中枢</text>
+    <text x="664" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">挟天子 · 合法性</text>
   </g>
-<g class="sj-node" data-id="guandu" tabindex="0" role="button" aria-label="官渡 · 200">
+  <g class="sj-node" data-id="guandu" tabindex="0" role="button" aria-label="官渡 · 200">
     <rect x="130" y="360" width="180" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
     <text x="220" y="388" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">官渡 · 200</text>
     <text x="220" y="406" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">对峙 · 决战</text>
   </g>
-<g class="sj-node" data-id="jingying" tabindex="0" role="button" aria-label="谋士链">
+  <g class="sj-node" data-id="jingying" tabindex="0" role="button" aria-label="谋士链">
     <rect x="340" y="360" width="140" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
     <text x="410" y="388" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">谋士链</text>
     <text x="410" y="406" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">田丰 · 许攸</text>
   </g>
-<g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="河北 · 兖豫基座">
-    <rect x="56" y="452" width="708" height="60" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="2.4"/>
-    <text x="410" y="480" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC,serif">河北 · 兖豫基座</text>
-    <text x="410" y="498" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">税基广 vs 屯田稳</text>
+  <g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="河北 · 兖豫基座">
+    <rect x="56" y="486" width="708" height="86" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="1.4"/>
+    <text x="410" y="514" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC,serif">河北 · 兖豫基座</text>
+    <text x="410" y="532" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">税基广 vs 屯田稳</text>
+    
   </g>
-  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,monospace">viewBox 820×600 · SJ-31</text>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,JetBrains Mono,monospace">viewBox 820×600 · 官渡</text>
 </svg></div>
   <div class="sj-31-layout">
+    <div class="sj-31-note" style="margin-top:0">色义：袁绍=赭金资源盘 · 曹操=朱红精锐 · 乌巢=朱红决胜点 · 许都=青瓷合法性 · 底盘=深墨。战役几何：两军对峙+粮道枢纽。</div>
     <aside class="sj-31-aside" id="aside" aria-live="polite">
-      <div id="aside-empty" class="sj-31-aside-empty">点选切片中任一节点，展开机制链角色（NODE_DATA 交互）。</div>
+      <div id="aside-empty" class="sj-31-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
       <div id="aside-body" hidden>
         <div class="k" id="aside-tag">—</div>
         <h3 id="aside-name">—</h3>
@@ -192,9 +218,11 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
     </aside>
   </div>
 </section>
+<!--SLICE_RAIL:袁曹对峙 → 乌巢奇袭 → 200 北方锁定。-->
 </div>
 <aside class="sj-rail"><div class="sj-rail-card"><div class="k">台账 · 七字段</div>
   <nav class="sj-rail-toc"><a href="#f1">01 · 拐点</a><a href="#f2">02 · 切片</a><a href="#f3">03 · 相位</a><a href="#f4">04 · 五力</a><a href="#f5">05 · 交锋</a><a href="#f6">06 · 成败</a><a href="#f7">07 · 映射</a></nav>
+  <div class="sj-rail-card" style="margin-top:8px"><div class="k">结构切片</div><p style="font-size:12.5px;color:var(--sj-paper-300);line-height:1.6">袁曹对峙 → 乌巢奇袭 → 200 北方锁定。</p></div>
   <a class="sj-rail-chip" href="./SJ-00.html#sec-case-hub">案例库 Hub</a>
   <a class="sj-rail-chip" href="./SJ-03.html">SJ-03 五力</a>
   <a class="sj-rail-chip" href="./SJ-04.html">SJ-04 相位盘</a>
@@ -244,14 +272,16 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
   <span><a href="./SJ-32.html">SJ-32 →</a></span>
 </footer>
 </div>
+
 <script>
 (function(){
-  const stage = document.getElementById('stage');
-  const nodes = Array.from(stage.querySelectorAll('.sj-node'));
-  const edges = Array.from(stage.querySelectorAll('.sj-edge'));
-  const asideEmpty = document.getElementById('aside-empty');
-  const asideBody = document.getElementById('aside-body');
-  const NODE_DATA = {
+  const stage=document.getElementById('stage');
+  if(!stage) return;
+  const nodes=Array.from(stage.querySelectorAll('.sj-node'));
+  const edges=Array.from(stage.querySelectorAll('.sj-edge'));
+  const asideEmpty=document.getElementById('aside-empty');
+  const asideBody=document.getElementById('aside-body');
+  const NODE_DATA={
   "yuanshao": {
     "name": "袁绍 · 北方",
     "tag": "资源占优",
@@ -264,7 +294,7 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
   },
   "wuchao": {
     "name": "乌巢 · 粮道",
-    "tag": "机制枢纽",
+    "tag": "机制枢纽 · 决胜点",
     "body": "淳于琼守乌巢，曹操亲率精兵焚粮——袁绍军心溃散的结构引爆点。"
   },
   "xudu": {
@@ -274,7 +304,7 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
   },
   "guandu": {
     "name": "官渡 · 200",
-    "tag": "时点标注",
+    "tag": "时点 · 对峙",
     "body": "建安五年主战场；袁军连营而曹军固守，僵持至乌巢一击逆转。"
   },
   "jingying": {
@@ -284,11 +314,11 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
   },
   "base": {
     "name": "河北 · 兖豫基座",
-    "tag": "基座",
+    "tag": "底盘",
     "body": "河北经战乱仍富；兖豫经曹操屯田修复。基座优势需经军事组织转化。〔人口数字存疑〕"
   }
 };
-  const NODE_EDGE = {
+  const NODE_EDGE={
   "yuanshao": [
     "e1",
     "e3"
@@ -308,20 +338,19 @@ body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c
   "guandu": [
     "e3"
   ],
-  "jingying": [],
+  "jingying": [
+    "e3",
+    "e2"
+  ],
   "base": [
     "e5"
   ]
 };
-  function clearVisual(){ stage.classList.remove('is-picking'); nodes.forEach(n=>n.classList.remove('is-hot')); edges.forEach(e=>e.classList.remove('is-hot')); }
-  function showAside(id){ const d=NODE_DATA[id]; if(!d) return; asideEmpty.hidden=true; asideBody.hidden=false;
-    document.getElementById('aside-tag').textContent=d.tag; document.getElementById('aside-name').textContent=d.name; document.getElementById('aside-text').textContent=d.body; }
-  function pick(id){ if(!NODE_DATA[id]) return; clearVisual(); stage.classList.add('is-picking');
-    nodes.forEach(n=>n.classList.toggle('is-hot', n.dataset.id===id));
-    const hot=NODE_EDGE[id]||[]; edges.forEach(e=>e.classList.toggle('is-hot', hot.indexOf(e.dataset.edge)>=0));
-    showAside(id); }
-  nodes.forEach(n=>{ const act=()=>pick(n.dataset.id); n.addEventListener('click',act);
-    n.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); act(); } }); });
+  function clearVisual(){stage.classList.remove('is-picking');nodes.forEach(n=>n.classList.remove('is-hot'));edges.forEach(e=>e.classList.remove('is-hot'));}
+  function showAside(id){const d=NODE_DATA[id];if(!d)return;asideEmpty.hidden=true;asideBody.hidden=false;document.getElementById('aside-tag').textContent=d.tag;document.getElementById('aside-name').textContent=d.name;document.getElementById('aside-text').textContent=d.body;}
+  function pick(id){if(!NODE_DATA[id])return;clearVisual();stage.classList.add('is-picking');nodes.forEach(n=>n.classList.toggle('is-hot',n.dataset.id===id));const hot=NODE_EDGE[id]||[];edges.forEach(e=>e.classList.toggle('is-hot',hot.indexOf(e.dataset.edge)>=0));showAside(id);}
+  nodes.forEach(n=>{const act=()=>pick(n.dataset.id);n.addEventListener('click',act);n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});});
+  edges.forEach(e=>{if(!e.dataset.edge||!NODE_DATA[e.dataset.edge])return;const act=()=>pick(e.dataset.edge);e.style.cursor='pointer';e.setAttribute('tabindex','0');e.setAttribute('role','button');e.addEventListener('click',act);e.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();act();}});});
 })();
 </script>
 </body>
