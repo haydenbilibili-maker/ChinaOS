@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-56 · 长平之战</title>
+<meta name="description" content="ChinaOS 史鉴系列案例卷 SJ-56：长平之战——军事消耗 · 基座承载越阈 · 赵国衰变。史鉴台账七字段。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;--sj-ink-800:#1d1916;--sj-paper-100:#e8ddc7;--sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;--sj-celadon:#5f7a6f;--sj-ochre:#b8894a;--sj-line:#3a322b;
+  --sj-radius:6px;--sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c 0%,transparent 55%),var(--sj-ink-900);color:var(--sj-paper-100);font-family:var(--sj-serif);line-height:1.75}
+.sj-56-wrap{max-width:min(100%,1180px);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media(min-width:1280px){.sj-56-wrap{max-width:min(100%,1480px)}}
+.sj-page-layout{display:flex;flex-direction:column;gap:var(--sj-space)}
+@media(min-width:1280px){.sj-page-layout{display:grid;grid-template-columns:minmax(0,58fr) minmax(280px,38fr);gap:clamp(16px,2vw,28px);align-items:start}}
+.sj-main-col{min-width:0}
+.sj-rail{display:flex;flex-direction:column;gap:12px}
+@media(min-width:1280px){.sj-rail{position:sticky;top:1rem;align-self:start;max-height:calc(100vh - 2rem);overflow-y:auto}}
+@media(max-width:1279px){.sj-page-layout{flex-direction:column}.sj-main-col{display:contents}.sj-rail{order:2;margin:8px 0 20px}}
+.sj-rail-card{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px}
+.sj-rail-card .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-rail-toc{display:grid;gap:6px;margin-top:8px}
+.sj-rail-toc a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);padding:8px 10px;text-decoration:none;color:inherit;font-size:13px}
+.sj-rail-toc a:hover,.sj-rail-toc a:focus-visible,.sj-rail-toc a.is-active{border-color:var(--sj-ochre);outline:none}
+.sj-rail-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;margin:4px 4px 0 0}
+.sj-56-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px}
+.sj-56-mast .badge{font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-56-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em}
+.sj-56-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;font-size:.72em;display:block;margin-top:4px}
+.sj-56-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right}
+.sj-56-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;margin:2px}
+.sj-56-dynasty{color:var(--sj-ochre);border-color:var(--sj-ochre)}
+.sj-zhupi{color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:74ch}
+.sj-ledger{display:grid;gap:8px}
+.sj-ledger-field{margin:20px 0 8px;scroll-margin-top:24px}
+.sj-ledger-fh{display:flex;align-items:baseline;gap:12px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--sj-line)}
+.sj-ledger-fh .fnum{font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre);border:1px solid var(--sj-line);border-radius:4px;padding:1px 7px}
+.sj-ledger-fh h2{font-size:clamp(16px,2.1vw,19px);font-weight:600}
+.sj-56-prose{font-size:15.5px;max-width:74ch}
+.sj-56-hook{border:1px solid var(--sj-line);border-left:3px solid var(--sj-vermil);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:18px 22px}
+.sj-56-hook p{font-size:clamp(16px,2.3vw,20px);line-height:1.7}
+.sj-56-hook .yr{margin-top:10px;font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre)}
+.sj-56-stage{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:8px;overflow:auto}
+.sj-56-stage svg{display:block;width:100%;height:auto}
+.sj-node{cursor:pointer;transition:opacity .2s ease,filter .2s ease}
+.sj-node:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:4px}
+.sj-edge{transition:opacity .2s ease,filter .2s ease}
+.sj-56-stage.is-picking .sj-node{opacity:.3}
+.sj-56-stage.is-picking .sj-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px rgba(184,137,74,.4))}
+.sj-56-stage.is-picking .sj-edge{opacity:.16}
+.sj-56-stage.is-picking .sj-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px rgba(168,59,44,.4))}
+.sj-56-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:14px;align-items:start;margin-top:14px}
+.sj-56-aside{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px;position:sticky;top:12px;min-height:150px}
+.sj-56-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-56-aside h3{font-size:16px;letter-spacing:.08em;margin-bottom:8px}
+.sj-56-aside p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.7}
+.sj-56-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+.sj-56-note{font-size:13px;color:var(--sj-paper-300);line-height:1.65;max-width:74ch}
+@media(max-width:900px){.sj-56-layout{grid-template-columns:1fr}.sj-56-aside{position:static}}
+.sj-56-phase .pb{font-family:var(--sj-mono);font-size:12px;color:var(--sj-vermil);border:1px solid var(--sj-vermil);border-radius:20px;padding:6px 16px}
+.sj-56-table-wrap{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);overflow:auto}
+.sj-56-table{width:100%;border-collapse:collapse;font-size:13px}
+.sj-56-table th{background:var(--sj-ink-900);color:var(--sj-ochre);font-family:var(--sj-mono);font-size:10px;padding:10px 12px;text-align:left;border-bottom:1px solid var(--sj-line)}
+.sj-56-table td{padding:10px 12px;border-bottom:1px solid var(--sj-line);color:var(--sj-paper-300);vertical-align:top}
+.sj-56-table td:first-child{color:var(--sj-paper-100);font-weight:600}
+.sj-56-hist{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-56-hist article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-56-hist .who{font-size:14px;font-weight:600;color:var(--sj-celadon);margin-bottom:6px}
+.sj-56-hist .who span{font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);margin-left:6px}
+.sj-56-hist p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+.sj-56-verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sj-56-verdict article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-56-verdict .vh{font-family:var(--sj-mono);font-size:10px;margin-bottom:8px}
+.sj-56-verdict article.ok .vh{color:var(--sj-celadon)}
+.sj-56-verdict article.fail .vh{color:var(--sj-vermil)}
+.sj-56-verdict article.open .vh{color:var(--sj-ochre)}
+.sj-56-verdict p{font-size:13px;color:var(--sj-paper-300)}
+.sj-56-mirror{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-56-mirror article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-56-mirror .mh{font-family:var(--sj-mono);font-size:10px;margin-bottom:8px}
+.sj-56-mirror article.same .mh{color:var(--sj-celadon)}
+.sj-56-mirror article.diff .mh{color:var(--sj-ochre)}
+.sj-56-mirror p{font-size:13px;color:var(--sj-paper-100);line-height:1.68}
+.sj-56-xref{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.sj-56-xref a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit}
+.sj-56-xref .n{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);margin-bottom:4px}
+.sj-56-xref h3{font-size:14px;margin-bottom:6px}
+.sj-56-xref p{font-size:12.5px;color:var(--sj-paper-300)}
+.sj-56-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sj-56-foot a{color:var(--sj-celadon);text-decoration:none}
+@media(max-width:768px){.sj-56-hist,.sj-56-mirror,.sj-56-verdict,.sj-56-xref{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sj-node,.sj-edge{transition:none}}
+.sj-rail-mini{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="sj-56-wrap" id="sj-56-top">
+<header class="sj-56-mast">
+  <div>
+    <div class="badge">SJ-56 · 军事决战案例卷 · 战国</div>
+    <h1>长平之战<em>军事消耗 · 基座承载越阈 · 赵国衰变</em></h1>
+    <div>
+      <span class="sj-56-chip sj-56-dynasty" data-dynasty="chunqiu">朝代 · 春秋战国</span>
+      <span class="sj-56-chip">军事</span>
+      <a class="sj-56-chip" href="/modules/shijian/sj-00">↔ SJ-00</a>
+      <a class="sj-56-chip" href="/modules/shijian/sj-03">↔ SJ-03</a>
+      <a class="sj-56-chip" href="/modules/shijian/sj-04">↔ SJ-04</a>
+      
+    </div>
+  </div>
+  <div class="sj-56-meta">史鉴台账七字段 · 春秋战国<br/><b>AS_OF 2026-07-15</b> · v0.1</div>
+</header>
+<p class="sj-zhupi">朱批：本案是<strong>军事消耗战击穿基座承载</strong>样本——前260年秦赵长平对峙，赵括代廉颇冒进被围，降卒四十余万〔《史记》载，学界有争议须标〕。口径：《史记·白起列传》《赵世家》；前260 七月赵括代将为通说。</p>
+<article class="sj-ledger">
+<div class="sj-page-layout">
+<div class="sj-main-col">
+<section class="sj-ledger-field" id="f1"><div class="sj-ledger-fh"><span class="fnum">01</span><h2>一句话拐点</h2></div>
+  <div class="sj-56-hook"><p>秦取上党后赵军守长平，廉颇坚壁三年。秦用反间计，赵王以<b>赵括</b>代廉颇。前260年七月赵括出击，秦密令<b>白起</b>为上将，围赵军四十六日，赵括战死，赵军降——白起坑杀降卒四十余万〔《史记》载，须标估算/争议〕。赵国从此一蹶不振，东方六国再无力单独抗秦。</p><div class="yr">系年：前260 七月赵括代将 · 前260 九月赵括战死 · 出处《史记·白起列传》《赵世家》</div></div>
+</section>
+<section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
+  <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
+  <p class="sj-56-prose">权力几何：<strong>秦军/白起</strong>对垒<strong>赵军/赵括</strong> → 长平对峙 → 粮道断绝 → <strong>基座承载</strong>（人口+粮秣）越阈崩溃。两军对峙（军事母题），朱批为坑杀争议。</p>
+  <div class="sj-56-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">结构切片 · 长平之战</title>
+  <desc id="sj-desc">权力几何：秦军/白起对垒赵军/赵括 → 长平对峙 → 粮道断绝 → 基座承载（人口+粮秣）越阈崩溃。两军对峙（军事母题），朱批为坑杀争议。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%"><stop offset="0%" stop-color="var(--sj-ink-800)"/><stop offset="100%" stop-color="var(--sj-ink-900)"/></radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse"><line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/></pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/></linearGradient>
+    <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+    <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+    <marker id="a-celadon" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-100)"/></marker>
+  </defs>
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,serif">结构切片 · 长平之战</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,monospace">SJ-56 · 春秋战国 · 军事</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">朱批 · 五力色义 · 点击节点交互</text>
+  <g fill="none" stroke-linecap="round"><path class="sj-edge" data-edge="e1" d="M156,212 L310,260" stroke="var(--sj-ochre)" stroke-width="2.4" marker-end="url(#a-ochre)"/><text x="220" y="235" text-anchor="middle" fill="var(--sj-ochre)" font-size="11" font-family="Songti SC,serif">赵括出击</text>
+<path class="sj-edge" data-edge="e2" d="M664,212 L410,295" stroke="var(--sj-vermil)" stroke-width="3.2" marker-end="url(#a-vermil)"/><text x="540" y="250" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">白起围歼</text>
+<path class="sj-edge" data-edge="e3" d="M410,330 L410,370" stroke="var(--sj-ochre)" stroke-width="2.8" marker-end="url(#a-ochre)"/><text x="430" y="355" text-anchor="middle" fill="var(--sj-ochre)" font-size="11" font-family="Songti SC,serif">断粮</text>
+<path class="sj-edge" data-edge="e4" d="M136,330 L310,295" stroke="var(--sj-celadon)" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#a-celadon)"/>
+<path class="sj-edge" data-edge="e5" d="M410,426 L410,452" stroke="var(--sj-line)" stroke-width="2"/>
+<path class="sj-edge" data-edge="e6" d="M664,370 L410,420" stroke="var(--sj-vermil)" stroke-width="3" marker-end="url(#a-vermil)"/><text x="540" y="400" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">坑杀</text>
+<path class="sj-edge" data-edge="e7" d="M410,330 L664,370" stroke="var(--sj-vermil)" stroke-width="2"/></g>
+  <g class="sj-node" data-id="qin" tabindex="0" role="button" aria-label="秦军 · 白起">
+    <rect x="564" y="126" width="200" height="86" rx="6" fill="#2a1a16" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="664" y="158" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">秦军 · 白起</text>
+    <text x="664" y="176" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">密任上将</text>
+  </g>
+<g class="sj-node" data-id="zhao" tabindex="0" role="button" aria-label="赵军 · 赵括">
+    <rect x="56" y="126" width="200" height="86" rx="6" fill="#2a2218" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="156" y="158" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">赵军 · 赵括</text>
+    <text x="156" y="176" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">代廉颇 · 冒进</text>
+  </g>
+<g class="sj-node" data-id="changping" tabindex="0" role="button" aria-label="长平 · 260">
+    <rect x="310" y="260" width="200" height="70" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="410" y="292" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">长平 · 260</text>
+    <text x="410" y="310" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">对峙 · 决战</text>
+  </g>
+<g class="sj-node" data-id="liangdao" tabindex="0" role="button" aria-label="粮道断绝">
+    <rect x="310" y="370" width="200" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="410" y="398" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">粮道断绝</text>
+    <text x="410" y="416" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">四十六日</text>
+  </g>
+<g class="sj-node" data-id="lianpo" tabindex="0" role="button" aria-label="廉颇 · 坚壁">
+    <rect x="56" y="260" width="160" height="70" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="136" y="292" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">廉颇 · 坚壁</text>
+    <text x="136" y="310" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">被反间换将</text>
+  </g>
+<g class="sj-node" data-id="kengsha" tabindex="0" role="button" aria-label="坑杀降卒">
+    <rect x="564" y="370" width="200" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="664" y="398" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">坑杀降卒</text>
+    <text x="664" y="416" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">四十余万〔争议〕</text>
+  </g>
+<g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="赵国 · 人口基座">
+    <rect x="56" y="452" width="708" height="60" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="2.4"/>
+    <text x="410" y="480" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC,serif">赵国 · 人口基座</text>
+    <text x="410" y="498" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">举国耗战</text>
+  </g>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,monospace">viewBox 820×600 · SJ-56</text>
+</svg></div>
+  <div class="sj-56-layout">
+    <div class="sj-56-note" style="margin-top:0">点选节点展开机制链；色义见 premium 切片图例（patch 后更新）。</div>
+    <aside class="sj-56-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-56-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+      </div>
+    </aside>
+  </div>
+</section>
+</div>
+<aside class="sj-rail"><div class="sj-rail-card"><div class="k">台账 · 七字段</div>
+  <nav class="sj-rail-toc"><a href="#f1">01 · 拐点</a><a href="#f2">02 · 切片</a><a href="#f3">03 · 相位</a><a href="#f4">04 · 五力</a><a href="#f5">05 · 交锋</a><a href="#f6">06 · 成败</a><a href="#f7">07 · 映射</a></nav>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-00#sec-case-hub">案例库 Hub</a>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-03">SJ-03 五力</a>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-04">SJ-04 相位盘</a>
+</div></aside>
+</div>
+<section class="sj-ledger-field" id="f3"><div class="sj-ledger-fh"><span class="fnum">03</span><h2>相位定位</h2></div>
+  <div class="sj-56-phase"><span class="pb">僵化期 · 军事消耗</span></div>
+  <p class="sj-56-prose">战国后期处于<strong>军事消耗战</strong>相位——长平落于 SJ-04「僵化期·单力强化反降稳定」与 SJ-06 同源逻辑：赵国以举国之力耗于一战，一战崩盘。</p>
+</section>
+<section class="sj-ledger-field" id="f4"><div class="sj-ledger-fh"><span class="fnum">04</span><h2>五力归因台账</h2></div>
+  <div class="sj-56-table-wrap"><table class="sj-56-table"><thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead><tbody><tr><td>财政汲取</td><td class="zheng">举国耗战</td><td class="shi">赵国以全国粮秣供长平，对峙三年耗尽国库——财政枢纽单点依赖</td></tr>
+<tr><td>精英循环</td><td class="zheng">赵括代廉</td><td class="shi">反间计+赵王急功近利，换将断送廉颇坚壁战略——决策链失灵</td></tr>
+<tr><td>合法性叙事</td><td class="zheng">—</td><td class="shi">战争胜负直接决定邦国存亡叙事，败后赵国士气归零</td></tr>
+<tr><td>边疆军事</td><td class="zheng">白起围歼</td><td class="shi">白起断粮道、围而歼之——军事组织度与后勤链决胜</td></tr>
+<tr><td>生态—人口基座</td><td class="zheng">坑杀降卒</td><td class="shi">《史记》载坑杀四十余万〔学界争议，须标估算〕——基座人口承载遭毁灭性打击</td></tr></tbody></table></div>
+</section>
+<section class="sj-ledger-field" id="f5"><div class="sj-ledger-fh"><span class="fnum">05</span><h2>史家交锋</h2></div>
+  <div class="sj-56-hist"><article><div class="who">李敖式考据<span>祛魅</span></div><p>「四十万坑杀」须剥离——《史记》数字含累计阵亡+俘虏，后世考古与学者多有质疑，禁止择一断言。</p></article>
+<article><div class="who">钱穆<span>《国史大纲》</span></div><p>长平之后东方再无力抗秦，秦统一加速。</p></article>
+<article><div class="who">金观涛<span>超稳定结构</span></div><p>举国豪赌一战——强化军事单力反降整体稳定，与 SJ-06 安史逻辑同构。</p></article>
+<article><div class="who">黄仁宇<span>数目字管理</span></div><p>三年对峙暴露战国后勤数目字管理极限；粮道为枢纽。</p></article>
+<article style="grid-column:1/-1"><div class="who">西方汉学<span>Battle of Changping</span></div><p>学界共识：赵括冒进+白起包围为转折；坑杀数字争议大。〔存疑〕</p></article></div>
+</section>
+<section class="sj-ledger-field" id="f6"><div class="sj-ledger-fh"><span class="fnum">06</span><h2>成败判定</h2></div>
+  <div class="sj-56-verdict">
+    <article class="ok"><div class="vh">已兑现</div><p>秦统一加速</p><p>军事组织度验证</p><p>后勤链决胜样本</p></article>
+    <article class="fail"><div class="vh">已失败</div><p>赵国一蹶不振</p><p>人口损失〔估算〕</p><p>东方联盟瓦解</p></article>
+    <article class="open"><div class="vh">未决</div><p>〔未决〕坑杀数字究竟多少？考古与文献如何互证？</p></article>
+  </div>
+</section>
+<section class="sj-ledger-field" id="f7"><div class="sj-ledger-fh"><span class="fnum">07</span><h2>古今映射</h2></div>
+  <div class="sj-56-mirror">
+    <article class="same"><div class="mh">相似机制</div><p>对峙消耗→一方冒进→粮道断绝→崩盘；军事单力豪赌反噬整体。</p></article>
+    <article class="diff"><div class="mh">关键差异</div><p>现代战争有人道公约与后勤体系；但「长期对峙+指挥失误→一战崩盘」仍有警示（→ SJ-33 淝水、SJ-06 天宝）。</p></article>
+  </div>
+</section>
+<section class="sj-ledger-field" id="fx"><div class="sj-ledger-fh"><span class="fnum">◆</span><h2>交叉引用</h2></div>
+  <div class="sj-56-xref"><a href="/modules/shijian/sj-06"><div class="n">SJ-06 · 天宝</div><h3>天宝</h3><p>强化单力反降稳定同源逻辑。</p></a>
+<a href="/modules/shijian/sj-33"><div class="n">SJ-33 · 淝水</div><h3>淝水</h3><p>军事决胜+士气链对照。</p></a>
+<a href="/modules/shijian/sj-31"><div class="n">SJ-31 · 官渡</div><h3>官渡</h3><p>后勤链/粮道枢纽对照。</p></a></div>
+</section>
+</article>
+<footer class="sj-56-foot">
+  <span>ChinaOS · 史鉴 SJ-56 · v0.1 · 春秋战国</span>
+  <span><a href="/modules/shijian/sj-00">← SJ-00</a> · <a href="/modules/shijian/sj-55">← SJ-55</a></span>
+  <span><a href="/modules/shijian/sj-57">SJ-57 →</a></span>
+</footer>
+</div>
+<script>
+(function(){
+  const stage=document.getElementById('stage');
+  if(!stage) return;
+  const nodes=Array.from(stage.querySelectorAll('.sj-node'));
+  const edges=Array.from(stage.querySelectorAll('.sj-edge'));
+  const asideEmpty=document.getElementById('aside-empty');
+  const asideBody=document.getElementById('aside-body');
+  const NODE_DATA={
+  "qin": {
+    "name": "秦军 · 白起",
+    "tag": "组织胜出",
+    "body": "秦昭王密令白起为上将；断粮道、围而歼之——后勤与决策链优势。"
+  },
+  "zhao": {
+    "name": "赵军 · 赵括",
+    "tag": "指挥失误",
+    "body": "前260 七月赵括代将，出击被围；四十六日断粮，赵括战死。"
+  },
+  "changping": {
+    "name": "长平 · 260",
+    "tag": "时点标注",
+    "body": "上党长平对峙三年；赵括出击后一战逆转。"
+  },
+  "liangdao": {
+    "name": "粮道断绝",
+    "tag": "机制枢纽",
+    "body": "白起断赵军粮道——后勤链为结构实因，非单纯勇力。"
+  },
+  "lianpo": {
+    "name": "廉颇 · 坚壁",
+    "tag": "原战略",
+    "body": "廉颇坚壁三年拖秦；赵王中反间计换赵括——决策链断裂。"
+  },
+  "kengsha": {
+    "name": "坑杀降卒",
+    "tag": "基座摧毁",
+    "body": "《史记》载坑杀赵降卒四十余万——数字有学界争议，须标估算。"
+  },
+  "base": {
+    "name": "赵国 · 人口基座",
+    "tag": "承载越阈",
+    "body": "赵国以全国之力供长平，一战损失〔估算〕人口与士气——基座承载崩溃。"
+  }
+};
+  const NODE_EDGE={
+  "qin": [
+    "e2"
+  ],
+  "zhao": [
+    "e1"
+  ],
+  "changping": [
+    "e1",
+    "e2",
+    "e3",
+    "e4",
+    "e7"
+  ],
+  "liangdao": [
+    "e3",
+    "e5"
+  ],
+  "lianpo": [
+    "e4"
+  ],
+  "kengsha": [
+    "e6",
+    "e7"
+  ],
+  "base": [
+    "e5",
+    "e6"
+  ]
+};
+  function clearVisual(){stage.classList.remove('is-picking');nodes.forEach(n=>n.classList.remove('is-hot'));edges.forEach(e=>e.classList.remove('is-hot'));}
+  function showAside(id){const d=NODE_DATA[id];if(!d)return;asideEmpty.hidden=true;asideBody.hidden=false;document.getElementById('aside-tag').textContent=d.tag;document.getElementById('aside-name').textContent=d.name;document.getElementById('aside-text').textContent=d.body;}
+  function pick(id){if(!NODE_DATA[id])return;clearVisual();stage.classList.add('is-picking');nodes.forEach(n=>n.classList.toggle('is-hot',n.dataset.id===id));const hot=NODE_EDGE[id]||[];edges.forEach(e=>e.classList.toggle('is-hot',hot.indexOf(e.dataset.edge)>=0));showAside(id);}
+  nodes.forEach(n=>{const act=()=>pick(n.dataset.id);n.addEventListener('click',act);n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});});
+  edges.forEach(e=>{if(!e.dataset.edge||!NODE_DATA[e.dataset.edge])return;const act=()=>pick(e.dataset.edge);e.style.cursor='pointer';e.setAttribute('tabindex','0');e.setAttribute('role','button');e.addEventListener('click',act);e.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();act();}});});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-55 · 合纵连横</title>
+<meta name="description" content="ChinaOS 史鉴系列案例卷 SJ-55：合纵连横——外交—军事博弈 · 纵横家 · 秦统一加速器。史鉴台账七字段。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;--sj-ink-800:#1d1916;--sj-paper-100:#e8ddc7;--sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;--sj-celadon:#5f7a6f;--sj-ochre:#b8894a;--sj-line:#3a322b;
+  --sj-radius:6px;--sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c 0%,transparent 55%),var(--sj-ink-900);color:var(--sj-paper-100);font-family:var(--sj-serif);line-height:1.75}
+.sj-55-wrap{max-width:min(100%,1180px);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media(min-width:1280px){.sj-55-wrap{max-width:min(100%,1480px)}}
+.sj-page-layout{display:flex;flex-direction:column;gap:var(--sj-space)}
+@media(min-width:1280px){.sj-page-layout{display:grid;grid-template-columns:minmax(0,58fr) minmax(280px,38fr);gap:clamp(16px,2vw,28px);align-items:start}}
+.sj-main-col{min-width:0}
+.sj-rail{display:flex;flex-direction:column;gap:12px}
+@media(min-width:1280px){.sj-rail{position:sticky;top:1rem;align-self:start;max-height:calc(100vh - 2rem);overflow-y:auto}}
+@media(max-width:1279px){.sj-page-layout{flex-direction:column}.sj-main-col{display:contents}.sj-rail{order:2;margin:8px 0 20px}}
+.sj-rail-card{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px}
+.sj-rail-card .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-rail-toc{display:grid;gap:6px;margin-top:8px}
+.sj-rail-toc a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);padding:8px 10px;text-decoration:none;color:inherit;font-size:13px}
+.sj-rail-toc a:hover,.sj-rail-toc a:focus-visible,.sj-rail-toc a.is-active{border-color:var(--sj-ochre);outline:none}
+.sj-rail-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;margin:4px 4px 0 0}
+.sj-55-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px}
+.sj-55-mast .badge{font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-55-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em}
+.sj-55-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;font-size:.72em;display:block;margin-top:4px}
+.sj-55-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right}
+.sj-55-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;margin:2px}
+.sj-55-dynasty{color:var(--sj-ochre);border-color:var(--sj-ochre)}
+.sj-zhupi{color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:74ch}
+.sj-ledger{display:grid;gap:8px}
+.sj-ledger-field{margin:20px 0 8px;scroll-margin-top:24px}
+.sj-ledger-fh{display:flex;align-items:baseline;gap:12px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--sj-line)}
+.sj-ledger-fh .fnum{font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre);border:1px solid var(--sj-line);border-radius:4px;padding:1px 7px}
+.sj-ledger-fh h2{font-size:clamp(16px,2.1vw,19px);font-weight:600}
+.sj-55-prose{font-size:15.5px;max-width:74ch}
+.sj-55-hook{border:1px solid var(--sj-line);border-left:3px solid var(--sj-vermil);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:18px 22px}
+.sj-55-hook p{font-size:clamp(16px,2.3vw,20px);line-height:1.7}
+.sj-55-hook .yr{margin-top:10px;font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre)}
+.sj-55-stage{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:8px;overflow:auto}
+.sj-55-stage svg{display:block;width:100%;height:auto}
+.sj-node{cursor:pointer;transition:opacity .2s ease,filter .2s ease}
+.sj-node:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:4px}
+.sj-edge{transition:opacity .2s ease,filter .2s ease}
+.sj-55-stage.is-picking .sj-node{opacity:.3}
+.sj-55-stage.is-picking .sj-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px rgba(184,137,74,.4))}
+.sj-55-stage.is-picking .sj-edge{opacity:.16}
+.sj-55-stage.is-picking .sj-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px rgba(168,59,44,.4))}
+.sj-55-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:14px;align-items:start;margin-top:14px}
+.sj-55-aside{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px;position:sticky;top:12px;min-height:150px}
+.sj-55-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-55-aside h3{font-size:16px;letter-spacing:.08em;margin-bottom:8px}
+.sj-55-aside p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.7}
+.sj-55-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+.sj-55-note{font-size:13px;color:var(--sj-paper-300);line-height:1.65;max-width:74ch}
+@media(max-width:900px){.sj-55-layout{grid-template-columns:1fr}.sj-55-aside{position:static}}
+.sj-55-phase .pb{font-family:var(--sj-mono);font-size:12px;color:var(--sj-vermil);border:1px solid var(--sj-vermil);border-radius:20px;padding:6px 16px}
+.sj-55-table-wrap{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);overflow:auto}
+.sj-55-table{width:100%;border-collapse:collapse;font-size:13px}
+.sj-55-table th{background:var(--sj-ink-900);color:var(--sj-ochre);font-family:var(--sj-mono);font-size:10px;padding:10px 12px;text-align:left;border-bottom:1px solid var(--sj-line)}
+.sj-55-table td{padding:10px 12px;border-bottom:1px solid var(--sj-line);color:var(--sj-paper-300);vertical-align:top}
+.sj-55-table td:first-child{color:var(--sj-paper-100);font-weight:600}
+.sj-55-hist{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-55-hist article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-55-hist .who{font-size:14px;font-weight:600;color:var(--sj-celadon);margin-bottom:6px}
+.sj-55-hist .who span{font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);margin-left:6px}
+.sj-55-hist p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+.sj-55-verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sj-55-verdict article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-55-verdict .vh{font-family:var(--sj-mono);font-size:10px;margin-bottom:8px}
+.sj-55-verdict article.ok .vh{color:var(--sj-celadon)}
+.sj-55-verdict article.fail .vh{color:var(--sj-vermil)}
+.sj-55-verdict article.open .vh{color:var(--sj-ochre)}
+.sj-55-verdict p{font-size:13px;color:var(--sj-paper-300)}
+.sj-55-mirror{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-55-mirror article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-55-mirror .mh{font-family:var(--sj-mono);font-size:10px;margin-bottom:8px}
+.sj-55-mirror article.same .mh{color:var(--sj-celadon)}
+.sj-55-mirror article.diff .mh{color:var(--sj-ochre)}
+.sj-55-mirror p{font-size:13px;color:var(--sj-paper-100);line-height:1.68}
+.sj-55-xref{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.sj-55-xref a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit}
+.sj-55-xref .n{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);margin-bottom:4px}
+.sj-55-xref h3{font-size:14px;margin-bottom:6px}
+.sj-55-xref p{font-size:12.5px;color:var(--sj-paper-300)}
+.sj-55-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sj-55-foot a{color:var(--sj-celadon);text-decoration:none}
+@media(max-width:768px){.sj-55-hist,.sj-55-mirror,.sj-55-verdict,.sj-55-xref{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sj-node,.sj-edge{transition:none}}
+.sj-rail-mini{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="sj-55-wrap" id="sj-55-top">
+<header class="sj-55-mast">
+  <div>
+    <div class="badge">SJ-55 · 外交军事案例卷 · 战国</div>
+    <h1>合纵连横<em>外交—军事博弈 · 纵横家 · 秦统一加速器</em></h1>
+    <div>
+      <span class="sj-55-chip sj-55-dynasty" data-dynasty="chunqiu">朝代 · 春秋战国</span>
+      <span class="sj-55-chip">外交</span>
+      <a class="sj-55-chip" href="/modules/shijian/sj-00">↔ SJ-00</a>
+      <a class="sj-55-chip" href="/modules/shijian/sj-03">↔ SJ-03</a>
+      <a class="sj-55-chip" href="/modules/shijian/sj-04">↔ SJ-04</a>
+      
+    </div>
+  </div>
+  <div class="sj-55-meta">史鉴台账七字段 · 春秋战国<br/><b>AS_OF 2026-07-15</b> · v0.1</div>
+</header>
+<p class="sj-zhupi">朱批：本案是<strong>分裂期外交—军事力博弈</strong>样本——苏秦合纵六国抗秦、张仪连横破纵，纵横家以游说重构联盟秩序，终未能阻秦统一。口径：《战国策》；具体纪年多〔存疑〕，建设时标出处。</p>
+<article class="sj-ledger">
+<div class="sj-page-layout">
+<div class="sj-main-col">
+<section class="sj-ledger-field" id="f1"><div class="sj-ledger-fh"><span class="fnum">01</span><h2>一句话拐点</h2></div>
+  <div class="sj-55-hook"><p>战国中后期，<b>秦国</b>东出威胁山东六国。苏秦主张<b>合纵</b>，游说六国联合抗秦；张仪以<b>连横</b>破纵，以秦之力各个击破。纵横家以口才与利益计算重构外交秩序——然六国利害不一，联盟脆弱，秦终以军事+外交双轨完成统一（→ SJ-12 秦末上游）。</p><div class="yr">系年：战国中后期 · 苏秦张仪活跃期 · 出处《战国策》〔具体纪年存疑〕</div></div>
+</section>
+<section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
+  <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
+  <p class="sj-55-prose">权力几何：<strong>秦国</strong>东压 → <strong>合纵联盟</strong>（六国）对垒 <strong>连横破局</strong>（张仪）→ 联盟瓦解。外交—军事博弈链，非单战决胜。</p>
+  <div class="sj-55-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">结构切片 · 合纵连横</title>
+  <desc id="sj-desc">权力几何：秦国东压 → 合纵联盟（六国）对垒 连横破局（张仪）→ 联盟瓦解。外交—军事博弈链，非单战决胜。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%"><stop offset="0%" stop-color="var(--sj-ink-800)"/><stop offset="100%" stop-color="var(--sj-ink-900)"/></radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse"><line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/></pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/></linearGradient>
+    <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+    <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+    <marker id="a-celadon" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-100)"/></marker>
+  </defs>
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,serif">结构切片 · 合纵连横</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,monospace">SJ-55 · 春秋战国 · 外交</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">朱批 · 五力色义 · 点击节点交互</text>
+  <g fill="none" stroke-linecap="round"><path class="sj-edge" data-edge="e1" d="M664,212 L410,260" stroke="var(--sj-vermil)" stroke-width="2.6" marker-end="url(#a-vermil)"/><text x="540" y="235" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">东压</text>
+<path class="sj-edge" data-edge="e2" d="M156,212 L410,295" stroke="var(--sj-celadon)" stroke-width="2.4" marker-end="url(#a-celadon)"/><text x="280" y="250" text-anchor="middle" fill="var(--sj-celadon)" font-size="11" font-family="Songti SC,serif">合纵</text>
+<path class="sj-edge" data-edge="e3" d="M156,360 L410,388" stroke="var(--sj-celadon)" stroke-width="2"/>
+<path class="sj-edge" data-edge="e4" d="M410,330 L664,295" stroke="var(--sj-ochre)" stroke-width="2.8" marker-end="url(#a-ochre)"/><text x="540" y="310" text-anchor="middle" fill="var(--sj-ochre)" font-size="11" font-family="Songti SC,serif">破纵</text>
+<path class="sj-edge" data-edge="e5" d="M664,330 L410,388" stroke="var(--sj-paper-100)" stroke-width="1.8"/>
+<path class="sj-edge" data-edge="e6" d="M410,416 L410,452" stroke="var(--sj-line)" stroke-width="1.6"/>
+<path class="sj-edge" data-edge="e7" d="M156,290 L310,360" stroke="var(--sj-celadon)" stroke-width="1.8" stroke-dasharray="4 4"/></g>
+  <g class="sj-node" data-id="qin" tabindex="0" role="button" aria-label="秦国">
+    <rect x="564" y="126" width="200" height="86" rx="6" fill="#2a1a16" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="664" y="158" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">秦国</text>
+    <text x="664" y="176" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">东出 · 函谷关</text>
+  </g>
+<g class="sj-node" data-id="hezong" tabindex="0" role="button" aria-label="合纵 · 苏秦">
+    <rect x="56" y="126" width="200" height="86" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="156" y="158" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">合纵 · 苏秦</text>
+    <text x="156" y="176" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">六国联盟</text>
+  </g>
+<g class="sj-node" data-id="lianheng" tabindex="0" role="button" aria-label="连横 · 张仪">
+    <rect x="310" y="260" width="200" height="70" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="410" y="292" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">连横 · 张仪</text>
+    <text x="410" y="310" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">破纵 · 赂秦</text>
+  </g>
+<g class="sj-node" data-id="liuguo" tabindex="0" role="button" aria-label="山东六国">
+    <rect x="56" y="360" width="200" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="156" y="388" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">山东六国</text>
+    <text x="156" y="406" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">各怀异心</text>
+  </g>
+<g class="sj-node" data-id="zongheng" tabindex="0" role="button" aria-label="纵横家">
+    <rect x="564" y="260" width="200" height="70" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-paper-100)" stroke-width="2.4"/>
+    <text x="664" y="292" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC,serif">纵横家</text>
+    <text x="664" y="310" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">游说之士</text>
+  </g>
+<g class="sj-node" data-id="hangu" tabindex="0" role="button" aria-label="函谷关">
+    <rect x="310" y="360" width="200" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="410" y="388" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">函谷关</text>
+    <text x="410" y="406" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">秦之门户</text>
+  </g>
+<g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="战国诸国 · 兼并底盘">
+    <rect x="56" y="452" width="708" height="60" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="2.4"/>
+    <text x="410" y="480" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC,serif">战国诸国 · 兼并底盘</text>
+    <text x="410" y="498" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">战争消耗</text>
+  </g>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,monospace">viewBox 820×600 · SJ-55</text>
+</svg></div>
+  <div class="sj-55-layout">
+    <div class="sj-55-note" style="margin-top:0">点选节点展开机制链；色义见 premium 切片图例（patch 后更新）。</div>
+    <aside class="sj-55-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-55-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+      </div>
+    </aside>
+  </div>
+</section>
+</div>
+<aside class="sj-rail"><div class="sj-rail-card"><div class="k">台账 · 七字段</div>
+  <nav class="sj-rail-toc"><a href="#f1">01 · 拐点</a><a href="#f2">02 · 切片</a><a href="#f3">03 · 相位</a><a href="#f4">04 · 五力</a><a href="#f5">05 · 交锋</a><a href="#f6">06 · 成败</a><a href="#f7">07 · 映射</a></nav>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-00#sec-case-hub">案例库 Hub</a>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-03">SJ-03 五力</a>
+  <a class="sj-rail-chip" href="/modules/shijian/sj-04">SJ-04 相位盘</a>
+</div></aside>
+</div>
+<section class="sj-ledger-field" id="f3"><div class="sj-ledger-fh"><span class="fnum">03</span><h2>相位定位</h2></div>
+  <div class="sj-55-phase"><span class="pb">分裂期 · 外交博弈</span></div>
+  <p class="sj-55-prose">战国多雄并立处于<strong>长期分裂</strong>——合纵连横落于 SJ-04「分裂期·外交—军事博弈」：联盟脆弱性为结构实因，秦以连横+军事双轨破局。</p>
+</section>
+<section class="sj-ledger-field" id="f4"><div class="sj-ledger-fh"><span class="fnum">04</span><h2>五力归因台账</h2></div>
+  <div class="sj-55-table-wrap"><table class="sj-55-table"><thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead><tbody><tr><td>财政汲取</td><td class="zheng">连横赂秦</td><td class="shi">六国以土地财宝赂秦求和——财政汲取链被外交交易扭曲</td></tr>
+<tr><td>精英循环</td><td class="zheng">纵横家</td><td class="shi">苏秦张仪等游说之士崛起，精英通道从世卿转向辩士</td></tr>
+<tr><td>合法性叙事</td><td class="zheng">连横合纵</td><td class="shi">「天下之士合从连衡」——外交话语争夺正统性</td></tr>
+<tr><td>边疆军事</td><td class="zheng">函谷关</td><td class="shi">秦军事压力是合纵直接动因；军事力为纵横博弈底盘</td></tr>
+<tr><td>生态—人口基座</td><td class="zheng">—</td><td class="shi">战国兼并战争消耗各国基座——联盟难以持久承受</td></tr></tbody></table></div>
+</section>
+<section class="sj-ledger-field" id="f5"><div class="sj-ledger-fh"><span class="fnum">05</span><h2>史家交锋</h2></div>
+  <div class="sj-55-hist"><article><div class="who">李敖式考据<span>祛魅</span></div><p>《战国策》多纵横家修辞，具体事迹须与《史记》互证，纪年多存疑。</p></article>
+<article><div class="who">钱穆<span>《国史大纲》</span></div><p>合纵连横为战国外交主线，秦之力终破六国联盟。</p></article>
+<article><div class="who">金观涛<span>超稳定结构</span></div><p>分裂期联盟脆弱性——利益不一则盟约如纸。</p></article>
+<article><div class="who">黄仁宇<span>数目字管理</span></div><p>纵横家以口头协议替代数目字管理，联盟缺乏可执行约束。</p></article>
+<article style="grid-column:1/-1"><div class="who">西方汉学<span>Vertical vs Horizontal</span></div><p>学界以 vertical/horizontal alliances 分析 Warring States diplomacy。〔存疑〕</p></article></div>
+</section>
+<section class="sj-ledger-field" id="f6"><div class="sj-ledger-fh"><span class="fnum">06</span><h2>成败判定</h2></div>
+  <div class="sj-55-verdict">
+    <article class="ok"><div class="vh">已兑现</div><p>延缓秦统一</p><p>纵横家制度创新</p><p>外交博弈样本</p></article>
+    <article class="fail"><div class="vh">已失败</div><p>合纵终破</p><p>六国各怀异心</p><p>秦统一不可逆</p></article>
+    <article class="open"><div class="vh">未决</div><p>〔未决〕若六国真能持久合纵，能否阻秦东出？</p></article>
+  </div>
+</section>
+<section class="sj-ledger-field" id="f7"><div class="sj-ledger-fh"><span class="fnum">07</span><h2>古今映射</h2></div>
+  <div class="sj-55-mirror">
+    <article class="same"><div class="mh">相似机制</div><p>分裂期联盟博弈；利益不一则盟约脆弱；外交与军事双轨互动。</p></article>
+    <article class="diff"><div class="mh">关键差异</div><p>现代有国际法与制度化同盟；但「联盟内部利益分裂→被各个击破」仍可对读（→ SJ-24 外交映射）。</p></article>
+  </div>
+</section>
+<section class="sj-ledger-field" id="fx"><div class="sj-ledger-fh"><span class="fnum">◆</span><h2>交叉引用</h2></div>
+  <div class="sj-55-xref"><a href="/modules/shijian/sj-56"><div class="n">SJ-56 · 长平</div><h3>长平</h3><p>合纵失败后秦军事决胜。</p></a>
+<a href="/modules/shijian/sj-12"><div class="n">SJ-12 · 秦末</div><h3>秦末</h3><p>秦统一上游。</p></a>
+<a href="/modules/shijian/sj-24"><div class="n">SJ-24 · 外交映射</div><h3>外交映射</h3><p>联盟博弈古今对照。</p></a></div>
+</section>
+</article>
+<footer class="sj-55-foot">
+  <span>ChinaOS · 史鉴 SJ-55 · v0.1 · 春秋战国</span>
+  <span><a href="/modules/shijian/sj-00">← SJ-00</a> · <a href="/modules/shijian/sj-54">← SJ-54</a></span>
+  <span><a href="/modules/shijian/sj-56">SJ-56 →</a></span>
+</footer>
+</div>
+<script>
+(function(){
+  const stage=document.getElementById('stage');
+  if(!stage) return;
+  const nodes=Array.from(stage.querySelectorAll('.sj-node'));
+  const edges=Array.from(stage.querySelectorAll('.sj-edge'));
+  const asideEmpty=document.getElementById('aside-empty');
+  const asideBody=document.getElementById('aside-body');
+  const NODE_DATA={
+  "qin": {
+    "name": "秦国",
+    "tag": "压力源",
+    "body": "商鞅变法后国力强，东出威胁山东六国——合纵直接动因。"
+  },
+  "hezong": {
+    "name": "合纵 · 苏秦",
+    "tag": "外交联盟",
+    "body": "苏秦游说六国合纵抗秦——联盟脆弱，利害不一。"
+  },
+  "lianheng": {
+    "name": "连横 · 张仪",
+    "tag": "破局枢纽",
+    "body": "张仪以连横破纵，以秦之力各个击破六国联盟。"
+  },
+  "liuguo": {
+    "name": "山东六国",
+    "tag": "结构弱点",
+    "body": "韩赵魏楚燕齐利害不一——联盟难以持久。"
+  },
+  "zongheng": {
+    "name": "纵横家",
+    "tag": "精英旁路",
+    "body": "以口才与利益计算游走列国——新型精英通道。"
+  },
+  "hangu": {
+    "name": "函谷关",
+    "tag": "军事节点",
+    "body": "合纵多次攻函谷关未果——军事力仍是最终底盘。"
+  },
+  "base": {
+    "name": "战国诸国 · 兼并底盘",
+    "tag": "基座",
+    "body": "长期兼并战争消耗各国人口与财政——联盟难以持久承受。"
+  }
+};
+  const NODE_EDGE={
+  "qin": [
+    "e1",
+    "e4"
+  ],
+  "hezong": [
+    "e2",
+    "e7"
+  ],
+  "lianheng": [
+    "e1",
+    "e2",
+    "e4",
+    "e5"
+  ],
+  "liuguo": [
+    "e3",
+    "e7"
+  ],
+  "zongheng": [
+    "e5"
+  ],
+  "hangu": [
+    "e6"
+  ],
+  "base": [
+    "e3",
+    "e6"
+  ]
+};
+  function clearVisual(){stage.classList.remove('is-picking');nodes.forEach(n=>n.classList.remove('is-hot'));edges.forEach(e=>e.classList.remove('is-hot'));}
+  function showAside(id){const d=NODE_DATA[id];if(!d)return;asideEmpty.hidden=true;asideBody.hidden=false;document.getElementById('aside-tag').textContent=d.tag;document.getElementById('aside-name').textContent=d.name;document.getElementById('aside-text').textContent=d.body;}
+  function pick(id){if(!NODE_DATA[id])return;clearVisual();stage.classList.add('is-picking');nodes.forEach(n=>n.classList.toggle('is-hot',n.dataset.id===id));const hot=NODE_EDGE[id]||[];edges.forEach(e=>e.classList.toggle('is-hot',hot.indexOf(e.dataset.edge)>=0));showAside(id);}
+  nodes.forEach(n=>{const act=()=>pick(n.dataset.id);n.addEventListener('click',act);n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});});
+  edges.forEach(e=>{if(!e.dataset.edge||!NODE_DATA[e.dataset.edge])return;const act=()=>pick(e.dataset.edge);e.style.cursor='pointer';e.setAttribute('tabindex','0');e.setAttribute('role','button');e.addEventListener('click',act);e.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();act();}});});
+})();
+</script>
+</body>
+</html>

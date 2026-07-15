@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-18 · 拐点谱系矩阵</title>
+<meta name="description" content="ChinaOS 史鉴系列案例库综合层：商鞅/王莽/王安石/张居正/洋务五变法跨案对比——重建汲取必触动某力，改革的两难，皇权依赖之脆弱，低水平均衡。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;
+  --sj-ink-800:#1d1916;
+  --sj-paper-100:#e8ddc7;
+  --sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;
+  --sj-celadon:#5f7a6f;
+  --sj-ochre:#b8894a;
+  --sj-line:#3a322b;
+  --sj-radius:6px;
+  --sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%, #2a221c 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #1a1612 0%, transparent 50%),var(--sj-ink-900);color:var(--sj-paper-100);font-family:var(--sj-serif);line-height:1.75}
+.sj-18-wrap{max-width:min(100%,1180px);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media (min-width:1536px){.sj-18-wrap{max-width:min(100%,1360px)}}
+
+.sj-18-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px}
+.sj-18-mast .badge{font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-18-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em;line-height:1.3}
+.sj-18-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;letter-spacing:.08em;font-size:.72em;display:block;margin-top:4px}
+.sj-18-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right;line-height:1.7}
+.sj-18-meta b{color:var(--sj-ochre);font-weight:500}
+.sj-18-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sj-18-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;letter-spacing:.08em;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none}
+.sj-18-chip:hover,.sj-18-chip:focus-visible{border-color:var(--sj-ochre);color:var(--sj-ochre);outline:none}
+
+.sj-zhupi{color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:76ch}
+
+.sj-18-sec{margin:36px 0 28px;scroll-margin-top:24px}
+.sj-18-sec-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--sj-line)}
+.sj-18-sec-h .num{font-family:var(--sj-mono);font-size:11px;letter-spacing:.2em;color:var(--sj-ochre)}
+.sj-18-sec-h h2{font-size:clamp(17px,2.2vw,20px);font-weight:600;letter-spacing:.12em}
+.sj-18-prose{font-size:15.5px;color:var(--sj-paper-100);max-width:76ch}
+.sj-18-prose + .sj-18-prose{margin-top:12px}
+.sj-18-prose strong{color:var(--sj-ochre);font-weight:600}
+.sj-18-note{font-size:13px;color:var(--sj-paper-300);margin-top:12px;max-width:76ch}
+.sj-18-note b{color:var(--sj-paper-100);font-weight:600}
+
+.sj-18-stage{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));box-shadow:0 1px 0 rgba(232,221,199,.04), 0 18px 48px rgba(0,0,0,.45);padding:8px 8px 4px;overflow:auto}
+.sj-18-stage svg{display:block;width:100%;height:auto;max-width:820px;margin:0 auto}
+.sj-row{cursor:pointer;transition:opacity .2s ease}
+.sj-row:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:2px}
+.sj-18-stage.is-picking .sj-row{opacity:.4}
+.sj-18-stage.is-picking .sj-row.is-hot{opacity:1}
+.sj-18-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:14px;align-items:start;margin-top:14px}
+.sj-18-aside{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px;position:sticky;top:12px;min-height:210px}
+.sj-18-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-18-aside h3{font-size:15px;letter-spacing:.06em;margin-bottom:8px}
+.sj-18-aside p{font-size:13px;color:var(--sj-paper-300);line-height:1.65;margin-bottom:6px}
+.sj-18-aside p b{color:var(--sj-paper-100);font-weight:600}
+.sj-18-aside .law{color:var(--sj-celadon)}
+.sj-18-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+
+.sj-18-table-wrap{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);overflow:auto;margin-top:6px;min-width:0}
+.sj-18-table{width:max(100%,820px);table-layout:fixed;border-collapse:collapse;font-size:13px}
+.sj-18-table th{background:var(--sj-ink-900);color:var(--sj-ochre);font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;font-weight:500;text-align:left;padding:10px 12px;border-bottom:1px solid var(--sj-line);white-space:nowrap}
+.sj-18-table td{padding:10px 12px;border-bottom:1px solid var(--sj-line);color:var(--sj-paper-300);vertical-align:top;line-height:1.6;overflow-wrap:break-word}
+.sj-18-table td:first-child{color:var(--sj-paper-100);font-weight:600;white-space:nowrap}
+.sj-18-table .fail{color:var(--sj-vermil)}
+.sj-18-table .part{color:var(--sj-ochre)}
+
+.sj-18-law{display:grid;gap:10px;margin-top:6px}
+.sj-18-law article{border:1px solid var(--sj-line);border-left:3px solid var(--sj-ochre);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-18-law .lh{font-size:14px;font-weight:600;color:var(--sj-paper-100);margin-bottom:6px}
+.sj-18-law .lh span{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);letter-spacing:.08em;margin-left:8px}
+.sj-18-law p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+
+.sj-18-xref{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.sj-18-xref a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit;transition:border-color .18s}
+.sj-18-xref a:hover,.sj-18-xref a:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-18-xref .n{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;color:var(--sj-ochre);margin-bottom:4px}
+.sj-18-xref h3{font-size:14px;letter-spacing:.06em;margin-bottom:6px}
+.sj-18-xref p{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6}
+
+.sj-18-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sj-18-foot a{color:var(--sj-celadon);text-decoration:none}
+.sj-18-foot a:hover{color:var(--sj-ochre)}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sj-row,.sj-18-chip{transition:none}}
+@media (max-width:900px){.sj-18-layout{grid-template-columns:1fr}.sj-18-aside{position:static}.sj-18-xref{grid-template-columns:1fr 1fr}}
+@media (max-width:768px){.sj-18-meta{text-align:left}.sj-18-xref{grid-template-columns:1fr}}
+
+html[data-theme="light"]{--sj-ink-900:#f4f1ea;--sj-ink-800:#ebe6dc;--sj-paper-100:#1a1814;--sj-paper-300:#5a5348;--sj-vermil:#9a3428;--sj-celadon:#3f5f54;--sj-ochre:#8a6528;--sj-line:#c8bfb0}
+html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%, #e8e4da 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #ebe6dc 0%, transparent 50%),var(--sj-ink-900);color:var(--sj-paper-100)}
+</style>
+<script>
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){ document.documentElement.setAttribute('data-theme', t==='light' ? 'light' : 'dark'); }
+  try{ var q=new URLSearchParams(location.search).get('theme'); if(q==='light'||q==='dark') apply(q); }catch(e){}
+  window.addEventListener('message', function(e){ var d=e&&e.data; if(!d||d.type!==MSG) return; apply(d.theme); });
+})();
+</script>
+</head>
+<body>
+<div class="sj-18-wrap" id="sj-18-top">
+
+<header class="sj-18-mast">
+  <div>
+    <div class="badge">SJ-18 · 案例库综合层 · 拐点谱系</div>
+    <h1>拐点谱系矩阵<em>重建汲取必触动某力 · 改革的两难 · 低水平均衡</em></h1>
+    <div class="sj-18-chips">
+      <a class="sj-18-chip" href="/modules/shijian/sj-00">↔ SJ-00 总索引</a>
+      <a class="sj-18-chip" href="/modules/shijian/sj-07">↔ SJ-07 崩解矩阵</a>
+      <a class="sj-18-chip" href="/modules/shijian/sj-03">↔ SJ-03 五力模型</a>
+      <a class="sj-18-chip" href="/modules/shijian/sj-05">↔ SJ-05 王安石</a>
+      <a class="sj-18-chip" href="/modules/shijian/sj-21">↔ SJ-21 经济映射</a>
+    </div>
+  </div>
+  <div class="sj-18-meta">
+    综合层 · 跨案对比 · 收束规律<br/>
+    <b>AS_OF 2026-07-15 · Round 4</b> · v0.1
+  </div>
+</header>
+
+<p class="sj-zhupi">朱批：本卷是案例库综合层第二张矩阵（继 SJ-07 崩解矩阵）。把五场变法（商鞅/王莽/王安石/张居正/洋务）并置对比，收束成规律——不重复深描，史料源为各单案。真源：《案例库-核心母本》各案 seed + 母本第四部规律。</p>
+
+<!-- 1 引言 -->
+<section class="sj-18-sec" id="sec-intro" aria-labelledby="h-intro">
+  <div class="sj-18-sec-h"><span class="num">01 · 引言</span><h2 id="h-intro">三场拐点，同一逻辑</h2></div>
+  <p class="sj-18-prose">拐点是<strong>鼎盛顶点的隐性危机</strong>（母本规律一）：表面盛世，实则某一力被过度强化或慢变量（人口/僵化）积累。天宝强化军事外包、康乾人口逼近承载、贞观埋府兵隐患——三案并置，「盛世即拐点」清晰可见：<strong>显性拐点急崩，隐性拐点慢酿。</strong></p>
+  <p class="sj-18-prose">另一条贯穿线是<strong>强化的单力</strong>：强化边疆军事力（天宝）或忽视基座承载（康乾）或五力协同下埋隐患（贞观），皆指向 SJ-06 同源逻辑——单力强化反降整体稳定。</p>
+</section>
+
+<!-- 2 签名 -->
+<section class="sj-18-sec" id="sec-matrix" aria-labelledby="h-matrix">
+  <div class="sj-18-sec-h"><span class="num">02 · 签名视觉</span><h2 id="h-matrix">拐点谱系矩阵</h2></div>
+  <p class="sj-18-prose">行为三场拐点案（按时序）。列示<strong>主导力</strong>、<strong>强化的单力</strong>、<strong>隐性程度</strong>、<strong>崩解距离</strong>。点击任一行展开该案机制与印证规律。</p>
+
+  <div class="sj-18-stage" id="stage">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 560" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">拐点谱系矩阵</title>
+  <desc id="sj-desc">三行为天宝、康乾、贞观；列示主导力、强化单力、隐性程度、崩解距离。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%"><stop offset="0%" stop-color="var(--sj-ink-800)"/><stop offset="100%" stop-color="var(--sj-ink-900)"/></radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse"><line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/></pattern>
+  </defs>
+  <rect width="820" height="560" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="392" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="392" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="384" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="392" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="384" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,serif">拐点谱系矩阵</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,monospace">SJ-18 · 三拐点跨案对比 · 综合层</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">朱批：显性急崩 · 隐性慢酿 · 强化单力反降稳定</text>
+  <text x="60" y="150" fill="var(--sj-paper-300)" font-size="11" font-family="Source Han Mono,monospace">拐点 · 朝代</text>
+  <text x="280" y="150" text-anchor="middle" fill="var(--sj-paper-300)" font-size="11">主导力</text>
+  <text x="440" y="150" text-anchor="middle" fill="var(--sj-paper-300)" font-size="11">强化单力</text>
+  <text x="580" y="150" text-anchor="middle" fill="var(--sj-paper-300)" font-size="11">隐性程度</text>
+  <text x="720" y="150" text-anchor="middle" fill="var(--sj-paper-300)" font-size="11">崩解距离</text>
+  <line x1="44" y1="164" x2="776" y2="164" stroke="var(--sj-line)"/>
+  <g class="sj-row" data-id="tianbao" tabindex="0" role="button"><rect x="44" y="170" width="732" height="56" rx="6" fill="var(--sj-ink-800)" opacity="0.3" pointer-events="all"/>
+    <text x="60" y="194" fill="var(--sj-paper-100)" font-size="14">天宝之乱</text><text x="60" y="212" fill="var(--sj-paper-300)" font-size="9">唐 · SJ-06</text>
+    <text x="280" y="202" text-anchor="middle" fill="var(--sj-vermil)" font-size="12">mil</text>
+    <text x="440" y="202" text-anchor="middle" fill="var(--sj-vermil)" font-size="12">节度使</text>
+    <text x="580" y="202" text-anchor="middle" fill="var(--sj-ochre)" font-size="12">显性</text>
+    <text x="720" y="202" text-anchor="middle" fill="var(--sj-vermil)" font-size="12">短（14年）</text></g>
+  <g class="sj-row" data-id="kangqian" tabindex="0" role="button"><rect x="44" y="234" width="732" height="56" rx="6" fill="var(--sj-ink-800)" opacity="0.16" pointer-events="all"/>
+    <text x="60" y="258" fill="var(--sj-paper-100)" font-size="14">康乾拐点</text><text x="60" y="276" fill="var(--sj-paper-300)" font-size="9">清 · SJ-49</text>
+    <text x="280" y="266" text-anchor="middle" fill="var(--sj-ochre)" font-size="12">base</text>
+    <text x="440" y="266" text-anchor="middle" fill="var(--sj-paper-300)" font-size="12">人口/僵化</text>
+    <text x="580" y="266" text-anchor="middle" fill="var(--sj-celadon)" font-size="12">隐性</text>
+    <text x="720" y="266" text-anchor="middle" fill="var(--sj-ochre)" font-size="12">长（嘉道）</text></g>
+  <g class="sj-row" data-id="zhenguan" tabindex="0" role="button"><rect x="44" y="298" width="732" height="56" rx="6" fill="var(--sj-ink-800)" opacity="0.3" pointer-events="all"/>
+    <text x="60" y="322" fill="var(--sj-paper-100)" font-size="14">贞观之治</text><text x="60" y="340" fill="var(--sj-paper-300)" font-size="9">唐 · SJ-38</text>
+    <text x="280" y="330" text-anchor="middle" fill="var(--sj-celadon)" font-size="12">五力协同</text>
+    <text x="440" y="330" text-anchor="middle" fill="var(--sj-ochre)" font-size="12">府兵隐患</text>
+    <text x="580" y="330" text-anchor="middle" fill="var(--sj-celadon)" font-size="12">隐性</text>
+    <text x="720" y="330" text-anchor="middle" fill="var(--sj-ochre)" font-size="12">中（→天宝）</text></g>
+  <text x="764" y="509" text-anchor="end" fill="var(--sj-line)" font-size="9">viewBox 820×560</text>
+</svg>
+  </div>
+
+  <div class="sj-18-layout">
+    <div class="sj-18-note" style="margin-top:0">
+      读法：三案皆在「盛世」相位埋拐点——天宝显性（军事单力强化）、康乾隐性（基座慢变量）、贞观协同下埋隐患。崩解距离与隐性程度负相关。
+    </div>
+    <aside class="sj-18-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-18-aside-empty">点选矩阵任一行，展开该变法的汲取工具、死穴与印证规律（各案单卷深描见交叉引用）。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-tool"></p>
+        <p class="law" id="aside-law"></p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- 3 对比表 -->
+<section class="sj-18-sec" id="sec-table" aria-labelledby="h-table">
+  <div class="sj-18-sec-h"><span class="num">03 · 对比矩阵</span><h2 id="h-table">主导力 · 强化单力 · 隐性 · 崩解距离</h2></div>
+  <div class="sj-18-table-wrap">
+    <table class="sj-18-table"><thead><tr><th>案例</th><th>主导力</th><th>强化/积累的单力</th><th>隐性程度</th><th>崩解距离</th><th>结局</th></tr></thead><tbody>
+<tr><td>天宝之乱 SJ-06</td><td>mil</td><td>节度使军事外包</td><td>显性（盛世顶点急崩）</td><td>短</td><td class="fail">安史之乱</td></tr>
+<tr><td>康乾拐点 SJ-49</td><td>base</td><td>人口逼近承载+文字狱僵化</td><td>隐性（鼎盛中积累）</td><td>长</td><td class="part">嘉道中衰</td></tr>
+<tr><td>贞观之治 SJ-38</td><td>五力协同</td><td>府兵/节度使远因</td><td>隐性（上升期埋隐患）</td><td>中</td><td class="part">→ SJ-06</td></tr>
+</tbody></table>
+  </div>
+  <p class="sj-18-note"><b>一眼可读：</b>触动精英循环力的五案（商鞅/王安石/张居正/戊戌；洋务之反面为不触动）皆遭反弹或清算；不触动的洋务则治标。皇权依赖"高"者，改革存续系于一人。</p>
+</section>
+
+<!-- 4 收束规律 -->
+<section class="sj-18-sec" id="sec-law" aria-labelledby="h-law">
+  <div class="sj-18-sec-h"><span class="num">04 · 收束规律</span><h2 id="h-law">三案收束为四条拐点规律</h2></div>
+  <div class="sj-18-law">
+    <article><div class="lh">规律 H1 · 盛世即拐点<span>母本§一</span></div><p>鼎盛顶点往往已积累崩解慢变量；「peak vs turning point」须区分。</p></article>
+    <article><div class="lh">规律 H2 · 强化单力反降稳定<span>↔ SJ-06</span></div><p>天宝强化军事外包毁内重外轻平衡——与 SJ-33 淝水「扩张极限」同构。</p></article>
+    <article><div class="lh">规律 H3 · 隐性拐点慢酿<span>康乾型</span></div><p>人口/僵化积累不即时爆发，但决定崩解距离——承 SJ-49→SJ-50 因果链。</p></article>
+    <article><div class="lh">规律 H4 · 协同亦埋隐患<span>贞观型</span></div><p>五力协同上升期仍可在制度模块（府兵）埋远因——上升矩阵与拐点矩阵交界。</p></article>
+  </div>
+  <p class="sj-18-note">四条规律回指母本第四部规律一；本矩阵是 guaidian 类型的实证收束。成员深描见 SJ-06/38/49 单卷。</p>
+</section>
+
+<!-- 5 交叉 -->
+<section class="sj-18-sec" id="sec-xref" aria-labelledby="h-xref">
+  <div class="sj-18-sec-h"><span class="num">05 · 交叉引用</span><h2 id="h-xref">成员单案与上下游</h2></div>
+  <div class="sj-18-xref">
+    <a href="/modules/shijian/sj-06"><div class="n">SJ-06 · 唐</div><h3>天宝之乱</h3><p>显性拐点·军事单力强化。</p></a>
+    <a href="/modules/shijian/sj-49"><div class="n">SJ-49 · 清</div><h3>康乾拐点</h3><p>隐性拐点·基座慢变量。</p></a>
+    <a href="/modules/shijian/sj-38"><div class="n">SJ-38 · 唐</div><h3>贞观之治</h3><p>上升期埋隐患→天宝。</p></a>
+    <a href="/modules/shijian/sj-17"><div class="n">SJ-17 · 姊妹</div><h3>上升矩阵</h3><p>贞观亦为上升成员；双矩阵共读。</p></a>
+    <a href="/modules/shijian/sj-07"><div class="n">SJ-07 · 姊妹</div><h3>崩解矩阵</h3><p>拐点下游为崩解。</p></a>
+    <a href="/modules/shijian/sj-19"><div class="n">SJ-19 · 姊妹</div><h3>分裂矩阵</h3><p>综合层合璧。</p></a>
+  </div>
+  <p class="sj-18-note">综合层进度：崩解（SJ-07）· 变法（SJ-16）· 上升（SJ-17）· 拐点（SJ-18）· 分裂（SJ-19）已收。见《案例库-整体架构》§4。</p>
+</section>
+
+<footer class="sj-18-foot">
+  <span>ChinaOS · 史鉴 SJ-18 · v0.1 · AS_OF 2026-07-15 · Round 4 · 真源《案例库-核心母本》+ 母本第四部</span>
+  <span><a href="/modules/shijian/sj-00">← 返回 SJ-00</a> · <a href="#sj-18-top">↑ 顶</a> · <a href="/modules/shijian/sj-07">崩解矩阵</a> · <a href="/modules/shijian/sj-19">分裂矩阵</a></span>
+</footer>
+
+</div>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const rows = Array.from(stage.querySelectorAll('.sj-row'));
+  const asideEmpty = document.getElementById('aside-empty');
+  const asideBody = document.getElementById('aside-body');
+
+  /** 五变法跨案数据（《案例库-核心母本》各案 seed） */
+  const GD_DATA = {
+    tianbao: { name:'天宝之乱 · 唐', tool:'节度使军事外包、募兵、内轻外重（755 安史）',
+      law:'显性拐点·强化 mil 单力。玄宗晚年怠政+杨国忠堵塞中枢。印证 H1+H2。崩解距离短。' },
+    kangqian: { name:'康乾拐点 · 清', tool:'摊丁入亩、十全武功、人口爆炸〔估算〕、文字狱',
+      law:'隐性拐点·base 逼近承载+僵化积累。盛世绩效掩盖慢变量。印证 H1+H3。崩解距离长→嘉道。' },
+    zhenguan: { name:'贞观之治 · 唐', tool:'五力协同、天可汗、均田科举（627–649）',
+      law:'上升期埋隐患·府兵制坏→节度使。与 SJ-17 上升矩阵交界。印证 H4。崩解距离中。' }
+  };
+
+  function clearVisual(){ stage.classList.remove('is-picking'); rows.forEach(r=>r.classList.remove('is-hot')); }
+  function showAside(id){ const d=GD_DATA[id]; if(!d) return; asideEmpty.hidden=true; asideBody.hidden=false;
+    document.getElementById('aside-tag').textContent='拐点谱系 · 跨案';
+    document.getElementById('aside-name').textContent=d.name;
+    document.getElementById('aside-tool').innerHTML='<b>机制链：</b>'+d.tool;
+    document.getElementById('aside-law').textContent=d.law; }
+  function pick(id){ if(!GD_DATA[id]) return; clearVisual(); stage.classList.add('is-picking');
+    rows.forEach(r=>r.classList.toggle('is-hot', r.dataset.id===id)); showAside(id); }
+  rows.forEach(r=>{ const act=()=>pick(r.dataset.id); r.addEventListener('click',act);
+    r.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); act(); } }); });
+})();
+</script>
+</body>
+</html>

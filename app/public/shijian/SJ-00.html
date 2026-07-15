@@ -730,10 +730,9 @@ html[data-theme="light"] .sj-00-card:focus-within{
   </div>
   <p class="sj-00-prose">按朝代筛选已建/规划案例卷；状态存于 JS 内存，无浏览器存储。完整路线图见 <code style="font-family:var(--sj-mono);font-size:12px;color:var(--sj-celadon)">docs/shijian/案例库-朝代路线图.md</code>。</p>
   <div class="sj-00-case-stats" id="sj-case-stats" aria-live="polite">
-    <span>已建 <b id="sj-stat-built">27</b> 卷</span>
-    <span>单案 <b>24</b> · 综合矩阵 <b>3</b></span>
-    <span>显示 <b id="sj-stat-visible">27</b> / <b id="sj-stat-total">29</b></span>
-    <span>待建 <b>2</b> 综合层（SJ-18/19）</span>
+    <span>已建 <b id="sj-stat-built">35</b> 卷</span>
+    <span>单案 <b>30</b> · 综合矩阵 <b>5</b></span>
+    <span>显示 <b id="sj-stat-visible">35</b> / <b id="sj-stat-total">35</b></span>
   </div>
   <div class="sj-00-case-filter" role="group" aria-label="朝代筛选">
     <span class="lbl">朝代</span>
@@ -921,17 +920,53 @@ html[data-theme="light"] .sj-00-card:focus-within{
       <p>1898 百日维新，体制突破失败，衔接洋务→辛亥链。</p>
       <div class="type">变法 · 体制突破型失败</div>
     </article>
-    <article class="sj-00-case-card" data-dynasty="cross" data-type="synthesis" data-built="0">
-      <div class="top"><span class="sj-num">SJ-18</span><span class="dyn">跨朝</span><span class="pending-badge">待建</span></div>
-      <h3>拐点谱系矩阵</h3>
-      <p>天宝/康乾等鼎盛隐性拐点跨案对比——规律提炼层。</p>
-      <div class="type">综合层 · 拐点谱系 · Round 4</div>
+    <article class="sj-00-case-card" data-dynasty="cross" data-type="synthesis" data-built="1">
+      <div class="top"><span class="sj-num">SJ-18</span><span class="dyn">跨朝</span></div>
+      <h3><a href="/modules/shijian/sj-18">拐点谱系矩阵</a></h3>
+      <p>天宝/康乾/贞观三拐点跨案对比——鼎盛隐性危机规律。</p>
+      <div class="type">综合层 · 拐点谱系</div>
     </article>
-    <article class="sj-00-case-card" data-dynasty="cross" data-type="synthesis" data-built="0">
-      <div class="top"><span class="sj-num">SJ-19</span><span class="dyn">跨朝</span><span class="pending-badge">待建</span></div>
-      <h3>分裂—重整矩阵</h3>
-      <p>五代/官渡/淝水等分裂期决胜与重整链——与 SJ-08/31 衔接。</p>
-      <div class="type">综合层 · 分裂重整 · Round 4</div>
+    <article class="sj-00-case-card" data-dynasty="cross" data-type="synthesis" data-built="1">
+      <div class="top"><span class="sj-num">SJ-19</span><span class="dyn">跨朝</span></div>
+      <h3><a href="/modules/shijian/sj-19">分裂—重整矩阵</a></h3>
+      <p>五代/官渡/淝水/孝文帝分裂期决胜与重整链。</p>
+      <div class="type">综合层 · 分裂重整</div>
+    </article>
+    <article class="sj-00-case-card" data-dynasty="jindai" data-built="1">
+      <div class="top"><span class="sj-num">SJ-52</span><span class="dyn">近代</span></div>
+      <h3><a href="/modules/shijian/sj-52">五四运动</a></h3>
+      <p>1919 拒签和约，合法性叙事断裂，新民主主义开端。</p>
+      <div class="type">合法性 · 叙事竞争</div>
+    </article>
+    <article class="sj-00-case-card" data-dynasty="jindai" data-built="1">
+      <div class="top"><span class="sj-num">SJ-53</span><span class="dyn">近代</span></div>
+      <h3><a href="/modules/shijian/sj-53">北伐战争</a></h3>
+      <p>1926 誓师北伐，军事力定正统，形式统一。</p>
+      <div class="type">军事 · 分裂重整</div>
+    </article>
+    <article class="sj-00-case-card" data-dynasty="chunqiu" data-built="1">
+      <div class="top"><span class="sj-num">SJ-54</span><span class="dyn">春秋战国</span></div>
+      <h3><a href="/modules/shijian/sj-54">吴起变法</a></h3>
+      <p>楚悼王用吴起变法，触动贵族，人亡政废。</p>
+      <div class="type">变法 · 触动精英型</div>
+    </article>
+    <article class="sj-00-case-card" data-dynasty="chunqiu" data-built="1">
+      <div class="top"><span class="sj-num">SJ-55</span><span class="dyn">春秋战国</span></div>
+      <h3><a href="/modules/shijian/sj-55">合纵连横</a></h3>
+      <p>苏秦张仪纵横博弈，联盟脆弱性样本。</p>
+      <div class="type">外交 · 分裂博弈</div>
+    </article>
+    <article class="sj-00-case-card" data-dynasty="chunqiu" data-built="1">
+      <div class="top"><span class="sj-num">SJ-56</span><span class="dyn">春秋战国</span></div>
+      <h3><a href="/modules/shijian/sj-56">长平之战</a></h3>
+      <p>前260 秦赵决战，军事消耗击穿基座承载。</p>
+      <div class="type">军事 · 消耗战</div>
+    </article>
+    <article class="sj-00-case-card" data-dynasty="chunqiu" data-built="1">
+      <div class="top"><span class="sj-num">SJ-57</span><span class="dyn">春秋战国</span></div>
+      <h3><a href="/modules/shijian/sj-57">百家争鸣</a></h3>
+      <p>诸子争夺治天下话语权，合法性叙事竞争。</p>
+      <div class="type">合法性 · 思想市场</div>
     </article>
   </div>
 </section>
@@ -946,7 +981,7 @@ html[data-theme="light"] .sj-00-card:focus-within{
       <a class="sj-rail-vol" href="#vol-overview"><span class="n">总论</span> SJ-00 索引</a>
       <a class="sj-rail-vol" href="#vol-method"><span class="n">方法论</span> SJ-01 · SJ-02</a>
       <a class="sj-rail-vol" href="#vol-cycle"><span class="n">周期机制</span> SJ-03 · SJ-04</a>
-      <a class="sj-rail-vol" href="#vol-cases"><span class="n">案例库</span> SJ-05–51</a>
+      <a class="sj-rail-vol" href="#vol-cases"><span class="n">案例库</span> SJ-05–57</a>
       <a class="sj-rail-vol" href="#vol-mirror"><span class="n">古今对照</span> SJ-20–24</a>
     </nav>
     <div class="sj-rail-chips">
