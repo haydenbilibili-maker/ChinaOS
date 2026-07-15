@@ -5,11 +5,12 @@
 import { buildSvg, nodeRect, nodeBase } from './sj-premium-slice.mjs';
 import { caseToSliceConfig } from './case-to-slice-config.mjs';
 import { ROUND5_CASES } from '../data/round5-cases.mjs';
+import { ROUND6_CASES } from '../data/round6-cases.mjs';
 import { ROUND4_CASES } from '../data/round4-cases.mjs';
 import { ROUND4_CHUNQIU } from '../data/round4-cases-chunqiu.mjs';
 
 const CASE_BY_NUM = Object.fromEntries(
-  [...ROUND5_CASES, ...ROUND4_CASES, ...ROUND4_CHUNQIU].map((c) => [c.num, c]),
+  [...ROUND5_CASES, ...ROUND4_CASES, ...ROUND4_CHUNQIU, ...ROUND6_CASES].map((c) => [c.num, c]),
 );
 
 /** 精绘：在 seed 基础上追加 edgeLabels 与加厚 nodeData */
@@ -137,6 +138,83 @@ const POLISH_META = {
     nodeBoost: {
       fa: '商鞅韩非以法令重塑汲取与动员——秦采纳，制度设计权随叙事竞争落定（→ SJ-11）。',
       zhou: '礼崩乐坏后周室衰微，天命叙事垄断破裂——思想市场替代单一天命。',
+    },
+  },
+  '25': {
+    railSummary: '前221 称皇帝 → 十年灭国 → 郡县制度封装 · 统一峰值。',
+    edgeLabels: `
+    <text x="410" y="248" text-anchor="middle" fill="var(--sj-vermil)" font-size="12" font-weight="600">十年灭国</text>
+    <text x="430" y="340" fill="var(--sj-celadon)">郡县模块</text>
+    <text x="520" y="390" fill="var(--sj-vermil)">征发启动</text>`,
+    nodeBoost: {
+      junxian: '郡县、书同文、度量衡——制度升级核心产物，安装速度超过基层消化。',
+      qinshi: '前221 称皇帝——军事征服与制度封装同步完成的决策中枢。',
+    },
+  },
+  '26': {
+    railSummary: '前213 焚书 → 前212 坑杀 → 思想封缄 · 扶苏远谪。',
+    edgeLabels: `
+    <text x="200" y="290" fill="var(--sj-vermil)">前213 焚书</text>
+    <text x="600" y="290" fill="var(--sj-vermil)">前212 坑杀</text>
+    <text x="430" y="390" fill="var(--sj-celadon)">以吏为师</text>`,
+    nodeBoost: {
+      fenshu: '焚诗书百家语——思想市场强制关闭，私学通道被封。',
+      fusu: '谏言被斥北监上郡——继承人纠偏通道切断，合法性内部分裂。',
+    },
+  },
+  '29': {
+    railSummary: '166 党锢 → 禁锢终身 → 184 黄巾大赦已晚 · 精英堵塞。',
+    edgeLabels: `
+    <text x="410" y="290" fill="var(--sj-vermil)" font-size="12" font-weight="600">禁锢闸门</text>
+    <text x="200" y="390" fill="var(--sj-celadon)">太学清议</text>
+    <text x="600" y="390" fill="var(--sj-ochre)">张成案引信</text>`,
+    nodeBoost: {
+      jinggu: '禁锢终身——精英上升通道物理封闭，僵化期典型死穴。',
+      qingliu: '李膺、范滂等清流遭系统性打压——舆论精英与朝廷对撞。',
+    },
+  },
+  '30': {
+    railSummary: '184 太平道起事 → 基座引燃 → 皇甫嵩击破 · 军阀化。',
+    edgeLabels: `
+    <text x="240" y="268" fill="var(--sj-vermil)">基座引燃</text>
+    <text x="430" y="370" fill="var(--sj-vermil)" font-size="12" font-weight="600">184起事</text>
+    <text x="560" y="390" fill="var(--sj-celadon)">八月击破</text>`,
+    nodeBoost: {
+      zhangjiao: '「苍天已死，黄天当立」——宗教叙事夺权，基座崩溃的动员形态。',
+      zaihuang: '灾荒+豪强兼并——基座承载越阈为首要引燃力。',
+    },
+  },
+  '37': {
+    railSummary: '611 民变 → 618 江都兵变 → 工程+军事双透支 · 隋亡。',
+    edgeLabels: `
+    <text x="240" y="268" fill="var(--sj-vermil)">基座过载</text>
+    <text x="560" y="268" fill="var(--sj-vermil)">三征高句丽</text>
+    <text x="430" y="370" fill="var(--sj-vermil)" font-size="12" font-weight="600">618兵变</text>`,
+    nodeBoost: {
+      yunhe: '运河工程过载——与 SJ-36 同构，民夫征发击穿基座。',
+      yuhua: '江都兵变杀炀帝——四力合围总引爆，关陇—骁果离心。',
+    },
+  },
+  '47': {
+    railSummary: '1449 亲征 → 土木堡兵败 → 英宗被俘 · 由攻转守。',
+    edgeLabels: `
+    <text x="410" y="275" text-anchor="middle" fill="var(--sj-vermil)" font-size="12" font-weight="600">土木堡决战</text>
+    <text x="430" y="340" fill="var(--sj-celadon)">王振专断</text>
+    <text x="560" y="390" fill="var(--sj-celadon)">于谦挽局</text>`,
+    nodeBoost: {
+      tumubao: '1449.8.15 兵败被俘——精锐丧尽，国防布局永久改变。',
+      wangzhen: '劫持军务决策链——非专业代理人导致后勤崩溃。',
+    },
+  },
+  '48': {
+    railSummary: '1405 首航 → 朝贡秩序 → 1433 停止 · 象征投入。',
+    edgeLabels: `
+    <text x="430" y="200" fill="var(--sj-ochre)">1405 首航</text>
+    <text x="600" y="348" fill="var(--sj-celadon)">朝贡回流</text>
+    <text x="200" y="348" fill="var(--sj-ochre)">耗费巨万</text>`,
+    nodeBoost: {
+      baochuan: '七次下西洋——合法性象征投入的物理载体，1405–1433。',
+      chaogong: '万国来朝强化永乐叙事——朝贡不等价，难成可持续税源。',
     },
   },
 };
