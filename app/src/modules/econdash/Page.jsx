@@ -2,8 +2,9 @@ import React, { Suspense, lazy, useCallback, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 // Layout: ink-observatory · os-card · os-reveal-stagger · TabBar (Round 2)
 import { PageHeader, TabBar, LoadingSkeleton } from '../../app/ui.jsx';
-import { IntroCard, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
-import { ECON_AS_OF, ECON_TAB_IDS } from './econData.js';
+import { FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
+import { ECON_AS_OF, ECON_DATA_AS_OF, ECON_TAB_IDS, KEY_INDICATORS } from './econData.js';
+import { toneOf, ARROW } from './econHelpers.jsx';
 import { useWorldBank } from './liveWorldBank.js';
 import MacroTab from './tabs/MacroTab.jsx';
 import DataFreshnessBar from './DataFreshnessBar.jsx';
@@ -34,6 +35,45 @@ const TABS = [
 
 function TabFallback() {
   return <LoadingSkeleton rows={3} label="板块载入中…" className="econ-tab-fallback" />;
+}
+
+// 首屏关键读数摘要带：GDP / 规上工业 / 社零 / 出口 / CPI 一行浓缩，取自 KEY_INDICATORS（不改数值）
+const SUMMARY_IDS = ['gdp_h1', 'iva', 'retail', 'export', 'cpi'];
+const SUMMARY_LABELS = { gdp_h1: 'GDP·H1', iva: '规上工业', retail: '社零', export: '出口', cpi: 'CPI' };
+
+function KeyReadingStrip() {
+  const items = SUMMARY_IDS
+    .map((id) => KEY_INDICATORS.find((k) => k.id === id))
+    .filter(Boolean);
+  return (
+    <div className="econ-readout" role="group" aria-label="关键读数摘要 · 2026 H1">
+      <span className="econ-readout__title mono">关键读数 · 2026 H1</span>
+      <div className="econ-readout__items">
+        {items.map((k) => {
+          const tone = toneOf(k.trend ?? k.yoy);
+          return (
+            <span key={k.id} className="econ-readout__chip" title={k.label}>
+              <span className="econ-readout__k">{SUMMARY_LABELS[k.id] || k.label}</span>
+              <span className="econ-readout__v mono os-mono-tabular">
+                {k.value}<span className="econ-readout__u">%</span>
+              </span>
+              <span className="econ-readout__arrow mono" style={{ color: tone }} aria-hidden="true">
+                {ARROW(k.trend ?? k.yoy)}
+              </span>
+            </span>
+          );
+        })}
+      </div>
+      <details className="econ-note">
+        <summary className="econ-note__summary mono">ⓘ 数据说明</summary>
+        <p className="econ-note__body">
+          三层数据合成全景：国家统计局公开口径快照（基准日 {ECON_DATA_AS_OF}，以官方发布为准）·
+          世界银行 WDI 实时长序列（浏览器直连、35 年序列）· 公开数据派生的领先指标示意。
+          口径声明：公开统计梳理 · 示意标定 · 非投资建议 · 非预测。
+        </p>
+      </details>
+    </div>
+  );
 }
 
 export default function Page({ embedded = false }) {
@@ -87,7 +127,7 @@ export default function Page({ embedded = false }) {
         <PageHeader
           badge="Dashboard · 经济发展与监测大盘"
           title="经济大盘 · 全景与实时监测"
-          subtitle={`把官方口径快照、世界银行实时长序列和领先指标合成一张盘——十五五开局 2026 H1 读数、结构的变迁、过热与转冷的早信号，都在一屏里。截至 ${ECON_AS_OF}`}
+          subtitle={`官方口径快照 × 世行长序列 × 衍生指标，一屏尽览十五五开局 2026 H1 读数、结构变迁与过热转冷的早信号。截至 ${ECON_AS_OF}`}
         >
           <div className="flex flex-wrap gap-2 items-center">
             <Link to="/dashboard" className="econ-cross-chip">中枢看板 ↗</Link>
@@ -101,13 +141,7 @@ export default function Page({ embedded = false }) {
 
       <DataFreshnessBar />
 
-      <IntroCard className="econ-intro">
-        本页以三层数据合成经济全景：国家统计局公开口径快照（标注基准日 {ECON_AS_OF}，以官方发布为准）、
-        世界银行 WDI 实时长序列（直连取数、35 年序列）、以及公开数据派生的领先指标示意。
-        三次产业结构的此消彼长看「经济在做什么」，核心指标盘看「当下的体温」，金丝雀监测盘看「转折的早信号」，
-        世行经济简报看「月度研判与基线预测」，收入分配与新经济看「增长落到谁身上、新动能在哪里」。
-        口径声明：公开统计梳理 · 示意标定 · 非投资建议 · 非预测。
-      </IntroCard>
+      <KeyReadingStrip />
 
       <div className="econ-sticky-nav">
         <TabBar tabs={TABS} value={tab} onChange={setTab} accent="var(--cyber-cyan)" sticky className="econ-tab-bar" />

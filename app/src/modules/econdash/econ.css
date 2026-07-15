@@ -16,10 +16,6 @@
     var(--bg-base);
 }
 
-.econ-wrap .econ-intro {
-  border-left: 3px solid var(--econ-teal);
-}
-
 .econ-wrap .econ-sticky-nav {
   position: sticky;
   top: 0;
@@ -256,10 +252,122 @@
   }
 }
 
+/* ── 关键读数摘要带（首屏浓缩 · GDP/工业/社零/出口/CPI 一行）· 非 .econ-wrap 作用域 ── */
+.econ-readout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.9rem;
+  margin-bottom: clamp(0.75rem, 1.4vw, 1rem);
+  padding: 0.5rem 0.85rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--econ-teal, #62a89e);
+  background: color-mix(in srgb, var(--bg-surface) 85%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.econ-readout__title {
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+
+.econ-readout__items {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.econ-readout__chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+}
+
+.econ-readout__k {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+
+.econ-readout__v {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.econ-readout__u {
+  font-size: 9.5px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  margin-left: 1px;
+}
+
+.econ-readout__arrow {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* 可折叠「ⓘ 数据说明」：默认收起，靠右；展开后落为整行不挤占首屏 */
+.econ-note {
+  margin-left: auto;
+  font-size: 11px;
+}
+
+.econ-note[open] {
+  flex: 1 0 100%;
+  margin-left: 0;
+  margin-top: 0.35rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.econ-note__summary {
+  list-style: none;
+  cursor: pointer;
+  color: var(--text-tertiary);
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.econ-note__summary::-webkit-details-marker {
+  display: none;
+}
+
+.econ-note__summary:hover,
+.econ-note__summary:focus-visible,
+.econ-note[open] .econ-note__summary {
+  color: var(--econ-teal, #62a89e);
+  border-color: var(--border-subtle);
+}
+
+.econ-note__body {
+  margin: 0.5rem 0 0;
+  font-size: 11.5px;
+  line-height: 1.65;
+  color: var(--text-tertiary);
+}
+
 /* ── 数据时效条（时间戳 + 实时钟 + 陈旧告警）· 非 .econ-wrap 作用域，嵌入态亦生效 ── */
 .econ-freshness {
-  margin-bottom: 1.25rem;
-  padding: 0.75rem 1rem;
+  margin-bottom: clamp(0.75rem, 1.4vw, 1rem);
+  padding: 0.55rem 0.85rem;
   border-radius: 10px;
   border: 1px solid var(--border-subtle);
   border-left: 3px solid var(--status-positive);
@@ -278,7 +386,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
-  gap: 0.5rem 1.25rem;
+  gap: 0.4rem 1.1rem;
 }
 
 .econ-freshness__cell {
@@ -302,7 +410,7 @@
 }
 
 .econ-freshness__v {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--text-primary);
   line-height: 1.2;
