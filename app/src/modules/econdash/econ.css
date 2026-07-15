@@ -255,3 +255,109 @@
     overflow-x: auto;
   }
 }
+
+/* ── 数据时效条（时间戳 + 实时钟 + 陈旧告警）· 非 .econ-wrap 作用域，嵌入态亦生效 ── */
+.econ-freshness {
+  margin-bottom: 1.25rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--status-positive);
+  background: color-mix(in srgb, var(--bg-surface) 88%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.econ-freshness.is-stale {
+  border-left-color: var(--status-negative);
+  border-color: color-mix(in srgb, var(--status-negative) 40%, var(--border-subtle));
+  background: color-mix(in srgb, var(--status-negative) 8%, var(--bg-surface));
+}
+
+.econ-freshness__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.5rem 1.25rem;
+}
+
+.econ-freshness__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.econ-freshness__cell--verdict {
+  margin-left: auto;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.econ-freshness__k {
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+}
+
+.econ-freshness__v {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.econ-freshness__note {
+  font-size: 10px;
+  line-height: 1.4;
+  color: var(--text-tertiary);
+}
+
+.econ-freshness__sep {
+  width: 1px;
+  align-self: stretch;
+  background: var(--border-subtle);
+}
+
+.econ-freshness__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.econ-freshness__badge-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 6px currentColor;
+}
+
+.econ-freshness__alert {
+  margin-top: 0.625rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--status-negative);
+  background: color-mix(in srgb, var(--status-negative) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--status-negative) 35%, transparent);
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+@media (max-width: 639px) {
+  .econ-freshness__sep {
+    display: none;
+  }
+
+  .econ-freshness__cell--verdict {
+    margin-left: 0;
+    align-items: flex-start;
+    text-align: left;
+  }
+}

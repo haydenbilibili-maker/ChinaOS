@@ -6,6 +6,7 @@ import { IntroCard, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm
 import { ECON_AS_OF, ECON_TAB_IDS } from './econData.js';
 import { useWorldBank } from './liveWorldBank.js';
 import MacroTab from './tabs/MacroTab.jsx';
+import DataFreshnessBar from './DataFreshnessBar.jsx';
 import './econ.css';
 
 const StructureTab = lazy(() => import('./tabs/StructureTab.jsx'));
@@ -97,6 +98,8 @@ export default function Page({ embedded = false }) {
           </div>
         </PageHeader>
       )}
+
+      <DataFreshnessBar />
 
       <IntroCard className="econ-intro">
         本页以三层数据合成经济全景：国家统计局公开口径快照（标注基准日 {ECON_AS_OF}，以官方发布为准）、
