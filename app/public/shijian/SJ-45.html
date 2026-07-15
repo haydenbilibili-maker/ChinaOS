@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-45 · 行省制度</title>
+<meta name="description" content="ChinaOS 史鉴系列案例卷 SJ-45：行省制度——央地分权创新 · 行中书省 · 省制奠基。史鉴台账七字段。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;--sj-ink-800:#1d1916;--sj-paper-100:#e8ddc7;--sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;--sj-celadon:#5f7a6f;--sj-ochre:#b8894a;--sj-line:#3a322b;
+  --sj-radius:6px;--sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c 0%,transparent 55%),var(--sj-ink-900);color:var(--sj-paper-100);font-family:var(--sj-serif);line-height:1.75}
+.sj-45-wrap{max-width:min(100%,1180px);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media(min-width:1280px){.sj-45-wrap{max-width:min(100%,1480px)}}
+.sj-page-layout{display:flex;flex-direction:column;gap:var(--sj-space)}
+@media(min-width:1280px){.sj-page-layout{display:grid;grid-template-columns:minmax(0,58fr) minmax(280px,38fr);gap:clamp(16px,2vw,28px);align-items:start}}
+.sj-main-col{min-width:0}
+.sj-rail{display:flex;flex-direction:column;gap:12px}
+@media(min-width:1280px){.sj-rail{position:sticky;top:1rem;align-self:start;max-height:calc(100vh - 2rem);overflow-y:auto}}
+@media(max-width:1279px){.sj-page-layout{flex-direction:column}.sj-main-col{display:contents}.sj-rail{order:2;margin:8px 0 20px}}
+.sj-rail-card{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px}
+.sj-rail-card .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-rail-toc{display:grid;gap:6px;margin-top:8px}
+.sj-rail-toc a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);padding:8px 10px;text-decoration:none;color:inherit;font-size:13px}
+.sj-rail-toc a:hover,.sj-rail-toc a:focus-visible,.sj-rail-toc a.is-active{border-color:var(--sj-ochre);outline:none}
+.sj-rail-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;margin:4px 4px 0 0}
+.sj-45-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px}
+.sj-45-mast .badge{font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-45-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em}
+.sj-45-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;font-size:.72em;display:block;margin-top:4px}
+.sj-45-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right}
+.sj-45-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;margin:2px}
+.sj-45-dynasty{color:var(--sj-ochre);border-color:var(--sj-ochre)}
+.sj-zhupi{color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:74ch}
+.sj-ledger{display:grid;gap:8px}
+.sj-ledger-field{margin:20px 0 8px;scroll-margin-top:24px}
+.sj-ledger-fh{display:flex;align-items:baseline;gap:12px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--sj-line)}
+.sj-ledger-fh .fnum{font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre);border:1px solid var(--sj-line);border-radius:4px;padding:1px 7px}
+.sj-ledger-fh h2{font-size:clamp(16px,2.1vw,19px);font-weight:600}
+.sj-45-prose{font-size:15.5px;max-width:74ch}
+.sj-45-hook{border:1px solid var(--sj-line);border-left:3px solid var(--sj-vermil);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:18px 22px}
+.sj-45-hook p{font-size:clamp(16px,2.3vw,20px);line-height:1.7}
+.sj-45-hook .yr{margin-top:10px;font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre)}
+.sj-45-stage{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:8px;overflow:auto}
+.sj-45-stage svg{display:block;width:100%;height:auto}
+.sj-node{cursor:pointer;transition:opacity .2s ease,filter .2s ease}
+.sj-node:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:4px}
+.sj-edge{transition:opacity .2s ease,filter .2s ease}
+.sj-45-stage.is-picking .sj-node{opacity:.3}
+.sj-45-stage.is-picking .sj-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px rgba(184,137,74,.4))}
+.sj-45-stage.is-picking .sj-edge{opacity:.16}
+.sj-45-stage.is-picking .sj-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px rgba(168,59,44,.4))}
+.sj-45-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:14px;align-items:start;margin-top:14px}
+.sj-45-aside{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px;position:sticky;top:12px;min-height:150px}
+.sj-45-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-45-aside h3{font-size:16px;letter-spacing:.08em;margin-bottom:8px}
+.sj-45-aside p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.7}
+.sj-45-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+.sj-45-note{font-size:13px;color:var(--sj-paper-300);line-height:1.65;max-width:74ch}
+@media(max-width:900px){.sj-45-layout{grid-template-columns:1fr}.sj-45-aside{position:static}}
+.sj-45-phase .pb{font-family:var(--sj-mono);font-size:12px;color:var(--sj-vermil);border:1px solid var(--sj-vermil);border-radius:20px;padding:6px 16px}
+.sj-45-table-wrap{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);overflow:auto}
+.sj-45-table{width:100%;border-collapse:collapse;font-size:13px}
+.sj-45-table th{background:var(--sj-ink-900);color:var(--sj-ochre);font-family:var(--sj-mono);font-size:10px;padding:10px 12px;text-align:left;border-bottom:1px solid var(--sj-line)}
+.sj-45-table td{padding:10px 12px;border-bottom:1px solid var(--sj-line);color:var(--sj-paper-300);vertical-align:top}
+.sj-45-table td:first-child{color:var(--sj-paper-100);font-weight:600}
+.sj-45-hist{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-45-hist article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-45-hist .who{font-size:14px;font-weight:600;color:var(--sj-celadon);margin-bottom:6px}
+.sj-45-hist .who span{font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);margin-left:6px}
+.sj-45-hist p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+.sj-45-verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sj-45-verdict article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-45-verdict .vh{font-family:var(--sj-mono);font-size:10px;margin-bottom:8px}
+.sj-45-verdict article.ok .vh{color:var(--sj-celadon)}
+.sj-45-verdict article.fail .vh{color:var(--sj-vermil)}
+.sj-45-verdict article.open .vh{color:var(--sj-ochre)}
+.sj-45-verdict p{font-size:13px;color:var(--sj-paper-300)}
+.sj-45-mirror{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-45-mirror article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-45-mirror .mh{font-family:var(--sj-mono);font-size:10px;margin-bottom:8px}
+.sj-45-mirror article.same .mh{color:var(--sj-celadon)}
+.sj-45-mirror article.diff .mh{color:var(--sj-ochre)}
+.sj-45-mirror p{font-size:13px;color:var(--sj-paper-100);line-height:1.68}
+.sj-45-xref{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.sj-45-xref a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit}
+.sj-45-xref .n{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);margin-bottom:4px}
+.sj-45-xref h3{font-size:14px;margin-bottom:6px}
+.sj-45-xref p{font-size:12.5px;color:var(--sj-paper-300)}
+.sj-45-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sj-45-foot a{color:var(--sj-celadon);text-decoration:none}
+@media(max-width:768px){.sj-45-hist,.sj-45-mirror,.sj-45-verdict,.sj-45-xref{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sj-node,.sj-edge{transition:none}}
+.sj-rail-mini{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="sj-45-wrap" id="sj-45-top">
+<header class="sj-45-mast">
+  <div>
+    <div class="badge">SJ-45 · 制度演变案例卷 · 元</div>
+    <h1>行省制度<em>央地分权创新 · 行中书省 · 省制奠基</em></h1>
+    <div>
+      <span class="sj-45-chip sj-45-dynasty" data-dynasty="yuan">朝代 · 元</span>
+      <span class="sj-45-chip">制度</span>
+      <a class="sj-45-chip" href="./SJ-00.html">↔ SJ-00</a>
+      <a class="sj-45-chip" href="./SJ-03.html">↔ SJ-03</a>
+      <a class="sj-45-chip" href="./SJ-04.html">↔ SJ-04</a>
+      
+    </div>
+  </div>
+  <div class="sj-45-meta">史鉴台账七字段 · 元<br/><b>AS_OF 2026-07-15</b> · v0.1</div>
+</header>
+<p class="sj-zhupi">朱批：本案是<strong>央地结构创新</strong>样本——元设行中书省，由中央派出机构渐成地方最高政区，「省」制由此定型并延续至今。口径：《元史·百官志》《地理志》；1287 改行尚书省为行中书省、成宗大德后辖区渐稳为通说〔细节存疑〕。</p>
+<article class="sj-ledger">
+<div class="sj-page-layout">
+<div class="sj-main-col">
+<section class="sj-ledger-field" id="f1"><div class="sj-ledger-fh"><span class="fnum">01</span><h2>一句话拐点</h2></div>
+  <div class="sj-45-hook"><p>蒙古统一后疆域辽阔，仅靠中书省与临时派出机构难以治理。元世祖以<b>行中书省</b>（简称行省）统辖一路以上军民钱粮，初为因事而设，后渐成定制——由只管军事到兼管民政，形成「腹里（中书省直辖）+ 十行省」格局。行省是今天省级政区的历史源头，也是大一统帝国央地分权的结构创新。</p><div class="yr">系年：至元二十四年（1287）改行尚书省为行中书省 · 至顺元年（1330）约十一行省格局 · 出处《元史·百官志》《地理志》</div></div>
+</section>
+<section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
+  <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
+  <p class="sj-45-prose">权力几何：<strong>中书省/皇帝</strong>授权<strong>行中书省</strong>纵列 → 路府州县下行治理 → <strong>腹里与行省</strong>双底盘。制度纵列（青瓷）为主轴，蒙古—汉地精英博弈（朱批）为执行张力。</p>
+  <div class="sj-45-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">结构切片 · 行省制度</title>
+  <desc id="sj-desc">权力几何：中书省/皇帝授权行中书省纵列 → 路府州县下行治理 → 腹里与行省双底盘。制度纵列（青瓷）为主轴，蒙古—汉地精英博弈（朱批）为执行张力。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%"><stop offset="0%" stop-color="var(--sj-ink-800)"/><stop offset="100%" stop-color="var(--sj-ink-900)"/></radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse"><line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/></pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/></linearGradient>
+    <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+    <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+    <marker id="a-celadon" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-100)"/></marker>
+  </defs>
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,serif">结构切片 · 行省制度</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,monospace">SJ-45 · 元 · 制度</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">朱批 · 五力色义 · 点击节点交互</text>
+  <g fill="none" stroke-linecap="round"><path class="sj-edge" data-edge="e1" d="M410,158 L218,220" stroke="var(--sj-ochre)" stroke-width="2.4" marker-end="url(#a-ochre)"/><text x="310" y="195" text-anchor="middle" fill="var(--sj-ochre)" font-size="11" font-family="Songti SC,serif">派出行省</text>
+<path class="sj-edge" data-edge="e2" d="M218,280 L410,330" stroke="var(--sj-celadon)" stroke-width="2.6" marker-end="url(#a-celadon)"/><text x="310" y="310" text-anchor="middle" fill="var(--sj-celadon)" font-size="11" font-family="Songti SC,serif">路府下行</text>
+<path class="sj-edge" data-edge="e3" d="M410,390 L410,450" stroke="var(--sj-ochre)" stroke-width="2.2" marker-end="url(#a-ochre)"/>
+<path class="sj-edge" data-edge="e4" d="M306,250 L514,250" stroke="var(--sj-paper-300)" stroke-width="2" marker-end="url(#a-paper)"/>
+<path class="sj-edge" data-edge="e5" d="M607,280 L510,330" stroke="var(--sj-vermil)" stroke-width="2" marker-end="url(#a-vermil)"/><text x="570" y="305" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">等级张力</text>
+<path class="sj-edge" data-edge="e6" d="M218,330 L310,330" stroke="var(--sj-celadon)" stroke-width="1.8"/></g>
+  <g class="sj-node" data-id="zhongshu" tabindex="0" role="button" aria-label="中书省 · 皇帝">
+    <rect x="310" y="112" width="200" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="410" y="140" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">中书省 · 皇帝</text>
+    <text x="410" y="158" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">中央中枢 · 腹里</text>
+  </g>
+<g class="sj-node" data-id="xingsheng" tabindex="0" role="button" aria-label="行中书省">
+    <rect x="130" y="220" width="176" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="218" y="248" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">行中书省</text>
+    <text x="218" y="266" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">1287 定制 · 纵列</text>
+  </g>
+<g class="sj-node" data-id="lufu" tabindex="0" role="button" aria-label="路 · 府 · 州">
+    <rect x="310" y="330" width="200" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="410" y="358" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">路 · 府 · 州</text>
+    <text x="410" y="376" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">汲取下行</text>
+  </g>
+<g class="sj-node" data-id="daru" tabindex="0" role="button" aria-label="达鲁花赤">
+    <rect x="514" y="220" width="186" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-paper-300)" stroke-width="2.4"/>
+    <text x="607" y="248" text-anchor="middle" fill="var(--sj-paper-300)" font-size="14" font-weight="600" font-family="Songti SC,serif">达鲁花赤</text>
+    <text x="607" y="266" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">蒙古监官 · 双轨</text>
+  </g>
+<g class="sj-node" data-id="menfa" tabindex="0" role="button" aria-label="色目 · 南人">
+    <rect x="514" y="330" width="186" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="607" y="358" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">色目 · 南人</text>
+    <text x="607" y="376" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">四等人制 · 张力</text>
+  </g>
+<g class="sj-node" data-id="shiyi" tabindex="0" role="button" aria-label="十行省格局">
+    <rect x="130" y="330" width="176" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="218" y="358" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">十行省格局</text>
+    <text x="218" y="376" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">1330 约定型</text>
+  </g>
+<g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="编户 · 腹里与行省底盘">
+    <rect x="56" y="450" width="708" height="70" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="2.4"/>
+    <text x="410" y="482" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC,serif">编户 · 腹里与行省底盘</text>
+    <text x="410" y="500" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">税基 · 多民族帝国</text>
+  </g>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,monospace">viewBox 820×600 · SJ-45</text>
+</svg></div>
+  <div class="sj-45-layout">
+    <div class="sj-45-note" style="margin-top:0">点选节点展开机制链；色义见 premium 切片图例（patch 后更新）。</div>
+    <aside class="sj-45-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-45-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+      </div>
+    </aside>
+  </div>
+</section>
+</div>
+<aside class="sj-rail"><div class="sj-rail-card"><div class="k">台账 · 七字段</div>
+  <nav class="sj-rail-toc"><a href="#f1">01 · 拐点</a><a href="#f2">02 · 切片</a><a href="#f3">03 · 相位</a><a href="#f4">04 · 五力</a><a href="#f5">05 · 交锋</a><a href="#f6">06 · 成败</a><a href="#f7">07 · 映射</a></nav>
+  <a class="sj-rail-chip" href="./SJ-00.html#sec-case-hub">案例库 Hub</a>
+  <a class="sj-rail-chip" href="./SJ-03.html">SJ-03 五力</a>
+  <a class="sj-rail-chip" href="./SJ-04.html">SJ-04 相位盘</a>
+</div></aside>
+</div>
+<section class="sj-ledger-field" id="f3"><div class="sj-ledger-fh"><span class="fnum">03</span><h2>相位定位</h2></div>
+  <div class="sj-45-phase"><span class="pb">鼎盛期 · 制度奠基</span></div>
+  <p class="sj-45-prose">元朝在<strong>上升—鼎盛</strong>相位完成疆域整合，行省制度落于 SJ-04「鼎盛期·央地结构创新」。与 SJ-35 隋初三省、SJ-39 唐藩镇截留构成「中央—地方汲取链」对照：行省是主动分权而非被动分割。</p>
+</section>
+<section class="sj-ledger-field" id="f4"><div class="sj-ledger-fh"><span class="fnum">04</span><h2>五力归因台账</h2></div>
+  <div class="sj-45-table-wrap"><table class="sj-45-table"><thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead><tbody><tr><td>财政汲取</td><td class="zheng">「行省治民」</td><td class="shi">行省掌辖区内钱粮、漕运、屯田——汲取链由中央纵列直达路府，较唐藩镇截留更可控</td></tr>
+<tr><td>精英循环</td><td class="zheng">达鲁花赤 · 汉官</td><td class="shi">蒙古达鲁花赤与汉地官僚并置，精英通道双轨；色目人、汉人、南人等级影响仕途</td></tr>
+<tr><td>合法性叙事</td><td class="zheng">「大一统」</td><td class="shi">行省为「行动的中书省」，以统一叙事包装多民族帝国治理</td></tr>
+<tr><td>边疆军事</td><td class="zheng">征东等行省</td><td class="shi">部分行省因军事征伐而设（如征东行省），后多撤销；辽阳、甘肃、云南等兼边防</td></tr>
+<tr><td>生态—人口基座</td><td class="zheng">—</td><td class="shi">统一后赋役与户籍括户（如大索貌阅传统）试图锁定税基〔元初户数存疑〕</td></tr></tbody></table></div>
+</section>
+<section class="sj-ledger-field" id="f5"><div class="sj-ledger-fh"><span class="fnum">05</span><h2>史家交锋</h2></div>
+  <div class="sj-45-hist"><article><div class="who">李敖式考据<span>祛魅</span></div><p>剥离「行省=现代省」的简单等同——元行省初为派出机关，职权与辖区屡变，至大德年间才趋稳定。</p></article>
+<article><div class="who">钱穆<span>《国史大纲》</span></div><p>强调行省对后世地方行政的深远影响；元制承金、启明。</p></article>
+<article><div class="who">金观涛<span>超稳定结构</span></div><p>官僚模块化在疆域扩张下的「分块治理」——行省是超稳定结构的空间复制。</p></article>
+<article><div class="who">黄仁宇<span>数目字管理</span></div><p>元试图以行省统合数目字管理，但基层会计仍薄；与明清省制有连续也有断裂。</p></article>
+<article style="grid-column:1/-1"><div class="who">西方汉学<span>Yuan provinces</span></div><p>学界共识：行省制是 Medieval China 地方行政的关键创新；1287 改制为重要节点。〔存疑〕</p></article></div>
+</section>
+<section class="sj-ledger-field" id="f6"><div class="sj-ledger-fh"><span class="fnum">06</span><h2>成败判定</h2></div>
+  <div class="sj-45-verdict">
+    <article class="ok"><div class="vh">已兑现</div><p>省制延续至今</p><p>疆域整合治理</p><p>央地分权模板</p></article>
+    <article class="fail"><div class="vh">已失败</div><p>民族等级固化</p><p>后期腐败</p><p>元末崩解未改行省名</p></article>
+    <article class="open"><div class="vh">未决</div><p>〔反事实〕若元初即固定行省辖区与任期，能否延缓元末地方失控？</p></article>
+  </div>
+</section>
+<section class="sj-ledger-field" id="f7"><div class="sj-ledger-fh"><span class="fnum">07</span><h2>古今映射</h2></div>
+  <div class="sj-45-mirror">
+    <article class="same"><div class="mh">相似机制</div><p>大一统帝国下的央地分权；派出机关地方化；汲取链空间分块。</p></article>
+    <article class="diff"><div class="mh">关键差异</div><p>现代省制有宪法与民主程序；但「中央派出→地方常设政区」的路径仍可对读（→ SJ-35 三省、当代央地关系）。</p></article>
+  </div>
+</section>
+<section class="sj-ledger-field" id="fx"><div class="sj-ledger-fh"><span class="fnum">◆</span><h2>交叉引用</h2></div>
+  <div class="sj-45-xref"><a href="./SJ-35.html"><div class="n">SJ-35 · 隋文帝</div><h3>隋初</h3><p>三省六部为中枢模块化上游。</p></a>
+<a href="./SJ-39.html"><div class="n">SJ-39 · 两税法</div><h3>两税</h3><p>藩镇截留 vs 行省统辖的对照。</p></a>
+<a href="./SJ-04.html"><div class="n">SJ-04 · 相位盘</div><h3>相位盘</h3><p>鼎盛期·制度奠基定位。</p></a></div>
+</section>
+</article>
+<footer class="sj-45-foot">
+  <span>ChinaOS · 史鉴 SJ-45 · v0.1 · 元</span>
+  <span><a href="./SJ-00.html">← SJ-00</a> · <a href="./SJ-34.html">← SJ-34</a></span>
+  <span><a href="./SJ-46.html">SJ-46 →</a></span>
+</footer>
+</div>
+<script>
+(function(){
+  const stage=document.getElementById('stage');
+  if(!stage) return;
+  const nodes=Array.from(stage.querySelectorAll('.sj-node'));
+  const edges=Array.from(stage.querySelectorAll('.sj-edge'));
+  const asideEmpty=document.getElementById('aside-empty');
+  const asideBody=document.getElementById('aside-body');
+  const NODE_DATA={
+  "zhongshu": {
+    "name": "中书省 · 皇帝",
+    "tag": "皇权",
+    "body": "元废三省留中书，为最高政务机关；腹里（今华北一带）由中书省直辖。"
+  },
+  "xingsheng": {
+    "name": "行中书省",
+    "tag": "制度枢纽",
+    "body": "「行动的中书省」——初临时、后常设，掌一路以上军民钱粮。至元二十四年改行尚书省为行中书省（《元史·百官志》）。"
+  },
+  "lufu": {
+    "name": "路 · 府 · 州",
+    "tag": "财政链",
+    "body": "行省之下设路府州县，税粮、徭役经路府征解至行省再解中央——汲取纵列。"
+  },
+  "daru": {
+    "name": "达鲁花赤",
+    "tag": "精英双轨",
+    "body": "各路设蒙古监官，与汉官并置——精英循环的双轨结构，保障蒙古利益。"
+  },
+  "menfa": {
+    "name": "色目 · 南人",
+    "tag": "合法性隐患",
+    "body": "民族等级使合法性叙事与基层承受力脱节，为元末矛盾埋伏笔。"
+  },
+  "shiyi": {
+    "name": "十行省格局",
+    "tag": "空间分块",
+    "body": "岭北、辽阳、河南、陕西、甘肃、江浙、江西、湖广、四川、云南等——约十一行省（含腹里为中书直辖）。"
+  },
+  "base": {
+    "name": "编户 · 腹里与行省底盘",
+    "tag": "基座",
+    "body": "统一后括户、赋役试图锁定税基；行省分块使大帝国治理成为可能。〔户数存疑〕"
+  }
+};
+  const NODE_EDGE={
+  "zhongshu": [
+    "e1"
+  ],
+  "xingsheng": [
+    "e1",
+    "e2",
+    "e4",
+    "e6"
+  ],
+  "lufu": [
+    "e2",
+    "e3",
+    "e5"
+  ],
+  "daru": [
+    "e4"
+  ],
+  "menfa": [
+    "e5"
+  ],
+  "shiyi": [
+    "e6"
+  ],
+  "base": [
+    "e3"
+  ]
+};
+  function clearVisual(){stage.classList.remove('is-picking');nodes.forEach(n=>n.classList.remove('is-hot'));edges.forEach(e=>e.classList.remove('is-hot'));}
+  function showAside(id){const d=NODE_DATA[id];if(!d)return;asideEmpty.hidden=true;asideBody.hidden=false;document.getElementById('aside-tag').textContent=d.tag;document.getElementById('aside-name').textContent=d.name;document.getElementById('aside-text').textContent=d.body;}
+  function pick(id){if(!NODE_DATA[id])return;clearVisual();stage.classList.add('is-picking');nodes.forEach(n=>n.classList.toggle('is-hot',n.dataset.id===id));const hot=NODE_EDGE[id]||[];edges.forEach(e=>e.classList.toggle('is-hot',hot.indexOf(e.dataset.edge)>=0));showAside(id);}
+  nodes.forEach(n=>{const act=()=>pick(n.dataset.id);n.addEventListener('click',act);n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});});
+  edges.forEach(e=>{if(!e.dataset.edge||!NODE_DATA[e.dataset.edge])return;const act=()=>pick(e.dataset.edge);e.style.cursor='pointer';e.setAttribute('tabindex','0');e.setAttribute('role','button');e.addEventListener('click',act);e.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();act();}});});
+})();
+</script>
+</body>
+</html>

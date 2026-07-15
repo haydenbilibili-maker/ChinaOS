@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-51 · 戊戌变法</title>
+<meta name="description" content="ChinaOS 史鉴系列案例卷 SJ-51：戊戌变法——体制突破失败 · 百日维新 · 守旧反扑。史鉴台账七字段。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;--sj-ink-800:#1d1916;--sj-paper-100:#e8ddc7;--sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;--sj-celadon:#5f7a6f;--sj-ochre:#b8894a;--sj-line:#3a322b;
+  --sj-radius:6px;--sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%,#2a221c 0%,transparent 55%),var(--sj-ink-900);color:var(--sj-paper-100);font-family:var(--sj-serif);line-height:1.75}
+.sj-51-wrap{max-width:min(100%,1180px);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media(min-width:1280px){.sj-51-wrap{max-width:min(100%,1480px)}}
+.sj-page-layout{display:flex;flex-direction:column;gap:var(--sj-space)}
+@media(min-width:1280px){.sj-page-layout{display:grid;grid-template-columns:minmax(0,58fr) minmax(280px,38fr);gap:clamp(16px,2vw,28px);align-items:start}}
+.sj-main-col{min-width:0}
+.sj-rail{display:flex;flex-direction:column;gap:12px}
+@media(min-width:1280px){.sj-rail{position:sticky;top:1rem;align-self:start;max-height:calc(100vh - 2rem);overflow-y:auto}}
+@media(max-width:1279px){.sj-page-layout{flex-direction:column}.sj-main-col{display:contents}.sj-rail{order:2;margin:8px 0 20px}}
+.sj-rail-card{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px}
+.sj-rail-card .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-rail-toc{display:grid;gap:6px;margin-top:8px}
+.sj-rail-toc a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);padding:8px 10px;text-decoration:none;color:inherit;font-size:13px}
+.sj-rail-toc a:hover,.sj-rail-toc a:focus-visible,.sj-rail-toc a.is-active{border-color:var(--sj-ochre);outline:none}
+.sj-rail-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;margin:4px 4px 0 0}
+.sj-51-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px}
+.sj-51-mast .badge{font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-51-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em}
+.sj-51-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;font-size:.72em;display:block;margin-top:4px}
+.sj-51-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right}
+.sj-51-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none;margin:2px}
+.sj-51-dynasty{color:var(--sj-ochre);border-color:var(--sj-ochre)}
+.sj-zhupi{color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:74ch}
+.sj-ledger{display:grid;gap:8px}
+.sj-ledger-field{margin:20px 0 8px;scroll-margin-top:24px}
+.sj-ledger-fh{display:flex;align-items:baseline;gap:12px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--sj-line)}
+.sj-ledger-fh .fnum{font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre);border:1px solid var(--sj-line);border-radius:4px;padding:1px 7px}
+.sj-ledger-fh h2{font-size:clamp(16px,2.1vw,19px);font-weight:600}
+.sj-51-prose{font-size:15.5px;max-width:74ch}
+.sj-51-hook{border:1px solid var(--sj-line);border-left:3px solid var(--sj-vermil);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:18px 22px}
+.sj-51-hook p{font-size:clamp(16px,2.3vw,20px);line-height:1.7}
+.sj-51-hook .yr{margin-top:10px;font-family:var(--sj-mono);font-size:11px;color:var(--sj-ochre)}
+.sj-51-stage{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:8px;overflow:auto}
+.sj-51-stage svg{display:block;width:100%;height:auto}
+.sj-node{cursor:pointer;transition:opacity .2s ease,filter .2s ease}
+.sj-node:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:4px}
+.sj-edge{transition:opacity .2s ease,filter .2s ease}
+.sj-51-stage.is-picking .sj-node{opacity:.3}
+.sj-51-stage.is-picking .sj-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px rgba(184,137,74,.4))}
+.sj-51-stage.is-picking .sj-edge{opacity:.16}
+.sj-51-stage.is-picking .sj-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px rgba(168,59,44,.4))}
+.sj-51-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:14px;align-items:start;margin-top:14px}
+.sj-51-aside{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px;position:sticky;top:12px;min-height:150px}
+.sj-51-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-51-aside h3{font-size:16px;letter-spacing:.08em;margin-bottom:8px}
+.sj-51-aside p{font-size:13.5px;color:var(--sj-paper-300);line-height:1.7}
+.sj-51-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+.sj-51-note{font-size:13px;color:var(--sj-paper-300);line-height:1.65;max-width:74ch}
+@media(max-width:900px){.sj-51-layout{grid-template-columns:1fr}.sj-51-aside{position:static}}
+.sj-51-phase .pb{font-family:var(--sj-mono);font-size:12px;color:var(--sj-vermil);border:1px solid var(--sj-vermil);border-radius:20px;padding:6px 16px}
+.sj-51-table-wrap{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);overflow:auto}
+.sj-51-table{width:100%;border-collapse:collapse;font-size:13px}
+.sj-51-table th{background:var(--sj-ink-900);color:var(--sj-ochre);font-family:var(--sj-mono);font-size:10px;padding:10px 12px;text-align:left;border-bottom:1px solid var(--sj-line)}
+.sj-51-table td{padding:10px 12px;border-bottom:1px solid var(--sj-line);color:var(--sj-paper-300);vertical-align:top}
+.sj-51-table td:first-child{color:var(--sj-paper-100);font-weight:600}
+.sj-51-hist{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-51-hist article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-51-hist .who{font-size:14px;font-weight:600;color:var(--sj-celadon);margin-bottom:6px}
+.sj-51-hist .who span{font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);margin-left:6px}
+.sj-51-hist p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+.sj-51-verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sj-51-verdict article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-51-verdict .vh{font-family:var(--sj-mono);font-size:10px;margin-bottom:8px}
+.sj-51-verdict article.ok .vh{color:var(--sj-celadon)}
+.sj-51-verdict article.fail .vh{color:var(--sj-vermil)}
+.sj-51-verdict article.open .vh{color:var(--sj-ochre)}
+.sj-51-verdict p{font-size:13px;color:var(--sj-paper-300)}
+.sj-51-mirror{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sj-51-mirror article{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-51-mirror .mh{font-family:var(--sj-mono);font-size:10px;margin-bottom:8px}
+.sj-51-mirror article.same .mh{color:var(--sj-celadon)}
+.sj-51-mirror article.diff .mh{color:var(--sj-ochre)}
+.sj-51-mirror p{font-size:13px;color:var(--sj-paper-100);line-height:1.68}
+.sj-51-xref{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.sj-51-xref a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit}
+.sj-51-xref .n{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);margin-bottom:4px}
+.sj-51-xref h3{font-size:14px;margin-bottom:6px}
+.sj-51-xref p{font-size:12.5px;color:var(--sj-paper-300)}
+.sj-51-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sj-51-foot a{color:var(--sj-celadon);text-decoration:none}
+@media(max-width:768px){.sj-51-hist,.sj-51-mirror,.sj-51-verdict,.sj-51-xref{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sj-node,.sj-edge{transition:none}}
+.sj-rail-mini{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="sj-51-wrap" id="sj-51-top">
+<header class="sj-51-mast">
+  <div>
+    <div class="badge">SJ-51 · 变法改革案例卷 · 清</div>
+    <h1>戊戌变法<em>体制突破失败 · 百日维新 · 守旧反扑</em></h1>
+    <div>
+      <span class="sj-51-chip sj-51-dynasty" data-dynasty="qing">朝代 · 清</span>
+      <span class="sj-51-chip">变法</span>
+      <a class="sj-51-chip" href="./SJ-00.html">↔ SJ-00</a>
+      <a class="sj-51-chip" href="./SJ-03.html">↔ SJ-03</a>
+      <a class="sj-51-chip" href="./SJ-04.html">↔ SJ-04</a>
+      <a class="sj-51-chip" href="./SJ-14.html">↔ SJ-14</a>
+    </div>
+  </div>
+  <div class="sj-51-meta">史鉴台账七字段 · 清<br/><b>AS_OF 2026-07-15</b> · v0.1</div>
+</header>
+<p class="sj-zhupi">朱批：本案是<strong>变法谱系「体制突破型」失败</strong>样本——甲午后光绪求变，1898 百日维新触及制度，因无独立权力基础、触动守旧派，慈禧政变而败。与 SJ-14「只改器物不改体制」构成变法谱系两种失败路径。口径：《清史稿·德宗本纪》；1898.6.11–9.21 为通说。</p>
+<article class="sj-ledger">
+<div class="sj-page-layout">
+<div class="sj-main-col">
+<section class="sj-ledger-field" id="f1"><div class="sj-ledger-fh"><span class="fnum">01</span><h2>一句话拐点</h2></div>
+  <div class="sj-51-hook"><p>甲午战败（SJ-14 下游）后，光绪帝于光绪二十四年（1898）六月十一日颁「明定国是」诏，<b>康有为、梁启超</b>等推动<b>百日维新</b>——废八股、设京师大学堂、裁冗员、鼓励工商。变法触及科举与官制，守旧派反扑；九月二十一日<b>慈禧政变</b>，光绪囚瀛台，谭嗣同等「六君子」遇害，变法失败——这是「比洋务更进一层、却仍系于皇权钟摆」的体制突破失败标本。</p><div class="yr">系年：光绪二十四年六月十一日（1898.6.11）明定国是 · 九月二十一日（1898.9.21）戊戌政变 · 出处《清史稿·德宗本纪》</div></div>
+</section>
+<section class="sj-ledger-field" id="f2" aria-labelledby="h-f2">
+  <div class="sj-ledger-fh"><span class="fnum">02</span><h2 id="h-f2">结构切片</h2><span class="en">SLICE · 步骤①</span></div>
+  <p class="sj-51-prose">权力几何：<strong>光绪</strong>（虚线背书）→ <strong>康梁维新</strong>纵列 → 废八股/大学堂/裁冗下行 → <strong>慈禧/守旧派</strong>（朱红粗回路）反扑。承 SJ-14 甲午外环，变法死穴在「无制度化的改革保障」。</p>
+  <div class="sj-51-stage" id="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">结构切片 · 戊戌变法</title>
+  <desc id="sj-desc">权力几何：光绪（虚线背书）→ 康梁维新纵列 → 废八股/大学堂/裁冗下行 → 慈禧/守旧派（朱红粗回路）反扑。承 SJ-14 甲午外环，变法死穴在「无制度化的改革保障」。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%"><stop offset="0%" stop-color="var(--sj-ink-800)"/><stop offset="100%" stop-color="var(--sj-ink-900)"/></radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse"><line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/></pattern>
+    <linearGradient id="sj-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#241e19"/><stop offset="100%" stop-color="#100e0c"/></linearGradient>
+    <marker id="a-ochre" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-ochre)"/></marker>
+    <marker id="a-vermil" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-vermil)"/></marker>
+    <marker id="a-celadon" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-celadon)"/></marker>
+    <marker id="a-paper" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--sj-paper-100)"/></marker>
+  </defs>
+  <rect width="820" height="600" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="420" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="420" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="412" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC,serif">结构切片 · 戊戌变法</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono,monospace">SJ-51 · 清 · 变法</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">朱批 · 五力色义 · 点击节点交互</text>
+  <g fill="none" stroke-linecap="round"><path class="sj-edge" data-edge="e1" d="M360,158 L250,250" stroke="var(--sj-ochre)" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#a-ochre)"/><text x="280" y="210" text-anchor="middle" fill="var(--sj-ochre)" font-size="11" font-family="Songti SC,serif">103 日窗口</text>
+<path class="sj-edge" data-edge="e2" d="M306,286 L462,286" stroke="var(--sj-vermil)" stroke-width="3.2" marker-end="url(#a-vermil)"/><text x="384" y="278" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">触动科举</text>
+<path class="sj-edge" data-edge="e3" d="M220,310 L220,372" stroke="var(--sj-celadon)" stroke-width="2.4" marker-end="url(#a-celadon)"/>
+<path class="sj-edge" data-edge="e4" d="M220,422 L410,486" stroke="var(--sj-ochre)" stroke-width="2.2" marker-end="url(#a-ochre)"/>
+<path class="sj-edge" data-edge="e5" d="M640,498 C724,452 716,340 588,320" stroke="var(--sj-vermil)" stroke-width="3.6" marker-end="url(#a-vermil)"/><text x="700" y="400" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">★ 政变反扑</text>
+<path class="sj-edge" data-edge="e6" d="M133,308 C200,280 280,260 360,158" stroke="var(--sj-vermil)" stroke-width="2.4" marker-end="url(#a-vermil)"/><text x="180" y="240" text-anchor="middle" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC,serif">甲午</text>
+<path class="sj-edge" data-edge="e7" d="M555,310 L555,372" stroke="var(--sj-vermil)" stroke-width="2" marker-end="url(#a-vermil)"/></g>
+  <g class="sj-node" data-id="guangxu" tabindex="0" role="button" aria-label="光绪帝">
+    <rect x="320" y="112" width="180" height="46" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="410" y="140" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">光绪帝</text>
+    <text x="410" y="158" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">明定国是 · 脆弱</text>
+  </g>
+<g class="sj-node" data-id="kangliang" tabindex="0" role="button" aria-label="康有为 · 梁启超">
+    <rect x="130" y="250" width="176" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-celadon)" stroke-width="2.4"/>
+    <text x="218" y="278" text-anchor="middle" fill="var(--sj-celadon)" font-size="14" font-weight="600" font-family="Songti SC,serif">康有为 · 梁启超</text>
+    <text x="218" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">维新纵列</text>
+  </g>
+<g class="sj-node" data-id="cixi" tabindex="0" role="button" aria-label="慈禧 · 守旧派">
+    <rect x="462" y="250" width="186" height="60" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="555" y="278" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">慈禧 · 守旧派</text>
+    <text x="555" y="296" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">九月二十一日政变</text>
+  </g>
+<g class="sj-node" data-id="reform" tabindex="0" role="button" aria-label="废八股 · 大学堂">
+    <rect x="132" y="372" width="176" height="50" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-ochre)" stroke-width="2.4"/>
+    <text x="220" y="400" text-anchor="middle" fill="var(--sj-ochre)" font-size="14" font-weight="600" font-family="Songti SC,serif">废八股 · 大学堂</text>
+    <text x="220" y="418" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">制度下行</text>
+  </g>
+<g class="sj-node" data-id="jiawu" tabindex="0" role="button" aria-label="甲午 · 1894">
+    <rect x="52" y="280" width="162" height="56" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="133" y="308" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">甲午 · 1894</text>
+    <text x="133" y="326" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">SJ-14 外环</text>
+  </g>
+<g class="sj-node" data-id="tans" tabindex="0" role="button" aria-label="谭嗣同 · 六君子">
+    <rect x="462" y="372" width="186" height="50" rx="6" fill="var(--sj-ink-800)" stroke="var(--sj-vermil)" stroke-width="2.4"/>
+    <text x="555" y="400" text-anchor="middle" fill="var(--sj-vermil)" font-size="14" font-weight="600" font-family="Songti SC,serif">谭嗣同 · 六君子</text>
+    <text x="555" y="418" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">1898.9.28</text>
+  </g>
+<g class="sj-node" data-id="base" tabindex="0" role="button" aria-label="士绅 · 编户底盘">
+    <rect x="56" y="486" width="708" height="86" rx="6" fill="url(#sj-base)" stroke="var(--sj-line)" stroke-width="2.4"/>
+    <text x="410" y="518" text-anchor="middle" fill="var(--sj-paper-100)" font-size="14" font-weight="600" font-family="Songti SC,serif">士绅 · 编户底盘</text>
+    <text x="410" y="536" text-anchor="middle" fill="var(--sj-paper-300)" font-size="10" font-family="Songti SC,serif">科举—土地未动</text>
+  </g>
+  <text x="764" y="588" text-anchor="end" fill="var(--sj-line)" font-size="9" font-family="Source Han Mono,monospace">viewBox 820×600 · SJ-51</text>
+</svg></div>
+  <div class="sj-51-layout">
+    <div class="sj-51-note" style="margin-top:0">点选节点展开机制链；色义见 premium 切片图例（patch 后更新）。</div>
+    <aside class="sj-51-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-51-aside-empty">点选切片中任一节点，展开其在拐点中的角色。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-text">—</p>
+      </div>
+    </aside>
+  </div>
+</section>
+</div>
+<aside class="sj-rail"><div class="sj-rail-card"><div class="k">台账 · 七字段</div>
+  <nav class="sj-rail-toc"><a href="#f1">01 · 拐点</a><a href="#f2">02 · 切片</a><a href="#f3">03 · 相位</a><a href="#f4">04 · 五力</a><a href="#f5">05 · 交锋</a><a href="#f6">06 · 成败</a><a href="#f7">07 · 映射</a></nav>
+  <a class="sj-rail-chip" href="./SJ-00.html#sec-case-hub">案例库 Hub</a>
+  <a class="sj-rail-chip" href="./SJ-03.html">SJ-03 五力</a>
+  <a class="sj-rail-chip" href="./SJ-04.html">SJ-04 相位盘</a>
+</div></aside>
+</div>
+<section class="sj-ledger-field" id="f3"><div class="sj-ledger-fh"><span class="fnum">03</span><h2>相位定位</h2></div>
+  <div class="sj-51-phase"><span class="pb">僵化期 · 改革窗口</span></div>
+  <p class="sj-51-prose">晚清处于<strong>僵化期</strong>——洋务未能救崩解，维新试图体制突破。落于 SJ-04「僵化期·改革窗口」与 SJ-16 变法谱系「触动精英/体制型」。下游 SJ-15 辛亥以革命替代改良。</p>
+</section>
+<section class="sj-ledger-field" id="f4"><div class="sj-ledger-fh"><span class="fnum">04</span><h2>五力归因台账</h2></div>
+  <div class="sj-51-table-wrap"><table class="sj-51-table"><thead><tr><th>力</th><th>正史归因</th><th>结构实因</th></tr></thead><tbody><tr><td>财政汲取</td><td class="zheng">裁冗 · 工商</td><td class="shi">裁并衙门、奖励实业——试图减轻财政负担并开辟税源，执行阻力大</td></tr>
+<tr><td>精英循环</td><td class="zheng">废八股 · 守旧派</td><td class="shi">废八股直接触动士绅—科举精英通道；守旧派（翁同龢之后的一班满洲与汉族保守官僚）集体反扑</td></tr>
+<tr><td>合法性叙事</td><td class="zheng">「明定国是」</td><td class="shi">光绪以皇帝诏书背书变法，但慈禧「训政」叙事仍强——双头合法性</td></tr>
+<tr><td>边疆军事</td><td class="zheng">练新军</td><td class="shi">维新派主张练新军，但未及成军即政变；军事力仍在慈禧—荣禄系</td></tr>
+<tr><td>生态—人口基座</td><td class="zheng">—</td><td class="shi">人口压力未解；变法未触及土地与基层汲取，基座矛盾仍在</td></tr></tbody></table></div>
+</section>
+<section class="sj-ledger-field" id="f5"><div class="sj-ledger-fh"><span class="fnum">05</span><h2>史家交锋</h2></div>
+  <div class="sj-51-hist"><article><div class="who">李敖式考据<span>祛魅</span></div><p>剥离「光绪明君」叙事——变法系于个人权威、无制度保障，失败结构必然。</p></article>
+<article><div class="who">钱穆<span>《国史大纲》续论</span></div><p>戊戌为清亡前最后一次自上而下改革；失败后革命思潮上升。</p></article>
+<article><div class="who">金观涛<span>超稳定结构</span></div><p>僵化期改革窗口的典型失败——触动精英而未获独立权力基础。</p></article>
+<article><div class="who">黄仁宇<span>数目字管理</span></div><p>维新未推进数目字管理，与明治维新形成对照——制度现代化不足。</p></article>
+<article style="grid-column:1/-1"><div class="who">西方汉学<span>Hundred Days</span></div><p>学界共识：1898 为 Late Qing reform 关键失败；与 Meiji 对比为常见议题。〔存疑〕</p></article></div>
+</section>
+<section class="sj-ledger-field" id="f6"><div class="sj-ledger-fh"><span class="fnum">06</span><h2>成败判定</h2></div>
+  <div class="sj-51-verdict">
+    <article class="ok"><div class="vh">已兑现</div><p>京师大学堂等遗产</p><p>思想启蒙</p><p>变法谱系重要一环</p></article>
+    <article class="fail"><div class="vh">已失败</div><p>百日而败</p><p>六君子遇害</p><p>光绪被囚</p></article>
+    <article class="open"><div class="vh">未决</div><p>〔反事实〕若光绪能真正亲政并控制军权，戊戌能否不同于洋务？此为 SJ-16 谱系未决项。</p></article>
+  </div>
+</section>
+<section class="sj-ledger-field" id="f7"><div class="sj-ledger-fh"><span class="fnum">07</span><h2>古今映射</h2></div>
+  <div class="sj-51-mirror">
+    <article class="same"><div class="mh">相似机制</div><p>僵化期改革窗口；触动精英/体制；系于皇权个人背书；守旧派反扑。</p></article>
+    <article class="diff"><div class="mh">关键差异</div><p>现代改革有法治与制度化保障；但「改革无独立权力基础→钟摆反扑」仍值得警戒（→ SJ-05 人亡政息、SJ-16 变法谱系）。</p></article>
+  </div>
+</section>
+<section class="sj-ledger-field" id="fx"><div class="sj-ledger-fh"><span class="fnum">◆</span><h2>交叉引用</h2></div>
+  <div class="sj-51-xref"><a href="./SJ-14.html"><div class="n">SJ-14 · 洋务</div><h3>洋务</h3><p>甲午上游；器物 vs 体制两种失败路径。</p></a>
+<a href="./SJ-15.html"><div class="n">SJ-15 · 辛亥</div><h3>辛亥</h3><p>改良失败后革命链。</p></a>
+<a href="./SJ-16.html"><div class="n">SJ-16 · 变法谱系</div><h3>变法谱系</h3><p>体制突破型失败成员。</p></a></div>
+</section>
+</article>
+<footer class="sj-51-foot">
+  <span>ChinaOS · 史鉴 SJ-51 · v0.1 · 清</span>
+  <span><a href="./SJ-00.html">← SJ-00</a> · <a href="./SJ-50.html">← SJ-50</a></span>
+  <span><a href="./SJ-15.html">SJ-15 →</a></span>
+</footer>
+</div>
+<script>
+(function(){
+  const stage=document.getElementById('stage');
+  if(!stage) return;
+  const nodes=Array.from(stage.querySelectorAll('.sj-node'));
+  const edges=Array.from(stage.querySelectorAll('.sj-edge'));
+  const asideEmpty=document.getElementById('aside-empty');
+  const asideBody=document.getElementById('aside-body');
+  const NODE_DATA={
+  "guangxu": {
+    "name": "光绪帝",
+    "tag": "合法性背书",
+    "body": "1898.6.11 颁明定国是诏，但人事军政仍受慈禧制约——改革背书脆弱。"
+  },
+  "kangliang": {
+    "name": "康有为 · 梁启超",
+    "tag": "改革引擎",
+    "body": "保国会、变法奏议；推动废八股、设大学堂、裁冗——体制突破尝试。"
+  },
+  "cixi": {
+    "name": "慈禧 · 守旧派",
+    "tag": "精英反扑",
+    "body": "1898.9.21 发动政变，训政，杀谭嗣同等——变法真正的结构死穴。"
+  },
+  "reform": {
+    "name": "废八股 · 大学堂",
+    "tag": "财政—精英枢纽",
+    "body": "废八股触动士绅通道；京师大学堂等为少数存续遗产。"
+  },
+  "jiawu": {
+    "name": "甲午 · 1894",
+    "tag": "上游引爆",
+    "body": "甲午战败证伪洋务-only 路径，催生维新——体系外压力内化。"
+  },
+  "tans": {
+    "name": "谭嗣同 · 六君子",
+    "tag": "失败代价",
+    "body": "政变后六君子遇害，改良路线受挫，革命思潮上升。"
+  },
+  "base": {
+    "name": "士绅 · 编户底盘",
+    "tag": "基座未改",
+    "body": "变法未触及土地与基层汲取；人口压力与财政危机仍在——基座矛盾留给 SJ-15。"
+  }
+};
+  const NODE_EDGE={
+  "guangxu": [
+    "e1",
+    "e6"
+  ],
+  "kangliang": [
+    "e1",
+    "e2",
+    "e3",
+    "e5"
+  ],
+  "cixi": [
+    "e2",
+    "e5",
+    "e7"
+  ],
+  "reform": [
+    "e3",
+    "e4"
+  ],
+  "jiawu": [
+    "e6"
+  ],
+  "tans": [
+    "e7"
+  ],
+  "base": [
+    "e4"
+  ]
+};
+  function clearVisual(){stage.classList.remove('is-picking');nodes.forEach(n=>n.classList.remove('is-hot'));edges.forEach(e=>e.classList.remove('is-hot'));}
+  function showAside(id){const d=NODE_DATA[id];if(!d)return;asideEmpty.hidden=true;asideBody.hidden=false;document.getElementById('aside-tag').textContent=d.tag;document.getElementById('aside-name').textContent=d.name;document.getElementById('aside-text').textContent=d.body;}
+  function pick(id){if(!NODE_DATA[id])return;clearVisual();stage.classList.add('is-picking');nodes.forEach(n=>n.classList.toggle('is-hot',n.dataset.id===id));const hot=NODE_EDGE[id]||[];edges.forEach(e=>e.classList.toggle('is-hot',hot.indexOf(e.dataset.edge)>=0));showAside(id);}
+  nodes.forEach(n=>{const act=()=>pick(n.dataset.id);n.addEventListener('click',act);n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});});
+  edges.forEach(e=>{if(!e.dataset.edge||!NODE_DATA[e.dataset.edge])return;const act=()=>pick(e.dataset.edge);e.style.cursor='pointer';e.setAttribute('tabindex','0');e.setAttribute('role','button');e.addEventListener('click',act);e.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();act();}});});
+})();
+</script>
+</body>
+</html>
