@@ -283,7 +283,16 @@ body{
   font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);
 }
 .sj-00-case-stats b{color:var(--sj-ochre);font-weight:500}
-.sj-00-case-filter{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;align-items:center}
+.sj-00-case-filter{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px;align-items:center}
+.sj-00-case-filter .lbl{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-paper-300);margin-right:4px}
+.sj-00-case-filter .sj-00-btn{
+  font-family:var(--sj-mono);font-size:10px;letter-spacing:.08em;
+  padding:5px 10px;border-radius:var(--sj-radius);border:1px solid var(--sj-line);
+  background:var(--sj-ink-900);color:var(--sj-celadon);cursor:pointer;
+}
+.sj-00-case-filter .sj-00-btn:hover,.sj-00-case-filter .sj-00-btn:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-00-case-filter .sj-00-btn.is-on{border-color:var(--sj-vermil);color:var(--sj-vermil);background:color-mix(in srgb, var(--sj-vermil) 12%, var(--sj-ink-900))}
+.sj-00-case-card[data-type="synthesis"]{border-left:3px solid var(--sj-ochre)}
 .sj-00-case-grid{
   display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;
 }
@@ -718,8 +727,9 @@ html[data-theme="light"] .sj-00-card:focus-within{
   </div>
   <p class="sj-00-prose">按朝代筛选已建/规划案例卷；状态存于 JS 内存，无浏览器存储。完整路线图见 <code style="font-family:var(--sj-mono);font-size:12px;color:var(--sj-celadon)">docs/shijian/案例库-朝代路线图.md</code>。</p>
   <div class="sj-00-case-stats" id="sj-case-stats" aria-live="polite">
-    <span>已建 <b id="sj-stat-built">21</b> 卷</span>
-    <span>显示 <b id="sj-stat-visible">21</b> / <b id="sj-stat-total">21</b></span>
+    <span>已建 <b id="sj-stat-built">23</b> 卷</span>
+    <span>显示 <b id="sj-stat-visible">23</b> / <b id="sj-stat-total">23</b></span>
+    <span>综合矩阵 <b>3</b>（SJ-07/16/17）</span>
     <span>规划 <b>23+</b> 卷（Round 3–4）</span>
   </div>
   <div class="sj-00-case-filter" role="group" aria-label="朝代筛选">
@@ -738,6 +748,12 @@ html[data-theme="light"] .sj-00-card:focus-within{
     <button type="button" class="sj-00-btn" data-dyn="jindai">近代</button>
     <button type="button" class="sj-00-btn" data-dyn="cross">跨朝</button>
   </div>
+  <div class="sj-00-case-filter" role="group" aria-label="类型筛选">
+    <span class="lbl">类型</span>
+    <button type="button" class="sj-00-btn is-on" id="sj-type-all" data-type="">全部</button>
+    <button type="button" class="sj-00-btn" data-type="case">单案台账</button>
+    <button type="button" class="sj-00-btn" data-type="synthesis">综合矩阵</button>
+  </div>
   <div class="sj-00-case-grid" id="sj-case-grid">
     <article class="sj-00-case-card" data-dynasty="song" data-built="1">
       <div class="top"><span class="sj-num">SJ-05</span><span class="dyn">北宋</span></div>
@@ -751,11 +767,11 @@ html[data-theme="light"] .sj-00-card:focus-within{
       <p>节度使制强化边疆军事力，内轻外重，盛极而崩。</p>
       <div class="type">拐点 · 强化单力反降稳定</div>
     </article>
-    <article class="sj-00-case-card" data-dynasty="cross" data-built="1">
+    <article class="sj-00-case-card" data-dynasty="cross" data-type="synthesis" data-built="1">
       <div class="top"><span class="sj-num">SJ-07</span><span class="dyn">跨朝</span></div>
       <h3><a href="/modules/shijian/sj-07">秦汉唐明清 · 崩解对比</a></h3>
       <p>五力崩解归因矩阵，反单因论，跨案同构解剖。</p>
-      <div class="type">崩解 · 对比矩阵卷</div>
+      <div class="type">综合层 · 崩解归因 · 成员 SJ-12/10/06/49/15</div>
     </article>
     <article class="sj-00-case-card" data-dynasty="wudai" data-built="1">
       <div class="top"><span class="sj-num">SJ-08</span><span class="dyn">五代十国</span></div>
@@ -804,6 +820,18 @@ html[data-theme="light"] .sj-00-card:focus-within{
       <h3><a href="/modules/shijian/sj-15">辛亥革命</a></h3>
       <p>帝制终结，合法性破产，五力再平衡未竟。</p>
       <div class="type">崩解 → 重整</div>
+    </article>
+    <article class="sj-00-case-card" data-dynasty="cross" data-type="synthesis" data-built="1">
+      <div class="top"><span class="sj-num">SJ-16</span><span class="dyn">跨朝</span></div>
+      <h3><a href="/modules/shijian/sj-16">变法谱系矩阵</a></h3>
+      <p>五变法跨案对比：汲取工具 / 触动之力 / 皇权依赖 / 存亡。</p>
+      <div class="type">综合层 · 变法谱系 · 成员 SJ-05/09/11/13/14</div>
+    </article>
+    <article class="sj-00-case-card" data-dynasty="cross" data-type="synthesis" data-built="1">
+      <div class="top"><span class="sj-num">SJ-17</span><span class="dyn">跨朝</span></div>
+      <h3><a href="/modules/shijian/sj-17">上升奠基矩阵</a></h3>
+      <p>四上升奠基跨案对比：五力协同 / 制度模块 / 盛世埋隐患同源。</p>
+      <div class="type">综合层 · 上升奠基 · 成员 SJ-27/34/35/38</div>
     </article>
     <article class="sj-00-case-card" data-dynasty="han" data-built="1">
       <div class="top"><span class="sj-num">SJ-27</span><span class="dyn">西汉</span></div>
@@ -1010,8 +1038,8 @@ html[data-theme="light"] .sj-00-card:focus-within{
     <p><a href="./SJ-03.html" style="color:var(--sj-celadon)">SJ-03 五力衰变模型</a>（力场签名 + 逐力解剖 + 耦合主链 + 相位/修复力契约）已交付 v0.1。<a href="./SJ-04.html" style="color:var(--sj-celadon)">SJ-04 治乱循环相位盘</a>（不等分罗盘 + 五相位判据 + 修复力诊断 + 共享契约 + 案例卷接口）已交付 v0.1。签名预览稿仍保留为对照：<a href="./SJ-04-compass-preview.html" style="color:var(--sj-ochre)">SJ-04-compass-preview</a>。</p>
   </div>
   <div class="sj-00-ph" id="vol-cases">
-    <h4>案例库 · 扩充至 17 卷</h4>
-    <p><a href="#sec-case-hub" style="color:var(--sj-celadon)">案例库 Hub</a>（朝代 filter）·
+    <h4>案例库 · 23 卷（含 3 张综合矩阵）</h4>
+    <p><a href="#sec-case-hub" style="color:var(--sj-celadon)">案例库 Hub</a>（朝代 + 类型 filter）·
     <a href="./SJ-05.html" style="color:var(--sj-celadon)">SJ-05 王安石</a> ·
     <a href="./SJ-06.html" style="color:var(--sj-celadon)">SJ-06 天宝</a> ·
     <a href="./SJ-07.html" style="color:var(--sj-celadon)">SJ-07 崩解对比</a> ·
@@ -1023,12 +1051,14 @@ html[data-theme="light"] .sj-00-card:focus-within{
     <a href="./SJ-13.html" style="color:var(--sj-celadon)">SJ-13 王莽</a> ·
     <a href="./SJ-14.html" style="color:var(--sj-celadon)">SJ-14 洋务</a> ·
     <a href="./SJ-15.html" style="color:var(--sj-celadon)">SJ-15 辛亥</a> ·
+    <a href="./SJ-16.html" style="color:var(--sj-celadon)">SJ-16 变法矩阵</a> ·
+    <a href="./SJ-17.html" style="color:var(--sj-celadon)">SJ-17 上升矩阵</a> ·
     <a href="./SJ-27.html" style="color:var(--sj-celadon)">SJ-27 文景</a> ·
     <a href="./SJ-35.html" style="color:var(--sj-celadon)">SJ-35 隋文帝</a> ·
     <a href="./SJ-38.html" style="color:var(--sj-celadon)">SJ-38 贞观</a> ·
     <a href="./SJ-39.html" style="color:var(--sj-celadon)">SJ-39 两税</a> ·
     <a href="./SJ-41.html" style="color:var(--sj-celadon)">SJ-41 靖康</a> ·
-    <a href="./SJ-49.html" style="color:var(--sj-celadon)">SJ-49 康乾</a>。单案卷统一七字段台账。</p>
+    <a href="./SJ-49.html" style="color:var(--sj-celadon)">SJ-49 康乾</a>。单案卷七字段台账；综合层 SJ-07/16/17 为跨案对比矩阵。</p>
   </div>
   <div class="sj-00-ph" id="vol-mirror">
     <h4>古今对照 · 五域</h4>
@@ -1304,24 +1334,35 @@ html[data-theme="light"] .sj-00-card:focus-within{
   var grid = document.getElementById('sj-case-grid');
   if(!grid) return;
   var cards = Array.from(grid.querySelectorAll('.sj-00-case-card'));
-  var btns = Array.from(document.querySelectorAll('.sj-00-case-filter .sj-00-btn'));
+  var dynBtns = Array.from(document.querySelectorAll('.sj-00-case-filter[aria-label="朝代筛选"] .sj-00-btn'));
+  var typeBtns = Array.from(document.querySelectorAll('.sj-00-case-filter[aria-label="类型筛选"] .sj-00-btn'));
   var visEl = document.getElementById('sj-stat-visible');
-  function apply(dyn){
-    btns.forEach(function(b){
+  var dyn = '';
+  var type = '';
+  function apply(){
+    dynBtns.forEach(function(b){
       var isAll = b.id === 'sj-case-all';
       b.classList.toggle('is-on', dyn ? b.dataset.dyn === dyn : isAll);
     });
+    typeBtns.forEach(function(b){
+      var isAll = b.id === 'sj-type-all';
+      b.classList.toggle('is-on', type ? b.dataset.type === type : isAll);
+    });
     var vis = 0;
     cards.forEach(function(c){
-      var show = !dyn || c.dataset.dynasty === dyn;
+      var cardType = c.dataset.type || 'case';
+      var show = (!dyn || c.dataset.dynasty === dyn) && (!type || cardType === type);
       c.classList.toggle('is-hidden', !show);
-      c.classList.toggle('is-hot', !!dyn && show);
+      c.classList.toggle('is-hot', !!(dyn || type) && show);
       if(show) vis++;
     });
     if(visEl) visEl.textContent = String(vis);
   }
-  btns.forEach(function(b){
-    b.addEventListener('click', function(){ apply(b.dataset.dyn || ''); });
+  dynBtns.forEach(function(b){
+    b.addEventListener('click', function(){ dyn = b.dataset.dyn || ''; apply(); });
+  });
+  typeBtns.forEach(function(b){
+    b.addEventListener('click', function(){ type = b.dataset.type || ''; apply(); });
   });
 })();
 

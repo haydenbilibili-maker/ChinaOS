@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJ-16 · 变法谱系矩阵</title>
+<meta name="description" content="ChinaOS 史鉴系列案例库综合层：商鞅/王莽/王安石/张居正/洋务五变法跨案对比——重建汲取必触动某力，改革的两难，皇权依赖之脆弱，低水平均衡。"/>
+<style>
+:root{
+  --sj-ink-900:#14110f;
+  --sj-ink-800:#1d1916;
+  --sj-paper-100:#e8ddc7;
+  --sj-paper-300:#cdbe9f;
+  --sj-vermil:#a83b2c;
+  --sj-celadon:#5f7a6f;
+  --sj-ochre:#b8894a;
+  --sj-line:#3a322b;
+  --sj-radius:6px;
+  --sj-space:clamp(12px,2vw,24px);
+  --sj-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sj-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{min-height:100vh;background:radial-gradient(1000px 560px at 72% -8%, #2a221c 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #1a1612 0%, transparent 50%),var(--sj-ink-900);color:var(--sj-paper-100);font-family:var(--sj-serif);line-height:1.75}
+.sj-16-wrap{max-width:min(100%,1180px);margin:0 auto;padding:var(--sj-space) var(--sj-space) 48px}
+@media (min-width:1536px){.sj-16-wrap{max-width:min(100%,1360px)}}
+
+.sj-16-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sj-line);margin-bottom:20px}
+.sj-16-mast .badge{font-family:var(--sj-mono);font-size:11px;letter-spacing:.18em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-16-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.16em;line-height:1.3}
+.sj-16-mast h1 em{font-style:normal;color:var(--sj-paper-300);font-weight:400;letter-spacing:.08em;font-size:.72em;display:block;margin-top:4px}
+.sj-16-meta{font-family:var(--sj-mono);font-size:11px;color:var(--sj-paper-300);text-align:right;line-height:1.7}
+.sj-16-meta b{color:var(--sj-ochre);font-weight:500}
+.sj-16-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sj-16-chip{display:inline-block;font-family:var(--sj-mono);font-size:10px;letter-spacing:.08em;color:var(--sj-celadon);border:1px solid var(--sj-line);padding:3px 8px;border-radius:var(--sj-radius);text-decoration:none}
+.sj-16-chip:hover,.sj-16-chip:focus-visible{border-color:var(--sj-ochre);color:var(--sj-ochre);outline:none}
+
+.sj-zhupi{color:var(--sj-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sj-vermil);max-width:76ch}
+
+.sj-16-sec{margin:36px 0 28px;scroll-margin-top:24px}
+.sj-16-sec-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--sj-line)}
+.sj-16-sec-h .num{font-family:var(--sj-mono);font-size:11px;letter-spacing:.2em;color:var(--sj-ochre)}
+.sj-16-sec-h h2{font-size:clamp(17px,2.2vw,20px);font-weight:600;letter-spacing:.12em}
+.sj-16-prose{font-size:15.5px;color:var(--sj-paper-100);max-width:76ch}
+.sj-16-prose + .sj-16-prose{margin-top:12px}
+.sj-16-prose strong{color:var(--sj-ochre);font-weight:600}
+.sj-16-note{font-size:13px;color:var(--sj-paper-300);margin-top:12px;max-width:76ch}
+.sj-16-note b{color:var(--sj-paper-100);font-weight:600}
+
+.sj-16-stage{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));box-shadow:0 1px 0 rgba(232,221,199,.04), 0 18px 48px rgba(0,0,0,.45);padding:8px 8px 4px;overflow:auto}
+.sj-16-stage svg{display:block;width:100%;height:auto;max-width:820px;margin:0 auto}
+.sj-row{cursor:pointer;transition:opacity .2s ease}
+.sj-row:focus-visible{outline:2px solid var(--sj-ochre);outline-offset:2px}
+.sj-16-stage.is-picking .sj-row{opacity:.4}
+.sj-16-stage.is-picking .sj-row.is-hot{opacity:1}
+.sj-16-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:14px;align-items:start;margin-top:14px}
+.sj-16-aside{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:linear-gradient(180deg,var(--sj-ink-800),var(--sj-ink-900));padding:14px 16px;position:sticky;top:12px;min-height:210px}
+.sj-16-aside .k{font-family:var(--sj-mono);font-size:10px;letter-spacing:.16em;color:var(--sj-ochre);margin-bottom:6px}
+.sj-16-aside h3{font-size:15px;letter-spacing:.06em;margin-bottom:8px}
+.sj-16-aside p{font-size:13px;color:var(--sj-paper-300);line-height:1.65;margin-bottom:6px}
+.sj-16-aside p b{color:var(--sj-paper-100);font-weight:600}
+.sj-16-aside .law{color:var(--sj-celadon)}
+.sj-16-aside-empty{font-size:13px;color:var(--sj-paper-300);opacity:.85}
+
+.sj-16-table-wrap{border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);overflow:auto;margin-top:6px;min-width:0}
+.sj-16-table{width:max(100%,820px);table-layout:fixed;border-collapse:collapse;font-size:13px}
+.sj-16-table th{background:var(--sj-ink-900);color:var(--sj-ochre);font-family:var(--sj-mono);font-size:10px;letter-spacing:.12em;font-weight:500;text-align:left;padding:10px 12px;border-bottom:1px solid var(--sj-line);white-space:nowrap}
+.sj-16-table td{padding:10px 12px;border-bottom:1px solid var(--sj-line);color:var(--sj-paper-300);vertical-align:top;line-height:1.6;overflow-wrap:break-word}
+.sj-16-table td:first-child{color:var(--sj-paper-100);font-weight:600;white-space:nowrap}
+.sj-16-table .fail{color:var(--sj-vermil)}
+.sj-16-table .part{color:var(--sj-ochre)}
+
+.sj-16-law{display:grid;gap:10px;margin-top:6px}
+.sj-16-law article{border:1px solid var(--sj-line);border-left:3px solid var(--sj-ochre);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px}
+.sj-16-law .lh{font-size:14px;font-weight:600;color:var(--sj-paper-100);margin-bottom:6px}
+.sj-16-law .lh span{font-family:var(--sj-mono);font-size:10px;color:var(--sj-ochre);letter-spacing:.08em;margin-left:8px}
+.sj-16-law p{font-size:13px;color:var(--sj-paper-300);line-height:1.65}
+
+.sj-16-xref{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.sj-16-xref a{display:block;border:1px solid var(--sj-line);border-radius:var(--sj-radius);background:var(--sj-ink-800);padding:14px 16px;text-decoration:none;color:inherit;transition:border-color .18s}
+.sj-16-xref a:hover,.sj-16-xref a:focus-visible{border-color:var(--sj-ochre);outline:none}
+.sj-16-xref .n{font-family:var(--sj-mono);font-size:10px;letter-spacing:.14em;color:var(--sj-ochre);margin-bottom:4px}
+.sj-16-xref h3{font-size:14px;letter-spacing:.06em;margin-bottom:6px}
+.sj-16-xref p{font-size:12.5px;color:var(--sj-paper-300);line-height:1.6}
+
+.sj-16-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sj-line);font-family:var(--sj-mono);font-size:10px;color:var(--sj-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sj-16-foot a{color:var(--sj-celadon);text-decoration:none}
+.sj-16-foot a:hover{color:var(--sj-ochre)}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sj-row,.sj-16-chip{transition:none}}
+@media (max-width:900px){.sj-16-layout{grid-template-columns:1fr}.sj-16-aside{position:static}.sj-16-xref{grid-template-columns:1fr 1fr}}
+@media (max-width:768px){.sj-16-meta{text-align:left}.sj-16-xref{grid-template-columns:1fr}}
+
+html[data-theme="light"]{--sj-ink-900:#f4f1ea;--sj-ink-800:#ebe6dc;--sj-paper-100:#1a1814;--sj-paper-300:#5a5348;--sj-vermil:#9a3428;--sj-celadon:#3f5f54;--sj-ochre:#8a6528;--sj-line:#c8bfb0}
+html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%, #e8e4da 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #ebe6dc 0%, transparent 50%),var(--sj-ink-900);color:var(--sj-paper-100)}
+</style>
+<script>
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){ document.documentElement.setAttribute('data-theme', t==='light' ? 'light' : 'dark'); }
+  try{ var q=new URLSearchParams(location.search).get('theme'); if(q==='light'||q==='dark') apply(q); }catch(e){}
+  window.addEventListener('message', function(e){ var d=e&&e.data; if(!d||d.type!==MSG) return; apply(d.theme); });
+})();
+</script>
+</head>
+<body>
+<div class="sj-16-wrap" id="sj-16-top">
+
+<header class="sj-16-mast">
+  <div>
+    <div class="badge">SJ-16 · 案例库综合层 · 变法谱系</div>
+    <h1>变法谱系矩阵<em>重建汲取必触动某力 · 改革的两难 · 低水平均衡</em></h1>
+    <div class="sj-16-chips">
+      <a class="sj-16-chip" href="./SJ-00.html">↔ SJ-00 总索引</a>
+      <a class="sj-16-chip" href="./SJ-07.html">↔ SJ-07 崩解矩阵</a>
+      <a class="sj-16-chip" href="./SJ-03.html">↔ SJ-03 五力模型</a>
+      <a class="sj-16-chip" href="./SJ-05.html">↔ SJ-05 王安石</a>
+      <a class="sj-16-chip" href="./SJ-21.html">↔ SJ-21 经济映射</a>
+    </div>
+  </div>
+  <div class="sj-16-meta">
+    综合层 · 跨案对比 · 收束规律<br/>
+    <b>AS_OF 2026-07-15</b> · v0.1
+  </div>
+</header>
+
+<p class="sj-zhupi">朱批：本卷是案例库综合层第二张矩阵（继 SJ-07 崩解矩阵）。把五场变法（商鞅/王莽/王安石/张居正/洋务）并置对比，收束成规律——不重复深描，史料源为各单案。真源：《案例库-核心母本》各案 seed + 母本第四部规律。</p>
+
+<!-- 1 引言 -->
+<section class="sj-16-sec" id="sec-intro" aria-labelledby="h-intro">
+  <div class="sj-16-sec-h"><span class="num">01 · 引言</span><h2 id="h-intro">五场变法，同一逻辑</h2></div>
+  <p class="sj-16-prose">变法是<strong>僵化期的修复尝试</strong>（母本规律五）：都要重建财政汲取力。但汲取重建必然<strong>触动某一种力</strong>——触动精英循环力者引爆抵制（商鞅、王安石、张居正），脱离结构条件者自毁（王莽），刻意不触动制度者则治标不治本（洋务）。五案并置，"改革的两难"清晰可见：<strong>触动则反弹，不触动则无效。</strong></p>
+  <p class="sj-16-prose">另一条贯穿线是<strong>皇权依赖度</strong>：变法愈系于最高权力的个人背书，人亡政废的风险愈大。商鞅系于孝公、王安石系于神宗、张居正系于摄政首辅之位——背书一旦抽走，改革即翻盘或遭清算。</p>
+</section>
+
+<!-- 2 签名 -->
+<section class="sj-16-sec" id="sec-matrix" aria-labelledby="h-matrix">
+  <div class="sj-16-sec-h"><span class="num">02 · 签名视觉</span><h2 id="h-matrix">变法谱系矩阵</h2></div>
+  <p class="sj-16-prose">行为五场变法（按时序）。列示<strong>触动之力</strong>（色点=五力色义）、<strong>皇权依赖度</strong>（格数越多越依赖，越脆）、<strong>结局</strong>。点击任一行展开该案的汲取工具、死穴与印证规律。</p>
+
+  <div class="sj-16-stage" id="stage">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 560" role="img" aria-labelledby="sj-title sj-desc">
+  <title id="sj-title">变法谱系矩阵</title>
+  <desc id="sj-desc">五行为商鞅、王莽、王安石、张居正、洋务五场变法；列示触动之力（色点）、皇权依赖度（格条）、结局（色签）。</desc>
+  <defs>
+    <radialGradient id="sj-glow" cx="50%" cy="34%" r="72%"><stop offset="0%" stop-color="var(--sj-ink-800)"/><stop offset="100%" stop-color="var(--sj-ink-900)"/></radialGradient>
+    <pattern id="sj-xuan" width="8" height="14" patternUnits="userSpaceOnUse"><line x1="0" y1="1" x2="8" y2="1" stroke="var(--sj-paper-100)" stroke-width="0.4" opacity="0.35"/></pattern>
+  </defs>
+  <rect width="820" height="560" fill="url(#sj-glow)"/>
+  <rect x="44" y="96" width="732" height="392" fill="url(#sj-xuan)" opacity="0.05"/>
+  <g aria-hidden="true" opacity="0.7">
+    <rect x="16" y="104" width="12" height="392" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="20" y="108" width="4" height="384" rx="2" fill="var(--sj-line)"/>
+    <rect x="792" y="104" width="12" height="392" rx="5" fill="none" stroke="var(--sj-ochre)" stroke-width="1.2"/>
+    <rect x="796" y="108" width="4" height="384" rx="2" fill="var(--sj-line)"/>
+  </g>
+  <text x="48" y="40" fill="var(--sj-paper-100)" font-size="22" font-weight="600" font-family="Songti SC, Noto Serif SC, Source Han Serif SC, serif" letter-spacing="0.1em">变法谱系矩阵</text>
+  <text x="48" y="62" fill="var(--sj-ochre)" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" letter-spacing="0.08em">SJ-16 · 五变法跨案对比 · 综合层</text>
+  <text x="48" y="82" fill="var(--sj-vermil)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">朱批：触动精英者反弹 · 不触动者无效 · 皇权依赖越高越脆</text>
+
+  <!-- 列头 -->
+  <text x="60" y="150" fill="var(--sj-paper-300)" font-size="11" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">变法 · 朝代</text>
+  <text x="330" y="150" text-anchor="middle" fill="var(--sj-paper-300)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">触动之力</text>
+  <text x="520" y="150" text-anchor="middle" fill="var(--sj-paper-300)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">皇权依赖度</text>
+  <text x="690" y="150" text-anchor="middle" fill="var(--sj-paper-300)" font-size="11" font-family="Songti SC, Noto Serif SC, serif">结局</text>
+  <line x1="44" y1="164" x2="776" y2="164" stroke="var(--sj-line)" stroke-width="1"/>
+
+  <!-- Row 商鞅 -->
+  <g class="sj-row" data-id="shangyang" tabindex="0" role="button" aria-label="商鞅变法">
+    <rect x="44" y="170" width="732" height="56" rx="6" fill="var(--sj-ink-800)" opacity="0.3" pointer-events="all"/>
+    <text x="60" y="194" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">商鞅变法</text>
+    <text x="60" y="212" fill="var(--sj-paper-300)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">春秋战国 · SJ-11</text>
+    <circle cx="250" cy="198" r="7" fill="var(--sj-celadon)"/><text x="266" y="202" fill="var(--sj-celadon)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">旧贵族·世卿世禄</text>
+    <rect x="470" y="191" width="24" height="14" rx="2" fill="var(--sj-vermil)"/><rect x="497" y="191" width="24" height="14" rx="2" fill="var(--sj-vermil)"/><rect x="524" y="191" width="24" height="14" rx="2" fill="var(--sj-vermil)"/>
+    <text x="690" y="202" text-anchor="middle" fill="var(--sj-ochre)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">制度存·人亡</text>
+  </g>
+  <!-- Row 王莽 -->
+  <g class="sj-row" data-id="wangmang" tabindex="0" role="button" aria-label="王莽改制">
+    <rect x="44" y="234" width="732" height="56" rx="6" fill="var(--sj-ink-800)" opacity="0.16" pointer-events="all"/>
+    <text x="60" y="258" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">王莽改制</text>
+    <text x="60" y="276" fill="var(--sj-paper-300)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">两汉 · SJ-13</text>
+    <circle cx="250" cy="262" r="7" fill="var(--sj-vermil)"/><text x="266" y="266" fill="var(--sj-vermil)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">豪族+全社会(政令反复)</text>
+    <rect x="470" y="255" width="24" height="14" rx="2" fill="var(--sj-vermil)"/><rect x="497" y="255" width="24" height="14" rx="2" fill="var(--sj-vermil)"/><rect x="524" y="255" width="24" height="14" rx="2" fill="none" stroke="var(--sj-line)"/>
+    <text x="690" y="266" text-anchor="middle" fill="var(--sj-vermil)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">速亡</text>
+  </g>
+  <!-- Row 王安石 -->
+  <g class="sj-row" data-id="wanganshi" tabindex="0" role="button" aria-label="王安石变法">
+    <rect x="44" y="298" width="732" height="56" rx="6" fill="var(--sj-ink-800)" opacity="0.3" pointer-events="all"/>
+    <text x="60" y="322" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">王安石变法</text>
+    <text x="60" y="340" fill="var(--sj-paper-300)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">宋 · SJ-05</text>
+    <circle cx="250" cy="326" r="7" fill="var(--sj-celadon)"/><text x="266" y="330" fill="var(--sj-celadon)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">士大夫·兼并之家</text>
+    <rect x="470" y="319" width="24" height="14" rx="2" fill="var(--sj-vermil)"/><rect x="497" y="319" width="24" height="14" rx="2" fill="var(--sj-vermil)"/><rect x="524" y="319" width="24" height="14" rx="2" fill="var(--sj-vermil)"/>
+    <text x="690" y="330" text-anchor="middle" fill="var(--sj-vermil)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">败·党争制度化</text>
+  </g>
+  <!-- Row 张居正 -->
+  <g class="sj-row" data-id="zhangjuzheng" tabindex="0" role="button" aria-label="张居正一条鞭">
+    <rect x="44" y="362" width="732" height="56" rx="6" fill="var(--sj-ink-800)" opacity="0.16" pointer-events="all"/>
+    <text x="60" y="386" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">张居正一条鞭</text>
+    <text x="60" y="404" fill="var(--sj-paper-300)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">明 · SJ-09</text>
+    <circle cx="250" cy="390" r="7" fill="var(--sj-celadon)"/><text x="266" y="394" fill="var(--sj-celadon)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">官僚(考成)+士绅</text>
+    <rect x="470" y="383" width="24" height="14" rx="2" fill="var(--sj-vermil)"/><rect x="497" y="383" width="24" height="14" rx="2" fill="var(--sj-vermil)"/><rect x="524" y="383" width="24" height="14" rx="2" fill="var(--sj-vermil)"/>
+    <text x="690" y="394" text-anchor="middle" fill="var(--sj-ochre)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">身后清算·法部分存</text>
+  </g>
+  <!-- Row 洋务 -->
+  <g class="sj-row" data-id="yangwu" tabindex="0" role="button" aria-label="洋务运动">
+    <rect x="44" y="426" width="732" height="56" rx="6" fill="var(--sj-ink-800)" opacity="0.3" pointer-events="all"/>
+    <text x="60" y="450" fill="var(--sj-paper-100)" font-size="14" font-family="Songti SC, Noto Serif SC, serif">洋务运动</text>
+    <text x="60" y="468" fill="var(--sj-paper-300)" font-size="9" font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace">清 · SJ-14</text>
+    <circle cx="250" cy="454" r="7" fill="none" stroke="var(--sj-paper-300)" stroke-width="1.4"/><text x="266" y="458" fill="var(--sj-paper-300)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">不触动制度(体制外)</text>
+    <rect x="470" y="447" width="24" height="14" rx="2" fill="var(--sj-ochre)"/><rect x="497" y="447" width="24" height="14" rx="2" fill="var(--sj-ochre)"/><rect x="524" y="447" width="24" height="14" rx="2" fill="none" stroke="var(--sj-line)"/>
+    <text x="690" y="458" text-anchor="middle" fill="var(--sj-ochre)" font-size="12" font-family="Songti SC, Noto Serif SC, serif">甲午败·技术存</text>
+  </g>
+
+  <!-- 图例 -->
+  <g font-family="Source Han Mono, JetBrains Mono, ui-monospace, monospace" font-size="9">
+    <circle cx="60" cy="506" r="5" fill="var(--sj-celadon)"/><text x="72" y="509" fill="var(--sj-paper-300)">触动精英循环力</text>
+    <circle cx="210" cy="506" r="5" fill="var(--sj-vermil)"/><text x="222" y="509" fill="var(--sj-paper-300)">触动多力/全社会</text>
+    <circle cx="370" cy="506" r="5" fill="none" stroke="var(--sj-paper-300)" stroke-width="1.4"/><text x="382" y="509" fill="var(--sj-paper-300)">不触动</text>
+    <text x="470" y="509" fill="var(--sj-paper-300)">格数=皇权依赖度</text>
+    <text x="764" y="509" text-anchor="end" fill="var(--sj-line)">viewBox 820×560</text>
+  </g>
+</svg>
+  </div>
+
+  <div class="sj-16-layout">
+    <div class="sj-16-note" style="margin-top:0">
+      读法：五案有四案触动精英循环力（青瓷/朱红点），皆招反弹或清算；唯洋务"不触动制度"（空心点），故治标而甲午败。皇权依赖三格者（商鞅/王安石/张居正）人亡即政废。
+    </div>
+    <aside class="sj-16-aside" id="aside" aria-live="polite">
+      <div id="aside-empty" class="sj-16-aside-empty">点选矩阵任一行，展开该变法的汲取工具、死穴与印证规律（各案单卷深描见交叉引用）。</div>
+      <div id="aside-body" hidden>
+        <div class="k" id="aside-tag">—</div>
+        <h3 id="aside-name">—</h3>
+        <p id="aside-tool"></p>
+        <p class="law" id="aside-law"></p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- 3 对比表 -->
+<section class="sj-16-sec" id="sec-table" aria-labelledby="h-table">
+  <div class="sj-16-sec-h"><span class="num">03 · 对比矩阵</span><h2 id="h-table">汲取工具 · 死穴 · 皇权依赖 · 成败 · 存续</h2></div>
+  <div class="sj-16-table-wrap">
+    <table class="sj-16-table">
+      <thead><tr><th>变法</th><th>汲取工具</th><th>触动之力（死穴）</th><th>皇权依赖</th><th>成败</th><th>存续</th></tr></thead>
+      <tbody>
+        <tr><td>商鞅（战国）</td><td>废井田开阡陌 · 军功爵 · 耕战</td><td>旧贵族（精英循环）</td><td>高（孝公）</td><td class="part">秦强·制度存</td><td>法存人亡（车裂）</td></tr>
+        <tr><td>王莽（新）</td><td>王田 · 五均六筦 · 屡改币制</td><td>豪族+全社会（政令反复）</td><td>自身即帝·合法性脆</td><td class="fail">速亡</td><td>人政俱亡</td></tr>
+        <tr><td>王安石（宋）</td><td>青苗 · 免役 · 市易 · 方田均税</td><td>士大夫—兼并之家（精英循环）</td><td>高（神宗·1085 抽走）</td><td class="fail">败·党争制度化</td><td>人亡政废</td></tr>
+        <tr><td>张居正（明）</td><td>一条鞭并税征银 · 考成法 · 清丈</td><td>官僚+士绅（精英循环）</td><td>高（摄政首辅·身后清算）</td><td class="part">短期成·身后清算</td><td>一条鞭部分延续</td></tr>
+        <tr><td>洋务（清）</td><td>求富（招商局/矿）· 自强（军工/北洋）</td><td>刻意不触动制度</td><td>中（督抚主导）</td><td class="fail">甲午败</td><td>技术存·制度未变</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="sj-16-note"><b>一眼可读：</b>触动精英循环力的四案（商鞅/王安石/张居正/洋务之反面）皆遭反弹或清算；不触动的洋务则治标。皇权依赖"高"者，改革存续系于一人。</p>
+</section>
+
+<!-- 4 收束规律 -->
+<section class="sj-16-sec" id="sec-law" aria-labelledby="h-law">
+  <div class="sj-16-sec-h"><span class="num">04 · 收束规律</span><h2 id="h-law">五案收束为四条变法规律</h2></div>
+  <div class="sj-16-law">
+    <article><div class="lh">规律 A · 改革的两难<span>母本规律五</span></div><p>变法皆须重建财政汲取力，而汲取重建必触动某力：触动精英循环力则引爆抵制（商鞅/王安石/张居正），刻意不触动则治标不治本（洋务）。<strong>触动则反弹，不触动则无效</strong>——这是变法的结构性两难。</p></article>
+    <article><div class="lh">规律 B · 皇权依赖之脆<span>母本规律八衍生</span></div><p>变法愈系于最高权力的个人背书，人亡政废的风险愈大。背书抽走即翻盘（王安石 1085）或遭清算（张居正身后、商鞅车裂）。改革的可持续性与其"去个人化"程度成正比。</p></article>
+    <article><div class="lh">规律 C · 理想脱离结构必败<span>黄仁宇式"超前"</span></div><p>王莽托古改制，以复古理想强塑经济而脱离现实结构、政令反复，是"理想主义改制"的失败标本：改革须匹配结构条件（技术、社会、执行能力），超前于时代者必败。</p></article>
+    <article><div class="lh">规律 D · 修复回低水平均衡<span>母本规律六</span></div><p>五案无一突破技术—制度天花板：成功者（商鞅/张居正部分）延续了王朝寿命，却仍回到超稳定结构的低水平均衡。变法能重启，难升级——这是对李约瑟难题的结构化印证。</p></article>
+  </div>
+  <p class="sj-16-note">四条规律回指母本第四部；本矩阵是其在变法类型上的实证收束。触动 vs 不触动的两条失败路径（王安石 ↔ 洋务）尤具当代镜鉴（→ SJ-20/21）。</p>
+</section>
+
+<!-- 5 交叉 -->
+<section class="sj-16-sec" id="sec-xref" aria-labelledby="h-xref">
+  <div class="sj-16-sec-h"><span class="num">05 · 交叉引用</span><h2 id="h-xref">成员单案与上下游</h2></div>
+  <div class="sj-16-xref">
+    <a href="./SJ-11.html"><div class="n">SJ-11 · 战国</div><h3>商鞅变法</h3><p>军功爵打破世卿世禄；法存人亡的原型。</p></a>
+    <a href="./SJ-13.html"><div class="n">SJ-13 · 新</div><h3>王莽改制</h3><p>理想脱离结构的失败标本（规律 C）。</p></a>
+    <a href="./SJ-05.html"><div class="n">SJ-05 · 宋</div><h3>王安石变法</h3><p>触动精英而败、党争制度化；台账验证首案。</p></a>
+    <a href="./SJ-09.html"><div class="n">SJ-09 · 明</div><h3>张居正一条鞭</h3><p>考成+清丈+并税征银；身后清算。</p></a>
+    <a href="./SJ-14.html"><div class="n">SJ-14 · 清</div><h3>洋务运动</h3><p>不触动制度的体制外修补；甲午暴露极限。</p></a>
+    <a href="./SJ-07.html"><div class="n">SJ-07 · 姊妹</div><h3>崩解归因矩阵</h3><p>综合层第一张；本卷为第二张（变法）。</p></a>
+  </div>
+  <p class="sj-16-note">综合层进度：崩解（SJ-07）· 变法（SJ-16）· 上升（SJ-17）已收；待建：<b>拐点谱系</b>（SJ-06+SJ-49）· <b>分裂—重整</b>（SJ-08+SJ-31）。见《案例库-整体架构》§4。</p>
+</section>
+
+<footer class="sj-16-foot">
+  <span>ChinaOS · 史鉴 SJ-16 · v0.1 · AS_OF 2026-07-15 · 真源《案例库-核心母本》+ 母本第四部</span>
+  <span><a href="./SJ-00.html">← 返回 SJ-00</a> · <a href="#sj-16-top">↑ 顶</a> · <a href="./SJ-07.html">崩解矩阵</a> · <a href="./SJ-17.html">上升矩阵</a></span>
+</footer>
+
+</div>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const rows = Array.from(stage.querySelectorAll('.sj-row'));
+  const asideEmpty = document.getElementById('aside-empty');
+  const asideBody = document.getElementById('aside-body');
+
+  /** 五变法跨案数据（《案例库-核心母本》各案 seed） */
+  const BF_DATA = {
+    shangyang: { name:'商鞅变法 · 战国', tool:'废井田开阡陌、军功爵制、什伍连坐、重农抑商（前356/前350 两次）',
+      law:'触动旧贵族世卿世禄；皇权依赖高（孝公）。孝公殁后商鞅车裂——法存人亡。印证规律 A（触动即反弹）+ B（皇权依赖之脆）。' },
+    wangmang: { name:'王莽改制 · 新', tool:'王田（土地国有）、五均六筦、屡改币制（公元9代汉，23 亡）',
+      law:'触动豪族+全社会，政令反复脱离结构，叠加灾荒，赤眉绿林起。印证规律 C（理想脱离结构必败）。' },
+    wanganshi: { name:'王安石变法 · 宋', tool:'青苗、免役、市易、方田均税（熙宁 1069 起）',
+      law:'直击士大夫—兼并之家经济特权 → 集体反弹；系于神宗，1085 抽走即翻盘、党争制度化。印证规律 A + B。' },
+    zhangjuzheng: { name:'张居正一条鞭 · 明', tool:'一条鞭并赋役征银、考成法、清丈田亩（万历九年 1581 推广全国）',
+      law:'考成触动官僚、清丈触动士绅；系于摄政首辅之位，卒后（1582）遭清算。短期成而身后废，唯一条鞭部分延续。印证规律 A + B。' },
+    yangwu: { name:'洋务运动 · 清', tool:'自强（江南制造/福州船政/北洋水师）、求富（招商局/开平煤矿）（约1861–1895）',
+      law:'"中体西用"刻意不触动合法性与精英结构，只引技术 → 甲午覆灭，暴露"体用两分"的结构极限。是规律 A 的反面：不触动则无效。' }
+  };
+
+  function clearVisual(){ stage.classList.remove('is-picking'); rows.forEach(r=>r.classList.remove('is-hot')); }
+  function showAside(id){ const d=BF_DATA[id]; if(!d) return; asideEmpty.hidden=true; asideBody.hidden=false;
+    document.getElementById('aside-tag').textContent='变法谱系 · 跨案';
+    document.getElementById('aside-name').textContent=d.name;
+    document.getElementById('aside-tool').innerHTML='<b>汲取工具：</b>'+d.tool;
+    document.getElementById('aside-law').textContent=d.law; }
+  function pick(id){ if(!BF_DATA[id]) return; clearVisual(); stage.classList.add('is-picking');
+    rows.forEach(r=>r.classList.toggle('is-hot', r.dataset.id===id)); showAside(id); }
+  rows.forEach(r=>{ const act=()=>pick(r.dataset.id); r.addEventListener('click',act);
+    r.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); act(); } }); });
+})();
+</script>
+</body>
+</html>
