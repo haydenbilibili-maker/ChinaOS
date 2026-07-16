@@ -15,13 +15,14 @@ const FinanceTab = lazy(() => import('./tabs/FinanceTab.jsx'));
 const RegionalTab = lazy(() => import('./tabs/RegionalTab.jsx'));
 const CanaryTab = lazy(() => import('./tabs/CanaryTab.jsx'));
 const WorldBankTab = lazy(() => import('./tabs/WorldBankTab.jsx'));
-const Consume15Tab = lazy(() => import('./tabs/Consume15Tab.jsx'));
+const EconConsume15 = lazy(() => import('../econConsume15/Page.jsx'));
+const EconH1Review = lazy(() => import('../econH1Review/Page.jsx'));
 
 // ============================================================================
 // 经济大盘 · 全景与实时监测（ink-observatory Round 2）
 // ----------------------------------------------------------------------------
-// 七 Tab：宏观态势 → 结构矛盾 → 资本市场 → 区域产业 → 信号金丝雀 → 世行经济简报 → 十五五促消费
-// 侧栏仅「经济大盘」+ 可选「半年经济解读」；世行/促消费走二级 Tab（深链 ?tab=）
+// 八 Tab：宏观态势 → 结构矛盾 → 资本市场 → 区域产业 → 信号金丝雀 → 世行经济简报 → 十五五促消费 → 半年经济解读
+// 侧栏仅「经济大盘」；世行/促消费/半年解读均为二级 Tab 全文嵌入（深链 ?tab=）
 // ============================================================================
 
 const TABS = [
@@ -32,6 +33,7 @@ const TABS = [
   { id: 'canary', label: '信号金丝雀', accent: 'var(--china-red)' },
   { id: 'worldbank', label: '世行经济简报', accent: '#22d3ee' },
   { id: 'consume15', label: '十五五促消费', accent: '#f472b6' },
+  { id: 'h1review', label: '半年经济解读', accent: '#e8a317' },
 ];
 
 function TabFallback() {
@@ -101,6 +103,9 @@ export default function Page({ embedded = false }) {
     }, { replace: true });
   }, [embedded, setSearchParams]);
 
+  // 长文 Tab：自带仪表盘/出处/FrameworkTrio，隐藏大盘工具条与尾栏，避免重复壳层
+  const isLongFormTab = tab === 'h1review' || tab === 'consume15';
+
   const tabPanel = (() => {
     switch (tab) {
       case 'macro':
@@ -116,7 +121,9 @@ export default function Page({ embedded = false }) {
       case 'worldbank':
         return <WorldBankTab wb={wb} />;
       case 'consume15':
-        return <Consume15Tab />;
+        return <EconConsume15 embedded />;
+      case 'h1review':
+        return <EconH1Review embedded />;
       default:
         return <MacroTab wb={wb} />;
     }
@@ -132,17 +139,18 @@ export default function Page({ embedded = false }) {
         >
           <div className="econ-header-chips flex flex-wrap gap-1.5 items-center">
             <Link to="/dashboard" className="econ-cross-chip">中枢看板 ↗</Link>
-            <Link to="/econ-h1-review" className="econ-cross-chip econ-cross-chip--amber">半年解读 ↗</Link>
             <Link to="/modules/signal-panel" className="econ-cross-chip">信号灯 ↗</Link>
             <Link to="/modules/observatory" className="econ-cross-chip econ-cross-chip--amber">观象台 ↗</Link>
           </div>
         </PageHeader>
       )}
 
-      <div className="econ-toolbelt" aria-label="时效与关键读数">
-        <DataFreshnessBar />
-        <KeyReadingStrip />
-      </div>
+      {!isLongFormTab && (
+        <div className="econ-toolbelt" aria-label="时效与关键读数">
+          <DataFreshnessBar />
+          <KeyReadingStrip />
+        </div>
+      )}
 
       <div className="econ-sticky-nav">
         <TabBar tabs={TABS} value={tab} onChange={setTab} accent="var(--cyber-cyan)" sticky className="econ-tab-bar" />
@@ -154,25 +162,27 @@ export default function Page({ embedded = false }) {
         </Suspense>
       </div>
 
-      <FrameworkTrio cards={[
-        {
-          title: '统计的政治学', subtitle: '口径即立场 · 度量即权力', accent: 'var(--fire-gold)', border: 'var(--fire-gold)',
-          body: '一个经济体被怎么测量，决定了它被怎么治理。GDP 把什么算进来、什么留在外面，CPI 篮子放哪些商品、权重几何——口径不是技术细节，是政治选择。数据先于政策，统计制度本身就是一项基础设施。',
-          pillars: [['口径', '算什么即重视什么。'], ['权重', '篮子决定通胀感受。'], ['发布', '节奏与披露是治理动作。']],
-        },
-        {
-          title: '指标的领先与滞后', subtitle: '体温计 · 后视镜 · 金丝雀', accent: 'var(--cyber-cyan)', border: 'var(--cyber-cyan)',
-          body: 'GDP 是后视镜——确认已经发生的事；PMI、用电量、货运量是体温计——同步感知当下；信贷脉冲、票据利率、招聘指数是金丝雀——先于官方数据感知转折。读经济不是读一个数，是读一组指标的时间错位。',
-          pillars: [['滞后', 'GDP 确认过去。'], ['同步', '景气量度当下。'], ['领先', '金丝雀预告拐点。']],
-        },
-        {
-          title: '全景的盲区', subtitle: '看得见的与漏掉的', accent: 'var(--china-red)', border: 'var(--china-red)',
-          body: '再全的大盘也有盲区：均值掩盖分布，总量遮蔽结构，存量数据看不见资产负债表的隐性裂缝。基尼系数、城乡比、债务-收入比这些「分布与结构」指标，常常比总量更早预告麻烦。看全景的同时，要盯住它没照亮的角落。',
-          pillars: [['分布', '均值之下有裂缝。'], ['结构', '总量之内有失衡。'], ['隐性', '表外即下一处风险。']],
-        },
-      ]} />
+      {!isLongFormTab && (
+        <FrameworkTrio cards={[
+          {
+            title: '统计的政治学', subtitle: '口径即立场 · 度量即权力', accent: 'var(--fire-gold)', border: 'var(--fire-gold)',
+            body: '一个经济体被怎么测量，决定了它被怎么治理。GDP 把什么算进来、什么留在外面，CPI 篮子放哪些商品、权重几何——口径不是技术细节，是政治选择。数据先于政策，统计制度本身就是一项基础设施。',
+            pillars: [['口径', '算什么即重视什么。'], ['权重', '篮子决定通胀感受。'], ['发布', '节奏与披露是治理动作。']],
+          },
+          {
+            title: '指标的领先与滞后', subtitle: '体温计 · 后视镜 · 金丝雀', accent: 'var(--cyber-cyan)', border: 'var(--cyber-cyan)',
+            body: 'GDP 是后视镜——确认已经发生的事；PMI、用电量、货运量是体温计——同步感知当下；信贷脉冲、票据利率、招聘指数是金丝雀——先于官方数据感知转折。读经济不是读一个数，是读一组指标的时间错位。',
+            pillars: [['滞后', 'GDP 确认过去。'], ['同步', '景气量度当下。'], ['领先', '金丝雀预告拐点。']],
+          },
+          {
+            title: '全景的盲区', subtitle: '看得见的与漏掉的', accent: 'var(--china-red)', border: 'var(--china-red)',
+            body: '再全的大盘也有盲区：均值掩盖分布，总量遮蔽结构，存量数据看不见资产负债表的隐性裂缝。基尼系数、城乡比、债务-收入比这些「分布与结构」指标，常常比总量更早预告麻烦。看全景的同时，要盯住它没照亮的角落。',
+            pillars: [['分布', '均值之下有裂缝。'], ['结构', '总量之内有失衡。'], ['隐性', '表外即下一处风险。']],
+          },
+        ]} />
+      )}
 
-      {!embedded && (
+      {!embedded && !isLongFormTab && (
         <ModuleFooter
           moduleId="econdash"
           disclaimer="公开统计梳理 · 示意标定 · 非投资建议 · 非预测"

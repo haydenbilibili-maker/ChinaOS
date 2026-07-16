@@ -58,12 +58,14 @@ export const MODULES = [
     component: lazy(() => import('../modules/econdash/Page.jsx')),
   },
   {
+    // 全文并入经济大盘二级 Tab（?tab=h1review）；保留路由作深链别名并重定向
     id: 'econH1Review', path: '/econ-h1-review', group: 'home',
     title: '半年经济解读', subtitle: '三驾马车 · 结构信号 · 2026 H1', icon: 'BookOpenText',
+    navHidden: true,
     component: lazy(() => import('../modules/econH1Review/Page.jsx')),
   },
   {
-    // 全文页保留路由；侧栏入口并入经济大盘二级 Tab（?tab=consume15），避免双重导航
+    // 全文并入经济大盘二级 Tab（?tab=consume15）；保留路由作深链别名并重定向
     id: 'econConsume15', path: '/econ-consume-15th', group: 'home',
     title: '十五五促消费', subtitle: '扩大消费规划 · 国函66号 · 2026-07', icon: 'ShoppingBag',
     navHidden: true,

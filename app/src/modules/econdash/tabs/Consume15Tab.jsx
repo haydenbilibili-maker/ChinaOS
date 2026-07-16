@@ -145,7 +145,7 @@ export default function Consume15Tab() {
       <Card title="交叉入口" asSection={false}>
         <div className="flex flex-wrap gap-2">
           <Link to="/econ-consume-15th" className="econ-cross-chip" style={linkChip}>全文解读页 ↗</Link>
-          <Link to="/econ-h1-review" className="econ-cross-chip" style={{ ...linkChip, borderColor: 'rgba(232,163,23,0.45)', color: '#e8a317' }}>半年经济解读 ↗</Link>
+          <Link to="/econ-dashboard?tab=h1review" className="econ-cross-chip" style={{ ...linkChip, borderColor: 'rgba(232,163,23,0.45)', color: '#e8a317' }}>半年经济解读 ↗</Link>
           <Link to="/consumption" className="econ-cross-chip" style={linkChip}>扩大内需 · 消费率 ↗</Link>
           <Link to="/econ-dashboard?tab=worldbank" className="econ-cross-chip" style={linkChip}>世行经济简报 ↗</Link>
         </div>

@@ -1,12 +1,13 @@
 import React, { useState, useMemo } from 'react';
-import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
+import { Navigate } from 'react-router-dom';
+import { Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import {
   categoryX, valueY, GRID, GRID_WIDE, LABEL, LEGEND, CHART_TOOLTIP, CHART_SERIES_COLORS,
 } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
-import { INDICATOR_SPARKLINES, INCOME_DIST } from '../econdash/econData.js';
+import { INDICATOR_SPARKLINES, INCOME_DIST, econTabPath } from '../econdash/econData.js';
 
 // ============================================================================
 // 半年经济解读 · 2026 H1（国家统计局 2026-07-15 发布上半年国民经济运行情况）
@@ -172,7 +173,8 @@ function barOpt({ cats, data, positive = C.cyberCyan, negative = C.powerRed, hor
   };
 }
 
-export default function Page() {
+/** @param {{ embedded?: boolean }} props — embedded 时作为经济大盘 Tab 全文嵌入（去 PageHeader）；独立路由重定向到 ?tab=h1review */
+export default function Page({ embedded = false } = {}) {
   const [engine, setEngine] = useState('export');
   const e = ENGINES.find((x) => x.key === engine) || ENGINES[0];
 
@@ -417,14 +419,13 @@ export default function Page() {
     [],
   );
 
+  // 独立路由 → 经济大盘 Tab 深链（避免侧栏/路由双入口）；Tab 内以 embedded 渲染全文
+  if (!embedded) {
+    return <Navigate to={econTabPath('h1review')} replace />;
+  }
+
   return (
     <div>
-      <PageHeader
-        badge="H1 Economic Review · 2026"
-        title="半年经济解读 · 2026 上半年"
-        subtitle={`国家统计局 2026-07-15 发布 · GDP +4.7% · 供强需弱下的新旧动能换挡 · 数据截至 ${DATA_AS_OF}`}
-      />
-
       <IntroCard>
         上半年 GDP 695704 亿元、同比增长 <strong style={{ color: 'var(--text-primary)' }}>4.7%</strong>（一季 5.0%、二季 4.3%，二季环比 +0.9%），
         运行在合理区间。但一张成绩单里藏着两条背离的曲线：<strong style={{ color: 'var(--text-primary)' }}>供给端</strong>（规上工业 +5.4%、高技术制造 +13.3%）

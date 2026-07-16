@@ -1,10 +1,10 @@
 import React, { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
+import { Navigate } from 'react-router-dom';
+import { Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { AXIS, LABEL, LEGEND, GRID, CHART_TOOLTIP, categoryX, valueY, radarOpt } from '../shared/chartHelpers.js';
-import { KEY_INDICATORS } from '../econdash/econData.js';
+import { KEY_INDICATORS, econTabPath } from '../econdash/econData.js';
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
 // ============================================================================
@@ -193,18 +193,6 @@ const PRIOR_ACTIONS = [
   ['完善支持政策', '财政、金融、投资、统计协同'],
 ];
 
-const chipStyle = {
-  display: 'inline-flex',
-  alignItems: 'center',
-  fontSize: 11,
-  padding: '4px 10px',
-  borderRadius: 6,
-  border: '1px solid rgba(34,211,238,0.35)',
-  color: '#22d3ee',
-  textDecoration: 'none',
-  fontFamily: 'var(--font-mono, ui-monospace, monospace)',
-};
-
 function ChartNote({ children }) {
   return (
     <p className="text-xs mt-3 leading-relaxed m-0" style={{ color: 'var(--text-secondary)' }}>
@@ -219,7 +207,8 @@ function SourceLine({ children }) {
   );
 }
 
-export default function Page() {
+/** @param {{ embedded?: boolean }} props — embedded 时作为经济大盘 Tab 全文嵌入；独立路由重定向到 ?tab=consume15 */
+export default function Page({ embedded = false } = {}) {
   const [frame, setFrame] = useState('goal');
   const [pillar, setPillar] = useState('service');
   const f = FRAME.find((x) => x.key === frame) || FRAME[0];
@@ -499,21 +488,13 @@ export default function Page() {
     ],
   }), []);
 
+  // 独立路由 → 经济大盘 Tab 深链；Tab 内以 embedded 渲染全文
+  if (!embedded) {
+    return <Navigate to={econTabPath('consume15')} replace />;
+  }
+
   return (
     <div>
-      <PageHeader
-        badge="Consume · 15th Five-Year Plan"
-        title="十五五促消费解读 · 扩大消费规划"
-        subtitle={`国函〔2026〕66 号 · 发布 ${POLICY_AS_OF} · 衔接提振消费专项行动 · H1 读数截至 ${H1_AS_OF}`}
-      >
-        <div className="flex flex-wrap gap-2 items-center">
-          <Link to="/econ-dashboard" className="econ-cross-chip" style={chipStyle}>经济大盘 ↗</Link>
-          <Link to="/econ-dashboard?tab=consume15" className="econ-cross-chip" style={chipStyle}>大盘 · 促消费 Tab ↗</Link>
-          <Link to="/econ-h1-review" className="econ-cross-chip" style={{ ...chipStyle, borderColor: 'rgba(232,163,23,0.45)', color: '#e8a317' }}>半年经济解读 ↗</Link>
-          <Link to="/consumption" className="econ-cross-chip" style={chipStyle}>扩大内需 · 消费率 ↗</Link>
-        </div>
-      </PageHeader>
-
       <Card title="政策元数据 · 与十五五定位" className="mb-6" asSection={false}>
         <Grid cols={4} className="mb-3">
           {[
@@ -733,8 +714,7 @@ export default function Page() {
         moduleId="econConsume15"
         links={[
           { to: '/econ-dashboard', label: '经济大盘 · 2026 H1', note: 'NBS 快照 + 金丝雀 + 三次产业，与本页读数同源。' },
-          { to: '/econ-dashboard?tab=consume15', label: '经济大盘 · 促消费 Tab', note: '规划摘要速览，深链回本页。' },
-          { to: '/econ-h1-review', label: '半年经济解读 · 2026 H1', note: '供强需弱与三驾马车拆解，本页政策对象。' },
+          { to: '/econ-dashboard?tab=h1review', label: '半年经济解读 · 2026 H1', note: '供强需弱与三驾马车拆解，本页政策对象。' },
           { to: '/consumption', label: '扩大内需 · 消费率', note: '消费占 GDP 与预防性储蓄长周期。' },
           { to: '/econ-dashboard?tab=worldbank', label: '世行经济简报 · 2026-07', note: '基线预测与政策叙事交叉验证。' },
         ]}

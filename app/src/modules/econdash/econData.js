@@ -311,7 +311,7 @@ export const INDICATOR_SPARKLINES = {
 };
 
 /** Tab 深链白名单（worldbank 别名 wb 在 Page 路由层解析） */
-export const ECON_TAB_IDS = ['macro', 'structure', 'finance', 'regional', 'canary', 'worldbank', 'consume15'];
+export const ECON_TAB_IDS = ['macro', 'structure', 'finance', 'regional', 'canary', 'worldbank', 'consume15', 'h1review'];
 
 /** 经济大盘路由 · tab=canary|worldbank|macro|… */
 export function econTabPath(tab = 'macro') {
