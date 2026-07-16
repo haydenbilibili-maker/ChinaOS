@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
+import EChart from '../../lib/viz/EChart.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
+import { AXIS, LABEL, LEGEND, GRID, CHART_TOOLTIP, categoryX, valueY, radarOpt } from '../shared/chartHelpers.js';
 import { KEY_INDICATORS } from '../econdash/econData.js';
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
 // ============================================================================
-// 十五五促消费解读 · 《扩大消费「十五五」规划》
+// 十五五促消费解读 · 《扩大消费「十五五」规划》+ 图表层
 // ----------------------------------------------------------------------------
-// 口径声明：政策信息取自中国政府网《国务院关于〈扩大消费「十五五」规划〉的批复》
-// （国函〔2026〕66 号，成文 2026-07-02，发布 2026-07-13）及国家发展改革委、商务部
-// 有关负责人答记者问（新华社 2026-07-13）。前置文件《提振消费专项行动方案》取自
-// 中办国办印发文本（新华社受权发布 2025-03-16）。H1 读数取自 KEY_INDICATORS /
-// 国家统计局 2026-07-15 上半年国民经济运行情况，不臆造。无法核实处标〔存疑〕。
-// 分析为冷峻中立研究框架，非投资建议、非预测。
+// 政策：国函〔2026〕66 号（发布 2026-07-13）+ 发改委/商务部答记者问
+// 专项行动：中办国办 2025-03-16；H1：NBS 2026-07-15 / KEY_INDICATORS
+// 示意类图表一律标注「示意标定·非官方评分」；不臆造官方数字
 // ============================================================================
 
 const POLICY_AS_OF = '2026-07-13';
@@ -22,7 +21,6 @@ const SRC_POLICY = '中国政府网 · 国函〔2026〕66 号；发改委/商务
 const SRC_ACTION = '中办国办《提振消费专项行动方案》（新华社受权发布 2025-03-16）';
 const SRC_H1 = '国家统计局 2026-07-15 上半年国民经济运行情况';
 
-/** 从 KEY_INDICATORS 取数，缺省时不硬编 */
 function ki(id) {
   return KEY_INDICATORS.find((k) => k.id === id) || null;
 }
@@ -41,12 +39,10 @@ const META = {
   prior: '提振消费专项行动方案（中办国办，2025-03-16）',
 };
 
-/** 一句话研判 */
 const VERDICT =
   '政策要闭合的是「供强需弱」——生产端扩张与社零偏弱、固投拖累并存；规划把扩内需从年度专项升格为十五五消费领域纲领，'
   + '以增收能力 + 服务/商品供给 + 场景与制度长效机制三轨并进，回应 H1 读数里服务强、商品弱的 K 形消费结构。';
 
-/** 目标 · 抓手 · 约束 */
 const FRAME = [
   {
     key: 'goal', label: '目标', accent: '#c41e3a',
@@ -80,7 +76,6 @@ const FRAME = [
   },
 ];
 
-/** 六大领域拆解（对齐规划六方面表述） */
 const PILLARS = [
   {
     key: 'service', label: '服务消费', accent: '#22d3ee',
@@ -150,35 +145,13 @@ const PILLARS = [
   },
 ];
 
-/** H1 联动读数卡 */
 const H1_CARDS = [
-  {
-    label: '社零总额',
-    value: retail ? `${retail.value > 0 ? '+' : ''}${retail.value}%` : '—',
-    sub: '248722 亿元 · 需求侧仍偏弱',
-    accent: '#22d3ee',
-  },
-  {
-    label: '服务零售',
-    value: '+5.3%',
-    sub: '明显快于商品零售 +1.1%',
-    accent: '#10b981',
-  },
-  {
-    label: '固投 / 地产',
-    value: fai ? `${fai.value}%` : '—',
-    sub: '地产开发投资 −18.0% 主拖累',
-    accent: '#e8a317',
-  },
-  {
-    label: '规上工业',
-    value: iva ? `+${iva.value}%` : '—',
-    sub: gdp ? `GDP H1 +${gdp.value}% · 供强需弱` : '供强需弱剪刀差',
-    accent: '#c41e3a',
-  },
+  { label: '社零总额', value: retail ? `${retail.value > 0 ? '+' : ''}${retail.value}%` : '—', sub: '248722 亿元 · 需求侧仍偏弱', accent: '#22d3ee' },
+  { label: '服务零售', value: '+5.3%', sub: '明显快于商品零售 +1.1%', accent: '#10b981' },
+  { label: '固投 / 地产', value: fai ? `${fai.value}%` : '—', sub: '地产开发投资 −18.0% 主拖累', accent: '#e8a317' },
+  { label: '规上工业', value: iva ? `+${iva.value}%` : '—', sub: gdp ? `GDP H1 +${gdp.value}% · 供强需弱` : '供强需弱剪刀差', accent: '#c41e3a' },
 ];
 
-/** 台账 */
 const LEDGER = {
   done: {
     label: '已兑现', accent: '#10b981',
@@ -220,11 +193,311 @@ const PRIOR_ACTIONS = [
   ['完善支持政策', '财政、金融、投资、统计协同'],
 ];
 
+const chipStyle = {
+  display: 'inline-flex',
+  alignItems: 'center',
+  fontSize: 11,
+  padding: '4px 10px',
+  borderRadius: 6,
+  border: '1px solid rgba(34,211,238,0.35)',
+  color: '#22d3ee',
+  textDecoration: 'none',
+  fontFamily: 'var(--font-mono, ui-monospace, monospace)',
+};
+
+function ChartNote({ children }) {
+  return (
+    <p className="text-xs mt-3 leading-relaxed m-0" style={{ color: 'var(--text-secondary)' }}>
+      {children}
+    </p>
+  );
+}
+
+function SourceLine({ children }) {
+  return (
+    <p className="text-[10px] mono mt-2 m-0" style={{ color: 'var(--text-tertiary)' }}>{children}</p>
+  );
+}
+
 export default function Page() {
   const [frame, setFrame] = useState('goal');
   const [pillar, setPillar] = useState('service');
   const f = FRAME.find((x) => x.key === frame) || FRAME[0];
   const p = PILLARS.find((x) => x.key === pillar) || PILLARS[0];
+
+  // ① 政策举措雷达：目标契合度 × 抓手维度（示意）
+  const radarOption = useMemo(() => {
+    const dims = ['商品消费', '服务消费', '收入分配', '流通环境', '场景创新'];
+    const base = radarOpt(dims.map((n) => ({ name: n, max: 100 })), [72, 88, 85, 70, 78], {
+      name: '规划着力示意',
+      color: '#c41e3a',
+    });
+    // 叠加专项行动对照层
+    base.legend = { ...LEGEND, bottom: 0, data: ['规划着力示意', '专项行动侧重示意'] };
+    base.series = [
+      base.series[0],
+      {
+        type: 'radar',
+        data: [{
+          value: [80, 75, 90, 68, 65],
+          name: '专项行动侧重示意',
+          lineStyle: { color: '#22d3ee', width: 2 },
+          itemStyle: { color: '#22d3ee' },
+          areaStyle: { color: 'rgba(34,211,238,0.12)' },
+        }],
+      },
+    ];
+    base.tooltip = { ...CHART_TOOLTIP };
+    return base;
+  }, []);
+
+  // ② 消费结构对比：商品 vs 服务（H1 核实）
+  const structureOpt = useMemo(() => ({
+    grid: { ...GRID, left: 56, bottom: 36 },
+    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, valueFormatter: (v) => `${v}%`, ...CHART_TOOLTIP },
+    legend: { ...LEGEND, top: 0 },
+    xAxis: categoryX(['社零总额', '服务零售', '商品零售', '餐饮收入', '网上零售', '限上商品']),
+    yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
+    series: [{
+      name: 'H1 同比 %',
+      type: 'bar',
+      barWidth: 22,
+      data: [
+        { value: 1.3, itemStyle: { color: '#22d3ee', borderRadius: [3, 3, 0, 0] } },
+        { value: 5.3, itemStyle: { color: '#10b981', borderRadius: [3, 3, 0, 0] } },
+        { value: 1.1, itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } },
+        { value: 2.8, itemStyle: { color: '#e8a317', borderRadius: [3, 3, 0, 0] } },
+        { value: 5.2, itemStyle: { color: '#8b5cf6', borderRadius: [3, 3, 0, 0] } },
+        { value: -1.0, itemStyle: { color: '#64748b', borderRadius: [3, 3, 0, 0] } },
+      ],
+      label: { show: true, position: 'top', formatter: '{c}%', color: LABEL.color, fontSize: 10 },
+    }],
+  }), []);
+
+  // ③ 政策传导链桑基
+  const sankeyOpt = useMemo(() => ({
+    tooltip: { trigger: 'item', ...CHART_TOOLTIP },
+    series: [{
+      type: 'sankey',
+      left: 8,
+      right: 88,
+      top: 12,
+      bottom: 12,
+      nodeWidth: 14,
+      nodeGap: 14,
+      orient: 'horizontal',
+      label: { color: LABEL.color, fontSize: 10 },
+      lineStyle: { color: 'gradient', curveness: 0.45, opacity: 0.35 },
+      data: [
+        { name: '扩大消费规划', itemStyle: { color: '#c41e3a' } },
+        { name: '提振消费专项行动', itemStyle: { color: '#e8a317' } },
+        { name: '收入/减负', itemStyle: { color: '#22d3ee' } },
+        { name: '场景/供给', itemStyle: { color: '#8b5cf6' } },
+        { name: '环境/制度', itemStyle: { color: '#10b981' } },
+        { name: '消费意愿', itemStyle: { color: '#f472b6' } },
+        { name: '社零读数', itemStyle: { color: '#94a3b8' } },
+      ],
+      links: [
+        { source: '扩大消费规划', target: '收入/减负', value: 28 },
+        { source: '扩大消费规划', target: '场景/供给', value: 32 },
+        { source: '扩大消费规划', target: '环境/制度', value: 22 },
+        { source: '提振消费专项行动', target: '收入/减负', value: 30 },
+        { source: '提振消费专项行动', target: '场景/供给', value: 26 },
+        { source: '提振消费专项行动', target: '环境/制度', value: 18 },
+        { source: '收入/减负', target: '消费意愿', value: 40 },
+        { source: '场景/供给', target: '消费意愿', value: 36 },
+        { source: '环境/制度', target: '消费意愿', value: 28 },
+        { source: '消费意愿', target: '社零读数', value: 70 },
+      ],
+    }],
+  }), []);
+
+  // ④ 分领域举措优先级柱状（示意）
+  const pillarBarOpt = useMemo(() => {
+    const cats = ['服务消费', '收入能力', '商品消费', '场景创新', '消费环境', '制度机制'];
+    const scores = [92, 90, 78, 82, 74, 86]; // 示意：按规划叙事置前程度
+    return {
+      grid: { left: 88, right: 36, top: 12, bottom: 20 },
+      tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, ...CHART_TOOLTIP },
+      xAxis: valueY({ max: 100, axisLabel: { formatter: '{value}' } }),
+      yAxis: {
+        type: 'category',
+        data: cats,
+        inverse: true,
+        axisLine: AXIS,
+        axisLabel: { ...LABEL, fontSize: 11 },
+      },
+      series: [{
+        type: 'bar',
+        barWidth: 14,
+        data: scores.map((v, i) => ({
+          value: v,
+          itemStyle: {
+            color: ['#22d3ee', '#e8a317', '#c41e3a', '#8b5cf6', '#10b981', '#64748b'][i],
+            borderRadius: [0, 3, 3, 0],
+          },
+        })),
+        label: { show: true, position: 'right', formatter: '{c}', color: LABEL.color, fontSize: 10 },
+      }],
+    };
+  }, []);
+
+  // ⑤ 时间轴：文件 → 十五五窗口 → H1
+  const timelineOpt = useMemo(() => ({
+    grid: { left: 48, right: 24, top: 36, bottom: 48 },
+    tooltip: { trigger: 'axis', ...CHART_TOOLTIP },
+    legend: { ...LEGEND, top: 0, data: ['政策里程碑（示意权重）', '社零同比趋势（H1 序列）'] },
+    xAxis: {
+      type: 'category',
+      data: ['2025-03', '2025-Q4', '2026-03', '2026-07-13', '2026-07-15', '2030'],
+      axisLine: AXIS,
+      axisLabel: { ...LABEL, interval: 0, rotate: 18 },
+    },
+    yAxis: [
+      { type: 'value', name: '示意', max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.12)' } }, axisLabel: LABEL, nameTextStyle: LABEL },
+      { type: 'value', name: '社零%', min: 0, max: 6, splitLine: { show: false }, axisLabel: { ...LABEL, formatter: '{value}%' }, nameTextStyle: LABEL },
+    ],
+    series: [
+      {
+        name: '政策里程碑（示意权重）',
+        type: 'line',
+        smooth: true,
+        symbol: 'circle',
+        symbolSize: 10,
+        yAxisIndex: 0,
+        data: [88, 55, 70, 95, 92, 80],
+        lineStyle: { color: '#c41e3a', width: 2 },
+        itemStyle: { color: '#c41e3a' },
+        markPoint: {
+          data: [
+            { name: '专项行动', coord: ['2025-03', 88], itemStyle: { color: '#e8a317' } },
+            { name: '规划批复', coord: ['2026-07-13', 95], itemStyle: { color: '#c41e3a' } },
+            { name: 'H1 数据', coord: ['2026-07-15', 92], itemStyle: { color: '#22d3ee' } },
+          ],
+          label: { color: LABEL.color, fontSize: 9 },
+        },
+      },
+      {
+        name: '社零同比趋势（H1 序列）',
+        type: 'line',
+        smooth: true,
+        symbol: 'diamond',
+        symbolSize: 7,
+        yAxisIndex: 1,
+        // KEY_INDICATORS sparkline 近似：retail 近八期末段 + H1 核实点
+        data: [4.8, 3.2, 2.6, 1.5, 1.3, null],
+        lineStyle: { color: '#22d3ee', width: 2, type: 'dashed' },
+        itemStyle: { color: '#22d3ee' },
+        connectNulls: false,
+      },
+    ],
+  }), []);
+
+  // ⑥ 供强需弱 vs 政策着力点（分组柱）
+  const gapOpt = useMemo(() => ({
+    grid: { ...GRID, left: 48, bottom: 56, top: 36 },
+    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, ...CHART_TOOLTIP },
+    legend: { ...LEGEND, top: 0, data: ['H1 实际同比 %', '政策着力示意（0–10）'] },
+    xAxis: {
+      type: 'category',
+      data: ['规上工业', '社零', '服务零售', '商品零售', '固投', '居民收入'],
+      axisLine: AXIS,
+      axisLabel: { ...LABEL, interval: 0, rotate: 22 },
+    },
+    yAxis: [
+      { type: 'value', name: '%', axisLabel: { ...LABEL, formatter: '{value}%' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.12)' } }, nameTextStyle: LABEL },
+      { type: 'value', name: '示意', max: 10, axisLabel: LABEL, splitLine: { show: false }, nameTextStyle: LABEL },
+    ],
+    series: [
+      {
+        name: 'H1 实际同比 %',
+        type: 'bar',
+        barWidth: 16,
+        yAxisIndex: 0,
+        data: [
+          { value: 5.4, itemStyle: { color: '#c41e3a' } },
+          { value: 1.3, itemStyle: { color: '#22d3ee' } },
+          { value: 5.3, itemStyle: { color: '#10b981' } },
+          { value: 1.1, itemStyle: { color: '#64748b' } },
+          { value: -5.7, itemStyle: { color: '#e8a317' } },
+          { value: 4.2, itemStyle: { color: '#8b5cf6' } },
+        ],
+        label: { show: true, position: 'top', formatter: '{c}%', color: LABEL.color, fontSize: 9 },
+      },
+      {
+        name: '政策着力示意（0–10）',
+        type: 'bar',
+        barWidth: 16,
+        yAxisIndex: 1,
+        data: [3, 9, 9, 8, 4, 9], // 示意：政策对需求侧加码、对供给侧不直接对冲工业
+        itemStyle: { color: 'rgba(244,114,182,0.75)', borderRadius: [3, 3, 0, 0] },
+        label: { show: true, position: 'top', formatter: '{c}', color: LABEL.color, fontSize: 9 },
+      },
+    ],
+  }), []);
+
+  // ⑦ 城乡消费分化（H1 核实：乡村 +2.5% / 城镇 +1.2%）
+  const urbanRuralOpt = useMemo(() => ({
+    grid: { left: 72, right: 28, top: 16, bottom: 24 },
+    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, valueFormatter: (v) => `${v}%`, ...CHART_TOOLTIP },
+    xAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
+    yAxis: {
+      type: 'category',
+      data: ['城镇社零', '乡村社零'],
+      axisLine: AXIS,
+      axisLabel: LABEL,
+    },
+    series: [{
+      type: 'bar',
+      barWidth: 22,
+      data: [
+        { value: 1.2, itemStyle: { color: '#64748b', borderRadius: [0, 3, 3, 0] } },
+        { value: 2.5, itemStyle: { color: '#10b981', borderRadius: [0, 3, 3, 0] } },
+      ],
+      label: { show: true, position: 'right', formatter: '{c}%', color: LABEL.color, fontSize: 11 },
+    }],
+  }), []);
+
+  // ⑧ 社零路径示意：50.1 → 60 万亿（目标公开数字 + 路径示意）
+  const pathOpt = useMemo(() => ({
+    grid: { ...GRID, left: 52, bottom: 36, top: 28 },
+    tooltip: { trigger: 'axis', ...CHART_TOOLTIP },
+    legend: { ...LEGEND, top: 0, data: ['社零万亿元（核实/目标）', '隐含年复合增速示意 %'] },
+    xAxis: categoryX(['2025', '2026E', '2027E', '2028E', '2029E', '2030 目标']),
+    yAxis: [
+      { type: 'value', name: '万亿', min: 48, max: 62, axisLabel: LABEL, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.12)' } }, nameTextStyle: LABEL },
+      { type: 'value', name: '%', min: 0, max: 6, axisLabel: { ...LABEL, formatter: '{value}%' }, splitLine: { show: false }, nameTextStyle: LABEL },
+    ],
+    series: [
+      {
+        name: '社零万亿元（核实/目标）',
+        type: 'line',
+        smooth: true,
+        symbol: 'circle',
+        symbolSize: 8,
+        yAxisIndex: 0,
+        // 2025=50.1 核实；2030≈60 目标；中间为线性插值示意（非官方路径）
+        data: [50.1, 52.0, 53.9, 55.9, 57.9, 60.0],
+        lineStyle: { color: '#c41e3a', width: 2 },
+        itemStyle: { color: '#c41e3a' },
+        areaStyle: { color: 'rgba(196,30,58,0.08)' },
+        markLine: {
+          silent: true,
+          data: [{ yAxis: 60, name: '60 万亿' }],
+          lineStyle: { color: '#e8a317', type: 'dashed' },
+          label: { ...LABEL, formatter: '目标 ≈60' },
+        },
+      },
+      {
+        name: '隐含年复合增速示意 %',
+        type: 'bar',
+        yAxisIndex: 1,
+        barWidth: 14,
+        data: [null, 3.7, 3.7, 3.7, 3.7, 3.7],
+        itemStyle: { color: 'rgba(34,211,238,0.45)' },
+      },
+    ],
+  }), []);
 
   return (
     <div>
@@ -241,7 +514,6 @@ export default function Page() {
         </div>
       </PageHeader>
 
-      {/* 页眉政策元数据 */}
       <Card title="政策元数据 · 与十五五定位" className="mb-6" asSection={false}>
         <Grid cols={4} className="mb-3">
           {[
@@ -276,6 +548,79 @@ export default function Page() {
         <Stat value="58.8%" label="十四五最终消费贡献率" accent="#10b981" sub="较十三五 +10pct" />
       </StatGrid>
 
+      {/* —— 图表层 —— */}
+      <Card title="① 政策举措雷达 · 目标 × 抓手维度" className="mb-8">
+        <EChart option={radarOption} style={{ height: 320 }} />
+        <ChartNote>
+          雷达把规划与专项行动在商品、服务、收入、流通、场景五维的相对侧重可视化：规划更抬服务与场景，专项行动更抬增收与商品更新。
+          两层叠合处即「能力—供给」共振带——也是政策能否抬升社零斜率的关键。
+        </ChartNote>
+        <SourceLine>示意标定 · 非官方评分 · 维度取自规划六面 + 专项行动八方面归纳</SourceLine>
+      </Card>
+
+      <Grid cols={2} className="mb-8">
+        <Card title="② 消费结构 · 商品 vs 服务（H1 核实）" asSection={false}>
+          <EChart option={structureOpt} style={{ height: 280 }} />
+          <ChartNote>
+            服务零售 +5.3% 与网上零售 +5.2% 构成相对亮点，商品 +1.1%、限上 −1.0% 暴露耐用品偏冷——K 形结构是规划「服务置前、商品升级」的数据镜像。
+          </ChartNote>
+          <SourceLine>出处：{SRC_H1} · 截至 {H1_AS_OF}</SourceLine>
+        </Card>
+        <Card title="⑦ 城乡社零分化（H1 核实）" asSection={false}>
+          <EChart option={urbanRuralOpt} style={{ height: 280 }} />
+          <ChartNote>
+            乡村社零 +2.5% 快于城镇 +1.2%，下沉市场仍有相对弹性；但体量与中高端仍在城镇——增收与县域商业是规划能力端的纵深。
+          </ChartNote>
+          <SourceLine>出处：{SRC_H1} · 城镇/乡村累计同比</SourceLine>
+        </Card>
+      </Grid>
+
+      <Card title="③ 政策传导链 · 桑基（示意流量）" className="mb-8">
+        <EChart option={sankeyOpt} style={{ height: 340 }} />
+        <ChartNote>
+          规划与专项行动双源汇入「收入/减负—场景/供给—环境/制度」三通道，再收敛为消费意愿，最终映射到社零读数。
+          链路的瓶颈不在右侧的场景供给，而在左侧收入与预期能否把意愿函数抬起来——桑基流量为结构示意，非财政拨款份额。
+        </ChartNote>
+        <SourceLine>示意标定 · 非官方流量权重 · 节点对齐批复「能力—供给—环境」表述</SourceLine>
+      </Card>
+
+      <Grid cols={2} className="mb-8">
+        <Card title="④ 分领域举措优先级（示意）" asSection={false}>
+          <EChart option={pillarBarOpt} style={{ height: 280 }} />
+          <ChartNote>
+            按公开叙事置前程度标定：服务与收入能力居前，制度机制紧随，商品与环境次之。评分仅反映文本优先级，非落地预算。
+          </ChartNote>
+          <SourceLine>示意标定 · 非官方评分 · 0–100</SourceLine>
+        </Card>
+        <Card title="⑧ 社零路径 · 50.1 → ≈60 万亿" asSection={false}>
+          <EChart option={pathOpt} style={{ height: 280 }} />
+          <ChartNote>
+            端点核实（2025=50.1 万亿、2030≈60 万亿）；中间年份为线性插值示意，隐含年复合约 3.7%。H1 社零仅 +1.3%，路径压力需要能力端与商品端同时发力。
+          </ChartNote>
+          <SourceLine>端点：答记者问核实 · 中间路径为插值示意〔非官方〕</SourceLine>
+        </Card>
+      </Grid>
+
+      <Card title="⑤ 时间轴 · 文件发布 × 十五五窗口 × H1" className="mb-8">
+        <EChart option={timelineOpt} style={{ height: 300 }} />
+        <ChartNote>
+          2025-03 专项行动开库，2026-07-13 规划批复，两日后 H1 数据落盘——政策时点与弱社零读数几乎同框，强化「制度回应结构矛盾」的解读。
+          右侧虚线为社零同比下行序列（取经济大盘 sparkline 末段），与政策权重上行形成剪刀差。
+        </ChartNote>
+        <SourceLine>政策时点：中国政府网 / 新华社 · 社零序列：KEY_INDICATORS sparkline + H1 核实点</SourceLine>
+      </Card>
+
+      <Card title="⑥ 供强需弱格局 vs 政策着力点" className="mb-8">
+        <EChart option={gapOpt} style={{ height: 320 }} />
+        <ChartNote>
+          左轴为 H1 核实同比：工业强、社零/固投弱；右轴为政策着力示意——对社零、服务、收入、商品加码，对工业供给端不直接对冲。
+          图意：政策在「补需求短板」，而非继续推高已经偏强的供给曲线。
+        </ChartNote>
+        <SourceLine>
+          H1 数据：{SRC_H1}（工业 {iva?.value}% · 社零 {retail?.value}% · 固投 {fai?.value}% · 收入实际 +4.2%）· 着力分为示意标定
+        </SourceLine>
+      </Card>
+
       {/* 目标 · 抓手 · 约束 */}
       <Card title="政策框架 · 目标 / 抓手 / 约束" className="mb-8">
         <SelectorBar items={FRAME} activeKey={frame} onSelect={setFrame} />
@@ -293,7 +638,6 @@ export default function Page() {
         </div>
       </Card>
 
-      {/* 与 H1 / 经济大盘联动 */}
       <Card title={`与经济大盘联动 · H1 读数（数据截至 ${H1_AS_OF}）`} className="mb-8">
         <p className="text-xs leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
           下列读数取自经济大盘 <span className="mono">KEY_INDICATORS</span> 与半年经济解读同源口径，用于锚定政策回应的现实矛盾——非新编统计。
@@ -313,7 +657,6 @@ export default function Page() {
         </p>
       </Card>
 
-      {/* 举措拆解 */}
       <Card title="举措拆解 · 六领域" className="mb-8">
         <SelectorBar items={PILLARS} activeKey={pillar} onSelect={setPillar} />
         <div className="os-card p-4 mb-3" style={{ background: 'var(--bg-elevated)', borderLeft: `3px solid ${p.accent}` }}>
@@ -331,7 +674,6 @@ export default function Page() {
         </div>
       </Card>
 
-      {/* 前置专项行动 */}
       <Card title="前置真源 · 提振消费专项行动方案（2025-03）" className="mb-8">
         <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
           规划批复要求「深入实施提振消费专项行动」。该方案由中办、国办印发，按「增收减负提升消费能力、高质量供给创造有效需求、优化消费环境增强消费意愿」三思路，
@@ -348,7 +690,6 @@ export default function Page() {
         <p className="text-[11px] mt-3 m-0" style={{ color: 'var(--text-tertiary)' }}>出处：{SRC_ACTION}</p>
       </Card>
 
-      {/* 风险台账 */}
       <Card title="风险与未决 · 台账（已兑现 / 进行中 / 存疑）" className="mb-8">
         <Grid cols={3}>
           {[LEDGER.done, LEDGER.ongoing, LEDGER.doubt].map((col) => (
@@ -398,20 +739,8 @@ export default function Page() {
           { to: '/econ-dashboard?tab=worldbank', label: '世行经济简报 · 2026-07', note: '基线预测与政策叙事交叉验证。' },
         ]}
         sourceNote={`政策：${SRC_POLICY} · 专项行动：${SRC_ACTION} · H1：${SRC_H1} · 政策截至 ${POLICY_AS_OF} · H1 截至 ${H1_AS_OF}`}
-        disclaimer={`公开政策梳理 · 冷峻中立分析框架 · 非投资建议 · 非预测 · 基准 ${AS_OF_BASELINE} · 无法核实处已标〔存疑〕`}
+        disclaimer={`公开政策梳理 · 冷峻中立分析框架 · 非投资建议 · 非预测 · 基准 ${AS_OF_BASELINE} · 无法核实处已标〔存疑〕 · 示意图表非官方评分`}
       />
     </div>
   );
 }
-
-const chipStyle = {
-  display: 'inline-flex',
-  alignItems: 'center',
-  fontSize: 11,
-  padding: '4px 10px',
-  borderRadius: 6,
-  border: '1px solid rgba(34,211,238,0.35)',
-  color: '#22d3ee',
-  textDecoration: 'none',
-  fontFamily: 'var(--font-mono, ui-monospace, monospace)',
-};

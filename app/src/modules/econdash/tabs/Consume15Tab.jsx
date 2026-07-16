@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Grid, Stat, StatGrid } from '../../../app/ui.jsx';
+import EChart from '../../../lib/viz/EChart.jsx';
+import { LABEL, LEGEND, GRID, CHART_TOOLTIP, categoryX, valueY, radarOpt } from '../../shared/chartHelpers.js';
 import { KEY_INDICATORS } from '../econData.js';
 
 // ============================================================================
-// 经济大盘 · 十五五促消费 Tab（摘要速览 · 全文见 /econ-consume-15th）
-// 政策真源：国函〔2026〕66 号《扩大消费「十五五」规划》批复（发布 2026-07-13）
-// H1 读数：KEY_INDICATORS 同源，不臆造
+// 经济大盘 · 十五五促消费 Tab（摘要 + 迷你图表 · 全文见 /econ-consume-15th）
 // ============================================================================
 
 const POLICY_AS_OF = '2026-07-13';
@@ -25,9 +25,50 @@ function ki(id) {
   return KEY_INDICATORS.find((k) => k.id === id);
 }
 
+const linkChip = {
+  display: 'inline-flex',
+  fontSize: 11,
+  padding: '4px 10px',
+  borderRadius: 6,
+  border: '1px solid rgba(34,211,238,0.35)',
+  color: '#22d3ee',
+  textDecoration: 'none',
+  fontFamily: 'var(--font-mono, ui-monospace, monospace)',
+};
+
 export default function Consume15Tab() {
   const retail = ki('retail');
   const fai = ki('fai');
+  const iva = ki('iva');
+
+  const miniStructure = useMemo(() => ({
+    grid: { ...GRID, left: 44, bottom: 40, top: 8 },
+    tooltip: { trigger: 'axis', valueFormatter: (v) => `${v}%`, ...CHART_TOOLTIP },
+    xAxis: categoryX(['社零', '服务', '商品', '固投', '工业']),
+    yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
+    series: [{
+      type: 'bar',
+      barWidth: 18,
+      data: [
+        { value: retail?.value ?? 1.3, itemStyle: { color: '#22d3ee', borderRadius: [3, 3, 0, 0] } },
+        { value: 5.3, itemStyle: { color: '#10b981', borderRadius: [3, 3, 0, 0] } },
+        { value: 1.1, itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } },
+        { value: fai?.value ?? -5.7, itemStyle: { color: '#e8a317', borderRadius: [3, 3, 0, 0] } },
+        { value: iva?.value ?? 5.4, itemStyle: { color: '#64748b', borderRadius: [3, 3, 0, 0] } },
+      ],
+      label: { show: true, position: 'top', formatter: '{c}%', color: LABEL.color, fontSize: 9 },
+    }],
+  }), [retail, fai, iva]);
+
+  const miniRadar = useMemo(() => {
+    const opt = radarOpt(
+      ['商品', '服务', '收入', '流通', '场景'].map((n) => ({ name: n, max: 100 })),
+      [72, 88, 85, 70, 78],
+      { name: '规划着力示意', color: '#c41e3a' },
+    );
+    opt.legend = { ...LEGEND, bottom: 0, data: ['规划着力示意'] };
+    return opt;
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -57,7 +98,7 @@ export default function Consume15Tab() {
               fontFamily: 'var(--font-mono, ui-monospace, monospace)',
             }}
           >
-            全文解读 ↗
+            全文解读 + 8 图 ↗
           </Link>
         </div>
 
@@ -78,6 +119,17 @@ export default function Consume15Tab() {
           政策要闭合「供强需弱」——H1 社零偏弱（{retail ? `+${retail.value}%` : '—'}）与固投拖累（{fai ? `${fai.value}%` : '—'}）并存；
           规划把扩内需升格为十五五消费纲领，以能力增收 + 服务/商品供给 + 制度长效三轨并进。
         </p>
+
+        <Grid cols={2} className="mb-4">
+          <div>
+            <div className="text-[11px] mono mb-2" style={{ color: 'var(--text-tertiary)' }}>H1 供需剪刀差（核实）</div>
+            <EChart option={miniStructure} style={{ height: 220 }} />
+          </div>
+          <div>
+            <div className="text-[11px] mono mb-2" style={{ color: 'var(--text-tertiary)' }}>抓手雷达（示意标定）</div>
+            <EChart option={miniRadar} style={{ height: 220 }} />
+          </div>
+        </Grid>
 
         <div className="text-[11px] mono mb-2" style={{ color: 'var(--text-tertiary)' }}>六大重点任务面</div>
         <Grid cols={3}>
@@ -104,14 +156,3 @@ export default function Consume15Tab() {
     </div>
   );
 }
-
-const linkChip = {
-  display: 'inline-flex',
-  fontSize: 11,
-  padding: '4px 10px',
-  borderRadius: 6,
-  border: '1px solid rgba(34,211,238,0.35)',
-  color: '#22d3ee',
-  textDecoration: 'none',
-  fontFamily: 'var(--font-mono, ui-monospace, monospace)',
-};
