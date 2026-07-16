@@ -15,11 +15,12 @@ const FinanceTab = lazy(() => import('./tabs/FinanceTab.jsx'));
 const RegionalTab = lazy(() => import('./tabs/RegionalTab.jsx'));
 const CanaryTab = lazy(() => import('./tabs/CanaryTab.jsx'));
 const WorldBankTab = lazy(() => import('./tabs/WorldBankTab.jsx'));
+const Consume15Tab = lazy(() => import('./tabs/Consume15Tab.jsx'));
 
 // ============================================================================
 // 经济大盘 · 全景与实时监测（ink-observatory Round 2）
 // ----------------------------------------------------------------------------
-// 六 Tab 层级：宏观态势 → 结构矛盾 → 资本市场 → 区域产业 → 信号金丝雀 → 世行经济简报
+// 七 Tab：宏观态势 → 结构矛盾 → 资本市场 → 区域产业 → 信号金丝雀 → 世行经济简报 → 十五五促消费
 // 数据层不变：NBS 快照 + World Bank WDI 实时 + 领先指标示意
 // 声明：公开统计梳理 · 示意标定 · 非投资建议 · 非预测
 // ============================================================================
@@ -31,6 +32,7 @@ const TABS = [
   { id: 'regional', label: '区域产业', accent: '#c99a4e' },
   { id: 'canary', label: '信号金丝雀', accent: 'var(--china-red)' },
   { id: 'worldbank', label: '世行经济简报', accent: '#22d3ee' },
+  { id: 'consume15', label: '十五五促消费', accent: '#f472b6' },
 ];
 
 function TabFallback() {
@@ -116,6 +118,8 @@ export default function Page({ embedded = false }) {
         return <CanaryTab wbData={wb.data || {}} />;
       case 'worldbank':
         return <WorldBankTab wb={wb} />;
+      case 'consume15':
+        return <Consume15Tab />;
       default:
         return <MacroTab wb={wb} />;
     }
@@ -131,6 +135,8 @@ export default function Page({ embedded = false }) {
         >
           <div className="flex flex-wrap gap-2 items-center">
             <Link to="/dashboard" className="econ-cross-chip">中枢看板 ↗</Link>
+            <Link to="/econ-h1-review" className="econ-cross-chip econ-cross-chip--amber">半年经济解读 ↗</Link>
+            <Link to="/econ-consume-15th" className="econ-cross-chip">十五五促消费 ↗</Link>
             <Link to="/modules/signal-panel" className="econ-cross-chip">宏观信号灯 ↗</Link>
             <Link to="/contradictions" className="econ-cross-chip econ-cross-chip--amber">结构矛盾 ↗</Link>
             <Link to="/capital-market" className="econ-cross-chip">资本市场 ↗</Link>

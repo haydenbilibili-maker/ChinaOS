@@ -63,6 +63,11 @@ export const MODULES = [
     component: lazy(() => import('../modules/econH1Review/Page.jsx')),
   },
   {
+    id: 'econConsume15', path: '/econ-consume-15th', group: 'home',
+    title: '十五五促消费', subtitle: '扩大消费规划 · 国函66号 · 2026-07', icon: 'ShoppingBag',
+    component: lazy(() => import('../modules/econConsume15/Page.jsx')),
+  },
+  {
     id: 'cognition', path: '/cognition', group: 'cognition',
     title: '康波周期', subtitle: '康德拉季耶夫 · 长波 · 创新潮', icon: 'Waves',
     component: lazy(() => import('../modules/cognition/Page.jsx')),
