@@ -1,9 +1,12 @@
 import React, { useState, useMemo } from 'react';
 import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
-import { categoryX, valueY, GRID, LABEL, CHART_TOOLTIP } from '../shared/chartHelpers.js';
+import {
+  categoryX, valueY, GRID, GRID_WIDE, LABEL, LEGEND, CHART_TOOLTIP, CHART_SERIES_COLORS,
+} from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
+import { INDICATOR_SPARKLINES, INCOME_DIST } from '../econdash/econData.js';
 
 // ============================================================================
 // 半年经济解读 · 2026 H1（国家统计局 2026-07-15 发布上半年国民经济运行情况）
@@ -16,11 +19,14 @@ import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 
 const DATA_AS_OF = '2026-07-15';
 const SRC = '国家统计局 2026-07-15 上半年国民经济运行情况新闻稿及附表';
+const SRC_CUSTOMS = '海关总署（与 NBS 新闻稿交叉引用）';
+
+const C = CHART_SERIES_COLORS;
 
 // —— 三驾马车（消费 / 投资 / 出口）——
 const ENGINES = [
   {
-    key: 'consume', label: '消费 · 内需', accent: '#22d3ee',
+    key: 'consume', label: '消费 · 内需', accent: C.cyberCyan,
     title: '消费 —— 服务强、商品弱的「K 形」扩容',
     headline: '社零 +1.3%',
     metrics: [
@@ -39,7 +45,7 @@ const ENGINES = [
     },
   },
   {
-    key: 'invest', label: '投资 · 固投', accent: '#e8a317',
+    key: 'invest', label: '投资 · 固投', accent: C.fireGold,
     title: '投资 —— 地产深跌拖累，高技术逆势',
     headline: '固投 −5.7%',
     metrics: [
@@ -59,7 +65,7 @@ const ENGINES = [
     },
   },
   {
-    key: 'export', label: '出口 · 外需', accent: '#c41e3a',
+    key: 'export', label: '出口 · 外需', accent: C.powerRed,
     title: '出口 —— 韧性最强，机电与高技术领跑',
     headline: '进出口 +16.9%',
     metrics: [
@@ -80,34 +86,30 @@ const ENGINES = [
   },
 ];
 
-// —— 核心指标仪表盘 ——
 const DASHBOARD = [
-  { v: '4.7%', l: 'GDP 上半年同比（实际）', a: '#c41e3a', s: '695704 亿元 · 一季 5.0 / 二季 4.3' },
-  { v: '5.4%', l: '规上工业增加值同比', a: '#e8a317', s: '高技术制造 +13.3%' },
-  { v: '+1.3%', l: '社会消费品零售总额', a: '#22d3ee', s: '服务零售 +5.3%' },
-  { v: '−5.7%', l: '固定资产投资', a: '#64748b', s: '扣除地产 −2.7%' },
-  { v: '+16.9%', l: '货物进出口总额', a: '#10b981', s: '出口 +13.4% / 进口 +22.1%' },
-  { v: '1.0%', l: 'CPI 上半年同比', a: '#8b5cf6', s: '核心 CPI +1.2%' },
-  { v: '5.2%', l: '城镇调查失业率均值', a: '#22d3ee', s: '6 月 5.0%' },
-  { v: '+4.2%', l: '居民人均可支配收入（实际）', a: '#e8a317', s: '名义 +5.2% · 22981 元' },
+  { v: '4.7%', l: 'GDP 上半年同比（实际）', a: C.powerRed, s: '695704 亿元 · 一季 5.0 / 二季 4.3' },
+  { v: '5.4%', l: '规上工业增加值同比', a: C.fireGold, s: '高技术制造 +13.3%' },
+  { v: '+1.3%', l: '社会消费品零售总额', a: C.cyberCyan, s: '服务零售 +5.3%' },
+  { v: '−5.7%', l: '固定资产投资', a: C.slate, s: '扣除地产 −2.7%' },
+  { v: '+16.9%', l: '货物进出口总额', a: C.emerald, s: '出口 +13.4% / 进口 +22.1%' },
+  { v: '1.0%', l: 'CPI 上半年同比', a: C.violet, s: '核心 CPI +1.2%' },
+  { v: '5.2%', l: '城镇调查失业率均值', a: C.cyberCyan, s: '6 月 5.0%' },
+  { v: '+4.2%', l: '居民人均可支配收入（实际）', a: C.fireGold, s: '名义 +5.2% · 22981 元' },
 ];
 
-// —— 工业分项（同比 %）——
 const IVA_BARS = {
   cats: ['规上工业', '采矿业', '制造业', '电力燃气水', '装备制造', '高技术制造'],
   data: [5.4, 3.6, 5.6, 5.5, 9.3, 13.3],
 };
 
-// —— 新质生产力代表产品产量（同比 %）——
 const NPF_PRODUCTS = {
   cats: ['3D 打印设备', '锂离子电池', '工业机器人'],
   data: [48.5, 39.3, 28.0],
 };
 
-// —— 台账：已兑现 / 进行中 / 存疑 ——
 const LEDGER = {
   done: {
-    label: '已兑现', accent: '#10b981',
+    label: '已兑现', accent: C.emerald,
     items: [
       ['出口韧性', '进出口 +16.9%、机电 +20.1%，稳居全球货物贸易第一大国。'],
       ['新质生产力起势', '高技术制造 +13.3%、装备制造 +9.3%；锂电 +39.3%、机器人 +28.0%。'],
@@ -116,7 +118,7 @@ const LEDGER = {
     ],
   },
   ongoing: {
-    label: '进行中', accent: '#e8a317',
+    label: '进行中', accent: C.fireGold,
     items: [
       ['扩内需政策', '社零 +1.3% 偏弱，以旧换新、服务消费仍需加力提振。'],
       ['地产止跌回稳', '开发投资 −18.0%、到位资金 −20.2%，仍在寻底。'],
@@ -125,7 +127,7 @@ const LEDGER = {
     ],
   },
   doubt: {
-    label: '存疑 / 需观察', accent: '#c41e3a',
+    label: '存疑 / 需观察', accent: C.powerRed,
     items: [
       ['供强需弱能否闭合', '生产端（工业 5.4%）显著强于需求端（社零 1.3%、固投 −5.7%），缺口若持续将压制价格与利润。'],
       ['出口高增可持续性', '16.9% 高增速含抢出口与低基数成分，下半年外部关税与需求不确定性上升。〔存疑〕'],
@@ -135,7 +137,6 @@ const LEDGER = {
   },
 };
 
-// —— 研判要点 ——
 const VERDICTS = [
   ['1 · 增速达标，动能分化', 'H1 增速 4.7%（一季 5.0 → 二季 4.3，二季环比 +0.9%）落在合理区间，但二季度较一季度回落 0.7pct，边际动能走弱。增量约 3.6 万亿元仍为近年同期高位，「量的合理增长」由供给端与外需撑起。'],
   ['2 · 供强需弱是主要矛盾', '工业 +5.4%、服务业 +5.2% 的供给扩张，与社零 +1.3%、固投 −5.7% 的需求收缩形成剪刀差。官方明确「国内供强需弱矛盾突出」——这是价格低位、企业利润与预期承压的结构根源。'],
@@ -143,7 +144,19 @@ const VERDICTS = [
   ['4 · 外需红利与风险并存', '出口 +13.4% 是最亮读数，却也最依赖外部环境。抢出口、低基数与全球 AI/新能源景气叠加推高上半年，下半年关税博弈与需求回摆构成下行风险，外需难长期替代内需。'],
 ];
 
-function barOpt({ cats, data, positive = '#22d3ee', negative = '#c41e3a', horizontal = false }) {
+function SourceLine({ children }) {
+  return (
+    <p className="text-[10px] mono mt-2 m-0" style={{ color: 'var(--text-tertiary)' }}>{children}</p>
+  );
+}
+
+function ChartNote({ children }) {
+  return (
+    <p className="text-xs mt-3 leading-relaxed m-0" style={{ color: 'var(--text-secondary)' }}>{children}</p>
+  );
+}
+
+function barOpt({ cats, data, positive = C.cyberCyan, negative = C.powerRed, horizontal = false }) {
   const barData = data.map((v) => ({
     value: v,
     itemStyle: { color: v >= 0 ? positive : negative, borderRadius: horizontal ? [0, 3, 3, 0] : [3, 3, 0, 0] },
@@ -163,23 +176,246 @@ export default function Page() {
   const [engine, setEngine] = useState('export');
   const e = ENGINES.find((x) => x.key === engine) || ENGINES[0];
 
+  // ① GDP 季度：同比柱 + 环比线（环比仅核验 Q2）
   const quarterOpt = useMemo(() => ({
-    grid: { ...GRID, bottom: 28 },
-    tooltip: { trigger: 'axis', valueFormatter: (v) => `${v}%`, ...CHART_TOOLTIP },
+    grid: { ...GRID_WIDE, bottom: 36 },
+    legend: { ...LEGEND, top: 0, data: ['同比（实际）', '环比（经核验）'] },
+    tooltip: { trigger: 'axis', ...CHART_TOOLTIP },
     xAxis: categoryX(['2025Q3', '2025Q4', '2026Q1', '2026Q2']),
-    yAxis: valueY({ min: 3, max: 6, axisLabel: { formatter: '{value}%' } }),
+    yAxis: [
+      valueY({ name: '同比%', min: 3, max: 6, axisLabel: { formatter: '{value}%' } }),
+      valueY({ name: '环比%', min: 0, max: 2, axisLabel: { formatter: '{value}%' }, splitLine: { show: false } }),
+    ],
+    series: [
+      {
+        name: '同比（实际）', type: 'bar', barWidth: 28,
+        data: [4.8, 5.4, 5.0, 4.3],
+        itemStyle: { color: C.powerRed, borderRadius: [3, 3, 0, 0] },
+        label: { show: true, formatter: '{c}%', color: LABEL.color, fontSize: 10, position: 'top' },
+      },
+      {
+        name: '环比（经核验）', type: 'line', yAxisIndex: 1, smooth: false,
+        symbol: 'circle', symbolSize: 8, connectNulls: false,
+        // 仅 2026Q2 环比 +0.9% 经新闻稿核验；其余季度环比本页不填（避免臆造）
+        data: [null, null, null, 0.9],
+        lineStyle: { color: C.cyberCyan, width: 2 },
+        itemStyle: { color: C.cyberCyan },
+        label: { show: true, formatter: (p) => (p.value == null ? '' : `${p.value}%`), color: C.cyberCyan, fontSize: 10 },
+      },
+    ],
+  }), []);
+
+  // ② 供强需弱对照（分组柱）
+  const supplyDemandOpt = useMemo(() => ({
+    grid: { ...GRID, left: 44, bottom: 52, top: 36 },
+    legend: { ...LEGEND, top: 0, data: ['供给 / 外需', '内需'] },
+    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, valueFormatter: (v) => `${v}%`, ...CHART_TOOLTIP },
+    xAxis: {
+      type: 'category',
+      data: ['规上工业', '服务业增加值', '进出口', '社零', '固投'],
+      axisLabel: { ...LABEL, interval: 0, rotate: 18 },
+      axisLine: { lineStyle: { color: '#27324a' } },
+    },
+    yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
+    series: [
+      {
+        name: '供给 / 外需', type: 'bar', barGap: '12%', barWidth: 18,
+        data: [
+          { value: 5.4, itemStyle: { color: C.fireGold } },
+          { value: 5.2, itemStyle: { color: C.fireGold } },
+          { value: 16.9, itemStyle: { color: C.emerald } },
+          { value: null },
+          { value: null },
+        ],
+        label: { show: true, formatter: (p) => (p.value == null ? '' : `${p.value}%`), position: 'top', color: LABEL.color, fontSize: 10 },
+      },
+      {
+        name: '内需', type: 'bar', barWidth: 18,
+        data: [
+          { value: null },
+          { value: null },
+          { value: null },
+          { value: 1.3, itemStyle: { color: C.cyberCyan } },
+          { value: -5.7, itemStyle: { color: C.powerRed } },
+        ],
+        label: { show: true, formatter: (p) => (p.value == null ? '' : `${p.value}%`), position: 'top', color: LABEL.color, fontSize: 10 },
+      },
+    ],
+  }), []);
+
+  // ③ 三驾马车增速对照（无官方贡献率时用增速对照）
+  const enginesCompareOpt = useMemo(() => ({
+    grid: { ...GRID, left: 48, bottom: 28 },
+    tooltip: { trigger: 'axis', valueFormatter: (v) => `${v}%`, ...CHART_TOOLTIP },
+    xAxis: categoryX(['消费·社零', '投资·固投', '出口·货物出口']),
+    yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
     series: [{
-      type: 'line', smooth: true, symbol: 'circle', symbolSize: 7,
-      data: [4.8, 5.4, 5.0, 4.3],
-      lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' },
-      areaStyle: { color: 'rgba(196,30,58,0.1)' },
-      label: { show: true, formatter: '{c}%', color: LABEL.color, fontSize: 10, position: 'top' },
+      type: 'bar', barWidth: 36,
+      data: [
+        { value: 1.3, itemStyle: { color: C.cyberCyan, borderRadius: [3, 3, 0, 0] } },
+        { value: -5.7, itemStyle: { color: C.slate, borderRadius: [3, 3, 0, 0] } },
+        { value: 13.4, itemStyle: { color: C.powerRed, borderRadius: [3, 3, 0, 0] } },
+      ],
+      label: { show: true, formatter: '{c}%', position: 'top', color: LABEL.color, fontSize: 11 },
+      markLine: {
+        silent: true,
+        symbol: 'none',
+        data: [{ yAxis: 0 }],
+        lineStyle: { color: 'rgba(148,163,184,0.35)', type: 'dashed' },
+        label: { show: false },
+      },
     }],
   }), []);
 
+  // ④ 价格链：CPI vs PPI（近八期近似序列 + H1/6 月核实点）
+  const priceOpt = useMemo(() => {
+    const cpi = INDICATOR_SPARKLINES.cpi || [];
+    const ppi = INDICATOR_SPARKLINES.ppi || [];
+    const cats = cpi.map((_, i) => `T-${cpi.length - 1 - i}`);
+    cats[cats.length - 1] = 'H1/6月';
+    return {
+      grid: { ...GRID_WIDE, bottom: 36, top: 36 },
+      legend: { ...LEGEND, top: 0, data: ['CPI 同比', 'PPI 同比'] },
+      tooltip: { trigger: 'axis', valueFormatter: (v) => `${v}%`, ...CHART_TOOLTIP },
+      xAxis: categoryX(cats),
+      yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
+      series: [
+        {
+          name: 'CPI 同比', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6,
+          data: cpi, lineStyle: { color: C.violet, width: 2 }, itemStyle: { color: C.violet },
+        },
+        {
+          name: 'PPI 同比', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6,
+          data: ppi, lineStyle: { color: C.fireGold, width: 2 }, itemStyle: { color: C.fireGold },
+          markPoint: {
+            data: [{ name: '6月PPI', coord: [cats.length - 1, 4.1], value: 4.1 }],
+            itemStyle: { color: C.fireGold },
+            label: { formatter: '6月+4.1%', fontSize: 10, color: LABEL.color },
+          },
+        },
+      ],
+    };
+  }, []);
+
+  // ⑤ 投资结构拆解（固投分项）
+  const investStructOpt = useMemo(
+    () => barOpt({
+      cats: ['固投总额', '扣地产', '房地产', '制造业', '基建', '民间投资', '高技术产业', '知识产权'],
+      data: [-5.7, -2.7, -18.0, -1.2, -2.4, -8.5, 4.6, 9.4],
+      positive: C.fireGold,
+      horizontal: true,
+    }),
+    [],
+  );
+
+  // ⑥ 出口结构：机电占比 / 民企占比（饼）+ 增速条
+  const exportPieOpt = useMemo(() => ({
+    tooltip: { trigger: 'item', formatter: '{b}: {c}%', ...CHART_TOOLTIP },
+    legend: { ...LEGEND, bottom: 0 },
+    series: [{
+      type: 'pie', radius: ['42%', '68%'], center: ['50%', '46%'],
+      label: { color: LABEL.color, fontSize: 10, formatter: '{b}\n{c}%' },
+      data: [
+        { name: '机电产品出口占比', value: 63.5, itemStyle: { color: C.powerRed } },
+        { name: '其他出口', value: 36.5, itemStyle: { color: C.slate } },
+      ],
+    }],
+  }), []);
+
+  const exportShareOpt = useMemo(() => ({
+    tooltip: { trigger: 'item', formatter: '{b}: {c}%', ...CHART_TOOLTIP },
+    legend: { ...LEGEND, bottom: 0 },
+    series: [{
+      type: 'pie', radius: ['42%', '68%'], center: ['50%', '46%'],
+      label: { color: LABEL.color, fontSize: 10, formatter: '{b}\n{c}%' },
+      data: [
+        { name: '民营企业进出口占比', value: 57.0, itemStyle: { color: C.emerald } },
+        { name: '其他经营主体', value: 43.0, itemStyle: { color: C.slate } },
+      ],
+    }],
+  }), []);
+
+  // ⑦ 民生：城乡收入增速 + 失业率
+  const livelihoodOpt = useMemo(() => ({
+    grid: { ...GRID_WIDE, bottom: 36, top: 36 },
+    legend: { ...LEGEND, top: 0, data: ['收入实际增速', '失业率（右轴）'] },
+    tooltip: { trigger: 'axis', ...CHART_TOOLTIP },
+    xAxis: categoryX(['全国居民', '城镇居民', '农村居民', '失业率均值', '6月失业率']),
+    yAxis: [
+      valueY({ name: '增速%', axisLabel: { formatter: '{value}%' } }),
+      valueY({ name: '失业率%', min: 4, max: 6, axisLabel: { formatter: '{value}%' }, splitLine: { show: false } }),
+    ],
+    series: [
+      {
+        name: '收入实际增速', type: 'bar', barWidth: 22,
+        data: [
+          { value: 4.2, itemStyle: { color: C.fireGold } },
+          { value: 3.4, itemStyle: { color: C.cyberCyan } },
+          { value: 5.5, itemStyle: { color: C.emerald } },
+          { value: null },
+          { value: null },
+        ],
+        label: { show: true, formatter: (p) => (p.value == null ? '' : `${p.value}%`), position: 'top', color: LABEL.color, fontSize: 10 },
+      },
+      {
+        name: '失业率（右轴）', type: 'bar', yAxisIndex: 1, barWidth: 22,
+        data: [
+          { value: null },
+          { value: null },
+          { value: null },
+          { value: 5.2, itemStyle: { color: C.violet } },
+          { value: 5.0, itemStyle: { color: C.violet } },
+        ],
+        label: { show: true, formatter: (p) => (p.value == null ? '' : `${p.value}%`), position: 'top', color: LABEL.color, fontSize: 10 },
+      },
+    ],
+  }), []);
+
+  // ⑧ 风险台账可视化（状态条 · 示意标定）
+  const ledgerVizOpt = useMemo(() => {
+    const rows = [
+      ...LEDGER.done.items.map(([t]) => ({ name: t, status: 3, cat: '已兑现' })),
+      ...LEDGER.ongoing.items.map(([t]) => ({ name: t, status: 2, cat: '进行中' })),
+      ...LEDGER.doubt.items.map(([t]) => ({ name: t, status: 1, cat: '存疑' })),
+    ];
+    const colorMap = { 3: C.emerald, 2: C.fireGold, 1: C.powerRed };
+    return {
+      grid: { left: 118, right: 24, top: 12, bottom: 28 },
+      tooltip: {
+        trigger: 'item',
+        formatter: (p) => `${p.name}<br/>状态：${rows[p.dataIndex]?.cat || '—'}（示意标定）`,
+        ...CHART_TOOLTIP,
+      },
+      xAxis: {
+        type: 'value', min: 0, max: 3, interval: 1,
+        axisLabel: {
+          ...LABEL,
+          formatter: (v) => ({ 1: '存疑', 2: '进行中', 3: '已兑现' }[v] || ''),
+        },
+      },
+      yAxis: {
+        type: 'category',
+        data: rows.map((r) => r.name),
+        inverse: true,
+        axisLabel: { ...LABEL, fontSize: 10, width: 100, overflow: 'truncate' },
+      },
+      series: [{
+        type: 'bar', barWidth: 10,
+        data: rows.map((r) => ({
+          value: r.status,
+          itemStyle: { color: colorMap[r.status], borderRadius: [0, 3, 3, 0] },
+        })),
+      }],
+    };
+  }, []);
+
   const engineOpt = useMemo(() => barOpt({ cats: e.bars.cats, data: e.bars.data, positive: e.accent }), [e]);
-  const ivaOpt = useMemo(() => barOpt({ cats: IVA_BARS.cats, data: IVA_BARS.data, positive: '#e8a317' }), []);
-  const npfOpt = useMemo(() => barOpt({ cats: NPF_PRODUCTS.cats, data: NPF_PRODUCTS.data, positive: '#c41e3a', horizontal: true }), []);
+  const ivaOpt = useMemo(() => barOpt({ cats: IVA_BARS.cats, data: IVA_BARS.data, positive: C.fireGold }), []);
+  const npfOpt = useMemo(() => barOpt({ cats: NPF_PRODUCTS.cats, data: NPF_PRODUCTS.data, positive: C.powerRed, horizontal: true }), []);
+  const sectorOpt = useMemo(
+    () => barOpt({ cats: ['第一产业', '第二产业', '第三产业'], data: [3.7, 3.9, 5.2], positive: C.emerald }),
+    [],
+  );
 
   return (
     <div>
@@ -193,7 +429,7 @@ export default function Page() {
         上半年 GDP 695704 亿元、同比增长 <strong style={{ color: 'var(--text-primary)' }}>4.7%</strong>（一季 5.0%、二季 4.3%，二季环比 +0.9%），
         运行在合理区间。但一张成绩单里藏着两条背离的曲线：<strong style={{ color: 'var(--text-primary)' }}>供给端</strong>（规上工业 +5.4%、高技术制造 +13.3%）
         与<strong style={{ color: 'var(--text-primary)' }}>外需</strong>（进出口 +16.9%）强劲，而<strong style={{ color: 'var(--text-primary)' }}>内需</strong>（社零 +1.3%、固投 −5.7%）疲弱。
-        官方定调「国内供强需弱矛盾突出，经济向好基础还需巩固」。本页以核心仪表盘、三驾马车拆解、结构性信号与风险台账四条线索，
+        官方定调「国内供强需弱矛盾突出，经济向好基础还需巩固」。本页以核心仪表盘、图表化拆解、结构性信号与风险台账四条线索，
         穿透宏观叙事，从成本/收益与物理约束视角解析这台经济机器上半年的运转与软肋。
       </IntroCard>
 
@@ -203,27 +439,45 @@ export default function Page() {
         ))}
       </StatGrid>
 
+      {/* —— 增长与产业 —— */}
       <Grid cols={2} className="mb-8">
-        <Card title="季度 GDP 增速 · 二季度边际回落（实际同比 %）" asSection={false}>
-          <EChart option={quarterOpt} style={{ height: 240 }} />
-          <p className="text-xs mt-3 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-            增速从一季度 5.0% 回落至二季度 4.3%，二季环比 +0.9%（低于前几季 1.1%–1.3%）。
-            全年 5% 左右目标下，下半年需求侧发力与地产企稳是关键。
-          </p>
+        <Card title="① GDP 季度走势 · 同比柱 + 环比线" asSection={false}>
+          <EChart option={quarterOpt} style={{ height: 260 }} />
+          <ChartNote>
+            增速从一季度 5.0% 回落至二季度 4.3%；二季环比 +0.9%（新闻稿核实）。环比序列仅标 Q2，前几季环比区间约 1.1%–1.3% 见正文对照，本图不填未核验点。
+          </ChartNote>
+          <SourceLine>出处：{SRC} · 实际同比；环比仅 2026Q2</SourceLine>
         </Card>
         <Card title="三次产业 · 增加值同比（上半年 %）" asSection={false}>
-          <EChart
-            option={barOpt({ cats: ['第一产业', '第二产业', '第三产业'], data: [3.7, 3.9, 5.2], positive: '#10b981' })}
-            style={{ height: 240 }}
-          />
-          <p className="text-xs mt-3 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+          <EChart option={sectorOpt} style={{ height: 260 }} />
+          <ChartNote>
             第一产业 31522 亿元 +3.7%、第二产业 250473 亿元 +3.9%、第三产业 413709 亿元 +5.2%。
-            服务业重回主引擎，其中信息传输/软件（+10.7%）、租赁商务（+11.9%）领跑现代服务业。
-          </p>
+            服务业重回主引擎，信息传输/软件（+10.7%）、租赁商务（+11.9%）领跑。
+          </ChartNote>
+          <SourceLine>出处：{SRC}</SourceLine>
         </Card>
       </Grid>
 
-      {/* 三驾马车拆解 */}
+      {/* —— 供强需弱 —— */}
+      <Grid cols={2} className="mb-8">
+        <Card title="② 供强需弱对照 · 供给/外需 vs 内需（同比 %）" asSection={false}>
+          <EChart option={supplyDemandOpt} style={{ height: 280 }} />
+          <ChartNote>
+            工业 +5.4%、服务业 +5.2%、进出口 +16.9% 撑起增速；社零 +1.3%、固投 −5.7% 构成需求短板——剪刀差即「供强需弱」的量化画像。
+          </ChartNote>
+          <SourceLine>出处：{SRC} · 口径均为上半年累计同比</SourceLine>
+        </Card>
+        <Card title="③ 三驾马车增速对照（非贡献率）" asSection={false}>
+          <EChart option={enginesCompareOpt} style={{ height: 280 }} />
+          <ChartNote>
+            本图为<strong style={{ color: 'var(--text-primary)' }}>增速对照</strong>，非官方 GDP 贡献率（贡献率未在本页核验发布表中单列）。
+            外需（出口 +13.4%）显著快于消费，投资为负——三驾马车分化是下半场政策重心的坐标。
+          </ChartNote>
+          <SourceLine>口径：社零 / 固投（不含农户）/ 货物出口 · {SRC}</SourceLine>
+        </Card>
+      </Grid>
+
+      {/* —— 三驾马车拆解 —— */}
       <Card title="三驾马车拆解 · 消费 / 投资 / 出口" className="mb-8">
         <SelectorBar items={ENGINES} activeKey={engine} onSelect={setEngine} />
         <div className="os-card p-4 mb-4" style={{ background: 'var(--bg-elevated)', borderLeft: `3px solid ${e.accent}` }}>
@@ -244,20 +498,59 @@ export default function Page() {
         </div>
         <Card title={`${e.label} · 分项同比（%）`} asSection={false}>
           <EChart option={engineOpt} style={{ height: 260 }} />
+          <SourceLine>出处：{SRC}{engine === 'export' ? ` · ${SRC_CUSTOMS}` : ''}</SourceLine>
         </Card>
       </Card>
 
-      {/* 结构性信号 */}
+      {/* —— 投资结构 + 价格链 —— */}
+      <Grid cols={2} className="mb-8">
+        <Card title="⑤ 投资结构拆解 · 固投分项同比（%）" asSection={false}>
+          <EChart option={investStructOpt} style={{ height: 300 }} />
+          <ChartNote>
+            地产 −18.0% 与民间 −8.5% 是主拖累；高技术产业 +4.6%、知识产权产品 +9.4% 逆势扩张——总量收缩与结构升级并行。
+          </ChartNote>
+          <SourceLine>出处：{SRC} · 固投不含农户</SourceLine>
+        </Card>
+        <Card title="④ 价格链 · CPI vs PPI（近八期近似）" asSection={false}>
+          <EChart option={priceOpt} style={{ height: 300 }} />
+          <ChartNote>
+            H1 CPI +1.0%、核心 +1.2%；PPI 累计 +1.5%、6 月当月 +4.1% 转正。上游回暖尚未充分传导至终端——「上热下冷」是内需偏弱的镜像。
+          </ChartNote>
+          <SourceLine>
+            核实点：CPI H1 +1.0% / PPI H1 +1.5% · 6 月 PPI +4.1%（{SRC}）；折线为 KEY_INDICATORS 近八期公开口径近似〔非逐月官方全序列〕
+          </SourceLine>
+        </Card>
+      </Grid>
+
+      {/* —— 出口结构 —— */}
+      <Grid cols={2} className="mb-8">
+        <Card title="⑥ 出口结构 · 机电产品占比" asSection={false}>
+          <EChart option={exportPieOpt} style={{ height: 280 }} />
+          <ChartNote>
+            机电产品出口同比 +20.1%、占出口 63.5%——结构升级与外需韧性同向。集成电路、锂电池、电动汽车等高技术与绿色产品出口高增。
+          </ChartNote>
+          <SourceLine>出处：{SRC} · {SRC_CUSTOMS} · 占比为出口金额结构</SourceLine>
+        </Card>
+        <Card title="⑥ 出口结构 · 民营企业进出口占比" asSection={false}>
+          <EChart option={exportShareOpt} style={{ height: 280 }} />
+          <ChartNote>
+            民营企业进出口占比 57.0%、同比 +17.0%，挑起外循环大梁；与机电高增叠合，显示民营主体在规则博弈与供应链调整中的适应力。
+          </ChartNote>
+          <SourceLine>出处：{SRC} · {SRC_CUSTOMS}</SourceLine>
+        </Card>
+      </Grid>
+
+      {/* —— 结构性信号文案 —— */}
       <Card title="结构性信号解读 · 穿透宏观叙事" className="mb-8">
         <Grid cols={2}>
           {[
-            ['供强需弱：一张成绩单的两条曲线', '#c41e3a',
+            ['供强需弱：一张成绩单的两条曲线', C.powerRed,
               '生产端（工业 +5.4%、服务业 +5.2%）与外需（进出口 +16.9%）撑起 4.7% 的增速，需求端（社零 +1.3%、固投 −5.7%）却在收缩。供需缺口是弱通胀、企业利润承压与预期偏冷的共同根源——增长的「量」达标，「价」与「信心」仍待修复。'],
-            ['价格链：PPI 转正、CPI 低位的错位', '#e8a317',
+            ['价格链：PPI 转正、CPI 低位的错位', C.fireGold,
               '6 月 PPI 同比 +4.1%（上半年累计 +1.5%）结束长期工业通缩，采掘（+4.8%）、原材料（+3.6%）领涨；而 CPI 仅 +1.0%、核心 +1.2%，猪肉 −13.4% 拖累食品。上游回暖尚未有效传导至终端需求，价格链的「上热下冷」是内需偏弱的镜像。'],
-            ['新质生产力：对冲旧引擎熄火', '#22d3ee',
+            ['新质生产力：对冲旧引擎熄火', C.cyberCyan,
               '高技术制造 +13.3%、装备制造 +9.3% 显著跑赢大盘；3D 打印 +48.5%、锂电池 +39.3%、工业机器人 +28.0%。高技术产业投资 +4.6%、知识产权产品投资 +9.4% 逆势扩张。新动能正对冲地产塌陷，但体量尚不足以完全填补缺口。'],
-            ['地产拖累：仍是最深的负向缺口', '#64748b',
+            ['地产拖累：仍是最深的负向缺口', C.slate,
               '房地产开发投资 −18.0%、房企到位资金 −20.2%、新开工面积 −23.4%。地产链条通过投资、土地财政与居民资产负债表三条路径拖累内需与地方财力，是「供强需弱」需求侧最沉重的砝码，止跌回稳仍在进行中。'],
           ].map(([t, c, d]) => (
             <div key={t} className="os-card p-4" style={{ background: 'var(--bg-surface)', borderLeft: `3px solid ${c}` }}>
@@ -271,22 +564,43 @@ export default function Page() {
       <Grid cols={2} className="mb-8">
         <Card title="工业分项 · 装备与高技术制造领跑（同比 %）" asSection={false}>
           <EChart option={ivaOpt} style={{ height: 260 }} />
-          <p className="text-xs mt-3 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+          <ChartNote>
             规上工业 +5.4%，装备制造（+9.3%）、高技术制造（+13.3%）分别快于全部规上 3.9、7.9 个百分点。
             制造业 +5.6% 强于采矿业 +3.6%，工业结构持续向中高端与技术密集迁移。
-          </p>
+          </ChartNote>
+          <SourceLine>出处：{SRC}</SourceLine>
         </Card>
         <Card title="新质生产力 · 代表产品产量（同比 %）" asSection={false}>
           <EChart option={npfOpt} style={{ height: 260 }} />
-          <p className="text-xs mt-3 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+          <ChartNote>
             3D 打印设备 +48.5%、锂离子电池 +39.3%、工业机器人 +28.0%——「能源压舱石 + 智能制造」双轮驱动，
             对应海关口径下集成电路、锂电池、电动汽车等高技术与绿色产品出口的同步高增。
-          </p>
+          </ChartNote>
+          <SourceLine>出处：{SRC}</SourceLine>
         </Card>
       </Grid>
 
-      {/* 风险与未决项 · 台账 */}
-      <Card title="风险与未决项 · 台账（已兑现 / 进行中 / 存疑）" className="mb-8">
+      {/* —— 民生 —— */}
+      <Card title="⑦ 民生 · 城乡收入实际增速与失业率" className="mb-8">
+        <EChart option={livelihoodOpt} style={{ height: 300 }} />
+        <ChartNote>
+          居民人均可支配收入实际 +4.2%（名义 +5.2%，22981 元），农村 +5.5% 快于城镇 +3.4%，城乡比约 {INCOME_DIST.urbanRuralRatio}；
+          城镇调查失业率均值 5.2%、6 月 5.0%。收入略低于 GDP 增速、财产净收入仅 +1.1%，收入—消费传导仍是观察项。
+        </ChartNote>
+        <SourceLine>出处：{SRC} · 城乡比为 INCOME_DIST 同源口径</SourceLine>
+      </Card>
+
+      {/* —— 风险台账 —— */}
+      <Card title="⑧ 风险与未决项 · 台账可视化（示意标定）" className="mb-6">
+        <EChart option={ledgerVizOpt} style={{ height: 340 }} />
+        <ChartNote>
+          状态条为研判框架的<strong style={{ color: 'var(--text-primary)' }}>示意标定</strong>（已兑现=3 / 进行中=2 / 存疑=1），非官方评级。
+          下方三列正文为对应条目的机制说明。
+        </ChartNote>
+        <SourceLine>示意标定 · 条目论据见国家统计局 2026-07-15 新闻稿核实读数</SourceLine>
+      </Card>
+
+      <Card title="风险与未决项 · 台账正文（已兑现 / 进行中 / 存疑）" className="mb-8">
         <Grid cols={3}>
           {[LEDGER.done, LEDGER.ongoing, LEDGER.doubt].map((col) => (
             <div key={col.label}>
@@ -307,7 +621,6 @@ export default function Page() {
         </Grid>
       </Card>
 
-      {/* 研判要点 */}
       <Card title="研判要点 · 冷峻清单" className="mb-8">
         <Grid cols={2}>
           {VERDICTS.map(([t, d]) => (
@@ -347,8 +660,8 @@ export default function Page() {
           { to: '/housing', label: '住房地产 · 行业周期', note: '地产投资 −18.0% 背后的行业周期与化债。' },
           { to: '/modules/signal-panel', label: '宏观再平衡信号灯', note: 'A/B/C 信号 · 态势合成 · 2026-07。' },
         ]}
-        sourceNote={`数据来源：${SRC} · 进出口数据来源海关总署 · 数据截至 ${DATA_AS_OF}`}
-        disclaimer={`GDP 与工业增加值为不变价/可比价实际增速，居民收入为实际增速，其余除特殊说明外为现价名义增速；以国家统计局官方发布为准 · 公开统计梳理 · 冷峻中立分析框架 · 非投资建议 · 非预测 · 基准 ${AS_OF_BASELINE}`}
+        sourceNote={`数据来源：${SRC} · 进出口：${SRC_CUSTOMS} · 数据截至 ${DATA_AS_OF}`}
+        disclaimer={`GDP 与工业增加值为不变价/可比价实际增速，居民收入为实际增速，其余除特殊说明外为现价名义增速；图表中标注「示意标定」或「近似序列」者非官方评级/非逐月全序列 · 以国家统计局官方发布为准 · 公开统计梳理 · 冷峻中立分析框架 · 非投资建议 · 非预测 · 基准 ${AS_OF_BASELINE}`}
       />
     </div>
   );
