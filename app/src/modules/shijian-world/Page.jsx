@@ -3,10 +3,11 @@ import ShijianHtmlShell from '../shijian/ShijianHtmlShell.jsx';
 const HINT_LINKS = [
   { href: '/shijian-world/SJW-00.html', label: 'SJW-00 单页' },
   { href: '/modules/shijian', label: '史鉴·中华' },
-  { href: '/modules/shijian-world/sjw-24', label: 'SJW-24 韩国' },
-  { href: '/modules/shijian-world/sjw-25', label: 'SJW-25 拉美债务' },
-  { href: '/modules/shijian-world/sjw-26', label: 'SJW-26 欧元' },
-  { href: '/modules/shijian-world/sjw-27', label: 'SJW-27 台湾对照' },
+  { href: '/modules/shijian-world/sjw-28', label: 'SJW-28 印度' },
+  { href: '/modules/shijian-world/sjw-29', label: 'SJW-29 四小虎' },
+  { href: '/modules/shijian-world/sjw-30', label: 'SJW-30 非洲资源' },
+  { href: '/modules/shijian-world/sjw-31', label: 'SJW-31 联合国' },
+  { href: '/modules/shijian-world/sjw-32', label: 'SJW-32 科技标准' },
   { href: '/modules/santi', label: '三体透镜（边界）' },
 ];
 

@@ -902,10 +902,11 @@ const MAP = {
   shijianWorldSJW00: [
     { to: '/modules/shijian', label: '史鉴·中华 · SJ-00', note: '同源四步法引擎与中华五柱枢纽。' },
     { to: '/modules/shijian-world/sjw-01', label: 'SJW-01 · 大国崛起', note: 'Round 1 综合矩阵首卷。' },
-    { to: '/modules/shijian-world/sjw-24', label: 'SJW-24 · 韩国发展型', note: 'Round 6：自 SJW-23 韩国行析出。' },
-    { to: '/modules/shijian-world/sjw-25', label: 'SJW-25 · 拉美债务', note: 'Round 6：ISI / 失去的十年。' },
-    { to: '/modules/shijian-world/sjw-26', label: 'SJW-26 · 欧元', note: 'Round 6：后广场欧洲锚实验。' },
-    { to: '/modules/shijian-world/sjw-27', label: 'SJW-27 · 台湾对照', note: 'Round 6：与日韩强制关键差异。' },
+    { to: '/modules/shijian-world/sjw-28', label: 'SJW-28 · 印度路径', note: 'Round 7：民主+计划双轨。' },
+    { to: '/modules/shijian-world/sjw-29', label: 'SJW-29 · 四小虎', note: 'Round 7：东南亚对照扇面。' },
+    { to: '/modules/shijian-world/sjw-30', label: 'SJW-30 · 非洲资源主权', note: 'Round 7：后殖民资源—主权张力。' },
+    { to: '/modules/shijian-world/sjw-31', label: 'SJW-31 · 联合国', note: 'Round 7：战后国际组织秩序。' },
+    { to: '/modules/shijian-world/sjw-32', label: 'SJW-32 · 科技标准', note: 'Round 7：当代机制短卷。' },
     { to: '/modules/santi', label: '三体透镜', note: '文明博弈可深链；动力学命名不合并。' },
     { to: '/thucydides', label: '修昔底德陷阱', note: '权力转移窗口与 SJW-01/07/13/20 对照。' },
     { to: '/deterrence', label: '威慑战略', note: '与 SJW-08/12 划界：模拟器 ≠ 编年台账。' },
@@ -1116,6 +1117,37 @@ const MAP = {
     { to: '/modules/shijian-world/sjw-10', label: 'SJW-10 · 发展型总论', note: '河道定义入口。' },
     { to: '/modules/shijian/sj-21', label: 'SJ-21 · 经济映射', note: '机制对照；本卷非政治动员。' },
   ],
+  shijianWorldSJW28: [
+    { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
+    { to: '/modules/shijian-world/sjw-10', label: 'SJW-10 · 发展型', note: '河道总论对照。' },
+    { to: '/modules/shijian-world/sjw-17', label: 'SJW-17 · 去殖民矩阵', note: '区域分叉层。' },
+    { to: '/modules/shijian-world/sjw-23', label: 'SJW-23 · 发展型矩阵', note: '谱系对照；民主约束关键差异。' },
+  ],
+  shijianWorldSJW29: [
+    { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
+    { to: '/modules/shijian-world/sjw-15', label: 'SJW-15 · 日本', note: '对照行。' },
+    { to: '/modules/shijian-world/sjw-24', label: 'SJW-24 · 韩国', note: '对照行。' },
+    { to: '/modules/shijian-world/sjw-17', label: 'SJW-17 · 去殖民矩阵', note: '区域层。' },
+  ],
+  shijianWorldSJW30: [
+    { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
+    { to: '/modules/shijian-world/sjw-17', label: 'SJW-17 · 去殖民矩阵', note: '非洲行深描。' },
+    { to: '/modules/shijian-world/sjw-10', label: 'SJW-10 · 发展型/资源', note: '租金河道。' },
+    { to: '/modules/shijian-world/sjw-21', label: 'SJW-21 · 石油', note: '租金地缘交叉。' },
+  ],
+  shijianWorldSJW31: [
+    { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
+    { to: '/modules/shijian-world/sjw-02', label: 'SJW-02 · 大战', note: '战时同盟前史。' },
+    { to: '/modules/shijian-world/sjw-08', label: 'SJW-08 · 冷战核', note: '冷战瘫痪交叉。' },
+    { to: '/modules/shijian-world/sjw-12', label: 'SJW-12 · 维也纳', note: '多边秩序容器对照。' },
+  ],
+  shijianWorldSJW32: [
+    { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
+    { to: '/modules/shijian-world/sjw-11', label: 'SJW-11 · 工业革命', note: '关键差异：知识品≠煤铁。' },
+    { to: '/modules/shijian-world/sjw-08', label: 'SJW-08 · 冷战核', note: '科技竞争前史。' },
+    { to: '/modules/shijian-world/sjw-16', label: 'SJW-16 · 货币锚', note: '信用/规则公共品对照。' },
+  ],
+
 };
 
 export function getCrossLinks(moduleId) {
