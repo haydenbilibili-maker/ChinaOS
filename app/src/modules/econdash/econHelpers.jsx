@@ -72,7 +72,11 @@ export function IndicatorCard({ k }) {
   const macroCtx = macroReadForIndicator(k.id);
 
   return (
-    <div className="os-card p-3 econ-indicator-card" style={{ borderLeft: `3px solid ${vTone}` }}>
+    <div
+      className="os-card p-3 econ-indicator-card"
+      style={{ borderLeft: `3px solid ${vTone}`, '--econ-card-accent': vTone }}
+      tabIndex={0}
+    >
       <div className="flex items-start justify-between gap-2 mb-1.5">
         <span className="text-xs font-semibold" style={{ color: 'var(--text-secondary)' }}>{k.label}</span>
         {verdict?.text && (
@@ -86,7 +90,7 @@ export function IndicatorCard({ k }) {
       </div>
       <div className="flex items-end justify-between gap-2 mb-1">
         <div className="flex items-baseline gap-1.5 flex-wrap min-w-0">
-          <span className="mono text-xl font-bold" style={{ color: 'var(--text-primary)' }}>{k.value}</span>
+          <span className="mono text-xl font-bold os-mono-tabular" style={{ color: 'var(--text-primary)' }}>{k.value}</span>
           {k.unit && <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>{k.unit}</span>}
           <span className="mono text-sm ml-1" style={{ color: toneOf(k.trend ?? k.yoy) }}>{ARROW(k.trend ?? k.yoy)}</span>
         </div>

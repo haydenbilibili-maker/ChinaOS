@@ -21,8 +21,7 @@ const Consume15Tab = lazy(() => import('./tabs/Consume15Tab.jsx'));
 // 经济大盘 · 全景与实时监测（ink-observatory Round 2）
 // ----------------------------------------------------------------------------
 // 七 Tab：宏观态势 → 结构矛盾 → 资本市场 → 区域产业 → 信号金丝雀 → 世行经济简报 → 十五五促消费
-// 数据层不变：NBS 快照 + World Bank WDI 实时 + 领先指标示意
-// 声明：公开统计梳理 · 示意标定 · 非投资建议 · 非预测
+// 侧栏仅「经济大盘」+ 可选「半年经济解读」；世行/促消费走二级 Tab（深链 ?tab=）
 // ============================================================================
 
 const TABS = [
@@ -39,7 +38,6 @@ function TabFallback() {
   return <LoadingSkeleton rows={3} label="板块载入中…" className="econ-tab-fallback" />;
 }
 
-// 首屏关键读数摘要带：GDP / 规上工业 / 社零 / 出口 / CPI 一行浓缩，取自 KEY_INDICATORS（不改数值）
 const SUMMARY_IDS = ['gdp_h1', 'iva', 'retail', 'export', 'cpi'];
 const SUMMARY_LABELS = { gdp_h1: 'GDP·H1', iva: '规上工业', retail: '社零', export: '出口', cpi: 'CPI' };
 
@@ -49,12 +47,12 @@ function KeyReadingStrip() {
     .filter(Boolean);
   return (
     <div className="econ-readout" role="group" aria-label="关键读数摘要 · 2026 H1">
-      <span className="econ-readout__title mono">关键读数 · 2026 H1</span>
+      <span className="econ-readout__title mono">H1 读数</span>
       <div className="econ-readout__items">
         {items.map((k) => {
           const tone = toneOf(k.trend ?? k.yoy);
           return (
-            <span key={k.id} className="econ-readout__chip" title={k.label}>
+            <span key={k.id} className="econ-readout__chip" title={k.label} style={{ '--econ-chip-tone': tone }}>
               <span className="econ-readout__k">{SUMMARY_LABELS[k.id] || k.label}</span>
               <span className="econ-readout__v mono os-mono-tabular">
                 {k.value}<span className="econ-readout__u">%</span>
@@ -67,11 +65,10 @@ function KeyReadingStrip() {
         })}
       </div>
       <details className="econ-note">
-        <summary className="econ-note__summary mono">ⓘ 数据说明</summary>
+        <summary className="econ-note__summary mono">ⓘ 口径</summary>
         <p className="econ-note__body">
-          三层数据合成全景：国家统计局公开口径快照（基准日 {ECON_DATA_AS_OF}，以官方发布为准）·
-          世界银行 WDI 实时长序列（浏览器直连、35 年序列）· 公开数据派生的领先指标示意。
-          口径声明：公开统计梳理 · 示意标定 · 非投资建议 · 非预测。
+          NBS 快照（基准日 {ECON_DATA_AS_OF}）· 世行 WDI 实时长序列 · 公开数据派生领先指标。
+          公开统计梳理 · 示意标定 · 非投资建议 · 非预测。
         </p>
       </details>
     </div>
@@ -129,25 +126,23 @@ export default function Page({ embedded = false }) {
     <>
       {!embedded && (
         <PageHeader
-          badge="Dashboard · 经济发展与监测大盘"
-          title="经济大盘 · 全景与实时监测"
-          subtitle={`官方口径快照 × 世行长序列 × 衍生指标，一屏尽览十五五开局 2026 H1 读数、结构变迁与过热转冷的早信号。截至 ${ECON_AS_OF}`}
+          badge="Dashboard · 经济大盘"
+          title="经济大盘"
+          subtitle={`NBS 快照 × 世行长序列 × 金丝雀 · 十五五开局 2026 H1 · 截至 ${ECON_AS_OF}`}
         >
-          <div className="flex flex-wrap gap-2 items-center">
+          <div className="econ-header-chips flex flex-wrap gap-1.5 items-center">
             <Link to="/dashboard" className="econ-cross-chip">中枢看板 ↗</Link>
-            <Link to="/econ-h1-review" className="econ-cross-chip econ-cross-chip--amber">半年经济解读 ↗</Link>
-            <Link to="/econ-consume-15th" className="econ-cross-chip">十五五促消费 ↗</Link>
-            <Link to="/modules/signal-panel" className="econ-cross-chip">宏观信号灯 ↗</Link>
-            <Link to="/contradictions" className="econ-cross-chip econ-cross-chip--amber">结构矛盾 ↗</Link>
-            <Link to="/capital-market" className="econ-cross-chip">资本市场 ↗</Link>
+            <Link to="/econ-h1-review" className="econ-cross-chip econ-cross-chip--amber">半年解读 ↗</Link>
+            <Link to="/modules/signal-panel" className="econ-cross-chip">信号灯 ↗</Link>
             <Link to="/modules/observatory" className="econ-cross-chip econ-cross-chip--amber">观象台 ↗</Link>
           </div>
         </PageHeader>
       )}
 
-      <DataFreshnessBar />
-
-      <KeyReadingStrip />
+      <div className="econ-toolbelt" aria-label="时效与关键读数">
+        <DataFreshnessBar />
+        <KeyReadingStrip />
+      </div>
 
       <div className="econ-sticky-nav">
         <TabBar tabs={TABS} value={tab} onChange={setTab} accent="var(--cyber-cyan)" sticky className="econ-tab-bar" />

@@ -654,7 +654,7 @@ export default function Page() {
         moduleId="econH1Review"
         links={[
           { to: '/econ-dashboard', label: '经济大盘 · 2026 H1', note: 'NBS 快照 + 金丝雀监测 + 三次产业结构，与本页互补。' },
-          { to: '/econ-consume-15th', label: '十五五促消费 · 扩大消费规划', note: '国函〔2026〕66 号 · 对供强需弱的中期制度回应。' },
+          { to: '/econ-dashboard?tab=consume15', label: '十五五促消费 · 大盘 Tab', note: '规划摘要；全文页可从 Tab 内链出。' },
           { to: '/econ-dashboard?tab=worldbank', label: '世行经济简报 · 2026-07', note: '世界银行月度研判与基线预测（经济大盘 Tab）。' },
           { to: '/foreign-trade', label: '对外贸易 · 从世界工厂到规则博弈', note: '出口结构与伙伴版图的长周期拆解。' },
           { to: '/housing', label: '住房地产 · 行业周期', note: '地产投资 −18.0% 背后的行业周期与化债。' },

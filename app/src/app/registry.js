@@ -63,8 +63,10 @@ export const MODULES = [
     component: lazy(() => import('../modules/econH1Review/Page.jsx')),
   },
   {
+    // 全文页保留路由；侧栏入口并入经济大盘二级 Tab（?tab=consume15），避免双重导航
     id: 'econConsume15', path: '/econ-consume-15th', group: 'home',
     title: '十五五促消费', subtitle: '扩大消费规划 · 国函66号 · 2026-07', icon: 'ShoppingBag',
+    navHidden: true,
     component: lazy(() => import('../modules/econConsume15/Page.jsx')),
   },
   {
@@ -1814,7 +1816,8 @@ export function shijianCasesByTime(mods) {
 export const HUANGFEIZHAI_GROUP_ID = 'huangfeizhai';
 
 export const modulesByGroup = (groupId) => {
-  const list = MODULES.filter((m) => m.group === groupId);
+  // navHidden：保留路由与深链，但不进侧栏（如促消费全文页 → 经济大盘 Tab）
+  const list = MODULES.filter((m) => m.group === groupId && !m.navHidden);
   const cmp = GROUP_COMPARATORS[groupId];
   return cmp ? [...list].sort(cmp) : list;
 };
