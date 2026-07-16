@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJW-04 · 文明兴衰与博弈</title>
+<meta name="description" content="史鉴·世界：文明兴衰比较透镜与历史机制层的文明博弈；与三体思想实验划界。"/>
+<style>
+:root{
+  /* 史鉴·世界皮肤：色义对齐 SJ（ochre=数据/财政, celadon=结构/精英, vermil=张力/军事, paper=合法性/正文），底色偏冷墨以区分中华宣纸暖墨 */
+  --sjw-ink-900:#0f1216;
+  --sjw-ink-800:#161b22;
+  --sjw-paper-100:#d8dde6;
+  --sjw-paper-300:#9aa3b2;
+  --sjw-vermil:#a83b2c;
+  --sjw-celadon:#4a6d7c;
+  --sjw-ochre:#b8894a;
+  --sjw-line:#2c333d;
+  --sjw-radius:6px;
+  --sjw-space:clamp(12px,2vw,24px);
+  --sjw-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sjw-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(1000px 560px at 72% -8%, #1a2430 0%, transparent 55%),
+    radial-gradient(700px 420px at 8% 90%, #12161c 0%, transparent 50%),
+    var(--sjw-ink-900);
+  color:var(--sjw-paper-100);
+  font-family:var(--sjw-serif);
+  line-height:1.75;
+}
+.sjw-wrap{max-width:min(100%,1180px);margin:0 auto;padding:var(--sjw-space) var(--sjw-space) 48px}
+@media (min-width:1536px){.sjw-wrap{max-width:min(100%,1360px)}}
+.sjw-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sjw-line);margin-bottom:20px}
+.sjw-mast .badge{font-family:var(--sjw-mono);font-size:11px;letter-spacing:.18em;color:var(--sjw-ochre);margin-bottom:6px}
+.sjw-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.14em;line-height:1.3}
+.sjw-mast h1 em{font-style:normal;color:var(--sjw-paper-300);font-weight:400;letter-spacing:.06em;font-size:.72em;display:block;margin-top:4px}
+.sjw-meta{font-family:var(--sjw-mono);font-size:11px;color:var(--sjw-paper-300);text-align:right;line-height:1.7}
+.sjw-meta b{color:var(--sjw-ochre);font-weight:500}
+.sjw-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sjw-chip,.sjw-chip:visited{display:inline-block;font-family:var(--sjw-mono);font-size:10px;letter-spacing:.08em;color:var(--sjw-celadon);border:1px solid var(--sjw-line);padding:3px 8px;border-radius:var(--sjw-radius);text-decoration:none}
+.sjw-chip:hover,.sjw-chip:focus-visible{border-color:var(--sjw-ochre);color:var(--sjw-ochre);outline:none}
+.sjw-zhupi{color:var(--sjw-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sjw-vermil);max-width:76ch}
+.sjw-sec{margin:36px 0 28px;scroll-margin-top:24px}
+.sjw-sec-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--sjw-line)}
+.sjw-sec-h .num{font-family:var(--sjw-mono);font-size:11px;letter-spacing:.2em;color:var(--sjw-ochre)}
+.sjw-sec-h h2{font-size:clamp(17px,2.2vw,20px);font-weight:600;letter-spacing:.1em}
+.sjw-prose{font-size:15.5px;color:var(--sjw-paper-100);max-width:76ch}
+.sjw-prose + .sjw-prose{margin-top:12px}
+.sjw-prose strong{color:var(--sjw-ochre);font-weight:600}
+.sjw-note{font-size:13px;color:var(--sjw-paper-300);margin-top:12px;max-width:76ch}
+.sjw-note b{color:var(--sjw-paper-100);font-weight:600}
+.sjw-stage{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:linear-gradient(180deg,var(--sjw-ink-800),var(--sjw-ink-900));box-shadow:0 1px 0 rgba(216,221,230,.04),0 18px 48px rgba(0,0,0,.45);padding:8px;overflow:auto;margin-top:8px}
+.sjw-stage svg{display:block;width:100%;height:auto;max-width:820px;margin:0 auto}
+.sjw-table-wrap{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);overflow:auto;margin-top:8px}
+.sjw-table{width:max(100%,720px);border-collapse:collapse;font-size:13px}
+.sjw-table th{background:var(--sjw-ink-900);color:var(--sjw-ochre);font-family:var(--sjw-mono);font-size:10px;letter-spacing:.1em;font-weight:500;text-align:left;padding:10px 12px;border-bottom:1px solid var(--sjw-line)}
+.sjw-table td{padding:10px 12px;border-bottom:1px solid var(--sjw-line);color:var(--sjw-paper-300);vertical-align:top;line-height:1.6}
+.sjw-table td:first-child{color:var(--sjw-paper-100);font-weight:600}
+.sjw-dual{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.sjw-dual article{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:14px 16px}
+.sjw-dual .k{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.14em;color:var(--sjw-ochre);margin-bottom:6px}
+.sjw-dual h3{font-size:14px;margin-bottom:8px;letter-spacing:.04em}
+.sjw-dual p{font-size:13px;color:var(--sjw-paper-300);line-height:1.65}
+.sjw-dual .diff{border-left:3px solid var(--sjw-vermil)}
+.sjw-dual .sim{border-left:3px solid var(--sjw-celadon)}
+.sjw-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.sjw-card,.sjw-card:visited{display:block;border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:16px;text-decoration:none;color:inherit;transition:border-color .18s}
+.sjw-card:hover,.sjw-card:focus-visible{border-color:var(--sjw-ochre);outline:none}
+.sjw-card .n{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.14em;color:var(--sjw-ochre);margin-bottom:4px}
+.sjw-card h3{font-size:15px;letter-spacing:.06em;margin-bottom:6px}
+.sjw-card p{font-size:12.5px;color:var(--sjw-paper-300);line-height:1.6}
+.sjw-axes{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:10px}
+.sjw-axis{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);padding:10px 8px;text-align:center;font-size:11px;color:var(--sjw-paper-300)}
+.sjw-axis b{display:block;font-family:var(--sjw-mono);font-size:10px;letter-spacing:.08em;margin-bottom:4px;font-weight:500}
+.sjw-axis.ochre b{color:var(--sjw-ochre)}
+.sjw-axis.celadon b{color:var(--sjw-celadon)}
+.sjw-axis.paper b{color:var(--sjw-paper-100)}
+.sjw-axis.vermil b{color:var(--sjw-vermil)}
+.sjw-axis.ink b{color:var(--sjw-paper-300)}
+.sjw-ledger{display:grid;gap:8px;margin-top:10px}
+.sjw-ledger article{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:12px 14px}
+.sjw-ledger .f{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.12em;color:var(--sjw-ochre);margin-bottom:4px}
+.sjw-ledger p{font-size:13px;color:var(--sjw-paper-300);line-height:1.6}
+.sjw-tri{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.sjw-tri article{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:12px 14px}
+.sjw-tri .k{font-family:var(--sjw-mono);font-size:10px;color:var(--sjw-ochre);letter-spacing:.1em;margin-bottom:4px}
+.sjw-tri h3{font-size:13px;margin-bottom:6px}
+.sjw-tri p{font-size:12.5px;color:var(--sjw-paper-300);line-height:1.55}
+.sjw-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sjw-line);font-family:var(--sjw-mono);font-size:10px;color:var(--sjw-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sjw-foot a{color:var(--sjw-celadon);text-decoration:none}
+.sjw-foot a:hover{color:var(--sjw-ochre)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sjw-card,.sjw-chip{transition:none}}
+@media (max-width:900px){.sjw-dual,.sjw-cards,.sjw-tri{grid-template-columns:1fr}.sjw-axes{grid-template-columns:1fr 1fr}}
+@media (max-width:768px){.sjw-meta{text-align:left}.sjw-axes{grid-template-columns:1fr}}
+html[data-theme="light"]{--sjw-ink-900:#eef1f4;--sjw-ink-800:#e4e8ed;--sjw-paper-100:#1a1e24;--sjw-paper-300:#4a5564;--sjw-vermil:#9a3428;--sjw-celadon:#3a5a68;--sjw-ochre:#8a6528;--sjw-line:#c5ccd6}
+html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%, #e2e7ec 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #e8ecf0 0%, transparent 50%),var(--sjw-ink-900);color:var(--sjw-paper-100)}
+
+</style>
+<script>
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark')}
+  try{
+    var q=new URLSearchParams(location.search).get('theme');
+    if(q==='light'||q==='dark')apply(q);
+  }catch(e){}
+  window.addEventListener('message',function(e){
+    if(e.origin!==location.origin)return;
+    var d=e&&e.data;if(!d||d.type!==MSG)return;
+    apply(d.theme);
+  });
+})();
+</script>
+</head>
+<body>
+<div class="sjw-wrap" id="sjw-top">
+<header class="sjw-mast">
+  <div>
+    <div class="badge">SJW-04 · 史鉴·世界 · 总论</div>
+    <h1>文明兴衰与博弈<em>比较史学透镜 × 历史机制博弈 × 三体边界</em></h1>
+    <div class="sjw-chips">
+      <a class="sjw-chip" href="./SJW-00.html">SJW-00 总索引</a>
+      <a class="sjw-chip" href="/modules/shijian">史鉴·中华</a>
+      <a class="sjw-chip" href="/modules/santi">三体透镜（边界）</a>
+    </div>
+  </div>
+  <div class="sjw-meta">
+    AS_OF <b>2026-07-16</b><br/>
+    版本 <b>v0.1</b> · Round 1 MVP<br/>
+    令牌 <b>--sjw-*</b>
+  </div>
+</header>
+<p class="sjw-zhupi">史鉴谈「文明博弈」= 历史上集团间的制度、贸易、战争与叙事竞争；三体谈「文明博弈」= 宇宙社会学思想实验。可对照猜疑链隐喻，禁止合并动力学方程命名。</p>
+
+<section class="sjw-sec" id="sec-sig">
+  <div class="sjw-sec-h"><span class="num">01 · 签名视觉</span><h2>双透镜：历史台账 ≠ 思想实验</h2></div>
+  <div class="sjw-stage">
+    <svg viewBox="0 0 820 280" role="img" aria-label="左侧史鉴历史机制，右侧三体思想实验，中间差异闸">
+      <rect width="820" height="280" fill="var(--sjw-ink-900)"/>
+      <text x="24" y="28" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-04 · 双透镜差异闸</text>
+      <rect x="40" y="60" width="300" height="160" rx="6" fill="var(--sjw-ink-800)" stroke="var(--sjw-ochre)"/>
+      <text x="190" y="100" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="16">史鉴·世界</text>
+      <text x="190" y="130" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="12">可证伪史料 · 台账七字段</text>
+      <text x="190" y="155" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="12">兴衰机制 · 中西映射</text>
+      <text x="190" y="190" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">历史机制层</text>
+      <rect x="380" y="100" width="60" height="80" rx="4" fill="none" stroke="var(--sjw-vermil)" stroke-width="2"/>
+      <text x="410" y="135" text-anchor="middle" fill="var(--sjw-vermil)" font-size="14">Δ</text>
+      <text x="410" y="155" text-anchor="middle" fill="var(--sjw-vermil)" font-size="11">差异闸</text>
+      <rect x="480" y="60" width="300" height="160" rx="6" fill="var(--sjw-ink-800)" stroke="#6b8cae"/>
+      <text x="630" y="100" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="16">三体透镜</text>
+      <text x="630" y="130" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="12">概念提纯 · 极端边界</text>
+      <text x="630" y="155" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="12">黑暗森林等思想实验</text>
+      <text x="630" y="190" text-anchor="middle" fill="#6b8cae" font-size="12">非实证史学</text>
+    </svg>
+  </div>
+</section>
+
+<section class="sjw-sec" id="sec-lens">
+  <div class="sjw-sec-h"><span class="num">02 · 兴衰透镜</span><h2>比较史学工具箱（选用）</h2></div>
+  <div class="sjw-tri">
+    <article><div class="k">伊本·赫勒敦</div><h3>群体凝聚力周期</h3><p>游牧—定居、‘asabiyya 衰变——启发「精英团结度」轴，不可直接套现代民族国家。</p></article>
+    <article><div class="k">汤因比</div><h3>挑战—应战</h3><p>文明对挑战的创造性应战；风险：目的论与欧洲中心叙事。</p></article>
+    <article><div class="k">肯尼迪等</div><h3>相对力量与过度扩张</h3><p>与 SJW-01 矩阵直接对接；盲区是低估意识形态与国内制度。</p></article>
+  </div>
+  <p class="sjw-prose">世界线不另立「文明五力」品牌；上述透镜只作<strong>史家交锋</strong>素材，归因仍回写可配置五轴。</p>
+</section>
+
+<section class="sjw-sec" id="sec-game">
+  <div class="sjw-sec-h"><span class="num">03 · 文明博弈（历史机制）</span><h2>台账意识</h2></div>
+  <div class="sjw-ledger">
+    <article><div class="f">① 拐点命题</div><p>长时段文明竞争的可观察量是：财政剩余投向（基建/军/消费）、精英开放度、叙事动员效率、边疆压力管理、技术扩散速度——而非本质主义「文明性格」。</p></article>
+    <article><div class="f">④ 五轴</div><p>贸易—朝贡—殖民—冷战代理，都是轴四（军事地缘）与轴一（财政）的不同耦合；轴三叙事提供动员折扣。</p></article>
+    <article><div class="f">⑥ 成败</div><p><b>已兑现</b>：技术与组织扩散可改写力量对比。<b>已失败</b>：文明本质论预测。<b>未决</b>：数字时代叙事战是否改变轴权重。</p></article>
+  </div>
+</section>
+
+<section class="sjw-sec" id="sec-map">
+  <div class="sjw-sec-h"><span class="num">04 · 映射与划界</span><h2>强制双栏</h2></div>
+  <div class="sjw-dual">
+    <article class="sim"><div class="k">相似机制</div><h3>信息不对称下的安全困境</h3><p>历史中的军备竞赛与同盟猜疑，与三体「猜疑链」隐喻在「无法完全验证对方意图」一点上可对照。</p></article>
+    <article class="diff"><div class="k">关键差异</div><h3>通讯、外交与核稳态</h3><p>人类历史有外交、贸易、国际组织与核二次打击稳态；宇宙社会学公理刻意抽掉这些通道。三体透镜用于极限压力测试，<strong>不是</strong>世界史的导出公式。</p></article>
+  </div>
+  <div class="sjw-dual">
+    <article class="sim"><div class="k">相似机制</div><h3>叙事动员</h3><p>宗教、民族主义、意识形态都降低集体行动成本——与中华「合法性叙事力」同构。</p></article>
+    <article class="diff"><div class="k">关键差异</div><h3>多元文明并存时长</h3><p>欧亚大陆多文明长期并存与互动；「单一文明吞并地球」不是史鉴默认终点，而是特定科幻设定。</p></article>
+  </div>
+  <p class="sjw-note">深链：<a class="sjw-chip" href="/modules/santi">三体总论</a> <a class="sjw-chip" href="/modules/shijian">史鉴·中华</a> <a class="sjw-chip" href="/thucydides">修昔底德</a></p>
+</section>
+
+<section class="sjw-sec" id="sec-src">
+  <div class="sjw-sec-h"><span class="num">05 · 出处</span><h2>入口</h2></div>
+  <p class="sjw-note">伊本·赫勒敦《历史绪论》· 汤因比《历史研究》（选读）· Kennedy 大国兴衰 · 中华 SJ-01 史家方法矩阵 · 三体模块 docs/santi 边界说明 · 本卷 v0.1 总论，Round 2 可拆「兴衰」与「博弈」专页。</p>
+</section>
+
+<footer class="sjw-foot">
+  <span>ChinaOS · 史鉴·世界 SJW-04 · v0.1 · AS_OF 2026-07-16</span>
+  <span></span>
+  <span><a href="#sjw-top">↑ 顶</a> · <a href="./SJW-00.html">返回 SJW-00</a> · <a href="/modules/shijian">史鉴·中华</a></span>
+</footer>
+</div>
+</body>
+</html>
