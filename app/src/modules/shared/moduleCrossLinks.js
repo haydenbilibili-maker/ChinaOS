@@ -879,11 +879,11 @@ const MAP = {
   ],
   santi: [
     { to: '/deterrence', label: '威慑战略 · 可信承诺', note: '执剑人人格化 vs 指挥链与法理——强制关键差异。' },
-    { to: '/gametheory', label: '博弈理论 · 猜疑链', note: '黑暗森林坐标系与囚徒困境/重复博弈对照。' },
+    { to: '/gametheory', label: '博弈理论 · 猜疑链', note: '工具箱 ≠ 黑暗森林处方：囚徒困境可对照，不导出先发沉默规范。' },
     { to: '/straits', label: '台海局势 · 机制层', note: '仅机制对照，禁止用情节套裁战场。' },
     { to: '/powerlogic', label: '权力逻辑 · 认知边界', note: '思想钢印隐喻 vs 语义防火墙可逆性。' },
     { to: '/sandbox', label: '治国沙盒 · 动员杠杆', note: '行星工程/阶梯计划与情景压力测试交叉。' },
-    { to: '/thucydides', label: '修昔底德陷阱', note: '安全困境与公理前提的边界澄清。' },
+    { to: '/thucydides', label: '修昔底德陷阱', note: '权力转移窗口 ≠ 宇宙接触策略——安全困境可对照，适用边界不同。' },
     { to: '/realism', label: '现实主义', note: '无政府假定与宇宙社会学公理的对照阅读。' },
   ],
 };

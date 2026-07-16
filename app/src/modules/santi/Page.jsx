@@ -1,20 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { PageHeader } from '../../app/ui.jsx';
 import { IntroCard, ModuleFooter, SelectorBar } from '../shared/ModuleParadigm.jsx';
-import { METHOD_STEPS, MODULE_META, DIMS, countFullCards, CANON } from './santiCanon.js';
+import { METHOD_STEPS, MODULE_META, DIMS, countFullCards, CANON, QUAD_TO_CARDS } from './santiCanon.js';
 import DarkForestChart from './DarkForestChart.jsx';
 import SpectrumPanel from './SpectrumPanel.jsx';
+import CivPanel from './CivPanel.jsx';
 import './santi.css';
 
 const TABS = [
   { key: 'overview', label: 'ST-00 总论' },
   { key: 'spectrum', label: '理论光谱' },
+  { key: 'civ', label: '文明博弈' },
 ];
 
 const QUICK_LINKS = [
-  { to: '/deterrence', label: '威慑战略', note: '执剑人 ↔ 可信承诺与指挥链' },
-  { to: '/gametheory', label: '博弈理论', note: '猜疑链 ↔ 囚徒困境 / 重复博弈' },
+  { to: '/deterrence', label: '威慑战略', note: '执剑人 ↔ 可信承诺与指挥链（关键差异：人格化 vs 法理链）' },
+  { to: '/gametheory', label: '博弈理论', note: '猜疑链 ↔ 囚徒困境——工具箱 ≠ 黑暗森林处方' },
+  { to: '/thucydides', label: '修昔底德', note: '安全困境 ↔ 公理前提——权力转移 ≠ 宇宙接触策略' },
   { to: '/straits', label: '台海局势', note: '仅机制层对照，禁止情节套裁' },
   { to: '/powerlogic', label: '权力逻辑', note: '思想钢印 ↔ 语义与叙事锁定' },
   { to: '/sandbox', label: '治国沙盒', note: '动员杠杆 ↔ 情景压力测试' },
@@ -22,7 +25,27 @@ const QUICK_LINKS = [
 
 export default function SantiPage() {
   const [tab, setTab] = useState('overview');
+  const [highlightIds, setHighlightIds] = useState([]);
+  const [focusId, setFocusId] = useState(null);
   const fullN = countFullCards();
+
+  const jumpToSpectrum = useCallback((ids, focus = null) => {
+    setHighlightIds(ids || []);
+    setFocusId(focus || (ids && ids[0]) || null);
+    setTab('spectrum');
+  }, []);
+
+  const onSelectQuadOverview = useCallback(
+    (quadId) => {
+      const ids = QUAD_TO_CARDS[quadId] || [];
+      if (ids.length) jumpToSpectrum(ids, ids[0]);
+    },
+    [jumpToSpectrum],
+  );
+
+  const onHighlightConsumed = useCallback(() => {
+    setFocusId(null);
+  }, []);
 
   return (
     <div className="st-page">
@@ -36,7 +59,7 @@ export default function SantiPage() {
         本模块以刘慈欣作品中的<strong>可抽象机制</strong>为思想实验透镜，映射文明博弈、国家竞争、社会治理与自我探索。
         它不是同人站或剧情百科——每张概念卡强制写出「相似机制」与「关键差异」。
         方法论：<strong>三体透镜·四步映射法</strong>（概念提纯 → 机制抽象 → 现实对照 → 台账判定）。
-        当前 Round 1 MVP：总论 + 光谱骨架，完整双栏卡 {fullN} 张 / 母本 {CANON.length} 条。
+        当前 Round 2：总论 + 光谱 + 文明博弈深描；完整双栏卡 {fullN} 张 / 母本 {CANON.length} 条。
       </IntroCard>
 
       <SelectorBar
@@ -71,12 +94,13 @@ export default function SantiPage() {
           <section className="st-sec" aria-labelledby="st-forest-h">
             <div className="st-sec-head">
               <h2 id="st-forest-h">签名视觉 · 黑暗森林坐标系</h2>
-              <span className="st-sec-tag mono">图 A · 猜疑链 × 技术爆炸</span>
+              <span className="st-sec-tag mono">图 A · 猜疑链 × 技术爆炸 · 联动光谱</span>
             </div>
             <p className="st-lede">
-              两轴刻画极端思想实验的策略空间；象限标注原型策略，便于与威慑 / 博弈模块对照阅读。
+              两轴刻画极端思想实验的策略空间；点选象限将跳转理论光谱并高亮对应概念卡。
+              亦可进入「文明博弈」Tab 阅读因果链与台账样例。
             </p>
-            <DarkForestChart />
+            <DarkForestChart onSelectQuad={onSelectQuadOverview} />
           </section>
 
           <section className="st-sec" aria-labelledby="st-dims-h">
@@ -91,11 +115,16 @@ export default function SantiPage() {
                   type="button"
                   className="st-dim-tile"
                   data-dim={d.key}
-                  onClick={() => setTab('spectrum')}
+                  onClick={() => {
+                    if (d.key === 'C') setTab('civ');
+                    else setTab('spectrum');
+                  }}
                 >
                   <span className="mono">{d.key}</span>
                   <strong>{d.label}</strong>
-                  <span className="st-dim-tile__go">进入光谱 →</span>
+                  <span className="st-dim-tile__go">
+                    {d.key === 'C' ? '进入文明博弈 →' : '进入光谱 →'}
+                  </span>
                 </button>
               ))}
             </div>
@@ -104,10 +133,11 @@ export default function SantiPage() {
           <section className="st-sec" aria-labelledby="st-xlink-h">
             <div className="st-sec-head">
               <h2 id="st-xlink-h">ChinaOS 交叉入口</h2>
-              <span className="st-sec-tag mono">≥5 链 · Round 1</span>
+              <span className="st-sec-tag mono">深链 + 差异一句</span>
             </div>
             <p className="st-lede">
               光谱卡内亦嵌模块深链；此处提供总论级快速入口。映射停在机制层，不臆造政治内幕。
+              三体透镜 ≠ 修昔底德叙事 ≠ 经典博弈论——详见「文明博弈」划界块。
             </p>
             <div className="st-xlinks">
               {QUICK_LINKS.map((l) => (
@@ -143,7 +173,15 @@ export default function SantiPage() {
         </div>
       )}
 
-      {tab === 'spectrum' && <SpectrumPanel />}
+      {tab === 'spectrum' && (
+        <SpectrumPanel
+          highlightIds={highlightIds}
+          focusId={focusId}
+          onHighlightConsumed={onHighlightConsumed}
+        />
+      )}
+
+      {tab === 'civ' && <CivPanel onJumpSpectrum={jumpToSpectrum} />}
 
       <ModuleFooter
         moduleId="santi"

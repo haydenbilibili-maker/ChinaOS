@@ -12,7 +12,8 @@ const QUADRANTS = [
     y: 0.72,
     label: '先发沉默',
     sub: '高猜疑 × 高爆炸',
-    tip: '窗口焦虑最大：暴露成本极高，策略倾向隐蔽与先发期权。',
+    tip: '窗口焦虑最大：暴露成本极高，策略倾向隐蔽与先发期权。联动 ST-02 · ST-03。',
+    cards: ['ST-02', 'ST-03'],
   },
   {
     id: 'q2',
@@ -20,7 +21,8 @@ const QUADRANTS = [
     y: 0.72,
     label: '可控威慑',
     sub: '低猜疑 × 高爆炸',
-    tip: '技术跃迁仍在，但沟通与制度可压低误判——更接近现实核禁忌区。',
+    tip: '技术跃迁仍在，但沟通与制度可压低误判——更接近现实核禁忌区。联动 ST-06 · ST-03。',
+    cards: ['ST-06', 'ST-03'],
   },
   {
     id: 'q3',
@@ -28,7 +30,8 @@ const QUADRANTS = [
     y: 0.28,
     label: '重复博弈',
     sub: '低猜疑 × 低爆炸',
-    tip: '代差缓慢、意图较可验证：合作与以牙还牙更可能稳态。',
+    tip: '代差缓慢、意图较可验证：合作与以牙还牙更可能稳态。联动 ST-01。',
+    cards: ['ST-01'],
   },
   {
     id: 'q4',
@@ -36,7 +39,8 @@ const QUADRANTS = [
     y: 0.28,
     label: '脆弱均衡',
     sub: '高猜疑 × 低爆炸',
-    tip: '军备可累积但翻转慢：安全困境存在，却未必立即「清除」。',
+    tip: '军备可累积但翻转慢：安全困境存在，却未必立即「清除」。联动 ST-01 · ST-02。',
+    cards: ['ST-01', 'ST-02'],
   },
 ];
 
@@ -151,9 +155,14 @@ export default function DarkForestChart({ className = '', onSelectQuad }) {
           <>
             <span className="st-forest__cap-tag mono">{tip.label}</span>
             <span>{tip.tip}</span>
+            {tip.cards?.length > 0 && (
+              <span className="st-forest__cap-cards mono" aria-hidden="true">
+                → {tip.cards.join(' · ')}
+              </span>
+            )}
           </>
         ) : (
-          <span>点击象限节点查看策略原型说明。本图为思想实验坐标系，非政策处方。</span>
+          <span>点击象限节点查看策略原型，并跳转光谱高亮对应概念卡。本图为思想实验坐标系，非政策处方。</span>
         )}
       </div>
     </div>

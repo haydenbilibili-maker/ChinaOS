@@ -647,3 +647,420 @@
   color: var(--st-metal-300);
   letter-spacing: 0.02em;
 }
+
+/* —— Round 2 · 文明博弈 —— */
+
+.st-card.is-highlighted {
+  border-color: var(--st-flare);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--st-flare) 55%, transparent);
+  background: color-mix(in srgb, var(--st-flare) 8%, var(--st-void-800));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .st-card.is-highlighted {
+    animation: stHighlightPulse 1.2s ease-out 1;
+  }
+}
+
+@keyframes stHighlightPulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--st-flare) 50%, transparent); }
+  100% { box-shadow: 0 0 0 1px color-mix(in srgb, var(--st-flare) 55%, transparent); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .st-card.is-highlighted {
+    animation: none;
+  }
+  .st-card {
+    transition: border-color 0.15s ease;
+  }
+}
+
+.st-inline-clear {
+  display: inline;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--st-flare);
+  font-size: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.st-inline-clear:hover,
+.st-inline-clear:focus-visible {
+  outline: none;
+  color: var(--st-metal-100);
+}
+
+.st-forest__cap-cards {
+  color: var(--st-signal);
+  letter-spacing: 0.06em;
+  font-size: 0.7rem;
+}
+
+.st-dual--inline {
+  grid-template-columns: 1fr 1fr;
+  margin-top: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  .st-dual--inline {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 因果链 */
+.st-chain__rail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.5rem 0.35rem;
+  margin-bottom: 1.25rem;
+}
+
+.st-chain__node {
+  flex: 1 1 160px;
+  max-width: 280px;
+  text-align: left;
+  background: color-mix(in srgb, var(--st-void-800) 80%, var(--bg-surface));
+  border: 1px solid var(--st-line);
+  border-radius: var(--st-radius);
+  padding: 0.85rem 0.95rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.st-chain__node:hover,
+.st-chain__node:focus-visible {
+  border-color: var(--st-signal);
+  outline: none;
+}
+
+.st-chain__node.is-active {
+  border-color: var(--st-flare);
+  background: color-mix(in srgb, var(--st-flare) 7%, var(--st-void-800));
+}
+
+.st-chain__node--branch {
+  border-style: dashed;
+  max-width: none;
+}
+
+.st-chain__id {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--st-signal);
+  margin-bottom: 0.25rem;
+}
+
+.st-chain__node strong {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--st-metal-100);
+  margin-bottom: 0.4rem;
+}
+
+.st-chain__hint {
+  display: block;
+  font-size: 0.72rem;
+  line-height: 1.55;
+  color: var(--st-metal-300);
+}
+
+.st-chain__edge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 3.2rem;
+  color: var(--st-metal-300);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  align-self: center;
+}
+
+.st-chain__arrow {
+  font-size: 1rem;
+  color: var(--st-signal);
+  line-height: 1.2;
+}
+
+.st-chain__branches {
+  margin-bottom: 1.15rem;
+  padding: 0.85rem 1rem;
+  border: 1px dashed var(--st-line);
+  border-radius: var(--st-radius);
+  background: color-mix(in srgb, var(--st-void-900) 50%, transparent);
+}
+
+.st-chain__branch-label {
+  margin: 0 0 0.65rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--st-metal-300);
+}
+
+.st-chain__branch-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.65rem;
+}
+
+.st-chain__branch-tag {
+  display: inline-block;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  color: var(--st-flare);
+  margin-bottom: 0.2rem;
+}
+
+.st-chain__detail {
+  border: 1px solid var(--st-line);
+  border-radius: var(--st-radius);
+  padding: 1rem 1.1rem 1.15rem;
+  background: color-mix(in srgb, var(--st-void-800) 70%, transparent);
+}
+
+.st-chain__detail-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.45rem 0.75rem;
+  margin-bottom: 0.35rem;
+}
+
+.st-chain__detail-head h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--st-metal-100);
+}
+
+.st-chain__oneliner {
+  margin: 0.35rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.st-chain__prompt {
+  font-size: 0.85rem;
+  color: var(--st-metal-300);
+  margin: 0.5rem 0 0;
+}
+
+.st-chain__jump {
+  margin-top: 0.95rem;
+  background: transparent;
+  border: 1px solid var(--st-signal);
+  color: var(--st-signal);
+  border-radius: var(--st-radius);
+  padding: 0.4rem 0.75rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.st-chain__jump:hover,
+.st-chain__jump:focus-visible {
+  border-color: var(--st-flare);
+  color: var(--st-flare);
+  outline: none;
+}
+
+.st-badge-branch {
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  padding: 0.1rem 0.35rem;
+  border: 1px solid var(--st-flare);
+  color: var(--st-flare);
+  border-radius: 3px;
+}
+
+.st-quad-map {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1.1rem;
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--st-metal-300);
+}
+
+/* 台账样例 */
+.st-civ-ledgers {
+  display: grid;
+  gap: 1rem;
+}
+
+.st-civ-ledger {
+  border: 1px solid var(--st-line);
+  border-radius: var(--st-radius);
+  padding: 1rem 1.1rem 1.15rem;
+  background: color-mix(in srgb, var(--st-void-800) 75%, transparent);
+  border-left: 3px solid var(--st-signal);
+}
+
+.st-civ-ledger--realized {
+  border-left-color: var(--st-ice);
+}
+
+.st-civ-ledger--in_progress {
+  border-left-color: var(--st-signal);
+}
+
+.st-civ-ledger--open {
+  border-left-color: var(--st-flare);
+}
+
+.st-civ-ledger__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 0.75rem;
+  margin-bottom: 0.45rem;
+}
+
+.st-civ-ledger__head h3 {
+  margin: 0;
+  flex: 1 1 100%;
+  font-size: 1.05rem;
+  color: var(--st-metal-100);
+}
+
+.st-civ-ledger__status {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  padding: 0.12rem 0.4rem;
+  border-radius: 3px;
+  border: 1px solid var(--st-line);
+}
+
+.st-civ-ledger__status--realized {
+  color: var(--st-ice);
+  border-color: color-mix(in srgb, var(--st-ice) 50%, var(--st-line));
+}
+
+.st-civ-ledger__status--in_progress {
+  color: var(--st-signal);
+  border-color: color-mix(in srgb, var(--st-signal) 50%, var(--st-line));
+}
+
+.st-civ-ledger__status--open {
+  color: var(--st-flare);
+  border-color: color-mix(in srgb, var(--st-flare) 45%, var(--st-line));
+}
+
+.st-civ-ledger__thesis {
+  margin: 0 0 0.35rem;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.st-civ-ledger__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.85rem;
+  font-size: 0.68rem;
+  color: var(--st-metal-300);
+}
+
+.st-pill {
+  background: var(--st-void-900);
+  border: 1px solid var(--st-line);
+  color: var(--st-signal);
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+
+.st-pill:hover,
+.st-pill:focus-visible {
+  border-color: var(--st-flare);
+  color: var(--st-flare);
+  outline: none;
+}
+
+.st-lede--tight {
+  margin-bottom: 0.95rem;
+}
+
+/* 透镜划界 */
+.st-lens-bound__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.85rem;
+}
+
+.st-lens-bound__card {
+  border: 1px solid var(--st-line);
+  border-radius: var(--st-radius);
+  padding: 1rem;
+  background: color-mix(in srgb, var(--st-void-900) 45%, transparent);
+}
+
+.st-lens-bound__card[data-lens='santi'] {
+  border-color: color-mix(in srgb, var(--st-flare) 40%, var(--st-line));
+}
+
+.st-lens-bound__card h3 {
+  margin: 0 0 0.45rem;
+  font-size: 0.95rem;
+  color: var(--st-metal-100);
+}
+
+.st-lens-bound__card h3 a {
+  color: var(--st-signal);
+  text-decoration: none;
+}
+
+.st-lens-bound__card h3 a:hover,
+.st-lens-bound__card h3 a:focus-visible {
+  text-decoration: underline;
+  outline: none;
+}
+
+.st-lens-bound__one {
+  margin: 0 0 0.75rem;
+  font-size: 0.8rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.st-lens-bound__card dl {
+  margin: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.st-lens-bound__card dt {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--st-ice);
+  margin-bottom: 0.15rem;
+}
+
+.st-lens-bound__card dd {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--st-metal-300);
+}
+
+@media (max-width: 640px) {
+  .st-chain__edge {
+    width: 100%;
+    flex-direction: row;
+    gap: 0.35rem;
+    min-width: 0;
+  }
+}

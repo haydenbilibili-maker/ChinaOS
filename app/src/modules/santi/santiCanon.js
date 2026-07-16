@@ -1,5 +1,5 @@
 /**
- * 三体透镜 · 概念母本（Round 1）
+ * 三体透镜 · 概念母本（Round 1 光谱 + Round 2 文明博弈编排数据）
  * 字段契约对齐 docs/santi 架构方案 §4.4
  * 禁止裸类比：每张 full 卡必须有 criticalDiffs
  */
@@ -402,9 +402,154 @@ export const MODULE_META = {
   id: 'santi',
   title: '三体总论',
   subtitle: '文明透镜 · 机制映射 · 思想实验',
-  version: '0.1.0-r1',
+  version: '0.2.0-r2',
   asOf: '2026-07',
 };
+
+/**
+ * 图 A 象限 → 光谱卡 id（点选联动）
+ * q1 先发沉默 · q2 可控威慑 · q3 重复博弈 · q4 脆弱均衡
+ */
+export const QUAD_TO_CARDS = {
+  q1: ['ST-02', 'ST-03'],
+  q2: ['ST-06', 'ST-03'],
+  q3: ['ST-01'],
+  q4: ['ST-01', 'ST-02'],
+};
+
+/**
+ * 文明博弈因果主链 + 降维/锁死旁支（Round 2）
+ * role: main | branch
+ */
+export const CIV_CHAIN = [
+  {
+    id: 'ST-01',
+    role: 'main',
+    edge: '前提',
+    edgeTo: 'ST-02',
+    abstract: '两条公理压缩信息不对称与资源竞争，导出猜疑链与技术爆炸的逻辑空间。',
+  },
+  {
+    id: 'ST-02',
+    role: 'main',
+    edge: '导出策略',
+    edgeTo: 'ST-03',
+    abstract: '在猜疑链成立时，暴露坐标近似被清除；最优策略倾向沉默与先发期权。',
+  },
+  {
+    id: 'ST-03',
+    role: 'main',
+    edge: null,
+    edgeTo: null,
+    abstract: '后发文明可在短窗口内跃迁代差，使「等待验证善意」的成本急剧上升。',
+  },
+  {
+    id: 'ST-04',
+    role: 'branch',
+    branchOf: 'ST-03',
+    branchLabel: '锁死旁支',
+    abstract: '用超技术手段冻结对手基础前沿——「看得见、做不出」，打断技术爆炸路径。',
+  },
+  {
+    id: 'ST-07',
+    role: 'branch',
+    branchOf: 'ST-03',
+    branchLabel: '降维旁支',
+    abstract: '绝对技术代差下的单向摧毁工具，使数量与勇气失效——局部 generational gap 的极端意象。',
+  },
+];
+
+/**
+ * 文明博弈台账样例（Round 2 · 非单卡 ledger，跨概念主题）
+ * status: realized | in_progress | open
+ */
+export const CIV_LEDGERS = [
+  {
+    id: 'CL-01',
+    title: '威慑稳定性',
+    status: 'realized',
+    statusLabel: '已兑现',
+    thesis: '相互摧毁能力下，稳态依赖「可信承诺」而非人格化执剑；三体透镜可澄清人格化叙事的边界。',
+    similarMechanisms: [
+      { text: '核威慑与相互确保摧毁：第二次打击能力支撑禁忌。', to: '/deterrence' },
+      { text: '可信承诺与边缘政策：重复博弈中的声誉与红线。', to: '/gametheory' },
+    ],
+    criticalDiffs: [
+      '小说执剑人是极端人格化单点；现实是指挥链、法理授权与多重校验。',
+      '现实威慑嵌入同盟、经济相互依赖与国内政治约束，非真空二人博弈。',
+    ],
+    linkedCards: ['ST-06', 'ST-02'],
+  },
+  {
+    id: 'CL-02',
+    title: '猜疑链治理',
+    status: 'in_progress',
+    statusLabel: '进行中',
+    thesis: '降低误判的制度与沟通渠道可压低猜疑链强度——但无法用「信任教育」单独消解结构激励。',
+    similarMechanisms: [
+      { text: '安全困境：防御被解读为进攻准备，螺旋升级。', to: '/thucydides' },
+      { text: '热线、军演通报、核查机制：压缩信息不对称。', to: '/diplomacy' },
+    ],
+    criticalDiffs: [
+      '修昔底德叙事强调权力转移窗口；三体透镜强调极端信息不可验证——适用边界不同。',
+      '现实有第三方、多边制度与商业纽带；小说设定接近零沟通、零仲裁。',
+    ],
+    linkedCards: ['ST-01', 'ST-02'],
+  },
+  {
+    id: 'CL-03',
+    title: '技术扩散速度',
+    status: 'open',
+    statusLabel: '未决',
+    thesis: '局部领域 generational gap 是否足以改写战略均衡，仍属开放经验问题；「技术爆炸」是窗口焦虑透镜，非预测公式。',
+    similarMechanisms: [
+      { text: '后发追赶与关键节点突破改变议价权。', to: '/techtree' },
+      { text: '出口管制与标准锁定试图打断扩散路径。', to: '/semiconductor' },
+    ],
+    criticalDiffs: [
+      '现实扩散受资本、人才、供应链与制度摩擦约束，罕有瞬时代差。',
+      '智子式「绝对锁死」不存在；管制往往不完整，平行路径与转口仍在。',
+    ],
+    linkedCards: ['ST-03', 'ST-04', 'ST-07'],
+  },
+];
+
+/**
+ * 与修昔底德 / 博弈论的显式划界（Round 2）
+ */
+export const LENS_BOUNDARIES = [
+  {
+    id: 'santi',
+    label: '三体透镜',
+    oneLiner: '极端思想实验：把猜疑链与技术爆炸推到极限，压成可对照台账。',
+    appliesWhen: '需要澄清「若沟通与仲裁接近为零」时的策略空间与误用边界。',
+    notFor: '直接开政策处方，或用情节坐实现实未公开权力斗争。',
+    to: null,
+  },
+  {
+    id: 'thucydides',
+    label: '修昔底德叙事',
+    oneLiner: '权力转移窗口下的结构性摩擦与战争风险叙事。',
+    appliesWhen: '讨论崛起国—守成国实力对比、窗口焦虑与可规避路径。',
+    notFor: '跨物种/跨尺度文明接触，或「暴露即清除」的宇宙社会学推论。',
+    diffVsSanti: '修昔底德谈的是人类国家体系内的实力转移；三体透镜谈的是极端信息不对称下的接触策略。',
+    to: '/thucydides',
+  },
+  {
+    id: 'gametheory',
+    label: '经典博弈论工具箱',
+    oneLiner: '形式化激励结构：囚徒困境、重复博弈、边缘策略与均衡求解。',
+    appliesWhen: '需要可计算的策略互动模型、以牙还牙与可信承诺机制设计。',
+    notFor: '替代经验史与制度细节；也不等于黑暗森林「先发沉默」的规范结论。',
+    diffVsSanti: '博弈论提供通用工具；三体透镜提供极端边界条件与叙事压缩——可对照，不合并。',
+    to: '/gametheory',
+  },
+];
+
+/** 按 id 取概念卡 */
+export function getCard(id, list = CANON) {
+  return list.find((c) => c.id === id) || null;
+}
 
 /** 全量 full 卡数量（不含 index） */
 export function countFullCards(list = CANON) {

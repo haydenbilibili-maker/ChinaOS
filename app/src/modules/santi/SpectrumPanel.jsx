@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect, useCallback } from 'react';
+import React, { useMemo, useState, useEffect, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { CANON, DIMS, WORKS, countFullCards } from './santiCanon.js';
 
@@ -7,6 +7,11 @@ const LEDGER_LABELS = {
   open: '未决',
   caution: '慎用',
 };
+
+function prefersReducedMotion() {
+  return typeof window !== 'undefined'
+    && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
 
 function DimChips({ dims }) {
   return (
@@ -115,12 +120,15 @@ function ConceptDetail({ card, onClose }) {
   );
 }
 
-function ConceptCard({ card, onOpen }) {
+function ConceptCard({ card, onOpen, highlighted, cardRef }) {
   const isIndex = card.maturity === 'index';
   return (
     <button
+      ref={cardRef}
       type="button"
-      className={`st-card${isIndex ? ' st-card--index' : ''}`}
+      id={`st-card-${card.id}`}
+      data-st-id={card.id}
+      className={`st-card${isIndex ? ' st-card--index' : ''}${highlighted ? ' is-highlighted' : ''}`}
       onClick={() => onOpen(card)}
       aria-label={`打开概念卡 ${card.id} ${card.title}`}
     >
@@ -140,10 +148,35 @@ function ConceptCard({ card, onOpen }) {
   );
 }
 
-export default function SpectrumPanel() {
+/**
+ * @param {{ highlightIds?: string[], focusId?: string, onHighlightConsumed?: () => void }} props
+ */
+export default function SpectrumPanel({ highlightIds = [], focusId = null, onHighlightConsumed }) {
   const [work, setWork] = useState('all');
   const [dim, setDim] = useState('all');
   const [active, setActive] = useState(null);
+  const [localHighlight, setLocalHighlight] = useState(() => new Set(highlightIds));
+  const cardRefs = useRef({});
+
+  useEffect(() => {
+    if (!highlightIds?.length) return;
+    setLocalHighlight(new Set(highlightIds));
+    setWork('all');
+    setDim('all');
+  }, [highlightIds]);
+
+  useEffect(() => {
+    if (!focusId) return;
+    const el = cardRefs.current[focusId];
+    if (!el) return;
+    const behavior = prefersReducedMotion() ? 'auto' : 'smooth';
+    const t = window.setTimeout(() => {
+      el.scrollIntoView({ behavior, block: 'center' });
+      el.focus({ preventScroll: true });
+      onHighlightConsumed?.();
+    }, 60);
+    return () => window.clearTimeout(t);
+  }, [focusId, work, dim, onHighlightConsumed]);
 
   const filtered = useMemo(() => {
     return CANON.filter((c) => {
@@ -165,6 +198,18 @@ export default function SpectrumPanel() {
       <p className="st-lede">
         每张卡强制「相似机制 + 关键差异」双栏。当前母本 {CANON.length} 条，其中完整双栏 {fullN} 张；
         敏感条目以降级索引呈现。点击卡片展开四步映射与台账。
+        {localHighlight.size > 0 && (
+          <>
+            {' '}
+            <button
+              type="button"
+              className="st-inline-clear"
+              onClick={() => setLocalHighlight(new Set())}
+            >
+              清除图 A 高亮（{localHighlight.size}）
+            </button>
+          </>
+        )}
       </p>
 
       <div className="st-filters" role="toolbar" aria-label="光谱筛选">
@@ -202,7 +247,16 @@ export default function SpectrumPanel() {
 
       <div className="st-card-grid">
         {filtered.map((card) => (
-          <ConceptCard key={card.id} card={card} onOpen={setActive} />
+          <ConceptCard
+            key={card.id}
+            card={card}
+            onOpen={setActive}
+            highlighted={localHighlight.has(card.id)}
+            cardRef={(el) => {
+              if (el) cardRefs.current[card.id] = el;
+              else delete cardRefs.current[card.id];
+            }}
+          />
         ))}
       </div>
 
