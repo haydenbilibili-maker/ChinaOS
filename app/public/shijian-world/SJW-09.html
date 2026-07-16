@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJW-09 · 奥斯曼/波斯/莫卧儿衰变</title>
+<meta name="description" content="史鉴·世界综合矩阵：奥斯曼、萨法维/卡扎尔波斯、莫卧儿三帝国多力共振衰变，对照中华 SJ-07 崩解矩阵并强制关键差异。"/>
+<style>
+:root{
+  /* 史鉴·世界皮肤：色义对齐 SJ（ochre=数据/财政, celadon=结构/精英, vermil=张力/军事, paper=合法性/正文），底色偏冷墨以区分中华宣纸暖墨 */
+  --sjw-ink-900:#0f1216;
+  --sjw-ink-800:#161b22;
+  --sjw-paper-100:#d8dde6;
+  --sjw-paper-300:#9aa3b2;
+  --sjw-vermil:#a83b2c;
+  --sjw-celadon:#4a6d7c;
+  --sjw-ochre:#b8894a;
+  --sjw-line:#2c333d;
+  --sjw-radius:6px;
+  --sjw-space:clamp(12px,2vw,24px);
+  --sjw-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sjw-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(1000px 560px at 72% -8%, #1a2430 0%, transparent 55%),
+    radial-gradient(700px 420px at 8% 90%, #12161c 0%, transparent 50%),
+    var(--sjw-ink-900);
+  color:var(--sjw-paper-100);
+  font-family:var(--sjw-serif);
+  line-height:1.75;
+}
+.sjw-wrap{max-width:min(100%,1180px);margin:0 auto;padding:var(--sjw-space) var(--sjw-space) 48px}
+@media (min-width:1536px){.sjw-wrap{max-width:min(100%,1360px)}}
+.sjw-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sjw-line);margin-bottom:20px}
+.sjw-mast .badge{font-family:var(--sjw-mono);font-size:11px;letter-spacing:.18em;color:var(--sjw-ochre);margin-bottom:6px}
+.sjw-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.14em;line-height:1.3}
+.sjw-mast h1 em{font-style:normal;color:var(--sjw-paper-300);font-weight:400;letter-spacing:.06em;font-size:.72em;display:block;margin-top:4px}
+.sjw-meta{font-family:var(--sjw-mono);font-size:11px;color:var(--sjw-paper-300);text-align:right;line-height:1.7}
+.sjw-meta b{color:var(--sjw-ochre);font-weight:500}
+.sjw-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sjw-chip,.sjw-chip:visited{display:inline-block;font-family:var(--sjw-mono);font-size:10px;letter-spacing:.08em;color:var(--sjw-celadon);border:1px solid var(--sjw-line);padding:3px 8px;border-radius:var(--sjw-radius);text-decoration:none}
+.sjw-chip:hover,.sjw-chip:focus-visible{border-color:var(--sjw-ochre);color:var(--sjw-ochre);outline:none}
+.sjw-zhupi{color:var(--sjw-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sjw-vermil);max-width:76ch}
+.sjw-sec{margin:36px 0 28px;scroll-margin-top:24px}
+.sjw-sec-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--sjw-line)}
+.sjw-sec-h .num{font-family:var(--sjw-mono);font-size:11px;letter-spacing:.2em;color:var(--sjw-ochre)}
+.sjw-sec-h h2{font-size:clamp(17px,2.2vw,20px);font-weight:600;letter-spacing:.1em}
+.sjw-prose{font-size:15.5px;color:var(--sjw-paper-100);max-width:76ch}
+.sjw-prose + .sjw-prose{margin-top:12px}
+.sjw-prose strong{color:var(--sjw-ochre);font-weight:600}
+.sjw-note{font-size:13px;color:var(--sjw-paper-300);margin-top:12px;max-width:76ch}
+.sjw-note b{color:var(--sjw-paper-100);font-weight:600}
+.sjw-stage{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:linear-gradient(180deg,var(--sjw-ink-800),var(--sjw-ink-900));box-shadow:0 1px 0 rgba(216,221,230,.04),0 18px 48px rgba(0,0,0,.45);padding:8px;overflow:auto;margin-top:8px}
+.sjw-stage svg{display:block;width:100%;height:auto;max-width:820px;margin:0 auto}
+.sjw-table-wrap{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);overflow:auto;margin-top:8px}
+.sjw-table{width:max(100%,720px);border-collapse:collapse;font-size:13px}
+.sjw-table th{background:var(--sjw-ink-900);color:var(--sjw-ochre);font-family:var(--sjw-mono);font-size:10px;letter-spacing:.1em;font-weight:500;text-align:left;padding:10px 12px;border-bottom:1px solid var(--sjw-line)}
+.sjw-table td{padding:10px 12px;border-bottom:1px solid var(--sjw-line);color:var(--sjw-paper-300);vertical-align:top;line-height:1.6}
+.sjw-table td:first-child{color:var(--sjw-paper-100);font-weight:600}
+.sjw-dual{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.sjw-dual article{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:14px 16px}
+.sjw-dual .k{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.14em;color:var(--sjw-ochre);margin-bottom:6px}
+.sjw-dual h3{font-size:14px;margin-bottom:8px;letter-spacing:.04em}
+.sjw-dual p{font-size:13px;color:var(--sjw-paper-300);line-height:1.65}
+.sjw-dual .diff{border-left:3px solid var(--sjw-vermil)}
+.sjw-dual .sim{border-left:3px solid var(--sjw-celadon)}
+.sjw-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.sjw-card,.sjw-card:visited{display:block;border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:16px;text-decoration:none;color:inherit;transition:border-color .18s}
+.sjw-card:hover,.sjw-card:focus-visible{border-color:var(--sjw-ochre);outline:none}
+.sjw-card .n{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.14em;color:var(--sjw-ochre);margin-bottom:4px}
+.sjw-card h3{font-size:15px;letter-spacing:.06em;margin-bottom:6px}
+.sjw-card p{font-size:12.5px;color:var(--sjw-paper-300);line-height:1.6}
+.sjw-axes{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:10px}
+.sjw-axis{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);padding:10px 8px;text-align:center;font-size:11px;color:var(--sjw-paper-300)}
+.sjw-axis b{display:block;font-family:var(--sjw-mono);font-size:10px;letter-spacing:.08em;margin-bottom:4px;font-weight:500}
+.sjw-axis.ochre b{color:var(--sjw-ochre)}
+.sjw-axis.celadon b{color:var(--sjw-celadon)}
+.sjw-axis.paper b{color:var(--sjw-paper-100)}
+.sjw-axis.vermil b{color:var(--sjw-vermil)}
+.sjw-axis.ink b{color:var(--sjw-paper-300)}
+.sjw-ledger{display:grid;gap:8px;margin-top:10px}
+.sjw-ledger article{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:12px 14px}
+.sjw-ledger .f{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.12em;color:var(--sjw-ochre);margin-bottom:4px}
+.sjw-ledger p{font-size:13px;color:var(--sjw-paper-300);line-height:1.6}
+.sjw-tri{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.sjw-tri article{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:12px 14px}
+.sjw-tri .k{font-family:var(--sjw-mono);font-size:10px;color:var(--sjw-ochre);letter-spacing:.1em;margin-bottom:4px}
+.sjw-tri h3{font-size:13px;margin-bottom:6px}
+.sjw-tri p{font-size:12.5px;color:var(--sjw-paper-300);line-height:1.55}
+.sjw-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sjw-line);font-family:var(--sjw-mono);font-size:10px;color:var(--sjw-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sjw-foot a{color:var(--sjw-celadon);text-decoration:none}
+.sjw-foot a:hover{color:var(--sjw-ochre)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sjw-card,.sjw-chip{transition:none}}
+@media (max-width:900px){.sjw-dual,.sjw-cards,.sjw-tri{grid-template-columns:1fr}.sjw-axes{grid-template-columns:1fr 1fr}}
+@media (max-width:768px){.sjw-meta{text-align:left}.sjw-axes{grid-template-columns:1fr}}
+html[data-theme="light"]{--sjw-ink-900:#eef1f4;--sjw-ink-800:#e4e8ed;--sjw-paper-100:#1a1e24;--sjw-paper-300:#4a5564;--sjw-vermil:#9a3428;--sjw-celadon:#3a5a68;--sjw-ochre:#8a6528;--sjw-line:#c5ccd6}
+html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%, #e2e7ec 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #e8ecf0 0%, transparent 50%),var(--sjw-ink-900);color:var(--sjw-paper-100)}
+
+</style>
+<script>
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark')}
+  try{
+    var q=new URLSearchParams(location.search).get('theme');
+    if(q==='light'||q==='dark')apply(q);
+  }catch(e){}
+  window.addEventListener('message',function(e){
+    if(e.origin!==location.origin)return;
+    var d=e&&e.data;if(!d||d.type!==MSG)return;
+    apply(d.theme);
+  });
+})();
+</script>
+</head>
+<body>
+<div class="sjw-wrap" id="sjw-top">
+<header class="sjw-mast">
+  <div>
+    <div class="badge">SJW-09 · 史鉴·世界 · 综合矩阵</div>
+    <h1>奥斯曼 / 波斯 / 莫卧儿衰变<em>三帝国多力共振 × 对照 SJ-07 崩解矩阵 · 强制关键差异</em></h1>
+    <div class="sjw-chips">
+      <a class="sjw-chip" href="./SJW-00.html">SJW-00 总索引</a>
+      <a class="sjw-chip" href="/modules/shijian">史鉴·中华</a>
+      <a class="sjw-chip" href="/modules/santi">三体透镜（边界）</a>
+    </div>
+  </div>
+  <div class="sjw-meta">
+    AS_OF <b>2026-07-16</b><br/>
+    版本 <b>v0.3</b> · Round 3<br/>
+    令牌 <b>--sjw-*</b>
+  </div>
+</header>
+<p class="sjw-zhupi">本卷为跨帝国衰变矩阵，非「东方停滞」道德叙事。对照中华线 SJ-07（秦汉唐明清崩解矩阵）：相似机制可写多力共振与财政—军事越阈；关键差异必须写帝国复合体、宗教法统与欧洲体系压力——禁止把治乱循环相位硬套伊斯兰火药帝国。</p>
+
+<section class="sjw-sec" id="sec-sig">
+  <div class="sjw-sec-h"><span class="num">01 · 签名视觉</span><h2>三弧向心合围：外压 × 内汲取 × 法统裂隙</h2></div>
+  <div class="sjw-stage">
+    <svg viewBox="0 0 820 340" role="img" aria-labelledby="s9t s9d">
+      <title id="s9t">奥斯曼、波斯、莫卧儿三弧向心衰变：欧洲体系压力与内部分裂</title>
+      <desc id="s9d">中心为帝国复合体，外围三弧分别标奥斯曼、波斯、莫卧儿，外环欧洲/殖民压力箭头向心。</desc>
+      <rect width="820" height="340" fill="var(--sjw-ink-900)"/>
+      <text x="24" y="28" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-09 · 向心合围母题 · 对照 SJ-07 · 非精确国界</text>
+      <circle cx="410" cy="180" r="54" fill="var(--sjw-ink-800)" stroke="var(--sjw-paper-100)" stroke-width="1.5"/>
+      <text x="410" y="176" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="13">帝国复合体</text>
+      <text x="410" y="196" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">多民族·法统·军户</text>
+      <path d="M200 100 A260 120 0 0 1 620 100" fill="none" stroke="var(--sjw-ochre)" stroke-width="2"/>
+      <text x="410" y="78" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">奥斯曼 · 坦齐马特—一战解体</text>
+      <path d="M160 220 A280 100 0 0 0 400 290" fill="none" stroke="var(--sjw-celadon)" stroke-width="2"/>
+      <text x="200" y="300" fill="var(--sjw-celadon)" font-size="12">波斯 · 萨法维崩—卡扎尔半殖民</text>
+      <path d="M620 220 A280 100 0 0 1 420 290" fill="none" stroke="var(--sjw-vermil)" stroke-width="2"/>
+      <text x="560" y="300" fill="var(--sjw-vermil)" font-size="12">莫卧儿 · 后奥朗则布碎裂</text>
+      <path d="M90 160 L160 170" stroke="var(--sjw-vermil)" stroke-width="1.5" marker-end="url(#a9)"/>
+      <path d="M730 160 L660 170" stroke="var(--sjw-vermil)" stroke-width="1.5" marker-end="url(#a9)"/>
+      <path d="M410 40 L410 90" stroke="var(--sjw-vermil)" stroke-width="1.5" marker-end="url(#a9)"/>
+      <defs><marker id="a9" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0 0 L6 3.5 L0 7 Z" fill="var(--sjw-vermil)"/></marker></defs>
+      <text x="60" y="150" fill="var(--sjw-paper-300)" font-size="10">欧系/俄压</text>
+      <text x="700" y="150" fill="var(--sjw-paper-300)" font-size="10">殖民/公司</text>
+      <text x="410" y="330" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="11">多力共振同构 SJ-07 · 关键差异：复合帝国 vs 郡县大一统</text>
+    </svg>
+  </div>
+</section>
+
+<section class="sjw-sec" id="sec-ledger">
+  <div class="sjw-sec-h"><span class="num">02 · 史鉴台账</span><h2>七字段（矩阵卷总括）</h2></div>
+  <div class="sjw-ledger">
+    <article><div class="f">① 一句话拐点</div><p>十七至二十世纪初，三大「火药帝国」在财政汲取僵化、军事技术窗口落后、精英—地方离心与欧洲体系嵌入压力下相继碎裂或半殖民化——不是单一「腐败」故事，而是五轴共振。</p></article>
+    <article><div class="f">② 结构切片</div><p>苏丹/沙阿/帕德沙赫法统 · 军户/部落/扎吉达尔采邑 · 宗教司法与教派 · 陆路商路 vs 海权改道 · 欧洲信贷与治外法权接口。签名图取「向心合围」：外压箭头 + 三弧内衰，对齐中华崩解对比的多行矩阵逻辑而非单案竖轴。</p></article>
+    <article><div class="f">③ 相位</div><p>相对高峰（奥斯曼苏莱曼期、萨法维阿巴斯、莫卧儿阿克巴—沙贾汗）→ 军事—财政错配 → 改革/分裂窗口 → 体系内边缘化或殖民接管。相位标签为比较便利，不作王朝循环硬映射。</p></article>
+    <article><div class="f">④ 五轴归因</div><p><b>财政</b>：包税制/军事采邑失效，外债与让与权（capitulations）侵蚀主权汲取。<b>精英</b>：耶尼切里/部落贵族/扎吉达尔固化，改革派与旧军对抗。<b>合法性</b>：伊斯兰法统、教派与民族主义叙事叠代撕裂复合体。<b>军事</b>：火器窗口被欧系追上后难再闭合；边境多线作战。<b>基座</b>：人口与农牧基座未同步工业革命生产率。</p></article>
+    <article><div class="f">⑤ 史家交锋</div><p>「东方问题」外交史 · Hodgson/伊斯兰世界长时段 · 去东方主义修正（反对停滞论）· 比较帝国史（Barkey 等）——本卷采机制共振，拒绝把衰变写成文明本质缺陷。</p></article>
+    <article><div class="f">⑥ 成败三列</div><p><b>已兑现</b>：多民族复合帝国在民族国家体系下高碎裂风险可重复观察。<b>已失败</b>：仅靠宫廷改革而不重建财政—军事接口的「自上而下补丁」。<b>未决</b>：后帝国民族国家合法性与资源诅咒路径——开放至当代。</p></article>
+  </div>
+</section>
+
+<section class="sjw-sec" id="sec-matrix">
+  <div class="sjw-sec-h"><span class="num">03 · 衰变矩阵</span><h2>三行 × 五轴（示意强度）</h2></div>
+  <div class="sjw-table-wrap">
+    <table class="sjw-table">
+      <thead><tr><th>帝国</th><th>财政</th><th>精英</th><th>合法性</th><th>军事地缘</th><th>基座</th><th>关键拐点（口径）</th></tr></thead>
+      <tbody>
+        <tr><td>奥斯曼</td><td>引燃</td><td>共振</td><td>共振</td><td>引燃</td><td>滞后</td><td>一战战败→1922 苏丹制废止；坦齐马特改革未闭合军费窗</td></tr>
+        <tr><td>波斯（萨法维→卡扎尔）</td><td>共振</td><td>引燃</td><td>教派/部族</td><td>俄英挤压</td><td>滞后</td><td>1722 伊斯法罕陷落；十九世纪治外法权与特许权〔半殖民〕</td></tr>
+        <tr><td>莫卧儿</td><td>共振</td><td>引燃</td><td>教派张力</td><td>公司军</td><td>区域分化</td><td>1707 后奥朗则布碎裂；1757 普拉西后东印度公司主权侵蚀</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="sjw-note">「引燃/共振」为比较强度标签，非量化评分。人口/岁入精确数字依赖史料口径，本矩阵不填臆造绝对值；普拉西 1757、伊斯法罕 1722、苏丹制废止 1922 为通行纪年。</p>
+</section>
+
+<section class="sjw-sec" id="sec-map">
+  <div class="sjw-sec-h"><span class="num">04 · 映射</span><h2>相似机制 · 关键差异（↔ SJ-07）</h2></div>
+  <div class="sjw-dual">
+    <article class="sim"><div class="k">相似机制</div><h3>多力共振而非单因崩解</h3><p>与 SJ-07 同构：财政透支、边疆军事压力、精英固化与合法性叙事裂隙可同时越阈；气候/道德单因解释不足。</p></article>
+    <article class="diff"><div class="k">关键差异</div><h3>复合帝国 vs 郡县大一统</h3><p>中华崩解常在「统一帝国内部」重开分裂—重整；火药帝国衰变直接嵌入欧洲民族国家/殖民体系，碎裂后更难以内生科举—郡县模板复原。</p></article>
+  </div>
+  <div class="sjw-dual">
+    <article class="sim"><div class="k">相似机制</div><h3>军事承诺超过汲取上限</h3><p>与明末三饷、唐藩镇军费同构于「承诺—税基」错配。</p></article>
+    <article class="diff"><div class="k">关键差异</div><h3>治外法权与外债接口</h3><p>奥斯曼/波斯债务与 capitulations 是欧洲信用体系嵌入；帝制中国亦有晚清赔款外债，但早期崩解案（秦汉唐）无此全球资本市场接口——不可裸类比。</p></article>
+  </div>
+  <div class="sjw-dual">
+    <article class="sim"><div class="k">相似机制</div><h3>合法性叙事疲劳</h3><p>天命/教统在连续战败与改革失败后贬值，民族主义替代叙事上升。</p></article>
+    <article class="diff"><div class="k">关键差异</div><h3>教派—民族叠代 vs 儒家文官道统</h3><p>逊尼/什叶、米勒特、种姓—教派张力结构不同于科举文官帝国的道统—政统耦合；三体「文明博弈」不可用来导出「伊斯兰必然衰」——史鉴=机制台账，三体=思想实验。</p></article>
+  </div>
+</section>
+
+<section class="sjw-sec" id="sec-src">
+  <div class="sjw-sec-h"><span class="num">05 · 出处</span><h2>研究入口</h2></div>
+  <p class="sjw-note">Inalcik 奥斯曼史 · Hodgson <i>The Venture of Islam</i> · Richards 莫卧儿史 · Avery/Lockhart 萨法维 · 对照 <b>SJ-07</b> 崩解矩阵 · SJW-04 文明卷边界 · 岁入/人口精确比〔存疑〕须注数据集。</p>
+</section>
+
+<footer class="sjw-foot">
+  <span>ChinaOS · 史鉴·世界 SJW-09 · v0.3 · AS_OF 2026-07-16</span>
+  <span></span>
+  <span><a href="#sjw-top">↑ 顶</a> · <a href="./SJW-00.html">返回 SJW-00</a> · <a href="/modules/shijian">史鉴·中华</a></span>
+</footer>
+</div>
+</body>
+</html>

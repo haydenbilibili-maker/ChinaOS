@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJW-12 · 维也纳体系深描</title>
+<meta name="description" content="史鉴·世界：从 SJW-06 析出的维也纳会议秩序容器与会议外交机制深描。"/>
+<style>
+:root{
+  /* 史鉴·世界皮肤：色义对齐 SJ（ochre=数据/财政, celadon=结构/精英, vermil=张力/军事, paper=合法性/正文），底色偏冷墨以区分中华宣纸暖墨 */
+  --sjw-ink-900:#0f1216;
+  --sjw-ink-800:#161b22;
+  --sjw-paper-100:#d8dde6;
+  --sjw-paper-300:#9aa3b2;
+  --sjw-vermil:#a83b2c;
+  --sjw-celadon:#4a6d7c;
+  --sjw-ochre:#b8894a;
+  --sjw-line:#2c333d;
+  --sjw-radius:6px;
+  --sjw-space:clamp(12px,2vw,24px);
+  --sjw-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sjw-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(1000px 560px at 72% -8%, #1a2430 0%, transparent 55%),
+    radial-gradient(700px 420px at 8% 90%, #12161c 0%, transparent 50%),
+    var(--sjw-ink-900);
+  color:var(--sjw-paper-100);
+  font-family:var(--sjw-serif);
+  line-height:1.75;
+}
+.sjw-wrap{max-width:min(100%,1180px);margin:0 auto;padding:var(--sjw-space) var(--sjw-space) 48px}
+@media (min-width:1536px){.sjw-wrap{max-width:min(100%,1360px)}}
+.sjw-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sjw-line);margin-bottom:20px}
+.sjw-mast .badge{font-family:var(--sjw-mono);font-size:11px;letter-spacing:.18em;color:var(--sjw-ochre);margin-bottom:6px}
+.sjw-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.14em;line-height:1.3}
+.sjw-mast h1 em{font-style:normal;color:var(--sjw-paper-300);font-weight:400;letter-spacing:.06em;font-size:.72em;display:block;margin-top:4px}
+.sjw-meta{font-family:var(--sjw-mono);font-size:11px;color:var(--sjw-paper-300);text-align:right;line-height:1.7}
+.sjw-meta b{color:var(--sjw-ochre);font-weight:500}
+.sjw-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sjw-chip,.sjw-chip:visited{display:inline-block;font-family:var(--sjw-mono);font-size:10px;letter-spacing:.08em;color:var(--sjw-celadon);border:1px solid var(--sjw-line);padding:3px 8px;border-radius:var(--sjw-radius);text-decoration:none}
+.sjw-chip:hover,.sjw-chip:focus-visible{border-color:var(--sjw-ochre);color:var(--sjw-ochre);outline:none}
+.sjw-zhupi{color:var(--sjw-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sjw-vermil);max-width:76ch}
+.sjw-sec{margin:36px 0 28px;scroll-margin-top:24px}
+.sjw-sec-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--sjw-line)}
+.sjw-sec-h .num{font-family:var(--sjw-mono);font-size:11px;letter-spacing:.2em;color:var(--sjw-ochre)}
+.sjw-sec-h h2{font-size:clamp(17px,2.2vw,20px);font-weight:600;letter-spacing:.1em}
+.sjw-prose{font-size:15.5px;color:var(--sjw-paper-100);max-width:76ch}
+.sjw-prose + .sjw-prose{margin-top:12px}
+.sjw-prose strong{color:var(--sjw-ochre);font-weight:600}
+.sjw-note{font-size:13px;color:var(--sjw-paper-300);margin-top:12px;max-width:76ch}
+.sjw-note b{color:var(--sjw-paper-100);font-weight:600}
+.sjw-stage{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:linear-gradient(180deg,var(--sjw-ink-800),var(--sjw-ink-900));box-shadow:0 1px 0 rgba(216,221,230,.04),0 18px 48px rgba(0,0,0,.45);padding:8px;overflow:auto;margin-top:8px}
+.sjw-stage svg{display:block;width:100%;height:auto;max-width:820px;margin:0 auto}
+.sjw-table-wrap{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);overflow:auto;margin-top:8px}
+.sjw-table{width:max(100%,720px);border-collapse:collapse;font-size:13px}
+.sjw-table th{background:var(--sjw-ink-900);color:var(--sjw-ochre);font-family:var(--sjw-mono);font-size:10px;letter-spacing:.1em;font-weight:500;text-align:left;padding:10px 12px;border-bottom:1px solid var(--sjw-line)}
+.sjw-table td{padding:10px 12px;border-bottom:1px solid var(--sjw-line);color:var(--sjw-paper-300);vertical-align:top;line-height:1.6}
+.sjw-table td:first-child{color:var(--sjw-paper-100);font-weight:600}
+.sjw-dual{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.sjw-dual article{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:14px 16px}
+.sjw-dual .k{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.14em;color:var(--sjw-ochre);margin-bottom:6px}
+.sjw-dual h3{font-size:14px;margin-bottom:8px;letter-spacing:.04em}
+.sjw-dual p{font-size:13px;color:var(--sjw-paper-300);line-height:1.65}
+.sjw-dual .diff{border-left:3px solid var(--sjw-vermil)}
+.sjw-dual .sim{border-left:3px solid var(--sjw-celadon)}
+.sjw-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.sjw-card,.sjw-card:visited{display:block;border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:16px;text-decoration:none;color:inherit;transition:border-color .18s}
+.sjw-card:hover,.sjw-card:focus-visible{border-color:var(--sjw-ochre);outline:none}
+.sjw-card .n{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.14em;color:var(--sjw-ochre);margin-bottom:4px}
+.sjw-card h3{font-size:15px;letter-spacing:.06em;margin-bottom:6px}
+.sjw-card p{font-size:12.5px;color:var(--sjw-paper-300);line-height:1.6}
+.sjw-axes{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:10px}
+.sjw-axis{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);padding:10px 8px;text-align:center;font-size:11px;color:var(--sjw-paper-300)}
+.sjw-axis b{display:block;font-family:var(--sjw-mono);font-size:10px;letter-spacing:.08em;margin-bottom:4px;font-weight:500}
+.sjw-axis.ochre b{color:var(--sjw-ochre)}
+.sjw-axis.celadon b{color:var(--sjw-celadon)}
+.sjw-axis.paper b{color:var(--sjw-paper-100)}
+.sjw-axis.vermil b{color:var(--sjw-vermil)}
+.sjw-axis.ink b{color:var(--sjw-paper-300)}
+.sjw-ledger{display:grid;gap:8px;margin-top:10px}
+.sjw-ledger article{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:12px 14px}
+.sjw-ledger .f{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.12em;color:var(--sjw-ochre);margin-bottom:4px}
+.sjw-ledger p{font-size:13px;color:var(--sjw-paper-300);line-height:1.6}
+.sjw-tri{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.sjw-tri article{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:12px 14px}
+.sjw-tri .k{font-family:var(--sjw-mono);font-size:10px;color:var(--sjw-ochre);letter-spacing:.1em;margin-bottom:4px}
+.sjw-tri h3{font-size:13px;margin-bottom:6px}
+.sjw-tri p{font-size:12.5px;color:var(--sjw-paper-300);line-height:1.55}
+.sjw-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sjw-line);font-family:var(--sjw-mono);font-size:10px;color:var(--sjw-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sjw-foot a{color:var(--sjw-celadon);text-decoration:none}
+.sjw-foot a:hover{color:var(--sjw-ochre)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sjw-card,.sjw-chip{transition:none}}
+@media (max-width:900px){.sjw-dual,.sjw-cards,.sjw-tri{grid-template-columns:1fr}.sjw-axes{grid-template-columns:1fr 1fr}}
+@media (max-width:768px){.sjw-meta{text-align:left}.sjw-axes{grid-template-columns:1fr}}
+html[data-theme="light"]{--sjw-ink-900:#eef1f4;--sjw-ink-800:#e4e8ed;--sjw-paper-100:#1a1e24;--sjw-paper-300:#4a5564;--sjw-vermil:#9a3428;--sjw-celadon:#3a5a68;--sjw-ochre:#8a6528;--sjw-line:#c5ccd6}
+html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%, #e2e7ec 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #e8ecf0 0%, transparent 50%),var(--sjw-ink-900);color:var(--sjw-paper-100)}
+
+</style>
+<script>
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark')}
+  try{
+    var q=new URLSearchParams(location.search).get('theme');
+    if(q==='light'||q==='dark')apply(q);
+  }catch(e){}
+  window.addEventListener('message',function(e){
+    if(e.origin!==location.origin)return;
+    var d=e&&e.data;if(!d||d.type!==MSG)return;
+    apply(d.theme);
+  });
+})();
+</script>
+</head>
+<body>
+<div class="sjw-wrap" id="sjw-top">
+<header class="sjw-mast">
+  <div>
+    <div class="badge">SJW-12 · 史鉴·世界 · 机制深描</div>
+    <h1>维也纳体系深描<em>会议外交 × 正统原则 × 均势管理 · 自 SJW-06 秩序容器析出</em></h1>
+    <div class="sjw-chips">
+      <a class="sjw-chip" href="./SJW-00.html">SJW-00 总索引</a>
+      <a class="sjw-chip" href="/modules/shijian">史鉴·中华</a>
+      <a class="sjw-chip" href="/modules/santi">三体透镜（边界）</a>
+    </div>
+  </div>
+  <div class="sjw-meta">
+    AS_OF <b>2026-07-16</b><br/>
+    版本 <b>v0.3</b> · Round 3<br/>
+    令牌 <b>--sjw-*</b>
+  </div>
+</header>
+<p class="sjw-zhupi">本卷自 SJW-06（地缘经典案）析出「秩序容器」层：1814–15 维也纳会议及其后欧洲协调（Concert）。重点是会议外交如何把大战后权力再分配程序化；不是梅特涅个人传记，也不是把均势写成永恒和平。与 /deterrence：本卷=十九世纪编年机制，威慑模块=工具箱——职责不合并。</p>
+
+<section class="sjw-sec" id="sec-sig">
+  <div class="sjw-sec-h"><span class="num">01 · 签名视觉</span><h2>圆桌均势：五强协商环</h2></div>
+  <div class="sjw-stage">
+    <svg viewBox="0 0 820 320" role="img" aria-labelledby="s12t s12d">
+      <title id="s12t">维也纳体系五强协商环与革命/民族压力外环</title>
+      <desc id="s12d">中心会议桌，环绕英俄奥普法，外圈标革命浪潮与民族统一压力。</desc>
+      <rect width="820" height="320" fill="var(--sjw-ink-900)"/>
+      <text x="24" y="28" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-12 · 会议外交几何 · 非精确议席图</text>
+      <circle cx="410" cy="170" r="40" fill="var(--sjw-ink-800)" stroke="var(--sjw-ochre)"/>
+      <text x="410" y="166" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">Concert</text>
+      <text x="410" y="184" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">会议外交</text>
+      <g font-size="12" fill="var(--sjw-paper-100)">
+        <circle cx="410" cy="70" r="28" fill="var(--sjw-ink-800)" stroke="var(--sjw-celadon)"/><text x="410" y="74" text-anchor="middle">英</text>
+        <circle cx="520" cy="120" r="28" fill="var(--sjw-ink-800)" stroke="var(--sjw-celadon)"/><text x="520" y="124" text-anchor="middle">俄</text>
+        <circle cx="500" cy="230" r="28" fill="var(--sjw-ink-800)" stroke="var(--sjw-celadon)"/><text x="500" y="234" text-anchor="middle">奥</text>
+        <circle cx="320" cy="230" r="28" fill="var(--sjw-ink-800)" stroke="var(--sjw-celadon)"/><text x="320" y="234" text-anchor="middle">普</text>
+        <circle cx="300" cy="120" r="28" fill="var(--sjw-ink-800)" stroke="var(--sjw-vermil)"/><text x="300" y="124" text-anchor="middle">法</text>
+      </g>
+      <circle cx="410" cy="170" r="130" fill="none" stroke="var(--sjw-line)" stroke-dasharray="4 4"/>
+      <text x="100" y="170" fill="var(--sjw-vermil)" font-size="11">革命/民族</text>
+      <text x="650" y="170" fill="var(--sjw-vermil)" font-size="11">东方问题</text>
+      <text x="410" y="310" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="11">正统+均势程序化大战后再分配 · 至克里米亚/德意志统一松动</text>
+    </svg>
+  </div>
+</section>
+
+<section class="sjw-sec" id="sec-ledger">
+  <div class="sjw-sec-h"><span class="num">02 · 史鉴台账</span><h2>七字段</h2></div>
+  <div class="sjw-ledger">
+    <article><div class="f">① 一句话拐点</div><p>拿破仑战争后，战胜国以维也纳会议重划领土并确立大国协商习惯：用「正统原则 + 均势」管理革命与霸权复发风险，使欧洲大国战争频率相对下降约一个世纪（至 1914 前），但以压制民族—自由运动为代价。</p></article>
+    <article><div class="f">② 结构切片</div><p>五强圆桌 · 条约法领土交换 · 神圣同盟/四国同盟叠层 · 大使级会议机制 · 缓冲区与德意志邦联 · 海外殖民地议题相对边缘（欧洲中心容器）。</p></article>
+    <article><div class="f">③ 相位</div><p>1814–15 建制 → 1820s 干涉革命 → 1830/1848 冲击 → 克里米亚战争（1853–56）同盟裂隙 → 德意志/意大利统一改写均势几何 → 一战前同盟刚性回潮（→ SJW-02）。</p></article>
+    <article><div class="f">④ 五轴归因</div><p><b>财政</b>：大战后债务约束使列强偏好有限战争与协商。<b>精英</b>：贵族外交官网络降低误判交易成本。<b>合法性</b>：王朝正统 vs 民族自决叙事对撞。<b>军事</b>：陆权均势与英国海权离岸平衡。<b>基座</b>：工业革命尚未全面改写全欧军事生产率（后期德国追赶打破）。</p></article>
+    <article><div class="f">⑤ 史家交锋</div><p>Kissinger 秩序重建叙事 · Schroeder「政治均衡」修正 · 马克思主义「反动同盟」批判 · 帝国史「欧洲和平外包殖民暴力」——并陈。</p></article>
+    <article><div class="f">⑥ 成败三列</div><p><b>已兑现</b>：程序化再分配降低拿破仑式全面霸权复发概率。<b>已失败</b>：长期压制民族原则导致体系合法性透支。<b>未决</b>：会议外交在核时代与全球南方扩大后的可迁移性——开放；与 SJW-08/deterrence 划界。</p></article>
+  </div>
+</section>
+
+<section class="sjw-sec" id="sec-axes">
+  <div class="sjw-sec-h"><span class="num">03 · 机制台账</span><h2>秩序容器元件</h2></div>
+  <div class="sjw-table-wrap">
+    <table class="sjw-table">
+      <thead><tr><th>元件</th><th>功能</th><th>失效征兆</th></tr></thead>
+      <tbody>
+        <tr><td>会议/大使协商</td><td>危机程序化，避免立即动员</td><td>秘密双边同盟绕开圆桌</td></tr>
+        <tr><td>正统原则</td><td>降低王位更迭不确定性</td><td>民族/宪政浪潮使正统贬值</td></tr>
+        <tr><td>均势领土几何</td><td>防止单一陆权过大</td><td>统一民族国家改变「邦联碎块」假设</td></tr>
+        <tr><td>英国离岸平衡</td><td>海权否决欧陆霸权</td><td>欧陆同盟刚性+全球多线</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="sjw-note">维也纳会议正式闭幕 1815-06；「百年和平」是相对大国间全面战争频率的概括，非零冲突——克里米亚、普法等为体系内战争。</p>
+</section>
+
+<section class="sjw-sec" id="sec-map">
+  <div class="sjw-sec-h"><span class="num">04 · 映射</span><h2>相似机制 · 关键差异</h2></div>
+  <div class="sjw-dual">
+    <article class="sim"><div class="k">相似机制</div><h3>大战后秩序重建</h3><p>与中华「分裂后重整/新朝制礼作乐」同构于：暴力峰值后需要规则重置以降低再战概率。</p></article>
+    <article class="diff"><div class="k">关键差异</div><h3>多主权协商 vs 单中心天命</h3><p>维也纳是无最高主权的多国协商；中华重整常假设单一正统中心。朝贡秩序 ≠ Concert——强制关键差异（见 SJ-24）。</p></article>
+  </div>
+  <div class="sjw-dual">
+    <article class="sim"><div class="k">相似机制</div><h3>联盟管理升级风险</h3><p>与 SJW-02/现实主义：协商失败则滑向刚性同盟与动员时刻表。</p></article>
+    <article class="diff"><div class="k">关键差异</div><h3>无核天花板的均势</h3><p>十九世纪无二次打击天花板；危机楼梯与 SJW-08 核威慑机制史不可直接换算。对 /deterrence：谢林工具箱可对照「承诺可信」，但维也纳=历史容器，不是模拟器。</p></article>
+  </div>
+</section>
+
+<section class="sjw-sec" id="sec-src">
+  <div class="sjw-sec-h"><span class="num">05 · 出处</span><h2>研究入口</h2></div>
+  <p class="sjw-note">维也纳会议条约 1815 · Kissinger <i>A World Restored</i> · Schroeder 欧洲国际政治 · 对照 SJW-06、SJW-02、SJW-08 · /deterrence 划界一句。</p>
+</section>
+
+<footer class="sjw-foot">
+  <span>ChinaOS · 史鉴·世界 SJW-12 · v0.3 · AS_OF 2026-07-16</span>
+  <span></span>
+  <span><a href="#sjw-top">↑ 顶</a> · <a href="./SJW-00.html">返回 SJW-00</a> · <a href="/modules/shijian">史鉴·中华</a></span>
+</footer>
+</div>
+</body>
+</html>

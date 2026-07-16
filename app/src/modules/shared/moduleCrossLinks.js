@@ -900,11 +900,11 @@ const MAP = {
   shijianWorldSJW00: [
     { to: '/modules/shijian', label: '史鉴·中华 · SJ-00', note: '同源四步法引擎与中华五柱枢纽。' },
     { to: '/modules/shijian-world/sjw-01', label: 'SJW-01 · 大国崛起', note: 'Round 1 综合矩阵首卷。' },
-    { to: '/modules/shijian-world/sjw-05', label: 'SJW-05 · 社运谱系', note: 'Round 2：运动→党→国家分叉。' },
-    { to: '/modules/shijian-world/sjw-08', label: 'SJW-08 · 核威慑', note: 'Round 2：机制史 ↔ /deterrence 工具箱。' },
+    { to: '/modules/shijian-world/sjw-09', label: 'SJW-09 · 帝国衰变', note: 'Round 3：对照 SJ-07 崩解矩阵。' },
+    { to: '/modules/shijian-world/sjw-13', label: 'SJW-13 · 霸权矩阵', note: 'Round 3：荷—英—美交接综合。' },
     { to: '/modules/santi', label: '三体透镜', note: '文明博弈可深链；动力学命名不合并。' },
-    { to: '/thucydides', label: '修昔底德陷阱', note: '权力转移窗口与 SJW-01/07 对照。' },
-    { to: '/deterrence', label: '威慑战略', note: '与 SJW-08 划界：模拟器 ≠ 编年台账。' },
+    { to: '/thucydides', label: '修昔底德陷阱', note: '权力转移窗口与 SJW-01/07/13 对照。' },
+    { to: '/deterrence', label: '威慑战略', note: '与 SJW-08/12 划界：模拟器 ≠ 编年台账。' },
     { to: '/realism', label: '现实主义', note: '大国政治理论出口。' },
   ],
   shijianWorldSJW01: [
@@ -942,12 +942,14 @@ const MAP = {
     { to: '/modules/shijian/sj-24', label: 'SJ-24 · 外交映射', note: '边疆—军费耦合同构；海权信用 vs 朝贡陆权。' },
     { to: '/realism', label: '现实主义', note: '均势与联盟理论出口。' },
     { to: '/modules/shijian-world/sjw-01', label: 'SJW-01 · 大国崛起', note: '海权窗口与马汉遗产交叉。' },
+    { to: '/modules/shijian-world/sjw-12', label: 'SJW-12 · 维也纳', note: 'Round 3：自本卷秩序容器析出会议外交。' },
   ],
   shijianWorldSJW07: [
     { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
     { to: '/modules/shijian-world/sjw-01', label: 'SJW-01 · 大国崛起', note: '英美行在崛起矩阵中的位置。' },
     { to: '/thucydides', label: '修昔底德陷阱', note: '同谱系合作转移 ≠ 经典挑战者宿命——关键差异。' },
     { to: '/modules/shijian-world/sjw-02', label: 'SJW-02 · 世界大战', note: '大战作为霸权交接加速器。' },
+    { to: '/modules/shijian-world/sjw-13', label: 'SJW-13 · 霸权矩阵', note: '英美案收入跨案综合矩阵。' },
   ],
   shijianWorldSJW08: [
     { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
@@ -955,6 +957,38 @@ const MAP = {
     { to: '/modules/santi', label: '三体 · 执剑', note: '制度指挥链 ≠ 人格化执剑——强制关键差异。' },
     { to: '/modules/shijian-world/sjw-02', label: 'SJW-02 · 世界大战', note: '核天花板如何改写总体战升级。' },
     { to: '/modules/shijian-world/sjw-03', label: 'SJW-03 · 苏联', note: '军备竞赛财政挤占与解体共振。' },
+  ],
+  shijianWorldSJW09: [
+    { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
+    { to: '/modules/shijian/sj-07', label: 'SJ-07 · 崩解矩阵', note: '多力共振同构；复合帝国 vs 郡县大一统——关键差异。' },
+    { to: '/modules/shijian-world/sjw-04', label: 'SJW-04 · 文明博弈', note: '比较史学边界；禁止东方停滞本质论。' },
+    { to: '/modules/santi', label: '三体透镜', note: '史鉴=机制台账 ≠ 思想实验——命名不合并。' },
+  ],
+  shijianWorldSJW10: [
+    { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
+    { to: '/modules/shijian/sj-21', label: 'SJ-21 · 经济映射', note: '路径依赖与财政汲取对照——强制关键差异。' },
+    { to: '/modules/shijian-world/sjw-03', label: 'SJW-03 · 苏联', note: '动员型工业化另一谱系终点。' },
+    { to: '/thucydides', label: '修昔底德陷阱', note: '权力转移窗口 ≠ 发展型国家处方——划界。' },
+  ],
+  shijianWorldSJW11: [
+    { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
+    { to: '/modules/shijian-world/sjw-01', label: 'SJW-01 · 大国崛起', note: '本卷自崛起谱系技术—财政窗口析出。' },
+    { to: '/modules/shijian-world/sjw-07', label: 'SJW-07 · 英美霸权', note: '工业革命为英峰基座前史。' },
+    { to: '/modules/shijian-world/sjw-13', label: 'SJW-13 · 霸权矩阵', note: '工业基座行收入综合矩阵。' },
+  ],
+  shijianWorldSJW12: [
+    { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
+    { to: '/modules/shijian-world/sjw-06', label: 'SJW-06 · 地缘经典', note: '本卷自秩序容器层析出。' },
+    { to: '/modules/shijian-world/sjw-02', label: 'SJW-02 · 世界大战', note: '维也纳松动后的同盟刚性与再战链。' },
+    { to: '/deterrence', label: '威慑战略', note: '十九世纪均势容器 ≠ 谢林工具箱——划界。' },
+    { to: '/modules/shijian/sj-24', label: 'SJ-24 · 外交映射', note: '多主权协商 vs 朝贡单中心——关键差异。' },
+  ],
+  shijianWorldSJW13: [
+    { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
+    { to: '/modules/shijian-world/sjw-01', label: 'SJW-01 · 崛起谱系', note: '矩阵成员：总论定位。' },
+    { to: '/modules/shijian-world/sjw-07', label: 'SJW-07 · 英美霸权', note: '矩阵成员：同盟内交接深描。' },
+    { to: '/modules/shijian-world/sjw-11', label: 'SJW-11 · 工业革命', note: '矩阵成员：英峰基座窗口。' },
+    { to: '/thucydides', label: '修昔底德陷阱', note: '同谱系转移 ≠ 通用挑战者宿命——关键差异。' },
   ],
 };
 
