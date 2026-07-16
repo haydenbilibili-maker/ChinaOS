@@ -1,6 +1,12 @@
 import React, { useMemo, useState, useEffect, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { CANON, DIMS, WORKS, countFullCards } from './santiCanon.js';
+import { StChartCard, StChartGrid } from './StViz.jsx';
+import {
+  buildDimRadarOption,
+  buildLedgerDistOption,
+  buildWorkDistOption,
+} from './stCharts.js';
 
 const LEDGER_LABELS = {
   realized: '已兑现',
@@ -71,6 +77,11 @@ function ConceptDetail({ card, onClose }) {
         {isIndex && card.indexNote && (
           <p className="st-index-note">{card.indexNote}</p>
         )}
+        {card.costNote && (
+          <p className="st-cost-note" role="note">
+            <strong>动员成本栏</strong> · {card.costNote}
+          </p>
+        )}
 
         {!isIndex && (
           <>
@@ -120,7 +131,7 @@ function ConceptDetail({ card, onClose }) {
   );
 }
 
-function ConceptCard({ card, onOpen, highlighted, cardRef }) {
+function ConceptCard({ card, onOpen, highlighted, cardRef, index = 0 }) {
   const isIndex = card.maturity === 'index';
   return (
     <button
@@ -128,7 +139,8 @@ function ConceptCard({ card, onOpen, highlighted, cardRef }) {
       type="button"
       id={`st-card-${card.id}`}
       data-st-id={card.id}
-      className={`st-card${isIndex ? ' st-card--index' : ''}${highlighted ? ' is-highlighted' : ''}`}
+      style={{ '--st-i': index }}
+      className={`st-card st-reveal${isIndex ? ' st-card--index' : ''}${highlighted ? ' is-highlighted' : ''}${card.costNote ? ' st-card--sensitive' : ''}`}
       onClick={() => onOpen(card)}
       aria-label={`打开概念卡 ${card.id} ${card.title}`}
     >
@@ -143,7 +155,8 @@ function ConceptCard({ card, onOpen, highlighted, cardRef }) {
         <span>相似机制</span>
         <span>关键差异</span>
       </div>
-      {isIndex && <span className="st-card__index-tag mono">索引 · R3 深描</span>}
+      {isIndex && <span className="st-card__index-tag mono">索引</span>}
+      {card.costNote && !isIndex && <span className="st-card__index-tag mono">受控 · 成本栏</span>}
     </button>
   );
 }
@@ -189,6 +202,10 @@ export default function SpectrumPanel({ highlightIds = [], focusId = null, onHig
   const fullN = countFullCards(CANON);
   const onClose = useCallback(() => setActive(null), []);
 
+  const radarOpt = useMemo(() => buildDimRadarOption(filtered), [filtered]);
+  const ledgerOpt = useMemo(() => buildLedgerDistOption(filtered), [filtered]);
+  const workOpt = useMemo(() => buildWorkDistOption(filtered), [filtered]);
+
   return (
     <section className="st-spectrum" aria-labelledby="st-spectrum-h">
       <div className="st-sec-head">
@@ -196,8 +213,8 @@ export default function SpectrumPanel({ highlightIds = [], focusId = null, onHig
         <span className="st-sec-tag mono">公理设定 · 概念卡片 · 双栏对照</span>
       </div>
       <p className="st-lede">
-        每张卡强制「相似机制 + 关键差异」双栏。当前母本 {CANON.length} 条，其中完整双栏 {fullN} 张；
-        敏感条目以降级索引呈现。点击卡片展开四步映射与台账。
+        每张卡强制「相似机制 + 关键差异」双栏。当前母本 {CANON.length} 条，其中完整双栏 {fullN} 张。
+        点击卡片展开四步映射与台账；上方图表随筛选联动。
         {localHighlight.size > 0 && (
           <>
             {' '}
@@ -206,11 +223,17 @@ export default function SpectrumPanel({ highlightIds = [], focusId = null, onHig
               className="st-inline-clear"
               onClick={() => setLocalHighlight(new Set())}
             >
-              清除图 A 高亮（{localHighlight.size}）
+              清除图联动高亮（{localHighlight.size}）
             </button>
           </>
         )}
       </p>
+
+      <StChartGrid>
+        <StChartCard title="筛选集 · 四维覆盖" tag="C/N/G/S 雷达" option={radarOpt} height={280} />
+        <StChartCard title="筛选集 · 台账字段分布" tag="已兑现 / 未决 / 慎用" option={ledgerOpt} height={280} />
+        <StChartCard title="筛选集 · 作品来源" tag="饼图" option={workOpt} height={260} variant="compact" />
+      </StChartGrid>
 
       <div className="st-filters" role="toolbar" aria-label="光谱筛选">
         <div className="st-filter-group">
@@ -246,10 +269,11 @@ export default function SpectrumPanel({ highlightIds = [], focusId = null, onHig
       </div>
 
       <div className="st-card-grid">
-        {filtered.map((card) => (
+        {filtered.map((card, i) => (
           <ConceptCard
             key={card.id}
             card={card}
+            index={i}
             onOpen={setActive}
             highlighted={localHighlight.has(card.id)}
             cardRef={(el) => {

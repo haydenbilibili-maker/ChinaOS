@@ -116,7 +116,7 @@ export default function DarkForestChart({ className = '', onSelectQuad }) {
           技术爆炸速率 →
         </text>
 
-        {QUADRANTS.map((q) => {
+        {QUADRANTS.map((q, i) => {
           const cx = toX(q.x);
           const cy = toY(q.y);
           const isOn = active === q.id;
@@ -135,8 +135,20 @@ export default function DarkForestChart({ className = '', onSelectQuad }) {
                   activate(q.id);
                 }
               }}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: 'pointer', '--st-i': i }}
             >
+              {isOn && (
+                <circle
+                  className="st-pulse-ring"
+                  cx={cx}
+                  cy={cy}
+                  r={22}
+                  fill="none"
+                  stroke="#c45c26"
+                  strokeWidth="1.2"
+                  opacity="0.55"
+                />
+              )}
               <circle cx={cx} cy={cy} r={isOn ? 18 : 14} fill="#121826" stroke={isOn ? '#c45c26' : '#6b8cae'} strokeWidth={isOn ? 2 : 1.4} />
               <circle cx={cx} cy={cy} r={4} fill={isOn ? '#c45c26' : '#7a9e9f'} />
               <text x={cx} y={cy - 26} textAnchor="middle" className="st-forest__label">

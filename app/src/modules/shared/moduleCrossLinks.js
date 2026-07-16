@@ -17,6 +17,7 @@ const MAP = {
     { to: '/housing', label: '住房地产 · 周期', note: '人口负增长与库存周期的叠加效应。' },
     { to: '/healthcare', label: '医疗医保 · DRG', note: '老龄化驱动的医保支付改革。' },
     { to: '/education', label: '教育 · 普职分流', note: '人口结构变化下的教育供给再配置。' },
+    { to: '/modules/santi', label: '三体透镜 · 代际', note: '儿童政权 ↔ 制度缓冲——禁止年龄歧视表述。' },
   ],
   ruleoflaw: [
     { to: '/policydocs?tab=legal', label: '政令文库 · 法律条文', note: '可检索的法律/行政法规语料底座，与本模块态势分析互补。' },
@@ -39,6 +40,7 @@ const MAP = {
     { to: '/straits', label: '台海局势 · 地缘重力', note: 'A2/AD 与统一确定性的物理盘面。' },
     { to: '/techtree', label: '科技树 · 军事分支', note: '装备迭代与作战概念的技术底座。' },
     { to: '/deterrence', label: '威慑战略 · 可信承诺', note: '能力 × 决心 × 可信度的威慑平衡。' },
+    { to: '/modules/santi', label: '三体透镜 · 水滴/代差', note: '仅机制层对照，禁止情节套裁战场。' },
   ],
   straits: [
     { to: '/thucydides', label: '修昔底德陷阱 · 实力窗口', note: '台海是结构高危叠加擦枪走火的最可能燧石。' },
@@ -881,8 +883,10 @@ const MAP = {
     { to: '/deterrence', label: '威慑战略 · 可信承诺', note: '执剑人人格化 vs 指挥链与法理——强制关键差异。' },
     { to: '/gametheory', label: '博弈理论 · 猜疑链', note: '工具箱 ≠ 黑暗森林处方：囚徒困境可对照，不导出先发沉默规范。' },
     { to: '/straits', label: '台海局势 · 机制层', note: '仅机制对照，禁止用情节套裁战场。' },
+    { to: '/military', label: '军事力量 · 代差', note: '水滴/拒止意象仅机制层；≠ 同人战术复盘。' },
     { to: '/powerlogic', label: '权力逻辑 · 认知边界', note: '思想钢印隐喻 vs 语义防火墙可逆性。' },
     { to: '/sandbox', label: '治国沙盒 · 动员杠杆', note: '行星工程/阶梯计划与情景压力测试交叉。' },
+    { to: '/demographic', label: '人口结构 · 代际', note: '儿童政权透镜 ↔ 制度缓冲——禁止年龄歧视表述。' },
     { to: '/thucydides', label: '修昔底德陷阱', note: '权力转移窗口 ≠ 宇宙接触策略——安全困境可对照，适用边界不同。' },
     { to: '/realism', label: '现实主义', note: '无政府假定与宇宙社会学公理的对照阅读。' },
   ],

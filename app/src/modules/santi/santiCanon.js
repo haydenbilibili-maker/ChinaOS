@@ -1,5 +1,5 @@
 /**
- * 三体透镜 · 概念母本（Round 1 光谱 + Round 2 文明博弈编排数据）
+ * 三体透镜 · 概念母本（R1 光谱 · R2 文明博弈 · R3 国家/治理编排）
  * 字段契约对齐 docs/santi 架构方案 §4.4
  * 禁止裸类比：每张 full 卡必须有 criticalDiffs
  */
@@ -324,25 +324,26 @@ export const CANON = [
     title: '绝对主义集体动员',
     work: '《流浪地球》',
     workKey: 'wandering',
-    oneLiner: '存续目标压倒个体权利与短期福利的动员体制（高敏感·索引）。',
-    preconditions: ['生存目标被定义为压倒性', '异议成本极高'],
+    oneLiner: '存续目标压倒个体权利与短期福利的动员体制——仅作机制对照，禁止口号化。',
+    preconditions: ['生存目标被定义为压倒性', '异议成本极高', '动员可持续性被假定'],
     dims: ['G', 'S'],
     similarMechanisms: [
       { text: '战时动员与压力型体制的极限形态（仅机制对照）。', to: '/powerlogic' },
-      { text: '沙盒中的动员疲劳与国家能力边界。', to: '/sandbox' },
+      { text: '沙盒中的动员疲劳、合法性损耗与国家能力边界。', to: '/sandbox' },
     ],
     criticalDiffs: [
-      '小说是物理存续二分；现实多为风险分配、程序正义与可持续合法性权衡。',
-      '本卡 R1 仅索引：禁止美化或妖魔化任何现实制度；正文深描延至 R3。',
+      '小说是物理存续二分；现实多为风险分配、程序正义与可持续合法性权衡——不可平移为「应该如何治理」。',
+      '强制成本栏：动员抬高短期执行力，同时消耗信任库存、代际公平与纠错通道；美化或妖魔化任一现实制度均不合格。',
     ],
     ledger: {
-      realized: '—',
-      open: '动员疲劳曲线与合法性损耗如何量化',
-      caution: '高敏感：仅机制对照，禁止口号化与阴谋论',
+      realized: '把「动员收益 vs 合法性/疲劳成本」做成可对照台账字段（受控深描）',
+      open: '动员疲劳曲线与合法性损耗如何在公开指标中近似观测',
+      caution: '高敏感：仅机制对照，禁止口号化、煽情与阴谋论臆造',
     },
-    sourcesNote: '《流浪地球》相关动员设定 · Round 1 降级为索引卡',
-    maturity: 'index',
-    indexNote: '敏感动员类：R1 仅保留双栏差异警示与交叉链，深描延后 Round 3。',
+    sourcesNote: '《流浪地球》相关动员设定 · Round 3 受控深描（机制层，非制度辩护）',
+    maturity: 'full',
+    costNote:
+      '动员成本栏：执行力↑ · 异议与纠错通道↓ · 疲劳与信任损耗累积 · 退出成本上升。任何现实映射必须同时写出收益与成本，缺一不成立。',
     crossLinks: ['powerlogic', 'sandbox', 'yishixingtai'],
   },
   {
@@ -402,7 +403,7 @@ export const MODULE_META = {
   id: 'santi',
   title: '三体总论',
   subtitle: '文明透镜 · 机制映射 · 思想实验',
-  version: '0.2.0-r2',
+  version: '0.3.0-r3',
   asOf: '2026-07',
 };
 
@@ -543,6 +544,298 @@ export const LENS_BOUNDARIES = [
     notFor: '替代经验史与制度细节；也不等于黑暗森林「先发沉默」的规范结论。',
     diffVsSanti: '博弈论提供通用工具；三体透镜提供极端边界条件与叙事压缩——可对照，不合并。',
     to: '/gametheory',
+  },
+];
+
+/**
+ * 图 C · 威慑执剑剖面节点（抽象承诺链，非人物立绘）
+ * 点选 → 联动光谱卡
+ */
+export const SWORD_NODES = [
+  {
+    id: 'cap',
+    label: '相互摧毁能力',
+    sub: '物理底座',
+    tip: '双方具备不可接受损伤能力——威慑的物质前提。联动 ST-06 · ST-07。',
+    cards: ['ST-06', 'ST-07'],
+    x: 0.12,
+    y: 0.55,
+  },
+  {
+    id: 'detect',
+    label: '探测与校验',
+    sub: '信息层',
+    tip: '能否确认对方能力与意图，决定边缘空间。联动 ST-05 · ST-04。',
+    cards: ['ST-05', 'ST-04'],
+    x: 0.32,
+    y: 0.32,
+  },
+  {
+    id: 'auth',
+    label: '授权与指挥链',
+    sub: '制度层',
+    tip: '谁有权按下、如何校验——现实威慑的法理核心。联动 ST-06。',
+    cards: ['ST-06'],
+    x: 0.52,
+    y: 0.28,
+  },
+  {
+    id: 'sword',
+    label: '执剑节点',
+    sub: '执行层',
+    tip: '小说人格化执剑；现实是多重校验下的执行席位。联动 ST-06 · ST-05。',
+    cards: ['ST-06', 'ST-05'],
+    x: 0.72,
+    y: 0.48,
+  },
+  {
+    id: 'epoch',
+    label: '威慑纪元稳态',
+    sub: '均衡输出',
+    tip: '能力×决心×可信度的暂时均衡；脆弱于代差与破壁。联动 ST-06 · ST-07 · ST-04。',
+    cards: ['ST-06', 'ST-07', 'ST-04'],
+    x: 0.88,
+    y: 0.62,
+  },
+];
+
+/**
+ * 国家竞争因果链（Round 3）
+ * ST-04 锁死 → ST-05 面壁 → ST-06 执剑 → ST-07 水滴
+ */
+export const STATE_CHAIN = [
+  {
+    id: 'ST-04',
+    role: 'main',
+    edge: '压制前沿',
+    edgeTo: 'ST-05',
+    abstract: '冻结对手基础前沿——「看得见、做不出」，改写技术爆炸路径。',
+  },
+  {
+    id: 'ST-05',
+    role: 'main',
+    edge: '保留欺骗',
+    edgeTo: 'ST-06',
+    abstract: '全透明监视下，战略欺骗成为稀缺资源；破壁专职识破。',
+  },
+  {
+    id: 'ST-06',
+    role: 'main',
+    edge: '稳态执剑',
+    edgeTo: 'ST-07',
+    abstract: '相互摧毁下把按钮交给可信执行者；稳态依赖制度与心理。',
+  },
+  {
+    id: 'ST-07',
+    role: 'main',
+    edge: null,
+    edgeTo: null,
+    abstract: '绝对代差工具使数量与勇气失效——不对称降维的极端意象。',
+  },
+];
+
+/**
+ * 国家层台账（Round 3 · 强制双栏）
+ */
+export const STATE_LEDGERS = [
+  {
+    id: 'NL-01',
+    title: '技术封锁 / 锁死',
+    status: 'in_progress',
+    statusLabel: '进行中',
+    thesis: '出口管制与标准锁定可逼近「看得见做不出」；完整智子式锁死不存在，平行路径与转口始终在。',
+    similarMechanisms: [
+      { text: '实体清单、设备禁运与人才断流的组合拳。', to: '/semiconductor' },
+      { text: '科技树关键节点被切断后的追赶成本上升。', to: '/techtree' },
+    ],
+    criticalDiffs: [
+      '现实是政策与供应链组合，非字面微观干预；可逆性、泄露与第三方转口路径不同。',
+      '锁死往往不完整：基础研究冗余与替代路线仍可缓慢绕行。',
+    ],
+    linkedCards: ['ST-04', 'ST-03'],
+  },
+  {
+    id: 'NL-02',
+    title: '战略模糊与面壁',
+    status: 'realized',
+    statusLabel: '已兑现',
+    thesis: '透明时代保留选项价值依赖信息不对称；「一人隐瞒全世界」不可类比，但战略模糊仍是国家层常见工具。',
+    similarMechanisms: [
+      { text: '威慑中的战略模糊与二次打击可信度设计。', to: '/deterrence' },
+      { text: '情报对抗与开源情报压缩面壁空间。', to: '/military' },
+    ],
+    criticalDiffs: [
+      '现实受法律、舆论、官僚与联盟约束；小说面壁是极端单点欺骗。',
+      '破壁能力分散在多机构与公开分析层，非单一专职对手。',
+    ],
+    linkedCards: ['ST-05', 'ST-06'],
+  },
+  {
+    id: 'NL-03',
+    title: '不对称降维打击',
+    status: 'open',
+    statusLabel: '未决',
+    thesis: '局部 generational gap 可改变拒止成本；「绝对水滴」罕见——勇气叙事不能替代代差核算，亦不能外推为战场剧本。',
+    similarMechanisms: [
+      { text: '局部领域世代差平台对旧体系的压制。', to: '/military' },
+      { text: '非对称技术改变海空拒止成本结构（仅机制层）。', to: '/straits' },
+    ],
+    criticalDiffs: [
+      '现实罕有绝对代差；更常见是优势—反制螺旋与升级风险。',
+      '禁止用小说情节套裁台海或任何具体战场推演。',
+    ],
+    linkedCards: ['ST-07', 'ST-08'],
+  },
+  {
+    id: 'NL-04',
+    title: '威慑可信度',
+    status: 'realized',
+    statusLabel: '已兑现',
+    thesis: '威慑稳态 = 能力 × 决心 × 可信度；三体透镜澄清人格化执剑的边界，交叉威慑战略模块。',
+    similarMechanisms: [
+      { text: '相互确保摧毁、指挥控制与文官控制。', to: '/deterrence' },
+      { text: '边缘政策与红线声誉的重复博弈条件。', to: '/gametheory' },
+    ],
+    criticalDiffs: [
+      '小说执剑人是极端人格化单点；现实是指挥链、法理授权与多重校验。',
+      '不得暗示任何现实人物即「执剑人」。',
+    ],
+    linkedCards: ['ST-06', 'ST-05'],
+  },
+];
+
+/** 国家竞争深链（划界一句） */
+export const STATE_XLINKS = [
+  {
+    to: '/deterrence',
+    label: '威慑战略',
+    note: '执剑人 ↔ 可信承诺与指挥链——人格化 vs 法理链。',
+  },
+  {
+    to: '/straits',
+    label: '台海局势',
+    note: '仅机制层对照水滴/拒止意象，禁止情节套裁战场。',
+  },
+  {
+    to: '/military',
+    label: '军事力量',
+    note: '代差与能力底座可对照；≠ 同人战术复盘。',
+  },
+];
+
+/**
+ * 社会治理编排节点（Round 3）
+ */
+export const GOV_CHAIN = [
+  {
+    id: 'ST-09',
+    role: 'main',
+    edge: '锁定认知',
+    edgeTo: 'ST-30',
+    abstract: '不可证伪信念压缩可选策略集——认知边界即治理边界。',
+  },
+  {
+    id: 'ST-30',
+    role: 'main',
+    edge: '代际真空',
+    edgeTo: 'ST-20',
+    abstract: '制度缓冲被抽空时，未成熟规则接管国家机器——聚焦缓冲缺失。',
+  },
+  {
+    id: 'ST-20',
+    role: 'main',
+    edge: '危机动员',
+    edgeTo: 'ST-22',
+    abstract: '生存环境恶化倒逼文明级决策；现实多为渐进+不确定。',
+  },
+  {
+    id: 'ST-22',
+    role: 'main',
+    edge: '工程杠杆',
+    edgeTo: 'ST-23',
+    abstract: '超大规模工程与关键岗位对系统存续的不成比例杠杆。',
+  },
+  {
+    id: 'ST-23',
+    role: 'main',
+    edge: null,
+    edgeTo: null,
+    abstract: '存续目标压倒短期福利的动员极限——强制成本栏，受控深描。',
+    sensitive: true,
+  },
+];
+
+/**
+ * 治理台账（Round 3 · 强制双栏；ST-23 相关含成本意识）
+ */
+export const GOV_LEDGERS = [
+  {
+    id: 'GL-01',
+    title: '代际权力交接',
+    status: 'in_progress',
+    statusLabel: '进行中',
+    thesis: '权力、财富与叙事权的非平滑转移是结构问题；「儿童政权」透镜用于标出制度缓冲缺失，而非年龄道德评判。',
+    similarMechanisms: [
+      { text: '人口结构变迁下的代际资源与话语权再配置。', to: '/demographic' },
+      { text: '教育与精英再生产影响执政学习曲线。', to: '/education' },
+    ],
+    criticalDiffs: [
+      '现实有过渡制度、专业官僚与法律缓冲；小说是真空实验。',
+      '禁止「一代不如一代」式道德裁决或煽情年龄叙事。',
+    ],
+    linkedCards: ['ST-30', 'ST-22'],
+  },
+  {
+    id: 'GL-02',
+    title: '集体动员成本',
+    status: 'realized',
+    statusLabel: '已兑现',
+    thesis: '极端动员可抬高短期执行力，同时消耗信任、纠错通道与代际公平——收益与成本必须同栏出现。',
+    similarMechanisms: [
+      { text: '压力型体制与战时动员的极限形态（仅机制）。', to: '/powerlogic' },
+      { text: '沙盒情景中的动员疲劳与国家能力边界。', to: '/sandbox' },
+    ],
+    criticalDiffs: [
+      '小说是物理存续二分；现实是风险分配与程序正义的持续权衡。',
+      '禁止美化或妖魔化任何现实制度；缺成本栏即不合格。',
+    ],
+    costNote: '执行力↑ · 异议/纠错↓ · 疲劳与信任损耗↑ · 退出成本↑',
+    linkedCards: ['ST-23', 'ST-20', 'ST-22'],
+  },
+  {
+    id: 'GL-03',
+    title: '认知操控边界',
+    status: 'open',
+    statusLabel: '未决',
+    thesis: '宣传、教育与算法可压缩可讨论空间；「物理钢印」不存在——可逆性与多元信息源是关键差异，亦是未决经验问题。',
+    similarMechanisms: [
+      { text: '语义防火墙与舆情闭环对认知边界的塑造。', to: '/powerlogic' },
+      { text: '数字巨网中的推荐与注意力锁定。', to: '/digital-giant-web' },
+    ],
+    criticalDiffs: [
+      '现实认知操控是概率性、可衰减的；钢印是一次性底层写入。',
+      '禁止断言某群体已被「物理洗脑」或坐实未公开操控阴谋。',
+    ],
+    linkedCards: ['ST-09'],
+  },
+];
+
+/** 社会治理深链（划界一句） */
+export const GOV_XLINKS = [
+  {
+    to: '/powerlogic',
+    label: '权力逻辑',
+    note: '思想钢印 ↔ 语义锁定——可逆性是关键差异。',
+  },
+  {
+    to: '/demographic',
+    label: '人口结构',
+    note: '代际交接对照制度缓冲，禁止年龄歧视表述。',
+  },
+  {
+    to: '/sandbox',
+    label: '治国沙盒',
+    note: '动员杠杆 ↔ 情景压力测试；含疲劳与合法性成本。',
   },
 ];
 

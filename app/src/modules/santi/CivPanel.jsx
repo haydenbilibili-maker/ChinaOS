@@ -8,32 +8,14 @@ import {
   getCard,
 } from './santiCanon.js';
 import DarkForestChart from './DarkForestChart.jsx';
-
-function DualMirror({ card }) {
-  if (!card) return null;
-  return (
-    <div className="st-dual st-dual--inline">
-      <div className="st-dual__col st-dual__similar">
-        <h4>相似机制</h4>
-        <ul>
-          {card.similarMechanisms.map((m) => (
-            <li key={m.text}>
-              {m.to ? <Link to={m.to}>{m.text}</Link> : m.text}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="st-dual__col st-dual__diff">
-        <h4>关键差异</h4>
-        <ul>
-          {card.criticalDiffs.map((d) => (
-            <li key={d}>{d}</li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
-}
+import { StChartCard, StChartGrid, ChainStepper, DualMirror } from './StViz.jsx';
+import {
+  buildCausalSankeyOption,
+  buildTechExplosionOption,
+  buildThemeLedgerBarOption,
+  buildDimRadarOption,
+} from './stCharts.js';
+import { CANON } from './santiCanon.js';
 
 function CausalChain({ activeId, onSelect, onJumpSpectrum }) {
   const mains = CIV_CHAIN.filter((n) => n.role === 'main');
@@ -43,6 +25,7 @@ function CausalChain({ activeId, onSelect, onJumpSpectrum }) {
 
   return (
     <div className="st-chain">
+      <ChainStepper nodes={mains} activeId={activeId} onSelect={onSelect} playingLabel="主链步进" />
       <div className="st-chain__rail" role="list" aria-label="文明博弈因果主链">
         {mains.map((node, i) => {
           const card = getCard(node.id);
@@ -52,7 +35,8 @@ function CausalChain({ activeId, onSelect, onJumpSpectrum }) {
               <button
                 type="button"
                 role="listitem"
-                className={`st-chain__node${isOn ? ' is-active' : ''}`}
+                className={`st-chain__node st-reveal${isOn ? ' is-active' : ''}`}
+                style={{ '--st-i': i }}
                 aria-pressed={isOn}
                 aria-label={`${node.id} ${card?.title || ''}`}
                 onClick={() => onSelect(node.id)}
@@ -75,14 +59,15 @@ function CausalChain({ activeId, onSelect, onJumpSpectrum }) {
       <div className="st-chain__branches" role="group" aria-label="降维与锁死旁支">
         <p className="st-chain__branch-label mono">旁支 · 打断 / 碾压技术爆炸路径</p>
         <div className="st-chain__branch-row">
-          {branches.map((node) => {
+          {branches.map((node, i) => {
             const card = getCard(node.id);
             const isOn = activeId === node.id;
             return (
               <button
                 key={node.id}
                 type="button"
-                className={`st-chain__node st-chain__node--branch${isOn ? ' is-active' : ''}`}
+                className={`st-chain__node st-chain__node--branch st-reveal${isOn ? ' is-active' : ''}`}
+                style={{ '--st-i': i + 3 }}
                 aria-pressed={isOn}
                 aria-label={`${node.branchLabel}：${node.id} ${card?.title || ''}`}
                 onClick={() => onSelect(node.id)}
@@ -98,7 +83,7 @@ function CausalChain({ activeId, onSelect, onJumpSpectrum }) {
       </div>
 
       {active && (
-        <div className="st-chain__detail" aria-live="polite">
+        <div className="st-chain__detail st-reveal" aria-live="polite">
           <div className="st-chain__detail-head">
             <span className="mono">{active.id}</span>
             <h3>{active.title}</h3>
@@ -107,7 +92,11 @@ function CausalChain({ activeId, onSelect, onJumpSpectrum }) {
             )}
           </div>
           <p className="st-chain__oneliner">{active.oneLiner}</p>
-          <DualMirror card={active} />
+          <DualMirror
+            similar={active.similarMechanisms}
+            diffs={active.criticalDiffs}
+            LinkComp={Link}
+          />
           <button
             type="button"
             className="st-chain__jump"
@@ -130,8 +119,12 @@ function CausalChain({ activeId, onSelect, onJumpSpectrum }) {
 function LedgerSamples({ onJumpSpectrum }) {
   return (
     <div className="st-civ-ledgers">
-      {CIV_LEDGERS.map((L) => (
-        <article key={L.id} className={`st-civ-ledger st-civ-ledger--${L.status}`}>
+      {CIV_LEDGERS.map((L, i) => (
+        <article
+          key={L.id}
+          className={`st-civ-ledger st-civ-ledger--${L.status} st-reveal`}
+          style={{ '--st-i': i }}
+        >
           <header className="st-civ-ledger__head">
             <span className="mono">{L.id}</span>
             <span className={`st-civ-ledger__status mono st-civ-ledger__status--${L.status}`}>
@@ -140,26 +133,11 @@ function LedgerSamples({ onJumpSpectrum }) {
             <h3>{L.title}</h3>
           </header>
           <p className="st-civ-ledger__thesis">{L.thesis}</p>
-          <div className="st-dual st-dual--inline">
-            <div className="st-dual__col st-dual__similar">
-              <h4>相似机制</h4>
-              <ul>
-                {L.similarMechanisms.map((m) => (
-                  <li key={m.text}>
-                    {m.to ? <Link to={m.to}>{m.text}</Link> : m.text}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="st-dual__col st-dual__diff">
-              <h4>关键差异</h4>
-              <ul>
-                {L.criticalDiffs.map((d) => (
-                  <li key={d}>{d}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          <DualMirror
+            similar={L.similarMechanisms}
+            diffs={L.criticalDiffs}
+            LinkComp={Link}
+          />
           <div className="st-civ-ledger__links">
             <span className="mono">关联卡</span>
             {L.linkedCards.map((id) => (
@@ -187,7 +165,7 @@ function LensBoundaryBlock() {
       </p>
       <div className="st-lens-bound__grid">
         {LENS_BOUNDARIES.map((b) => (
-          <article key={b.id} className="st-lens-bound__card" data-lens={b.id}>
+          <article key={b.id} className="st-lens-bound__card st-reveal" data-lens={b.id}>
             <h3>
               {b.to ? <Link to={b.to}>{b.label}</Link> : b.label}
             </h3>
@@ -216,8 +194,7 @@ function LensBoundaryBlock() {
 }
 
 /**
- * Round 2 · 文明博弈深描
- * @param {{ onJumpSpectrum: (ids: string[], focusId?: string) => void }} props
+ * Round 2 · 文明博弈深描（R3 加厚可视化）
  */
 export default function CivPanel({ onJumpSpectrum }) {
   const [chainId, setChainId] = useState('ST-01');
@@ -237,15 +214,34 @@ export default function CivPanel({ onJumpSpectrum }) {
     [onJumpSpectrum],
   );
 
+  const cCards = useMemo(() => CANON.filter((c) => c.dims?.includes('C')), []);
+  const sankey = useMemo(() => buildCausalSankeyOption(), []);
+  const techCurve = useMemo(() => buildTechExplosionOption(), []);
+  const ledgerBar = useMemo(() => buildThemeLedgerBarOption(CIV_LEDGERS), []);
+  const radar = useMemo(() => buildDimRadarOption(cCards), [cCards]);
+
   return (
     <div className="st-civ">
+      <section className="st-sec" aria-labelledby="st-civ-viz-h">
+        <div className="st-sec-head">
+          <h2 id="st-civ-viz-h">文明博弈可视化</h2>
+          <span className="st-sec-tag mono">桑基 · 爆炸曲线 · 台账</span>
+        </div>
+        <StChartGrid>
+          <StChartCard title="公理 → 黑暗森林 → 技术爆炸" tag="因果桑基" option={sankey} height={300} />
+          <StChartCard title="技术爆炸窗口" tag="相对能力" illustrative option={techCurve} height={300} />
+          <StChartCard title="文明台账状态" tag="CL 分布" option={ledgerBar} height={240} variant="compact" />
+          <StChartCard title="C 维概念覆盖" tag="雷达" option={radar} height={280} />
+        </StChartGrid>
+      </section>
+
       <section className="st-sec" aria-labelledby="st-chain-h">
         <div className="st-sec-head">
           <h2 id="st-chain-h">因果链 · 公理 → 黑暗森林 → 技术爆炸</h2>
           <span className="st-sec-tag mono">ST-01 · ST-02 · ST-03 · 旁支 ST-04 / ST-07</span>
         </div>
         <p className="st-lede">
-          主链串联宇宙社会学前提、黑暗森林策略与技术爆炸窗口；智子锁死与水滴作为「打断 / 碾压」旁支挂接，不另开平行叙事。
+          主链串联宇宙社会学前提、黑暗森林策略与技术爆炸窗口；智子锁死与水滴作为「打断 / 碾压」旁支挂接。支持步进播放。
         </p>
         <CausalChain activeId={chainId} onSelect={setChainId} onJumpSpectrum={jump} />
       </section>
@@ -256,7 +252,7 @@ export default function CivPanel({ onJumpSpectrum }) {
           <span className="st-sec-tag mono">点选象限 → 高亮概念卡</span>
         </div>
         <p className="st-lede">
-          点选象限节点将跳转「理论光谱」并高亮对应概念卡（键盘 Enter / Space 可达；尊重 prefers-reduced-motion）。
+          点选象限节点将跳转「理论光谱」并高亮对应概念卡（键盘 Enter / Space；尊重 prefers-reduced-motion）。
         </p>
         <DarkForestChart onSelectQuad={handleQuad} />
         <ul className="st-quad-map mono" aria-label="象限与概念卡映射">
@@ -272,9 +268,6 @@ export default function CivPanel({ onJumpSpectrum }) {
           <h2 id="st-civ-ledger-h">文明博弈台账样例</h2>
           <span className="st-sec-tag mono">已兑现 · 进行中 · 未决</span>
         </div>
-        <p className="st-lede">
-          跨概念主题台账：每份强制「相似机制 + 关键差异」。解释力判定显式分列，禁止虚假收束。
-        </p>
         <LedgerSamples onJumpSpectrum={jump} />
       </section>
 

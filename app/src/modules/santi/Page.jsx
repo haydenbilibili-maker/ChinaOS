@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { PageHeader } from '../../app/ui.jsx';
 import { IntroCard, ModuleFooter, SelectorBar } from '../shared/ModuleParadigm.jsx';
@@ -6,12 +6,21 @@ import { METHOD_STEPS, MODULE_META, DIMS, countFullCards, CANON, QUAD_TO_CARDS }
 import DarkForestChart from './DarkForestChart.jsx';
 import SpectrumPanel from './SpectrumPanel.jsx';
 import CivPanel from './CivPanel.jsx';
+import StateGovPanel from './StateGovPanel.jsx';
+import { StChartCard, StChartGrid } from './StViz.jsx';
+import {
+  buildDimRadarOption,
+  buildLedgerDistOption,
+  buildTechExplosionOption,
+  buildCausalSankeyOption,
+} from './stCharts.js';
 import './santi.css';
 
 const TABS = [
   { key: 'overview', label: 'ST-00 总论' },
   { key: 'spectrum', label: '理论光谱' },
   { key: 'civ', label: '文明博弈' },
+  { key: 'state', label: '国家与治理' },
 ];
 
 const QUICK_LINKS = [
@@ -19,8 +28,10 @@ const QUICK_LINKS = [
   { to: '/gametheory', label: '博弈理论', note: '猜疑链 ↔ 囚徒困境——工具箱 ≠ 黑暗森林处方' },
   { to: '/thucydides', label: '修昔底德', note: '安全困境 ↔ 公理前提——权力转移 ≠ 宇宙接触策略' },
   { to: '/straits', label: '台海局势', note: '仅机制层对照，禁止情节套裁' },
+  { to: '/military', label: '军事力量', note: '代差/拒止可对照；≠ 同人战术复盘' },
   { to: '/powerlogic', label: '权力逻辑', note: '思想钢印 ↔ 语义与叙事锁定' },
   { to: '/sandbox', label: '治国沙盒', note: '动员杠杆 ↔ 情景压力测试' },
+  { to: '/demographic', label: '人口结构', note: '代际交接 ↔ 制度缓冲（禁止年龄歧视表述）' },
 ];
 
 export default function SantiPage() {
@@ -47,8 +58,14 @@ export default function SantiPage() {
     setFocusId(null);
   }, []);
 
+  const radar = useMemo(() => buildDimRadarOption(CANON), []);
+  const ledgerPie = useMemo(() => buildLedgerDistOption(CANON), []);
+  const techCurve = useMemo(() => buildTechExplosionOption(), []);
+  const sankey = useMemo(() => buildCausalSankeyOption(), []);
+
   return (
     <div className="st-page">
+      <div className="st-starfield" aria-hidden="true" />
       <PageHeader
         badge="ST-00 · 推演与训练"
         title={MODULE_META.title}
@@ -59,7 +76,7 @@ export default function SantiPage() {
         本模块以刘慈欣作品中的<strong>可抽象机制</strong>为思想实验透镜，映射文明博弈、国家竞争、社会治理与自我探索。
         它不是同人站或剧情百科——每张概念卡强制写出「相似机制」与「关键差异」。
         方法论：<strong>三体透镜·四步映射法</strong>（概念提纯 → 机制抽象 → 现实对照 → 台账判定）。
-        当前 Round 2：总论 + 光谱 + 文明博弈深描；完整双栏卡 {fullN} 张 / 母本 {CANON.length} 条。
+        当前 Round 3：总论 + 光谱 + 文明博弈 + <strong>国家与治理</strong>；完整双栏卡 {fullN} 张 / 母本 {CANON.length} 条 · v{MODULE_META.version}。
       </IntroCard>
 
       <SelectorBar
@@ -70,7 +87,20 @@ export default function SantiPage() {
       />
 
       {tab === 'overview' && (
-        <div className="st-overview">
+        <div className="st-overview st-tab-panel">
+          <section className="st-sec" aria-labelledby="st-ov-viz-h">
+            <div className="st-sec-head">
+              <h2 id="st-ov-viz-h">总论可视化</h2>
+              <span className="st-sec-tag mono">雷达 · 台账 · 因果 · 爆炸曲线</span>
+            </div>
+            <StChartGrid>
+              <StChartCard title="四维映射覆盖" tag="全库雷达" option={radar} height={280} />
+              <StChartCard title="台账字段分布" tag="已兑现 / 未决 / 慎用" option={ledgerPie} height={280} />
+              <StChartCard title="因果主链流量" tag="桑基" option={sankey} height={280} />
+              <StChartCard title="技术爆炸窗口" tag="相对能力" illustrative option={techCurve} height={280} />
+            </StChartGrid>
+          </section>
+
           <section className="st-sec" aria-labelledby="st-method-h">
             <div className="st-sec-head">
               <h2 id="st-method-h">三体透镜·四步映射法</h2>
@@ -82,7 +112,7 @@ export default function SantiPage() {
             </p>
             <div className="st-steps">
               {METHOD_STEPS.map((s, i) => (
-                <article key={s.key} className="st-step">
+                <article key={s.key} className="st-step st-reveal" style={{ '--st-i': i }}>
                   <span className="st-step__n mono">{String(i + 1).padStart(2, '0')}</span>
                   <h3>{s.title}<small className="mono">{s.en}</small></h3>
                   <p>{s.body}</p>
@@ -98,7 +128,7 @@ export default function SantiPage() {
             </div>
             <p className="st-lede">
               两轴刻画极端思想实验的策略空间；点选象限将跳转理论光谱并高亮对应概念卡。
-              亦可进入「文明博弈」Tab 阅读因果链与台账样例。
+              亦可进入「文明博弈」「国家与治理」阅读编排与台账。
             </p>
             <DarkForestChart onSelectQuad={onSelectQuadOverview} />
           </section>
@@ -113,17 +143,20 @@ export default function SantiPage() {
                 <button
                   key={d.key}
                   type="button"
-                  className="st-dim-tile"
+                  className="st-dim-tile st-reveal"
                   data-dim={d.key}
                   onClick={() => {
                     if (d.key === 'C') setTab('civ');
+                    else if (d.key === 'N' || d.key === 'G') setTab('state');
                     else setTab('spectrum');
                   }}
                 >
                   <span className="mono">{d.key}</span>
                   <strong>{d.label}</strong>
                   <span className="st-dim-tile__go">
-                    {d.key === 'C' ? '进入文明博弈 →' : '进入光谱 →'}
+                    {d.key === 'C' && '进入文明博弈 →'}
+                    {(d.key === 'N' || d.key === 'G') && '进入国家与治理 →'}
+                    {d.key === 'S' && '进入光谱（R4 深描）→'}
                   </span>
                 </button>
               ))}
@@ -137,7 +170,6 @@ export default function SantiPage() {
             </div>
             <p className="st-lede">
               光谱卡内亦嵌模块深链；此处提供总论级快速入口。映射停在机制层，不臆造政治内幕。
-              三体透镜 ≠ 修昔底德叙事 ≠ 经典博弈论——详见「文明博弈」划界块。
             </p>
             <div className="st-xlinks">
               {QUICK_LINKS.map((l) => (
@@ -174,18 +206,30 @@ export default function SantiPage() {
       )}
 
       {tab === 'spectrum' && (
-        <SpectrumPanel
-          highlightIds={highlightIds}
-          focusId={focusId}
-          onHighlightConsumed={onHighlightConsumed}
-        />
+        <div className="st-tab-panel">
+          <SpectrumPanel
+            highlightIds={highlightIds}
+            focusId={focusId}
+            onHighlightConsumed={onHighlightConsumed}
+          />
+        </div>
       )}
 
-      {tab === 'civ' && <CivPanel onJumpSpectrum={jumpToSpectrum} />}
+      {tab === 'civ' && (
+        <div className="st-tab-panel">
+          <CivPanel onJumpSpectrum={jumpToSpectrum} />
+        </div>
+      )}
+
+      {tab === 'state' && (
+        <div className="st-tab-panel">
+          <StateGovPanel onJumpSpectrum={jumpToSpectrum} />
+        </div>
+      )}
 
       <ModuleFooter
         moduleId="santi"
-        disclaimer="思想实验透镜 · 公开作品机制概括，非文学评论站 · 禁止裸类比与阴谋论臆造"
+        disclaimer="思想实验透镜 · 公开作品机制概括，非文学评论站 · 禁止裸类比与阴谋论臆造 · 示意曲线非预测"
         sourceNote={`v${MODULE_META.version}`}
       />
     </div>
