@@ -176,6 +176,43 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
 }
 
 /* === /SJW viz premium === */
+
+/* === SJW signature premium interactivity === */
+.sjw-sig-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,280px);gap:12px;align-items:start;margin-top:8px}
+.sjw-sig-stage{
+  border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);
+  background:linear-gradient(180deg,var(--sjw-ink-800),var(--sjw-ink-900));
+  box-shadow:0 1px 0 rgba(216,221,230,.04),0 18px 48px rgba(0,0,0,.45);
+  padding:8px;overflow:auto;
+}
+.sjw-sig-stage svg{display:block;width:100%;height:auto;max-width:820px;margin:0 auto}
+.sjw-sig-node{cursor:pointer;transition:opacity .2s ease,filter .2s ease}
+.sjw-sig-node:focus-visible{outline:2px solid var(--sjw-ochre);outline-offset:3px}
+.sjw-sig-edge{transition:opacity .2s ease,filter .2s ease}
+.sjw-sig-stage.is-picking .sjw-sig-node{opacity:.28}
+.sjw-sig-stage.is-picking .sjw-sig-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--sjw-ochre) 50%,transparent))}
+.sjw-sig-stage.is-picking .sjw-sig-edge{opacity:.14}
+.sjw-sig-stage.is-picking .sjw-sig-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px color-mix(in srgb,var(--sjw-vermil) 45%,transparent))}
+.sjw-sig-aside{
+  border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);
+  background:linear-gradient(180deg,var(--sjw-ink-800),var(--sjw-ink-900));
+  padding:14px 16px;position:sticky;top:12px;min-height:160px;
+}
+.sjw-sig-aside .k{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.14em;color:var(--sjw-ochre);margin-bottom:6px}
+.sjw-sig-aside h3{font-size:15px;letter-spacing:.06em;margin-bottom:8px;color:var(--sjw-paper-100)}
+.sjw-sig-aside p{font-size:13px;color:var(--sjw-paper-300);line-height:1.65}
+.sjw-sig-aside-empty{font-size:13px;color:var(--sjw-paper-300);opacity:.85}
+.sjw-sig-legend{display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:10px;font-family:var(--sjw-mono);font-size:10px;color:var(--sjw-paper-300)}
+.sjw-sig-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:middle}
+.sjw-sig-guide{font-size:13.5px;color:var(--sjw-paper-300);margin-top:10px;max-width:76ch;line-height:1.7}
+.sjw-sig-guide b{color:var(--sjw-paper-100);font-weight:600}
+@media (max-width:900px){.sjw-sig-layout{grid-template-columns:1fr}.sjw-sig-aside{position:static}}
+@media (prefers-reduced-motion:reduce){
+  .sjw-sig-node,.sjw-sig-edge{transition:none!important}
+  .sjw-sig-stage.is-picking .sjw-sig-node.is-hot,.sjw-sig-stage.is-picking .sjw-sig-edge.is-hot{filter:none}
+}
+/* === /SJW signature premium === */
+
 </style>
 <script>
 (function(){
@@ -214,32 +251,81 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
 <p class="sjw-zhupi">本卷为跨帝国衰变矩阵，非「东方停滞」道德叙事。对照中华线 SJ-07（秦汉唐明清崩解矩阵）：相似机制可写多力共振与财政—军事越阈；关键差异必须写帝国复合体、宗教法统与欧洲体系压力——禁止把治乱循环相位硬套伊斯兰火药帝国。</p>
 
 <section class="sjw-sec" id="sec-sig">
-  <div class="sjw-sec-h"><span class="num">01 · 签名视觉</span><h2>三弧向心合围：外压 × 内汲取 × 法统裂隙</h2></div>
-  <div class="sjw-stage">
-    <svg viewBox="0 0 820 340" role="img" aria-labelledby="s9t s9d">
-      <title id="s9t">奥斯曼、波斯、莫卧儿三弧向心衰变：欧洲体系压力与内部分裂</title>
-      <desc id="s9d">中心为帝国复合体，外围三弧分别标奥斯曼、波斯、莫卧儿，外环欧洲/殖民压力箭头向心。</desc>
-      <rect width="820" height="340" fill="var(--sjw-ink-900)"/>
-      <text x="24" y="28" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-09 · 向心合围母题 · 对照 SJ-07 · 非精确国界</text>
-      <circle cx="410" cy="180" r="54" fill="var(--sjw-ink-800)" stroke="var(--sjw-paper-100)" stroke-width="1.5"/>
-      <text x="410" y="176" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="13">帝国复合体</text>
-      <text x="410" y="196" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">多民族·法统·军户</text>
-      <path d="M200 100 A260 120 0 0 1 620 100" fill="none" stroke="var(--sjw-ochre)" stroke-width="2"/>
-      <text x="410" y="78" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">奥斯曼 · 坦齐马特—一战解体</text>
-      <path d="M160 220 A280 100 0 0 0 400 290" fill="none" stroke="var(--sjw-celadon)" stroke-width="2"/>
-      <text x="200" y="300" fill="var(--sjw-celadon)" font-size="12">波斯 · 萨法维崩—卡扎尔半殖民</text>
-      <path d="M620 220 A280 100 0 0 1 420 290" fill="none" stroke="var(--sjw-vermil)" stroke-width="2"/>
-      <text x="560" y="300" fill="var(--sjw-vermil)" font-size="12">莫卧儿 · 后奥朗则布碎裂</text>
-      <path d="M90 160 L160 170" stroke="var(--sjw-vermil)" stroke-width="1.5" marker-end="url(#a9)"/>
-      <path d="M730 160 L660 170" stroke="var(--sjw-vermil)" stroke-width="1.5" marker-end="url(#a9)"/>
-      <path d="M410 40 L410 90" stroke="var(--sjw-vermil)" stroke-width="1.5" marker-end="url(#a9)"/>
-      <defs><marker id="a9" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0 0 L6 3.5 L0 7 Z" fill="var(--sjw-vermil)"/></marker></defs>
-      <text x="60" y="150" fill="var(--sjw-paper-300)" font-size="10">欧系/俄压</text>
-      <text x="700" y="150" fill="var(--sjw-paper-300)" font-size="10">殖民/公司</text>
-      <text x="410" y="330" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="11">多力共振同构 SJ-07 · 关键差异：复合帝国 vs 郡县大一统</text>
-    </svg>
+  <div class="sjw-sec-h"><span class="num">01 · 签名视觉</span><h2>奥斯曼/波斯/莫卧儿绕空心</h2></div>
+  <div class="sjw-sig-layout">
+    <div class="sjw-sig-stage" id="sjw-sig-stage"><svg viewBox="0 0 820 420" role="img" aria-labelledby="sjw-sig-t sjw-sig-d">
+<title id="sjw-sig-t">奥斯曼/波斯/莫卧儿绕空心</title>
+<desc id="sjw-sig-d">三帝国衰减轨道</desc>
+<rect width="820" height="420" fill="var(--sjw-ink-900)"/>
+<!-- world-line frame -->
+<rect x="8" y="8" width="804" height="404" rx="8" fill="none" stroke="var(--sjw-line)" stroke-width="1"/>
+<rect x="14" y="14" width="12" height="392" rx="2" fill="var(--sjw-celadon)" opacity=".35"/>
+<rect x="794" y="14" width="12" height="392" rx="2" fill="var(--sjw-ochre)" opacity=".35"/>
+<text x="40" y="36" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-09 · 签名切片 · 三帝国衰减轨道</text>
+<path class="sjw-sig-edge" data-edge="o1" d="M410 210 m-160 0 a160 100 0 1 1 320 0 a160 100 0 1 1 -320 0" fill="none" stroke="var(--sjw-ochre)" stroke-width="1.5" stroke-dasharray="6 4"/><path class="sjw-sig-edge" data-edge="o2" d="M410 210 m-110 0 a110 70 0 1 1 220 0 a110 70 0 1 1 -220 0" fill="none" stroke="var(--sjw-celadon)" stroke-width="1.5" stroke-dasharray="4 3"/><path class="sjw-sig-edge" data-edge="o3" d="M410 210 m-60 0 a60 40 0 1 1 120 0 a60 40 0 1 1 -120 0" fill="none" stroke="var(--sjw-vermil)" stroke-width="1.5"/><path class="sjw-sig-edge" data-edge="r1" d="M160 140 L360 200" fill="none" stroke="var(--sjw-ochre)" stroke-width="1.5"/><path class="sjw-sig-edge" data-edge="r2" d="M580 140 L460 200" fill="none" stroke="var(--sjw-celadon)" stroke-width="1.5"/><path class="sjw-sig-edge" data-edge="r3" d="M160 300 L360 230" fill="none" stroke="var(--sjw-vermil)" stroke-width="1.5"/><path class="sjw-sig-edge" data-edge="r4" d="M580 300 L460 230" fill="none" stroke="var(--sjw-ochre)" stroke-width="1.5" stroke-dasharray="3 2"/><g class="sjw-sig-node" data-id="core" id="sjw-n-core" tabindex="0" role="button" aria-label="空心化"><rect x="360" y="185" width="100" height="50" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-paper-100)" stroke-width="1.6"/><text x="410" y="205" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="12">空心化</text><text x="410" y="221" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">中心失能</text></g><g class="sjw-sig-node" data-id="osm" id="sjw-n-osm" tabindex="0" role="button" aria-label="奥斯曼"><rect x="80" y="80" width="160" height="60" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-ochre)" stroke-width="1.6"/><text x="160" y="105" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">奥斯曼</text><text x="160" y="121" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">财政军事</text></g><g class="sjw-sig-node" data-id="pers" id="sjw-n-pers" tabindex="0" role="button" aria-label="波斯"><rect x="580" y="80" width="160" height="60" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-celadon)" stroke-width="1.6"/><text x="660" y="105" text-anchor="middle" fill="var(--sjw-celadon)" font-size="12">波斯</text><text x="660" y="121" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">改革摆动</text></g><g class="sjw-sig-node" data-id="mugh" id="sjw-n-mugh" tabindex="0" role="button" aria-label="莫卧儿"><rect x="80" y="300" width="160" height="60" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-vermil)" stroke-width="1.6"/><text x="160" y="325" text-anchor="middle" fill="var(--sjw-vermil)" font-size="12">莫卧儿</text><text x="160" y="341" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">汲取瓦解</text></g><g class="sjw-sig-node" data-id="ext" id="sjw-n-ext" tabindex="0" role="button" aria-label="欧洲冲击"><rect x="580" y="300" width="160" height="60" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-ochre)" stroke-width="1.6"/><text x="660" y="325" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">欧洲冲击</text><text x="660" y="341" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">外部</text></g><g class="sjw-sig-node" data-id="diff" id="sjw-n-diff" tabindex="0" role="button" aria-label="≠SJ-07"><rect x="300" y="340" width="220" height="50" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-vermil)" stroke-width="1.6"/><text x="410" y="360" text-anchor="middle" fill="var(--sjw-vermil)" font-size="12">≠SJ-07</text><text x="410" y="376" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">关键差异</text></g>
+</svg></div>
+    <aside class="sjw-sig-aside" aria-live="polite">
+      <div id="sjw-sig-empty" class="sjw-sig-aside-empty">点击节点展开机制说明；Esc 清除高亮。</div>
+      <div id="sjw-sig-body" hidden>
+        <div class="k" id="sjw-sig-tag"></div>
+        <h3 id="sjw-sig-name"></h3>
+        <p id="sjw-sig-text"></p>
+      </div>
+    </aside>
   </div>
+  <div class="sjw-sig-legend"><span><i style="background:var(--sjw-paper-100)"></i>合法性/正文</span><span><i style="background:var(--sjw-ochre)"></i>财政/数据</span><span><i style="background:var(--sjw-celadon)"></i>精英/结构</span><span><i style="background:var(--sjw-vermil)"></i>张力/军事</span></div>
+  <p class="sjw-sig-guide"><b>导读：</b>≠郡县崩解竖轴。 点击节点 drill-down；Esc 清除。</p>
 </section>
+<script>
+(function(){
+  var stage=document.getElementById('sjw-sig-stage');
+  if(!stage)return;
+  var nodes=Array.from(stage.querySelectorAll('.sjw-sig-node'));
+  var edges=Array.from(stage.querySelectorAll('.sjw-sig-edge'));
+  var empty=document.getElementById('sjw-sig-empty');
+  var body=document.getElementById('sjw-sig-body');
+  var NODE_DATA={"core": {"name": "空心化 · 中心失能", "tag": "核", "body": "双衰。"}, "osm": {"name": "奥斯曼 · 财政军事", "tag": "行", "body": "改革+分裂。"}, "pers": {"name": "波斯 · 改革摆动", "tag": "行", "body": "反动循环。"}, "mugh": {"name": "莫卧儿 · 汲取瓦解", "tag": "行", "body": "殖民切入。"}, "ext": {"name": "欧洲冲击 · 外部", "tag": "外", "body": "技术贸易。"}, "diff": {"name": "≠SJ-07 · 关键差异", "tag": "对照", "body": "复合≠郡县。"}};
+  var NODE_EDGE={"core": ["o1", "o2", "o3"], "osm": ["o1", "r1"], "pers": ["o2", "r2"], "mugh": ["o3", "r3"], "ext": ["r4"], "diff": ["r3", "r4"]};
+  function clear(){
+    stage.classList.remove('is-picking');
+    nodes.forEach(function(n){n.classList.remove('is-hot')});
+    edges.forEach(function(e){e.classList.remove('is-hot')});
+  }
+  function show(id){
+    var d=NODE_DATA[id]; if(!d)return;
+    if(empty)empty.hidden=true;
+    if(body)body.hidden=false;
+    var t=document.getElementById('sjw-sig-tag');
+    var n=document.getElementById('sjw-sig-name');
+    var x=document.getElementById('sjw-sig-text');
+    if(t)t.textContent=d.tag||'';
+    if(n)n.textContent=d.name||'';
+    if(x)x.textContent=d.body||'';
+  }
+  function pick(id){
+    if(!NODE_DATA[id])return;
+    clear();
+    stage.classList.add('is-picking');
+    nodes.forEach(function(n){n.classList.toggle('is-hot',n.getAttribute('data-id')===id)});
+    var hot=NODE_EDGE[id]||[];
+    edges.forEach(function(e){e.classList.toggle('is-hot',hot.indexOf(e.getAttribute('data-edge'))>=0)});
+    show(id);
+  }
+  nodes.forEach(function(n){
+    var act=function(){pick(n.getAttribute('data-id'))};
+    n.addEventListener('click',act);
+    n.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});
+  });
+  edges.forEach(function(e){
+    e.style.cursor='pointer';
+    e.addEventListener('click',function(){
+      var eid=e.getAttribute('data-edge');
+      for(var id in NODE_EDGE){if((NODE_EDGE[id]||[]).indexOf(eid)>=0){pick(id);return;}}
+    });
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')clear();});
+})();
+</script>
 
 <section class="sjw-sec" id="sec-ledger">
   <div class="sjw-sec-h"><span class="num">02 · 史鉴台账</span><h2>七字段（矩阵卷总括）</h2></div>

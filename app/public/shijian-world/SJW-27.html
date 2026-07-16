@@ -176,6 +176,43 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
 }
 
 /* === /SJW viz premium === */
+
+/* === SJW signature premium interactivity === */
+.sjw-sig-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,280px);gap:12px;align-items:start;margin-top:8px}
+.sjw-sig-stage{
+  border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);
+  background:linear-gradient(180deg,var(--sjw-ink-800),var(--sjw-ink-900));
+  box-shadow:0 1px 0 rgba(216,221,230,.04),0 18px 48px rgba(0,0,0,.45);
+  padding:8px;overflow:auto;
+}
+.sjw-sig-stage svg{display:block;width:100%;height:auto;max-width:820px;margin:0 auto}
+.sjw-sig-node{cursor:pointer;transition:opacity .2s ease,filter .2s ease}
+.sjw-sig-node:focus-visible{outline:2px solid var(--sjw-ochre);outline-offset:3px}
+.sjw-sig-edge{transition:opacity .2s ease,filter .2s ease}
+.sjw-sig-stage.is-picking .sjw-sig-node{opacity:.28}
+.sjw-sig-stage.is-picking .sjw-sig-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--sjw-ochre) 50%,transparent))}
+.sjw-sig-stage.is-picking .sjw-sig-edge{opacity:.14}
+.sjw-sig-stage.is-picking .sjw-sig-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px color-mix(in srgb,var(--sjw-vermil) 45%,transparent))}
+.sjw-sig-aside{
+  border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);
+  background:linear-gradient(180deg,var(--sjw-ink-800),var(--sjw-ink-900));
+  padding:14px 16px;position:sticky;top:12px;min-height:160px;
+}
+.sjw-sig-aside .k{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.14em;color:var(--sjw-ochre);margin-bottom:6px}
+.sjw-sig-aside h3{font-size:15px;letter-spacing:.06em;margin-bottom:8px;color:var(--sjw-paper-100)}
+.sjw-sig-aside p{font-size:13px;color:var(--sjw-paper-300);line-height:1.65}
+.sjw-sig-aside-empty{font-size:13px;color:var(--sjw-paper-300);opacity:.85}
+.sjw-sig-legend{display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:10px;font-family:var(--sjw-mono);font-size:10px;color:var(--sjw-paper-300)}
+.sjw-sig-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:middle}
+.sjw-sig-guide{font-size:13.5px;color:var(--sjw-paper-300);margin-top:10px;max-width:76ch;line-height:1.7}
+.sjw-sig-guide b{color:var(--sjw-paper-100);font-weight:600}
+@media (max-width:900px){.sjw-sig-layout{grid-template-columns:1fr}.sjw-sig-aside{position:static}}
+@media (prefers-reduced-motion:reduce){
+  .sjw-sig-node,.sjw-sig-edge{transition:none!important}
+  .sjw-sig-stage.is-picking .sjw-sig-node.is-hot,.sjw-sig-stage.is-picking .sjw-sig-edge.is-hot{filter:none}
+}
+/* === /SJW signature premium === */
+
 </style>
 <script>
 (function(){
@@ -216,29 +253,81 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
 <p class="sjw-zhupi">本卷为机制对照短卷：把台湾战后土地改革—出口加工区—中小企业网络—半导体/代工升级路径，与 SJW-15（日本）、SJW-24（韩国）并置。叙事冷峻中立，只做制度与产业机制台账；禁止统战话术、煽动性主权口号或道德判词。强制每处映射给出关键差异。</p>
 
 <section class="sjw-sec" id="sec-sig">
-  <div class="sjw-sec-h"><span class="num">01 · 签名视觉</span><h2>三段学习阶：农地改革 → 出口加工 → 芯片节点</h2></div>
-  <div class="sjw-stage">
-    <svg viewBox="0 0 820 300" role="img" aria-labelledby="s27t s27d">
-      <title id="s27t">台湾发展型三段：土地改革、出口加工、半导体升级</title>
-      <desc id="s27d">三阶台阶；侧注与日韩对照闸。</desc>
-      <rect width="820" height="300" fill="var(--sjw-ink-900)"/>
-      <text x="24" y="28" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-27 · 台湾对照短卷 · 机制台账非政治动员</text>
-      <rect x="50" y="120" width="180" height="90" rx="4" fill="var(--sjw-ink-800)" stroke="var(--sjw-ochre)"/>
-      <text x="140" y="155" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">土地改革</text>
-      <text x="140" y="178" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">小农 · 农村稳定</text>
-      <path d="M230 165 H280" stroke="var(--sjw-line)" stroke-width="2"/>
-      <rect x="280" y="100" width="200" height="110" rx="4" fill="var(--sjw-ink-800)" stroke="var(--sjw-celadon)"/>
-      <text x="380" y="145" text-anchor="middle" fill="var(--sjw-celadon)" font-size="12">出口加工 / SME</text>
-      <text x="380" y="168" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">EPZ · 网络学习</text>
-      <path d="M480 155 H530" stroke="var(--sjw-line)" stroke-width="2"/>
-      <rect x="530" y="80" width="230" height="130" rx="4" fill="var(--sjw-ink-800)" stroke="var(--sjw-paper-100)"/>
-      <text x="645" y="130" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="12">半导体 / 代工升级</text>
-      <text x="645" y="155" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">Hsinchu 谱系 · 全球节点</text>
-      <text x="645" y="178" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">↔ 日财阀 / 韩财阀</text>
-      <text x="410" y="260" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="11">岛域规模 × 安全外部项 × 美国市场/技术接口 —— 禁压成「东亚常数」</text>
-    </svg>
+  <div class="sjw-sec-h"><span class="num">01 · 签名视觉</span><h2>岛域三段升级阶地</h2></div>
+  <div class="sjw-sig-layout">
+    <div class="sjw-sig-stage" id="sjw-sig-stage"><svg viewBox="0 0 820 420" role="img" aria-labelledby="sjw-sig-t sjw-sig-d">
+<title id="sjw-sig-t">岛域三段升级阶地</title>
+<desc id="sjw-sig-d">土改→EPZ→芯片阶地</desc>
+<rect width="820" height="420" fill="var(--sjw-ink-900)"/>
+<!-- world-line frame -->
+<rect x="8" y="8" width="804" height="404" rx="8" fill="none" stroke="var(--sjw-line)" stroke-width="1"/>
+<rect x="14" y="14" width="12" height="392" rx="2" fill="var(--sjw-celadon)" opacity=".35"/>
+<rect x="794" y="14" width="12" height="392" rx="2" fill="var(--sjw-ochre)" opacity=".35"/>
+<text x="40" y="36" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-27 · 签名切片 · 土改→EPZ→芯片阶地</text>
+<g class="sjw-sig-node" data-id="land" id="sjw-n-land" tabindex="0" role="button" aria-label="土地改革"><rect x="40" y="80" width="116" height="58" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-ochre)" stroke-width="1.6"/><text x="98" y="104" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">土地改革</text><text x="98" y="120" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">小农稳定</text></g><g class="sjw-sig-node" data-id="epz" id="sjw-n-epz" tabindex="0" role="button" aria-label="出口加工"><rect x="163" y="150" width="116" height="58" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-celadon)" stroke-width="1.6"/><text x="221" y="174" text-anchor="middle" fill="var(--sjw-celadon)" font-size="12">出口加工</text><text x="221" y="190" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">SME网络</text></g><path class="sjw-sig-edge" data-edge="e1" d="M98 109 L163 179" fill="none" stroke="var(--sjw-celadon)" stroke-width="1.8" stroke-dasharray="3 2"/><g class="sjw-sig-node" data-id="park" id="sjw-n-park" tabindex="0" role="button" aria-label="科学园区"><rect x="286" y="80" width="116" height="58" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-paper-100)" stroke-width="1.6"/><text x="344" y="104" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="12">科学园区</text><text x="344" y="120" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">工研院谱系</text></g><path class="sjw-sig-edge" data-edge="e2" d="M221 179 L286 109" fill="none" stroke="var(--sjw-celadon)" stroke-width="1.8"/><g class="sjw-sig-node" data-id="chip" id="sjw-n-chip" tabindex="0" role="button" aria-label="半导体节点"><rect x="409" y="150" width="116" height="58" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-vermil)" stroke-width="1.6"/><text x="467" y="174" text-anchor="middle" fill="var(--sjw-vermil)" font-size="12">半导体节点</text><text x="467" y="190" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">全球链</text></g><path class="sjw-sig-edge" data-edge="e3" d="M344 109 L409 179" fill="none" stroke="var(--sjw-celadon)" stroke-width="1.8" stroke-dasharray="3 2"/><g class="sjw-sig-node" data-id="umb" id="sjw-n-umb" tabindex="0" role="button" aria-label="安全外部项"><rect x="532" y="80" width="116" height="58" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-line)" stroke-width="1.6"/><text x="590" y="104" text-anchor="middle" fill="var(--sjw-line)" font-size="12">安全外部项</text><text x="590" y="120" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">市场/技术</text></g><path class="sjw-sig-edge" data-edge="e4" d="M467 179 L532 109" fill="none" stroke="var(--sjw-celadon)" stroke-width="1.8"/><g class="sjw-sig-node" data-id="diff" id="sjw-n-diff" tabindex="0" role="button" aria-label="≠日韩组织"><rect x="655" y="150" width="116" height="58" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-vermil)" stroke-width="1.6"/><text x="713" y="174" text-anchor="middle" fill="var(--sjw-vermil)" font-size="12">≠日韩组织</text><text x="713" y="190" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">关键差异</text></g><path class="sjw-sig-edge" data-edge="e5" d="M590 109 L655 179" fill="none" stroke="var(--sjw-vermil)" stroke-width="1.8" stroke-dasharray="3 2"/>
+</svg></div>
+    <aside class="sjw-sig-aside" aria-live="polite">
+      <div id="sjw-sig-empty" class="sjw-sig-aside-empty">点击节点展开机制说明；Esc 清除高亮。</div>
+      <div id="sjw-sig-body" hidden>
+        <div class="k" id="sjw-sig-tag"></div>
+        <h3 id="sjw-sig-name"></h3>
+        <p id="sjw-sig-text"></p>
+      </div>
+    </aside>
   </div>
+  <div class="sjw-sig-legend"><span><i style="background:var(--sjw-ochre)"></i>财政/数据</span><span><i style="background:var(--sjw-celadon)"></i>精英/结构</span><span><i style="background:var(--sjw-paper-100)"></i>合法性/正文</span><span><i style="background:var(--sjw-vermil)"></i>张力/军事</span><span><i style="background:var(--sjw-line)"></i>次级/划界</span></div>
+  <p class="sjw-sig-guide"><b>导读：</b>SME≠财阀；非政治动员。 点击节点 drill-down；Esc 清除。</p>
 </section>
+<script>
+(function(){
+  var stage=document.getElementById('sjw-sig-stage');
+  if(!stage)return;
+  var nodes=Array.from(stage.querySelectorAll('.sjw-sig-node'));
+  var edges=Array.from(stage.querySelectorAll('.sjw-sig-edge'));
+  var empty=document.getElementById('sjw-sig-empty');
+  var body=document.getElementById('sjw-sig-body');
+  var NODE_DATA={"land": {"name": "土地改革 · 小农稳定", "tag": "分配", "body": "土改。"}, "epz": {"name": "出口加工 · SME网络", "tag": "学习", "body": "买方链。"}, "park": {"name": "科学园区 · 工研院谱系", "tag": "升级", "body": "代工。"}, "chip": {"name": "半导体节点 · 全球链", "tag": "节点", "body": "工艺。"}, "umb": {"name": "安全外部项 · 市场/技术", "tag": "条件", "body": "窗口。"}, "diff": {"name": "≠日韩组织 · 关键差异", "tag": "对照", "body": "岛域。"}};
+  var NODE_EDGE={"land": ["e1"], "epz": ["e1", "e2"], "park": ["e2", "e3"], "chip": ["e3", "e4"], "umb": ["e4", "e5"], "diff": ["e5"]};
+  function clear(){
+    stage.classList.remove('is-picking');
+    nodes.forEach(function(n){n.classList.remove('is-hot')});
+    edges.forEach(function(e){e.classList.remove('is-hot')});
+  }
+  function show(id){
+    var d=NODE_DATA[id]; if(!d)return;
+    if(empty)empty.hidden=true;
+    if(body)body.hidden=false;
+    var t=document.getElementById('sjw-sig-tag');
+    var n=document.getElementById('sjw-sig-name');
+    var x=document.getElementById('sjw-sig-text');
+    if(t)t.textContent=d.tag||'';
+    if(n)n.textContent=d.name||'';
+    if(x)x.textContent=d.body||'';
+  }
+  function pick(id){
+    if(!NODE_DATA[id])return;
+    clear();
+    stage.classList.add('is-picking');
+    nodes.forEach(function(n){n.classList.toggle('is-hot',n.getAttribute('data-id')===id)});
+    var hot=NODE_EDGE[id]||[];
+    edges.forEach(function(e){e.classList.toggle('is-hot',hot.indexOf(e.getAttribute('data-edge'))>=0)});
+    show(id);
+  }
+  nodes.forEach(function(n){
+    var act=function(){pick(n.getAttribute('data-id'))};
+    n.addEventListener('click',act);
+    n.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});
+  });
+  edges.forEach(function(e){
+    e.style.cursor='pointer';
+    e.addEventListener('click',function(){
+      var eid=e.getAttribute('data-edge');
+      for(var id in NODE_EDGE){if((NODE_EDGE[id]||[]).indexOf(eid)>=0){pick(id);return;}}
+    });
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')clear();});
+})();
+</script>
 
 <section class="sjw-sec" id="sec-ledger">
   <div class="sjw-sec-h"><span class="num">02 · 史鉴台账</span><h2>七字段（短卷）</h2></div>

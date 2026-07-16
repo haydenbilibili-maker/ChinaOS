@@ -176,6 +176,45 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
 }
 
 /* === /SJW viz premium === */
+
+
+
+/* === SJW signature premium interactivity === */
+.sjw-sig-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,280px);gap:12px;align-items:start;margin-top:8px}
+.sjw-sig-stage{
+  border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);
+  background:linear-gradient(180deg,var(--sjw-ink-800),var(--sjw-ink-900));
+  box-shadow:0 1px 0 rgba(216,221,230,.04),0 18px 48px rgba(0,0,0,.45);
+  padding:8px;overflow:auto;
+}
+.sjw-sig-stage svg{display:block;width:100%;height:auto;max-width:820px;margin:0 auto}
+.sjw-sig-node{cursor:pointer;transition:opacity .2s ease,filter .2s ease}
+.sjw-sig-node:focus-visible{outline:2px solid var(--sjw-ochre);outline-offset:3px}
+.sjw-sig-edge{transition:opacity .2s ease,filter .2s ease}
+.sjw-sig-stage.is-picking .sjw-sig-node{opacity:.28}
+.sjw-sig-stage.is-picking .sjw-sig-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--sjw-ochre) 50%,transparent))}
+.sjw-sig-stage.is-picking .sjw-sig-edge{opacity:.14}
+.sjw-sig-stage.is-picking .sjw-sig-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px color-mix(in srgb,var(--sjw-vermil) 45%,transparent))}
+.sjw-sig-aside{
+  border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);
+  background:linear-gradient(180deg,var(--sjw-ink-800),var(--sjw-ink-900));
+  padding:14px 16px;position:sticky;top:12px;min-height:160px;
+}
+.sjw-sig-aside .k{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.14em;color:var(--sjw-ochre);margin-bottom:6px}
+.sjw-sig-aside h3{font-size:15px;letter-spacing:.06em;margin-bottom:8px;color:var(--sjw-paper-100)}
+.sjw-sig-aside p{font-size:13px;color:var(--sjw-paper-300);line-height:1.65}
+.sjw-sig-aside-empty{font-size:13px;color:var(--sjw-paper-300);opacity:.85}
+.sjw-sig-legend{display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:10px;font-family:var(--sjw-mono);font-size:10px;color:var(--sjw-paper-300)}
+.sjw-sig-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:middle}
+.sjw-sig-guide{font-size:13.5px;color:var(--sjw-paper-300);margin-top:10px;max-width:76ch;line-height:1.7}
+.sjw-sig-guide b{color:var(--sjw-paper-100);font-weight:600}
+@media (max-width:900px){.sjw-sig-layout{grid-template-columns:1fr}.sjw-sig-aside{position:static}}
+@media (prefers-reduced-motion:reduce){
+  .sjw-sig-node,.sjw-sig-edge{transition:none!important}
+  .sjw-sig-stage.is-picking .sjw-sig-node.is-hot,.sjw-sig-stage.is-picking .sjw-sig-edge.is-hot{filter:none}
+}
+/* === /SJW signature premium === */
+
 </style>
 <script>
 (function(){
@@ -207,8 +246,8 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
   </div>
   <div class="sjw-meta">
     AS_OF <b>2026-07-16</b><br/>
-    版本 <b>v0.6</b> · Round 6<br/>
-    专题 <b>27</b> 卷 · 令牌 <b>--sjw-*</b>
+    版本 <b>v0.7</b> · Round 7<br/>
+    专题 <b>32</b> 卷 · 令牌 <b>--sjw-*</b>
   </div>
 </header>
 <p class="sjw-zhupi">世界线与中华线并列：同一史鉴引擎·四步法与台账七字段；五力改为「帝国/文明五轴」可配置标签，禁止硬套中国王朝术语。与三体「文明博弈」可深链，但史鉴=历史机制，三体=思想实验——命名不合并。</p>
@@ -226,46 +265,82 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
   <p class="sjw-note">色义与中华线对齐；轴标签可按专题覆盖。详见 <b>docs/shijian/史鉴-世界-架构与专题路线图.md</b>。</p>
 </section>
 
-<section class="sjw-sec" id="sec-sig" aria-labelledby="h-sig">
-  <div class="sjw-sec-h"><span class="num">02 · 签名视觉</span><h2 id="h-sig">双线并列 · 四步回流</h2></div>
-  <div class="sjw-stage">
-    <svg viewBox="0 0 820 280" role="img" aria-labelledby="sig-title sig-desc">
-      <title id="sig-title">史鉴双线：中华治乱螺旋与世界比较矩阵并列，经四步法回流台账</title>
-      <desc id="sig-desc">左侧暖色螺旋示意中华线，右侧冷色矩阵示意世界线，中部四步法箭头汇合。</desc>
-      <rect x="0" y="0" width="820" height="280" fill="var(--sjw-ink-900)"/>
-      <text x="24" y="28" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace" letter-spacing="0.08em">SJW-00 · 双线 IA · viewBox 820×280</text>
-      <!-- China spiral hint -->
-      <circle cx="160" cy="150" r="70" fill="none" stroke="#5f7a6f" stroke-width="1.5" opacity=".5"/>
-      <path d="M160 150 m-40 0 a40 40 0 1 1 80 0 a28 28 0 1 1 -56 0" fill="none" stroke="#a83b2c" stroke-width="2"/>
-      <text x="160" y="150" text-anchor="middle" fill="#e8ddc7" font-size="13" font-family="Songti SC,serif">史鉴·中华</text>
-      <text x="160" y="240" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="11" font-family="ui-monospace,monospace">SJ-00~57</text>
-      <!-- arrows -->
-      <path d="M250 150 H360" stroke="var(--sjw-ochre)" stroke-width="1.5" marker-end="url(#arr)"/>
-      <defs><marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="var(--sjw-ochre)"/></marker></defs>
-      <g font-family="ui-monospace,monospace" font-size="10" fill="var(--sjw-ochre)">
-        <text x="305" y="100" text-anchor="middle">结构</text>
-        <text x="305" y="118" text-anchor="middle">周期</text>
-        <text x="305" y="136" text-anchor="middle">机制</text>
-        <text x="305" y="154" text-anchor="middle">映射</text>
-      </g>
-      <rect x="270" y="88" width="70" height="80" rx="4" fill="none" stroke="var(--sjw-line)"/>
-      <!-- World matrix -->
-      <g transform="translate(420,70)">
-        <rect width="360" height="160" rx="6" fill="var(--sjw-ink-800)" stroke="var(--sjw-line)"/>
-        <text x="180" y="28" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="14" font-family="Songti SC,serif">史鉴·世界 · 专题矩阵</text>
-        <rect x="16" y="44" width="58" height="32" rx="3" fill="none" stroke="var(--sjw-ochre)"/><text x="45" y="64" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="9">崛起</text>
-        <rect x="82" y="44" width="58" height="32" rx="3" fill="none" stroke="var(--sjw-vermil)"/><text x="111" y="64" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="9">大战</text>
-        <rect x="148" y="44" width="58" height="32" rx="3" fill="none" stroke="var(--sjw-celadon)"/><text x="177" y="64" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="9">苏联</text>
-        <rect x="214" y="44" width="58" height="32" rx="3" fill="none" stroke="var(--sjw-paper-100)"/><text x="243" y="64" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="9">文明</text>
-        <rect x="280" y="44" width="64" height="32" rx="3" fill="none" stroke="var(--sjw-ochre)"/><text x="312" y="64" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="9">R6…</text>
-        <text x="180" y="110" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="11">Round 6：韩国 · 拉美债务 · 欧元 · 台湾对照</text>
-        <text x="180" y="135" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="11">七字段台账 · 强制关键差异</text>
-        <text x="180" y="155" text-anchor="middle" fill="var(--sjw-celadon)" font-size="11">≠ 三体动力学命名</text>
-      </g>
-    </svg>
+<section class="sjw-sec" id="sec-sig">
+  <div class="sjw-sec-h"><span class="num">01 · 签名视觉</span><h2>世界线扩张弧 · 三综合锚</h2></div>
+  <div class="sjw-sig-layout">
+    <div class="sjw-sig-stage" id="sjw-sig-stage"><svg viewBox="0 0 820 420" role="img" aria-labelledby="sjw-sig-t sjw-sig-d">
+<title id="sjw-sig-t">世界线扩张弧 · 三综合锚</title>
+<desc id="sjw-sig-d">双轨弧线汇综合层</desc>
+<rect width="820" height="420" fill="var(--sjw-ink-900)"/>
+<!-- world-line frame -->
+<rect x="8" y="8" width="804" height="404" rx="8" fill="none" stroke="var(--sjw-line)" stroke-width="1"/>
+<rect x="14" y="14" width="12" height="392" rx="2" fill="var(--sjw-celadon)" opacity=".35"/>
+<rect x="794" y="14" width="12" height="392" rx="2" fill="var(--sjw-ochre)" opacity=".35"/>
+<text x="40" y="36" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-00 · 签名切片 · 双轨弧线汇综合层</text>
+<path class="sjw-sig-edge" data-edge="arc1" d="M60 120 Q240 50 400 120" fill="none" stroke="var(--sjw-ochre)" stroke-width="2"/><path class="sjw-sig-edge" data-edge="arc2" d="M400 120 Q580 190 760 120" fill="none" stroke="var(--sjw-celadon)" stroke-width="2"/><path class="sjw-sig-edge" data-edge="feed1" d="M135 194 V280" fill="none" stroke="var(--sjw-line)" stroke-width="1.5" stroke-dasharray="4 3"/><path class="sjw-sig-edge" data-edge="feed2" d="M410 229 V280" fill="none" stroke="var(--sjw-line)" stroke-width="1.5" stroke-dasharray="4 3"/><path class="sjw-sig-edge" data-edge="feed3" d="M595 184 V280" fill="none" stroke="var(--sjw-vermil)" stroke-width="1.5"/><g class="sjw-sig-node" data-id="r1" id="sjw-n-r1" tabindex="0" role="button" aria-label="R1"><rect x="40" y="140" width="88" height="54" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-ochre)" stroke-width="1.6"/><text x="84" y="162" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">R1</text><text x="84" y="178" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">01–04</text></g><g class="sjw-sig-node" data-id="r2" id="sjw-n-r2" tabindex="0" role="button" aria-label="R2"><rect x="140" y="95" width="88" height="54" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-ochre)" stroke-width="1.6"/><text x="184" y="117" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">R2</text><text x="184" y="133" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">05–08</text></g><g class="sjw-sig-node" data-id="r3" id="sjw-n-r3" tabindex="0" role="button" aria-label="R3"><rect x="250" y="140" width="88" height="54" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-celadon)" stroke-width="1.6"/><text x="294" y="162" text-anchor="middle" fill="var(--sjw-celadon)" font-size="12">R3</text><text x="294" y="178" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">09–13</text></g><g class="sjw-sig-node" data-id="r4" id="sjw-n-r4" tabindex="0" role="button" aria-label="R4"><rect x="360" y="175" width="88" height="54" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-celadon)" stroke-width="1.6"/><text x="404" y="197" text-anchor="middle" fill="var(--sjw-celadon)" font-size="12">R4</text><text x="404" y="213" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">14–18</text></g><g class="sjw-sig-node" data-id="r5" id="sjw-n-r5" tabindex="0" role="button" aria-label="R5"><rect x="470" y="130" width="88" height="54" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-vermil)" stroke-width="1.6"/><text x="514" y="152" text-anchor="middle" fill="var(--sjw-vermil)" font-size="12">R5</text><text x="514" y="168" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">19–23</text></g><g class="sjw-sig-node" data-id="r6" id="sjw-n-r6" tabindex="0" role="button" aria-label="R6"><rect x="580" y="95" width="88" height="54" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-vermil)" stroke-width="1.6"/><text x="624" y="117" text-anchor="middle" fill="var(--sjw-vermil)" font-size="12">R6</text><text x="624" y="133" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">24–27</text></g><g class="sjw-sig-node" data-id="r7" id="sjw-n-r7" tabindex="0" role="button" aria-label="R7"><rect x="690" y="130" width="88" height="54" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-ochre)" stroke-width="1.6"/><text x="734" y="152" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">R7</text><text x="734" y="168" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">28–32</text></g><g class="sjw-sig-node" data-id="m13" id="sjw-n-m13" tabindex="0" role="button" aria-label="SJW-13"><rect x="90" y="280" width="180" height="70" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-ochre)" stroke-width="1.6"/><text x="180" y="310" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">SJW-13</text><text x="180" y="326" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">霸权交接</text></g><g class="sjw-sig-node" data-id="m17" id="sjw-n-m17" tabindex="0" role="button" aria-label="SJW-17"><rect x="320" y="280" width="180" height="70" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-celadon)" stroke-width="1.6"/><text x="410" y="310" text-anchor="middle" fill="var(--sjw-celadon)" font-size="12">SJW-17</text><text x="410" y="326" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">去殖民</text></g><g class="sjw-sig-node" data-id="m23" id="sjw-n-m23" tabindex="0" role="button" aria-label="SJW-23"><rect x="550" y="280" width="180" height="70" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-paper-100)" stroke-width="1.6"/><text x="640" y="310" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="12">SJW-23</text><text x="640" y="326" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">发展型</text></g>
+</svg></div>
+    <aside class="sjw-sig-aside" aria-live="polite">
+      <div id="sjw-sig-empty" class="sjw-sig-aside-empty">点击节点展开机制说明；Esc 清除高亮。</div>
+      <div id="sjw-sig-body" hidden>
+        <div class="k" id="sjw-sig-tag"></div>
+        <h3 id="sjw-sig-name"></h3>
+        <p id="sjw-sig-text"></p>
+      </div>
+    </aside>
   </div>
+  <div class="sjw-sig-legend"><span><i style="background:var(--sjw-ochre)"></i>财政/数据</span><span><i style="background:var(--sjw-celadon)"></i>精英/结构</span><span><i style="background:var(--sjw-vermil)"></i>张力/军事</span><span><i style="background:var(--sjw-paper-100)"></i>合法性/正文</span></div>
+  <p class="sjw-sig-guide"><b>导读：</b>弧线=Round；方块=综合矩阵满员锚。 点击节点 drill-down；Esc 清除。</p>
 </section>
-
+<script>
+(function(){
+  var stage=document.getElementById('sjw-sig-stage');
+  if(!stage)return;
+  var nodes=Array.from(stage.querySelectorAll('.sjw-sig-node'));
+  var edges=Array.from(stage.querySelectorAll('.sjw-sig-edge'));
+  var empty=document.getElementById('sjw-sig-empty');
+  var body=document.getElementById('sjw-sig-body');
+  var NODE_DATA={"r1": {"name": "R1 · 01–04", "tag": "MVP", "body": "崛起/大战/苏联/文明。"}, "r2": {"name": "R2 · 05–08", "tag": "扩充", "body": "社运/地缘/英美/核。"}, "r3": {"name": "R3 · 09–13", "tag": "综合起", "body": "衰变+霸权矩阵。"}, "r4": {"name": "R4 · 14–18", "tag": "收口", "body": "分流/日本/货币/能源。"}, "r5": {"name": "R5 · 19–23", "tag": "深化", "body": "革命/德国/石油/发展型。"}, "r6": {"name": "R6 · 24–27", "tag": "析出", "body": "韩/拉美/欧元/台。"}, "r7": {"name": "R7 · 28–32", "tag": "扩张", "body": "印度/虎/非/联/科技。"}, "m13": {"name": "SJW-13 · 霸权交接", "tag": "综合", "body": "01/07/11。"}, "m17": {"name": "SJW-17 · 去殖民", "tag": "综合", "body": "三河道。"}, "m23": {"name": "SJW-23 · 发展型", "tag": "综合", "body": "日韩新中台。"}};
+  var NODE_EDGE={"r1": ["arc1", "feed1"], "r2": ["arc1"], "r3": ["arc1", "arc2", "feed2"], "r4": ["arc2"], "r5": ["arc2", "feed3"], "r6": ["arc2", "feed3"], "m13": ["feed1"], "m17": ["feed2"], "m23": ["feed3"], "r7": ["arc2", "feed3"]};
+  function clear(){
+    stage.classList.remove('is-picking');
+    nodes.forEach(function(n){n.classList.remove('is-hot')});
+    edges.forEach(function(e){e.classList.remove('is-hot')});
+  }
+  function show(id){
+    var d=NODE_DATA[id]; if(!d)return;
+    if(empty)empty.hidden=true;
+    if(body)body.hidden=false;
+    var t=document.getElementById('sjw-sig-tag');
+    var n=document.getElementById('sjw-sig-name');
+    var x=document.getElementById('sjw-sig-text');
+    if(t)t.textContent=d.tag||'';
+    if(n)n.textContent=d.name||'';
+    if(x)x.textContent=d.body||'';
+  }
+  function pick(id){
+    if(!NODE_DATA[id])return;
+    clear();
+    stage.classList.add('is-picking');
+    nodes.forEach(function(n){n.classList.toggle('is-hot',n.getAttribute('data-id')===id)});
+    var hot=NODE_EDGE[id]||[];
+    edges.forEach(function(e){e.classList.toggle('is-hot',hot.indexOf(e.getAttribute('data-edge'))>=0)});
+    show(id);
+  }
+  nodes.forEach(function(n){
+    var act=function(){pick(n.getAttribute('data-id'))};
+    n.addEventListener('click',act);
+    n.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});
+  });
+  edges.forEach(function(e){
+    e.style.cursor='pointer';
+    e.addEventListener('click',function(){
+      var eid=e.getAttribute('data-edge');
+      for(var id in NODE_EDGE){if((NODE_EDGE[id]||[]).indexOf(eid)>=0){pick(id);return;}}
+    });
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')clear();});
+})();
+</script>
 <section class="sjw-sec" id="sec-viz-hub-filter">
   <div class="sjw-sec-h"><span class="num">02b · 图谱筛选</span><h2>按类型浏览专题</h2></div>
   <div class="sjw-filter" data-sjw-filter role="toolbar" aria-label="专题类型筛选">
@@ -342,11 +417,24 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
     <a class="sjw-card" data-type="case" href="./SJW-26.html" tabindex="0"><div class="n">SJW-26 · 机制深描</div><h3>欧盟货币一体化</h3><p>EMS→马约→欧元；后广场欧洲锚实验（↔ SJW-16）。</p></a>
     <a class="sjw-card" data-type="case" href="./SJW-27.html" tabindex="0"><div class="n">SJW-27 · 对照短卷</div><h3>台湾发展型对照</h3><p>与 SJW-15/24 并置；强制关键差异；机制台账非政治动员。</p></a>
   </div>
-  <p class="sjw-note">统计：Hub + 专题 <b>27</b> 卷（SJW-01~27）。Round 7 候选见架构文档。</p>
+  <p class="sjw-note">Round 6 收口后专题至 SJW-27；续见下方 Round 7。</p>
+</section>
+
+
+<section class="sjw-sec" id="sec-r7" aria-labelledby="h-r7">
+  <div class="sjw-sec-h"><span class="num">10 · Round 7</span><h2 id="h-r7">印度 / 四小虎 / 非洲资源主权 / 联合国 / 科技标准（5）</h2></div>
+  <div class="sjw-cards" data-sjw-cards>
+    <a class="sjw-card" data-type="case" href="./SJW-28.html" tabindex="0"><div class="n">SJW-28 · 机制深描</div><h3>印度独立后发展路径</h3><p>民主+计划/改革双轨；↔ SJW-10/17 关键差异。</p></a>
+    <a class="sjw-card" data-type="case" href="./SJW-29.html" tabindex="0"><div class="n">SJW-29 · 对照</div><h3>东南亚四小虎</h3><p>新马泰印尼扇面；↔ SJW-15/24。</p></a>
+    <a class="sjw-card" data-type="case" href="./SJW-30.html" tabindex="0"><div class="n">SJW-30 · 机制深描</div><h3>非洲资源—主权张力</h3><p>后殖民机制史；非时评。</p></a>
+    <a class="sjw-card" data-type="case" href="./SJW-31.html" tabindex="0"><div class="n">SJW-31 · 机制深描</div><h3>联合国与国际组织秩序</h3><p>自 SJW-02/08/12 延伸。</p></a>
+    <a class="sjw-card" data-type="case" href="./SJW-32.html" tabindex="0"><div class="n">SJW-32 · 短卷</div><h3>数字/科技标准竞争</h3><p>当代机制；强制关键差异+存疑。</p></a>
+  </div>
+  <p class="sjw-note">统计：Hub + 专题 <b>32</b> 卷（SJW-01~32）。签名 SVG 全库精绘已落盘。</p>
 </section>
 
 <section class="sjw-sec" id="sec-x" aria-labelledby="h-x">
-  <div class="sjw-sec-h"><span class="num">09 · 交叉入口</span><h2 id="h-x">中华线 · 三体 · 威慑 · 认知透镜</h2></div>
+  <div class="sjw-sec-h"><span class="num">11 · 交叉入口</span><h2 id="h-x">中华线 · 三体 · 威慑 · 认知透镜</h2></div>
   <div class="sjw-cards" data-sjw-cards>
     <a class="sjw-card" href="/modules/shijian" tabindex="0"><div class="n">史鉴·中华</div><h3>SJ-00 五柱枢纽</h3><p>治乱螺旋、五力衰变、案例库与古今对照——世界线台账的同源引擎。</p></a>
     <a class="sjw-card" href="/modules/santi" tabindex="0"><div class="n">三体透镜</div><h3>文明博弈（思想实验）</h3><p>可对照猜疑链/威慑；禁止把黑暗森林处方直接导出为世界史规律。</p></a>
@@ -363,7 +451,7 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
       <title id="hubg-t">史鉴世界专题图谱：六轮弧线与三综合层</title>
       <desc id="hubg-d">六段弧线表示 Round 1–6，下方三节点为霸权/去殖民/发展型综合矩阵。</desc>
       <rect width="820" height="340" fill="var(--sjw-ink-900)"/>
-      <text x="24" y="28" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-00 · 专题图谱 · 27 卷</text>
+      <text x="24" y="28" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-00 · 专题图谱 · 32 卷</text>
       <path class="sjw-draw" d="M60 80 Q200 40 340 80" fill="none" stroke="var(--sjw-ochre)" stroke-width="2"/>
       <path class="sjw-draw sjw-draw-d2" d="M340 80 Q480 120 620 80" fill="none" stroke="var(--sjw-celadon)" stroke-width="2"/>
       <path class="sjw-draw sjw-draw-d3" d="M620 80 Q720 50 760 90" fill="none" stroke="var(--sjw-vermil)" stroke-width="2"/>
@@ -409,7 +497,7 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
 </section>
 
 <footer class="sjw-foot">
-  <span>ChinaOS · 史鉴·世界 SJW-00 · v0.6 · AS_OF 2026-07-16</span>
+  <span>ChinaOS · 史鉴·世界 SJW-00 · v0.7 · AS_OF 2026-07-16</span>
   <span>本模块即世界线索引 · 无上级卷</span>
   <span><a href="#sjw-top">↑ 顶</a> · <a href="./SJW-00.html">返回 SJW-00</a> · <a href="/modules/shijian">史鉴·中华</a></span>
 </footer>

@@ -176,6 +176,43 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
 }
 
 /* === /SJW viz premium === */
+
+/* === SJW signature premium interactivity === */
+.sjw-sig-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,280px);gap:12px;align-items:start;margin-top:8px}
+.sjw-sig-stage{
+  border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);
+  background:linear-gradient(180deg,var(--sjw-ink-800),var(--sjw-ink-900));
+  box-shadow:0 1px 0 rgba(216,221,230,.04),0 18px 48px rgba(0,0,0,.45);
+  padding:8px;overflow:auto;
+}
+.sjw-sig-stage svg{display:block;width:100%;height:auto;max-width:820px;margin:0 auto}
+.sjw-sig-node{cursor:pointer;transition:opacity .2s ease,filter .2s ease}
+.sjw-sig-node:focus-visible{outline:2px solid var(--sjw-ochre);outline-offset:3px}
+.sjw-sig-edge{transition:opacity .2s ease,filter .2s ease}
+.sjw-sig-stage.is-picking .sjw-sig-node{opacity:.28}
+.sjw-sig-stage.is-picking .sjw-sig-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--sjw-ochre) 50%,transparent))}
+.sjw-sig-stage.is-picking .sjw-sig-edge{opacity:.14}
+.sjw-sig-stage.is-picking .sjw-sig-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px color-mix(in srgb,var(--sjw-vermil) 45%,transparent))}
+.sjw-sig-aside{
+  border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);
+  background:linear-gradient(180deg,var(--sjw-ink-800),var(--sjw-ink-900));
+  padding:14px 16px;position:sticky;top:12px;min-height:160px;
+}
+.sjw-sig-aside .k{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.14em;color:var(--sjw-ochre);margin-bottom:6px}
+.sjw-sig-aside h3{font-size:15px;letter-spacing:.06em;margin-bottom:8px;color:var(--sjw-paper-100)}
+.sjw-sig-aside p{font-size:13px;color:var(--sjw-paper-300);line-height:1.65}
+.sjw-sig-aside-empty{font-size:13px;color:var(--sjw-paper-300);opacity:.85}
+.sjw-sig-legend{display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:10px;font-family:var(--sjw-mono);font-size:10px;color:var(--sjw-paper-300)}
+.sjw-sig-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:middle}
+.sjw-sig-guide{font-size:13.5px;color:var(--sjw-paper-300);margin-top:10px;max-width:76ch;line-height:1.7}
+.sjw-sig-guide b{color:var(--sjw-paper-100);font-weight:600}
+@media (max-width:900px){.sjw-sig-layout{grid-template-columns:1fr}.sjw-sig-aside{position:static}}
+@media (prefers-reduced-motion:reduce){
+  .sjw-sig-node,.sjw-sig-edge{transition:none!important}
+  .sjw-sig-stage.is-picking .sjw-sig-node.is-hot,.sjw-sig-stage.is-picking .sjw-sig-edge.is-hot{filter:none}
+}
+/* === /SJW signature premium === */
+
 </style>
 <script>
 (function(){
@@ -214,31 +251,81 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
 <p class="sjw-zhupi">禁止把大战简化为「坏人开战」。本卷追问结构：刚性联盟、动员型工业、赔款—复仇循环如何把局部危机放大为体系战争。</p>
 
 <section class="sjw-sec" id="sec-sig">
-  <div class="sjw-sec-h"><span class="num">01 · 签名视觉</span><h2>双战链：锁死 → 透支 → 再锁死</h2></div>
-  <div class="sjw-stage">
-    <svg viewBox="0 0 820 260" role="img" aria-label="一战联盟锁死导致总体战，凡尔赛高压再锁死通往二战">
-      <rect width="820" height="260" fill="var(--sjw-ink-900)"/>
-      <text x="24" y="28" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-02 · 双战链</text>
-      <rect x="40" y="70" width="140" height="70" rx="4" fill="var(--sjw-ink-800)" stroke="var(--sjw-celadon)"/>
-      <text x="110" y="100" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="13">联盟锁死</text>
-      <text x="110" y="120" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="11">1914 升级</text>
-      <path d="M180 105 H230" stroke="var(--sjw-ochre)" stroke-width="2"/>
-      <rect x="230" y="70" width="140" height="70" rx="4" fill="var(--sjw-ink-800)" stroke="var(--sjw-vermil)"/>
-      <text x="300" y="100" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="13">总体战</text>
-      <text x="300" y="120" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="11">工业动员</text>
-      <path d="M370 105 H420" stroke="var(--sjw-ochre)" stroke-width="2"/>
-      <rect x="420" y="70" width="140" height="70" rx="4" fill="var(--sjw-ink-800)" stroke="var(--sjw-ochre)"/>
-      <text x="490" y="100" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="13">凡尔赛高压</text>
-      <text x="490" y="120" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="11">赔款·边界</text>
-      <path d="M560 105 H610" stroke="var(--sjw-vermil)" stroke-width="2"/>
-      <rect x="610" y="70" width="160" height="70" rx="4" fill="var(--sjw-ink-800)" stroke="var(--sjw-vermil)"/>
-      <text x="690" y="100" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="13">再锁死→二战</text>
-      <text x="690" y="120" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="11">修正主义+绥靖</text>
-      <text x="410" y="200" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="12">朱批：二战不是一战简单重演——意识形态动员与种族灭绝政策是关键新增层</text>
-      <text x="410" y="230" text-anchor="middle" fill="var(--sjw-celadon)" font-size="11">死亡与损失数字口径不一，正文只给量级并标出处</text>
-    </svg>
+  <div class="sjw-sec-h"><span class="num">01 · 签名视觉</span><h2>同盟锁死 · 总体战 · 凡尔赛回弹</h2></div>
+  <div class="sjw-sig-layout">
+    <div class="sjw-sig-stage" id="sjw-sig-stage"><svg viewBox="0 0 820 420" role="img" aria-labelledby="sjw-sig-t sjw-sig-d">
+<title id="sjw-sig-t">同盟锁死 · 总体战 · 凡尔赛回弹</title>
+<desc id="sjw-sig-d">联盟死结→总体战</desc>
+<rect width="820" height="420" fill="var(--sjw-ink-900)"/>
+<!-- world-line frame -->
+<rect x="8" y="8" width="804" height="404" rx="8" fill="none" stroke="var(--sjw-line)" stroke-width="1"/>
+<rect x="14" y="14" width="12" height="392" rx="2" fill="var(--sjw-celadon)" opacity=".35"/>
+<rect x="794" y="14" width="12" height="392" rx="2" fill="var(--sjw-ochre)" opacity=".35"/>
+<text x="40" y="36" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-02 · 签名切片 · 联盟死结→总体战</text>
+<path class="sjw-sig-edge" data-edge="tri1" d="M410 90 L210 210" fill="none" stroke="var(--sjw-vermil)" stroke-width="2"/><path class="sjw-sig-edge" data-edge="tri2" d="M410 90 L610 210" fill="none" stroke="var(--sjw-vermil)" stroke-width="2"/><path class="sjw-sig-edge" data-edge="tri3" d="M210 210 L610 210" fill="none" stroke="var(--sjw-vermil)" stroke-width="2"/><path class="sjw-sig-edge" data-edge="up1" d="M410 231 V260" fill="none" stroke="var(--sjw-ochre)" stroke-width="2"/><path class="sjw-sig-edge" data-edge="up2" d="M245 316 L360 350" fill="none" stroke="var(--sjw-vermil)" stroke-width="1.5" stroke-dasharray="4 2"/><path class="sjw-sig-edge" data-edge="up3" d="M575 316 L610 350" fill="none" stroke="var(--sjw-line)" stroke-width="1.5" stroke-dasharray="4 2"/><g class="sjw-sig-node" data-id="entente" id="sjw-n-entente" tabindex="0" role="button" aria-label="协约锁"><rect x="120" y="70" width="140" height="56" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-celadon)" stroke-width="1.6"/><text x="190" y="93" text-anchor="middle" fill="var(--sjw-celadon)" font-size="12">协约锁</text><text x="190" y="109" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">法俄英</text></g><g class="sjw-sig-node" data-id="central" id="sjw-n-central" tabindex="0" role="button" aria-label="同盟锁"><rect x="560" y="70" width="140" height="56" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-ochre)" stroke-width="1.6"/><text x="630" y="93" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">同盟锁</text><text x="630" y="109" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">德奥</text></g><g class="sjw-sig-node" data-id="spark" id="sjw-n-spark" tabindex="0" role="button" aria-label="萨拉热窝"><rect x="350" y="175" width="120" height="56" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-vermil)" stroke-width="1.6"/><text x="410" y="198" text-anchor="middle" fill="var(--sjw-vermil)" font-size="12">萨拉热窝</text><text x="410" y="214" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">1914</text></g><g class="sjw-sig-node" data-id="total" id="sjw-n-total" tabindex="0" role="button" aria-label="总体战"><rect x="160" y="260" width="170" height="56" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-ochre)" stroke-width="1.6"/><text x="245" y="283" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">总体战</text><text x="245" y="299" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">动员透支</text></g><g class="sjw-sig-node" data-id="versailles" id="sjw-n-versailles" tabindex="0" role="button" aria-label="凡尔赛"><rect x="490" y="260" width="170" height="56" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-paper-100)" stroke-width="1.6"/><text x="575" y="283" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="12">凡尔赛</text><text x="575" y="299" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">惩罚结构</text></g><g class="sjw-sig-node" data-id="rearm" id="sjw-n-rearm" tabindex="0" role="button" aria-label="再武装"><rect x="280" y="350" width="160" height="56" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-vermil)" stroke-width="1.6"/><text x="360" y="373" text-anchor="middle" fill="var(--sjw-vermil)" font-size="12">再武装</text><text x="360" y="389" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">1930s</text></g><g class="sjw-sig-node" data-id="nuclear" id="sjw-n-nuclear" tabindex="0" role="button" aria-label="核门槛"><rect x="540" y="350" width="140" height="56" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-line)" stroke-width="1.6"/><text x="610" y="373" text-anchor="middle" fill="var(--sjw-line)" font-size="12">核门槛</text><text x="610" y="389" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">→08</text></g>
+</svg></div>
+    <aside class="sjw-sig-aside" aria-live="polite">
+      <div id="sjw-sig-empty" class="sjw-sig-aside-empty">点击节点展开机制说明；Esc 清除高亮。</div>
+      <div id="sjw-sig-body" hidden>
+        <div class="k" id="sjw-sig-tag"></div>
+        <h3 id="sjw-sig-name"></h3>
+        <p id="sjw-sig-text"></p>
+      </div>
+    </aside>
   </div>
+  <div class="sjw-sig-legend"><span><i style="background:var(--sjw-celadon)"></i>精英/结构</span><span><i style="background:var(--sjw-ochre)"></i>财政/数据</span><span><i style="background:var(--sjw-vermil)"></i>张力/军事</span><span><i style="background:var(--sjw-paper-100)"></i>合法性/正文</span><span><i style="background:var(--sjw-line)"></i>次级/划界</span></div>
+  <p class="sjw-sig-guide"><b>导读：</b>死结升级局部危机。 点击节点 drill-down；Esc 清除。</p>
 </section>
+<script>
+(function(){
+  var stage=document.getElementById('sjw-sig-stage');
+  if(!stage)return;
+  var nodes=Array.from(stage.querySelectorAll('.sjw-sig-node'));
+  var edges=Array.from(stage.querySelectorAll('.sjw-sig-edge'));
+  var empty=document.getElementById('sjw-sig-empty');
+  var body=document.getElementById('sjw-sig-body');
+  var NODE_DATA={"entente": {"name": "协约锁 · 法俄英", "tag": "联盟", "body": "刚性承诺。"}, "central": {"name": "同盟锁 · 德奥", "tag": "联盟", "body": "对称刚性。"}, "spark": {"name": "萨拉热窝 · 1914", "tag": "扳机", "body": "义务升级。"}, "total": {"name": "总体战 · 动员透支", "tag": "透支", "body": "工业动员。"}, "versailles": {"name": "凡尔赛 · 惩罚结构", "tag": "秩序", "body": "修正动能。"}, "rearm": {"name": "再武装 · 1930s", "tag": "窗口", "body": "危机合流。"}, "nuclear": {"name": "核门槛 · →08", "tag": "差异", "body": "函数改写。"}};
+  var NODE_EDGE={"entente": ["tri1", "tri3"], "central": ["tri2", "tri3"], "spark": ["tri1", "tri2", "tri3", "up1"], "total": ["up1", "up2"], "versailles": ["up1", "up3"], "rearm": ["up2"], "nuclear": ["up3"]};
+  function clear(){
+    stage.classList.remove('is-picking');
+    nodes.forEach(function(n){n.classList.remove('is-hot')});
+    edges.forEach(function(e){e.classList.remove('is-hot')});
+  }
+  function show(id){
+    var d=NODE_DATA[id]; if(!d)return;
+    if(empty)empty.hidden=true;
+    if(body)body.hidden=false;
+    var t=document.getElementById('sjw-sig-tag');
+    var n=document.getElementById('sjw-sig-name');
+    var x=document.getElementById('sjw-sig-text');
+    if(t)t.textContent=d.tag||'';
+    if(n)n.textContent=d.name||'';
+    if(x)x.textContent=d.body||'';
+  }
+  function pick(id){
+    if(!NODE_DATA[id])return;
+    clear();
+    stage.classList.add('is-picking');
+    nodes.forEach(function(n){n.classList.toggle('is-hot',n.getAttribute('data-id')===id)});
+    var hot=NODE_EDGE[id]||[];
+    edges.forEach(function(e){e.classList.toggle('is-hot',hot.indexOf(e.getAttribute('data-edge'))>=0)});
+    show(id);
+  }
+  nodes.forEach(function(n){
+    var act=function(){pick(n.getAttribute('data-id'))};
+    n.addEventListener('click',act);
+    n.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});
+  });
+  edges.forEach(function(e){
+    e.style.cursor='pointer';
+    e.addEventListener('click',function(){
+      var eid=e.getAttribute('data-edge');
+      for(var id in NODE_EDGE){if((NODE_EDGE[id]||[]).indexOf(eid)>=0){pick(id);return;}}
+    });
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')clear();});
+})();
+</script>
 
 <section class="sjw-sec" id="sec-ledger">
   <div class="sjw-sec-h"><span class="num">02 · 史鉴台账</span><h2>七字段（双战作为连续机制）</h2></div>

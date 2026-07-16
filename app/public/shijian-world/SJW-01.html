@@ -176,6 +176,43 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
 }
 
 /* === /SJW viz premium === */
+
+/* === SJW signature premium interactivity === */
+.sjw-sig-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,280px);gap:12px;align-items:start;margin-top:8px}
+.sjw-sig-stage{
+  border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);
+  background:linear-gradient(180deg,var(--sjw-ink-800),var(--sjw-ink-900));
+  box-shadow:0 1px 0 rgba(216,221,230,.04),0 18px 48px rgba(0,0,0,.45);
+  padding:8px;overflow:auto;
+}
+.sjw-sig-stage svg{display:block;width:100%;height:auto;max-width:820px;margin:0 auto}
+.sjw-sig-node{cursor:pointer;transition:opacity .2s ease,filter .2s ease}
+.sjw-sig-node:focus-visible{outline:2px solid var(--sjw-ochre);outline-offset:3px}
+.sjw-sig-edge{transition:opacity .2s ease,filter .2s ease}
+.sjw-sig-stage.is-picking .sjw-sig-node{opacity:.28}
+.sjw-sig-stage.is-picking .sjw-sig-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--sjw-ochre) 50%,transparent))}
+.sjw-sig-stage.is-picking .sjw-sig-edge{opacity:.14}
+.sjw-sig-stage.is-picking .sjw-sig-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px color-mix(in srgb,var(--sjw-vermil) 45%,transparent))}
+.sjw-sig-aside{
+  border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);
+  background:linear-gradient(180deg,var(--sjw-ink-800),var(--sjw-ink-900));
+  padding:14px 16px;position:sticky;top:12px;min-height:160px;
+}
+.sjw-sig-aside .k{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.14em;color:var(--sjw-ochre);margin-bottom:6px}
+.sjw-sig-aside h3{font-size:15px;letter-spacing:.06em;margin-bottom:8px;color:var(--sjw-paper-100)}
+.sjw-sig-aside p{font-size:13px;color:var(--sjw-paper-300);line-height:1.65}
+.sjw-sig-aside-empty{font-size:13px;color:var(--sjw-paper-300);opacity:.85}
+.sjw-sig-legend{display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:10px;font-family:var(--sjw-mono);font-size:10px;color:var(--sjw-paper-300)}
+.sjw-sig-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:middle}
+.sjw-sig-guide{font-size:13.5px;color:var(--sjw-paper-300);margin-top:10px;max-width:76ch;line-height:1.7}
+.sjw-sig-guide b{color:var(--sjw-paper-100);font-weight:600}
+@media (max-width:900px){.sjw-sig-layout{grid-template-columns:1fr}.sjw-sig-aside{position:static}}
+@media (prefers-reduced-motion:reduce){
+  .sjw-sig-node,.sjw-sig-edge{transition:none!important}
+  .sjw-sig-stage.is-picking .sjw-sig-node.is-hot,.sjw-sig-stage.is-picking .sjw-sig-edge.is-hot{filter:none}
+}
+/* === /SJW signature premium === */
+
 </style>
 <script>
 (function(){
@@ -214,23 +251,81 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
 <p class="sjw-zhupi">本卷是矩阵而非单案：回答「一类崛起如何运转」。行=案例，列=可配置五轴角色。数字仅标公认量级与出处；争议标〔存疑〕。</p>
 
 <section class="sjw-sec" id="sec-sig">
-  <div class="sjw-sec-h"><span class="num">01 · 签名视觉</span><h2>崛起窗口：相对优势叠合</h2></div>
-  <div class="sjw-stage">
-    <svg viewBox="0 0 820 300" role="img" aria-label="大国崛起：财政信用、海权、制度学习三弧叠合形成窗口">
-      <rect width="820" height="300" fill="var(--sjw-ink-900)"/>
-      <text x="24" y="28" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-01 · 崛起窗口几何</text>
-      <ellipse cx="410" cy="160" rx="210" ry="90" fill="none" stroke="var(--sjw-ochre)" stroke-width="2" opacity=".85"/>
-      <ellipse cx="350" cy="160" rx="210" ry="90" fill="none" stroke="var(--sjw-celadon)" stroke-width="2" opacity=".85"/>
-      <ellipse cx="470" cy="160" rx="210" ry="90" fill="none" stroke="var(--sjw-vermil)" stroke-width="2" opacity=".85"/>
-      <text x="280" y="100" fill="var(--sjw-ochre)" font-size="12">财政—信用</text>
-      <text x="400" y="78" fill="var(--sjw-celadon)" font-size="12">制度学习</text>
-      <text x="520" y="100" fill="var(--sjw-vermil)" font-size="12">军事—海权</text>
-      <circle cx="410" cy="160" r="28" fill="color-mix(in srgb, var(--sjw-ochre) 25%, transparent)" stroke="var(--sjw-paper-100)"/>
-      <text x="410" y="165" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="12">窗口</text>
-      <text x="410" y="270" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="12">三弧叠合≠单因论；窗口关闭后路径依赖锁定</text>
-    </svg>
+  <div class="sjw-sec-h"><span class="num">01 · 签名视觉</span><h2>财政·海权·制度 三弧窗口</h2></div>
+  <div class="sjw-sig-layout">
+    <div class="sjw-sig-stage" id="sjw-sig-stage"><svg viewBox="0 0 820 420" role="img" aria-labelledby="sjw-sig-t sjw-sig-d">
+<title id="sjw-sig-t">财政·海权·制度 三弧窗口</title>
+<desc id="sjw-sig-d">三弧叠合崛起窗口</desc>
+<rect width="820" height="420" fill="var(--sjw-ink-900)"/>
+<!-- world-line frame -->
+<rect x="8" y="8" width="804" height="404" rx="8" fill="none" stroke="var(--sjw-line)" stroke-width="1"/>
+<rect x="14" y="14" width="12" height="392" rx="2" fill="var(--sjw-celadon)" opacity=".35"/>
+<rect x="794" y="14" width="12" height="392" rx="2" fill="var(--sjw-ochre)" opacity=".35"/>
+<text x="40" y="36" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-01 · 签名切片 · 三弧叠合崛起窗口</text>
+<path class="sjw-sig-edge" data-edge="arcF" d="M120 280 A220 110 0 0 1 520 280" fill="none" stroke="var(--sjw-ochre)" stroke-width="2.5"/><path class="sjw-sig-edge" data-edge="arcI" d="M180 300 A200 120 0 0 1 580 260" fill="none" stroke="var(--sjw-celadon)" stroke-width="2.5"/><path class="sjw-sig-edge" data-edge="arcM" d="M220 250 A210 100 0 0 1 640 290" fill="none" stroke="var(--sjw-vermil)" stroke-width="2.5"/><path class="sjw-sig-edge" data-edge="toW1" d="M180 228 L360 230" fill="none" stroke="var(--sjw-ochre)" stroke-width="1.5" stroke-dasharray="3 2"/><path class="sjw-sig-edge" data-edge="toW2" d="M400 126 L410 210" fill="none" stroke="var(--sjw-celadon)" stroke-width="1.5" stroke-dasharray="3 2"/><path class="sjw-sig-edge" data-edge="toW3" d="M620 228 L460 230" fill="none" stroke="var(--sjw-vermil)" stroke-width="1.5" stroke-dasharray="3 2"/><g class="sjw-sig-node" data-id="finance" id="sjw-n-finance" tabindex="0" role="button" aria-label="财政—信用"><rect x="70" y="200" width="110" height="56" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-ochre)" stroke-width="1.6"/><text x="125" y="223" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">财政—信用</text><text x="125" y="239" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">公债/银行</text></g><g class="sjw-sig-node" data-id="institution" id="sjw-n-institution" tabindex="0" role="button" aria-label="制度学习"><rect x="340" y="70" width="120" height="56" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-celadon)" stroke-width="1.6"/><text x="400" y="93" text-anchor="middle" fill="var(--sjw-celadon)" font-size="12">制度学习</text><text x="400" y="109" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">议会/官僚</text></g><g class="sjw-sig-node" data-id="naval" id="sjw-n-naval" tabindex="0" role="button" aria-label="军事—海权"><rect x="620" y="200" width="120" height="56" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-vermil)" stroke-width="1.6"/><text x="680" y="223" text-anchor="middle" fill="var(--sjw-vermil)" font-size="12">军事—海权</text><text x="680" y="239" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">航运投射</text></g><g class="sjw-sig-node" data-id="window" id="sjw-n-window" tabindex="0" role="button" aria-label="崛起窗口"><rect x="360" y="210" width="100" height="60" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-paper-100)" stroke-width="1.6"/><text x="410" y="235" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="12">崛起窗口</text><text x="410" y="251" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">叠合区</text></g><g class="sjw-sig-node" data-id="nl" id="sjw-n-nl" tabindex="0" role="button" aria-label="荷兰"><rect x="70" y="320" width="100" height="50" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-ochre)" stroke-width="1.6"/><text x="120" y="340" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">荷兰</text><text x="120" y="356" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">17c</text></g><g class="sjw-sig-node" data-id="uk" id="sjw-n-uk" tabindex="0" role="button" aria-label="英国"><rect x="250" y="330" width="100" height="50" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-celadon)" stroke-width="1.6"/><text x="300" y="350" text-anchor="middle" fill="var(--sjw-celadon)" font-size="12">英国</text><text x="300" y="366" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">工海权</text></g><g class="sjw-sig-node" data-id="us" id="sjw-n-us" tabindex="0" role="button" aria-label="美国"><rect x="430" y="330" width="100" height="50" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-vermil)" stroke-width="1.6"/><text x="480" y="350" text-anchor="middle" fill="var(--sjw-vermil)" font-size="12">美国</text><text x="480" y="366" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">规模信用</text></g><g class="sjw-sig-node" data-id="lock" id="sjw-n-lock" tabindex="0" role="button" aria-label="路径锁定"><rect x="610" y="330" width="120" height="50" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-line)" stroke-width="1.6"/><text x="670" y="350" text-anchor="middle" fill="var(--sjw-line)" font-size="12">路径锁定</text><text x="670" y="366" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">窗口后</text></g>
+</svg></div>
+    <aside class="sjw-sig-aside" aria-live="polite">
+      <div id="sjw-sig-empty" class="sjw-sig-aside-empty">点击节点展开机制说明；Esc 清除高亮。</div>
+      <div id="sjw-sig-body" hidden>
+        <div class="k" id="sjw-sig-tag"></div>
+        <h3 id="sjw-sig-name"></h3>
+        <p id="sjw-sig-text"></p>
+      </div>
+    </aside>
   </div>
+  <div class="sjw-sig-legend"><span><i style="background:var(--sjw-ochre)"></i>财政/数据</span><span><i style="background:var(--sjw-celadon)"></i>精英/结构</span><span><i style="background:var(--sjw-vermil)"></i>张力/军事</span><span><i style="background:var(--sjw-paper-100)"></i>合法性/正文</span><span><i style="background:var(--sjw-line)"></i>次级/划界</span></div>
+  <p class="sjw-sig-guide"><b>导读：</b>叠合=窗口；关闭后路径锁定。 点击节点 drill-down；Esc 清除。</p>
 </section>
+<script>
+(function(){
+  var stage=document.getElementById('sjw-sig-stage');
+  if(!stage)return;
+  var nodes=Array.from(stage.querySelectorAll('.sjw-sig-node'));
+  var edges=Array.from(stage.querySelectorAll('.sjw-sig-edge'));
+  var empty=document.getElementById('sjw-sig-empty');
+  var body=document.getElementById('sjw-sig-body');
+  var NODE_DATA={"finance": {"name": "财政—信用 · 公债/银行", "tag": "轴一", "body": "崛起引燃。"}, "institution": {"name": "制度学习 · 议会/官僚", "tag": "轴二", "body": "吸收条件。"}, "naval": {"name": "军事—海权 · 航运投射", "tag": "轴四", "body": "护航秩序。"}, "window": {"name": "崛起窗口 · 叠合区", "tag": "核心", "body": "短暂叠合。"}, "nl": {"name": "荷兰 · 17c", "tag": "案例", "body": "联省财政。"}, "uk": {"name": "英国 · 工海权", "tag": "案例", "body": "银行+工业。"}, "us": {"name": "美国 · 规模信用", "tag": "案例", "body": "美元+两洋。"}, "lock": {"name": "路径锁定 · 窗口后", "tag": "关闭", "body": "新相对价格。"}};
+  var NODE_EDGE={"finance": ["arcF", "toW1"], "institution": ["arcI", "toW2"], "naval": ["arcM", "toW3"], "window": ["toW1", "toW2", "toW3"], "nl": ["arcF"], "uk": ["arcI"], "us": ["arcM"], "lock": ["arcM"]};
+  function clear(){
+    stage.classList.remove('is-picking');
+    nodes.forEach(function(n){n.classList.remove('is-hot')});
+    edges.forEach(function(e){e.classList.remove('is-hot')});
+  }
+  function show(id){
+    var d=NODE_DATA[id]; if(!d)return;
+    if(empty)empty.hidden=true;
+    if(body)body.hidden=false;
+    var t=document.getElementById('sjw-sig-tag');
+    var n=document.getElementById('sjw-sig-name');
+    var x=document.getElementById('sjw-sig-text');
+    if(t)t.textContent=d.tag||'';
+    if(n)n.textContent=d.name||'';
+    if(x)x.textContent=d.body||'';
+  }
+  function pick(id){
+    if(!NODE_DATA[id])return;
+    clear();
+    stage.classList.add('is-picking');
+    nodes.forEach(function(n){n.classList.toggle('is-hot',n.getAttribute('data-id')===id)});
+    var hot=NODE_EDGE[id]||[];
+    edges.forEach(function(e){e.classList.toggle('is-hot',hot.indexOf(e.getAttribute('data-edge'))>=0)});
+    show(id);
+  }
+  nodes.forEach(function(n){
+    var act=function(){pick(n.getAttribute('data-id'))};
+    n.addEventListener('click',act);
+    n.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});
+  });
+  edges.forEach(function(e){
+    e.style.cursor='pointer';
+    e.addEventListener('click',function(){
+      var eid=e.getAttribute('data-edge');
+      for(var id in NODE_EDGE){if((NODE_EDGE[id]||[]).indexOf(eid)>=0){pick(id);return;}}
+    });
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')clear();});
+})();
+</script>
 
 <section class="sjw-sec" id="sec-matrix">
   <div class="sjw-sec-h"><span class="num">02 · 对比矩阵</span><h2>近代崛起路径（示意角色）</h2></div>

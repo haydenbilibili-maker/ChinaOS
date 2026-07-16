@@ -176,6 +176,43 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
 }
 
 /* === /SJW viz premium === */
+
+/* === SJW signature premium interactivity === */
+.sjw-sig-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,280px);gap:12px;align-items:start;margin-top:8px}
+.sjw-sig-stage{
+  border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);
+  background:linear-gradient(180deg,var(--sjw-ink-800),var(--sjw-ink-900));
+  box-shadow:0 1px 0 rgba(216,221,230,.04),0 18px 48px rgba(0,0,0,.45);
+  padding:8px;overflow:auto;
+}
+.sjw-sig-stage svg{display:block;width:100%;height:auto;max-width:820px;margin:0 auto}
+.sjw-sig-node{cursor:pointer;transition:opacity .2s ease,filter .2s ease}
+.sjw-sig-node:focus-visible{outline:2px solid var(--sjw-ochre);outline-offset:3px}
+.sjw-sig-edge{transition:opacity .2s ease,filter .2s ease}
+.sjw-sig-stage.is-picking .sjw-sig-node{opacity:.28}
+.sjw-sig-stage.is-picking .sjw-sig-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--sjw-ochre) 50%,transparent))}
+.sjw-sig-stage.is-picking .sjw-sig-edge{opacity:.14}
+.sjw-sig-stage.is-picking .sjw-sig-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px color-mix(in srgb,var(--sjw-vermil) 45%,transparent))}
+.sjw-sig-aside{
+  border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);
+  background:linear-gradient(180deg,var(--sjw-ink-800),var(--sjw-ink-900));
+  padding:14px 16px;position:sticky;top:12px;min-height:160px;
+}
+.sjw-sig-aside .k{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.14em;color:var(--sjw-ochre);margin-bottom:6px}
+.sjw-sig-aside h3{font-size:15px;letter-spacing:.06em;margin-bottom:8px;color:var(--sjw-paper-100)}
+.sjw-sig-aside p{font-size:13px;color:var(--sjw-paper-300);line-height:1.65}
+.sjw-sig-aside-empty{font-size:13px;color:var(--sjw-paper-300);opacity:.85}
+.sjw-sig-legend{display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:10px;font-family:var(--sjw-mono);font-size:10px;color:var(--sjw-paper-300)}
+.sjw-sig-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:middle}
+.sjw-sig-guide{font-size:13.5px;color:var(--sjw-paper-300);margin-top:10px;max-width:76ch;line-height:1.7}
+.sjw-sig-guide b{color:var(--sjw-paper-100);font-weight:600}
+@media (max-width:900px){.sjw-sig-layout{grid-template-columns:1fr}.sjw-sig-aside{position:static}}
+@media (prefers-reduced-motion:reduce){
+  .sjw-sig-node,.sjw-sig-edge{transition:none!important}
+  .sjw-sig-stage.is-picking .sjw-sig-node.is-hot,.sjw-sig-stage.is-picking .sjw-sig-edge.is-hot{filter:none}
+}
+/* === /SJW signature premium === */
+
 </style>
 <script>
 (function(){
@@ -214,28 +251,81 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
 <p class="sjw-zhupi">本卷写「革命合法性如何被战争机器制度化」：从三级会议危机到共和国动员，再到拿破仑法典与大陆封锁对欧洲均势的冲击，终以维也纳体系回摆（↔ SJW-12）。非英雄传，非意识形态判词；重点是合法性叙事、财政—征兵动员与国际秩序容器三者的耦合。</p>
 
 <section class="sjw-sec" id="sec-sig">
-  <div class="sjw-sec-h"><span class="num">01 · 签名视觉</span><h2>主权喷泉 → 帝国拱顶 → 维也纳回摆</h2></div>
-  <div class="sjw-stage">
-    <svg viewBox="0 0 820 300" role="img" aria-labelledby="s19t s19d">
-      <title id="s19t">大革命主权喷泉、拿破仑帝国拱顶、维也纳均势回摆三阶段</title>
-      <desc id="s19d">左喷泉、中拱门、右水平均势条，箭头示意相位迁移。</desc>
-      <rect width="820" height="300" fill="var(--sjw-ink-900)"/>
-      <text x="24" y="28" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-19 · 秩序实验 · 示意非战役年表</text>
-      <ellipse cx="150" cy="200" rx="70" ry="20" fill="none" stroke="var(--sjw-vermil)" stroke-width="2"/>
-      <path d="M150 180 L150 90 L120 140 L180 140 Z" fill="none" stroke="var(--sjw-vermil)" stroke-width="1.5"/>
-      <text x="150" y="75" text-anchor="middle" fill="var(--sjw-vermil)" font-size="12">人民主权动员</text>
-      <path d="M230 150 H300" stroke="var(--sjw-line)" stroke-width="2"/>
-      <path d="M320 200 L410 80 L500 200" fill="none" stroke="var(--sjw-ochre)" stroke-width="2"/>
-      <text x="410" y="70" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">拿破仑拱顶</text>
-      <text x="410" y="230" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">法典 · 征兵 · 大陆封锁</text>
-      <path d="M520 150 H590" stroke="var(--sjw-line)" stroke-width="2"/>
-      <rect x="600" y="120" width="180" height="80" rx="4" fill="var(--sjw-ink-800)" stroke="var(--sjw-celadon)"/>
-      <text x="690" y="155" text-anchor="middle" fill="var(--sjw-celadon)" font-size="13">维也纳回摆</text>
-      <text x="690" y="178" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">正统 · 均势 · 会议</text>
-      <text x="410" y="280" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="11">合法性实验可输出动员红利，亦可耗尽国际秩序容忍度</text>
-    </svg>
+  <div class="sjw-sec-h"><span class="num">01 · 签名视觉</span><h2>人民主权动员 · 拿破仑 · 回摆</h2></div>
+  <div class="sjw-sig-layout">
+    <div class="sjw-sig-stage" id="sjw-sig-stage"><svg viewBox="0 0 820 420" role="img" aria-labelledby="sjw-sig-t sjw-sig-d">
+<title id="sjw-sig-t">人民主权动员 · 拿破仑 · 回摆</title>
+<desc id="sjw-sig-d">革命螺旋→大陆体系</desc>
+<rect width="820" height="420" fill="var(--sjw-ink-900)"/>
+<!-- world-line frame -->
+<rect x="8" y="8" width="804" height="404" rx="8" fill="none" stroke="var(--sjw-line)" stroke-width="1"/>
+<rect x="14" y="14" width="12" height="392" rx="2" fill="var(--sjw-celadon)" opacity=".35"/>
+<rect x="794" y="14" width="12" height="392" rx="2" fill="var(--sjw-ochre)" opacity=".35"/>
+<text x="40" y="36" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-19 · 签名切片 · 革命螺旋→大陆体系</text>
+<g class="sjw-sig-node" data-id="rev" id="sjw-n-rev" tabindex="0" role="button" aria-label="革命动员"><rect x="40" y="110" width="116" height="58" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-vermil)" stroke-width="1.6"/><text x="98" y="134" text-anchor="middle" fill="var(--sjw-vermil)" font-size="12">革命动员</text><text x="98" y="150" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">1789</text></g><g class="sjw-sig-node" data-id="terror" id="sjw-n-terror" tabindex="0" role="button" aria-label="战争恐怖"><rect x="163" y="180" width="116" height="58" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-ochre)" stroke-width="1.6"/><text x="221" y="204" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">战争恐怖</text><text x="221" y="220" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">1790s</text></g><path class="sjw-sig-edge" data-edge="e1" d="M98 139 L163 209" fill="none" stroke="var(--sjw-celadon)" stroke-width="1.8" stroke-dasharray="3 2"/><g class="sjw-sig-node" data-id="nap" id="sjw-n-nap" tabindex="0" role="button" aria-label="拿破仑"><rect x="286" y="110" width="116" height="58" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-celadon)" stroke-width="1.6"/><text x="344" y="134" text-anchor="middle" fill="var(--sjw-celadon)" font-size="12">拿破仑</text><text x="344" y="150" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">法典行政</text></g><path class="sjw-sig-edge" data-edge="e2" d="M221 209 L286 139" fill="none" stroke="var(--sjw-celadon)" stroke-width="1.8"/><g class="sjw-sig-node" data-id="block" id="sjw-n-block" tabindex="0" role="button" aria-label="大陆封锁"><rect x="409" y="180" width="116" height="58" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-vermil)" stroke-width="1.6"/><text x="467" y="204" text-anchor="middle" fill="var(--sjw-vermil)" font-size="12">大陆封锁</text><text x="467" y="220" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">反英</text></g><path class="sjw-sig-edge" data-edge="e3" d="M344 139 L409 209" fill="none" stroke="var(--sjw-celadon)" stroke-width="1.8" stroke-dasharray="3 2"/><g class="sjw-sig-node" data-id="vien" id="sjw-n-vien" tabindex="0" role="button" aria-label="维也纳回摆"><rect x="532" y="110" width="116" height="58" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-paper-100)" stroke-width="1.6"/><text x="590" y="134" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="12">维也纳回摆</text><text x="590" y="150" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">→12</text></g><path class="sjw-sig-edge" data-edge="e4" d="M467 209 L532 139" fill="none" stroke="var(--sjw-celadon)" stroke-width="1.8"/><g class="sjw-sig-node" data-id="nation" id="sjw-n-nation" tabindex="0" role="button" aria-label="民族浪潮"><rect x="655" y="180" width="116" height="58" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-ochre)" stroke-width="1.6"/><text x="713" y="204" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">民族浪潮</text><text x="713" y="220" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">未决</text></g><path class="sjw-sig-edge" data-edge="e5" d="M590 139 L655 209" fill="none" stroke="var(--sjw-vermil)" stroke-width="1.8" stroke-dasharray="3 2"/>
+</svg></div>
+    <aside class="sjw-sig-aside" aria-live="polite">
+      <div id="sjw-sig-empty" class="sjw-sig-aside-empty">点击节点展开机制说明；Esc 清除高亮。</div>
+      <div id="sjw-sig-body" hidden>
+        <div class="k" id="sjw-sig-tag"></div>
+        <h3 id="sjw-sig-name"></h3>
+        <p id="sjw-sig-text"></p>
+      </div>
+    </aside>
   </div>
+  <div class="sjw-sig-legend"><span><i style="background:var(--sjw-vermil)"></i>张力/军事</span><span><i style="background:var(--sjw-ochre)"></i>财政/数据</span><span><i style="background:var(--sjw-celadon)"></i>精英/结构</span><span><i style="background:var(--sjw-paper-100)"></i>合法性/正文</span></div>
+  <p class="sjw-sig-guide"><b>导读：</b>≠宇宙社会学。 点击节点 drill-down；Esc 清除。</p>
 </section>
+<script>
+(function(){
+  var stage=document.getElementById('sjw-sig-stage');
+  if(!stage)return;
+  var nodes=Array.from(stage.querySelectorAll('.sjw-sig-node'));
+  var edges=Array.from(stage.querySelectorAll('.sjw-sig-edge'));
+  var empty=document.getElementById('sjw-sig-empty');
+  var body=document.getElementById('sjw-sig-body');
+  var NODE_DATA={"rev": {"name": "革命动员 · 1789", "tag": "合法性", "body": "人民主权。"}, "terror": {"name": "战争恐怖 · 1790s", "tag": "相位", "body": "动员升级。"}, "nap": {"name": "拿破仑 · 法典行政", "tag": "实验", "body": "大陆体系。"}, "block": {"name": "大陆封锁 · 反英", "tag": "失败点", "body": "海权。"}, "vien": {"name": "维也纳回摆 · →12", "tag": "下游", "body": "正统。"}, "nation": {"name": "民族浪潮 · 未决", "tag": "遗产", "body": "统一。"}};
+  var NODE_EDGE={"rev": ["e1"], "terror": ["e1", "e2"], "nap": ["e2", "e3"], "block": ["e3", "e4"], "vien": ["e4", "e5"], "nation": ["e5"]};
+  function clear(){
+    stage.classList.remove('is-picking');
+    nodes.forEach(function(n){n.classList.remove('is-hot')});
+    edges.forEach(function(e){e.classList.remove('is-hot')});
+  }
+  function show(id){
+    var d=NODE_DATA[id]; if(!d)return;
+    if(empty)empty.hidden=true;
+    if(body)body.hidden=false;
+    var t=document.getElementById('sjw-sig-tag');
+    var n=document.getElementById('sjw-sig-name');
+    var x=document.getElementById('sjw-sig-text');
+    if(t)t.textContent=d.tag||'';
+    if(n)n.textContent=d.name||'';
+    if(x)x.textContent=d.body||'';
+  }
+  function pick(id){
+    if(!NODE_DATA[id])return;
+    clear();
+    stage.classList.add('is-picking');
+    nodes.forEach(function(n){n.classList.toggle('is-hot',n.getAttribute('data-id')===id)});
+    var hot=NODE_EDGE[id]||[];
+    edges.forEach(function(e){e.classList.toggle('is-hot',hot.indexOf(e.getAttribute('data-edge'))>=0)});
+    show(id);
+  }
+  nodes.forEach(function(n){
+    var act=function(){pick(n.getAttribute('data-id'))};
+    n.addEventListener('click',act);
+    n.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});
+  });
+  edges.forEach(function(e){
+    e.style.cursor='pointer';
+    e.addEventListener('click',function(){
+      var eid=e.getAttribute('data-edge');
+      for(var id in NODE_EDGE){if((NODE_EDGE[id]||[]).indexOf(eid)>=0){pick(id);return;}}
+    });
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')clear();});
+})();
+</script>
 
 <section class="sjw-sec" id="sec-ledger">
   <div class="sjw-sec-h"><span class="num">02 · 史鉴台账</span><h2>七字段</h2></div>

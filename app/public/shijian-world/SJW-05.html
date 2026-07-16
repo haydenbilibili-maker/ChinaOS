@@ -178,6 +178,43 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
 }
 
 /* === /SJW viz premium === */
+
+/* === SJW signature premium interactivity === */
+.sjw-sig-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,280px);gap:12px;align-items:start;margin-top:8px}
+.sjw-sig-stage{
+  border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);
+  background:linear-gradient(180deg,var(--sjw-ink-800),var(--sjw-ink-900));
+  box-shadow:0 1px 0 rgba(216,221,230,.04),0 18px 48px rgba(0,0,0,.45);
+  padding:8px;overflow:auto;
+}
+.sjw-sig-stage svg{display:block;width:100%;height:auto;max-width:820px;margin:0 auto}
+.sjw-sig-node{cursor:pointer;transition:opacity .2s ease,filter .2s ease}
+.sjw-sig-node:focus-visible{outline:2px solid var(--sjw-ochre);outline-offset:3px}
+.sjw-sig-edge{transition:opacity .2s ease,filter .2s ease}
+.sjw-sig-stage.is-picking .sjw-sig-node{opacity:.28}
+.sjw-sig-stage.is-picking .sjw-sig-node.is-hot{opacity:1;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--sjw-ochre) 50%,transparent))}
+.sjw-sig-stage.is-picking .sjw-sig-edge{opacity:.14}
+.sjw-sig-stage.is-picking .sjw-sig-edge.is-hot{opacity:1;filter:drop-shadow(0 0 3px color-mix(in srgb,var(--sjw-vermil) 45%,transparent))}
+.sjw-sig-aside{
+  border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);
+  background:linear-gradient(180deg,var(--sjw-ink-800),var(--sjw-ink-900));
+  padding:14px 16px;position:sticky;top:12px;min-height:160px;
+}
+.sjw-sig-aside .k{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.14em;color:var(--sjw-ochre);margin-bottom:6px}
+.sjw-sig-aside h3{font-size:15px;letter-spacing:.06em;margin-bottom:8px;color:var(--sjw-paper-100)}
+.sjw-sig-aside p{font-size:13px;color:var(--sjw-paper-300);line-height:1.65}
+.sjw-sig-aside-empty{font-size:13px;color:var(--sjw-paper-300);opacity:.85}
+.sjw-sig-legend{display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:10px;font-family:var(--sjw-mono);font-size:10px;color:var(--sjw-paper-300)}
+.sjw-sig-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:middle}
+.sjw-sig-guide{font-size:13.5px;color:var(--sjw-paper-300);margin-top:10px;max-width:76ch;line-height:1.7}
+.sjw-sig-guide b{color:var(--sjw-paper-100);font-weight:600}
+@media (max-width:900px){.sjw-sig-layout{grid-template-columns:1fr}.sjw-sig-aside{position:static}}
+@media (prefers-reduced-motion:reduce){
+  .sjw-sig-node,.sjw-sig-edge{transition:none!important}
+  .sjw-sig-stage.is-picking .sjw-sig-node.is-hot,.sjw-sig-stage.is-picking .sjw-sig-edge.is-hot{filter:none}
+}
+/* === /SJW signature premium === */
+
 </style>
 <script>
 
@@ -218,37 +255,81 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
 <p class="sjw-zhupi">本卷为谱系矩阵，非单案辩护或批判书。与 SJW-03（苏联国家形态）衔接：本卷看「运动→党→国家」谱系分支，苏卷看「国家五轴共振」。政治中立；数字标口径或〔存疑〕。</p>
 
 <section class="sjw-sec" id="sec-sig">
-  <div class="sjw-sec-h"><span class="num">01 · 签名视觉</span><h2>运动枝杈：公社 → 国际 → 国家</h2></div>
-  <div class="sjw-stage">
-    <svg viewBox="0 0 820 320" role="img" aria-labelledby="s5t s5d">
-      <title id="s5t">社会主义运动谱系：巴黎公社、第二国际、列宁主义国家三枝分叉</title>
-      <desc id="s5d">左干为工人运动与马克思主义文本，中部第二国际议会道路，右部十月革命后国家形态，底部社会民主支线。</desc>
-      <rect width="820" height="320" fill="var(--sjw-ink-900)"/>
-      <text x="24" y="28" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-05 · 谱系枝杈 · viewBox 820×320</text>
-      <path d="M80 160 H280" stroke="var(--sjw-paper-300)" stroke-width="2"/>
-      <circle cx="80" cy="160" r="8" fill="var(--sjw-celadon)"/>
-      <text x="80" y="140" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="12">文本/工会</text>
-      <path d="M280 160 L400 90" stroke="var(--sjw-ochre)" stroke-width="2"/>
-      <path d="M280 160 L400 160" stroke="var(--sjw-celadon)" stroke-width="2"/>
-      <path d="M280 160 L400 230" stroke="var(--sjw-vermil)" stroke-width="2"/>
-      <rect x="400" y="60" width="140" height="56" rx="4" fill="var(--sjw-ink-800)" stroke="var(--sjw-ochre)"/>
-      <text x="470" y="85" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">社会民主</text>
-      <text x="470" y="102" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">议会·福利</text>
-      <rect x="400" y="132" width="140" height="56" rx="4" fill="var(--sjw-ink-800)" stroke="var(--sjw-celadon)"/>
-      <text x="470" y="157" text-anchor="middle" fill="var(--sjw-celadon)" font-size="12">第二国际</text>
-      <text x="470" y="174" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">1889–1914</text>
-      <rect x="400" y="204" width="140" height="56" rx="4" fill="var(--sjw-ink-800)" stroke="var(--sjw-vermil)"/>
-      <text x="470" y="229" text-anchor="middle" fill="var(--sjw-vermil)" font-size="12">列宁主义</text>
-      <text x="470" y="246" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">党国·共产国际</text>
-      <path d="M540 232 H620" stroke="var(--sjw-vermil)" stroke-width="1.5"/>
-      <rect x="620" y="204" width="150" height="56" rx="4" fill="none" stroke="var(--sjw-vermil)"/>
-      <text x="695" y="229" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="12">苏联/阵营</text>
-      <text x="695" y="246" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">→ SJW-03</text>
-      <text x="80" y="200" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="11">1871 公社</text>
-      <text x="410" y="300" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="11">分支=组织形态与夺取政权路径，非道德评分</text>
-    </svg>
+  <div class="sjw-sec-h"><span class="num">01 · 签名视觉</span><h2>公社→国际→列宁/社民</h2></div>
+  <div class="sjw-sig-layout">
+    <div class="sjw-sig-stage" id="sjw-sig-stage"><svg viewBox="0 0 820 420" role="img" aria-labelledby="sjw-sig-t sjw-sig-d">
+<title id="sjw-sig-t">公社→国际→列宁/社民</title>
+<desc id="sjw-sig-d">运动谱系分叉树</desc>
+<rect width="820" height="420" fill="var(--sjw-ink-900)"/>
+<!-- world-line frame -->
+<rect x="8" y="8" width="804" height="404" rx="8" fill="none" stroke="var(--sjw-line)" stroke-width="1"/>
+<rect x="14" y="14" width="12" height="392" rx="2" fill="var(--sjw-celadon)" opacity=".35"/>
+<rect x="794" y="14" width="12" height="392" rx="2" fill="var(--sjw-ochre)" opacity=".35"/>
+<text x="40" y="36" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-05 · 签名切片 · 运动谱系分叉树</text>
+<path class="sjw-sig-edge" data-edge="t1" d="M410 100 V130" fill="none" stroke="var(--sjw-ochre)" stroke-width="2"/><path class="sjw-sig-edge" data-edge="f1" d="M350 180 L210 230" fill="none" stroke="var(--sjw-vermil)" stroke-width="2"/><path class="sjw-sig-edge" data-edge="f2" d="M470 180 L610 230" fill="none" stroke="var(--sjw-celadon)" stroke-width="2"/><path class="sjw-sig-edge" data-edge="d1" d="M210 290 V320" fill="none" stroke="var(--sjw-vermil)" stroke-width="1.5"/><path class="sjw-sig-edge" data-edge="d2" d="M610 290 V320" fill="none" stroke="var(--sjw-celadon)" stroke-width="1.5"/><path class="sjw-sig-edge" data-edge="d3" d="M410 360 V370" fill="none" stroke="var(--sjw-line)" stroke-width="1.5" stroke-dasharray="3 2"/><g class="sjw-sig-node" data-id="commune" id="sjw-n-commune" tabindex="0" role="button" aria-label="巴黎公社"><rect x="340" y="50" width="140" height="50" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-ochre)" stroke-width="1.6"/><text x="410" y="70" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">巴黎公社</text><text x="410" y="86" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">1871</text></g><g class="sjw-sig-node" data-id="intl" id="sjw-n-intl" tabindex="0" role="button" aria-label="第二国际"><rect x="320" y="130" width="180" height="50" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-celadon)" stroke-width="1.6"/><text x="410" y="150" text-anchor="middle" fill="var(--sjw-celadon)" font-size="12">第二国际</text><text x="410" y="166" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">组织化</text></g><g class="sjw-sig-node" data-id="lenin" id="sjw-n-lenin" tabindex="0" role="button" aria-label="列宁主义"><rect x="120" y="230" width="180" height="60" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-vermil)" stroke-width="1.6"/><text x="210" y="255" text-anchor="middle" fill="var(--sjw-vermil)" font-size="12">列宁主义</text><text x="210" y="271" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">政权化</text></g><g class="sjw-sig-node" data-id="socdem" id="sjw-n-socdem" tabindex="0" role="button" aria-label="社民道路"><rect x="520" y="230" width="180" height="60" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-celadon)" stroke-width="1.6"/><text x="610" y="255" text-anchor="middle" fill="var(--sjw-celadon)" font-size="12">社民道路</text><text x="610" y="271" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">议会</text></g><g class="sjw-sig-node" data-id="soviet" id="sjw-n-soviet" tabindex="0" role="button" aria-label="苏联形态"><rect x="120" y="320" width="180" height="50" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-vermil)" stroke-width="1.6"/><text x="210" y="340" text-anchor="middle" fill="var(--sjw-vermil)" font-size="12">苏联形态</text><text x="210" y="356" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">→03</text></g><g class="sjw-sig-node" data-id="welfare" id="sjw-n-welfare" tabindex="0" role="button" aria-label="福利国家"><rect x="520" y="320" width="180" height="50" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-ochre)" stroke-width="1.6"/><text x="610" y="340" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">福利国家</text><text x="610" y="356" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">西欧</text></g><g class="sjw-sig-node" data-id="post" id="sjw-n-post" tabindex="0" role="button" aria-label="后冷战"><rect x="320" y="370" width="180" height="40" rx="5" fill="var(--sjw-ink-800)" stroke="var(--sjw-paper-100)" stroke-width="1.6"/><text x="410" y="385" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="12">后冷战</text><text x="410" y="401" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">未决</text></g>
+</svg></div>
+    <aside class="sjw-sig-aside" aria-live="polite">
+      <div id="sjw-sig-empty" class="sjw-sig-aside-empty">点击节点展开机制说明；Esc 清除高亮。</div>
+      <div id="sjw-sig-body" hidden>
+        <div class="k" id="sjw-sig-tag"></div>
+        <h3 id="sjw-sig-name"></h3>
+        <p id="sjw-sig-text"></p>
+      </div>
+    </aside>
   </div>
+  <div class="sjw-sig-legend"><span><i style="background:var(--sjw-ochre)"></i>财政/数据</span><span><i style="background:var(--sjw-celadon)"></i>精英/结构</span><span><i style="background:var(--sjw-vermil)"></i>张力/军事</span><span><i style="background:var(--sjw-paper-100)"></i>合法性/正文</span></div>
+  <p class="sjw-sig-guide"><b>导读：</b>分叉树非单线进步。 点击节点 drill-down；Esc 清除。</p>
 </section>
+<script>
+(function(){
+  var stage=document.getElementById('sjw-sig-stage');
+  if(!stage)return;
+  var nodes=Array.from(stage.querySelectorAll('.sjw-sig-node'));
+  var edges=Array.from(stage.querySelectorAll('.sjw-sig-edge'));
+  var empty=document.getElementById('sjw-sig-empty');
+  var body=document.getElementById('sjw-sig-body');
+  var NODE_DATA={"commune": {"name": "巴黎公社 · 1871", "tag": "源头", "body": "短暂实验。"}, "intl": {"name": "第二国际 · 组织化", "tag": "组织", "body": "高峰。"}, "lenin": {"name": "列宁主义 · 政权化", "tag": "分叉", "body": "夺取。"}, "socdem": {"name": "社民道路 · 议会", "tag": "分叉", "body": "改良。"}, "soviet": {"name": "苏联形态 · →03", "tag": "下游", "body": "五轴。"}, "welfare": {"name": "福利国家 · 西欧", "tag": "下游", "body": "遗产。"}, "post": {"name": "后冷战 · 未决", "tag": "开放", "body": "重组。"}};
+  var NODE_EDGE={"commune": ["t1"], "intl": ["t1", "f1", "f2"], "lenin": ["f1", "d1"], "socdem": ["f2", "d2"], "soviet": ["d1"], "welfare": ["d2"], "post": ["d3"]};
+  function clear(){
+    stage.classList.remove('is-picking');
+    nodes.forEach(function(n){n.classList.remove('is-hot')});
+    edges.forEach(function(e){e.classList.remove('is-hot')});
+  }
+  function show(id){
+    var d=NODE_DATA[id]; if(!d)return;
+    if(empty)empty.hidden=true;
+    if(body)body.hidden=false;
+    var t=document.getElementById('sjw-sig-tag');
+    var n=document.getElementById('sjw-sig-name');
+    var x=document.getElementById('sjw-sig-text');
+    if(t)t.textContent=d.tag||'';
+    if(n)n.textContent=d.name||'';
+    if(x)x.textContent=d.body||'';
+  }
+  function pick(id){
+    if(!NODE_DATA[id])return;
+    clear();
+    stage.classList.add('is-picking');
+    nodes.forEach(function(n){n.classList.toggle('is-hot',n.getAttribute('data-id')===id)});
+    var hot=NODE_EDGE[id]||[];
+    edges.forEach(function(e){e.classList.toggle('is-hot',hot.indexOf(e.getAttribute('data-edge'))>=0)});
+    show(id);
+  }
+  nodes.forEach(function(n){
+    var act=function(){pick(n.getAttribute('data-id'))};
+    n.addEventListener('click',act);
+    n.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});
+  });
+  edges.forEach(function(e){
+    e.style.cursor='pointer';
+    e.addEventListener('click',function(){
+      var eid=e.getAttribute('data-edge');
+      for(var id in NODE_EDGE){if((NODE_EDGE[id]||[]).indexOf(eid)>=0){pick(id);return;}}
+    });
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')clear();});
+})();
+</script>
 
 <section class="sjw-sec" id="sec-matrix">
   <div class="sjw-sec-h"><span class="num">02 · 谱系矩阵</span><h2>节点 × 五轴角色</h2></div>
