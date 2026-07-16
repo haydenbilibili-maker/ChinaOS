@@ -94,12 +94,88 @@ body{
 .sjw-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sjw-line);font-family:var(--sjw-mono);font-size:10px;color:var(--sjw-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .sjw-foot a{color:var(--sjw-celadon);text-decoration:none}
 .sjw-foot a:hover{color:var(--sjw-ochre)}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sjw-card,.sjw-chip{transition:none}}
 @media (max-width:900px){.sjw-dual,.sjw-cards,.sjw-tri{grid-template-columns:1fr}.sjw-axes{grid-template-columns:1fr 1fr}}
 @media (max-width:768px){.sjw-meta{text-align:left}.sjw-axes{grid-template-columns:1fr}}
 html[data-theme="light"]{--sjw-ink-900:#eef1f4;--sjw-ink-800:#e4e8ed;--sjw-paper-100:#1a1e24;--sjw-paper-300:#4a5564;--sjw-vermil:#9a3428;--sjw-celadon:#3a5a68;--sjw-ochre:#8a6528;--sjw-line:#c5ccd6}
 html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%, #e2e7ec 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #e8ecf0 0%, transparent 50%),var(--sjw-ink-900);color:var(--sjw-paper-100)}
 
+
+/* === SJW viz premium (Round 6+) === */
+@keyframes sjw-fade-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes sjw-pulse{0%,100%{opacity:.55}50%{opacity:1}}
+@keyframes sjw-dash{to{stroke-dashoffset:0}}
+@keyframes sjw-node-in{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+.sjw-reveal-stagger > header,
+.sjw-reveal-stagger > .sjw-zhupi,
+.sjw-reveal-stagger > .sjw-sec,
+.sjw-reveal-stagger > footer{
+  animation:sjw-fade-in .4s cubic-bezier(.22,.61,.36,1) both;
+}
+.sjw-reveal-stagger > *:nth-child(1){animation-delay:.04s}
+.sjw-reveal-stagger > *:nth-child(2){animation-delay:.08s}
+.sjw-reveal-stagger > *:nth-child(3){animation-delay:.12s}
+.sjw-reveal-stagger > *:nth-child(4){animation-delay:.16s}
+.sjw-reveal-stagger > *:nth-child(5){animation-delay:.2s}
+.sjw-reveal-stagger > *:nth-child(6){animation-delay:.24s}
+.sjw-reveal-stagger > *:nth-child(7){animation-delay:.28s}
+.sjw-reveal-stagger > *:nth-child(8){animation-delay:.32s}
+.sjw-reveal-stagger > *:nth-child(9){animation-delay:.36s}
+.sjw-reveal-stagger > *:nth-child(10){animation-delay:.4s}
+.sjw-reveal-stagger > *:nth-child(11){animation-delay:.44s}
+.sjw-reveal-stagger > *:nth-child(12){animation-delay:.48s}
+.sjw-card{transition:border-color .2s,transform .2s,box-shadow .2s}
+.sjw-card:hover,.sjw-card:focus-visible{
+  border-color:var(--sjw-ochre);
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(0,0,0,.35);
+  outline:none;
+}
+.sjw-stage svg .sjw-draw{
+  stroke-dasharray:420;
+  stroke-dashoffset:420;
+  animation:sjw-dash 1.4s ease forwards;
+}
+.sjw-stage svg .sjw-draw-d2{animation-delay:.25s}
+.sjw-stage svg .sjw-draw-d3{animation-delay:.5s}
+.sjw-stage svg .sjw-node{
+  transform-box:fill-box;transform-origin:center;
+  animation:sjw-node-in .5s ease both;
+}
+.sjw-stage svg .sjw-node:nth-of-type(1){animation-delay:.1s}
+.sjw-stage svg .sjw-node:nth-of-type(2){animation-delay:.18s}
+.sjw-stage svg .sjw-node:nth-of-type(3){animation-delay:.26s}
+.sjw-stage svg .sjw-node:nth-of-type(4){animation-delay:.34s}
+.sjw-stage svg .sjw-node:nth-of-type(5){animation-delay:.42s}
+.sjw-stage svg .sjw-pulse{animation:sjw-pulse 2.4s ease-in-out infinite}
+.sjw-heat td.sjw-h{font-family:var(--sjw-mono);font-size:11px;text-align:center;font-weight:600}
+.sjw-heat td.sjw-h0{background:color-mix(in srgb,var(--sjw-ink-900) 80%,transparent);color:var(--sjw-paper-300)}
+.sjw-heat td.sjw-h1{background:color-mix(in srgb,var(--sjw-celadon) 22%,var(--sjw-ink-800));color:var(--sjw-paper-100)}
+.sjw-heat td.sjw-h2{background:color-mix(in srgb,var(--sjw-ochre) 28%,var(--sjw-ink-800));color:var(--sjw-paper-100)}
+.sjw-heat td.sjw-h3{background:color-mix(in srgb,var(--sjw-vermil) 32%,var(--sjw-ink-800));color:var(--sjw-paper-100)}
+.sjw-filter{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+.sjw-filter button{
+  font-family:var(--sjw-mono);font-size:11px;letter-spacing:.08em;
+  color:var(--sjw-paper-300);background:var(--sjw-ink-800);
+  border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);
+  padding:6px 12px;cursor:pointer;
+}
+.sjw-filter button.is-on,.sjw-filter button:hover,.sjw-filter button:focus-visible{
+  border-color:var(--sjw-ochre);color:var(--sjw-ochre);outline:none;
+}
+.sjw-cards[data-filter] .sjw-card[data-type]{transition:opacity .2s,transform .2s}
+.sjw-cards.is-filtering .sjw-card:not(.is-shown){opacity:.28;pointer-events:none;transform:scale(.98)}
+.sjw-viz-cap{font-size:13px;color:var(--sjw-paper-300);margin-top:10px;max-width:76ch;line-height:1.65}
+.sjw-viz-cap b{color:var(--sjw-paper-100);font-weight:600}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .sjw-card,.sjw-chip{transition:none}
+  .sjw-reveal-stagger > *{animation:none!important}
+  .sjw-stage svg .sjw-draw,.sjw-stage svg .sjw-node,.sjw-stage svg .sjw-pulse{animation:none!important}
+  .sjw-stage svg .sjw-draw{stroke-dasharray:none;stroke-dashoffset:0}
+  .sjw-card:hover{transform:none;box-shadow:none}
+}
+
+/* === /SJW viz premium === */
 </style>
 <script>
 (function(){
@@ -118,7 +194,7 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
 </script>
 </head>
 <body>
-<div class="sjw-wrap" id="sjw-top">
+<div class="sjw-wrap sjw-reveal-stagger" id="sjw-top">
 <header class="sjw-mast">
   <div>
     <div class="badge">SJW-20 · 史鉴·世界 · 机制深描</div>
@@ -206,6 +282,9 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
   <p class="sjw-note">统一战争编年 · 费舍尔论争文献 · 英德海军竞赛研究 · 对照 SJW-02/07/13、/thucydides · 份额数字〔存疑〕。</p>
 </section>
 
+<section class="sjw-sec" id="sec-viz-tl"><div class="sjw-sec-h"><span class="num">Viz · 时间轴</span><h2>机制节点时间轴</h2></div><div class="sjw-stage"><svg viewBox="0 0 820 220" role="img" aria-label="机制节点时间轴"><rect width="820" height="220" fill="var(--sjw-ink-900)"/><text x="24" y="28" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-20 · 机制时间轴</text><line class="sjw-draw" x1="60" y1="110" x2="760" y2="110" stroke="var(--sjw-line)" stroke-width="2"/><g class="sjw-node"><circle class="sjw-pulse" cx="60" cy="110" r="8" fill="var(--sjw-ochre)" opacity=".9"/><text x="60" y="78" text-anchor="middle" fill="var(--sjw-ochre)" font-size="11">统一</text><text x="60" y="150" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">1871</text></g><g class="sjw-node"><circle class="sjw-pulse" cx="293" cy="110" r="8" fill="var(--sjw-celadon)" opacity=".9"/><text x="293" y="78" text-anchor="middle" fill="var(--sjw-celadon)" font-size="11">工业追赶</text><text x="293" y="150" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">德峰</text></g><g class="sjw-node"><circle class="sjw-pulse" cx="527" cy="110" r="8" fill="var(--sjw-vermil)" opacity=".9"/><text x="527" y="78" text-anchor="middle" fill="var(--sjw-vermil)" font-size="11">联盟死结</text><text x="527" y="150" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">大战前</text></g><g class="sjw-node"><circle class="sjw-pulse" cx="760" cy="110" r="8" fill="var(--sjw-paper-100)" opacity=".9"/><text x="760" y="78" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="11">对照英美</text><text x="760" y="150" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">关键差异</text></g></svg></div><p class="sjw-viz-cap">时间轴只编码<strong>机制节点</strong>，不作国别赛马；节点间距示意先后，非精确日历比例。</p></section>
+<section class="sjw-sec" id="sec-viz-axes"><div class="sjw-sec-h"><span class="num">Viz · 五轴强度</span><h2>帝国/文明五轴张力</h2></div><div class="sjw-stage"><svg viewBox="0 0 820 260" role="img" aria-label="帝国/文明五轴张力"><rect width="820" height="260" fill="var(--sjw-ink-900)"/><text x="24" y="28" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-20 · 五轴示意（非评分榜）</text><text x="24" y="69" fill="var(--sjw-ochre)" font-size="12">财政</text><rect x="140" y="55" width="560" height="22" rx="3" fill="var(--sjw-ink-800)" stroke="var(--sjw-line)"/><rect class="sjw-node" x="140" y="55" width="500" height="22" rx="3" fill="var(--sjw-ochre)" opacity=".75"/><text x="648" y="70" fill="var(--sjw-paper-300)" font-size="10">L3</text><text x="24" y="107" fill="var(--sjw-celadon)" font-size="12">精英</text><rect x="140" y="93" width="560" height="22" rx="3" fill="var(--sjw-ink-800)" stroke="var(--sjw-line)"/><rect class="sjw-node" x="140" y="93" width="360" height="22" rx="3" fill="var(--sjw-celadon)" opacity=".75"/><text x="508" y="108" fill="var(--sjw-paper-300)" font-size="10">L2</text><text x="24" y="145" fill="var(--sjw-paper-100)" font-size="12">合法性</text><rect x="140" y="131" width="560" height="22" rx="3" fill="var(--sjw-ink-800)" stroke="var(--sjw-line)"/><rect class="sjw-node" x="140" y="131" width="500" height="22" rx="3" fill="var(--sjw-paper-100)" opacity=".75"/><text x="648" y="146" fill="var(--sjw-paper-300)" font-size="10">L3</text><text x="24" y="183" fill="var(--sjw-vermil)" font-size="12">军事</text><rect x="140" y="169" width="560" height="22" rx="3" fill="var(--sjw-ink-800)" stroke="var(--sjw-line)"/><rect class="sjw-node" x="140" y="169" width="500" height="22" rx="3" fill="var(--sjw-vermil)" opacity=".75"/><text x="648" y="184" fill="var(--sjw-paper-300)" font-size="10">L3</text><text x="24" y="221" fill="var(--sjw-paper-300)" font-size="12">基座</text><rect x="140" y="207" width="560" height="22" rx="3" fill="var(--sjw-ink-800)" stroke="var(--sjw-line)"/><rect class="sjw-node" x="140" y="207" width="500" height="22" rx="3" fill="var(--sjw-paper-300)" opacity=".75"/><text x="648" y="222" fill="var(--sjw-paper-300)" font-size="10">L3</text></svg></div><p class="sjw-viz-cap">五轴条为<strong>本卷主导张力的相对强度示意</strong>（L0–L3），禁止读作跨国可比打分。</p></section>
+<section class="sjw-sec" id="sec-viz-map"><div class="sjw-sec-h"><span class="num">Viz · 映射闸</span><h2>映射双闸示意</h2></div><div class="sjw-stage"><svg viewBox="0 0 820 240" role="img" aria-label="映射双闸示意"><rect width="820" height="240" fill="var(--sjw-ink-900)"/><text x="24" y="28" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-20 · 相似机制 / 关键差异</text><rect class="sjw-node" x="40" y="60" width="320" height="130" rx="6" fill="var(--sjw-ink-800)" stroke="var(--sjw-celadon)" stroke-width="2"/><text x="200" y="100" text-anchor="middle" fill="var(--sjw-celadon)" font-size="13">相似机制</text><text x="200" y="130" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="12">大陆挑战者窗口</text><path class="sjw-draw" d="M380 125 H440" stroke="var(--sjw-line)" stroke-width="2"/><rect class="sjw-node" x="460" y="60" width="320" height="130" rx="6" fill="var(--sjw-ink-800)" stroke="var(--sjw-vermil)" stroke-width="2"/><text x="620" y="100" text-anchor="middle" fill="var(--sjw-vermil)" font-size="13">关键差异</text><text x="620" y="130" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="12">≠英美合作交接模板</text></svg></div><p class="sjw-viz-cap">映射闸强制双栏并陈：缺<strong>关键差异</strong>的古今/中西类比一律不成立。</p></section>
 <footer class="sjw-foot">
   <span>ChinaOS · 史鉴·世界 SJW-20 · v0.5 · AS_OF 2026-07-16</span>
   <span></span>
