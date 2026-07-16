@@ -94,12 +94,88 @@ body{
 .sjw-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sjw-line);font-family:var(--sjw-mono);font-size:10px;color:var(--sjw-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .sjw-foot a{color:var(--sjw-celadon);text-decoration:none}
 .sjw-foot a:hover{color:var(--sjw-ochre)}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sjw-card,.sjw-chip{transition:none}}
 @media (max-width:900px){.sjw-dual,.sjw-cards,.sjw-tri{grid-template-columns:1fr}.sjw-axes{grid-template-columns:1fr 1fr}}
 @media (max-width:768px){.sjw-meta{text-align:left}.sjw-axes{grid-template-columns:1fr}}
 html[data-theme="light"]{--sjw-ink-900:#eef1f4;--sjw-ink-800:#e4e8ed;--sjw-paper-100:#1a1e24;--sjw-paper-300:#4a5564;--sjw-vermil:#9a3428;--sjw-celadon:#3a5a68;--sjw-ochre:#8a6528;--sjw-line:#c5ccd6}
 html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%, #e2e7ec 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #e8ecf0 0%, transparent 50%),var(--sjw-ink-900);color:var(--sjw-paper-100)}
 
+
+/* === SJW viz premium (Round 6+) === */
+@keyframes sjw-fade-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes sjw-pulse{0%,100%{opacity:.55}50%{opacity:1}}
+@keyframes sjw-dash{to{stroke-dashoffset:0}}
+@keyframes sjw-node-in{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+.sjw-reveal-stagger > header,
+.sjw-reveal-stagger > .sjw-zhupi,
+.sjw-reveal-stagger > .sjw-sec,
+.sjw-reveal-stagger > footer{
+  animation:sjw-fade-in .4s cubic-bezier(.22,.61,.36,1) both;
+}
+.sjw-reveal-stagger > *:nth-child(1){animation-delay:.04s}
+.sjw-reveal-stagger > *:nth-child(2){animation-delay:.08s}
+.sjw-reveal-stagger > *:nth-child(3){animation-delay:.12s}
+.sjw-reveal-stagger > *:nth-child(4){animation-delay:.16s}
+.sjw-reveal-stagger > *:nth-child(5){animation-delay:.2s}
+.sjw-reveal-stagger > *:nth-child(6){animation-delay:.24s}
+.sjw-reveal-stagger > *:nth-child(7){animation-delay:.28s}
+.sjw-reveal-stagger > *:nth-child(8){animation-delay:.32s}
+.sjw-reveal-stagger > *:nth-child(9){animation-delay:.36s}
+.sjw-reveal-stagger > *:nth-child(10){animation-delay:.4s}
+.sjw-reveal-stagger > *:nth-child(11){animation-delay:.44s}
+.sjw-reveal-stagger > *:nth-child(12){animation-delay:.48s}
+.sjw-card{transition:border-color .2s,transform .2s,box-shadow .2s}
+.sjw-card:hover,.sjw-card:focus-visible{
+  border-color:var(--sjw-ochre);
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(0,0,0,.35);
+  outline:none;
+}
+.sjw-stage svg .sjw-draw{
+  stroke-dasharray:420;
+  stroke-dashoffset:420;
+  animation:sjw-dash 1.4s ease forwards;
+}
+.sjw-stage svg .sjw-draw-d2{animation-delay:.25s}
+.sjw-stage svg .sjw-draw-d3{animation-delay:.5s}
+.sjw-stage svg .sjw-node{
+  transform-box:fill-box;transform-origin:center;
+  animation:sjw-node-in .5s ease both;
+}
+.sjw-stage svg .sjw-node:nth-of-type(1){animation-delay:.1s}
+.sjw-stage svg .sjw-node:nth-of-type(2){animation-delay:.18s}
+.sjw-stage svg .sjw-node:nth-of-type(3){animation-delay:.26s}
+.sjw-stage svg .sjw-node:nth-of-type(4){animation-delay:.34s}
+.sjw-stage svg .sjw-node:nth-of-type(5){animation-delay:.42s}
+.sjw-stage svg .sjw-pulse{animation:sjw-pulse 2.4s ease-in-out infinite}
+.sjw-heat td.sjw-h{font-family:var(--sjw-mono);font-size:11px;text-align:center;font-weight:600}
+.sjw-heat td.sjw-h0{background:color-mix(in srgb,var(--sjw-ink-900) 80%,transparent);color:var(--sjw-paper-300)}
+.sjw-heat td.sjw-h1{background:color-mix(in srgb,var(--sjw-celadon) 22%,var(--sjw-ink-800));color:var(--sjw-paper-100)}
+.sjw-heat td.sjw-h2{background:color-mix(in srgb,var(--sjw-ochre) 28%,var(--sjw-ink-800));color:var(--sjw-paper-100)}
+.sjw-heat td.sjw-h3{background:color-mix(in srgb,var(--sjw-vermil) 32%,var(--sjw-ink-800));color:var(--sjw-paper-100)}
+.sjw-filter{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+.sjw-filter button{
+  font-family:var(--sjw-mono);font-size:11px;letter-spacing:.08em;
+  color:var(--sjw-paper-300);background:var(--sjw-ink-800);
+  border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);
+  padding:6px 12px;cursor:pointer;
+}
+.sjw-filter button.is-on,.sjw-filter button:hover,.sjw-filter button:focus-visible{
+  border-color:var(--sjw-ochre);color:var(--sjw-ochre);outline:none;
+}
+.sjw-cards[data-filter] .sjw-card[data-type]{transition:opacity .2s,transform .2s}
+.sjw-cards.is-filtering .sjw-card:not(.is-shown){opacity:.28;pointer-events:none;transform:scale(.98)}
+.sjw-viz-cap{font-size:13px;color:var(--sjw-paper-300);margin-top:10px;max-width:76ch;line-height:1.65}
+.sjw-viz-cap b{color:var(--sjw-paper-100);font-weight:600}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .sjw-card,.sjw-chip{transition:none}
+  .sjw-reveal-stagger > *{animation:none!important}
+  .sjw-stage svg .sjw-draw,.sjw-stage svg .sjw-node,.sjw-stage svg .sjw-pulse{animation:none!important}
+  .sjw-stage svg .sjw-draw{stroke-dasharray:none;stroke-dashoffset:0}
+  .sjw-card:hover{transform:none;box-shadow:none}
+}
+
+/* === /SJW viz premium === */
 </style>
 <script>
 (function(){
@@ -118,7 +194,7 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
 </script>
 </head>
 <body>
-<div class="sjw-wrap" id="sjw-top">
+<div class="sjw-wrap sjw-reveal-stagger" id="sjw-top">
 <header class="sjw-mast">
   <div>
     <div class="badge">SJW-00 · 史鉴·世界总索引</div>
@@ -131,8 +207,8 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
   </div>
   <div class="sjw-meta">
     AS_OF <b>2026-07-16</b><br/>
-    版本 <b>v0.5</b> · Round 5<br/>
-    专题 <b>23</b> 卷 · 令牌 <b>--sjw-*</b>
+    版本 <b>v0.6</b> · Round 6<br/>
+    专题 <b>27</b> 卷 · 令牌 <b>--sjw-*</b>
   </div>
 </header>
 <p class="sjw-zhupi">世界线与中华线并列：同一史鉴引擎·四步法与台账七字段；五力改为「帝国/文明五轴」可配置标签，禁止硬套中国王朝术语。与三体「文明博弈」可深链，但史鉴=历史机制，三体=思想实验——命名不合并。</p>
@@ -181,8 +257,8 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
         <rect x="82" y="44" width="58" height="32" rx="3" fill="none" stroke="var(--sjw-vermil)"/><text x="111" y="64" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="9">大战</text>
         <rect x="148" y="44" width="58" height="32" rx="3" fill="none" stroke="var(--sjw-celadon)"/><text x="177" y="64" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="9">苏联</text>
         <rect x="214" y="44" width="58" height="32" rx="3" fill="none" stroke="var(--sjw-paper-100)"/><text x="243" y="64" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="9">文明</text>
-        <rect x="280" y="44" width="64" height="32" rx="3" fill="none" stroke="var(--sjw-ochre)"/><text x="312" y="64" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="9">R5…</text>
-        <text x="180" y="110" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="11">Round 5：大革命 · 德国 · 石油 · 改革对照 · 发展型矩阵</text>
+        <rect x="280" y="44" width="64" height="32" rx="3" fill="none" stroke="var(--sjw-ochre)"/><text x="312" y="64" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="9">R6…</text>
+        <text x="180" y="110" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="11">Round 6：韩国 · 拉美债务 · 欧元 · 台湾对照</text>
         <text x="180" y="135" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="11">七字段台账 · 强制关键差异</text>
         <text x="180" y="155" text-anchor="middle" fill="var(--sjw-celadon)" font-size="11">≠ 三体动力学命名</text>
       </g>
@@ -190,66 +266,88 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
   </div>
 </section>
 
+<section class="sjw-sec" id="sec-viz-hub-filter">
+  <div class="sjw-sec-h"><span class="num">02b · 图谱筛选</span><h2>按类型浏览专题</h2></div>
+  <div class="sjw-filter" data-sjw-filter role="toolbar" aria-label="专题类型筛选">
+    <button type="button" class="is-on" data-type="all" tabindex="0">全部</button>
+    <button type="button" data-type="matrix" tabindex="0">综合矩阵</button>
+    <button type="button" data-type="case" tabindex="0">机制深描</button>
+    <button type="button" data-type="theory" tabindex="0">总论/边界</button>
+  </div>
+  <p class="sjw-viz-cap">筛选只改变卡片可见性，不改写台账字段；矩阵卷提炼规律，深描卷展开单案机制。</p>
+</section>
+
 <section class="sjw-sec" id="sec-topics" aria-labelledby="h-topics">
   <div class="sjw-sec-h"><span class="num">03 · Round 1</span><h2 id="h-topics">首批专题（4）</h2></div>
-  <div class="sjw-cards">
-    <a class="sjw-card" href="./SJW-01.html" tabindex="0"><div class="n">SJW-01 · 综合矩阵</div><h3>大国崛起谱系</h3><p>海权—财政—制度学习窗口的跨案总论；对照中华上升奠基而不套用王朝相位硬标签。</p></a>
-    <a class="sjw-card" href="./SJW-02.html" tabindex="0"><div class="n">SJW-02 · 机制深描</div><h3>两次世界大战</h3><p>联盟锁死、总体战与帝国透支；凡尔赛—再战链的结构切片。</p></a>
-    <a class="sjw-card" href="./SJW-03.html" tabindex="0"><div class="n">SJW-03 · 机制深描</div><h3>苏联崛起与解体</h3><p>动员型工业化 → 超强 → 多轴共振解体；成败三列显式承载未决。</p></a>
-    <a class="sjw-card" href="./SJW-04.html" tabindex="0"><div class="n">SJW-04 · 总论</div><h3>文明兴衰与博弈</h3><p>比较史学透镜 + 历史机制层的文明博弈；与三体思想实验划界。</p></a>
+  <div class="sjw-cards" data-sjw-cards>
+    <a class="sjw-card" data-type="matrix" href="./SJW-01.html" tabindex="0"><div class="n">SJW-01 · 综合矩阵</div><h3>大国崛起谱系</h3><p>海权—财政—制度学习窗口的跨案总论；对照中华上升奠基而不套用王朝相位硬标签。</p></a>
+    <a class="sjw-card" data-type="case" href="./SJW-02.html" tabindex="0"><div class="n">SJW-02 · 机制深描</div><h3>两次世界大战</h3><p>联盟锁死、总体战与帝国透支；凡尔赛—再战链的结构切片。</p></a>
+    <a class="sjw-card" data-type="case" href="./SJW-03.html" tabindex="0"><div class="n">SJW-03 · 机制深描</div><h3>苏联崛起与解体</h3><p>动员型工业化 → 超强 → 多轴共振解体；成败三列显式承载未决。</p></a>
+    <a class="sjw-card" data-type="theory" href="./SJW-04.html" tabindex="0"><div class="n">SJW-04 · 总论</div><h3>文明兴衰与博弈</h3><p>比较史学透镜 + 历史机制层的文明博弈；与三体思想实验划界。</p></a>
   </div>
 </section>
 
 <section class="sjw-sec" id="sec-r2" aria-labelledby="h-r2">
   <div class="sjw-sec-h"><span class="num">04 · Round 2</span><h2 id="h-r2">专题扩充（4）</h2></div>
-  <div class="sjw-cards">
-    <a class="sjw-card" href="./SJW-05.html" tabindex="0"><div class="n">SJW-05 · 综合矩阵</div><h3>社会主义运动谱系</h3><p>公社→第二国际→列宁主义/社民分叉；与 SJW-03 国家形态衔接。</p></a>
-    <a class="sjw-card" href="./SJW-06.html" tabindex="0"><div class="n">SJW-06 · 机制深描</div><h3>地缘政治经典案</h3><p>马汉/麦金德/斯皮克曼学说→政策转化；非时评地图。</p></a>
-    <a class="sjw-card" href="./SJW-07.html" tabindex="0"><div class="n">SJW-07 · 机制深描</div><h3>英/美霸权转移</h3><p>英镑—美元信用与海权交接；同谱系合作转移 vs 修昔底德宿命。</p></a>
-    <a class="sjw-card" href="./SJW-08.html" tabindex="0"><div class="n">SJW-08 · 机制深描</div><h3>冷战与核威慑</h3><p>MAD 天花板与危机楼梯；制度指挥链 ≠ 三体执剑人。</p></a>
+  <div class="sjw-cards" data-sjw-cards>
+    <a class="sjw-card" data-type="matrix" href="./SJW-05.html" tabindex="0"><div class="n">SJW-05 · 综合矩阵</div><h3>社会主义运动谱系</h3><p>公社→第二国际→列宁主义/社民分叉；与 SJW-03 国家形态衔接。</p></a>
+    <a class="sjw-card" data-type="case" href="./SJW-06.html" tabindex="0"><div class="n">SJW-06 · 机制深描</div><h3>地缘政治经典案</h3><p>马汉/麦金德/斯皮克曼学说→政策转化；非时评地图。</p></a>
+    <a class="sjw-card" data-type="case" href="./SJW-07.html" tabindex="0"><div class="n">SJW-07 · 机制深描</div><h3>英/美霸权转移</h3><p>英镑—美元信用与海权交接；同谱系合作转移 vs 修昔底德宿命。</p></a>
+    <a class="sjw-card" data-type="case" href="./SJW-08.html" tabindex="0"><div class="n">SJW-08 · 机制深描</div><h3>冷战与核威慑</h3><p>MAD 天花板与危机楼梯；制度指挥链 ≠ 三体执剑人。</p></a>
   </div>
   <p class="sjw-note">Round 2 收束：Hub + 专题至 SJW-08。</p>
 </section>
 
 <section class="sjw-sec" id="sec-r3" aria-labelledby="h-r3">
   <div class="sjw-sec-h"><span class="num">05 · Round 3</span><h2 id="h-r3">衰变 / 去殖民 / 工业 / 维也纳 / 霸权矩阵（5）</h2></div>
-  <div class="sjw-cards">
-    <a class="sjw-card" href="./SJW-09.html" tabindex="0"><div class="n">SJW-09 · 综合矩阵</div><h3>奥斯曼/波斯/莫卧儿衰变</h3><p>三帝国多力共振；对照中华 SJ-07 崩解矩阵，强制复合帝国关键差异。</p></a>
-    <a class="sjw-card" href="./SJW-10.html" tabindex="0"><div class="n">SJW-10 · 机制深描</div><h3>去殖民化与发展型国家</h3><p>主权浪潮后路径分叉：发展型 / 资源依附 / 中等收入陷阱。</p></a>
-    <a class="sjw-card" href="./SJW-11.html" tabindex="0"><div class="n">SJW-11 · 机制深描</div><h3>工业革命单案</h3><p>自 SJW-01/07 析出：煤铁蒸汽—信用—帝国市场窗口。</p></a>
-    <a class="sjw-card" href="./SJW-12.html" tabindex="0"><div class="n">SJW-12 · 机制深描</div><h3>维也纳体系</h3><p>自 SJW-06 析出：会议外交与正统—均势秩序容器。</p></a>
-    <a class="sjw-card" href="./SJW-13.html" tabindex="0"><div class="n">SJW-13 · 综合矩阵</div><h3>霸权交接矩阵</h3><p>成员 SJW-01/07/11（+12 关联）；荷—英—美信用锚迁移规律。</p></a>
+  <div class="sjw-cards" data-sjw-cards>
+    <a class="sjw-card" data-type="matrix" href="./SJW-09.html" tabindex="0"><div class="n">SJW-09 · 综合矩阵</div><h3>奥斯曼/波斯/莫卧儿衰变</h3><p>三帝国多力共振；对照中华 SJ-07 崩解矩阵，强制复合帝国关键差异。</p></a>
+    <a class="sjw-card" data-type="case" href="./SJW-10.html" tabindex="0"><div class="n">SJW-10 · 机制深描</div><h3>去殖民化与发展型国家</h3><p>主权浪潮后路径分叉：发展型 / 资源依附 / 中等收入陷阱。</p></a>
+    <a class="sjw-card" data-type="case" href="./SJW-11.html" tabindex="0"><div class="n">SJW-11 · 机制深描</div><h3>工业革命单案</h3><p>自 SJW-01/07 析出：煤铁蒸汽—信用—帝国市场窗口。</p></a>
+    <a class="sjw-card" data-type="case" href="./SJW-12.html" tabindex="0"><div class="n">SJW-12 · 机制深描</div><h3>维也纳体系</h3><p>自 SJW-06 析出：会议外交与正统—均势秩序容器。</p></a>
+    <a class="sjw-card" data-type="matrix" href="./SJW-13.html" tabindex="0"><div class="n">SJW-13 · 综合矩阵</div><h3>霸权交接矩阵</h3><p>成员 SJW-01/07/11（+12 关联）；荷—英—美信用锚迁移规律。</p></a>
   </div>
   <p class="sjw-note">统计：Hub + 专题 <b>13</b> 卷（SJW-01~13）。</p>
 </section>
 
 <section class="sjw-sec" id="sec-r4" aria-labelledby="h-r4">
   <div class="sjw-sec-h"><span class="num">06 · Round 4</span><h2 id="h-r4">大分流 / 日本 / 货币锚 / 去殖民矩阵 / 能源基座（5）</h2></div>
-  <div class="sjw-cards">
-    <a class="sjw-card" href="./SJW-14.html" tabindex="0"><div class="n">SJW-14 · 机制深描</div><h3>大分流 / 加州学派</h3><p>欧亚并置起点 vs 煤—美洲分叉；交叉 SJW-11 与中华 SJ-21，强制关键差异。</p></a>
-    <a class="sjw-card" href="./SJW-15.html" tabindex="0"><div class="n">SJW-15 · 机制深描</div><h3>明治—战后日本</h3><p>自 SJW-10 析出：发展型国家单案（MITI · 安全伞 · 广场接口）。</p></a>
-    <a class="sjw-card" href="./SJW-16.html" tabindex="0"><div class="n">SJW-16 · 机制深描</div><h3>布雷顿→广场货币锚</h3><p>自 SJW-07/13 析出：金窗关闭与汇率政治再平衡。</p></a>
-    <a class="sjw-card" href="./SJW-17.html" tabindex="0"><div class="n">SJW-17 · 综合矩阵</div><h3>去殖民非亚/拉美矩阵</h3><p>成员 SJW-10/15（+03/16 关联）；东亚/拉美/非洲河道对照。</p></a>
-    <a class="sjw-card" href="./SJW-18.html" tabindex="0"><div class="n">SJW-18 · 机制深描</div><h3>气候—能源基座</h3><p>工业碳基上限 × 能源压舱石；禁臆造排放数字。</p></a>
+  <div class="sjw-cards" data-sjw-cards>
+    <a class="sjw-card" data-type="case" href="./SJW-14.html" tabindex="0"><div class="n">SJW-14 · 机制深描</div><h3>大分流 / 加州学派</h3><p>欧亚并置起点 vs 煤—美洲分叉；交叉 SJW-11 与中华 SJ-21，强制关键差异。</p></a>
+    <a class="sjw-card" data-type="case" href="./SJW-15.html" tabindex="0"><div class="n">SJW-15 · 机制深描</div><h3>明治—战后日本</h3><p>自 SJW-10 析出：发展型国家单案（MITI · 安全伞 · 广场接口）。</p></a>
+    <a class="sjw-card" data-type="case" href="./SJW-16.html" tabindex="0"><div class="n">SJW-16 · 机制深描</div><h3>布雷顿→广场货币锚</h3><p>自 SJW-07/13 析出：金窗关闭与汇率政治再平衡。</p></a>
+    <a class="sjw-card" data-type="matrix" href="./SJW-17.html" tabindex="0"><div class="n">SJW-17 · 综合矩阵</div><h3>去殖民非亚/拉美矩阵</h3><p>成员 SJW-10/15（+03/16 关联）；东亚/拉美/非洲河道对照。</p></a>
+    <a class="sjw-card" data-type="case" href="./SJW-18.html" tabindex="0"><div class="n">SJW-18 · 机制深描</div><h3>气候—能源基座</h3><p>工业碳基上限 × 能源压舱石；禁臆造排放数字。</p></a>
   </div>
   <p class="sjw-note">统计：Hub + 专题 <b>18</b> 卷（SJW-01~18）。</p>
 </section>
 
 <section class="sjw-sec" id="sec-r5" aria-labelledby="h-r5">
   <div class="sjw-sec-h"><span class="num">07 · Round 5</span><h2 id="h-r5">大革命 / 德国 / 石油 / 改革对照 / 发展型矩阵（5）</h2></div>
-  <div class="sjw-cards">
-    <a class="sjw-card" href="./SJW-19.html" tabindex="0"><div class="n">SJW-19 · 机制深描</div><h3>法国大革命—拿破仑</h3><p>人民主权动员 × 大陆体系 × 维也纳回摆；交叉 SJW-12。</p></a>
-    <a class="sjw-card" href="./SJW-20.html" tabindex="0"><div class="n">SJW-20 · 机制深描</div><h3>德国统一与大战前转移</h3><p>工业追赶 × 联盟死结；↔ SJW-02/07 强制关键差异。</p></a>
-    <a class="sjw-card" href="./SJW-21.html" tabindex="0"><div class="n">SJW-21 · 机制深描</div><h3>石油时代与中东地缘</h3><p>SJW-18 能源基座落地案：油井—海峡—租金三角。</p></a>
-    <a class="sjw-card" href="./SJW-22.html" tabindex="0"><div class="n">SJW-22 · 机制深描</div><h3>中国改革开放对照外卷</h3><p>世界线发展型对照；非重复中华 SJ 案例正文。</p></a>
-    <a class="sjw-card" href="./SJW-23.html" tabindex="0"><div class="n">SJW-23 · 综合矩阵</div><h3>发展型国家谱系</h3><p>成员 SJW-10/15/22；日/韩/新加坡/中国四行对照。</p></a>
+  <div class="sjw-cards" data-sjw-cards>
+    <a class="sjw-card" data-type="case" href="./SJW-19.html" tabindex="0"><div class="n">SJW-19 · 机制深描</div><h3>法国大革命—拿破仑</h3><p>人民主权动员 × 大陆体系 × 维也纳回摆；交叉 SJW-12。</p></a>
+    <a class="sjw-card" data-type="case" href="./SJW-20.html" tabindex="0"><div class="n">SJW-20 · 机制深描</div><h3>德国统一与大战前转移</h3><p>工业追赶 × 联盟死结；↔ SJW-02/07 强制关键差异。</p></a>
+    <a class="sjw-card" data-type="case" href="./SJW-21.html" tabindex="0"><div class="n">SJW-21 · 机制深描</div><h3>石油时代与中东地缘</h3><p>SJW-18 能源基座落地案：油井—海峡—租金三角。</p></a>
+    <a class="sjw-card" data-type="case" href="./SJW-22.html" tabindex="0"><div class="n">SJW-22 · 机制深描</div><h3>中国改革开放对照外卷</h3><p>世界线发展型对照；非重复中华 SJ 案例正文。</p></a>
+    <a class="sjw-card" data-type="matrix" href="./SJW-23.html" tabindex="0"><div class="n">SJW-23 · 综合矩阵</div><h3>发展型国家谱系</h3><p>成员 SJW-10/15/22；日/韩/新加坡/中国四行对照。</p></a>
   </div>
-  <p class="sjw-note">统计：Hub + 专题 <b>23</b> 卷（SJW-01~23）。Round 6 候选见架构文档。</p>
+  <p class="sjw-note">统计：Hub + 专题 <b>23</b> 卷（SJW-01~23）。</p>
+</section>
+
+<section class="sjw-sec" id="sec-r6" aria-labelledby="h-r6">
+  <div class="sjw-sec-h"><span class="num">08 · Round 6</span><h2 id="h-r6">韩国 / 拉美债务 / 欧元 / 台湾对照（4）</h2></div>
+  <div class="sjw-cards" data-sjw-cards>
+    <a class="sjw-card" data-type="case" href="./SJW-24.html" tabindex="0"><div class="n">SJW-24 · 机制深描</div><h3>韩国发展型国家</h3><p>自 SJW-23 析出：威权汲取 × 财阀出口纪律 × 冷战前线。</p></a>
+    <a class="sjw-card" data-type="case" href="./SJW-25.html" tabindex="0"><div class="n">SJW-25 · 机制深描</div><h3>拉美 ISI 与债务危机</h3><p>自 SJW-17 析出：进口替代 × 石油美元负债 × 失去的十年。</p></a>
+    <a class="sjw-card" data-type="case" href="./SJW-26.html" tabindex="0"><div class="n">SJW-26 · 机制深描</div><h3>欧盟货币一体化</h3><p>EMS→马约→欧元；后广场欧洲锚实验（↔ SJW-16）。</p></a>
+    <a class="sjw-card" data-type="case" href="./SJW-27.html" tabindex="0"><div class="n">SJW-27 · 对照短卷</div><h3>台湾发展型对照</h3><p>与 SJW-15/24 并置；强制关键差异；机制台账非政治动员。</p></a>
+  </div>
+  <p class="sjw-note">统计：Hub + 专题 <b>27</b> 卷（SJW-01~27）。Round 7 候选见架构文档。</p>
 </section>
 
 <section class="sjw-sec" id="sec-x" aria-labelledby="h-x">
-  <div class="sjw-sec-h"><span class="num">08 · 交叉入口</span><h2 id="h-x">中华线 · 三体 · 威慑 · 认知透镜</h2></div>
-  <div class="sjw-cards">
+  <div class="sjw-sec-h"><span class="num">09 · 交叉入口</span><h2 id="h-x">中华线 · 三体 · 威慑 · 认知透镜</h2></div>
+  <div class="sjw-cards" data-sjw-cards>
     <a class="sjw-card" href="/modules/shijian" tabindex="0"><div class="n">史鉴·中华</div><h3>SJ-00 五柱枢纽</h3><p>治乱螺旋、五力衰变、案例库与古今对照——世界线台账的同源引擎。</p></a>
     <a class="sjw-card" href="/modules/santi" tabindex="0"><div class="n">三体透镜</div><h3>文明博弈（思想实验）</h3><p>可对照猜疑链/威慑；禁止把黑暗森林处方直接导出为世界史规律。</p></a>
     <a class="sjw-card" href="/deterrence" tabindex="0"><div class="n">认知内核</div><h3>威慑战略</h3><p>谢林工具箱；与 SJW-08 机制史划界——编年台账 ≠ 乘法模拟器。</p></a>
@@ -257,11 +355,95 @@ html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%
   </div>
 </section>
 
+
+<section class="sjw-sec" id="sec-viz-hub-graph">
+  <div class="sjw-sec-h"><span class="num">Viz · 专题图谱</span><h2>Round 弧线与综合层锚点</h2></div>
+  <div class="sjw-stage">
+    <svg viewBox="0 0 820 340" role="img" aria-labelledby="hubg-t hubg-d">
+      <title id="hubg-t">史鉴世界专题图谱：六轮弧线与三综合层</title>
+      <desc id="hubg-d">六段弧线表示 Round 1–6，下方三节点为霸权/去殖民/发展型综合矩阵。</desc>
+      <rect width="820" height="340" fill="var(--sjw-ink-900)"/>
+      <text x="24" y="28" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-00 · 专题图谱 · 27 卷</text>
+      <path class="sjw-draw" d="M60 80 Q200 40 340 80" fill="none" stroke="var(--sjw-ochre)" stroke-width="2"/>
+      <path class="sjw-draw sjw-draw-d2" d="M340 80 Q480 120 620 80" fill="none" stroke="var(--sjw-celadon)" stroke-width="2"/>
+      <path class="sjw-draw sjw-draw-d3" d="M620 80 Q720 50 760 90" fill="none" stroke="var(--sjw-vermil)" stroke-width="2"/>
+      <g class="sjw-node"><circle cx="60" cy="80" r="10" fill="var(--sjw-ochre)"/><text x="60" y="110" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">R1</text></g>
+      <g class="sjw-node"><circle cx="200" cy="55" r="10" fill="var(--sjw-ochre)"/><text x="200" y="40" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">R2</text></g>
+      <g class="sjw-node"><circle cx="340" cy="80" r="10" fill="var(--sjw-celadon)"/><text x="340" y="110" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">R3</text></g>
+      <g class="sjw-node"><circle cx="480" cy="105" r="10" fill="var(--sjw-celadon)"/><text x="480" y="130" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">R4</text></g>
+      <g class="sjw-node"><circle cx="620" cy="80" r="10" fill="var(--sjw-vermil)"/><text x="620" y="110" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">R5</text></g>
+      <g class="sjw-node"><circle class="sjw-pulse" cx="760" cy="90" r="12" fill="var(--sjw-vermil)"/><text x="760" y="120" text-anchor="middle" fill="var(--sjw-ochre)" font-size="10">R6</text></g>
+      <text x="410" y="160" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="13">综合层锚点（满员收束）</text>
+      <rect class="sjw-node" x="70" y="180" width="200" height="70" rx="6" fill="var(--sjw-ink-800)" stroke="var(--sjw-ochre)"/>
+      <text x="170" y="210" text-anchor="middle" fill="var(--sjw-ochre)" font-size="13">SJW-13 霸权交接</text>
+      <text x="170" y="232" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">成员 01/07/11</text>
+      <rect class="sjw-node" x="310" y="180" width="200" height="70" rx="6" fill="var(--sjw-ink-800)" stroke="var(--sjw-celadon)"/>
+      <text x="410" y="210" text-anchor="middle" fill="var(--sjw-celadon)" font-size="13">SJW-17 去殖民区域</text>
+      <text x="410" y="232" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">+ SJW-25 拉美深描</text>
+      <rect class="sjw-node" x="550" y="180" width="200" height="70" rx="6" fill="var(--sjw-ink-800)" stroke="var(--sjw-paper-100)"/>
+      <text x="650" y="210" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="13">SJW-23 发展型谱系</text>
+      <text x="650" y="232" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">+24韩 / +27台</text>
+      <text x="410" y="300" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="11">弧线=扩张轮次 · 方块=综合矩阵 · 脉冲=本轮维护焦点</text>
+    </svg>
+  </div>
+  <p class="sjw-viz-cap">图谱把六轮扩张与三张综合矩阵并置：深描卷喂给矩阵，矩阵再析出新单案——<b>回流台账</b>而非目录堆砌。</p>
+</section>
+
+<section class="sjw-sec" id="sec-viz-hub-tl">
+  <div class="sjw-sec-h"><span class="num">Viz · 编年脊</span><h2>世界线主题时间脊（示意）</h2></div>
+  <div class="sjw-stage">
+    <svg viewBox="0 0 820 200" role="img" aria-label="世界线主题时间脊">
+      <rect width="820" height="200" fill="var(--sjw-ink-900)"/>
+      <text x="24" y="28" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-00 · 主题时间脊 · 非精确比例</text>
+      <line class="sjw-draw" x1="40" y1="100" x2="780" y2="100" stroke="var(--sjw-line)" stroke-width="2"/>
+      <g class="sjw-node"><circle cx="80" cy="100" r="7" fill="var(--sjw-ochre)"/><text x="80" y="75" text-anchor="middle" fill="var(--sjw-ochre)" font-size="10">工业</text><text x="80" y="130" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="9">11</text></g>
+      <g class="sjw-node"><circle cx="180" cy="100" r="7" fill="var(--sjw-celadon)"/><text x="180" y="75" text-anchor="middle" fill="var(--sjw-celadon)" font-size="10">维也纳</text><text x="180" y="130" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="9">12/19</text></g>
+      <g class="sjw-node"><circle cx="300" cy="100" r="7" fill="var(--sjw-vermil)"/><text x="300" y="75" text-anchor="middle" fill="var(--sjw-vermil)" font-size="10">大战</text><text x="300" y="130" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="9">02/20</text></g>
+      <g class="sjw-node"><circle cx="420" cy="100" r="7" fill="var(--sjw-paper-100)"/><text x="420" y="75" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="10">冷战核</text><text x="420" y="130" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="9">08/03</text></g>
+      <g class="sjw-node"><circle cx="540" cy="100" r="7" fill="var(--sjw-ochre)"/><text x="540" y="75" text-anchor="middle" fill="var(--sjw-ochre)" font-size="10">货币锚</text><text x="540" y="130" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="9">16/26</text></g>
+      <g class="sjw-node"><circle cx="660" cy="100" r="7" fill="var(--sjw-celadon)"/><text x="660" y="75" text-anchor="middle" fill="var(--sjw-celadon)" font-size="10">发展型</text><text x="660" y="130" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="9">15/23–27</text></g>
+      <g class="sjw-node"><circle class="sjw-pulse" cx="760" cy="100" r="8" fill="var(--sjw-vermil)"/><text x="760" y="75" text-anchor="middle" fill="var(--sjw-vermil)" font-size="10">能源</text><text x="760" y="130" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="9">18/21</text></g>
+    </svg>
+  </div>
+  <p class="sjw-viz-cap">编年脊帮助跨卷跳转：同一主题可落在不同 Round；点击下方卡片进入深描，而非在 Hub 内复述正文。</p>
+</section>
+
 <footer class="sjw-foot">
-  <span>ChinaOS · 史鉴·世界 SJW-00 · v0.5 · AS_OF 2026-07-16</span>
+  <span>ChinaOS · 史鉴·世界 SJW-00 · v0.6 · AS_OF 2026-07-16</span>
   <span>本模块即世界线索引 · 无上级卷</span>
   <span><a href="#sjw-top">↑ 顶</a> · <a href="./SJW-00.html">返回 SJW-00</a> · <a href="/modules/shijian">史鉴·中华</a></span>
 </footer>
 </div>
+
+<script>
+(function(){
+  /* SJW viz: type filter across all Hub card grids */
+  var root=document.getElementById('sjw-top');
+  if(!root)return;
+  var filter=root.querySelector('[data-sjw-filter]');
+  if(!filter)return;
+  filter.addEventListener('click',function(e){
+    var btn=e.target.closest('button[data-type]');
+    if(!btn)return;
+    var t=btn.getAttribute('data-type');
+    filter.querySelectorAll('button').forEach(function(b){b.classList.toggle('is-on',b===btn)});
+    root.querySelectorAll('[data-sjw-cards]').forEach(function(cards){
+      var list=cards.querySelectorAll('.sjw-card');
+      if(t==='all'){
+        cards.classList.remove('is-filtering');
+        list.forEach(function(c){c.classList.add('is-shown')});
+        return;
+      }
+      cards.classList.add('is-filtering');
+      list.forEach(function(c){
+        var dt=c.getAttribute('data-type');
+        if(!dt){c.classList.add('is-shown');return;}
+        c.classList.toggle('is-shown',dt.split(/\s+/).indexOf(t)>=0);
+      });
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
