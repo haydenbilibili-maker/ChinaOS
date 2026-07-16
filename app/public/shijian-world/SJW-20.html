@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJW-20 · 德国统一与大战前权力转移</title>
+<meta name="description" content="史鉴·世界：德国统一至一战前权力转移；交叉 SJW-02/07，强制关键差异。"/>
+<style>
+:root{
+  /* 史鉴·世界皮肤：色义对齐 SJ（ochre=数据/财政, celadon=结构/精英, vermil=张力/军事, paper=合法性/正文），底色偏冷墨以区分中华宣纸暖墨 */
+  --sjw-ink-900:#0f1216;
+  --sjw-ink-800:#161b22;
+  --sjw-paper-100:#d8dde6;
+  --sjw-paper-300:#9aa3b2;
+  --sjw-vermil:#a83b2c;
+  --sjw-celadon:#4a6d7c;
+  --sjw-ochre:#b8894a;
+  --sjw-line:#2c333d;
+  --sjw-radius:6px;
+  --sjw-space:clamp(12px,2vw,24px);
+  --sjw-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sjw-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(1000px 560px at 72% -8%, #1a2430 0%, transparent 55%),
+    radial-gradient(700px 420px at 8% 90%, #12161c 0%, transparent 50%),
+    var(--sjw-ink-900);
+  color:var(--sjw-paper-100);
+  font-family:var(--sjw-serif);
+  line-height:1.75;
+}
+.sjw-wrap{max-width:min(100%,1180px);margin:0 auto;padding:var(--sjw-space) var(--sjw-space) 48px}
+@media (min-width:1536px){.sjw-wrap{max-width:min(100%,1360px)}}
+.sjw-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sjw-line);margin-bottom:20px}
+.sjw-mast .badge{font-family:var(--sjw-mono);font-size:11px;letter-spacing:.18em;color:var(--sjw-ochre);margin-bottom:6px}
+.sjw-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.14em;line-height:1.3}
+.sjw-mast h1 em{font-style:normal;color:var(--sjw-paper-300);font-weight:400;letter-spacing:.06em;font-size:.72em;display:block;margin-top:4px}
+.sjw-meta{font-family:var(--sjw-mono);font-size:11px;color:var(--sjw-paper-300);text-align:right;line-height:1.7}
+.sjw-meta b{color:var(--sjw-ochre);font-weight:500}
+.sjw-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sjw-chip,.sjw-chip:visited{display:inline-block;font-family:var(--sjw-mono);font-size:10px;letter-spacing:.08em;color:var(--sjw-celadon);border:1px solid var(--sjw-line);padding:3px 8px;border-radius:var(--sjw-radius);text-decoration:none}
+.sjw-chip:hover,.sjw-chip:focus-visible{border-color:var(--sjw-ochre);color:var(--sjw-ochre);outline:none}
+.sjw-zhupi{color:var(--sjw-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sjw-vermil);max-width:76ch}
+.sjw-sec{margin:36px 0 28px;scroll-margin-top:24px}
+.sjw-sec-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--sjw-line)}
+.sjw-sec-h .num{font-family:var(--sjw-mono);font-size:11px;letter-spacing:.2em;color:var(--sjw-ochre)}
+.sjw-sec-h h2{font-size:clamp(17px,2.2vw,20px);font-weight:600;letter-spacing:.1em}
+.sjw-prose{font-size:15.5px;color:var(--sjw-paper-100);max-width:76ch}
+.sjw-prose + .sjw-prose{margin-top:12px}
+.sjw-prose strong{color:var(--sjw-ochre);font-weight:600}
+.sjw-note{font-size:13px;color:var(--sjw-paper-300);margin-top:12px;max-width:76ch}
+.sjw-note b{color:var(--sjw-paper-100);font-weight:600}
+.sjw-stage{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:linear-gradient(180deg,var(--sjw-ink-800),var(--sjw-ink-900));box-shadow:0 1px 0 rgba(216,221,230,.04),0 18px 48px rgba(0,0,0,.45);padding:8px;overflow:auto;margin-top:8px}
+.sjw-stage svg{display:block;width:100%;height:auto;max-width:820px;margin:0 auto}
+.sjw-table-wrap{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);overflow:auto;margin-top:8px}
+.sjw-table{width:max(100%,720px);border-collapse:collapse;font-size:13px}
+.sjw-table th{background:var(--sjw-ink-900);color:var(--sjw-ochre);font-family:var(--sjw-mono);font-size:10px;letter-spacing:.1em;font-weight:500;text-align:left;padding:10px 12px;border-bottom:1px solid var(--sjw-line)}
+.sjw-table td{padding:10px 12px;border-bottom:1px solid var(--sjw-line);color:var(--sjw-paper-300);vertical-align:top;line-height:1.6}
+.sjw-table td:first-child{color:var(--sjw-paper-100);font-weight:600}
+.sjw-dual{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.sjw-dual article{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:14px 16px}
+.sjw-dual .k{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.14em;color:var(--sjw-ochre);margin-bottom:6px}
+.sjw-dual h3{font-size:14px;margin-bottom:8px;letter-spacing:.04em}
+.sjw-dual p{font-size:13px;color:var(--sjw-paper-300);line-height:1.65}
+.sjw-dual .diff{border-left:3px solid var(--sjw-vermil)}
+.sjw-dual .sim{border-left:3px solid var(--sjw-celadon)}
+.sjw-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.sjw-card,.sjw-card:visited{display:block;border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:16px;text-decoration:none;color:inherit;transition:border-color .18s}
+.sjw-card:hover,.sjw-card:focus-visible{border-color:var(--sjw-ochre);outline:none}
+.sjw-card .n{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.14em;color:var(--sjw-ochre);margin-bottom:4px}
+.sjw-card h3{font-size:15px;letter-spacing:.06em;margin-bottom:6px}
+.sjw-card p{font-size:12.5px;color:var(--sjw-paper-300);line-height:1.6}
+.sjw-axes{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:10px}
+.sjw-axis{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);padding:10px 8px;text-align:center;font-size:11px;color:var(--sjw-paper-300)}
+.sjw-axis b{display:block;font-family:var(--sjw-mono);font-size:10px;letter-spacing:.08em;margin-bottom:4px;font-weight:500}
+.sjw-axis.ochre b{color:var(--sjw-ochre)}
+.sjw-axis.celadon b{color:var(--sjw-celadon)}
+.sjw-axis.paper b{color:var(--sjw-paper-100)}
+.sjw-axis.vermil b{color:var(--sjw-vermil)}
+.sjw-axis.ink b{color:var(--sjw-paper-300)}
+.sjw-ledger{display:grid;gap:8px;margin-top:10px}
+.sjw-ledger article{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:12px 14px}
+.sjw-ledger .f{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.12em;color:var(--sjw-ochre);margin-bottom:4px}
+.sjw-ledger p{font-size:13px;color:var(--sjw-paper-300);line-height:1.6}
+.sjw-tri{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.sjw-tri article{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:12px 14px}
+.sjw-tri .k{font-family:var(--sjw-mono);font-size:10px;color:var(--sjw-ochre);letter-spacing:.1em;margin-bottom:4px}
+.sjw-tri h3{font-size:13px;margin-bottom:6px}
+.sjw-tri p{font-size:12.5px;color:var(--sjw-paper-300);line-height:1.55}
+.sjw-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sjw-line);font-family:var(--sjw-mono);font-size:10px;color:var(--sjw-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sjw-foot a{color:var(--sjw-celadon);text-decoration:none}
+.sjw-foot a:hover{color:var(--sjw-ochre)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sjw-card,.sjw-chip{transition:none}}
+@media (max-width:900px){.sjw-dual,.sjw-cards,.sjw-tri{grid-template-columns:1fr}.sjw-axes{grid-template-columns:1fr 1fr}}
+@media (max-width:768px){.sjw-meta{text-align:left}.sjw-axes{grid-template-columns:1fr}}
+html[data-theme="light"]{--sjw-ink-900:#eef1f4;--sjw-ink-800:#e4e8ed;--sjw-paper-100:#1a1e24;--sjw-paper-300:#4a5564;--sjw-vermil:#9a3428;--sjw-celadon:#3a5a68;--sjw-ochre:#8a6528;--sjw-line:#c5ccd6}
+html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%, #e2e7ec 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #e8ecf0 0%, transparent 50%),var(--sjw-ink-900);color:var(--sjw-paper-100)}
+
+</style>
+<script>
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark')}
+  try{
+    var q=new URLSearchParams(location.search).get('theme');
+    if(q==='light'||q==='dark')apply(q);
+  }catch(e){}
+  window.addEventListener('message',function(e){
+    if(e.origin!==location.origin)return;
+    var d=e&&e.data;if(!d||d.type!==MSG)return;
+    apply(d.theme);
+  });
+})();
+</script>
+</head>
+<body>
+<div class="sjw-wrap" id="sjw-top">
+<header class="sjw-mast">
+  <div>
+    <div class="badge">SJW-20 · 史鉴·世界 · 机制深描</div>
+    <h1>德国统一与大战前权力转移<em>铁血统一 × 工业追赶 × 联盟僵化 · ↔ SJW-02/07</em></h1>
+    <div class="sjw-chips">
+      <a class="sjw-chip" href="./SJW-00.html">SJW-00 总索引</a>
+      <a class="sjw-chip" href="/modules/shijian">史鉴·中华</a>
+      <a class="sjw-chip" href="/modules/santi">三体透镜（边界）</a>
+    </div>
+  </div>
+  <div class="sjw-meta">
+    AS_OF <b>2026-07-16</b><br/>
+    版本 <b>v0.5</b> · Round 5<br/>
+    令牌 <b>--sjw-*</b>
+  </div>
+</header>
+<p class="sjw-zhupi">本卷写俾斯麦统一后的德国如何以工业—财政追赶改写欧洲相对力量，并在威廉时代海军竞赛与联盟僵化中滑向大战门槛（↔ SJW-02）。与英美合作式霸权交接（SJW-07）强制关键差异：同为权力转移窗口，德案是多极大陆均势内的挑战者动力学，非同谱系同盟再分配。</p>
+
+<section class="sjw-sec" id="sec-sig">
+  <div class="sjw-sec-h"><span class="num">01 · 签名视觉</span><h2>统一锤 → 工业峰 → 联盟死结</h2></div>
+  <div class="sjw-stage">
+    <svg viewBox="0 0 820 300" role="img" aria-labelledby="s20t s20d">
+      <title id="s20t">德国统一锤、工业高峰、联盟死结通向大战</title>
+      <desc id="s20d">左锤击统一，中工业三角峰，右两联盟锁链交叉。</desc>
+      <rect width="820" height="300" fill="var(--sjw-ink-900)"/>
+      <text x="24" y="28" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-20 · 权力转移 · ≠ 英美模板</text>
+      <rect x="50" y="110" width="180" height="90" rx="4" fill="var(--sjw-ink-800)" stroke="var(--sjw-celadon)"/>
+      <text x="140" y="150" text-anchor="middle" fill="var(--sjw-celadon)" font-size="13">1860s 统一</text>
+      <text x="140" y="175" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">王朝战争 · 关税同盟</text>
+      <path d="M240 155 H300" stroke="var(--sjw-line)" stroke-width="2"/>
+      <path d="M320 200 L410 70 L500 200 Z" fill="none" stroke="var(--sjw-ochre)" stroke-width="2"/>
+      <text x="410" y="60" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">工业—财政追赶</text>
+      <path d="M520 155 H580" stroke="var(--sjw-vermil)" stroke-width="2"/>
+      <rect x="590" y="100" width="190" height="110" rx="4" fill="var(--sjw-ink-800)" stroke="var(--sjw-vermil)"/>
+      <text x="685" y="140" text-anchor="middle" fill="var(--sjw-vermil)" font-size="13">联盟死结</text>
+      <text x="685" y="165" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">海军竞赛 · 动员时刻表</text>
+      <text x="685" y="188" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">→ SJW-02</text>
+      <text x="410" y="270" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="11">关键差异闸：大陆多极挑战 ≠ 英美同盟内交接</text>
+    </svg>
+  </div>
+</section>
+
+<section class="sjw-sec" id="sec-ledger">
+  <div class="sjw-sec-h"><span class="num">02 · 史鉴台账</span><h2>七字段</h2></div>
+  <div class="sjw-ledger">
+    <article><div class="f">① 一句话拐点</div><p>德意志在王朝战争与关税同盟基础上完成政治统一后，以第二次工业革命追赶抬升相对力量；威廉时代世界政策与英德海军竞赛叠加联盟刚性，使权力转移窗口更易锁定为总体战（SJW-02），而非英美式合作再分配（SJW-07）。</p></article>
+    <article><div class="f">② 结构切片</div><p>普鲁士军事—官僚核心 · 关税同盟市场一体化 · 普法战争统一高潮 · 煤钢化工电气产业 · 提尔皮茨海军法案 · 三国同盟/协约对峙 · 施里芬计划式动员时刻表。</p></article>
+    <article><div class="f">③ 相位</div><p>统一战争（1864–71）→ 俾斯麦大陆均势克制期 → 威廉世界政策/海军竞赛 → 1914 七月危机锁死。因果权重史学争〔存疑〕。</p></article>
+    <article><div class="f">④ 五轴归因</div><p><b>财政</b>：工业税基支撑军费与海军。<b>精英</b>：容克—工业家联盟；文官与总参张力。<b>合法性</b>：王朝民族国家 + 社会民主党压力。<b>军事</b>：陆权优势寻求海权份额 → 英德安全困境。<b>基座</b>：第二次工业革命生产率跃迁。</p></article>
+    <article><div class="f">⑤ 史家交锋</div><p>费舍尔「德国战争罪责」论争 · 结构派强调联盟/动员刚性 · 修正派多极责任分担 · 经济决定论——并陈，禁止单因独断。</p></article>
+    <article><div class="f">⑥ 成败三列</div><p><b>已兑现</b>：统一与工业强国地位。<b>已失败</b>：以海军竞赛换取「平等世界政策」而未触发英国永久疏离的幻想。<b>未决</b>：若无七月危机偶然触发，结构性战争是否仍不可避免——开放。</p></article>
+  </div>
+</section>
+
+<section class="sjw-sec" id="sec-axes">
+  <div class="sjw-sec-h"><span class="num">03 · 转移台账</span><h2>与英美案对照</h2></div>
+  <div class="sjw-table-wrap">
+    <table class="sjw-table">
+      <thead><tr><th>维度</th><th>德案（本卷）</th><th>英美案（SJW-07）</th><th>关键差异</th></tr></thead>
+      <tbody>
+        <tr><td>地缘场</td><td>大陆多极密集聚</td><td>海洋—全球</td><td>邻国包围感不同</td></tr>
+        <tr><td>文化/制度谱系</td><td>挑战既有均势</td><td>同语言法律传统同盟</td><td>合作再分配可行性</td></tr>
+        <tr><td>军事接口</td><td>陆权→海权扩张</td><td>海权中心迁移</td><td>英德海军零和感更强</td></tr>
+        <tr><td>结局形态</td><td>大战（SJW-02）</td><td>同盟内交接</td><td>禁止共用「修昔底德常数」</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="sjw-note">工业产出份额、舰队吨位比较多版本口径〔存疑〕——本卷不作排行榜断言。</p>
+</section>
+
+<section class="sjw-sec" id="sec-map">
+  <div class="sjw-sec-h"><span class="num">04 · 映射</span><h2>相似机制 · 关键差异</h2></div>
+  <div class="sjw-dual">
+    <article class="sim"><div class="k">相似机制</div><h3>相对力量窗口抬高误判</h3><p>与 /thucydides：守成与崛起力量比变化时，声誉与承诺政治更敏感。</p></article>
+    <article class="diff"><div class="k">关键差异</div><h3>德案 ≠ 英美模板</h3><p>无同谱系同盟缓冲；海军竞赛直接撞击英国核心安全定义。矩阵禁止把德英冲突与英美合作转移压成同一常数。</p></article>
+  </div>
+  <div class="sjw-dual">
+    <article class="sim"><div class="k">相似机制</div><h3>联盟刚性压缩外交时间</h3><p>与 SJW-02：动员时刻表使七月危机难以降温。</p></article>
+    <article class="diff"><div class="k">关键差异</div><h3>核天花板未出现</h3><p>与 SJW-08：前核时代升级函数不同；不可用冷战 MAD 回推 1914。对三体：权力转移 ≠ 黑暗森林必然打击。</p></article>
+  </div>
+</section>
+
+<section class="sjw-sec" id="sec-src">
+  <div class="sjw-sec-h"><span class="num">05 · 出处</span><h2>研究入口</h2></div>
+  <p class="sjw-note">统一战争编年 · 费舍尔论争文献 · 英德海军竞赛研究 · 对照 SJW-02/07/13、/thucydides · 份额数字〔存疑〕。</p>
+</section>
+
+<footer class="sjw-foot">
+  <span>ChinaOS · 史鉴·世界 SJW-20 · v0.5 · AS_OF 2026-07-16</span>
+  <span></span>
+  <span><a href="#sjw-top">↑ 顶</a> · <a href="./SJW-00.html">返回 SJW-00</a> · <a href="/modules/shijian">史鉴·中华</a></span>
+</footer>
+</div>
+</body>
+</html>
