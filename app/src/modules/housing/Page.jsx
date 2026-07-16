@@ -9,6 +9,7 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // ----------------------------------------------------------------------------
 // 冷峻现实主义视角：把住房还原为「土地财政—居民资产负债表—金融杠杆」三体博弈。
 // 所有数值为公开资料示意（asOf 2026-06），非官方统计，非投资建议。
+// 政策雷达核验：docs/econ/房地产消息核验-2026-07.md（POLICY_AS_OF 2026-07-16）
 // ============================================================================
 
 const RED = '#c41e3a';
@@ -16,6 +17,32 @@ const GOLD = '#e8a317';
 const CYAN = '#22d3ee';
 const GREEN = '#10b981';
 const VIOLET = '#8b5cf6';
+
+/** 地产政策雷达 · 自媒体说法核验（不改 H1/行业示意数字） */
+const POLICY_RADAR_AS_OF = '2026-07-16';
+const POLICY_RADAR = [
+  {
+    verdict: '误传监测',
+    accent: RED,
+    claim: '北上「取消限购」',
+    body: '截至核验日，北京、上海仍执行限购。已核实的是分区/分人群「调减限购」（京：五环外不限套数 + 2025-12 社保年限下调；沪：2026-02「沪七条」调减门槛）。官方用词是「优化/调减」，不是「全面取消」。',
+    source: '京沪住建/房管局通知 · 上海市政府网 · 新华通稿',
+  },
+  {
+    verdict: '存疑 · 勿混读',
+    accent: GOLD,
+    claim: '信贷「数量→质量」',
+    body: '部委通稿无对「房地产信贷」的「数量转移到质量」原话。易与普惠小微「质量优先」、商品房建设「提高质量」、白名单「合规项目应贷尽贷」混读。可写：白名单常态化 + 项目制合规投放，而非无差别冲规模。',
+    source: '金融监管总局白名单常态化 · 政治局「控增量/优存量/提高质量」',
+  },
+  {
+    verdict: '部分属实',
+    accent: CYAN,
+    claim: '住房 · 大宗耐用商品',
+    body: '《扩大消费「十五五」规划》（国函〔2026〕66 号，2026-07-13）在「促进大宗耐用商品消费」首条写「更好满足住房消费需求」。官方是「大宗耐用商品 + 住房消费」，不是「大宗消费品」四字；不等于重启投资属性。',
+    source: '中国政府网 · 国函〔2026〕66 号；衔接 2025-03 提振消费专项行动',
+  },
+];
 
 // ---- 议题选择器 ----
 const ISSUES = [
@@ -186,7 +213,7 @@ const ISSUE_DETAIL = {
     accent: RED,
     现状: '商品房销售面积自 2021 年约 17.9 亿㎡ 的历史高点深度回落，2025 年预计跌至 8–9 亿㎡ 区间，腰斩级调整；销售额同步从 18 万亿向 9 万亿收敛。',
     风险: '高杠杆、高周转、高负债的「三高」开发模式终结，期房预售制下的信用循环断裂，去化周期拉长至历史高位，二手房挂牌量堆积压制新房定价。',
-    政策: '从「认房又认贷」松绑到首付比例下调、利率下行、「白名单」融资协调机制，需求侧与供给侧同时托底，目标是「止跌回稳」而非重启上涨。',
+    政策: '从「认房又认贷」松绑到首付比例下调、利率下行、「白名单」融资协调机制，多数城市限制性措施已退出或大幅优化；北上深等仍「因城施策调减限购」而非全面取消。目标是「止跌回稳」而非重启上涨。',
     charts: [
       { title: '商品房销售面积 vs 销售额（2015–2025E · 示意）', opt: cycleOpt, h: 250 },
       { title: '房地产开发投资增速（同比% · 转负 · 示意）', opt: investGrowthOpt, h: 250 },
@@ -250,7 +277,7 @@ const TIMELINE = [
   { period: '2003–2015', title: '黄金十年 · 调控加码', accent: GOLD, desc: '城镇化 + 货币宽松驱动房价长牛，限购限贷限价等行政调控反复加码，土地财政依赖度攀升至历史高位，居民杠杆快速抬升。' },
   { period: '2016', title: '房住不炒', accent: CYAN, desc: '「房子是用来住的、不是用来炒的」定调，开启去金融化的政策转向，预期管理从「保涨」转向「稳价」。' },
   { period: '2020–2022', title: '三道红线 · 出险出清', accent: RED, desc: '以「三道红线」限制房企融资，叠加销售下行触发头部房企连环出险，行业进入深度去杠杆与信用收缩阶段。' },
-  { period: '2023–今', title: '保交楼 · 止跌回稳 + 保障房', accent: GREEN, desc: '保交楼守底线，「白名单」融资协调，需求侧全面松绑求「止跌回稳」；同步推进保障性住房与「三大工程」，构建新发展模式。' },
+  { period: '2023–今', title: '保交楼 · 止跌回稳 + 保障房', accent: GREEN, desc: '保交楼守底线，「白名单」融资协调常态化；多数城市需求侧限制性措施退出或优化，北上深等仍调减而非取消限购，求「止跌回稳」。同步推进保障性住房、「三大工程」，住房消费写入扩内需「大宗耐用商品」条目。' },
 ];
 
 export default function Page() {
@@ -278,6 +305,26 @@ export default function Page() {
         <Stat value="~68%" label="房企净负债率（自 120% 去杠杆）" accent={VIOLET} />
         <Stat value="ACTIVE" label="保障性住房建设（三大工程逆周期托底）" accent={CYAN} />
       </Grid>
+
+      {/* ===== 地产政策雷达 · 说法核验 ===== */}
+      <Card title={`地产政策雷达 · 说法核验（监测截至 ${POLICY_RADAR_AS_OF}）`} className="mb-6">
+        <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
+          自媒体三条热传说法的精确口径对照——<strong style={{ color: 'var(--text-primary)' }}>已出台写「已核实措施」；未证实写「误传/存疑」</strong>，
+          避免把「调减限购」「大宗耐用商品」演绎成「全面取消限购」或「投资品重启」。
+        </p>
+        <Grid cols={3}>
+          {POLICY_RADAR.map((r) => (
+            <div key={r.claim} className="os-card p-4" style={{ background: 'var(--bg-surface)', borderLeft: `3px solid ${r.accent}` }}>
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="text-[10px] mono font-semibold" style={{ color: r.accent }}>{r.verdict}</span>
+              </div>
+              <div className="text-xs font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>{r.claim}</div>
+              <p className="text-[11px] leading-relaxed mb-2" style={{ color: 'var(--text-tertiary)' }}>{r.body}</p>
+              <p className="text-[10px] mono m-0" style={{ color: 'var(--text-tertiary)' }}>出处：{r.source}</p>
+            </div>
+          ))}
+        </Grid>
+      </Card>
 
       {/* ===== 议题选择器 ===== */}
       <Card title="议题透视 · 周期 / 财政 / 债务 / 保障" className="mb-6">
@@ -352,7 +399,7 @@ export default function Page() {
           <div className="space-y-2">
             <div style={{ borderLeft: `2px solid ${RED}`, paddingLeft: 10 }}>
               <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>市场轨（商品房 · 约 50%）</div>
-              <p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>取消限购限价后回归供需定价，竞争维度转向品质、物业与社区运营。</p>
+              <p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>多数城市限制性措施已退出或大幅优化；北上深等仍因城施策保留限购框架。竞争维度转向品质、物业与社区运营。</p>
             </div>
             <div style={{ borderLeft: `2px solid ${CYAN}`, paddingLeft: 10 }}>
               <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>保障轨（保租房/配售 · 约 50%）</div>
@@ -411,8 +458,13 @@ export default function Page() {
 
       <ModuleFooter
         moduleId="housing"
+        links={[
+          { to: '/econ-h1-review', label: '半年经济解读 · 2026 H1', note: '地产投资 −18.0% 拖累段 + 政策监测注。' },
+          { to: '/econ-consume-15th', label: '十五五促消费', note: '住房消费写入「大宗耐用商品」条目。' },
+          { to: '/econ-dashboard', label: '经济大盘', note: '固投/地产读数与金丝雀。' },
+        ]}
         disclaimer="公开资料整理，数值示意非官方统计 · 仅供分析框架参考，不构成投资建议"
-        sourceNote="由 china.html「住房」专题迁移并扩容"
+        sourceNote={`由 china.html「住房」专题迁移并扩容 · 政策雷达核验截至 ${POLICY_RADAR_AS_OF}（见 docs/econ/房地产消息核验-2026-07.md）`}
       />
     </div>
   );

@@ -19,8 +19,15 @@ import { INDICATOR_SPARKLINES, INCOME_DIST, econTabPath } from '../econdash/econ
 // ============================================================================
 
 const DATA_AS_OF = '2026-07-15';
+const POLICY_MONITOR_AS_OF = '2026-07-16';
 const SRC = '国家统计局 2026-07-15 上半年国民经济运行情况新闻稿及附表';
 const SRC_CUSTOMS = '海关总署（与 NBS 新闻稿交叉引用）';
+/** 地产政策监测（不改 H1 数字）· 核验见 docs/econ/房地产消息核验-2026-07.md */
+const HOUSING_POLICY_MONITOR = [
+  ['北上限购', '误传监测', '「全面取消」无官方通稿；已核实为分区/分人群调减限购（京五环外、沪「沪七条」等）。'],
+  ['信贷口径', '存疑', '无「地产信贷数量→质量」部委原话；可写白名单常态化 + 合规项目优先，勿与小微「质量优先」混读。'],
+  ['大宗定位', '部分属实', '《扩大消费「十五五」规划》将住房消费写入「大宗耐用商品」——居住消费/扩内需，非投资品重启。'],
+];
 
 const C = CHART_SERIES_COLORS;
 
@@ -560,6 +567,26 @@ export default function Page({ embedded = false } = {}) {
             </div>
           ))}
         </Grid>
+        <div className="os-card p-4 mt-4" style={{ background: 'var(--bg-elevated)', borderTop: `1px solid var(--border-subtle, rgba(255,255,255,0.06))` }}>
+          <div className="text-xs font-semibold mb-2 mono" style={{ color: C.fireGold }}>
+            政策监测 · 地产说法核验（截至 {POLICY_MONITOR_AS_OF} · 不改上方 H1 统计）
+          </div>
+          <p className="text-[11px] leading-relaxed mb-3" style={{ color: 'var(--text-tertiary)' }}>
+            H1 读数仍以 NBS 为准。下方仅同步政策传播面的精确口径，防止把「调减限购」「大宗耐用商品」误读成已发生的全面放开或刺激炒房。
+          </p>
+          <Grid cols={3}>
+            {HOUSING_POLICY_MONITOR.map(([t, v, d]) => (
+              <div key={t} style={{ borderLeft: `2px solid ${C.slate}`, paddingLeft: 10 }}>
+                <div className="text-[10px] mono mb-0.5" style={{ color: C.fireGold }}>{v}</div>
+                <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>{t}</div>
+                <p className="text-[11px] leading-relaxed m-0" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
+              </div>
+            ))}
+          </Grid>
+          <p className="text-[10px] mono mt-3 m-0" style={{ color: 'var(--text-tertiary)' }}>
+            详表：docs/econ/房地产消息核验-2026-07.md · 专题页 /housing 政策雷达
+          </p>
+        </div>
       </Card>
 
       <Grid cols={2} className="mb-8">
@@ -658,7 +685,7 @@ export default function Page({ embedded = false } = {}) {
           { to: '/econ-dashboard?tab=consume15', label: '十五五促消费 · 大盘 Tab', note: '规划摘要；全文页可从 Tab 内链出。' },
           { to: '/econ-dashboard?tab=worldbank', label: '世行经济简报 · 2026-07', note: '世界银行月度研判与基线预测（经济大盘 Tab）。' },
           { to: '/foreign-trade', label: '对外贸易 · 从世界工厂到规则博弈', note: '出口结构与伙伴版图的长周期拆解。' },
-          { to: '/housing', label: '住房地产 · 行业周期', note: '地产投资 −18.0% 背后的行业周期与化债。' },
+          { to: '/housing', label: '住房地产 · 行业周期', note: '地产投资 −18.0% 背后的行业周期 · 政策雷达核验。' },
           { to: '/modules/signal-panel', label: '宏观再平衡信号灯', note: 'A/B/C 信号 · 态势合成 · 2026-07。' },
         ]}
         sourceNote={`数据来源：${SRC} · 进出口：${SRC_CUSTOMS} · 数据截至 ${DATA_AS_OF}`}

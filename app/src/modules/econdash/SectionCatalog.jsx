@@ -154,6 +154,11 @@ function BandCard({ band, liveById }) {
           {band.h || '未命名带'}
         </h4>
       </div>
+      {band.note && (
+        <p className="text-[10px] leading-relaxed mt-1.5 m-0" style={{ color: 'var(--text-tertiary)' }}>
+          {band.note}
+        </p>
+      )}
       <span
         className="absolute text-sm"
         style={{ top: 12, right: 14, color: edge }}

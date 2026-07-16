@@ -93,6 +93,7 @@ export const MACRO_BANDS = [
   {
     cn: '05',
     h: '房地产',
+    note: '政策监测 2026-07-16：北上仍限购（调减≠取消）；住房消费入「大宗耐用商品」；信贷「数量→质量」无部委原话 · 见 /housing 政策雷达',
     rows: [
       { name: '商品房销售面积 / 金额', note: '量价齐看', src: 'NBS', freq: '月累计', chart: '双轴', lens: '双' },
       { name: '房地产开发投资', note: '深度拖累固投', src: 'NBS', freq: '月累计', chart: '柱+折', lens: '双' },
