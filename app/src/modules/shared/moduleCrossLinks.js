@@ -45,6 +45,7 @@ const MAP = {
     { to: '/deterrence', label: '威慑战略 · 边缘政策', note: '封控与介入的威慑可信度计算。' },
     { to: '/military', label: '军事力量 · A2/AD', note: '区域拒止能力的装备与部署底座。' },
     { to: '/semiconductor', label: '半导体 · 硅盾', note: '台积电与全球产业链人质的非对称筹码。' },
+    { to: '/modules/santi', label: '三体透镜 · 机制对照', note: '仅机制层对照水滴/威慑意象，禁止情节套裁战场。' },
   ],
   thucydides: [
     { to: '/diplomacy', label: '外交博弈 · 竞合管控', note: '实力转移窗口落到中美矢量盘。' },
@@ -62,6 +63,7 @@ const MAP = {
     { to: '/straits', label: '台海 · 介入代价', note: '外部干预的威慑平衡计算。' },
     { to: '/military', label: '军事力量', note: '威慑能力的物理载体。' },
     { to: '/gametheory', label: '博弈论 · 重复博弈', note: '以牙还牙与边缘策略的均衡。' },
+    { to: '/modules/santi', label: '三体透镜 · 执剑人', note: '人格化执剑 vs 指挥链可信承诺——强制关键差异。' },
   ],
   omnisecurity: [
     { to: '/food-security', label: '粮食安全 · 18 亿亩红线', note: '大安全观第一支柱的专题深潜。' },
@@ -136,6 +138,7 @@ const MAP = {
     { to: '/civilization', label: '文明透视 · 源代码', note: '权力逻辑在 12 卷叙事中的位置。' },
     { to: '/redweb', label: '红网 · 结构分析', note: '权贵网络与权力物理学的交叉。' },
     { to: '/govsystem', label: '政府体系', note: '压力型体制与执行算法。' },
+    { to: '/modules/santi', label: '三体透镜 · 思想钢印', note: '语义锁定 vs 物理钢印——可逆性是关键差异。' },
   ],
   foodSecurity: [
     { to: '/omnisecurity', label: '大安全观 · 粮食支柱', note: '18 亿亩红线在大安全框架中的位置。' },
@@ -320,6 +323,7 @@ const MAP = {
     { to: '/straits', label: '台海 · 博弈盘面', note: '统一/维持/介入的三方博弈。' },
     { to: '/talent?tab=diplomatic', label: '外交人才 · 驻外使节', note: '多边与双边外交执行节点。' },
     { to: '/talent?tab=taiwan', label: '港澳台政要', note: '台港澳政治人物决策节点。' },
+    { to: '/modules/santi', label: '三体透镜 · 猜疑链', note: '黑暗森林坐标系 vs 囚徒困境——思想实验边界。' },
   ],
   automotive: [
     { to: '/foreign-trade', label: '对外贸易 · 新三样', note: 'EV 是出口结构升级引擎。' },
@@ -567,6 +571,7 @@ const MAP = {
     { to: '/talent', label: '人才精英库 · 中国政要', note: '政要池与省域配置联动。' },
     { to: '/talent?tab=anticorruption', label: '反腐透视', note: '反腐风暴情景的制度语境。' },
     { to: '/regional', label: '区域协调 · 省际', note: '熵增地图与区域治理对照。' },
+    { to: '/modules/santi', label: '三体透镜 · 动员杠杆', note: '行星工程/阶梯计划 ↔ 情景压力与动员疲劳。' },
   ],
   leadership: [
     { to: '/talent', label: '人才精英库 · 中国政要', note: '政治局常委与省部级政要结构化图谱，与本模块人事布局同源。' },
@@ -871,6 +876,15 @@ const MAP = {
     { to: '/straits', label: '台海局势 · 地缘', note: '海洋方向压力轴焦点。' },
     { to: '/military', label: '军事力量 · 国防', note: '国防支出与军事力当代读数。' },
     { to: '/modules/shijian/sj-20', label: 'SJ-20 · 政治映射', note: '央地—军事张力与外交压力里表。' },
+  ],
+  santi: [
+    { to: '/deterrence', label: '威慑战略 · 可信承诺', note: '执剑人人格化 vs 指挥链与法理——强制关键差异。' },
+    { to: '/gametheory', label: '博弈理论 · 猜疑链', note: '黑暗森林坐标系与囚徒困境/重复博弈对照。' },
+    { to: '/straits', label: '台海局势 · 机制层', note: '仅机制对照，禁止用情节套裁战场。' },
+    { to: '/powerlogic', label: '权力逻辑 · 认知边界', note: '思想钢印隐喻 vs 语义防火墙可逆性。' },
+    { to: '/sandbox', label: '治国沙盒 · 动员杠杆', note: '行星工程/阶梯计划与情景压力测试交叉。' },
+    { to: '/thucydides', label: '修昔底德陷阱', note: '安全困境与公理前提的边界澄清。' },
+    { to: '/realism', label: '现实主义', note: '无政府假定与宇宙社会学公理的对照阅读。' },
   ],
 };
 

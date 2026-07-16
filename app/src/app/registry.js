@@ -989,6 +989,16 @@ export const MODULES = [
     component: lazy(() => import('../modules/sandbox/Page.jsx')),
   },
   {
+    id: 'santi',
+    path: '/modules/santi',
+    group: 'sim',
+    title: '三体总论',
+    subtitle: '文明透镜 · 机制映射 · 思想实验',
+    icon: 'Orbit',
+    accent: '#6b8cae',
+    component: lazy(() => import('../modules/santi/Page.jsx')),
+  },
+  {
     id: 'shijianSJ00',
     path: '/modules/shijian',
     group: 'shijian',
