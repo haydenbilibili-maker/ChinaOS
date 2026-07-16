@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJW-06 · 地缘政治经典案</title>
+<meta name="description" content="史鉴·世界：马汉海权、麦金德心脏地带、斯皮克曼边缘地带等经典地缘学说的机制史与政策转化台账。"/>
+<style>
+
+:root{
+  /* 史鉴·世界皮肤：色义对齐 SJ（ochre=数据/财政, celadon=结构/精英, vermil=张力/军事, paper=合法性/正文），底色偏冷墨以区分中华宣纸暖墨 */
+  --sjw-ink-900:#0f1216;
+  --sjw-ink-800:#161b22;
+  --sjw-paper-100:#d8dde6;
+  --sjw-paper-300:#9aa3b2;
+  --sjw-vermil:#a83b2c;
+  --sjw-celadon:#4a6d7c;
+  --sjw-ochre:#b8894a;
+  --sjw-line:#2c333d;
+  --sjw-radius:6px;
+  --sjw-space:clamp(12px,2vw,24px);
+  --sjw-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sjw-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(1000px 560px at 72% -8%, #1a2430 0%, transparent 55%),
+    radial-gradient(700px 420px at 8% 90%, #12161c 0%, transparent 50%),
+    var(--sjw-ink-900);
+  color:var(--sjw-paper-100);
+  font-family:var(--sjw-serif);
+  line-height:1.75;
+}
+.sjw-wrap{max-width:min(100%,1180px);margin:0 auto;padding:var(--sjw-space) var(--sjw-space) 48px}
+@media (min-width:1536px){.sjw-wrap{max-width:min(100%,1360px)}}
+.sjw-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sjw-line);margin-bottom:20px}
+.sjw-mast .badge{font-family:var(--sjw-mono);font-size:11px;letter-spacing:.18em;color:var(--sjw-ochre);margin-bottom:6px}
+.sjw-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.14em;line-height:1.3}
+.sjw-mast h1 em{font-style:normal;color:var(--sjw-paper-300);font-weight:400;letter-spacing:.06em;font-size:.72em;display:block;margin-top:4px}
+.sjw-meta{font-family:var(--sjw-mono);font-size:11px;color:var(--sjw-paper-300);text-align:right;line-height:1.7}
+.sjw-meta b{color:var(--sjw-ochre);font-weight:500}
+.sjw-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sjw-chip,.sjw-chip:visited{display:inline-block;font-family:var(--sjw-mono);font-size:10px;letter-spacing:.08em;color:var(--sjw-celadon);border:1px solid var(--sjw-line);padding:3px 8px;border-radius:var(--sjw-radius);text-decoration:none}
+.sjw-chip:hover,.sjw-chip:focus-visible{border-color:var(--sjw-ochre);color:var(--sjw-ochre);outline:none}
+.sjw-zhupi{color:var(--sjw-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sjw-vermil);max-width:76ch}
+.sjw-sec{margin:36px 0 28px;scroll-margin-top:24px}
+.sjw-sec-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--sjw-line)}
+.sjw-sec-h .num{font-family:var(--sjw-mono);font-size:11px;letter-spacing:.2em;color:var(--sjw-ochre)}
+.sjw-sec-h h2{font-size:clamp(17px,2.2vw,20px);font-weight:600;letter-spacing:.1em}
+.sjw-prose{font-size:15.5px;color:var(--sjw-paper-100);max-width:76ch}
+.sjw-prose + .sjw-prose{margin-top:12px}
+.sjw-prose strong{color:var(--sjw-ochre);font-weight:600}
+.sjw-note{font-size:13px;color:var(--sjw-paper-300);margin-top:12px;max-width:76ch}
+.sjw-note b{color:var(--sjw-paper-100);font-weight:600}
+.sjw-stage{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:linear-gradient(180deg,var(--sjw-ink-800),var(--sjw-ink-900));box-shadow:0 1px 0 rgba(216,221,230,.04),0 18px 48px rgba(0,0,0,.45);padding:8px;overflow:auto;margin-top:8px}
+.sjw-stage svg{display:block;width:100%;height:auto;max-width:820px;margin:0 auto}
+.sjw-table-wrap{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);overflow:auto;margin-top:8px}
+.sjw-table{width:max(100%,720px);border-collapse:collapse;font-size:13px}
+.sjw-table th{background:var(--sjw-ink-900);color:var(--sjw-ochre);font-family:var(--sjw-mono);font-size:10px;letter-spacing:.1em;font-weight:500;text-align:left;padding:10px 12px;border-bottom:1px solid var(--sjw-line)}
+.sjw-table td{padding:10px 12px;border-bottom:1px solid var(--sjw-line);color:var(--sjw-paper-300);vertical-align:top;line-height:1.6}
+.sjw-table td:first-child{color:var(--sjw-paper-100);font-weight:600}
+.sjw-dual{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.sjw-dual article{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:14px 16px}
+.sjw-dual .k{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.14em;color:var(--sjw-ochre);margin-bottom:6px}
+.sjw-dual h3{font-size:14px;margin-bottom:8px;letter-spacing:.04em}
+.sjw-dual p{font-size:13px;color:var(--sjw-paper-300);line-height:1.65}
+.sjw-dual .diff{border-left:3px solid var(--sjw-vermil)}
+.sjw-dual .sim{border-left:3px solid var(--sjw-celadon)}
+.sjw-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.sjw-card,.sjw-card:visited{display:block;border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:16px;text-decoration:none;color:inherit;transition:border-color .18s}
+.sjw-card:hover,.sjw-card:focus-visible{border-color:var(--sjw-ochre);outline:none}
+.sjw-card .n{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.14em;color:var(--sjw-ochre);margin-bottom:4px}
+.sjw-card h3{font-size:15px;letter-spacing:.06em;margin-bottom:6px}
+.sjw-card p{font-size:12.5px;color:var(--sjw-paper-300);line-height:1.6}
+.sjw-axes{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:10px}
+.sjw-axis{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);padding:10px 8px;text-align:center;font-size:11px;color:var(--sjw-paper-300)}
+.sjw-axis b{display:block;font-family:var(--sjw-mono);font-size:10px;letter-spacing:.08em;margin-bottom:4px;font-weight:500}
+.sjw-axis.ochre b{color:var(--sjw-ochre)}
+.sjw-axis.celadon b{color:var(--sjw-celadon)}
+.sjw-axis.paper b{color:var(--sjw-paper-100)}
+.sjw-axis.vermil b{color:var(--sjw-vermil)}
+.sjw-axis.ink b{color:var(--sjw-paper-300)}
+.sjw-ledger{display:grid;gap:8px;margin-top:10px}
+.sjw-ledger article{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:12px 14px}
+.sjw-ledger .f{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.12em;color:var(--sjw-ochre);margin-bottom:4px}
+.sjw-ledger p{font-size:13px;color:var(--sjw-paper-300);line-height:1.6}
+.sjw-tri{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.sjw-tri article{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:12px 14px}
+.sjw-tri .k{font-family:var(--sjw-mono);font-size:10px;color:var(--sjw-ochre);letter-spacing:.1em;margin-bottom:4px}
+.sjw-tri h3{font-size:13px;margin-bottom:6px}
+.sjw-tri p{font-size:12.5px;color:var(--sjw-paper-300);line-height:1.55}
+.sjw-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sjw-line);font-family:var(--sjw-mono);font-size:10px;color:var(--sjw-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sjw-foot a{color:var(--sjw-celadon);text-decoration:none}
+.sjw-foot a:hover{color:var(--sjw-ochre)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sjw-card,.sjw-chip{transition:none}}
+@media (max-width:900px){.sjw-dual,.sjw-cards,.sjw-tri{grid-template-columns:1fr}.sjw-axes{grid-template-columns:1fr 1fr}}
+@media (max-width:768px){.sjw-meta{text-align:left}.sjw-axes{grid-template-columns:1fr}}
+html[data-theme="light"]{--sjw-ink-900:#eef1f4;--sjw-ink-800:#e4e8ed;--sjw-paper-100:#1a1e24;--sjw-paper-300:#4a5564;--sjw-vermil:#9a3428;--sjw-celadon:#3a5a68;--sjw-ochre:#8a6528;--sjw-line:#c5ccd6}
+html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%, #e2e7ec 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #e8ecf0 0%, transparent 50%),var(--sjw-ink-900);color:var(--sjw-paper-100)}
+
+
+</style>
+<script>
+
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark')}
+  try{
+    var q=new URLSearchParams(location.search).get('theme');
+    if(q==='light'||q==='dark')apply(q);
+  }catch(e){}
+  window.addEventListener('message',function(e){
+    if(e.origin!==location.origin)return;
+    var d=e&&e.data;if(!d||d.type!==MSG)return;
+    apply(d.theme);
+  });
+})();
+
+</script>
+</head>
+<body>
+<div class="sjw-wrap" id="sjw-top">
+<header class="sjw-mast">
+  <div>
+    <div class="badge">SJW-06 · 史鉴·世界 · 机制深描</div>
+    <h1>地缘政治经典案<em>马汉 · 麦金德 · 斯皮克曼 · 学说→政策转化机制史</em></h1>
+    <div class="sjw-chips">
+      <a class="sjw-chip" href="./SJW-00.html">SJW-00 总索引</a>
+      <a class="sjw-chip" href="/modules/shijian">史鉴·中华</a>
+      <a class="sjw-chip" href="/modules/santi">三体透镜（边界）</a>
+    </div>
+  </div>
+  <div class="sjw-meta">
+    AS_OF <b>2026-07-16</b><br/>
+    版本 <b>v0.2</b> · Round 2<br/>
+    令牌 <b>--sjw-*</b>
+  </div>
+</header>
+<p class="sjw-zhupi">本卷是学说机制史，不是时评地图着色。焦点：地理命题如何进入海军预算、陆权战略与遏制政策。与中华 SJ-24 外交映射可深链；禁止把「心脏地带」直接贴到当代新闻标题。</p>
+
+<section class="sjw-sec" id="sec-sig">
+  <div class="sjw-sec-h"><span class="num">01 · 签名视觉</span><h2>海权环 · 心脏 · 边缘带</h2></div>
+  <div class="sjw-stage">
+    <svg viewBox="0 0 820 340" role="img" aria-labelledby="s6t s6d">
+      <title id="s6t">地缘三透镜：外环海权、中环边缘地带、内核心脏地带</title>
+      <desc id="s6d">三同心结构示意马汉海权外环、斯皮克曼边缘地带中环、麦金德心脏地带内核。</desc>
+      <rect width="820" height="340" fill="var(--sjw-ink-900)"/>
+      <text x="24" y="28" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-06 · 三透镜同心 · 非精确地图</text>
+      <ellipse cx="360" cy="180" rx="200" ry="130" fill="none" stroke="var(--sjw-celadon)" stroke-width="2"/>
+      <ellipse cx="360" cy="180" rx="130" ry="85" fill="none" stroke="var(--sjw-ochre)" stroke-width="2"/>
+      <ellipse cx="360" cy="180" rx="60" ry="40" fill="none" stroke="var(--sjw-vermil)" stroke-width="2.5"/>
+      <text x="360" y="185" text-anchor="middle" fill="var(--sjw-vermil)" font-size="12">心脏</text>
+      <text x="360" y="120" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">边缘地带</text>
+      <text x="360" y="70" text-anchor="middle" fill="var(--sjw-celadon)" font-size="12">海权外环</text>
+      <g font-family="ui-monospace,monospace" font-size="11" fill="var(--sjw-paper-300)">
+        <text x="600" y="100">马汉 1890</text>
+        <text x="600" y="120">海权=商路+舰队</text>
+        <text x="600" y="170">麦金德 1904</text>
+        <text x="600" y="190">心脏→世界岛</text>
+        <text x="600" y="240">斯皮克曼 1940s</text>
+        <text x="600" y="260">边缘带遏制</text>
+      </g>
+      <text x="410" y="320" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="11">几何示意 · 禁止当作作战图</text>
+    </svg>
+  </div>
+</section>
+
+<section class="sjw-sec" id="sec-ledger">
+  <div class="sjw-sec-h"><span class="num">02 · 史鉴台账</span><h2>七字段</h2></div>
+  <div class="sjw-ledger">
+    <article><div class="f">① 一句话拐点</div><p>十九世纪末至冷战初，海权论、心脏地带论与边缘地带论相继把「地理常量」转译为可预算的海军与联盟政策；学说效力取决于财政信用与技术基座，而非地图修辞本身。</p></article>
+    <article><div class="f">② 结构切片</div><p>文本层（海军学院/皇家地理学会讲演）→ 官僚采纳层（海军部、国务院、参谋部）→ 联盟与基地网。威斯特伐利亚主权规范提供「合法战争/均势」外壳；维也纳体系与冷战两极是不同相位的秩序容器。</p></article>
+    <article><div class="f">③ 相位</div><p>帝国海军竞争（马汉影响美西战争后扩建）→ 陆权焦虑（一战前后麦金德）→ 边缘遏制（凯南/NSC-68 与斯皮克曼遗产交织）→ 后冷战空窗〔学说过载风险〕。</p></article>
+    <article><div class="f">④ 五轴（结构实因）</div><p><b>财政</b>：无蒸汽舰队与信用市场，海权论为空谈。<b>精英</b>：海军军官团与文官战略家互译。<b>合法性</b>：文明标准/自由世界叙事包装遏制。<b>军事地缘</b>：基地链与大陆心脏的可达性。<b>基座</b>：工业革命、铁路、石油、航空改变「距离成本」——学说需随技术修订。</p></article>
+    <article><div class="f">⑤ 史家交锋</div><p>经典地缘决定论 · 批判地缘政治 · 海权修正派 · 「美国大战略」学派 · 中国朝贡/边疆史对照——本卷采「学说—政策转化」机制，拒绝地理宿命。</p></article>
+    <article><div class="f">⑥ 成败三列</div><p><b>已兑现</b>：马汉框架助力美国海军扩张与大西洋/太平洋基地思维；边缘带逻辑与冷战前沿同盟高度同构。<b>已失败</b>：把心脏地带控制等同世界统治的简化公式（技术与核时代改写）。<b>未决</b>：空天/赛博是否取消边缘带——开放。</p></article>
+  </div>
+</section>
+
+<section class="sjw-sec" id="sec-table">
+  <div class="sjw-sec-h"><span class="num">03 · 学说对照</span><h2>命题 · 政策出口 · 盲区</h2></div>
+  <div class="sjw-table-wrap">
+    <table class="sjw-table">
+      <thead><tr><th>学说</th><th>核心命题</th><th>政策出口（史例）</th><th>盲区风险</th></tr></thead>
+      <tbody>
+        <tr><td>马汉</td><td>控制海上交通线与决战舰队</td><td>美海军扩建；英帝国海权传统回声</td><td>低估陆权纵深与游击拒止</td></tr>
+        <tr><td>麦金德</td><td>东欧/心脏地带枢纽</td><td>一战前后陆权忧虑；冷战「谁控制…」修辞</td><td>铁路时代常量被空运/核投射改写</td></tr>
+        <tr><td>斯皮克曼</td><td>边缘地带（Rimland）关键</td><td>与遏制/前沿部署亲和</td><td>边缘国家内部政治被简化为棋子</td></tr>
+        <tr><td>秩序容器</td><td>威斯特伐利亚主权 / 维也纳均势</td><td>会议外交、大国协调</td><td>常忽略殖民地与非主权行为体</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="sjw-note">马汉 <i>The Influence of Sea Power upon History</i> 1890 出版。麦金德 1904 年讲演「历史的地理枢纽」。斯皮克曼 <i>The Geography of the Peace</i> 1944。NSC-68（1950）为美国冷战战略文件——与地缘经典交织但非同一文本〔转化链条需分列〕。</p>
+</section>
+
+<section class="sjw-sec" id="sec-map">
+  <div class="sjw-sec-h"><span class="num">04 · 映射</span><h2>相似机制 · 关键差异</h2></div>
+  <div class="sjw-dual">
+    <article class="sim"><div class="k">相似机制</div><h3>边疆压力驱动财政军备</h3><p>与中华 SJ-24「边疆—军费—财政」耦合同构：外部可达性焦虑抬高军费份额，挤压其他轴。</p></article>
+    <article class="diff"><div class="k">关键差异</div><h3>海权信用 vs 朝贡陆权</h3><p>近代欧美学说嵌在全球贸易信用与殖民地基地网；中华帝制边疆逻辑长期以农本财政与陆路驿递为主——可对照压力轴，不可把「心脏地带」等同「西域都护」。</p></article>
+  </div>
+  <div class="sjw-dual">
+    <article class="sim"><div class="k">相似机制</div><h3>现实主义均势</h3><p>与认知内核「现实主义」模块同构：无政府体系下的制衡与联盟。</p></article>
+    <article class="diff"><div class="k">关键差异</div><h3>史鉴台账 ≠ 时评地图</h3><p>本卷停在学说史与可考政策转化；当代热点另走外交/台海模块——禁止用麦金德句式直接判读今日新闻。</p></article>
+  </div>
+</section>
+
+<section class="sjw-sec" id="sec-src">
+  <div class="sjw-sec-h"><span class="num">05 · 出处</span><h2>研究入口</h2></div>
+  <p class="sjw-note">Mahan 1890 · Mackinder 1904 · Spykman 1942/1944 · Gaddis 冷战大战略史 · 威斯特伐利亚和约 1648 · 对照 SJ-24、SJW-01、/realism · 「谁控制心脏地带…」流行句多为二手转述，引用需回原文语境〔存疑修辞链〕。</p>
+</section>
+
+<footer class="sjw-foot">
+  <span>ChinaOS · 史鉴·世界 SJW-06 · v0.2 · AS_OF 2026-07-16</span>
+  <span></span>
+  <span><a href="#sjw-top">↑ 顶</a> · <a href="./SJW-00.html">返回 SJW-00</a> · <a href="/modules/shijian">史鉴·中华</a></span>
+</footer>
+</div>
+</body>
+</html>

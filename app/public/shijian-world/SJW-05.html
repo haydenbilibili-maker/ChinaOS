@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SJW-05 · 社会主义运动谱系</title>
+<meta name="description" content="史鉴·世界综合矩阵：巴黎公社至冷战阵营的社会主义运动组织形态、合法性与财政—动员轴对照。"/>
+<style>
+
+:root{
+  /* 史鉴·世界皮肤：色义对齐 SJ（ochre=数据/财政, celadon=结构/精英, vermil=张力/军事, paper=合法性/正文），底色偏冷墨以区分中华宣纸暖墨 */
+  --sjw-ink-900:#0f1216;
+  --sjw-ink-800:#161b22;
+  --sjw-paper-100:#d8dde6;
+  --sjw-paper-300:#9aa3b2;
+  --sjw-vermil:#a83b2c;
+  --sjw-celadon:#4a6d7c;
+  --sjw-ochre:#b8894a;
+  --sjw-line:#2c333d;
+  --sjw-radius:6px;
+  --sjw-space:clamp(12px,2vw,24px);
+  --sjw-serif:"Songti SC","Noto Serif SC","Source Han Serif SC",serif;
+  --sjw-mono:"Source Han Mono","JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(1000px 560px at 72% -8%, #1a2430 0%, transparent 55%),
+    radial-gradient(700px 420px at 8% 90%, #12161c 0%, transparent 50%),
+    var(--sjw-ink-900);
+  color:var(--sjw-paper-100);
+  font-family:var(--sjw-serif);
+  line-height:1.75;
+}
+.sjw-wrap{max-width:min(100%,1180px);margin:0 auto;padding:var(--sjw-space) var(--sjw-space) 48px}
+@media (min-width:1536px){.sjw-wrap{max-width:min(100%,1360px)}}
+.sjw-mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--sjw-line);margin-bottom:20px}
+.sjw-mast .badge{font-family:var(--sjw-mono);font-size:11px;letter-spacing:.18em;color:var(--sjw-ochre);margin-bottom:6px}
+.sjw-mast h1{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:.14em;line-height:1.3}
+.sjw-mast h1 em{font-style:normal;color:var(--sjw-paper-300);font-weight:400;letter-spacing:.06em;font-size:.72em;display:block;margin-top:4px}
+.sjw-meta{font-family:var(--sjw-mono);font-size:11px;color:var(--sjw-paper-300);text-align:right;line-height:1.7}
+.sjw-meta b{color:var(--sjw-ochre);font-weight:500}
+.sjw-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sjw-chip,.sjw-chip:visited{display:inline-block;font-family:var(--sjw-mono);font-size:10px;letter-spacing:.08em;color:var(--sjw-celadon);border:1px solid var(--sjw-line);padding:3px 8px;border-radius:var(--sjw-radius);text-decoration:none}
+.sjw-chip:hover,.sjw-chip:focus-visible{border-color:var(--sjw-ochre);color:var(--sjw-ochre);outline:none}
+.sjw-zhupi{color:var(--sjw-vermil);font-size:13.5px;margin:0 0 18px;padding-left:12px;border-left:2px solid var(--sjw-vermil);max-width:76ch}
+.sjw-sec{margin:36px 0 28px;scroll-margin-top:24px}
+.sjw-sec-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--sjw-line)}
+.sjw-sec-h .num{font-family:var(--sjw-mono);font-size:11px;letter-spacing:.2em;color:var(--sjw-ochre)}
+.sjw-sec-h h2{font-size:clamp(17px,2.2vw,20px);font-weight:600;letter-spacing:.1em}
+.sjw-prose{font-size:15.5px;color:var(--sjw-paper-100);max-width:76ch}
+.sjw-prose + .sjw-prose{margin-top:12px}
+.sjw-prose strong{color:var(--sjw-ochre);font-weight:600}
+.sjw-note{font-size:13px;color:var(--sjw-paper-300);margin-top:12px;max-width:76ch}
+.sjw-note b{color:var(--sjw-paper-100);font-weight:600}
+.sjw-stage{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:linear-gradient(180deg,var(--sjw-ink-800),var(--sjw-ink-900));box-shadow:0 1px 0 rgba(216,221,230,.04),0 18px 48px rgba(0,0,0,.45);padding:8px;overflow:auto;margin-top:8px}
+.sjw-stage svg{display:block;width:100%;height:auto;max-width:820px;margin:0 auto}
+.sjw-table-wrap{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);overflow:auto;margin-top:8px}
+.sjw-table{width:max(100%,720px);border-collapse:collapse;font-size:13px}
+.sjw-table th{background:var(--sjw-ink-900);color:var(--sjw-ochre);font-family:var(--sjw-mono);font-size:10px;letter-spacing:.1em;font-weight:500;text-align:left;padding:10px 12px;border-bottom:1px solid var(--sjw-line)}
+.sjw-table td{padding:10px 12px;border-bottom:1px solid var(--sjw-line);color:var(--sjw-paper-300);vertical-align:top;line-height:1.6}
+.sjw-table td:first-child{color:var(--sjw-paper-100);font-weight:600}
+.sjw-dual{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.sjw-dual article{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:14px 16px}
+.sjw-dual .k{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.14em;color:var(--sjw-ochre);margin-bottom:6px}
+.sjw-dual h3{font-size:14px;margin-bottom:8px;letter-spacing:.04em}
+.sjw-dual p{font-size:13px;color:var(--sjw-paper-300);line-height:1.65}
+.sjw-dual .diff{border-left:3px solid var(--sjw-vermil)}
+.sjw-dual .sim{border-left:3px solid var(--sjw-celadon)}
+.sjw-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.sjw-card,.sjw-card:visited{display:block;border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:16px;text-decoration:none;color:inherit;transition:border-color .18s}
+.sjw-card:hover,.sjw-card:focus-visible{border-color:var(--sjw-ochre);outline:none}
+.sjw-card .n{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.14em;color:var(--sjw-ochre);margin-bottom:4px}
+.sjw-card h3{font-size:15px;letter-spacing:.06em;margin-bottom:6px}
+.sjw-card p{font-size:12.5px;color:var(--sjw-paper-300);line-height:1.6}
+.sjw-axes{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:10px}
+.sjw-axis{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);padding:10px 8px;text-align:center;font-size:11px;color:var(--sjw-paper-300)}
+.sjw-axis b{display:block;font-family:var(--sjw-mono);font-size:10px;letter-spacing:.08em;margin-bottom:4px;font-weight:500}
+.sjw-axis.ochre b{color:var(--sjw-ochre)}
+.sjw-axis.celadon b{color:var(--sjw-celadon)}
+.sjw-axis.paper b{color:var(--sjw-paper-100)}
+.sjw-axis.vermil b{color:var(--sjw-vermil)}
+.sjw-axis.ink b{color:var(--sjw-paper-300)}
+.sjw-ledger{display:grid;gap:8px;margin-top:10px}
+.sjw-ledger article{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:12px 14px}
+.sjw-ledger .f{font-family:var(--sjw-mono);font-size:10px;letter-spacing:.12em;color:var(--sjw-ochre);margin-bottom:4px}
+.sjw-ledger p{font-size:13px;color:var(--sjw-paper-300);line-height:1.6}
+.sjw-tri{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.sjw-tri article{border:1px solid var(--sjw-line);border-radius:var(--sjw-radius);background:var(--sjw-ink-800);padding:12px 14px}
+.sjw-tri .k{font-family:var(--sjw-mono);font-size:10px;color:var(--sjw-ochre);letter-spacing:.1em;margin-bottom:4px}
+.sjw-tri h3{font-size:13px;margin-bottom:6px}
+.sjw-tri p{font-size:12.5px;color:var(--sjw-paper-300);line-height:1.55}
+.sjw-foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--sjw-line);font-family:var(--sjw-mono);font-size:10px;color:var(--sjw-paper-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sjw-foot a{color:var(--sjw-celadon);text-decoration:none}
+.sjw-foot a:hover{color:var(--sjw-ochre)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sjw-card,.sjw-chip{transition:none}}
+@media (max-width:900px){.sjw-dual,.sjw-cards,.sjw-tri{grid-template-columns:1fr}.sjw-axes{grid-template-columns:1fr 1fr}}
+@media (max-width:768px){.sjw-meta{text-align:left}.sjw-axes{grid-template-columns:1fr}}
+html[data-theme="light"]{--sjw-ink-900:#eef1f4;--sjw-ink-800:#e4e8ed;--sjw-paper-100:#1a1e24;--sjw-paper-300:#4a5564;--sjw-vermil:#9a3428;--sjw-celadon:#3a5a68;--sjw-ochre:#8a6528;--sjw-line:#c5ccd6}
+html[data-theme="light"] body{background:radial-gradient(1000px 560px at 72% -8%, #e2e7ec 0%, transparent 55%),radial-gradient(700px 420px at 8% 90%, #e8ecf0 0%, transparent 50%),var(--sjw-ink-900);color:var(--sjw-paper-100)}
+
+
+</style>
+<script>
+
+(function(){
+  var MSG='c2os-sj-theme';
+  function apply(t){document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark')}
+  try{
+    var q=new URLSearchParams(location.search).get('theme');
+    if(q==='light'||q==='dark')apply(q);
+  }catch(e){}
+  window.addEventListener('message',function(e){
+    if(e.origin!==location.origin)return;
+    var d=e&&e.data;if(!d||d.type!==MSG)return;
+    apply(d.theme);
+  });
+})();
+
+</script>
+</head>
+<body>
+<div class="sjw-wrap" id="sjw-top">
+<header class="sjw-mast">
+  <div>
+    <div class="badge">SJW-05 · 史鉴·世界 · 综合矩阵</div>
+    <h1>社会主义运动谱系<em>公社实验 × 第二国际 × 列宁主义国家 · 组织形态对照</em></h1>
+    <div class="sjw-chips">
+      <a class="sjw-chip" href="./SJW-00.html">SJW-00 总索引</a>
+      <a class="sjw-chip" href="/modules/shijian">史鉴·中华</a>
+      <a class="sjw-chip" href="/modules/santi">三体透镜（边界）</a>
+    </div>
+  </div>
+  <div class="sjw-meta">
+    AS_OF <b>2026-07-16</b><br/>
+    版本 <b>v0.2</b> · Round 2<br/>
+    令牌 <b>--sjw-*</b>
+  </div>
+</header>
+<p class="sjw-zhupi">本卷为谱系矩阵，非单案辩护或批判书。与 SJW-03（苏联国家形态）衔接：本卷看「运动→党→国家」谱系分支，苏卷看「国家五轴共振」。政治中立；数字标口径或〔存疑〕。</p>
+
+<section class="sjw-sec" id="sec-sig">
+  <div class="sjw-sec-h"><span class="num">01 · 签名视觉</span><h2>运动枝杈：公社 → 国际 → 国家</h2></div>
+  <div class="sjw-stage">
+    <svg viewBox="0 0 820 320" role="img" aria-labelledby="s5t s5d">
+      <title id="s5t">社会主义运动谱系：巴黎公社、第二国际、列宁主义国家三枝分叉</title>
+      <desc id="s5d">左干为工人运动与马克思主义文本，中部第二国际议会道路，右部十月革命后国家形态，底部社会民主支线。</desc>
+      <rect width="820" height="320" fill="var(--sjw-ink-900)"/>
+      <text x="24" y="28" fill="var(--sjw-ochre)" font-size="11" font-family="ui-monospace,monospace">SJW-05 · 谱系枝杈 · viewBox 820×320</text>
+      <path d="M80 160 H280" stroke="var(--sjw-paper-300)" stroke-width="2"/>
+      <circle cx="80" cy="160" r="8" fill="var(--sjw-celadon)"/>
+      <text x="80" y="140" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="12">文本/工会</text>
+      <path d="M280 160 L400 90" stroke="var(--sjw-ochre)" stroke-width="2"/>
+      <path d="M280 160 L400 160" stroke="var(--sjw-celadon)" stroke-width="2"/>
+      <path d="M280 160 L400 230" stroke="var(--sjw-vermil)" stroke-width="2"/>
+      <rect x="400" y="60" width="140" height="56" rx="4" fill="var(--sjw-ink-800)" stroke="var(--sjw-ochre)"/>
+      <text x="470" y="85" text-anchor="middle" fill="var(--sjw-ochre)" font-size="12">社会民主</text>
+      <text x="470" y="102" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">议会·福利</text>
+      <rect x="400" y="132" width="140" height="56" rx="4" fill="var(--sjw-ink-800)" stroke="var(--sjw-celadon)"/>
+      <text x="470" y="157" text-anchor="middle" fill="var(--sjw-celadon)" font-size="12">第二国际</text>
+      <text x="470" y="174" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">1889–1914</text>
+      <rect x="400" y="204" width="140" height="56" rx="4" fill="var(--sjw-ink-800)" stroke="var(--sjw-vermil)"/>
+      <text x="470" y="229" text-anchor="middle" fill="var(--sjw-vermil)" font-size="12">列宁主义</text>
+      <text x="470" y="246" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">党国·共产国际</text>
+      <path d="M540 232 H620" stroke="var(--sjw-vermil)" stroke-width="1.5"/>
+      <rect x="620" y="204" width="150" height="56" rx="4" fill="none" stroke="var(--sjw-vermil)"/>
+      <text x="695" y="229" text-anchor="middle" fill="var(--sjw-paper-100)" font-size="12">苏联/阵营</text>
+      <text x="695" y="246" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="10">→ SJW-03</text>
+      <text x="80" y="200" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="11">1871 公社</text>
+      <text x="410" y="300" text-anchor="middle" fill="var(--sjw-paper-300)" font-size="11">分支=组织形态与夺取政权路径，非道德评分</text>
+    </svg>
+  </div>
+</section>
+
+<section class="sjw-sec" id="sec-matrix">
+  <div class="sjw-sec-h"><span class="num">02 · 谱系矩阵</span><h2>节点 × 五轴角色</h2></div>
+  <p class="sjw-prose">矩阵回答「一类运动如何组织汲取与合法性」。行=关键节点，列=帝国/文明五轴在运动语境下的标签变体（本卷声明：财政→会费/国家预算；精英→干部/议会党团；合法性→阶级叙事；军事→武装起义或国防；基座→产业工人/农民）。</p>
+  <div class="sjw-table-wrap">
+    <table class="sjw-table">
+      <thead><tr><th>节点</th><th>财政—资源</th><th>精英—组织</th><th>合法性—叙事</th><th>军事—压力</th><th>基座</th></tr></thead>
+      <tbody>
+        <tr><td>巴黎公社 1871</td><td>市财政短命；无全国信用</td><td>国民自卫军—市政委员</td><td>公社自治 / 共和激进</td><td>凡尔赛军镇压</td><td>巴黎手工业—工人</td></tr>
+        <tr><td>第二国际 1889–1914</td><td>党费+工会基金</td><td>议会党团 / 工会官僚</td><td>渐进社会主义</td><td>反军国主义决议 vs 1914 分裂</td><td>西欧产业工人</td></tr>
+        <tr><td>布尔什维克 1917+</td><td>战时共产主义→计划汲取</td><td>职业革命家—诺менклатура</td><td>马克思—列宁主义</td><td>内战 / 红军</td><td>工农联盟（张力）</td></tr>
+        <tr><td>社会民主福利国家</td><td>累进税+社保财政</td><td>议会多数+劳资协商</td><td>民主社会主义 / 社会市场</td><td>北约/中立框架内</td><td>高生产率服务业化</td></tr>
+        <tr><td>冷战阵营 1940s–80s</td><td>经互会 / 补贴贸易〔量级异说〕</td><td>卫星国共产党</td><td>反帝+计划经济绩效</td><td>华约 / 代理人战争</td><td>重工优先</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="sjw-note">公社存续约 72 日（1871-03-18—05-28，年表口径）。第二国际成立于巴黎 1889（与第一国际 1864 伦敦区分）。1914 各社民党投票支持战争拨款——组织国际主义在民族国家动员下断裂，是谱系关键拐点。</p>
+</section>
+
+<section class="sjw-sec" id="sec-ledger">
+  <div class="sjw-sec-h"><span class="num">03 · 史鉴台账</span><h2>七字段意识（谱系卷）</h2></div>
+  <div class="sjw-ledger">
+    <article><div class="f">① 一句话拐点</div><p>社会主义从巴黎市短期实验与西欧议会工人党，分叉为「社会民主—福利国家」与「列宁主义—党国」两条可制度化路径；冷战把后者固化为阵营，前者嵌入资本主义民主财政。</p></article>
+    <article><div class="f">② 结构切片</div><p>文本层（马克思传统）→ 国际协调层（第一/第二/共产国际）→ 民族国家政权层。失败常发生在国际层无法约束民族动员，或政权层五轴过载（见 SJW-03）。</p></article>
+    <article><div class="f">③ 相位</div><p>萌芽（十九世纪工会/文本）→ 组织扩张（第二国际）→ 政权化分叉（1917 与战后社民）→ 阵营僵化 → 后冷战碎片化。相位标签便于对照，非王朝循环。</p></article>
+    <article><div class="f">④ 五轴归因（结构实因侧重）</div><p><b>财政</b>：无国家机器则运动依赖会费；夺权后汲取能力跃迁亦绑定军工与补贴。<b>精英</b>：议会党团 vs 职业革命家纪律是组织分岔核心。<b>合法性</b>：阶级解放叙事在绩效落差下磨损。<b>军事</b>：公社败于正规军；列宁主义以内战军队再造国家。<b>基座</b>：产业工人密度决定议会道路可行区间。</p></article>
+    <article><div class="f">⑤ 史家交锋</div><p>正统马克思主义史 · 修正主义/伯恩施坦路线 · 托派 Continuity · 冷战极权主义学派 · 「民族化马克思主义」区域研究——本卷采组织形态比较，反对以单一道德叙事覆盖全部节点。</p></article>
+    <article><div class="f">⑥ 成败三列</div><p><b>已兑现</b>：工人组织可进入西欧议会并推动社保立法；列宁主义可在落后农业国快速工业化。<b>已失败</b>：第二国际阻止大战；苏联式计划长期生产率追赶（详 SJW-03）。<b>未决</b>：二十一世纪平台劳动是否再造新「基座阶级」组织形态——开放问题。</p></article>
+  </div>
+</section>
+
+<section class="sjw-sec" id="sec-map">
+  <div class="sjw-sec-h"><span class="num">04 · 映射</span><h2>相似机制 · 关键差异</h2></div>
+  <div class="sjw-dual">
+    <article class="sim"><div class="k">相似机制</div><h3>组织纪律 vs 松散联盟</h3><p>与中华变法/党争案同构处：精英组织形态决定改革能否穿透基层——职业干部纪律可动员，亦易固化。</p></article>
+    <article class="diff"><div class="k">关键差异</div><h3>阶级国际 vs 帝制官僚</h3><p>社会主义运动以跨国阶级叙事为合法性来源；中华王朝以天命—科举官僚为载体。可对照「精英循环通道」，不可把「党委」直接等同「科举同年」。</p></article>
+  </div>
+  <div class="sjw-dual">
+    <article class="sim"><div class="k">相似机制</div><h3>国际协调失败于民族动员</h3><p>1914 第二国际分裂，与联盟体系在大战前锁死（SJW-02）同属「超国家承诺被民族国家财政—军事压垮」。</p></article>
+    <article class="diff"><div class="k">关键差异</div><h3>意识形态党 vs 王朝宗室</h3><p>社民党可合法反对党轮替；列宁主义党国垄断合法性。对照中华「正统叙事」时须标明选举退出机制有无。</p></article>
+  </div>
+  <div class="sjw-dual">
+    <article class="sim"><div class="k">相似机制</div><h3>与三体：动员叙事</h3><p>宏大解放叙事可压缩个体成本感知——可与思想实验中的「阶梯计划」动员修辞对照阅读。</p></article>
+    <article class="diff"><div class="k">关键差异</div><h3>史鉴 ≠ 三体</h3><p>本卷台账约束于可考组织史与财政—军事接口；三体为思想实验透镜——禁止把「黑暗森林」导出为工人运动规律。</p></article>
+  </div>
+</section>
+
+<section class="sjw-sec" id="sec-src">
+  <div class="sjw-sec-h"><span class="num">05 · 出处</span><h2>研究入口</h2></div>
+  <p class="sjw-note">Marx/Engels 文本史 · Joll <i>The Second International</i> · Sassoon <i>One Hundred Years of Socialism</i> · 公社年表（1871）· 共产国际历次代表大会编年 · 对照 SJW-03、SJW-01 · 死亡/党员绝对数各国统计口径不一〔存疑〕不锁死。</p>
+</section>
+
+<footer class="sjw-foot">
+  <span>ChinaOS · 史鉴·世界 SJW-05 · v0.2 · AS_OF 2026-07-16</span>
+  <span></span>
+  <span><a href="#sjw-top">↑ 顶</a> · <a href="./SJW-00.html">返回 SJW-00</a> · <a href="/modules/shijian">史鉴·中华</a></span>
+</footer>
+</div>
+</body>
+</html>
