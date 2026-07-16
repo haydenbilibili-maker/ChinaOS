@@ -3,8 +3,9 @@ import ShijianHtmlShell from '../shijian/ShijianHtmlShell.jsx';
 const HINT_LINKS = [
   { href: '/shijian-world/SJW-00.html', label: 'SJW-00 单页' },
   { href: '/modules/shijian', label: '史鉴·中华' },
-  { href: '/modules/shijian-world/sjw-09', label: 'SJW-09 帝国衰变' },
-  { href: '/modules/shijian-world/sjw-13', label: 'SJW-13 霸权矩阵' },
+  { href: '/modules/shijian-world/sjw-14', label: 'SJW-14 大分流' },
+  { href: '/modules/shijian-world/sjw-17', label: 'SJW-17 去殖民矩阵' },
+  { href: '/modules/shijian-world/sjw-18', label: 'SJW-18 能源基座' },
   { href: '/modules/santi', label: '三体透镜（边界）' },
 ];
 

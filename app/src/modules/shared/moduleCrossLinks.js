@@ -100,6 +100,7 @@ const MAP = {
     { to: '/smartgrid', label: '智能电网 · 特高压', note: '西电东送与源网荷储一体化。' },
     { to: '/hydrogen', label: '氢能 · 绿氢链条', note: '非化石能源的储运载体。' },
     { to: '/omnisecurity', label: '大安全观 · 能源冗余', note: 'SPR 与能源主权保障。' },
+    { to: '/modules/shijian-world/sjw-18', label: 'SJW-18 · 气候—能源基座', note: '史鉴机制史台账；本页=当代工具箱——职责不合并。' },
   ],
   private: [
     { to: '/soe', label: '国有资本 · 国进民退边界', note: '56789 贡献 vs 命脉国有控盘。' },
@@ -900,8 +901,9 @@ const MAP = {
   shijianWorldSJW00: [
     { to: '/modules/shijian', label: '史鉴·中华 · SJ-00', note: '同源四步法引擎与中华五柱枢纽。' },
     { to: '/modules/shijian-world/sjw-01', label: 'SJW-01 · 大国崛起', note: 'Round 1 综合矩阵首卷。' },
-    { to: '/modules/shijian-world/sjw-09', label: 'SJW-09 · 帝国衰变', note: 'Round 3：对照 SJ-07 崩解矩阵。' },
-    { to: '/modules/shijian-world/sjw-13', label: 'SJW-13 · 霸权矩阵', note: 'Round 3：荷—英—美交接综合。' },
+    { to: '/modules/shijian-world/sjw-14', label: 'SJW-14 · 大分流', note: 'Round 4：加州学派对照 ↔ SJ-21。' },
+    { to: '/modules/shijian-world/sjw-17', label: 'SJW-17 · 去殖民矩阵', note: 'Round 4：非亚/拉美区域综合。' },
+    { to: '/modules/shijian-world/sjw-18', label: 'SJW-18 · 能源基座', note: 'Round 4：碳基上限 × 压舱石划界。' },
     { to: '/modules/santi', label: '三体透镜', note: '文明博弈可深链；动力学命名不合并。' },
     { to: '/thucydides', label: '修昔底德陷阱', note: '权力转移窗口与 SJW-01/07/13 对照。' },
     { to: '/deterrence', label: '威慑战略', note: '与 SJW-08/12 划界：模拟器 ≠ 编年台账。' },
@@ -950,6 +952,7 @@ const MAP = {
     { to: '/thucydides', label: '修昔底德陷阱', note: '同谱系合作转移 ≠ 经典挑战者宿命——关键差异。' },
     { to: '/modules/shijian-world/sjw-02', label: 'SJW-02 · 世界大战', note: '大战作为霸权交接加速器。' },
     { to: '/modules/shijian-world/sjw-13', label: 'SJW-13 · 霸权矩阵', note: '英美案收入跨案综合矩阵。' },
+    { to: '/modules/shijian-world/sjw-16', label: 'SJW-16 · 货币锚', note: 'Round 4：自本卷/SJW-13 货币锚行析出。' },
   ],
   shijianWorldSJW08: [
     { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
@@ -968,6 +971,8 @@ const MAP = {
     { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
     { to: '/modules/shijian/sj-21', label: 'SJ-21 · 经济映射', note: '路径依赖与财政汲取对照——强制关键差异。' },
     { to: '/modules/shijian-world/sjw-03', label: 'SJW-03 · 苏联', note: '动员型工业化另一谱系终点。' },
+    { to: '/modules/shijian-world/sjw-15', label: 'SJW-15 · 日本发展型', note: 'Round 4：自本卷发展型河道析出单案。' },
+    { to: '/modules/shijian-world/sjw-17', label: 'SJW-17 · 去殖民矩阵', note: 'Round 4：满员后区域综合矩阵。' },
     { to: '/thucydides', label: '修昔底德陷阱', note: '权力转移窗口 ≠ 发展型国家处方——划界。' },
   ],
   shijianWorldSJW11: [
@@ -975,6 +980,8 @@ const MAP = {
     { to: '/modules/shijian-world/sjw-01', label: 'SJW-01 · 大国崛起', note: '本卷自崛起谱系技术—财政窗口析出。' },
     { to: '/modules/shijian-world/sjw-07', label: 'SJW-07 · 英美霸权', note: '工业革命为英峰基座前史。' },
     { to: '/modules/shijian-world/sjw-13', label: 'SJW-13 · 霸权矩阵', note: '工业基座行收入综合矩阵。' },
+    { to: '/modules/shijian-world/sjw-14', label: 'SJW-14 · 大分流', note: 'Round 4：加州学派对照本卷窗口。' },
+    { to: '/modules/shijian-world/sjw-18', label: 'SJW-18 · 能源基座', note: 'Round 4：碳基上限专题延伸。' },
   ],
   shijianWorldSJW12: [
     { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
@@ -988,7 +995,43 @@ const MAP = {
     { to: '/modules/shijian-world/sjw-01', label: 'SJW-01 · 崛起谱系', note: '矩阵成员：总论定位。' },
     { to: '/modules/shijian-world/sjw-07', label: 'SJW-07 · 英美霸权', note: '矩阵成员：同盟内交接深描。' },
     { to: '/modules/shijian-world/sjw-11', label: 'SJW-11 · 工业革命', note: '矩阵成员：英峰基座窗口。' },
+    { to: '/modules/shijian-world/sjw-16', label: 'SJW-16 · 货币锚', note: 'Round 4：布雷顿→广场自货币锚行析出。' },
     { to: '/thucydides', label: '修昔底德陷阱', note: '同谱系转移 ≠ 通用挑战者宿命——关键差异。' },
+  ],
+  shijianWorldSJW14: [
+    { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
+    { to: '/modules/shijian-world/sjw-11', label: 'SJW-11 · 工业革命', note: '英峰工业窗口深描；本卷=分流史学对照。' },
+    { to: '/modules/shijian/sj-21', label: 'SJ-21 · 经济映射', note: '基座—汲取同构；强制关键差异（化石工厂 vs 农艺）。' },
+    { to: '/modules/shijian-world/sjw-18', label: 'SJW-18 · 能源基座', note: '碳基上限专题延伸。' },
+    { to: '/modules/santi', label: '三体透镜', note: '生产力阶梯 ≠ 宇宙社会学——命名不合并。' },
+  ],
+  shijianWorldSJW15: [
+    { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
+    { to: '/modules/shijian-world/sjw-10', label: 'SJW-10 · 去殖民/发展型', note: '本卷自发展型河道析出。' },
+    { to: '/modules/shijian-world/sjw-16', label: 'SJW-16 · 货币锚', note: '广场协议后泡沫接口。' },
+    { to: '/modules/shijian-world/sjw-17', label: 'SJW-17 · 去殖民矩阵', note: '东亚河道矩阵成员。' },
+    { to: '/modules/shijian/sj-21', label: 'SJ-21 · 经济映射', note: '国家能力×产业学习对照——关键差异。' },
+  ],
+  shijianWorldSJW16: [
+    { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
+    { to: '/modules/shijian-world/sjw-07', label: 'SJW-07 · 英美霸权', note: '本卷自信用交接货币锚析出。' },
+    { to: '/modules/shijian-world/sjw-13', label: 'SJW-13 · 霸权矩阵', note: '美元锚行综合层。' },
+    { to: '/modules/shijian-world/sjw-15', label: 'SJW-15 · 日本发展型', note: '广场升值与国内金融接口。' },
+    { to: '/modules/shijian/sj-21', label: 'SJ-21 · 经济映射', note: '承诺—汲取同构；储备货币 vs 农本铸币——关键差异。' },
+  ],
+  shijianWorldSJW17: [
+    { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
+    { to: '/modules/shijian-world/sjw-10', label: 'SJW-10 · 去殖民总论', note: '矩阵成员：三河道总论。' },
+    { to: '/modules/shijian-world/sjw-15', label: 'SJW-15 · 日本发展型', note: '矩阵成员：东亚河道深描。' },
+    { to: '/modules/shijian-world/sjw-16', label: 'SJW-16 · 货币锚', note: '关联：债务周期外部项。' },
+    { to: '/modules/shijian/sj-21', label: 'SJ-21 · 经济映射', note: '路径锁定同构；殖民切割 vs 郡县——关键差异。' },
+  ],
+  shijianWorldSJW18: [
+    { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
+    { to: '/modules/shijian-world/sjw-11', label: 'SJW-11 · 工业革命', note: '碳基起飞前史。' },
+    { to: '/modules/shijian-world/sjw-14', label: 'SJW-14 · 大分流', note: '化石—工厂耦合史学对照。' },
+    { to: '/energy', label: '能源 · 压舱石', note: '当代工具箱；本卷=机制史台账——职责不合并。' },
+    { to: '/modules/santi', label: '三体透镜', note: '行星资源可对照；禁止黑暗森林抢碳预算。' },
   ],
 };
 
