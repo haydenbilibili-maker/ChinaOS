@@ -778,6 +778,7 @@ const MAP = {
     { to: '/modules/shijian/sj-01', label: 'SJ-01 · 方法矩阵', note: '史家方法光谱与四栏对照。' },
     { to: '/modules/shijian/sj-03', label: 'SJ-03 · 五力衰变', note: '周期卷力场：财政枢纽与耦合主链。' },
     { to: '/modules/shijian/sj-04', label: 'SJ-04 · 相位罗盘', note: '治乱循环相位盘：五相位定位与修复力。' },
+    { to: '/modules/shijian-world', label: 'SJW-00 · 史鉴·世界', note: '并列世界线：大国崛起 / 大战 / 苏联 / 文明博弈。' },
     { to: '/modules/guoyun', label: '国运模拟器 · GY-01', note: 'SJ-04 相位盘对接干支时间轴与 2026–2036 情景推演。' },
     { to: '/modules/yishixingtai', label: '合法性机器 · GY-02', note: 'SJ-03 五力中合法性叙事力的当代形态。' },
     { to: '/modules/renqun-tupu', label: '人群画像总图谱 · GY-00', note: '生态—人口—技术基座力与人群切片总盘互为里表。' },
@@ -890,8 +891,37 @@ const MAP = {
     { to: '/thucydides', label: '修昔底德陷阱', note: '权力转移窗口 ≠ 宇宙接触策略——安全困境可对照，适用边界不同。' },
     { to: '/realism', label: '现实主义', note: '无政府假定与宇宙社会学公理的对照阅读。' },
     { to: '/antifragile', label: '反脆弱 · 尾部期权', note: '阶梯计划 ↔ 黑天鹅对冲——禁止美化不计成本孤注。' },
-    { to: '/modules/shijian', label: '史鉴 · Mirror', note: '治乱动力学 ↔ 深空思想实验——对照不合并模型。' },
+    { to: '/modules/shijian', label: '史鉴·中华 · Mirror', note: '治乱动力学 ↔ 深空思想实验——对照不合并模型。' },
+    { to: '/modules/shijian-world/sjw-04', label: 'SJW-04 · 文明博弈（史鉴）', note: '历史机制台账 ≠ 三体思想实验——差异闸见该卷签名图。' },
     { to: '/principalagent', label: '委托代理', note: '面壁/执剑个体面 ↔ 代理人偏好隐瞒与职责边界。' },
+  ],
+  shijianWorldSJW00: [
+    { to: '/modules/shijian', label: '史鉴·中华 · SJ-00', note: '同源四步法引擎与中华五柱枢纽。' },
+    { to: '/modules/shijian-world/sjw-01', label: 'SJW-01 · 大国崛起', note: 'Round 1 综合矩阵首卷。' },
+    { to: '/modules/santi', label: '三体透镜', note: '文明博弈可深链；动力学命名不合并。' },
+    { to: '/thucydides', label: '修昔底德陷阱', note: '权力转移窗口与 SJW-01/02 对照。' },
+    { to: '/realism', label: '现实主义', note: '大国政治理论出口。' },
+  ],
+  shijianWorldSJW01: [
+    { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
+    { to: '/modules/shijian/sj-17', label: 'SJ-17 · 上升奠基矩阵', note: '中华上升案对照——强制关键差异（海权信用 vs 赋役科举）。' },
+    { to: '/thucydides', label: '修昔底德陷阱', note: '相对力量窗口机制对照。' },
+  ],
+  shijianWorldSJW02: [
+    { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
+    { to: '/realism', label: '现实主义', note: '联盟与安全困境。' },
+    { to: '/deterrence', label: '威慑战略', note: '核时代升级函数的关键差异出口。' },
+  ],
+  shijianWorldSJW03: [
+    { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
+    { to: '/modules/shijian/sj-07', label: 'SJ-07 · 崩解矩阵', note: '多力共振同构；党国联邦 vs 帝制郡县为关键差异。' },
+    { to: '/modules/shijian-world/sjw-01', label: 'SJW-01 · 大国崛起', note: '苏联行在崛起谱系中的位置。' },
+  ],
+  shijianWorldSJW04: [
+    { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
+    { to: '/modules/santi', label: '三体 · 文明博弈', note: '思想实验透镜；本卷为历史机制台账。' },
+    { to: '/modules/shijian/sj-01', label: 'SJ-01 · 史家方法', note: '比较史学透镜入口。' },
+    { to: '/thucydides', label: '修昔底德陷阱', note: '安全困境可对照，适用边界不同。' },
   ],
 };
 

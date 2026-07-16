@@ -1,12 +1,14 @@
 import { getShijianEventYear, isSynthesisCase } from './caseYears.js';
 
-/** 史鉴侧栏五柱 IA：总论 → 方法论 → 周期机制 → 案例库 → 古今对照 */
+/** 史鉴侧栏 IA：中华五柱 + 世界双柱 */
 export const SHIJIAN_SUBGROUPS = [
-  { id: 'overview', label: '总论', order: 0 },
-  { id: 'method', label: '方法论', order: 1 },
-  { id: 'cycle', label: '周期机制', order: 2 },
-  { id: 'cases', label: '案例库', order: 3 },
-  { id: 'mirror', label: '古今对照', order: 4 },
+  { id: 'overview', label: '中华·总论', order: 0, line: 'china' },
+  { id: 'method', label: '中华·方法论', order: 1, line: 'china' },
+  { id: 'cycle', label: '中华·周期机制', order: 2, line: 'china' },
+  { id: 'cases', label: '中华·案例库', order: 3, line: 'china' },
+  { id: 'mirror', label: '中华·古今对照', order: 4, line: 'china' },
+  { id: 'world', label: '世界·总览', order: 5, line: 'world' },
+  { id: 'world-topics', label: '世界·专题', order: 6, line: 'world' },
 ];
 
 /** 案例库子段：单案按 eventYear 升序，综合矩阵固定底 */
