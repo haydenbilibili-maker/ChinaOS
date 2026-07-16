@@ -3,7 +3,7 @@
  * 标注「示意」的曲线仅为思想实验，非实证预测。
  */
 
-import { CANON, CIV_LEDGERS, STATE_LEDGERS, GOV_LEDGERS, DIMS } from './santiCanon.js';
+import { CANON, CIV_LEDGERS, STATE_LEDGERS, GOV_LEDGERS, SELF_LEDGERS, DIMS } from './santiCanon.js';
 
 const ST = {
   signal: '#6b8cae',
@@ -369,8 +369,198 @@ export function buildDeterrenceFieldOption() {
   };
 }
 
+/** 思想钢印 · 个体面认知雷达（示意 · ST-09） */
+export function buildSteelImprintRadarOption() {
+  return {
+    color: [ST.flare, ST.ice],
+    tooltip: { ...tooltipBase },
+    legend: {
+      bottom: 0,
+      textStyle: { color: ST.muted, fontSize: 11 },
+    },
+    radar: {
+      indicator: [
+        { name: '信念固化度', max: 100 },
+        { name: '证伪成本', max: 100 },
+        { name: '信息源多元', max: 100 },
+        { name: '可逆性', max: 100 },
+        { name: '策略集开放度', max: 100 },
+      ],
+      center: ['50%', '48%'],
+      radius: '58%',
+      axisName: { color: ST.muted, fontSize: 11 },
+      splitLine: { lineStyle: { color: ST.line } },
+      splitArea: { areaStyle: { color: ['rgba(18,24,38,0.35)', 'rgba(11,14,20,0.55)'] } },
+      axisLine: { lineStyle: { color: ST.line } },
+    },
+    series: [
+      {
+        type: 'radar',
+        data: [
+          {
+            name: '物理钢印（小说·示意）',
+            value: [98, 95, 8, 5, 12],
+            areaStyle: { color: 'rgba(196,92,38,0.2)' },
+            lineStyle: { color: ST.flare },
+          },
+          {
+            name: '概率性认知边界（现实·示意）',
+            value: [55, 48, 72, 68, 62],
+            areaStyle: { color: 'rgba(122,158,159,0.18)' },
+            lineStyle: { color: ST.ice },
+          },
+        ],
+      },
+    ],
+  };
+}
+
+/** 阶梯抉择 · 信息熵 vs 行动杠杆（示意 · ST-10） */
+export function buildLadderEntropyOption() {
+  const phases = ['常规路径', '信息缺口扩大', '尾部窗口', '阶梯下注', '问责结算'];
+  return {
+    color: [ST.signal, ST.flare, ST.ice],
+    tooltip: {
+      ...tooltipBase,
+      trigger: 'axis',
+      formatter: (params) => {
+        const lines = (params || []).map((p) => `${p.marker}${p.seriesName}: ${p.value}`);
+        return `${params?.[0]?.axisValue}<br/>${lines.join('<br/>')}<br/><span style="opacity:.7">示意 · 非预测；行动须成本收益框定</span>`;
+      },
+    },
+    legend: {
+      top: 4,
+      textStyle: { color: ST.muted, fontSize: 11 },
+    },
+    grid: { left: 44, right: 18, top: 36, bottom: 32 },
+    xAxis: {
+      type: 'category',
+      data: phases,
+      axisLabel: { color: ST.muted, fontSize: 10 },
+      axisLine: { lineStyle: { color: ST.line } },
+    },
+    yAxis: {
+      type: 'value',
+      max: 100,
+      axisLabel: { color: ST.muted },
+      splitLine: { lineStyle: { color: ST.line, type: 'dashed' } },
+    },
+    series: [
+      {
+        name: '信息完备度（示意）',
+        type: 'line',
+        smooth: true,
+        data: [78, 52, 35, 28, 60],
+        areaStyle: { color: 'rgba(107,140,174,0.12)' },
+      },
+      {
+        name: '行动杠杆（示意）',
+        type: 'line',
+        smooth: true,
+        data: [22, 38, 72, 92, 55],
+        areaStyle: { color: 'rgba(196,92,38,0.12)' },
+      },
+      {
+        name: '可辩护问责压力（示意）',
+        type: 'line',
+        smooth: true,
+        data: [40, 48, 58, 85, 90],
+        lineStyle: { type: 'dashed', width: 1.8 },
+      },
+    ],
+  };
+}
+
+/** 自我探索链：执剑 → 钢印 → 阶梯 → 领航 */
+export function buildSelfFlowOption() {
+  return {
+    tooltip: { ...tooltipBase },
+    series: [
+      {
+        type: 'sankey',
+        emphasis: { focus: 'adjacency' },
+        nodeAlign: 'justify',
+        lineStyle: { color: 'gradient', curveness: 0.4, opacity: 0.4 },
+        label: { color: ST.metal, fontSize: 11 },
+        data: [
+          { name: 'ST-06 执剑伦理', itemStyle: { color: ST.flare } },
+          { name: 'ST-09 钢印个体', itemStyle: { color: ST.signal } },
+          { name: 'ST-10 阶梯抉择', itemStyle: { color: ST.ice } },
+          { name: 'ST-22 关键岗位', itemStyle: { color: ST.muted } },
+        ],
+        links: [
+          { source: 'ST-06 执剑伦理', target: 'ST-09 钢印个体', value: 5 },
+          { source: 'ST-09 钢印个体', target: 'ST-10 阶梯抉择', value: 6 },
+          { source: 'ST-10 阶梯抉择', target: 'ST-22 关键岗位', value: 5 },
+          { source: 'ST-06 执剑伦理', target: 'ST-10 阶梯抉择', value: 3 },
+        ],
+      },
+    ],
+  };
+}
+
+/** Mirror 矩阵：概念 × 维度「映射张力」热力（示意评分） */
+export function buildMirrorHeatOption(rows) {
+  const concepts = rows.map((r) => r.concept);
+  const dimKeys = ['C', 'N', 'G', 'S'];
+  const dimLabels = ['C 文明', 'N 国家', 'G 治理', 'S 自我'];
+  // 示意张力：按字长近似，仅视觉密度，非实证
+  const data = [];
+  rows.forEach((r, yi) => {
+    dimKeys.forEach((d, xi) => {
+      const text = r.dims?.[d] || '';
+      const v = Math.min(100, 35 + Math.round(text.length * 1.1));
+      data.push([xi, yi, v]);
+    });
+  });
+  return {
+    tooltip: {
+      ...tooltipBase,
+      formatter: (p) => {
+        const r = rows[p.value[1]];
+        const d = dimKeys[p.value[0]];
+        return `${r?.concept || ''}<br/>${d}：${r?.dims?.[d] || ''}<br/><span style="opacity:.7">示意热力 · 非评分排名</span>`;
+      },
+    },
+    grid: { left: 108, right: 24, top: 16, bottom: 36 },
+    xAxis: {
+      type: 'category',
+      data: dimLabels,
+      axisLabel: { color: ST.muted, fontSize: 11 },
+      axisLine: { lineStyle: { color: ST.line } },
+      splitArea: { show: false },
+    },
+    yAxis: {
+      type: 'category',
+      data: concepts,
+      axisLabel: { color: ST.muted, fontSize: 10 },
+      axisLine: { lineStyle: { color: ST.line } },
+    },
+    visualMap: {
+      min: 30,
+      max: 100,
+      calculable: false,
+      orient: 'horizontal',
+      left: 'center',
+      bottom: 0,
+      textStyle: { color: ST.muted, fontSize: 10 },
+      inRange: { color: ['#121826', ST.signal, ST.flare] },
+    },
+    series: [
+      {
+        type: 'heatmap',
+        data,
+        label: { show: false },
+        emphasis: {
+          itemStyle: { shadowBlur: 8, shadowColor: 'rgba(107,140,174,0.45)' },
+        },
+      },
+    ],
+  };
+}
+
 export function allThemeLedgers() {
-  return [...CIV_LEDGERS, ...STATE_LEDGERS, ...GOV_LEDGERS];
+  return [...CIV_LEDGERS, ...STATE_LEDGERS, ...GOV_LEDGERS, ...SELF_LEDGERS];
 }
 
 export { ST };

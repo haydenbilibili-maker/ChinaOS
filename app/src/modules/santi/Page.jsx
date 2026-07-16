@@ -7,6 +7,7 @@ import DarkForestChart from './DarkForestChart.jsx';
 import SpectrumPanel from './SpectrumPanel.jsx';
 import CivPanel from './CivPanel.jsx';
 import StateGovPanel from './StateGovPanel.jsx';
+import SelfPanel from './SelfPanel.jsx';
 import { StChartCard, StChartGrid } from './StViz.jsx';
 import {
   buildDimRadarOption,
@@ -21,6 +22,7 @@ const TABS = [
   { key: 'spectrum', label: '理论光谱' },
   { key: 'civ', label: '文明博弈' },
   { key: 'state', label: '国家与治理' },
+  { key: 'self', label: '自我探索' },
 ];
 
 const QUICK_LINKS = [
@@ -32,6 +34,8 @@ const QUICK_LINKS = [
   { to: '/powerlogic', label: '权力逻辑', note: '思想钢印 ↔ 语义与叙事锁定' },
   { to: '/sandbox', label: '治国沙盒', note: '动员杠杆 ↔ 情景压力测试' },
   { to: '/demographic', label: '人口结构', note: '代际交接 ↔ 制度缓冲（禁止年龄歧视表述）' },
+  { to: '/antifragile', label: '反脆弱', note: '阶梯计划 ↔ 尾部期权（禁止美化孤注）' },
+  { to: '/modules/shijian', label: '史鉴总索引', note: '治乱动力学 ↔ 深空思想实验——Mirror 层对照，不合并模型' },
 ];
 
 export default function SantiPage() {
@@ -76,7 +80,7 @@ export default function SantiPage() {
         本模块以刘慈欣作品中的<strong>可抽象机制</strong>为思想实验透镜，映射文明博弈、国家竞争、社会治理与自我探索。
         它不是同人站或剧情百科——每张概念卡强制写出「相似机制」与「关键差异」。
         方法论：<strong>三体透镜·四步映射法</strong>（概念提纯 → 机制抽象 → 现实对照 → 台账判定）。
-        当前 Round 3：总论 + 光谱 + 文明博弈 + <strong>国家与治理</strong>；完整双栏卡 {fullN} 张 / 母本 {CANON.length} 条 · v{MODULE_META.version}。
+        当前 Round 4：总论 + 光谱 + 文明博弈 + 国家与治理 + <strong>自我探索 / Mirror</strong>；完整双栏卡 {fullN} 张 / 母本 {CANON.length} 条 · v{MODULE_META.version}。R0–R4 主线已交付。
       </IntroCard>
 
       <SelectorBar
@@ -128,7 +132,7 @@ export default function SantiPage() {
             </div>
             <p className="st-lede">
               两轴刻画极端思想实验的策略空间；点选象限将跳转理论光谱并高亮对应概念卡。
-              亦可进入「文明博弈」「国家与治理」阅读编排与台账。
+              亦可进入文明博弈、国家与治理、自我探索阅读编排与台账。
             </p>
             <DarkForestChart onSelectQuad={onSelectQuadOverview} />
           </section>
@@ -148,6 +152,7 @@ export default function SantiPage() {
                   onClick={() => {
                     if (d.key === 'C') setTab('civ');
                     else if (d.key === 'N' || d.key === 'G') setTab('state');
+                    else if (d.key === 'S') setTab('self');
                     else setTab('spectrum');
                   }}
                 >
@@ -156,7 +161,7 @@ export default function SantiPage() {
                   <span className="st-dim-tile__go">
                     {d.key === 'C' && '进入文明博弈 →'}
                     {(d.key === 'N' || d.key === 'G') && '进入国家与治理 →'}
-                    {d.key === 'S' && '进入光谱（R4 深描）→'}
+                    {d.key === 'S' && '进入自我探索 →'}
                   </span>
                 </button>
               ))}
@@ -227,9 +232,15 @@ export default function SantiPage() {
         </div>
       )}
 
+      {tab === 'self' && (
+        <div className="st-tab-panel">
+          <SelfPanel onJumpSpectrum={jumpToSpectrum} />
+        </div>
+      )}
+
       <ModuleFooter
         moduleId="santi"
-        disclaimer="思想实验透镜 · 公开作品机制概括，非文学评论站 · 禁止裸类比与阴谋论臆造 · 示意曲线非预测"
+        disclaimer="思想实验透镜 · 公开作品机制概括，非文学评论站 · 禁止裸类比与阴谋论臆造 · 示意曲线非预测 · 自我探索非鸡汤"
         sourceNote={`v${MODULE_META.version}`}
       />
     </div>

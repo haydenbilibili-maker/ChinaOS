@@ -889,6 +889,9 @@ const MAP = {
     { to: '/demographic', label: '人口结构 · 代际', note: '儿童政权透镜 ↔ 制度缓冲——禁止年龄歧视表述。' },
     { to: '/thucydides', label: '修昔底德陷阱', note: '权力转移窗口 ≠ 宇宙接触策略——安全困境可对照，适用边界不同。' },
     { to: '/realism', label: '现实主义', note: '无政府假定与宇宙社会学公理的对照阅读。' },
+    { to: '/antifragile', label: '反脆弱 · 尾部期权', note: '阶梯计划 ↔ 黑天鹅对冲——禁止美化不计成本孤注。' },
+    { to: '/modules/shijian', label: '史鉴 · Mirror', note: '治乱动力学 ↔ 深空思想实验——对照不合并模型。' },
+    { to: '/principalagent', label: '委托代理', note: '面壁/执剑个体面 ↔ 代理人偏好隐瞒与职责边界。' },
   ],
 };
 
