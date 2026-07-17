@@ -150,7 +150,8 @@ function GroupBlock({ group, expanded, onToggle, onNavigate, alwaysShowModules, 
 
   const collapsible = !alwaysShowModules && !narrow;
   const showModules = alwaysShowModules || expanded || narrow;
-  const useSubgroups = group.id === 'shijian' && mods.some((m) => m.subgroup);
+  const useSubgroups = (group.id === 'shijian' || group.id === 'shijianWorld')
+    && mods.some((m) => m.subgroup);
   const sections = useSubgroups
     ? groupModsBySubgroup(mods, { splitCasesBands: group.id === 'shijian' })
     : [{ key: '', label: '', mods }];

@@ -781,7 +781,7 @@ const MAP = {
     { to: '/modules/shijian/sj-01', label: 'SJ-01 · 方法矩阵', note: '史家方法光谱与四栏对照。' },
     { to: '/modules/shijian/sj-03', label: 'SJ-03 · 五力衰变', note: '周期卷力场：财政枢纽与耦合主链。' },
     { to: '/modules/shijian/sj-04', label: 'SJ-04 · 相位罗盘', note: '治乱循环相位盘：五相位定位与修复力。' },
-    { to: '/modules/shijian-world', label: 'SJW-00 · 史鉴·世界', note: '并列世界线：崛起/大战/苏联/文明 + Round2 社运/地缘/霸权/核威慑。' },
+    { to: '/modules/shijian-world', label: 'SJW-00 · 史鉴·世界', note: '并列一级入口：崛起/大战/文明/主义/发展型/货币科技能源主题带。' },
     { to: '/modules/guoyun', label: '国运模拟器 · GY-01', note: 'SJ-04 相位盘对接干支时间轴与 2026–2036 情景推演。' },
     { to: '/modules/yishixingtai', label: '合法性机器 · GY-02', note: 'SJ-03 五力中合法性叙事力的当代形态。' },
     { to: '/modules/renqun-tupu', label: '人群画像总图谱 · GY-00', note: '生态—人口—技术基座力与人群切片总盘互为里表。' },
@@ -900,7 +900,7 @@ const MAP = {
     { to: '/principalagent', label: '委托代理', note: '面壁/执剑个体面 ↔ 代理人偏好隐瞒与职责边界。' },
   ],
   shijianWorldSJW00: [
-    { to: '/modules/shijian', label: '史鉴·中华 · SJ-00', note: '同源四步法引擎与中华五柱枢纽。' },
+    { to: '/modules/shijian', label: '史鉴·中华 · SJ-00', note: '并列一级入口：同源四步法引擎与中华五柱枢纽。' },
     { to: '/modules/shijian-world/sjw-01', label: 'SJW-01 · 大国崛起', note: 'Round 1 综合矩阵首卷。' },
     { to: '/modules/shijian-world/sjw-28', label: 'SJW-28 · 印度路径', note: 'Round 7：民主+计划双轨。' },
     { to: '/modules/shijian-world/sjw-29', label: 'SJW-29 · 四小虎', note: 'Round 7：东南亚对照扇面。' },

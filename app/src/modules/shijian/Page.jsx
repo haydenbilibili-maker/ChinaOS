@@ -20,7 +20,7 @@ export default function ShijianPage() {
       moduleId="shijianSJ00"
       badge="SJ-00 · 史鉴·中华"
       title="史鉴·中华总索引"
-      subtitle="五柱枢纽 · 治乱螺旋 · 与 GY / 世界线交叉"
+      subtitle="五柱枢纽 · 治乱螺旋 · 并列世界线一级入口"
       htmlSrc="/shijian/SJ-00.html"
       frameTitle="SJ-00 史鉴·中华总索引"
       hintLinks={HINT_LINKS}

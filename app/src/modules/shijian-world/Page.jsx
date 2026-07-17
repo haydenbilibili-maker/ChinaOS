@@ -20,7 +20,7 @@ export default function ShijianWorldPage() {
       moduleId="shijianWorldSJW00"
       badge="SJW-00 · 史鉴·世界"
       title="史鉴·世界总索引"
-      subtitle="比较历史动力学 · 可配置五轴 · 中华交叉"
+      subtitle="比较历史动力学 · 主题带侧栏 · 中华交叉"
       htmlSrc="/shijian-world/SJW-00.html"
       frameTitle="SJW-00 史鉴·世界总索引"
       hintLinks={HINT_LINKS}
