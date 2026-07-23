@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const MODULES_DIR = path.join(__dirname, '../app/src/modules');
+const APP_DIR = path.join(__dirname, '../app/src');
 
 function walk(dir, acc = []) {
   for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -25,18 +26,20 @@ function checkPage(fp) {
     return { mod, pass: 8, total: 8, checks: {}, gyShell: false, redirect: true };
   }
   const gyShell = src.includes('GySliceShell');
+  const htmlShell = src.includes('ShijianHtmlShell');
   const hasStatCards = /<Stat[\s>]/.test(src);
   const hasEChart = /EChart/.test(src);
-  const hasCustomTabs = /setTab|activeTab|TAB[s]?\s*=/.test(src) && !/TabBar|os-tab-bar/.test(src);
+  const hasCustomTabs = /setTab|activeTab|TAB[s]?\s*=/.test(src)
+    && !/TabBar|SelectorBar|os-tab-bar/.test(src);
   const axisHex = /axisLine[^;{]*#27324a|axisLabel[^;{]*#93a1b5|const AX\s*=/.test(src);
 
   const items = {
-    header: gyShell || /PageHeader/.test(src) || /ObservatoryHome/.test(src),
-    osCard: gyShell || /os-card|\bCard\b/.test(src) || /Panel\.jsx/.test(src),
-    tabs: gyShell || !hasCustomTabs || /TabBar|os-tab-bar/.test(src),
+    header: gyShell || htmlShell || /PageHeader/.test(src) || /ObservatoryHome/.test(src),
+    osCard: gyShell || htmlShell || /os-card|\bCard\b/.test(src) || /Panel\.jsx/.test(src),
+    tabs: gyShell || !hasCustomTabs || /TabBar|SelectorBar|os-tab-bar/.test(src),
     statGrid: !hasStatCards || /StatGrid|<Stat\b/.test(src),
     charts: !hasEChart || (/chartHelpers/.test(src) && !/const AX\s*=/.test(src)),
-    footer: gyShell || /ModuleFooter|CrossLinks/.test(src),
+    footer: gyShell || htmlShell || /ModuleFooter|CrossLinks/.test(src),
     noHexAxis: !axisHex,
     lightOk: true,
   };
@@ -60,3 +63,30 @@ for (const r of fails.slice(0, 20)) {
   console.log(`  ${r.mod}: ${r.pass}/8 — ${failed.join(', ')}`);
 }
 if (fails.length > 20) console.log(`  … +${fails.length - 20} more`);
+
+// 共享壳层门禁：覆盖本轮 UI/UX 基线，避免“模块页全绿、全局交互回退”。
+const sharedSources = {
+  css: fs.readFileSync(path.join(APP_DIR, 'index.css'), 'utf8'),
+  shell: fs.readFileSync(path.join(APP_DIR, 'app/Shell.jsx'), 'utf8'),
+  ui: fs.readFileSync(path.join(APP_DIR, 'app/ui.jsx'), 'utf8'),
+  search: fs.readFileSync(path.join(APP_DIR, 'app/GlobalSearch.jsx'), 'utf8'),
+  shijian: fs.readFileSync(path.join(MODULES_DIR, 'shijian/shijian.css'), 'utf8'),
+  econ: fs.readFileSync(path.join(MODULES_DIR, 'econdash/econ.css'), 'utf8'),
+};
+const sharedChecks = {
+  globalReducedMotion: /prefers-reduced-motion:\s*reduce/.test(sharedSources.css),
+  globalFocusVisible: /button:focus-visible[\s\S]*\[role='tab'\]:focus-visible/.test(sharedSources.css),
+  mobile390Baseline: /@media\s*\(max-width:\s*480px\)/.test(sharedSources.css),
+  responsiveTableShell: /\.os-table-scroll/.test(sharedSources.css),
+  skipLink: /os-skip-link/.test(sharedSources.shell) && /id="main-content"/.test(sharedSources.shell),
+  drawerFocusReturn: /drawerTriggerRef/.test(sharedSources.shell) && /trapFocus/.test(sharedSources.shell),
+  tabKeyboardAndResize: /ArrowRight/.test(sharedSources.ui) && /ResizeObserver/.test(sharedSources.ui),
+  searchDialogFocusTrap: /aria-modal="true"/.test(sharedSources.search) && /e\.key === 'Tab'/.test(sharedSources.search),
+  iframeResponsiveAndReduced: /max-width:\s*420px/.test(sharedSources.shijian)
+    && /prefers-reduced-motion:\s*reduce/.test(sharedSources.shijian),
+  econReducedMotion: /prefers-reduced-motion:\s*reduce/.test(sharedSources.econ),
+};
+const sharedFails = Object.entries(sharedChecks).filter(([, ok]) => !ok).map(([name]) => name);
+console.log(`\nShared UI baseline: ${Object.keys(sharedChecks).length - sharedFails.length}/${Object.keys(sharedChecks).length}`);
+if (sharedFails.length) console.log(`  failures: ${sharedFails.join(', ')}`);
+if (fails.length || sharedFails.length) process.exitCode = 1;

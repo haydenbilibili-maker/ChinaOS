@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import * as Lucide from 'lucide-react';
+import {
+  Eye, EyeOff, SendHorizontal, Settings, Sparkles, Square, Trash2, X,
+} from 'lucide-react';
 import { TabBar } from './ui.jsx';
 import { Markdown } from '../lib/ai/markdown.jsx';
 import {
@@ -181,7 +183,7 @@ function SettingsForm({ onSaved, onClose }) {
             onClick={() => setShowKey((v) => !v)}
             aria-label={showKey ? '隐藏密钥' : '显示密钥'}
           >
-            {showKey ? <Lucide.EyeOff size={14} /> : <Lucide.Eye size={14} />}
+            {showKey ? <EyeOff size={14} /> : <Eye size={14} />}
           </button>
         </div>
       ))}
@@ -310,7 +312,7 @@ export default function AiLauncher() {
           cursor: 'pointer', backdropFilter: 'blur(8px)',
         }}
       >
-        <Lucide.Sparkles size={22} strokeWidth={1.75} />
+        <Sparkles size={22} strokeWidth={1.75} />
       </button>
     );
   }
@@ -335,12 +337,12 @@ export default function AiLauncher() {
         className="flex items-center gap-2 px-3"
         style={{ height: 48, borderBottom: '1px solid var(--border-subtle)' }}
       >
-        <Lucide.Sparkles size={16} style={{ color: 'var(--cyber-cyan)' }} />
+        <Sparkles size={16} style={{ color: 'var(--cyber-cyan)' }} />
         <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>AI 助手</span>
         <span className="mono text-[10px] px-1.5 py-0.5 rounded" style={{ background: 'var(--bg-elevated)', color: 'var(--text-tertiary)' }}>研究参考</span>
         <div className="ml-auto flex items-center gap-1">
           <button type="button" className="os-btn os-btn-ghost os-btn-sm" onClick={clearChat} aria-label="清空对话" title="清空对话">
-            <Lucide.Trash2 size={14} />
+            <Trash2 size={14} />
           </button>
           <button
             type="button"
@@ -350,10 +352,10 @@ export default function AiLauncher() {
             title="设置 API Key"
             style={settingsOpen ? { color: 'var(--cyber-cyan)' } : undefined}
           >
-            <Lucide.Settings size={14} />
+            <Settings size={14} />
           </button>
           <button type="button" className="os-btn os-btn-ghost os-btn-sm" onClick={() => setOpen(false)} aria-label="关闭">
-            <Lucide.X size={15} />
+            <X size={15} />
           </button>
         </div>
       </div>
@@ -389,7 +391,7 @@ export default function AiLauncher() {
                   配置任一 OpenAI 兼容服务或 Anthropic 即可开始对话。密钥仅存本地。
                 </div>
                 <button type="button" className="os-btn os-btn-primary os-btn-sm" onClick={() => setSettingsOpen(true)}>
-                  <Lucide.Settings size={13} /> 去配置
+                  <Settings size={13} /> 去配置
                 </button>
               </div>
             )}
@@ -430,7 +432,7 @@ export default function AiLauncher() {
               />
               {busy ? (
                 <button type="button" className="os-btn os-btn-sm" onClick={stop} aria-label="停止生成">
-                  <Lucide.Square size={14} />
+                  <Square size={14} />
                 </button>
               ) : (
                 <button
@@ -440,7 +442,7 @@ export default function AiLauncher() {
                   disabled={!input.trim()}
                   aria-label="发送"
                 >
-                  <Lucide.SendHorizontal size={15} />
+                  <SendHorizontal size={15} />
                 </button>
               )}
             </div>

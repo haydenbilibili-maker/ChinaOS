@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, useMemo, useDeferredValue, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
 import { buildSearchIndex, buildModuleRecords, searchRecords, SEARCH_INDEX_REVISION } from '../lib/search/buildIndex.js';
+import { MODULE_ICONS } from './moduleIcons.js';
 
 // 结果类型元信息：标签、配色、图标、分组顺序
 const TYPE_META = {
@@ -37,7 +37,7 @@ const FEATURED = [
 ];
 
 function Icon({ name, size = 16, ...rest }) {
-  const Cmp = Lucide[name] || Lucide.Square;
+  const Cmp = MODULE_ICONS[name] || MODULE_ICONS.Square;
   return <Cmp size={size} strokeWidth={1.75} {...rest} />;
 }
 
@@ -62,6 +62,8 @@ export default function GlobalSearch({ open, onClose }) {
   const navigate = useNavigate();
   const inputRef = useRef(null);
   const listRef = useRef(null);
+  const dialogRef = useRef(null);
+  const previousFocusRef = useRef(null);
   const [records, setRecords] = useState(() => buildModuleRecords());
   const [counts, setCounts] = useState(null);
   const [indexRevision, setIndexRevision] = useState(null);
@@ -95,9 +97,13 @@ export default function GlobalSearch({ open, onClose }) {
   // 打开时聚焦输入框；关闭时重置查询
   useEffect(() => {
     if (open) {
+      previousFocusRef.current = document.activeElement;
       setActive(0);
       const t = setTimeout(() => inputRef.current?.focus(), 30);
-      return () => clearTimeout(t);
+      return () => {
+        clearTimeout(t);
+        previousFocusRef.current?.focus?.();
+      };
     }
     setQuery('');
     return undefined;
@@ -121,6 +127,22 @@ export default function GlobalSearch({ open, onClose }) {
 
   const onKeyDown = (e) => {
     if (e.key === 'Escape') { e.preventDefault(); onClose?.(); return; }
+    if (e.key === 'Tab') {
+      const items = [...(dialogRef.current?.querySelectorAll(
+        'input, button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])',
+      ) || [])];
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+      return;
+    }
     if (!flat.length) return;
     if (e.key === 'ArrowDown') { e.preventDefault(); setActive((i) => Math.min(i + 1, flat.length - 1)); }
     else if (e.key === 'ArrowUp') { e.preventDefault(); setActive((i) => Math.max(i - 1, 0)); }
@@ -143,6 +165,7 @@ export default function GlobalSearch({ open, onClose }) {
     <div
       role="dialog"
       aria-modal="true"
+      aria-label="全局搜索"
       onMouseDown={onClose}
       style={{
         position: 'fixed', inset: 0, zIndex: 1000,
@@ -152,6 +175,7 @@ export default function GlobalSearch({ open, onClose }) {
       }}
     >
       <div
+        ref={dialogRef}
         onMouseDown={(e) => e.stopPropagation()}
         onKeyDown={onKeyDown}
         style={{
@@ -179,6 +203,9 @@ export default function GlobalSearch({ open, onClose }) {
           />
           {building && <span className="mono text-xs" style={{ color: 'var(--text-tertiary)' }}>建索引…</span>}
           <kbd className="mono text-[10px] px-1.5 py-0.5 rounded" style={{ background: 'var(--bg-base)', color: 'var(--text-tertiary)', border: '1px solid var(--border-subtle)' }}>Esc</kbd>
+          <button type="button" className="os-btn os-btn-ghost os-btn-sm" onClick={onClose} aria-label="关闭搜索">
+            <Icon name="X" size={15} />
+          </button>
         </div>
 
         {/* 结果区 */}

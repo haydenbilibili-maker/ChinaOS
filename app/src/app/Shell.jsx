@@ -1,14 +1,16 @@
-import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
+import React, { Suspense, lazy, useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { NavLink, Link, Outlet, useLocation } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
+import {
+  ChevronDown, ChevronRight, FoldVertical, LayoutGrid, Lock, Menu, Moon,
+  PanelLeftClose, PanelLeftOpen, Rows3, Search, Square, Sun, UnfoldVertical, X,
+} from 'lucide-react';
 import { GROUPS, HUANGFEIZHAI_GROUP_ID, modulesByGroup } from './registry.js';
+import { MODULE_ICONS } from './moduleIcons.js';
 import { shijianSubgroupLabel, shijianCasesBandLabel } from '../lib/shijian/navOrder.js';
 import { isSynthesisCase } from '../lib/shijian/caseYears.js';
 import { useHuangfeizhaiAuth } from '../lib/huangfeizhai/useHuangfeizhaiAuth.js';
 import { buildBreadcrumbs, resolveModuleByPath } from './breadcrumb.js';
-import GlobalSearch from './GlobalSearch.jsx';
 import SiteFooter from './SiteFooter.jsx';
-import { buildSearchIndex } from '../lib/search/buildIndex.js';
 import { getTheme, toggleTheme, subscribeTheme } from '../lib/theme.js';
 import { getDensity, toggleDensity, subscribeDensity } from '../lib/density.js';
 
@@ -16,6 +18,7 @@ const IS_MAC = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(naviga
 const HOME_GROUP_ID = 'home';
 const SIDEBAR_EXPANDED_KEY = 'c2os-sidebar-expanded';
 const SIDEBAR_NARROW_KEY = 'c2os-sidebar-narrow';
+const GlobalSearch = lazy(() => import('./GlobalSearch.jsx'));
 
 function loadExpandedGroups() {
   try {
@@ -50,7 +53,7 @@ function persistSidebarNarrow(narrow) {
 }
 
 function Icon({ name, size = 16 }) {
-  const Cmp = Lucide[name] || Lucide.Square;
+  const Cmp = MODULE_ICONS[name] || Square;
   return <Cmp size={size} strokeWidth={1.75} />;
 }
 
@@ -62,7 +65,7 @@ function BreadcrumbNav({ items }) {
         {items.map((item, i) => (
           <li key={`${item.label}-${i}`} className="flex items-center gap-0.5 min-w-0">
             {i > 0 && (
-              <Lucide.ChevronRight size={13} className="os-breadcrumb__sep shrink-0" aria-hidden="true" />
+              <ChevronRight size={13} className="os-breadcrumb__sep shrink-0" aria-hidden="true" />
             )}
             {item.active || !item.to ? (
               <span
@@ -111,7 +114,7 @@ function SidebarTreeControls({ anyExpanded, onToggleAll }) {
         aria-label={collapseMode ? '一键缩回全部分组' : '一键展开全部分组'}
         title={collapseMode ? '缩回全部分组' : '展开全部分组'}
       >
-        {collapseMode ? <Lucide.FoldVertical size={13} /> : <Lucide.UnfoldVertical size={13} />}
+        {collapseMode ? <FoldVertical size={13} /> : <UnfoldVertical size={13} />}
         <span>{collapseMode ? '一键缩回' : '一键展开'}</span>
       </button>
     </div>
@@ -148,8 +151,8 @@ function GroupBlock({ group, expanded, onToggle, onNavigate, alwaysShowModules, 
     ? allMods.filter((m) => m.id === 'huangfeizhaiHub')
     : allMods;
 
-  const collapsible = !alwaysShowModules && !narrow;
-  const showModules = alwaysShowModules || expanded || narrow;
+  const collapsible = !alwaysShowModules;
+  const showModules = alwaysShowModules || (expanded && !narrow);
   const useSubgroups = (group.id === 'shijian' || group.id === 'shijianWorld')
     && mods.some((m) => m.subgroup);
   const sections = useSubgroups
@@ -163,7 +166,7 @@ function GroupBlock({ group, expanded, onToggle, onNavigate, alwaysShowModules, 
         <span className="os-group-header__title">{group.label}</span>
         <span className="os-group-header__count mono">{mods.length}</span>
         {collapsible ? (
-          <Lucide.ChevronDown
+          <ChevronDown
             size={14}
             className={`os-group-header__chevron shrink-0 ${expanded ? 'is-expanded' : ''}`}
             aria-hidden="true"
@@ -244,6 +247,9 @@ export default function Shell() {
     [loc.pathname, loc.search],
   );
   const mainRef = useRef(null);
+  const sidebarRef = useRef(null);
+  const drawerTriggerRef = useRef(null);
+  const drawerWasOpenRef = useRef(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [theme, setThemeState] = useState(() => getTheme());
@@ -327,20 +333,42 @@ export default function Shell() {
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
+  // 移动端导航作为模态抽屉：打开后聚焦并约束 Tab，关闭后把焦点还给触发按钮。
+  useEffect(() => {
+    if (!drawerOpen) {
+      if (drawerWasOpenRef.current) drawerTriggerRef.current?.focus();
+      drawerWasOpenRef.current = false;
+      return undefined;
+    }
+    drawerWasOpenRef.current = true;
+    const sidebar = sidebarRef.current;
+    if (!sidebar) return undefined;
+    const selector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    const focusables = () => [...sidebar.querySelectorAll(selector)]
+      .filter((el) => !el.closest('.os-group-modules:not(.is-expanded)'));
+    const initial = sidebar.querySelector('.nav-item.is-active') || focusables()[0];
+    requestAnimationFrame(() => initial?.focus());
+    const trapFocus = (e) => {
+      if (e.key !== 'Tab') return;
+      const items = focusables();
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    sidebar.addEventListener('keydown', trapFocus);
+    return () => sidebar.removeEventListener('keydown', trapFocus);
+  }, [drawerOpen]);
+
   // 订阅主题变更，使切换按钮图标即时同步
   useEffect(() => subscribeTheme((t) => setThemeState(t)), []);
   useEffect(() => subscribeDensity((d) => setDensityState(d)), []);
-
-  // 空闲时预构建搜索索引，避免首次 ⌘K 仅搜到模块
-  useEffect(() => {
-    const run = () => { buildSearchIndex().catch(() => {}); };
-    if (typeof requestIdleCallback === 'function') {
-      const id = requestIdleCallback(run, { timeout: 4000 });
-      return () => cancelIdleCallback(id);
-    }
-    const t = setTimeout(run, 1200);
-    return () => clearTimeout(t);
-  }, []);
 
   const onThemeToggle = useCallback(() => { setThemeState(toggleTheme()); }, []);
   const onDensityToggle = useCallback(() => { setDensityState(toggleDensity()); }, []);
@@ -359,16 +387,22 @@ export default function Shell() {
 
   return (
     <div className="h-screen flex overflow-hidden" style={{ background: 'var(--bg-base)' }}>
+      <a href="#main-content" className="os-skip-link">跳到主内容</a>
       {/* 移动端抽屉遮罩 */}
       {drawerOpen && (
-        <div
+        <button
+          type="button"
           className="os-drawer-backdrop"
           onClick={closeDrawer}
-          aria-hidden="true"
+          aria-label="关闭导航"
+          tabIndex={-1}
         />
       )}
 
       <aside
+        ref={sidebarRef}
+        id="primary-navigation"
+        aria-label="主导航"
         className={`os-sidebar shrink-0 border-r flex flex-col h-full relative z-[1] ${drawerOpen ? 'is-open' : ''}${sidebarNarrow ? ' is-narrow' : ''}`}
         style={{ borderColor: 'var(--border-subtle)', background: 'var(--surface-glass)' }}
       >
@@ -398,7 +432,7 @@ export default function Shell() {
             aria-label={sidebarNarrow ? '展开侧栏' : '收起侧栏为窄栏'}
             title={sidebarNarrow ? '展开侧栏' : '窄栏模式'}
           >
-            {sidebarNarrow ? <Lucide.PanelLeftOpen size={16} /> : <Lucide.PanelLeftClose size={16} />}
+            {sidebarNarrow ? <PanelLeftOpen size={16} /> : <PanelLeftClose size={16} />}
           </button>
           <button
             type="button"
@@ -406,7 +440,7 @@ export default function Shell() {
             onClick={closeDrawer}
             aria-label="关闭导航"
           >
-            <Lucide.X size={16} />
+            <X size={16} />
           </button>
         </div>
         {!sidebarNarrow ? (
@@ -418,7 +452,15 @@ export default function Shell() {
               key={g.id}
               group={g}
               expanded={expandedGroups.has(g.id)}
-              onToggle={() => toggleGroup(g.id)}
+              onToggle={() => {
+                if (sidebarNarrow) {
+                  setSidebarNarrow(false);
+                  persistSidebarNarrow(false);
+                  if (!expandedGroups.has(g.id)) toggleGroup(g.id);
+                  return;
+                }
+                toggleGroup(g.id);
+              }}
               onNavigate={closeDrawer}
               alwaysShowModules={g.id === HOME_GROUP_ID}
               huangfeizhaiUnlocked={huangfeizhaiUnlocked}
@@ -428,18 +470,21 @@ export default function Shell() {
         </div>
       </aside>
 
-      <main ref={mainRef} className="flex-1 min-w-0 overflow-y-auto grid-backdrop h-full relative z-[1]">
+      <main id="main-content" ref={mainRef} tabIndex={-1} className="flex-1 min-w-0 overflow-y-auto grid-backdrop h-full relative z-[1]">
         <header
           className="os-topbar px-8 py-3 border-b flex items-center gap-2 text-xs sticky top-0 z-10"
           style={{ borderColor: 'var(--border-subtle)', background: 'var(--bg-page)', backdropFilter: 'blur(var(--glass-blur-md))', WebkitBackdropFilter: 'blur(var(--glass-blur-md))', color: 'var(--text-tertiary)' }}
         >
           <button
+            ref={drawerTriggerRef}
             type="button"
             className="os-hamburger os-btn os-btn-ghost os-btn-sm shrink-0"
             onClick={() => setDrawerOpen(true)}
             aria-label="打开导航"
+            aria-controls="primary-navigation"
+            aria-expanded={drawerOpen}
           >
-            <Lucide.Menu size={16} />
+            <Menu size={16} />
           </button>
           <BreadcrumbNav items={crumbs} />
 
@@ -452,7 +497,7 @@ export default function Shell() {
                 aria-label="荒废斋重新上锁"
                 title="荒废斋重新上锁"
               >
-                <Lucide.Lock size={15} />
+                <Lock size={15} />
                 <span className="hidden sm:inline">上锁</span>
               </button>
             ) : null}
@@ -462,7 +507,7 @@ export default function Shell() {
               className="os-search-trigger os-btn os-btn-ghost os-btn-sm"
               aria-label="全局搜索"
             >
-              <Lucide.Search size={15} />
+              <Search size={15} />
               <span className="os-search-trigger-label">搜索</span>
               <kbd className="mono os-search-trigger-kbd" style={{ background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', borderRadius: 4, padding: '1px 5px', fontSize: 10, color: 'var(--text-tertiary)' }}>
                 {IS_MAC ? '⌘K' : 'Ctrl K'}
@@ -476,7 +521,7 @@ export default function Shell() {
               title={isCompact ? '切换到舒适密度' : '切换到紧凑密度'}
               aria-pressed={isCompact}
             >
-              {isCompact ? <Lucide.Rows3 size={15} /> : <Lucide.LayoutGrid size={15} />}
+              {isCompact ? <Rows3 size={15} /> : <LayoutGrid size={15} />}
               <span className="os-density-toggle-label">{isCompact ? '紧凑' : '舒适'}</span>
             </button>
             <button
@@ -487,7 +532,7 @@ export default function Shell() {
               title={isLight ? '切换到夜览' : '切换到日览'}
               aria-pressed={isLight}
             >
-              {isLight ? <Lucide.Moon size={15} /> : <Lucide.Sun size={15} />}
+              {isLight ? <Moon size={15} /> : <Sun size={15} />}
               <span className="os-theme-toggle-label">{isLight ? '日览' : '夜览'}</span>
             </button>
           </div>
@@ -498,7 +543,11 @@ export default function Shell() {
         <SiteFooter />
       </main>
 
-      <GlobalSearch open={searchOpen} onClose={closeSearch} />
+      {searchOpen ? (
+        <Suspense fallback={null}>
+          <GlobalSearch open onClose={closeSearch} />
+        </Suspense>
+      ) : null}
     </div>
   );
 }

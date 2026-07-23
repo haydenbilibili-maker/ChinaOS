@@ -8,7 +8,7 @@ React + Vite + Tailwind 的主应用，承接框架图四层结构，让新模�
 ```bash
 cd app
 npm install
-npm run dev      # http://localhost:5180
+npm run dev      # http://localhost:5173
 npm run build    # 产物在 app/dist/
 ```
 
@@ -20,7 +20,8 @@ app/src/
 ├── App.jsx              # 路由：由注册表自动生成，新增模块无需改这里
 ├── index.css           # 设计令牌（权力红/钢灰/赛博青 · 暗色科技感）
 ├── app/
-│   ├── registry.js     # ★ 模块注册表（单一数据源）：导航/路由/面包屑皆由此生成
+│   ├── registry.js     # ★ 279 模块注册表（单一数据源）：导航/路由/面包屑皆由此生成
+│   ├── moduleIcons.js  # 注册表图标白名单，避免动态图标查找污染首屏
 │   ├── Shell.jsx       # 壳布局：分组侧边导航 + 面包屑 + <Outlet/>
 │   └── ui.jsx          # 共享 UI 原子（PageHeader/Card/Stat/Grid/Placeholder）
 ├── lib/
@@ -32,7 +33,11 @@ app/src/
     ├── civilization/   # 文明透视 · 12 卷
     ├── diplomacy/      # ★ 外交博弈（新一级模块）· 中美/区域/能源航道 + 雷达/条形图
     ├── techtree/       # ★ 科技树（新一级模块）· AI/核聚变/太空/军事 + TRL 图
-    ├── sandbox/        # 治国沙盒 · 区域治理人才配置 + 推演（占位）
+    ├── shijian/        # 史鉴·中华壳（SJ-00~57 单文件 iframe）
+    ├── shijian-world/  # 史鉴·世界壳（SJW-00~32）
+    ├── santi/          # 三体思想实验透镜（R0–R4）
+    ├── econdash/       # 经济大盘八 Tab（含世行/促消费/H1）
+    ├── sandbox/        # 治国沙盒 · 区域治理人才配置 + 推演
     └── foundation/     # 数据与系统底座 + DataBus 示例
 ```
 
@@ -44,8 +49,13 @@ app/src/
 
 ## 与框架图的对应
 
-注册表的 `group` 字段对应框架四层：`cognition`（认知内核）/ `lens`（内容透镜）/
-`sim`（推演与训练）/ `foundation`（底座）。
+注册表现有 19 个一级分组；`cognition` / `lens` / `sim` / `foundation` 仍是框架主轴，
+并扩展制度、产业、社会、史鉴双线、治理结构等领域分组。实际定义以 `registry.js` 为准。
+
+## 验证门禁
+
+在仓库根目录运行 `npm run check`：依次检查 registry/路由/交叉链接、UI 契约、
+史鉴中华与世界共 91 个单文件卷，以及现有 Vitest 测试。
 
 ## 迁移路线（后续）
 

@@ -210,17 +210,35 @@ export function TabBar({
 
   useLayoutEffect(() => {
     if (!isPill) return;
-    const el = tabRefs.current[activeIdx];
     const bar = barRef.current;
-    if (!el || !bar || activeIdx < 0) return;
-    const barRect = bar.getBoundingClientRect();
-    const tabRect = el.getBoundingClientRect();
-    setIndicator({
-      width: tabRect.width,
-      left: tabRect.left - barRect.left,
-      color: indicatorColor,
-    });
+    if (!bar || activeIdx < 0) return undefined;
+    const syncIndicator = () => {
+      const el = tabRefs.current[activeIdx];
+      if (!el) return;
+      const barRect = bar.getBoundingClientRect();
+      const tabRect = el.getBoundingClientRect();
+      setIndicator({
+        width: tabRect.width,
+        left: tabRect.left - barRect.left + bar.scrollLeft,
+        color: indicatorColor,
+      });
+    };
+    syncIndicator();
+    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(syncIndicator);
+    observer?.observe(bar);
+    tabRefs.current.forEach((el) => { if (el) observer?.observe(el); });
+    bar.addEventListener('scroll', syncIndicator, { passive: true });
+    return () => {
+      observer?.disconnect();
+      bar.removeEventListener('scroll', syncIndicator);
+    };
   }, [value, activeIdx, indicatorColor, isPill, normalized.length]);
+
+  useLayoutEffect(() => {
+    const el = tabRefs.current[activeIdx];
+    if (!el || activeIdx < 0) return;
+    el.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  }, [activeIdx]);
 
   return (
     <div className={`${wrapCls} ${className}`}>
@@ -418,6 +436,22 @@ export function EmptyState({ title = '暂无数据', description, action, classN
     <div className={`os-empty-state os-card os-section ${className}`} role="status">
       <div className="os-empty-state__title">{title}</div>
       {description && <p className="os-empty-state__desc">{description}</p>}
+      {action && <div className="mt-3">{action}</div>}
+    </div>
+  );
+}
+
+/** 错误状态：面向可恢复失败，action 通常传入重试按钮。 */
+export function ErrorState({
+  title = '内容载入失败',
+  description = '请稍后重试，或返回上一层入口。',
+  action,
+  className = '',
+}) {
+  return (
+    <div className={`os-empty-state os-error-state os-card os-section ${className}`} role="alert">
+      <div className="os-empty-state__title">{title}</div>
+      <p className="os-empty-state__desc">{description}</p>
       {action && <div className="mt-3">{action}</div>}
     </div>
   );

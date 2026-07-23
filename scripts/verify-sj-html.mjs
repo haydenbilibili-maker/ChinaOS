@@ -10,26 +10,36 @@ import { FORBIDDEN_CLONE_MOTIF } from './lib/sj-slice-geometries.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SHIJIAN = join(ROOT, 'app/public/shijian');
+const SHIJIAN_WORLD = join(ROOT, 'app/public/shijian-world');
 
 const CASE_RE = /^SJ-(0[5-9]|1[0-9]|[2-5][0-9])\.html$/;
 const FORBIDDEN_IDS = ['xuanzong', 'anlushan', 'fanzhen', 'mubing'];
 
-function verifyFile(name) {
-  const path = join(SHIJIAN, name);
+function verifyFile(dir, name, series) {
+  const path = join(dir, name);
   const html = readFileSync(path, 'utf8');
   const errors = [];
   const warnings = [];
-  const isCase = CASE_RE.test(name);
+  const isCase = series === 'SJ' && CASE_RE.test(name);
 
   if (!html.includes('<body')) errors.push('missing <body');
+  if (!html.includes('<header')) errors.push('missing <header');
+  if (!html.includes('<footer')) errors.push('missing <footer');
+  if (!html.includes('<svg')) errors.push('missing signature SVG');
   if (!html.includes('</html>')) errors.push('missing </html>');
-  if (isCase && !html.includes('<header')) errors.push('missing <header');
+  if (!html.includes('prefers-reduced-motion')) errors.push('missing reduced-motion fallback');
   if (isCase && html.includes('id="f2"') && !html.includes('id="stage"')) {
     errors.push('missing id="stage"');
   }
 
-  if (/\blocalStorage\b|\bsessionStorage\b|\bIndexedDB\b/.test(html)) {
+  if (/\blocalStorage\b|\bsessionStorage\b|\bindexedDB\b|\bIndexedDB\b|\bdocument\.cookie\b/.test(html)) {
     errors.push('uses forbidden browser storage');
+  }
+  if (/<script\b[^>]*\bsrc\s*=|<link\b[^>]*\b(?:href|rel)\s*=/i.test(html)) {
+    errors.push('uses external script/link dependency');
+  }
+  if (/\bfetch\s*\(|\bXMLHttpRequest\b/.test(html)) {
+    errors.push('uses forbidden network request');
   }
 
   if (isCase && html.includes('id="f2"')) {
@@ -67,28 +77,40 @@ function verifyFile(name) {
   return { name, errors, warnings };
 }
 
-const files = readdirSync(SHIJIAN)
-  .filter((f) => /^SJ-\d+\.html$/.test(f))
-  .sort();
+const collections = [
+  {
+    series: 'SJ',
+    dir: SHIJIAN,
+    files: readdirSync(SHIJIAN).filter((f) => /^SJ-\d{2}\.html$/.test(f)).sort(),
+  },
+  {
+    series: 'SJW',
+    dir: SHIJIAN_WORLD,
+    files: readdirSync(SHIJIAN_WORLD).filter((f) => /^SJW-\d{2}\.html$/.test(f)).sort(),
+  },
+];
 
 let fail = 0;
 let warn = 0;
 
-for (const name of files) {
-  const { errors, warnings } = verifyFile(name);
-  if (errors.length) {
-    fail++;
-    console.error(`FAIL ${name}`);
-    errors.forEach((e) => console.error(`  · ${e}`));
-  }
-  if (warnings.length) {
-    warn++;
-    if (warnings.length && !errors.length) {
-      console.warn(`WARN ${name}`);
-      warnings.forEach((w) => console.warn(`  · ${w}`));
+for (const collection of collections) {
+  for (const name of collection.files) {
+    const { errors, warnings } = verifyFile(collection.dir, name, collection.series);
+    if (errors.length) {
+      fail++;
+      console.error(`FAIL ${name}`);
+      errors.forEach((e) => console.error(`  · ${e}`));
+    }
+    if (warnings.length) {
+      warn++;
+      if (!errors.length) {
+        console.warn(`WARN ${name}`);
+        warnings.forEach((w) => console.warn(`  · ${w}`));
+      }
     }
   }
 }
 
-console.log(`\nVerified ${files.length} SJ volumes · failures: ${fail} · warnings: ${warn}`);
+const summary = collections.map((c) => `${c.files.length} ${c.series}`).join(' + ');
+console.log(`\nVerified ${summary} volumes · failures: ${fail} · warnings: ${warn}`);
 process.exit(fail > 0 ? 1 : 0);

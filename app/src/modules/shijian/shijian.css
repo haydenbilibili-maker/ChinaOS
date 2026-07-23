@@ -202,7 +202,19 @@
 
 @media (max-width: 768px) {
   .shijian-frame-wrap {
-    height: min(70vh, calc(100dvh - 180px));
-    min-height: 360px;
+    height: min(66vh, calc(100dvh - 210px));
+    min-height: 340px;
+  }
+}
+
+@media (max-width: 420px) {
+  .shijian-frame-wrap {
+    height: min(64vh, calc(100dvh - 220px));
+    min-height: 320px;
+    border-radius: var(--radius-md, 10px);
+  }
+
+  .shijian-open-hint {
+    line-height: 1.65;
   }
 }

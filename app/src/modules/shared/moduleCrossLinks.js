@@ -109,7 +109,7 @@ const MAP = {
     { to: '/reform', label: '改革开放 · 两个毫不动摇', note: '从政策善意到法律确权的演进。' },
   ],
   offshore: [
-    { to: '/financeRmb', label: '人民币国际化 · CIPS', note: '离岸窗口与跨境清算体系。' },
+    { to: '/rmb', label: '人民币国际化 · CIPS', note: '离岸窗口与跨境清算体系。' },
     { to: '/ruleoflaw', label: '法治建设 · 涉外法治', note: '普通法窗口与内地法治的接口。' },
     { to: '/fdi', label: '跨境投资 · 双向流动', note: '离岸资本与内地市场的通道。' },
   ],
@@ -125,8 +125,8 @@ const MAP = {
   ],
   finance: [
     { to: '/debt', label: '地方债务 · 省际热力', note: '系统性风险的地理分布。' },
-    { to: '/financeRmb', label: '人民币国际化', note: '货币主权与跨境支付。' },
-    { to: '/greenfinance', label: '绿色金融 · 碳定价', note: '双碳目标下的金融工具。' },
+    { to: '/rmb', label: '人民币国际化', note: '货币主权与跨境支付。' },
+    { to: '/green-finance', label: '绿色金融 · 碳定价', note: '双碳目标下的金融工具。' },
   ],
   governance: [
     { to: '/modules/observatory', label: '观象台 · 治理总入口', note: '双仪表合成 · 叙事链 · 行动清单 · 第一屏即判读。' },
@@ -152,13 +152,13 @@ const MAP = {
   ],
   ecology: [
     { to: '/energy', label: '能源 · 双碳转型', note: '非化石能源与碳排放强度。' },
-    { to: '/greenfinance', label: '绿色金融 · 碳市场', note: 'GEP 与碳定价的金融化。' },
+    { to: '/green-finance', label: '绿色金融 · 碳市场', note: 'GEP 与碳定价的金融化。' },
     { to: '/megaprojects', label: '超级工程 · 生态 ROI', note: '大型生态工程的物理约束。' },
   ],
   bri: [
     { to: '/foreign-trade', label: '对外贸易 · RCEP', note: '陆海通道与贸易流量。' },
     { to: '/resources', label: '海外资源 · 权益矿', note: '一带一路上的资源获取节点。' },
-    { to: '/financeRmb', label: '人民币国际化', note: '项目融资与跨境清算。' },
+    { to: '/rmb', label: '人民币国际化', note: '项目融资与跨境清算。' },
   ],
   dashboard: [
     { to: '/modules/observatory', label: '观象台 · 治理结构总入口', note: '双仪表判读 · 叙事链 · 世界→中国→同类→我。' },
@@ -378,7 +378,7 @@ const MAP = {
     { to: '/semiconductor', label: '半导体 · 卡脖子', note: '关键核心技术攻关节点。' },
   ],
   npf: [
-    { to: '/tech', label: '创新体系 · R&D', note: '新质生产力的制度底座。' },
+    { to: '/tech-policy', label: '创新体系 · R&D', note: '新质生产力的制度底座。' },
     { to: '/computing', label: '算力设施', note: '算力与数据要素约束。' },
     { to: '/supplychain', label: '供应链 · 韧性备份', note: '产业链备份与冗余。' },
   ],
@@ -393,7 +393,7 @@ const MAP = {
     { to: '/supplychain', label: '供应链 · 信创', note: '国产替代与生态兼容。' },
   ],
   basicResearch: [
-    { to: '/tech', label: '创新体系 · R&D', note: '基础研究占比与投入结构。' },
+    { to: '/tech-policy', label: '创新体系 · R&D', note: '基础研究占比与投入结构。' },
     { to: '/npf', label: '新质生产力', note: '原始创新支撑未来产业。' },
     { to: '/quantum', label: '量子信息', note: '大科学装置与专项工程。' },
   ],
@@ -470,7 +470,7 @@ const MAP = {
   housing: [
     { to: '/demographic', label: '人口结构', note: '生育意愿的成本约束。' },
     { to: '/urban', label: '城镇化 · 城市群', note: '土地财政与区域集聚。' },
-    { to: '/finance', label: '金融体系 · 债务', note: '三道红线与系统风险。' },
+    { to: '/finance-system', label: '金融体系 · 债务', note: '三道红线与系统风险。' },
   ],
   education: [
     { to: '/demographic', label: '人口结构 · 人才红利', note: '密度红利供给端。' },
@@ -658,7 +658,7 @@ const MAP = {
     { to: '/talent', label: '人才精英库', note: '人力资本图谱的供给与配置底座。' },
     { to: '/talent?tab=overseas', label: '海外人才', note: '跨境游学与海外华人知识技术节点的回流接口。' },
     { to: '/basic-research', label: '基础研究 · 创新链', note: '原始创新与攻关主战场。' },
-    { to: '/tech', label: '创新体系 · R&D', note: '三链一体化的制度接口。' },
+    { to: '/tech-policy', label: '创新体系 · R&D', note: '三链一体化的制度接口。' },
   ],
   publicSafety: [
     { to: '/governance', label: '治理现代化 · 应急', note: '平急两用与应急管理的治理接口。' },
@@ -690,7 +690,7 @@ const MAP = {
   ],
   capitalMarket: [
     { to: '/market-pulse', label: '全球资产脉搏 · 实时行情', note: '股债汇大宗多标的快照。' },
-    { to: '/finance', label: '金融系统 · 系统风险', note: '资本市场是金融安全的关键子系统。' },
+    { to: '/finance-system', label: '金融系统 · 系统风险', note: '资本市场是金融安全的关键子系统。' },
     { to: '/npf', label: '新质生产力 · 创投', note: '耐心资本与硬科技孵化。' },
     { to: '/private', label: '民营经济 · 融资', note: '直接融资与民企资金链。' },
     { to: '/debt', label: '地方债务 · 化债', note: '城投与资本市场风险传导。' },

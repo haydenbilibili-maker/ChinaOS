@@ -1,10 +1,11 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Shell from './app/Shell.jsx';
 import { LoadingBlock } from './app/ui.jsx';
-import AiLauncher from './app/AiLauncher.jsx';
 import { MODULES, DEFAULT_MODULE, isHuangfeizhaiModule } from './app/registry.js';
 import HuangfeizhaiGate from './modules/huangfeizhai/HuangfeizhaiGate.jsx';
+
+const AiLauncher = lazy(() => import('./app/AiLauncher.jsx'));
 
 function ModuleRoute({ module: m }) {
   const Cmp = m.component;
@@ -56,7 +57,9 @@ export default function App() {
         </Route>
       </Routes>
       {/* 全局浮动 AI 助手：独立于路由，任意页面可唤起 */}
-      <AiLauncher />
+      <Suspense fallback={null}>
+        <AiLauncher />
+      </Suspense>
     </>
   );
 }

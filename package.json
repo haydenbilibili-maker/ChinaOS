@@ -9,6 +9,8 @@
     "fetch:signals": "python3 scripts/fetch_signal_observations.py",
     "check:ui": "node scripts/r4-checklist.mjs",
     "check:shijian": "node scripts/verify-sj-html.mjs",
+    "check:integrity": "node scripts/check-project-integrity.mjs",
+    "check": "npm run check:integrity && npm run check:ui && npm run check:shijian && npm test --prefix app",
     "avatars:verify": "node scripts/resolveVerifiedAvatars.mjs --delay 2000",
     "lint:css": "stylelint \"app/src/**/*.css\" --allow-empty-input"
   },
