@@ -178,6 +178,7 @@ const MAP = {
     { to: '/dashboard', label: '中枢看板 · H1 读数', note: '全局宏观速览与模块入口。' },
     { to: '/econ-dashboard?tab=h1review', label: '半年经济解读 · 2026 H1', note: '三驾马车拆解与供强需弱研判。' },
     { to: '/econ-dashboard?tab=consume15', label: '十五五促消费 · 全文解读', note: '国函〔2026〕66 号 · 大盘 Tab 全文嵌入。' },
+    { to: '/jilin-changchun', label: '吉林&长春政经 · 七维台账', note: '省会高首位度样本 · 官方原话与评论分层。' },
     { to: '/modules/observatory', label: '观象台 · 治理总入口', note: '双仪表合成 · 叙事链 · 行动清单。' },
     { to: '/contradictions', label: '社会主要矛盾 · 结构图谱', note: '官民、城乡、区域、代际四维结构裂缝。' },
     { to: '/capital-market', label: '资本市场 · 耐心资本', note: '注册制、中长期资金与创投政策主线。' },
@@ -529,6 +530,7 @@ const MAP = {
   ],
   northeastRevival: [
     { to: '/regional', label: '区域协调 · 四大板块', note: '东北板块在转移支付与南北差距中的位势。' },
+    { to: '/jilin-changchun', label: '吉林&长春政经 · 七维台账', note: '省会首位度与一汽敏感的省际传导样本。' },
     { to: '/rural', label: '乡村振兴 · 北大仓', note: '粮食安全与黑土地保护工程。' },
     { to: '/manufacturing', label: '制造业 · 装备链', note: '老工业基地与 GVC 升级。' },
     { to: '/demographic', label: '人口结构 · 老龄化', note: '净流出、低生育与人才外流。' },
@@ -536,6 +538,14 @@ const MAP = {
     { to: '/soe', label: '国有资本 · 央企', note: '国企比重与混改试点。' },
     { to: '/reform', label: '改革开放 · 制度创新', note: '体制机制创新与营商环境。' },
     { to: '/energy', label: '能源 · 油田煤电', note: '大庆油田与新能源替代。' },
+  ],
+  jilinChangchun: [
+    { to: '/northeast', label: '东北振兴 · 三省', note: '老工业基地与全面振兴新突破总框。' },
+    { to: '/econ-dashboard', label: '经济大盘 · 2026 H1', note: '全国宏观读数与金丝雀对照。' },
+    { to: '/automotive', label: '汽车主权 · 一汽链', note: '电动智能换道与属地支柱敏感。' },
+    { to: '/debt', label: '地方债务 · 省际热力', note: '转移支付型财政与化债约束。' },
+    { to: '/demographic', label: '人口结构 · 自然减少', note: '低生育、老龄化与机械变动。' },
+    { to: '/regional', label: '区域协调 · 四大板块', note: '东北板块与省会首位度。' },
   ],
   rural: [
     { to: '/food-security', label: '粮食安全 · 18亿亩', note: '耕地保护与产能底线。' },

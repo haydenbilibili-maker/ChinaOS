@@ -891,6 +891,12 @@ export const MODULES = [
   { id: 'frontierGov', path: '/frontier-gov', group: 'region', title: '边疆治理', subtitle: '兴边富民 · 对口支援 · 共同体', icon: 'Mountain', component: lazy(() => import('../modules/frontierGov/Page.jsx')) },
   { id: 'regional', path: '/regional', group: 'region', title: '区域协调', subtitle: '四大板块 · 十五五 · 转移支付', icon: 'Map', component: lazy(() => import('../modules/regional/Page.jsx')) },
   { id: 'northeastRevival', path: '/northeast', group: 'region', title: '东北振兴', subtitle: '老工业基地 · 全面振兴 · 十五五', icon: 'Factory', component: lazy(() => import('../modules/northeastRevival/Page.jsx')) },
+  {
+    id: 'jilinChangchun', path: '/jilin-changchun', group: 'region',
+    title: '吉林&长春政经', subtitle: '事件锚点 · 七维台账 · 首位度', icon: 'Building2',
+    accent: '#8b5cf6',
+    component: lazy(() => import('../modules/jilinChangchun/Page.jsx')),
+  },
   { id: 'marine', path: '/marine', group: 'region', title: '海洋经济', subtitle: '海洋权益 · 船舶制造 · 深海开发', icon: 'Anchor', component: lazy(() => import('../modules/marine/Page.jsx')) },
   { id: 'polar', path: '/polar', group: 'region', title: '极地战略', subtitle: '北极航道 · 极地科考 · 资源博弈', icon: 'Snowflake', component: lazy(() => import('../modules/polar/Page.jsx')) },
   { id: 'resources', path: '/resources', group: 'region', title: '海外资源', subtitle: '权益矿山 · 航道安全 · 资源主权', icon: 'Pickaxe', component: lazy(() => import('../modules/resources/Page.jsx')) },
