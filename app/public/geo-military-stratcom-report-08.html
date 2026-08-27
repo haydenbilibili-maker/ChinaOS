@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地缘破局与军工底座：台海博弈与大国军事战略解析</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Chosen Palette: Radar Slate (#0f172a - background/ocean), Tactical Olive (#15803d - military/ground), Warning Crimson (#b91c1c - threat/conflict), Digital Cyan (#06b6d4 - tech/radar) -->
+    
+    <!-- Application Structure Plan:
+        This SPA acts as a strategic command center dashboard.
+        1. "The Ultimate Test" (Hero & Sec 1): Defines the core geopolitical dilemma - breaking the First Island Chain. Introduces the A2/AD (Anti-Access/Area Denial) strategy.
+        2. "The Maritime Lifeline" (Sec 2): Focuses on the South China Sea and the Malacca Dilemma. Explains the "Unsinkable Aircraft Carrier" island-building strategy using interactive CSS zones.
+        3. "The Industrial Behemoth" (Sec 3): The core insight. Wars are won by industrial capacity, not just standing armies. Uses a stark Bar Chart comparing US vs China shipbuilding capacity to highlight the true military-industrial advantage.
+        4. "Asymmetric & Grey Zone Tactics" (Sec 4): Explains how conflict is managed below the threshold of war (Coast Guard, Drones, Civilian Militia). Uses an interactive Tab system.
+    -->
+    
+    <!-- Visualization & Content Choices:
+        1. A2/AD Strategy -> Goal: Explain spatial defense rings -> CSS Grid Layout -> Maps the "Kill Chains" from coast to deep ocean without SVG.
+        2. Industrial Capacity Comparison -> Goal: Shock/inform regarding manufacturing dominance -> Horizontal Bar Chart (Chart.js) -> Strikingly shows the 200x difference in commercial shipbuilding capacity (the foundation of naval power).
+        3. Grey Zone Tactics -> Goal: Categorize non-traditional warfare -> Interactive Tab Cards -> Separates Drones, Maritime Militia, and Space capabilities.
+        CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. Unicode is used for tactical iconography.
+    -->
+
+    <style>
+        body {
+            background-color: #0f172a; /* Slate 900 - Radar Dark */
+            color: #e2e8f0; /* Slate 200 */
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Mandatory Chart Container Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 420px;
+            }
+        }
+
+        /* Custom Tactical Elements */
+        .tactical-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            border: 1px solid #334155;
+        }
+        .tactical-card:hover {
+            border-color: #15803d; /* Tactical Olive */
+            box-shadow: 0 0 20px rgba(21, 128, 61, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .radar-scan {
+            position: relative;
+            overflow: hidden;
+        }
+        .radar-scan::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: rgba(6, 182, 212, 0.5); /* Cyan scanline */
+            box-shadow: 0 0 15px rgba(6, 182, 212, 1);
+            animation: scan 3s linear infinite;
+        }
+        @keyframes scan {
+            0% { top: -10%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 110%; opacity: 0; }
+        }
+
+        .mil-tab {
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+        .mil-tab.active {
+            background-color: rgba(21, 128, 61, 0.2); /* Olive tint */
+            color: #4ade80; /* Green 400 */
+            border-left-color: #4ade80;
+            font-weight: bold;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(-15px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body class="antialiased selection:bg-green-900 selection:text-green-100">
+
+    <!-- Navigation -->
+    <nav class="bg-slate-900/90 backdrop-blur-md text-slate-100 sticky top-0 z-50 border-b border-slate-700 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold tracking-widest flex items-center gap-2 font-mono">
+                <span class="text-green-500">⌖</span> <span>STRATCOM_CN</span>
+                <span class="text-slate-500 text-sm font-normal hidden md:inline-block ml-2 border-l border-slate-700 pl-2 font-sans">深度透视 · 地缘与军工推演（第八期）</span>
+            </div>
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#a2ad" class="hover:text-green-400 transition">区域拒止 (A2/AD)</a>
+                <a href="#scs" class="hover:text-green-400 transition">南海生命线</a>
+                <a href="#industrial" class="hover:text-green-400 transition">军工产能底座</a>
+                <a href="#greyzone" class="hover:text-green-400 transition">灰色地带战术</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative py-24 px-4 overflow-hidden border-b border-slate-800">
+        <div class="absolute inset-0 bg-slate-950"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-green-900/30 rounded-full pointer-events-none"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-green-800/30 rounded-full pointer-events-none"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-green-700/40 rounded-full pointer-events-none radar-scan"></div>
+        
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div class="inline-block bg-red-900/30 border border-red-700 text-red-400 px-4 py-1.5 rounded-sm text-xs font-bold mb-6 tracking-widest uppercase font-mono">
+                LEVEL 1 STRATEGIC THREAT ASSESSMENT
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight tracking-wide">
+                地缘破局与军工底座：<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-500">大国碰撞的物理极限</span>
+            </h1>
+            <p class="text-lg text-slate-400 leading-relaxed max-w-3xl mx-auto mt-6 text-left md:text-center">
+                经济可以脱钩，但地理无法搬家。中国被一条由美日韩菲构建的“第一岛链”死死锁在近海。台湾不仅是历史遗留问题，更是打破这条地缘绞索的咽喉；南海不仅是领土，更是能源与贸易的绝对生命线。本报告深入极其残酷的<strong>军事工业与地缘拒止逻辑</strong>。
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-16 space-y-32">
+
+        <!-- Section 1: A2/AD Strategy & Taiwan -->
+        <section id="a2ad" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-1.5 h-8 bg-red-600 rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-slate-100 tracking-wide">一、 台海破局：反介入/区域拒止 (A2/AD) 体系</h2>
+            </div>
+            <p class="text-slate-400 mb-8 max-w-4xl text-lg">
+                武力解决台湾问题的核心难点从来不是台湾本身的防御，而是<strong>如何阻止美日联军的军事干预</strong>。为此，中国耗时二十年打造了人类史上最庞大的陆基反海防御体系——A2/AD（Anti-Access/Area Denial）。
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="tactical-card p-6 rounded-lg relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-red-900/50 text-red-300 text-[10px] px-2 py-1 rounded-bl-lg font-mono">0 - 500 KM</div>
+                    <div class="text-3xl mb-3">🚀</div>
+                    <h3 class="text-xl font-bold text-slate-200 mb-2">内层火力覆盖网</h3>
+                    <div class="h-0.5 w-12 bg-red-600 mb-4"></div>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        <strong>目标：台湾本岛及海峡绝对控制。</strong><br>
+                        依靠部署在东南沿海的数千枚远程火箭炮（如PHL-191）和近程战术弹道导弹。这种火力密度可以直接摧毁岛内机场、雷达站和指挥中心，成本极低，且几乎无法被现有的防空系统完全拦截。
+                    </p>
+                </div>
+
+                <div class="tactical-card p-6 rounded-lg relative overflow-hidden border-cyan-900/50">
+                    <div class="absolute top-0 right-0 bg-cyan-900/50 text-cyan-300 text-[10px] px-2 py-1 rounded-bl-lg font-mono">500 - 1500 KM</div>
+                    <div class="text-3xl mb-3">🚢</div>
+                    <h3 class="text-xl font-bold text-slate-200 mb-2">中层反航母杀伤链</h3>
+                    <div class="h-0.5 w-12 bg-cyan-600 mb-4"></div>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        <strong>目标：将美国航母战斗群逼退至第一岛链之外。</strong><br>
+                        核心武器是“航母杀手”——DF-21D反舰弹道导弹及陆基/海基高超音速武器（YJ-21）。配合天基卫星锁定，形成对大型水面舰艇的不对称打击优势。
+                    </p>
+                </div>
+
+                <div class="tactical-card p-6 rounded-lg relative overflow-hidden border-green-900/50">
+                    <div class="absolute top-0 right-0 bg-green-900/50 text-green-300 text-[10px] px-2 py-1 rounded-bl-lg font-mono">1500 - 4000 KM</div>
+                    <div class="text-3xl mb-3">📡</div>
+                    <h3 class="text-xl font-bold text-slate-200 mb-2">外层战略拒止网</h3>
+                    <div class="h-0.5 w-12 bg-green-600 mb-4"></div>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        <strong>目标：威慑关岛基地及远洋补给线。</strong><br>
+                        依靠DF-26中远程弹道导弹（关岛快递）以及轰-6K携带的长剑巡航导弹。切断美军在西太平洋的战略跳板，使得美军的后勤干预成本呈指数级上升。
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-6 bg-slate-800/80 p-4 rounded-lg border-l-4 border-slate-500 text-sm text-slate-300 flex items-start gap-3">
+                <span class="text-xl mt-1">💡</span>
+                <div>
+                    <strong>战略洞察：</strong> A2/AD的本质不是为了打核战争，而是通过建立极高的<strong>“干预成本门槛”</strong>，让美国决策层在推演中得出“为了台湾损失两艘航母不符合美国国家利益”的结论，从而达成“不战而屈人之兵”。
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: South China Sea Lifeline -->
+        <section id="scs" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-1.5 h-8 bg-blue-600 rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-slate-100 tracking-wide">二、 南海造岛：破解马六甲困局的“不沉航母”</h2>
+            </div>
+            <p class="text-slate-400 mb-8 max-w-4xl text-lg">
+                在我们的第二期（粮食安全）和第五期（出海贸易）报告中，无论是中东的石油，还是运往全球南方的工业品，超80%都要经过马六甲海峡和南海。一旦中美交恶，美海军封锁马六甲，中国经济将面临休克。
+            </p>
+
+            <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 shadow-2xl flex flex-col md:flex-row gap-8 items-center">
+                <div class="w-full md:w-1/2">
+                    <h3 class="text-xl font-bold text-blue-400 mb-4 font-mono">PROJECT: ARTIFICIAL ISLANDS</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                        为了保护这条生命线，中国实施了堪比“超级工程”的<strong>南海吹沙填海作业</strong>。在美济礁、渚碧礁、永暑礁等地，硬生生造出了数平方公里的人工岛。
+                    </p>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li class="flex items-center gap-2"><span class="text-green-500">✔</span> 部署3000米级重型跑道（可起降轰炸机/战斗机）</li>
+                        <li class="flex items-center gap-2"><span class="text-green-500">✔</span> 部署防空导弹网阵地与大型雷达监控体系</li>
+                        <li class="flex items-center gap-2"><span class="text-green-500">✔</span> 提供深水港，作为常规潜艇和海警船的前沿基地</li>
+                    </ul>
+                </div>
+                
+                <div class="w-full md:w-1/2 bg-slate-900 p-5 rounded-lg border border-slate-600 relative">
+                    <div class="absolute top-2 right-2 text-red-500 text-2xl animate-pulse">🎯</div>
+                    <h4 class="font-bold text-slate-200 mb-2 border-b border-slate-700 pb-2">地缘战略转换</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        这些人工岛屿被西方智库称为“不沉的航空母舰”。它们将中国海空军的实际控制线向南推进了上千公里，直接笼罩了马六甲海峡的出口。配合海南岛的核潜艇基地，南海正在逐渐变成中国海军战略核威慑的<strong>“深水堡垒区”</strong>（Bastion Strategy），彻底改变了东南亚的军事力量对比。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Industrial Capacity -->
+        <section id="industrial" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-1.5 h-8 bg-green-600 rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-slate-100 tracking-wide">三、 胜负手：军工联合体与绝对产能压制</h2>
+            </div>
+            <p class="text-slate-400 mb-8 max-w-4xl text-lg">
+                二战的经验告诉我们，现代战争拼的不是开战第一天有多少艘军舰，而是开战第一年能<strong>补充</strong>多少艘军舰和弹药。这正是美国军方目前对中国最深层的恐惧——世界工厂的战争潜力。
+            </p>
+
+            <div class="bg-slate-900 p-6 md:p-8 rounded-2xl border border-slate-800 shadow-2xl">
+                <div class="flex justify-between items-end mb-6">
+                    <h3 class="text-lg font-bold text-slate-300">中美造船工业产能对比 (占全球商业造船份额估算)</h3>
+                    <span class="text-xs bg-red-900/50 text-red-400 px-2 py-1 rounded font-mono">CRITICAL DATA</span>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="shipbuildingChart"></canvas>
+                </div>
+                
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-slate-800/80 p-5 rounded-lg border border-slate-700">
+                        <h4 class="font-bold text-green-400 mb-2">“军民融合”的体制威力</h4>
+                        <p class="text-sm text-slate-400">
+                            中国的造船厂（如江南造船、大连造船）平时大量承接全球的民用商船（LNG船、集装箱船），维持了庞大的熟练工人和干船坞体系。一旦进入战时体制，这些民用产能可以瞬间转化为军舰的下水速度（“下饺子”）。
+                        </p>
+                    </div>
+                    <div class="bg-slate-800/80 p-5 rounded-lg border border-slate-700">
+                        <h4 class="font-bold text-slate-300 mb-2">美国“去工业化”的军事反噬</h4>
+                        <p class="text-sm text-slate-400">
+                            随着美国制造业空心化，美国目前的商业造船产能不到全球的1%。这导致美军的军舰维修周期极其漫长，造价高昂，且缺乏足够的技术工人梯队。在持久的高强度消耗战中，这种工业底盘的脆弱性是致命的。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Grey Zone & Asymmetric Warfare -->
+        <section id="greyzone" class="scroll-mt-24 mb-16">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-1.5 h-8 bg-cyan-600 rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-slate-100 tracking-wide">四、 降维打击：灰色地带战术与无人机革命</h2>
+            </div>
+            <p class="text-slate-400 mb-8 max-w-4xl text-lg">
+                在“核大国不直接开战”的默契下，谁能更好地掌握“战争与和平之间的灰色地带”，谁就能在不触发全面战争的情况下蚕食对手的战略空间。
+            </p>
+
+            <div class="flex flex-col md:flex-row gap-6 h-full">
+                <div class="md:w-1/4 flex flex-col gap-2">
+                    <button type="button" class="mil-tab active text-left py-4 px-4 bg-slate-800/50 text-slate-300 hover:bg-slate-800" onclick="switchMilTab(event, 'tab-drone')">
+                        <span class="block font-bold">🛸 无人机蜂群战术</span>
+                        <span class="text-xs font-normal opacity-70">世界级产业链的溢出</span>
+                    </button>
+                    <button type="button" class="mil-tab text-left py-4 px-4 bg-slate-800/50 text-slate-300 hover:bg-slate-800" onclick="switchMilTab(event, 'tab-coastguard')">
+                        <span class="block font-bold">⚓ 海上“包心菜”战略</span>
+                        <span class="text-xs font-normal opacity-70">海警与海上民兵</span>
+                    </button>
+                    <button type="button" class="mil-tab text-left py-4 px-4 bg-slate-800/50 text-slate-300 hover:bg-slate-800" onclick="switchMilTab(event, 'tab-space')">
+                        <span class="block font-bold">🛰️ 太空与网络空间</span>
+                        <span class="text-xs font-normal opacity-70">致盲对手的关键</span>
+                    </button>
+                </div>
+
+                <div class="md:w-3/4 bg-slate-800 p-8 rounded-xl border border-slate-700 shadow-xl min-h-[300px]">
+                    
+                    <div id="tab-drone" class="mil-content block fade-in">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4 font-mono">SWARM_INTELLIGENCE // 无人机降维打击</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                            俄乌战争彻底改变了现代战争的形态。昂贵的坦克在廉价的FPV（第一人称视角）穿越机面前不堪一击。而中国，是全球绝对的无人机产业链霸主。
+                        </p>
+                        <ul class="space-y-3 text-sm text-slate-400 list-disc pl-5">
+                            <li><strong>白菜化的精确打击：</strong> 依托深圳完善的电子产业链（大疆DJI的供应链溢出），中国能够以极低的成本，大规模制造军用或军民两用无人机、巡飞弹。</li>
+                            <li><strong>消耗战优势：</strong> 在台海或周边冲突中，可动用数以万计的无人机蜂群消耗美台昂贵的防空导弹（如爱国者导弹，单枚数百万美元）。当防空网被耗尽，才是主力导弹洗地的开始。</li>
+                        </ul>
+                    </div>
+
+                    <div id="tab-coastguard" class="mil-content hidden fade-in">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4 font-mono">GREY_ZONE // 海上“包心菜”战略</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                            在南海与菲律宾、在东海与日本的岛礁摩擦中，中国极少直接动用海军军舰，而是采用层层包裹的“包心菜”战术。
+                        </p>
+                        <div class="bg-slate-900 p-4 rounded border border-slate-700">
+                            <ul class="space-y-2 text-sm text-slate-400">
+                                <li><strong>外层（海军）：</strong> 军舰在远海游弋，提供强大的威慑背书，但不直接介入冲突，避免事态升级为战争。</li>
+                                <li><strong>中层（海警）：</strong> 全球最大规模的海警舰队（由退役军舰改装，甚至拥有万吨级海警船），凭借吨位优势和水炮，在执法层面物理驱离对手。</li>
+                                <li><strong>内层（海上民兵）：</strong> 大批经过组织的武装渔船在争议海域进行日常作业或抛锚，直接挤占空间，让对手“无处下脚”。</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="tab-space" class="mil-content hidden fade-in">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4 font-mono">DOMAIN_DENIAL // 太空与信息压制</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                            现代美军的作战高度依赖卫星网络进行导航、通讯和目标指引。
+                        </p>
+                        <ul class="space-y-3 text-sm text-slate-400 list-disc pl-5">
+                            <li><strong>北斗系统的独立：</strong> 中国拥有完全自主的北斗卫星导航系统，确保在战时GPS被切断的情况下，导弹依然能精准命中。</li>
+                            <li><strong>反卫星能力：</strong> 发展动能拦截弹、激光致盲武器及机械臂抓取卫星技术。开战首日，致盲美军的侦察与通信卫星，是A2/AD体系生效的前提。</li>
+                            <li><strong>低轨卫星星座竞赛：</strong> 效仿星链（Starlink），中国正在加速部署“千帆星座”等低轨宽带互联网卫星，争夺太空频段和轨道资源。</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="mt-10 p-6 bg-slate-800 border-l-4 border-green-500 rounded-lg shadow-2xl">
+                <h3 class="text-lg font-bold text-green-400 mb-2 font-mono">全系列战略推演收束</h3>
+                <p class="text-sm text-slate-300 leading-relaxed">
+                    从<strong>第一期（政治核心）</strong>到<strong>第八期（军工地缘）</strong>，本报告剥开了当今中国宏观战略的主要底牌。<br><br>
+                    面对旧有债务模式的崩塌（第四期）和人口红利的消失（第六期），中国没有选择退缩，而是依靠强大的行政动员力（第一期），以举国体制推行“新质生产力”（第五期）和超级工程（第三期）。<br>
+                    这一切的经济、科技与金融（第七期）转型，其最终的护城河，正是本期所展示的<strong>绝对的工业产能与地缘拒止能力</strong>。大国博弈不再是和风细雨的贸易谈判，而是一场关乎生死存亡的、在半导体、航母、算法和供应链维度的全面持久战。
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-600 py-10 text-center border-t border-slate-900 font-mono text-xs">
+        <div class="max-w-4xl mx-auto px-4">
+            <p class="font-bold text-slate-500 tracking-widest mb-2">地缘军工战略推演系列 · 收束篇</p>
+            <p class="leading-relaxed max-w-2xl mx-auto opacity-50">
+                DISCLAIMER: 本报告涵盖的军工资讯与战略推演模型，均基于公开的智库报告、开源情报(OSINT)及地缘政治常识构建的抽象沙盘。不包含任何机密作战数据。
+            </p>
+            <p class="mt-4">© 2026 STRATEGIC MACRO INTELLIGENCE COMMAND</p>
+        </div>
+    </footer>
+
+    <script>
+        function switchMilTab(evt, tabId) {
+            document.querySelectorAll('.mil-content').forEach(content => {
+                content.classList.remove('block', 'fade-in');
+                content.classList.add('hidden');
+            });
+            document.querySelectorAll('.mil-tab').forEach(tab => tab.classList.remove('active'));
+
+            const panel = document.getElementById(tabId);
+            panel.classList.remove('hidden');
+            setTimeout(() => panel.classList.add('block', 'fade-in'), 10);
+            evt.currentTarget.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            Chart.defaults.color = '#94a3b8';
+            Chart.defaults.font.family = "'PingFang SC', 'Microsoft YaHei', 'Courier New', monospace";
+            Chart.defaults.borderColor = '#1e293b';
+
+            const ctxShip = document.getElementById('shipbuildingChart').getContext('2d');
+            new Chart(ctxShip, {
+                type: 'bar',
+                data: {
+                    labels: ['中国 (China)', '美国 (USA)'],
+                    datasets: [
+                        {
+                            label: '全球商业造船完工量份额 (%) - 代表军工潜力底座',
+                            data: [50.2, 0.2],
+                            backgroundColor: [
+                                'rgba(21, 128, 61, 0.8)',
+                                'rgba(185, 28, 28, 0.8)'
+                            ],
+                            borderColor: [
+                                '#15803d',
+                                '#b91c1c'
+                            ],
+                            borderWidth: 1,
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    indexAxis: 'y',
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(15, 23, 42, 0.95)',
+                            titleFont: { size: 14, family: 'monospace' },
+                            bodyFont: { size: 13, family: 'monospace' },
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    return ' 份额占比: ' + context.raw + '%';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { 
+                            title: { display: true, text: '全球市场份额占比 (%)', color: '#64748b' },
+                            grid: { color: '#1e293b' },
+                            max: 60
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: { font: { weight: 'bold' } }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

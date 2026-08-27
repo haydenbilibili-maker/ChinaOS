@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChinaOS · 宏观信号灯与超个体决策仪表盘</title>
+<style>
+  /* ============================================================
+     ChinaOS — 宏观再平衡信号灯 + 个人决策仪表盘
+     水墨观象台 · 宏观再平衡信号灯
+     设计语言：水墨观象台 — 深墨底 · 黄铜仪表框 · 青瓷结构标签
+     数据基准：2026 政府工作报告 / 预算报告口径（2026-06）
+     ============================================================ */
+
+  :root{
+    --ink:        #0d1417;   /* 深墨底 */
+    --ink-2:      #121d21;   /* 面板 */
+    --ink-3:      #17252a;   /* 抬升面板 */
+    --hair:       #24383d;   /* 发丝线 */
+    --hair-soft:  #1b2c31;
+    --text:       #e7ecea;   /* 主文本 */
+    --text-dim:   #93a6a4;   /* 次文本 */
+    --text-faint: #5f7370;   /* 弱文本 */
+    --brass:      #b18a52;   /* 黄铜仪表框 */
+    --brass-dim:  #6b5733;
+    --celadon:    #79a496;   /* 青瓷结构标签 */
+    /* 做旧信号灯 */
+    --red:        #cf4a3d;   --red-bg:   #2a1513;
+    --amber:      #cf9a32;   --amber-bg: #29200f;
+    --green:      #4f9e72;   --green-bg: #11241a;
+    --shadow:     0 1px 0 rgba(255,255,255,.03), 0 8px 30px rgba(0,0,0,.45);
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, "Cascadia Mono", monospace;
+    --sans: "Inter", system-ui, -apple-system, "Segoe UI", "PingFang SC",
+            "Noto Sans SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    background:
+      radial-gradient(1200px 600px at 80% -10%, #13242a 0%, transparent 60%),
+      var(--ink);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.5;
+    letter-spacing:.01em;
+    padding:clamp(16px,3vw,40px);
+    min-height:100vh;
+  }
+  .wrap{ max-width:1180px; margin:0 auto; }
+
+  /* ---------- header ---------- */
+  .masthead{ display:flex; justify-content:space-between; align-items:flex-end;
+    flex-wrap:wrap; gap:16px; padding-bottom:18px; border-bottom:1px solid var(--hair); }
+  .brand{ display:flex; align-items:baseline; gap:14px; }
+  .brand .glyph{ font-family:var(--mono); font-size:13px; color:var(--ink);
+    background:var(--brass); padding:3px 7px; border-radius:4px; letter-spacing:.05em; font-weight:600; }
+  .brand h1{ font-size:clamp(17px,2.4vw,21px); font-weight:600; letter-spacing:.02em; }
+  .brand h1 span{ color:var(--text-dim); font-weight:400; }
+  .meta{ font-family:var(--mono); font-size:11px; color:var(--text-faint);
+    text-align:right; line-height:1.7; }
+  .meta b{ color:var(--celadon); font-weight:500; }
+
+  /* ---------- master verdict (signature) ---------- */
+  .verdict{ margin:22px 0 8px; border:1px solid var(--brass-dim); border-radius:12px;
+    background:linear-gradient(180deg,#15242a,#0f1c20); box-shadow:var(--shadow);
+    padding:20px 22px; position:relative; overflow:hidden; }
+  .verdict::before{ content:""; position:absolute; inset:0; border-radius:12px;
+    border:1px solid rgba(177,138,82,.12); pointer-events:none; }
+  .verdict-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; }
+  .verdict-ey{ font-family:var(--mono); font-size:10.5px; letter-spacing:.22em;
+    color:var(--brass); text-transform:uppercase; margin-bottom:10px; }
+  .verdict-state{ display:flex; align-items:center; gap:14px; }
+  .verdict-lamp{ width:16px; height:16px; border-radius:50%; flex:none;
+    box-shadow:0 0 0 4px rgba(255,255,255,.025); }
+  .verdict-word{ font-size:clamp(26px,4.6vw,40px); font-weight:700; letter-spacing:.04em; line-height:1; }
+  .verdict-sub{ font-size:13px; color:var(--text-dim); margin-top:9px; max-width:52ch; }
+  .verdict-score{ font-family:var(--mono); text-align:right; flex:none; }
+  .verdict-score .n{ font-size:30px; font-weight:600; letter-spacing:-.02em; }
+  .verdict-score .l{ font-size:10px; color:var(--text-faint); letter-spacing:.15em; text-transform:uppercase; }
+
+  /* regime track */
+  .track{ margin-top:18px; }
+  .track-rail{ position:relative; height:6px; border-radius:3px;
+    background:linear-gradient(90deg,var(--red-bg),var(--amber-bg),var(--green-bg)); }
+  .track-rail::after{ content:""; position:absolute; inset:0; border-radius:3px;
+    border:1px solid var(--hair); }
+  .track-knob{ position:absolute; top:50%; width:14px; height:14px; border-radius:50%;
+    background:var(--text); border:2px solid var(--ink); transform:translate(-50%,-50%);
+    transition:left .5s cubic-bezier(.5,0,.2,1); box-shadow:0 2px 8px rgba(0,0,0,.5); }
+  .track-labels{ display:flex; justify-content:space-between; margin-top:8px;
+    font-family:var(--mono); font-size:10px; letter-spacing:.12em; color:var(--text-faint); }
+  .track-labels b{ font-weight:400; }
+  .track-labels .on{ color:var(--text); }
+  .trigger{ margin-top:14px; font-size:12px; color:var(--text-dim);
+    border-top:1px dashed var(--hair); padding-top:12px; }
+  .trigger b{ color:var(--celadon); font-weight:500; }
+
+  /* ---------- section ---------- */
+  .section{ margin-top:30px; }
+  .section-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:14px; }
+  .section-tier{ font-family:var(--mono); font-size:12px; font-weight:600; color:var(--ink);
+    background:var(--celadon); width:22px; height:22px; border-radius:5px;
+    display:inline-flex; align-items:center; justify-content:center; flex:none; }
+  .section-head h2{ font-size:15px; font-weight:600; letter-spacing:.02em; }
+  .section-head .desc{ font-size:12px; color:var(--text-faint); margin-left:auto; text-align:right; }
+
+  /* signal cards */
+  .grid{ display:grid; gap:10px; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); }
+  .card{ background:var(--ink-2); border:1px solid var(--hair-soft); border-radius:10px;
+    padding:14px 15px; cursor:pointer; transition:border-color .2s, background .2s, transform .1s;
+    position:relative; }
+  .card:hover{ border-color:var(--hair); background:var(--ink-3); }
+  .card:active{ transform:translateY(1px); }
+  .card:focus-visible{ outline:2px solid var(--celadon); outline-offset:2px; }
+  .card-top{ display:flex; align-items:center; gap:10px; }
+  .dot{ width:11px; height:11px; border-radius:50%; flex:none; transition:background .25s, box-shadow .25s; }
+  .card-name{ font-size:13.5px; font-weight:600; letter-spacing:.01em; }
+  .card-id{ font-family:var(--mono); font-size:10px; color:var(--text-faint); margin-left:auto; letter-spacing:.06em; }
+  .card-read{ font-size:12px; color:var(--text-dim); margin-top:9px; }
+  .card-read .k{ color:var(--text-faint); }
+  .card-trig{ font-size:11.5px; color:var(--text-faint); margin-top:8px;
+    padding-top:8px; border-top:1px solid var(--hair-soft); }
+  .card-trig b{ color:var(--celadon); font-weight:500; }
+  .badge{ font-family:var(--mono); font-size:9.5px; letter-spacing:.1em; text-transform:uppercase;
+    padding:2px 6px; border-radius:4px; font-weight:600; }
+  .b-red{ color:var(--red); background:var(--red-bg); }
+  .b-amber{ color:var(--amber); background:var(--amber-bg); }
+  .b-green{ color:var(--green); background:var(--green-bg); }
+
+  /* dot color states */
+  .s-red .dot, .verdict-lamp.s-red{ background:var(--red); box-shadow:0 0 10px -1px var(--red); }
+  .s-amber .dot, .verdict-lamp.s-amber{ background:var(--amber); box-shadow:0 0 10px -1px var(--amber); }
+  .s-green .dot, .verdict-lamp.s-green{ background:var(--green); box-shadow:0 0 10px -1px var(--green); }
+
+  /* ---------- personal decision lanes ---------- */
+  .lanes{ display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(255px,1fr)); }
+  .lane{ background:var(--ink-2); border:1px solid var(--hair-soft); border-radius:10px;
+    padding:16px; border-top:2px solid var(--brass-dim); }
+  .lane h3{ font-size:14px; font-weight:600; display:flex; align-items:center; gap:8px; }
+  .lane h3 .ico{ font-family:var(--mono); font-size:11px; color:var(--brass); }
+  .lane .now{ margin-top:11px; font-size:12.5px; color:var(--text); line-height:1.6; }
+  .lane .now .tag{ display:inline-block; font-family:var(--mono); font-size:9.5px; letter-spacing:.1em;
+    color:var(--ink); padding:1px 6px; border-radius:3px; margin-bottom:6px; font-weight:600; }
+  .lane .flip{ margin-top:11px; padding-top:11px; border-top:1px dashed var(--hair-soft);
+    font-size:11.5px; color:var(--text-dim); }
+  .lane .flip b{ color:var(--celadon); font-weight:500; }
+
+  /* ---------- controls + footer ---------- */
+  .controls{ display:flex; gap:10px; align-items:center; margin-top:24px; flex-wrap:wrap; }
+  .btn{ font-family:var(--mono); font-size:11px; letter-spacing:.08em; color:var(--text-dim);
+    background:var(--ink-2); border:1px solid var(--hair); border-radius:6px; padding:7px 13px;
+    cursor:pointer; transition:.2s; }
+  .btn:hover{ color:var(--text); border-color:var(--brass-dim); }
+  .hint{ font-size:11px; color:var(--text-faint); }
+  .foot{ margin-top:26px; padding-top:16px; border-top:1px solid var(--hair);
+    font-size:11px; color:var(--text-faint); line-height:1.8; }
+  .foot b{ color:var(--text-dim); font-weight:500; }
+
+  @media (max-width:560px){
+    .verdict-score{ text-align:left; }
+    .section-head .desc{ display:none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="brand">
+      <span class="glyph">ChinaOS</span>
+      <h1>宏观再平衡信号灯 <span>· 超个体决策仪表盘</span></h1>
+    </div>
+    <div class="meta">
+      数据基准 · <b>2026-06</b><br>
+      口径 · 2026 政府工作报告 / 预算报告<br>
+      模型 · 《重构山河》第八章改革序列
+    </div>
+  </header>
+
+  <!-- ===== 招牌元件：态势主读数 ===== -->
+  <section class="verdict" id="verdict">
+    <div class="verdict-top">
+      <div>
+        <div class="verdict-ey">当前态势 · REGIME</div>
+        <div class="verdict-state">
+          <span class="verdict-lamp" id="vLamp"></span>
+          <span class="verdict-word" id="vWord">—</span>
+        </div>
+        <div class="verdict-sub" id="vSub"></div>
+      </div>
+      <div class="verdict-score">
+        <div class="n" id="vScore">—</div>
+        <div class="l">治本进度 / 100</div>
+      </div>
+    </div>
+    <div class="track">
+      <div class="track-rail"><div class="track-knob" id="vKnob" style="left:12%"></div></div>
+      <div class="track-labels">
+        <b id="lab-def">防御 · 治标买时间</b>
+        <b id="lab-watch">观察 · 临界</b>
+        <b id="lab-off">进攻 · 治本启动</b>
+      </div>
+    </div>
+    <div class="trigger" id="vTrigger"></div>
+  </section>
+
+  <!-- 信号灯分区在此渲染 -->
+  <div id="signals"></div>
+
+  <!-- ===== 个人决策仪表盘 ===== -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-tier" style="background:var(--brass);">个</span>
+      <h2>超个体动作映射</h2>
+      <span class="desc">随态势自动切换 · 进攻版 / 防御版</span>
+    </div>
+    <div class="lanes" id="lanes"></div>
+  </section>
+
+  <div class="controls">
+    <button class="btn" id="resetBtn">↺ 复位至基准读数</button>
+    <span class="hint">点击任一信号卡可循环切换 红 → 琥珀 → 绿，态势与动作将实时重算并本地保存。</span>
+  </div>
+
+  <footer class="foot">
+    <b>读法</b>　A 档（元改革）是态势总开关：A 不动、仅 B/C 微调 = 治标买时间，取防御；A 档换锚或 C1 平减指数连续转正 = 治本启动，方可转进攻。<br>
+    <b>免责</b>　本仪表盘为基于公开政策的结构性分析工具，非投资建议；个人仓位与负债决策需结合自身风险承受力与现金流，必要时咨询持牌顾问。<br>
+    <b>来源</b>　2026《政府工作报告》《关于2026年中央和地方预算草案的报告》(财政部) · 各项读数为编者按官方口径归纳。
+  </footer>
+
+</div>
+
+<script>
+/* ============================================================
+   数据模型 —— SECTIONS / LANES / computeRegime()
+   status: 'red' | 'amber' | 'green'
+   ============================================================ */
+const STORAGE_KEY = 'chinaos.signals.v1';
+
+const SECTIONS = [
+  {
+    tier:'A', title:'元改革信号', desc:'最高权重 · 决定态势切换',
+    signals:[
+      { id:'A1', name:'考核指挥棒换锚', w:3,
+        read:'仍以增长为主刻度；中央 500 亿激励资金奖励地方“做大经济蛋糕”，居民收入/消费率未入约束性指标。',
+        trig:'“居民消费率”进入中央经济工作会议/政府工作报告的约束性目标 → 转绿（质变信号）。',
+        status:'red' },
+      { id:'A2', name:'中央加杠杆', w:3,
+        read:'赤字率 4%，赤字增量 2300 亿全部由中央承担，中央占赤字 86.4%；3000 亿特别国债补充大行资本。',
+        trig:'已实质推进=绿；若 2027 赤字率再上抬且仍中央承担，确认决心强化。',
+        status:'green' },
+      { id:'A3', name:'特别国债“投人 vs 投物”比例', w:2,
+        read:'2500 亿以旧换新 + ~1000 亿育儿补贴（投人）；但 1.3 万亿超长期国债仍偏“两重/两新”基建（投物）。',
+        trig:'投人占比明显抬升、超过投物增量 → 转绿。',
+        status:'amber' },
+    ]
+  },
+  {
+    tier:'B', title:'居民端落地信号', desc:'中权重 · 决定消费能否起来',
+    signals:[
+      { id:'B1', name:'育儿补贴标准', w:1,
+        read:'全国统一 3600 元/孩/年（约 300 元/月）已破冰，财政安排约 1000 亿、惠及 3000 万婴幼儿；剂量偏低。',
+        trig:'标准上调（如翻倍）→ 转绿。',
+        status:'amber' },
+      { id:'B2', name:'免费教育年限', w:1,
+        read:'免费学前一年已落地，惠及约 1400 万人。',
+        trig:'延长至学前三年 / 向义务教育上下游扩展 → 转绿。',
+        status:'amber' },
+      { id:'B3', name:'居民基础养老金涨幅', w:1,
+        read:'城乡居民基础养老金月最低标准再 +20 元，挤牙膏式提升。',
+        trig:'涨幅显著提速（非每年 +20 元节奏）→ 转绿。',
+        status:'red' },
+      { id:'B4', name:'现金普发突破', w:1,
+        read:'仍走以旧换新 / 贷款贴息 / 有奖发票，未直接向居民普发现金。',
+        trig:'出现面向特定群体的直接现金补贴 → 跨过意识形态坎，转绿（强信号）。',
+        status:'red' },
+      { id:'B5', name:'户籍与公共服务脱钩', w:1,
+        read:'仅社保扩面（灵活就业/新业态参保），户籍市民化最慢，三亿农民工需求未解锁。',
+        trig:'积分落户放宽 / 随迁子女就学 / 社保全国统筹结算实质推进 → 转绿。',
+        status:'red' },
+    ]
+  },
+  {
+    tier:'C', title:'宏观确诊信号', desc:'验证药是否起效',
+    signals:[
+      { id:'C1', name:'GDP 平减指数转正（闸门）', w:3,
+        read:'仍处通缩区间；报告称“有望 2026 二季度走出连续三年通缩”——当承诺核对。',
+        trig:'连续两个季度由负转正并站稳 → 转绿（态势总确认闸门）。',
+        status:'red' },
+      { id:'C2', name:'社零增速 vs 固投增速剪刀差', w:1,
+        read:'机构多预期 2026 消费增速约 4.5%，温和复苏；需消费持续跑赢投资。',
+        trig:'社零增速持续高于固定资产投资增速 → 转绿。',
+        status:'amber' },
+      { id:'C3', name:'居民消费占 GDP 比重', w:1,
+        read:'约 39%，为主要经济体最低档（病根指标）。',
+        trig:'该比重持续上行 → 转绿（结构性胜利）。',
+        status:'red' },
+      { id:'C4', name:'居民中长期贷款（按揭）恢复', w:1,
+        read:'信心体温计；资产负债表衰退是否缓解看此项。',
+        trig:'新增居民中长贷由缩转增并持续 → 转绿。',
+        status:'red' },
+    ]
+  }
+];
+
+/* 个人决策车道：每个态势(regime)给一组动作 */
+const LANES = [
+  { key:'创业', ico:'CREATE',
+    defense:'押政策顺风方向：服务消费 / 银发 / 托育 / 文旅赛事 / 入境消费(“购在中国”) / 出海。避开重资产、长回收、靠投资驱动的红海。超个体靠“窄而深的特定人群”穿越通缩，不依赖宏观总量。',
+    offense:'需求总量回暖，可加杠杆扩张产能与门店、加大投放；从“窄深求生”切到“顺周期放量”，抢服务消费复苏的β。' },
+  { key:'投资', ico:'INVEST',
+    defense:'防御为主：现金/高等级债实际购买力上升；偏好确定性分红的“类债”资产 + 政策顺风服务消费。房产托底非反弹，投资性加仓逻辑不成立。',
+    offense:'切进攻：超配顺周期权益与困境反转资产；扳机=平减指数转正且社零持续超固投后再动，不抢跑。' },
+  { key:'融资', ico:'FINANCE',
+    defense:'主动薅政策：1000 亿促内需专项资金下的经营贷贴息、设备更新贴息、民间投资担保；低成本资金投向能产生现金流的扩张，而非贬值资产。',
+    offense:'融资窗口仍开且需求改善，放大生产性借贷、加速扩张；优先锁定长久期低成本资金。' },
+  { key:'借贷', ico:'CREDIT',
+    defense:'通缩抬高实际债务：压消费性/资产性杠杆，保现金流安全垫；仅“生产性 + 有贴息 + 能自偿”的债可进。',
+    offense:'通缩解除后实际债务负担下降，可适度提升杠杆；仍以能自偿的生产性负债为先。' }
+];
+
+/* ============================================================
+   态势合成 computeRegime()
+   ============================================================ */
+const VAL = { red:0, amber:0.5, green:1 };
+
+function loadOverrides(){
+  try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+  catch(e){ return {}; }
+}
+function saveOverrides(o){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(o)); }catch(e){}
+}
+let overrides = loadOverrides();
+
+function statusOf(sig){ return overrides[sig.id] || sig.status; }
+
+function allSignals(){ return SECTIONS.flatMap(s=>s.signals); }
+
+function computeRegime(){
+  const sigs = allSignals();
+  let num=0, den=0;
+  sigs.forEach(s=>{ num += VAL[statusOf(s)] * s.w; den += s.w; });
+  let score = Math.round((num/den)*100);
+
+  // 闸门：进攻必须 C1(平减指数) 至少为琥珀
+  const c1 = statusOf(SECTIONS[2].signals[0]); // C1
+  const a1 = statusOf(SECTIONS[0].signals[0]); // A1 换锚
+  const gateOpen = (VAL[c1] >= 0.5);
+
+  let regime;
+  if(score >= 60 && gateOpen) regime='offense';
+  else if(score >= 38) regime='watch';
+  else regime='defense';
+
+  // A1 换锚为绿是治本启动的独立强信号
+  if(a1==='green' && gateOpen) regime='offense';
+
+  return { score, regime, gateOpen };
+}
+
+const REGIME_META = {
+  defense:{ word:'防御', cls:'s-red',   pos:12,
+    sub:'国家在做“中央加杠杆 + 补贴购买行为”的治标动作，治本（换考核 / 给家庭 / 松户籍）尚未启动。个人以防御为主，进攻扳机未到。' },
+  watch:{ word:'观察', cls:'s-amber', pos:50,
+    sub:'部分治本信号开始松动，处于临界区。保持防御主仓，准备好进攻清单，等待闸门确认。' },
+  offense:{ word:'进攻', cls:'s-green', pos:88,
+    sub:'治本信号确认启动（换锚或平减指数转正）。可从防御切换为进攻，抢结构性复苏的先手。' }
+};
+
+/* ============================================================
+   渲染
+   ============================================================ */
+function renderSignals(){
+  const root = document.getElementById('signals');
+  root.innerHTML = '';
+  SECTIONS.forEach(sec=>{
+    const section = document.createElement('section');
+    section.className='section';
+    section.innerHTML = `
+      <div class="section-head">
+        <span class="section-tier">${sec.tier}</span>
+        <h2>${sec.title}</h2>
+        <span class="desc">${sec.desc}</span>
+      </div>
+      <div class="grid"></div>`;
+    const grid = section.querySelector('.grid');
+    sec.signals.forEach(sig=>{
+      const st = statusOf(sig);
+      const card = document.createElement('div');
+      card.className = `card s-${st}`;
+      card.tabIndex = 0;
+      card.setAttribute('role','button');
+      card.setAttribute('aria-label', `${sig.name}，当前${st==='red'?'红':st==='amber'?'琥珀':'绿'}，点击切换`);
+      const badge = st==='red'?'<span class="badge b-red">未启动</span>'
+                  : st==='amber'?'<span class="badge b-amber">观察中</span>'
+                  : '<span class="badge b-green">已启动</span>';
+      card.innerHTML = `
+        <div class="card-top">
+          <span class="dot"></span>
+          <span class="card-name">${sig.name}</span>
+          <span class="card-id">${sig.id} · w${sig.w}</span>
+        </div>
+        <div class="card-read">${sig.read}</div>
+        <div class="card-trig">${badge} <b>翻绿触发</b> · ${sig.trig.replace('→ 转绿','').replace('转绿','')}</div>`;
+      const cycle = ()=>{ const order=['red','amber','green'];
+        const cur = statusOf(sig);
+        overrides[sig.id] = order[(order.indexOf(cur)+1)%3];
+        saveOverrides(overrides); renderAll(); };
+      card.addEventListener('click', cycle);
+      card.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); cycle(); }});
+      grid.appendChild(card);
+    });
+    root.appendChild(section);
+  });
+}
+
+function renderVerdict(){
+  const { score, regime } = computeRegime();
+  const m = REGIME_META[regime];
+  document.getElementById('vWord').textContent = m.word;
+  document.getElementById('vScore').textContent = score;
+  document.getElementById('vSub').textContent = m.sub;
+  const lamp = document.getElementById('vLamp');
+  lamp.className = 'verdict-lamp ' + m.cls;
+  document.getElementById('vKnob').style.left = m.pos + '%';
+  ['def','watch','off'].forEach((k,i)=>{
+    const el = document.getElementById('lab-'+k);
+    const active = (regime==='defense'&&i===0)||(regime==='watch'&&i===1)||(regime==='offense'&&i===2);
+    el.classList.toggle('on', active);
+  });
+  const c1 = statusOf(SECTIONS[2].signals[0]);
+  document.getElementById('vTrigger').innerHTML =
+    `<b>切换扳机</b> · A1 考核换锚转绿　或　C1 平减指数连续两季转正（当前闸门：${c1==='red'?'关闭':'开启'}）`+
+    ` ⟶ 态势切“进攻”。`;
+}
+
+function renderLanes(){
+  const { regime } = computeRegime();
+  const off = (regime==='offense');
+  const root = document.getElementById('lanes');
+  root.innerHTML='';
+  LANES.forEach(l=>{
+    const tagColor = off ? 'var(--green)' : 'var(--amber)';
+    const tagWord = off ? '进攻版' : '防御版';
+    const body = off ? l.offense : l.defense;
+    const alt = off ? l.defense : l.offense;
+    const altWord = off ? '若回落转防御' : '态势转进攻时';
+    const div = document.createElement('div');
+    div.className='lane';
+    div.innerHTML = `
+      <h3>${l.key} <span class="ico">${l.ico}</span></h3>
+      <div class="now"><span class="tag" style="background:${tagColor}">${tagWord}</span><br>${body}</div>
+      <div class="flip"><b>${altWord}</b> · ${alt}</div>`;
+    root.appendChild(div);
+  });
+}
+
+function renderAll(){ renderSignals(); renderVerdict(); renderLanes(); }
+
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  overrides = {}; saveOverrides(overrides); renderAll();
+});
+
+renderAll();
+</script>
+</body>
+</html>

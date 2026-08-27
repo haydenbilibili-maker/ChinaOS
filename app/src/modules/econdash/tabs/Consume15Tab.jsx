@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Card, Grid, Stat, StatGrid } from '../../../app/ui.jsx';
 import EChart from '../../../lib/viz/EChart.jsx';
 import { LABEL, LEGEND, GRID, CHART_TOOLTIP, categoryX, valueY, radarOpt } from '../../shared/chartHelpers.js';
-import { KEY_INDICATORS } from '../econData.js';
+import { ECON_DATA_AS_OF, KEY_INDICATORS } from '../econData.js';
 
 // ============================================================================
 // 经济大盘 · 十五五促消费 Tab（摘要 + 迷你图表 · 全文见 /econ-consume-15th）
@@ -150,7 +150,7 @@ export default function Consume15Tab() {
           <Link to="/econ-dashboard?tab=worldbank" className="econ-cross-chip" style={linkChip}>世行经济简报 ↗</Link>
         </div>
         <p className="text-[11px] mt-3 m-0" style={{ color: 'var(--text-tertiary)' }}>
-          出处：中国政府网国函〔2026〕66 号 · 发改委/商务部答记者问（新华社 {POLICY_AS_OF}）· H1 读数 NBS {H1_AS_OF}
+          出处：中国政府网国函〔2026〕66 号 · 发改委/商务部答记者问（新华社 {POLICY_AS_OF}）· 大盘读数 NBS {ECON_DATA_AS_OF}（H1 锚定 {H1_AS_OF}）
         </p>
       </Card>
     </div>

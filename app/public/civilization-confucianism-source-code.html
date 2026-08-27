@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文明源代码：儒家思想与中国社会底层运行逻辑</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&display=swap');
+    </style>
+    <style>
+        body {
+            background-color: #fefce8;
+            color: #1c1917;
+            font-family: 'Noto Serif SC', 'PingFang SC', serif;
+            scroll-behavior: smooth;
+            background-image: radial-gradient(#e5e5e5 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        h1, h2, h3, h4, .font-sans { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 380px;
+            max-height: 450px;
+        }
+        .timeline-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 4px solid #d6d3d1;
+        }
+        .timeline-card:hover {
+            border-left-color: #dc2626;
+            background-color: #fffbeb;
+            transform: translateX(10px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .culture-tab {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .culture-tab.active {
+            color: #dc2626;
+            border-bottom-color: #dc2626;
+            font-weight: 700;
+        }
+        .concentric-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 0;
+        }
+        .circle-world { width: 300px; height: 300px; background-color: #f1f5f9; border: 2px dashed #94a3b8; border-radius: 50%; display: flex; justify-content: center; align-items: center; position: relative; }
+        .circle-state { width: 220px; height: 220px; background-color: #e2e8f0; border: 2px solid #64748b; border-radius: 50%; display: flex; justify-content: center; align-items: center; position: relative; }
+        .circle-family { width: 140px; height: 140px; background-color: #cbd5e1; border: 2px solid #475569; border-radius: 50%; display: flex; justify-content: center; align-items: center; position: relative; }
+        .circle-self { width: 60px; height: 60px; background-color: #dc2626; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; z-index: 10; box-shadow: 0 4px 6px rgba(220, 38, 38, 0.4); }
+        .circle-label { position: absolute; top: 10px; font-size: 0.8rem; font-weight: bold; color: #334155; font-family: sans-serif; }
+        @media (min-width: 768px) {
+            .circle-world { width: 400px; height: 400px; }
+            .circle-state { width: 300px; height: 300px; }
+            .circle-family { width: 200px; height: 200px; }
+            .circle-self { width: 80px; height: 80px; font-size: 1.2rem; }
+            .circle-label { top: 15px; font-size: 1rem; }
+        }
+        .fade-in { animation: fadeIn 0.6s ease-in-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .vertical-text { writing-mode: vertical-rl; text-orientation: upright; }
+    </style>
+</head>
+<body class="antialiased">
+    <nav class="bg-[#1c1917] text-[#fefce8] sticky top-0 z-50 shadow-lg border-b-4 border-[#dc2626]">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center font-sans">
+            <div class="text-xl font-bold tracking-widest flex items-center gap-2">
+                <span class="text-[#dc2626] text-2xl">🏮</span> <span>中华文明源代码</span>
+                <span class="text-gray-400 text-sm font-normal hidden md:inline-block ml-2 border-l border-gray-600 pl-2">文化战略调研 · 卷四</span>
+            </div>
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#structure" class="hover:text-[#dc2626] transition">家国同构</a>
+                <a href="#matrix" class="hover:text-[#dc2626] transition">核心矩阵</a>
+                <a href="#evolution" class="hover:text-[#dc2626] transition">历史演化</a>
+                <a href="#modernity" class="hover:text-[#dc2626] transition">现代投射</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative py-24 px-4 overflow-hidden border-b border-gray-300">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between relative z-10 gap-8">
+            <div class="md:w-3/4 text-center md:text-left">
+                <div class="inline-block bg-[#fefce8] border border-[#dc2626] text-[#dc2626] px-4 py-1.5 rounded-sm text-xs font-bold mb-6 tracking-widest font-sans">
+                    CIVILIZATION OS : CONFUCIANISM
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight text-[#1c1917]">
+                    儒家思想：<br>
+                    <span class="text-[#4d7c0f]">中国社会的底层运行逻辑</span>
+                </h1>
+                <p class="text-lg text-gray-700 leading-relaxed mt-6 font-serif">
+                    要看透当今中国的政治决策与商业运转，必须追溯其文化源头。儒家思想不仅是道德哲学，它更是一套经过两千多年迭代的<strong>「超大型人类社会管理系统」</strong>。它定义了服从与责任、个体与集体的边界，构成了中华文明生生不息、历劫不灭的核心源代码。
+                </p>
+            </div>
+            <div class="md:w-1/4 hidden md:flex justify-center">
+                <div class="vertical-text text-5xl font-black text-[#dc2626] opacity-90 font-serif border-l-4 border-[#dc2626] pl-4">
+                    内圣外王
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-16 space-y-32">
+        <section id="structure" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-[#4d7c0f] rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-[#1c1917]">一、差序格局与家国同构的物理拓扑</h2>
+            </div>
+            <p class="text-gray-700 mb-8 max-w-4xl text-lg font-serif">
+                西方文明的基础是「个人主义」与「契约神授」；而儒家文明的基础是「关系」与「血缘扩展」。儒家将整个天下视为一个巨大的「家族」网络，<strong>修身、齐家、治国、平天下</strong>，是这套操作系统的核心执行逻辑。
+            </p>
+            <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200 flex flex-col lg:flex-row items-center gap-12">
+                <div class="w-full lg:w-1/2 flex justify-center">
+                    <div class="concentric-wrap">
+                        <div class="circle-world shadow-inner">
+                            <span class="circle-label text-gray-400">天下 (World)</span>
+                            <div class="circle-state shadow-inner">
+                                <span class="circle-label">国 (State)</span>
+                                <div class="circle-family shadow-lg">
+                                    <span class="circle-label">家 (Family)</span>
+                                    <div class="circle-self">己</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 space-y-6 font-serif">
+                    <div class="border-l-4 border-[#dc2626] pl-4">
+                        <h3 class="text-2xl font-bold text-[#1c1917] mb-2 font-sans">同构定律 (Isomorphism)</h3>
+                        <p class="text-gray-700 leading-relaxed text-sm">
+                            在儒家看来，国家的结构不过是家庭结构的放大。君臣关系是父子关系的延伸（<strong>「求忠臣必于孝子之门」</strong>）。只要每个人在家庭中尽「孝」，在国家中尽「忠」，社会就会像星辰一样秩序井然。
+                        </p>
+                    </div>
+                    <div class="bg-[#fefce8] p-4 rounded-lg border border-[#e5e7eb] font-sans">
+                        <h4 class="font-bold text-[#4d7c0f] mb-2 text-sm">系统优势与局限</h4>
+                        <ul class="text-sm text-gray-600 space-y-2 list-disc pl-5">
+                            <li><strong class="text-gray-800">极高的社会稳定性：</strong>每个人都被锚定在关系网中，天然抵制无政府状态。</li>
+                            <li><strong class="text-gray-800">低成本的基层治理：</strong>依靠宗族、乡绅和道德约束进行自治，减轻了中央政府的行政成本。</li>
+                            <li><strong class="text-[#dc2626]">现代局限：</strong>容易滋生「人情社会」与「裙带资本主义」，在需要高度标准化和契约精神的现代商业环境中可能产生冲突。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="matrix" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-[#1c1917] rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-[#1c1917]">二、五常矩阵：被皇权篡改的原始代码</h2>
+            </div>
+            <p class="text-gray-700 mb-8 max-w-4xl text-lg font-serif">
+                孔孟时代的「原教旨儒学」其实极具革命性（「民为贵，社稷次之，君为轻」）。但为了适应大一统帝国的统治需要，汉代的董仲舒和后世理学家们对其进行了大幅度的「阉割与改造」，强化了「秩序」，削弱了「民权」。
+            </p>
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-gray-200">
+                <h3 class="text-xl font-bold text-center mb-6 text-[#1c1917] font-sans">不同历史阶段儒家思想维度的偏移对比</h3>
+                <div class="chart-container">
+                    <canvas id="confucianRadarChart"></canvas>
+                </div>
+                <div class="mt-8 text-sm text-gray-600 font-serif leading-relaxed bg-gray-50 p-5 rounded-lg border border-gray-200">
+                    <strong class="text-[#dc2626] font-sans">图表解析：</strong>您可以看到，<strong>先秦儒学</strong>（红色）非常注重「民本」与内心的「仁爱」。而到了汉代及以后的<strong>帝国儒学</strong>（黑色），为了维护皇权，大幅度拉高了「礼（等级秩序）」的权重，甚至吸收了法家的「法/刑」思想，形成了<strong>「外儒内法」</strong>的实际统治术。这意味着，后世中国人所遵循的儒家，很大程度上是经过权力异化后的「控制系统」。
+                </div>
+            </div>
+        </section>
+
+        <section id="evolution" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-[#dc2626] rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-[#1c1917]">三、历史演进：从丧家之犬到帝国国教</h2>
+            </div>
+            <div class="space-y-6 font-sans">
+                <div class="timeline-card bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex flex-col md:flex-row justify-between md:items-center mb-2">
+                        <h3 class="text-xl font-bold text-[#1c1917]">春秋战国：原初的火种</h3>
+                        <span class="text-sm text-[#dc2626] font-bold bg-red-50 px-3 py-1 rounded">代表人物：孔子、孟子、荀子</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mt-2 font-serif">
+                        在礼崩乐坏的乱世，孔子试图恢复周朝的秩序（克己复礼），四处奔走却如「丧家之犬」。此时的儒家是一种<strong>充满理想主义色彩的道德学说</strong>，强调君主必须有德行（内圣外王），如果君主无德，孟子认为人民甚至有权推翻他（革命）。
+                    </p>
+                </div>
+                <div class="timeline-card bg-white p-6 rounded-lg shadow-sm border-l-[#4d7c0f]">
+                    <div class="flex flex-col md:flex-row justify-between md:items-center mb-2">
+                        <h3 class="text-xl font-bold text-[#1c1917]">汉代：系统的官方化与神学化</h3>
+                        <span class="text-sm text-[#4d7c0f] font-bold bg-green-50 px-3 py-1 rounded">代表人物：董仲舒</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mt-2 font-serif">
+                        汉武帝接受「罢黜百家，独尊儒术」。儒学被改造为具有神学色彩的<strong>官方意识形态</strong>。董仲舒提出「天人感应」和「三纲五常」（君为臣纲、父为子纲、夫为妻纲），彻底确立了中国两千多年的绝对等级社会秩序。儒学正式成为帝国官员的必修课。
+                    </p>
+                </div>
+                <div class="timeline-card bg-white p-6 rounded-lg shadow-sm border-l-[#1c1917]">
+                    <div class="flex flex-col md:flex-row justify-between md:items-center mb-2">
+                        <h3 class="text-xl font-bold text-[#1c1917]">宋明：向内求索的哲学巅峰</h3>
+                        <span class="text-sm text-gray-800 font-bold bg-gray-100 px-3 py-1 rounded">代表人物：程颢、朱熹、王阳明</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mt-2 font-serif">
+                        面对佛教和道教在形而上学层面的挑战，儒学进行了极其深刻的理论升级，发展出<strong>「理学」与「心学」</strong>。「存天理，灭人欲」将道德自律推向极致；而王阳明的「知行合一」与「致良知」，则打破了外在教条，强调个体道德直觉，极大地激发了士大夫的精神力量。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="modernity" class="scroll-mt-24 mb-16">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-[#d97706] rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-[#1c1917]">四、现代投射：幽灵般的源代码仍在运行</h2>
+            </div>
+            <p class="text-gray-700 mb-8 max-w-4xl text-lg font-serif">
+                经历过五四运动的「打倒孔家店」与文革的洗礼，儒家在表层制度上已被摧毁。但在今天中国的家庭、考场与企业里，这套源代码依然在潜意识中强悍地运行着。
+            </p>
+            <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden font-sans">
+                <div class="flex border-b border-gray-200 bg-gray-50 overflow-x-auto">
+                    <button type="button" class="culture-tab active flex-1 py-4 px-6 text-center text-gray-600 hover:bg-gray-100 focus:outline-none whitespace-nowrap" onclick="switchConfucianCultureTab(event, 'tab-edu')">
+                        📚 教育与科举基因
+                    </button>
+                    <button type="button" class="culture-tab flex-1 py-4 px-6 text-center text-gray-600 hover:bg-gray-100 focus:outline-none whitespace-nowrap" onclick="switchConfucianCultureTab(event, 'tab-biz')">
+                        💼 商业与差序领导力
+                    </button>
+                    <button type="button" class="culture-tab flex-1 py-4 px-6 text-center text-gray-600 hover:bg-gray-100 focus:outline-none whitespace-nowrap" onclick="switchConfucianCultureTab(event, 'tab-state')">
+                        🏛️ 现代治理逻辑
+                    </button>
+                </div>
+                <div class="p-8 min-h-[300px] bg-white font-serif">
+                    <div id="tab-edu" class="tab-content block fade-in">
+                        <h3 class="text-2xl font-bold text-[#1c1917] mb-4 font-sans">万般皆下品，惟有读书高</h3>
+                        <p class="text-gray-700 text-sm leading-relaxed mb-4">东亚社会（中日韩）今天极其残酷的教育内卷，其文化根源全在儒家。</p>
+                        <ul class="list-disc pl-5 space-y-3 text-sm text-gray-600">
+                            <li><strong>唯才是举的信仰：</strong>隋唐科举制将「读书-做官」绑定了上千年。中国人坚信「知识改变命运」，对教育的极致投入是全社会的共识。这也是中国能够提供海量高素质工程师（人才红利）的文化底座。</li>
+                            <li><strong>权威服从的弊端：</strong>儒家教育强调尊师重道和背诵经典，这造就了极高的执行力和服从性，但天然压抑了「叛逆」与「从零到一的破坏性创新」。</li>
+                        </ul>
+                    </div>
+                    <div id="tab-biz" class="tab-content hidden fade-in">
+                        <h3 class="text-2xl font-bold text-[#1c1917] mb-4 font-sans">大家长制与「人情社会」</h3>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-4">观察中国民营企业（甚至许多国企）的管理模式，几乎都是儒家伦理的现代翻版。</p>
+                        <ul class="list-disc pl-5 space-y-3 text-sm text-gray-600">
+                            <li><strong>家长式领导 (Paternalistic Leadership)：</strong>创始人通常扮演「严父」角色，拥有绝对的权威（君），同时对员工（臣/子）的生老病死表现出超越西方雇佣关系的关怀（包食宿、关心婚姻）。</li>
+                            <li><strong>圈子与信任：</strong>商业合作往往不先看合同，而看「关系」和饭局。信任是基于人际交往的深度（差序格局），而不是单纯的法制契约。这在早期能降低交易成本，但在企业做大后往往遭遇管理瓶颈。</li>
+                        </ul>
+                    </div>
+                    <div id="tab-state" class="tab-content hidden fade-in">
+                        <h3 class="text-2xl font-bold text-[#1c1917] mb-4 font-sans">「大政府」的合法性基础</h3>
+                        <p class="text-gray-700 text-sm leading-relaxed mb-4">为什么中国人普遍接受一个强势的、无所不管的政府？</p>
+                        <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
+                            <p class="text-sm text-gray-600 leading-relaxed mb-3">
+                                儒家的政治理想是「贤能政治」与「德治」。只要最高统治者（政府）展现出「为民做主」、「以天下为己任」的道德合法性，民众就愿意让渡极大的个人权利以换取集体的安全与繁荣（如防疫、大基建）。
+                            </p>
+                            <p class="text-sm text-gray-600 leading-relaxed">
+                                这也是为何官方目前极力倡导「国之大者」、「共同富裕」——这本质上是在激活儒家文化中「均贫富」、「不患寡而患不均」的深层社会潜意识，以化解资本无序扩张带来的合法性危机。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#1c1917] text-gray-400 py-10 text-center border-t-4 border-[#dc2626] font-sans">
+        <div class="max-w-4xl mx-auto px-4">
+            <p class="font-bold text-gray-300 tracking-wider">文明透视 · 文化战略长篇 · 儒家卷（卷四）</p>
+            <p class="mt-3 text-xs leading-relaxed max-w-2xl mx-auto opacity-60">
+                本报告旨在穿透历史表象，解析文化基因如何深刻影响现代中国的政治、经济与社会行为。与 China OS「文明透视」模块同源。
+            </p>
+            <p class="mt-4 text-xs">© 2026 Cultural Strategy · China OS</p>
+        </div>
+    </footer>
+
+    <script>
+        function switchConfucianCultureTab(evt, tabId) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('block', 'fade-in');
+                content.classList.add('hidden');
+            });
+            document.querySelectorAll('.culture-tab').forEach(tab => { tab.classList.remove('active'); });
+            const panel = document.getElementById(tabId);
+            panel.classList.remove('hidden');
+            setTimeout(() => { panel.classList.add('block', 'fade-in'); }, 10);
+            evt.currentTarget.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            Chart.defaults.font.family = "'PingFang SC', 'Microsoft YaHei', sans-serif";
+            Chart.defaults.color = '#475569';
+            const ctxRadar = document.getElementById('confucianRadarChart').getContext('2d');
+            new Chart(ctxRadar, {
+                type: 'radar',
+                data: {
+                    labels: [
+                        '仁 (大爱/同理心)',
+                        '礼 (等级/秩序)',
+                        '法 (强权/刑法)',
+                        '心 (形而上学/内省)',
+                        '民本 (民权/革命性)'
+                    ],
+                    datasets: [
+                        {
+                            label: '先秦原始儒学 (孔孟)',
+                            data: [95, 70, 20, 40, 90],
+                            fill: true,
+                            backgroundColor: 'rgba(220, 38, 38, 0.2)',
+                            borderColor: '#dc2626',
+                            pointBackgroundColor: '#dc2626',
+                            pointBorderColor: '#fff',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '帝国官方儒学 (汉-明清)',
+                            data: [60, 95, 80, 85, 30],
+                            fill: true,
+                            backgroundColor: 'rgba(28, 25, 23, 0.2)',
+                            borderColor: '#1c1917',
+                            pointBackgroundColor: '#1c1917',
+                            pointBorderColor: '#fff',
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(0,0,0,0.1)' },
+                            grid: { color: 'rgba(0,0,0,0.1)' },
+                            pointLabels: {
+                                font: { size: 13, weight: 'bold', family: "'Noto Serif SC', serif" },
+                                color: '#1c1917'
+                            },
+                            ticks: { display: false, max: 100, min: 0 }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom', labels: { font: { family: 'sans-serif' } } },
+                        tooltip: {
+                            backgroundColor: 'rgba(28, 25, 23, 0.9)',
+                            titleFont: { size: 14, family: 'sans-serif' },
+                            bodyFont: { size: 13, family: 'sans-serif' },
+                            padding: 12
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

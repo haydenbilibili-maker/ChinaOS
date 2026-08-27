@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 // Layout: ink-observatory · os-card · os-reveal-stagger · TabBar (Round 2)
 import { PageHeader, TabBar, LoadingSkeleton } from '../../app/ui.jsx';
 import { FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
-import { ECON_AS_OF, ECON_DATA_AS_OF, ECON_TAB_IDS, KEY_INDICATORS } from './econData.js';
+import { ECON_DATA_AS_OF, ECON_TAB_IDS, KEY_INDICATORS } from './econData.js';
 import { toneOf, ARROW } from './econHelpers.jsx';
 import { useWorldBank } from './liveWorldBank.js';
 import MacroTab from './tabs/MacroTab.jsx';
@@ -48,8 +48,8 @@ function KeyReadingStrip() {
     .map((id) => KEY_INDICATORS.find((k) => k.id === id))
     .filter(Boolean);
   return (
-    <div className="econ-readout" role="group" aria-label="关键读数摘要 · 2026 H1">
-      <span className="econ-readout__title mono">H1 读数</span>
+    <div className="econ-readout" role="group" aria-label="关键读数摘要 · 2026 年 1–7 月">
+      <span className="econ-readout__title mono">1–7月</span>
       <div className="econ-readout__items">
         {items.map((k) => {
           const tone = toneOf(k.trend ?? k.yoy);
@@ -69,7 +69,7 @@ function KeyReadingStrip() {
       <details className="econ-note">
         <summary className="econ-note__summary mono">ⓘ 口径</summary>
         <p className="econ-note__body">
-          NBS 快照（基准日 {ECON_DATA_AS_OF}）· 世行 WDI 实时长序列 · 公开数据派生领先指标。
+          NBS 快照（基准日 {ECON_DATA_AS_OF} · 1–7 月累计；GDP 仍为上半年口径）· 世行 WDI 实时长序列 · 公开数据派生领先指标。
           公开统计梳理 · 示意标定 · 非投资建议 · 非预测。
         </p>
       </details>
@@ -135,7 +135,7 @@ export default function Page({ embedded = false }) {
         <PageHeader
           badge="Dashboard · 经济大盘"
           title="经济大盘"
-          subtitle={`NBS 快照 × 世行长序列 × 金丝雀 · 十五五开局 2026 H1 · 截至 ${ECON_AS_OF}`}
+          subtitle={`NBS 快照 × 世行长序列 × 金丝雀 · 十五五开局 1–7 月 · 数据截至 ${ECON_DATA_AS_OF}`}
         >
           <div className="econ-header-chips flex flex-wrap gap-1.5 items-center">
             <Link to="/dashboard" className="econ-cross-chip">中枢看板 ↗</Link>
@@ -186,7 +186,7 @@ export default function Page({ embedded = false }) {
         <ModuleFooter
           moduleId="econdash"
           disclaimer="公开统计梳理 · 示意标定 · 非投资建议 · 非预测"
-          sourceNote={`数据源：国家统计局公开口径快照 · 世界银行 WDI 实时 · 领先指标为公开数据派生示意 · 截至 ${ECON_AS_OF}`}
+          sourceNote={`数据源：国家统计局公开口径快照 · 世界银行 WDI 实时 · 领先指标为公开数据派生示意 · 数据截至 ${ECON_DATA_AS_OF}`}
         />
       )}
     </>

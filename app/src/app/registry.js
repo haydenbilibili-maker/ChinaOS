@@ -996,6 +996,15 @@ export const MODULES = [
     component: lazy(() => import('../modules/sandbox/Page.jsx')),
   },
   {
+    id: 'signalDashboard',
+    path: '/modules/signal-dashboard',
+    group: 'sim',
+    title: '宏观再平衡信号灯',
+    subtitle: 'A/B/C 三档 · 态势合成 · 超个体映射',
+    icon: 'Gauge',
+    component: lazy(() => import('../modules/signalDashboard/Page.jsx')),
+  },
+  {
     id: 'santi',
     path: '/modules/santi',
     group: 'sim',

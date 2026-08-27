@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>灵魂的庇护所：佛学中国化与深层文化心理密码</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;700;900&display=swap');
+    </style>
+    <style>
+        body {
+            background-color: #09090b;
+            color: #d4d4d8;
+            font-family: 'Noto Serif SC', 'PingFang SC', serif;
+            scroll-behavior: smooth;
+            background-image: radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.05) 0%, transparent 50%);
+        }
+        h1, h2, h3, h4, .font-sans { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        .zen-card {
+            background: rgba(63, 63, 70, 0.3);
+            border: 1px solid rgba(217, 119, 6, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.5s ease;
+        }
+        .zen-card:hover {
+            border-color: rgba(217, 119, 6, 0.8);
+            box-shadow: 0 0 20px rgba(217, 119, 6, 0.15);
+            transform: translateY(-3px);
+        }
+        .flip-container { perspective: 1000px; height: 250px; }
+        .flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+        .flip-container:hover .flip-inner { transform: rotateY(180deg); }
+        .flip-front, .flip-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+        }
+        .flip-front { background: #18181b; border: 1px solid #3f3f46; }
+        .flip-back { background: #27272a; border: 1px solid #d97706; transform: rotateY(180deg); }
+        .enlightenment-btn {
+            background: transparent;
+            border: 1px solid #d97706;
+            color: #d97706;
+            transition: all 0.5s ease;
+        }
+        .enlightenment-btn:hover, .enlightenment-btn.revealed {
+            background: #d97706;
+            color: #09090b;
+            box-shadow: 0 0 15px #d97706;
+        }
+        .fade-in { animation: fadeIn 0.8s ease-in-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); filter: blur(4px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #09090b; }
+        ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d97706; }
+    </style>
+</head>
+<body class="antialiased selection:bg-amber-900 selection:text-amber-100">
+    <nav class="bg-black/60 backdrop-blur-md text-zinc-300 sticky top-0 z-50 border-b border-zinc-800 font-sans">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold tracking-widest flex items-center gap-2">
+                <span class="text-amber-600 text-2xl">🪷</span> <span>文明透视 · 释学与心理</span>
+                <span class="text-zinc-500 text-sm font-normal hidden md:inline-block ml-2 border-l border-zinc-700 pl-2">文化战略调研 · 卷六</span>
+            </div>
+            <div class="hidden md:flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium justify-end">
+                <a href="#void" class="hover:text-amber-500 transition">填补死生之痛</a>
+                <a href="#karma" class="hover:text-amber-500 transition">因果与民间公正</a>
+                <a href="#zen" class="hover:text-amber-500 transition">禅宗的降维</a>
+                <a href="#os" class="hover:text-amber-500 transition">三教合一 OS</a>
+                <a href="#pragmatism" class="hover:text-amber-500 transition">实用主义神仙观</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative py-28 px-4 overflow-hidden border-b border-zinc-900">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-900/10 blur-[100px] rounded-full pointer-events-none"></div>
+        <div class="absolute top-10 right-10 text-[10rem] font-black text-zinc-800 opacity-20 select-none pointer-events-none font-serif">空</div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div class="inline-block bg-zinc-900 border border-zinc-700 text-amber-500 px-4 py-1.5 rounded-full text-xs font-bold mb-6 tracking-widest font-sans uppercase">
+                THE ULTIMATE PSYCHOLOGICAL DEFENSE
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-8 leading-tight text-zinc-100">
+                佛学与禅宗：<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-purple-500">灵魂庇护所与文明心理补丁</span>
+            </h1>
+            <p class="text-lg text-zinc-400 leading-relaxed mt-6 font-serif max-w-3xl mx-auto">
+                儒家「未知生，焉知死」悬置终极痛苦；法家将人工具化；道家善退守却少谈彼岸。乱世与个体重创下，原有意义系统易现裂缝——<strong>佛教中国化提供了可操作的超越叙事与情绪卸载接口</strong>（本页为思想史与心理隐喻梳理，非宗教宣导）。
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-16 space-y-32">
+        <section id="void" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-purple-600 rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-zinc-100">〇、儒法道未覆盖的维度：死生、苦难与「内存溢出」隐喻</h2>
+            </div>
+            <div class="zen-card p-8 rounded-xl font-serif text-zinc-300 text-sm leading-relaxed space-y-4">
+                <p>大一统秩序优先「生」的责任链与「世」的绩效；当死亡、冤抑与不可控损失压顶时，若仅有刑赏与血缘伦理，<strong>个体叙事易出现断裂</strong>。</p>
+                <p>佛教传入后，因果、轮回、净土与禅宗「当下觉悟」等话语，为不同阶层提供了<strong>延迟正义、忍辱与意义再编码</strong>的词汇表——与皇权司法并行，构成历史上的「心理层」缓冲带。</p>
+            </div>
+        </section>
+
+        <section id="karma" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-amber-600 rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-zinc-100">一、因果轮回：民间的「第二套正义叙事」</h2>
+            </div>
+            <p class="text-zinc-400 mb-8 max-w-4xl text-lg font-serif">
+                现实司法常向权贵倾斜时，<strong>「业报轮回（Karma）」</strong>在民间扩散为长线正义想象：施暴者或于来世、地狱叙事中受惩，使部分受害者<strong>降低即时暴力复仇冲动</strong>——社会心理学意义上的额外稳定器（亦可能被权力挪用为驯顺话术）。
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 font-sans">
+                <div class="flip-container">
+                    <div class="flip-inner">
+                        <div class="flip-front">
+                            <div class="text-4xl mb-3 text-red-700">⚖️</div>
+                            <h3 class="text-xl font-bold text-zinc-200 mb-2">现世系统：法家 / 皇权刑名</h3>
+                            <p class="text-sm text-zinc-500 font-serif">刑罚与行政强制为基底；冤抑、寻租与选择性执法会侵蚀道德合法性。</p>
+                        </div>
+                        <div class="flip-back">
+                            <h4 class="text-lg font-bold text-amber-500 mb-2">叙事裂缝</h4>
+                            <p class="text-sm text-zinc-300 font-serif leading-relaxed">当「善不得赏、恶不得罚」在经验层反复出现时，单靠刑名难以维系底层信任。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-container">
+                    <div class="flip-inner">
+                        <div class="flip-front">
+                            <div class="text-4xl mb-3 text-amber-500">🪷</div>
+                            <h3 class="text-xl font-bold text-zinc-200 mb-2">彼岸叙事：因果报应</h3>
+                            <p class="text-sm text-zinc-500 font-serif">「善有善报，恶有恶报」将正义尺度拉长到多世时间轴。</p>
+                        </div>
+                        <div class="flip-back">
+                            <h4 class="text-lg font-bold text-amber-500 mb-2">心理功能</h4>
+                            <p class="text-sm text-zinc-300 font-serif leading-relaxed">地狱、畜生道等意象提供<strong>情绪出口与延迟惩罚预期</strong>，在特定历史条件下与基层秩序维护形成复杂耦合。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 p-5 bg-zinc-900 border border-zinc-800 rounded-lg text-sm text-zinc-400 font-serif italic text-center">
+                洞察：因果论在帝国语境中，常兼作底层镇痛剂与劝善文本；需与制度正义分开评估。
+            </div>
+        </section>
+
+        <section id="zen" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-purple-600 rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-zinc-100">二、禅宗：外来佛教的本土化「降维」</h2>
+            </div>
+            <p class="text-zinc-400 mb-8 max-w-4xl text-lg font-serif">
+                印度系经院佛教卷帙浩繁；士庶更易接纳<strong>极简操作与当下体悟</strong>。<strong>禅宗（Chan / Zen）</strong>强调直指人心、顿悟见性，把解脱从长劫苦修部分收束到日用劈柴担水之中。
+            </p>
+            <div class="bg-zinc-900 p-8 rounded-2xl border border-zinc-800 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 text-6xl opacity-10">🌿</div>
+                <h3 class="text-2xl font-bold text-amber-500 mb-6 font-sans">禅宗的几个结构性特征（简化）</h3>
+                <div class="space-y-6 font-serif text-zinc-300">
+                    <div class="border-l-2 border-zinc-700 pl-4">
+                        <strong class="text-white">1. 不立文字，教外别传</strong>
+                        <p class="text-sm mt-2 leading-relaxed">弱化对固定经文的独占解释，抬高当下体悟与师承机锋。</p>
+                    </div>
+                    <div class="border-l-2 border-zinc-700 pl-4">
+                        <strong class="text-white">2. 直指人心，见性成佛</strong>
+                        <p class="text-sm mt-2 leading-relaxed">「顿悟」叙事使修行与日常生活缝合，<strong>佛教进一步嵌入世俗节奏</strong>。</p>
+                    </div>
+                    <div class="border-l-2 border-zinc-700 pl-4">
+                        <strong class="text-white">3. 极端解构倾向（文献语境）</strong>
+                        <p class="text-sm mt-2 leading-relaxed text-purple-400">部分公案以「杀佛杀祖」等反偶像修辞打断执著，属宗教哲学内部的辩证装置，非世俗行动指南。</p>
+                    </div>
+                </div>
+                <div class="mt-10 p-6 bg-black border border-zinc-700 rounded-xl text-center">
+                    <p class="text-sm text-zinc-500 font-sans mb-4">公案示意 · 点击揭晓</p>
+                    <p class="text-lg font-serif text-zinc-300 italic mb-6">「风吹幡动。一僧曰风动，一僧曰幡动，议论不已。」</p>
+                    <button type="button" class="enlightenment-btn px-6 py-2 rounded font-bold font-sans text-sm tracking-wider uppercase" onclick="revealEnlightenment(this)">
+                        六祖慧能如何回答？
+                    </button>
+                    <p id="enlightenment-text" class="hidden mt-6 text-2xl font-bold font-serif text-amber-500 leading-relaxed transition-opacity duration-1000 opacity-0">
+                        「不是风动，不是幡动，<br><span class="text-white">仁者心动。</span>」
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="os" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-zinc-400 rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-zinc-100">三、三教合一：生命周期中的心理权重（模型）</h2>
+            </div>
+            <p class="text-zinc-400 mb-8 max-w-4xl text-lg font-serif">
+                儒、释、道在历史上常呈<strong>工具箱式互补</strong>，而非西方一神教式的互斥排他。以下堆叠图为示意指数，非实证调查数据。
+            </p>
+            <div class="bg-zinc-900 p-6 md:p-8 rounded-2xl border border-zinc-800 shadow-xl">
+                <h3 class="text-lg font-bold mb-6 text-zinc-200 font-sans text-center">士大夫 / 精英叙事中的精神依赖分布（示意）</h3>
+                <div class="chart-container">
+                    <canvas id="threeTeachingsChart"></canvas>
+                </div>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 font-serif">
+                    <div class="bg-black/50 p-5 rounded-lg border-l-2 border-red-800">
+                        <h4 class="font-bold text-red-500 mb-2 font-sans">青年 / 顺境 · 儒偏多</h4>
+                        <p class="text-sm text-zinc-400 leading-relaxed">入世、功名、责任伦理与科层流动想象。</p>
+                    </div>
+                    <div class="bg-black/50 p-5 rounded-lg border-l-2 border-teal-600">
+                        <h4 class="font-bold text-teal-500 mb-2 font-sans">中年 / 顿挫 · 道介入</h4>
+                        <p class="text-sm text-zinc-400 leading-relaxed">祸福相依、退守、与自然化敌为友的叙事。</p>
+                    </div>
+                    <div class="bg-black/50 p-5 rounded-lg border-l-2 border-amber-600">
+                        <h4 class="font-bold text-amber-500 mb-2 font-sans">晚年 / 临终 · 佛托底</h4>
+                        <p class="text-sm text-zinc-400 leading-relaxed">无常、放下执念、彼岸或空性话语卸载恐惧。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pragmatism" class="scroll-mt-24 mb-16">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-zinc-600 rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-zinc-100">四、民间底色：实用主义的神灵消费</h2>
+            </div>
+            <p class="text-zinc-400 mb-8 max-w-4xl text-lg font-serif">
+                广域民间信仰常呈现<strong>「灵验—还愿」式交换</strong>，与西欧制度化教权路径不同；神祇常被职能化分工，类似「办理不同事务的符号接口」。
+            </p>
+            <div class="zen-card p-8 rounded-xl font-serif">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-1/3">
+                        <div class="text-5xl mb-4">🧧</div>
+                        <h3 class="text-2xl font-bold text-amber-500 mb-2 font-sans">职能化天庭想象</h3>
+                        <p class="text-sm text-zinc-300 leading-relaxed">玉皇、城隍、财神、观音等常被民间按「管什么」来调用，而非单一绝对神律。</p>
+                    </div>
+                    <div class="md:w-1/3">
+                        <div class="text-5xl mb-4">🤝</div>
+                        <h3 class="text-2xl font-bold text-amber-500 mb-2 font-sans">许愿—还愿逻辑</h3>
+                        <p class="text-sm text-zinc-300 leading-relaxed">烧香、进香、重修庙宇等常被视为<strong>「办事」与还愿的互惠仪式</strong>，而非仅抽象罪赦。</p>
+                    </div>
+                    <div class="md:w-1/3">
+                        <div class="text-5xl mb-4">🔨</div>
+                        <h3 class="text-2xl font-bold text-amber-500 mb-2 font-sans">失灵即切换</h3>
+                        <p class="text-sm text-zinc-300 leading-relaxed">民俗叙事中存在「神不灵则换神」甚至惩戒神像的极端传说，体现强烈的现世功利检验。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-16 p-8 bg-gradient-to-br from-zinc-900 to-black text-zinc-200 rounded-xl shadow-2xl border-t-2 border-amber-500 flex items-start gap-5">
+                <div class="text-5xl opacity-80 mt-1">👁️</div>
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-3 font-sans">卷六 · 与政经模块的叠读提示</h3>
+                    <p class="text-sm leading-relaxed opacity-90 font-serif text-zinc-300">
+                        禅宗对部分神圣符号的解构倾向、民间信仰的功利弹性，与历史上<strong>教权难以长期压倒王权</strong>的结构性因素相关；近现代接受科技与工业化时，亦存在<strong>现世主义文化底座</strong>的并行解释空间。本卷不替代实证研究，仅提供文明心理层的隐喻坐标。
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#09090b] text-zinc-600 py-10 text-center border-t border-zinc-900 font-sans mt-10">
+        <div class="max-w-4xl mx-auto px-4">
+            <p class="font-bold text-zinc-500 tracking-wider mb-2">文明透视 · 释学与心理卷（卷六）· 与 China OS 同源</p>
+            <p class="text-xs leading-relaxed max-w-2xl mx-auto opacity-50">「本来无一物，何处惹尘埃」——哲学与信仰叙事可在制度失效处提供个体层面的意义备用电源。</p>
+            <p class="mt-4 text-xs font-mono">© 2026 Cultural Strategy · China OS</p>
+        </div>
+    </footer>
+
+    <script>
+        function revealEnlightenment(btn) {
+            btn.classList.add('revealed');
+            btn.textContent = '心无挂碍';
+            const textElement = document.getElementById('enlightenment-text');
+            textElement.classList.remove('hidden');
+            void textElement.offsetWidth;
+            textElement.classList.remove('opacity-0');
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            Chart.defaults.font.family = "'PingFang SC', 'Microsoft YaHei', sans-serif";
+            Chart.defaults.color = '#a1a1aa';
+            Chart.defaults.borderColor = '#27272a';
+            const ctxTeachings = document.getElementById('threeTeachingsChart').getContext('2d');
+            new Chart(ctxTeachings, {
+                type: 'bar',
+                data: {
+                    labels: ['青年 (科考/创业)', '壮年 (顺境/升迁)', '中年 (贬谪/危机)', '晚年 (退隐/看透)', '临终 (面对生死)'],
+                    datasets: [
+                        {
+                            label: '儒家 (入世/建功立业)',
+                            data: [85, 90, 30, 10, 0],
+                            backgroundColor: 'rgba(153, 27, 27, 0.8)',
+                            stack: 'Stack 0'
+                        },
+                        {
+                            label: '道家 (退守/顺其自然)',
+                            data: [10, 5, 50, 40, 20],
+                            backgroundColor: 'rgba(15, 118, 110, 0.8)',
+                            stack: 'Stack 0'
+                        },
+                        {
+                            label: '佛家 (出世/消解痛苦)',
+                            data: [5, 5, 20, 50, 80],
+                            backgroundColor: 'rgba(217, 119, 6, 0.8)',
+                            stack: 'Stack 0'
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: '#d4d4d8', usePointStyle: true } },
+                        tooltip: {
+                            backgroundColor: 'rgba(9, 9, 11, 0.95)',
+                            titleFont: { size: 14, family: 'sans-serif' },
+                            bodyFont: { size: 13, family: 'sans-serif' },
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': 心理占比 ' + context.raw + '%';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            stacked: true,
+                            ticks: { color: '#a1a1aa' }
+                        },
+                        y: {
+                            stacked: true,
+                            max: 100,
+                            grid: { borderDash: [4, 4] },
+                            title: { display: true, text: '精神与心理依赖占比 (%)', color: '#71717a' },
+                            ticks: { display: false }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

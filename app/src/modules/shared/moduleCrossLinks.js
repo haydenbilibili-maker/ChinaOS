@@ -218,7 +218,16 @@ const MAP = {
     { to: '/modules/cushion-monitor', label: '垫子厚度监测', note: '制度垫/家庭垫与层位归因交叉读数。' },
     { to: '/reform', label: '改革开放 · 算法演进', note: '体制改革与决策层变迁。' },
   ],
+  signalDashboard: [
+    { to: '/sandbox', label: '治国沙盒 · 总入口', note: 'china.html 治国沙盒组同源：情景推演与政策模拟。' },
+    { to: '/modules/signal-panel', label: '治理结构 · 信号灯面板', note: '观象台链路的 React 原生仪表版，与本模块 HTML 仪表盘互补。' },
+    { to: '/sandbox?tab=macro', label: '宏观调控驾驶舱', note: '五根政策杆 · 八季度推演 · 四难平衡。' },
+    { to: '/modules/personal-review', label: '超个体决策复盘', note: '宏观信号灯 → 个人仓位矩阵（守成/备战/预热/进攻）。' },
+    { to: '/econ-dashboard', label: '经济大盘 · 金丝雀盘', note: 'CANARY_SIGNALS 与 KEY_INDICATORS 同源层。' },
+    { to: '/policydocs', label: '政策文库 · 2026 政府工作报告', note: 'B1/B4 等政策信号的政策锚点。' },
+  ],
   signalPanel: [
+    { to: '/modules/signal-dashboard', label: '治国沙盒 · 信号灯仪表盘', note: '推演与训练组同源：完整 HTML 仪表盘与数据事实观察层。' },
     { to: '/modules/observatory', label: '观象台 · 治理总入口', note: '信号灯 + 三力双仪表合成判读与行动清单。' },
     { to: '/modules/attribution', label: '三层归因分析器', note: '区分「没做成」与「没权做」。' },
     { to: '/modules/three-forces', label: '三力监测仪', note: '「改没改」与「何时被迫改」配对读数。' },
@@ -576,6 +585,7 @@ const MAP = {
     { to: '/cognition', label: '认知内核 · 理论透镜', note: '八维矩阵的理论支撑层。' },
   ],
   sandbox: [
+    { to: '/modules/signal-dashboard', label: '宏观再平衡信号灯', note: 'A/B/C 三档信号 · 态势合成 · 超个体动作映射。' },
     { to: '/sandbox?tab=handong', label: '汉东省沙盘', note: '虚构省域推演：参数配置、主官派遣、四件套应对。' },
     { to: '/sandbox?tab=inspection', label: '中央巡视沙盘', note: '线索研判、谈话调度与整改跟踪。' },
     { to: '/sandbox?tab=party-school', label: '党校研修', note: '干部培训与梯队建设推演。' },

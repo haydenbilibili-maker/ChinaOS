@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="中国政治决策逻辑分析：权力架构、路线博弈、统筹发展与安全、战略工程案例。结构化交互式报告。">
+    <title>中国政治决策逻辑与深度解析 | China OS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Palette: Deep Crimson (#991b1b), Warm Sand (#f5f5f4), Slate (#334155), Gold (#d97706) · 与深度调研系列视觉对齐 -->
+    <style>
+        :root {
+            --crimson: #991b1b;
+            --sand: #f5f5f4;
+            --slate: #334155;
+            --gold: #d97706;
+        }
+        body {
+            background: linear-gradient(165deg, #f5f5f4 0%, #e7e5e4 45%, #f0f0ee 100%);
+            color: var(--slate);
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.78);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            box-shadow: 0 8px 32px rgba(15, 23, 42, 0.07);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container { height: 400px; }
+        }
+        .tab-btn {
+            transition: all 0.3s ease;
+        }
+        .tab-btn.active {
+            border-bottom-width: 4px;
+            border-color: var(--crimson);
+            color: var(--crimson);
+            font-weight: 700;
+        }
+        .power-block {
+            transition: transform 0.2s;
+        }
+        .power-block:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .tab-content.is-visible {
+            animation: fadeIn 0.45s ease-out;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-2">
+            <div class="text-xl font-bold tracking-wider"><span class="text-red-500">●</span> 决策内参 <span class="text-gray-400 text-sm font-normal">| 中国政经逻辑演化</span></div>
+            <div class="flex flex-wrap items-center gap-4 text-sm">
+                <a href="china.html" class="text-amber-400/90 hover:text-amber-300 transition font-medium">← China OS</a>
+                <a href="#power" class="hover:text-red-400 transition hidden sm:inline">权力架构</a>
+                <a href="#ideology" class="hover:text-red-400 transition hidden sm:inline">路线之争</a>
+                <a href="#impact" class="hover:text-red-400 transition hidden sm:inline">社会政军经</a>
+                <a href="#cases" class="hover:text-red-400 transition hidden sm:inline">战略案例</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-red-900 text-white py-20 px-4 border-b-8 border-yellow-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-6">当代中国：政治制度与决策底层逻辑</h1>
+            <p class="text-lg md:text-xl text-red-100 leading-relaxed">
+                剖析权力交接的历史周期、路线博弈的深层矛盾，以及重大国家战略（如雄安新区、雅鲁藏布江工程）背后的政军经复合考量。本系统旨在提供一个高度结构化的交互式分析框架。
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-12 space-y-24">
+
+        <section id="power" class="scroll-mt-20">
+            <div class="border-l-4 border-red-800 pl-4 mb-8">
+                <h2 class="text-3xl font-bold text-slate-800">一、政治制度与权力交接演化</h2>
+                <p class="text-slate-600 mt-2">从「集体领导」到「核心集权」的历史演变，以及党政军三位一体的权力中枢架构。此部分揭示了决策效率与权力制衡之间的动态平衡。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="glass-panel p-6 rounded-lg power-block">
+                    <div class="text-red-800 text-2xl font-bold mb-2">1. 强人政治期</div>
+                    <div class="text-sm text-slate-500 mb-4">毛泽东 / 邓小平（建国 — 1990s）</div>
+                    <p class="text-sm">以个人权威和革命功绩为核心的决策模式。重大路线转换（如改革开放）依赖最高领导人的绝对政治威望。</p>
+                </div>
+                <div class="glass-panel p-6 rounded-lg power-block">
+                    <div class="text-red-800 text-2xl font-bold mb-2">2. 九龙治水期</div>
+                    <div class="text-sm text-slate-500 mb-4">江泽民 / 胡锦涛（1990s — 2012）</div>
+                    <p class="text-sm">政治局常委分管各口的「集体领导」模式，强调派系平衡与任期制。带来经济高增长，但也伴随政令不畅与结构性腐败。</p>
+                </div>
+                <div class="glass-panel p-6 rounded-lg border-t-4 border-t-red-800 power-block">
+                    <div class="text-red-800 text-2xl font-bold mb-2">3. 核心集权期</div>
+                    <div class="text-sm text-slate-500 mb-4">习近平（2012 — 至今）</div>
+                    <p class="text-sm">打破常规任期，重建党管一切的垂直体系。通过反腐和顶层设计领导小组，将政治、经济、军事决策权高度集中于核心。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ideology" class="scroll-mt-20 glass-panel p-8 rounded-xl shadow-md">
+            <div class="border-l-4 border-yellow-600 pl-4 mb-8">
+                <h2 class="text-3xl font-bold text-slate-800">二、路线之争：执政理念的维度博弈</h2>
+                <p class="text-slate-600 mt-2">分析近年来三种主要政治/经济路线的本质特征：习近平的「国家主义与共同富裕」、李克强的「市场化改革（克强经济学）」、以及薄熙来的「重庆模式（民粹与红色动员）」。</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8 items-center">
+                <div class="w-full lg:w-1/2">
+                    <div class="chart-container">
+                        <canvas id="factionRadarChart"></canvas>
+                    </div>
+                    <p class="text-xs text-center text-slate-400 mt-2">图表：不同路线在五大核心政策维度上的倾向性评估（交互式：悬浮查看具体数值）</p>
+                </div>
+
+                <div class="w-full lg:w-1/2 space-y-4">
+                    <div class="p-4 bg-slate-50/90 rounded border-l-4 border-red-800">
+                        <h3 class="font-bold text-lg mb-1">国家主义路线（习近平）</h3>
+                        <p class="text-sm text-slate-600">强调「做大做强国有企业」，政治安全高于纯粹经济增长。主张「共同富裕」，通过二次分配和行政手段调节资本扩张，对科技、教培等行业进行强监管，注重国家安全与意识形态纯洁性。</p>
+                    </div>
+                    <div class="p-4 bg-slate-50/90 rounded border-l-4 border-blue-600">
+                        <h3 class="font-bold text-lg mb-1">市场化路线（李克强）</h3>
+                        <p class="text-sm text-slate-600">核心为「克强经济学」：不推出大规模刺激、去杠杆化、结构性改革。「放管服」（简政放权），激发民营经济活力，主张政府向服务型转变，依靠市场力量调节资源配置。</p>
+                    </div>
+                    <div class="p-4 bg-slate-50/90 rounded border-l-4 border-orange-500">
+                        <h3 class="font-bold text-lg mb-1">民粹/左翼路线（薄熙来/重庆模式）</h3>
+                        <p class="text-sm text-slate-600">以「唱红打黑」为标志，诉诸底层民粹与红色怀旧情绪。经济上依赖高杠杆的大规模政府投资解决基础设施问题，辅以民生福利（如公租房）换取极高的政治支持率，带有强烈的个人魅力型统治色彩。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="scroll-mt-20">
+            <div class="border-l-4 border-slate-800 pl-4 mb-8">
+                <h2 class="text-3xl font-bold text-slate-800">三、社会阶层与政军经的系统性影响</h2>
+                <p class="text-slate-600 mt-2">路线的转变直接重塑了中国的社会结构与国家资源分配。在「统筹发展与安全」的新逻辑下，军事与科技安全的权重显著上升。</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="glass-panel p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-4 text-center">资源分配倾斜：GDP 增速 vs 军费/安全支出增速</h3>
+                    <div class="chart-container">
+                        <canvas id="macroTrendChart"></canvas>
+                    </div>
+                    <p class="text-sm mt-4 text-slate-600">
+                        <span class="font-bold">分析：</span>随着经济步入新常态（GDP 增速放缓），国家安全（含国防与维稳）的支出增速维持了极高的刚性。这反映了最高决策层对地缘政治恶化及内部维稳的防范心理，即「大安全观」主导了经济运行。
+                    </p>
+                </div>
+
+                <div class="glass-panel p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold mb-4">社会阶层固化与政策冲击</h3>
+
+                    <div class="space-y-4 mt-6">
+                        <div class="flex items-start">
+                            <div class="bg-red-100 text-red-800 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 shrink-0">1</div>
+                            <div>
+                                <h4 class="font-bold">民企精英层（资本遇冷）</h4>
+                                <p class="text-sm text-slate-600">在反垄断与资本红绿灯政策下，互联网、房地产、教培等昔日造富引擎被强力规范。财富安全感下降，资本趋向于硬件科技或出海，阶层向上流动性减弱。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-slate-200 text-slate-800 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 shrink-0">2</div>
+                            <div>
+                                <h4 class="font-bold">中产阶级（资产负债表衰退）</h4>
+                                <p class="text-sm text-slate-600">作为中国社会的稳定器，中产阶级面临房地产资产缩水与宏观经济下行带来的就业压力。消费降级显著，「体制内」重新成为择业的绝对优先。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-yellow-100 text-yellow-800 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 shrink-0">3</div>
+                            <div>
+                                <h4 class="font-bold">底层群体与「共同富裕」</h4>
+                                <p class="text-sm text-slate-600">脱贫攻坚战是现政权合法性的重要来源。通过精准扶贫与乡村振兴，底层基本生存得到保障，但面临从「脱贫」向「防返贫」转移的巨大财政压力。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cases" class="scroll-mt-20 mb-20">
+            <div class="border-l-4 border-red-800 pl-4 mb-8">
+                <h2 class="text-3xl font-bold text-slate-800">四、战略级工程决策逻辑分析</h2>
+                <p class="text-slate-600 mt-2">通过具体案例，透视「集中力量办大事」体制下，政治考量如何超越单纯的经济成本收益计算。</p>
+            </div>
+
+            <div class="glass-panel rounded-xl shadow-lg overflow-hidden">
+                <div class="flex border-b border-slate-200/80">
+                    <button type="button" class="tab-btn active flex-1 py-4 px-6 text-center font-medium text-slate-600 hover:bg-slate-50/80" onclick="switchCaseTab('xiongan', this)">
+                        案例 A：雄安新区<br><span class="text-xs font-normal">千年大计与政治符号</span>
+                    </button>
+                    <button type="button" class="tab-btn flex-1 py-4 px-6 text-center font-medium text-slate-600 hover:bg-slate-50/80 border-l border-slate-200/80" onclick="switchCaseTab('dam', this)">
+                        案例 B：雅鲁藏布江工程<br><span class="text-xs font-normal">地缘博弈与能源安全</span>
+                    </button>
+                </div>
+
+                <div class="p-8">
+                    <div id="content-xiongan" class="tab-content block is-visible">
+                        <h3 class="text-2xl font-bold text-red-900 mb-4">雄安新区：非首都功能疏解的政治经济学</h3>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+                            <div>
+                                <h4 class="font-bold text-lg mb-2 text-slate-800">决策背景与动机</h4>
+                                <ul class="list-disc pl-5 space-y-2 text-slate-600 text-sm">
+                                    <li><span class="font-semibold">政治符号：</span>属于核心领导人亲自谋划的「千年大计」，其成败直接关乎政治威望，具有极高的政治优先级。</li>
+                                    <li><span class="font-semibold">解决大城市病：</span>北京面临严重的人口、交通、环境承载力极限，急需将非政治核心功能（央企总部、高校、医院）强行迁出。</li>
+                                    <li><span class="font-semibold">区域平衡：</span>试图拉动京津冀协同发展，改变长期以来「环首都贫困带」的尴尬局面，打造继深圳特区、浦东新区之后的第三极。</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-50/90 p-4 rounded border border-slate-200/80">
+                                <h4 class="font-bold text-sm mb-2 text-slate-500 uppercase tracking-wider">执行难点与现实挑战</h4>
+                                <p class="text-sm text-slate-700 mb-2"><strong>反市场逻辑的资源调配：</strong>与深圳依靠市场开放吸引外资不同，雄安完全依赖行政指令进行资源强行注入。央企与高校的搬迁存在巨大内部阻力与隐性成本。</p>
+                                <p class="text-sm text-slate-700"><strong>地理环境制约：</strong>地处白洋淀洼地，防洪抗涝成本极高，基础设施建设（如亚洲最大高铁站）投入呈现典型的「超前基建」特征，短期内无法形成自我造血的经济循环。</p>
+                            </div>
+                        </div>
+                        <div class="bg-red-50/90 p-4 rounded text-red-900 text-sm border border-red-100">
+                            <strong>决策底层逻辑总结：</strong>雄安新区是「国家统制经济」与「顶层设计」的终极测试场。它反映了最高层认为可以通过强大的行政动员能力，逆转市场自发的聚集效应，重塑国家经济地理结构。
+                        </div>
+                    </div>
+
+                    <div id="content-dam" class="tab-content hidden">
+                        <h3 class="text-2xl font-bold text-red-900 mb-4">雅鲁藏布江下游水电开发：地缘与能源的双刃剑</h3>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+                            <div>
+                                <h4 class="font-bold text-lg mb-2 text-slate-800">战略驱动力</h4>
+                                <ul class="list-disc pl-5 space-y-2 text-slate-600 text-sm">
+                                    <li><span class="font-semibold">双碳目标与能源转型：</span>雅鲁藏布江大峡谷水能蕴藏量极大（相当于三个三峡），是实现碳中和承诺、提供稳定清洁基荷能源的关键储备。</li>
+                                    <li><span class="font-semibold">西部大开发深化：</span>拉动西藏地区的基础设施建设，将其并入国家大电网，巩固边疆经济实质性控制。</li>
+                                    <li><span class="font-semibold">水资源战略控制：</span>在青藏高原（亚洲水塔）建立大型水利设施，实质上增加了对下游（尤其是印度、孟加拉国）的战略筹码。</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-50/90 p-4 rounded border border-slate-200/80">
+                                <h4 class="font-bold text-sm mb-2 text-slate-500 uppercase tracking-wider">地缘政治与生态风险</h4>
+                                <p class="text-sm text-slate-700 mb-2"><strong>中印边境摩擦的催化剂：</strong>印度将其视为严重的安全威胁（截流、洪灾武器化可能）。该项目极易引发跨国水权争端，使本已紧张的中印关系雪上加霜。</p>
+                                <p class="text-sm text-slate-700"><strong>极端生态脆弱区：</strong>处于地质活跃断裂带（地震风险高），且大峡谷区域生态具有不可复制性。一旦发生溃坝，灾难性后果将是国际级的。</p>
+                            </div>
+                        </div>
+                        <div class="bg-blue-50/90 p-4 rounded text-blue-900 text-sm border border-blue-100">
+                            <strong>决策底层逻辑总结：</strong>该项目体现了中国在国家安全观下的「底线思维」。为了长远的能源自主和战略主动权，高层愿意承受巨大的外交抗议成本和工程技术风险。这是将经济地理转化为地缘武器的典型体现。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center text-sm">
+        <div class="max-w-4xl mx-auto px-4">
+            <p>交互式政策与决策逻辑分析报告 · <a href="china.html" class="text-amber-500/90 hover:text-amber-400 underline underline-offset-2">China OS</a></p>
+            <p class="mt-2 text-xs">注：本系统数据图表为基于公开报告趋势提取的分析模型，用于展示决策机制规律，并非绝对统计原值。</p>
+        </div>
+    </footer>
+
+    <script>
+        function switchCaseTab(tabId, btn) {
+            document.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); });
+            if (btn) btn.classList.add('active');
+            document.querySelectorAll('.tab-content').forEach(function (content) {
+                content.classList.add('hidden');
+                content.classList.remove('is-visible');
+            });
+            var target = document.getElementById('content-' + tabId);
+            if (target) {
+                target.classList.remove('hidden');
+                target.classList.add('is-visible');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            Chart.defaults.font.family = "'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif";
+            Chart.defaults.color = '#64748b';
+
+            var ctxRadar = document.getElementById('factionRadarChart');
+            if (ctxRadar) {
+                new Chart(ctxRadar.getContext('2d'), {
+                    type: 'radar',
+                    data: {
+                        labels: ['国家计划/管控程度', '市场自由化/去管制', '意识形态纯洁度', '民粹动员/社会福利', '全球化/对外开放'],
+                        datasets: [
+                            {
+                                label: '习近平（国家主义）',
+                                data: [95, 30, 95, 70, 60],
+                                fill: true,
+                                backgroundColor: 'rgba(153, 27, 27, 0.2)',
+                                borderColor: 'rgba(153, 27, 27, 1)',
+                                pointBackgroundColor: 'rgba(153, 27, 27, 1)',
+                                pointBorderColor: '#fff',
+                                pointHoverBackgroundColor: '#fff',
+                                pointHoverBorderColor: 'rgba(153, 27, 27, 1)'
+                            },
+                            {
+                                label: '李克强（市场化）',
+                                data: [40, 90, 40, 50, 85],
+                                fill: true,
+                                backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                                borderColor: 'rgba(37, 99, 235, 1)',
+                                pointBackgroundColor: 'rgba(37, 99, 235, 1)',
+                                pointBorderColor: '#fff',
+                                pointHoverBackgroundColor: '#fff',
+                                pointHoverBorderColor: 'rgba(37, 99, 235, 1)'
+                            },
+                            {
+                                label: '薄熙来（重庆模式）',
+                                data: [85, 20, 70, 95, 30],
+                                fill: true,
+                                backgroundColor: 'rgba(249, 115, 22, 0.2)',
+                                borderColor: 'rgba(249, 115, 22, 1)',
+                                pointBackgroundColor: 'rgba(249, 115, 22, 1)',
+                                pointBorderColor: '#fff',
+                                pointHoverBackgroundColor: '#fff',
+                                pointHoverBorderColor: 'rgba(249, 115, 22, 1)',
+                                hidden: true
+                            }
+                        ]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        scales: {
+                            r: {
+                                angleLines: { color: 'rgba(0,0,0,0.1)' },
+                                grid: { color: 'rgba(0,0,0,0.1)' },
+                                pointLabels: { font: { size: 12, weight: 'bold' } },
+                                ticks: { display: false, max: 100, min: 0 }
+                            }
+                        },
+                        plugins: {
+                            legend: { position: 'bottom' },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        return context.dataset.label + ': ' + context.raw + ' 指数';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            var ctxTrend = document.getElementById('macroTrendChart');
+            if (ctxTrend) {
+                new Chart(ctxTrend.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
+                        datasets: [
+                            {
+                                type: 'line',
+                                label: 'GDP 官方名义增速 (%)',
+                                data: [7.4, 7.0, 6.8, 6.9, 6.7, 6.0, 2.2, 8.4, 3.0, 5.2],
+                                borderColor: '#eab308',
+                                backgroundColor: '#eab308',
+                                borderWidth: 3,
+                                tension: 0.3,
+                                yAxisID: 'y'
+                            },
+                            {
+                                type: 'bar',
+                                label: '公开国防预算增速 (%)',
+                                data: [12.2, 10.1, 7.6, 7.0, 8.1, 7.5, 6.6, 6.8, 7.1, 7.2],
+                                backgroundColor: 'rgba(153, 27, 27, 0.7)',
+                                borderRadius: 4,
+                                yAxisID: 'y'
+                            }
+                        ]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        interaction: { mode: 'index', intersect: false },
+                        scales: {
+                            x: { grid: { display: false } },
+                            y: {
+                                type: 'linear',
+                                display: true,
+                                position: 'left',
+                                title: { display: true, text: '年增长率 (%)' },
+                                suggestedMin: 0,
+                                suggestedMax: 15
+                            }
+                        },
+                        plugins: {
+                            legend: { position: 'top' },
+                            tooltip: {
+                                backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                                padding: 10,
+                                titleFont: { size: 14 },
+                                bodyFont: { size: 13 }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文明的暗网：人情社会、面子与江湖底色</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;500;900&display=swap');
+    </style>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #d1d5db;
+            font-family: 'Noto Serif SC', 'PingFang SC', serif;
+            scroll-behavior: smooth;
+            background-image:
+                linear-gradient(45deg, rgba(139, 0, 0, 0.03) 25%, transparent 25%, transparent 75%, rgba(139, 0, 0, 0.03) 75%, rgba(139, 0, 0, 0.03)),
+                linear-gradient(45deg, rgba(139, 0, 0, 0.03) 25%, transparent 25%, transparent 75%, rgba(139, 0, 0, 0.03) 75%, rgba(139, 0, 0, 0.03));
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+        }
+        h1, h2, h3, h4, .font-sans { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+        }
+        .ledger-card {
+            background: #171717;
+            border: 1px solid #262626;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .ledger-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: #b8860b;
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
+            transform-origin: bottom;
+        }
+        .ledger-card:hover {
+            transform: translateY(-5px);
+            border-color: #b8860b;
+            box-shadow: 0 10px 20px -5px rgba(184, 134, 11, 0.15);
+        }
+        .ledger-card:hover::before { transform: scaleY(1); }
+        .split-container { display: flex; flex-direction: column; gap: 1rem; }
+        @media (min-width: 768px) { .split-container { flex-direction: row; } }
+        .split-pane {
+            flex: 1;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            filter: grayscale(80%);
+            cursor: pointer;
+        }
+        .split-pane:hover { filter: grayscale(0%); flex: 1.5; }
+        .pane-temple { background: linear-gradient(135deg, #1f2937, #111827); border: 1px solid #374151; }
+        .pane-jianghu { background: linear-gradient(135deg, #450a0a, #262626); border: 1px solid #7f1d1d; }
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+        .blood-text { color: #8b0000; text-shadow: 0 0 10px rgba(139,0,0,0.5); }
+        .gold-text { color: #b8860b; text-shadow: 0 0 10px rgba(184,134,11,0.3); }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #3f3f46; }
+        ::-webkit-scrollbar-thumb:hover { background: #b8860b; }
+    </style>
+</head>
+<body class="antialiased selection:bg-red-900 selection:text-white">
+    <nav class="bg-black/90 backdrop-blur-md text-gray-300 sticky top-0 z-50 border-b border-gray-800 font-sans shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold tracking-widest flex items-center gap-3">
+                <span class="gold-text font-serif">🕸️</span> <span class="text-gray-100">文明透视 · 潜规则与人情网络</span>
+                <span class="text-gray-600 text-sm font-normal hidden md:inline-block ml-2 border-l border-gray-700 pl-2">文化战略调研 · 卷八</span>
+            </div>
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#chaxu" class="hover:text-amber-600 transition">差序格局</a>
+                <a href="#mianzi" class="hover:text-amber-600 transition">面子与人情</a>
+                <a href="#shame" class="hover:text-amber-600 transition">耻感叙事</a>
+                <a href="#jianghu" class="hover:text-red-700 transition">庙堂与江湖</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative py-32 px-4 overflow-hidden border-b border-neutral-900">
+        <div class="absolute inset-0 flex justify-center items-center opacity-10 pointer-events-none">
+            <div class="text-[25rem] font-black font-serif text-red-900 transform rotate-12">局</div>
+        </div>
+        <div class="max-w-4xl mx-auto text-center relative z-10 flex flex-col items-center">
+            <div class="inline-block bg-neutral-900 border border-neutral-700 text-neutral-400 px-4 py-1.5 rounded-sm text-xs font-bold mb-6 tracking-widest font-sans uppercase">
+                THE SHADOW OPERATING SYSTEM
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-8 leading-tight text-white">
+                正式规则之外的层：<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-red-700">人情、面子与江湖的叙事模型</span>
+            </h1>
+            <p class="text-lg text-gray-400 leading-relaxed mt-6 font-serif max-w-3xl">
+                成文法与科层指令是一层；日常协作中还叠放着关系、面子与圈层信任。费孝通「差序格局」、人情往来与「庙堂—江湖」二分，可作为理解组织行为与政策摩擦的<strong>社会学启发式</strong>，需与制度与数据对照，避免本质论。
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-16 space-y-32">
+        <section id="chaxu" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-amber-600 rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-gray-100 tracking-wider">一、差序格局：信任随圈层衰减（示意）</h2>
+            </div>
+            <p class="text-gray-400 mb-8 max-w-4xl text-lg font-serif">
+                费孝通以「水波纹」比喻以自我为中心的差序网络：越外圈，信任与互惠成本通常越高。下图仅为概念气泡图，非实证调查数据。
+            </p>
+            <div class="bg-neutral-900 p-8 rounded-2xl shadow-2xl border border-neutral-800 flex flex-col lg:flex-row items-center gap-12">
+                <div class="w-full lg:w-3/5">
+                    <h3 class="text-center font-bold text-gray-300 font-sans mb-2">信任—资源衰减（概念模型）</h3>
+                    <div class="chart-container">
+                        <canvas id="chaxuChart"></canvas>
+                    </div>
+                </div>
+                <div class="w-full lg:w-2/5 space-y-6 font-serif">
+                    <div class="border-l-2 border-amber-600 pl-5">
+                        <h3 class="text-xl font-bold text-amber-500 mb-2 font-sans">「自己人」边界</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">信息、担保与互惠常在强关系圈内优先配置；跨圈交易则伴随更高缔约与监督成本（组织行为学常见议题）。</p>
+                    </div>
+                    <div class="border-l-2 border-amber-600 pl-5">
+                        <h3 class="text-xl font-bold text-amber-500 mb-2 font-sans">商务语境中的关系劳动</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">宴请、人情与长期往来常被用作降低陌生交易不确定性的机制；与法治化、合同执行环境并存，不宜单线决定论。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="mianzi" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-yellow-600 rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-gray-100 tracking-wider">二、面子与人情：非正式「信用」隐喻</h2>
+            </div>
+            <p class="text-gray-400 mb-8 max-w-4xl text-lg font-serif">
+                「面子」可理解为声誉与相互承认；「人情」可类比为跨期互惠义务。二者在熟人密集环境中影响资源调动，与正式信用体系并行。
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-sans">
+                <div class="ledger-card p-6 rounded-xl">
+                    <div class="text-3xl mb-3">🪙</div>
+                    <h3 class="text-lg font-bold text-gray-200 mb-2">互惠与隐性义务</h3>
+                    <p class="text-sm text-gray-400 font-serif leading-relaxed">受助常伴随未来回报预期；拒偿可能损害圈内声誉（社会交换理论常见叙述）。</p>
+                </div>
+                <div class="ledger-card p-6 rounded-xl">
+                    <div class="text-3xl mb-3">🎭</div>
+                    <h3 class="text-lg font-bold text-gray-200 mb-2">调停与声誉担保</h3>
+                    <p class="text-sm text-gray-400 font-serif leading-relaxed">第三方「给面子」可视为用累积声誉为冲突做信用背书；具体效力因场域而异。</p>
+                </div>
+                <div class="ledger-card p-6 rounded-xl border-t-[#8b0000]">
+                    <h3 class="text-lg font-bold text-red-500 mb-2 flex items-center gap-2">
+                        <span>⚠️</span> <span>治理风险：人情包裹的权力</span>
+                    </h3>
+                    <p class="text-sm text-gray-400 font-serif leading-relaxed">当公权力与封闭圈层重叠时，易出现寻租与合规模糊带；反腐与法治建设正是对此的制度化对冲。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="shame" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-purple-900 rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-gray-100 tracking-wider">三、罪感与耻感：外化约束的理想型对照</h2>
+            </div>
+            <p class="text-gray-400 mb-8 max-w-4xl text-lg font-serif">
+                本尼迪克特式区分是<strong>理想型</strong>：实际社会同时存在内化规范与舆论压力，仅侧重不同。
+            </p>
+            <div class="bg-neutral-900 p-8 rounded-2xl border border-neutral-800 shadow-xl flex flex-col md:flex-row gap-8 font-serif">
+                <div class="w-full md:w-1/2 p-6 bg-black rounded-lg border border-gray-800">
+                    <h3 class="text-xl font-bold text-gray-500 mb-4 font-sans text-center">罪感取向（简化的西欧叙事）</h3>
+                    <div class="text-4xl text-center mb-4">⛪</div>
+                    <ul class="text-sm text-gray-400 space-y-4">
+                        <li><strong>侧重：</strong>内化准则与自我责备叙事。</li>
+                        <li><strong>机制：</strong>独处时仍可能感到「不该如此」。</li>
+                        <li><strong>救赎话语：</strong>忏悔、法理惩罚与程序正义等。</li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/2 p-6 bg-red-950/20 rounded-lg border border-red-900/30">
+                    <h3 class="text-xl font-bold text-red-500 mb-4 font-sans text-center">耻感取向（简化的东亚叙事）</h3>
+                    <div class="text-4xl text-center mb-4">👁️</div>
+                    <ul class="text-sm text-gray-300 space-y-4">
+                        <li><strong>侧重：</strong>群体目光与声誉损害。</li>
+                        <li><strong>机制：</strong>公开羞辱、舆论场中的「社会性死亡」叙事更易触发强烈反应。</li>
+                        <li><strong>提示：</strong>企业公关与网络舆论常叠加声誉维度，与司法程序相互独立。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="jianghu" class="scroll-mt-24 mb-16">
+            <div class="flex items-center gap-4 mb-8 font-sans">
+                <div class="w-1.5 h-8 bg-red-800 rounded-sm"></div>
+                <h2 class="text-3xl font-bold text-gray-100 tracking-wider">四、庙堂与江湖：正式秩序与边缘互助叙事</h2>
+            </div>
+            <p class="text-gray-400 mb-8 max-w-4xl text-lg font-serif">
+                历史上体制核心与游民、商贩等边缘网络并存；危机期非正式互助与暴力动员都可能膨胀。当代民企文化中偶见的「兄弟」「家人」修辞，可与劳动关系、合规与情感管理一并阅读。
+            </p>
+            <div class="split-container font-serif">
+                <div class="split-pane pane-temple">
+                    <div class="text-4xl mb-4 text-center">🏛️</div>
+                    <h3 class="text-2xl font-bold text-blue-400 mb-4 font-sans text-center">庙堂（科层与编制）</h3>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li><strong>信条：</strong>等级、程序、忠诚与可审计性。</li>
+                        <li><strong>分配：</strong>职位与预算链条。</li>
+                        <li><strong>对照：</strong>国企、公职体系与强流程组织。</li>
+                    </ul>
+                </div>
+                <div class="split-pane pane-jianghu">
+                    <div class="text-4xl mb-4 text-center">⚔️</div>
+                    <h3 class="text-2xl font-bold text-red-500 mb-4 font-sans text-center">江湖（边缘与草根网络）</h3>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li><strong>信条：</strong>义气、实力与非常规互惠。</li>
+                        <li><strong>分配：</strong>大哥—兄弟式信任与风险共担话语。</li>
+                        <li><strong>对照：</strong>部分创业团队与下沉市场协作的修辞资源。</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 p-8 bg-gradient-to-br from-black to-neutral-900 border-l-4 border-amber-600 rounded-lg shadow-2xl">
+                <h3 class="text-xl font-bold text-amber-500 mb-3 font-sans">卷八 · 与卷二至卷七的接口</h3>
+                <p class="text-sm text-gray-300 leading-relaxed font-serif">
+                    法家的科层 KPI、儒家的礼序、道家的退守、释家的心理补丁、汉字—科举的标准化、阴阳五行的关联思维，均可在<strong>非正式网络</strong>层找到摩擦或嫁接点。用于理解「纸面制度 vs 执行弹性」，不可替代个案实证。
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-black text-gray-600 py-10 text-center border-t border-neutral-900 font-sans mt-10">
+        <div class="max-w-4xl mx-auto px-4">
+            <p class="font-bold text-gray-500 tracking-wider mb-2">文明透视 · 人情与江湖卷（卷八）· China OS 同源</p>
+            <p class="text-xs leading-relaxed max-w-2xl mx-auto opacity-50 font-serif">社会结构随城市化与数字化持续重组；差序与人情仍是理解本土组织行为的重要变量之一。</p>
+            <p class="mt-4 text-xs font-mono">© 2026 Cultural Strategy · China OS</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Chart.defaults.font.family = "'PingFang SC', 'Microsoft YaHei', sans-serif";
+            Chart.defaults.color = '#9ca3af';
+            Chart.defaults.borderColor = '#262626';
+            const ctxChaxu = document.getElementById('chaxuChart').getContext('2d');
+            const bubbleData = [
+                { x: 50, y: 50, r: 25, label: '己 (Self)' },
+                { x: 50, y: 65, r: 15, label: '血亲' },
+                { x: 65, y: 50, r: 15, label: '挚友' },
+                { x: 50, y: 35, r: 15, label: '门阀' },
+                { x: 35, y: 50, r: 15, label: '宗族' },
+                { x: 50, y: 80, r: 8, label: '同乡' },
+                { x: 80, y: 50, r: 8, label: '同窗' },
+                { x: 50, y: 20, r: 8, label: '同僚' },
+                { x: 20, y: 50, r: 8, label: '熟人' },
+                { x: 71, y: 71, r: 8, label: '' },
+                { x: 29, y: 29, r: 8, label: '' },
+                { x: 29, y: 71, r: 8, label: '' },
+                { x: 71, y: 29, r: 8, label: '' },
+                { x: 50, y: 95, r: 4, label: '路人/外人' },
+                { x: 95, y: 50, r: 4, label: '' },
+                { x: 50, y: 5, r: 4, label: '' },
+                { x: 5, y: 50, r: 4, label: '' },
+                { x: 85, y: 85, r: 4, label: '' },
+                { x: 15, y: 15, r: 4, label: '' }
+            ];
+            new Chart(ctxChaxu, {
+                type: 'bubble',
+                data: {
+                    datasets: [
+                        {
+                            label: '核心圈',
+                            data: [bubbleData[0], bubbleData[1], bubbleData[2], bubbleData[3], bubbleData[4]],
+                            backgroundColor: 'rgba(184, 134, 11, 0.8)',
+                            borderColor: '#b8860b'
+                        },
+                        {
+                            label: '熟人网络',
+                            data: bubbleData.slice(5, 13),
+                            backgroundColor: 'rgba(139, 0, 0, 0.6)',
+                            borderColor: '#8b0000'
+                        },
+                        {
+                            label: '外围',
+                            data: bubbleData.slice(13),
+                            backgroundColor: 'rgba(75, 85, 99, 0.4)',
+                            borderColor: '#4b5563'
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: '#d1d5db', usePointStyle: true } },
+                        tooltip: {
+                            backgroundColor: 'rgba(10, 10, 10, 0.95)',
+                            titleFont: { size: 14, family: 'sans-serif' },
+                            bodyFont: { size: 13, family: 'sans-serif' },
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    const point = context.raw;
+                                    return point.label ? point.label + '（示意）' : '外围节点（示意）';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { display: false, min: 0, max: 100 },
+                        y: { display: false, min: 0, max: 100 }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
