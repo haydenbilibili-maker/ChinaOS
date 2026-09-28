@@ -83,7 +83,7 @@ const SAMPLE = `# 用户上传示例 · 自由粘贴（每行：期 值）
 2022 3.0
 2023 5.2
 2024 5.0
-2025 4.8`;
+2025 5.0`;
 
 const isEconDataset = (d) => !!d && CATS.includes(d.category);
 
