@@ -26,7 +26,7 @@ function checkPage(fp) {
     return { mod, pass: 8, total: 8, checks: {}, gyShell: false, redirect: true };
   }
   const gyShell = src.includes('GySliceShell');
-  const htmlShell = src.includes('ShijianHtmlShell');
+  const htmlShell = src.includes('ShijianHtmlShell') || src.includes('ScholarBoard');
   const hasStatCards = /<Stat[\s>]/.test(src);
   const hasEChart = /EChart/.test(src);
   const hasCustomTabs = /setTab|activeTab|TAB[s]?\s*=/.test(src)

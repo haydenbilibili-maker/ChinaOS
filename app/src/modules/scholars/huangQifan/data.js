@@ -33,19 +33,37 @@ export const PROFILE = {
   sources: '财新网 2016-12-30 人事报道；公开履历（名人传记数据库 / 智库机构页面）；本人回忆文章。',
 };
 
+/** 看板壳配置（ScholarBoard 读取） */
+export const BOARD = {
+  order: 1,
+  subtitle: '人物履历 · 人地钱房 · 产业开放 · 贸易格局 · 预判检验',
+  span: '1995—2026',
+  careerTitle: '履历时间线 · 上海 → 重庆 → 北京 → 智库',
+  defaultTheme: 'property',
+  moduleId: 'scholarHuangQifan',
+  sourceNote: '著作原书 / 主办方页面 / 署名文章 / 主流媒体报道 · 对照数据：财政部、海关总署、国家统计局、国务院关税税则委员会',
+};
+
+export const CAREER_GROUPS = {
+  sh: { label: '上海', color: '#22d3ee' },
+  cq: { label: '重庆', color: '#c41e3a' },
+  bj: { label: '全国人大', color: '#e8a317' },
+  tk: { label: '智库/高校', color: '#10b981' },
+};
+
 /** 履历甘特：起止为小数年；note 记录口径出入 */
 export const CAREER = [
-  { id: 'c1', role: '上海焦化厂（工人 → 副厂长）', org: '上海', start: 1968.7, end: 1983.9, city: 'sh' },
-  { id: 'c2', role: '上海市经委综合规划室副主任', org: '上海', start: 1984.3, end: 1987.0, city: 'sh' },
-  { id: 'c3', role: '上海市经济信息中心主任', org: '上海', start: 1987.0, end: 1990.5, city: 'sh', note: '本人回忆为 1986 年起，与公开履历 1987-01 不一致' },
-  { id: 'c4', role: '上海市人民政府浦东开发办公室副主任', org: '上海', start: 1990.5, end: 1993.0, city: 'sh', note: '本人回忆 1990-04-22 获任命；公开履历为 1990-06' },
-  { id: 'c5', role: '浦东新区管委会副主任', org: '上海', start: 1993.0, end: 1994.7, city: 'sh', note: '起止时间未核实〔存疑〕' },
-  { id: 'c6', role: '上海市委/市政府副秘书长、市体改委副主任、市委研究室主任', org: '上海', start: 1994.7, end: 1998.3, city: 'sh' },
-  { id: 'c7', role: '上海市政府副秘书长、市经委主任', org: '上海', start: 1998.3, end: 2001.8, city: 'sh' },
-  { id: 'c8', role: '重庆市副市长（2002-05 起兼市委常委）', org: '重庆', start: 2001.8, end: 2009.9, city: 'cq' },
-  { id: 'c9', role: '重庆市代市长 → 市长', org: '重庆', start: 2009.9, end: 2017.0, city: 'cq', note: '2016-12-30 市人大常委会接受辞职' },
-  { id: 'c10', role: '十二届全国人大财经委副主任委员', org: '北京', start: 2017.1, end: 2018.2, city: 'bj' },
-  { id: 'c11', role: '智库与高校（CF40 学术顾问、复旦特聘教授等）', org: '—', start: 2018.2, end: 2026.75, city: 'tk' },
+  { id: 'c1', role: '上海焦化厂（工人 → 副厂长）', org: '上海', start: 1968.7, end: 1983.9, group: 'sh' },
+  { id: 'c2', role: '上海市经委综合规划室副主任', org: '上海', start: 1984.3, end: 1987.0, group: 'sh' },
+  { id: 'c3', role: '上海市经济信息中心主任', org: '上海', start: 1987.0, end: 1990.5, group: 'sh', note: '本人回忆为 1986 年起，与公开履历 1987-01 不一致' },
+  { id: 'c4', role: '上海市人民政府浦东开发办公室副主任', org: '上海', start: 1990.5, end: 1993.0, group: 'sh', note: '本人回忆 1990-04-22 获任命；公开履历为 1990-06' },
+  { id: 'c5', role: '浦东新区管委会副主任', org: '上海', start: 1993.0, end: 1994.7, group: 'sh', note: '起止时间未核实〔存疑〕' },
+  { id: 'c6', role: '上海市委/市政府副秘书长、市体改委副主任、市委研究室主任', org: '上海', start: 1994.7, end: 1998.3, group: 'sh' },
+  { id: 'c7', role: '上海市政府副秘书长、市经委主任', org: '上海', start: 1998.3, end: 2001.8, group: 'sh' },
+  { id: 'c8', role: '重庆市副市长（2002-05 起兼市委常委）', org: '重庆', start: 2001.8, end: 2009.9, group: 'cq' },
+  { id: 'c9', role: '重庆市代市长 → 市长', org: '重庆', start: 2009.9, end: 2017.0, group: 'cq', note: '2016-12-30 市人大常委会接受辞职' },
+  { id: 'c10', role: '十二届全国人大财经委副主任委员', org: '北京', start: 2017.1, end: 2018.2, group: 'bj' },
+  { id: 'c11', role: '智库与高校（CF40 学术顾问、复旦特聘教授等）', org: '—', start: 2018.2, end: 2026.75, group: 'tk' },
 ];
 
 export const BOOKS = [
@@ -169,6 +187,18 @@ export const CLAIMS = RAW_CLAIMS.map((c) => {
 });
 
 export const QUOTES = CLAIMS.filter((c) => c.type === '原话');
+
+export const FEATURED = ['p1', 'p6', 's1', 'f1', 'd4', 'i4', 't3', 't6'];
+
+export const THEME_LINKS = {
+  property: [{ to: '/housing', label: '住房地产' }, { to: '/debt', label: '地方债务' }],
+  social: [{ to: '/urban', label: '城镇化' }, { to: '/demographic', label: '人口' }],
+  capital: [{ to: '/capital-market', label: '资本市场' }, { to: '/rmb', label: '人民币' }],
+  digital: [{ to: '/digital', label: '数字经济' }, { to: '/data-element', label: '数据要素' }],
+  industry: [{ to: '/manufacturing', label: '制造业' }, { to: '/supplychain', label: '供应链' }],
+  trade: [{ to: '/foreign-trade', label: '外贸' }, { to: '/econ-dashboard', label: '经济大盘' }],
+  macro: [{ to: '/econ-dashboard', label: '经济大盘' }, { to: '/japan-lost-decades', label: '中日比较' }],
+};
 
 export const THEME_INTRO = {
   property: '"人地钱房"是其最系统的一条线：以常住人口决定土地供给、以自有资金约束拿地、以地票打通城乡建设用地指标，并在 2024 年后转向"先立后破"的存量风险处置。',
@@ -346,7 +376,7 @@ export const CONTROVERSIES = [
     id: 'x2',
     title: '地票制度的效果评价',
     sides: [
-      { who: '周其仁（北大国发院）', view: '转述：称地票是"了不起的创造"。' },
+      { who: '周其仁（经济观察报"城乡中国"专栏 2014-07-28，北大国发院网站转载）', view: '署名文章题为《"地票"是一个了不起的创造》，认为地票把城乡建设用地"挂钩"推进了市场（详见周其仁看板土地领域）。' },
       { who: '批评性研究（S-CAD 论文等）', view: '转述：农户实际参与度偏低，复垦指标与耕地保护、开发需求之间存在张力。' },
     ],
     note: '重庆官方口径：净收益按农户 85%、集体 15% 分配（2016 年），至 2022-08 累计约 35.4 万亩、695 亿元。',
