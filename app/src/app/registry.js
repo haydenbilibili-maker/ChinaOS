@@ -2270,6 +2270,46 @@ export const MODULES = [
     component: lazy(() => import('../modules/scholars/xiangBiao/Page.jsx')),
   },
   {
+    id: 'scholarYuKeping', path: '/scholars/yu-keping', group: 'scholars', navOrder: 11,
+    title: '俞可平', subtitle: '增量民主 · 善治 · 国家治理现代化', icon: 'UserRound',
+    component: lazy(() => import('../modules/scholars/yuKeping/Page.jsx')),
+  },
+  {
+    id: 'scholarWangShaoguang', path: '/scholars/wang-shaoguang', group: 'scholars', navOrder: 12,
+    title: '王绍光', subtitle: '国家能力 · 代表型民主 · 政道思维', icon: 'UserRound',
+    component: lazy(() => import('../modules/scholars/wangShaoguang/Page.jsx')),
+  },
+  {
+    id: 'scholarYangGuangbin', path: '/scholars/yang-guangbin', group: 'scholars', navOrder: 13,
+    title: '杨光斌', subtitle: '可治理的民主 · 历史政治学 · 政党中心主义', icon: 'UserRound',
+    component: lazy(() => import('../modules/scholars/yangGuangbin/Page.jsx')),
+  },
+  {
+    id: 'scholarPanWei', path: '/scholars/pan-wei', group: 'scholars', navOrder: 14,
+    title: '潘维', subtitle: '中国模式 · 中华体制 · 咨询型法治', icon: 'UserRound',
+    component: lazy(() => import('../modules/scholars/panWei/Page.jsx')),
+  },
+  {
+    id: 'scholarXiaoGongqin', path: '/scholars/xiao-gongqin', group: 'scholars', navOrder: 15,
+    title: '萧功秦', subtitle: '新权威主义 · 后全能体制 · 超越左右', icon: 'UserRound',
+    component: lazy(() => import('../modules/scholars/xiaoGongqin/Page.jsx')),
+  },
+  {
+    id: 'scholarXuYong', path: '/scholars/xu-yong', group: 'scholars', navOrder: 16,
+    title: '徐勇', subtitle: '田野政治学 · 村民自治 · 家户制', icon: 'UserRound',
+    component: lazy(() => import('../modules/scholars/xuYong/Page.jsx')),
+  },
+  {
+    id: 'scholarZhouXueguang', path: '/scholars/zhou-xueguang', group: 'scholars', navOrder: 17,
+    title: '周雪光', subtitle: '一统体制 · 帝国逻辑 · 运动型治理', icon: 'UserRound',
+    component: lazy(() => import('../modules/scholars/zhouXueguang/Page.jsx')),
+  },
+  {
+    id: 'scholarJingYuejin', path: '/scholars/jing-yuejin', group: 'scholars', navOrder: 18,
+    title: '景跃进', subtitle: '党政体制 · 将政党带进来 · 代表理论', icon: 'UserRound',
+    component: lazy(() => import('../modules/scholars/jingYuejin/Page.jsx')),
+  },
+  {
     id: 'foundation',
     path: '/foundation',
     group: 'foundation',
