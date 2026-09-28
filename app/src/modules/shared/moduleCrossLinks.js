@@ -188,6 +188,7 @@ const MAP = {
     { to: '/consumption', label: '扩大内需 · 消费率', note: '内需不足与消费占 GDP 比重。' },
     { to: '/foreign-trade', label: '对外贸易 · 新三样', note: '外需与出口交货值领先指标。' },
     { to: '/japan-lost-decades', label: '中日比较 · 失去的三十年', note: '平减指数连负三年 ↔ 日本 1990s 通缩固化的阶段对位。' },
+    { to: '/scholars/huang-qifan?tab=ledger', label: '学者专栏 · 黄奇帆预判台账', note: '顺差、关税、卖地收入等表述与 1–8 月读数对照。' },
   ],
   econH1Review: [
     { to: '/econ-dashboard', label: '经济大盘 · 2026 H1', note: 'NBS 快照 + 金丝雀 + 三次产业。' },
@@ -484,6 +485,7 @@ const MAP = {
     { to: '/demographic', label: '人口结构', note: '生育意愿的成本约束。' },
     { to: '/urban', label: '城镇化 · 城市群', note: '土地财政与区域集聚。' },
     { to: '/finance-system', label: '金融体系 · 债务', note: '三道红线与系统风险。' },
+    { to: '/scholars/huang-qifan?tab=views&theme=property', label: '学者专栏 · 黄奇帆 · 人地钱房', note: '人口定地、地票、自有资金拿地与"先立后破"。' },
   ],
   education: [
     { to: '/demographic', label: '人口结构 · 人才红利', note: '密度红利供给端。' },
@@ -580,6 +582,25 @@ const MAP = {
     { to: '/demographic', label: '人口结构', note: '负增长 · 老龄化 · 生育支持。' },
     { to: '/housing', label: '住房地产', note: '地产周期与居民资产负债表。' },
     { to: '/debt', label: '地方债务', note: '10 万亿化债与坏账处置速度。' },
+    { to: '/scholars/huang-qifan', label: '学者专栏 · 黄奇帆', note: '房价收入比、顺差再平衡等国内学者型官员的对策视角。' },
+  ],
+  scholars: [
+    { to: '/scholars/huang-qifan', label: '黄奇帆 · 观点看板', note: '人地钱房 · 产业开放 · 贸易格局 · 预判台账。' },
+    { to: '/talent', label: '人才精英库', note: '结构化人力资本图谱与知识生产者。' },
+    { to: '/econ-dashboard', label: '经济大盘', note: '学者判断的对照数据底座。' },
+  ],
+  scholarHuangQifan: [
+    { to: '/scholars', label: '学者专栏 · 总览', note: '名册与统一看板结构。' },
+    { to: '/econ-dashboard', label: '经济大盘 · 1–8 月读数', note: '顺差、出口、地产投资等台账对照数据。' },
+    { to: '/housing', label: '住房地产', note: '70 城房价、土地出让与房地产新模式。' },
+    { to: '/debt', label: '地方债务 · 省际热力', note: '融资平台与"八大投"争议的全国口径。' },
+    { to: '/japan-lost-decades', label: '中日比较 · 失去的三十年', note: '资产拐点与再平衡路径的阶段对位。' },
+    { to: '/foreign-trade', label: '对外贸易', note: '顺差规模、关税与出口结构。' },
+  ],
+  debtHeatmap: [
+    { to: '/housing', label: '住房地产', note: '土地出让收入与地方财政的联动。' },
+    { to: '/econ-dashboard', label: '经济大盘', note: '广义财政与投资读数。' },
+    { to: '/scholars/huang-qifan?tab=debate', label: '学者专栏 · 黄奇帆 · 八大投争议', note: '重庆融资平台债务口径的并陈。' },
   ],
   diplomacy: [
     { to: '/thucydides', label: '修昔底德陷阱 · 实力窗口', note: '大国关系定价锚与实力转移物理约束。' },

@@ -31,6 +31,7 @@ export const GROUPS = [
   { id: 'population', label: '中国人群分析', desc: '人群画像总图谱 · 世代 · 阶层', accent: '#ec4899' },
   { id: 'shijian', label: '史鉴·中华', desc: '五柱 · 治乱 · 古今对照', accent: '#a83b2c' },
   { id: 'shijianWorld', label: '史鉴·世界', desc: '比较历史 · 主题带 · 中西映射', accent: '#4a6d7c' },
+  { id: 'scholars', label: '学者专栏', desc: '中国学者 · 观点看板', accent: '#d4af37' },
   { id: 'sim', label: '推演与训练', desc: '沙盒 · 内参', accent: '#d4af37' },
   { id: 'governance', label: '治理结构', desc: '观象台 · 归因 · 信号 · 三力', accent: '#79a496' },
   { id: 'huangfeizhai', label: '荒废斋', desc: '私人信息总入口 · 朱砂封印', accent: '#b18a52' },
@@ -2212,6 +2213,16 @@ export const MODULES = [
     id: 'policydocs', path: '/policydocs', group: 'sim',
     title: '政令文库', subtitle: '政策文件 · 法律条文 · 文本挖掘', icon: 'FileText',
     component: lazy(() => import('../modules/policydocs/Page.jsx')),
+  },
+  {
+    id: 'scholars', path: '/scholars', group: 'scholars', navOrder: 0,
+    title: '学者专栏', subtitle: '学者名册 · 出处核验 · 预判台账', icon: 'GraduationCap',
+    component: lazy(() => import('../modules/scholars/Page.jsx')),
+  },
+  {
+    id: 'scholarHuangQifan', path: '/scholars/huang-qifan', group: 'scholars', navOrder: 1,
+    title: '黄奇帆', subtitle: '人地钱房 · 产业开放 · 贸易格局', icon: 'UserRound',
+    component: lazy(() => import('../modules/scholars/huangQifan/Page.jsx')),
   },
   {
     id: 'foundation',
