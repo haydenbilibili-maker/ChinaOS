@@ -2225,6 +2225,51 @@ export const MODULES = [
     component: lazy(() => import('../modules/scholars/huangQifan/Page.jsx')),
   },
   {
+    id: 'scholarLinYifu', path: '/scholars/lin-yifu', group: 'scholars', navOrder: 2,
+    title: '林毅夫', subtitle: '新结构经济学 · 产业政策 · 增长潜力', icon: 'UserRound',
+    component: lazy(() => import('../modules/scholars/linYifu/Page.jsx')),
+  },
+  {
+    id: 'scholarZhouQiren', path: '/scholars/zhou-qiren', group: 'scholars', navOrder: 3,
+    title: '周其仁', subtitle: '产权与土地 · 城乡中国 · 货币', icon: 'UserRound',
+    component: lazy(() => import('../modules/scholars/zhouQiren/Page.jsx')),
+  },
+  {
+    id: 'scholarWenTiejun', path: '/scholars/wen-tiejun', group: 'scholars', navOrder: 4,
+    title: '温铁军', subtitle: '三农 · 危机与成本转嫁 · 乡村建设', icon: 'UserRound',
+    component: lazy(() => import('../modules/scholars/wenTiejun/Page.jsx')),
+  },
+  {
+    id: 'scholarHeXuefeng', path: '/scholars/he-xuefeng', group: 'scholars', navOrder: 5,
+    title: '贺雪峰', subtitle: '基层治理 · 地权逻辑 · 半工半耕', icon: 'UserRound',
+    component: lazy(() => import('../modules/scholars/heXuefeng/Page.jsx')),
+  },
+  {
+    id: 'scholarYuYongding', path: '/scholars/yu-yongding', group: 'scholars', navOrder: 6,
+    title: '余永定', subtitle: '宏观 · 财政扩张 · 汇率与外储', icon: 'UserRound',
+    component: lazy(() => import('../modules/scholars/yuYongding/Page.jsx')),
+  },
+  {
+    id: 'scholarCaiFang', path: '/scholars/cai-fang', group: 'scholars', navOrder: 7,
+    title: '蔡昉', subtitle: '人口红利 · 劳动力市场 · 收入分配', icon: 'UserRound',
+    component: lazy(() => import('../modules/scholars/caiFang/Page.jsx')),
+  },
+  {
+    id: 'scholarZhouLian', path: '/scholars/zhou-li-an', group: 'scholars', navOrder: 8,
+    title: '周黎安', subtitle: '晋升锦标赛 · 行政发包 · 官场+市场', icon: 'UserRound',
+    component: lazy(() => import('../modules/scholars/zhouLian/Page.jsx')),
+  },
+  {
+    id: 'scholarYanXuetong', path: '/scholars/yan-xuetong', group: 'scholars', navOrder: 9,
+    title: '阎学通', subtitle: '道义现实主义 · 中美两极 · 大国领导力', icon: 'UserRound',
+    component: lazy(() => import('../modules/scholars/yanXuetong/Page.jsx')),
+  },
+  {
+    id: 'scholarXiangBiao', path: '/scholars/xiang-biao', group: 'scholars', navOrder: 10,
+    title: '项飙', subtitle: '流动 · 附近 · 悬浮与青年', icon: 'UserRound',
+    component: lazy(() => import('../modules/scholars/xiangBiao/Page.jsx')),
+  },
+  {
     id: 'foundation',
     path: '/foundation',
     group: 'foundation',

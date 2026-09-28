@@ -10,7 +10,8 @@
     "check:ui": "node scripts/r4-checklist.mjs",
     "check:shijian": "node scripts/verify-sj-html.mjs",
     "check:integrity": "node scripts/check-project-integrity.mjs",
-    "check": "npm run check:integrity && npm run check:ui && npm run check:shijian && npm test --prefix app",
+    "check:scholars": "node scripts/check-scholars.mjs",
+    "check": "npm run check:integrity && npm run check:scholars && npm run check:ui && npm run check:shijian && npm test --prefix app",
     "avatars:verify": "node scripts/resolveVerifiedAvatars.mjs --delay 2000",
     "lint:css": "stylelint \"app/src/**/*.css\" --allow-empty-input"
   },
