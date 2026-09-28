@@ -18,6 +18,7 @@ const MAP = {
     { to: '/healthcare', label: '医疗医保 · DRG', note: '老龄化驱动的医保支付改革。' },
     { to: '/education', label: '教育 · 普职分流', note: '人口结构变化下的教育供给再配置。' },
     { to: '/modules/santi', label: '三体透镜 · 代际', note: '儿童政权 ↔ 制度缓冲——禁止年龄歧视表述。' },
+    { to: '/japan-lost-decades?tab=slices&dim=population', label: '中日比较 · 人口切片', note: '日 1994 ↔ 中 2021 深度老龄化对位。' },
   ],
   ruleoflaw: [
     { to: '/policydocs?tab=legal', label: '政令文库 · 法律条文', note: '可检索的法律/行政法规语料底座，与本模块态势分析互补。' },
@@ -187,6 +188,7 @@ const MAP = {
     { to: '/consumption', label: '扩大内需 · 消费率', note: '内需不足与消费占 GDP 比重。' },
     { to: '/foreign-trade', label: '对外贸易 · 新三样', note: '外需与出口交货值领先指标。' },
   ],
+    { to: '/japan-lost-decades', label: '中日比较 · 失去的三十年', note: '平减指数连负三年 ↔ 日本 1990s 通缩固化的阶段对位。' },
   econH1Review: [
     { to: '/econ-dashboard', label: '经济大盘 · 2026 H1', note: 'NBS 快照 + 金丝雀 + 三次产业。' },
     { to: '/econ-dashboard?tab=consume15', label: '十五五促消费 · 大盘 Tab', note: '对供强需弱的中期制度回应（全文嵌入）。' },
@@ -449,6 +451,7 @@ const MAP = {
   ],
   constructivism: [
     { to: '/diplomacy', label: '外交博弈 · 话语建构', note: '规范与认同的塑造。' },
+    { to: '/japan-lost-decades', label: '中日比较 · 失去的三十年', note: '未富先老 vs 日本富后老的阶段对位样本。' },
     { to: '/ideology', label: '意识形态', note: '叙事框架与身份认同。' },
     { to: '/realism', label: '现实主义', note: '建构主义与现实主义对照。' },
   ],
@@ -573,6 +576,18 @@ const MAP = {
     { to: '/talent?tab=taiwan', label: '港澳台政要', note: '台海博弈关键政治人物节点与权力结构。' },
     { to: '/bri', label: '一带一路 · 全球南方', note: '南南合作与多边机制的舞台延伸。' },
     { to: '/modules/shijian/sj-24', label: '外交映射 · SJ-24', note: '边疆—军事力古今对照：朝贡秩序、军费财政、海洋压力轴。' },
+    { to: '/japan-lost-decades', label: '中日比较 · 失去的三十年', note: '静态对标之外的发展阶段对位。' },
+  ],
+  japanLostDecades: [
+    { to: '/econ-dashboard', label: '经济大盘 · 1–8 月读数', note: '中国侧当下切片：CPI/PPI、地产、社零、失业。' },
+    { to: '/modules/shijian-world/sjw-15', label: 'SJW-15 · 明治—战后日本发展型国家', note: '日本高增长前史：MITI 与安全伞。' },
+    { to: '/modules/shijian-world/sjw-16', label: 'SJW-16 · 布雷顿森林→广场协议', note: '广场协议与泡沫的货币锚接口。' },
+    { to: '/modules/shijian-world/sjw-23', label: 'SJW-23 · 发展型国家谱系矩阵', note: '日韩台与中国行的收入谱系对照。' },
+    { to: '/benchmark', label: '国际对标 · 中美日德', note: '静态横截面对标。' },
+    { to: '/middleincometrap', label: '中等收入陷阱', note: '未富先老与增长路径锁定。' },
+    { to: '/demographic', label: '人口结构', note: '负增长 · 老龄化 · 生育支持。' },
+    { to: '/housing', label: '住房地产', note: '地产周期与居民资产负债表。' },
+    { to: '/debt', label: '地方债务', note: '10 万亿化债与坏账处置速度。' },
   ],
   techtree: [
     { to: '/semiconductor', label: '半导体 · 卡脖子', note: '科技树最硬受制节点深潜。' },
@@ -1050,6 +1065,7 @@ const MAP = {
     { to: '/modules/shijian-world/sjw-15', label: 'SJW-15 · 日本发展型', note: '广场升值与国内金融接口。' },
     { to: '/modules/shijian-world/sjw-26', label: 'SJW-26 · 欧元', note: 'Round 6：后广场欧洲区域锚实验。' },
     { to: '/modules/shijian/sj-21', label: 'SJ-21 · 经济映射', note: '承诺—汲取同构；储备货币 vs 农本铸币——关键差异。' },
+    { to: '/japan-lost-decades', label: '中日比较 · 失去的三十年', note: '本卷下游：泡沫破裂后的九维对位与中国启示。' },
   ],
   shijianWorldSJW17: [
     { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
@@ -1058,6 +1074,7 @@ const MAP = {
     { to: '/modules/shijian-world/sjw-16', label: 'SJW-16 · 货币锚', note: '关联：债务周期外部项。' },
     { to: '/modules/shijian-world/sjw-25', label: 'SJW-25 · 拉美债务', note: 'Round 6：拉美行单案深描。' },
     { to: '/modules/shijian/sj-21', label: 'SJ-21 · 经济映射', note: '路径锁定同构；殖民切割 vs 郡县——关键差异。' },
+    { to: '/japan-lost-decades?tab=slices&dim=trade', label: '中日比较 · 贸易切片', note: '广场协议 vs 中美关税：相似机制与关键差异。' },
   ],
   shijianWorldSJW18: [
     { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },

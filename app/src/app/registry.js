@@ -897,6 +897,12 @@ export const MODULES = [
     accent: '#8b5cf6',
     component: lazy(() => import('../modules/jilinChangchun/Page.jsx')),
   },
+  {
+    id: 'japanLostDecades', path: '/japan-lost-decades', group: 'region',
+    title: '中日比较·失去的三十年', subtitle: '阶段对位 · 九维切片 · 日本化分叉', icon: 'GitCompare',
+    accent: '#e8a317',
+    component: lazy(() => import('../modules/japanLostDecades/Page.jsx')),
+  },
   { id: 'marine', path: '/marine', group: 'region', title: '海洋经济', subtitle: '海洋权益 · 船舶制造 · 深海开发', icon: 'Anchor', component: lazy(() => import('../modules/marine/Page.jsx')) },
   { id: 'polar', path: '/polar', group: 'region', title: '极地战略', subtitle: '北极航道 · 极地科考 · 资源博弈', icon: 'Snowflake', component: lazy(() => import('../modules/polar/Page.jsx')) },
   { id: 'resources', path: '/resources', group: 'region', title: '海外资源', subtitle: '权益矿山 · 航道安全 · 资源主权', icon: 'Pickaxe', component: lazy(() => import('../modules/resources/Page.jsx')) },
