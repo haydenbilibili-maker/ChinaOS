@@ -187,8 +187,8 @@ const MAP = {
     { to: '/debt', label: '地方债务 · 省际热力', note: '广义财政与化债方案。' },
     { to: '/consumption', label: '扩大内需 · 消费率', note: '内需不足与消费占 GDP 比重。' },
     { to: '/foreign-trade', label: '对外贸易 · 新三样', note: '外需与出口交货值领先指标。' },
-  ],
     { to: '/japan-lost-decades', label: '中日比较 · 失去的三十年', note: '平减指数连负三年 ↔ 日本 1990s 通缩固化的阶段对位。' },
+  ],
   econH1Review: [
     { to: '/econ-dashboard', label: '经济大盘 · 2026 H1', note: 'NBS 快照 + 金丝雀 + 三次产业。' },
     { to: '/econ-dashboard?tab=consume15', label: '十五五促消费 · 大盘 Tab', note: '对供强需弱的中期制度回应（全文嵌入）。' },
@@ -443,6 +443,7 @@ const MAP = {
     { to: '/cognition', label: '认知内核 · 康波', note: '长波周期与阶段窗口。' },
     { to: '/manufacturing', label: '制造业 · 位势跃迁', note: '跨越陷阱的产业锚点。' },
     { to: '/reform', label: '改革开放', note: '体制变革与增长动能。' },
+    { to: '/japan-lost-decades', label: '中日比较 · 失去的三十年', note: '未富先老 vs 日本富后老的阶段对位样本。' },
   ],
   antifragile: [
     { to: '/omnisecurity', label: '大安全观 · 冗余', note: '杠铃策略与生存确定性。' },
@@ -451,7 +452,6 @@ const MAP = {
   ],
   constructivism: [
     { to: '/diplomacy', label: '外交博弈 · 话语建构', note: '规范与认同的塑造。' },
-    { to: '/japan-lost-decades', label: '中日比较 · 失去的三十年', note: '未富先老 vs 日本富后老的阶段对位样本。' },
     { to: '/ideology', label: '意识形态', note: '叙事框架与身份认同。' },
     { to: '/realism', label: '现实主义', note: '建构主义与现实主义对照。' },
   ],
@@ -568,14 +568,6 @@ const MAP = {
     { to: '/manufacturing', label: '制造业 · 对标', note: '全球位势参照系。' },
     { to: '/regional', label: '区域协调', note: '省际竞争力排名。' },
     { to: '/infrastructure', label: '基础设施', note: '基建密度国际对照。' },
-  ],
-  diplomacy: [
-    { to: '/thucydides', label: '修昔底德陷阱 · 实力窗口', note: '大国关系定价锚与实力转移物理约束。' },
-    { to: '/gametheory', label: '博弈论 · 竞合均衡', note: '重复博弈与边缘政策的外交映射。' },
-    { to: '/talent?tab=diplomatic', label: '外交人才 · 驻外使节全图', note: '中国驻外大使/公使/总领事公开任职节点与全球驻节分布。' },
-    { to: '/talent?tab=taiwan', label: '港澳台政要', note: '台海博弈关键政治人物节点与权力结构。' },
-    { to: '/bri', label: '一带一路 · 全球南方', note: '南南合作与多边机制的舞台延伸。' },
-    { to: '/modules/shijian/sj-24', label: '外交映射 · SJ-24', note: '边疆—军事力古今对照：朝贡秩序、军费财政、海洋压力轴。' },
     { to: '/japan-lost-decades', label: '中日比较 · 失去的三十年', note: '静态对标之外的发展阶段对位。' },
   ],
   japanLostDecades: [
@@ -588,6 +580,14 @@ const MAP = {
     { to: '/demographic', label: '人口结构', note: '负增长 · 老龄化 · 生育支持。' },
     { to: '/housing', label: '住房地产', note: '地产周期与居民资产负债表。' },
     { to: '/debt', label: '地方债务', note: '10 万亿化债与坏账处置速度。' },
+  ],
+  diplomacy: [
+    { to: '/thucydides', label: '修昔底德陷阱 · 实力窗口', note: '大国关系定价锚与实力转移物理约束。' },
+    { to: '/gametheory', label: '博弈论 · 竞合均衡', note: '重复博弈与边缘政策的外交映射。' },
+    { to: '/talent?tab=diplomatic', label: '外交人才 · 驻外使节全图', note: '中国驻外大使/公使/总领事公开任职节点与全球驻节分布。' },
+    { to: '/talent?tab=taiwan', label: '港澳台政要', note: '台海博弈关键政治人物节点与权力结构。' },
+    { to: '/bri', label: '一带一路 · 全球南方', note: '南南合作与多边机制的舞台延伸。' },
+    { to: '/modules/shijian/sj-24', label: '外交映射 · SJ-24', note: '边疆—军事力古今对照：朝贡秩序、军费财政、海洋压力轴。' },
   ],
   techtree: [
     { to: '/semiconductor', label: '半导体 · 卡脖子', note: '科技树最硬受制节点深潜。' },
@@ -1057,6 +1057,7 @@ const MAP = {
     { to: '/modules/shijian-world/sjw-24', label: 'SJW-24 · 韩国', note: 'Round 6：财阀路径对照——关键差异。' },
     { to: '/modules/shijian-world/sjw-27', label: 'SJW-27 · 台湾对照', note: 'Round 6：SME/代工 vs 系列企业。' },
     { to: '/modules/shijian/sj-21', label: 'SJ-21 · 经济映射', note: '国家能力×产业学习对照——关键差异。' },
+    { to: '/japan-lost-decades', label: '中日比较 · 失去的三十年', note: '本卷下游：泡沫破裂后的九维对位与中国启示。' },
   ],
   shijianWorldSJW16: [
     { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
@@ -1065,7 +1066,7 @@ const MAP = {
     { to: '/modules/shijian-world/sjw-15', label: 'SJW-15 · 日本发展型', note: '广场升值与国内金融接口。' },
     { to: '/modules/shijian-world/sjw-26', label: 'SJW-26 · 欧元', note: 'Round 6：后广场欧洲区域锚实验。' },
     { to: '/modules/shijian/sj-21', label: 'SJ-21 · 经济映射', note: '承诺—汲取同构；储备货币 vs 农本铸币——关键差异。' },
-    { to: '/japan-lost-decades', label: '中日比较 · 失去的三十年', note: '本卷下游：泡沫破裂后的九维对位与中国启示。' },
+    { to: '/japan-lost-decades?tab=slices&dim=trade', label: '中日比较 · 贸易切片', note: '广场协议 vs 中美关税：相似机制与关键差异。' },
   ],
   shijianWorldSJW17: [
     { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
@@ -1074,7 +1075,6 @@ const MAP = {
     { to: '/modules/shijian-world/sjw-16', label: 'SJW-16 · 货币锚', note: '关联：债务周期外部项。' },
     { to: '/modules/shijian-world/sjw-25', label: 'SJW-25 · 拉美债务', note: 'Round 6：拉美行单案深描。' },
     { to: '/modules/shijian/sj-21', label: 'SJ-21 · 经济映射', note: '路径锁定同构；殖民切割 vs 郡县——关键差异。' },
-    { to: '/japan-lost-decades?tab=slices&dim=trade', label: '中日比较 · 贸易切片', note: '广场协议 vs 中美关税：相似机制与关键差异。' },
   ],
   shijianWorldSJW18: [
     { to: '/modules/shijian-world', label: 'SJW-00 · 世界总索引', note: '返回世界线 Hub。' },
