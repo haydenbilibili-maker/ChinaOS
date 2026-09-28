@@ -37,7 +37,7 @@ export default function FinanceTab() {
       <Card title="金融货币 · 指标快照">
         <div className="flex items-center justify-between gap-2 flex-wrap mb-3">
           <p className="text-xs m-0" style={{ color: 'var(--text-tertiary)' }}>
-            M2、社融与新增融资是「宽货币→宽信用→实体」传导链的关键节点——总量偏松但活化偏慢，是 2026 H1 主线之一。
+            M2、社融与新增融资是「宽货币→宽信用→实体」传导链的关键节点——总量偏松但活化偏慢，是 2026 年以来主线之一（8 月末 M2 +7.5%、社融存量 +7.2%，8 月新增贷款仅 600 亿元）。
           </p>
           <SourceBadge live={false} asOf={ECON_AS_OF} />
         </div>

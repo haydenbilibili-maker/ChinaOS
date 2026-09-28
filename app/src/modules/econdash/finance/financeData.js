@@ -16,8 +16,8 @@ export const FINANCE_AS_OF = AS_OF_BASELINE;
 
 /** 近八期月份标签（升序） */
 export const FINANCE_MONTHS = [
-  '2025-11', '2025-12', '2026-01', '2026-02',
-  '2026-03', '2026-04', '2026-05', '2026-06',
+  '2026-01', '2026-02', '2026-03', '2026-04',
+  '2026-05', '2026-06', '2026-07', '2026-08',
 ];
 
 // —— M2 同比：econData INDICATOR_SPARKLINES.m2 ——
@@ -63,15 +63,16 @@ export const CPI_PPI = {
 
 /**
  * 社融存量增速 + 社融脉冲（社融同比 − M2 同比，信用扩张超额 proxy）
- * 存量增速末值 8.4% 对齐 KEY_INDICATORS.afre；序列为人行公开口径近似。
+ * 末两期（2026-07 7.4% / 2026-08 7.2%）为人民银行官方值，对齐 KEY_INDICATORS.afre；前六期为公开口径近似。
  */
+const AFRE_YOY = [9.2, 8.9, 8.7, 8.5, 8.4, 8.4, 7.4, 7.2];
 export const AFRE_SERIES = {
   months: FINANCE_MONTHS,
-  yoy: [9.8, 9.5, 9.2, 8.9, 8.7, 8.5, 8.4, 8.4],
-  pulse: [9.8, 9.5, 9.2, 8.9, 8.7, 8.5, 8.4, 8.4].map((a, i) =>
+  yoy: AFRE_YOY,
+  pulse: AFRE_YOY.map((a, i) =>
     Math.round((a - M2_YOY[i]) * 10) / 10,
   ),
-  source: '人民银行 社融存量 · 近似（末值对齐 observationData.afre 8.4%）',
+  source: '人民银行 社融存量 · 末两期官方（2026-09-14 金融统计数据报告）· 前六期近似',
 };
 
 /**

@@ -131,7 +131,7 @@ export default function FinanceVizPanel() {
         <SectionShell
           id="price"
           title="物价传导 · CPI-PPI 剪刀差"
-          note="CPI 近零、PPI 深度负值——名义利率与实际利率剪刀差塑造金融条件，通缩压力带自我强化。"
+          note="CPI 低位（1–8 月 +0.9%）、PPI 8 月 +3.8% 转正但以输入性推升为主——上游涨价难向终端传导，CPI−PPI 负剪刀差挤压中下游利润。"
         >
           <ChartBlock option={opts.cpiPpi} height={280} label="物价传导载入中…" />
           <p className="text-[10px] mono mt-2" style={{ color: 'var(--text-tertiary)' }}>

@@ -230,7 +230,7 @@ export default function Page() {
             pillars: [
               ['首位度', '~53.5%'],
               ['百日行动', '工业稳生产'],
-              ['未决', 'H1 正式快报'],
+              ['H1 GDP', '+1.6%'],
             ],
           },
         ]}
@@ -294,13 +294,13 @@ export default function Page() {
         <Card title="结构压力雷达（示意分 · 越高压力越大）">
           <EChart option={radarOption} style={{ height: 300 }} />
           <p className="text-[11px] mt-2" style={{ color: 'var(--text-tertiary)' }}>
-            人口自然减少与土地财政退潮得分最高；固投因 2026 进度转正而相对下调——避免把年报一次性跌幅固化为「当前崩盘」。
+            工业与固投随 2026 年中进度急转为负而上调（1–7 月 −10.0% / −18.5%），与人口自然减少、土地财政退潮同处高压区；分值为示意，非官方评分。
           </p>
         </Card>
         <Card title="年报 vs 进度 · 工业 / 投资对照">
           <EChart option={trendOption} style={{ height: 300 }} />
           <p className="text-[11px] mt-2" style={{ color: 'var(--text-tertiary)' }}>
-            {TREND_COMPARE.note} 评论常用的「固投 −16.5%」是 2025 全年，不是 2026 H1。
+            {TREND_COMPARE.note} 评论最初引用的「固投 −16.5%」是 2025 全年；2026 年 1–6 月为 −16.4%、1–7 月为 −18.5%，进度读数已与之相当。
           </p>
         </Card>
       </Grid>

@@ -7,7 +7,7 @@ import {
 } from '../shared/chartHelpers.js';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
-import { INDICATOR_SPARKLINES, INCOME_DIST, econTabPath } from '../econdash/econData.js';
+import { ECON_DATA_AS_OF, INCOME_DIST, econTabPath } from '../econdash/econData.js';
 
 // ============================================================================
 // 半年经济解读 · 2026 H1（国家统计局 2026-07-15 发布上半年国民经济运行情况）
@@ -19,7 +19,7 @@ import { INDICATOR_SPARKLINES, INCOME_DIST, econTabPath } from '../econdash/econ
 // ============================================================================
 
 const DATA_AS_OF = '2026-07-15';
-const POLICY_MONITOR_AS_OF = '2026-07-16';
+const POLICY_MONITOR_AS_OF = '2026-08-31';
 const SRC = '国家统计局 2026-07-15 上半年国民经济运行情况新闻稿及附表';
 const SRC_CUSTOMS = '海关总署（与 NBS 新闻稿交叉引用）';
 /** 地产政策监测（不改 H1 数字）· 核验见 docs/econ/房地产消息核验-2026-07.md */
@@ -27,9 +27,28 @@ const HOUSING_POLICY_MONITOR = [
   ['北上限购', '误传监测', '「全面取消」无官方通稿；已核实为分区/分人群调减限购（京五环外、沪「沪七条」等）。'],
   ['信贷口径', '存疑', '无「地产信贷数量→质量」部委原话；可写白名单常态化 + 合规项目优先，勿与小微「质量优先」混读。'],
   ['大宗定位', '部分属实', '《扩大消费「十五五」规划》将住房消费写入「大宗耐用商品」——居住消费/扩内需，非投资品重启。'],
+  ['信贷制度', '已核实', '银发〔2026〕171 号（2026-08-28）：个人住房贷款期限最长 40 年；最低首付比例由人民银行会同金融监管总局确定，纳入宏观审慎逆周期调节——未直接给出新首付数字。'],
 ];
 
 const C = CHART_SERIES_COLORS;
+
+/** 价格链近八期（2025-11～2026-06，末点 = H1/6 月）· 冻结为 H1 口径，不随经济大盘月度滚动 */
+const PRICE_H1_SERIES = {
+  cpi: [-0.1, 0.1, 0.3, 0.5, 0.6, 0.8, 0.9, 1.0],
+  ppi: [-2.8, -2.6, -1.8, -0.6, 0.4, 1.5, 2.8, 4.1],
+};
+
+/** 最新进展对照（H1 数字不改；1–8 月取自 NBS 2026-09-15 / CPI·PPI 2026-09-09） */
+const LATEST_18 = [
+  ['规上工业增加值', '+5.4%', '+5.3%', '8 月当月 +5.2%，高技术制造 1–8 月 +14.2%'],
+  ['社会消费品零售总额', '+1.3%', '+1.1%', '8 月当月仅 +0.4%；服务零售 +4.9%'],
+  ['固定资产投资（不含农户）', '−5.7%', '−7.2%', '扣除地产 −4.2%，民间 −10.1%'],
+  ['房地产开发投资', '−18.0%', '−19.9%', '新房销售额 −13.0%，二手房网签面积 +10.6%'],
+  ['出口（人民币计）', '+13.4%', '+14.6%', '8 月当月 +18.6%，机电产品 +21.9%'],
+  ['CPI（累计同比）', '+1.0%', '+0.9%', '8 月当月 +0.8%，核心 CPI +1.0%'],
+  ['PPI（累计同比）', '+1.5%', '+2.0%', '8 月当月 +3.8%，输入性推升'],
+  ['城镇调查失业率（均值）', '5.2%', '5.2%', '8 月 5.3%；16–24 岁（不含在校生）18.9%'],
+];
 
 // —— 三驾马车（消费 / 投资 / 出口）——
 const ENGINES = [
@@ -278,8 +297,7 @@ export default function Page({ embedded = false } = {}) {
 
   // ④ 价格链：CPI vs PPI（近八期近似序列 + H1/6 月核实点）
   const priceOpt = useMemo(() => {
-    const cpi = INDICATOR_SPARKLINES.cpi || [];
-    const ppi = INDICATOR_SPARKLINES.ppi || [];
+    const { cpi, ppi } = PRICE_H1_SERIES;
     const cats = cpi.map((_, i) => `T-${cpi.length - 1 - i}`);
     cats[cats.length - 1] = 'H1/6月';
     return {
@@ -447,6 +465,36 @@ export default function Page({ embedded = false } = {}) {
         ))}
       </StatGrid>
 
+      <Card title={`最新进展 · 1–8 月对照（数据截至 ${ECON_DATA_AS_OF} · 不改下方 H1 统计）`} className="mb-8">
+        <p className="text-xs leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>
+          上半年的「供强需弱」在 7–8 月继续加深：工业与出口维持高位，社零、固投与地产投资降幅扩大；PPI 转正主要来自国际油价与有色的输入性推升，
+          而非终端需求回暖。三季度 GDP 约 10 月中旬发布，届时再更新 GDP 口径。
+        </p>
+        <div style={{ overflowX: 'auto' }}>
+          <table className="w-full text-xs" style={{ borderCollapse: 'collapse', color: 'var(--text-secondary)' }}>
+            <thead>
+              <tr style={{ color: 'var(--text-tertiary)', textAlign: 'left' }}>
+                <th scope="col" className="py-1.5 pr-3 font-normal">指标</th>
+                <th scope="col" className="py-1.5 pr-3 font-normal mono">H1</th>
+                <th scope="col" className="py-1.5 pr-3 font-normal mono">1–8 月</th>
+                <th scope="col" className="py-1.5 font-normal">8 月注记</th>
+              </tr>
+            </thead>
+            <tbody>
+              {LATEST_18.map(([k, h1, m8, n]) => (
+                <tr key={k} style={{ borderTop: '1px solid var(--border-subtle, rgba(255,255,255,0.06))' }}>
+                  <th scope="row" className="py-1.5 pr-3 font-normal text-left" style={{ color: 'var(--text-primary)' }}>{k}</th>
+                  <td className="py-1.5 pr-3 mono">{h1}</td>
+                  <td className="py-1.5 pr-3 mono" style={{ color: 'var(--text-primary)' }}>{m8}</td>
+                  <td className="py-1.5">{n}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <SourceLine>出处：国家统计局 2026-09-15《8月份国民经济运行平稳、发展向新向优》· CPI/PPI 2026-09-09 · 分年龄组失业率 2026-09-17 · 进出口：海关总署</SourceLine>
+      </Card>
+
       {/* —— 增长与产业 —— */}
       <Grid cols={2} className="mb-8">
         <Card title="① GDP 季度走势 · 同比柱 + 环比线" asSection={false}>
@@ -525,7 +573,7 @@ export default function Page({ embedded = false } = {}) {
             H1 CPI +1.0%、核心 +1.2%；PPI 累计 +1.5%、6 月当月 +4.1% 转正。上游回暖尚未充分传导至终端——「上热下冷」是内需偏弱的镜像。
           </ChartNote>
           <SourceLine>
-            核实点：CPI H1 +1.0% / PPI H1 +1.5% · 6 月 PPI +4.1%（{SRC}）；折线为 KEY_INDICATORS 近八期公开口径近似〔非逐月官方全序列〕
+            核实点：CPI H1 +1.0% / PPI H1 +1.5% · 6 月 PPI +4.1%（{SRC}）；折线为 H1 口径近八期公开近似〔非逐月官方全序列〕
           </SourceLine>
         </Card>
       </Grid>

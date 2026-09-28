@@ -78,12 +78,12 @@ export const NBS_LATEST = [
   // —— 科技口径并入产业 —— 研发经费
   { id: 'rd',          label: '研发经费（R&D）支出', group: '产业',     period: '2025年',   value: 3.69,   unit: '万亿元', yoy: 8.3,  source: '国家统计局', note: NOTE },
 
-  // —— 2026 年中月度值 ——（period '2026年X月'；对齐 2026-08-17 NBS 1–7 月发布窗口）
-  { id: 'cpiM',        label: '居民消费价格 CPI（当月同比）', group: '物价', period: '2026年7月', value: 0.5,  unit: '%',     yoy: null, source: '国家统计局', note: NOTE },
-  { id: 'ppiM',        label: '工业生产者出厂价 PPI（当月同比）', group: '物价', period: '2026年7月', value: 3.5, unit: '%',  yoy: null, source: '国家统计局', note: NOTE },
-  { id: 'pmiM',        label: '制造业采购经理指数 PMI', group: '产业',  period: '2026年7月', value: 49.2,  unit: '点',    yoy: null, source: '国家统计局', note: NOTE },
-  { id: 'retailM',     label: '社会消费品零售总额（当月同比）', group: '投资消费', period: '2026年7月', value: 0.6, unit: '%', yoy: null, source: '国家统计局', note: NOTE },
-  { id: 'indVAM',      label: '规上工业增加值（当月同比）', group: '产业', period: '2026年7月', value: 4.5, unit: '%',   yoy: null, source: '国家统计局', note: NOTE },
+  // —— 2026 年中月度值 ——（period '2026年X月'；对齐 2026-09-15 NBS 1–8 月发布窗口）
+  { id: 'cpiM',        label: '居民消费价格 CPI（当月同比）', group: '物价', period: '2026年8月', value: 0.8,  unit: '%',     yoy: null, source: '国家统计局', note: NOTE },
+  { id: 'ppiM',        label: '工业生产者出厂价 PPI（当月同比）', group: '物价', period: '2026年8月', value: 3.8, unit: '%',  yoy: null, source: '国家统计局', note: NOTE },
+  { id: 'pmiM',        label: '制造业采购经理指数 PMI', group: '产业',  period: '2026年8月', value: 49.8,  unit: '点',    yoy: null, source: '国家统计局', note: NOTE },
+  { id: 'retailM',     label: '社会消费品零售总额（当月同比）', group: '投资消费', period: '2026年8月', value: 0.4, unit: '%', yoy: null, source: '国家统计局', note: NOTE },
+  { id: 'indVAM',      label: '规上工业增加值（当月同比）', group: '产业', period: '2026年8月', value: 5.2, unit: '%',   yoy: null, source: '国家统计局', note: NOTE },
 
   // —— 2026 上半年（H1）——（period '2026年上半年'；2026-07-15 国家统计局发布；季报未更新前保留）
   { id: 'gdpH1',       label: 'GDP（上半年，实际同比）', group: '增长',     period: '2026年上半年', value: 4.7,  unit: '%',     yoy: null, source: '国家统计局', note: '上半年 695704 亿元；一季 5.0 / 二季 4.3 · 以国家统计局发布为准' },
@@ -96,14 +96,15 @@ export const NBS_LATEST = [
   { id: 'tradeH1',     label: '货物进出口总额（上半年）', group: '对外',   period: '2026年上半年', value: 25.47, unit: '万亿元', yoy: 16.9, source: '国家统计局', note: '出口 +13.4% / 进口 +22.1%（海关总署） · 以国家统计局发布为准' },
   { id: 'incomeH1',    label: '居民人均可支配收入（上半年，实际同比）', group: '就业', period: '2026年上半年', value: 4.2, unit: '%', yoy: null, source: '国家统计局', note: '22981 元，名义 +5.2% · 以国家统计局发布为准' },
 
-  // —— 2026 年 1–7 月 ——（period '2026年1-7月'；2026-08-17 国家统计局发布）
-  { id: 'indVA17',     label: '规上工业增加值（1–7 月同比）', group: '产业', period: '2026年1-7月', value: 5.3,  unit: '%',     yoy: null, source: '国家统计局', note: '7 月当月 +4.5%；装备制造 +9.7% · 高技术制造 +13.8% · 以国家统计局发布为准' },
-  { id: 'cpi17',       label: '居民消费价格 CPI（1–7 月同比）', group: '物价', period: '2026年1-7月', value: 0.9,  unit: '%',   yoy: null, source: '国家统计局', note: '7 月当月 +0.5%；核心 CPI +1.1% · 以国家统计局发布为准' },
-  { id: 'ppi17',       label: '工业生产者出厂价 PPI（1–7 月同比）', group: '物价', period: '2026年1-7月', value: 1.8, unit: '%', yoy: null, source: '国家统计局', note: '7 月当月 +3.5% · 以国家统计局发布为准' },
-  { id: 'unemp17',     label: '城镇调查失业率（1–7 月均值）', group: '就业', period: '2026年1-7月', value: 5.2,  unit: '%',   yoy: null, source: '国家统计局', note: '7 月当月 5.2%（季节性上升）· 以国家统计局发布为准' },
-  { id: 'fai17',       label: '固定资产投资（1–7 月同比）', group: '投资消费', period: '2026年1-7月', value: -6.7, unit: '%', yoy: null, source: '国家统计局', note: '扣除地产 −3.7%；地产开发投资 −19.2% · 以国家统计局发布为准' },
-  { id: 'retail17',    label: '社会消费品零售总额（1–7 月同比）', group: '投资消费', period: '2026年1-7月', value: 1.2, unit: '%', yoy: null, source: '国家统计局', note: '287744 亿元；服务零售 +5.0% · 以国家统计局发布为准' },
-  { id: 'trade17',     label: '货物进出口总额（1–7 月）', group: '对外',   period: '2026年1-7月', value: 30.13, unit: '万亿元', yoy: 17.3, source: '国家统计局', note: '出口 +14.0% / 进口 +22.0%（海关总署） · 以国家统计局发布为准' },
+  // —— 2026 年 1–8 月 ——（period '2026年1-8月'；2026-09-15 国家统计局发布）
+  { id: 'indVA18',     label: '规上工业增加值（1–8 月同比）', group: '产业', period: '2026年1-8月', value: 5.3,  unit: '%',     yoy: null, source: '国家统计局', note: '8 月当月 +5.2%；高技术制造 1–8 月 +14.2%（8 月 +16.7%）· 以国家统计局发布为准' },
+  { id: 'cpi18',       label: '居民消费价格 CPI（1–8 月同比）', group: '物价', period: '2026年1-8月', value: 0.9,  unit: '%',   yoy: null, source: '国家统计局', note: '8 月当月 +0.8%；核心 CPI +1.0% · 以国家统计局发布为准' },
+  { id: 'ppi18',       label: '工业生产者出厂价 PPI（1–8 月同比）', group: '物价', period: '2026年1-8月', value: 2.0, unit: '%', yoy: null, source: '国家统计局', note: '8 月当月 +3.8% · 以国家统计局发布为准' },
+  { id: 'unemp18',     label: '城镇调查失业率（1–8 月均值）', group: '就业', period: '2026年1-8月', value: 5.2,  unit: '%',   yoy: null, source: '国家统计局', note: '8 月当月 5.3%（季节性上升）· 以国家统计局发布为准' },
+  { id: 'fai18',       label: '固定资产投资（1–8 月同比）', group: '投资消费', period: '2026年1-8月', value: -7.2, unit: '%', yoy: null, source: '国家统计局', note: '扣除地产 −4.2%；地产开发投资 −19.9% · 以国家统计局发布为准' },
+  { id: 'retail18',    label: '社会消费品零售总额（1–8 月同比）', group: '投资消费', period: '2026年1-8月', value: 1.1, unit: '%', yoy: null, source: '国家统计局', note: '327569 亿元；服务零售 +4.9% · 以国家统计局发布为准' },
+  { id: 'svc18',       label: '服务业生产指数（1–8 月同比）', group: '产业', period: '2026年1-8月', value: 4.7, unit: '%', yoy: null, source: '国家统计局', note: '8 月当月 +4.1% · 以国家统计局发布为准' },
+  { id: 'trade18',     label: '货物进出口总额（1–8 月）', group: '对外',   period: '2026年1-8月', value: 34.78, unit: '万亿元', yoy: 17.6, source: '国家统计局', note: '出口 +14.6% / 进口 +22.0%（海关总署） · 以国家统计局发布为准' },
 ];
 
 const FETCH_TIMEOUT_MS = 8000; // 8s 超时（任务约定）

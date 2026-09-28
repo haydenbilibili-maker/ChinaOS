@@ -55,7 +55,7 @@ export const MODULES = [
   },
   {
     id: 'econdash', path: '/econ-dashboard', group: 'home',
-    title: '经济大盘', subtitle: '三次产业 · 金丝雀 · 2026 H1', icon: 'LineChart',
+    title: '经济大盘', subtitle: '三次产业 · 金丝雀 · 2026 年 1–8 月', icon: 'LineChart',
     component: lazy(() => import('../modules/econdash/Page.jsx')),
   },
   {
