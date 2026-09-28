@@ -7,7 +7,8 @@ import { existsSync, readdirSync, statSync } from 'fs';
 import { dirname, join, resolve } from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { MODULES } from '../app/src/app/registry.js';
-import { STANCE_ISSUES } from '../app/src/modules/scholars/schema.js';
+import { STANCE_ISSUES, STANCE_GROUPS, SCHOLARS, SCHOLAR_DOMAINS } from '../app/src/modules/scholars/schema.js';
+import { STANCES_BY_SCHOLAR } from '../app/src/modules/scholars/stancesIndex.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const BASE = join(ROOT, 'app/src/modules/scholars');
@@ -128,6 +129,17 @@ for (const dir of dirs) {
   errs.forEach((e) => console.error(`  FAIL ${e}`));
   failures += errs.length;
 }
+
+const domainIds = new Set(SCHOLAR_DOMAINS.map((d) => d.id));
+const rosterErrs = [];
+STANCE_ISSUES.forEach((i) => { if (!STANCE_GROUPS[i.group]) rosterErrs.push(`议题 ${i.id} 未知 group ${i.group}`); });
+for (const s of SCHOLARS.filter((x) => x.status === 'live')) {
+  if (!domainIds.has(s.domain)) rosterErrs.push(`名册 ${s.id} 未知 domain ${s.domain}`);
+  if (!ROUTES.has(s.route)) rosterErrs.push(`名册 ${s.id} 路由未注册 ${s.route}`);
+  if (!STANCES_BY_SCHOLAR[s.id]) rosterErrs.push(`名册 ${s.id} 未汇入 stancesIndex`);
+}
+rosterErrs.forEach((e) => console.error(`  FAIL ${e}`));
+failures += rosterErrs.length;
 
 console.log(`Scholars: ${dirs.length} dirs · ${failures} failures`);
 process.exit(failures ? 1 : 0);

@@ -79,7 +79,7 @@ export function ClaimList({ claims }) {
   );
 }
 
-export function LedgerBoard({ items }) {
+export function LedgerBoard({ items, srcLabel = '对照数据' }) {
   const cols = ['done', 'failed', 'open'];
   return (
     <Grid cols={3}>
@@ -105,7 +105,7 @@ export function LedgerBoard({ items }) {
                       : it.venue}
                   </p>
                   <p className="text-[12px] leading-relaxed m-0" style={textStyle}>{it.check}</p>
-                  <p className="text-[10px] leading-relaxed m-0 mt-1" style={subtle}>对照数据：{it.dataSrc}</p>
+                  <p className="text-[10px] leading-relaxed m-0 mt-1" style={subtle}>{srcLabel}：{it.dataSrc}</p>
                 </article>
               ))}
             </div>

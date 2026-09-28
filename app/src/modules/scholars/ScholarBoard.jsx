@@ -44,6 +44,10 @@ export default function ScholarBoard({ data: D }) {
   const devOpt = useMemo(() => (NUMERIC_CHECKS.length ? numericDeviationOption(D) : null), [D, NUMERIC_CHECKS.length]);
   const graphOpt = useMemo(() => frameworkGraphOption(D), [D]);
 
+  const propMode = BOARD.ledgerMode === 'proposition';
+  const tabs = propMode
+    ? SCHOLAR_TABS.map((t) => (t.id === 'ledger' ? { ...t, label: '命题检验台账' } : t))
+    : SCHOLAR_TABS;
   const ledgerCount = (s) => LEDGER.filter((l) => l.status === s).length;
   const featured = FEATURED.map((id) => QUOTES.find((q) => q.id === id)).filter(Boolean);
   const themeClaims = CLAIMS.filter((c) => c.theme === theme);
@@ -66,11 +70,12 @@ export default function ScholarBoard({ data: D }) {
       <IntroCard>
         {PROFILE.summary}本看板把其 {BOARD.span} 年的著作、讲话与文章按 {THEME_KEYS.length} 个领域整理，
         区分<strong style={{ color: 'var(--fire-gold)' }}>原话</strong>（出处可见的逐字引文）与
-        <strong style={{ color: 'var(--text-primary)' }}>转述</strong>（本站概括，不加引号），并把可被数据检验的前瞻性表述放入
+        <strong style={{ color: 'var(--text-primary)' }}>转述</strong>（本站概括，不加引号），并把
+        {propMode ? '核心理论命题与实际制度演进对照，' : '可被数据检验的前瞻性表述'}放入
         「已兑现 / 已失败 / 未决」三列台账。网传托名言论未见可靠出处者一律不收录。
       </IntroCard>
 
-      <TabBar tabs={SCHOLAR_TABS} value={tab} onChange={(id) => setParam('tab', id)} />
+      <TabBar tabs={tabs} value={tab} onChange={(id) => setParam('tab', id)} />
 
       {tab === 'overview' && (
         <>
@@ -79,7 +84,7 @@ export default function ScholarBoard({ data: D }) {
             <Stat value={COUNTS.paraphrase} label="转述条目" sub="概括 · 不加引号" />
             <Stat value={COUNTS.corpus} label="讲话/文章" sub={`${corpusYears[0]}—${corpusYears[corpusYears.length - 1]} 文库`} accent="var(--cyber-cyan)" />
             <Stat value={COUNTS.books} label="著作" sub={doubtBooks ? `另 ${doubtBooks} 部〔存疑〕` : '书名 / 出版社 / 年份已核'} accent="var(--cyber-cyan)" />
-            <Stat value={`${ledgerCount('done')} / ${ledgerCount('failed')} / ${ledgerCount('open')}`} label="台账 兑现/失败/未决" sub="可检验预判" accent="var(--china-red)" />
+            <Stat value={`${ledgerCount('done')} / ${ledgerCount('failed')} / ${ledgerCount('open')}`} label="台账 兑现/失败/未决" sub={propMode ? '命题 vs 制度演进' : '可检验预判'} accent="var(--china-red)" />
           </StatGrid>
 
           <Grid cols={{ default: 1, lg: 2 }} className="mb-8">
@@ -145,10 +150,20 @@ export default function ScholarBoard({ data: D }) {
       {tab === 'ledger' && (
         <>
           <IntroCard className="mb-6">
-            台账只收录「可被数据或事实检验」的前瞻性表述，对照数据截至 {AS_OF}。检验窗口尚未结束或官方未公布可比数据者一律归入「未决」，
-            不做虚假收束；依赖当事人自述口径的「已兑现」条目会在说明中注明。
+            {propMode ? (
+              <>
+                政治学者少有带时间窗口的数值预判，本台账改为「命题检验」：把其核心理论命题或明确的前瞻性推论，与截至 {AS_OF} 的实际制度演进
+                （党章与宪法修订、中央全会决定、中办国办文件、官方统计）逐条对照。「已兑现」仅指制度走向与命题一致，不代表因果归功于本人；
+                难以证伪或仍在演进者一律归入「未决」，不做虚假收束。
+              </>
+            ) : (
+              <>
+                台账只收录「可被数据或事实检验」的前瞻性表述，对照数据截至 {AS_OF}。检验窗口尚未结束或官方未公布可比数据者一律归入「未决」，
+                不做虚假收束；依赖当事人自述口径的「已兑现」条目会在说明中注明。
+              </>
+            )}
           </IntroCard>
-          <div className="mb-8"><LedgerBoard items={LEDGER} /></div>
+          <div className="mb-8"><LedgerBoard items={LEDGER} srcLabel={propMode ? '对照依据' : '对照数据'} /></div>
 
           {devOpt && (
             <Card title="数字口径对照 · 公开表述 vs 官方统计" className="mb-6">

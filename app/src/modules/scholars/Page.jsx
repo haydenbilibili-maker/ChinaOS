@@ -2,7 +2,9 @@ import React from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { PageHeader, Card, Grid } from '../../app/ui.jsx';
 import { IntroCard, SelectorBar, ModuleFooter } from '../shared/ModuleParadigm.jsx';
-import { SCHOLARS, SCHOLAR_TABS, VERIFY_META, STANCE_ISSUES } from './schema.js';
+import {
+  SCHOLARS, SCHOLAR_TABS, VERIFY_META, STANCE_ISSUES, STANCE_GROUPS, SCHOLAR_DOMAINS,
+} from './schema.js';
 import { STANCES_BY_SCHOLAR } from './stancesIndex.js';
 import {
   Prose, SourceLine, TypeBadge, VerifyBadge, subtle, textStyle,
@@ -14,7 +16,16 @@ import {
 // 须有场合 + 日期 + 出处；无可核验表态则留空，不推测。
 // ============================================================================
 
-const LIVE = SCHOLARS.filter((s) => s.status === 'live');
+const DOMAIN_ORDER = SCHOLAR_DOMAINS.map((d) => d.id);
+const LIVE = SCHOLARS
+  .filter((s) => s.status === 'live')
+  .sort((a, b) => DOMAIN_ORDER.indexOf(a.domain) - DOMAIN_ORDER.indexOf(b.domain));
+const LIVE_DOMAINS = SCHOLAR_DOMAINS
+  .map((d) => ({ ...d, members: LIVE.filter((s) => s.domain === d.id) }))
+  .filter((d) => d.members.length);
+const ISSUE_GROUPS = Object.entries(STANCE_GROUPS)
+  .map(([id, g]) => ({ id, ...g, issues: STANCE_ISSUES.filter((i) => i.group === id) }))
+  .filter((g) => g.issues.length);
 
 function ScholarCard({ s }) {
   const live = s.status === 'live';
@@ -44,12 +55,53 @@ function ScholarCard({ s }) {
     : <div aria-label="待建学者席位">{body}</div>;
 }
 
+function IssueRow({ issue, active, onSelect }) {
+  return (
+    <tr
+      style={{
+        borderTop: '1px solid var(--border-subtle, rgba(148,163,184,0.1))',
+        background: active ? 'var(--bg-elevated)' : 'transparent',
+      }}
+    >
+      <th scope="row" className="py-2 pr-3 font-normal text-left whitespace-nowrap">
+        <button
+          type="button"
+          onClick={() => onSelect(issue.id)}
+          className="bg-transparent border-0 p-0 cursor-pointer text-xs"
+          style={{ color: active ? 'var(--fire-gold)' : 'var(--text-primary)' }}
+          aria-pressed={active}
+        >
+          {issue.label}
+        </button>
+      </th>
+      {LIVE.map((s) => {
+        const st = STANCES_BY_SCHOLAR[s.id]?.[issue.id];
+        return (
+          <td key={s.id} className="py-2 px-1.5 text-center" title={st ? `${s.name}：${st.stance}` : `${s.name}：未见可核验表态`}>
+            {st
+              ? <span style={{ color: st.type === '原话' ? 'var(--fire-gold)' : 'var(--cyber-cyan)' }}>{st.type === '原话' ? '●' : '○'}</span>
+              : <span style={subtle}>·</span>}
+          </td>
+        );
+      })}
+    </tr>
+  );
+}
+
 function CoverageMatrix({ activeIssue, onSelect }) {
   return (
     <div className="os-table-scroll">
       <table className="w-full text-xs" style={{ borderCollapse: 'collapse', color: 'var(--text-secondary)' }}>
         <caption className="sr-only">议题 × 学者 表态覆盖矩阵</caption>
         <thead>
+          <tr style={{ ...subtle, textAlign: 'center' }}>
+            <td aria-hidden="true" />
+            {LIVE_DOMAINS.map((d) => (
+              <th key={d.id} scope="colgroup" colSpan={d.members.length} className="pt-1 pb-1 px-1.5 font-normal text-[10px] whitespace-nowrap" style={{ borderBottom: '1px solid var(--border-subtle, rgba(148,163,184,0.25))', borderLeft: '1px solid var(--border-subtle, rgba(148,163,184,0.15))' }}>
+                {d.label}
+              </th>
+            ))}
+          </tr>
           <tr style={{ ...subtle, textAlign: 'center' }}>
             <th scope="col" className="py-2 pr-3 font-normal text-left">议题</th>
             {LIVE.map((s) => (
@@ -59,42 +111,18 @@ function CoverageMatrix({ activeIssue, onSelect }) {
             ))}
           </tr>
         </thead>
-        <tbody>
-          {STANCE_ISSUES.map((issue) => {
-            const active = issue.id === activeIssue;
-            return (
-              <tr
-                key={issue.id}
-                style={{
-                  borderTop: '1px solid var(--border-subtle, rgba(148,163,184,0.1))',
-                  background: active ? 'var(--bg-elevated)' : 'transparent',
-                }}
-              >
-                <th scope="row" className="py-2 pr-3 font-normal text-left whitespace-nowrap">
-                  <button
-                    type="button"
-                    onClick={() => onSelect(issue.id)}
-                    className="bg-transparent border-0 p-0 cursor-pointer text-xs"
-                    style={{ color: active ? 'var(--fire-gold)' : 'var(--text-primary)' }}
-                    aria-pressed={active}
-                  >
-                    {issue.label}
-                  </button>
-                </th>
-                {LIVE.map((s) => {
-                  const st = STANCES_BY_SCHOLAR[s.id]?.[issue.id];
-                  return (
-                    <td key={s.id} className="py-2 px-1.5 text-center" title={st ? `${s.name}：${st.stance}` : `${s.name}：未见可核验表态`}>
-                      {st
-                        ? <span style={{ color: st.type === '原话' ? 'var(--fire-gold)' : 'var(--cyber-cyan)' }}>{st.type === '原话' ? '●' : '○'}</span>
-                        : <span style={subtle}>·</span>}
-                    </td>
-                  );
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
+        {ISSUE_GROUPS.map((g) => (
+          <tbody key={g.id}>
+            <tr>
+              <th scope="rowgroup" colSpan={LIVE.length + 1} className="pt-3 pb-1 font-normal text-left text-[10px] tracking-wide" style={{ color: 'var(--fire-gold)' }}>
+                {g.label}
+              </th>
+            </tr>
+            {g.issues.map((issue) => (
+              <IssueRow key={issue.id} issue={issue} active={issue.id === activeIssue} onSelect={onSelect} />
+            ))}
+          </tbody>
+        ))}
       </table>
     </div>
   );
@@ -144,24 +172,34 @@ export default function Page() {
       />
 
       <IntroCard>
-        专栏以「一人一看板」整理中国经济学、社会学与国际关系学者（及学者型官员）的公开著作、讲话与署名文章，
-        对齐本站经济大盘、住房地产、地方债务、人口结构等模块的数据，检验其判断与现实的吻合度。
-        人选覆盖宏观金融、发展与制度经济学、人口民生、三农与基层治理、政治经济学、国际关系与社会学，并刻意纳入彼此存在公开分歧的组合，
-        以形成可对照的思想光谱。每条内容标注场合、日期与媒体/著作，区分原话与转述；网络流传的托名言论未经核实不收录。
+        专栏以「一人一看板」整理中国经济学、政治学、社会学与国际关系学者（及学者型官员）的公开著作、讲话与署名文章，
+        对齐本站经济大盘、地方债务、权力逻辑、国家治理、政府体制等模块的数据与制度文本，检验其判断与现实的吻合度。
+        人选分「经济与民生」「政治与治理」「国际与社会」三组：政治组覆盖国家治理与民主、国家能力、中华体制论、政治发展道路、新权威主义、
+        田野政治学、治理的制度逻辑与党政关系等路径，并刻意纳入彼此存在公开分歧的组合，以形成可对照的思想光谱。
+        每条内容标注场合、日期与媒体/著作，区分原话与转述；网络流传的托名言论未经核实不收录。
       </IntroCard>
 
       <Card title="学者名册">
-        <Grid cols={{ default: 1, md: 2, xl: 3 }}>
-          {SCHOLARS.map((s) => <ScholarCard key={s.id} s={s} />)}
-        </Grid>
+        {LIVE_DOMAINS.map((d) => (
+          <section key={d.id} className="mb-6 last:mb-0" aria-label={d.label}>
+            <div className="flex flex-wrap items-baseline gap-2 mb-3">
+              <h3 className="text-sm font-semibold m-0" style={{ color: 'var(--fire-gold)' }}>{d.label}</h3>
+              <span className="text-[11px]" style={subtle}>{d.members.length} 位 · {d.note}</span>
+            </div>
+            <Grid cols={{ default: 1, md: 2, xl: 3 }}>
+              {d.members.map((s) => <ScholarCard key={s.id} s={s} />)}
+            </Grid>
+          </section>
+        ))}
         <p className="text-[11px] mt-4 leading-relaxed" style={subtle}>
-          名册顺序为上线次序，不代表评价或排序；人选理由与取舍见专栏文档 roster.md。
+          组内顺序为上线次序，不代表评价或排序；人选理由与取舍见专栏文档 roster.md。
         </p>
       </Card>
 
       <Card title="思想光谱 · 议题 × 学者对照矩阵" className="mb-6">
         <Prose className="mb-4">
-          七个关键议题上各学者的公开立场。<span style={{ color: 'var(--fire-gold)' }}>●</span> 有逐字原话，
+          {STANCE_ISSUES.length} 个关键议题（经济与社会 {ISSUE_GROUPS.find((g) => g.id === 'econ')?.issues.length ?? 0} 项、政治与治理 {ISSUE_GROUPS.find((g) => g.id === 'politics')?.issues.length ?? 0} 项）上各学者的公开立场。
+          <span style={{ color: 'var(--fire-gold)' }}>●</span> 有逐字原话，
           <span style={{ color: 'var(--cyber-cyan)' }}>○</span> 为本站转述，· 为未见可核验表态（留空，不推测）。
           当前共 {cellCount} 格有出处。点击议题查看每位学者的立场摘要与出处。
         </Prose>

@@ -29,4 +29,10 @@ export const STANCES = {
     type: '转述', date: '2024-11-29', venue: '应对农村老龄化的中国方案', source: '新乡土公众号（昆仑策网转载）',
     url: 'https://www.kunlunce.com/gcjy/zxzz111/2024-11-29/182883.html', verified: 'reprint',
   },
+  bureaucracy: {
+    stance: '基层形式主义源于把战略方向分解为量化指标、以条线考核对标，主张给一线因地制宜空间',
+    type: '原话', quote: '上面不仅千条线伸向基层而且千把刀砍向基层',
+    date: '2024-08-24', venue: '基层形式主义背后的工作方法问题：规划院还是试验田？', source: '红歌会网转载',
+    url: 'https://www.szhgh.com/Article/opinion/xuezhe/2024-08-24/358417.html', verified: 'reprint',
+  },
 };

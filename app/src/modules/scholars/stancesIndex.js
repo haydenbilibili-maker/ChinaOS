@@ -9,6 +9,14 @@ import { STANCES as caiFang } from './caiFang/stances.js';
 import { STANCES as zhouLian } from './zhouLian/stances.js';
 import { STANCES as yanXuetong } from './yanXuetong/stances.js';
 import { STANCES as xiangBiao } from './xiangBiao/stances.js';
+import { STANCES as yuKeping } from './yuKeping/stances.js';
+import { STANCES as wangShaoguang } from './wangShaoguang/stances.js';
+import { STANCES as yangGuangbin } from './yangGuangbin/stances.js';
+import { STANCES as panWei } from './panWei/stances.js';
+import { STANCES as xiaoGongqin } from './xiaoGongqin/stances.js';
+import { STANCES as xuYong } from './xuYong/stances.js';
+import { STANCES as zhouXueguang } from './zhouXueguang/stances.js';
+import { STANCES as jingYuejin } from './jingYuejin/stances.js';
 
 /** key = SCHOLARS[].id */
 export const STANCES_BY_SCHOLAR = {
@@ -22,4 +30,12 @@ export const STANCES_BY_SCHOLAR = {
   'zhou-li-an': zhouLian,
   'yan-xuetong': yanXuetong,
   'xiang-biao': xiangBiao,
+  'yu-keping': yuKeping,
+  'wang-shaoguang': wangShaoguang,
+  'yang-guangbin': yangGuangbin,
+  'pan-wei': panWei,
+  'xiao-gongqin': xiaoGongqin,
+  'xu-yong': xuYong,
+  'zhou-xueguang': zhouXueguang,
+  'jing-yuejin': jingYuejin,
 };

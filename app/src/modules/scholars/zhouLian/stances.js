@@ -17,6 +17,18 @@ export const STANCES = {
     type: '转述', date: '2015-04', venue: 'NBER WP 21112 · Demystifying the Chinese Housing Boom（合著）', source: 'NBER',
     url: 'https://www.nber.org/books-and-chapters/nber-macroeconomics-annual-2015-volume-30/demystifying-chinese-housing-boom', verified: 'primary',
   },
+  centralLocal: {
+    stance: '行政发包制：科层外壳下的分封与包干，属地管理、结果考核，上级点菜下级买单',
+    type: '原话', quote: '更为关键的是，对于上级指定的任务目标，下级政府通常需要全力调动自身的财政和其他资源去完成，经常的情况是“中央请客，地方买单”或“上级点菜，下级买单”。',
+    date: '2014-11', venue: '《行政发包制》，《社会》2014 年第 34 卷第 6 期，第 1—38 页', source: '《社会》编辑部官网',
+    url: 'https://www.society.shu.edu.cn/cn/y2014/v34/i6/1', verified: 'primary',
+  },
+  bureaucracy: {
+    stance: '晋升锦标赛驱动官员为增长而竞争，但运动员与裁判员角色冲突，零和博弈带来扭曲',
+    type: '原话', quote: '晋升锦标赛使得地方官员是地区间晋升博弈的运动员，同时政府职能要求他们又必须是辖区内市场经济的裁判员，这两者存在内在的角色冲突，政府职能转换之艰难便源于此。',
+    date: '2007-07', venue: '《中国地方官员的晋升锦标赛模式研究》，《经济研究》2007 年第 7 期，第 36—50 页', source: '《经济研究》（爱思想全文转载）',
+    url: 'https://www.aisixiang.com/data/18217.html', verified: 'primary',
+  },
   land: {
     stance: '合著研究：市领导晋升激励越强，城市建成区向外扩张越快，并有扭曲迹象',
     type: '转述', date: '2020', venue: 'Career Incentives of City Leaders and Urban Spatial Expansion in China（REStat，合著）', source: 'The Review of Economics and Statistics',
