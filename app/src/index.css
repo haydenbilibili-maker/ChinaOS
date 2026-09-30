@@ -2954,7 +2954,8 @@ textarea:focus-visible {
   .os-tab-bar::-webkit-scrollbar {
     display: none;
   }
-  .os-tab-item {
+  .os-tab-item,
+  .os-tab-bar > .os-filter-chip {
     white-space: nowrap;
     flex-shrink: 0;
   }

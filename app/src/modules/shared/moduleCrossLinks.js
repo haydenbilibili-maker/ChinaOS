@@ -209,6 +209,7 @@ const MAP = {
     { to: '/scholars/huang-qifan?tab=ledger', label: '学者专栏 · 黄奇帆预判台账', note: '顺差、关税、卖地收入等表述与 1–8 月读数对照。' },
     { to: '/scholars/yu-yongding?tab=ledger', label: '学者专栏 · 余永定 · 通缩与财政台账', note: '扩张性财政与平减指数判断对照 1–8 月读数。' },
     { to: '/scholars/lin-yifu?tab=ledger', label: '学者专栏 · 林毅夫 · 增长潜力台账', note: '增长潜力预测与实际增速对照。' },
+    { to: '/vietnam-compare', label: '中越比较研究 · 阶段对位', note: '越南 2026 ≈ 中国 2015–2018：出口导向与外资依赖的后发镜像。' },
   ],
   econH1Review: [
     { to: '/econ-dashboard', label: '经济大盘 · 2026 H1', note: 'NBS 快照 + 金丝雀 + 三次产业。' },
@@ -331,11 +332,13 @@ const MAP = {
     { to: '/reform', label: '改革开放 · 入世红利', note: '外贸依存度峰值与回落。' },
     { to: '/bri', label: '一带一路', note: '贸易通道的陆海延伸。' },
     { to: '/marine', label: '海洋经济 · 航运', note: '海运通道与造船能力。' },
+    { to: '/vietnam-compare?tab=slices&dim=trade', label: '中越比较 · 贸易切片', note: '中国供给—越南组装—美国市场的三角贸易与转运审查。' },
   ],
   supplychain: [
     { to: '/omnisecurity', label: '大安全观 · 生存冗余', note: '供应链备份与国产替代。' },
     { to: '/semiconductor', label: '半导体 · 卡脖子', note: '关键节点的断供风险。' },
     { to: '/materials', label: '关键材料 · 替代', note: '上游材料的韧性建设。' },
+    { to: '/vietnam-compare?tab=lessons', label: '中越比较 · 竞争互补', note: '中国+1 产业转移的行业级竞争/互补台账。' },
   ],
   hydrogen: [
     { to: '/energy', label: '能源 · 绿电制氢', note: '非化石能源的储运载体。' },
@@ -472,6 +475,7 @@ const MAP = {
     { to: '/reform', label: '改革开放', note: '体制变革与增长动能。' },
     { to: '/japan-lost-decades', label: '中日比较 · 失去的三十年', note: '未富先老 vs 日本富后老的阶段对位样本。' },
     { to: '/scholars/lin-yifu?tab=ledger', label: '学者专栏 · 林毅夫 · 新结构经济学', note: '高收入门槛时点预测与世行分组对照；后发优势与跨越中等收入陷阱。' },
+    { to: '/vietnam-compare', label: '中越比较研究', note: '越南 2026-07 升入中高收入：同一陷阱门槛前的两条路径。' },
   ],
   antifragile: [
     { to: '/omnisecurity', label: '大安全观 · 冗余', note: '杠铃策略与生存确定性。' },
@@ -607,6 +611,7 @@ const MAP = {
     { to: '/regional', label: '区域协调', note: '省际竞争力排名。' },
     { to: '/infrastructure', label: '基础设施', note: '基建密度国际对照。' },
     { to: '/japan-lost-decades', label: '中日比较 · 失去的三十年', note: '静态对标之外的发展阶段对位。' },
+    { to: '/vietnam-compare', label: '中越比较研究', note: '同为列宁主义党国 + 市场化转型的后发对位样本。' },
   ],
   japanLostDecades: [
     { to: '/econ-dashboard', label: '经济大盘 · 1–8 月读数', note: '中国侧当下切片：CPI/PPI、地产、社零、失业。' },
@@ -621,6 +626,20 @@ const MAP = {
     { to: '/scholars/huang-qifan', label: '学者专栏 · 黄奇帆', note: '房价收入比、顺差再平衡等国内学者型官员的对策视角。' },
     { to: '/scholars/yu-yongding?tab=views&theme=growth', label: '学者专栏 · 余永定', note: '通缩风险与财政扩张主张。' },
     { to: '/scholars/cai-fang?tab=views&theme=demography', label: '学者专栏 · 蔡昉', note: '人口转变与长期增长约束。' },
+    { to: '/vietnam-compare', label: '中越比较研究', note: '同一套阶段对位方法：日本是前车，越南是后来者。' },
+  ],
+  vietnamCompare: [
+    { to: '/japan-lost-decades', label: '中日比较 · 失去的三十年', note: '同框架的另一面：中国作为后来者对位日本。' },
+    { to: '/econ-dashboard', label: '经济大盘 · 1–8 月读数', note: '中国侧当下切片：增速、出口、平减指数。' },
+    { to: '/benchmark', label: '国际对标 · 中美日德', note: '静态横截面对标。' },
+    { to: '/middleincometrap', label: '中等收入陷阱', note: '越南升入中高收入后的门槛与中国的跨越进度。' },
+    { to: '/foreign-trade', label: '对外贸易 · 转口与关税', note: '中国对越出口与美国对越 301 关税的传导。' },
+    { to: '/supplychain', label: '供应链 · 中国+1', note: '产业转移与链主控制权。' },
+    { to: '/diplomacy', label: '外交 · 周边', note: '中越全面战略合作伙伴关系与命运共同体。' },
+    { to: '/modules/heshan/reform', label: '河山 · 改革开放', note: '中国 1978 起点的制度演进前史。' },
+    { to: '/modules/shijian-world/sjw-29', label: 'SJW-29 · 东南亚四小虎', note: '东南亚后发工业化谱系与中等收入停滞。' },
+    { to: '/scholars/xiao-gongqin?tab=views&theme=chinamodel', label: '学者专栏 · 萧功秦 · 中国—越南模式', note: '威权发展与渐进转型的比较视角。' },
+    { to: '/scholars/yan-xuetong?tab=views&theme=strait', label: '学者专栏 · 阎学通', note: '2026 年访越观察与周边外交判断。' },
   ],
   scholars: [
     { to: '/scholars/huang-qifan', label: '黄奇帆 · 观点看板', note: '人地钱房 · 产业开放 · 贸易格局 · 预判台账。' },
@@ -788,6 +807,7 @@ const MAP = {
     { to: '/modules/shijian/sj-24', label: '外交映射 · SJ-24', note: '边疆—军事力古今对照：朝贡秩序、军费财政、海洋压力轴。' },
     { to: '/scholars/yan-xuetong?tab=views&theme=diplomacy', label: '学者专栏 · 阎学通 · 道义现实主义', note: '中美两极化判断与预判台账。' },
     { to: '/scholars?issue=usChina', label: '学者专栏 · 中美关系光谱', note: '国关学者与经济学者判断对照。' },
+    { to: '/vietnam-compare?tab=slices&dim=diplomacy', label: '中越比较 · 外交切片', note: '竹子外交、全面战略伙伴网络与南海划界。' },
   ],
   techtree: [
     { to: '/semiconductor', label: '半导体 · 卡脖子', note: '科技树最硬受制节点深潜。' },

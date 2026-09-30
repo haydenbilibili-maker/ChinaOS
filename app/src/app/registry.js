@@ -904,6 +904,12 @@ export const MODULES = [
     accent: '#e8a317',
     component: lazy(() => import('../modules/japanLostDecades/Page.jsx')),
   },
+  {
+    id: 'vietnamCompare', path: '/vietnam-compare', group: 'region',
+    title: '中越比较研究', subtitle: '阶段对位 · 九维切片 · 竞争互补', icon: 'ArrowLeftRight',
+    accent: '#e8a317',
+    component: lazy(() => import('../modules/vietnamCompare/Page.jsx')),
+  },
   { id: 'marine', path: '/marine', group: 'region', title: '海洋经济', subtitle: '海洋权益 · 船舶制造 · 深海开发', icon: 'Anchor', component: lazy(() => import('../modules/marine/Page.jsx')) },
   { id: 'polar', path: '/polar', group: 'region', title: '极地战略', subtitle: '北极航道 · 极地科考 · 资源博弈', icon: 'Snowflake', component: lazy(() => import('../modules/polar/Page.jsx')) },
   { id: 'resources', path: '/resources', group: 'region', title: '海外资源', subtitle: '权益矿山 · 航道安全 · 资源主权', icon: 'Pickaxe', component: lazy(() => import('../modules/resources/Page.jsx')) },
