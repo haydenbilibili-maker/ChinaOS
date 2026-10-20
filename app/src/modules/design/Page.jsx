@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { PageHeader } from '../../app/ui.jsx';
 import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { KEY_INDICATORS, INDICATOR_SPARKLINES, ECON_PERIOD } from '../econdash/econData.js';
@@ -7,6 +8,8 @@ import Armillary from '../../vi/Armillary.jsx';
 import Kpi from '../../vi/Kpi.jsx';
 import Seal from '../../vi/Seal.jsx';
 import { armillarySvg } from '../../lib/vi/atmosphere.js';
+import Reader from '../../vi/reader/Reader.jsx';
+import { fetchCorpusBody, getCorpusEntry } from '../../lib/doc/policyCorpus.js';
 import './design.css';
 
 // ============================================================================
@@ -95,8 +98,32 @@ function Swatch({ token, name, note, large = false }) {
   );
 }
 
+const READER_SAMPLE_ID = 'gwr-2026';
+
+function useReaderSample(open) {
+  const [state, setState] = useState({ md: '', title: '', meta: [], loading: false, error: '' });
+  useEffect(() => {
+    if (!open) return undefined;
+    let alive = true;
+    setState((s) => ({ ...s, loading: true, error: '' }));
+    Promise.all([getCorpusEntry(READER_SAMPLE_ID), fetchCorpusBody(READER_SAMPLE_ID)])
+      .then(([entry, md]) => alive && setState({ md: md || '', title: entry?.title || '政府工作报告', meta: [entry?.org, entry?.date, entry?.type], loading: false, error: '' }))
+      .catch((e) => alive && setState((s) => ({ ...s, loading: false, error: String(e?.message || e) })));
+    return () => { alive = false; };
+  }, [open]);
+  return state;
+}
+
 export default function DesignSystemPage() {
   const [motionKey, setMotionKey] = useState(0);
+  const [params, setParams] = useSearchParams();
+  const readerOpen = params.get('reader') === '1';
+  const sample = useReaderSample(readerOpen);
+  const setReader = (on) => setParams((prev) => {
+    const next = new URLSearchParams(prev);
+    if (on) next.set('reader', '1'); else next.delete('reader');
+    return next;
+  });
   const gdp = ind('gdp_h1');
   const pmi = ind('pmi_mfg');
   const cpi = ind('cpi');
@@ -265,7 +292,18 @@ export default function DesignSystemPage() {
         </div>
       </Section>
 
-      <Section no="07" title="多端" lead="同一套令牌在手机、平板、桌面上换形态而不换语言。">
+      <Section no="07" title="阅读器" lead="长文统一进入专属阅读器：宋体正文、每行约 36 字、目录与进度、四档字号、玄 / 宣 / 护眼三种主题、专注模式；选中文字即可划线或记笔记，笔记自动进入个人工作台。">
+        <div className="vi-reader-teaser os-card vi-e2">
+          <div>
+            <span className="vi-caption">样例文档</span>
+            <p className="vi-reader-teaser__title">2026 年政府工作报告</p>
+            <p className="vi-reader-teaser__meta">来自政令文库语料 · 按 + / − 调字号，F 切换专注，Esc 关闭</p>
+          </div>
+          <button type="button" className="os-btn os-btn-primary" onClick={() => setReader(true)}>打开阅读器</button>
+        </div>
+      </Section>
+
+      <Section no="08" title="多端" lead="同一套令牌在手机、平板、桌面上换形态而不换语言。">
         <div className="vi-device-grid">
           {[
             ['手机', '< 768', '4 列 · 边距 16–20 · 底部 Dock + 全屏命令面板 · 触控 ≥ 44px'],
@@ -282,6 +320,19 @@ export default function DesignSystemPage() {
       </Section>
 
       <ModuleFooter moduleId="design" disclaimer="VI 2.0 规范样张 · 仪表阈值为示例" />
+
+      <Reader
+        open={readerOpen}
+        onClose={() => setReader(false)}
+        docId={`policy:${READER_SAMPLE_ID}`}
+        title={sample.title}
+        badge="政令文库 · 样例"
+        meta={sample.meta}
+        markdown={sample.md}
+        loading={sample.loading}
+        error={sample.error}
+        sourcePath="/design?reader=1"
+      />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import {
   Search, ChevronUp, ChevronDown, ArrowUpToLine, Minus, Plus,
 } from 'lucide-react';
 import { Markdown } from '../../lib/ai/markdown.jsx';
+import Reader from '../../vi/reader/Reader.jsx';
 import { getTheme, setTheme } from '../../lib/theme.js';
 import {
   resolveDocument,
@@ -297,6 +298,32 @@ export default function DocumentViewer({ record, kind, open, onClose, mode = 'ov
 
   if (!open || !record) return null;
   if (!content && !corpusLoading) return null;
+
+  // 2.0：浮层模式统一进入专属阅读器（全屏、目录、划线、笔记）
+  if (mode === 'overlay') {
+    const chapterMd = (content?.chapters || [])
+      .map((ch) => [`## ${ch.title}`, ...(ch.articles || [])].join('\n\n'))
+      .join('\n\n');
+    const md = [content?.body, chapterMd].filter(Boolean).join('\n\n');
+    const issuerMeta = kind === 'legal' ? record.issuer : record.org;
+    const dateMeta = kind === 'legal' ? record.effectiveDate : record.date;
+    return (
+      <Reader
+        open
+        onClose={onClose}
+        docId={`${kind}:${record.id}`}
+        title={record.title}
+        badge={content?.label}
+        meta={[issuerMeta, dateMeta, typeof record.type === 'string' ? record.type : record.category]}
+        markdown={md}
+        loading={corpusLoading && !content}
+        error={corpusError || ''}
+        sourceUrl={content?.sourceUrl}
+        sourcePath={typeof window !== 'undefined' ? window.location.hash.replace(/^#/, '') : ''}
+        disclaimer={content?.disclaimer}
+      />
+    );
+  }
 
   const badgeStyle = content?.tier === 'corpus'
     ? corpusTierBadgeStyle(content.corpusTier)
