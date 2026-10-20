@@ -406,9 +406,10 @@ p, li {
 
 @media (max-width: 767px) {
   .os-masthead__glyph {
-    font-size: 7.5rem;
-    right: -0.75rem;
-    top: 40%;
+    font-size: 6rem;
+    right: -0.5rem;
+    top: 30%;
+    opacity: 0.55;
   }
 }
 
