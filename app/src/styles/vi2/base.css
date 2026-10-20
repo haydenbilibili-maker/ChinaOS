@@ -299,3 +299,12 @@ p, li {
   background-position: -1px -1px;
   /* 注意：该类挂在 <main> 上，不能用 mask，否则会连内容一起淡出 */
 }
+
+/* 减弱动效：情报条保持单行，可横向滑动 */
+@media (prefers-reduced-motion: reduce) {
+  .os-ticker-track {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    gap: 2rem;
+  }
+}

@@ -37,6 +37,7 @@ import {
   econTabPath,
 } from './data.js';
 import { ECON_PERIOD } from '../econdash/econData.js';
+import DashHero2 from './DashHero2.jsx';
 import { useMacroPulse } from './useMacroPulse.js';
 import NewsMarquee from './NewsMarquee.jsx';
 import LiveStreamsSection from './LiveStreamsSection.jsx';
@@ -86,6 +87,8 @@ function ScreenCard({ title, accent = '#6e8cff', children, footer, live = false,
 // ── 滚动情报条 · 关键读数（示意，对应各模块判读基准） ────────
 const WARM = '#6fc2ae', HOLD = '#d4a25a', COOL = '#e5483b', STEEL = '#6e8cff';
 const TONE = { warm: WARM, hold: HOLD, cool: COOL, steel: STEEL };
+const REDUCED_MOTION = typeof window !== 'undefined' && typeof window.matchMedia === 'function'
+  && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const TICKER = TICKER_ITEMS.map(([k, v, tone]) => [k, v, TONE[tone] || HOLD]);
 
 function Ticker() {
@@ -99,7 +102,8 @@ function Ticker() {
     <div className="os-ticker os-card mb-4" style={{ padding: '8px 0', borderColor: 'var(--border-subtle)' }}>
       <div className="os-ticker-track">
         {items('a')}
-        {items('b')}
+        {/* 第二份只为无缝循环；减弱动效时静止展示一份即可 */}
+        {!REDUCED_MOTION && items('b')}
       </div>
     </div>
   );
@@ -827,6 +831,9 @@ export default function DashboardPage() {
 
   return (
     <div className="dash-v2 dash-v2-enter">
+      {/* ── 2.0 主视觉：今日态势 + 天灯 ─────────────────── */}
+      <DashHero2 moduleCount={MODULE_COUNT} entryTotal={ENTRY_TOTAL} asOf={AS_OF} />
+
       {/* ── 0. 滚动情报条 ────────────────────────────────── */}
       <Ticker />
 
@@ -845,26 +852,6 @@ export default function DashboardPage() {
       <section className={`dash-hero-v2 dash-scroll-reveal is-visible${heroPulse ? ' is-pulse' : ''}`}>
         <div className="dash-hero-v2__grid">
           <div>
-            <span className="dash-hero-v2__badge">CHINA OS · 中枢看板</span>
-            <h1 className="os-page-title" style={{ fontSize: '2rem' }}>中国深度调研操作系统</h1>
-            <p className="os-page-subtitle mt-2 max-w-3xl">
-              冷峻现实主义视角 · 穿透宏观叙事，解析权力运作、产业链条与制度演进的底层代码。
-              十五五开局（2026）· 统一数据底座、即插即用。
-            </p>
-            <div className="os-stat-grid os-section-stagger mt-6">
-              {stats.map((s) => (
-                <div key={s.label} className="os-card os-stat-card os-card-lift p-4" style={{ borderColor: `${s.accent}33` }}>
-                  <div className="flex items-center gap-1.5 mb-1" style={{ color: s.accent }}>
-                    <Icon name={s.icon} size={14} />
-                    <span className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>{s.label}</span>
-                  </div>
-                  <div className="mono os-mono-tabular" style={{ fontSize: s.mono ? '1.1rem' : '1.6rem', fontWeight: 700, color: s.accent }}>
-                    {s.countUp ? <CountUp value={s.value} /> : s.value}
-                  </div>
-                </div>
-              ))}
-            </div>
-
             <MacroH1Strip
               kpis={macro.kpis}
               asOf={macro.asOf}
