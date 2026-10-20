@@ -1,6 +1,10 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
+import { ArrowUpRight, Eye, MoveHorizontal, Search, Share2, Square, X } from 'lucide-react';
+import { MODULE_ICONS } from '../../app/moduleIcons.js';
+
+// 模块图标走注册表白名单；本页额外用到的补在这里
+const PAGE_ICONS = { ...MODULE_ICONS, MoveHorizontal, Share2 };
 import { PageHeader, Card, Stat } from '../../app/ui.jsx';
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
@@ -9,7 +13,7 @@ import { GROUPS, MODULES, modulesByGroup, moduleById } from '../../app/registry.
 import { DIM_PROFILE, DIM_LINKS, dimRadarOf } from './depthDeep.js';
 
 function Icon({ name, size = 17 }) {
-  const Cmp = Lucide[name] || Lucide.Square;
+  const Cmp = PAGE_ICONS[name] || Square;
   return <Cmp size={size} strokeWidth={1.75} />;
 }
 
@@ -74,7 +78,7 @@ function PostureCard({ dim }) {
         {dim.watch.map((w) => (
           <span key={w} className="mono text-[10px] px-2 py-0.5 rounded-full"
             style={{ background: 'var(--bg-elevated)', color: 'var(--text-secondary)', border: '1px solid var(--border-subtle)' }}>
-            <Lucide.Eye size={10} style={{ display: 'inline', marginRight: 4, verticalAlign: -1 }} />{w}
+            <Eye size={10} style={{ display: 'inline', marginRight: 4, verticalAlign: -1 }} />{w}
           </span>
         ))}
       </div>
@@ -137,7 +141,7 @@ function ReadingPath({ dim }) {
               <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{m.title}</span>
             </div>
             <p className="text-xs leading-snug" style={{ color: 'var(--text-tertiary)' }}>{m.subtitle}</p>
-            <Lucide.ArrowUpRight size={13} style={{ position: 'absolute', top: 12, right: 12, color: 'var(--text-tertiary)' }} />
+            <ArrowUpRight size={13} style={{ position: 'absolute', top: 12, right: 12, color: 'var(--text-tertiary)' }} />
           </Link>
         ))}
       </div>
@@ -349,10 +353,10 @@ export default function Page() {
       {/* 检索 + 维度筛选 */}
       <Card className="mb-6">
         <div className="flex items-center gap-2 mb-3" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', borderRadius: 8, padding: '8px 12px' }}>
-          <Lucide.Search size={16} style={{ color: 'var(--text-tertiary)' }} />
+          <Search size={16} style={{ color: 'var(--text-tertiary)' }} />
           <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="检索专题（标题 / 关键词）…"
             style={{ flex: 1, background: 'transparent', border: 'none', outline: 'none', color: 'var(--text-primary)', fontSize: 14 }} />
-          {q && <button onClick={() => setQ('')} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-tertiary)' }}><Lucide.X size={15} /></button>}
+          {q && <button onClick={() => setQ('')} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-tertiary)' }}><X size={15} /></button>}
         </div>
         <div className="flex gap-1.5 flex-wrap">
           <button onClick={() => setFilter('all')} className="text-xs px-3 py-1 rounded-full mono"
@@ -399,7 +403,7 @@ export default function Page() {
                   {HAS_MAP.has(m.id) && <span className="mono text-[9px] px-1.5 py-0.5 rounded" style={{ background: 'rgba(229, 72, 59,0.16)', color: 'var(--china-red)' }}>MAP</span>}
                 </div>
                 <p className="text-xs leading-snug" style={{ color: 'var(--text-tertiary)' }}>{m.subtitle}</p>
-                <Lucide.ArrowUpRight size={14} style={{ position: 'absolute', top: 14, right: 14, color: 'var(--text-tertiary)' }} />
+                <ArrowUpRight size={14} style={{ position: 'absolute', top: 14, right: 14, color: 'var(--text-tertiary)' }} />
               </Link>
             ))}
           </div>

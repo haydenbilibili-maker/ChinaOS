@@ -1,6 +1,6 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { Suspense, lazy, useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Activity as LActivity, BrainCircuit as LBrainCircuit, FileDown as LFileDown, Gauge as LGauge, MonitorPlay as LMonitorPlay, Radar as LRadar, Search as LSearch, Square as LSquare, Star as LStar, Waves as LWaves, X as LX } from 'lucide-react';
+import { Activity as LActivity, BrainCircuit as LBrainCircuit, FileDown as LFileDown, Gauge as LGauge, Search as LSearch, Square as LSquare, Star as LStar, Waves as LWaves, X as LX } from 'lucide-react';
 import { dashIcon } from './dashboardIcons.js';
 import { Card, Grid, Stat, StatGrid, EmptyState, LoadingSkeleton } from '../../app/ui.jsx';
 import { GROUPS, MODULES } from '../../app/registry.js';
@@ -38,6 +38,9 @@ import {
   econTabPath,
 } from './data.js';
 import { ECON_PERIOD } from '../econdash/econData.js';
+import { Chapter, ChapterRail, CustomizePanel, useDashLayout } from './DashChapters.jsx';
+import { getFavorites, toggleFavorite, useWorkspace } from '../../lib/workspace/store.js';
+const BriefReader = lazy(() => import('../../vi/reader/Reader.jsx'));
 import DashHero2 from './DashHero2.jsx';
 import { useMacroPulse } from './useMacroPulse.js';
 import NewsMarquee from './NewsMarquee.jsx';
@@ -638,19 +641,32 @@ function PolyPulse() {
 }
 
 // ── 关注清单（星标模块 · localStorage + 自定义事件跨组件同步） ──
-function readFavs() { try { return JSON.parse(localStorage.getItem('cos-favs') || '[]'); } catch (_) { return []; } }
+// 关注 = 工作台收藏（按路径存）。1.x 的 cos-favs（按模块 id 存）首次读取时并入后删除。
+const LEGACY_FAVS_KEY = 'cos-favs';
+function migrateLegacyFavs() {
+  try {
+    const raw = localStorage.getItem(LEGACY_FAVS_KEY);
+    if (!raw) return;
+    const ids = JSON.parse(raw);
+    const have = new Set(getFavorites());
+    // 旧列表新在前：倒序并入，保持原先的先后
+    [...(Array.isArray(ids) ? ids : [])].reverse().forEach((id) => {
+      const m = MODULES.find((x) => x.id === id);
+      if (m && !have.has(m.path)) { toggleFavorite(m.path); have.add(m.path); }
+    });
+    localStorage.removeItem(LEGACY_FAVS_KEY);
+  } catch (_) { /* 隐私模式：忽略 */ }
+}
+
+// 在模块加载时迁移（而非渲染中），避免渲染期派发事件触发他处 setState
+if (typeof window !== 'undefined') migrateLegacyFavs();
+
 function useFavs() {
-  const [favs, setFavs] = useState(readFavs);
-  useEffect(() => {
-    const h = () => setFavs(readFavs());
-    window.addEventListener('cos-favs-changed', h);
-    return () => window.removeEventListener('cos-favs-changed', h);
-  }, []);
+  const paths = useWorkspace(getFavorites);
+  const favs = paths.map((p) => MODULES.find((m) => m.path === p)?.id).filter(Boolean);
   const toggle = (id) => {
-    const cur = readFavs();
-    const next = cur.includes(id) ? cur.filter((x) => x !== id) : [id, ...cur];
-    try { localStorage.setItem('cos-favs', JSON.stringify(next.slice(0, 24))); } catch (_) {}
-    window.dispatchEvent(new Event('cos-favs-changed'));
+    const m = MODULES.find((x) => x.id === id);
+    if (m) toggleFavorite(m.path);
   };
   return [favs, toggle];
 }
@@ -703,27 +719,65 @@ function BriefingGenerator() {
   const docs = useDocs();
   const [text, setText] = useState('');
   const [copied, setCopied] = useState(false);
+  const [reading, setReading] = useState(false);
   const latest = useMemo(() => {
     const list = (docs || []).filter((d) => d.type === '政府工作报告' && d.metrics);
     return list.sort((a, b) => (b.year || 0) - (a.year || 0))[0] || GWR_DOCS[GWR_DOCS.length - 1];
   }, [docs]);
-  const gen = () => { setText(buildBriefing(latest)); setCopied(false); };
-  const copy = async () => {
-    try { await navigator.clipboard.writeText(text); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch (_) {}
+  const today = new Date().toISOString().slice(0, 10);
+  const ensure = () => {
+    const t = text || buildBriefing(latest);
+    if (!text) setText(t);
+    return t;
   };
+  const gen = () => { setText(buildBriefing(latest)); setCopied(false); setReading(true); };
+  const copy = async () => {
+    try { await navigator.clipboard.writeText(ensure()); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch (_) {}
+  };
+  const download = () => {
+    const blob = new Blob([ensure()], { type: 'text/markdown;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `ChinaOS-今日简报-${today}.md`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  };
+  // 预览：只取二级标题当提纲
+  const outline = useMemo(() => text.split('\n').filter((l) => /^## /.test(l)).map((l) => l.slice(3)), [text]);
   return (
-    <section className="mb-8">
-      <div className="flex items-center gap-2 mb-3 flex-wrap">
-        <LFileDown size={16} style={{ color: WARM }} />
-        <h2 className="os-card-title m-0">今日简报</h2>
-        <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>{'// 一键聚合 态势/施政/读数/节点 为可复制 Markdown'}</span>
-        <span className="ml-auto flex gap-2">
-          <button onClick={gen} className="os-btn os-btn-primary os-btn-sm">生成简报</button>
-          {text && <button onClick={copy} className="os-btn os-btn-sm">{copied ? '✓ 已复制' : '复制 Markdown'}</button>}
-        </span>
+    <section className="dash-brief">
+      <div className="dash-brief__main">
+        <p className="dash-brief__eyebrow">今日简报 · {today}</p>
+        <h3 className="dash-brief__title">态势、施政、读数、节点，一页读完</h3>
+        <p className="dash-brief__lead">从看板各处聚合成一份 Markdown 简报：在阅读器里读、划线记笔记，或复制 / 下载带走。</p>
+        <div className="dash-brief__actions">
+          <button type="button" onClick={gen} className="os-btn os-btn-primary os-btn-sm">生成并阅读</button>
+          <button type="button" onClick={copy} className="os-btn os-btn-sm">{copied ? '✓ 已复制' : '复制 Markdown'}</button>
+          <button type="button" onClick={download} className="os-btn os-btn-sm">下载 .md</button>
+        </div>
       </div>
-      {text && (
-        <pre className="os-card p-4 text-xs mono" style={{ whiteSpace: 'pre-wrap', color: 'var(--text-secondary)', maxHeight: 300, overflowY: 'auto', lineHeight: 1.7 }}>{text}</pre>
+      {outline.length > 0 && (
+        <ol className="dash-brief__outline" aria-label="简报提纲">
+          {outline.map((h, i) => (
+            <li key={h}><span className="vi-figure">{String(i + 1).padStart(2, '0')}</span>{h}</li>
+          ))}
+        </ol>
+      )}
+      {reading && (
+        <Suspense fallback={null}>
+          <BriefReader
+            open
+            onClose={() => setReading(false)}
+            docId={`briefing:${today}`}
+            title={`今日简报 · ${today}`}
+            badge="中枢看板"
+            meta={[`施政基准 ${latest?.year || ''}`].filter(Boolean)}
+            // 品牌抬头与一级标题由阅读器页头给出，正文从第一个二级标题起
+            markdown={text.includes('\n## ') ? text.slice(text.indexOf('\n## ') + 1) : text}
+            disclaimer="自动聚合自看板各模块的公开整理与示意研判，非官方口径"
+          />
+        </Suspense>
       )}
     </section>
   );
@@ -812,6 +866,8 @@ export default function DashboardPage() {
   const opt = useOptions();
   const macro = useMacroPulse();
   const [heroPulse, setHeroPulse] = useState(false);
+  const dash = useDashLayout();
+  const [customizing, setCustomizing] = useState(false);
   useScrollReveal();
 
   useEffect(() => {
@@ -829,6 +885,144 @@ export default function DashboardPage() {
     { value: GROUP_COUNT, label: '专题分组', accent: '#d4a25a', icon: 'FolderTree', countUp: true },
     { value: AS_OF, label: '数据基准 AS_OF', accent: '#6fc2ae', icon: 'CalendarClock', mono: true, countUp: false },
   ];
+
+  // 章节内容：只渲染可见章节，隐藏的不挂载
+  const chapterBody = (id) => {
+    switch (id) {
+      case 'overview':
+        return (
+            <section className={`dash-hero-v2 is-visible${heroPulse ? ' is-pulse' : ''}`}>
+              <div className="dash-hero-v2__grid">
+                <div>
+                  <MacroH1Strip
+                    kpis={macro.kpis}
+                    asOf={macro.asOf}
+                    lastRefresh={macro.lastRefresh}
+                    isRefreshing={macro.isRefreshing}
+                    secondsToNext={macro.secondsToNext}
+                    refreshCount={macro.refreshCount}
+                  />
+
+                  <LiveModuleChips />
+
+                  <div className="mt-5">
+                    <GovernanceVerdict pulseKey={macro.refreshCount} />
+                  </div>
+                </div>
+
+                <div className="dash-hero-v2__aside">
+                  <SystemHealthPanel entryTotal={ENTRY_TOTAL} refreshCount={macro.refreshCount} />
+                  <RecentSignalsStrip />
+                </div>
+              </div>
+
+              {/* 信号流 · 从 Hero 拆出减轻拥挤 */}
+              <div className="dash-signal-stream">
+                <div className="dash-signal-stream__heading">
+                  <LWaves size={13} style={{ color: STEEL }} />
+                  实时信号流 · 时政 · 直播 · 资产
+                </div>
+                <NewsMarquee refreshKey={macro.refreshCount} />
+                <LiveStreamsSection compact previewCount={8} pulseKey={macro.refreshCount} />
+                <Link
+                  to="/market-pulse"
+                  className="os-card-interactive mt-3 flex items-center justify-between rounded-lg px-4 py-3"
+                  style={{ background: 'var(--bg-elevated)', border: '1px solid rgba(110, 140, 255,0.28)' }}
+                >
+                  <span className="flex items-center gap-2">
+                    <LActivity size={16} style={{ color: STEEL }} />
+                    <span className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>全球资产脉搏</span>
+                    <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>股市 · 债市 · 汇市 · 大宗</span>
+                  </span>
+                  <span className="text-xs mono" style={{ color: STEEL }}>进入模块 →</span>
+                </Link>
+              </div>
+
+              {/* 重点模块精选 */}
+              <div className="mt-5 pt-4" style={{ borderTop: '1px solid var(--border-subtle)' }}>
+                <div className="os-section-heading__meta mb-2">重点模块</div>
+                <div className="flex flex-wrap gap-2 os-section-stagger">
+                  {FEATURED.map((m) => (
+                    <Link
+                      key={m.id}
+                      to={m.path}
+                      className="os-card-interactive inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium"
+                      style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)' }}
+                    >
+                      <span style={{ color: 'var(--cyber-cyan)' }}><Icon name={m.icon} size={13} /></span>
+                      {m.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </section>
+        );
+      case 'gateway':
+        return <ModuleGatewayLattice />;
+      case 'map':
+        return <LiveChinaMap variant="compact" />;
+      case 'situation':
+        return (
+          <>
+            {/* 主卡 + 侧栏密排：取消 span-2 行占位，避免宽屏右下空洞 */}
+            <div className="dash-pulse-pack dash-screen-grid os-section-stagger">
+              <div className="dash-pulse-pack__hero">
+                <StrategyPulse />
+              </div>
+              <div className="dash-pulse-pack__side os-section-stagger">
+                <PolicyPulse />
+                <LiveDbStatus />
+                <KondratievClock />
+                <RiskRadar />
+                <div className="dash-pulse-wide">
+                  <PolicyCalendar />
+                </div>
+              </div>
+            </div>
+            <Grid cols={{ sm: 1, lg: 2, '2xl': 3 }} gap="0.85rem" className="dash-screen-grid os-section-stagger mt-3">
+              <WatchPulse />
+              <ChroniclePulse />
+            </Grid>
+            <Grid cols={{ sm: 1, lg: 2, '2xl': 3 }} gap="0.85rem" className="dash-screen-grid os-section-stagger mt-3">
+              <GdeltPulse />
+              <PolyPulse />
+            </Grid>
+          </>
+        );
+      case 'briefing':
+        return <BriefingGenerator />;
+      case 'screens':
+        return (
+            <Grid cols={{ sm: 1, md: 2, lg: 3, '2xl': 4 }} gap="0.85rem" className="dash-screen-grid os-section-stagger">
+              <ScreenCard title="中国政要分层构成" accent="#e5483b" footer="政治权力队列 · 按层级聚合">
+                <EChart option={opt.donut} variant="compact" style={{ height: 230 }} />
+              </ScreenCard>
+              <ScreenCard title="反腐历年趋势" accent="#d4a25a" footer="副省部级及以上为主 · 按官宣年归集（2012 起）">
+                <EChart option={opt.acTrend} variant="compact" style={{ height: 230 }} />
+              </ScreenCard>
+              <ScreenCard title="军衔结构（量级示意）" accent="#6fc2ae" footer={RANK_STRUCTURE.note}>
+                <EChart option={opt.ranks} variant="compact" style={{ height: 230 }} />
+              </ScreenCard>
+              <ScreenCard title="民企500强 · 省份分布 Top12" accent="#c07a4a" footer="工商联 2024 榜单 · 注册地口径">
+                <EChart option={opt.prov} variant="compact" style={{ height: 260 }} />
+              </ScreenCard>
+              <ScreenCard title="模块分组覆盖" accent="#b07cc6" footer="各专题分组下的模块数量">
+                <EChart option={opt.coverage} variant="compact" style={{ height: 260 }} />
+              </ScreenCard>
+              <ScreenCard title="数据集规模对比" accent="#6e8cff" footer="人物/企业画像条目（去重后）">
+                <EChart option={opt.scale} variant="compact" style={{ height: 260 }} />
+              </ScreenCard>
+            </Grid>
+        );
+      case 'toolbox':
+        return (
+          // 快速跳转已含「认知内核」分组，不再重复渲染思想工具箱
+          <QuickNav />
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <div className="dash-v2 dash-v2-enter">
@@ -849,152 +1043,18 @@ export default function DashboardPage() {
       <FavStrip />
       <RecentVisits />
 
-      {/* ── 1. 项目总揽 · Hero v2 ─────────────────────────── */}
-      <section className={`dash-hero-v2 dash-scroll-reveal is-visible${heroPulse ? ' is-pulse' : ''}`}>
-        <div className="dash-hero-v2__grid">
-          <div>
-            <MacroH1Strip
-              kpis={macro.kpis}
-              asOf={macro.asOf}
-              lastRefresh={macro.lastRefresh}
-              isRefreshing={macro.isRefreshing}
-              secondsToNext={macro.secondsToNext}
-              refreshCount={macro.refreshCount}
-            />
+      {/* ── 章节轨（吸顶 · 定制） ─────────────────────────── */}
+      <ChapterRail ids={dash.visible} onCustomize={() => setCustomizing((v) => !v)} />
+      <CustomizePanel open={customizing} onClose={() => setCustomizing(false)} dash={dash} />
 
-            <LiveModuleChips />
-
-            <div className="mt-5">
-              <GovernanceVerdict pulseKey={macro.refreshCount} />
-            </div>
-          </div>
-
-          <div className="dash-hero-v2__aside">
-            <SystemHealthPanel entryTotal={ENTRY_TOTAL} refreshCount={macro.refreshCount} />
-            <RecentSignalsStrip />
-          </div>
-        </div>
-
-        {/* 信号流 · 从 Hero 拆出减轻拥挤 */}
-        <div className="dash-signal-stream">
-          <div className="dash-signal-stream__heading">
-            <LWaves size={13} style={{ color: STEEL }} />
-            实时信号流 · 时政 · 直播 · 资产
-          </div>
-          <NewsMarquee refreshKey={macro.refreshCount} />
-          <LiveStreamsSection compact previewCount={8} pulseKey={macro.refreshCount} />
-          <Link
-            to="/market-pulse"
-            className="os-card-interactive mt-3 flex items-center justify-between rounded-lg px-4 py-3"
-            style={{ background: 'var(--bg-elevated)', border: '1px solid rgba(110, 140, 255,0.28)' }}
-          >
-            <span className="flex items-center gap-2">
-              <LActivity size={16} style={{ color: STEEL }} />
-              <span className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>全球资产脉搏</span>
-              <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>股市 · 债市 · 汇市 · 大宗</span>
-            </span>
-            <span className="text-xs mono" style={{ color: STEEL }}>进入模块 →</span>
-          </Link>
-        </div>
-
-        {/* 重点模块精选 */}
-        <div className="mt-5 pt-4" style={{ borderTop: '1px solid var(--border-subtle)' }}>
-          <div className="os-section-heading__meta mb-2">重点模块</div>
-          <div className="flex flex-wrap gap-2 os-section-stagger">
-            {FEATURED.map((m) => (
-              <Link
-                key={m.id}
-                to={m.path}
-                className="os-card-interactive inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium"
-                style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)' }}
-              >
-                <span style={{ color: 'var(--cyber-cyan)' }}><Icon name={m.icon} size={13} /></span>
-                {m.title}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── 1.5 模块门户 · 八大跳转 ─────────────────────────── */}
-      <ModuleGatewayLattice />
-
-      {/* ── 1.6 神州活图 · 紧凑预览 ───────────────────────── */}
-      <div className="dash-scroll-reveal">
-        <LiveChinaMap className="mb-8" variant="compact" />
-      </div>
-
-      {/* ── 2. 态势 · 政策 · 底座 三联速览 ─────────────────── */}
-      <section className="mb-8 dash-scroll-reveal">
-        <div className="os-section-heading">
-          <LRadar size={16} style={{ color: 'var(--china-red)' }} />
-          <h2 className="os-section-heading__title m-0">态势速览</h2>
-          <span className="os-section-heading__meta min-w-0">// 外交矢量 · 施政基准 · 本地库活数据</span>
-        </div>
-        {/* 主卡 + 侧栏密排：取消 span-2 行占位，避免宽屏右下空洞 */}
-        <div className="dash-pulse-pack dash-screen-grid os-section-stagger">
-          <div className="dash-pulse-pack__hero">
-            <StrategyPulse />
-          </div>
-          <div className="dash-pulse-pack__side os-section-stagger">
-            <PolicyPulse />
-            <LiveDbStatus />
-            <KondratievClock />
-            <RiskRadar />
-            <div className="dash-pulse-wide">
-              <PolicyCalendar />
-            </div>
-          </div>
-        </div>
-        <Grid cols={{ sm: 1, lg: 2, '2xl': 3 }} gap="0.85rem" className="dash-screen-grid os-section-stagger mt-3">
-          <WatchPulse />
-          <ChroniclePulse />
-        </Grid>
-        <Grid cols={{ sm: 1, lg: 2, '2xl': 3 }} gap="0.85rem" className="dash-screen-grid os-section-stagger mt-3">
-          <GdeltPulse />
-          <PolyPulse />
-        </Grid>
-      </section>
-
-      {/* ── 2.5 今日简报生成器 ───────────────────────────── */}
-      <div className="dash-scroll-reveal">
-        <BriefingGenerator />
-      </div>
-
-      {/* ── 3. 实时大屏 ──────────────────────────────────── */}
-      <section className="mb-8 dash-scroll-reveal">
-        <div className="os-section-heading">
-          <LMonitorPlay size={16} style={{ color: 'var(--cyber-cyan)' }} />
-          <h2 className="os-section-heading__title m-0">实时大屏</h2>
-          <span className="os-section-heading__meta min-w-0">// LIVE · 种子计数</span>
-        </div>
-        <Grid cols={{ sm: 1, md: 2, lg: 3, '2xl': 4 }} gap="0.85rem" className="dash-screen-grid os-section-stagger">
-          <ScreenCard title="中国政要分层构成" accent="#e5483b" footer="政治权力队列 · 按层级聚合">
-            <EChart option={opt.donut} variant="compact" style={{ height: 230 }} />
-          </ScreenCard>
-          <ScreenCard title="反腐历年趋势" accent="#d4a25a" footer="副省部级及以上为主 · 按官宣年归集（2012 起）">
-            <EChart option={opt.acTrend} variant="compact" style={{ height: 230 }} />
-          </ScreenCard>
-          <ScreenCard title="军衔结构（量级示意）" accent="#6fc2ae" footer={RANK_STRUCTURE.note}>
-            <EChart option={opt.ranks} variant="compact" style={{ height: 230 }} />
-          </ScreenCard>
-          <ScreenCard title="民企500强 · 省份分布 Top12" accent="#c07a4a" footer="工商联 2024 榜单 · 注册地口径">
-            <EChart option={opt.prov} variant="compact" style={{ height: 260 }} />
-          </ScreenCard>
-          <ScreenCard title="模块分组覆盖" accent="#b07cc6" footer="各专题分组下的模块数量">
-            <EChart option={opt.coverage} variant="compact" style={{ height: 260 }} />
-          </ScreenCard>
-          <ScreenCard title="数据集规模对比" accent="#6e8cff" footer="人物/企业画像条目（去重后）">
-            <EChart option={opt.scale} variant="compact" style={{ height: 260 }} />
-          </ScreenCard>
-        </Grid>
-      </section>
-
-      {/* ── 2. 快速跳转 ──────────────────────────────────── */}
-      {/* ── 3.5 认知内核工具箱 ───────────────────────────── */}
-      <CognitionToolbox />
-
-      <QuickNav />
+      {dash.visible.map((id, i) => (
+        <Chapter key={id} id={id} index={i}>
+          {chapterBody(id)}
+        </Chapter>
+      ))}
+      {dash.visible.length === 0 && (
+        <p className="dch-empty">所有章节都已隐藏 · <button type="button" className="dch-text-btn" onClick={dash.reset}>恢复默认</button></p>
+      )}
 
       {/* ── 数据来源 / 免责声明 ──────────────────────────── */}
       <Card title="数据来源与免责声明" className="mb-2">

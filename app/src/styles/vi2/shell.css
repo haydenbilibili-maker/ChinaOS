@@ -144,3 +144,10 @@
     bottom: calc(92px + env(safe-area-inset-bottom, 0px)) !important;
   }
 }
+
+/* 外壳裁切用 clip 而非 hidden：hidden 容器仍可被 scrollIntoView 程序化滚动，
+   会把顶栏、侧栏一起带偏；clip 不形成滚动容器 */
+.os-shell-root {
+  overflow: hidden;
+  overflow: clip;
+}

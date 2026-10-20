@@ -1,6 +1,21 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
+import {
+  AlertTriangle as LuAlertTriangle,
+  BookOpen as LuBookOpen,
+  Download as LuDownload,
+  RotateCcw as LuRotateCcw,
+  Save as LuSave,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  AlertTriangle: LuAlertTriangle,
+  BookOpen: LuBookOpen,
+  Download: LuDownload,
+  RotateCcw: LuRotateCcw,
+  Save: LuSave,
+};
 import { Card } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { LAYER_META } from '../../domain/governance.ts';

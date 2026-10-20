@@ -1,6 +1,25 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
+import {
+  Cpu as LuCpu,
+  Globe2 as LuGlobe2,
+  ShieldAlert as LuShieldAlert,
+  Square as LuSquare,
+  TrendingUp as LuTrendingUp,
+  Users as LuUsers,
+  Zap as LuZap,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  Cpu: LuCpu,
+  Globe2: LuGlobe2,
+  ShieldAlert: LuShieldAlert,
+  Square: LuSquare,
+  TrendingUp: LuTrendingUp,
+  Users: LuUsers,
+  Zap: LuZap,
+};
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';

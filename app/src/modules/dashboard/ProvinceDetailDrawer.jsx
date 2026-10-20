@@ -76,7 +76,7 @@ export default function ProvinceDetailDrawer({
     let alive = true;
     let chart = null;
     let ro = null;
-    import('echarts').then((echarts) => {
+    import('../../lib/viz/echarts.js').then(({ echarts }) => {
       if (!alive || !radarRef.current) return;
       chart = echarts.init(radarRef.current, null, { renderer: 'canvas' });
       radarChart.current = chart;
@@ -96,7 +96,7 @@ export default function ProvinceDetailDrawer({
     let alive = true;
     let chart = null;
     let ro = null;
-    import('echarts').then((echarts) => {
+    import('../../lib/viz/echarts.js').then(({ echarts }) => {
       if (!alive || !sparkRef.current) return;
       chart = echarts.init(sparkRef.current, null, { renderer: 'canvas' });
       sparkChart.current = chart;

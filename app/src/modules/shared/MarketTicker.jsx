@@ -1,5 +1,22 @@
 import React, { useMemo } from 'react';
-import * as Lucide from 'lucide-react';
+import {
+  Activity as LuActivity,
+  Loader2 as LuLoader2,
+  Minus as LuMinus,
+  RefreshCw as LuRefreshCw,
+  TrendingDown as LuTrendingDown,
+  TrendingUp as LuTrendingUp,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  Activity: LuActivity,
+  Loader2: LuLoader2,
+  Minus: LuMinus,
+  RefreshCw: LuRefreshCw,
+  TrendingDown: LuTrendingDown,
+  TrendingUp: LuTrendingUp,
+};
 import { useLiveMarketData } from '../../lib/market/useLiveMarketData.js';
 import {
   AS_OF_MARKET,

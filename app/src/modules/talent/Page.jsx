@@ -13,7 +13,30 @@ import ThinkTankSection from './ThinkTankSection.jsx';
 import ResearchInstituteSection from './ResearchInstituteSection.jsx';
 import TalentDetailPanel from './TalentDetailPanel.jsx';
 import FigureRadarChart from './FigureRadarChart.jsx';
-import * as Lucide from 'lucide-react';
+import {
+  BarChart3 as LuBarChart3,
+  Grid3x3 as LuGrid3x3,
+  Hexagon as LuHexagon,
+  LayoutGrid as LuLayoutGrid,
+  List as LuList,
+  RefreshCw as LuRefreshCw,
+  Search as LuSearch,
+  Wand2 as LuWand2,
+  X as LuX,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  BarChart3: LuBarChart3,
+  Grid3x3: LuGrid3x3,
+  Hexagon: LuHexagon,
+  LayoutGrid: LuLayoutGrid,
+  List: LuList,
+  RefreshCw: LuRefreshCw,
+  Search: LuSearch,
+  Wand2: LuWand2,
+  X: LuX,
+};
 import { PageHeader, Card, Grid, Stat, StatGrid, TabBar, Button, DistBar } from '../../app/ui.jsx';
 import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import FigureAvatar from '../../lib/ui/FigureAvatar.jsx';
@@ -219,7 +242,11 @@ export default function Page() {
   const tabs = useMemo(() => buildTalentTabs(), []);
 
   const figuresRaw = useFigures();
-  const figures = figuresRaw;
+  // 本地库未载入（或仍在读取）时直接用随包内置的种子展示，避免整页读数为「—」；
+  // 载入本地库后切换到库内数据（可编辑、可增补）
+  const seedView = useMemo(() => FIGURE_SEED.map((r) => ({ ...r, id: figureStableId(r) })), []);
+  const usingSeed = !figuresRaw || figuresRaw.length === 0;
+  const figures = usingSeed ? seedView : figuresRaw;
   const dupCount = 0;
   const [q, setQ] = useState(() => searchParams.get('q') || '');
   const [prov, setProv] = useState('');
@@ -504,7 +531,7 @@ export default function Page() {
       ) : (
         <>
       <StatGrid>
-        <Stat value={figures.length} label="简历总数" accent="#6e8cff" />
+        <Stat value={figures.length} label={usingSeed ? '简历总数 · 内置' : '简历总数 · 本地库'} accent="#6e8cff" />
         <Stat value={FIGURE_SEED.length} label="内置种子" accent="#8a8578" />
         <Stat value={viceCount || '—'} label="副国级" accent="#e5483b" />
         <Stat value={milCount || shangCount || '—'} label="军事将官" accent="#556b2f" />

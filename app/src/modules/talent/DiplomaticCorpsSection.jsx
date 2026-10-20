@@ -1,7 +1,26 @@
 import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import * as echarts from 'echarts';
-import * as Lucide from 'lucide-react';
+import { echarts } from '../../lib/viz/echarts.js';
+import {
+  BarChart3 as LuBarChart3,
+  Globe2 as LuGlobe2,
+  Landmark as LuLandmark,
+  LayoutGrid as LuLayoutGrid,
+  List as LuList,
+  Search as LuSearch,
+  X as LuX,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  BarChart3: LuBarChart3,
+  Globe2: LuGlobe2,
+  Landmark: LuLandmark,
+  LayoutGrid: LuLayoutGrid,
+  List: LuList,
+  Search: LuSearch,
+  X: LuX,
+};
 import { Card, Grid, Stat, DistBar } from '../../app/ui.jsx';
 import FigureAvatar from '../../lib/ui/FigureAvatar.jsx';
 import { figureAvatarProps, prefetchFigureAvatars } from '../../lib/ui/figureAvatarResolve.js';

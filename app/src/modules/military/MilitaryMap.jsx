@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import * as echarts from 'echarts';
+import { echarts } from '../../lib/viz/echarts.js';
 import DataBus from '../../lib/data/DataBus.js';
 import { THEATERS, PROVINCE_THEATER, MILITARY_BASES, BASE_TYPE_COLORS, LOGISTICS, ISLAND_CHAINS } from '../../lib/db/militaryIntel2026.js';
 

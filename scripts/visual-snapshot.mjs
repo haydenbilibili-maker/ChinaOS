@@ -49,12 +49,29 @@ for (const vp of cfg.viewports) {
       page.on('pageerror', (e) => errors.push(String(e).slice(0, 300)));
       const file = join(OUT, vp.id, theme, `${r.id}.png`);
       mkdirSync(dirname(file), { recursive: true });
+      // 每条路由都从空白页重新载入：同页 hash 跳转会沿用上一条的 DOM 改动（fullPage 展开的内联高度）与组件状态
+      await page.goto('about:blank');
       try {
         await page.goto(`${BASE}/#${r.path}`, { waitUntil: 'networkidle', timeout: 30000 });
       } catch {
         /* 外部实时数据可能拖住 networkidle，超时后照常截图 */
       }
       await page.waitForTimeout(r.settleMs ?? 1500);
+      // 可选：滚到某元素（内层滚动容器也适用）、点击某按钮，再截图——用于拍首屏以下的交互态
+      if (r.scrollTo) {
+        await page.evaluate((sel) => {
+          const el = document.querySelector(sel);
+          const root = document.getElementById('main-content');
+          if (!el) return;
+          if (!root) { el.scrollIntoView({ block: 'start' }); return; }
+          root.scrollTop += el.getBoundingClientRect().top - root.getBoundingClientRect().top - 140;
+        }, r.scrollTo);
+        await page.waitForTimeout(600);
+      }
+      if (r.click) {
+        try { await page.click(r.click, { timeout: 3000 }); } catch { errors.push(`click failed: ${r.click}`); }
+        await page.waitForTimeout(500);
+      }
       if (r.fullPage) {
         // 应用壳把滚动放在 <main> 等内层容器里：展开它们，整页截图才能拍到全部内容
         await page.evaluate(() => {
@@ -70,8 +87,30 @@ for (const vp of cfg.viewports) {
         });
         await page.waitForTimeout(300);
       }
+      // 可选：探测滚动容器（诊断用，写进 manifest）
+      let probe;
+      if (r.probe) {
+        probe = await page.evaluate(() => {
+          const out = { inner: window.innerHeight, doc: document.scrollingElement?.scrollHeight, docTop: document.scrollingElement?.scrollTop, scrollers: [] };
+          for (const el of document.querySelectorAll('body, body *')) {
+            if (el.scrollHeight > el.clientHeight + 4) {
+              const cs = getComputedStyle(el);
+              if (/(auto|scroll|hidden|clip)/.test(cs.overflowY)) {
+                out.scrollers.push({ tag: el.tagName, id: el.id, cls: String(el.className).slice(0, 60), oy: cs.overflowY, ch: el.clientHeight, sh: el.scrollHeight, st: el.scrollTop });
+              }
+            }
+          }
+          out.scrollers = out.scrollers.filter((x) => x.ch > 0).slice(0, 8);
+          out.chain = [];
+          for (let el = document.getElementById('main-content'); el && el !== document.documentElement; el = el.parentElement) {
+            const cs = getComputedStyle(el);
+            out.chain.push({ tag: el.tagName, id: el.id, cls: String(el.className).slice(0, 70), h: cs.height, oy: cs.overflowY, ch: el.clientHeight, sh: el.scrollHeight });
+          }
+          return out;
+        });
+      }
       await page.screenshot({ path: file, fullPage: r.fullPage ?? false });
-      manifest.shots.push({ route: r.id, path: r.path, viewport: vp.id, theme, file: file.slice(OUT.length + 1), errors });
+      manifest.shots.push({ route: r.id, path: r.path, viewport: vp.id, theme, file: file.slice(OUT.length + 1), errors, ...(probe ? { probe } : {}) });
       console.log(`${vp.id}/${theme}/${r.id}${errors.length ? `  · ${errors.length} console errors` : ''}`);
     }
     await ctx.close();
