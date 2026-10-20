@@ -3,6 +3,7 @@ import { echarts } from './echarts.js';
 import { LoadingSkeleton } from '../../app/ui.jsx';
 import { applyChartTheme, chartTextColor, CHART_TOOLTIP, CHART_FONT_FAMILY, VI_DATA_PALETTE } from '../../modules/shared/chartHelpers.js';
 import { getTheme, THEME_EVENT } from '../theme.js';
+import { documentVarLookup, resolveCssVars } from './resolveCssVars.js';
 
 // ============================================================================
 // 可视化引擎核心 · ECharts 封装
@@ -66,7 +67,8 @@ function withTheme(option, variant = 'default') {
   } else if (option?.series?.length) {
     merged.tooltip = { ...CHART_TOOLTIP };
   }
-  return merged;
+  // 画布不认 CSS 变量：按当前主题解析成实际颜色
+  return resolveCssVars(merged, documentVarLookup());
 }
 
 export default function EChart({

@@ -16,7 +16,7 @@ export const DASH_CHAPTERS = [
   { id: 'situation', title: '态势', kicker: '外交矢量 · 施政基准 · 本地库' },
   { id: 'briefing', title: '简报', kicker: '一键生成今日简报' },
   { id: 'screens', title: '大屏', kicker: '人物 · 企业 · 军事数据集' },
-  { id: 'toolbox', title: '工具', kicker: '认知内核 · 快速跳转' },
+  { id: 'toolbox', title: '工具', kicker: '全部模块 · 搜索与收藏' },
 ];
 
 const IDS = DASH_CHAPTERS.map((c) => c.id);

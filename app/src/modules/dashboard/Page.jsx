@@ -963,10 +963,8 @@ export default function DashboardPage() {
         );
       case 'toolbox':
         return (
-          <>
-            <CognitionToolbox />
-            <QuickNav />
-          </>
+          // 快速跳转已含「认知内核」分组，不再重复渲染思想工具箱
+          <QuickNav />
         );
       default:
         return null;
