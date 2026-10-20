@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import * as Lucide from 'lucide-react';
+import { Square as LSquare } from 'lucide-react';
+import { dashIcon } from './dashboardIcons.js';
 import { MAP_LAYER_DEFS } from './liveMapLayers.js';
 import {
   MIN_SATELLITE_OPACITY, MAX_SATELLITE_OPACITY, DEFAULT_SATELLITE_OPACITY,
@@ -8,7 +9,7 @@ import {
 const STEEL = '#6e8cff';
 
 function Icon({ name, size = 12 }) {
-  const Cmp = Lucide[name] || Lucide.Square;
+  const Cmp = dashIcon(name);
   return <Cmp size={size} strokeWidth={1.75} />;
 }
 

@@ -1,8 +1,9 @@
 import React from 'react';
-import * as Lucide from 'lucide-react';
+import { Square as LSquare } from 'lucide-react';
+import { dashIcon } from './dashboardIcons.js';
 
 function Icon({ name, size = 12 }) {
-  const Cmp = Lucide[name] || Lucide.Square;
+  const Cmp = dashIcon(name);
   return <Cmp size={size} strokeWidth={1.75} />;
 }
 

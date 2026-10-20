@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Lucide from 'lucide-react';
+import { Loader2 as LLoader2, Newspaper as LNewspaper } from 'lucide-react';
 import {
   useNewsFeed,
   truncateTitle,
@@ -50,7 +50,7 @@ function StatusPill({ status, mode, error, filterStats }) {
   if (status === 'loading') {
     return (
       <span className="inline-flex items-center gap-1 text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>
-        <Lucide.Loader2 size={10} className="animate-spin" />
+        <LLoader2 size={10} className="animate-spin" />
         同步中
       </span>
     );
@@ -101,7 +101,7 @@ export default function NewsMarquee({ refreshKey = 0 }) {
   return (
     <div className="mt-5 os-news-marquee">
       <div className="flex items-center gap-2 mb-2 flex-wrap">
-        <Lucide.Newspaper size={14} style={{ color: STEEL }} />
+        <LNewspaper size={14} style={{ color: STEEL }} />
         <span className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>时政要闻</span>
         <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>
           央视 · 人民日报 · 新华社等 · {NEWS_MAX_AGE_DAYS}天内 · 去重简报
@@ -116,7 +116,7 @@ export default function NewsMarquee({ refreshKey = 0 }) {
           className="os-card flex items-center justify-center gap-2 py-3 text-xs"
           style={{ color: 'var(--text-tertiary)', borderColor: 'var(--border-subtle)' }}
         >
-          <Lucide.Loader2 size={14} className="animate-spin" />
+          <LLoader2 size={14} className="animate-spin" />
           正在拉取主流媒体 RSS…
         </div>
       ) : (

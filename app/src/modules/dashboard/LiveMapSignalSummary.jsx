@@ -1,12 +1,13 @@
 import React from 'react';
-import * as Lucide from 'lucide-react';
+import { Square as LSquare } from 'lucide-react';
+import { dashIcon } from './dashboardIcons.js';
 import { MAP_LAYER_DEFS } from './liveMapLayers.js';
 import { formatLiveTime } from './liveWeather.js';
 
 const STEEL = '#6e8cff';
 
 function Icon({ name, size = 14 }) {
-  const Cmp = Lucide[name] || Lucide.Square;
+  const Cmp = dashIcon(name);
   return <Cmp size={size} strokeWidth={1.75} style={{ color: STEEL }} />;
 }
 

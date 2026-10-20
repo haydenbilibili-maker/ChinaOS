@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
+import { Download as LDownload, Maximize2 as LMaximize2, Minimize2 as LMinimize2, PanelRight as LPanelRight, ScatterChart as LScatterChart, Search as LSearch, Square as LSquare } from 'lucide-react';
+import { dashIcon } from './dashboardIcons.js';
 import {
   CHART_TOOLTIP, applyChartTheme, chartTextColor, AXIS, LABEL,
   mapChoropleth, mapDeltaChoropleth, mapAreaIdle,
@@ -89,7 +90,7 @@ function SourceBadge({ label, loading, error, fetchedAt, okColor = '#6fc2ae', wa
 }
 
 function Icon({ name, size = 14, style }) {
-  const Cmp = Lucide[name] || Lucide.Square;
+  const Cmp = dashIcon(name);
   return <Cmp size={size} strokeWidth={1.75} style={style} />;
 }
 
@@ -823,7 +824,7 @@ export default function LiveChinaMap({
           {!isCompact && (
             <>
               <div className="relative">
-                <Lucide.Search size={12} style={{ position: 'absolute', left: 7, top: 7, color: 'var(--text-tertiary)' }} />
+                <LSearch size={12} style={{ position: 'absolute', left: 7, top: 7, color: 'var(--text-tertiary)' }} />
                 <input
                   ref={searchInputRef}
                   value={searchQ}
@@ -853,12 +854,12 @@ export default function LiveChinaMap({
               <button type="button" onClick={exportPng} className="p-1.5 rounded touch-manipulation"
                 style={{ color: 'var(--text-tertiary)', border: '1px solid var(--border-subtle)' }}
                 aria-label="导出 PNG" title="导出当前视图 PNG">
-                <Lucide.Download size={14} />
+                <LDownload size={14} />
               </button>
               <button type="button" onClick={toggleFullscreen} className="p-1.5 rounded touch-manipulation"
                 style={{ color: 'var(--text-tertiary)', border: '1px solid var(--border-subtle)' }}
                 aria-label="全屏">
-                {isFullscreen ? <Lucide.Minimize2 size={14} /> : <Lucide.Maximize2 size={14} />}
+                {isFullscreen ? <LMinimize2 size={14} /> : <LMaximize2 size={14} />}
               </button>
             </>
           )}
@@ -1070,7 +1071,7 @@ export default function LiveChinaMap({
               style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', color: 'var(--text-secondary)' }}
               onClick={() => setSidebarOpen((o) => !o)}
             >
-              <Lucide.PanelRight size={12} />
+              <LPanelRight size={12} />
               {sidebarOpen ? '收起排行' : '展开排行'}
             </button>
             <div
@@ -1155,7 +1156,7 @@ export default function LiveChinaMap({
       {showAnalysis && !isCompact && (
         <div className="mt-5 p-3 rounded-lg lcm-section" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}>
           <div className="flex flex-wrap items-center gap-2 mb-2">
-            <Lucide.ScatterChart size={14} style={{ color: STEEL }} />
+            <LScatterChart size={14} style={{ color: STEEL }} />
             <span className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>象限研判 · 图层 × 图层</span>
             <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>31 省交叉定位 · 均值十字分象限 · 点击省份开详情</span>
             <span className="ml-auto flex items-center gap-1.5 text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>

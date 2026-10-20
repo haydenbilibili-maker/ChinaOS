@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
+import { Play as LPlay, Radio as LRadio, Square as LSquare, X as LX } from 'lucide-react';
+import { dashIcon } from './dashboardIcons.js';
 import StreamPlayer from '../../lib/live/StreamPlayer.jsx';
 import {
   PUBLIC_STREAMS,
@@ -16,7 +17,7 @@ import { embedBadgeLabel, embedBadgeTone } from '../../lib/live/streamUtils.js';
 const STEEL = '#6e8cff';
 
 function Icon({ name, size = 16 }) {
-  const Cmp = Lucide[name] || Lucide.Square;
+  const Cmp = dashIcon(name);
   return <Cmp size={size} strokeWidth={1.75} />;
 }
 
@@ -67,7 +68,7 @@ function StreamCard({ stream, onOpen }) {
           className="absolute bottom-2 right-2 p-1.5 rounded-full"
           style={{ background: 'rgba(0,0,0,0.55)' }}
         >
-          <Lucide.Play size={14} fill="#fff" stroke="none" style={{ color: '#fff' }} />
+          <LPlay size={14} fill="#fff" stroke="none" style={{ color: '#fff' }} />
         </span>
       </div>
       <div className="p-2.5 flex-1 flex flex-col gap-1.5 min-w-0">
@@ -177,7 +178,7 @@ function StreamModal({ stream, onClose }) {
             style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', color: 'var(--text-secondary)', cursor: 'pointer' }}
             aria-label="关闭"
           >
-            <Lucide.X size={16} />
+            <LX size={16} />
           </button>
         </div>
         <div className="p-4">
@@ -240,7 +241,7 @@ export default function LiveStreamsSection({ compact = false, previewCount = 8, 
   return (
     <section className={compact ? 'mt-5' : 'mb-8'}>
       <div className="flex items-center gap-2 mb-3 flex-wrap">
-        <Lucide.Radio size={16} style={{ color: STEEL }} />
+        <LRadio size={16} style={{ color: STEEL }} />
         <h2 className="os-card-title m-0">{compact ? '神州实况' : '公共直播 · 神州实况'}</h2>
         {compact ? (
           <>

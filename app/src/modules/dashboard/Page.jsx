@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
+import { Activity as LActivity, BrainCircuit as LBrainCircuit, FileDown as LFileDown, Gauge as LGauge, MonitorPlay as LMonitorPlay, Radar as LRadar, Search as LSearch, Square as LSquare, Star as LStar, Waves as LWaves, X as LX } from 'lucide-react';
+import { dashIcon } from './dashboardIcons.js';
 import { Card, Grid, Stat, StatGrid, EmptyState, LoadingSkeleton } from '../../app/ui.jsx';
 import { GROUPS, MODULES } from '../../app/registry.js';
 import EChart from '../../lib/viz/EChart.jsx';
@@ -58,7 +59,7 @@ import {
 } from './dashboardParts.jsx';
 
 function Icon({ name, size = 16 }) {
-  const Cmp = Lucide[name] || Lucide.Square;
+  const Cmp = dashIcon(name);
   return <Cmp size={size} strokeWidth={1.75} />;
 }
 
@@ -122,7 +123,7 @@ function MacroH1Strip({ kpis, asOf, lastRefresh, isRefreshing, secondsToNext, re
       style={{ borderTop: '1px solid var(--border-subtle)' }}
     >
       <div className="flex items-center gap-2 mb-3 flex-wrap min-w-0 max-w-full">
-        <Lucide.Gauge size={14} style={{ color: COOL }} />
+        <LGauge size={14} style={{ color: COOL }} />
         <span className="text-xs font-semibold os-label-slot" style={{ color: 'var(--text-secondary)' }}>2026 {ECON_PERIOD.gdp}宏观读数</span>
         <span className="text-[10px] mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>
           数据截至 <span className="mono os-mono-tabular">{asOf}</span>
@@ -413,7 +414,7 @@ function CognitionToolbox() {
   return (
     <section className="mb-8">
       <div className="flex items-center gap-2 mb-3">
-        <Lucide.BrainCircuit size={16} style={{ color: HOLD }} />
+        <LBrainCircuit size={16} style={{ color: HOLD }} />
         <h2 className="os-card-title m-0">认知内核 · 思想工具箱</h2>
         <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>{`// ${tools.length} 个可推演理论模型 · 拖动参数看结构后果`}</span>
       </div>
@@ -668,7 +669,7 @@ function FavStrip() {
             <Link to={m.path} className="inline-flex items-center gap-1.5 pl-2.5 pr-1 py-1 text-xs" style={{ color: 'var(--text-secondary)' }}>
               <span style={{ color: g?.accent || STEEL }}><Icon name={m.icon} size={12} /></span>{m.title}
             </Link>
-            <button onClick={() => toggle(m.id)} title="取消关注" style={{ background: 'none', border: 'none', cursor: 'pointer', color: HOLD, padding: '0 6px' }}><Lucide.X size={11} /></button>
+            <button onClick={() => toggle(m.id)} title="取消关注" style={{ background: 'none', border: 'none', cursor: 'pointer', color: HOLD, padding: '0 6px' }}><LX size={11} /></button>
           </span>
         );
       })}
@@ -713,7 +714,7 @@ function BriefingGenerator() {
   return (
     <section className="mb-8">
       <div className="flex items-center gap-2 mb-3 flex-wrap">
-        <Lucide.FileDown size={16} style={{ color: WARM }} />
+        <LFileDown size={16} style={{ color: WARM }} />
         <h2 className="os-card-title m-0">今日简报</h2>
         <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>{'// 一键聚合 态势/施政/读数/节点 为可复制 Markdown'}</span>
         <span className="ml-auto flex gap-2">
@@ -750,7 +751,7 @@ function QuickNav() {
       <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
         <h2 className="os-card-title m-0">快速跳转 · {filtered.length} 模块</h2>
         <div className="relative" style={{ minWidth: 220 }}>
-          <Lucide.Search size={14} style={{ position: 'absolute', left: 10, top: 9, color: 'var(--text-tertiary)' }} />
+          <LSearch size={14} style={{ position: 'absolute', left: 10, top: 9, color: 'var(--text-tertiary)' }} />
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
@@ -790,7 +791,7 @@ function QuickNav() {
                   className="shrink-0"
                   style={{ background: 'none', border: 'none', cursor: 'pointer', color: favs.includes(m.id) ? HOLD : 'var(--text-tertiary)', padding: 2, marginTop: 2 }}
                 >
-                  <Lucide.Star size={13} fill={favs.includes(m.id) ? HOLD : 'none'} />
+                  <LStar size={13} fill={favs.includes(m.id) ? HOLD : 'none'} />
                 </button>
               </Link>
             ))}
@@ -877,7 +878,7 @@ export default function DashboardPage() {
         {/* 信号流 · 从 Hero 拆出减轻拥挤 */}
         <div className="dash-signal-stream">
           <div className="dash-signal-stream__heading">
-            <Lucide.Waves size={13} style={{ color: STEEL }} />
+            <LWaves size={13} style={{ color: STEEL }} />
             实时信号流 · 时政 · 直播 · 资产
           </div>
           <NewsMarquee refreshKey={macro.refreshCount} />
@@ -888,7 +889,7 @@ export default function DashboardPage() {
             style={{ background: 'var(--bg-elevated)', border: '1px solid rgba(110, 140, 255,0.28)' }}
           >
             <span className="flex items-center gap-2">
-              <Lucide.Activity size={16} style={{ color: STEEL }} />
+              <LActivity size={16} style={{ color: STEEL }} />
               <span className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>全球资产脉搏</span>
               <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>股市 · 债市 · 汇市 · 大宗</span>
             </span>
@@ -926,7 +927,7 @@ export default function DashboardPage() {
       {/* ── 2. 态势 · 政策 · 底座 三联速览 ─────────────────── */}
       <section className="mb-8 dash-scroll-reveal">
         <div className="os-section-heading">
-          <Lucide.Radar size={16} style={{ color: 'var(--china-red)' }} />
+          <LRadar size={16} style={{ color: 'var(--china-red)' }} />
           <h2 className="os-section-heading__title m-0">态势速览</h2>
           <span className="os-section-heading__meta min-w-0">// 外交矢量 · 施政基准 · 本地库活数据</span>
         </div>
@@ -963,7 +964,7 @@ export default function DashboardPage() {
       {/* ── 3. 实时大屏 ──────────────────────────────────── */}
       <section className="mb-8 dash-scroll-reveal">
         <div className="os-section-heading">
-          <Lucide.MonitorPlay size={16} style={{ color: 'var(--cyber-cyan)' }} />
+          <LMonitorPlay size={16} style={{ color: 'var(--cyber-cyan)' }} />
           <h2 className="os-section-heading__title m-0">实时大屏</h2>
           <span className="os-section-heading__meta min-w-0">// LIVE · 种子计数</span>
         </div>

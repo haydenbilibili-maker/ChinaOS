@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
+import { Activity as LActivity, Bell as LBell, Compass as LCompass, Landmark as LLandmark, Radio as LRadio, RefreshCw as LRefreshCw, Square as LSquare, Telescope as LTelescope } from 'lucide-react';
+import { dashIcon } from './dashboardIcons.js';
 import {
   AS_OF,
   MODULE_COUNT,
@@ -13,7 +14,7 @@ import {
 import { CANARY_SIGNALS } from '../econdash/econData.js';
 
 function Icon({ name, size = 16 }) {
-  const Cmp = Lucide[name] || Lucide.Square;
+  const Cmp = dashIcon(name);
   return <Cmp size={size} strokeWidth={1.75} />;
 }
 
@@ -281,19 +282,19 @@ export function StatusStrip({
           disabled={isRefreshing}
           aria-label="刷新宏观信号"
         >
-          <Lucide.RefreshCw size={12} className={isRefreshing ? 'animate-spin' : ''} />
+          <LRefreshCw size={12} className={isRefreshing ? 'animate-spin' : ''} />
           拉取信号
         </button>
         <Link to="/modules/observatory" className="dash-quick-btn dash-quick-btn--primary">
-          <Lucide.Telescope size={12} />
+          <LTelescope size={12} />
           观象台
         </Link>
         <Link to="/modules/signal-panel" className="dash-quick-btn">
-          <Lucide.Radio size={12} />
+          <LRadio size={12} />
           信号灯
         </Link>
         <Link to="/governance" className="dash-quick-btn">
-          <Lucide.Landmark size={12} />
+          <LLandmark size={12} />
           治理
         </Link>
       </div>
@@ -306,7 +307,7 @@ export function ModuleGatewayLattice() {
   return (
     <section className="dash-pillar-section dash-scroll-reveal" aria-labelledby="dash-gateway-heading">
       <div className="os-section-heading mb-3">
-        <Lucide.Compass size={16} style={{ color: 'var(--china-red)' }} />
+        <LCompass size={16} style={{ color: 'var(--china-red)' }} />
         <h2 id="dash-gateway-heading" className="os-section-heading__title m-0">模块门户</h2>
         <span className="os-section-heading__meta min-w-0">// 权力 · 台海 · 军事 · 河山 · 人才 · 领袖 · 信号 · 治理</span>
       </div>
@@ -359,7 +360,7 @@ export function RecentSignalsStrip({ className = '' }) {
   return (
     <aside className={`dash-recent-signals ${className}`.trim()} aria-label="近期金丝雀信号">
       <div className="dash-recent-signals__head">
-        <Lucide.Bell size={13} style={{ color: '#d4a25a' }} />
+        <LBell size={13} style={{ color: '#d4a25a' }} />
         <span>近期信号</span>
         <Link to={econTabPath('canary')} className="dash-recent-signals__more mono">经济大盘 →</Link>
       </div>
@@ -406,7 +407,7 @@ export function SignalFreshnessBar() {
     <div className="dash-signal-bar" role="region" aria-label="金丝雀信号新鲜度">
       <div className="dash-signal-bar__head">
         <span className="dash-signal-bar__title">
-          <Lucide.Activity size={13} style={{ color: '#6e8cff' }} />
+          <LActivity size={13} style={{ color: '#6e8cff' }} />
           信号新鲜度 · 能源压舱石与实体景气
         </span>
         <FreshnessGauge signals={signals} />

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
+import { ArrowUpRight as LArrowUpRight, X as LX } from 'lucide-react';
 import {
   getProvinceByName,
   getProvinceModuleLink,
@@ -176,7 +176,7 @@ export default function ProvinceDetailDrawer({
           className="lcm-province-drawer__close"
           aria-label="关闭省份详情"
         >
-          <Lucide.X size={16} />
+          <LX size={16} />
         </button>
       </header>
 
@@ -231,7 +231,7 @@ export default function ProvinceDetailDrawer({
           </button>
           {moduleLink && (
             <Link to={moduleLink.to} className="lcm-province-drawer__cta">
-              {moduleLink.label} <Lucide.ArrowUpRight size={10} />
+              {moduleLink.label} <LArrowUpRight size={10} />
             </Link>
           )}
           <Link
