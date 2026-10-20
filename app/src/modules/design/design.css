@@ -5,6 +5,11 @@
   gap: clamp(2.5rem, 2rem + 2vw, 4.5rem);
 }
 
+/* 页头与主视觉之间只保留栅格间距 */
+.vi-spec > .os-page-header {
+  margin-bottom: 0;
+}
+
 /* ── 主视觉 ─────────────────────────────────────────── */
 .vi-spec-hero {
   position: relative;
