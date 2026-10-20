@@ -36,6 +36,10 @@
       "settleMs": 2500
     },
     {
+      "id": "signalpanel",
+      "path": "/modules/signal-panel"
+    },
+    {
       "id": "dashboard",
       "path": "/dashboard"
     },
