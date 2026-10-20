@@ -55,6 +55,15 @@ for (const vp of cfg.viewports) {
         /* 外部实时数据可能拖住 networkidle，超时后照常截图 */
       }
       await page.waitForTimeout(r.settleMs ?? 1500);
+      // 可选：滚到某元素（内层滚动容器也适用）、点击某按钮，再截图——用于拍首屏以下的交互态
+      if (r.scrollTo) {
+        await page.evaluate((sel) => document.querySelector(sel)?.scrollIntoView({ block: 'start' }), r.scrollTo);
+        await page.waitForTimeout(600);
+      }
+      if (r.click) {
+        try { await page.click(r.click, { timeout: 3000 }); } catch { errors.push(`click failed: ${r.click}`); }
+        await page.waitForTimeout(500);
+      }
       if (r.fullPage) {
         // 应用壳把滚动放在 <main> 等内层容器里：展开它们，整页截图才能拍到全部内容
         await page.evaluate(() => {

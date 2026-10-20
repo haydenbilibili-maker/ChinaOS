@@ -52,6 +52,17 @@
       "path": "/dashboard"
     },
     {
+      "id": "dash-chapters",
+      "path": "/dashboard",
+      "scrollTo": "#dash-ch-situation"
+    },
+    {
+      "id": "dash-customize",
+      "path": "/dashboard",
+      "scrollTo": "#dash-ch-gateway",
+      "click": ".dch-rail__custom"
+    },
+    {
       "id": "econ",
       "path": "/econ-dashboard"
     },
