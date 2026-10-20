@@ -15,6 +15,7 @@ const KEYS = {
   recents: 'cos-recent', // 沿用 1.x 足迹键，保留历史
   watchlist: 'chinaos.ws.watchlist.v1',
   notes: 'chinaos.ws.notes.v1',
+  dashLayout: 'chinaos.ws.dash-layout.v1',
 };
 
 export const DEFAULT_WATCHLIST = ['gdp_h1', 'cpi', 'pmi_mfg', 'm2'];
@@ -115,6 +116,54 @@ export function deleteNote(id) {
 }
 
 /* ── React 订阅 ───────────────────────────────────── */
+/* ── 看板布局（章节顺序 + 隐藏） ─────────────────────── */
+/**
+ * 以默认章节表为准归一化：未知 id 丢弃，新增章节按默认位置补入，隐藏集合只留已知 id。
+ * @param {{ order?: string[], hidden?: string[] } | null} layout
+ * @param {string[]} ids 默认顺序
+ */
+export function normalizeDashLayout(layout, ids) {
+  const known = new Set(ids);
+  const order = Array.isArray(layout?.order) ? layout.order.filter((id, i, a) => known.has(id) && a.indexOf(id) === i) : [];
+  ids.forEach((id, i) => {
+    if (order.includes(id)) return;
+    // 新章节：插到默认顺序里前一个已存在章节之后
+    const prev = ids.slice(0, i).reverse().find((x) => order.includes(x));
+    order.splice(prev ? order.indexOf(prev) + 1 : 0, 0, id);
+  });
+  const hidden = Array.isArray(layout?.hidden) ? layout.hidden.filter((id, i, a) => known.has(id) && a.indexOf(id) === i) : [];
+  return { order, hidden };
+}
+
+export function getDashLayout(ids) {
+  return normalizeDashLayout(read(KEYS.dashLayout, null), ids);
+}
+
+export function setDashLayout(layout) {
+  write(KEYS.dashLayout, { order: layout.order, hidden: layout.hidden });
+}
+
+export function resetDashLayout() {
+  try { localStorage.removeItem(KEYS.dashLayout); } catch { /* ignore */ }
+  if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent(WORKSPACE_EVENT, { detail: { key: KEYS.dashLayout } }));
+}
+
+/** 章节上 / 下移一位（纯函数） */
+export function moveDashSection(layout, id, dir) {
+  const order = [...layout.order];
+  const i = order.indexOf(id);
+  const j = i + dir;
+  if (i < 0 || j < 0 || j >= order.length) return layout;
+  [order[i], order[j]] = [order[j], order[i]];
+  return { ...layout, order };
+}
+
+/** 显示 / 隐藏切换（纯函数） */
+export function toggleDashSection(layout, id) {
+  const hidden = layout.hidden.includes(id) ? layout.hidden.filter((x) => x !== id) : [...layout.hidden, id];
+  return { ...layout, hidden };
+}
+
 export function useWorkspace(selector) {
   const [value, setValue] = useState(selector);
   const sel = useCallback(selector, []); // eslint-disable-line react-hooks/exhaustive-deps

@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Activity as LActivity, BrainCircuit as LBrainCircuit, FileDown as LFileDown, Gauge as LGauge, MonitorPlay as LMonitorPlay, Radar as LRadar, Search as LSearch, Square as LSquare, Star as LStar, Waves as LWaves, X as LX } from 'lucide-react';
+import { Activity as LActivity, BrainCircuit as LBrainCircuit, FileDown as LFileDown, Gauge as LGauge, Search as LSearch, Square as LSquare, Star as LStar, Waves as LWaves, X as LX } from 'lucide-react';
 import { dashIcon } from './dashboardIcons.js';
 import { Card, Grid, Stat, StatGrid, EmptyState, LoadingSkeleton } from '../../app/ui.jsx';
 import { GROUPS, MODULES } from '../../app/registry.js';
@@ -38,6 +38,7 @@ import {
   econTabPath,
 } from './data.js';
 import { ECON_PERIOD } from '../econdash/econData.js';
+import { Chapter, ChapterRail, CustomizePanel, useDashLayout } from './DashChapters.jsx';
 import DashHero2 from './DashHero2.jsx';
 import { useMacroPulse } from './useMacroPulse.js';
 import NewsMarquee from './NewsMarquee.jsx';
@@ -812,6 +813,8 @@ export default function DashboardPage() {
   const opt = useOptions();
   const macro = useMacroPulse();
   const [heroPulse, setHeroPulse] = useState(false);
+  const dash = useDashLayout();
+  const [customizing, setCustomizing] = useState(false);
   useScrollReveal();
 
   useEffect(() => {
@@ -829,6 +832,146 @@ export default function DashboardPage() {
     { value: GROUP_COUNT, label: '专题分组', accent: '#d4a25a', icon: 'FolderTree', countUp: true },
     { value: AS_OF, label: '数据基准 AS_OF', accent: '#6fc2ae', icon: 'CalendarClock', mono: true, countUp: false },
   ];
+
+  // 章节内容：只渲染可见章节，隐藏的不挂载
+  const chapterBody = (id) => {
+    switch (id) {
+      case 'overview':
+        return (
+            <section className={`dash-hero-v2 is-visible${heroPulse ? ' is-pulse' : ''}`}>
+              <div className="dash-hero-v2__grid">
+                <div>
+                  <MacroH1Strip
+                    kpis={macro.kpis}
+                    asOf={macro.asOf}
+                    lastRefresh={macro.lastRefresh}
+                    isRefreshing={macro.isRefreshing}
+                    secondsToNext={macro.secondsToNext}
+                    refreshCount={macro.refreshCount}
+                  />
+
+                  <LiveModuleChips />
+
+                  <div className="mt-5">
+                    <GovernanceVerdict pulseKey={macro.refreshCount} />
+                  </div>
+                </div>
+
+                <div className="dash-hero-v2__aside">
+                  <SystemHealthPanel entryTotal={ENTRY_TOTAL} refreshCount={macro.refreshCount} />
+                  <RecentSignalsStrip />
+                </div>
+              </div>
+
+              {/* 信号流 · 从 Hero 拆出减轻拥挤 */}
+              <div className="dash-signal-stream">
+                <div className="dash-signal-stream__heading">
+                  <LWaves size={13} style={{ color: STEEL }} />
+                  实时信号流 · 时政 · 直播 · 资产
+                </div>
+                <NewsMarquee refreshKey={macro.refreshCount} />
+                <LiveStreamsSection compact previewCount={8} pulseKey={macro.refreshCount} />
+                <Link
+                  to="/market-pulse"
+                  className="os-card-interactive mt-3 flex items-center justify-between rounded-lg px-4 py-3"
+                  style={{ background: 'var(--bg-elevated)', border: '1px solid rgba(110, 140, 255,0.28)' }}
+                >
+                  <span className="flex items-center gap-2">
+                    <LActivity size={16} style={{ color: STEEL }} />
+                    <span className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>全球资产脉搏</span>
+                    <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>股市 · 债市 · 汇市 · 大宗</span>
+                  </span>
+                  <span className="text-xs mono" style={{ color: STEEL }}>进入模块 →</span>
+                </Link>
+              </div>
+
+              {/* 重点模块精选 */}
+              <div className="mt-5 pt-4" style={{ borderTop: '1px solid var(--border-subtle)' }}>
+                <div className="os-section-heading__meta mb-2">重点模块</div>
+                <div className="flex flex-wrap gap-2 os-section-stagger">
+                  {FEATURED.map((m) => (
+                    <Link
+                      key={m.id}
+                      to={m.path}
+                      className="os-card-interactive inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium"
+                      style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)' }}
+                    >
+                      <span style={{ color: 'var(--cyber-cyan)' }}><Icon name={m.icon} size={13} /></span>
+                      {m.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </section>
+        );
+      case 'gateway':
+        return <ModuleGatewayLattice />;
+      case 'map':
+        return <LiveChinaMap variant="compact" />;
+      case 'situation':
+        return (
+          <>
+            {/* 主卡 + 侧栏密排：取消 span-2 行占位，避免宽屏右下空洞 */}
+            <div className="dash-pulse-pack dash-screen-grid os-section-stagger">
+              <div className="dash-pulse-pack__hero">
+                <StrategyPulse />
+              </div>
+              <div className="dash-pulse-pack__side os-section-stagger">
+                <PolicyPulse />
+                <LiveDbStatus />
+                <KondratievClock />
+                <RiskRadar />
+                <div className="dash-pulse-wide">
+                  <PolicyCalendar />
+                </div>
+              </div>
+            </div>
+            <Grid cols={{ sm: 1, lg: 2, '2xl': 3 }} gap="0.85rem" className="dash-screen-grid os-section-stagger mt-3">
+              <WatchPulse />
+              <ChroniclePulse />
+            </Grid>
+            <Grid cols={{ sm: 1, lg: 2, '2xl': 3 }} gap="0.85rem" className="dash-screen-grid os-section-stagger mt-3">
+              <GdeltPulse />
+              <PolyPulse />
+            </Grid>
+          </>
+        );
+      case 'briefing':
+        return <BriefingGenerator />;
+      case 'screens':
+        return (
+            <Grid cols={{ sm: 1, md: 2, lg: 3, '2xl': 4 }} gap="0.85rem" className="dash-screen-grid os-section-stagger">
+              <ScreenCard title="中国政要分层构成" accent="#e5483b" footer="政治权力队列 · 按层级聚合">
+                <EChart option={opt.donut} variant="compact" style={{ height: 230 }} />
+              </ScreenCard>
+              <ScreenCard title="反腐历年趋势" accent="#d4a25a" footer="副省部级及以上为主 · 按官宣年归集（2012 起）">
+                <EChart option={opt.acTrend} variant="compact" style={{ height: 230 }} />
+              </ScreenCard>
+              <ScreenCard title="军衔结构（量级示意）" accent="#6fc2ae" footer={RANK_STRUCTURE.note}>
+                <EChart option={opt.ranks} variant="compact" style={{ height: 230 }} />
+              </ScreenCard>
+              <ScreenCard title="民企500强 · 省份分布 Top12" accent="#c07a4a" footer="工商联 2024 榜单 · 注册地口径">
+                <EChart option={opt.prov} variant="compact" style={{ height: 260 }} />
+              </ScreenCard>
+              <ScreenCard title="模块分组覆盖" accent="#b07cc6" footer="各专题分组下的模块数量">
+                <EChart option={opt.coverage} variant="compact" style={{ height: 260 }} />
+              </ScreenCard>
+              <ScreenCard title="数据集规模对比" accent="#6e8cff" footer="人物/企业画像条目（去重后）">
+                <EChart option={opt.scale} variant="compact" style={{ height: 260 }} />
+              </ScreenCard>
+            </Grid>
+        );
+      case 'toolbox':
+        return (
+          <>
+            <CognitionToolbox />
+            <QuickNav />
+          </>
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <div className="dash-v2 dash-v2-enter">
@@ -849,152 +992,18 @@ export default function DashboardPage() {
       <FavStrip />
       <RecentVisits />
 
-      {/* ── 1. 项目总揽 · Hero v2 ─────────────────────────── */}
-      <section className={`dash-hero-v2 dash-scroll-reveal is-visible${heroPulse ? ' is-pulse' : ''}`}>
-        <div className="dash-hero-v2__grid">
-          <div>
-            <MacroH1Strip
-              kpis={macro.kpis}
-              asOf={macro.asOf}
-              lastRefresh={macro.lastRefresh}
-              isRefreshing={macro.isRefreshing}
-              secondsToNext={macro.secondsToNext}
-              refreshCount={macro.refreshCount}
-            />
+      {/* ── 章节轨（吸顶 · 定制） ─────────────────────────── */}
+      <ChapterRail ids={dash.visible} onCustomize={() => setCustomizing((v) => !v)} />
+      <CustomizePanel open={customizing} onClose={() => setCustomizing(false)} dash={dash} />
 
-            <LiveModuleChips />
-
-            <div className="mt-5">
-              <GovernanceVerdict pulseKey={macro.refreshCount} />
-            </div>
-          </div>
-
-          <div className="dash-hero-v2__aside">
-            <SystemHealthPanel entryTotal={ENTRY_TOTAL} refreshCount={macro.refreshCount} />
-            <RecentSignalsStrip />
-          </div>
-        </div>
-
-        {/* 信号流 · 从 Hero 拆出减轻拥挤 */}
-        <div className="dash-signal-stream">
-          <div className="dash-signal-stream__heading">
-            <LWaves size={13} style={{ color: STEEL }} />
-            实时信号流 · 时政 · 直播 · 资产
-          </div>
-          <NewsMarquee refreshKey={macro.refreshCount} />
-          <LiveStreamsSection compact previewCount={8} pulseKey={macro.refreshCount} />
-          <Link
-            to="/market-pulse"
-            className="os-card-interactive mt-3 flex items-center justify-between rounded-lg px-4 py-3"
-            style={{ background: 'var(--bg-elevated)', border: '1px solid rgba(110, 140, 255,0.28)' }}
-          >
-            <span className="flex items-center gap-2">
-              <LActivity size={16} style={{ color: STEEL }} />
-              <span className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>全球资产脉搏</span>
-              <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>股市 · 债市 · 汇市 · 大宗</span>
-            </span>
-            <span className="text-xs mono" style={{ color: STEEL }}>进入模块 →</span>
-          </Link>
-        </div>
-
-        {/* 重点模块精选 */}
-        <div className="mt-5 pt-4" style={{ borderTop: '1px solid var(--border-subtle)' }}>
-          <div className="os-section-heading__meta mb-2">重点模块</div>
-          <div className="flex flex-wrap gap-2 os-section-stagger">
-            {FEATURED.map((m) => (
-              <Link
-                key={m.id}
-                to={m.path}
-                className="os-card-interactive inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium"
-                style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)' }}
-              >
-                <span style={{ color: 'var(--cyber-cyan)' }}><Icon name={m.icon} size={13} /></span>
-                {m.title}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── 1.5 模块门户 · 八大跳转 ─────────────────────────── */}
-      <ModuleGatewayLattice />
-
-      {/* ── 1.6 神州活图 · 紧凑预览 ───────────────────────── */}
-      <div className="dash-scroll-reveal">
-        <LiveChinaMap className="mb-8" variant="compact" />
-      </div>
-
-      {/* ── 2. 态势 · 政策 · 底座 三联速览 ─────────────────── */}
-      <section className="mb-8 dash-scroll-reveal">
-        <div className="os-section-heading">
-          <LRadar size={16} style={{ color: 'var(--china-red)' }} />
-          <h2 className="os-section-heading__title m-0">态势速览</h2>
-          <span className="os-section-heading__meta min-w-0">// 外交矢量 · 施政基准 · 本地库活数据</span>
-        </div>
-        {/* 主卡 + 侧栏密排：取消 span-2 行占位，避免宽屏右下空洞 */}
-        <div className="dash-pulse-pack dash-screen-grid os-section-stagger">
-          <div className="dash-pulse-pack__hero">
-            <StrategyPulse />
-          </div>
-          <div className="dash-pulse-pack__side os-section-stagger">
-            <PolicyPulse />
-            <LiveDbStatus />
-            <KondratievClock />
-            <RiskRadar />
-            <div className="dash-pulse-wide">
-              <PolicyCalendar />
-            </div>
-          </div>
-        </div>
-        <Grid cols={{ sm: 1, lg: 2, '2xl': 3 }} gap="0.85rem" className="dash-screen-grid os-section-stagger mt-3">
-          <WatchPulse />
-          <ChroniclePulse />
-        </Grid>
-        <Grid cols={{ sm: 1, lg: 2, '2xl': 3 }} gap="0.85rem" className="dash-screen-grid os-section-stagger mt-3">
-          <GdeltPulse />
-          <PolyPulse />
-        </Grid>
-      </section>
-
-      {/* ── 2.5 今日简报生成器 ───────────────────────────── */}
-      <div className="dash-scroll-reveal">
-        <BriefingGenerator />
-      </div>
-
-      {/* ── 3. 实时大屏 ──────────────────────────────────── */}
-      <section className="mb-8 dash-scroll-reveal">
-        <div className="os-section-heading">
-          <LMonitorPlay size={16} style={{ color: 'var(--cyber-cyan)' }} />
-          <h2 className="os-section-heading__title m-0">实时大屏</h2>
-          <span className="os-section-heading__meta min-w-0">// LIVE · 种子计数</span>
-        </div>
-        <Grid cols={{ sm: 1, md: 2, lg: 3, '2xl': 4 }} gap="0.85rem" className="dash-screen-grid os-section-stagger">
-          <ScreenCard title="中国政要分层构成" accent="#e5483b" footer="政治权力队列 · 按层级聚合">
-            <EChart option={opt.donut} variant="compact" style={{ height: 230 }} />
-          </ScreenCard>
-          <ScreenCard title="反腐历年趋势" accent="#d4a25a" footer="副省部级及以上为主 · 按官宣年归集（2012 起）">
-            <EChart option={opt.acTrend} variant="compact" style={{ height: 230 }} />
-          </ScreenCard>
-          <ScreenCard title="军衔结构（量级示意）" accent="#6fc2ae" footer={RANK_STRUCTURE.note}>
-            <EChart option={opt.ranks} variant="compact" style={{ height: 230 }} />
-          </ScreenCard>
-          <ScreenCard title="民企500强 · 省份分布 Top12" accent="#c07a4a" footer="工商联 2024 榜单 · 注册地口径">
-            <EChart option={opt.prov} variant="compact" style={{ height: 260 }} />
-          </ScreenCard>
-          <ScreenCard title="模块分组覆盖" accent="#b07cc6" footer="各专题分组下的模块数量">
-            <EChart option={opt.coverage} variant="compact" style={{ height: 260 }} />
-          </ScreenCard>
-          <ScreenCard title="数据集规模对比" accent="#6e8cff" footer="人物/企业画像条目（去重后）">
-            <EChart option={opt.scale} variant="compact" style={{ height: 260 }} />
-          </ScreenCard>
-        </Grid>
-      </section>
-
-      {/* ── 2. 快速跳转 ──────────────────────────────────── */}
-      {/* ── 3.5 认知内核工具箱 ───────────────────────────── */}
-      <CognitionToolbox />
-
-      <QuickNav />
+      {dash.visible.map((id, i) => (
+        <Chapter key={id} id={id} index={i}>
+          {chapterBody(id)}
+        </Chapter>
+      ))}
+      {dash.visible.length === 0 && (
+        <p className="dch-empty">所有章节都已隐藏 · <button type="button" className="dch-text-btn" onClick={dash.reset}>恢复默认</button></p>
+      )}
 
       {/* ── 数据来源 / 免责声明 ──────────────────────────── */}
       <Card title="数据来源与免责声明" className="mb-2">
