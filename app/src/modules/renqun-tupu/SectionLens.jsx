@@ -114,7 +114,7 @@ export default function SectionLens() {
 
   const ready = CLUSTERS.length > 0 && !!buildClusterRadarOption;
 
-  const clusterColor = cluster?.color || '#22d3ee';
+  const clusterColor = cluster?.color || '#6e8cff';
   const clusterName = clusterLabel(cluster, safeIdx);
   const count = cluster?.count ?? members.length;
   // 簇研判：CLUSTER_DEFS 无 blurb，用簇头 + 成员数合成结构研判
@@ -146,7 +146,7 @@ export default function SectionLens() {
           <div className="flex flex-wrap gap-1.5 mb-4">
             {CLUSTERS.map((c, i) => {
               const on = i === safeIdx;
-              const col = c.color || '#64748b';
+              const col = c.color || '#8a8578';
               return (
                 <button
                   key={c.idx ?? c.key ?? c.head ?? i}

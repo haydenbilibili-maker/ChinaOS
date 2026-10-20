@@ -13,13 +13,13 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // ============================================================================
 
 const STATES = {
-  fragile: { label: '脆弱 Fragile', color: '#c41e3a', k: -0.06, shape: '凹（concave）',
+  fragile: { label: '脆弱 Fragile', color: '#e5483b', k: -0.06, shape: '凹（concave）',
     desc: '收益对波动凹向下：小波动尚可，大波动带来不成比例的崩塌损失。怕黑天鹅。',
     proj: '过度杠杆 · 单一供应链 · 极限去库存（JIT 无冗余） · 政绩工程的债务雪球。' },
-  robust: { label: '强韧 Robust', color: '#22d3ee', k: 0, shape: '平（flat）',
+  robust: { label: '强韧 Robust', color: '#6e8cff', k: 0, shape: '平（flat）',
     desc: '收益对波动近乎不变：抗住冲击但也不从中获益。是「不坏」，不是「更好」。',
     proj: '战略储备 · 防御工事 · 冗余电网 · 维稳态——求确定性，付出机会成本。' },
-  antifragile: { label: '反脆弱 Antifragile', color: '#10b981', k: 0.06, shape: '凸（convex）',
+  antifragile: { label: '反脆弱 Antifragile', color: '#6fc2ae', k: 0.06, shape: '凸（convex）',
     desc: '收益对波动凸向上：从混乱、压力、试错中获益，波动越大上行越多（有下限保护）。',
     proj: '能源/供应链冗余 + 多元试点 · 压力测试 · 杠铃式财政 · 小步快试的改革。' },
 };
@@ -34,32 +34,32 @@ const CONCEPTS = [
 
 // 系统案例：脆弱源 / 波动暴露 / 学习回路 三维判读
 const CASES = [
-  { key: 'restaurant', label: '餐饮业', color: '#10b981', verdict: '行业反脆弱', tone: '#10b981',
+  { key: 'restaurant', label: '餐饮业', color: '#6fc2ae', verdict: '行业反脆弱', tone: '#6fc2ae',
     fragile: '单店极脆弱：现金流薄、口味试错成本全由店主承担，年倒闭率高。',
     expose: '每家店都直面市场波动，失败信号即时、局部、不可隐藏。',
     loop: '单店之死是行业之师——存活配方/选址/模式被迅速复制，整体口味与效率持续进化。',
     note: '塔勒布经典案例：个体的脆弱性，构成了总体的反脆弱性。' },
-  { key: 'aviation', label: '航空业', color: '#22d3ee', verdict: '设计型反脆弱', tone: '#22d3ee',
+  { key: 'aviation', label: '航空业', color: '#6e8cff', verdict: '设计型反脆弱', tone: '#6e8cff',
     fragile: '单次事故代价极高，但事故彼此独立、不传染（一架坠毁不会拖垮其它航班）。',
     expose: '黑匣子强制把每次波动转化为公开信息，错误暴露被制度化。',
     loop: '每次事故 → 全行业改规程/改机型 → 事故率逐年下降。错误的代价被全行业吸收为知识。',
     note: '关键设计：错误小型化 + 不传染 + 强制学习。这是反脆弱工程的模板。' },
-  { key: 'banking', label: '银行体系', color: '#c41e3a', verdict: '隐藏的脆弱', tone: '#c41e3a',
+  { key: 'banking', label: '银行体系', color: '#e5483b', verdict: '隐藏的脆弱', tone: '#e5483b',
     fragile: '高杠杆 + 深度互联：风险不独立、会传染。平日波动被风控「熨平」，表面稳健。',
     expose: '波动被隐藏而非消除——坏账滚动、表外腾挪，信息回路被切断。',
     loop: '无学习回路：救助（bailout）让犯错者免于代价，脆弱性原封不动地累积到下一次。',
     note: '2008 教训：表面最平稳的系统，往往是把尾部风险压缩进一次总爆发。' },
-  { key: 'startup', label: '创业生态', color: '#e8a317', verdict: '生态级反脆弱', tone: '#10b981',
+  { key: 'startup', label: '创业生态', color: '#d4a25a', verdict: '生态级反脆弱', tone: '#6fc2ae',
     fragile: '单个创业公司九死一生，失败是常态而非例外。',
     expose: '大量小赌注并行试错，每个失败都便宜、快速、信息量大。',
     loop: '资本与人才向存活者再配置；失败经验随创始人/工程师流动复用。硅谷=制度化的杠铃。',
     note: '生态的上行无上限（一个超级赢家覆盖千次失败），下行有限（单次损失封顶）。' },
-  { key: 'dualtrack', label: '中国双轨制改革', color: '#10b981', verdict: '反脆弱设计', tone: '#10b981',
+  { key: 'dualtrack', label: '中国双轨制改革', color: '#6fc2ae', verdict: '反脆弱设计', tone: '#6fc2ae',
     fragile: '旧体制整体切换风险极高（参照休克疗法的崩溃案例）。',
     expose: '特区/试点把波动限制在局部：错了关掉一个试验田，对了全国推广。',
     loop: '摸着石头过河=凸性期权组合——下行封顶（试点可逆），上行敞开（成功可复制）。',
     note: '增量赛跑存量、灰度替代切换：这是国家尺度上罕见的反脆弱工程实践。' },
-  { key: 'planned', label: '计划单一制', color: '#c41e3a', verdict: '结构性脆弱', tone: '#c41e3a',
+  { key: 'planned', label: '计划单一制', color: '#e5483b', verdict: '结构性脆弱', tone: '#e5483b',
     fragile: '单中心定价/配置：一处算错，全局错配，没有局部失败的「防火隔间」。',
     expose: '价格信号被取消 → 波动（短缺/过剩）不可见，误差无法被市场暴露。',
     loop: '反馈回路断裂：计划者听不到代价信号，错误逐年复利，直到不可纠正。',
@@ -68,27 +68,27 @@ const CASES = [
 
 // 思想谱系：斯多葛 → 凸性期权 → 黑天鹅 → 反脆弱 → 风险共担
 const LINEAGE = [
-  { period: '古典', title: '斯多葛 Stoicism', accent: '#93a1b5',
+  { period: '古典', title: '斯多葛 Stoicism', accent: '#a29c91',
     desc: '塞涅卡：财富在手而心已预演失去——把下行心理成本提前折旧，上行照单全收。这是杠铃策略的精神原型：情绪上极保守，行动上敢冒险。' },
-  { period: '1980s–90s', title: '凸性期权 · 交易员期', accent: '#e8a317',
+  { period: '1980s–90s', title: '凸性期权 · 交易员期', accent: '#d4a25a',
     desc: '塔勒布在交易所做期权做市商：长期持有便宜的深度虚值期权，平日小亏（权利金），崩盘日巨赚。亲身验证「凸性头寸从波动获益」，1987 股灾一战成名。' },
-  { period: '2007', title: '《黑天鹅》', accent: '#c41e3a',
+  { period: '2007', title: '《黑天鹅》', accent: '#e5483b',
     desc: '命题：历史由极端事件驱动，但统计工具假装它们不存在（高斯分布的「平均斯坦」幻觉）。次年金融危机为本书做了昂贵的实证。' },
-  { period: '2012', title: '《反脆弱》', accent: '#10b981',
+  { period: '2012', title: '《反脆弱》', accent: '#6fc2ae',
     desc: '从「识别黑天鹅」推进到「设计受益于黑天鹅的系统」：凸性、杠铃、冗余、小而多的试错。黑天鹅不可预测，但凸凹性可以设计。' },
-  { period: '2018', title: '风险共担 Skin in the Game', accent: '#22d3ee',
+  { period: '2018', title: '风险共担 Skin in the Game', accent: '#6e8cff',
     desc: '伦理收口：建议者必须分担后果，否则脆弱性会被转嫁（银行家拿奖金、纳税人买单）。无切肤之痛的系统，必然累积隐藏脆弱。' },
 ];
 
 // 中国系统两面评估
 const CN_ASSESS = {
-  anti: { title: '反脆弱设计（凸性资产）', color: '#10b981', items: [
+  anti: { title: '反脆弱设计（凸性资产）', color: '#6fc2ae', items: [
     ['灰度试点', '特区→沿海→全国的梯度推广 = 期权组合：单点失败可逆，成功全网复制。'],
     ['双轨制', '增量绕开存量硬碰撞，旧轨平稳折旧、新轨竞争进化，避免一次性切换的尾部风险。'],
     ['产业冗余', '多基地布局、备份供应链、超前基建——平日被讥为「过剩」，冲击日即为凸性。'],
     ['央地竞争', '地方政府锦标赛=并行试错引擎，治理创新在省际竞争中被筛选放大。'],
   ] },
-  fragile: { title: '脆弱性积累（凹性负债）', color: '#c41e3a', items: [
+  fragile: { title: '脆弱性积累（凹性负债）', color: '#e5483b', items: [
     ['刚性兑付', '隐性担保熨平了违约的小波动，让风险定价失灵，坏资产在水面下连成大陆。'],
     ['维稳怪圈', '把一切局部摩擦按住不让冒头——短期波动消失，长期张力无处释放、持续累积。'],
     ['土地财政依赖', '单一收入引擎 + 高杠杆链条：地价单边预期一旦反转，传染路径深而长。'],
@@ -139,7 +139,7 @@ export default function Page() {
     legend: { data: Object.values(STATES).map((s) => s.label), textStyle: { color: LABEL.color }, top: 0 },
     grid: { left: 44, right: 18, top: 34, bottom: 30 },
     xAxis: { type: 'value', name: '波动 →', nameTextStyle: { color: LABEL.color }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, splitLine: { show: false } },
-    yAxis: { type: 'value', name: '收益', min: 20, max: 100, nameTextStyle: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
+    yAxis: { type: 'value', name: '收益', min: 20, max: 100, nameTextStyle: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
     series,
   };
 
@@ -160,9 +160,9 @@ export default function Page() {
     xAxis: categoryX(['平稳期收益', '黑天鹅期收益', '最大回撤']),
     yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
     series: [
-      { name: '杠铃配置', type: 'bar', barWidth: 26, itemStyle: { color: '#10b981' },
+      { name: '杠铃配置', type: 'bar', barWidth: 26, itemStyle: { color: '#6fc2ae' },
         data: [barbell.calm.barbell, barbell.swan.barbell, Number(barbell.worst.barbell)].map((v) => Number(v.toFixed(1))) },
-      { name: '中庸均衡', type: 'bar', barWidth: 26, itemStyle: { color: '#c41e3a' },
+      { name: '中庸均衡', type: 'bar', barWidth: 26, itemStyle: { color: '#e5483b' },
         data: [barbell.calm.middle, barbell.swan.middle, barbell.worst.middle] },
     ],
   }), [barbell]);
@@ -178,8 +178,8 @@ export default function Page() {
     series: [
       { name: '林迪线 E[剩余]∝已存活', type: 'line', symbol: 'none',
         data: [[8, 8], [30, 30], [100, 100], [400, 400], [1200, 1200], [4000, 4000]],
-        lineStyle: { color: '#e8a317', width: 2, type: 'dashed' } },
-      { name: '案例', type: 'scatter', symbolSize: 11, itemStyle: { color: '#22d3ee' },
+        lineStyle: { color: '#d4a25a', width: 2, type: 'dashed' } },
+      { name: '案例', type: 'scatter', symbolSize: 11, itemStyle: { color: '#6e8cff' },
         label: { show: true, position: 'right', color: LABEL.color, fontSize: 10, formatter: (p) => p.data[2] },
         data: LINDY_CASES.map((c) => [c.age, c.age, c.name]) },
     ],
@@ -196,15 +196,15 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={3} className="mb-6">
-        <Stat value={fmt(payoffs.fragile)} label="脆弱态收益（当前波动）" accent="#c41e3a" />
-        <Stat value={fmt(payoffs.robust)} label="强韧态收益（近乎不变）" accent="#22d3ee" />
-        <Stat value={fmt(payoffs.antifragile)} label="反脆弱态收益（上行）" accent="#10b981" />
+        <Stat value={fmt(payoffs.fragile)} label="脆弱态收益（当前波动）" accent="#e5483b" />
+        <Stat value={fmt(payoffs.robust)} label="强韧态收益（近乎不变）" accent="#6e8cff" />
+        <Stat value={fmt(payoffs.antifragile)} label="反脆弱态收益（上行）" accent="#6fc2ae" />
       </Grid>
 
       <Grid cols={2} className="mb-6">
         <Card title="凸性模拟器 · 拖动波动强度 + 选择聚焦态">
           <div className="flex justify-between text-xs mb-1"><span style={{ color: 'var(--text-secondary)' }}>波动强度 Volatility</span><span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{vol}</span></div>
-          <input type="range" min="0" max="100" value={vol} onChange={(e) => setVol(Number(e.target.value))} style={{ width: '100%', accentColor: '#e8a317' }} />
+          <input type="range" min="0" max="100" value={vol} onChange={(e) => setVol(Number(e.target.value))} style={{ width: '100%', accentColor: '#d4a25a' }} />
           <div className="flex gap-1 flex-wrap mt-3 mb-3">
             {Object.entries(STATES).map(([k, v]) => (
               <button key={k} onClick={() => setFocus(k)} className="text-xs px-3 py-1 rounded mono"
@@ -231,13 +231,13 @@ export default function Page() {
             <span style={{ color: 'var(--text-secondary)' }}>极端保守端占比（国债/现金级）</span>
             <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{safePct}% 保守 + {100 - safePct}% 极激进</span>
           </div>
-          <input type="range" min="60" max="95" value={safePct} onChange={(e) => setSafePct(Number(e.target.value))} style={{ width: '100%', accentColor: '#10b981' }} />
+          <input type="range" min="60" max="95" value={safePct} onChange={(e) => setSafePct(Number(e.target.value))} style={{ width: '100%', accentColor: '#6fc2ae' }} />
           <EChart option={barbellChart} style={{ height: 230 }} />
         </Card>
         <Card title="为什么「中间地带」最危险">
           <Grid cols={2} className="mb-3">
-            <Stat value={barbell.worst.barbell + '%'} label="杠铃最大回撤（激进端全损封顶）" accent="#10b981" />
-            <Stat value={barbell.worst.middle + '%'} label="中庸配置黑天鹅回撤（无封顶）" accent="#c41e3a" />
+            <Stat value={barbell.worst.barbell + '%'} label="杠铃最大回撤（激进端全损封顶）" accent="#6fc2ae" />
+            <Stat value={barbell.worst.middle + '%'} label="中庸配置黑天鹅回撤（无封顶）" accent="#e5483b" />
           </Grid>
           <p className="text-sm leading-relaxed mb-2" style={{ color: 'var(--text-secondary)' }}>
             「中等风险」资产的风险其实<strong style={{ color: 'var(--text-primary)' }}>不可测</strong>——它的安全性建立在模型假设上，黑天鹅一来假设全崩。杠铃则不依赖任何预测：保守端的安全是<em>确定的</em>（损失上限 = 激进端仓位），激进端的上行是<em>敞开的</em>。
@@ -253,8 +253,8 @@ export default function Page() {
             <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>
               对<strong style={{ color: 'var(--text-primary)' }}>非易逝事物</strong>（思想、制度、技术、书），每多存活一年，预期剩余寿命<strong style={{ color: 'var(--text-primary)' }}>不减反增</strong>——与生物相反。原因：时间是唯一不可贿赂的压力测试，存活两千年的文本已经历两千年的波动筛选。
             </p>
-            <div className="p-3 rounded mb-2" style={{ background: 'rgba(34,211,238,0.08)', border: '1px solid rgba(34,211,238,0.25)' }}>
-              <span className="text-[10px] mono uppercase" style={{ color: '#22d3ee' }}>判读规则</span>
+            <div className="p-3 rounded mb-2" style={{ background: 'rgba(110, 140, 255,0.08)', border: '1px solid rgba(110, 140, 255,0.25)' }}>
+              <span className="text-[10px] mono uppercase" style={{ color: '#6e8cff' }}>判读规则</span>
               <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>《论语》比任何畅销书更可能再传五百年；纸质书大概率活过当前任何 App；存在千年的制度形态（科举式选拔、央地分层）不会因一轮技术浪潮消失，只会换壳。</p>
             </div>
             <p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>推论：研究中国系统，对存活最久的制度基因（郡县、文官、试点）下注，比对最新概念下注更符合林迪。</p>
@@ -271,15 +271,15 @@ export default function Page() {
           </div>
           <Grid cols={3} className="mb-3">
             <div>
-              <div className="text-xs font-semibold mb-1" style={{ color: '#c41e3a' }}>脆弱源</div>
+              <div className="text-xs font-semibold mb-1" style={{ color: '#e5483b' }}>脆弱源</div>
               <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{cs.fragile}</p>
             </div>
             <div>
-              <div className="text-xs font-semibold mb-1" style={{ color: '#e8a317' }}>波动暴露</div>
+              <div className="text-xs font-semibold mb-1" style={{ color: '#d4a25a' }}>波动暴露</div>
               <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{cs.expose}</p>
             </div>
             <div>
-              <div className="text-xs font-semibold mb-1" style={{ color: '#10b981' }}>学习回路</div>
+              <div className="text-xs font-semibold mb-1" style={{ color: '#6fc2ae' }}>学习回路</div>
               <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{cs.loop}</p>
             </div>
           </Grid>
@@ -290,15 +290,15 @@ export default function Page() {
       <Card title="过度干预 Iatrogenics · 医源性损害" className="mb-6">
         <Grid cols={3}>
           <div className="os-card p-4" style={{ background: 'var(--bg-elevated)' }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#e8a317' }}>森林防火悖论</div>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#d4a25a' }}>森林防火悖论</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>扑灭每场小火 → 枯木燃料逐年堆积 → 终于来一场扑不灭的超级大火。小火是森林的新陈代谢，禁绝小火等于预订大火。</p>
           </div>
           <div className="os-card p-4" style={{ background: 'var(--bg-elevated)' }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#c41e3a' }}>大缓和 → 2008</div>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#e5483b' }}>大缓和 → 2008</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>央行精准熨平每次小衰退（Great Moderation），市场误读为「风险已死」→ 杠杆登峰造极 → 被压抑的波动以系统性崩溃一次性返还。</p>
           </div>
           <div className="os-card p-4" style={{ background: 'var(--bg-elevated)' }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#22d3ee' }}>干预者的不对称</div>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6e8cff' }}>干预者的不对称</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>干预的收益即时可见（政绩），代价延迟且归因模糊（下任埋单）——激励结构天然偏向过度干预。解药是风险共担：让决策者留在自己制造的尾部里。</p>
           </div>
         </Grid>

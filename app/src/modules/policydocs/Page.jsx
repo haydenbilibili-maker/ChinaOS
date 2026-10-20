@@ -15,8 +15,8 @@ import { AS_OF_LABEL } from '../../lib/config/asOfBaseline.js';
 import LegalCorpusSection from './LegalCorpusSection.jsx';
 
 const CORPUS_TABS = [
-  { id: 'policy', label: `政策文件(${DOC_CATALOG_META.total})`, accent: '#c41e3a' },
-  { id: 'legal', label: `法律条文(${LEGAL_STATUTE_DEDUPED_COUNT.total})`, accent: '#8b5cf6' },
+  { id: 'policy', label: `政策文件(${DOC_CATALOG_META.total})`, accent: '#e5483b' },
+  { id: 'legal', label: `法律条文(${LEGAL_STATUTE_DEDUPED_COUNT.total})`, accent: '#b07cc6' },
 ];
 
 const TYPES = ['全部', ...DOC_TYPES];
@@ -39,7 +39,7 @@ function MetricTable({ a, b }) {
       {GWR_METRICS.map((m, i) => {
         const va = a?.metrics?.[m.key], vb = b?.metrics?.[m.key];
         const delta = (typeof va === 'number' && typeof vb === 'number') ? Math.round((va - vb) * 100) / 100 : null;
-        const dc = delta == null || delta === 0 ? 'var(--text-tertiary)' : delta > 0 ? '#10b981' : '#c41e3a';
+        const dc = delta == null || delta === 0 ? 'var(--text-tertiary)' : delta > 0 ? '#6fc2ae' : '#e5483b';
         return (
           <div key={m.key} style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr 0.8fr', borderTop: i ? '1px solid var(--border-subtle)' : 'none', fontSize: 12.5, alignItems: 'center' }}>
             <div style={{ padding: '9px 12px', color: 'var(--text-secondary)' }}>{m.label}<span className="mono ml-1" style={{ color: 'var(--text-tertiary)', fontSize: 10 }}>{m.unit}</span></div>
@@ -183,8 +183,8 @@ export default function Page() {
     grid: { left: 44, right: 18, top: 16, bottom: 26 },
     tooltip: { trigger: 'axis' },
     xAxis: { type: 'category', data: gwr.map((d) => d.year), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
-    yAxis: { type: 'value', name: mMeta?.unit, nameTextStyle: { color: '#5b6a82' }, axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
-    series: [{ type: 'line', smooth: true, symbol: 'circle', symbolSize: 7, connectNulls: false, data: gwr.map((d) => d.metrics?.[metric] ?? null), lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.08)' }, label: { show: true, color: LABEL.color, fontSize: 10 } }],
+    yAxis: { type: 'value', name: mMeta?.unit, nameTextStyle: { color: '#8a847a' }, axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } } },
+    series: [{ type: 'line', smooth: true, symbol: 'circle', symbolSize: 7, connectNulls: false, data: gwr.map((d) => d.metrics?.[metric] ?? null), lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.08)' }, label: { show: true, color: LABEL.color, fontSize: 10 } }],
   };
 
   // 洞察：货币/财政定调时间线 + 关键转折
@@ -200,19 +200,19 @@ export default function Page() {
 
       <IntroCard>
         以<strong style={{ color: 'var(--text-primary)' }}>结构化要点 + 本地原文库</strong>支撑政策研读：政府工作报告、中央经济工作会议、五年规划等支持历年比对与指标趋势；旗舰文件已入库
-        {' '}<span className="mono" style={{ color: '#10b981' }}>{corpusCount || 0}</span> 份扩展原文/节选，其余提供要点汇编 fallback。数据截至 <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{AS_OF_LABEL}</span>。
+        {' '}<span className="mono" style={{ color: '#6fc2ae' }}>{corpusCount || 0}</span> 份扩展原文/节选，其余提供要点汇编 fallback。数据截至 <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{AS_OF_LABEL}</span>。
       </IntroCard>
 
       <StatGrid className="mb-6">
-        <Stat value={all.length} label="文件总数" accent="#22d3ee" />
-        <Stat value={gwr.length} label="政府工作报告" accent="#c41e3a" />
-        <Stat value={span} label="覆盖年份" accent="#e8a317" />
-        <Stat value={new Set(all.map((d) => d.type)).size} label="文件类型" accent="#10b981" />
+        <Stat value={all.length} label="文件总数" accent="#6e8cff" />
+        <Stat value={gwr.length} label="政府工作报告" accent="#e5483b" />
+        <Stat value={span} label="覆盖年份" accent="#d4a25a" />
+        <Stat value={new Set(all.map((d) => d.type)).size} label="文件类型" accent="#6fc2ae" />
       </StatGrid>
       {all.length > 0 && (
         <div className="flex gap-1 flex-wrap mb-4">
           {Object.entries(typeCounts).sort((a, b) => b[1] - a[1]).map(([t, n]) => (
-            <span key={t} className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: `${TYPE_COLOR[t] || '#64748b'}18`, color: TYPE_COLOR[t] || '#64748b', border: `1px solid ${TYPE_COLOR[t] || '#64748b'}33` }}>{t} {n}</span>
+            <span key={t} className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: `${TYPE_COLOR[t] || '#8a8578'}18`, color: TYPE_COLOR[t] || '#8a8578', border: `1px solid ${TYPE_COLOR[t] || '#8a8578'}33` }}>{t} {n}</span>
           ))}
         </div>
       )}
@@ -222,7 +222,7 @@ export default function Page() {
           <p className="text-sm mb-3" style={{ color: 'var(--text-secondary)' }}>
             内置 {DOC_SEED.length} 份公开要点（{Object.entries(DOC_CATALOG_META.breakdown).filter(([, n]) => n).map(([k, n]) => `${k} ${n}`).join(' · ')}）。来源：{DOC_CATALOG_META.sources.join('、')}。也可到 <Link to="/foundation" className="mono" style={{ color: 'var(--cyber-cyan)' }}>数据底座 · 政策文件</Link> 粘贴上传与解析新文件。
           </p>
-          <button onClick={loadSeed} disabled={loading} style={{ background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)', border: '1px solid rgba(34,211,238,0.25)', borderRadius: 6, padding: '6px 14px', fontSize: 13, cursor: 'pointer' }}>
+          <button onClick={loadSeed} disabled={loading} style={{ background: 'rgba(110, 140, 255,0.12)', color: 'var(--cyber-cyan)', border: '1px solid rgba(110, 140, 255,0.25)', borderRadius: 6, padding: '6px 14px', fontSize: 13, cursor: 'pointer' }}>
             {loading ? '载入中…' : `载入 ${DOC_SEED.length} 份文件`}
           </button>
         </Card>
@@ -261,7 +261,7 @@ export default function Page() {
                   {list.length === 0 ? (
                     <EmptyState title="无匹配文件" description="尝试切换类型或主题筛选，或清空条件后重试。" />
                   ) : list.map((d) => {
-                    const on = sel?.id === d.id; const c = TYPE_COLOR[d.type] || '#64748b';
+                    const on = sel?.id === d.id; const c = TYPE_COLOR[d.type] || '#8a8578';
                     return (
                       <button key={d.id} onClick={() => {
                         setSelId(d.id);
@@ -272,7 +272,7 @@ export default function Page() {
                           else next.delete('view');
                           return next;
                         }, { replace: true });
-                      }} className="w-full text-left px-3 py-2 rounded" style={{ background: on ? 'rgba(196,30,58,0.14)' : 'var(--bg-elevated)', border: `1px solid ${on ? 'var(--china-red)' : 'transparent'}`, borderLeft: `3px solid ${c}`, cursor: 'pointer' }}>
+                      }} className="w-full text-left px-3 py-2 rounded" style={{ background: on ? 'rgba(229, 72, 59,0.14)' : 'var(--bg-elevated)', border: `1px solid ${on ? 'var(--china-red)' : 'transparent'}`, borderLeft: `3px solid ${c}`, cursor: 'pointer' }}>
                         <div className="flex items-center gap-2">
                           <span className="mono text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{d.year}</span>
                           <span style={pill(c)}>{d.type}</span>
@@ -314,14 +314,14 @@ export default function Page() {
                     ) : (
                       <>
                     <div className="flex items-center gap-2 mb-3 flex-wrap">
-                      <span style={pill(TYPE_COLOR[sel.type] || '#64748b')}>{sel.type}</span>
-                      {sel.category && <span style={pill(CATEGORY_COLOR[sel.category] || '#64748b')}>{sel.category}</span>}
+                      <span style={pill(TYPE_COLOR[sel.type] || '#8a8578')}>{sel.type}</span>
+                      {sel.category && <span style={pill(CATEGORY_COLOR[sel.category] || '#8a8578')}>{sel.category}</span>}
                       <span className="text-xs mono" style={{ color: 'var(--text-tertiary)' }}>{sel.org} · {sel.date} · 来源 {sel.source}</span>
                     </div>
                     {sel.stance && (
                       <div className="flex gap-2 flex-wrap mb-3">
-                        {sel.stance.fiscal && <span className="text-[11px] px-2 py-1 rounded" style={{ background: 'var(--bg-elevated)', color: '#e8a317' }}>财政：{sel.stance.fiscal}</span>}
-                        {sel.stance.monetary && <span className="text-[11px] px-2 py-1 rounded" style={{ background: 'var(--bg-elevated)', color: '#22d3ee' }}>货币：{sel.stance.monetary}</span>}
+                        {sel.stance.fiscal && <span className="text-[11px] px-2 py-1 rounded" style={{ background: 'var(--bg-elevated)', color: '#d4a25a' }}>财政：{sel.stance.fiscal}</span>}
+                        {sel.stance.monetary && <span className="text-[11px] px-2 py-1 rounded" style={{ background: 'var(--bg-elevated)', color: '#6e8cff' }}>货币：{sel.stance.monetary}</span>}
                       </div>
                     )}
                     {sel.metrics && Object.values(sel.metrics).some((v) => v != null) && (
@@ -344,7 +344,7 @@ export default function Page() {
                     <div className="text-xs font-semibold mb-1.5" style={{ color: 'var(--text-primary)' }}>关键提法</div>
                     <div className="flex flex-wrap gap-1.5">{(sel.keywords || []).map((k) => {
                       const fy = firstMap.get(k); const isNew = fy === sel.year;
-                      return <span key={k} className="text-[11px] mono px-2 py-0.5 rounded" style={{ background: isNew ? 'rgba(16,185,129,0.16)' : 'var(--bg-elevated)', color: isNew ? '#10b981' : 'var(--text-secondary)' }}>{k}{isNew ? ' ·首入' : ''}</span>;
+                      return <span key={k} className="text-[11px] mono px-2 py-0.5 rounded" style={{ background: isNew ? 'rgba(111, 194, 174,0.16)' : 'var(--bg-elevated)', color: isNew ? '#6fc2ae' : 'var(--text-secondary)' }}>{k}{isNew ? ' ·首入' : ''}</span>;
                     })}</div>
                       </>
                     )}
@@ -382,8 +382,8 @@ export default function Page() {
                 <>
                   <Grid cols={2} className="mb-4">
                     {[docA, docB].map((d, idx) => (
-                      <div key={idx} className="os-card p-4" style={{ borderLeft: `3px solid ${TYPE_COLOR[d.type] || '#64748b'}` }}>
-                        <div className="flex items-center gap-2 mb-1"><span className="mono font-semibold" style={{ color: 'var(--text-primary)' }}>{d.year}</span><span style={pill(TYPE_COLOR[d.type] || '#64748b')}>{d.type}</span></div>
+                      <div key={idx} className="os-card p-4" style={{ borderLeft: `3px solid ${TYPE_COLOR[d.type] || '#8a8578'}` }}>
+                        <div className="flex items-center gap-2 mb-1"><span className="mono font-semibold" style={{ color: 'var(--text-primary)' }}>{d.year}</span><span style={pill(TYPE_COLOR[d.type] || '#8a8578')}>{d.type}</span></div>
                         <div className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>{d.title}</div>
                         {d.stance && <div className="text-[11px] mt-2" style={{ color: 'var(--text-secondary)' }}>财政：{d.stance.fiscal}<br />货币：{d.stance.monetary}</div>}
                       </div>
@@ -395,13 +395,13 @@ export default function Page() {
                   <Grid cols={2}>
                     <Card title="新增提法（A 有 B 无）">
                       <div className="flex flex-wrap gap-1.5">
-                        {(docA.keywords || []).filter((k) => !(docB.keywords || []).includes(k)).map((k) => <span key={k} className="text-[11px] mono px-2 py-0.5 rounded" style={{ background: 'rgba(16,185,129,0.16)', color: '#10b981' }}>+ {k}</span>)}
+                        {(docA.keywords || []).filter((k) => !(docB.keywords || []).includes(k)).map((k) => <span key={k} className="text-[11px] mono px-2 py-0.5 rounded" style={{ background: 'rgba(111, 194, 174,0.16)', color: '#6fc2ae' }}>+ {k}</span>)}
                         {!(docA.keywords || []).filter((k) => !(docB.keywords || []).includes(k)).length && <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>无差异</span>}
                       </div>
                     </Card>
                     <Card title="淡出提法（B 有 A 无）">
                       <div className="flex flex-wrap gap-1.5">
-                        {(docB.keywords || []).filter((k) => !(docA.keywords || []).includes(k)).map((k) => <span key={k} className="text-[11px] mono px-2 py-0.5 rounded" style={{ background: 'rgba(196,30,58,0.14)', color: '#c41e3a' }}>− {k}</span>)}
+                        {(docB.keywords || []).filter((k) => !(docA.keywords || []).includes(k)).map((k) => <span key={k} className="text-[11px] mono px-2 py-0.5 rounded" style={{ background: 'rgba(229, 72, 59,0.14)', color: '#e5483b' }}>− {k}</span>)}
                         {!(docB.keywords || []).filter((k) => !(docA.keywords || []).includes(k)).length && <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>无差异</span>}
                       </div>
                     </Card>
@@ -433,8 +433,8 @@ export default function Page() {
                   {stanceTimeline.map((s, i) => (
                     <div key={s.year} style={{ display: 'grid', gridTemplateColumns: '60px 1fr 1fr', borderTop: i ? '1px solid var(--border-subtle)' : 'none', fontSize: 12, alignItems: 'center' }}>
                       <div className="mono" style={{ padding: '8px 12px', color: 'var(--text-primary)', fontWeight: 600 }}>{s.year}</div>
-                      <div style={{ padding: '8px 12px', color: '#e8a317', borderLeft: '1px solid var(--border-subtle)' }}>{s.fiscal}</div>
-                      <div style={{ padding: '8px 12px', color: '#22d3ee', borderLeft: '1px solid var(--border-subtle)' }}>{s.monetary}</div>
+                      <div style={{ padding: '8px 12px', color: '#d4a25a', borderLeft: '1px solid var(--border-subtle)' }}>{s.fiscal}</div>
+                      <div style={{ padding: '8px 12px', color: '#6e8cff', borderLeft: '1px solid var(--border-subtle)' }}>{s.monetary}</div>
                     </div>
                   ))}
                 </div>
@@ -449,11 +449,11 @@ export default function Page() {
                 <div className="space-y-3">
                   {[
                     ['十五五规划纲要', '#a78bfa', '2026 年 3 月两会审议通过，明确新质生产力、统一大市场、生育支持等十五五开局重点任务排序。'],
-                    ['货币政策定调转向', '#22d3ee', '2025 年货币政策由「稳健」改为「适度宽松」——自 2011 年以来首次，标志宏观调控全面转入扩张周期。'],
-                    ['赤字率台阶式抬升', '#c41e3a', '赤字率 2.6%(2018) → 3%(2023/24) → 4%左右(2025)，财政空间被结构性打开，从「去杠杆」转向「稳增长」。'],
-                    ['GDP 目标下台阶并留弹性', '#e8a317', '增速目标 6.5%(2018) → 5%左右(2023–26)，并改用区间/「左右」表述，从保速度转向重质量与稳就业。'],
-                    ['内需 / 消费跃居首位', '#10b981', '2023 起「扩大内需」靠前，2025「大力提振消费」列首要任务——增长动力由投资外需转向消费内需。'],
-                    ['新质生产力成主线', '#8b5cf6', '2024 首入报告即居首要任务，叠加「人工智能+」「未来产业」，供给侧主线从「调结构」转为「育新质」。'],
+                    ['货币政策定调转向', '#6e8cff', '2025 年货币政策由「稳健」改为「适度宽松」——自 2011 年以来首次，标志宏观调控全面转入扩张周期。'],
+                    ['赤字率台阶式抬升', '#e5483b', '赤字率 2.6%(2018) → 3%(2023/24) → 4%左右(2025)，财政空间被结构性打开，从「去杠杆」转向「稳增长」。'],
+                    ['GDP 目标下台阶并留弹性', '#d4a25a', '增速目标 6.5%(2018) → 5%左右(2023–26)，并改用区间/「左右」表述，从保速度转向重质量与稳就业。'],
+                    ['内需 / 消费跃居首位', '#6fc2ae', '2023 起「扩大内需」靠前，2025「大力提振消费」列首要任务——增长动力由投资外需转向消费内需。'],
+                    ['新质生产力成主线', '#b07cc6', '2024 首入报告即居首要任务，叠加「人工智能+」「未来产业」，供给侧主线从「调结构」转为「育新质」。'],
                   ].map(([t, c, d]) => (
                     <div key={t} className="os-card p-3" style={{ borderLeft: `3px solid ${c}` }}>
                       <div className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>{t}</div>

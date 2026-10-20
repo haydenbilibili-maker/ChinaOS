@@ -14,28 +14,28 @@ const AS_OF = AS_OF_BASELINE;
 
 const ZONES = [
   {
-    key: 'shanghai', label: '上海', accent: '#c41e3a',
+    key: 'shanghai', label: '上海', accent: '#e5483b',
     scores: [95, 88, 92, 85, 80],
     thesis: '金融开放与制度创新「桥头堡」——临港新片区离岸金融、跨境数据流动与外资准入负面清单先行先试。',
     points: ['跨境贸易投资高水平开放', '国际金融资产交易平台', '数据跨境安全评估试点', '生物医药特殊物品通关'],
     lever: '自贸试验区提升战略 + 浦东引领区政策叠加。',
   },
   {
-    key: 'guangdong', label: '粤港澳', accent: '#22d3ee',
+    key: 'guangdong', label: '粤港澳', accent: '#6e8cff',
     scores: [90, 85, 88, 82, 78],
     thesis: '大湾区规则衔接试验田——港澳与内地要素流动、职业资格互认、标准对接的制度摩擦消解前沿。',
     points: ['横琴、前海、南沙三大平台', '港澳专业人士执业准入', '跨境理财通与资金池', 'CEPA 升级版经贸规则'],
     lever: '大湾区规划纲要 + 自贸试验区联动创新。',
   },
   {
-    key: 'hainan', label: '海南', accent: '#e8a317',
+    key: 'hainan', label: '海南', accent: '#d4a25a',
     scores: [88, 80, 75, 70, 92],
     thesis: '自贸港封关运作是制度型开放的「压力测试」——零关税、低税率、简税制与一线放开、二线管住的海关监管新模式。',
     points: ['2025 全岛封关运作准备', '零关税进口商品清单扩容', '鼓励类产业 15% 企业所得税', '国际旅游消费中心建设'],
     lever: '海南自贸港法 + 封关软硬件建设专项。',
   },
   {
-    key: 'inland', label: '内陆自贸', accent: '#10b981',
+    key: 'inland', label: '内陆自贸', accent: '#6fc2ae',
     scores: [72, 78, 70, 88, 75],
     thesis: '内陆自贸试验区（陕西、四川、湖北等）承担「向西开放」与「中部崛起」的制度试验——中欧班列与产业转移的制度接口。',
     points: ['中欧班列集结中心制度创新', '先进制造与服务贸易开放', '内陆口岸经济与国际物流通道', '产业转移承接与制度复制'],
@@ -44,9 +44,9 @@ const ZONES = [
 ];
 
 const PHASES = [
-  { period: '2013–2017', title: '首批试点', accent: '#64748b', desc: '上海自贸试验区挂牌，负面清单管理模式诞生，复制推广至第二批试点。' },
-  { period: '2018–2022', title: '扩容深化', accent: '#e8a317', desc: '自贸试验区扩至 21 个，海南自贸港法颁布，制度创新成果向全国推广。' },
-  { period: '2023–', title: '提升战略', accent: '#c41e3a', desc: '政府工作报告「深入实施自贸试验区提升战略」，对接 CPTPP/ DEPA 高标准经贸规则。' },
+  { period: '2013–2017', title: '首批试点', accent: '#8a8578', desc: '上海自贸试验区挂牌，负面清单管理模式诞生，复制推广至第二批试点。' },
+  { period: '2018–2022', title: '扩容深化', accent: '#d4a25a', desc: '自贸试验区扩至 21 个，海南自贸港法颁布，制度创新成果向全国推广。' },
+  { period: '2023–', title: '提升战略', accent: '#e5483b', desc: '政府工作报告「深入实施自贸试验区提升战略」，对接 CPTPP/ DEPA 高标准经贸规则。' },
 ];
 
 const DIMS = ['制度创新', '外资准入', '规则对接', '内陆开放', '风险可控'];
@@ -62,7 +62,7 @@ export default function Page() {
     xAxis: categoryX(['2018', '2020', '2022', '2024', '2026E']),
     yAxis: valueY({ name: '亿美元' }),
     series: [
-      { name: '全国实际使用外资', type: 'line', smooth: true, data: [1350, 1444, 1891, 1160, 1250], lineStyle: { color: '#64748b', width: 2 } },
+      { name: '全国实际使用外资', type: 'line', smooth: true, data: [1350, 1444, 1891, 1160, 1250], lineStyle: { color: '#8a8578', width: 2 } },
       { name: '自贸试验区内资占', type: 'bar', barWidth: 18, data: [280, 320, 380, 350, 420], itemStyle: { color: z.accent, borderRadius: 3 } },
     ],
   }), [z]);
@@ -74,8 +74,8 @@ export default function Page() {
     series: [{
       type: 'line', smooth: true, symbol: 'circle', symbolSize: 6,
       data: [190, 122, 40, 31, 27],
-      lineStyle: { color: '#10b981', width: 2 },
-      areaStyle: { color: 'rgba(16,185,129,0.1)' },
+      lineStyle: { color: '#6fc2ae', width: 2 },
+      areaStyle: { color: 'rgba(111, 194, 174,0.1)' },
       label: { show: true, position: 'top', color: LABEL.color, fontSize: 9 },
     }],
   }), []);
@@ -112,10 +112,10 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="22" label="自贸试验区（个）" accent="#c41e3a" />
-        <Stat value="27条" label="外资准入负面清单（2024）" accent="#10b981" />
-        <Stat value="~3500" label="制度创新成果（累计）" accent="#e8a317" />
-        <Stat value={AS_OF} label="数据截至" accent="#8b5cf6" />
+        <Stat value="22" label="自贸试验区（个）" accent="#e5483b" />
+        <Stat value="27条" label="外资准入负面清单（2024）" accent="#6fc2ae" />
+        <Stat value="~3500" label="制度创新成果（累计）" accent="#d4a25a" />
+        <Stat value={AS_OF} label="数据截至" accent="#b07cc6" />
       </Grid>
 
       <Grid cols={2} className="mb-6">
@@ -143,7 +143,7 @@ export default function Page() {
             ))}
           </div>
           <div className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
-            <span style={{ color: '#e8a317' }}>政策杠杆 · </span>{z.lever}
+            <span style={{ color: '#d4a25a' }}>政策杠杆 · </span>{z.lever}
           </div>
         </div>
         <Card title={`${z.label} · 开放五维评估`}>
@@ -158,16 +158,16 @@ export default function Page() {
 
       <Card title="十五五 · 指标 / 约束 / 路径" className="mb-6">
         <Grid cols={3}>
-          <div style={{ borderLeft: '2px solid #22d3ee', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#22d3ee' }}>核心指标</div>
+          <div style={{ borderLeft: '2px solid #6e8cff', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6e8cff' }}>核心指标</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>自贸试验区制度创新成果全国复制推广率提升；海南自贸港封关运作平稳；对接 CPTPP/DEPA 规则试点项扩容。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #e8a317', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#e8a317' }}>关键约束</div>
+          <div style={{ borderLeft: '2px solid #d4a25a', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#d4a25a' }}>关键约束</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>金融开放与资本流动风险管控；数据跨境安全与主权平衡；地缘政治下外资信心波动。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #10b981', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#10b981' }}>推进路径</div>
+          <div style={{ borderLeft: '2px solid #6fc2ae', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6fc2ae' }}>推进路径</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>负面清单再缩减 → 规则对接试点 → 压力测试与风险预案 → 成熟经验全国推广。</p>
           </div>
         </Grid>

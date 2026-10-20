@@ -7,28 +7,28 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 /* ── 治理层级：中枢 → 网格，逐级下沉 ───────────────────────────── */
 const TIERS = [
   {
-    key: 'center', label: '中枢', accent: '#c41e3a', score: 99, span: '1 个',
+    key: 'center', label: '中枢', accent: '#e5483b', score: 99, span: '1 个',
     task: '设定总目标、分配指标、把控政治方向与安全底线；以五年规划与年度考核为节拍器。',
     lever: '一体化政务大数据平台 · 国家政务服务总门户 · 督查问责系统',
     pressure: '外部博弈 + 内部失衡，任何系统性风险最终上溯至此。',
     pain: '信息层层过滤后失真——上传到顶端的多是「加工过的真相」。',
   },
   {
-    key: 'province', label: '省域', accent: '#e8a317', score: 91, span: '31 个',
+    key: 'province', label: '省域', accent: '#d4a25a', score: 91, span: '31 个',
     task: '承接中枢指标并本地化分解，统筹区域均衡、产业与财政，是「压力转换枢纽」。',
     lever: '省级一网通办 · 数字政府专班 · 营商环境评价',
     pressure: '上要完成考核、下要兜住稳定，财政自给率落差是最大变量。',
     pain: '锦标赛激励下的数据竞赛与重复建设——政绩工程难以根治。',
   },
   {
-    key: 'city', label: '市域', accent: '#22d3ee', score: 88, span: '293 个',
+    key: 'city', label: '市域', accent: '#6e8cff', score: 88, span: '293 个',
     task: '城市运行的总调度：交通、应急、城管、营商一体化处置，城市大脑落地层。',
     lever: '城市运行管理服务平台（CIM）· 12345 热线 · 一网统管',
     pressure: '土地财政退潮后的债务压顶与公共服务刚性支出剪刀差。',
     pain: '多源数据归集易、跨部门协同处置难——「数据墙」比「部门墙」更顽固。',
   },
   {
-    key: 'county', label: '县域', accent: '#10b981', score: 82, span: '2843 个',
+    key: 'county', label: '县域', accent: '#6fc2ae', score: 82, span: '2843 个',
     task: '「上面千条线、下面一根针」的承压点，政策落地与民生兜底的最后建制层。',
     lever: '县域智治平台 · 雪亮工程 · 综治中心',
     pressure: '事权多、财权少、人手缺——「小马拉大车」是结构性常态。',
@@ -56,7 +56,7 @@ const effTrend = {
   tooltip: { trigger: 'axis' },
   xAxis: categoryX(['2015', '2018', '2021', '2024']),
   yAxis: valueY({ name: '天', nameTextStyle: { color: LABEL.color } }),
-  series: [{ type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [18, 9, 4, 1.5], lineStyle: { color: '#22d3ee', width: 2 }, areaStyle: { color: 'rgba(34,211,238,0.1)' } }],
+  series: [{ type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [18, 9, 4, 1.5], lineStyle: { color: '#6e8cff', width: 2 }, areaStyle: { color: 'rgba(110, 140, 255,0.1)' } }],
 };
 
 /* 一网通办 / 最多跑一次 渗透率（示意） */
@@ -67,8 +67,8 @@ const onlineTrend = {
   xAxis: categoryX(['2015', '2018', '2021', '2024']),
   yAxis: valueY({ max: 100, axisLabel: { formatter: '{value}%' } }),
   series: [
-    { name: '一网通办事项占比', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [12, 45, 78, 92], lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' } },
-    { name: '零跑动办结率', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [5, 28, 55, 74], lineStyle: { color: '#10b981', width: 2 }, itemStyle: { color: '#10b981' } },
+    { name: '一网通办事项占比', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [12, 45, 78, 92], lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' } },
+    { name: '零跑动办结率', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [5, 28, 55, 74], lineStyle: { color: '#6fc2ae', width: 2 }, itemStyle: { color: '#6fc2ae' } },
   ],
 };
 
@@ -77,10 +77,10 @@ const actorTrend = stackedBarOpt({
   categories: ['1990', '2024'],
   horizontal: true,
   series: [
-    { name: '科层行政', data: [70, 35], itemStyle: { color: '#c41e3a' } },
-    { name: '市场/平台', data: [10, 25], itemStyle: { color: '#22d3ee' } },
-    { name: '基层自治', data: [15, 25], itemStyle: { color: '#10b981' } },
-    { name: '社会组织', data: [5, 15], itemStyle: { color: '#e8a317' } },
+    { name: '科层行政', data: [70, 35], itemStyle: { color: '#e5483b' } },
+    { name: '市场/平台', data: [10, 25], itemStyle: { color: '#6e8cff' } },
+    { name: '基层自治', data: [15, 25], itemStyle: { color: '#6fc2ae' } },
+    { name: '社会组织', data: [5, 15], itemStyle: { color: '#d4a25a' } },
   ],
 });
 
@@ -88,16 +88,16 @@ const actorTrend = stackedBarOpt({
 const gridDonut = donutOpt([
   { name: '网格内自处置', value: 62, itemStyle: { color: '#f472b6' } },
   { name: '街道吹哨派单', value: 24, itemStyle: { color: '#a78bfa' } },
-  { name: '区县协同处置', value: 11, itemStyle: { color: '#22d3ee' } },
+  { name: '区县协同处置', value: 11, itemStyle: { color: '#6e8cff' } },
   { name: '上行未闭环', value: 3, itemStyle: { color: AXIS.lineStyle.color } },
 ]);
 
 /* ── 治理范式时间线 ───────────────────────────────────────────── */
 const STAGES = [
-  { period: '1949–1978', title: '运动式治理', accent: '#c41e3a', desc: '以政治动员替代制度运转，单位制 + 群众运动直达个体，高动员但高震荡——治理靠周期性的「再激活」而非常态机制。' },
-  { period: '1978–2003', title: '科层制重建', accent: '#e8a317', desc: '改革开放后行政理性化，条块体系、职能分工与编制管理回归。效率上升但「部门墙」「信息孤岛」同步固化。' },
-  { period: '2003–2013', title: '网格化治理', accent: '#22d3ee', desc: '北京东城首创网格管理，城市切分为微观单元、网格员实时巡查。社会被第一次系统性地「数字切片」。' },
-  { period: '2013–2020', title: '一网统管', accent: '#10b981', desc: '放管服 + 电子政务深化，一网通办、最多跑一次重塑政务流程。数据从「采集」走向「服务」。' },
+  { period: '1949–1978', title: '运动式治理', accent: '#e5483b', desc: '以政治动员替代制度运转，单位制 + 群众运动直达个体，高动员但高震荡——治理靠周期性的「再激活」而非常态机制。' },
+  { period: '1978–2003', title: '科层制重建', accent: '#d4a25a', desc: '改革开放后行政理性化，条块体系、职能分工与编制管理回归。效率上升但「部门墙」「信息孤岛」同步固化。' },
+  { period: '2003–2013', title: '网格化治理', accent: '#6e8cff', desc: '北京东城首创网格管理，城市切分为微观单元、网格员实时巡查。社会被第一次系统性地「数字切片」。' },
+  { period: '2013–2020', title: '一网统管', accent: '#6fc2ae', desc: '放管服 + 电子政务深化，一网通办、最多跑一次重塑政务流程。数据从「采集」走向「服务」。' },
   { period: '2020– ', title: '数字治理 · 城市大脑', accent: '#a78bfa', desc: 'AI + 多源融合实现城市全息感知与预判式处置。治理从「事后响应」转向「事前拆弹」——赛博反馈闭环成形。' },
 ];
 
@@ -131,10 +131,10 @@ export default function Page() {
 
       {/* 概览 4 Stat */}
       <Grid cols={4} className="mb-6">
-        <Stat value="6 层" label="中枢 → 网格 治理纵深" accent="#c41e3a" />
+        <Stat value="6 层" label="中枢 → 网格 治理纵深" accent="#e5483b" />
         <Stat value="约 450 万" label="基层网格 · 数字毛细血管" accent="#f472b6" />
-        <Stat value="92%" label="一网通办高频事项渗透" accent="#e8a317" />
-        <Stat value="18→1.5 天" label="政务办理时效压缩（示意）" accent="#22d3ee" />
+        <Stat value="92%" label="一网通办高频事项渗透" accent="#d4a25a" />
+        <Stat value="18→1.5 天" label="政务办理时效压缩（示意）" accent="#6e8cff" />
       </Grid>
 
       {/* 1. 治理层级选择器 + 雷达联动 */}
@@ -149,14 +149,14 @@ export default function Page() {
             <p className="text-xs mb-1" style={{ color: 'var(--text-tertiary)' }}>治理任务</p>
             <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>{tier.task}</p>
             <p className="text-xs mb-1" style={{ color: 'var(--text-tertiary)' }}>数字化抓手</p>
-            <p className="text-sm leading-relaxed mb-3 mono" style={{ color: '#22d3ee' }}>{tier.lever}</p>
+            <p className="text-sm leading-relaxed mb-3 mono" style={{ color: '#6e8cff' }}>{tier.lever}</p>
             <Grid cols={2}>
               <div>
                 <p className="text-xs mb-1" style={{ color: 'var(--text-tertiary)' }}>压力来源</p>
                 <p className="text-[12px] leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{tier.pressure}</p>
               </div>
               <div>
-                <p className="text-xs mb-1" style={{ color: '#c41e3a' }}>结构性痛点</p>
+                <p className="text-xs mb-1" style={{ color: '#e5483b' }}>结构性痛点</p>
                 <p className="text-[12px] leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{tier.pain}</p>
               </div>
             </Grid>

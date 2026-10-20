@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
+import { ArrowUpRight as LArrowUpRight, X as LX } from 'lucide-react';
 import {
   getProvinceByName,
   getProvinceModuleLink,
@@ -12,7 +12,7 @@ import {
 import { getProvinceHistory, MONTH_LABELS } from './liveMapHistory.js';
 import { CHART_TOOLTIP, chartTextColor } from '../shared/chartHelpers.js';
 
-const STEEL = '#22d3ee';
+const STEEL = '#6e8cff';
 
 function shortName(name) {
   return name.replace(/(省|市|自治区|壮族|回族|维吾尔)/g, '');
@@ -76,7 +76,7 @@ export default function ProvinceDetailDrawer({
     let alive = true;
     let chart = null;
     let ro = null;
-    import('echarts').then((echarts) => {
+    import('../../lib/viz/echarts.js').then(({ echarts }) => {
       if (!alive || !radarRef.current) return;
       chart = echarts.init(radarRef.current, null, { renderer: 'canvas' });
       radarChart.current = chart;
@@ -96,7 +96,7 @@ export default function ProvinceDetailDrawer({
     let alive = true;
     let chart = null;
     let ro = null;
-    import('echarts').then((echarts) => {
+    import('../../lib/viz/echarts.js').then(({ echarts }) => {
       if (!alive || !sparkRef.current) return;
       chart = echarts.init(sparkRef.current, null, { renderer: 'canvas' });
       sparkChart.current = chart;
@@ -122,13 +122,13 @@ export default function ProvinceDetailDrawer({
         radius: '62%',
         splitNumber: 4,
         axisName: { color: chartTextColor(), fontSize: 9 },
-        splitLine: { lineStyle: { color: isDark ? 'rgba(148,163,184,0.15)' : 'rgba(58,70,89,0.12)' } },
+        splitLine: { lineStyle: { color: isDark ? 'rgba(162, 156, 145,0.15)' : 'rgba(58,70,89,0.12)' } },
         splitArea: { show: false },
-        axisLine: { lineStyle: { color: isDark ? 'rgba(148,163,184,0.2)' : 'rgba(58,70,89,0.15)' } },
+        axisLine: { lineStyle: { color: isDark ? 'rgba(162, 156, 145,0.2)' : 'rgba(58,70,89,0.15)' } },
       },
       series: [{
         type: 'radar',
-        data: [{ value: radarVals, name: shortName(provinceName), areaStyle: { color: 'rgba(34,211,238,0.25)' }, lineStyle: { color: STEEL, width: 2 }, itemStyle: { color: STEEL } }],
+        data: [{ value: radarVals, name: shortName(provinceName), areaStyle: { color: 'rgba(110, 140, 255,0.25)' }, lineStyle: { color: STEEL, width: 2 }, itemStyle: { color: STEEL } }],
       }],
     }, true);
   }, [radarVals, provinceName, theme]);
@@ -148,7 +148,7 @@ export default function ProvinceDetailDrawer({
         smooth: true,
         symbol: 'none',
         lineStyle: { color: STEEL, width: 2 },
-        areaStyle: { color: 'rgba(34,211,238,0.12)' },
+        areaStyle: { color: 'rgba(110, 140, 255,0.12)' },
       }],
     }, true);
   }, [history, layerId]);
@@ -176,7 +176,7 @@ export default function ProvinceDetailDrawer({
           className="lcm-province-drawer__close"
           aria-label="关闭省份详情"
         >
-          <Lucide.X size={16} />
+          <LX size={16} />
         </button>
       </header>
 
@@ -222,8 +222,8 @@ export default function ProvinceDetailDrawer({
             onClick={() => onToggleCompare?.(provinceName)}
             className="text-[10px] mono px-2 py-1 rounded lcm-chip"
             style={{
-              background: inCompare ? 'rgba(34,211,238,0.18)' : 'var(--bg-elevated)',
-              border: `1px solid ${inCompare ? 'rgba(34,211,238,0.45)' : 'var(--border-subtle)'}`,
+              background: inCompare ? 'rgba(110, 140, 255,0.18)' : 'var(--bg-elevated)',
+              border: `1px solid ${inCompare ? 'rgba(110, 140, 255,0.45)' : 'var(--border-subtle)'}`,
               color: inCompare ? STEEL : 'var(--text-secondary)',
             }}
           >
@@ -231,17 +231,17 @@ export default function ProvinceDetailDrawer({
           </button>
           {moduleLink && (
             <Link to={moduleLink.to} className="lcm-province-drawer__cta">
-              {moduleLink.label} <Lucide.ArrowUpRight size={10} />
+              {moduleLink.label} <LArrowUpRight size={10} />
             </Link>
           )}
           <Link
             to={`/shenzhou-live?prov=${encodeURIComponent(provinceName)}&layer=${encodeURIComponent(layerId)}`}
             className="lcm-province-drawer__cta"
-            style={{ borderColor: 'rgba(34,211,238,0.35)', color: STEEL, background: 'rgba(34,211,238,0.08)' }}
+            style={{ borderColor: 'rgba(110, 140, 255,0.35)', color: STEEL, background: 'rgba(110, 140, 255,0.08)' }}
           >
             分享活图深链 ↗
           </Link>
-          <Link to="/modules/heshan/factsheets" className="lcm-province-drawer__cta" style={{ borderColor: 'rgba(196,30,58,0.35)', color: 'var(--china-red, #c41e3a)', background: 'rgba(196,30,58,0.08)' }}>
+          <Link to="/modules/heshan/factsheets" className="lcm-province-drawer__cta" style={{ borderColor: 'rgba(229, 72, 59,0.35)', color: 'var(--china-red, #e5483b)', background: 'rgba(229, 72, 59,0.08)' }}>
             重构河山 ↗
           </Link>
         </div>

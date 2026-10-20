@@ -5,7 +5,7 @@
 
 .dash-v2 {
   --dash-accent: var(--cyber-cyan);
-  --dash-glow: rgba(34, 211, 238, 0.18);
+  --dash-glow: rgba(110, 140, 255, 0.18);
   max-width: 1680px;
   margin-inline: auto;
 }
@@ -99,11 +99,11 @@
   height: 28px;
   border-radius: 50%;
   padding: 4px;
-  background: radial-gradient(circle at 30% 30%, rgba(196, 30, 58, 0.25), transparent 60%),
-    radial-gradient(circle at 70% 70%, rgba(34, 211, 238, 0.2), transparent 55%),
+  background: radial-gradient(circle at 30% 30%, rgba(229, 72, 59, 0.25), transparent 60%),
+    radial-gradient(circle at 70% 70%, rgba(110, 140, 255, 0.2), transparent 55%),
     var(--bg-elevated);
-  border: 1px solid rgba(34, 211, 238, 0.28);
-  box-shadow: 0 0 16px -4px rgba(34, 211, 238, 0.35);
+  border: 1px solid rgba(110, 140, 255, 0.28);
+  box-shadow: 0 0 16px -4px rgba(110, 140, 255, 0.35);
 }
 
 .dash-status-strip__title {
@@ -173,9 +173,9 @@
   border: 1px solid var(--border-subtle);
 }
 
-.dash-canary-dot.is-green { color: #10b981; }
-.dash-canary-dot.is-amber { color: #e8a317; }
-.dash-canary-dot.is-red { color: #c41e3a; }
+.dash-canary-dot.is-green { color: #6fc2ae; }
+.dash-canary-dot.is-amber { color: #d4a25a; }
+.dash-canary-dot.is-red { color: #e5483b; }
 
 .dash-canary-dot.is-pulse {
   animation: dash-canary-pulse 2.6s ease-in-out infinite;
@@ -211,7 +211,7 @@
 
 .dash-quick-btn:hover,
 .dash-quick-btn:focus-visible {
-  border-color: rgba(34, 211, 238, 0.45);
+  border-color: rgba(110, 140, 255, 0.45);
   box-shadow: 0 0 20px -6px var(--dash-glow);
   color: var(--text-primary);
   transform: translateY(-1px);
@@ -219,12 +219,12 @@
 }
 
 .dash-quick-btn:focus-visible {
-  box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.35), 0 0 20px -6px var(--dash-glow);
+  box-shadow: 0 0 0 2px rgba(110, 140, 255, 0.35), 0 0 20px -6px var(--dash-glow);
 }
 
 .dash-quick-btn--primary {
-  border-color: rgba(34, 211, 238, 0.35);
-  background: rgba(34, 211, 238, 0.08);
+  border-color: rgba(110, 140, 255, 0.35);
+  background: rgba(110, 140, 255, 0.08);
   color: var(--cyber-cyan);
 }
 
@@ -236,11 +236,11 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   background:
-    radial-gradient(120% 140% at 0% 0%, rgba(196, 30, 58, 0.14), transparent 55%),
-    radial-gradient(120% 140% at 100% 0%, rgba(34, 211, 238, 0.12), transparent 55%),
+    radial-gradient(120% 140% at 0% 0%, rgba(229, 72, 59, 0.14), transparent 55%),
+    radial-gradient(120% 140% at 100% 0%, rgba(110, 140, 255, 0.12), transparent 55%),
     var(--bg-surface);
-  border: 1px solid rgba(34, 211, 238, 0.22);
-  box-shadow: var(--shadow-glass), 0 0 48px -16px rgba(34, 211, 238, 0.12);
+  border: 1px solid rgba(110, 140, 255, 0.22);
+  box-shadow: var(--shadow-glass), 0 0 48px -16px rgba(110, 140, 255, 0.12);
   animation: os-hero-breathe 6s ease-in-out infinite;
 }
 
@@ -270,7 +270,7 @@
   margin-bottom: 0.75rem;
   font-family: var(--font-mono);
   letter-spacing: 0.1em;
-  background: rgba(196, 30, 58, 0.18);
+  background: rgba(229, 72, 59, 0.18);
   color: var(--china-red);
 }
 
@@ -768,8 +768,8 @@
 /* ── 日览模式微调 ───────────────────────────────────────── */
 :root[data-theme='light'] .dash-hero-v2 {
   background:
-    radial-gradient(120% 140% at 0% 0%, rgba(196, 30, 58, 0.06), transparent 55%),
-    radial-gradient(120% 140% at 100% 0%, rgba(34, 211, 238, 0.06), transparent 55%),
+    radial-gradient(120% 140% at 0% 0%, rgba(229, 72, 59, 0.06), transparent 55%),
+    radial-gradient(120% 140% at 100% 0%, rgba(110, 140, 255, 0.06), transparent 55%),
     var(--bg-surface);
 }
 

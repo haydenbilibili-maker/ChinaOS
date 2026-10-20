@@ -9,28 +9,28 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // ============================================================================
 const SECTORS = [
   {
-    key: 'inbound', label: '入境游 · 免签红利', accent: '#e8a317',
+    key: 'inbound', label: '入境游 · 免签红利', accent: '#d4a25a',
     scale: '约 1.32 亿人次 (2024E 入出境合计口径示意)', growth: '+60%+ (同比示意)',
     cases: 'China Travel 视频流量现象 · 144 小时过境免签 · 上海/北京/成都口岸',
     logic: '免签是「用脚投票」的国家形象工程：签证摩擦每降一格，转化漏斗放大一截。外国博主第一视角内容成为零成本国家公关，覆盖西方媒体叙事的缝隙。',
     bottleneck: '支付（外卡绑定/现金兑换）、多语种服务、酒店涉外资质存量不足；流量集中在头部口岸城市，腹地分流机制缺位。',
-    bars: { label: '入境外国人次（万 · 示意）', cats: ['2019', '2022', '2023', '2024E'], data: [3188, 230, 1378, 2694], color: '#e8a317' },
+    bars: { label: '入境外国人次（万 · 示意）', cats: ['2019', '2022', '2023', '2024E'], data: [3188, 230, 1378, 2694], color: '#d4a25a' },
   },
   {
-    key: 'county', label: '县域游 · 小城游', accent: '#22d3ee',
+    key: 'county', label: '县域游 · 小城游', accent: '#6e8cff',
     scale: '县域旅游订单占比持续抬升（示意）', growth: '订单增速跑赢一二线 (示意)',
     cases: '天水麻辣烫 · 榕江村超 · 隰县小西天（黑神话联动）',
     logic: '高线城市贵且挤，价格敏感的年轻客群「向下淘金」：县城物价 + 短视频种草 = 高性价比情绪消费。本质是消费降级与体验升级的合流。',
     bottleneck: '交通末梢可达性、住宿供给弹性、服务标准化能力薄弱；单品爆红后承接力不足，复购与口碑极易透支。',
-    bars: { label: '县域游热度指数（示意）', cats: ['2021', '2022', '2023', '2024'], data: [100, 118, 165, 230], color: '#22d3ee' },
+    bars: { label: '县域游热度指数（示意）', cats: ['2021', '2022', '2023', '2024'], data: [100, 118, 165, 230], color: '#6e8cff' },
   },
   {
-    key: 'show', label: '演艺赛事经济', accent: '#c41e3a',
+    key: 'show', label: '演艺赛事经济', accent: '#e5483b',
     scale: '营业性演出票房 500 亿+ 级（2023 示意）', growth: '大型演唱会场次翻倍级 (示意)',
     cases: '「跟着演出去旅行」· 太原/海口抢演唱会 · 村超/村 BA · 马拉松井喷',
     logic: '一张票根撬动「交通+住宿+餐饮」3–5 倍杠杆（示意），异地观演占比过半。地方政府把审批与安保能力当招商资源，演唱会成为城市间存量竞争的新战场。',
     bottleneck: '场馆供给与审批节奏、黄牛与票务治理、安全事故的政治成本；中小城市「办得起、接不住」。',
-    bars: { label: '演出市场规模（亿元 · 示意）', cats: ['2019', '2021', '2023', '2024E'], data: [200, 140, 502, 580], color: '#c41e3a' },
+    bars: { label: '演出市场规模（亿元 · 示意）', cats: ['2019', '2021', '2023', '2024E'], data: [200, 140, 502, 580], color: '#e5483b' },
   },
   {
     key: 'ice', label: '冰雪经济', accent: '#60a5fa',
@@ -41,12 +41,12 @@ const SECTORS = [
     bars: { label: '冰雪旅游人次（亿 · 季 · 示意）', cats: ['21/22', '22/23', '23/24', '24/25E'], data: [3.05, 3.12, 3.85, 4.3], color: '#60a5fa' },
   },
   {
-    key: 'museum', label: '文博热', accent: '#10b981',
+    key: 'museum', label: '文博热', accent: '#6fc2ae',
     scale: '博物馆年接待 12 亿+ 人次级（示意）', growth: '热门馆「一票难求」常态化',
     cases: '故宫/国博预约秒空 · 三星堆 · 马面裙国潮 · 簪花围 · 博物馆文创雪糕',
     logic: '文化自信叙事与年轻人身份消费共振：逛馆是低成本高格调的社交货币。文创二次消费把「门票免费」的事业单位逻辑改写为 IP 运营逻辑。',
     bottleneck: '预约黄牛、讲解供给不足、头部馆虹吸 vs 县级馆门可罗雀；IP 开发能力极度分化。',
-    bars: { label: '博物馆接待人次（亿 · 示意）', cats: ['2019', '2021', '2023', '2024E'], data: [12.3, 7.5, 12.9, 14.0], color: '#10b981' },
+    bars: { label: '博物馆接待人次（亿 · 示意）', cats: ['2019', '2021', '2023', '2024E'], data: [12.3, 7.5, 12.9, 14.0], color: '#6fc2ae' },
   },
   {
     key: 'night', label: '夜间经济', accent: '#a78bfa',
@@ -68,9 +68,9 @@ const recoveryDual = {
   xAxis: categoryX(['2019', '2020', '2021', '2022', '2023', '2024E', '2025E']),
   yAxis: valueY({ name: '恢复度 %（2019=100）', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
   series: [
-    { name: '出游人次恢复度', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [100, 39, 51, 36, 86, 98, 106], lineStyle: { color: '#e8a317', width: 3 }, itemStyle: { color: '#e8a317' }, areaStyle: { color: 'rgba(232,163,23,0.12)' } },
-    { name: '旅游收入恢复度', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [100, 35, 46, 32, 76, 91, 100], lineStyle: { color: '#c41e3a', width: 3 }, itemStyle: { color: '#c41e3a' } },
-    { name: '人均花费恢复度', type: 'line', smooth: true, symbol: 'none', data: [100, 90, 90, 89, 88, 93, 94], lineStyle: { color: '#22d3ee', width: 2, type: 'dashed' }, itemStyle: { color: '#22d3ee' } },
+    { name: '出游人次恢复度', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [100, 39, 51, 36, 86, 98, 106], lineStyle: { color: '#d4a25a', width: 3 }, itemStyle: { color: '#d4a25a' }, areaStyle: { color: 'rgba(212, 162, 90,0.12)' } },
+    { name: '旅游收入恢复度', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [100, 35, 46, 32, 76, 91, 100], lineStyle: { color: '#e5483b', width: 3 }, itemStyle: { color: '#e5483b' } },
+    { name: '人均花费恢复度', type: 'line', smooth: true, symbol: 'none', data: [100, 90, 90, 89, 88, 93, 94], lineStyle: { color: '#6e8cff', width: 2, type: 'dashed' }, itemStyle: { color: '#6e8cff' } },
   ],
 };
 
@@ -80,7 +80,7 @@ const recoveryLine = {
   tooltip: { trigger: 'axis' },
   xAxis: categoryX(['2019', '2020', '2021', '2022', '2023', '2024E']),
   yAxis: valueY({ name: '亿人次', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
-  series: [{ type: 'line', smooth: true, symbol: 'circle', symbolSize: 7, data: [60.1, 28.8, 32.5, 25.3, 48.9, 56.2], lineStyle: { color: '#e8a317', width: 3 }, itemStyle: { color: '#e8a317' }, areaStyle: { color: 'rgba(232,163,23,0.15)' } }],
+  series: [{ type: 'line', smooth: true, symbol: 'circle', symbolSize: 7, data: [60.1, 28.8, 32.5, 25.3, 48.9, 56.2], lineStyle: { color: '#d4a25a', width: 3 }, itemStyle: { color: '#d4a25a' }, areaStyle: { color: 'rgba(212, 162, 90,0.15)' } }],
 };
 
 // ============================================================================
@@ -96,33 +96,33 @@ const visaFreeDual = {
     { type: 'value', name: '免签国家数', nameTextStyle: { color: LABEL.color, fontSize: 10 }, axisLabel: { color: LABEL.color, fontSize: 10 }, splitLine: { show: false } },
   ],
   series: [
-    { name: '入境外国人次', type: 'bar', barWidth: 18, data: [5.8, 8.0, 14.6, 12.3, 18.5, 20.0], itemStyle: { color: '#e8a317', borderRadius: 3 } },
-    { name: '单方面免签 + 全面互免国家数', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', symbolSize: 7, data: [10, 18, 26, 38, 47, 54], lineStyle: { color: '#22d3ee', width: 3 }, itemStyle: { color: '#22d3ee' } },
+    { name: '入境外国人次', type: 'bar', barWidth: 18, data: [5.8, 8.0, 14.6, 12.3, 18.5, 20.0], itemStyle: { color: '#d4a25a', borderRadius: 3 } },
+    { name: '单方面免签 + 全面互免国家数', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', symbolSize: 7, data: [10, 18, 26, 38, 47, 54], lineStyle: { color: '#6e8cff', width: 3 }, itemStyle: { color: '#6e8cff' } },
   ],
 };
 
 const chinaTravelChips = [
-  ['144h→240h 过境免签', '中转客流变深度游客流，口岸城市先吃红利', '#e8a317'],
-  ['「City 不 City」热梗', '外国博主第一视角视频成为零成本国家公关', '#22d3ee'],
-  ['外卡支付改造', '支付宝/微信外卡绑定打通，最大体验断点修补中', '#10b981'],
-  ['离境退税即买即退', '把观光客流变购物客流，对冲奢侈品消费外流', '#c41e3a'],
+  ['144h→240h 过境免签', '中转客流变深度游客流，口岸城市先吃红利', '#d4a25a'],
+  ['「City 不 City」热梗', '外国博主第一视角视频成为零成本国家公关', '#6e8cff'],
+  ['外卡支付改造', '支付宝/微信外卡绑定打通，最大体验断点修补中', '#6fc2ae'],
+  ['离境退税即买即退', '把观光客流变购物客流，对冲奢侈品消费外流', '#e5483b'],
 ];
 
 // ============================================================================
 // 四、消费分层 donut · 人均消费降级、总量升级
 // ============================================================================
 const tierDonut = donutOpt([
-  { value: 12, name: '高端度假 / 出境替代', itemStyle: { color: '#e8a317' } },
-  { value: 41, name: '大众观光 / 家庭游', itemStyle: { color: '#22d3ee' } },
-  { value: 29, name: '穷游 / 特种兵式打卡', itemStyle: { color: '#c41e3a' } },
-  { value: 18, name: '银发旅居 / 康养候鸟', itemStyle: { color: '#10b981' } },
+  { value: 12, name: '高端度假 / 出境替代', itemStyle: { color: '#d4a25a' } },
+  { value: 41, name: '大众观光 / 家庭游', itemStyle: { color: '#6e8cff' } },
+  { value: 29, name: '穷游 / 特种兵式打卡', itemStyle: { color: '#e5483b' } },
+  { value: 18, name: '银发旅居 / 康养候鸟', itemStyle: { color: '#6fc2ae' } },
 ]);
 
 const ageDonut = donutOpt([
-  { value: 35, name: 'Z 世代 (18–28)', itemStyle: { color: '#e8a317' } },
-  { value: 25, name: '中青年 (29–35)', itemStyle: { color: '#22d3ee' } },
-  { value: 22, name: '中年 (36–45)', itemStyle: { color: '#c41e3a' } },
-  { value: 18, name: '银发 (55+)', itemStyle: { color: '#10b981' } },
+  { value: 35, name: 'Z 世代 (18–28)', itemStyle: { color: '#d4a25a' } },
+  { value: 25, name: '中青年 (29–35)', itemStyle: { color: '#6e8cff' } },
+  { value: 22, name: '中年 (36–45)', itemStyle: { color: '#e5483b' } },
+  { value: 18, name: '银发 (55+)', itemStyle: { color: '#6fc2ae' } },
 ]);
 
 // ============================================================================
@@ -135,18 +135,18 @@ const hotspotBar = {
   xAxis: categoryX(['起势月', '爆发月', '峰值月', '回落月', '+6 个月']),
   yAxis: valueY({ name: '热度指数', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
   series: [
-    { name: '淄博烧烤', type: 'bar', data: [120, 480, 520, 310, 95], barWidth: 10, itemStyle: { color: '#e8a317', borderRadius: 3 } },
-    { name: '哈尔滨冰雪', type: 'bar', data: [85, 620, 890, 450, 160], barWidth: 10, itemStyle: { color: '#22d3ee', borderRadius: 3 } },
-    { name: '天水麻辣烫', type: 'bar', data: [40, 65, 780, 610, 70], barWidth: 10, itemStyle: { color: '#c41e3a', borderRadius: 3 } },
-    { name: '榕江村超', type: 'bar', data: [30, 350, 560, 380, 210], barWidth: 10, itemStyle: { color: '#10b981', borderRadius: 3 } },
+    { name: '淄博烧烤', type: 'bar', data: [120, 480, 520, 310, 95], barWidth: 10, itemStyle: { color: '#d4a25a', borderRadius: 3 } },
+    { name: '哈尔滨冰雪', type: 'bar', data: [85, 620, 890, 450, 160], barWidth: 10, itemStyle: { color: '#6e8cff', borderRadius: 3 } },
+    { name: '天水麻辣烫', type: 'bar', data: [40, 65, 780, 610, 70], barWidth: 10, itemStyle: { color: '#e5483b', borderRadius: 3 } },
+    { name: '榕江村超', type: 'bar', data: [30, 350, 560, 380, 210], barWidth: 10, itemStyle: { color: '#6fc2ae', borderRadius: 3 } },
   ],
 };
 
 const hotCities = [
-  ['淄博（2023 Q2 烧烤）', '#现象级 #政府宠客', '搜索指数 3 月 120 → 5 月峰值 520；「政府全员服务」承接流量，话题退潮后热度回落至基线附近 —— 单品出圈难以独力改写城市基本面。', '#e8a317'],
-  ['哈尔滨（2023–24 冰雪季）', '#季节性峰值', '客流 11 月 85 → 1 月峰值 890；冰雪大世界 + 「南方小土豆」叙事，次年复购验证了产品力，但季节性天花板清晰、淡季续接仍是命门。', '#22d3ee'],
-  ['天水（2024 Q1 麻辣烫）', '#县域出圈 #承载极限', '热度 1 月 40 → 3 月 780；县域凭单品出圈，交通承载与服务供给被瞬间击穿，热度半年内基本归零 —— 流量是压力测试，不是发展战略。', '#c41e3a'],
-  ['榕江（村超 2023–）', '#群众体育 #长红样本', '无明星、无门票的草根足球反而具备可重复的赛事节律，+6 个月仍维持 210 指数（示意）：内容由本地人持续生产，是少见的「长红」结构。', '#10b981'],
+  ['淄博（2023 Q2 烧烤）', '#现象级 #政府宠客', '搜索指数 3 月 120 → 5 月峰值 520；「政府全员服务」承接流量，话题退潮后热度回落至基线附近 —— 单品出圈难以独力改写城市基本面。', '#d4a25a'],
+  ['哈尔滨（2023–24 冰雪季）', '#季节性峰值', '客流 11 月 85 → 1 月峰值 890；冰雪大世界 + 「南方小土豆」叙事，次年复购验证了产品力，但季节性天花板清晰、淡季续接仍是命门。', '#6e8cff'],
+  ['天水（2024 Q1 麻辣烫）', '#县域出圈 #承载极限', '热度 1 月 40 → 3 月 780；县域凭单品出圈，交通承载与服务供给被瞬间击穿，热度半年内基本归零 —— 流量是压力测试，不是发展战略。', '#e5483b'],
+  ['榕江（村超 2023–）', '#群众体育 #长红样本', '无明星、无门票的草根足球反而具备可重复的赛事节律，+6 个月仍维持 210 指数（示意）：内容由本地人持续生产，是少见的「长红」结构。', '#6fc2ae'],
 ];
 
 // ============================================================================
@@ -154,10 +154,10 @@ const hotCities = [
 // ============================================================================
 const RADAR_INDICATORS = ['资源禀赋', '基础设施', '服务质量', '品牌营销', '数字化', '国际可达'];
 const RADAR_CITIES = [
-  { key: 'sh', label: '上海（口岸门户型）', color: '#e8a317', values: [62, 95, 85, 80, 92, 96], note: '入境游第一站：枢纽 + 支付 + 多语种全要素齐备，短板反而是「自然资源禀赋」—— 靠都市文化与消费力补。' },
-  { key: 'xa', label: '西安（文化 IP 型）', color: '#22d3ee', values: [92, 78, 72, 88, 74, 60], note: '十三朝古都的资源禀赋 + 大唐不夜城式营销满分，但国际航线与涉外服务是明显短板，入境红利吃得不充分。' },
+  { key: 'sh', label: '上海（口岸门户型）', color: '#d4a25a', values: [62, 95, 85, 80, 92, 96], note: '入境游第一站：枢纽 + 支付 + 多语种全要素齐备，短板反而是「自然资源禀赋」—— 靠都市文化与消费力补。' },
+  { key: 'xa', label: '西安（文化 IP 型）', color: '#6e8cff', values: [92, 78, 72, 88, 74, 60], note: '十三朝古都的资源禀赋 + 大唐不夜城式营销满分，但国际航线与涉外服务是明显短板，入境红利吃得不充分。' },
   { key: 'hrb', label: '哈尔滨（季节爆款型）', color: '#60a5fa', values: [85, 64, 70, 90, 58, 45], note: '冰雪禀赋与营销爆发力极强，数字化与国际可达拖后腿；「一季养三季」的结构性脆弱写在雷达图上。' },
-  { key: 'county', label: '网红县域（天水类）', color: '#c41e3a', values: [70, 38, 45, 82, 32, 15], note: '营销分与禀赋分虚高、基础设施与数字化垫底 —— 雷达图的「不对称」正是爆红即过载、过载即翻车的结构解释。' },
+  { key: 'county', label: '网红县域（天水类）', color: '#e5483b', values: [70, 38, 45, 82, 32, 15], note: '营销分与禀赋分虚高、基础设施与数字化垫底 —— 雷达图的「不对称」正是爆红即过载、过载即翻车的结构解释。' },
 ];
 
 // ============================================================================
@@ -170,26 +170,26 @@ const eventEconBar = {
   xAxis: categoryX(['头部演唱会', '音乐节', '城市马拉松', '电竞赛事', '村超/村BA']),
   yAxis: valueY({ name: '拉动倍数（票根=1 · 示意）', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
   series: [
-    { name: '直接票务', type: 'bar', stack: 't', barWidth: 22, data: [1, 1, 1, 1, 0.2], itemStyle: { color: '#c41e3a', borderRadius: 0 } },
-    { name: '交通住宿', type: 'bar', stack: 't', barWidth: 22, data: [2.4, 2.0, 1.8, 1.2, 1.6], itemStyle: { color: '#e8a317' } },
-    { name: '餐饮购物', type: 'bar', stack: 't', barWidth: 22, data: [1.4, 1.6, 1.0, 0.8, 1.8], itemStyle: { color: '#22d3ee', borderRadius: 3 } },
+    { name: '直接票务', type: 'bar', stack: 't', barWidth: 22, data: [1, 1, 1, 1, 0.2], itemStyle: { color: '#e5483b', borderRadius: 0 } },
+    { name: '交通住宿', type: 'bar', stack: 't', barWidth: 22, data: [2.4, 2.0, 1.8, 1.2, 1.6], itemStyle: { color: '#d4a25a' } },
+    { name: '餐饮购物', type: 'bar', stack: 't', barWidth: 22, data: [1.4, 1.6, 1.0, 0.8, 1.8], itemStyle: { color: '#6e8cff', borderRadius: 3 } },
   ],
 };
 
 const eventNotes = [
-  ['跟着演出去旅行', '异地观演占比过半（示意）：一线开票、周边城市抢人，太原、海口靠演唱会审批速度实现「弯道截流」。', '#c41e3a'],
-  ['马拉松 = 城市路演', '一场城马即一次 42 公里的城市直播；报名费不挣钱，挣的是住宿餐饮与「宜居城市」的人才叙事。', '#e8a317'],
-  ['村超的反商业悖论', '不收门票、不引资本，反而长红 —— 群众自发内容生产降低了运营成本，也规避了流量经济的透支机制。', '#10b981'],
+  ['跟着演出去旅行', '异地观演占比过半（示意）：一线开票、周边城市抢人，太原、海口靠演唱会审批速度实现「弯道截流」。', '#e5483b'],
+  ['马拉松 = 城市路演', '一场城马即一次 42 公里的城市直播；报名费不挣钱，挣的是住宿餐饮与「宜居城市」的人才叙事。', '#d4a25a'],
+  ['村超的反商业悖论', '不收门票、不引资本，反而长红 —— 群众自发内容生产降低了运营成本，也规避了流量经济的透支机制。', '#6fc2ae'],
 ];
 
 // ============================================================================
 // 八、原有保留：业态卡 / 数字化渗透 / 运营工具箱
 // ============================================================================
 const formats = [
-  ['行 · City Walk / 城市微度假', '低客单价、高分享率；依赖公共交通与街区商业更新。', '#e8a317'],
-  ['展 · 博物馆热 / 文博预约', '国潮与考古 IP 带动二次消费；承载「文化出口」叙事。', '#22d3ee'],
-  ['野 · 露营 / 精致露营 (Glamping)', '周边游与亲子客群；季节性强，对营地标准与环保提出监管需求。', '#10b981'],
-  ['演 · 演唱会 / 赛事经济', '票根带动交通、住宿与餐饮；地方政府以审批与安保能力换增量税收。', '#c41e3a'],
+  ['行 · City Walk / 城市微度假', '低客单价、高分享率；依赖公共交通与街区商业更新。', '#d4a25a'],
+  ['展 · 博物馆热 / 文博预约', '国潮与考古 IP 带动二次消费；承载「文化出口」叙事。', '#6e8cff'],
+  ['野 · 露营 / 精致露营 (Glamping)', '周边游与亲子客群；季节性强，对营地标准与环保提出监管需求。', '#6fc2ae'],
+  ['演 · 演唱会 / 赛事经济', '票根带动交通、住宿与餐饮；地方政府以审批与安保能力换增量税收。', '#e5483b'],
 ];
 
 const digiOps = [
@@ -205,11 +205,11 @@ const penetration = [['智慧预约 / 分流', 88], ['多语种服务', 76], ['�
 // 九、TimelineBar · 文旅演进五阶段
 // ============================================================================
 const STAGES = [
-  { period: '1990s–2007', title: '观光时代', accent: '#93a1b5', desc: '门票经济 + 旅行社包团：景区是稀缺品，游客是流水线上的「人头」。黄金周制度（1999）第一次把假期变成宏观工具，旅游从外事接待转向内需引擎。' },
-  { period: '2008–2019', title: '黄金周大众游', accent: '#e8a317', desc: '高铁网 + 智能手机 + OTA 平台重构供需：出游人次从 17 亿冲向 60 亿。出境游同步井喷，中国游客成为全球免税店的支柱客源 —— 也埋下消费外流的伏笔。' },
+  { period: '1990s–2007', title: '观光时代', accent: '#a29c91', desc: '门票经济 + 旅行社包团：景区是稀缺品，游客是流水线上的「人头」。黄金周制度（1999）第一次把假期变成宏观工具，旅游从外事接待转向内需引擎。' },
+  { period: '2008–2019', title: '黄金周大众游', accent: '#d4a25a', desc: '高铁网 + 智能手机 + OTA 平台重构供需：出游人次从 17 亿冲向 60 亿。出境游同步井喷，中国游客成为全球免税店的支柱客源 —— 也埋下消费外流的伏笔。' },
   { period: '2020–2022', title: '疫情冰封', accent: '#60a5fa', desc: '出游人次腰斩再腰斩（2022 仅 25.3 亿）：旅行社、航司、酒店现金流断裂，从业者大规模流失。被压抑的不止需求，还有供给侧的服务能力 —— 复苏期的服务质量争议多源于此。' },
-  { period: '2023–2024', title: '报复性复苏 / 网红城市', accent: '#c41e3a', desc: '人次先于收入恢复、人均花费持续低于 2019（示意）—— 「消费降级、总量升级」。淄博、哈尔滨、天水轮番出圈，流量经济成为地方政府的新锦标赛，长红者寥寥。' },
-  { period: '2024–', title: '入境红利 / 深度体验时代', accent: '#10b981', desc: '免签扩围 + 240 小时过境免签 + 支付改造，入境游成为服务贸易出口与国家叙事的双重抓手；国内侧从打卡转向旅居、研学、康养的长停留深度消费 —— 文旅被正式定位为服务消费扩容的主战场。' },
+  { period: '2023–2024', title: '报复性复苏 / 网红城市', accent: '#e5483b', desc: '人次先于收入恢复、人均花费持续低于 2019（示意）—— 「消费降级、总量升级」。淄博、哈尔滨、天水轮番出圈，流量经济成为地方政府的新锦标赛，长红者寥寥。' },
+  { period: '2024–', title: '入境红利 / 深度体验时代', accent: '#6fc2ae', desc: '免签扩围 + 240 小时过境免签 + 支付改造，入境游成为服务贸易出口与国家叙事的双重抓手；国内侧从打卡转向旅居、研学、康养的长停留深度消费 —— 文旅被正式定位为服务消费扩容的主战场。' },
 ];
 
 // ============================================================================
@@ -243,10 +243,10 @@ export default function Page() {
       <IntroCard>文旅是这一轮服务消费扩容的主战场，但繁荣的成色需要拆开看：出游人次先于收入恢复、人均花费迟迟回不到 2019 —— 「总量升级、客单降级」是底色。流量侧，淄博、哈尔滨、天水轮番出圈证明「爆红」可以速成，而「长红」取决于公共服务与承载力的长期供给；开放侧，免签扩围与 240 小时过境免签把入境游变成服务贸易出口与国家形象工程的双重抓手。本页以业态切换、恢复曲线、免签双轴、消费分层、竞争力雷达与赛事经济六个切口，给出冷峻的结构视图（数据均为公开资料整理的示意值）。</IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="56.2 亿" label="国内出游人次 (2024E · 示意)" accent="#e8a317" />
-        <Stat value="5.75 万亿" label="国内旅游收入（元 · 2024E 示意）" accent="#c41e3a" />
-        <Stat value="2694 万" label="入境外国人次 (2024E · 示意)" accent="#22d3ee" />
-        <Stat value="38+" label="单方面免签国家数（示意）" accent="#10b981" />
+        <Stat value="56.2 亿" label="国内出游人次 (2024E · 示意)" accent="#d4a25a" />
+        <Stat value="5.75 万亿" label="国内旅游收入（元 · 2024E 示意）" accent="#e5483b" />
+        <Stat value="2694 万" label="入境外国人次 (2024E · 示意)" accent="#6e8cff" />
+        <Stat value="38+" label="单方面免签国家数（示意）" accent="#6fc2ae" />
       </Grid>
 
       {/* ① 业态选择器 */}
@@ -263,7 +263,7 @@ export default function Page() {
               <p className="text-[11px] leading-relaxed mb-2" style={{ color: 'var(--text-tertiary)' }}>{sector.cases}</p>
               <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>增长逻辑</div>
               <p className="text-[11px] leading-relaxed mb-2" style={{ color: 'var(--text-secondary)' }}>{sector.logic}</p>
-              <div className="text-xs font-semibold mb-1" style={{ color: '#c41e3a' }}>结构性瓶颈</div>
+              <div className="text-xs font-semibold mb-1" style={{ color: '#e5483b' }}>结构性瓶颈</div>
               <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{sector.bottleneck}</p>
             </div>
           </div>
@@ -344,7 +344,7 @@ export default function Page() {
               {RADAR_INDICATORS.map((ind, i) => (
                 <div key={ind} className="flex items-center gap-2">
                   <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)', width: 64 }}>{ind}</span>
-                  <div style={{ flex: 1, height: 5, borderRadius: 3, background: 'rgba(148,163,184,0.15)', overflow: 'hidden' }}>
+                  <div style={{ flex: 1, height: 5, borderRadius: 3, background: 'rgba(162, 156, 145,0.15)', overflow: 'hidden' }}>
                     <div style={{ width: `${radarCity.values[i]}%`, height: '100%', borderRadius: 3, background: radarCity.color }} />
                   </div>
                   <span className="text-[11px] mono" style={{ color: radarCity.color, width: 24, textAlign: 'right' }}>{radarCity.values[i]}</span>
@@ -391,8 +391,8 @@ export default function Page() {
             {penetration.map(([t, v]) => (
               <div key={t}>
                 <div className="flex justify-between text-[11px] mb-1" style={{ color: 'var(--text-tertiary)' }}><span>{t}</span><span className="mono">{v}%</span></div>
-                <div style={{ height: 6, borderRadius: 3, background: 'rgba(148,163,184,0.15)', overflow: 'hidden' }}>
-                  <div style={{ width: `${v}%`, height: '100%', borderRadius: 3, background: '#c41e3a' }} />
+                <div style={{ height: 6, borderRadius: 3, background: 'rgba(162, 156, 145,0.15)', overflow: 'hidden' }}>
+                  <div style={{ width: `${v}%`, height: '100%', borderRadius: 3, background: '#e5483b' }} />
                 </div>
               </div>
             ))}

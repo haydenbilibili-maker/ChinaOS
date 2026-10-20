@@ -1,8 +1,8 @@
 /* 水墨观象台 · ink-observatory — anticorruption */
 .ink-observatory.ac-wrap {
-  --ac-brass: var(--brass, #b18a52);
+  --ac-brass: var(--brass, #d4a25a);
   --ac-brass-dim: var(--brass-dim, #6b5733);
-  --ac-celadon: var(--celadon, #79a496);
+  --ac-celadon: var(--celadon, #6fc2ae);
   --ac-red: var(--red, #cf4a3d);
   --ac-red-bg: var(--red-bg, #2a1513);
   --ac-amber: var(--amber, #cf9a32);

@@ -143,7 +143,7 @@ function DataTable({ sections, years }) {
                   style={{
                     padding: '8px 10px',
                     textAlign: 'right',
-                    color: years[vi]?.includes('f') ? '#22d3ee' : 'var(--text-primary)',
+                    color: years[vi]?.includes('f') ? '#6e8cff' : 'var(--text-primary)',
                     borderLeft: '1px solid var(--border-subtle)',
                   }}
                 >
@@ -201,7 +201,7 @@ function wdiSeriesOpt(series, color, kind) {
     yAxis: {
       type: 'value',
       axisLine: { show: false },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.12)' } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.12)' } },
       axisLabel: {
         color: LABEL.color,
         fontSize: 10,
@@ -304,7 +304,7 @@ export default function WorldBankTab({ wb }) {
         data: row.values.map((v, i) => ({
           value: v,
           itemStyle: {
-            color: years[i]?.includes('f') ? 'rgba(196,30,58,0.55)' : C.powerRed,
+            color: years[i]?.includes('f') ? 'rgba(229, 72, 59,0.55)' : C.powerRed,
             borderRadius: [3, 3, 0, 0],
           },
         })),
@@ -361,7 +361,7 @@ export default function WorldBankTab({ wb }) {
         fontSize: 10,
         formatter: (v) => ({ 1: '观察', 2: '进行中', 3: '已发布' }[v] || ''),
       },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.12)' } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.12)' } },
     },
     yAxis: {
       type: 'category',
@@ -466,7 +466,7 @@ export default function WorldBankTab({ wb }) {
   const wbLineOption = useMemo(() => {
     const series = wbSeries?.series || [];
     if (!series.length) return null;
-    return wdiSeriesOpt(series, '#22d3ee', wbDef?.kind || 'pct');
+    return wdiSeriesOpt(series, '#6e8cff', wbDef?.kind || 'pct');
   }, [wbSeries, wbDef]);
 
   const wbLoading = wb?.loading && !wbSeries?.series?.length;
@@ -735,13 +735,13 @@ export default function WorldBankTab({ wb }) {
 
       <Card title="交叉深潜 · 关联模块" asSection={false}>
         <div className="econ-hub-grid">
-          <Link to={econTabPath('macro')} className="econ-hub-card" style={{ borderLeft: '3px solid #22d3ee' }}>
+          <Link to={econTabPath('macro')} className="econ-hub-card" style={{ borderLeft: '3px solid #6e8cff' }}>
             <div className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>宏观态势 · WDI 全指标 ↗</div>
             <p className="text-[11px] m-0 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
               12 项世行长序列 + NBS 快照 + 国际对比，与本简报年度口径互补。
             </p>
           </Link>
-          <Link to={econTabPath('h1review')} className="econ-hub-card" style={{ borderLeft: '3px solid #e8a317' }}>
+          <Link to={econTabPath('h1review')} className="econ-hub-card" style={{ borderLeft: '3px solid #d4a25a' }}>
             <div className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>半年经济解读 ↗</div>
             <p className="text-[11px] m-0 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
               NBS 2026 H1 全文台账，与 CEU「供强需弱」叙事交叉。
@@ -753,7 +753,7 @@ export default function WorldBankTab({ wb }) {
               扩内需规划全文，对 CEU 消费再平衡建议的制度回应。
             </p>
           </Link>
-          <Link to={econTabPath('canary')} className="econ-hub-card" style={{ borderLeft: '3px solid #c41e3a' }}>
+          <Link to={econTabPath('canary')} className="econ-hub-card" style={{ borderLeft: '3px solid #e5483b' }}>
             <div className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>信号金丝雀 ↗</div>
             <p className="text-[11px] m-0 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
               领先指标示意与 CEU 供强需弱叙事交叉验证。
@@ -764,7 +764,7 @@ export default function WorldBankTab({ wb }) {
             target="_blank"
             rel="noopener noreferrer"
             className="econ-hub-card"
-            style={{ borderLeft: '3px solid #10b981' }}
+            style={{ borderLeft: '3px solid #6fc2ae' }}
           >
             <div className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>CEU PDF 原文 ↗</div>
             <p className="text-[11px] m-0 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
@@ -776,7 +776,7 @@ export default function WorldBankTab({ wb }) {
 
       <div
         className="os-card"
-        style={{ padding: 'var(--card-padding)', background: 'rgba(34,211,238,0.06)', border: '1px solid rgba(34,211,238,0.2)' }}
+        style={{ padding: 'var(--card-padding)', background: 'rgba(110, 140, 255,0.06)', border: '1px solid rgba(110, 140, 255,0.2)' }}
       >
         <div className="text-xs mono mb-1" style={{ color: 'var(--text-tertiary)' }}>
           数据截至 {REPORT_META.asOf} · {REPORT_META.source} · NBS/WDI 快照截至 {ECON_AS_OF}

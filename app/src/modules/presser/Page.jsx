@@ -38,7 +38,7 @@ export default function Page({ embedded = false }) {
       smooth: true,
       lineStyle: { color: scenario.color, width: 2 },
       areaStyle: { color: `${scenario.color}22` },
-      markLine: { silent: true, data: [{ yAxis: 55, lineStyle: { color: '#fb923c', type: 'dashed' }, label: { formatter: '警戒线 55', fontSize: 9 } }] },
+      markLine: { silent: true, data: [{ yAxis: 55, lineStyle: { color: '#c07a4a', type: 'dashed' }, label: { formatter: '警戒线 55', fontSize: 9 } }] },
     }],
   }), [result, scenario.color]);
 
@@ -90,7 +90,7 @@ export default function Page({ embedded = false }) {
               <div className="text-[10px] mono mb-1" style={{ color: 'var(--text-tertiary)' }}>回应口径</div>
               <div className="flex flex-wrap gap-1">
                 {STANCES.map((s) => (
-                  <button key={s.id} type="button" onClick={() => setStance(s.id)} className="text-[10px] mono px-2 py-1 rounded" style={{ background: stance === s.id ? 'rgba(196,30,58,0.15)' : 'var(--bg-base)', color: stance === s.id ? 'var(--china-red)' : 'var(--text-secondary)', border: '1px solid var(--border-subtle)', cursor: 'pointer' }}>
+                  <button key={s.id} type="button" onClick={() => setStance(s.id)} className="text-[10px] mono px-2 py-1 rounded" style={{ background: stance === s.id ? 'rgba(229, 72, 59,0.15)' : 'var(--bg-base)', color: stance === s.id ? 'var(--china-red)' : 'var(--text-secondary)', border: '1px solid var(--border-subtle)', cursor: 'pointer' }}>
                     {s.label}
                   </button>
                 ))}
@@ -100,7 +100,7 @@ export default function Page({ embedded = false }) {
               <div className="text-[10px] mono mb-1" style={{ color: 'var(--text-tertiary)' }}>发布渠道（零渠道=鸵鸟）</div>
               <div className="flex flex-wrap gap-1">
                 {CHANNELS.map((c) => (
-                  <button key={c.id} type="button" onClick={() => toggleChannel(c.id)} className="text-[10px] mono px-2 py-1 rounded" style={{ background: channels.includes(c.id) ? 'rgba(34,211,238,0.12)' : 'var(--bg-base)', color: channels.includes(c.id) ? 'var(--cyber-cyan)' : 'var(--text-secondary)', border: '1px solid var(--border-subtle)', cursor: 'pointer' }}>
+                  <button key={c.id} type="button" onClick={() => toggleChannel(c.id)} className="text-[10px] mono px-2 py-1 rounded" style={{ background: channels.includes(c.id) ? 'rgba(110, 140, 255,0.12)' : 'var(--bg-base)', color: channels.includes(c.id) ? 'var(--cyber-cyan)' : 'var(--text-secondary)', border: '1px solid var(--border-subtle)', cursor: 'pointer' }}>
                     {c.label}
                   </button>
                 ))}

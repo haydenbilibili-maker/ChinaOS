@@ -11,7 +11,7 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 /** 交互① · 算力类型 */
 const COMPUTE_TYPES = [
   {
-    key: 'general', label: '通用算力', accent: '#22d3ee',
+    key: 'general', label: '通用算力', accent: '#6e8cff',
     scale: '~220 EFLOPS', growth: '+15%/年', share: '约 60%',
     desc: 'CPU 为主的通用计算：政企云、网站、数据库、ERP。增速放缓、利用率分化——部分西部 IDC 上架率长期不足 50%，「建得快、用得慢」是通用算力的现实底色。',
     trend: [120, 140, 160, 180, 200, 220],
@@ -19,7 +19,7 @@ const COMPUTE_TYPES = [
     bottleneck: ['上架率分化：东部紧张、西部闲置并存', '同质化竞争压价，IDC 毛利持续收窄', '存量机房 PUE 改造成本高'],
   },
   {
-    key: 'ai', label: '智能算力', accent: '#c41e3a',
+    key: 'ai', label: '智能算力', accent: '#e5483b',
     scale: '~750 EFLOPS(FP16)', growth: '+70%/年', share: '约 35%',
     desc: 'GPU/加速卡支撑的训练与推理算力：大模型竞赛的直接燃料。需求曲线近乎垂直，而供给受制于高端 GPU 出口管制——智能算力是中美算力博弈的主战场。',
     trend: [50, 100, 180, 320, 500, 750],
@@ -27,7 +27,7 @@ const COMPUTE_TYPES = [
     bottleneck: ['高端训练卡(H100/B200 级)对华禁售', 'CUDA 生态壁垒：迁移成本高于硬件差距', 'HBM 显存、先进封装(CoWoS)产能受限'],
   },
   {
-    key: 'super', label: '超算', accent: '#e8a317',
+    key: 'super', label: '超算', accent: '#d4a25a',
     scale: 'Top 级 ~E 级机', growth: '稳态迭代', share: '约 3%',
     desc: '天河、神威谱系的国家级超算：气象、核模拟、流体力学等战略科学计算。2022 年起退出 TOP500 公开榜单——「不再报榜」本身即是博弈姿态。',
     trend: [80, 85, 90, 95, 100, 110],
@@ -35,7 +35,7 @@ const COMPUTE_TYPES = [
     bottleneck: ['多家超算中心被列入实体清单', '自主芯片(申威/飞腾)生态应用面窄', '与智算融合(超智融合)路线尚在探索'],
   },
   {
-    key: 'edge', label: '边缘算力', accent: '#10b981',
+    key: 'edge', label: '边缘算力', accent: '#6fc2ae',
     scale: '快速起量', growth: '+40%/年', share: '约 2%',
     desc: 'MEC 边缘节点：车联网、工业质检、视频结构化的低时延落点。与 5G-A/6G、卫星回传联动，是「全国一体化算力网」的毛细血管层。',
     trend: [10, 18, 28, 42, 60, 85],
@@ -43,7 +43,7 @@ const COMPUTE_TYPES = [
     bottleneck: ['单点规模小、运维成本摊薄难', '边云协同调度标准未统一', '商业模式依赖运营商与政府项目'],
   },
   {
-    key: 'quantum', label: '量子算力(前瞻)', accent: '#8b5cf6',
+    key: 'quantum', label: '量子算力(前瞻)', accent: '#b07cc6',
     scale: '原型机阶段', growth: '前瞻布局', share: '<0.1%',
     desc: '祖冲之号(超导)、九章(光量子)双路线并进：在特定采样问题上宣称量子优越性，但距通用容错量子计算仍有 10 年级距离。卡位意义大于产业意义。',
     trend: [1, 2, 3, 5, 8, 12],
@@ -56,9 +56,9 @@ const YEARS = ['2019', '2020', '2021', '2022', '2023', '2024E'];
 
 /** 交互② · 东数西算八大枢纽 */
 const HUB_GROUPS = [
-  { key: 'west', label: '西部承接型', accent: '#c41e3a', desc: '内蒙古、贵州、甘肃、宁夏：风光水电 + 自然冷源 + 土地成本，定位「后台算力」——离线训练、备份存储、渲染等对时延不敏感的负载西移，本质是数据要素的空间再配置与绿电套利。' },
-  { key: 'east', label: '东部需求型', accent: '#22d3ee', desc: '京津冀、长三角、粤港澳：贴近用户与出海光缆，承载金融交易、实时推理等毫秒级业务；电力、土地双重约束下只保「前台算力」，增量严控 PUE。' },
-  { key: 'central', label: '成渝枢纽', accent: '#10b981', desc: '成渝：东西之间的中继与备份节点，承接东部容灾与西南数字产业，是「全国一体化算力网」调度拓扑上的中间锚点。' },
+  { key: 'west', label: '西部承接型', accent: '#e5483b', desc: '内蒙古、贵州、甘肃、宁夏：风光水电 + 自然冷源 + 土地成本，定位「后台算力」——离线训练、备份存储、渲染等对时延不敏感的负载西移，本质是数据要素的空间再配置与绿电套利。' },
+  { key: 'east', label: '东部需求型', accent: '#6e8cff', desc: '京津冀、长三角、粤港澳：贴近用户与出海光缆，承载金融交易、实时推理等毫秒级业务；电力、土地双重约束下只保「前台算力」，增量严控 PUE。' },
+  { key: 'central', label: '成渝枢纽', accent: '#6fc2ae', desc: '成渝：东西之间的中继与备份节点，承接东部容灾与西南数字产业，是「全国一体化算力网」调度拓扑上的中间锚点。' },
 ];
 
 const HUB_NODES = [
@@ -74,38 +74,38 @@ const HUB_NODES = [
 
 /** 国产 AI 芯片格局 */
 const CHIP_VENDORS = [
-  { name: '英伟达(对照)', eco: 98, ship: 80, accent: '#64748b', note: 'CUDA 生态 18 年积累；对华特供版(H20 级)性能阉割但生态完整。' },
-  { name: '华为昇腾', eco: 62, ship: 12, accent: '#c41e3a', note: '910B/910C + CANN 软件栈；政企智算中心采购主力，制程受限于国产产线。' },
-  { name: '寒武纪', eco: 38, ship: 3, accent: '#e8a317', note: '思元系列；被列实体清单后转向国产供应链，互联网客户验证中。' },
-  { name: '海光', eco: 42, ship: 4, accent: '#22d3ee', note: 'DCU 兼容 ROCm 类生态，x86 授权渊源使迁移成本相对低。' },
-  { name: '摩尔线程等新势力', eco: 25, ship: 1, accent: '#10b981', note: '全功能 GPU 路线对标更难；融资驱动，量产与生态双重爬坡。' },
+  { name: '英伟达(对照)', eco: 98, ship: 80, accent: '#8a8578', note: 'CUDA 生态 18 年积累；对华特供版(H20 级)性能阉割但生态完整。' },
+  { name: '华为昇腾', eco: 62, ship: 12, accent: '#e5483b', note: '910B/910C + CANN 软件栈；政企智算中心采购主力，制程受限于国产产线。' },
+  { name: '寒武纪', eco: 38, ship: 3, accent: '#d4a25a', note: '思元系列；被列实体清单后转向国产供应链，互联网客户验证中。' },
+  { name: '海光', eco: 42, ship: 4, accent: '#6e8cff', note: 'DCU 兼容 ROCm 类生态，x86 授权渊源使迁移成本相对低。' },
+  { name: '摩尔线程等新势力', eco: 25, ship: 1, accent: '#6fc2ae', note: '全功能 GPU 路线对标更难；融资驱动，量产与生态双重爬坡。' },
 ];
 
 /** 算力演进时间线 */
 const PHASES = [
-  { period: '1983–2009', title: '超算起步', accent: '#64748b', desc: '银河 → 天河一号登顶 TOP500：举国体制下的样板工程，证明「能造」，但算力尚未成为通用生产要素。' },
-  { period: '2010–2020', title: '云数据中心潮', accent: '#22d3ee', desc: '移动互联网 + 云计算驱动 IDC 规模扩张，东部沿海集中建设；PUE 约束宽松，电力成本矛盾开始累积。' },
-  { period: '2021–2022', title: '东数西算工程', accent: '#e8a317', desc: '八大枢纽、十大集群顶层设计落地：算力布局首次与国土空间、能源结构统筹——西部绿电为东部数据降碳。' },
-  { period: '2023–2024', title: '智算中心爆发', accent: '#c41e3a', desc: 'ChatGPT 冲击 + 出口管制收紧：各地智算中心立项潮，国产卡「算力券」托底；需求真实性与利用率开始分化。' },
-  { period: '2025–', title: '一体化算力网', accent: '#8b5cf6', desc: '从「建算力」转向「调度算力」：全国一体化算力网 + 算力交易所试点，目标是让算力像电力一样可计量、可流通。' },
+  { period: '1983–2009', title: '超算起步', accent: '#8a8578', desc: '银河 → 天河一号登顶 TOP500：举国体制下的样板工程，证明「能造」，但算力尚未成为通用生产要素。' },
+  { period: '2010–2020', title: '云数据中心潮', accent: '#6e8cff', desc: '移动互联网 + 云计算驱动 IDC 规模扩张，东部沿海集中建设；PUE 约束宽松，电力成本矛盾开始累积。' },
+  { period: '2021–2022', title: '东数西算工程', accent: '#d4a25a', desc: '八大枢纽、十大集群顶层设计落地：算力布局首次与国土空间、能源结构统筹——西部绿电为东部数据降碳。' },
+  { period: '2023–2024', title: '智算中心爆发', accent: '#e5483b', desc: 'ChatGPT 冲击 + 出口管制收紧：各地智算中心立项潮，国产卡「算力券」托底；需求真实性与利用率开始分化。' },
+  { period: '2025–', title: '一体化算力网', accent: '#b07cc6', desc: '从「建算力」转向「调度算力」：全国一体化算力网 + 算力交易所试点，目标是让算力像电力一样可计量、可流通。' },
 ];
 
 /** 算力成本结构 donut（西部智算中心 · 示意） */
 const costDonut = donutOpt([
-  { value: 45, name: '电力（绿电直供降本）', itemStyle: { color: '#e8a317' } },
-  { value: 30, name: '设备折旧（GPU 占大头）', itemStyle: { color: '#c41e3a' } },
-  { value: 12, name: '带宽 / 网络', itemStyle: { color: '#22d3ee' } },
-  { value: 9, name: '运维 / 人力', itemStyle: { color: '#10b981' } },
-  { value: 4, name: '土地 / 其他', itemStyle: { color: '#64748b' } },
+  { value: 45, name: '电力（绿电直供降本）', itemStyle: { color: '#d4a25a' } },
+  { value: 30, name: '设备折旧（GPU 占大头）', itemStyle: { color: '#e5483b' } },
+  { value: 12, name: '带宽 / 网络', itemStyle: { color: '#6e8cff' } },
+  { value: 9, name: '运维 / 人力', itemStyle: { color: '#6fc2ae' } },
+  { value: 4, name: '土地 / 其他', itemStyle: { color: '#8a8578' } },
 ]);
 
 /** 算力需求结构 donut（沿用原模块 · 示意） */
 const demandDonut = donutOpt([
-  { value: 35, name: '大模型训练', itemStyle: { color: '#c41e3a' } },
-  { value: 20, name: '推理', itemStyle: { color: '#22d3ee' } },
-  { value: 15, name: '政企云', itemStyle: { color: '#e8a317' } },
-  { value: 12, name: '渲染', itemStyle: { color: '#10b981' } },
-  { value: 18, name: '其他', itemStyle: { color: '#64748b' } },
+  { value: 35, name: '大模型训练', itemStyle: { color: '#e5483b' } },
+  { value: 20, name: '推理', itemStyle: { color: '#6e8cff' } },
+  { value: 15, name: '政企云', itemStyle: { color: '#d4a25a' } },
+  { value: 12, name: '渲染', itemStyle: { color: '#6fc2ae' } },
+  { value: 18, name: '其他', itemStyle: { color: '#8a8578' } },
 ]);
 
 /** 中美算力竞争力雷达（双系列 · 自写内联，radarOpt 仅支持单系列） */
@@ -114,15 +114,15 @@ const rivalryRadar = {
   radar: {
     indicator: ['总规模', '智算规模', '芯片自主', '网络时延', '绿电比例', '调度能力'].map((n) => ({ name: n, max: 100 })),
     axisName: { color: LABEL.color, fontSize: 10 },
-    splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-    axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+    splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
+    axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
     splitArea: { show: false },
   },
   series: [{
     type: 'radar',
     data: [
-      { value: [80, 55, 40, 78, 62, 85], name: '中国', lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.12)' } },
-      { value: [95, 95, 92, 85, 45, 60], name: '美国', lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.10)' } },
+      { value: [80, 55, 40, 78, 62, 85], name: '中国', lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.12)' } },
+      { value: [95, 95, 92, 85, 45, 60], name: '美国', lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' }, areaStyle: { color: 'rgba(110, 140, 255,0.10)' } },
     ],
   }],
 };
@@ -138,8 +138,8 @@ const scaleTrendOpt = {
     valueY({ max: 60, splitLine: { show: false }, axisLabel: { formatter: '{value}%' }, name: '智算占比', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
   ],
   series: [
-    { name: '总算力(EFLOPS)', type: 'bar', barWidth: 18, data: [134, 150, 202, 280, 380, 520], itemStyle: { color: '#22d3ee', borderRadius: 3 } },
-    { name: '智算占比(%)', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', symbolSize: 7, data: [9, 14, 21, 25, 30, 41], lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' } },
+    { name: '总算力(EFLOPS)', type: 'bar', barWidth: 18, data: [134, 150, 202, 280, 380, 520], itemStyle: { color: '#6e8cff', borderRadius: 3 } },
+    { name: '智算占比(%)', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', symbolSize: 7, data: [9, 14, 21, 25, 30, 41], lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' } },
   ],
 };
 
@@ -151,9 +151,9 @@ const gapOpt = {
   xAxis: categoryX(YEARS),
   yAxis: logY(),
   series: [
-    { name: 'AI 训练需求（指数）', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [10, 25, 70, 200, 600, 1800], lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.10)' } },
-    { name: '国产芯片有效供给（指数）', type: 'line', smooth: true, symbol: 'rect', symbolSize: 6, data: [8, 14, 25, 50, 110, 260], lineStyle: { color: '#10b981', width: 2, type: 'dashed' }, itemStyle: { color: '#10b981' } },
-    { name: '进口卡补缺（含管制前囤货）', type: 'line', smooth: true, symbol: 'triangle', symbolSize: 6, data: [5, 12, 40, 130, 380, 700], lineStyle: { color: '#e8a317', width: 1.5 }, itemStyle: { color: '#e8a317' } },
+    { name: 'AI 训练需求（指数）', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [10, 25, 70, 200, 600, 1800], lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.10)' } },
+    { name: '国产芯片有效供给（指数）', type: 'line', smooth: true, symbol: 'rect', symbolSize: 6, data: [8, 14, 25, 50, 110, 260], lineStyle: { color: '#6fc2ae', width: 2, type: 'dashed' }, itemStyle: { color: '#6fc2ae' } },
+    { name: '进口卡补缺（含管制前囤货）', type: 'line', smooth: true, symbol: 'triangle', symbolSize: 6, data: [5, 12, 40, 130, 380, 700], lineStyle: { color: '#d4a25a', width: 1.5 }, itemStyle: { color: '#d4a25a' } },
   ],
 };
 
@@ -161,9 +161,9 @@ const gapOpt = {
 const hubMixOpt = stackedBarOpt({
   categories: HUB_NODES.map((n) => n.name),
   series: [
-    { name: '通用算力', data: [48, 55, 50, 38, 30, 36, 24, 26], itemStyle: { color: '#22d3ee' } },
-    { name: '智能算力', data: [26, 30, 32, 22, 36, 30, 22, 28], itemStyle: { color: '#c41e3a' } },
-    { name: '超算/其他', data: [8, 5, 4, 14, 12, 14, 12, 12], itemStyle: { color: '#e8a317' } },
+    { name: '通用算力', data: [48, 55, 50, 38, 30, 36, 24, 26], itemStyle: { color: '#6e8cff' } },
+    { name: '智能算力', data: [26, 30, 32, 22, 36, 30, 22, 28], itemStyle: { color: '#e5483b' } },
+    { name: '超算/其他', data: [8, 5, 4, 14, 12, 14, 12, 12], itemStyle: { color: '#d4a25a' } },
   ],
 });
 
@@ -176,7 +176,7 @@ const chipBarOpt = {
   yAxis: categoryX(CHIP_VENDORS.map((v) => v.name)),
   series: [
     { name: '软件生态成熟度', type: 'bar', barWidth: 10, data: CHIP_VENDORS.map((v) => ({ value: v.eco, itemStyle: { color: v.accent, borderRadius: 3 } })), label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 } },
-    { name: '国内智算出货份额(%)', type: 'bar', barWidth: 10, data: CHIP_VENDORS.map((v) => v.ship), itemStyle: { color: 'rgba(148,163,184,0.45)', borderRadius: 3 } },
+    { name: '国内智算出货份额(%)', type: 'bar', barWidth: 10, data: CHIP_VENDORS.map((v) => v.ship), itemStyle: { color: 'rgba(162, 156, 145,0.45)', borderRadius: 3 } },
   ],
 };
 
@@ -213,7 +213,7 @@ export default function Page() {
     xAxis: categoryX(YEARS),
     yAxis: valueY(),
     series: [
-      { name: '需求', type: 'bar', barWidth: 12, data: T.demand, itemStyle: { color: 'rgba(148,163,184,0.4)', borderRadius: 3 } },
+      { name: '需求', type: 'bar', barWidth: 12, data: T.demand, itemStyle: { color: 'rgba(162, 156, 145,0.4)', borderRadius: 3 } },
       { name: '供给', type: 'bar', barWidth: 12, data: T.trend, itemStyle: { color: T.accent, borderRadius: 3 } },
     ],
   }), [T]);
@@ -228,7 +228,7 @@ export default function Page() {
       type: 'bar', barWidth: 14,
       data: HUB_NODES.map((n) => ({
         value: n.value,
-        itemStyle: { color: n.group === hubGroup ? G.accent : 'rgba(148,163,184,0.35)', borderRadius: 3 },
+        itemStyle: { color: n.group === hubGroup ? G.accent : 'rgba(162, 156, 145,0.35)', borderRadius: 3 },
       })),
       label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 },
     }],
@@ -252,10 +252,10 @@ export default function Page() {
 
       {/* 概览 Stat */}
       <StatGrid className="mb-6">
-        <Stat value="~520 EF" label="算力总规模（EFLOPS · 示意）" accent="#22d3ee" />
-        <Stat value="~41%" label="智能算力占比（升势）" accent="#c41e3a" />
-        <Stat value="8 + 10" label="枢纽节点 + 数据中心集群" accent="#e8a317" />
-        <Stat value="250+" label="在建/已建智算中心（口径宽 · 示意）" accent="#10b981" />
+        <Stat value="~520 EF" label="算力总规模（EFLOPS · 示意）" accent="#6e8cff" />
+        <Stat value="~41%" label="智能算力占比（升势）" accent="#e5483b" />
+        <Stat value="8 + 10" label="枢纽节点 + 数据中心集群" accent="#d4a25a" />
+        <Stat value="250+" label="在建/已建智算中心（口径宽 · 示意）" accent="#6fc2ae" />
       </StatGrid>
 
       {/* 交互① 算力类型选择器 */}
@@ -345,8 +345,8 @@ export default function Page() {
               <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{v.note}</p>
             </div>
           ))}
-          <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #8b5cf6' }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#8b5cf6' }}>CUDA 壁垒（关键变量）</div>
+          <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #b07cc6' }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#b07cc6' }}>CUDA 壁垒（关键变量）</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-secondary)' }}>算子库、编译器、分布式框架与十余年开发者习惯构成的软壁垒：国产卡单点性能可逼近，但「换卡即换栈」的迁移税让客户用脚投票——生态突围比流片更慢。</p>
           </div>
         </Grid>

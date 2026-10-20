@@ -9,19 +9,19 @@ import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 export const AS_OF = AS_OF_BASELINE;
 
 export const COURSE_MODULES = [
-  { key: 'marx', label: '马列经典', hours: 48, accent: '#c41e3a', desc: '马克思主义基本原理、政治经济学批判与历史唯物主义方法论。', tags: ['理论素养', '党性修养'] },
-  { key: 'xjp', label: '习近平新时代中国特色社会主义思想', hours: 72, accent: '#e8a317', desc: '系统阐释新时代治国理政新理念新思想新战略。', tags: ['政策解读', '理论素养'] },
-  { key: 'party', label: '党史党建', hours: 56, accent: '#22d3ee', desc: '百年党史脉络、党的建设制度与自我革命逻辑。', tags: ['党性修养', '组织纪律'] },
-  { key: 'economy', label: '经济治理', hours: 40, accent: '#10b981', desc: '宏观调控、新质生产力与财政金融治理框架。', tags: ['政策解读', '治理能力'] },
-  { key: 'diplomacy', label: '外交战略', hours: 32, accent: '#8b5cf6', desc: '大国外交、周边安全与全球治理参与。', tags: ['战略思维', '政策解读'] },
-  { key: 'law', label: '法治与依规治党', hours: 28, accent: '#64748b', desc: '党内法规体系、依法治国与纪律规矩。', tags: ['党性修养', '制度执行'] },
+  { key: 'marx', label: '马列经典', hours: 48, accent: '#e5483b', desc: '马克思主义基本原理、政治经济学批判与历史唯物主义方法论。', tags: ['理论素养', '党性修养'] },
+  { key: 'xjp', label: '习近平新时代中国特色社会主义思想', hours: 72, accent: '#d4a25a', desc: '系统阐释新时代治国理政新理念新思想新战略。', tags: ['政策解读', '理论素养'] },
+  { key: 'party', label: '党史党建', hours: 56, accent: '#6e8cff', desc: '百年党史脉络、党的建设制度与自我革命逻辑。', tags: ['党性修养', '组织纪律'] },
+  { key: 'economy', label: '经济治理', hours: 40, accent: '#6fc2ae', desc: '宏观调控、新质生产力与财政金融治理框架。', tags: ['政策解读', '治理能力'] },
+  { key: 'diplomacy', label: '外交战略', hours: 32, accent: '#b07cc6', desc: '大国外交、周边安全与全球治理参与。', tags: ['战略思维', '政策解读'] },
+  { key: 'law', label: '法治与依规治党', hours: 28, accent: '#8a8578', desc: '党内法规体系、依法治国与纪律规矩。', tags: ['党性修养', '制度执行'] },
 ];
 
 export const COHORTS = [
   {
     key: 'provincial',
     label: '省部级后备',
-    accent: '#c41e3a',
+    accent: '#e5483b',
     quota: 120,
     criteria: { minAge: 45, maxAge: 58, minTenure: 8, domains: ['党政综合', '经济金融', '政法维稳'] },
     desc: '面向副省级、正厅级后备干部的专题研修班次，侧重战略视野与全局统筹能力。',
@@ -30,7 +30,7 @@ export const COHORTS = [
   {
     key: 'youth',
     label: '中青年干部',
-    accent: '#22d3ee',
+    accent: '#6e8cff',
     quota: 200,
     criteria: { minAge: 35, maxAge: 48, minTenure: 5, domains: ['基层治理', '科技创新', '对外开放'] },
     desc: '中青班梯队建设核心班次，强调基层历练、专业素养与政治忠诚的综合锻造。',
@@ -39,7 +39,7 @@ export const COHORTS = [
   {
     key: 'county',
     label: '县委书记研修班',
-    accent: '#e8a317',
+    accent: '#d4a25a',
     quota: 280,
     criteria: { minAge: 38, maxAge: 52, minTenure: 3, domains: ['县域经济', '乡村振兴', '基层维稳'] },
     desc: '一线主官能力升级班次，聚焦县域治理、项目落地与矛盾化解实操。',
@@ -48,7 +48,7 @@ export const COHORTS = [
   {
     key: 'thinktank',
     label: '智库讲学者班',
-    accent: '#8b5cf6',
+    accent: '#b07cc6',
     quota: 60,
     criteria: { minAge: 40, maxAge: 65, minTenure: 10, domains: ['人文社科', '政策研究', '国际问题'] },
     desc: '从知识精英/智库队列遴选讲学人才，侧重政策解读与教学转化能力。',
@@ -83,10 +83,10 @@ export const CANDIDATES = [
 ];
 
 export const GOVERNANCE_CASES = [
-  { period: '第1周', title: '长三角一体化', desc: '以示范区制度创新为案例，推演央地协同、要素流动与利益再分配机制。', accent: '#22d3ee' },
-  { period: '第2周', title: '县域债务化解', desc: '模拟「三保」压力下的财政统筹、平台转型与风险缓释路径选择。', accent: '#e8a317' },
-  { period: '第3周', title: '边疆稳边固防', desc: '兴边富民、对口支援与反恐维稳「三位一体」的治理组合推演。', accent: '#c41e3a' },
-  { period: '第4周', title: '新质生产力布局', desc: '从产业政策到园区招商的全链条沙盘，对接算力主权与链主培育。', accent: '#10b981' },
+  { period: '第1周', title: '长三角一体化', desc: '以示范区制度创新为案例，推演央地协同、要素流动与利益再分配机制。', accent: '#6e8cff' },
+  { period: '第2周', title: '县域债务化解', desc: '模拟「三保」压力下的财政统筹、平台转型与风险缓释路径选择。', accent: '#d4a25a' },
+  { period: '第3周', title: '边疆稳边固防', desc: '兴边富民、对口支援与反恐维稳「三位一体」的治理组合推演。', accent: '#e5483b' },
+  { period: '第4周', title: '新质生产力布局', desc: '从产业政策到园区招商的全链条沙盘，对接算力主权与链主培育。', accent: '#6fc2ae' },
 ];
 
 export const SCHEDULE_BLOCKS = [
@@ -126,7 +126,7 @@ export function buildCourseDonut() {
   })));
 }
 
-export function buildAssessmentRadar(scores, { name = '综合', color = '#c41e3a' } = {}) {
+export function buildAssessmentRadar(scores, { name = '综合', color = '#e5483b' } = {}) {
   return radarOpt(ASSESSMENT_DIMS, scores, { name, color });
 }
 
@@ -147,7 +147,7 @@ export function buildLeaderboard(cohortKey) {
     yAxis: categoryX(list.map((c) => c.name)),
     series: [{
       type: 'bar', barWidth: 14,
-      data: list.map((c) => ({ value: c.fit, itemStyle: { color: c.fit >= 90 ? '#10b981' : c.fit >= 85 ? '#22d3ee' : '#e8a317' } })),
+      data: list.map((c) => ({ value: c.fit, itemStyle: { color: c.fit >= 90 ? '#6fc2ae' : c.fit >= 85 ? '#6e8cff' : '#d4a25a' } })),
       label: { show: true, position: 'right', color: LABEL.color, formatter: '{c}' },
     }],
   };
@@ -162,8 +162,8 @@ export function buildCaseTimeline() {
     series: [{
       type: 'line', smooth: true,
       data: [72, 85, 78, 92],
-      lineStyle: { color: '#c41e3a', width: 2 },
-      areaStyle: { color: 'rgba(196,30,58,0.1)' },
+      lineStyle: { color: '#e5483b', width: 2 },
+      areaStyle: { color: 'rgba(229, 72, 59,0.1)' },
       markPoint: { data: GOVERNANCE_CASES.map((g, i) => ({ name: g.title, coord: [i, [72, 85, 78, 92][i]], value: g.title })) },
     }],
   };
@@ -185,8 +185,8 @@ export function buildScheduleHeatmap() {
     tooltip: { position: 'top' },
     xAxis: { type: 'category', data: slots, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     yAxis: { type: 'category', data: days, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
-    visualMap: { min: 1, max: 7, calculable: false, orient: 'horizontal', left: 'center', bottom: 0, inRange: { color: ['#1e293b', '#c41e3a', '#e8a317', '#22d3ee'] }, textStyle: { color: LABEL.color } },
-    series: [{ type: 'heatmap', data, label: { show: true, fontSize: 9, color: '#e8edf6' } }],
+    visualMap: { min: 1, max: 7, calculable: false, orient: 'horizontal', left: 'center', bottom: 0, inRange: { color: ['#1e293b', '#e5483b', '#d4a25a', '#6e8cff'] }, textStyle: { color: LABEL.color } },
+    series: [{ type: 'heatmap', data, label: { show: true, fontSize: 9, color: '#ede8df' } }],
   };
 }
 

@@ -7,37 +7,37 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // ── 功能定位选择器：港澳在不同功能维度上的角色 / 不可替代性 / 风险 ──
 const FUNCTIONS = [
   {
-    key: 'connector', label: '超级联系人', accent: '#c41e3a',
+    key: 'connector', label: '超级联系人', accent: '#e5483b',
     role: '内地资本出海与外资入境的双向旋转门：IPO 承销、并购融资、跨境财富管理在此清算。',
     irreplace: 88, risk: 42,
     note: '不可替代性来自「一国之内、两制之间」的法域落差——既受主权庇护，又通行国际规则。',
   },
   {
-    key: 'cnh', label: '离岸人民币枢纽', accent: '#22d3ee',
+    key: 'cnh', label: '离岸人民币枢纽', accent: '#6e8cff',
     role: '全球离岸 RMB 存款、点心债、清算量的绝对主导节点；人民币国际化的前哨试验田。',
     irreplace: 92, risk: 35,
     note: '在岸资本项目未完全开放的前提下，CNH 是唯一成规模的市场化人民币定价场。',
   },
   {
-    key: 'commonlaw', label: '普通法窗口', accent: '#e8a317',
+    key: 'commonlaw', label: '普通法窗口', accent: '#d4a25a',
     role: '保留普通法体系与独立终审权，合同执行与国际仲裁的可预期性，是外资停留的底层契约。',
     irreplace: 90, risk: 55,
     note: '风险最高维度：法治的「感知」比「事实」更脆弱，国际叙事一旦动摇即削弱窗口价值。',
   },
   {
-    key: 'ifc', label: '国际金融中心', accent: '#10b981',
+    key: 'ifc', label: '国际金融中心', accent: '#6fc2ae',
     role: '股票、外汇、资管、保险的全功能金融中心；与新加坡构成亚洲双极竞争格局。',
     irreplace: 76, risk: 58,
     note: '不可替代性正被新加坡蚕食——家办、私人银行、区域总部的边际增量已部分分流。',
   },
   {
-    key: 'tech', label: '科创桥头', accent: '#8b5cf6',
+    key: 'tech', label: '科创桥头', accent: '#b07cc6',
     role: '河套、生物科技 IPO（18A 章）、数据跨境试点；连接内地研发与国际资本的科技桥。',
     irreplace: 64, risk: 48,
     note: '后发功能：依赖大湾区研发腹地，自身科创生态薄，桥头价值大于源头价值。',
   },
   {
-    key: 'gbaengine', label: '大湾区引擎', accent: '#fb923c',
+    key: 'gbaengine', label: '大湾区引擎', accent: '#c07a4a',
     role: '为珠三角 9 市提供融资、专业服务与制度对接；前海 / 横琴 / 河套是物理试验场。',
     irreplace: 70, risk: 30,
     note: '风险最低、政策最确定的功能——融合是国家意志，腹地化趋势不可逆。',
@@ -46,39 +46,39 @@ const FUNCTIONS = [
 
 // ── 港澳角色演进时间线 ──
 const STAGES = [
-  { period: '1950s–70s', title: '转口贸易窗口', accent: '#64748b', desc: '冷战禁运下的唯一缺口：内地物资经香港转口，外汇与情报在此沉淀，窗口的原始形态。' },
-  { period: '1980s–90s', title: '外资跳板', accent: '#c41e3a', desc: '改革开放第一桶外资经香港北上，港资制造业内迁珠三角，「前店后厂」奠定大湾区雏形。' },
-  { period: '2000s–2010s', title: '离岸 RMB 枢纽', accent: '#22d3ee', desc: 'CNH 市场成形，点心债、沪深港通、债券通先行先试，香港成为人民币国际化的总前哨。' },
-  { period: '2020s', title: '大湾区引擎', accent: '#e8a317', desc: '国安立法重置政治框架后，经济融合提速；前海 / 横琴 / 河套将窗口腹地化、制度化。' },
-  { period: '前瞻', title: '普通法 / 国际仲裁', accent: '#8b5cf6', desc: '在安全底座之上保留法治差与争议解决功能，争夺亚洲国际仲裁与离岸法律服务的定价权。' },
+  { period: '1950s–70s', title: '转口贸易窗口', accent: '#8a8578', desc: '冷战禁运下的唯一缺口：内地物资经香港转口，外汇与情报在此沉淀，窗口的原始形态。' },
+  { period: '1980s–90s', title: '外资跳板', accent: '#e5483b', desc: '改革开放第一桶外资经香港北上，港资制造业内迁珠三角，「前店后厂」奠定大湾区雏形。' },
+  { period: '2000s–2010s', title: '离岸 RMB 枢纽', accent: '#6e8cff', desc: 'CNH 市场成形，点心债、沪深港通、债券通先行先试，香港成为人民币国际化的总前哨。' },
+  { period: '2020s', title: '大湾区引擎', accent: '#d4a25a', desc: '国安立法重置政治框架后，经济融合提速；前海 / 横琴 / 河套将窗口腹地化、制度化。' },
+  { period: '前瞻', title: '普通法 / 国际仲裁', accent: '#b07cc6', desc: '在安全底座之上保留法治差与争议解决功能，争夺亚洲国际仲裁与离岸法律服务的定价权。' },
 ];
 
 // 离岸人民币全球份额（香港主导，示意值）
 const CNH_SHARE = [
-  { value: 73, name: '香港 CNH', itemStyle: { color: '#c41e3a' } },
-  { value: 7, name: '伦敦', itemStyle: { color: '#22d3ee' } },
-  { value: 6, name: '新加坡', itemStyle: { color: '#e8a317' } },
-  { value: 4, name: '台北', itemStyle: { color: '#10b981' } },
-  { value: 10, name: '其他', itemStyle: { color: '#64748b' } },
+  { value: 73, name: '香港 CNH', itemStyle: { color: '#e5483b' } },
+  { value: 7, name: '伦敦', itemStyle: { color: '#6e8cff' } },
+  { value: 6, name: '新加坡', itemStyle: { color: '#d4a25a' } },
+  { value: 4, name: '台北', itemStyle: { color: '#6fc2ae' } },
+  { value: 10, name: '其他', itemStyle: { color: '#8a8578' } },
 ];
 
 // 离岸窗口效用结构（保留）
 const utilityPie = donutOpt([
-  { value: 38, name: '投融资通道', itemStyle: { color: '#c41e3a' } },
-  { value: 22, name: '风险管理', itemStyle: { color: '#22d3ee' } },
-  { value: 25, name: '专业服务', itemStyle: { color: '#e8a317' } },
-  { value: 15, name: '人才与信息', itemStyle: { color: '#10b981' } },
+  { value: 38, name: '投融资通道', itemStyle: { color: '#e5483b' } },
+  { value: 22, name: '风险管理', itemStyle: { color: '#6e8cff' } },
+  { value: 25, name: '专业服务', itemStyle: { color: '#d4a25a' } },
+  { value: 15, name: '人才与信息', itemStyle: { color: '#6fc2ae' } },
 ], { center: ['50%', '52%'] });
 
 // 大湾区 11 城 GDP 分工（示意，万亿元）
 const GBA_CITIES = [
-  { city: '深圳', gdp: 3.6, role: '研发 / 科创', accent: '#c41e3a' },
-  { city: '广州', gdp: 3.0, role: '商贸 / 枢纽', accent: '#e8a317' },
-  { city: '香港', gdp: 2.9, role: '金融 / 离岸', accent: '#22d3ee' },
-  { city: '佛山', gdp: 1.3, role: '先进制造', accent: '#10b981' },
-  { city: '东莞', gdp: 1.1, role: '电子制造', accent: '#8b5cf6' },
-  { city: '其他5市', gdp: 1.8, role: '配套腹地', accent: '#64748b' },
-  { city: '澳门', gdp: 0.3, role: '博彩 / 葡语', accent: '#fb923c' },
+  { city: '深圳', gdp: 3.6, role: '研发 / 科创', accent: '#e5483b' },
+  { city: '广州', gdp: 3.0, role: '商贸 / 枢纽', accent: '#d4a25a' },
+  { city: '香港', gdp: 2.9, role: '金融 / 离岸', accent: '#6e8cff' },
+  { city: '佛山', gdp: 1.3, role: '先进制造', accent: '#6fc2ae' },
+  { city: '东莞', gdp: 1.1, role: '电子制造', accent: '#b07cc6' },
+  { city: '其他5市', gdp: 1.8, role: '配套腹地', accent: '#8a8578' },
+  { city: '澳门', gdp: 0.3, role: '博彩 / 葡语', accent: '#c07a4a' },
 ];
 
 export default function Page() {
@@ -116,14 +116,14 @@ export default function Page() {
       ],
       center: ['50%', '56%'], radius: '64%',
       axisName: { color: LABEL.color, fontSize: 11 },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.18)' } },
-      splitArea: { areaStyle: { color: ['rgba(34,211,238,0.03)', 'transparent'] } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.18)' } },
+      splitArea: { areaStyle: { color: ['rgba(110, 140, 255,0.03)', 'transparent'] } },
     },
     series: [{
       type: 'radar',
       data: [
-        { value: [92, 86, 80, 84, 94, 70], name: '香港', areaStyle: { color: 'rgba(196,30,58,0.18)' }, lineStyle: { color: '#c41e3a' }, itemStyle: { color: '#c41e3a' } },
-        { value: [88, 90, 88, 86, 88, 92], name: '新加坡', areaStyle: { color: 'rgba(34,211,238,0.15)' }, lineStyle: { color: '#22d3ee' }, itemStyle: { color: '#22d3ee' } },
+        { value: [92, 86, 80, 84, 94, 70], name: '香港', areaStyle: { color: 'rgba(229, 72, 59,0.18)' }, lineStyle: { color: '#e5483b' }, itemStyle: { color: '#e5483b' } },
+        { value: [88, 90, 88, 86, 88, 92], name: '新加坡', areaStyle: { color: 'rgba(110, 140, 255,0.15)' }, lineStyle: { color: '#6e8cff' }, itemStyle: { color: '#6e8cff' } },
       ],
     }],
   }), []);
@@ -138,11 +138,11 @@ export default function Page() {
     series: [
       {
         name: '不可替代性', type: 'bar', barWidth: 16,
-        data: FUNCTIONS.map((x) => ({ value: x.irreplace, itemStyle: { color: x.key === fn ? x.accent : 'rgba(34,211,238,0.45)', borderRadius: 3 } })),
+        data: FUNCTIONS.map((x) => ({ value: x.irreplace, itemStyle: { color: x.key === fn ? x.accent : 'rgba(110, 140, 255,0.45)', borderRadius: 3 } })),
       },
       {
         name: '地位风险', type: 'bar', barWidth: 16,
-        data: FUNCTIONS.map((x) => ({ value: x.risk, itemStyle: { color: x.key === fn ? '#c41e3a' : 'rgba(196,30,58,0.35)', borderRadius: 3 } })),
+        data: FUNCTIONS.map((x) => ({ value: x.risk, itemStyle: { color: x.key === fn ? '#e5483b' : 'rgba(229, 72, 59,0.35)', borderRadius: 3 } })),
       },
     ],
   }), [fn]);
@@ -157,7 +157,7 @@ export default function Page() {
     yAxis: logY(),
     series: [{
       type: 'bar', barWidth: 30,
-      data: [10000, 6500, 250, 1200].map((v) => ({ value: v, itemStyle: { color: '#22d3ee', borderRadius: 4 } })),
+      data: [10000, 6500, 250, 1200].map((v) => ({ value: v, itemStyle: { color: '#6e8cff', borderRadius: 4 } })),
       label: { show: true, position: 'top', color: LABEL.color, fontSize: 10 },
     }],
   }), []);
@@ -179,8 +179,8 @@ export default function Page() {
   const arbitrageBar = useMemo(() => stackedBarOpt({
     categories: ['资本流动', '司法体系', '货币兑换', '税制', '信息流通'],
     series: [
-      { name: '香港自由度', data: [95, 92, 98, 88, 90], itemStyle: { color: '#22d3ee' } },
-      { name: '内地基线', data: [55, 68, 50, 72, 60], itemStyle: { color: '#64748b' } },
+      { name: '香港自由度', data: [95, 92, 98, 88, 90], itemStyle: { color: '#6e8cff' } },
+      { name: '内地基线', data: [55, 68, 50, 72, 60], itemStyle: { color: '#8a8578' } },
     ],
   }), []);
 
@@ -196,10 +196,10 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="≈73%" label="香港占全球离岸 RMB 份额" accent="#c41e3a" />
-        <Stat value="全球前列" label="年度 IPO 募资排名（示意）" accent="#e8a317" />
-        <Stat value="14 万亿+" label="大湾区 GDP（约全国 1/9）" accent="#10b981" />
-        <Stat value="普通法" label="对内地的核心法域落差" accent="#22d3ee" />
+        <Stat value="≈73%" label="香港占全球离岸 RMB 份额" accent="#e5483b" />
+        <Stat value="全球前列" label="年度 IPO 募资排名（示意）" accent="#d4a25a" />
+        <Stat value="14 万亿+" label="大湾区 GDP（约全国 1/9）" accent="#6fc2ae" />
+        <Stat value="普通法" label="对内地的核心法域落差" accent="#6e8cff" />
       </Grid>
 
       {/* ── 功能定位选择器 ── */}
@@ -209,8 +209,8 @@ export default function Page() {
           <p className="text-sm leading-relaxed mb-2" style={{ color: 'var(--text-secondary)' }}>{f.role}</p>
           <p className="text-xs leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{f.note}</p>
           <div className="flex gap-6 mt-3">
-            <span className="text-xs" style={{ color: '#22d3ee' }}>不可替代性 <strong style={{ color: 'var(--text-primary)' }}>{f.irreplace}</strong></span>
-            <span className="text-xs" style={{ color: '#c41e3a' }}>地位风险 <strong style={{ color: 'var(--text-primary)' }}>{f.risk}</strong></span>
+            <span className="text-xs" style={{ color: '#6e8cff' }}>不可替代性 <strong style={{ color: 'var(--text-primary)' }}>{f.irreplace}</strong></span>
+            <span className="text-xs" style={{ color: '#e5483b' }}>地位风险 <strong style={{ color: 'var(--text-primary)' }}>{f.risk}</strong></span>
           </div>
         </div>
         <Grid cols={2}>
@@ -240,7 +240,7 @@ export default function Page() {
               ['CNH 定价功能', '离岸汇率反映真实市场预期，是资本流动压力的高频窗口。'],
               ['人民币国际化前哨', 'SWIFT 人民币结算与点心债的边际增量，香港承接其中主体。'],
             ].map(([t, d]) => (
-              <div key={t} style={{ borderLeft: '2px solid #22d3ee', paddingLeft: 10 }}>
+              <div key={t} style={{ borderLeft: '2px solid #6e8cff', paddingLeft: 10 }}>
                 <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{t}</div>
                 <p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
               </div>
@@ -265,9 +265,9 @@ export default function Page() {
           <Card title="三大制度对接平台">
             <div className="space-y-2">
               {[
-                ['前海', '#c41e3a', '深港现代服务业开放合作区——金融、法律、专业服务对接。'],
-                ['横琴', '#10b981', '粤澳深度合作区——澳门腹地化的制度载体，产业多元化试验。'],
-                ['河套', '#8b5cf6', '深港科创合作区——科研要素与数据跨境的物理试验场。'],
+                ['前海', '#e5483b', '深港现代服务业开放合作区——金融、法律、专业服务对接。'],
+                ['横琴', '#6fc2ae', '粤澳深度合作区——澳门腹地化的制度载体，产业多元化试验。'],
+                ['河套', '#b07cc6', '深港科创合作区——科研要素与数据跨境的物理试验场。'],
               ].map(([t, c, d]) => (
                 <div key={t} className="os-card p-3" style={{ background: 'var(--bg-elevated)', borderLeft: `3px solid ${c}` }}>
                   <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{t}</div>

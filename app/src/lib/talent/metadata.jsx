@@ -19,16 +19,16 @@ export const CONFIDENCE_LABEL = {
 };
 
 const TIER_COLOR = {
-  official: '#10b981',
-  media: '#22d3ee',
+  official: '#6fc2ae',
+  media: '#6e8cff',
   academic: '#a78bfa',
-  inferred: '#fb923c',
+  inferred: '#c07a4a',
 };
 
 const CONF_COLOR = {
-  high: '#10b981',
-  medium: '#e8a317',
-  low: '#c41e3a',
+  high: '#6fc2ae',
+  medium: '#d4a25a',
+  low: '#e5483b',
 };
 
 /** @param {string} [asOf] */
@@ -123,22 +123,22 @@ export function buildCrossRefLinks(record, opts = {}) {
   const { queue, policy = true, legal = true, sandbox = true } = opts;
 
   if (policy) {
-    links.push({ label: '政策文件', path: `/policydocs?q=${encodeURIComponent(q)}`, accent: '#d4af37' });
+    links.push({ label: '政策文件', path: `/policydocs?q=${encodeURIComponent(q)}`, accent: '#d9b26a' });
   }
   if (legal) {
-    links.push({ label: '法律法规', path: `/policydocs?tab=legal&q=${encodeURIComponent(q)}`, accent: '#8b5cf6' });
+    links.push({ label: '法律法规', path: `/policydocs?tab=legal&q=${encodeURIComponent(q)}`, accent: '#b07cc6' });
   }
   if (sandbox && (queue === 'resume' || queue === 'figures')) {
-    links.push({ label: '治国沙盒', path: '/sandbox', accent: '#c41e3a' });
+    links.push({ label: '治国沙盒', path: '/sandbox', accent: '#e5483b' });
   }
   if (queue === 'business') {
-    links.push({ label: '民企500强', path: '/enterprise500', accent: '#e8a317' });
+    links.push({ label: '民企500强', path: '/enterprise500', accent: '#d4a25a' });
   }
   if (queue === 'knowledge' || queue === 'education') {
-    links.push({ label: '科教人才', path: '/edu-sci-talent', accent: '#22d3ee' });
+    links.push({ label: '科教人才', path: '/edu-sci-talent', accent: '#6e8cff' });
   }
   if (queue === 'anticorruption') {
-    links.push({ label: '反腐透视', path: '/anticorruption', accent: '#c41e3a' });
+    links.push({ label: '反腐透视', path: '/anticorruption', accent: '#e5483b' });
   }
   if (record?.id && queue) {
     links.unshift({

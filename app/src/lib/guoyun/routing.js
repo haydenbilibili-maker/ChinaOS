@@ -3,7 +3,7 @@ import { buildGuoyunSimLink } from '../gy/coupling.js';
 
 export const GUOYUN_TABS = [
   { id: 'timeline', label: '时间轴 · 已发生', accent: '#5e8c7a' },
-  { id: 'sim', label: '推演 · 未来', accent: '#d4af37' },
+  { id: 'sim', label: '推演 · 未来', accent: '#d9b26a' },
 ];
 
 export const GUOYUN_TAB_LABELS = Object.fromEntries(GUOYUN_TABS.map((t) => [t.id, t.label]));

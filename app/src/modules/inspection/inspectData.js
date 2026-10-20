@@ -20,19 +20,19 @@ export const INSPECT_AS_OF = '2026-06-11';
 // ----------------------------------------------------------------------------
 export const CLUE_SOURCES = [
   {
-    id: 'petition', label: '信访举报', color: '#c41e3a',
+    id: 'petition', label: '信访举报', color: '#e5483b',
     desc: '联名信、实名举报与上访记录——最滚烫也最原始的线索来源，真伪混杂，指向性强。',
   },
   {
-    id: 'audit', label: '审计异常', color: '#22d3ee',
+    id: 'audit', label: '审计异常', color: '#6e8cff',
     desc: '挂账、表外与单价异常——纸面上最冷静的线索，每一个数字都有出处，但天然滞后。',
   },
   {
-    id: 'opinion', label: '舆情热点', color: '#e8a317',
+    id: 'opinion', label: '舆情热点', color: '#d4a25a',
     desc: '短视频、网帖与市场传闻——传播最快的线索，热度不等于实据，但烟的背后总有火。',
   },
   {
-    id: 'handover', label: '沙盘移送', color: '#8b5cf6',
+    id: 'handover', label: '沙盘移送', color: '#b07cc6',
     desc: '汉东治理沙盘的失分回合自动移送——推演里烂掉的账，迟早摆上巡视的桌面。',
   },
 ];

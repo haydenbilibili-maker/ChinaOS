@@ -1,0 +1,77 @@
+name: Deploy
+
+# main 分支有新提交（或手动触发）时：门禁 → 构建 → wrangler deploy 到 Cloudflare Workers。
+# 一次性配置（仓库 Settings → Secrets and variables → Actions）：
+#   CLOUDFLARE_API_TOKEN   Workers 编辑权限的 API Token（模板「Edit Cloudflare Workers」）
+#   CLOUDFLARE_ACCOUNT_ID  Cloudflare 账户 ID
+# 可选（荒废斋服务端鉴权；未配置则保持 Worker 上已有的值）：
+#   HFZ_PASSWORD_SHA256    口令的 SHA-256（npm run hfz:hash 生成）
+#   HFZ_SESSION_SECRET     会话签名密钥（任意 32 字节以上随机串）
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: 构建并部署
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 检查部署凭据
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$CF_TOKEN" ] || [ -z "$CF_ACCOUNT" ]; then
+            echo "::error::缺少 CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID，请在仓库 Actions secrets 中配置后重跑本工作流"
+            exit 1
+          fi
+
+      - name: 使用官方 npm 源
+        run: sed -i 's#https://registry.npmmirror.com/#https://registry.npmjs.org/#g' package-lock.json app/package-lock.json
+
+      - name: 安装依赖
+        run: |
+          npm ci --no-audit --no-fund
+          npm ci --no-audit --no-fund --prefix app
+
+      - name: 门禁
+        run: |
+          python3 scripts/scan_mojibake.py --gate
+          npm run check
+
+      - name: 构建
+        run: npm run build
+
+      - name: 部署到 Cloudflare Workers
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler deploy --message "${{ github.sha }}"
+
+      - name: 同步荒废斋密钥（已配置时；secret put 会以新密钥重新发布当前版本）
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          HFZ_PASSWORD_SHA256: ${{ secrets.HFZ_PASSWORD_SHA256 }}
+          HFZ_SESSION_SECRET: ${{ secrets.HFZ_SESSION_SECRET }}
+        run: |
+          if [ -n "$HFZ_PASSWORD_SHA256" ]; then printf '%s' "$HFZ_PASSWORD_SHA256" | npx wrangler secret put HFZ_PASSWORD_SHA256; fi
+          if [ -n "$HFZ_SESSION_SECRET" ]; then printf '%s' "$HFZ_SESSION_SECRET" | npx wrangler secret put HFZ_SESSION_SECRET; fi

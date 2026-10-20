@@ -24,7 +24,7 @@ const LAYER_ROWS = [
 const TERM_COLORS = {
   zhu: 'rgba(207, 74, 61, 0.55)',
   wen: 'rgba(207, 154, 50, 0.5)',
-  likeqiang: 'rgba(121, 164, 150, 0.45)',
+  likeqiang: 'rgba(111, 194, 174, 0.45)',
   liqiang: 'rgba(79, 158, 114, 0.55)',
 };
 

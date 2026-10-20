@@ -1,6 +1,25 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
+import {
+  Cpu as LuCpu,
+  Globe2 as LuGlobe2,
+  ShieldAlert as LuShieldAlert,
+  Square as LuSquare,
+  TrendingUp as LuTrendingUp,
+  Users as LuUsers,
+  Zap as LuZap,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  Cpu: LuCpu,
+  Globe2: LuGlobe2,
+  ShieldAlert: LuShieldAlert,
+  Square: LuSquare,
+  TrendingUp: LuTrendingUp,
+  Users: LuUsers,
+  Zap: LuZap,
+};
 import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';
@@ -34,7 +53,7 @@ function alertSeverity(ind, scoreByDomain) {
 
 // 回执判定三色：<30 绿（可吸收）/ <60 金（承压管理）/ 其余红（系统性应激）
 function verdictColor(score) {
-  return score < 30 ? '#10b981' : score < 60 ? '#e8a317' : '#c41e3a';
+  return score < 30 ? '#6fc2ae' : score < 60 ? '#d4a25a' : '#e5483b';
 }
 
 const DISCIPLINES = [
@@ -198,18 +217,18 @@ export default function Page() {
       radius: '65%',
       splitNumber: 4,
       axisName: { color: '#9ca3af', fontSize: 11 },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.18)' } },
-      splitArea: { areaStyle: { color: ['rgba(148,163,184,0.03)', 'rgba(148,163,184,0.06)'] } },
-      axisLine: { lineStyle: { color: 'rgba(148,163,184,0.25)' } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.18)' } },
+      splitArea: { areaStyle: { color: ['rgba(162, 156, 145,0.03)', 'rgba(162, 156, 145,0.06)'] } },
+      axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.25)' } },
     },
     series: [{
       type: 'radar',
       data: [{
         value: scores.map((s) => s.score),
         name: '六域健康度',
-        lineStyle: { color: '#c41e3a', width: 2 },
-        itemStyle: { color: '#c41e3a' },
-        areaStyle: { color: 'rgba(196,30,58,0.22)' },
+        lineStyle: { color: '#e5483b', width: 2 },
+        itemStyle: { color: '#e5483b' },
+        areaStyle: { color: 'rgba(229, 72, 59,0.22)' },
       }],
     }],
     tooltip: { trigger: 'item' },
@@ -267,7 +286,7 @@ export default function Page() {
                 <div key={`${v.label || 'verdict'}-${i}`} className="flex items-center gap-2">
                   <span className="text-xs flex-1 truncate" style={{ color: 'var(--text-primary)' }}>{v.label || '—'}</span>
                   {Array.isArray(v.crisisKeys) && v.crisisKeys.length > 1 && (
-                    <span className="text-[10px] mono px-1.5 py-0.5 rounded shrink-0" style={{ background: 'rgba(239,68,68,0.16)', color: '#ef4444' }}>复合</span>
+                    <span className="text-[10px] mono px-1.5 py-0.5 rounded shrink-0" style={{ background: 'rgba(239,68,68,0.16)', color: '#e5483b' }}>复合</span>
                   )}
                   <span className="mono text-sm shrink-0" style={{ color: c }}>{score}</span>
                   <span className="text-[10px] mono px-1.5 py-0.5 rounded shrink-0" style={{ background: `color-mix(in srgb, ${c} 16%, transparent)`, color: c }}>{v.verdict || '—'}</span>
@@ -365,7 +384,7 @@ export default function Page() {
         <ol className="flex flex-col gap-3">
           {DISCIPLINES.map(([t, d], i) => (
             <li key={t} className="flex gap-3">
-              <span className="mono text-sm shrink-0 w-6 h-6 inline-flex items-center justify-center rounded" style={{ background: 'rgba(196,30,58,0.14)', color: 'var(--china-red)' }}>{i + 1}</span>
+              <span className="mono text-sm shrink-0 w-6 h-6 inline-flex items-center justify-center rounded" style={{ background: 'rgba(229, 72, 59,0.14)', color: 'var(--china-red)' }}>{i + 1}</span>
               <div>
                 <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{t}</span>
                 <p className="text-xs mt-0.5 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{d}</p>

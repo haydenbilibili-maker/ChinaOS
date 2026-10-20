@@ -146,7 +146,7 @@ export function useLiveMarkets(refreshMs = 600000) {
  * @param {number} yes 0-100 的 Yes 概率
  */
 export function probColor(yes) {
-  if (yes >= 65) return '#10b981';
-  if (yes >= 35) return '#e8a317';
-  return '#c41e3a';
+  if (yes >= 65) return '#6fc2ae';
+  if (yes >= 35) return '#d4a25a';
+  return '#e5483b';
 }

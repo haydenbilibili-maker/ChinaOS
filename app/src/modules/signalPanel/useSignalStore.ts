@@ -38,6 +38,17 @@ export function useSignalStore() {
     });
   }, []);
 
+  /** 直接设定某个信号的状态（与默认一致时移除覆盖） */
+  const set = useCallback((id: string, status: SignalStatus, defaultStatus?: SignalStatus) => {
+    setOverrides((prev) => {
+      const next = { ...prev };
+      if (defaultStatus && status === defaultStatus) delete next[id];
+      else next[id] = status;
+      saveOverrides(next);
+      return next;
+    });
+  }, []);
+
   const reset = useCallback(() => {
     setOverrides({});
     saveOverrides({});
@@ -45,5 +56,5 @@ export function useSignalStore() {
 
   const baseline = useMemo(() => defaults, []);
 
-  return { resolve, cycle, reset, overrides, baseline };
+  return { resolve, cycle, set, reset, overrides, baseline };
 }

@@ -6,39 +6,31 @@ import DecisionLanes from './components/DecisionLanes.jsx';
 import { SIGNAL_SECTIONS } from './signals.seed.ts';
 import { useSignalStore } from './useSignalStore.ts';
 import './signal-panel.css';
+import './signal-panel-v2.css';
 
 export default function SignalPanel() {
-  const { resolve, cycle, reset } = useSignalStore();
+  const { resolve, set, reset, overrides } = useSignalStore();
+  const changedCount = Object.keys(overrides || {}).length;
 
   return (
-    <div className="ink-observatory sp-wrap">
-      <header className="sp-masthead os-reveal">
-        <div className="sp-brand">
-          <span className="sp-glyph">ChinaOS</span>
-          <h1>
-            宏观再平衡信号灯 <span>· 超个体决策仪表盘</span>
-          </h1>
-        </div>
-        <div className="sp-meta">
-          基准 · <b>2026-07</b>
-          <br />
-          口径 · 2026 政府工作报告 / 预算报告
-          <br />
-          标尺 · 《重构山河》第八章改革序列
-        </div>
-      </header>
+    <div className="ink-observatory sp-wrap sp2">
+      <p className="sp2-meta">
+        口径 · 2026 政府工作报告 / 预算报告　标尺 · 《重构山河》第八章改革序列　判读 · {changedCount ? `含我的 ${changedCount} 处调整` : '系统基准'}
+      </p>
 
       <div className="os-reveal-stagger">
         <RegimeVerdict resolve={resolve} />
 
         {SIGNAL_SECTIONS.map((sec) => (
-          <section key={sec.tier} className="sp-section os-reveal">
-            <div className="sp-s-head">
-              <span className="sp-tier">{sec.tier}</span>
-              <h2>{sec.title}</h2>
-              <span className="sp-desc">{sec.desc}</span>
-            </div>
-            <div className="sp-grid">
+          <section key={sec.tier} className="sp2-section">
+            <header className="sp2-section__head">
+              <span className="sp2-tier vi-figure">{sec.tier}</span>
+              <div>
+                <h2 className="vi-h2">{sec.title}</h2>
+                <p>{sec.desc}</p>
+              </div>
+            </header>
+            <div className="sp2-grid">
               {sec.signals.map((sig) => {
                 const status = resolve(sig.id, sig.status);
                 return (
@@ -46,7 +38,7 @@ export default function SignalPanel() {
                     key={sig.id}
                     signal={sig}
                     status={status}
-                    onCycle={() => cycle(sig.id, status)}
+                    onSet={(next) => set(sig.id, next, sig.status)}
                   />
                 );
               })}
@@ -58,11 +50,11 @@ export default function SignalPanel() {
       </div>
 
       <div className="sp-controls">
-        <button type="button" className="sp-btn" onClick={reset}>
-          ↺ 复位至基准读数
+        <button type="button" className="os-btn" onClick={reset} disabled={!changedCount}>
+          复位至基准判读
         </button>
         <span className="sp-hint">
-          点击任一信号卡循环切换 红 → 琥珀 → 绿，态势与动作实时重算并本地保存。
+          用每张卡右上角的 警 / 观 / 稳 设定你的判读，态势、天灯与首页判词实时重算，并保存在本机。
         </span>
       </div>
 

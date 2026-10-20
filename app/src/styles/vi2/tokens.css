@@ -1,0 +1,296 @@
+/* ============================================================================
+ * VI 2.0「观象」· 设计令牌
+ * 规范：docs/design/VI-2.0.md
+ * 本文件在 index.css 之后加载：先定义 --vi-*，再把 1.x 变量映射过来，
+ * 存量模块无需改动即整体换肤。新代码只使用 --vi-*。
+ * ========================================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* ── 基底 · 玄漆 ─────────────────────────────────────── */
+  --vi-bg-0: #07080b;
+  --vi-bg-1: #0d0f14;
+  --vi-bg-2: #14171f;
+  --vi-bg-3: #1c202a;
+  --vi-bg-inset: #0a0c10;
+  --vi-ink-1: #ede8df;
+  --vi-ink-2: #a29c91;
+  --vi-ink-3: #8a847a;
+  --vi-line: rgba(237, 232, 223, 0.09);
+  --vi-line-strong: rgba(237, 232, 223, 0.16);
+
+  /* ── 品牌色 ───────────────────────────────────────────── */
+  --vi-cinnabar: #e5483b;
+  --vi-cinnabar-rgb: 229, 72, 59;
+  --vi-brass: #d4a25a;
+  --vi-brass-rgb: 212, 162, 90;
+  --vi-celadon: #6fc2ae;
+  --vi-celadon-rgb: 111, 194, 174;
+  --vi-lapis: #6e8cff;
+  --vi-lapis-rgb: 110, 140, 255;
+  --vi-rosewood: #b07cc6;
+  --vi-stone: #4fa3c7;
+  --vi-ochre: #c07a4a;
+  --vi-inkgray: #8a8578;
+
+  /* 信号语义 */
+  --vi-sig-ok: var(--vi-celadon);
+  --vi-sig-watch: var(--vi-brass);
+  --vi-sig-alert: var(--vi-cinnabar);
+  --vi-sig-unknown: var(--vi-ink-3);
+
+  /* ── 字体 ─────────────────────────────────────────────── */
+  --vi-font-display: 'Fraunces', 'Noto Serif SC', 'Songti SC', 'STSong', 'Source Han Serif SC', serif;
+  --vi-font-ui: 'Inter', 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  --vi-font-read: 'Noto Serif SC', 'Songti SC', 'STSong', 'Source Han Serif SC', Georgia, serif;
+  --vi-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ── 字号阶梯（390 → 1440 线性插值） ─────────────────── */
+  --vi-fs-display: clamp(2.125rem, 1.43rem + 2.86vw, 4rem);
+  --vi-fs-h1: clamp(1.625rem, 1.35rem + 1.14vw, 2.375rem);
+  --vi-fs-h2: clamp(1.25rem, 1.11rem + 0.57vw, 1.625rem);
+  --vi-fs-h3: clamp(1rem, 0.95rem + 0.19vw, 1.125rem);
+  --vi-fs-body: 0.9375rem;
+  --vi-fs-small: 0.8125rem;
+  --vi-fs-caption: clamp(0.71875rem, 0.7rem + 0.05vw, 0.75rem);
+  --vi-fs-figure-xl: clamp(2.5rem, 2.04rem + 1.9vw, 3.5rem);
+  --vi-fs-figure: clamp(1.5rem, 1.36rem + 0.57vw, 1.875rem);
+  --vi-fs-read: clamp(1.0625rem, 1.02rem + 0.19vw, 1.1875rem);
+
+  /* ── 圆角 / 间距 ─────────────────────────────────────── */
+  --vi-r-control: 8px;
+  --vi-r-card: 14px;
+  --vi-r-panel: 20px;
+  --vi-r-sheet: 24px;
+  --vi-touch: 44px;
+
+  /* ── 材质 ─────────────────────────────────────────────── */
+  --vi-card-bg: linear-gradient(180deg, rgba(255, 250, 240, 0.035), rgba(255, 250, 240, 0) 42%), var(--vi-bg-2);
+  --vi-card-edge: linear-gradient(180deg, rgba(237, 232, 223, 0.16), rgba(237, 232, 223, 0.05) 40%, rgba(237, 232, 223, 0.08));
+  --vi-card-edge-brass: linear-gradient(160deg, rgba(212, 162, 90, 0.55), rgba(212, 162, 90, 0.08) 38%, rgba(237, 232, 223, 0.06) 70%, rgba(110, 140, 255, 0.18));
+  --vi-highlight: inset 0 1px 0 rgba(255, 250, 240, 0.06);
+  --vi-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.5), 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  --vi-shadow-2: 0 2px 4px rgba(0, 0, 0, 0.45), 0 18px 48px -18px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(0, 0, 0, 0.35);
+  --vi-shadow-3: 0 30px 80px -20px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(237, 232, 223, 0.06);
+  --vi-glass: rgba(20, 23, 31, 0.72);
+  --vi-spot: rgba(212, 162, 90, 0.16);
+  --vi-spot-edge: rgba(212, 162, 90, 0.7);
+  --vi-grain-opacity: 0.045;
+
+  /* ── 动效 ─────────────────────────────────────────────── */
+  --vi-dur-instant: 90ms;
+  --vi-dur-quick: 160ms;
+  --vi-dur-base: 260ms;
+  --vi-dur-slow: 480ms;
+  --vi-dur-epic: 900ms;
+  --vi-ease-ink: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --vi-ease-brass: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --vi-ease-tide: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ── 1.x 变量映射 ────────────────────────────────────── */
+  --china-red: var(--vi-cinnabar);
+  --china-deep: #9e2a22;
+  --cyber-cyan: var(--vi-lapis);
+  --cyber-cyan-hover: #a4b6ff;
+  --fire-gold: var(--vi-brass);
+  --brass: var(--vi-brass);
+  --brass-dim: #7d6036;
+  --brass-glow: rgba(212, 162, 90, 0.2);
+  --celadon: var(--vi-celadon);
+  --celadon-dim: #4b8577;
+  --celadon-soft: rgba(111, 194, 174, 0.12);
+  --celadon-border: rgba(111, 194, 174, 0.3);
+
+  --bg-base: var(--vi-bg-1);
+  --bg-surface: var(--vi-bg-2);
+  --bg-elevated: var(--vi-bg-3);
+  --bg-inset: var(--vi-bg-inset);
+  --bg-page: rgba(13, 15, 20, 0.9);
+  --glass-highlight: rgba(255, 250, 240, 0.06);
+  --border-subtle: var(--vi-line);
+  --border-strong: var(--vi-line-strong);
+  --text-primary: var(--vi-ink-1);
+  --text-secondary: var(--vi-ink-2);
+  --text-tertiary: var(--vi-ink-3);
+
+  --font-sans: var(--vi-font-ui);
+  --font-mono: var(--vi-font-mono);
+  --text-xs: var(--vi-fs-caption);
+  --text-sm: var(--vi-fs-small);
+  --text-base: var(--vi-fs-body);
+  --text-xl: var(--vi-fs-h1);
+  --tracking-mono: 0.01em;
+
+  --radius-md: 10px;
+  --radius-lg: var(--vi-r-card);
+  --radius-xl: var(--vi-r-panel);
+  --control-min-size: 2.5rem;
+
+  --ease-ink: var(--vi-ease-ink);
+  --ease-ink-out: var(--vi-ease-ink);
+  --duration-fast: var(--vi-dur-quick);
+  --duration-slow: var(--vi-dur-slow);
+
+  --surface-glass: var(--vi-bg-2);
+  --surface-glass-blur: 0px;
+  --shadow-ambient: var(--vi-shadow-1);
+  --shadow-glass: var(--vi-shadow-1), var(--vi-highlight);
+  --shadow-card: var(--vi-shadow-1);
+  --shadow-card-hover: var(--vi-shadow-2), 0 0 0 1px rgba(212, 162, 90, 0.18);
+  --shadow-glow-cyan: 0 0 0 1px rgba(110, 140, 255, 0.16), 0 0 28px -8px rgba(110, 140, 255, 0.25);
+  --shadow-glow-celadon: 0 0 0 1px var(--celadon-border), 0 0 24px -8px rgba(111, 194, 174, 0.25);
+  --focus-ring: 0 0 0 2px var(--vi-bg-1), 0 0 0 4px rgba(110, 140, 255, 0.7);
+  --focus-ring-cyan: var(--focus-ring);
+
+  --accent-soft: rgba(110, 140, 255, 0.12);
+  --accent-border: rgba(110, 140, 255, 0.32);
+  --accent-hover: #a4b6ff;
+  --nav-active-bg: linear-gradient(90deg, rgba(229, 72, 59, 0.16), rgba(229, 72, 59, 0.02));
+  --nav-active-text: var(--vi-ink-1);
+  --nav-hover-bg: rgba(237, 232, 223, 0.05);
+  --overlay-backdrop: rgba(4, 5, 7, 0.66);
+  --modal-surface: var(--vi-glass);
+  --modal-shadow: var(--vi-shadow-3);
+  --btn-hover-bg: rgba(237, 232, 223, 0.06);
+  --btn-primary-bg: rgba(110, 140, 255, 0.14);
+  --btn-primary-hover-bg: rgba(110, 140, 255, 0.22);
+  --btn-primary-hover-text: #c2cdff;
+  --search-highlight-bg: rgba(110, 140, 255, 0.12);
+  --search-highlight-border: rgba(110, 140, 255, 0.36);
+  --card-hover-border: rgba(212, 162, 90, 0.32);
+  --card-active-border: rgba(212, 162, 90, 0.5);
+  --input-focus-border: rgba(110, 140, 255, 0.6);
+  --search-focus-border: rgba(110, 140, 255, 0.5);
+  --scrollbar-thumb: rgba(237, 232, 223, 0.14);
+  --scrollbar-thumb-hover: rgba(212, 162, 90, 0.5);
+  --shimmer-mid: rgba(212, 162, 90, 0.18);
+  --skeleton-base: rgba(237, 232, 223, 0.05);
+  --skeleton-mid: rgba(237, 232, 223, 0.1);
+  --drawer-backdrop: rgba(4, 5, 7, 0.6);
+  --sidebar-shadow: 1px 0 0 var(--vi-line), 24px 0 60px -30px rgba(0, 0, 0, 0.8);
+  --chart-tooltip-bg: rgba(20, 23, 31, 0.96);
+  --chart-tooltip-border: var(--vi-line-strong);
+  --chart-tooltip-text: var(--vi-ink-1);
+
+  --status-positive: var(--vi-celadon);
+  --status-caution: var(--vi-brass);
+  --status-negative: var(--vi-cinnabar);
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  /* ── 基底 · 宣纸 ─────────────────────────────────────── */
+  --vi-bg-0: #eee9df;
+  --vi-bg-1: #f5f1e8;
+  --vi-bg-2: #fbf8f2;
+  --vi-bg-3: #ffffff;
+  --vi-bg-inset: #ece6da;
+  --vi-ink-1: #16130f;
+  --vi-ink-2: #5a544b;
+  --vi-ink-3: #736c61;
+  --vi-line: rgba(22, 19, 15, 0.1);
+  --vi-line-strong: rgba(22, 19, 15, 0.18);
+
+  --vi-cinnabar: #c8322a;
+  --vi-cinnabar-rgb: 200, 50, 42;
+  --vi-brass: #8a6224;
+  --vi-brass-rgb: 138, 98, 36;
+  --vi-celadon: #237561;
+  --vi-celadon-rgb: 35, 117, 97;
+  --vi-lapis: #3d5bd9;
+  --vi-lapis-rgb: 61, 91, 217;
+  --vi-rosewood: #7c4c93;
+
+  --vi-card-bg: linear-gradient(180deg, #ffffff, rgba(255, 255, 255, 0) 60%), var(--vi-bg-2);
+  --vi-card-edge: linear-gradient(180deg, rgba(22, 19, 15, 0.12), rgba(22, 19, 15, 0.06) 50%, rgba(22, 19, 15, 0.14));
+  --vi-card-edge-brass: linear-gradient(160deg, rgba(138, 98, 36, 0.5), rgba(138, 98, 36, 0.08) 40%, rgba(22, 19, 15, 0.08) 75%, rgba(61, 91, 217, 0.18));
+  --vi-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --vi-shadow-1: 0 1px 1px rgba(60, 45, 20, 0.06), 0 6px 18px -10px rgba(60, 45, 20, 0.18);
+  --vi-shadow-2: 0 1px 2px rgba(60, 45, 20, 0.08), 0 16px 40px -18px rgba(60, 45, 20, 0.3);
+  --vi-shadow-3: 0 30px 80px -24px rgba(60, 45, 20, 0.35), 0 0 0 1px rgba(22, 19, 15, 0.08);
+  --vi-glass: rgba(251, 248, 242, 0.82);
+  --vi-spot: rgba(138, 98, 36, 0.09);
+  --vi-spot-edge: rgba(138, 98, 36, 0.55);
+  --vi-grain-opacity: 0.05;
+
+  --china-red: var(--vi-cinnabar);
+  --cyber-cyan: var(--vi-lapis);
+  --cyber-cyan-hover: #2f49b8;
+  --fire-gold: var(--vi-brass);
+  --brass: var(--vi-brass);
+  --brass-dim: #b08a4e;
+  --brass-glow: rgba(138, 98, 36, 0.14);
+  --celadon: var(--vi-celadon);
+  --celadon-dim: #1b5c4c;
+  --celadon-soft: rgba(35, 117, 97, 0.1);
+  --celadon-border: rgba(35, 117, 97, 0.28);
+
+  --bg-base: var(--vi-bg-1);
+  --bg-surface: var(--vi-bg-2);
+  --bg-elevated: var(--vi-bg-3);
+  --bg-inset: var(--vi-bg-inset);
+  --bg-page: rgba(245, 241, 232, 0.92);
+  --glass-highlight: rgba(255, 255, 255, 0.9);
+  --border-subtle: var(--vi-line);
+  --border-strong: var(--vi-line-strong);
+  --text-primary: var(--vi-ink-1);
+  --text-secondary: var(--vi-ink-2);
+  --text-tertiary: var(--vi-ink-3);
+
+  --surface-glass: var(--vi-bg-2);
+  --shadow-ambient: var(--vi-shadow-1);
+  --shadow-glass: var(--vi-shadow-1), var(--vi-highlight);
+  --shadow-card: var(--vi-shadow-1);
+  --shadow-card-hover: var(--vi-shadow-2), 0 0 0 1px rgba(138, 98, 36, 0.2);
+  --shadow-glow-cyan: 0 0 0 1px rgba(61, 91, 217, 0.18), 0 6px 18px -8px rgba(61, 91, 217, 0.2);
+  --shadow-glow-celadon: 0 0 0 1px var(--celadon-border), 0 6px 18px -8px rgba(35, 117, 97, 0.18);
+  --focus-ring: 0 0 0 2px var(--vi-bg-1), 0 0 0 4px rgba(61, 91, 217, 0.6);
+  --focus-ring-cyan: var(--focus-ring);
+
+  --accent-soft: rgba(61, 91, 217, 0.09);
+  --accent-border: rgba(61, 91, 217, 0.28);
+  --accent-hover: #2f49b8;
+  --nav-active-bg: linear-gradient(90deg, rgba(200, 50, 42, 0.1), rgba(200, 50, 42, 0.01));
+  --nav-active-text: var(--vi-cinnabar);
+  --nav-hover-bg: rgba(22, 19, 15, 0.04);
+  --tab-active-text: var(--vi-cinnabar);
+  --chip-active-text: var(--vi-cinnabar);
+  --overlay-backdrop: rgba(40, 32, 20, 0.28);
+  --modal-surface: var(--vi-glass);
+  --modal-shadow: var(--vi-shadow-3);
+  --btn-hover-bg: rgba(22, 19, 15, 0.05);
+  --btn-primary-bg: rgba(61, 91, 217, 0.1);
+  --btn-primary-hover-bg: rgba(61, 91, 217, 0.16);
+  --btn-primary-hover-text: #2f49b8;
+  --search-highlight-bg: rgba(61, 91, 217, 0.09);
+  --search-highlight-border: rgba(61, 91, 217, 0.3);
+  --card-hover-border: rgba(138, 98, 36, 0.32);
+  --card-active-border: rgba(138, 98, 36, 0.5);
+  --input-focus-border: rgba(61, 91, 217, 0.55);
+  --search-focus-border: rgba(61, 91, 217, 0.45);
+  --scrollbar-thumb: rgba(22, 19, 15, 0.16);
+  --scrollbar-thumb-hover: rgba(138, 98, 36, 0.5);
+  --shimmer-mid: rgba(138, 98, 36, 0.12);
+  --skeleton-base: rgba(22, 19, 15, 0.05);
+  --skeleton-mid: rgba(22, 19, 15, 0.09);
+  --drawer-backdrop: rgba(40, 32, 20, 0.3);
+  --sidebar-shadow: 1px 0 0 var(--vi-line), 18px 0 50px -30px rgba(60, 45, 20, 0.3);
+  --chart-tooltip-bg: rgba(255, 255, 255, 0.98);
+  --chart-tooltip-border: var(--vi-line-strong);
+  --chart-tooltip-text: var(--vi-ink-1);
+
+  --market-up-cn: var(--vi-cinnabar);
+  --market-down-cn: var(--vi-celadon);
+  --market-up-intl: var(--vi-celadon);
+  --market-down-intl: var(--vi-cinnabar);
+  --status-positive: var(--vi-celadon);
+  --status-caution: var(--vi-brass);
+  --status-negative: var(--vi-cinnabar);
+  --source-live-fg: var(--vi-celadon);
+  --source-snapshot-fg: var(--vi-brass);
+  --badge-cas-fg: var(--vi-lapis);
+  --badge-cae-fg: var(--vi-brass);
+  --badge-both-fg: var(--vi-brass);
+}

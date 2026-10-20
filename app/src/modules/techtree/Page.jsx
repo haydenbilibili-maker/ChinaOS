@@ -26,21 +26,21 @@ import { TECH_AS_OF, CHAIN_OF, NECK_ITEMS, MILESTONES, SCORECARD, DEPENDS, propa
 //   ♟  博弈桌攻关回执（保留原实现）→ FrameworkTrio → ModuleFooter
 // 铁律：零随机、零当前时间——所有数值为确定性常量与纯函数推演。
 // 口径：全部数值为「公开信息梳理 + 示意标定」，非预测、非投资建议。
-// 配色：#c41e3a(红/受制) #22d3ee(青/追赶) #e8a317(金/攻坚) #10b981(绿/领先)
+// 配色：#e5483b(红/受制) #6e8cff(青/追赶) #d4a25a(金/攻坚) #6fc2ae(绿/领先)
 // ============================================================================
 
 // tier: lead 领先梯队 / chase 并跑追赶 / locked 受制卡脖子
-const TIER_COLOR = { lead: '#10b981', chase: '#22d3ee', locked: '#c41e3a' };
+const TIER_COLOR = { lead: '#6fc2ae', chase: '#6e8cff', locked: '#e5483b' };
 
 // 卡脖子严重度：3 重度（硬卡点）/ 2 中度 / 1 轻度
 const SEV_META = {
-  3: { label: '重度', color: '#c41e3a' },
-  2: { label: '中度', color: '#e8a317' },
-  1: { label: '轻度', color: '#64748b' },
+  3: { label: '重度', color: '#e5483b' },
+  2: { label: '中度', color: '#d4a25a' },
+  1: { label: '轻度', color: '#8a8578' },
 };
 
 // 供应链节点自主度 → 颜色：<45 红（断点）/ <70 金（薄弱）/ ≥70 绿（可控）
-const chainColor = (auto) => (auto < 45 ? '#c41e3a' : auto < 70 ? '#e8a317' : '#10b981');
+const chainColor = (auto) => (auto < 45 ? '#e5483b' : auto < 70 ? '#d4a25a' : '#6fc2ae');
 
 // 雷达维度：自主可控 / 工程化 / 人才储备 / 产业生态 / 投资强度
 const RADAR_IND = [
@@ -59,16 +59,16 @@ const scatterOption = {
   grid: { left: 56, right: 28, top: 28, bottom: 44 },
   tooltip: {
     trigger: 'item',
-    backgroundColor: 'rgba(15,23,42,0.92)', borderColor: '#27324a', textStyle: { color: '#e2e8f0' },
+    backgroundColor: 'rgba(15,23,42,0.92)', borderColor: '#2a2d36', textStyle: { color: '#e2e8f0' },
     formatter: (p) => `${p.data.name}<br/>TRL ${p.data.value[0]} · 自主度 ${p.data.value[1]}%<br/>分层：${TIER_LABEL[p.data.tier]}`,
   },
   xAxis: {
-    type: 'value', name: 'TRL 成熟度', min: 2, max: 9, nameTextStyle: { color: '#5b6a82' },
-    axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } },
+    type: 'value', name: 'TRL 成熟度', min: 2, max: 9, nameTextStyle: { color: '#8a847a' },
+    axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.08)' } },
   },
   yAxis: {
-    type: 'value', name: '自主度 %', min: 30, max: 100, nameTextStyle: { color: '#5b6a82' },
-    axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } },
+    type: 'value', name: '自主度 %', min: 30, max: 100, nameTextStyle: { color: '#8a847a' },
+    axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.08)' } },
   },
   series: [{
     type: 'scatter',
@@ -82,7 +82,7 @@ const scatterOption = {
     },
     markArea: {
       silent: true,
-      itemStyle: { color: 'rgba(196,30,58,0.06)' },
+      itemStyle: { color: 'rgba(229, 72, 59,0.06)' },
       data: [[{ xAxis: 2, yAxis: 30 }, { xAxis: 6, yAxis: 60 }]],
     },
   }],
@@ -92,8 +92,8 @@ const scatterOption = {
 const sortedByWeight = [...DOMAINS].sort((a, b) => a.weight - b.weight);
 const weightOption = {
   grid: { left: 110, right: 40, top: 12, bottom: 24 },
-  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, backgroundColor: 'rgba(15,23,42,0.92)', borderColor: '#27324a', textStyle: { color: '#e2e8f0' } },
-  xAxis: { type: 'value', max: 100, name: '战略权重', nameTextStyle: { color: '#5b6a82' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } } },
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, backgroundColor: 'rgba(15,23,42,0.92)', borderColor: '#2a2d36', textStyle: { color: '#e2e8f0' } },
+  xAxis: { type: 'value', max: 100, name: '战略权重', nameTextStyle: { color: '#8a847a' }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.08)' } } },
   yAxis: { type: 'category', data: sortedByWeight.map((d) => d.name), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 11 } },
   series: [{
     type: 'bar', barWidth: 13,
@@ -154,14 +154,14 @@ const IN_DEGREE = Object.fromEntries(
 );
 
 // 传导风险边级描述 → 颜色（与 SEV_META 同语义梯度）
-const DEP_SEV_COLOR = { 重度传导: '#c41e3a', 中度传导: '#e8a317', 轻度传导: '#64748b' };
+const DEP_SEV_COLOR = { 重度传导: '#e5483b', 中度传导: '#d4a25a', 轻度传导: '#8a8578' };
 
 /** ② 域间依赖图 option：circular 布局（铁律禁 force——其布局含随机性） */
 function buildDependsOption(sel) {
   return {
     tooltip: {
       trigger: 'item',
-      backgroundColor: 'rgba(15,23,42,0.92)', borderColor: '#27324a', textStyle: { color: '#e2e8f0' },
+      backgroundColor: 'rgba(15,23,42,0.92)', borderColor: '#2a2d36', textStyle: { color: '#e2e8f0' },
       formatter: (p) => {
         if (p.dataType === 'edge') {
           return `${p.data.fromName} 依赖 ${p.data.toName}<br/>${p.data.note}（强度 ${p.data.strength}）`;
@@ -182,12 +182,12 @@ function buildDependsOption(sel) {
         symbolSize: 8 + IN_DEGREE[d.k] * 4,
         itemStyle: {
           color: TIER_COLOR[d.tier],
-          borderColor: d.k === sel ? '#e8a317' : 'rgba(255,255,255,0.2)',
+          borderColor: d.k === sel ? '#d4a25a' : 'rgba(255,255,255,0.2)',
           borderWidth: d.k === sel ? 3 : 1,
         },
         label: {
           show: true, fontSize: 10,
-          color: d.k === sel ? '#e8a317' : '#93a1b5',
+          color: d.k === sel ? '#d4a25a' : '#a29c91',
           fontWeight: d.k === sel ? 'bold' : 'normal',
         },
       })),
@@ -198,13 +198,13 @@ function buildDependsOption(sel) {
           fromName: DOMAIN_NAME_OF[e.from], toName: DOMAIN_NAME_OF[e.to],
           note: e.note, strength: e.strength,
           lineStyle: {
-            color: isOut ? '#c41e3a' : 'rgba(148,163,184,0.3)',
+            color: isOut ? '#e5483b' : 'rgba(162, 156, 145,0.3)',
             width: isOut ? e.strength * 1.6 : e.strength,
             opacity: isOut ? 0.95 : 0.45,
             curveness: 0.22,
           },
           label: isOut
-            ? { show: true, formatter: e.note, fontSize: 9, color: '#c41e3a' }
+            ? { show: true, formatter: e.note, fontSize: 9, color: '#e5483b' }
             : { show: false },
         };
       }),
@@ -240,7 +240,7 @@ function ChainStrip({ chain }) {
           <React.Fragment key={node.node}>
             {i > 0 && (
               <div className="flex-1 self-start" style={{ paddingTop: 17, minWidth: 12 }}>
-                <div style={{ height: 2, background: 'rgba(148,163,184,0.22)' }} />
+                <div style={{ height: 2, background: 'rgba(162, 156, 145,0.22)' }} />
               </div>
             )}
             <div className="flex flex-col items-center text-center" style={{ width: 86 }} title={node.note}>
@@ -292,7 +292,7 @@ function MilestoneStrip({ items, accent }) {
         <div key={`${m.year}-${i}`} className="relative">
           <div className="flex items-center mb-1.5">
             <div className="rounded-full shrink-0" style={{ width: 9, height: 9, background: accent, border: '2px solid rgba(255,255,255,0.25)' }} />
-            {i < items.length - 1 && <div className="flex-1" style={{ height: 2, background: 'rgba(148,163,184,0.18)' }} />}
+            {i < items.length - 1 && <div className="flex-1" style={{ height: 2, background: 'rgba(162, 156, 145,0.18)' }} />}
           </div>
           <div className="text-xs mono font-bold" style={{ color: accent }}>{m.year}</div>
           <p className="text-[11px] leading-relaxed mt-0.5 pr-2" style={{ color: 'var(--text-secondary)' }}>{m.event}</p>
@@ -328,11 +328,11 @@ function ScoreRow({ row, usBlue, usBlueFade }) {
         <span className="text-xs mono shrink-0 text-right" style={{ width: 96, color: 'var(--text-primary)' }}>{row.dim}</span>
         {/* 左半：中国（右对齐向中轴生长） */}
         <div className="flex-1 flex items-center justify-end gap-1.5">
-          <span className="text-[10px] mono" style={{ color: '#c41e3a' }}>{row.cn}</span>
-          <div className="rounded-l" style={{ width: `${row.cn * 0.9}%`, maxWidth: '92%', height: 12, background: 'linear-gradient(90deg, rgba(196,30,58,0.35), #c41e3a)' }} />
+          <span className="text-[10px] mono" style={{ color: '#e5483b' }}>{row.cn}</span>
+          <div className="rounded-l" style={{ width: `${row.cn * 0.9}%`, maxWidth: '92%', height: 12, background: 'linear-gradient(90deg, rgba(229, 72, 59,0.35), #e5483b)' }} />
         </div>
         {/* 中轴 */}
-        <div className="shrink-0" style={{ width: 2, height: 18, background: 'rgba(148,163,184,0.4)' }} />
+        <div className="shrink-0" style={{ width: 2, height: 18, background: 'rgba(162, 156, 145,0.4)' }} />
         {/* 右半：美国（左对齐向外生长） */}
         <div className="flex-1 flex items-center gap-1.5">
           <div className="rounded-r" style={{ width: `${row.us * 0.9}%`, maxWidth: '92%', height: 12, background: `linear-gradient(90deg, ${usBlue}, ${usBlueFade})` }} />
@@ -360,7 +360,7 @@ function buildSimOption(d, sim) {
       name: s.label || '断供冲击',
       coord: [String(s.year), autoAt(s.year)],
       symbol: 'pin', symbolSize: 34,
-      itemStyle: { color: '#c41e3a' },
+      itemStyle: { color: '#e5483b' },
       label: { show: true, formatter: () => `-${s.hit}`, color: '#fff', fontSize: 9 },
     }));
 
@@ -370,8 +370,8 @@ function buildSimOption(d, sim) {
         name: '突破',
         coord: [String(sim.breakthrough), autoAt(sim.breakthrough)],
         symbol: STAR_PATH, symbolSize: 20,
-        itemStyle: { color: '#e8a317' },
-        label: { show: true, position: 'top', formatter: '突破', color: '#e8a317', fontSize: 10, fontWeight: 'bold' },
+        itemStyle: { color: '#d4a25a' },
+        label: { show: true, position: 'top', formatter: '突破', color: '#d4a25a', fontSize: 10, fontWeight: 'bold' },
       }]
     : [];
 
@@ -379,7 +379,7 @@ function buildSimOption(d, sim) {
     grid: { left: 44, right: 24, top: 32, bottom: 28 },
     tooltip: {
       trigger: 'axis',
-      backgroundColor: 'rgba(15,23,42,0.92)', borderColor: '#27324a', textStyle: { color: '#e2e8f0' },
+      backgroundColor: 'rgba(15,23,42,0.92)', borderColor: '#2a2d36', textStyle: { color: '#e2e8f0' },
       formatter: (ps) => {
         const p = ps[0];
         return `${p.axisValue} 年<br/>推演自主度 ${p.data}%`;
@@ -390,9 +390,9 @@ function buildSimOption(d, sim) {
       axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 },
     },
     yAxis: {
-      type: 'value', min: 20, max: 100, name: '自主度 %', nameTextStyle: { color: '#5b6a82' },
+      type: 'value', min: 20, max: 100, name: '自主度 %', nameTextStyle: { color: '#8a847a' },
       axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } },
     },
     series: [{
       type: 'line', data: sim.path.map((p) => p.auto),
@@ -402,8 +402,8 @@ function buildSimOption(d, sim) {
       areaStyle: { color: `${lineColor}14` },
       markLine: {
         silent: true, symbol: 'none',
-        lineStyle: { color: '#e8a317', type: 'dashed', width: 1.5 },
-        label: { color: '#e8a317', fontSize: 10, formatter: '突破线 85' },
+        lineStyle: { color: '#d4a25a', type: 'dashed', width: 1.5 },
+        label: { color: '#d4a25a', fontSize: 10, formatter: '突破线 85' },
         data: [{ yAxis: 85 }],
       },
       markPoint: { data: [...shockPoints, ...breakPoints] },
@@ -413,10 +413,10 @@ function buildSimOption(d, sim) {
 
 // ⑤ 总表 tier 筛选 chips
 const TIER_FILTERS = [
-  { k: 'all', label: '全部', accent: '#e8a317' },
-  { k: 'locked', label: '受制', accent: '#c41e3a' },
-  { k: 'chase', label: '并跑', accent: '#22d3ee' },
-  { k: 'lead', label: '领先', accent: '#10b981' },
+  { k: 'all', label: '全部', accent: '#d4a25a' },
+  { k: 'locked', label: '受制', accent: '#e5483b' },
+  { k: 'chase', label: '并跑', accent: '#6e8cff' },
+  { k: 'lead', label: '领先', accent: '#6fc2ae' },
 ];
 
 // ============================================================================
@@ -532,14 +532,14 @@ export default function Page() {
     legend: { data: ['中国', '美国'], textStyle: { color: LABEL.color }, top: 0 },
     radar: {
       indicator: RADAR_IND, axisName: { color: LABEL.color, fontSize: 11 }, radius: '62%',
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-      splitArea: { show: true, areaStyle: { color: ['rgba(148,163,184,0.03)', 'transparent'] } },
-      axisLine: { lineStyle: { color: 'rgba(148,163,184,0.2)' } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
+      splitArea: { show: true, areaStyle: { color: ['rgba(162, 156, 145,0.03)', 'transparent'] } },
+      axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.2)' } },
     },
     series: [{
       type: 'radar',
       data: [
-        { value: d.radar, name: '中国', lineStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.18)' }, itemStyle: { color: '#c41e3a' } },
+        { value: d.radar, name: '中国', lineStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.18)' }, itemStyle: { color: '#e5483b' } },
         // 美国基线以「能力位势」近似映射到五维（示意）
         { value: RADAR_IND.map(() => d.us), name: '美国', lineStyle: { color: usBlue, type: 'dashed' }, areaStyle: { color: usBlueSoft }, itemStyle: { color: usBlue } },
       ],
@@ -569,21 +569,21 @@ export default function Page() {
 
       <IntroCard>
         科技图谱不是排行榜，是<strong style={{ color: 'var(--text-primary)' }}>作战地图</strong>——它必须连续回答四个问题：
-        <strong style={{ color: '#e8a317' }}>位势</strong>（我在哪：TRL × 自主度 × 中美相对差，①②），
-        <strong style={{ color: '#c41e3a' }}>断点</strong>（卡在哪：供应链五节点哪一环 &lt;45%，谁是 severity 3 硬卡点，②⑤），
-        <strong style={{ color: '#22d3ee' }}>投入</strong>（往哪压：研发 / 人才 / 开放三根杠杆怎么配，③），
-        <strong style={{ color: '#10b981' }}>时间</strong>（几年见效：自主度何时穿越 85 突破线，断供冲击落在哪一年，③④）。
+        <strong style={{ color: '#d4a25a' }}>位势</strong>（我在哪：TRL × 自主度 × 中美相对差，①②），
+        <strong style={{ color: '#e5483b' }}>断点</strong>（卡在哪：供应链五节点哪一环 &lt;45%，谁是 severity 3 硬卡点，②⑤），
+        <strong style={{ color: '#6e8cff' }}>投入</strong>（往哪压：研发 / 人才 / 开放三根杠杆怎么配，③），
+        <strong style={{ color: '#6fc2ae' }}>时间</strong>（几年见效：自主度何时穿越 85 突破线，断供冲击落在哪一年，③④）。
         四个问题答完，一个领域才算「看清」——
-        <span style={{ color: '#10b981' }}> 绿=领先梯队</span>守扩护城河、
-        <span style={{ color: '#22d3ee' }}> 青=并跑追赶</span>以工程化反超、
-        <span style={{ color: '#c41e3a' }}> 红=受制卡脖子</span>守防御带等换道窗口。
+        <span style={{ color: '#6fc2ae' }}> 绿=领先梯队</span>守扩护城河、
+        <span style={{ color: '#6e8cff' }}> 青=并跑追赶</span>以工程化反超、
+        <span style={{ color: '#e5483b' }}> 红=受制卡脖子</span>守防御带等换道窗口。
       </IntroCard>
 
       <StatGrid className="mb-6">
-        <Stat value="12" label={`战略科技领域 · 均 TRL ${avgTrl}`} accent="#e8a317" />
-        <Stat value={cnt('locked')} label="受制卡脖子(领域)" accent="#c41e3a" />
-        <Stat value={HARD_TOTAL} label="全库硬卡点(severity 3)" accent="#c41e3a" />
-        <Stat value={`${avgAuto}%`} label="平均自主度(12 域)" accent="#22d3ee" />
+        <Stat value="12" label={`战略科技领域 · 均 TRL ${avgTrl}`} accent="#d4a25a" />
+        <Stat value={cnt('locked')} label="受制卡脖子(领域)" accent="#e5483b" />
+        <Stat value={HARD_TOTAL} label="全库硬卡点(severity 3)" accent="#e5483b" />
+        <Stat value={`${avgAuto}%`} label="平均自主度(12 域)" accent="#6e8cff" />
       </StatGrid>
 
       {/* ================= ① 矩阵 + 权重排序 ================= */}
@@ -620,13 +620,13 @@ export default function Page() {
               <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>主导路线 / 代表项目</div>
               <p className="text-[12px] leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{d.route}</p>
             </div>
-            <div style={{ borderLeft: '2px solid #c41e3a', paddingLeft: 12 }}>
+            <div style={{ borderLeft: '2px solid #e5483b', paddingLeft: 12 }}>
               <div className="text-xs font-semibold mb-1" style={{ color: 'var(--china-red)' }}>卡脖子环节</div>
               <p className="text-[12px] leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{d.neck}</p>
             </div>
             <div className="grid gap-2" style={{ gridTemplateColumns: '1fr 1fr 1fr' }}>
               <div className="text-center p-2 rounded" style={{ background: 'var(--bg-elevated)' }}>
-                <div className="text-lg font-bold mono" style={{ color: '#c41e3a' }}>{d.cn}</div>
+                <div className="text-lg font-bold mono" style={{ color: '#e5483b' }}>{d.cn}</div>
                 <div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>中国位势</div>
               </div>
               <div className="text-center p-2 rounded" style={{ background: 'var(--bg-elevated)' }}>
@@ -634,12 +634,12 @@ export default function Page() {
                 <div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>美国位势</div>
               </div>
               <div className="text-center p-2 rounded" style={{ background: 'var(--bg-elevated)' }}>
-                <div className="text-lg font-bold mono" style={{ color: d.cn - d.us >= 0 ? '#10b981' : '#e8a317' }}>{d.cn - d.us >= 0 ? `+${d.cn - d.us}` : d.cn - d.us}</div>
+                <div className="text-lg font-bold mono" style={{ color: d.cn - d.us >= 0 ? '#6fc2ae' : '#d4a25a' }}>{d.cn - d.us >= 0 ? `+${d.cn - d.us}` : d.cn - d.us}</div>
                 <div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>相对差(中-美)</div>
               </div>
             </div>
-            <div style={{ borderLeft: '2px solid #e8a317', paddingLeft: 12 }}>
-              <div className="text-xs font-semibold mb-1" style={{ color: '#e8a317' }}>战略判读</div>
+            <div style={{ borderLeft: '2px solid #d4a25a', paddingLeft: 12 }}>
+              <div className="text-xs font-semibold mb-1" style={{ color: '#d4a25a' }}>战略判读</div>
               <p className="text-[12px] leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{d.verdict}</p>
             </div>
           </div>
@@ -649,9 +649,9 @@ export default function Page() {
       <Card title={`② ${d.name} · 供应链断点条（上游 → 下游 · 圆内数字=节点自主度）`} className="mb-3">
         <ChainStrip chain={chain} />
         <p className="text-[10px] mt-3" style={{ color: 'var(--text-tertiary)' }}>
-          <span style={{ color: '#c41e3a' }}>红 &lt;45</span> 断点 ·
-          <span style={{ color: '#e8a317' }}> 金 &lt;70</span> 薄弱 ·
-          <span style={{ color: '#10b981' }}> 绿 ≥70</span> 可控 —— 链强度由最弱节点决定，悬停节点看判注。
+          <span style={{ color: '#e5483b' }}>红 &lt;45</span> 断点 ·
+          <span style={{ color: '#d4a25a' }}> 金 &lt;70</span> 薄弱 ·
+          <span style={{ color: '#6fc2ae' }}> 绿 ≥70</span> 可控 —— 链强度由最弱节点决定，悬停节点看判注。
         </p>
       </Card>
 
@@ -672,14 +672,14 @@ export default function Page() {
             <EChart option={dependsOption} onReady={onDependsReady} style={{ height: 360 }} />
             <p className="text-[10px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
               节点大小=被依赖次数（半导体 / 新材料为全网最大底座）· 颜色=分层 · 金描边=当前选中域；
-              <span style={{ color: '#c41e3a' }}> 红色出边</span>=选中域的上游依赖（标注依赖注记），灰边=其余依赖；边宽=依赖强度。
+              <span style={{ color: '#e5483b' }}> 红色出边</span>=选中域的上游依赖（标注依赖注记），灰边=其余依赖；边宽=依赖强度。
             </p>
           </div>
           <div>
             <div className="text-center p-3 rounded mb-3" style={{ background: 'var(--bg-elevated)' }}>
               <div
                 className="text-3xl font-bold mono"
-                style={{ color: depRisk.score >= 70 ? '#c41e3a' : depRisk.score >= 40 ? '#e8a317' : depRisk.score > 0 ? '#22d3ee' : '#10b981' }}
+                style={{ color: depRisk.score >= 70 ? '#e5483b' : depRisk.score >= 40 ? '#d4a25a' : depRisk.score > 0 ? '#6e8cff' : '#6fc2ae' }}
               >{depRisk.score}</div>
               <div className="text-[10px] mt-1" style={{ color: 'var(--text-tertiary)' }}>
                 {d.name} · 上游断点传导风险（0-100）
@@ -698,9 +698,9 @@ export default function Page() {
                       <span
                         className="text-[10px] mono px-1.5 py-0.5 rounded shrink-0"
                         style={{
-                          background: `${DEP_SEV_COLOR[p.severity] || '#64748b'}1f`,
-                          color: DEP_SEV_COLOR[p.severity] || '#64748b',
-                          border: `1px solid ${DEP_SEV_COLOR[p.severity] || '#64748b'}55`,
+                          background: `${DEP_SEV_COLOR[p.severity] || '#8a8578'}1f`,
+                          color: DEP_SEV_COLOR[p.severity] || '#8a8578',
+                          border: `1px solid ${DEP_SEV_COLOR[p.severity] || '#8a8578'}55`,
                         }}
                       >{p.severity}</span>
                       <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>{p.via}</span>
@@ -723,15 +723,15 @@ export default function Page() {
       <Card title={`③ 攻关推演模拟器 · ${d.name} 十年自主度曲线（确定性推演 · 示意标定）`} className="mb-6">
         <Grid cols={3} className="mb-4">
           <LeverSlider
-            label="研发投入强度" value={rd} onChange={setRd} accent="#c41e3a"
+            label="研发投入强度" value={rd} onChange={setRd} accent="#e5483b"
             hint="压强越高爬坡越快，但边际递减——钱买不来时间的部分由人才与生态补。"
           />
           <LeverSlider
-            label="人才引进力度" value={talent} onChange={setTalent} accent="#e8a317"
+            label="人才引进力度" value={talent} onChange={setTalent} accent="#d4a25a"
             hint="人才决定吸收能力上限——没有承接队伍，设备与图纸都是死资产。"
           />
           <LeverSlider
-            label="开放合作度" value={open} onChange={setOpen} accent="#22d3ee"
+            label="开放合作度" value={open} onChange={setOpen} accent="#6e8cff"
             hint="开放换技术外溢与迭代速度，同时放大断供冲击的暴露面。"
           />
         </Grid>
@@ -744,13 +744,13 @@ export default function Page() {
             <div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>2030 推演自主度</div>
           </div>
           <div className="text-center p-2 rounded" style={{ background: 'var(--bg-elevated)' }}>
-            <div className="text-lg font-bold mono" style={{ color: sim.breakthrough ? '#e8a317' : 'var(--text-tertiary)' }}>
+            <div className="text-lg font-bold mono" style={{ color: sim.breakthrough ? '#d4a25a' : 'var(--text-tertiary)' }}>
               {sim.breakthrough || '窗口外'}
             </div>
             <div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>突破年(自主度≥85)</div>
           </div>
           <div className="text-center p-2 rounded" style={{ background: 'var(--bg-elevated)' }}>
-            <div className="text-lg font-bold mono" style={{ color: (sim.shocks || []).length > 0 ? '#c41e3a' : '#10b981' }}>
+            <div className="text-lg font-bold mono" style={{ color: (sim.shocks || []).length > 0 ? '#e5483b' : '#6fc2ae' }}>
               {(sim.shocks || []).length}
             </div>
             <div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>断供冲击(次)</div>
@@ -762,7 +762,7 @@ export default function Page() {
         </Grid>
 
         {d.tier === 'locked' && (
-          <p className="text-[11px] mt-3 leading-relaxed" style={{ color: '#e8a317' }}>
+          <p className="text-[11px] mt-3 leading-relaxed" style={{ color: '#d4a25a' }}>
             受制域机理提示：「以开放换速度，以速度换脆弱」——开放合作度抬高爬坡斜率，也同步抬高断供冲击的命中深度；
             受制域的最优解往往不是开放度拉满，而是在防御带（成熟环节自主兜底）建成之后再放开放杠杆。
           </p>
@@ -770,7 +770,7 @@ export default function Page() {
         <p className="text-[10px] mt-2" style={{ color: 'var(--text-tertiary)' }}>
           曲线为确定性纯函数推演（同输入恒同输出），基准 {TECH_AS_OF}；金虚线=85 突破线，红钉=断供冲击（数字为命中深度），金星=突破年。示意标定 · 非预测。
         </p>
-        <p className="text-[10px] mt-1" style={{ color: '#22d3ee' }}>
+        <p className="text-[10px] mt-1" style={{ color: '#6e8cff' }}>
           当前方案已回写图谱账本——博弈桌『自主攻关』将按此方案动态加权。
         </p>
       </Card>
@@ -780,11 +780,11 @@ export default function Page() {
         <div className="space-y-1">
           {SCORECARD.map((row) => <ScoreRow key={row.dim} row={row} usBlue={usBlue} usBlueFade={usBlueFade} />)}
         </div>
-        <div className="mt-3 p-2.5 rounded" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #e8a317' }}>
+        <div className="mt-3 p-2.5 rounded" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #d4a25a' }}>
           <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-            总评：六维均值 中 <span className="mono font-bold" style={{ color: '#c41e3a' }}>{scoreCnAvg}</span> vs
+            总评：六维均值 中 <span className="mono font-bold" style={{ color: '#e5483b' }}>{scoreCnAvg}</span> vs
             美 <span className="mono font-bold" style={{ color: usBlue }}>{scoreUsAvg}</span>，
-            差距 <span className="mono font-bold" style={{ color: scoreUsAvg - scoreCnAvg > 0 ? '#e8a317' : '#10b981' }}>
+            差距 <span className="mono font-bold" style={{ color: scoreUsAvg - scoreCnAvg > 0 ? '#d4a25a' : '#6fc2ae' }}>
               {scoreUsAvg - scoreCnAvg > 0 ? `-${scoreUsAvg - scoreCnAvg}` : `+${scoreCnAvg - scoreUsAvg}`}
             </span>——
             {scoreUsAvg > scoreCnAvg
@@ -806,7 +806,7 @@ export default function Page() {
               style={{ '--chip-accent': f.accent }}
             >{f.label}</button>
           ))}
-          <span className="text-[11px] mono ml-auto px-2 py-0.5 rounded" style={{ background: 'rgba(196,30,58,0.12)', color: '#c41e3a', border: '1px solid rgba(196,30,58,0.4)' }}>
+          <span className="text-[11px] mono ml-auto px-2 py-0.5 rounded" style={{ background: 'rgba(229, 72, 59,0.12)', color: '#e5483b', border: '1px solid rgba(229, 72, 59,0.4)' }}>
             硬卡点 {filteredHard} 项 / 共 {filteredRows.length} 项
           </span>
         </div>
@@ -843,7 +843,7 @@ export default function Page() {
             type="button"
             onClick={genReport}
             className="text-xs mono px-3 py-1.5 rounded font-semibold"
-            style={{ background: 'rgba(34,211,238,0.12)', color: '#22d3ee', border: '1px solid rgba(34,211,238,0.45)', cursor: 'pointer' }}
+            style={{ background: 'rgba(110, 140, 255,0.12)', color: '#6e8cff', border: '1px solid rgba(110, 140, 255,0.45)', cursor: 'pointer' }}
           >生成攻关推演报告（{d.name}）</button>
           {report && (
             <button
@@ -851,8 +851,8 @@ export default function Page() {
               onClick={copyReport}
               className="text-xs mono px-3 py-1.5 rounded font-semibold"
               style={{
-                background: 'rgba(148,163,184,0.1)',
-                color: copied ? '#10b981' : 'var(--text-secondary)',
+                background: 'rgba(162, 156, 145,0.1)',
+                color: copied ? '#6fc2ae' : 'var(--text-secondary)',
                 border: '1px solid var(--border-subtle)', cursor: 'pointer',
               }}
             >{copied ? '已复制 ✓' : '复制 Markdown'}</button>
@@ -874,7 +874,7 @@ export default function Page() {
         {wgRuns.length === 0 ? (
           <p className="text-xs leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
             博弈桌尚未开局——攻关线的真实压力测试在那张桌上。
-            <Link to="/sandbox?tab=wargame" className="ml-2 font-semibold" style={{ color: '#22d3ee' }}>→ 上博弈桌推演</Link>
+            <Link to="/sandbox?tab=wargame" className="ml-2 font-semibold" style={{ color: '#6e8cff' }}>→ 上博弈桌推演</Link>
           </p>
         ) : (
           <>
@@ -892,7 +892,7 @@ export default function Page() {
               ))}
             </div>
             <p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>
-              回执来自 <Link to="/sandbox?tab=wargame" style={{ color: '#22d3ee' }}>大国博弈推演桌</Link> 的对局存档（最多回显 6 局）——攻关线即本盘领域，作战盘改数据，博弈桌同步换线。
+              回执来自 <Link to="/sandbox?tab=wargame" style={{ color: '#6e8cff' }}>大国博弈推演桌</Link> 的对局存档（最多回显 6 局）——攻关线即本盘领域，作战盘改数据，博弈桌同步换线。
             </p>
           </>
         )}
@@ -901,17 +901,17 @@ export default function Page() {
       {/* ================= 框架三卡 + 页脚 ================= */}
       <FrameworkTrio cards={[
         {
-          title: '位势的物理', subtitle: '存量能力 × 生态耦合', accent: '#e8a317', border: '#e8a317',
+          title: '位势的物理', subtitle: '存量能力 × 生态耦合', accent: '#d4a25a', border: '#d4a25a',
           body: '位势不是单点指标，是存量能力与生态耦合度的乘积——TRL 量「能不能做」，自主度量「断供后还能不能做」，权重量「值不值得倾国家之力做」。三者错配处即战略误判高发区。',
           pillars: [['TRL', '工程可行性的刻度。'], ['自主度', '断供情景下的存活率。'], ['权重', '国家资源的分配函数。']],
         },
         {
-          title: '断点的经济学', subtitle: '供给弹性决定卡的深度', accent: '#22d3ee', border: '#22d3ee',
+          title: '断点的经济学', subtitle: '供给弹性决定卡的深度', accent: '#6e8cff', border: '#6e8cff',
           body: '卡脖子的本质不是技术差距，是替代供给的弹性——severity 3 硬卡点之所以硬，是因为替代路线的成本曲线在可见周期内压不下来；攻关的真正目标是把对手的「断供期权」贬值。',
           pillars: [['硬卡点', '无近期替代=对手期权满值。'], ['替代路线', '在途即威慑——不必等量产。'], ['防御带', '成熟环节自主兜底是底仓。']],
         },
         {
-          title: '时间的盟友与敌人', subtitle: '复利方向决定阵营', accent: '#c41e3a', border: '#c41e3a',
+          title: '时间的盟友与敌人', subtitle: '复利方向决定阵营', accent: '#e5483b', border: '#e5483b',
           body: '时间对领先域是盟友（生态与成本优势按复利累积），对受制域是敌人（代差同样按复利扩大）——除非换道。模拟器的 85 突破线就是时间阵营的换防点：穿越之前抢时间，穿越之后用时间。',
           pillars: [['领先域', '用时间滚大护城河。'], ['受制域', '与代差复利赛跑。'], ['换道窗口', '新范式重置所有人的钟。']],
         },

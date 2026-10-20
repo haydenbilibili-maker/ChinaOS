@@ -1,6 +1,21 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
+import {
+  BarChart3 as LuBarChart3,
+  FlaskConical as LuFlaskConical,
+  LayoutGrid as LuLayoutGrid,
+  List as LuList,
+  Search as LuSearch,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  BarChart3: LuBarChart3,
+  FlaskConical: LuFlaskConical,
+  LayoutGrid: LuLayoutGrid,
+  List: LuList,
+  Search: LuSearch,
+};
 import { Card, Grid, Stat, DistBar } from '../../app/ui.jsx';
 import { useResearchInstitute } from '../../lib/db/useDataset.js';
 import * as DB from '../../lib/db/localdb.js';
@@ -21,7 +36,7 @@ import { useTalentDeepLink, findEntityInList } from '../../lib/talent/routing.js
 const short = (p) => (p || '').replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '');
 const isPrivate = (r) => r?.type === '民企科研';
 const isFacility = (r) => r?.type === RI_FACILITY_TYPE;
-const statusColor = (s) => (s === '运行' ? '#22c55e' : s === '建设' ? '#e8a317' : '#94a3b8');
+const statusColor = (s) => (s === '运行' ? '#22c55e' : s === '建设' ? '#d4a25a' : '#a29c91');
 const SECTOR_OPTS = [
   { id: 'all', label: '全部体系' },
   { id: 'state', label: '国立科技力量' },
@@ -29,7 +44,7 @@ const SECTOR_OPTS = [
   { id: 'facility', label: '中国大科学装置' },
 ];
 const inp = { background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', borderRadius: 6, padding: '6px 10px', fontSize: 13 };
-const btn = { background: 'rgba(139,92,246,0.14)', color: '#a78bfa', border: '1px solid rgba(139,92,246,0.35)', borderRadius: 6, padding: '6px 14px', fontSize: 13, cursor: 'pointer' };
+const btn = { background: 'rgba(176, 124, 198,0.14)', color: '#a78bfa', border: '1px solid rgba(176, 124, 198,0.35)', borderRadius: 6, padding: '6px 14px', fontSize: 13, cursor: 'pointer' };
 
 function tally(arr, keyFn) {
   const m = new Map();
@@ -41,7 +56,7 @@ function InstCard({ r, on, onClick, dense = false }) {
   return (
     <button type="button" onClick={onClick} className="w-full text-left rounded"
       style={{
-        background: on ? 'rgba(139,92,246,0.14)' : 'var(--bg-elevated)',
+        background: on ? 'rgba(176, 124, 198,0.14)' : 'var(--bg-elevated)',
         border: `1px solid ${on ? '#a78bfa' : 'var(--border-subtle)'}`,
         cursor: 'pointer', padding: dense ? '8px 10px' : '10px 12px',
       }}>
@@ -50,9 +65,9 @@ function InstCard({ r, on, onClick, dense = false }) {
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-1.5 flex-wrap">
             <span className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{r.name}</span>
-            <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: isPrivate(r) ? 'rgba(34,211,238,0.12)' : isFacility(r) ? 'rgba(232,163,23,0.12)' : 'rgba(139,92,246,0.12)', color: isPrivate(r) ? '#22d3ee' : isFacility(r) ? '#e8a317' : '#a78bfa' }}>{r.type}</span>
+            <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: isPrivate(r) ? 'rgba(110, 140, 255,0.12)' : isFacility(r) ? 'rgba(212, 162, 90,0.12)' : 'rgba(176, 124, 198,0.12)', color: isPrivate(r) ? '#6e8cff' : isFacility(r) ? '#d4a25a' : '#a78bfa' }}>{r.type}</span>
             {isFacility(r) && r.tier && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: `${statusColor(r.tier)}22`, color: statusColor(r.tier) }}>{r.tier}</span>}
-            {!isFacility(r) && r.tier && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(232,163,23,0.12)', color: '#e8a317' }}>{r.tier}</span>}
+            {!isFacility(r) && r.tier && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(212, 162, 90,0.12)', color: '#d4a25a' }}>{r.tier}</span>}
           </div>
           <div className="text-[11px] mt-0.5 truncate" style={{ color: 'var(--text-secondary)' }}>
             {isPrivate(r) && r.parentCompany ? `${r.parentCompany} · ` : isFacility(r) && r.parentCompany ? `${r.parentCompany} · ` : ''}{r.field} · {short(r.province) || r.province}
@@ -172,7 +187,7 @@ export default function ResearchInstituteSection() {
   return (
     <section>
       <div className="flex items-center gap-3 mb-4 pb-3" style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-        <span className="flex items-center justify-center rounded" style={{ width: 32, height: 32, background: 'rgba(139,92,246,0.12)', color: '#a78bfa' }}>
+        <span className="flex items-center justify-center rounded" style={{ width: 32, height: 32, background: 'rgba(176, 124, 198,0.12)', color: '#a78bfa' }}>
           <Lucide.FlaskConical size={16} />
         </span>
         <div>
@@ -185,10 +200,10 @@ export default function ResearchInstituteSection() {
 
       <div className="grid gap-3 mb-4" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(110px,1fr))' }}>
         <Stat value={stateCount} label="国立体系" accent="#a78bfa" />
-        <Stat value={privateCount} label="民企科研" accent="#22d3ee" />
-        <Stat value={facilityCount} label="大科学装置" accent="#e8a317" />
+        <Stat value={privateCount} label="民企科研" accent="#6e8cff" />
+        <Stat value={facilityCount} label="大科学装置" accent="#d4a25a" />
         {RI_TYPES.filter((t) => t !== RI_FACILITY_TYPE).map((t) => <Stat key={t} value={typeCounts[t] || 0} label={t} accent="#a78bfa" />)}
-        <Stat value={nlabCount} label="国家实验室" accent="#c41e3a" />
+        <Stat value={nlabCount} label="国家实验室" accent="#e5483b" />
         <Stat value={filtered.length} label="当前命中" />
       </div>
 
@@ -201,7 +216,7 @@ export default function ResearchInstituteSection() {
             else if (id === 'state' && (typeTab === '民企科研' || typeTab === RI_FACILITY_TYPE)) setTypeTab('中科院');
           }}
             className={`text-sm px-3 py-1.5 mono os-filter-chip ${sector === id ? 'is-active' : ''}`}
-            style={{ '--chip-accent': id === 'facility' ? '#e8a317' : 'var(--cyber-cyan)' }}>
+            style={{ '--chip-accent': id === 'facility' ? '#d4a25a' : 'var(--cyber-cyan)' }}>
             {label}{id === 'state' ? ` (${stateCount})` : id === 'private' ? ` (${privateCount})` : id === 'facility' ? ` (${facilityCount})` : ''}
           </button>
         ))}
@@ -216,7 +231,7 @@ export default function ResearchInstituteSection() {
             setSearchParams(next, { replace: true });
           }}
             className={`text-sm px-3 py-1.5 mono os-filter-chip ${typeTab === t ? 'is-active' : ''}`}
-            style={{ '--chip-accent': '#8b5cf6' }}>
+            style={{ '--chip-accent': '#b07cc6' }}>
             {t} ({typeCounts[t] ?? 0})
           </button>
         ))}
@@ -255,7 +270,7 @@ export default function ResearchInstituteSection() {
               <div className="flex rounded overflow-hidden" style={{ border: '1px solid var(--border-subtle)' }}>
                 {[['list', 'List'], ['grid', 'LayoutGrid'], ['stats', 'BarChart3']].map(([v, ic]) => {
                   const I = Lucide[ic]; const on = view === v;
-                  return <button key={v} type="button" onClick={() => setView(v)} style={{ padding: '6px 9px', background: on ? 'rgba(139,92,246,0.18)' : 'var(--bg-base)', color: on ? '#a78bfa' : 'var(--text-tertiary)', border: 'none', cursor: 'pointer' }}><I size={15} /></button>;
+                  return <button key={v} type="button" onClick={() => setView(v)} style={{ padding: '6px 9px', background: on ? 'rgba(176, 124, 198,0.18)' : 'var(--bg-base)', color: on ? '#a78bfa' : 'var(--text-tertiary)', border: 'none', cursor: 'pointer' }}><I size={15} /></button>;
                 })}
               </div>
             </div>
@@ -267,7 +282,7 @@ export default function ResearchInstituteSection() {
           {view === 'stats' ? (
             <Grid cols={2}>
               <Card title="研究领域"><DistBar data={distField.slice(0, 12)} onPick={(k) => setField(field === k ? '' : k)} active={field} /></Card>
-              <Card title={typeTab === RI_FACILITY_TYPE ? '运行状态' : '实验室层级'}><DistBar data={distTier} color={typeTab === RI_FACILITY_TYPE ? '#22c55e' : '#e8a317'} onPick={(k) => setTier(tier === k ? '' : k)} active={tier} /></Card>
+              <Card title={typeTab === RI_FACILITY_TYPE ? '运行状态' : '实验室层级'}><DistBar data={distTier} color={typeTab === RI_FACILITY_TYPE ? '#22c55e' : '#d4a25a'} onPick={(k) => setTier(tier === k ? '' : k)} active={tier} /></Card>
             </Grid>
           ) : (
             <div className="talent-split talent-split--list-detail mb-4">
@@ -297,9 +312,9 @@ export default function ResearchInstituteSection() {
                     avatar={<FigureAvatar {...figureAvatarProps(detail)} size={56} ring eager />}
                     badges={(
                       <>
-                        <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: isPrivate(detail) ? 'rgba(34,211,238,0.12)' : isFacility(detail) ? 'rgba(232,163,23,0.12)' : 'rgba(139,92,246,0.12)', color: isPrivate(detail) ? '#22d3ee' : isFacility(detail) ? '#e8a317' : '#a78bfa' }}>{detail.type}</span>
+                        <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: isPrivate(detail) ? 'rgba(110, 140, 255,0.12)' : isFacility(detail) ? 'rgba(212, 162, 90,0.12)' : 'rgba(176, 124, 198,0.12)', color: isPrivate(detail) ? '#6e8cff' : isFacility(detail) ? '#d4a25a' : '#a78bfa' }}>{detail.type}</span>
                         {isFacility(detail) && detail.tier && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: `${statusColor(detail.tier)}22`, color: statusColor(detail.tier) }}>{detail.tier}</span>}
-                        {!isFacility(detail) && detail.tier && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(232,163,23,0.12)', color: '#e8a317' }}>{detail.tier}</span>}
+                        {!isFacility(detail) && detail.tier && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(212, 162, 90,0.12)', color: '#d4a25a' }}>{detail.tier}</span>}
                         {detail.tags && detail.tags.split(',').slice(0, 3).map((tag) => (
                           <span key={tag} className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'var(--bg-base)', color: 'var(--text-tertiary)' }}>{tag.trim()}</span>
                         ))}
@@ -309,11 +324,11 @@ export default function ResearchInstituteSection() {
                       {
                         title: '基本信息',
                         fields: [
-                          { label: '类型', value: detail.type, accent: '#22d3ee' },
-                          { label: '母公司', value: detail.parentCompany, accent: '#22d3ee' },
+                          { label: '类型', value: detail.type, accent: '#6e8cff' },
+                          { label: '母公司', value: detail.parentCompany, accent: '#6e8cff' },
                           { label: '研发方向', value: detail.field },
                           { label: '总部/省份', value: detail.province },
-                          { label: '组织层级', value: detail.tier, accent: '#e8a317' },
+                          { label: '组织层级', value: detail.tier, accent: '#d4a25a' },
                         ],
                       },
                       {
@@ -330,11 +345,11 @@ export default function ResearchInstituteSection() {
                       {
                         title: '基本信息',
                         fields: [
-                          { label: '类型', value: detail.type, accent: '#e8a317' },
+                          { label: '类型', value: detail.type, accent: '#d4a25a' },
                           { label: '科学领域', value: detail.field },
                           { label: '所在省份', value: detail.province },
                           { label: '运行状态', value: detail.tier, accent: statusColor(detail.tier) },
-                          { label: '依托单位', value: detail.parentCompany, accent: '#e8a317' },
+                          { label: '依托单位', value: detail.parentCompany, accent: '#d4a25a' },
                         ],
                       },
                       {
@@ -354,7 +369,7 @@ export default function ResearchInstituteSection() {
                           { label: '类型', value: detail.type, accent: '#a78bfa' },
                           { label: '领域', value: detail.field },
                           { label: '总部/省份', value: detail.province },
-                          { label: '实验室层级', value: detail.tier, accent: '#e8a317' },
+                          { label: '实验室层级', value: detail.tier, accent: '#d4a25a' },
                         ],
                       },
                       {

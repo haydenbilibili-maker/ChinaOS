@@ -1,6 +1,25 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
+import {
+  BarChart3 as LuBarChart3,
+  Briefcase as LuBriefcase,
+  LayoutGrid as LuLayoutGrid,
+  List as LuList,
+  RefreshCw as LuRefreshCw,
+  Search as LuSearch,
+  X as LuX,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  BarChart3: LuBarChart3,
+  Briefcase: LuBriefcase,
+  LayoutGrid: LuLayoutGrid,
+  List: LuList,
+  RefreshCw: LuRefreshCw,
+  Search: LuSearch,
+  X: LuX,
+};
 import { Card, Grid, Stat, DistBar } from '../../app/ui.jsx';
 import FigureAvatar from '../../lib/ui/FigureAvatar.jsx';
 import { figureAvatarProps, prefetchFigureAvatars } from '../../lib/ui/figureAvatarResolve.js';
@@ -32,7 +51,7 @@ import { useTalentDeepLink, findEntityInList } from '../../lib/talent/routing.js
 
 const short = (p) => (p || '').replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '');
 const inp = { background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', borderRadius: 6, padding: '6px 10px', fontSize: 13 };
-const btn = { background: 'rgba(232,163,23,0.14)', color: '#e8a317', border: '1px solid rgba(232,163,23,0.35)', borderRadius: 6, padding: '6px 14px', fontSize: 13, cursor: 'pointer' };
+const btn = { background: 'rgba(212, 162, 90,0.14)', color: '#d4a25a', border: '1px solid rgba(212, 162, 90,0.35)', borderRadius: 6, padding: '6px 14px', fontSize: 13, cursor: 'pointer' };
 
 const ROLE_DESC = {
   founder: '创办或联合创办企业、定义早期资本与治理结构的企业家节点。',
@@ -42,13 +61,13 @@ const ROLE_DESC = {
   industry_leader: '跨企业或跨周期的行业整合者与标杆人物（含部分央企掌舵）。',
 };
 const ROLE_ACCENT = {
-  founder: '#e8a317', controller: '#f97316', executive: '#22d3ee',
-  investor: '#10b981', industry_leader: '#a78bfa',
+  founder: '#d4a25a', controller: '#f97316', executive: '#6e8cff',
+  investor: '#6fc2ae', industry_leader: '#a78bfa',
 };
 const SECTOR_ACCENT = {
-  tech: '#6366f1', new_energy: '#22c55e', manufacturing: '#94a3b8',
-  consumer: '#f472b6', finance: '#eab308', pharma: '#14b8a6',
-  infra: '#64748b', other: '#78716c',
+  tech: '#6366f1', new_energy: '#22c55e', manufacturing: '#a29c91',
+  consumer: '#f472b6', finance: '#eab308', pharma: '#6fc2ae',
+  infra: '#8a8578', other: '#78716c',
 };
 const CAT_RANK = Object.fromEntries(BE_ROLE_CATS.map((k, i) => [k, i]));
 const HONOR_PATTERNS = [
@@ -89,8 +108,8 @@ function EliteCard({ r, on, onClick, dense = false }) {
   return (
     <button type="button" onClick={onClick} className="w-full text-left rounded"
       style={{
-        background: on ? 'rgba(232,163,23,0.14)' : 'var(--bg-elevated)',
-        border: `1px solid ${on ? '#e8a317' : 'var(--border-subtle)'}`,
+        background: on ? 'rgba(212, 162, 90,0.14)' : 'var(--bg-elevated)',
+        border: `1px solid ${on ? '#d4a25a' : 'var(--border-subtle)'}`,
         cursor: 'pointer', padding: dense ? '8px 10px' : '10px 12px',
       }}>
       <div className="flex items-start gap-2">
@@ -99,9 +118,9 @@ function EliteCard({ r, on, onClick, dense = false }) {
           <div className="flex items-center gap-1.5 flex-wrap">
             <span className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{r.name}</span>
             <AcademicianBadge record={r} />
-            <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(232,163,23,0.12)', color: ROLE_ACCENT[r.category] || '#e8a317' }}>{BE_ROLE_LABEL[r.category] || r.category}</span>
-            {r.province && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)' }}>{short(r.province)}</span>}
-            {sk && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(139,92,246,0.12)', color: SECTOR_ACCENT[sk] || '#a78bfa' }}>{BE_SECTOR_LABEL[sk] || preview(r.industry, 6)}</span>}
+            <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(212, 162, 90,0.12)', color: ROLE_ACCENT[r.category] || '#d4a25a' }}>{BE_ROLE_LABEL[r.category] || r.category}</span>
+            {r.province && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(110, 140, 255,0.12)', color: 'var(--cyber-cyan)' }}>{short(r.province)}</span>}
+            {sk && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(176, 124, 198,0.12)', color: SECTOR_ACCENT[sk] || '#a78bfa' }}>{BE_SECTOR_LABEL[sk] || preview(r.industry, 6)}</span>}
           </div>
           <div className="text-[11px] mt-0.5 truncate" style={{ color: 'var(--text-secondary)' }}>
             {r.company}{r.title ? ` · ${r.title}` : ''}
@@ -109,7 +128,7 @@ function EliteCard({ r, on, onClick, dense = false }) {
           {honors.length > 0 && (
             <div className="flex flex-wrap gap-1 mt-1">
               {honors.slice(0, 3).map((h) => (
-                <span key={h} className="text-[8px] mono px-1 py-0.5 rounded" style={{ background: 'rgba(212,175,55,0.12)', color: '#d4af37' }}>{h}</span>
+                <span key={h} className="text-[8px] mono px-1 py-0.5 rounded" style={{ background: 'rgba(217, 178, 106,0.12)', color: '#d9b26a' }}>{h}</span>
               ))}
             </div>
           )}
@@ -253,9 +272,9 @@ export default function BusinessEliteSection() {
 
   const industryChart = {
     grid: { left: 100, right: 16, top: 12, bottom: 24 },
-    xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+    xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } } },
     yAxis: { type: 'category', data: distIndustry.slice(0, 12).map(([k]) => k).reverse(), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
-    series: [{ type: 'bar', data: distIndustry.slice(0, 12).map(([, n]) => n).reverse(), barWidth: 14, itemStyle: { color: '#e8a317', borderRadius: 3 } }],
+    series: [{ type: 'bar', data: distIndustry.slice(0, 12).map(([, n]) => n).reverse(), barWidth: 14, itemStyle: { color: '#d4a25a', borderRadius: 3 } }],
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
   };
 
@@ -264,8 +283,8 @@ export default function BusinessEliteSection() {
     tooltip: { trigger: 'axis' },
     grid: { left: 48, right: 16, top: 8, bottom: 24 },
     xAxis: { type: 'category', data: regionMapData.map(([k]) => k), axisLabel: { color: LABEL.color, fontSize: 10, rotate: 35 }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
-    yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
-    series: [{ type: 'bar', data: regionMapData.map(([, n]) => n), barWidth: '55%', itemStyle: { color: '#22d3ee', borderRadius: [3, 3, 0, 0] } }],
+    yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+    series: [{ type: 'bar', data: regionMapData.map(([, n]) => n), barWidth: '55%', itemStyle: { color: '#6e8cff', borderRadius: [3, 3, 0, 0] } }],
   } : null;
 
   const loadSeed = async (replace = false) => {
@@ -311,7 +330,7 @@ export default function BusinessEliteSection() {
   return (
     <section>
       <div className="flex items-center gap-3 mb-4 pb-3" style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-        <span className="flex items-center justify-center rounded" style={{ width: 32, height: 32, background: 'rgba(232,163,23,0.12)', color: '#e8a317' }}>
+        <span className="flex items-center justify-center rounded" style={{ width: 32, height: 32, background: 'rgba(212, 162, 90,0.12)', color: '#d4a25a' }}>
           <Lucide.Briefcase size={16} />
         </span>
         <div>
@@ -326,7 +345,7 @@ export default function BusinessEliteSection() {
         {BE_ROLE_CATS.map((k) => (
           <Stat key={k} value={roleCounts[k] ?? 0} label={BE_ROLE_LABEL[k]} accent={ROLE_ACCENT[k]} />
         ))}
-        <Stat value={topSectors.length} label="行业板块" accent="#f0abfc" />
+        <Stat value={topSectors.length} label="行业板块" accent="#d9a7d6" />
         <Stat value={filtered.length} label="当前命中" />
       </div>
 
@@ -335,7 +354,7 @@ export default function BusinessEliteSection() {
         {[['role', '按角色'], ['sector', '按行业']].map(([m, label]) => (
           <button key={m} type="button" onClick={() => { setDimMode(m); setSel(null); clearAll(); if (m === 'role') syncParams(catTab, '', 'role'); else syncParams('', sectorTab || BE_SECTOR_CATS[0], 'sector'); }}
             className="text-xs px-2.5 py-1 mono rounded"
-            style={{ background: dimMode === m ? 'rgba(232,163,23,0.18)' : 'var(--bg-elevated)', color: dimMode === m ? '#e8a317' : 'var(--text-secondary)', border: `1px solid ${dimMode === m ? 'rgba(232,163,23,0.4)' : 'var(--border-subtle)'}`, cursor: 'pointer' }}>
+            style={{ background: dimMode === m ? 'rgba(212, 162, 90,0.18)' : 'var(--bg-elevated)', color: dimMode === m ? '#d4a25a' : 'var(--text-secondary)', border: `1px solid ${dimMode === m ? 'rgba(212, 162, 90,0.4)' : 'var(--border-subtle)'}`, cursor: 'pointer' }}>
             {label}
           </button>
         ))}
@@ -347,7 +366,7 @@ export default function BusinessEliteSection() {
             setCatTab(k); setSel(null); clearAll(); syncParams(k, '', 'role');
           }}
             className={`text-sm px-3 py-1.5 mono os-filter-chip ${catTab === k ? 'is-active' : ''}`}
-            style={{ '--chip-accent': '#e8a317' }}>
+            style={{ '--chip-accent': '#d4a25a' }}>
             {BE_ROLE_LABEL[k]} ({roleCounts[k] ?? 0})
           </button>
         )) : BE_SECTOR_CATS.filter((k) => (sectorCounts[k] ?? 0) > 0).map((k) => (
@@ -364,7 +383,7 @@ export default function BusinessEliteSection() {
       {dimMode === 'role' && (
         <div className="flex gap-1 flex-wrap mb-4 items-center">
           <span className="text-[10px] mono mr-1" style={{ color: 'var(--text-tertiary)' }}>行业筛选</span>
-          <button type="button" onClick={() => setSectorTab('')} className="text-[11px] px-2 py-0.5 mono rounded" style={{ background: !sectorTab ? 'rgba(232,163,23,0.15)' : 'var(--bg-elevated)', color: !sectorTab ? '#e8a317' : 'var(--text-tertiary)', border: '1px solid var(--border-subtle)', cursor: 'pointer' }}>全部</button>
+          <button type="button" onClick={() => setSectorTab('')} className="text-[11px] px-2 py-0.5 mono rounded" style={{ background: !sectorTab ? 'rgba(212, 162, 90,0.15)' : 'var(--bg-elevated)', color: !sectorTab ? '#d4a25a' : 'var(--text-tertiary)', border: '1px solid var(--border-subtle)', cursor: 'pointer' }}>全部</button>
           {topSectors.map(([k, n]) => (
             <button key={k} type="button" onClick={() => setSectorTab(sectorTab === k ? '' : k)}
               className="text-[11px] px-2 py-0.5 mono rounded"
@@ -416,11 +435,11 @@ export default function BusinessEliteSection() {
               <div className="flex rounded overflow-hidden" style={{ border: '1px solid var(--border-subtle)' }}>
                 {[['list', 'List'], ['grid', 'LayoutGrid'], ['stats', 'BarChart3']].map(([v, ic]) => {
                   const I = Lucide[ic]; const on = view === v;
-                  return <button key={v} type="button" onClick={() => setView(v)} style={{ padding: '6px 9px', background: on ? 'rgba(232,163,23,0.18)' : 'var(--bg-base)', color: on ? '#e8a317' : 'var(--text-tertiary)', border: 'none', cursor: 'pointer' }}><I size={15} /></button>;
+                  return <button key={v} type="button" onClick={() => setView(v)} style={{ padding: '6px 9px', background: on ? 'rgba(212, 162, 90,0.18)' : 'var(--bg-base)', color: on ? '#d4a25a' : 'var(--text-tertiary)', border: 'none', cursor: 'pointer' }}><I size={15} /></button>;
                 })}
               </div>
               {list.length < BUSINESS_ELITE_DEDUPED_COUNT.total && (
-                <button type="button" onClick={() => loadSeed(false)} disabled={loading} style={{ ...inp, cursor: 'pointer', color: '#10b981', borderColor: 'rgba(16,185,129,0.4)', display: 'flex', alignItems: 'center', gap: 4 }}>
+                <button type="button" onClick={() => loadSeed(false)} disabled={loading} style={{ ...inp, cursor: 'pointer', color: '#6fc2ae', borderColor: 'rgba(111, 194, 174,0.4)', display: 'flex', alignItems: 'center', gap: 4 }}>
                   <Lucide.RefreshCw size={13} />{loading ? '载入中…' : `补全 ${BUSINESS_ELITE_DEDUPED_COUNT.total} 条`}
                 </button>
               )}
@@ -452,7 +471,7 @@ export default function BusinessEliteSection() {
               </Grid>
               <Grid cols={2}>
                 <Card title="行业板块（点选筛选）"><DistBar data={distSector} color="#a78bfa" onPick={(k) => setSectorTab(sectorTab === k ? '' : k)} active={sectorTab} labelFn={(k) => BE_SECTOR_LABEL[k] || k} /></Card>
-                <Card title="省份（点选筛选）"><DistBar data={distProvince.slice(0, 10)} color="#22d3ee" onPick={(k) => { const full = provinces.find((p) => short(p) === k); setProvince(province === full ? '' : full); }} active={short(province)} /></Card>
+                <Card title="省份（点选筛选）"><DistBar data={distProvince.slice(0, 10)} color="#6e8cff" onPick={(k) => { const full = provinces.find((p) => short(p) === k); setProvince(province === full ? '' : full); }} active={short(province)} /></Card>
               </Grid>
               <p className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>// 数据边界：{BUSINESS_ELITE_META.notes}</p>
             </div>
@@ -490,12 +509,12 @@ export default function BusinessEliteSection() {
                     badges={(
                       <>
                         <AcademicianBadge record={d} size="md" />
-                        <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(232,163,23,0.12)', color: ROLE_ACCENT[d.category] || '#e8a317' }}>{BE_ROLE_LABEL[d.category]}</span>
-                        <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(139,92,246,0.12)', color: SECTOR_ACCENT[sectorOf(d)] || '#a78bfa' }}>{BE_SECTOR_LABEL[sectorOf(d)]}</span>
+                        <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(212, 162, 90,0.12)', color: ROLE_ACCENT[d.category] || '#d4a25a' }}>{BE_ROLE_LABEL[d.category]}</span>
+                        <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(176, 124, 198,0.12)', color: SECTOR_ACCENT[sectorOf(d)] || '#a78bfa' }}>{BE_SECTOR_LABEL[sectorOf(d)]}</span>
                       </>
                     )}
                     tags={[...normalizeTags(d.tags), ...honorTags(d)].filter(Boolean)}
-                    tagAccent="#d4af37"
+                    tagAccent="#d9b26a"
                     sections={buildTalentDetailSections(d, {
                       queue: 'business',
                       bioLabel: '公开商业履历要点',
@@ -515,7 +534,7 @@ export default function BusinessEliteSection() {
                         title: '资本逻辑',
                         fields: [
                           { label: '代表成就', value: d.achievements, accent: 'var(--cyber-cyan)' },
-                          { label: '荣誉', value: d.honors !== '—' ? d.honors : null, accent: '#d4af37' },
+                          { label: '荣誉', value: d.honors !== '—' ? d.honors : null, accent: '#d9b26a' },
                         ],
                       },
                       ...(d.background && !d.bio ? [{
@@ -526,7 +545,7 @@ export default function BusinessEliteSection() {
                     })}
                     timeline={eventsToTimeline(d)}
                     timelineExpandable
-                    timelineAccent="#e8a317"
+                    timelineAccent="#d4a25a"
                     queueNote="// 资本逻辑队列 · 与民企500强公司视角互补"
                     footer={buildDetailFooter(d)}
                   />

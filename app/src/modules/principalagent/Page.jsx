@@ -26,13 +26,13 @@ const SOLUTIONS = [
 // 信息不对称两类型 · 事前/事后 + 对应治理工具（精修方向 3）
 const ASYM_TYPES = [
   {
-    name: '逆向选择 Adverse Selection', timing: '事前 · 隐藏类型', accent: '#e8a317',
+    name: '逆向选择 Adverse Selection', timing: '事前 · 隐藏类型', accent: '#d4a25a',
     mech: '签约之前，委托人不知道代理人是「好类型」还是「坏类型」——能力、意图、风险偏好均不可观测。市场/组织会被坏类型逐渐占据（柠檬市场）。',
     tools: ['甄别 Screening：设计自选择菜单（公务员考试、试用期、竞争性谈判）让类型自我暴露', '信号 Signaling：好类型主动发出难以伪造的信号（学历、政绩公示、审计报告）'],
     gov: '干部选拔的「凡提四必」、巡视前置考察，本质都是事前甄别装置。',
   },
   {
-    name: '道德风险 Moral Hazard', timing: '事后 · 隐藏行动', accent: '#c41e3a',
+    name: '道德风险 Moral Hazard', timing: '事后 · 隐藏行动', accent: '#e5483b',
     mech: '签约之后，代理人的实际行动不可观测——只能看见带噪声的结果。代理人有动机偷懒、卸责、把坏结果归咎于运气。',
     tools: ['监督 Monitoring：审计/巡视/督查/数字留痕，直接压缩行动的不可观测性', '绩效合同 Performance Contract：报酬与可验证结果挂钩，让代理人自担部分风险'],
     gov: '环保督察「回头看」、经济责任审计离任必审，是事后行动还原装置。',
@@ -42,28 +42,28 @@ const ASYM_TYPES = [
 // 央地委托代理案例（精修方向 2）
 const CASES = [
   {
-    key: 'gdp', label: 'GDP 锦标赛', accent: '#c41e3a',
+    key: 'gdp', label: 'GDP 锦标赛', accent: '#e5483b',
     structure: '中央（委托人）→ 省市官员（代理人）：以 GDP 相对增速为核心晋升标尺，构造「政治锦标赛」。',
     asym: '地方真实努力与投资质量不可观测，中央只能看见 GDP 这个带噪声的汇总信号。',
     distortion: '重复建设、土地财政、隐性债务——凡是不进 GDP 的（环保、教育、民生欠账）系统性被牺牲。',
     fix: '考核指标多元化（绿色 GDP、高质量发展指标体系）、终身追责制对冲短期冲动。',
   },
   {
-    key: 'env', label: '环保一刀切', accent: '#10b981',
+    key: 'env', label: '环保一刀切', accent: '#6fc2ae',
     structure: '中央环保督察（委托人）→ 地方政府（代理人）：环保从软约束变为一票否决式硬约束。',
     asym: '督察组无法逐企业核查整改质量，只能抽查 + 限期验收，地方掌握全部现场信息。',
     distortion: '为确保「过关」，地方宁可错杀：全行业停产、冬季禁煤一刀切——合规形式压倒治理实质。',
     fix: '差异化管控清单、「禁止环保一刀切」专门文件、整改销号制把验收颗粒度做细。',
   },
   {
-    key: 'data', label: '数据注水 · 统计造假', accent: '#22d3ee',
+    key: 'data', label: '数据注水 · 统计造假', accent: '#6e8cff',
     structure: '上级统计/考核系统（委托人）→ 地方填报者（代理人）：考核完全依赖代理人自报数据。',
     asym: '数据生产环节在代理人手中——委托人观测的不是事实，而是代理人加工后的报表。',
     distortion: '辽宁、内蒙古等地 GDP/财政挤水分事件：指标压力直接转化为数字造假激励。',
     fix: '统计垂直管理、第四方核查（电力/税收/卫星灯光交叉验证）、统计造假入刑入责。',
   },
   {
-    key: 'jiama', label: '层层加码', accent: '#e8a317',
+    key: 'jiama', label: '层层加码', accent: '#d4a25a',
     structure: '多级委托链：中央→省→市→县，每级既是上级的代理人、又是下级的委托人。',
     asym: '每级都担心下级打折扣，于是把目标向上浮动 10–20% 再下达——以加码对冲衰减。',
     distortion: '指令到基层已严重变形：防疫静默扩大化、双碳运动式减碳，基层承担全部加码成本。',
@@ -98,10 +98,10 @@ const GOV_MAP = [
 
 // 理论与制度时间线（精修方向 7）
 const STAGES = [
-  { period: '1932', title: 'Berle-Means 所有权分离', accent: '#e8a317', desc: '《现代公司与私有财产》指出：股权分散使所有权与控制权分离，经理人实际掌权而股东失控——委托代理问题的现代起点。' },
-  { period: '1976', title: 'Jensen-Meckling 代理成本', accent: '#c41e3a', desc: '把代理问题数学化：代理成本 = 监督成本 + 担保成本 + 剩余损失。最优治理不是消灭代理成本，而是在三者间寻找成本最小化的配比——本页模拟器的理论骨架。' },
-  { period: '1996/2001/2007', title: '信息经济学诺奖系列', accent: '#22d3ee', desc: 'Mirrlees/Vickrey（机制设计与最优税制）、Akerlof/Spence/Stiglitz（柠檬市场/信号/甄别）、Hurwicz/Maskin/Myerson（机制设计理论）——把「在信息不对称下设计制度」变成精密工程学。' },
-  { period: '2007', title: '中国官员晋升锦标赛研究', accent: '#10b981', desc: '周黎安《中国地方官员的晋升锦标赛模式研究》：相对绩效考核 + 胜者晋升，把地方官员变成增长竞赛选手——解释了增长奇迹，也预言了指标博弈的全部副作用。' },
+  { period: '1932', title: 'Berle-Means 所有权分离', accent: '#d4a25a', desc: '《现代公司与私有财产》指出：股权分散使所有权与控制权分离，经理人实际掌权而股东失控——委托代理问题的现代起点。' },
+  { period: '1976', title: 'Jensen-Meckling 代理成本', accent: '#e5483b', desc: '把代理问题数学化：代理成本 = 监督成本 + 担保成本 + 剩余损失。最优治理不是消灭代理成本，而是在三者间寻找成本最小化的配比——本页模拟器的理论骨架。' },
+  { period: '1996/2001/2007', title: '信息经济学诺奖系列', accent: '#6e8cff', desc: 'Mirrlees/Vickrey（机制设计与最优税制）、Akerlof/Spence/Stiglitz（柠檬市场/信号/甄别）、Hurwicz/Maskin/Myerson（机制设计理论）——把「在信息不对称下设计制度」变成精密工程学。' },
+  { period: '2007', title: '中国官员晋升锦标赛研究', accent: '#6fc2ae', desc: '周黎安《中国地方官员的晋升锦标赛模式研究》：相对绩效考核 + 胜者晋升，把地方官员变成增长竞赛选手——解释了增长奇迹，也预言了指标博弈的全部副作用。' },
   { period: '2012→', title: '数字监督时代', accent: '#a78bfa', desc: '大数据审计、卫星遥感环保核查、留痕管理、政务穿透式监管——技术压缩信息不对称，但也催生新型形式主义（痕迹主义）：监督技术与博弈策略协同进化。' },
 ];
 
@@ -127,10 +127,10 @@ export default function Page() {
   // 四象限诊断（精修方向 1）
   const quadrant = useMemo(() => {
     const hiM = m >= 50, hiW = w >= 50;
-    if (!hiM && !hiW) return { name: '躺平区 · 弱监督弱激励', color: '#64748b', desc: '既看不见也不奖惩——代理人理性选择最低努力，组织进入低水平均衡（大锅饭时代的国企/机关病）。' };
-    if (hiM && !hiW) return { name: '形式主义区 · 强监督弱激励', color: '#e8a317', desc: '只有检查没有甜头——代理人把努力投向「应付检查」：留痕、台账、迎检表演。监督越密，痕迹主义越盛。' };
-    if (!hiM && hiW) return { name: '数据注水区 · 弱激励监督+强指标激励', color: '#c41e3a', desc: '重赏之下必有「数字」——指标决定命运而无人核实指标，操纵指标比创造实绩便宜得多（统计造假温床）。' };
-    return { name: '高产出区 · 强监督强激励', color: '#10b981', desc: '努力高、扭曲被压制——但监督成本与激励让渡都很昂贵：高绩效组织的代价是高治理开销，不可能处处复制。' };
+    if (!hiM && !hiW) return { name: '躺平区 · 弱监督弱激励', color: '#8a8578', desc: '既看不见也不奖惩——代理人理性选择最低努力，组织进入低水平均衡（大锅饭时代的国企/机关病）。' };
+    if (hiM && !hiW) return { name: '形式主义区 · 强监督弱激励', color: '#d4a25a', desc: '只有检查没有甜头——代理人把努力投向「应付检查」：留痕、台账、迎检表演。监督越密，痕迹主义越盛。' };
+    if (!hiM && hiW) return { name: '数据注水区 · 弱激励监督+强指标激励', color: '#e5483b', desc: '重赏之下必有「数字」——指标决定命运而无人核实指标，操纵指标比创造实绩便宜得多（统计造假温床）。' };
+    return { name: '高产出区 · 强监督强激励', color: '#6fc2ae', desc: '努力高、扭曲被压制——但监督成本与激励让渡都很昂贵：高绩效组织的代价是高治理开销，不可能处处复制。' };
   }, [m, w]);
 
   // 扫描激励比例 0–100，固定当前监督，画 成本/努力/扭曲 三曲线找最优点
@@ -153,14 +153,14 @@ export default function Page() {
     tooltip: { trigger: 'axis' },
     xAxis: { type: 'category', name: '激励比例 %', nameTextStyle: { color: LABEL.color }, data: sweep.xs, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
     yAxis: [
-      { type: 'value', name: '成本', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
+      { type: 'value', name: '成本', splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
       { type: 'value', name: '努力/扭曲', max: 100, splitLine: { show: false }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
     ],
     series: [
-      { name: '委托总成本', type: 'line', smooth: true, data: sweep.cost, lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.08)' },
-        markPoint: { symbolSize: 44, data: [{ name: '最优', coord: [optIdx, sweep.cost[optIdx]], itemStyle: { color: '#10b981' }, label: { formatter: '最优', color: '#fff', fontSize: 10 } }] } },
-      { name: '代理人努力', type: 'line', smooth: true, yAxisIndex: 1, data: sweep.eff, lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
-      { name: '行为扭曲', type: 'line', smooth: true, yAxisIndex: 1, data: sweep.dis, lineStyle: { color: '#e8a317', width: 2, type: 'dashed' }, itemStyle: { color: '#e8a317' } },
+      { name: '委托总成本', type: 'line', smooth: true, data: sweep.cost, lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.08)' },
+        markPoint: { symbolSize: 44, data: [{ name: '最优', coord: [optIdx, sweep.cost[optIdx]], itemStyle: { color: '#6fc2ae' }, label: { formatter: '最优', color: '#fff', fontSize: 10 } }] } },
+      { name: '代理人努力', type: 'line', smooth: true, yAxisIndex: 1, data: sweep.eff, lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' } },
+      { name: '行为扭曲', type: 'line', smooth: true, yAxisIndex: 1, data: sweep.dis, lineStyle: { color: '#d4a25a', width: 2, type: 'dashed' }, itemStyle: { color: '#d4a25a' } },
     ],
   };
 
@@ -176,8 +176,8 @@ export default function Page() {
       xAxis: categoryX(LEVELS),
       yAxis: valueY({ max: 100, axisLabel: { formatter: '{value}%' } }),
       series: [
-        { name: '当前参数下保真度', type: 'line', smooth: true, data: fidelity, lineStyle: { color: '#22d3ee', width: 3 }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.1)' }, label: { show: true, color: '#22d3ee', fontSize: 10, formatter: '{c}%' } },
-        { name: '弱治理基准(66%/级)', type: 'line', smooth: true, data: weak, lineStyle: { color: '#64748b', width: 2, type: 'dashed' }, itemStyle: { color: '#64748b' } },
+        { name: '当前参数下保真度', type: 'line', smooth: true, data: fidelity, lineStyle: { color: '#6e8cff', width: 3 }, itemStyle: { color: '#6e8cff' }, areaStyle: { color: 'rgba(110, 140, 255,0.1)' }, label: { show: true, color: '#6e8cff', fontSize: 10, formatter: '{c}%' } },
+        { name: '弱治理基准(66%/级)', type: 'line', smooth: true, data: weak, lineStyle: { color: '#8a8578', width: 2, type: 'dashed' }, itemStyle: { color: '#8a8578' } },
       ],
     };
   }, [m, w]);
@@ -187,7 +187,7 @@ export default function Page() {
   const Slider = ({ val, set, label, hint }) => (
     <div className="mb-3">
       <div className="flex justify-between text-xs mb-1"><span style={{ color: 'var(--text-secondary)' }}>{label}</span><span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{val}%</span></div>
-      <input type="range" min="0" max="100" value={val} onChange={(e) => set(Number(e.target.value))} style={{ width: '100%', accentColor: '#c41e3a' }} />
+      <input type="range" min="0" max="100" value={val} onChange={(e) => set(Number(e.target.value))} style={{ width: '100%', accentColor: '#e5483b' }} />
       <p className="text-[11px] mt-1" style={{ color: 'var(--text-tertiary)' }}>{hint}</p>
     </div>
   );
@@ -201,10 +201,10 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value={effort} label="代理人努力水平（实时）" accent={effort > 75 ? '#10b981' : effort > 50 ? '#e8a317' : '#c41e3a'} />
-        <Stat value={distortion} label="行为扭曲度 · 指标博弈" accent={distortion > 40 ? '#c41e3a' : distortion > 20 ? '#e8a317' : '#10b981'} />
-        <Stat value={total} label="委托总成本（越低越好）" accent="#e8a317" />
-        <Stat value={optW + '%'} label="当前监督下的最优激励比例" accent="#22d3ee" />
+        <Stat value={effort} label="代理人努力水平（实时）" accent={effort > 75 ? '#6fc2ae' : effort > 50 ? '#d4a25a' : '#e5483b'} />
+        <Stat value={distortion} label="行为扭曲度 · 指标博弈" accent={distortion > 40 ? '#e5483b' : distortion > 20 ? '#d4a25a' : '#6fc2ae'} />
+        <Stat value={total} label="委托总成本（越低越好）" accent="#d4a25a" />
+        <Stat value={optW + '%'} label="当前监督下的最优激励比例" accent="#6e8cff" />
       </Grid>
 
       <Grid cols={2} className="mb-6">
@@ -212,10 +212,10 @@ export default function Page() {
           <Slider val={m} set={setM} label="监督强度 Monitoring" hint="审计/巡视/留痕的力度。压缩信息不对称，但成本随强度凸性上升（边际递减）。" />
           <Slider val={w} set={setW} label="激励强度 Incentive" hint="绩效占报酬之比。提升努力最有效，但需让渡剩余索取权——且监督不足时催生指标博弈。" />
           <div className="grid grid-cols-4 gap-2 mt-3 text-center">
-            <div><div className="mono text-sm" style={{ color: '#e8a317' }}>{monCost}</div><div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>监督成本</div></div>
-            <div><div className="mono text-sm" style={{ color: '#e8a317' }}>{incCost}</div><div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>激励成本</div></div>
-            <div><div className="mono text-sm" style={{ color: '#c41e3a' }}>{agencyLoss}</div><div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>代理损失</div></div>
-            <div><div className="mono text-sm" style={{ color: '#c41e3a' }}>{distortion}</div><div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>扭曲损失</div></div>
+            <div><div className="mono text-sm" style={{ color: '#d4a25a' }}>{monCost}</div><div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>监督成本</div></div>
+            <div><div className="mono text-sm" style={{ color: '#d4a25a' }}>{incCost}</div><div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>激励成本</div></div>
+            <div><div className="mono text-sm" style={{ color: '#e5483b' }}>{agencyLoss}</div><div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>代理损失</div></div>
+            <div><div className="mono text-sm" style={{ color: '#e5483b' }}>{distortion}</div><div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>扭曲损失</div></div>
           </div>
           <div className="mt-3 p-3 rounded" style={{ background: 'var(--bg-elevated)', borderLeft: `3px solid ${quadrant.color}` }}>
             <div className="text-xs font-semibold mb-1" style={{ color: quadrant.color }}>四象限诊断：{quadrant.name}</div>
@@ -233,7 +233,7 @@ export default function Page() {
       <Card title="央地委托代理案例库 · 选一例拆结构" className="mb-6">
         <SelectorBar items={CASES} activeKey={caseKey} onSelect={setCaseKey} />
         <Grid cols={4} className="mt-4">
-          {[['委托结构', cur.structure, '#22d3ee'], ['信息不对称点', cur.asym, '#e8a317'], ['激励扭曲', cur.distortion, '#c41e3a'], ['制度修补', cur.fix, '#10b981']].map(([t, d, c]) => (
+          {[['委托结构', cur.structure, '#6e8cff'], ['信息不对称点', cur.asym, '#d4a25a'], ['激励扭曲', cur.distortion, '#e5483b'], ['制度修补', cur.fix, '#6fc2ae']].map(([t, d, c]) => (
             <div key={t} className="os-card p-3" style={{ background: 'var(--bg-elevated)', borderTop: `2px solid ${c}` }}>
               <div className="text-xs font-semibold mb-1" style={{ color: c }}>{t}</div>
               <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
@@ -269,7 +269,7 @@ export default function Page() {
             <Grid cols={2}>
               {SOLUTIONS.map(([t, d]) => (
                 <div key={t} className="os-card p-3" style={{ background: 'var(--bg-elevated)' }}>
-                  <div className="text-xs font-semibold mb-1" style={{ color: '#10b981' }}>{t}</div>
+                  <div className="text-xs font-semibold mb-1" style={{ color: '#6fc2ae' }}>{t}</div>
                   <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
                 </div>
               ))}
@@ -277,15 +277,15 @@ export default function Page() {
           </Card>
           <Card title="多任务代理问题 · Holmstrom–Milgrom (1991)">
             <p className="text-xs leading-relaxed mb-2" style={{ color: 'var(--text-secondary)' }}>
-              当代理人同时承担<strong style={{ color: 'var(--text-primary)' }}>可测任务</strong>（GDP、税收、信访量）与<strong style={{ color: 'var(--text-primary)' }}>不可测任务</strong>（生态、长期人力资本、制度建设）时，对可测任务加大激励，会把努力从不可测任务<strong style={{ color: '#c41e3a' }}>系统性挤出</strong>——这不是觉悟问题，而是激励合同的数学必然。
+              当代理人同时承担<strong style={{ color: 'var(--text-primary)' }}>可测任务</strong>（GDP、税收、信访量）与<strong style={{ color: 'var(--text-primary)' }}>不可测任务</strong>（生态、长期人力资本、制度建设）时，对可测任务加大激励，会把努力从不可测任务<strong style={{ color: '#e5483b' }}>系统性挤出</strong>——这不是觉悟问题，而是激励合同的数学必然。
             </p>
             <div className="grid grid-cols-2 gap-2">
               <div className="os-card p-2.5" style={{ background: 'var(--bg-elevated)' }}>
-                <div className="text-[11px] font-semibold" style={{ color: '#c41e3a' }}>考核 GDP → 牺牲环保</div>
+                <div className="text-[11px] font-semibold" style={{ color: '#e5483b' }}>考核 GDP → 牺牲环保</div>
                 <p className="text-[10px] leading-relaxed mt-1" style={{ color: 'var(--text-tertiary)' }}>增长可测、污染滞后不可测：激励权重全压在前者，后者被理性放弃。</p>
               </div>
               <div className="os-card p-2.5" style={{ background: 'var(--bg-elevated)' }}>
-                <div className="text-[11px] font-semibold" style={{ color: '#10b981' }}>考核环保 → 一刀切</div>
+                <div className="text-[11px] font-semibold" style={{ color: '#6fc2ae' }}>考核环保 → 一刀切</div>
                 <p className="text-[10px] leading-relaxed mt-1" style={{ color: 'var(--text-tertiary)' }}>达标可测、精准治理不可测：最便宜的达标方式是全面停产——任务结构未变，扭曲只是换了方向。</p>
               </div>
             </div>
@@ -308,8 +308,8 @@ export default function Page() {
             <thead>
               <tr style={{ color: 'var(--text-secondary)' }}>
                 <th className="text-left py-1.5" style={{ borderBottom: '1px solid var(--border-subtle)' }}>维度</th>
-                <th className="text-left py-1.5" style={{ borderBottom: '1px solid var(--border-subtle)', color: '#22d3ee' }}>股东—经理人</th>
-                <th className="text-left py-1.5" style={{ borderBottom: '1px solid var(--border-subtle)', color: '#c41e3a' }}>中央—地方</th>
+                <th className="text-left py-1.5" style={{ borderBottom: '1px solid var(--border-subtle)', color: '#6e8cff' }}>股东—经理人</th>
+                <th className="text-left py-1.5" style={{ borderBottom: '1px solid var(--border-subtle)', color: '#e5483b' }}>中央—地方</th>
               </tr>
             </thead>
             <tbody>

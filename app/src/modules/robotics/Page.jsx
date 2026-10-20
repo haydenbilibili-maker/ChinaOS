@@ -7,75 +7,75 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // 机器人类型选择器：切换看市场规模 / 国产化率 / 关键部件自主度 / 代表企业 / 卡脖子点
 const ROBOTS = [
   {
-    key: 'industrial', label: '工业机器人', accent: '#c41e3a',
+    key: 'industrial', label: '工业机器人', accent: '#e5483b',
     density: 470, share: 52, marketCN: 680, local: 50,
     desc: '全球过半工业机器人装机于中国，密度达每万名工人约 470 台；汽车、3C 电子、锂电光伏是主战场。本体国产份额已过半，但高端六轴与精密部件仍受制于人。',
     sectors: [
-      { value: 32, name: '3C 电子', itemStyle: { color: '#c41e3a' } },
-      { value: 24, name: '汽车制造', itemStyle: { color: '#22d3ee' } },
-      { value: 18, name: '锂电光伏', itemStyle: { color: '#e8a317' } },
-      { value: 14, name: '金属加工', itemStyle: { color: '#10b981' } },
-      { value: 12, name: '其他', itemStyle: { color: '#64748b' } },
+      { value: 32, name: '3C 电子', itemStyle: { color: '#e5483b' } },
+      { value: 24, name: '汽车制造', itemStyle: { color: '#6e8cff' } },
+      { value: 18, name: '锂电光伏', itemStyle: { color: '#d4a25a' } },
+      { value: 14, name: '金属加工', itemStyle: { color: '#6fc2ae' } },
+      { value: 12, name: '其他', itemStyle: { color: '#8a8578' } },
     ],
     parts: [['RV 减速器', 45], ['谐波减速器', 80], ['伺服电机', 50], ['控制器', 60]],
     players: ['埃斯顿', '汇川技术', '埃夫特', '新时达', '新松'],
     choke: '高刚性 RV 减速器精度与寿命、高端伺服编码器分辨率，仍依赖纳博特斯克/哈默纳科/安川。',
   },
   {
-    key: 'cobot', label: '协作机器人', accent: '#22d3ee',
+    key: 'cobot', label: '协作机器人', accent: '#6e8cff',
     density: 95, share: 40, marketCN: 38, local: 70,
     desc: '与人共融的轻量协作臂渗透 SME 与商用场景；中国出货量已居全球前列。安全力控、碰撞检测与低成本一体化关节是差异化关键，本体国产化程度高。',
     sectors: [
-      { value: 30, name: '3C 装配', itemStyle: { color: '#22d3ee' } },
-      { value: 22, name: '商用服务', itemStyle: { color: '#c41e3a' } },
-      { value: 20, name: '半导体', itemStyle: { color: '#e8a317' } },
-      { value: 16, name: '医疗', itemStyle: { color: '#10b981' } },
-      { value: 12, name: '其他', itemStyle: { color: '#64748b' } },
+      { value: 30, name: '3C 装配', itemStyle: { color: '#6e8cff' } },
+      { value: 22, name: '商用服务', itemStyle: { color: '#e5483b' } },
+      { value: 20, name: '半导体', itemStyle: { color: '#d4a25a' } },
+      { value: 16, name: '医疗', itemStyle: { color: '#6fc2ae' } },
+      { value: 12, name: '其他', itemStyle: { color: '#8a8578' } },
     ],
     parts: [['一体化关节', 78], ['力矩传感', 55], ['伺服电机', 65], ['控制器', 72]],
     players: ['节卡', '遨博', '越疆 Dobot', '艾利特', '法奥'],
     choke: '高精度六维力/力矩传感器、关节空心杯电机与高动态响应算法。',
   },
   {
-    key: 'humanoid', label: '人形机器人', accent: '#e8a317',
+    key: 'humanoid', label: '人形机器人', accent: '#d4a25a',
     density: 8, share: 35, marketCN: 12, local: 60,
     desc: '具身智能是 AI 进入物理世界的最后拼图；北京、上海、深圳国家级创新中心并行推进。本体供应链国产化快速攀升，但灵巧手、空心杯电机、高算力域控仍是瓶颈，2025—2026 进入小批量量产。',
     sectors: [
-      { value: 28, name: '工厂搬运', itemStyle: { color: '#e8a317' } },
-      { value: 24, name: '商用导览', itemStyle: { color: '#c41e3a' } },
-      { value: 20, name: '科研教育', itemStyle: { color: '#22d3ee' } },
-      { value: 16, name: '家庭服务', itemStyle: { color: '#10b981' } },
-      { value: 12, name: '特种', itemStyle: { color: '#64748b' } },
+      { value: 28, name: '工厂搬运', itemStyle: { color: '#d4a25a' } },
+      { value: 24, name: '商用导览', itemStyle: { color: '#e5483b' } },
+      { value: 20, name: '科研教育', itemStyle: { color: '#6e8cff' } },
+      { value: 16, name: '家庭服务', itemStyle: { color: '#6fc2ae' } },
+      { value: 12, name: '特种', itemStyle: { color: '#8a8578' } },
     ],
     parts: [['行星滚柱丝杠', 35], ['空心杯电机', 30], ['灵巧手', 40], ['域控芯片', 25]],
     players: ['宇树', '智元', '傅利叶', '小鹏', '优必选'],
     choke: '行星滚柱丝杠量产良率、空心杯无刷电机、灵巧手触觉、车规级高算力域控芯片。',
   },
   {
-    key: 'service', label: '服务机器人', accent: '#10b981',
+    key: 'service', label: '服务机器人', accent: '#6fc2ae',
     density: 60, share: 45, marketCN: 95, local: 85,
     desc: '配送、清洁、餐饮、商用导览构成中国服务机器人最大规模量；导航定位与本体高度国产化，场景驱动迭代快，是产业链「以量养技」的现金牛。',
     sectors: [
-      { value: 30, name: '配送物流', itemStyle: { color: '#10b981' } },
-      { value: 24, name: '清洁', itemStyle: { color: '#22d3ee' } },
-      { value: 20, name: '餐饮商用', itemStyle: { color: '#c41e3a' } },
-      { value: 16, name: '医疗康养', itemStyle: { color: '#e8a317' } },
-      { value: 10, name: '其他', itemStyle: { color: '#64748b' } },
+      { value: 30, name: '配送物流', itemStyle: { color: '#6fc2ae' } },
+      { value: 24, name: '清洁', itemStyle: { color: '#6e8cff' } },
+      { value: 20, name: '餐饮商用', itemStyle: { color: '#e5483b' } },
+      { value: 16, name: '医疗康养', itemStyle: { color: '#d4a25a' } },
+      { value: 10, name: '其他', itemStyle: { color: '#8a8578' } },
     ],
     parts: [['激光雷达', 80], ['SLAM 算法', 75], ['伺服轮毂', 82], ['电池/电控', 88]],
     players: ['普渡', '擎朗', '云迹', '高仙', '九号'],
     choke: '高线束固态激光雷达成本、复杂动态场景下的鲁棒导航与长续航。',
   },
   {
-    key: 'special', label: '特种机器人', accent: '#8b5cf6',
+    key: 'special', label: '特种机器人', accent: '#b07cc6',
     density: 12, share: 30, marketCN: 55, local: 65,
     desc: '消防、巡检、矿用、水下、军用等极端场景机器人；强可靠性与环境适应性优先。国产化在巡检/矿用较高，高端水下与防爆驱动仍有缺口。',
     sectors: [
-      { value: 28, name: '电力巡检', itemStyle: { color: '#8b5cf6' } },
-      { value: 22, name: '矿用', itemStyle: { color: '#c41e3a' } },
-      { value: 20, name: '消防应急', itemStyle: { color: '#e8a317' } },
-      { value: 18, name: '水下', itemStyle: { color: '#22d3ee' } },
-      { value: 12, name: '其他', itemStyle: { color: '#64748b' } },
+      { value: 28, name: '电力巡检', itemStyle: { color: '#b07cc6' } },
+      { value: 22, name: '矿用', itemStyle: { color: '#e5483b' } },
+      { value: 20, name: '消防应急', itemStyle: { color: '#d4a25a' } },
+      { value: 18, name: '水下', itemStyle: { color: '#6e8cff' } },
+      { value: 12, name: '其他', itemStyle: { color: '#8a8578' } },
     ],
     parts: [['防爆驱动', 55], ['多传感融合', 60], ['特种材料', 70], ['通信链路', 65]],
     players: ['亿嘉和', '申昊', '中信重工', '博实', '哈工智能'],
@@ -85,12 +85,12 @@ const ROBOTS = [
 
 // 机器人密度国际对比（每万名制造业工人台数，示意 ~2023）
 const DENSITY = [
-  { c: '韩国', v: 1012, color: '#c41e3a' },
-  { c: '新加坡', v: 770, color: '#e8a317' },
-  { c: '德国', v: 415, color: '#8b5cf6' },
-  { c: '日本', v: 397, color: '#10b981' },
-  { c: '中国', v: 470, color: '#22d3ee' },
-  { c: '美国', v: 295, color: '#64748b' },
+  { c: '韩国', v: 1012, color: '#e5483b' },
+  { c: '新加坡', v: 770, color: '#d4a25a' },
+  { c: '德国', v: 415, color: '#b07cc6' },
+  { c: '日本', v: 397, color: '#6fc2ae' },
+  { c: '中国', v: 470, color: '#6e8cff' },
+  { c: '美国', v: 295, color: '#8a8578' },
 ];
 
 // 核心零部件国产自主度雷达（中国 vs 全球第一梯队，示意）
@@ -106,12 +106,12 @@ const TREND_HUMANOID = [0, 2, 6, 18, 45, 600];
 
 // 人形机器人 BOM 成本拆解（占比 %，示意）
 const HUMANOID_BOM = [
-  { value: 32, name: '执行器/关节模组', itemStyle: { color: '#c41e3a' } },
-  { value: 18, name: '减速器/丝杠', itemStyle: { color: '#e8a317' } },
-  { value: 16, name: '灵巧手', itemStyle: { color: '#22d3ee' } },
-  { value: 14, name: '传感器', itemStyle: { color: '#10b981' } },
-  { value: 12, name: '算力/域控', itemStyle: { color: '#8b5cf6' } },
-  { value: 8, name: '结构件/电源', itemStyle: { color: '#64748b' } },
+  { value: 32, name: '执行器/关节模组', itemStyle: { color: '#e5483b' } },
+  { value: 18, name: '减速器/丝杠', itemStyle: { color: '#d4a25a' } },
+  { value: 16, name: '灵巧手', itemStyle: { color: '#6e8cff' } },
+  { value: 14, name: '传感器', itemStyle: { color: '#6fc2ae' } },
+  { value: 12, name: '算力/域控', itemStyle: { color: '#b07cc6' } },
+  { value: 8, name: '结构件/电源', itemStyle: { color: '#8a8578' } },
 ];
 
 // 人形机器人量产降本曲线（整机成本，万元/台，示意）
@@ -120,10 +120,10 @@ const COST_VALUES = [60, 45, 30, 22, 14, 8];
 
 // 人形机器人路线 TimelineBar
 const ROADMAP = [
-  { period: '2020—2023', title: '样机验证', accent: '#8b5cf6', desc: '双足/双臂动态平衡与运动控制突破，宇树、优必选、傅利叶等样机迭代；技术路线发散，单台成本数十万元，纯展示与科研属性。' },
-  { period: '2024—2025', title: '小批量交付', accent: '#22d3ee', desc: '本体供应链初步国产化，进入实验室与示范工厂；整机价格下探至二三十万元，订单以百台计，场景以搬运/巡检/导览为主。' },
-  { period: '2026—2028', title: '商业化落地', accent: '#e8a317', desc: '具身大模型 + 数据飞轮成熟，工厂与商用场景规模复制；成本击穿 15 万元线，年出货进入万台量级，开始替代结构化重复劳动。' },
-  { period: '2029—2030', title: '规模量产', accent: '#c41e3a', desc: '行星滚柱丝杠/空心杯电机/灵巧手良率爬坡完成，整机降至个位数万元；进入消费与家庭场景，成为继手机、汽车后的第三超级终端。' },
+  { period: '2020—2023', title: '样机验证', accent: '#b07cc6', desc: '双足/双臂动态平衡与运动控制突破，宇树、优必选、傅利叶等样机迭代；技术路线发散，单台成本数十万元，纯展示与科研属性。' },
+  { period: '2024—2025', title: '小批量交付', accent: '#6e8cff', desc: '本体供应链初步国产化，进入实验室与示范工厂；整机价格下探至二三十万元，订单以百台计，场景以搬运/巡检/导览为主。' },
+  { period: '2026—2028', title: '商业化落地', accent: '#d4a25a', desc: '具身大模型 + 数据飞轮成熟，工厂与商用场景规模复制；成本击穿 15 万元线，年出货进入万台量级，开始替代结构化重复劳动。' },
+  { period: '2029—2030', title: '规模量产', accent: '#e5483b', desc: '行星滚柱丝杠/空心杯电机/灵巧手良率爬坡完成，整机降至个位数万元；进入消费与家庭场景，成为继手机、汽车后的第三超级终端。' },
 ];
 
 export default function Page() {
@@ -160,7 +160,7 @@ export default function Page() {
     yAxis: { type: 'category', data: r.parts.map((p) => p[0]), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     series: [{
       type: 'bar', barWidth: 14,
-      data: r.parts.map((p) => ({ value: p[1], itemStyle: { color: p[1] >= 70 ? '#10b981' : p[1] >= 50 ? '#e8a317' : '#c41e3a', borderRadius: [0, 3, 3, 0] } })),
+      data: r.parts.map((p) => ({ value: p[1], itemStyle: { color: p[1] >= 70 ? '#6fc2ae' : p[1] >= 50 ? '#d4a25a' : '#e5483b', borderRadius: [0, 3, 3, 0] } })),
       label: { show: true, position: 'right', color: LABEL.color, fontSize: 10, formatter: '{c}%' },
     }],
   }), [r]);
@@ -174,7 +174,7 @@ export default function Page() {
     series: [{
       type: 'bar', barWidth: 22,
       data: DENSITY.map((d) => ({ value: d.v, itemStyle: { color: d.color, borderRadius: [3, 3, 0, 0] } })),
-      markLine: { silent: true, symbol: 'none', lineStyle: { color: '#22d3ee', type: 'dashed' }, data: [{ yAxis: 470, label: { color: '#22d3ee', fontSize: 10, formatter: '中国 470' } }] },
+      markLine: { silent: true, symbol: 'none', lineStyle: { color: '#6e8cff', type: 'dashed' }, data: [{ yAxis: 470, label: { color: '#6e8cff', fontSize: 10, formatter: '中国 470' } }] },
     }],
   }), []);
 
@@ -184,15 +184,15 @@ export default function Page() {
     radar: {
       indicator: RADAR_INDS.map((n) => ({ name: n, max: 100 })),
       axisName: { color: LABEL.color, fontSize: 10 },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-      axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
+      axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
       splitArea: { show: false },
     },
     series: [{
       type: 'radar',
       data: [
-        { value: RADAR_CN, name: '中国自主度', lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.15)' } },
-        { value: RADAR_LEADER, name: '全球第一梯队', lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.08)' } },
+        { value: RADAR_CN, name: '中国自主度', lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.15)' } },
+        { value: RADAR_LEADER, name: '全球第一梯队', lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' }, areaStyle: { color: 'rgba(110, 140, 255,0.08)' } },
       ],
     }],
   }), []);
@@ -201,9 +201,9 @@ export default function Page() {
   const trendStack = useMemo(() => stackedBarOpt({
     categories: TREND_YEARS,
     series: [
-      { name: '工业机器人', data: TREND_INDUSTRIAL, itemStyle: { color: '#c41e3a' } },
-      { name: '服务机器人', data: TREND_SERVICE, itemStyle: { color: '#22d3ee' } },
-      { name: '人形机器人', data: TREND_HUMANOID, itemStyle: { color: '#e8a317' } },
+      { name: '工业机器人', data: TREND_INDUSTRIAL, itemStyle: { color: '#e5483b' } },
+      { name: '服务机器人', data: TREND_SERVICE, itemStyle: { color: '#6e8cff' } },
+      { name: '人形机器人', data: TREND_HUMANOID, itemStyle: { color: '#d4a25a' } },
     ],
   }), []);
 
@@ -219,9 +219,9 @@ export default function Page() {
     series: [{
       type: 'line', smooth: true, symbol: 'circle', symbolSize: 7,
       data: COST_VALUES,
-      lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' },
-      areaStyle: { color: 'rgba(232,163,23,0.12)' },
-      markPoint: { symbolSize: 0, data: [{ coord: ['2026E', 22], value: '商业化拐点', label: { color: '#e8a317', fontSize: 10 } }] },
+      lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' },
+      areaStyle: { color: 'rgba(212, 162, 90,0.12)' },
+      markPoint: { symbolSize: 0, data: [{ coord: ['2026E', 22], value: '商业化拐点', label: { color: '#d4a25a', fontSize: 10 } }] },
     }],
   }), []);
 
@@ -235,10 +235,10 @@ export default function Page() {
       </IntroCard>
 
       <StatGrid className="mb-6">
-        <Stat value="470 台" label="工业机器人密度/万人" accent="#22d3ee" />
-        <Stat value="52%" label="全球工业装机份额" accent="#c41e3a" />
-        <Stat value="45%" label="高端核心部件国产化率" accent="#e8a317" />
-        <Stat value="2025—26" label="人形机器人小批量量产" accent="#10b981" />
+        <Stat value="470 台" label="工业机器人密度/万人" accent="#6e8cff" />
+        <Stat value="52%" label="全球工业装机份额" accent="#e5483b" />
+        <Stat value="45%" label="高端核心部件国产化率" accent="#d4a25a" />
+        <Stat value="2025—26" label="人形机器人小批量量产" accent="#6fc2ae" />
       </StatGrid>
 
       {/* ① 机器人类型选择器 */}
@@ -250,8 +250,8 @@ export default function Page() {
 
         <StatGrid className="mb-4">
           <Stat value={`${r.share}%`} label={`全球装机份额 · ${r.label}`} accent={r.accent} />
-          <Stat value={`${r.density} 台`} label="装机密度/万人(示意)" accent="#22d3ee" />
-          <Stat value={`${r.marketCN} 亿`} label="中国市场规模(示意)" accent="#e8a317" />
+          <Stat value={`${r.density} 台`} label="装机密度/万人(示意)" accent="#6e8cff" />
+          <Stat value={`${r.marketCN} 亿`} label="中国市场规模(示意)" accent="#d4a25a" />
           <div className="os-card os-stat-card p-4 flex flex-col items-center justify-center gap-1">
             <OsGauge value={r.local} color={r.accent} size={84} label="本体国产化率" />
           </div>
@@ -270,8 +270,8 @@ export default function Page() {
                 <span key={p} className="text-xs px-2.5 py-1 rounded mono" style={{ background: 'var(--bg-elevated)', border: `1px solid ${r.accent}`, color: 'var(--text-secondary)' }}>{p}</span>
               ))}
             </div>
-            <div className="os-card p-3" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #c41e3a' }}>
-              <div className="text-[11px] font-semibold mb-1" style={{ color: '#c41e3a' }}>卡脖子点</div>
+            <div className="os-card p-3" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #e5483b' }}>
+              <div className="text-[11px] font-semibold mb-1" style={{ color: '#e5483b' }}>卡脖子点</div>
               <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{r.choke}</p>
             </div>
           </Card>
@@ -298,16 +298,16 @@ export default function Page() {
       <Card title="产业规模趋势 · 工业 / 服务 / 人形（亿元，2018→2030E 示意）" className="mb-6">
         <EChart option={trendStack} style={{ height: 280 }} />
         <Grid cols={3} className="mt-4">
-          <div style={{ borderLeft: '2px solid #c41e3a', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#c41e3a' }}>工业 · 存量基本盘</div>
+          <div style={{ borderLeft: '2px solid #e5483b', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#e5483b' }}>工业 · 存量基本盘</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>增速放缓但规模稳健，国产替代是主线。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #22d3ee', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#22d3ee' }}>服务 · 现金牛</div>
+          <div style={{ borderLeft: '2px solid #6e8cff', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6e8cff' }}>服务 · 现金牛</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>以量养技，高国产化率反哺供应链与算法。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #e8a317', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#e8a317' }}>人形 · 指数级增量</div>
+          <div style={{ borderLeft: '2px solid #d4a25a', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#d4a25a' }}>人形 · 指数级增量</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>2030 前从近乎为零跃升至千亿量级的最大变量。</p>
           </div>
         </Grid>

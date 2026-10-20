@@ -11,12 +11,12 @@
 export const AS_OF = '2026-09-28';
 
 export const THEMES = {
-  selfgov: { label: '村民自治与基层民主', color: '#c41e3a' },
-  field: { label: '田野政治学与微观政治', color: '#8b5cf6' },
-  jiahu: { label: '家户制与农村发展道路', color: '#e8a317' },
-  statization: { label: '国家化与"下乡"整合', color: '#22d3ee' },
-  relation: { label: '关系叠加与国家演化', color: '#10b981' },
-  modern: { label: '基层治理现代化', color: '#fb923c' },
+  selfgov: { label: '村民自治与基层民主', color: '#e5483b' },
+  field: { label: '田野政治学与微观政治', color: '#b07cc6' },
+  jiahu: { label: '家户制与农村发展道路', color: '#d4a25a' },
+  statization: { label: '国家化与"下乡"整合', color: '#6e8cff' },
+  relation: { label: '关系叠加与国家演化', color: '#6fc2ae' },
+  modern: { label: '基层治理现代化', color: '#c07a4a' },
 };
 export const THEME_KEYS = Object.keys(THEMES);
 
@@ -47,9 +47,9 @@ export const BOARD = {
 };
 
 export const CAREER_GROUPS = {
-  study: { label: '求学/访学', color: '#8b5cf6' },
-  ccnu: { label: '华中师大教职', color: '#22d3ee' },
-  admin: { label: '机构负责人', color: '#10b981' },
+  study: { label: '求学/访学', color: '#b07cc6' },
+  ccnu: { label: '华中师大教职', color: '#6e8cff' },
+  admin: { label: '机构负责人', color: '#6fc2ae' },
 };
 
 /** 履历甘特：起止为小数年；月份未载者取年中近似；note 记录口径出入 */

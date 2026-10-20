@@ -10,7 +10,7 @@ export const DIM_PROFILE = [
   {
     key: 'institutions',
     label: '制度与改革',
-    color: '#e8a317',
+    color: '#d4a25a',
     posture: '改革进入深水区，制度供给速度与执行损耗赛跑，存量利益再切分阻力上升。',
     tension: 58,
     momentum: '胶着',
@@ -21,7 +21,7 @@ export const DIM_PROFILE = [
   {
     key: 'depthtopics',
     label: '深度专题',
-    color: '#10b981',
+    color: '#6fc2ae',
     posture: '开放与数字两条线持续推进，贸易新三样与制度型开放对冲外部脱钩压力。',
     tension: 46,
     momentum: '上行',
@@ -32,7 +32,7 @@ export const DIM_PROFILE = [
   {
     key: 'techtopics',
     label: '科技专题',
-    color: '#22d3ee',
+    color: '#6e8cff',
     posture: '封锁倒逼自主，先进制程与智算底座加速补课，原始创新仍是最长的短板。',
     tension: 73,
     momentum: '上行',
@@ -43,7 +43,7 @@ export const DIM_PROFILE = [
   {
     key: 'society',
     label: '社会与民生',
-    color: '#f0abfc',
+    color: '#d9a7d6',
     posture: '人口负增长叠加地产下行，民生支出刚性上升，社会预期修复慢于政策投放。',
     tension: 54,
     momentum: '承压',
@@ -54,7 +54,7 @@ export const DIM_PROFILE = [
   {
     key: 'industry',
     label: '产业与制造',
-    color: '#fb923c',
+    color: '#c07a4a',
     posture: '制造规模优势仍在扩大，高端环节持续突破，产能与利润的剪刀差待解。',
     tension: 64,
     momentum: '上行',
@@ -65,7 +65,7 @@ export const DIM_PROFILE = [
   {
     key: 'finance',
     label: '货币金融',
-    color: '#d4af37',
+    color: '#d9b26a',
     posture: '化债与稳汇率双线作战，信用扩张依赖财政接力，金融让利空间逼近边界。',
     tension: 78,
     momentum: '承压',
@@ -76,7 +76,7 @@ export const DIM_PROFILE = [
   {
     key: 'region',
     label: '区域与全球化',
-    color: '#8b5cf6',
+    color: '#b07cc6',
     posture: '板块分化趋稳，人口与产业向优势区域集聚，海洋与通道经营稳步外推。',
     tension: 38,
     momentum: '胶着',
@@ -87,7 +87,7 @@ export const DIM_PROFILE = [
   {
     key: 'security',
     label: '安全与国防',
-    color: '#c41e3a',
+    color: '#e5483b',
     posture: '台海与科技安全双热点叠加，威慑与反介入体系加速成型，灰色地带博弈常态化。',
     tension: 87,
     momentum: '胶着',

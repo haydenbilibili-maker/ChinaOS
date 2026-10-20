@@ -1,10 +1,14 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import React, { Suspense, lazy, useEffect, useMemo, useState } from 'react';
+import { BookOpen } from 'lucide-react';
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { Card, CrossLinks, Grid, Stat } from '../../app/ui.jsx';
 import { FrameworkTrio } from '../shared/ModuleParadigm.jsx';
 import {
   VOLUMES, CANONICAL_ORDER, REGIME, REGIME_TAG, VOL_LINKS, getVolume, wordEstimate, getLayerCode, getPrevNextVol,
 } from './volumes.js';
+import { volumeToMarkdown } from './volumeMarkdown.js';
+
+const Reader = lazy(() => import('../../vi/reader/Reader.jsx'));
 
 const PROGRESS_KEY = 'civilization-read-progress';
 
@@ -47,6 +51,9 @@ export default function VolumeDetail() {
   const vol = getVolume(volId);
   const [activeSec, setActiveSec] = useState(null);
   const [scrollPct, setScrollPct] = useState(0);
+  const [searchParams] = useSearchParams();
+  const [reading, setReading] = useState(() => searchParams.get('read') === '1');
+  const readerMd = useMemo(() => (reading ? volumeToMarkdown(vol) : ''), [reading, vol]);
 
   const allSections = useMemo(() => {
     if (!vol) return [];
@@ -56,7 +63,7 @@ export default function VolumeDetail() {
     return [...fw, ...(vol.sections || [])];
   }, [vol]);
 
-  const [rtag, rcolor] = vol ? REGIME_TAG[REGIME[vol.id]] : ['', '#64748b'];
+  const [rtag, rcolor] = vol ? REGIME_TAG[REGIME[vol.id]] : ['', '#8a8578'];
   const progress = loadProgress()[volId] || 0;
   const words = vol ? wordEstimate(vol) : 0;
 
@@ -81,16 +88,19 @@ export default function VolumeDetail() {
 
   useEffect(() => {
     if (!vol) return undefined;
+    // Shell 的滚动容器是 #main-content，而非 window
+    const box = document.getElementById('main-content');
+    const target = box || window;
     const onScroll = () => {
-      const doc = document.documentElement;
+      const doc = box || document.documentElement;
       const max = doc.scrollHeight - doc.clientHeight;
       const pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
       setScrollPct(pct);
       saveProgress(volId, pct);
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
+    target.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => target.removeEventListener('scroll', onScroll);
   }, [vol, volId]);
 
   if (!vol) {
@@ -104,6 +114,21 @@ export default function VolumeDetail() {
 
   return (
     <div>
+      {reading && (
+        <Suspense fallback={null}>
+          <Reader
+            open
+            onClose={() => setReading(false)}
+            docId={`civilization:${vol.id}`}
+            title={vol.title}
+            badge={`文明透视 · ${vol.num}`}
+            meta={[vol.role].filter(Boolean)}
+            markdown={readerMd}
+            sourcePath={`/civilization/v/${vol.id}`}
+            disclaimer="思想史与制度隐喻梳理，非历史决定论"
+          />
+        </Suspense>
+      )}
       {/* 阅读进度条 */}
       <div className="fixed top-0 left-0 right-0 z-50 h-0.5" style={{ background: 'var(--bg-base)' }}>
         <div style={{ width: `${scrollPct}%`, height: '100%', background: vol.color, transition: 'width .1s' }} />
@@ -116,7 +141,7 @@ export default function VolumeDetail() {
             ← 文明透视 · 逐卷精读
           </Link>
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-[11px] mono px-2 py-0.5 rounded" style={{ background: 'rgba(196,30,58,0.14)', color: 'var(--china-red)' }}>
+            <span className="text-[11px] mono px-2 py-0.5 rounded" style={{ background: 'rgba(229, 72, 59,0.14)', color: 'var(--china-red)' }}>
               全文报告
             </span>
             {prevNext.index >= 0 && (
@@ -133,7 +158,11 @@ export default function VolumeDetail() {
           <h1 className="text-2xl font-bold mt-2" style={{ color: 'var(--text-primary)' }}>{vol.num} · {vol.title}</h1>
           <p className="text-sm mt-1.5 leading-relaxed max-w-3xl" style={{ color: 'var(--text-secondary)' }}>{vol.thesis}</p>
         </div>
-        <div className="flex gap-2 flex-wrap">
+        <div className="flex gap-2 flex-wrap items-center">
+          <button type="button" className="os-btn os-btn-sm inline-flex items-center gap-1.5" onClick={() => setReading(true)}>
+            <BookOpen size={14} aria-hidden="true" />
+            阅读模式
+          </button>
           {vol.tags?.map((t) => (
             <span key={t} className="text-[10px] mono px-2 py-1 rounded" style={{ background: 'var(--bg-elevated)', color: 'var(--text-tertiary)', border: '1px solid var(--border-subtle)' }}>{t}</span>
           ))}
@@ -142,9 +171,9 @@ export default function VolumeDetail() {
 
       <Grid cols={4} className="mb-6">
         <Stat value={vol.sections?.length || 0} label="正文章节" accent={vol.color} />
-        <Stat value={`${words}`} label="字数约" accent="#22d3ee" />
-        <Stat value={`${Math.max(progress, Math.round(scrollPct))}%`} label="阅读进度" accent="#10b981" />
-        <Stat value={vol.frameworks?.length || 0} label="框架卡" accent="#e8a317" />
+        <Stat value={`${words}`} label="字数约" accent="#6e8cff" />
+        <Stat value={`${Math.max(progress, Math.round(scrollPct))}%`} label="阅读进度" accent="#6fc2ae" />
+        <Stat value={vol.frameworks?.length || 0} label="框架卡" accent="#d4a25a" />
       </Grid>
 
       <div className="grid gap-6 mb-8" style={{ gridTemplateColumns: 'minmax(180px, 220px) 1fr' }}>

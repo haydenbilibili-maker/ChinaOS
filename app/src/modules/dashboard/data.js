@@ -28,10 +28,10 @@ export const MACRO_AS_OF = ECON_AS_OF;
 export const DASHBOARD_REFRESH_MS = 60_000;
 
 const KPI_COLORS = {
-  warm: '#10b981',
-  hold: '#e8a317',
-  cool: '#c41e3a',
-  steel: '#22d3ee',
+  warm: '#6fc2ae',
+  hold: '#d4a25a',
+  cool: '#e5483b',
+  steel: '#6e8cff',
 };
 
 /** 信号语义色 · 绿/黄/红 */
@@ -222,28 +222,28 @@ export const ENTRY_TOTAL =
 
 // ── 数据集规模对比（横向条形）─────────────────────────────
 export const DATASET_SCALE = [
-  { key: '中国政要', value: FIGURE_SEED_COUNT, to: '/talent', color: '#22d3ee' },
-  { key: '知识精英', value: CULTURAL_ELITE_DEDUPED_COUNT.total, to: '/talent?tab=knowledge', color: '#f0abfc' },
-  { key: '政策文件', value: DOC_CATALOG_META.total, to: '/policydocs', color: '#ef4444' },
-  { key: '法律条文', value: LEGAL_STATUTE_DEDUPED_COUNT.total, to: '/policydocs?tab=legal', color: '#8b5cf6' },
-  { key: '民企500强', value: PE_COMPANIES, to: '/enterprise500', color: '#fb923c' },
-  { key: '反腐名单', value: ANTI_CORRUPTION_COUNT, to: '/talent?tab=anticorruption', color: '#c41e3a' },
-  { key: '商业精英', value: BUSINESS_ELITE_DEDUPED_COUNT.total, to: '/talent?tab=business', color: '#d4af37' },
+  { key: '中国政要', value: FIGURE_SEED_COUNT, to: '/talent', color: '#6e8cff' },
+  { key: '知识精英', value: CULTURAL_ELITE_DEDUPED_COUNT.total, to: '/talent?tab=knowledge', color: '#d9a7d6' },
+  { key: '政策文件', value: DOC_CATALOG_META.total, to: '/policydocs', color: '#e5483b' },
+  { key: '法律条文', value: LEGAL_STATUTE_DEDUPED_COUNT.total, to: '/policydocs?tab=legal', color: '#b07cc6' },
+  { key: '民企500强', value: PE_COMPANIES, to: '/enterprise500', color: '#c07a4a' },
+  { key: '反腐名单', value: ANTI_CORRUPTION_COUNT, to: '/talent?tab=anticorruption', color: '#e5483b' },
+  { key: '商业精英', value: BUSINESS_ELITE_DEDUPED_COUNT.total, to: '/talent?tab=business', color: '#d9b26a' },
   { key: '科研院所', value: RESEARCH_INSTITUTE_DEDUPED_COUNT.total, to: '/talent?tab=research', color: '#a78bfa' },
-  { key: '高等教育', value: HIGHER_EDUCATION_DEDUPED_COUNT.total, to: '/talent?tab=education', color: '#10b981' },
+  { key: '高等教育', value: HIGHER_EDUCATION_DEDUPED_COUNT.total, to: '/talent?tab=education', color: '#6fc2ae' },
   { key: '海外人才', value: OVERSEAS_TALENT_DEDUPED_COUNT.total, to: '/talent?tab=overseas', color: '#0ea5e9' },
   { key: '自媒体人', value: SELF_MEDIA_DEDUPED_COUNT.total, to: '/talent?tab=self-media', color: '#f472b6' },
-  { key: '500强股权', value: PE_EQUITY, to: '/enterprise500', color: '#64748b' },
+  { key: '500强股权', value: PE_EQUITY, to: '/enterprise500', color: '#8a8578' },
 ].sort((a, b) => b.value - a.value);
 
 // ── 人才库分层构成（环形）─────────────────────────────────
 const bd = FIGURE_CATALOG_META.breakdown || {};
 export const TALENT_LAYERS = [
-  { name: '省级班子', value: (bd.provincial || 0) + (bd.provincialExtended || 0) + (bd.provincialStanding || 0), color: '#c41e3a' },
-  { name: '中央国家机关', value: (bd.central || 0) + (bd.extended || 0), color: '#e8a317' },
-  { name: '地级市', value: (bd.municipal || 0) + (bd.prefectureCity || 0), color: '#22d3ee' },
-  { name: '直属机构', value: (bd.org || 0) + (bd.orgTier2 || 0), color: '#8b5cf6' },
-  { name: '军事将领', value: bd.military || 0, color: '#10b981' },
+  { name: '省级班子', value: (bd.provincial || 0) + (bd.provincialExtended || 0) + (bd.provincialStanding || 0), color: '#e5483b' },
+  { name: '中央国家机关', value: (bd.central || 0) + (bd.extended || 0), color: '#d4a25a' },
+  { name: '地级市', value: (bd.municipal || 0) + (bd.prefectureCity || 0), color: '#6e8cff' },
+  { name: '直属机构', value: (bd.org || 0) + (bd.orgTier2 || 0), color: '#b07cc6' },
+  { name: '军事将领', value: bd.military || 0, color: '#6fc2ae' },
 ].filter((d) => d.value > 0);
 
 // ── 反腐历年趋势（按年计数，2012 起）──────────────────────
@@ -309,7 +309,7 @@ export const MODULE_GATEWAY = [
     tag: '制度内核',
     desc: '儒表法里 · 数字利维坦 · 统治成本推演',
     icon: 'Cpu',
-    accent: '#e8a317',
+    accent: '#d4a25a',
     signalLabel: '态势：制度演进',
     live: false,
   },
@@ -320,7 +320,7 @@ export const MODULE_GATEWAY = [
     tag: '地缘重力',
     desc: '硅盾屏障 · 岛链突破 · 统一进程标定',
     icon: 'Crosshair',
-    accent: '#c41e3a',
+    accent: '#e5483b',
     signalLabel: '态势：高压常态化',
     live: true,
   },
@@ -331,7 +331,7 @@ export const MODULE_GATEWAY = [
     tag: '战区布局',
     desc: '联合战区 · 主战装备 · 联勤保障网络',
     icon: 'Shield',
-    accent: '#10b981',
+    accent: '#6fc2ae',
     signalLabel: '态势：战备常态',
     live: false,
   },
@@ -353,7 +353,7 @@ export const MODULE_GATEWAY = [
     tag: '人力资本',
     desc: '政要 · 知识生产 · 资本逻辑多维图谱',
     icon: 'UsersRound',
-    accent: '#22d3ee',
+    accent: '#6e8cff',
     signalLabel: '态势：结构化更新',
     live: false,
   },
@@ -364,7 +364,7 @@ export const MODULE_GATEWAY = [
     tag: '决策机制',
     desc: '权力结构 · 政策半径 · 治理仿真',
     icon: 'Crown',
-    accent: '#d4af37',
+    accent: '#d9b26a',
     signalLabel: '态势：中枢稳态',
     live: false,
   },
@@ -375,7 +375,7 @@ export const MODULE_GATEWAY = [
     tag: '信号合成',
     desc: 'A/B/C 档 · 宏观再平衡 · 态势判读',
     icon: 'Gauge',
-    accent: '#79a496',
+    accent: '#6fc2ae',
     signalLabel: '信号：再平衡监测',
     live: true,
   },
@@ -386,7 +386,7 @@ export const MODULE_GATEWAY = [
     tag: '治理工具',
     desc: '世界→中国→同类→我 · 归因链路',
     icon: 'Telescope',
-    accent: '#b18a52',
+    accent: '#d4a25a',
     signalLabel: '治理：H1 判读',
     live: false,
   },

@@ -76,22 +76,22 @@ const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
 const VERDICTS = {
   full: {
     label: '全面推进',
-    color: '#10b981',
+    color: '#6fc2ae',
     note: '六题同时压住——前提是注意力总量充裕且难度结构温和；有限注意力下这一窗口在理论上存在、在配置上罕见。',
   },
   focus: {
     label: '重点突破',
-    color: '#22d3ee',
+    color: '#6e8cff',
     note: '重点方向推进领先，代价是其余课题在低位维持运转——定向集中是议程设置的常态形态，收益与暴露面同时放大。',
   },
   tradeoff: {
     label: '顾此失彼',
-    color: '#e8a317',
+    color: '#d4a25a',
     note: '高压议程未被压住——注意力流向何处，张力就从别处冒头；这是有限注意力的硬约束，不随配置意愿转移。',
   },
   overload: {
     label: '议程过载',
-    color: '#c41e3a',
+    color: '#e5483b',
     note: '注意力被摊薄或被单点挤占，部分课题事实停摆——议程上的每一项加码，都是对存量课题的隐性扣减。',
   },
 };

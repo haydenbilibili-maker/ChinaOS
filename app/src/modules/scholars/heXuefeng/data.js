@@ -10,12 +10,12 @@
 export const AS_OF = '2026-09-28';
 
 export const THEMES = {
-  urban: { label: '城市化与农民工', color: '#22d3ee' },
-  land: { label: '土地制度', color: '#c41e3a' },
-  county: { label: '县域 · 房地产与教育', color: '#e8a317' },
-  revival: { label: '乡村振兴与“保底”', color: '#10b981' },
-  governance: { label: '基层治理', color: '#8b5cf6' },
-  aging: { label: '农村养老与社会政策', color: '#fb923c' },
+  urban: { label: '城市化与农民工', color: '#6e8cff' },
+  land: { label: '土地制度', color: '#e5483b' },
+  county: { label: '县域 · 房地产与教育', color: '#d4a25a' },
+  revival: { label: '乡村振兴与“保底”', color: '#6fc2ae' },
+  governance: { label: '基层治理', color: '#b07cc6' },
+  aging: { label: '农村养老与社会政策', color: '#c07a4a' },
 };
 export const THEME_KEYS = Object.keys(THEMES);
 
@@ -45,10 +45,10 @@ export const BOARD = {
 };
 
 export const CAREER_GROUPS = {
-  jm: { label: '荆门', color: '#94a3b8' },
-  ccnu: { label: '华中师范大学', color: '#e8a317' },
-  hust: { label: '华中科技大学', color: '#22d3ee' },
-  whu: { label: '武汉大学', color: '#c41e3a' },
+  jm: { label: '荆门', color: '#a29c91' },
+  ccnu: { label: '华中师范大学', color: '#d4a25a' },
+  hust: { label: '华中科技大学', color: '#6e8cff' },
+  whu: { label: '武汉大学', color: '#e5483b' },
 };
 
 /** 履历甘特：起止为小数年；note 记录口径出入 */

@@ -12,7 +12,7 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 
 const IDEOLOGIES = {
   liberalism: {
-    label: '自由主义', color: '#22d3ee', origin: '洛克 · 密尔 · 哈耶克',
+    label: '自由主义', color: '#6e8cff', origin: '洛克 · 密尔 · 哈耶克',
     human: '个体理性、自利且可自我决定；天赋权利先于国家。',
     value: '个人自由、私有产权、法治、有限政府、市场自发秩序。',
     state: '国家是「守夜人」：保护权利与契约，尽量不干预。',
@@ -22,7 +22,7 @@ const IDEOLOGIES = {
     radar: [95, 40, 25, 30, 50],
   },
   marxism: {
-    label: '马克思主义', color: '#c41e3a', origin: '马克思 · 恩格斯 · 列宁',
+    label: '马克思主义', color: '#e5483b', origin: '马克思 · 恩格斯 · 列宁',
     human: '人是社会关系的总和；意识由物质生产方式决定（存在决定意识）。',
     value: '消灭剥削、生产资料公有、按需分配、阶级解放。',
     state: '国家是阶级统治工具；过渡期无产阶级专政，终极目标国家消亡。',
@@ -32,7 +32,7 @@ const IDEOLOGIES = {
     radar: [30, 95, 90, 95, 70],
   },
   socialdarwin: {
-    label: '社会达尔文主义', color: '#e8a317', origin: '斯宾塞 · 萨姆纳（达尔文本人并不主张）',
+    label: '社会达尔文主义', color: '#d4a25a', origin: '斯宾塞 · 萨姆纳（达尔文本人并不主张）',
     human: '人群如物种，竞争中「适者生存」；强弱分化是自然法则。',
     value: '竞争、效率、优胜劣汰；反对对弱者的「人为」扶助。',
     state: '国家应少干预，让竞争自然淘汰——极端形态滑向种族/国族优越论。',
@@ -42,7 +42,7 @@ const IDEOLOGIES = {
     radar: [70, 30, 60, 10, 85],
   },
   nationalism: {
-    label: '民族主义', color: '#10b981', origin: '赫尔德 · 马志尼 · 费希特',
+    label: '民族主义', color: '#6fc2ae', origin: '赫尔德 · 马志尼 · 费希特',
     human: '人首先是民族/国族共同体的成员；身份、语言与历史先于个体选择。',
     value: '民族自决、文化认同、主权统一、共同体优先于个人。',
     state: '国家应是民族意志的载体，对外捍卫主权、对内凝聚认同。',
@@ -52,7 +52,7 @@ const IDEOLOGIES = {
     radar: [35, 45, 70, 65, 60],
   },
   conservatism: {
-    label: '保守主义', color: '#fb923c', origin: '柏克 · 奥克肖特 · 托克维尔',
+    label: '保守主义', color: '#c07a4a', origin: '柏克 · 奥克肖特 · 托克维尔',
     human: '人理性有限、易犯错；秩序与德性靠传统、习俗与中间团体维系。',
     value: '渐进改良、尊重传统与权威、家庭/社群/宗教等中间结构、审慎。',
     state: '国家应稳健有限，警惕激进重构；维护既有秩序与社会纽带。',
@@ -62,7 +62,7 @@ const IDEOLOGIES = {
     radar: [50, 40, 50, 20, 45],
   },
   neoliberalism: {
-    label: '新自由主义', color: '#8b5cf6', origin: '哈耶克 · 弗里德曼 · 朝圣山学社',
+    label: '新自由主义', color: '#b07cc6', origin: '哈耶克 · 弗里德曼 · 朝圣山学社',
     human: '人是理性的市场行为者；价格信号比集中计划更能配置资源。',
     value: '私有化、放松管制、自由贸易、财政紧缩、市场扩展至更多领域。',
     state: '国家退为「市场守护者」：保护产权与竞争秩序，减少再分配干预。',
@@ -72,7 +72,7 @@ const IDEOLOGIES = {
     radar: [90, 30, 20, 35, 75],
   },
   anarchism: {
-    label: '无政府主义', color: '#06b6d4', origin: '蒲鲁东 · 巴枯宁 · 克鲁泡特金',
+    label: '无政府主义', color: '#5b7cf0', origin: '蒲鲁东 · 巴枯宁 · 克鲁泡特金',
     human: '人本可自治互助；强制性权威（而非人性）才是腐化与压迫之源。',
     value: '废除国家与强制等级、自愿结社、互助、直接民主、自下而上自治。',
     state: '反对国家本身：主张以横向、自治的联合体取代集中权力机器。',
@@ -82,7 +82,7 @@ const IDEOLOGIES = {
     radar: [80, 75, 5, 15, 30],
   },
   fascism: {
-    label: '法西斯主义', color: '#ef4444', origin: '反面参照 · 历史警示（墨索里尼 · 纳粹德国）',
+    label: '法西斯主义', color: '#e5483b', origin: '反面参照 · 历史警示（墨索里尼 · 纳粹德国）',
     human: '否定个体与平等；个人只在为「民族/国家」献身的整体中才有意义。',
     value: '极端民族主义 + 领袖崇拜 + 暴力净化 + 反理性的意志神话；排斥多元。',
     state: '极权国家吞没社会：一党、一领袖、一意志，取消权利与制衡。',
@@ -180,26 +180,26 @@ const ISSUES = {
 
 // ---- 马克思主义中国化 · 层积结构 ----
 const SINIC_LAYERS = [
-  { name: '马列原典', period: '19C 中—20C 初', color: '#94a3b8', question: '回答「资本主义向何处去」：剩余价值、阶级斗争、历史唯物主义、先锋队建党学说。', revision: '基底层：提供历史观与组织技术的「源代码」。' },
-  { name: '毛泽东思想', period: '1920s—1976', color: '#c41e3a', question: '回答「落后农业国如何革命」：农村包围城市、新民主主义、矛盾论/实践论。', revision: '修正了「城市工人阶级中心」的欧洲预设——主体从工人改写为农民。' },
-  { name: '中国特色社会主义理论体系', period: '1978—2012', color: '#e8a317', question: '回答「社会主义如何搞经济」：社会主义初级阶段、社会主义市场经济、「三个代表」、科学发展观。', revision: '修正了「计划=社会主义、市场=资本主义」的等式——把市场纳入社会主义框架。' },
-  { name: '新时代思想', period: '2012—', color: '#22d3ee', question: '回答「大国如何治理与竞争」：国家治理现代化、共同富裕、总体安全观、人类命运共同体。', revision: '修正了「发展优先于一切」的单一目标——把安全、公平与文明叙事提至与发展并列。' },
+  { name: '马列原典', period: '19C 中—20C 初', color: '#a29c91', question: '回答「资本主义向何处去」：剩余价值、阶级斗争、历史唯物主义、先锋队建党学说。', revision: '基底层：提供历史观与组织技术的「源代码」。' },
+  { name: '毛泽东思想', period: '1920s—1976', color: '#e5483b', question: '回答「落后农业国如何革命」：农村包围城市、新民主主义、矛盾论/实践论。', revision: '修正了「城市工人阶级中心」的欧洲预设——主体从工人改写为农民。' },
+  { name: '中国特色社会主义理论体系', period: '1978—2012', color: '#d4a25a', question: '回答「社会主义如何搞经济」：社会主义初级阶段、社会主义市场经济、「三个代表」、科学发展观。', revision: '修正了「计划=社会主义、市场=资本主义」的等式——把市场纳入社会主义框架。' },
+  { name: '新时代思想', period: '2012—', color: '#6e8cff', question: '回答「大国如何治理与竞争」：国家治理现代化、共同富裕、总体安全观、人类命运共同体。', revision: '修正了「发展优先于一切」的单一目标——把安全、公平与文明叙事提至与发展并列。' },
 ];
 
 // ---- 意识形态四功能 ----
 const FUNCTIONS4 = [
-  { name: '认知地图', icon: '🗺', color: '#22d3ee', desc: '把无限复杂的社会现实压缩为可操作的简化模型——告诉成员「世界是什么、谁是朋友谁是对手」。没有地图，集体行动无从谈起。' },
-  { name: '合法性供给', icon: '⚖', color: '#e8a317', desc: '回答「凭什么是你统治」：天命、契约、阶级使命或绩效。任何政权都无法长期只靠暴力——韦伯所谓统治须被「相信」。' },
-  { name: '动员工具', icon: '📢', color: '#c41e3a', desc: '把分散个体的精力对准同一目标：革命、战争、建设或改革。意识形态降低组织成本——口号比命令便宜得多。' },
-  { name: '身份认同', icon: '🪞', color: '#10b981', desc: '回答「我们是谁」：给成员归属感与意义感，划出我群与他群的边界。认同一旦内化，维护它本身就成为行动动机。' },
+  { name: '认知地图', icon: '🗺', color: '#6e8cff', desc: '把无限复杂的社会现实压缩为可操作的简化模型——告诉成员「世界是什么、谁是朋友谁是对手」。没有地图，集体行动无从谈起。' },
+  { name: '合法性供给', icon: '⚖', color: '#d4a25a', desc: '回答「凭什么是你统治」：天命、契约、阶级使命或绩效。任何政权都无法长期只靠暴力——韦伯所谓统治须被「相信」。' },
+  { name: '动员工具', icon: '📢', color: '#e5483b', desc: '把分散个体的精力对准同一目标：革命、战争、建设或改革。意识形态降低组织成本——口号比命令便宜得多。' },
+  { name: '身份认同', icon: '🪞', color: '#6fc2ae', desc: '回答「我们是谁」：给成员归属感与意义感，划出我群与他群的边界。认同一旦内化，维护它本身就成为行动动机。' },
 ];
 
 // ---- 全球意识形态版图变迁 ----
 const WORLD_ERAS = [
-  { period: '1947–1991', title: '冷战两极', accent: '#c41e3a', desc: '世界被两套总体性意识形态切分：资本主义自由阵营 vs 共产主义阵营，第三世界在不结盟与代理人战争之间摇摆。意识形态即地缘：信什么决定站哪边、买谁的武器、进谁的市场。' },
-  { period: '1991–2008', title: '「历史终结论」时刻', accent: '#22d3ee', desc: '苏联解体后，福山宣称自由民主 + 市场经济是「人类政体演化的终点」。华盛顿共识全球推广，意识形态被宣告「退场」——但这本身就是一种意识形态：把一时胜利读作历史目的。' },
-  { period: '2008–2016', title: '裂缝显现', accent: '#e8a317', desc: '全球金融危机动摇了新自由主义的绩效神话；中国模式在危机中表现引发「北京共识」讨论；占领华尔街与欧债危机暴露发达国家内部分配裂痕——终结论开始被质疑。' },
-  { period: '2016–今', title: '多元回潮 · 终结论的终结', accent: '#8b5cf6', desc: '民粹主义（左右两翼）、民族主义回归、威权资本主义被部分国家视为可行路线、认同政治与技术加速主义并起。单一普世叙事让位于多元竞争——「历史终结论」自身被历史终结。' },
+  { period: '1947–1991', title: '冷战两极', accent: '#e5483b', desc: '世界被两套总体性意识形态切分：资本主义自由阵营 vs 共产主义阵营，第三世界在不结盟与代理人战争之间摇摆。意识形态即地缘：信什么决定站哪边、买谁的武器、进谁的市场。' },
+  { period: '1991–2008', title: '「历史终结论」时刻', accent: '#6e8cff', desc: '苏联解体后，福山宣称自由民主 + 市场经济是「人类政体演化的终点」。华盛顿共识全球推广，意识形态被宣告「退场」——但这本身就是一种意识形态：把一时胜利读作历史目的。' },
+  { period: '2008–2016', title: '裂缝显现', accent: '#d4a25a', desc: '全球金融危机动摇了新自由主义的绩效神话；中国模式在危机中表现引发「北京共识」讨论；占领华尔街与欧债危机暴露发达国家内部分配裂痕——终结论开始被质疑。' },
+  { period: '2016–今', title: '多元回潮 · 终结论的终结', accent: '#b07cc6', desc: '民粹主义（左右两翼）、民族主义回归、威权资本主义被部分国家视为可行路线、认同政治与技术加速主义并起。单一普世叙事让位于多元竞争——「历史终结论」自身被历史终结。' },
 ];
 
 // ---- 中美叙事竞争 · 维度对照（客观并列，不做立场判断）----
@@ -213,12 +213,12 @@ const NARRATIVE_DIMS = [
 
 // ---- 概念史时间线 ----
 const CONCEPT_HISTORY = [
-  { period: '1796', title: '特拉西「观念学」', accent: '#94a3b8', desc: '法国启蒙学者德斯蒂·德·特拉西创造 idéologie 一词，本义是中性的「观念的科学」——研究观念如何从感觉中产生。拿破仑嘲讽「观念学家」不切实际，使该词首次染上贬义。' },
-  { period: '1845', title: '马克思「虚假意识」', accent: '#c41e3a', desc: '《德意志意识形态》：统治阶级的思想是占统治地位的思想；意识形态是颠倒现实的「照相机暗箱」，掩盖真实的生产关系——意识形态从此成为批判性概念。' },
-  { period: '1929', title: '曼海姆 · 知识社会学', accent: '#e8a317', desc: '《意识形态与乌托邦》：所有思想（包括批判者自己的）都受社会位置制约——「意识形态」维护现状，「乌托邦」指向变革。批判的武器对准了所有人，包括持武器者。' },
-  { period: '1930s', title: '葛兰西 · 文化霸权', accent: '#10b981', desc: '狱中札记：统治不仅靠强制（国家机器），更靠「同意」（市民社会中的文化领导权）。学校、教会、媒体让被统治者把统治秩序当作常识——意识形态斗争是阵地战。' },
-  { period: '1989', title: '福山 · 历史终结论', accent: '#22d3ee', desc: '冷战落幕之际宣告意识形态竞争的终结：自由民主已无系统性对手。这一论断本身成为 1990s 全球化时代的主导意识形态——「无意识形态」的意识形态。' },
-  { period: '2010s–', title: '多元回潮', accent: '#8b5cf6', desc: '民粹、民族主义、威权资本主义、认同政治、加速主义并起；中美叙事竞争公开化。意识形态非但没有终结，反而重新成为大国竞争与社会撕裂的主轴。' },
+  { period: '1796', title: '特拉西「观念学」', accent: '#a29c91', desc: '法国启蒙学者德斯蒂·德·特拉西创造 idéologie 一词，本义是中性的「观念的科学」——研究观念如何从感觉中产生。拿破仑嘲讽「观念学家」不切实际，使该词首次染上贬义。' },
+  { period: '1845', title: '马克思「虚假意识」', accent: '#e5483b', desc: '《德意志意识形态》：统治阶级的思想是占统治地位的思想；意识形态是颠倒现实的「照相机暗箱」，掩盖真实的生产关系——意识形态从此成为批判性概念。' },
+  { period: '1929', title: '曼海姆 · 知识社会学', accent: '#d4a25a', desc: '《意识形态与乌托邦》：所有思想（包括批判者自己的）都受社会位置制约——「意识形态」维护现状，「乌托邦」指向变革。批判的武器对准了所有人，包括持武器者。' },
+  { period: '1930s', title: '葛兰西 · 文化霸权', accent: '#6fc2ae', desc: '狱中札记：统治不仅靠强制（国家机器），更靠「同意」（市民社会中的文化领导权）。学校、教会、媒体让被统治者把统治秩序当作常识——意识形态斗争是阵地战。' },
+  { period: '1989', title: '福山 · 历史终结论', accent: '#6e8cff', desc: '冷战落幕之际宣告意识形态竞争的终结：自由民主已无系统性对手。这一论断本身成为 1990s 全球化时代的主导意识形态——「无意识形态」的意识形态。' },
+  { period: '2010s–', title: '多元回潮', accent: '#b07cc6', desc: '民粹、民族主义、威权资本主义、认同政治、加速主义并起；中美叙事竞争公开化。意识形态非但没有终结，反而重新成为大国竞争与社会撕裂的主轴。' },
 ];
 
 const DOT = (c) => ({ width: 9, height: 9, borderRadius: '50%', background: c, boxShadow: `0 0 6px ${c}`, flexShrink: 0 });
@@ -231,7 +231,7 @@ export default function Page() {
   const issue = ISSUES[issueKey];
   const compare = useMemo(() => ({
     legend: { data: Object.values(IDEOLOGIES).map((v) => v.label), textStyle: { color: LABEL.color }, top: 0 },
-    radar: { indicator: RADAR_IND, axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
+    radar: { indicator: RADAR_IND, axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } }, splitArea: { show: false } },
     series: [{ type: 'radar', data: Object.values(IDEOLOGIES).map((v) => ({ value: v.radar, name: v.label, lineStyle: { color: v.color }, areaStyle: { color: v.color + '22' } })) }],
   }), []);
   return (
@@ -331,14 +331,14 @@ export default function Page() {
         <div className="space-y-2">
           <div className="flex gap-3 text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>
             <div style={{ width: 84 }}>维度</div>
-            <div style={{ flex: 1, color: '#c41e3a' }}>中国叙事强调</div>
-            <div style={{ flex: 1, color: '#22d3ee' }}>美国叙事强调</div>
+            <div style={{ flex: 1, color: '#e5483b' }}>中国叙事强调</div>
+            <div style={{ flex: 1, color: '#6e8cff' }}>美国叙事强调</div>
           </div>
           {NARRATIVE_DIMS.map((r) => (
             <div key={r.dim} className="flex gap-3 p-2 rounded" style={{ background: 'var(--bg-elevated)' }}>
               <div className="text-xs font-semibold" style={{ width: 84, color: 'var(--text-primary)' }}>{r.dim}</div>
-              <p className="text-[11px] leading-relaxed" style={{ flex: 1, color: 'var(--text-secondary)', borderLeft: '2px solid #c41e3a', paddingLeft: 8 }}>{r.cn}</p>
-              <p className="text-[11px] leading-relaxed" style={{ flex: 1, color: 'var(--text-secondary)', borderLeft: '2px solid #22d3ee', paddingLeft: 8 }}>{r.us}</p>
+              <p className="text-[11px] leading-relaxed" style={{ flex: 1, color: 'var(--text-secondary)', borderLeft: '2px solid #e5483b', paddingLeft: 8 }}>{r.cn}</p>
+              <p className="text-[11px] leading-relaxed" style={{ flex: 1, color: 'var(--text-secondary)', borderLeft: '2px solid #6e8cff', paddingLeft: 8 }}>{r.us}</p>
             </div>
           ))}
         </div>
@@ -352,8 +352,8 @@ export default function Page() {
       <Card title="意识形态光谱 · 左—右 / 国家—个人 定位（示意）" className="mb-6">
         <div style={{ position: 'relative', height: 300, background: 'var(--bg-elevated)', borderRadius: 8, border: '1px solid var(--border)' }}>
           {/* 坐标轴 */}
-          <div style={{ position: 'absolute', left: '50%', top: 12, bottom: 12, width: 1, background: 'rgba(148,163,184,0.2)' }} />
-          <div style={{ position: 'absolute', top: '50%', left: 12, right: 12, height: 1, background: 'rgba(148,163,184,0.2)' }} />
+          <div style={{ position: 'absolute', left: '50%', top: 12, bottom: 12, width: 1, background: 'rgba(162, 156, 145,0.2)' }} />
+          <div style={{ position: 'absolute', top: '50%', left: 12, right: 12, height: 1, background: 'rgba(162, 156, 145,0.2)' }} />
           <span className="text-[11px] mono" style={{ position: 'absolute', left: 14, top: '48%', color: 'var(--text-tertiary)' }}>← 左 / 平等</span>
           <span className="text-[11px] mono" style={{ position: 'absolute', right: 14, top: '48%', color: 'var(--text-tertiary)' }}>右 / 效率 →</span>
           <span className="text-[11px] mono" style={{ position: 'absolute', left: '50%', top: 6, transform: 'translateX(-50%)', color: 'var(--text-tertiary)' }}>↑ 强国家</span>

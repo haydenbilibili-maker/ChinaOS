@@ -43,8 +43,8 @@ export default function Page() {
     const fs = shares[shares.length - 1];
     const fp = pops[pops.length - 1];
     const verdict = fs >= 5 && fp >= 97
-      ? ['负反馈被打破 · 企稳回升', '#10b981']
-      : fs >= 4.2 ? ['缓滑 · 守住安全底盘', '#e8a317'] : ['螺旋下行 · 输血依赖加深', '#c41e3a'];
+      ? ['负反馈被打破 · 企稳回升', '#6fc2ae']
+      : fs >= 4.2 ? ['缓滑 · 守住安全底盘', '#d4a25a'] : ['螺旋下行 · 输血依赖加深', '#e5483b'];
     return { years, shares, pops, fs, fp, verdict };
   }, [invest, talent]);
 
@@ -58,8 +58,8 @@ export default function Page() {
       { type: 'value', name: '人口指数', min: 60, max: 110, splitLine: { show: false }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     ],
     series: [
-      { name: 'GDP 份额 %', type: 'line', smooth: true, symbol: 'none', data: sim.shares, lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.08)' } },
-      { name: '人口指数(2026=100)', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'none', data: sim.pops, lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' } },
+      { name: 'GDP 份额 %', type: 'line', smooth: true, symbol: 'none', data: sim.shares, lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' }, areaStyle: { color: 'rgba(110, 140, 255,0.08)' } },
+      { name: '人口指数(2026=100)', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'none', data: sim.pops, lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' } },
     ],
   }), [sim]);
 
@@ -119,7 +119,7 @@ export default function Page() {
       data: POP_OUTFLOW.values.map((v, i) => ({
         value: v,
         itemStyle: {
-          color: PROVINCES[i]?.accent ?? '#64748b',
+          color: PROVINCES[i]?.accent ?? '#8a8578',
           borderRadius: v < 0 ? [0, 0, 3, 3] : [3, 3, 0, 0],
         },
       })),
@@ -172,10 +172,10 @@ export default function Page() {
       </IntroCard>
 
       <StatGrid className="mb-6">
-        <Stat value="~6 万亿" label="三省 GDP 合计（示意）" accent="#64748b" />
-        <Stat value="~5%" label="占全国 GDP 比重（2025E）" accent="#c41e3a" />
-        <Stat value="-165万" label="三省年净流出（示意）" accent="#e8a317" />
-        <Stat value="~1/4" label="粮食调出占全国（北大仓）" accent="#10b981" />
+        <Stat value="~6 万亿" label="三省 GDP 合计（示意）" accent="#8a8578" />
+        <Stat value="~5%" label="占全国 GDP 比重（2025E）" accent="#e5483b" />
+        <Stat value="-165万" label="三省年净流出（示意）" accent="#d4a25a" />
+        <Stat value="~1/4" label="粮食调出占全国（北大仓）" accent="#6fc2ae" />
       </StatGrid>
 
       <Card title="视图切换 · 三省 / 产业 / 政策" className="mb-4">
@@ -218,7 +218,7 @@ export default function Page() {
                 ))}
               </div>
               <div className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
-                <span style={{ color: '#e8a317' }}>政策杠杆 · </span>{activeItem.lever}
+                <span style={{ color: '#d4a25a' }}>政策杠杆 · </span>{activeItem.lever}
               </div>
             </div>
             <Card title={`${activeItem.label} · 五维评估`}>
@@ -263,10 +263,10 @@ export default function Page() {
       <Card title="历史与结构 · 约束矩阵" className="mb-6">
         <Grid cols={4}>
           {[
-            ['老工业基地', '共和国装备摇篮，机床/电站/汽车等传统优势面临订单转移与智能化升级双重压力。', '#64748b'],
+            ['老工业基地', '共和国装备摇篮，机床/电站/汽车等传统优势面临订单转移与智能化升级双重压力。', '#8a8578'],
             ['资源型城市', '大庆、阜新、伊春等资源枯竭型城市转型成本高，财政与社保压力集中。', '#f97316'],
-            ['国企比重', '三省央企与地方国企占比全国前列，市场化程度与民企活力相对不足。', '#c41e3a'],
-            ['人口净流出', '十年累计净流出数百万量级，人才外流削弱创新生态与消费纵深。', '#e8a317'],
+            ['国企比重', '三省央企与地方国企占比全国前列，市场化程度与民企活力相对不足。', '#e5483b'],
+            ['人口净流出', '十年累计净流出数百万量级，人才外流削弱创新生态与消费纵深。', '#d4a25a'],
           ].map(([t, d, c]) => (
             <div key={t} style={{ borderLeft: `2px solid ${c}`, paddingLeft: 10 }}>
               <div className="text-xs font-semibold mb-1" style={{ color: c }}>{t}</div>
@@ -281,16 +281,16 @@ export default function Page() {
           <div>
             <div className="flex justify-between text-xs mb-1">
               <span style={{ color: 'var(--text-secondary)' }}>产业造血投入（新质生产力/冰雪/农业品牌）</span>
-              <span className="mono" style={{ color: '#22d3ee' }}>{invest}</span>
+              <span className="mono" style={{ color: '#6e8cff' }}>{invest}</span>
             </div>
-            <input type="range" min="0" max="100" value={invest} onChange={(e) => setInvest(Number(e.target.value))} style={{ width: '100%', accentColor: '#22d3ee' }} />
+            <input type="range" min="0" max="100" value={invest} onChange={(e) => setInvest(Number(e.target.value))} style={{ width: '100%', accentColor: '#6e8cff' }} />
           </div>
           <div>
             <div className="flex justify-between text-xs mb-1">
               <span style={{ color: 'var(--text-secondary)' }}>人才回流政策力度（落户/编制/营商/薪酬）</span>
-              <span className="mono" style={{ color: '#e8a317' }}>{talent}</span>
+              <span className="mono" style={{ color: '#d4a25a' }}>{talent}</span>
             </div>
-            <input type="range" min="0" max="100" value={talent} onChange={(e) => setTalent(Number(e.target.value))} style={{ width: '100%', accentColor: '#e8a317' }} />
+            <input type="range" min="0" max="100" value={talent} onChange={(e) => setTalent(Number(e.target.value))} style={{ width: '100%', accentColor: '#d4a25a' }} />
           </div>
         </Grid>
         <EChart option={simOpt} style={{ height: 240 }} />
@@ -306,7 +306,7 @@ export default function Page() {
 
       <Grid cols={2} className="mb-6">
         <Card title="五大安全 · 东北贡献度（示意）">
-          <EChart option={radarOpt(['粮食安全', '能源安全', '产业装备', '生态安全', '国防纵深'], [92, 76, 74, 80, 88], { name: '东北贡献度', color: '#10b981' })} style={{ height: 240 }} />
+          <EChart option={radarOpt(['粮食安全', '能源安全', '产业装备', '生态安全', '国防纵深'], [92, 76, 74, 80, 88], { name: '东北贡献度', color: '#6fc2ae' })} style={{ height: 240 }} />
           <p className="text-[11px] mt-1" style={{ color: 'var(--text-tertiary)' }}>
             北大仓粮食调出约占全国 1/4；大庆油田与煤电基地仍是能源压舱石；装备制造与国防纵深不可迁移——这是「安全极」定位的物理底座。
           </p>
@@ -321,7 +321,7 @@ export default function Page() {
               type: 'bar', barWidth: 22,
               data: [0.6, 0.8, 0.3, -0.2, -2.4, -2.8, -3.1, -3.6].map((v) => ({
                 value: v,
-                itemStyle: { color: v >= 0 ? '#10b981' : '#c41e3a', borderRadius: v >= 0 ? [3, 3, 0, 0] : [0, 0, 3, 3] },
+                itemStyle: { color: v >= 0 ? '#6fc2ae' : '#e5483b', borderRadius: v >= 0 ? [3, 3, 0, 0] : [0, 0, 3, 3] },
               })),
               markLine: { silent: true, symbol: 'none', data: [{ yAxis: 0, lineStyle: { color: AXIS.lineStyle.color }, label: { show: false } }] },
             }],
@@ -335,10 +335,10 @@ export default function Page() {
       <Card title="对口合作 · 制度移植的四条管道" className="mb-6">
         <Grid cols={4}>
           {[
-            ['辽宁 ⇄ 江苏', '装备制造嫁接长三角供应链与民企生态，沈阳-苏州工业园复制试验。', '#c41e3a'],
-            ['吉林 ⇄ 浙江', '数字经济与民营机制输入，长春-杭州「数字+汽车」嫁接。', '#22d3ee'],
-            ['黑龙江 ⇄ 广东', '农业品牌化与市场化运营对接珠三角资本与渠道。', '#e8a317'],
-            ['深哈产业园', '「带土移植」样本：深圳规则/团队/薪酬整建制落地哈尔滨——测试制度可否跨纬度存活。', '#10b981'],
+            ['辽宁 ⇄ 江苏', '装备制造嫁接长三角供应链与民企生态，沈阳-苏州工业园复制试验。', '#e5483b'],
+            ['吉林 ⇄ 浙江', '数字经济与民营机制输入，长春-杭州「数字+汽车」嫁接。', '#6e8cff'],
+            ['黑龙江 ⇄ 广东', '农业品牌化与市场化运营对接珠三角资本与渠道。', '#d4a25a'],
+            ['深哈产业园', '「带土移植」样本：深圳规则/团队/薪酬整建制落地哈尔滨——测试制度可否跨纬度存活。', '#6fc2ae'],
           ].map(([t, d, c]) => (
             <div key={t} style={{ borderLeft: `2px solid ${c}`, paddingLeft: 10 }}>
               <div className="text-xs font-semibold mb-1" style={{ color: c }}>{t}</div>
@@ -353,20 +353,20 @@ export default function Page() {
 
       <Card title="十五五 · 指标 / 约束 / 路径" className="mb-6">
         <Grid cols={3}>
-          <div style={{ borderLeft: '2px solid #22d3ee', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#22d3ee' }}>核心指标</div>
+          <div style={{ borderLeft: '2px solid #6e8cff', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6e8cff' }}>核心指标</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
               维护粮食、能源、产业、生态、国防「五大安全」；装备制造业智能化升级；冰雪经济与寒地农业品牌化发展；营商环境进入全国第一梯队。
             </p>
           </div>
-          <div style={{ borderLeft: '2px solid #e8a317', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#e8a317' }}>关键约束</div>
+          <div style={{ borderLeft: '2px solid #d4a25a', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#d4a25a' }}>关键约束</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
               体制机制惯性、人口净流出与低生育率、资源型城市衰退、冬季漫长制约全年产能利用率、对口合作成效不均。
             </p>
           </div>
-          <div style={{ borderLeft: '2px solid #10b981', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#10b981' }}>推进路径</div>
+          <div style={{ borderLeft: '2px solid #6fc2ae', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6fc2ae' }}>推进路径</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
               体制机制创新 → 央企投资与民企培育 → 对口合作（沪浙苏粤等）→ 冰雪/农业/新能源新增长极 → 人才回流与营商环境硬化。
             </p>

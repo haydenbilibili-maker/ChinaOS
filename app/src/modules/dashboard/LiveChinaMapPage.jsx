@@ -1,8 +1,9 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { PageHeader, TabBar } from '../../app/ui.jsx';
 import { FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import LiveChinaMap from './LiveChinaMap.jsx';
+import ShenzhouDeck from '../shenzhou/ShenzhouDeck.jsx';
 import LiveMapTicker from './LiveMapTicker.jsx';
 import { AS_OF } from './liveMapData.js';
 import {
@@ -25,9 +26,9 @@ export { LIVE_MAP_VIEWS };
 
 const TABS = [
   { id: 'situation', label: '全国态势', accent: 'var(--cyber-cyan)' },
-  { id: 'heatmap', label: '区域热力', accent: '#10b981' },
+  { id: 'heatmap', label: '区域热力', accent: '#6fc2ae' },
   { id: 'signals', label: '信号图层', accent: 'var(--fire-gold)' },
-  { id: 'timeline', label: '时间轴', accent: '#8b5cf6' },
+  { id: 'timeline', label: '时间轴', accent: '#b07cc6' },
   { id: 'analysis', label: '研判下钻', accent: 'var(--china-red)' },
 ];
 
@@ -41,6 +42,50 @@ export default function LiveChinaMapPage() {
   }, [searchParams, localView]);
 
   const deepLink = useMemo(() => readDeepLinkFromParams(searchParams), [searchParams]);
+
+  // 默认进入观测舱；带 ?view= 的旧深链或 ?mode=workbench 进入研判工作台
+  const mode = searchParams.get('mode') === 'workbench' || searchParams.get('view') ? 'workbench' : 'deck';
+
+  const openWorkbench = useCallback(({ layer, province } = {}) => {
+    setSearchParams((prev) => {
+      const params = new URLSearchParams(prev);
+      params.set('mode', 'workbench');
+      if (layer && layer !== 'composite') params.set('layer', layer);
+      if (province) params.set('prov', province);
+      return params;
+    });
+  }, [setSearchParams]);
+
+  const openDeck = useCallback(() => {
+    setSearchParams((prev) => {
+      const params = new URLSearchParams(prev);
+      params.delete('mode');
+      params.delete('view');
+      return params;
+    });
+  }, [setSearchParams]);
+
+  // 观测舱自身写回 URL 时不重建；外部导航（同页内跳到另一条 ?prov= / ?cmp= 深链）时重挂载以应用新初始态
+  const deckWroteRef = useRef(null);
+  const deckSeenRef = useRef(searchParams.toString());
+  const deckKeyRef = useRef(0);
+  const qsNow = searchParams.toString();
+  if (qsNow !== deckSeenRef.current) {
+    if (qsNow !== deckWroteRef.current) deckKeyRef.current += 1;
+    deckSeenRef.current = qsNow;
+  }
+
+  const onDeckState = useCallback(({ layer, province, compare }) => {
+    setSearchParams((prev) => {
+      const params = new URLSearchParams(prev);
+      if (layer) params.set('layer', layer); else params.delete('layer');
+      if (province) params.set('prov', province); else params.delete('prov');
+      if (compare?.length) params.set('cmp', compare.join(',')); else params.delete('cmp');
+      if (params.toString() === prev.toString()) return prev;
+      deckWroteRef.current = params.toString();
+      return params;
+    }, { replace: true });
+  }, [setSearchParams]);
 
   const setView = useCallback((id) => {
     const next = LIVE_MAP_VIEWS.includes(id) ? id : 'heatmap';
@@ -68,6 +113,19 @@ export default function LiveChinaMapPage() {
     return `${window.location.origin}${window.location.pathname}${window.location.search}${hashPath}${qs ? `?${qs}` : ''}`;
   }, [searchParams]);
 
+  if (mode === 'deck') {
+    return (
+      <ShenzhouDeck
+        key={deckKeyRef.current}
+        initialLayer={deepLink.layer || 'composite'}
+        initialProvince={deepLink.province || null}
+        initialCompare={(searchParams.get('cmp') || '').split(',').filter(Boolean)}
+        onStateChange={onDeckState}
+        onOpenWorkbench={openWorkbench}
+      />
+    );
+  }
+
   return (
     <div className="ink-observatory lcm-wrap lcm-page-wrap os-content-fluid">
       <PageHeader
@@ -76,6 +134,7 @@ export default function LiveChinaMapPage() {
         subtitle={`省级边界热力 · 实况气象/空气图层 · 截至 ${AS_OF}`}
       >
         <div className="flex flex-wrap gap-2 items-center">
+          <button type="button" className="os-btn os-btn-sm" onClick={openDeck}>返回观测舱</button>
           <Link to="/dashboard" className="lcm-cross-chip">中枢看板 ↗</Link>
           <Link to="/econ-dashboard?tab=regional" className="lcm-cross-chip">经济大盘 · 区域 ↗</Link>
           <Link to="/modules/heshan/factsheets" className="lcm-cross-chip lcm-cross-chip--red">重构河山 · 拟省图 ↗</Link>

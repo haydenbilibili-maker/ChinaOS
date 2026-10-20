@@ -64,7 +64,7 @@ export function ClaimList({ claims }) {
   return (
     <ul className="m-0 p-0 list-none space-y-3">
       {claims.map((c) => (
-        <li key={c.id} className="pl-3" style={{ borderLeft: `2px solid ${c.type === '原话' ? 'var(--fire-gold)' : 'var(--border-subtle, rgba(148,163,184,0.25))'}` }}>
+        <li key={c.id} className="pl-3" style={{ borderLeft: `2px solid ${c.type === '原话' ? 'var(--fire-gold)' : 'var(--border-subtle, rgba(162, 156, 145,0.25))'}` }}>
           <div className="flex flex-wrap items-center gap-1.5 mb-1">
             <TypeBadge type={c.type} />
             <VerifyBadge level={c.verified} />
@@ -128,7 +128,7 @@ export function DataTable({ head, rows, caption }) {
         </thead>
         <tbody>
           {rows.map((cells) => (
-            <tr key={cells.key} style={{ borderTop: '1px solid var(--border-subtle, rgba(148,163,184,0.1))' }}>
+            <tr key={cells.key} style={{ borderTop: '1px solid var(--border-subtle, rgba(162, 156, 145,0.1))' }}>
               <th scope="row" className="py-2 pr-3 font-normal text-left align-top" style={{ color: 'var(--text-primary)', minWidth: 110 }}>{cells.cells[0]}</th>
               {cells.cells.slice(1).map((c, i) => (
                 <td key={`${cells.key}-${head[i + 1]}`} className="py-2 pr-3 align-top leading-relaxed">{c}</td>

@@ -7,7 +7,7 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // ── 技术路线（六条）：原理 / 成熟度 / 应用 / 风险伦理 ────────────────────────
 const TRACKS = [
   {
-    key: 'invasive', label: '侵入式电极', accent: '#c41e3a',
+    key: 'invasive', label: '侵入式电极', accent: '#e5483b',
     principle: '微电极阵列穿透皮层，直接记录单神经元放电——带宽与分辨率的物理天花板。',
     maturity: 35, bandwidth: 96, trauma: 92,
     apps: '高位截瘫运动重建、皮层言语解码、闭环深部脑刺激。',
@@ -15,7 +15,7 @@ const TRACKS = [
     metric: [96, 92, 30, 40, 35],
   },
   {
-    key: 'semi', label: '半侵入式', accent: '#e8a317',
+    key: 'semi', label: '半侵入式', accent: '#d4a25a',
     principle: '皮层表面或硬膜下 ECoG 电极，不穿透神经元——创伤与带宽的折中带。',
     maturity: 48, bandwidth: 72, trauma: 58,
     apps: '癫痫灶定位、运动皮层解码临床试点、术中脑功能映射。',
@@ -23,7 +23,7 @@ const TRACKS = [
     metric: [72, 68, 55, 62, 55],
   },
   {
-    key: 'noninv', label: '非侵入式', accent: '#22d3ee',
+    key: 'noninv', label: '非侵入式', accent: '#6e8cff',
     principle: '头皮 EEG / fNIRS / MEG，隔颅骨采集群体电位——零创伤但信号被严重衰减。',
     maturity: 72, bandwidth: 40, trauma: 8,
     apps: '消费级神经反馈、康复训练、疲劳与注意力监测、脑控外设。',
@@ -31,7 +31,7 @@ const TRACKS = [
     metric: [40, 35, 92, 95, 80],
   },
   {
-    key: 'decode', label: '神经信号解码', accent: '#8b5cf6',
+    key: 'decode', label: '神经信号解码', accent: '#b07cc6',
     principle: '深度学习将神经放电序列映射为意图/语义——算力与数据决定上限。',
     maturity: 55, bandwidth: 78, trauma: 20,
     apps: '想象语音转文本、运动意图实时控制、情绪与认知状态识别。',
@@ -39,7 +39,7 @@ const TRACKS = [
     metric: [78, 80, 60, 50, 45],
   },
   {
-    key: 'stim', label: '神经调控', accent: '#10b981',
+    key: 'stim', label: '神经调控', accent: '#6fc2ae',
     principle: '电/磁/超声向特定脑区写入信号——从「读」走向「写」的权力跃迁。',
     maturity: 50, bandwidth: 60, trauma: 45,
     apps: '帕金森 DBS、抑郁与成瘾闭环刺激、超声无创神经调制。',
@@ -47,7 +47,7 @@ const TRACKS = [
     metric: [60, 58, 50, 48, 30],
   },
   {
-    key: 'chip', label: '类脑芯片', accent: '#ec4899',
+    key: 'chip', label: '类脑芯片', accent: '#c9719b',
     principle: '神经形态计算模拟脉冲神经网络——为 BCI 提供低功耗边缘解码底座。',
     maturity: 42, bandwidth: 70, trauma: 5,
     apps: '植入端实时解码、超低功耗边缘 AI、感知-决策一体化。',
@@ -58,20 +58,20 @@ const TRACKS = [
 
 // ── 阶段时间线 ─────────────────────────────────────────────────────────────
 const PHASES = [
-  { period: '—2010', title: '基础神经科学', accent: '#64748b', desc: '电生理与皮层编码机制奠基；猴脑运动皮层解码原理验证。' },
-  { period: '2011–2018', title: '非侵入式康复', accent: '#22d3ee', desc: 'EEG 神经反馈、脑控轮椅/外骨骼进入康复临床与消费级。' },
-  { period: '2019–2024', title: '侵入式临床试验', accent: '#e8a317', desc: '全植入式运动/言语解码人体试验启动，国内「北脑」等团队跟进。' },
-  { period: '2024–2030', title: '神经数据治理', accent: '#c41e3a', desc: '神经数据列为新型敏感数据，分类分级、伦理审查与跨境管制成型。' },
-  { period: '2030+', title: '认知增强 · 人机融合', accent: '#8b5cf6', desc: '记忆/感知增强与高带宽融合进入远期议程——伦理与权力边界前置博弈。' },
+  { period: '—2010', title: '基础神经科学', accent: '#8a8578', desc: '电生理与皮层编码机制奠基；猴脑运动皮层解码原理验证。' },
+  { period: '2011–2018', title: '非侵入式康复', accent: '#6e8cff', desc: 'EEG 神经反馈、脑控轮椅/外骨骼进入康复临床与消费级。' },
+  { period: '2019–2024', title: '侵入式临床试验', accent: '#d4a25a', desc: '全植入式运动/言语解码人体试验启动，国内「北脑」等团队跟进。' },
+  { period: '2024–2030', title: '神经数据治理', accent: '#e5483b', desc: '神经数据列为新型敏感数据，分类分级、伦理审查与跨境管制成型。' },
+  { period: '2030+', title: '认知增强 · 人机融合', accent: '#b07cc6', desc: '记忆/感知增强与高带宽融合进入远期议程——伦理与权力边界前置博弈。' },
 ];
 
 // ── 应用场景 donut ─────────────────────────────────────────────────────────
 const APP_SHARE = [
-  { name: '医疗康复（瘫痪/渐冻/言语）', value: 52, itemStyle: { color: '#10b981' } },
-  { name: '感知替代（视/听觉假体）', value: 16, itemStyle: { color: '#22d3ee' } },
-  { name: '认知增强（注意/记忆）', value: 12, itemStyle: { color: '#8b5cf6' } },
-  { name: '工业军事（脑控/人机一体）', value: 12, itemStyle: { color: '#c41e3a' } },
-  { name: '消费（神经反馈/娱乐）', value: 8, itemStyle: { color: '#e8a317' } },
+  { name: '医疗康复（瘫痪/渐冻/言语）', value: 52, itemStyle: { color: '#6fc2ae' } },
+  { name: '感知替代（视/听觉假体）', value: 16, itemStyle: { color: '#6e8cff' } },
+  { name: '认知增强（注意/记忆）', value: 12, itemStyle: { color: '#b07cc6' } },
+  { name: '工业军事（脑控/人机一体）', value: 12, itemStyle: { color: '#e5483b' } },
+  { name: '消费（神经反馈/娱乐）', value: 8, itemStyle: { color: '#d4a25a' } },
 ];
 
 // ── 临床/产业进展趋势（示意） ──────────────────────────────────────────────
@@ -107,7 +107,7 @@ export default function Page() {
     series: [{
       type: 'radar', data: [
         { value: t.metric, name: t.label, lineStyle: { color: t.accent, width: 2 }, areaStyle: { color: `${t.accent}22` } },
-        { value: [66, 62, 65, 62, 50], name: '行业均值', lineStyle: { color: '#64748b', type: 'dashed' } },
+        { value: [66, 62, 65, 62, 50], name: '行业均值', lineStyle: { color: '#8a8578', type: 'dashed' } },
       ],
     }],
   }), [t]);
@@ -133,7 +133,7 @@ export default function Page() {
         formatter: (d) => d.data.value[2],
       },
       markLine: {
-        silent: true, symbol: 'none', lineStyle: { color: '#64748b', type: 'dashed' },
+        silent: true, symbol: 'none', lineStyle: { color: '#8a8578', type: 'dashed' },
         data: [{ yAxis: 50 }, { xAxis: 50 }],
       },
     }],
@@ -145,14 +145,14 @@ export default function Page() {
     radar: {
       indicator: ['电极材料', '芯片解码', '解码算法', '临床转化', '伦理治理', '产业化'].map((n) => ({ name: n, max: 100 })),
       axisName: { color: LABEL.color, fontSize: 10 },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-      axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
+      axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
       splitArea: { show: false },
     },
     series: [{
       type: 'radar', data: [
-        { value: [88, 90, 92, 85, 72, 80], name: '美国', lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.12)' } },
-        { value: [70, 72, 80, 68, 65, 78], name: '中国', lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.12)' } },
+        { value: [88, 90, 92, 85, 72, 80], name: '美国', lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' }, areaStyle: { color: 'rgba(110, 140, 255,0.12)' } },
+        { value: [70, 72, 80, 68, 65, 78], name: '中国', lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.12)' } },
       ],
     }],
   }), []);
@@ -168,9 +168,9 @@ export default function Page() {
     xAxis: categoryX(TRIAL_YEARS),
     yAxis: logY({ name: '累计（示意）' }),
     series: [
-      { name: '全球临床试验', type: 'line', smooth: true, symbol: 'circle', data: GLOBAL_TRIALS, lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
-      { name: '中国临床试验', type: 'line', smooth: true, symbol: 'circle', data: CN_TRIALS, lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.1)' } },
-      { name: '中国植入案例', type: 'line', smooth: true, symbol: 'diamond', data: CN_IMPLANTS.map((v) => v || 0.5), lineStyle: { color: '#e8a317', width: 2, type: 'dashed' }, itemStyle: { color: '#e8a317' } },
+      { name: '全球临床试验', type: 'line', smooth: true, symbol: 'circle', data: GLOBAL_TRIALS, lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' } },
+      { name: '中国临床试验', type: 'line', smooth: true, symbol: 'circle', data: CN_TRIALS, lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.1)' } },
+      { name: '中国植入案例', type: 'line', smooth: true, symbol: 'diamond', data: CN_IMPLANTS.map((v) => v || 0.5), lineStyle: { color: '#d4a25a', width: 2, type: 'dashed' }, itemStyle: { color: '#d4a25a' } },
     ],
   }), []);
 
@@ -179,9 +179,9 @@ export default function Page() {
     categories: ['知情同意', '神经数据分级', '跨境传输', '临床伦理审查', '出口管制', '认知操控红线'],
     horizontal: true,
     series: [
-      { name: '已确立', data: [70, 45, 35, 75, 40, 20], itemStyle: { color: '#10b981' } },
-      { name: '在研', data: [20, 35, 38, 18, 35, 30], itemStyle: { color: '#e8a317' } },
-      { name: '缺口', data: [10, 20, 27, 7, 25, 50], itemStyle: { color: '#c41e3a' } },
+      { name: '已确立', data: [70, 45, 35, 75, 40, 20], itemStyle: { color: '#6fc2ae' } },
+      { name: '在研', data: [20, 35, 38, 18, 35, 30], itemStyle: { color: '#d4a25a' } },
+      { name: '缺口', data: [10, 20, 27, 7, 25, 50], itemStyle: { color: '#e5483b' } },
     ],
   }), []);
 
@@ -195,10 +195,10 @@ export default function Page() {
       </IntroCard>
 
       <StatGrid className="mb-6">
-        <Stat value="340+" label="全球 BCI 临床试验（累计·示意）" accent="#22d3ee" />
-        <Stat value="52" label="中国植入案例（累计·示意）" accent="#c41e3a" />
-        <Stat value="类脑芯片" label="低功耗边缘解码底座" accent="#ec4899" />
-        <Stat value="神经数据" label="新型敏感数据 · 待立规" accent="#10b981" />
+        <Stat value="340+" label="全球 BCI 临床试验（累计·示意）" accent="#6e8cff" />
+        <Stat value="52" label="中国植入案例（累计·示意）" accent="#e5483b" />
+        <Stat value="类脑芯片" label="低功耗边缘解码底座" accent="#c9719b" />
+        <Stat value="神经数据" label="新型敏感数据 · 待立规" accent="#6fc2ae" />
       </StatGrid>
 
       <Card title="交互① · 技术路线选择器" className="mb-6">
@@ -212,7 +212,7 @@ export default function Page() {
               <p className="text-xs leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{t.apps}</p>
             </div>
             <div>
-              <div className="text-xs font-semibold mb-1" style={{ color: '#c41e3a' }}>风险 / 伦理</div>
+              <div className="text-xs font-semibold mb-1" style={{ color: '#e5483b' }}>风险 / 伦理</div>
               <p className="text-xs leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{t.risk}</p>
             </div>
           </Grid>
@@ -224,7 +224,7 @@ export default function Page() {
       </Card>
 
       <Card title="交互② · BCI 技术路线权衡 · 信号质量 vs 创伤风险" className="mb-6">
-        <div className="os-card p-4 mb-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #8b5cf6' }}>
+        <div className="os-card p-4 mb-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #b07cc6' }}>
           <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
             BCI 的根本物理约束：<strong style={{ color: 'var(--text-primary)' }}>信号带宽与生物创伤正相关</strong>。
             侵入式占据「高带宽-高风险」象限，非侵入式落在「安全-低带宽」象限——没有免费的分辨率。气泡大小代表技术成熟度，当前选中路线高亮。
@@ -234,7 +234,7 @@ export default function Page() {
       </Card>
 
       <Card title="交互③ · 中美 BCI 实力雷达" className="mb-6">
-        <div className="os-card p-4 mb-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #c41e3a' }}>
+        <div className="os-card p-4 mb-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #e5483b' }}>
           <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
             美国在<strong style={{ color: 'var(--text-primary)' }}>电极材料、芯片解码与临床转化</strong>上保持先发；中国在<strong style={{ color: 'var(--text-primary)' }}>解码算法与产业化规模</strong>上快速逼近，伦理治理框架同步构建。差距非鸿沟，而是时间窗。
           </p>
@@ -246,7 +246,7 @@ export default function Page() {
       </Card>
 
       <Card title="交互④ · 临床与产业进展趋势" className="mb-6">
-        <div className="os-card p-4 mb-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #e8a317' }}>
+        <div className="os-card p-4 mb-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #d4a25a' }}>
           <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
             全球 BCI 临床试验自 2018 年起呈指数攀升，中国试验数与植入案例后发追赶、增速更陡（「北脑」等团队推动）。对数轴显示量级差异——中国正从演示走向规模化临床。
           </p>
@@ -260,8 +260,8 @@ export default function Page() {
 
       <Card title="神经数据主权与伦理红线" className="mb-6">
         <Grid cols={2}>
-          <div className="os-card p-5" style={{ background: 'var(--bg-surface)', borderLeft: '3px solid #c41e3a' }}>
-            <div className="text-sm font-semibold mb-2" style={{ color: '#c41e3a' }}>神经数据 = 终极隐私</div>
+          <div className="os-card p-5" style={{ background: 'var(--bg-surface)', borderLeft: '3px solid #e5483b' }}>
+            <div className="text-sm font-semibold mb-2" style={{ color: '#e5483b' }}>神经数据 = 终极隐私</div>
             <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>
               神经信号直接编码意图、情绪与认知状态——它不是「关于你」的数据，它就是你本身。一旦泄露或被解码逆向，
               心理状态、潜在意图乃至人格特征皆可被推断。神经数据须被认定为<strong style={{ color: 'var(--text-primary)' }}>最高敏感级别</strong>，其主权属于个体，不可默认让渡。
@@ -269,7 +269,7 @@ export default function Page() {
             <div className="grid gap-3" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
               {[['数据主权', '采集即授权，个体保有删除与拒绝解码权。'], ['伦理红线', '禁止认知操控、强制读取与意志写入。'], ['治理框架', '分类分级 · 伦理审查 · 跨境管制前置。']].map(([k, v]) => (
                 <div key={k}>
-                  <div className="text-xs font-semibold mb-1" style={{ color: '#c41e3a' }}>{k}</div>
+                  <div className="text-xs font-semibold mb-1" style={{ color: '#e5483b' }}>{k}</div>
                   <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{v}</p>
                 </div>
               ))}

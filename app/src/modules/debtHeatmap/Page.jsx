@@ -6,9 +6,9 @@ import { categoryX, valueY, GRID, AXIS, LABEL } from '../shared/chartHelpers.js'
 import { IntroCard, SelectorBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 const DEBT_MODES = [
-  { key: 'rate', label: '债务率', accent: '#c41e3a', desc: '债务/综合财力 %：天津、贵州、云南、青海等地远超 120% 警戒线，沿海经济大省仍有充足缓冲。' },
-  { key: 'explicit', label: '显性债务', accent: '#22d3ee', desc: '人大批准限额内的地方政府债券（一般债+专项债），透明可控，2024 余额约 47 万亿。' },
-  { key: 'implicit', label: '隐性债务', accent: '#e8a317', desc: '城投平台、政府购买服务与 PPP 中沉淀的隐性债务，规模约为显性 1.2–1.5 倍，是风险定价真正难点。' },
+  { key: 'rate', label: '债务率', accent: '#e5483b', desc: '债务/综合财力 %：天津、贵州、云南、青海等地远超 120% 警戒线，沿海经济大省仍有充足缓冲。' },
+  { key: 'explicit', label: '显性债务', accent: '#6e8cff', desc: '人大批准限额内的地方政府债券（一般债+专项债），透明可控，2024 余额约 47 万亿。' },
+  { key: 'implicit', label: '隐性债务', accent: '#d4a25a', desc: '城投平台、政府购买服务与 PPP 中沉淀的隐性债务，规模约为显性 1.2–1.5 倍，是风险定价真正难点。' },
 ];
 
 // 省级债务率（债务/综合财力 % · 示意值，量级贴近公开研究）—— name 用 DataV 全称
@@ -47,10 +47,10 @@ const top10 = ['安徽', '甘肃', '海南', '天津', '广西', '吉林', '宁�
 const top10Val = [65, 68, 68, 68, 72, 72, 75, 78, 82, 88];
 const debtRank = {
   grid: { left: 64, right: 40, top: 12, bottom: 24 },
-  xAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color } },
+  xAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } }, axisLabel: { color: LABEL.color } },
   yAxis: { type: 'category', data: top10, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
   series: [{
-    type: 'bar', barWidth: 12, data: top10Val.map((v) => ({ value: v, itemStyle: { color: v >= 70 ? '#c41e3a' : '#e8a317', borderRadius: 3 } })),
+    type: 'bar', barWidth: 12, data: top10Val.map((v) => ({ value: v, itemStyle: { color: v >= 70 ? '#e5483b' : '#d4a25a', borderRadius: 3 } })),
     label: { show: true, position: 'right', formatter: '{c}%', color: LABEL.color },
   }],
 };
@@ -72,7 +72,7 @@ export default function Page() {
         data: [21.3, 25.7, 30.5, 35.1, 40.7, 47.5], lineStyle: { color: m.accent, width: 2 },
         itemStyle: { color: m.accent }, areaStyle: { color: `${m.accent}18` } },
       { name: '城投有息债务(估)', type: 'line', smooth: true, symbol: 'circle',
-        data: [44, 49, 54, 57, 60, mode === 'implicit' ? 62 : 58], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
+        data: [44, 49, 54, 57, 60, mode === 'implicit' ? 62 : 58], lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' } },
     ],
   }), [mode, m]);
 
@@ -82,10 +82,10 @@ export default function Page() {
       <IntroCard>地方债务核心矛盾在城投平台沉淀的<strong style={{ color: 'var(--text-primary)' }}>隐性债务</strong>：土地财政退潮后，以土地增值预期为锚的举债模式失去现金流支撑。化债本质是时间换空间——低息长久期政府债券置换高息短久期隐债。</IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="~47 万亿" label="显性债务余额（2024 · 地方政府债券）" accent="#c41e3a" />
-        <Stat value="~60 万亿" label="城投有息债务（市场估算口径）" accent="#e8a317" />
-        <Stat value="12 万亿" label="一揽子化债资源（6+4+2）" accent="#10b981" />
-        <Stat value="2028" label="隐性债务清零目标年" accent="#22d3ee" />
+        <Stat value="~47 万亿" label="显性债务余额（2024 · 地方政府债券）" accent="#e5483b" />
+        <Stat value="~60 万亿" label="城投有息债务（市场估算口径）" accent="#d4a25a" />
+        <Stat value="12 万亿" label="一揽子化债资源（6+4+2）" accent="#6fc2ae" />
+        <Stat value="2028" label="隐性债务清零目标年" accent="#6e8cff" />
       </Grid>
 
       <Card title="交互 · 债务口径选择器 + 省际热力图" className="mb-6">

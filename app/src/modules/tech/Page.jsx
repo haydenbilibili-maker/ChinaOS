@@ -11,7 +11,7 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 /** 交互① · 创新主体六元结构 */
 const ACTORS = [
   {
-    key: 'enterprise', label: '企业', accent: '#c41e3a',
+    key: 'enterprise', label: '企业', accent: '#e5483b',
     role: '研发执行的绝对主体 · 约 77.7% 的 R&D 经费在企业端花掉',
     share: '77.7%', shareLabel: 'R&D 执行占比',
     output: '试验开发、产品迭代、工艺改进——离市场最近，离源头最远。',
@@ -19,7 +19,7 @@ const ACTORS = [
     bars: [['试验开发', 84], ['应用研究', 13], ['基础研究', 3]],
   },
   {
-    key: 'university', label: '高校', accent: '#22d3ee',
+    key: 'university', label: '高校', accent: '#6e8cff',
     role: '论文与人才的主产地 · 基础研究执行占比约一半',
     share: '~7.6%', shareLabel: 'R&D 执行占比',
     output: '高被引论文全球占比第一梯队、研究生供给的蓄水池。',
@@ -27,7 +27,7 @@ const ACTORS = [
     bars: [['基础研究', 41], ['应用研究', 49], ['试验开发', 10]],
   },
   {
-    key: 'institute', label: '科研院所', accent: '#e8a317',
+    key: 'institute', label: '科研院所', accent: '#d4a25a',
     role: '国家任务的承接者 · 大科学装置与战略方向的主力',
     share: '~12.4%', shareLabel: 'R&D 执行占比',
     output: '深空深海深地、核心元器件预研等国家目标导向产出。',
@@ -43,7 +43,7 @@ const ACTORS = [
     bars: [['建制化攻关', 60], ['前沿探索', 28], ['平台开放', 12]],
   },
   {
-    key: 'newrd', label: '新型研发机构', accent: '#10b981',
+    key: 'newrd', label: '新型研发机构', accent: '#6fc2ae',
     role: '实验室与产线之间的「翻译层」 · 全国约 2400+ 家（示意）',
     share: '2400+', shareLabel: '机构数量（示意）',
     output: '中试、孵化、概念验证——专啃成果转化的死亡之谷。',
@@ -62,19 +62,19 @@ const ACTORS = [
 
 /** 交互② · 重点领域（保留原有维度） */
 const DOMAINS = [
-  { key: 'ai', label: '人工智能', accent: '#22d3ee', desc: '大模型 · 智算 · 行业落地，自主可控度高但底层算力受限。' },
-  { key: 'quantum', label: '量子信息', accent: '#c41e3a', desc: '九章 · 祖冲之 · 保密通信，国际第一梯队。' },
-  { key: 'space', label: '航天', accent: '#e8a317', desc: '北斗全球组网、空间站常态化运营、深空探测。' },
-  { key: 'energy', label: '能源', accent: '#10b981', desc: '新能源装机与核电技术形成规模优势，支撑双碳路径。' },
+  { key: 'ai', label: '人工智能', accent: '#6e8cff', desc: '大模型 · 智算 · 行业落地，自主可控度高但底层算力受限。' },
+  { key: 'quantum', label: '量子信息', accent: '#e5483b', desc: '九章 · 祖冲之 · 保密通信，国际第一梯队。' },
+  { key: 'space', label: '航天', accent: '#d4a25a', desc: '北斗全球组网、空间站常态化运营、深空探测。' },
+  { key: 'energy', label: '能源', accent: '#6fc2ae', desc: '新能源装机与核电技术形成规模优势，支撑双碳路径。' },
 ];
 
 /** 交互③ · 体系演进时间线（五阶段） */
 const PHASES = [
-  { period: '1995–2005', title: '科教兴国', accent: '#64748b', desc: '科学技术是第一生产力的制度化表达；863/973 计划框架成型，R&D 强度从不足 0.6% 起步爬坡。' },
-  { period: '2006–2012', title: '自主创新 · 中长期规划', accent: '#22d3ee', desc: '《国家中长期科技发展规划纲要(2006–2020)》锚定 16 个重大专项；「引进消化吸收再创新」成为主路径。' },
-  { period: '2012–2017', title: '创新驱动发展战略', accent: '#10b981', desc: '创新被置于发展全局核心；高企认定、双创、科技成果转化法修订——制度供给密集落地。' },
-  { period: '2018–2022', title: '科技自立自强', accent: '#e8a317', desc: '外部断供倒逼内生路线：卡脖子清单、揭榜挂帅、科创板硬科技定位——从开放协作叙事转向安全叙事。' },
-  { period: '2023–', title: '新型举国体制 2.0', accent: '#c41e3a', desc: '中央科技委统筹 + 教育科技人才一体化部署；有为政府与有效市场的组合拳，效率与试错容忍度待观察。' },
+  { period: '1995–2005', title: '科教兴国', accent: '#8a8578', desc: '科学技术是第一生产力的制度化表达；863/973 计划框架成型，R&D 强度从不足 0.6% 起步爬坡。' },
+  { period: '2006–2012', title: '自主创新 · 中长期规划', accent: '#6e8cff', desc: '《国家中长期科技发展规划纲要(2006–2020)》锚定 16 个重大专项；「引进消化吸收再创新」成为主路径。' },
+  { period: '2012–2017', title: '创新驱动发展战略', accent: '#6fc2ae', desc: '创新被置于发展全局核心；高企认定、双创、科技成果转化法修订——制度供给密集落地。' },
+  { period: '2018–2022', title: '科技自立自强', accent: '#d4a25a', desc: '外部断供倒逼内生路线：卡脖子清单、揭榜挂帅、科创板硬科技定位——从开放协作叙事转向安全叙事。' },
+  { period: '2023–', title: '新型举国体制 2.0', accent: '#e5483b', desc: '中央科技委统筹 + 教育科技人才一体化部署；有为政府与有效市场的组合拳，效率与试错容忍度待观察。' },
 ];
 
 const RD_YEARS = ['2012', '2014', '2016', '2018', '2020', '2022', '2024'];
@@ -96,10 +96,10 @@ export default function Page() {
 
   /** R&D 执行结构 donut（全局结构，不随选择切换，作为参照系） */
   const execDonut = useMemo(() => donutOpt([
-    { value: 77.7, name: '企业', itemStyle: { color: '#c41e3a' } },
-    { value: 12.4, name: '科研院所', itemStyle: { color: '#e8a317' } },
-    { value: 7.6, name: '高校', itemStyle: { color: '#22d3ee' } },
-    { value: 2.3, name: '其他', itemStyle: { color: '#64748b' } },
+    { value: 77.7, name: '企业', itemStyle: { color: '#e5483b' } },
+    { value: 12.4, name: '科研院所', itemStyle: { color: '#d4a25a' } },
+    { value: 7.6, name: '高校', itemStyle: { color: '#6e8cff' } },
+    { value: 2.3, name: '其他', itemStyle: { color: '#8a8578' } },
   ]), []);
 
   /** 选中主体的活动结构横向 bar */
@@ -127,7 +127,7 @@ export default function Page() {
     yAxis: [valueY({ name: '亿元' }), valueY({ name: '%', min: 1.5, max: 3, splitLine: { show: false } })],
     series: [
       { name: 'R&D 经费 (亿元)', type: 'bar', barWidth: 16, data: RD_TOTAL, itemStyle: { color: d.accent, borderRadius: [3, 3, 0, 0], opacity: 0.85 } },
-      { name: 'R&D 强度 (%GDP)', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', symbolSize: 5, data: RD_INTENSITY, lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' } },
+      { name: 'R&D 强度 (%GDP)', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', symbolSize: 5, data: RD_INTENSITY, lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' } },
     ],
   }), [d]);
 
@@ -155,8 +155,8 @@ export default function Page() {
     xAxis: categoryX(['中国', '美国', '日本', '德国', '韩国']),
     yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
     series: [
-      { name: 'R&D 强度 (%GDP)', type: 'bar', barWidth: 18, data: [2.69, 3.59, 3.41, 3.13, 4.96], itemStyle: { color: '#22d3ee', borderRadius: [3, 3, 0, 0] } },
-      { name: '基础研究占比 (%)', type: 'bar', barWidth: 18, data: [6.9, 15.2, 12.6, 17.1, 14.8], itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } },
+      { name: 'R&D 强度 (%GDP)', type: 'bar', barWidth: 18, data: [2.69, 3.59, 3.41, 3.13, 4.96], itemStyle: { color: '#6e8cff', borderRadius: [3, 3, 0, 0] } },
+      { name: '基础研究占比 (%)', type: 'bar', barWidth: 18, data: [6.9, 15.2, 12.6, 17.1, 14.8], itemStyle: { color: '#e5483b', borderRadius: [3, 3, 0, 0] } },
     ],
   }), []);
 
@@ -168,9 +168,9 @@ export default function Page() {
     xAxis: categoryX(['2016', '2018', '2020', '2022', '2024']),
     yAxis: [valueY({ name: '千件 / 家' }), valueY({ name: '%', max: 40, splitLine: { show: false } })],
     series: [
-      { name: 'PCT 专利 (千件)', type: 'bar', barWidth: 14, data: [43, 53, 69, 70, 70], itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } },
-      { name: '独角兽 (家)', type: 'bar', barWidth: 14, data: [131, 205, 251, 312, 369], itemStyle: { color: '#e8a317', borderRadius: [3, 3, 0, 0], opacity: 0.85 } },
-      { name: '高被引论文全球占比 (%)', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', symbolSize: 5, data: [12.8, 17.0, 24.8, 27.3, 33.8], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
+      { name: 'PCT 专利 (千件)', type: 'bar', barWidth: 14, data: [43, 53, 69, 70, 70], itemStyle: { color: '#e5483b', borderRadius: [3, 3, 0, 0] } },
+      { name: '独角兽 (家)', type: 'bar', barWidth: 14, data: [131, 205, 251, 312, 369], itemStyle: { color: '#d4a25a', borderRadius: [3, 3, 0, 0], opacity: 0.85 } },
+      { name: '高被引论文全球占比 (%)', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', symbolSize: 5, data: [12.8, 17.0, 24.8, 27.3, 33.8], lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' } },
     ],
   }), []);
 
@@ -181,16 +181,16 @@ export default function Page() {
     radar: {
       indicator: ['投入强度', '产出质量', '转化效率', '企业主体性', '人才储备', '开放合作'].map((n) => ({ name: n, max: 100 })),
       axisName: { color: LABEL.color, fontSize: 10 },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-      axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
+      axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
       splitArea: { show: false },
       radius: '62%',
     },
     series: [{
       type: 'radar',
       data: [
-        { value: [74, 70, 48, 86, 82, 52], name: '中国', lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.18)' } },
-        { value: [88, 90, 80, 78, 76, 84], name: '创新强国均值', lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' }, areaStyle: { color: 'rgba(232,163,23,0.10)' } },
+        { value: [74, 70, 48, 86, 82, 52], name: '中国', lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.18)' } },
+        { value: [88, 90, 80, 78, 76, 84], name: '创新强国均值', lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' }, areaStyle: { color: 'rgba(212, 162, 90,0.10)' } },
       ],
     }],
   }), []);
@@ -207,11 +207,11 @@ export default function Page() {
 
   /** 科技成果转化漏斗：专利→转化→产业化的折损链 */
   const FUNNEL = [
-    ['发明专利申请', 100, '#22d3ee'],
-    ['获得授权', 55, '#10b981'],
-    ['有效维持 (>5年)', 38, '#e8a317'],
+    ['发明专利申请', 100, '#6e8cff'],
+    ['获得授权', 55, '#6fc2ae'],
+    ['有效维持 (>5年)', 38, '#d4a25a'],
     ['实施 / 许可转让', 22, '#f472b6'],
-    ['形成产业化收入', 9, '#c41e3a'],
+    ['形成产业化收入', 9, '#e5483b'],
   ];
   const funnelBar = useMemo(() => ({
     grid: { left: 120, right: 56, top: 16, bottom: 24 },
@@ -233,9 +233,9 @@ export default function Page() {
     xAxis: categoryX(HTE_YEARS),
     yAxis: logY({ name: '家 (log)' }),
     series: [
-      { name: '高新技术企业 (万家)', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [10.4, 18.1, 27.5, 40.0, 46.3], lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.10)' } },
-      { name: '专精特新小巨人 (千家)', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [0.2, 0.8, 2.0, 9.0, 14.6], lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' } },
-      { name: '独角兽 (百家)', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [1.3, 2.1, 2.5, 3.1, 3.7], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
+      { name: '高新技术企业 (万家)', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [10.4, 18.1, 27.5, 40.0, 46.3], lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.10)' } },
+      { name: '专精特新小巨人 (千家)', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [0.2, 0.8, 2.0, 9.0, 14.6], lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' } },
+      { name: '独角兽 (百家)', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [1.3, 2.1, 2.5, 3.1, 3.7], lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' } },
     ],
   }), []);
 
@@ -243,8 +243,8 @@ export default function Page() {
   const rdTypeStack = useMemo(() => stackedBarOpt({
     categories: ['2015', '2018', '2021', '2024'],
     series: [
-      { name: '基础研究', data: [5.1, 5.5, 6.5, 6.9], itemStyle: { color: '#c41e3a' } },
-      { name: '应用研究', data: [10.8, 11.1, 11.3, 11.1], itemStyle: { color: '#e8a317' } },
+      { name: '基础研究', data: [5.1, 5.5, 6.5, 6.9], itemStyle: { color: '#e5483b' } },
+      { name: '应用研究', data: [10.8, 11.1, 11.3, 11.1], itemStyle: { color: '#d4a25a' } },
       { name: '试验开发', data: [84.1, 83.4, 82.2, 82.0], itemStyle: { color: '#334155' } },
     ],
   }), []);
@@ -260,10 +260,10 @@ export default function Page() {
 
       {/* 概览 Stat */}
       <Grid cols={4} className="mb-6">
-        <Stat value="3.6 万亿" label="R&D 经费 (2024 · 全球第二)" accent="#c41e3a" />
-        <Stat value="2.69%" label="R&D 强度 (占 GDP)" accent="#22d3ee" />
-        <Stat value="~7.0 万件" label="PCT 国际专利 (全球第一)" accent="#e8a317" />
-        <Stat value="46 万+ 家" label="高新技术企业" accent="#10b981" />
+        <Stat value="3.6 万亿" label="R&D 经费 (2024 · 全球第二)" accent="#e5483b" />
+        <Stat value="2.69%" label="R&D 强度 (占 GDP)" accent="#6e8cff" />
+        <Stat value="~7.0 万件" label="PCT 国际专利 (全球第一)" accent="#d4a25a" />
+        <Stat value="46 万+ 家" label="高新技术企业" accent="#6fc2ae" />
       </Grid>
 
       {/* 交互① 创新主体选择器 */}
@@ -277,7 +277,7 @@ export default function Page() {
           <p className="text-sm leading-relaxed mb-1" style={{ color: 'var(--text-secondary)' }}>{actor.role}</p>
           <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}><strong style={{ color: 'var(--text-primary)' }}>产出：</strong>{actor.output}</p>
         </div>
-        <div className="os-card p-4 mb-4" style={{ background: 'rgba(196,30,58,0.06)', borderLeft: '3px solid var(--china-red)' }}>
+        <div className="os-card p-4 mb-4" style={{ background: 'rgba(229, 72, 59,0.06)', borderLeft: '3px solid var(--china-red)' }}>
           <div className="text-xs font-semibold mb-1 mono" style={{ color: 'var(--china-red)' }}>结构性痛点</div>
           <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{actor.pain}</p>
         </div>

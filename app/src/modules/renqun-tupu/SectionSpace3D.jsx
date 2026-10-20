@@ -147,9 +147,9 @@ export default function SectionSpace3D() {
         <>
           {/* 三轴选择器 */}
           <div className="flex flex-col gap-2.5 mb-4">
-            <AxisPicker label="X" value={xDim} onChange={setXDim} color="#c41e3a" />
-            <AxisPicker label="Y" value={yDim} onChange={setYDim} color="#22d3ee" />
-            <AxisPicker label="Z" value={zDim} onChange={setZDim} color="#e8a317" />
+            <AxisPicker label="X" value={xDim} onChange={setXDim} color="#e5483b" />
+            <AxisPicker label="Y" value={yDim} onChange={setYDim} color="#6e8cff" />
+            <AxisPicker label="Z" value={zDim} onChange={setZDim} color="#d4a25a" />
           </div>
 
           {/* 簇色图例 */}
@@ -161,7 +161,7 @@ export default function SectionSpace3D() {
                     width: 10,
                     height: 10,
                     borderRadius: 2,
-                    background: c.color || '#64748b',
+                    background: c.color || '#8a8578',
                     display: 'inline-block',
                   }}
                 />

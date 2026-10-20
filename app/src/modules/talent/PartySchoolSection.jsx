@@ -21,7 +21,7 @@ const BTN = {
   background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)',
   color: 'var(--text-secondary)', borderRadius: 6, padding: '4px 12px', fontSize: 12, cursor: 'pointer',
 };
-const BTN_CYAN = { ...BTN, background: 'rgba(34,211,238,0.12)', border: '1px solid rgba(34,211,238,0.35)', color: '#22d3ee', fontWeight: 600 };
+const BTN_CYAN = { ...BTN, background: 'rgba(110, 140, 255,0.12)', border: '1px solid rgba(110, 140, 255,0.35)', color: '#6e8cff', fontWeight: 600 };
 
 /** 结业考核报告（Markdown）：纯函数，仅由当前 state 决定，无随机数/无当前时间 */
 function buildGraduationReport({ cohort, minScore, candidates, selected }) {
@@ -200,10 +200,10 @@ export default function PartySchoolSection() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value={COURSE_MODULES.length} label="课程模块" accent="#c41e3a" />
-        <Stat value={COHORTS.length} label="专题班次" accent="#22d3ee" />
-        <Stat value={INSTRUCTORS.length} label="讲学人才池" accent="#e8a317" />
-        <Stat value={ASSESSMENT_DIMS.length} label="考核维度" accent="#8b5cf6" />
+        <Stat value={COURSE_MODULES.length} label="课程模块" accent="#e5483b" />
+        <Stat value={COHORTS.length} label="专题班次" accent="#6e8cff" />
+        <Stat value={INSTRUCTORS.length} label="讲学人才池" accent="#d4a25a" />
+        <Stat value={ASSESSMENT_DIMS.length} label="考核维度" accent="#b07cc6" />
       </Grid>
 
       <FrameworkTrio cards={[
@@ -366,7 +366,7 @@ export default function PartySchoolSection() {
         <div className="flex items-center gap-2 flex-wrap">
           <button type="button" style={BTN_CYAN} onClick={genReport}>生成结业报告</button>
           {reportMd && (
-            <button type="button" style={copied ? { ...BTN, color: '#10b981' } : BTN} onClick={copyReport}>
+            <button type="button" style={copied ? { ...BTN, color: '#6fc2ae' } : BTN} onClick={copyReport}>
               {copied ? '已复制 ✓' : '复制 Markdown'}
             </button>
           )}

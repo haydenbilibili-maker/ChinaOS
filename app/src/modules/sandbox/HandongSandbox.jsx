@@ -16,7 +16,7 @@ import {
   computeGovernanceScores, suggestCadreActions,
 } from './handongEngine.js';
 
-const ACTION_COLORS = { 升迁: '#10b981', 留任: '#22d3ee', 约谈: '#e8a317', 调整: '#ef4444', 降职: '#c41e3a', 表彰: '#8b5cf6' };
+const ACTION_COLORS = { 升迁: '#6fc2ae', 留任: '#6e8cff', 约谈: '#d4a25a', 调整: '#e5483b', 降职: '#e5483b', 表彰: '#b07cc6' };
 
 const DEFAULT_ALLOC = Object.fromEntries(HANDONG_TOOLS.map((t) => [t.id, 20]));
 
@@ -65,9 +65,9 @@ export default function HandongSandbox() {
     series: [{
       type: 'pie', radius: ['40%', '68%'],
       data: [
-        { name: '第一产业', value: config.industryMix.primary, itemStyle: { color: '#10b981' } },
-        { name: '第二产业', value: config.industryMix.secondary, itemStyle: { color: '#c41e3a' } },
-        { name: '第三产业', value: config.industryMix.tertiary, itemStyle: { color: '#22d3ee' } },
+        { name: '第一产业', value: config.industryMix.primary, itemStyle: { color: '#6fc2ae' } },
+        { name: '第二产业', value: config.industryMix.secondary, itemStyle: { color: '#e5483b' } },
+        { name: '第三产业', value: config.industryMix.tertiary, itemStyle: { color: '#6e8cff' } },
       ],
       label: { color: LABEL.color, fontSize: 10 },
     }],
@@ -77,12 +77,12 @@ export default function HandongSandbox() {
     radar: {
       indicator: governanceScores.map((s) => ({ name: s.domain, max: 100 })),
       axisName: { color: LABEL.color, fontSize: 10 },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
       splitArea: { show: false },
     },
     series: [{
       type: 'radar',
-      data: [{ value: governanceScores.map((s) => s.score), name: '政绩', lineStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.12)' } }],
+      data: [{ value: governanceScores.map((s) => s.score), name: '政绩', lineStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.12)' } }],
     }],
   }), [governanceScores]);
 
@@ -130,15 +130,15 @@ export default function HandongSandbox() {
   return (
     <div>
       <IntroCard>
-        <span className="mono text-[10px] px-2 py-0.5 rounded mr-2" style={{ background: 'rgba(196,30,58,0.15)', color: 'var(--china-red)' }}>虚构推演 · 汉东省沙盘</span>
+        <span className="mono text-[10px] px-2 py-0.5 rounded mr-2" style={{ background: 'rgba(229, 72, 59,0.15)', color: 'var(--china-red)' }}>虚构推演 · 汉东省沙盘</span>
         汉东省为<strong style={{ color: 'var(--text-primary)' }}>虚构省域</strong>（省会京州市），灵感取自戏剧叙事但采用冷峻中立分析口径。配置 P0 参数 → 选派主官组建班子 → 选择情景推演 → 调用四件套（政策配置/复合危机/应对小组/治理报告）→ 根据政绩生成升迁任免建议。
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value={`${config.population} 万`} label="常住人口" accent="#22d3ee" />
-        <Stat value={config.capital} label="省会" accent="#e8a317" />
-        <Stat value={`${config.gdpGrowth}%`} label="GDP 增速（设定）" accent="#10b981" />
-        <Stat value={baseline.entropy} label="省域熵增指数" accent="#c41e3a" />
+        <Stat value={`${config.population} 万`} label="常住人口" accent="#6e8cff" />
+        <Stat value={config.capital} label="省会" accent="#d4a25a" />
+        <Stat value={`${config.gdpGrowth}%`} label="GDP 增速（设定）" accent="#6fc2ae" />
+        <Stat value={baseline.entropy} label="省域熵增指数" accent="#e5483b" />
       </Grid>
 
       <Grid cols={2} className="mb-6">
@@ -161,7 +161,7 @@ export default function HandongSandbox() {
                 <span style={{ color: 'var(--text-tertiary)' }}>GDP 增速 %</span>
                 <input type="range" min={1} max={12} step={0.1} value={config.gdpGrowth}
                   onChange={(e) => updateConfig({ gdpGrowth: Number(e.target.value) })}
-                  style={{ width: '100%', accentColor: '#10b981' }} />
+                  style={{ width: '100%', accentColor: '#6fc2ae' }} />
                 <span className="mono">{config.gdpGrowth}%</span>
               </label>
               <label className="block">
@@ -179,10 +179,10 @@ export default function HandongSandbox() {
               <div className="grid grid-cols-2 gap-2 mt-1">
                 <input type="range" min={10} max={90} value={config.fiscalSelf}
                   onChange={(e) => updateConfig({ fiscalSelf: Number(e.target.value) })}
-                  style={{ accentColor: '#e8a317' }} />
+                  style={{ accentColor: '#d4a25a' }} />
                 <input type="range" min={50} max={350} value={config.debtRatio}
                   onChange={(e) => updateConfig({ debtRatio: Number(e.target.value) })}
-                  style={{ accentColor: '#c41e3a' }} />
+                  style={{ accentColor: '#e5483b' }} />
               </div>
             </div>
             <div>
@@ -192,7 +192,7 @@ export default function HandongSandbox() {
                   <span className="w-12 mono text-[10px]" style={{ color: 'var(--text-secondary)' }}>{k}</span>
                   <input type="range" min={0} max={100} value={v}
                     onChange={(e) => updateNested('resources', k, Number(e.target.value))}
-                    style={{ flex: 1, accentColor: '#22d3ee' }} />
+                    style={{ flex: 1, accentColor: '#6e8cff' }} />
                   <span className="mono w-6 text-right">{v}</span>
                 </div>
               ))}
@@ -206,7 +206,7 @@ export default function HandongSandbox() {
                     <span className="w-8 text-[10px]">{labels[i]}</span>
                     <input type="range" min={5} max={70} value={config.industryMix[k]}
                       onChange={(e) => updateNested('industryMix', k, Number(e.target.value))}
-                      style={{ flex: 1, accentColor: '#8b5cf6' }} />
+                      style={{ flex: 1, accentColor: '#b07cc6' }} />
                     <span className="mono w-8">{config.industryMix[k]}%</span>
                   </div>
                 );
@@ -218,7 +218,7 @@ export default function HandongSandbox() {
                 <label className="text-[10px]">常委 {config.teamStructure.standingCommittee}
                   <input type="range" min={9} max={13} value={config.teamStructure.standingCommittee}
                     onChange={(e) => updateNested('teamStructure', 'standingCommittee', Number(e.target.value))}
-                    style={{ width: '100%', accentColor: '#c41e3a' }} />
+                    style={{ width: '100%', accentColor: '#e5483b' }} />
                 </label>
                 <label className="text-[10px]">平均年龄 {config.teamStructure.avgAge}
                   <input type="range" min={48} max={58} value={config.teamStructure.avgAge}
@@ -267,7 +267,7 @@ export default function HandongSandbox() {
               {candidates.map((f) => (
                 <button key={f.id || f.name} type="button" onClick={() => assignOfficial(activeRole, f)}
                   className="w-full text-left p-2 rounded os-card-interactive"
-                  style={{ background: config.team[activeRole]?.name === f.name ? 'rgba(196,30,58,0.12)' : 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', cursor: 'pointer' }}>
+                  style={{ background: config.team[activeRole]?.name === f.name ? 'rgba(229, 72, 59,0.12)' : 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', cursor: 'pointer' }}>
                   <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{f.name}</div>
                   <div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{f.fields?.title || f.org} · 匹配 {f.matchScore}</div>
                 </button>
@@ -281,13 +281,13 @@ export default function HandongSandbox() {
                 const off = config.team[role.id];
                 const val = validateOfficial(off, role);
                 return (
-                  <div key={role.id} className="p-2 rounded flex justify-between items-start" style={{ background: 'var(--bg-elevated)', borderLeft: `2px solid ${val.ok ? '#10b981' : '#ef4444'}` }}>
+                  <div key={role.id} className="p-2 rounded flex justify-between items-start" style={{ background: 'var(--bg-elevated)', borderLeft: `2px solid ${val.ok ? '#6fc2ae' : '#e5483b'}` }}>
                     <div>
                       <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{role.label}</div>
                       {off ? (
                         <>
                           <div className="text-[11px]" style={{ color: 'var(--cyber-cyan)' }}>{off.name} · {off.title}</div>
-                          <div className="text-[9px] mono" style={{ color: val.ok ? '#10b981' : '#ef4444' }}>{val.msg}</div>
+                          <div className="text-[9px] mono" style={{ color: val.ok ? '#6fc2ae' : '#e5483b' }}>{val.msg}</div>
                         </>
                       ) : (
                         <div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{role.required ? '必填岗 · 待选派' : '选填 · 空缺'}</div>
@@ -341,7 +341,7 @@ export default function HandongSandbox() {
             </div>
             <div className="flex gap-1 flex-wrap mt-3">
               {scenario.triggers?.map((t) => (
-                <span key={t} className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(148,163,184,0.12)', color: 'var(--text-tertiary)' }}>{t}</span>
+                <span key={t} className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(162, 156, 145,0.12)', color: 'var(--text-tertiary)' }}>{t}</span>
               ))}
             </div>
           </div>
@@ -377,7 +377,7 @@ export default function HandongSandbox() {
         ) : (
           <Grid cols={2}>
             {cadreActions.map((a) => (
-              <div key={a.roleId} className="os-card p-3" style={{ background: 'var(--bg-elevated)', borderLeft: `3px solid ${ACTION_COLORS[a.action] || '#93a1b5'}` }}>
+              <div key={a.roleId} className="os-card p-3" style={{ background: 'var(--bg-elevated)', borderLeft: `3px solid ${ACTION_COLORS[a.action] || '#a29c91'}` }}>
                 <div className="flex justify-between items-start">
                   <div>
                     <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{a.roleLabel} · {a.name}</div>
@@ -393,7 +393,7 @@ export default function HandongSandbox() {
         )}
         <Grid cols={5} className="mt-4">
           {governanceScores.map((s) => (
-            <Stat key={s.domain} value={s.score} label={s.domain} accent={s.score >= 70 ? '#10b981' : s.score >= 50 ? '#e8a317' : '#c41e3a'} />
+            <Stat key={s.domain} value={s.score} label={s.domain} accent={s.score >= 70 ? '#6fc2ae' : s.score >= 50 ? '#d4a25a' : '#e5483b'} />
           ))}
         </Grid>
       </Card>

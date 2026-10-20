@@ -9,20 +9,20 @@ import { AXIS, LABEL, GRID_LINE, CHART_SERIES_PALETTE } from '../shared/chartHel
 const dividendTrend = {
   grid: { left: 44, right: 16, top: 16, bottom: 24 },
   xAxis: { type: 'category', data: ['2018', '2020', '2022', '2024'], ...AXIS, axisLabel: LABEL },
-  yAxis: { type: 'value', name: '指数', nameTextStyle: { color: '#5b6a82' }, axisLabel: { color: '#93a1b5' }, ...GRID_LINE },
-  series: [{ type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [60, 72, 84, 95], lineStyle: { color: '#10b981', width: 2 }, itemStyle: { color: '#10b981' }, areaStyle: { color: 'rgba(16,185,129,0.1)' } }],
+  yAxis: { type: 'value', name: '指数', nameTextStyle: { color: '#8a847a' }, axisLabel: { color: '#a29c91' }, ...GRID_LINE },
+  series: [{ type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [60, 72, 84, 95], lineStyle: { color: '#6fc2ae', width: 2 }, itemStyle: { color: '#6fc2ae' }, areaStyle: { color: 'rgba(111, 194, 174,0.1)' } }],
 };
 const bankruptcyOpt = {
   grid: { left: 44, right: 16, top: 30, bottom: 24 },
-  legend: { textStyle: { color: '#93a1b5' }, top: 0, data: ['受理破产案', '重整成功率'] },
+  legend: { textStyle: { color: '#a29c91' }, top: 0, data: ['受理破产案', '重整成功率'] },
   xAxis: { type: 'category', data: ['2019', '2021', '2023', '2025E'], ...AXIS, axisLabel: LABEL },
   yAxis: [
-    { type: 'value', name: '万件', nameTextStyle: { color: '#5b6a82' }, axisLabel: { color: '#93a1b5' }, ...GRID_LINE },
-    { type: 'value', name: '%', max: 100, nameTextStyle: { color: '#5b6a82' }, axisLabel: { color: '#93a1b5' }, splitLine: { show: false } },
+    { type: 'value', name: '万件', nameTextStyle: { color: '#8a847a' }, axisLabel: { color: '#a29c91' }, ...GRID_LINE },
+    { type: 'value', name: '%', max: 100, nameTextStyle: { color: '#8a847a' }, axisLabel: { color: '#a29c91' }, splitLine: { show: false } },
   ],
   series: [
-    { name: '受理破产案', type: 'bar', barWidth: 22, data: [1.0, 1.4, 1.9, 2.3], itemStyle: { color: '#8b5cf6', borderRadius: [3, 3, 0, 0] } },
-    { name: '重整成功率', type: 'line', yAxisIndex: 1, smooth: true, data: [38, 47, 55, 61], lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' } },
+    { name: '受理破产案', type: 'bar', barWidth: 22, data: [1.0, 1.4, 1.9, 2.3], itemStyle: { color: '#b07cc6', borderRadius: [3, 3, 0, 0] } },
+    { name: '重整成功率', type: 'line', yAxisIndex: 1, smooth: true, data: [38, 47, 55, 61], lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' } },
   ],
 };
 
@@ -30,20 +30,20 @@ const bankruptcyOpt = {
 const ipBar = {
   grid: { left: 44, right: 16, top: 16, bottom: 24 },
   xAxis: { type: 'category', data: ['2018', '2020', '2022', '2024'], ...AXIS, axisLabel: LABEL },
-  yAxis: { type: 'value', name: '万元/件', nameTextStyle: { color: '#5b6a82' }, axisLabel: { color: '#93a1b5' }, ...GRID_LINE },
-  series: [{ type: 'bar', data: [50, 110, 220, 400], barWidth: 28, itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } }],
+  yAxis: { type: 'value', name: '万元/件', nameTextStyle: { color: '#8a847a' }, axisLabel: { color: '#a29c91' }, ...GRID_LINE },
+  series: [{ type: 'bar', data: [50, 110, 220, 400], barWidth: 28, itemStyle: { color: '#e5483b', borderRadius: [3, 3, 0, 0] } }],
 };
 const patentOpt = {
   grid: { left: 48, right: 16, top: 30, bottom: 24 },
-  legend: { textStyle: { color: '#93a1b5' }, top: 0, data: ['发明专利授权', '平均确权周期'] },
+  legend: { textStyle: { color: '#a29c91' }, top: 0, data: ['发明专利授权', '平均确权周期'] },
   xAxis: { type: 'category', data: ['2018', '2020', '2022', '2024'], ...AXIS, axisLabel: LABEL },
   yAxis: [
-    { type: 'value', name: '万件', nameTextStyle: { color: '#5b6a82' }, axisLabel: { color: '#93a1b5' }, ...GRID_LINE },
-    { type: 'value', name: '月', max: 24, nameTextStyle: { color: '#5b6a82' }, axisLabel: { color: '#93a1b5' }, splitLine: { show: false } },
+    { type: 'value', name: '万件', nameTextStyle: { color: '#8a847a' }, axisLabel: { color: '#a29c91' }, ...GRID_LINE },
+    { type: 'value', name: '月', max: 24, nameTextStyle: { color: '#8a847a' }, axisLabel: { color: '#a29c91' }, splitLine: { show: false } },
   ],
   series: [
-    { name: '发明专利授权', type: 'bar', barWidth: 24, data: [43, 53, 80, 92], itemStyle: { color: '#22d3ee', borderRadius: [3, 3, 0, 0] } },
-    { name: '平均确权周期', type: 'line', yAxisIndex: 1, smooth: true, data: [22, 20, 16, 13], lineStyle: { color: '#fb923c', width: 2 }, itemStyle: { color: '#fb923c' } },
+    { name: '发明专利授权', type: 'bar', barWidth: 24, data: [43, 53, 80, 92], itemStyle: { color: '#6e8cff', borderRadius: [3, 3, 0, 0] } },
+    { name: '平均确权周期', type: 'line', yAxisIndex: 1, smooth: true, data: [22, 20, 16, 13], lineStyle: { color: '#c07a4a', width: 2 }, itemStyle: { color: '#c07a4a' } },
   ],
 };
 
@@ -55,26 +55,26 @@ const courtRadar = {
       { name: '文书公开', max: 100 }, { name: '在线诉讼', max: 100 },
       { name: '智能送达', max: 100 }, { name: '类案推送', max: 100 },
     ],
-    splitLine: { lineStyle: { color: 'rgba(148,163,184,0.12)' } },
-    splitArea: { areaStyle: { color: ['rgba(34,211,238,0.04)', 'rgba(34,211,238,0.02)'] } },
-    axisLine: { lineStyle: { color: '#27324a' } },
-    name: { color: '#93a1b5', fontSize: 11 },
+    splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.12)' } },
+    splitArea: { areaStyle: { color: ['rgba(110, 140, 255,0.04)', 'rgba(110, 140, 255,0.02)'] } },
+    axisLine: { lineStyle: { color: '#2a2d36' } },
+    name: { color: '#a29c91', fontSize: 11 },
   },
-  series: [{ type: 'radar', data: [{ value: [96, 78, 92, 90, 85, 81], name: '智慧法院 4.0', areaStyle: { color: 'rgba(34,211,238,0.18)' }, lineStyle: { color: '#22d3ee' }, itemStyle: { color: '#22d3ee' } }] }],
+  series: [{ type: 'radar', data: [{ value: [96, 78, 92, 90, 85, 81], name: '智慧法院 4.0', areaStyle: { color: 'rgba(110, 140, 255,0.18)' }, lineStyle: { color: '#6e8cff' }, itemStyle: { color: '#6e8cff' } }] }],
 };
 const onlineTrend = {
   grid: { left: 40, right: 16, top: 16, bottom: 24 },
   xAxis: { type: 'category', data: ['2020', '2021', '2022', '2023', '2024'], ...AXIS, axisLabel: LABEL },
-  yAxis: { type: 'value', name: '%', max: 100, nameTextStyle: { color: '#5b6a82' }, axisLabel: { color: '#93a1b5' }, ...GRID_LINE },
-  series: [{ type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [54, 67, 78, 86, 91], lineStyle: { color: '#10b981', width: 2 }, itemStyle: { color: '#10b981' }, areaStyle: { color: 'rgba(16,185,129,0.1)' } }],
+  yAxis: { type: 'value', name: '%', max: 100, nameTextStyle: { color: '#8a847a' }, axisLabel: { color: '#a29c91' }, ...GRID_LINE },
+  series: [{ type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [54, 67, 78, 86, 91], lineStyle: { color: '#6fc2ae', width: 2 }, itemStyle: { color: '#6fc2ae' }, areaStyle: { color: 'rgba(111, 194, 174,0.1)' } }],
 };
 
 // ── ④ 涉外法治 ──────────────────────────────
 const sovToolkit = {
   grid: { left: 96, right: 24, top: 8, bottom: 24 },
   xAxis: { type: 'value', max: 100, ...AXIS, axisLabel: LABEL, ...GRID_LINE },
-  yAxis: { type: 'category', data: ['长臂管辖反制', '数据跨境规则', '反外国制裁法', '阻断办法', 'CICC 商事仲裁'], axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { color: '#93a1b5' } },
-  series: [{ type: 'bar', barWidth: 16, data: [58, 64, 72, 67, 80], itemStyle: { color: '#c41e3a', borderRadius: [0, 3, 3, 0] } }],
+  yAxis: { type: 'category', data: ['长臂管辖反制', '数据跨境规则', '反外国制裁法', '阻断办法', 'CICC 商事仲裁'], axisLine: { lineStyle: { color: '#2a2d36' } }, axisLabel: { color: '#a29c91' } },
+  series: [{ type: 'bar', barWidth: 16, data: [58, 64, 72, 67, 80], itemStyle: { color: '#e5483b', borderRadius: [0, 3, 3, 0] } }],
 };
 
 const TABS = [
@@ -90,9 +90,9 @@ function tabStyle(active) {
     fontSize: 13,
     borderRadius: 6,
     cursor: 'pointer',
-    background: active ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)',
+    background: active ? 'rgba(229, 72, 59,0.2)' : 'var(--bg-elevated)',
     color: active ? '#fff' : 'var(--text-secondary)',
-    border: active ? '1px solid #c41e3a' : '1px solid var(--border-subtle)',
+    border: active ? '1px solid #e5483b' : '1px solid var(--border-subtle)',
     transition: 'all 0.15s',
   };
 }
@@ -105,10 +105,10 @@ export default function Page() {
       <PageHeader badge="Rule of Law · 制度红利" title="法治建设与司法现代化" subtitle="营商环境法治化 · 知识产权护城河 · 智慧法院 · 涉外法治博弈 —— 制度红利替代要素红利" />
 
       <Grid cols={4} className="mb-6">
-        <Stat value="99.5%" label="一审结案率" accent="#10b981" />
-        <Stat value="1.4 亿+" label="文书公开份数" accent="#22d3ee" />
-        <Stat value="UP TO 5X" label="惩罚性赔偿" accent="#c41e3a" />
-        <Stat value="100%" label="智慧法院 4.0 覆盖" accent="#e8a317" />
+        <Stat value="99.5%" label="一审结案率" accent="#6fc2ae" />
+        <Stat value="1.4 亿+" label="文书公开份数" accent="#6e8cff" />
+        <Stat value="UP TO 5X" label="惩罚性赔偿" accent="#e5483b" />
+        <Stat value="100%" label="智慧法院 4.0 覆盖" accent="#d4a25a" />
       </Grid>
 
       <div className="flex flex-wrap gap-2 mb-6 os-tab-bar">
@@ -137,8 +137,8 @@ export default function Page() {
               <EChart option={bankruptcyOpt} style={{ height: 200 }} />
               <p className="text-[11px] mt-1" style={{ color: 'var(--text-tertiary)' }}>受理破产案件量与重整成功率（示意）。</p>
               <Grid cols={2} className="mt-3">
-                <Stat value="-9 项" label="负面清单近年净缩减" accent="#10b981" />
-                <Stat value="100+" label="专门 / 集中破产法庭" accent="#8b5cf6" />
+                <Stat value="-9 项" label="负面清单近年净缩减" accent="#6fc2ae" />
+                <Stat value="100+" label="专门 / 集中破产法庭" accent="#b07cc6" />
               </Grid>
             </Card>
           </Grid>
@@ -154,8 +154,8 @@ export default function Page() {
               <EChart option={ipBar} style={{ height: 200 }} />
               <p className="text-[11px] mt-1" style={{ color: 'var(--text-tertiary)' }}>知产案件平均判赔额（万元/件 · 示意）。</p>
               <Grid cols={2} className="mt-3">
-                <Stat value="5X" label="惩罚性赔偿上限倍数" accent="#c41e3a" />
-                <Stat value="举证倒置" label="技术秘密侵权规则" accent="#e8a317" />
+                <Stat value="5X" label="惩罚性赔偿上限倍数" accent="#e5483b" />
+                <Stat value="举证倒置" label="技术秘密侵权规则" accent="#d4a25a" />
               </Grid>
             </Card>
             <Card title="确权提速 · 授权量与周期的剪刀差">
@@ -174,10 +174,10 @@ export default function Page() {
           <Card title="智慧法院 · 算法正义" className="mb-6">
             <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>司法现代化包含<strong style={{ color: 'var(--text-primary)' }}>区块链电子存证、AI 辅助量刑参考、裁判文书自动生成与全网公开、在线诉讼全流程</strong>。数字化极大降低司法裁量的随意性（Arbitrary Power），实现海量案件的高效率、标准化处理；当正义可被计算与回溯，司法公信力获得技术背书。</p>
             <Grid cols={4}>
-              <Stat value="秒级" label="司法区块链存证时延" accent="#22d3ee" />
-              <Stat value="91%" label="在线诉讼业务覆盖率" accent="#10b981" />
-              <Stat value="1.4 亿+" label="裁判文书网公开" accent="#e8a317" />
-              <Stat value="类案" label="AI 同案同判推送" accent="#8b5cf6" />
+              <Stat value="秒级" label="司法区块链存证时延" accent="#6e8cff" />
+              <Stat value="91%" label="在线诉讼业务覆盖率" accent="#6fc2ae" />
+              <Stat value="1.4 亿+" label="裁判文书网公开" accent="#d4a25a" />
+              <Stat value="类案" label="AI 同案同判推送" accent="#b07cc6" />
             </Grid>
           </Card>
           <Grid cols={2} className="mb-6">
@@ -213,10 +213,10 @@ export default function Page() {
             <Card title="现实主义读数 · 合法性即筹码">
               <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>在大国博弈中，<strong style={{ color: 'var(--text-primary)' }}>「合法性」是可交易的战略筹码</strong>。一套被国际认可的规则供给，能降低中国企业出海的合规摩擦、抬高对手单边制裁的政治成本。</p>
               <Grid cols={2}>
-                <Stat value="CICC" label="最高法国际商事法庭" accent="#22d3ee" />
-                <Stat value="对等反制" label="制裁—反制裁博弈" accent="#c41e3a" />
-                <Stat value="域外效力" label="阻断 + 数据出境" accent="#e8a317" />
-                <Stat value="规则供给" label="从接受者到博弈者" accent="#8b5cf6" />
+                <Stat value="CICC" label="最高法国际商事法庭" accent="#6e8cff" />
+                <Stat value="对等反制" label="制裁—反制裁博弈" accent="#e5483b" />
+                <Stat value="域外效力" label="阻断 + 数据出境" accent="#d4a25a" />
+                <Stat value="规则供给" label="从接受者到博弈者" accent="#b07cc6" />
               </Grid>
             </Card>
           </Grid>

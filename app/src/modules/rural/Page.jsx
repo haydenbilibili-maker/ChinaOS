@@ -9,42 +9,42 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // ============================================================================
 const ISSUES = [
   {
-    key: 'grain', label: '粮食与耕地', accent: '#10b981',
+    key: 'grain', label: '粮食与耕地', accent: '#6fc2ae',
     status: '粮食产量连续多年稳定在 1.3 万亿斤以上，2023 年约 6.95 亿吨（示意）；但耕地「非农化、非粮化」压力持续，18 亿亩红线靠占补平衡与进出平衡双闸门维持。',
     mechanism: '粮食安全党政同责 + 主产区利益补偿 + 最低收购价托底。种粮比较收益低于经济作物与外出务工，产能维持本质是财政与行政双重补贴的结果。',
     tension: '生态红线（地下水超采、黑土退化）与产能红线互相挤压：华北压采意味着减灌，东北黑土保护意味着休耕轮作——增产只能压向单产与种业。',
     policy: '高标准农田累计建成超 10 亿亩（量级），种业振兴行动聚焦「卡脖子」种源；大豆油料扩种以行政指标分解到省，市场化程度有限。',
   },
   {
-    key: 'land', label: '土地制度', accent: '#e8a317',
+    key: 'land', label: '土地制度', accent: '#d4a25a',
     status: '承包地完成确权颁证，流转面积占比约 1/3 强（示意）；宅基地约 1/3 闲置或季节性闲置；集体经营性建设用地入市试点扩面但成交规模仍小。',
     mechanism: '三权分置把「所有权-承包权-经营权」拆开，理论上让土地要素流动而不动摇集体所有制；宅基地三权分置同构复制，但「资格权」边界至今模糊。',
     tension: '农民最大的「沉睡资产」是宅基地与农房，但抵押、转让面向村集体外成员仍被严格限制——唤醒资产与守住「农民失地失所」底线之间是真实的两难。',
     policy: '深化试点强调「三条底线」：土地公有制不变、耕地红线不破、农民利益不受损。增值收益分配向集体和农民倾斜是改革成色的试金石。',
   },
   {
-    key: 'county', label: '县域经济', accent: '#22d3ee',
+    key: 'county', label: '县域经济', accent: '#6e8cff',
     status: '全国 1800 余县（市）贡献约 38% GDP（示意），但内部极度分化：百强县人均 GDP 超全国平均，资源枯竭县与边境县财政自给率不足 20%。',
     mechanism: '县域是「城尾乡头」：承接产业梯度转移、吸纳县内城镇化、提供农民「半工半耕」的就业半径。县城公共服务能力决定农民进城的真实成本。',
     tension: '「千县千面」：苏南强县靠产业集群，中部农业大县靠转移支付吃饭，财政供养人口与产业空心化互为因果——一刀切的县城城镇化方案不存在。',
     policy: '以县城为重要载体的城镇化建设；土地指标、专项债向县域倾斜；防止「造城运动」重演，人口流出县明确要求收缩规划而非扩张。',
   },
   {
-    key: 'income', label: '农民增收', accent: '#c41e3a',
+    key: 'income', label: '农民增收', accent: '#e5483b',
     status: '2023 年农村居民人均可支配收入约 2.17 万元（示意），城乡收入比降至 2.39 左右；但绝对差距仍在扩大，财产性收入占比不足 3%。',
     mechanism: '四轮驱动：工资性（务工）约 42%、经营性（农业+小生意）约 34%、转移性约 21%、财产性约 3%。增收主引擎是务工工资，而非农业本身。',
     tension: '务工收入受制于宏观就业景气与建筑业收缩；经营性收入受农产品价格天花板压制；财产性收入被土地制度锁死——三条路同时变窄时转移支付独木难支。',
     policy: '脱贫攻坚与乡村振兴衔接期防返贫监测；农民工工资保障条例；财产性收入突破口押注宅基地与集体资产股份化改革试点。',
   },
   {
-    key: 'population', label: '人口流出与老龄化', accent: '#8b5cf6',
+    key: 'population', label: '人口流出与老龄化', accent: '#b07cc6',
     status: '乡村常住人口从 2010 年约 6.7 亿降至 2023 年约 4.77 亿（示意）；乡村 60 岁以上人口占比超 23%，高出城镇约 7 个百分点。',
     mechanism: '青壮年单向流出形成「386199 部队」（妇女、儿童、老人留守）；村庄空心化与县城聚集并行——人口不是消失，而是在县域内重新分布。',
     tension: '谁来种地：小农户经营者平均年龄逼近 60 岁；社会化服务与土地托管是替代方案，但丘陵山区机械化经济性差，规模化有自然边界。',
     policy: '农村养老服务补短板、互助养老试点；村庄分类规划（集聚提升/搬迁撤并）承认部分村庄将自然消亡——这是政策文本里罕见的「收缩叙事」。',
   },
   {
-    key: 'digital', label: '数字乡村', accent: '#3b82f6',
+    key: 'digital', label: '数字乡村', accent: '#6e8cff',
     status: '行政村 4G/光纤通达率接近 100%，农村网络零售额超 2.5 万亿元（示意）；但冷链「最初一公里」与品控标准仍是农产品上行瓶颈。',
     mechanism: '电商平台 + 县域物流共配 + 直播带货重构流通链路，缩短从田头到餐桌的环节；数字支付下沉快于物理基建，渗透先于产业。',
     tension: '流量不等于产业：网红县的直播 GMV 与本地税收、就业的转化率低；数据与算法在平台手里，县域只是供应链末端的「数字佃农」风险真实存在。',
@@ -56,11 +56,11 @@ const ISSUES = [
 // 时间线 · 三农制度演进五阶段
 // ============================================================================
 const STAGES = [
-  { period: '1978-2005', title: '家庭联产承包', accent: '#10b981', desc: '包产到户释放第一轮制度红利，乡镇企业异军突起；但「剪刀差」遗产仍在：农业税费叠加工农产品价格剪刀差，农村持续向城市与工业输血。' },
-  { period: '2006', title: '取消农业税', accent: '#22d3ee', desc: '延续两千六百年的「皇粮国税」终结，城乡关系从「取」转向「予」；同年起以工补农、以城带乡成为基调，转移支付通道全面打开。' },
-  { period: '2013-2020', title: '脱贫攻坚', accent: '#c41e3a', desc: '现行标准下 9899 万农村贫困人口全部脱贫、832 个贫困县摘帽；超常规动员（驻村第一书记、对口帮扶）证明体制的纵向穿透力，也留下后续可持续性问题。' },
-  { period: '2021-2025', title: '衔接过渡期', accent: '#e8a317', desc: '设 5 年过渡期防止规模性返贫，帮扶政策「扶上马送一程」；乡村振兴局并入农业农村部，叙事从「攻坚」转向「常态化制度建设」。' },
-  { period: '2025+', title: '城乡融合 · 要素双向流动', accent: '#8b5cf6', desc: '改革深水区：人（户籍与公共服务）、地（宅基地与入市）、钱（财政与社会资本）三要素能否真正双向流动，决定乡村是「振兴」还是「体面收缩」。' },
+  { period: '1978-2005', title: '家庭联产承包', accent: '#6fc2ae', desc: '包产到户释放第一轮制度红利，乡镇企业异军突起；但「剪刀差」遗产仍在：农业税费叠加工农产品价格剪刀差，农村持续向城市与工业输血。' },
+  { period: '2006', title: '取消农业税', accent: '#6e8cff', desc: '延续两千六百年的「皇粮国税」终结，城乡关系从「取」转向「予」；同年起以工补农、以城带乡成为基调，转移支付通道全面打开。' },
+  { period: '2013-2020', title: '脱贫攻坚', accent: '#e5483b', desc: '现行标准下 9899 万农村贫困人口全部脱贫、832 个贫困县摘帽；超常规动员（驻村第一书记、对口帮扶）证明体制的纵向穿透力，也留下后续可持续性问题。' },
+  { period: '2021-2025', title: '衔接过渡期', accent: '#d4a25a', desc: '设 5 年过渡期防止规模性返贫，帮扶政策「扶上马送一程」；乡村振兴局并入农业农村部，叙事从「攻坚」转向「常态化制度建设」。' },
+  { period: '2025+', title: '城乡融合 · 要素双向流动', accent: '#b07cc6', desc: '改革深水区：人（户籍与公共服务）、地（宅基地与入市）、钱（财政与社会资本）三要素能否真正双向流动，决定乡村是「振兴」还是「体面收缩」。' },
 ];
 
 // ============================================================================
@@ -78,8 +78,8 @@ const incomeGapOpt = {
     valueY({ min: 0, max: 30, name: '转移占比%', nameTextStyle: { color: LABEL.color, fontSize: 10 }, splitLine: { show: false } }),
   ],
   series: [
-    { name: '城乡收入比(农村=1)', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [3.23, 3.03, 2.72, 2.64, 2.50, 2.39], lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' } },
-    { name: '农村转移性收入占比%', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', symbolSize: 6, data: [7.7, 10.4, 18.8, 20.6, 20.9, 21.4], lineStyle: { color: '#22d3ee', width: 2, type: 'dashed' }, itemStyle: { color: '#22d3ee' } },
+    { name: '城乡收入比(农村=1)', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [3.23, 3.03, 2.72, 2.64, 2.50, 2.39], lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' } },
+    { name: '农村转移性收入占比%', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', symbolSize: 6, data: [7.7, 10.4, 18.8, 20.6, 20.9, 21.4], lineStyle: { color: '#6e8cff', width: 2, type: 'dashed' }, itemStyle: { color: '#6e8cff' } },
   ],
 };
 
@@ -91,9 +91,9 @@ const countyDivergeOpt = {
   xAxis: categoryX(['人均GDP(万元)', '财政自给率(%)/10', '人口增长指数', '工业占比(%)/10']),
   yAxis: valueY(),
   series: [
-    { name: '百强县(均值)', type: 'bar', barWidth: 14, data: [13.2, 7.8, 10.4, 4.6], itemStyle: { color: '#22d3ee', borderRadius: 3 } },
-    { name: '一般农业县', type: 'bar', barWidth: 14, data: [4.8, 2.4, 9.2, 2.2], itemStyle: { color: '#e8a317', borderRadius: 3 } },
-    { name: '人口流出县', type: 'bar', barWidth: 14, data: [3.6, 1.5, 7.8, 1.6], itemStyle: { color: '#8b5cf6', borderRadius: 3 } },
+    { name: '百强县(均值)', type: 'bar', barWidth: 14, data: [13.2, 7.8, 10.4, 4.6], itemStyle: { color: '#6e8cff', borderRadius: 3 } },
+    { name: '一般农业县', type: 'bar', barWidth: 14, data: [4.8, 2.4, 9.2, 2.2], itemStyle: { color: '#d4a25a', borderRadius: 3 } },
+    { name: '人口流出县', type: 'bar', barWidth: 14, data: [3.6, 1.5, 7.8, 1.6], itemStyle: { color: '#b07cc6', borderRadius: 3 } },
   ],
 };
 
@@ -108,8 +108,8 @@ const ruralPopOpt = {
     valueY({ min: 0, max: 30, name: '60+占比%', nameTextStyle: { color: LABEL.color, fontSize: 10 }, splitLine: { show: false } }),
   ],
   series: [
-    { name: '乡村常住人口(亿)', type: 'bar', barWidth: 18, data: [6.71, 6.03, 5.64, 5.10, 4.91, 4.77], itemStyle: { color: 'rgba(139,92,246,0.55)', borderRadius: 3 } },
-    { name: '乡村60岁+占比%', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', symbolSize: 6, data: [15.0, 18.5, 20.5, 23.8, 24.7, 25.3], lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' } },
+    { name: '乡村常住人口(亿)', type: 'bar', barWidth: 18, data: [6.71, 6.03, 5.64, 5.10, 4.91, 4.77], itemStyle: { color: 'rgba(176, 124, 198,0.55)', borderRadius: 3 } },
+    { name: '乡村60岁+占比%', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', symbolSize: 6, data: [15.0, 18.5, 20.5, 23.8, 24.7, 25.3], lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' } },
   ],
 };
 
@@ -117,25 +117,25 @@ const ruralPopOpt = {
 const revitalRadar = radarOpt(
   ['产业振兴', '人才振兴', '文化振兴', '生态振兴', '组织振兴'],
   [78, 52, 60, 74, 64],
-  { name: '推进度(示意)', color: '#10b981' },
+  { name: '推进度(示意)', color: '#6fc2ae' },
 );
 
 // 农民收入构成 donut
 const incomeDonut = donutOpt([
-  { name: '工资性收入', value: 42, itemStyle: { color: '#22d3ee' } },
-  { name: '经营净收入', value: 34, itemStyle: { color: '#10b981' } },
-  { name: '转移净收入', value: 21, itemStyle: { color: '#e8a317' } },
-  { name: '财产净收入', value: 3, itemStyle: { color: '#c41e3a' } },
+  { name: '工资性收入', value: 42, itemStyle: { color: '#6e8cff' } },
+  { name: '经营净收入', value: 34, itemStyle: { color: '#6fc2ae' } },
+  { name: '转移净收入', value: 21, itemStyle: { color: '#d4a25a' } },
+  { name: '财产净收入', value: 3, itemStyle: { color: '#e5483b' } },
 ]);
 
 // 农民收入结构演进 stacked bar（万元 · 示意）
 const incomeStackOpt = stackedBarOpt({
   categories: ['2013', '2016', '2019', '2021', '2023'],
   series: [
-    { name: '工资性', data: [0.42, 0.51, 0.66, 0.79, 0.91], itemStyle: { color: '#22d3ee' } },
-    { name: '经营性', data: [0.39, 0.47, 0.58, 0.65, 0.74], itemStyle: { color: '#10b981' } },
-    { name: '转移性', data: [0.17, 0.23, 0.32, 0.39, 0.46], itemStyle: { color: '#e8a317' } },
-    { name: '财产性', data: [0.02, 0.03, 0.04, 0.05, 0.06], itemStyle: { color: '#c41e3a' } },
+    { name: '工资性', data: [0.42, 0.51, 0.66, 0.79, 0.91], itemStyle: { color: '#6e8cff' } },
+    { name: '经营性', data: [0.39, 0.47, 0.58, 0.65, 0.74], itemStyle: { color: '#6fc2ae' } },
+    { name: '转移性', data: [0.17, 0.23, 0.32, 0.39, 0.46], itemStyle: { color: '#d4a25a' } },
+    { name: '财产性', data: [0.02, 0.03, 0.04, 0.05, 0.06], itemStyle: { color: '#e5483b' } },
   ],
 });
 
@@ -145,7 +145,7 @@ const grainLine = {
   grid: { left: 56, right: 16, top: 20, bottom: 24 },
   xAxis: categoryX(['2018', '2019', '2020', '2021', '2022', '2023']),
   yAxis: valueY({ min: 12800 }),
-  series: [{ type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [13158, 13277, 13390, 13657, 13731, 13908], lineStyle: { color: '#10b981', width: 2 }, itemStyle: { color: '#10b981' }, areaStyle: { color: 'rgba(16,185,129,0.12)' } }],
+  series: [{ type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [13158, 13277, 13390, 13657, 13731, 13908], lineStyle: { color: '#6fc2ae', width: 2 }, itemStyle: { color: '#6fc2ae' }, areaStyle: { color: 'rgba(111, 194, 174,0.12)' } }],
 };
 
 // 县域数字基建推进度（保留原横条）
@@ -154,23 +154,23 @@ const techBar = {
   grid: { left: 80, right: 40, top: 16, bottom: 24 },
   xAxis: valueY({ max: 100, axisLabel: { formatter: '{value}%' } }),
   yAxis: categoryX(['遥感监测', '冷链覆盖', '益农信息社', '宽带通达', '电商服务站']),
-  series: [{ type: 'bar', data: [38, 45, 60, 85, 92], barWidth: 14, itemStyle: { color: '#22d3ee', borderRadius: 3 }, label: { show: true, position: 'right', formatter: '{c}%', color: LABEL.color } }],
+  series: [{ type: 'bar', data: [38, 45, 60, 85, 92], barWidth: 14, itemStyle: { color: '#6e8cff', borderRadius: 3 }, label: { show: true, position: 'right', formatter: '{c}%', color: LABEL.color } }],
 };
 
 // 土地制度三栏
 const LAND_CARDS = [
   {
-    title: '承包地 · 三权分置', accent: '#10b981',
+    title: '承包地 · 三权分置', accent: '#6fc2ae',
     rows: [['所有权', '集体所有不可动摇——这是整个制度的锚。'], ['承包权', '农户长期稳定，二轮到期后再延 30 年。'], ['经营权', '可流转、可入股、可抵押融资试点，规模经营的法律接口。']],
     note: '流转面积约占承包地 1/3 强（示意），但多为村内熟人流转，市场化程度有限。',
   },
   {
-    title: '宅基地 · 三权分置', accent: '#e8a317',
+    title: '宅基地 · 三权分置', accent: '#d4a25a',
     rows: [['所有权', '村集体持有，宅基地不得向城镇居民出售。'], ['资格权', '农户身份性权利——边界至今未在法律上厘清。'], ['使用权', '允许出租、入股发展民宿等业态，期限受限。']],
     note: '约 1/3 宅基地闲置（示意）。「沉睡资产」唤醒之辩：是农民最大的潜在财产，还是最后的退路保险？两种叙事背后是两种改革速度。',
   },
   {
-    title: '集体经营性建设用地入市', accent: '#22d3ee',
+    title: '集体经营性建设用地入市', accent: '#6e8cff',
     rows: [['同权同价', '与国有建设用地同等入市、同权同价——纸面原则。'], ['增值收益', '土地增值收益调节金：国家、集体、农民如何切分。'], ['规模现状', '试点成交规模与国有土地出让相比仍是零头。']],
     note: '真正的深水区：一旦大规模入市，将直接冲击地方政府土地财政的独家供地垄断。',
   },
@@ -194,10 +194,10 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="2.39 : 1" label="城乡居民收入比（2023 示意）" accent="#e8a317" />
-        <Stat value="1.39 万亿斤" label="粮食年产量（2023 示意）" accent="#10b981" />
-        <Stat value="~38%" label="县域 GDP 占全国比重（示意）" accent="#22d3ee" />
-        <Stat value="4.77 亿" label="乡村常住人口（2023 示意）" accent="#8b5cf6" />
+        <Stat value="2.39 : 1" label="城乡居民收入比（2023 示意）" accent="#d4a25a" />
+        <Stat value="1.39 万亿斤" label="粮食年产量（2023 示意）" accent="#6fc2ae" />
+        <Stat value="~38%" label="县域 GDP 占全国比重（示意）" accent="#6e8cff" />
+        <Stat value="4.77 亿" label="乡村常住人口（2023 示意）" accent="#b07cc6" />
       </Grid>
 
       {/* ---- 议题选择器：现状 / 机制 / 矛盾 / 政策 ---- */}
@@ -303,10 +303,10 @@ export default function Page() {
             ['工 · 农产品加工', '预制菜、中央厨房与县域产业园绑定用地与能耗指标。', '#增值留存'],
             ['游 · 乡村旅游', '与基础设施和数字支付渗透率强相关，防止低水平重复建设。', '#流量变现'],
           ].map(([t, d, tag]) => (
-            <div key={t} style={{ borderLeft: '2px solid #10b981', paddingLeft: 10 }}>
+            <div key={t} style={{ borderLeft: '2px solid #6fc2ae', paddingLeft: 10 }}>
               <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{t}</div>
               <p className="text-[11px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
-              <div className="text-[10px] mt-2 font-bold" style={{ color: '#10b981' }}>{tag}</div>
+              <div className="text-[10px] mt-2 font-bold" style={{ color: '#6fc2ae' }}>{tag}</div>
             </div>
           ))}
         </Grid>

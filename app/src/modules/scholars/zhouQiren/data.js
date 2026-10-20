@@ -9,12 +9,12 @@
 export const AS_OF = '2026-09-28';
 
 export const THEMES = {
-  land: { label: '产权与土地制度', color: '#c41e3a' },
-  urban: { label: '城市化与城乡', color: '#22d3ee' },
-  money: { label: '货币与宏观', color: '#8b5cf6' },
-  health: { label: '医疗与公共服务', color: '#10b981' },
-  enterprise: { label: '企业突围与全球布局', color: '#fb923c' },
-  reform: { label: '改革方法论与体制成本', color: '#e8a317' },
+  land: { label: '产权与土地制度', color: '#e5483b' },
+  urban: { label: '城市化与城乡', color: '#6e8cff' },
+  money: { label: '货币与宏观', color: '#b07cc6' },
+  health: { label: '医疗与公共服务', color: '#6fc2ae' },
+  enterprise: { label: '企业突围与全球布局', color: '#c07a4a' },
+  reform: { label: '改革方法论与体制成本', color: '#d4a25a' },
 };
 export const THEME_KEYS = Object.keys(THEMES);
 
@@ -42,11 +42,11 @@ export const BOARD = {
 };
 
 export const CAREER_GROUPS = {
-  youth: { label: '下乡与求学', color: '#94a3b8' },
-  rural: { label: '农村政策研究', color: '#e8a317' },
-  abroad: { label: '访学与留学', color: '#8b5cf6' },
-  pku: { label: '北京大学', color: '#22d3ee' },
-  policy: { label: '政策咨询 / 兼职', color: '#c41e3a' },
+  youth: { label: '下乡与求学', color: '#a29c91' },
+  rural: { label: '农村政策研究', color: '#d4a25a' },
+  abroad: { label: '访学与留学', color: '#b07cc6' },
+  pku: { label: '北京大学', color: '#6e8cff' },
+  policy: { label: '政策咨询 / 兼职', color: '#e5483b' },
 };
 
 /** 履历甘特：起止为小数年；note 记录口径出入 */

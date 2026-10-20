@@ -33,7 +33,7 @@ export default function LiveFeedsPage() {
           <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'var(--bg-elevated)', color: 'var(--text-tertiary)', border: '1px solid var(--border-subtle)' }}>
             外链 {countExternal()} 路
           </span>
-          <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)' }}>
+          <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'rgba(110, 140, 255,0.12)', color: 'var(--cyber-cyan)' }}>
             合计 {PUBLIC_STREAMS.length} 路
           </span>
         </div>

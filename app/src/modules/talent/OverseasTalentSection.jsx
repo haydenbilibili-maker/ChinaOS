@@ -1,6 +1,25 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
+import {
+  BarChart3 as LuBarChart3,
+  Globe2 as LuGlobe2,
+  LayoutGrid as LuLayoutGrid,
+  List as LuList,
+  RefreshCw as LuRefreshCw,
+  Search as LuSearch,
+  X as LuX,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  BarChart3: LuBarChart3,
+  Globe2: LuGlobe2,
+  LayoutGrid: LuLayoutGrid,
+  List: LuList,
+  RefreshCw: LuRefreshCw,
+  Search: LuSearch,
+  X: LuX,
+};
 import { Card, Grid, Stat, DistBar } from '../../app/ui.jsx';
 import FigureAvatar from '../../lib/ui/FigureAvatar.jsx';
 import { figureAvatarProps, prefetchFigureAvatars } from '../../lib/ui/figureAvatarResolve.js';
@@ -59,7 +78,7 @@ function TalentCard({ r, on, onClick, dense = false }) {
             <span className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{r.name}</span>
             {r.nameEn && <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>{r.nameEn}</span>}
             <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(14,165,233,0.12)', color: '#0ea5e9' }}>{OT_TAB_LABEL[r.category] || r.category}</span>
-            {country && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)' }}>{country}</span>}
+            {country && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(110, 140, 255,0.12)', color: 'var(--cyber-cyan)' }}>{country}</span>}
             {r.nationality && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'var(--bg-base)', color: 'var(--text-tertiary)' }}>{NAT_LABEL[r.nationality] || r.nationality}</span>}
           </div>
           <div className="text-[11px] mt-0.5 truncate" style={{ color: 'var(--text-secondary)' }}>
@@ -153,7 +172,7 @@ export default function OverseasTalentSection() {
 
   const countryChart = {
     grid: { left: 48, right: 16, top: 12, bottom: 24 },
-    xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+    xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } } },
     yAxis: { type: 'category', data: distCountry.slice(0, 12).map(([k]) => k).reverse(), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     series: [{ type: 'bar', data: distCountry.slice(0, 12).map(([, n]) => n).reverse(), barWidth: 14, itemStyle: { color: '#0ea5e9', borderRadius: 3 } }],
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
@@ -163,8 +182,8 @@ export default function OverseasTalentSection() {
     tooltip: { trigger: 'axis' },
     grid: { left: 48, right: 16, top: 8, bottom: 24 },
     xAxis: { type: 'category', data: distField.slice(0, 14).map(([k]) => k), axisLabel: { color: LABEL.color, fontSize: 10, rotate: 35 }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
-    yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
-    series: [{ type: 'bar', data: distField.slice(0, 14).map(([, n]) => n), barWidth: '55%', itemStyle: { color: '#22d3ee', borderRadius: [3, 3, 0, 0] } }],
+    yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+    series: [{ type: 'bar', data: distField.slice(0, 14).map(([, n]) => n), barWidth: '55%', itemStyle: { color: '#6e8cff', borderRadius: [3, 3, 0, 0] } }],
   } : null;
 
   const loadSeed = async (replace = false) => {
@@ -218,7 +237,7 @@ export default function OverseasTalentSection() {
         {OT_SUB_CATS.map((k) => (
           <Stat key={k} value={catCounts[k] ?? 0} label={OT_TAB_LABEL[k]} accent="#0ea5e9" />
         ))}
-        <Stat value={countries.length} label="驻留国别" accent="#22d3ee" />
+        <Stat value={countries.length} label="驻留国别" accent="#6e8cff" />
         <Stat value={filtered.length} label="当前命中" />
       </div>
 
@@ -284,7 +303,7 @@ export default function OverseasTalentSection() {
                 })}
               </div>
               {list.length < OVERSEAS_TALENT_DEDUPED_COUNT.total && (
-                <button type="button" onClick={() => loadSeed(false)} disabled={loading} style={{ ...inp, cursor: 'pointer', color: '#10b981', borderColor: 'rgba(16,185,129,0.4)', display: 'flex', alignItems: 'center', gap: 4 }}>
+                <button type="button" onClick={() => loadSeed(false)} disabled={loading} style={{ ...inp, cursor: 'pointer', color: '#6fc2ae', borderColor: 'rgba(111, 194, 174,0.4)', display: 'flex', alignItems: 'center', gap: 4 }}>
                   <Lucide.RefreshCw size={13} />{loading ? '载入中…' : `补全 ${OVERSEAS_TALENT_DEDUPED_COUNT.total} 条`}
                 </button>
               )}
@@ -355,7 +374,7 @@ export default function OverseasTalentSection() {
                       <>
                         {d.nameEn && <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>{d.nameEn}</span>}
                         <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(14,165,233,0.12)', color: '#0ea5e9' }}>{OT_TAB_LABEL[d.category]}</span>
-                        {d.tier && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(212,175,55,0.12)', color: '#d4af37' }}>Tier {d.tier}</span>}
+                        {d.tier && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(217, 178, 106,0.12)', color: '#d9b26a' }}>Tier {d.tier}</span>}
                       </>
                     )}
                     tags={normalizeTags(d.tags)}

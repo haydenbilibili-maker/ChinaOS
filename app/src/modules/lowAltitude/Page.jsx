@@ -20,33 +20,33 @@ const scaleOpt = {
   series: [{
     type: 'bar', barWidth: 24,
     data: [0.50, 0.67, 0.85, 1.05, 1.80, 3.50],
-    itemStyle: { color: '#22d3ee', borderRadius: [3, 3, 0, 0] },
+    itemStyle: { color: '#6e8cff', borderRadius: [3, 3, 0, 0] },
     label: { show: true, position: 'top', color: LABEL.color, formatter: '{c}' },
-    markLine: { silent: true, data: [{ yAxis: 1.0, label: { formatter: '万亿门槛', color: LABEL.color }, lineStyle: { color: '#e8a317', type: 'dashed' } }] },
+    markLine: { silent: true, data: [{ yAxis: 1.0, label: { formatter: '万亿门槛', color: LABEL.color }, lineStyle: { color: '#d4a25a', type: 'dashed' } }] },
   }],
 };
 
 // 应用场景结构（示意 %）
 const sceneOpt = donutOpt([
-  { name: '无人机物流配送', value: 32, itemStyle: { color: '#22d3ee' } },
-  { name: '农林植保/巡检', value: 24, itemStyle: { color: '#10b981' } },
-  { name: '载人 eVTOL', value: 16, itemStyle: { color: '#c41e3a' } },
-  { name: '应急消防/医疗', value: 14, itemStyle: { color: '#e8a317' } },
-  { name: '文旅观光/通航', value: 14, itemStyle: { color: '#8b5cf6' } },
+  { name: '无人机物流配送', value: 32, itemStyle: { color: '#6e8cff' } },
+  { name: '农林植保/巡检', value: 24, itemStyle: { color: '#6fc2ae' } },
+  { name: '载人 eVTOL', value: 16, itemStyle: { color: '#e5483b' } },
+  { name: '应急消防/医疗', value: 14, itemStyle: { color: '#d4a25a' } },
+  { name: '文旅观光/通航', value: 14, itemStyle: { color: '#b07cc6' } },
 ]);
 
 // 产业链国产化雷达（示意）
 const localizeOpt = radarOpt(
   ['整机集成', '电池/电驱', '飞控系统', '航空材料', '空管/通信', '适航认证'],
-  [80, 75, 62, 58, 55, 48], { name: '国产化程度', color: '#22d3ee' },
+  [80, 75, 62, 58, 55, 48], { name: '国产化程度', color: '#6e8cff' },
 );
 
 // 空域改革阶段
 const STAGES = [
-  { period: '2023—2024', title: '顶层定调', accent: '#22d3ee', desc: '中央经济工作会议首提「低空经济」为战略性新兴产业；《国家空域基础分类方法》出台，G/W 类空域划设，深圳、合肥、苏州等先行试点。痛点：空域管理军民分割、审批链路长、低空数字化基础设施空白。' },
-  { period: '2025', title: '试点扩面', accent: '#e8a317', desc: '低空空域协同管理改革向省域推开，建立低空飞行服务保障体系（U-Space）；eVTOL 取证提速（亿航 EH216-S 已取三证），分布式起降点（垂直起降场）规划落地。痛点：盈利模式未跑通，空域开放与安全监管的成本/收益再平衡。' },
-  { period: '2026—2027', title: '商业放量', accent: '#10b981', desc: '十五五开局：低空物流、城市空中交通（UAM）规模化运营试验，跨省域航线互联；央地共建低空智联网（通信/导航/监视一体）。痛点：噪声/隐私/保险等社会成本显性化，标准与国际适航互认。' },
-  { period: '2028—2030', title: '体系成型', accent: '#c41e3a', desc: '低空经济纳入综合交通运输体系，形成「制造—运营—服务—保障」全链；目标产业规模迈向 3 万亿级。约束：空域资源仍是盐铁式命脉，安全冗余与规模效率的长期张力。' },
+  { period: '2023—2024', title: '顶层定调', accent: '#6e8cff', desc: '中央经济工作会议首提「低空经济」为战略性新兴产业；《国家空域基础分类方法》出台，G/W 类空域划设，深圳、合肥、苏州等先行试点。痛点：空域管理军民分割、审批链路长、低空数字化基础设施空白。' },
+  { period: '2025', title: '试点扩面', accent: '#d4a25a', desc: '低空空域协同管理改革向省域推开，建立低空飞行服务保障体系（U-Space）；eVTOL 取证提速（亿航 EH216-S 已取三证），分布式起降点（垂直起降场）规划落地。痛点：盈利模式未跑通，空域开放与安全监管的成本/收益再平衡。' },
+  { period: '2026—2027', title: '商业放量', accent: '#6fc2ae', desc: '十五五开局：低空物流、城市空中交通（UAM）规模化运营试验，跨省域航线互联；央地共建低空智联网（通信/导航/监视一体）。痛点：噪声/隐私/保险等社会成本显性化，标准与国际适航互认。' },
+  { period: '2028—2030', title: '体系成型', accent: '#e5483b', desc: '低空经济纳入综合交通运输体系，形成「制造—运营—服务—保障」全链；目标产业规模迈向 3 万亿级。约束：空域资源仍是盐铁式命脉，安全冗余与规模效率的长期张力。' },
 ];
 
 // 选择器联动雷达维度（示意评分 0—100）
@@ -54,35 +54,35 @@ const DIMS = ['政策力度', '市场成熟', '技术就绪', '盈利可持续',
 
 const SECTORS = [
   {
-    key: 'logistics', label: '无人机物流', accent: '#22d3ee',
+    key: 'logistics', label: '无人机物流', accent: '#6e8cff',
     scores: [72, 70, 78, 55, 65],
     thesis: '低空物流是当前最接近规模化盈利的场景——末端配送、支线运输、山区/海岛补给绕开地面拥堵与基建短板，以空域换路权。',
     points: ['美团/顺丰常态化无人机配送航线已超百条（示意）', '支线货运无人机（吨级）填补干支衔接空白', '冷链/医疗急送等高时效场景溢价显著'],
     constraint: '低空数字化基础设施（5G-A/北斗增强）与空域动态调配是放量前提；单机经济性仍依赖规模摊薄。',
   },
   {
-    key: 'evtol', label: '载人 eVTOL', accent: '#c41e3a',
+    key: 'evtol', label: '载人 eVTOL', accent: '#e5483b',
     scores: [78, 42, 60, 38, 58],
     thesis: 'eVTOL（电动垂直起降）是城市空中交通的核心载具，对标「打飞的」——技术从样机走向适航取证与小批量运营，是十五五前沿看点。',
     points: ['亿航 EH216-S 取得型号合格证/生产许可证/标准适航证', '多旋翼→复合翼→倾转旋翼，航程与载荷逐级提升', '起降场（vertiport）与城市规划耦合'],
     constraint: '安全冗余、电池能量密度、城市噪声与公众接受度构成商业化四重门槛；保险与责任认定制度待建。',
   },
   {
-    key: 'agri', label: '农林植保/巡检', accent: '#10b981',
+    key: 'agri', label: '农林植保/巡检', accent: '#6fc2ae',
     scores: [55, 85, 82, 72, 60],
     thesis: '植保无人机与工业巡检是渗透率最高的存量市场，大疆等已形成全球竞争力，属低空经济的「现金牛」基本盘。',
     points: ['植保无人机保有量超 20 万架（示意），作业面积占主要农区高比例', '电力/油气/光伏巡检替代人工高危作业', '测绘/应急侦察等政企采购稳定'],
     constraint: '存量市场增速放缓，向高端化（重载/长航时/集群智能）与海外市场要增量。',
   },
   {
-    key: 'emergency', label: '应急/医疗', accent: '#e8a317',
+    key: 'emergency', label: '应急/医疗', accent: '#d4a25a',
     scores: [80, 48, 62, 45, 70],
     thesis: '平急两用属性突出——常态用于物流观光，应急时转为救灾、消防、医疗转运，与公共安全体系直接咬合。',
     points: ['灭火/侦察无人机进入应急装备序列', '血液/器官/急救物资低空快速转运试点', '地震/洪涝「断路断电断网」下的空中生命线'],
     constraint: '需与应急管理、卫健、军方空管多部门协同；常态化与峰值保障的成本分摊机制待明确。',
   },
   {
-    key: 'tourism', label: '文旅/通航', accent: '#8b5cf6',
+    key: 'tourism', label: '文旅/通航', accent: '#b07cc6',
     scores: [58, 50, 65, 42, 48],
     thesis: '低空旅游、私人通航与飞行培训是消费侧入口，把空域资源转化为体验经济，与扩大内需、文旅消费联动。',
     points: ['直升机/热气球/动力伞观光景区扩容', '通用机场网络（A1/A2/A3类）加密', '飞行营地/航空研学带动县域消费'],
@@ -110,10 +110,10 @@ export default function Page() {
       </IntroCard>
 
       <StatGrid className="mb-6">
-        <Stat value="~3.5万亿" label="2035E 产业规模" accent="#22d3ee" />
-        <Stat value="<3000m" label="低空空域高度" accent="#10b981" />
-        <Stat value="EH216-S" label="全球首张 eVTOL 三证" accent="#c41e3a" />
-        <Stat value={AS_OF} label="数据截至" accent="#8b5cf6" />
+        <Stat value="~3.5万亿" label="2035E 产业规模" accent="#6e8cff" />
+        <Stat value="<3000m" label="低空空域高度" accent="#6fc2ae" />
+        <Stat value="EH216-S" label="全球首张 eVTOL 三证" accent="#e5483b" />
+        <Stat value={AS_OF} label="数据截至" accent="#b07cc6" />
       </StatGrid>
 
       <Grid cols={2} className="mb-6">
@@ -145,7 +145,7 @@ export default function Page() {
             ))}
           </div>
           <div className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
-            <span style={{ color: '#e8a317' }}>约束 · </span>{s.constraint}
+            <span style={{ color: '#d4a25a' }}>约束 · </span>{s.constraint}
           </div>
         </div>
         <Card title={`${s.label} · 商业化就绪度评估（示意）`}>
@@ -161,24 +161,24 @@ export default function Page() {
             其主战场是 3000 米以下的城市与县域立体交通，核心变量是<strong style={{ color: 'var(--text-primary)' }}>空域管理体制</strong>而非单一技术。
           </p>
           <div className="space-y-2">
-            <div style={{ borderLeft: '2px solid #22d3ee', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>制造侧</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>电动化/智能化使航空器制造门槛下移，新能源与汽车供应链外溢赋能。</p></div>
-            <div style={{ borderLeft: '2px solid #10b981', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>运营侧</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>盈利模式仍在探索，空域开放节奏决定商业化天花板。</p></div>
+            <div style={{ borderLeft: '2px solid #6e8cff', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>制造侧</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>电动化/智能化使航空器制造门槛下移，新能源与汽车供应链外溢赋能。</p></div>
+            <div style={{ borderLeft: '2px solid #6fc2ae', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>运营侧</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>盈利模式仍在探索，空域开放节奏决定商业化天花板。</p></div>
           </div>
         </Card>
       </Grid>
 
       <Card title="十五五 · 指标 / 约束 / 路径" className="mb-6">
         <Grid cols={3}>
-          <div style={{ borderLeft: '2px solid #22d3ee', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#22d3ee' }}>核心指标</div>
+          <div style={{ borderLeft: '2px solid #6e8cff', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6e8cff' }}>核心指标</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>产业规模 2030E 迈向 1.8 万亿、2035E 约 3.5 万亿；常态化无人机航线、垂直起降场（vertiport）网络与通用机场密度抬升。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #e8a317', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#e8a317' }}>关键约束</div>
+          <div style={{ borderLeft: '2px solid #d4a25a', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#d4a25a' }}>关键约束</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>空域管制权军民分割是历史底盘；安全冗余、噪声/隐私社会成本、保险责任与国际适航互认未解。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #10b981', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#10b981' }}>推进路径</div>
+          <div style={{ borderLeft: '2px solid #6fc2ae', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6fc2ae' }}>推进路径</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>低空空域协同管理改革省域推开 → 低空智联网（通导监一体）共建 → 纳入综合交通运输体系全链贯通。</p>
           </div>
         </Grid>

@@ -21,11 +21,11 @@ const BTN = {
   background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)',
   color: 'var(--text-secondary)', borderRadius: 6, padding: '4px 12px', fontSize: 12, cursor: 'pointer',
 };
-const BTN_CYAN = { ...BTN, background: 'rgba(34,211,238,0.12)', border: '1px solid rgba(34,211,238,0.35)', color: '#22d3ee', fontWeight: 600 };
+const BTN_CYAN = { ...BTN, background: 'rgba(110, 140, 255,0.12)', border: '1px solid rgba(110, 140, 255,0.35)', color: '#6e8cff', fontWeight: 600 };
 
-const STANCE_COLOR = { 配合: '#10b981', 谨慎: '#e8a317', 回避: '#c41e3a' };
-const SEV_COLOR = { 重大: '#c41e3a', 较大: '#e8a317', 一般: '#64748b' };
-const STATUS_COLOR = { 未启动: '#64748b', 整改中: '#e8a317', 已销号: '#10b981' };
+const STANCE_COLOR = { 配合: '#6fc2ae', 谨慎: '#d4a25a', 回避: '#e5483b' };
+const SEV_COLOR = { 重大: '#e5483b', 较大: '#d4a25a', 一般: '#8a8578' };
+const STATUS_COLOR = { 未启动: '#8a8578', 整改中: '#d4a25a', 已销号: '#6fc2ae' };
 
 const sceneOf = (id) => HD_SCENARIOS.find((s) => s.id === id);
 const sourceOf = (id) => CLUE_SOURCES.find((s) => s.id === id);
@@ -155,10 +155,10 @@ export default function Page({ embedded = false }) {
         全部逻辑为确定性纯函数，同样的操作永远复现同样的底稿。
       </IntroCard>
       <StatGrid className="mb-8">
-        <Stat value={INSPECT_AS_OF} label="进驻基准日" accent="#22d3ee" />
-        <Stat value={`${clues.length} 条`} label="线索台账（三源 + 沙盘移送）" accent="#c41e3a" />
-        <Stat value={`${OFFICIALS.length} 名`} label="虚构官员库（谈话对象池）" accent="#e8a317" />
-        <Stat value="4 轮" label="整改销号周期" accent="#10b981" />
+        <Stat value={INSPECT_AS_OF} label="进驻基准日" accent="#6e8cff" />
+        <Stat value={`${clues.length} 条`} label="线索台账（三源 + 沙盘移送）" accent="#e5483b" />
+        <Stat value={`${OFFICIALS.length} 名`} label="虚构官员库（谈话对象池）" accent="#d4a25a" />
+        <Stat value="4 轮" label="整改销号周期" accent="#6fc2ae" />
       </StatGrid>
 
       {/* 1 —— 线索研判台 */}
@@ -170,7 +170,7 @@ export default function Page({ embedded = false }) {
         )}
         <SelectorBar
           items={[
-            { key: 'all', label: '全部线索', accent: '#64748b' },
+            { key: 'all', label: '全部线索', accent: '#8a8578' },
             ...CLUE_SOURCES.map((s) => ({ key: s.id, label: s.label, accent: s.color })),
           ]}
           activeKey={sourceKey}
@@ -207,7 +207,7 @@ export default function Page({ embedded = false }) {
                   <span className="text-[10px] mono flex items-center gap-1" style={{ color: 'var(--text-tertiary)' }}>
                     <span
                       className="inline-block rounded-full shrink-0"
-                      style={{ width: 7, height: 7, background: scene?.color || '#64748b' }}
+                      style={{ width: 7, height: 7, background: scene?.color || '#8a8578' }}
                     />
                     {scene?.label || c.sceneId}
                   </span>
@@ -251,8 +251,8 @@ export default function Page({ embedded = false }) {
                 onClick={() => toggleTalk(p.officialId)}
                 className="w-full flex items-center gap-3 text-xs py-2 px-3 rounded flex-wrap"
                 style={{
-                  background: on ? 'rgba(34,211,238,0.08)' : 'var(--bg-elevated)',
-                  border: on ? '1px solid rgba(34,211,238,0.4)' : '1px solid var(--border-subtle)',
+                  background: on ? 'rgba(110, 140, 255,0.08)' : 'var(--bg-elevated)',
+                  border: on ? '1px solid rgba(110, 140, 255,0.4)' : '1px solid var(--border-subtle)',
                   cursor: 'pointer', textAlign: 'left',
                 }}
               >
@@ -261,9 +261,9 @@ export default function Page({ embedded = false }) {
                 <span className="text-[11px] mono shrink-0" style={{ color: 'var(--text-tertiary)', width: 64 }}>{p.archetype}</span>
                 <div className="flex items-center gap-2 flex-1" style={{ minWidth: 140 }}>
                   <div className="h-2 rounded overflow-hidden flex-1" style={{ background: 'var(--bg-base)' }}>
-                    <div style={{ width: `${p.relevance}%`, height: '100%', background: p.color || '#22d3ee', transition: 'width .3s' }} />
+                    <div style={{ width: `${p.relevance}%`, height: '100%', background: p.color || '#6e8cff', transition: 'width .3s' }} />
                   </div>
-                  <span className="mono shrink-0 font-semibold" style={{ color: p.color || '#22d3ee', width: 56 }}>
+                  <span className="mono shrink-0 font-semibold" style={{ color: p.color || '#6e8cff', width: 56 }}>
                     关联 {p.relevance}
                   </span>
                 </div>
@@ -271,7 +271,7 @@ export default function Page({ embedded = false }) {
                   className="text-[10px] mono px-2 py-0.5 rounded shrink-0 text-center"
                   style={{ background: `${STANCE_COLOR[p.stance]}1f`, color: STANCE_COLOR[p.stance], width: 44 }}
                 >{p.stance}</span>
-                <span className="mono shrink-0 text-right" style={{ color: on ? '#22d3ee' : 'var(--text-tertiary)', width: 64 }}>
+                <span className="mono shrink-0 text-right" style={{ color: on ? '#6e8cff' : 'var(--text-tertiary)', width: 64 }}>
                   {on ? '✓ 已谈话' : '未谈话'}
                 </span>
               </button>
@@ -290,7 +290,7 @@ export default function Page({ embedded = false }) {
             <div className="text-xs mb-1" style={{ color: 'var(--text-secondary)' }}>证据链整体进度（在研案链均值）</div>
             <div
               className="mono font-bold"
-              style={{ fontSize: 44, lineHeight: 1.1, color: chain.progress >= 100 ? '#10b981' : chain.progress >= 60 ? '#e8a317' : '#c41e3a' }}
+              style={{ fontSize: 44, lineHeight: 1.1, color: chain.progress >= 100 ? '#6fc2ae' : chain.progress >= 60 ? '#d4a25a' : '#e5483b' }}
             >
               {chain.progress}
               <span className="text-sm font-normal ml-1" style={{ color: 'var(--text-tertiary)' }}>/100</span>
@@ -303,7 +303,7 @@ export default function Page({ embedded = false }) {
             {chain.formed.length > 0 && (
               <div className="mt-3 space-y-1.5">
                 {chain.formed.map((t) => (
-                  <p key={t} className="text-[11px] leading-relaxed p-2 rounded" style={{ color: '#10b981', background: 'rgba(16,185,129,0.08)' }}>
+                  <p key={t} className="text-[11px] leading-relaxed p-2 rounded" style={{ color: '#6fc2ae', background: 'rgba(111, 194, 174,0.08)' }}>
                     ✓ {t}
                   </p>
                 ))}
@@ -312,7 +312,7 @@ export default function Page({ embedded = false }) {
             {chain.missing.length > 0 && (
               <div className="mt-3 space-y-1.5">
                 {chain.missing.map((t) => (
-                  <p key={t} className="text-[11px] leading-relaxed p-2 rounded" style={{ color: '#e8a317', background: 'rgba(232,163,23,0.08)' }}>
+                  <p key={t} className="text-[11px] leading-relaxed p-2 rounded" style={{ color: '#d4a25a', background: 'rgba(212, 162, 90,0.08)' }}>
                     ⚠ {t}
                   </p>
                 ))}
@@ -354,12 +354,12 @@ export default function Page({ embedded = false }) {
         <div className="mb-4" style={{ maxWidth: 420 }}>
           <div className="flex justify-between items-baseline text-xs mb-1">
             <span style={{ color: 'var(--text-secondary)' }}>整改轮次（巡视反馈后的回头看节奏）</span>
-            <span className="mono font-semibold" style={{ color: '#e8a317' }}>第 {rounds}/4 轮</span>
+            <span className="mono font-semibold" style={{ color: '#d4a25a' }}>第 {rounds}/4 轮</span>
           </div>
           <input
             type="range" min={0} max={4} step={1} value={rounds}
             onChange={(e) => setRounds(Number(e.target.value))}
-            style={{ width: '100%', accentColor: '#e8a317' }}
+            style={{ width: '100%', accentColor: '#d4a25a' }}
           />
         </div>
         {track.length === 0 ? (
@@ -400,7 +400,7 @@ export default function Page({ embedded = false }) {
         <div className="flex items-center gap-2 flex-wrap">
           <button type="button" style={BTN_CYAN} onClick={genReport}>📄 生成巡视底稿</button>
           {reportMd && (
-            <button type="button" style={copied ? { ...BTN, color: '#10b981' } : BTN} onClick={copyReport}>
+            <button type="button" style={copied ? { ...BTN, color: '#6fc2ae' } : BTN} onClick={copyReport}>
               {copied ? '已复制 ✓' : '复制 Markdown'}
             </button>
           )}

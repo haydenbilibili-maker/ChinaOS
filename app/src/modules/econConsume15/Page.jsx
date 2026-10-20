@@ -45,7 +45,7 @@ const VERDICT =
 
 const FRAME = [
   {
-    key: 'goal', label: '目标', accent: '#c41e3a',
+    key: 'goal', label: '目标', accent: '#e5483b',
     title: '扩量提质 · 锚定 2030',
     body: '消费市场总体规模持续扩大：居民消费率明显提高，全社会商品和服务消费较快增长，社会消费品零售总额达到 60 万亿元左右，消费对经济增长的拉动作用进一步增强。（发改委/商务部答记者问）',
     bullets: [
@@ -55,7 +55,7 @@ const FRAME = [
     ],
   },
   {
-    key: 'lever', label: '抓手', accent: '#22d3ee',
+    key: 'lever', label: '抓手', accent: '#6e8cff',
     title: '六面 28 条 + 九专栏',
     body: '重点任务围绕服务消费提质惠民、商品消费扩容升级、新业态新模式新场景、提升消费能力、优化消费环境、完善制度机制等 6 个方面部署 28 条举措；银发、育儿、文旅、健康、汽车等设 9 个专栏。批复要求「深入实施提振消费专项行动」。',
     bullets: [
@@ -65,7 +65,7 @@ const FRAME = [
     ],
   },
   {
-    key: 'bind', label: '约束', accent: '#e8a317',
+    key: 'bind', label: '约束', accent: '#d4a25a',
     title: '意愿 · 预期 · 资产负债表',
     body: '规划承认消费领域仍有矛盾制约潜力释放。H1 显示居民收入实际增速略低于 GDP、财产净收入偏弱、地产链条持续拖累——增收与预期修复是硬约束，单靠供给侧场景创新难以闭合供需缺口。',
     bullets: [
@@ -78,7 +78,7 @@ const FRAME = [
 
 const PILLARS = [
   {
-    key: 'service', label: '服务消费', accent: '#22d3ee',
+    key: 'service', label: '服务消费', accent: '#6e8cff',
     title: '促进服务消费提质惠民',
     thesis: '规划将养老、托育、文旅、健康等服务消费置于突出位置——与 H1「服务零售 +5.3% 明显快于商品 +1.1%」同向：服务已是扩内需的相对亮点，下一步要解决的是高品质供给不足与可及性。',
     moves: [
@@ -89,7 +89,7 @@ const PILLARS = [
     h1Link: 'H1 服务零售 +5.3%、餐饮 +2.8%——政策顺势加码「体验型」需求。',
   },
   {
-    key: 'goods', label: '商品消费', accent: '#c41e3a',
+    key: 'goods', label: '商品消费', accent: '#e5483b',
     title: '推动商品消费扩容升级',
     thesis: '商品零售 H1 仅 +1.1%、限上商品 −1.0%，耐用品与中高端偏冷。规划在「促进大宗耐用商品消费」首条写入「更好满足住房消费需求」，并与汽车、家居家电并列——官方口径是「大宗耐用商品 + 住房消费」，勿改写成「大宗消费品」或投资属性重启。衔接 2025《提振消费专项行动方案》大宗更新与汽车链条。',
     moves: [
@@ -100,7 +100,7 @@ const PILLARS = [
     h1Link: 'H1 通讯器材 +14.4% 等结构性亮点难掩商品整体乏力；住房链条仍是耐用品与信心的主拖累。',
   },
   {
-    key: 'scene', label: '场景创新', accent: '#8b5cf6',
+    key: 'scene', label: '场景创新', accent: '#b07cc6',
     title: '培育新业态新模式新场景',
     thesis: '规划将「培育打造消费新业态新模式新场景」作为贯穿主线：数字消费、首发经济、体验式消费等——意图用供给创新创造有效需求，而非仅补贴存量。',
     moves: [
@@ -111,7 +111,7 @@ const PILLARS = [
     h1Link: '网上商品和服务零售额 H1 +5.2%，线上场景仍是增量通道。',
   },
   {
-    key: 'income', label: '收入分配', accent: '#e8a317',
+    key: 'income', label: '收入分配', accent: '#d4a25a',
     title: '着力提升消费能力',
     thesis: '消费的底层约束是收入与预期。规划目标写明「居民收入增长和经济增长同步」「居民消费底气更足」。专项行动把「城乡居民增收」置首——能力端优先于场景端，是政策逻辑的关键校正。',
     moves: [
@@ -122,7 +122,7 @@ const PILLARS = [
     h1Link: 'H1 居民人均可支配收入实际 +4.2%，财产净收入仅 +1.1%。',
   },
   {
-    key: 'env', label: '流通与环境', accent: '#10b981',
+    key: 'env', label: '流通与环境', accent: '#6fc2ae',
     title: '大力优化消费环境',
     thesis: '便利度、标准与信用体系是意愿端的基础设施。规划要求重要产品和服务标准体系、信用体系更加健全，消费基础设施完善——对应专项行动中的环境改善与限制措施清理。',
     moves: [
@@ -133,7 +133,7 @@ const PILLARS = [
     h1Link: '环境改善是慢变量，难在季度内扭转社零斜率。',
   },
   {
-    key: 'inst', label: '制度机制', accent: '#64748b',
+    key: 'inst', label: '制度机制', accent: '#8a8578',
     title: '加力完善促进消费制度机制',
     thesis: '从年度专项到五年规划，本质是把促消费从「脉冲刺激」升格为「长效机制」。批复强调健全制度政策、完善扩大居民消费长效机制，并要求地方把扩消费作为十五五重要任务。',
     moves: [
@@ -146,15 +146,15 @@ const PILLARS = [
 ];
 
 const H1_CARDS = [
-  { label: '社零总额', value: retail ? `${retail.value > 0 ? '+' : ''}${retail.value}%` : '—', sub: '248722 亿元 · 需求侧仍偏弱', accent: '#22d3ee' },
-  { label: '服务零售', value: '+5.3%', sub: '明显快于商品零售 +1.1%', accent: '#10b981' },
-  { label: '固投 / 地产', value: fai ? `${fai.value}%` : '—', sub: '地产开发投资 −18.0% 主拖累', accent: '#e8a317' },
-  { label: '规上工业', value: iva ? `+${iva.value}%` : '—', sub: gdp ? `GDP H1 +${gdp.value}% · 供强需弱` : '供强需弱剪刀差', accent: '#c41e3a' },
+  { label: '社零总额', value: retail ? `${retail.value > 0 ? '+' : ''}${retail.value}%` : '—', sub: '248722 亿元 · 需求侧仍偏弱', accent: '#6e8cff' },
+  { label: '服务零售', value: '+5.3%', sub: '明显快于商品零售 +1.1%', accent: '#6fc2ae' },
+  { label: '固投 / 地产', value: fai ? `${fai.value}%` : '—', sub: '地产开发投资 −18.0% 主拖累', accent: '#d4a25a' },
+  { label: '规上工业', value: iva ? `+${iva.value}%` : '—', sub: gdp ? `GDP H1 +${gdp.value}% · 供强需弱` : '供强需弱剪刀差', accent: '#e5483b' },
 ];
 
 const LEDGER = {
   done: {
-    label: '已兑现', accent: '#10b981',
+    label: '已兑现', accent: '#6fc2ae',
     items: [
       ['纲领文件落地', '国务院原则同意《扩大消费「十五五」规划》并以国函印发批复（2026-07-13 中国政府网公布）。'],
       ['目标数字公开', '2030 年社零约 60 万亿元；2025 年社零已达 50.1 万亿元（答记者问口径）。'],
@@ -163,7 +163,7 @@ const LEDGER = {
     ],
   },
   ongoing: {
-    label: '进行中', accent: '#e8a317',
+    label: '进行中', accent: '#d4a25a',
     items: [
       ['地方落实分工', '各省市要把扩消费作为十五五重要任务，因地制宜探索路径（批复要求）。'],
       ['能力端修复', '增收减负、就业与社保优化——专项行动首要行动，效果取决于就业与财产收入。'],
@@ -172,7 +172,7 @@ const LEDGER = {
     ],
   },
   doubt: {
-    label: '存疑 / 未决', accent: '#c41e3a',
+    label: '存疑 / 未决', accent: '#e5483b',
     items: [
       ['规划全文细则', '公开渠道以批复 + 答记者问为主；28 条逐条全文若未同步公开，细节以正式文本为准。〔存疑〕'],
       ['60 万亿路径斜率', '自 50.1 万亿至约 60 万亿需约 5 年复合增速——在 H1 社零仅 +1.3% 下，路径压力大。〔测算示意〕'],
@@ -219,7 +219,7 @@ export default function Page({ embedded = false } = {}) {
     const dims = ['商品消费', '服务消费', '收入分配', '流通环境', '场景创新'];
     const base = radarOpt(dims.map((n) => ({ name: n, max: 100 })), [72, 88, 85, 70, 78], {
       name: '规划着力示意',
-      color: '#c41e3a',
+      color: '#e5483b',
     });
     // 叠加专项行动对照层
     base.legend = { ...LEGEND, bottom: 0, data: ['规划着力示意', '专项行动侧重示意'] };
@@ -230,9 +230,9 @@ export default function Page({ embedded = false } = {}) {
         data: [{
           value: [80, 75, 90, 68, 65],
           name: '专项行动侧重示意',
-          lineStyle: { color: '#22d3ee', width: 2 },
-          itemStyle: { color: '#22d3ee' },
-          areaStyle: { color: 'rgba(34,211,238,0.12)' },
+          lineStyle: { color: '#6e8cff', width: 2 },
+          itemStyle: { color: '#6e8cff' },
+          areaStyle: { color: 'rgba(110, 140, 255,0.12)' },
         }],
       },
     ];
@@ -252,12 +252,12 @@ export default function Page({ embedded = false } = {}) {
       type: 'bar',
       barWidth: 22,
       data: [
-        { value: 1.3, itemStyle: { color: '#22d3ee', borderRadius: [3, 3, 0, 0] } },
-        { value: 5.3, itemStyle: { color: '#10b981', borderRadius: [3, 3, 0, 0] } },
-        { value: 1.1, itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } },
-        { value: 2.8, itemStyle: { color: '#e8a317', borderRadius: [3, 3, 0, 0] } },
-        { value: 5.2, itemStyle: { color: '#8b5cf6', borderRadius: [3, 3, 0, 0] } },
-        { value: -1.0, itemStyle: { color: '#64748b', borderRadius: [3, 3, 0, 0] } },
+        { value: 1.3, itemStyle: { color: '#6e8cff', borderRadius: [3, 3, 0, 0] } },
+        { value: 5.3, itemStyle: { color: '#6fc2ae', borderRadius: [3, 3, 0, 0] } },
+        { value: 1.1, itemStyle: { color: '#e5483b', borderRadius: [3, 3, 0, 0] } },
+        { value: 2.8, itemStyle: { color: '#d4a25a', borderRadius: [3, 3, 0, 0] } },
+        { value: 5.2, itemStyle: { color: '#b07cc6', borderRadius: [3, 3, 0, 0] } },
+        { value: -1.0, itemStyle: { color: '#8a8578', borderRadius: [3, 3, 0, 0] } },
       ],
       label: { show: true, position: 'top', formatter: '{c}%', color: LABEL.color, fontSize: 10 },
     }],
@@ -278,13 +278,13 @@ export default function Page({ embedded = false } = {}) {
       label: { color: LABEL.color, fontSize: 10 },
       lineStyle: { color: 'gradient', curveness: 0.45, opacity: 0.35 },
       data: [
-        { name: '扩大消费规划', itemStyle: { color: '#c41e3a' } },
-        { name: '提振消费专项行动', itemStyle: { color: '#e8a317' } },
-        { name: '收入/减负', itemStyle: { color: '#22d3ee' } },
-        { name: '场景/供给', itemStyle: { color: '#8b5cf6' } },
-        { name: '环境/制度', itemStyle: { color: '#10b981' } },
+        { name: '扩大消费规划', itemStyle: { color: '#e5483b' } },
+        { name: '提振消费专项行动', itemStyle: { color: '#d4a25a' } },
+        { name: '收入/减负', itemStyle: { color: '#6e8cff' } },
+        { name: '场景/供给', itemStyle: { color: '#b07cc6' } },
+        { name: '环境/制度', itemStyle: { color: '#6fc2ae' } },
         { name: '消费意愿', itemStyle: { color: '#f472b6' } },
-        { name: '社零读数', itemStyle: { color: '#94a3b8' } },
+        { name: '社零读数', itemStyle: { color: '#a29c91' } },
       ],
       links: [
         { source: '扩大消费规划', target: '收入/减负', value: 28 },
@@ -322,7 +322,7 @@ export default function Page({ embedded = false } = {}) {
         data: scores.map((v, i) => ({
           value: v,
           itemStyle: {
-            color: ['#22d3ee', '#e8a317', '#c41e3a', '#8b5cf6', '#10b981', '#64748b'][i],
+            color: ['#6e8cff', '#d4a25a', '#e5483b', '#b07cc6', '#6fc2ae', '#8a8578'][i],
             borderRadius: [0, 3, 3, 0],
           },
         })),
@@ -343,7 +343,7 @@ export default function Page({ embedded = false } = {}) {
       axisLabel: { ...LABEL, interval: 0, rotate: 18 },
     },
     yAxis: [
-      { type: 'value', name: '示意', max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.12)' } }, axisLabel: LABEL, nameTextStyle: LABEL },
+      { type: 'value', name: '示意', max: 100, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.12)' } }, axisLabel: LABEL, nameTextStyle: LABEL },
       { type: 'value', name: '社零%', min: 0, max: 6, splitLine: { show: false }, axisLabel: { ...LABEL, formatter: '{value}%' }, nameTextStyle: LABEL },
     ],
     series: [
@@ -355,13 +355,13 @@ export default function Page({ embedded = false } = {}) {
         symbolSize: 10,
         yAxisIndex: 0,
         data: [88, 55, 70, 95, 92, 80],
-        lineStyle: { color: '#c41e3a', width: 2 },
-        itemStyle: { color: '#c41e3a' },
+        lineStyle: { color: '#e5483b', width: 2 },
+        itemStyle: { color: '#e5483b' },
         markPoint: {
           data: [
-            { name: '专项行动', coord: ['2025-03', 88], itemStyle: { color: '#e8a317' } },
-            { name: '规划批复', coord: ['2026-07-13', 95], itemStyle: { color: '#c41e3a' } },
-            { name: 'H1 数据', coord: ['2026-07-15', 92], itemStyle: { color: '#22d3ee' } },
+            { name: '专项行动', coord: ['2025-03', 88], itemStyle: { color: '#d4a25a' } },
+            { name: '规划批复', coord: ['2026-07-13', 95], itemStyle: { color: '#e5483b' } },
+            { name: 'H1 数据', coord: ['2026-07-15', 92], itemStyle: { color: '#6e8cff' } },
           ],
           label: { color: LABEL.color, fontSize: 9 },
         },
@@ -375,8 +375,8 @@ export default function Page({ embedded = false } = {}) {
         yAxisIndex: 1,
         // KEY_INDICATORS sparkline 近似：retail 近八期末段 + H1 核实点
         data: [4.8, 3.2, 2.6, 1.5, 1.3, null],
-        lineStyle: { color: '#22d3ee', width: 2, type: 'dashed' },
-        itemStyle: { color: '#22d3ee' },
+        lineStyle: { color: '#6e8cff', width: 2, type: 'dashed' },
+        itemStyle: { color: '#6e8cff' },
         connectNulls: false,
       },
     ],
@@ -394,7 +394,7 @@ export default function Page({ embedded = false } = {}) {
       axisLabel: { ...LABEL, interval: 0, rotate: 22 },
     },
     yAxis: [
-      { type: 'value', name: '%', axisLabel: { ...LABEL, formatter: '{value}%' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.12)' } }, nameTextStyle: LABEL },
+      { type: 'value', name: '%', axisLabel: { ...LABEL, formatter: '{value}%' }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.12)' } }, nameTextStyle: LABEL },
       { type: 'value', name: '示意', max: 10, axisLabel: LABEL, splitLine: { show: false }, nameTextStyle: LABEL },
     ],
     series: [
@@ -404,12 +404,12 @@ export default function Page({ embedded = false } = {}) {
         barWidth: 16,
         yAxisIndex: 0,
         data: [
-          { value: 5.4, itemStyle: { color: '#c41e3a' } },
-          { value: 1.3, itemStyle: { color: '#22d3ee' } },
-          { value: 5.3, itemStyle: { color: '#10b981' } },
-          { value: 1.1, itemStyle: { color: '#64748b' } },
-          { value: -5.7, itemStyle: { color: '#e8a317' } },
-          { value: 4.2, itemStyle: { color: '#8b5cf6' } },
+          { value: 5.4, itemStyle: { color: '#e5483b' } },
+          { value: 1.3, itemStyle: { color: '#6e8cff' } },
+          { value: 5.3, itemStyle: { color: '#6fc2ae' } },
+          { value: 1.1, itemStyle: { color: '#8a8578' } },
+          { value: -5.7, itemStyle: { color: '#d4a25a' } },
+          { value: 4.2, itemStyle: { color: '#b07cc6' } },
         ],
         label: { show: true, position: 'top', formatter: '{c}%', color: LABEL.color, fontSize: 9 },
       },
@@ -440,8 +440,8 @@ export default function Page({ embedded = false } = {}) {
       type: 'bar',
       barWidth: 22,
       data: [
-        { value: 1.2, itemStyle: { color: '#64748b', borderRadius: [0, 3, 3, 0] } },
-        { value: 2.5, itemStyle: { color: '#10b981', borderRadius: [0, 3, 3, 0] } },
+        { value: 1.2, itemStyle: { color: '#8a8578', borderRadius: [0, 3, 3, 0] } },
+        { value: 2.5, itemStyle: { color: '#6fc2ae', borderRadius: [0, 3, 3, 0] } },
       ],
       label: { show: true, position: 'right', formatter: '{c}%', color: LABEL.color, fontSize: 11 },
     }],
@@ -454,7 +454,7 @@ export default function Page({ embedded = false } = {}) {
     legend: { ...LEGEND, top: 0, data: ['社零万亿元（核实/目标）', '隐含年复合增速示意 %'] },
     xAxis: categoryX(['2025', '2026E', '2027E', '2028E', '2029E', '2030 目标']),
     yAxis: [
-      { type: 'value', name: '万亿', min: 48, max: 62, axisLabel: LABEL, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.12)' } }, nameTextStyle: LABEL },
+      { type: 'value', name: '万亿', min: 48, max: 62, axisLabel: LABEL, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.12)' } }, nameTextStyle: LABEL },
       { type: 'value', name: '%', min: 0, max: 6, axisLabel: { ...LABEL, formatter: '{value}%' }, splitLine: { show: false }, nameTextStyle: LABEL },
     ],
     series: [
@@ -467,13 +467,13 @@ export default function Page({ embedded = false } = {}) {
         yAxisIndex: 0,
         // 2025=50.1 核实；2030≈60 目标；中间为线性插值示意（非官方路径）
         data: [50.1, 52.0, 53.9, 55.9, 57.9, 60.0],
-        lineStyle: { color: '#c41e3a', width: 2 },
-        itemStyle: { color: '#c41e3a' },
-        areaStyle: { color: 'rgba(196,30,58,0.08)' },
+        lineStyle: { color: '#e5483b', width: 2 },
+        itemStyle: { color: '#e5483b' },
+        areaStyle: { color: 'rgba(229, 72, 59,0.08)' },
         markLine: {
           silent: true,
           data: [{ yAxis: 60, name: '60 万亿' }],
-          lineStyle: { color: '#e8a317', type: 'dashed' },
+          lineStyle: { color: '#d4a25a', type: 'dashed' },
           label: { ...LABEL, formatter: '目标 ≈60' },
         },
       },
@@ -483,7 +483,7 @@ export default function Page({ embedded = false } = {}) {
         yAxisIndex: 1,
         barWidth: 14,
         data: [null, 3.7, 3.7, 3.7, 3.7, 3.7],
-        itemStyle: { color: 'rgba(34,211,238,0.45)' },
+        itemStyle: { color: 'rgba(110, 140, 255,0.45)' },
       },
     ],
   }), []);
@@ -523,10 +523,10 @@ export default function Page({ embedded = false } = {}) {
       </IntroCard>
 
       <StatGrid className="mb-8">
-        <Stat value="≈60 万亿" label="2030 社零目标" accent="#c41e3a" sub="答记者问口径 · 左右" />
-        <Stat value="50.1 万亿" label="2025 社零基数" accent="#e8a317" sub="突破 50 万亿大关" />
-        <Stat value="6×28" label="重点任务结构" accent="#22d3ee" sub="六方面 · 二十八条" />
-        <Stat value="58.8%" label="十四五最终消费贡献率" accent="#10b981" sub="较十三五 +10pct" />
+        <Stat value="≈60 万亿" label="2030 社零目标" accent="#e5483b" sub="答记者问口径 · 左右" />
+        <Stat value="50.1 万亿" label="2025 社零基数" accent="#d4a25a" sub="突破 50 万亿大关" />
+        <Stat value="6×28" label="重点任务结构" accent="#6e8cff" sub="六方面 · 二十八条" />
+        <Stat value="58.8%" label="十四五最终消费贡献率" accent="#6fc2ae" sub="较十三五 +10pct" />
       </StatGrid>
 
       {/* —— 图表层 —— */}

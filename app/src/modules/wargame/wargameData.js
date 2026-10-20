@@ -19,8 +19,8 @@ export const AP_PER_TURN = 3;   // 每回合行动点
 export const TECH_GROWTH = 1;   // 每回合科技线自然增长
 
 export const SIDES = [
-  { id: 'cn', label: '中方', color: '#c41e3a' },
-  { id: 'us', label: '美方', color: '#22d3ee' },
+  { id: 'cn', label: '中方', color: '#e5483b' },
+  { id: 'us', label: '美方', color: '#6e8cff' },
 ];
 
 // 初值标定：中方科技 52 起步——追赶者设定；经贸两线同为 70（深度互嵌的存量）。
@@ -34,8 +34,8 @@ export const INIT = {
 // 初值标定：欧盟 -20（跨大西洋惯性，先天偏美一档）；东盟 +10（供应链互嵌，先天微偏中）。
 // ----------------------------------------------------------------------------
 export const THIRD_PARTIES = [
-  { id: 'eu', label: '欧盟', color: '#8b5cf6', init: -20 },
-  { id: 'asean', label: '东盟', color: '#10b981', init: 10 },
+  { id: 'eu', label: '欧盟', color: '#b07cc6', init: -20 },
+  { id: 'asean', label: '东盟', color: '#6fc2ae', init: 10 },
 ];
 
 // 牌 → tilt 的确定性影响表（出牌当回合一次性结算，两个第三方同步加减；
@@ -435,27 +435,27 @@ export function judge(state) {
   let v;
   if (-dCnTech > 8) {
     v = {
-      label: '美方锁喉', color: '#22d3ee',
+      label: '美方锁喉', color: '#6e8cff',
       note: '断供链条压过了追赶速度：中方科技线被按进负增长区间。锁喉的代价计在美方经贸账上——但账单到期日在五回合之外。',
     };
   } else if (dCnTech > dUsTech && state.cn.econ >= 55) {
     v = {
-      label: '中方突围', color: '#c41e3a',
+      label: '中方突围', color: '#e5483b',
       note: '科技增幅反超且经贸底盘未破：封锁变成了倒逼出来的进度表。突围不靠奇迹，靠的是每回合多挤出的那一点点投入。',
     };
   } else if (state.cn.econ < 55 && state.us.econ < 55) {
     v = {
-      label: '双输螺旋', color: '#e8a317',
+      label: '双输螺旋', color: '#d4a25a',
       note: '两条供应链互相放血，谁都没赢——只是输的速度不同。螺旋一旦转起来，止损本身就成了示弱，于是没人止损。',
     };
   } else if (state.cn.econ >= 65 && state.us.econ >= 65) {
     v = {
-      label: '缓和窗口', color: '#10b981',
+      label: '缓和窗口', color: '#6fc2ae',
       note: '双方经贸线都保住了体面：窗口期不是和解，是双方同时算清了对抗的边际成本。窗口能开多久，取决于下一轮谁先变现敌意。',
     };
   } else {
     v = {
-      label: '相持消耗', color: '#64748b',
+      label: '相持消耗', color: '#8a8578',
       note: `四线对账：科技 ${dCnTech >= 0 ? '+' : ''}${dCnTech}/${dUsTech >= 0 ? '+' : ''}${dUsTech}，经贸 ${dCnEcon >= 0 ? '+' : ''}${dCnEcon}/${dUsEcon >= 0 ? '+' : ''}${dUsEcon}。没有胜负，只有消耗速率——耐力赛进入了拼血条厚度的中段。`,
     };
   }

@@ -48,10 +48,10 @@ const TABS = [
   ['leaders', '人事将领'],
 ];
 
-const RANK_COLORS = { 上将: '#c41e3a', 中将: '#e8a317', 少将: '#22d3ee' };
+const RANK_COLORS = { 上将: '#e5483b', 中将: '#d4a25a', 少将: '#6e8cff' };
 
 const tabBtn = (active) => ({
-  background: active ? 'rgba(196,30,58,0.22)' : 'var(--bg-elevated)',
+  background: active ? 'rgba(229, 72, 59,0.22)' : 'var(--bg-elevated)',
   color: active ? '#fff' : 'var(--text-secondary)',
   border: `1px solid ${active ? 'var(--china-red)' : 'var(--border-subtle)'}`,
   cursor: 'pointer',
@@ -60,7 +60,7 @@ const tabBtn = (active) => ({
   fontSize: 12,
 });
 
-const TRL_COLORS = ['#64748b', '#64748b', '#64748b', '#64748b', '#e8a317', '#e8a317', '#22d3ee', '#22d3ee', '#10b981'];
+const TRL_COLORS = ['#8a8578', '#8a8578', '#8a8578', '#8a8578', '#d4a25a', '#d4a25a', '#6e8cff', '#6e8cff', '#6fc2ae'];
 
 function parseNum(v) {
   if (typeof v === 'number') return v;
@@ -76,16 +76,16 @@ function OverviewTab() {
   const budgetChart = {
     grid: { left: 44, right: 16, top: 16, bottom: 24 },
     xAxis: { type: 'category', data: BUDGET_TREND.years, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
-    yAxis: { type: 'value', name: 'B$', nameTextStyle: { color: '#5b6a82' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
-    series: [{ type: 'bar', data: BUDGET_TREND.values, barWidth: 26, itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } }],
+    yAxis: { type: 'value', name: 'B$', nameTextStyle: { color: '#8a847a' }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } } },
+    series: [{ type: 'bar', data: BUDGET_TREND.values, barWidth: 26, itemStyle: { color: '#e5483b', borderRadius: [3, 3, 0, 0] } }],
   };
 
   const deterrenceRadar = {
     radar: {
       indicator: [{ name: '高超声速', max: 100 }, { name: '反舰打击', max: 100 }, { name: '态势感知', max: 100 }, { name: '区域拒止', max: 100 }, { name: '战略投送', max: 100 }],
-      axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false },
+      axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } }, splitArea: { show: false },
     },
-    series: [{ type: 'radar', data: [{ value: [88, 90, 85, 92, 70], name: 'A2/AD 能力示意', lineStyle: { color: '#e8a317' }, areaStyle: { color: 'rgba(232,163,23,0.14)' } }] }],
+    series: [{ type: 'radar', data: [{ value: [88, 90, 85, 92, 70], name: 'A2/AD 能力示意', lineStyle: { color: '#d4a25a' }, areaStyle: { color: 'rgba(212, 162, 90,0.14)' } }] }],
   };
 
   return (
@@ -123,7 +123,7 @@ function OverviewTab() {
             <div key={k} className="p-2.5 rounded" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}>
               <div className="flex items-center gap-1.5 mb-1">
                 <span className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{s.title}</span>
-                <span className="text-[9px] px-1 rounded mono" style={{ background: 'rgba(196,30,58,0.14)', color: 'var(--china-red)' }}>{s.tag}</span>
+                <span className="text-[9px] px-1 rounded mono" style={{ background: 'rgba(229, 72, 59,0.14)', color: 'var(--china-red)' }}>{s.tag}</span>
               </div>
               <p className="text-[10px] mono" style={{ color: 'var(--fire-gold)' }}>{s.stat}</p>
             </div>
@@ -167,7 +167,7 @@ function PersonnelTab() {
     series: [{
       type: 'sunburst', radius: ['12%', '92%'], center: ['50%', '50%'], data: SERVICE_SUNBURST,
       label: { color: '#e2e8f0', fontSize: 9, minAngle: 8 },
-      itemStyle: { borderColor: '#0a0e17', borderWidth: 1 },
+      itemStyle: { borderColor: '#0d0f14', borderWidth: 1 },
       levels: [{}, { r0: '12%', r: '52%' }, { r0: '52%', r: '92%', label: { align: 'right' } }],
     }],
   };
@@ -176,7 +176,7 @@ function PersonnelTab() {
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: (a) => a.map((x) => `${x.seriesName}: ${x.value} 万`).join('<br/>') },
     legend: { ...LEGEND, top: 0 },
     grid: { left: 8, right: 8, top: 30, bottom: 8, containLabel: true },
-    xAxis: { type: 'value', splitLine: GRID_LINE, axisLabel: LABEL, name: '万', nameTextStyle: { color: '#5b6a82' } },
+    xAxis: { type: 'value', splitLine: GRID_LINE, axisLabel: LABEL, name: '万', nameTextStyle: { color: '#8a847a' } },
     yAxis: { type: 'category', data: ['兵员构成'], axisLine: AXIS, axisLabel: LABEL },
     series: FORCE_COMPOSITION.segments.map((seg) => ({ name: seg.name, type: 'bar', stack: 't', barWidth: 40, data: [seg.value], itemStyle: { color: seg.color }, label: { show: true, color: '#fff', fontSize: 10 } })),
   };
@@ -187,12 +187,12 @@ function PersonnelTab() {
     grid: { left: 40, right: 40, top: 30, bottom: 24 },
     xAxis: categoryX(RECRUITMENT_TREND.years),
     yAxis: [
-      { type: 'value', name: '万', nameTextStyle: { color: '#5b6a82' }, splitLine: GRID_LINE, axisLabel: LABEL },
-      { type: 'value', name: '%', nameTextStyle: { color: '#5b6a82' }, splitLine: { show: false }, axisLabel: LABEL, max: 100 },
+      { type: 'value', name: '万', nameTextStyle: { color: '#8a847a' }, splitLine: GRID_LINE, axisLabel: LABEL },
+      { type: 'value', name: '%', nameTextStyle: { color: '#8a847a' }, splitLine: { show: false }, axisLabel: LABEL, max: 100 },
     ],
     series: [
-      { name: '征兵规模(万)', type: 'bar', data: RECRUITMENT_TREND.scale, barWidth: 18, itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } },
-      { name: '大学生比例(%)', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', data: RECRUITMENT_TREND.collegeShare, lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
+      { name: '征兵规模(万)', type: 'bar', data: RECRUITMENT_TREND.scale, barWidth: 18, itemStyle: { color: '#e5483b', borderRadius: [3, 3, 0, 0] } },
+      { name: '大学生比例(%)', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', data: RECRUITMENT_TREND.collegeShare, lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' } },
     ],
   };
 
@@ -202,12 +202,12 @@ function PersonnelTab() {
     grid: { left: 44, right: 44, top: 30, bottom: 24 },
     xAxis: categoryX(DEFENSE_GDP_TREND.years),
     yAxis: [
-      { type: 'value', name: 'B$', nameTextStyle: { color: '#5b6a82' }, splitLine: GRID_LINE, axisLabel: LABEL },
-      { type: 'value', name: '%GDP', nameTextStyle: { color: '#5b6a82' }, splitLine: { show: false }, axisLabel: LABEL },
+      { type: 'value', name: 'B$', nameTextStyle: { color: '#8a847a' }, splitLine: GRID_LINE, axisLabel: LABEL },
+      { type: 'value', name: '%GDP', nameTextStyle: { color: '#8a847a' }, splitLine: { show: false }, axisLabel: LABEL },
     ],
     series: [
-      { name: '军费(B$)', type: 'bar', data: DEFENSE_GDP_TREND.budget, barWidth: 18, itemStyle: { color: '#e8a317', borderRadius: [3, 3, 0, 0] } },
-      { name: '占GDP(%)', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', data: DEFENSE_GDP_TREND.gdpShare, lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' } },
+      { name: '军费(B$)', type: 'bar', data: DEFENSE_GDP_TREND.budget, barWidth: 18, itemStyle: { color: '#d4a25a', borderRadius: [3, 3, 0, 0] } },
+      { name: '占GDP(%)', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', data: DEFENSE_GDP_TREND.gdpShare, lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' } },
     ],
   };
 
@@ -223,9 +223,9 @@ function PersonnelTab() {
   return (
     <>
       <StatGrid className="mb-4">
-        <Stat value={PERSONNEL.activeDuty.label} label="现役总兵力" accent="#c41e3a" />
-        <Stat value={PERSONNEL.civilianStaff.total} label="文职人员" accent="#8b5cf6" />
-        <Stat value={PERSONNEL.recruitment.annual} label="年征兵规模" accent="#22d3ee" />
+        <Stat value={PERSONNEL.activeDuty.label} label="现役总兵力" accent="#e5483b" />
+        <Stat value={PERSONNEL.civilianStaff.total} label="文职人员" accent="#b07cc6" />
+        <Stat value={PERSONNEL.recruitment.annual} label="年征兵规模" accent="#6e8cff" />
         <Stat value={SERVICES.capf.stat.split(' ·')[0]} label="武警估算" />
       </StatGrid>
       <Grid cols={2} className="mb-6">
@@ -265,10 +265,10 @@ function PersonnelTab() {
         </Card>
         <Card title="将官 / 校尉结构 · 公开估算">
           <p className="text-[10px] mb-2" style={{ color: 'var(--text-tertiary)' }}>{PERSONNEL.rankStructure.note}</p>
-          <DistBar data={rankDistPairs(PERSONNEL.rankStructure.general)} color="#c41e3a" labelWidth={48} />
+          <DistBar data={rankDistPairs(PERSONNEL.rankStructure.general)} color="#e5483b" labelWidth={48} />
           <div className="mt-4 pt-3 border-t" style={{ borderColor: 'var(--border-subtle)' }}>
             <p className="text-[10px] mb-2 font-semibold" style={{ color: 'var(--text-secondary)' }}>尉官以上占比示意</p>
-            <DistBar data={rankDistPairs(PERSONNEL.rankStructure.field)} color="#22d3ee" labelWidth={72} />
+            <DistBar data={rankDistPairs(PERSONNEL.rankStructure.field)} color="#6e8cff" labelWidth={72} />
           </div>
         </Card>
       </Grid>
@@ -282,7 +282,7 @@ function PersonnelTab() {
               <div key={c.name} className="flex items-center gap-2 text-xs">
                 <span className="mono w-20 shrink-0" style={{ color: 'var(--cyber-cyan)' }}>{c.name}</span>
                 <div className="flex-1 h-2 rounded" style={{ background: 'var(--bg-base)' }}>
-                  <div style={{ width: `${c.share}%`, height: '100%', background: '#8b5cf6', borderRadius: 2, opacity: 0.8 }} />
+                  <div style={{ width: `${c.share}%`, height: '100%', background: '#b07cc6', borderRadius: 2, opacity: 0.8 }} />
                 </div>
                 <span className="mono text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{c.share}% · {c.desc}</span>
               </div>
@@ -295,7 +295,7 @@ function PersonnelTab() {
           </p>
           <div className="flex flex-wrap gap-1 mb-3">
             {PERSONNEL.recruitment.focus.map((f) => (
-              <span key={f} className="text-[10px] px-2 py-0.5 rounded mono" style={{ background: 'rgba(34,211,238,0.12)', color: '#22d3ee' }}>{f}</span>
+              <span key={f} className="text-[10px] px-2 py-0.5 rounded mono" style={{ background: 'rgba(110, 140, 255,0.12)', color: '#6e8cff' }}>{f}</span>
             ))}
           </div>
           <div className="p-3 rounded mt-2" style={{ background: 'var(--bg-elevated)' }}>
@@ -314,7 +314,7 @@ function PersonnelTab() {
         </div>
         <div className="flex items-center gap-2 mb-2">
           <span className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>{s.title}</span>
-          <span className="text-[10px] px-1.5 py-0.5 rounded mono" style={{ background: 'rgba(196,30,58,0.16)', color: 'var(--china-red)' }}>{s.tag}</span>
+          <span className="text-[10px] px-1.5 py-0.5 rounded mono" style={{ background: 'rgba(229, 72, 59,0.16)', color: 'var(--china-red)' }}>{s.tag}</span>
         </div>
         <p className="text-xs mono mb-2" style={{ color: 'var(--fire-gold)' }}>{s.stat}</p>
         <p className="text-xs mb-3 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{s.desc}</p>
@@ -339,9 +339,9 @@ function EquipmentTab() {
 
   const navyChart = {
     grid: { left: 80, right: 24, top: 16, bottom: 24 },
-    xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+    xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } } },
     yAxis: { type: 'category', data: NAVY_BAR.categories, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
-    series: [{ type: 'bar', data: NAVY_BAR.values, barWidth: 14, itemStyle: { color: '#22d3ee', borderRadius: 3 }, label: { show: true, position: 'right', color: LABEL.color } }],
+    series: [{ type: 'bar', data: NAVY_BAR.values, barWidth: 14, itemStyle: { color: '#6e8cff', borderRadius: 3 }, label: { show: true, position: 'right', color: LABEL.color } }],
   };
 
   const airChart = {
@@ -358,8 +358,8 @@ function EquipmentTab() {
       symbolSize: 7, orient: 'LR', initialTreeDepth: 2, expandAndCollapse: true,
       label: { position: 'left', verticalAlign: 'middle', align: 'right', fontSize: 10, color: '#e2e8f0' },
       leaves: { label: { position: 'right', verticalAlign: 'middle', align: 'left', color: LABEL.color, fontSize: 9 } },
-      itemStyle: { color: '#c41e3a', borderColor: '#c41e3a' },
-      lineStyle: { color: 'rgba(148,163,184,0.3)' },
+      itemStyle: { color: '#e5483b', borderColor: '#e5483b' },
+      lineStyle: { color: 'rgba(162, 156, 145,0.3)' },
       emphasis: { focus: 'descendant' },
     }],
   };
@@ -390,11 +390,11 @@ function EquipmentTab() {
     legend: { ...LEGEND, top: 0 },
     radar: {
       indicator: MODERNIZATION_RADAR.indicators, axisName: { color: LABEL.color, fontSize: 10 },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } }, splitArea: { show: false },
     },
     series: [{ type: 'radar', data: [
-      { value: MODERNIZATION_RADAR.navy, name: '海军', lineStyle: { color: '#22d3ee', width: 2 }, areaStyle: { color: 'rgba(34,211,238,0.12)' }, itemStyle: { color: '#22d3ee' } },
-      { value: MODERNIZATION_RADAR.air, name: '空军', lineStyle: { color: '#8b5cf6', width: 2 }, areaStyle: { color: 'rgba(139,92,246,0.12)' }, itemStyle: { color: '#8b5cf6' } },
+      { value: MODERNIZATION_RADAR.navy, name: '海军', lineStyle: { color: '#6e8cff', width: 2 }, areaStyle: { color: 'rgba(110, 140, 255,0.12)' }, itemStyle: { color: '#6e8cff' } },
+      { value: MODERNIZATION_RADAR.air, name: '空军', lineStyle: { color: '#b07cc6', width: 2 }, areaStyle: { color: 'rgba(176, 124, 198,0.12)' }, itemStyle: { color: '#b07cc6' } },
     ] }],
   };
 
@@ -443,7 +443,7 @@ function EquipmentTab() {
                 <tr key={item.name} style={{ borderBottom: '1px solid var(--border-subtle)' }}>
                   <td className="py-2 pr-3 font-medium mono" style={{ color: cat.accent }}>{item.name}</td>
                   <td className="py-2 pr-3" style={{ color: 'var(--text-secondary)' }}>{item.type}</td>
-                  <td className="py-2 pr-3"><span className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: 'rgba(16,185,129,0.14)', color: '#10b981' }}>{item.status}</span></td>
+                  <td className="py-2 pr-3"><span className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: 'rgba(111, 194, 174,0.14)', color: '#6fc2ae' }}>{item.status}</span></td>
                   <td className="py-2 pr-3 mono" style={{ color: 'var(--text-primary)' }}>{item.qty}</td>
                   <td className="py-2" style={{ color: 'var(--text-tertiary)' }}>{item.note}</td>
                 </tr>
@@ -463,7 +463,7 @@ function EquipmentTab() {
         <div className="flex items-center justify-between"><span className="font-bold" style={{ color: 'var(--text-primary)' }}>{m.title}</span><span className="text-xs mono" style={{ color: 'var(--text-tertiary)' }}>{m.variants}</span></div>
         <p className="text-xs mt-2 mb-3" style={{ color: 'var(--text-secondary)' }}>{m.desc}</p>
         <div className="flex justify-between text-xs mb-1"><span style={{ color: 'var(--text-tertiary)' }}>射程</span><span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{m.range}</span></div>
-        <div style={{ height: 6, background: 'var(--bg-elevated)', borderRadius: 3, overflow: 'hidden' }}><div style={{ width: `${m.width}%`, height: '100%', background: 'linear-gradient(90deg,#c41e3a,#e8a317)', transition: 'width .4s' }} /></div>
+        <div style={{ height: 6, background: 'var(--bg-elevated)', borderRadius: 3, overflow: 'hidden' }}><div style={{ width: `${m.width}%`, height: '100%', background: 'linear-gradient(90deg,#e5483b,#d4a25a)', transition: 'width .4s' }} /></div>
         <div className="mt-3 text-xs"><span className="font-semibold" style={{ color: 'var(--text-primary)' }}>战略覆盖：</span><span style={{ color: 'var(--text-tertiary)' }}>{m.target}</span></div>
       </Card>
     </>
@@ -485,16 +485,16 @@ function TechTab() {
     grid: { left: 70, right: 20, top: 10, bottom: 80 },
     xAxis: { type: 'category', data: TRL_MATRIX.domains, axisLabel: { ...LABEL, rotate: 32, interval: 0 }, axisLine: AXIS, splitArea: { show: true } },
     yAxis: { type: 'category', data: TRL_MATRIX.stages, axisLabel: LABEL, axisLine: AXIS, splitArea: { show: true } },
-    visualMap: { min: 20, max: 100, calculable: true, orient: 'horizontal', left: 'center', bottom: 0, inRange: { color: ['#141c2b', '#7c2d12', '#e8a317', '#22d3ee'] }, textStyle: { color: LABEL.color, fontSize: 10 } },
-    series: [{ type: 'heatmap', data: heatData, label: { show: true, color: '#0a0e17', fontSize: 9 }, emphasis: { itemStyle: { shadowBlur: 6, shadowColor: 'rgba(0,0,0,0.5)' } } }],
+    visualMap: { min: 20, max: 100, calculable: true, orient: 'horizontal', left: 'center', bottom: 0, inRange: { color: ['#141c2b', '#7c2d12', '#d4a25a', '#6e8cff'] }, textStyle: { color: LABEL.color, fontSize: 10 } },
+    series: [{ type: 'heatmap', data: heatData, label: { show: true, color: '#0d0f14', fontSize: 9 }, emphasis: { itemStyle: { shadowBlur: 6, shadowColor: 'rgba(0,0,0,0.5)' } } }],
   };
 
   const rdChart = {
     tooltip: { trigger: 'axis' },
     grid: { left: 44, right: 16, top: 16, bottom: 24 },
     xAxis: categoryX(RD_INVESTMENT_TREND.years),
-    yAxis: valueY({ name: '指数', nameTextStyle: { color: '#5b6a82' } }),
-    series: [{ type: 'line', smooth: true, symbol: 'circle', symbolSize: 7, data: RD_INVESTMENT_TREND.index, lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.12)' } }],
+    yAxis: valueY({ name: '指数', nameTextStyle: { color: '#8a847a' } }),
+    series: [{ type: 'line', smooth: true, symbol: 'circle', symbolSize: 7, data: RD_INVESTMENT_TREND.index, lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' }, areaStyle: { color: 'rgba(110, 140, 255,0.12)' } }],
   };
 
   const sankey = {
@@ -535,8 +535,8 @@ function TechTab() {
             onClick={() => setSel(d.id)}
             className="text-left p-3 rounded os-card"
             style={{
-              border: `1px solid ${sel === d.id ? d.trl >= 7 ? '#22d3ee' : '#e8a317' : 'var(--border-subtle)'}`,
-              background: sel === d.id ? 'rgba(34,211,238,0.08)' : 'var(--bg-elevated)',
+              border: `1px solid ${sel === d.id ? d.trl >= 7 ? '#6e8cff' : '#d4a25a' : 'var(--border-subtle)'}`,
+              background: sel === d.id ? 'rgba(110, 140, 255,0.08)' : 'var(--bg-elevated)',
               cursor: 'pointer',
             }}
           >
@@ -551,14 +551,14 @@ function TechTab() {
       <Card title={t.title}>
         <div className="flex flex-wrap gap-3 mb-3 text-xs">
           <span className="mono px-2 py-1 rounded" style={{ background: `${TRL_COLORS[t.trl - 1]}22`, color: TRL_COLORS[t.trl - 1] }}>TRL {t.trl} · {t.trlLabel}</span>
-          <span className="mono px-2 py-1 rounded" style={{ background: 'rgba(196,30,58,0.14)', color: 'var(--china-red)' }}>{t.status}</span>
+          <span className="mono px-2 py-1 rounded" style={{ background: 'rgba(229, 72, 59,0.14)', color: 'var(--china-red)' }}>{t.status}</span>
         </div>
         <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>{t.desc}</p>
         <div className="mb-3">
           <div className="text-[10px] font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>代表项目 / 方向</div>
           <div className="flex flex-wrap gap-1">
             {t.programs.map((p) => (
-              <span key={p} className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: '#22d3ee' }}>{p}</span>
+              <span key={p} className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'rgba(110, 140, 255,0.12)', color: '#6e8cff' }}>{p}</span>
             ))}
           </div>
         </div>
@@ -649,10 +649,10 @@ function TheaterTab() {
 }
 
 const LIFT_STRENGTH = [
-  { name: '铁路机动', val: 85, color: '#10b981', note: '全军铁路输送体系' },
-  { name: '管线补给', val: 60, color: '#22d3ee', note: '西南/西北管线网' },
-  { name: '战略空运', val: 55, color: '#8b5cf6', note: '运-20 机队 50+ 架' },
-  { name: '战略海运', val: 45, color: '#e8a317', note: '民用滚装 + 补给舰（仍为短板）' },
+  { name: '铁路机动', val: 85, color: '#6fc2ae', note: '全军铁路输送体系' },
+  { name: '管线补给', val: 60, color: '#6e8cff', note: '西南/西北管线网' },
+  { name: '战略空运', val: 55, color: '#b07cc6', note: '运-20 机队 50+ 架' },
+  { name: '战略海运', val: 45, color: '#d4a25a', note: '民用滚装 + 补给舰（仍为短板）' },
 ];
 
 function LogisticsTab() {
@@ -668,8 +668,8 @@ function LogisticsTab() {
   return (
     <>
       <Grid cols={3} className="mb-4">
-        <Stat value={LOGISTICS.hubs.length} label="联勤保障中心" accent="#10b981" />
-        <Stat value={LOGISTICS.transport.strategicAirlift.capacity.split(' ')[0]} label="战略空运" accent="#22d3ee" />
+        <Stat value={LOGISTICS.hubs.length} label="联勤保障中心" accent="#6fc2ae" />
+        <Stat value={LOGISTICS.transport.strategicAirlift.capacity.split(' ')[0]} label="战略空运" accent="#6e8cff" />
         <Stat value="5" label="战区联勤中心" />
       </Grid>
       <Grid cols={2} className="mb-6">
@@ -687,7 +687,7 @@ function LogisticsTab() {
           <div className="space-y-2">
             {LOGISTICS.structure.map((row, i) => (
               <div key={row.level} className="flex gap-2 items-start text-xs">
-                <span className="mono shrink-0 w-5 text-center py-0.5 rounded" style={{ background: 'rgba(16,185,129,0.14)', color: '#10b981' }}>{i + 1}</span>
+                <span className="mono shrink-0 w-5 text-center py-0.5 rounded" style={{ background: 'rgba(111, 194, 174,0.14)', color: '#6fc2ae' }}>{i + 1}</span>
                 <div>
                   <div className="font-semibold" style={{ color: 'var(--text-primary)' }}>{row.level}</div>
                   <div style={{ color: 'var(--text-secondary)' }}>{row.role}</div>
@@ -716,8 +716,8 @@ function LogisticsTab() {
             <div key={h.name} className="p-3 rounded" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}>
               <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>{h.name}</div>
               <div className="flex gap-1 mb-1">
-                <span className="text-[9px] mono px-1 rounded" style={{ background: 'rgba(16,185,129,0.14)', color: '#10b981' }}>{h.type}</span>
-                <span className="text-[9px] mono px-1 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: '#22d3ee' }}>{h.region}</span>
+                <span className="text-[9px] mono px-1 rounded" style={{ background: 'rgba(111, 194, 174,0.14)', color: '#6fc2ae' }}>{h.type}</span>
+                <span className="text-[9px] mono px-1 rounded" style={{ background: 'rgba(110, 140, 255,0.12)', color: '#6e8cff' }}>{h.region}</span>
               </div>
               <p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{h.note}</p>
             </div>
@@ -748,8 +748,8 @@ function BasesTab() {
         </div>
         <BaseTypeLegend />
         <div className="flex flex-wrap gap-2 mt-1">
-          <span className="text-[10px] mono flex items-center gap-1" style={{ color: '#e8a317' }}><span style={{ width: 14, height: 0, borderTop: '2px dashed #e8a317', display: 'inline-block' }} />第一岛链</span>
-          <span className="text-[10px] mono flex items-center gap-1" style={{ color: '#22d3ee' }}><span style={{ width: 14, height: 0, borderTop: '2px dashed #22d3ee', display: 'inline-block' }} />第二岛链</span>
+          <span className="text-[10px] mono flex items-center gap-1" style={{ color: '#d4a25a' }}><span style={{ width: 14, height: 0, borderTop: '2px dashed #d4a25a', display: 'inline-block' }} />第一岛链</span>
+          <span className="text-[10px] mono flex items-center gap-1" style={{ color: '#6e8cff' }}><span style={{ width: 14, height: 0, borderTop: '2px dashed #6e8cff', display: 'inline-block' }} />第二岛链</span>
         </div>
         <MilitaryMap mode="bases-global" selectedBase={sel} onBaseClick={setSel} style={{ height: 420, marginTop: 8 }} />
       </Card>
@@ -763,8 +763,8 @@ function BasesTab() {
                 onClick={() => setSel(b.id)}
                 className="w-full text-left px-2 py-1.5 rounded text-[11px]"
                 style={{
-                  background: sel === b.id ? 'rgba(34,211,238,0.12)' : 'var(--bg-elevated)',
-                  border: `1px solid ${sel === b.id ? '#22d3ee' : 'var(--border-subtle)'}`,
+                  background: sel === b.id ? 'rgba(110, 140, 255,0.12)' : 'var(--bg-elevated)',
+                  border: `1px solid ${sel === b.id ? '#6e8cff' : 'var(--border-subtle)'}`,
                   cursor: 'pointer',
                 }}
               >
@@ -799,8 +799,8 @@ function ServicesTab() {
       <PersonnelTab />
       <Card title={`联勤保障概要 · ${LOGISTICS.asOf}`}>
         <StatGrid className="mb-4">
-          <Stat value={LOGISTICS.hubs.length} label="联勤保障中心" accent="#10b981" />
-          <Stat value={LOGISTICS.transport.strategicAirlift.capacity.split(' ')[0]} label="战略空运" accent="#22d3ee" />
+          <Stat value={LOGISTICS.hubs.length} label="联勤保障中心" accent="#6fc2ae" />
+          <Stat value={LOGISTICS.transport.strategicAirlift.capacity.split(' ')[0]} label="战略空运" accent="#6e8cff" />
           <Stat value="5" label="战区联勤中心" />
         </StatGrid>
         <Grid cols={2}>
@@ -811,7 +811,7 @@ function ServicesTab() {
           <div className="space-y-2">
             {LOGISTICS.structure.slice(0, 4).map((row, i) => (
               <div key={row.level} className="flex gap-2 items-start text-xs">
-                <span className="mono shrink-0 w-5 text-center py-0.5 rounded" style={{ background: 'rgba(16,185,129,0.14)', color: '#10b981' }}>{i + 1}</span>
+                <span className="mono shrink-0 w-5 text-center py-0.5 rounded" style={{ background: 'rgba(111, 194, 174,0.14)', color: '#6fc2ae' }}>{i + 1}</span>
                 <div>
                   <div className="font-semibold" style={{ color: 'var(--text-primary)' }}>{row.level}</div>
                   <div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{row.role}</div>
@@ -859,9 +859,9 @@ function IslandTab() {
   const deterrenceRadar = {
     radar: {
       indicator: [{ name: '高超声速', max: 100 }, { name: '反舰打击', max: 100 }, { name: '态势感知', max: 100 }, { name: '区域拒止', max: 100 }, { name: '常态巡航', max: 100 }],
-      axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false },
+      axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } }, splitArea: { show: false },
     },
-    series: [{ type: 'radar', data: [{ value: [88, 90, 85, 92, 95], name: 'A2/AD 气泡 · 公开评估', lineStyle: { color: '#e8a317' }, areaStyle: { color: 'rgba(232,163,23,0.14)' } }] }],
+    series: [{ type: 'radar', data: [{ value: [88, 90, 85, 92, 95], name: 'A2/AD 气泡 · 公开评估', lineStyle: { color: '#d4a25a' }, areaStyle: { color: 'rgba(212, 162, 90,0.14)' } }] }],
   };
 
   return (
@@ -926,8 +926,8 @@ function IslandTab() {
       <Card title="第一岛链前沿 · 公开标注基地" className="mb-4">
         <BaseTypeLegend />
         <div className="flex flex-wrap gap-2 mt-1 mb-2">
-          <span className="text-[10px] mono flex items-center gap-1" style={{ color: '#e8a317' }}><span style={{ width: 14, height: 0, borderTop: '2px dashed #e8a317', display: 'inline-block' }} />第一岛链</span>
-          <span className="text-[10px] mono flex items-center gap-1" style={{ color: '#22d3ee' }}><span style={{ width: 14, height: 0, borderTop: '2px dashed #22d3ee', display: 'inline-block' }} />第二岛链</span>
+          <span className="text-[10px] mono flex items-center gap-1" style={{ color: '#d4a25a' }}><span style={{ width: 14, height: 0, borderTop: '2px dashed #d4a25a', display: 'inline-block' }} />第一岛链</span>
+          <span className="text-[10px] mono flex items-center gap-1" style={{ color: '#6e8cff' }}><span style={{ width: 14, height: 0, borderTop: '2px dashed #6e8cff', display: 'inline-block' }} />第二岛链</span>
         </div>
         <MilitaryMap mode="bases-global" selectedBase={baseSel} onBaseClick={setBaseSel} style={{ height: 360, marginTop: 8 }} />
         <p className="text-[10px] mt-2 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
@@ -945,8 +945,8 @@ function IslandTab() {
                 onClick={() => setBaseSel(b.id)}
                 className="w-full text-left px-2 py-1.5 rounded text-[11px]"
                 style={{
-                  background: baseSel === b.id ? 'rgba(34,211,238,0.12)' : 'var(--bg-elevated)',
-                  border: `1px solid ${baseSel === b.id ? '#22d3ee' : 'var(--border-subtle)'}`,
+                  background: baseSel === b.id ? 'rgba(110, 140, 255,0.12)' : 'var(--bg-elevated)',
+                  border: `1px solid ${baseSel === b.id ? '#6e8cff' : 'var(--border-subtle)'}`,
                   cursor: 'pointer',
                 }}
               >
@@ -1011,7 +1011,7 @@ function LeadersTab() {
     tooltip: { trigger: 'item' },
     grid: { left: 44, right: 16, top: 16, bottom: 24 },
     xAxis: categoryX(['上将', '中将', '少将']),
-    yAxis: valueY({ name: '人', nameTextStyle: { color: '#5b6a82' } }),
+    yAxis: valueY({ name: '人', nameTextStyle: { color: '#8a847a' } }),
     series: [{
       type: 'bar',
       barWidth: 36,
@@ -1034,7 +1034,7 @@ function LeadersTab() {
       data: branches.map((b, i) => ({
         name: b,
         value: FIGURE_MILITARY_2026.filter((f) => f.fields?.milBranch === b).length,
-        itemStyle: { color: ['#c41e3a', '#22d3ee', '#8b5cf6', '#e8a317', '#10b981', '#64748b'][i % 6] },
+        itemStyle: { color: ['#e5483b', '#6e8cff', '#b07cc6', '#d4a25a', '#6fc2ae', '#8a8578'][i % 6] },
       })),
     }],
   };
@@ -1054,7 +1054,7 @@ function LeadersTab() {
         <Stat value={String(rankCounts.上将 || 0)} label="上将（公开名录）" accent={RANK_COLORS.上将} />
         <Stat value={String(rankCounts.中将 || 0)} label="中将" accent={RANK_COLORS.中将} />
         <Stat value={String(rankCounts.少将 || 0)} label="少将（公开子集）" accent={RANK_COLORS.少将} />
-        <Stat value={String(FIGURE_MILITARY_COUNT)} label="库内总条数" accent="#8b5cf6" />
+        <Stat value={String(FIGURE_MILITARY_COUNT)} label="库内总条数" accent="#b07cc6" />
       </StatGrid>
 
       <p className="text-xs mb-4 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
@@ -1092,7 +1092,7 @@ function LeadersTab() {
             const branch = f.fields?.milBranch || '—';
             return (
               <div key={f.id || `${f.name}-${role}`} className="mil-leader-row" tabIndex={0}>
-                <span className="mil-rank-badge" style={{ background: `${RANK_COLORS[rank] || '#64748b'}22`, color: RANK_COLORS[rank] || '#64748b' }}>{rank}</span>
+                <span className="mil-rank-badge" style={{ background: `${RANK_COLORS[rank] || '#8a8578'}22`, color: RANK_COLORS[rank] || '#8a8578' }}>{rank}</span>
                 <div>
                   <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{f.name}</div>
                   <div className="text-[11px] leading-snug" style={{ color: 'var(--text-secondary)' }}>{role}</div>
@@ -1125,7 +1125,7 @@ export default function Page() {
       >
         <div className="flex flex-wrap gap-2 items-center">
           <Link to="/straits" className="mil-island-link">台海重力博弈 ↗</Link>
-          <Link to="/talent" className="text-[11px] mono px-2 py-1 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: '#22d3ee', border: '1px solid rgba(34,211,238,0.3)' }}>
+          <Link to="/talent" className="text-[11px] mono px-2 py-1 rounded" style={{ background: 'rgba(110, 140, 255,0.12)', color: '#6e8cff', border: '1px solid rgba(110, 140, 255,0.3)' }}>
             军事将官人才库 · {FIGURE_MILITARY_COUNT} 条 ↗
           </Link>
         </div>

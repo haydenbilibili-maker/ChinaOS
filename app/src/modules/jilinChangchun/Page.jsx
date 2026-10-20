@@ -18,10 +18,10 @@ import {
 // ============================================================================
 
 const LAYER_FILTERS = [
-  { key: 'all', label: '全部七维', accent: '#22d3ee' },
-  { key: 'verified', label: '已核实', accent: '#10b981' },
-  { key: 'mixed', label: '部分核实', accent: '#e8a317' },
-  { key: 'conflict', label: '与进度冲突', accent: '#c41e3a' },
+  { key: 'all', label: '全部七维', accent: '#6e8cff' },
+  { key: 'verified', label: '已核实', accent: '#6fc2ae' },
+  { key: 'mixed', label: '部分核实', accent: '#d4a25a' },
+  { key: 'conflict', label: '与进度冲突', accent: '#e5483b' },
 ];
 
 export default function Page() {
@@ -39,7 +39,7 @@ export default function Page() {
     () => radarOpt(
       SEVEN_PRESSURES.map((p) => ({ name: p.dim, max: 100 })),
       SEVEN_PRESSURES.map((p) => p.pressureScore),
-      { name: '结构压力示意', color: '#c41e3a' },
+      { name: '结构压力示意', color: '#e5483b' },
     ),
     [],
   );
@@ -57,7 +57,7 @@ export default function Page() {
       data: s.data.map((v) => ({
         value: v,
         itemStyle: {
-          color: v < 0 ? (s.name.includes('2025') ? '#c41e3a' : '#fb923c') : s.color,
+          color: v < 0 ? (s.name.includes('2025') ? '#e5483b' : '#c07a4a') : s.color,
           borderRadius: v < 0 ? [0, 0, 3, 3] : [3, 3, 0, 0],
         },
       })),
@@ -80,10 +80,10 @@ export default function Page() {
       type: 'bar',
       barWidth: 36,
       data: [
-        { value: FISCAL_2025.revenue, itemStyle: { color: '#22d3ee', borderRadius: [3, 3, 0, 0] } },
-        { value: FISCAL_2025.expenditure, itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } },
-        { value: FISCAL_2025.fundRevenue, itemStyle: { color: '#e8a317', borderRadius: [3, 3, 0, 0] } },
-        { value: FISCAL_2025.landTransfer, itemStyle: { color: '#fb923c', borderRadius: [3, 3, 0, 0] } },
+        { value: FISCAL_2025.revenue, itemStyle: { color: '#6e8cff', borderRadius: [3, 3, 0, 0] } },
+        { value: FISCAL_2025.expenditure, itemStyle: { color: '#e5483b', borderRadius: [3, 3, 0, 0] } },
+        { value: FISCAL_2025.fundRevenue, itemStyle: { color: '#d4a25a', borderRadius: [3, 3, 0, 0] } },
+        { value: FISCAL_2025.landTransfer, itemStyle: { color: '#c07a4a', borderRadius: [3, 3, 0, 0] } },
       ],
       label: { show: true, position: 'top', color: LABEL.color, fontSize: 10, formatter: '{c}' },
     }],
@@ -100,10 +100,10 @@ export default function Page() {
       type: 'bar',
       barWidth: 32,
       data: [
-        { value: POP_2025.births, itemStyle: { color: '#10b981', borderRadius: [3, 3, 0, 0] } },
-        { value: POP_2025.deaths, itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } },
-        { value: POP_2025.naturalChange, itemStyle: { color: '#e8a317', borderRadius: [0, 0, 3, 3] } },
-        { value: POP_2025.netInflow, itemStyle: { color: '#22d3ee', borderRadius: [3, 3, 0, 0] } },
+        { value: POP_2025.births, itemStyle: { color: '#6fc2ae', borderRadius: [3, 3, 0, 0] } },
+        { value: POP_2025.deaths, itemStyle: { color: '#e5483b', borderRadius: [3, 3, 0, 0] } },
+        { value: POP_2025.naturalChange, itemStyle: { color: '#d4a25a', borderRadius: [0, 0, 3, 3] } },
+        { value: POP_2025.netInflow, itemStyle: { color: '#6e8cff', borderRadius: [3, 3, 0, 0] } },
       ],
       label: {
         show: true,
@@ -275,11 +275,11 @@ export default function Page() {
           </div>
           <Grid cols={2} className="mb-3">
             <div>
-              <div className="text-[10px] mono uppercase mb-1" style={{ color: '#fb923c' }}>评论 / 自媒体主张</div>
+              <div className="text-[10px] mono uppercase mb-1" style={{ color: '#c07a4a' }}>评论 / 自媒体主张</div>
               <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{active.commentClaim}</p>
             </div>
             <div>
-              <div className="text-[10px] mono uppercase mb-1" style={{ color: '#10b981' }}>可核实统计 / 交叉结论</div>
+              <div className="text-[10px] mono uppercase mb-1" style={{ color: '#6fc2ae' }}>可核实统计 / 交叉结论</div>
               <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{active.verified}</p>
             </div>
           </Grid>
@@ -309,7 +309,7 @@ export default function Page() {
       <Card title="④ 汽车 / 一汽产业链 · 集团叙事 vs 属地约束" className="mb-6">
         <div className="space-y-3">
           {AUTO_FACTS.map((f) => {
-            const color = f.layer === 'comment' ? '#fb923c' : f.layer === 'media' ? '#e8a317' : f.layer === 'verified' ? '#10b981' : '#22d3ee';
+            const color = f.layer === 'comment' ? '#c07a4a' : f.layer === 'media' ? '#d4a25a' : f.layer === 'verified' ? '#6fc2ae' : '#6e8cff';
             const label = f.layer === 'comment' ? '评论' : f.layer === 'media' ? '媒体转述' : f.layer === 'verified' ? '可核实' : '结构';
             return (
               <div key={f.text.slice(0, 24)} style={{ borderLeft: `2px solid ${color}`, paddingLeft: 12 }}>
@@ -371,9 +371,9 @@ export default function Page() {
       <Card title="⑦ 下半年政策应对与未决项" className="mb-6">
         <Grid cols={3}>
           {[
-            { key: 'done', title: '已显现 / 可观察', accent: '#10b981', items: H2_LEDGER.done },
-            { key: 'ongoing', title: '进行中 · 官方部署', accent: '#22d3ee', items: H2_LEDGER.ongoing },
-            { key: 'open', title: '未决 · 待核验', accent: '#e8a317', items: H2_LEDGER.open },
+            { key: 'done', title: '已显现 / 可观察', accent: '#6fc2ae', items: H2_LEDGER.done },
+            { key: 'ongoing', title: '进行中 · 官方部署', accent: '#6e8cff', items: H2_LEDGER.ongoing },
+            { key: 'open', title: '未决 · 待核验', accent: '#d4a25a', items: H2_LEDGER.open },
           ].map((col) => (
             <div key={col.key} className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderTop: `2px solid ${col.accent}` }}>
               <div className="text-xs font-semibold mb-3" style={{ color: col.accent }}>{col.title}</div>

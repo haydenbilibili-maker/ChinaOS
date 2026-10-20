@@ -41,9 +41,9 @@ export function academyBadgeLabel(academy) {
 
 /** @param {AcademyKind | null} academy */
 export function academyBadgeColor(academy) {
-  if (academy === 'both') return { bg: 'rgba(212,175,55,0.18)', fg: '#d4af37', border: 'rgba(212,175,55,0.45)' };
-  if (academy === 'cas') return { bg: 'rgba(34,211,238,0.14)', fg: '#22d3ee', border: 'rgba(34,211,238,0.4)' };
-  if (academy === 'cae') return { bg: 'rgba(232,163,23,0.14)', fg: '#e8a317', border: 'rgba(232,163,23,0.4)' };
+  if (academy === 'both') return { bg: 'rgba(217, 178, 106,0.18)', fg: '#d9b26a', border: 'rgba(217, 178, 106,0.45)' };
+  if (academy === 'cas') return { bg: 'rgba(110, 140, 255,0.14)', fg: '#6e8cff', border: 'rgba(110, 140, 255,0.4)' };
+  if (academy === 'cae') return { bg: 'rgba(212, 162, 90,0.14)', fg: '#d4a25a', border: 'rgba(212, 162, 90,0.4)' };
   return null;
 }
 

@@ -15,7 +15,7 @@ import { AXIS, LABEL, GRID_LINE, CHART_SERIES_PALETTE } from '../shared/chartHel
 //      请以官方政策与持牌理财/保险/税务顾问意见为准。
 // ============================================================================
 
-const C = { cinnabar: '#c41e3a', cyan: '#22d3ee', ochre: '#e8a317', green: '#10b981', violet: '#8b5cf6', slate: '#94a3b8' };
+const C = { cinnabar: '#e5483b', cyan: '#6e8cff', ochre: '#d4a25a', green: '#6fc2ae', violet: '#b07cc6', slate: '#a29c91' };
 
 const TABS = [
   { key: 'pension', label: '养老', accent: C.ochre },
@@ -219,7 +219,7 @@ export default function SectionLifePlan() {
                   <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>覆盖度</span>
                   <span className="text-lg font-bold mono" style={{ color: covColor }}>{coverage}%</span>
                 </div>
-                <div className="h-1.5 rounded mb-3" style={{ background: 'rgba(148,163,184,0.12)' }}>
+                <div className="h-1.5 rounded mb-3" style={{ background: 'rgba(162, 156, 145,0.12)' }}>
                   <div style={{ width: `${coverage}%`, height: '100%', borderRadius: 4, background: covColor, transition: 'width .2s' }} />
                 </div>
                 <div className="space-y-1.5">

@@ -31,7 +31,7 @@ export default function StageScroll({ mode, activeKey, onSelect }) {
     <div className="flex items-stretch gap-3 mb-2">
       <div className="w-12 shrink-0 text-xs font-semibold flex items-center" style={{ color }}>{label}</div>
       <div className="relative flex-1" style={{ height: 54 }}>
-        <div className="absolute inset-y-0 left-0 right-0 rounded" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle, rgba(148,163,184,0.12))' }} />
+        <div className="absolute inset-y-0 left-0 right-0 rounded" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle, rgba(162, 156, 145,0.12))' }} />
         {stages.map((s) => {
           const on = s.key === activeKey;
           const left = pct(toT(country, s.from));

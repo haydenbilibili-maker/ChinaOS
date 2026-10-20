@@ -10,18 +10,18 @@ import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 export const AS_OF = AS_OF_BASELINE;
 
 export const LEVELS = {
-  warm: { label: '常态/向好', color: '#10b981' },
-  hold: { label: '管控/僵持', color: '#e8a317' },
-  cool: { label: '告警/恶化', color: '#c41e3a' },
+  warm: { label: '常态/向好', color: '#6fc2ae' },
+  hold: { label: '管控/僵持', color: '#d4a25a' },
+  cool: { label: '告警/恶化', color: '#e5483b' },
 };
 
 export const DOMAINS = [
-  { id: 'diplomacy', label: '外交安全', icon: 'Globe2', accent: '#c41e3a' },
-  { id: 'economy', label: '宏观经济', icon: 'TrendingUp', accent: '#22d3ee' },
-  { id: 'tech', label: '科技自立', icon: 'Cpu', accent: '#8b5cf6' },
-  { id: 'energy', label: '能源资源', icon: 'Zap', accent: '#e8a317' },
-  { id: 'society', label: '社会民生', icon: 'Users', accent: '#10b981' },
-  { id: 'structure', label: '结构风险', icon: 'ShieldAlert', accent: '#fb923c' },
+  { id: 'diplomacy', label: '外交安全', icon: 'Globe2', accent: '#e5483b' },
+  { id: 'economy', label: '宏观经济', icon: 'TrendingUp', accent: '#6e8cff' },
+  { id: 'tech', label: '科技自立', icon: 'Cpu', accent: '#b07cc6' },
+  { id: 'energy', label: '能源资源', icon: 'Zap', accent: '#d4a25a' },
+  { id: 'society', label: '社会民生', icon: 'Users', accent: '#6fc2ae' },
+  { id: 'structure', label: '结构风险', icon: 'ShieldAlert', accent: '#c07a4a' },
 ];
 
 export const INDICATORS = [

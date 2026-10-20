@@ -1,8 +1,8 @@
 import React from 'react';
 
 const TREND_META = {
-  up: { glyph: '↑', color: 'var(--status-positive, #10b981)' },
-  down: { glyph: '↓', color: 'var(--status-negative, #c41e3a)' },
+  up: { glyph: '↑', color: 'var(--status-positive, #6fc2ae)' },
+  down: { glyph: '↓', color: 'var(--status-negative, #e5483b)' },
   flat: { glyph: '→', color: 'var(--text-tertiary)' },
 };
 

@@ -23,15 +23,15 @@ export const POLICY_CORPUS_TIER_LABELS = {
 
 /** @param {'full'|'excerpt'|'extended'|'stub'|null|undefined} tier */
 export function corpusListBadge(tier) {
-  if (tier === 'full') return { text: '本地全文', color: '#10b981' };
-  if (tier === 'excerpt' || tier === 'extended') return { text: '原文节选', color: '#e8a317' };
+  if (tier === 'full') return { text: '本地全文', color: '#6fc2ae' };
+  if (tier === 'excerpt' || tier === 'extended') return { text: '原文节选', color: '#d4a25a' };
   if (tier === 'stub') return { text: '原文节选', color: '#f97316' };
   return null;
 }
 
 export const POLICY_CORPUS_BADGE = {
-  local: { bg: 'rgba(16,185,129,0.14)', color: '#10b981', border: 'rgba(16,185,129,0.35)' },
-  fallback: { bg: 'rgba(100,116,139,0.14)', color: '#94a3b8', border: 'rgba(100,116,139,0.35)' },
+  local: { bg: 'rgba(111, 194, 174,0.14)', color: '#6fc2ae', border: 'rgba(111, 194, 174,0.35)' },
+  fallback: { bg: 'rgba(100,116,139,0.14)', color: '#a29c91', border: 'rgba(100,116,139,0.35)' },
 };
 
 export const POLICY_CORPUS_DISCLAIMER =

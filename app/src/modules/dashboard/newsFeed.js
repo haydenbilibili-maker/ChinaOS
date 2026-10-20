@@ -23,7 +23,7 @@ const STALE_PANDEMIC_RE = /新冠|疫情封控|动态清零|核酸检测|方舱�
 
 /** @type {{ id: string, label: string, badge: string, rss: string, category: string, color: string }[]} */
 export const NEWS_SOURCES = [
-  { id: 'cctv', label: '央视网', badge: '央视', rss: 'https://news.cctv.com/rss/china.xml', category: '时政', color: '#c41e3a' },
+  { id: 'cctv', label: '央视网', badge: '央视', rss: 'https://news.cctv.com/rss/china.xml', category: '时政', color: '#e5483b' },
   { id: 'people', label: '人民日报', badge: '人民', rss: 'http://www.people.com.cn/rss/politics.xml', category: '时政', color: '#dc2626' },
   { id: 'xinhua', label: '新华社', badge: '新华', rss: 'http://www.news.cn/politics/news_politics.xml', category: '时政', color: '#2563eb' },
   { id: 'gmrb', label: '光明日报', badge: '光明', rss: 'http://www.gmw.cn/rss/politics.xml', category: '时政', color: '#7c3aed' },
@@ -223,7 +223,7 @@ function prepareNewsPipeline(rawItems, { allowMissingDate = false } = {}) {
 
 export function getSourceBadge(sourceLabel) {
   const hit = NEWS_SOURCES.find((s) => s.label === sourceLabel || sourceLabel?.includes(s.label));
-  return hit || { badge: sourceLabel?.slice(0, 2) || '要闻', color: '#64748b' };
+  return hit || { badge: sourceLabel?.slice(0, 2) || '要闻', color: '#8a8578' };
 }
 
 function sortByDate(items) {

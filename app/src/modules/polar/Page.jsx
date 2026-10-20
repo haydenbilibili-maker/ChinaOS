@@ -7,14 +7,14 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // ── 极地议题选择器：每个议题给出现状 / 中国布局 / 战略价值 / 约束 ──
 const ISSUES = [
   {
-    key: 'route', label: '北极航道', accent: '#22d3ee',
+    key: 'route', label: '北极航道', accent: '#6e8cff',
     status: '全球暖化使北冰洋夏季海冰退缩，东北航道（俄北方海航道）通航窗口逐年拉长，2030 年代有望进入半全年通航。航道控制权目前几乎完全握于俄罗斯之手。',
     layout: '以「冰上丝绸之路」嵌入俄北方海航道运营，参股亚马尔 LNG、组织商船试航、推进核动力破冰平台预研，争取从「过境者」升级为「共建者」。',
     value: '航程缩短约 40%，绕过马六甲—苏伊士单一节点链。这是对海权封锁的物理级备份——把贸易引力线从他人控制的咽喉，部分迁往北方开阔水道。',
     constraint: '航道沿岸主权属俄；冰区导航、保险、港口补给链尚不成熟；地缘上深度依赖中俄关系稳定，单点风险高。',
   },
   {
-    key: 'resource', label: '极地资源', accent: '#e8a317',
+    key: 'resource', label: '极地资源', accent: '#d4a25a',
     status: '北极蕴藏全球约 13% 未探明石油、30% 未探明天然气，外加渔业、稀土与深海矿产。多数储量位于沿岸国专属经济区，公海与大陆架划界仍存争端。',
     layout: '以能源企业嵌入（亚马尔/北极 LNG-2）、远洋渔业作业、科考数据积累，建立「在场即权利」的资源卡位，而非直接主权主张。',
     value: '资源争夺的前置卡位：在储量尚未开采、规则尚未固化之时占住席位，确保未来再分配中的表决权与供应链份额。',
@@ -35,7 +35,7 @@ const ISSUES = [
     constraint: '观察员无表决权；「近北极」身份不被部分沿岸国承认；治理话语高度依赖与俄合作，西方警惕度上升。',
   },
   {
-    key: 'icebreaker', label: '破冰装备', accent: '#c41e3a',
+    key: 'icebreaker', label: '破冰装备', accent: '#e5483b',
     status: '破冰船是极地一切活动的物理前提。俄罗斯拥有全球唯一核动力破冰船队（40+ 艘各型），中国以雪龙、雪龙2（首艘自主建造）为核心，规模与梯队仍有差距。',
     layout: '雪龙2 自主双向破冰，预研 3 万吨级核动力破冰综合保障平台，解决极地长航程补能与全季节通航瓶颈。',
     value: '装备自主决定行动自由：没有重型/核动力破冰能力，航道、资源、科考都只是纸面权利。这是极地战略的算法底座。',
@@ -52,16 +52,16 @@ const ISSUES = [
 
 // ── 北极航道 vs 传统航线 ──
 const ROUTES = [
-  { key: 'suez', label: '苏伊士运河线', accent: '#64748b', distance: 12000, days: 35, desc: '传统亚欧贸易主通道，经马六甲—印度洋—苏伊士。地缘风险集中：海盗、封锁、运河拥堵（参见 2021 长赐号搁浅）。' },
-  { key: 'nep', label: '北极东北航道', accent: '#22d3ee', distance: 7200, days: 22, desc: '冰上丝绸之路：航程缩短约 40%，燃油成本显著下降，绕过传统海权封锁带——马六甲困境的物理级备份。' },
+  { key: 'suez', label: '苏伊士运河线', accent: '#8a8578', distance: 12000, days: 35, desc: '传统亚欧贸易主通道，经马六甲—印度洋—苏伊士。地缘风险集中：海盗、封锁、运河拥堵（参见 2021 长赐号搁浅）。' },
+  { key: 'nep', label: '北极东北航道', accent: '#6e8cff', distance: 7200, days: 22, desc: '冰上丝绸之路：航程缩短约 40%，燃油成本显著下降，绕过传统海权封锁带——马六甲困境的物理级备份。' },
 ];
 
 // ── 极地综合存在雷达：中国 vs 第一梯队（俄美） ──
 const RADAR_DIMS = ['科考站网', '破冰船队', '极地航运', '资源开发', '治理话语', '装备技术'];
 const RADAR_SETS = {
-  china: { name: '中国', color: '#c41e3a', value: [72, 45, 38, 40, 55, 58] },
-  russia: { name: '俄罗斯（第一梯队）', color: '#22d3ee', value: [80, 98, 90, 78, 85, 88] },
-  usa: { name: '美国（第一梯队）', color: '#e8a317', value: [70, 30, 35, 60, 80, 65] },
+  china: { name: '中国', color: '#e5483b', value: [72, 45, 38, 40, 55, 58] },
+  russia: { name: '俄罗斯（第一梯队）', color: '#6e8cff', value: [80, 98, 90, 78, 85, 88] },
+  usa: { name: '美国（第一梯队）', color: '#d4a25a', value: [70, 30, 35, 60, 80, 65] },
 };
 
 // ── 极地参与时间线 ──
@@ -69,18 +69,18 @@ const STAGES = [
   { period: '1984—1989', title: '南极破壁', accent: '#38bdf8', desc: '1984 首次南极考察队出征，1985 建长城站、1989 建中山站。从零起步，以科考身份切入南极条约协商国体系，获得规则桌前的一席。' },
   { period: '2004—2009', title: '北极落点 · 内陆登顶', accent: '#22c55e', desc: '2004 建北极黄河站（斯瓦尔巴），2009 建昆仑站登顶南极冰盖最高点 Dome A。极地存在从沿海延伸至最难抵达的内陆与高纬。' },
   { period: '2013', title: '北极理事会观察员', accent: '#a78bfa', desc: '获北极理事会观察员身份，以「近北极国家」自我定位，正式进入北极治理的制度边缘——从地理局外人转为制度参与者。' },
-  { period: '2017—2018', title: '冰上丝绸之路', accent: '#22d3ee', desc: '「一带一路」对接北极航道，发布《中国的北极政策》白皮书，提出「冰上丝绸之路」。资源（亚马尔 LNG）与航道战略正式成形。' },
-  { period: '2019—2024', title: '装备自主 · 秦岭站', accent: '#c41e3a', desc: '2019 雪龙2 首艘自主破冰船服役，2024 罗斯海秦岭站建成（第五站）。极地战略从「借船出海」转向「自主在场」，核动力破冰平台进入预研。' },
+  { period: '2017—2018', title: '冰上丝绸之路', accent: '#6e8cff', desc: '「一带一路」对接北极航道，发布《中国的北极政策》白皮书，提出「冰上丝绸之路」。资源（亚马尔 LNG）与航道战略正式成形。' },
+  { period: '2019—2024', title: '装备自主 · 秦岭站', accent: '#e5483b', desc: '2019 雪龙2 首艘自主破冰船服役，2024 罗斯海秦岭站建成（第五站）。极地战略从「借船出海」转向「自主在场」，核动力破冰平台进入预研。' },
 ];
 
 // ── 科考站布局 ──
 const STATIONS = [
   { name: '长城站', year: 1985, type: '南极·沿海', accent: '#38bdf8' },
   { name: '中山站', year: 1989, type: '南极·沿海', accent: '#38bdf8' },
-  { name: '黄河站', year: 2004, type: '北极·斯瓦尔巴', accent: '#22d3ee' },
+  { name: '黄河站', year: 2004, type: '北极·斯瓦尔巴', accent: '#6e8cff' },
   { name: '昆仑站', year: 2009, type: '南极·内陆冰盖最高点', accent: '#22c55e' },
   { name: '泰山站', year: 2014, type: '南极·内陆中继', accent: '#22c55e' },
-  { name: '秦岭站', year: 2024, type: '南极·罗斯海', accent: '#c41e3a' },
+  { name: '秦岭站', year: 2024, type: '南极·罗斯海', accent: '#e5483b' },
 ];
 
 export default function Page() {
@@ -104,15 +104,15 @@ export default function Page() {
         data: ROUTES.map((r) => ({ value: r.distance, itemStyle: { color: r.key === routeKey ? r.accent : 'rgba(100,116,139,0.5)', borderRadius: [4, 4, 0, 0] } })),
         label: { show: true, position: 'top', formatter: '{c} nm', color: LABEL.color } },
       { name: '航时 (天)', type: 'line', yAxisIndex: 1, symbol: 'circle', symbolSize: 9,
-        data: ROUTES.map((r) => r.days), lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' },
-        label: { show: true, position: 'top', formatter: '{c}d', color: '#e8a317' } },
+        data: ROUTES.map((r) => r.days), lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' },
+        label: { show: true, position: 'top', formatter: '{c}d', color: '#d4a25a' } },
     ],
   }), [routeKey]);
 
   // 极地资源潜力 donut
   const resourceDonut = useMemo(() => donutOpt([
-    { name: '油气（未探明，全球占比高）', value: 48, itemStyle: { color: '#e8a317' } },
-    { name: '航道经济', value: 22, itemStyle: { color: '#22d3ee' } },
+    { name: '油气（未探明，全球占比高）', value: 48, itemStyle: { color: '#d4a25a' } },
+    { name: '航道经济', value: 22, itemStyle: { color: '#6e8cff' } },
     { name: '极地渔业', value: 16, itemStyle: { color: '#22c55e' } },
     { name: '稀土与深海矿产', value: 14, itemStyle: { color: '#a78bfa' } },
   ]), []);
@@ -138,7 +138,7 @@ export default function Page() {
     xAxis: valueY({ name: '重型破冰船 (艘·示意)' }),
     yAxis: categoryX(['美国', '芬兰', '加拿大', '中国', '俄罗斯']),
     series: [{ type: 'bar', data: [2, 8, 12, 5, 40], barWidth: 14,
-      itemStyle: { color: (p) => (p.dataIndex === 3 ? '#c41e3a' : '#334155'), borderRadius: [0, 4, 4, 0] },
+      itemStyle: { color: (p) => (p.dataIndex === 3 ? '#e5483b' : '#334155'), borderRadius: [0, 4, 4, 0] },
       label: { show: true, position: 'right', color: LABEL.color } }],
   }), []);
 
@@ -158,9 +158,9 @@ export default function Page() {
     categories: RADAR_DIMS,
     horizontal: false,
     series: [
-      { name: '中国', data: RADAR_SETS.china.value, itemStyle: { color: '#c41e3a' } },
-      { name: '俄罗斯', data: RADAR_SETS.russia.value, itemStyle: { color: '#22d3ee' } },
-      { name: '美国', data: RADAR_SETS.usa.value, itemStyle: { color: '#e8a317' } },
+      { name: '中国', data: RADAR_SETS.china.value, itemStyle: { color: '#e5483b' } },
+      { name: '俄罗斯', data: RADAR_SETS.russia.value, itemStyle: { color: '#6e8cff' } },
+      { name: '美国', data: RADAR_SETS.usa.value, itemStyle: { color: '#d4a25a' } },
     ],
   }), []);
 
@@ -171,9 +171,9 @@ export default function Page() {
 
       <Grid cols={4} className="mb-6">
         <Stat value="5 + 1" label="南北极科考站 · 含秦岭站" accent="#22c55e" />
-        <Stat value="2 艘" label="雪龙系列破冰科考船" accent="#22d3ee" />
-        <Stat value="~40%" label="北极东北航道里程缩短 vs 苏伊士" accent="#e8a317" />
-        <Stat value="40+ 次" label="南极科考航次（1984 起 · 示意）" accent="#c41e3a" />
+        <Stat value="2 艘" label="雪龙系列破冰科考船" accent="#6e8cff" />
+        <Stat value="~40%" label="北极东北航道里程缩短 vs 苏伊士" accent="#d4a25a" />
+        <Stat value="40+ 次" label="南极科考航次（1984 起 · 示意）" accent="#e5483b" />
       </Grid>
 
       {/* ── 极地议题选择器 ── */}
@@ -186,10 +186,10 @@ export default function Page() {
             <div className="text-xs font-semibold mb-1" style={{ color: issue.accent }}>中国布局</div>
             <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{issue.layout}</p>
           </div>
-          <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #64748b' }}>
+          <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #8a8578' }}>
             <div className="text-xs font-semibold mb-1" style={{ color: '#22c55e' }}>战略价值</div>
             <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>{issue.value}</p>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#c41e3a' }}>约束 · 现实主义底线</div>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#e5483b' }}>约束 · 现实主义底线</div>
             <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{issue.constraint}</p>
           </div>
         </Grid>
@@ -203,7 +203,7 @@ export default function Page() {
           <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: `3px solid ${route.accent}` }}>
             <Grid cols={2} className="mb-3">
               <Stat value={route.distance} label="航程 (海里)" accent={route.accent} />
-              <Stat value={`~${route.days} 天`} label="典型航时" accent="#64748b" />
+              <Stat value={`~${route.days} 天`} label="典型航时" accent="#8a8578" />
             </Grid>
             <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{route.desc}</p>
             <p className="text-xs mt-3 mono" style={{ color: 'var(--text-tertiary)' }}>「冰上丝绸之路」：东北航道把亚欧贸易引力线从他人控制的咽喉，部分迁往北方开阔水道。</p>
@@ -221,16 +221,16 @@ export default function Page() {
       <Card title="交互 · 极地综合存在雷达 · 中国 vs 第一梯队（俄美）" className="mb-6">
         <SelectorBar
           items={[
-            { key: 'all', label: '三方对比', accent: '#93a1b5' },
-            { key: 'china', label: '中国', accent: '#c41e3a' },
-            { key: 'russia', label: '俄罗斯', accent: '#22d3ee' },
-            { key: 'usa', label: '美国', accent: '#e8a317' },
+            { key: 'all', label: '三方对比', accent: '#a29c91' },
+            { key: 'china', label: '中国', accent: '#e5483b' },
+            { key: 'russia', label: '俄罗斯', accent: '#6e8cff' },
+            { key: 'usa', label: '美国', accent: '#d4a25a' },
           ]}
           activeKey={radarKey} onSelect={setRadarKey}
         />
         <Grid cols={2}>
           <EChart option={presenceRadar} style={{ height: 280 }} />
-          <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #22d3ee' }}>
+          <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #6e8cff' }}>
             <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>
               六维度看：俄罗斯凭核动力破冰船队与北方海航道运营，几乎全维领先，是无可争议的极地霸主；美国治理话语与资源开发强、但破冰船队羸弱（仅 2 艘重型可用）；中国在<strong style={{ color: 'var(--text-primary)' }}>科考站网</strong>追近，但破冰装备、极地航运、资源开发仍是补课区——这正是核动力破冰平台预研的战略指向。
             </p>

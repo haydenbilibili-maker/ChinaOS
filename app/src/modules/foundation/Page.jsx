@@ -38,7 +38,7 @@ const TABS = [
 ];
 const TAB_KEYS = TABS.map(([k]) => k);
 const CATS = ['经济运行', '国家统计局', '海关总署', '世界银行', '科技指标', '地缘指标', '人才精英', '其他'];
-const btn = (active) => ({ background: active ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)', color: active ? 'var(--chip-active-text)' : 'var(--text-secondary)', border: 'none', cursor: 'pointer', borderRadius: 6 });
+const btn = (active) => ({ background: active ? 'rgba(229, 72, 59,0.2)' : 'var(--bg-elevated)', color: active ? 'var(--chip-active-text)' : 'var(--text-secondary)', border: 'none', cursor: 'pointer', borderRadius: 6 });
 const inp = { background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', borderRadius: 6, padding: '6px 8px', fontSize: 13, width: '100%' };
 
 // ---------- 数据表（可编辑） ----------
@@ -101,7 +101,7 @@ export default function Page() {
       <div className="flex gap-1 flex-wrap mb-4 os-tab-bar">
         {TABS.map(([k, label]) => <button key={k} onClick={() => setTab(k)} className="text-sm px-3 py-1.5 mono" style={btn(k === tab)}>{label}</button>)}
       </div>
-      {toast && <div className="mb-4 px-3 py-2 rounded text-sm mono" style={{ background: 'rgba(16,185,129,0.14)', color: '#10b981' }}>{toast}</div>}
+      {toast && <div className="mb-4 px-3 py-2 rounded text-sm mono" style={{ background: 'rgba(111, 194, 174,0.14)', color: '#6fc2ae' }}>{toast}</div>}
 
       {tab === 'overview' && <Overview st={st} datasets={datasets} onGo={setTab} />}
       {tab === 'econ' && <EconDataTab datasets={datasets} refresh={refresh} flash={flash} />}
@@ -181,7 +181,7 @@ function Tools({ datasets, refresh, flash }) {
                   <td style={{ padding: '4px 10px', color: 'var(--text-secondary)' }}>{r.a}</td>
                   <td style={{ padding: '4px 10px', color: 'var(--text-secondary)' }}>{r.b}</td>
                   <td style={{ padding: '4px 10px', color: 'var(--text-secondary)' }}>{r.delta}</td>
-                  <td style={{ padding: '4px 10px', color: Math.abs(r.pct) > 10 ? '#c41e3a' : Math.abs(r.pct) > 3 ? '#e8a317' : '#10b981', fontFamily: 'monospace' }}>{r.pct != null ? r.pct + '%' : '—'}</td>
+                  <td style={{ padding: '4px 10px', color: Math.abs(r.pct) > 10 ? '#e5483b' : Math.abs(r.pct) > 3 ? '#d4a25a' : '#6fc2ae', fontFamily: 'monospace' }}>{r.pct != null ? r.pct + '%' : '—'}</td>
                 </tr>
               ))}</tbody>
             </table>
@@ -201,15 +201,15 @@ function Overview({ st, datasets, onGo }) {
     const e = Object.entries(st.byCategory);
     return { tooltip: { trigger: 'item' }, legend: { bottom: 0, textStyle: { color: LABEL.color } },
       series: [{ type: 'pie', radius: ['44%', '70%'], center: ['50%', '44%'], label: { color: LABEL.color },
-        data: e.map(([k, v], i) => ({ name: k, value: v, itemStyle: { color: ['#c41e3a', '#22d3ee', '#e8a317', '#10b981', '#8b5cf6', '#fb923c', '#64748b'][i % 7] } })) }] };
+        data: e.map(([k, v], i) => ({ name: k, value: v, itemStyle: { color: ['#e5483b', '#6e8cff', '#d4a25a', '#6fc2ae', '#b07cc6', '#c07a4a', '#8a8578'][i % 7] } })) }] };
   }, [st]);
   return (
     <div>
       <StatGrid className="mb-6">
-        <Stat value={st ? st.datasetCount : '…'} label="数据集" accent="#22d3ee" />
-        <Stat value={st ? st.totalRows.toLocaleString() : '…'} label="数据行总数" accent="#c41e3a" />
-        <Stat value={st ? st.figureCount : '…'} label="人才精英" accent="#e8a317" />
-        <Stat value={st ? Object.keys(st.byCategory).length : '…'} label="数据分类" accent="#10b981" />
+        <Stat value={st ? st.datasetCount : '…'} label="数据集" accent="#6e8cff" />
+        <Stat value={st ? st.totalRows.toLocaleString() : '…'} label="数据行总数" accent="#e5483b" />
+        <Stat value={st ? st.figureCount : '…'} label="人才精英" accent="#d4a25a" />
+        <Stat value={st ? Object.keys(st.byCategory).length : '…'} label="数据分类" accent="#6fc2ae" />
       </StatGrid>
       <Grid cols={2} className="mb-6">
         <Card title="数据集分类构成">
@@ -257,7 +257,7 @@ function Datasets({ datasets, refresh, flash }) {
           <div className="space-y-1" style={{ maxHeight: 520, overflowY: 'auto' }}>
             {datasets.map((d) => (
               <button key={d.id} onClick={() => setSelId(d.id)} className="w-full text-left px-2 py-1.5 rounded text-xs"
-                style={{ background: d.id === selId ? 'rgba(196,30,58,0.16)' : 'transparent', border: `1px solid ${d.id === selId ? 'var(--china-red)' : 'transparent'}`, cursor: 'pointer' }}>
+                style={{ background: d.id === selId ? 'rgba(229, 72, 59,0.16)' : 'transparent', border: `1px solid ${d.id === selId ? 'var(--china-red)' : 'transparent'}`, cursor: 'pointer' }}>
                 <div style={{ color: d.id === selId ? 'var(--chip-active-text)' : 'var(--text-secondary)' }}>{d.name}</div>
                 <div className="mono" style={{ color: 'var(--text-tertiary)', fontSize: 10 }}>{d.category} · {d.rowCount} 行</div>
               </button>
@@ -286,7 +286,7 @@ function Datasets({ datasets, refresh, flash }) {
 }
 
 // ---------- 世界银行 WDI（本地取数） ----------
-const WB_COUNTRY_COLOR = { CHN: '#c41e3a', HKG: '#22d3ee', MAC: '#e8a317' };
+const WB_COUNTRY_COLOR = { CHN: '#e5483b', HKG: '#6e8cff', MAC: '#d4a25a' };
 function fmtWB(v, unit) {
   if (v == null || v === '') return '—';
   const n = Number(v);
@@ -322,7 +322,7 @@ function WorldBank({ datasets, refresh, flash }) {
         name: meta ? meta.name : cc, type: 'line', smooth: true, showSymbol: false, connectNulls: true,
         data: xYears.map((y) => (idx[`${cc}_${y}`] != null ? idx[`${cc}_${y}`] : null)),
         lineStyle: { width: 2, color: WB_COUNTRY_COLOR[cc] || ind.accent }, itemStyle: { color: WB_COUNTRY_COLOR[cc] || ind.accent },
-        areaStyle: chartCountries.length === 1 ? { color: (ind.accent || '#22d3ee') + '22' } : undefined,
+        areaStyle: chartCountries.length === 1 ? { color: (ind.accent || '#6e8cff') + '22' } : undefined,
       };
     });
     return {
@@ -330,7 +330,7 @@ function WorldBank({ datasets, refresh, flash }) {
       legend: { show: chartCountries.length > 1, top: 0, textStyle: { color: LABEL.color } },
       grid: { left: 64, right: 24, top: chartCountries.length > 1 ? 32 : 12, bottom: 28 },
       xAxis: { type: 'category', data: xYears, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
-      yAxis: { type: 'value', scale: true, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color } },
+      yAxis: { type: 'value', scale: true, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } }, axisLabel: { color: LABEL.color } },
       series,
     };
   }, [filtered, chartCountries, xYears, ind]);
@@ -354,18 +354,18 @@ function WorldBank({ datasets, refresh, flash }) {
     <div>
       <Card title="世界银行 WDI · 本地数据集概览" className="mb-4">
         <p className="text-[11px] mb-3" style={{ color: 'var(--text-tertiary)' }}>
-          <span className="mono px-1.5 py-0.5 rounded mr-1" style={{ background: 'rgba(16,185,129,0.15)', color: '#10b981' }}>本地取数</span>
+          <span className="mono px-1.5 py-0.5 rounded mr-1" style={{ background: 'rgba(111, 194, 174,0.15)', color: '#6fc2ae' }}>本地取数</span>
           数据自 <span className="mono">data/wb_api_*.csv</span>（世界发展指标 WDI）离线抽取并固化为种子，写入浏览器本地库（IndexedDB），下方浏览器实时读取本地数据 —— 无需联网。
           数据集 id：<span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{WORLD_BANK_DATASET_ID}</span>。
         </p>
         <StatGrid className="mb-3">
-          <Stat value={ready ? data.length.toLocaleString() : '…'} label="本地记录行" accent="#c41e3a" />
-          <Stat value={WORLD_BANK_COUNT.indicators} label="核心指标" accent="#22d3ee" />
-          <Stat value={WORLD_BANK_COUNT.countries} label="国家 / 地区" accent="#e8a317" />
-          <Stat value={`${WORLD_BANK_META.yearMin}–${WORLD_BANK_META.yearMax}`} label="年份覆盖" accent="#10b981" />
+          <Stat value={ready ? data.length.toLocaleString() : '…'} label="本地记录行" accent="#e5483b" />
+          <Stat value={WORLD_BANK_COUNT.indicators} label="核心指标" accent="#6e8cff" />
+          <Stat value={WORLD_BANK_COUNT.countries} label="国家 / 地区" accent="#d4a25a" />
+          <Stat value={`${WORLD_BANK_META.yearMin}–${WORLD_BANK_META.yearMax}`} label="年份覆盖" accent="#6fc2ae" />
         </StatGrid>
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-xs mono px-2 py-1 rounded" style={{ background: loaded ? 'rgba(16,185,129,0.14)' : 'var(--bg-elevated)', color: loaded ? '#10b981' : 'var(--text-tertiary)' }}>
+          <span className="text-xs mono px-2 py-1 rounded" style={{ background: loaded ? 'rgba(111, 194, 174,0.14)' : 'var(--bg-elevated)', color: loaded ? '#6fc2ae' : 'var(--text-tertiary)' }}>
             {loaded ? '✓ 已载入本地库' : '尚未载入'}
           </span>
           <button onClick={doLoad} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: 'var(--cyber-cyan)' }}>{loaded ? '覆盖刷新' : '载入'}本地库（{WORLD_BANK_COUNT.total} 行）</button>
@@ -455,7 +455,7 @@ function Upload({ refresh, flash, go }) {
             <div className="flex flex-wrap gap-1.5 mb-2">
               {Object.entries(DB.inferTypes(parsed.rows, parsed.columns)).map(([col, t]) => (
                 <span key={col} className="text-[10px] mono px-2 py-0.5 rounded" title={t.issues || ''}
-                  style={{ background: 'var(--bg-elevated)', color: t.issues ? '#e8a317' : t.type === 'number' ? '#22d3ee' : 'var(--text-tertiary)' }}>
+                  style={{ background: 'var(--bg-elevated)', color: t.issues ? '#d4a25a' : t.type === 'number' ? '#6e8cff' : 'var(--text-tertiary)' }}>
                   {col}:{t.type}{t.issues ? ' ⚠' : ''}
                 </span>
               ))}
@@ -487,9 +487,9 @@ function Analyze({ datasets }) {
   const option = useMemo(() => {
     if (!result.length) return null;
     const top = result.slice(0, 20).reverse();
-    return { grid: { left: 120, right: 36, top: 10, bottom: 24 }, xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+    return { grid: { left: 120, right: 36, top: 10, bottom: 24 }, xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } } },
       yAxis: { type: 'category', data: top.map((x) => String(x.key)), axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
-      series: [{ type: 'bar', data: top.map((x) => x.value), barWidth: 12, itemStyle: { color: '#22d3ee', borderRadius: 3 }, label: { show: true, position: 'right', color: LABEL.color } }] };
+      series: [{ type: 'bar', data: top.map((x) => x.value), barWidth: 12, itemStyle: { color: '#6e8cff', borderRadius: 3 }, label: { show: true, position: 'right', color: LABEL.color } }] };
   }, [result]);
   return (
     <Card title="解析分析 · 分组聚合">
@@ -661,9 +661,9 @@ function Figures({ figures, refresh, flash, datasets }) {
               ...btn(true),
               padding: '8px 20px',
               fontSize: 14,
-              background: bulkAllBusy ? 'rgba(34,211,238,0.12)' : 'rgba(34,211,238,0.22)',
+              background: bulkAllBusy ? 'rgba(110, 140, 255,0.12)' : 'rgba(110, 140, 255,0.22)',
               color: 'var(--cyber-cyan)',
-              border: '1px solid rgba(34,211,238,0.45)',
+              border: '1px solid rgba(110, 140, 255,0.45)',
             }}
           >
             {bulkAllBusy ? '载入中…' : '一键清空并载入内置'}
@@ -696,7 +696,7 @@ function Figures({ figures, refresh, flash, datasets }) {
           内置 {DIPLOMATIC_CORPS_DEDUPED_COUNT.total} 条（{DIPLOMATIC_CORPS_META.scope}）。来源 {DIPLOMATIC_CORPS_META.sources.slice(0, 4).join(' / ')}等。
           {DIPLOMATIC_CORPS_META.notes} 展示于 <Link to="/talent?tab=diplomatic" className="mono" style={{ color: 'var(--cyber-cyan)' }}>人才精英库 · 外交人才</Link> 队列。
         </p>
-        <button onClick={loadDiplomaticCorps} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: '#f59e0b', borderColor: 'rgba(245,158,11,0.35)' }}>
+        <button onClick={loadDiplomaticCorps} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: '#d4a25a', borderColor: 'rgba(245,158,11,0.35)' }}>
           {dcLoaded ? '覆盖载入' : '载入'}外交人才库（{DIPLOMATIC_CORPS_DEDUPED_COUNT.total} 条 · {DIPLOMATIC_CORPS_META.asOf}）
         </button>
       </Card>
@@ -705,7 +705,7 @@ function Figures({ figures, refresh, flash, datasets }) {
           内置 {BUSINESS_ELITE_COUNT.total} 条（{BUSINESS_ELITE_META.scope}）。来源 {BUSINESS_ELITE_META.sources.slice(0, 4).join(' / ')}等。
           {BUSINESS_ELITE_META.notes} 展示于 <Link to="/talent?tab=business" className="mono" style={{ color: 'var(--cyber-cyan)' }}>人才精英库 · 商业精英</Link> 队列。
         </p>
-        <button onClick={loadBusinessElite} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: '#e8a317', borderColor: 'rgba(232,163,23,0.35)' }}>
+        <button onClick={loadBusinessElite} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: '#d4a25a', borderColor: 'rgba(212, 162, 90,0.35)' }}>
           {beLoaded ? '覆盖载入' : '载入'}商业精英库（{BUSINESS_ELITE_COUNT.total} 条 · {BUSINESS_ELITE_META.asOf}）
         </button>
       </Card>
@@ -714,7 +714,7 @@ function Figures({ figures, refresh, flash, datasets }) {
           内置 {HIGHER_EDUCATION_COUNT.total} 所（{HIGHER_EDUCATION_META.scope}）。来源 {HIGHER_EDUCATION_META.sources.slice(0, 4).join(' / ')}等。
           {HIGHER_EDUCATION_META.notes} 展示于 <Link to="/talent?tab=education" className="mono" style={{ color: 'var(--cyber-cyan)' }}>人才精英库 · 高等教育</Link> 队列。
         </p>
-        <button onClick={loadHigherEducation} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: '#10b981', borderColor: 'rgba(16,185,129,0.35)' }}>
+        <button onClick={loadHigherEducation} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: '#6fc2ae', borderColor: 'rgba(111, 194, 174,0.35)' }}>
           {heLoaded ? '覆盖载入' : '载入'}高等教育库（{HIGHER_EDUCATION_COUNT.total} 所 · {HIGHER_EDUCATION_META.asOf}）
         </button>
       </Card>
@@ -723,7 +723,7 @@ function Figures({ figures, refresh, flash, datasets }) {
           内置 {THINK_TANK_DEDUPED_COUNT.total} 家（{THINK_TANK_META.scope}）。来源 {THINK_TANK_META.sources.slice(0, 4).join(' / ')}等。
           {THINK_TANK_META.notes} 展示于 <Link to="/talent?tab=thinktank" className="mono" style={{ color: 'var(--cyber-cyan)' }}>人才精英库 · 智库</Link> 队列。
         </p>
-        <button onClick={loadThinkTank} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: 'var(--cyber-cyan)', borderColor: 'rgba(34,211,238,0.35)' }}>
+        <button onClick={loadThinkTank} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: 'var(--cyber-cyan)', borderColor: 'rgba(110, 140, 255,0.35)' }}>
           {ttLoaded ? '覆盖载入' : '载入'}智库库（{THINK_TANK_DEDUPED_COUNT.total} 家 · {THINK_TANK_META.asOf}）
         </button>
       </Card>
@@ -732,7 +732,7 @@ function Figures({ figures, refresh, flash, datasets }) {
           内置 {RESEARCH_INSTITUTE_COUNT.total} 条（{RESEARCH_INSTITUTE_META.scope}）。来源 {RESEARCH_INSTITUTE_META.sources.slice(0, 4).join(' / ')}等。
           {RESEARCH_INSTITUTE_META.notes} 展示于 <Link to="/talent?tab=research" className="mono" style={{ color: 'var(--cyber-cyan)' }}>人才精英库 · 科研院所</Link> 队列。
         </p>
-        <button onClick={loadResearchInstitute} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: '#a78bfa', borderColor: 'rgba(139,92,246,0.35)' }}>
+        <button onClick={loadResearchInstitute} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: '#a78bfa', borderColor: 'rgba(176, 124, 198,0.35)' }}>
           {riLoaded ? '覆盖载入' : '载入'}科研院所库（{RESEARCH_INSTITUTE_COUNT.total} 条 · 大科学装置 {RESEARCH_INSTITUTE_COUNT.facility} 项 · {RESEARCH_INSTITUTE_META.asOf}）
         </button>
       </Card>
@@ -741,7 +741,7 @@ function Figures({ figures, refresh, flash, datasets }) {
           内置 {ACADEMICIAN_DEDUPED_COUNT.total} 条（{ACADEMICIAN_META.scope}）。来源 {ACADEMICIAN_META.sources.slice(0, 4).join(' / ')}等。
           {ACADEMICIAN_META.notes} 已并入 <Link to="/talent?tab=knowledge" className="mono" style={{ color: 'var(--cyber-cyan)' }}>人才精英库 · 知识精英 · 基础科学/工程技术/医学健康</Link> 队列并带两院院士标记。
         </p>
-        <button onClick={loadAcademician} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: '#d4af37', borderColor: 'rgba(212,175,55,0.45)' }}>
+        <button onClick={loadAcademician} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: '#d9b26a', borderColor: 'rgba(217, 178, 106,0.45)' }}>
           {acadLoaded ? '覆盖载入' : '载入'}两院院士库（{ACADEMICIAN_DEDUPED_COUNT.total} 条 · {ACADEMICIAN_META.asOf}）
         </button>
       </Card>
@@ -750,7 +750,7 @@ function Figures({ figures, refresh, flash, datasets }) {
           内置 {CULTURAL_ELITE_DEDUPED_COUNT.total} 条（含两院院士 enrich）。来源 {CULTURAL_ELITE_META.sources.slice(0, 4).join(' / ')}等。
           {CULTURAL_ELITE_META.notes} 展示于 <Link to="/talent?tab=knowledge" className="mono" style={{ color: 'var(--cyber-cyan)' }}>人才精英库 · 知识精英</Link> 队列。
         </p>
-        <button onClick={loadCulturalElite} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: '#a78bfa', borderColor: 'rgba(139,92,246,0.35)' }}>
+        <button onClick={loadCulturalElite} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: '#a78bfa', borderColor: 'rgba(176, 124, 198,0.35)' }}>
           {ceLoaded ? '覆盖载入' : '载入'}知识精英库（{CULTURAL_ELITE_DEDUPED_COUNT.total} 条 · {CULTURAL_ELITE_META.asOf}）
         </button>
       </Card>
@@ -759,7 +759,7 @@ function Figures({ figures, refresh, flash, datasets }) {
           内置 {ANTI_CORRUPTION_COUNT} 条（{ANTI_CORRUPTION_META.scope}）。来源 {ANTI_CORRUPTION_META.sources.join(' / ')}。
           {ANTI_CORRUPTION_META.notes} 展示于 <Link to="/talent?tab=anticorruption" className="mono" style={{ color: 'var(--cyber-cyan)' }}>人才精英库 · 反腐透视</Link> 队列。
         </p>
-        <button onClick={loadAntiCorruption} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: 'var(--china-red)', borderColor: 'rgba(196,30,58,0.35)' }}>
+        <button onClick={loadAntiCorruption} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: 'var(--china-red)', borderColor: 'rgba(229, 72, 59,0.35)' }}>
           {acLoaded ? '覆盖载入' : '载入'}反腐名单（{ANTI_CORRUPTION_COUNT} 条 · {ANTI_CORRUPTION_META.asOf}）
         </button>
       </Card>
@@ -768,7 +768,7 @@ function Figures({ figures, refresh, flash, datasets }) {
           内置 {DISSIDENT_DEDUPED_COUNT.total} 条（{DISSIDENT_META.scope}）。来源 {DISSIDENT_META.sources.slice(0, 4).join(' / ')}等。
           {DISSIDENT_META.notes} 展示于 <Link to="/talent?tab=dissident" className="mono" style={{ color: 'var(--cyber-cyan)' }}>人才精英库 · 异见人士</Link> 队列。
         </p>
-        <button onClick={loadDissident} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: '#a78bfa', borderColor: 'rgba(139,92,246,0.35)' }}>
+        <button onClick={loadDissident} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: '#a78bfa', borderColor: 'rgba(176, 124, 198,0.35)' }}>
           {dvLoaded ? '覆盖载入' : '载入'}异见人士库（{DISSIDENT_DEDUPED_COUNT.total} 条 · {DISSIDENT_META.asOf}）
         </button>
       </Card>
@@ -797,7 +797,7 @@ function Figures({ figures, refresh, flash, datasets }) {
         <textarea value={text} onChange={(e) => setText(e.target.value)} placeholder={'姓名：示例\n籍贯：XX省\n民族：汉族\n学历：XX大学\n现任：XX省委书记\n2018— 任XX市委书记\n2015—2018 任XX副省长'} style={{ ...inp, height: 220, fontFamily: 'monospace', resize: 'vertical' }} />
         <div className="flex gap-2 mt-2">
           <button onClick={doParse} style={{ ...btn(true), padding: '6px 16px', fontSize: 13 }}>解析</button>
-          {preview && <button onClick={save} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: '#10b981' }}>录入数据库</button>}
+          {preview && <button onClick={save} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: '#6fc2ae' }}>录入数据库</button>}
         </div>
         {preview && (
           <div className="mt-3 p-3 rounded" style={{ background: 'var(--bg-elevated)' }}>
@@ -816,7 +816,7 @@ function Figures({ figures, refresh, flash, datasets }) {
           {filtered.map((f) => (
             <div key={f.id} className="p-3 rounded" style={{ background: 'var(--bg-elevated)' }}>
               <div className="flex items-center justify-between">
-                <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>{f.name}{f.province && <span className="text-[10px] mono ml-2 px-1.5 py-0.5 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)' }}>{f.province.replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '')}</span>}</span>
+                <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>{f.name}{f.province && <span className="text-[10px] mono ml-2 px-1.5 py-0.5 rounded" style={{ background: 'rgba(110, 140, 255,0.12)', color: 'var(--cyber-cyan)' }}>{f.province.replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '')}</span>}</span>
                 <button onClick={async () => { await DB.deleteFigure(f.id); await refresh(); flash('已删除'); }} style={{ ...btn(false), padding: '2px 8px', fontSize: 11, color: 'var(--china-red)' }}>删</button>
               </div>
               <div className="flex flex-wrap gap-x-3 text-[11px] mt-1" style={{ color: 'var(--text-tertiary)' }}>
@@ -873,13 +873,13 @@ function Docs({ docs, refresh, flash }) {
           <textarea value={text} onChange={(e) => setText(e.target.value)} placeholder={'2025年政府工作报告\n国内生产总值增长5%左右；赤字率4%左右；城镇新增就业1200万人以上……\n大力提振消费、适度宽松的货币政策、人工智能+……'} style={{ ...inp, height: 200, fontFamily: 'monospace', resize: 'vertical' }} />
           <div className="flex gap-2 mt-2">
             <button onClick={doParse} style={{ ...btn(true), padding: '6px 16px', fontSize: 13 }}>解析</button>
-            {parsed && <button onClick={save} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: '#10b981' }}>录入数据库</button>}
+            {parsed && <button onClick={save} style={{ ...btn(false), padding: '6px 16px', fontSize: 13, color: '#6fc2ae' }}>录入数据库</button>}
           </div>
           {parsed && (
             <div className="mt-3 p-3 rounded text-xs" style={{ background: 'var(--bg-elevated)' }}>
               <div className="flex items-center gap-2 mb-2">
                 <span className="font-bold" style={{ color: 'var(--text-primary)' }}>{parsed.title}</span>
-                <span className="mono px-1.5 py-0.5 rounded" style={{ background: `${TYPE_COLOR[parsed.type] || '#64748b'}22`, color: TYPE_COLOR[parsed.type] || '#64748b' }}>{parsed.type}{parsed.year ? ` · ${parsed.year}` : ''}</span>
+                <span className="mono px-1.5 py-0.5 rounded" style={{ background: `${TYPE_COLOR[parsed.type] || '#8a8578'}22`, color: TYPE_COLOR[parsed.type] || '#8a8578' }}>{parsed.type}{parsed.year ? ` · ${parsed.year}` : ''}</span>
               </div>
               {Object.values(parsed.metrics || {}).some((v) => v != null) && (
                 <div className="flex flex-wrap gap-x-3 gap-y-1 mb-2">
@@ -896,7 +896,7 @@ function Docs({ docs, refresh, flash }) {
           <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="检索：标题 / 类型 / 提法" style={{ ...inp, marginBottom: 10 }} />
           <div className="space-y-2" style={{ maxHeight: 460, overflowY: 'auto' }}>
             {filtered.map((d) => (
-              <div key={d.id} className="p-3 rounded" style={{ background: 'var(--bg-elevated)', borderLeft: `3px solid ${TYPE_COLOR[d.type] || '#64748b'}` }}>
+              <div key={d.id} className="p-3 rounded" style={{ background: 'var(--bg-elevated)', borderLeft: `3px solid ${TYPE_COLOR[d.type] || '#8a8578'}` }}>
                 <div className="flex items-center justify-between">
                   <span className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{d.year} · {d.type}</span>
                   <button onClick={async () => { await DB.deleteDoc(d.id); await refresh(); flash('已删除'); }} style={{ ...btn(false), padding: '2px 8px', fontSize: 11, color: 'var(--china-red)' }}>删</button>
@@ -941,7 +941,7 @@ function Stock({ datasets, refresh, flash }) {
       <div className="flex justify-between items-center mb-3 flex-wrap gap-2">
         <p className="text-xs" style={{ color: 'var(--text-tertiary)' }}>已分布在各模块的数据，登记为可录入数据库的存量；真实数据（省级财政/人口、WB）标注实时来源。</p>
         <div className="flex gap-2">
-          <button disabled={busy === 'pe500'} onClick={loadPe500} style={{ ...btn(false), padding: '6px 14px', fontSize: 12, color: '#fb923c', borderColor: 'rgba(251,146,60,0.4)' }}>
+          <button disabled={busy === 'pe500'} onClick={loadPe500} style={{ ...btn(false), padding: '6px 14px', fontSize: 12, color: '#c07a4a', borderColor: 'rgba(251,146,60,0.4)' }}>
             {busy === 'pe500' ? '载入中…' : `载入民企500强（${PRIVATE_ENTERPRISE_META.scope}）`}
           </button>
           <button onClick={ingestAll} style={{ ...btn(true), padding: '6px 14px', fontSize: 12 }}>全部录入</button>
@@ -952,11 +952,11 @@ function Stock({ datasets, refresh, flash }) {
           <div key={it.key} className="flex items-center gap-3 p-3 rounded" style={{ background: 'var(--bg-elevated)' }}>
             <div className="flex-1 min-w-0">
               <div className="text-sm" style={{ color: 'var(--text-primary)' }}>{it.name}
-                {it.real && <span className="text-[10px] mono ml-2 px-1.5 py-0.5 rounded" style={{ background: 'rgba(16,185,129,0.15)', color: '#10b981' }}>真实源</span>}</div>
+                {it.real && <span className="text-[10px] mono ml-2 px-1.5 py-0.5 rounded" style={{ background: 'rgba(111, 194, 174,0.15)', color: '#6fc2ae' }}>真实源</span>}</div>
               <div className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>{it.category} · {it.source}</div>
             </div>
             {isIn(it.name)
-              ? <span className="text-xs mono px-3 py-1" style={{ color: '#10b981' }}>✓ 已入库</span>
+              ? <span className="text-xs mono px-3 py-1" style={{ color: '#6fc2ae' }}>✓ 已入库</span>
               : <button disabled={busy === it.key} onClick={() => ingest(it)} style={{ ...btn(false), padding: '5px 14px', fontSize: 12, color: 'var(--cyber-cyan)' }}>{busy === it.key ? '录入中…' : '录入'}</button>}
           </div>
         ))}

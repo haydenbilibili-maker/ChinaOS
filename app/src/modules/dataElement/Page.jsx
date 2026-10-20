@@ -9,7 +9,7 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // ---------------------------------------------------------------------------
 const REGIMES = [
   {
-    key: 'rights', label: '数据确权 · 三权分置', accent: '#c41e3a',
+    key: 'rights', label: '数据确权 · 三权分置', accent: '#e5483b',
     design: '「数据二十条」绕开所有权死结：不再争论数据「归谁所有」，而是把产权束拆为资源持有权、加工使用权、产品经营权三束分置流转。所有权悬置，使用权先行——典型的摸石头式制度工程。',
     progress: '顶层设计落地，部分省市出台数据条例与登记办法；数据产权登记试点在北京、深圳、贵州等地展开。',
     blocker: '三权边界在司法实践中尚无判例积累；个人数据与企业数据、公共数据的权属交叉地带模糊；登记证书的对抗效力不明。',
@@ -17,7 +17,7 @@ const REGIMES = [
     metrics: { maturity: 55, friction: 80 },
   },
   {
-    key: 'balance', label: '数据入表', accent: '#e8a317',
+    key: 'balance', label: '数据入表', accent: '#d4a25a',
     design: '财政部《企业数据资源相关会计处理暂行规定》2024-01 生效：满足资产确认条件的数据资源可计入无形资产或存货。数据第一次有了进资产负债表的合法通道。',
     progress: '上市公司分批试水，首批入表以数据采集加工成本资本化为主；城投平台将公共数据资源入表用于增信融资的冲动强烈。',
     blocker: '入表≠估值：成本法入表金额普遍偏小；公允价值缺乏活跃市场参照；审计与减值测试标准未成熟，虚增资产风险被监管紧盯。',
@@ -25,7 +25,7 @@ const REGIMES = [
     metrics: { maturity: 45, friction: 70 },
   },
   {
-    key: 'exchange', label: '数据交易所', accent: '#22d3ee',
+    key: 'exchange', label: '数据交易所', accent: '#6e8cff',
     design: '场内集中撮合 + 数商生态：交易所提供挂牌、合规审查、交付存证。设计意图是把灰色数据黑市引入阳光化场内。',
     progress: '全国 50+ 家交易场所/平台；上海、深圳、北京、贵阳为头部；挂牌产品数快速增长，金融风控类数据产品最活跃。',
     blocker: '挂牌多、成交少：估算 90%+ 数据流通仍在场外点对点完成。标准化难、复购率低、撮合价值存疑——交易所更像合规背书柜台而非真市场。',
@@ -33,7 +33,7 @@ const REGIMES = [
     metrics: { maturity: 50, friction: 85 },
   },
   {
-    key: 'public', label: '公共数据开放/授权运营', accent: '#10b981',
+    key: 'public', label: '公共数据开放/授权运营', accent: '#6fc2ae',
     design: '公共数据 = 新型国有资源：政务、交通、医疗、气象等数据由政府授权运营主体统一加工运营，收益反哺财政。数字时代的盐铁专营雏形。',
     progress: '多省成立数据集团（云上贵州、上海数据集团等）；授权运营管理办法陆续出台；公共数据产品在场内挂牌渐多。',
     blocker: '部门数据壁垒依旧（各局办「数据私有」惯性）；授权运营定价机制不透明；公共数据收益分配规则未定。',
@@ -41,7 +41,7 @@ const REGIMES = [
     metrics: { maturity: 60, friction: 65 },
   },
   {
-    key: 'cross', label: '跨境数据流动', accent: '#8b5cf6',
+    key: 'cross', label: '跨境数据流动', accent: '#b07cc6',
     design: '安全评估 + 标准合同 + 认证三通道出境；自贸区负面清单试点放宽。底层逻辑：数据主权优先，流动是例外，安全是默认。',
     progress: '2024 年《促进和规范数据跨境流动规定》放宽一般数据出境；上海临港、海南、粤港澳探索跨境数据「白名单」。',
     blocker: '重要数据目录界定不清，企业宁可不出境也不愿触线；跨国企业全球数据架构与本地化要求长期紧张。',
@@ -49,7 +49,7 @@ const REGIMES = [
     metrics: { maturity: 40, friction: 90 },
   },
   {
-    key: 'security', label: '数据安全与合规', accent: '#64748b',
+    key: 'security', label: '数据安全与合规', accent: '#8a8578',
     design: '《网络安全法》《数据安全法》《个人信息保护法》三法叠加，分类分级保护 + 重要数据目录 + 安全评估，构成流通的合规天花板。',
     progress: '数据分类分级国标落地；隐私计算（MPC/联邦学习/TEE）成为「可用不可见」的技术解法，头部机构规模化部署。',
     blocker: '合规成本向中小企业倾斜性碾压；隐私计算性能开销与互联互通标准仍是工程瓶颈；安全与流通的钟摆周期性摆向收紧。',
@@ -60,11 +60,11 @@ const REGIMES = [
 
 // 制度演进时间线
 const PHASES = [
-  { period: '2015–2019', title: '大数据战略', accent: '#64748b', desc: '国家大数据战略提出，贵阳等地先行试点交易所；数据被视为「资源」而非「要素」，制度供给近乎空白。' },
-  { period: '2020', title: '要素市场化配置', accent: '#22d3ee', desc: '中央首次将数据与土地、劳动、资本、技术并列为生产要素——「第五要素」正式获得政治身份。' },
-  { period: '2022–2023', title: '数据二十条', accent: '#e8a317', desc: '《关于构建数据基础制度更好发挥数据要素作用的意见》出台：三权分置、收益分配、安全治理四梁八柱立起。' },
-  { period: '2023–2024', title: '国家数据局 + 入表', accent: '#c41e3a', desc: '国家数据局挂牌统筹数据要素；数据资产入表新规生效——数据第一次进入资产负债表。' },
-  { period: '2025–', title: '全国一体化数据市场', accent: '#10b981', desc: '从城市试点走向全国统一大市场：登记互认、场内互联、公共数据授权运营扩面，东数西算承接算力底座。' },
+  { period: '2015–2019', title: '大数据战略', accent: '#8a8578', desc: '国家大数据战略提出，贵阳等地先行试点交易所；数据被视为「资源」而非「要素」，制度供给近乎空白。' },
+  { period: '2020', title: '要素市场化配置', accent: '#6e8cff', desc: '中央首次将数据与土地、劳动、资本、技术并列为生产要素——「第五要素」正式获得政治身份。' },
+  { period: '2022–2023', title: '数据二十条', accent: '#d4a25a', desc: '《关于构建数据基础制度更好发挥数据要素作用的意见》出台：三权分置、收益分配、安全治理四梁八柱立起。' },
+  { period: '2023–2024', title: '国家数据局 + 入表', accent: '#e5483b', desc: '国家数据局挂牌统筹数据要素；数据资产入表新规生效——数据第一次进入资产负债表。' },
+  { period: '2025–', title: '全国一体化数据市场', accent: '#6fc2ae', desc: '从城市试点走向全国统一大市场：登记互认、场内互联、公共数据授权运营扩面，东数西算承接算力底座。' },
 ];
 
 // 东数西算八大枢纽（在建+规划机架规模 · 万标准机架 · 示意）
@@ -78,16 +78,16 @@ const HUBS = [
   { name: '甘肃', racks: 40, type: 'west', desc: '冷数据 · 灾备' },
   { name: '宁夏', racks: 55, type: 'west', desc: '绿电算力 · 一体化示范' },
 ];
-const HUB_COLORS = { east: '#c41e3a', mid: '#e8a317', west: '#22d3ee' };
+const HUB_COLORS = { east: '#e5483b', mid: '#d4a25a', west: '#6e8cff' };
 
 // 数据交易所对比（挂牌产品数 / 累计交易额 亿元 · 示意）
 const EXCHANGES = [
-  { name: '上海数交所', listed: 3200, volume: 110, accent: '#c41e3a' },
-  { name: '深圳数交所', listed: 2400, volume: 85, accent: '#22d3ee' },
-  { name: '北京国际大数据', listed: 1800, volume: 60, accent: '#e8a317' },
-  { name: '贵阳大数据', listed: 1500, volume: 45, accent: '#10b981' },
-  { name: '广州数交所', listed: 1200, volume: 38, accent: '#8b5cf6' },
-  { name: '其他场所合计', listed: 2600, volume: 70, accent: '#64748b' },
+  { name: '上海数交所', listed: 3200, volume: 110, accent: '#e5483b' },
+  { name: '深圳数交所', listed: 2400, volume: 85, accent: '#6e8cff' },
+  { name: '北京国际大数据', listed: 1800, volume: 60, accent: '#d4a25a' },
+  { name: '贵阳大数据', listed: 1500, volume: 45, accent: '#6fc2ae' },
+  { name: '广州数交所', listed: 1200, volume: 38, accent: '#b07cc6' },
+  { name: '其他场所合计', listed: 2600, volume: 70, accent: '#8a8578' },
 ];
 
 // 数据要素市场规模（亿元 · 示意；2025 后为预测）
@@ -110,9 +110,9 @@ export default function Page() {
     yAxis: [valueY(), { ...valueY(), splitLine: { show: false } }],
     series: [
       { name: '交易规模(亿元)', type: 'bar', barWidth: 18,
-        data: MARKET_SIZE.map((v, i) => ({ value: v, itemStyle: { color: i >= 5 ? 'rgba(196,30,58,0.35)' : '#c41e3a', borderRadius: [3, 3, 0, 0] } })) },
+        data: MARKET_SIZE.map((v, i) => ({ value: v, itemStyle: { color: i >= 5 ? 'rgba(229, 72, 59,0.35)' : '#e5483b', borderRadius: [3, 3, 0, 0] } })) },
       { name: '数据产量(ZB)', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', symbolSize: 5,
-        data: DATA_OUTPUT, lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
+        data: DATA_OUTPUT, lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' } },
     ],
   }), []);
 
@@ -120,9 +120,9 @@ export default function Page() {
   const onOffMarket = useMemo(() => stackedBarOpt({
     categories: ['2021', '2022', '2023', '2024', '2027E'],
     series: [
-      { name: '场内合规交易', data: [2, 4, 6, 9, 25], itemStyle: { color: '#22d3ee' } },
-      { name: '场外点对点', data: [58, 61, 64, 66, 55], itemStyle: { color: '#e8a317' } },
-      { name: '灰色/黑市流通', data: [40, 35, 30, 25, 20], itemStyle: { color: '#64748b' } },
+      { name: '场内合规交易', data: [2, 4, 6, 9, 25], itemStyle: { color: '#6e8cff' } },
+      { name: '场外点对点', data: [58, 61, 64, 66, 55], itemStyle: { color: '#d4a25a' } },
+      { name: '灰色/黑市流通', data: [40, 35, 30, 25, 20], itemStyle: { color: '#8a8578' } },
     ],
   }), []);
 
@@ -135,8 +135,8 @@ export default function Page() {
     yAxis: categoryX(REGIMES.map((r) => r.label.split(' · ')[0])),
     series: [
       { name: '制度成熟度', type: 'bar', barWidth: 9, itemStyle: { borderRadius: 2 },
-        data: REGIMES.map((r) => ({ value: r.metrics.maturity, itemStyle: { color: r.key === regimeKey ? r.accent : 'rgba(34,211,238,0.45)' } })) },
-      { name: '现实摩擦度', type: 'bar', barWidth: 9, itemStyle: { borderRadius: 2, color: 'rgba(232,163,23,0.5)' },
+        data: REGIMES.map((r) => ({ value: r.metrics.maturity, itemStyle: { color: r.key === regimeKey ? r.accent : 'rgba(110, 140, 255,0.45)' } })) },
+      { name: '现实摩擦度', type: 'bar', barWidth: 9, itemStyle: { borderRadius: 2, color: 'rgba(212, 162, 90,0.5)' },
         data: REGIMES.map((r) => r.metrics.friction) },
     ],
   }), [regimeKey]);
@@ -162,8 +162,8 @@ export default function Page() {
       xAxis: categoryX(['2022', '2023', '2024', '2025E', '2026E', '2027E']),
       yAxis: valueY(),
       series: [
-        { name: '东部算力需求指数', type: 'line', smooth: true, data: [100, 130, 175, 230, 300, 385], lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.1)' } },
-        { name: '西部承接能力指数', type: 'line', smooth: true, data: [60, 85, 120, 170, 235, 320], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.1)' } },
+        { name: '东部算力需求指数', type: 'line', smooth: true, data: [100, 130, 175, 230, 300, 385], lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.1)' } },
+        { name: '西部承接能力指数', type: 'line', smooth: true, data: [60, 85, 120, 170, 235, 320], lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' }, areaStyle: { color: 'rgba(110, 140, 255,0.1)' } },
       ],
     };
   }, [hubView]);
@@ -179,18 +179,18 @@ export default function Page() {
       { name: '挂牌产品数', type: 'bar', barWidth: 16,
         data: EXCHANGES.map((x) => ({ value: x.listed, itemStyle: { color: x.accent, borderRadius: [3, 3, 0, 0] } })) },
       { name: '累计交易额(亿元)', type: 'line', yAxisIndex: 1, symbol: 'diamond', symbolSize: 8,
-        data: EXCHANGES.map((x) => x.volume), lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' } },
+        data: EXCHANGES.map((x) => x.volume), lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' } },
     ],
   }), []);
 
   // -- 数据交易行业分布（保留原图） ------------------------------------------
   const sectorDonut = useMemo(() => donutOpt([
-    { value: 30, name: '金融风控', itemStyle: { color: '#c41e3a' } },
-    { value: 22, name: '政务/公共', itemStyle: { color: '#22d3ee' } },
-    { value: 18, name: '互联网营销', itemStyle: { color: '#e8a317' } },
-    { value: 16, name: '工业/交通', itemStyle: { color: '#10b981' } },
-    { value: 9, name: '医疗健康', itemStyle: { color: '#8b5cf6' } },
-    { value: 5, name: '其他', itemStyle: { color: '#64748b' } },
+    { value: 30, name: '金融风控', itemStyle: { color: '#e5483b' } },
+    { value: 22, name: '政务/公共', itemStyle: { color: '#6e8cff' } },
+    { value: 18, name: '互联网营销', itemStyle: { color: '#d4a25a' } },
+    { value: 16, name: '工业/交通', itemStyle: { color: '#6fc2ae' } },
+    { value: 9, name: '医疗健康', itemStyle: { color: '#b07cc6' } },
+    { value: 5, name: '其他', itemStyle: { color: '#8a8578' } },
   ]), []);
 
   // -- 数据要素生态雷达（2024 vs 2021 · 双系列自写内联） ---------------------
@@ -199,13 +199,13 @@ export default function Page() {
     radar: {
       indicator: ['确权制度', '交易流通', '安全合规', '技术底座', '入表实践', '跨境机制'].map((n) => ({ name: n, max: 100 })),
       axisName: { color: LABEL.color, fontSize: 10 },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-      axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
+      axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
       splitArea: { show: false },
     },
     series: [{ type: 'radar', data: [
-      { value: [62, 50, 72, 78, 48, 40], name: '2024', lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.12)' } },
-      { value: [25, 22, 45, 50, 5, 20], name: '2021', lineStyle: { color: '#64748b' }, itemStyle: { color: '#64748b' } },
+      { value: [62, 50, 72, 78, 48, 40], name: '2024', lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.12)' } },
+      { value: [25, 22, 45, 50, 5, 20], name: '2021', lineStyle: { color: '#8a8578' }, itemStyle: { color: '#8a8578' } },
     ] }],
   }), []);
 
@@ -213,7 +213,7 @@ export default function Page() {
   const privacyRadar = useMemo(() => radarOpt(
     ['MPC', '联邦学习', 'TEE', '工程性能', '互联互通', '合规适配'],
     [82, 88, 80, 62, 48, 85],
-    { name: '隐私计算 2024', color: '#22d3ee' },
+    { name: '隐私计算 2024', color: '#6e8cff' },
   ), []);
 
   return (
@@ -227,10 +227,10 @@ export default function Page() {
       </IntroCard>
 
       <StatGrid className="mb-6">
-        <Stat value="~12 ZB" label="2024 全国数据产量（示意）" accent="#22d3ee" />
-        <Stat value="~1,600 亿" label="数据交易规模 (RMB · 示意)" accent="#c41e3a" />
-        <Stat value="50+ 家" label="数据交易场所/平台" accent="#e8a317" />
-        <Stat value="100+ 家" label="数据资源入表上市公司（示意）" accent="#10b981" />
+        <Stat value="~12 ZB" label="2024 全国数据产量（示意）" accent="#6e8cff" />
+        <Stat value="~1,600 亿" label="数据交易规模 (RMB · 示意)" accent="#e5483b" />
+        <Stat value="50+ 家" label="数据交易场所/平台" accent="#d4a25a" />
+        <Stat value="100+ 家" label="数据资源入表上市公司（示意）" accent="#6fc2ae" />
       </StatGrid>
 
       {/* ① 制度环节选择器 */}
@@ -241,15 +241,15 @@ export default function Page() {
             <div className="text-xs font-semibold mb-1 mono" style={{ color: regime.accent }}>制度设计</div>
             <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{regime.design}</p>
           </div>
-          <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #10b981' }}>
-            <div className="text-xs font-semibold mb-1 mono" style={{ color: '#10b981' }}>落地进展</div>
+          <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #6fc2ae' }}>
+            <div className="text-xs font-semibold mb-1 mono" style={{ color: '#6fc2ae' }}>落地进展</div>
             <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{regime.progress}</p>
           </div>
-          <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #e8a317' }}>
-            <div className="text-xs font-semibold mb-1 mono" style={{ color: '#e8a317' }}>现实堵点</div>
+          <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #d4a25a' }}>
+            <div className="text-xs font-semibold mb-1 mono" style={{ color: '#d4a25a' }}>现实堵点</div>
             <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{regime.blocker}</p>
           </div>
-          <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #64748b' }}>
+          <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #8a8578' }}>
             <div className="text-xs font-semibold mb-1 mono" style={{ color: LABEL.color }}>切片样本</div>
             <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{regime.caseNote}</p>
           </div>
@@ -278,9 +278,9 @@ export default function Page() {
         </p>
         <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}>
           {[
-            { t: '资源持有权', a: '#c41e3a', who: '数据收集/控制方', what: '对合法获取的数据资源享有自主管控与防侵权的权利。', edge: '边界：来源者（个人/企业）的知情同意与携带权如何对抗持有方。' },
-            { t: '加工使用权', a: '#22d3ee', who: '数据加工处理方', what: '经授权对数据清洗、建模、开发，形成增值的权利。', edge: '边界：授权链条层层转包后，原始授权范围如何穿透追溯。' },
-            { t: '产品经营权', a: '#e8a317', who: '数据产品运营方', what: '对加工形成的数据产品独立定价、交易、收益的权利。', edge: '边界：产品收益如何向上游持有者与来源者分配——收益分配是未完成章节。' },
+            { t: '资源持有权', a: '#e5483b', who: '数据收集/控制方', what: '对合法获取的数据资源享有自主管控与防侵权的权利。', edge: '边界：来源者（个人/企业）的知情同意与携带权如何对抗持有方。' },
+            { t: '加工使用权', a: '#6e8cff', who: '数据加工处理方', what: '经授权对数据清洗、建模、开发，形成增值的权利。', edge: '边界：授权链条层层转包后，原始授权范围如何穿透追溯。' },
+            { t: '产品经营权', a: '#d4a25a', who: '数据产品运营方', what: '对加工形成的数据产品独立定价、交易、收益的权利。', edge: '边界：产品收益如何向上游持有者与来源者分配——收益分配是未完成章节。' },
           ].map((x) => (
             <div key={x.t} className="os-card p-4" style={{ background: 'var(--bg-surface)', borderTop: `2px solid ${x.a}` }}>
               <div className="text-sm font-semibold mb-1" style={{ color: x.a }}>{x.t}</div>
@@ -295,7 +295,7 @@ export default function Page() {
       {/* ④ 东数西算 */}
       <Card title="交互② · 东数西算 — 算力的空间再配置" className="mb-6">
         <SelectorBar
-          items={[{ key: 'racks', label: '八大枢纽机架规模', accent: '#22d3ee' }, { key: 'flow', label: '东部需求 × 西部承接', accent: '#c41e3a' }]}
+          items={[{ key: 'racks', label: '八大枢纽机架规模', accent: '#6e8cff' }, { key: 'flow', label: '东部需求 × 西部承接', accent: '#e5483b' }]}
           activeKey={hubView} onSelect={setHubView} />
         <EChart option={hubBar} style={{ height: 260 }} />
         <div className="flex flex-wrap gap-4 mt-3 text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>

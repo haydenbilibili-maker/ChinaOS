@@ -24,11 +24,11 @@ import './leadership.css';
 // 口径：公开信息梳理 · 学理分析框架 · 非评价 · 非预测 · 非倡导
 // ─────────────────────────────────────────────────────────────────────────────
 
-const CYAN = '#22d3ee';
-const GOLD = '#e8a317';
-const RED = '#c41e3a';
-const GREEN = '#10b981';
-const SLATE = '#64748b';
+const CYAN = '#6e8cff';
+const GOLD = '#d4a25a';
+const RED = '#e5483b';
+const GREEN = '#6fc2ae';
+const SLATE = '#8a8578';
 
 const SCOPE_NOTE = LEAD_DISCLAIMER;
 
@@ -426,7 +426,7 @@ function buildAttnBarOption(rows) {
   return {
     tooltip: {
       trigger: 'axis', axisPointer: { type: 'shadow' },
-      backgroundColor: 'rgba(15,23,42,0.92)', borderColor: '#27324a', textStyle: { color: '#e2e8f0' },
+      backgroundColor: 'rgba(15,23,42,0.92)', borderColor: '#2a2d36', textStyle: { color: '#e2e8f0' },
     },
     legend: { data: ['推进指数', '张力残量'], top: 0, textStyle: { color: LABEL.color, fontSize: 11 }, itemWidth: 12, itemHeight: 8 },
     grid: { left: 8, right: 18, top: 30, bottom: 4, containLabel: true },
@@ -434,7 +434,7 @@ function buildAttnBarOption(rows) {
       type: 'value',
       axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
       axisLabel: { color: LABEL.color, fontSize: 10 },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } },
     },
     yAxis: {
       type: 'category', data: rows.map((r) => r.label), inverse: true,
@@ -677,13 +677,13 @@ function LeadReportCard({ eraLabel, agendaLabel, alloc, sim, receiptTexts }) {
         <button
           type="button" onClick={genReport}
           className="text-xs mono px-3 py-1.5 rounded font-semibold"
-          style={{ background: 'rgba(34,211,238,0.12)', color: CYAN, border: '1px solid rgba(34,211,238,0.45)', cursor: 'pointer' }}
+          style={{ background: 'rgba(110, 140, 255,0.12)', color: CYAN, border: '1px solid rgba(110, 140, 255,0.45)', cursor: 'pointer' }}
         >生成解构报告</button>
         {report && (
           <button
             type="button" onClick={copyReport}
             className="text-xs mono px-3 py-1.5 rounded font-semibold"
-            style={{ background: 'rgba(148,163,184,0.1)', color: copied ? GREEN : 'var(--text-secondary)', border: '1px solid var(--border-subtle)', cursor: 'pointer' }}
+            style={{ background: 'rgba(162, 156, 145,0.1)', color: copied ? GREEN : 'var(--text-secondary)', border: '1px solid var(--border-subtle)', cursor: 'pointer' }}
           >{copied ? '已复制 ✓' : '复制 Markdown'}</button>
         )}
       </div>

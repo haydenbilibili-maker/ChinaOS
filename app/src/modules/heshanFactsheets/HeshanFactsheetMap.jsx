@@ -1,5 +1,14 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import * as Lucide from 'lucide-react';
+import {
+  ArrowDown as LuArrowDown,
+  X as LuX,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  ArrowDown: LuArrowDown,
+  X: LuX,
+};
 import EChart from '../../lib/viz/EChart.jsx';
 import { LoadingSkeleton, EmptyState } from '../../app/ui.jsx';
 import { getTheme, subscribeTheme } from '../../lib/theme.js';

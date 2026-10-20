@@ -9,11 +9,11 @@ import { toneOf, ARROW } from '../econHelpers.jsx';
 const SectionRegional = lazy(() => import('../SectionRegional.jsx'));
 
 const REGIONAL_HUB = [
-  { to: '/shenzhou-live?view=heatmap&layer=economy', label: '神州活图 · 省级热力', note: '本地省界 · 种子/实测图层 · 可分享 ?prov= 深链。', accent: '#22d3ee' },
+  { to: '/shenzhou-live?view=heatmap&layer=economy', label: '神州活图 · 省级热力', note: '本地省界 · 种子/实测图层 · 可分享 ?prov= 深链。', accent: '#6e8cff' },
   { to: '/regional', label: '区域协调 · 四大板块', note: '东中西梯度、转移支付与全国统一大市场。', accent: '#c99a4e' },
-  { to: '/manufacturing', label: '制造强国 · GVC 位势', note: '第二产业硬核：规模优势与转型升级的产业锚点。', accent: '#e8a317' },
-  { to: '/foreign-trade', label: '对外贸易 · 新三样', note: '出口交货值领先指标，外需与区域产业耦合。', accent: '#22d3ee' },
-  { to: '/northeast', label: '东北振兴 · 三省', note: '老工业基地与全面振兴新突破的压力测试。', accent: '#c41e3a' },
+  { to: '/manufacturing', label: '制造强国 · GVC 位势', note: '第二产业硬核：规模优势与转型升级的产业锚点。', accent: '#d4a25a' },
+  { to: '/foreign-trade', label: '对外贸易 · 新三样', note: '出口交货值领先指标，外需与区域产业耦合。', accent: '#6e8cff' },
+  { to: '/northeast', label: '东北振兴 · 三省', note: '老工业基地与全面振兴新突破的压力测试。', accent: '#e5483b' },
 ];
 
 export default function RegionalTab() {

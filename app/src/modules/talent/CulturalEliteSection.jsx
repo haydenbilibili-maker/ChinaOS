@@ -1,6 +1,25 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
+import {
+  BarChart3 as LuBarChart3,
+  BookOpen as LuBookOpen,
+  LayoutGrid as LuLayoutGrid,
+  List as LuList,
+  RefreshCw as LuRefreshCw,
+  Search as LuSearch,
+  X as LuX,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  BarChart3: LuBarChart3,
+  BookOpen: LuBookOpen,
+  LayoutGrid: LuLayoutGrid,
+  List: LuList,
+  RefreshCw: LuRefreshCw,
+  Search: LuSearch,
+  X: LuX,
+};
 import { Card, Grid, Stat, DistBar } from '../../app/ui.jsx';
 import FigureAvatar from '../../lib/ui/FigureAvatar.jsx';
 import { figureAvatarProps, prefetchFigureAvatars } from '../../lib/ui/figureAvatarResolve.js';
@@ -30,7 +49,7 @@ import { CE_MEDIA_SUBTYPES, CE_MEDIA_SUBTYPE_LABEL } from '../../lib/db/ceCatego
 
 const short = (p) => (p || '').replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '');
 const inp = { background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', borderRadius: 6, padding: '6px 10px', fontSize: 13 };
-const btn = { background: 'rgba(139,92,246,0.14)', color: '#a78bfa', border: '1px solid rgba(139,92,246,0.35)', borderRadius: 6, padding: '6px 14px', fontSize: 13, cursor: 'pointer' };
+const btn = { background: 'rgba(176, 124, 198,0.14)', color: '#a78bfa', border: '1px solid rgba(176, 124, 198,0.35)', borderRadius: 6, padding: '6px 14px', fontSize: 13, cursor: 'pointer' };
 
 const TAB_DESC = {
   humanities: '文学、史学、哲学、考古与古典文献领域的学术研究者，以机构任职与学术荣誉建档。',
@@ -43,14 +62,14 @@ const TAB_DESC = {
   religion: '佛教、道教、伊斯兰教、天主教/基督教等宗教界公开代表人物与学者型 clergy；不含以党政宗教事务官员为主身份者（可标注双重身份）。',
 };
 const TAB_ACCENT = {
-  humanities: '#22d3ee',
+  humanities: '#6e8cff',
   socialsci: '#38bdf8',
-  art: '#f0abfc',
-  basicsci: '#10b981',
+  art: '#d9a7d6',
+  basicsci: '#6fc2ae',
   engineering: '#6366f1',
   health: '#f472b6',
-  media: '#e8a317',
-  religion: '#d4af37',
+  media: '#d4a25a',
+  religion: '#d9b26a',
 };
 const RELIGION_TRADITIONS = ['佛教', '道教', '伊斯兰', '天主教', '基督教', '跨宗教'];
 const ACADEMY_TABS = new Set(['basicsci', 'engineering', 'health']);
@@ -91,7 +110,7 @@ function EliteCard({ r, on, onClick, dense = false }) {
   return (
     <button type="button" onClick={onClick} className="w-full text-left rounded"
       style={{
-        background: on ? 'rgba(139,92,246,0.14)' : 'var(--bg-elevated)',
+        background: on ? 'rgba(176, 124, 198,0.14)' : 'var(--bg-elevated)',
         border: `1px solid ${on ? '#a78bfa' : 'var(--border-subtle)'}`,
         cursor: 'pointer', padding: dense ? '8px 10px' : '10px 12px',
       }}>
@@ -101,9 +120,9 @@ function EliteCard({ r, on, onClick, dense = false }) {
           <div className="flex items-center gap-1.5 flex-wrap">
             <span className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{r.name}</span>
             <AcademicianBadge record={r} />
-            {r.tier && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(232,163,23,0.12)', color: '#e8a317' }}>{r.tier}</span>}
-            {r.region && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)' }}>{short(r.region)}</span>}
-            {(r.discipline || r.field) && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(139,92,246,0.12)', color: '#a78bfa' }}>{r.discipline || r.field}</span>}
+            {r.tier && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(212, 162, 90,0.12)', color: '#d4a25a' }}>{r.tier}</span>}
+            {r.region && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(110, 140, 255,0.12)', color: 'var(--cyber-cyan)' }}>{short(r.region)}</span>}
+            {(r.discipline || r.field) && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(176, 124, 198,0.12)', color: '#a78bfa' }}>{r.discipline || r.field}</span>}
           </div>
           <div className="text-[11px] mt-0.5 truncate" style={{ color: 'var(--text-secondary)' }}>
             {r.institution || r.title}
@@ -111,7 +130,7 @@ function EliteCard({ r, on, onClick, dense = false }) {
           {honors.length > 0 && (
             <div className="flex flex-wrap gap-1 mt-1">
               {honors.slice(0, 3).map((h) => (
-                <span key={h} className="text-[8px] mono px-1 py-0.5 rounded" style={{ background: 'rgba(212,175,55,0.12)', color: '#d4af37' }}>{h}</span>
+                <span key={h} className="text-[8px] mono px-1 py-0.5 rounded" style={{ background: 'rgba(217, 178, 106,0.12)', color: '#d9b26a' }}>{h}</span>
               ))}
             </div>
           )}
@@ -249,7 +268,7 @@ export default function CulturalEliteSection() {
 
   const disciplineChart = {
     grid: { left: 100, right: 16, top: 12, bottom: 24 },
-    xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+    xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } } },
     yAxis: { type: 'category', data: distDiscipline.slice(0, 12).map(([k]) => k).reverse(), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     series: [{ type: 'bar', data: distDiscipline.slice(0, 12).map(([, n]) => n).reverse(), barWidth: 14, itemStyle: { color: '#a78bfa', borderRadius: 3 } }],
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
@@ -260,8 +279,8 @@ export default function CulturalEliteSection() {
     tooltip: { trigger: 'item', formatter: '{b}: {c}' },
     grid: { left: 48, right: 16, top: 8, bottom: 24 },
     xAxis: { type: 'category', data: regionMapData.map((d) => d.name), axisLabel: { color: LABEL.color, fontSize: 10, rotate: 35 }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
-    yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
-    series: [{ type: 'bar', data: regionMapData.map((d) => d.value), barWidth: '55%', itemStyle: { color: '#22d3ee', borderRadius: [3, 3, 0, 0] } }],
+    yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+    series: [{ type: 'bar', data: regionMapData.map((d) => d.value), barWidth: '55%', itemStyle: { color: '#6e8cff', borderRadius: [3, 3, 0, 0] } }],
   } : null;
 
   const loadSeed = async (replace = false) => {
@@ -310,7 +329,7 @@ export default function CulturalEliteSection() {
   return (
     <section>
       <div className="flex items-center gap-3 mb-4 pb-3" style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-        <span className="flex items-center justify-center rounded" style={{ width: 32, height: 32, background: 'rgba(139,92,246,0.12)', color: '#a78bfa' }}>
+        <span className="flex items-center justify-center rounded" style={{ width: 32, height: 32, background: 'rgba(176, 124, 198,0.12)', color: '#a78bfa' }}>
           <Lucide.BookOpen size={16} />
         </span>
         <div>
@@ -326,7 +345,7 @@ export default function CulturalEliteSection() {
           <Stat key={k} value={catCounts[k] ?? 0} label={CE_TAB_LABEL[k]} accent={TAB_ACCENT[k]} />
         ))}
         <Stat value={disciplines.length} label="学科门类" accent="#a78bfa" />
-        {ACADEMY_TABS.has(catTab) && <Stat value={academyCount} label="两院院士" accent="#d4af37" />}
+        {ACADEMY_TABS.has(catTab) && <Stat value={academyCount} label="两院院士" accent="#d9b26a" />}
         <Stat value={filtered.length} label="当前命中" />
       </div>
 
@@ -348,9 +367,9 @@ export default function CulturalEliteSection() {
         <div className="flex gap-1 flex-wrap mb-4">
           <button type="button" onClick={() => setTradition('')} className="text-xs px-2.5 py-1 mono"
             style={{
-              background: !tradition ? 'rgba(212,175,55,0.18)' : 'var(--bg-elevated)',
-              color: !tradition ? '#d4af37' : 'var(--text-secondary)',
-              border: `1px solid ${!tradition ? 'rgba(212,175,55,0.45)' : 'var(--border-subtle)'}`,
+              background: !tradition ? 'rgba(217, 178, 106,0.18)' : 'var(--bg-elevated)',
+              color: !tradition ? '#d9b26a' : 'var(--text-secondary)',
+              border: `1px solid ${!tradition ? 'rgba(217, 178, 106,0.45)' : 'var(--border-subtle)'}`,
               borderRadius: 6, cursor: 'pointer',
             }}>
             全部教派 ({tabList.length})
@@ -358,9 +377,9 @@ export default function CulturalEliteSection() {
           {traditionCounts.map(([t, n]) => (
             <button key={t} type="button" onClick={() => setTradition(tradition === t ? '' : t)} className="text-xs px-2.5 py-1 mono"
               style={{
-                background: tradition === t ? 'rgba(212,175,55,0.18)' : 'var(--bg-elevated)',
-                color: tradition === t ? '#d4af37' : 'var(--text-secondary)',
-                border: `1px solid ${tradition === t ? 'rgba(212,175,55,0.45)' : 'var(--border-subtle)'}`,
+                background: tradition === t ? 'rgba(217, 178, 106,0.18)' : 'var(--bg-elevated)',
+                color: tradition === t ? '#d9b26a' : 'var(--text-secondary)',
+                border: `1px solid ${tradition === t ? 'rgba(217, 178, 106,0.45)' : 'var(--border-subtle)'}`,
                 borderRadius: 6, cursor: 'pointer',
               }}>
               {t} ({n})
@@ -400,9 +419,9 @@ export default function CulturalEliteSection() {
               {catTab === 'media' && CE_MEDIA_SUBTYPES.map((k) => (
                 <button key={k} type="button" onClick={() => setMediaSubtype((v) => v === k ? '' : k)} style={{
                   ...inp, cursor: 'pointer',
-                  color: mediaSubtype === k ? '#e8a317' : 'var(--text-secondary)',
-                  borderColor: mediaSubtype === k ? 'rgba(232,163,23,0.45)' : 'var(--border-subtle)',
-                  background: mediaSubtype === k ? 'rgba(232,163,23,0.12)' : 'var(--bg-base)',
+                  color: mediaSubtype === k ? '#d4a25a' : 'var(--text-secondary)',
+                  borderColor: mediaSubtype === k ? 'rgba(212, 162, 90,0.45)' : 'var(--border-subtle)',
+                  background: mediaSubtype === k ? 'rgba(212, 162, 90,0.12)' : 'var(--bg-base)',
                 }}>
                   {CE_MEDIA_SUBTYPE_LABEL[k]}
                 </button>
@@ -410,9 +429,9 @@ export default function CulturalEliteSection() {
               {ACADEMY_TABS.has(catTab) && academyCount > 0 && (
                 <button type="button" onClick={() => setAcademyOnly((v) => !v)} style={{
                   ...inp, cursor: 'pointer',
-                  color: academyOnly ? '#d4af37' : 'var(--text-secondary)',
-                  borderColor: academyOnly ? 'rgba(212,175,55,0.45)' : 'var(--border-subtle)',
-                  background: academyOnly ? 'rgba(212,175,55,0.12)' : 'var(--bg-base)',
+                  color: academyOnly ? '#d9b26a' : 'var(--text-secondary)',
+                  borderColor: academyOnly ? 'rgba(217, 178, 106,0.45)' : 'var(--border-subtle)',
+                  background: academyOnly ? 'rgba(217, 178, 106,0.12)' : 'var(--bg-base)',
                 }}>
                   两院院士 ({academyCount})
                 </button>
@@ -424,11 +443,11 @@ export default function CulturalEliteSection() {
               <div className="flex rounded overflow-hidden" style={{ border: '1px solid var(--border-subtle)' }}>
                 {[['list', 'List'], ['grid', 'LayoutGrid'], ['stats', 'BarChart3']].map(([v, ic]) => {
                   const I = Lucide[ic]; const on = view === v;
-                  return <button key={v} type="button" onClick={() => setView(v)} style={{ padding: '6px 9px', background: on ? 'rgba(139,92,246,0.18)' : 'var(--bg-base)', color: on ? '#a78bfa' : 'var(--text-tertiary)', border: 'none', cursor: 'pointer' }}><I size={15} /></button>;
+                  return <button key={v} type="button" onClick={() => setView(v)} style={{ padding: '6px 9px', background: on ? 'rgba(176, 124, 198,0.18)' : 'var(--bg-base)', color: on ? '#a78bfa' : 'var(--text-tertiary)', border: 'none', cursor: 'pointer' }}><I size={15} /></button>;
                 })}
               </div>
               {list.length < CULTURAL_ELITE_DEDUPED_COUNT.total && (
-                <button type="button" onClick={() => loadSeed(false)} disabled={loading} style={{ ...inp, cursor: 'pointer', color: '#10b981', borderColor: 'rgba(16,185,129,0.4)', display: 'flex', alignItems: 'center', gap: 4 }}>
+                <button type="button" onClick={() => loadSeed(false)} disabled={loading} style={{ ...inp, cursor: 'pointer', color: '#6fc2ae', borderColor: 'rgba(111, 194, 174,0.4)', display: 'flex', alignItems: 'center', gap: 4 }}>
                   <Lucide.RefreshCw size={13} />{loading ? '载入中…' : `补全 ${CULTURAL_ELITE_DEDUPED_COUNT.total} 条`}
                 </button>
               )}
@@ -459,8 +478,8 @@ export default function CulturalEliteSection() {
                 {regionChart && <Card title="地域分布"><EChart option={regionChart} style={{ height: 260 }} /></Card>}
               </Grid>
               <Grid cols={2}>
-                {decades.length > 0 && <Card title="出生年代"><DistBar data={distDecade} color="#e8a317" onPick={(k) => setDecade(decade === k ? '' : k)} active={decade} /></Card>}
-                {distHonor.length > 0 && <Card title="荣誉类型"><DistBar data={distHonor.slice(0, 10)} color="#d4af37" onPick={(k) => setHonor(honor === k ? '' : k)} active={honor} /></Card>}
+                {decades.length > 0 && <Card title="出生年代"><DistBar data={distDecade} color="#d4a25a" onPick={(k) => setDecade(decade === k ? '' : k)} active={decade} /></Card>}
+                {distHonor.length > 0 && <Card title="荣誉类型"><DistBar data={distHonor.slice(0, 10)} color="#d9b26a" onPick={(k) => setHonor(honor === k ? '' : k)} active={honor} /></Card>}
                 <Card title="学科（点选筛选）"><DistBar data={distDiscipline.slice(0, 10)} onPick={(k) => setDiscipline(discipline === k ? '' : k)} active={discipline} /></Card>
               </Grid>
               <p className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>// 数据边界：{CULTURAL_ELITE_META.notes}</p>
@@ -499,12 +518,12 @@ export default function CulturalEliteSection() {
                     badges={(
                       <>
                         <AcademicianBadge record={d} size="md" />
-                        <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(139,92,246,0.12)', color: '#a78bfa' }}>{CE_TAB_LABEL[d.category]}</span>
-                        {d.tier && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(232,163,23,0.12)', color: '#e8a317' }}>{d.tier}</span>}
+                        <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(176, 124, 198,0.12)', color: '#a78bfa' }}>{CE_TAB_LABEL[d.category]}</span>
+                        {d.tier && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(212, 162, 90,0.12)', color: '#d4a25a' }}>{d.tier}</span>}
                       </>
                     )}
                     tags={[...normalizeTags(d.tags), ...honorTags(d)].filter(Boolean)}
-                    tagAccent="#d4af37"
+                    tagAccent="#d9b26a"
                     sections={buildTalentDetailSections(d, {
                       queue: 'knowledge',
                       baseSections: [
@@ -518,14 +537,14 @@ export default function CulturalEliteSection() {
                           { label: '专长', value: d.strengths },
                           { label: '头衔', value: d.title },
                           { label: '年代', value: d.decade },
-                          { label: '院校层级', value: d.tier, accent: '#e8a317' },
+                          { label: '院校层级', value: d.tier, accent: '#d4a25a' },
                         ],
                       },
                       {
                         title: '学术荣誉',
                         cols: 3,
                         fields: [
-                          { label: '荣誉备注', value: d.rankNotes, accent: '#d4af37' },
+                          { label: '荣誉备注', value: d.rankNotes, accent: '#d9b26a' },
                           { label: '学部', value: d.academyDivision },
                           { label: '当选年份', value: d.electedYear ? `${d.electedYear} 年` : null },
                           { label: 'CAS', value: d.academyCas ? '中科院院士' : null },

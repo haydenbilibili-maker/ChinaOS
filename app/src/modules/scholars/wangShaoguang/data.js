@@ -10,12 +10,12 @@
 export const AS_OF = '2026-09-28';
 
 export const THEMES = {
-  capacity: { label: '国家能力与财政汲取', color: '#c41e3a' },
-  democracy: { label: '代表型民主与人民民主', color: '#8b5cf6' },
-  zhengdao: { label: '政道思维与中西比较', color: '#22d3ee' },
-  policy: { label: '议程设置与学习型体制', color: '#e8a317' },
-  social: { label: '社会政策与公共卫生', color: '#10b981' },
-  stateBuilding: { label: '国家制度建设与国家理论', color: '#fb923c' },
+  capacity: { label: '国家能力与财政汲取', color: '#e5483b' },
+  democracy: { label: '代表型民主与人民民主', color: '#b07cc6' },
+  zhengdao: { label: '政道思维与中西比较', color: '#6e8cff' },
+  policy: { label: '议程设置与学习型体制', color: '#d4a25a' },
+  social: { label: '社会政策与公共卫生', color: '#6fc2ae' },
+  stateBuilding: { label: '国家制度建设与国家理论', color: '#c07a4a' },
 };
 export const THEME_KEYS = Object.keys(THEMES);
 
@@ -46,11 +46,11 @@ export const BOARD = {
 };
 
 export const CAREER_GROUPS = {
-  teach: { label: '中学/海外教职', color: '#22d3ee' },
-  study: { label: '求学', color: '#8b5cf6' },
-  cuhk: { label: '香港中文大学', color: '#c41e3a' },
-  gov: { label: '香港特区咨询', color: '#e8a317' },
-  tsinghua: { label: '清华大学', color: '#10b981' },
+  teach: { label: '中学/海外教职', color: '#6e8cff' },
+  study: { label: '求学', color: '#b07cc6' },
+  cuhk: { label: '香港中文大学', color: '#e5483b' },
+  gov: { label: '香港特区咨询', color: '#d4a25a' },
+  tsinghua: { label: '清华大学', color: '#6fc2ae' },
 };
 
 /** 履历甘特：起止为小数年；月份未载者取年中近似；note 记录口径出入 */

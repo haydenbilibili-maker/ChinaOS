@@ -5,7 +5,7 @@
 // 全部失败时抛出可读错误，由 UI 展示 EmptyState 横幅
 // ============================================================================
 
-import * as echarts from 'echarts';
+import { echarts } from '../../lib/viz/echarts.js';
 import DataBus from '../../lib/data/DataBus.js';
 
 const registered = new Set();

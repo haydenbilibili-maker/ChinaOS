@@ -1,20 +1,131 @@
 {
   "viewports": [
-    { "id": "desktop", "width": 1440, "height": 900 },
-    { "id": "tablet", "width": 768, "height": 1024 },
-    { "id": "mobile", "width": 390, "height": 844 }
+    {
+      "id": "desktop",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "tablet",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "id": "mobile",
+      "width": 390,
+      "height": 844
+    }
   ],
-  "themes": ["dark", "light"],
+  "themes": [
+    "dark",
+    "light"
+  ],
   "routes": [
-    { "id": "dashboard", "path": "/dashboard" },
-    { "id": "econ", "path": "/econ-dashboard" },
-    { "id": "governance", "path": "/governance" },
-    { "id": "qingnian", "path": "/modules/qingnian" },
-    { "id": "signal", "path": "/modules/signal-dashboard" },
-    { "id": "talent", "path": "/talent" },
-    { "id": "military", "path": "/military" },
-    { "id": "powerlogic", "path": "/powerlogic" },
-    { "id": "foundation", "path": "/foundation" },
-    { "id": "shenzhou", "path": "/shenzhou-live" }
+    {
+      "id": "design",
+      "path": "/design",
+      "fullPage": true
+    },
+    {
+      "id": "workspace",
+      "path": "/workspace"
+    },
+    {
+      "id": "reader",
+      "path": "/design?reader=1",
+      "settleMs": 2500
+    },
+    {
+      "id": "shijian-read",
+      "path": "/modules/shijian/sj-18?read=1"
+    },
+    {
+      "id": "civ-read",
+      "path": "/civilization/v/v1?read=1"
+    },
+    {
+      "id": "signalpanel",
+      "path": "/modules/signal-panel"
+    },
+    {
+      "id": "dashboard",
+      "path": "/dashboard"
+    },
+    {
+      "id": "dash-chapters",
+      "path": "/dashboard",
+      "scrollTo": "#dash-ch-situation"
+    },
+    {
+      "id": "dash-customize",
+      "path": "/dashboard",
+      "scrollTo": "#dash-ch-gateway",
+      "click": ".dch-rail__custom"
+    },
+    {
+      "id": "dash-gateway",
+      "path": "/dashboard",
+      "scrollTo": "#dash-ch-gateway"
+    },
+    {
+      "id": "dash-toolbox",
+      "path": "/dashboard",
+      "scrollTo": "#dash-ch-toolbox"
+    },
+    {
+      "id": "dash-brief",
+      "path": "/dashboard",
+      "scrollTo": "#dash-ch-briefing",
+      "click": ".dash-brief .os-btn-primary"
+    },
+    {
+      "id": "dash-screens",
+      "path": "/dashboard",
+      "scrollTo": "#dash-ch-screens"
+    },
+    {
+      "id": "econ",
+      "path": "/econ-dashboard"
+    },
+    {
+      "id": "governance",
+      "path": "/governance"
+    },
+    {
+      "id": "qingnian",
+      "path": "/modules/qingnian"
+    },
+    {
+      "id": "signal",
+      "path": "/modules/signal-dashboard"
+    },
+    {
+      "id": "talent",
+      "path": "/talent"
+    },
+    {
+      "id": "military",
+      "path": "/military"
+    },
+    {
+      "id": "powerlogic",
+      "path": "/powerlogic"
+    },
+    {
+      "id": "foundation",
+      "path": "/foundation"
+    },
+    {
+      "id": "shenzhou",
+      "path": "/shenzhou-live"
+    },
+    {
+      "id": "shenzhou-prov",
+      "path": "/shenzhou-live?prov=广东省&layer=economy"
+    },
+    {
+      "id": "shenzhou-cmp",
+      "path": "/shenzhou-live?cmp=北京市,上海市,广东省"
+    }
   ]
 }

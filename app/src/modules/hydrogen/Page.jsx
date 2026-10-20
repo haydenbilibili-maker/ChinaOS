@@ -6,44 +6,44 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 
 // ── 制氢路线对比（成本 / 碳排放 / 国产化） ──────────────────────────────
 const H2_TYPES = [
-  { key: 'grey', label: '灰氢', accent: '#64748b', share: 62, cost: 12, co2: 11, local: 95,
+  { key: 'grey', label: '灰氢', accent: '#8a8578', share: 62, cost: 12, co2: 11, local: 95,
     desc: '煤制氢 / 天然气重整为主，碳排放高但成本最低——过渡期的现实选择，绿氢替代需时间。装置与催化剂高度国产，但碳约束下没有未来。' },
-  { key: 'blue', label: '蓝氢', accent: '#22d3ee', share: 20, cost: 18, co2: 3, local: 70,
+  { key: 'blue', label: '蓝氢', accent: '#6e8cff', share: 20, cost: 18, co2: 3, local: 70,
     desc: '化石制氢 + CCUS 捕集，成本介于灰氢与绿氢之间；化工园区示范先行。CCUS 装置与封存场地是瓶颈，本质仍依赖化石资源。' },
-  { key: 'green', label: '绿氢', accent: '#10b981', share: 15, cost: 35, co2: 0.5, local: 80,
+  { key: 'green', label: '绿氢', accent: '#6fc2ae', share: 15, cost: 35, co2: 0.5, local: 80,
     desc: '电解水制氢，电力占比极高；西北风光基地 + 特高压是降本物理路径——电价决定天花板。电解槽国产度高，膜 / 催化剂仍受制于人。' },
 ];
 
 // ── 产业链环节选择器 ──────────────────────────────────────────────────
 const CHAIN_LINKS = [
-  { key: 'make', label: '制氢', accent: '#10b981',
+  { key: 'make', label: '制氢', accent: '#6fc2ae',
     status: '电解槽 ALK 路线成熟，PEM/SOEC 攻关；绿氢成本受绿电价格主导。',
     cost: '绿氢 ~35 元/kg，目标 2030 降至 15 元以下', neck: '质子膜（全氟磺酸）、铱基催化剂仍依赖进口', local: 80,
-    metrics: [['ALK 单位投资', '2200 元/kW', '#22d3ee'], ['PEM 单位投资', '7000 元/kW', '#c41e3a'], ['系统能效', '60–70%', '#e8a317']] },
-  { key: 'store', label: '储运', accent: '#22d3ee',
+    metrics: [['ALK 单位投资', '2200 元/kW', '#6e8cff'], ['PEM 单位投资', '7000 元/kW', '#e5483b'], ['系统能效', '60–70%', '#d4a25a']] },
+  { key: 'store', label: '储运', accent: '#6e8cff',
     status: '高压气态为主（20–35MPa 长管拖车）；液氢 / 管道掺氢 / 液氨载体示范。',
     cost: '长管拖车 200km 内运费占终端 ~30%', neck: '70MPa 储氢瓶碳纤维、液氢核心装备、氢气压缩机', local: 60,
-    metrics: [['长管拖车', '350–500kg/车', '#22d3ee'], ['液氢密度', '70.8 kg/m³', '#10b981'], ['掺氢比例', '试点 ≤20%', '#e8a317']] },
-  { key: 'station', label: '加氢站', accent: '#e8a317',
+    metrics: [['长管拖车', '350–500kg/车', '#6e8cff'], ['液氢密度', '70.8 kg/m³', '#6fc2ae'], ['掺氢比例', '试点 ≤20%', '#d4a25a']] },
+  { key: 'station', label: '加氢站', accent: '#d4a25a',
     status: '建成 400+ 座居全球第一，但单站利用率与盈利仍是难题。',
     cost: '建站投资 1200–1800 万/座，氢价 60–80 元/kg', neck: '压缩机、加氢枪、流量计等加注核心装备', local: 65,
-    metrics: [['全国加氢站', '400+ 座', '#e8a317'], ['单站投资', '~1500 万', '#c41e3a'], ['日加注能力', '500–1000kg', '#22d3ee']] },
-  { key: 'fc', label: '燃料电池', accent: '#c41e3a',
+    metrics: [['全国加氢站', '400+ 座', '#d4a25a'], ['单站投资', '~1500 万', '#e5483b'], ['日加注能力', '500–1000kg', '#6e8cff']] },
+  { key: 'fc', label: '燃料电池', accent: '#e5483b',
     status: '电堆功率密度追平国际，但膜电极 / 质子膜 / 催化剂仍是卡脖子核心。',
     cost: '系统成本 ~3000 元/kW，目标降至 800 元', neck: '质子交换膜、铂催化剂、碳纸气体扩散层', local: 62,
-    metrics: [['电堆功率密度', '4.0 kW/L', '#c41e3a'], ['系统成本', '3000 元/kW', '#e8a317'], ['寿命', '~15000h', '#22d3ee']] },
-  { key: 'app', label: '应用场景', accent: '#8b5cf6',
+    metrics: [['电堆功率密度', '4.0 kW/L', '#e5483b'], ['系统成本', '3000 元/kW', '#d4a25a'], ['寿命', '~15000h', '#6e8cff']] },
+  { key: 'app', label: '应用场景', accent: '#b07cc6',
     status: '重卡 / 物流先行，氢冶金 / 绿色化工示范；难脱碳领域是主战场。',
     cost: '燃料电池重卡 TCO 仍高于柴油 ~30%', neck: '终端用氢成本、加注网络、标准认证体系', local: 75,
-    metrics: [['燃料电池车', '2万+ 辆', '#8b5cf6'], ['示范城市群', '5 大', '#22d3ee'], ['绿钢示范', '起步', '#10b981']] },
+    metrics: [['燃料电池车', '2万+ 辆', '#b07cc6'], ['示范城市群', '5 大', '#6e8cff'], ['绿钢示范', '起步', '#6fc2ae']] },
 ];
 
 // ── 应用场景结构 ──────────────────────────────────────────────────────
 const APP_MIX = [
-  { value: 38, name: '交通(重卡/物流)', itemStyle: { color: '#8b5cf6' } },
-  { value: 30, name: '工业(钢铁/化工)', itemStyle: { color: '#e8a317' } },
-  { value: 18, name: '储能', itemStyle: { color: '#22d3ee' } },
-  { value: 14, name: '发电/掺氢', itemStyle: { color: '#10b981' } },
+  { value: 38, name: '交通(重卡/物流)', itemStyle: { color: '#b07cc6' } },
+  { value: 30, name: '工业(钢铁/化工)', itemStyle: { color: '#d4a25a' } },
+  { value: 18, name: '储能', itemStyle: { color: '#6e8cff' } },
+  { value: 14, name: '发电/掺氢', itemStyle: { color: '#6fc2ae' } },
 ];
 
 // ── 燃料电池关键部件自主度 ────────────────────────────────────────────
@@ -52,11 +52,11 @@ const FC_LOCAL = [88, 65, 35, 30, 90, 72];
 const FC_INTL = [100, 100, 100, 100, 100, 100];
 
 const PHASES = [
-  { period: '2020–2022', title: '示范探索', accent: '#64748b', desc: '国家氢能中长期规划出台，示范城市群启动，电解槽项目备案 400+；以政策驱动、点状示范为主。' },
-  { period: '2023–2024', title: '城市群示范', accent: '#e8a317', desc: '五大燃料电池汽车示范城市群以奖代补落地，ALK 单位投资 3500→2200 元/kW，PEM 仍处高位；绿氢成本 ~35 元/kg。' },
-  { period: '2025–2027', title: '绿氢规模化', accent: '#22d3ee', desc: '风光制绿氢一体化项目放量，西北基地 GW 级电解槽招标；储运与标准认证决定能否走向规模。' },
-  { period: '2028–2030', title: '全链条自主', accent: '#10b981', desc: '质子膜 / 催化剂 / 储运材料国产突破，燃料电池系统成本逼近 800 元/kW；目标绿氢 15 元/kg 以下。' },
-  { period: '2030+', title: '平价应用', accent: '#c41e3a', desc: '绿氢在难脱碳领域（重卡 / 氢冶金 / 绿色化工）实现商业闭环，碳成本与氢成本双变量逼近平价。' },
+  { period: '2020–2022', title: '示范探索', accent: '#8a8578', desc: '国家氢能中长期规划出台，示范城市群启动，电解槽项目备案 400+；以政策驱动、点状示范为主。' },
+  { period: '2023–2024', title: '城市群示范', accent: '#d4a25a', desc: '五大燃料电池汽车示范城市群以奖代补落地，ALK 单位投资 3500→2200 元/kW，PEM 仍处高位；绿氢成本 ~35 元/kg。' },
+  { period: '2025–2027', title: '绿氢规模化', accent: '#6e8cff', desc: '风光制绿氢一体化项目放量，西北基地 GW 级电解槽招标；储运与标准认证决定能否走向规模。' },
+  { period: '2028–2030', title: '全链条自主', accent: '#6fc2ae', desc: '质子膜 / 催化剂 / 储运材料国产突破，燃料电池系统成本逼近 800 元/kW；目标绿氢 15 元/kg 以下。' },
+  { period: '2030+', title: '平价应用', accent: '#e5483b', desc: '绿氢在难脱碳领域（重卡 / 氢冶金 / 绿色化工）实现商业闭环，碳成本与氢成本双变量逼近平价。' },
 ];
 
 export default function Page() {
@@ -69,9 +69,9 @@ export default function Page() {
   // 氢源结构 donut（随类型切换示意）
   const mixDonut = useMemo(() => donutOpt([
     { value: h2 === 'grey' ? 75 : 62, name: '灰氢', itemStyle: { color: LABEL.color } },
-    { value: h2 === 'blue' ? 30 : 20, name: '蓝氢', itemStyle: { color: '#22d3ee' } },
-    { value: h2 === 'green' ? 35 : 15, name: '绿氢', itemStyle: { color: '#10b981' } },
-    { value: 3, name: '其他', itemStyle: { color: '#e8a317' } },
+    { value: h2 === 'blue' ? 30 : 20, name: '蓝氢', itemStyle: { color: '#6e8cff' } },
+    { value: h2 === 'green' ? 35 : 15, name: '绿氢', itemStyle: { color: '#6fc2ae' } },
+    { value: 3, name: '其他', itemStyle: { color: '#d4a25a' } },
   ]), [h2]);
 
   // 制氢成本曲线（随类型切换）
@@ -109,11 +109,11 @@ export default function Page() {
     yAxis: logY({ name: '指数' }),
     series: [
       { type: 'line', smooth: true, name: '绿氢成本(元/kg)', data: [45, 38, 35, 26, 20, 15],
-        lineStyle: { color: '#10b981', width: 2 }, itemStyle: { color: '#10b981' }, areaStyle: { color: '#10b98115' } },
+        lineStyle: { color: '#6fc2ae', width: 2 }, itemStyle: { color: '#6fc2ae' }, areaStyle: { color: '#10b98115' } },
       { type: 'line', smooth: true, name: '电解槽投资(百元/kW)', data: [35, 28, 22, 18, 15, 12],
-        lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
+        lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' } },
       { type: 'line', smooth: true, name: '绿电成本(分/kWh)', data: [35, 30, 26, 22, 18, 15],
-        lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' } },
+        lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' } },
     ],
   }), []);
 
@@ -122,13 +122,13 @@ export default function Page() {
 
   // 燃料电池关键部件自主度雷达
   const fcRadar = useMemo(() => ({
-    ...radarOpt(FC_PARTS, FC_LOCAL, { name: '国产化率', color: '#c41e3a' }),
+    ...radarOpt(FC_PARTS, FC_LOCAL, { name: '国产化率', color: '#e5483b' }),
     legend: { bottom: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
     series: [{
       type: 'radar',
       data: [
-        { value: FC_INTL, name: '国际先进(100)', lineStyle: { color: AXIS.lineStyle.color, width: 1, type: 'dashed' }, itemStyle: { color: AXIS.lineStyle.color }, areaStyle: { color: 'rgba(148,163,184,0.04)' } },
-        { value: FC_LOCAL, name: '国产化率(%)', lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.12)' } },
+        { value: FC_INTL, name: '国际先进(100)', lineStyle: { color: AXIS.lineStyle.color, width: 1, type: 'dashed' }, itemStyle: { color: AXIS.lineStyle.color }, areaStyle: { color: 'rgba(162, 156, 145,0.04)' } },
+        { value: FC_LOCAL, name: '国产化率(%)', lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.12)' } },
       ],
     }],
   }), []);
@@ -142,7 +142,7 @@ export default function Page() {
   const localBar = useMemo(() => stackedBarOpt({
     categories: CHAIN_LINKS.map((c) => c.label),
     series: [
-      { name: '国产化率', data: CHAIN_LINKS.map((c) => c.local), itemStyle: { color: '#10b981' } },
+      { name: '国产化率', data: CHAIN_LINKS.map((c) => c.local), itemStyle: { color: '#6fc2ae' } },
       { name: '进口缺口', data: CHAIN_LINKS.map((c) => 100 - c.local), itemStyle: { color: '#3a1f24' } },
     ],
   }), []);
@@ -153,10 +153,10 @@ export default function Page() {
       <IntroCard>电解水制氢成本中<strong style={{ color: 'var(--text-primary)' }}>电力占比极高</strong>，与风光消纳、特高压送电及 CCUS 路径竞争。氢的产业化必须沿「制—储—运—加—用」全链条同步推进，任一环节短板都会抬高终端用氢成本。<strong style={{ color: 'var(--text-primary)' }}>氢不是能源，是能量载体</strong>——它的价值在于把难以直接电气化的领域（重卡、氢冶金、绿色化工）与廉价风光绿电耦合起来。</IntroCard>
 
       <StatGrid className="mb-6">
-        <Stat value="~3700 万吨/年" label="制氢产量（全球第一·示意）" accent="#10b981" />
-        <Stat value="400+ 座" label="加氢站建成（全球第一）" accent="#e8a317" />
-        <Stat value="2 万+ 辆" label="燃料电池车保有（示意）" accent="#c41e3a" />
-        <Stat value="<5%" label="绿氢占比（爬坡期·情景）" accent="#22d3ee" />
+        <Stat value="~3700 万吨/年" label="制氢产量（全球第一·示意）" accent="#6fc2ae" />
+        <Stat value="400+ 座" label="加氢站建成（全球第一）" accent="#d4a25a" />
+        <Stat value="2 万+ 辆" label="燃料电池车保有（示意）" accent="#e5483b" />
+        <Stat value="<5%" label="绿氢占比（爬坡期·情景）" accent="#6e8cff" />
       </StatGrid>
 
       {/* ── 交互① 产业链环节选择器 ── */}
@@ -166,7 +166,7 @@ export default function Page() {
           <div className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>{lk.label} · 技术现状</div>
           <p className="text-sm leading-relaxed mb-2" style={{ color: 'var(--text-secondary)' }}>{lk.status}</p>
           <p className="text-xs leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
-            <span style={{ color: '#e8a317' }}>成本</span> {lk.cost}　·　<span style={{ color: '#c41e3a' }}>卡脖子</span> {lk.neck}
+            <span style={{ color: '#d4a25a' }}>成本</span> {lk.cost}　·　<span style={{ color: '#e5483b' }}>卡脖子</span> {lk.neck}
           </p>
         </div>
         <Grid cols={3}>
@@ -187,9 +187,9 @@ export default function Page() {
         </div>
         <StatGrid className="mb-4">
           <Stat value={`~${h.cost} 元/kg`} label={`${h.label}成本`} accent={h.accent} />
-          <Stat value={`${h.co2} kgCO₂`} label="每 kg 氢碳排" accent="#c41e3a" />
-          <Stat value={`${h.local}%`} label="装备国产化率" accent="#10b981" />
-          <Stat value={`${h.share}%`} label="当前结构占比（示意）" accent="#22d3ee" />
+          <Stat value={`${h.co2} kgCO₂`} label="每 kg 氢碳排" accent="#e5483b" />
+          <Stat value={`${h.local}%`} label="装备国产化率" accent="#6fc2ae" />
+          <Stat value={`${h.share}%`} label="当前结构占比（示意）" accent="#6e8cff" />
         </StatGrid>
         <Grid cols={2}>
           <Card title="氢源结构（随类型切换）"><EChart option={mixDonut} style={{ height: 240 }} /></Card>
@@ -231,9 +231,9 @@ export default function Page() {
         <Card title="氢能产业链能力对标（随氢源切换）"><EChart option={chainRadar} style={{ height: 280 }} /></Card>
         <Card title="制 · 电解槽三条技术路线">
           <div className="space-y-2">
-            {[['ALK 碱性', '成熟度高，适合大规模集中制氢；成本最低，国产化彻底，是当前绿氢主力。', '#22d3ee'],
-              ['PEM 质子交换膜', '启停快，适配风光波动；贵金属与质子膜成本高，是膜 / 催化剂卡脖子集中地。', '#c41e3a'],
-              ['SOEC 高温电解', '可与工业余热耦合，效率最高；耐久与密封攻关中，离规模化尚远。', '#e8a317']].map(([t, d, c]) => (
+            {[['ALK 碱性', '成熟度高，适合大规模集中制氢；成本最低，国产化彻底，是当前绿氢主力。', '#6e8cff'],
+              ['PEM 质子交换膜', '启停快，适配风光波动；贵金属与质子膜成本高，是膜 / 催化剂卡脖子集中地。', '#e5483b'],
+              ['SOEC 高温电解', '可与工业余热耦合，效率最高；耐久与密封攻关中，离规模化尚远。', '#d4a25a']].map(([t, d, c]) => (
               <div key={t} style={{ borderLeft: `2px solid ${c}`, paddingLeft: 10 }}>
                 <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{t}</div>
                 <p className="text-[11px] mt-0.5" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
@@ -245,13 +245,13 @@ export default function Page() {
 
       {/* ── 框架三联 ── */}
       <FrameworkTrio cards={[
-        { title: '难脱碳领域', subtitle: '氢的根本位置', accent: '#8b5cf6', border: '#8b5cf6',
+        { title: '难脱碳领域', subtitle: '氢的根本位置', accent: '#b07cc6', border: '#b07cc6',
           body: '电池难覆盖的重载与高温热场景，才是氢真正不可替代的战场；与其在乘用车上和锂电硬碰，不如锁定重卡、航运、氢冶金、绿色化工。',
           pillars: [['重卡/航运', '长里程 + 快补能。'], ['氢冶金', 'DRI 替代焦炭。'], ['绿色化工', '绿氨 / 绿色甲醇。']] },
-        { title: '绿电耦合', subtitle: '消纳 + 脱碳双赢', accent: '#10b981', border: '#10b981',
+        { title: '绿电耦合', subtitle: '消纳 + 脱碳双赢', accent: '#6fc2ae', border: '#6fc2ae',
           body: '风光制绿氢把弃风弃光变成可储运的化学能——既解决消纳，又给难脱碳领域提供零碳原料；电价每降 0.1 元，绿氢成本降 ~2 元/kg。',
           pillars: [['风光基地', '源网荷储一体化。'], ['特高压', '西电东送耦合。'], ['消纳', '弃风弃光制氢。']] },
-        { title: '卡脖子', subtitle: '材料 · 储运', accent: '#c41e3a', border: '#c41e3a',
+        { title: '卡脖子', subtitle: '材料 · 储运', accent: '#e5483b', border: '#e5483b',
           body: '电解槽与电堆可国产，但质子膜（全氟磺酸）、铱基催化剂、70MPa 储氢碳纤维与液氢装备仍受制于人——材料端不破，全链条降本就有天花板。',
           pillars: [['质子膜', '全氟磺酸国产化。'], ['催化剂', '铂铱减量替代。'], ['储运材料', '碳纤维 / 液氢。']] },
       ]} />

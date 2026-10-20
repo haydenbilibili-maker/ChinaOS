@@ -10,9 +10,9 @@ import { useLiveWeather, buildRealSeries, formatLiveTime, REAL_LAYERS } from './
 import { useLiveAirQuality, buildAqiSeries, REAL_AQI_LAYERS } from './liveAirQuality.js';
 import { useLiveQuakes } from './liveQuakes.js';
 
-const STEEL = '#22d3ee';
-const HOLD = '#e8a317';
-const LIVE = '#10b981';
+const STEEL = '#6e8cff';
+const HOLD = '#d4a25a';
+const LIVE = '#6fc2ae';
 
 function shortProv(name) {
   if (!name) return '—';
@@ -162,7 +162,7 @@ export default function LiveMapTicker({
         id: 'stat-min',
         k: '最低',
         v: `${shortProv(seedStats.minProv)} ${seedStats.min}`,
-        color: '#94a3b8',
+        color: '#a29c91',
         title: `${activeLabel} 最低省份（种子）`,
       });
     }

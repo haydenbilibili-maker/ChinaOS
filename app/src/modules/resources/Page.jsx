@@ -9,7 +9,7 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // ============================================================================
 const COMMODITIES = [
   {
-    key: 'iron', label: '铁矿石', accent: '#c41e3a',
+    key: 'iron', label: '铁矿石', accent: '#e5483b',
     dependency: 80, equity: 22, choke: 88, pricing: 18, reserve: 25,
     headline: '买方大国 · 定价权弃儿',
     sources: [['澳大利亚', 60], ['巴西', 20], ['几内亚', 8], ['其他', 12]],
@@ -17,7 +17,7 @@ const COMMODITIES = [
     routes: ['澳—西北航线', '巴西—好望角', '几内亚—印度洋'],
   },
   {
-    key: 'copper', label: '铜', accent: '#e8a317',
+    key: 'copper', label: '铜', accent: '#d4a25a',
     dependency: 75, equity: 28, choke: 62, pricing: 35, reserve: 30,
     headline: '电气化的血液 · 长协对冲',
     sources: [['智利', 32], ['秘鲁', 24], ['刚果(金)', 18], ['其他', 26]],
@@ -25,7 +25,7 @@ const COMMODITIES = [
     routes: ['智利—太平洋', '刚果—达累斯萨拉姆', '秘鲁—钱凯港'],
   },
   {
-    key: 'bauxite', label: '铝土矿', accent: '#22d3ee',
+    key: 'bauxite', label: '铝土矿', accent: '#6e8cff',
     dependency: 70, equity: 35, choke: 70, pricing: 40, reserve: 20,
     headline: '几内亚单点 · 园区一体化',
     sources: [['几内亚', 55], ['澳大利亚', 25], ['印尼', 12], ['其他', 8]],
@@ -33,7 +33,7 @@ const COMMODITIES = [
     routes: ['几内亚—印度洋', '澳洲—西北线', '印尼—南海'],
   },
   {
-    key: 'battery', label: '镍钴锂', accent: '#8b5cf6',
+    key: 'battery', label: '镍钴锂', accent: '#b07cc6',
     dependency: 65, equity: 48, choke: 55, pricing: 58, reserve: 35,
     headline: '电池金属 · 资源—冶炼闭环',
     sources: [['印尼镍', 38], ['刚果钴', 30], ['澳/智锂', 20], ['其他', 12]],
@@ -49,7 +49,7 @@ const COMMODITIES = [
     routes: ['霍尔木兹—马六甲', '中俄管道', '中缅管道'],
   },
   {
-    key: 'gas', label: '天然气', accent: '#10b981',
+    key: 'gas', label: '天然气', accent: '#6fc2ae',
     dependency: 45, equity: 26, choke: 68, pricing: 38, reserve: 30,
     headline: '管道+LNG · 双轨供应',
     sources: [['土库曼斯坦', 28], ['俄罗斯', 22], ['卡塔尔LNG', 18], ['其他', 32]],
@@ -70,22 +70,22 @@ const COMMODITIES = [
 // 航道咽喉 —— 关键海上节点依赖度（示意）
 // ============================================================================
 const CHOKEPOINTS = [
-  { name: '马六甲海峡', share: 80, accent: '#c41e3a', desc: '原油 80% + 大宗散货主通道。最窄处 2.8km，单点断裂即工业失血。' },
+  { name: '马六甲海峡', share: 80, accent: '#e5483b', desc: '原油 80% + 大宗散货主通道。最窄处 2.8km，单点断裂即工业失血。' },
   { name: '霍尔木兹海峡', share: 45, accent: '#f97316', desc: '中东油气出海唯一口。波斯湾局势的瞬时定价器。' },
-  { name: '曼德海峡', share: 35, accent: '#e8a317', desc: '红海—苏伊士通道入口。也门冲突外溢直接抬升保险与绕行成本。' },
-  { name: '好望角航线', share: 28, accent: '#22d3ee', desc: '巴西铁矿与西非铝土的远洋路径，绕行即周期与运费双升。' },
-  { name: '巽他/龙目', share: 18, accent: '#10b981', desc: '马六甲的天然备份，水深受限但战时分流价值高。' },
+  { name: '曼德海峡', share: 35, accent: '#d4a25a', desc: '红海—苏伊士通道入口。也门冲突外溢直接抬升保险与绕行成本。' },
+  { name: '好望角航线', share: 28, accent: '#6e8cff', desc: '巴西铁矿与西非铝土的远洋路径，绕行即周期与运费双升。' },
+  { name: '巽他/龙目', share: 18, accent: '#6fc2ae', desc: '马六甲的天然备份，水深受限但战时分流价值高。' },
 ];
 
 // ============================================================================
 // 走出去阶段时间线
 // ============================================================================
 const PHASES = [
-  { period: '1993–2003', title: '贸易采购 · 现货买单', accent: '#64748b', desc: '从净出口国转为净进口国。资源以现货贸易为主，价格被动接受，毫无议价与权益概念——「世界工厂」的资源胃口刚刚觉醒。' },
-  { period: '2004–2013', title: '海外并购潮 · 买矿时代', accent: '#94a3b8', desc: '油气与矿业「走出去」高峰。中铝入股力拓、中海油竞购优尼科受阻——买矿易、控矿难，地缘审查首次成为硬约束。' },
-  { period: '2013–2019', title: '一带一路 · 资源通道', accent: '#e8a317', desc: '中缅/中俄管道、瓜达尔与汉班托塔港、中欧班列。资源安全从「单笔交易」升级为「通道工程」，陆海备份网络成形。' },
-  { period: '2019–2024', title: '权益矿+定价权争夺', accent: '#22d3ee', desc: '西芒杜铁矿、印尼镍铁园区、锂三角长协。从「买」转向「控」：股权 + 本土冶炼 + 上海原油期货，争夺定价话语权。' },
-  { period: '2024–2030', title: '资源自主可控 · 重力场', accent: '#c41e3a', desc: '权益+冶炼+储备+护航四重冗余。目标不是脱钩，而是构建「非对称相互依赖」——断供时让对手承担不可逆的崩溃成本。' },
+  { period: '1993–2003', title: '贸易采购 · 现货买单', accent: '#8a8578', desc: '从净出口国转为净进口国。资源以现货贸易为主，价格被动接受，毫无议价与权益概念——「世界工厂」的资源胃口刚刚觉醒。' },
+  { period: '2004–2013', title: '海外并购潮 · 买矿时代', accent: '#a29c91', desc: '油气与矿业「走出去」高峰。中铝入股力拓、中海油竞购优尼科受阻——买矿易、控矿难，地缘审查首次成为硬约束。' },
+  { period: '2013–2019', title: '一带一路 · 资源通道', accent: '#d4a25a', desc: '中缅/中俄管道、瓜达尔与汉班托塔港、中欧班列。资源安全从「单笔交易」升级为「通道工程」，陆海备份网络成形。' },
+  { period: '2019–2024', title: '权益矿+定价权争夺', accent: '#6e8cff', desc: '西芒杜铁矿、印尼镍铁园区、锂三角长协。从「买」转向「控」：股权 + 本土冶炼 + 上海原油期货，争夺定价话语权。' },
+  { period: '2024–2030', title: '资源自主可控 · 重力场', accent: '#e5483b', desc: '权益+冶炼+储备+护航四重冗余。目标不是脱钩，而是构建「非对称相互依赖」——断供时让对手承担不可逆的崩溃成本。' },
 ];
 
 // ============================================================================
@@ -100,12 +100,12 @@ const dependencyOverviewBar = {
     type: 'bar', barWidth: 26,
     data: COMMODITIES.map((c) => ({
       value: c.dependency,
-      itemStyle: { color: c.dependency >= 75 ? '#c41e3a' : c.dependency >= 60 ? '#e8a317' : '#22d3ee', borderRadius: 3 },
+      itemStyle: { color: c.dependency >= 75 ? '#e5483b' : c.dependency >= 60 ? '#d4a25a' : '#6e8cff', borderRadius: 3 },
     })),
     markLine: {
       silent: true, symbol: 'none',
-      lineStyle: { color: '#c41e3a', type: 'dashed', opacity: 0.6 },
-      label: { formatter: '70% 安全警戒线', color: '#c41e3a', fontSize: 10, position: 'insideEndTop' },
+      lineStyle: { color: '#e5483b', type: 'dashed', opacity: 0.6 },
+      label: { formatter: '70% 安全警戒线', color: '#e5483b', fontSize: 10, position: 'insideEndTop' },
       data: [{ yAxis: 70 }],
     },
     label: { show: true, position: 'top', formatter: '{c}%', color: LABEL.color, fontSize: 10 },
@@ -117,8 +117,8 @@ const equityGapBar = stackedBarOpt({
   categories: COMMODITIES.map((c) => c.label),
   horizontal: true,
   series: [
-    { name: '海外权益覆盖', data: COMMODITIES.map((c) => c.equity), itemStyle: { color: '#22d3ee' } },
-    { name: '纯进口敞口', data: COMMODITIES.map((c) => Math.max(0, c.dependency - c.equity)), itemStyle: { color: '#c41e3a', opacity: 0.6 } },
+    { name: '海外权益覆盖', data: COMMODITIES.map((c) => c.equity), itemStyle: { color: '#6e8cff' } },
+    { name: '纯进口敞口', data: COMMODITIES.map((c) => Math.max(0, c.dependency - c.equity)), itemStyle: { color: '#e5483b', opacity: 0.6 } },
   ],
 });
 
@@ -131,17 +131,17 @@ const resilienceTrend = {
   yAxis: valueY({ max: 100, axisLabel: { formatter: '{value}' } }),
   series: [
     { name: '纯进口依赖指数', type: 'line', smooth: true, data: [88, 82, 75, 60, 48, 35], lineStyle: { color: LABEL.color, type: 'dashed' }, itemStyle: { color: LABEL.color } },
-    { name: '海外权益+冶炼覆盖', type: 'line', smooth: true, data: [8, 18, 32, 55, 78, 95], lineStyle: { color: '#22d3ee', width: 3 }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.08)' } },
-    { name: '战略储备天数指数', type: 'line', smooth: true, data: [20, 30, 42, 55, 68, 82], lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' } },
+    { name: '海外权益+冶炼覆盖', type: 'line', smooth: true, data: [8, 18, 32, 55, 78, 95], lineStyle: { color: '#6e8cff', width: 3 }, itemStyle: { color: '#6e8cff' }, areaStyle: { color: 'rgba(110, 140, 255,0.08)' } },
+    { name: '战略储备天数指数', type: 'line', smooth: true, data: [20, 30, 42, 55, 68, 82], lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' } },
   ],
 };
 
 // 海外区域资源布局权重
 const REGIONS = [
-  { label: '非洲', accent: '#c41e3a', weight: 30, minerals: '钴/铁/铜' },
-  { label: '东南亚', accent: '#e8a317', weight: 35, minerals: '镍/铝土' },
-  { label: '拉美', accent: '#22d3ee', weight: 25, minerals: '锂/铜/铁' },
-  { label: '中亚', accent: '#10b981', weight: 10, minerals: '油气/铀' },
+  { label: '非洲', accent: '#e5483b', weight: 30, minerals: '钴/铁/铜' },
+  { label: '东南亚', accent: '#d4a25a', weight: 35, minerals: '镍/铝土' },
+  { label: '拉美', accent: '#6e8cff', weight: 25, minerals: '锂/铜/铁' },
+  { label: '中亚', accent: '#6fc2ae', weight: 10, minerals: '油气/铀' },
 ];
 
 const regionBar = {
@@ -179,7 +179,7 @@ export default function Page() {
     const opt = donutOpt(
       c.sources.map(([n, v], i) => ({
         name: n, value: v,
-        itemStyle: { color: [c.accent, '#94a3b8', '#475569', '#27324a'][i] || '#27324a' },
+        itemStyle: { color: [c.accent, '#a29c91', '#475569', '#2a2d36'][i] || '#2a2d36' },
       })),
     );
     opt.title = {
@@ -225,9 +225,9 @@ export default function Page() {
 
       <Grid cols={4} className="mb-6">
         <Stat value="72%" label="原油对外依存 · 80% 过马六甲" accent="#f97316" />
-        <Stat value="80%+" label="铁矿石对外依存 · 定价权痛点" accent="#c41e3a" />
-        <Stat value="1.8 万亿" label="海外权益资源累计投资(元)" accent="#22d3ee" />
-        <Stat value="~90 天" label="战略储备覆盖(原油示意)" accent="#e8a317" />
+        <Stat value="80%+" label="铁矿石对外依存 · 定价权痛点" accent="#e5483b" />
+        <Stat value="1.8 万亿" label="海外权益资源累计投资(元)" accent="#6e8cff" />
+        <Stat value="~90 天" label="战略储备覆盖(原油示意)" accent="#d4a25a" />
       </Grid>
 
       {/* ============ 交互核心：资源品种切换 ============ */}
@@ -236,7 +236,7 @@ export default function Page() {
         <Grid cols={4} className="mb-4">
           <div className="os-card p-3" style={{ background: 'var(--bg-elevated)', borderTop: `2px solid ${c.accent}` }}>
             <div className="text-[10px] mb-1" style={{ color: 'var(--text-tertiary)' }}>对外依存度</div>
-            <div className="text-2xl font-bold" style={{ color: c.dependency >= 75 ? '#c41e3a' : c.accent }}>{c.dependency}%</div>
+            <div className="text-2xl font-bold" style={{ color: c.dependency >= 75 ? '#e5483b' : c.accent }}>{c.dependency}%</div>
           </div>
           <div className="os-card p-3" style={{ background: 'var(--bg-elevated)', borderTop: `2px solid ${c.accent}` }}>
             <div className="text-[10px] mb-1" style={{ color: 'var(--text-tertiary)' }}>首位来源占比</div>
@@ -244,11 +244,11 @@ export default function Page() {
           </div>
           <div className="os-card p-3" style={{ background: 'var(--bg-elevated)', borderTop: `2px solid ${c.accent}` }}>
             <div className="text-[10px] mb-1" style={{ color: 'var(--text-tertiary)' }}>海外权益占比</div>
-            <div className="text-2xl font-bold" style={{ color: '#22d3ee' }}>{c.equity}%</div>
+            <div className="text-2xl font-bold" style={{ color: '#6e8cff' }}>{c.equity}%</div>
           </div>
           <div className="os-card p-3" style={{ background: 'var(--bg-elevated)', borderTop: `2px solid ${c.accent}` }}>
             <div className="text-[10px] mb-1" style={{ color: 'var(--text-tertiary)' }}>卡脖子风险</div>
-            <div className="text-2xl font-bold" style={{ color: c.choke >= 75 ? '#c41e3a' : c.choke >= 60 ? '#e8a317' : '#22d3ee' }}>{c.choke}</div>
+            <div className="text-2xl font-bold" style={{ color: c.choke >= 75 ? '#e5483b' : c.choke >= 60 ? '#d4a25a' : '#6e8cff' }}>{c.choke}</div>
           </div>
         </Grid>
         <Grid cols={2}>

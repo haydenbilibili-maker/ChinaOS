@@ -25,11 +25,11 @@ export default function StructureTab() {
       yAxis: { type: 'value', scale: true, axisLine: AXIS, axisLabel: LABEL, splitLine: GRID_LINE },
       series: [{
         type: 'line', data: rows.map((r) => r.value), smooth: true, symbol: 'circle', symbolSize: 5,
-        lineStyle: { width: 2, color: '#c41e3a' }, itemStyle: { color: '#c41e3a' },
+        lineStyle: { width: 2, color: '#e5483b' }, itemStyle: { color: '#e5483b' },
         markLine: {
           silent: true, symbol: 'none',
-          lineStyle: { type: 'dashed', color: '#e8a317', opacity: 0.6 },
-          label: { color: '#e8a317', fontSize: 10, formatter: '国际警戒 0.4' },
+          lineStyle: { type: 'dashed', color: '#d4a25a', opacity: 0.6 },
+          label: { color: '#d4a25a', fontSize: 10, formatter: '国际警戒 0.4' },
           data: [{ yAxis: 0.4 }],
         },
       }],
@@ -50,8 +50,8 @@ export default function StructureTab() {
         axisLine: AXIS, axisLabel: { ...LABEL, fontSize: 11 }, axisTick: { show: false },
       },
       series: [
-        { name: '占 GDP 比重 %', type: 'bar', data: rows.map((r) => r.share), itemStyle: { color: '#22d3ee' }, barGap: 0, barWidth: 9 },
-        { name: '同比增速 %', type: 'bar', data: rows.map((r) => r.growth), itemStyle: { color: '#e8a317' }, barWidth: 9 },
+        { name: '占 GDP 比重 %', type: 'bar', data: rows.map((r) => r.share), itemStyle: { color: '#6e8cff' }, barGap: 0, barWidth: 9 },
+        { name: '同比增速 %', type: 'bar', data: rows.map((r) => r.growth), itemStyle: { color: '#d4a25a' }, barWidth: 9 },
       ],
     };
   }, []);
@@ -101,12 +101,12 @@ export default function StructureTab() {
             <div className="flex flex-wrap gap-2 mt-3">
               {INCOME_DIST?.urbanRuralRatio != null && (
                 <span className="text-[11px] mono px-2 py-1 rounded" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', color: 'var(--text-secondary)' }}>
-                  城乡收入比 <b style={{ color: '#c41e3a' }}>{INCOME_DIST.urbanRuralRatio}</b>
+                  城乡收入比 <b style={{ color: '#e5483b' }}>{INCOME_DIST.urbanRuralRatio}</b>
                 </span>
               )}
               {INCOME_DIST?.quintileRatio != null && (
                 <span className="text-[11px] mono px-2 py-1 rounded" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', color: 'var(--text-secondary)' }}>
-                  五分位倍差 <b style={{ color: '#e8a317' }}>{INCOME_DIST.quintileRatio}</b>
+                  五分位倍差 <b style={{ color: '#d4a25a' }}>{INCOME_DIST.quintileRatio}</b>
                 </span>
               )}
               {INCOME_DIST?.incomeGrowth != null && (

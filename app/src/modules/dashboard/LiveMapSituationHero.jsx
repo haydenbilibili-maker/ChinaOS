@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { AS_OF, LAYERS, getNationalStats, getRankings } from './liveMapData.js';
 
-const STEEL = '#22d3ee';
+const STEEL = '#6e8cff';
 
 /**
  * 全国态势 · 六维概览条（种子数据 · 示意标定）

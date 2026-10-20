@@ -30,7 +30,7 @@ export const COMPARE_COUNTRIES = [
   { iso: 'USA', name: '美国', color: '#8090c6' }, // 黛
   { iso: 'IND', name: '印度', color: '#c99a4e' }, // 赭
   { iso: 'JPN', name: '日本', color: '#62a89e' }, // 青
-  { iso: 'DEU', name: '德国', color: '#94a3b8' }, // 中性灰
+  { iso: 'DEU', name: '德国', color: '#a29c91' }, // 中性灰
 ];
 
 /** 默认对比三国 */
