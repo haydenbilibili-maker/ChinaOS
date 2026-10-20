@@ -47,6 +47,8 @@ export const MODULES = [
   {
     id: 'workspace', path: '/workspace', group: 'home',
     title: '我的工作台', subtitle: '收藏 · 关注指标 · 最近 · 笔记', icon: 'LayoutGrid',
+    // 侧栏「我的」分区与手机 Dock 已有固定入口
+    navHidden: true,
     component: lazy(() => import('../modules/workspace/Page.jsx')),
   },
   {
