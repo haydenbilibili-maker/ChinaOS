@@ -1,0 +1,20 @@
+{
+  "viewports": [
+    { "id": "desktop", "width": 1440, "height": 900 },
+    { "id": "tablet", "width": 768, "height": 1024 },
+    { "id": "mobile", "width": 390, "height": 844 }
+  ],
+  "themes": ["dark", "light"],
+  "routes": [
+    { "id": "dashboard", "path": "/dashboard" },
+    { "id": "econ", "path": "/econ-dashboard" },
+    { "id": "governance", "path": "/governance" },
+    { "id": "qingnian", "path": "/modules/qingnian" },
+    { "id": "signal", "path": "/modules/signal-dashboard" },
+    { "id": "talent", "path": "/talent" },
+    { "id": "military", "path": "/military" },
+    { "id": "powerlogic", "path": "/powerlogic" },
+    { "id": "foundation", "path": "/foundation" },
+    { "id": "shenzhou", "path": "/shenzhou-live" }
+  ]
+}

@@ -1,0 +1,79 @@
+name: Visual snapshots
+
+# 构建后按 scripts/visual-routes.json 截图，并把结果写回 visual-snapshots 分支的 <源分支>/ 目录。
+# 该分支每次以单个孤立提交强推，只保留各源分支的最新一组截图，不累积历史。
+
+on:
+  push:
+    branches-ignore: [visual-snapshots]
+    paths:
+      - 'app/**'
+      - 'scripts/visual-*'
+      - '.github/workflows/visual.yml'
+  workflow_dispatch:
+    inputs:
+      routes:
+        description: '只截这些路由 id（逗号分隔，留空=全部）'
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: visual-snapshots
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: 安装依赖并构建
+        run: |
+          sed -i 's#https://registry.npmmirror.com/#https://registry.npmjs.org/#g' package-lock.json app/package-lock.json
+          npm ci --no-audit --no-fund --prefix app
+          npm run build --prefix app
+
+      - name: 启动预览
+        run: |
+          npm run preview --prefix app -- --host 127.0.0.1 --port 4173 --strictPort > preview.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:4173/ > /dev/null && break; sleep 1; done
+
+      - name: 截图
+        env:
+          ROUTES: ${{ inputs.routes }}
+        run: |
+          npm i --no-save --no-audit --no-fund playwright@1.49.1
+          npx playwright install --with-deps chromium
+          node scripts/visual-snapshot.mjs --base http://127.0.0.1:4173 --out "$RUNNER_TEMP/shots"
+
+      - name: 写回 visual-snapshots 分支
+        env:
+          SRC_BRANCH: ${{ github.ref_name }}
+        run: |
+          DIR="${SRC_BRANCH//\//__}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          WT="$RUNNER_TEMP/snap"
+          if git ls-remote --exit-code --heads origin visual-snapshots > /dev/null; then
+            git fetch --depth 1 origin visual-snapshots
+            git worktree add "$WT" FETCH_HEAD
+          else
+            git worktree add --detach "$WT"
+            git -C "$WT" rm -rq . || true
+          fi
+          rm -rf "$WT/$DIR"
+          mkdir -p "$WT/$DIR"
+          cp -r "$RUNNER_TEMP/shots/." "$WT/$DIR/"
+          echo "{\"sha\":\"${GITHUB_SHA}\",\"branch\":\"${SRC_BRANCH}\",\"run\":\"${GITHUB_RUN_ID}\"}" > "$WT/$DIR/source.json"
+          cd "$WT"
+          git add -A
+          TREE=$(git write-tree)
+          COMMIT=$(git commit-tree "$TREE" -m "snapshots: ${SRC_BRANCH} @ ${GITHUB_SHA::7}")
+          git push -f origin "$COMMIT:refs/heads/visual-snapshots"
