@@ -9,57 +9,57 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // ============================================================================
 const CHAINS = [
   {
-    key: 'elec', label: '电子信息链', accent: '#22d3ee',
+    key: 'elec', label: '电子信息链', accent: '#6e8cff',
     position: '全球电子组装与中游元器件的绝对枢纽：手机/PC/服务器整机产能占全球过半，PCB、被动元件、显示面板份额领先；但最上游芯片设计工具与先进制程设备受制于人。',
-    stats: [['整机组装份额', '~55%', '#22d3ee'], ['中游元器件', '~45%', '#10b981'], ['先进芯片自给', '<15%', '#c41e3a'], ['断链冲击度', '极高', '#c41e3a']],
+    stats: [['整机组装份额', '~55%', '#6e8cff'], ['中游元器件', '~45%', '#6fc2ae'], ['先进芯片自给', '<15%', '#e5483b'], ['断链冲击度', '极高', '#e5483b']],
     breakpoints: [
-      ['EUV/先进制程设备', 95, '#c41e3a'],
-      ['EDA 全流程工具', 82, '#c41e3a'],
-      ['高端芯片（GPU/HBM）', 78, '#e8a317'],
-      ['半导体材料（光刻胶等）', 65, '#e8a317'],
-      ['成熟制程产能', 30, '#10b981'],
+      ['EUV/先进制程设备', 95, '#e5483b'],
+      ['EDA 全流程工具', 82, '#e5483b'],
+      ['高端芯片（GPU/HBM）', 78, '#d4a25a'],
+      ['半导体材料（光刻胶等）', 65, '#d4a25a'],
+      ['成熟制程产能', 30, '#6fc2ae'],
     ],
     backup: '成熟制程极限扩产 + Chiplet/先进封装绕道 + 国产设备「全国产线」验证；以规模与成本优势守住中低端，换取先进端爬坡时间。',
     rival: '美方出招：出口管制清单逐年加码、对盟友设备商施压（ASML/东京电子）、补贴本土建厂（CHIPS 法案）；目标是把中国锁死在 N-2 代以外。',
   },
   {
-    key: 'auto', label: '汽车链', accent: '#10b981',
+    key: 'auto', label: '汽车链', accent: '#6fc2ae',
     position: '电动化窗口期完成链位跃迁：从「市场换技术」的下游装配，跃升为电池-电机-电控全链主导者；动力电池全球份额过六成，整车出口跃居世界第一。',
-    stats: [['动力电池份额', '~62%', '#10b981'], ['整车出口', '世界第一', '#22d3ee'], ['车规芯片自给', '~10%', '#c41e3a'], ['断链冲击度', '中高', '#e8a317']],
+    stats: [['动力电池份额', '~62%', '#6fc2ae'], ['整车出口', '世界第一', '#6e8cff'], ['车规芯片自给', '~10%', '#e5483b'], ['断链冲击度', '中高', '#d4a25a']],
     breakpoints: [
-      ['车规级芯片（MCU）', 80, '#c41e3a'],
-      ['高端轴承/精密件', 60, '#e8a317'],
-      ['车载操作系统生态', 55, '#e8a317'],
-      ['电池正负极材料', 20, '#10b981'],
-      ['电机电控', 15, '#10b981'],
+      ['车规级芯片（MCU）', 80, '#e5483b'],
+      ['高端轴承/精密件', 60, '#d4a25a'],
+      ['车载操作系统生态', 55, '#d4a25a'],
+      ['电池正负极材料', 20, '#6fc2ae'],
+      ['电机电控', 15, '#6fc2ae'],
     ],
     backup: '电池链已形成「中国为中心、海外建厂为卫星」格局；车规芯片走成熟制程国产化 + 整车厂自研双轨；欧洲关税倒逼本地化建厂（匈牙利/西班牙）。',
     rival: '欧美出招：欧盟反补贴关税、美国 IRA 排除中国电池供应链、要求「去中国化」原料溯源；以市场准入为筹码逼迫技术转移与本地建厂。',
   },
   {
-    key: 'pharma', label: '医药原料链', accent: '#e8a317',
+    key: 'pharma', label: '医药原料链', accent: '#d4a25a',
     position: '全球原料药（API）与关键中间体的隐形链主：抗生素、维生素、解热镇痛类原料全球份额 60-90%；但创新药专利、高端制剂与生物药设备依赖欧美。',
-    stats: [['大宗原料药份额', '60-90%', '#e8a317'], ['维生素类', '~80%', '#10b981'], ['创新药管线', '追赶中', '#22d3ee'], ['断链冲击度', '双向', '#a78bfa']],
+    stats: [['大宗原料药份额', '60-90%', '#d4a25a'], ['维生素类', '~80%', '#6fc2ae'], ['创新药管线', '追赶中', '#6e8cff'], ['断链冲击度', '双向', '#a78bfa']],
     breakpoints: [
-      ['生物药生产设备/耗材', 75, '#c41e3a'],
-      ['创新药专利分子', 70, '#e8a317'],
-      ['高端制剂技术', 55, '#e8a317'],
-      ['大宗原料药', 10, '#10b981'],
-      ['中间体产能', 8, '#10b981'],
+      ['生物药生产设备/耗材', 75, '#e5483b'],
+      ['创新药专利分子', 70, '#d4a25a'],
+      ['高端制剂技术', 55, '#d4a25a'],
+      ['大宗原料药', 10, '#6fc2ae'],
+      ['中间体产能', 8, '#6fc2ae'],
     ],
     backup: '原料药是中国手中为数不多的「反向人质」——美欧仿制药体系离开中国 API 数月即休克；备份方向是向制剂与生物类似药上移，对冲 BIOSECURE 法案式脱钩。',
     rival: '美方出招：BIOSECURE 法案点名中国 CXO、激励 API 回流（印度 PLI 计划承接）；但成本与环保约束使回流进度远慢于立法节奏。',
   },
   {
-    key: 'mineral', label: '关键矿产链', accent: '#c41e3a',
+    key: 'mineral', label: '关键矿产链', accent: '#e5483b',
     position: '链权力最不对称的一环：稀土冶炼分离 ~90%、镓锗 ~80%、石墨 ~70%、锂钴镍精炼过半——上游矿藏未必在华，但「炼」的环节高度集中于中国。',
-    stats: [['稀土冶炼分离', '~90%', '#c41e3a'], ['镓/锗精炼', '~80%', '#e8a317'], ['锂精炼', '~65%', '#10b981'], ['断链冲击度', '反制王牌', '#c41e3a']],
+    stats: [['稀土冶炼分离', '~90%', '#e5483b'], ['镓/锗精炼', '~80%', '#d4a25a'], ['锂精炼', '~65%', '#6fc2ae'], ['断链冲击度', '反制王牌', '#e5483b']],
     breakpoints: [
-      ['高端矿用装备', 45, '#e8a317'],
-      ['海外矿权保障', 40, '#e8a317'],
-      ['部分稀缺矿源（铌/铂族）', 70, '#c41e3a'],
-      ['冶炼分离技术', 5, '#10b981'],
-      ['磁材深加工', 8, '#10b981'],
+      ['高端矿用装备', 45, '#d4a25a'],
+      ['海外矿权保障', 40, '#d4a25a'],
+      ['部分稀缺矿源（铌/铂族）', 70, '#e5483b'],
+      ['冶炼分离技术', 5, '#6fc2ae'],
+      ['磁材深加工', 8, '#6fc2ae'],
     ],
     backup: '出口管制工具箱化（镓锗锑石墨稀土逐项立法）+ 海外矿权布局（非洲/南美）+ 国家储备收放调节；「炼」的环节技术与环保壁垒构成十年级护城河。',
     rival: '美澳出招：MP Materials/Lynas 重建链条、矿产安全伙伴关系（MSP）拉盟友圈、五角大楼直接入股磁材厂；但冶炼环节重建成本高、周期以十年计。',
@@ -67,13 +67,13 @@ const CHAINS = [
   {
     key: 'grain', label: '粮食链', accent: '#a78bfa',
     position: '主粮（稻麦）基本自给、口粮绝对安全；但大豆 ~85% 依赖进口（巴西/美国/阿根廷），饲料蛋白是最大软肋——粮食安全的真实命门在豆粕与种源。',
-    stats: [['口粮自给率', '>95%', '#10b981'], ['大豆对外依存', '~85%', '#c41e3a'], ['种业自主化', '推进中', '#e8a317'], ['断链冲击度', '中等', '#e8a317']],
+    stats: [['口粮自给率', '>95%', '#6fc2ae'], ['大豆对外依存', '~85%', '#e5483b'], ['种业自主化', '推进中', '#d4a25a'], ['断链冲击度', '中等', '#d4a25a']],
     breakpoints: [
-      ['大豆/饲料蛋白', 85, '#c41e3a'],
-      ['高端种源（白羽鸡等）', 60, '#e8a317'],
-      ['部分农机核心件', 45, '#e8a317'],
-      ['化肥产能', 15, '#10b981'],
-      ['主粮产能', 5, '#10b981'],
+      ['大豆/饲料蛋白', 85, '#e5483b'],
+      ['高端种源（白羽鸡等）', 60, '#d4a25a'],
+      ['部分农机核心件', 45, '#d4a25a'],
+      ['化肥产能', 15, '#6fc2ae'],
+      ['主粮产能', 5, '#6fc2ae'],
     ],
     backup: '进口多元化（巴西替代美豆已成主轴）+ 国家粮储体系（储备量全球之最）+ 种业振兴行动 + 豆粕减量替代；用储备深度换冲击缓冲时间。',
     rival: '美方筹码弱化：中美贸易战期间大豆武器化反而加速巴西替代；粮食链是中国「去美国化」最成功的一条链。',
@@ -81,13 +81,13 @@ const CHAINS = [
   {
     key: 'logistics', label: '航运物流链', accent: '#f97316',
     position: '全球造船 ~50%、集装箱产量 ~95%、港口吞吐前十占七席、岸桥设备 ~80%——物流硬件的链主；但海运保险、结算、海峡通道控制权仍在英美体系手中。',
-    stats: [['造船完工量', '~50%', '#10b981'], ['集装箱产量', '~95%', '#22d3ee'], ['马六甲依赖', '油运 ~80%', '#c41e3a'], ['断链冲击度', '高', '#e8a317']],
+    stats: [['造船完工量', '~50%', '#6fc2ae'], ['集装箱产量', '~95%', '#6e8cff'], ['马六甲依赖', '油运 ~80%', '#e5483b'], ['断链冲击度', '高', '#d4a25a']],
     breakpoints: [
-      ['海峡通道（马六甲/霍尔木兹）', 80, '#c41e3a'],
-      ['海运保险/结算体系', 70, '#e8a317'],
-      ['高端船用发动机', 50, '#e8a317'],
-      ['港口运营网络', 20, '#10b981'],
-      ['造船产能', 8, '#10b981'],
+      ['海峡通道（马六甲/霍尔木兹）', 80, '#e5483b'],
+      ['海运保险/结算体系', 70, '#d4a25a'],
+      ['高端船用发动机', 50, '#d4a25a'],
+      ['港口运营网络', 20, '#6fc2ae'],
+      ['造船产能', 8, '#6fc2ae'],
     ],
     backup: '中欧班列 + 北极航线试探 + 瓜达尔/皮雷埃夫斯等海外港口节点 + 国产大型 LNG 船突破；通道冗余是军事级备份，平时不经济、战时定生死。',
     rival: '美方出招：301 调查针对中国造船、对中资港口节点施压（巴拿马运河两端）、USTR 拟对中国建造船舶收港口费；把物流硬件优势政治化。',
@@ -105,10 +105,10 @@ const plusOneOpt = {
   xAxis: categoryX(plusOneYears),
   yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
   series: [
-    { name: '中国（全球制造份额）', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [28.5, 28.8, 29.8, 30.2, 30.5, 30.2, 29.8, 29.5], lineStyle: { color: '#c41e3a', width: 3 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.07)' } },
-    { name: '越南', type: 'line', smooth: true, symbol: 'circle', symbolSize: 4, data: [0.6, 0.7, 0.8, 0.9, 1.1, 1.2, 1.3, 1.4], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
-    { name: '印度', type: 'line', smooth: true, symbol: 'circle', symbolSize: 4, data: [3.0, 3.0, 2.9, 3.1, 3.2, 3.3, 3.5, 3.7], lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' } },
-    { name: '墨西哥', type: 'line', smooth: true, symbol: 'circle', symbolSize: 4, data: [1.5, 1.5, 1.4, 1.5, 1.6, 1.7, 1.7, 1.8], lineStyle: { color: '#10b981', width: 2 }, itemStyle: { color: '#10b981' } },
+    { name: '中国（全球制造份额）', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [28.5, 28.8, 29.8, 30.2, 30.5, 30.2, 29.8, 29.5], lineStyle: { color: '#e5483b', width: 3 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.07)' } },
+    { name: '越南', type: 'line', smooth: true, symbol: 'circle', symbolSize: 4, data: [0.6, 0.7, 0.8, 0.9, 1.1, 1.2, 1.3, 1.4], lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' } },
+    { name: '印度', type: 'line', smooth: true, symbol: 'circle', symbolSize: 4, data: [3.0, 3.0, 2.9, 3.1, 3.2, 3.3, 3.5, 3.7], lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' } },
+    { name: '墨西哥', type: 'line', smooth: true, symbol: 'circle', symbolSize: 4, data: [1.5, 1.5, 1.4, 1.5, 1.6, 1.7, 1.7, 1.8], lineStyle: { color: '#6fc2ae', width: 2 }, itemStyle: { color: '#6fc2ae' } },
   ],
 };
 
@@ -124,11 +124,11 @@ const stressOpt = {
     type: 'bar', barWidth: 16, itemStyle: { borderRadius: 3 },
     label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 },
     data: [
-      { value: 88, itemStyle: { color: '#c41e3a' } },
-      { value: 62, itemStyle: { color: '#e8a317' } },
+      { value: 88, itemStyle: { color: '#e5483b' } },
+      { value: 62, itemStyle: { color: '#d4a25a' } },
       { value: 75, itemStyle: { color: '#a78bfa' } },
       { value: 70, itemStyle: { color: '#a78bfa' } },
-      { value: 92, itemStyle: { color: '#c41e3a' } },
+      { value: 92, itemStyle: { color: '#e5483b' } },
     ],
   }],
 };
@@ -145,15 +145,15 @@ const resilienceRadarOpt = {
     ],
     radius: '62%',
     axisName: { color: LABEL.color, fontSize: 10 },
-    splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-    axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+    splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
+    axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
     splitArea: { show: false },
   },
   series: [{
     type: 'radar',
     data: [
-      { value: [68, 82, 70, 55, 35, 75], name: '中国', lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.12)' } },
-      { value: [72, 50, 45, 78, 90, 80], name: '美国', lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.10)' } },
+      { value: [68, 82, 70, 55, 35, 75], name: '中国', lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.12)' } },
+      { value: [72, 50, 45, 78, 90, 80], name: '美国', lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' }, areaStyle: { color: 'rgba(110, 140, 255,0.10)' } },
     ],
   }],
 };
@@ -170,12 +170,12 @@ const stickinessOpt = {
     type: 'bar', barWidth: 14, itemStyle: { borderRadius: 3 },
     label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 },
     data: [
-      { value: 60, itemStyle: { color: '#e8a317' } },
-      { value: 78, itemStyle: { color: '#10b981' } },
-      { value: 88, itemStyle: { color: '#10b981' } },
-      { value: 82, itemStyle: { color: '#10b981' } },
-      { value: 90, itemStyle: { color: '#22d3ee' } },
-      { value: 92, itemStyle: { color: '#22d3ee' } },
+      { value: 60, itemStyle: { color: '#d4a25a' } },
+      { value: 78, itemStyle: { color: '#6fc2ae' } },
+      { value: 88, itemStyle: { color: '#6fc2ae' } },
+      { value: 82, itemStyle: { color: '#6fc2ae' } },
+      { value: 90, itemStyle: { color: '#6e8cff' } },
+      { value: 92, itemStyle: { color: '#6e8cff' } },
     ],
   }],
 };
@@ -187,8 +187,8 @@ const supplyRiskBar = stackedBarOpt({
   categories: ['半导体/装备', '稀土/材料', '医药', '汽车电子', '化工', '能源装备'],
   horizontal: true,
   series: [
-    { name: '国内供给', data: [45, 72, 88, 38, 35, 62], itemStyle: { color: '#10b981', borderRadius: [3, 0, 0, 3] } },
-    { name: '进口依存', data: [55, 28, 12, 62, 65, 38], itemStyle: { color: '#e8a317', borderRadius: [0, 3, 3, 0] } },
+    { name: '国内供给', data: [45, 72, 88, 38, 35, 62], itemStyle: { color: '#6fc2ae', borderRadius: [3, 0, 0, 3] } },
+    { name: '进口依存', data: [55, 28, 12, 62, 65, 38], itemStyle: { color: '#d4a25a', borderRadius: [0, 3, 3, 0] } },
   ],
 });
 const chokeBar = {
@@ -196,11 +196,11 @@ const chokeBar = {
   xAxis: valueY({ max: 100 }),
   yAxis: { type: 'category', data: ['成熟制程产能', '特种材料', '工业软件', 'EDA 全流程', 'EUV 光刻机'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 11 } },
   series: [{ type: 'bar', data: [
-    { value: 45, itemStyle: { color: '#10b981' } },
-    { value: 70, itemStyle: { color: '#e8a317' } },
-    { value: 75, itemStyle: { color: '#e8a317' } },
-    { value: 82, itemStyle: { color: '#e8a317' } },
-    { value: 95, itemStyle: { color: '#c41e3a' } },
+    { value: 45, itemStyle: { color: '#6fc2ae' } },
+    { value: 70, itemStyle: { color: '#d4a25a' } },
+    { value: 75, itemStyle: { color: '#d4a25a' } },
+    { value: 82, itemStyle: { color: '#d4a25a' } },
+    { value: 95, itemStyle: { color: '#e5483b' } },
   ], barWidth: 14, itemStyle: { borderRadius: 3 }, label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 } }],
 };
 const resilienceLine = {
@@ -209,8 +209,8 @@ const resilienceLine = {
   xAxis: categoryX(['2020', '2021', '2022', '2023', '2024', '2025(E)']),
   yAxis: valueY({ max: 100 }),
   series: [
-    { name: '国产替代指数', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [38, 44, 52, 58, 64, 70], lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.08)' } },
-    { name: '多元采购覆盖', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [30, 38, 50, 60, 68, 74], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
+    { name: '国产替代指数', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [38, 44, 52, 58, 64, 70], lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.08)' } },
+    { name: '多元采购覆盖', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [30, 38, 50, 60, 68, 74], lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' } },
   ],
 };
 
@@ -218,35 +218,35 @@ const resilienceLine = {
 // 七、策略选择器（保留扩写）
 // ============================================================================
 const STRATEGIES = [
-  { key: 'stock', label: '库存冗余', accent: '#e8a317', desc: '战略储备 + 安全库存拉长周转天数，换取极端情景下的可启动性——韧性税的物理形态。原油/粮食/铜钴锂的国家储备是「时间银行」：断供不可怕，可怕的是没有缓冲期内的反应能力。' },
-  { key: 'friend', label: '友岸外包', accent: '#22d3ee', desc: '在合规框架下分散采购国别，降低单一司法辖区的断供概率。但中国版「友岸」名单短于美国版——真正可托付的法域有限，故更多表现为「多岸」而非「友岸」：巴西大豆、俄国能源、中亚矿产、东盟中转。' },
-  { key: 'local', label: '国产替代', accent: '#10b981', desc: '成熟制程与材料端先行，先进制程依赖研发摊销与生态迁移——举国体制 + 市场订单双轮。替代的真实门槛不在「造得出」而在「用得起、敢于用」：良率、成本、生态三关，缺一不可。' },
+  { key: 'stock', label: '库存冗余', accent: '#d4a25a', desc: '战略储备 + 安全库存拉长周转天数，换取极端情景下的可启动性——韧性税的物理形态。原油/粮食/铜钴锂的国家储备是「时间银行」：断供不可怕，可怕的是没有缓冲期内的反应能力。' },
+  { key: 'friend', label: '友岸外包', accent: '#6e8cff', desc: '在合规框架下分散采购国别，降低单一司法辖区的断供概率。但中国版「友岸」名单短于美国版——真正可托付的法域有限，故更多表现为「多岸」而非「友岸」：巴西大豆、俄国能源、中亚矿产、东盟中转。' },
+  { key: 'local', label: '国产替代', accent: '#6fc2ae', desc: '成熟制程与材料端先行，先进制程依赖研发摊销与生态迁移——举国体制 + 市场订单双轮。替代的真实门槛不在「造得出」而在「用得起、敢于用」：良率、成本、生态三关，缺一不可。' },
 ];
 
 // ============================================================================
 // 八、链权演进时间线（TimelineBar）
 // ============================================================================
 const TIMELINE = [
-  { period: '2001-2017', title: '世界工厂成型', accent: '#10b981', desc: '入世后以成本与规模优势吸纳全球产能转移，形成「集群引力」：珠三角电子、长三角装备、华北化工。这一阶段供应链是纯经济议题，效率是唯一标尺——没有人讨论「韧性」。' },
-  { period: '2018-2019', title: '贸易战关税冲击', accent: '#e8a317', desc: '301 关税首次把供应链政治化。中兴/华为事件暴露「芯片人质」结构；「中国+1」从企业避险口号变为董事会议题。大豆武器化反向教育了中国：对手会用，自己也要会用。' },
-  { period: '2020-2021', title: '疫情断链警示', accent: '#22d3ee', desc: '全球断链反而凸显中国产能的不可替代性——率先复工承接了订单回流，制造份额不降反升。但口罩/呼吸机的全球争夺也让各国意识到：关键物资的产地集中即战略脆弱。' },
+  { period: '2001-2017', title: '世界工厂成型', accent: '#6fc2ae', desc: '入世后以成本与规模优势吸纳全球产能转移，形成「集群引力」：珠三角电子、长三角装备、华北化工。这一阶段供应链是纯经济议题，效率是唯一标尺——没有人讨论「韧性」。' },
+  { period: '2018-2019', title: '贸易战关税冲击', accent: '#d4a25a', desc: '301 关税首次把供应链政治化。中兴/华为事件暴露「芯片人质」结构；「中国+1」从企业避险口号变为董事会议题。大豆武器化反向教育了中国：对手会用，自己也要会用。' },
+  { period: '2020-2021', title: '疫情断链警示', accent: '#6e8cff', desc: '全球断链反而凸显中国产能的不可替代性——率先复工承接了订单回流，制造份额不降反升。但口罩/呼吸机的全球争夺也让各国意识到：关键物资的产地集中即战略脆弱。' },
   { period: '2022-2024', title: '去风险/友岸外包', accent: '#a78bfa', desc: '俄乌战争 + 芯片法案 + 对华管制升级，「De-risking」取代「Decoupling」成为西方官方话语。转移真实发生但低于预期：越南/墨西哥承接的多为末端组装，中间品仍从中国进口——「转移」很大程度上是「绕道」。' },
-  { period: '2024-至今', title: '双循环 + 链主备份体系', accent: '#c41e3a', desc: '中国转入体系化应对：链长制逐链建档、出口管制工具箱化（镓锗锑稀土）、备份系统「极端情景可启动」标准化。供应链从经济议题完成向安全议题的范式转换——链权力进入双向威慑均势期。' },
+  { period: '2024-至今', title: '双循环 + 链主备份体系', accent: '#e5483b', desc: '中国转入体系化应对：链长制逐链建档、出口管制工具箱化（镓锗锑稀土）、备份系统「极端情景可启动」标准化。供应链从经济议题完成向安全议题的范式转换——链权力进入双向威慑均势期。' },
 ];
 
 // ============================================================================
 // 九、断链清单 / 友岸权衡（静态数据）
 // ============================================================================
 const chokeList = [
-  ['EUV 光刻机', '极高', '#c41e3a'],
-  ['EDA 全流程', '高', '#e8a317'],
-  ['成熟制程产能', '中等', '#10b981'],
+  ['EUV 光刻机', '极高', '#e5483b'],
+  ['EDA 全流程', '高', '#d4a25a'],
+  ['成熟制程产能', '中等', '#6fc2ae'],
 ];
 
 const TRADEOFF = [
-  { t: '成本侧 · 韧性税', c: '#e8a317', d: '友岸/近岸产能的单位成本普遍高于中国 15-40%（示意）：墨西哥人工 + 治安成本、越南基建与电力瓶颈、印度营商摩擦。重复建设的资本开支最终由消费者与股东分摊——通胀的供应链成分。' },
-  { t: '收益侧 · 断供期权', c: '#22d3ee', d: '多元化买的不是日常效率，是极端情景下的「可启动性」期权。期权平时一直在付费（库存、双供应商、认证成本），只在断链发生的那一刻兑现——而决策者永远无法事前证明这笔保费是否值得。' },
-  { t: '现实解 · 中国+1 ≠ 中国-1', c: '#10b981', d: '多数跨国企业的真实选择是「在中国为中国、在外为西方」的双轨制：中国产能服务中国与非美市场，新产能服务美欧合规市场。结果不是中国份额坍塌，而是全球供应链总成本系统性抬升。' },
+  { t: '成本侧 · 韧性税', c: '#d4a25a', d: '友岸/近岸产能的单位成本普遍高于中国 15-40%（示意）：墨西哥人工 + 治安成本、越南基建与电力瓶颈、印度营商摩擦。重复建设的资本开支最终由消费者与股东分摊——通胀的供应链成分。' },
+  { t: '收益侧 · 断供期权', c: '#6e8cff', d: '多元化买的不是日常效率，是极端情景下的「可启动性」期权。期权平时一直在付费（库存、双供应商、认证成本），只在断链发生的那一刻兑现——而决策者永远无法事前证明这笔保费是否值得。' },
+  { t: '现实解 · 中国+1 ≠ 中国-1', c: '#6fc2ae', d: '多数跨国企业的真实选择是「在中国为中国、在外为西方」的双轨制：中国产能服务中国与非美市场，新产能服务美欧合规市场。结果不是中国份额坍塌，而是全球供应链总成本系统性抬升。' },
 ];
 
 // ============================================================================
@@ -281,15 +281,15 @@ export default function Page() {
     <div>
       <PageHeader badge="Supply Chain · 链权力" title="产业链备份 · 库存韧性 · 链权博弈" subtitle="供应链 = 和平时期的威慑武器 —— 中国位置 · 断点风险 · 备份体系 · 黏性拉锯" />
       <IntroCard>
-        供应链已从效率议题变成<strong style={{ color: 'var(--china-red)' }}>权力议题</strong>：谁控制断点，谁就握有和平时期的威慑筹码。中国的应对是三层叠加——<strong style={{ color: '#10b981' }}>国产替代</strong>（终局解）、<strong style={{ color: '#e8a317' }}>库存冗余</strong>（时间银行）、<strong style={{ color: '#22d3ee' }}>通道多元</strong>（空间分散）；同时把自身链主地位（稀土/原料药/造船）工具箱化为反向威慑。冗余是新效率，黏性是新护城河——本页全部为示意值，用于呈现分析框架。
+        供应链已从效率议题变成<strong style={{ color: 'var(--china-red)' }}>权力议题</strong>：谁控制断点，谁就握有和平时期的威慑筹码。中国的应对是三层叠加——<strong style={{ color: '#6fc2ae' }}>国产替代</strong>（终局解）、<strong style={{ color: '#d4a25a' }}>库存冗余</strong>（时间银行）、<strong style={{ color: '#6e8cff' }}>通道多元</strong>（空间分散）；同时把自身链主地位（稀土/原料药/造船）工具箱化为反向威慑。冗余是新效率，黏性是新护城河——本页全部为示意值，用于呈现分析框架。
       </IntroCard>
 
       {/* 概览 Stat */}
       <StatGrid className="mb-6">
-        <Stat value="~30%" label="全球制造业增加值份额（示意）" accent="#c41e3a" />
-        <Stat value="~20%" label="全球中间品出口占比（示意）" accent="#22d3ee" />
-        <Stat value="200+" label="国家级先进制造业集群/基地（示意）" accent="#10b981" />
-        <Stat value="60%+" label="重点链路备份覆盖率（目标 · 示意）" accent="#e8a317" />
+        <Stat value="~30%" label="全球制造业增加值份额（示意）" accent="#e5483b" />
+        <Stat value="~20%" label="全球中间品出口占比（示意）" accent="#6e8cff" />
+        <Stat value="200+" label="国家级先进制造业集群/基地（示意）" accent="#6fc2ae" />
+        <Stat value="60%+" label="重点链路备份覆盖率（目标 · 示意）" accent="#d4a25a" />
       </StatGrid>
 
       {/* ============ 链路选择器：六大关键链路 ============ */}
@@ -301,7 +301,7 @@ export default function Page() {
         </div>
         <Grid cols={4} className="mb-4">
           {chain.stats.map(([label, value, c]) => (
-            <div key={label} className="os-card p-3" style={{ background: 'rgba(148,163,184,0.05)' }}>
+            <div key={label} className="os-card p-3" style={{ background: 'rgba(162, 156, 145,0.05)' }}>
               <div className="text-base font-bold mono" style={{ color: c }}>{value}</div>
               <div className="text-[11px] mt-0.5" style={{ color: 'var(--text-tertiary)' }}>{label}</div>
             </div>
@@ -313,12 +313,12 @@ export default function Page() {
             <EChart option={chainBreakOpt} style={{ height: 210 }} />
           </div>
           <div className="space-y-3">
-            <div className="os-card p-3" style={{ background: 'rgba(16,185,129,0.06)', borderLeft: '3px solid #10b981' }}>
-              <div className="text-xs font-semibold mb-1" style={{ color: '#10b981' }}>备份策略</div>
+            <div className="os-card p-3" style={{ background: 'rgba(111, 194, 174,0.06)', borderLeft: '3px solid #6fc2ae' }}>
+              <div className="text-xs font-semibold mb-1" style={{ color: '#6fc2ae' }}>备份策略</div>
               <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{chain.backup}</p>
             </div>
-            <div className="os-card p-3" style={{ background: 'rgba(196,30,58,0.06)', borderLeft: '3px solid #c41e3a' }}>
-              <div className="text-xs font-semibold mb-1" style={{ color: '#c41e3a' }}>对手出招</div>
+            <div className="os-card p-3" style={{ background: 'rgba(229, 72, 59,0.06)', borderLeft: '3px solid #e5483b' }}>
+              <div className="text-xs font-semibold mb-1" style={{ color: '#e5483b' }}>对手出招</div>
               <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{chain.rival}</p>
             </div>
           </div>
@@ -336,7 +336,7 @@ export default function Page() {
         <Card title="断链情景压力测试 · 断供冲击指数（示意）">
           <EChart option={stressOpt} style={{ height: 250 }} />
           <p className="text-[11px] leading-relaxed mt-2" style={{ color: 'var(--text-tertiary)' }}>
-            <span style={{ color: '#c41e3a' }}>红</span> = 系统性冲击（无短期替代）；<span style={{ color: '#a78bfa' }}>紫</span> = 中国手中的反制选项（冲击对手）；<span style={{ color: '#e8a317' }}>黄</span> = 可用储备 + 多元化缓冲。注意：压力测试的真正变量不是冲击峰值，而是缓冲库存能撑多少个月。
+            <span style={{ color: '#e5483b' }}>红</span> = 系统性冲击（无短期替代）；<span style={{ color: '#a78bfa' }}>紫</span> = 中国手中的反制选项（冲击对手）；<span style={{ color: '#d4a25a' }}>黄</span> = 可用储备 + 多元化缓冲。注意：压力测试的真正变量不是冲击峰值，而是缓冲库存能撑多少个月。
           </p>
         </Card>
       </Grid>
@@ -387,7 +387,7 @@ export default function Page() {
         <Card title="典型卡脖子环节 · 定性分级">
           <div className="space-y-2">
             {chokeList.map(([name, level, c]) => (
-              <div key={name} className="flex items-center justify-between py-2 px-3 rounded-lg" style={{ background: 'rgba(148,163,184,0.06)' }}>
+              <div key={name} className="flex items-center justify-between py-2 px-3 rounded-lg" style={{ background: 'rgba(162, 156, 145,0.06)' }}>
                 <span className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>{name}</span>
                 <span className="text-xs font-bold mono px-2 py-0.5 rounded" style={{ color: c, background: `${c}1a` }}>{level}</span>
               </div>

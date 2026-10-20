@@ -16,26 +16,26 @@ import { shijianNavCompare, shijianWorldNavCompare } from '../lib/shijian/navOrd
 // ============================================================================
 
 export const GROUPS = [
-  { id: 'home', label: '看板', desc: '总揽 · 实时大屏', accent: '#22d3ee' },
-  { id: 'cognition', label: '认知内核', desc: '思想工具 · 理论模型', accent: '#c41e3a' },
-  { id: 'lens', label: '内容透镜', desc: '四大支柱', accent: '#22d3ee' },
-  { id: 'institutions', label: '制度与改革', desc: '权力 · 治理 · 法治', accent: '#e8a317' },
-  { id: 'depthtopics', label: '深度专题', desc: '已迁移', accent: '#10b981' },
-  { id: 'techtopics', label: '科技专题', desc: '科技树 · 深挖', accent: '#22d3ee' },
-  { id: 'society', label: '社会与民生', desc: '人口 · 医保 · 住房', accent: '#f0abfc' },
-  { id: 'industry', label: '产业与制造', desc: '能源 · 算力 · 链', accent: '#fb923c' },
-  { id: 'finance', label: '货币金融', desc: '人民币 · 债务', accent: '#d4af37' },
-  { id: 'region', label: '区域与全球化', desc: '板块 · 海洋 · 资源', accent: '#8b5cf6' },
+  { id: 'home', label: '看板', desc: '总揽 · 实时大屏', accent: '#6e8cff' },
+  { id: 'cognition', label: '认知内核', desc: '思想工具 · 理论模型', accent: '#e5483b' },
+  { id: 'lens', label: '内容透镜', desc: '四大支柱', accent: '#6e8cff' },
+  { id: 'institutions', label: '制度与改革', desc: '权力 · 治理 · 法治', accent: '#d4a25a' },
+  { id: 'depthtopics', label: '深度专题', desc: '已迁移', accent: '#6fc2ae' },
+  { id: 'techtopics', label: '科技专题', desc: '科技树 · 深挖', accent: '#6e8cff' },
+  { id: 'society', label: '社会与民生', desc: '人口 · 医保 · 住房', accent: '#d9a7d6' },
+  { id: 'industry', label: '产业与制造', desc: '能源 · 算力 · 链', accent: '#c07a4a' },
+  { id: 'finance', label: '货币金融', desc: '人民币 · 债务', accent: '#d9b26a' },
+  { id: 'region', label: '区域与全球化', desc: '板块 · 海洋 · 资源', accent: '#b07cc6' },
   { id: 'heshan', label: '重构河山', desc: '区划 · 财政 · 建省', accent: '#9e2b25' },
-  { id: 'security', label: '安全与国防', desc: '军事 · 台海 · 大安全', accent: '#c41e3a' },
-  { id: 'population', label: '中国人群分析', desc: '人群画像总图谱 · 世代 · 阶层', accent: '#ec4899' },
+  { id: 'security', label: '安全与国防', desc: '军事 · 台海 · 大安全', accent: '#e5483b' },
+  { id: 'population', label: '中国人群分析', desc: '人群画像总图谱 · 世代 · 阶层', accent: '#c9719b' },
   { id: 'shijian', label: '史鉴·中华', desc: '五柱 · 治乱 · 古今对照', accent: '#a83b2c' },
   { id: 'shijianWorld', label: '史鉴·世界', desc: '比较历史 · 主题带 · 中西映射', accent: '#4a6d7c' },
-  { id: 'scholars', label: '学者专栏', desc: '中国学者 · 观点看板', accent: '#d4af37' },
-  { id: 'sim', label: '推演与训练', desc: '沙盒 · 内参', accent: '#d4af37' },
-  { id: 'governance', label: '治理结构', desc: '观象台 · 归因 · 信号 · 三力', accent: '#79a496' },
-  { id: 'huangfeizhai', label: '荒废斋', desc: '私人信息总入口 · 朱砂封印', accent: '#b18a52' },
-  { id: 'foundation', label: '数据与系统', desc: '底座', accent: '#64748b' },
+  { id: 'scholars', label: '学者专栏', desc: '中国学者 · 观点看板', accent: '#d9b26a' },
+  { id: 'sim', label: '推演与训练', desc: '沙盒 · 内参', accent: '#d9b26a' },
+  { id: 'governance', label: '治理结构', desc: '观象台 · 归因 · 信号 · 三力', accent: '#6fc2ae' },
+  { id: 'huangfeizhai', label: '荒废斋', desc: '私人信息总入口 · 朱砂封印', accent: '#d4a25a' },
+  { id: 'foundation', label: '数据与系统', desc: '底座', accent: '#8a8578' },
 ];
 
 export const MODULES = [
@@ -43,6 +43,13 @@ export const MODULES = [
     id: 'dashboard', path: '/dashboard', group: 'home',
     title: '中枢看板', subtitle: '十五五开局 · 全局总揽 · H1 读数', icon: 'LayoutDashboard',
     component: lazy(() => import('../modules/dashboard/Page.jsx')),
+  },
+  {
+    id: 'workspace', path: '/workspace', group: 'home',
+    title: '我的工作台', subtitle: '收藏 · 关注指标 · 最近 · 笔记', icon: 'LayoutGrid',
+    // 侧栏「我的」分区与手机 Dock 已有固定入口
+    navHidden: true,
+    component: lazy(() => import('../modules/workspace/Page.jsx')),
   },
   {
     id: 'live-feeds', path: '/live-feeds', group: 'home',
@@ -56,7 +63,7 @@ export const MODULES = [
   },
   {
     id: 'econdash', path: '/econ-dashboard', group: 'home',
-    title: '经济大盘', subtitle: '三次产业 · 金丝雀 · 2026 年 1–8 月', icon: 'LineChart',
+    title: '经济大盘', subtitle: '三次产业 · 金丝雀 · 2026 年前三季度', icon: 'LineChart',
     component: lazy(() => import('../modules/econdash/Page.jsx')),
   },
   {
@@ -288,7 +295,7 @@ export const MODULES = [
   },
   {
     id: 'unifiedMarket', path: '/unified-market', group: 'institutions',
-    title: '统一大市场', subtitle: '五个统一 · 破除壁垒 · 要素流通', icon: 'Store', accent: '#e8a317',
+    title: '统一大市场', subtitle: '五个统一 · 破除壁垒 · 要素流通', icon: 'Store', accent: '#d4a25a',
     component: lazy(() => import('../modules/unifiedMarket/Page.jsx')),
   },
   { id: 'demographic', path: '/demographic', group: 'society', title: '人口结构', subtitle: '负增长 · 育儿补贴 · 老龄化', icon: 'Users', component: lazy(() => import('../modules/demographic/Page.jsx')) },
@@ -297,9 +304,9 @@ export const MODULES = [
   { id: 'socialgov', path: '/socialgov', group: 'society', title: '基层治理', subtitle: '网格管理 · 综治中心 · 枫桥经验', icon: 'LayoutGrid', component: lazy(() => import('../modules/socialgov/Page.jsx')) },
   { id: 'housing', path: '/housing', group: 'society', title: '住房地产', subtitle: '行业周期 · 保障房 · 三大工程', icon: 'Home', component: lazy(() => import('../modules/housing/Page.jsx')) },
   { id: 'education', path: '/education', group: 'society', title: '教育体系', subtitle: '普职分流 · 高考改革 · 人才培养', icon: 'GraduationCap', component: lazy(() => import('../modules/education/Page.jsx')) },
-  { id: 'consumption', path: '/consumption', group: 'society', title: '扩大内需', subtitle: '消费率 · 服务化 · 以旧换新', icon: 'ShoppingCart', accent: '#c41e3a', component: lazy(() => import('../modules/consumption/Page.jsx')) },
-  { id: 'silverEconomy', path: '/silver-economy', group: 'society', title: '银发经济', subtitle: '9073 · 养老服务 · 适老改造', icon: 'HeartHandshake', accent: '#8b5cf6', component: lazy(() => import('../modules/silverEconomy/Page.jsx')) },
-  { id: 'fertilitySupport', path: '/fertility-support', group: 'society', title: '生育支持', subtitle: '生育补贴 · 普惠托育 · 友好社会', icon: 'Baby', accent: '#ec4899', component: lazy(() => import('../modules/fertilitySupport/Page.jsx')) },
+  { id: 'consumption', path: '/consumption', group: 'society', title: '扩大内需', subtitle: '消费率 · 服务化 · 以旧换新', icon: 'ShoppingCart', accent: '#e5483b', component: lazy(() => import('../modules/consumption/Page.jsx')) },
+  { id: 'silverEconomy', path: '/silver-economy', group: 'society', title: '银发经济', subtitle: '9073 · 养老服务 · 适老改造', icon: 'HeartHandshake', accent: '#b07cc6', component: lazy(() => import('../modules/silverEconomy/Page.jsx')) },
+  { id: 'fertilitySupport', path: '/fertility-support', group: 'society', title: '生育支持', subtitle: '生育补贴 · 普惠托育 · 友好社会', icon: 'Baby', accent: '#c9719b', component: lazy(() => import('../modules/fertilitySupport/Page.jsx')) },
   { id: 'tcmHealth', path: '/tcm-health', group: 'society', title: '中医药', subtitle: '重大工程 · 传承创新 · 治未病', icon: 'Flower2', component: lazy(() => import('../modules/tcmHealth/Page.jsx')) },
   {
     id: 'renqunTupu',
@@ -317,7 +324,7 @@ export const MODULES = [
     title: '荒废斋',
     subtitle: '私人信息总入口 · 总览',
     icon: 'Lock',
-    accent: '#b18a52',
+    accent: '#d4a25a',
     component: lazy(() => import('../modules/huangfeizhai/Page.jsx')),
   },
   {
@@ -327,7 +334,7 @@ export const MODULES = [
     title: '决策复盘',
     subtitle: '超个体 · 四层垫子 · 信号灯联动',
     icon: 'ClipboardCheck',
-    accent: '#b18a52',
+    accent: '#d4a25a',
     component: lazy(() => import('../modules/personalReview/Page.jsx')),
   },
   {
@@ -357,7 +364,7 @@ export const MODULES = [
     title: '私享切片',
     subtitle: '李贺 / Hayden · 迁移日志 · 自画像',
     icon: 'UserCircle',
-    accent: '#79a496',
+    accent: '#6fc2ae',
     component: lazy(() => import('../modules/me/Page.jsx')),
   },
   {
@@ -877,11 +884,11 @@ export const MODULES = [
   { id: 'infrastructure', path: '/infrastructure', group: 'industry', title: '基础设施', subtitle: '新老基建 · 算力 · 十五五', icon: 'Construction', component: lazy(() => import('../modules/infrastructure/Page.jsx')) },
   { id: 'megaprojects', path: '/megaprojects', group: 'industry', title: '超级工程', subtitle: '多维ROI · 国家账本 · 战略投资', icon: 'Hammer', component: lazy(() => import('../modules/megaprojects/Page.jsx')) },
   { id: 'space', path: '/space', group: 'industry', title: '航天产业', subtitle: '北斗组网 · 商业航天 · 深空探测', icon: 'Satellite', component: lazy(() => import('../modules/space/Page.jsx')) },
-  { id: 'lowAltitude', path: '/low-altitude', group: 'industry', title: '低空经济', subtitle: 'eVTOL · 无人机 · 通用航空', icon: 'PlaneTakeoff', accent: '#22d3ee', component: lazy(() => import('../modules/lowAltitude/Page.jsx')) },
+  { id: 'lowAltitude', path: '/low-altitude', group: 'industry', title: '低空经济', subtitle: 'eVTOL · 无人机 · 通用航空', icon: 'PlaneTakeoff', accent: '#6e8cff', component: lazy(() => import('../modules/lowAltitude/Page.jsx')) },
   { id: 'medequipment', path: '/medequipment', group: 'industry', title: '医疗装备', subtitle: '高端影像 · 进口替代 · 自主器械', icon: 'HeartPulse', component: lazy(() => import('../modules/medequipment/Page.jsx')) },
   { id: 'tourism', path: '/tourism', group: 'industry', title: '文旅消费', subtitle: '入境旅游 · 区域品牌 · 消费升级', icon: 'Luggage', component: lazy(() => import('../modules/tourism/Page.jsx')) },
   { id: 'finance', path: '/finance-system', group: 'finance', title: '金融系统', subtitle: '系统风险 · 宏观审慎 · 金融安全', icon: 'Landmark', component: lazy(() => import('../modules/finance/Page.jsx')) },
-  { id: 'marketPulse', path: '/market-pulse', group: 'finance', title: '全球资产脉搏', subtitle: '股市 · 债市 · 汇市 · 大宗', icon: 'Activity', accent: '#22d3ee', component: lazy(() => import('../modules/marketPulse/Page.jsx')) },
+  { id: 'marketPulse', path: '/market-pulse', group: 'finance', title: '全球资产脉搏', subtitle: '股市 · 债市 · 汇市 · 大宗', icon: 'Activity', accent: '#6e8cff', component: lazy(() => import('../modules/marketPulse/Page.jsx')) },
   { id: 'capitalMarket', path: '/capital-market', group: 'finance', title: '资本市场', subtitle: '耐心资本 · 注册制 · 创投', icon: 'TrendingUp', component: lazy(() => import('../modules/capitalMarket/Page.jsx')) },
   { id: 'financeRmb', path: '/rmb', group: 'finance', title: '人民币国际化', subtitle: 'CIPS · e-CNY · 跨境结算', icon: 'CircleDollarSign', component: lazy(() => import('../modules/financeRmb/Page.jsx')) },
   { id: 'fdi', path: '/fdi', group: 'finance', title: '跨境投资', subtitle: '负面清单 · 双向流动 · 外资准入', icon: 'ArrowLeftRight', component: lazy(() => import('../modules/fdi/Page.jsx')) },
@@ -895,19 +902,19 @@ export const MODULES = [
   {
     id: 'jilinChangchun', path: '/jilin-changchun', group: 'region',
     title: '吉林&长春政经', subtitle: '事件锚点 · 七维台账 · 首位度', icon: 'Building2',
-    accent: '#8b5cf6',
+    accent: '#b07cc6',
     component: lazy(() => import('../modules/jilinChangchun/Page.jsx')),
   },
   {
     id: 'japanLostDecades', path: '/japan-lost-decades', group: 'region',
     title: '中日比较·失去的三十年', subtitle: '阶段对位 · 九维切片 · 日本化分叉', icon: 'GitCompare',
-    accent: '#e8a317',
+    accent: '#d4a25a',
     component: lazy(() => import('../modules/japanLostDecades/Page.jsx')),
   },
   {
     id: 'vietnamCompare', path: '/vietnam-compare', group: 'region',
     title: '中越比较研究', subtitle: '阶段对位 · 九维切片 · 竞争互补', icon: 'ArrowLeftRight',
-    accent: '#e8a317',
+    accent: '#d4a25a',
     component: lazy(() => import('../modules/vietnamCompare/Page.jsx')),
   },
   { id: 'marine', path: '/marine', group: 'region', title: '海洋经济', subtitle: '海洋权益 · 船舶制造 · 深海开发', icon: 'Anchor', component: lazy(() => import('../modules/marine/Page.jsx')) },
@@ -939,8 +946,8 @@ export const MODULES = [
   { id: 'npf', path: '/npf', group: 'techtopics', title: '新质生产力', subtitle: '未来产业 · 全要素率 · 技术跃迁', icon: 'Rocket', component: lazy(() => import('../modules/npf/Page.jsx')) },
   { id: 'bio', path: '/bio', group: 'techtopics', title: '生物医药', subtitle: '创新药械 · 生物安全 · 出海授权', icon: 'Dna', component: lazy(() => import('../modules/bio/Page.jsx')) },
   { id: 'neural', path: '/neural', group: 'techtopics', title: '脑机接口', subtitle: '神经接口 · 数据主权 · 人机融合', icon: 'Brain', component: lazy(() => import('../modules/neural/Page.jsx')) },
-  { id: 'futureIndustry', path: '/future-industry', group: 'techtopics', title: '未来产业', subtitle: '具身智能 · 可控聚变 · 生物制造', icon: 'Telescope', accent: '#22d3ee', component: lazy(() => import('../modules/futureIndustry/Page.jsx')) },
-  { id: 'eduSciTalent', path: '/edu-sci-talent', group: 'techtopics', title: '教科人才', subtitle: '教育链 · 科技链 · 人才链', icon: 'BookOpenCheck', accent: '#10b981', component: lazy(() => import('../modules/eduSciTalent/Page.jsx')) },
+  { id: 'futureIndustry', path: '/future-industry', group: 'techtopics', title: '未来产业', subtitle: '具身智能 · 可控聚变 · 生物制造', icon: 'Telescope', accent: '#6e8cff', component: lazy(() => import('../modules/futureIndustry/Page.jsx')) },
+  { id: 'eduSciTalent', path: '/edu-sci-talent', group: 'techtopics', title: '教科人才', subtitle: '教育链 · 科技链 · 人才链', icon: 'BookOpenCheck', accent: '#6fc2ae', component: lazy(() => import('../modules/eduSciTalent/Page.jsx')) },
   {
     id: 'military', path: '/military', group: 'security',
     title: '军事力量', subtitle: '战区联合 · 主战装备 · 全球基地', icon: 'Shield',
@@ -963,7 +970,7 @@ export const MODULES = [
   },
   {
     id: 'publicSafety', path: '/public-safety', group: 'security',
-    title: '公共安全', subtitle: '防灾减灾 · 应急管理 · 韧性城市', icon: 'Siren', accent: '#c41e3a',
+    title: '公共安全', subtitle: '防灾减灾 · 应急管理 · 韧性城市', icon: 'Siren', accent: '#e5483b',
     component: lazy(() => import('../modules/publicSafety/Page.jsx')),
   },
   {
@@ -2157,7 +2164,7 @@ export const MODULES = [
     title: '观象台',
     subtitle: '世界→中国→同类→我 · 2026 H1 判读',
     icon: 'Telescope',
-    accent: '#b18a52',
+    accent: '#d4a25a',
     component: lazy(() => import('../modules/governanceHub/Page.jsx')),
   },
   {
@@ -2328,6 +2335,11 @@ export const MODULES = [
     id: 'glossary', path: '/glossary', group: 'foundation',
     title: '术语词典', subtitle: '专有名词 · 调研术语 · 模块交叉链接', icon: 'BookOpen',
     component: lazy(() => import('../modules/glossary/Page.jsx')),
+  },
+  {
+    id: 'design', path: '/design', group: 'foundation',
+    title: '视觉识别', subtitle: 'VI 2.0 观象 · 色彩 · 字体 · 信号灯 · 仪表', icon: 'Orbit',
+    component: lazy(() => import('../modules/design/Page.jsx')),
   },
   {
     id: 'watchtower', path: '/watchtower', group: 'foundation',

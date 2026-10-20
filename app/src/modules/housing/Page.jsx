@@ -12,14 +12,14 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // 政策雷达核验：docs/econ/房地产消息核验-2026-07.md（2026-07-16）+ docs/audits/时效更新-2026-09.md（2026-09 增补）
 // ============================================================================
 
-const RED = '#c41e3a';
-const GOLD = '#e8a317';
-const CYAN = '#22d3ee';
-const GREEN = '#10b981';
-const VIOLET = '#8b5cf6';
+const RED = '#e5483b';
+const GOLD = '#d4a25a';
+const CYAN = '#6e8cff';
+const GREEN = '#6fc2ae';
+const VIOLET = '#b07cc6';
 
 /** 地产政策雷达 · 自媒体说法核验（不改 H1/行业示意数字） */
-const POLICY_RADAR_AS_OF = '2026-09-15';
+const POLICY_RADAR_AS_OF = '2026-10-19';
 const POLICY_RADAR = [
   {
     verdict: '误传监测',
@@ -50,11 +50,11 @@ const POLICY_RADAR = [
     source: '人民银行答记者问（2026-08-31）· 银发〔2026〕171 号正文第二十、三十二条',
   },
   {
-    verdict: '读数 · 1–8 月',
+    verdict: '读数 · 1–9 月',
     accent: RED,
     claim: '「止跌」仍未兑现',
-    body: '国家统计局 2026-09-15：1–8 月房地产开发投资 47979 亿元，同比 −19.9%（1–7 月 −19.2%，降幅继续扩大）；新建商品房销售面积 −12.1%、销售额 −13.0%；二手房网签面积 +10.6%（住建部口径）。以价换量在二手市场，新房与投资端仍在下行。',
-    source: '国家统计局 2026-09-15 1–8 月国民经济运行 · 住房城乡建设部二手房网签',
+    body: '国家统计局 2026-10-19：1–9 月房地产开发投资 53364 亿元，同比 −20.6%（1–8 月 −19.9%，降幅继续扩大）；新建商品房销售面积 −13.2%、销售额 −13.9%；新开工 −24.9%、竣工 −25.1%，房企到位资金 −21.6%；二手房成交面积 +10.7%。以价换量在二手市场，新房与投资端仍在下行。',
+    source: '国家统计局 2026-10-19 前三季度国民经济运行',
   },
 ];
 
@@ -83,7 +83,7 @@ const cycleOpt = {
   ],
   series: [
     { name: '销售面积(亿㎡)', type: 'bar', data: salesArea, barWidth: 16, itemStyle: { color: RED, borderRadius: 3 } },
-    { name: '销售额(万亿元)', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', symbolSize: 6, data: salesValue, lineStyle: { color: GOLD, width: 2 }, itemStyle: { color: GOLD }, areaStyle: { color: 'rgba(232,163,23,0.08)' } },
+    { name: '销售额(万亿元)', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', symbolSize: 6, data: salesValue, lineStyle: { color: GOLD, width: 2 }, itemStyle: { color: GOLD }, areaStyle: { color: 'rgba(212, 162, 90,0.08)' } },
   ],
 };
 
@@ -96,7 +96,7 @@ const investGrowthOpt = {
   series: [{
     type: 'bar', barWidth: 22,
     data: [1.0, 7.0, 9.9, 4.4, -9.6, -8.0].map((v) => ({ value: v, itemStyle: { color: v < 0 ? RED : CYAN, borderRadius: 3 } })),
-    markLine: { silent: true, symbol: 'none', lineStyle: { color: '#64748b', type: 'dashed' }, data: [{ yAxis: 0 }] },
+    markLine: { silent: true, symbol: 'none', lineStyle: { color: '#8a8578', type: 'dashed' }, data: [{ yAxis: 0 }] },
   }],
 };
 
@@ -139,7 +139,7 @@ const riskClearOpt = {
   xAxis: categoryX(['2021', '2022', '2023', '2024', '2025E']),
   yAxis: valueY(),
   series: [
-    { name: '房企净负债率(%)', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [120, 95, 82, 73, 68], lineStyle: { color: RED, width: 2 }, itemStyle: { color: RED }, areaStyle: { color: 'rgba(196,30,58,0.1)' } },
+    { name: '房企净负债率(%)', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [120, 95, 82, 73, 68], lineStyle: { color: RED, width: 2 }, itemStyle: { color: RED }, areaStyle: { color: 'rgba(229, 72, 59,0.1)' } },
     { name: '保交楼交付率(%)', type: 'bar', data: [40, 65, 88, 94, 97], barWidth: 16, itemStyle: { color: GOLD, borderRadius: 3 } },
   ],
 };
@@ -173,7 +173,7 @@ const gdpPullOpt = {
     type: 'line', smooth: true, symbol: 'circle', symbolSize: 6,
     data: [25, 27, 26, 22, 18, 16],
     lineStyle: { color: RED, width: 2 }, itemStyle: { color: RED },
-    areaStyle: { color: 'rgba(196,30,58,0.12)' },
+    areaStyle: { color: 'rgba(229, 72, 59,0.12)' },
     markLine: { silent: true, symbol: 'none', lineStyle: { color: GOLD, type: 'dashed' }, label: { color: GOLD, fontSize: 9, formatter: '峰值~27%' }, data: [{ yAxis: 27 }] },
   }],
 };
@@ -208,15 +208,15 @@ const villageOpt = {
       { name: '产业导入', max: 100 }, { name: '配套补短板', max: 100 }, { name: '原住民回迁', max: 100 },
     ],
     axisName: { color: LABEL.color, fontSize: 10 },
-    splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-    axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+    splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
+    axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
     splitArea: { show: false },
   },
   series: [{
     type: 'radar',
     data: [
-      { value: [90, 85, 70, 80, 75], name: '一线城市', lineStyle: { color: RED, width: 2 }, itemStyle: { color: RED }, areaStyle: { color: 'rgba(196,30,58,0.12)' } },
-      { value: [60, 70, 55, 65, 82], name: '强二线城市', lineStyle: { color: CYAN, width: 2 }, itemStyle: { color: CYAN }, areaStyle: { color: 'rgba(34,211,238,0.10)' } },
+      { value: [90, 85, 70, 80, 75], name: '一线城市', lineStyle: { color: RED, width: 2 }, itemStyle: { color: RED }, areaStyle: { color: 'rgba(229, 72, 59,0.12)' } },
+      { value: [60, 70, 55, 65, 82], name: '强二线城市', lineStyle: { color: CYAN, width: 2 }, itemStyle: { color: CYAN }, areaStyle: { color: 'rgba(110, 140, 255,0.10)' } },
     ],
   }],
 };
@@ -287,7 +287,7 @@ const ISSUE_DETAIL = {
 
 // ---- 政策时间线 ----
 const TIMELINE = [
-  { period: '1998', title: '住房商品化改革', accent: '#64748b', desc: '取消福利分房、启动住房市场化与按揭体系，土地出让金成为地方财政增量来源，房地产开启货币化与金融化进程。' },
+  { period: '1998', title: '住房商品化改革', accent: '#8a8578', desc: '取消福利分房、启动住房市场化与按揭体系，土地出让金成为地方财政增量来源，房地产开启货币化与金融化进程。' },
   { period: '2003–2015', title: '黄金十年 · 调控加码', accent: GOLD, desc: '城镇化 + 货币宽松驱动房价长牛，限购限贷限价等行政调控反复加码，土地财政依赖度攀升至历史高位，居民杠杆快速抬升。' },
   { period: '2016', title: '房住不炒', accent: CYAN, desc: '「房子是用来住的、不是用来炒的」定调，开启去金融化的政策转向，预期管理从「保涨」转向「稳价」。' },
   { period: '2020–2022', title: '三道红线 · 出险出清', accent: RED, desc: '以「三道红线」限制房企融资，叠加销售下行触发头部房企连环出险，行业进入深度去杠杆与信用收缩阶段。' },

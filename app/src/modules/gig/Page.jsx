@@ -9,7 +9,7 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // ----------------------------------------------------------------------------
 const SECTORS = [
   {
-    key: 'rider', label: '外卖骑手', accent: '#e8a317',
+    key: 'rider', label: '外卖骑手', accent: '#d4a25a',
     scale: '1,300 万+', scaleNote: '注册骑手（活跃约 1/3）',
     income: '5,800', incomeNote: '月均收入（元 · 一线专送）',
     insure: 38, insureNote: '职业伤害保障覆盖率（试点省）',
@@ -19,7 +19,7 @@ const SECTORS = [
     radar: [92, 45, 38, 55, 86, 30],
   },
   {
-    key: 'driver', label: '网约车', accent: '#22d3ee',
+    key: 'driver', label: '网约车', accent: '#6e8cff',
     scale: '700 万+', scaleNote: '取得双证的合规司机',
     income: '7,200', incomeNote: '月均流水（元 · 扣除抽成前）',
     insure: 31, insureNote: '职业伤害保障覆盖率',
@@ -29,7 +29,7 @@ const SECTORS = [
     radar: [85, 50, 31, 48, 78, 25],
   },
   {
-    key: 'courier', label: '快递', accent: '#c41e3a',
+    key: 'courier', label: '快递', accent: '#e5483b',
     scale: '450 万+', scaleNote: '一线快递从业人员',
     income: '6,500', incomeNote: '月均收入（元 · 计件为主）',
     insure: 52, insureNote: '工伤/职业伤害合计覆盖率',
@@ -49,7 +49,7 @@ const SECTORS = [
     radar: [70, 35, 12, 60, 72, 15],
   },
   {
-    key: 'skill', label: '知识技能零工', accent: '#10b981',
+    key: 'skill', label: '知识技能零工', accent: '#6fc2ae',
     scale: '900 万+', scaleNote: '设计/开发/翻译/咨询等接单者',
     income: '8,900', incomeNote: '月均收入（元 · 项目制波动大）',
     insure: 22, insureNote: '以灵活就业身份自缴社保比例',
@@ -59,7 +59,7 @@ const SECTORS = [
     radar: [55, 72, 22, 75, 35, 20],
   },
   {
-    key: 'flex', label: '灵活用工平台', accent: '#94a3b8',
+    key: 'flex', label: '灵活用工平台', accent: '#a29c91',
     scale: '4,000 万+', scaleNote: '经灵工平台结算的劳动者',
     income: '4,800', incomeNote: '月均结算额（元 · 多为兼职叠加）',
     insure: 28, insureNote: '由平台代投商业险比例',
@@ -75,33 +75,33 @@ const SECTORS = [
 // ----------------------------------------------------------------------------
 const PROFILE_DIMS = [
   {
-    key: 'age', label: '年龄结构', accent: '#e8a317',
+    key: 'age', label: '年龄结构', accent: '#d4a25a',
     note: '零工经济是「青壮年密集型」劳动池：80%+ 集中于 21-45 岁，与制造业流失的年龄段高度重合。',
     data: [
-      { value: 12, name: '20 岁及以下', itemStyle: { color: '#22d3ee' } },
-      { value: 34, name: '21-30 岁', itemStyle: { color: '#c41e3a' } },
-      { value: 31, name: '31-40 岁', itemStyle: { color: '#e8a317' } },
-      { value: 17, name: '41-50 岁', itemStyle: { color: '#10b981' } },
-      { value: 6, name: '51 岁以上', itemStyle: { color: '#94a3b8' } },
+      { value: 12, name: '20 岁及以下', itemStyle: { color: '#6e8cff' } },
+      { value: 34, name: '21-30 岁', itemStyle: { color: '#e5483b' } },
+      { value: 31, name: '31-40 岁', itemStyle: { color: '#d4a25a' } },
+      { value: 17, name: '41-50 岁', itemStyle: { color: '#6fc2ae' } },
+      { value: 6, name: '51 岁以上', itemStyle: { color: '#a29c91' } },
     ],
   },
   {
-    key: 'edu', label: '学历构成', accent: '#22d3ee',
+    key: 'edu', label: '学历构成', accent: '#6e8cff',
     note: '高中及以下占六成——零工平台事实上承接了未被高等教育分流的劳动力主体；大专以上多流向知识技能与直播业态。',
     data: [
-      { value: 24, name: '初中及以下', itemStyle: { color: '#c41e3a' } },
-      { value: 37, name: '高中/中专', itemStyle: { color: '#e8a317' } },
-      { value: 26, name: '大专', itemStyle: { color: '#22d3ee' } },
-      { value: 13, name: '本科及以上', itemStyle: { color: '#10b981' } },
+      { value: 24, name: '初中及以下', itemStyle: { color: '#e5483b' } },
+      { value: 37, name: '高中/中专', itemStyle: { color: '#d4a25a' } },
+      { value: 26, name: '大专', itemStyle: { color: '#6e8cff' } },
+      { value: 13, name: '本科及以上', itemStyle: { color: '#6fc2ae' } },
     ],
   },
   {
-    key: 'origin', label: '城乡来源', accent: '#10b981',
+    key: 'origin', label: '城乡来源', accent: '#6fc2ae',
     note: '农村户籍占比近七成：零工经济是农民工进城的「第一接口」，也意味着社保账户的城乡分割直接投射到平台劳动。',
     data: [
-      { value: 68, name: '农村户籍（跨省/省内流动）', itemStyle: { color: '#c41e3a' } },
-      { value: 21, name: '本地城镇户籍', itemStyle: { color: '#e8a317' } },
-      { value: 11, name: '外地城镇户籍', itemStyle: { color: '#22d3ee' } },
+      { value: 68, name: '农村户籍（跨省/省内流动）', itemStyle: { color: '#e5483b' } },
+      { value: 21, name: '本地城镇户籍', itemStyle: { color: '#d4a25a' } },
+      { value: 11, name: '外地城镇户籍', itemStyle: { color: '#6e8cff' } },
     ],
   },
 ];
@@ -110,11 +110,11 @@ const PROFILE_DIMS = [
 // 业态演进时间线
 // ----------------------------------------------------------------------------
 const TIMELINE = [
-  { period: '1980s-2000s', title: '劳务市场零工', accent: '#94a3b8', desc: '马路劳务市场与包工头中介：零工以「站街等活」形式存在，匹配靠熟人网络，保障完全空白。这是零工经济的前数字形态——弹性早已存在，只是尚未被算法接管。' },
-  { period: '2014-2019', title: '平台经济爆发', accent: '#22d3ee', desc: '外卖/网约车补贴大战将千万劳动力卷入平台：注册即上岗、多劳多得的叙事吸纳了制造业外溢人口。「灵活」被包装为自由，劳动关系被「合作协议」替代，社保问题被增长速度掩盖。' },
-  { period: '2020-2021', title: '「困在系统里」争议', accent: '#c41e3a', desc: '《外卖骑手，困在系统里》引爆公共讨论：配送时限五年压缩近半、事故率攀升、「以罚代管」浮出水面。算法首次被公众识别为「新型劳动管理者」，监管窗口随之打开。' },
-  { period: '2021-2023', title: '新就业形态权益政策', accent: '#e8a317', desc: '八部门《维护新就业形态劳动者权益指导意见》确立「劳动三分法」（劳动关系/不完全劳动关系/民事关系）；算法备案、抽成公示、强制休息上线——治理从「要不要管」转向「怎么精细地管」。' },
-  { period: '2022-至今', title: '职业伤害保障扩面', accent: '#10b981', desc: '职业伤害保障试点从 7 省扩至全国主要平台业态：按单缴费、平台出资、政府统筹。目标是在不摧毁平台弹性的前提下补上安全网——全覆盖仍有约一半缺口待填。' },
+  { period: '1980s-2000s', title: '劳务市场零工', accent: '#a29c91', desc: '马路劳务市场与包工头中介：零工以「站街等活」形式存在，匹配靠熟人网络，保障完全空白。这是零工经济的前数字形态——弹性早已存在，只是尚未被算法接管。' },
+  { period: '2014-2019', title: '平台经济爆发', accent: '#6e8cff', desc: '外卖/网约车补贴大战将千万劳动力卷入平台：注册即上岗、多劳多得的叙事吸纳了制造业外溢人口。「灵活」被包装为自由，劳动关系被「合作协议」替代，社保问题被增长速度掩盖。' },
+  { period: '2020-2021', title: '「困在系统里」争议', accent: '#e5483b', desc: '《外卖骑手，困在系统里》引爆公共讨论：配送时限五年压缩近半、事故率攀升、「以罚代管」浮出水面。算法首次被公众识别为「新型劳动管理者」，监管窗口随之打开。' },
+  { period: '2021-2023', title: '新就业形态权益政策', accent: '#d4a25a', desc: '八部门《维护新就业形态劳动者权益指导意见》确立「劳动三分法」（劳动关系/不完全劳动关系/民事关系）；算法备案、抽成公示、强制休息上线——治理从「要不要管」转向「怎么精细地管」。' },
+  { period: '2022-至今', title: '职业伤害保障扩面', accent: '#6fc2ae', desc: '职业伤害保障试点从 7 省扩至全国主要平台业态：按单缴费、平台出资、政府统筹。目标是在不摧毁平台弹性的前提下补上安全网——全覆盖仍有约一半缺口待填。' },
 ];
 
 // ----------------------------------------------------------------------------
@@ -133,9 +133,9 @@ const poolTrend = {
     valueY({ name: '%', max: 60, nameTextStyle: { color: LABEL.color, fontSize: 10 }, splitLine: { show: false } }),
   ],
   series: [
-    { name: '灵活就业人数（亿人）', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [1.1, 1.4, 1.7, 2.0, 2.2, 2.4], lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.08)' } },
-    { name: '城镇就业总量（亿人）', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [4.0, 4.2, 4.4, 4.7, 4.7, 4.8], lineStyle: { color: '#94a3b8', width: 1.5, type: 'dashed' }, itemStyle: { color: '#94a3b8' } },
-    { name: '灵活就业占比（%）', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'rect', symbolSize: 6, data: [27, 33, 39, 43, 47, 50], lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' } },
+    { name: '灵活就业人数（亿人）', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [1.1, 1.4, 1.7, 2.0, 2.2, 2.4], lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.08)' } },
+    { name: '城镇就业总量（亿人）', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [4.0, 4.2, 4.4, 4.7, 4.7, 4.8], lineStyle: { color: '#a29c91', width: 1.5, type: 'dashed' }, itemStyle: { color: '#a29c91' } },
+    { name: '灵活就业占比（%）', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'rect', symbolSize: 6, data: [27, 33, 39, 43, 47, 50], lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' } },
   ],
 };
 
@@ -150,8 +150,8 @@ const algoTension = {
     valueY({ name: '指数', nameTextStyle: { color: LABEL.color, fontSize: 10 }, splitLine: { show: false } }),
   ],
   series: [
-    { name: '平均配送时限（分钟）', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [38, 35, 32, 30, 28, 29, 30, 31], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' }, markPoint: { symbolSize: 1, label: { color: '#e8a317', fontSize: 10, formatter: '2021 算法新规\n时限回调' }, data: [{ coord: ['2021', 29] }] } },
-    { name: '骑手交通事故率指数', type: 'bar', yAxisIndex: 1, barWidth: 14, data: [100, 118, 142, 168, 190, 172, 158, 150], itemStyle: { color: 'rgba(196,30,58,0.7)', borderRadius: 2 } },
+    { name: '平均配送时限（分钟）', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [38, 35, 32, 30, 28, 29, 30, 31], lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' }, markPoint: { symbolSize: 1, label: { color: '#d4a25a', fontSize: 10, formatter: '2021 算法新规\n时限回调' }, data: [{ coord: ['2021', 29] }] } },
+    { name: '骑手交通事故率指数', type: 'bar', yAxisIndex: 1, barWidth: 14, data: [100, 118, 142, 168, 190, 172, 158, 150], itemStyle: { color: 'rgba(229, 72, 59,0.7)', borderRadius: 2 } },
   ],
 };
 
@@ -159,14 +159,14 @@ const algoTension = {
 const insureGap = stackedBarOpt({
   categories: ['外卖骑手', '网约车', '快递', '直播电商', '知识技能', '灵工平台'],
   series: [
-    { name: '已纳入职业伤害保障', data: [38, 31, 52, 12, 22, 28], itemStyle: { color: '#10b981', borderRadius: [0, 0, 0, 0] } },
-    { name: '覆盖缺口', data: [62, 69, 48, 88, 78, 72], itemStyle: { color: 'rgba(196,30,58,0.45)' } },
+    { name: '已纳入职业伤害保障', data: [38, 31, 52, 12, 22, 28], itemStyle: { color: '#6fc2ae', borderRadius: [0, 0, 0, 0] } },
+    { name: '覆盖缺口', data: [62, 69, 48, 88, 78, 72], itemStyle: { color: 'rgba(229, 72, 59,0.45)' } },
   ],
 });
 
 // 零工经济健康度雷达（系统总评，单系列用 helper）
 const HEALTH_DIMS = ['就业吸纳', '收入水平', '社保覆盖', '职业发展', '算法公平', '组织保障'];
-const healthRadar = radarOpt(HEALTH_DIMS, [88, 52, 34, 30, 46, 25], { name: '系统健康度', color: '#e8a317' });
+const healthRadar = radarOpt(HEALTH_DIMS, [88, 52, 34, 30, 46, 25], { name: '系统健康度', color: '#d4a25a' });
 
 // 平台抽成趋势（监管介入前后）
 const takeRate = {
@@ -176,8 +176,8 @@ const takeRate = {
   xAxis: categoryX(['2018', '2019', '2020', '2021', '2022', '2023', '2024E']),
   yAxis: valueY({ max: 35 }),
   series: [
-    { name: '网约车平均抽成（%）', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [22, 24, 26, 27, 25, 24, 23], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
-    { name: '外卖综合费率（%）', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [18, 20, 22, 23, 22, 21, 20], lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, markLine: { silent: true, symbol: 'none', label: { color: '#e8a317', fontSize: 9, formatter: '2021 抽成公示「阳光行动」' }, lineStyle: { color: '#e8a317', type: 'dashed' }, data: [{ xAxis: '2021' }] } },
+    { name: '网约车平均抽成（%）', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [22, 24, 26, 27, 25, 24, 23], lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' } },
+    { name: '外卖综合费率（%）', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [18, 20, 22, 23, 22, 21, 20], lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, markLine: { silent: true, symbol: 'none', label: { color: '#d4a25a', fontSize: 9, formatter: '2021 抽成公示「阳光行动」' }, lineStyle: { color: '#d4a25a', type: 'dashed' }, data: [{ xAxis: '2021' }] } },
   ],
 };
 
@@ -191,29 +191,29 @@ const jobDistPie = {
     itemStyle: { borderRadius: 2, borderColor: 'transparent', borderWidth: 2 },
     label: { show: true, color: LABEL.color, fontSize: 11 },
     data: [
-      { value: 40, name: '外卖配送与物流', itemStyle: { color: '#c41e3a' } },
-      { value: 25, name: '直播、自媒体与内容', itemStyle: { color: '#e8a317' } },
-      { value: 20, name: '网约车与出行服务', itemStyle: { color: '#22d3ee' } },
-      { value: 15, name: '知识技能/设计开发', itemStyle: { color: '#10b981' } },
+      { value: 40, name: '外卖配送与物流', itemStyle: { color: '#e5483b' } },
+      { value: 25, name: '直播、自媒体与内容', itemStyle: { color: '#d4a25a' } },
+      { value: 20, name: '网约车与出行服务', itemStyle: { color: '#6e8cff' } },
+      { value: 15, name: '知识技能/设计开发', itemStyle: { color: '#6fc2ae' } },
     ],
   }],
 };
 const algRadar = {
   radar: {
     indicator: [{ name: '定价权分配', max: 100 }, { name: '劳动时间限制', max: 100 }, { name: '派单算法中立', max: 100 }, { name: '评价体系公正', max: 100 }, { name: '个人数据可携', max: 100 }, { name: '争议申诉效率', max: 100 }],
-    axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false },
+    axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } }, splitArea: { show: false },
   },
-  series: [{ type: 'radar', data: [{ value: [65, 88, 75, 82, 40, 85], name: '治理水位', lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.1)' } }] }],
+  series: [{ type: 'radar', data: [{ value: [65, 88, 75, 82, 40, 85], name: '治理水位', lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.1)' } }] }],
 };
 const bufferLogic = {
   tooltip: { trigger: 'axis' },
   legend: { data: ['劳动力流入量', '就业吸纳耐性'], textStyle: { color: LABEL.color, fontSize: 11 }, top: 0 },
   grid: { left: 44, right: 24, top: 32, bottom: 28 },
   xAxis: { type: 'category', data: ['制造业低迷期', '服务业复苏期', '出口波动期', '节日需求峰值'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
-  yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color } },
+  yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } }, axisLabel: { color: LABEL.color } },
   series: [
-    { name: '劳动力流入量', type: 'bar', data: [180, 120, 210, 150], barWidth: 22, itemStyle: { color: '#c41e3a', borderRadius: 3 } },
-    { name: '就业吸纳耐性', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [90, 85, 95, 88], lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' } },
+    { name: '劳动力流入量', type: 'bar', data: [180, 120, 210, 150], barWidth: 22, itemStyle: { color: '#e5483b', borderRadius: 3 } },
+    { name: '就业吸纳耐性', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [90, 85, 95, 88], lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' } },
   ],
 };
 
@@ -238,10 +238,10 @@ export default function Page() {
       <PageHeader badge="Gig Economy · Digital Labor Market & Elastic Economy" title="平台灵活就业 · 算法治理" subtitle="就业蓄水池 · 社保覆盖 · 骑手与算法 —— 零工经济与数字劳动力" />
       <IntroCard>零工经济是中国经济面临人口结构变化与产业升级时的「系统级自适应」：体制通过数字平台将 2 亿+ 劳动力「原子化」，以推荐算法实现超大规模劳务市场的毫秒级匹配；治理重心则从「极致效率」转向「合理劳动强度」与新型安全网重构。本页以业态为切口：先看蓄水池的总量，再看每一类劳动者被怎样的算法约束着，最后看安全网补到了哪一格。</IntroCard>
       <Grid cols={4} className="mb-6">
-        <Stat value="2.3 亿+" label="灵活就业总人数 · 占城镇就业 ~23%" accent="#e8a317" />
+        <Stat value="2.3 亿+" label="灵活就业总人数 · 占城镇就业 ~23%" accent="#d4a25a" />
         <Stat value="1,300 万+" label="注册外卖骑手 · 数字化深度介入" />
-        <Stat value="700 万+" label="合规网约车司机 · 运力趋于饱和" accent="#22d3ee" />
-        <Stat value="~1,000 万" label="职业伤害保障参保人数 · 试点扩面中" accent="#c41e3a" />
+        <Stat value="700 万+" label="合规网约车司机 · 运力趋于饱和" accent="#6e8cff" />
+        <Stat value="~1,000 万" label="职业伤害保障参保人数 · 试点扩面中" accent="#e5483b" />
       </Grid>
 
       {/* ------------------------------------------------------------------ */}
@@ -260,12 +260,12 @@ export default function Page() {
                 <div className="text-lg font-bold mono" style={{ color: sector.accent }}>¥{sector.income}</div>
                 <div className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>{sector.incomeNote}</div>
               </div>
-              <div style={{ borderLeft: '2px solid #10b981', paddingLeft: 10 }}>
-                <div className="text-lg font-bold mono" style={{ color: '#10b981' }}>{sector.insure}%</div>
+              <div style={{ borderLeft: '2px solid #6fc2ae', paddingLeft: 10 }}>
+                <div className="text-lg font-bold mono" style={{ color: '#6fc2ae' }}>{sector.insure}%</div>
                 <div className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>{sector.insureNote}</div>
               </div>
-              <div style={{ borderLeft: '2px solid #c41e3a', paddingLeft: 10 }}>
-                <div className="text-lg font-bold mono" style={{ color: '#c41e3a' }}>{sector.algo}</div>
+              <div style={{ borderLeft: '2px solid #e5483b', paddingLeft: 10 }}>
+                <div className="text-lg font-bold mono" style={{ color: '#e5483b' }}>{sector.algo}</div>
                 <div className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>{sector.algoNote}</div>
               </div>
             </Grid>
@@ -273,8 +273,8 @@ export default function Page() {
               <div className="text-[10px] mono uppercase tracking-wider mb-1" style={{ color: sector.accent }}>Pain Point // 保障痛点</div>
               <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{sector.pain}</p>
             </div>
-            <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #22d3ee' }}>
-              <div className="text-[10px] mono uppercase tracking-wider mb-1" style={{ color: '#22d3ee' }}>Algorithmic Constraint // 算法约束</div>
+            <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #6e8cff' }}>
+              <div className="text-[10px] mono uppercase tracking-wider mb-1" style={{ color: '#6e8cff' }}>Algorithmic Constraint // 算法约束</div>
               <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{sector.constraint}</p>
             </div>
           </div>
@@ -296,7 +296,7 @@ export default function Page() {
             <EChart option={poolTrend} style={{ height: 260 }} />
           </div>
           <div>
-            <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>零工经济承载了中国经济转型中的<strong style={{ color: 'var(--text-primary)' }}>「摩擦性失业」</strong>，是制造业出海、出口波动时的社会稳定器。当传统行业收缩时，平台经济以极低的进入门槛迅速吸收冗余劳动力，防止结构性失业引发震荡——这种<strong style={{ color: '#c41e3a' }}>「瞬间吸纳力」</strong>是国家治理韧性的重要物理体现。但蓄水池的另一面是：水位越高，池底的保障缺口就越显眼。</p>
+            <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>零工经济承载了中国经济转型中的<strong style={{ color: 'var(--text-primary)' }}>「摩擦性失业」</strong>，是制造业出海、出口波动时的社会稳定器。当传统行业收缩时，平台经济以极低的进入门槛迅速吸收冗余劳动力，防止结构性失业引发震荡——这种<strong style={{ color: '#e5483b' }}>「瞬间吸纳力」</strong>是国家治理韧性的重要物理体现。但蓄水池的另一面是：水位越高，池底的保障缺口就越显眼。</p>
             <div className="text-xs font-semibold mb-2" style={{ color: 'var(--text-tertiary)' }}>经济波动下的零工流入/流出敏感度</div>
             <EChart option={bufferLogic} style={{ height: 200 }} />
           </div>
@@ -313,7 +313,7 @@ export default function Page() {
           <p className="text-[11px] leading-relaxed mt-2" style={{ color: 'var(--text-tertiary)' }}>{profile.note}</p>
         </Card>
         <Card title="04 · 劳动力重构：数字化身与原子化生存">
-          <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>个体不再依附于固定组织，而是依附于<strong style={{ color: 'var(--text-primary)' }}>「评分系统」</strong>——平台将劳动力的损耗控制在极低水平，实现碎片化与最优化并存。<span className="mono text-[10px]" style={{ color: '#22d3ee' }}> Status: Fragmented &amp; Optimized</span></p>
+          <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>个体不再依附于固定组织，而是依附于<strong style={{ color: 'var(--text-primary)' }}>「评分系统」</strong>——平台将劳动力的损耗控制在极低水平，实现碎片化与最优化并存。<span className="mono text-[10px]" style={{ color: '#6e8cff' }}> Status: Fragmented &amp; Optimized</span></p>
           <div className="text-xs font-semibold mb-2" style={{ color: 'var(--text-tertiary)' }}>灵活就业岗位构成分布（2024E · %）</div>
           <EChart option={jobDistPie} style={{ height: 220 }} />
         </Card>
@@ -368,12 +368,12 @@ export default function Page() {
           <div>
             <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>六维读数呈现典型的<strong style={{ color: 'var(--text-primary)' }}>「单极强、五极弱」</strong>结构：就业吸纳（88）一骑绝尘，其余五维全部低于及格线。这意味着系统当前的稳定是「吸纳力透支型」稳定——蓄水池在持续进水，但池壁（社保 34、组织保障 25）尚未砌牢。</p>
             <div className="space-y-2">
-              {[['就业吸纳 88', '#e8a317', '宏观波动期的核心价值，也是政策投鼠忌器的原因'],
-                ['收入水平 52', '#22d3ee', '名义灵活溢价正被运力饱和与单价内卷吞噬'],
-                ['社保覆盖 34', '#c41e3a', '职业伤害险试点扩面是当前补课主线'],
-                ['职业发展 30', '#c41e3a', '零工年限不可累积为职业资本，是长期隐患'],
-                ['算法公平 46', '#e8a317', '备案制与「算法取中」之后仍是黑箱博弈'],
-                ['组织保障 25', '#c41e3a', '工会进平台试点中，集体协商机制几乎空白']].map(([t, c, d]) => (
+              {[['就业吸纳 88', '#d4a25a', '宏观波动期的核心价值，也是政策投鼠忌器的原因'],
+                ['收入水平 52', '#6e8cff', '名义灵活溢价正被运力饱和与单价内卷吞噬'],
+                ['社保覆盖 34', '#e5483b', '职业伤害险试点扩面是当前补课主线'],
+                ['职业发展 30', '#e5483b', '零工年限不可累积为职业资本，是长期隐患'],
+                ['算法公平 46', '#d4a25a', '备案制与「算法取中」之后仍是黑箱博弈'],
+                ['组织保障 25', '#e5483b', '工会进平台试点中，集体协商机制几乎空白']].map(([t, c, d]) => (
                 <div key={t} className="flex items-baseline gap-2">
                   <span className="text-[11px] mono font-bold" style={{ color: c, minWidth: 86 }}>{t}</span>
                   <span className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>{d}</span>
@@ -390,8 +390,8 @@ export default function Page() {
           {[['Digital Asset Entitlement', '数字资产确权', '骑手账号、评分与接单记录构成数字劳动资产，可携性决定劳动者议价能力。'],
             ['Social Insurance Portability', '社保可携转', '打破户籍与单位绑定的缴纳结构，让保障跟人走而非跟岗位走。'],
             ['Platform Liability Protocol', '平台责任协议', '按单缴费、平台出资的职业伤害保障，将算法派单的风险外部性内部化。']].map(([en, t, d]) => (
-            <div key={en} style={{ borderLeft: '2px solid #10b981', paddingLeft: 10 }}>
-              <div className="text-[10px] mono uppercase tracking-wider" style={{ color: '#10b981' }}>{en}</div>
+            <div key={en} style={{ borderLeft: '2px solid #6fc2ae', paddingLeft: 10 }}>
+              <div className="text-[10px] mono uppercase tracking-wider" style={{ color: '#6fc2ae' }}>{en}</div>
               <div className="text-xs font-semibold mt-0.5" style={{ color: 'var(--text-primary)' }}>{t}</div>
               <p className="text-[11px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
             </div>

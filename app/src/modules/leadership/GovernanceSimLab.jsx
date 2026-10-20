@@ -1,6 +1,21 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
+import {
+  AlertTriangle as LuAlertTriangle,
+  BookOpen as LuBookOpen,
+  Download as LuDownload,
+  RotateCcw as LuRotateCcw,
+  Save as LuSave,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  AlertTriangle: LuAlertTriangle,
+  BookOpen: LuBookOpen,
+  Download: LuDownload,
+  RotateCcw: LuRotateCcw,
+  Save: LuSave,
+};
 import { Card } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { LAYER_META } from '../../domain/governance.ts';
@@ -29,11 +44,11 @@ import {
   toggleCompareId,
 } from './useLeadershipSimStore.js';
 
-const CYAN = '#22d3ee';
-const RED = '#c41e3a';
-const GOLD = '#e8a317';
-const GREEN = '#10b981';
-const SLATE = '#64748b';
+const CYAN = '#6e8cff';
+const RED = '#e5483b';
+const GOLD = '#d4a25a';
+const GREEN = '#6fc2ae';
+const SLATE = '#8a8578';
 
 function pill(c) {
   return {
@@ -210,7 +225,7 @@ function OutcomeCharts({ result }) {
       xAxis: {
         type: 'value', max: 100,
         axisLabel: { color: LABEL.color, fontSize: 10 },
-        splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } },
+        splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } },
       },
       yAxis: {
         type: 'category', data: labels, inverse: true,
@@ -221,7 +236,7 @@ function OutcomeCharts({ result }) {
         {
           name: '运行前', type: 'bar', barWidth: 8,
           data: keys.map((k) => before[k]),
-          itemStyle: { color: 'rgba(148,163,184,0.35)', borderRadius: [0, 3, 3, 0] },
+          itemStyle: { color: 'rgba(162, 156, 145,0.35)', borderRadius: [0, 3, 3, 0] },
         },
         {
           name: '运行后', type: 'bar', barWidth: 8,
@@ -470,7 +485,7 @@ export default function GovernanceSimLab() {
                   type="button"
                   onClick={() => goStep('constraints')}
                   className="text-xs mono px-3 py-1.5 rounded font-semibold"
-                  style={{ background: 'rgba(34,211,238,0.12)', color: CYAN, border: '1px solid rgba(34,211,238,0.45)', cursor: 'pointer' }}
+                  style={{ background: 'rgba(110, 140, 255,0.12)', color: CYAN, border: '1px solid rgba(110, 140, 255,0.45)', cursor: 'pointer' }}
                 >
                   下一步 · 设定约束 →
                 </button>
@@ -493,7 +508,7 @@ export default function GovernanceSimLab() {
               type="button"
               onClick={() => goStep('options')}
               className="text-xs mono px-3 py-1.5 rounded font-semibold"
-              style={{ background: 'rgba(34,211,238,0.12)', color: CYAN, border: '1px solid rgba(34,211,238,0.45)', cursor: 'pointer' }}
+              style={{ background: 'rgba(110, 140, 255,0.12)', color: CYAN, border: '1px solid rgba(110, 140, 255,0.45)', cursor: 'pointer' }}
             >
               下一步 · 选择方案 →
             </button>
@@ -540,7 +555,7 @@ export default function GovernanceSimLab() {
                 type="button"
                 onClick={() => goStep('outcome')}
                 className="text-xs mono px-3 py-1.5 rounded font-semibold"
-                style={{ background: 'rgba(196,30,58,0.12)', color: RED, border: '1px solid rgba(196,30,58,0.45)', cursor: 'pointer' }}
+                style={{ background: 'rgba(229, 72, 59,0.12)', color: RED, border: '1px solid rgba(229, 72, 59,0.45)', cursor: 'pointer' }}
               >
                 查看后果 →
               </button>

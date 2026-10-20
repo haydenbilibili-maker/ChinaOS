@@ -5,27 +5,27 @@ import { categoryX, valueY, logY, GRID, donutOpt, radarOpt, stackedBarOpt, AXIS,
 import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 const ROUTES = [
-  { key: 'compute', label: '量子计算', accent: '#e8a317', maturity: 40, desc: 'NISQ 时代算法、纠错编码与低温测控决定有效算力；与经典超算混合编排是近期接口。容错门槛——逻辑比特——仍在远处，工程化是十年量级长跑。' },
-  { key: 'comm', label: '量子通信', accent: '#10b981', maturity: 85, desc: '城域与城际 QKD 网络、量子卫星与地面站协同；与 PQC 形成互补与替代之争。这是中国唯一在全球处于明确领先位置的量子赛道。' },
-  { key: 'sense', label: '量子精密测量', accent: '#22d3ee', maturity: 70, desc: '原子钟、重力仪、磁力计服务导航、资源勘探与基础物理。最快变现、却最少被叙事关注的「沉默赛道」。' },
-  { key: 'timefreq', label: '量子精密时频', accent: '#8b5cf6', maturity: 60, desc: '光钟与时间基准是 GPS 自主、金融授时、引力波探测的底层物理设施；时频体系是国家主权基础设施的隐形地基。' },
+  { key: 'compute', label: '量子计算', accent: '#d4a25a', maturity: 40, desc: 'NISQ 时代算法、纠错编码与低温测控决定有效算力；与经典超算混合编排是近期接口。容错门槛——逻辑比特——仍在远处，工程化是十年量级长跑。' },
+  { key: 'comm', label: '量子通信', accent: '#6fc2ae', maturity: 85, desc: '城域与城际 QKD 网络、量子卫星与地面站协同；与 PQC 形成互补与替代之争。这是中国唯一在全球处于明确领先位置的量子赛道。' },
+  { key: 'sense', label: '量子精密测量', accent: '#6e8cff', maturity: 70, desc: '原子钟、重力仪、磁力计服务导航、资源勘探与基础物理。最快变现、却最少被叙事关注的「沉默赛道」。' },
+  { key: 'timefreq', label: '量子精密时频', accent: '#b07cc6', maturity: 60, desc: '光钟与时间基准是 GPS 自主、金融授时、引力波探测的底层物理设施；时频体系是国家主权基础设施的隐形地基。' },
 ];
 
 const PHASES = [
-  { period: '2007–2015', title: '量子通信实验', accent: '#64748b', desc: '自由空间与光纤 QKD 验证、合肥城域网，确立通信路线先发卡位。' },
-  { period: '2016–2017', title: '墨子号卫星', accent: '#10b981', desc: '全球首颗量子科学实验卫星，星地千公里级纠缠分发与密钥分发。' },
-  { period: '2019–2021', title: '量子优越性', accent: '#e8a317', desc: '九章光量子采样、祖冲之超导比特,两条路线同年达到优越性里程碑。' },
-  { period: '2022–2025', title: '计算工程化', accent: '#c41e3a', desc: '京沪干线扩展、超算混合编排、纠错码与稀释制冷自主攻坚。' },
-  { period: '2030s+', title: '容错量子计算', accent: '#8b5cf6', desc: '逻辑比特规模化——颠覆密码学与算力格局的奇点级终极赌注。' },
+  { period: '2007–2015', title: '量子通信实验', accent: '#8a8578', desc: '自由空间与光纤 QKD 验证、合肥城域网，确立通信路线先发卡位。' },
+  { period: '2016–2017', title: '墨子号卫星', accent: '#6fc2ae', desc: '全球首颗量子科学实验卫星，星地千公里级纠缠分发与密钥分发。' },
+  { period: '2019–2021', title: '量子优越性', accent: '#d4a25a', desc: '九章光量子采样、祖冲之超导比特,两条路线同年达到优越性里程碑。' },
+  { period: '2022–2025', title: '计算工程化', accent: '#e5483b', desc: '京沪干线扩展、超算混合编排、纠错码与稀释制冷自主攻坚。' },
+  { period: '2030s+', title: '容错量子计算', accent: '#b07cc6', desc: '逻辑比特规模化——颠覆密码学与算力格局的奇点级终极赌注。' },
 ];
 
 // 量子计算技术路线：比特数 vs 相干性/可扩展性（散点示意）
 const HW_PLATFORMS = [
-  { name: '超导(祖冲之/IBM)', qubits: 433, coherence: 35, scale: 78, color: '#e8a317', cn: '祖冲之三号 105 比特' },
-  { name: '光量子(九章)', qubits: 255, coherence: 90, scale: 55, color: '#22d3ee', cn: '九章三号 255 光子' },
-  { name: '离子阱', qubits: 56, coherence: 95, scale: 42, color: '#10b981', cn: 'IonQ/启科量子' },
-  { name: '中性原子', qubits: 256, coherence: 70, scale: 68, color: '#fb923c', cn: 'QuEra/中科大' },
-  { name: '拓扑(理论)', qubits: 8, coherence: 99, scale: 25, color: '#8b5cf6', cn: 'Microsoft 押注' },
+  { name: '超导(祖冲之/IBM)', qubits: 433, coherence: 35, scale: 78, color: '#d4a25a', cn: '祖冲之三号 105 比特' },
+  { name: '光量子(九章)', qubits: 255, coherence: 90, scale: 55, color: '#6e8cff', cn: '九章三号 255 光子' },
+  { name: '离子阱', qubits: 56, coherence: 95, scale: 42, color: '#6fc2ae', cn: 'IonQ/启科量子' },
+  { name: '中性原子', qubits: 256, coherence: 70, scale: 68, color: '#c07a4a', cn: 'QuEra/中科大' },
+  { name: '拓扑(理论)', qubits: 8, coherence: 99, scale: 25, color: '#b07cc6', cn: 'Microsoft 押注' },
 ];
 
 // 量子通信骨干节点/里程（示意）
@@ -72,8 +72,8 @@ export default function Page() {
   const hwScatter = useMemo(() => ({
     grid: { left: 56, right: 28, top: 28, bottom: 40 },
     tooltip: { trigger: 'item', formatter: (p) => `${p.data.name}<br/>比特:${p.data.value[0]} / 相干:${p.data.value[1]} / 扩展:${p.data.value[2]}<br/>${p.data.cn}` },
-    xAxis: { type: 'log', name: '比特/光子数(log)', nameTextStyle: { color: LABEL.color }, axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } } },
-    yAxis: { type: 'value', name: hwMetric === 'qubits' ? '相干质量' : '可扩展性', min: 0, max: 100, nameTextStyle: { color: LABEL.color }, axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } } },
+    xAxis: { type: 'log', name: '比特/光子数(log)', nameTextStyle: { color: LABEL.color }, axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.08)' } } },
+    yAxis: { type: 'value', name: hwMetric === 'qubits' ? '相干质量' : '可扩展性', min: 0, max: 100, nameTextStyle: { color: LABEL.color }, axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.08)' } } },
     series: [{ type: 'scatter',
       data: HW_PLATFORMS.map((p) => ({ name: p.name, cn: p.cn, value: [p.qubits, hwMetric === 'qubits' ? p.coherence : p.scale, p.scale], itemStyle: { color: p.color, opacity: 0.85 } })),
       symbolSize: (v) => 14 + v[2] / 4,
@@ -84,11 +84,11 @@ export default function Page() {
     legend: { data: ['中国', '美国'], textStyle: { color: LABEL.color }, top: 0 },
     ...radarOpt(['量子计算', '量子通信', '量子测量', '人才储备', '专利产出', '工程化'],
       [88, 96, 85, 72, 90, 58],
-      { name: '基准', color: '#c41e3a' }),
+      { name: '基准', color: '#e5483b' }),
     series: [{ type: 'radar', data: [
       { value: route === 'comm' ? [78, 98, 82, 70, 92, 60] : route === 'compute' ? [88, 85, 78, 72, 90, 55] : route === 'sense' ? [80, 90, 95, 68, 86, 62] : [76, 88, 90, 66, 84, 58],
-        name: '中国', lineStyle: { color: '#c41e3a' }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.14)' } },
-      { value: [96, 68, 92, 95, 88, 90], name: '美国', lineStyle: { color: '#22d3ee' }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.08)' } },
+        name: '中国', lineStyle: { color: '#e5483b' }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.14)' } },
+      { value: [96, 68, 92, 95, 88, 90], name: '美国', lineStyle: { color: '#6e8cff' }, itemStyle: { color: '#6e8cff' }, areaStyle: { color: 'rgba(110, 140, 255,0.08)' } },
     ] }],
   }), [route]);
 
@@ -99,7 +99,7 @@ export default function Page() {
     xAxis: valueY({ name: 'km' }),
     yAxis: categoryX(COMM_NODES.map((x) => x.name)),
     series: [{ type: 'bar', barWidth: 14, itemStyle: { borderRadius: 3 },
-      data: COMM_NODES.map((x) => ({ value: x.value, itemStyle: { color: x.kind === '星地链路' ? '#8b5cf6' : x.kind === '城域网' ? '#22d3ee' : '#10b981' } })),
+      data: COMM_NODES.map((x) => ({ value: x.value, itemStyle: { color: x.kind === '星地链路' ? '#b07cc6' : x.kind === '城域网' ? '#6e8cff' : '#6fc2ae' } })),
       label: { show: true, position: 'right', color: LABEL.color, formatter: '{c}' } }],
   }), []);
 
@@ -111,9 +111,9 @@ export default function Page() {
     xAxis: categoryX(['2016', '2018', '2020', '2022', '2024']),
     yAxis: [valueY({ name: '专利(件)' }), valueY({ name: '论文(篇)', position: 'right' })],
     series: [
-      { name: '中国专利', type: 'line', smooth: true, data: [820, 1450, 2680, 4100, 5600], lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.10)' } },
-      { name: '美国专利', type: 'line', smooth: true, data: [950, 1380, 1900, 2400, 2900], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
-      { name: '中国论文(右)', type: 'line', smooth: true, yAxisIndex: 1, data: [1200, 2100, 3400, 4900, 6300], lineStyle: { color: '#e8a317', width: 1.5, type: 'dashed' }, itemStyle: { color: '#e8a317' } },
+      { name: '中国专利', type: 'line', smooth: true, data: [820, 1450, 2680, 4100, 5600], lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.10)' } },
+      { name: '美国专利', type: 'line', smooth: true, data: [950, 1380, 1900, 2400, 2900], lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' } },
+      { name: '中国论文(右)', type: 'line', smooth: true, yAxisIndex: 1, data: [1200, 2100, 3400, 4900, 6300], lineStyle: { color: '#d4a25a', width: 1.5, type: 'dashed' }, itemStyle: { color: '#d4a25a' } },
     ],
   }), []);
 
@@ -131,10 +131,10 @@ export default function Page() {
   const playerStack = useMemo(() => stackedBarOpt({
     categories: ['中国', '美国', '欧盟', '其他'],
     series: [
-      { name: '超导', data: [105, 433, 50, 20], itemStyle: { color: '#e8a317' } },
-      { name: '光量子', data: [255, 216, 24, 0], itemStyle: { color: '#22d3ee' } },
-      { name: '离子阱', data: [20, 56, 32, 12], itemStyle: { color: '#10b981' } },
-      { name: '中性原子', data: [60, 256, 100, 0], itemStyle: { color: '#fb923c' } },
+      { name: '超导', data: [105, 433, 50, 20], itemStyle: { color: '#d4a25a' } },
+      { name: '光量子', data: [255, 216, 24, 0], itemStyle: { color: '#6e8cff' } },
+      { name: '离子阱', data: [20, 56, 32, 12], itemStyle: { color: '#6fc2ae' } },
+      { name: '中性原子', data: [60, 256, 100, 0], itemStyle: { color: '#c07a4a' } },
     ],
   }), []);
 
@@ -144,10 +144,10 @@ export default function Page() {
       <IntroCard>第二次量子革命三线并进——计算、通信、测量。中国在 <strong style={{ color: 'var(--text-primary)' }}>量子通信(QKD)全球唯一领先</strong>，计算路线追赶且与美国差距集中在<strong style={{ color: 'var(--text-primary)' }}>工程化、软件栈与仪器自主</strong>。这是一场赌注极重、回报极远的长波竞赛：谁先抵达容错量子计算，谁就重写密码与算力的物理基础。</IntroCard>
 
       <StatGrid className="mb-6">
-        <Stat value="255 光子" label="九章三号最大规模(示意)" accent="#22d3ee" />
-        <Stat value="4,600 km+" label="量子保密通信干线" accent="#10b981" />
-        <Stat value="≈40%" label="全球量子专利占比(示意)" accent="#c41e3a" />
-        <Stat value="2+ 国家级" label="量子信息国家实验室(示意)" accent="#8b5cf6" />
+        <Stat value="255 光子" label="九章三号最大规模(示意)" accent="#6e8cff" />
+        <Stat value="4,600 km+" label="量子保密通信干线" accent="#6fc2ae" />
+        <Stat value="≈40%" label="全球量子专利占比(示意)" accent="#e5483b" />
+        <Stat value="2+ 国家级" label="量子信息国家实验室(示意)" accent="#b07cc6" />
       </StatGrid>
 
       <Card title="交互① · 四条赛道选择器（计算/通信/测量/时频）" className="mb-6">
@@ -163,7 +163,7 @@ export default function Page() {
 
       <Card title="交互② · 量子计算硬件路线对比（散点 · 切换纵轴）" className="mb-6">
         <SelectorBar
-          items={[{ key: 'qubits', label: '比特数 × 相干质量', accent: '#e8a317' }, { key: 'scale', label: '比特数 × 可扩展性', accent: '#22d3ee' }]}
+          items={[{ key: 'qubits', label: '比特数 × 相干质量', accent: '#d4a25a' }, { key: 'scale', label: '比特数 × 可扩展性', accent: '#6e8cff' }]}
           activeKey={hwMetric} onSelect={setHwMetric} />
         <EChart option={hwScatter} style={{ height: 300 }} />
         <Grid cols={5} className="mt-4">

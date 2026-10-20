@@ -1,6 +1,15 @@
 import React, { useMemo, useState, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
+import {
+  BookOpen as LuBookOpen,
+  ExternalLink as LuExternalLink,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  BookOpen: LuBookOpen,
+  ExternalLink: LuExternalLink,
+};
 import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import { IntroCard, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import {
@@ -208,7 +217,7 @@ export default function Page() {
 
   const categoriesWithAccent = GLOSSARY_CATEGORIES.map((c, i) => ({
     ...c,
-    accent: ['#c41e3a', '#d4af37', '#64748b', '#8b5cf6', '#10b981', '#22d3ee', '#c41e3a', '#f0abfc', '#fb923c'][i % 9],
+    accent: ['#e5483b', '#d9b26a', '#8a8578', '#b07cc6', '#6fc2ae', '#6e8cff', '#e5483b', '#d9a7d6', '#c07a4a'][i % 9],
   }));
 
   return (
@@ -234,7 +243,7 @@ export default function Page() {
         <Stat value={GLOSSARY_COUNT} label="词条总数" accent="var(--cyber-cyan)" />
         <Stat value={GLOSSARY_CATEGORIES.length} label="分类维度" accent="var(--fire-gold)" />
         <Stat value={filtered.length} label="当前筛选" accent="var(--china-red)" />
-        <Stat value={initials.length} label="拼音索引档" accent="#10b981" />
+        <Stat value={initials.length} label="拼音索引档" accent="#6fc2ae" />
       </StatGrid>
 
       <div className="mb-4">

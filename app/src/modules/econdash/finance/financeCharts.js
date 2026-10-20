@@ -128,7 +128,7 @@ export function rateCorridorOption() {
       { name: '1Y LPR', type: 'line', smooth: true, data: RATE_CORRIDOR.lpr1y, lineStyle: { width: 2, color: C.powerRed }, itemStyle: { color: C.powerRed } },
       { name: '5Y LPR', type: 'line', smooth: true, data: RATE_CORRIDOR.lpr5y, lineStyle: { width: 2, color: C.fireGold }, itemStyle: { color: C.fireGold } },
       { name: 'MLF 1Y', type: 'line', smooth: true, data: RATE_CORRIDOR.mlf1y, lineStyle: { width: 2, color: C.violet, type: 'dashed' }, itemStyle: { color: C.violet } },
-      { name: 'DR007', type: 'line', smooth: true, data: RATE_CORRIDOR.dr007, lineStyle: { width: 2, color: C.cyberCyan }, itemStyle: { color: C.cyberCyan }, areaStyle: { color: 'rgba(34,211,238,0.08)' } },
+      { name: 'DR007', type: 'line', smooth: true, data: RATE_CORRIDOR.dr007, lineStyle: { width: 2, color: C.cyberCyan }, itemStyle: { color: C.cyberCyan }, areaStyle: { color: 'rgba(110, 140, 255,0.08)' } },
     ],
   };
 }
@@ -144,7 +144,7 @@ export function fxOption() {
     series: [{
       type: 'line', smooth: true, symbol: 'circle', symbolSize: 6,
       data: FX_USDCNY.mid, lineStyle: { width: 2, color: C.emerald }, itemStyle: { color: C.emerald },
-      areaStyle: { color: 'rgba(16,185,129,0.1)' },
+      areaStyle: { color: 'rgba(111, 194, 174,0.1)' },
       markLine: {
         silent: true, symbol: 'none', lineStyle: { type: 'dashed', color: C.fireGold, opacity: 0.6 },
         label: { formatter: '7.0 心理关口', fontSize: 10, color: C.fireGold },
@@ -240,7 +240,7 @@ export function marginSparkOption() {
     series: [{
       type: 'line', smooth: true, symbol: 'circle', symbolSize: 5,
       data: CAPITAL_FLOW.marginBalance, lineStyle: { width: 2, color: C.violet }, itemStyle: { color: C.violet },
-      areaStyle: { color: 'rgba(139,92,246,0.12)' },
+      areaStyle: { color: 'rgba(176, 124, 198,0.12)' },
     }],
   };
 }

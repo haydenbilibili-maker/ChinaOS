@@ -14,28 +14,28 @@ const AS_OF = AS_OF_BASELINE;
 
 const REGIONS = [
   {
-    key: 'xinjiang', label: '新疆', accent: '#c41e3a',
+    key: 'xinjiang', label: '新疆', accent: '#e5483b',
     scores: [88, 82, 75, 70, 65],
     thesis: '反恐维稳转入常态化治理，「八大产业集群」与中欧班列枢纽重塑内陆开放前沿——安全与发展是同一枚硬币的两面。',
     points: ['自贸试验区乌鲁木齐片区制度创新', '棉花、光伏、煤化工产业链集聚', '南疆就业与普通话推广工程', '口岸经济带与中亚互联互通'],
     lever: '对口援疆 + 中央财政转移支付 + 产业援疆项目库。',
   },
   {
-    key: 'xizang', label: '西藏', accent: '#e8a317',
+    key: 'xizang', label: '西藏', accent: '#d4a25a',
     scores: [85, 78, 72, 68, 80],
     thesis: '生态红线刚性约束下，清洁能源（水光风）与文旅康养是增长主通道——高原特色现代化路径不同于平原工业化模板。',
     points: ['雅江下游水电战略储备与绿电外送', '边境小康村与国防交通协同建设', '藏医药与特色农牧业品牌化', '格桑花行动人才援藏机制'],
     lever: '对口援藏 + 生态补偿转移支付 + 重大基建专项。',
   },
   {
-    key: 'neimeng', label: '内蒙古', accent: '#22d3ee',
+    key: 'neimeng', label: '内蒙古', accent: '#6e8cff',
     scores: [75, 85, 80, 72, 70],
     thesis: '能源基地向绿电枢纽转型，向北开放（中蒙俄经济走廊）与生态屏障（三北防护林）双重定位——资源型省份的再工业化样本。',
     points: ['新能源装机全国前列，绿电制氢试点', '满洲里/二连浩特口岸贸易枢纽', '草畜平衡与草原生态补偿', '稀土与新材料战略资源管控'],
     lever: '能源革命政策 + 向北开放通道 + 生态转移支付。',
   },
   {
-    key: 'guangxi', label: '桂滇黔', accent: '#10b981',
+    key: 'guangxi', label: '桂滇黔', accent: '#6fc2ae',
     scores: [70, 68, 82, 78, 75],
     thesis: '面向东盟的陆海新通道与跨境民族地区治理交织——兴边富民与民族团结进步示范区建设同步推进。',
     points: ['西部陆海新通道海铁联运', '边境贸易互市与跨境劳务', '少数民族特色村寨保护与开发', '滇桂黔石漠化片区连片振兴'],
@@ -44,9 +44,9 @@ const REGIONS = [
 ];
 
 const PHASES = [
-  { period: '2012–2017', title: '兴边富民', accent: '#64748b', desc: '边境基础设施与民生改善工程启动，「十三五」兴边富民行动规划落地。' },
-  { period: '2018–2022', title: '精准支援', accent: '#e8a317', desc: '对口支援从「输血」转向产业与人才「造血」，脱贫攻坚与边疆稳定耦合。' },
-  { period: '2023–', title: '共同体意识', accent: '#c41e3a', desc: '铸牢中华民族共同体意识写入法治与治理主线，边疆高质量发展纳入十五五布局。' },
+  { period: '2012–2017', title: '兴边富民', accent: '#8a8578', desc: '边境基础设施与民生改善工程启动，「十三五」兴边富民行动规划落地。' },
+  { period: '2018–2022', title: '精准支援', accent: '#d4a25a', desc: '对口支援从「输血」转向产业与人才「造血」，脱贫攻坚与边疆稳定耦合。' },
+  { period: '2023–', title: '共同体意识', accent: '#e5483b', desc: '铸牢中华民族共同体意识写入法治与治理主线，边疆高质量发展纳入十五五布局。' },
 ];
 
 const DIMS = ['安全韧性', '产业造血', '转移支付', '生态约束', '开放通道'];
@@ -62,8 +62,8 @@ export default function Page() {
     xAxis: categoryX(['2018', '2020', '2022', '2024', '2026E']),
     yAxis: valueY({ name: '万亿元' }),
     series: [
-      { name: '中央转移支付', type: 'bar', stack: 't', barWidth: 22, data: [6.2, 7.1, 7.8, 8.4, 9.0], itemStyle: { color: '#c41e3a' } },
-      { name: '对口支援投入', type: 'bar', stack: 't', data: [0.16, 0.18, 0.20, 0.22, 0.24], itemStyle: { color: '#e8a317' } },
+      { name: '中央转移支付', type: 'bar', stack: 't', barWidth: 22, data: [6.2, 7.1, 7.8, 8.4, 9.0], itemStyle: { color: '#e5483b' } },
+      { name: '对口支援投入', type: 'bar', stack: 't', data: [0.16, 0.18, 0.20, 0.22, 0.24], itemStyle: { color: '#d4a25a' } },
     ],
   }), []);
 
@@ -85,7 +85,7 @@ export default function Page() {
   const ethnicShareOpt = stackedBarOpt({
     categories: ['2010', '2015', '2020', '2025E'],
     series: [
-      { name: '边疆九省区 GDP 占比', data: [8.5, 9.2, 9.8, 10.5], itemStyle: { color: '#22d3ee' } },
+      { name: '边疆九省区 GDP 占比', data: [8.5, 9.2, 9.8, 10.5], itemStyle: { color: '#6e8cff' } },
       { name: '全国其余地区', data: [91.5, 90.8, 90.2, 89.5], itemStyle: { color: AXIS.lineStyle.color } },
     ],
   });
@@ -105,10 +105,10 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="~56%" label="国土面积占比" accent="#c41e3a" />
-        <Stat value="~10%" label="GDP 贡献（边疆九省区）" accent="#22d3ee" />
-        <Stat value="22对" label="对口支援省市" accent="#e8a317" />
-        <Stat value={AS_OF} label="数据截至" accent="#8b5cf6" />
+        <Stat value="~56%" label="国土面积占比" accent="#e5483b" />
+        <Stat value="~10%" label="GDP 贡献（边疆九省区）" accent="#6e8cff" />
+        <Stat value="22对" label="对口支援省市" accent="#d4a25a" />
+        <Stat value={AS_OF} label="数据截至" accent="#b07cc6" />
       </Grid>
 
       <Grid cols={2} className="mb-6">
@@ -136,7 +136,7 @@ export default function Page() {
             ))}
           </div>
           <div className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
-            <span style={{ color: '#e8a317' }}>政策杠杆 · </span>{r.lever}
+            <span style={{ color: '#d4a25a' }}>政策杠杆 · </span>{r.lever}
           </div>
         </div>
         <Card title={`${r.label} · 治理五维评估`}>
@@ -150,16 +150,16 @@ export default function Page() {
 
       <Card title="十五五 · 指标 / 约束 / 路径" className="mb-6">
         <Grid cols={3}>
-          <div style={{ borderLeft: '2px solid #22d3ee', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#22d3ee' }}>核心指标</div>
+          <div style={{ borderLeft: '2px solid #6e8cff', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6e8cff' }}>核心指标</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>边疆地区 GDP 增速高于全国平均、居民收入与全国差距收窄；口岸贸易额与特色产业产值持续抬升。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #e8a317', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#e8a317' }}>关键约束</div>
+          <div style={{ borderLeft: '2px solid #d4a25a', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#d4a25a' }}>关键约束</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>生态红线与国土安全刚性约束；人才流失与产业空心化；对口支援「输血」依赖与可持续造血能力不足。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #10b981', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#10b981' }}>推进路径</div>
+          <div style={{ borderLeft: '2px solid #6fc2ae', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6fc2ae' }}>推进路径</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>兴边富民行动 2.0 → 特色产业与口岸经济 → 人才回流与数字化治理 → 铸牢共同体意识的制度化嵌入。</p>
           </div>
         </Grid>

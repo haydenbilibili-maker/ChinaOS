@@ -10,12 +10,12 @@
 export const AS_OF = '2026-09-28';
 
 export const THEMES = {
-  neoauth: { label: '新权威主义与开明权威', color: '#c41e3a' },
-  transition: { label: '后全能体制与渐进转型', color: '#8b5cf6' },
-  chinamodel: { label: '中国模式与发展政治学', color: '#22d3ee' },
-  history: { label: '晚清改革与历史镜鉴', color: '#e8a317' },
-  radicalism: { label: '超越左右激进主义', color: '#fb923c' },
-  civil: { label: '公民社会与多元整合', color: '#10b981' },
+  neoauth: { label: '新权威主义与开明权威', color: '#e5483b' },
+  transition: { label: '后全能体制与渐进转型', color: '#b07cc6' },
+  chinamodel: { label: '中国模式与发展政治学', color: '#6e8cff' },
+  history: { label: '晚清改革与历史镜鉴', color: '#d4a25a' },
+  radicalism: { label: '超越左右激进主义', color: '#c07a4a' },
+  civil: { label: '公民社会与多元整合', color: '#6fc2ae' },
 };
 export const THEME_KEYS = Object.keys(THEMES);
 
@@ -45,10 +45,10 @@ export const BOARD = {
 };
 
 export const CAREER_GROUPS = {
-  factory: { label: '工厂', color: '#94a3b8' },
-  study: { label: '求学', color: '#8b5cf6' },
-  shnu: { label: '上海师大', color: '#22d3ee' },
-  other: { label: '兼职与聘任', color: '#e8a317' },
+  factory: { label: '工厂', color: '#a29c91' },
+  study: { label: '求学', color: '#b07cc6' },
+  shnu: { label: '上海师大', color: '#6e8cff' },
+  other: { label: '兼职与聘任', color: '#d4a25a' },
 };
 
 /** 履历甘特：起止为小数年；月份未载者取近似；note 记录口径出入 */

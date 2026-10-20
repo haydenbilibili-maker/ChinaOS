@@ -19,7 +19,7 @@ import { LEGAL_STATUTE_DEDUPED_COUNT } from '../../lib/db/legalStatuteSeed.js';
 import { PRIVATE_ENTERPRISE_META, PE500_COMPANIES, PE500_DATASETS } from '../../lib/db/privateEnterpriseSeed.js';
 import { RANK_PYRAMID, MILITARY_INTEL_META } from '../../lib/db/militaryIntel2026.js';
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
-import { ECON_AS_OF, KEY_INDICATORS, CANARY_SIGNALS, INDICATOR_SPARKLINES, econTabPath } from '../econdash/econData.js';
+import { ECON_AS_OF, ECON_PERIOD, KEY_INDICATORS, CANARY_SIGNALS, INDICATOR_SPARKLINES, econTabPath } from '../econdash/econData.js';
 
 export const AS_OF = AS_OF_BASELINE;
 export const MACRO_AS_OF = ECON_AS_OF;
@@ -28,10 +28,10 @@ export const MACRO_AS_OF = ECON_AS_OF;
 export const DASHBOARD_REFRESH_MS = 60_000;
 
 const KPI_COLORS = {
-  warm: '#10b981',
-  hold: '#e8a317',
-  cool: '#c41e3a',
-  steel: '#22d3ee',
+  warm: '#6fc2ae',
+  hold: '#d4a25a',
+  cool: '#e5483b',
+  steel: '#6e8cff',
 };
 
 /** 信号语义色 · 绿/黄/红 */
@@ -44,7 +44,7 @@ export const SIGNAL_COLORS = {
 /** KPI 迷你火花线序列（公开口径示意 · 与 econdash INDICATOR_SPARKLINES 同源） */
 export const MACRO_SPARKLINES = {
   ...INDICATOR_SPARKLINES,
-  youth_unemp: [21.3, 19.6, 18.2, 17.5, 17.1, 16.9, 17.0, 16.8],
+  youth_unemp: [19.6, 18.2, 17.5, 17.1, 16.9, 16.8, 17.9, 18.9], // 末两期官方（7 月 17.9、8 月 18.9），前期示意
 };
 
 export { econTabPath };
@@ -75,19 +75,20 @@ export function buildMacroKpiSnapshot() {
   return [
     {
       id: 'gdp_h1',
-      k: 'GDP H1',
-      v: gdp ? fmtPct(gdp.value) : '5.3%',
+      k: `GDP ${ECON_PERIOD.gdp}`,
+      v: gdp ? fmtPct(gdp.value) : '—',
       note: '累计同比 · 十五五开局',
       c: KPI_COLORS.cool,
       asOf: gdp?.asOf || MACRO_AS_OF,
-      liveKey: 'gdpGrowth',
+      // 世行 WDI 为年度口径，不能覆盖季度累计读数
+      liveKey: null,
       live: false,
     },
     {
       id: 'cpi',
-      k: 'CPI 6月',
-      v: cpi ? fmtPct(cpi.value) : '0.3%',
-      note: '同比近零 · 通缩压力',
+      k: `CPI ${ECON_PERIOD.ytd}`,
+      v: cpi ? fmtPct(cpi.value) : '—',
+      note: '累计同比 · 低位运行',
       c: KPI_COLORS.steel,
       asOf: cpi?.asOf || MACRO_AS_OF,
       liveKey: null,
@@ -95,9 +96,9 @@ export function buildMacroKpiSnapshot() {
     },
     {
       id: 'pmi_mfg',
-      k: 'PMI 6月',
-      v: pmi ? fmtPoint(pmi.value) : '49.8',
-      note: '制造业 · 荣枯线下',
+      k: `PMI ${ECON_PERIOD.month}`,
+      v: pmi ? fmtPoint(pmi.value) : '—',
+      note: pmi && pmi.value >= 50 ? '制造业 · 扩张区间' : '制造业 · 荣枯线下',
       c: KPI_COLORS.hold,
       asOf: pmi?.asOf || MACRO_AS_OF,
       liveKey: null,
@@ -105,9 +106,9 @@ export function buildMacroKpiSnapshot() {
     },
     {
       id: 'retail',
-      k: '社零 6月',
-      v: retail ? `+${fmtPct(retail.value)}` : '+4.6%',
-      note: '以旧换新支撑',
+      k: `社零 ${ECON_PERIOD.ytd}`,
+      v: retail ? `${retail.value >= 0 ? '+' : ''}${fmtPct(retail.value)}` : '—',
+      note: '累计同比 · 服务强于商品',
       c: KPI_COLORS.warm,
       asOf: retail?.asOf || MACRO_AS_OF,
       liveKey: null,
@@ -115,8 +116,8 @@ export function buildMacroKpiSnapshot() {
     },
     {
       id: 'm2',
-      k: 'M2 6月',
-      v: m2 ? fmtPct(m2.value) : '7.2%',
+      k: `M2 ${ECON_PERIOD.month}末`,
+      v: m2 ? fmtPct(m2.value) : '—',
       note: '宽货币 · 窄信用',
       c: KPI_COLORS.steel,
       asOf: m2?.asOf || MACRO_AS_OF,
@@ -126,8 +127,8 @@ export function buildMacroKpiSnapshot() {
     {
       id: 'youth_unemp',
       k: '青年失业',
-      v: youth?.reading?.match(/[\d.]+%/)?.[0] || '16.8%',
-      note: '16–24 岁 · 6月',
+      v: youth?.reading?.match(/[\d.]+%/)?.[0] || '—',
+      note: `16–24 岁 · ${youth?.reading?.match(/^(\d+)\s*月/)?.[1] ?? '—'} 月`,
       c: KPI_COLORS.cool,
       asOf: MACRO_AS_OF,
       liveKey: null,
@@ -137,6 +138,39 @@ export function buildMacroKpiSnapshot() {
 }
 
 export const MACRO_KPI_SNAPSHOT = buildMacroKpiSnapshot();
+
+/**
+ * 滚动情报条：数值项一律取自 KEY_INDICATORS / 金丝雀盘（随时效更新自动刷新），
+ * 定性项为各模块判读基准。tone ∈ warm | hold | cool | steel。
+ */
+export function buildTickerItems() {
+  const ind = (id) => pickIndicator(id);
+  const gdp = ind('gdp_h1');
+  const cpi = ind('cpi');
+  const pmi = ind('pmi_mfg');
+  const retail = ind('retail');
+  const unemp = ind('urban_unemp');
+  const exp = ind('export');
+  const youth = CANARY_SIGNALS.find((s) => s.id === 'youth_unemp');
+  const signed = (v) => `${v >= 0 ? '+' : ''}${fmtPct(v)}`;
+  return [
+    gdp && [`GDP ${ECON_PERIOD.gdp}`, fmtPct(gdp.value), 'cool'],
+    cpi && [`CPI ${ECON_PERIOD.ytd}`, fmtPct(cpi.value), 'steel'],
+    pmi && [`PMI ${ECON_PERIOD.month}`, fmtPoint(pmi.value), pmi.value >= 50 ? 'warm' : 'hold'],
+    retail && [`社零 ${ECON_PERIOD.ytd}`, signed(retail.value), retail.value >= 3 ? 'warm' : 'hold'],
+    exp && [`出口 ${ECON_PERIOD.ytd}`, signed(exp.value), 'warm'],
+    ['赤字率', '4% 左右', 'cool'],
+    ['货币定调', '适度宽松', 'warm'],
+    ['中美', '竞合管控 →', 'hold'],
+    ['台海', '高压常态化', 'hold'],
+    ['人口', '14.05 亿 · 负增长', 'hold'],
+    youth && ['青年失业', youth.reading.match(/[\d.]+%/)?.[0] ?? '—', 'cool'],
+    unemp && ['城镇调查失业率', fmtPct(unemp.value), 'hold'],
+    ['制造业全球份额', '≈30%', 'warm'],
+  ].filter(Boolean);
+}
+
+export const TICKER_ITEMS = buildTickerItems();
 
 /** 活模块快捷跳转 · 带实时状态标注 */
 export const LIVE_MODULE_CHIPS = [
@@ -188,28 +222,28 @@ export const ENTRY_TOTAL =
 
 // ── 数据集规模对比（横向条形）─────────────────────────────
 export const DATASET_SCALE = [
-  { key: '中国政要', value: FIGURE_SEED_COUNT, to: '/talent', color: '#22d3ee' },
-  { key: '知识精英', value: CULTURAL_ELITE_DEDUPED_COUNT.total, to: '/talent?tab=knowledge', color: '#f0abfc' },
-  { key: '政策文件', value: DOC_CATALOG_META.total, to: '/policydocs', color: '#ef4444' },
-  { key: '法律条文', value: LEGAL_STATUTE_DEDUPED_COUNT.total, to: '/policydocs?tab=legal', color: '#8b5cf6' },
-  { key: '民企500强', value: PE_COMPANIES, to: '/enterprise500', color: '#fb923c' },
-  { key: '反腐名单', value: ANTI_CORRUPTION_COUNT, to: '/talent?tab=anticorruption', color: '#c41e3a' },
-  { key: '商业精英', value: BUSINESS_ELITE_DEDUPED_COUNT.total, to: '/talent?tab=business', color: '#d4af37' },
+  { key: '中国政要', value: FIGURE_SEED_COUNT, to: '/talent', color: '#6e8cff' },
+  { key: '知识精英', value: CULTURAL_ELITE_DEDUPED_COUNT.total, to: '/talent?tab=knowledge', color: '#d9a7d6' },
+  { key: '政策文件', value: DOC_CATALOG_META.total, to: '/policydocs', color: '#e5483b' },
+  { key: '法律条文', value: LEGAL_STATUTE_DEDUPED_COUNT.total, to: '/policydocs?tab=legal', color: '#b07cc6' },
+  { key: '民企500强', value: PE_COMPANIES, to: '/enterprise500', color: '#c07a4a' },
+  { key: '反腐名单', value: ANTI_CORRUPTION_COUNT, to: '/talent?tab=anticorruption', color: '#e5483b' },
+  { key: '商业精英', value: BUSINESS_ELITE_DEDUPED_COUNT.total, to: '/talent?tab=business', color: '#d9b26a' },
   { key: '科研院所', value: RESEARCH_INSTITUTE_DEDUPED_COUNT.total, to: '/talent?tab=research', color: '#a78bfa' },
-  { key: '高等教育', value: HIGHER_EDUCATION_DEDUPED_COUNT.total, to: '/talent?tab=education', color: '#10b981' },
+  { key: '高等教育', value: HIGHER_EDUCATION_DEDUPED_COUNT.total, to: '/talent?tab=education', color: '#6fc2ae' },
   { key: '海外人才', value: OVERSEAS_TALENT_DEDUPED_COUNT.total, to: '/talent?tab=overseas', color: '#0ea5e9' },
   { key: '自媒体人', value: SELF_MEDIA_DEDUPED_COUNT.total, to: '/talent?tab=self-media', color: '#f472b6' },
-  { key: '500强股权', value: PE_EQUITY, to: '/enterprise500', color: '#64748b' },
+  { key: '500强股权', value: PE_EQUITY, to: '/enterprise500', color: '#8a8578' },
 ].sort((a, b) => b.value - a.value);
 
 // ── 人才库分层构成（环形）─────────────────────────────────
 const bd = FIGURE_CATALOG_META.breakdown || {};
 export const TALENT_LAYERS = [
-  { name: '省级班子', value: (bd.provincial || 0) + (bd.provincialExtended || 0) + (bd.provincialStanding || 0), color: '#c41e3a' },
-  { name: '中央国家机关', value: (bd.central || 0) + (bd.extended || 0), color: '#e8a317' },
-  { name: '地级市', value: (bd.municipal || 0) + (bd.prefectureCity || 0), color: '#22d3ee' },
-  { name: '直属机构', value: (bd.org || 0) + (bd.orgTier2 || 0), color: '#8b5cf6' },
-  { name: '军事将领', value: bd.military || 0, color: '#10b981' },
+  { name: '省级班子', value: (bd.provincial || 0) + (bd.provincialExtended || 0) + (bd.provincialStanding || 0), color: '#e5483b' },
+  { name: '中央国家机关', value: (bd.central || 0) + (bd.extended || 0), color: '#d4a25a' },
+  { name: '地级市', value: (bd.municipal || 0) + (bd.prefectureCity || 0), color: '#6e8cff' },
+  { name: '直属机构', value: (bd.org || 0) + (bd.orgTier2 || 0), color: '#b07cc6' },
+  { name: '军事将领', value: bd.military || 0, color: '#6fc2ae' },
 ].filter((d) => d.value > 0);
 
 // ── 反腐历年趋势（按年计数，2012 起）──────────────────────
@@ -275,7 +309,7 @@ export const MODULE_GATEWAY = [
     tag: '制度内核',
     desc: '儒表法里 · 数字利维坦 · 统治成本推演',
     icon: 'Cpu',
-    accent: '#e8a317',
+    accent: '#d4a25a',
     signalLabel: '态势：制度演进',
     live: false,
   },
@@ -286,7 +320,7 @@ export const MODULE_GATEWAY = [
     tag: '地缘重力',
     desc: '硅盾屏障 · 岛链突破 · 统一进程标定',
     icon: 'Crosshair',
-    accent: '#c41e3a',
+    accent: '#e5483b',
     signalLabel: '态势：高压常态化',
     live: true,
   },
@@ -297,7 +331,7 @@ export const MODULE_GATEWAY = [
     tag: '战区布局',
     desc: '联合战区 · 主战装备 · 联勤保障网络',
     icon: 'Shield',
-    accent: '#10b981',
+    accent: '#6fc2ae',
     signalLabel: '态势：战备常态',
     live: false,
   },
@@ -319,7 +353,7 @@ export const MODULE_GATEWAY = [
     tag: '人力资本',
     desc: '政要 · 知识生产 · 资本逻辑多维图谱',
     icon: 'UsersRound',
-    accent: '#22d3ee',
+    accent: '#6e8cff',
     signalLabel: '态势：结构化更新',
     live: false,
   },
@@ -330,7 +364,7 @@ export const MODULE_GATEWAY = [
     tag: '决策机制',
     desc: '权力结构 · 政策半径 · 治理仿真',
     icon: 'Crown',
-    accent: '#d4af37',
+    accent: '#d9b26a',
     signalLabel: '态势：中枢稳态',
     live: false,
   },
@@ -341,7 +375,7 @@ export const MODULE_GATEWAY = [
     tag: '信号合成',
     desc: 'A/B/C 档 · 宏观再平衡 · 态势判读',
     icon: 'Gauge',
-    accent: '#79a496',
+    accent: '#6fc2ae',
     signalLabel: '信号：再平衡监测',
     live: true,
   },
@@ -352,7 +386,7 @@ export const MODULE_GATEWAY = [
     tag: '治理工具',
     desc: '世界→中国→同类→我 · 归因链路',
     icon: 'Telescope',
-    accent: '#b18a52',
+    accent: '#d4a25a',
     signalLabel: '治理：H1 判读',
     live: false,
   },

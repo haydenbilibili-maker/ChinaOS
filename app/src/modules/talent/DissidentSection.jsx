@@ -1,7 +1,26 @@
 import { AXIS, LABEL } from '../shared/chartHelpers.js';
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
+import {
+  BarChart3 as LuBarChart3,
+  LayoutGrid as LuLayoutGrid,
+  List as LuList,
+  Megaphone as LuMegaphone,
+  RefreshCw as LuRefreshCw,
+  Search as LuSearch,
+  X as LuX,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  BarChart3: LuBarChart3,
+  LayoutGrid: LuLayoutGrid,
+  List: LuList,
+  Megaphone: LuMegaphone,
+  RefreshCw: LuRefreshCw,
+  Search: LuSearch,
+  X: LuX,
+};
 import { Card, Grid, Stat, DistBar } from '../../app/ui.jsx';
 import FigureAvatar from '../../lib/ui/FigureAvatar.jsx';
 import { figureAvatarProps, prefetchFigureAvatars } from '../../lib/ui/figureAvatarResolve.js';
@@ -21,7 +40,7 @@ import { useTalentDeepLink, findEntityInList } from '../../lib/talent/routing.js
 import TalentDetailPanel from './TalentDetailPanel.jsx';
 
 const inp = { background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', borderRadius: 6, padding: '6px 10px', fontSize: 13 };
-const btn = { background: 'rgba(139,92,246,0.14)', color: '#a78bfa', border: '1px solid rgba(139,92,246,0.35)', borderRadius: 6, padding: '6px 14px', fontSize: 13, cursor: 'pointer' };
+const btn = { background: 'rgba(176, 124, 198,0.14)', color: '#a78bfa', border: '1px solid rgba(176, 124, 198,0.35)', borderRadius: 6, padding: '6px 14px', fontSize: 13, cursor: 'pointer' };
 const ACCENT = '#a78bfa';
 const STATUS_RANK = { 在押: 0, 监视居住: 1, 取保候审: 2, 流亡: 3, 已获释: 4, 已故: 5 };
 const CAT_RANK = Object.fromEntries(DV_SUB_CATS.map((k, i) => [k, i]));
@@ -38,18 +57,18 @@ function preview(text, max = 52) {
 }
 
 function statusStyle(status) {
-  if (status === '在押') return { background: 'rgba(196,30,58,0.12)', color: 'var(--china-red)' };
+  if (status === '在押') return { background: 'rgba(229, 72, 59,0.12)', color: 'var(--china-red)' };
   if (status === '流亡') return { background: 'rgba(14,165,233,0.12)', color: '#0ea5e9' };
   if (status === '已故') return { background: 'var(--bg-base)', color: 'var(--text-tertiary)' };
-  if (status === '已获释') return { background: 'rgba(16,185,129,0.12)', color: '#10b981' };
-  return { background: 'rgba(232,163,23,0.12)', color: '#e8a317' };
+  if (status === '已获释') return { background: 'rgba(111, 194, 174,0.12)', color: '#6fc2ae' };
+  return { background: 'rgba(212, 162, 90,0.12)', color: '#d4a25a' };
 }
 
 function DissidentCard({ r, on, onClick, dense = false }) {
   return (
     <button type="button" onClick={onClick} className="w-full text-left rounded"
       style={{
-        background: on ? 'rgba(139,92,246,0.14)' : 'var(--bg-elevated)',
+        background: on ? 'rgba(176, 124, 198,0.14)' : 'var(--bg-elevated)',
         border: `1px solid ${on ? ACCENT : 'var(--border-subtle)'}`,
         cursor: 'pointer', padding: dense ? '8px 10px' : '10px 12px',
       }}>
@@ -59,7 +78,7 @@ function DissidentCard({ r, on, onClick, dense = false }) {
           <div className="flex items-center gap-1.5 flex-wrap">
             <span className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{r.name}</span>
             {r.nameEn && <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>{r.nameEn}</span>}
-            <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(139,92,246,0.12)', color: ACCENT }}>{DV_TAB_LABEL[r.category] || r.subCategory}</span>
+            <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(176, 124, 198,0.12)', color: ACCENT }}>{DV_TAB_LABEL[r.category] || r.subCategory}</span>
             {r.status && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={statusStyle(r.status)}>{r.status}</span>}
           </div>
           <div className="text-[11px] mt-0.5 truncate" style={{ color: 'var(--text-secondary)' }}>
@@ -160,7 +179,7 @@ export default function DissidentSection() {
   const statusChart = distStatus.length ? {
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
     grid: { left: 56, right: 16, top: 12, bottom: 24 },
-    xAxis: { type: 'value', axisLabel: { color: LABEL.color, fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+    xAxis: { type: 'value', axisLabel: { color: LABEL.color, fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } } },
     yAxis: { type: 'category', data: distStatus.map(([k]) => k).reverse(), axisLabel: { color: LABEL.color, fontSize: 10 } },
     series: [{ type: 'bar', data: distStatus.map(([, n]) => n).reverse(), barWidth: 14, itemStyle: { color: ACCENT, borderRadius: [0, 3, 3, 0] } }],
   } : null;
@@ -193,7 +212,7 @@ export default function DissidentSection() {
   return (
     <section>
       <div className="flex items-center gap-3 mb-4 pb-3" style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-        <span className="flex items-center justify-center rounded" style={{ width: 32, height: 32, background: 'rgba(139,92,246,0.12)', color: ACCENT }}>
+        <span className="flex items-center justify-center rounded" style={{ width: 32, height: 32, background: 'rgba(176, 124, 198,0.12)', color: ACCENT }}>
           <Lucide.Megaphone size={16} />
         </span>
         <div>
@@ -208,19 +227,19 @@ export default function DissidentSection() {
         <Stat value={list.length} label="档案总数" accent={ACCENT} />
         <Stat value={inCustody} label="在押" accent="var(--china-red)" />
         <Stat value={exiled} label="流亡" accent="#0ea5e9" />
-        <Stat value={released} label="已获释" accent="#10b981" />
-        <Stat value={deceased} label="已故" accent="#64748b" />
+        <Stat value={released} label="已获释" accent="#6fc2ae" />
+        <Stat value={deceased} label="已故" accent="#8a8578" />
         <Stat value={filtered.length} label="当前命中" />
       </div>
 
       <div className="flex gap-1.5 flex-wrap mb-4">
         <button type="button" onClick={() => setCat('')} className="text-[11px] mono px-2.5 py-1 rounded-full"
-          style={{ background: !catTab ? 'rgba(139,92,246,0.2)' : 'var(--bg-elevated)', border: `1px solid ${!catTab ? ACCENT : 'var(--border-subtle)'}`, color: !catTab ? ACCENT : 'var(--text-secondary)', cursor: 'pointer' }}>
+          style={{ background: !catTab ? 'rgba(176, 124, 198,0.2)' : 'var(--bg-elevated)', border: `1px solid ${!catTab ? ACCENT : 'var(--border-subtle)'}`, color: !catTab ? ACCENT : 'var(--text-secondary)', cursor: 'pointer' }}>
           全部 {list.length}
         </button>
         {DV_SUB_CATS.map((k) => (
           <button key={k} type="button" onClick={() => setCat(catTab === k ? '' : k)} className="text-[11px] mono px-2.5 py-1 rounded-full"
-            style={{ background: catTab === k ? 'rgba(139,92,246,0.2)' : 'var(--bg-elevated)', border: `1px solid ${catTab === k ? ACCENT : 'var(--border-subtle)'}`, color: catTab === k ? ACCENT : 'var(--text-secondary)', cursor: 'pointer' }}>
+            style={{ background: catTab === k ? 'rgba(176, 124, 198,0.2)' : 'var(--bg-elevated)', border: `1px solid ${catTab === k ? ACCENT : 'var(--border-subtle)'}`, color: catTab === k ? ACCENT : 'var(--text-secondary)', cursor: 'pointer' }}>
             {DV_TAB_LABEL[k]} {catCounts[k] ?? 0}
           </button>
         ))}
@@ -264,11 +283,11 @@ export default function DissidentSection() {
               <div className="flex rounded overflow-hidden" style={{ border: '1px solid var(--border-subtle)' }}>
                 {[['list', 'List'], ['grid', 'LayoutGrid'], ['stats', 'BarChart3']].map(([v, ic]) => {
                   const I = Lucide[ic]; const on = view === v;
-                  return <button key={v} type="button" onClick={() => setView(v)} style={{ padding: '6px 9px', background: on ? 'rgba(139,92,246,0.18)' : 'var(--bg-base)', color: on ? ACCENT : 'var(--text-tertiary)', border: 'none', cursor: 'pointer' }}><I size={15} /></button>;
+                  return <button key={v} type="button" onClick={() => setView(v)} style={{ padding: '6px 9px', background: on ? 'rgba(176, 124, 198,0.18)' : 'var(--bg-base)', color: on ? ACCENT : 'var(--text-tertiary)', border: 'none', cursor: 'pointer' }}><I size={15} /></button>;
                 })}
               </div>
               {list.length < DISSIDENT_DEDUPED_COUNT.total && (
-                <button type="button" onClick={() => loadSeed(false)} disabled={loading} style={{ ...inp, cursor: 'pointer', color: '#10b981', borderColor: 'rgba(16,185,129,0.4)', display: 'flex', alignItems: 'center', gap: 4 }}>
+                <button type="button" onClick={() => loadSeed(false)} disabled={loading} style={{ ...inp, cursor: 'pointer', color: '#6fc2ae', borderColor: 'rgba(111, 194, 174,0.4)', display: 'flex', alignItems: 'center', gap: 4 }}>
                   <Lucide.RefreshCw size={13} />{loading ? '载入中…' : `补全 ${DISSIDENT_DEDUPED_COUNT.total} 条`}
                 </button>
               )}
@@ -330,9 +349,9 @@ export default function DissidentSection() {
                     badges={(
                       <>
                         {detail.nameEn && <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>{detail.nameEn}</span>}
-                        <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(139,92,246,0.12)', color: ACCENT }}>{DV_TAB_LABEL[detail.category] || detail.subCategory}</span>
+                        <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(176, 124, 198,0.12)', color: ACCENT }}>{DV_TAB_LABEL[detail.category] || detail.subCategory}</span>
                         {detail.status && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={statusStyle(detail.status)}>{detail.status}</span>}
-                        {detail.tier && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(212,175,55,0.12)', color: '#d4af37' }}>Tier {detail.tier}</span>}
+                        {detail.tier && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(217, 178, 106,0.12)', color: '#d9b26a' }}>Tier {detail.tier}</span>}
                       </>
                     )}
                     tags={detail.tags ? detail.tags.split(/[,，]/).map((t) => t.trim()).filter(Boolean) : []}
@@ -352,7 +371,7 @@ export default function DissidentSection() {
                         title: '记录口径',
                         fields: [
                           { label: '档案摘要', value: detail.bio, span: 2 },
-                          { label: '备注', value: detail.notes, span: 2, accent: '#e8a317' },
+                          { label: '备注', value: detail.notes, span: 2, accent: '#d4a25a' },
                         ],
                       },
                     ]}

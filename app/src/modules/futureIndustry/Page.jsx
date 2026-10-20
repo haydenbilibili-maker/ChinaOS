@@ -18,42 +18,42 @@ const DIMS = ['技术成熟', '市场潜力', '国家投入', '产业链就绪',
 
 const TRACKS = [
   {
-    key: 'embodied', label: '具身智能', accent: '#22d3ee', trl: 5,
+    key: 'embodied', label: '具身智能', accent: '#6e8cff', trl: 5,
     horizon: '2026—2030 产业化', scores: [62, 92, 80, 65, 70],
     thesis: '具身智能（人形机器人 + 大模型）是 AI 从「数字世界」走向「物理世界」的载体——制造、服务、特种作业的通用执行体，被视为下一个万亿级平台。',
     points: ['人形机器人整机量产爬坡，成本快速下探', '运动控制 + 多模态大模型「大脑—小脑」协同', '工厂/物流/养老等场景试点'],
     bottleneck: '灵巧手、高功率密度关节、具身数据与泛化能力仍是核心瓶颈。',
   },
   {
-    key: 'fusion', label: '可控核聚变', accent: '#c41e3a', trl: 4,
+    key: 'fusion', label: '可控核聚变', accent: '#e5483b', trl: 4,
     horizon: '2035+ 工程示范', scores: [45, 95, 75, 42, 72],
     thesis: '可控核聚变是「终极能源」——一旦工程化将彻底改写能源压舱石逻辑。中国 EAST、BEST、CRAFT 等装置持续刷新参数，民营聚变创业涌现。',
     points: ['EAST 长脉冲高约束运行纪录持续突破', '紧凑型托卡马克与高温超导磁体路线并进', '聚变产业联盟与资本加速入场'],
     bottleneck: '净能量增益（Q>1 工程意义）、材料耐受、商业堆经济性远未解决。',
   },
   {
-    key: 'biomanu', label: '生物制造', accent: '#10b981', trl: 6,
+    key: 'biomanu', label: '生物制造', accent: '#6fc2ae', trl: 6,
     horizon: '2026—2030 放量', scores: [68, 80, 60, 62, 58],
     thesis: '生物制造（合成生物学）以「细胞工厂」替代化学合成与农业种植——食品、材料、医药、化工的绿色重构，是十五五前沿支柱。',
     points: ['合成生物学生产蛋白、香料、生物基材料', '酶工程与菌株设计平台化（DBTL 循环）', '生物基替代石化路线、降碳'],
     bottleneck: '菌株稳定性、放大发酵成本、法规与生物安全监管。',
   },
   {
-    key: 'sixg', label: '6G / 量子', accent: '#8b5cf6', trl: 3,
+    key: 'sixg', label: '6G / 量子', accent: '#b07cc6', trl: 3,
     horizon: '2030 商用', scores: [40, 88, 82, 50, 68],
     thesis: '6G 与量子信息构成下一代信息基础设施——通信感知一体、空天地海一体化网络，叠加量子计算/通信/测量的算力与安全跃迁。',
     points: ['6G 关键技术研发与频谱预研', '量子计算「祖冲之/九章」路线推进', '量子保密通信干线与星地网络'],
     bottleneck: '6G 标准与频谱博弈；量子纠错、相干时间与工程化规模。',
   },
   {
-    key: 'brain', label: '脑机接口', accent: '#e8a317', trl: 4,
+    key: 'brain', label: '脑机接口', accent: '#d4a25a', trl: 4,
     horizon: '2030 临床扩展', scores: [48, 72, 58, 45, 55],
     thesis: '脑机接口（BCI）打通神经与机器——医疗康复先行（瘫痪/渐冻症），远期延伸至人机交互与认知增强，涉及神经数据主权。',
     points: ['侵入式/半侵入式 BCI 临床试验推进', '高通量电极与神经信号解码算法', '康复、控制、交互场景落地'],
     bottleneck: '生物相容性、长期稳定性、伦理审查与神经数据治理。',
   },
   {
-    key: 'hydroenergy', label: '新型储能/氢', accent: '#fb923c', trl: 6,
+    key: 'hydroenergy', label: '新型储能/氢', accent: '#c07a4a', trl: 6,
     horizon: '2026—2030 商业化', scores: [70, 85, 68, 72, 65],
     thesis: '新型储能（钠电/固态/液流/重力）与绿氢是新型能源体系的「调节器」——支撑高比例新能源消纳，是能源转型的关键变量。',
     points: ['固态电池、钠离子电池产业化提速', '长时储能（液流/压缩空气）示范', '绿电制氢与氢储运全链'],
@@ -68,9 +68,9 @@ const investOpt = {
   yAxis: valueY({ name: '投入指数' }),
   series: [{
     type: 'bar', barWidth: 30, data: [100, 142, 198, 235, 420],
-    itemStyle: { color: '#8b5cf6', borderRadius: [3, 3, 0, 0] },
+    itemStyle: { color: '#b07cc6', borderRadius: [3, 3, 0, 0] },
     label: { show: true, position: 'top', color: LABEL.color, formatter: '{c}' },
-    markLine: { silent: true, data: [{ yAxis: 200, label: { formatter: '倍增基线', color: LABEL.color }, lineStyle: { color: '#e8a317', type: 'dashed' } }] },
+    markLine: { silent: true, data: [{ yAxis: 200, label: { formatter: '倍增基线', color: LABEL.color }, lineStyle: { color: '#d4a25a', type: 'dashed' } }] },
   }],
 };
 
@@ -78,17 +78,17 @@ const investOpt = {
 const maturityOpt = {
   grid: { left: 44, right: 24, top: 24, bottom: 40 },
   tooltip: { trigger: 'item', formatter: (p) => `${p.data[2]}<br/>成熟度 TRL ${p.data[0]} · 潜力 ${p.data[1]}` },
-  xAxis: { type: 'value', name: 'TRL 成熟度', min: 2, max: 8, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color }, nameTextStyle: { color: '#5b6a82' } },
-  yAxis: { type: 'value', name: '市场潜力', min: 40, max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color }, nameTextStyle: { color: '#5b6a82' } },
+  xAxis: { type: 'value', name: 'TRL 成熟度', min: 2, max: 8, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } }, axisLabel: { color: LABEL.color }, nameTextStyle: { color: '#8a847a' } },
+  yAxis: { type: 'value', name: '市场潜力', min: 40, max: 100, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } }, axisLabel: { color: LABEL.color }, nameTextStyle: { color: '#8a847a' } },
   series: [{
     type: 'scatter', symbolSize: (d) => d[3],
     data: [
-      [5, 92, '具身智能', 42, '#22d3ee'],
-      [4, 95, '可控核聚变', 40, '#c41e3a'],
-      [6, 80, '生物制造', 36, '#10b981'],
-      [3, 88, '6G/量子', 38, '#8b5cf6'],
-      [4, 72, '脑机接口', 30, '#e8a317'],
-      [6, 85, '新型储能/氢', 38, '#fb923c'],
+      [5, 92, '具身智能', 42, '#6e8cff'],
+      [4, 95, '可控核聚变', 40, '#e5483b'],
+      [6, 80, '生物制造', 36, '#6fc2ae'],
+      [3, 88, '6G/量子', 38, '#b07cc6'],
+      [4, 72, '脑机接口', 30, '#d4a25a'],
+      [6, 85, '新型储能/氢', 38, '#c07a4a'],
     ].map((d) => ({ value: d, itemStyle: { color: d[4] } })),
     label: { show: true, formatter: (p) => p.data.value[2], position: 'top', color: LABEL.color, fontSize: 10 },
   }],
@@ -113,10 +113,10 @@ export default function Page() {
       </IntroCard>
 
       <StatGrid className="mb-6">
-        <Stat value="6大赛道" label="前沿种子方向" accent="#22d3ee" />
-        <Stat value="TRL 3—6" label="技术成熟度区间" accent="#e8a317" />
-        <Stat value="耐心资本" label="新型举国体制" accent="#10b981" />
-        <Stat value={AS_OF} label="数据截至" accent="#8b5cf6" />
+        <Stat value="6大赛道" label="前沿种子方向" accent="#6e8cff" />
+        <Stat value="TRL 3—6" label="技术成熟度区间" accent="#d4a25a" />
+        <Stat value="耐心资本" label="新型举国体制" accent="#6fc2ae" />
+        <Stat value={AS_OF} label="数据截至" accent="#b07cc6" />
       </StatGrid>
 
       <Card title="未来产业赛道地图 · 成熟度 × 潜力（气泡=投入强度 · 示意）" className="mb-6">
@@ -134,8 +134,8 @@ export default function Page() {
             关键不在「全押」而在<strong style={{ color: 'var(--text-primary)' }}>组合下注与容错机制</strong>——避免运动式一哄而上造成重复建设与产能过剩。
           </p>
           <div className="space-y-2">
-            <div style={{ borderLeft: '2px solid #8b5cf6', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>投入侧</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>研发投入强度倍增，长周期耐心资本对冲不确定性回报。</p></div>
-            <div style={{ borderLeft: '2px solid #22d3ee', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>筛选侧</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>概念验证中心、先导区灰度筛选可行路线，路线收敛。</p></div>
+            <div style={{ borderLeft: '2px solid #b07cc6', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>投入侧</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>研发投入强度倍增，长周期耐心资本对冲不确定性回报。</p></div>
+            <div style={{ borderLeft: '2px solid #6e8cff', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>筛选侧</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>概念验证中心、先导区灰度筛选可行路线，路线收敛。</p></div>
           </div>
         </Card>
       </Grid>
@@ -163,7 +163,7 @@ export default function Page() {
             ))}
           </div>
           <div className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
-            <span style={{ color: '#c41e3a' }}>瓶颈 · </span>{t.bottleneck}
+            <span style={{ color: '#e5483b' }}>瓶颈 · </span>{t.bottleneck}
           </div>
         </div>
         <Card title={`${t.label} · 赛道五维评估（示意）`}>
@@ -173,16 +173,16 @@ export default function Page() {
 
       <Card title="十五五 · 指标 / 约束 / 路径" className="mb-6">
         <Grid cols={3}>
-          <div style={{ borderLeft: '2px solid #22d3ee', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#22d3ee' }}>核心指标</div>
+          <div style={{ borderLeft: '2px solid #6e8cff', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6e8cff' }}>核心指标</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>布局具身智能、量子、生物制造、6G、核聚变、新型储能/氢等未来产业先导区；研发投入强度倍增，新增长引擎储备成形。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #e8a317', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#e8a317' }}>关键约束</div>
+          <div style={{ borderLeft: '2px solid #d4a25a', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#d4a25a' }}>关键约束</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>技术不确定性高、回报周期长、多数赛道会失败；运动式一哄而上易致重复建设与产能过剩。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #10b981', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#10b981' }}>推进路径</div>
+          <div style={{ borderLeft: '2px solid #6fc2ae', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6fc2ae' }}>推进路径</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>实验室 → 中试/概念验证 → 未来产业先导区灰度筛选 → 种子期向新质生产力战略性新兴产业跃迁为支柱。</p>
           </div>
         </Grid>

@@ -10,87 +10,87 @@ const DATA_AS_OF = AS_OF_BASELINE;
 
 const SECTORS = [
   {
-    key: 'new3', label: '新三样', accent: '#c41e3a',
+    key: 'new3', label: '新三样', accent: '#e5483b',
     title: '新三样 · 电动车 / 锂电 / 光伏',
     scale: '出口合计 >1 万亿元', growth: '2023 同比 +30% 量级', pattern: '从「衬衫换飞机」到绿色资本品输出',
     friction: '欧盟反补贴税、美国 301 关税叠加 100% EV 关税；产能外溢（匈牙利/泰国/摩洛哥建厂）成为绕行通道。',
     note: '新三样是出口篮子质变的标志：单价高、技术密集、且嵌入全球碳中和需求曲线 —— 但也因此撞上最硬的政治墙。规模优势在前，规则封锁在后。',
     years: ['2019', '2020', '2021', '2022', '2023', '2024'],
-    series: [{ name: '出口额(千亿元)', data: [2.1, 2.7, 4.6, 7.7, 10.6, 10.4], color: '#c41e3a' }],
+    series: [{ name: '出口额(千亿元)', data: [2.1, 2.7, 4.6, 7.7, 10.6, 10.4], color: '#e5483b' }],
   },
   {
-    key: 'mech', label: '机电产品', accent: '#22d3ee',
+    key: 'mech', label: '机电产品', accent: '#6e8cff',
     title: '机电产品 · 出口基本盘',
     scale: '占出口 ~59%', growth: '稳态个位数增长', pattern: '从组装贴牌到自有品牌与中间品输出',
     friction: '半导体设备与高端零部件进口受限；「小院高墙」迫使部分供应链在岸/友岸重组。',
     note: '机电是出口的压舱石：手机、计算机、集成电路、通用机械。结构信号在于中间品出口占比上升 —— 中国正在从终端组装者变成亚洲生产网络的供货中枢。',
     years: ['2015', '2017', '2019', '2021', '2023', '2024'],
-    series: [{ name: '出口占比(%)', data: [57.6, 58.4, 58.8, 59.0, 58.6, 59.4], color: '#22d3ee' }],
+    series: [{ name: '出口占比(%)', data: [57.6, 58.4, 58.8, 59.0, 58.6, 59.4], color: '#6e8cff' }],
   },
   {
-    key: 'ecom', label: '跨境电商', accent: '#e8a317',
+    key: 'ecom', label: '跨境电商', accent: '#d4a25a',
     title: '跨境电商 · 全托管出海',
     scale: '进出口 ~2.6 万亿元', growth: '年均两位数增长', pattern: 'SHEIN/Temu 全托管模式重写贸易链路',
     friction: '美国取消 800 美元小额免税(de minimis)、欧盟海关改革；数据合规与平台审查成为新关税。',
     note: '全托管模式把「工厂—平台—海外消费者」压缩成一条直链，绕开了传统外贸的中间商与品牌商。它的脆弱点也在这里：链路越短，单点政策打击越致命。',
     years: ['2019', '2020', '2021', '2022', '2023', '2024'],
-    series: [{ name: '进出口(万亿元)', data: [1.0, 1.6, 1.9, 2.1, 2.4, 2.6], color: '#e8a317' }],
+    series: [{ name: '进出口(万亿元)', data: [1.0, 1.6, 1.9, 2.1, 2.4, 2.6], color: '#d4a25a' }],
   },
   {
-    key: 'service', label: '服务贸易', accent: '#10b981',
+    key: 'service', label: '服务贸易', accent: '#6fc2ae',
     title: '服务贸易 · 长期逆差项',
     scale: '总额 ~7.5 万亿元', growth: '旅行服务恢复性反弹', pattern: '货物巨额顺差 vs 服务持续逆差的镜像',
     friction: '旅行/留学/知识产权使用费构成逆差主体；数字服务出口受数据跨境规则掣肘。',
     note: '服务贸易逆差是中国国际收支的另一面：货物赚回的顺差，相当一部分经由旅行、留学与 IP 费用回流发达经济体。知识与体验，仍是进口品。',
     years: ['2015', '2017', '2019', '2021', '2023', '2024'],
-    series: [{ name: '总额(万亿元)', data: [4.5, 4.7, 5.4, 5.3, 6.6, 7.5], color: '#10b981' }],
+    series: [{ name: '总额(万亿元)', data: [4.5, 4.7, 5.4, 5.3, 6.6, 7.5], color: '#6fc2ae' }],
   },
   {
-    key: 'rcep', label: 'RCEP 区域', accent: '#8b5cf6',
+    key: 'rcep', label: 'RCEP 区域', accent: '#b07cc6',
     title: 'RCEP · 全球最大自贸区',
     scale: '对成员国贸易 ~13 万亿元', growth: '占外贸 ~31%', pattern: '原产地累积规则织密亚洲生产网络',
     friction: '区域内产业同构竞争（越南/印尼承接转移）；CPTPP 高标准条款（国企/数据/劳工）仍是门槛。',
     note: 'RCEP 是中国第一次以「规则主导方之一」身份参与的巨型自贸区。原产地累积让「中国中间品 + 东盟组装」获得关税优惠 —— 产能外溢由此从威胁变成杠杆。',
     years: ['2020', '2021', '2022', '2023', '2024'],
-    series: [{ name: '对RCEP贸易(万亿元)', data: [10.2, 12.1, 12.9, 12.6, 13.0], color: '#8b5cf6' }],
+    series: [{ name: '对RCEP贸易(万亿元)', data: [10.2, 12.1, 12.9, 12.6, 13.0], color: '#b07cc6' }],
   },
   {
-    key: 'us', label: '对美贸易', accent: '#64748b',
+    key: 'us', label: '对美贸易', accent: '#8a8578',
     title: '对美贸易 · 管控下的再挂钩',
     scale: '双边 ~4.7 万亿元', growth: '份额持续下行', pattern: '直接贸易降、经第三地转口升',
     friction: '301 关税覆盖逾 3000 亿美元商品；实体清单与出口管制双向加码；墨西哥/越南成为「洗产地」审查焦点。',
     note: '对美出口占比从 ~19% 降至 ~15%，但经墨西哥、越南、东盟的间接敞口在上升。脱钩的统计表象之下，是供应链的绕行与加价 —— 谁都没有真正离开谁。',
     years: ['2017', '2018', '2019', '2021', '2023', '2024'],
-    series: [{ name: '对美出口占比(%)', data: [19.0, 19.2, 16.8, 17.2, 14.8, 14.7], color: '#64748b' }],
+    series: [{ name: '对美出口占比(%)', data: [19.0, 19.2, 16.8, 17.2, 14.8, 14.7], color: '#8a8578' }],
   },
 ];
 
 const PHASES = [
-  { period: '2001–2008', title: '入世红利', accent: '#64748b', desc: '关税壁垒拆除 + 全球化顺风，加工贸易与劳密产品驱动出口年均 20%+ 增长，「世界工厂」定型。沿海每一个集装箱码头都是增长引擎。' },
-  { period: '2009–2017', title: '世界工厂巅峰', accent: '#22d3ee', desc: '金融危机后全球份额不降反升至 ~13%；机电超越劳密成为主力，一般贸易占比开始反超加工贸易 —— 增加值留在境内的比例上升。' },
-  { period: '2018–2021', title: '贸易战与关税', accent: '#e8a317', desc: '301 关税逐轮加码覆盖数千亿美元商品；「脱钩」从口号变成供应链事实。企业以产能外迁、转口、汇率消化对冲，出口反而在疫情中创新高。' },
-  { period: '2022–2024', title: '新三样 / RCEP', accent: '#c41e3a', desc: 'EV/锂电/光伏接棒成为出口引擎，东盟登顶第一大伙伴，RCEP 生效织密区域网络。出口篮子从消费品转向绿色资本品 —— 摩擦也随之升级。' },
-  { period: '2025→', title: '规则博弈期', accent: '#8b5cf6', desc: '内外贸一体化、申请 CPTPP、数字贸易规则谈判。竞争从商品价格转向规则话语权：谁定标准，谁定原产地，谁就定下一轮分工。' },
+  { period: '2001–2008', title: '入世红利', accent: '#8a8578', desc: '关税壁垒拆除 + 全球化顺风，加工贸易与劳密产品驱动出口年均 20%+ 增长，「世界工厂」定型。沿海每一个集装箱码头都是增长引擎。' },
+  { period: '2009–2017', title: '世界工厂巅峰', accent: '#6e8cff', desc: '金融危机后全球份额不降反升至 ~13%；机电超越劳密成为主力，一般贸易占比开始反超加工贸易 —— 增加值留在境内的比例上升。' },
+  { period: '2018–2021', title: '贸易战与关税', accent: '#d4a25a', desc: '301 关税逐轮加码覆盖数千亿美元商品；「脱钩」从口号变成供应链事实。企业以产能外迁、转口、汇率消化对冲，出口反而在疫情中创新高。' },
+  { period: '2022–2024', title: '新三样 / RCEP', accent: '#e5483b', desc: 'EV/锂电/光伏接棒成为出口引擎，东盟登顶第一大伙伴，RCEP 生效织密区域网络。出口篮子从消费品转向绿色资本品 —— 摩擦也随之升级。' },
+  { period: '2025→', title: '规则博弈期', accent: '#b07cc6', desc: '内外贸一体化、申请 CPTPP、数字贸易规则谈判。竞争从商品价格转向规则话语权：谁定标准，谁定原产地，谁就定下一轮分工。' },
 ];
 
 const NEW3_LINES = [
-  { name: '电动汽车', color: '#c41e3a', data: [120, 240, 1100, 3100, 5100, 5300] },
-  { name: '锂离子电池', color: '#22d3ee', data: [950, 1100, 1840, 3430, 4570, 4400] },
-  { name: '光伏产品', color: '#10b981', data: [1280, 1400, 2100, 3500, 2900, 2500] },
+  { name: '电动汽车', color: '#e5483b', data: [120, 240, 1100, 3100, 5100, 5300] },
+  { name: '锂离子电池', color: '#6e8cff', data: [950, 1100, 1840, 3430, 4570, 4400] },
+  { name: '光伏产品', color: '#6fc2ae', data: [1280, 1400, 2100, 3500, 2900, 2500] },
 ];
 const NEW3_YEARS = ['2019', '2020', '2021', '2022', '2023', '2024'];
 
 const PARTNER_YEARS = ['2010', '2015', '2018', '2020', '2022', '2024'];
 const PARTNER_STACK = [
-  { name: '美国', color: '#64748b', data: [18.0, 18.0, 19.2, 17.4, 16.2, 14.7] },
-  { name: '欧盟', color: '#22d3ee', data: [19.7, 15.6, 16.4, 15.1, 15.6, 14.4] },
-  { name: '东盟', color: '#c41e3a', data: [8.8, 12.2, 12.8, 14.7, 15.8, 16.4] },
-  { name: '一带一路/其他', color: '#e8a317', data: [53.5, 54.2, 51.6, 52.8, 52.4, 54.5] },
+  { name: '美国', color: '#8a8578', data: [18.0, 18.0, 19.2, 17.4, 16.2, 14.7] },
+  { name: '欧盟', color: '#6e8cff', data: [19.7, 15.6, 16.4, 15.1, 15.6, 14.4] },
+  { name: '东盟', color: '#e5483b', data: [8.8, 12.2, 12.8, 14.7, 15.8, 16.4] },
+  { name: '一带一路/其他', color: '#d4a25a', data: [53.5, 54.2, 51.6, 52.8, 52.4, 54.5] },
 ];
 
 const ECOM_BARS = [
-  { name: '出口', color: '#e8a317', data: [0.8, 1.2, 1.4, 1.6, 1.8, 2.0] },
-  { name: '进口', color: '#22d3ee', data: [0.2, 0.4, 0.5, 0.5, 0.6, 0.6] },
+  { name: '出口', color: '#d4a25a', data: [0.8, 1.2, 1.4, 1.6, 1.8, 2.0] },
+  { name: '进口', color: '#6e8cff', data: [0.2, 0.4, 0.5, 0.5, 0.6, 0.6] },
 ];
 const ECOM_YEARS = ['2019', '2020', '2021', '2022', '2023', '2024'];
 
@@ -140,8 +140,8 @@ export default function Page() {
     xAxis: categoryX(PARTNER_YEARS),
     yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
     series: [
-      { name: '东盟', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: PARTNER_STACK[2].data, lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.1)' } },
-      { name: '美国', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: PARTNER_STACK[0].data, lineStyle: { color: '#64748b', width: 2, type: 'dashed' }, itemStyle: { color: '#64748b' } },
+      { name: '东盟', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: PARTNER_STACK[2].data, lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.1)' } },
+      { name: '美国', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: PARTNER_STACK[0].data, lineStyle: { color: '#8a8578', width: 2, type: 'dashed' }, itemStyle: { color: '#8a8578' } },
     ],
   }), []);
 
@@ -166,9 +166,9 @@ export default function Page() {
     xAxis: categoryX(['2010', '2014', '2018', '2020', '2022', '2024']),
     yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
     series: [
-      { name: '一般贸易', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [50.1, 53.8, 57.8, 59.9, 63.7, 64.9], lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.08)' } },
-      { name: '加工贸易', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [38.9, 32.7, 27.4, 23.8, 20.1, 17.8], lineStyle: { color: '#64748b', width: 2, type: 'dashed' }, itemStyle: { color: '#64748b' } },
-      { name: '高新技术产品', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [31.2, 28.2, 30.0, 29.8, 26.6, 25.4], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
+      { name: '一般贸易', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [50.1, 53.8, 57.8, 59.9, 63.7, 64.9], lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.08)' } },
+      { name: '加工贸易', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [38.9, 32.7, 27.4, 23.8, 20.1, 17.8], lineStyle: { color: '#8a8578', width: 2, type: 'dashed' }, itemStyle: { color: '#8a8578' } },
+      { name: '高新技术产品', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [31.2, 28.2, 30.0, 29.8, 26.6, 25.4], lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' } },
     ],
   }), []);
 
@@ -183,13 +183,13 @@ export default function Page() {
       { type: 'value', position: 'right', splitLine: { show: false }, axisLabel: { color: LABEL.color, fontSize: 10, formatter: '{value}%' } },
     ],
     series: [
-      { name: '贸易顺差(千亿美元)', type: 'bar', barWidth: 18, data: [1.8, 1.8, 5.9, 4.2, 8.4, 9.9], itemStyle: { color: 'rgba(232,163,23,0.85)' } },
-      { name: '外贸依存度(%)', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', symbolSize: 5, data: [64, 49, 36, 32, 35, 33], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
+      { name: '贸易顺差(千亿美元)', type: 'bar', barWidth: 18, data: [1.8, 1.8, 5.9, 4.2, 8.4, 9.9], itemStyle: { color: 'rgba(212, 162, 90,0.85)' } },
+      { name: '外贸依存度(%)', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', symbolSize: 5, data: [64, 49, 36, 32, 35, 33], lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' } },
     ],
   }), []);
 
   // 竞争力雷达（单系列 · radarOpt）
-  const powerRadar = useMemo(() => radarOpt(RADAR_DIMS, RADAR_VALUES, { name: '贸易权力画像', color: '#c41e3a' }), []);
+  const powerRadar = useMemo(() => radarOpt(RADAR_DIMS, RADAR_VALUES, { name: '贸易权力画像', color: '#e5483b' }), []);
 
   // 跨境电商：堆叠 bar
   const ecomBars = useMemo(() => stackedBarOpt({
@@ -210,16 +210,16 @@ export default function Page() {
       </IntroCard>
 
       <StatGrid className="mb-6">
-        <Stat value="43.85 万亿" label="进出口总额 (2024 · 元)" accent="#22d3ee" />
-        <Stat value="~9920 亿$" label="货物贸易顺差 (2024)" accent="#e8a317" />
-        <Stat value="H1 +4.2%" label="2026 上半年出口交货值增速 (NBS)" accent="#c41e3a" />
-        <Stat value="~2.8 万亿" label="跨境电商进出口 (2025 · 元)" accent="#10b981" />
+        <Stat value="43.85 万亿" label="进出口总额 (2024 · 元)" accent="#6e8cff" />
+        <Stat value="~9920 亿$" label="货物贸易顺差 (2024)" accent="#d4a25a" />
+        <Stat value="H1 +4.2%" label="2026 上半年出口交货值增速 (NBS)" accent="#e5483b" />
+        <Stat value="~2.8 万亿" label="跨境电商进出口 (2025 · 元)" accent="#6fc2ae" />
       </StatGrid>
 
       <Grid cols={3} className="mb-6">
-        {[['RCEP 生效第四年', '区域内贸易占比升至 ~36% · 东盟稳居第一大伙伴', '#8b5cf6'],
-          ['新三样 H1', 'EV/锂电/光伏合计 ~5800 亿 · 量增额减持续', '#c41e3a'],
-          ['十五五开局', '内外贸一体化 · CPTPP 申请 · 数字贸易规则谈判并行', '#22d3ee']].map(([t, d, c]) => (
+        {[['RCEP 生效第四年', '区域内贸易占比升至 ~36% · 东盟稳居第一大伙伴', '#b07cc6'],
+          ['新三样 H1', 'EV/锂电/光伏合计 ~5800 亿 · 量增额减持续', '#e5483b'],
+          ['十五五开局', '内外贸一体化 · CPTPP 申请 · 数字贸易规则谈判并行', '#6e8cff']].map(([t, d, c]) => (
           <div key={t} className="os-card p-4" style={{ borderLeft: `3px solid ${c}` }}>
             <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>{t}</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
@@ -254,8 +254,8 @@ export default function Page() {
       <Card title="交互② · 贸易伙伴重构 — 去美国化的再平衡" className="mb-6">
         <SelectorBar
           items={[
-            { key: 'stack', label: '占比演进 (堆叠)', accent: '#22d3ee' },
-            { key: 'donut', label: '当前结构 (环形)', accent: '#e8a317' },
+            { key: 'stack', label: '占比演进 (堆叠)', accent: '#6e8cff' },
+            { key: 'donut', label: '当前结构 (环形)', accent: '#d4a25a' },
           ]}
           activeKey={partnerView} onSelect={setPartnerView}
         />
@@ -267,7 +267,7 @@ export default function Page() {
             <EChart option={aseanVsUs} style={{ height: 260 }} />
           </Card>
         </Grid>
-        <div className="os-card p-4 mt-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #c41e3a' }}>
+        <div className="os-card p-4 mt-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #e5483b' }}>
           <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
             <strong style={{ color: 'var(--text-primary)' }}>再平衡的真相：</strong>
             对美直接出口份额五年降了约 4 个百分点，但其中相当部分只是改走东盟与墨西哥的「绕行航线」——

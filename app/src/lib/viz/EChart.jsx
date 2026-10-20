@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
-import * as echarts from 'echarts';
+import { echarts } from './echarts.js';
 import { LoadingSkeleton } from '../../app/ui.jsx';
-import { applyChartTheme, chartTextColor, CHART_TOOLTIP } from '../../modules/shared/chartHelpers.js';
+import { applyChartTheme, chartTextColor, CHART_TOOLTIP, CHART_FONT_FAMILY, VI_DATA_PALETTE } from '../../modules/shared/chartHelpers.js';
 import { getTheme, THEME_EVENT } from '../theme.js';
+import { documentVarLookup, resolveCssVars } from './resolveCssVars.js';
 
 // ============================================================================
 // 可视化引擎核心 · ECharts 封装
@@ -15,7 +16,7 @@ import { getTheme, THEME_EVENT } from '../theme.js';
 
 const VARIANT_PRESETS = {
   default: { height: 300, animationDuration: 500, fontSize: 11 },
-  compact: { height: 200, animationDuration: 400, fontSize: 10 },
+  compact: { height: 200, animationDuration: 400, fontSize: 10.5 },
   dashboard: { height: 360, animationDuration: 600, fontSize: 11 },
 };
 
@@ -49,9 +50,10 @@ function withTheme(option, variant = 'default') {
   const anim = animationDuration(preset.animationDuration);
   const base = {
     backgroundColor: 'transparent',
+    color: VI_DATA_PALETTE,
     textStyle: {
       color: chartTextColor(),
-      fontFamily: 'var(--font-sans), system-ui, sans-serif',
+      fontFamily: CHART_FONT_FAMILY,
       fontSize: preset.fontSize,
     },
     animationDuration: anim,
@@ -65,7 +67,8 @@ function withTheme(option, variant = 'default') {
   } else if (option?.series?.length) {
     merged.tooltip = { ...CHART_TOOLTIP };
   }
-  return merged;
+  // 画布不认 CSS 变量：按当前主题解析成实际颜色
+  return resolveCssVars(merged, documentVarLookup());
 }
 
 export default function EChart({

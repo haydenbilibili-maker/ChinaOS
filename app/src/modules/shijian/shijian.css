@@ -126,11 +126,11 @@
 .shijian-open-hint {
   margin: 12px 0 0;
   font-size: 12px;
-  color: var(--text-tertiary, #93a1b5);
+  color: var(--text-tertiary, #a29c91);
 }
 
 .shijian-open-hint a {
-  color: var(--cyber-cyan, #22d3ee);
+  color: var(--cyber-cyan, #6e8cff);
   text-decoration: none;
 }
 
@@ -217,4 +217,10 @@
   .shijian-open-hint {
     line-height: 1.65;
   }
+}
+
+.shijian-read-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }

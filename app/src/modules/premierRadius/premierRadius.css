@@ -8,9 +8,9 @@
   --pr-text: #e7ecea;
   --pr-text-dim: #93a6a4;
   --pr-text-faint: #5f7370;
-  --pr-brass: #b18a52;
+  --pr-brass: #d4a25a;
   --pr-brass-dim: #6b5733;
-  --pr-celadon: #79a496;
+  --pr-celadon: #6fc2ae;
   --pr-red: #cf4a3d;
   --pr-amber: #cf9a32;
   --pr-green: #4f9e72;
@@ -82,7 +82,7 @@
   margin-top: 24px;
   border-left: 3px solid var(--pr-brass);
   padding: 16px 20px;
-  background: rgba(177, 138, 82, .06);
+  background: rgba(212, 162, 90, .06);
   border-radius: 0 8px 8px 0;
   font-size: 14px;
   line-height: 1.75;
@@ -154,7 +154,7 @@
 }
 
 #pr-app .pr-driver-btn:hover {
-  background: rgba(121, 164, 150, .08);
+  background: rgba(111, 194, 174, .08);
 }
 
 #pr-app .pr-driver-body {

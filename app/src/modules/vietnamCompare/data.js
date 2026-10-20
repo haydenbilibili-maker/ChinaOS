@@ -17,7 +17,7 @@ export const ALIGN_MODES = [
     cnAnchor: 1978,
     tMin: -8,
     tMax: 47,
-    accent: '#c41e3a',
+    accent: '#e5483b',
     note: '以改革元年为原点：中国 1978-12 十一届三中全会，越南 1986-12 越共六大提出「革新」（Đổi Mới）。越南 2026 年为革新第 40 年，对应中国 2018 年（改革第 40 年）。此口径比较「改革走了多少年」，不比较收入水平。',
   },
   {
@@ -28,7 +28,7 @@ export const ALIGN_MODES = [
     cnAnchor: 2001,
     tMin: -20,
     tMax: 24,
-    accent: '#22d3ee',
+    accent: '#6e8cff',
     note: '以加入世贸组织为原点：中国 2001-12-11，越南 2007-01-11。越南 2026 年为入世第 19 年，对应中国 2020 年。此口径比较「嵌入全球分工的时长」。',
   },
   {
@@ -38,7 +38,7 @@ export const ALIGN_MODES = [
     vnAnchor: 2025,
     cnAnchor: 2015,
     income: true,
-    accent: '#e8a317',
+    accent: '#d4a25a',
     note: '以世行人均 GDP（2021 年不变价国际元，PPP）对齐：越南 2025 年 15,457 国际元，落在中国 2015 年（14,857）与 2016 年（15,773）之间，约为中国 2015.7 年。图表横轴改为人均 GDP（对数），两国曲线在同一收入水平上直接比较；阶段卷轴按「越 2025 ↔ 中 2015」近似平移。若改用现价美元口径，越南 2025 年（5,066 美元）只相当于中国 2010 年。',
   },
   {
@@ -47,7 +47,7 @@ export const ALIGN_MODES = [
     short: '同日历年',
     vnAnchor: null,
     cnAnchor: null,
-    accent: '#8b5cf6',
+    accent: '#b07cc6',
     note: '按同一日历年并列，用于观察两国在同一外部环境（全球化周期、美国关税、疫情）下的绝对水平差异。',
   },
 ];
@@ -83,62 +83,62 @@ export const METRICS = {
 // —— 阶段对位时间轴 ——————————————————————————————————————————————————————
 export const STAGES_VN = [
   {
-    key: 'vn1', from: 1976, to: 1985, title: '统一后计划经济与危机', accent: '#64748b',
+    key: 'vn1', from: 1976, to: 1985, title: '统一后计划经济与危机', accent: '#8a8578',
     desc: '1976 年南北统一后推行苏联式计划经济与南方社会主义改造；1979 年中越边境战争后对华关系断绝，外援依赖苏联与经互会。1985 年「价格—工资—货币」改革失败，引发恶性通胀：IMF 口径 CPI 1986 年达 453.5%。',
   },
   {
-    key: 'vn2', from: 1986, to: 1994, title: '革新起步 · 价格闯关', accent: '#fb923c',
+    key: 'vn2', from: 1986, to: 1994, title: '革新起步 · 价格闯关', accent: '#c07a4a',
     desc: '1986-12 越共六大提出「革新」路线。1988-04-05 政治局第 10 号决议（「十号承包」）承认农户为自主经营单位，1989 年稻谷产量 2150 万吨并首次出口大米约 120 万吨，由粮食进口国转为出口国。1989 年起放开大部分价格，通胀逐步回落；1991-11 中越关系正常化；1994-02 美国解除对越禁运。',
   },
   {
-    key: 'vn3', from: 1995, to: 2006, title: '融入区域 · 出口起飞', accent: '#e8a317',
+    key: 'vn3', from: 1995, to: 2006, title: '融入区域 · 出口起飞', accent: '#d4a25a',
     desc: '1995-07 越美建交、加入东盟；2000 年签署美越双边贸易协定（2001 年生效），对美纺织、鞋类出口起飞。出口/GDP 从 1995 年约 33% 升至 2006 年约 68%（世行）。',
   },
   {
-    key: 'vn4', from: 2007, to: 2011, title: '入世 · 过热与国企集团危机', accent: '#c41e3a',
+    key: 'vn4', from: 2007, to: 2011, title: '入世 · 过热与国企集团危机', accent: '#e5483b',
     desc: '2007-01-11 加入世贸组织，FDI 流入/GDP 2008 年升至约 9.7%。信贷扩张与资本流入推高通胀：CPI 2008 年 23.1%、2011 年 18.7%（IMF）。仿照大型国企集团模式组建的越南船舶工业集团（Vinashin）2010 年陷入债务危机，成为「国家队」路径受挫的标志。',
   },
   {
-    key: 'vn5', from: 2012, to: 2019, title: '稳定化 · 外资电子制造', accent: '#10b981',
+    key: 'vn5', from: 2012, to: 2019, title: '稳定化 · 外资电子制造', accent: '#6fc2ae',
     desc: '宏观稳定化后通胀降至个位数；三星、LG、英特尔等外资电子项目使越南成为全球手机与电子组装基地，高技术产品占制成品出口比重从 2010 年约 13% 升至 2019 年约 40%（世行）。CPTPP 2019-01-14 对越生效；2018 年后中美贸易摩擦带来订单与产能转移。',
   },
   {
-    key: 'vn6', from: 2020, to: 2023, title: '疫情 · 公司债危机 · 「烧炉」高潮', accent: '#8b5cf6',
+    key: 'vn6', from: 2020, to: 2023, title: '疫情 · 公司债危机 · 「烧炉」高潮', accent: '#b07cc6',
     desc: 'EVFTA 2020-08-01 生效、RCEP 2022-01-01 生效。2022 年新黄明集团违规发债被取消、万盛发集团张美兰被捕，公司债与地产融资链断裂；「烧炉」反腐下国家主席阮春福（2023-01）辞职。2023-09 美越、2023-12 中越关系先后升级。',
   },
   {
-    key: 'vn7', from: 2024, to: 2026, title: '苏林时代 · 精简机构 · 两位数目标', accent: '#22d3ee',
+    key: 'vn7', from: 2024, to: 2026, title: '苏林时代 · 精简机构 · 两位数目标', accent: '#6e8cff',
     desc: '2024-08 苏林任总书记；2025-03 政府由 22 个部委精简为 17 个，2025-07-01 省级单位由 63 个合并为 34 个并取消县级；2026-01 越共十四大提出 2026–2030 年年均增长 ≥10%；2026-04 苏林兼任国家主席。世行 2026-07-01 将越南上调为中高收入国家；富时罗素 2026-09-21 起将越南升为次级新兴市场。',
   },
 ];
 
 export const STAGES_CN = [
   {
-    key: 'cn0', from: 1976, to: 1977, title: '文革结束 · 徘徊', accent: '#64748b',
+    key: 'cn0', from: 1976, to: 1977, title: '文革结束 · 徘徊', accent: '#8a8578',
     desc: '1976 年文化大革命结束，经济政策在「洋跃进」与调整之间徘徊，为 1978 年转折积累条件。',
   },
   {
-    key: 'cn1', from: 1978, to: 1991, title: '改革起步 · 双轨制', accent: '#fb923c',
+    key: 'cn1', from: 1978, to: 1991, title: '改革起步 · 双轨制', accent: '#c07a4a',
     desc: '1978-12 十一届三中全会；农村家庭联产承包责任制推开，1980 年设立深圳等经济特区。价格双轨制下 1988 年「价格闯关」引发抢购，CPI 1988 年 18.8%（IMF）。',
   },
   {
-    key: 'cn2', from: 1992, to: 2000, title: '南方谈话 · 市场经济', accent: '#e8a317',
+    key: 'cn2', from: 1992, to: 2000, title: '南方谈话 · 市场经济', accent: '#d4a25a',
     desc: '1992 年南方谈话与十四大确立社会主义市场经济体制目标；1994 年分税制与汇率并轨；1998 年国务院机构改革，组成部门由 40 个减为 29 个、行政编制精简 47.5%；国企抓大放小。',
   },
   {
-    key: 'cn3', from: 2001, to: 2008, title: '入世红利', accent: '#c41e3a',
+    key: 'cn3', from: 2001, to: 2008, title: '入世红利', accent: '#e5483b',
     desc: '2001-12-11 加入世贸组织；出口/GDP 在 2006 年约 35.5% 达到高位，外需与城镇化双轮驱动，实际增速 2007 年达 14.2%（IMF）。',
   },
   {
-    key: 'cn4', from: 2009, to: 2015, title: '四万亿 · 杠杆扩张', accent: '#8b5cf6',
+    key: 'cn4', from: 2009, to: 2015, title: '四万亿 · 杠杆扩张', accent: '#b07cc6',
     desc: '2008-11 四万亿刺激后城投与地产成为信用扩张主通道；私人部门信贷/GDP 从 2008 年约 100% 升至 2015 年约 150%（世行）。十八大后反腐高压。',
   },
   {
-    key: 'cn5', from: 2016, to: 2020, title: '供给侧 · 贸易摩擦', accent: '#10b981',
+    key: 'cn5', from: 2016, to: 2020, title: '供给侧 · 贸易摩擦', accent: '#6fc2ae',
     desc: '供给侧结构性改革与金融去杠杆；2018 年起中美贸易摩擦，美国对华加征 301 关税，部分组装产能向越南等东南亚国家转移。',
   },
   {
-    key: 'cn6', from: 2021, to: 2026, title: '地产转折 · 新质生产力', accent: '#22d3ee',
+    key: 'cn6', from: 2021, to: 2026, title: '地产转折 · 新质生产力', accent: '#6e8cff',
     desc: '2021 年起大型房企相继违约；同年 65 岁以上人口占比达 14.2%，进入深度老龄化。2024 年起 10 万亿元化债；2025 年货物贸易顺差 1.19 万亿美元，对越南出口增长 22.4%。',
   },
 ];
@@ -199,7 +199,7 @@ export const DIMENSIONS = [
   {
     key: 'macro',
     title: '宏观与增长',
-    accent: '#c41e3a',
+    accent: '#e5483b',
     question: '越南 8% 的增速是在复刻中国的高增长期，还是另一种增长模式？',
     metrics: ['gdpGrowth', 'gdpPcPppKd', 'invest', 'cpi', 'govDebt', 'ca'],
     facts: [
@@ -219,7 +219,7 @@ export const DIMENSIONS = [
   {
     key: 'politics',
     title: '政治体制与治理',
-    accent: '#8b5cf6',
+    accent: '#b07cc6',
     question: '越南的集体领导、反腐与机构精简，是在走中国走过的路吗？',
     metrics: [],
     extra: 'adminReform',
@@ -240,7 +240,7 @@ export const DIMENSIONS = [
   {
     key: 'industry',
     title: '产业与 FDI',
-    accent: '#fb923c',
+    accent: '#c07a4a',
     question: '「中国+1」是在复制中国的外资工业化，还是把越南变成中国供应链的延伸段？',
     metrics: ['fdiIn', 'manuf', 'hiTechExp', 'agriEmp'],
     facts: [
@@ -260,7 +260,7 @@ export const DIMENSIONS = [
   {
     key: 'trade',
     title: '对外贸易',
-    accent: '#22d3ee',
+    accent: '#6e8cff',
     question: '越南对美顺差与「转口贸易」争议，会不会让越南重复中国的关税遭遇？',
     metrics: ['tradeGdp', 'exportsGdp', 'ca'],
     extra: 'tradeFlow',
@@ -281,7 +281,7 @@ export const DIMENSIONS = [
   {
     key: 'finance',
     title: '金融与房地产',
-    accent: '#d4af37',
+    accent: '#d9b26a',
     question: '越南 2022 年的公司债与地产危机，与中国恒大式的房企违约潮有何异同？',
     metrics: ['credit', 'govDebt', 'cpi'],
     facts: [
@@ -301,7 +301,7 @@ export const DIMENSIONS = [
   {
     key: 'tech',
     title: '科技与教育',
-    accent: '#10b981',
+    accent: '#6fc2ae',
     question: '越南的 PISA 高分与半导体封测，能否转化为中国式的技术追赶？',
     metrics: ['rnd', 'tertiary', 'hiTechExp'],
     extra: 'pisa',
@@ -322,7 +322,7 @@ export const DIMENSIONS = [
   {
     key: 'population',
     title: '人口与民生',
-    accent: '#a855f7',
+    accent: '#b07cc6',
     question: '越南是否会比中国更早、更穷地老去？',
     metrics: ['pop65', 'tfr', 'oldDep', 'wapShare', 'urban', 'hhCons', 'gini'],
     facts: [
@@ -343,7 +343,7 @@ export const DIMENSIONS = [
   {
     key: 'diplomacy',
     title: '外交与地缘',
-    accent: '#ec4899',
+    accent: '#c9719b',
     question: '「竹子外交」下的越南，在中美之间如何定位？',
     metrics: [],
     extra: 'cspTimeline',
@@ -364,7 +364,7 @@ export const DIMENSIONS = [
   {
     key: 'model',
     title: '转型路径与模式争论',
-    accent: '#e8a317',
+    accent: '#d4a25a',
     question: '越南是「下一个中国」，还是会先落入中等收入陷阱？',
     metrics: ['gdpPcPppKd', 'gdpPcUsd', 'agriEmp'],
     facts: [
@@ -427,21 +427,21 @@ export const SCENARIOS = [
   {
     key: 'catchup',
     title: '情景 A · 追赶加速',
-    accent: '#10b981',
+    accent: '#6fc2ae',
     text: '外资持续流入并带动本土配套，半导体与数字经济形成增量；美越协定签署、税率稳定；年均增速维持在 7–8%，2030 年前后接近官方人均 GDP 目标。',
     triggers: '外资企业占出口比重回落至 70% 以下；电子类贸易逆差收窄；Viettel 晶圆厂按期试产；MSCI 列入观察名单。',
   },
   {
     key: 'locked',
     title: '情景 B · 组装锁定（中等收入陷阱风险）',
-    accent: '#e8a317',
+    accent: '#d4a25a',
     text: '增长维持在 6% 左右，但外资占出口比重持续上升，本土企业停留在低附加值环节；人口窗口在 2036 年前后关闭时尚未形成本土链主。',
     triggers: '外资占出口比重继续上升；研发强度停滞在 0.5% 以下；劳动生产率增速低于 5%。',
   },
   {
     key: 'shock',
     title: '情景 C · 外部冲击',
-    accent: '#c41e3a',
+    accent: '#e5483b',
     text: '美国以转运与原产地为由大幅提高对越关税，或对中国中间品含量设限；叠加信贷扩张下通胀抬头，增长回落至 5% 以下，资本市场升级红利逆转。',
     triggers: '美国对越税率上调或出台中国成分限制；CPI 突破 5%；信贷增速持续高于 18%。',
   },

@@ -19,14 +19,14 @@ import PartySchoolSection from '../talent/PartySchoolSection.jsx';
 import OrgDepartmentSection from '../talent/OrgDepartmentSection.jsx';
 
 const SANDBOX_TABS = [
-  { id: 'general', label: '通用沙盘', accent: '#22d3ee' },
-  { id: 'handong', label: '汉东省沙盘', accent: '#c41e3a' },
-  { id: 'inspection', label: '中央巡视沙盘', accent: '#e8a317' },
-  { id: 'wargame', label: '大国博弈推演桌', accent: '#8b5cf6' },
-  { id: 'presser', label: '舆情风暴应对台', accent: '#f59e0b' },
-  { id: 'macro', label: '宏观调控驾驶舱', accent: '#10b981' },
-  { id: 'party-school', label: '党校研修', accent: '#c41e3a' },
-  { id: 'org-dept', label: '组织画像', accent: '#e8a317' },
+  { id: 'general', label: '通用沙盘', accent: '#6e8cff' },
+  { id: 'handong', label: '汉东省沙盘', accent: '#e5483b' },
+  { id: 'inspection', label: '中央巡视沙盘', accent: '#d4a25a' },
+  { id: 'wargame', label: '大国博弈推演桌', accent: '#b07cc6' },
+  { id: 'presser', label: '舆情风暴应对台', accent: '#d4a25a' },
+  { id: 'macro', label: '宏观调控驾驶舱', accent: '#6fc2ae' },
+  { id: 'party-school', label: '党校研修', accent: '#e5483b' },
+  { id: 'org-dept', label: '组织画像', accent: '#d4a25a' },
 ];
 
 const VALID_SANDBOX_TABS = new Set(SANDBOX_TABS.map((t) => t.id));
@@ -55,7 +55,7 @@ const WATCH_ALERTS_KEY = 'cos-watch-alerts';
 const SANDBOX_VERDICTS_KEY = 'cos-sandbox-verdicts';
 const LEDGER_EVENT = 'cos-ledger-change';
 const DOMAIN_TO_CRISIS = ['chipBan', 'housing', 'pandemic', 'strait', 'strait', 'finance'];
-const ALERT_BADGE = { '红': '#c41e3a', '橙': '#fb923c' };
+const ALERT_BADGE = { '红': '#e5483b', '橙': '#c07a4a' };
 
 // ============================================================================
 // 治国沙盒 · 区域治理人才配置 + 熵增监控（实测）
@@ -317,9 +317,9 @@ export default function Page() {
     const top = computed.slice(0, 10).reverse();
     return {
       grid: { left: 110, right: 30, top: 10, bottom: 24 },
-      xAxis: { type: 'value', max: 80, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+      xAxis: { type: 'value', max: 80, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } } },
       yAxis: { type: 'category', data: top.map((p) => p.name.replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '')), axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
-      series: [{ type: 'bar', data: top.map((p) => p.entropy), barWidth: 12, itemStyle: { color: '#c41e3a', borderRadius: 3 }, label: { show: true, position: 'right', color: LABEL.color } }],
+      series: [{ type: 'bar', data: top.map((p) => p.entropy), barWidth: 12, itemStyle: { color: '#e5483b', borderRadius: 3 }, label: { show: true, position: 'right', color: LABEL.color } }],
     };
   }, [computed]);
 
@@ -374,24 +374,24 @@ export default function Page() {
         治理的第一道工序是「把对的人放进对的省」。本沙盘把每个省域的问题<strong style={{ color: 'var(--text-primary)' }}>向量化</strong>，推导主政能力需求，再从履历池匹配班子<strong style={{ color: 'var(--text-primary)' }}>画像</strong>。熵增指数由各省<strong style={{ color: 'var(--text-primary)' }}>真实财政/人口/债务数据</strong>现场计算。已配置 7 省：东北三省 + 边疆带四省区——两类省份的挑战向量根本不同。
       </IntroCard>
       <Grid cols={4} className="mb-6">
-        <Stat value={computed ? (source === 'db' ? '31 · 本地库' : '31 · 快照') : '加载中…'} label="省级数据态（联动）" accent="#22d3ee" />
-        <Stat value="7 / 31" label="人才已配置（东北+边疆带）" accent="#10b981" />
-        <Stat value={computed ? computed[0].name.replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '') + ' ' + computed[0].entropy : '—'} label="熵增最高省（实测）" accent="#c41e3a" />
-        <Stat value="2023" label="省级数据年份（公报口径）" accent="#e8a317" />
+        <Stat value={computed ? (source === 'db' ? '31 · 本地库' : '31 · 快照') : '加载中…'} label="省级数据态（联动）" accent="#6e8cff" />
+        <Stat value="7 / 31" label="人才已配置（东北+边疆带）" accent="#6fc2ae" />
+        <Stat value={computed ? computed[0].name.replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '') + ' ' + computed[0].entropy : '—'} label="熵增最高省（实测）" accent="#e5483b" />
+        <Stat value="2023" label="省级数据年份（公报口径）" accent="#d4a25a" />
       </Grid>
 
       <Card title="全国实时基线 · World Bank API" className="mb-6">
         <div className="flex items-center gap-2 mb-3">
-          <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: natState === 'live' ? 'rgba(16,185,129,0.16)' : 'var(--bg-elevated)', color: natState === 'live' ? '#10b981' : 'var(--text-tertiary)' }}>
+          <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: natState === 'live' ? 'rgba(111, 194, 174,0.16)' : 'var(--bg-elevated)', color: natState === 'live' ? '#6fc2ae' : 'var(--text-tertiary)' }}>
             {natState === 'live' ? '● 实时已连通' : natState === 'loading' ? '○ 连接中…' : '○ 离线兜底'}
           </span>
           <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>api.worldbank.org · 每次加载实时拉取最新非空值</span>
         </div>
         {natState === 'live' ? (
           <Grid cols={3}>
-            <Stat value={national.gdpGrowth ? `${national.gdpGrowth.value.toFixed(2)}%` : '—'} label={`GDP 增速 · ${national.gdpGrowth?.date || ''}（实时）`} accent="#c41e3a" />
-            <Stat value={national.population ? `${(national.population.value / 1e8).toFixed(2)} 亿` : '—'} label={`总人口 · ${national.population?.date || ''}（实时）`} accent="#22d3ee" />
-            <Stat value={national.gdp ? `${(national.gdp.value / 1e12).toFixed(1)} 万亿$` : '—'} label={`GDP 现价 · ${national.gdp?.date || ''}（实时）`} accent="#e8a317" />
+            <Stat value={national.gdpGrowth ? `${national.gdpGrowth.value.toFixed(2)}%` : '—'} label={`GDP 增速 · ${national.gdpGrowth?.date || ''}（实时）`} accent="#e5483b" />
+            <Stat value={national.population ? `${(national.population.value / 1e8).toFixed(2)} 亿` : '—'} label={`总人口 · ${national.population?.date || ''}（实时）`} accent="#6e8cff" />
+            <Stat value={national.gdp ? `${(national.gdp.value / 1e12).toFixed(1)} 万亿$` : '—'} label={`GDP 现价 · ${national.gdp?.date || ''}（实时）`} accent="#d4a25a" />
           </Grid>
         ) : (
           <p className="text-xs mono" style={{ color: 'var(--text-tertiary)' }}>
@@ -415,23 +415,23 @@ export default function Page() {
       <Grid cols={2} className="mb-6">
         <Card title={`${sel} · 治理体征`}>
           <div className="flex items-center gap-2 mb-2 flex-wrap">
-            <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: cfg ? 'rgba(16,185,129,0.15)' : 'var(--bg-elevated)', color: cfg ? '#10b981' : 'var(--text-tertiary)' }}>{cfg ? cfg.tag : '人才待配置'}</span>
+            <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: cfg ? 'rgba(111, 194, 174,0.15)' : 'var(--bg-elevated)', color: cfg ? '#6fc2ae' : 'var(--text-tertiary)' }}>{cfg ? cfg.tag : '人才待配置'}</span>
             {row && <span className="text-[11px] mono" style={{ color: 'var(--fire-gold)' }}>熵增 {row.entropy}（实测 · 全国第 {rank}）</span>}
           </div>
           {row && (
             <Grid cols={4} className="mb-3">
-              <Stat value={`${row.fiscal_self}%`} label="财政自给率" accent={row.fiscal_self < 35 ? '#c41e3a' : '#22d3ee'} />
+              <Stat value={`${row.fiscal_self}%`} label="财政自给率" accent={row.fiscal_self < 35 ? '#e5483b' : '#6e8cff'} />
               <Stat value={`${row.pop} 万`} label="常住人口" />
-              <Stat value={`${row.pop_change > 0 ? '+' : ''}${row.pop_change} 万`} label="年净变动" accent={row.pop_change < 0 ? '#c41e3a' : '#10b981'} />
-              <Stat value={`~${row.debt_ratio}%`} label="债务率(估)" accent={row.debt_ratio > 200 ? '#e8a317' : undefined} />
+              <Stat value={`${row.pop_change > 0 ? '+' : ''}${row.pop_change} 万`} label="年净变动" accent={row.pop_change < 0 ? '#e5483b' : '#6fc2ae'} />
+              <Stat value={`~${row.debt_ratio}%`} label="债务率(估)" accent={row.debt_ratio > 200 ? '#d4a25a' : undefined} />
             </Grid>
           )}
           {cfg ? (
             <>
               <p className="text-xs leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}><span className="font-semibold" style={{ color: 'var(--text-primary)' }}>挑战画像：</span>{cfg.challenge}</p>
               <EChart option={{
-                radar: { indicator: RADAR_IND, axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
-                series: [{ type: 'radar', data: [{ value: cfg.radar, name: sel, lineStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.12)' } }] }],
+                radar: { indicator: RADAR_IND, axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } }, splitArea: { show: false } },
+                series: [{ type: 'radar', data: [{ value: cfg.radar, name: sel, lineStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.12)' } }] }],
               }} style={{ height: 200 }} />
             </>
           ) : (
@@ -499,7 +499,7 @@ export default function Page() {
         <div className="flex gap-1 flex-wrap mb-3">
           {Object.keys(SCENARIOS).map((k) => (
             <button key={k} onClick={() => setScn(k)} className="text-xs px-3 py-1 rounded mono"
-              style={{ background: k === scn ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)', color: k === scn ? '#fff' : 'var(--text-secondary)', border: 'none', cursor: 'pointer' }}>
+              style={{ background: k === scn ? 'rgba(229, 72, 59,0.2)' : 'var(--bg-elevated)', color: k === scn ? '#fff' : 'var(--text-secondary)', border: 'none', cursor: 'pointer' }}>
               {SCENARIOS[k].label}
             </button>
           ))}
@@ -514,7 +514,7 @@ export default function Page() {
           <>
             <div className="flex flex-col gap-1.5 mb-3">
               {watchAlerts.map((a) => {
-                const badge = ALERT_BADGE[a.level] || '#64748b';
+                const badge = ALERT_BADGE[a.level] || '#8a8578';
                 const ck = DOMAIN_TO_CRISIS[a.domain];
                 return (
                   <div key={a.key || a.label} className="flex items-center gap-2 flex-wrap">
@@ -566,7 +566,7 @@ export default function Page() {
               本局：{engineResult.label} · 总冲击 {engineResult.score} · {engineResult.verdict[0]}
             </span>
           )}
-          {verdictSent && <span className="text-[11px] mono" style={{ color: '#10b981' }}>✓ 已回执 · 监测台「沙盒推演回执」卡可查</span>}
+          {verdictSent && <span className="text-[11px] mono" style={{ color: '#6fc2ae' }}>✓ 已回执 · 监测台「沙盒推演回执」卡可查</span>}
         </div>
         <p className="text-[11px] mt-3" style={{ color: 'var(--text-tertiary)' }}>
           情景为思想实验/压力测试框架，非预测；传导系数为示意标定，烈度由用户设定，不构成对任何事件概率的判断。

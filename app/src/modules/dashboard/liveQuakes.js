@@ -180,8 +180,8 @@ export function quakeSymbolSize(val) {
 export function quakeColor(mag) {
   const m = Number(mag);
   if (!Number.isFinite(m) || m < 5) return '#facc15';
-  if (m < 6) return '#fb923c';
-  return '#ef4444';
+  if (m < 6) return '#c07a4a';
+  return '#e5483b';
 }
 
 /** UTC 时刻 → 北京时间（UTC+8）「MM-DD HH:MM」 */
@@ -210,8 +210,8 @@ export function formatQuakeTooltip(p) {
   return [
     `<div style="font-weight:700;color:${quakeColor(mag)}">M${magText}</div>`,
     `<div style="margin-top:2px">${place}</div>`,
-    `<div style="color:#94a3b8">深度 ${depthText}</div>`,
-    `<div style="color:#94a3b8">北京时间 ${formatBeijingTime(d.time)}</div>`,
-    '<div style="margin-top:4px;font-size:10px;color:#64748b">USGS · 30 天窗口</div>',
+    `<div style="color:#a29c91">深度 ${depthText}</div>`,
+    `<div style="color:#a29c91">北京时间 ${formatBeijingTime(d.time)}</div>`,
+    '<div style="margin-top:4px;font-size:10px;color:#8a8578">USGS · 30 天窗口</div>',
   ].join('');
 }

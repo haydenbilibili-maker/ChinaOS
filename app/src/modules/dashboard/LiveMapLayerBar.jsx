@@ -1,12 +1,13 @@
 import React from 'react';
-import * as Lucide from 'lucide-react';
+import { Square as LSquare } from 'lucide-react';
+import { dashIcon } from './dashboardIcons.js';
 
 function Icon({ name, size = 12 }) {
-  const Cmp = Lucide[name] || Lucide.Square;
+  const Cmp = dashIcon(name);
   return <Cmp size={size} strokeWidth={1.75} />;
 }
 
-export default function LiveMapLayerBar({ layers, activeId, onSelect, accent = '#22d3ee', compact = false }) {
+export default function LiveMapLayerBar({ layers, activeId, onSelect, accent = '#6e8cff', compact = false }) {
   return (
     <div className={`live-map-layer-bar flex flex-wrap ${compact ? 'gap-1.5' : 'gap-2'}`}>
       {layers.map((l) => {
@@ -31,7 +32,7 @@ export default function LiveMapLayerBar({ layers, activeId, onSelect, accent = '
           >
             <Icon name={l.icon} />
             {l.label}
-            {l.live && <span className="lcm-live-dot" style={{ background: '#ef4444', width: 6, height: 6 }} />}
+            {l.live && <span className="lcm-live-dot" style={{ background: '#e5483b', width: 6, height: 6 }} />}
           </button>
         );
       })}

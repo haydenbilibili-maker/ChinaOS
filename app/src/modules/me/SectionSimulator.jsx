@@ -16,8 +16,8 @@ import { AXIS, LABEL, GRID_LINE, CHART_SERIES_PALETTE } from '../shared/chartHel
 
 // 色板（与全站一致）
 const C = {
-  red: '#c41e3a', cyan: '#22d3ee', gold: '#e8a317',
-  green: '#10b981', violet: '#8b5cf6', orange: '#fb923c', slate: '#94a3b8',
+  red: '#e5483b', cyan: '#6e8cff', gold: '#d4a25a',
+  green: '#6fc2ae', violet: '#b07cc6', orange: '#c07a4a', slate: '#a29c91',
 };
 
 // 五根杠杆：key / 标签 / 副提示 / accent / 两端语义
@@ -156,7 +156,7 @@ function radarOption(result) {
       center: ['50%', '54%'],
       radius: '66%',
       axisName: { color: LABEL.color, fontSize: 11 },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
       axisLine: { lineStyle: { color: GRID_LINE.lineStyle.color } },
       splitArea: { show: false },
     },

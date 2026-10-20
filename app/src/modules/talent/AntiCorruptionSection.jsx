@@ -1,7 +1,24 @@
 import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
+import {
+  BarChart3 as LuBarChart3,
+  Gavel as LuGavel,
+  List as LuList,
+  RefreshCw as LuRefreshCw,
+  Search as LuSearch,
+  X as LuX,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  BarChart3: LuBarChart3,
+  Gavel: LuGavel,
+  List: LuList,
+  RefreshCw: LuRefreshCw,
+  Search: LuSearch,
+  X: LuX,
+};
 import { Card, Grid, Stat, DistBar } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { useDataset } from '../../lib/db/useDataset.js';
@@ -27,7 +44,7 @@ import { EraTimeline } from '../leadership/EraTimeline.jsx';
 
 const short = (p) => (p || '').replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '');
 const inp = { background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', borderRadius: 6, padding: '6px 10px', fontSize: 13 };
-const btn = { background: 'rgba(196,30,58,0.14)', color: 'var(--china-red)', border: '1px solid rgba(196,30,58,0.35)', borderRadius: 6, padding: '6px 14px', fontSize: 13, cursor: 'pointer' };
+const btn = { background: 'rgba(229, 72, 59,0.14)', color: 'var(--china-red)', border: '1px solid rgba(229, 72, 59,0.35)', borderRadius: 6, padding: '6px 14px', fontSize: 13, cursor: 'pointer' };
 const LEVEL_RANK = {
   正国级: 0, 副国级: 1, 正部级: 2, 副部级: 3, 副省级: 3, 军队正战区职: 3, 副军级: 4, 正厅级: 5, 副厅级: 6,
 };
@@ -39,7 +56,7 @@ const LEVEL_TIERS = [
   { id: 'jun', label: '军队（战区/副军级）', match: (l) => ['军队正战区职', '副军级'].includes(l) },
   { id: 'ting', label: '厅局级典型', match: (l) => ['正厅级', '副厅级'].includes(l) },
 ];
-const TYPICAL_BADGE = { background: 'rgba(232,163,23,0.18)', color: '#e8a317' };
+const TYPICAL_BADGE = { background: 'rgba(212, 162, 90,0.18)', color: '#d4a25a' };
 
 /** 2026 H1 政策锚点 · 公开表述摘要（研究口径） */
 const POLICY_ANCHORS_2026 = [
@@ -115,7 +132,7 @@ export default function AntiCorruptionSection() {
   const years = useMemo(() => [...new Set(list.map((r) => r.year).filter(Boolean))].sort((a, b) => b - a), [list]);
   const yearStages = useMemo(() => years.map((y) => {
     const n = list.filter((r) => r.year === y).length;
-    return { period: String(y), title: `${n} 案`, desc: `${y} 年公开落马/被查 ${n} 条`, accent: '#c41e3a' };
+    return { period: String(y), title: `${n} 案`, desc: `${y} 年公开落马/被查 ${n} 条`, accent: '#e5483b' };
   }), [years, list]);
 
   useEffect(() => {
@@ -205,7 +222,7 @@ export default function AntiCorruptionSection() {
     grid: { left: 40, right: 12, top: 12, bottom: 24 },
     xAxis: { type: 'category', data: distYear.map(([y]) => y).reverse(), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
     yAxis: { type: 'value', splitLine: { lineStyle: { color: GRID_LINE.color } }, axisLabel: { color: LABEL.color } },
-    series: [{ type: 'bar', data: distYear.map(([, n]) => n).reverse(), barWidth: 18, itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } }],
+    series: [{ type: 'bar', data: distYear.map(([, n]) => n).reverse(), barWidth: 18, itemStyle: { color: '#e5483b', borderRadius: [3, 3, 0, 0] } }],
   };
 
   const loadSeed = async (replace = false) => {
@@ -236,7 +253,7 @@ export default function AntiCorruptionSection() {
   return (
     <section>
       <div className="flex items-center gap-3 mb-4 pb-3" style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-        <span className="flex items-center justify-center rounded" style={{ width: 32, height: 32, background: 'rgba(196,30,58,0.12)', color: 'var(--china-red)' }}>
+        <span className="flex items-center justify-center rounded" style={{ width: 32, height: 32, background: 'rgba(229, 72, 59,0.12)', color: 'var(--china-red)' }}>
           <Lucide.Gavel size={16} />
         </span>
         <div>
@@ -250,13 +267,13 @@ export default function AntiCorruptionSection() {
       </div>
 
       <div className="grid gap-3 mb-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(100px,1fr))' }}>
-        <Stat value={list.length} label="案例总数" accent="#c41e3a" />
-        <Stat value={guoCount} label="国级及以上" accent="#e8a317" />
-        <Stat value={buCount} label="省部级" accent="#22d3ee" />
+        <Stat value={list.length} label="案例总数" accent="#e5483b" />
+        <Stat value={guoCount} label="国级及以上" accent="#d4a25a" />
+        <Stat value={buCount} label="省部级" accent="#6e8cff" />
         <Stat value={fushuCount} label="副省级" accent="#a78bfa" />
-        <Stat value={junCount} label="军队高职" accent="#64748b" />
-        <Stat value={typicalCount} label="典型案例" accent="#f59e0b" />
-        <Stat value={years.length} label="覆盖年份" accent="#8b5cf6" />
+        <Stat value={junCount} label="军队高职" accent="#8a8578" />
+        <Stat value={typicalCount} label="典型案例" accent="#d4a25a" />
+        <Stat value={years.length} label="覆盖年份" accent="#b07cc6" />
         <Stat value={filtered.length} label="当前命中" />
       </div>
 
@@ -267,12 +284,12 @@ export default function AntiCorruptionSection() {
         </p>
         <div className="space-y-3">
           {POLICY_ANCHORS_2026.map((a) => (
-            <div key={a.period} className="rounded px-3 py-2.5" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #c41e3a' }}>
+            <div key={a.period} className="rounded px-3 py-2.5" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #e5483b' }}>
               <div className="flex flex-wrap items-center gap-2 mb-1">
-                <span className="mono text-[11px] font-semibold" style={{ color: '#c41e3a' }}>{a.period}</span>
+                <span className="mono text-[11px] font-semibold" style={{ color: '#e5483b' }}>{a.period}</span>
                 <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{a.title}</span>
                 {a.docId && (
-                  <Link to={`/policydocs?doc=${a.docId}`} className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)' }}>
+                  <Link to={`/policydocs?doc=${a.docId}`} className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(110, 140, 255,0.12)', color: 'var(--cyber-cyan)' }}>
                     {a.docLabel}
                   </Link>
                 )}
@@ -299,7 +316,7 @@ export default function AntiCorruptionSection() {
                   disabled={!hit}
                   className="text-left px-3 py-2 rounded"
                   style={{
-                    background: hit ? 'rgba(196,30,58,0.1)' : 'var(--bg-elevated)',
+                    background: hit ? 'rgba(229, 72, 59,0.1)' : 'var(--bg-elevated)',
                     border: '1px solid var(--border-subtle)',
                     cursor: hit ? 'pointer' : 'default',
                     opacity: hit ? 1 : 0.55,
@@ -308,8 +325,8 @@ export default function AntiCorruptionSection() {
                   <div className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>{c.date}</div>
                   <div className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{c.name}</div>
                   <div className="flex gap-1 mt-1 flex-wrap">
-                    <span className="text-[9px] mono px-1 py-0.5 rounded" style={{ background: 'rgba(196,30,58,0.12)', color: 'var(--china-red)' }}>{c.level}</span>
-                    <span className="text-[9px] mono px-1 py-0.5 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)' }}>{c.tag}</span>
+                    <span className="text-[9px] mono px-1 py-0.5 rounded" style={{ background: 'rgba(229, 72, 59,0.12)', color: 'var(--china-red)' }}>{c.level}</span>
+                    <span className="text-[9px] mono px-1 py-0.5 rounded" style={{ background: 'rgba(110, 140, 255,0.12)', color: 'var(--cyber-cyan)' }}>{c.tag}</span>
                   </div>
                 </button>
               );
@@ -344,9 +361,9 @@ export default function AntiCorruptionSection() {
                 activeIdx={yearIdx >= 0 ? yearIdx : 0}
                 onSelect={pickYear}
                 renderDetail={(st, idx) => (
-                  <div className="os-card lead-era-tl-detail" style={{ padding: 'var(--card-padding)', background: 'var(--bg-elevated)', borderLeft: '3px solid #c41e3a' }}>
+                  <div className="os-card lead-era-tl-detail" style={{ padding: 'var(--card-padding)', background: 'var(--bg-elevated)', borderLeft: '3px solid #e5483b' }}>
                     <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                      <span className="mono text-sm font-semibold" style={{ color: '#c41e3a' }}>{st.period}</span>
+                      <span className="mono text-sm font-semibold" style={{ color: '#e5483b' }}>{st.period}</span>
                       <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{st.title}</span>
                       <button type="button" onClick={() => { setYear(''); setYearIdx(-1); setDateFrom(''); setDateTo(''); }}
                         className="text-[11px] mono px-2 py-0.5 rounded" style={{ background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-tertiary)', cursor: 'pointer' }}>
@@ -382,17 +399,17 @@ export default function AntiCorruptionSection() {
               <select value={sort} onChange={(e) => setSort(e.target.value)} style={inp}>
                 <option value="dateDesc">官宣日期 ↓</option><option value="dateAsc">官宣日期 ↑</option><option value="level">按层级</option><option value="name">按姓名</option>
               </select>
-              <button type="button" onClick={() => setTypicalOnly((v) => !v)} style={{ ...inp, cursor: 'pointer', color: typicalOnly ? '#e8a317' : 'var(--text-secondary)', borderColor: typicalOnly ? 'rgba(232,163,23,0.5)' : undefined }}>
+              <button type="button" onClick={() => setTypicalOnly((v) => !v)} style={{ ...inp, cursor: 'pointer', color: typicalOnly ? '#d4a25a' : 'var(--text-secondary)', borderColor: typicalOnly ? 'rgba(212, 162, 90,0.5)' : undefined }}>
                 典型案例
               </button>
               <div className="flex rounded overflow-hidden" style={{ border: '1px solid var(--border-subtle)' }}>
                 {[['list', 'List'], ['stats', 'BarChart3']].map(([v, ic]) => {
                   const I = Lucide[ic]; const on = view === v;
-                  return <button key={v} onClick={() => setView(v)} style={{ padding: '6px 9px', background: on ? 'rgba(196,30,58,0.18)' : 'var(--bg-base)', color: on ? 'var(--china-red)' : 'var(--text-tertiary)', border: 'none', cursor: 'pointer' }}><I size={15} /></button>;
+                  return <button key={v} onClick={() => setView(v)} style={{ padding: '6px 9px', background: on ? 'rgba(229, 72, 59,0.18)' : 'var(--bg-base)', color: on ? 'var(--china-red)' : 'var(--text-tertiary)', border: 'none', cursor: 'pointer' }}><I size={15} /></button>;
                 })}
               </div>
               {(list.length < ANTI_CORRUPTION_COUNT || rawDbCount > list.length) && (
-                <button onClick={() => loadSeed(true)} disabled={loading} style={{ ...inp, cursor: 'pointer', color: '#10b981', borderColor: 'rgba(16,185,129,0.4)', display: 'flex', alignItems: 'center', gap: 4 }}>
+                <button onClick={() => loadSeed(true)} disabled={loading} style={{ ...inp, cursor: 'pointer', color: '#6fc2ae', borderColor: 'rgba(111, 194, 174,0.4)', display: 'flex', alignItems: 'center', gap: 4 }}>
                   <Lucide.RefreshCw size={13} />{loading ? '载入中…' : `覆盖载入 ${ANTI_CORRUPTION_COUNT} 条`}
                 </button>
               )}
@@ -420,12 +437,12 @@ export default function AntiCorruptionSection() {
               <div className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>// 历年汇总基于当前筛选 {filtered.length} 条；副省部级及以上力争全覆盖，厅局级仅含全国性典型</div>
               <Grid cols={2}>
                 <Card title="历年官宣数量"><EChart option={yearChart} style={{ height: 240 }} /></Card>
-                <Card title="届别/分期分布"><DistBar data={distBucket} color="#e8a317" onPick={(k) => setBucket(bucket === k ? '' : k)} active={bucket} /></Card>
+                <Card title="届别/分期分布"><DistBar data={distBucket} color="#d4a25a" onPick={(k) => setBucket(bucket === k ? '' : k)} active={bucket} /></Card>
               </Grid>
               <Grid cols={3}>
                 <Card title="层级（点选筛选）"><DistBar data={distLevel} onPick={(k) => setLevel(level === k ? '' : k)} active={level} /></Card>
-                <Card title="系统（点选筛选）"><DistBar data={distSector} color="#22d3ee" onPick={(k) => setSector(sector === k ? '' : k)} active={sector} /></Card>
-                <Card title="年份（点选筛选）"><DistBar data={distYear} color="#8b5cf6" onPick={(k) => setYear(year === k ? '' : k)} active={year} /></Card>
+                <Card title="系统（点选筛选）"><DistBar data={distSector} color="#6e8cff" onPick={(k) => setSector(sector === k ? '' : k)} active={sector} /></Card>
+                <Card title="年份（点选筛选）"><DistBar data={distYear} color="#b07cc6" onPick={(k) => setYear(year === k ? '' : k)} active={year} /></Card>
               </Grid>
               <p className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>// 数据边界：{ANTI_CORRUPTION_META.notes}</p>
             </div>
@@ -441,10 +458,10 @@ export default function AntiCorruptionSection() {
                           <FigureAvatar {...figureAvatarProps(r)} size={28} ring={on} />
                           <span className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{r.name}</span>
                           <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>{r.announcementDate}</span>
-                          {r.level && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(196,30,58,0.12)', color: 'var(--china-red)' }}>{r.level}</span>}
+                          {r.level && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(229, 72, 59,0.12)', color: 'var(--china-red)' }}>{r.level}</span>}
                           {r.caseType === '典型' && <TypicalBadge />}
-                          {r.yearBucket && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(232,163,23,0.12)', color: '#e8a317' }}>{r.yearBucket}</span>}
-                          {r.province && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)' }}>{short(r.province)}</span>}
+                          {r.yearBucket && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(212, 162, 90,0.12)', color: '#d4a25a' }}>{r.yearBucket}</span>}
+                          {r.province && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(110, 140, 255,0.12)', color: 'var(--cyber-cyan)' }}>{short(r.province)}</span>}
                         </div>
                         <div className="text-[11px] mt-0.5 truncate" style={{ color: 'var(--text-secondary)' }}>{r.formerRole}</div>
                       </button>
@@ -467,13 +484,13 @@ export default function AntiCorruptionSection() {
                     avatar={<FigureAvatar {...figureAvatarProps(d)} size={56} ring eager />}
                     badges={(
                       <>
-                        {d.level && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(196,30,58,0.12)', color: 'var(--china-red)' }}>{d.level}</span>}
+                        {d.level && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(229, 72, 59,0.12)', color: 'var(--china-red)' }}>{d.level}</span>}
                         {d.caseType === '典型' && <TypicalBadge />}
-                        {d.yearBucket && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(232,163,23,0.12)', color: '#e8a317' }}>{d.yearBucket}</span>}
+                        {d.yearBucket && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(212, 162, 90,0.12)', color: '#d4a25a' }}>{d.yearBucket}</span>}
                       </>
                     )}
                     tags={normalizeTags(d.tags)}
-                    tagAccent="#c41e3a"
+                    tagAccent="#e5483b"
                     sections={buildTalentDetailSections(d, {
                       queue: 'anticorruption',
                       bioLabel: '案件公开要点',
@@ -492,7 +509,7 @@ export default function AntiCorruptionSection() {
                         fields: [
                           { label: '官宣日期', value: d.announcementDate, accent: 'var(--cyber-cyan)' },
                           { label: '归年', value: d.year ? `${d.year} · ${d.yearBucket}` : d.yearBucket },
-                          { label: '处置', value: d.status, accent: '#e8a317' },
+                          { label: '处置', value: d.status, accent: '#d4a25a' },
                           { label: '案例类型', value: d.caseType === '典型' ? '全国性典型案例' : d.caseType },
                         ],
                       },

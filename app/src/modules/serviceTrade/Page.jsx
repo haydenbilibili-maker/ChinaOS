@@ -14,28 +14,28 @@ const AS_OF = AS_OF_BASELINE;
 
 const SEGMENTS = [
   {
-    key: 'digital', label: '数字贸易', accent: '#22d3ee',
+    key: 'digital', label: '数字贸易', accent: '#6e8cff',
     scores: [92, 85, 78, 88, 75],
     thesis: '跨境电商、数字服务出口与数据流动规则构成服务贸易新增长极——「数字贸易」首次写入政府工作报告，制度规则竞争加剧。',
     points: ['跨境电商综试区与海外仓网络', '游戏/短视频/云服务出海', '数据跨境流动安全评估框架', 'DEPA/CPTPP 数字贸易条款对接'],
     lever: '商务部数字贸易政策 + 网信办数据出境规则。',
   },
   {
-    key: 'knowledge', label: '知识密集', accent: '#c41e3a',
+    key: 'knowledge', label: '知识密集', accent: '#e5483b',
     scores: [80, 88, 72, 75, 82],
     thesis: '电信、计算机与信息服务、知识产权使用费、研发服务——知识密集型服务贸易是附加值最高的出口品类，也是「新三样」之后的服务版升级。',
     points: ['软件与 IT 服务外包出口', '知识产权许可与技术服务', '海外工程设计与咨询', '文化、教育、医疗等服务出口试点'],
     lever: '服贸负面清单缩减 + 服务业扩大开放试点。',
   },
   {
-    key: 'travel', label: '旅行运输', accent: '#e8a317',
+    key: 'travel', label: '旅行运输', accent: '#d4a25a',
     scores: [65, 70, 85, 60, 70],
     thesis: '入境旅游复苏与跨境运输（航空/海运）是服务贸易传统支柱——签证便利化与航线恢复是短期弹性最大的变量。',
     points: ['144小时过境免签扩围', '国际航线恢复与运力投放', '邮轮与游艇入境政策', '离境退税与消费便利化'],
     lever: '文旅部 + 移民局签证政策 + 航司运力。',
   },
   {
-    key: 'finance', label: '金融服务', accent: '#10b981',
+    key: 'finance', label: '金融服务', accent: '#6fc2ae',
     scores: [75, 78, 68, 82, 80],
     thesis: '跨境金融服务贸易（银行、保险、资管）随人民币国际化与离岸市场拓展——CIPS 与 e-CNY 是支付基础设施的制度红利。',
     points: ['跨境理财通与资金池', 'QFII/RQFII 额度与准入', '保险跨境再保险', '离岸人民币债券与点心债'],
@@ -44,9 +44,9 @@ const SEGMENTS = [
 ];
 
 const PHASES = [
-  { period: '2012–2019', title: '服贸试点', accent: '#64748b', desc: '服务贸易创新发展试点启动，服贸会成为制度展示平台。' },
-  { period: '2020–2023', title: '数字加速', accent: '#e8a317', desc: '疫情催化在线服务与跨境电商爆发，数字贸易规模快速扩张。' },
-  { period: '2024–', title: '制度竞争', accent: '#c41e3a', desc: '政府工作报告首提「数字贸易」，服贸负面清单缩减，对接高标准经贸规则。' },
+  { period: '2012–2019', title: '服贸试点', accent: '#8a8578', desc: '服务贸易创新发展试点启动，服贸会成为制度展示平台。' },
+  { period: '2020–2023', title: '数字加速', accent: '#d4a25a', desc: '疫情催化在线服务与跨境电商爆发，数字贸易规模快速扩张。' },
+  { period: '2024–', title: '制度竞争', accent: '#e5483b', desc: '政府工作报告首提「数字贸易」，服贸负面清单缩减，对接高标准经贸规则。' },
 ];
 
 const DIMS = ['增长潜力', '附加值', '规则壁垒', '数字赋能', '开放试点'];
@@ -62,7 +62,7 @@ export default function Page() {
     xAxis: categoryX(['2018', '2020', '2022', '2024', '2026E']),
     yAxis: valueY({ name: '亿美元' }),
     series: [
-      { name: '服务出口', type: 'bar', barWidth: 16, data: [2660, 2800, 3200, 3800, 4500], itemStyle: { color: '#c41e3a', borderRadius: 3 } },
+      { name: '服务出口', type: 'bar', barWidth: 16, data: [2660, 2800, 3200, 3800, 4500], itemStyle: { color: '#e5483b', borderRadius: 3 } },
       { name: '服务进口', type: 'bar', barWidth: 16, data: [5200, 4800, 4400, 4200, 4000], itemStyle: { color: AXIS.lineStyle.color, borderRadius: 3 } },
     ],
   }), []);
@@ -70,9 +70,9 @@ export default function Page() {
   const structureOpt = stackedBarOpt({
     categories: ['2015', '2018', '2021', '2024', '2026E'],
     series: [
-      { name: '旅行运输', data: [35, 32, 18, 22, 25], itemStyle: { color: '#e8a317' } },
-      { name: '知识密集型', data: [28, 32, 38, 42, 45], itemStyle: { color: '#c41e3a' } },
-      { name: '数字与其他', data: [37, 36, 44, 36, 30], itemStyle: { color: '#22d3ee' } },
+      { name: '旅行运输', data: [35, 32, 18, 22, 25], itemStyle: { color: '#d4a25a' } },
+      { name: '知识密集型', data: [28, 32, 38, 42, 45], itemStyle: { color: '#e5483b' } },
+      { name: '数字与其他', data: [37, 36, 44, 36, 30], itemStyle: { color: '#6e8cff' } },
     ],
   });
 
@@ -103,10 +103,10 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="~4500亿$" label="服务出口（2026E）" accent="#c41e3a" />
-        <Stat value="~45%" label="知识密集型占比" accent="#22d3ee" />
-        <Stat value="~3200亿$" label="跨境电商规模" accent="#e8a317" />
-        <Stat value={AS_OF} label="数据截至" accent="#8b5cf6" />
+        <Stat value="~4500亿$" label="服务出口（2026E）" accent="#e5483b" />
+        <Stat value="~45%" label="知识密集型占比" accent="#6e8cff" />
+        <Stat value="~3200亿$" label="跨境电商规模" accent="#d4a25a" />
+        <Stat value={AS_OF} label="数据截至" accent="#b07cc6" />
       </Grid>
 
       <Grid cols={2} className="mb-6">
@@ -134,7 +134,7 @@ export default function Page() {
             ))}
           </div>
           <div className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
-            <span style={{ color: '#e8a317' }}>政策杠杆 · </span>{s.lever}
+            <span style={{ color: '#d4a25a' }}>政策杠杆 · </span>{s.lever}
           </div>
         </div>
         <Card title={`${s.label} · 贸易五维评估`}>
@@ -148,16 +148,16 @@ export default function Page() {
 
       <Card title="十五五 · 指标 / 约束 / 路径" className="mb-6">
         <Grid cols={3}>
-          <div style={{ borderLeft: '2px solid #22d3ee', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#22d3ee' }}>核心指标</div>
+          <div style={{ borderLeft: '2px solid #6e8cff', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6e8cff' }}>核心指标</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>服务贸易逆差收窄；知识密集型服务出口占比超 50%；数字贸易规模持续扩张；服贸负面清单进一步缩减。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #e8a317', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#e8a317' }}>关键约束</div>
+          <div style={{ borderLeft: '2px solid #d4a25a', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#d4a25a' }}>关键约束</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>数据跨境流动规则与主权平衡；服务贸易壁垒（资质、标准、本地化）；地缘政治与「脱钩」对数字服务出口的压制。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #10b981', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#10b981' }}>推进路径</div>
+          <div style={{ borderLeft: '2px solid #6fc2ae', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6fc2ae' }}>推进路径</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>服贸负面清单缩减 → 数字贸易制度创新 → 高标准规则对接 → 服贸会与试点经验全国推广。</p>
           </div>
         </Grid>

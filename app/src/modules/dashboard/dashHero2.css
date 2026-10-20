@@ -1,0 +1,182 @@
+/* 中枢看板 · 主视觉 2.0 */
+
+.dash-hero2 {
+  --tone: var(--vi-sig-watch);
+  --tone-rgb: var(--vi-brass-rgb);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  align-items: center;
+  gap: clamp(1.5rem, 1rem + 3vw, 4rem);
+  margin-bottom: 1.5rem;
+  padding: clamp(1.5rem, 1rem + 2.5vw, 3.25rem);
+  border-radius: var(--vi-r-panel);
+  background:
+    radial-gradient(80% 110% at 0% 0%, rgba(var(--tone-rgb), 0.16), transparent 60%),
+    radial-gradient(60% 90% at 100% 100%, rgba(var(--vi-brass-rgb), 0.12), transparent 60%),
+    var(--vi-card-bg);
+  border: 1px solid var(--vi-line-strong);
+  box-shadow: var(--vi-shadow-2), var(--vi-highlight);
+}
+
+.dash-hero2--alert { --tone: var(--vi-sig-alert); --tone-rgb: var(--vi-cinnabar-rgb); }
+.dash-hero2--watch { --tone: var(--vi-sig-watch); --tone-rgb: var(--vi-brass-rgb); }
+.dash-hero2--ok { --tone: var(--vi-sig-ok); --tone-rgb: var(--vi-celadon-rgb); }
+
+/* 背景刻度弧 */
+.dash-hero2::before {
+  content: '';
+  position: absolute;
+  right: -14%;
+  top: 50%;
+  width: min(820px, 80%);
+  aspect-ratio: 1;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  z-index: -1;
+  background: repeating-conic-gradient(from 0deg, rgba(var(--vi-brass-rgb), 0.4) 0 0.35deg, transparent 0.35deg 5deg);
+  -webkit-mask: radial-gradient(circle, transparent 68%, #000 68.5%, #000 70%, transparent 70.5%);
+  mask: radial-gradient(circle, transparent 68%, #000 68.5%, #000 70%, transparent 70.5%);
+  opacity: 0.5;
+  animation: vi-spin 280s linear infinite;
+}
+
+.dash-hero2__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0;
+  font-size: var(--vi-fs-caption);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--vi-ink-3);
+}
+
+.dash-hero2__seal {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 2px;
+  background: var(--vi-cinnabar);
+  box-shadow: 0 0 12px rgba(var(--vi-cinnabar-rgb), 0.6);
+}
+
+.dash-hero2__title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35em;
+  margin: 0.6rem 0 0;
+  line-height: 1;
+}
+
+.dash-hero2__word {
+  font-family: var(--vi-font-read);
+  font-size: clamp(3.5rem, 2.4rem + 5vw, 7rem);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: var(--tone);
+  text-shadow: 0 0 40px rgba(var(--tone-rgb), 0.35);
+}
+
+.dash-hero2__suffix {
+  font-family: var(--vi-font-read);
+  font-size: clamp(1.4rem, 1.1rem + 1.4vw, 2.25rem);
+  font-weight: 700;
+  color: var(--vi-ink-2);
+}
+
+.dash-hero2__sub {
+  max-width: 36rem;
+  margin: 1.1rem 0 0;
+  font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.08rem);
+  line-height: 1.8;
+  color: var(--vi-ink-2);
+}
+
+.dash-hero2__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 2.25rem;
+  margin: 1.6rem 0 0;
+  padding: 1rem 0 0;
+  border-top: 1px solid var(--vi-line);
+}
+
+.dash-hero2__meta dt {
+  font-size: var(--vi-fs-caption);
+  color: var(--vi-ink-3);
+  letter-spacing: 0.06em;
+}
+
+.dash-hero2__meta dd {
+  margin: 0.2rem 0 0;
+  font-weight: 600;
+}
+
+.dash-hero2__meta dd.vi-figure {
+  font-family: var(--vi-font-display);
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.dash-hero2__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.dash-hero2__actions .os-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 42px;
+  padding: 0 1.1rem;
+  text-decoration: none;
+}
+
+.dash-hero2__foot {
+  margin: 1.25rem 0 0;
+  font-size: var(--vi-fs-caption);
+  color: var(--vi-ink-3);
+}
+
+.dash-hero2__lamp {
+  justify-self: center;
+}
+
+@media (max-width: 1023px) {
+  .dash-hero2 {
+    grid-template-columns: 1fr;
+  }
+
+  .dash-hero2__lamp {
+    order: -1;
+  }
+
+  .dash-hero2::before {
+    right: -40%;
+    top: 22%;
+    width: 120%;
+  }
+}
+
+@media (max-width: 767px) {
+  .dash-hero2__lamp .vi-skylamp {
+    transform: scale(0.82);
+    margin: -24px 0;
+  }
+
+  .dash-hero2__actions .os-btn {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dash-hero2::before {
+    animation: none;
+  }
+}

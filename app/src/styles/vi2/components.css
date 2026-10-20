@@ -1,0 +1,383 @@
+/* ============================================================================
+ * VI 2.0 · 组件：Signal / SkyLamp / Armillary / Kpi / Seal
+ * ========================================================================== */
+
+.vi-unit {
+  margin-left: 0.12em;
+  font-size: 0.5em;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--vi-ink-3);
+  font-family: var(--vi-font-ui);
+}
+
+/* ── Signal ─────────────────────────────────────────── */
+.vi-signal {
+  --sig: var(--vi-sig-unknown);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  color: var(--sig);
+  vertical-align: middle;
+}
+
+.vi-signal--ok { --sig: var(--vi-sig-ok); }
+.vi-signal--watch { --sig: var(--vi-sig-watch); }
+.vi-signal--alert { --sig: var(--vi-sig-alert); }
+
+.vi-signal__lamp {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+}
+
+.vi-signal__lamp svg {
+  position: relative;
+  z-index: 1;
+  fill: var(--sig);
+  stroke: var(--sig);
+  overflow: visible;
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--sig) 70%, transparent));
+}
+
+.vi-signal--unknown .vi-signal__lamp svg {
+  filter: none;
+}
+
+/* 光晕 */
+.vi-signal__lamp::before {
+  content: '';
+  position: absolute;
+  inset: -60%;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--sig) 38%, transparent), transparent 65%);
+}
+
+.vi-signal--unknown .vi-signal__lamp::before { display: none; }
+
+/* 「警」呼吸外环 */
+.vi-signal--alert .vi-signal__lamp::after {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  border-radius: 50%;
+  border: 1.5px solid var(--sig);
+  animation: vi-breathe 2.4s var(--vi-ease-tide) infinite;
+}
+
+.vi-signal__ring {
+  position: absolute;
+  inset: -28%;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--sig) 35%, transparent);
+  background:
+    repeating-conic-gradient(from 0deg, color-mix(in srgb, var(--sig) 55%, transparent) 0 1.5deg, transparent 1.5deg 15deg);
+  -webkit-mask: radial-gradient(circle, transparent 62%, #000 63%, #000 72%, transparent 73%);
+  mask: radial-gradient(circle, transparent 62%, #000 63%, #000 72%, transparent 73%);
+}
+
+.vi-signal__label {
+  font-size: var(--vi-fs-caption);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.vi-signal--l .vi-signal__label {
+  font-family: var(--vi-font-display);
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+}
+
+/* ── SkyLamp 天灯 ───────────────────────────────────── */
+.vi-skylamp {
+  position: relative;
+  margin: 0;
+  display: grid;
+  justify-items: center;
+}
+
+.vi-skylamp svg {
+  display: block;
+  overflow: visible;
+}
+
+.vi-skylamp__track {
+  stroke: var(--vi-line);
+}
+
+.vi-skylamp__ring--ok { --sig: var(--vi-sig-ok); }
+.vi-skylamp__ring--watch { --sig: var(--vi-sig-watch); }
+.vi-skylamp__ring--alert { --sig: var(--vi-sig-alert); }
+.vi-skylamp__ring--unknown { --sig: var(--vi-sig-unknown); }
+
+.vi-skylamp__arc {
+  stroke: var(--sig);
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--sig) 55%, transparent));
+  animation: vi-skylamp-draw var(--vi-dur-epic) var(--vi-ease-ink) both;
+}
+
+@keyframes vi-skylamp-draw {
+  from { stroke-dashoffset: 400; opacity: 0; }
+  to { stroke-dashoffset: 0; opacity: 1; }
+}
+
+.vi-skylamp__core {
+  stroke: var(--vi-line-strong);
+}
+
+.vi-skylamp__center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  aspect-ratio: 1;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  pointer-events: none;
+}
+
+.vi-skylamp__verdict {
+  font-family: var(--vi-font-display);
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.vi-skylamp__caption {
+  margin-top: 0.25rem;
+  font-size: var(--vi-fs-caption);
+  color: var(--vi-ink-3);
+  letter-spacing: 0.06em;
+}
+
+.vi-skylamp__legend {
+  display: flex;
+  gap: 0.9rem;
+  margin: 0.9rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--vi-fs-caption);
+  color: var(--vi-ink-2);
+}
+
+.vi-skylamp__legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.vi-skylamp__legend-level {
+  color: var(--vi-ink-3);
+}
+
+/* ── Armillary 浑仪仪表 ─────────────────────────────── */
+.vi-armillary {
+  position: relative;
+  margin: 0;
+  display: grid;
+  justify-items: center;
+}
+
+.vi-armillary svg {
+  display: block;
+  overflow: visible;
+}
+
+.vi-armillary__rim {
+  stroke: var(--vi-line-strong);
+  stroke-width: 1;
+}
+
+.vi-armillary__tick {
+  stroke: var(--vi-ink-3);
+  stroke-width: 0.8;
+  opacity: 0.6;
+}
+
+.vi-armillary__tick--major {
+  stroke: var(--vi-brass);
+  stroke-width: 1.4;
+  opacity: 1;
+}
+
+.vi-armillary__scale {
+  font-family: var(--vi-font-ui);
+  font-size: 9.5px;
+  font-variant-numeric: tabular-nums;
+  fill: var(--vi-ink-3);
+}
+
+.vi-armillary__band {
+  stroke-width: 6;
+  stroke-linecap: butt;
+  opacity: 0.85;
+}
+
+.vi-armillary__band--ok { stroke: var(--vi-sig-ok); }
+.vi-armillary__band--watch { stroke: var(--vi-sig-watch); }
+.vi-armillary__band--alert { stroke: var(--vi-sig-alert); }
+
+.vi-armillary__needle {
+  fill: var(--vi-ink-1);
+  filter: drop-shadow(0 0 6px rgba(var(--vi-brass-rgb), 0.7));
+  transition: transform var(--vi-dur-epic) var(--vi-ease-brass);
+}
+
+.vi-armillary__rivet {
+  fill: var(--vi-bg-3);
+  stroke: var(--vi-brass);
+  stroke-width: 1.5;
+}
+
+.vi-armillary__rivet-core {
+  fill: var(--vi-brass);
+}
+
+.vi-armillary__readout {
+  margin-top: -2.4rem;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.vi-armillary__value {
+  font-family: var(--vi-font-display);
+  font-size: var(--vi-fs-figure);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.vi-armillary--ok .vi-armillary__value { color: var(--vi-sig-ok); }
+.vi-armillary--watch .vi-armillary__value { color: var(--vi-sig-watch); }
+.vi-armillary--alert .vi-armillary__value { color: var(--vi-sig-alert); }
+
+.vi-armillary__label {
+  margin-top: 0.4rem;
+  font-size: var(--vi-fs-small);
+  font-weight: 600;
+  color: var(--vi-ink-1);
+}
+
+.vi-armillary__note {
+  margin-top: 0.15rem;
+  font-size: var(--vi-fs-caption);
+  color: var(--vi-ink-3);
+}
+
+/* ── Kpi ─────────────────────────────────────────────── */
+.vi-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.1rem 1.15rem 1rem;
+  min-width: 0;
+}
+
+.vi-kpi::before {
+  background: var(--vi-card-edge-brass) border-box;
+}
+
+.vi-kpi__head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--vi-fs-caption);
+}
+
+.vi-kpi__label {
+  font-weight: 600;
+  color: var(--vi-ink-2);
+  letter-spacing: 0.04em;
+}
+
+.vi-kpi__period {
+  margin-left: auto;
+  color: var(--vi-ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.vi-kpi__value {
+  font-family: var(--vi-font-display);
+  font-size: var(--vi-fs-figure-xl);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variation-settings: 'opsz' 144;
+  color: var(--vi-ink-1);
+}
+
+.vi-kpi--s .vi-kpi__value {
+  font-size: var(--vi-fs-figure);
+}
+
+.vi-kpi__delta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  font-size: var(--vi-fs-small);
+  font-weight: 600;
+}
+
+.vi-kpi__delta--good { color: var(--vi-sig-ok); }
+.vi-kpi__delta--bad { color: var(--vi-sig-alert); }
+.vi-kpi__delta--flat { color: var(--vi-ink-3); }
+
+.vi-kpi__delta-label {
+  font-weight: 400;
+  color: var(--vi-ink-3);
+  font-size: var(--vi-fs-caption);
+}
+
+.vi-spark {
+  display: block;
+  color: var(--vi-ink-3);
+  margin-top: 0.15rem;
+}
+
+.vi-spark--ok { color: var(--vi-sig-ok); }
+.vi-spark--watch { color: var(--vi-sig-watch); }
+.vi-spark--alert { color: var(--vi-sig-alert); }
+
+.vi-spark__end {
+  filter: drop-shadow(0 0 4px currentColor);
+}
+
+.vi-kpi__source {
+  margin-top: auto;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--vi-line);
+  font-size: var(--vi-fs-caption);
+  color: var(--vi-ink-3);
+}
+
+/* ── Seal ────────────────────────────────────────────── */
+.vi-seal__ground {
+  fill: var(--vi-cinnabar);
+}
+
+.vi-seal__frame {
+  stroke: rgba(255, 245, 235, 0.55);
+  stroke-width: 1;
+}
+
+.vi-seal__char {
+  font-family: var(--vi-font-read);
+  font-size: 21px;
+  font-weight: 900;
+  fill: #fff6ef;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vi-signal--alert .vi-signal__lamp::after,
+  .vi-skylamp__arc {
+    animation: none;
+  }
+
+  .vi-armillary__needle {
+    transition: none;
+  }
+}

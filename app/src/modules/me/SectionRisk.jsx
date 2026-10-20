@@ -15,13 +15,13 @@ const MID = 50; // 象限分割线
 
 // —— 风险点（prob/impact 0-100，自评示意）——
 const RISKS = [
-  { name: '创业现金流断裂', prob: 58, impact: 92, color: '#c41e3a' },
-  { name: '出海红利二次退潮', prob: 72, impact: 70, color: '#e8a317' },
-  { name: 'AI 技术替代加速', prob: 78, impact: 62, color: '#22d3ee' },
-  { name: '健康透支', prob: 55, impact: 72, color: '#10b981' },
-  { name: '同辈比较焦虑', prob: 80, impact: 40, color: '#8b5cf6' },
-  { name: '家庭/地域拉扯', prob: 62, impact: 50, color: '#fb923c' },
-  { name: '身份重写未完成', prob: 70, impact: 78, color: '#94a3b8' },
+  { name: '创业现金流断裂', prob: 58, impact: 92, color: '#e5483b' },
+  { name: '出海红利二次退潮', prob: 72, impact: 70, color: '#d4a25a' },
+  { name: 'AI 技术替代加速', prob: 78, impact: 62, color: '#6e8cff' },
+  { name: '健康透支', prob: 55, impact: 72, color: '#6fc2ae' },
+  { name: '同辈比较焦虑', prob: 80, impact: 40, color: '#b07cc6' },
+  { name: '家庭/地域拉扯', prob: 62, impact: 50, color: '#c07a4a' },
+  { name: '身份重写未完成', prob: 70, impact: 78, color: '#a29c91' },
 ];
 
 function scatterOption() {
@@ -62,13 +62,13 @@ function scatterOption() {
       })),
       markLine: {
         silent: true, symbol: 'none',
-        lineStyle: { color: 'rgba(196,30,58,0.35)', type: 'dashed' },
+        lineStyle: { color: 'rgba(229, 72, 59,0.35)', type: 'dashed' },
         label: { show: false },
         data: [{ xAxis: MID }, { yAxis: MID }],
       },
       markArea: {
         silent: true,
-        itemStyle: { color: 'rgba(196,30,58,0.07)' },
+        itemStyle: { color: 'rgba(229, 72, 59,0.07)' },
         data: [[{ xAxis: MID, yAxis: MID }, { xAxis: 100, yAxis: 100 }]],
       },
     }],
@@ -88,7 +88,7 @@ export default function SectionRisk() {
         <div>
           <EChart option={scatterOption()} style={{ height: 360 }} />
           <p className="text-xs mt-2" style={{ color: 'var(--text-tertiary)', lineHeight: 1.7 }}>
-            右上 <span style={{ color: '#c41e3a' }}>红区</span>＝高概率 × 高影响——既容易发生又一旦发生就伤筋动骨，是必须先对冲的那一类；左下则可以观望。圈大小＝暴露分（概率 × 影响）。
+            右上 <span style={{ color: '#e5483b' }}>红区</span>＝高概率 × 高影响——既容易发生又一旦发生就伤筋动骨，是必须先对冲的那一类；左下则可以观望。圈大小＝暴露分（概率 × 影响）。
           </p>
         </div>
         <div>
@@ -103,7 +103,7 @@ export default function SectionRisk() {
                   </div>
                   <span className="mono text-xs flex-shrink-0" style={{ color: r.color }}>{r.score.toFixed(0)}</span>
                 </div>
-                <div className="mt-1.5 h-1 rounded-full overflow-hidden" style={{ background: 'rgba(148,163,184,0.12)' }}>
+                <div className="mt-1.5 h-1 rounded-full overflow-hidden" style={{ background: 'rgba(162, 156, 145,0.12)' }}>
                   <div className="h-full rounded-full" style={{ width: `${(r.score / maxScore) * 100}%`, background: r.color }} />
                 </div>
                 <div className="mt-1 text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>
@@ -113,7 +113,7 @@ export default function SectionRisk() {
             ))}
           </div>
           <p className="text-xs mt-3" style={{ color: 'var(--text-tertiary)', lineHeight: 1.7 }}>
-            策略：<span style={{ color: '#c41e3a' }}>右上区先对冲</span>——现金流断裂与身份重写未完成排在最前，前者靠把「现金流安全边际」做厚、后者靠把次优约束变成独特凭证来逐步消化。
+            策略：<span style={{ color: '#e5483b' }}>右上区先对冲</span>——现金流断裂与身份重写未完成排在最前，前者靠把「现金流安全边际」做厚、后者靠把次优约束变成独特凭证来逐步消化。
           </p>
         </div>
       </div>

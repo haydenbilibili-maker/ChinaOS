@@ -41,7 +41,7 @@ function showReloadToast() {
       fontFamily: 'system-ui, sans-serif',
       color: '#e2e8f0',
       background: 'rgba(15, 23, 42, 0.92)',
-      border: '1px solid rgba(34, 211, 238, 0.35)',
+      border: '1px solid rgba(110, 140, 255, 0.35)',
       boxShadow: '0 4px 24px rgba(0,0,0,0.35)',
       pointerEvents: 'none',
     });

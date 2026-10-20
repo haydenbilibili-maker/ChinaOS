@@ -26,13 +26,13 @@ const PEACE_PATHS = [
 ];
 
 const CASES = {
-  athens: { label: '雅典 vs 斯巴达', era: '前 5 世纪', out: '战争', color: '#c41e3a',
+  athens: { label: '雅典 vs 斯巴达', era: '前 5 世纪', out: '战争', color: '#e5483b',
     rise: 88, rule: 80, txt: '雅典崛起引发斯巴达恐惧 → 伯罗奔尼撒战争，两败俱伤。修昔底德的原型命题。' },
-  ukgermany: { label: '英国 vs 德国', era: '1900s', out: '战争', color: '#c41e3a',
+  ukgermany: { label: '英国 vs 德国', era: '1900s', out: '战争', color: '#e5483b',
     rise: 82, rule: 85, txt: '德国工业与海军崛起冲击英国海上霸权 → 第一次世界大战，结构紧张被民族主义引爆。' },
-  usussr: { label: '美国 vs 苏联', era: '冷战', out: '和平（避免）', color: '#10b981',
+  usussr: { label: '美国 vs 苏联', era: '冷战', out: '和平（避免）', color: '#6fc2ae',
     rise: 75, rule: 90, txt: '核威慑抬高战争代价 + 阵营边界相对清晰 → 长期对峙但未直接热战，四个和平案例之一。' },
-  uschina: { label: '美国 vs 中国', era: '当下', out: '未定', color: '#e8a317',
+  uschina: { label: '美国 vs 中国', era: '当下', out: '未定', color: '#d4a25a',
     rise: 84, rule: 90, txt: '实力曲线逼近交叉的高危窗口。核武 + 经济深度交织既抬高代价、也制造新型摩擦——结局取决于四条路径能否被走通。' },
 };
 
@@ -58,48 +58,48 @@ const ALLISON16 = [
 
 // 风险模拟器 · 因子定义与历史模式预设
 const RISK_FACTORS = [
-  { key: 'conv', label: '实力差距收敛度', desc: '崛起国逼近守成国的程度——越收敛恐惧越深', color: '#c41e3a', dir: '+' },
-  { key: 'alliance', label: '联盟刚性', desc: '同盟承诺自动化程度——把局部摩擦联动为系统对抗', color: '#e8a317', dir: '+' },
-  { key: 'friction', label: '危机摩擦频率', desc: '海空相遇 / 代理冲突 / 制裁反制的发生密度', color: '#a855f7', dir: '+' },
-  { key: 'guard', label: '沟通护栏强度', desc: '热线 / 危机管控机制 / 军方对话——吸收火星的缓冲层', color: '#10b981', dir: '−' },
+  { key: 'conv', label: '实力差距收敛度', desc: '崛起国逼近守成国的程度——越收敛恐惧越深', color: '#e5483b', dir: '+' },
+  { key: 'alliance', label: '联盟刚性', desc: '同盟承诺自动化程度——把局部摩擦联动为系统对抗', color: '#d4a25a', dir: '+' },
+  { key: 'friction', label: '危机摩擦频率', desc: '海空相遇 / 代理冲突 / 制裁反制的发生密度', color: '#b07cc6', dir: '+' },
+  { key: 'guard', label: '沟通护栏强度', desc: '热线 / 危机管控机制 / 军方对话——吸收火星的缓冲层', color: '#6fc2ae', dir: '−' },
 ];
 
 const RISK_PRESETS = {
-  y1914: { label: '1914 模式', conv: 85, alliance: 92, friction: 75, guard: 15, color: '#c41e3a',
+  y1914: { label: '1914 模式', conv: 85, alliance: 92, friction: 75, guard: 15, color: '#e5483b',
     note: '联盟刚性把萨拉热窝的局部火星自动升级为系统战争——动员时刻表绑架了外交。' },
-  coldwar: { label: '冷战模式', conv: 70, alliance: 60, friction: 80, guard: 78, color: '#10b981',
+  coldwar: { label: '冷战模式', conv: 70, alliance: 60, friction: 80, guard: 78, color: '#6fc2ae',
     note: '摩擦频率不低（柏林/古巴/越南），但热线+军控护栏持续吸收火星，未直接热战。' },
 };
 
 // 崛起速率对照：「快」本身即恐惧之源
 const SPEED_CARDS = [
-  { who: '德国 1870–1914', accent: '#e8a317', doubling: '~25 年', share: '钢产量 1890s 超英，GDP 一战前逼平',
+  { who: '德国 1870–1914', accent: '#d4a25a', doubling: '~25 年', share: '钢产量 1890s 超英，GDP 一战前逼平',
     txt: '统一后 44 年完成工业反超。英国的恐惧不只来自规模，更来自「速度的不可预期」——海军竞赛由此失控。' },
-  { who: '中国 1978–2026', accent: '#c41e3a', doubling: '~8 年（高速期）', share: 'GDP 从美 6% → 约 70%（市场汇率）',
+  { who: '中国 1978–2026', accent: '#e5483b', doubling: '~8 年（高速期）', share: 'GDP 从美 6% → 约 70%（市场汇率）',
     txt: '改革开放后 GDP 翻倍周期一度缩至 8 年左右，购买力平价 2014 年前后超美。压缩在一代人内的赶超，让守成国的心理调适来不及完成。' },
 ];
 
 // 结构压力（火药桶）vs 触发事件（火星）
 const TRIGGERS = [
-  { spark: '萨拉热窝 1914', powder: '英德海权竞赛 + 刚性联盟网', accent: '#c41e3a',
+  { spark: '萨拉热窝 1914', powder: '英德海权竞赛 + 刚性联盟网', accent: '#e5483b',
     txt: '一桩巴尔干刺杀本身不足以毁灭欧洲；是结构（联盟自动化+动员竞赛）把火星接到了火药桶上。' },
-  { spark: '珍珠港 1941', powder: '美国石油禁运扼住日本命脉', accent: '#e8a317',
+  { spark: '珍珠港 1941', powder: '美国石油禁运扼住日本命脉', accent: '#d4a25a',
     txt: '禁运制造「不打即衰」的窗口焦虑——崛起受阻国在结构绝望下选择先发制人豪赌。' },
-  { spark: '古巴导弹危机 1962', powder: '美苏全球核对峙结构', accent: '#10b981',
+  { spark: '古巴导弹危机 1962', powder: '美苏全球核对峙结构', accent: '#6fc2ae',
     txt: '同样级别的火星落在有护栏的结构上：秘密渠道+单方面克制让 13 天悬崖最终撤梯——火星未点燃火药。' },
 ];
 
 // 中美结构紧张演进时间线
 const TIMELINE = [
-  { period: '1979–2008', title: '接触合作', accent: '#10b981',
+  { period: '1979–2008', title: '接触合作', accent: '#6fc2ae',
     desc: '建交 + 入世逻辑：把中国纳入体系即可塑造之。实力差距巨大，结构压力低，「接触派」主导美国对华共识。' },
-  { period: '2009–2016', title: '焦虑酝酿', accent: '#22d3ee',
+  { period: '2009–2016', title: '焦虑酝酿', accent: '#6e8cff',
     desc: '金融危机后中国 GDP 超日、提出「新型大国关系」；美国「重返亚太」。实力收敛开始触发守成国再评估。' },
-  { period: '2017–2019', title: '战略竞争定调', accent: '#e8a317',
+  { period: '2017–2019', title: '战略竞争定调', accent: '#d4a25a',
     desc: '美国国安战略将中国列为「战略竞争者」，接触共识破裂；贸易战开打——结构紧张被官方话语正式确认。' },
-  { period: '2020–2022', title: '科技战与脱钩', accent: '#c41e3a',
+  { period: '2020–2022', title: '科技战与脱钩', accent: '#e5483b',
     desc: '芯片禁令 / 实体清单 / 供应链重组：摩擦从关税升级到技术命脉；台海、南海危机摩擦频率同步上升。' },
-  { period: '2023–至今', title: '护栏外交 · 窗口期管理', accent: '#a855f7',
+  { period: '2023–至今', title: '护栏外交 · 窗口期管理', accent: '#b07cc6',
     desc: '恢复军方沟通 + 元首会晤设「地板」：竞争不变但加装护栏——本页模拟器中的 guard 因子现实版。' },
 ];
 
@@ -121,10 +121,10 @@ export default function Page() {
     legend: { data: ['守成大国', '崛起大国'], textStyle: { color: LABEL.color }, top: 0 },
     grid: { left: 40, right: 16, top: 30, bottom: 24 },
     xAxis: { type: 'category', data: ['T-20', 'T-15', 'T-10', 'T-5', '当前', 'T+5'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
-    yAxis: { type: 'value', max: 120, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+    yAxis: { type: 'value', max: 120, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } } },
     series: [
-      { name: '守成大国', type: 'line', smooth: true, data: [100, 100, 99, 98, 97, 96], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
-      { name: '崛起大国', type: 'line', smooth: true, data: [gap - 45, gap - 30, gap - 18, gap - 8, gap, gap + 8], lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.08)' } },
+      { name: '守成大国', type: 'line', smooth: true, data: [100, 100, 99, 98, 97, 96], lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' } },
+      { name: '崛起大国', type: 'line', smooth: true, data: [gap - 45, gap - 30, gap - 18, gap - 8, gap, gap + 8], lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.08)' } },
     ],
   }), [gap]);
 
@@ -133,20 +133,20 @@ export default function Page() {
     const raw = conv * 0.3 + alliance * 0.25 + friction * 0.25 + (100 - guard) * 0.2;
     return Math.max(0, Math.min(100, Math.round(raw)));
   }, [conv, alliance, friction, guard]);
-  const riskLv = risk >= 70 ? { t: '高危 · 1914 区间', c: '#c41e3a' } : risk >= 45 ? { t: '警戒 · 摩擦升级区', c: '#e8a317' } : { t: '缓冲 · 护栏有效区', c: '#10b981' };
+  const riskLv = risk >= 70 ? { t: '高危 · 1914 区间', c: '#e5483b' } : risk >= 45 ? { t: '警戒 · 摩擦升级区', c: '#d4a25a' } : { t: '缓冲 · 护栏有效区', c: '#6fc2ae' };
 
   // 因子贡献条形图（护栏取「缺口」即 100-guard）
   const factorBar = useMemo(() => ({
     grid: { left: 110, right: 36, top: 10, bottom: 24 },
-    xAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color } },
+    xAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } }, axisLabel: { color: LABEL.color } },
     yAxis: { type: 'category', data: ['护栏缺口', '摩擦频率', '联盟刚性', '收敛度'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
     series: [{
       type: 'bar', barWidth: 14,
       data: [
-        { value: 100 - guard, itemStyle: { color: '#10b981' } },
-        { value: friction, itemStyle: { color: '#a855f7' } },
-        { value: alliance, itemStyle: { color: '#e8a317' } },
-        { value: conv, itemStyle: { color: '#c41e3a' } },
+        { value: 100 - guard, itemStyle: { color: '#6fc2ae' } },
+        { value: friction, itemStyle: { color: '#b07cc6' } },
+        { value: alliance, itemStyle: { color: '#d4a25a' } },
+        { value: conv, itemStyle: { color: '#e5483b' } },
       ],
       label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 },
     }],
@@ -160,19 +160,19 @@ export default function Page() {
       <PageHeader badge="Cognition · 修昔底德陷阱" title="修昔底德陷阱 · 守成与崛起的结构性紧张"
         subtitle="格雷厄姆·艾利森 · 500 年 16 案例（12 战 4 和）—— 恐惧 + 利益 + 荣誉，与实力交叉的高危窗口" />
       <IntroCard>
-        修昔底德写道：「<strong style={{ color: 'var(--text-primary)' }}>使战争不可避免的，是雅典实力的增长，以及由此在斯巴达引起的恐惧</strong>。」艾利森将其升级为结构命题：当崛起国实力<strong style={{ color: 'var(--text-primary)' }}>逼近守成国</strong>时，结构性压力剧增。但与进攻性现实主义的「结构悲观」不同，他强调 16 例中有 4 例避免了战争——<strong style={{ color: '#10b981' }}>陷阱可以规避</strong>。
+        修昔底德写道：「<strong style={{ color: 'var(--text-primary)' }}>使战争不可避免的，是雅典实力的增长，以及由此在斯巴达引起的恐惧</strong>。」艾利森将其升级为结构命题：当崛起国实力<strong style={{ color: 'var(--text-primary)' }}>逼近守成国</strong>时，结构性压力剧增。但与进攻性现实主义的「结构悲观」不同，他强调 16 例中有 4 例避免了战争——<strong style={{ color: '#6fc2ae' }}>陷阱可以规避</strong>。
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value={gap} label="崛起国相对实力（守成=100）" accent="#c41e3a" />
-        <Stat value={danger} label="结构危险度（逼近交叉↑）" accent={danger > 70 ? '#c41e3a' : danger > 40 ? '#e8a317' : '#10b981'} />
+        <Stat value={gap} label="崛起国相对实力（守成=100）" accent="#e5483b" />
+        <Stat value={danger} label="结构危险度（逼近交叉↑）" accent={danger > 70 ? '#e5483b' : danger > 40 ? '#d4a25a' : '#6fc2ae'} />
         <Stat value={risk} label="多因子战争风险指数" accent={riskLv.c} />
-        <Stat value={`12 : 4`} label="历史案例 战争 : 和平" accent="#22d3ee" />
+        <Stat value={`12 : 4`} label="历史案例 战争 : 和平" accent="#6e8cff" />
       </Grid>
 
       <Grid cols={2} className="mb-6">
         <Card title="交互① · 实力交叉曲线（拖动崛起国实力）">
-          <input type="range" min="40" max="115" value={gap} onChange={(e) => setGap(Number(e.target.value))} style={{ width: '100%', accentColor: '#c41e3a' }} />
+          <input type="range" min="40" max="115" value={gap} onChange={(e) => setGap(Number(e.target.value))} style={{ width: '100%', accentColor: '#e5483b' }} />
           <EChart option={cross} style={{ height: 230 }} />
           <p className="text-[11px] mt-1" style={{ color: 'var(--text-tertiary)' }}>两条曲线<strong style={{ color: 'var(--text-secondary)' }}>逼近交叉的窗口期</strong>结构压力最大——恐惧、误判与意外摩擦最易引爆冲突。曲线为示意，非预测。</p>
         </Card>
@@ -233,7 +233,7 @@ export default function Page() {
 
       <Card title="结构压力 vs 触发事件 · 火药桶与火星" className="mb-6">
         <p className="text-xs mb-3 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-          陷阱的核心区分：<strong style={{ color: '#c41e3a' }}>结构提供火药</strong>（实力转移积累的恐惧与对抗布局），<strong style={{ color: '#e8a317' }}>危机提供火星</strong>（刺杀、禁运、部署等具体事件）。同一颗火星，落在不同结构上结局迥异——这正是护栏的价值所在。
+          陷阱的核心区分：<strong style={{ color: '#e5483b' }}>结构提供火药</strong>（实力转移积累的恐惧与对抗布局），<strong style={{ color: '#d4a25a' }}>危机提供火星</strong>（刺杀、禁运、部署等具体事件）。同一颗火星，落在不同结构上结局迥异——这正是护栏的价值所在。
         </p>
         <Grid cols={3}>
           {TRIGGERS.map((t) => (
@@ -273,13 +273,13 @@ export default function Page() {
             </thead>
             <tbody>
               {ALLISON16.map(([era, rule, rise, domain, out, peace], i) => (
-                <tr key={era + rise} style={{ borderBottom: '1px solid rgba(148,163,184,0.08)', background: peace ? 'rgba(16,185,129,0.07)' : 'transparent' }}>
+                <tr key={era + rise} style={{ borderBottom: '1px solid rgba(162, 156, 145,0.08)', background: peace ? 'rgba(111, 194, 174,0.07)' : 'transparent' }}>
                   <td className="py-1.5 px-2 mono" style={{ color: 'var(--text-tertiary)' }}>{i + 1}</td>
                   <td className="py-1.5 px-2" style={{ color: 'var(--text-tertiary)' }}>{era}</td>
                   <td className="py-1.5 px-2" style={{ color: 'var(--text-secondary)' }}>{rule}</td>
                   <td className="py-1.5 px-2" style={{ color: 'var(--text-secondary)' }}>{rise}</td>
                   <td className="py-1.5 px-2" style={{ color: 'var(--text-tertiary)' }}>{domain}</td>
-                  <td className="py-1.5 px-2 mono font-semibold" style={{ color: peace ? '#10b981' : '#c41e3a' }}>{out}</td>
+                  <td className="py-1.5 px-2 mono font-semibold" style={{ color: peace ? '#6fc2ae' : '#e5483b' }}>{out}</td>
                 </tr>
               ))}
             </tbody>
@@ -318,7 +318,7 @@ export default function Page() {
         <Grid cols={2}>
           {PEACE_PATHS.map(([t, d], i) => (
             <div key={t} className="os-card p-3" style={{ background: 'var(--bg-elevated)' }}>
-              <div className="text-sm font-semibold mb-1" style={{ color: '#10b981' }}>{`路径 ${i + 1} · ${t}`}</div>
+              <div className="text-sm font-semibold mb-1" style={{ color: '#6fc2ae' }}>{`路径 ${i + 1} · ${t}`}</div>
               <p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
             </div>
           ))}
@@ -327,7 +327,7 @@ export default function Page() {
 
       <Card title="与现实主义模块对照 · 结构悲观 vs 可规避" className="mb-6">
         <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-          <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>现实主义</span>（尤其米尔斯海默）读出「<strong style={{ color: 'var(--china-red)' }}>中国不能和平崛起</strong>」——结构决定悲剧。修昔底德陷阱共享同一结构起点，却给出不同结论：实力转移制造的是<strong style={{ color: 'var(--text-primary)' }}>高危「窗口」而非必然战争</strong>，四条路径与政治家的选择能改写结局。两者对照，恰是「<strong style={{ color: 'var(--text-primary)' }}>结构约束</strong>」与「<strong style={{ color: '#10b981' }}>能动空间</strong>」之争。
+          <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>现实主义</span>（尤其米尔斯海默）读出「<strong style={{ color: 'var(--china-red)' }}>中国不能和平崛起</strong>」——结构决定悲剧。修昔底德陷阱共享同一结构起点，却给出不同结论：实力转移制造的是<strong style={{ color: 'var(--text-primary)' }}>高危「窗口」而非必然战争</strong>，四条路径与政治家的选择能改写结局。两者对照，恰是「<strong style={{ color: 'var(--text-primary)' }}>结构约束</strong>」与「<strong style={{ color: '#6fc2ae' }}>能动空间</strong>」之争。
         </p>
       </Card>
 <FrameworkTrio cards={[

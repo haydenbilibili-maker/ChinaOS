@@ -11,78 +11,78 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // —— 交互① 价值链选择器：六环节的中国地位 / 卡点 / 代表企业 ——
 const CHAIN = [
   {
-    key: 'oem', label: '整车', accent: '#c41e3a',
+    key: 'oem', label: '整车', accent: '#e5483b',
     position: '全球最大产销国 · 新能源整车定义权转移中', shareCN: 62, shareLabel: '全球 NEV 整车份额（示意 %）',
     stats: [['3100 万+', '年产销量（辆）'], ['~62%', '全球 NEV 份额'], ['100+', '在售 NEV 品牌'], ['<2 年', '车型迭代周期']],
     choke: '品牌溢价与高端市场认知仍弱于德系豪华；海外渠道与售后网络处于补课期。',
     firms: ['比亚迪', '吉利', '奇瑞', '长安', '理想', '小米汽车'],
     bars: [
-      { name: '中国', value: 62, color: '#c41e3a' }, { name: '欧洲', value: 18, color: '#64748b' },
-      { name: '北美', value: 12, color: '#22d3ee' }, { name: '其他', value: 8, color: '#8b5cf6' },
+      { name: '中国', value: 62, color: '#e5483b' }, { name: '欧洲', value: 18, color: '#8a8578' },
+      { name: '北美', value: 12, color: '#6e8cff' }, { name: '其他', value: 8, color: '#b07cc6' },
     ],
     verdict: '整车不再是「市场换技术」的弱势方——电动平台的定义权第一次握在中国厂商手里，但权力要折算成全球品牌还需十年。',
   },
   {
-    key: 'battery', label: '动力电池', accent: '#22d3ee',
+    key: 'battery', label: '动力电池', accent: '#6e8cff',
     position: '全产业链垄断级优势 · 新能源时代的「石油」', shareCN: 65, shareLabel: '全球动力电池装机份额（示意 %）',
     stats: [['~65%', '全球装机份额'], ['Top10 占 6', '中国企业席位'], ['~90%', '正/负极材料份额'], ['¥0.4/Wh', '电芯成本（示意）']],
     choke: '上游锂钴镍资源对外依存度高；欧美以 IRA / 本地化条款逼迫产能外迁与技术换市场。',
     firms: ['宁德时代', '比亚迪弗迪', '中创新航', '亿纬锂能', '国轩高科', '欣旺达'],
     bars: [
-      { name: '宁德时代', value: 37, color: '#22d3ee' }, { name: '比亚迪', value: 16, color: '#c41e3a' },
-      { name: '其他中企', value: 12, color: '#e8a317' }, { name: 'LG/三星/SK', value: 20, color: '#64748b' },
-      { name: '松下', value: 7, color: '#8b5cf6' }, { name: '其他', value: 8, color: '#fb923c' },
+      { name: '宁德时代', value: 37, color: '#6e8cff' }, { name: '比亚迪', value: 16, color: '#e5483b' },
+      { name: '其他中企', value: 12, color: '#d4a25a' }, { name: 'LG/三星/SK', value: 20, color: '#8a8578' },
+      { name: '松下', value: 7, color: '#b07cc6' }, { name: '其他', value: 8, color: '#c07a4a' },
     ],
     verdict: '电池是这场产业战争中中国唯一接近「不可替代」的环节——从矿到回收的全链条控制，议价权类似 1970 年代的 OPEC。',
   },
   {
-    key: 'adas', label: '智能驾驶', accent: '#e8a317',
+    key: 'adas', label: '智能驾驶', accent: '#d4a25a',
     position: '应用与数据领先 · 底层算力受制', shareCN: 48, shareLabel: '城区 NOA 落地车型份额（示意 %）',
     stats: [['300+ 城', '城区 NOA 开通'], ['~48%', 'NOA 车型中国占比'], ['10 亿+ km', '年智驾数据回传'], ['2-3 家', '端到端第一梯队']],
     choke: '云端训练算力依赖英伟达受限供应；端到端范式下数据闭环与算力成本成为分水岭。',
     firms: ['华为乾崑', 'Momenta', '地平线', '小鹏', '理想', '元戎启行'],
     bars: [
-      { name: '华为系', value: 22, color: '#c41e3a' }, { name: '自研车企', value: 26, color: '#e8a317' },
-      { name: '第三方方案', value: 18, color: '#22d3ee' }, { name: '特斯拉 FSD', value: 20, color: '#64748b' },
-      { name: '其他海外', value: 14, color: '#8b5cf6' },
+      { name: '华为系', value: 22, color: '#e5483b' }, { name: '自研车企', value: 26, color: '#d4a25a' },
+      { name: '第三方方案', value: 18, color: '#6e8cff' }, { name: '特斯拉 FSD', value: 20, color: '#8a8578' },
+      { name: '其他海外', value: 14, color: '#b07cc6' },
     ],
     verdict: '智驾上半场拼工程落地中国占优；下半场拼训练算力与数据飞轮——而训练芯片恰好卡在对手手里。',
   },
   {
-    key: 'chip', label: '车规芯片', accent: '#8b5cf6',
+    key: 'chip', label: '车规芯片', accent: '#b07cc6',
     position: '低端自给加速 · 高算力 SoC 仍是软肋', shareCN: 15, shareLabel: '车规芯片国产化率（示意 %）',
     stats: [['~15%', '整体国产化率'], ['~8%', '智驾 SoC 国产率'], ['500+ TOPS', '国产旗舰算力'], ['28nm+', '可控成熟制程']],
     choke: '7nm 以下先进制程受出口管制；MCU、功率器件国产替代快，但高算力 SoC 与车规认证周期是双重门槛。',
     firms: ['地平线', '黑芝麻', '华为昇腾', '芯擎科技', '比亚迪半导体', '斯达半导'],
     bars: [
-      { name: '功率器件', value: 45, color: '#10b981' }, { name: 'MCU', value: 25, color: '#e8a317' },
-      { name: '座舱 SoC', value: 18, color: '#22d3ee' }, { name: '智驾 SoC', value: 8, color: '#c41e3a' },
-      { name: '存储/模拟', value: 12, color: '#8b5cf6' },
+      { name: '功率器件', value: 45, color: '#6fc2ae' }, { name: 'MCU', value: 25, color: '#d4a25a' },
+      { name: '座舱 SoC', value: 18, color: '#6e8cff' }, { name: '智驾 SoC', value: 8, color: '#e5483b' },
+      { name: '存储/模拟', value: 12, color: '#b07cc6' },
     ],
     verdict: '车规芯片是整条价值链上唯一中国处于明确守势的环节——SiC 功率器件在反超，智驾大算力 SoC 在补课。',
   },
   {
-    key: 'charging', label: '充换电网络', accent: '#10b981',
+    key: 'charging', label: '充换电网络', accent: '#6fc2ae',
     position: '全球最大补能基础设施 · 标准输出窗口', shareCN: 70, shareLabel: '全球公共充电桩份额（示意 %）',
     stats: [['1200 万+', '充电桩保有量'], ['~70%', '全球公共桩份额'], ['5 分钟', '兆瓦闪充补能'], ['4000+', '换电站规模']],
     choke: '县乡覆盖与高速节假日峰值仍紧张；海外建桩受电网、标准（CCS/NACS）与地缘审查掣肘。',
     firms: ['国家电网', '特来电', '星星充电', '蔚来能源', '华为数字能源', '南方电网'],
     bars: [
-      { name: '中国', value: 70, color: '#10b981' }, { name: '欧洲', value: 16, color: '#64748b' },
-      { name: '北美', value: 9, color: '#22d3ee' }, { name: '其他', value: 5, color: '#8b5cf6' },
+      { name: '中国', value: 70, color: '#6fc2ae' }, { name: '欧洲', value: 16, color: '#8a8578' },
+      { name: '北美', value: 9, color: '#6e8cff' }, { name: '其他', value: 5, color: '#b07cc6' },
     ],
     verdict: '补能网络是中国体制优势的具象化：电网国有 + 基建动员能力，让「里程焦虑」在中国先于全球被工程化消灭。',
   },
   {
-    key: 'export', label: '出海', accent: '#fb923c',
+    key: 'export', label: '出海', accent: '#c07a4a',
     position: '出口量全球第一 · 从卖车到输出产能与标准', shareCN: 41, shareLabel: '全球汽车出口份额（示意 %）',
     stats: [['640 万+', '年出口量（辆）'], ['#1', '连续超日本'], ['20+ 座', '海外整车工厂'], ['~30%', 'NEV 占出口比']],
     choke: '欧盟反补贴税（17%–35.3%）、美国 100% 关税与「软件安全」禁令；被迫从出口转向本地建厂与技术授权。',
     firms: ['奇瑞', '上汽 MG', '比亚迪', '长城', '吉利', '宁德时代（产能出海）'],
     bars: [
-      { name: '欧洲', value: 28, color: '#c41e3a' }, { name: '东南亚', value: 24, color: '#e8a317' },
-      { name: '拉美', value: 18, color: '#10b981' }, { name: '中东非', value: 16, color: '#22d3ee' },
-      { name: '俄罗斯/中亚', value: 14, color: '#8b5cf6' },
+      { name: '欧洲', value: 28, color: '#e5483b' }, { name: '东南亚', value: 24, color: '#d4a25a' },
+      { name: '拉美', value: 18, color: '#6fc2ae' }, { name: '中东非', value: 16, color: '#6e8cff' },
+      { name: '俄罗斯/中亚', value: 14, color: '#b07cc6' },
     ],
     verdict: '出海的真实剧本不是贸易而是产业权力再分配：关税墙逼出的本地建厂，正复制当年日本车企应对美国的路径。',
   },
@@ -105,12 +105,12 @@ const BT_TSLA = [50, 94, 131, 181, 179, 185];
 
 // —— 动力电池全球装机份额（示意 %）——
 const BATTERY_DONUT = [
-  { value: 37, name: '宁德时代', itemStyle: { color: '#22d3ee' } },
-  { value: 16, name: '比亚迪', itemStyle: { color: '#c41e3a' } },
-  { value: 12, name: '其他中国企业', itemStyle: { color: '#e8a317' } },
-  { value: 13, name: 'LG 新能源', itemStyle: { color: '#64748b' } },
-  { value: 7, name: '松下', itemStyle: { color: '#8b5cf6' } },
-  { value: 7, name: 'SK On / 三星', itemStyle: { color: '#fb923c' } },
+  { value: 37, name: '宁德时代', itemStyle: { color: '#6e8cff' } },
+  { value: 16, name: '比亚迪', itemStyle: { color: '#e5483b' } },
+  { value: 12, name: '其他中国企业', itemStyle: { color: '#d4a25a' } },
+  { value: 13, name: 'LG 新能源', itemStyle: { color: '#8a8578' } },
+  { value: 7, name: '松下', itemStyle: { color: '#b07cc6' } },
+  { value: 7, name: 'SK On / 三星', itemStyle: { color: '#c07a4a' } },
   { value: 8, name: '其他', itemStyle: { color: AXIS.lineStyle.color } },
 ];
 
@@ -121,19 +121,19 @@ const RADAR_DEJP = [85, 35, 50, 70, 92, 95];
 
 // —— 出海壁垒事件 ——
 const BARRIERS = [
-  { region: '欧盟', accent: '#e8a317', measure: '反补贴税 17%–35.3%（2024.10 终裁）', response: '匈牙利/西班牙/土耳其建厂；价格承诺谈判' },
-  { region: '美国', accent: '#c41e3a', measure: '301 关税 100% + 网联汽车软件禁令', response: '基本放弃直接进入；经墨西哥路径亦被堵' },
-  { region: '土耳其/巴西/印度', accent: '#8b5cf6', measure: '附加关税 / 本地化率要求', response: '以投资换市场，CKD 组装先行' },
-  { region: '俄罗斯', accent: '#64748b', measure: '2024 起报废税大幅上调', response: '从平行出口转向本地组装' },
+  { region: '欧盟', accent: '#d4a25a', measure: '反补贴税 17%–35.3%（2024.10 终裁）', response: '匈牙利/西班牙/土耳其建厂；价格承诺谈判' },
+  { region: '美国', accent: '#e5483b', measure: '301 关税 100% + 网联汽车软件禁令', response: '基本放弃直接进入；经墨西哥路径亦被堵' },
+  { region: '土耳其/巴西/印度', accent: '#b07cc6', measure: '附加关税 / 本地化率要求', response: '以投资换市场，CKD 组装先行' },
+  { region: '俄罗斯', accent: '#8a8578', measure: '2024 起报废税大幅上调', response: '从平行出口转向本地组装' },
 ];
 
 // —— TimelineBar：换道之路 ——
 const PHASES = [
-  { period: '1984–2000', title: '市场换技术', accent: '#64748b', desc: '合资模式引入产线却没换来核心技术。三大件（发动机/变速箱/底盘）专利墙下，自主品牌长期困于 10 万元以下市场。' },
-  { period: '2001–2014', title: '燃油弯道失败', accent: '#8b5cf6', desc: '逆向开发与低价竞争触顶：燃油动力总成的百年积累无法速成。结论残酷而清晰——在对手的赛道上永远追不上对手。' },
-  { period: '2009–2020', title: '新能源国家战略', accent: '#e8a317', desc: '十城千辆 → 补贴退坡 → 双积分制。万亿级补贴换来三电产业链成型；2014 特斯拉开放专利、2019 上海超级工厂引入鲶鱼。' },
-  { period: '2021–2024', title: '渗透率反超 · 出口第一', accent: '#c41e3a', desc: '渗透率从 13% 飙到 50%+，燃油车在中国市场进入不可逆衰退；2023 出口超日本登顶全球，合资品牌份额腰斩。' },
-  { period: '2025–', title: '智能化下半场', accent: '#22d3ee', desc: '电动化红利见顶，竞争转向端到端智驾、SDV 与生态。价格战出清弱者，行业从百家混战走向 5–8 家寡头格局。' },
+  { period: '1984–2000', title: '市场换技术', accent: '#8a8578', desc: '合资模式引入产线却没换来核心技术。三大件（发动机/变速箱/底盘）专利墙下，自主品牌长期困于 10 万元以下市场。' },
+  { period: '2001–2014', title: '燃油弯道失败', accent: '#b07cc6', desc: '逆向开发与低价竞争触顶：燃油动力总成的百年积累无法速成。结论残酷而清晰——在对手的赛道上永远追不上对手。' },
+  { period: '2009–2020', title: '新能源国家战略', accent: '#d4a25a', desc: '十城千辆 → 补贴退坡 → 双积分制。万亿级补贴换来三电产业链成型；2014 特斯拉开放专利、2019 上海超级工厂引入鲶鱼。' },
+  { period: '2021–2024', title: '渗透率反超 · 出口第一', accent: '#e5483b', desc: '渗透率从 13% 飙到 50%+，燃油车在中国市场进入不可逆衰退；2023 出口超日本登顶全球，合资品牌份额腰斩。' },
+  { period: '2025–', title: '智能化下半场', accent: '#6e8cff', desc: '电动化红利见顶，竞争转向端到端智驾、SDV 与生态。价格战出清弱者，行业从百家混战走向 5–8 家寡头格局。' },
 ];
 
 // —— 渗透率阶段联动注解 ——
@@ -164,20 +164,20 @@ export default function Page() {
       type: 'line', smooth: true, symbol: 'circle', symbolSize: 7,
       data: PEN_VALUES.map((v, i) => ({
         value: v,
-        itemStyle: { color: i <= phaseIdx + 3 ? '#c41e3a' : '#3a4a63' },
+        itemStyle: { color: i <= phaseIdx + 3 ? '#e5483b' : '#3a4a63' },
       })),
-      lineStyle: { color: '#c41e3a', width: 2.5 },
-      areaStyle: { color: 'rgba(196,30,58,0.12)' },
+      lineStyle: { color: '#e5483b', width: 2.5 },
+      areaStyle: { color: 'rgba(229, 72, 59,0.12)' },
       markLine: {
         silent: true, symbol: 'none',
-        lineStyle: { color: '#22d3ee', type: 'dashed' },
-        label: { color: '#22d3ee', fontSize: 10, formatter: '50% 燃油替代拐点' },
+        lineStyle: { color: '#6e8cff', type: 'dashed' },
+        label: { color: '#6e8cff', fontSize: 10, formatter: '50% 燃油替代拐点' },
         data: [{ yAxis: 50 }],
       },
       markPoint: {
         symbolSize: 44,
         label: { fontSize: 9, color: '#fff' },
-        itemStyle: { color: '#e8a317' },
+        itemStyle: { color: '#d4a25a' },
         data: [{ coord: ['2024', 47.6], name: '反超', value: '过半' }],
       },
     }],
@@ -192,8 +192,8 @@ export default function Page() {
     series: [{
       type: 'line', smooth: false, symbol: 'diamond', symbolSize: 7,
       data: PEN_VALUES,
-      lineStyle: { color: '#22d3ee', width: 2 },
-      itemStyle: { color: '#22d3ee' },
+      lineStyle: { color: '#6e8cff', width: 2 },
+      itemStyle: { color: '#6e8cff' },
     }],
   }), []);
 
@@ -205,10 +205,10 @@ export default function Page() {
     xAxis: categoryX(EXP_YEARS),
     yAxis: valueY({ name: '万辆', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
     series: [
-      { name: '中国', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: EXP_CN, lineStyle: { color: '#c41e3a', width: 2.5 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.10)' },
-        markPoint: { symbolSize: 46, label: { fontSize: 9, color: '#fff' }, itemStyle: { color: '#c41e3a' }, data: [{ coord: ['2023', 491], name: '登顶', value: '超日本' }] } },
-      { name: '日本', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: EXP_JP, lineStyle: { color: '#64748b', width: 2 }, itemStyle: { color: '#64748b' } },
-      { name: '德国', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: EXP_DE, lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' } },
+      { name: '中国', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: EXP_CN, lineStyle: { color: '#e5483b', width: 2.5 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.10)' },
+        markPoint: { symbolSize: 46, label: { fontSize: 9, color: '#fff' }, itemStyle: { color: '#e5483b' }, data: [{ coord: ['2023', 491], name: '登顶', value: '超日本' }] } },
+      { name: '日本', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: EXP_JP, lineStyle: { color: '#8a8578', width: 2 }, itemStyle: { color: '#8a8578' } },
+      { name: '德国', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: EXP_DE, lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' } },
     ],
   }), []);
 
@@ -220,8 +220,8 @@ export default function Page() {
     xAxis: categoryX(BT_YEARS),
     yAxis: valueY({ name: '万辆', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
     series: [
-      { name: '比亚迪', type: 'bar', barWidth: 14, data: BT_BYD, itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } },
-      { name: '特斯拉', type: 'bar', barWidth: 14, data: BT_TSLA, itemStyle: { color: '#64748b', borderRadius: [3, 3, 0, 0] } },
+      { name: '比亚迪', type: 'bar', barWidth: 14, data: BT_BYD, itemStyle: { color: '#e5483b', borderRadius: [3, 3, 0, 0] } },
+      { name: '特斯拉', type: 'bar', barWidth: 14, data: BT_TSLA, itemStyle: { color: '#8a8578', borderRadius: [3, 3, 0, 0] } },
     ],
   }), []);
 
@@ -232,7 +232,7 @@ export default function Page() {
   const materialOpt = useMemo(() => stackedBarOpt({
     categories: ['正极材料', '负极材料', '电解液', '隔膜', '电芯制造', '锂资源精炼'],
     series: [
-      { name: '中国份额', data: [88, 92, 86, 80, 73, 68], itemStyle: { color: '#22d3ee', borderRadius: 0 } },
+      { name: '中国份额', data: [88, 92, 86, 80, 73, 68], itemStyle: { color: '#6e8cff', borderRadius: 0 } },
       { name: '海外份额', data: [12, 8, 14, 20, 27, 32], itemStyle: { color: AXIS.lineStyle.color } },
     ],
     horizontal: true,
@@ -253,8 +253,8 @@ export default function Page() {
     series: [{
       type: 'radar',
       data: [
-        { value: RADAR_CN, name: '中国', lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.14)' } },
-        { value: RADAR_DEJP, name: '德日传统强国', lineStyle: { color: '#64748b', width: 2 }, itemStyle: { color: '#64748b' }, areaStyle: { color: 'rgba(100,116,139,0.10)' } },
+        { value: RADAR_CN, name: '中国', lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.14)' } },
+        { value: RADAR_DEJP, name: '德日传统强国', lineStyle: { color: '#8a8578', width: 2 }, itemStyle: { color: '#8a8578' }, areaStyle: { color: 'rgba(100,116,139,0.10)' } },
       ],
     }],
   }), []);
@@ -287,8 +287,8 @@ export default function Page() {
       label: { show: true, position: 'top', color: LABEL.color, fontSize: 10, formatter: '{c}%' },
       markLine: {
         silent: true, symbol: 'none',
-        lineStyle: { color: '#e8a317', type: 'dashed' },
-        label: { color: '#e8a317', fontSize: 9, formatter: '50% 控制线' },
+        lineStyle: { color: '#d4a25a', type: 'dashed' },
+        label: { color: '#d4a25a', fontSize: 9, formatter: '50% 控制线' },
         data: [{ yAxis: 50 }],
       },
     }],
@@ -304,10 +304,10 @@ export default function Page() {
 
       {/* ====== 概览 Stat ====== */}
       <StatGrid className="mb-6">
-        <Stat value="50%+" label="NEV 渗透率（2024 起常态过半）" accent="#c41e3a" />
-        <Stat value="640 万+" label="年汽车出口量 · 全球第一" accent="#e8a317" />
-        <Stat value="~65%" label="动力电池全球装机份额" accent="#22d3ee" />
-        <Stat value="100+" label="在售新能源品牌（出清中）" accent="#8b5cf6" />
+        <Stat value="50%+" label="NEV 渗透率（2024 起常态过半）" accent="#e5483b" />
+        <Stat value="640 万+" label="年汽车出口量 · 全球第一" accent="#d4a25a" />
+        <Stat value="~65%" label="动力电池全球装机份额" accent="#6e8cff" />
+        <Stat value="100+" label="在售新能源品牌（出清中）" accent="#b07cc6" />
       </StatGrid>
 
       {/* ====== 交互① 价值链选择器 ====== */}
@@ -332,8 +332,8 @@ export default function Page() {
           </Card>
         </Grid>
         <Grid cols={2}>
-          <div className="os-card p-4" style={{ borderLeft: '3px solid #fb923c' }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#fb923c' }}>卡点 / 反制风险</div>
+          <div className="os-card p-4" style={{ borderLeft: '3px solid #c07a4a' }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#c07a4a' }}>卡点 / 反制风险</div>
             <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{seg.choke}</p>
           </div>
           <div className="os-card p-4" style={{ borderLeft: `3px solid ${seg.accent}` }}>
@@ -358,7 +358,7 @@ export default function Page() {
         <Grid cols={2}>
           <Card title="NEV 渗透率曲线（% · 50% 替代拐点 markLine）">
             <div className="flex items-center justify-end mb-1">
-              <OsSparkline points={PEN_VALUES} color="#c41e3a" width={88} height={22} fill />
+              <OsSparkline points={PEN_VALUES} color="#e5483b" width={88} height={22} fill />
             </div>
             <EChart option={penetrationOpt} style={{ height: 250 }} />
           </Card>
@@ -407,10 +407,10 @@ export default function Page() {
           <div className="os-card p-5">
             <div className="text-sm font-semibold mb-3" style={{ color: 'var(--china-red)' }}>雷达解读 · 强弱项的权力含义</div>
             {[
-              ['动力电池 95 vs 35', '最大代差所在。德日押注氢能与固态的「下一局」，但当下这一局已经输了。', '#22d3ee'],
-              ['品牌溢价 55 vs 92', '保时捷一辆车的利润≈自主品牌十辆。品牌是用几十年时间和赛道历史买的，无法靠补贴速成。', '#e8a317'],
-              ['车规芯片 45 vs 70', '德日同样不掌握先进制程，但其供应链不受出口管制——这是「短板」与「软肋」的区别。', '#8b5cf6'],
-              ['全球渠道 60 vs 95', '丰田在 170 个国家有半个世纪的经销与售后网络。这是中国车企出海真正要翻越的山。', '#fb923c'],
+              ['动力电池 95 vs 35', '最大代差所在。德日押注氢能与固态的「下一局」，但当下这一局已经输了。', '#6e8cff'],
+              ['品牌溢价 55 vs 92', '保时捷一辆车的利润≈自主品牌十辆。品牌是用几十年时间和赛道历史买的，无法靠补贴速成。', '#d4a25a'],
+              ['车规芯片 45 vs 70', '德日同样不掌握先进制程，但其供应链不受出口管制——这是「短板」与「软肋」的区别。', '#b07cc6'],
+              ['全球渠道 60 vs 95', '丰田在 170 个国家有半个世纪的经销与售后网络。这是中国车企出海真正要翻越的山。', '#c07a4a'],
             ].map(([t, d, c]) => (
               <div key={t} className="mb-3">
                 <div className="text-xs font-semibold" style={{ color: c }}>{t}</div>

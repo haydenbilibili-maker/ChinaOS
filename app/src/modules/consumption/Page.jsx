@@ -21,11 +21,11 @@ const finalConsumeOpt = {
   series: [{
     type: 'bar', barWidth: 28,
     data: [
-      { value: 56, itemStyle: { color: '#c41e3a' } },
-      { value: 75, itemStyle: { color: '#64748b' } },
-      { value: 73, itemStyle: { color: '#64748b' } },
-      { value: 66, itemStyle: { color: '#64748b' } },
-      { value: 82, itemStyle: { color: '#64748b' } },
+      { value: 56, itemStyle: { color: '#e5483b' } },
+      { value: 75, itemStyle: { color: '#8a8578' } },
+      { value: 73, itemStyle: { color: '#8a8578' } },
+      { value: 66, itemStyle: { color: '#8a8578' } },
+      { value: 82, itemStyle: { color: '#8a8578' } },
     ],
     label: { show: true, position: 'top', color: LABEL.color, formatter: '{c}%' },
   }],
@@ -38,8 +38,8 @@ const savingOpt = {
   xAxis: categoryX(['2019', '2020', '2021', '2022', '2023', '2024', '2025E']),
   yAxis: valueY({ name: '%' }),
   series: [
-    { name: '居民储蓄率', type: 'line', smooth: true, data: [30, 34, 31, 33, 35, 34, 33], lineStyle: { color: '#e8a317', width: 2 }, areaStyle: { color: 'rgba(232,163,23,0.08)' } },
-    { name: '平均消费倾向', type: 'line', smooth: true, data: [70, 66, 69, 67, 65, 66, 67], lineStyle: { color: '#22d3ee', width: 2 } },
+    { name: '居民储蓄率', type: 'line', smooth: true, data: [30, 34, 31, 33, 35, 34, 33], lineStyle: { color: '#d4a25a', width: 2 }, areaStyle: { color: 'rgba(212, 162, 90,0.08)' } },
+    { name: '平均消费倾向', type: 'line', smooth: true, data: [70, 66, 69, 67, 65, 66, 67], lineStyle: { color: '#6e8cff', width: 2 } },
   ],
 };
 
@@ -47,8 +47,8 @@ const savingOpt = {
 const structureOpt = stackedBarOpt({
   categories: ['2010', '2015', '2020', '2025E'],
   series: [
-    { name: '商品消费', data: [78, 72, 66, 60], itemStyle: { color: '#c41e3a' } },
-    { name: '服务消费', data: [22, 28, 34, 40], itemStyle: { color: '#22d3ee' } },
+    { name: '商品消费', data: [78, 72, 66, 60], itemStyle: { color: '#e5483b' } },
+    { name: '服务消费', data: [22, 28, 34, 40], itemStyle: { color: '#6e8cff' } },
   ],
 });
 
@@ -57,28 +57,28 @@ const DIMS = ['增量空间', '政策可撬动', '需求刚性', '供给就绪',
 
 const TRACKS = [
   {
-    key: 'goods', label: '商品消费', accent: '#c41e3a',
+    key: 'goods', label: '商品消费', accent: '#e5483b',
     scores: [55, 85, 60, 80, 50],
     thesis: '商品消费基本盘趋稳，增量来自「以旧换新」（汽车/家电/家装/数码）与品质升级——属政策可直接撬动的短期抓手。',
     points: ['消费品以旧换新带动汽车、家电更新需求', '新能源汽车渗透率过半，绿色消费扩面', '国货「新国潮」品牌力提升，进口替代消费'],
     lever: '财政补贴 + 消费券撬动，杠杆效应明确但持续性依赖收入预期。',
   },
   {
-    key: 'service', label: '服务消费', accent: '#22d3ee',
+    key: 'service', label: '服务消费', accent: '#6e8cff',
     scores: [82, 55, 78, 60, 75],
     thesis: '服务消费是消费升级主线——文旅、餐饮、体育、健康、养老、教育培训占比持续上升，对应居民从「物质」向「体验」迁移。',
     points: ['餐饮、文旅、演出经济强劲复苏', '健康、养老、托育等民生服务需求刚性', '服务业扩大开放（医疗/教育/电信试点）'],
     lever: '供给侧扩容 + 准入放宽，受制于服务业开放与监管节奏。',
   },
   {
-    key: 'county', label: '县域/下沉', accent: '#10b981',
+    key: 'county', label: '县域/下沉', accent: '#6fc2ae',
     scores: [78, 60, 65, 50, 68],
     thesis: '县域与下沉市场是内需纵深——3 亿县域人口的消费扩容，依赖物流下沉、收入增长与城乡公共服务均等化。',
     points: ['县域商业体系建设、即时零售下沉', '农村电商与冷链补短板', '返乡置业与县域文旅消费'],
     lever: '基础设施 + 收入增长，与乡村振兴、城镇化深度联动。',
   },
   {
-    key: 'silver', label: '银发/新群体', accent: '#8b5cf6',
+    key: 'silver', label: '银发/新群体', accent: '#b07cc6',
     scores: [72, 45, 70, 48, 65],
     thesis: '人口结构变化催生新消费群体——银发经济、单身经济、Z 世代「悦己消费」分化，消费市场从同质走向分层。',
     points: ['银发康养、适老化产品需求扩张', 'Z 世代情绪消费、谷子经济、二次元', '单身/小家庭催生「一人食」「小家电」'],
@@ -105,10 +105,10 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="~56.8%" label="最终消费率 (2024)" accent="#c41e3a" />
-        <Stat value="~46%" label="服务消费占社零 (2024)" accent="#22d3ee" />
-        <Stat value="~32%" label="居民储蓄率 (2024 近似)" accent="#e8a317" />
-        <Stat value="+4.6%" label="社零增速 (2026-06)" accent="#8b5cf6" />
+        <Stat value="~56.8%" label="最终消费率 (2024)" accent="#e5483b" />
+        <Stat value="~46%" label="服务消费占社零 (2024)" accent="#6e8cff" />
+        <Stat value="~32%" label="居民储蓄率 (2024 近似)" accent="#d4a25a" />
+        <Stat value="+4.6%" label="社零增速 (2026-06)" accent="#b07cc6" />
       </Grid>
 
       <Grid cols={2} className="mb-6">
@@ -143,7 +143,7 @@ export default function Page() {
             ))}
           </div>
           <div className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
-            <span style={{ color: '#e8a317' }}>政策杠杆 · </span>{t.lever}
+            <span style={{ color: '#d4a25a' }}>政策杠杆 · </span>{t.lever}
           </div>
         </div>
         <Card title={`${t.label} · 内需潜力五维评估（示意）`}>
@@ -153,16 +153,16 @@ export default function Page() {
 
       <Card title="十五五 · 指标 / 约束 / 路径" className="mb-6">
         <Grid cols={3}>
-          <div style={{ borderLeft: '2px solid #22d3ee', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#22d3ee' }}>核心指标</div>
+          <div style={{ borderLeft: '2px solid #6e8cff', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6e8cff' }}>核心指标</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>最终消费率向发达经济体区间收敛、消费对增长贡献率抬升；服务消费占比持续上行（向 50% 迈进）。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #e8a317', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#e8a317' }}>关键约束</div>
+          <div style={{ borderLeft: '2px solid #d4a25a', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#d4a25a' }}>关键约束</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>高储蓄源于社保/医疗/教育/养老不确定性与房价对资产负债表的占用；「不敢花、没钱花」根植于收入分配。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #10b981', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#10b981' }}>推进路径</div>
+          <div style={{ borderLeft: '2px solid #6fc2ae', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6fc2ae' }}>推进路径</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>以旧换新/消费券短期脉冲 → 服务业扩容与准入放宽 → 收入增长、社保兜底、房价企稳支撑长效消费能力。</p>
           </div>
         </Grid>

@@ -49,59 +49,59 @@ const LIVE_ECOM = [0.02, 0.4, 2.3, 4.9, 6.8];
 // 板块选择器：六大板块
 const SECTORS = [
   {
-    key: 'platform', label: '平台经济', accent: '#c41e3a',
+    key: 'platform', label: '平台经济', accent: '#e5483b',
     scale: '市值前十平台合计超 2 万亿美元', cases: '腾讯 / 阿里 / 拼多多 / 字节 / 美团',
     cycle: '野蛮生长 → 强监管 → 常态化（红绿灯）',
     tension: '平台权力与国家规制的边界反复校准；资本回报与"脱虚向实"政策目标之间的张力是长期变量。',
     trend: { unit: '指数', data: [100, 168, 230, 190, 150, 175, 210], note: '平台市值指数（2016=100）：2021 监管峰值回撤近 40%，AI 叙事驱动修复。' },
     donut: [
-      { value: 38, name: '电商交易', itemStyle: { color: '#c41e3a' } },
-      { value: 24, name: '社交内容', itemStyle: { color: '#e8a317' } },
-      { value: 18, name: '本地生活', itemStyle: { color: '#22d3ee' } },
-      { value: 12, name: '金融科技', itemStyle: { color: '#10b981' } },
+      { value: 38, name: '电商交易', itemStyle: { color: '#e5483b' } },
+      { value: 24, name: '社交内容', itemStyle: { color: '#d4a25a' } },
+      { value: 18, name: '本地生活', itemStyle: { color: '#6e8cff' } },
+      { value: 12, name: '金融科技', itemStyle: { color: '#6fc2ae' } },
       { value: 8, name: '云与企服', itemStyle: { color: '#a78bfa' } },
     ],
     donutTitle: '平台收入结构（示意 %）',
   },
   {
-    key: 'ecom', label: '电子商务', accent: '#e8a317',
+    key: 'ecom', label: '电子商务', accent: '#d4a25a',
     scale: '网络零售额约 15.5 万亿元 · 全球第一', cases: '淘天 / 京东 / 拼多多 / 抖音电商',
     cycle: '货架电商 → 社交拼购 → 直播/兴趣电商 → 即时零售',
     tension: '渗透率逼近天花板后，竞争从增量转向存量；低价内卷与商家生态健康度互为代价。',
     trend: { unit: '万亿元', data: [5.2, 9.0, 11.8, 13.1, 13.8, 15.4, 15.5], note: '网络零售额：增速从 30%+ 降至个位数，规模红利收敛。' },
     donut: [
-      { value: 52, name: '传统货架', itemStyle: { color: '#e8a317' } },
-      { value: 28, name: '直播/兴趣电商', itemStyle: { color: '#c41e3a' } },
-      { value: 12, name: '即时零售', itemStyle: { color: '#22d3ee' } },
-      { value: 8, name: '跨境电商', itemStyle: { color: '#10b981' } },
+      { value: 52, name: '传统货架', itemStyle: { color: '#d4a25a' } },
+      { value: 28, name: '直播/兴趣电商', itemStyle: { color: '#e5483b' } },
+      { value: 12, name: '即时零售', itemStyle: { color: '#6e8cff' } },
+      { value: 8, name: '跨境电商', itemStyle: { color: '#6fc2ae' } },
     ],
     donutTitle: '电商业态结构（示意 %）',
   },
   {
-    key: 'digi-ind', label: '数字产业化', accent: '#22d3ee',
+    key: 'digi-ind', label: '数字产业化', accent: '#6e8cff',
     scale: '核心产业增加值约 10 万亿元', cases: '华为 / 中芯 / 三大运营商 / 智算中心',
     cycle: '通信设备 → 消费电子 → 云计算 → 智算基建',
     tension: '占数字经济比重不足两成但卡位最关键；芯片/操作系统等底座环节仍受外部供给约束。',
     trend: { unit: 'EFLOPS', data: [30, 60, 100, 140, 180, 230, 280], note: '智能算力规模：东数西算 + 大模型训练驱动陡峭爬坡。' },
     donut: [
-      { value: 35, name: '电子信息制造', itemStyle: { color: '#22d3ee' } },
-      { value: 25, name: '电信业', itemStyle: { color: '#c41e3a' } },
-      { value: 22, name: '软件服务', itemStyle: { color: '#e8a317' } },
-      { value: 18, name: '互联网行业', itemStyle: { color: '#10b981' } },
+      { value: 35, name: '电子信息制造', itemStyle: { color: '#6e8cff' } },
+      { value: 25, name: '电信业', itemStyle: { color: '#e5483b' } },
+      { value: 22, name: '软件服务', itemStyle: { color: '#d4a25a' } },
+      { value: 18, name: '互联网行业', itemStyle: { color: '#6fc2ae' } },
     ],
     donutTitle: '核心产业构成（示意 %）',
   },
   {
-    key: 'ind-digi', label: '产业数字化', accent: '#10b981',
+    key: 'ind-digi', label: '产业数字化', accent: '#6fc2ae',
     scale: '约 44 万亿元 · 占数字经济八成', cases: '灯塔工厂 / 工业互联网双跨平台',
     cycle: '信息化补课 → 上云用数 → 智改数转 → AI 赋能',
     tension: '大企业样板易做、中小企业渗透难；"数字化转型"补贴与真实生产率提升之间存在落差。',
     trend: { unit: '万亿元', data: [17.5, 24.9, 31.7, 37.2, 41.0, 43.8, 46.8], note: '产业数字化规模：数字经济增长的绝对主引擎。' },
     donut: [
-      { value: 44, name: '服务业数字化', itemStyle: { color: '#10b981' } },
-      { value: 33, name: '工业数字化', itemStyle: { color: '#22d3ee' } },
-      { value: 13, name: '商贸流通', itemStyle: { color: '#e8a317' } },
-      { value: 10, name: '农业数字化', itemStyle: { color: '#c41e3a' } },
+      { value: 44, name: '服务业数字化', itemStyle: { color: '#6fc2ae' } },
+      { value: 33, name: '工业数字化', itemStyle: { color: '#6e8cff' } },
+      { value: 13, name: '商贸流通', itemStyle: { color: '#d4a25a' } },
+      { value: 10, name: '农业数字化', itemStyle: { color: '#e5483b' } },
     ],
     donutTitle: '产业数字化分布（示意 %）',
   },
@@ -113,9 +113,9 @@ const SECTORS = [
     trend: { unit: '亿人', data: [2.4, 3.9, 8.1, 9.2, 9.7, 10.2, 10.6], note: '在线政务服务用户规模：封控周期完成强制性普及。' },
     donut: [
       { value: 40, name: '一网通办', itemStyle: { color: '#a78bfa' } },
-      { value: 25, name: '监管与执法数字化', itemStyle: { color: '#c41e3a' } },
-      { value: 20, name: '城市运行中枢', itemStyle: { color: '#22d3ee' } },
-      { value: 15, name: '公共数据开放', itemStyle: { color: '#10b981' } },
+      { value: 25, name: '监管与执法数字化', itemStyle: { color: '#e5483b' } },
+      { value: 20, name: '城市运行中枢', itemStyle: { color: '#6e8cff' } },
+      { value: 15, name: '公共数据开放', itemStyle: { color: '#6fc2ae' } },
     ],
     donutTitle: '数字政府投入结构（示意 %）',
   },
@@ -127,9 +127,9 @@ const SECTORS = [
     trend: { unit: '万亿元', data: [0.5, 1.0, 1.7, 1.9, 2.1, 2.4, 2.6], note: '跨境电商规模：四小龙重塑全球零售供应链。' },
     donut: [
       { value: 45, name: '跨境电商', itemStyle: { color: '#f97316' } },
-      { value: 25, name: '内容与社交出海', itemStyle: { color: '#c41e3a' } },
-      { value: 18, name: '云与数字基建', itemStyle: { color: '#22d3ee' } },
-      { value: 12, name: '游戏出海', itemStyle: { color: '#10b981' } },
+      { value: 25, name: '内容与社交出海', itemStyle: { color: '#e5483b' } },
+      { value: 18, name: '云与数字基建', itemStyle: { color: '#6e8cff' } },
+      { value: 12, name: '游戏出海', itemStyle: { color: '#6fc2ae' } },
     ],
     donutTitle: '数字出海结构（示意 %）',
   },
@@ -137,11 +137,11 @@ const SECTORS = [
 
 // 演进时间线：五阶段
 const PHASES = [
-  { period: '1994–2008', title: '互联网普及', accent: '#64748b', desc: '从拨号上网到门户三巨头；数字经济作为"新经济"叙事登场，基础设施与网民规模完成原始积累。' },
-  { period: '2009–2019', title: '移动互联网 / 平台爆发', accent: '#22d3ee', desc: '智能手机 + 移动支付双轮驱动，平台经济无序扩张期；流量红利造就全球第二大数字经济体，监管整体宽容。' },
-  { period: '2020–2022', title: '强监管整改', accent: '#e8a317', desc: '反垄断、数据安全、算法备案密集落地；蚂蚁 IPO 暂缓与网络安全审查标志资本无序扩张时代终结。' },
-  { period: '2023–2024', title: '数实融合 / 常态化监管', accent: '#c41e3a', desc: '红绿灯机制明确边界，政策转向"支持平台大显身手"；增长引擎从消费互联网切换至产业数字化与数据要素。' },
-  { period: '2025–', title: 'AI 驱动数字经济 2.0', accent: '#10b981', desc: '大模型重估平台价值与算力基建；数字经济竞争升维为"算力 × 数据 × 规则"的国家系统对抗。' },
+  { period: '1994–2008', title: '互联网普及', accent: '#8a8578', desc: '从拨号上网到门户三巨头；数字经济作为"新经济"叙事登场，基础设施与网民规模完成原始积累。' },
+  { period: '2009–2019', title: '移动互联网 / 平台爆发', accent: '#6e8cff', desc: '智能手机 + 移动支付双轮驱动，平台经济无序扩张期；流量红利造就全球第二大数字经济体，监管整体宽容。' },
+  { period: '2020–2022', title: '强监管整改', accent: '#d4a25a', desc: '反垄断、数据安全、算法备案密集落地；蚂蚁 IPO 暂缓与网络安全审查标志资本无序扩张时代终结。' },
+  { period: '2023–2024', title: '数实融合 / 常态化监管', accent: '#e5483b', desc: '红绿灯机制明确边界，政策转向"支持平台大显身手"；增长引擎从消费互联网切换至产业数字化与数据要素。' },
+  { period: '2025–', title: 'AI 驱动数字经济 2.0', accent: '#6fc2ae', desc: '大模型重估平台价值与算力基建；数字经济竞争升维为"算力 × 数据 × 规则"的国家系统对抗。' },
 ];
 
 // ---------------------------------------------------------------------------
@@ -166,8 +166,8 @@ export default function Page() {
       valueY({ name: '%', max: 50, splitLine: { show: false } }),
     ],
     series: [
-      { name: '总规模', type: 'bar', data: DE_SCALE, barWidth: 18, itemStyle: { color: '#22d3ee', borderRadius: [3, 3, 0, 0] } },
-      { name: 'GDP 占比', type: 'line', yAxisIndex: 1, smooth: true, data: DE_SHARE, lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' } },
+      { name: '总规模', type: 'bar', data: DE_SCALE, barWidth: 18, itemStyle: { color: '#6e8cff', borderRadius: [3, 3, 0, 0] } },
+      { name: 'GDP 占比', type: 'line', yAxisIndex: 1, smooth: true, data: DE_SHARE, lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' } },
     ],
   }), []);
 
@@ -175,8 +175,8 @@ export default function Page() {
   const splitOpt = useMemo(() => stackedBarOpt({
     categories: YEARS,
     series: [
-      { name: '产业数字化', data: DIGITIZATION_SPLIT.digitalization, itemStyle: { color: '#10b981' } },
-      { name: '数字产业化', data: DIGITIZATION_SPLIT.industrialization, itemStyle: { color: '#22d3ee' } },
+      { name: '产业数字化', data: DIGITIZATION_SPLIT.digitalization, itemStyle: { color: '#6fc2ae' } },
+      { name: '数字产业化', data: DIGITIZATION_SPLIT.industrialization, itemStyle: { color: '#6e8cff' } },
     ],
   }), []);
 
@@ -191,12 +191,12 @@ export default function Page() {
       data: REG_INDEX.map((v, i) => {
         const hit = REG_EVENTS.find((e) => e.year === REG_YEARS[i]);
         const active = hit && hit.year === regEvent.year;
-        return { value: v, symbolSize: hit ? (active ? 12 : 8) : 4, itemStyle: { color: active ? '#e8a317' : hit ? '#c41e3a' : '#64748b' } };
+        return { value: v, symbolSize: hit ? (active ? 12 : 8) : 4, itemStyle: { color: active ? '#d4a25a' : hit ? '#e5483b' : '#8a8578' } };
       }),
-      lineStyle: { color: '#c41e3a', width: 2 },
-      areaStyle: { color: 'rgba(196,30,58,0.12)' },
+      lineStyle: { color: '#e5483b', width: 2 },
+      areaStyle: { color: 'rgba(229, 72, 59,0.12)' },
       markArea: {
-        silent: true, itemStyle: { color: 'rgba(232,163,23,0.07)' },
+        silent: true, itemStyle: { color: 'rgba(212, 162, 90,0.07)' },
         data: [[{ xAxis: '2020' }, { xAxis: '2022' }]],
         label: { show: false },
       },
@@ -211,7 +211,7 @@ export default function Page() {
     yAxis: categoryX(FUSION_SECTORS),
     series: [{
       type: 'bar', barWidth: 14,
-      data: FUSION_RATE.map((v) => ({ value: v, itemStyle: { color: v >= 50 ? '#10b981' : v >= 35 ? '#e8a317' : '#c41e3a', borderRadius: 3 } })),
+      data: FUSION_RATE.map((v) => ({ value: v, itemStyle: { color: v >= 50 ? '#6fc2ae' : v >= 35 ? '#d4a25a' : '#e5483b', borderRadius: 3 } })),
       label: { show: true, position: 'right', color: LABEL.color, formatter: '{c}%' },
     }],
   }), []);
@@ -222,16 +222,16 @@ export default function Page() {
     radar: {
       indicator: CN_US_DIMS.map((n) => ({ name: n, max: 100 })),
       axisName: { color: LABEL.color, fontSize: 10 },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-      axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
+      axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
       splitArea: { show: false },
       radius: '62%',
     },
     series: [{
       type: 'radar',
       data: [
-        { value: CN_VALUES, name: '中国', lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.15)' } },
-        { value: US_VALUES, name: '美国', lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.10)' } },
+        { value: CN_VALUES, name: '中国', lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.15)' } },
+        { value: US_VALUES, name: '美国', lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' }, areaStyle: { color: 'rgba(110, 140, 255,0.10)' } },
       ],
     }],
   }), []);
@@ -247,8 +247,8 @@ export default function Page() {
       valueY({ name: '万亿元', splitLine: { show: false } }),
     ],
     series: [
-      { name: '网络零售渗透率', type: 'line', smooth: true, data: ECOM_PENETRATION, lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' }, areaStyle: { color: 'rgba(232,163,23,0.10)' } },
-      { name: '直播电商规模', type: 'bar', yAxisIndex: 1, data: LIVE_ECOM, barWidth: 16, itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } },
+      { name: '网络零售渗透率', type: 'line', smooth: true, data: ECOM_PENETRATION, lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' }, areaStyle: { color: 'rgba(212, 162, 90,0.10)' } },
+      { name: '直播电商规模', type: 'bar', yAxisIndex: 1, data: LIVE_ECOM, barWidth: 16, itemStyle: { color: '#e5483b', borderRadius: [3, 3, 0, 0] } },
     ],
   }), []);
 
@@ -292,10 +292,10 @@ export default function Page() {
 
       {/* 概览 Stat */}
       <Grid cols={4} className="mb-6">
-        <Stat value="57.8 T" label="数字经济规模 (元 · 示意)" accent="#22d3ee" />
-        <Stat value="43.6%" label="占 GDP 比重" accent="#c41e3a" />
-        <Stat value="30+" label="百亿美元级平台企业" accent="#e8a317" />
-        <Stat value="27.6%" label="网络零售渗透率" accent="#10b981" />
+        <Stat value="57.8 T" label="数字经济规模 (元 · 示意)" accent="#6e8cff" />
+        <Stat value="43.6%" label="占 GDP 比重" accent="#e5483b" />
+        <Stat value="30+" label="百亿美元级平台企业" accent="#d4a25a" />
+        <Stat value="27.6%" label="网络零售渗透率" accent="#6fc2ae" />
       </Grid>
 
       {/* 交互① 六板块选择器 */}
@@ -347,7 +347,7 @@ export default function Page() {
       {/* 交互② 平台监管周期 */}
       <Card title="交互② · 平台经济监管周期（政策温度指数 · 点选标志事件）" className="mb-6">
         <SelectorBar
-          items={REG_EVENTS.map((e, i) => ({ key: String(i), label: `${e.year} ${e.label}`, accent: i === 2 ? '#e8a317' : '#c41e3a' }))}
+          items={REG_EVENTS.map((e, i) => ({ key: String(i), label: `${e.year} ${e.label}`, accent: i === 2 ? '#d4a25a' : '#e5483b' }))}
           activeKey={String(regIdx)} onSelect={(k) => setRegIdx(Number(k))} />
         <Grid cols={2}>
           <EChart option={regCycleOpt} style={{ height: 250 }} />

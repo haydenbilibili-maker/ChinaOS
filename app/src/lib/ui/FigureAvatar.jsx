@@ -73,7 +73,7 @@ export default function FigureAvatar({
   const fontSize = Math.max(10, Math.round(size * (monogram.length > 1 ? 0.34 : 0.42)));
   const iconSize = Math.max(12, Math.round(size * 0.48));
   const ringStyle = ring
-    ? { boxShadow: '0 0 0 2px rgba(34,211,238,0.35)' }
+    ? { boxShadow: '0 0 0 2px rgba(110, 140, 255,0.35)' }
     : {};
 
   return (
@@ -116,7 +116,7 @@ export default function FigureAvatar({
       {showVerifiedBadge && verified && showImg && (
         <span
           className="absolute -bottom-0.5 -right-0.5 rounded px-0.5 text-[7px] font-bold leading-tight"
-          style={{ background: 'rgba(16,185,129,0.9)', color: '#042f1a', border: '1px solid rgba(16,185,129,0.5)' }}
+          style={{ background: 'rgba(111, 194, 174,0.9)', color: '#042f1a', border: '1px solid rgba(111, 194, 174,0.5)' }}
           title="肖像已核验"
         >
           核

@@ -14,28 +14,28 @@ const AS_OF = AS_OF_BASELINE;
 
 const CHANNELS = [
   {
-    key: 'pension', label: '养老金', accent: '#c41e3a',
+    key: 'pension', label: '养老金', accent: '#e5483b',
     scores: [75, 88, 70, 82, 65],
     thesis: '基本养老保险基金、企业年金与职业年金构成「耐心资本」基石——入市比例提升是资本市场长期稳定器的制度性安排。',
     points: ['基本养老保险基金委托投资扩容', '企业年金覆盖率提升与自动加入', '个人养老金账户税优激励', '全国社保基金战略储备'],
     lever: '人社部 + 证监会协同，投资比例与风控指引。',
   },
   {
-    key: 'insurance', label: '保险资金', accent: '#e8a317',
+    key: 'insurance', label: '保险资金', accent: '#d4a25a',
     scores: [80, 85, 75, 78, 72],
     thesis: '保险资金久期长、负债稳定，是最天然的耐心资本——权益投资比例上限放宽与长期考核机制是关键制度变量。',
     points: ['保险资金权益投资比例上限调整', '长期考核与薪酬递延机制', '另类投资与基础设施 REITs', '偿付能力监管改革（偿二代）'],
     lever: '金融监管总局投资指引 + 偿付能力约束。',
   },
   {
-    key: 'vc', label: '创投', accent: '#22d3ee',
+    key: 'vc', label: '创投', accent: '#6e8cff',
     scores: [70, 65, 92, 60, 78],
     thesis: '创业投资与股权投资是科技创新与产业孵化的「毛细血管」——政府引导基金与社会资本「投早投小投硬科技」的政策导向明确。',
     points: ['政府引导基金让利与容错机制', '私募股权创投基金备案改革', '科创板/北交所退出通道', '国有创投考核周期延长'],
     lever: '发改委 + 证监会 + 地方政府引导基金。',
   },
   {
-    key: 'retail', label: '居民财富', accent: '#10b981',
+    key: 'retail', label: '居民财富', accent: '#6fc2ae',
     scores: [55, 50, 65, 70, 60],
     thesis: '居民储蓄向投资转化是资本市场增量资金的长期来源——但散户结构与情绪驱动仍是波动放大器，「保护投资者」与「活跃市场」需精细平衡。',
     points: ['公募基金费率改革与投资者保护', '指数化投资与 ETF 扩容', '程序化交易监管与异常交易监控', '分红约束与减持规则硬化'],
@@ -44,9 +44,9 @@ const CHANNELS = [
 ];
 
 const PHASES = [
-  { period: '2019–2021', title: '注册制改革', accent: '#64748b', desc: '科创板注册制试点，创业板改革，退市常态化启动。' },
-  { period: '2022–2023', title: '活跃市场', accent: '#e8a317', desc: '「活跃资本市场」政策组合拳，印花税下调，中长期资金入市指引。' },
-  { period: '2024–', title: '耐心资本', accent: '#c41e3a', desc: '政府工作报告「壮大耐心资本」，创投与养老金入市成为政策主线。' },
+  { period: '2019–2021', title: '注册制改革', accent: '#8a8578', desc: '科创板注册制试点，创业板改革，退市常态化启动。' },
+  { period: '2022–2023', title: '活跃市场', accent: '#d4a25a', desc: '「活跃资本市场」政策组合拳，印花税下调，中长期资金入市指引。' },
+  { period: '2024–', title: '耐心资本', accent: '#e5483b', desc: '政府工作报告「壮大耐心资本」，创投与养老金入市成为政策主线。' },
 ];
 
 const DIMS = ['资金久期', '政策可撬动', '风险承受', '创新赋能', '市场稳定'];
@@ -59,7 +59,7 @@ export default function Page() {
   const directFinanceOpt = stackedBarOpt({
     categories: ['2015', '2018', '2021', '2024', '2026E'],
     series: [
-      { name: '直接融资（股+债）', data: [18, 22, 28, 32, 36], itemStyle: { color: '#c41e3a' } },
+      { name: '直接融资（股+债）', data: [18, 22, 28, 32, 36], itemStyle: { color: '#e5483b' } },
       { name: '间接融资（贷款）', data: [82, 78, 72, 68, 64], itemStyle: { color: AXIS.lineStyle.color } },
     ],
   });
@@ -70,7 +70,7 @@ export default function Page() {
     xAxis: categoryX(['2018', '2020', '2022', '2024', '2026E']),
     yAxis: valueY({ name: '万亿元' }),
     series: [
-      { name: 'A股市值', type: 'line', smooth: true, data: [44, 79, 88, 72, 85], lineStyle: { color: '#64748b', width: 2 } },
+      { name: 'A股市值', type: 'line', smooth: true, data: [44, 79, 88, 72, 85], lineStyle: { color: '#8a8578', width: 2 } },
       { name: '科创板+北交所', type: 'bar', barWidth: 18, data: [0, 8.5, 12, 15, 22], itemStyle: { color: c.accent, borderRadius: 3 } },
     ],
   }), [c]);
@@ -82,7 +82,7 @@ export default function Page() {
     series: [{
       type: 'bar', barWidth: 20,
       data: [203, 396, 542, 428, 313, 98],
-      itemStyle: { color: channel === 'vc' ? '#22d3ee' : '#c41e3a', borderRadius: 3 },
+      itemStyle: { color: channel === 'vc' ? '#6e8cff' : '#e5483b', borderRadius: 3 },
     }],
   }), [channel]);
 
@@ -101,10 +101,10 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="~85万亿" label="A股总市值（示意）" accent="#c41e3a" />
-        <Stat value="~36%" label="直接融资占比（2026E）" accent="#22d3ee" />
-        <Stat value="~2.8万亿" label="政府引导基金规模" accent="#e8a317" />
-        <Stat value={AS_OF} label="数据截至" accent="#8b5cf6" />
+        <Stat value="~85万亿" label="A股总市值（示意）" accent="#e5483b" />
+        <Stat value="~36%" label="直接融资占比（2026E）" accent="#6e8cff" />
+        <Stat value="~2.8万亿" label="政府引导基金规模" accent="#d4a25a" />
+        <Stat value={AS_OF} label="数据截至" accent="#b07cc6" />
       </Grid>
 
       <Grid cols={2} className="mb-6">
@@ -139,7 +139,7 @@ export default function Page() {
             ))}
           </div>
           <div className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
-            <span style={{ color: '#e8a317' }}>政策杠杆 · </span>{c.lever}
+            <span style={{ color: '#d4a25a' }}>政策杠杆 · </span>{c.lever}
           </div>
         </div>
         <Card title={`${c.label} · 耐心资本五维评估`}>
@@ -149,16 +149,16 @@ export default function Page() {
 
       <Card title="十五五 · 指标 / 约束 / 路径" className="mb-6">
         <Grid cols={3}>
-          <div style={{ borderLeft: '2px solid #22d3ee', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#22d3ee' }}>核心指标</div>
+          <div style={{ borderLeft: '2px solid #6e8cff', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6e8cff' }}>核心指标</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>直接融资占比持续提升；中长期资金入市比例扩大；科创板/北交所硬科技企业上市活跃；创投「投早投小」规模增长。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #e8a317', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#e8a317' }}>关键约束</div>
+          <div style={{ borderLeft: '2px solid #d4a25a', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#d4a25a' }}>关键约束</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>散户结构与情绪驱动放大波动；房企与城投风险向资本市场传导；外资信心与地缘政治；退市与投资者保护的执行力度。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #10b981', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#10b981' }}>推进路径</div>
+          <div style={{ borderLeft: '2px solid #6fc2ae', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6fc2ae' }}>推进路径</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>注册制深化 → 耐心资本入市指引 → 分红与退市硬化 → 投资者保护与市场稳定机制完善。</p>
           </div>
         </Grid>

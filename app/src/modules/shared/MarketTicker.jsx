@@ -1,5 +1,22 @@
 import React, { useMemo } from 'react';
-import * as Lucide from 'lucide-react';
+import {
+  Activity as LuActivity,
+  Loader2 as LuLoader2,
+  Minus as LuMinus,
+  RefreshCw as LuRefreshCw,
+  TrendingDown as LuTrendingDown,
+  TrendingUp as LuTrendingUp,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  Activity: LuActivity,
+  Loader2: LuLoader2,
+  Minus: LuMinus,
+  RefreshCw: LuRefreshCw,
+  TrendingDown: LuTrendingDown,
+  TrendingUp: LuTrendingUp,
+};
 import { useLiveMarketData } from '../../lib/market/useLiveMarketData.js';
 import {
   AS_OF_MARKET,
@@ -10,9 +27,9 @@ import {
   quoteColor,
 } from '../../lib/market/liveQuotes.js';
 
-const STEEL = '#22d3ee';
-const HOLD = '#e8a317';
-const WARM = '#10b981';
+const STEEL = '#6e8cff';
+const HOLD = '#d4a25a';
+const WARM = '#6fc2ae';
 
 function StatusPill({ status, mode, liveCount, total }) {
   if (status === 'loading') {
@@ -25,27 +42,27 @@ function StatusPill({ status, mode, liveCount, total }) {
   }
   if (status === 'offline') {
     return (
-      <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(232,163,23,0.14)', color: HOLD }}>
+      <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(212, 162, 90,0.14)', color: HOLD }}>
         离线快照 · 刷新尝试拉取
       </span>
     );
   }
   if (mode === 'live') {
     return (
-      <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(16,185,129,0.14)', color: WARM }}>
+      <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(111, 194, 174,0.14)', color: WARM }}>
         ● 实时 {liveCount}/{total}
       </span>
     );
   }
   if (mode === 'mixed') {
     return (
-      <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: STEEL }}>
+      <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(110, 140, 255,0.12)', color: STEEL }}>
         ◐ 部分实时 {liveCount}/{total}
       </span>
     );
   }
   return (
-    <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(232,163,23,0.14)', color: HOLD }}>
+    <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(212, 162, 90,0.14)', color: HOLD }}>
       ○ 离线快照 · 刷新尝试拉取
     </span>
   );

@@ -14,7 +14,7 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // —— ① 三种无政府文化 ——
 const CULTURES = [
   {
-    key: 'hobbes', label: '霍布斯文化 · 敌人', role: '敌人 (Enemy)', accent: '#c41e3a',
+    key: 'hobbes', label: '霍布斯文化 · 敌人', role: '敌人 (Enemy)', accent: '#e5483b',
     logic: '彼此视为不承认对方生存权的死敌。逻辑是「你死我活」，国家追求消灭或征服对手；自助与生存压倒一切。',
     security: '安全是零和的：一方所得即另一方所失。军备竞赛、先发制人、势力范围争夺成为常态。',
     violence: '暴力无上限——灭国、征服、种族清洗皆在「可想象」范围内。',
@@ -23,7 +23,7 @@ const CULTURES = [
     radar: [95, 20, 90, 10],
   },
   {
-    key: 'locke', label: '洛克文化 · 对手', role: '对手 (Rival)', accent: '#e8a317',
+    key: 'locke', label: '洛克文化 · 对手', role: '对手 (Rival)', accent: '#d4a25a',
     logic: '彼此视为竞争对手，但承认对方的生存权与主权。可以激烈竞争，却不以消灭对方为目标——主权与边界被普遍尊重。',
     security: '安全是竞争性但有底线的：默认遵守不灭国的「生存红线」，冲突被规范约束在有限范围内（当今体系的主流文化）。',
     violence: '暴力有边界——可以打有限战争，但「灭国」已被主权规范排除。',
@@ -32,7 +32,7 @@ const CULTURES = [
     radar: [55, 60, 55, 45],
   },
   {
-    key: 'kant', label: '康德文化 · 朋友', role: '朋友 (Friend)', accent: '#10b981',
+    key: 'kant', label: '康德文化 · 朋友', role: '朋友 (Friend)', accent: '#6fc2ae',
     logic: '彼此视为朋友：争端不诉诸暴力（非暴力规范），且在受到第三方威胁时相互援助（互助规范）。',
     security: '安全是集体的：形成安全共同体，战争从「选项之一」变为「不可想象」。利益被重新定义为共同利益。',
     violence: '暴力被排除——成员间战争「不可想象」，争端只走法律与协商。',
@@ -49,28 +49,28 @@ const RADAR_IND = [
 // —— ② 身份 → 利益 → 行为 ——
 const IDENTITIES = [
   {
-    key: 'rejuv', label: '崛起复兴者', accent: '#c41e3a',
+    key: 'rejuv', label: '崛起复兴者', accent: '#e5483b',
     desc: '把自己叙述为「百年屈辱后重回应有位置」的文明型国家——核心命题是恢复历史地位，而非颠覆体系。',
     interests: ['主权完整与统一（不可谈判）', '发展权与产业升级空间', '国际话语权与规则参与权', '周边安全缓冲'],
     behavior: '强调「和平发展」叙事但在核心利益上寸步不让；积极加入并改良现有机制（一带一路、亚投行）而非另起炉灶。',
     perceived: '在对方眼中易被读作「修正主义者」——同一行为、两种身份归因，正是叙事竞争的核心战场。',
   },
   {
-    key: 'beneficiary', label: '体系受益者', accent: '#22d3ee',
+    key: 'beneficiary', label: '体系受益者', accent: '#6e8cff',
     desc: '把自己定位为现行国际体系的最大受益方之一——WTO 红利、全球化分工是发展奇迹的外部条件。',
     interests: ['开放的全球贸易体系', '稳定的中美经贸关系', '多边机制（WTO/联合国）的权威', '避免阵营化与脱钩'],
     behavior: '反对脱钩断链、做多边主义旗手；行为重心是「维持体系」而非「挑战体系」——利益排序与复兴者叙事明显不同。',
     perceived: '在西方鸽派眼中是「负责任利益攸关方」；在鹰派眼中是「占便宜的搭便车者」。',
   },
   {
-    key: 'revisionist', label: '修正主义者', accent: '#e8a317',
+    key: 'revisionist', label: '修正主义者', accent: '#d4a25a',
     desc: '（这是美方鹰派建构的他者身份）：意图改写规则、输出模式、取代霸权的体系挑战者。',
     interests: ['（被归因的）取代美国主导地位', '（被归因的）输出治理模式', '（被归因的）改写海洋/科技/金融规则'],
     behavior: '一旦此身份被对方接受为「事实」，遏制、脱钩、围堵就成为「理性应对」——身份归因直接生产了政策。',
     perceived: '温特要点：他者归因的身份若被持续对待，会通过互动「自我实现」——把对方当敌人，对方就变成敌人。',
   },
   {
-    key: 'responsible', label: '负责任大国', accent: '#10b981',
+    key: 'responsible', label: '负责任大国', accent: '#6fc2ae',
     desc: '主动建构的国际形象：全球公共产品提供者——维和、减贫、气候承诺、疫苗援助、斡旋调停。',
     interests: ['国际声誉与软实力', '全球治理议程设置权', '南方国家的认同与追随', '规范制定者地位'],
     behavior: '沙特-伊朗斡旋、双碳承诺、维和出兵大国——以「供给公共产品」重定义大国权利义务。',
@@ -95,9 +95,9 @@ const NARRATIVE_NOTES = '1979 建交蜜月 → 1989 急冻 → 1997-2001「建�
 
 // —— ⑤ 规范生命周期 ——
 const NORM_STAGES = [
-  { title: '① 规范兴起', accent: '#e8a317', desc: '规范倡导者（活动家、先行国家）提出新观念，说服关键国家接受——靠的是议程设置与道义说服。' },
-  { title: '② 规范瀑布', accent: '#22d3ee', desc: '越过临界点后规范迅速扩散：国家因合法性、声誉、从众压力而跟进采纳——「不接受」开始有成本。' },
-  { title: '③ 规范内化', accent: '#10b981', desc: '规范被视为理所当然，遵守不再需要计算——违反它变得「不可想象」（如奴隶贸易、化武使用）。' },
+  { title: '① 规范兴起', accent: '#d4a25a', desc: '规范倡导者（活动家、先行国家）提出新观念，说服关键国家接受——靠的是议程设置与道义说服。' },
+  { title: '② 规范瀑布', accent: '#6e8cff', desc: '越过临界点后规范迅速扩散：国家因合法性、声誉、从众压力而跟进采纳——「不接受」开始有成本。' },
+  { title: '③ 规范内化', accent: '#6fc2ae', desc: '规范被视为理所当然，遵守不再需要计算——违反它变得「不可想象」（如奴隶贸易、化武使用）。' },
 ];
 const NORM_CASES = [
   { name: '反殖民规范', stage: 3, pos: '已内化', note: '1945 后数十年完成瀑布；今天「殖民」一词本身即是罪名。' },
@@ -125,11 +125,11 @@ const COMPARE_ROWS = [
 
 // —— ⑦ 理论演进 ——
 const THEORY_STAGES = [
-  { period: '1948-1979', title: '理性主义主导', accent: '#64748b', desc: '摩根索古典现实主义 → 华尔兹结构现实主义：物质实力分布解释一切，观念被当作附带现象。国家如台球——内部观念不重要，只看碰撞力学。' },
-  { period: '1980s-1992', title: '社会学转向', accent: '#e8a317', desc: '冷战和平终结让物质主义理论集体失语——苏联实力未崩先「观念崩」。1992 年温特发表《无政府状态是国家造就的》，建构主义正式登场。' },
-  { period: '1999', title: '《国际政治的社会理论》', accent: '#c41e3a', desc: '温特集大成之作：与华尔兹《国际政治理论》针锋相对，系统提出观念结构、三种无政府文化、身份-利益建构链——建构主义跻身三大理论范式。' },
-  { period: '2000s-2010s', title: '实践转向', accent: '#22d3ee', desc: '从「观念」深入到「实践」：外交惯例、日常互动如何再生产或悄然改变结构。规范生命周期理论（芬尼莫尔/辛金克）成为政策分析工具。' },
-  { period: '2016-至今', title: '数字时代的叙事竞争', accent: '#10b981', desc: '社交媒体使身份叙事的建构速度空前：话语战、认知战、「讲好故事」竞赛——大国竞争的前线从军备转向「谁来定义谁」。' },
+  { period: '1948-1979', title: '理性主义主导', accent: '#8a8578', desc: '摩根索古典现实主义 → 华尔兹结构现实主义：物质实力分布解释一切，观念被当作附带现象。国家如台球——内部观念不重要，只看碰撞力学。' },
+  { period: '1980s-1992', title: '社会学转向', accent: '#d4a25a', desc: '冷战和平终结让物质主义理论集体失语——苏联实力未崩先「观念崩」。1992 年温特发表《无政府状态是国家造就的》，建构主义正式登场。' },
+  { period: '1999', title: '《国际政治的社会理论》', accent: '#e5483b', desc: '温特集大成之作：与华尔兹《国际政治理论》针锋相对，系统提出观念结构、三种无政府文化、身份-利益建构链——建构主义跻身三大理论范式。' },
+  { period: '2000s-2010s', title: '实践转向', accent: '#6e8cff', desc: '从「观念」深入到「实践」：外交惯例、日常互动如何再生产或悄然改变结构。规范生命周期理论（芬尼莫尔/辛金克）成为政策分析工具。' },
+  { period: '2016-至今', title: '数字时代的叙事竞争', accent: '#6fc2ae', desc: '社交媒体使身份叙事的建构速度空前：话语战、认知战、「讲好故事」竞赛——大国竞争的前线从军备转向「谁来定义谁」。' },
 ];
 
 export default function Page() {
@@ -142,8 +142,8 @@ export default function Page() {
   const nc = NORM_CASES[normIdx];
 
   const cultureRadar = useMemo(() => ({
-    radar: { indicator: RADAR_IND, axisName: { color: LABEL.color, fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
-    series: [{ type: 'radar', data: [{ value: cu.radar, name: cu.role, lineStyle: { color: cu.accent, width: 2 }, itemStyle: { color: cu.accent }, areaStyle: { color: 'rgba(196,30,58,0.1)' } }] }],
+    radar: { indicator: RADAR_IND, axisName: { color: LABEL.color, fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } }, splitArea: { show: false } },
+    series: [{ type: 'radar', data: [{ value: cu.radar, name: cu.role, lineStyle: { color: cu.accent, width: 2 }, itemStyle: { color: cu.accent }, areaStyle: { color: 'rgba(229, 72, 59,0.1)' } }] }],
   }), [c]);
 
   const narrativeOpt = useMemo(() => ({
@@ -153,19 +153,19 @@ export default function Page() {
     xAxis: categoryX(NARRATIVE_YEARS),
     yAxis: valueY({ max: 100, axisLabel: { formatter: (v) => (v === 100 ? '朋友' : v === 50 ? '对手' : v === 0 ? '敌人' : '') } }),
     series: [
-      { name: '美国对中国的身份定位', type: 'line', smooth: true, data: US_VIEW, lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.06)' } },
-      { name: '中国对美国的身份定位', type: 'line', smooth: true, data: CN_VIEW, lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' } },
+      { name: '美国对中国的身份定位', type: 'line', smooth: true, data: US_VIEW, lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' }, areaStyle: { color: 'rgba(110, 140, 255,0.06)' } },
+      { name: '中国对美国的身份定位', type: 'line', smooth: true, data: CN_VIEW, lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' } },
     ],
   }), []);
 
   const compareRadar = useMemo(() => ({
     legend: { ...LEGEND, top: 0, data: ['现实主义', '建构主义'] },
-    radar: { indicator: COMPARE_IND, radius: '62%', center: ['50%', '56%'], axisName: { color: LABEL.color, fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
+    radar: { indicator: COMPARE_IND, radius: '62%', center: ['50%', '56%'], axisName: { color: LABEL.color, fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } }, splitArea: { show: false } },
     series: [{
       type: 'radar',
       data: [
-        { value: REALISM_V, name: '现实主义', lineStyle: { color: '#64748b', width: 2 }, itemStyle: { color: '#64748b' }, areaStyle: { color: 'rgba(100,116,139,0.12)' } },
-        { value: CONSTRUCT_V, name: '建构主义', lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.1)' } },
+        { value: REALISM_V, name: '现实主义', lineStyle: { color: '#8a8578', width: 2 }, itemStyle: { color: '#8a8578' }, areaStyle: { color: 'rgba(100,116,139,0.12)' } },
+        { value: CONSTRUCT_V, name: '建构主义', lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.1)' } },
       ],
     }],
   }), []);
@@ -179,10 +179,10 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="3 种" label="同一无政府结构的可能文化" accent="#c41e3a" />
-        <Stat value="1992/1999" label="温特两篇奠基之作" accent="#e8a317" />
-        <Stat value="身份→利益" label="核心因果链（非实力→利益）" accent="#22d3ee" />
-        <Stat value="3 阶段" label="规范生命周期：兴起→瀑布→内化" accent="#10b981" />
+        <Stat value="3 种" label="同一无政府结构的可能文化" accent="#e5483b" />
+        <Stat value="1992/1999" label="温特两篇奠基之作" accent="#d4a25a" />
+        <Stat value="身份→利益" label="核心因果链（非实力→利益）" accent="#6e8cff" />
+        <Stat value="3 阶段" label="规范生命周期：兴起→瀑布→内化" accent="#6fc2ae" />
       </Grid>
 
       {/* ① 三种无政府文化 */}
@@ -191,7 +191,7 @@ export default function Page() {
         <Grid cols={2} className="mb-3">
           <div>
             <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>{cu.logic}</p>
-            <div className="p-3 rounded mb-2" style={{ background: 'rgba(34,211,238,0.06)', border: '1px solid rgba(34,211,238,0.2)' }}>
+            <div className="p-3 rounded mb-2" style={{ background: 'rgba(110, 140, 255,0.06)', border: '1px solid rgba(110, 140, 255,0.2)' }}>
               <span className="text-[10px] mono uppercase" style={{ color: 'var(--cyber-cyan)' }}>安全含义</span>
               <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>{cu.security}</p>
             </div>
@@ -303,7 +303,7 @@ export default function Page() {
               <div key={dim} className="mb-2 pb-2" style={{ borderBottom: '1px solid var(--border-subtle)' }}>
                 <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>{dim}</div>
                 <Grid cols={2}>
-                  <p className="text-[11px]" style={{ color: '#94a3b8' }}><span className="mono" style={{ color: '#64748b' }}>现实主义</span> · {r}</p>
+                  <p className="text-[11px]" style={{ color: '#a29c91' }}><span className="mono" style={{ color: '#8a8578' }}>现实主义</span> · {r}</p>
                   <p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}><span className="mono" style={{ color: 'var(--china-red)' }}>建构主义</span> · {cv}</p>
                 </Grid>
               </div>

@@ -1,0 +1,555 @@
+/* VI 2.0 样张页 */
+
+.vi-spec {
+  display: grid;
+  gap: clamp(2.5rem, 2rem + 2vw, 4.5rem);
+}
+
+/* 页头与主视觉之间只保留栅格间距 */
+.vi-spec > .os-page-header {
+  margin-bottom: 0;
+}
+
+/* ── 主视觉 ─────────────────────────────────────────── */
+.vi-spec-hero {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  align-items: center;
+  gap: 2rem;
+  min-height: 420px;
+  padding: clamp(1.5rem, 1rem + 2.5vw, 3.5rem);
+  border-radius: var(--vi-r-panel);
+  background:
+    radial-gradient(70% 90% at 0% 0%, rgba(var(--vi-cinnabar-rgb), 0.16), transparent 60%),
+    radial-gradient(60% 80% at 100% 100%, rgba(var(--vi-brass-rgb), 0.14), transparent 60%),
+    var(--vi-card-bg);
+}
+
+.vi-spec-hero__orbit {
+  position: absolute;
+  right: -12%;
+  top: 50%;
+  width: min(760px, 95%);
+  aspect-ratio: 1;
+  transform: translateY(-50%);
+  color: var(--vi-brass);
+  opacity: 0.22;
+  pointer-events: none;
+  animation: vi-spin 240s linear infinite;
+  z-index: 0;
+}
+
+.vi-spec-hero__orbit svg {
+  width: 100%;
+  height: 100%;
+}
+
+.vi-spec-hero__copy,
+.vi-spec-hero__lamp {
+  position: relative;
+  z-index: 1;
+}
+
+.vi-spec-hero__lamp {
+  justify-self: center;
+}
+
+.vi-spec-hero__mark {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.vi-spec-hero__brand {
+  font-family: var(--vi-font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.vi-spec-hero .vi-display {
+  font-family: var(--vi-font-read);
+  font-weight: 900;
+  font-size: clamp(4rem, 2.6rem + 6vw, 8.5rem);
+  letter-spacing: 0.02em;
+  line-height: 0.95;
+  margin: 0;
+  background: linear-gradient(180deg, var(--vi-ink-1) 30%, color-mix(in srgb, var(--vi-ink-1) 55%, var(--vi-brass)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.vi-spec-hero__dot {
+  color: var(--vi-cinnabar);
+  -webkit-text-fill-color: var(--vi-cinnabar);
+}
+
+.vi-spec-hero__lead {
+  max-width: 30rem;
+  margin: 1.25rem 0 0;
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.15rem);
+  line-height: 1.75;
+  color: var(--vi-ink-2);
+}
+
+.vi-spec-hero__keys {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.75rem;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vi-spec-hero__keys li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: var(--vi-fs-small);
+  color: var(--vi-ink-3);
+}
+
+.vi-spec-hero__keys strong {
+  font-family: var(--vi-font-read);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--vi-brass);
+}
+
+/* ── 区块 ─────────────────────────────────────────── */
+.vi-spec-section {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.vi-spec-section__head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.25rem;
+  align-items: start;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--vi-line);
+}
+
+.vi-spec-section__no {
+  font-family: var(--vi-font-display);
+  font-size: 2.25rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--vi-brass);
+  letter-spacing: -0.04em;
+}
+
+.vi-spec-section__head h2 {
+  margin: 0;
+}
+
+.vi-spec-section__lead {
+  max-width: 46rem;
+  margin: 0.5rem 0 0;
+  color: var(--vi-ink-2);
+}
+
+.vi-spec-sub {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.vi-spec-sub h3 {
+  margin: 0.5rem 0 0;
+}
+
+/* ── 色彩 ─────────────────────────────────────────── */
+.vi-swatch-ramp {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  border-radius: var(--vi-r-card);
+  overflow: hidden;
+  border: 1px solid var(--vi-line-strong);
+}
+
+.vi-swatch-ramp .vi-swatch {
+  padding: 0;
+  gap: 0;
+}
+
+.vi-swatch-ramp .vi-swatch__chip {
+  height: 88px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.vi-swatch-ramp .vi-swatch__name,
+.vi-swatch-ramp .vi-swatch__token {
+  padding: 0 0.6rem;
+}
+
+.vi-swatch-ramp .vi-swatch__name {
+  padding-top: 0.55rem;
+}
+
+.vi-swatch-ramp .vi-swatch__token {
+  padding-bottom: 0.6rem;
+}
+
+.vi-swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.vi-swatch {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.vi-swatch__chip {
+  display: block;
+  height: 64px;
+  border-radius: 10px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -12px 24px -12px rgba(0, 0, 0, 0.35);
+}
+
+.vi-swatch--lg .vi-swatch__chip {
+  height: 120px;
+  border-radius: var(--vi-r-card);
+}
+
+.vi-swatch__name {
+  font-weight: 600;
+  font-size: var(--vi-fs-small);
+}
+
+.vi-swatch__note {
+  font-size: var(--vi-fs-caption);
+  color: var(--vi-ink-2);
+}
+
+.vi-swatch__token {
+  font-family: var(--vi-font-mono);
+  font-size: 11px;
+  color: var(--vi-ink-3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vi-data-palette {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.vi-data-palette__chip {
+  display: grid;
+  place-items: end start;
+  height: 52px;
+  padding: 0.4rem 0.5rem;
+  border-radius: 8px;
+  color: rgba(10, 10, 10, 0.7);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.vi-ramp-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.vi-ramp {
+  flex: 1;
+  height: 14px;
+  border-radius: 7px;
+}
+
+.vi-ramp--seq {
+  background: linear-gradient(90deg, var(--vi-bg-3), var(--vi-brass), var(--vi-cinnabar));
+}
+
+.vi-ramp--div {
+  background: linear-gradient(90deg, var(--vi-celadon), var(--vi-bg-3) 50%, var(--vi-cinnabar));
+}
+
+/* ── 字体 ─────────────────────────────────────────── */
+.vi-type-specimen {
+  display: grid;
+}
+
+.vi-type-row {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: baseline;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--vi-line);
+}
+
+.vi-type-row__meta {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.vi-type-row__name {
+  font-size: var(--vi-fs-small);
+  font-weight: 600;
+  color: var(--vi-ink-2);
+}
+
+.vi-type-row__meta code {
+  font-family: var(--vi-font-mono);
+  font-size: 11px;
+  color: var(--vi-ink-3);
+}
+
+.vi-type--display { font-family: var(--vi-font-display); font-size: var(--vi-fs-display); font-weight: 600; line-height: 1.05; letter-spacing: -0.03em; }
+.vi-type--h1 { font-family: var(--vi-font-display); font-size: var(--vi-fs-h1); font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; }
+.vi-type--h2 { font-family: var(--vi-font-display); font-size: var(--vi-fs-h2); font-weight: 600; line-height: 1.25; }
+.vi-type--h3 { font-size: var(--vi-fs-h3); font-weight: 600; }
+.vi-type--body { font-size: var(--vi-fs-body); line-height: 1.65; max-width: 40rem; }
+.vi-type--small { font-size: var(--vi-fs-small); color: var(--vi-ink-2); }
+.vi-type--caption { font-size: var(--vi-fs-caption); font-weight: 500; letter-spacing: 0.04em; color: var(--vi-ink-3); }
+.vi-type--figure-xl { font-family: var(--vi-font-display); font-size: var(--vi-fs-figure-xl); font-weight: 500; line-height: 1; letter-spacing: -0.03em; }
+.vi-type--figure { font-size: var(--vi-fs-figure); font-weight: 600; line-height: 1; letter-spacing: -0.02em; }
+
+/* ── 材质 ─────────────────────────────────────────── */
+.vi-elevation-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.vi-elevation {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 0.4rem;
+  min-height: 180px;
+  padding: 1.4rem;
+  border-radius: var(--vi-r-card);
+}
+
+.vi-elevation p {
+  margin: 0;
+  font-size: var(--vi-fs-small);
+  color: var(--vi-ink-2);
+}
+
+.vi-elevation__lv {
+  font-family: var(--vi-font-display);
+  font-size: 2rem;
+  color: var(--vi-brass);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+/* ── 信号灯 ───────────────────────────────────────── */
+.vi-signal-board {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 2rem 1.5rem;
+}
+
+.vi-signal-board__col {
+  display: grid;
+  justify-items: center;
+  gap: 1.5rem;
+  padding: 0.5rem;
+}
+
+.vi-signal-board__col + .vi-signal-board__col {
+  border-left: 1px solid var(--vi-line);
+}
+
+.vi-signal-board__sizes {
+  display: flex;
+  gap: 1rem;
+}
+
+/* ── 仪表 ─────────────────────────────────────────── */
+.vi-gauge-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.vi-gauge-card {
+  display: grid;
+  place-items: center;
+  padding: 1.75rem 1rem 1.5rem;
+}
+
+.vi-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+/* ── 动效 ─────────────────────────────────────────── */
+.vi-motion-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.vi-motion-token {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.vi-motion-token__bar {
+  display: block;
+  height: 4px;
+  margin-bottom: 0.6rem;
+  border-radius: 2px;
+  background: var(--vi-line);
+  overflow: hidden;
+  position: relative;
+}
+
+.vi-motion-token__bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--vi-brass);
+  transform-origin: left;
+  animation: vi-motion-fill var(--d, 480ms) var(--vi-ease-ink) infinite alternate;
+}
+
+@keyframes vi-motion-fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.vi-motion-token__d {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.vi-motion-token__k {
+  font-family: var(--vi-font-mono);
+  font-size: 12px;
+  color: var(--vi-ink-2);
+}
+
+.vi-motion-demo {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.vi-motion-demo__stage {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.vi-motion-demo__tile {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  font-family: var(--vi-font-read);
+  font-size: 1.75rem;
+  font-weight: 900;
+}
+
+/* ── 多端 ─────────────────────────────────────────── */
+.vi-device-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.vi-device {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1.4rem;
+}
+
+.vi-device__w {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--vi-brass);
+}
+
+.vi-device p {
+  margin: 0;
+  font-size: var(--vi-fs-small);
+  color: var(--vi-ink-2);
+}
+
+/* ── 自适应 ───────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .vi-spec-hero {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .vi-spec-hero__orbit {
+    right: -40%;
+    width: 120%;
+  }
+
+  .vi-swatch-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .vi-gauge-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vi-kpi-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vi-motion-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 767px) {
+  .vi-spec-hero__orbit {
+    top: 0;
+    right: -55%;
+    width: 150%;
+    transform: none;
+  }
+
+  .vi-swatch-ramp { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .vi-swatch-ramp .vi-swatch__chip { height: 64px; }
+  .vi-swatch-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vi-data-palette { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .vi-type-row { grid-template-columns: 1fr; gap: 0.4rem; }
+  .vi-elevation-grid,
+  .vi-device-grid,
+  .vi-gauge-row { grid-template-columns: 1fr; }
+  .vi-signal-board { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.5rem; }
+  .vi-signal-board__col:nth-child(3) { border-left: 0; }
+  .vi-motion-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vi-spec-section__no { font-size: 1.75rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vi-spec-hero__orbit,
+  .vi-motion-token__bar::after {
+    animation: none;
+  }
+}
+
+/* 阅读器样张入口 */
+.vi-reader-teaser {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 1.5rem 1.75rem;
+}
+
+.vi-reader-teaser__title {
+  margin: 0.35rem 0 0;
+  font-family: var(--vi-font-read);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.vi-reader-teaser__meta {
+  margin: 0.35rem 0 0;
+  font-size: var(--vi-fs-small);
+  color: var(--vi-ink-3);
+}

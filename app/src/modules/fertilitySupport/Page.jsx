@@ -23,19 +23,19 @@ const tfrOpt = {
     valueY({ name: '万', max: 2000, position: 'right', splitLine: { show: false } }),
   ],
   series: [
-    { name: '总和生育率', type: 'line', smooth: true, data: [1.30, 1.18, 1.07, 1.05, 1.02, 1.00], lineStyle: { color: '#c41e3a', width: 2 },
-      markLine: { silent: true, data: [{ yAxis: 2.1, label: { formatter: '更替水平 2.1', color: LABEL.color }, lineStyle: { color: '#10b981', type: 'dashed' } }] } },
-    { name: '出生人口(万)', type: 'bar', yAxisIndex: 1, barWidth: 18, data: [1786, 1523, 1200, 956, 954, 920], itemStyle: { color: 'rgba(34,211,238,0.6)' } },
+    { name: '总和生育率', type: 'line', smooth: true, data: [1.30, 1.18, 1.07, 1.05, 1.02, 1.00], lineStyle: { color: '#e5483b', width: 2 },
+      markLine: { silent: true, data: [{ yAxis: 2.1, label: { formatter: '更替水平 2.1', color: LABEL.color }, lineStyle: { color: '#6fc2ae', type: 'dashed' } }] } },
+    { name: '出生人口(万)', type: 'bar', yAxisIndex: 1, barWidth: 18, data: [1786, 1523, 1200, 956, 954, 920], itemStyle: { color: 'rgba(110, 140, 255,0.6)' } },
   ],
 };
 
 // 生育养育成本结构（示意 %）
 const costOpt = donutOpt([
-  { name: '教育/课外', value: 34, itemStyle: { color: '#c41e3a' } },
-  { name: '住房', value: 26, itemStyle: { color: '#e8a317' } },
-  { name: '托育/照护', value: 16, itemStyle: { color: '#22d3ee' } },
-  { name: '医疗保健', value: 12, itemStyle: { color: '#10b981' } },
-  { name: '日常养育', value: 12, itemStyle: { color: '#8b5cf6' } },
+  { name: '教育/课外', value: 34, itemStyle: { color: '#e5483b' } },
+  { name: '住房', value: 26, itemStyle: { color: '#d4a25a' } },
+  { name: '托育/照护', value: 16, itemStyle: { color: '#6e8cff' } },
+  { name: '医疗保健', value: 12, itemStyle: { color: '#6fc2ae' } },
+  { name: '日常养育', value: 12, itemStyle: { color: '#b07cc6' } },
 ]);
 
 // 托育供给缺口（千人口托位数，示意）
@@ -45,8 +45,8 @@ const careOpt = {
   xAxis: categoryX(['2020', '2022', '2024', '2025E', '2030E']),
   yAxis: valueY({ name: '个/千人' }),
   series: [
-    { name: '现有托位', type: 'bar', barWidth: 20, data: [1.8, 2.5, 3.4, 4.0, 0], itemStyle: { color: '#22d3ee' } },
-    { name: '十五五目标', type: 'line', smooth: true, data: [null, null, null, 4.5, 6.0], lineStyle: { color: '#e8a317', width: 2, type: 'dashed' } },
+    { name: '现有托位', type: 'bar', barWidth: 20, data: [1.8, 2.5, 3.4, 4.0, 0], itemStyle: { color: '#6e8cff' } },
+    { name: '十五五目标', type: 'line', smooth: true, data: [null, null, null, 4.5, 6.0], lineStyle: { color: '#d4a25a', width: 2, type: 'dashed' } },
   ],
 };
 
@@ -55,28 +55,28 @@ const DIMS = ['政策力度', '降本效果', '可持续性', '覆盖广度', '�
 
 const LEVERS = [
   {
-    key: 'birth', label: '生育补贴', accent: '#c41e3a',
+    key: 'birth', label: '生育补贴', accent: '#e5483b',
     scores: [65, 50, 45, 60, 70],
     thesis: '现金补贴是最直接的政策工具——多地试点育儿补贴、一次性生育奖励，对冲生育的直接经济成本，但弹性有限。',
     points: ['地方育儿补贴（按孩次月度发放）试点扩面', '生育医疗费用报销、生育津贴扩围', '个税专项附加扣除（婴幼儿照护）提标'],
     limit: '国际经验显示纯现金补贴对生育率提振边际有限，需「组合拳」。',
   },
   {
-    key: 'care', label: '托育服务', accent: '#22d3ee',
+    key: 'care', label: '托育服务', accent: '#6e8cff',
     scores: [70, 68, 55, 50, 72],
     thesis: '普惠托育是降低照护成本的关键——0—3 岁托育供给严重不足，发展普惠托位、用人单位办托、社区嵌入式托育是补短板主线。',
     points: ['每千人口托位数向 4.5（十五五）迈进', '普惠托育服务体系、社区+单位+家庭多元供给', '托幼一体化（幼儿园下延托班）'],
     limit: '普惠与可持续运营的成本平衡难，专业照护人才短缺。',
   },
   {
-    key: 'leave', label: '假期/就业', accent: '#10b981',
+    key: 'leave', label: '假期/就业', accent: '#6fc2ae',
     scores: [55, 60, 50, 55, 48],
     thesis: '产假/育儿假与女性就业保护——延长育儿假、推广男性育儿假、保障女性就业权益，降低生育的「职业惩罚」与机会成本。',
     points: ['育儿假、护理假制度落地与成本分担', '反就业性别歧视、弹性工作制', '生育成本社会化（用人单位—社保—财政分担）'],
     limit: '假期成本若由企业独担，反加剧对育龄女性的隐性歧视。',
   },
   {
-    key: 'housing', label: '住房/教育', accent: '#e8a317',
+    key: 'housing', label: '住房/教育', accent: '#d4a25a',
     scores: [58, 72, 60, 52, 65],
     thesis: '住房与教育是生育成本的「两座大山」——多孩家庭住房支持、教育「双减」与优质均衡，是降低长期养育成本的结构性变量。',
     points: ['多子女家庭购房/租房支持、公积金倾斜', '「双减」减轻课外培训负担', '基础教育优质均衡、学位供给'],
@@ -103,10 +103,10 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="~1.0" label="总和生育率" accent="#c41e3a" />
-        <Stat value="~920万" label="2025E 出生人口" accent="#22d3ee" />
-        <Stat value="4.5(目标)" label="每千人托位数" accent="#e8a317" />
-        <Stat value={AS_OF} label="数据截至" accent="#10b981" />
+        <Stat value="~1.0" label="总和生育率" accent="#e5483b" />
+        <Stat value="~920万" label="2025E 出生人口" accent="#6e8cff" />
+        <Stat value="4.5(目标)" label="每千人托位数" accent="#d4a25a" />
+        <Stat value={AS_OF} label="数据截至" accent="#6fc2ae" />
       </Grid>
 
       <Grid cols={2} className="mb-6">
@@ -141,7 +141,7 @@ export default function Page() {
             ))}
           </div>
           <div className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
-            <span style={{ color: '#c41e3a' }}>局限 · </span>{l.limit}
+            <span style={{ color: '#e5483b' }}>局限 · </span>{l.limit}
           </div>
         </div>
         <Card title={`${l.label} · 政策杠杆五维评估（示意）`}>
@@ -151,16 +151,16 @@ export default function Page() {
 
       <Card title="十五五 · 指标 / 约束 / 路径" className="mb-6">
         <Grid cols={3}>
-          <div style={{ borderLeft: '2px solid #22d3ee', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#22d3ee' }}>核心指标</div>
+          <div style={{ borderLeft: '2px solid #6e8cff', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6e8cff' }}>核心指标</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>每千人口托位数向 4.5—6 个爬坡；普惠托育覆盖、育儿补贴与生育津贴扩围；托住总和生育率与出生人口。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #e8a317', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#e8a317' }}>关键约束</div>
+          <div style={{ borderLeft: '2px solid #d4a25a', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#d4a25a' }}>关键约束</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>直接成本（养育）、机会成本（女性职业）、预期成本（住房/教育）三重叠加；纯现金补贴边际有限。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #10b981', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#10b981' }}>推进路径</div>
+          <div style={{ borderLeft: '2px solid #6fc2ae', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6fc2ae' }}>推进路径</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>从「放开生育」到「支持生育」——成本社会化分担（财政/社保/用人单位），托育、住房、教育、就业保护组合拳。</p>
           </div>
         </Grid>

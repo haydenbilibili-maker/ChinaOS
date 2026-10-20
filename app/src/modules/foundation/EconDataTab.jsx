@@ -40,7 +40,7 @@ import {
 
 // —— 样式常量（沿用 foundation/Page.jsx 同款 btn/inp 风格，本组件自定义同款）——
 const BTN = (active) => ({
-  background: active ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)',
+  background: active ? 'rgba(229, 72, 59,0.2)' : 'var(--bg-elevated)',
   color: active ? 'var(--chip-active-text)' : 'var(--text-secondary)',
   border: 'none',
   cursor: 'pointer',
@@ -149,9 +149,9 @@ async function safeListEconDatasets(fallbackDatasets) {
 }
 
 function trendSignal(trend) {
-  if (trend === 'up') return '#10b981';
-  if (trend === 'down') return '#c41e3a';
-  return '#e8a317';
+  if (trend === 'up') return '#6fc2ae';
+  if (trend === 'down') return '#e5483b';
+  return '#d4a25a';
 }
 function trendLabel(trend) {
   if (trend === 'up') return '上行 ↑';
@@ -190,8 +190,8 @@ function Chip({ label, value, color, onClick, active }) {
       className="inline-flex items-baseline gap-1 mono"
       style={{
         fontSize: 11, padding: '3px 8px', borderRadius: 6,
-        background: active ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)',
-        border: `1px solid ${active ? '#c41e3a' : 'var(--border-subtle)'}`,
+        background: active ? 'rgba(229, 72, 59,0.2)' : 'var(--bg-elevated)',
+        border: `1px solid ${active ? '#e5483b' : 'var(--border-subtle)'}`,
         cursor: onClick ? 'pointer' : 'default',
       }}
     >
@@ -649,13 +649,13 @@ export default function EconDataTab({ datasets, refresh, flash } = {}) {
       {/* —— 统计条 —— */}
       <div className="os-card" style={{ padding: 'var(--card-padding)' }}>
         <div className="flex flex-wrap items-center gap-1.5">
-          <Chip label="经济数据集" value={hub.count} color="#22d3ee" onClick={() => setFilterCat('')} active={filterCat === ''} />
+          <Chip label="经济数据集" value={hub.count} color="#6e8cff" onClick={() => setFilterCat('')} active={filterCat === ''} />
           <Chip label="总行数" value={fmtNum(hub.totalRows)} color="var(--text-primary)" />
           <span style={{ color: 'var(--border-subtle)' }}>|</span>
           {CATS.filter((c) => hub.byCat[c]).map((c) => (
-            <Chip key={c} label={c} value={hub.byCat[c]} color="#e8a317" onClick={() => setFilterCat(filterCat === c ? '' : c)} active={filterCat === c} />
+            <Chip key={c} label={c} value={hub.byCat[c]} color="#d4a25a" onClick={() => setFilterCat(filterCat === c ? '' : c)} active={filterCat === c} />
           ))}
-          {listErr && <span className="mono" style={{ fontSize: 10, color: '#c41e3a' }}>// {listErr}</span>}
+          {listErr && <span className="mono" style={{ fontSize: 10, color: '#e5483b' }}>// {listErr}</span>}
         </div>
       </div>
 
@@ -702,18 +702,18 @@ export default function EconDataTab({ datasets, refresh, flash } = {}) {
         </div>
 
         <div className="flex flex-wrap items-center gap-2 mt-3">
-          <button type="button" onClick={onParse} className="mono" style={{ ...BTN(false), fontSize: 12, padding: '6px 14px', color: '#22d3ee' }}>解析预览</button>
+          <button type="button" onClick={onParse} className="mono" style={{ ...BTN(false), fontSize: 12, padding: '6px 14px', color: '#6e8cff' }}>解析预览</button>
           <button type="button" onClick={onSave} disabled={saving || !canSave} className="mono"
-            style={{ ...BTN(canSave), fontSize: 12, padding: '6px 14px', cursor: saving || !canSave ? 'not-allowed' : 'pointer', opacity: saving ? 0.7 : 1, color: canSave ? '#e8a317' : 'var(--text-tertiary)' }}>
+            style={{ ...BTN(canSave), fontSize: 12, padding: '6px 14px', cursor: saving || !canSave ? 'not-allowed' : 'pointer', opacity: saving ? 0.7 : 1, color: canSave ? '#d4a25a' : 'var(--text-tertiary)' }}>
             {saving ? '保存中…' : '保存入库'}
           </button>
-          {parseErr && <span className="mono" style={{ fontSize: 11, color: '#c41e3a' }}>// {parseErr}</span>}
+          {parseErr && <span className="mono" style={{ fontSize: 11, color: '#e5483b' }}>// {parseErr}</span>}
         </div>
 
         {preview && (
           <div className="mt-3 rounded p-3" style={{ background: 'var(--bg-base)', border: '1px solid var(--border-subtle)' }}>
             <div className="mono mb-1.5" style={{ fontSize: 11, color: 'var(--text-secondary)' }}>
-              解析结果 · <span style={{ color: '#22d3ee' }}>{preview.points.length}</span> 个有效数据点
+              解析结果 · <span style={{ color: '#6e8cff' }}>{preview.points.length}</span> 个有效数据点
             </div>
             {preview.points.length > 0 && (
               <div className="flex flex-wrap items-center gap-1.5 mb-2">
@@ -728,7 +728,7 @@ export default function EconDataTab({ datasets, refresh, flash } = {}) {
             {Array.isArray(preview.warnings) && preview.warnings.length > 0 && (
               <ul className="flex flex-col gap-0.5">
                 {preview.warnings.slice(0, 12).map((w, i) => (
-                  <li key={i} className="mono" style={{ fontSize: 10, color: '#e8a317' }}>⚠ {typeof w === 'string' ? w : (w && w.message) || String(w)}</li>
+                  <li key={i} className="mono" style={{ fontSize: 10, color: '#d4a25a' }}>⚠ {typeof w === 'string' ? w : (w && w.message) || String(w)}</li>
                 ))}
                 {preview.warnings.length > 12 && <li className="mono" style={{ fontSize: 10, color: 'var(--text-tertiary)' }}>…共 {preview.warnings.length} 条告警</li>}
               </ul>
@@ -757,7 +757,7 @@ export default function EconDataTab({ datasets, refresh, flash } = {}) {
             <p className="mono" style={{ fontSize: 12, color: 'var(--text-tertiary)' }}>// 读取本地库…</p>
           ) : filtered.length === 0 ? (
             <div className="rounded p-4 text-center" style={{ border: '1px dashed var(--border-subtle)' }}>
-              <div className="mono mb-1" style={{ fontSize: 13, color: '#e8a317' }}>// 空</div>
+              <div className="mono mb-1" style={{ fontSize: 13, color: '#d4a25a' }}>// 空</div>
               <p style={{ fontSize: 12, color: 'var(--text-tertiary)' }}>{econ.length === 0 ? '暂无经济类数据集 —— 用上方上传载入。' : '无匹配项 —— 调整筛选 / 搜索。'}</p>
             </div>
           ) : (
@@ -770,17 +770,17 @@ export default function EconDataTab({ datasets, refresh, flash } = {}) {
                 return (
                   <li key={d.id} className="flex items-start gap-2">
                     <input type="checkbox" checked={!!checked[d.id]} onChange={() => toggleCheck(d.id)} title="加入叠加对比"
-                      style={{ marginTop: 8, accentColor: '#c41e3a', cursor: 'pointer' }} />
+                      style={{ marginTop: 8, accentColor: '#e5483b', cursor: 'pointer' }} />
                     <button type="button" onClick={() => setSelId(d.id)} className="text-left rounded transition-colors"
-                      style={{ flex: 1, minWidth: 0, padding: 10, background: on ? 'rgba(34,211,238,0.08)' : 'var(--bg-base)', border: `1px solid ${on ? '#22d3ee' : 'var(--border-subtle)'}`, cursor: 'pointer' }}>
+                      style={{ flex: 1, minWidth: 0, padding: 10, background: on ? 'rgba(110, 140, 255,0.08)' : 'var(--bg-base)', border: `1px solid ${on ? '#6e8cff' : 'var(--border-subtle)'}`, cursor: 'pointer' }}>
                       <div className="flex items-start justify-between gap-2">
                         <span style={{ fontSize: 13, fontWeight: 500, color: 'var(--text-primary)', lineHeight: 1.3 }}>{d.name || '未命名'}</span>
-                        <span className="mono shrink-0" style={{ fontSize: 10, padding: '1px 6px', borderRadius: 4, background: 'rgba(232,163,23,0.12)', color: '#e8a317' }}>{d.category || '未分类'}</span>
+                        <span className="mono shrink-0" style={{ fontSize: 10, padding: '1px 6px', borderRadius: 4, background: 'rgba(212, 162, 90,0.12)', color: '#d4a25a' }}>{d.category || '未分类'}</span>
                       </div>
                       <div className="mono mt-1 flex items-center gap-1.5 flex-wrap" style={{ fontSize: 10, color: 'var(--text-tertiary)' }}>
                         <span>{fmtNum(d.rowCount)} 行</span>
                         <span style={{ color: 'var(--border-subtle)' }}>·</span>
-                        <span style={{ color: isUpload ? '#10b981' : '#8b5cf6' }}>{originLabel}</span>
+                        <span style={{ color: isUpload ? '#6fc2ae' : '#b07cc6' }}>{originLabel}</span>
                         {d.source && (<><span style={{ color: 'var(--border-subtle)' }}>·</span><span>{d.source}</span></>)}
                         <span style={{ color: 'var(--border-subtle)' }}>·</span>
                         <span>{fmtTs(d.updatedAt)}</span>
@@ -813,11 +813,11 @@ export default function EconDataTab({ datasets, refresh, flash } = {}) {
                 <div className="flex items-center gap-1 shrink-0">
                   <button type="button" onClick={onExportCSV} className="mono" style={{ ...BTN(false), fontSize: 10, padding: '4px 8px' }}>CSV</button>
                   <button type="button" onClick={onExportJSON} className="mono" style={{ ...BTN(false), fontSize: 10, padding: '4px 8px' }}>JSON</button>
-                  <button type="button" onClick={onDeleteDataset} className="mono" style={{ ...BTN(false), fontSize: 10, padding: '4px 8px', color: '#c41e3a', background: 'rgba(196,30,58,0.1)', border: '1px solid rgba(196,30,58,0.27)' }}>删除</button>
+                  <button type="button" onClick={onDeleteDataset} className="mono" style={{ ...BTN(false), fontSize: 10, padding: '4px 8px', color: '#e5483b', background: 'rgba(229, 72, 59,0.1)', border: '1px solid rgba(229, 72, 59,0.27)' }}>删除</button>
                 </div>
               </div>
 
-              {rowsErr && <p className="mono mb-2" style={{ fontSize: 10, color: '#c41e3a' }}>// {rowsErr}</p>}
+              {rowsErr && <p className="mono mb-2" style={{ fontSize: 10, color: '#e5483b' }}>// {rowsErr}</p>}
 
               {/* 折线图 */}
               {rowsLoading ? (
@@ -833,9 +833,9 @@ export default function EconDataTab({ datasets, refresh, flash } = {}) {
                 <div className="flex flex-wrap items-center gap-1.5 mb-3">
                   <Pill label={stats.latest && stats.latest.period ? `最新 · ${stats.latest.period}` : '最新'} value={fmtNum(stats.latest && stats.latest.value)} />
                   <Pill label="同比/环比" value={stats.yoy == null ? '—' : `${stats.yoy > 0 ? '+' : ''}${stats.yoy}%`}
-                    color={stats.yoy == null ? 'var(--text-tertiary)' : stats.yoy > 0 ? '#10b981' : stats.yoy < 0 ? '#c41e3a' : 'var(--text-tertiary)'} />
-                  <Pill label="最小" value={fmtNum(stats.min)} color="#8b5cf6" />
-                  <Pill label="最大" value={fmtNum(stats.max)} color="#e8a317" />
+                    color={stats.yoy == null ? 'var(--text-tertiary)' : stats.yoy > 0 ? '#6fc2ae' : stats.yoy < 0 ? '#e5483b' : 'var(--text-tertiary)'} />
+                  <Pill label="最小" value={fmtNum(stats.min)} color="#b07cc6" />
+                  <Pill label="最大" value={fmtNum(stats.max)} color="#d4a25a" />
                   <span className="inline-flex items-center gap-1.5" style={{ padding: '4px 8px', borderRadius: 6, background: 'var(--bg-base)', border: '1px solid var(--border-subtle)' }}>
                     <span style={{ width: 8, height: 8, borderRadius: '50%', background: trendSignal(stats.trend), display: 'inline-block' }} />
                     <span className="mono" style={{ fontSize: 11, color: 'var(--text-secondary)' }}>{trendLabel(stats.trend)}</span>
@@ -851,7 +851,7 @@ export default function EconDataTab({ datasets, refresh, flash } = {}) {
                 <label style={{ width: 110 }}><span style={labelStyle}>值</span>
                   <input type="text" value={apValue} onChange={(e) => setApValue(e.target.value)} placeholder="数值" className="mono" style={{ ...INP, fontSize: 12 }} />
                 </label>
-                <button type="button" onClick={onAppendPoint} className="mono" style={{ ...BTN(false), fontSize: 11, padding: '7px 12px', color: '#10b981' }}>追加数据点</button>
+                <button type="button" onClick={onAppendPoint} className="mono" style={{ ...BTN(false), fontSize: 11, padding: '7px 12px', color: '#6fc2ae' }}>追加数据点</button>
               </div>
 
               {/* 行级编辑表 */}
@@ -872,7 +872,7 @@ export default function EconDataTab({ datasets, refresh, flash } = {}) {
                             onBlur={(e) => { const v = e.target.value; if (v !== String(value)) { const n = Number(v); onEditRow(r.rowId, { value: isFinite(n) && v.trim() !== '' ? n : v }); } }}
                             style={{ ...INP, width: 100, padding: '4px 8px', fontSize: 12 }} />
                           <button type="button" onClick={() => onDeleteRow(r.rowId)} aria-label="删除此行" className="mono"
-                            style={{ ...BTN(false), fontSize: 10, padding: '4px 8px', color: '#c41e3a', background: 'transparent', border: '1px solid rgba(196,30,58,0.2)' }}>删</button>
+                            style={{ ...BTN(false), fontSize: 10, padding: '4px 8px', color: '#e5483b', background: 'transparent', border: '1px solid rgba(229, 72, 59,0.2)' }}>删</button>
                         </div>
                       );
                     })}
@@ -889,7 +889,7 @@ export default function EconDataTab({ datasets, refresh, flash } = {}) {
                   <label><span style={labelStyle}>来源</span><input type="text" value={metaSource} onChange={(e) => setMetaSource(e.target.value)} style={{ ...INP, fontSize: 12 }} /></label>
                   <label><span style={labelStyle}>备注</span><input type="text" value={metaNote} onChange={(e) => setMetaNote(e.target.value)} style={{ ...INP, fontSize: 12 }} /></label>
                 </div>
-                <button type="button" onClick={onSaveMeta} className="mono" style={{ ...BTN(false), fontSize: 11, padding: '6px 12px', color: '#22d3ee' }}>保存元数据</button>
+                <button type="button" onClick={onSaveMeta} className="mono" style={{ ...BTN(false), fontSize: 11, padding: '6px 12px', color: '#6e8cff' }}>保存元数据</button>
               </div>
             </div>
           )}
@@ -902,12 +902,12 @@ export default function EconDataTab({ datasets, refresh, flash } = {}) {
           <div className="flex items-center justify-between gap-2 mb-2">
             <div className="mono" style={{ fontSize: 11, color: 'var(--text-tertiary)' }}>多序列叠加对比 · 勾选 {checkedIds.length} 项</div>
             <label className="inline-flex items-center gap-1.5 mono" style={{ fontSize: 11, color: 'var(--text-secondary)', cursor: 'pointer' }}>
-              <input type="checkbox" checked={normalize} onChange={(e) => setNormalize(e.target.checked)} style={{ accentColor: '#c41e3a', cursor: 'pointer' }} />
+              <input type="checkbox" checked={normalize} onChange={(e) => setNormalize(e.target.checked)} style={{ accentColor: '#e5483b', cursor: 'pointer' }} />
               归一（首点=100）
             </label>
           </div>
           {cmpErr ? (
-            <p className="mono" style={{ fontSize: 11, color: '#c41e3a' }}>// {cmpErr}</p>
+            <p className="mono" style={{ fontSize: 11, color: '#e5483b' }}>// {cmpErr}</p>
           ) : cmpOption ? (
             <>
               <div className="rounded overflow-hidden"><EChart option={cmpOption} style={{ height: 300 }} /></div>

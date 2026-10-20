@@ -1,5 +1,14 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import * as Lucide from 'lucide-react';
+import {
+  AlertTriangle as LuAlertTriangle,
+  Play as LuPlay,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  AlertTriangle: LuAlertTriangle,
+  Play: LuPlay,
+};
 import { Card } from '../../app/ui.jsx';
 import { Markdown } from '../../lib/ai/markdown.jsx';
 import { chat, isConfigured, loadConfig } from '../../lib/ai/client.js';
@@ -11,10 +20,10 @@ import {
   scenarioById,
 } from './leadershipGovSim.js';
 
-const CYAN = '#22d3ee';
-const RED = '#c41e3a';
-const GOLD = '#e8a317';
-const GREEN = '#10b981';
+const CYAN = '#6e8cff';
+const RED = '#e5483b';
+const GOLD = '#d4a25a';
+const GREEN = '#6fc2ae';
 const SCOPE = '公开信息梳理 · 学理分析框架 · 思想实验 · 非评价 · 非预测 · 非倡导';
 const AI_DRAFT_KEY = 'chinaos.leadership.ai-draft.v1';
 
@@ -463,7 +472,7 @@ export default function LeadershipAiSim({ onGotoGovSim }) {
       <div className="flex items-center gap-2 flex-wrap mb-4">
         <button type="button" onClick={runSimulation} disabled={busy}
           className="text-xs mono px-3 py-1.5 rounded font-semibold flex items-center gap-1.5"
-          style={{ background: 'rgba(196,30,58,0.14)', color: RED, border: '1px solid rgba(196,30,58,0.45)', cursor: busy ? 'wait' : 'pointer', opacity: busy ? 0.7 : 1 }}>
+          style={{ background: 'rgba(229, 72, 59,0.14)', color: RED, border: '1px solid rgba(229, 72, 59,0.45)', cursor: busy ? 'wait' : 'pointer', opacity: busy ? 0.7 : 1 }}>
           <Lucide.Play size={14} />{busy ? '推演中…' : '启动多位点推演'}
         </button>
         {busy && (

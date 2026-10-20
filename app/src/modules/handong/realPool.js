@@ -85,7 +85,7 @@ function stableSlug(s) {
 }
 
 // ------------------------- 图表色板（按姓名确定性取色） -----------------------
-const PALETTE = ['#c41e3a', '#22d3ee', '#e8a317', '#10b981', '#8b5cf6', '#fb923c', '#64748b'];
+const PALETTE = ['#e5483b', '#6e8cff', '#d4a25a', '#6fc2ae', '#b07cc6', '#c07a4a', '#8a8578'];
 function colorOf(name) {
   let sum = 0;
   const s = String(name || '');

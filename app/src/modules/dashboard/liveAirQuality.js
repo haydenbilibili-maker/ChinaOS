@@ -35,7 +35,7 @@ export const REAL_AQI_LAYERS = [
 
 export const AQI_PALETTES = {
   // WHO 语义序保留绿→黄→橙→红→紫；仅与共享地图夜间底色脱钩
-  dark: ['#10b981', '#a3e635', '#facc15', '#fb923c', '#ef4444', '#a855f7'],
+  dark: ['#6fc2ae', '#a3e635', '#facc15', '#c07a4a', '#e5483b', '#b07cc6'],
   light: ['#34d399', '#bef264', '#fde047', '#fdba74', '#f87171', '#c084fc'],
 };
 
@@ -56,13 +56,13 @@ const SEED_URL = '/data/province-aqi-seed.json';
  */
 export function aqiColor(pm25, isDark = true) {
   const v = Number(pm25);
-  if (!Number.isFinite(v)) return isDark ? '#64748b' : '#94a3b8';
-  if (v <= 35) return '#10b981';
+  if (!Number.isFinite(v)) return isDark ? '#8a8578' : '#a29c91';
+  if (v <= 35) return '#6fc2ae';
   if (v <= 75) return '#a3e635';
   if (v <= 115) return '#facc15';
-  if (v <= 150) return '#fb923c';
-  if (v <= 250) return '#ef4444';
-  return '#a855f7';
+  if (v <= 150) return '#c07a4a';
+  if (v <= 250) return '#e5483b';
+  return '#b07cc6';
 }
 
 /** @param {number|null} pm25 */

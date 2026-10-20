@@ -8,23 +8,23 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // 56789：贡献度图谱（顺序由低到高，呈现「贡献—话语权」倒挂）
 // ─────────────────────────────────────────────────────────────────────────────
 const CONTRIB_56789 = [
-  { num: '5', val: 50, label: '税收', sub: '财政命脉', accent: '#c41e3a' },
-  { num: '6', val: 60, label: 'GDP', sub: '经济总量', accent: '#e8a317' },
-  { num: '7', val: 70, label: '技术创新', sub: '专利与研发', accent: '#22d3ee' },
-  { num: '8', val: 80, label: '城镇就业', sub: '社会稳定底盘', accent: '#10b981' },
-  { num: '9', val: 90, label: '企业数量', sub: '市场主体', accent: '#8b5cf6' },
+  { num: '5', val: 50, label: '税收', sub: '财政命脉', accent: '#e5483b' },
+  { num: '6', val: 60, label: 'GDP', sub: '经济总量', accent: '#d4a25a' },
+  { num: '7', val: 70, label: '技术创新', sub: '专利与研发', accent: '#6e8cff' },
+  { num: '8', val: 80, label: '城镇就业', sub: '社会稳定底盘', accent: '#6fc2ae' },
+  { num: '9', val: 90, label: '企业数量', sub: '市场主体', accent: '#b07cc6' },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 政策时间线：从个体户松绑到促进法
 // ─────────────────────────────────────────────────────────────────────────────
 const POLICY_STAGES = [
-  { period: '1979–87', title: '个体户松绑', accent: '#64748b', desc: '改革开放破冰，「七上八下」之争（雇工超 7 人是否算剥削）划定民营边界；个体经济作为公有制「补充」获默许，傻子瓜子成为符号。' },
-  { period: '2005', title: '非公经济 36 条', accent: '#94a3b8', desc: '首份系统性非公经济政策，明确放宽市场准入、平等待遇；但「玻璃门、弹簧门、旋转门」始终是执行层的现实阻滞。' },
-  { period: '2013–17', title: '两个毫不动摇', accent: '#e8a317', desc: '巩固和发展公有制 + 鼓励支持非公经济，写入党的纲领性文件。地位话语确立，但与实际处境的落差成为信心症结。' },
-  { period: '2018', title: '31 条 · 预期修复', accent: '#22d3ee', desc: '民营企业家信心下滑、「离场论」泛起，最高层座谈会定调，出台支持 31 条，强调民营经济是「自己人」。' },
-  { period: '2020–22', title: '平台整治期', accent: '#c41e3a', desc: '反垄断与防止资本无序扩张，平台经济、教培、地产遭遇结构性收缩；预期管理与资本边界成为政策核心张力。' },
-  { period: '2025', title: '民营经济促进法', accent: '#10b981', desc: '首部以民营经济为名的基础性法律落地，把平等保护、公平竞争、产权安全从政策文件上升为法律义务，降低制度可逆性。' },
+  { period: '1979–87', title: '个体户松绑', accent: '#8a8578', desc: '改革开放破冰，「七上八下」之争（雇工超 7 人是否算剥削）划定民营边界；个体经济作为公有制「补充」获默许，傻子瓜子成为符号。' },
+  { period: '2005', title: '非公经济 36 条', accent: '#a29c91', desc: '首份系统性非公经济政策，明确放宽市场准入、平等待遇；但「玻璃门、弹簧门、旋转门」始终是执行层的现实阻滞。' },
+  { period: '2013–17', title: '两个毫不动摇', accent: '#d4a25a', desc: '巩固和发展公有制 + 鼓励支持非公经济，写入党的纲领性文件。地位话语确立，但与实际处境的落差成为信心症结。' },
+  { period: '2018', title: '31 条 · 预期修复', accent: '#6e8cff', desc: '民营企业家信心下滑、「离场论」泛起，最高层座谈会定调，出台支持 31 条，强调民营经济是「自己人」。' },
+  { period: '2020–22', title: '平台整治期', accent: '#e5483b', desc: '反垄断与防止资本无序扩张，平台经济、教培、地产遭遇结构性收缩；预期管理与资本边界成为政策核心张力。' },
+  { period: '2025', title: '民营经济促进法', accent: '#6fc2ae', desc: '首部以民营经济为名的基础性法律落地，把平等保护、公平竞争、产权安全从政策文件上升为法律义务，降低制度可逆性。' },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -32,31 +32,31 @@ const POLICY_STAGES = [
 // ─────────────────────────────────────────────────────────────────────────────
 const DIMENSIONS = [
   {
-    key: 'finance', label: '融资环境', accent: '#22d3ee', score: 58,
+    key: 'finance', label: '融资环境', accent: '#6e8cff', score: 58,
     pain: '间接融资体系以抵押与所有制为筛子，民企（尤其轻资产、小微）融资贵融资难；信用债违约后市场避险，民企发债利差长期高于国企。',
     lever: '普惠金融定向降准、政府性融资担保、票据贴现清欠、设立民营企业债券融资支持工具。',
     metric: '民企贷款占比偏低 · 综合融资成本上行 · 示意',
   },
   {
-    key: 'access', label: '市场准入', accent: '#10b981', score: 52,
+    key: 'access', label: '市场准入', accent: '#6fc2ae', score: 52,
     pain: '负面清单之外仍有「卷帘门、玻璃门」；能源、电信、金融、铁路等命脉行业实质准入受限，名义开放与实际可进入存在落差。',
     lever: '全国统一负面清单、公平竞争审查制度、向民间资本推介重大项目、特许经营新机制。',
     metric: '准入开放度名实落差 · 示意',
   },
   {
-    key: 'property', label: '产权保护', accent: '#e8a317', score: 61,
+    key: 'property', label: '产权保护', accent: '#d4a25a', score: 61,
     pain: '涉企刑事案件中的「远洋捕捞」式逐利执法、超权限查封冻结、历史案件纠错滞后，伤害企业家长期安全预期与资产配置意愿。',
     lever: '甄别纠正涉产权冤错案、规范异地执法与涉企强制措施、保护企业家人身和财产安全制度化。',
     metric: '产权安全预期承压 · 示意',
   },
   {
-    key: 'fair', label: '公平竞争', accent: '#8b5cf6', score: 55,
+    key: 'fair', label: '公平竞争', accent: '#b07cc6', score: 55,
     pain: '招投标隐性门槛、补贴与要素价格的所有制差别、行政垄断与地方保护，使民企在同台竞争中承担额外制度成本。',
     lever: '公平竞争审查条例、反垄断法修订、清理废除妨碍统一市场的政策、要素市场化配置。',
     metric: '竞争中性落实度 · 示意',
   },
   {
-    key: 'expect', label: '政策预期', accent: '#c41e3a', score: 49,
+    key: 'expect', label: '政策预期', accent: '#e5483b', score: 49,
     pain: '运动式监管、政策急转弯与「一刀切」，使企业难以形成稳定预期；信心是比黄金更稀缺的资源，一旦受损修复周期长。',
     lever: '重大政策出台前评估对市场主体影响、设置政策过渡期、稳定连续可预期的制度环境。',
     metric: '企业家信心指数走弱后修复 · 示意',
@@ -83,9 +83,9 @@ const investTrend = {
   xAxis: categoryX(INVEST_YEARS),
   yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
   series: [
-    { name: '民间投资增速', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: PRIVATE_INVEST, lineStyle: { color: '#c41e3a', width: 2.5 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.08)' } },
-    { name: '全社会固投增速', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: TOTAL_INVEST, lineStyle: { color: '#64748b', width: 1.5, type: 'dashed' }, itemStyle: { color: '#64748b' } },
-    { name: '零增长线', type: 'line', data: INVEST_YEARS.map(() => 0), symbol: 'none', lineStyle: { color: 'rgba(232,163,23,0.5)', width: 1, type: 'dotted' }, silent: true },
+    { name: '民间投资增速', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: PRIVATE_INVEST, lineStyle: { color: '#e5483b', width: 2.5 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.08)' } },
+    { name: '全社会固投增速', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: TOTAL_INVEST, lineStyle: { color: '#8a8578', width: 1.5, type: 'dashed' }, itemStyle: { color: '#8a8578' } },
+    { name: '零增长线', type: 'line', data: INVEST_YEARS.map(() => 0), symbol: 'none', lineStyle: { color: 'rgba(212, 162, 90,0.5)', width: 1, type: 'dotted' }, silent: true },
   ],
 };
 
@@ -104,7 +104,7 @@ const tradeShare = {
 const ownershipBar = stackedBarOpt({
   categories: ['工业增加值', '固定资产投资', '城镇就业', '企业数量', '出口'],
   series: [
-    { name: '民营 / 非公', data: [60, 55, 80, 90, 55], itemStyle: { color: '#c41e3a' } },
+    { name: '民营 / 非公', data: [60, 55, 80, 90, 55], itemStyle: { color: '#e5483b' } },
     { name: '国有 / 国有控股', data: [40, 45, 20, 10, 45], itemStyle: { color: '#475569' } },
   ],
 });
@@ -114,10 +114,10 @@ ownershipBar.tooltip = { trigger: 'axis', axisPointer: { type: 'shadow' }, forma
 // 行业渗透切换（保留原 SECTORS，扩展）
 // ─────────────────────────────────────────────────────────────────────────────
 const SECTORS = [
-  { key: 'tech', label: '科技创新', accent: '#22d3ee', share: 70, note: '专精特新「小巨人」、单项冠军绝大多数为民营，承担多数研发投入与新增专利。' },
-  { key: 'service', label: '消费服务', accent: '#10b981', share: 85, note: '批发零售、餐饮、住宿、生活服务几乎全部由民营与个体户支撑，是就业的最大蓄水池。' },
-  { key: 'mfg', label: '制造业', accent: '#c41e3a', share: 55, note: '民营贡献过半工业增加值，链主央企 + 民营专精特新构成产业蜂群，是「制造强国」的腰部。' },
-  { key: 'digital', label: '数字经济', accent: '#8b5cf6', share: 78, note: '平台、电商、移动支付、内容生态由民营开创；亦是 2020–22 反垄断与资本边界整治的主战场。' },
+  { key: 'tech', label: '科技创新', accent: '#6e8cff', share: 70, note: '专精特新「小巨人」、单项冠军绝大多数为民营，承担多数研发投入与新增专利。' },
+  { key: 'service', label: '消费服务', accent: '#6fc2ae', share: 85, note: '批发零售、餐饮、住宿、生活服务几乎全部由民营与个体户支撑，是就业的最大蓄水池。' },
+  { key: 'mfg', label: '制造业', accent: '#e5483b', share: 55, note: '民营贡献过半工业增加值，链主央企 + 民营专精特新构成产业蜂群，是「制造强国」的腰部。' },
+  { key: 'digital', label: '数字经济', accent: '#b07cc6', share: 78, note: '平台、电商、移动支付、内容生态由民营开创；亦是 2020–22 反垄断与资本边界整治的主战场。' },
   { key: 'lifeline', label: '命脉行业', accent: '#475569', share: 12, note: '电网、油气、骨干电信、铁路、主要金融由国资控盘——民营渗透极低，盐铁逻辑的当代分界线。' },
 ];
 
@@ -132,7 +132,7 @@ export default function Page() {
   const envRadar = radarOpt(
     ['市场准入', '产权保护', '融资可得', '公平竞争', '政策稳定', '账款清欠'],
     [72, 78, 65, 70, 68, 60],
-    { name: '营商环境', color: '#10b981' },
+    { name: '营商环境', color: '#6fc2ae' },
   );
 
   // 民企信心指数雷达：与维度选择器联动，高亮当前维度对应读数
@@ -144,17 +144,17 @@ export default function Page() {
         indicator: dims.map((n) => ({ name: n, max: 100 })),
         axisName: { color: LABEL.color, fontSize: 10 },
         radius: '62%',
-        splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-        axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+        splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
+        axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
         splitArea: { show: false },
       },
       series: [{
         type: 'radar',
         data: [{
           value: base, name: '民企信心指数（示意）',
-          lineStyle: { color: '#c41e3a', width: 2 },
-          itemStyle: { color: '#c41e3a' },
-          areaStyle: { color: 'rgba(196,30,58,0.12)' },
+          lineStyle: { color: '#e5483b', width: 2 },
+          itemStyle: { color: '#e5483b' },
+          areaStyle: { color: 'rgba(229, 72, 59,0.12)' },
         }],
       }],
     };
@@ -179,10 +179,10 @@ export default function Page() {
 
       {/* 概览 4 Stat */}
       <Grid cols={4} className="mb-6">
-        <Stat value="60%+" label="民营 GDP 占比" accent="#e8a317" />
-        <Stat value="80%+" label="城镇就业占比" accent="#10b981" />
-        <Stat value="90%+" label="企业数量占比" accent="#8b5cf6" />
-        <Stat value="-0.1%" label="民间投资增速 '24·示意" accent="#c41e3a" />
+        <Stat value="60%+" label="民营 GDP 占比" accent="#d4a25a" />
+        <Stat value="80%+" label="城镇就业占比" accent="#6fc2ae" />
+        <Stat value="90%+" label="企业数量占比" accent="#b07cc6" />
+        <Stat value="-0.1%" label="民间投资增速 '24·示意" accent="#e5483b" />
       </Grid>
 
       {/* 56789 卡片组 */}

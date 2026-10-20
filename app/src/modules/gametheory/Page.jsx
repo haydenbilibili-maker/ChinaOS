@@ -27,11 +27,11 @@ function mulberry32(seed) {
 
 // —— 锦标赛策略集（C=合作 D=背叛）——
 const STRATEGIES = [
-  { key: 'TFT', name: '以牙还牙', color: '#10b981', desc: '首轮合作，之后复制对方上一步' },
-  { key: 'Grim', name: '冷酷触发', color: '#22d3ee', desc: '合作直到对方背叛一次，此后永远背叛' },
+  { key: 'TFT', name: '以牙还牙', color: '#6fc2ae', desc: '首轮合作，之后复制对方上一步' },
+  { key: 'Grim', name: '冷酷触发', color: '#6e8cff', desc: '合作直到对方背叛一次，此后永远背叛' },
   { key: 'AllC', name: '永远合作', color: LABEL.color, desc: '无条件合作——善良但可被剥削' },
-  { key: 'AllD', name: '永远背叛', color: '#c41e3a', desc: '无条件背叛——短期占便宜，长期被孤立' },
-  { key: 'Random', name: '随机策略', color: '#e8a317', desc: '每轮 50% 合作（固定种子伪随机）' },
+  { key: 'AllD', name: '永远背叛', color: '#e5483b', desc: '无条件背叛——短期占便宜，长期被孤立' },
+  { key: 'Random', name: '随机策略', color: '#d4a25a', desc: '每轮 50% 合作（固定种子伪随机）' },
   { key: 'Tester', name: '试探者', color: '#a78bfa', desc: '先背叛试探；对方报复就道歉并转向合作，不报复就持续剥削（阿克塞尔罗德 TESTER 型参赛者）' },
 ];
 
@@ -158,11 +158,11 @@ export default function Page() {
     if (P >= S) ne.push('（背叛, 背叛）');               // 对方背叛时，D 得 P ≥ 偏离得 S
     if (ne.length === 0) ne.push('无纯策略均衡（仅存混合策略均衡）');
     let type, typeDesc, typeColor;
-    if (T > R && R > P && P > S) { type = '囚徒困境'; typeDesc = 'T>R>P>S：背叛占优，唯一均衡 (背叛,背叛)，个体理性 → 集体次优。'; typeColor = '#c41e3a'; }
-    else if (R > T && P > S) { type = '猎鹿博弈'; typeDesc = 'R>T 且 P>S：(合作,合作) 与 (背叛,背叛) 双均衡，合作回报更高但需要信任。'; typeColor = '#10b981'; }
-    else if (T > R && S > P) { type = '胆小鬼博弈'; typeDesc = 'T>R 且 S>P：两个非对称均衡，比拼谁先「不可逆地强硬」逼对方退让。'; typeColor = '#e8a317'; }
-    else if (R >= T && S >= P) { type = '和谐博弈'; typeDesc = '合作直接占优——根本没有困境，现实中罕见。'; typeColor = '#22d3ee'; }
-    else { type = '混合结构'; typeDesc = '当前排序不属于四大经典类型，逐格检验最优反应即可。'; typeColor = '#93a1b5'; }
+    if (T > R && R > P && P > S) { type = '囚徒困境'; typeDesc = 'T>R>P>S：背叛占优，唯一均衡 (背叛,背叛)，个体理性 → 集体次优。'; typeColor = '#e5483b'; }
+    else if (R > T && P > S) { type = '猎鹿博弈'; typeDesc = 'R>T 且 P>S：(合作,合作) 与 (背叛,背叛) 双均衡，合作回报更高但需要信任。'; typeColor = '#6fc2ae'; }
+    else if (T > R && S > P) { type = '胆小鬼博弈'; typeDesc = 'T>R 且 S>P：两个非对称均衡，比拼谁先「不可逆地强硬」逼对方退让。'; typeColor = '#d4a25a'; }
+    else if (R >= T && S >= P) { type = '和谐博弈'; typeDesc = '合作直接占优——根本没有困境，现实中罕见。'; typeColor = '#6e8cff'; }
+    else { type = '混合结构'; typeDesc = '当前排序不属于四大经典类型，逐格检验最优反应即可。'; typeColor = '#a29c91'; }
     const dStar = T - P !== 0 ? (T - R) / (T - P) : NaN;
     return { type, typeDesc, typeColor, ne, dStar };
   }, [T, R, P, S]);
@@ -187,7 +187,7 @@ export default function Page() {
     grid: GRID,
     xAxis: { ...categoryX(rounds), name: '博弈轮数', nameTextStyle: { color: LABEL.color } },
     yAxis: { ...valueY({ max: 100 }), name: '合作率%', nameTextStyle: { color: LABEL.color } },
-    series: [{ type: 'line', smooth: true, data: coopSeries, lineStyle: { color: stable ? '#10b981' : '#e8a317', width: 2 }, itemStyle: { color: stable ? '#10b981' : '#e8a317' }, areaStyle: { color: stable ? 'rgba(16,185,129,0.1)' : 'rgba(232,163,23,0.08)' } }],
+    series: [{ type: 'line', smooth: true, data: coopSeries, lineStyle: { color: stable ? '#6fc2ae' : '#d4a25a', width: 2 }, itemStyle: { color: stable ? '#6fc2ae' : '#d4a25a' }, areaStyle: { color: stable ? 'rgba(111, 194, 174,0.1)' : 'rgba(212, 162, 90,0.08)' } }],
   };
 
   return (
@@ -205,20 +205,20 @@ export default function Page() {
           <table className="w-full text-sm mono" style={{ borderCollapse: 'collapse', color: 'var(--text-secondary)' }}>
             <thead>
               <tr>
-                <th style={{ padding: 8, border: '1px solid #27324a', color: LABEL.color }}></th>
-                <th colSpan={2} style={{ padding: 8, border: '1px solid #27324a', color: 'var(--cyber-cyan)' }}>对方 ↓</th>
+                <th style={{ padding: 8, border: '1px solid #2a2d36', color: LABEL.color }}></th>
+                <th colSpan={2} style={{ padding: 8, border: '1px solid #2a2d36', color: 'var(--cyber-cyan)' }}>对方 ↓</th>
               </tr>
               <tr>
-                <th style={{ padding: 8, border: '1px solid #27324a', color: '#c41e3a' }}>我方 →</th>
-                {game.cols.map((c) => <th key={c} style={{ padding: 8, border: '1px solid #27324a', color: LABEL.color }}>{c}</th>)}
+                <th style={{ padding: 8, border: '1px solid #2a2d36', color: '#e5483b' }}>我方 →</th>
+                {game.cols.map((c) => <th key={c} style={{ padding: 8, border: '1px solid #2a2d36', color: LABEL.color }}>{c}</th>)}
               </tr>
             </thead>
             <tbody>
               {game.rows.map((rname, i) => (
                 <tr key={rname}>
-                  <th style={{ padding: 8, border: '1px solid #27324a', color: '#c41e3a' }}>{rname}</th>
+                  <th style={{ padding: 8, border: '1px solid #2a2d36', color: '#e5483b' }}>{rname}</th>
                   {game.cols.map((_, j) => (
-                    <td key={j} style={{ padding: 10, border: '1px solid #27324a', textAlign: 'center', color: 'var(--text-primary)' }}>
+                    <td key={j} style={{ padding: 10, border: '1px solid #2a2d36', textAlign: 'center', color: 'var(--text-primary)' }}>
                       ({game.payoff[i][j][0]}, {game.payoff[i][j][1]})
                     </td>
                   ))}
@@ -226,21 +226,21 @@ export default function Page() {
               ))}
             </tbody>
           </table>
-          <div className="p-3 rounded mt-3" style={{ background: 'rgba(196,30,58,0.08)', border: '1px solid rgba(196,30,58,0.2)' }}>
+          <div className="p-3 rounded mt-3" style={{ background: 'rgba(229, 72, 59,0.08)', border: '1px solid rgba(229, 72, 59,0.2)' }}>
             <span className="text-[10px] mono uppercase" style={{ color: 'var(--china-red)' }}>纳什均衡</span>
             <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>{game.ne}</p>
           </div>
         </Card>
         <Card title="现实映射 + 重复博弈滑杆（以牙还牙）">
-          <div className="p-3 rounded mb-3" style={{ background: 'rgba(34,211,238,0.06)', border: '1px solid rgba(34,211,238,0.2)' }}>
+          <div className="p-3 rounded mb-3" style={{ background: 'rgba(110, 140, 255,0.06)', border: '1px solid rgba(110, 140, 255,0.2)' }}>
             <span className="text-[10px] mono uppercase" style={{ color: 'var(--cyber-cyan)' }}>现实映射</span>
             <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>{game.real}</p>
           </div>
           <div className="flex justify-between text-xs mb-1"><span style={{ color: 'var(--text-secondary)' }}>贴现因子 δ（对未来的看重）</span><span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{d.toFixed(2)}</span></div>
-          <input type="range" min="0" max="100" value={delta} onChange={(e) => setDelta(Number(e.target.value))} style={{ width: '100%', accentColor: '#c41e3a' }} />
+          <input type="range" min="0" max="100" value={delta} onChange={(e) => setDelta(Number(e.target.value))} style={{ width: '100%', accentColor: '#e5483b' }} />
           <Grid cols={2} className="mt-3">
-            <Stat value={sustain + '%'} label="第20轮合作率" accent={stable ? '#10b981' : '#e8a317'} />
-            <Stat value={stable ? '可持续' : '会崩溃'} label={`合作阈值 δ≥0.50（现 ${d.toFixed(2)}）`} accent={stable ? '#10b981' : '#c41e3a'} />
+            <Stat value={sustain + '%'} label="第20轮合作率" accent={stable ? '#6fc2ae' : '#d4a25a'} />
+            <Stat value={stable ? '可持续' : '会崩溃'} label={`合作阈值 δ≥0.50（现 ${d.toFixed(2)}）`} accent={stable ? '#6fc2ae' : '#e5483b'} />
           </Grid>
         </Card>
       </Grid>
@@ -262,22 +262,22 @@ export default function Page() {
           <span style={{ color: 'var(--text-secondary)' }}>每场对局轮数 N</span>
           <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{tRounds} 轮</span>
         </div>
-        <input type="range" min="50" max="500" step="10" value={tRounds} onChange={(e) => setTRounds(Number(e.target.value))} style={{ width: '100%', accentColor: '#c41e3a' }} />
+        <input type="range" min="50" max="500" step="10" value={tRounds} onChange={(e) => setTRounds(Number(e.target.value))} style={{ width: '100%', accentColor: '#e5483b' }} />
         <Grid cols={2} className="mt-3 mb-3">
           <Stat value={champion.name} label="当前冠军策略" accent={champion.color} />
-          <Stat value={champion.score.toLocaleString()} label="冠军总得分" accent="#22d3ee" />
+          <Stat value={champion.score.toLocaleString()} label="冠军总得分" accent="#6e8cff" />
         </Grid>
         <EChart option={tourneyBar} style={{ height: 240 }} />
         <div className="grid grid-cols-2 gap-2 mt-3">
           {STRATEGIES.map((s) => (
-            <div key={s.key} className="p-2 rounded text-xs" style={{ background: 'rgba(34,211,238,0.04)', border: '1px solid #27324a' }}>
+            <div key={s.key} className="p-2 rounded text-xs" style={{ background: 'rgba(110, 140, 255,0.04)', border: '1px solid #2a2d36' }}>
               <span className="mono" style={{ color: s.color }}>{s.name}</span>
               <span style={{ color: 'var(--text-tertiary)' }}> — {s.desc}</span>
             </div>
           ))}
         </div>
-        <div className="p-3 rounded mt-3" style={{ background: 'rgba(16,185,129,0.06)', border: '1px solid rgba(16,185,129,0.2)' }}>
-          <span className="text-[10px] mono uppercase" style={{ color: '#10b981' }}>TFT 为何夺冠 · 四性质</span>
+        <div className="p-3 rounded mt-3" style={{ background: 'rgba(111, 194, 174,0.06)', border: '1px solid rgba(111, 194, 174,0.2)' }}>
+          <span className="text-[10px] mono uppercase" style={{ color: '#6fc2ae' }}>TFT 为何夺冠 · 四性质</span>
           <Grid cols={2} className="mt-2">
             {TFT_TRAITS.map((x) => (
               <div key={x.t} className="text-xs">
@@ -296,7 +296,7 @@ export default function Page() {
         </p>
         <Grid cols={2}>
           <div>
-            {[['T 诱惑', T, setT, '#c41e3a'], ['R 奖励', R, setR, '#10b981'], ['P 惩罚', P, setP, '#e8a317'], ['S 受骗', S, setS, '#22d3ee']].map(([lbl, val, set, col]) => (
+            {[['T 诱惑', T, setT, '#e5483b'], ['R 奖励', R, setR, '#6fc2ae'], ['P 惩罚', P, setP, '#d4a25a'], ['S 受骗', S, setS, '#6e8cff']].map(([lbl, val, set, col]) => (
               <div key={lbl} className="mb-2">
                 <div className="flex justify-between text-xs mb-1">
                   <span style={{ color: 'var(--text-secondary)' }}>{lbl}</span>
@@ -308,36 +308,36 @@ export default function Page() {
             <table className="w-full text-sm mono mt-2" style={{ borderCollapse: 'collapse', color: 'var(--text-secondary)' }}>
               <tbody>
                 <tr>
-                  <th style={{ padding: 6, border: '1px solid #27324a', color: LABEL.color }}></th>
-                  <th style={{ padding: 6, border: '1px solid #27324a', color: LABEL.color }}>对方合作</th>
-                  <th style={{ padding: 6, border: '1px solid #27324a', color: LABEL.color }}>对方背叛</th>
+                  <th style={{ padding: 6, border: '1px solid #2a2d36', color: LABEL.color }}></th>
+                  <th style={{ padding: 6, border: '1px solid #2a2d36', color: LABEL.color }}>对方合作</th>
+                  <th style={{ padding: 6, border: '1px solid #2a2d36', color: LABEL.color }}>对方背叛</th>
                 </tr>
                 <tr>
-                  <th style={{ padding: 6, border: '1px solid #27324a', color: LABEL.color }}>我合作</th>
-                  <td style={{ padding: 6, border: '1px solid #27324a', textAlign: 'center', color: 'var(--text-primary)' }}>({R}, {R})</td>
-                  <td style={{ padding: 6, border: '1px solid #27324a', textAlign: 'center', color: 'var(--text-primary)' }}>({S}, {T})</td>
+                  <th style={{ padding: 6, border: '1px solid #2a2d36', color: LABEL.color }}>我合作</th>
+                  <td style={{ padding: 6, border: '1px solid #2a2d36', textAlign: 'center', color: 'var(--text-primary)' }}>({R}, {R})</td>
+                  <td style={{ padding: 6, border: '1px solid #2a2d36', textAlign: 'center', color: 'var(--text-primary)' }}>({S}, {T})</td>
                 </tr>
                 <tr>
-                  <th style={{ padding: 6, border: '1px solid #27324a', color: LABEL.color }}>我背叛</th>
-                  <td style={{ padding: 6, border: '1px solid #27324a', textAlign: 'center', color: 'var(--text-primary)' }}>({T}, {S})</td>
-                  <td style={{ padding: 6, border: '1px solid #27324a', textAlign: 'center', color: 'var(--text-primary)' }}>({P}, {P})</td>
+                  <th style={{ padding: 6, border: '1px solid #2a2d36', color: LABEL.color }}>我背叛</th>
+                  <td style={{ padding: 6, border: '1px solid #2a2d36', textAlign: 'center', color: 'var(--text-primary)' }}>({T}, {S})</td>
+                  <td style={{ padding: 6, border: '1px solid #2a2d36', textAlign: 'center', color: 'var(--text-primary)' }}>({P}, {P})</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div>
-            <div className="p-3 rounded mb-3" style={{ background: 'rgba(34,211,238,0.06)', border: `1px solid ${solver.typeColor}55` }}>
+            <div className="p-3 rounded mb-3" style={{ background: 'rgba(110, 140, 255,0.06)', border: `1px solid ${solver.typeColor}55` }}>
               <span className="text-[10px] mono uppercase" style={{ color: solver.typeColor }}>判定 · 博弈类型</span>
               <p className="text-lg mono mt-1" style={{ color: solver.typeColor }}>{solver.type}</p>
               <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>{solver.typeDesc}</p>
             </div>
-            <div className="p-3 rounded mb-3" style={{ background: 'rgba(196,30,58,0.08)', border: '1px solid rgba(196,30,58,0.2)' }}>
+            <div className="p-3 rounded mb-3" style={{ background: 'rgba(229, 72, 59,0.08)', border: '1px solid rgba(229, 72, 59,0.2)' }}>
               <span className="text-[10px] mono uppercase" style={{ color: 'var(--china-red)' }}>纯策略纳什均衡</span>
               <p className="text-xs mt-1 mono" style={{ color: 'var(--text-primary)' }}>{solver.ne.join('　')}</p>
             </div>
             <Grid cols={2}>
-              <Stat value={dStarOk ? solver.dStar.toFixed(2) : 'N/A'} label="合作阈值 δ*=(T−R)/(T−P)" accent={dStarOk ? (d >= solver.dStar ? '#10b981' : '#e8a317') : '#93a1b5'} />
-              <Stat value={dStarOk ? (d >= solver.dStar ? '可支撑' : '撑不住') : '—'} label={`按上方 δ=${d.toFixed(2)} 对照`} accent={dStarOk && d >= solver.dStar ? '#10b981' : '#c41e3a'} />
+              <Stat value={dStarOk ? solver.dStar.toFixed(2) : 'N/A'} label="合作阈值 δ*=(T−R)/(T−P)" accent={dStarOk ? (d >= solver.dStar ? '#6fc2ae' : '#d4a25a') : '#a29c91'} />
+              <Stat value={dStarOk ? (d >= solver.dStar ? '可支撑' : '撑不住') : '—'} label={`按上方 δ=${d.toFixed(2)} 对照`} accent={dStarOk && d >= solver.dStar ? '#6fc2ae' : '#e5483b'} />
             </Grid>
             <p className="text-[11px] mt-2" style={{ color: 'var(--text-tertiary)' }}>
               δ* 仅在囚徒困境型排序（T&gt;R&gt;P）下有意义：δ ≥ δ* 时以牙还牙可把合作支撑为均衡。
@@ -351,11 +351,11 @@ export default function Page() {
           <p className="text-xs mb-2" style={{ color: 'var(--text-secondary)' }}>
             当对手不知道你的「类型」（强硬派还是软弱派），博弈的关键变成<strong style={{ color: 'var(--text-primary)' }}>让对方相信你是哪种类型</strong>——威慑的本质不是实力，而是关于实力与决心的信念管理。
           </p>
-          <div className="p-2 rounded mb-2 text-xs" style={{ background: 'rgba(232,163,23,0.06)', border: '1px solid rgba(232,163,23,0.25)' }}>
-            <span className="mono" style={{ color: '#e8a317' }}>廉价磋商 Cheap Talk</span>
+          <div className="p-2 rounded mb-2 text-xs" style={{ background: 'rgba(212, 162, 90,0.06)', border: '1px solid rgba(212, 162, 90,0.25)' }}>
+            <span className="mono" style={{ color: '#d4a25a' }}>廉价磋商 Cheap Talk</span>
             <p style={{ color: 'var(--text-secondary)' }}>不花成本的声明（外交辞令、口头警告）——任何类型都说得出口，因此信息量趋近于零。</p>
           </div>
-          <div className="p-2 rounded mb-2 text-xs" style={{ background: 'rgba(196,30,58,0.06)', border: '1px solid rgba(196,30,58,0.25)' }}>
+          <div className="p-2 rounded mb-2 text-xs" style={{ background: 'rgba(229, 72, 59,0.06)', border: '1px solid rgba(229, 72, 59,0.25)' }}>
             <span className="mono" style={{ color: 'var(--china-red)' }}>烧钱信号 Costly Signal</span>
             <p style={{ color: 'var(--text-secondary)' }}>只有真强硬派才付得起的代价：前沿驻军、军演实弹、立法承诺——成本本身就是可信度。</p>
           </div>
@@ -367,11 +367,11 @@ export default function Page() {
           <p className="text-xs mb-2" style={{ color: 'var(--text-secondary)' }}>
             谢林（Schelling）发现：在无法沟通的协调博弈中，人们会向<strong style={{ color: 'var(--text-primary)' }}>显著、对称、有历史惯性的「焦点」</strong>收敛——默契均衡不靠协议，靠共同的想象。
           </p>
-          <div className="p-2 rounded mb-2 text-xs" style={{ background: 'rgba(34,211,238,0.06)', border: '1px solid rgba(34,211,238,0.25)' }}>
+          <div className="p-2 rounded mb-2 text-xs" style={{ background: 'rgba(110, 140, 255,0.06)', border: '1px solid rgba(110, 140, 255,0.25)' }}>
             <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>海峡中线</span>
             <p style={{ color: 'var(--text-secondary)' }}>从无法律效力，却长期充当默契分界——一旦被常态化跨越，焦点消失，新均衡需在更危险处重新摸索。</p>
           </div>
-          <div className="p-2 rounded mb-2 text-xs" style={{ background: 'rgba(34,211,238,0.06)', border: '1px solid rgba(34,211,238,0.25)' }}>
+          <div className="p-2 rounded mb-2 text-xs" style={{ background: 'rgba(110, 140, 255,0.06)', border: '1px solid rgba(110, 140, 255,0.25)' }}>
             <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>不首先使用核武</span>
             <p style={{ color: 'var(--text-secondary)' }}>「零次使用」是核时代最坚固的焦点：任何一次突破都会让全体玩家失去坐标。</p>
           </div>

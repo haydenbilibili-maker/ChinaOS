@@ -27,10 +27,10 @@ const TABS = [
 ];
 
 const STATUS_META = {
-  verified: { label: '已核验', color: '#10b981' },
-  series: { label: 'API 序列', color: '#22d3ee' },
-  approx: { label: '约数', color: '#e8a317' },
-  doubt: { label: '存疑', color: '#c41e3a' },
+  verified: { label: '已核验', color: '#6fc2ae' },
+  series: { label: 'API 序列', color: '#6e8cff' },
+  approx: { label: '约数', color: '#d4a25a' },
+  doubt: { label: '存疑', color: '#e5483b' },
 };
 
 const KEY_STATS = [
@@ -76,7 +76,7 @@ function DataTable({ head, rows, caption }) {
         </thead>
         <tbody>
           {rows.map((cells) => (
-            <tr key={cells[0]} style={{ borderTop: '1px solid var(--border-subtle, rgba(148,163,184,0.1))' }}>
+            <tr key={cells[0]} style={{ borderTop: '1px solid var(--border-subtle, rgba(162, 156, 145,0.1))' }}>
               <th scope="row" className="py-2 pr-3 font-normal text-left align-top" style={{ color: 'var(--text-primary)', minWidth: 110 }}>{cells[0]}</th>
               {cells.slice(1).map((c, i) => (
                 <td key={`${cells[0]}-${head[i + 1]}`} className="py-2 pr-3 align-top leading-relaxed">{c}</td>
@@ -125,7 +125,7 @@ export default function Page() {
   const radarOption = useMemo(() => radarOpt(
     SIMILARITY.map((s) => ({ name: s.dim, max: 100 })),
     SIMILARITY.map((s) => s.score),
-    { name: '与日本对位阶段相似度（主观）', color: '#e8a317' },
+    { name: '与日本对位阶段相似度（主观）', color: '#d4a25a' },
   ), []);
 
   const modeSelector = (
@@ -291,9 +291,9 @@ export default function Page() {
           <Card title="日本教训台账 · 已兑现 / 已失败 / 未决" className="mb-6">
             <Grid cols={3}>
               {[
-                { key: 'done', title: '已兑现', accent: '#10b981', items: LEDGER.done },
-                { key: 'failed', title: '已失败', accent: '#c41e3a', items: LEDGER.failed },
-                { key: 'open', title: '未决', accent: '#e8a317', items: LEDGER.open },
+                { key: 'done', title: '已兑现', accent: '#6fc2ae', items: LEDGER.done },
+                { key: 'failed', title: '已失败', accent: '#e5483b', items: LEDGER.failed },
+                { key: 'open', title: '未决', accent: '#d4a25a', items: LEDGER.open },
               ].map((col) => (
                 <div key={col.key} className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderTop: `2px solid ${col.accent}` }}>
                   <div className="text-xs font-semibold mb-3" style={{ color: col.accent }}>{col.title}</div>
@@ -312,8 +312,8 @@ export default function Page() {
 
           <Grid cols={2} className="mb-6">
             {[
-              { key: 'borrow', title: '中国可借鉴', accent: '#10b981', items: BORROW },
-              { key: 'avoid', title: '中国需避免', accent: '#c41e3a', items: AVOID },
+              { key: 'borrow', title: '中国可借鉴', accent: '#6fc2ae', items: BORROW },
+              { key: 'avoid', title: '中国需避免', accent: '#e5483b', items: AVOID },
             ].map((col) => (
               <Card key={col.key} title={col.title}>
                 <div className="space-y-3">
@@ -350,7 +350,7 @@ export default function Page() {
             <DataTable
               caption="分叉观测清单"
               head={['指标', '当前读数', '日本化警戒', '非日本化信号', '出处']}
-              rows={SIGNPOSTS.map((s) => [s.indicator, s.now, <span key="w" style={{ color: '#c41e3a' }}>{s.warn}</span>, <span key="g" style={{ color: '#10b981' }}>{s.good}</span>, <span key="s" style={subtle}>{s.src}</span>])}
+              rows={SIGNPOSTS.map((s) => [s.indicator, s.now, <span key="w" style={{ color: '#e5483b' }}>{s.warn}</span>, <span key="g" style={{ color: '#6fc2ae' }}>{s.good}</span>, <span key="s" style={subtle}>{s.src}</span>])}
             />
           </Card>
 

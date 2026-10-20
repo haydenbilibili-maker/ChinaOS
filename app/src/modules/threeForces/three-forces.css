@@ -8,7 +8,7 @@
   --io-text: #e7ecea;
   --io-text-dim: #93a6a4;
   --io-text-faint: #5f7370;
-  --celadon: #79a496;
+  --celadon: #6fc2ae;
   --calm: #4f6b66;
   --calm-bg: #152220;
   --build: #cf9a32;
@@ -258,7 +258,7 @@
   border-radius: 10px;
   background: var(--ink-2, #121d21);
   border: 1px solid var(--hair-soft, #1b2c31);
-  border-left: 2px solid var(--celadon, #79a496);
+  border-left: 2px solid var(--celadon, #6fc2ae);
 }
 .tf-ext-hd {
   display: flex;
@@ -269,7 +269,7 @@
 .tf-ext-tag {
   font-family: var(--font-mono, ui-monospace, monospace);
   font-size: 10px;
-  color: var(--celadon, #79a496);
+  color: var(--celadon, #6fc2ae);
   letter-spacing: 0.12em;
 }
 .tf-ext-hd h2 {
@@ -308,7 +308,7 @@
   display: inline-block;
   margin-top: 8px;
   font-size: 11px;
-  color: var(--celadon, #79a496);
+  color: var(--celadon, #6fc2ae);
 }
 
 @media (max-width: 560px) {

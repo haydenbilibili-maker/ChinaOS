@@ -8,7 +8,7 @@
   --io-text-dim: #93a6a4;
   --io-text-faint: #5f7370;
   --cinnabar: #9e2b25;
-  --celadon: #79a496;
+  --celadon: #6fc2ae;
   --io-sans: Inter, system-ui, -apple-system, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
 
   max-width: 720px;
@@ -101,7 +101,7 @@
 
 .hf-gate-input:focus {
   border-color: var(--brass);
-  box-shadow: 0 0 0 2px rgba(177, 138, 82, 0.2);
+  box-shadow: 0 0 0 2px rgba(212, 162, 90, 0.2);
 }
 
 .hf-gate-check {
@@ -275,11 +275,11 @@
 }
 .hf-gate-mark {
   transition: box-shadow 0.3s var(--ease-ink, ease), border-color 0.2s ease;
-  box-shadow: 0 0 0 0 var(--brass-glow, rgba(177, 138, 82, 0.2));
+  box-shadow: 0 0 0 0 var(--brass-glow, rgba(212, 162, 90, 0.2));
 }
 .hf-gate-wrap:focus-within .hf-gate-mark,
 .hf-gate-card:hover .hf-gate-mark {
-  box-shadow: 0 0 20px -4px var(--brass-glow, rgba(177, 138, 82, 0.35));
+  box-shadow: 0 0 20px -4px var(--brass-glow, rgba(212, 162, 90, 0.35));
   border-color: var(--brass);
 }
 .hf-gate-submit {
@@ -292,7 +292,7 @@
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .hf-gate-input:focus {
-  box-shadow: 0 0 0 2px rgba(121, 164, 150, 0.28);
+  box-shadow: 0 0 0 2px rgba(111, 194, 174, 0.28);
   border-color: var(--celadon);
 }
 .hf-hub-card {

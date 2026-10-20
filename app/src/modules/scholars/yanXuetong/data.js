@@ -9,13 +9,13 @@
 export const AS_OF = '2026-09-28';
 
 export const THEMES = {
-  moral: { label: '道义现实主义与领导力', color: '#8b5cf6' },
-  bipolar: { label: '中美两极格局', color: '#c41e3a' },
-  strait: { label: '台海与周边安全', color: '#e8a317' },
-  tech: { label: '科技竞争与数字时代', color: '#22d3ee' },
-  order: { label: '全球治理与国际秩序', color: '#10b981' },
-  diplomacy: { label: '中国外交战略', color: '#fb923c' },
-  method: { label: '科学方法与国际关系预测', color: '#94a3b8' },
+  moral: { label: '道义现实主义与领导力', color: '#b07cc6' },
+  bipolar: { label: '中美两极格局', color: '#e5483b' },
+  strait: { label: '台海与周边安全', color: '#d4a25a' },
+  tech: { label: '科技竞争与数字时代', color: '#6e8cff' },
+  order: { label: '全球治理与国际秩序', color: '#6fc2ae' },
+  diplomacy: { label: '中国外交战略', color: '#c07a4a' },
+  method: { label: '科学方法与国际关系预测', color: '#a29c91' },
 };
 export const THEME_KEYS = Object.keys(THEMES);
 
@@ -47,10 +47,10 @@ export const BOARD = {
 };
 
 export const CAREER_GROUPS = {
-  edu: { label: '求学', color: '#94a3b8' },
-  cicir: { label: '中国现代国际关系研究所', color: '#e8a317' },
-  thu: { label: '清华大学', color: '#8b5cf6' },
-  platform: { label: '期刊 / 论坛', color: '#10b981' },
+  edu: { label: '求学', color: '#a29c91' },
+  cicir: { label: '中国现代国际关系研究所', color: '#d4a25a' },
+  thu: { label: '清华大学', color: '#b07cc6' },
+  platform: { label: '期刊 / 论坛', color: '#6fc2ae' },
 };
 
 /** 履历甘特：起止为小数年；note 记录口径出入 */

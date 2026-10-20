@@ -72,27 +72,27 @@ export const POSTS = [
 // ----------------------------------------------------------------------------
 export const OFFICIALS = [
   {
-    id: 'zhouyanqiu', name: '周砚秋', age: 58, archetype: '组织老手', color: '#8b5cf6',
+    id: 'zhouyanqiu', name: '周砚秋', age: 58, archetype: '组织老手', color: '#b07cc6',
     dims: [38, 55, 72, 58, 42, 48], merit: 50,
     bio: '组织系统三十年，阅人无数，最擅在风暴中稳住干部队伍，对新产业隔行如隔山。',
   },
   {
-    id: 'zhengtieya', name: '郑铁崖', age: 56, archetype: '政法铁腕', color: '#c41e3a',
+    id: 'zhengtieya', name: '郑铁崖', age: 56, archetype: '政法铁腕', color: '#e5483b',
     dims: [30, 42, 88, 40, 35, 38], merit: 50,
     bio: '刑警出身一路办案上来，群体事件现场敢站第一排，看金融报表则两眼一黑。',
   },
   {
-    id: 'linwanzhou', name: '林晚舟', age: 52, archetype: '金融专才', color: '#22d3ee',
+    id: 'linwanzhou', name: '林晚舟', age: 52, archetype: '金融专才', color: '#6e8cff',
     dims: [48, 68, 35, 45, 30, 90], merit: 50,
     bio: '从交易所到地方金融局，拆过两单交叉违约，信奉「债务问题在表外」，不善接访。',
   },
   {
-    id: 'gucanglan', name: '顾沧澜', age: 54, archetype: '改革闯将', color: '#e8a317',
+    id: 'gucanglan', name: '顾沧澜', age: 54, archetype: '改革闯将', color: '#d4a25a',
     dims: [72, 85, 42, 50, 40, 58], merit: 50,
     bio: '开发区起家，敢给政策敢拍板，GDP 战绩赫赫，留下的维稳隐患也不止一处。',
   },
   {
-    id: 'hansongling', name: '韩松龄', age: 60, archetype: '稳健守成', color: '#94a3b8',
+    id: 'hansongling', name: '韩松龄', age: 60, archetype: '稳健守成', color: '#a29c91',
     dims: [45, 58, 62, 52, 55, 55], merit: 50,
     bio: '四平八稳的老班长，没有短板也没有杀手锏，复杂局面里是定盘星而非破局者。',
   },
@@ -102,27 +102,27 @@ export const OFFICIALS = [
     bio: '工科博士转岗，主抓产业链图谱与攻关专项，跟院士谈笑风生，跟上访户相对无言。',
   },
   {
-    id: 'suhuaijin', name: '苏怀瑾', age: 55, archetype: '学者型', color: '#10b981',
+    id: 'suhuaijin', name: '苏怀瑾', age: 55, archetype: '学者型', color: '#6fc2ae',
     dims: [62, 55, 48, 75, 30, 52], merit: 50,
     bio: '智库出身的笔杆子，善对上沟通、对外阐释，方案漂亮，落地常需旁人托底。',
   },
   {
-    id: 'machengjun', name: '马承钧', age: 53, archetype: '基层实干', color: '#f59e0b',
+    id: 'machengjun', name: '马承钧', age: 53, archetype: '基层实干', color: '#d4a25a',
     dims: [35, 52, 78, 32, 60, 30], merit: 50,
     bio: '乡镇党委书记干到地级市主官，防汛保供睡过堤坝，资本市场对他是另一个星球。',
   },
   {
-    id: 'duanyune', name: '段云鹗', age: 51, archetype: '动员强手', color: '#ef4444',
+    id: 'duanyune', name: '段云鹗', age: 51, archetype: '动员强手', color: '#e5483b',
     dims: [28, 40, 92, 38, 48, 32], merit: 50,
     bio: '应急系统淬炼出的现场指挥，转移十万人不乱阵脚，案头经济工作非其所长。',
   },
   {
-    id: 'weishutong', name: '卫疏桐', age: 50, archetype: '外联能手', color: '#14b8a6',
+    id: 'weishutong', name: '卫疏桐', age: 50, archetype: '外联能手', color: '#6fc2ae',
     dims: [42, 50, 45, 88, 35, 55], merit: 50,
     bio: '驻外商务参赞历练，外资圈与部委两头熟，争取政策窗口的本事省内无出其右。',
   },
   {
-    id: 'tangjiming', name: '唐既明', age: 47, archetype: '改革闯将', color: '#a855f7',
+    id: 'tangjiming', name: '唐既明', age: 47, archetype: '改革闯将', color: '#b07cc6',
     dims: [78, 72, 38, 42, 58, 50], merit: 50,
     bio: '最年轻的厅级干部，押注新能源赛道再造了一个园区，锋芒太露，树敌不少。',
   },
@@ -151,7 +151,7 @@ export const OFFICIALS = [
 // ----------------------------------------------------------------------------
 export const HD_SCENARIOS = [
   {
-    id: 'windfactory', label: '服装厂股权纠纷与群体事件', color: '#c41e3a',
+    id: 'windfactory', label: '服装厂股权纠纷与群体事件', color: '#e5483b',
     intro: '老牌服装厂股权遭质押拍卖，职工持股会与新买家对峙，拆迁线与金融线同时引信。',
     acts: [
       '凌晨拆迁通知贴上厂门，职工持股会连夜聚集护厂，对峙在围墙两侧悄然成形。',
@@ -172,7 +172,7 @@ export const HD_SCENARIOS = [
     watch: ['厂区周边聚集人数与时段分布', '股权拍卖程序异议数量', '涉事短视频传播热度曲线'],
   },
   {
-    id: 'brightpeak', label: '重点工程招投标窝案', color: '#8b5cf6',
+    id: 'brightpeak', label: '重点工程招投标窝案', color: '#b07cc6',
     intro: '光明峰工程招投标串案牵出多名厅处级干部，项目停摆与干部观望情绪同步扩散。',
     acts: [
       '中标价异常偏低引来匿名举报，纪委初核发现评标专家名单早被人提前圈定。',
@@ -193,7 +193,7 @@ export const HD_SCENARIOS = [
     watch: ['停工标段复工率', '涉案干部留置与主动投案节奏', '重点工程审计问题金额'],
   },
   {
-    id: 'jzdebt', label: '京州城投债务暴雷', color: '#e8a317',
+    id: 'jzdebt', label: '京州城投债务暴雷', color: '#d4a25a',
     intro: '省会城投非标逾期触发交叉违约，区域融资成本跳升，土地财政缺口全面现形。',
     acts: [
       '一笔信托计划到期未兑，城投评级遭下调，区域债券一级发行当日流标。',
@@ -235,7 +235,7 @@ export const HD_SCENARIOS = [
     watch: ['井下生命探测信号', '停产整顿矿井复产率', '电煤库存可用天数'],
   },
   {
-    id: 'linpollute', label: '林城开发区环保危机', color: '#10b981',
+    id: 'linpollute', label: '林城开发区环保危机', color: '#6fc2ae',
     intro: '林城开发区地下水超标被督察组点名，园区支柱产业面临关停与搬迁的抉择。',
     acts: [
       '村民联名信附第三方检测报告直达督察组，水源地重金属超标坐实。',
@@ -256,7 +256,7 @@ export const HD_SCENARIOS = [
     watch: ['水源地复测达标率', '园区企业关停与复产清单', '外资客户审查与订单转移动向'],
   },
   {
-    id: 'typhoon', label: '沿海台风巨灾与重建', color: '#22d3ee',
+    id: 'typhoon', label: '沿海台风巨灾与重建', color: '#6e8cff',
     intro: '超强台风正面登陆，风暴潮叠加天文大潮，电网、港口与农田同时受创。',
     acts: [
       '台风路径突变提前十二小时锁定登陆点，百万人转移命令在深夜下达。',
@@ -368,11 +368,11 @@ export function hdEngine({ scenario, intensity, alloc, baselineMods, mult }) {
 
   let verdict;
   if (score < 30) {
-    verdict = ['平稳化解', '#10b981', '冲击被吸收在省域闭环内，未上升为全国性议题，班子打法可入案例库。'];
+    verdict = ['平稳化解', '#6fc2ae', '冲击被吸收在省域闭环内，未上升为全国性议题，班子打法可入案例库。'];
   } else if (score < 60) {
-    verdict = ['承压过关', '#e8a317', '底线守住但代价不小，部分领域留下后遗症，整改清单将伴随整个任期。'];
+    verdict = ['承压过关', '#d4a25a', '底线守住但代价不小，部分领域留下后遗症，整改清单将伴随整个任期。'];
   } else {
-    verdict = ['治理失分', '#c41e3a', '处置节奏全面落后于事态，上级督导介入，班子调整已在酝酿之中。'];
+    verdict = ['治理失分', '#e5483b', '处置节奏全面落后于事态，上级督导介入，班子调整已在酝酿之中。'];
   }
 
   return { raw, relief, net, score, verdict };
@@ -391,10 +391,10 @@ export function meritDelta(score) {
  * 任免判定：merit → [结论, 颜色]
  */
 export function promotionJudge(merit) {
-  if (merit >= 70) return ['拟提拔', '#10b981'];
-  if (merit >= 50) return ['留任', '#22d3ee'];
-  if (merit >= 38) return ['诫勉', '#e8a317'];
-  return ['调整', '#c41e3a'];
+  if (merit >= 70) return ['拟提拔', '#6fc2ae'];
+  if (merit >= 50) return ['留任', '#6e8cff'];
+  if (merit >= 38) return ['诫勉', '#d4a25a'];
+  return ['调整', '#e5483b'];
 }
 
 /**

@@ -41,10 +41,10 @@ export const REGIME = {
   v11: 'base', v7: 'base', v5: 'base', v8: 'base', v12: 'base', v10: 'base', v1: 'base',
 };
 export const REGIME_TAG = {
-  boom: ['顺境调度', '#e8a317'],
-  bust: ['逆境调度', '#10b981'],
+  boom: ['顺境调度', '#d4a25a'],
+  bust: ['逆境调度', '#6fc2ae'],
   both: ['两态常驻', '#991b1b'],
-  base: ['结构常量', '#64748b'],
+  base: ['结构常量', '#8a8578'],
 };
 
 export const VOL_LINKS = {
@@ -119,7 +119,7 @@ export const VOLUMES = {
     ],
   },
   v11: {
-    id: 'v11', order: 11, num: '卷十一', title: '地理宿命与天下观', role: 'L0 物理底座', color: '#64748b',
+    id: 'v11', order: 11, num: '卷十一', title: '地理宿命与天下观', role: 'L0 物理底座', color: '#8a8578',
     tags: ['地理密室', '治水帝国', '400毫米线', '马尔萨斯', '天下体系'],
     thesis: '一切制度与观念，都须落实在物质地基之上。高度中央集权与强集体取向，并非思想史偶然，而与「黄河—治水」「400 毫米降水线两侧农牧张力」「土地与人口的极限博弈」长期互锁。',
     frameworks: [
@@ -142,7 +142,7 @@ export const VOLUMES = {
     ],
   },
   v7: {
-    id: 'v7', order: 7, num: '卷七', title: '易经与五行宇宙观', role: 'L1 宇宙观底层', color: '#8b5cf6',
+    id: 'v7', order: 7, num: '卷七', title: '易经与五行宇宙观', role: 'L1 宇宙观底层', color: '#b07cc6',
     tags: ['易经', '五行', '天命', '关联思维', '绩效合法性'],
     thesis: '孔孟老庄是「上层语言」；更底层是以阴阳消长与五行生克关联组织经验世界的传统模型，常与整体论、权变思维与绩效合法性叙事相互缠绕。',
     frameworks: [
@@ -164,7 +164,7 @@ export const VOLUMES = {
     ],
   },
   v2: {
-    id: 'v2', order: 2, num: '卷二', title: '法家与外儒内法', role: 'L2 内核 Kernel', color: '#c41e3a',
+    id: 'v2', order: 2, num: '卷二', title: '法家与外儒内法', role: 'L2 内核 Kernel', color: '#e5483b',
     tags: ['法家', '韩非子', '外儒内法', '编户齐民', '国家能力'],
     thesis: '儒家以道德与血缘软性黏合社会，法家则以严刑峻法与绝对权力硬性锻造国家机器。法家不信人性本善，只信利益驱动与恐惧威慑——正是这一底层逻辑赋予古代中国极限社会动员能力，奠定大一统帝国的物理基础。',
     frameworks: [
@@ -176,7 +176,7 @@ export const VOLUMES = {
       { id: 's1', title: '一 · 韩非子的权力三角：法·术·势', lead: '摒弃道德、讲求机械效率的统治工具箱。',
         body: ['法=公开的规则（成文法律与 KPI，「刑九赏一」，触犯无论贵贱必惩、达标必赏）；术=隐秘的权谋（驭下之术，「去好去恶，臣乃见素」）；势=绝对的威权（位势压制，「飞龙乘云，腾蛇游雾」）。', '法对民、术对臣、势对天下——三者分工明确，使平庸君主亦能凭制度维持机器运转。'],
         cards: [
-          { title: '法 (Fa)', body: '以确定性的赏罚机制取代不可靠的道德自觉，驱动民众如齿轮运转。', accent: '#c41e3a' },
+          { title: '法 (Fa)', body: '以确定性的赏罚机制取代不可靠的道德自觉，驱动民众如齿轮运转。', accent: '#e5483b' },
           { title: '术 (Shu)', body: '以信息不对称维持最高权力的神秘与生杀权。', accent: '#991b1b' },
           { title: '势 (Shi)', body: '高度中央集权之「势」，是法家内核的物理基础。', accent: '#7f1d1d' },
         ] },
@@ -191,7 +191,7 @@ export const VOLUMES = {
     ],
   },
   v4: {
-    id: 'v4', order: 4, num: '卷四', title: '儒家与社会底层逻辑', role: 'L3 源代码 Source', color: '#e8a317',
+    id: 'v4', order: 4, num: '卷四', title: '儒家与社会底层逻辑', role: 'L3 源代码 Source', color: '#d4a25a',
     tags: ['儒家', '差序格局', '家国同构', '五常', '教育执念'],
     thesis: '儒家不仅是道德哲学，更是一套经两千多年迭代的「超大型人类社会管理系统」——定义了服从与责任、个体与集体的边界，构成中华文明历劫不灭的核心源代码。',
     frameworks: [
@@ -213,7 +213,7 @@ export const VOLUMES = {
     ],
   },
   v3: {
-    id: 'v3', order: 3, num: '卷三', title: '道家与战略弹性', role: 'L4 减震器 Damper', color: '#10b981',
+    id: 'v3', order: 3, num: '卷三', title: '道家与战略弹性', role: 'L4 减震器 Damper', color: '#6fc2ae',
     tags: ['道家', '无为而治', '均值回归', '反者道之动', '躺平'],
     thesis: '儒家教人「入世」，法家教人「驭世」——二者皆紧绷，经济崩溃或王朝末年系统易折。道家教人在绝境中退守、存续与顺势而为：刻在文化里的均值回归算法，亦是极度内卷下的文明减震器。',
     frameworks: [
@@ -235,7 +235,7 @@ export const VOLUMES = {
     ],
   },
   v5: {
-    id: 'v5', order: 5, num: '卷五', title: '汉字与科举', role: 'L5 硬件外挂 Hardware', color: '#22d3ee',
+    id: 'v5', order: 5, num: '卷五', title: '汉字与科举', role: 'L5 硬件外挂 Hardware', color: '#6e8cff',
     tags: ['汉字', '科举', '李约瑟难题', '标准化', '高考'],
     thesis: '欧洲与中国面积相仿，表音文字与方言分化易导向政治碎裂；中国能长期维持广域整合，靠两项制度—技术组合：超越口语的视觉书写协议（汉字）+ 跨血缘的精英选拔与意识形态标准化网络（科举）。',
     frameworks: [
@@ -257,7 +257,7 @@ export const VOLUMES = {
     ],
   },
   v6: {
-    id: 'v6', order: 6, num: '卷六', title: '佛学中国化与深层心理', role: 'L6 心理补丁 Patch', color: '#f0abfc',
+    id: 'v6', order: 6, num: '卷六', title: '佛学中国化与深层心理', role: 'L6 心理补丁 Patch', color: '#d9a7d6',
     tags: ['佛教', '禅宗', '三教合一', '因果轮回', '心理缓冲'],
     thesis: '儒家「未知生焉知死」悬置终极痛苦、法家将人工具化、道家善退守却少谈彼岸——乱世与个体重创下意义系统现「内存溢出」。佛教中国化提供可操作的超越叙事与情绪卸载接口，构成历史的「心理层」缓冲带。',
     frameworks: [
@@ -279,7 +279,7 @@ export const VOLUMES = {
     ],
   },
   v8: {
-    id: 'v8', order: 8, num: '卷八', title: '人情面子与江湖', role: 'L7 非正式层 Informal', color: '#fb923c',
+    id: 'v8', order: 8, num: '卷八', title: '人情面子与江湖', role: 'L7 非正式层 Informal', color: '#c07a4a',
     tags: ['差序格局', '面子', '人情', '耻感', '庙堂江湖'],
     thesis: '成文法与科层指令是一层；日常协作中还叠放着关系、面子与圈层信任。费孝通「差序格局」、人情往来与「庙堂—江湖」二分，是理解组织行为与政策摩擦的社会学启发式。',
     frameworks: [
@@ -301,7 +301,7 @@ export const VOLUMES = {
     ],
   },
   v12: {
-    id: 'v12', order: 12, num: '卷十二', title: '盐铁专卖与双轨经济', role: 'L8 财富闭环 Loop', color: '#d4af37',
+    id: 'v12', order: 12, num: '卷十二', title: '盐铁专卖与双轨经济', role: 'L8 财富闭环 Loop', color: '#d9b26a',
     tags: ['盐铁论', '双轨经济', '国企', '宗族资本', '财富闭环'],
     thesis: '为什么既有统管命脉的庞大国企，又有全球最「卷」最具韧性的民营生态？这不是现代发明的混合所有制，而是自汉代盐铁之辩以来的「大一统经济学」：国家控扼命脉以维稳，民间在缝隙中极致内卷以图存。',
     frameworks: [

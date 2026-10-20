@@ -1,5 +1,18 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import * as Lucide from 'lucide-react';
+import {
+  Circle as LuCircle,
+  ExternalLink as LuExternalLink,
+  Loader2 as LuLoader2,
+  SignalZero as LuSignalZero,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  Circle: LuCircle,
+  ExternalLink: LuExternalLink,
+  Loader2: LuLoader2,
+  SignalZero: LuSignalZero,
+};
 import { resolveHlsUrl } from './streamUtils.js';
 
 const MAX_HLS_RETRIES = 3;
@@ -279,7 +292,7 @@ function IframeFallbackLink({ url }) {
       target="_blank"
       rel="noopener noreferrer"
       className="absolute bottom-2 right-2 text-[10px] mono px-2 py-1 rounded z-10"
-      style={{ background: 'rgba(0,0,0,0.65)', color: 'var(--cyber-cyan)', border: '1px solid rgba(34,211,238,0.35)' }}
+      style={{ background: 'rgba(0,0,0,0.65)', color: 'var(--cyber-cyan)', border: '1px solid rgba(110, 140, 255,0.35)' }}
     >
       打开原页面 ↗
     </a>

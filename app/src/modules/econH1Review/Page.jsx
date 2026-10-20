@@ -188,7 +188,7 @@ function barOpt({ cats, data, positive = C.cyberCyan, negative = C.powerRed, hor
     value: v,
     itemStyle: { color: v >= 0 ? positive : negative, borderRadius: horizontal ? [0, 3, 3, 0] : [3, 3, 0, 0] },
   }));
-  const catAxis = { type: 'category', data: cats, axisLine: { lineStyle: { color: '#27324a' } }, axisLabel: { ...LABEL } };
+  const catAxis = { type: 'category', data: cats, axisLine: { lineStyle: { color: '#2a2d36' } }, axisLabel: { ...LABEL } };
   const valAxis = valueY({ axisLabel: { formatter: '{value}%' } });
   return {
     grid: horizontal ? { left: 92, right: 28, top: 12, bottom: 20 } : { ...GRID, bottom: 48 },
@@ -242,7 +242,7 @@ export default function Page({ embedded = false } = {}) {
       type: 'category',
       data: ['规上工业', '服务业增加值', '进出口', '社零', '固投'],
       axisLabel: { ...LABEL, interval: 0, rotate: 18 },
-      axisLine: { lineStyle: { color: '#27324a' } },
+      axisLine: { lineStyle: { color: '#2a2d36' } },
     },
     yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
     series: [
@@ -289,7 +289,7 @@ export default function Page({ embedded = false } = {}) {
         silent: true,
         symbol: 'none',
         data: [{ yAxis: 0 }],
-        lineStyle: { color: 'rgba(148,163,184,0.35)', type: 'dashed' },
+        lineStyle: { color: 'rgba(162, 156, 145,0.35)', type: 'dashed' },
         label: { show: false },
       },
     }],

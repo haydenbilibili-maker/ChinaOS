@@ -4,6 +4,7 @@ import {
   Search, ChevronUp, ChevronDown, ArrowUpToLine, Minus, Plus,
 } from 'lucide-react';
 import { Markdown } from '../../lib/ai/markdown.jsx';
+import Reader from '../../vi/reader/Reader.jsx';
 import { getTheme, setTheme } from '../../lib/theme.js';
 import {
   resolveDocument,
@@ -50,7 +51,7 @@ function ChapterBlock({ chapter, searchQuery, activeMatchIndex }) {
             className="text-sm leading-relaxed pl-3 doc-reader-article"
             style={{
               color: 'var(--text-secondary)',
-              borderLeft: '2px solid rgba(34,211,238,0.35)',
+              borderLeft: '2px solid rgba(110, 140, 255,0.35)',
             }}
           >
             <Markdown text={art} searchQuery={searchQuery} activeMatchIndex={activeMatchIndex} />
@@ -298,6 +299,32 @@ export default function DocumentViewer({ record, kind, open, onClose, mode = 'ov
   if (!open || !record) return null;
   if (!content && !corpusLoading) return null;
 
+  // 2.0：浮层模式统一进入专属阅读器（全屏、目录、划线、笔记）
+  if (mode === 'overlay') {
+    const chapterMd = (content?.chapters || [])
+      .map((ch) => [`## ${ch.title}`, ...(ch.articles || [])].join('\n\n'))
+      .join('\n\n');
+    const md = [content?.body, chapterMd].filter(Boolean).join('\n\n');
+    const issuerMeta = kind === 'legal' ? record.issuer : record.org;
+    const dateMeta = kind === 'legal' ? record.effectiveDate : record.date;
+    return (
+      <Reader
+        open
+        onClose={onClose}
+        docId={`${kind}:${record.id}`}
+        title={record.title}
+        badge={content?.label}
+        meta={[issuerMeta, dateMeta, typeof record.type === 'string' ? record.type : record.category]}
+        markdown={md}
+        loading={corpusLoading && !content}
+        error={corpusError || ''}
+        sourceUrl={content?.sourceUrl}
+        sourcePath={typeof window !== 'undefined' ? window.location.hash.replace(/^#/, '') : ''}
+        disclaimer={content?.disclaimer}
+      />
+    );
+  }
+
   const badgeStyle = content?.tier === 'corpus'
     ? corpusTierBadgeStyle(content.corpusTier)
     : (TIER_BADGE_STYLE[content?.tier] || TIER_BADGE_STYLE.fallback);
@@ -367,7 +394,7 @@ export default function DocumentViewer({ record, kind, open, onClose, mode = 'ov
         className={panelClass}
         style={{
           background: 'var(--bg-base)',
-          border: mode === 'overlay' ? '1px solid var(--border-subtle)' : '1px solid rgba(34,211,238,0.2)',
+          border: mode === 'overlay' ? '1px solid var(--border-subtle)' : '1px solid rgba(110, 140, 255,0.2)',
         }}
       >
         <header
@@ -405,7 +432,7 @@ export default function DocumentViewer({ record, kind, open, onClose, mode = 'ov
               className="p-2 rounded"
               style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', color: 'var(--text-secondary)', cursor: 'pointer' }}
             >
-              {copied ? <Check size={16} style={{ color: '#10b981' }} /> : <Copy size={16} />}
+              {copied ? <Check size={16} style={{ color: '#6fc2ae' }} /> : <Copy size={16} />}
             </button>
             <button
               type="button"
@@ -456,7 +483,7 @@ export default function DocumentViewer({ record, kind, open, onClose, mode = 'ov
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 text-xs mono mb-5 px-2.5 py-1.5 rounded"
-              style={{ background: 'rgba(34,211,238,0.1)', color: 'var(--cyber-cyan)', border: '1px solid rgba(34,211,238,0.25)' }}
+              style={{ background: 'rgba(110, 140, 255,0.1)', color: 'var(--cyber-cyan)', border: '1px solid rgba(110, 140, 255,0.25)' }}
             >
               <ExternalLink size={13} />
               查阅官方发布渠道
@@ -471,7 +498,7 @@ export default function DocumentViewer({ record, kind, open, onClose, mode = 'ov
           )}
 
           {corpusError && !corpusLoading && (
-            <div className="mb-4 px-3 py-2 rounded text-xs" style={{ background: 'rgba(232,163,23,0.12)', color: '#e8a317', border: '1px solid rgba(232,163,23,0.35)' }}>
+            <div className="mb-4 px-3 py-2 rounded text-xs" style={{ background: 'rgba(212, 162, 90,0.12)', color: '#d4a25a', border: '1px solid rgba(212, 162, 90,0.35)' }}>
               本地原文加载失败，已回退至要点汇编。{corpusError}
             </div>
           )}
@@ -512,7 +539,7 @@ export default function DocumentViewer({ record, kind, open, onClose, mode = 'ov
                   <li
                     key={a}
                     className="text-xs leading-relaxed pl-2"
-                    style={{ color: 'var(--text-secondary)', borderLeft: '2px solid rgba(232,163,23,0.5)' }}
+                    style={{ color: 'var(--text-secondary)', borderLeft: '2px solid rgba(212, 162, 90,0.5)' }}
                   >
                     {a}
                   </li>
@@ -546,9 +573,9 @@ export function ReadDocumentButton({ onClick, hasBody, hasCorpus, className = ''
       onClick={onClick}
       className={`inline-flex items-center gap-1.5 text-xs mono px-3 py-1.5 rounded ${className}`}
       style={{
-        background: hasCorpus ? 'rgba(16,185,129,0.14)' : 'rgba(196,30,58,0.14)',
-        color: hasCorpus ? '#10b981' : 'var(--china-red)',
-        border: hasCorpus ? '1px solid rgba(16,185,129,0.35)' : '1px solid rgba(196,30,58,0.35)',
+        background: hasCorpus ? 'rgba(111, 194, 174,0.14)' : 'rgba(229, 72, 59,0.14)',
+        color: hasCorpus ? '#6fc2ae' : 'var(--china-red)',
+        border: hasCorpus ? '1px solid rgba(111, 194, 174,0.35)' : '1px solid rgba(229, 72, 59,0.35)',
         cursor: 'pointer',
       }}
     >

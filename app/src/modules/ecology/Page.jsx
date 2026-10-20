@@ -9,9 +9,9 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // ----------------------------------------------------------------------------
 
 const PILLARS = [
-  { key: 'green', label: '扩绿增汇', accent: '#10b981', score: 95, desc: '森林覆盖率 24.02%，全球新增绿化贡献 30%+；国家公园体系重构保护地边界。' },
-  { key: 'carbon', label: '降碳减污', accent: '#22d3ee', score: 88, desc: '单位 GDP 能耗指数较 2015 年降 30%；碳排放强度较峰值降幅超 25%。' },
-  { key: 'value', label: '价值实现', accent: '#e8a317', score: 72, desc: 'GEP 核算与生态补偿、碳汇交易把外部性内化为可量化、可交易的制度安排。' },
+  { key: 'green', label: '扩绿增汇', accent: '#6fc2ae', score: 95, desc: '森林覆盖率 24.02%，全球新增绿化贡献 30%+；国家公园体系重构保护地边界。' },
+  { key: 'carbon', label: '降碳减污', accent: '#6e8cff', score: 88, desc: '单位 GDP 能耗指数较 2015 年降 30%；碳排放强度较峰值降幅超 25%。' },
+  { key: 'value', label: '价值实现', accent: '#d4a25a', score: 72, desc: 'GEP 核算与生态补偿、碳汇交易把外部性内化为可量化、可交易的制度安排。' },
 ];
 
 const PARKS = [
@@ -25,14 +25,14 @@ const PARKS = [
 // 六大战役：指标改善 / 机制 / 难点
 const CAMPAIGNS = [
   {
-    key: 'air', label: '蓝天保卫战', accent: '#22d3ee',
+    key: 'air', label: '蓝天保卫战', accent: '#6e8cff',
     metric: 'PM2.5 全国均值', from: '72 μg/m³ (2013)', to: '29.3 μg/m³ (2024)', delta: '-59%',
     mechanism: '「大气十条」量化军令状 + 京津冀煤改气/煤改电 + 重点行业超低排放改造 + 重污染天气应急联动。指标层层分解到城市，排名公开、约谈问责。',
     pain: '秋冬季静稳天气下的反弹压力；臭氧（O₃）污染不降反升成为第二战场；煤改气的民生成本与气源保供矛盾。',
     bars: { cats: ['2013', '2017', '2020', '2024'], vals: [72, 47, 33, 29.3], unit: 'μg/m³' },
   },
   {
-    key: 'water', label: '碧水攻坚', accent: '#3b82f6',
+    key: 'water', label: '碧水攻坚', accent: '#6e8cff',
     metric: '地表水 I–III 类断面比例', from: '64.5% (2015)', to: '90.4% (2024)', delta: '+25.9pp',
     mechanism: '河长制/湖长制把每条河流的责任落到具体官员头上；长江「十年禁渔」+ 排污口溯源整治；城市黑臭水体限期销号。',
     pain: '面源污染（农业化肥/农村污水）治理远难于点源；地下水超采与污染的长周期修复；治理资金对地方财政的持续压力。',
@@ -46,21 +46,21 @@ const CAMPAIGNS = [
     bars: { cats: ['修复成本', '管控成本'], vals: [100, 18], unit: '相对成本=100' },
   },
   {
-    key: 'dual', label: '双碳行动', accent: '#10b981',
+    key: 'dual', label: '双碳行动', accent: '#6fc2ae',
     metric: '碳排放强度（较 2005）', from: '基准 100', to: '约 -51% (2024)', delta: '超额承诺',
     mechanism: '「1+N」政策体系：顶层双碳意见 + 能源/工业/交通/建筑分领域施工图；能耗双控转向碳排放双控；先立后破，新能源先成体系再退煤。',
     pain: '达峰平台期的总量仍在高位；电力系统对煤电的兜底依赖（保供 vs 减碳）；地方「运动式减碳」与「一刀切限电」的纠偏成本。',
     bars: { cats: ['2005', '2010', '2015', '2020', '2024'], vals: [100, 79, 62, 52, 49], unit: '强度指数' },
   },
   {
-    key: 'bio', label: '生物多样性', accent: '#8b5cf6',
+    key: 'bio', label: '生物多样性', accent: '#b07cc6',
     metric: '国家重点保护物种种群', from: '多数濒危', to: '旗舰物种回升', delta: '3030 框架',
     mechanism: '生态保护红线（陆域 ~30%）把开发边界写进国土空间规划；国家公园 + 昆明-蒙特利尔框架「3030」目标（2030 保护 30% 陆海）。',
     pain: '保护红线与地方开发冲突的执行博弈；生物多样性难以像碳一样被单一指标定价；外来物种入侵与栖息地碎片化。',
     bars: { cats: ['藏羚羊', '朱鹮', '东北虎', '大熊猫'], vals: [300, 250, 180, 165], unit: '2000=100' },
   },
   {
-    key: 'gep', label: '生态产品价值(GEP)', accent: '#e8a317',
+    key: 'gep', label: '生态产品价值(GEP)', accent: '#d4a25a',
     metric: 'GEP 核算试点', from: '概念 (2013)', to: '省市县三级试点', delta: '制度化中',
     mechanism: '把生态系统的供给/调节/文化服务折算为货币价值（GEP），与 GDP 并行考核；浙江丽水、福建三明等地试点「两山银行」、生态信用。',
     pain: '核算口径未全国统一，「算得出」不等于「卖得掉」；生态产品交易缺乏需求侧强约束；横向生态补偿仍依赖上级转移支付撮合。',
@@ -87,16 +87,16 @@ const NONFOSSIL_SHARE = [9.4, 10.2, 13.3, 15.3, 17.5, 20.0, 25.0];
 
 // 碳价对比（示意，折合 €/吨）
 const CARBON_PRICE = [
-  { name: 'EU ETS', val: 70, color: '#3b82f6' },
-  { name: '英国 ETS', val: 45, color: '#8b5cf6' },
-  { name: '韩国 K-ETS', val: 9, color: '#22d3ee' },
-  { name: '全国碳市场(CN)', val: 12, color: '#c41e3a' },
+  { name: 'EU ETS', val: 70, color: '#6e8cff' },
+  { name: '英国 ETS', val: 45, color: '#b07cc6' },
+  { name: '韩国 K-ETS', val: 9, color: '#6e8cff' },
+  { name: '全国碳市场(CN)', val: 12, color: '#e5483b' },
 ];
 
 const CARBON_MECHANISMS = [
-  { title: '全国碳市场 (ETS)', accent: '#c41e3a', body: '2021 启动，覆盖电力行业 ~45 亿吨/年，全球最大单一碳市场。基于强度的免费配额分配，正向水泥/钢铁/电解铝扩围。', tag: '强制 · 配额' },
-  { title: 'CCER 自愿减排', accent: '#10b981', body: '2024 重启。林业碳汇/可再生能源等项目产生核证减排量，可抵销配额清缴 5%。把生态系统固碳能力变成可交易资产。', tag: '自愿 · 抵销' },
-  { title: '绿证 / 绿电交易', accent: '#22d3ee', body: '绿证对应 1MWh 非化石电量的环境权益；与碳市场并行的「双轨定价」。出口企业应对 CBAM（欧盟碳关税）的合规接口。', tag: '环境权益' },
+  { title: '全国碳市场 (ETS)', accent: '#e5483b', body: '2021 启动，覆盖电力行业 ~45 亿吨/年，全球最大单一碳市场。基于强度的免费配额分配，正向水泥/钢铁/电解铝扩围。', tag: '强制 · 配额' },
+  { title: 'CCER 自愿减排', accent: '#6fc2ae', body: '2024 重启。林业碳汇/可再生能源等项目产生核证减排量，可抵销配额清缴 5%。把生态系统固碳能力变成可交易资产。', tag: '自愿 · 抵销' },
+  { title: '绿证 / 绿电交易', accent: '#6e8cff', body: '绿证对应 1MWh 非化石电量的环境权益；与碳市场并行的「双轨定价」。出口企业应对 CBAM（欧盟碳关税）的合规接口。', tag: '环境权益' },
 ];
 
 // 生态治理六维雷达
@@ -112,11 +112,11 @@ const GEP_LAYERS = [
 
 // 生态文明制度演进时间线
 const ECO_TIMELINE = [
-  { period: '1983–2002', title: '环保基本国策', accent: '#64748b', desc: '1983 年环境保护被确立为基本国策，但实践中长期让位于增长优先；「先污染后治理」的路径在高速工业化期被默认。监管以环保局体系点状执法为主，约束力有限。' },
-  { period: '2003–2011', title: '科学发展观', accent: '#3b82f6', desc: '「两型社会」（资源节约型/环境友好型）与节能减排约束性指标首次写入五年规划——环境从口号变成可考核数字。但 GDP 锦标赛仍是主轴，数据真实性与执行刚性不足。' },
-  { period: '2012–2017', title: '生态文明入宪 · 大部制', accent: '#10b981', desc: '生态文明写入党章（2012）与宪法（2018）；「绿水青山就是金山银山」上升为执政理念。中央环保督察启动，地方党政「一岗双责」；2018 组建生态环境部，统一监管职能。' },
-  { period: '2020–2024', title: '双碳目标', accent: '#22d3ee', desc: '2020 年「3060」承诺（2030 碳达峰 / 2060 碳中和）把气候议题升格为国家战略；「1+N」政策体系铺开，全国碳市场开市，能耗双控转向碳排放双控，新能源产业与减碳目标互为飞轮。' },
-  { period: '2025–2035', title: '美丽中国 2035', accent: '#e8a317', desc: '目标设定：2035 美丽中国基本建成——PM2.5 降至 25 μg/m³ 以下、碳排放达峰后稳中有降、生态系统服务功能显著提升。治理重心从末端达标转向 GEP 核算、生态资本化与全民行动体系。' },
+  { period: '1983–2002', title: '环保基本国策', accent: '#8a8578', desc: '1983 年环境保护被确立为基本国策，但实践中长期让位于增长优先；「先污染后治理」的路径在高速工业化期被默认。监管以环保局体系点状执法为主，约束力有限。' },
+  { period: '2003–2011', title: '科学发展观', accent: '#6e8cff', desc: '「两型社会」（资源节约型/环境友好型）与节能减排约束性指标首次写入五年规划——环境从口号变成可考核数字。但 GDP 锦标赛仍是主轴，数据真实性与执行刚性不足。' },
+  { period: '2012–2017', title: '生态文明入宪 · 大部制', accent: '#6fc2ae', desc: '生态文明写入党章（2012）与宪法（2018）；「绿水青山就是金山银山」上升为执政理念。中央环保督察启动，地方党政「一岗双责」；2018 组建生态环境部，统一监管职能。' },
+  { period: '2020–2024', title: '双碳目标', accent: '#6e8cff', desc: '2020 年「3060」承诺（2030 碳达峰 / 2060 碳中和）把气候议题升格为国家战略；「1+N」政策体系铺开，全国碳市场开市，能耗双控转向碳排放双控，新能源产业与减碳目标互为飞轮。' },
+  { period: '2025–2035', title: '美丽中国 2035', accent: '#d4a25a', desc: '目标设定：2035 美丽中国基本建成——PM2.5 降至 25 μg/m³ 以下、碳排放达峰后稳中有降、生态系统服务功能显著提升。治理重心从末端达标转向 GEP 核算、生态资本化与全民行动体系。' },
 ];
 
 // ----------------------------------------------------------------------------
@@ -155,23 +155,23 @@ export default function Page() {
       name: '碳排放总量（亿吨 · 示意）',
       type: 'line', smooth: true, symbol: 'circle', symbolSize: 5,
       data: CARBON_PATH.emissions,
-      lineStyle: { color: '#10b981', width: 2.5 },
-      itemStyle: { color: '#10b981' },
-      areaStyle: { color: 'rgba(16,185,129,0.1)' },
+      lineStyle: { color: '#6fc2ae', width: 2.5 },
+      itemStyle: { color: '#6fc2ae' },
+      areaStyle: { color: 'rgba(111, 194, 174,0.1)' },
       markPoint: {
         symbolSize: 52,
-        data: [{ coord: ['2030', 121], value: '达峰', itemStyle: { color: '#e8a317' }, label: { fontSize: 10, color: '#0b1220' } }],
+        data: [{ coord: ['2030', 121], value: '达峰', itemStyle: { color: '#d4a25a' }, label: { fontSize: 10, color: '#0b1220' } }],
       },
       markArea: {
         silent: true,
-        itemStyle: { color: 'rgba(232,163,23,0.08)' },
+        itemStyle: { color: 'rgba(212, 162, 90,0.08)' },
         data: [[{ xAxis: '2030', name: '峰值平台期' }, { xAxis: '2035' }]],
-        label: { color: '#e8a317', fontSize: 10 },
+        label: { color: '#d4a25a', fontSize: 10 },
       },
       markLine: {
         silent: true, symbol: 'none',
-        lineStyle: { color: '#22d3ee', type: 'dashed' },
-        label: { color: '#22d3ee', fontSize: 10, formatter: '2060 中和（净零）' },
+        lineStyle: { color: '#6e8cff', type: 'dashed' },
+        label: { color: '#6e8cff', fontSize: 10, formatter: '2060 中和（净零）' },
         data: [{ yAxis: 8 }],
       },
     }],
@@ -188,8 +188,8 @@ export default function Page() {
       { type: 'value', min: 60, max: 100, splitLine: { show: false }, axisLabel: { color: LABEL.color, fontSize: 10, formatter: '{value}%' } },
     ],
     series: [
-      { name: 'PM2.5 均值 (μg/m³)', type: 'bar', barWidth: 16, data: AIR_PM25, itemStyle: { color: '#22d3ee', borderRadius: [3, 3, 0, 0] } },
-      { name: '优良天数比例 (%)', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', symbolSize: 6, data: AIR_GOOD, lineStyle: { color: '#10b981', width: 2 }, itemStyle: { color: '#10b981' } },
+      { name: 'PM2.5 均值 (μg/m³)', type: 'bar', barWidth: 16, data: AIR_PM25, itemStyle: { color: '#6e8cff', borderRadius: [3, 3, 0, 0] } },
+      { name: '优良天数比例 (%)', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', symbolSize: 6, data: AIR_GOOD, lineStyle: { color: '#6fc2ae', width: 2 }, itemStyle: { color: '#6fc2ae' } },
     ],
   }), []);
 
@@ -202,8 +202,8 @@ export default function Page() {
     yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
     series: [
       { name: '煤炭占一次能源消费 %', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: COAL_SHARE, lineStyle: { color: '#a16207', width: 2 }, itemStyle: { color: '#a16207' }, areaStyle: { color: 'rgba(161,98,7,0.08)' } },
-      { name: '非化石能源占比 %', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: NONFOSSIL_SHARE, lineStyle: { color: '#10b981', width: 2 }, itemStyle: { color: '#10b981' }, areaStyle: { color: 'rgba(16,185,129,0.1)' },
-        markLine: { silent: true, symbol: 'none', lineStyle: { color: '#22d3ee', type: 'dashed' }, label: { color: '#22d3ee', fontSize: 10, formatter: '2030 目标 25%' }, data: [{ yAxis: 25 }] } },
+      { name: '非化石能源占比 %', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: NONFOSSIL_SHARE, lineStyle: { color: '#6fc2ae', width: 2 }, itemStyle: { color: '#6fc2ae' }, areaStyle: { color: 'rgba(111, 194, 174,0.1)' },
+        markLine: { silent: true, symbol: 'none', lineStyle: { color: '#6e8cff', type: 'dashed' }, label: { color: '#6e8cff', fontSize: 10, formatter: '2030 目标 25%' }, data: [{ yAxis: 25 }] } },
     ],
   }), []);
 
@@ -221,7 +221,7 @@ export default function Page() {
   }), []);
 
   // —— 生态治理六维雷达 ——
-  const govRadar = radarOpt(GOV_RADAR_DIMS, GOV_RADAR_VALS, { name: '治理强度（示意）', color: '#10b981' });
+  const govRadar = radarOpt(GOV_RADAR_DIMS, GOV_RADAR_VALS, { name: '治理强度（示意）', color: '#6fc2ae' });
 
   // —— GEP 试点规模 bar（随 GEP 战役复用数据，独立呈现）——
   const gepBarOpt = useMemo(() => {
@@ -234,7 +234,7 @@ export default function Page() {
       series: [{
         type: 'bar', barWidth: 24,
         data: g.bars.vals,
-        itemStyle: { color: '#e8a317', borderRadius: [3, 3, 0, 0] },
+        itemStyle: { color: '#d4a25a', borderRadius: [3, 3, 0, 0] },
         label: { show: true, position: 'top', color: LABEL.color, fontSize: 10 },
       }],
     };
@@ -272,10 +272,10 @@ export default function Page() {
       <IntroCard>生态不再只是被保护的对象，而是被纳入<strong style={{ color: 'var(--text-primary)' }}>核算、定价与交易</strong>的系统资产——把外部性内化为可量化、可激励的制度安排。本页拆解六大战役的指标—机制—难点结构、双碳路径的物理约束，以及碳市场与 GEP 把「绿水青山」资本化的制度接口。</IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="29.3 μg/m³" label="PM2.5 全国均值（较 2013 -59%）" accent="#22d3ee" />
-        <Stat value="~18%" label="非化石能源消费占比" accent="#10b981" />
-        <Stat value="24.02%" label="森林覆盖率" accent="#10b981" />
-        <Stat value="45 亿吨/年" label="全国碳市场覆盖排放量级" accent="#e8a317" />
+        <Stat value="29.3 μg/m³" label="PM2.5 全国均值（较 2013 -59%）" accent="#6e8cff" />
+        <Stat value="~18%" label="非化石能源消费占比" accent="#6fc2ae" />
+        <Stat value="24.02%" label="森林覆盖率" accent="#6fc2ae" />
+        <Stat value="45 亿吨/年" label="全国碳市场覆盖排放量级" accent="#d4a25a" />
       </Grid>
 
       {/* ① 六大战役选择器 */}
@@ -308,9 +308,9 @@ export default function Page() {
         <EChart option={carbonPathOpt} style={{ height: 280 }} />
         <Grid cols={3} className="mt-4">
           {[
-            ['达峰 ≠ 拐点即下行', '工程预期是「达峰后平台期」：2030–2035 总量在高位徘徊，电力需求增量先由新能源吸收，存量煤电再逐步退出——「先立后破」。', '#e8a317'],
-            ['30 年 vs 60–70 年', '欧美从达峰到中和有 60–70 年缓冲；中国承诺只用 30 年完成同样跨度——这是全球最陡的减碳斜率，也是全部产业政策的硬约束。', '#22d3ee'],
-            ['负排放兜底', '2060 净零不等于零排放：钢铁/水泥/航空的残余排放，依赖 CCUS 与林业碳汇等负排放技术对冲——这正是 CCER 的远期定价逻辑。', '#10b981'],
+            ['达峰 ≠ 拐点即下行', '工程预期是「达峰后平台期」：2030–2035 总量在高位徘徊，电力需求增量先由新能源吸收，存量煤电再逐步退出——「先立后破」。', '#d4a25a'],
+            ['30 年 vs 60–70 年', '欧美从达峰到中和有 60–70 年缓冲；中国承诺只用 30 年完成同样跨度——这是全球最陡的减碳斜率，也是全部产业政策的硬约束。', '#6e8cff'],
+            ['负排放兜底', '2060 净零不等于零排放：钢铁/水泥/航空的残余排放，依赖 CCUS 与林业碳汇等负排放技术对冲——这正是 CCER 的远期定价逻辑。', '#6fc2ae'],
           ].map(([t, d, c]) => (
             <div key={t} style={{ borderLeft: `2px solid ${c}`, paddingLeft: 10 }}>
               <div className="text-xs font-semibold mb-1" style={{ color: c }}>{t}</div>
@@ -324,7 +324,7 @@ export default function Page() {
       <Grid cols={2} className="mb-6">
         <Card title="空气质量改善 · PM2.5 vs 优良天数（双轴）">
           <EChart option={airOpt} style={{ height: 240 }} />
-          <div className="os-card p-3 mt-3" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #22d3ee' }}>
+          <div className="os-card p-3 mt-3" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #6e8cff' }}>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
               <strong style={{ color: 'var(--text-primary)' }}>「北京蓝」样本：</strong>北京 PM2.5 从 2013 年 89.5 降至 2024 年 30.5 μg/m³——燃煤锅炉清零、国 VI 排放、区域联防联控三线并进。被 UNEP 称为「特大城市大气治理的可复制案例」；代价是上千亿治理投入与周边产业转移成本。
             </p>
@@ -360,9 +360,9 @@ export default function Page() {
           <Card title="价差即政策空间">
             <div className="space-y-2">
               {[
-                ['为何中国碳价低', '免费配额 + 仅覆盖电力 + 强度基准而非总量封顶——碳价被刻意压在企业可承受区间，优先保证机制存活与数据真实。', '#c41e3a'],
-                ['CBAM 倒逼收敛', '欧盟碳关税按欧中碳价差补税：价差越大，出口端被欧盟「代收」的碳成本越多——倒逼国内碳价上行与行业扩围。', '#3b82f6'],
-                ['有偿分配是下一步', '配额从免费到拍卖、行业从电力到八大行业、总量从强度到绝对封顶——三步走完，碳价才成为真正的减排信号。', '#e8a317'],
+                ['为何中国碳价低', '免费配额 + 仅覆盖电力 + 强度基准而非总量封顶——碳价被刻意压在企业可承受区间，优先保证机制存活与数据真实。', '#e5483b'],
+                ['CBAM 倒逼收敛', '欧盟碳关税按欧中碳价差补税：价差越大，出口端被欧盟「代收」的碳成本越多——倒逼国内碳价上行与行业扩围。', '#6e8cff'],
+                ['有偿分配是下一步', '配额从免费到拍卖、行业从电力到八大行业、总量从强度到绝对封顶——三步走完，碳价才成为真正的减排信号。', '#d4a25a'],
               ].map(([t, d, c]) => (
                 <div key={t} style={{ borderLeft: `2px solid ${c}`, paddingLeft: 10 }}>
                   <div className="text-xs font-semibold" style={{ color: c }}>{t}</div>
@@ -385,7 +385,7 @@ export default function Page() {
         <Card title="GEP 核算 · 给绿水青山定价">
           <div className="space-y-2 mb-3">
             {GEP_LAYERS.map(([t, d]) => (
-              <div key={t} style={{ borderLeft: '2px solid #e8a317', paddingLeft: 10 }}>
+              <div key={t} style={{ borderLeft: '2px solid #d4a25a', paddingLeft: 10 }}>
                 <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{t}</div>
                 <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
               </div>
@@ -415,7 +415,7 @@ export default function Page() {
       <Card title="国家公园 · 系统治理" className="mb-6">
         <Grid cols={5}>
           {PARKS.map(([t, d]) => (
-            <div key={t} style={{ borderLeft: '2px solid #10b981', paddingLeft: 10 }}>
+            <div key={t} style={{ borderLeft: '2px solid #6fc2ae', paddingLeft: 10 }}>
               <div className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{t}</div>
               <p className="text-[11px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
             </div>
@@ -428,7 +428,7 @@ export default function Page() {
         <Card title="制度创新 · 生态资产可定价">
           <div className="space-y-2">
             {[['GEP 核算', '生态系统生产总值量化入账。'], ['碳汇交易', '把固碳服务转化为现金流。'], ['COP15', '昆明-蒙特利尔框架 3030 目标。']].map(([t, d]) => (
-              <div key={t} style={{ borderLeft: '2px solid #e8a317', paddingLeft: 10 }}>
+              <div key={t} style={{ borderLeft: '2px solid #d4a25a', paddingLeft: 10 }}>
                 <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{t}</div>
                 <p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
               </div>

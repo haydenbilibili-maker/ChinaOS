@@ -9,12 +9,12 @@
 export const AS_OF = '2026-09-28';
 
 export const THEMES = {
-  demography: { label: '人口转变与老龄化', color: '#c41e3a' },
-  labor: { label: '劳动力市场与就业', color: '#22d3ee' },
-  hukou: { label: '户籍与城市化', color: '#e8a317' },
-  distribution: { label: '收入分配与消费', color: '#10b981' },
-  welfare: { label: '社会保障与民生', color: '#8b5cf6' },
-  growth: { label: '增长潜力与宏观', color: '#fb923c' },
+  demography: { label: '人口转变与老龄化', color: '#e5483b' },
+  labor: { label: '劳动力市场与就业', color: '#6e8cff' },
+  hukou: { label: '户籍与城市化', color: '#d4a25a' },
+  distribution: { label: '收入分配与消费', color: '#6fc2ae' },
+  welfare: { label: '社会保障与民生', color: '#b07cc6' },
+  growth: { label: '增长潜力与宏观', color: '#c07a4a' },
 };
 export const THEME_KEYS = Object.keys(THEMES);
 
@@ -43,12 +43,12 @@ export const BOARD = {
 };
 
 export const CAREER_GROUPS = {
-  rural: { label: '农村发展研究所', color: '#10b981' },
-  iple: { label: '人口与劳动经济研究所', color: '#c41e3a' },
-  cass: { label: '中国社科院院领导', color: '#8b5cf6' },
-  npc: { label: '全国人大', color: '#e8a317' },
-  pboc: { label: '央行货币政策委员会', color: '#22d3ee' },
-  tk: { label: '智库 / 论坛', color: '#fb923c' },
+  rural: { label: '农村发展研究所', color: '#6fc2ae' },
+  iple: { label: '人口与劳动经济研究所', color: '#e5483b' },
+  cass: { label: '中国社科院院领导', color: '#b07cc6' },
+  npc: { label: '全国人大', color: '#d4a25a' },
+  pboc: { label: '央行货币政策委员会', color: '#6e8cff' },
+  tk: { label: '智库 / 论坛', color: '#c07a4a' },
 };
 
 /** 履历甘特：起止为小数年；note 记录口径出入 */

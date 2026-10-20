@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Lucide from 'lucide-react';
+import { Pause as LPause, Play as LPlay } from 'lucide-react';
 import { MONTH_LABELS } from './liveMapHistory.js';
 
 export default function LiveMapTimeline({
@@ -7,7 +7,7 @@ export default function LiveMapTimeline({
   onChange,
   playing,
   onTogglePlay,
-  accent = '#22d3ee',
+  accent = '#6e8cff',
 }) {
   return (
     <div
@@ -22,7 +22,7 @@ export default function LiveMapTimeline({
         style={{ background: `${accent}22`, border: `1px solid ${accent}55`, color: accent }}
         aria-label={playing ? '暂停回放' : '播放回放'}
       >
-        {playing ? <Lucide.Pause size={13} /> : <Lucide.Play size={13} />}
+        {playing ? <LPause size={13} /> : <LPlay size={13} />}
       </button>
       <input
         type="range"

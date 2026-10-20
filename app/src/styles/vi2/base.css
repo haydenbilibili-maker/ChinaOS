@@ -1,0 +1,418 @@
+/* ============================================================================
+ * VI 2.0 · 画布、排版与动效基元
+ * ========================================================================== */
+
+/* ── 画布 E0：漆面底 + 氛围光 + 浑仪水印 + 颗粒 ───────────────── */
+html {
+  background: var(--vi-bg-0);
+}
+
+body {
+  font-family: var(--vi-font-ui);
+  font-size: var(--vi-fs-body);
+  line-height: 1.65;
+  background: var(--vi-bg-1);
+  color: var(--vi-ink-1);
+  font-feature-settings: 'kern' 1, 'liga' 1, 'cv11' 1, 'ss01' 1;
+  text-rendering: optimizeLegibility;
+}
+
+:root[data-theme='light'] body {
+  background: var(--vi-bg-1);
+}
+
+/* 氛围光：三团极慢漂移的光，只在最底层 */
+body::before,
+:root[data-theme='light'] body::before {
+  content: '';
+  position: fixed;
+  inset: -20vmax;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 1;
+  background:
+    radial-gradient(38vmax 30vmax at 18% 12%, rgba(var(--vi-cinnabar-rgb), 0.11), transparent 70%),
+    radial-gradient(42vmax 34vmax at 86% 88%, rgba(var(--vi-brass-rgb), 0.1), transparent 70%),
+    radial-gradient(30vmax 26vmax at 78% 22%, rgba(var(--vi-lapis-rgb), 0.07), transparent 70%);
+  animation: vi-aurora 56s var(--vi-ease-tide) infinite alternate;
+}
+
+:root[data-theme='light'] body::before {
+  background:
+    radial-gradient(38vmax 30vmax at 18% 12%, rgba(var(--vi-cinnabar-rgb), 0.07), transparent 70%),
+    radial-gradient(42vmax 34vmax at 86% 88%, rgba(var(--vi-brass-rgb), 0.09), transparent 70%),
+    radial-gradient(30vmax 26vmax at 78% 22%, rgba(var(--vi-lapis-rgb), 0.05), transparent 70%);
+}
+
+@keyframes vi-aurora {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  50% { transform: translate3d(2.5vmax, -1.5vmax, 0) rotate(4deg) scale(1.04); }
+  100% { transform: translate3d(-2vmax, 2vmax, 0) rotate(-3deg) scale(1.02); }
+}
+
+/* 颗粒：漆面与纸面的物质感 */
+body::after,
+:root[data-theme='light'] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: var(--vi-grain-opacity);
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+}
+
+:root[data-theme='light'] body::after {
+  mix-blend-mode: multiply;
+  opacity: 0.06;
+}
+
+/* 浑仪水印：右上角缓慢转动的同心刻度环（品牌母题） */
+.vi-armillary-watermark {
+  position: fixed;
+  top: -22vmin;
+  right: -22vmin;
+  width: 78vmin;
+  height: 78vmin;
+  pointer-events: none;
+  z-index: 0;
+  color: var(--vi-brass);
+  opacity: 0.09;
+  animation: vi-spin 360s linear infinite;
+}
+
+:root[data-theme='light'] .vi-armillary-watermark {
+  opacity: 0.12;
+}
+
+@keyframes vi-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 767px) {
+  .vi-armillary-watermark {
+    top: -18vmax;
+    right: -30vmax;
+    width: 70vmax;
+    height: 70vmax;
+    opacity: 0.07;
+  }
+}
+
+/* ── 排版 ─────────────────────────────────────────────── */
+h1, h2, h3, .vi-display {
+  text-wrap: balance;
+}
+
+p, li {
+  text-wrap: pretty;
+}
+
+.vi-display {
+  font-family: var(--vi-font-display);
+  font-size: var(--vi-fs-display);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+}
+
+.vi-h1 { font-family: var(--vi-font-display); font-size: var(--vi-fs-h1); font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; font-variation-settings: 'opsz' 96; }
+.vi-h2 { font-family: var(--vi-font-display); font-size: var(--vi-fs-h2); font-weight: 600; line-height: 1.25; letter-spacing: -0.01em; }
+.vi-h3 { font-size: var(--vi-fs-h3); font-weight: 600; line-height: 1.35; }
+.vi-caption { font-size: var(--vi-fs-caption); font-weight: 500; letter-spacing: 0.04em; color: var(--vi-ink-3); }
+.vi-figure { font-family: var(--vi-font-ui); font-variant-numeric: tabular-nums lining-nums; font-feature-settings: 'tnum' 1, 'cv11' 1; }
+.vi-mono { font-family: var(--vi-font-mono); }
+
+/* 1.x 的 .mono 大量用于界面标签：改为等宽数字的界面字体，只保留数字对齐 */
+.mono {
+  font-family: var(--vi-font-ui);
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1, 'cv11' 1;
+}
+
+.os-mono-tabular {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* 页面标题：编辑部气质 */
+.os-page-header {
+  padding-bottom: 1.5rem;
+  margin-bottom: clamp(1.75rem, 1.4rem + 1.4vw, 2.75rem);
+  border-bottom: 1px solid var(--vi-line);
+}
+
+.os-page-header::after {
+  height: 1px;
+  background: linear-gradient(90deg, var(--vi-brass), rgba(var(--vi-brass-rgb), 0.2) 60%, transparent);
+  animation: os-brush-draw var(--vi-dur-epic) var(--vi-ease-ink) 0.1s both;
+}
+
+.os-page-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0;
+  margin-bottom: 0.9rem;
+  background: none;
+  color: var(--vi-ink-3);
+  font-family: var(--vi-font-ui);
+  font-size: var(--vi-fs-caption);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* 朱文小印作为眉题前缀 */
+.os-page-badge::before {
+  content: '';
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 2px;
+  background: var(--vi-cinnabar);
+  box-shadow: 0 0 0 2px rgba(var(--vi-cinnabar-rgb), 0.2), 0 0 14px rgba(var(--vi-cinnabar-rgb), 0.45);
+}
+
+.os-page-title {
+  font-family: var(--vi-font-display);
+  font-size: var(--vi-fs-h1);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  font-variation-settings: 'opsz' 96;
+}
+
+.os-page-subtitle {
+  margin-top: 0.75rem;
+  max-width: 44rem;
+  font-size: var(--vi-fs-body);
+  line-height: 1.7;
+  color: var(--vi-ink-2);
+}
+
+.os-card-title {
+  font-size: var(--vi-fs-h3);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+/* 统计数值：大号等宽数字 */
+.os-stat-value {
+  font-family: var(--vi-font-display);
+  font-size: var(--vi-fs-figure);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums lining-nums;
+  font-variation-settings: 'opsz' 72;
+}
+
+.os-stat-label {
+  margin-top: 0.4rem;
+  font-size: var(--vi-fs-caption);
+  letter-spacing: 0.04em;
+  color: var(--vi-ink-3);
+}
+
+/* 可读性底线：1.x 的 10px 文字统一抬到 caption */
+.text-\[10px\],
+.text-\[9px\] {
+  font-size: var(--vi-fs-caption) !important;
+}
+
+.text-\[11px\] {
+  font-size: 0.75rem !important;
+}
+
+/* ── 选择与焦点 ───────────────────────────────────────── */
+::selection {
+  background: rgba(var(--vi-brass-rgb), 0.32);
+  color: var(--vi-ink-1);
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: 6px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+
+/* ── 动效基元 ─────────────────────────────────────────── */
+@keyframes vi-bloom {
+  from { opacity: 0; filter: blur(8px); transform: translate3d(0, 10px, 0); }
+  to { opacity: 1; filter: blur(0); transform: none; }
+}
+
+@keyframes vi-sweep {
+  from { transform: translateX(-100%); opacity: 0; }
+  20% { opacity: 1; }
+  to { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes vi-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.55; }
+  50% { transform: scale(1.6); opacity: 0; }
+}
+
+.os-page-enter {
+  animation: vi-bloom var(--vi-dur-slow) var(--vi-ease-ink) both;
+}
+
+.os-section-stagger > * {
+  animation-name: vi-bloom;
+  animation-duration: var(--vi-dur-slow);
+  animation-timing-function: var(--vi-ease-ink);
+}
+
+.vi-bloom {
+  animation: vi-bloom var(--vi-dur-slow) var(--vi-ease-ink) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  .vi-armillary-watermark {
+    animation: none !important;
+  }
+
+  .os-page-enter,
+  .os-section-stagger > *,
+  .vi-bloom {
+    animation: none !important;
+    filter: none !important;
+  }
+}
+
+/* 经纬网格：只留极淡的暖色细线，替代 1.x 的青色扫描栅格 */
+.grid-backdrop,
+:root[data-theme='light'] .grid-backdrop {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--vi-line) 50%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--vi-line) 50%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: -1px -1px;
+  /* 注意：该类挂在 <main> 上，不能用 mask，否则会连内容一起淡出 */
+}
+
+/* 减弱动效：情报条保持单行，可横向滑动 */
+@media (prefers-reduced-motion: reduce) {
+  .os-ticker-track {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    gap: 2rem;
+  }
+}
+
+/* ══ 卷首（masthead）：分组 · 卷次 · 模块色 · 大字水印 ═══════════════ */
+.os-masthead {
+  --mh-accent: var(--vi-brass);
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+  padding-top: clamp(0.5rem, 0.2rem + 1vw, 1.25rem);
+}
+
+/* 模块色晕：左上一抹 */
+.os-masthead::before {
+  content: '';
+  position: absolute;
+  z-index: -2;
+  inset: -40% 40% -10% -12%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--mh-accent) 16%, transparent), transparent);
+  pointer-events: none;
+}
+
+.os-masthead::after {
+  background: linear-gradient(90deg, var(--mh-accent), color-mix(in srgb, var(--mh-accent) 20%, transparent) 55%, transparent);
+}
+
+.os-masthead__glyph {
+  position: absolute;
+  z-index: -1;
+  right: clamp(-0.5rem, -2rem + 4vw, 2rem);
+  top: 50%;
+  transform: translateY(-46%);
+  font-family: 'Noto Serif SC', var(--vi-font-read), serif;
+  font-size: clamp(8rem, 5rem + 12vw, 17rem);
+  font-weight: 900;
+  line-height: 1;
+  color: transparent;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--mh-accent) 34%, transparent), transparent 78%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--mh-accent) 22%, transparent);
+  pointer-events: none;
+  user-select: none;
+  animation: os-masthead-glyph 1.4s var(--vi-ease-ink) both;
+}
+
+@keyframes os-masthead-glyph {
+  from { opacity: 0; transform: translateY(-40%) scale(1.06); filter: blur(6px); }
+  to { opacity: 1; transform: translateY(-46%) scale(1); filter: blur(0); }
+}
+
+.os-masthead__kicker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1rem;
+  margin-bottom: 0.9rem;
+}
+
+.os-masthead__kicker .os-page-badge {
+  margin-bottom: 0;
+}
+
+.os-masthead__group {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  padding: 0.2rem 0.65rem 0.22rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--mh-accent) 45%, transparent);
+  background: color-mix(in srgb, var(--mh-accent) 10%, transparent);
+  color: var(--vi-ink-1);
+  font-size: var(--vi-fs-caption);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.os-masthead__no {
+  color: var(--mh-accent);
+  font-family: var(--vi-font-display);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.os-masthead__no i {
+  font-style: normal;
+  color: var(--vi-ink-3);
+}
+
+.os-masthead .os-page-title {
+  max-width: 18em;
+  text-wrap: balance;
+}
+
+.os-masthead .os-page-subtitle {
+  text-wrap: pretty;
+}
+
+@media (max-width: 767px) {
+  .os-masthead__glyph {
+    font-size: 6rem;
+    right: -0.5rem;
+    top: 30%;
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .os-masthead__glyph { animation: none; }
+}

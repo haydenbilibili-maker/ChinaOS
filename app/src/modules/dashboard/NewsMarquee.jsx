@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Lucide from 'lucide-react';
+import { Loader2 as LLoader2, Newspaper as LNewspaper } from 'lucide-react';
 import {
   useNewsFeed,
   truncateTitle,
@@ -9,8 +9,8 @@ import {
   NEWS_MAX_AGE_DAYS,
 } from './newsFeed.js';
 
-const STEEL = '#22d3ee';
-const HOLD = '#e8a317';
+const STEEL = '#6e8cff';
+const HOLD = '#d4a25a';
 
 function NewsChip({ item }) {
   const meta = getSourceBadge(item.source);
@@ -50,14 +50,14 @@ function StatusPill({ status, mode, error, filterStats }) {
   if (status === 'loading') {
     return (
       <span className="inline-flex items-center gap-1 text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>
-        <Lucide.Loader2 size={10} className="animate-spin" />
+        <LLoader2 size={10} className="animate-spin" />
         同步中
       </span>
     );
   }
   if (status === 'offline') {
     return (
-      <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(232,163,23,0.14)', color: HOLD }}>
+      <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(212, 162, 90,0.14)', color: HOLD }}>
         离线 · 种子
       </span>
     );
@@ -67,10 +67,10 @@ function StatusPill({ status, mode, error, filterStats }) {
     return (
       <span
         className="text-[10px] mono px-1.5 py-0.5 rounded inline-flex items-center gap-1"
-        style={{ background: 'rgba(16,185,129,0.14)', color: '#10b981' }}
+        style={{ background: 'rgba(111, 194, 174,0.14)', color: '#6fc2ae' }}
         title={filtered ? `已滤除 ${filterStats.filteredOut} 条过期/无效（>${NEWS_MAX_AGE_DAYS}天）` : undefined}
       >
-        <span className="os-live-dot w-1.5 h-1.5 rounded-full shrink-0" style={{ background: '#10b981' }} aria-hidden="true" />
+        <span className="os-live-dot w-1.5 h-1.5 rounded-full shrink-0" style={{ background: '#6fc2ae' }} aria-hidden="true" />
         实时 RSS
         {filtered && (
           <span style={{ color: 'var(--text-tertiary)' }}>
@@ -101,7 +101,7 @@ export default function NewsMarquee({ refreshKey = 0 }) {
   return (
     <div className="mt-5 os-news-marquee">
       <div className="flex items-center gap-2 mb-2 flex-wrap">
-        <Lucide.Newspaper size={14} style={{ color: STEEL }} />
+        <LNewspaper size={14} style={{ color: STEEL }} />
         <span className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>时政要闻</span>
         <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>
           央视 · 人民日报 · 新华社等 · {NEWS_MAX_AGE_DAYS}天内 · 去重简报
@@ -116,7 +116,7 @@ export default function NewsMarquee({ refreshKey = 0 }) {
           className="os-card flex items-center justify-center gap-2 py-3 text-xs"
           style={{ color: 'var(--text-tertiary)', borderColor: 'var(--border-subtle)' }}
         >
-          <Lucide.Loader2 size={14} className="animate-spin" />
+          <LLoader2 size={14} className="animate-spin" />
           正在拉取主流媒体 RSS…
         </div>
       ) : (

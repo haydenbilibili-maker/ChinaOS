@@ -2,7 +2,7 @@
  * 重构河山 · 拟省合并地图 GeoJSON 加载
  * 省级保留单元 + 拆分省地级面合并为单一 registerMap 源
  */
-import * as echarts from 'echarts';
+import { echarts } from '../../lib/viz/echarts.js';
 import DataBus from '../../lib/data/DataBus.js';
 import {
   SPLIT_PROVINCE_ADCODES,

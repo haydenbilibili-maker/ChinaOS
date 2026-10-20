@@ -9,7 +9,7 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // ----------------------------------------------------------------------------
 const SECTORS = [
   {
-    key: 'transport', label: '交通（铁公机港）', accent: '#c41e3a',
+    key: 'transport', label: '交通（铁公机港）', accent: '#e5483b',
     scale: '~3.8 万亿', growth: '+5.2%', saturation: '高（干线趋饱和）',
     funding: '车购税 + 专项债 + 铁路债 + 收费权融资',
     pain: '干线网络基本成型，新增线路客流密度递减；中西部高铁「建得起、养不起」，运营亏损依赖交叉补贴。',
@@ -17,7 +17,7 @@ const SECTORS = [
     trend: [4.1, 4.3, 4.0, 3.9, 3.8],
   },
   {
-    key: 'energy', label: '能源水利', accent: '#e8a317',
+    key: 'energy', label: '能源水利', accent: '#d4a25a',
     scale: '~2.6 万亿', growth: '+12.8%', saturation: '中（结构性缺口）',
     funding: '电网自有资金 + 政策性金融工具 + 专项债（水利）',
     pain: '新能源装机超前而消纳通道滞后；特高压与抽水蓄能投资周期长、回报机制依赖输配电价核定。',
@@ -25,7 +25,7 @@ const SECTORS = [
     trend: [1.7, 1.9, 2.1, 2.4, 2.6],
   },
   {
-    key: 'municipal', label: '市政管网', accent: '#22d3ee',
+    key: 'municipal', label: '市政管网', accent: '#6e8cff',
     scale: '~2.1 万亿', growth: '+6.5%', saturation: '低（历史欠账）',
     funding: '专项债 + 中央预算内投资 + 城投存量盘活',
     pain: '地下管网更新欠账巨大但无直接现金流，专项债「项目收益自平衡」要求与公益属性天然冲突。',
@@ -33,7 +33,7 @@ const SECTORS = [
     trend: [1.6, 1.7, 1.8, 2.0, 2.1],
   },
   {
-    key: 'newinfra', label: '新基建（5G/算力/充电桩）', accent: '#10b981',
+    key: 'newinfra', label: '新基建（5G/算力/充电桩）', accent: '#6fc2ae',
     scale: '~1.5 万亿', growth: '+18.4%', saturation: '低（爬坡期）',
     funding: '运营商资本开支 + 社会资本 + 地方产业基金',
     pain: '数据中心区域性过剩与算力结构性短缺并存；充电桩「有桩无车 / 有车无桩」的空间错配。',
@@ -41,7 +41,7 @@ const SECTORS = [
     trend: [0.8, 1.0, 1.1, 1.3, 1.5],
   },
   {
-    key: 'dual', label: '平急两用', accent: '#8b5cf6',
+    key: 'dual', label: '平急两用', accent: '#b07cc6',
     scale: '~0.6 万亿', growth: '+25.0%', saturation: '极低（新设科目）',
     funding: '专项债 + 政策性开发性金融工具定向支持',
     pain: '「平时可用、急时能转换」的双重设计抬高单位造价；平时运营现金流薄弱，回报模型尚未跑通。',
@@ -49,7 +49,7 @@ const SECTORS = [
     trend: [0.1, 0.2, 0.3, 0.45, 0.6],
   },
   {
-    key: 'renewal', label: '城市更新', accent: '#94a3b8',
+    key: 'renewal', label: '城市更新', accent: '#a29c91',
     scale: '~1.2 万亿', growth: '+9.6%', saturation: '中（存量时代主战场）',
     funding: '专项债（城中村改造）+ 政策性银行专项借款 + 房企代建',
     pain: '拆迁成本远高于增量开发，资金平衡依赖容积率腾挪与土地二次出让——地产下行期模型失效。',
@@ -66,8 +66,8 @@ const structOpt = stackedBarOpt({
   categories: STRUCT_YEARS,
   series: [
     { name: '传统基建（铁公机港/市政）', data: [96, 94, 90, 84, 78, 72], itemStyle: { color: '#475569' } },
-    { name: '能源水利', data: [3, 4, 6, 8, 11, 14], itemStyle: { color: '#e8a317' } },
-    { name: '新基建（5G/算力/充电桩）', data: [1, 2, 4, 8, 11, 14], itemStyle: { color: '#10b981' } },
+    { name: '能源水利', data: [3, 4, 6, 8, 11, 14], itemStyle: { color: '#d4a25a' } },
+    { name: '新基建（5G/算力/充电桩）', data: [1, 2, 4, 8, 11, 14], itemStyle: { color: '#6fc2ae' } },
   ],
 });
 
@@ -85,13 +85,13 @@ const cycleOpt = {
     {
       name: '基建投资增速', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5,
       data: [23.6, 18.6, 13.7, 20.3, 15.7, 3.8, 3.4, 11.5, 9.2],
-      lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' },
-      areaStyle: { color: 'rgba(196,30,58,0.08)' },
+      lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' },
+      areaStyle: { color: 'rgba(229, 72, 59,0.08)' },
     },
     {
       name: 'GDP 增速', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5,
       data: [9.7, 10.6, 7.9, 7.4, 6.8, 6.7, 2.2, 3.0, 5.0],
-      lineStyle: { color: '#22d3ee', width: 2, type: 'dashed' }, itemStyle: { color: '#22d3ee' },
+      lineStyle: { color: '#6e8cff', width: 2, type: 'dashed' }, itemStyle: { color: '#6e8cff' },
     },
   ],
 };
@@ -100,11 +100,11 @@ const cycleOpt = {
 // 资金来源结构 donut（示意 %）
 // ----------------------------------------------------------------------------
 const fundingDonut = donutOpt([
-  { value: 32, name: '地方专项债', itemStyle: { color: '#c41e3a' } },
+  { value: 32, name: '地方专项债', itemStyle: { color: '#e5483b' } },
   { value: 22, name: '城投平台融资', itemStyle: { color: '#475569' } },
-  { value: 18, name: '一般公共预算', itemStyle: { color: '#e8a317' } },
-  { value: 16, name: '政策性金融工具', itemStyle: { color: '#22d3ee' } },
-  { value: 12, name: '社会资本（PPP/特许经营）', itemStyle: { color: '#10b981' } },
+  { value: 18, name: '一般公共预算', itemStyle: { color: '#d4a25a' } },
+  { value: 16, name: '政策性金融工具', itemStyle: { color: '#6e8cff' } },
+  { value: 12, name: '社会资本（PPP/特许经营）', itemStyle: { color: '#6fc2ae' } },
 ]);
 
 // ----------------------------------------------------------------------------
@@ -118,13 +118,13 @@ const reitsOpt = {
   series: [{
     type: 'bar', barWidth: 14,
     data: [
-      { value: 110, itemStyle: { color: '#94a3b8' } },
-      { value: 130, itemStyle: { color: '#8b5cf6' } },
-      { value: 150, itemStyle: { color: '#10b981' } },
-      { value: 210, itemStyle: { color: '#e8a317' } },
-      { value: 280, itemStyle: { color: '#22d3ee' } },
+      { value: 110, itemStyle: { color: '#a29c91' } },
+      { value: 130, itemStyle: { color: '#b07cc6' } },
+      { value: 150, itemStyle: { color: '#6fc2ae' } },
+      { value: 210, itemStyle: { color: '#d4a25a' } },
+      { value: 280, itemStyle: { color: '#6e8cff' } },
       { value: 320, itemStyle: { color: '#475569' } },
-      { value: 540, itemStyle: { color: '#c41e3a' } },
+      { value: 540, itemStyle: { color: '#e5483b' } },
     ],
     itemStyle: { borderRadius: 3 },
     label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 },
@@ -142,7 +142,7 @@ const intlOpt = {
   series: [{
     type: 'bar', barWidth: 30,
     data: [
-      { value: 42, itemStyle: { color: '#c41e3a' } },
+      { value: 42, itemStyle: { color: '#e5483b' } },
       { value: 100, itemStyle: { color: '#475569' } },
       { value: 128, itemStyle: { color: '#475569' } },
       { value: 96, itemStyle: { color: '#475569' } },
@@ -163,12 +163,12 @@ const multiplierOpt = {
   series: [{
     type: 'line', smooth: true, symbol: 'circle', symbolSize: 6,
     data: [3.2, 2.8, 2.4, 1.8, 1.3, 0.9],
-    lineStyle: { color: '#e8a317', width: 2 },
-    itemStyle: { color: '#e8a317' },
-    areaStyle: { color: 'rgba(232,163,23,0.1)' },
+    lineStyle: { color: '#d4a25a', width: 2 },
+    itemStyle: { color: '#d4a25a' },
+    areaStyle: { color: 'rgba(212, 162, 90,0.1)' },
     markLine: {
       silent: true, symbol: 'none',
-      lineStyle: { color: 'rgba(196,30,58,0.6)', type: 'dashed' },
+      lineStyle: { color: 'rgba(229, 72, 59,0.6)', type: 'dashed' },
       label: { color: LABEL.color, fontSize: 10, formatter: '乘数=1 · 投入产出临界线' },
       data: [{ yAxis: 1 }],
     },
@@ -181,7 +181,7 @@ const multiplierOpt = {
 const railRadar = radarOpt(
   ['通达度', '平均速度', '调度智能化', '成本控制', '安全冗余'],
   [98, 95, 92, 88, 96],
-  { name: '中国高铁系统 (2024)', color: '#c41e3a' },
+  { name: '中国高铁系统 (2024)', color: '#e5483b' },
 );
 
 const hubBar = {
@@ -192,8 +192,8 @@ const hubBar = {
     type: 'bar',
     barWidth: 26,
     data: [
-      { value: 95, itemStyle: { color: '#c41e3a' } },
-      { value: 92, itemStyle: { color: '#c41e3a' } },
+      { value: 95, itemStyle: { color: '#e5483b' } },
+      { value: 92, itemStyle: { color: '#e5483b' } },
       { value: 88, itemStyle: { color: '#475569' } },
       { value: 82, itemStyle: { color: '#475569' } },
     ],
@@ -211,10 +211,10 @@ const lowAltTreemap = {
     roam: false,
     nodeClick: false,
     data: [
-      { name: '物流配送', value: 40, itemStyle: { color: '#c41e3a' } },
-      { name: '个人出行(eVTOL)', value: 25, itemStyle: { color: '#22d3ee' } },
-      { name: '应急救援', value: 15, itemStyle: { color: '#e8a317' } },
-      { name: '农林植保', value: 12, itemStyle: { color: '#10b981' } },
+      { name: '物流配送', value: 40, itemStyle: { color: '#e5483b' } },
+      { name: '个人出行(eVTOL)', value: 25, itemStyle: { color: '#6e8cff' } },
+      { name: '应急救援', value: 15, itemStyle: { color: '#d4a25a' } },
+      { name: '农林植保', value: 12, itemStyle: { color: '#6fc2ae' } },
       { name: '空域管理软件', value: 8, itemStyle: { color: '#475569' } },
     ],
     label: { show: true, formatter: '{b}\n{c}%', fontSize: 11, color: '#f8fafc' },
@@ -226,11 +226,11 @@ const lowAltTreemap = {
 // ----------------------------------------------------------------------------
 const STAGES = [
   { period: '1998–2008', title: '铁公机大会战', accent: '#475569', desc: '亚洲金融危机后以国债搞基建开启范式：高速公路从零到全球第一，「要想富先修路」成为地方政府的第一性原理。基建是工业化与城镇化的物理先导，乘数效应处于历史峰值。' },
-  { period: '2008–2014', title: '四万亿刺激', accent: '#c41e3a', desc: '全球金融危机触发史上最大规模逆周期基建：高铁网络从规划提前十年落地，城投平台与土地财政完成制度耦合。增长被保住，代价是地方隐性债务的总开关从此打开。' },
-  { period: '2015–2019', title: '补短板 / 防风险', accent: '#e8a317', desc: '增速换挡后基建转向「补短板」叙事：中西部交通、农村水利、城市地下管网。同期 PPP 大起大落、专项债登场——融资纪律开始约束投资冲动，乘数递减首次被正面承认。' },
-  { period: '2020–2022', title: '新基建定调', accent: '#10b981', desc: '5G、数据中心、特高压、充电桩被列为「新基建」七大领域，「东数西算」启动。基建的对象从物理空间切换到数据与算力——财政发力的通道换了赛道，逆周期逻辑未变。' },
-  { period: '2023– ', title: '平急两用 / 存量运营时代', accent: '#22d3ee', desc: '增量空间收窄后转向三条出路：平急两用工程开辟新合规科目、城中村改造接续投资量、公募 REITs 把存量资产证券化回收资金。从「修出来」到「转起来」，基建进入运营本位。' },
-  { period: '2026– ', title: '十五五 · 算力基建切换', accent: '#c41e3a', desc: '规划纲要明确智算中心、特高压、新型储能与低空数字航路为新一轮发力通道。专项债额度维持高位，但投向从「铁公机」进一步向算力主权与能源压舱石倾斜。' },
+  { period: '2008–2014', title: '四万亿刺激', accent: '#e5483b', desc: '全球金融危机触发史上最大规模逆周期基建：高铁网络从规划提前十年落地，城投平台与土地财政完成制度耦合。增长被保住，代价是地方隐性债务的总开关从此打开。' },
+  { period: '2015–2019', title: '补短板 / 防风险', accent: '#d4a25a', desc: '增速换挡后基建转向「补短板」叙事：中西部交通、农村水利、城市地下管网。同期 PPP 大起大落、专项债登场——融资纪律开始约束投资冲动，乘数递减首次被正面承认。' },
+  { period: '2020–2022', title: '新基建定调', accent: '#6fc2ae', desc: '5G、数据中心、特高压、充电桩被列为「新基建」七大领域，「东数西算」启动。基建的对象从物理空间切换到数据与算力——财政发力的通道换了赛道，逆周期逻辑未变。' },
+  { period: '2023– ', title: '平急两用 / 存量运营时代', accent: '#6e8cff', desc: '增量空间收窄后转向三条出路：平急两用工程开辟新合规科目、城中村改造接续投资量、公募 REITs 把存量资产证券化回收资金。从「修出来」到「转起来」，基建进入运营本位。' },
+  { period: '2026– ', title: '十五五 · 算力基建切换', accent: '#e5483b', desc: '规划纲要明确智算中心、特高压、新型储能与低空数字航路为新一轮发力通道。专项债额度维持高位，但投向从「铁公机」进一步向算力主权与能源压舱石倾斜。' },
 ];
 
 // ----------------------------------------------------------------------------
@@ -262,16 +262,16 @@ export default function Page() {
       <IntroCard>现实主义逻辑下，基建不只是交通工具，更是中枢对国土空间实施「物理级对齐」的工具——「Infrastructure as the hard operating system of a continental economy」。它同时是逆周期工具箱的核心抓手：每一轮增长失速，财政都通过这条通道向实体注入需求。但三十年高强度建设之后，乘数效应递减与债务约束构成双重天花板——投资的回报机制正从直接收费转向时空压缩带来的交易成本下降，发力对象正从物理联通切换到算力与数据联通，资产逻辑正从「修出来」转向「转起来」。</IntroCard>
 
       <StatGrid className="mb-6">
-        <Stat value="~18.8 万亿" label="基建投资 (2024 · 广义口径)" accent="#c41e3a" />
-        <Stat value="4.4 万亿" label="专项债新增额度 (2026 预算)" accent="#e8a317" />
-        <Stat value="~2,400 亿" label="公募 REITs 累计发行 (2024 末)" accent="#22d3ee" />
-        <Stat value="19.5 万km" label="高速公路里程 · 全球第一 (2024)" accent="#10b981" />
+        <Stat value="~18.8 万亿" label="基建投资 (2024 · 广义口径)" accent="#e5483b" />
+        <Stat value="4.4 万亿" label="专项债新增额度 (2026 预算)" accent="#d4a25a" />
+        <Stat value="~2,400 亿" label="公募 REITs 累计发行 (2024 末)" accent="#6e8cff" />
+        <Stat value="19.5 万km" label="高速公路里程 · 全球第一 (2024)" accent="#6fc2ae" />
       </StatGrid>
 
       <Grid cols={3} className="mb-6">
-        {[['十五五新基建', '算力/储能/低空数字航路写入规划纲要 · 东数西算节点扩容', '#22d3ee'],
-          ['能源压舱石', '特高压外送 + 新型储能装机突破 100GW 量级 (示意)', '#e8a317'],
-          ['平急两用', '2026 预算靠前发力 · 城中村改造与 REITs 盘活存量并行', '#10b981']].map(([t, d, c]) => (
+        {[['十五五新基建', '算力/储能/低空数字航路写入规划纲要 · 东数西算节点扩容', '#6e8cff'],
+          ['能源压舱石', '特高压外送 + 新型储能装机突破 100GW 量级 (示意)', '#d4a25a'],
+          ['平急两用', '2026 预算靠前发力 · 城中村改造与 REITs 盘活存量并行', '#6fc2ae']].map(([t, d, c]) => (
           <div key={t} className="os-card p-4" style={{ borderLeft: `3px solid ${c}` }}>
             <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>{t}</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
@@ -364,8 +364,8 @@ export default function Page() {
         <Card title="10 全球枢纽效能对比（效率综合指数）">
           <EChart option={hubBar} style={{ height: 200 }} />
           <div className="mt-3 space-y-1.5">
-            <div className="flex justify-between text-xs"><span style={{ color: 'var(--text-tertiary)' }}>洋山四期自动化率</span><span className="font-bold mono" style={{ color: '#10b981' }}>100.0%</span></div>
-            <div className="flex justify-between text-xs"><span style={{ color: 'var(--text-tertiary)' }}>中欧班列年开行量</span><span className="font-bold mono" style={{ color: '#e8a317' }}>1.7 万列</span></div>
+            <div className="flex justify-between text-xs"><span style={{ color: 'var(--text-tertiary)' }}>洋山四期自动化率</span><span className="font-bold mono" style={{ color: '#6fc2ae' }}>100.0%</span></div>
+            <div className="flex justify-between text-xs"><span style={{ color: 'var(--text-tertiary)' }}>中欧班列年开行量</span><span className="font-bold mono" style={{ color: '#d4a25a' }}>1.7 万列</span></div>
           </div>
           <p className="text-[11px] mt-3 italic" style={{ color: 'var(--text-tertiary)' }}>智慧港口与铁海联运正成为中国掌控全球价值链流向的物理关口。</p>
         </Card>
@@ -377,12 +377,12 @@ export default function Page() {
         <Card title="低空经济 · 万亿级「向上」空间">
           <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>低空经济（3000 米以下）被定义为新质生产力的重要支柱。中国在 eVTOL（电动垂直起降飞行器）与工业无人机领域已占据先发优势——谁定义了低空空域的规则与航路，谁就掌握了未来的三维交通主权。通过「数字航路」建设，中国正尝试在城市上空构建一套平行的无人化高效物流网。</p>
           <Grid cols={2}>
-            <div className="p-3 rounded" style={{ background: 'rgba(196,30,58,0.08)', border: '1px solid rgba(196,30,58,0.2)' }}>
-              <div className="text-base font-bold mono" style={{ color: '#e8a317' }}>EH216-S</div>
+            <div className="p-3 rounded" style={{ background: 'rgba(229, 72, 59,0.08)', border: '1px solid rgba(229, 72, 59,0.2)' }}>
+              <div className="text-base font-bold mono" style={{ color: '#d4a25a' }}>EH216-S</div>
               <div className="text-[11px] mt-1" style={{ color: 'var(--text-tertiary)' }}>全球首张无人驾驶适航证</div>
             </div>
-            <div className="p-3 rounded" style={{ background: 'rgba(196,30,58,0.08)', border: '1px solid rgba(196,30,58,0.2)' }}>
-              <div className="text-base font-bold mono" style={{ color: '#e8a317' }}>200 万+</div>
+            <div className="p-3 rounded" style={{ background: 'rgba(229, 72, 59,0.08)', border: '1px solid rgba(229, 72, 59,0.2)' }}>
+              <div className="text-base font-bold mono" style={{ color: '#d4a25a' }}>200 万+</div>
               <div className="text-[11px] mt-1" style={{ color: 'var(--text-tertiary)' }}>全国无人机持有量</div>
             </div>
           </Grid>

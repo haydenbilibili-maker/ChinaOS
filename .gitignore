@@ -54,3 +54,4 @@ reports/density-before.json
 reports/density-after.json
 reports/density-final.json
 reports/freshness-audit-before.json
+snapshots/

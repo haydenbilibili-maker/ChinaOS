@@ -6,19 +6,19 @@ import { Sparkline } from './econUI.jsx';
 
 /** 涨跌着色：增长型涨绿跌红 */
 export function toneOf(v) {
-  if (v == null || v === 0) return '#64748b';
-  return v > 0 ? '#10b981' : '#c41e3a';
+  if (v == null || v === 0) return '#8a8578';
+  return v > 0 ? '#6fc2ae' : '#e5483b';
 }
 
 export const ARROW = (v) => (v == null || v === 0 ? '→' : v > 0 ? '↑' : '↓');
 
 export const INDICATOR_GROUPS = [
-  { key: 'all', label: '全部', accent: '#64748b' },
-  { key: 'price', label: '物价', accent: '#c41e3a' },
-  { key: 'climate', label: '景气', accent: '#22d3ee' },
-  { key: 'employ', label: '就业', accent: '#e8a317' },
-  { key: 'money', label: '货币', accent: '#8b5cf6' },
-  { key: 'demand', label: '需求', accent: '#10b981' },
+  { key: 'all', label: '全部', accent: '#8a8578' },
+  { key: 'price', label: '物价', accent: '#e5483b' },
+  { key: 'climate', label: '景气', accent: '#6e8cff' },
+  { key: 'employ', label: '就业', accent: '#d4a25a' },
+  { key: 'money', label: '货币', accent: '#b07cc6' },
+  { key: 'demand', label: '需求', accent: '#6fc2ae' },
 ];
 
 export const BTN = {
@@ -55,10 +55,10 @@ export function filterIndicators(list, groupKey) {
 }
 
 const VERDICT_META = {
-  positive: { color: '#10b981', label: '好转' },
-  caution: { color: '#e8a317', label: '警示' },
-  negative: { color: '#c41e3a', label: '承压' },
-  neutral: { color: '#64748b', label: '中性' },
+  positive: { color: '#6fc2ae', label: '好转' },
+  caution: { color: '#d4a25a', label: '警示' },
+  negative: { color: '#e5483b', label: '承压' },
+  neutral: { color: '#8a8578', label: '中性' },
 };
 
 export function IndicatorCard({ k }) {
@@ -116,7 +116,7 @@ export function IndicatorCard({ k }) {
           </span>
         )}
         {isPmi && (
-          <span className="text-[10px] mono" style={{ color: (k.value >= 50 ? '#10b981' : '#c41e3a') }}>
+          <span className="text-[10px] mono" style={{ color: (k.value >= 50 ? '#6fc2ae' : '#e5483b') }}>
             荣枯线 50 {k.value >= 50 ? '上方·扩张' : '下方·收缩'}
           </span>
         )}
@@ -136,7 +136,7 @@ export function IndicatorCard({ k }) {
 }
 
 export const CANARY_LIGHT = {
-  green: { c: '#10b981', t: '正常' },
-  amber: { c: '#e8a317', t: '警示' },
-  red: { c: '#c41e3a', t: '告警' },
+  green: { c: '#6fc2ae', t: '正常' },
+  amber: { c: '#d4a25a', t: '警示' },
+  red: { c: '#e5483b', t: '告警' },
 };

@@ -10,12 +10,12 @@
 export const AS_OF = '2026-09-28';
 
 export const THEMES = {
-  migration: { label: '流动人口与城市化', color: '#22d3ee' },
-  labor: { label: '劳动与全球流动', color: '#e8a317' },
-  youth: { label: '青年·内卷·悬浮', color: '#c41e3a' },
-  nearby: { label: '附近与社会重建', color: '#10b981' },
-  mentality: { label: '社会心态与公共讨论', color: '#8b5cf6' },
-  method: { label: '方法论：把自己作为方法', color: '#fb923c' },
+  migration: { label: '流动人口与城市化', color: '#6e8cff' },
+  labor: { label: '劳动与全球流动', color: '#d4a25a' },
+  youth: { label: '青年·内卷·悬浮', color: '#e5483b' },
+  nearby: { label: '附近与社会重建', color: '#6fc2ae' },
+  mentality: { label: '社会心态与公共讨论', color: '#b07cc6' },
+  method: { label: '方法论：把自己作为方法', color: '#c07a4a' },
 };
 export const THEME_KEYS = Object.keys(THEMES);
 
@@ -44,11 +44,11 @@ export const BOARD = {
 };
 
 export const CAREER_GROUPS = {
-  edu: { label: '求学', color: '#94a3b8' },
-  field: { label: '田野与社群', color: '#10b981' },
-  ox: { label: '牛津', color: '#22d3ee' },
-  mpi: { label: '马普所', color: '#c41e3a' },
-  other: { label: '其他机构', color: '#e8a317' },
+  edu: { label: '求学', color: '#a29c91' },
+  field: { label: '田野与社群', color: '#6fc2ae' },
+  ox: { label: '牛津', color: '#6e8cff' },
+  mpi: { label: '马普所', color: '#e5483b' },
+  other: { label: '其他机构', color: '#d4a25a' },
 };
 
 /** 履历甘特：起止为小数年；note 记录口径出入 */

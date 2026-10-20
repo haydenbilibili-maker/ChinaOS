@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-// 设计令牌沿用 china.html「权力红 · 钢灰 · 赛博青」体系，新增暗色科技感为默认。
+// VI 2.0「观象」色板（docs/design/VI-2.0.md）；颜色名沿用 1.x 以兼容存量类名。
 export default {
   content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
   darkMode: 'class',
@@ -13,29 +13,31 @@ export default {
       },
       colors: {
         china: {
-          red: '#C41E3A',
-          deep: '#8B0000',
-          light: '#E63946',
+          red: '#E5483B',
+          deep: '#9E2A22',
+          light: '#EE6A5E',
         },
         fire: {
-          gold: '#D4AF37',
-          amber: '#E8A317',
-          orange: '#E85D04',
+          gold: '#D9B26A',
+          amber: '#D4A25A',
+          orange: '#C07A4A',
         },
         cyber: {
-          cyan: '#22d3ee',
-          steel: '#64748b',
+          cyan: '#6E8CFF',
+          steel: '#8A8578',
         },
         ink: {
-          900: '#0a0e17',
-          800: '#0f1623',
-          700: '#1a2333',
-          600: '#27324a',
+          900: '#0D0F14',
+          800: '#14171F',
+          700: '#1C202A',
+          600: '#2A2D36',
         },
       },
       fontFamily: {
-        sans: ['"Noto Sans SC"', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"PingFang SC"', '"Microsoft YaHei"', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+        sans: ['var(--vi-font-ui)'],
+        serif: ['var(--vi-font-read)'],
+        display: ['var(--vi-font-display)'],
+        mono: ['var(--vi-font-mono)'],
       },
       fontSize: {
         xs: ['var(--text-xs)', { lineHeight: 'var(--leading-normal)' }],

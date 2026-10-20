@@ -59,7 +59,7 @@ function IssueRow({ issue, active, onSelect }) {
   return (
     <tr
       style={{
-        borderTop: '1px solid var(--border-subtle, rgba(148,163,184,0.1))',
+        borderTop: '1px solid var(--border-subtle, rgba(162, 156, 145,0.1))',
         background: active ? 'var(--bg-elevated)' : 'transparent',
       }}
     >
@@ -97,7 +97,7 @@ function CoverageMatrix({ activeIssue, onSelect }) {
           <tr style={{ ...subtle, textAlign: 'center' }}>
             <td aria-hidden="true" />
             {LIVE_DOMAINS.map((d) => (
-              <th key={d.id} scope="colgroup" colSpan={d.members.length} className="pt-1 pb-1 px-1.5 font-normal text-[10px] whitespace-nowrap" style={{ borderBottom: '1px solid var(--border-subtle, rgba(148,163,184,0.25))', borderLeft: '1px solid var(--border-subtle, rgba(148,163,184,0.15))' }}>
+              <th key={d.id} scope="colgroup" colSpan={d.members.length} className="pt-1 pb-1 px-1.5 font-normal text-[10px] whitespace-nowrap" style={{ borderBottom: '1px solid var(--border-subtle, rgba(162, 156, 145,0.25))', borderLeft: '1px solid var(--border-subtle, rgba(162, 156, 145,0.15))' }}>
                 {d.label}
               </th>
             ))}

@@ -9,13 +9,13 @@
 export const AS_OF = '2026-09-28';
 
 export const THEMES = {
-  macro: { label: '宏观与结构性改革', color: '#8b5cf6' },
-  capital: { label: '金融与资本市场', color: '#22d3ee' },
-  property: { label: '土地与房地产', color: '#c41e3a' },
-  industry: { label: '产业与开放', color: '#10b981' },
-  trade: { label: '贸易与全球秩序', color: '#e8a317' },
-  digital: { label: '数字经济', color: '#fb923c' },
-  social: { label: '社会与民生', color: '#94a3b8' },
+  macro: { label: '宏观与结构性改革', color: '#b07cc6' },
+  capital: { label: '金融与资本市场', color: '#6e8cff' },
+  property: { label: '土地与房地产', color: '#e5483b' },
+  industry: { label: '产业与开放', color: '#6fc2ae' },
+  trade: { label: '贸易与全球秩序', color: '#d4a25a' },
+  digital: { label: '数字经济', color: '#c07a4a' },
+  social: { label: '社会与民生', color: '#a29c91' },
 };
 export const THEME_KEYS = Object.keys(THEMES);
 
@@ -45,10 +45,10 @@ export const BOARD = {
 };
 
 export const CAREER_GROUPS = {
-  sh: { label: '上海', color: '#22d3ee' },
-  cq: { label: '重庆', color: '#c41e3a' },
-  bj: { label: '全国人大', color: '#e8a317' },
-  tk: { label: '智库/高校', color: '#10b981' },
+  sh: { label: '上海', color: '#6e8cff' },
+  cq: { label: '重庆', color: '#e5483b' },
+  bj: { label: '全国人大', color: '#d4a25a' },
+  tk: { label: '智库/高校', color: '#6fc2ae' },
 };
 
 /** 履历甘特：起止为小数年；note 记录口径出入 */

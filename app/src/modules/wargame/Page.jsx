@@ -23,20 +23,20 @@ const BTN = {
   background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)',
   color: 'var(--text-secondary)', borderRadius: 6, padding: '4px 12px', fontSize: 12, cursor: 'pointer',
 };
-const BTN_RED = { ...BTN, background: 'rgba(196,30,58,0.16)', border: '1px solid rgba(196,30,58,0.4)', color: '#c41e3a', fontWeight: 600 };
-const BTN_CYAN = { ...BTN, background: 'rgba(34,211,238,0.12)', border: '1px solid rgba(34,211,238,0.35)', color: '#22d3ee', fontWeight: 600 };
+const BTN_RED = { ...BTN, background: 'rgba(229, 72, 59,0.16)', border: '1px solid rgba(229, 72, 59,0.4)', color: '#e5483b', fontWeight: 600 };
+const BTN_CYAN = { ...BTN, background: 'rgba(110, 140, 255,0.12)', border: '1px solid rgba(110, 140, 255,0.35)', color: '#6e8cff', fontWeight: 600 };
 
-const STRAT_ACCENT = { hawk: '#c41e3a', tit: '#e8a317', deal: '#10b981' };
+const STRAT_ACCENT = { hawk: '#e5483b', tit: '#d4a25a', deal: '#6fc2ae' };
 // 攻关线配色：键为 techtree 领域 k（TECH_TRACKS 派生 id）；旧档 litho/soft/aero 查无即走灰色兜底
-const TRACK_ACCENT = { semi: '#c41e3a', bci: '#8b5cf6', ai: '#22d3ee', space: '#e8a317', robot: '#10b981' };
+const TRACK_ACCENT = { semi: '#e5483b', bci: '#b07cc6', ai: '#6e8cff', space: '#d4a25a', robot: '#6fc2ae' };
 const SIDE_LABEL = { cn: '中方', us: '美方', both: '通用' };
-const SIDE_COLOR = { cn: '#c41e3a', us: '#22d3ee', both: '#8b5cf6' };
+const SIDE_COLOR = { cn: '#e5483b', us: '#6e8cff', both: '#b07cc6' };
 
 // 中方可出手牌（side cn/both），牌库顺序即手牌顺序
 const CN_HAND = CARDS.filter((c) => c.side === 'cn' || c.side === 'both');
 
 const sgn = (v) => (v > 0 ? `+${v}` : `${v}`);
-const dColor = (v) => (v > 0 ? '#10b981' : v < 0 ? '#c41e3a' : 'var(--text-tertiary)');
+const dColor = (v) => (v > 0 ? '#6fc2ae' : v < 0 ? '#e5483b' : 'var(--text-tertiary)');
 
 // —— 图谱方案回写：科技图谱攻关推演页写入的账本（只读消费） ——
 const PLANS_KEY = 'cos-tech-plans';
@@ -246,10 +246,10 @@ export default function Page({ embedded = false }) {
   // —— 战局曲线：四线（中科技/中经贸/美科技/美经贸），回合 0..5 ——
   const curveOption = useMemo(() => {
     const lines = [
-      ['中方科技', 'cnTech', '#c41e3a', 'solid'],
-      ['中方经贸', 'cnEcon', '#fb923c', 'dashed'],
-      ['美方科技', 'usTech', '#22d3ee', 'solid'],
-      ['美方经贸', 'usEcon', '#8b5cf6', 'dashed'],
+      ['中方科技', 'cnTech', '#e5483b', 'solid'],
+      ['中方经贸', 'cnEcon', '#c07a4a', 'dashed'],
+      ['美方科技', 'usTech', '#6e8cff', 'solid'],
+      ['美方经贸', 'usEcon', '#b07cc6', 'dashed'],
     ];
     return {
       legend: { data: lines.map((l) => l[0]), textStyle: { color: LABEL.color }, top: 0 },
@@ -288,10 +288,10 @@ export default function Page({ embedded = false }) {
         本轮扩容把两体博弈改成三体：欧盟与东盟作为摇摆方上桌——缓和与开放把它们拉过来，管制与胁迫把它们推出去，倾斜到位就逐回合给倾向侧的经贸线记账；「自主攻关」也不再是匀速直线，五条攻关目标线直接派生自科技树作战盘——受制卡脖子领域全员上桌，再补并跑区战略权重最高的几条，总量接近、时间结构天差地别——选哪条线，就是选押注哪一种耐心。
       </IntroCard>
       <StatGrid className="mb-8">
-        <Stat value={WG_AS_OF} label="推演基准日" accent="#22d3ee" />
-        <Stat value={`${CARDS.length} 张`} label="中性术语牌库" accent="#e8a317" />
-        <Stat value={`${MAX_TURNS} 回合`} label={`回合制 · 每回合 ${AP_PER_TURN} 行动点`} accent="#c41e3a" />
-        <Stat value={`${STRATEGIES.length} 档`} label="美方 AI 策略" accent="#10b981" />
+        <Stat value={WG_AS_OF} label="推演基准日" accent="#6e8cff" />
+        <Stat value={`${CARDS.length} 张`} label="中性术语牌库" accent="#d4a25a" />
+        <Stat value={`${MAX_TURNS} 回合`} label={`回合制 · 每回合 ${AP_PER_TURN} 行动点`} accent="#e5483b" />
+        <Stat value={`${STRATEGIES.length} 档`} label="美方 AI 策略" accent="#6fc2ae" />
       </StatGrid>
 
       {/* 1 —— 对局设定 */}
@@ -307,7 +307,7 @@ export default function Page({ embedded = false }) {
         <div className="text-[11px] mono mb-2" style={{ color: 'var(--text-tertiary)' }}>攻关目标线 · 「自主攻关」驻留后走哪条增益曲线（5 条 · 派生自科技树作战盘）</div>
         <SelectorBar
           items={activeTracks} activeKey={track} onSelect={setTrack}
-          getKey={(t) => t.id} getLabel={(t) => t.label} getAccent={(t) => TRACK_ACCENT[t.id] || '#64748b'}
+          getKey={(t) => t.id} getLabel={(t) => t.label} getAccent={(t) => TRACK_ACCENT[t.id] || '#8a8578'}
         />
         {boostedTracks.length > 0 && (
           <div className="flex flex-wrap items-center gap-1.5 -mt-2 mb-3">
@@ -316,26 +316,26 @@ export default function Page({ embedded = false }) {
                 key={t.id}
                 title="来自科技图谱攻关推演的回写方案"
                 className="text-[10px] mono px-1.5 py-0.5 rounded"
-                style={{ background: 'rgba(232,163,23,0.14)', color: '#e8a317', border: '1px solid rgba(232,163,23,0.4)' }}
+                style={{ background: 'rgba(212, 162, 90,0.14)', color: '#d4a25a', border: '1px solid rgba(212, 162, 90,0.4)' }}
               >{t.label} · {t.planNote}</span>
             ))}
             <span className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>来自科技图谱攻关推演的回写方案</span>
           </div>
         )}
         <p className="text-xs leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
-          <span className="font-semibold" style={{ color: TRACK_ACCENT[track] || '#64748b' }}>{trackObj.label}：</span>
+          <span className="font-semibold" style={{ color: TRACK_ACCENT[track] || '#8a8578' }}>{trackObj.label}：</span>
           <span className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>卡点：{trackObj.neck}</span>
           <span className="mono text-[11px]" style={{ color: 'var(--text-tertiary)' }}>　逐回合增益 {trackObj.curve.join(' / ')}（合计 +{trackObj.curve.reduce((s, v) => s + v, 0)}） · 重开对局保留所选线</span>
           {trackObj.boosted > 0 && (
             <span
               title="来自科技图谱攻关推演的回写方案"
               className="text-[10px] mono px-1.5 py-0.5 rounded ml-1.5"
-              style={{ background: 'rgba(232,163,23,0.14)', color: '#e8a317', border: '1px solid rgba(232,163,23,0.4)' }}
+              style={{ background: 'rgba(212, 162, 90,0.14)', color: '#d4a25a', border: '1px solid rgba(212, 162, 90,0.4)' }}
             >{trackObj.planNote}</span>
           )}
         </p>
         <div className="flex items-center gap-3 flex-wrap">
-          <span className="mono text-xl font-bold" style={{ color: finished ? '#e8a317' : '#22d3ee' }}>
+          <span className="mono text-xl font-bold" style={{ color: finished ? '#d4a25a' : '#6e8cff' }}>
             {finished ? '对局终了' : `第 ${game.turn + 1} / ${MAX_TURNS} 回合`}
           </span>
           <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>
@@ -369,27 +369,27 @@ export default function Page({ embedded = false }) {
                 key={c.id} type="button" onClick={() => toggleCard(c)}
                 className="text-left rounded p-3"
                 style={{
-                  background: sel ? 'rgba(196,30,58,0.10)' : 'var(--bg-elevated)',
-                  border: sel ? '1px solid rgba(196,30,58,0.55)' : '1px solid var(--border-subtle)',
-                  borderTop: sel ? '3px solid #c41e3a' : `3px solid ${SIDE_COLOR[c.side]}55`,
+                  background: sel ? 'rgba(229, 72, 59,0.10)' : 'var(--bg-elevated)',
+                  border: sel ? '1px solid rgba(229, 72, 59,0.55)' : '1px solid var(--border-subtle)',
+                  borderTop: sel ? '3px solid #e5483b' : `3px solid ${SIDE_COLOR[c.side]}55`,
                   opacity: blocked && !sel ? 0.45 : 1,
                   cursor: blocked && !sel ? 'not-allowed' : 'pointer',
                 }}
               >
                 <div className="flex items-center justify-between gap-2">
-                  <span className="text-sm font-semibold" style={{ color: sel ? '#c41e3a' : 'var(--text-primary)' }}>{c.label}</span>
+                  <span className="text-sm font-semibold" style={{ color: sel ? '#e5483b' : 'var(--text-primary)' }}>{c.label}</span>
                   <span
                     className="text-[10px] mono px-1.5 py-0.5 rounded shrink-0"
-                    style={{ background: 'var(--bg-base)', color: '#e8a317', border: '1px solid var(--border-subtle)' }}
+                    style={{ background: 'var(--bg-base)', color: '#d4a25a', border: '1px solid var(--border-subtle)' }}
                   >费 {c.cost}</span>
                 </div>
                 <div className="flex flex-wrap gap-1.5 mt-1">
                   <span className="text-[10px] mono" style={{ color: SIDE_COLOR[c.side] }}>{SIDE_LABEL[c.side]}牌</span>
-                  <span className="text-[10px] mono" style={{ color: c.decay === '持续' ? '#10b981' : 'var(--text-tertiary)' }}>{c.decay}</span>
+                  <span className="text-[10px] mono" style={{ color: c.decay === '持续' ? '#6fc2ae' : 'var(--text-tertiary)' }}>{c.decay}</span>
                   {c.id === 'selfdev' && (
-                    <span className="text-[10px] mono" style={{ color: TRACK_ACCENT[track] || '#64748b' }}>走「{trackObj.label}」线</span>
+                    <span className="text-[10px] mono" style={{ color: TRACK_ACCENT[track] || '#8a8578' }}>走「{trackObj.label}」线</span>
                   )}
-                  {parked && <span className="text-[10px] mono" style={{ color: '#10b981' }}>已驻留生效中</span>}
+                  {parked && <span className="text-[10px] mono" style={{ color: '#6fc2ae' }}>已驻留生效中</span>}
                 </div>
                 <EffectRow effect={eff} />
                 <p className="text-[10px] leading-snug mt-1.5" style={{ color: 'var(--text-tertiary)' }}>{c.desc}</p>
@@ -438,18 +438,18 @@ export default function Page({ embedded = false }) {
                   {abs >= TILT_TIPPING && (
                     <span
                       className="text-[10px] mono px-1.5 py-0.5 rounded"
-                      style={{ background: 'rgba(232,163,23,0.14)', color: '#e8a317', border: '1px solid rgba(232,163,23,0.4)' }}
+                      style={{ background: 'rgba(212, 162, 90,0.14)', color: '#d4a25a', border: '1px solid rgba(212, 162, 90,0.4)' }}
                     >已倾斜 · 每回合{tilt > 0 ? '中' : '美'}方经贸 +{tp.id === 'eu' ? 2 : 1}</span>
                   )}
                   {abs >= TILT_SIDED && (
-                    <span className="text-[10px] font-bold" style={{ color: '#c41e3a' }}>实质选边</span>
+                    <span className="text-[10px] font-bold" style={{ color: '#e5483b' }}>实质选边</span>
                   )}
                 </div>
                 <div className="relative rounded" style={{ height: 14, background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}>
                   {/* 中点刻度 + ±40/±60 阈值刻度 */}
-                  <div className="absolute" style={{ left: '50%', top: 0, bottom: 0, width: 2, background: '#27324a' }} />
+                  <div className="absolute" style={{ left: '50%', top: 0, bottom: 0, width: 2, background: '#2a2d36' }} />
                   {[-TILT_SIDED, -TILT_TIPPING, TILT_TIPPING, TILT_SIDED].map((m) => (
-                    <div key={m} className="absolute" style={{ left: `${50 + m / 2}%`, top: 3, bottom: 3, width: 1, background: 'rgba(148,163,184,0.25)' }} />
+                    <div key={m} className="absolute" style={{ left: `${50 + m / 2}%`, top: 3, bottom: 3, width: 1, background: 'rgba(162, 156, 145,0.25)' }} />
                   ))}
                   <div
                     className="absolute rounded-sm"
@@ -484,8 +484,8 @@ export default function Page({ embedded = false }) {
             {[...game.log].reverse().map((r) => (
               <div key={r.turn} className="flex items-center gap-3 text-xs py-1.5 px-2 rounded flex-wrap" style={{ background: 'var(--bg-elevated)' }}>
                 <span className="mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>第 {r.turn} 回合</span>
-                <span className="shrink-0" style={{ color: '#c41e3a' }}>中方 {r.cn.join('+')}</span>
-                <span className="shrink-0" style={{ color: '#22d3ee' }}>美方 {r.us.join('+')}</span>
+                <span className="shrink-0" style={{ color: '#e5483b' }}>中方 {r.cn.join('+')}</span>
+                <span className="shrink-0" style={{ color: '#6e8cff' }}>美方 {r.us.join('+')}</span>
                 <span className="mono flex-1 text-right" style={{ minWidth: 200 }}>
                   <span style={{ color: dColor(r.delta.cnTech) }}>中科技{sgn(r.delta.cnTech)}</span>
                   <span className="mx-1" style={{ color: dColor(r.delta.cnEcon) }}>中经贸{sgn(r.delta.cnEcon)}</span>
@@ -493,7 +493,7 @@ export default function Page({ embedded = false }) {
                   <span style={{ color: dColor(r.delta.usEcon) }}>美经贸{sgn(r.delta.usEcon)}</span>
                 </span>
                 {Array.isArray(r.tiltNotes) && r.tiltNotes.length > 0 && (
-                  <span className="text-[10px] mono w-full" style={{ color: '#e8a317' }}>⚖ {r.tiltNotes.join(' · ')}</span>
+                  <span className="text-[10px] mono w-full" style={{ color: '#d4a25a' }}>⚖ {r.tiltNotes.join(' · ')}</span>
                 )}
               </div>
             ))}
@@ -522,7 +522,7 @@ export default function Page({ embedded = false }) {
           <div className="flex items-center gap-2 flex-wrap">
             <button type="button" style={BTN_CYAN} onClick={genReport}>📄 生成推演报告</button>
             {reportMd && (
-              <button type="button" style={copied ? { ...BTN, color: '#10b981' } : BTN} onClick={copyReport}>
+              <button type="button" style={copied ? { ...BTN, color: '#6fc2ae' } : BTN} onClick={copyReport}>
                 {copied ? '已复制 ✓' : '复制 Markdown'}
               </button>
             )}
@@ -554,12 +554,12 @@ export default function Page({ embedded = false }) {
                   key={r.id} type="button" onClick={() => togglePick(r.id)}
                   className="w-full text-left flex items-center gap-3 flex-wrap text-xs py-1.5 px-2 rounded"
                   style={{
-                    background: sel ? 'rgba(34,211,238,0.10)' : 'var(--bg-elevated)',
-                    border: sel ? '1px solid rgba(34,211,238,0.45)' : '1px solid var(--border-subtle)',
+                    background: sel ? 'rgba(110, 140, 255,0.10)' : 'var(--bg-elevated)',
+                    border: sel ? '1px solid rgba(110, 140, 255,0.45)' : '1px solid var(--border-subtle)',
                     cursor: 'pointer',
                   }}
                 >
-                  <span className="mono shrink-0 font-semibold" style={{ color: sel ? '#22d3ee' : 'var(--text-tertiary)' }}>#{r.id}</span>
+                  <span className="mono shrink-0 font-semibold" style={{ color: sel ? '#6e8cff' : 'var(--text-tertiary)' }}>#{r.id}</span>
                   <span className="shrink-0 font-semibold" style={{ color: STRAT_ACCENT[r.strategy] || 'var(--text-secondary)' }}>{r.strategyLabel}</span>
                   {r.track && (
                     <span className="text-[10px] mono shrink-0" style={{ color: TRACK_ACCENT[r.track] || 'var(--text-tertiary)' }}>
@@ -581,7 +581,7 @@ export default function Page({ embedded = false }) {
             })}
           </div>
           {pickedRuns.length === 1 && (
-            <p className="text-[11px] mono mb-4" style={{ color: '#22d3ee' }}>
+            <p className="text-[11px] mono mb-4" style={{ color: '#6e8cff' }}>
               已选 #{pickedRuns[0].id}「{pickedRuns[0].strategyLabel}」——再选一局即可对比复盘。
             </p>
           )}

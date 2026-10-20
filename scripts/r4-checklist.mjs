@@ -31,7 +31,7 @@ function checkPage(fp) {
   const hasEChart = /EChart/.test(src);
   const hasCustomTabs = /setTab|activeTab|TAB[s]?\s*=/.test(src)
     && !/TabBar|SelectorBar|os-tab-bar/.test(src);
-  const axisHex = /axisLine[^;{]*#27324a|axisLabel[^;{]*#93a1b5|const AX\s*=/.test(src);
+  const axisHex = /axisLine[^;{]*#(?:27324a|2a2d36)|axisLabel[^;{]*#(?:93a1b5|a29c91)|const AX\s*=/.test(src);
 
   const items = {
     header: gyShell || htmlShell || /PageHeader/.test(src) || /ObservatoryHome/.test(src),

@@ -10,7 +10,7 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 
 const TRACKS = [
   {
-    key: 'mfg', label: '未来制造', accent: '#22d3ee', tag: '人形机器人 · 智能装备',
+    key: 'mfg', label: '未来制造', accent: '#6e8cff', tag: '人形机器人 · 智能装备',
     dist: 3, weight: 92, heat: [40, 55, 70, 88, 112],
     desc: '人形机器人是「制造业皇冠」级集成考题：减速器、电机、灵巧手、运控算法与大模型具身智能在同一具身体内收敛。当前处于从实验室走向产线的「产业化前夜」，整机成本曲线决定渗透节奏。',
     distLabel: '约 3–5 年（量产爬坡）',
@@ -19,7 +19,7 @@ const TRACKS = [
     constraints: [88, 72, 80, 90, 62],
   },
   {
-    key: 'info', label: '未来信息', accent: '#c41e3a', tag: '6G · 量子计算',
+    key: 'info', label: '未来信息', accent: '#e5483b', tag: '6G · 量子计算',
     dist: 6, weight: 95, heat: [30, 42, 56, 75, 98],
     desc: '6G 在标准预研期（2030 商用窗口），量子计算处于含噪中等规模（NISQ）向纠错过渡。两者共性：胜负在标准与专利池，而非单点演示机的比特数竞赛。',
     distLabel: '约 5–8 年（标准冻结前）',
@@ -37,7 +37,7 @@ const TRACKS = [
     constraints: [70, 65, 60, 78, 58],
   },
   {
-    key: 'energy', label: '未来能源', accent: '#e8a317', tag: '可控核聚变 · 钙钛矿',
+    key: 'energy', label: '未来能源', accent: '#d4a25a', tag: '可控核聚变 · 钙钛矿',
     dist: 8, weight: 88, heat: [18, 26, 38, 52, 70],
     desc: '聚变是「永远还有三十年」的赛道，但高温超导磁体把工程窗口实质性拉近；钙钛矿叠层电池则是 5 年内可兑现的效率跃迁，两者风险结构完全不同。',
     distLabel: '聚变 10 年+ / 钙钛矿 3–5 年',
@@ -46,7 +46,7 @@ const TRACKS = [
     constraints: [65, 70, 72, 75, 55],
   },
   {
-    key: 'space', label: '未来空间', accent: '#10b981', tag: '商业航天 · 深海装备',
+    key: 'space', label: '未来空间', accent: '#6fc2ae', tag: '商业航天 · 深海装备',
     dist: 4, weight: 90, heat: [35, 48, 62, 85, 108],
     desc: '低轨星座是轨道与频谱的「先占先得」资源竞赛：星网、千帆与可回收火箭试验并行，发射成本每下降一个量级，商业模式重写一次。深海则是资源勘探与安全感知的双重前沿。',
     distLabel: '约 3–5 年（星座组网期）',
@@ -69,11 +69,11 @@ const CONSTRAINT_DIMS = ['技术成熟度', '资本耐心', '供应链自主', '
 
 // 概念演进时间线
 const PHASES = [
-  { period: '2017', title: '高质量发展', accent: '#64748b', desc: '十九大将「高质量发展」确立为主线，增速考核让位于质量效益——为后续生产率叙事预留语境。' },
-  { period: '2012–2022', title: '创新驱动战略', accent: '#22d3ee', desc: '创新驱动发展战略十年铺垫：R&D 强度从 1.9% 爬升至 2.5%+，但 TFP 增速并未同步回升——投入产出转化率成为核心质疑。' },
-  { period: '2023.9', title: '新质生产力提出', accent: '#c41e3a', desc: '黑龙江考察首次提出「新质生产力」。语义锚点：不是新一轮要素堆量，而是以科技创新为主导、摆脱传统增长路径的生产率命题。' },
-  { period: '2024.3', title: '写入政府工作报告', accent: '#e8a317', desc: '列为年度任务之首，配套语「因地制宜」同步写入——中央在概念扩散初期即预置防一哄而上的纠偏条款。' },
-  { period: '2024–', title: '未来产业建制化', accent: '#10b981', desc: '工信部等七部门划定六大方向；地方未来产业基金、中试平台、先导区密集挂牌，进入建制化布局与产能纪律博弈期。' },
+  { period: '2017', title: '高质量发展', accent: '#8a8578', desc: '十九大将「高质量发展」确立为主线，增速考核让位于质量效益——为后续生产率叙事预留语境。' },
+  { period: '2012–2022', title: '创新驱动战略', accent: '#6e8cff', desc: '创新驱动发展战略十年铺垫：R&D 强度从 1.9% 爬升至 2.5%+，但 TFP 增速并未同步回升——投入产出转化率成为核心质疑。' },
+  { period: '2023.9', title: '新质生产力提出', accent: '#e5483b', desc: '黑龙江考察首次提出「新质生产力」。语义锚点：不是新一轮要素堆量，而是以科技创新为主导、摆脱传统增长路径的生产率命题。' },
+  { period: '2024.3', title: '写入政府工作报告', accent: '#d4a25a', desc: '列为年度任务之首，配套语「因地制宜」同步写入——中央在概念扩散初期即预置防一哄而上的纠偏条款。' },
+  { period: '2024–', title: '未来产业建制化', accent: '#6fc2ae', desc: '工信部等七部门划定六大方向；地方未来产业基金、中试平台、先导区密集挂牌，进入建制化布局与产能纪律博弈期。' },
 ];
 
 // TFP：中国 vs 美国增速（%，示意，参考 PWT/学界区间估计）
@@ -91,9 +91,9 @@ const DECOMP = {
 
 // 专精特新梯队（家数，示意）
 const TIERS = [
-  { name: '制造业单项冠军', value: 1557, color: '#c41e3a' },
-  { name: '专精特新「小巨人」', value: 12950, color: '#e8a317' },
-  { name: '专精特新中小企业', value: 141000, color: '#22d3ee' },
+  { name: '制造业单项冠军', value: 1557, color: '#e5483b' },
+  { name: '专精特新「小巨人」', value: 12950, color: '#d4a25a' },
+  { name: '专精特新中小企业', value: 141000, color: '#6e8cff' },
 ];
 
 export default function Page() {
@@ -136,8 +136,8 @@ export default function Page() {
     xAxis: categoryX(TFP_YEARS),
     yAxis: valueY({ axisLabel: { formatter: '{value}%' } }),
     series: [
-      { name: '中国 TFP 增速', type: 'line', smooth: true, symbol: 'circle', data: TFP_CN, lineStyle: { color: '#c41e3a', width: 3 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.10)' }, markLine: { silent: true, symbol: 'none', lineStyle: { color: '#e8a317', type: 'dashed' }, label: { color: '#e8a317', fontSize: 10, formatter: '2015 后失速带' }, data: [{ xAxis: '2015' }] } },
-      { name: '美国 TFP 增速（参照）', type: 'line', smooth: true, symbol: 'none', data: TFP_US, lineStyle: { color: '#22d3ee', width: 2, type: 'dashed' } },
+      { name: '中国 TFP 增速', type: 'line', smooth: true, symbol: 'circle', data: TFP_CN, lineStyle: { color: '#e5483b', width: 3 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.10)' }, markLine: { silent: true, symbol: 'none', lineStyle: { color: '#d4a25a', type: 'dashed' }, label: { color: '#d4a25a', fontSize: 10, formatter: '2015 后失速带' }, data: [{ xAxis: '2015' }] } },
+      { name: '美国 TFP 增速（参照）', type: 'line', smooth: true, symbol: 'none', data: TFP_US, lineStyle: { color: '#6e8cff', width: 2, type: 'dashed' } },
     ],
   }), []);
 
@@ -145,9 +145,9 @@ export default function Page() {
   const decompStack = useMemo(() => stackedBarOpt({
     categories: DECOMP_PERIODS,
     series: [
-      { name: '资本投入贡献', data: DECOMP.capital, itemStyle: { color: '#64748b' } },
-      { name: '劳动投入贡献', data: DECOMP.labor, itemStyle: { color: '#e8a317' } },
-      { name: 'TFP 贡献', data: DECOMP.tfp, itemStyle: { color: '#c41e3a' } },
+      { name: '资本投入贡献', data: DECOMP.capital, itemStyle: { color: '#8a8578' } },
+      { name: '劳动投入贡献', data: DECOMP.labor, itemStyle: { color: '#d4a25a' } },
+      { name: 'TFP 贡献', data: DECOMP.tfp, itemStyle: { color: '#e5483b' } },
     ],
   }), []);
 
@@ -155,7 +155,7 @@ export default function Page() {
   const npfRadar = useMemo(() => radarOpt(
     ['科技创新', '未来产业', '数字经济', '绿色转型', '人才要素', '制度供给'],
     [78, 62, 85, 80, 72, 58],
-    { name: '新质生产力构成（示意评分）', color: '#c41e3a' },
+    { name: '新质生产力构成（示意评分）', color: '#e5483b' },
   ), []);
 
   // --- 成熟度矩阵散点：产业化距离 × 战略权重 ---
@@ -165,8 +165,8 @@ export default function Page() {
       formatter: (p) => `${p.data[3]}<br/>产业化距离：约 ${p.data[0]} 年<br/>战略权重：${p.data[1]}`,
     },
     grid: { left: 48, right: 24, top: 24, bottom: 40 },
-    xAxis: { type: 'value', name: '产业化距离（年）', nameLocation: 'middle', nameGap: 26, nameTextStyle: { color: LABEL.color, fontSize: 10 }, min: 0, max: 12, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
-    yAxis: { type: 'value', name: '战略权重', nameTextStyle: { color: LABEL.color, fontSize: 10 }, min: 70, max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+    xAxis: { type: 'value', name: '产业化距离（年）', nameLocation: 'middle', nameGap: 26, nameTextStyle: { color: LABEL.color, fontSize: 10 }, min: 0, max: 12, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+    yAxis: { type: 'value', name: '战略权重', nameTextStyle: { color: LABEL.color, fontSize: 10 }, min: 70, max: 100, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     series: [{
       type: 'scatter',
       symbolSize: (d) => (d[2] === track ? 26 : 16),
@@ -193,11 +193,11 @@ export default function Page() {
 
   // --- 未来产业资本结构（保留原图，随赛道微调） ---
   const capitalDonut = useMemo(() => donutOpt([
-    { value: track === 'space' ? 18 : 12, name: '空天与深海', itemStyle: { color: '#10b981' } },
-    { value: track === 'mfg' ? 32 : 26, name: '智能制造与机器人', itemStyle: { color: '#22d3ee' } },
-    { value: track === 'info' ? 28 : 22, name: '信息与算力', itemStyle: { color: '#c41e3a' } },
+    { value: track === 'space' ? 18 : 12, name: '空天与深海', itemStyle: { color: '#6fc2ae' } },
+    { value: track === 'mfg' ? 32 : 26, name: '智能制造与机器人', itemStyle: { color: '#6e8cff' } },
+    { value: track === 'info' ? 28 : 22, name: '信息与算力', itemStyle: { color: '#e5483b' } },
     { value: track === 'health' ? 24 : 16, name: '生命科技', itemStyle: { color: '#f472b6' } },
-    { value: track === 'energy' ? 22 : 14, name: '能源与材料', itemStyle: { color: '#e8a317' } },
+    { value: track === 'energy' ? 22 : 14, name: '能源与材料', itemStyle: { color: '#d4a25a' } },
   ]), [track]);
 
   return (
@@ -209,10 +209,10 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="~1.1%" label="TFP 增速（2024，示意）" accent="#c41e3a" />
-        <Stat value="6" label="未来产业主攻方向" accent="#22d3ee" />
-        <Stat value="14万+" label="专精特新中小企业" accent="#e8a317" />
-        <Stat value="1.2万+" label="专精特新「小巨人」" accent="#10b981" />
+        <Stat value="~1.1%" label="TFP 增速（2024，示意）" accent="#e5483b" />
+        <Stat value="6" label="未来产业主攻方向" accent="#6e8cff" />
+        <Stat value="14万+" label="专精特新中小企业" accent="#d4a25a" />
+        <Stat value="1.2万+" label="专精特新「小巨人」" accent="#6fc2ae" />
       </Grid>
 
       {/* ----------------------------------------------------------------- */}

@@ -253,7 +253,7 @@ export function buildOverlaySeries(layerId, ctx) {
         data: PROVINCE_NAMES
           .filter((n) => PROVINCE_COORDS[n])
           .map((n) => ({ name: n, value: [...PROVINCE_COORDS[n], 1] })),
-        itemStyle: { color: isDark ? '#a5f3fc' : '#0891b2', opacity: 0.75 },
+        itemStyle: { color: isDark ? '#c2cdff' : '#0891b2', opacity: 0.75 },
         label: {
           show: false,
         },
@@ -304,7 +304,7 @@ export function buildOverlaySeries(layerId, ctx) {
         symbol: 'path://M0,-7 L5,7 L0,4 L-5,7 Z',
         symbolSize: 7,
         data: buildFlightSeries(flightsState.flights),
-        itemStyle: { color: isDark ? '#a5f3fc' : '#0e7490', opacity: 0.85, shadowBlur: 4, shadowColor: 'rgba(34,211,238,0.6)' },
+        itemStyle: { color: isDark ? '#c2cdff' : '#0e7490', opacity: 0.85, shadowBlur: 4, shadowColor: 'rgba(110, 140, 255,0.6)' },
         emphasis: { itemStyle: { color: HOLD, opacity: 1 } },
       }];
 

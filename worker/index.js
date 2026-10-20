@@ -338,9 +338,161 @@ function legacyChinaRedirect(url) {
   return `${url.origin}/#/${tab}${qs ? `?${qs}` : ''}`;
 }
 
+// ============================================================================
+// 荒废斋 · 服务端鉴权
+// ----------------------------------------------------------------------------
+// secrets（wrangler secret put）：
+//   HFZ_PASSWORD_SHA256  访问密钥的 SHA-256 十六进制摘要（明文不入库）
+//   HFZ_SESSION_SECRET   会话签名密钥（任意高熵字符串）
+// 会话 = HttpOnly Cookie「hfz_session」= base64url(exp).HMAC-SHA256；
+// 构建产物 private/*.js（私密模块 chunk）仅在会话有效时下发。
+// ============================================================================
+
+const HFZ_LOGIN = /^\/api\/hfz\/login$/i;
+const HFZ_SESSION = /^\/api\/hfz\/session$/i;
+const HFZ_LOGOUT = /^\/api\/hfz\/logout$/i;
+const HFZ_PRIVATE_ASSET = /^\/private\//i;
+const HFZ_COOKIE = 'hfz_session';
+const HFZ_REMEMBER_SEC = 24 * 60 * 60;
+const HFZ_SESSION_SEC = 12 * 60 * 60;
+const HFZ_MAX_ATTEMPTS = 8;
+const HFZ_WINDOW_MS = 10 * 60 * 1000;
+/** @type {Map<string, { n: number, ts: number }>} 每个 isolate 内的简易登录限流 */
+const hfzAttempts = new Map();
+
+const te = new TextEncoder();
+
+function b64url(bytes) {
+  let s = '';
+  for (const b of bytes) s += String.fromCharCode(b);
+  return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+function hex(bytes) {
+  return [...bytes].map((b) => b.toString(16).padStart(2, '0')).join('');
+}
+
+/** 长度无关的常量时间比较 */
+function safeEqual(a, b) {
+  const x = te.encode(a);
+  const y = te.encode(b);
+  let diff = x.length ^ y.length;
+  for (let i = 0; i < Math.max(x.length, y.length); i += 1) diff |= (x[i] ?? 0) ^ (y[i] ?? 0);
+  return diff === 0;
+}
+
+async function sha256Hex(text) {
+  return hex(new Uint8Array(await crypto.subtle.digest('SHA-256', te.encode(text))));
+}
+
+async function hmac(secret, data) {
+  const key = await crypto.subtle.importKey('raw', te.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+  return b64url(new Uint8Array(await crypto.subtle.sign('HMAC', key, te.encode(data))));
+}
+
+function hfzConfigured(env) {
+  return Boolean(env.HFZ_PASSWORD_SHA256 && env.HFZ_SESSION_SECRET);
+}
+
+function readCookie(request, name) {
+  const raw = request.headers.get('Cookie') || '';
+  for (const part of raw.split(';')) {
+    const [k, ...v] = part.trim().split('=');
+    if (k === name) return v.join('=');
+  }
+  return null;
+}
+
+async function hfzSessionValid(request, env) {
+  if (!hfzConfigured(env)) return false;
+  const token = readCookie(request, HFZ_COOKIE);
+  if (!token) return false;
+  const [expStr, sig] = token.split('.');
+  const exp = Number(expStr);
+  if (!Number.isFinite(exp) || exp * 1000 < Date.now() || !sig) return false;
+  return safeEqual(sig, await hmac(env.HFZ_SESSION_SECRET, `hfz:${expStr}`));
+}
+
+function hfzJson(body, status = 200, extraHeaders = {}) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Cache-Control': 'no-store',
+      ...extraHeaders,
+    },
+  });
+}
+
+function hfzCookie(value, maxAgeSec) {
+  const parts = [`${HFZ_COOKIE}=${value}`, 'Path=/', 'HttpOnly', 'Secure', 'SameSite=Strict'];
+  if (maxAgeSec != null) parts.push(`Max-Age=${maxAgeSec}`);
+  return parts.join('; ');
+}
+
+async function hfzLogin(request, env) {
+  if (!hfzConfigured(env)) return hfzJson({ ok: false, error: 'not_configured' }, 503);
+  const origin = request.headers.get('Origin');
+  if (origin && origin !== new URL(request.url).origin) return hfzJson({ ok: false, error: 'bad_origin' }, 403);
+
+  const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+  const now = Date.now();
+  const rec = hfzAttempts.get(ip);
+  if (rec && now - rec.ts < HFZ_WINDOW_MS && rec.n >= HFZ_MAX_ATTEMPTS) {
+    return hfzJson({ ok: false, error: 'rate_limited' }, 429, { 'Retry-After': String(Math.ceil((HFZ_WINDOW_MS - (now - rec.ts)) / 1000)) });
+  }
+
+  let body = {};
+  try {
+    body = await request.json();
+  } catch {
+    return hfzJson({ ok: false, error: 'bad_request' }, 400);
+  }
+  const password = typeof body.password === 'string' ? body.password : '';
+  const remember = body.remember === true;
+
+  const ok = password.length > 0 && safeEqual(await sha256Hex(password), String(env.HFZ_PASSWORD_SHA256).toLowerCase());
+  if (!ok) {
+    const fresh = !rec || now - rec.ts >= HFZ_WINDOW_MS;
+    hfzAttempts.set(ip, { n: fresh ? 1 : rec.n + 1, ts: fresh ? now : rec.ts });
+    return hfzJson({ ok: false, error: 'invalid' }, 401);
+  }
+  hfzAttempts.delete(ip);
+
+  const ttl = remember ? HFZ_REMEMBER_SEC : HFZ_SESSION_SEC;
+  const expStr = String(Math.floor(now / 1000) + ttl);
+  const token = `${expStr}.${await hmac(env.HFZ_SESSION_SECRET, `hfz:${expStr}`)}`;
+  return hfzJson({ ok: true, expiresAt: Number(expStr) * 1000 }, 200, {
+    'Set-Cookie': hfzCookie(token, remember ? ttl : null),
+  });
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    if (request.method === 'POST' && HFZ_LOGIN.test(url.pathname)) {
+      return hfzLogin(request, env);
+    }
+
+    if (request.method === 'GET' && HFZ_SESSION.test(url.pathname)) {
+      return hfzJson({ authenticated: await hfzSessionValid(request, env), configured: hfzConfigured(env) });
+    }
+
+    if (request.method === 'POST' && HFZ_LOGOUT.test(url.pathname)) {
+      return hfzJson({ ok: true }, 200, { 'Set-Cookie': hfzCookie('', 0) });
+    }
+
+    if (HFZ_PRIVATE_ASSET.test(url.pathname)) {
+      if (!(await hfzSessionValid(request, env))) {
+        return new Response('Unauthorized', { status: 401, headers: { 'Cache-Control': 'no-store' } });
+      }
+      const res = await env.ASSETS.fetch(request);
+      const headers = new Headers(res.headers);
+      headers.set('Cache-Control', 'private, no-store');
+      headers.set('CDN-Cache-Control', 'no-store');
+      return new Response(res.body, { status: res.status, statusText: res.statusText, headers });
+    }
 
     if (request.method === 'GET' && GEO_PROXY.test(url.pathname)) {
       const adcode = url.pathname.match(GEO_PROXY)[1];

@@ -1,15 +1,15 @@
 /* 军事力量全维度透视 · ink-observatory Round 2 */
 
 .ink-observatory.mil-wrap {
-  --mil-red: #c41e3a;
-  --mil-gold: #e8a317;
-  --mil-cyan: #22d3ee;
+  --mil-red: #e5483b;
+  --mil-gold: #d4a25a;
+  --mil-cyan: #6e8cff;
 }
 
 .ink-observatory.mil-wrap {
   background:
-    radial-gradient(1200px 620px at 82% -8%, rgba(196, 30, 58, 0.06) 0%, transparent 58%),
-    radial-gradient(900px 480px at 6% 102%, rgba(34, 211, 238, 0.04) 0%, transparent 55%),
+    radial-gradient(1200px 620px at 82% -8%, rgba(229, 72, 59, 0.06) 0%, transparent 58%),
+    radial-gradient(900px 480px at 6% 102%, rgba(110, 140, 255, 0.04) 0%, transparent 55%),
     var(--bg-base);
 }
 
@@ -46,8 +46,8 @@
 
 .mil-wrap .mil-leader-row:hover,
 .mil-wrap .mil-leader-row:focus-within {
-  border-color: rgba(196, 30, 58, 0.35);
-  background: rgba(196, 30, 58, 0.04);
+  border-color: rgba(229, 72, 59, 0.35);
+  background: rgba(229, 72, 59, 0.04);
 }
 
 .mil-wrap .mil-rank-badge {
@@ -67,15 +67,15 @@
   font-family: var(--font-mono, ui-monospace, monospace);
   padding: 4px 10px;
   border-radius: 6px;
-  border: 1px solid rgba(232, 163, 23, 0.35);
-  background: rgba(232, 163, 23, 0.1);
+  border: 1px solid rgba(212, 162, 90, 0.35);
+  background: rgba(212, 162, 90, 0.1);
   color: var(--mil-gold);
   text-decoration: none;
 }
 
 .mil-wrap .mil-island-link:hover {
-  border-color: rgba(232, 163, 23, 0.55);
-  background: rgba(232, 163, 23, 0.16);
+  border-color: rgba(212, 162, 90, 0.55);
+  background: rgba(212, 162, 90, 0.16);
 }
 
 @media (min-width: 1024px) {

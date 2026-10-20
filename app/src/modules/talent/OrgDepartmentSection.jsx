@@ -14,22 +14,22 @@ import { abilityToDomain } from '../handong/realPool.js';
 // 思想实验框架，不代表任何机构真实流程，不构成人事评价。
 // ============================================================================
 
-const GOLD = '#e8a317';
-const AXIS = '#27324a';
-const LABEL = '#93a1b5';
-const SPLIT = 'rgba(148,163,184,0.1)';
+const GOLD = '#d4a25a';
+const AXIS = '#2a2d36';
+const LABEL = '#a29c91';
+const SPLIT = 'rgba(162, 156, 145,0.1)';
 
 const BTN = {
   background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)',
   color: 'var(--text-secondary)', borderRadius: 6, padding: '4px 12px', fontSize: 12, cursor: 'pointer',
 };
-const BTN_CYAN = { ...BTN, background: 'rgba(34,211,238,0.12)', border: '1px solid rgba(34,211,238,0.35)', color: '#22d3ee', fontWeight: 600 };
+const BTN_CYAN = { ...BTN, background: 'rgba(110, 140, 255,0.12)', border: '1px solid rgba(110, 140, 255,0.35)', color: '#6e8cff', fontWeight: 600 };
 
 // 雷达底座：六维统一指标轴
 const RADAR_FRAME = {
   indicator: ABILITY_DIMS.map((d) => ({ name: d, max: 100 })),
   axisName: { color: LABEL, fontSize: 10 },
-  splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+  splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
   axisLine: { lineStyle: { color: SPLIT } },
   splitArea: { show: false },
 };
@@ -37,8 +37,8 @@ const RADAR_FRAME = {
 // 治理场景（内联）：需求向量与 ABILITY_DIMS 同序
 // [理论素养, 治理实操, 组织动员, 经济金融, 科技产业, 风险应对]
 const GOV_SCENES = [
-  { key: 'rural', label: '乡村振兴攻坚', color: '#10b981', need: [45, 92, 85, 55, 35, 60], desc: '县域治理 + 组织动员 + 农业农村条线经验为先的攻坚场景。' },
-  { key: 'finrisk', label: '金融风险处置', color: '#22d3ee', need: [40, 60, 45, 95, 35, 88], desc: '经济金融专业线 + 风险应对能力为先的拆弹场景。' },
+  { key: 'rural', label: '乡村振兴攻坚', color: '#6fc2ae', need: [45, 92, 85, 55, 35, 60], desc: '县域治理 + 组织动员 + 农业农村条线经验为先的攻坚场景。' },
+  { key: 'finrisk', label: '金融风险处置', color: '#6e8cff', need: [40, 60, 45, 95, 35, 88], desc: '经济金融专业线 + 风险应对能力为先的拆弹场景。' },
 ];
 
 // 六危机（沙盒库）+ 治理场景 → 统一场景列表；危机 needDims = impact × 100
@@ -111,7 +111,7 @@ export default function OrgDepartmentSection() {
 
   const libRadarOption = useMemo(() => lib && ({
     radar: RADAR_FRAME,
-    series: [{ type: 'radar', data: [{ value: lib.dimAvg.map((v) => Math.round(v)), name: '全库六维均值', lineStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.12)' }, itemStyle: { color: '#c41e3a' } }] }],
+    series: [{ type: 'radar', data: [{ value: lib.dimAvg.map((v) => Math.round(v)), name: '全库六维均值', lineStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.12)' }, itemStyle: { color: '#e5483b' } }] }],
   }), [lib]);
 
   const tagBarOption = useMemo(() => lib && ({
@@ -144,7 +144,7 @@ export default function OrgDepartmentSection() {
 
   const personRadarOption = useMemo(() => selected && ({
     radar: RADAR_FRAME,
-    series: [{ type: 'radar', data: [{ value: selected.p.dims, name: selected.fig.name, lineStyle: { color: GOLD }, areaStyle: { color: 'rgba(232,163,23,0.15)' }, itemStyle: { color: GOLD } }] }],
+    series: [{ type: 'radar', data: [{ value: selected.p.dims, name: selected.fig.name, lineStyle: { color: GOLD }, areaStyle: { color: 'rgba(212, 162, 90,0.15)' }, itemStyle: { color: GOLD } }] }],
   }), [selected]);
 
   // ── 情景匹配引擎：全库 matchScore 排序 ──
@@ -163,7 +163,7 @@ export default function OrgDepartmentSection() {
     radar: { ...RADAR_FRAME, radius: '62%' },
     series: [{ type: 'radar', data: [
       { value: scene.need, name: '场景需求', lineStyle: { color: scene.color }, areaStyle: { opacity: 0.1 }, itemStyle: { color: scene.color } },
-      { value: top1.p.dims, name: top1.fig.name, lineStyle: { color: GOLD }, areaStyle: { color: 'rgba(232,163,23,0.12)' }, itemStyle: { color: GOLD } },
+      { value: top1.p.dims, name: top1.fig.name, lineStyle: { color: GOLD }, areaStyle: { color: 'rgba(212, 162, 90,0.12)' }, itemStyle: { color: GOLD } },
     ] }],
   }), [scene, top1]);
 
@@ -242,14 +242,14 @@ export default function OrgDepartmentSection() {
     grid: { left: 40, right: 16, top: 16, bottom: 24 },
     xAxis: { type: 'category', data: ['0 省', '1 省', '2 省', '3+ 省'], axisLine: { lineStyle: { color: AXIS } }, axisLabel: { color: LABEL } },
     yAxis: { type: 'value', splitLine: { lineStyle: { color: SPLIT } }, axisLabel: { color: LABEL, fontSize: 10 } },
-    series: [{ type: 'bar', barWidth: 26, data: mobility.bins, itemStyle: { color: '#22d3ee', borderRadius: [3, 3, 0, 0] }, label: { show: true, position: 'top', color: LABEL, fontSize: 10 } }],
+    series: [{ type: 'bar', barWidth: 26, data: mobility.bins, itemStyle: { color: '#6e8cff', borderRadius: [3, 3, 0, 0] }, label: { show: true, position: 'top', color: LABEL, fontSize: 10 } }],
   }), [mobility]);
 
   const mobDonutOption = useMemo(() => ({
     tooltip: { trigger: 'item' },
     series: [{ type: 'pie', radius: ['52%', '76%'], label: { color: LABEL, fontSize: 10, formatter: '{b}\n{c} 人 ({d}%)' }, data: [
-      { name: '跨省历练（≥2 省）', value: mobility.mobile, itemStyle: { color: '#c41e3a' } },
-      { name: '本地深耕（≤1 省）', value: mobility.local, itemStyle: { color: '#64748b' } },
+      { name: '跨省历练（≥2 省）', value: mobility.mobile, itemStyle: { color: '#e5483b' } },
+      { name: '本地深耕（≤1 省）', value: mobility.local, itemStyle: { color: '#8a8578' } },
     ] }],
   }), [mobility]);
 
@@ -328,10 +328,10 @@ export default function OrgDepartmentSection() {
         <>
           {/* ── 库级总览 ── */}
           <Grid cols={4} className="mb-8">
-            <Stat value={stats.count} label="已画像人数" accent="#c41e3a" />
-            <Stat value={`${stats.tagCover}%`} label="经历标签覆盖率" accent="#22d3ee" />
+            <Stat value={stats.count} label="已画像人数" accent="#e5483b" />
+            <Stat value={`${stats.tagCover}%`} label="经历标签覆盖率" accent="#6e8cff" />
             <Stat value={stats.crossAvg} label="平均跨省足迹数" accent={GOLD} />
-            <Stat value={stats.dimMean} label="六维总均分" accent="#8b5cf6" />
+            <Stat value={stats.dimMean} label="六维总均分" accent="#b07cc6" />
           </Grid>
           <Grid cols={2} className="mb-8">
             <Card title="全库六维能力均值 · 雷达" asSection={false}>
@@ -365,7 +365,7 @@ export default function OrgDepartmentSection() {
               ))}
             </div>
             <SelectorBar
-              items={levels.map((l) => ({ key: l, label: l, accent: '#22d3ee' }))}
+              items={levels.map((l) => ({ key: l, label: l, accent: '#6e8cff' }))}
               activeKey={levelSel}
               onSelect={setLevelSel}
             />
@@ -494,7 +494,7 @@ export default function OrgDepartmentSection() {
                           <div key={`${x.fig.name}-${i}`} className="flex items-center gap-2 text-xs flex-wrap">
                             <span className="mono shrink-0" style={{ color: 'var(--text-tertiary)', width: 18 }}>{i + 1}.</span>
                             <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>{x.fig.name}</span>
-                            <span className="mono shrink-0" style={{ color: '#8b5cf6' }}>匹配 {x.score}</span>
+                            <span className="mono shrink-0" style={{ color: '#b07cc6' }}>匹配 {x.score}</span>
                             <span className="text-[10px] mono shrink-0" style={{ color: LABEL }}>{x.p.seniority}</span>
                             {(x.p.tags || []).slice(0, 2).map((t) => (
                               <span key={t} className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ border: '1px solid var(--border-subtle)', color: LABEL }}>{t}</span>
@@ -520,7 +520,7 @@ export default function OrgDepartmentSection() {
             <div className="flex items-center gap-2 flex-wrap">
               <button type="button" style={BTN_CYAN} onClick={genReport}>生成匹配报告</button>
               {report && (
-                <button type="button" style={copied ? { ...BTN, color: '#10b981' } : BTN} onClick={copyReport}>
+                <button type="button" style={copied ? { ...BTN, color: '#6fc2ae' } : BTN} onClick={copyReport}>
                   {copied ? '已复制 ✓' : '复制 Markdown'}
                 </button>
               )}

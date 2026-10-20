@@ -23,9 +23,9 @@ const BTN = {
   background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)',
   color: 'var(--text-secondary)', borderRadius: 6, padding: '4px 12px', fontSize: 12, cursor: 'pointer',
 };
-const BTN_RED = { ...BTN, background: 'rgba(196,30,58,0.16)', border: '1px solid rgba(196,30,58,0.4)', color: '#c41e3a', fontWeight: 600 };
-const BTN_CYAN = { ...BTN, background: 'rgba(34,211,238,0.12)', border: '1px solid rgba(34,211,238,0.35)', color: '#22d3ee', fontWeight: 600 };
-const BTN_GOLD = { ...BTN, background: 'rgba(232,163,23,0.12)', border: '1px solid rgba(232,163,23,0.35)', color: '#e8a317', fontWeight: 600 };
+const BTN_RED = { ...BTN, background: 'rgba(229, 72, 59,0.16)', border: '1px solid rgba(229, 72, 59,0.4)', color: '#e5483b', fontWeight: 600 };
+const BTN_CYAN = { ...BTN, background: 'rgba(110, 140, 255,0.12)', border: '1px solid rgba(110, 140, 255,0.35)', color: '#6e8cff', fontWeight: 600 };
+const BTN_GOLD = { ...BTN, background: 'rgba(212, 162, 90,0.12)', border: '1px solid rgba(212, 162, 90,0.35)', color: '#d4a25a', fontWeight: 600 };
 
 /** 预设政策组合（按钮组） */
 const PRESETS = [
@@ -90,11 +90,11 @@ function DeltaChip({ state, value }) {
   const init = MACRO_INIT[state.id];
   const d = Math.round((value - init) * 100) / 100;
   const sign = d > 0 ? `+${d}` : `${d}`;
-  let tone = '#64748b';
+  let tone = '#8a8578';
   if (d !== 0) {
     const up = d > 0;
     const bad = state.id === 'leverage' ? up : !up; // 杠杆相反：涨即恶化
-    tone = bad ? '#c41e3a' : '#10b981';
+    tone = bad ? '#e5483b' : '#6fc2ae';
   }
   return (
     <div className="os-card p-3" style={{ borderLeft: `3px solid ${state.color}` }}>
@@ -179,15 +179,15 @@ export default function Page({ embedded = false }) {
         mkSeries('growth', 0, {
           silent: true,
           symbol: 'none',
-          lineStyle: { type: 'dashed', color: '#22d3ee', opacity: 0.55 },
-          label: { color: '#22d3ee', fontSize: 10, formatter: '增长警戒 4.5' },
+          lineStyle: { type: 'dashed', color: '#6e8cff', opacity: 0.55 },
+          label: { color: '#6e8cff', fontSize: 10, formatter: '增长警戒 4.5' },
           data: [{ yAxis: 4.5 }],
         }),
         mkSeries('inflation', 0, {
           silent: true,
           symbol: 'none',
-          lineStyle: { type: 'dashed', color: '#c41e3a', opacity: 0.55 },
-          label: { color: '#c41e3a', fontSize: 10, formatter: '通胀警戒 2.5' },
+          lineStyle: { type: 'dashed', color: '#e5483b', opacity: 0.55 },
+          label: { color: '#e5483b', fontSize: 10, formatter: '通胀警戒 2.5' },
           data: [{ yAxis: 2.5 }],
         }),
         mkSeries('employ', 1),
@@ -213,10 +213,10 @@ export default function Page({ embedded = false }) {
         示意模型，思想工具，非投资建议、非预测。
       </IntroCard>
       <StatGrid className="mb-8">
-        <Stat value={MACRO_AS_OF} label="推演基准日" accent="#22d3ee" />
-        <Stat value="5 根" label="政策杆（财政/利率/专项债/汇率/产业）" accent="#c41e3a" />
-        <Stat value="8 季" label="差分推演窗口" accent="#e8a317" />
-        <Stat value="4 难" label="增长 · 物价 · 就业 · 杠杆" accent="#10b981" />
+        <Stat value={MACRO_AS_OF} label="推演基准日" accent="#6e8cff" />
+        <Stat value="5 根" label="政策杆（财政/利率/专项债/汇率/产业）" accent="#e5483b" />
+        <Stat value="8 季" label="差分推演窗口" accent="#d4a25a" />
+        <Stat value="4 难" label="增长 · 物价 · 就业 · 杠杆" accent="#6fc2ae" />
       </StatGrid>
 
       {/* 1 —— 政策组合台 */}
@@ -291,7 +291,7 @@ export default function Page({ embedded = false }) {
         <div className="flex items-center gap-2 flex-wrap">
           <button type="button" style={BTN_CYAN} onClick={genReport}>📄 生成推演报告</button>
           {reportMd && (
-            <button type="button" style={copied ? { ...BTN, color: '#10b981' } : BTN} onClick={copyReport}>
+            <button type="button" style={copied ? { ...BTN, color: '#6fc2ae' } : BTN} onClick={copyReport}>
               {copied ? '已复制 ✓' : '复制 Markdown'}
             </button>
           )}

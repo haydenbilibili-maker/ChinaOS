@@ -1,7 +1,26 @@
 import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import * as echarts from 'echarts';
-import * as Lucide from 'lucide-react';
+import { echarts } from '../../lib/viz/echarts.js';
+import {
+  BarChart3 as LuBarChart3,
+  Globe2 as LuGlobe2,
+  Landmark as LuLandmark,
+  LayoutGrid as LuLayoutGrid,
+  List as LuList,
+  Search as LuSearch,
+  X as LuX,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  BarChart3: LuBarChart3,
+  Globe2: LuGlobe2,
+  Landmark: LuLandmark,
+  LayoutGrid: LuLayoutGrid,
+  List: LuList,
+  Search: LuSearch,
+  X: LuX,
+};
 import { Card, Grid, Stat, DistBar } from '../../app/ui.jsx';
 import FigureAvatar from '../../lib/ui/FigureAvatar.jsx';
 import { figureAvatarProps, prefetchFigureAvatars } from '../../lib/ui/figureAvatarResolve.js';
@@ -25,12 +44,12 @@ import TalentDetailPanel, { DetailBodyText, ExpandableText } from './TalentDetai
 import { buildDetailFooter } from '../../lib/talent/metadata.jsx';
 
 const inp = { background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', borderRadius: 6, padding: '6px 10px', fontSize: 13 };
-const btn = { background: 'rgba(245,158,11,0.14)', color: '#f59e0b', border: '1px solid rgba(245,158,11,0.35)', borderRadius: 6, padding: '6px 14px', fontSize: 13, cursor: 'pointer' };
-const ACCENT = '#f59e0b';
+const btn = { background: 'rgba(245,158,11,0.14)', color: '#d4a25a', border: '1px solid rgba(245,158,11,0.35)', borderRadius: 6, padding: '6px 14px', fontSize: 13, cursor: 'pointer' };
+const ACCENT = '#d4a25a';
 
 const REGION_COLOR = {
-  亚太: '#0ea5e9', 欧洲: '#a78bfa', 北美: '#22d3ee', 拉美: '#10b981',
-  非洲: '#e8a317', 中东: '#f97316', 国际组织: '#64748b',
+  亚太: '#0ea5e9', 欧洲: '#a78bfa', 北美: '#6e8cff', 拉美: '#6fc2ae',
+  非洲: '#d4a25a', 中东: '#f97316', 国际组织: '#8a8578',
 };
 
 const COUNTRY_LABEL = {
@@ -107,7 +126,7 @@ function EnvoyCard({ r, on, onClick, dense = false }) {
             <span className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{r.name}</span>
             {r.nameEn && <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>{r.nameEn}</span>}
             <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: `${REGION_COLOR[r.region] || ACCENT}22`, color: REGION_COLOR[r.region] || ACCENT }}>{r.role}</span>
-            {country && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)' }}>{country}</span>}
+            {country && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(110, 140, 255,0.12)', color: 'var(--cyber-cyan)' }}>{country}</span>}
           </div>
           <div className="text-[11px] mt-0.5 truncate" style={{ color: 'var(--text-secondary)' }}>
             {r.hostCity}{r.rank ? ` · ${r.rank}` : ''}
@@ -237,8 +256,8 @@ export default function DiplomaticCorpsSection() {
         zoom: 1.15,
         center: [20, 20],
         itemStyle: {
-          areaColor: isDark ? '#0f1623' : '#e8edf4',
-          borderColor: isDark ? '#27324a' : 'rgba(58,70,89,0.22)',
+          areaColor: isDark ? '#14171f' : '#e8edf4',
+          borderColor: isDark ? '#2a2d36' : 'rgba(58,70,89,0.22)',
         },
         emphasis: {
           itemStyle: { areaColor: isDark ? '#1a2438' : 'rgba(8,145,178,0.25)' },
@@ -325,7 +344,7 @@ export default function DiplomaticCorpsSection() {
       </div>
 
       <div className="grid gap-3 mb-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(100px,1fr))' }}>
-        <Stat value={countryCount} label="覆盖国家/组织" accent="#22d3ee" />
+        <Stat value={countryCount} label="覆盖国家/组织" accent="#6e8cff" />
         <Stat value={ambassadorCount} label="大使" accent={ACCENT} />
         <Stat value={consulCount} label="总领事" accent="#0ea5e9" />
         <Stat value={envoyCount || '—'} label="公使" accent="#a78bfa" />
@@ -436,7 +455,7 @@ export default function DiplomaticCorpsSection() {
                       <>
                         {detail.nameEn && <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>{detail.nameEn}</span>}
                         <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: `${REGION_COLOR[detail.region]}22`, color: REGION_COLOR[detail.region] }}>{detail.region}</span>
-                        {detail.rank && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(212,175,55,0.12)', color: '#d4af37' }}>{detail.rank}</span>}
+                        {detail.rank && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(217, 178, 106,0.12)', color: '#d9b26a' }}>{detail.rank}</span>}
                       </>
                     )}
                     sections={[

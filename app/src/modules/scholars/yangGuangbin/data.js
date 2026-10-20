@@ -10,12 +10,12 @@
 export const AS_OF = '2026-09-28';
 
 export const THEMES = {
-  democracy: { label: '民主理论与可治理的民主', color: '#c41e3a' },
-  histpol: { label: '历史政治学与方法论', color: '#e8a317' },
-  governance: { label: '国家治理与治理能力', color: '#10b981' },
-  worldpol: { label: '世界政治与比较政治', color: '#22d3ee' },
-  autonomy: { label: '中国政治学自主知识体系', color: '#8b5cf6' },
-  party: { label: '政党中心主义与民主集中制', color: '#fb923c' },
+  democracy: { label: '民主理论与可治理的民主', color: '#e5483b' },
+  histpol: { label: '历史政治学与方法论', color: '#d4a25a' },
+  governance: { label: '国家治理与治理能力', color: '#6fc2ae' },
+  worldpol: { label: '世界政治与比较政治', color: '#6e8cff' },
+  autonomy: { label: '中国政治学自主知识体系', color: '#b07cc6' },
+  party: { label: '政党中心主义与民主集中制', color: '#c07a4a' },
 };
 export const THEME_KEYS = Object.keys(THEMES);
 
@@ -47,10 +47,10 @@ export const BOARD = {
 };
 
 export const CAREER_GROUPS = {
-  ruc: { label: '人大教职', color: '#22d3ee' },
-  admin: { label: '院系/研究院行政', color: '#10b981' },
-  study: { label: '求学/访学', color: '#8b5cf6' },
-  gov: { label: '全国政协/人才计划', color: '#e8a317' },
+  ruc: { label: '人大教职', color: '#6e8cff' },
+  admin: { label: '院系/研究院行政', color: '#6fc2ae' },
+  study: { label: '求学/访学', color: '#b07cc6' },
+  gov: { label: '全国政协/人才计划', color: '#d4a25a' },
 };
 
 /** 履历甘特：起止为小数年；月份未载者取年中近似；note 记录口径出入 */

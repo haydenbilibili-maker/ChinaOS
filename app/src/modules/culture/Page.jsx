@@ -9,7 +9,7 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // ---------------------------------------------------------------------------
 const TRACKS = [
   {
-    key: 'webnovel', label: '网文出海', accent: '#10b981',
+    key: 'webnovel', label: '网文出海', accent: '#6fc2ae',
     scale: '约 50 亿$', users: '2.5 亿海外读者', growth: '+25%/年',
     cases: ['起点国际 WebNovel', 'AI 翻译批量出海', '本土原创作者生态'],
     logic: '翻译成本被 AI 压到近零，16,000+ 部作品批量铺向东南亚与北美。网文是 IP 之源——影视、游戏、动漫改编都从这里抽水。',
@@ -18,7 +18,7 @@ const TRACKS = [
     markets: [55, 48, 92, 60, 70],
   },
   {
-    key: 'drama', label: '微短剧出海', accent: '#e8a317',
+    key: 'drama', label: '微短剧出海', accent: '#d4a25a',
     scale: '约 60 亿$', users: '亿级下载', growth: '+100%+/年',
     cases: ['ReelShort', 'DramaBox', 'ShortMax 竖屏付费'],
     logic: '把网文爽点压缩成 1 分钟一集的多巴胺管线，IAP 付费 + 广告双轮。中国团队写、AI 译、海外拍——文化工业的全球分包。',
@@ -27,7 +27,7 @@ const TRACKS = [
     markets: [88, 60, 75, 70, 80],
   },
   {
-    key: 'game', label: '游戏出海', accent: '#c41e3a',
+    key: 'game', label: '游戏出海', accent: '#e5483b',
     scale: '约 185 亿$', users: '全球数亿玩家', growth: '+8%/年',
     cases: ['原神 / 米哈游', 'PUBG Mobile / 腾讯', '黑神话：悟空（3A 破圈）'],
     logic: '中国文化出口的真正主力。手游长期占据全球收入头部，原神证明「中国审美 + 全球发行」可以正面赢；黑神话打开 3A 与主机叙事。',
@@ -36,7 +36,7 @@ const TRACKS = [
     markets: [78, 72, 92, 85, 68],
   },
   {
-    key: 'tiktok', label: '短视频 TikTok', accent: '#22d3ee',
+    key: 'tiktok', label: '短视频 TikTok', accent: '#6e8cff',
     scale: '广告收入超 200 亿$', users: '15.6 亿+ MAU', growth: '受地缘制约',
     cases: ['TikTok 全球', 'TikTok Shop 电商', 'CapCut 工具链'],
     logic: '不是输出内容，而是输出「分发权力」——算法决定全球十几亿人每天看什么。这是历史上中国公司第一次握住西方注意力的总闸门。',
@@ -45,7 +45,7 @@ const TRACKS = [
     markets: [88, 72, 90, 78, 82],
   },
   {
-    key: 'anime', label: '国漫影视', accent: '#8b5cf6',
+    key: 'anime', label: '国漫影视', accent: '#b07cc6',
     scale: '约 30 亿$', users: '流媒体多区上线', growth: '+15%/年',
     cases: ['《三体》Netflix 改编', '《流浪地球》系列', '哪吒 / 长安三万里'],
     logic: '从「卖片」到「卖宇宙」：科幻与神话宇宙是少数能与好莱坞同台的题材。但国内票房巨头出海后常缩水九成——本土爆款 ≠ 全球爆款。',
@@ -68,11 +68,11 @@ const TRACKS = [
 // 文化战略时间线
 // ---------------------------------------------------------------------------
 const PHASES = [
-  { period: '2003–2011', title: '文化体制改革', accent: '#64748b', desc: '经营性文化单位转企改制，文化第一次被承认是「产业」。出版、影视、演艺从事业编制推向市场——为后来一切商业出海铺设制度地基。' },
-  { period: '2012–2016', title: '文化产业振兴', accent: '#10b981', desc: '文化产业被列为国民经济支柱性产业目标。资本涌入影视与游戏，手游开始全球化试水；网文平台完成整合，IP 概念第一次被资本市场定价。' },
-  { period: '2017–2019', title: '讲好中国故事', accent: '#e8a317', desc: '官方叙事出海体系化（外宣矩阵、孔子学院扩张），但真正破圈的是商业产品：TikTok 海外登顶下载榜，原神立项——官方叙事与市场爆款开始分流。' },
-  { period: '2020–2023', title: '国潮崛起 · 出海爆发', accent: '#c41e3a', desc: '国货品牌偏好度反超外资，汉服与文创成为消费现象；原神全球年收破纪录、微短剧出海从零到数十亿美元。市场化内容第一次成规模穿透西方主流人群。' },
-  { period: '2024–', title: '文明叙事竞争', accent: '#22d3ee', desc: 'TikTok 法案、黑神话 3A、Labubu 全球排队同年发生——文化出海同时触到天花板（地缘封锁）与新高度（自发认同）。竞争从产品上升到叙事与规则层。' },
+  { period: '2003–2011', title: '文化体制改革', accent: '#8a8578', desc: '经营性文化单位转企改制，文化第一次被承认是「产业」。出版、影视、演艺从事业编制推向市场——为后来一切商业出海铺设制度地基。' },
+  { period: '2012–2016', title: '文化产业振兴', accent: '#6fc2ae', desc: '文化产业被列为国民经济支柱性产业目标。资本涌入影视与游戏，手游开始全球化试水；网文平台完成整合，IP 概念第一次被资本市场定价。' },
+  { period: '2017–2019', title: '讲好中国故事', accent: '#d4a25a', desc: '官方叙事出海体系化（外宣矩阵、孔子学院扩张），但真正破圈的是商业产品：TikTok 海外登顶下载榜，原神立项——官方叙事与市场爆款开始分流。' },
+  { period: '2020–2023', title: '国潮崛起 · 出海爆发', accent: '#e5483b', desc: '国货品牌偏好度反超外资，汉服与文创成为消费现象；原神全球年收破纪录、微短剧出海从零到数十亿美元。市场化内容第一次成规模穿透西方主流人群。' },
+  { period: '2024–', title: '文明叙事竞争', accent: '#6e8cff', desc: 'TikTok 法案、黑神话 3A、Labubu 全球排队同年发生——文化出海同时触到天花板（地缘封锁）与新高度（自发认同）。竞争从产品上升到叙事与规则层。' },
 ];
 
 // ---------------------------------------------------------------------------
@@ -80,9 +80,9 @@ const PHASES = [
 // ---------------------------------------------------------------------------
 const GUOCHAO_YEARS = ['2016', '2018', '2020', '2022', '2024'];
 const GUOCHAO = [
-  { name: '国货品牌偏好度', color: '#c41e3a', data: [38, 46, 58, 68, 75] },
-  { name: '老字号回潮指数', color: '#e8a317', data: [25, 32, 45, 58, 66] },
-  { name: '汉服 / 文创热度', color: '#22d3ee', data: [10, 22, 40, 62, 78] },
+  { name: '国货品牌偏好度', color: '#e5483b', data: [38, 46, 58, 68, 75] },
+  { name: '老字号回潮指数', color: '#d4a25a', data: [25, 32, 45, 58, 66] },
+  { name: '汉服 / 文创热度', color: '#6e8cff', data: [10, 22, 40, 62, 78] },
 ];
 
 const SOFT_DIMS = ['流行文化输出', '语言传播', '媒体话语权', '学术影响力', '旅游吸引力', '价值观认同'];
@@ -124,9 +124,9 @@ export default function Page() {
     xAxis: categoryX(['2018', '2019', '2020', '2021', '2022', '2023', '2024']),
     yAxis: logY({ min: 1 }),
     series: [
-      { name: '游戏出海（亿$）', type: 'line', smooth: true, symbol: 'none', data: [96, 116, 155, 180, 174, 164, 185], lineStyle: { color: '#c41e3a', width: 2 } },
-      { name: '微短剧海外（亿$）', type: 'line', smooth: true, symbol: 'none', data: [1, 1, 3, 10, 28, 45, 62], lineStyle: { color: '#e8a317', width: 2 } },
-      { name: '网文海外（亿$）', type: 'line', smooth: true, symbol: 'none', data: [8, 12, 18, 26, 35, 44, 52], lineStyle: { color: '#10b981', width: 2 } },
+      { name: '游戏出海（亿$）', type: 'line', smooth: true, symbol: 'none', data: [96, 116, 155, 180, 174, 164, 185], lineStyle: { color: '#e5483b', width: 2 } },
+      { name: '微短剧海外（亿$）', type: 'line', smooth: true, symbol: 'none', data: [1, 1, 3, 10, 28, 45, 62], lineStyle: { color: '#d4a25a', width: 2 } },
+      { name: '网文海外（亿$）', type: 'line', smooth: true, symbol: 'none', data: [8, 12, 18, 26, 35, 44, 52], lineStyle: { color: '#6fc2ae', width: 2 } },
     ],
   }), []);
 
@@ -147,16 +147,16 @@ export default function Page() {
     radar: {
       indicator: SOFT_DIMS.map((n) => ({ name: n, max: 100 })),
       axisName: { color: LABEL.color, fontSize: 10 },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-      axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
+      axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
       splitArea: { show: false },
       radius: '62%', center: ['50%', '46%'],
     },
     series: [{
       type: 'radar',
       data: [
-        { value: SOFT_CN, name: '中国', lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.15)' } },
-        { value: SOFT_US, name: '美国', lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.08)' } },
+        { value: SOFT_CN, name: '中国', lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.15)' } },
+        { value: SOFT_US, name: '美国', lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' }, areaStyle: { color: 'rgba(110, 140, 255,0.08)' } },
       ],
     }],
   }), []);
@@ -180,19 +180,19 @@ export default function Page() {
     categories: ['文化产品（硬件/印刷/工艺）', '文化服务（版权/内容/IP）'],
     horizontal: true,
     series: [
-      { name: '出口（亿$）', data: [1700, 280], itemStyle: { color: '#c41e3a', borderRadius: [0, 3, 3, 0] } },
-      { name: '进口（亿$）', data: [-350, -460], itemStyle: { color: '#22d3ee', borderRadius: [3, 0, 0, 3] } },
+      { name: '出口（亿$）', data: [1700, 280], itemStyle: { color: '#e5483b', borderRadius: [0, 3, 3, 0] } },
+      { name: '进口（亿$）', data: [-350, -460], itemStyle: { color: '#6e8cff', borderRadius: [3, 0, 0, 3] } },
     ],
   }), []);
 
   // -- 文化产业内部结构 donut
   const industryDonut = useMemo(() => donutOpt([
-    { value: 32, name: '游戏与电竞', itemStyle: { color: '#c41e3a' } },
-    { value: 24, name: '短视频与直播', itemStyle: { color: '#22d3ee' } },
-    { value: 14, name: '影视与动漫', itemStyle: { color: '#8b5cf6' } },
-    { value: 12, name: '网文与出版', itemStyle: { color: '#10b981' } },
+    { value: 32, name: '游戏与电竞', itemStyle: { color: '#e5483b' } },
+    { value: 24, name: '短视频与直播', itemStyle: { color: '#6e8cff' } },
+    { value: 14, name: '影视与动漫', itemStyle: { color: '#b07cc6' } },
+    { value: 12, name: '网文与出版', itemStyle: { color: '#6fc2ae' } },
     { value: 10, name: '潮玩与文创', itemStyle: { color: '#f472b6' } },
-    { value: 8, name: '演艺与文旅', itemStyle: { color: '#e8a317' } },
+    { value: 8, name: '演艺与文旅', itemStyle: { color: '#d4a25a' } },
   ]), []);
 
   return (
@@ -207,10 +207,10 @@ export default function Page() {
 
       {/* 概览 4 Stat */}
       <Grid cols={4} className="mb-6">
-        <Stat value="185 亿$" label="游戏出海年收入（示意）" accent="#c41e3a" />
-        <Stat value="60 亿$" label="微短剧海外规模（示意）" accent="#e8a317" />
-        <Stat value="15.6 亿+" label="TikTok 全球 MAU" accent="#22d3ee" />
-        <Stat value="~4.5%" label="文化产业占 GDP（示意）" accent="#10b981" />
+        <Stat value="185 亿$" label="游戏出海年收入（示意）" accent="#e5483b" />
+        <Stat value="60 亿$" label="微短剧海外规模（示意）" accent="#d4a25a" />
+        <Stat value="15.6 亿+" label="TikTok 全球 MAU" accent="#6e8cff" />
+        <Stat value="~4.5%" label="文化产业占 GDP（示意）" accent="#6fc2ae" />
       </Grid>
 
       {/* 交互① 出海赛道选择器 */}
@@ -273,15 +273,15 @@ export default function Page() {
       {/* 平台型 vs 内容型 */}
       <Card title="两种出海路径 — 平台型 vs 内容型" className="mb-6">
         <Grid cols={2}>
-          <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #22d3ee' }}>
-            <div className="text-sm font-semibold mb-1" style={{ color: '#22d3ee' }}>平台型 · 输出分发权力（TikTok / SHEIN 模式）</div>
+          <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #6e8cff' }}>
+            <div className="text-sm font-semibold mb-1" style={{ color: '#6e8cff' }}>平台型 · 输出分发权力（TikTok / SHEIN 模式）</div>
             <p className="text-sm leading-relaxed mb-2" style={{ color: 'var(--text-secondary)' }}>
               不输出某个具体内容，而是占住「全球十几亿人每天看什么」的总闸门。算法即权力，
               网络效应一旦形成几乎不可逆——所以它换来的不是市场竞争，而是国家级立法围剿。
             </p>
             <p className="text-xs leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>上限：重构全球注意力秩序 · 下限：一纸禁令归零。</p>
           </div>
-          <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #c41e3a' }}>
+          <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #e5483b' }}>
             <div className="text-sm font-semibold mb-1" style={{ color: 'var(--china-red)' }}>内容型 · 输出认同符号（原神 / 黑神话 / Labubu 模式）</div>
             <p className="text-sm leading-relaxed mb-2" style={{ color: 'var(--text-secondary)' }}>
               单个爆款穿透文化壁垒：玩家为璃月学中国神话，欧美明星为 Labubu 排队。

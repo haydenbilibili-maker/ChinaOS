@@ -1,6 +1,25 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
+import {
+  BarChart3 as LuBarChart3,
+  LayoutGrid as LuLayoutGrid,
+  List as LuList,
+  Megaphone as LuMegaphone,
+  RefreshCw as LuRefreshCw,
+  Search as LuSearch,
+  X as LuX,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  BarChart3: LuBarChart3,
+  LayoutGrid: LuLayoutGrid,
+  List: LuList,
+  Megaphone: LuMegaphone,
+  RefreshCw: LuRefreshCw,
+  Search: LuSearch,
+  X: LuX,
+};
 import { Card, Grid, Stat, DistBar } from '../../app/ui.jsx';
 import FigureAvatar from '../../lib/ui/FigureAvatar.jsx';
 import { figureAvatarProps, prefetchFigureAvatars } from '../../lib/ui/figureAvatarResolve.js';
@@ -29,8 +48,8 @@ const inp = { background: 'var(--bg-base)', border: '1px solid var(--border-subt
 const btn = { background: 'rgba(244,114,182,0.14)', color: '#f472b6', border: '1px solid rgba(244,114,182,0.35)', borderRadius: 6, padding: '6px 14px', fontSize: 13, cursor: 'pointer' };
 
 const CAT_ACCENT = {
-  politics: '#c41e3a', finance: '#eab308', tech: '#6366f1', culture: '#a78bfa',
-  history: '#d4af37', military: '#556b2f', international: '#0ea5e9',
+  politics: '#e5483b', finance: '#eab308', tech: '#6366f1', culture: '#a78bfa',
+  history: '#d9b26a', military: '#556b2f', international: '#0ea5e9',
   lifestyle: '#22c55e', entertainment: '#f472b6',
 };
 const TIER_RANK = { S: 0, A: 1, B: 2, C: 3 };
@@ -74,8 +93,8 @@ function MediaCard({ r, on, onClick, dense = false }) {
           <div className="flex items-center gap-1.5 flex-wrap">
             <span className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{r.name}</span>
             <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: `${accent}22`, color: accent }}>{SM_TAB_LABEL[r.category]}</span>
-            {r.platform && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)' }}>{r.platform}</span>}
-            {r.tier && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(212,175,55,0.12)', color: '#d4af37' }}>{SM_TIER_LABEL[r.tier] || r.tier}</span>}
+            {r.platform && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(110, 140, 255,0.12)', color: 'var(--cyber-cyan)' }}>{r.platform}</span>}
+            {r.tier && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(217, 178, 106,0.12)', color: '#d9b26a' }}>{SM_TIER_LABEL[r.tier] || r.tier}</span>}
           </div>
           <div className="text-[11px] mt-0.5 truncate" style={{ color: 'var(--text-secondary)' }}>
             {r.niche}{r.followers ? ` · ${r.followers}` : ''}
@@ -177,7 +196,7 @@ export default function SelfMediaSection() {
 
   const platformChart = {
     grid: { left: 72, right: 16, top: 12, bottom: 24 },
-    xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+    xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } } },
     yAxis: { type: 'category', data: distPlatform.slice(0, 10).map(([k]) => SM_PLATFORM_LABEL[k] || k).reverse(), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     series: [{ type: 'bar', data: distPlatform.slice(0, 10).map(([, n]) => n).reverse(), barWidth: 14, itemStyle: { color: '#f472b6', borderRadius: 3 } }],
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
@@ -297,7 +316,7 @@ export default function SelfMediaSection() {
                 })}
               </div>
               {list.length < SELF_MEDIA_DEDUPED_COUNT.total && (
-                <button type="button" onClick={() => loadSeed(false)} disabled={loading} style={{ ...inp, cursor: 'pointer', color: '#10b981', borderColor: 'rgba(16,185,129,0.4)', display: 'flex', alignItems: 'center', gap: 4 }}>
+                <button type="button" onClick={() => loadSeed(false)} disabled={loading} style={{ ...inp, cursor: 'pointer', color: '#6fc2ae', borderColor: 'rgba(111, 194, 174,0.4)', display: 'flex', alignItems: 'center', gap: 4 }}>
                   <Lucide.RefreshCw size={13} />{loading ? '载入中…' : `补全 ${SELF_MEDIA_DEDUPED_COUNT.total} 条`}
                 </button>
               )}
@@ -322,7 +341,7 @@ export default function SelfMediaSection() {
             <div className="space-y-4 mb-4">
               <Grid cols={2}>
                 <Card title="平台分布"><EChart option={platformChart} style={{ height: Math.max(220, distPlatform.slice(0, 10).length * 22) }} /></Card>
-                <Card title="影响力层级"><DistBar data={distTier} color="#d4af37" onPick={(k) => setTier(tier === k ? '' : k)} active={tier} labelFn={(k) => SM_TIER_LABEL[k] || k} /></Card>
+                <Card title="影响力层级"><DistBar data={distTier} color="#d9b26a" onPick={(k) => setTier(tier === k ? '' : k)} active={tier} labelFn={(k) => SM_TIER_LABEL[k] || k} /></Card>
               </Grid>
               <Card title="垂类（点选筛选）"><DistBar data={distNiche.slice(0, 12)} onPick={(k) => setNiche(niche === k ? '' : k)} active={niche} /></Card>
             </div>
@@ -360,8 +379,8 @@ export default function SelfMediaSection() {
                     badges={(
                       <>
                         <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: `${CAT_ACCENT[d.category] || '#f472b6'}22`, color: CAT_ACCENT[d.category] || '#f472b6' }}>{SM_TAB_LABEL[d.category]}</span>
-                        <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)' }}>{d.platform}</span>
-                        {d.tier && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(212,175,55,0.12)', color: '#d4af37' }}>{SM_TIER_LABEL[d.tier] || d.tier}</span>}
+                        <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(110, 140, 255,0.12)', color: 'var(--cyber-cyan)' }}>{d.platform}</span>
+                        {d.tier && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(217, 178, 106,0.12)', color: '#d9b26a' }}>{SM_TIER_LABEL[d.tier] || d.tier}</span>}
                       </>
                     )}
                     tags={normalizeTags(d.tags).filter(Boolean)}
@@ -376,7 +395,7 @@ export default function SelfMediaSection() {
                         fields: [
                           { label: '主平台', value: d.platform, accent: 'var(--cyber-cyan)' },
                           { label: '垂类', value: d.niche },
-                          { label: '粉丝量级', value: d.followers, accent: '#d4af37' },
+                          { label: '粉丝量级', value: d.followers, accent: '#d9b26a' },
                           { label: '影响力层级', value: SM_TIER_LABEL[d.tier] || d.tier },
                         ],
                       },

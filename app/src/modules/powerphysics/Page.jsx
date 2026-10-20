@@ -27,38 +27,38 @@ const LAWS_SIGNATURE = [
 
 // 权力三定律：系统化表述 + 历史注脚
 const THREE_LAWS = [
-  { num: '第一定律', title: '权力守恒 · 转移不灭', accent: '#c41e3a',
+  { num: '第一定律', title: '权力守恒 · 转移不灭', accent: '#e5483b',
     body: '权力不会凭空消失，只会在主体间转移与变形：中央放掉的，地方接走；正式制度退出的，非正式网络填补。任何「去权力化」叙事，物理上等价于权力换了载体。',
     note: '历史注脚：东汉削弱外戚则宦官起，唐削藩镇则牙兵自立节度——真空从不存在，只有再分配。' },
-  { num: '第二定律', title: '控制成本随距离/层级递增', accent: '#e8a317',
+  { num: '第二定律', title: '控制成本随距离/层级递增', accent: '#d4a25a',
     body: '控制力随空间距离与科层层级指数衰减，而维持同等控制的成本指数上升。每多一级代理，就多一层信息失真与激励偏移——「天高皇帝远」是衰减函数，不是修辞。',
     note: '历史注脚：明代驿递一道奏折往返云南数月，皇权到县已是「与士绅共治」；郡县制本质是用官僚密度对冲衰减。' },
-  { num: '第三定律', title: '高压系统的反弹势能积累', accent: '#8b5cf6',
+  { num: '第三定律', title: '高压系统的反弹势能积累', accent: '#b07cc6',
     body: '压强不会消灭张力，只会把动能转为势能储存。控制强度越高、持续越久，系统内积累的反弹势能越大；释放往往不是线性泄压，而是相变式崩解。',
     note: '历史注脚：秦法密于凝脂，戍卒一呼而七庙隳——二世而亡不是偶然，是势能方程的解。' },
 ];
 
 // 历史政权案例：控制强度/统治成本/合法性/系统活力/存续（年）
 const REGIMES = {
-  qin: { label: '秦 · 高压短命', accent: '#c41e3a', control: 95, cost: 90, legit: 35, vitality: 30, span: 15,
+  qin: { label: '秦 · 高压短命', accent: '#e5483b', control: 95, cost: 90, legit: 35, vitality: 30, span: 15,
     verdict: '控制强度逼近物理极限，统治成本吞噬产出，合法性账户透支——净确定性为负，势能在十五年内一次性释放。过控临界点的标本。' },
-  han: { label: '汉 · 儒法相济', accent: '#e8a317', control: 60, cost: 45, legit: 75, vitality: 65, span: 407,
+  han: { label: '汉 · 儒法相济', accent: '#d4a25a', control: 60, cost: 45, legit: 75, vitality: 65, span: 407,
     verdict: '外儒内法：用意识形态合法性替代部分强制成本，把统治成本会计从「强制项」转记到「合法性项」——单位确定性的价格大幅下降，系统存续拉长一个数量级。' },
-  tang: { label: '唐 · 开放盛世', accent: '#10b981', control: 50, cost: 40, legit: 80, vitality: 90, span: 289,
+  tang: { label: '唐 · 开放盛世', accent: '#6fc2ae', control: 50, cost: 40, legit: 80, vitality: 90, span: 289,
     verdict: '控制强度主动让渡换取系统活力峰值：开放科举、胡汉并用、藩镇分权。代价是衰减常数失守——安史之后，力场半径收缩回关中。开放红利与控制风险的同一枚硬币。' },
-  mingqing: { label: '明清 · 内卷收缩', accent: '#64748b', control: 80, cost: 65, legit: 60, vitality: 40, span: 543,
+  mingqing: { label: '明清 · 内卷收缩', accent: '#8a8578', control: 80, cost: 65, legit: 60, vitality: 40, span: 543,
     verdict: '以海禁、文字狱、密折制把控制强度推高，换取超长存续——但活力被锁死，确定性以「停滞」形式实现。低熵≠繁荣：这是用降低系统温度换取的秩序。' },
-  reform: { label: '改革开放 · 放权增长', accent: '#22d3ee', control: 55, cost: 35, legit: 80, vitality: 88, span: 47,
+  reform: { label: '改革开放 · 放权增长', accent: '#6e8cff', control: 55, cost: 35, legit: 80, vitality: 88, span: 47,
     verdict: '主动下调控制强度（放权让利、双轨制），用绩效合法性回填——统治成本/产出比降至历史低位。证明力场方程存在「少控多得」区间：控制不是越多越好，是越准越好。' },
 };
 
 // 控制技术演进：每代技术改变力场衰减常数 λ（越小衰减越慢）
 const TECH_STAGES = [
-  { period: '先秦—汉', title: '烽火驿站', accent: '#64748b', lambda: 0.55, desc: '信息以马速传播，控制半径数百里。皇权止于郡治，县以下靠豪强与宗族代理——衰减常数最大，「天高皇帝远」是硬约束。' },
-  { period: '隋唐—清', title: '科举官僚', accent: '#e8a317', lambda: 0.40, desc: '科举把全国精英纳入同一激励回路：不传输命令，传输「想当官的人」。意识形态预装降低每层失真——用人的标准化部分对冲了空间衰减。' },
-  { period: '晚清—民国', title: '电报铁路', accent: '#fb923c', lambda: 0.28, desc: '信息传播首次与马速脱钩：电报让边疆事变次日达于中枢，铁路让兵力投送以日计。衰减常数断崖式下降，但硬件先于组织——有穿透无整合。' },
-  { period: '1949—1990s', title: '广播组织', accent: '#8b5cf6', lambda: 0.18, desc: '单位制+广播体系：组织毛细血管下沉到车间与生产队，意志首次直达个人。衰减被组织密度强行压平——代价是全社会刚性化、摩擦无处缓冲。' },
-  { period: '2000s—今', title: '数字实时', accent: '#22d3ee', lambda: 0.08, desc: '数据实时回传、政令实时下达：衰减常数趋近于零，「天高皇帝远」在物理上被消灭。新问题随之而来——穿透的边际成本归零后，过控临界点比任何时代都更容易越过。' },
+  { period: '先秦—汉', title: '烽火驿站', accent: '#8a8578', lambda: 0.55, desc: '信息以马速传播，控制半径数百里。皇权止于郡治，县以下靠豪强与宗族代理——衰减常数最大，「天高皇帝远」是硬约束。' },
+  { period: '隋唐—清', title: '科举官僚', accent: '#d4a25a', lambda: 0.40, desc: '科举把全国精英纳入同一激励回路：不传输命令，传输「想当官的人」。意识形态预装降低每层失真——用人的标准化部分对冲了空间衰减。' },
+  { period: '晚清—民国', title: '电报铁路', accent: '#c07a4a', lambda: 0.28, desc: '信息传播首次与马速脱钩：电报让边疆事变次日达于中枢，铁路让兵力投送以日计。衰减常数断崖式下降，但硬件先于组织——有穿透无整合。' },
+  { period: '1949—1990s', title: '广播组织', accent: '#b07cc6', lambda: 0.18, desc: '单位制+广播体系：组织毛细血管下沉到车间与生产队，意志首次直达个人。衰减被组织密度强行压平——代价是全社会刚性化、摩擦无处缓冲。' },
+  { period: '2000s—今', title: '数字实时', accent: '#6e8cff', lambda: 0.08, desc: '数据实时回传、政令实时下达：衰减常数趋近于零，「天高皇帝远」在物理上被消灭。新问题随之而来——穿透的边际成本归零后，过控临界点比任何时代都更容易越过。' },
 ];
 
 const LEVELS = ['中枢', '省', '市', '县', '乡镇', '村/社区', '个体'];
@@ -104,13 +104,13 @@ export default function Page() {
     xAxis: categoryX(simCurves.xs, { interval: 9 }),
     yAxis: valueY(),
     series: [
-      { name: '统治成本', type: 'line', smooth: true, symbol: 'none', data: simCurves.costs, lineStyle: { color: '#e8a317', width: 2 } },
-      { name: '反弹势能', type: 'line', smooth: true, symbol: 'none', data: simCurves.rebounds, lineStyle: { color: '#8b5cf6', width: 2 } },
-      { name: '净确定性', type: 'line', smooth: true, symbol: 'none', data: simCurves.nets, lineStyle: { color: '#10b981', width: 2.5 }, areaStyle: { color: 'rgba(16,185,129,0.08)' },
+      { name: '统治成本', type: 'line', smooth: true, symbol: 'none', data: simCurves.costs, lineStyle: { color: '#d4a25a', width: 2 } },
+      { name: '反弹势能', type: 'line', smooth: true, symbol: 'none', data: simCurves.rebounds, lineStyle: { color: '#b07cc6', width: 2 } },
+      { name: '净确定性', type: 'line', smooth: true, symbol: 'none', data: simCurves.nets, lineStyle: { color: '#6fc2ae', width: 2.5 }, areaStyle: { color: 'rgba(111, 194, 174,0.08)' },
         markLine: { silent: true, symbol: 'none', label: { color: LABEL.color, fontSize: 10 },
           data: [
-            { xAxis: String(simCurves.peakX), label: { formatter: `临界点 ${simCurves.peakX}` }, lineStyle: { color: '#c41e3a', type: 'dashed' } },
-            { xAxis: String(Math.round(ctrl / 2) * 2), label: { formatter: `当前 ${ctrl}` }, lineStyle: { color: '#22d3ee', type: 'solid' } },
+            { xAxis: String(simCurves.peakX), label: { formatter: `临界点 ${simCurves.peakX}` }, lineStyle: { color: '#e5483b', type: 'dashed' } },
+            { xAxis: String(Math.round(ctrl / 2) * 2), label: { formatter: `当前 ${ctrl}` }, lineStyle: { color: '#6e8cff', type: 'solid' } },
           ] } },
     ],
   }), [simCurves, ctrl]);
@@ -125,7 +125,7 @@ export default function Page() {
   const spanOpt = useMemo(() => ({
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
     grid: { left: 96, right: 32, top: 16, bottom: 24 },
-    xAxis: logY({ name: '存续(年,对数)', nameTextStyle: { color: '#5b6a82', fontSize: 10 } }),
+    xAxis: logY({ name: '存续(年,对数)', nameTextStyle: { color: '#8a847a', fontSize: 10 } }),
     yAxis: categoryX(Object.values(REGIMES).map((r) => r.label.split(' ')[0])),
     series: [{ type: 'bar', barWidth: 12, data: Object.entries(REGIMES).map(([k, r]) => ({ value: r.span, itemStyle: { color: k === regimeKey ? r.accent : 'rgba(100,116,139,0.45)' } })), label: { show: true, position: 'right', color: LABEL.color, fontSize: 10, formatter: '{c} 年' } }],
   }), [regimeKey]);
@@ -143,7 +143,7 @@ export default function Page() {
       data: LEVELS.map((_, d) => Math.round(100 * Math.exp(-t.lambda * d))),
       lineStyle: { color: t.accent, width: i === techIdx ? 3 : 1, opacity: i === techIdx ? 1 : 0.35 },
       itemStyle: { color: t.accent },
-      areaStyle: i === techIdx ? { color: 'rgba(34,211,238,0.07)' } : undefined,
+      areaStyle: i === techIdx ? { color: 'rgba(110, 140, 255,0.07)' } : undefined,
     })),
   }), [techIdx]);
   const villageReach = Math.round(100 * Math.exp(-TECH_STAGES[techIdx].lambda * 5));
@@ -152,35 +152,35 @@ export default function Page() {
   const scatterOpt = useMemo(() => ({
     tooltip: { trigger: 'item', formatter: (pt) => `${pt.data[3]}<br/>控制 ${pt.data[0]} · 活力 ${pt.data[1]} · 存续 ${pt.data[2]} 年` },
     grid: { left: 44, right: 24, top: 24, bottom: 36 },
-    xAxis: valueY({ name: '控制强度 →', nameLocation: 'middle', nameGap: 24, nameTextStyle: { color: '#5b6a82', fontSize: 10 }, min: 20, max: 100 }),
-    yAxis: valueY({ name: '系统活力', nameTextStyle: { color: '#5b6a82', fontSize: 10 }, min: 0, max: 100 }),
+    xAxis: valueY({ name: '控制强度 →', nameLocation: 'middle', nameGap: 24, nameTextStyle: { color: '#8a847a', fontSize: 10 }, min: 20, max: 100 }),
+    yAxis: valueY({ name: '系统活力', nameTextStyle: { color: '#8a847a', fontSize: 10 }, min: 0, max: 100 }),
     series: [{
       type: 'scatter',
       symbolSize: (d) => 12 + Math.sqrt(d[2]) * 1.6, // 气泡 ∝ √存续
       data: Object.entries(REGIMES).map(([k, r]) => ({
         value: [r.control, r.vitality, r.span, r.label],
-        itemStyle: { color: r.accent, opacity: k === regimeKey ? 0.95 : 0.45, borderColor: k === regimeKey ? '#e8edf6' : 'transparent', borderWidth: 1.5 },
+        itemStyle: { color: r.accent, opacity: k === regimeKey ? 0.95 : 0.45, borderColor: k === regimeKey ? '#ede8df' : 'transparent', borderWidth: 1.5 },
         label: { show: true, position: 'top', color: LABEL.color, fontSize: 10, formatter: r.label.split(' ')[0] },
       })),
-      markLine: { silent: true, symbol: 'none', lineStyle: { color: 'rgba(196,30,58,0.5)', type: 'dashed' }, label: { color: '#5b6a82', fontSize: 10, formatter: '过控警戒线' }, data: [{ xAxis: 75 }] },
+      markLine: { silent: true, symbol: 'none', lineStyle: { color: 'rgba(229, 72, 59,0.5)', type: 'dashed' }, label: { color: '#8a847a', fontSize: 10, formatter: '过控警戒线' }, data: [{ xAxis: 75 }] },
     }],
   }), [regimeKey]);
 
   // —— 原力场雷达 + 仪表（保留） ——
   const radar = useMemo(() => ({
-    radar: { indicator: [{ name: '强制力', max: 100 }, { name: '合法性', max: 100 }, { name: '信息穿透', max: 100 }, { name: '社会摩擦', max: 100 }], axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
-    series: [{ type: 'radar', data: [{ value: [p.coercion, p.legit, p.penetration, p.friction], name: '力场', lineStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.14)' } }] }],
+    radar: { indicator: [{ name: '强制力', max: 100 }, { name: '合法性', max: 100 }, { name: '信息穿透', max: 100 }, { name: '社会摩擦', max: 100 }], axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } }, splitArea: { show: false } },
+    series: [{ type: 'radar', data: [{ value: [p.coercion, p.legit, p.penetration, p.friction], name: '力场', lineStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.14)' } }] }],
   }), [p]);
   const gauge = useMemo(() => ({
-    series: [{ type: 'gauge', min: 0, max: 100, progress: { show: true, width: 14, itemStyle: { color: eff > 70 ? '#10b981' : eff > 45 ? '#e8a317' : '#c41e3a' } },
-      axisLine: { lineStyle: { width: 14, color: [[1, '#1a2333']] } }, axisLabel: { color: '#5b6a82', fontSize: 10 }, axisTick: { show: false }, splitLine: { show: false },
-      pointer: { itemStyle: { color: LABEL.color } }, detail: { valueAnimation: true, color: '#e8edf6', fontSize: 28, offsetCenter: [0, '40%'] }, data: [{ value: eff }] }],
+    series: [{ type: 'gauge', min: 0, max: 100, progress: { show: true, width: 14, itemStyle: { color: eff > 70 ? '#6fc2ae' : eff > 45 ? '#d4a25a' : '#e5483b' } },
+      axisLine: { lineStyle: { width: 14, color: [[1, '#1c202a']] } }, axisLabel: { color: '#8a847a', fontSize: 10 }, axisTick: { show: false }, splitLine: { show: false },
+      pointer: { itemStyle: { color: LABEL.color } }, detail: { valueAnimation: true, color: '#ede8df', fontSize: 28, offsetCenter: [0, '40%'] }, data: [{ value: eff }] }],
   }), [eff]);
 
   const Slider = ({ k, label }) => (
     <div className="mb-2">
       <div className="flex justify-between text-xs mb-1"><span style={{ color: 'var(--text-secondary)' }}>{label}</span><span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{p[k]}</span></div>
-      <input type="range" min="0" max="100" value={p[k]} onChange={(e) => setP({ ...p, [k]: Number(e.target.value) })} style={{ width: '100%', accentColor: '#c41e3a' }} />
+      <input type="range" min="0" max="100" value={p[k]} onChange={(e) => setP({ ...p, [k]: Number(e.target.value) })} style={{ width: '100%', accentColor: '#e5483b' }} />
     </div>
   );
 
@@ -192,10 +192,10 @@ export default function Page() {
         权力物理学是本项目的冷峻内核：把权力运行从道德叙事中剥离，当作<strong style={{ color: 'var(--text-primary)' }}>可计算的力场</strong>——强制力提供下限、合法性降低维稳成本、信息穿透决定意志直达末梢的效率，三者对冲社会摩擦。系统的终极偏好是<strong style={{ color: 'var(--text-primary)' }}>「确定性」</strong>。但确定性有价格：控制强度越过临界点后，统治成本指数上升、反弹势能立方积累——净确定性不升反降。本页提供两台模拟器与五个历史样本，把这条曲线画给你看。
       </IntroCard>
       <Grid cols={4} className="mb-6">
-        <Stat value="3+2" label="理论模块：三定律 + 双模拟器" accent="#c41e3a" />
-        <Stat value="5" label="历史政权力学样本" accent="#e8a317" />
-        <Stat value="7" label="可调模拟参数" accent="#22d3ee" />
-        <Stat value={simCurves.peakX} label="过控临界点（净确定性峰值）" accent="#10b981" />
+        <Stat value="3+2" label="理论模块：三定律 + 双模拟器" accent="#e5483b" />
+        <Stat value="5" label="历史政权力学样本" accent="#d4a25a" />
+        <Stat value="7" label="可调模拟参数" accent="#6e8cff" />
+        <Stat value={simCurves.peakX} label="过控临界点（净确定性峰值）" accent="#6fc2ae" />
       </Grid>
 
       {/* ① 权力三定律 */}
@@ -218,17 +218,17 @@ export default function Page() {
           <div>
             <div className="flex justify-between text-xs mb-1">
               <span style={{ color: 'var(--text-secondary)' }}>控制强度 Control Intensity</span>
-              <span className="mono" style={{ color: overCritical ? '#c41e3a' : '#22d3ee' }}>{ctrl}{overCritical ? ' · 已越过临界点' : ''}</span>
+              <span className="mono" style={{ color: overCritical ? '#e5483b' : '#6e8cff' }}>{ctrl}{overCritical ? ' · 已越过临界点' : ''}</span>
             </div>
-            <input type="range" min="0" max="100" value={ctrl} onChange={(e) => setCtrl(Number(e.target.value))} style={{ width: '100%', accentColor: '#c41e3a' }} />
+            <input type="range" min="0" max="100" value={ctrl} onChange={(e) => setCtrl(Number(e.target.value))} style={{ width: '100%', accentColor: '#e5483b' }} />
             <Grid cols={2} className="mt-3">
-              <Stat value={sim.cost} label="统治成本（强制+监督）" accent="#e8a317" />
-              <Stat value={sim.rebound} label="反弹势能（∝ 压强³）" accent="#8b5cf6" />
-              <Stat value={sim.gross} label="毛确定性（边际递减）" accent="#22d3ee" />
-              <Stat value={sim.net} label="净确定性 = 毛 − 势能 − 超额成本" accent={sim.net >= simCurves.peakNet - 5 ? '#10b981' : '#c41e3a'} />
+              <Stat value={sim.cost} label="统治成本（强制+监督）" accent="#d4a25a" />
+              <Stat value={sim.rebound} label="反弹势能（∝ 压强³）" accent="#b07cc6" />
+              <Stat value={sim.gross} label="毛确定性（边际递减）" accent="#6e8cff" />
+              <Stat value={sim.net} label="净确定性 = 毛 − 势能 − 超额成本" accent={sim.net >= simCurves.peakNet - 5 ? '#6fc2ae' : '#e5483b'} />
             </Grid>
             <p className="text-[11px] mt-3 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
-              判读：毛确定性随控制强度边际递减（先易后难），统治成本在 ~72 后指数爆炸（监督监督者问题），反弹势能按压强立方积累。三者叠加，净确定性在 <span className="mono" style={{ color: '#10b981' }}>{simCurves.peakX}</span> 附近见顶——继续加压，买到的不是秩序，是更贵的脆弱。秦在 95，改革开放在 55。
+              判读：毛确定性随控制强度边际递减（先易后难），统治成本在 ~72 后指数爆炸（监督监督者问题），反弹势能按压强立方积累。三者叠加，净确定性在 <span className="mono" style={{ color: '#6fc2ae' }}>{simCurves.peakX}</span> 附近见顶——继续加压，买到的不是秩序，是更贵的脆弱。秦在 95，改革开放在 55。
             </p>
           </div>
           <EChart option={simOpt} style={{ height: 280 }} />
@@ -259,7 +259,7 @@ export default function Page() {
         <Card title="力场空间衰减 · P(d)=100·e^(−λd)">
           <EChart option={decayOpt} style={{ height: 260 }} />
           <p className="text-[11px] mt-2 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
-            当前选中 <span className="mono" style={{ color: TECH_STAGES[techIdx].accent }}>{TECH_STAGES[techIdx].title}（λ={TECH_STAGES[techIdx].lambda}）</span>：中枢意志抵达村/社区一级时剩余 <span className="mono" style={{ color: '#22d3ee' }}>{villageReach}%</span>。从烽火到数字，五代控制技术做的是同一件事——压低 λ。
+            当前选中 <span className="mono" style={{ color: TECH_STAGES[techIdx].accent }}>{TECH_STAGES[techIdx].title}（λ={TECH_STAGES[techIdx].lambda}）</span>：中枢意志抵达村/社区一级时剩余 <span className="mono" style={{ color: '#6e8cff' }}>{villageReach}%</span>。从烽火到数字，五代控制技术做的是同一件事——压低 λ。
           </p>
         </Card>
       </Grid>
@@ -271,9 +271,9 @@ export default function Page() {
 
       {/* 原力场调参模拟器（保留） */}
       <Grid cols={3} className="mb-6">
-        <Stat value={eff} label="有效权力指数（实时）" accent={eff > 70 ? '#10b981' : eff > 45 ? '#e8a317' : '#c41e3a'} />
-        <Stat value={certainty} label="确定性指数（穿透×合法）" accent="#22d3ee" />
-        <Stat value={cost + '%'} label="相对统治成本" accent="#e8a317" />
+        <Stat value={eff} label="有效权力指数（实时）" accent={eff > 70 ? '#6fc2ae' : eff > 45 ? '#d4a25a' : '#e5483b'} />
+        <Stat value={certainty} label="确定性指数（穿透×合法）" accent="#6e8cff" />
+        <Stat value={cost + '%'} label="相对统治成本" accent="#d4a25a" />
       </Grid>
       <Grid cols={2} className="mb-6">
         <Card title="力场参数 · 拖动调参（或选预设态）">

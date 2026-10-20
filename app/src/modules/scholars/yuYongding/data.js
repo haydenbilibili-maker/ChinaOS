@@ -9,12 +9,12 @@
 export const AS_OF = '2026-09-28';
 
 export const THEMES = {
-  growth: { label: '宏观与增长', color: '#8b5cf6' },
-  fiscal: { label: '财政扩张与地方债', color: '#c41e3a' },
-  monetary: { label: '货币政策与通缩', color: '#22d3ee' },
-  fx: { label: '汇率与资本账户', color: '#e8a317' },
-  reserves: { label: '外汇储备与美债', color: '#10b981' },
-  global: { label: '中美与全球金融', color: '#fb923c' },
+  growth: { label: '宏观与增长', color: '#b07cc6' },
+  fiscal: { label: '财政扩张与地方债', color: '#e5483b' },
+  monetary: { label: '货币政策与通缩', color: '#6e8cff' },
+  fx: { label: '汇率与资本账户', color: '#d4a25a' },
+  reserves: { label: '外汇储备与美债', color: '#6fc2ae' },
+  global: { label: '中美与全球金融', color: '#c07a4a' },
 };
 export const THEME_KEYS = Object.keys(THEMES);
 
@@ -44,11 +44,11 @@ export const BOARD = {
 };
 
 export const CAREER_GROUPS = {
-  worker: { label: '工厂', color: '#94a3b8' },
-  cass: { label: '社科院', color: '#c41e3a' },
-  study: { label: '留学', color: '#8b5cf6' },
-  policy: { label: '政策咨询', color: '#22d3ee' },
-  tk: { label: '智库 / 基金会', color: '#10b981' },
+  worker: { label: '工厂', color: '#a29c91' },
+  cass: { label: '社科院', color: '#e5483b' },
+  study: { label: '留学', color: '#b07cc6' },
+  policy: { label: '政策咨询', color: '#6e8cff' },
+  tk: { label: '智库 / 基金会', color: '#6fc2ae' },
 };
 
 export const CAREER = [

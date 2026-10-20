@@ -20,19 +20,19 @@ import { GY_MODULES, POPULATION_SLICE_GY_NUMS } from '../../lib/gy/registry.js';
  * 0. 色板（与项目主壳一致，循环使用）
  * ============================================================ */
 const PALETTE = [
-  '#c41e3a',
-  '#22d3ee',
-  '#e8a317',
-  '#10b981',
-  '#8b5cf6',
-  '#fb923c',
-  '#64748b',
+  '#e5483b',
+  '#6e8cff',
+  '#d4a25a',
+  '#6fc2ae',
+  '#b07cc6',
+  '#c07a4a',
+  '#8a8578',
 ];
 
 /* 轴框线 / 网格 / 标签色 */
-const AXIS_LINE = '#27324a';
-const AXIS_LABEL = '#93a1b5';
-const GRID_FILL = 'rgba(148,163,184,0.1)';
+const AXIS_LINE = '#2a2d36';
+const AXIS_LABEL = '#a29c91';
+const GRID_FILL = 'rgba(162, 156, 145,0.1)';
 
 /* ============================================================
  * 1. 八个分析维度 SPACE_DIMS

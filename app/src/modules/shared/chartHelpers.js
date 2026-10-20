@@ -7,23 +7,23 @@
 // 双主题调色板：夜览(dark) 沿用既有冷峻深色，日览(light) 提升对比度但保持冷灰基调
 const CHART_PALETTE = {
   dark: {
-    axis: '#27324a',
-    label: '#93a1b5',
-    split: 'rgba(148,163,184,0.1)',
-    splitStrong: 'rgba(148,163,184,0.15)',
-    tooltipBg: 'rgba(15, 22, 35, 0.94)',
-    tooltipBorder: 'rgba(148, 163, 184, 0.22)',
-    tooltipText: '#e8edf6',
+    axis: '#2a2d36',
+    label: '#a29c91',
+    split: 'rgba(162, 156, 145,0.1)',
+    splitStrong: 'rgba(162, 156, 145,0.15)',
+    tooltipBg: 'rgba(20, 23, 31, 0.94)',
+    tooltipBorder: 'rgba(162, 156, 145, 0.22)',
+    tooltipText: '#ede8df',
     pointBorder: '#ffffff',
   },
   light: {
-    axis: '#b8c4d4',
-    label: '#3a4659',
-    split: 'rgba(58, 70, 89, 0.1)',
-    splitStrong: 'rgba(58, 70, 89, 0.16)',
-    tooltipBg: 'rgba(252, 253, 255, 0.98)',
-    tooltipBorder: 'rgba(15, 23, 42, 0.12)',
-    tooltipText: '#121820',
+    axis: '#cfc6b5',
+    label: '#5a544b',
+    split: 'rgba(22, 19, 15, 0.08)',
+    splitStrong: 'rgba(22, 19, 15, 0.14)',
+    tooltipBg: 'rgba(255, 255, 255, 0.98)',
+    tooltipBorder: 'rgba(22, 19, 15, 0.14)',
+    tooltipText: '#16130f',
     pointBorder: '#ffffff',
   },
 };
@@ -39,14 +39,20 @@ function readCssChartVar(name, fallback) {
 
 /** 专题模块统一系列色 · power-red → cyber-cyan → fire-gold 语义序 */
 export const CHART_SERIES_COLORS = {
-  powerRed: '#c41e3a',
-  cyberCyan: '#22d3ee',
-  fireGold: '#e8a317',
-  emerald: '#10b981',
-  violet: '#8b5cf6',
-  orange: '#fb923c',
-  slate: '#64748b',
+  powerRed: '#e5483b',
+  cyberCyan: '#6e8cff',
+  fireGold: '#d4a25a',
+  emerald: '#6fc2ae',
+  violet: '#b07cc6',
+  orange: '#c07a4a',
+  slate: '#8a8578',
 };
+
+/** VI 2.0 数据可视化有序色板（§1.4）：option 未指定 color 时的默认序 */
+export const VI_DATA_PALETTE = ['#6e8cff', '#d4a25a', '#6fc2ae', '#e5483b', '#b07cc6', '#4fa3c7', '#c07a4a', '#8a8578'];
+
+/** 画布无法解析 CSS 变量，图表字体必须写字面量 */
+export const CHART_FONT_FAMILY = 'Inter, "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif';
 
 export const CHART_SERIES_PALETTE = [
   CHART_SERIES_COLORS.powerRed,
@@ -70,7 +76,7 @@ export function mapChoropleth(theme = 'dark') {
 
 /** Δ12 月发散序：降温蓝 → 中性底 → 升温暖（对齐 MAP_CHOROPLETH 端点） */
 export const MAP_DELTA_CHOROPLETH = {
-  dark: ['#3b82f6', MAP_CHOROPLETH.dark[0], MAP_CHOROPLETH.dark[3]],
+  dark: ['#6e8cff', MAP_CHOROPLETH.dark[0], MAP_CHOROPLETH.dark[3]],
   light: ['#2563eb', MAP_CHOROPLETH.light[0], MAP_CHOROPLETH.light[3]],
 };
 
@@ -90,8 +96,8 @@ export function mapAreaIdle(theme = 'dark') {
 
 export const AXIS = { lineStyle: { color: C.axis } };
 export const GRID_LINE = { lineStyle: { color: C.split } };
-export const LABEL = { color: C.label, fontSize: 10 };
-export const LEGEND = { textStyle: { color: C.label, fontSize: 10 }, itemWidth: 12 };
+export const LABEL = { color: C.label, fontSize: 11 };
+export const LEGEND = { textStyle: { color: C.label, fontSize: 11 }, itemWidth: 12, itemHeight: 8, icon: 'roundRect' };
 export const GRID = { left: 36, right: 16, top: 16, bottom: 42 };
 export const GRID_WIDE = { left: 44, right: 44, top: 30, bottom: 24 };
 
@@ -100,8 +106,8 @@ export const CHART_TOOLTIP = {
   backgroundColor: C.tooltipBg,
   borderColor: C.tooltipBorder,
   borderWidth: 1,
-  textStyle: { color: C.tooltipText, fontSize: 11 },
-  extraCssText: 'border-radius: 8px; padding: 8px 12px; line-height: 1.45; box-shadow: 0 4px 16px -4px rgba(15,23,42,0.15);',
+  textStyle: { color: C.tooltipText, fontSize: 12, fontFamily: CHART_FONT_FAMILY },
+  extraCssText: 'border-radius: 12px; padding: 10px 12px; line-height: 1.55; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 18px 40px -16px rgba(0,0,0,0.45);',
 };
 
 /** 折线/散点高亮描边色 */
@@ -165,7 +171,7 @@ export function usFlagBlueAlpha(theme = 'dark', alpha = 0.12) {
   return hexAlpha(usFlagBlue(theme), alpha);
 }
 
-export function radarOpt(indicators, values, { name = '综合', color = '#c41e3a' } = {}) {
+export function radarOpt(indicators, values, { name = '综合', color = '#e5483b' } = {}) {
   return {
     radar: {
       indicator: indicators.map((n) => (typeof n === 'string' ? { name: n, max: 100 } : n)),
@@ -179,7 +185,7 @@ export function radarOpt(indicators, values, { name = '综合', color = '#c41e3a
 }
 
 /** GDP/趋势图 + markArea 高亮阶段区间 */
-export function timelineMarkAreaOpt({ years, values, span, highlightColor = '#22d3ee', lineColor = '#c41e3a' }) {
+export function timelineMarkAreaOpt({ years, values, span, highlightColor = '#6e8cff', lineColor = '#e5483b' }) {
   const [a, b] = span;
   return {
     grid: { left: 48, right: 16, top: 16, bottom: 24 },
@@ -194,8 +200,8 @@ export function timelineMarkAreaOpt({ years, values, span, highlightColor = '#22
         symbolSize: (i >= a && i <= b) ? 9 : 5,
       })),
       lineStyle: { color: lineColor, width: 2 },
-      areaStyle: { color: 'rgba(196,30,58,0.1)' },
-      markArea: { silent: true, itemStyle: { color: 'rgba(34,211,238,0.08)' }, data: [[{ xAxis: years[a] }, { xAxis: years[b] }]] },
+      areaStyle: { color: 'rgba(229, 72, 59,0.1)' },
+      markArea: { silent: true, itemStyle: { color: 'rgba(110, 140, 255,0.08)' }, data: [[{ xAxis: years[a] }, { xAxis: years[b] }]] },
     }],
   };
 }

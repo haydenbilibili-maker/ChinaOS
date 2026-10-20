@@ -1,7 +1,7 @@
 /**
  * 宏观指标单一数据源
  * C1/C3/C4（信号灯）与 F2a/F2d（三力）共享读数，避免两处文案漂移。
- * 基准：2026 政府工作报告 / NBS 2026 1–8 月 · 央行 8 月金融数据公开口径 · 数据截至 2026-09-15
+ * 基准：2026 政府工作报告 / NBS 2026 前三季度 · 央行前三季度金融数据公开口径 · 数据截至 2026-10-19
  */
 
 export interface MacroIndicator {
@@ -19,7 +19,7 @@ export interface MacroIndicator {
 export const MACRO_DEFLATION_GATE: MacroIndicator = {
   id: 'macro-gdp-deflator',
   name: 'GDP 平减指数',
-  read: '2026 Q1 同比约 −0.6%；H1 平减指数仍偏负（据公开季度核算）。PPI 已于上半年转正（8 月 +3.8%，输入性推升为主），CPI 1–8 月仅 +0.9%。政府工作报告称「有望 2026 二季度走出通缩」——当以平减指数核对（Q3 核算约 10 月中旬发布）。',
+  read: '2026 Q1 同比约 −0.6%；H1 平减指数仍偏负（据公开季度核算）。前三季度实际 GDP +4.6%（NBS 2026-10-19，未直接公布平减指数）；PPI 1–9 月 +2.3%、9 月 +5.0%（输入性推升为主），CPI 1–9 月仅 +0.9%。政府工作报告称「有望 2026 二季度走出通缩」——仍待以季度名义 / 实际增速差核对平减指数。',
   signalIds: ['C1'],
   forceIds: ['F2a'],
 };
@@ -35,7 +35,7 @@ export const MACRO_CONSUMPTION_SHARE: MacroIndicator = {
 export const MACRO_HOUSEHOLD_LOANS: MacroIndicator = {
   id: 'macro-residential-loans',
   name: '居民中长期贷款',
-  read: '2026 年 8 月人民币贷款仅增 600 亿元、同比少增 5300 亿元，居民贷款连续第二个月收缩（央行 2026-09-14；居民分项为累计差推算）；信心体温计。房价较峰值跌约 30%（据公开监测口径）。',
+  read: '2026 年前三季度住户贷款减少 1.03 万亿元（其中短期 −1.14 万亿、中长期仅 +1062 亿元），企业贷款 +12.55 万亿元（央行 2026-10-14）；居民去杠杆持续，信心体温计。房价较峰值跌约 30%（据公开监测口径）。',
   signalIds: ['C4'],
   forceIds: ['F2d'],
   cushionLayerNos: ['02'],

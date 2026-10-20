@@ -13,7 +13,30 @@ import ThinkTankSection from './ThinkTankSection.jsx';
 import ResearchInstituteSection from './ResearchInstituteSection.jsx';
 import TalentDetailPanel from './TalentDetailPanel.jsx';
 import FigureRadarChart from './FigureRadarChart.jsx';
-import * as Lucide from 'lucide-react';
+import {
+  BarChart3 as LuBarChart3,
+  Grid3x3 as LuGrid3x3,
+  Hexagon as LuHexagon,
+  LayoutGrid as LuLayoutGrid,
+  List as LuList,
+  RefreshCw as LuRefreshCw,
+  Search as LuSearch,
+  Wand2 as LuWand2,
+  X as LuX,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  BarChart3: LuBarChart3,
+  Grid3x3: LuGrid3x3,
+  Hexagon: LuHexagon,
+  LayoutGrid: LuLayoutGrid,
+  List: LuList,
+  RefreshCw: LuRefreshCw,
+  Search: LuSearch,
+  Wand2: LuWand2,
+  X: LuX,
+};
 import { PageHeader, Card, Grid, Stat, StatGrid, TabBar, Button, DistBar } from '../../app/ui.jsx';
 import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import FigureAvatar from '../../lib/ui/FigureAvatar.jsx';
@@ -65,17 +88,17 @@ function tally(arr, keyFn) {
 
 // 内联横条分布 → 共享 DistBar（ui.jsx）
 const TAB_DEFS = [
-  { id: 'resume', baseLabel: '中国政要', accent: 'var(--cyber-cyan)', bg: 'rgba(34,211,238,0.16)' },
-  { id: 'anticorruption', baseLabel: '反腐透视', accent: 'var(--china-red)', bg: 'rgba(196,30,58,0.16)' },
-  { id: 'dissident', baseLabel: '异见人士', accent: '#a78bfa', bg: 'rgba(139,92,246,0.16)' },
+  { id: 'resume', baseLabel: '中国政要', accent: 'var(--cyber-cyan)', bg: 'rgba(110, 140, 255,0.16)' },
+  { id: 'anticorruption', baseLabel: '反腐透视', accent: 'var(--china-red)', bg: 'rgba(229, 72, 59,0.16)' },
+  { id: 'dissident', baseLabel: '异见人士', accent: '#a78bfa', bg: 'rgba(176, 124, 198,0.16)' },
   { id: 'taiwan', baseLabel: '港澳台政要', accent: '#38bdf8', bg: 'rgba(56,189,248,0.16)' },
-  { id: 'education', baseLabel: '高等教育', accent: '#10b981', bg: 'rgba(16,185,129,0.16)' },
-  { id: 'thinktank', baseLabel: '智库', accent: '#22d3ee', bg: 'rgba(34,211,238,0.16)' },
-  { id: 'research', baseLabel: '科研院所', accent: '#a78bfa', bg: 'rgba(139,92,246,0.16)' },
-  { id: 'knowledge', baseLabel: '知识精英', accent: '#a78bfa', bg: 'rgba(139,92,246,0.16)' },
-  { id: 'business', baseLabel: '商业精英', accent: '#e8a317', bg: 'rgba(232,163,23,0.16)' },
+  { id: 'education', baseLabel: '高等教育', accent: '#6fc2ae', bg: 'rgba(111, 194, 174,0.16)' },
+  { id: 'thinktank', baseLabel: '智库', accent: '#6e8cff', bg: 'rgba(110, 140, 255,0.16)' },
+  { id: 'research', baseLabel: '科研院所', accent: '#a78bfa', bg: 'rgba(176, 124, 198,0.16)' },
+  { id: 'knowledge', baseLabel: '知识精英', accent: '#a78bfa', bg: 'rgba(176, 124, 198,0.16)' },
+  { id: 'business', baseLabel: '商业精英', accent: '#d4a25a', bg: 'rgba(212, 162, 90,0.16)' },
   { id: 'overseas', baseLabel: '海外人才', accent: '#0ea5e9', bg: 'rgba(14,165,233,0.16)' },
-  { id: 'diplomatic', baseLabel: '外交人才', accent: '#f59e0b', bg: 'rgba(245,158,11,0.16)' },
+  { id: 'diplomatic', baseLabel: '外交人才', accent: '#d4a25a', bg: 'rgba(245,158,11,0.16)' },
   { id: 'self-media', baseLabel: '自媒体人', accent: '#f472b6', bg: 'rgba(244,114,182,0.16)' },
 ];
 
@@ -219,7 +242,11 @@ export default function Page() {
   const tabs = useMemo(() => buildTalentTabs(), []);
 
   const figuresRaw = useFigures();
-  const figures = figuresRaw;
+  // 本地库未载入（或仍在读取）时直接用随包内置的种子展示，避免整页读数为「—」；
+  // 载入本地库后切换到库内数据（可编辑、可增补）
+  const seedView = useMemo(() => FIGURE_SEED.map((r) => ({ ...r, id: figureStableId(r) })), []);
+  const usingSeed = !figuresRaw || figuresRaw.length === 0;
+  const figures = usingSeed ? seedView : figuresRaw;
   const dupCount = 0;
   const [q, setQ] = useState(() => searchParams.get('q') || '');
   const [prov, setProv] = useState('');
@@ -389,16 +416,16 @@ export default function Page() {
   const ageBar = {
     grid: { left: 34, right: 12, top: 12, bottom: 22 },
     xAxis: { type: 'category', data: ageHist.map((b) => b[0]), ...AXIS, axisLabel: { ...LABEL, fontSize: 10 } },
-    yAxis: { type: 'value', axisLabel: { color: '#93a1b5', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+    yAxis: { type: 'value', axisLabel: { color: '#a29c91', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } } },
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-    series: [{ type: 'bar', data: ageHist.map((b) => b[1]), barWidth: '60%', itemStyle: { borderRadius: [3, 3, 0, 0], color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: '#c41e3a' }, { offset: 1, color: '#5e0f1d' }] } } }],
+    series: [{ type: 'bar', data: ageHist.map((b) => b[1]), barWidth: '60%', itemStyle: { borderRadius: [3, 3, 0, 0], color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: '#e5483b' }, { offset: 1, color: '#5e0f1d' }] } } }],
   };
 
   // ── 多维图表配置 ──────────────────────────────────────────────
       const donut = (data, center = ['34%', '52%']) => ({
     tooltip: { trigger: 'item', formatter: '{b}<br/>{c} 人 ({d}%)' },
     legend: { type: 'scroll', orient: 'vertical', right: 2, top: 'center', textStyle: { color: LABEL.color, fontSize: 10.5 }, itemWidth: 9, itemHeight: 9 },
-    series: [{ type: 'pie', radius: ['44%', '70%'], center, avoidLabelOverlap: true, itemStyle: { borderColor: '#0f1623', borderWidth: 2 }, label: { show: false }, data: data.map(([n, v], i) => ({ name: n, value: v, itemStyle: { color: CHART_SERIES_PALETTE[i % CHART_SERIES_PALETTE.length] } })) }],
+    series: [{ type: 'pie', radius: ['44%', '70%'], center, avoidLabelOverlap: true, itemStyle: { borderColor: '#14171f', borderWidth: 2 }, label: { show: false }, data: data.map(([n, v], i) => ({ name: n, value: v, itemStyle: { color: CHART_SERIES_PALETTE[i % CHART_SERIES_PALETTE.length] } })) }],
   });
   const levelDonut = donut(distLevel.filter(([k]) => k));
   const sectorDonut = donut(distSector);
@@ -423,7 +450,7 @@ export default function Page() {
     grid: { left: 48, right: 24, top: 8, bottom: 20 },
     xAxis: { type: 'value', ...AXIS, axisLabel: LABEL },
     yAxis: { type: 'category', data: natSorted.map((d) => d[0]), ...AXIS, axisLabel: LABEL },
-    series: [{ type: 'bar', data: natSorted.map((d) => d[1]), barWidth: '62%', label: { show: true, position: 'right', color: '#93a1b5', fontSize: 10 }, itemStyle: { borderRadius: [0, 3, 3, 0], color: { type: 'linear', x: 0, y: 0, x2: 1, y2: 0, colorStops: [{ offset: 0, color: '#8a6510' }, { offset: 1, color: '#e8a317' }] } } }],
+    series: [{ type: 'bar', data: natSorted.map((d) => d[1]), barWidth: '62%', label: { show: true, position: 'right', color: '#a29c91', fontSize: 10 }, itemStyle: { borderRadius: [0, 3, 3, 0], color: { type: 'linear', x: 0, y: 0, x2: 1, y2: 0, colorStops: [{ offset: 0, color: '#8a6510' }, { offset: 1, color: '#d4a25a' }] } } }],
   };
   // 籍贯输出 ↔ 现任流入 对流
   const natMap = Object.fromEntries(tally(filtered, nativeProv));
@@ -437,8 +464,8 @@ export default function Page() {
     xAxis: { type: 'value', ...AXIS, axisLabel: { ...LABEL, fontSize: 10, formatter: (v) => Math.abs(v) } },
     yAxis: { type: 'category', data: flowProvs.map((d) => d[0]), ...AXIS, axisLabel: LABEL },
     series: [
-      { name: '籍贯·输出', type: 'bar', stack: 't', data: flowProvs.map((d) => -d[1]), itemStyle: { color: '#e8a317' } },
-      { name: '现任·流入', type: 'bar', stack: 't', data: flowProvs.map((d) => d[2]), itemStyle: { color: '#22d3ee' } },
+      { name: '籍贯·输出', type: 'bar', stack: 't', data: flowProvs.map((d) => -d[1]), itemStyle: { color: '#d4a25a' } },
+      { name: '现任·流入', type: 'bar', stack: 't', data: flowProvs.map((d) => d[2]), itemStyle: { color: '#6e8cff' } },
     ],
   };
   // 年龄 × 任期 散点（按层级着色）
@@ -447,8 +474,8 @@ export default function Page() {
     tooltip: { formatter: (p) => `${p.data[2]}<br/>${p.data[0]} 岁 · 现职 ${p.data[1]} 年` },
     legend: { type: 'scroll', top: 0, textStyle: { color: LABEL.color, fontSize: 10 }, itemWidth: 10, itemHeight: 10 },
     grid: { left: 34, right: 14, top: 28, bottom: 30 },
-    xAxis: { type: 'value', name: '年龄', nameGap: 18, nameTextStyle: { color: '#5b6a82', fontSize: 10 }, scale: true, ...AXIS, axisLabel: LABEL },
-    yAxis: { type: 'value', name: '现职任期', nameTextStyle: { color: '#5b6a82', fontSize: 10 }, ...AXIS, axisLabel: LABEL },
+    xAxis: { type: 'value', name: '年龄', nameGap: 18, nameTextStyle: { color: '#8a847a', fontSize: 10 }, scale: true, ...AXIS, axisLabel: LABEL },
+    yAxis: { type: 'value', name: '现职任期', nameTextStyle: { color: '#8a847a', fontSize: 10 }, ...AXIS, axisLabel: LABEL },
     series: LV_ORD.map((lv, i) => ({ name: lv, type: 'scatter', symbolSize: 7, itemStyle: { color: CHART_SERIES_PALETTE[i % CHART_SERIES_PALETTE.length], opacity: 0.78 }, data: filtered.filter((f) => f.level === lv).map((f) => [ageOf(f), tenureNow(f), f.name]).filter((d) => d[0] && d[1] != null) })),
   };
   // 层级 × 系统 矩阵热力
@@ -457,9 +484,9 @@ export default function Page() {
   const matrixHeat = {
     tooltip: { position: 'top', formatter: (p) => `${MAT_LEVELS[p.data[1]]} × ${MAT_SECTORS[p.data[0]]}<br/>${p.data[2]} 人` },
     grid: { left: 72, right: 24, top: 12, bottom: 48 },
-    xAxis: { type: 'category', data: MAT_SECTORS, splitArea: { show: true }, axisLabel: { color: '#93a1b5', fontSize: 10, rotate: 28 } },
-    yAxis: { type: 'category', data: MAT_LEVELS, splitArea: { show: true }, axisLabel: { color: '#93a1b5', fontSize: 10 } },
-    visualMap: { min: 0, max: Math.max(3, ...MAT_LEVELS.flatMap((lv, yi) => MAT_SECTORS.map((sec, xi) => filtered.filter((f) => f.level === lv && (f.sector === sec || (sec === '地方' && f.province && f.province !== '中央' && !f.sector))).length))), calculable: false, orient: 'horizontal', left: 'center', bottom: 0, inRange: { color: ['#0f1623', AXIS.lineStyle.color, '#c41e3a', '#e8a317'] }, textStyle: { color: LABEL.color, fontSize: 10 } },
+    xAxis: { type: 'category', data: MAT_SECTORS, splitArea: { show: true }, axisLabel: { color: '#a29c91', fontSize: 10, rotate: 28 } },
+    yAxis: { type: 'category', data: MAT_LEVELS, splitArea: { show: true }, axisLabel: { color: '#a29c91', fontSize: 10 } },
+    visualMap: { min: 0, max: Math.max(3, ...MAT_LEVELS.flatMap((lv, yi) => MAT_SECTORS.map((sec, xi) => filtered.filter((f) => f.level === lv && (f.sector === sec || (sec === '地方' && f.province && f.province !== '中央' && !f.sector))).length))), calculable: false, orient: 'horizontal', left: 'center', bottom: 0, inRange: { color: ['#14171f', AXIS.lineStyle.color, '#e5483b', '#d4a25a'] }, textStyle: { color: LABEL.color, fontSize: 10 } },
     series: [{ type: 'heatmap', data: MAT_LEVELS.flatMap((lv, yi) => MAT_SECTORS.map((sec, xi) => {
       const n = filtered.filter((f) => f.level === lv && (f.sector === sec || (sec === '地方' && f.province && f.province !== '中央' && (!f.sector || f.sector === '地方')))).length;
       return [xi, yi, n];
@@ -504,14 +531,14 @@ export default function Page() {
       ) : (
         <>
       <StatGrid>
-        <Stat value={figures.length} label="简历总数" accent="#22d3ee" />
-        <Stat value={FIGURE_SEED.length} label="内置种子" accent="#64748b" />
-        <Stat value={viceCount || '—'} label="副国级" accent="#c41e3a" />
+        <Stat value={figures.length} label={usingSeed ? '简历总数 · 内置' : '简历总数 · 本地库'} accent="#6e8cff" />
+        <Stat value={FIGURE_SEED.length} label="内置种子" accent="#8a8578" />
+        <Stat value={viceCount || '—'} label="副国级" accent="#e5483b" />
         <Stat value={milCount || shangCount || '—'} label="军事将官" accent="#556b2f" />
-        <Stat value={ministerCount || '—'} label="中央部委/机关" accent="#10b981" />
-        <Stat value={citySecCount || secCount || '—'} label="书记/主官" accent="#e8a317" />
-        <Stat value={avgAge || '—'} label="平均年龄" accent="#8b5cf6" />
-        <Stat value={minorityCount || '—'} label="少数民族" accent="#fb923c" />
+        <Stat value={ministerCount || '—'} label="中央部委/机关" accent="#6fc2ae" />
+        <Stat value={citySecCount || secCount || '—'} label="书记/主官" accent="#d4a25a" />
+        <Stat value={avgAge || '—'} label="平均年龄" accent="#b07cc6" />
+        <Stat value={minorityCount || '—'} label="少数民族" accent="#c07a4a" />
       </StatGrid>
       <p className="text-[11px] mono mb-4 -mt-2" style={{ color: 'var(--text-tertiary)' }}>
         数据截至 {FIGURE_CATALOG_META.asOf || '2026-06-27'} · 省级/中央/军事队列 · 反腐/知识/商业/海外等分轨见 Tab
@@ -561,16 +588,16 @@ export default function Page() {
               <select value={institutionType} onChange={(e) => { setInstitutionType(e.target.value); setQuickFilter(''); }} style={inp}><option value="">全部机构带</option>{INSTITUTION_TYPE_OPTS.map((t) => <option key={t} value={t}>{t}</option>)}</select>
               <select value={role} onChange={(e) => setRole(e.target.value)} style={inp}><option value="">全部职务</option>{ROLE_OPTS.map((r) => <option key={r} value={r}>{r}</option>)}</select>
               <select value={decade} onChange={(e) => setDecade(e.target.value)} style={inp}><option value="">全部年代</option>{decades.map((d) => <option key={d} value={d}>{d}</option>)}</select>
-              <button onClick={() => setMinority((v) => !v)} style={{ ...inp, cursor: 'pointer', background: minority ? 'rgba(251,146,60,0.18)' : 'var(--bg-base)', color: minority ? '#fb923c' : 'var(--text-secondary)', borderColor: minority ? '#fb923c' : 'var(--border-subtle)' }}>少数民族</button>
+              <button onClick={() => setMinority((v) => !v)} style={{ ...inp, cursor: 'pointer', background: minority ? 'rgba(251,146,60,0.18)' : 'var(--bg-base)', color: minority ? '#c07a4a' : 'var(--text-secondary)', borderColor: minority ? '#c07a4a' : 'var(--border-subtle)' }}>少数民族</button>
               <button onClick={() => setQuickFilter((v) => v === 'military' ? '' : 'military')} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'military' ? 'rgba(85,107,47,0.2)' : 'var(--bg-base)', color: quickFilter === 'military' ? '#556b2f' : 'var(--text-secondary)', borderColor: quickFilter === 'military' ? '#556b2f' : 'var(--border-subtle)' }}>仅军事将官</button>
-              <button onClick={() => setQuickFilter((v) => v === 'localChief' ? '' : 'localChief')} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'localChief' ? 'rgba(232,163,23,0.18)' : 'var(--bg-base)', color: quickFilter === 'localChief' ? '#e8a317' : 'var(--text-secondary)', borderColor: quickFilter === 'localChief' ? '#e8a317' : 'var(--border-subtle)' }}>仅地方主官</button>
-              <button onClick={() => { setQuickFilter((v) => v === 'npc' ? '' : 'npc'); setInstitutionType(''); }} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'npc' ? 'rgba(196,30,58,0.15)' : 'var(--bg-base)', color: quickFilter === 'npc' ? '#c41e3a' : 'var(--text-secondary)', borderColor: quickFilter === 'npc' ? '#c41e3a' : 'var(--border-subtle)' }}>人大</button>
-              <button onClick={() => { setQuickFilter((v) => v === 'cppcc' ? '' : 'cppcc'); setInstitutionType(''); }} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'cppcc' ? 'rgba(34,211,238,0.15)' : 'var(--bg-base)', color: quickFilter === 'cppcc' ? '#22d3ee' : 'var(--text-secondary)', borderColor: quickFilter === 'cppcc' ? '#22d3ee' : 'var(--border-subtle)' }}>政协</button>
-              <button onClick={() => { setQuickFilter((v) => v === 'ministry' ? '' : 'ministry'); setInstitutionType(''); }} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'ministry' ? 'rgba(16,185,129,0.15)' : 'var(--bg-base)', color: quickFilter === 'ministry' ? '#10b981' : 'var(--text-secondary)', borderColor: quickFilter === 'ministry' ? '#10b981' : 'var(--border-subtle)' }}>部委</button>
-              <button onClick={() => { setQuickFilter((v) => v === 'centralParty' ? '' : 'centralParty'); setInstitutionType(''); }} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'centralParty' ? 'rgba(139,92,246,0.15)' : 'var(--bg-base)', color: quickFilter === 'centralParty' ? '#8b5cf6' : 'var(--text-secondary)', borderColor: quickFilter === 'centralParty' ? '#8b5cf6' : 'var(--border-subtle)' }}>中直</button>
+              <button onClick={() => setQuickFilter((v) => v === 'localChief' ? '' : 'localChief')} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'localChief' ? 'rgba(212, 162, 90,0.18)' : 'var(--bg-base)', color: quickFilter === 'localChief' ? '#d4a25a' : 'var(--text-secondary)', borderColor: quickFilter === 'localChief' ? '#d4a25a' : 'var(--border-subtle)' }}>仅地方主官</button>
+              <button onClick={() => { setQuickFilter((v) => v === 'npc' ? '' : 'npc'); setInstitutionType(''); }} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'npc' ? 'rgba(229, 72, 59,0.15)' : 'var(--bg-base)', color: quickFilter === 'npc' ? '#e5483b' : 'var(--text-secondary)', borderColor: quickFilter === 'npc' ? '#e5483b' : 'var(--border-subtle)' }}>人大</button>
+              <button onClick={() => { setQuickFilter((v) => v === 'cppcc' ? '' : 'cppcc'); setInstitutionType(''); }} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'cppcc' ? 'rgba(110, 140, 255,0.15)' : 'var(--bg-base)', color: quickFilter === 'cppcc' ? '#6e8cff' : 'var(--text-secondary)', borderColor: quickFilter === 'cppcc' ? '#6e8cff' : 'var(--border-subtle)' }}>政协</button>
+              <button onClick={() => { setQuickFilter((v) => v === 'ministry' ? '' : 'ministry'); setInstitutionType(''); }} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'ministry' ? 'rgba(111, 194, 174,0.15)' : 'var(--bg-base)', color: quickFilter === 'ministry' ? '#6fc2ae' : 'var(--text-secondary)', borderColor: quickFilter === 'ministry' ? '#6fc2ae' : 'var(--border-subtle)' }}>部委</button>
+              <button onClick={() => { setQuickFilter((v) => v === 'centralParty' ? '' : 'centralParty'); setInstitutionType(''); }} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'centralParty' ? 'rgba(176, 124, 198,0.15)' : 'var(--bg-base)', color: quickFilter === 'centralParty' ? '#b07cc6' : 'var(--text-secondary)', borderColor: quickFilter === 'centralParty' ? '#b07cc6' : 'var(--border-subtle)' }}>中直</button>
               <button onClick={() => { setQuickFilter((v) => v === 'judicial' ? '' : 'judicial'); setInstitutionType(''); }} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'judicial' ? 'rgba(99,102,241,0.15)' : 'var(--bg-base)', color: quickFilter === 'judicial' ? '#6366f1' : 'var(--text-secondary)', borderColor: quickFilter === 'judicial' ? '#6366f1' : 'var(--border-subtle)' }}>司法</button>
-              <button onClick={() => { setQuickFilter((v) => v === 'soe' ? '' : 'soe'); setInstitutionType(''); }} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'soe' ? 'rgba(232,163,23,0.15)' : 'var(--bg-base)', color: quickFilter === 'soe' ? '#e8a317' : 'var(--text-secondary)', borderColor: quickFilter === 'soe' ? '#e8a317' : 'var(--border-subtle)' }}>央企</button>
-              <button onClick={() => { setQuickFilter((v) => v === 'provLeg' ? '' : 'provLeg'); setInstitutionType(''); }} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'provLeg' ? 'rgba(34,211,238,0.12)' : 'var(--bg-base)', color: quickFilter === 'provLeg' ? '#22d3ee' : 'var(--text-secondary)', borderColor: quickFilter === 'provLeg' ? '#22d3ee' : 'var(--border-subtle)' }}>地方人大政协</button>
+              <button onClick={() => { setQuickFilter((v) => v === 'soe' ? '' : 'soe'); setInstitutionType(''); }} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'soe' ? 'rgba(212, 162, 90,0.15)' : 'var(--bg-base)', color: quickFilter === 'soe' ? '#d4a25a' : 'var(--text-secondary)', borderColor: quickFilter === 'soe' ? '#d4a25a' : 'var(--border-subtle)' }}>央企</button>
+              <button onClick={() => { setQuickFilter((v) => v === 'provLeg' ? '' : 'provLeg'); setInstitutionType(''); }} style={{ ...inp, cursor: 'pointer', background: quickFilter === 'provLeg' ? 'rgba(110, 140, 255,0.12)' : 'var(--bg-base)', color: quickFilter === 'provLeg' ? '#6e8cff' : 'var(--text-secondary)', borderColor: quickFilter === 'provLeg' ? '#6e8cff' : 'var(--border-subtle)' }}>地方人大政协</button>
               <select value={sort} onChange={(e) => setSort(e.target.value)} style={inp}>
                 <option value="default">默认排序</option><option value="ageAsc">年龄 ↑</option><option value="ageDesc">年龄 ↓</option><option value="level">按层级</option><option value="name">按姓名</option>
               </select>
@@ -578,11 +605,11 @@ export default function Page() {
                 {[['list', 'List'], ['grid', 'LayoutGrid'], ['stats', 'BarChart3'], ['matrix', 'Grid3x3'], ['radar', 'Hexagon']].map(([v, ic]) => {
                   const I = Lucide[ic]; const on = view === v;
                   const title = v === 'matrix' ? '层级×系统矩阵' : v === 'radar' ? '人物画像·关系雷达' : v;
-                  return <button key={v} onClick={() => setView(v)} title={title} style={{ padding: '6px 9px', background: on ? 'rgba(34,211,238,0.18)' : 'var(--bg-base)', color: on ? 'var(--cyber-cyan)' : 'var(--text-tertiary)', border: 'none', cursor: 'pointer' }}><I size={15} /></button>;
+                  return <button key={v} onClick={() => setView(v)} title={title} style={{ padding: '6px 9px', background: on ? 'rgba(110, 140, 255,0.18)' : 'var(--bg-base)', color: on ? 'var(--cyber-cyan)' : 'var(--text-tertiary)', border: 'none', cursor: 'pointer' }}><I size={15} /></button>;
                 })}
               </div>
               {(figures.length < FIGURE_SEED.length || seedStale) && (
-                <button onClick={loadSeed} disabled={loading} title="覆盖刷新到最新内置种子（本机 IndexedDB）" style={{ ...inp, cursor: 'pointer', color: '#10b981', borderColor: 'rgba(16,185,129,0.4)', display: 'flex', alignItems: 'center', gap: 4 }}>
+                <button onClick={loadSeed} disabled={loading} title="覆盖刷新到最新内置种子（本机 IndexedDB）" style={{ ...inp, cursor: 'pointer', color: '#6fc2ae', borderColor: 'rgba(111, 194, 174,0.4)', display: 'flex', alignItems: 'center', gap: 4 }}>
                   <Lucide.RefreshCw size={13} />{loading ? '载入中…' : seedStale ? '刷新种子' : `补全 ${FIGURE_SEED.length} 条`}
                 </button>
               )}
@@ -601,9 +628,9 @@ export default function Page() {
             <div className="flex items-center gap-3 flex-wrap mt-2">
               <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>命中 {filtered.length} / {figures.length} 条 · 平均 {avgAge}岁 · ↑↓ 或 j/k 切换</span>
               {dupCount > 0 && (
-                <span className="text-[11px] mono flex items-center gap-2" style={{ color: '#e8a317' }}>
+                <span className="text-[11px] mono flex items-center gap-2" style={{ color: '#d4a25a' }}>
                   · 已去重展示，隐藏 {dupCount} 条重复
-                  <button onClick={loadSeed} disabled={loading} title="清空并以稳定 id 重载，物理清除重复" className="px-2 py-0.5 rounded flex items-center gap-1" style={{ background: 'rgba(232,163,23,0.14)', border: '1px solid rgba(232,163,23,0.4)', color: '#e8a317', cursor: 'pointer' }}>
+                  <button onClick={loadSeed} disabled={loading} title="清空并以稳定 id 重载，物理清除重复" className="px-2 py-0.5 rounded flex items-center gap-1" style={{ background: 'rgba(212, 162, 90,0.14)', border: '1px solid rgba(212, 162, 90,0.4)', color: '#d4a25a', cursor: 'pointer' }}>
                     <Lucide.Wand2 size={11} />{loading ? '清理中…' : '清理库内重复'}
                   </button>
                 </span>
@@ -616,8 +643,8 @@ export default function Page() {
               <div className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>// 层级 × 系统 交叉矩阵 · 基于当前筛选 {filtered.length} 人 · 单元格数字=人数</div>
               <Card title="权力结构矩阵 · 层级 × 系统"><EChart option={matrixHeat} style={{ height: Math.max(280, MAT_LEVELS.length * 36 + 80) }} /></Card>
               <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px,1fr))' }}>
-                <Card title="层级（点选筛选）"><DistBar data={distLevel.filter(([k]) => k)} color="#c41e3a" onPick={(k) => setLevel(level === k ? '' : k)} active={level} /></Card>
-                <Card title="系统（点选筛选）"><DistBar data={distSector} color="#22d3ee" onPick={(k) => setSector(sector === k ? '' : k)} active={sector} /></Card>
+                <Card title="层级（点选筛选）"><DistBar data={distLevel.filter(([k]) => k)} color="#e5483b" onPick={(k) => setLevel(level === k ? '' : k)} active={level} /></Card>
+                <Card title="系统（点选筛选）"><DistBar data={distSector} color="#6e8cff" onPick={(k) => setSector(sector === k ? '' : k)} active={sector} /></Card>
               </div>
             </div>
           ) : view === 'radar' ? (
@@ -648,7 +675,7 @@ export default function Page() {
                         <div className="flex items-center gap-1.5">
                           <FigureAvatar {...figureAvatarProps(f)} size={24} ring={on} />
                           <span className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{f.name}</span>
-                          {f.level && <span className="text-[9px] mono px-1 rounded" style={{ background: 'rgba(196,30,58,0.12)', color: 'var(--china-red)' }}>{f.level}</span>}
+                          {f.level && <span className="text-[9px] mono px-1 rounded" style={{ background: 'rgba(229, 72, 59,0.12)', color: 'var(--china-red)' }}>{f.level}</span>}
                         </div>
                         <div className="text-[10px] mt-0.5 truncate" style={{ color: 'var(--text-tertiary)' }}>{f.fields?.title || f.org || ''}</div>
                       </button>
@@ -682,9 +709,9 @@ export default function Page() {
                 <Card title="年龄 × 现职任期 · 晋升轨迹（按层级着色）"><EChart option={ageTenure} style={{ height: 270 }} /><p className="text-[10px] mono mt-1" style={{ color: 'var(--text-tertiary)' }}>// 左上=年轻且新任（上升势头）· 右下=年长且久任</p></Card>
               </div>
               <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px,1fr))' }}>
-                <Card title="层级（点选筛选）"><DistBar data={distLevel.filter(([k]) => k)} color="#c41e3a" onPick={(k) => setLevel(level === k ? '' : k)} active={level} /></Card>
-                <Card title="出生年代（点选筛选）"><DistBar data={distDecade} color="#8b5cf6" onPick={(k) => setDecade(decade === k ? '' : k)} active={decade} /></Card>
-                <Card title="现任地域 Top（点选筛选）"><DistBar data={distProv} color="#22d3ee" onPick={(k) => { const full = provinces.find((p) => short(p) === k); setProv(prov === full ? '' : full); }} active={short(prov)} /></Card>
+                <Card title="层级（点选筛选）"><DistBar data={distLevel.filter(([k]) => k)} color="#e5483b" onPick={(k) => setLevel(level === k ? '' : k)} active={level} /></Card>
+                <Card title="出生年代（点选筛选）"><DistBar data={distDecade} color="#b07cc6" onPick={(k) => setDecade(decade === k ? '' : k)} active={decade} /></Card>
+                <Card title="现任地域 Top（点选筛选）"><DistBar data={distProv} color="#6e8cff" onPick={(k) => { const full = provinces.find((p) => short(p) === k); setProv(prov === full ? '' : full); }} active={short(prov)} /></Card>
               </div>
               <p className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>// 年龄按公开出生年份折算 · 任期按上任日期折算（截至 {CUR_YEAR}）· 中央委员身份据二十届名单 · 籍贯/任期数据覆盖率不一，未注明者不计入对应图</p>
             </div>
@@ -700,7 +727,7 @@ export default function Page() {
                           <span className="font-semibold text-sm truncate" style={{ color: 'var(--text-primary)' }}>{f.name}</span>
                         </div>
                         <div className="flex flex-wrap gap-1">
-                          {f.province && <span className="text-[9px] mono px-1 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)' }}>{short(f.province)}</span>}
+                          {f.province && <span className="text-[9px] mono px-1 rounded" style={{ background: 'rgba(110, 140, 255,0.12)', color: 'var(--cyber-cyan)' }}>{short(f.province)}</span>}
                           {ageOf(f) && <span className="text-[9px] mono px-1 rounded" style={{ background: 'var(--bg-base)', color: 'var(--text-tertiary)' }}>{ageOf(f)}岁</span>}
                         </div>
                         <div className="text-[10px] mt-1 truncate" style={{ color: 'var(--text-tertiary)' }}>{f.role || f.fields?.title || ''}</div>
@@ -718,10 +745,10 @@ export default function Page() {
                             <FigureAvatar {...figureAvatarProps(f)} size={28} ring={on} />
                             <span className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{f.name}</span>
                             {age && <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>{age}岁·{decadeOf(f)}</span>}
-                            {f.level && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(196,30,58,0.12)', color: 'var(--china-red)' }}>{f.level}</span>}
-                            {f.province && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)' }}>{short(f.province)}</span>}
+                            {f.level && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(229, 72, 59,0.12)', color: 'var(--china-red)' }}>{f.level}</span>}
+                            {f.province && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(110, 140, 255,0.12)', color: 'var(--cyber-cyan)' }}>{short(f.province)}</span>}
                             {f.role && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'var(--bg-base)', color: 'var(--text-tertiary)' }}>{f.role}</span>}
-                            {f.sector && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(212,175,55,0.12)', color: '#d4af37' }}>{f.sector}</span>}
+                            {f.sector && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(217, 178, 106,0.12)', color: '#d9b26a' }}>{f.sector}</span>}
                           </div>
                           <div className="flex items-center gap-2 mt-0.5">
                             <span className="text-[11px] truncate flex-1" style={{ color: 'var(--text-secondary)' }}>{f.fields?.title || f.org || ''}</span>
@@ -758,7 +785,7 @@ export default function Page() {
                             { label: '机构', value: d.org ? `${d.org}${d.sector ? `（${d.sector}）` : ''}` : null },
                             { label: '关联地域', value: d.province ? (d.province === '中央' ? '中央/国家机构' : d.province) : null },
                             { label: '籍贯', value: d.fields?.native },
-                            { label: '民族', value: d.fields?.ethnic && d.fields.ethnic !== '汉族' ? d.fields.ethnic : null, accent: '#fb923c' },
+                            { label: '民族', value: d.fields?.ethnic && d.fields.ethnic !== '汉族' ? d.fields.ethnic : null, accent: '#c07a4a' },
                             { label: '出生', value: d.fields?.birth ? `${d.fields.birth}${age ? ` · 现 ${age} 岁` : ''}` : null },
                             { label: '学历', value: d.fields?.edu },
                             { label: '城市层级', value: d.fields?.cityTier },
@@ -770,7 +797,7 @@ export default function Page() {
                           fields: [
                             { label: '层级', value: d.level, accent: 'var(--china-red)' },
                             { label: '职务', value: d.role },
-                            { label: '系统', value: d.sector, accent: '#d4af37' },
+                            { label: '系统', value: d.sector, accent: '#d9b26a' },
                             { label: '中委身份', value: d.fields?.rank },
                             { label: '现职任期', value: tenureNowVal != null ? `约 ${tenureNowVal} 年` : null },
                             { label: '上任', value: d.fields?.tookOffice },
@@ -788,13 +815,13 @@ export default function Page() {
                       crossLinks={<CrossRefLinks record={d} queue="figures" />}
                       badges={(
                         <>
-                          {d.level && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(196,30,58,0.12)', color: 'var(--china-red)' }}>{d.level}</span>}
+                          {d.level && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(229, 72, 59,0.12)', color: 'var(--china-red)' }}>{d.level}</span>}
                           {age && <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>{age}岁 · {decadeOf(d)}</span>}
                           {d.role && <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'var(--bg-base)', color: 'var(--text-tertiary)' }}>{d.role}</span>}
                         </>
                       )}
                       tags={tagList}
-                      tagAccent="#c41e3a"
+                      tagAccent="#e5483b"
                       sections={buildTalentDetailSections(d, { queue: 'figures', baseSections, bioLabel: '公开任职要点' })}
                       timeline={eventsToTimeline(d) || d.career}
                       timelineExpandable

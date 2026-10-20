@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: 门禁 + 构建
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # 锁文件 resolved 指向 npmmirror；CI 在海外 runner 上改走官方源，版本与完整性哈希不变
+      - name: 使用官方 npm 源
+        run: sed -i 's#https://registry.npmmirror.com/#https://registry.npmjs.org/#g' package-lock.json app/package-lock.json
+
+      - name: 安装依赖
+        run: |
+          npm ci --no-audit --no-fund
+          npm ci --no-audit --no-fund --prefix app
+
+      - name: 乱码门禁
+        run: python3 scripts/scan_mojibake.py --gate
+
+      - name: 遗留 china.html 同步检查
+        run: python3 scripts/build_china.py check
+
+      - name: 项目门禁（integrity · 学者 · UI · 史鉴 · Vitest）
+        run: npm run check
+
+      - name: CSS lint（警告级）
+        continue-on-error: true
+        run: npm run lint:css
+
+      - name: 生产构建
+        run: npm run build
+
+      - name: 上传构建产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: app/dist
+          retention-days: 7

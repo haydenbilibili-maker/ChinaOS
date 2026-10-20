@@ -80,7 +80,7 @@ npm run check      # registry/路由 + UI + 史鉴双线 + Vitest
 
 **线上地址：** https://chinaos.hayden-bilibili.workers.dev/
 
-> 常见故障：若页面仍显示「China OS v2.0 系统架构总览」（遗留 `china.html`），说明 Worker 仍在托管仓库根目录静态文件，而非 `app/dist`。请使用下方命令重新部署。
+> 常见故障：若页面仍显示「China OS v2.0 系统架构总览」（遗留 `china.html`），说明 Worker 托管的不是 `app/dist`（遗留页现位于 `legacy/`，不应部署）。请使用下方命令重新部署。
 
 ```bash
 # 项目根目录
@@ -89,6 +89,19 @@ npm run deploy       # 构建 app/ + wrangler deploy
 ```
 
 配置见 [`wrangler.toml`](wrangler.toml)（静态资源 `app/dist`）与 [`worker/index.js`](worker/index.js)（遗留 `/china?tab=…` → `/#/…` 重定向）。
+
+### 荒废斋（私人分区）鉴权
+
+荒废斋在服务端校验：Worker 比对密钥摘要并签发 HttpOnly 会话 Cookie，私密模块的构建产物 `private/*.js` 只在会话有效时下发。首次部署前配置两个 secret：
+
+```bash
+printf '%s' '你的访问密钥' | npm run -s hfz:hash | npx wrangler secret put HFZ_PASSWORD_SHA256
+openssl rand -base64 32 | npx wrangler secret put HFZ_SESSION_SECRET
+```
+
+未配置时登录返回「服务端尚未配置访问密钥」。更换密钥只需重设 `HFZ_PASSWORD_SHA256`；重设 `HFZ_SESSION_SECRET` 会让所有已登录会话失效。本地 `npm run dev` 没有 Worker，门禁输入任意密钥即放行（仅开发构建）。
+
+> 注意：服务端鉴权保护的是线上站点。私密模块源码（`app/src/modules/me`、`personalReview`）仍在仓库中，仓库公开时任何人都能读到源码。
 
 本地预览 Worker：
 
@@ -144,12 +157,10 @@ china2OS/
 │   └── dist/                 # 构建产物
 ├── scripts/                  # Python 数据与语料脚本
 ├── data/                     # 外部数据快照
-├── docs/                     # 补充文档
-├── tabs/                     # 迁移期 HTML 专题源
+├── docs/                     # 补充文档、审计与时效台账（docs/audits/）
+├── worker/                   # Cloudflare Worker（SPA 回退、实况代理）
+├── legacy/                   # 迁移前遗留：china.html、tabs/ 分片与未迁移报告（不部署）
 ├── energy-module/            # 能源模块独立实验
-├── china.html                # 遗留总览页（迁移参照）
-├── power-logic.html          # 遗留专题报告
-├── straits.html / military.html
 └── 中国深度调研系列_索引与恢复指令.md   # 系列索引与术语规范
 ```
 

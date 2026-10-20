@@ -3,11 +3,11 @@ import { Link, useSearchParams } from 'react-router-dom';
 // Layout: ink-observatory · os-card · os-reveal-stagger · TabBar (Round 2)
 import { PageHeader, TabBar, LoadingSkeleton } from '../../app/ui.jsx';
 import { FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
-import { ECON_DATA_AS_OF, ECON_TAB_IDS, KEY_INDICATORS } from './econData.js';
-import { toneOf, ARROW } from './econHelpers.jsx';
+import { ECON_DATA_AS_OF, ECON_TAB_IDS } from './econData.js';
 import { useWorldBank } from './liveWorldBank.js';
 import MacroTab from './tabs/MacroTab.jsx';
 import DataFreshnessBar from './DataFreshnessBar.jsx';
+import EconHero from './EconHero.jsx';
 import './econ.css';
 
 const StructureTab = lazy(() => import('./tabs/StructureTab.jsx'));
@@ -28,53 +28,16 @@ const EconH1Review = lazy(() => import('../econH1Review/Page.jsx'));
 const TABS = [
   { id: 'macro', label: '宏观态势', accent: 'var(--cyber-cyan)' },
   { id: 'structure', label: '结构矛盾', accent: 'var(--fire-gold)' },
-  { id: 'finance', label: '资本市场', accent: '#8b5cf6' },
+  { id: 'finance', label: '资本市场', accent: '#b07cc6' },
   { id: 'regional', label: '区域产业', accent: '#c99a4e' },
   { id: 'canary', label: '信号金丝雀', accent: 'var(--china-red)' },
-  { id: 'worldbank', label: '世行经济简报', accent: '#22d3ee' },
+  { id: 'worldbank', label: '世行经济简报', accent: '#6e8cff' },
   { id: 'consume15', label: '十五五促消费', accent: '#f472b6' },
-  { id: 'h1review', label: '半年经济解读', accent: '#e8a317' },
+  { id: 'h1review', label: '半年经济解读', accent: '#d4a25a' },
 ];
 
 function TabFallback() {
   return <LoadingSkeleton rows={3} label="板块载入中…" className="econ-tab-fallback" />;
-}
-
-const SUMMARY_IDS = ['gdp_h1', 'iva', 'retail', 'export', 'cpi'];
-const SUMMARY_LABELS = { gdp_h1: 'GDP·H1', iva: '规上工业', retail: '社零', export: '出口', cpi: 'CPI' };
-
-function KeyReadingStrip() {
-  const items = SUMMARY_IDS
-    .map((id) => KEY_INDICATORS.find((k) => k.id === id))
-    .filter(Boolean);
-  return (
-    <div className="econ-readout" role="group" aria-label="关键读数摘要 · 2026 年 1–8 月">
-      <span className="econ-readout__title mono">1–8月</span>
-      <div className="econ-readout__items">
-        {items.map((k) => {
-          const tone = toneOf(k.trend ?? k.yoy);
-          return (
-            <span key={k.id} className="econ-readout__chip" title={k.label} style={{ '--econ-chip-tone': tone }}>
-              <span className="econ-readout__k">{SUMMARY_LABELS[k.id] || k.label}</span>
-              <span className="econ-readout__v mono os-mono-tabular">
-                {k.value}<span className="econ-readout__u">%</span>
-              </span>
-              <span className="econ-readout__arrow mono" style={{ color: tone }} aria-hidden="true">
-                {ARROW(k.trend ?? k.yoy)}
-              </span>
-            </span>
-          );
-        })}
-      </div>
-      <details className="econ-note">
-        <summary className="econ-note__summary mono">ⓘ 口径</summary>
-        <p className="econ-note__body">
-          NBS 快照（基准日 {ECON_DATA_AS_OF} · 1–8 月累计；GDP 仍为上半年口径，Q3 约 10 月中旬发布）· 世行 WDI 实时长序列 · 公开数据派生领先指标。
-          公开统计梳理 · 示意标定 · 非投资建议 · 非预测。
-        </p>
-      </details>
-    </div>
-  );
 }
 
 export default function Page({ embedded = false }) {
@@ -135,7 +98,7 @@ export default function Page({ embedded = false }) {
         <PageHeader
           badge="Dashboard · 经济大盘"
           title="经济大盘"
-          subtitle={`NBS 快照 × 世行长序列 × 金丝雀 · 十五五开局 1–8 月 · 数据截至 ${ECON_DATA_AS_OF}`}
+          subtitle={`NBS 快照 × 世行长序列 × 金丝雀 · 十五五开局前三季度 · 数据截至 ${ECON_DATA_AS_OF}`}
         >
           <div className="econ-header-chips flex flex-wrap gap-1.5 items-center">
             <Link to="/dashboard" className="econ-cross-chip">中枢看板 ↗</Link>
@@ -146,10 +109,19 @@ export default function Page({ embedded = false }) {
       )}
 
       {!isLongFormTab && (
-        <div className="econ-toolbelt" aria-label="时效与关键读数">
-          <DataFreshnessBar />
-          <KeyReadingStrip />
-        </div>
+        <>
+          <EconHero />
+          <div className="econ-toolbelt" aria-label="数据时效">
+            <DataFreshnessBar />
+            <details className="econ-note">
+              <summary className="econ-note__summary mono">ⓘ 口径</summary>
+              <p className="econ-note__body">
+                NBS 快照（基准日 {ECON_DATA_AS_OF} · 1–9 月累计；GDP 为前三季度口径）· 世行 WDI 实时长序列 · 公开数据派生领先指标。
+                公开统计梳理 · 示意标定 · 非投资建议 · 非预测。
+              </p>
+            </details>
+          </div>
+        </>
       )}
 
       <div className="econ-sticky-nav">

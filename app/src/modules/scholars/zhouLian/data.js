@@ -10,13 +10,13 @@
 export const AS_OF = '2026-09-28';
 
 export const THEMES = {
-  tournament: { label: '晋升锦标赛与官员激励', color: '#c41e3a' },
-  subcontract: { label: '行政发包制与央地关系', color: '#8b5cf6' },
-  dualmarket: { label: '官场+市场与政商关系', color: '#22d3ee' },
-  fiscal: { label: '地方债与土地财政', color: '#e8a317' },
-  governance: { label: '国家治理与治理不可能三角', color: '#10b981' },
-  industry: { label: '产业政策与有为政府', color: '#fb923c' },
-  rural: { label: '乡村振兴与乡村CEO', color: '#94a3b8' },
+  tournament: { label: '晋升锦标赛与官员激励', color: '#e5483b' },
+  subcontract: { label: '行政发包制与央地关系', color: '#b07cc6' },
+  dualmarket: { label: '官场+市场与政商关系', color: '#6e8cff' },
+  fiscal: { label: '地方债与土地财政', color: '#d4a25a' },
+  governance: { label: '国家治理与治理不可能三角', color: '#6fc2ae' },
+  industry: { label: '产业政策与有为政府', color: '#c07a4a' },
+  rural: { label: '乡村振兴与乡村CEO', color: '#a29c91' },
 };
 export const THEME_KEYS = Object.keys(THEMES);
 
@@ -46,10 +46,10 @@ export const BOARD = {
 };
 
 export const CAREER_GROUPS = {
-  pku: { label: '北大教职', color: '#22d3ee' },
-  admin: { label: '北大行政', color: '#10b981' },
-  study: { label: '求学/访学', color: '#8b5cf6' },
-  gov: { label: '全国政协', color: '#e8a317' },
+  pku: { label: '北大教职', color: '#6e8cff' },
+  admin: { label: '北大行政', color: '#6fc2ae' },
+  study: { label: '求学/访学', color: '#b07cc6' },
+  gov: { label: '全国政协', color: '#d4a25a' },
 };
 
 /** 履历甘特：起止为小数年；月份未载者取年中近似；note 记录口径出入 */

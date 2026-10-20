@@ -11,19 +11,19 @@ export const PHASES = [
   {
     period: '2003–2016',
     title: '东北振兴战略',
-    accent: '#64748b',
+    accent: '#8a8578',
     desc: '《关于实施东北地区等老工业基地振兴战略的若干意见》出台，三轮政策周期以基建投资与国企改造为主，未能逆转份额下滑。',
   },
   {
     period: '2017–2023',
     title: '全面振兴新突破',
-    accent: '#e8a317',
+    accent: '#d4a25a',
     desc: '《深入推进东北振兴三年滚动实施方案》与营商环境专项整治，强调体制机制创新、民营经济发展与央企投资。',
   },
   {
     period: '2024–',
     title: '十五五新表述',
-    accent: '#c41e3a',
+    accent: '#e5483b',
     desc: '政府工作报告与「十五五」布局强调维护国家「五大安全」、培育新质生产力，冰雪经济与现代农业成为新增长极。',
   },
 ];
@@ -33,7 +33,7 @@ export const PROVINCES = [
   {
     key: 'liaoning',
     label: '辽宁',
-    accent: '#c41e3a',
+    accent: '#e5483b',
     gdp: '~3.0 万亿',
     pop: '~4150 万',
     gdpTrend: [0.72, 0.78, 0.85, 0.92, 0.98, 1.02, 1.05],
@@ -49,7 +49,7 @@ export const PROVINCES = [
   {
     key: 'jilin',
     label: '吉林',
-    accent: '#22d3ee',
+    accent: '#6e8cff',
     gdp: '~1.4 万亿',
     pop: '~2340 万',
     gdpTrend: [0.48, 0.52, 0.58, 0.62, 0.65, 0.68, 0.70],
@@ -65,7 +65,7 @@ export const PROVINCES = [
   {
     key: 'heilongjiang',
     label: '黑龙江',
-    accent: '#e8a317',
+    accent: '#d4a25a',
     gdp: '~1.6 万亿',
     pop: '~3060 万',
     gdpTrend: [0.55, 0.58, 0.62, 0.65, 0.66, 0.64, 0.63],
@@ -85,7 +85,7 @@ export const INDUSTRIES = [
   {
     key: 'equipment',
     label: '装备制造',
-    accent: '#64748b',
+    accent: '#8a8578',
     scores: [78, 55, 62, 58, 52],
     thesis: '沈阳、大连、哈尔滨构成共和国装备工业摇篮——机床、电站、轨道交通等传统优势面临智能化升级与订单萎缩双重压力。',
     points: ['沈鼓、一重等央企链主技改', '轨道交通装备出口与维保', '智能制造与工业软件短板', '订单向长三角/珠三角转移'],
@@ -94,7 +94,7 @@ export const INDUSTRIES = [
   {
     key: 'auto',
     label: '汽车（一汽）',
-    accent: '#c41e3a',
+    accent: '#e5483b',
     scores: [85, 62, 70, 65, 58],
     thesis: '一汽集团是东北唯一世界级整车链主——红旗、解放与新能源转型决定吉林乃至东北工业升级的锚点，但配套生态仍高度集中长春。',
     points: ['红旗高端化与新能源车型放量', '解放商用车智能化', '零部件本地化率提升', '汽车出口与一带一路通道'],
@@ -103,7 +103,7 @@ export const INDUSTRIES = [
   {
     key: 'agri',
     label: '农业（北大仓）',
-    accent: '#10b981',
+    accent: '#6fc2ae',
     scores: [88, 72, 55, 68, 75],
     thesis: '黑龙江与吉林平原是全国商品粮核心调出区——黑土地保护与种业振兴是「五大安全」中粮食安全的物理底座，但农业增值留存率偏低。',
     points: ['黑土地保护与高标准农田', '大豆油料产能提升', '寒地高端大米与杂粮品牌', '农垦集团规模化经营'],
@@ -121,7 +121,7 @@ export const INDUSTRIES = [
   {
     key: 'winter',
     label: '冰雪经济',
-    accent: '#22d3ee',
+    accent: '#6e8cff',
     scores: [62, 78, 58, 55, 82],
     thesis: '哈尔滨冰雪大世界、长白山滑雪与亚冬会遗产构成差异化增长极——冰雪旅游从季节消费转向全季康养，但基础设施与人才服务仍是短板。',
     points: ['哈尔滨国际冰雪节品牌', '亚冬会场馆赛后利用', '冰雪装备制造与运维', '寒地康养与候鸟式养老'],
@@ -131,9 +131,9 @@ export const INDUSTRIES = [
 
 /** 视图切换：三省对比 / 产业维度 / 政策阶段 */
 export const VIEW_MODES = [
-  { key: 'province', label: '三省对比', accent: '#c41e3a' },
-  { key: 'industry', label: '产业维度', accent: '#22d3ee' },
-  { key: 'policy', label: '政策阶段', accent: '#e8a317' },
+  { key: 'province', label: '三省对比', accent: '#e5483b' },
+  { key: 'industry', label: '产业维度', accent: '#6e8cff' },
+  { key: 'policy', label: '政策阶段', accent: '#d4a25a' },
 ];
 
 export const PROVINCE_DIMS = ['经济规模', '产业多元', '开放程度', '人口韧性', '创新动能'];
@@ -150,9 +150,9 @@ export const GDP_YEARS = ['2015', '2017', '2019', '2021', '2023', '2025E'];
 export const INDUSTRY_STRUCTURE = {
   categories: ['辽宁', '吉林', '黑龙江'],
   series: [
-    { name: '第二产业', data: [38, 42, 32], itemStyle: { color: '#64748b' } },
-    { name: '第三产业', data: [48, 45, 50], itemStyle: { color: '#22d3ee' } },
-    { name: '第一产业', data: [14, 13, 18], itemStyle: { color: '#10b981' } },
+    { name: '第二产业', data: [38, 42, 32], itemStyle: { color: '#8a8578' } },
+    { name: '第三产业', data: [48, 45, 50], itemStyle: { color: '#6e8cff' } },
+    { name: '第一产业', data: [14, 13, 18], itemStyle: { color: '#6fc2ae' } },
   ],
 };
 
@@ -166,5 +166,5 @@ export const POP_OUTFLOW = {
 export const AGING_RATES = {
   provinces: ['辽宁', '吉林', '黑龙江', '全国'],
   values: [21.4, 22.8, 20.6, 15.4],
-  colors: ['#c41e3a', '#22d3ee', '#e8a317', '#64748b'],
+  colors: ['#e5483b', '#6e8cff', '#d4a25a', '#8a8578'],
 };

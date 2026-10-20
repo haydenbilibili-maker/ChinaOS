@@ -5,7 +5,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-PATH = ROOT / "china.html"
+PATH = ROOT / "legacy" / "china.html"
 
 # 按长度降序；含重复占位注释的用「注释+下一行选择器」消歧
 REPLACEMENTS: list[tuple[str, str]] = [

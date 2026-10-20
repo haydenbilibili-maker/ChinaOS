@@ -15,44 +15,44 @@ const STEPS = 24;
 
 // 四种命运区间：封闭熵死 / 临界涨落 / 有序窗口 / 过度开放失稳
 const REGIMES = [
-  ['封闭 · 熵增崩溃', '#c41e3a', '物质/能量/信息交换近乎为零，熵单调上升，结构走向死寂——孤立系统的宿命。'],
-  ['临界 · 涨落放大', '#e8a317', '负熵流逼近临界点，微小涨落被放大，系统在有序与无序间剧烈摇摆（相变窗口）。'],
-  ['远离平衡 · 有序窗口', '#10b981', '负熵流足以抵消熵增、又未冲垮结构本身——耗散结构的「创造性区间」，自发涌现稳定有序。'],
+  ['封闭 · 熵增崩溃', '#e5483b', '物质/能量/信息交换近乎为零，熵单调上升，结构走向死寂——孤立系统的宿命。'],
+  ['临界 · 涨落放大', '#d4a25a', '负熵流逼近临界点，微小涨落被放大，系统在有序与无序间剧烈摇摆（相变窗口）。'],
+  ['远离平衡 · 有序窗口', '#6fc2ae', '负熵流足以抵消熵增、又未冲垮结构本身——耗散结构的「创造性区间」，自发涌现稳定有序。'],
   ['过度开放 · 失稳震荡', '#7c3aed', '负熵流远超系统的消化吸收能力，外部涨落直接穿透内部结构——有序被冲刷成湍流。'],
 ];
 
 // 耗散结构三条件 + 社会系统对应物
 const CONDITIONS = [
-  ['开放系统', '与环境持续交换物质 / 能量 / 信息', '国门、市场、互联网、人才流动——封闭组织只剩内部摩擦生熵。', '#22d3ee'],
-  ['远离平衡', '被持续推离热力学平衡的死寂态', '竞争压力、增长目标、危机倒逼——「舒适均衡」恰是熵死的前夜。', '#e8a317'],
-  ['非线性涨落放大', '微小扰动经正反馈放大成新宏观结构', '小岗村按手印、深圳试验田——局部试点被制度正反馈放大为全局秩序。', '#10b981'],
+  ['开放系统', '与环境持续交换物质 / 能量 / 信息', '国门、市场、互联网、人才流动——封闭组织只剩内部摩擦生熵。', '#6e8cff'],
+  ['远离平衡', '被持续推离热力学平衡的死寂态', '竞争压力、增长目标、危机倒逼——「舒适均衡」恰是熵死的前夜。', '#d4a25a'],
+  ['非线性涨落放大', '微小扰动经正反馈放大成新宏观结构', '小岗村按手印、深圳试验田——局部试点被制度正反馈放大为全局秩序。', '#6fc2ae'],
 ];
 
 // 系统案例：开放度 / 负熵来源 / 熵积累点 / 系统命运 + 五维评分（用于雷达）
 const CASES = [
   {
-    key: 'plan', label: '计划经济（封闭趋熵死）', accent: '#c41e3a', openness: 12,
+    key: 'plan', label: '计划经济（封闭趋熵死）', accent: '#e5483b', openness: 12,
     negentropy: '苏联技术援助（156 项）一次性注入，此后近乎断流',
     entropyPoint: '价格信号失真 → 信息熵爆炸；激励钝化 → 组织熵积累',
     fate: '负熵断流后熵增不可逆：短缺、僵化、票证配给——典型的「准封闭系统滑向平衡死寂」。',
     radar: [12, 25, 18, 70, 15], // 开放度/负熵流入/有序度/熵积累/涨落容忍
   },
   {
-    key: 'reform', label: '改革开放（打开负熵流）', accent: '#10b981', openness: 68,
+    key: 'reform', label: '改革开放（打开负熵流）', accent: '#6fc2ae', openness: 68,
     negentropy: '外资 + 技术引进 + 出口市场 + 制度学习 + 留学回流——五路负熵并进',
     entropyPoint: '双轨制寻租、区域分化——开放转型期的「局部熵积累」',
     fate: '系统性负熵工程：把濒临平衡死寂的结构推入远离平衡的自组织区间，四十年维持高有序。',
     radar: [68, 88, 80, 35, 75],
   },
   {
-    key: 'haijin', label: '明清海禁（主动封闭）', accent: '#e8a317', openness: 18,
+    key: 'haijin', label: '明清海禁（主动封闭）', accent: '#d4a25a', openness: 18,
     negentropy: '朝贡贸易窄口径输入，民间海路被制度性掐断',
     entropyPoint: '技术停滞、信息隔绝——与同期大航海欧洲的负熵摄入差持续拉大',
     fate: '主动关闭负熵入口换取短期治安有序，长期支付「文明级熵债」——1840 年一次性清算。',
     radar: [18, 15, 45, 62, 20],
   },
   {
-    key: 'valley', label: '硅谷创新区（高耗散高有序）', accent: '#22d3ee', openness: 88,
+    key: 'valley', label: '硅谷创新区（高耗散高有序）', accent: '#6e8cff', openness: 88,
     negentropy: '全球人才虹吸 + 风险资本 + 大学知识溢出 + 高流动劳动市场',
     entropyPoint: '高淘汰率：~90% 创业死亡——熵以「企业死亡」形式快速排出系统',
     fate: '极高吞吐的耗散结构：大量吸入负熵、大量排出废熵，结构层面反而长期稳定有序。',
@@ -76,10 +76,10 @@ const CASES = [
 
 // 负熵来源结构（改革开放 = 系统性负熵工程）
 const NEG_SOURCES = [
-  { name: '对外贸易（出口市场）', value: 30, itemStyle: { color: '#c41e3a' } },
-  { name: '技术引进（设备/专利）', value: 24, itemStyle: { color: '#22d3ee' } },
-  { name: '人才流动（留学/打工潮）', value: 18, itemStyle: { color: '#10b981' } },
-  { name: '制度学习（特区试错）', value: 16, itemStyle: { color: '#e8a317' } },
+  { name: '对外贸易（出口市场）', value: 30, itemStyle: { color: '#e5483b' } },
+  { name: '技术引进（设备/专利）', value: 24, itemStyle: { color: '#6e8cff' } },
+  { name: '人才流动（留学/打工潮）', value: 18, itemStyle: { color: '#6fc2ae' } },
+  { name: '制度学习（特区试错）', value: 16, itemStyle: { color: '#d4a25a' } },
   { name: '资本流入（FDI）', value: 12, itemStyle: { color: '#7c3aed' } },
 ];
 
@@ -89,18 +89,18 @@ const FLUCT_ADOPT = [0.02, 1, 14, 45, 80, 94, 99];
 
 // 熵增监控代理指标（与治国沙盒「熵增指数」接口）
 const ENTROPY_PROXIES = [
-  ['文山会海指数', '会议/发文数量 ÷ 实际决策产出', '信息熵：信号被流程噪声淹没', '#c41e3a'],
-  ['流程繁冗度', '一件事的审批环节数 × 平均时滞', '结构熵：组织自由能被内耗锁死', '#e8a317'],
+  ['文山会海指数', '会议/发文数量 ÷ 实际决策产出', '信息熵：信号被流程噪声淹没', '#e5483b'],
+  ['流程繁冗度', '一件事的审批环节数 × 平均时滞', '结构熵：组织自由能被内耗锁死', '#d4a25a'],
   ['创新衰减率', '新立项/新业务占比的逐年降幅', '活性熵：系统对新涨落的放大能力衰退', '#7c3aed'],
 ];
 
 // 理论与应用时间线
 const TIMELINE = [
-  { period: '1865', title: '克劳修斯 · 热寂论', accent: '#5b6a82', desc: '熵概念提出：孤立系统熵恒增，宇宙终将「热寂」——有序的宿命论第一版。热二定律自此成为悬在一切封闭结构头上的物理判决。' },
-  { period: '1944', title: '薛定谔 · 负熵', accent: '#22d3ee', desc: '《生命是什么》：生命以「负熵为食」——有机体靠从环境摄取有序（食物/阳光）来对抗自身熵增。第一次把热力学指向了生命与组织。' },
-  { period: '1977', title: '普里高津 · 耗散结构（诺奖）', accent: '#c41e3a', desc: '证明开放系统在远离平衡态可以自发产生有序结构：负熵流 + 非线性 + 涨落放大 = 「混沌中诞生秩序」。获诺贝尔化学奖。' },
-  { period: '1984—', title: '复杂系统科学', accent: '#10b981', desc: '圣塔菲研究所成立，自组织/涌现/相变成为跨学科范式——经济、城市、生态、互联网都被当作耗散结构重新理解。' },
-  { period: '2010s—', title: '组织管理应用（华为熵减）', accent: '#e8a317', desc: '任正非把熵减写进华为管理纲领：开放架构、人才流动、自我批判、远离平衡的危机感——企业版「负熵工程」的自觉实践。' },
+  { period: '1865', title: '克劳修斯 · 热寂论', accent: '#8a847a', desc: '熵概念提出：孤立系统熵恒增，宇宙终将「热寂」——有序的宿命论第一版。热二定律自此成为悬在一切封闭结构头上的物理判决。' },
+  { period: '1944', title: '薛定谔 · 负熵', accent: '#6e8cff', desc: '《生命是什么》：生命以「负熵为食」——有机体靠从环境摄取有序（食物/阳光）来对抗自身熵增。第一次把热力学指向了生命与组织。' },
+  { period: '1977', title: '普里高津 · 耗散结构（诺奖）', accent: '#e5483b', desc: '证明开放系统在远离平衡态可以自发产生有序结构：负熵流 + 非线性 + 涨落放大 = 「混沌中诞生秩序」。获诺贝尔化学奖。' },
+  { period: '1984—', title: '复杂系统科学', accent: '#6fc2ae', desc: '圣塔菲研究所成立，自组织/涌现/相变成为跨学科范式——经济、城市、生态、互联网都被当作耗散结构重新理解。' },
+  { period: '2010s—', title: '组织管理应用（华为熵减）', accent: '#d4a25a', desc: '任正非把熵减写进华为管理纲领：开放架构、人才流动、自我批判、远离平衡的危机感——企业版「负熵工程」的自觉实践。' },
 ];
 
 export default function Page() {
@@ -146,8 +146,8 @@ export default function Page() {
     yAxis: valueY({ max: 100, min: 0 }),
     series: [
       { name: '净有序度', type: 'line', smooth: true, showSymbol: false, data: sim.order, lineStyle: { color: vColor, width: 2.5 }, itemStyle: { color: vColor }, areaStyle: { color: `${vColor}1f` } },
-      { name: '内部熵积累', type: 'line', smooth: true, showSymbol: false, data: sim.entropy, lineStyle: { color: '#c41e3a', width: 1.5, type: 'dashed' }, itemStyle: { color: '#c41e3a' } },
-      { name: '负熵流入', type: 'line', smooth: true, showSymbol: false, data: sim.negFlow, lineStyle: { color: '#22d3ee', width: 1.5 }, itemStyle: { color: '#22d3ee' } },
+      { name: '内部熵积累', type: 'line', smooth: true, showSymbol: false, data: sim.entropy, lineStyle: { color: '#e5483b', width: 1.5, type: 'dashed' }, itemStyle: { color: '#e5483b' } },
+      { name: '负熵流入', type: 'line', smooth: true, showSymbol: false, data: sim.negFlow, lineStyle: { color: '#6e8cff', width: 1.5 }, itemStyle: { color: '#6e8cff' } },
     ],
   };
 
@@ -165,10 +165,10 @@ export default function Page() {
     yAxis: valueY({ max: 100, name: '采用率 %', nameTextStyle: { color: LABEL.color } }),
     series: [{
       type: 'line', smooth: true, data: FLUCT_ADOPT, symbol: 'circle', symbolSize: 7,
-      lineStyle: { color: '#10b981', width: 2.5 }, itemStyle: { color: '#10b981' },
-      areaStyle: { color: 'rgba(16,185,129,0.12)' },
-      markPoint: { data: [{ coord: ['1978', 0.02], value: '小岗村 18 户', itemStyle: { color: '#e8a317' }, label: { fontSize: 9, color: '#0a0f1a' } }] },
-      markLine: { silent: true, symbol: 'none', lineStyle: { color: '#22d3ee', type: 'dashed' }, data: [{ xAxis: '1980', label: { formatter: '中央背书=正反馈接通', color: '#22d3ee', fontSize: 9 } }] },
+      lineStyle: { color: '#6fc2ae', width: 2.5 }, itemStyle: { color: '#6fc2ae' },
+      areaStyle: { color: 'rgba(111, 194, 174,0.12)' },
+      markPoint: { data: [{ coord: ['1978', 0.02], value: '小岗村 18 户', itemStyle: { color: '#d4a25a' }, label: { fontSize: 9, color: '#0a0f1a' } }] },
+      markLine: { silent: true, symbol: 'none', lineStyle: { color: '#6e8cff', type: 'dashed' }, data: [{ xAxis: '1980', label: { formatter: '中央背书=正反馈接通', color: '#6e8cff', fontSize: 9 } }] },
     }],
   };
 
@@ -184,9 +184,9 @@ export default function Page() {
 
       <Grid cols={4} className="mb-6">
         <Stat value={finalOrder} label="稳态净有序度（实时）" accent={vColor} />
-        <Stat value={finalEntropy} label="内部熵积累（实时）" accent="#c41e3a" />
-        <Stat value={openness} label="系统开放度" accent="#22d3ee" />
-        <Stat value="42–78" label="有序窗口（开放度区间）" accent="#10b981" />
+        <Stat value={finalEntropy} label="内部熵积累（实时）" accent="#e5483b" />
+        <Stat value={openness} label="系统开放度" accent="#6e8cff" />
+        <Stat value="42–78" label="有序窗口（开放度区间）" accent="#6fc2ae" />
       </Grid>
 
       {/* ① 开放度-熵流模拟器 */}
@@ -197,7 +197,7 @@ export default function Page() {
             <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{openness}</span>
           </div>
           <input type="range" min="0" max="100" value={openness} onChange={(e) => setOpenness(Number(e.target.value))}
-            style={{ width: '100%', accentColor: '#c41e3a' }} />
+            style={{ width: '100%', accentColor: '#e5483b' }} />
           <div className="flex justify-between text-[10px] mono mt-1" style={{ color: 'var(--text-tertiary)' }}>
             <span>0 封闭熵死</span><span>≈42 临界涨落</span><span>42–78 有序窗口</span><span>100 失稳湍流</span>
           </div>
@@ -206,7 +206,7 @@ export default function Page() {
             <p className="text-xs mt-1 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{vDesc}</p>
           </div>
           <p className="text-[11px] mt-2 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
-            三曲线含义：<span style={{ color: '#22d3ee' }}>负熵流入</span>随开放度上升；<span style={{ color: '#c41e3a' }}>内部熵积累</span>在封闭时单调爬升；<span style={{ color: '#10b981' }}>净有序度</span>只在两者平衡的「远离平衡窗口」内维持高位——开放不足熵死，开放过度外部冲击穿透结构。
+            三曲线含义：<span style={{ color: '#6e8cff' }}>负熵流入</span>随开放度上升；<span style={{ color: '#e5483b' }}>内部熵积累</span>在封闭时单调爬升；<span style={{ color: '#6fc2ae' }}>净有序度</span>只在两者平衡的「远离平衡窗口」内维持高位——开放不足熵死，开放过度外部冲击穿透结构。
           </p>
         </Card>
         <Card title="三曲线演化 · 内部熵积累 vs 负熵流入 vs 净有序度">
@@ -234,10 +234,10 @@ export default function Page() {
           <div>
             <Grid cols={2} className="mb-3">
               <Stat value={activeCase.openness} label="系统开放度" accent={activeCase.accent} />
-              <Stat value={activeCase.radar[3]} label="熵积累水位" accent="#c41e3a" />
+              <Stat value={activeCase.radar[3]} label="熵积累水位" accent="#e5483b" />
             </Grid>
             <div className="space-y-2">
-              {[['负熵来源', activeCase.negentropy, '#22d3ee'], ['熵积累点', activeCase.entropyPoint, '#c41e3a'], ['系统命运', activeCase.fate, activeCase.accent]].map(([t, d, c]) => (
+              {[['负熵来源', activeCase.negentropy, '#6e8cff'], ['熵积累点', activeCase.entropyPoint, '#e5483b'], ['系统命运', activeCase.fate, activeCase.accent]].map(([t, d, c]) => (
                 <div key={t} style={{ borderLeft: `2px solid ${c}`, paddingLeft: 10 }}>
                   <div className="text-xs font-semibold" style={{ color: c }}>{t}</div>
                   <p className="text-xs mt-0.5 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{d}</p>

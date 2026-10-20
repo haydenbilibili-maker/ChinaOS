@@ -1,6 +1,6 @@
 import { AXIS, LABEL } from '../shared/chartHelpers.js';
 import React, { useEffect, useRef, useState } from 'react';
-import * as echarts from 'echarts';
+import { echarts } from '../../lib/viz/echarts.js';
 import DataBus from '../../lib/data/DataBus.js';
 
 const registered = new Set(['_init']);
@@ -75,9 +75,9 @@ export default function Pe500Map({
       return {
         ...d,
         itemStyle: sel
-          ? { areaColor: '#fb923c', borderColor: '#fff', borderWidth: 1.5 }
+          ? { areaColor: '#c07a4a', borderColor: '#fff', borderWidth: 1.5 }
           : hov
-            ? { areaColor: '#22d3ee', borderColor: 'rgba(34,211,238,0.6)', borderWidth: 1 }
+            ? { areaColor: '#6e8cff', borderColor: 'rgba(110, 140, 255,0.6)', borderWidth: 1 }
             : undefined,
       };
     });
@@ -86,7 +86,7 @@ export default function Pe500Map({
       backgroundColor: 'transparent',
       tooltip: {
         trigger: 'item',
-        backgroundColor: 'rgba(10,14,23,0.92)',
+        backgroundColor: 'rgba(13, 15, 20,0.92)',
         borderColor: 'rgba(251,146,60,0.35)',
         textStyle: { color: '#e2e8f0', fontSize: 11 },
         formatter: (p) => {
@@ -96,7 +96,7 @@ export default function Pe500Map({
             : '—';
           const rev = extra?.revenueYi != null ? `${extra.revenueYi.toLocaleString()} 亿元` : '—';
           const cnt = extra?.count ?? (p.value != null ? p.value : '—');
-          return `<b>${p.name}</b><br/>企业数：${cnt}<br/>营收汇总：${rev}<br/><span style="color:#fb923c">Top3</span><br/>${top3}`;
+          return `<b>${p.name}</b><br/>企业数：${cnt}<br/>营收汇总：${rev}<br/><span style="color:#c07a4a">Top3</span><br/>${top3}`;
         },
       },
       visualMap: {
@@ -106,7 +106,7 @@ export default function Pe500Map({
         left: 8,
         bottom: 8,
         calculable: true,
-        inRange: { color: ['#141c2b', '#7c2d12', '#fb923c', '#fde68a'] },
+        inRange: { color: ['#141c2b', '#7c2d12', '#c07a4a', '#fde68a'] },
         textStyle: { color: LABEL.color, fontSize: 10 },
         text: ['高', '低'],
       },
@@ -116,8 +116,8 @@ export default function Pe500Map({
         roam: true,
         scaleLimit: { min: 0.8, max: 3 },
         nameProperty: 'name',
-        itemStyle: { borderColor: 'rgba(148,163,184,0.25)', borderWidth: 0.5, areaColor: '#141c2b' },
-        emphasis: { itemStyle: { areaColor: '#22d3ee' }, label: { show: true, color: '#0a0e17', fontSize: 10 } },
+        itemStyle: { borderColor: 'rgba(162, 156, 145,0.25)', borderWidth: 0.5, areaColor: '#141c2b' },
+        emphasis: { itemStyle: { areaColor: '#6e8cff' }, label: { show: true, color: '#0d0f14', fontSize: 10 } },
         label: { show: false },
         selectedMode: false,
         data,
