@@ -49,6 +49,8 @@ for (const vp of cfg.viewports) {
       page.on('pageerror', (e) => errors.push(String(e).slice(0, 300)));
       const file = join(OUT, vp.id, theme, `${r.id}.png`);
       mkdirSync(dirname(file), { recursive: true });
+      // 每条路由都从空白页重新载入：同页 hash 跳转会沿用上一条的 DOM 改动（fullPage 展开的内联高度）与组件状态
+      await page.goto('about:blank');
       try {
         await page.goto(`${BASE}/#${r.path}`, { waitUntil: 'networkidle', timeout: 30000 });
       } catch {
