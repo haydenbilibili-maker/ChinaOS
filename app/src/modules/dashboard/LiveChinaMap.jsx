@@ -422,7 +422,7 @@ export default function LiveChinaMap({
     let chart = null;
     let ro = null;
 
-    import('echarts').then((echarts) => {
+    import('../../lib/viz/echarts.js').then(({ echarts }) => {
       if (!alive || !elRef.current) return;
       chart = echarts.init(elRef.current, null, { renderer: 'canvas' });
       chartRef.current = chart;

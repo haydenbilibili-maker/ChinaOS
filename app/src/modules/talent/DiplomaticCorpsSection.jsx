@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import * as echarts from 'echarts';
+import { echarts } from '../../lib/viz/echarts.js';
 import {
   BarChart3 as LuBarChart3,
   Globe2 as LuGlobe2,

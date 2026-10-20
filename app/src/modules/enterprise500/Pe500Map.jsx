@@ -1,6 +1,6 @@
 import { AXIS, LABEL } from '../shared/chartHelpers.js';
 import React, { useEffect, useRef, useState } from 'react';
-import * as echarts from 'echarts';
+import { echarts } from '../../lib/viz/echarts.js';
 import DataBus from '../../lib/data/DataBus.js';
 
 const registered = new Set(['_init']);

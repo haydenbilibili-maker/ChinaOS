@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import * as echarts from 'echarts';
+import { echarts } from './echarts.js';
 import DataBus from '../data/DataBus.js';
 
 // ============================================================================

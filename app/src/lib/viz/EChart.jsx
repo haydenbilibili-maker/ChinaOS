@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import * as echarts from 'echarts';
+import { echarts } from './echarts.js';
 import { LoadingSkeleton } from '../../app/ui.jsx';
 import { applyChartTheme, chartTextColor, CHART_TOOLTIP, CHART_FONT_FAMILY, VI_DATA_PALETTE } from '../../modules/shared/chartHelpers.js';
 import { getTheme, THEME_EVENT } from '../theme.js';

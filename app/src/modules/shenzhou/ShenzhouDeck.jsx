@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import * as echarts from 'echarts';
+import { echarts } from '../../lib/viz/echarts.js';
 import {
   Activity, ArrowUpRight, CloudRain, CloudSun, Factory, GitCompare, Landmark, Layers, Leaf, LayoutGrid,
   Microscope, Palmtree, Pause, Plane, Play, Search, ShieldAlert, Ship, Thermometer, TrendingUp, Users,
