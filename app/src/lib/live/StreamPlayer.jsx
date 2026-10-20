@@ -1,5 +1,18 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import * as Lucide from 'lucide-react';
+import {
+  Circle as LuCircle,
+  ExternalLink as LuExternalLink,
+  Loader2 as LuLoader2,
+  SignalZero as LuSignalZero,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  Circle: LuCircle,
+  ExternalLink: LuExternalLink,
+  Loader2: LuLoader2,
+  SignalZero: LuSignalZero,
+};
 import { resolveHlsUrl } from './streamUtils.js';
 
 const MAX_HLS_RETRIES = 3;

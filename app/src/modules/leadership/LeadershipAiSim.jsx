@@ -1,5 +1,14 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import * as Lucide from 'lucide-react';
+import {
+  AlertTriangle as LuAlertTriangle,
+  Play as LuPlay,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  AlertTriangle: LuAlertTriangle,
+  Play: LuPlay,
+};
 import { Card } from '../../app/ui.jsx';
 import { Markdown } from '../../lib/ai/markdown.jsx';
 import { chat, isConfigured, loadConfig } from '../../lib/ai/client.js';

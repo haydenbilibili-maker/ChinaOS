@@ -13,7 +13,30 @@ import ThinkTankSection from './ThinkTankSection.jsx';
 import ResearchInstituteSection from './ResearchInstituteSection.jsx';
 import TalentDetailPanel from './TalentDetailPanel.jsx';
 import FigureRadarChart from './FigureRadarChart.jsx';
-import * as Lucide from 'lucide-react';
+import {
+  BarChart3 as LuBarChart3,
+  Grid3x3 as LuGrid3x3,
+  Hexagon as LuHexagon,
+  LayoutGrid as LuLayoutGrid,
+  List as LuList,
+  RefreshCw as LuRefreshCw,
+  Search as LuSearch,
+  Wand2 as LuWand2,
+  X as LuX,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  BarChart3: LuBarChart3,
+  Grid3x3: LuGrid3x3,
+  Hexagon: LuHexagon,
+  LayoutGrid: LuLayoutGrid,
+  List: LuList,
+  RefreshCw: LuRefreshCw,
+  Search: LuSearch,
+  Wand2: LuWand2,
+  X: LuX,
+};
 import { PageHeader, Card, Grid, Stat, StatGrid, TabBar, Button, DistBar } from '../../app/ui.jsx';
 import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import FigureAvatar from '../../lib/ui/FigureAvatar.jsx';

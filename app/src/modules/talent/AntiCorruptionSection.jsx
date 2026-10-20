@@ -1,7 +1,24 @@
 import { AXIS, LABEL, GRID_LINE } from '../shared/chartHelpers.js';
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
+import {
+  BarChart3 as LuBarChart3,
+  Gavel as LuGavel,
+  List as LuList,
+  RefreshCw as LuRefreshCw,
+  Search as LuSearch,
+  X as LuX,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  BarChart3: LuBarChart3,
+  Gavel: LuGavel,
+  List: LuList,
+  RefreshCw: LuRefreshCw,
+  Search: LuSearch,
+  X: LuX,
+};
 import { Card, Grid, Stat, DistBar } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { useDataset } from '../../lib/db/useDataset.js';

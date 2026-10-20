@@ -1,6 +1,23 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
+import {
+  BarChart3 as LuBarChart3,
+  GraduationCap as LuGraduationCap,
+  LayoutGrid as LuLayoutGrid,
+  List as LuList,
+  Search as LuSearch,
+  X as LuX,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  BarChart3: LuBarChart3,
+  GraduationCap: LuGraduationCap,
+  LayoutGrid: LuLayoutGrid,
+  List: LuList,
+  Search: LuSearch,
+  X: LuX,
+};
 import { Card, Grid, Stat, DistBar } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { AXIS, LABEL } from '../shared/chartHelpers.js';

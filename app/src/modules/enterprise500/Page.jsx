@@ -1,5 +1,22 @@
 import React, { useState, useMemo, useCallback, useRef, useEffect } from 'react';
-import * as Lucide from 'lucide-react';
+import {
+  LayoutGrid as LuLayoutGrid,
+  List as LuList,
+  Map as LuMap,
+  RefreshCw as LuRefreshCw,
+  Search as LuSearch,
+  X as LuX,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  LayoutGrid: LuLayoutGrid,
+  List: LuList,
+  Map: LuMap,
+  RefreshCw: LuRefreshCw,
+  Search: LuSearch,
+  X: LuX,
+};
 import { PageHeader, Card, Grid, Stat, StatGrid, TabBar, DistBar } from '../../app/ui.jsx';
 import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import EChart from '../../lib/viz/EChart.jsx';

@@ -1,6 +1,15 @@
 import React, { useMemo, useState, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import * as Lucide from 'lucide-react';
+import {
+  BookOpen as LuBookOpen,
+  ExternalLink as LuExternalLink,
+} from 'lucide-react';
+
+// 按需引入：仅打包本文件用到的图标（含动态查表的候选）
+const Lucide = {
+  BookOpen: LuBookOpen,
+  ExternalLink: LuExternalLink,
+};
 import { PageHeader, Card, Grid, Stat, StatGrid } from '../../app/ui.jsx';
 import { IntroCard, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import {
