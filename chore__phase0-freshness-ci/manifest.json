@@ -1,0 +1,570 @@
+{
+  "base": "http://127.0.0.1:4173",
+  "takenAt": "2026-10-20T16:06:30.095Z",
+  "shots": [
+    {
+      "route": "dashboard",
+      "path": "/dashboard",
+      "viewport": "desktop",
+      "theme": "dark",
+      "file": "desktop/dark/dashboard.png",
+      "errors": [
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Access to fetch at 'https://api.gdeltproject.org/api/v2/doc/doc?query=%22china%22%20sourcelang:english&mode=ArtList&format=json&maxrecords=20&timespan=6h&sort=datedesc' from origin 'http://127.0.0.1:4173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requ",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "econ",
+      "path": "/econ-dashboard",
+      "viewport": "desktop",
+      "theme": "dark",
+      "file": "desktop/dark/econ.png",
+      "errors": [
+        "Access to fetch at 'https://api.worldbank.org/v2/country/CHN/indicator/FP.CPI.TOTL.ZG?format=json&per_page=70&date=1990:2024' from origin 'http://127.0.0.1:4173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serve",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "governance",
+      "path": "/governance",
+      "viewport": "desktop",
+      "theme": "dark",
+      "file": "desktop/dark/governance.png",
+      "errors": [
+        "Access to fetch at 'https://data.stats.gov.cn/easyquery.htm?m=QueryData&dbcode=hgnd&rowcode=zb&colcode=sj&wds=%5B%5D&dfwds=%5B%5D&k1=1792512404861' from origin 'http://127.0.0.1:4173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "qingnian",
+      "path": "/modules/qingnian",
+      "viewport": "desktop",
+      "theme": "dark",
+      "file": "desktop/dark/qingnian.png",
+      "errors": []
+    },
+    {
+      "route": "signal",
+      "path": "/modules/signal-dashboard",
+      "viewport": "desktop",
+      "theme": "dark",
+      "file": "desktop/dark/signal.png",
+      "errors": []
+    },
+    {
+      "route": "talent",
+      "path": "/talent",
+      "viewport": "desktop",
+      "theme": "dark",
+      "file": "desktop/dark/talent.png",
+      "errors": []
+    },
+    {
+      "route": "military",
+      "path": "/military",
+      "viewport": "desktop",
+      "theme": "dark",
+      "file": "desktop/dark/military.png",
+      "errors": []
+    },
+    {
+      "route": "powerlogic",
+      "path": "/powerlogic",
+      "viewport": "desktop",
+      "theme": "dark",
+      "file": "desktop/dark/powerlogic.png",
+      "errors": []
+    },
+    {
+      "route": "foundation",
+      "path": "/foundation",
+      "viewport": "desktop",
+      "theme": "dark",
+      "file": "desktop/dark/foundation.png",
+      "errors": []
+    },
+    {
+      "route": "shenzhou",
+      "path": "/shenzhou-live",
+      "viewport": "desktop",
+      "theme": "dark",
+      "file": "desktop/dark/shenzhou.png",
+      "errors": []
+    },
+    {
+      "route": "dashboard",
+      "path": "/dashboard",
+      "viewport": "desktop",
+      "theme": "light",
+      "file": "desktop/light/dashboard.png",
+      "errors": [
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Access to fetch at 'https://api.gdeltproject.org/api/v2/doc/doc?query=%22china%22%20sourcelang:english&mode=ArtList&format=json&maxrecords=20&timespan=6h&sort=datedesc' from origin 'http://127.0.0.1:4173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requ",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "econ",
+      "path": "/econ-dashboard",
+      "viewport": "desktop",
+      "theme": "light",
+      "file": "desktop/light/econ.png",
+      "errors": [
+        "Access to fetch at 'https://api.worldbank.org/v2/country/CHN/indicator/FP.CPI.TOTL.ZG?format=json&per_page=70&date=1990:2024' from origin 'http://127.0.0.1:4173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serve",
+        "Failed to load resource: net::ERR_FAILED",
+        "Access to fetch at 'https://data.stats.gov.cn/easyquery.htm?m=QueryData&dbcode=hgnd&rowcode=zb&colcode=sj&wds=%5B%5D&dfwds=%5B%5D&k1=1792512434472' from origin 'http://127.0.0.1:4173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "governance",
+      "path": "/governance",
+      "viewport": "desktop",
+      "theme": "light",
+      "file": "desktop/light/governance.png",
+      "errors": []
+    },
+    {
+      "route": "qingnian",
+      "path": "/modules/qingnian",
+      "viewport": "desktop",
+      "theme": "light",
+      "file": "desktop/light/qingnian.png",
+      "errors": []
+    },
+    {
+      "route": "signal",
+      "path": "/modules/signal-dashboard",
+      "viewport": "desktop",
+      "theme": "light",
+      "file": "desktop/light/signal.png",
+      "errors": []
+    },
+    {
+      "route": "talent",
+      "path": "/talent",
+      "viewport": "desktop",
+      "theme": "light",
+      "file": "desktop/light/talent.png",
+      "errors": []
+    },
+    {
+      "route": "military",
+      "path": "/military",
+      "viewport": "desktop",
+      "theme": "light",
+      "file": "desktop/light/military.png",
+      "errors": []
+    },
+    {
+      "route": "powerlogic",
+      "path": "/powerlogic",
+      "viewport": "desktop",
+      "theme": "light",
+      "file": "desktop/light/powerlogic.png",
+      "errors": []
+    },
+    {
+      "route": "foundation",
+      "path": "/foundation",
+      "viewport": "desktop",
+      "theme": "light",
+      "file": "desktop/light/foundation.png",
+      "errors": []
+    },
+    {
+      "route": "shenzhou",
+      "path": "/shenzhou-live",
+      "viewport": "desktop",
+      "theme": "light",
+      "file": "desktop/light/shenzhou.png",
+      "errors": []
+    },
+    {
+      "route": "dashboard",
+      "path": "/dashboard",
+      "viewport": "tablet",
+      "theme": "dark",
+      "file": "tablet/dark/dashboard.png",
+      "errors": [
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Access to fetch at 'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.cctv.com%2Frss%2Fchina.xml' from origin 'http://127.0.0.1:4173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, ",
+        "Failed to load resource: net::ERR_FAILED",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Access to fetch at 'https://api.gdeltproject.org/api/v2/doc/doc?query=%22china%22%20sourcelang:english&mode=ArtList&format=json&maxrecords=20&timespan=6h&sort=datedesc' from origin 'http://127.0.0.1:4173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requ",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "econ",
+      "path": "/econ-dashboard",
+      "viewport": "tablet",
+      "theme": "dark",
+      "file": "tablet/dark/econ.png",
+      "errors": [
+        "Access to fetch at 'https://api.worldbank.org/v2/country/CHN/indicator/FP.CPI.TOTL.ZG?format=json&per_page=70&date=1990:2024' from origin 'http://127.0.0.1:4173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serve",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "governance",
+      "path": "/governance",
+      "viewport": "tablet",
+      "theme": "dark",
+      "file": "tablet/dark/governance.png",
+      "errors": [
+        "Access to fetch at 'https://data.stats.gov.cn/easyquery.htm?m=QueryData&dbcode=hgnd&rowcode=zb&colcode=sj&wds=%5B%5D&dfwds=%5B%5D&k1=1792512464605' from origin 'http://127.0.0.1:4173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "qingnian",
+      "path": "/modules/qingnian",
+      "viewport": "tablet",
+      "theme": "dark",
+      "file": "tablet/dark/qingnian.png",
+      "errors": []
+    },
+    {
+      "route": "signal",
+      "path": "/modules/signal-dashboard",
+      "viewport": "tablet",
+      "theme": "dark",
+      "file": "tablet/dark/signal.png",
+      "errors": []
+    },
+    {
+      "route": "talent",
+      "path": "/talent",
+      "viewport": "tablet",
+      "theme": "dark",
+      "file": "tablet/dark/talent.png",
+      "errors": []
+    },
+    {
+      "route": "military",
+      "path": "/military",
+      "viewport": "tablet",
+      "theme": "dark",
+      "file": "tablet/dark/military.png",
+      "errors": []
+    },
+    {
+      "route": "powerlogic",
+      "path": "/powerlogic",
+      "viewport": "tablet",
+      "theme": "dark",
+      "file": "tablet/dark/powerlogic.png",
+      "errors": []
+    },
+    {
+      "route": "foundation",
+      "path": "/foundation",
+      "viewport": "tablet",
+      "theme": "dark",
+      "file": "tablet/dark/foundation.png",
+      "errors": []
+    },
+    {
+      "route": "shenzhou",
+      "path": "/shenzhou-live",
+      "viewport": "tablet",
+      "theme": "dark",
+      "file": "tablet/dark/shenzhou.png",
+      "errors": []
+    },
+    {
+      "route": "dashboard",
+      "path": "/dashboard",
+      "viewport": "tablet",
+      "theme": "light",
+      "file": "tablet/light/dashboard.png",
+      "errors": [
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Access to fetch at 'https://api.gdeltproject.org/api/v2/doc/doc?query=%22china%22%20sourcelang:english&mode=ArtList&format=json&maxrecords=20&timespan=6h&sort=datedesc' from origin 'http://127.0.0.1:4173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requ",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "econ",
+      "path": "/econ-dashboard",
+      "viewport": "tablet",
+      "theme": "light",
+      "file": "tablet/light/econ.png",
+      "errors": [
+        "Access to fetch at 'https://api.worldbank.org/v2/country/CHN/indicator/FP.CPI.TOTL.ZG?format=json&per_page=70&date=1990:2024' from origin 'http://127.0.0.1:4173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serve",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "governance",
+      "path": "/governance",
+      "viewport": "tablet",
+      "theme": "light",
+      "file": "tablet/light/governance.png",
+      "errors": [
+        "Access to fetch at 'https://data.stats.gov.cn/easyquery.htm?m=QueryData&dbcode=hgnd&rowcode=zb&colcode=sj&wds=%5B%5D&dfwds=%5B%5D&k1=1792512493907' from origin 'http://127.0.0.1:4173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "qingnian",
+      "path": "/modules/qingnian",
+      "viewport": "tablet",
+      "theme": "light",
+      "file": "tablet/light/qingnian.png",
+      "errors": []
+    },
+    {
+      "route": "signal",
+      "path": "/modules/signal-dashboard",
+      "viewport": "tablet",
+      "theme": "light",
+      "file": "tablet/light/signal.png",
+      "errors": []
+    },
+    {
+      "route": "talent",
+      "path": "/talent",
+      "viewport": "tablet",
+      "theme": "light",
+      "file": "tablet/light/talent.png",
+      "errors": []
+    },
+    {
+      "route": "military",
+      "path": "/military",
+      "viewport": "tablet",
+      "theme": "light",
+      "file": "tablet/light/military.png",
+      "errors": []
+    },
+    {
+      "route": "powerlogic",
+      "path": "/powerlogic",
+      "viewport": "tablet",
+      "theme": "light",
+      "file": "tablet/light/powerlogic.png",
+      "errors": []
+    },
+    {
+      "route": "foundation",
+      "path": "/foundation",
+      "viewport": "tablet",
+      "theme": "light",
+      "file": "tablet/light/foundation.png",
+      "errors": []
+    },
+    {
+      "route": "shenzhou",
+      "path": "/shenzhou-live",
+      "viewport": "tablet",
+      "theme": "light",
+      "file": "tablet/light/shenzhou.png",
+      "errors": []
+    },
+    {
+      "route": "dashboard",
+      "path": "/dashboard",
+      "viewport": "mobile",
+      "theme": "dark",
+      "file": "mobile/dark/dashboard.png",
+      "errors": [
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()"
+      ]
+    },
+    {
+      "route": "econ",
+      "path": "/econ-dashboard",
+      "viewport": "mobile",
+      "theme": "dark",
+      "file": "mobile/dark/econ.png",
+      "errors": [
+        "Access to fetch at 'https://api.worldbank.org/v2/country/CHN/indicator/FP.CPI.TOTL.ZG?format=json&per_page=70&date=1990:2024' from origin 'http://127.0.0.1:4173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serve",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "governance",
+      "path": "/governance",
+      "viewport": "mobile",
+      "theme": "dark",
+      "file": "mobile/dark/governance.png",
+      "errors": [
+        "Access to fetch at 'https://data.stats.gov.cn/easyquery.htm?m=QueryData&dbcode=hgnd&rowcode=zb&colcode=sj&wds=%5B%5D&dfwds=%5B%5D&k1=1792512529880' from origin 'http://127.0.0.1:4173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "qingnian",
+      "path": "/modules/qingnian",
+      "viewport": "mobile",
+      "theme": "dark",
+      "file": "mobile/dark/qingnian.png",
+      "errors": []
+    },
+    {
+      "route": "signal",
+      "path": "/modules/signal-dashboard",
+      "viewport": "mobile",
+      "theme": "dark",
+      "file": "mobile/dark/signal.png",
+      "errors": []
+    },
+    {
+      "route": "talent",
+      "path": "/talent",
+      "viewport": "mobile",
+      "theme": "dark",
+      "file": "mobile/dark/talent.png",
+      "errors": []
+    },
+    {
+      "route": "military",
+      "path": "/military",
+      "viewport": "mobile",
+      "theme": "dark",
+      "file": "mobile/dark/military.png",
+      "errors": []
+    },
+    {
+      "route": "powerlogic",
+      "path": "/powerlogic",
+      "viewport": "mobile",
+      "theme": "dark",
+      "file": "mobile/dark/powerlogic.png",
+      "errors": []
+    },
+    {
+      "route": "foundation",
+      "path": "/foundation",
+      "viewport": "mobile",
+      "theme": "dark",
+      "file": "mobile/dark/foundation.png",
+      "errors": []
+    },
+    {
+      "route": "shenzhou",
+      "path": "/shenzhou-live",
+      "viewport": "mobile",
+      "theme": "dark",
+      "file": "mobile/dark/shenzhou.png",
+      "errors": []
+    },
+    {
+      "route": "dashboard",
+      "path": "/dashboard",
+      "viewport": "mobile",
+      "theme": "light",
+      "file": "mobile/light/dashboard.png",
+      "errors": [
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Failed to load resource: the server responded with a status of 422 ()",
+        "Access to fetch at 'https://api.gdeltproject.org/api/v2/doc/doc?query=%22china%22%20sourcelang:english&mode=ArtList&format=json&maxrecords=20&timespan=6h&sort=datedesc' from origin 'http://127.0.0.1:4173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requ",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "econ",
+      "path": "/econ-dashboard",
+      "viewport": "mobile",
+      "theme": "light",
+      "file": "mobile/light/econ.png",
+      "errors": [
+        "Access to fetch at 'https://api.worldbank.org/v2/country/CHN/indicator/FP.CPI.TOTL.ZG?format=json&per_page=70&date=1990:2024' from origin 'http://127.0.0.1:4173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serve",
+        "Failed to load resource: net::ERR_FAILED",
+        "Access to fetch at 'https://data.stats.gov.cn/easyquery.htm?m=QueryData&dbcode=hgnd&rowcode=zb&colcode=sj&wds=%5B%5D&dfwds=%5B%5D&k1=1792512558324' from origin 'http://127.0.0.1:4173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an",
+        "Failed to load resource: net::ERR_FAILED"
+      ]
+    },
+    {
+      "route": "governance",
+      "path": "/governance",
+      "viewport": "mobile",
+      "theme": "light",
+      "file": "mobile/light/governance.png",
+      "errors": []
+    },
+    {
+      "route": "qingnian",
+      "path": "/modules/qingnian",
+      "viewport": "mobile",
+      "theme": "light",
+      "file": "mobile/light/qingnian.png",
+      "errors": []
+    },
+    {
+      "route": "signal",
+      "path": "/modules/signal-dashboard",
+      "viewport": "mobile",
+      "theme": "light",
+      "file": "mobile/light/signal.png",
+      "errors": []
+    },
+    {
+      "route": "talent",
+      "path": "/talent",
+      "viewport": "mobile",
+      "theme": "light",
+      "file": "mobile/light/talent.png",
+      "errors": []
+    },
+    {
+      "route": "military",
+      "path": "/military",
+      "viewport": "mobile",
+      "theme": "light",
+      "file": "mobile/light/military.png",
+      "errors": []
+    },
+    {
+      "route": "powerlogic",
+      "path": "/powerlogic",
+      "viewport": "mobile",
+      "theme": "light",
+      "file": "mobile/light/powerlogic.png",
+      "errors": []
+    },
+    {
+      "route": "foundation",
+      "path": "/foundation",
+      "viewport": "mobile",
+      "theme": "light",
+      "file": "mobile/light/foundation.png",
+      "errors": []
+    },
+    {
+      "route": "shenzhou",
+      "path": "/shenzhou-live",
+      "viewport": "mobile",
+      "theme": "light",
+      "file": "mobile/light/shenzhou.png",
+      "errors": []
+    }
+  ]
+}
