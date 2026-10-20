@@ -1,9 +1,13 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { Suspense, lazy, useEffect, useMemo, useRef, useState } from 'react';
+import { BookOpen } from 'lucide-react';
 import { useSearchParams } from 'react-router-dom';
 import { PageHeader } from '../../app/ui.jsx';
 import { ModuleFooter } from '../shared/ModuleParadigm.jsx';
 import { getTheme, subscribeTheme } from '../../lib/theme.js';
+import useHtmlDoc from '../../vi/reader/useHtmlDoc.js';
 import './shijian.css';
+
+const Reader = lazy(() => import('../../vi/reader/Reader.jsx'));
 
 const THEME_MSG = 'c2os-sj-theme';
 const LENS_MSG = 'c2os-sj-lens';
@@ -57,6 +61,13 @@ export default function ShijianHtmlShell({
   const [retryKey, setRetryKey] = useState(0);
 
   useEffect(() => subscribeTheme(setTheme), []);
+  const reader = useHtmlDoc(htmlSrc);
+  // ?read=1 深链：直接以阅读模式打开
+  const wantRead = searchParams.get('read') === '1';
+  useEffect(() => {
+    if (wantRead) reader.openReader();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [wantRead, htmlSrc]);
 
   // 仅在换卷时重建 src；主题与深链初值写入 query；运行时改参走 postMessage
   const frameSrc = useMemo(() => withDeepLinkQuery(htmlSrc, getTheme()), [htmlSrc]);
@@ -168,7 +179,29 @@ export default function ShijianHtmlShell({
 
   return (
     <div className="shijian-page">
-      <PageHeader badge={badge} title={title} subtitle={subtitle} />
+      <PageHeader badge={badge} title={title} subtitle={subtitle}>
+        <button type="button" className="os-btn os-btn-sm shijian-read-btn" onClick={reader.openReader}>
+          <BookOpen size={14} aria-hidden="true" />
+          阅读模式
+        </button>
+      </PageHeader>
+      {reader.open && (
+        <Suspense fallback={null}>
+          <Reader
+            open
+            onClose={reader.closeReader}
+            docId={`shijian:${moduleId}`}
+            title={title}
+            badge={badge}
+            meta={[subtitle].filter(Boolean)}
+            markdown={reader.markdown}
+            loading={reader.loading}
+            error={reader.error}
+            sourcePath={htmlSrc}
+            disclaimer="阅读模式由卷页文本自动整理；交互图示与镜头请回原卷查看。"
+          />
+        </Suspense>
+      )}
       <div className={`shijian-frame-wrap os-card${frameState === 'loading' ? ' is-loading' : ''}${frameState === 'error' ? ' is-error' : ''}`}>
         {frameState === 'loading' && (
           <div className="shijian-frame-status" aria-live="polite" aria-busy="true">

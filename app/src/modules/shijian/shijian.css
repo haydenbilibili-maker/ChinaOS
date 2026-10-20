@@ -218,3 +218,9 @@
     line-height: 1.65;
   }
 }
+
+.shijian-read-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
