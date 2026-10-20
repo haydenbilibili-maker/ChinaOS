@@ -113,8 +113,8 @@ export function Card({ title, children, className = '', hover = false, asSection
 
 export function Stat({ value, label, accent, sub, trend, trendValue }) {
   return (
-    <div className="os-card os-card-lift os-stat-card p-4 text-center" style={{ padding: 'var(--card-padding) 1rem' }}>
-      <div className="flex items-center justify-center gap-1.5 flex-wrap">
+    <div className="os-card os-card-lift os-stat-card os-stat-card--v2" style={accent ? { '--stat-accent': accent } : undefined}>
+      <div className="os-stat-card__row">
         <div className="os-stat-value mono os-mono-tabular" style={{ color: accent || 'var(--text-primary)' }}>{value}</div>
         {trend && <StatTrend direction={trend} value={trendValue} />}
       </div>
