@@ -66,7 +66,7 @@ function jumpTo(id) {
   const el = document.getElementById(anchor(id));
   const root = document.getElementById('main-content');
   if (!el || !root) return;
-  const top = el.getBoundingClientRect().top - root.getBoundingClientRect().top + root.scrollTop - 120;
+  const top = el.getBoundingClientRect().top - root.getBoundingClientRect().top + root.scrollTop - 140;
   const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
   root.scrollTo({ top: Math.max(0, top), behavior: reduce ? 'auto' : 'smooth' });
 }

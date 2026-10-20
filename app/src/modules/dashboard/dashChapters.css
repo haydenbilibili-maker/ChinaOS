@@ -82,7 +82,7 @@
 
 /* 章节头 */
 .dch {
-  scroll-margin-top: 130px;
+  scroll-margin-top: 150px;
   margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.25rem);
 }
 

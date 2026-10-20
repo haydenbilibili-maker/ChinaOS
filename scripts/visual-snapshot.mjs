@@ -64,7 +64,7 @@ for (const vp of cfg.viewports) {
           const root = document.getElementById('main-content');
           if (!el) return;
           if (!root) { el.scrollIntoView({ block: 'start' }); return; }
-          root.scrollTop += el.getBoundingClientRect().top - root.getBoundingClientRect().top - 120;
+          root.scrollTop += el.getBoundingClientRect().top - root.getBoundingClientRect().top - 140;
         }, r.scrollTo);
         await page.waitForTimeout(600);
       }
