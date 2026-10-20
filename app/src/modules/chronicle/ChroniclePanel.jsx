@@ -8,21 +8,21 @@ import { AS_OF, ERAS, DOMAINS, EVENTS } from './data.js';
 import { AXIS, LABEL } from '../shared/chartHelpers.js';
 
 const AXIS_LABEL = { color: LABEL.color, fontSize: 10 };
-const SPLIT_LINE = { lineStyle: { color: 'rgba(148,163,184,0.1)' } };
+const SPLIT_LINE = { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } };
 const TOOLTIP_SKIN = {
-  backgroundColor: 'rgba(15, 22, 35, 0.94)',
-  borderColor: 'rgba(148, 163, 184, 0.22)',
+  backgroundColor: 'rgba(20, 23, 31, 0.94)',
+  borderColor: 'rgba(162, 156, 145, 0.22)',
   borderWidth: 1,
-  textStyle: { color: '#e8edf6', fontSize: 11 },
+  textStyle: { color: '#ede8df', fontSize: 11 },
   extraCssText: 'border-radius: 8px;',
 };
 
 const TURNS = [
-  { y: 1978, title: '十一届三中全会', accent: '#10b981', fork: '从阶级斗争转向经济建设，市场与开放变量首次进入国家方程。', lock: '发展主义合法性确立，「增长锦标赛」成为此后四十年的治理评价底座。' },
-  { y: 1992, title: '南方谈话', accent: '#10b981', fork: '终结「姓社姓资」争论，市场化在政治背书下重启加速。', lock: '出口导向 + 土地财政 + 招商引资的地方竞争模式自此锁定。' },
-  { y: 2001, title: '加入 WTO', accent: '#22d3ee', fork: '全面嵌入全球分工体系，规则与关税向国际接轨。', lock: '「世界工厂」定位与外需依赖成型，沿海制造业集群路径固化。' },
-  { y: 2008, title: '金融危机 + 四万亿', accent: '#e8a317', fork: '外需塌方倒逼超大规模内需刺激，基建地产成为对冲主力。', lock: '债务—土地—基建循环与地方融资平台路径就此绑定，延续至今。' },
-  { y: 2018, title: '贸易战开端', accent: '#fb923c', fork: '中美从接触合作转向战略竞争，技术封锁与脱钩压力开启。', lock: '自主可控与双循环升格为长期主线，安全权重系统性上升。' },
+  { y: 1978, title: '十一届三中全会', accent: '#6fc2ae', fork: '从阶级斗争转向经济建设，市场与开放变量首次进入国家方程。', lock: '发展主义合法性确立，「增长锦标赛」成为此后四十年的治理评价底座。' },
+  { y: 1992, title: '南方谈话', accent: '#6fc2ae', fork: '终结「姓社姓资」争论，市场化在政治背书下重启加速。', lock: '出口导向 + 土地财政 + 招商引资的地方竞争模式自此锁定。' },
+  { y: 2001, title: '加入 WTO', accent: '#6e8cff', fork: '全面嵌入全球分工体系，规则与关税向国际接轨。', lock: '「世界工厂」定位与外需依赖成型，沿海制造业集群路径固化。' },
+  { y: 2008, title: '金融危机 + 四万亿', accent: '#d4a25a', fork: '外需塌方倒逼超大规模内需刺激，基建地产成为对冲主力。', lock: '债务—土地—基建循环与地方融资平台路径就此绑定，延续至今。' },
+  { y: 2018, title: '贸易战开端', accent: '#c07a4a', fork: '中美从接触合作转向战略竞争，技术封锁与脱钩压力开启。', lock: '自主可控与双循环升格为长期主线，安全权重系统性上升。' },
 ];
 
 export default function ChroniclePanel() {
@@ -53,7 +53,7 @@ export default function ChroniclePanel() {
     xAxis: {
       type: 'value', min: era ? era.range[0] - 1 : 1948, max: era ? era.range[1] + 1 : 2027,
       axisLabel: { ...AXIS_LABEL, formatter: (v) => String(v) },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.07)' } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.07)' } },
       axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
     },
     yAxis: {
@@ -63,7 +63,7 @@ export default function ChroniclePanel() {
     },
     dataZoom: [
       { type: 'inside' },
-      { type: 'slider', height: 18, bottom: 4, textStyle: { fontSize: 9, color: '#64748b' } },
+      { type: 'slider', height: 18, bottom: 4, textStyle: { fontSize: 9, color: '#8a8578' } },
     ],
     series: [{
       type: 'scatter',
@@ -124,7 +124,7 @@ export default function ChroniclePanel() {
       <Grid cols={4} className="mb-6">
         <Stat value={EVENTS.length} label="事件节点总数" accent="var(--cyber-cyan)" />
         <Stat value={7} label="时代分段" accent="var(--fire-gold)" />
-        <Stat value={6} label="观察域" accent="#8b5cf6" />
+        <Stat value={6} label="观察域" accent="#b07cc6" />
         <Stat value={majorCount} label="重大节点 (w=3)" accent="var(--china-red)" />
       </Grid>
 
@@ -221,7 +221,7 @@ export default function ChroniclePanel() {
         <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
           {decadeGroups.map(([decade, evs]) => (
             <div key={decade} className="os-card p-4" style={{ background: 'var(--bg-elevated)' }}>
-              <div className="text-xs mono font-semibold mb-2 pb-2" style={{ color: 'var(--text-tertiary)', borderBottom: '1px solid rgba(148,163,184,0.12)' }}>
+              <div className="text-xs mono font-semibold mb-2 pb-2" style={{ color: 'var(--text-tertiary)', borderBottom: '1px solid rgba(162, 156, 145,0.12)' }}>
                 {decade} · {evs.length} 条
               </div>
               {evs.map((e) => (

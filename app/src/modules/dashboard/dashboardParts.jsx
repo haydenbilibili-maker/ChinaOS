@@ -128,7 +128,7 @@ export function AnimatedMetric({ value, className = '', style = {}, duration = 9
 }
 
 /** 迷你火花线 SVG */
-export function KpiSparkline({ data = [], color = '#22d3ee', height = 28 }) {
+export function KpiSparkline({ data = [], color = '#6e8cff', height = 28 }) {
   const { path, area, gradId } = useMemo(() => {
     const pts = (data || []).filter((v) => v != null && !Number.isNaN(v));
     if (pts.length < 2) return { path: '', area: '', gradId: 'dash-spark-empty' };
@@ -250,17 +250,17 @@ export function StatusStrip({
 
       <div className="dash-status-strip__meta">
         <span className="dash-status-pill">
-          <span className="dash-status-pill__dot is-live" style={{ background: '#10b981' }} aria-hidden="true" />
+          <span className="dash-status-pill__dot is-live" style={{ background: '#6fc2ae' }} aria-hidden="true" />
           AS_OF <span className="mono">{AS_OF}</span>
         </span>
         <span className="dash-status-pill">
-          <span className="dash-status-pill__dot" style={{ background: '#22d3ee' }} aria-hidden="true" />
+          <span className="dash-status-pill__dot" style={{ background: '#6e8cff' }} aria-hidden="true" />
           {MODULE_COUNT} 模块 · {GROUP_COUNT} 分组
         </span>
         <span className="dash-status-pill">
           <span
             className={`dash-status-pill__dot${liveKpiCount > 0 ? ' is-live' : ''}`}
-            style={{ background: liveKpiCount > 0 ? '#10b981' : '#64748b' }}
+            style={{ background: liveKpiCount > 0 ? '#6fc2ae' : '#8a8578' }}
             aria-hidden="true"
           />
           {isRefreshing ? '信号刷新中' : `上次刷新 ${fmtTs}`}
@@ -359,7 +359,7 @@ export function RecentSignalsStrip({ className = '' }) {
   return (
     <aside className={`dash-recent-signals ${className}`.trim()} aria-label="近期金丝雀信号">
       <div className="dash-recent-signals__head">
-        <Lucide.Bell size={13} style={{ color: '#e8a317' }} />
+        <Lucide.Bell size={13} style={{ color: '#d4a25a' }} />
         <span>近期信号</span>
         <Link to={econTabPath('canary')} className="dash-recent-signals__more mono">经济大盘 →</Link>
       </div>
@@ -406,7 +406,7 @@ export function SignalFreshnessBar() {
     <div className="dash-signal-bar" role="region" aria-label="金丝雀信号新鲜度">
       <div className="dash-signal-bar__head">
         <span className="dash-signal-bar__title">
-          <Lucide.Activity size={13} style={{ color: '#22d3ee' }} />
+          <Lucide.Activity size={13} style={{ color: '#6e8cff' }} />
           信号新鲜度 · 能源压舱石与实体景气
         </span>
         <FreshnessGauge signals={signals} />
@@ -438,7 +438,7 @@ export function SignalFreshnessBar() {
             {s.label}
           </Link>
         ))}
-        <Link to="/modules/signal-panel" className="dash-signal-chip" style={{ '--chip-color': '#22d3ee' }}>
+        <Link to="/modules/signal-panel" className="dash-signal-chip" style={{ '--chip-color': '#6e8cff' }}>
           信号灯 →
         </Link>
       </div>
@@ -449,10 +449,10 @@ export function SignalFreshnessBar() {
 /** Hero 侧栏系统健康读数 */
 export function SystemHealthPanel({ entryTotal = ENTRY_TOTAL, refreshCount = 0 }) {
   const rows = [
-    { label: '数据底座', val: entryTotal, color: '#22d3ee', countUp: true, suffix: ' 条' },
-    { label: '专题覆盖', val: MODULE_COUNT, color: '#e8a317', countUp: true, suffix: ' 模块' },
-    { label: '信号脉冲', val: refreshCount, color: '#10b981', live: refreshCount > 0, display: refreshCount > 0 ? null : '待命' },
-    { label: '算力主权', val: null, color: '#8b5cf6', display: '本地 IndexedDB' },
+    { label: '数据底座', val: entryTotal, color: '#6e8cff', countUp: true, suffix: ' 条' },
+    { label: '专题覆盖', val: MODULE_COUNT, color: '#d4a25a', countUp: true, suffix: ' 模块' },
+    { label: '信号脉冲', val: refreshCount, color: '#6fc2ae', live: refreshCount > 0, display: refreshCount > 0 ? null : '待命' },
+    { label: '算力主权', val: null, color: '#b07cc6', display: '本地 IndexedDB' },
   ];
 
   return (

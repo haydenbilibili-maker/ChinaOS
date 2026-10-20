@@ -13,7 +13,7 @@ import { Card } from '../../app/ui.jsx';
 
 const STATES = [
   {
-    key: 'fragile', tag: '脆弱', color: '#c41e3a',
+    key: 'fragile', tag: '脆弱', color: '#e5483b',
     head: '波动一来就受损',
     mech: '机理：收益封顶、损失敞开——下行风险远大于上行空间，黑天鹅来时最先碎。',
     items: [
@@ -24,7 +24,7 @@ const STATES = [
     ],
   },
   {
-    key: 'robust', tag: '强韧', color: '#e8a317',
+    key: 'robust', tag: '强韧', color: '#d4a25a',
     head: '波动里不增不减',
     mech: '机理：对环境变化不敏感，换地域、换行业、换平台都还在——是穿越周期的压舱石。',
     items: [
@@ -35,7 +35,7 @@ const STATES = [
     ],
   },
   {
-    key: 'antifragile', tag: '反脆弱', color: '#10b981',
+    key: 'antifragile', tag: '反脆弱', color: '#6fc2ae',
     head: '波动越大越受益',
     mech: '机理：上行无封顶、下行有限——小注多次，押对一个就覆盖全部失败成本（凸性）。',
     items: [
@@ -77,11 +77,11 @@ export default function SectionAntifragile() {
       </div>
 
       {/* 杠铃策略 */}
-      <div className="os-card p-4 mt-5" style={{ borderLeft: '3px solid #8b5cf6' }}>
-        <div className="text-xs font-semibold mb-1.5" style={{ color: '#8b5cf6' }}>杠铃策略 · 两端配重、掏空中间</div>
+      <div className="os-card p-4 mt-5" style={{ borderLeft: '3px solid #b07cc6' }}>
+        <div className="text-xs font-semibold mb-1.5" style={{ color: '#b07cc6' }}>杠铃策略 · 两端配重、掏空中间</div>
         <p className="text-xs" style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
-          <span style={{ color: '#22d3ee' }}>安全端（80–90%）</span>：守住现金流与可转移技能这块压舱石，把脆弱的「固定预期」改造成强韧的「可迁移底盘」，确保任何一次失败都不致命；
-          <span style={{ color: '#10b981' }}>冒险端（10–20%）</span>：以 AI 超级个体 / 出海 2.0 做「小注多次」的反脆弱下注，单笔可控、押中即非线性回报。避开中间地带——既无保底又无上限的「温水」选项，才是 35 岁最该砍掉的部分。
+          <span style={{ color: '#6e8cff' }}>安全端（80–90%）</span>：守住现金流与可转移技能这块压舱石，把脆弱的「固定预期」改造成强韧的「可迁移底盘」，确保任何一次失败都不致命；
+          <span style={{ color: '#6fc2ae' }}>冒险端（10–20%）</span>：以 AI 超级个体 / 出海 2.0 做「小注多次」的反脆弱下注，单笔可控、押中即非线性回报。避开中间地带——既无保底又无上限的「温水」选项，才是 35 岁最该砍掉的部分。
         </p>
       </div>
 
@@ -90,10 +90,10 @@ export default function SectionAntifragile() {
         <Link
           to="/antifragile"
           className="os-card px-3 py-1.5 no-underline inline-flex items-center gap-1.5"
-          style={{ borderLeft: '3px solid #10b981' }}
+          style={{ borderLeft: '3px solid #6fc2ae' }}
         >
           <span className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>认知内核 · 反脆弱性</span>
-          <span className="text-[11px]" style={{ color: '#10b981' }}>↗</span>
+          <span className="text-[11px]" style={{ color: '#6fc2ae' }}>↗</span>
           <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>塔勒布 · 凸性效应 · 波动获益</span>
         </Link>
       </div>

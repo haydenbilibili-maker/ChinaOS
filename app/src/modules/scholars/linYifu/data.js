@@ -9,13 +9,13 @@
 export const AS_OF = '2026-09-28';
 
 export const THEMES = {
-  nse: { label: '新结构经济学与产业政策', color: '#10b981' },
-  growth: { label: '增长潜力与宏观', color: '#8b5cf6' },
-  reform: { label: '中国改革史（比较优势·双轨制）', color: '#e8a317' },
-  invest: { label: '投资、消费与财政', color: '#fb923c' },
-  south: { label: '发展经济学与全球南方', color: '#22d3ee' },
-  global: { label: '中美与国际格局', color: '#c41e3a' },
-  welfare: { label: '民生、收入与人口', color: '#94a3b8' },
+  nse: { label: '新结构经济学与产业政策', color: '#6fc2ae' },
+  growth: { label: '增长潜力与宏观', color: '#b07cc6' },
+  reform: { label: '中国改革史（比较优势·双轨制）', color: '#d4a25a' },
+  invest: { label: '投资、消费与财政', color: '#c07a4a' },
+  south: { label: '发展经济学与全球南方', color: '#6e8cff' },
+  global: { label: '中美与国际格局', color: '#e5483b' },
+  welfare: { label: '民生、收入与人口', color: '#a29c91' },
 };
 export const THEME_KEYS = Object.keys(THEMES);
 
@@ -45,12 +45,12 @@ export const BOARD = {
 };
 
 export const CAREER_GROUPS = {
-  tw: { label: '台湾', color: '#94a3b8' },
-  edu: { label: '求学', color: '#22d3ee' },
-  gov: { label: '国务院研究机构', color: '#e8a317' },
-  pku: { label: '北京大学', color: '#10b981' },
-  wb: { label: '世界银行', color: '#8b5cf6' },
-  pol: { label: '政协 / 人大 / 工商联', color: '#c41e3a' },
+  tw: { label: '台湾', color: '#a29c91' },
+  edu: { label: '求学', color: '#6e8cff' },
+  gov: { label: '国务院研究机构', color: '#d4a25a' },
+  pku: { label: '北京大学', color: '#6fc2ae' },
+  wb: { label: '世界银行', color: '#b07cc6' },
+  pol: { label: '政协 / 人大 / 工商联', color: '#e5483b' },
 };
 
 /** 履历甘特：起止为小数年；note 记录口径出入 */

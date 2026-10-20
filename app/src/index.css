@@ -6,22 +6,22 @@
 
 /* China OS 设计令牌 · 权力红 / 钢灰 / 赛博青 · 暗色科技感默认 */
 :root {
-  --china-red: #c41e3a;
-  --china-deep: #8b0000;
-  --cyber-cyan: #22d3ee;
-  --fire-gold: #d4af37;
-  --bg-base: #0a0e17;
-  --bg-surface: #0f1623;
-  --bg-elevated: #1a2333;
-  --bg-inset: #0c121c;
-  --bg-page: rgba(10, 14, 23, 0.92);
+  --china-red: #e5483b;
+  --china-deep: #9e2a22;
+  --cyber-cyan: #6e8cff;
+  --fire-gold: #d9b26a;
+  --bg-base: #0d0f14;
+  --bg-surface: #14171f;
+  --bg-elevated: #1c202a;
+  --bg-inset: #0a0c10;
+  --bg-page: rgba(13, 15, 20, 0.92);
   --glass-highlight: rgba(255, 255, 255, 0.04);
   --panel-shadow: 0 24px 70px -18px rgba(0, 0, 0, 0.7);
   --fab-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.5);
-  --border-subtle: rgba(148, 163, 184, 0.16);
-  --text-primary: #e8edf6;
-  --text-secondary: #93a1b5;
-  --text-tertiary: #5b6a82;
+  --border-subtle: rgba(162, 156, 145, 0.16);
+  --text-primary: #ede8df;
+  --text-secondary: #a29c91;
+  --text-tertiary: #8a847a;
 
   /* Typography scale */
   --font-sans: 'Noto Sans SC', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
@@ -52,13 +52,13 @@
   --control-min-size: 2.25rem;
 
   /* Ink-observatory accents · 黄铜 / 青瓷 */
-  --brass: #b18a52;
+  --brass: #d4a25a;
   --brass-dim: #6b5733;
-  --brass-glow: rgba(177, 138, 82, 0.22);
-  --celadon: #79a496;
+  --brass-glow: rgba(212, 162, 90, 0.22);
+  --celadon: #6fc2ae;
   --celadon-dim: #4f6b66;
-  --celadon-soft: rgba(121, 164, 150, 0.14);
-  --celadon-border: rgba(121, 164, 150, 0.32);
+  --celadon-soft: rgba(111, 194, 174, 0.14);
+  --celadon-border: rgba(111, 194, 174, 0.32);
 
   /* Motion · 水墨缓动 */
   --ease-ink: cubic-bezier(0.22, 1, 0.36, 1);
@@ -72,83 +72,83 @@
   --glass-blur-sm: 8px;
   --glass-blur-md: 14px;
   --glass-blur-lg: 22px;
-  --glass-border-gradient: linear-gradient(135deg, rgba(121, 164, 150, 0.28), rgba(177, 138, 82, 0.18) 45%, rgba(34, 211, 238, 0.22));
+  --glass-border-gradient: linear-gradient(135deg, rgba(111, 194, 174, 0.28), rgba(212, 162, 90, 0.18) 45%, rgba(110, 140, 255, 0.22));
 
   /* Effects · 环境光 + 主光（暗色暖铜 tint） */
   --shadow-ambient: 0 2px 8px -2px rgba(0, 0, 0, 0.55), 0 16px 48px -12px rgba(0, 0, 0, 0.45);
-  --shadow-key: 0 1px 0 rgba(255, 255, 255, 0.04), 0 8px 24px -8px rgba(177, 138, 82, 0.12);
+  --shadow-key: 0 1px 0 rgba(255, 255, 255, 0.04), 0 8px 24px -8px rgba(212, 162, 90, 0.12);
   --shadow-glass: var(--shadow-ambient), var(--shadow-key), inset 0 1px 0 var(--glass-highlight);
   --shadow-card: var(--shadow-ambient);
-  --shadow-card-hover: 0 10px 36px -10px rgba(34, 211, 238, 0.2), 0 4px 16px -6px rgba(177, 138, 82, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  --shadow-glow-cyan: 0 0 0 1px rgba(34, 211, 238, 0.12), 0 0 24px -6px rgba(34, 211, 238, 0.15);
-  --shadow-glow-celadon: 0 0 0 1px var(--celadon-border), 0 0 20px -6px rgba(121, 164, 150, 0.2);
+  --shadow-card-hover: 0 10px 36px -10px rgba(110, 140, 255, 0.2), 0 4px 16px -6px rgba(212, 162, 90, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --shadow-glow-cyan: 0 0 0 1px rgba(110, 140, 255, 0.12), 0 0 24px -6px rgba(110, 140, 255, 0.15);
+  --shadow-glow-celadon: 0 0 0 1px var(--celadon-border), 0 0 20px -6px rgba(111, 194, 174, 0.2);
   --transition-fast: var(--duration-fast) var(--ease-ink);
   --transition-base: 0.22s var(--ease-ink);
-  --focus-ring: 0 0 0 2px rgba(121, 164, 150, 0.35), 0 0 0 4px rgba(121, 164, 150, 0.12);
-  --focus-ring-cyan: 0 0 0 2px rgba(34, 211, 238, 0.28), 0 0 0 4px rgba(34, 211, 238, 0.1);
+  --focus-ring: 0 0 0 2px rgba(111, 194, 174, 0.35), 0 0 0 4px rgba(111, 194, 174, 0.12);
+  --focus-ring-cyan: 0 0 0 2px rgba(110, 140, 255, 0.28), 0 0 0 4px rgba(110, 140, 255, 0.1);
 
   /* 语义令牌 · 夜览默认；日览在下方覆盖 */
-  --border-strong: rgba(148, 163, 184, 0.22);
-  --accent-soft: rgba(34, 211, 238, 0.12);
-  --accent-border: rgba(34, 211, 238, 0.28);
-  --accent-hover: #67e8f9;
-  --surface-glass: rgba(15, 22, 35, 0.82);
+  --border-strong: rgba(162, 156, 145, 0.22);
+  --accent-soft: rgba(110, 140, 255, 0.12);
+  --accent-border: rgba(110, 140, 255, 0.28);
+  --accent-hover: #a4b6ff;
+  --surface-glass: rgba(20, 23, 31, 0.82);
   --surface-glass-blur: var(--glass-blur-md);
-  --nav-active-bg: rgba(196, 30, 58, 0.16);
+  --nav-active-bg: rgba(229, 72, 59, 0.16);
   --nav-active-text: #fff;
   --nav-hover-bg: rgba(255, 255, 255, 0.05);
   --tab-active-text: #fff;
   --chip-active-text: #fff;
-  --overlay-backdrop: rgba(5, 8, 14, 0.62);
-  --modal-surface: rgba(15, 22, 35, 0.92);
+  --overlay-backdrop: rgba(7, 8, 11, 0.62);
+  --modal-surface: rgba(20, 23, 31, 0.92);
   --modal-shadow: 0 24px 70px -18px rgba(0, 0, 0, 0.7), var(--shadow-glow-cyan);
   --btn-hover-bg: rgba(255, 255, 255, 0.06);
-  --btn-primary-bg: rgba(34, 211, 238, 0.12);
-  --btn-primary-hover-bg: rgba(34, 211, 238, 0.2);
-  --btn-primary-hover-text: #a5f3fc;
-  --search-highlight-bg: rgba(34, 211, 238, 0.12);
-  --search-highlight-border: rgba(34, 211, 238, 0.35);
-  --card-hover-border: rgba(34, 211, 238, 0.28);
-  --card-active-border: rgba(34, 211, 238, 0.45);
-  --input-focus-border: rgba(34, 211, 238, 0.6);
-  --search-focus-border: rgba(34, 211, 238, 0.45);
-  --scrollbar-thumb: rgba(148, 163, 184, 0.22);
-  --scrollbar-thumb-hover: rgba(34, 211, 238, 0.45);
-  --shimmer-mid: rgba(34, 211, 238, 0.22);
-  --skeleton-base: rgba(148, 163, 184, 0.08);
-  --skeleton-mid: rgba(148, 163, 184, 0.16);
-  --drawer-backdrop: rgba(5, 8, 14, 0.6);
+  --btn-primary-bg: rgba(110, 140, 255, 0.12);
+  --btn-primary-hover-bg: rgba(110, 140, 255, 0.2);
+  --btn-primary-hover-text: #c2cdff;
+  --search-highlight-bg: rgba(110, 140, 255, 0.12);
+  --search-highlight-border: rgba(110, 140, 255, 0.35);
+  --card-hover-border: rgba(110, 140, 255, 0.28);
+  --card-active-border: rgba(110, 140, 255, 0.45);
+  --input-focus-border: rgba(110, 140, 255, 0.6);
+  --search-focus-border: rgba(110, 140, 255, 0.45);
+  --scrollbar-thumb: rgba(162, 156, 145, 0.22);
+  --scrollbar-thumb-hover: rgba(110, 140, 255, 0.45);
+  --shimmer-mid: rgba(110, 140, 255, 0.22);
+  --skeleton-base: rgba(162, 156, 145, 0.08);
+  --skeleton-mid: rgba(162, 156, 145, 0.16);
+  --drawer-backdrop: rgba(7, 8, 11, 0.6);
   --sidebar-shadow: 0 0 48px -8px rgba(0, 0, 0, 0.6);
-  --chart-tooltip-bg: rgba(15, 22, 35, 0.94);
-  --chart-tooltip-border: rgba(148, 163, 184, 0.22);
-  --chart-tooltip-text: #e8edf6;
-  --badge-cas-fg: #22d3ee;
-  --badge-cas-bg: rgba(34, 211, 238, 0.14);
-  --badge-cas-border: rgba(34, 211, 238, 0.4);
-  --badge-cae-fg: #e8a317;
-  --badge-cae-bg: rgba(232, 163, 23, 0.14);
-  --badge-cae-border: rgba(232, 163, 23, 0.4);
-  --badge-both-fg: #d4af37;
-  --badge-both-bg: rgba(212, 175, 55, 0.18);
-  --badge-both-border: rgba(212, 175, 55, 0.45);
+  --chart-tooltip-bg: rgba(20, 23, 31, 0.94);
+  --chart-tooltip-border: rgba(162, 156, 145, 0.22);
+  --chart-tooltip-text: #ede8df;
+  --badge-cas-fg: #6e8cff;
+  --badge-cas-bg: rgba(110, 140, 255, 0.14);
+  --badge-cas-border: rgba(110, 140, 255, 0.4);
+  --badge-cae-fg: #d4a25a;
+  --badge-cae-bg: rgba(212, 162, 90, 0.14);
+  --badge-cae-border: rgba(212, 162, 90, 0.4);
+  --badge-both-fg: #d9b26a;
+  --badge-both-bg: rgba(217, 178, 106, 0.18);
+  --badge-both-border: rgba(217, 178, 106, 0.45);
   --source-live-fg: var(--market-up-intl);
-  --source-live-bg: rgba(16, 185, 129, 0.12);
-  --source-live-border: rgba(16, 185, 129, 0.35);
+  --source-live-bg: rgba(111, 194, 174, 0.12);
+  --source-live-border: rgba(111, 194, 174, 0.35);
   --source-snapshot-fg: var(--fire-gold);
-  --source-snapshot-bg: rgba(232, 163, 23, 0.12);
-  --source-snapshot-border: rgba(232, 163, 23, 0.35);
-  --signal-amber-bg: rgba(232, 163, 23, 0.12);
-  --list-selected-bg: rgba(196, 30, 58, 0.14);
+  --source-snapshot-bg: rgba(212, 162, 90, 0.12);
+  --source-snapshot-border: rgba(212, 162, 90, 0.35);
+  --signal-amber-bg: rgba(212, 162, 90, 0.12);
+  --list-selected-bg: rgba(229, 72, 59, 0.14);
   --list-selected-border: var(--china-red);
 
   /* 行情涨跌 · A 股红涨绿跌 / 国际绿涨红跌 */
-  --market-up-cn: #ef4444;
-  --market-down-cn: #10b981;
-  --market-up-intl: #10b981;
-  --market-down-intl: #ef4444;
-  --status-positive: #10b981;
-  --status-caution: #e8a317;
-  --status-negative: #ef4444;
+  --market-up-cn: #e5483b;
+  --market-down-cn: #6fc2ae;
+  --market-up-intl: #6fc2ae;
+  --market-down-intl: #e5483b;
+  --status-positive: #6fc2ae;
+  --status-caution: #d4a25a;
+  --status-negative: #e5483b;
 }
 
 /* 排版密度 · 默认舒适；紧凑模式收紧卡片与栅格 */
@@ -207,7 +207,7 @@
   --accent-hover: #0c6478;
   --surface-glass: rgba(255, 255, 255, 0.76);
   --surface-glass-blur: 14px;
-  --nav-active-bg: rgba(196, 30, 58, 0.09);
+  --nav-active-bg: rgba(229, 72, 59, 0.09);
   --nav-active-text: var(--china-red);
   --nav-hover-bg: rgba(15, 23, 42, 0.04);
   --tab-active-text: var(--china-red);
@@ -251,8 +251,8 @@
   --source-snapshot-bg: rgba(180, 83, 9, 0.1);
   --source-snapshot-border: rgba(180, 83, 9, 0.28);
   --signal-amber-bg: rgba(180, 83, 9, 0.1);
-  --list-selected-bg: rgba(196, 30, 58, 0.08);
-  --list-selected-border: rgba(196, 30, 58, 0.55);
+  --list-selected-bg: rgba(229, 72, 59, 0.08);
+  --list-selected-border: rgba(229, 72, 59, 0.55);
 
   --market-up-cn: #dc2626;
   --market-down-cn: #059669;
@@ -300,9 +300,9 @@ body::before {
   pointer-events: none;
   z-index: 0;
   background:
-    radial-gradient(ellipse 90% 55% at 12% -8%, rgba(34, 211, 238, 0.055), transparent 58%),
-    radial-gradient(ellipse 70% 45% at 92% 105%, rgba(177, 138, 82, 0.045), transparent 52%),
-    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(196, 30, 58, 0.02), transparent 70%);
+    radial-gradient(ellipse 90% 55% at 12% -8%, rgba(110, 140, 255, 0.055), transparent 58%),
+    radial-gradient(ellipse 70% 45% at 92% 105%, rgba(212, 162, 90, 0.045), transparent 52%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(229, 72, 59, 0.02), transparent 70%);
   animation: os-atmo-drift 48s ease-in-out infinite alternate;
 }
 
@@ -349,8 +349,8 @@ body::after {
 /* 科技感细节：扫描栅格底纹（克制、低对比） */
 .grid-backdrop {
   background-image:
-    linear-gradient(rgba(34, 211, 238, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(34, 211, 238, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(110, 140, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(110, 140, 255, 0.04) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
@@ -466,7 +466,7 @@ button.os-card:hover,
   padding: 0.2rem 0.5rem;
   border-radius: var(--radius-sm);
   margin-bottom: 0.7rem;
-  background: rgba(196, 30, 58, 0.14);
+  background: rgba(229, 72, 59, 0.14);
   color: var(--china-red);
 }
 
@@ -1145,7 +1145,7 @@ textarea:focus {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(105deg, transparent 42%, rgba(121, 164, 150, 0.06) 50%, transparent 58%);
+  background: linear-gradient(105deg, transparent 42%, rgba(111, 194, 174, 0.06) 50%, transparent 58%);
   transform: translateX(-100%);
   transition: transform 0.6s var(--ease-ink);
   pointer-events: none;
@@ -1344,8 +1344,8 @@ textarea:focus {
   border-radius: var(--radius-md, 8px);
   overflow: hidden;
   background:
-    radial-gradient(ellipse 85% 55% at 50% 38%, rgba(34, 211, 238, 0.045), transparent 68%),
-    radial-gradient(ellipse 60% 40% at 88% 92%, rgba(212, 175, 55, 0.03), transparent 55%),
+    radial-gradient(ellipse 85% 55% at 50% 38%, rgba(110, 140, 255, 0.045), transparent 68%),
+    radial-gradient(ellipse 60% 40% at 88% 92%, rgba(217, 178, 106, 0.03), transparent 55%),
     var(--bg-elevated);
   border: 1px solid var(--border-subtle);
   position: relative;
@@ -1676,7 +1676,7 @@ textarea:focus {
 .nav-item.is-active {
   background: var(--nav-active-bg);
   color: var(--nav-active-text);
-  box-shadow: inset 0 0 0 1px rgba(196, 30, 58, 0.2), -2px 0 8px -4px rgba(196, 30, 58, 0.35);
+  box-shadow: inset 0 0 0 1px rgba(229, 72, 59, 0.2), -2px 0 8px -4px rgba(229, 72, 59, 0.35);
 }
 .nav-item.is-active::before {
   height: 68%;
@@ -1685,7 +1685,7 @@ textarea:focus {
 }
 
 :root[data-theme='light'] .nav-item.is-active {
-  box-shadow: inset 0 0 0 1px rgba(196, 30, 58, 0.18), -2px 0 6px -4px rgba(196, 30, 58, 0.15);
+  box-shadow: inset 0 0 0 1px rgba(229, 72, 59, 0.18), -2px 0 6px -4px rgba(229, 72, 59, 0.15);
 }
 
 /* 主题切换 · 顶栏日览/夜览 */
@@ -2007,12 +2007,12 @@ textarea:focus {
 
 @keyframes os-hero-breathe {
   0%, 100% {
-    box-shadow: var(--shadow-glass), 0 0 48px -16px rgba(34, 211, 238, 0.12);
-    border-color: rgba(34, 211, 238, 0.22);
+    box-shadow: var(--shadow-glass), 0 0 48px -16px rgba(110, 140, 255, 0.12);
+    border-color: rgba(110, 140, 255, 0.22);
   }
   50% {
-    box-shadow: var(--shadow-glass), 0 0 64px -12px rgba(34, 211, 238, 0.2);
-    border-color: rgba(34, 211, 238, 0.32);
+    box-shadow: var(--shadow-glass), 0 0 64px -12px rgba(110, 140, 255, 0.2);
+    border-color: rgba(110, 140, 255, 0.32);
   }
 }
 
@@ -2047,8 +2047,8 @@ textarea:focus {
 
 @keyframes os-ts-flash {
   from {
-    color: #a5f3fc;
-    text-shadow: 0 0 10px rgba(34, 211, 238, 0.75);
+    color: #c2cdff;
+    text-shadow: 0 0 10px rgba(110, 140, 255, 0.75);
   }
 }
 
@@ -2152,7 +2152,7 @@ textarea:focus {
   box-shadow:
     0 0 0 1px color-mix(in srgb, var(--screen-accent, var(--cyber-cyan)) 28%, transparent),
     0 12px 36px -12px color-mix(in srgb, var(--screen-accent, var(--cyber-cyan)) 32%, transparent),
-    0 4px 12px -4px rgba(177, 138, 82, 0.08);
+    0 4px 12px -4px rgba(212, 162, 90, 0.08);
 }
 
 .dash-screen-grid {
@@ -2504,7 +2504,7 @@ textarea:focus {
 
 /* 英雄区卡片 */
 .os-hero-card {
-  --hero-breathe: rgba(34, 211, 238, 0.12);
+  --hero-breathe: rgba(110, 140, 255, 0.12);
   box-shadow: var(--shadow-glass), 0 0 48px -16px var(--hero-breathe);
   animation: none;
 }
@@ -2526,7 +2526,7 @@ textarea:focus {
   background: linear-gradient(
     105deg,
     transparent 38%,
-    rgba(34, 211, 238, 0.08) 50%,
+    rgba(110, 140, 255, 0.08) 50%,
     transparent 62%
   );
   background-size: 200% 100%;
@@ -3019,7 +3019,7 @@ textarea:focus-visible {
   border: 1px solid transparent;
   background:
     linear-gradient(var(--bg-surface), var(--bg-surface)) padding-box,
-    linear-gradient(135deg, rgba(34, 211, 238, 0.35), rgba(196, 30, 58, 0.18) 40%, rgba(212, 175, 55, 0.3)) border-box;
+    linear-gradient(135deg, rgba(110, 140, 255, 0.35), rgba(229, 72, 59, 0.18) 40%, rgba(217, 178, 106, 0.3)) border-box;
   box-shadow:
     0 14px 36px -14px rgba(0, 0, 0, 0.6),
     0 2px 8px -2px rgba(0, 0, 0, 0.4),
@@ -3038,7 +3038,7 @@ textarea:focus-visible {
   flex-shrink: 0;
 }
 .lcm-live-badge {
-  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.08);
+  box-shadow: 0 0 0 1px rgba(110, 140, 255, 0.08);
 }
 
 /* 4. 微动效芯片 */
@@ -3050,7 +3050,7 @@ textarea:focus-visible {
 }
 .lcm-chip:hover {
   transform: translateY(-1px);
-  box-shadow: 0 3px 10px -4px rgba(34, 211, 238, 0.35);
+  box-shadow: 0 3px 10px -4px rgba(110, 140, 255, 0.35);
 }
 .lcm-chip:active {
   transform: translateY(0) scale(0.97);
@@ -3059,8 +3059,8 @@ textarea:focus-visible {
 /* 5. 数值变更闪光 · 青色默认 + 金色变体（仅设起始帧，回落到元素自身样式） */
 @keyframes lcm-flash {
   from {
-    color: #a5f3fc;
-    text-shadow: 0 0 14px rgba(34, 211, 238, 0.9);
+    color: #c2cdff;
+    text-shadow: 0 0 14px rgba(110, 140, 255, 0.9);
   }
 }
 .lcm-flash {
@@ -3069,7 +3069,7 @@ textarea:focus-visible {
 @keyframes lcm-flash-gold {
   from {
     color: #fde68a;
-    text-shadow: 0 0 14px rgba(212, 175, 55, 0.9);
+    text-shadow: 0 0 14px rgba(217, 178, 106, 0.9);
   }
 }
 .lcm-flash-gold {
@@ -3089,7 +3089,7 @@ textarea:focus-visible {
 
 /* 8. LIVE 徽章 · 静态辉光 */
 .lcm-breathe {
-  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.1);
+  box-shadow: 0 0 0 1px rgba(110, 140, 255, 0.1);
 }
 
 /* 10. 图层控制面板 · ink-observatory */
@@ -3151,8 +3151,8 @@ textarea:focus-visible {
   transition: border-color 0.15s ease, background 0.15s ease;
 }
 .lcm-layer-row.is-on {
-  background: rgba(34, 211, 238, 0.06);
-  border-color: rgba(34, 211, 238, 0.18);
+  background: rgba(110, 140, 255, 0.06);
+  border-color: rgba(110, 140, 255, 0.18);
 }
 .lcm-layer-toggle {
   display: flex;
@@ -3270,7 +3270,7 @@ textarea:focus-visible {
 }
 .doc-reader-body {
   scrollbar-width: thin;
-  scrollbar-color: rgba(148, 163, 184, 0.35) transparent;
+  scrollbar-color: rgba(162, 156, 145, 0.35) transparent;
 }
 .doc-reader-overlay .doc-reader-panel {
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
@@ -3288,13 +3288,13 @@ textarea:focus-visible {
 :root[data-theme='light'] .live-china-map-canvas {
   background:
     radial-gradient(ellipse 85% 55% at 50% 38%, rgba(8, 145, 178, 0.05), transparent 68%),
-    radial-gradient(ellipse 60% 40% at 88% 92%, rgba(212, 175, 55, 0.04), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 88% 92%, rgba(217, 178, 106, 0.04), transparent 55%),
     var(--bg-elevated);
 }
 :root[data-theme='light'] .lcm-premium {
   background:
     linear-gradient(var(--bg-surface), var(--bg-surface)) padding-box,
-    linear-gradient(135deg, rgba(8, 145, 178, 0.22), rgba(196, 30, 58, 0.1) 40%, rgba(212, 175, 55, 0.18)) border-box;
+    linear-gradient(135deg, rgba(8, 145, 178, 0.22), rgba(229, 72, 59, 0.1) 40%, rgba(217, 178, 106, 0.18)) border-box;
   box-shadow:
     0 10px 28px -12px rgba(15, 23, 42, 0.2),
     0 1px 4px -1px rgba(15, 23, 42, 0.1),

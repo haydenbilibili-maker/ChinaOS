@@ -224,7 +224,7 @@ function pisaOption() {
     xAxis: categoryX(subjects),
     yAxis: valueY({ min: 400, max: 620, name: '分' }),
     series: [
-      bar('越南 2012', 'rgba(232,163,23,0.5)', [511, 508, 528]),
+      bar('越南 2012', 'rgba(212, 162, 90,0.5)', [511, 508, 528]),
       bar('越南 2022', VN_COLOR, [469, 462, 472]),
       bar('OECD 平均 2022', CHART_SERIES_COLORS.slate, [472, 476, 485]),
       bar('中国京沪苏浙 2018', CN_COLOR, [591, 555, 590]),

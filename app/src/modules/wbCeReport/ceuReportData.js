@@ -28,10 +28,10 @@ export const EXECUTIVE_SUMMARY = [
 export const OUTLOOK_SUMMARY = {
   years: ['2023', '2024', '2025', '2026f', '2027f', '2028f'],
   rows: [
-    { key: 'gdp', label: '实际 GDP 增长率', unit: '%', values: [5.4, 5.0, 5.0, 4.4, 4.3, 4.2], accent: '#c41e3a' },
-    { key: 'cpi', label: 'CPI（平均变动）', unit: '%', values: [0.2, 0.2, 0.0, 1.1, 1.5, 1.9], accent: '#e8a317' },
-    { key: 'ca', label: '经常账户余额 / GDP', unit: '%', values: [1.4, 2.2, 3.7, 2.1, 0.9, 0.4], accent: '#22d3ee' },
-    { key: 'fiscal', label: '广义财政收支余额 / GDP', unit: '%', values: [-5.5, -6.5, -7.2, -7.6, -7.3, -7.0], accent: '#10b981' },
+    { key: 'gdp', label: '实际 GDP 增长率', unit: '%', values: [5.4, 5.0, 5.0, 4.4, 4.3, 4.2], accent: '#e5483b' },
+    { key: 'cpi', label: 'CPI（平均变动）', unit: '%', values: [0.2, 0.2, 0.0, 1.1, 1.5, 1.9], accent: '#d4a25a' },
+    { key: 'ca', label: '经常账户余额 / GDP', unit: '%', values: [1.4, 2.2, 3.7, 2.1, 0.9, 0.4], accent: '#6e8cff' },
+    { key: 'fiscal', label: '广义财政收支余额 / GDP', unit: '%', values: [-5.5, -6.5, -7.2, -7.6, -7.3, -7.0], accent: '#6fc2ae' },
   ],
   note: 'f = 预测值（基线情景）；* 广义财政收支余额为世界银行工作人员估算。',
 };
@@ -76,14 +76,14 @@ export const TABLE1 = {
 
 /** 近期读数 · 关键时点数据 */
 export const KEY_READINGS = [
-  { label: 'Q1 GDP 同比', value: '5.0%', sub: '上一季度 4.5%', accent: '#c41e3a' },
-  { label: '2026 增速预测', value: '4.4%', sub: '基线情景 · 世行', accent: '#22d3ee' },
-  { label: '1–5 月出口（美元）', value: '+15.5%', sub: '高技术制造 +31%', accent: '#e8a317' },
-  { label: '预防性储蓄率', value: '32.4%', sub: 'Q1 · 高于疫情前 29.6%', accent: '#10b981' },
+  { label: 'Q1 GDP 同比', value: '5.0%', sub: '上一季度 4.5%', accent: '#e5483b' },
+  { label: '2026 增速预测', value: '4.4%', sub: '基线情景 · 世行', accent: '#6e8cff' },
+  { label: '1–5 月出口（美元）', value: '+15.5%', sub: '高技术制造 +31%', accent: '#d4a25a' },
+  { label: '预防性储蓄率', value: '32.4%', sub: 'Q1 · 高于疫情前 29.6%', accent: '#6fc2ae' },
   { label: '城镇调查失业率', value: '5.1%', sub: '2026 年 5 月', accent: '#f472b6' },
   { label: '青年失业率', value: '16.8%', sub: '2026 年 6 月 · NBS', accent: '#a78bfa' },
-  { label: '非金融信贷增速', value: '7.7%', sub: '2026 年 5 月', accent: '#64748b' },
-  { label: '土地出让收入', value: '-28.7%', sub: '前五个月累计同比', accent: '#ef4444' },
+  { label: '非金融信贷增速', value: '7.7%', sub: '2026 年 5 月', accent: '#8a8578' },
+  { label: '土地出让收入', value: '-28.7%', sub: '前五个月累计同比', accent: '#e5483b' },
 ];
 
 /** 正文章节 */
@@ -92,7 +92,7 @@ export const SECTIONS = [
     id: 'recent',
     part: 'I',
     title: '近期经济形势',
-    accent: '#22d3ee',
+    accent: '#6e8cff',
     subsections: [
       {
         title: '尽管面临供强需弱和能源供应冲击，经济增长总体保持韧性',
@@ -151,7 +151,7 @@ export const SECTIONS = [
     id: 'outlook',
     part: 'II',
     title: '前景、风险和政策考虑',
-    accent: '#e8a317',
+    accent: '#d4a25a',
     subsections: [
       {
         title: '前景和风险',
@@ -179,7 +179,7 @@ export const SECTIONS = [
     id: 'special',
     part: 'III',
     title: '专题：弥合中国低碳转型的技能缺口',
-    accent: '#10b981',
+    accent: '#6fc2ae',
     subsections: [
       {
         title: '低碳转型重塑劳动力市场',
@@ -207,19 +207,19 @@ export const BOXES = [
   {
     id: 'box1',
     title: '专栏 1 · 融资约束持续阻碍房屋交付',
-    accent: '#ef4444',
+    accent: '#e5483b',
     text: '「白名单」机制已向符合条件的在建项目发放超 7 万亿元贷款（约占 2026Q1 房地产贷款余额 13.5%）；截至 2025 年底支持约 750 万套住房交付。但开发商融资总额过去 12 个月持续下降，2026 年 5 月到位资金 -21%。预售款仍占资金来源约 30%，交付风险与库存去化（约 30 个月）仍是缓慢过程。',
   },
   {
     id: 'box2',
     title: '专栏 2 · 强化社会保障安全网与消费再平衡',
-    accent: '#8b5cf6',
+    accent: '#b07cc6',
     text: '中国家庭储蓄占可支配收入超 30%（OECD 两倍多），预防性储蓄源于社保体系尚难充分对冲退休、医疗自付与失业三大风险。强化社保不仅是福利议题，也是「十五五」经济再平衡的宏观财政工具。',
   },
   {
     id: 'box3',
     title: '专栏 3 · 低碳技能数据来源',
-    accent: '#10b981',
+    accent: '#6fc2ae',
     text: '本期专题利用全国在线招聘数据库及对山西、内蒙古能源行业用人单位与培训机构的调查，分析绿色岗位需求、工资溢价与技能错配。',
   },
 ];

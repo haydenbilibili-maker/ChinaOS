@@ -186,7 +186,7 @@ export default function SectionParallel() {
                       width: 10,
                       height: 10,
                       borderRadius: 2,
-                      background: c.color || '#64748b',
+                      background: c.color || '#8a8578',
                       display: 'inline-block',
                     }}
                   />

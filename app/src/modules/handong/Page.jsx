@@ -63,8 +63,8 @@ const BTN = {
   background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)',
   color: 'var(--text-secondary)', borderRadius: 6, padding: '4px 12px', fontSize: 12, cursor: 'pointer',
 };
-const BTN_RED = { ...BTN, background: 'rgba(196,30,58,0.16)', border: '1px solid rgba(196,30,58,0.4)', color: '#c41e3a', fontWeight: 600 };
-const BTN_CYAN = { ...BTN, background: 'rgba(34,211,238,0.12)', border: '1px solid rgba(34,211,238,0.35)', color: '#22d3ee', fontWeight: 600 };
+const BTN_RED = { ...BTN, background: 'rgba(229, 72, 59,0.16)', border: '1px solid rgba(229, 72, 59,0.4)', color: '#e5483b', fontWeight: 600 };
+const BTN_CYAN = { ...BTN, background: 'rgba(110, 140, 255,0.12)', border: '1px solid rgba(110, 140, 255,0.35)', color: '#6e8cff', fontWeight: 600 };
 
 /** 岗位需求 × 官员六维 的匹配分：按需求权重加权平均（0-95 量纲） */
 function matchScore(dims, need) {
@@ -82,7 +82,7 @@ function compositeScenario(A, B) {
     mitigation[t.id] = CRISIS_DOMAINS.map((_, i) => Math.round(((ra[i] || 0) + (rb[i] || 0)) / 2 * 0.85));
   });
   return {
-    id: `${A.id}+${B.id}`, label: `${A.label} × ${B.label}`, color: '#ef4444',
+    id: `${A.id}+${B.id}`, label: `${A.label} × ${B.label}`, color: '#e5483b',
     intro: '复合情景：两条危机线同时起火，处置资源互相挤占，每件工具的边际效力同步衰减。',
     acts: A.acts, impact, need, mitigation,
     watch: [...A.watch.slice(0, 2), ...(B.watch || []).slice(0, 1)],
@@ -114,7 +114,7 @@ function RealBadge() {
   );
 }
 
-function RangeRow({ label, value, min, max, step = 1, unit = '', accent = '#22d3ee', onChange }) {
+function RangeRow({ label, value, min, max, step = 1, unit = '', accent = '#6e8cff', onChange }) {
   return (
     <div className="mb-3">
       <div className="flex justify-between items-baseline text-xs mb-1">
@@ -582,7 +582,7 @@ export default function Page() {
     });
   };
 
-  // —— 图表 option（轴色统一 #27324a / #93a1b5 / rgba(148,163,184,0.1)） ——
+  // —— 图表 option（轴色统一 #2a2d36 / #a29c91 / rgba(162, 156, 145,0.1)） ——
   const baselineOption = useMemo(() => ({
     grid: { left: 70, right: 42, top: 8, bottom: 22 },
     xAxis: {
@@ -596,7 +596,7 @@ export default function Page() {
     },
     series: [{
       type: 'bar', barWidth: 10,
-      data: baselineMods.map((v) => ({ value: v, itemStyle: { color: v > 0 ? '#c41e3a' : '#10b981', borderRadius: 2 } })),
+      data: baselineMods.map((v) => ({ value: v, itemStyle: { color: v > 0 ? '#e5483b' : '#6fc2ae', borderRadius: 2 } })),
       label: { show: true, position: 'right', color: LABEL.color, formatter: ({ value }) => (value > 0 ? `+${value}` : `${value}`) },
     }],
   }), [baselineMods]);
@@ -613,9 +613,9 @@ export default function Page() {
       type: 'radar',
       data: [{
         value: team.dims, name: '班子合成',
-        lineStyle: { color: '#e8a317', width: 2 },
-        areaStyle: { color: 'rgba(232,163,23,0.16)' },
-        itemStyle: { color: '#e8a317' },
+        lineStyle: { color: '#d4a25a', width: 2 },
+        areaStyle: { color: 'rgba(212, 162, 90,0.16)' },
+        itemStyle: { color: '#d4a25a' },
       }],
     }],
   }), [team]);
@@ -632,8 +632,8 @@ export default function Page() {
       axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } },
     },
     series: [
-      { name: '应对前', type: 'bar', data: result.raw, barWidth: 11, itemStyle: { color: '#c41e3a', borderRadius: 2 } },
-      { name: '应对后', type: 'bar', data: result.net, barWidth: 11, itemStyle: { color: '#22d3ee', borderRadius: 2 } },
+      { name: '应对前', type: 'bar', data: result.raw, barWidth: 11, itemStyle: { color: '#e5483b', borderRadius: 2 } },
+      { name: '应对后', type: 'bar', data: result.net, barWidth: 11, itemStyle: { color: '#6e8cff', borderRadius: 2 } },
     ],
   }), [result]);
 
@@ -653,17 +653,17 @@ export default function Page() {
     series: [
       {
         name: '净冲击', type: 'line', data: rounds.map((r) => r.score),
-        lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, symbolSize: 7,
+        lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, symbolSize: 7,
         markLine: {
           silent: true, symbol: 'none',
-          lineStyle: { type: 'dashed', color: '#64748b' },
+          lineStyle: { type: 'dashed', color: '#8a8578' },
           label: { color: LABEL.color, fontSize: 10, formatter: '{c}' },
           data: [{ yAxis: 30 }, { yAxis: 60 }],
         },
       },
       {
         name: '财政余力', type: 'line', data: rounds.map((r) => r.fiscal ?? null),
-        lineStyle: { color: '#e8a317', width: 2, type: 'dashed' }, itemStyle: { color: '#e8a317' }, symbolSize: 6,
+        lineStyle: { color: '#d4a25a', width: 2, type: 'dashed' }, itemStyle: { color: '#d4a25a' }, symbolSize: 6,
       },
     ],
   }), [rounds]);
@@ -686,10 +686,10 @@ export default function Page() {
     },
     series: [{
       type: 'line', data: crossSeq.map((p) => p.score),
-      lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, symbolSize: 5,
+      lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, symbolSize: 5,
       markLine: {
         silent: true, symbol: 'none',
-        lineStyle: { type: 'dashed', color: '#64748b' },
+        lineStyle: { type: 'dashed', color: '#8a8578' },
         label: { color: LABEL.color, fontSize: 10, formatter: '失守线 60' },
         data: [{ yAxis: 60 }],
       },
@@ -707,9 +707,9 @@ export default function Page() {
       {SAVED && showRestoreNote && (
         <div
           className="flex items-center gap-3 flex-wrap text-xs px-3 py-2 rounded mb-3"
-          style={{ border: '1px solid rgba(34,211,238,0.35)', background: 'rgba(34,211,238,0.06)' }}
+          style={{ border: '1px solid rgba(110, 140, 255,0.35)', background: 'rgba(110, 140, 255,0.06)' }}
         >
-          <span className="flex-1 leading-relaxed" style={{ color: '#22d3ee', minWidth: 220 }}>
+          <span className="flex-1 leading-relaxed" style={{ color: '#6e8cff', minWidth: 220 }}>
             📂 已恢复上局存档 · 第 {SAVED.term} 届 · 任期第 {SAVED.year}/{TERM_YEARS} 年 —— 进度自动保存，换页不丢局
           </span>
           <button type="button" style={BTN} onClick={() => setShowRestoreNote(false)}>知道了</button>
@@ -719,17 +719,17 @@ export default function Page() {
         <strong style={{ color: 'var(--text-primary)' }}>虚构声明：</strong>汉东省及其下辖京州、吕州、林城均为虚构地名，十四名官员与六段剧情均为原创虚构，致敬经典政治叙事，与任何真实地区、机构、人物无关。本页把治国沙盒的四件套——省情参数、班子乘数、危机引擎、政策预算——装进同一个可配置省份，跑通「配置省情 → 组班子 → 年度危机 → 省态演化 → 五年大考」的任期治理周期：回合即年度，省态三表逐年演化、财政约束政策弹药、治理失分留余波、官员在岗成长亦会连任疲劳；你拧的每一根滑杆都是国情，你放的每一个人都是变量，五年届满交卷换届。班子可选接入人才库真实政要（仅公开履历生成的算法画像）；即便选用真实人物，全部推演、政绩与任免仍为虚构游戏机制。
       </IntroCard>
       <StatGrid className="mb-8">
-        <Stat value={HD_AS_OF} label="推演基准日" accent="#22d3ee" />
+        <Stat value={HD_AS_OF} label="推演基准日" accent="#6e8cff" />
         <Stat
           value={poolMode === 'real' ? `${realPool.count ?? basePool.length} 人` : `${OFFICIALS.length} 人`}
           label={poolMode === 'real' ? '真实政要库（公开履历画像）' : '原创虚构官员库'}
-          accent="#e8a317"
+          accent="#d4a25a"
         />
-        <Stat value={`${HD_SCENARIOS.length} 段`} label="剧情情景（可叠加）" accent="#c41e3a" />
+        <Stat value={`${HD_SCENARIOS.length} 段`} label="剧情情景（可叠加）" accent="#e5483b" />
         <Stat
           value={`第 ${term} 届 · 任期第 ${year}/${TERM_YEARS} 年`}
           label={termDone ? `任期届满 · 待换届 · 本届已推演 ${rounds.length} 年` : `任期进度 · 本届已推演 ${rounds.length} 年`}
-          accent="#10b981"
+          accent="#6fc2ae"
         />
       </StatGrid>
 
@@ -737,20 +737,20 @@ export default function Page() {
       <Card title="① 省情配置器 · 配置即国情">
         <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
           <div>
-            <RangeRow label="常住人口（万）" value={pop} min={3000} max={12000} step={100} unit=" 万" accent="#22d3ee" onChange={setPop} />
-            <RangeRow label="人均 GDP（万元）" value={gdpPc} min={4} max={16} step={0.5} unit=" 万" accent="#e8a317" onChange={setGdpPc} />
+            <RangeRow label="常住人口（万）" value={pop} min={3000} max={12000} step={100} unit=" 万" accent="#6e8cff" onChange={setPop} />
+            <RangeRow label="人均 GDP（万元）" value={gdpPc} min={4} max={16} step={0.5} unit=" 万" accent="#d4a25a" onChange={setGdpPc} />
             <div className="text-xs mb-1" style={{ color: 'var(--text-secondary)' }}>三产结构（联动约束 Σ=100）</div>
             {['一产 · 农业', '二产 · 工业', '三产 · 服务业'].map((lab, i) => (
               <RangeRow
                 key={lab} label={lab} value={industry[i]} min={0} max={100} unit="%"
-                accent={['#10b981', '#8b5cf6', '#22d3ee'][i]}
+                accent={['#6fc2ae', '#b07cc6', '#6e8cff'][i]}
                 onChange={(v) => setIndustryAt(i, v)}
               />
             ))}
             <div className="text-xs mb-2 mt-3" style={{ color: 'var(--text-secondary)' }}>资源禀赋（决定六域受力修正）</div>
             <SelectorBar
               items={RESOURCE_TYPES} activeKey={resource} onSelect={setResource}
-              getKey={(i) => i.id} getLabel={(i) => i.label} getAccent={() => '#e8a317'}
+              getKey={(i) => i.id} getLabel={(i) => i.label} getAccent={() => '#d4a25a'}
             />
             {resourceObj?.desc && (
               <p className="text-[11px] -mt-2 mb-3" style={{ color: 'var(--text-tertiary)' }}>{resourceObj.desc}</p>
@@ -758,7 +758,7 @@ export default function Page() {
             <div className="text-xs mb-2" style={{ color: 'var(--text-secondary)' }}>省会（行政中枢所在）</div>
             <SelectorBar
               items={CAPITALS.map((c) => ({ key: c, label: c }))} activeKey={capital} onSelect={setCapital}
-              getAccent={() => '#c41e3a'}
+              getAccent={() => '#e5483b'}
             />
           </div>
           <div>
@@ -781,21 +781,21 @@ export default function Page() {
         <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
           <div>
             <div className="flex items-baseline gap-3 flex-wrap">
-              <span className="mono text-xl font-bold" style={{ color: '#22d3ee' }}>第 {term} 届 · 任期第 {year}/{TERM_YEARS} 年</span>
+              <span className="mono text-xl font-bold" style={{ color: '#6e8cff' }}>第 {term} 届 · 任期第 {year}/{TERM_YEARS} 年</span>
               <span className="mono text-xs" style={{ color: 'var(--text-tertiary)' }}>{2025 + (term - 1) * TERM_YEARS + year} 年度</span>
               {termDone && (
-                <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'rgba(196,30,58,0.16)', color: '#c41e3a' }}>
+                <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'rgba(229, 72, 59,0.16)', color: '#e5483b' }}>
                   任期已届满 · 待换届结算
                 </span>
               )}
             </div>
             <div className="mt-4">
               <div className="text-xs mb-1" style={{ color: 'var(--text-secondary)' }}>本年度政策预算上限（由金融财政余力折算）</div>
-              <div className="mono font-bold" style={{ fontSize: 38, lineHeight: 1.1, color: budgetCap < 100 ? '#e8a317' : '#10b981' }}>
+              <div className="mono font-bold" style={{ fontSize: 38, lineHeight: 1.1, color: budgetCap < 100 ? '#d4a25a' : '#6fc2ae' }}>
                 {budgetCap}<span className="text-sm font-normal ml-1" style={{ color: 'var(--text-tertiary)' }}>点</span>
               </div>
               {budgetCap < 100 && (
-                <p className="text-[11px] mono mt-1" style={{ color: '#e8a317' }}>
+                <p className="text-[11px] mono mt-1" style={{ color: '#d4a25a' }}>
                   ⚠ 财政余力不足，弹药缩水——同样的危机，今年能摆上桌的政策更少。
                 </p>
               )}
@@ -804,7 +804,7 @@ export default function Page() {
               <div className="mt-3">
                 <span
                   className="text-[10px] mono px-2 py-0.5 rounded inline-block"
-                  style={{ border: '1px solid #8b5cf6', color: '#8b5cf6', background: 'rgba(139,92,246,0.10)' }}
+                  style={{ border: '1px solid #b07cc6', color: '#b07cc6', background: 'rgba(176, 124, 198,0.10)' }}
                 >巡视整改包袱 {burdenN} 项 · 重大 {burdenMajor}</span>
                 <p className="text-[10px] mt-1" style={{ color: 'var(--text-tertiary)' }}>
                   重大问题未销号期间，财政余力年度恢复 -1{burdenActive ? '（生效中）' : '（无重大或已销号 · 不生效）'}
@@ -835,8 +835,8 @@ export default function Page() {
                       <span
                         className="text-[10px] px-1.5 py-0.5 rounded ml-1.5"
                         style={{
-                          background: d > 0 ? 'rgba(16,185,129,0.14)' : d < 0 ? 'rgba(196,30,58,0.14)' : 'var(--bg-elevated)',
-                          color: d > 0 ? '#10b981' : d < 0 ? '#c41e3a' : 'var(--text-tertiary)',
+                          background: d > 0 ? 'rgba(111, 194, 174,0.14)' : d < 0 ? 'rgba(229, 72, 59,0.14)' : 'var(--bg-elevated)',
+                          color: d > 0 ? '#6fc2ae' : d < 0 ? '#e5483b' : 'var(--text-tertiary)',
                         }}
                       >{d > 0 ? `▲+${d}` : d < 0 ? `▼${d}` : '—'}</span>
                     </span>
@@ -883,7 +883,7 @@ export default function Page() {
             <p className="text-[11px] mt-2" style={{ color: 'var(--text-tertiary)' }}>{REAL_POOL_NOTE}</p>
           )}
           {poolMode === 'real' && !realPool.loading && basePool.length === 0 && (
-            <p className="text-xs mono mt-2" style={{ color: '#e8a317' }}>
+            <p className="text-xs mono mt-2" style={{ color: '#d4a25a' }}>
               人才库政要队列为空——请先到 人才库 或 数据与系统底座 载入政要数据
             </p>
           )}
@@ -944,18 +944,18 @@ export default function Page() {
                   {o?.fatigued && (
                     <span
                       className="text-[10px] mono px-1.5 py-0.5 rounded-full shrink-0"
-                      style={{ background: 'rgba(196,30,58,0.14)', color: '#c41e3a' }}
+                      style={{ background: 'rgba(229, 72, 59,0.14)', color: '#e5483b' }}
                     >疲劳 {streaks[o.id] || 0}年</span>
                   )}
                 </div>
                 {recChips.length > 0 && (
                   <div className="flex items-center gap-1.5 flex-wrap mb-2" style={{ paddingLeft: 92 }}>
-                    <span className="text-[10px] mono shrink-0" style={{ color: '#8b5cf6' }}>组织引擎荐</span>
+                    <span className="text-[10px] mono shrink-0" style={{ color: '#b07cc6' }}>组织引擎荐</span>
                     {recChips.map((r) => (
                       <span
                         key={r.name}
                         className="text-[10px] mono px-1.5 py-0.5 rounded-full shrink-0"
-                        style={{ border: '1px solid rgba(139,92,246,0.45)', color: '#8b5cf6', background: 'transparent' }}
+                        style={{ border: '1px solid rgba(176, 124, 198,0.45)', color: '#b07cc6', background: 'transparent' }}
                       >{r.name} · {r.score}</span>
                     ))}
                     <span className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>切到真实政要库搜索姓名即可入班</span>
@@ -965,7 +965,7 @@ export default function Page() {
               );
             })}
             {emptyPosts.length > 0 && (
-              <p className="text-[11px] mono mt-2" style={{ color: '#e8a317' }}>
+              <p className="text-[11px] mono mt-2" style={{ color: '#d4a25a' }}>
                 ⚠ 空岗 {emptyPosts.length}：{emptyPosts.map((p) => p.label).join('、')} —— 空岗按 40 分计，直接拖低全域乘数。
               </p>
             )}
@@ -977,8 +977,8 @@ export default function Page() {
                 <span
                   key={HD_DOMAINS[i]} className="text-[10px] mono px-2 py-0.5 rounded"
                   style={{
-                    background: m > 1 ? 'rgba(16,185,129,0.14)' : m < 1 ? 'rgba(196,30,58,0.14)' : 'var(--bg-elevated)',
-                    color: m > 1 ? '#10b981' : m < 1 ? '#c41e3a' : 'var(--text-tertiary)',
+                    background: m > 1 ? 'rgba(111, 194, 174,0.14)' : m < 1 ? 'rgba(229, 72, 59,0.14)' : 'var(--bg-elevated)',
+                    color: m > 1 ? '#6fc2ae' : m < 1 ? '#e5483b' : 'var(--text-tertiary)',
                   }}
                 >
                   {HD_DOMAINS[i]} ×{m.toFixed(2)}
@@ -997,9 +997,9 @@ export default function Page() {
         {aftermath && (
           <div
             className="flex items-center gap-3 flex-wrap text-xs p-3 rounded mb-3"
-            style={{ border: '1px solid rgba(196,30,58,0.45)', background: 'rgba(196,30,58,0.07)' }}
+            style={{ border: '1px solid rgba(229, 72, 59,0.45)', background: 'rgba(229, 72, 59,0.07)' }}
           >
-            <span className="flex-1 leading-relaxed" style={{ color: '#c41e3a', minWidth: 220 }}>
+            <span className="flex-1 leading-relaxed" style={{ color: '#e5483b', minWidth: 220 }}>
               ⚠ 余波在途：{aftermath.label}（烈度 {aftermath.intensity}）—— {aftermath.note}
             </span>
             <button type="button" style={BTN_RED} onClick={engageAftermath}>应对余波</button>
@@ -1011,7 +1011,7 @@ export default function Page() {
           getKey={(i) => i.id} getLabel={(i) => i.label} getAccent={(i) => i.color}
         />
         <p className="text-xs leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>{activeScenario.intro}</p>
-        <RangeRow label="冲击烈度" value={intensity} min={0} max={100} accent={primary.color || '#c41e3a'} onChange={setIntensity} />
+        <RangeRow label="冲击烈度" value={intensity} min={0} max={100} accent={primary.color || '#e5483b'} onChange={setIntensity} />
         <div className="flex items-center flex-wrap gap-1.5 mb-4">
           <span className="text-[11px] mono mr-1" style={{ color: 'var(--text-tertiary)' }}>复合叠加（相加×0.72 截顶 · 工具效力×0.85）：</span>
           <button
@@ -1049,12 +1049,12 @@ export default function Page() {
         </div>
         <div className="flex flex-wrap gap-1.5 mt-3">
           {(activeScenario.watch || []).map((w) => (
-            <span key={w} className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'var(--bg-elevated)', color: '#22d3ee' }}>
+            <span key={w} className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'var(--bg-elevated)', color: '#6e8cff' }}>
               先行指标 · {w}
             </span>
           ))}
           {secondary && (
-            <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'rgba(239,68,68,0.14)', color: '#ef4444' }}>
+            <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'rgba(239,68,68,0.14)', color: '#e5483b' }}>
               复合中 · 四幕时间线按主剧情《{primary.label}》展示
             </span>
           )}
@@ -1068,7 +1068,7 @@ export default function Page() {
             <div className="flex justify-between items-center text-xs mb-1">
               <span style={{ color: 'var(--text-secondary)' }}>政策资源池（上限随财政余力逐年浮动）</span>
               <span className="flex items-center gap-2">
-                <span className="mono" style={{ color: allocUsed >= budgetCap ? '#e8a317' : 'var(--text-tertiary)' }}>
+                <span className="mono" style={{ color: allocUsed >= budgetCap ? '#d4a25a' : 'var(--text-tertiary)' }}>
                   已投 {allocUsed} / {budgetCap} 点 · 余 {budgetCap - allocUsed}
                 </span>
                 <button
@@ -1078,7 +1078,7 @@ export default function Page() {
               </span>
             </div>
             {budgetCap < 100 ? (
-              <p className="text-[10px] mono mb-3" style={{ color: '#e8a317' }}>⚠ 财政余力不足，弹药缩水——缓解力分母仍按 100 计，预算不满额即天然减效。</p>
+              <p className="text-[10px] mono mb-3" style={{ color: '#d4a25a' }}>⚠ 财政余力不足，弹药缩水——缓解力分母仍按 100 计，预算不满额即天然减效。</p>
             ) : (
               <div className="mb-3" />
             )}
@@ -1118,24 +1118,24 @@ export default function Page() {
       <Card title="⑤ 应对小组 · 在野官员自动匹配 Top4">
         <Grid cols={4}>
           {reserves.map((o) => (
-            <div key={o.id} className="os-card p-3" style={{ background: 'var(--bg-elevated)', borderTop: `2px solid ${o.color || '#22d3ee'}` }}>
+            <div key={o.id} className="os-card p-3" style={{ background: 'var(--bg-elevated)', borderTop: `2px solid ${o.color || '#6e8cff'}` }}>
               <div className="flex items-baseline justify-between">
                 <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{o.name}</span>
-                <span className="text-[10px] mono" style={{ color: '#10b981' }}>匹配 {o.match}</span>
+                <span className="text-[10px] mono" style={{ color: '#6fc2ae' }}>匹配 {o.match}</span>
               </div>
               <div className="text-[11px] mt-0.5" style={{ color: 'var(--text-tertiary)' }}>{o.archetype} · {o.age}岁</div>
               {o.real && (
                 <div className="flex items-center gap-1 mt-1 flex-wrap">
                   <RealBadge />
                   {(o.tags || []).map((t) => (
-                    <span key={t} className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'var(--bg-base)', color: '#22d3ee' }}>{t}</span>
+                    <span key={t} className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'var(--bg-base)', color: '#6e8cff' }}>{t}</span>
                   ))}
                 </div>
               )}
               {o.real && o.bio && (
                 <p className="text-[10px] mt-1 leading-snug" style={{ color: 'var(--text-tertiary)', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{o.bio}</p>
               )}
-              <div className="text-[10px] mono mt-1.5" style={{ color: '#e8a317' }}>
+              <div className="text-[10px] mono mt-1.5" style={{ color: '#d4a25a' }}>
                 最强维 {HD_DOMAINS[o.topDim]} {o.dims[o.topDim]}
               </div>
             </div>
@@ -1215,7 +1215,7 @@ export default function Page() {
             >⏩ 执行换届 · 进入第 {term + 1} 届</button>
             <button type="button" style={BTN_CYAN} onClick={genTermReport}>📄 生成任期总结</button>
             {termReportMd && (
-              <button type="button" style={termCopied ? { ...BTN, color: '#10b981' } : BTN} onClick={copyTermReport}>
+              <button type="button" style={termCopied ? { ...BTN, color: '#6fc2ae' } : BTN} onClick={copyTermReport}>
                 {termCopied ? '已复制 ✓' : '复制 Markdown'}
               </button>
             )}
@@ -1244,7 +1244,7 @@ export default function Page() {
             {lastMoves.map((mv, i) => (
               <div key={i} className="flex items-center gap-3 text-xs py-1.5 px-2 rounded flex-wrap" style={{ background: 'var(--bg-elevated)' }}>
                 <span className="font-semibold shrink-0" style={{ color: 'var(--text-primary)', width: 64 }}>{mv.name}</span>
-                <span className="mono shrink-0" style={{ color: mv.from === mv.to ? 'var(--text-tertiary)' : '#22d3ee' }}>
+                <span className="mono shrink-0" style={{ color: mv.from === mv.to ? 'var(--text-tertiary)' : '#6e8cff' }}>
                   {mv.from} → {mv.to}
                 </span>
                 <span className="flex-1 text-[11px]" style={{ color: 'var(--text-tertiary)', minWidth: 200 }}>{mv.reason}</span>
@@ -1269,7 +1269,7 @@ export default function Page() {
                   style={{ background: `${t.grade.color}1f`, color: t.grade.color, border: `1px solid ${t.grade.color}55` }}
                 >{t.grade.title}</span>
                 <span className="mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>均分 {t.grade.avg}</span>
-                <span className="mono shrink-0" style={{ color: t.grade.failCount ? '#c41e3a' : '#10b981' }}>失分 {t.grade.failCount} 次</span>
+                <span className="mono shrink-0" style={{ color: t.grade.failCount ? '#e5483b' : '#6fc2ae' }}>失分 {t.grade.failCount} 次</span>
                 <span className="mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>{t.history.length} 年</span>
                 <span className="mono text-[10px] flex-1 text-right" style={{ color: 'var(--text-tertiary)', minWidth: 160 }}>
                   {METRICS.map((m) => `${m.label.slice(0, 2)} ${t.metricsStart[m.id]}→${t.metricsEnd[m.id]}`).join(' · ')}
@@ -1303,7 +1303,7 @@ export default function Page() {
                 <span className="text-sm font-semibold shrink-0" style={{ color: 'var(--text-primary)', width: 64 }}>{o.name}</span>
                 <span
                   className="text-[11px] mono shrink-0"
-                  style={{ color: post ? '#22d3ee' : removedIdSet.has(o.id) ? '#64748b' : 'var(--text-tertiary)', width: 96 }}
+                  style={{ color: post ? '#6e8cff' : removedIdSet.has(o.id) ? '#8a8578' : 'var(--text-tertiary)', width: 96 }}
                 >
                   {post ? post.label : removedIdSet.has(o.id) ? '转任非领导职务' : '在野'}
                 </span>
@@ -1319,7 +1319,7 @@ export default function Page() {
                   {adviceFor(judge, post?.id)}
                 </span>
                 {grown > 0 && (
-                  <span className="text-[10px] mono shrink-0" style={{ color: '#10b981' }}>成长 +{grown}</span>
+                  <span className="text-[10px] mono shrink-0" style={{ color: '#6fc2ae' }}>成长 +{grown}</span>
                 )}
               </div>
             );
@@ -1328,7 +1328,7 @@ export default function Page() {
         <div className="flex items-center gap-2 flex-wrap">
           <button type="button" style={BTN_CYAN} onClick={genReport}>📄 报告生成（含任免建议全量）</button>
           {reportMd && (
-            <button type="button" style={copied ? { ...BTN, color: '#10b981' } : BTN} onClick={copyReport}>
+            <button type="button" style={copied ? { ...BTN, color: '#6fc2ae' } : BTN} onClick={copyReport}>
               {copied ? '已复制 ✓' : '复制 Markdown'}
             </button>
           )}

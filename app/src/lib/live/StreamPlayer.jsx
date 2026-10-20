@@ -279,7 +279,7 @@ function IframeFallbackLink({ url }) {
       target="_blank"
       rel="noopener noreferrer"
       className="absolute bottom-2 right-2 text-[10px] mono px-2 py-1 rounded z-10"
-      style={{ background: 'rgba(0,0,0,0.65)', color: 'var(--cyber-cyan)', border: '1px solid rgba(34,211,238,0.35)' }}
+      style={{ background: 'rgba(0,0,0,0.65)', color: 'var(--cyber-cyan)', border: '1px solid rgba(110, 140, 255,0.35)' }}
     >
       打开原页面 ↗
     </a>

@@ -3,10 +3,10 @@
 export const shortProv = (p) => (p || '').replace(/(省|市|自治区|回族|壮族|维吾尔|生产建设兵团)/g, '');
 
 export const RANK_TIERS = [
-  { key: 't10', label: 'Top 10', min: 1, max: 10, color: '#fb923c' },
-  { key: 't50', label: 'Top 50', min: 11, max: 50, color: '#22d3ee' },
-  { key: 't100', label: 'Top 100', min: 51, max: 100, color: '#e8a317' },
-  { key: 't500', label: '101–500', min: 101, max: 500, color: '#64748b' },
+  { key: 't10', label: 'Top 10', min: 1, max: 10, color: '#c07a4a' },
+  { key: 't50', label: 'Top 50', min: 11, max: 50, color: '#6e8cff' },
+  { key: 't100', label: 'Top 100', min: 51, max: 100, color: '#d4a25a' },
+  { key: 't500', label: '101–500', min: 101, max: 500, color: '#8a8578' },
 ];
 
 export function tally(rows, key) {

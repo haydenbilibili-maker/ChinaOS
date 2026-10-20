@@ -47,7 +47,7 @@ export function DetailFieldGrid({ fields, cols = 2 }) {
 }
 
 /** 内联标签 chips */
-export function DetailTags({ tags, accent = '#d4af37' }) {
+export function DetailTags({ tags, accent = '#d9b26a' }) {
   if (!tags?.length) return null;
   return (
     <div className="flex flex-wrap gap-1">

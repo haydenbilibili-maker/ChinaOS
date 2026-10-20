@@ -17,12 +17,12 @@ export const TIER_LABELS = {
 };
 
 export const TIER_BADGE_STYLE = {
-  corpus: { bg: 'rgba(16,185,129,0.18)', color: '#34d399', border: 'rgba(16,185,129,0.45)' },
-  corpusExcerpt: { bg: 'rgba(232,163,23,0.14)', color: '#e8a317', border: 'rgba(232,163,23,0.4)' },
+  corpus: { bg: 'rgba(111, 194, 174,0.18)', color: '#34d399', border: 'rgba(111, 194, 174,0.45)' },
+  corpusExcerpt: { bg: 'rgba(212, 162, 90,0.14)', color: '#d4a25a', border: 'rgba(212, 162, 90,0.4)' },
   corpusStub: { bg: 'rgba(249,115,22,0.14)', color: '#f97316', border: 'rgba(249,115,22,0.4)' },
-  full: { bg: 'rgba(16,185,129,0.14)', color: '#10b981', border: 'rgba(16,185,129,0.35)' },
-  extended: { bg: 'rgba(232,163,23,0.12)', color: '#e8a317', border: 'rgba(232,163,23,0.35)' },
-  fallback: { bg: 'rgba(100,116,139,0.14)', color: '#94a3b8', border: 'rgba(100,116,139,0.35)' },
+  full: { bg: 'rgba(111, 194, 174,0.14)', color: '#6fc2ae', border: 'rgba(111, 194, 174,0.35)' },
+  extended: { bg: 'rgba(212, 162, 90,0.12)', color: '#d4a25a', border: 'rgba(212, 162, 90,0.35)' },
+  fallback: { bg: 'rgba(100,116,139,0.14)', color: '#a29c91', border: 'rgba(100,116,139,0.35)' },
 };
 
 /** @param {'full'|'excerpt'|'extended'|'stub'|null|undefined} corpusTier */

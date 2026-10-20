@@ -23,7 +23,7 @@ import {
 // ============================================================================
 
 // ---- ⑤ 五因子着色：值高=病重（红 ≥70 / 金 ≥45 / 绿 <45）----
-const factorColor = (v) => (v >= 70 ? '#c41e3a' : v >= 45 ? '#e8a317' : '#10b981');
+const factorColor = (v) => (v >= 70 ? '#e5483b' : v >= 45 ? '#d4a25a' : '#6fc2ae');
 
 // 六案例五因子均值（构建期常量 · 病理切片对照小字用）
 const FACTOR_MEANS = FACTOR_DEFS.map((f) => ({
@@ -39,7 +39,7 @@ function buildFactorOption(c) {
     grid: { left: 76, right: 40, top: 10, bottom: 26 },
     tooltip: {
       trigger: 'axis', axisPointer: { type: 'shadow' },
-      backgroundColor: 'rgba(15,23,42,0.92)', borderColor: '#27324a', textStyle: { color: '#e2e8f0' },
+      backgroundColor: 'rgba(15,23,42,0.92)', borderColor: '#2a2d36', textStyle: { color: '#e2e8f0' },
       formatter: (ps) => {
         const p = ps[0];
         const mean = FACTOR_MEANS.find((m) => m.label === p.name)?.mean;
@@ -47,9 +47,9 @@ function buildFactorOption(c) {
       },
     },
     xAxis: {
-      type: 'value', max: 100, name: '病重度', nameTextStyle: { color: '#5b6a82' },
+      type: 'value', max: 100, name: '病重度', nameTextStyle: { color: '#8a847a' },
       axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } },
     },
     yAxis: {
       type: 'category', data: rows.map((f) => f.label),
@@ -88,7 +88,7 @@ function buildCycleOption(sim) {
   const collapsePoint = sim.collapse
     ? [{
         name: '跌破崩溃线', coord: [x[sim.collapse - 1], sim.curve[sim.collapse - 1]],
-        symbol: 'pin', symbolSize: 34, itemStyle: { color: '#c41e3a' },
+        symbol: 'pin', symbolSize: 34, itemStyle: { color: '#e5483b' },
         label: { show: true, formatter: '崩', color: '#fff', fontSize: 9 },
       }]
     : [];
@@ -97,7 +97,7 @@ function buildCycleOption(sim) {
     grid: { left: 44, right: 24, top: 30, bottom: 28 },
     tooltip: {
       trigger: 'axis',
-      backgroundColor: 'rgba(15,23,42,0.92)', borderColor: '#27324a', textStyle: { color: '#e2e8f0' },
+      backgroundColor: 'rgba(15,23,42,0.92)', borderColor: '#2a2d36', textStyle: { color: '#e2e8f0' },
       formatter: (ps) => {
         const p = ps[0];
         return `${p.axisValue}<br/>健康度 ${p.data} · ${CYCLE_STAGES[sim.stageIdx[p.dataIndex]].label}`;
@@ -108,9 +108,9 @@ function buildCycleOption(sim) {
       axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 },
     },
     yAxis: {
-      type: 'value', min: 0, max: 100, name: '健康度', nameTextStyle: { color: '#5b6a82' },
+      type: 'value', min: 0, max: 100, name: '健康度', nameTextStyle: { color: '#8a847a' },
       axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } },
     },
     series: [{
       type: 'line', data: sim.curve, smooth: true, symbol: 'circle', symbolSize: 5,
@@ -119,8 +119,8 @@ function buildCycleOption(sim) {
       areaStyle: { color: `${sim.verdict.color}14` },
       markLine: {
         silent: true, symbol: 'none',
-        lineStyle: { color: '#c41e3a', type: 'dashed', width: 1.5 },
-        label: { color: '#c41e3a', fontSize: 10, formatter: '崩溃线 25' },
+        lineStyle: { color: '#e5483b', type: 'dashed', width: 1.5 },
+        label: { color: '#e5483b', fontSize: 10, formatter: '崩溃线 25' },
         data: [{ yAxis: 25 }],
       },
       markArea: { silent: true, data: areas },
@@ -165,13 +165,13 @@ const COMPARE_TABLE = [
 ];
 const compareRadar = {
   tooltip: {},
-  radar: { indicator: COMPARE_DIMS, axisName: { color: LABEL.color, fontSize: 11 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.2)' } } },
+  radar: { indicator: COMPARE_DIMS, axisName: { color: LABEL.color, fontSize: 11 }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } }, splitArea: { show: false }, axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.2)' } } },
   legend: { data: ['中华文明栈', '西方文明栈（理想型）'], textStyle: { color: LABEL.color }, bottom: 0 },
   series: [{
     type: 'radar',
     data: [
-      { value: COMPARE_TABLE.map((r) => r[3]), name: '中华文明栈', lineStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.16)' }, itemStyle: { color: '#c41e3a' } },
-      { value: COMPARE_TABLE.map((r) => 100 - r[3]), name: '西方文明栈（理想型）', lineStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.10)' }, itemStyle: { color: '#22d3ee' } },
+      { value: COMPARE_TABLE.map((r) => r[3]), name: '中华文明栈', lineStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.16)' }, itemStyle: { color: '#e5483b' } },
+      { value: COMPARE_TABLE.map((r) => 100 - r[3]), name: '西方文明栈（理想型）', lineStyle: { color: '#6e8cff' }, areaStyle: { color: 'rgba(110, 140, 255,0.10)' }, itemStyle: { color: '#6e8cff' } },
     ],
   }],
 };
@@ -186,7 +186,7 @@ function StackBars({ active, onPick, dimFor }) {
         return (
           <button key={k} onClick={() => onPick(k)}
             className="w-full text-left rounded flex items-stretch gap-0 overflow-hidden transition-all"
-            style={{ background: sel ? 'rgba(196,30,58,0.14)' : 'var(--bg-elevated)', border: `1px solid ${sel ? 'var(--china-red)' : 'transparent'}`, cursor: 'pointer', opacity: op }}>
+            style={{ background: sel ? 'rgba(229, 72, 59,0.14)' : 'var(--bg-elevated)', border: `1px solid ${sel ? 'var(--china-red)' : 'transparent'}`, cursor: 'pointer', opacity: op }}>
             <span style={{ width: 5, background: x.color, flexShrink: 0 }} />
             <span className="flex items-center gap-3 px-3 py-2 flex-1">
               <span className="text-[10px] mono shrink-0" style={{ width: 132, color: x.color }}>{x.role}</span>
@@ -289,7 +289,7 @@ export default function Page() {
 
   const v = VOLUMES[vol];
   const [rtag, rcolor] = REGIME_TAG[REGIME[vol]];
-  const btn = (a) => ({ background: a ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)', color: a ? '#fff' : 'var(--text-secondary)', border: 'none', cursor: 'pointer', borderRadius: 6, padding: '6px 14px', fontSize: 13 });
+  const btn = (a) => ({ background: a ? 'rgba(229, 72, 59,0.2)' : 'var(--bg-elevated)', color: a ? '#fff' : 'var(--text-secondary)', border: 'none', cursor: 'pointer', borderRadius: 6, padding: '6px 14px', fontSize: 13 });
   const dimFor = (k) => {
     const r = REGIME[k];
     if (r === regime || r === 'both') return 1;
@@ -307,10 +307,10 @@ export default function Page() {
         新增「王朝病理切片 / 治乱周期模拟器」为<strong style={{ color: 'var(--text-primary)' }}>理想型分析框架</strong>：朝代五因子为史学常识级粗粒度示意，推演为确定性纯函数（同输入恒同输出）——非实证史学、非现实影射。
       </p></Card>
       <StatGrid className="mb-6">
-        <Stat value={`${CIV_META.volumeCount}/${CIV_META.volumeCount}`} label="全栈卷数 · 已就绪" accent="#c41e3a" />
-        <Stat value={`${CIV_META.stackDepth} 层`} label="OS 栈深度（9+总纲）" accent="#22d3ee" />
-        <Stat value={`${Math.round(CIV_META.totalWords / 1000)}k`} label="总字数约" accent="#e8a317" />
-        <Stat value="6 维" label="中西对照维度" accent="#10b981" />
+        <Stat value={`${CIV_META.volumeCount}/${CIV_META.volumeCount}`} label="全栈卷数 · 已就绪" accent="#e5483b" />
+        <Stat value={`${CIV_META.stackDepth} 层`} label="OS 栈深度（9+总纲）" accent="#6e8cff" />
+        <Stat value={`${Math.round(CIV_META.totalWords / 1000)}k`} label="总字数约" accent="#d4a25a" />
+        <Stat value="6 维" label="中西对照维度" accent="#6fc2ae" />
       </StatGrid>
 
       <div className="flex gap-1 flex-wrap mb-4 os-tab-bar">
@@ -328,7 +328,7 @@ export default function Page() {
               <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'var(--bg-elevated)', color: v.color }}>{v.role}</span>
               <span className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: `${rcolor}1a`, color: rcolor }}>{rtag}</span>
               <Link to={`/civilization/v/${vol}`} className="text-[11px] mono px-2 py-0.5 rounded"
-                style={{ background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)', border: '1px solid rgba(34,211,238,0.25)' }}>
+                style={{ background: 'rgba(110, 140, 255,0.12)', color: 'var(--cyber-cyan)', border: '1px solid rgba(110, 140, 255,0.25)' }}>
                 → 全文报告
               </Link>
             </div>
@@ -353,7 +353,7 @@ export default function Page() {
               return (
                 <Link key={k} to={`/civilization/v/${k}`}
                   className="text-xs px-2.5 py-1 rounded mono inline-flex items-center gap-1.5"
-                  style={{ background: k === vol ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)', color: k === vol ? '#fff' : 'var(--text-secondary)', border: `1px solid ${k === vol ? VOLUMES[k].color : 'transparent'}` }}>
+                  style={{ background: k === vol ? 'rgba(229, 72, 59,0.2)' : 'var(--bg-elevated)', color: k === vol ? '#fff' : 'var(--text-secondary)', border: `1px solid ${k === vol ? VOLUMES[k].color : 'transparent'}` }}>
                   {layer && <span style={{ color: k === vol ? '#fff' : VOLUMES[k].color, fontSize: 10 }}>{layer}</span>}
                   {VOLUMES[k].num}
                 </Link>
@@ -389,9 +389,9 @@ export default function Page() {
           <Card title="治乱调度算法 · 同一套栈的两种系统态">
             <div className="flex gap-2 mb-4">
               <button onClick={() => setRegime('boom')} className="flex-1 text-sm py-2 rounded mono"
-                style={{ background: regime === 'boom' ? 'rgba(232,163,23,0.2)' : 'var(--bg-elevated)', color: regime === 'boom' ? '#e8a317' : 'var(--text-secondary)', border: `1px solid ${regime === 'boom' ? '#e8a317' : 'transparent'}`, cursor: 'pointer' }}>顺境 · 儒法扩张</button>
+                style={{ background: regime === 'boom' ? 'rgba(212, 162, 90,0.2)' : 'var(--bg-elevated)', color: regime === 'boom' ? '#d4a25a' : 'var(--text-secondary)', border: `1px solid ${regime === 'boom' ? '#d4a25a' : 'transparent'}`, cursor: 'pointer' }}>顺境 · 儒法扩张</button>
               <button onClick={() => setRegime('bust')} className="flex-1 text-sm py-2 rounded mono"
-                style={{ background: regime === 'bust' ? 'rgba(16,185,129,0.2)' : 'var(--bg-elevated)', color: regime === 'bust' ? '#10b981' : 'var(--text-secondary)', border: `1px solid ${regime === 'bust' ? '#10b981' : 'transparent'}`, cursor: 'pointer' }}>逆境 · 道家熬冬</button>
+                style={{ background: regime === 'bust' ? 'rgba(111, 194, 174,0.2)' : 'var(--bg-elevated)', color: regime === 'bust' ? '#6fc2ae' : 'var(--text-secondary)', border: `1px solid ${regime === 'bust' ? '#6fc2ae' : 'transparent'}`, cursor: 'pointer' }}>逆境 · 道家熬冬</button>
             </div>
             <StackBars active={vol} onPick={setVol} dimFor={dimFor} />
             <p className="text-[11px] mono mt-3" style={{ color: 'var(--text-tertiary)' }}>// 亮 = 当前态主调度层 · 半亮 = 结构常量底座 · 暗 = 另一态才激活</p>
@@ -439,16 +439,16 @@ export default function Page() {
             </Card>
             <Card title={`⑤ ${kase.name}（${kase.span}）· 病理判读`}>
               <div className="space-y-3">
-                <div style={{ borderLeft: '2px solid #10b981', paddingLeft: 12 }}>
-                  <div className="text-xs font-semibold mb-1" style={{ color: '#10b981' }}>鼎盛期</div>
+                <div style={{ borderLeft: '2px solid #6fc2ae', paddingLeft: 12 }}>
+                  <div className="text-xs font-semibold mb-1" style={{ color: '#6fc2ae' }}>鼎盛期</div>
                   <p className="text-[12px] leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{kase.peak}</p>
                 </div>
-                <div style={{ borderLeft: '2px solid #c41e3a', paddingLeft: 12 }}>
+                <div style={{ borderLeft: '2px solid #e5483b', paddingLeft: 12 }}>
                   <div className="text-xs font-semibold mb-1" style={{ color: 'var(--china-red)' }}>崩溃机理</div>
                   <p className="text-[12px] leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{kase.collapse}</p>
                 </div>
-                <div style={{ borderLeft: '2px solid #e8a317', paddingLeft: 12 }}>
-                  <div className="text-xs font-semibold mb-1" style={{ color: '#e8a317' }}>冷峻教训</div>
+                <div style={{ borderLeft: '2px solid #d4a25a', paddingLeft: 12 }}>
+                  <div className="text-xs font-semibold mb-1" style={{ color: '#d4a25a' }}>冷峻教训</div>
                   <p className="text-[12px] leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{kase.lesson}</p>
                 </div>
               </div>
@@ -493,8 +493,8 @@ export default function Page() {
                 className="text-xs mono px-3 py-1.5 rounded"
                 style={{
                   background: 'var(--bg-elevated)',
-                  color: sim.collapse ? '#c41e3a' : '#10b981',
-                  border: `1px solid ${sim.collapse ? 'rgba(196,30,58,0.45)' : 'rgba(16,185,129,0.45)'}`,
+                  color: sim.collapse ? '#e5483b' : '#6fc2ae',
+                  border: `1px solid ${sim.collapse ? 'rgba(229, 72, 59,0.45)' : 'rgba(111, 194, 174,0.45)'}`,
                 }}
               >{sim.collapse ? `第 ${sim.collapse} 期跌破崩溃线` : '十二期内未跌破崩溃线'}</span>
               <span className="text-xs mono px-3 py-1.5 rounded" style={{ background: 'var(--bg-elevated)', color: 'var(--text-secondary)' }}>
@@ -513,7 +513,7 @@ export default function Page() {
               ))}
             </div>
 
-            <p className="text-[11px] mt-3 leading-relaxed" style={{ color: '#e8a317' }}>
+            <p className="text-[11px] mt-3 leading-relaxed" style={{ color: '#d4a25a' }}>
               机理提示：精英内卷随承平自增（承平越久、分利联盟越大），「抑制内卷」杆只能压低起点、压不住趋势——
               这正是只压财政不管精英时，中后期盈余仍被吃光的来源。
             </p>
@@ -534,7 +534,7 @@ export default function Page() {
                 type="button"
                 onClick={genCivReport}
                 className="text-xs mono px-3 py-1.5 rounded font-semibold"
-                style={{ background: 'rgba(34,211,238,0.12)', color: '#22d3ee', border: '1px solid rgba(34,211,238,0.45)', cursor: 'pointer' }}
+                style={{ background: 'rgba(110, 140, 255,0.12)', color: '#6e8cff', border: '1px solid rgba(110, 140, 255,0.45)', cursor: 'pointer' }}
               >生成周期推演报告（{sim.verdict.label}）</button>
               {civReport && (
                 <button
@@ -542,8 +542,8 @@ export default function Page() {
                   onClick={copyCivReport}
                   className="text-xs mono px-3 py-1.5 rounded font-semibold"
                   style={{
-                    background: 'rgba(148,163,184,0.1)',
-                    color: civCopied ? '#10b981' : 'var(--text-secondary)',
+                    background: 'rgba(162, 156, 145,0.1)',
+                    color: civCopied ? '#6fc2ae' : 'var(--text-secondary)',
                     border: '1px solid var(--border-subtle)', cursor: 'pointer',
                   }}
                 >{civCopied ? '已复制 ✓' : '复制 Markdown'}</button>

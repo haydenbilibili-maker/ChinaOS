@@ -37,7 +37,7 @@ const VIEW_MODES = [
 ];
 
 const inp = { background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', borderRadius: 6, padding: '6px 10px', fontSize: 13 };
-const btn = (active, accent = '#fb923c') => ({
+const btn = (active, accent = '#c07a4a') => ({
   background: active ? `rgba(251,146,60,0.2)` : 'var(--bg-elevated)',
   color: active ? '#fff' : 'var(--text-secondary)',
   border: `1px solid ${active ? accent : 'var(--border-subtle)'}`,
@@ -47,7 +47,7 @@ const btn = (active, accent = '#fb923c') => ({
   fontSize: 12,
 });
 
-const PAL = ['#fb923c', '#c41e3a', '#22d3ee', '#e8a317', '#10b981', '#8b5cf6', '#f0abfc', '#64748b', '#f97316', '#06b6d4'];
+const PAL = ['#c07a4a', '#e5483b', '#6e8cff', '#d4a25a', '#6fc2ae', '#b07cc6', '#d9a7d6', '#8a8578', '#f97316', '#5b7cf0'];
 
 const ROW_H = 52;
 const VISIBLE = 14;
@@ -86,7 +86,7 @@ function CompanyCard({ c, onSelect, onHover, selected, founderN, eqN, accent }) 
       className="text-left p-2.5 rounded flex flex-col gap-1"
       style={{
         background: selected ? 'rgba(251,146,60,0.14)' : 'var(--bg-elevated)',
-        border: `1px solid ${selected ? '#fb923c' : 'var(--border-subtle)'}`,
+        border: `1px solid ${selected ? '#c07a4a' : 'var(--border-subtle)'}`,
         cursor: 'pointer',
         minHeight: 108,
       }}
@@ -96,11 +96,11 @@ function CompanyCard({ c, onSelect, onHover, selected, founderN, eqN, accent }) 
         <span className="text-xs font-medium flex-1 leading-tight line-clamp-2" style={{ color: 'var(--text-primary)' }}>{c.name}</span>
       </div>
       <div className="flex flex-wrap gap-1">
-        <span className="text-[9px] mono px-1 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: '#22d3ee' }}>{shortProv(c.province)}</span>
-        <span className="text-[9px] mono px-1 rounded truncate max-w-full" style={{ background: 'rgba(251,146,60,0.1)', color: '#fb923c' }}>{c.industry}</span>
+        <span className="text-[9px] mono px-1 rounded" style={{ background: 'rgba(110, 140, 255,0.12)', color: '#6e8cff' }}>{shortProv(c.province)}</span>
+        <span className="text-[9px] mono px-1 rounded truncate max-w-full" style={{ background: 'rgba(251,146,60,0.1)', color: '#c07a4a' }}>{c.industry}</span>
       </div>
       <div className="flex items-center justify-between text-[10px] mono mt-auto">
-        <span style={{ color: accent || '#e8a317' }}>{c.revenueYi}亿</span>
+        <span style={{ color: accent || '#d4a25a' }}>{c.revenueYi}亿</span>
         <span style={{ color: 'var(--text-tertiary)' }}>
           {founderN ? `创${founderN}` : ''}{eqN ? ` · 股${eqN}` : ''}{c.profileDepth === 'full' ? ' · 深' : ''}
         </span>
@@ -217,11 +217,11 @@ export default function Page() {
       grid: { left: 72, right: 28, top: 8, bottom: 20 },
       animationDurationUpdate: 600,
       tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-      xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+      xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
       yAxis: { type: 'category', data: top.map((a) => shortProv(a.province)), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
       series: [{
         type: 'bar',
-        data: top.map((a) => ({ value: a.count, itemStyle: { color: province === a.province ? '#22d3ee' : '#fb923c' } })),
+        data: top.map((a) => ({ value: a.count, itemStyle: { color: province === a.province ? '#6e8cff' : '#c07a4a' } })),
         barWidth: 12,
         itemStyle: { borderRadius: 3 },
         label: { show: true, position: 'right', formatter: '{c}', color: LABEL.color, fontSize: 10 },
@@ -233,7 +233,7 @@ export default function Page() {
     grid: { left: 36, right: 12, top: 16, bottom: 28 },
     tooltip: { trigger: 'axis' },
     xAxis: { type: 'category', data: tierDist.map((t) => t.label), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
-    yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+    yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     series: [{
       type: 'bar',
       data: tierDist.map((t) => ({ value: t.count, itemStyle: { color: t.color, borderRadius: [4, 4, 0, 0] } })),
@@ -252,7 +252,7 @@ export default function Page() {
         breadcrumb: { show: false },
         label: { show: true, formatter: '{b}', fontSize: 10, color: '#e2e8f0' },
         upperLabel: { show: false },
-        itemStyle: { borderColor: 'rgba(10,14,23,0.8)', borderWidth: 2, gapWidth: 2 },
+        itemStyle: { borderColor: 'rgba(13, 15, 20,0.8)', borderWidth: 2, gapWidth: 2 },
         data: top.map(([name, value], i) => ({
           name,
           value,
@@ -269,14 +269,14 @@ export default function Page() {
       tooltip: {
         formatter: (p) => `#${p.value[0]} ${p.value[2]}<br/>${shortProv(p.value[3])} · ${p.value[1]}亿`,
       },
-      xAxis: { type: 'value', name: '排名', inverse: true, min: 1, max: rankMax, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
-      yAxis: { type: 'value', name: '营收(亿)', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+      xAxis: { type: 'value', name: '排名', inverse: true, min: 1, max: rankMax, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.08)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+      yAxis: { type: 'value', name: '营收(亿)', splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
       series: [{
         type: 'scatter',
         symbolSize: (d) => Math.max(6, Math.min(22, Math.sqrt(d[1]) / 8)),
         data: pts,
-        itemStyle: { color: '#fb923c', opacity: 0.75 },
-        emphasis: { itemStyle: { color: '#22d3ee', borderColor: '#fff', borderWidth: 1 } },
+        itemStyle: { color: '#c07a4a', opacity: 0.75 },
+        emphasis: { itemStyle: { color: '#6e8cff', borderColor: '#fff', borderWidth: 1 } },
       }],
     };
   }, [filteredCos, rankMax]);
@@ -351,18 +351,18 @@ export default function Page() {
         onMouseEnter={() => setHoverProv(c.province)}
         onMouseLeave={() => setHoverProv('')}
         className="w-full text-left px-2 py-1.5 rounded flex items-center gap-2"
-        style={{ background: on ? 'rgba(251,146,60,0.14)' : 'transparent', border: `1px solid ${on ? '#fb923c' : 'transparent'}`, cursor: 'pointer', height: ROW_H - 4 }}
+        style={{ background: on ? 'rgba(251,146,60,0.14)' : 'transparent', border: `1px solid ${on ? '#c07a4a' : 'transparent'}`, cursor: 'pointer', height: ROW_H - 4 }}
       >
         <span className="mono text-xs shrink-0 font-bold" style={{ color: tierOf(c.rank).color, width: 32 }}>#{c.rank}</span>
         <div className="flex-1 min-w-0">
           <div className="text-sm truncate" style={{ color: 'var(--text-primary)' }}>{c.name}</div>
           <div className="flex gap-1 flex-wrap mt-0.5">
-            <span className="text-[9px] mono px-1 rounded" style={{ background: 'rgba(34,211,238,0.1)', color: '#22d3ee' }}>{shortProv(c.province)}</span>
-            <span className="text-[9px] mono px-1 rounded truncate max-w-[120px]" style={{ background: 'rgba(251,146,60,0.08)', color: '#fb923c' }}>{c.industry}</span>
+            <span className="text-[9px] mono px-1 rounded" style={{ background: 'rgba(110, 140, 255,0.1)', color: '#6e8cff' }}>{shortProv(c.province)}</span>
+            <span className="text-[9px] mono px-1 rounded truncate max-w-[120px]" style={{ background: 'rgba(251,146,60,0.08)', color: '#c07a4a' }}>{c.industry}</span>
           </div>
         </div>
         <div className="text-right shrink-0">
-          <div className="text-[10px] mono" style={{ color: '#e8a317' }}>{c.revenueYi}亿</div>
+          <div className="text-[10px] mono" style={{ color: '#d4a25a' }}>{c.revenueYi}亿</div>
           <div className="text-[9px] mono" style={{ color: 'var(--text-tertiary)' }}>
             {(founderMap.get(c.id) || 0) > 0 && `创${founderMap.get(c.id)}`}
             {(eqMap.get(c.id) || 0) > 0 && ` 股${eqMap.get(c.id)}`}
@@ -380,9 +380,9 @@ export default function Page() {
         <div className="flex-1 min-w-0">
           <div className="font-semibold text-base truncate" style={{ color: 'var(--text-primary)' }}>{detail.name}</div>
           <div className="flex gap-1 flex-wrap mt-1">
-            <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: '#22d3ee' }}>{detail.province}</span>
-            <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(251,146,60,0.12)', color: '#fb923c' }}>{detail.industry}</span>
-            {detail.profileDepth === 'full' && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(16,185,129,0.12)', color: '#10b981' }}>深度画像</span>}
+            <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(110, 140, 255,0.12)', color: '#6e8cff' }}>{detail.province}</span>
+            <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(251,146,60,0.12)', color: '#c07a4a' }}>{detail.industry}</span>
+            {detail.profileDepth === 'full' && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(111, 194, 174,0.12)', color: '#6fc2ae' }}>深度画像</span>}
           </div>
         </div>
       </div>
@@ -395,25 +395,25 @@ export default function Page() {
         <p className="text-xs leading-relaxed p-2 rounded" style={{ background: 'var(--bg-elevated)', color: 'var(--text-secondary)' }}>{detail.controlNote}</p>
       )}
       <div>
-        <div className="text-xs font-semibold mb-2" style={{ color: '#fb923c' }}>创始人 ({detail.founders.length})</div>
+        <div className="text-xs font-semibold mb-2" style={{ color: '#c07a4a' }}>创始人 ({detail.founders.length})</div>
         {detail.founders.length ? detail.founders.map((f) => (
-          <div key={f.id} className="mb-2 pl-2" style={{ borderLeft: '2px solid #fb923c' }}>
+          <div key={f.id} className="mb-2 pl-2" style={{ borderLeft: '2px solid #c07a4a' }}>
             <div style={{ color: 'var(--text-primary)' }}>{f.name} · {f.title}</div>
             <div className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>{f.background}</div>
           </div>
         )) : <div className="text-xs mono" style={{ color: 'var(--text-tertiary)' }}>// 待补</div>}
       </div>
       <div>
-        <div className="text-xs font-semibold mb-2" style={{ color: '#e8a317' }}>职业经理人 ({detail.managers.length})</div>
+        <div className="text-xs font-semibold mb-2" style={{ color: '#d4a25a' }}>职业经理人 ({detail.managers.length})</div>
         {detail.managers.length ? detail.managers.map((m) => (
-          <div key={m.id} className="mb-2 pl-2" style={{ borderLeft: '2px solid #e8a317' }}>
+          <div key={m.id} className="mb-2 pl-2" style={{ borderLeft: '2px solid #d4a25a' }}>
             <div style={{ color: 'var(--text-primary)' }}>{m.name} · {m.title}{m.since ? `（${m.since}）` : ''}</div>
             <div className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>{m.background}</div>
           </div>
         )) : <div className="text-xs mono" style={{ color: 'var(--text-tertiary)' }}>// 待补</div>}
       </div>
       <div>
-        <div className="text-xs font-semibold mb-2" style={{ color: '#10b981' }}>股权架构 ({detail.equity.length})</div>
+        <div className="text-xs font-semibold mb-2" style={{ color: '#6fc2ae' }}>股权架构 ({detail.equity.length})</div>
         {detail.equity.length ? (
           <table className="w-full text-xs" style={{ borderCollapse: 'collapse' }}>
             <thead><tr style={{ color: 'var(--text-tertiary)' }}>
@@ -424,7 +424,7 @@ export default function Page() {
                 <tr key={e.id} style={{ borderTop: '1px solid var(--border-subtle)' }}>
                   <td className="py-1" style={{ color: 'var(--text-primary)' }}>{e.shareholder}</td>
                   <td className="py-1" style={{ color: 'var(--text-secondary)' }}>{e.holderType}</td>
-                  <td className="py-1 text-right mono" style={{ color: e.pct != null ? '#10b981' : 'var(--text-tertiary)' }}>{e.pct != null ? e.pct : '—'}</td>
+                  <td className="py-1 text-right mono" style={{ color: e.pct != null ? '#6fc2ae' : 'var(--text-tertiary)' }}>{e.pct != null ? e.pct : '—'}</td>
                 </tr>
               ))}
             </tbody>
@@ -453,12 +453,12 @@ export default function Page() {
       </Card>
 
       <StatGrid className="mb-4">
-        <Stat value={String(cos.length)} label="上榜企业" accent="#fb923c" />
-        <Stat value={String(filteredCos.length)} label="当前命中" accent="#22d3ee" />
-        <Stat value={`${totalRevenue.toLocaleString()}亿`} label="筛选营收汇总" accent="#e8a317" />
+        <Stat value={String(cos.length)} label="上榜企业" accent="#c07a4a" />
+        <Stat value={String(filteredCos.length)} label="当前命中" accent="#6e8cff" />
+        <Stat value={`${totalRevenue.toLocaleString()}亿`} label="筛选营收汇总" accent="#d4a25a" />
         <Stat value={`${avgRevenue}亿`} label="均营收" />
-        <Stat value={String(deepCount)} label="深度画像" accent="#10b981" />
-        <Stat value={String(provAgg.length)} label="覆盖省份" accent="#8b5cf6" />
+        <Stat value={String(deepCount)} label="深度画像" accent="#6fc2ae" />
+        <Stat value={String(provAgg.length)} label="覆盖省份" accent="#b07cc6" />
       </StatGrid>
 
       {/* 粘性筛选栏 */}
@@ -491,13 +491,13 @@ export default function Page() {
                 const on = viewMode === v;
                 return (
                   <button key={v} type="button" title={VIEW_MODES.find(([k]) => k === v)[1]} onClick={() => setViewMode(v)}
-                    style={{ padding: '6px 9px', background: on ? 'rgba(251,146,60,0.18)' : 'var(--bg-base)', color: on ? '#fb923c' : 'var(--text-tertiary)', border: 'none', cursor: 'pointer' }}>
+                    style={{ padding: '6px 9px', background: on ? 'rgba(251,146,60,0.18)' : 'var(--bg-base)', color: on ? '#c07a4a' : 'var(--text-tertiary)', border: 'none', cursor: 'pointer' }}>
                     <I size={15} />
                   </button>
                 );
               })}
             </div>
-            <button type="button" onClick={reload} disabled={loading} style={{ ...inp, cursor: 'pointer', color: '#10b981', borderColor: 'rgba(16,185,129,0.4)', display: 'flex', alignItems: 'center', gap: 4 }}>
+            <button type="button" onClick={reload} disabled={loading} style={{ ...inp, cursor: 'pointer', color: '#6fc2ae', borderColor: 'rgba(111, 194, 174,0.4)', display: 'flex', alignItems: 'center', gap: 4 }}>
               <Lucide.RefreshCw size={13} />{loading ? '载入中…' : '重载'}
             </button>
           </div>
@@ -510,7 +510,7 @@ export default function Page() {
                   <span style={{ color: 'var(--text-tertiary)' }}>{k}:</span>{v}<Lucide.X size={11} />
                 </button>
               ))}
-              <button type="button" onClick={clearFilters} className="text-[11px] mono px-2 py-0.5" style={{ color: '#fb923c', background: 'none', border: 'none', cursor: 'pointer' }}>清空</button>
+              <button type="button" onClick={clearFilters} className="text-[11px] mono px-2 py-0.5" style={{ color: '#c07a4a', background: 'none', border: 'none', cursor: 'pointer' }}>清空</button>
             </div>
           )}
           <p className="text-[11px] mono mt-2" style={{ color: 'var(--text-tertiary)' }}>
@@ -563,7 +563,7 @@ export default function Page() {
               />
               {province && mapMetrics.byProv[province] && (
                 <div className="mt-2 p-2 rounded text-xs" style={{ background: 'var(--bg-elevated)' }}>
-                  <span style={{ color: '#fb923c' }}>{province}</span>
+                  <span style={{ color: '#c07a4a' }}>{province}</span>
                   <span style={{ color: 'var(--text-secondary)' }}> · {mapMetrics.byProv[province].count} 家 · 营收 {mapMetrics.byProv[province].revenueYi.toLocaleString()} 亿</span>
                 </div>
               )}
@@ -605,7 +605,7 @@ export default function Page() {
           <Card title="省份排行（点选筛选）" className="mb-4">
             <DistBar
               data={provAgg.slice(0, 12).map((a) => [shortProv(a.province), a.count])}
-              color="#22d3ee"
+              color="#6e8cff"
               labelWidth={48}
               active={province ? shortProv(province) : ''}
               onPick={(k) => {
@@ -642,7 +642,7 @@ export default function Page() {
 
       {viewMode === 'ranking' && (
         <>
-          <TabBar tabs={TABS} value={tab} onChange={setTab} accent="#fb923c" className="mb-4" />
+          <TabBar tabs={TABS} value={tab} onChange={setTab} accent="#c07a4a" className="mb-4" />
 
           <div className="grid gap-4" style={{ gridTemplateColumns: 'minmax(280px, 1.25fr) minmax(260px, 1fr)' }}>
             <Card title={`${TABS.find(([k]) => k === tab)?.[1] || ''} · ${listRows.length} 条`}>
@@ -672,7 +672,7 @@ export default function Page() {
                     style={{ background: detail?.id === e.companyId ? 'rgba(251,146,60,0.14)' : 'var(--bg-elevated)', border: 'none', cursor: 'pointer' }}>
                     <div className="text-sm" style={{ color: 'var(--text-primary)' }}>
                       {e.shareholder}
-                      {e.pct != null && <span className="mono ml-2" style={{ color: '#fb923c' }}>{e.pct}%</span>}
+                      {e.pct != null && <span className="mono ml-2" style={{ color: '#c07a4a' }}>{e.pct}%</span>}
                     </div>
                     <div className="text-[11px] truncate" style={{ color: 'var(--text-secondary)' }}>#{e.rank} {e.companyName} · {e.holderType}</div>
                   </button>

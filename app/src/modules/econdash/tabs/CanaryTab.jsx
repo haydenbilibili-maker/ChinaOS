@@ -71,19 +71,19 @@ export default function CanaryTab({ wbData }) {
 
       <Card title="信号交叉验证 · 关联深潜">
         <div className="econ-hub-grid">
-          <Link to="/modules/signal-panel" className="econ-hub-card" style={{ borderLeft: '3px solid #c41e3a' }}>
+          <Link to="/modules/signal-panel" className="econ-hub-card" style={{ borderLeft: '3px solid #e5483b' }}>
             <div className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>宏观再平衡信号灯 ↗</div>
             <p className="text-[11px] m-0 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
               A/B/C 十二项信号态势合成——与金丝雀盘同源层交叉验证。
             </p>
           </Link>
-          <Link to="/dashboard" className="econ-hub-card" style={{ borderLeft: '3px solid #22d3ee' }}>
+          <Link to="/dashboard" className="econ-hub-card" style={{ borderLeft: '3px solid #6e8cff' }}>
             <div className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>中枢看板 · H1 读数 ↗</div>
             <p className="text-[11px] m-0 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
               全局宏观速览与 GovernanceVerdict 双仪表合成。
             </p>
           </Link>
-          <Link to="/modules/three-forces" className="econ-hub-card" style={{ borderLeft: '3px solid #e8a317' }}>
+          <Link to="/modules/three-forces" className="econ-hub-card" style={{ borderLeft: '3px solid #d4a25a' }}>
             <div className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>三力监测仪 ↗</div>
             <p className="text-[11px] m-0 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
               「改没改」与「何时被迫改」配对读数——改革窗口压力。
@@ -99,7 +99,7 @@ export default function CanaryTab({ wbData }) {
         <div className="flex items-center gap-2 flex-wrap">
           <button type="button" style={BTN_CYAN} onClick={genReport}>📄 生成经济速读</button>
           {reportMd && (
-            <button type="button" style={copied ? { ...BTN, color: '#10b981' } : BTN} onClick={copyReport}>
+            <button type="button" style={copied ? { ...BTN, color: '#6fc2ae' } : BTN} onClick={copyReport}>
               {copied ? '已复制 ✓' : '复制 Markdown'}
             </button>
           )}
@@ -119,7 +119,7 @@ export default function CanaryTab({ wbData }) {
         <Link
           to="/foundation?tab=econ"
           className="os-card p-5 block no-underline"
-          style={{ borderLeft: '3px solid #e8a317' }}
+          style={{ borderLeft: '3px solid #d4a25a' }}
         >
           <div className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
             ⌗ 经济数据底座 · 已迁移 →
@@ -127,7 +127,7 @@ export default function CanaryTab({ wbData }) {
           <div className="text-xs" style={{ color: 'var(--text-tertiary)', lineHeight: 1.7 }}>
             经济序列的上传 / 解析 / 编辑 / 多序列对比 / 导出 等完整数据管理能力，
             已迁入「数据与系统 · 数据底座」的「经济数据」标签，与全站本地库统一管理。
-            <span style={{ color: '#e8a317' }}> 点此前往 →</span>
+            <span style={{ color: '#d4a25a' }}> 点此前往 →</span>
           </div>
         </Link>
       </div>

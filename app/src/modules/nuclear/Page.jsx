@@ -8,31 +8,31 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // maturity=技术成熟度示意；autonomy=自主化率示意；commercial=商业化进度示意
 const GENS = [
   {
-    key: 'hualong', label: '华龙一号(三代)', accent: '#c41e3a', maturity: 98, autonomy: 95, commercial: 96,
+    key: 'hualong', label: '华龙一号(三代)', accent: '#e5483b', maturity: 98, autonomy: 95, commercial: 96,
     tag: '三代 · 主力基荷', units: '在运/在建合计领跑',
     desc: '自主三代压水堆，设计总包与设备国产化率接近 100%，是新增核准的主力路线。从 AP1000/EPR 引进消化中长出的「国之重器」，已实现批量化建造与对外出口——能源主权从图纸落到混凝土的样板。',
     strategic: '把三代堆的定价权、标准权、供应链握在自己手里；出海即是把基荷电力的制度模板向外输出。',
   },
   {
-    key: 'guohe', label: '国和一号(三代)', accent: '#e8a317', maturity: 90, autonomy: 88, commercial: 78,
+    key: 'guohe', label: '国和一号(三代)', accent: '#d4a25a', maturity: 90, autonomy: 88, commercial: 78,
     tag: '三代 · 大功率非能动', units: '示范工程投运',
     desc: 'CAP1400，基于 AP1000 非能动技术的自主大功率机型。非能动安全系统在断电工况下靠重力/自然循环导出余热，降低对外部电源与人为干预的依赖——把安全从「操作纪律」转成「物理定律」。',
     strategic: '与华龙形成双轮:压水堆路线的功率上限与非能动安全标准的自主化对冲单一技术路径的系统性风险。',
   },
   {
-    key: 'htr', label: '高温气冷堆(四代)', accent: '#22d3ee', maturity: 88, autonomy: 93, commercial: 55,
+    key: 'htr', label: '高温气冷堆(四代)', accent: '#6e8cff', maturity: 88, autonomy: 93, commercial: 55,
     tag: '四代 · 固有安全', units: 'HTR-PM 示范并网',
     desc: '石墨球燃料 + 氦气冷却，HTR-PM 示范验证「固有安全」——失冷工况下堆芯靠物理特性自然停堆,不熔毁。高温出口热可用于工业供热、制氢与热电联供,打开核能的非电力应用场景。',
     strategic: '四代堆里工程化最靠前的一条;以固有安全换取厂址灵活性,把核能推向工业脱碳的纵深。',
   },
   {
-    key: 'fast', label: '快堆(四代)', accent: '#a855f7', maturity: 82, autonomy: 80, commercial: 40,
+    key: 'fast', label: '快堆(四代)', accent: '#b07cc6', maturity: 82, autonomy: 80, commercial: 40,
     tag: '四代 · 闭式循环', units: '示范堆建设中',
     desc: '快中子增殖堆,提高铀资源利用率数十倍,并嬗变长寿命核素。与乏燃料后处理联动构成闭式燃料循环——把「一次通过」的资源浪费,变成可循环的能源主权布局。',
     strategic: '数十年尺度的铀资源解套方案;闭式循环一旦闭环,天然铀对外依存的杠杆将大幅削弱。',
   },
   {
-    key: 'smr', label: '小型堆 SMR', accent: '#10b981', maturity: 50, autonomy: 75, commercial: 30,
+    key: 'smr', label: '小型堆 SMR', accent: '#6fc2ae', maturity: 50, autonomy: 75, commercial: 30,
     tag: '模块化 · 分布式', units: '玲龙一号示范',
     desc: '模块化小型堆,面向工业供热、海岛与数据中心供电。工厂预制、现场组装压缩工期,但审批、安全壳与应急半径是真实的制度成本——小不等于审批快。',
     strategic: '核能的「分布式」试探:在算力扩张与工业供热需求下卡位,但监管框架仍按大堆逻辑运转。',
@@ -47,11 +47,11 @@ const GENS = [
 
 // ─── 阶段时间线 ─────────────────────────────────────────────────────────────
 const PHASES = [
-  { period: '1985–2004', title: '引进起步', accent: '#64748b', desc: '秦山自主起步 + 大亚湾引进法国技术;装机微小,技术路线受制于人,核电在能源盘子里只是补充。' },
-  { period: '2005–2015', title: '三代消化', accent: '#94a3b8', desc: 'AP1000/EPR 引进与华龙一号自主研发并行;福岛后核准放缓、安全标准抬升,在运装机约 26 GW。' },
-  { period: '2016–2022', title: '自主华龙', accent: '#e8a317', desc: '核准节奏恢复,华龙一号批量化建造并首堆并网;装机突破 50 GW,设备国产化率逼近 100%。' },
-  { period: '2023–2027', title: '批量化与出海', accent: '#c41e3a', desc: '年核准维持 10 台以上量级,华龙一号出口巴基斯坦等;在建规模稳居全球第一,核电从补充转为基荷主力。' },
-  { period: '2028–2040', title: '四代与聚变', accent: '#22d3ee', desc: '高温气冷堆、快堆示范规模化,闭式燃料循环工程落地;聚变工程实验堆推进——长周期、跨代际的能源卡位。' },
+  { period: '1985–2004', title: '引进起步', accent: '#8a8578', desc: '秦山自主起步 + 大亚湾引进法国技术;装机微小,技术路线受制于人,核电在能源盘子里只是补充。' },
+  { period: '2005–2015', title: '三代消化', accent: '#a29c91', desc: 'AP1000/EPR 引进与华龙一号自主研发并行;福岛后核准放缓、安全标准抬升,在运装机约 26 GW。' },
+  { period: '2016–2022', title: '自主华龙', accent: '#d4a25a', desc: '核准节奏恢复,华龙一号批量化建造并首堆并网;装机突破 50 GW,设备国产化率逼近 100%。' },
+  { period: '2023–2027', title: '批量化与出海', accent: '#e5483b', desc: '年核准维持 10 台以上量级,华龙一号出口巴基斯坦等;在建规模稳居全球第一,核电从补充转为基荷主力。' },
+  { period: '2028–2040', title: '四代与聚变', accent: '#6e8cff', desc: '高温气冷堆、快堆示范规模化,闭式燃料循环工程落地;聚变工程实验堆推进——长周期、跨代际的能源卡位。' },
 ];
 
 export default function Page() {
@@ -98,11 +98,11 @@ export default function Page() {
   // 交互③ · 能源结构中的核电占比（发电量结构 donut）
   const mixDonut = useMemo(() => donutOpt([
     { name: '煤电', value: 58, itemStyle: { color: '#475569' } },
-    { name: '水电', value: 13, itemStyle: { color: '#3b82f6' } },
-    { name: '风电', value: 10, itemStyle: { color: '#22d3ee' } },
-    { name: '光伏', value: 9, itemStyle: { color: '#e8a317' } },
-    { name: '气电', value: 5, itemStyle: { color: '#a855f7' } },
-    { name: '核电', value: 5, itemStyle: { color: '#c41e3a' } },
+    { name: '水电', value: 13, itemStyle: { color: '#6e8cff' } },
+    { name: '风电', value: 10, itemStyle: { color: '#6e8cff' } },
+    { name: '光伏', value: 9, itemStyle: { color: '#d4a25a' } },
+    { name: '气电', value: 5, itemStyle: { color: '#b07cc6' } },
+    { name: '核电', value: 5, itemStyle: { color: '#e5483b' } },
   ]), []);
 
   // 交互④ · 技术自主度雷达（产业链六维）
@@ -121,8 +121,8 @@ export default function Page() {
   const genCompare = useMemo(() => stackedBarOpt({
     categories: ['安全性', '经济性', '燃料利用', '废料最小化', '厂址灵活'],
     series: [
-      { name: '三代(华龙/国和)', data: [85, 88, 60, 55, 50], itemStyle: { color: '#c41e3a', borderRadius: 0 }, stack: null, barWidth: 12 },
-      { name: '四代(高温气冷/快堆)', data: [95, 65, 92, 85, 78], itemStyle: { color: '#22d3ee', borderRadius: 0 }, stack: null, barWidth: 12 },
+      { name: '三代(华龙/国和)', data: [85, 88, 60, 55, 50], itemStyle: { color: '#e5483b', borderRadius: 0 }, stack: null, barWidth: 12 },
+      { name: '四代(高温气冷/快堆)', data: [95, 65, 92, 85, 78], itemStyle: { color: '#6e8cff', borderRadius: 0 }, stack: null, barWidth: 12 },
     ],
   }), []);
   // stackedBarOpt 默认 stack:'total';此处覆盖为分组对比
@@ -136,10 +136,10 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="55+ 台" label="在运机组(量级)" accent="#c41e3a" />
-        <Stat value="#1" label="在建核电规模(全球)" accent="#22d3ee" />
-        <Stat value="~5%" label="全国发电量占比" accent="#e8a317" />
-        <Stat value="4+" label="华龙出海机组(示意)" accent="#10b981" />
+        <Stat value="55+ 台" label="在运机组(量级)" accent="#e5483b" />
+        <Stat value="#1" label="在建核电规模(全球)" accent="#6e8cff" />
+        <Stat value="~5%" label="全国发电量占比" accent="#d4a25a" />
+        <Stat value="4+" label="华龙出海机组(示意)" accent="#6fc2ae" />
       </Grid>
 
       {/* ─── 交互① 堆型/路线选择器 ─────────────────────────────── */}
@@ -192,9 +192,9 @@ export default function Page() {
           <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>裂变是已落地的现实主义;聚变是赌数十年复利的长波下注。EAST、HL-3 刷新等离子体约束参数,BEST 紧凑型装置推进工程化,ITER/CFETR 牵动全球超导与材料供应链。受能量增益(Q值)、第一壁材料与等离子体控制约束,商用仍在数十年外——必须与裂变基荷<strong style={{ color: 'var(--text-primary)' }}>解耦评估</strong>,不可挪用于近期电力规划。</p>
           <div className="space-y-2">
             {[
-              ['EAST 长脉冲', '高约束模式下持续刷新稳态运行时长,积累工程数据。', '#22d3ee'],
+              ['EAST 长脉冲', '高约束模式下持续刷新稳态运行时长,积累工程数据。', '#6e8cff'],
               ['BEST 紧凑装置', '面向工程化的紧凑型托卡马克,验证发电闭环关键技术。', '#38bdf8'],
-              ['ITER 国际合作', '工程进度牵动全球部件交付,中国承担多个关键部件。', '#a855f7'],
+              ['ITER 国际合作', '工程进度牵动全球部件交付,中国承担多个关键部件。', '#b07cc6'],
             ].map(([t, d, c]) => (
               <div key={t} style={{ borderLeft: `2px solid ${c}`, paddingLeft: 10 }}>
                 <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{t}</div>

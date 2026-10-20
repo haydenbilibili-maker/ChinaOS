@@ -44,20 +44,20 @@ function preview(text, max = 52) {
 function statusStyle(status) {
   if (status === '在任') return { background: 'rgba(56,189,248,0.12)', color: ACCENT };
   if (status === '已故') return { background: 'var(--bg-base)', color: 'var(--text-tertiary)' };
-  return { background: 'rgba(148,163,184,0.12)', color: '#94a3b8' };
+  return { background: 'rgba(162, 156, 145,0.12)', color: '#a29c91' };
 }
 
 function partyStyle(party) {
   if (party === 'DPP') return { background: 'rgba(34,197,94,0.12)', color: '#22c55e' };
-  if (party === 'KMT') return { background: 'rgba(59,130,246,0.12)', color: '#3b82f6' };
-  if (party === 'TPP') return { background: 'rgba(168,85,247,0.12)', color: '#a855f7' };
+  if (party === 'KMT') return { background: 'rgba(59,130,246,0.12)', color: '#6e8cff' };
+  if (party === 'TPP') return { background: 'rgba(168,85,247,0.12)', color: '#b07cc6' };
   return { background: 'var(--bg-base)', color: 'var(--text-tertiary)' };
 }
 
 function regionStyle(region) {
-  if (region === 'tw') return { background: 'rgba(196,30,58,0.12)', color: 'var(--china-red)' };
-  if (region === 'hk') return { background: 'rgba(34,211,238,0.12)', color: '#22d3ee' };
-  if (region === 'mo') return { background: 'rgba(232,163,23,0.12)', color: '#e8a317' };
+  if (region === 'tw') return { background: 'rgba(229, 72, 59,0.12)', color: 'var(--china-red)' };
+  if (region === 'hk') return { background: 'rgba(110, 140, 255,0.12)', color: '#6e8cff' };
+  if (region === 'mo') return { background: 'rgba(212, 162, 90,0.12)', color: '#d4a25a' };
   return { background: 'var(--bg-base)', color: 'var(--text-tertiary)' };
 }
 
@@ -190,7 +190,7 @@ export default function TaiwanPoliticalSection() {
   const statusChart = distStatus.length ? {
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
     grid: { left: 56, right: 16, top: 12, bottom: 24 },
-    xAxis: { type: 'value', axisLabel: { color: LABEL.color, fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+    xAxis: { type: 'value', axisLabel: { color: LABEL.color, fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } } },
     yAxis: { type: 'category', data: distStatus.map(([k]) => k).reverse(), axisLabel: { color: LABEL.color, fontSize: 10 } },
     series: [{ type: 'bar', data: distStatus.map(([, n]) => n).reverse(), barWidth: 14, itemStyle: { color: ACCENT, borderRadius: [0, 3, 3, 0] } }],
   } : null;
@@ -246,11 +246,11 @@ export default function TaiwanPoliticalSection() {
       <div className="grid gap-3 mb-4" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(100px,1fr))' }}>
         <Stat value={list.length} label="档案总数" accent={ACCENT} />
         <Stat value={inOffice} label="在任" accent={ACCENT} />
-        <Stat value={retired} label="卸任" accent="#94a3b8" />
-        <Stat value={deceased} label="已故" accent="#64748b" />
+        <Stat value={retired} label="卸任" accent="#a29c91" />
+        <Stat value={deceased} label="已故" accent="#8a8578" />
         <Stat value={regionCounts.tw ?? 0} label="台湾" accent="var(--china-red)" />
-        <Stat value={regionCounts.hk ?? 0} label="香港" accent="#22d3ee" />
-        <Stat value={regionCounts.mo ?? 0} label="澳门" accent="#e8a317" />
+        <Stat value={regionCounts.hk ?? 0} label="香港" accent="#6e8cff" />
+        <Stat value={regionCounts.mo ?? 0} label="澳门" accent="#d4a25a" />
         <Stat value={filtered.length} label="当前命中" />
       </div>
 
@@ -323,7 +323,7 @@ export default function TaiwanPoliticalSection() {
                 })}
               </div>
               {list.length < TAIWAN_POLITICAL_DEDUPED_COUNT.total && (
-                <button type="button" onClick={() => loadSeed(false)} disabled={loading} style={{ ...inp, cursor: 'pointer', color: '#10b981', borderColor: 'rgba(16,185,129,0.4)', display: 'flex', alignItems: 'center', gap: 4 }}>
+                <button type="button" onClick={() => loadSeed(false)} disabled={loading} style={{ ...inp, cursor: 'pointer', color: '#6fc2ae', borderColor: 'rgba(111, 194, 174,0.4)', display: 'flex', alignItems: 'center', gap: 4 }}>
                   <Lucide.RefreshCw size={13} />{loading ? '载入中…' : `补全 ${TAIWAN_POLITICAL_DEDUPED_COUNT.total} 条`}
                 </button>
               )}
@@ -407,7 +407,7 @@ export default function TaiwanPoliticalSection() {
                         title: '结构分析',
                         fields: [
                           { label: '档案摘要', value: detail.bio ? <ExpandableText text={detail.bio} /> : null, span: 2 },
-                          { label: '备注', value: detail.notes, span: 2, accent: '#e8a317' },
+                          { label: '备注', value: detail.notes, span: 2, accent: '#d4a25a' },
                         ],
                       },
                     ]}

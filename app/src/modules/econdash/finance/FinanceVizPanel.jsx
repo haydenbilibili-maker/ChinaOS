@@ -118,7 +118,7 @@ export default function FinanceVizPanel() {
             </div>
             <div className="os-card p-3" style={{ borderLeft: '3px solid #c99a4e' }}>
               <div className="text-[11px] mono mb-1" style={{ color: 'var(--text-tertiary)' }}>社融脉冲</div>
-              <div className="mono text-xl font-bold" style={{ color: '#e8a317' }}>
+              <div className="mono text-xl font-bold" style={{ color: '#d4a25a' }}>
                 {(kpis.afre - kpis.m2).toFixed(1)} pct
               </div>
               <p className="text-[10px] m-0 mt-1" style={{ color: 'var(--text-tertiary)' }}>
@@ -171,16 +171,16 @@ export default function FinanceVizPanel() {
               <div className="text-xs font-semibold mb-2" style={{ color: 'var(--text-secondary)' }}>融资余额（万亿 · 示意）</div>
               <ChartBlock option={opts.margin} height={160} label="融资余额载入中…" />
             </div>
-            <div className="os-card p-3 flex flex-col justify-center" style={{ borderLeft: '3px solid #22d3ee' }}>
+            <div className="os-card p-3 flex flex-col justify-center" style={{ borderLeft: '3px solid #6e8cff' }}>
               <div className="text-[11px] mono mb-2" style={{ color: 'var(--text-tertiary)' }}>实时种子读数 · liveQuotes</div>
               <div className="flex flex-wrap gap-4">
                 <div>
                   <div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>上证指数</div>
-                  <div className="mono text-lg font-bold" style={{ color: '#c41e3a' }}>{kpis.sse ?? '—'}</div>
+                  <div className="mono text-lg font-bold" style={{ color: '#e5483b' }}>{kpis.sse ?? '—'}</div>
                 </div>
                 <div>
                   <div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>USD/CNY</div>
-                  <div className="mono text-lg font-bold" style={{ color: '#10b981' }}>{kpis.usdcny ?? '—'}</div>
+                  <div className="mono text-lg font-bold" style={{ color: '#6fc2ae' }}>{kpis.usdcny ?? '—'}</div>
                 </div>
               </div>
               <p className="text-[10px] m-0 mt-2" style={{ color: 'var(--text-tertiary)' }}>

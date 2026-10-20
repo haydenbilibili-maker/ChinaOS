@@ -35,10 +35,10 @@ const transition = {
   legend: { data: ['美国', '中国'], textStyle: { color: LABEL.color }, top: 0 },
   grid: { left: 40, right: 16, top: 30, bottom: 24 },
   xAxis: { type: 'category', data: ['1990', '2000', '2010', '2020', '2030E', '2040E'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
-  yAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+  yAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } } },
   series: [
-    { name: '美国', type: 'line', smooth: true, data: [100, 100, 95, 90, 86, 82], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
-    { name: '中国', type: 'line', smooth: true, data: [20, 35, 55, 72, 84, 92], lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.08)' } },
+    { name: '美国', type: 'line', smooth: true, data: [100, 100, 95, 90, 86, 82], lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' } },
+    { name: '中国', type: 'line', smooth: true, data: [20, 35, 55, 72, 84, 92], lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.08)' } },
   ],
 };
 
@@ -54,9 +54,9 @@ const MEARSHEIMER = [
 const LINEAGE = [
   { period: '前5世纪', title: '修昔底德', accent: '#d4a017', desc: '《伯罗奔尼撒战争史》：「雅典的崛起与斯巴达的恐惧使战争不可避免」——权力转移与恐惧心理的原型叙事；米洛斯对话写下「强者为所能为，弱者受所必受」的冷酷公理。' },
   { period: '16-17世纪', title: '马基雅维利 / 霍布斯', accent: '#d4a017', desc: '马基雅维利把政治从道德中剥离（国家理由 raison d\'État）；霍布斯的「自然状态=一切人对一切人的战争」成为「国际无政府状态」的哲学母体——国内有利维坦，国际没有。' },
-  { period: '1948', title: '摩根索 · 古典现实主义', accent: '#c41e3a', desc: '《国家间政治》六原则：政治受根植于人性的客观法则支配；利益以权力定义；审慎是最高政治美德。现实主义从史学叙事变成系统理论。' },
-  { period: '1979', title: '华尔兹 · 结构现实主义', accent: '#22d3ee', desc: '《国际政治理论》：把分析单元从人性搬到体系结构——无政府状态+能力分布决定行为。国家是安全最大化者；两极结构最稳定。理论实现「科学化」。' },
-  { period: '2001', title: '米尔斯海默 · 进攻性现实主义', accent: '#c41e3a', desc: '《大国政治的悲剧》：同样的结构前提推出更悲观结论——意图不可确知逼迫国家权力最大化，地区霸权是唯一终点，故「中国不能和平崛起」。' },
+  { period: '1948', title: '摩根索 · 古典现实主义', accent: '#e5483b', desc: '《国家间政治》六原则：政治受根植于人性的客观法则支配；利益以权力定义；审慎是最高政治美德。现实主义从史学叙事变成系统理论。' },
+  { period: '1979', title: '华尔兹 · 结构现实主义', accent: '#6e8cff', desc: '《国际政治理论》：把分析单元从人性搬到体系结构——无政府状态+能力分布决定行为。国家是安全最大化者；两极结构最稳定。理论实现「科学化」。' },
+  { period: '2001', title: '米尔斯海默 · 进攻性现实主义', accent: '#e5483b', desc: '《大国政治的悲剧》：同样的结构前提推出更悲观结论——意图不可确知逼迫国家权力最大化，地区霸权是唯一终点，故「中国不能和平崛起」。' },
   { period: '1998-', title: '新古典现实主义', accent: '#7c8aa0', desc: 'Rose/Schweller/Zakaria：结构压力要经过国内政治、领导人认知、国家汲取能力的「传导带」才变成外交政策——为结构理论补回能动性与误判空间。' },
 ];
 
@@ -69,9 +69,9 @@ const POLARITY = {
 
 // 联盟动力学三反应
 const ALLIANCE = [
-  { t: '制衡 Balancing', c: '#c41e3a', d: '与弱方结盟对抗最强（或最具威胁）国家。华尔兹视为体系默认反应；沃尔特修正为「威胁制衡」——制衡的是威胁感知而非纯实力。', ex: '美日同盟强化、AUKUS、美菲基地扩展。' },
+  { t: '制衡 Balancing', c: '#e5483b', d: '与弱方结盟对抗最强（或最具威胁）国家。华尔兹视为体系默认反应；沃尔特修正为「威胁制衡」——制衡的是威胁感知而非纯实力。', ex: '美日同盟强化、AUKUS、美菲基地扩展。' },
   { t: '追随 Bandwagoning', c: '#d4a017', d: '加入更强/上升的一方分享利益或避祸。施韦勒指出「利益追随」常被低估——小国跟随崛起国是为了搭便车而非屈服。', ex: '柬埔寨、巴基斯坦深度靠近中国阵营。' },
-  { t: '推卸 Buck-passing', c: '#22d3ee', d: '让别国去承担制衡成本，自己保存实力。米尔斯海默认为多极下大国的首选策略——也是绥靖与连锁失灵的温床。', ex: '部分欧洲国家在印太「经济照旧、安全旁观」。' },
+  { t: '推卸 Buck-passing', c: '#6e8cff', d: '让别国去承担制衡成本，自己保存实力。米尔斯海默认为多极下大国的首选策略——也是绥靖与连锁失灵的温床。', ex: '部分欧洲国家在印太「经济照旧、安全旁观」。' },
 ];
 
 // 各国对华姿态归类（理论示意）
@@ -124,8 +124,8 @@ export default function Page() {
     xAxis: categoryX(['T0', 'T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7']),
     yAxis: valueY({ name: '军备/紧张度', nameTextStyle: { color: '#7c8aa0', fontSize: 10 } }),
     series: [
-      { name: 'A 国军备', type: 'line', step: 'end', data: [20, 34, 34, 52, 52, 74, 74, 96], lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' } },
-      { name: 'B 国军备', type: 'line', step: 'end', data: [20, 20, 40, 40, 60, 60, 84, 84], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
+      { name: 'A 国军备', type: 'line', step: 'end', data: [20, 34, 34, 52, 52, 74, 74, 96], lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' } },
+      { name: 'B 国军备', type: 'line', step: 'end', data: [20, 20, 40, 40, 60, 60, 84, 84], lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' } },
       { name: '可分辨防御出口', type: 'line', smooth: true, data: [20, 26, 30, 33, 35, 36, 37, 38], lineStyle: { color: '#34d399', width: 2, type: 'dashed' }, itemStyle: { color: '#34d399' } },
     ],
   }), []);
@@ -145,7 +145,7 @@ export default function Page() {
       <div className="flex gap-1 flex-wrap mb-4">
         {Object.entries(SCHOOLS).map(([k, v]) => (
           <button key={k} onClick={() => setS(k)} className="text-sm px-3 py-1.5 rounded mono"
-            style={{ background: k === s ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)', color: k === s ? '#fff' : 'var(--text-secondary)', border: `1px solid ${k === s ? 'var(--china-red)' : 'transparent'}`, cursor: 'pointer' }}>{v.label}</button>
+            style={{ background: k === s ? 'rgba(229, 72, 59,0.2)' : 'var(--bg-elevated)', color: k === s ? '#fff' : 'var(--text-secondary)', border: `1px solid ${k === s ? 'var(--china-red)' : 'transparent'}`, cursor: 'pointer' }}>{v.label}</button>
         ))}
       </div>
 
@@ -153,13 +153,13 @@ export default function Page() {
         <Card title={sc.label}>
           <div className="text-xs mono mb-2" style={{ color: 'var(--cyber-cyan)' }}>{sc.rep} · 分析单元：{sc.unit}</div>
           <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>{sc.tenet}</p>
-          <div className="p-3 rounded" style={{ background: 'rgba(196,30,58,0.08)', border: '1px solid rgba(196,30,58,0.2)' }}>
+          <div className="p-3 rounded" style={{ background: 'rgba(229, 72, 59,0.08)', border: '1px solid rgba(229, 72, 59,0.2)' }}>
             <span className="text-[10px] mono uppercase" style={{ color: 'var(--china-red)' }}>对中美博弈的预测</span>
             <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>{sc.pred}</p>
           </div>
         </Card>
         <Card title="流派立场画像（示意）">
-          <EChart option={{ radar: { indicator: RADAR_IND, axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } }, series: [{ type: 'radar', data: [{ value: sc.radar, name: sc.label, lineStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.14)' } }] }] }} style={{ height: 260 }} />
+          <EChart option={{ radar: { indicator: RADAR_IND, axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } }, splitArea: { show: false } }, series: [{ type: 'radar', data: [{ value: sc.radar, name: sc.label, lineStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.14)' } }] }] }} style={{ height: 260 }} />
         </Card>
       </Grid>
 
@@ -204,7 +204,7 @@ export default function Page() {
 
       <Card title="攻防平衡理论 · 技术如何拨动战争天平" className="mb-6">
         <Grid cols={2} className="mb-3">
-          <div className="os-card p-4" style={{ background: 'rgba(196,30,58,0.06)', borderLeft: '3px solid var(--china-red)' }}>
+          <div className="os-card p-4" style={{ background: 'rgba(229, 72, 59,0.06)', borderLeft: '3px solid var(--china-red)' }}>
             <div className="text-sm font-semibold mb-1" style={{ color: 'var(--china-red)' }}>攻势占优 → 战争易发</div>
             <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>进攻成本低于防御时，先动手者得利——<strong style={{ color: 'var(--text-primary)' }}>先发制人诱惑</strong>与「动员竞赛」主导危机（1914 年的进攻崇拜 + 铁路时刻表）。征服看似廉价，修正主义更划算。</p>
           </div>

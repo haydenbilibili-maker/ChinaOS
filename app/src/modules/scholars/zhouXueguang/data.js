@@ -10,13 +10,13 @@
 export const AS_OF = '2026-09-28';
 
 export const THEMES = {
-  unity: { label: '一统体制与有效治理', color: '#c41e3a' },
-  empire: { label: '中央地方关系与帝国逻辑', color: '#8b5cf6' },
-  collusion: { label: '官僚行为：共谋·变通·逆向软预算', color: '#22d3ee' },
-  campaign: { label: '运动型治理', color: '#e8a317' },
-  control: { label: '控制权理论与政府内部关系', color: '#10b981' },
-  history: { label: '官僚制传统与人事制度', color: '#fb923c' },
-  method: { label: '组织社会学方法与大转型', color: '#94a3b8' },
+  unity: { label: '一统体制与有效治理', color: '#e5483b' },
+  empire: { label: '中央地方关系与帝国逻辑', color: '#b07cc6' },
+  collusion: { label: '官僚行为：共谋·变通·逆向软预算', color: '#6e8cff' },
+  campaign: { label: '运动型治理', color: '#d4a25a' },
+  control: { label: '控制权理论与政府内部关系', color: '#6fc2ae' },
+  history: { label: '官僚制传统与人事制度', color: '#c07a4a' },
+  method: { label: '组织社会学方法与大转型', color: '#a29c91' },
 };
 export const THEME_KEYS = Object.keys(THEMES);
 
@@ -47,10 +47,10 @@ export const BOARD = {
 };
 
 export const CAREER_GROUPS = {
-  study: { label: '求学', color: '#8b5cf6' },
-  us: { label: '美国 / 香港教职', color: '#22d3ee' },
-  stanford: { label: '斯坦福', color: '#c41e3a' },
-  visit: { label: '访学 / 兼职', color: '#e8a317' },
+  study: { label: '求学', color: '#b07cc6' },
+  us: { label: '美国 / 香港教职', color: '#6e8cff' },
+  stanford: { label: '斯坦福', color: '#e5483b' },
+  visit: { label: '访学 / 兼职', color: '#d4a25a' },
 };
 
 /** 履历甘特：起止为小数年；月份未载者取年中近似；note 记录口径出入 */

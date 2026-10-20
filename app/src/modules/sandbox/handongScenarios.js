@@ -8,11 +8,11 @@ export const HANDONG_STORAGE_KEY = 'c2os-handong-config';
 export const HANDONG_DOMAINS = ['经济发展', '社会稳定', '政治生态', '生态文明', '民生福祉'];
 
 export const HANDONG_TOOLS = [
-  { id: 'fiscal', label: '财政投入', color: '#e8a317', desc: '专项债/转移支付/减税——稳投资、兜底线' },
-  { id: 'industry', label: '产业扶持', color: '#8b5cf6', desc: '链主培育/技改补贴/园区升级——调结构、促转型' },
-  { id: 'org', label: '组织整顿', color: '#c41e3a', desc: '巡视整改/人事调整/纪律震慑——净生态、强执行' },
-  { id: 'invest', label: '招商让利', color: '#10b981', desc: '土地优惠/审批提速/营商环境——引项目、增税源' },
-  { id: 'stability', label: '维稳兜底', color: '#22d3ee', desc: '信访化解/网格治理/应急储备——控风险、保底线' },
+  { id: 'fiscal', label: '财政投入', color: '#d4a25a', desc: '专项债/转移支付/减税——稳投资、兜底线' },
+  { id: 'industry', label: '产业扶持', color: '#b07cc6', desc: '链主培育/技改补贴/园区升级——调结构、促转型' },
+  { id: 'org', label: '组织整顿', color: '#e5483b', desc: '巡视整改/人事调整/纪律震慑——净生态、强执行' },
+  { id: 'invest', label: '招商让利', color: '#6fc2ae', desc: '土地优惠/审批提速/营商环境——引项目、增税源' },
+  { id: 'stability', label: '维稳兜底', color: '#6e8cff', desc: '信访化解/网格治理/应急储备——控风险、保底线' },
 ];
 
 export const DEFAULT_HANDONG_CONFIG = {
@@ -51,7 +51,7 @@ export const TEAM_ROLES = [
 export const HANDONG_SCENARIOS = {
   anticorruption: {
     label: '反腐风暴',
-    color: '#c41e3a',
+    color: '#e5483b',
     intro: '中央巡视组进驻，多名厅局级干部落马，政治生态震荡与项目停摆叠加，考验班子定力与制度重建能力。',
     triggers: ['巡视进驻', '厅官落马', '项目审查', '舆论聚焦'],
     timeline: [
@@ -79,7 +79,7 @@ export const HANDONG_SCENARIOS = {
   },
   industryTransform: {
     label: '产业转型',
-    color: '#8b5cf6',
+    color: '#b07cc6',
     intro: '煤炭产能压减与新兴产业培育并行，传统就业承压、财政税源收缩，转型阵痛与增长目标冲突。',
     triggers: ['产能压减令', '煤价波动', '就业压力', '新兴产业招商'],
     timeline: [
@@ -106,7 +106,7 @@ export const HANDONG_SCENARIOS = {
   },
   environmental: {
     label: '环保督查',
-    color: '#10b981',
+    color: '#6fc2ae',
     intro: '中央环保督察组点名汉东：煤矿生态破坏、京州空气质量不达标，一批项目被叫停，绿色考核一票否决。',
     triggers: ['督察进驻', '红线项目', '空气质量', '生态赔偿'],
     timeline: [
@@ -133,7 +133,7 @@ export const HANDONG_SCENARIOS = {
   },
   debtResolution: {
     label: '债务化解',
-    color: '#e8a317',
+    color: '#d4a25a',
     intro: '城投平台隐性债务暴露，多家平台违约传闻，融资成本飙升，土地财政断崖式下滑。',
     triggers: ['平台违约', '利差走阔', '土地财政', '三保压力'],
     timeline: [
@@ -160,7 +160,7 @@ export const HANDONG_SCENARIOS = {
   },
   petitionStability: {
     label: '信访维稳',
-    color: '#22d3ee',
+    color: '#6e8cff',
     intro: '京州某开发区征地补偿纠纷引发群体性事件，网络舆情发酵，信访量激增，维稳压力陡升。',
     triggers: ['群体事件', '网络舆情', '信访激增', '考核问责'],
     timeline: [
@@ -188,7 +188,7 @@ export const HANDONG_SCENARIOS = {
   },
   investment: {
     label: '招商引资',
-    color: '#fb923c',
+    color: '#c07a4a',
     intro: '邻省打出激进招商政策，汉东外资与民企项目外流，书记亲自带队「抢项目」，但环保与债务约束仍在。',
     triggers: ['项目外流', '书记带队', '政策比拼', '落地考核'],
     timeline: [

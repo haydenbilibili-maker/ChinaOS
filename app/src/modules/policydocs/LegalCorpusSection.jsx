@@ -19,14 +19,14 @@ import {
 
 const AS_OF = LEGAL_STATUTE_META.asOf;
 const TYPE_COLOR = {
-  law: '#c41e3a',
-  admin_regulation: '#22d3ee',
-  judicial_interpretation: '#8b5cf6',
+  law: '#e5483b',
+  admin_regulation: '#6e8cff',
+  judicial_interpretation: '#b07cc6',
 };
 const STATUS_COLOR = {
-  现行有效: '#10b981',
-  已修订: '#e8a317',
-  已废止: '#64748b',
+  现行有效: '#6fc2ae',
+  已修订: '#d4a25a',
+  已废止: '#8a8578',
 };
 const TYPE_FILTERS = [['all', '全部'], ['law', '法律'], ['admin_regulation', '行政法规'], ['judicial_interpretation', '司法解释']];
 const STATUS_FILTERS = ['全部', '现行有效', '已修订', '已废止'];
@@ -134,7 +134,7 @@ export default function LegalCorpusSection() {
 
   const domainChart = useMemo(() => ({
     grid: { left: 88, right: 16, top: 8, bottom: 24 },
-    xAxis: { type: 'value', axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+    xAxis: { type: 'value', axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } } },
     yAxis: {
       type: 'category',
       data: [...LS_DOMAINS].reverse(),
@@ -144,7 +144,7 @@ export default function LegalCorpusSection() {
     series: [{
       type: 'bar', barWidth: 12,
       data: [...LS_DOMAINS].reverse().map((d) => domainCounts[d] || 0),
-      itemStyle: { color: '#22d3ee', borderRadius: [0, 3, 3, 0] },
+      itemStyle: { color: '#6e8cff', borderRadius: [0, 3, 3, 0] },
     }],
   }), [domainCounts]);
 
@@ -156,15 +156,15 @@ export default function LegalCorpusSection() {
     <div>
       <IntroCard>
         以<strong style={{ color: 'var(--text-primary)' }}>元数据索引 + 本地原文库</strong>支撑条文研读：覆盖宪法国家机构、民商、行政、刑事、经济、社会、环境、科技数据、国家安全九大领域。
-        已入库 <span className="mono" style={{ color: '#10b981' }}>{corpusCount || 0}</span> 部规范原文（含法典节选），其余条目提供要点汇编 fallback。
+        已入库 <span className="mono" style={{ color: '#6fc2ae' }}>{corpusCount || 0}</span> 部规范原文（含法典节选），其余条目提供要点汇编 fallback。
         与「法治建设」模块互补——后者侧重制度红利与司法现代化态势，本库提供可检索的规范语料底座。数据截至 <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{AS_OF}</span>。
       </IntroCard>
 
       <StatGrid className="mb-6">
-        <Stat value={all.length || seedTotal} label="条文总数" accent="#c41e3a" />
-        <Stat value={typeCounts.law || LEGAL_STATUTE_DEDUPED_COUNT.law} label="法律" accent="#c41e3a" />
-        <Stat value={typeCounts.admin_regulation || LEGAL_STATUTE_DEDUPED_COUNT.admin_regulation} label="行政法规" accent="#22d3ee" />
-        <Stat value={typeCounts.judicial_interpretation || LEGAL_STATUTE_DEDUPED_COUNT.judicial_interpretation} label="司法解释" accent="#8b5cf6" />
+        <Stat value={all.length || seedTotal} label="条文总数" accent="#e5483b" />
+        <Stat value={typeCounts.law || LEGAL_STATUTE_DEDUPED_COUNT.law} label="法律" accent="#e5483b" />
+        <Stat value={typeCounts.admin_regulation || LEGAL_STATUTE_DEDUPED_COUNT.admin_regulation} label="行政法规" accent="#6e8cff" />
+        <Stat value={typeCounts.judicial_interpretation || LEGAL_STATUTE_DEDUPED_COUNT.judicial_interpretation} label="司法解释" accent="#b07cc6" />
       </StatGrid>
 
       <Grid cols={2} className="mb-6">
@@ -193,7 +193,7 @@ export default function LegalCorpusSection() {
         <div className="flex flex-wrap gap-1.5 mb-2">
           {TYPE_FILTERS.map(([k, l]) => {
             const on = typeF === k;
-            const accent = TYPE_COLOR[k] || '#64748b';
+            const accent = TYPE_COLOR[k] || '#8a8578';
             return (
               <button key={k} type="button" onClick={() => setTypeF(k)} className={`os-filter-chip mono ${on ? 'is-active' : ''}`} style={{ '--chip-accent': accent }}>{l}</button>
             );
@@ -202,18 +202,18 @@ export default function LegalCorpusSection() {
         <div className="flex flex-wrap gap-1.5 mb-2">
           {STATUS_FILTERS.map((s) => {
             const on = statusF === s;
-            const accent = STATUS_COLOR[s] || '#64748b';
+            const accent = STATUS_COLOR[s] || '#8a8578';
             return (
               <button key={s} type="button" onClick={() => setStatusF(s)} className={`os-filter-chip mono ${on ? 'is-active' : ''}`} style={{ '--chip-accent': accent }}>{s}</button>
             );
           })}
         </div>
         <div className="flex flex-wrap gap-1.5">
-          <button type="button" onClick={() => setDomainF('全部')} className={`os-filter-chip mono ${domainF === '全部' ? 'is-active' : ''}`} style={{ '--chip-accent': '#e8a317' }}>全部领域</button>
+          <button type="button" onClick={() => setDomainF('全部')} className={`os-filter-chip mono ${domainF === '全部' ? 'is-active' : ''}`} style={{ '--chip-accent': '#d4a25a' }}>全部领域</button>
           {LS_DOMAINS.map((d) => {
             const on = domainF === d;
             return (
-              <button key={d} type="button" onClick={() => setDomainF(d)} className={`os-filter-chip mono ${on ? 'is-active' : ''}`} style={{ '--chip-accent': '#22d3ee' }}>
+              <button key={d} type="button" onClick={() => setDomainF(d)} className={`os-filter-chip mono ${on ? 'is-active' : ''}`} style={{ '--chip-accent': '#6e8cff' }}>
                 {d} {domainCounts[d] || 0}
               </button>
             );
@@ -226,7 +226,7 @@ export default function LegalCorpusSection() {
           <div className="space-y-1.5" style={{ maxHeight: 560, overflowY: 'auto' }}>
             {list.map((r) => {
               const on = sel?.id === r.id;
-              const c = TYPE_COLOR[r.type] || '#64748b';
+              const c = TYPE_COLOR[r.type] || '#8a8578';
               return (
                 <button
                   key={r.id}
@@ -242,7 +242,7 @@ export default function LegalCorpusSection() {
                   }}
                   className="w-full text-left px-3 py-2 rounded"
                   style={{
-                    background: on ? 'rgba(196,30,58,0.12)' : 'var(--bg-elevated)',
+                    background: on ? 'rgba(229, 72, 59,0.12)' : 'var(--bg-elevated)',
                     border: `1px solid ${on ? 'var(--china-red)' : 'transparent'}`,
                     borderLeft: `3px solid ${c}`,
                     cursor: 'pointer',
@@ -250,7 +250,7 @@ export default function LegalCorpusSection() {
                 >
                   <div className="flex items-center gap-2 flex-wrap">
                     <span style={pill(c)}>{LS_TYPE_MAP[r.type]}</span>
-                    <span style={pill(STATUS_COLOR[r.status] || '#64748b')}>{r.status}</span>
+                    <span style={pill(STATUS_COLOR[r.status] || '#8a8578')}>{r.status}</span>
                     {corpusIds.has(r.id) && (() => {
                       const b = corpusListBadge(corpusTiers[r.id]);
                       return b ? <span style={pill(b.color)}>{b.text}</span> : null;
@@ -294,7 +294,7 @@ export default function LegalCorpusSection() {
               {(sel.domain || []).length > 0 && (
                 <div className="flex flex-wrap gap-2 mb-3">
                   {(sel.domain || []).map((d) => (
-                    <span key={d} style={pill('#22d3ee')}>{d}</span>
+                    <span key={d} style={pill('#6e8cff')}>{d}</span>
                   ))}
                 </div>
               )}
@@ -314,7 +314,7 @@ export default function LegalCorpusSection() {
                   <div className="text-xs font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>关联模块</div>
                   <div className="flex flex-wrap gap-2">
                     {sel.relatedPolicyLinks.map((p) => (
-                      <Link key={p} to={p} className="text-[11px] mono px-2 py-1 rounded" style={{ background: 'var(--bg-elevated)', color: 'var(--cyber-cyan)', border: '1px solid rgba(34,211,238,0.25)' }}>
+                      <Link key={p} to={p} className="text-[11px] mono px-2 py-1 rounded" style={{ background: 'var(--bg-elevated)', color: 'var(--cyber-cyan)', border: '1px solid rgba(110, 140, 255,0.25)' }}>
                         {p}
                       </Link>
                     ))}

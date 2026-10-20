@@ -10,12 +10,12 @@
 export const AS_OF = '2026-09-28';
 
 export const THEMES = {
-  democracy: { label: '增量民主与民主理论', color: '#c41e3a' },
-  goodgov: { label: '善治与国家治理现代化', color: '#10b981' },
-  civil: { label: '公民社会与社会治理', color: '#22d3ee' },
-  innovation: { label: '政府创新与城市治理', color: '#e8a317' },
-  authority: { label: '权力、权威与官本主义', color: '#8b5cf6' },
-  discipline: { label: '政治学科与比较政治', color: '#94a3b8' },
+  democracy: { label: '增量民主与民主理论', color: '#e5483b' },
+  goodgov: { label: '善治与国家治理现代化', color: '#6fc2ae' },
+  civil: { label: '公民社会与社会治理', color: '#6e8cff' },
+  innovation: { label: '政府创新与城市治理', color: '#d4a25a' },
+  authority: { label: '权力、权威与官本主义', color: '#b07cc6' },
+  discipline: { label: '政治学科与比较政治', color: '#a29c91' },
 };
 export const THEME_KEYS = Object.keys(THEMES);
 
@@ -46,10 +46,10 @@ export const BOARD = {
 };
 
 export const CAREER_GROUPS = {
-  study: { label: '求学/访学', color: '#8b5cf6' },
-  cctb: { label: '中央编译局', color: '#c41e3a' },
-  pku: { label: '北京大学', color: '#22d3ee' },
-  szu: { label: '深圳大学', color: '#e8a317' },
+  study: { label: '求学/访学', color: '#b07cc6' },
+  cctb: { label: '中央编译局', color: '#e5483b' },
+  pku: { label: '北京大学', color: '#6e8cff' },
+  szu: { label: '深圳大学', color: '#d4a25a' },
 };
 
 /** 履历甘特：起止为小数年；月份未载者取年中近似；note 记录口径出入 */

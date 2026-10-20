@@ -22,9 +22,9 @@ import { useTalentDeepLink } from '../../lib/talent/routing.js';
 
 const short = (p) => (p || '').replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '');
 const inp = { background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', borderRadius: 6, padding: '6px 10px', fontSize: 13 };
-const btn = { background: 'rgba(16,185,129,0.14)', color: '#10b981', border: '1px solid rgba(16,185,129,0.35)', borderRadius: 6, padding: '6px 14px', fontSize: 13, cursor: 'pointer' };
+const btn = { background: 'rgba(111, 194, 174,0.14)', color: '#6fc2ae', border: '1px solid rgba(111, 194, 174,0.35)', borderRadius: 6, padding: '6px 14px', fontSize: 13, cursor: 'pointer' };
 const TIER_RANK = { C9: 0, '985': 1, '211': 2, 双一流: 3 };
-const TIER_COLORS = { C9: '#c41e3a', '985': '#e8a317', '211': '#a78bfa', 双一流: '#22d3ee' };
+const TIER_COLORS = { C9: '#e5483b', '985': '#d4a25a', '211': '#a78bfa', 双一流: '#6e8cff' };
 
 function tally(arr, keyFn) {
   const m = new Map();
@@ -36,7 +36,7 @@ function TagBadges({ r, dense = false }) {
   const tags = parseHeTags(r);
   return tags.map((t) => (
     <span key={t} className="text-[9px] mono px-1.5 py-0.5 rounded"
-      style={{ background: `${TIER_COLORS[t] || '#10b981'}22`, color: TIER_COLORS[t] || '#10b981' }}>
+      style={{ background: `${TIER_COLORS[t] || '#6fc2ae'}22`, color: TIER_COLORS[t] || '#6fc2ae' }}>
       {t}
     </span>
   ));
@@ -46,8 +46,8 @@ function UniCard({ r, on, onClick, dense = false }) {
   return (
     <button type="button" onClick={onClick} className="w-full text-left rounded"
       style={{
-        background: on ? 'rgba(16,185,129,0.14)' : 'var(--bg-elevated)',
-        border: `1px solid ${on ? '#10b981' : 'var(--border-subtle)'}`,
+        background: on ? 'rgba(111, 194, 174,0.14)' : 'var(--bg-elevated)',
+        border: `1px solid ${on ? '#6fc2ae' : 'var(--border-subtle)'}`,
         cursor: 'pointer', padding: dense ? '8px 10px' : '10px 12px',
       }}>
       <div className="flex items-start gap-2">
@@ -56,7 +56,7 @@ function UniCard({ r, on, onClick, dense = false }) {
           <div className="flex items-center gap-1.5 flex-wrap">
             <span className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{r.name}</span>
             <TagBadges r={r} dense={dense} />
-            {r.region && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)' }}>{short(r.region)}</span>}
+            {r.region && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(110, 140, 255,0.12)', color: 'var(--cyber-cyan)' }}>{short(r.region)}</span>}
             {r.type && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'var(--bg-base)', color: 'var(--text-tertiary)' }}>{r.type}</span>}
           </div>
           <div className="text-[11px] mt-0.5 truncate" style={{ color: 'var(--text-secondary)' }}>{r.strengths}</div>
@@ -127,9 +127,9 @@ export default function HigherEducationSection() {
 
   const disciplineChart = {
     grid: { left: 100, right: 16, top: 12, bottom: 24 },
-    xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+    xAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } } },
     yAxis: { type: 'category', data: distDiscipline.slice(0, 12).map(([k]) => k).reverse(), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
-    series: [{ type: 'bar', data: distDiscipline.slice(0, 12).map(([, n]) => n).reverse(), barWidth: 14, itemStyle: { color: '#10b981', borderRadius: 3 } }],
+    series: [{ type: 'bar', data: distDiscipline.slice(0, 12).map(([, n]) => n).reverse(), barWidth: 14, itemStyle: { color: '#6fc2ae', borderRadius: 3 } }],
     tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
   };
 
@@ -169,7 +169,7 @@ export default function HigherEducationSection() {
   return (
     <section>
       <div className="flex items-center gap-3 mb-4 pb-3" style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-        <span className="flex items-center justify-center rounded" style={{ width: 32, height: 32, background: 'rgba(16,185,129,0.12)', color: '#10b981' }}>
+        <span className="flex items-center justify-center rounded" style={{ width: 32, height: 32, background: 'rgba(111, 194, 174,0.12)', color: '#6fc2ae' }}>
           <Lucide.GraduationCap size={16} />
         </span>
         <div>
@@ -181,12 +181,12 @@ export default function HigherEducationSection() {
       </div>
 
       <div className="grid gap-3 mb-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(100px,1fr))' }}>
-        <Stat value={tierCounts.C9 || 0} label="C9" accent="#c41e3a" />
-        <Stat value={tierCounts['985'] || 0} label="985" accent="#e8a317" />
+        <Stat value={tierCounts.C9 || 0} label="C9" accent="#e5483b" />
+        <Stat value={tierCounts['985'] || 0} label="985" accent="#d4a25a" />
         <Stat value={tierCounts['211'] || 0} label="211" accent="#a78bfa" />
-        <Stat value={tierCounts.双一流 || 0} label="双一流" accent="#22d3ee" />
-        <Stat value={HIGHER_EDUCATION_DEDUPED_COUNT.total} label="院校总数" accent="#10b981" />
-        <Stat value={regions.length} label="覆盖地域" accent="#f0abfc" />
+        <Stat value={tierCounts.双一流 || 0} label="双一流" accent="#6e8cff" />
+        <Stat value={HIGHER_EDUCATION_DEDUPED_COUNT.total} label="院校总数" accent="#6fc2ae" />
+        <Stat value={regions.length} label="覆盖地域" accent="#d9a7d6" />
         <Stat value={filtered.length} label="当前命中" />
       </div>
 
@@ -221,7 +221,7 @@ export default function HigherEducationSection() {
               <div className="flex rounded overflow-hidden" style={{ border: '1px solid var(--border-subtle)' }}>
                 {[['list', 'List'], ['grid', 'LayoutGrid'], ['stats', 'BarChart3']].map(([v, ic]) => {
                   const I = Lucide[ic]; const on = view === v;
-                  return <button key={v} type="button" onClick={() => setView(v)} style={{ padding: '6px 9px', background: on ? 'rgba(16,185,129,0.18)' : 'var(--bg-base)', color: on ? '#10b981' : 'var(--text-tertiary)', border: 'none', cursor: 'pointer' }}><I size={15} /></button>;
+                  return <button key={v} type="button" onClick={() => setView(v)} style={{ padding: '6px 9px', background: on ? 'rgba(111, 194, 174,0.18)' : 'var(--bg-base)', color: on ? '#6fc2ae' : 'var(--text-tertiary)', border: 'none', cursor: 'pointer' }}><I size={15} /></button>;
                 })}
               </div>
             </div>
@@ -229,7 +229,7 @@ export default function HigherEducationSection() {
               <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>层级</span>
               {tiers.map((t) => {
                 const on = tier === t;
-                const c = TIER_COLORS[t] || '#10b981';
+                const c = TIER_COLORS[t] || '#6fc2ae';
                 return (
                   <button key={t} type="button" onClick={() => setTier(on ? '' : t)}
                     className="text-[11px] mono px-2 py-0.5 rounded-full"
@@ -259,9 +259,9 @@ export default function HigherEducationSection() {
             <div className="space-y-4 mb-4">
               <Grid cols={2}>
                 <Card title="学科分布"><EChart option={disciplineChart} style={{ height: Math.max(240, distDiscipline.slice(0, 12).length * 22) }} /></Card>
-                <Card title="层级（C9/985/211/双一流）"><DistBar data={distTier} color="#e8a317" onPick={(k) => setTier(tier === k ? '' : k)} active={tier} /></Card>
+                <Card title="层级（C9/985/211/双一流）"><DistBar data={distTier} color="#d4a25a" onPick={(k) => setTier(tier === k ? '' : k)} active={tier} /></Card>
               </Grid>
-              <Card title="地域（点选筛选）"><DistBar data={distRegion.slice(0, 12)} color="#22d3ee" onPick={(k) => { const full = regions.find((p) => short(p) === k); setRegion(region === full ? '' : full); }} active={short(region)} /></Card>
+              <Card title="地域（点选筛选）"><DistBar data={distRegion.slice(0, 12)} color="#6e8cff" onPick={(k) => { const full = regions.find((p) => short(p) === k); setRegion(region === full ? '' : full); }} active={short(region)} /></Card>
             </div>
           ) : (
             <div className="talent-split talent-split--list-detail mb-4">
@@ -290,7 +290,7 @@ export default function HigherEducationSection() {
                       {
                         title: '基本信息',
                         fields: [
-                          { label: '层级标签', value: parseHeTags(detail).join(' / ') || detail.tier, accent: '#e8a317' },
+                          { label: '层级标签', value: parseHeTags(detail).join(' / ') || detail.tier, accent: '#d4a25a' },
                           { label: '主层级', value: detail.tier, accent: TIER_COLORS[detail.tier] },
                           { label: '地域', value: detail.region },
                           { label: '院校类型', value: detail.type || detail.discipline },

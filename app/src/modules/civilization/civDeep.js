@@ -27,10 +27,10 @@ export const FACTOR_DEFS = [
  * 认受侵蚀无独立杆：在本框架中它是前四线长期失守的下游结果，不可直接购买。
  */
 export const LEVER_DEFS = [
-  { key: 'fiscal', label: '财政整顿', accent: '#e8a317', hint: '清丈税基、抑制兼并、压住开支——财政是其余三线的弹药库。' },
-  { key: 'elite', label: '抑制内卷', accent: '#c41e3a', hint: '裁汰冗员、打破分利联盟——注意：内卷随承平自增，只能压低起点。' },
-  { key: 'periphery', label: '边防经略', accent: '#22d3ee', hint: '边患外压的对冲投入——买安全或建武备，都按这一杆计价。' },
-  { key: 'mobilize', label: '动员革新', accent: '#10b981', hint: '兵制财税链路的更新——动员失灵时，纸面国力无法变现为组织力。' },
+  { key: 'fiscal', label: '财政整顿', accent: '#d4a25a', hint: '清丈税基、抑制兼并、压住开支——财政是其余三线的弹药库。' },
+  { key: 'elite', label: '抑制内卷', accent: '#e5483b', hint: '裁汰冗员、打破分利联盟——注意：内卷随承平自增，只能压低起点。' },
+  { key: 'periphery', label: '边防经略', accent: '#6e8cff', hint: '边患外压的对冲投入——买安全或建武备，都按这一杆计价。' },
+  { key: 'mobilize', label: '动员革新', accent: '#6fc2ae', hint: '兵制财税链路的更新——动员失灵时，纸面国力无法变现为组织力。' },
 ];
 
 // ---------------------------------------------------------------------------
@@ -39,42 +39,42 @@ export const LEVER_DEFS = [
 // ---------------------------------------------------------------------------
 export const DYNASTY_CASES = [
   {
-    id: 'han', name: '汉', span: '前 202 — 220', color: '#c41e3a',
+    id: 'han', name: '汉', span: '前 202 — 220', color: '#e5483b',
     peak: '文景休养至武帝鼎盛，编户齐民把动员推到农业帝国上限。',
     collapse: '土地兼并掏空税基，豪强坐大，黄巾一击中枢失血而亡',
     factors: { fiscal: 75, elite: 70, periphery: 45, mobilize: 65, legitimacy: 60 },
     lesson: '税基被谁吃掉，江山就改姓谁——兼并不治，动员必亡。',
   },
   {
-    id: 'tang', name: '唐', span: '618 — 907', color: '#e8a317',
+    id: 'tang', name: '唐', span: '618 — 907', color: '#d4a25a',
     peak: '贞观开元双峰，府兵、均田、科举三件套同时在线。',
     collapse: '均田崩则府兵崩，藩镇外包暴力，黄巢斩断江淮财线',
     factors: { fiscal: 70, elite: 55, periphery: 65, mobilize: 85, legitimacy: 50 },
     lesson: '暴力一旦外包给边镇，迟早自立门户。',
   },
   {
-    id: 'song', name: '宋', span: '960 — 1279', color: '#22d3ee',
+    id: 'song', name: '宋', span: '960 — 1279', color: '#6e8cff',
     peak: '经济、科技、商业与城市化的古代巅峰，财富密度空前。',
     collapse: '三冗拖垮财政，岁币买不来的安全最终由崖山支付',
     factors: { fiscal: 80, elite: 75, periphery: 95, mobilize: 70, legitimacy: 40 },
     lesson: '花钱买安全是有效的，直到对手要的不再是钱。',
   },
   {
-    id: 'ming', name: '明', span: '1368 — 1644', color: '#8b5cf6',
+    id: 'ming', name: '明', span: '1368 — 1644', color: '#b07cc6',
     peak: '永宣盛世远航四海，白银流入重写财政底层。',
     collapse: '财政枯竭撞上小冰期，辽饷催出流寇，两线对穿而亡',
     factors: { fiscal: 90, elite: 85, periphery: 75, mobilize: 70, legitimacy: 65 },
     lesson: '双线作战的本质是财政自杀，省出来的俸禄最后都变成辽饷。',
   },
   {
-    id: 'qing', name: '清', span: '1644 — 1840（盛清至中衰）', color: '#10b981',
+    id: 'qing', name: '清', span: '1644 — 1840（盛清至中衰）', color: '#6fc2ae',
     peak: '康乾盛世人口破三亿，疆域整合至农业时代极限。',
     collapse: '人口爆炸吃尽盈余，白莲教耗空国库，盛极而衰',
     factors: { fiscal: 65, elite: 60, periphery: 35, mobilize: 55, legitimacy: 45 },
     lesson: '盛世的人口红利，就是下一轮危机的本金。',
   },
   {
-    id: 'lateqing', name: '晚清', span: '1840 — 1912', color: '#fb923c',
+    id: 'lateqing', name: '晚清', span: '1840 — 1912', color: '#c07a4a',
     peak: '同治中兴与洋务自强，旧栈对工业文明的最后一次自我修补。',
     collapse: '赔款抽干财政，新军倒戈，认受归零后一夜瓦解',
     factors: { fiscal: 85, elite: 75, periphery: 95, mobilize: 80, legitimacy: 95 },
@@ -86,12 +86,12 @@ export const DYNASTY_CASES = [
 // 二、治乱周期六阶段（理想型阶段刻度 · 由健康度区间映射）
 // ---------------------------------------------------------------------------
 export const CYCLE_STAGES = [
-  { id: 'founding', label: '开国整合', color: '#10b981', desc: '旧分利联盟被战争清洗，土地与权力重新分配，系统以最低包袱启动。' },
-  { id: 'expansion', label: '盛世扩张', color: '#22d3ee', desc: '税基充裕、动员高效，儒法引擎全速运转，盈余掩盖一切结构问题。' },
-  { id: 'stagnation', label: '承平积弊', color: '#e8a317', desc: '精英内卷与分利联盟随承平自增，盈余被存量结构逐期吃掉。' },
-  { id: 'reform', label: '改革窗口', color: '#fb923c', desc: '问题已可见、资源还够用——历史上的变法多发生于此段，也多失败于此段。' },
-  { id: 'crisis', label: '系统性危机', color: '#c41e3a', desc: '财政、动员、认受多线同时告急，任何单点修补都不再起效。' },
-  { id: 'collapse', label: '崩溃重组', color: '#64748b', desc: '健康度跌破崩溃线，系统进入清算与重组，等待下一轮整合。' },
+  { id: 'founding', label: '开国整合', color: '#6fc2ae', desc: '旧分利联盟被战争清洗，土地与权力重新分配，系统以最低包袱启动。' },
+  { id: 'expansion', label: '盛世扩张', color: '#6e8cff', desc: '税基充裕、动员高效，儒法引擎全速运转，盈余掩盖一切结构问题。' },
+  { id: 'stagnation', label: '承平积弊', color: '#d4a25a', desc: '精英内卷与分利联盟随承平自增，盈余被存量结构逐期吃掉。' },
+  { id: 'reform', label: '改革窗口', color: '#c07a4a', desc: '问题已可见、资源还够用——历史上的变法多发生于此段，也多失败于此段。' },
+  { id: 'crisis', label: '系统性危机', color: '#e5483b', desc: '财政、动员、认受多线同时告急，任何单点修补都不再起效。' },
+  { id: 'collapse', label: '崩溃重组', color: '#8a8578', desc: '健康度跌破崩溃线，系统进入清算与重组，等待下一轮整合。' },
 ];
 
 // ---------------------------------------------------------------------------
@@ -144,16 +144,16 @@ function stageOf(h, i) {
 function judge(collapse, finalH) {
   if (collapse === null) {
     return finalH >= 40
-      ? { label: '长治久安', color: '#10b981', note: '四线投入压住风险敞口，但基础熵增仍在累积——长治不是永治，只是把清算推迟到推演窗口之外。' }
-      : { label: '中兴续命', color: '#22d3ee', note: '系统带病运行而未击穿底线，相当于一次成功的中兴——续命换来的时间若不用于结构改革，只是把崩溃定价后移。' };
+      ? { label: '长治久安', color: '#6fc2ae', note: '四线投入压住风险敞口，但基础熵增仍在累积——长治不是永治，只是把清算推迟到推演窗口之外。' }
+      : { label: '中兴续命', color: '#6e8cff', note: '系统带病运行而未击穿底线，相当于一次成功的中兴——续命换来的时间若不用于结构改革，只是把崩溃定价后移。' };
   }
   if (collapse >= 11) {
-    return { label: '中兴续命', color: '#22d3ee', note: '撑过十期后才跌破崩溃线——属晚崩之局，盈余足够完成一次中兴，但没有完成第二次。' };
+    return { label: '中兴续命', color: '#6e8cff', note: '撑过十期后才跌破崩溃线——属晚崩之局，盈余足够完成一次中兴，但没有完成第二次。' };
   }
   if (collapse >= 8) {
-    return { label: '危机四伏', color: '#e8a317', note: '中后期跌破崩溃线——盛世盈余被积弊逐期吃掉，改革窗口出现过，但投入组合没有接住。' };
+    return { label: '危机四伏', color: '#d4a25a', note: '中后期跌破崩溃线——盛世盈余被积弊逐期吃掉，改革窗口出现过，但投入组合没有接住。' };
   }
-  return { label: '速朽之局', color: '#c41e3a', note: '风险全敞口叠加内卷自增，系统在前中期即击穿底线——速朽不是意外，是配置的必然。' };
+  return { label: '速朽之局', color: '#e5483b', note: '风险全敞口叠加内卷自增，系统在前中期即击穿底线——速朽不是意外，是配置的必然。' };
 }
 
 /**

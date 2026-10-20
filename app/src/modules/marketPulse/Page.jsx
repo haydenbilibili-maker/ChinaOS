@@ -25,10 +25,10 @@ export default function Page() {
       </IntroCard>
 
       <StatGrid className="mb-6">
-        <Stat value={equityCount} label="股市标的" accent="#c41e3a" />
-        <Stat value={bondCount} label="债市标的" accent="#e8a317" />
-        <Stat value={fxCount} label="汇市标的" accent="#22d3ee" />
-        <Stat value={commodityCount} label="大宗标的" accent="#10b981" />
+        <Stat value={equityCount} label="股市标的" accent="#e5483b" />
+        <Stat value={bondCount} label="债市标的" accent="#d4a25a" />
+        <Stat value={fxCount} label="汇市标的" accent="#6e8cff" />
+        <Stat value={commodityCount} label="大宗标的" accent="#6fc2ae" />
       </StatGrid>
 
       <Card title="实时行情">

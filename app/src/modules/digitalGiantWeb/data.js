@@ -14,7 +14,7 @@ export const DOMAINS = [
   {
     key: 'econ',
     label: '网络经济',
-    accent: '#c41e3a',
+    accent: '#e5483b',
     thesis: '平台经济从流量红利转向「数据 × 算力 × 规则」的系统竞争：电商规模全球第一，但渗透率见顶后竞争从增量切存量；零工经济成为就业蓄水池，数据要素入表打开新估值通道。',
     metricCards: [
       { value: '57.8 万亿元', label: '数字经济规模' },
@@ -26,7 +26,7 @@ export const DOMAINS = [
   {
     key: 'world',
     label: '网络世界',
-    accent: '#22d3ee',
+    accent: '#6e8cff',
     thesis: '11 亿网民构筑全球最大单一数字市场；光纤/5G/算力基建完成「物理层」铺设，语义防火墙与数据主权构成「规则层」—— cyberspace sovereignty 不是修辞而是流量路由与合规审查的物理现实。',
     metricCards: [
       { value: '11.08 亿', label: '网民规模' },
@@ -38,7 +38,7 @@ export const DOMAINS = [
   {
     key: 'media',
     label: '网络传媒',
-    accent: '#e8a317',
+    accent: '#d4a25a',
     thesis: '算法分发取代门户编辑，短视频/直播重构注意力经济；主流媒体「融媒转型」与商业平台「特殊管理股」并存，形成双轨传播架构——议程设置权仍在上游，流量收割在平台。',
     metricCards: [
       { value: '10.4 亿', label: '短视频用户' },
@@ -62,7 +62,7 @@ export const DOMAINS = [
   {
     key: 'gov',
     label: '数字治理',
-    accent: '#8b5cf6',
+    accent: '#b07cc6',
     thesis: '数字政府从「一网通办」升级到「一网统管」：疫情期数字通行凭证证明动员能力，社会信用与平台监管构成「语义防火墙」的制度外延；算法备案、数据分类分级把平台纳入科层治理接口。',
     metricCards: [
       { value: '10.6 亿', label: '政务平台用户' },
@@ -75,11 +75,11 @@ export const DOMAINS = [
 
 /** 演进时间线 · 五阶段 */
 export const PHASES = [
-  { period: '1994–2008', title: '接入普及', accent: '#64748b', desc: '拨号上网到宽带入户；门户三巨头与搜索引擎登场，网民规模完成原始积累，网络空间仍属「新技术」叙事。' },
-  { period: '2009–2019', title: '移动平台爆发', accent: '#22d3ee', desc: '智能手机 + 移动支付双轮驱动；微信/支付宝/外卖/共享单车重塑日常生活，平台经济无序扩张，监管整体宽容。' },
-  { period: '2020–2022', title: '强监管整改', accent: '#e8a317', desc: '反垄断、数据安全三法、算法治理密集落地；蚂蚁 IPO 暂缓与网络安全审查标志资本无序扩张时代终结，语义防火墙工程化。' },
-  { period: '2023–2024', title: '常态化 · 数实融合', accent: '#c41e3a', desc: '红绿灯机制明确边界，支持平台「大显身手」；增长引擎从消费互联网切换至产业数字化，东数西算承接算力底座。' },
-  { period: '2025–', title: 'AI 巨网 2.0', accent: '#10b981', desc: '大模型重估平台与传媒价值；算力主权、语料合规、出海审查同步升级，数字竞争升维为国家系统对抗。' },
+  { period: '1994–2008', title: '接入普及', accent: '#8a8578', desc: '拨号上网到宽带入户；门户三巨头与搜索引擎登场，网民规模完成原始积累，网络空间仍属「新技术」叙事。' },
+  { period: '2009–2019', title: '移动平台爆发', accent: '#6e8cff', desc: '智能手机 + 移动支付双轮驱动；微信/支付宝/外卖/共享单车重塑日常生活，平台经济无序扩张，监管整体宽容。' },
+  { period: '2020–2022', title: '强监管整改', accent: '#d4a25a', desc: '反垄断、数据安全三法、算法治理密集落地；蚂蚁 IPO 暂缓与网络安全审查标志资本无序扩张时代终结，语义防火墙工程化。' },
+  { period: '2023–2024', title: '常态化 · 数实融合', accent: '#e5483b', desc: '红绿灯机制明确边界，支持平台「大显身手」；增长引擎从消费互联网切换至产业数字化，东数西算承接算力底座。' },
+  { period: '2025–', title: 'AI 巨网 2.0', accent: '#6fc2ae', desc: '大模型重估平台与传媒价值；算力主权、语料合规、出海审查同步升级，数字竞争升维为国家系统对抗。' },
 ];
 
 // --- 网络经济 ---
@@ -88,11 +88,11 @@ export const DE_SCALE = [31.3, 35.8, 39.2, 45.5, 50.2, 53.9, 57.8, 62.5]; // 万
 export const DE_SHARE = [34.8, 36.2, 38.6, 39.8, 41.5, 42.8, 43.6, 44.5]; // % GDP
 
 export const PLATFORM_SPLIT = [
-  { value: 32, name: '电商交易', itemStyle: { color: '#c41e3a' } },
-  { value: 26, name: '广告与营销', itemStyle: { color: '#e8a317' } },
-  { value: 18, name: '本地生活', itemStyle: { color: '#22d3ee' } },
-  { value: 14, name: '金融科技', itemStyle: { color: '#10b981' } },
-  { value: 10, name: '云与企业服务', itemStyle: { color: '#8b5cf6' } },
+  { value: 32, name: '电商交易', itemStyle: { color: '#e5483b' } },
+  { value: 26, name: '广告与营销', itemStyle: { color: '#d4a25a' } },
+  { value: 18, name: '本地生活', itemStyle: { color: '#6e8cff' } },
+  { value: 14, name: '金融科技', itemStyle: { color: '#6fc2ae' } },
+  { value: 10, name: '云与企业服务', itemStyle: { color: '#b07cc6' } },
 ];
 
 export const GIG_YEARS = ['2018', '2020', '2022', '2024', '2026E'];
@@ -184,9 +184,9 @@ export const CHARTS = {
     yAxis: [valueY({ name: '万亿元' }), { ...valueY({ name: '%' }), splitLine: { show: false } }],
     series: [
       { name: '规模(万亿元)', type: 'bar', barWidth: 16,
-        data: DE_SCALE.map((v, i) => ({ value: v, itemStyle: { color: i >= 7 ? 'rgba(196,30,58,0.35)' : '#c41e3a', borderRadius: [3, 3, 0, 0] } })) },
+        data: DE_SCALE.map((v, i) => ({ value: v, itemStyle: { color: i >= 7 ? 'rgba(229, 72, 59,0.35)' : '#e5483b', borderRadius: [3, 3, 0, 0] } })) },
       { name: '占GDP(%)', type: 'line', yAxisIndex: 1, smooth: true, data: DE_SHARE,
-        lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
+        lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' } },
     ],
   }),
 
@@ -197,9 +197,9 @@ export const CHARTS = {
     xAxis: categoryX(NET_YEARS),
     yAxis: [valueY({ name: '亿人' }), { ...valueY({ name: '%/Mbps' }), splitLine: { show: false } }],
     series: [
-      { name: '网民(亿人)', type: 'bar', barWidth: 14, data: NET_USERS, itemStyle: { color: '#22d3ee' } },
-      { name: '普及率(%)', type: 'line', yAxisIndex: 1, smooth: true, data: NET_PENETRATION, lineStyle: { color: '#10b981' } },
-      { name: '户均带宽(Mbps)', type: 'line', yAxisIndex: 1, smooth: true, data: BANDWIDTH, lineStyle: { color: '#e8a317', type: 'dashed' } },
+      { name: '网民(亿人)', type: 'bar', barWidth: 14, data: NET_USERS, itemStyle: { color: '#6e8cff' } },
+      { name: '普及率(%)', type: 'line', yAxisIndex: 1, smooth: true, data: NET_PENETRATION, lineStyle: { color: '#6fc2ae' } },
+      { name: '户均带宽(Mbps)', type: 'line', yAxisIndex: 1, smooth: true, data: BANDWIDTH, lineStyle: { color: '#d4a25a', type: 'dashed' } },
     ],
   }),
 
@@ -211,7 +211,7 @@ export const CHARTS = {
     yAxis: valueY(),
     series: [
       { name: '2020', type: 'bar', barGap: '30%', data: INFRA_2020, itemStyle: { color: 'rgba(100,116,139,0.6)' } },
-      { name: '2024', type: 'bar', data: INFRA_2024, itemStyle: { color: '#22d3ee' } },
+      { name: '2024', type: 'bar', data: INFRA_2024, itemStyle: { color: '#6e8cff' } },
     ],
   }),
 
@@ -222,8 +222,8 @@ export const CHARTS = {
     xAxis: categoryX(MEDIA_CHANNELS, { rotate: 18 }),
     yAxis: valueY({ name: '%' }),
     series: [
-      { name: '注意力占比', type: 'bar', data: MEDIA_TIME_SHARE, itemStyle: { color: '#e8a317' } },
-      { name: '广告收入占比', type: 'bar', data: MEDIA_AD_SHARE, itemStyle: { color: '#c41e3a' } },
+      { name: '注意力占比', type: 'bar', data: MEDIA_TIME_SHARE, itemStyle: { color: '#d4a25a' } },
+      { name: '广告收入占比', type: 'bar', data: MEDIA_AD_SHARE, itemStyle: { color: '#e5483b' } },
     ],
   }),
 
@@ -234,8 +234,8 @@ export const CHARTS = {
     xAxis: categoryX(SHORT_VIDEO_YEARS),
     yAxis: [valueY({ name: '亿人' }), { ...valueY({ name: '分钟' }), splitLine: { show: false } }],
     series: [
-      { name: '用户(亿人)', type: 'line', smooth: true, data: SHORT_VIDEO_USERS, lineStyle: { color: '#e8a317', width: 2 },
-        areaStyle: { color: 'rgba(232,163,23,0.08)' } },
+      { name: '用户(亿人)', type: 'line', smooth: true, data: SHORT_VIDEO_USERS, lineStyle: { color: '#d4a25a', width: 2 },
+        areaStyle: { color: 'rgba(212, 162, 90,0.08)' } },
       { name: '日均时长(分钟)', type: 'line', yAxisIndex: 1, smooth: true, data: SHORT_VIDEO_DAU_TIME, lineStyle: { color: '#f472b6' } },
     ],
   }),
@@ -247,9 +247,9 @@ export const CHARTS = {
     xAxis: categoryX(SENTIMENT_YEARS),
     yAxis: valueY({ name: '%', max: 50 }),
     series: [
-      { name: '正面', type: 'line', stack: 'total', smooth: true, data: SENTIMENT_POS, areaStyle: { color: 'rgba(16,185,129,0.2)' }, lineStyle: { color: '#10b981' } },
-      { name: '负面', type: 'line', stack: 'total', smooth: true, data: SENTIMENT_NEG, areaStyle: { color: 'rgba(196,30,58,0.2)' }, lineStyle: { color: '#c41e3a' } },
-      { name: '中性', type: 'line', stack: 'total', smooth: true, data: SENTIMENT_NEU, areaStyle: { color: 'rgba(100,116,139,0.15)' }, lineStyle: { color: '#64748b' } },
+      { name: '正面', type: 'line', stack: 'total', smooth: true, data: SENTIMENT_POS, areaStyle: { color: 'rgba(111, 194, 174,0.2)' }, lineStyle: { color: '#6fc2ae' } },
+      { name: '负面', type: 'line', stack: 'total', smooth: true, data: SENTIMENT_NEG, areaStyle: { color: 'rgba(229, 72, 59,0.2)' }, lineStyle: { color: '#e5483b' } },
+      { name: '中性', type: 'line', stack: 'total', smooth: true, data: SENTIMENT_NEU, areaStyle: { color: 'rgba(100,116,139,0.15)' }, lineStyle: { color: '#8a8578' } },
     ],
   }),
 
@@ -266,13 +266,13 @@ export const CHARTS = {
         silent: true,
         data: [
           [{ xAxis: '0h', itemStyle: { color: 'rgba(100,116,139,0.06)' } }, { xAxis: '2h' }],
-          [{ xAxis: '2h', itemStyle: { color: 'rgba(196,30,58,0.08)' } }, { xAxis: '8h' }],
-          [{ xAxis: '24h', itemStyle: { color: 'rgba(34,211,238,0.06)' } }, { xAxis: '168h' }],
+          [{ xAxis: '2h', itemStyle: { color: 'rgba(229, 72, 59,0.08)' } }, { xAxis: '8h' }],
+          [{ xAxis: '24h', itemStyle: { color: 'rgba(110, 140, 255,0.06)' } }, { xAxis: '168h' }],
         ],
       },
       markPoint: {
         data: [
-          { coord: ['8h', 100], name: '峰值', symbolSize: 42, itemStyle: { color: '#c41e3a' } },
+          { coord: ['8h', 100], name: '峰值', symbolSize: 42, itemStyle: { color: '#e5483b' } },
         ],
       },
     }],
@@ -285,12 +285,12 @@ export const CHARTS = {
     yAxis: valueY({ name: '监管温度', max: 100 }),
     series: [{
       type: 'line', smooth: true, data: REG_INDEX,
-      lineStyle: { color: '#8b5cf6', width: 2 },
-      areaStyle: { color: 'rgba(139,92,246,0.1)' },
+      lineStyle: { color: '#b07cc6', width: 2 },
+      areaStyle: { color: 'rgba(176, 124, 198,0.1)' },
       markLine: {
         silent: true,
         data: [
-          { yAxis: 80, label: { formatter: '强监管带', color: LABEL.color }, lineStyle: { color: '#c41e3a', type: 'dashed' } },
+          { yAxis: 80, label: { formatter: '强监管带', color: LABEL.color }, lineStyle: { color: '#e5483b', type: 'dashed' } },
         ],
       },
     }],
@@ -305,7 +305,7 @@ export const CHARTS = {
       type: 'bar', barWidth: 18,
       data: GOV_MATURITY.map((v, i) => ({
         value: v,
-        itemStyle: { color: i === 0 ? '#8b5cf6' : i < 4 ? '#22d3ee' : '#64748b', borderRadius: [3, 3, 0, 0] },
+        itemStyle: { color: i === 0 ? '#b07cc6' : i < 4 ? '#6e8cff' : '#8a8578', borderRadius: [3, 3, 0, 0] },
       })),
       label: { show: true, position: 'top', color: LABEL.color, fontSize: 10 },
     }],
@@ -319,8 +319,8 @@ export const CHARTS = {
     yAxis: valueY({ name: '亿人' }),
     series: [{
       name: '零工劳动者(亿人)', type: 'line', smooth: true, data: GIG_WORKERS,
-      lineStyle: { color: '#c41e3a', width: 2 },
-      areaStyle: { color: 'rgba(196,30,58,0.08)' },
+      lineStyle: { color: '#e5483b', width: 2 },
+      areaStyle: { color: 'rgba(229, 72, 59,0.08)' },
     }],
   }),
 };
@@ -332,16 +332,16 @@ export function buildGiantWebRadar() {
     radar: {
       indicator: GIANT_WEB_RADAR.dims.map((n) => ({ name: n, max: 100 })),
       axisName: { color: LABEL.color, fontSize: 10 },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-      axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
+      axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
       splitArea: { show: false },
     },
     series: [{
       type: 'radar',
       data: [
-        { value: GIANT_WEB_RADAR.cn2024, name: '中国 2024', lineStyle: { color: '#c41e3a' }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.08)' } },
-        { value: GIANT_WEB_RADAR.cn2018, name: '中国 2018', lineStyle: { color: '#64748b' }, itemStyle: { color: '#64748b' }, areaStyle: { opacity: 0.04 } },
-        { value: GIANT_WEB_RADAR.globalAvg, name: '全球均值(示意)', lineStyle: { color: '#22d3ee', type: 'dashed' }, itemStyle: { color: '#22d3ee' } },
+        { value: GIANT_WEB_RADAR.cn2024, name: '中国 2024', lineStyle: { color: '#e5483b' }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.08)' } },
+        { value: GIANT_WEB_RADAR.cn2018, name: '中国 2018', lineStyle: { color: '#8a8578' }, itemStyle: { color: '#8a8578' }, areaStyle: { opacity: 0.04 } },
+        { value: GIANT_WEB_RADAR.globalAvg, name: '全球均值(示意)', lineStyle: { color: '#6e8cff', type: 'dashed' }, itemStyle: { color: '#6e8cff' } },
       ],
     }],
   };
@@ -354,15 +354,15 @@ export function buildSovereigntyRadar() {
     radar: {
       indicator: SOVEREIGNTY_DIMS.map((n) => ({ name: n, max: 100 })),
       axisName: { color: LABEL.color, fontSize: 10 },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
       splitArea: { show: false },
     },
     series: [{
       type: 'radar',
       data: [
-        { value: SOVEREIGNTY_CN, name: '中国', lineStyle: { color: '#c41e3a' }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.06)' } },
-        { value: SOVEREIGNTY_US, name: '美国', lineStyle: { color: '#22d3ee' }, itemStyle: { color: '#22d3ee' } },
-        { value: SOVEREIGNTY_EU, name: '欧盟', lineStyle: { color: '#e8a317' }, itemStyle: { color: '#e8a317' } },
+        { value: SOVEREIGNTY_CN, name: '中国', lineStyle: { color: '#e5483b' }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.06)' } },
+        { value: SOVEREIGNTY_US, name: '美国', lineStyle: { color: '#6e8cff' }, itemStyle: { color: '#6e8cff' } },
+        { value: SOVEREIGNTY_EU, name: '欧盟', lineStyle: { color: '#d4a25a' }, itemStyle: { color: '#d4a25a' } },
       ],
     }],
   };
@@ -383,9 +383,9 @@ export function buildFeedbackSankey() {
       itemStyle: { borderWidth: 0 },
       levels: [
         { depth: 0, itemStyle: { color: '#f472b6' } },
-        { depth: 1, itemStyle: { color: '#22d3ee' } },
-        { depth: 2, itemStyle: { color: '#e8a317' } },
-        { depth: 3, itemStyle: { color: '#8b5cf6' } },
+        { depth: 1, itemStyle: { color: '#6e8cff' } },
+        { depth: 2, itemStyle: { color: '#d4a25a' } },
+        { depth: 3, itemStyle: { color: '#b07cc6' } },
       ],
     }],
   };
@@ -395,7 +395,7 @@ export function buildPlatformRegRadar() {
   return radarOpt(
     PLATFORM_REG_ITEMS,
     PLATFORM_REG_SCORE,
-    { name: '执法强度', color: '#8b5cf6' },
+    { name: '执法强度', color: '#b07cc6' },
   );
 }
 

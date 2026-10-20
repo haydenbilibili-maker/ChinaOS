@@ -12,21 +12,21 @@ export const AS_OF = AS_OF_BASELINE;
 
 // 控制机制（6 维）—— SelectorBar 切换、雷达轴、节点 means 映射共用
 export const MECHANISMS = [
-  { key: 'renshi', label: '人事任免', accent: '#c41e3a', short: '人事', desc: '党管干部：中组部与各级党委掌握任免、考核、轮岗与「双重管理」，是控制网最硬的脊柱。人事权决定一切其他权力的归属。' },
-  { key: 'caiquan', label: '财权', accent: '#e8a317', short: '财权', desc: '国资委、央行/金融委、财政体系掌控预算、信贷与资本配置。财权是控制流的「血液」，决定节点能否存活与扩张。' },
-  { key: 'xinxi', label: '信息', accent: '#22d3ee', short: '信息', desc: '宣传部—网信办—平台构成议程设置与语义防火墙：决定什么可见、什么沉默，控制叙事即控制认知坐标系。' },
-  { key: 'zuzhi', label: '组织嵌入', accent: '#10b981', short: '组织', desc: '「支部建在连上」的工业—社会版：党组/党委嵌入国企、高校、社会组织乃至民企，实现毛细血管级的组织覆盖。' },
-  { key: 'jilv', label: '纪律', accent: '#8b5cf6', short: '纪律', desc: '纪委—监委—巡视构成周期性「系统杀毒」：以反腐与巡视清洗山头主义、回收离心的节点，维持网络的拓扑刚性。' },
+  { key: 'renshi', label: '人事任免', accent: '#e5483b', short: '人事', desc: '党管干部：中组部与各级党委掌握任免、考核、轮岗与「双重管理」，是控制网最硬的脊柱。人事权决定一切其他权力的归属。' },
+  { key: 'caiquan', label: '财权', accent: '#d4a25a', short: '财权', desc: '国资委、央行/金融委、财政体系掌控预算、信贷与资本配置。财权是控制流的「血液」，决定节点能否存活与扩张。' },
+  { key: 'xinxi', label: '信息', accent: '#6e8cff', short: '信息', desc: '宣传部—网信办—平台构成议程设置与语义防火墙：决定什么可见、什么沉默，控制叙事即控制认知坐标系。' },
+  { key: 'zuzhi', label: '组织嵌入', accent: '#6fc2ae', short: '组织', desc: '「支部建在连上」的工业—社会版：党组/党委嵌入国企、高校、社会组织乃至民企，实现毛细血管级的组织覆盖。' },
+  { key: 'jilv', label: '纪律', accent: '#b07cc6', short: '纪律', desc: '纪委—监委—巡视构成周期性「系统杀毒」：以反腐与巡视清洗山头主义、回收离心的节点，维持网络的拓扑刚性。' },
   { key: 'cyber', label: '赛博反馈', accent: '#f472b6', short: '赛博', desc: '网格化 + 数据中台 + 舆情系统构成自下而上的赛博反馈回路：基层信号实时回流内核，使控制从静态层级转为动态闭环。' },
 ];
 
 // 网络层级 L0–L6（内核 → 离岸窗口）
 export const LAYERS = [
-  { id: 'L0', key: 'core', label: 'L0 党中央内核', accent: '#c41e3a', desc: '政治局—常委—中办：最终决策与人事仲裁的奇点，所有控制流的源头与反馈的汇点。' },
-  { id: 'L1', key: 'organ', label: 'L1 党组/党委嵌入', accent: '#e8a317', desc: '组织部、纪委、政法委、统战部：把内核意志翻译为可执行的人事、纪律与组织指令。' },
-  { id: 'L2', key: 'capital', label: 'L2 国企金融', accent: '#f59e0b', desc: '国资委、央行/金融委、央企党组：掌控经济命脉与资本闸门，是财权的物理载体。' },
-  { id: 'L3', key: 'media', label: 'L3 媒体宣传', accent: '#22d3ee', desc: '宣传部、网信办、媒体集团/平台：议程设置与语义防火墙，控制信息的可见性与流向。' },
-  { id: 'L4', key: 'social', label: 'L4 社会组织/群团', accent: '#10b981', desc: '工青妇、行业协会、高校：把社会动员纳入组织框架，承接「最后一公里」前的社会界面。' },
+  { id: 'L0', key: 'core', label: 'L0 党中央内核', accent: '#e5483b', desc: '政治局—常委—中办：最终决策与人事仲裁的奇点，所有控制流的源头与反馈的汇点。' },
+  { id: 'L1', key: 'organ', label: 'L1 党组/党委嵌入', accent: '#d4a25a', desc: '组织部、纪委、政法委、统战部：把内核意志翻译为可执行的人事、纪律与组织指令。' },
+  { id: 'L2', key: 'capital', label: 'L2 国企金融', accent: '#d4a25a', desc: '国资委、央行/金融委、央企党组：掌控经济命脉与资本闸门，是财权的物理载体。' },
+  { id: 'L3', key: 'media', label: 'L3 媒体宣传', accent: '#6e8cff', desc: '宣传部、网信办、媒体集团/平台：议程设置与语义防火墙，控制信息的可见性与流向。' },
+  { id: 'L4', key: 'social', label: 'L4 社会组织/群团', accent: '#6fc2ae', desc: '工青妇、行业协会、高校：把社会动员纳入组织框架，承接「最后一公里」前的社会界面。' },
   { id: 'L5', key: 'grid', label: 'L5 基层网格', accent: '#60a5fa', desc: '社区党支部、网格员、综治中心：毛细血管级触达，是赛博反馈回路的数据采集端。' },
   { id: 'L6', key: 'offshore', label: 'L6 海外统战/离岸', accent: '#a78bfa', desc: '海外党组织、侨团、离岸窗口：把控制网延伸至域外，承接统战与离岸资本/信息接口。' },
 ];
@@ -85,17 +85,17 @@ export const EDGES = [
 ];
 
 export const EDGE_KIND = {
-  control: { label: '控制流', color: '#c41e3a', curve: 0.12 },
-  resource: { label: '资源流', color: '#e8a317', curve: 0.16 },
-  info: { label: '信息流', color: '#22d3ee', curve: 0.2 },
+  control: { label: '控制流', color: '#e5483b', curve: 0.12 },
+  resource: { label: '资源流', color: '#d4a25a', curve: 0.16 },
+  info: { label: '信息流', color: '#6e8cff', curve: 0.2 },
   feedback: { label: '反馈回流', color: '#f472b6', curve: 0.3 },
 };
 
 // 各层控制画像（雷达）：6 机制维度的强度示意，揭示不同层的控制「指纹」
 export const LAYER_RADAR = [
-  { key: 'core', name: 'L0 内核', color: '#c41e3a', values: [98, 90, 88, 85, 92, 80] },
-  { key: 'capital', name: 'L2 国企金融', color: '#f59e0b', values: [78, 95, 50, 80, 70, 45] },
-  { key: 'media', name: 'L3 媒体宣传', color: '#22d3ee', values: [60, 45, 96, 65, 55, 88] },
+  { key: 'core', name: 'L0 内核', color: '#e5483b', values: [98, 90, 88, 85, 92, 80] },
+  { key: 'capital', name: 'L2 国企金融', color: '#d4a25a', values: [78, 95, 50, 80, 70, 45] },
+  { key: 'media', name: 'L3 媒体宣传', color: '#6e8cff', values: [60, 45, 96, 65, 55, 88] },
   { key: 'grid', name: 'L5 基层网格', color: '#60a5fa', values: [40, 30, 55, 88, 50, 90] },
 ];
 
@@ -114,10 +114,10 @@ export const EMBED_MATRIX = [
 
 // 控制网演进阶段（时间线 + markArea 联动）
 export const STAGES = [
-  { period: '1949–1978', title: '建政奠基', accent: '#c41e3a', intensity: 70, desc: '单位制 + 政社合一 + 计划经济：通过单位、人民公社与档案制度实现总体性控制，组织嵌入达到极致，但信息与财权高度行政化、缺乏赛博维度。' },
-  { period: '1978–2012', title: '改革松动', accent: '#e8a317', intensity: 45, desc: '市场化与单位制解体使控制网局部「失焦」：人财物随市场分散，民企与社会组织出现组织真空，山头主义与地方诸侯化抬头，网络刚性下降。' },
-  { period: '2012–2020', title: '十八大后强化', accent: '#8b5cf6', intensity: 78, desc: '反腐 + 巡视全覆盖 + 党的领导入章程：以纪律机制回收离心节点，党组前置嵌入企业治理，重建网络拓扑刚性，控制权重新向内核集中。' },
-  { period: '2020–2026', title: '数字化网格', accent: '#22d3ee', intensity: 92, desc: '网格化 + 数据中台 + 平台监管 + 语义防火墙：控制从静态层级升级为赛博反馈闭环，基层信号实时回流内核，控制密度与响应速度达到历史峰值。' },
+  { period: '1949–1978', title: '建政奠基', accent: '#e5483b', intensity: 70, desc: '单位制 + 政社合一 + 计划经济：通过单位、人民公社与档案制度实现总体性控制，组织嵌入达到极致，但信息与财权高度行政化、缺乏赛博维度。' },
+  { period: '1978–2012', title: '改革松动', accent: '#d4a25a', intensity: 45, desc: '市场化与单位制解体使控制网局部「失焦」：人财物随市场分散，民企与社会组织出现组织真空，山头主义与地方诸侯化抬头，网络刚性下降。' },
+  { period: '2012–2020', title: '十八大后强化', accent: '#b07cc6', intensity: 78, desc: '反腐 + 巡视全覆盖 + 党的领导入章程：以纪律机制回收离心节点，党组前置嵌入企业治理，重建网络拓扑刚性，控制权重新向内核集中。' },
+  { period: '2020–2026', title: '数字化网格', accent: '#6e8cff', intensity: 92, desc: '网格化 + 数据中台 + 平台监管 + 语义防火墙：控制从静态层级升级为赛博反馈闭环，基层信号实时回流内核，控制密度与响应速度达到历史峰值。' },
 ];
 
 // 巡视/反腐强度趋势（与 anticorruption 模块可交叉）：立案/巡视覆盖示意指数

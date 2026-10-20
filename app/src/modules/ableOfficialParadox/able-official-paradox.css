@@ -1,8 +1,8 @@
 /* 水墨观象台 · ink-observatory — able-official-paradox */
 .ink-observatory.aop-wrap {
-  --aop-brass: var(--brass, #b18a52);
+  --aop-brass: var(--brass, #d4a25a);
   --aop-brass-dim: var(--brass-dim, #6b5733);
-  --aop-celadon: var(--celadon, #79a496);
+  --aop-celadon: var(--celadon, #6fc2ae);
   --aop-red: var(--red, #cf4a3d);
   --aop-red-bg: var(--red-bg, #2a1513);
   --aop-amber: var(--amber, #cf9a32);

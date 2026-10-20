@@ -17,7 +17,7 @@ const YEARS = ['1960', '1970', '1980', '1990', '2000', '2010', '2020'];
 // 人均 GDP 占美国比（%，PPP/市场汇率混合量级示意）
 const COUNTRIES = {
   korea: {
-    label: '韩国 · 跨越', accent: '#10b981', traj: [5, 8, 14, 28, 48, 62, 70],
+    label: '韩国 · 跨越', accent: '#6fc2ae', traj: [5, 8, 14, 28, 48, 62, 70],
     turn: '1990s 转折：研发强度冲上全球第一梯队，财阀完成「代工 → 自主品牌 → 半导体霸权」三级跳，1995 跨入高收入，亚洲金融危机后制度改良反而提速。',
     factors: [['研发强度', 'R&D/GDP 由 0.5% 升至 4%+，全球最高之列'], ['教育红利', '高等教育毛入学率超 90%，工程师密度极高'], ['出口纪律', '以国际市场倒逼企业效率，补贴与业绩挂钩'], ['制度适应', '危机后财阀治理与金融体系刮骨改革']],
   },
@@ -27,12 +27,12 @@ const COUNTRIES = {
     factors: [['产业卡位', '晶圆代工独占生态位，越往后壁垒越深'], ['中小企业网络', '弹性供应链 + 隐形冠军集群'], ['工研院模式', '公共研发机构孵化民间产业'], ['土地改革遗产', '早期分配相对均等，内需与人力资本基础好']],
   },
   japan: {
-    label: '日本 · 早跨越后停滞', accent: '#e8a317', traj: [30, 55, 70, 82, 78, 70, 63],
+    label: '日本 · 早跨越后停滞', accent: '#d4a25a', traj: [30, 55, 70, 82, 78, 70, 63],
     turn: '1990 转折：早在 1970s 即跨越高收入线，但泡沫破裂 + 人口老化 + 数字化转身迟缓，占美比从 82% 一路回落——跨越之后仍可能「相对衰落」。',
     factors: [['跨越成功', '通产省产业政策 + 终身雇佣的质量文化'], ['泡沫教训', '资产泡沫破裂后资产负债表衰退 30 年'], ['创新错位', '硬件精益登峰造极，软件与平台经济缺席'], ['人口结构', '老龄化最早、最深，需求与活力双降']],
   },
   brazil: {
-    label: '巴西 · 典型陷阱', accent: '#c41e3a', traj: [18, 20, 25, 18, 15, 18, 14],
+    label: '巴西 · 典型陷阱', accent: '#e5483b', traj: [18, 20, 25, 18, 15, 18, 14],
     turn: '1980 转折：进口替代战略撞上债务危机，「失去的十年」后再未回到 1980 年的相对位置——典型的冲高回落、长期滞留陷阱带。',
     factors: [['进口替代失败', '保护出懒惰工业，竞争力始终未及国际线'], ['债务依赖', '靠外债与大宗商品周期续命，利率长期畸高'], ['分配极端失衡', '基尼系数全球最高之列，内需结构断裂'], ['去工业化过早', '制造业占比未到高点即衰退，困于资源出口']],
   },
@@ -47,7 +47,7 @@ const COUNTRIES = {
     factors: [['外资组装锁定', '处全球电子链组装环节，附加值上不去'], ['族群配额政策', '扭曲人才配置与企业激励'], ['资源诱惑', '油气棕榈收入缓解了升级紧迫感'], ['教育断层', '高等教育质量与产业需求脱节']],
   },
   china: {
-    label: '中国 · 窗口期', accent: '#22d3ee', traj: [2, 2, 2, 3, 5, 12, 23],
+    label: '中国 · 窗口期', accent: '#6e8cff', traj: [2, 2, 2, 3, 5, 12, 23],
     turn: '2010s 转折：人口红利见顶、传统成本优势让位于东南亚，是否跨越取决于 2020-2035 窗口期内新质生产力、TFP 与制度型开放能否接棒。',
     factors: [['规模市场', '14 亿人单一市场摊薄创新固定成本'], ['全产业链', '联合国工业门类最全，组合创新空间大'], ['工程师红利', '年均千万级理工毕业生接棒人口数量红利'], ['未解之题', '分配/房地产/债务/老龄化与外部技术封锁叠加']],
   },
@@ -56,12 +56,12 @@ const COUNTRIES = {
 // 陷阱五机制
 const MECHANISMS = {
   cost: {
-    label: '成本挤压 · 两头夹击', accent: '#c41e3a',
+    label: '成本挤压 · 两头夹击', accent: '#e5483b',
     chain: ['工资随收入水平上涨', '低端订单流向更廉价经济体', '高端环节又被发达国家专利/品牌/标准卡位', '夹层中利润率坍缩 → 投资与升级停滞'],
     china: '制造业时薪已数倍于越南/印度，纺织/组装外迁进行时；但新能源车/光伏/船舶证明部分链条已突围至高端——「夹击」与「突围」并存。', risk: '中',
   },
   innovation: {
-    label: '创新不足 · 模仿红利耗尽', accent: '#e8a317',
+    label: '创新不足 · 模仿红利耗尽', accent: '#d4a25a',
     chain: ['追赶期靠引进消化吸收（低成本试错）', '逼近技术前沿后「可抄的」越来越少', '原始创新需要基础研究 + 风险资本 + 容错文化', '体系缺位 → TFP 增速归零'],
     china: 'R&D/GDP 约 2.6% 接近 OECD 均值，但基础研究占比 ~6%（韩日 12-15%）；专利数量全球第一与「卡脖子」清单并存，质量换挡是关键。', risk: '中高',
   },
@@ -76,7 +76,7 @@ const MECHANISMS = {
     china: '土地财政与平台垄断的整治显示打破锁定的意愿；但地方债务—房地产—银行的存量三角仍在缓慢拆弹，改革深水区即此。', risk: '中高',
   },
   debt: {
-    label: '债务依赖 · 投资边际递减', accent: '#22d3ee',
+    label: '债务依赖 · 投资边际递减', accent: '#6e8cff',
     chain: ['增长放缓 → 以加杠杆投资托底', '基建/地产回报率逐轮递减', '债务存量挤占新增信贷与财政空间', '资产负债表衰退风险（日本剧本）'],
     china: '宏观杠杆率 ~290%，增量资本产出率（ICOR）十年翻倍——单位 GDP 需要的投资越来越多；从投资驱动转向 TFP 驱动是数学上的必答题。', risk: '高',
   },
@@ -89,10 +89,10 @@ const REQ_CHINA = [78, 84, 74, 52, 62];
 
 // 概念演进时间线
 const TIMELINE = [
-  { period: '2007', title: '世行提出', accent: '#e8a317', desc: '世界银行《东亚复兴》报告首提「中等收入陷阱」：东亚经济体能否避免拉美式停滞？概念自此进入政策语汇。' },
-  { period: '1980s-2000s', title: '拉美教训', accent: '#c41e3a', desc: '巴西/阿根廷/墨西哥的回溯研究固化了机制清单：债务依赖、分配失衡、过早去工业化、民粹—危机循环。' },
-  { period: '1990s-2010s', title: '东亚跨越经验', accent: '#10b981', desc: '韩国与台湾地区证明陷阱并非宿命：教育 + 出口纪律 + 研发强度 + 产业卡位的组合可在一代人内完成跨越。' },
-  { period: '2012-2020', title: '中国窗口期之辩', accent: '#22d3ee', desc: '中国跨入中高收入后，「未富先老」「未强先堵」之忧与「规模 + 全链」之恃激烈交锋，窗口期共识形成：2020-2035。' },
+  { period: '2007', title: '世行提出', accent: '#d4a25a', desc: '世界银行《东亚复兴》报告首提「中等收入陷阱」：东亚经济体能否避免拉美式停滞？概念自此进入政策语汇。' },
+  { period: '1980s-2000s', title: '拉美教训', accent: '#e5483b', desc: '巴西/阿根廷/墨西哥的回溯研究固化了机制清单：债务依赖、分配失衡、过早去工业化、民粹—危机循环。' },
+  { period: '1990s-2010s', title: '东亚跨越经验', accent: '#6fc2ae', desc: '韩国与台湾地区证明陷阱并非宿命：教育 + 出口纪律 + 研发强度 + 产业卡位的组合可在一代人内完成跨越。' },
+  { period: '2012-2020', title: '中国窗口期之辩', accent: '#6e8cff', desc: '中国跨入中高收入后，「未富先老」「未强先堵」之忧与「规模 + 全链」之恃激烈交锋，窗口期共识形成：2020-2035。' },
   { period: '2017-至今', title: '高质量发展应答', accent: '#a78bfa', desc: '从「高速增长」改写为「高质量发展」，新质生产力 / 全国统一大市场 / 共同富裕，可读作对五大陷阱机制的逐条应答。' },
 ];
 
@@ -117,7 +117,7 @@ export default function Page() {
       emphasis: { focus: 'series' },
       ...(key === ck ? {
         areaStyle: { color: v.accent + '18' },
-        markArea: { silent: true, itemStyle: { color: 'rgba(196,30,58,0.07)' }, label: { color: LABEL.color, fontSize: 10, position: 'insideTopRight' }, data: [[{ yAxis: 10, name: '陷阱带 10-30%' }, { yAxis: 30 }]] },
+        markArea: { silent: true, itemStyle: { color: 'rgba(229, 72, 59,0.07)' }, label: { color: LABEL.color, fontSize: 10, position: 'insideTopRight' }, data: [[{ yAxis: 10, name: '陷阱带 10-30%' }, { yAxis: 30 }]] },
       } : {}),
     })),
   }), [ck]);
@@ -130,8 +130,8 @@ export default function Page() {
     xAxis: categoryX(REQUIREMENTS),
     yAxis: valueY({ max: 100 }),
     series: [
-      { type: 'bar', name: '韩国基准(跨越时)', data: REQ_KOREA, barWidth: 16, itemStyle: { color: '#10b981', borderRadius: [3, 3, 0, 0] } },
-      { type: 'bar', name: '中国当前', data: REQ_CHINA, barWidth: 16, itemStyle: { color: '#22d3ee', borderRadius: [3, 3, 0, 0] } },
+      { type: 'bar', name: '韩国基准(跨越时)', data: REQ_KOREA, barWidth: 16, itemStyle: { color: '#6fc2ae', borderRadius: [3, 3, 0, 0] } },
+      { type: 'bar', name: '中国当前', data: REQ_CHINA, barWidth: 16, itemStyle: { color: '#6e8cff', borderRadius: [3, 3, 0, 0] } },
     ],
   }), []);
 
@@ -145,11 +145,11 @@ export default function Page() {
     series: [
       {
         type: 'line', name: '中国人均GNI', data: [0.94, 1.76, 4.34, 7.94, 10.55, 13.4, 14.2], smooth: true,
-        lineStyle: { color: '#22d3ee', width: 3 }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.12)' },
+        lineStyle: { color: '#6e8cff', width: 3 }, itemStyle: { color: '#6e8cff' }, areaStyle: { color: 'rgba(110, 140, 255,0.12)' },
         markLine: {
           silent: true, symbol: 'none',
-          lineStyle: { color: '#e8a317', type: 'dashed', width: 1.5 },
-          label: { color: '#e8a317', fontSize: 10, formatter: '高收入门槛 ≈$14k' },
+          lineStyle: { color: '#d4a25a', type: 'dashed', width: 1.5 },
+          label: { color: '#d4a25a', fontSize: 10, formatter: '高收入门槛 ≈$14k' },
           data: [{ yAxis: 14.0 }],
         },
       },
@@ -161,12 +161,12 @@ export default function Page() {
   const RADAR_IND = ['要素投入依赖(逆)', '效率提升 TFP', '创新驱动', '人力资本', '出口复杂度', '制度适应力'].map((n) => ({ name: n, max: 100 }));
   const radarOption = useMemo(() => ({
     legend: { textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
-    radar: { indicator: RADAR_IND, radius: '62%', axisName: { color: LABEL.color, fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
+    radar: { indicator: RADAR_IND, radius: '62%', axisName: { color: LABEL.color, fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } }, splitArea: { show: false } },
     series: [{
       type: 'radar',
       data: [
-        { value: [82, 86, 84, 88, 90, 80], name: '跨越国(韩/台均值)', lineStyle: { color: '#10b981', width: 2 }, itemStyle: { color: '#10b981' }, areaStyle: { color: 'rgba(16,185,129,0.12)' } },
-        { value: [30, 32, 28, 45, 35, 26], name: '陷阱国(巴/阿/马均值)', lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.12)' } },
+        { value: [82, 86, 84, 88, 90, 80], name: '跨越国(韩/台均值)', lineStyle: { color: '#6fc2ae', width: 2 }, itemStyle: { color: '#6fc2ae' }, areaStyle: { color: 'rgba(111, 194, 174,0.12)' } },
+        { value: [30, 32, 28, 45, 35, 26], name: '陷阱国(巴/阿/马均值)', lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.12)' } },
       ],
     }],
   }), []);
@@ -180,10 +180,10 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="$13.4k" label="中国人均GNI(2023, 世行口径)" accent="#22d3ee" />
-        <Stat value="≈$14k" label="世行高收入门槛(逐年上调)" accent="#e8a317" />
-        <Stat value="88/101" label="1960年以来滞留中等收入经济体" accent="#c41e3a" />
-        <Stat value="≈13%" label="历史跨越成功率(13/101)" accent="#10b981" />
+        <Stat value="$13.4k" label="中国人均GNI(2023, 世行口径)" accent="#6e8cff" />
+        <Stat value="≈$14k" label="世行高收入门槛(逐年上调)" accent="#d4a25a" />
+        <Stat value="88/101" label="1960年以来滞留中等收入经济体" accent="#e5483b" />
+        <Stat value="≈13%" label="历史跨越成功率(13/101)" accent="#6fc2ae" />
       </Grid>
 
       {/* ① 国别命运选择器 + 轨迹对比 */}

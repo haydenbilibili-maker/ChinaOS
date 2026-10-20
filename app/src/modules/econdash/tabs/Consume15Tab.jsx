@@ -31,8 +31,8 @@ const linkChip = {
   fontSize: 11,
   padding: '4px 10px',
   borderRadius: 6,
-  border: '1px solid rgba(34,211,238,0.35)',
-  color: '#22d3ee',
+  border: '1px solid rgba(110, 140, 255,0.35)',
+  color: '#6e8cff',
   textDecoration: 'none',
   fontFamily: 'var(--font-mono, ui-monospace, monospace)',
 };
@@ -51,11 +51,11 @@ export default function Consume15Tab() {
       type: 'bar',
       barWidth: 18,
       data: [
-        { value: retail?.value ?? 1.3, itemStyle: { color: '#22d3ee', borderRadius: [3, 3, 0, 0] } },
-        { value: 5.0, itemStyle: { color: '#10b981', borderRadius: [3, 3, 0, 0] } },
-        { value: 1.0, itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } },
-        { value: fai?.value ?? -5.7, itemStyle: { color: '#e8a317', borderRadius: [3, 3, 0, 0] } },
-        { value: iva?.value ?? 5.4, itemStyle: { color: '#64748b', borderRadius: [3, 3, 0, 0] } },
+        { value: retail?.value ?? 1.3, itemStyle: { color: '#6e8cff', borderRadius: [3, 3, 0, 0] } },
+        { value: 5.0, itemStyle: { color: '#6fc2ae', borderRadius: [3, 3, 0, 0] } },
+        { value: 1.0, itemStyle: { color: '#e5483b', borderRadius: [3, 3, 0, 0] } },
+        { value: fai?.value ?? -5.7, itemStyle: { color: '#d4a25a', borderRadius: [3, 3, 0, 0] } },
+        { value: iva?.value ?? 5.4, itemStyle: { color: '#8a8578', borderRadius: [3, 3, 0, 0] } },
       ],
       label: { show: true, position: 'top', formatter: '{c}%', color: LABEL.color, fontSize: 9 },
     }],
@@ -65,7 +65,7 @@ export default function Consume15Tab() {
     const opt = radarOpt(
       ['商品', '服务', '收入', '流通', '场景'].map((n) => ({ name: n, max: 100 })),
       [72, 88, 85, 70, 78],
-      { name: '规划着力示意', color: '#c41e3a' },
+      { name: '规划着力示意', color: '#e5483b' },
     );
     opt.legend = { ...LEGEND, bottom: 0, data: ['规划着力示意'] };
     return opt;
@@ -93,8 +93,8 @@ export default function Consume15Tab() {
               fontSize: 11,
               padding: '6px 12px',
               borderRadius: 6,
-              border: '1px solid rgba(196,30,58,0.4)',
-              color: '#c41e3a',
+              border: '1px solid rgba(229, 72, 59,0.4)',
+              color: '#e5483b',
               textDecoration: 'none',
               fontFamily: 'var(--font-mono, ui-monospace, monospace)',
             }}
@@ -104,13 +104,13 @@ export default function Consume15Tab() {
         </div>
 
         <StatGrid className="mb-4">
-          <Stat value="≈60 万亿" label="2030 社零目标" accent="#c41e3a" sub="答记者问 · 左右" />
-          <Stat value="50.1 万亿" label="2025 社零基数" accent="#e8a317" sub="突破 50 万亿" />
-          <Stat value="6×28" label="重点任务" accent="#22d3ee" sub="六面二十八条" />
+          <Stat value="≈60 万亿" label="2030 社零目标" accent="#e5483b" sub="答记者问 · 左右" />
+          <Stat value="50.1 万亿" label="2025 社零基数" accent="#d4a25a" sub="突破 50 万亿" />
+          <Stat value="6×28" label="重点任务" accent="#6e8cff" sub="六面二十八条" />
           <Stat
             value={retail ? `+${retail.value}%` : '—'}
             label="1–9 月社零"
-            accent="#64748b"
+            accent="#8a8578"
             sub={`服务零售 +5.0% · 截至 ${ECON_DATA_AS_OF}`}
           />
         </StatGrid>
@@ -153,7 +153,7 @@ export default function Consume15Tab() {
       <Card title="交叉入口" asSection={false}>
         <div className="flex flex-wrap gap-2">
           <Link to="/econ-consume-15th" className="econ-cross-chip" style={linkChip}>全文解读页 ↗</Link>
-          <Link to="/econ-dashboard?tab=h1review" className="econ-cross-chip" style={{ ...linkChip, borderColor: 'rgba(232,163,23,0.45)', color: '#e8a317' }}>半年经济解读 ↗</Link>
+          <Link to="/econ-dashboard?tab=h1review" className="econ-cross-chip" style={{ ...linkChip, borderColor: 'rgba(212, 162, 90,0.45)', color: '#d4a25a' }}>半年经济解读 ↗</Link>
           <Link to="/consumption" className="econ-cross-chip" style={linkChip}>扩大内需 · 消费率 ↗</Link>
           <Link to="/econ-dashboard?tab=worldbank" className="econ-cross-chip" style={linkChip}>世行经济简报 ↗</Link>
         </div>

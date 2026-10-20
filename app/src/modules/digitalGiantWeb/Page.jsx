@@ -42,7 +42,7 @@ export default function Page() {
     GIG_PLATFORMS.map((name, i) => ({
       value: GIG_SHARE[i],
       name,
-      itemStyle: { color: ['#c41e3a', '#e8a317', '#22d3ee', '#f472b6', '#8b5cf6', '#10b981'][i] },
+      itemStyle: { color: ['#e5483b', '#d4a25a', '#6e8cff', '#f472b6', '#b07cc6', '#6fc2ae'][i] },
     })),
   ), []);
 
@@ -92,10 +92,10 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="5 维" label="研究切面" accent="#c41e3a" />
-        <Stat value="11 亿+" label="网民规模 · 全球最大" accent="#22d3ee" />
-        <Stat value="57.8 万亿" label="数字经济规模(2024)" accent="#e8a317" />
-        <Stat value={AS_OF} label="数据截至" accent="#8b5cf6" />
+        <Stat value="5 维" label="研究切面" accent="#e5483b" />
+        <Stat value="11 亿+" label="网民规模 · 全球最大" accent="#6e8cff" />
+        <Stat value="57.8 万亿" label="数字经济规模(2024)" accent="#d4a25a" />
+        <Stat value={AS_OF} label="数据截至" accent="#b07cc6" />
       </Grid>
 
       <Card title="全局雷达 · 数字巨网六维画像（示意）" className="mb-6">
@@ -104,9 +104,9 @@ export default function Page() {
           <div className="os-card p-4 flex flex-col justify-center" style={{ background: 'var(--bg-elevated)' }}>
             <div className="text-xs font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>结构解读</div>
             <ul className="space-y-2 text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
-              <li><span style={{ color: '#c41e3a' }}>·</span> 网络世界与网络经济数据体量领先，但传媒/舆情/治理的「规则层」权重快速上升。</li>
-              <li><span style={{ color: '#22d3ee' }}>·</span> 2018→2024 六维全面提升，算力底座与数字治理是增速最快的两条曲线。</li>
-              <li><span style={{ color: '#e8a317' }}>·</span> 与全球均值相比，中国在接入规模与治理强度上显著偏离，平台全球化仍是短板。</li>
+              <li><span style={{ color: '#e5483b' }}>·</span> 网络世界与网络经济数据体量领先，但传媒/舆情/治理的「规则层」权重快速上升。</li>
+              <li><span style={{ color: '#6e8cff' }}>·</span> 2018→2024 六维全面提升，算力底座与数字治理是增速最快的两条曲线。</li>
+              <li><span style={{ color: '#d4a25a' }}>·</span> 与全球均值相比，中国在接入规模与治理强度上显著偏离，平台全球化仍是短板。</li>
             </ul>
           </div>
         </Grid>

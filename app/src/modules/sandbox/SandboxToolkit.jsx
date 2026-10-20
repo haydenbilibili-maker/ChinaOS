@@ -73,11 +73,11 @@ export default function SandboxToolkit({
       tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
       legend: { data: ['应对前', '应对后'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0, itemWidth: 10, itemHeight: 10 },
       grid: { left: 72, right: 24, top: 26, bottom: 16 },
-      xAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+      xAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
       yAxis: { type: 'category', data: [...domains].reverse(), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
       series: [
-        { name: '应对前', type: 'bar', barWidth: 8, data: [...engine.raw].reverse(), itemStyle: { color: 'rgba(196,30,58,0.35)', borderRadius: [0, 3, 3, 0] } },
-        { name: '应对后', type: 'bar', barWidth: 8, data: [...engine.net].reverse(), itemStyle: { color: '#c41e3a', borderRadius: [0, 3, 3, 0] } },
+        { name: '应对前', type: 'bar', barWidth: 8, data: [...engine.raw].reverse(), itemStyle: { color: 'rgba(229, 72, 59,0.35)', borderRadius: [0, 3, 3, 0] } },
+        { name: '应对后', type: 'bar', barWidth: 8, data: [...engine.net].reverse(), itemStyle: { color: '#e5483b', borderRadius: [0, 3, 3, 0] } },
       ],
     };
   }, [engine, domains]);
@@ -141,21 +141,21 @@ export default function SandboxToolkit({
       <div className="flex items-center gap-2 flex-wrap mb-4">
         <span className="text-[11px] mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>叠加第二危机</span>
         <button type="button" onClick={() => setSecondCrisis('')} className="text-[10px] px-2 py-0.5 rounded mono"
-          style={{ background: !secondCrisis ? 'rgba(148,163,184,0.18)' : 'var(--bg-elevated)', color: !secondCrisis ? 'var(--text-primary)' : 'var(--text-tertiary)', border: '1px solid var(--border-subtle)', cursor: 'pointer' }}>无</button>
+          style={{ background: !secondCrisis ? 'rgba(162, 156, 145,0.18)' : 'var(--bg-elevated)', color: !secondCrisis ? 'var(--text-primary)' : 'var(--text-tertiary)', border: '1px solid var(--border-subtle)', cursor: 'pointer' }}>无</button>
         {Object.keys(crises).filter((k) => k !== crisisKey).map((k) => (
           <button key={k} type="button" onClick={() => setSecondCrisis(secondCrisis === k ? '' : k)} className="text-[10px] px-2 py-0.5 rounded mono"
-            style={{ background: secondCrisis === k ? 'rgba(239,68,68,0.2)' : 'var(--bg-elevated)', color: secondCrisis === k ? '#ef4444' : 'var(--text-tertiary)', border: `1px solid ${secondCrisis === k ? '#ef444466' : 'var(--border-subtle)'}`, cursor: 'pointer' }}>
+            style={{ background: secondCrisis === k ? 'rgba(239,68,68,0.2)' : 'var(--bg-elevated)', color: secondCrisis === k ? '#e5483b' : 'var(--text-tertiary)', border: `1px solid ${secondCrisis === k ? '#ef444466' : 'var(--border-subtle)'}`, cursor: 'pointer' }}>
             + {crises[k].label}
           </button>
         ))}
-        {secondCrisis && <span className="text-[10px] mono" style={{ color: '#ef4444' }}>⚠ 非线性耦合：救援资源互相挤占</span>}
+        {secondCrisis && <span className="text-[10px] mono" style={{ color: '#e5483b' }}>⚠ 非线性耦合：救援资源互相挤占</span>}
       </div>
 
       <div className="os-card p-4 mb-4" style={{ background: 'var(--bg-elevated)' }}>
         <div className="flex items-center justify-between flex-wrap gap-2 mb-3">
           <span className="text-[10px] mono uppercase" style={{ color: 'var(--cyber-cyan)' }}>政策资源配置器 · 预算 100 点</span>
           <span className="flex items-center gap-2">
-            <span className="text-[11px] mono" style={{ color: allocTotal > 100 ? '#ef4444' : allocTotal === 100 ? '#10b981' : 'var(--text-secondary)' }}>已配 {allocTotal} / 100</span>
+            <span className="text-[11px] mono" style={{ color: allocTotal > 100 ? '#e5483b' : allocTotal === 100 ? '#6fc2ae' : 'var(--text-secondary)' }}>已配 {allocTotal} / 100</span>
             <button type="button" onClick={() => setAlloc(Object.fromEntries(tools.map((t) => [t.id, 0])))} className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'var(--bg-base)', color: 'var(--text-tertiary)', border: '1px solid var(--border-subtle)', cursor: 'pointer' }}>清零</button>
           </span>
         </div>
@@ -202,7 +202,7 @@ export default function SandboxToolkit({
         <div>
           <div className="text-[10px] mono uppercase mb-1" style={{ color: LABEL.color }}>冲击域 · 应对前 vs 后</div>
           {crisisOption && <EChart option={crisisOption} style={{ height: 200 }} />}
-          <div className="p-3 rounded mt-3" style={{ background: 'var(--bg-elevated)', border: '1px solid rgba(212,175,55,0.25)' }}>
+          <div className="p-3 rounded mt-3" style={{ background: 'var(--bg-elevated)', border: '1px solid rgba(217, 178, 106,0.25)' }}>
             <span className="text-[10px] mono uppercase" style={{ color: 'var(--fire-gold)' }}>应对小组自动组建 · Top5</span>
             {!team.length && <p className="text-[11px] mt-1.5" style={{ color: 'var(--text-tertiary)' }}>// 履历池无匹配</p>}
             <div className="space-y-1.5 mt-2">

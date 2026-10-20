@@ -9,7 +9,7 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // ---------------------------------------------------------------------------
 const STRATEGIES = [
   {
-    key: 'jjj', label: '京津冀', accent: '#c41e3a',
+    key: 'jjj', label: '京津冀', accent: '#e5483b',
     position: '政治中枢减负工程 · 首都功能疏解',
     gdp: '~10.4 万亿', pop: '~1.1 亿', gdpShare: 8.3, popShare: 7.8,
     engine: '北京（科创+总部）→ 雄安（疏解承接）→ 天津/河北（制造与港口）',
@@ -18,7 +18,7 @@ const STRATEGIES = [
     note: '京津冀的本质不是经济区，而是政治地理工程：用空间手段为首都减压，用行政力量再造一个「平替核心」（雄安）。市场自发集聚与行政疏解方向相反，是其根本张力。',
   },
   {
-    key: 'csj', label: '长三角', accent: '#22d3ee',
+    key: 'csj', label: '长三角', accent: '#6e8cff',
     position: '体系最完整的经济引擎 · 一体化示范',
     gdp: '~30.5 万亿', pop: '~2.4 亿', gdpShare: 24.4, popShare: 16.7,
     engine: '上海（金融+开放门户）+ 苏州/杭州/合肥（制造/数字/科创三角）',
@@ -27,7 +27,7 @@ const STRATEGIES = [
     note: '长三角是中国最接近「功能性经济区」的板块——三省一市产业互补真实存在，G60 走廊与示范区是制度试验田。它回答的问题是：行政区经济能否被市场经济溶解。',
   },
   {
-    key: 'dwq', label: '大湾区', accent: '#e8a317',
+    key: 'dwq', label: '大湾区', accent: '#d4a25a',
     position: '一国两制下的制度接口 · 外向门户',
     gdp: '~14 万亿', pop: '~8700 万', gdpShare: 11.2, popShare: 6.2,
     engine: '深圳（科创硬件）+ 广州（商贸枢纽）+ 香港（离岸金融与法域接口）',
@@ -45,7 +45,7 @@ const STRATEGIES = [
     note: '成渝被赋予「第四极」与产业备份双重使命——在外部脱钩风险下，向西纵深的制造与算力布局带有明确的安全冗余逻辑，而非纯市场选择。',
   },
   {
-    key: 'cjjjd', label: '长江经济带', accent: '#10b981',
+    key: 'cjjjd', label: '长江经济带', accent: '#6fc2ae',
     position: '横贯东中西的流域轴线 · 生态优先',
     gdp: '~58 万亿', pop: '~6 亿', gdpShare: 46.5, popShare: 42.9,
     engine: '黄金水道 + 沿江产业梯度转移（上海→武汉→重庆三段式）',
@@ -63,7 +63,7 @@ const STRATEGIES = [
     note: '黄河战略的关键词是「约束」而非「开发」：以水定城、以水定产。它是为国家安全底座（能源、粮食、生态）定价的区域战略，增长目标天然让位于安全目标。',
   },
   {
-    key: 'db', label: '东北振兴', accent: '#64748b',
+    key: 'db', label: '东北振兴', accent: '#8a8578',
     position: '老工业基地 · 粮食与装备双安全底牌',
     gdp: '~6 万亿', pop: '~9500 万', gdpShare: 4.8, popShare: 6.8,
     engine: '装备制造（沈阳/大连/哈尔滨）+ 商品粮基地（占全国调出量 1/3 量级）',
@@ -72,7 +72,7 @@ const STRATEGIES = [
     note: '东北是计划经济遗产最重的板块，也是「政策无法替代制度」的样本：转移支付维持了财政与社保运转，却未能再造增长引擎。其战略价值正从经济极重新锚定为安全极。',
   },
   {
-    key: 'zb', label: '中部崛起', accent: '#06b6d4',
+    key: 'zb', label: '中部崛起', accent: '#5b7cf0',
     position: '承东启西的腹地枢纽 · 产业备份带',
     gdp: '~27 万亿', pop: '~3.6 亿', gdpShare: 21.6, popShare: 25.7,
     engine: '武汉/长沙/郑州/合肥四核 + 米字型高铁网 + 沿海产业内迁承接',
@@ -90,10 +90,10 @@ const SYNERGY_DIMS = ['产业互补', '要素流动', '基建联通', '公共服
 const plateCompareOpt = stackedBarOpt({
   categories: ['GDP 占比 %', '人口占比 %', '一般公共预算收入占比 %', '上市公司数占比 %'],
   series: [
-    { name: '东部', data: [52, 40, 58, 70], itemStyle: { color: '#c41e3a' } },
-    { name: '中部', data: [22, 26, 18, 13], itemStyle: { color: '#22d3ee' } },
-    { name: '西部', data: [21, 27, 18, 12], itemStyle: { color: '#e8a317' } },
-    { name: '东北', data: [5, 7, 6, 5], itemStyle: { color: '#10b981' } },
+    { name: '东部', data: [52, 40, 58, 70], itemStyle: { color: '#e5483b' } },
+    { name: '中部', data: [22, 26, 18, 13], itemStyle: { color: '#6e8cff' } },
+    { name: '西部', data: [21, 27, 18, 12], itemStyle: { color: '#d4a25a' } },
+    { name: '东北', data: [5, 7, 6, 5], itemStyle: { color: '#6fc2ae' } },
   ],
 });
 
@@ -105,10 +105,10 @@ const perCapitaOpt = {
   series: [{
     type: 'bar', barWidth: 32,
     data: [
-      { value: 11.8, itemStyle: { color: '#c41e3a', borderRadius: 4 } },
-      { value: 7.5, itemStyle: { color: '#22d3ee', borderRadius: 4 } },
-      { value: 7.1, itemStyle: { color: '#e8a317', borderRadius: 4 } },
-      { value: 6.3, itemStyle: { color: '#10b981', borderRadius: 4 } },
+      { value: 11.8, itemStyle: { color: '#e5483b', borderRadius: 4 } },
+      { value: 7.5, itemStyle: { color: '#6e8cff', borderRadius: 4 } },
+      { value: 7.1, itemStyle: { color: '#d4a25a', borderRadius: 4 } },
+      { value: 6.3, itemStyle: { color: '#6fc2ae', borderRadius: 4 } },
     ],
     label: { show: true, position: 'top', color: LABEL.color, fontSize: 10, formatter: '{c} 万' },
   }],
@@ -122,10 +122,10 @@ const gdpStack = {
   xAxis: categoryX(['2000', '2005', '2010', '2015', '2020', '2024']),
   yAxis: valueY({ max: 100, axisLabel: { formatter: '{value}%' } }),
   series: [
-    { name: '东部', type: 'line', stack: 'gdp', smooth: true, symbol: 'none', data: [53, 56, 55, 53, 51, 52], lineStyle: { color: '#c41e3a' }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.25)' } },
-    { name: '中部', type: 'line', stack: 'gdp', smooth: true, symbol: 'none', data: [20, 19, 19, 21, 22, 22], lineStyle: { color: '#22d3ee' }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.2)' } },
-    { name: '西部', type: 'line', stack: 'gdp', smooth: true, symbol: 'none', data: [17, 17, 18, 19, 21, 21], lineStyle: { color: '#e8a317' }, itemStyle: { color: '#e8a317' }, areaStyle: { color: 'rgba(232,163,23,0.2)' } },
-    { name: '东北', type: 'line', stack: 'gdp', smooth: true, symbol: 'none', data: [10, 8, 8, 7, 6, 5], lineStyle: { color: '#10b981' }, itemStyle: { color: '#10b981' }, areaStyle: { color: 'rgba(16,185,129,0.2)' } },
+    { name: '东部', type: 'line', stack: 'gdp', smooth: true, symbol: 'none', data: [53, 56, 55, 53, 51, 52], lineStyle: { color: '#e5483b' }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.25)' } },
+    { name: '中部', type: 'line', stack: 'gdp', smooth: true, symbol: 'none', data: [20, 19, 19, 21, 22, 22], lineStyle: { color: '#6e8cff' }, itemStyle: { color: '#6e8cff' }, areaStyle: { color: 'rgba(110, 140, 255,0.2)' } },
+    { name: '西部', type: 'line', stack: 'gdp', smooth: true, symbol: 'none', data: [17, 17, 18, 19, 21, 21], lineStyle: { color: '#d4a25a' }, itemStyle: { color: '#d4a25a' }, areaStyle: { color: 'rgba(212, 162, 90,0.2)' } },
+    { name: '东北', type: 'line', stack: 'gdp', smooth: true, symbol: 'none', data: [10, 8, 8, 7, 6, 5], lineStyle: { color: '#6fc2ae' }, itemStyle: { color: '#6fc2ae' }, areaStyle: { color: 'rgba(111, 194, 174,0.2)' } },
   ],
 };
 
@@ -139,12 +139,12 @@ const northSouthOpt = {
   xAxis: categoryX(['2000', '2005', '2010', '2013', '2016', '2019', '2022', '2024']),
   yAxis: valueY({ min: 30, max: 70, axisLabel: { formatter: '{value}%' } }),
   series: [
-    { name: '南方 GDP 占比', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [57.4, 57.0, 57.2, 57.8, 59.5, 62.0, 64.4, 65.0], lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.08)' } },
-    { name: '北方 GDP 占比', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [42.6, 43.0, 42.8, 42.2, 40.5, 38.0, 35.6, 35.0], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
+    { name: '南方 GDP 占比', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [57.4, 57.0, 57.2, 57.8, 59.5, 62.0, 64.4, 65.0], lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.08)' } },
+    { name: '北方 GDP 占比', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [42.6, 43.0, 42.8, 42.2, 40.5, 38.0, 35.6, 35.0], lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' } },
     {
       name: '南北差值', type: 'line', smooth: true, symbol: 'none',
       data: [14.8, 14.0, 14.4, 15.6, 19.0, 24.0, 28.8, 30.0],
-      lineStyle: { color: '#e8a317', width: 1.5, type: 'dashed' }, itemStyle: { color: '#e8a317' },
+      lineStyle: { color: '#d4a25a', width: 1.5, type: 'dashed' }, itemStyle: { color: '#d4a25a' },
     },
   ],
 };
@@ -159,8 +159,8 @@ const transferScaleOpt = {
   xAxis: categoryX(['2012', '2015', '2018', '2020', '2022', '2024', '2025E']),
   yAxis: valueY({ axisLabel: { formatter: '{value} 万亿' } }),
   series: [
-    { name: '中央对地方转移支付', type: 'bar', barWidth: 18, data: [4.0, 5.5, 7.0, 8.3, 9.7, 10.2, 10.3], itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } },
-    { name: '占地方一般预算支出比重(右轴示意%)', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [3.7, 3.7, 3.7, 3.9, 4.3, 4.2, 4.1], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
+    { name: '中央对地方转移支付', type: 'bar', barWidth: 18, data: [4.0, 5.5, 7.0, 8.3, 9.7, 10.2, 10.3], itemStyle: { color: '#e5483b', borderRadius: [3, 3, 0, 0] } },
+    { name: '占地方一般预算支出比重(右轴示意%)', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5, data: [3.7, 3.7, 3.7, 3.9, 4.3, 4.2, 4.1], lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' } },
   ],
 };
 
@@ -173,7 +173,7 @@ const fiscalFlowOpt = {
     type: 'bar', barWidth: 12,
     data: [9.5, 8.0, 5.5, 4.0, 3.0, 2.5, -1.5, -5.0, -5.5, -6.0, -8.0, -10.0].reverse().map((v) => ({
       value: v,
-      itemStyle: { color: v > 0 ? '#e8a317' : '#22d3ee', borderRadius: v > 0 ? [0, 3, 3, 0] : [3, 0, 0, 3] },
+      itemStyle: { color: v > 0 ? '#d4a25a' : '#6e8cff', borderRadius: v > 0 ? [0, 3, 3, 0] : [3, 0, 0, 3] },
     })),
     label: { show: true, position: 'right', color: LABEL.color, fontSize: 9, formatter: ({ value }) => (value > 0 ? `+${value}` : `${value}`) },
   }],
@@ -183,9 +183,9 @@ const fiscalFlowOpt = {
 // 五、城市群层级（示意）
 // ---------------------------------------------------------------------------
 const clusterDonut = donutOpt([
-  { value: 32, name: '5 个优化提升级（京津冀/长三角/珠三角/成渝/长江中游）', itemStyle: { color: '#c41e3a' } },
-  { value: 24, name: '5 个发展壮大级（山东半岛/粤闽浙/中原/关中/北部湾）', itemStyle: { color: '#22d3ee' } },
-  { value: 18, name: '9 个培育发展级（哈长/辽中南/兰西等）', itemStyle: { color: '#e8a317' } },
+  { value: 32, name: '5 个优化提升级（京津冀/长三角/珠三角/成渝/长江中游）', itemStyle: { color: '#e5483b' } },
+  { value: 24, name: '5 个发展壮大级（山东半岛/粤闽浙/中原/关中/北部湾）', itemStyle: { color: '#6e8cff' } },
+  { value: 18, name: '9 个培育发展级（哈长/辽中南/兰西等）', itemStyle: { color: '#d4a25a' } },
   { value: 26, name: '城市群之外的国土（人口稀疏区/生态功能区）', itemStyle: { color: '#475569' } },
 ]);
 
@@ -197,7 +197,7 @@ const metroBarOpt = {
   series: [{
     type: 'bar', barWidth: 10,
     data: [1.3, 2.7, 2.0, 1.8, 1.6, 1.7, 2.3, 1.2, 3.5, 3.0].reverse(),
-    itemStyle: { color: '#22d3ee', borderRadius: [0, 3, 3, 0] },
+    itemStyle: { color: '#6e8cff', borderRadius: [0, 3, 3, 0] },
     label: { show: true, position: 'right', color: LABEL.color, fontSize: 9, formatter: '{c} 万亿' },
   }],
 };
@@ -207,29 +207,29 @@ const urbanBar = {
   grid: { left: 40, right: 16, top: 20, bottom: 24 },
   xAxis: categoryX(['户籍城镇化', '城区人口', '都市圈', '县域载体'], { fontSize: 11 }),
   yAxis: valueY({ min: 55, max: 70, axisLabel: { formatter: '{value}%' } }),
-  series: [{ type: 'bar', data: [60.2, 63.9, 65.2, 66.2], barWidth: 28, itemStyle: { color: '#22d3ee', borderRadius: 4 }, label: { show: true, position: 'top', color: LABEL.color, fontSize: 10, formatter: '{c}%' } }],
+  series: [{ type: 'bar', data: [60.2, 63.9, 65.2, 66.2], barWidth: 28, itemStyle: { color: '#6e8cff', borderRadius: 4 }, label: { show: true, position: 'top', color: LABEL.color, fontSize: 10, formatter: '{c}%' } }],
 };
 
 // ---------------------------------------------------------------------------
 // 六、区域战略时间线
 // ---------------------------------------------------------------------------
 const TIMELINE = [
-  { period: '1979–1999', title: '沿海率先 · 梯度让利', accent: '#c41e3a', desc: '「让一部分地区先富起来」：特区—开放城市—沿海开放带的梯度让利，财政包干强化地方动力，也埋下东西差距与诸侯经济的种子。区域政策此时是增长政策的空间投影。' },
-  { period: '2000–2012', title: '三大补偿性战略', accent: '#e8a317', desc: '西部大开发（2000）、东北振兴（2003）、中部崛起（2006）相继出台——对先富战略的政治补偿。转移支付规模快速扩张，西气东输/西电东送把西部锁定为东部的能源腹地。' },
-  { period: '2014–2019', title: '区域重大战略', accent: '#22d3ee', desc: '京津冀协同、长江经济带、粤港澳大湾区、长三角一体化、黄河流域——政策单元从「板块」细化为「功能区」，从给优惠转向立规则，城市群与都市圈成为承载主体。' },
-  { period: '2017–2021', title: '主体功能区定型', accent: '#10b981', desc: '国土空间被划入优化开发/重点开发/限制开发/禁止开发四类：生态功能区放弃 GDP 考核、换取转移支付。这是对「每个县都要工业化」模式的制度性否定。' },
+  { period: '1979–1999', title: '沿海率先 · 梯度让利', accent: '#e5483b', desc: '「让一部分地区先富起来」：特区—开放城市—沿海开放带的梯度让利，财政包干强化地方动力，也埋下东西差距与诸侯经济的种子。区域政策此时是增长政策的空间投影。' },
+  { period: '2000–2012', title: '三大补偿性战略', accent: '#d4a25a', desc: '西部大开发（2000）、东北振兴（2003）、中部崛起（2006）相继出台——对先富战略的政治补偿。转移支付规模快速扩张，西气东输/西电东送把西部锁定为东部的能源腹地。' },
+  { period: '2014–2019', title: '区域重大战略', accent: '#6e8cff', desc: '京津冀协同、长江经济带、粤港澳大湾区、长三角一体化、黄河流域——政策单元从「板块」细化为「功能区」，从给优惠转向立规则，城市群与都市圈成为承载主体。' },
+  { period: '2017–2021', title: '主体功能区定型', accent: '#6fc2ae', desc: '国土空间被划入优化开发/重点开发/限制开发/禁止开发四类：生态功能区放弃 GDP 考核、换取转移支付。这是对「每个县都要工业化」模式的制度性否定。' },
   { period: '2022–', title: '全国统一大市场', accent: '#a78bfa', desc: '公平竞争审查、招投标统一、要素市场化配置——矛头指向地方保护与「诸侯经济」。区域协调的终局命题浮出：在维持地方竞争活力的同时拆除其壁垒工具箱。' },
-  { period: '2026–', title: '十五五开局 · 空间再定价', accent: '#c41e3a', desc: '规划纲要审议后，区域政策从「给项目」转向「给规则+给账本」：统一大市场执行、转移支付与生态补偿挂钩、城市群承载新质生产力集群。收支倒挂省份的财政重整进入前台。' },
+  { period: '2026–', title: '十五五开局 · 空间再定价', accent: '#e5483b', desc: '规划纲要审议后，区域政策从「给项目」转向「给规则+给账本」：统一大市场执行、转移支付与生态补偿挂钩、城市群承载新质生产力集群。收支倒挂省份的财政重整进入前台。' },
 ];
 
 // ---------------------------------------------------------------------------
 // 七、板块定位卡（保留并沿用）
 // ---------------------------------------------------------------------------
 const plates = [
-  ['东部沿海发展带', '龙头牵引 · 新质生产力集群', '外向型经济、数字与新质产业集群密集，承担全要素生产率与全球价值链攀升主阵地；财政与金融资源集聚度高，外溢效应显著。研发强度 3.5%+（示意）。', '#c41e3a'],
-  ['中部崛起板块', '承东启西 · 先进制造与物流', '制造业梯度转移与综合交通枢纽叠加，内需市场纵深大；在统一大市场下承担产业链备份与区域均衡器角色。研发强度 2.8%+（示意）。', '#22d3ee'],
-  ['西部大开发', '战略纵深 · 能源与陆路开放', '能源、矿产与生态屏障功能突出，清洁能源基地与陆海新通道重塑内陆开放几何；约束在生态红线与投融资效率。研发强度 2.1%+（示意）。', '#e8a317'],
-  ['东北全面振兴', '老工业基地 · 产业与粮食双安全', '装备制造与粮食安全双底牌，人口流出与债务历史包袱并存；产业升级与东北亚合作窗口构成长期变量。研发强度 2.4%+（示意）。', '#10b981'],
+  ['东部沿海发展带', '龙头牵引 · 新质生产力集群', '外向型经济、数字与新质产业集群密集，承担全要素生产率与全球价值链攀升主阵地；财政与金融资源集聚度高，外溢效应显著。研发强度 3.5%+（示意）。', '#e5483b'],
+  ['中部崛起板块', '承东启西 · 先进制造与物流', '制造业梯度转移与综合交通枢纽叠加，内需市场纵深大；在统一大市场下承担产业链备份与区域均衡器角色。研发强度 2.8%+（示意）。', '#6e8cff'],
+  ['西部大开发', '战略纵深 · 能源与陆路开放', '能源、矿产与生态屏障功能突出，清洁能源基地与陆海新通道重塑内陆开放几何；约束在生态红线与投融资效率。研发强度 2.1%+（示意）。', '#d4a25a'],
+  ['东北全面振兴', '老工业基地 · 产业与粮食双安全', '装备制造与粮食安全双底牌，人口流出与债务历史包袱并存；产业升级与东北亚合作窗口构成长期变量。研发强度 2.4%+（示意）。', '#6fc2ae'],
 ];
 
 // ===========================================================================
@@ -264,16 +264,16 @@ export default function Page() {
       <IntroCard>区域协调不是地理问题，而是政治经济问题：谁集聚要素、谁守护底线、谁补贴谁。改革开放以梯度让利启动沿海，再以三大补偿性战略与逐年扩张的转移支付对冲分化；当下的统一大市场，则试图在不熄灭地方竞争引擎的前提下拆除其保护主义工具箱。本页以四大板块、八大战略、转移支付流向与城市群层级四个切面，呈现这套空间再分配机器的运行逻辑。数值均为示意。</IntroCard>
 
       <StatGrid className="mb-6">
-        <Stat value="4 + 5" label="四大板块 + 五大区域重大战略" accent="#c41e3a" />
-        <Stat value="19 个" label="国家级城市群（三档梯度）" accent="#22d3ee" />
-        <Stat value="~10.1 万亿" label="中央转移支付 (2024 决算)" accent="#e8a317" />
-        <Stat value="65 : 35" label="南北 GDP 占比 (2024 公报)" accent="#10b981" />
+        <Stat value="4 + 5" label="四大板块 + 五大区域重大战略" accent="#e5483b" />
+        <Stat value="19 个" label="国家级城市群（三档梯度）" accent="#6e8cff" />
+        <Stat value="~10.1 万亿" label="中央转移支付 (2024 决算)" accent="#d4a25a" />
+        <Stat value="65 : 35" label="南北 GDP 占比 (2024 公报)" accent="#6fc2ae" />
       </StatGrid>
 
       <Grid cols={3} className="mb-6">
         {[['十五五区域命题', '统一大市场从「立规矩」进入「拆壁垒」执行期 · 要素市场化配置改革提速', '#a78bfa'],
-          ['城市群 GDP', '19 城市群占 GDP ~90% · 长三角/粤港澳/京津冀三极占 ~40%', '#22d3ee'],
-          ['收支倒挂带', '东北/部分中西部省份广义收支缺口仍依赖转移支付 · 见重构河山财政沙盘', '#c41e3a']].map(([t, d, c]) => (
+          ['城市群 GDP', '19 城市群占 GDP ~90% · 长三角/粤港澳/京津冀三极占 ~40%', '#6e8cff'],
+          ['收支倒挂带', '东北/部分中西部省份广义收支缺口仍依赖转移支付 · 见重构河山财政沙盘', '#e5483b']].map(([t, d, c]) => (
           <div key={t} className="os-card p-4" style={{ borderLeft: `3px solid ${c}` }}>
             <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>{t}</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
@@ -296,11 +296,11 @@ export default function Page() {
             <div><div className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>人口占全国</div><div className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{strat.popShare}%</div></div>
           </Grid>
           <div className="space-y-2">
-            <div style={{ borderLeft: '2px solid #10b981', paddingLeft: 10 }}>
+            <div style={{ borderLeft: '2px solid #6fc2ae', paddingLeft: 10 }}>
               <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>核心引擎</div>
               <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{strat.engine}</p>
             </div>
-            <div style={{ borderLeft: '2px solid #e8a317', paddingLeft: 10 }}>
+            <div style={{ borderLeft: '2px solid #d4a25a', paddingLeft: 10 }}>
               <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>结构性短板</div>
               <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{strat.weakness}</p>
             </div>
@@ -349,9 +349,9 @@ export default function Page() {
           </div>
         </Grid>
         <Grid cols={3} className="mt-4">
-          {[['维稳边疆', '新疆/西藏/甘肃等人均转移支付远超全国均值——财政是比驻军更日常的国家在场方式。', '#e8a317'],
-            ['补偿粮区', '产粮大省往往是财政穷省：粮食安全的成本由主产区承担、由转移支付部分回补，利益补偿机制仍在完善。', '#10b981'],
-            ['托底社保', '东北等老龄化先行区依赖养老金全国统筹调剂——代际账本与区域账本在此合流。', '#22d3ee']].map(([t, d, c]) => (
+          {[['维稳边疆', '新疆/西藏/甘肃等人均转移支付远超全国均值——财政是比驻军更日常的国家在场方式。', '#d4a25a'],
+            ['补偿粮区', '产粮大省往往是财政穷省：粮食安全的成本由主产区承担、由转移支付部分回补，利益补偿机制仍在完善。', '#6fc2ae'],
+            ['托底社保', '东北等老龄化先行区依赖养老金全国统筹调剂——代际账本与区域账本在此合流。', '#6e8cff']].map(([t, d, c]) => (
             <div key={t} style={{ borderLeft: `2px solid ${c}`, paddingLeft: 10 }}>
               <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{t}</div>
               <p className="text-[11px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
@@ -393,9 +393,9 @@ export default function Page() {
         <Card title="统一大市场的三条政策杠杆">
           <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>反垄断与公平竞争审查、政府采购与招投标统一、要素市场化配置改革共同压缩「本地偏好」空间。</p>
           <div className="space-y-2">
-            {[['公平竞争', '破除显性与隐性壁垒，降低跨区域投资的制度不确定性。', '#10b981'],
-              ['要素流动', '户籍、土地、数据与资本定价机制联动，提高配置效率。', '#22d3ee'],
-              ['财税激励校正', '弱化单纯以 GDP 论英雄的扩张冲动，向质量与协同倾斜。', '#e8a317']].map(([t, d, c]) => (
+            {[['公平竞争', '破除显性与隐性壁垒，降低跨区域投资的制度不确定性。', '#6fc2ae'],
+              ['要素流动', '户籍、土地、数据与资本定价机制联动，提高配置效率。', '#6e8cff'],
+              ['财税激励校正', '弱化单纯以 GDP 论英雄的扩张冲动，向质量与协同倾斜。', '#d4a25a']].map(([t, d, c]) => (
               <div key={t} style={{ borderLeft: `2px solid ${c}`, paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{t}</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>{d}</p></div>
             ))}
           </div>
@@ -406,8 +406,8 @@ export default function Page() {
       <Card title="人口与产业的再布局" className="mb-6">
         <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>城市群与都市圈承载主要增量；县域与乡村振兴承接返乡与县域消费，形成多层级空间结构。</p>
         <Grid cols={2}>
-          {[['集聚 · 城市群', '核心城市研发与高端服务密度继续上升，全国一体化进程在规则统一、数据互通、劳动力流动维度推进最快（示意得分 88–95）。', '#c41e3a'],
-            ['下沉 · 县域', '县域基础设施与公共服务补短板释放内需，承接产业梯度转移与返乡人口，是统一大市场的「毛细血管」。', '#22d3ee']].map(([t, d, c]) => (
+          {[['集聚 · 城市群', '核心城市研发与高端服务密度继续上升，全国一体化进程在规则统一、数据互通、劳动力流动维度推进最快（示意得分 88–95）。', '#e5483b'],
+            ['下沉 · 县域', '县域基础设施与公共服务补短板释放内需，承接产业梯度转移与返乡人口，是统一大市场的「毛细血管」。', '#6e8cff']].map(([t, d, c]) => (
             <div key={t} style={{ borderLeft: `2px solid ${c}`, paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{t}</div><p className="text-[11px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p></div>
           ))}
         </Grid>

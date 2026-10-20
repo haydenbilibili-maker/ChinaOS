@@ -85,19 +85,19 @@ export const SECTORS = [
   {
     id: 'agri',
     label: '第一产业',
-    color: '#10b981',
+    color: '#6fc2ae',
     desc: '农林牧渔。占比长期下滑但绝对值刚性，关乎口粮安全与城乡剪刀差的底盘。',
   },
   {
     id: 'ind',
     label: '第二产业',
-    color: '#e8a317',
+    color: '#d4a25a',
     desc: '工业与建筑业。从地产-基建拉动转向制造业与高技术装备，是出口与就业的承重墙。',
   },
   {
     id: 'srv',
     label: '第三产业',
-    color: '#22d3ee',
+    color: '#6e8cff',
     desc: '服务业。占比过半且持续抬升，吸纳新增就业的主通道，景气随消费与信心起伏。',
   },
 ];

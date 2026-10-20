@@ -9,23 +9,23 @@ const scaleBar = {
   grid: { left: 48, right: 40, top: 16, bottom: 24 },
   xAxis: { type: 'value', splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } }, axisLabel: { show: false } },
   yAxis: { type: 'category', data: ['德国', '日本', '美国', '中国'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
-  series: [{ type: 'bar', data: [800, 1000, 2500, 4500], barWidth: 18, itemStyle: { color: (p) => (p.dataIndex === 3 ? '#c41e3a' : '#64748b'), borderRadius: [0, 4, 4, 0] }, label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 } }],
+  series: [{ type: 'bar', data: [800, 1000, 2500, 4500], barWidth: 18, itemStyle: { color: (p) => (p.dataIndex === 3 ? '#e5483b' : '#8a8578'), borderRadius: [0, 4, 4, 0] }, label: { show: true, position: 'right', color: LABEL.color, fontSize: 10 } }],
 };
 const valueChainRadar = {
-  radar: { indicator: [{ name: '原始研发', max: 100 }, { name: '高价值设计', max: 100 }, { name: '精密制造', max: 100 }, { name: '品牌影响力', max: 100 }, { name: '全球化服务', max: 100 }], axisName: { color: LABEL.color, fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
+  radar: { indicator: [{ name: '原始研发', max: 100 }, { name: '高价值设计', max: 100 }, { name: '精密制造', max: 100 }, { name: '品牌影响力', max: 100 }, { name: '全球化服务', max: 100 }], axisName: { color: LABEL.color, fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } }, splitArea: { show: false } },
   series: [{ type: 'radar', data: [
-    { value: [30, 40, 95, 20, 25], name: '2015 状态', lineStyle: { color: '#64748b' }, itemStyle: { color: '#64748b' } },
-    { value: [75, 82, 98, 65, 78], name: '2024 现状', lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.1)' } },
+    { value: [30, 40, 95, 20, 25], name: '2015 状态', lineStyle: { color: '#8a8578' }, itemStyle: { color: '#8a8578' } },
+    { value: [75, 82, 98, 65, 78], name: '2024 现状', lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.1)' } },
   ] }],
 };
 const giantsPie = {
   tooltip: { trigger: 'item' },
   series: [{ type: 'pie', radius: ['40%', '70%'], itemStyle: { borderRadius: 2, borderColor: 'transparent', borderWidth: 2 }, label: { show: true, fontSize: 10, color: LABEL.color }, data: [
-    { value: 35, name: '高端装备', itemStyle: { color: '#c41e3a' } },
-    { value: 25, name: '新一代信息技术', itemStyle: { color: '#22d3ee' } },
-    { value: 15, name: '新材料', itemStyle: { color: '#e8a317' } },
-    { value: 12, name: '生物医药', itemStyle: { color: '#10b981' } },
-    { value: 13, name: '新能源汽车', itemStyle: { color: '#8b5cf6' } },
+    { value: 35, name: '高端装备', itemStyle: { color: '#e5483b' } },
+    { value: 25, name: '新一代信息技术', itemStyle: { color: '#6e8cff' } },
+    { value: 15, name: '新材料', itemStyle: { color: '#d4a25a' } },
+    { value: 12, name: '生物医药', itemStyle: { color: '#6fc2ae' } },
+    { value: 13, name: '新能源汽车', itemStyle: { color: '#b07cc6' } },
   ] }],
 };
 
@@ -40,8 +40,8 @@ const shareTrend = {
     { type: 'value', name: '%', nameTextStyle: { color: LABEL.color, fontSize: 9 }, splitLine: { show: false }, axisLabel: { color: LABEL.color, fontSize: 10 } },
   ],
   series: [
-    { name: '增加值（万亿美元）', type: 'bar', data: [0.8, 1.7, 2.9, 3.2, 3.9, 4.7], barWidth: 16, itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } },
-    { name: '全球占比 %', type: 'line', yAxisIndex: 1, data: [9, 18, 24, 26, 29, 30], smooth: true, lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' }, symbolSize: 6 },
+    { name: '增加值（万亿美元）', type: 'bar', data: [0.8, 1.7, 2.9, 3.2, 3.9, 4.7], barWidth: 16, itemStyle: { color: '#e5483b', borderRadius: [3, 3, 0, 0] } },
+    { name: '全球占比 %', type: 'line', yAxisIndex: 1, data: [9, 18, 24, 26, 29, 30], smooth: true, lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' }, symbolSize: 6 },
   ],
 };
 
@@ -57,19 +57,19 @@ function buildSmile(active) {
     symbol: 'circle', symbolSize: 8,
     lineStyle: { color, width },
     itemStyle: { color },
-    areaStyle: area ? { color: 'rgba(196,30,58,0.08)' } : undefined,
+    areaStyle: area ? { color: 'rgba(229, 72, 59,0.08)' } : undefined,
     emphasis: { focus: 'series' },
   });
   const series = [
-    baseLine('发达经济体形态', smileGlobalLeader, '#5b6a82', 1.5),
-    baseLine('攀升目标', smileTarget, '#22d3ee', 1.5),
-    baseLine('中国当前位势', smileChinaNow, '#c41e3a', 2.5, true),
+    baseLine('发达经济体形态', smileGlobalLeader, '#8a847a', 1.5),
+    baseLine('攀升目标', smileTarget, '#6e8cff', 1.5),
+    baseLine('中国当前位势', smileChinaNow, '#e5483b', 2.5, true),
   ];
   // 高亮选中环节的标记
   if (active != null) {
     series.push({
       name: 'mark', type: 'scatter', data: [[active, smileChinaNow[active]]],
-      symbolSize: 18, itemStyle: { color: 'transparent', borderColor: '#e8a317', borderWidth: 2 }, z: 10, silent: true,
+      symbolSize: 18, itemStyle: { color: 'transparent', borderColor: '#d4a25a', borderWidth: 2 }, z: 10, silent: true,
     });
   }
   return {
@@ -83,26 +83,26 @@ function buildSmile(active) {
 }
 
 const stageDetail = [
-  { k: '研发 / 设计', pos: '攀升中 · 缺口大', desc: '基础研究与原始创新仍是短板：高端 EDA、工业软件、核心算法专利受制于人。附加值率约 42%，目标 80%，是「微笑曲线」左端的主战场。', accent: '#22d3ee' },
-  { k: '关键零部件', pos: '部分卡脖子', desc: '光刻机、高端轴承、工业母机数控系统、航空发动机等环节存在断点。专精特新「小巨人」蜂群正逐点替代，自给率持续爬升。', accent: '#e8a317' },
-  { k: '组装 / 制造', pos: '绝对统治 · 已满格', desc: '附加值率 90，全球无可替代。规模、效率、配套完整度构成物理护城河——这是「世界工厂」的基座，但也是利润最薄的曲线底部。', accent: '#c41e3a' },
-  { k: '品牌 / 营销', pos: '加速出海', desc: '新能源车、家电、消费电子品牌正强行向右端爬升。从「贴牌代工」到「自主品牌全球化」，附加值率由 20 升至 50，目标 78。', accent: '#8b5cf6' },
-  { k: '服务', pos: '制造服务化', desc: '工业互联网、后市场服务、整体解决方案输出（高铁/盾构/特高压「交钥匙」工程）。服务化是锁定客户、构建「不可脱钩」依赖的关键。', accent: '#10b981' },
+  { k: '研发 / 设计', pos: '攀升中 · 缺口大', desc: '基础研究与原始创新仍是短板：高端 EDA、工业软件、核心算法专利受制于人。附加值率约 42%，目标 80%，是「微笑曲线」左端的主战场。', accent: '#6e8cff' },
+  { k: '关键零部件', pos: '部分卡脖子', desc: '光刻机、高端轴承、工业母机数控系统、航空发动机等环节存在断点。专精特新「小巨人」蜂群正逐点替代，自给率持续爬升。', accent: '#d4a25a' },
+  { k: '组装 / 制造', pos: '绝对统治 · 已满格', desc: '附加值率 90，全球无可替代。规模、效率、配套完整度构成物理护城河——这是「世界工厂」的基座，但也是利润最薄的曲线底部。', accent: '#e5483b' },
+  { k: '品牌 / 营销', pos: '加速出海', desc: '新能源车、家电、消费电子品牌正强行向右端爬升。从「贴牌代工」到「自主品牌全球化」，附加值率由 20 升至 50，目标 78。', accent: '#b07cc6' },
+  { k: '服务', pos: '制造服务化', desc: '工业互联网、后市场服务、整体解决方案输出（高铁/盾构/特高压「交钥匙」工程）。服务化是锁定客户、构建「不可脱钩」依赖的关键。', accent: '#6fc2ae' },
 ];
 
 // 门类数据（示意值）
 const sectors = {
-  装备: { scale: '8.5 万亿', share: '约 35%', gvc: '中段统治 · 高端攀升', neck: '高端数控机床 / 工业母机系统 / 高端轴承', robot: 410, color: '#c41e3a',
+  装备: { scale: '8.5 万亿', share: '约 35%', gvc: '中段统治 · 高端攀升', neck: '高端数控机床 / 工业母机系统 / 高端轴承', robot: 410, color: '#e5483b',
     note: '工程机械、轨道交通、电力装备全球领先；高铁、盾构机、特高压输出「交钥匙」工程，但五轴联动机床、精密减速器仍依赖进口。' },
-  电子: { scale: '14 万亿', share: '约 36%', gvc: '组装为王 · 芯片受制', neck: '先进制程芯片 / 高端光刻机 / EDA 工具', robot: 380, color: '#22d3ee',
+  电子: { scale: '14 万亿', share: '约 36%', gvc: '组装为王 · 芯片受制', neck: '先进制程芯片 / 高端光刻机 / EDA 工具', robot: 380, color: '#6e8cff',
     note: '消费电子组装全球枢纽，但价值链利润集中在上游芯片与设计；成熟制程已具规模优势，先进制程被卡。' },
-  汽车: { scale: '11 万亿', share: '约 32%', gvc: '换道超车 · 新能源领先', neck: '高端车规芯片 / 部分基础软件', robot: 470, color: '#8b5cf6',
+  汽车: { scale: '11 万亿', share: '约 32%', gvc: '换道超车 · 新能源领先', neck: '高端车规芯片 / 部分基础软件', robot: 470, color: '#b07cc6',
     note: '新能源汽车产销全球第一，电池/电机/电控全链自主，出口跃居世界第一；燃油车时代的发动机/变速箱差距被电动化抹平。' },
-  船舶: { scale: '1.2 万亿', share: '约 50%', gvc: '规模第一 · 高端补强', neck: '高端船用主机 / LNG 围护系统', robot: 220, color: '#10b981',
+  船舶: { scale: '1.2 万亿', share: '约 50%', gvc: '规模第一 · 高端补强', neck: '高端船用主机 / LNG 围护系统', robot: 220, color: '#6fc2ae',
     note: '造船三大指标（完工量/新接订单/手持订单）全球第一，LNG 船、大型邮轮等高附加值船型实现突破。' },
-  家电: { scale: '1.8 万亿', share: '约 55%', gvc: '品牌出海 · 高端化', neck: '高端压缩机芯片 / 部分传感器', robot: 360, color: '#e8a317',
+  家电: { scale: '1.8 万亿', share: '约 55%', gvc: '品牌出海 · 高端化', neck: '高端压缩机芯片 / 部分传感器', robot: 360, color: '#d4a25a',
     note: '全产业链完整、成本与品牌双优，自主品牌（白电/黑电）全球市占率第一，正向高端智能家居生态跃迁。' },
-  纺织: { scale: '3.2 万亿', share: '约 45%', gvc: '规模庞大 · 价值偏低', neck: '高端功能性纤维 / 部分染料助剂', robot: 95, color: '#fb923c',
+  纺织: { scale: '3.2 万亿', share: '约 45%', gvc: '规模庞大 · 价值偏低', neck: '高端功能性纤维 / 部分染料助剂', robot: 95, color: '#c07a4a',
     note: '全球最大纺织品出口国，化纤产能占全球七成；但深陷微笑曲线底部，向品牌设计与功能性新材料攀升空间巨大。' },
 };
 const sectorKeys = Object.keys(sectors);
@@ -122,10 +122,10 @@ function sectorScaleBar(active) {
 }
 
 const upgradePath = [
-  { t: '规模', en: 'SCALE', accent: '#c41e3a', d: '全工业门类覆盖（41 大类 / 207 中类 / 666 小类），增加值占全球约 30%。规模本身即国防级冗余——封锁面临横向替代。' },
-  { t: '效率', en: 'EFFICIENCY', accent: '#e8a317', d: '工业机器人密度 392 台/万人、5G + 工业互联网 + 数字孪生，把成本与交期压到全球最优，巩固组装中段的物理护城河。' },
-  { t: '自主', en: 'AUTONOMY', accent: '#22d3ee', d: '专精特新「小巨人」逐点替代卡脖子环节，关键零部件、工业软件、核心材料自给率持续爬升——价值链左端攻坚。' },
-  { t: '品牌', en: 'BRAND', accent: '#10b981', d: '新能源/家电/电子自主品牌全球化，从代工走向标准制定与服务输出——价值链右端跃迁，锁定「不可脱钩」依赖。' },
+  { t: '规模', en: 'SCALE', accent: '#e5483b', d: '全工业门类覆盖（41 大类 / 207 中类 / 666 小类），增加值占全球约 30%。规模本身即国防级冗余——封锁面临横向替代。' },
+  { t: '效率', en: 'EFFICIENCY', accent: '#d4a25a', d: '工业机器人密度 392 台/万人、5G + 工业互联网 + 数字孪生，把成本与交期压到全球最优，巩固组装中段的物理护城河。' },
+  { t: '自主', en: 'AUTONOMY', accent: '#6e8cff', d: '专精特新「小巨人」逐点替代卡脖子环节，关键零部件、工业软件、核心材料自给率持续爬升——价值链左端攻坚。' },
+  { t: '品牌', en: 'BRAND', accent: '#6fc2ae', d: '新能源/家电/电子自主品牌全球化，从代工走向标准制定与服务输出——价值链右端跃迁，锁定「不可脱钩」依赖。' },
 ];
 
 export default function Page() {
@@ -138,18 +138,18 @@ export default function Page() {
       <PageHeader badge="Manufacturing · New Quality Productive Forces" title="制造业规模 · 全球价值链位势" subtitle="GVC 微笑曲线 · 增加值全球份额 · 门类位势 —— 从世界工厂到制造强国的「非对称相互依赖」" />
       <IntroCard>中国制造业增加值占全球约 30%、连续 14 年居全球第一，且拥有联合国产业分类中全部工业门类。其转型主线是沿微笑曲线的纵向迁徙：组装中段已达绝对统治，真正的变量在于研发设计（左端）与品牌服务（右端）的爬升速度能否跑赢外部脱钩的速度。</IntroCard>
       <StatGrid className="mb-6">
-        <Stat value="~30%" label="制造业增加值全球份额（连续 14 年第一）" accent="#e8a317" />
-        <Stat value="+10.2%" label="高技术制造业增速 · 引领结构化升级" accent="#c41e3a" />
-        <Stat value="12,000+" label="专精特新「小巨人」· 产业链关键节点掌控者" accent="#22d3ee" />
-        <Stat value="392 台" label="工业机器人密度（每万名工人 · 全球领先）" accent="#10b981" />
+        <Stat value="~30%" label="制造业增加值全球份额（连续 14 年第一）" accent="#d4a25a" />
+        <Stat value="+10.2%" label="高技术制造业增速 · 引领结构化升级" accent="#e5483b" />
+        <Stat value="12,000+" label="专精特新「小巨人」· 产业链关键节点掌控者" accent="#6e8cff" />
+        <Stat value="392 台" label="工业机器人密度（每万名工人 · 全球领先）" accent="#6fc2ae" />
       </StatGrid>
 
       {/* 关键指标卡 */}
       <StatGrid className="mb-6">
-        {[['增加值 / GDP', '约 27%', '制造业占国民经济比重 · 守住实体根基', '#c41e3a'],
-          ['全球占比', '约 30%', '超美日德之和 · 连续 14 年第一', '#e8a317'],
-          ['门类完整度', '100%', '全部 41 大类工业门类 · 唯一', '#22d3ee'],
-          ['机器人密度', '392 台/万人', '超德日 · 自动化率全球领先', '#10b981']].map(([l, v, d, c]) => (
+        {[['增加值 / GDP', '约 27%', '制造业占国民经济比重 · 守住实体根基', '#e5483b'],
+          ['全球占比', '约 30%', '超美日德之和 · 连续 14 年第一', '#d4a25a'],
+          ['门类完整度', '100%', '全部 41 大类工业门类 · 唯一', '#6e8cff'],
+          ['机器人密度', '392 台/万人', '超德日 · 自动化率全球领先', '#6fc2ae']].map(([l, v, d, c]) => (
           <div key={l} className="os-card os-stat-card p-4" style={{ borderLeft: `3px solid ${c}` }}>
             <div className="text-[11px] uppercase tracking-wider mb-1" style={{ color: 'var(--text-tertiary)' }}>{l}</div>
             <div className="text-2xl font-bold mb-1 mono os-mono-tabular" style={{ color: c }}>{v}</div>
@@ -166,10 +166,10 @@ export default function Page() {
             const on = i === stage;
             return (
               <button key={s} type="button" onClick={() => setStage(i)} className={`os-filter-chip mono ${on ? 'is-active' : ''}`} style={{
-                '--chip-accent': '#c41e3a',
-                background: on ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)',
+                '--chip-accent': '#e5483b',
+                background: on ? 'rgba(229, 72, 59,0.2)' : 'var(--bg-elevated)',
                 color: on ? 'var(--tab-active-text)' : 'var(--text-secondary)',
-                border: on ? '1px solid #c41e3a' : '1px solid var(--border-subtle)',
+                border: on ? '1px solid #e5483b' : '1px solid var(--border-subtle)',
               }}>{s}</button>
             );
           })}
@@ -183,9 +183,9 @@ export default function Page() {
             </div>
             <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>{stageDetail[stage].desc}</p>
             <div className="flex gap-4 items-end flex-wrap">
-              <div><div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>当前附加值率</div><div className="text-lg font-bold" style={{ color: '#c41e3a' }}>{smileChinaNow[stage]}</div></div>
-              <div><div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>攀升目标</div><div className="text-lg font-bold" style={{ color: '#22d3ee' }}>{smileTarget[stage]}</div></div>
-              <div><div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>发达经济体</div><div className="text-lg font-bold" style={{ color: '#5b6a82' }}>{smileGlobalLeader[stage]}</div></div>
+              <div><div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>当前附加值率</div><div className="text-lg font-bold" style={{ color: '#e5483b' }}>{smileChinaNow[stage]}</div></div>
+              <div><div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>攀升目标</div><div className="text-lg font-bold" style={{ color: '#6e8cff' }}>{smileTarget[stage]}</div></div>
+              <div><div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>发达经济体</div><div className="text-lg font-bold" style={{ color: '#8a847a' }}>{smileGlobalLeader[stage]}</div></div>
               <OsGauge value={smileChinaNow[stage]} max={100} color={stageDetail[stage].accent} size={78} label="当前位势" />
             </div>
           </div>
@@ -199,10 +199,10 @@ export default function Page() {
             const on = k === sector;
             return (
               <button key={k} type="button" onClick={() => setSector(k)} className={`os-filter-chip mono ${on ? 'is-active' : ''}`} style={{
-                '--chip-accent': '#c41e3a',
-                background: on ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)',
+                '--chip-accent': '#e5483b',
+                background: on ? 'rgba(229, 72, 59,0.2)' : 'var(--bg-elevated)',
                 color: on ? 'var(--tab-active-text)' : 'var(--text-secondary)',
-                border: on ? '1px solid #c41e3a' : '1px solid var(--border-subtle)',
+                border: on ? '1px solid #e5483b' : '1px solid var(--border-subtle)',
               }}>{k}</button>
             );
           })}
@@ -219,7 +219,7 @@ export default function Page() {
               <div className="mb-2"><div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>全球份额</div><div className="text-base font-bold" style={{ color: 'var(--text-primary)' }}>{sd.share}</div></div>
             </Grid>
             <div className="mb-3"><div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>GVC 位势</div><div className="text-sm font-semibold" style={{ color: sd.color }}>{sd.gvc}</div></div>
-            <div className="mb-3"><div className="text-[10px] mb-1" style={{ color: 'var(--text-tertiary)' }}>卡脖子点（示意）</div><div className="text-xs font-semibold" style={{ color: '#fb923c' }}>{sd.neck}</div></div>
+            <div className="mb-3"><div className="text-[10px] mb-1" style={{ color: 'var(--text-tertiary)' }}>卡脖子点（示意）</div><div className="text-xs font-semibold" style={{ color: '#c07a4a' }}>{sd.neck}</div></div>
             <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{sd.note}</p>
           </div>
         </Grid>
@@ -233,7 +233,7 @@ export default function Page() {
         </Card>
         <Card title="04 · 全球制造业规模对比（模拟产值量级）">
           <EChart option={scaleBar} style={{ height: 240 }} />
-          <div className="text-xs italic mt-3" style={{ borderLeft: '2px solid #c41e3a', paddingLeft: 10, color: 'var(--text-tertiary)' }}>"The only country with 41 industrial categories, 207 sub-categories, and 666 subclasses." —— 全产业链覆盖即国家安全的物理底牌。</div>
+          <div className="text-xs italic mt-3" style={{ borderLeft: '2px solid #e5483b', paddingLeft: 10, color: 'var(--text-tertiary)' }}>"The only country with 41 industrial categories, 207 sub-categories, and 666 subclasses." —— 全产业链覆盖即国家安全的物理底牌。</div>
         </Card>
       </Grid>
 
@@ -263,8 +263,8 @@ export default function Page() {
           <div className="text-xs font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>专精特新企业行业分布</div>
           <EChart option={giantsPie} style={{ height: 200 }} />
           <Grid cols={2}>
-            <div style={{ borderLeft: '2px solid #e8a317', paddingLeft: 10 }}><div className="text-sm font-bold" style={{ color: '#e8a317' }}>90%+</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>关键零部件进口替代预期</p></div>
-            <div style={{ borderLeft: '2px solid #e8a317', paddingLeft: 10 }}><div className="text-sm font-bold" style={{ color: '#e8a317' }}>3,500+</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>主导产品全球份额第一</p></div>
+            <div style={{ borderLeft: '2px solid #d4a25a', paddingLeft: 10 }}><div className="text-sm font-bold" style={{ color: '#d4a25a' }}>90%+</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>关键零部件进口替代预期</p></div>
+            <div style={{ borderLeft: '2px solid #d4a25a', paddingLeft: 10 }}><div className="text-sm font-bold" style={{ color: '#d4a25a' }}>3,500+</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>主导产品全球份额第一</p></div>
           </Grid>
         </Card>
       </Grid>

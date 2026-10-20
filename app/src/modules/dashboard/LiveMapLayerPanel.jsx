@@ -5,7 +5,7 @@ import {
   MIN_SATELLITE_OPACITY, MAX_SATELLITE_OPACITY, DEFAULT_SATELLITE_OPACITY,
 } from './liveSatellite.js';
 
-const STEEL = '#22d3ee';
+const STEEL = '#6e8cff';
 
 function Icon({ name, size = 12 }) {
   const Cmp = Lucide[name] || Lucide.Square;
@@ -54,7 +54,7 @@ export default function LiveMapLayerPanel({
       {geoSource && (
         <div className="lcm-layer-geo-status mono text-[10px]">
           <span style={{ color: 'var(--text-tertiary)' }}>底图边界</span>
-          <span className="lcm-layer-geo-pill" style={{ color: geoSource === 'network' ? '#10b981' : STEEL }}>
+          <span className="lcm-layer-geo-pill" style={{ color: geoSource === 'network' ? '#6fc2ae' : STEEL }}>
             {SOURCE_LABEL[geoSource] || geoSource}
           </span>
         </div>
@@ -91,13 +91,13 @@ export default function LiveMapLayerPanel({
                   return <span className="lcm-layer-meta mono" style={{ color: STEEL }}>拉取中…</span>;
                 }
                 if (st.error) {
-                  return <span className="lcm-layer-meta mono" style={{ color: '#e8a317' }}>{st.error}</span>;
+                  return <span className="lcm-layer-meta mono" style={{ color: '#d4a25a' }}>{st.error}</span>;
                 }
                 if (st.fetchedAt) {
                   const t = st.fetchedAt instanceof Date
                     ? st.fetchedAt.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })
                     : '--:--';
-                  return <span className="lcm-layer-meta mono" style={{ color: '#10b981' }}>更新 {t}</span>;
+                  return <span className="lcm-layer-meta mono" style={{ color: '#6fc2ae' }}>更新 {t}</span>;
                 }
                 return null;
               })()}

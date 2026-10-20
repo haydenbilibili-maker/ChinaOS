@@ -19,9 +19,9 @@ export const TERM_YEARS = 5;
 
 // 省态三表：任期内持续演化的三条生命线
 export const METRICS = [
-  { id: 'econ',   label: '经济动能', color: '#22d3ee', desc: '增长引擎的转速——危机砸经济/科技/能源域时掉血，年度自然修复' },
-  { id: 'social', label: '社会元气', color: '#10b981', desc: '民生与舆论的承受力——社会/外部域受创时掉血，掉穿后余波更凶' },
-  { id: 'fiscal', label: '财政余力', color: '#e8a317', desc: '救火的弹药库——金融域受创与大额政策投放都在消耗它，决定明年预算' },
+  { id: 'econ',   label: '经济动能', color: '#6e8cff', desc: '增长引擎的转速——危机砸经济/科技/能源域时掉血，年度自然修复' },
+  { id: 'social', label: '社会元气', color: '#6fc2ae', desc: '民生与舆论的承受力——社会/外部域受创时掉血，掉穿后余波更凶' },
+  { id: 'fiscal', label: '财政余力', color: '#d4a25a', desc: '救火的弹药库——金融域受创与大额政策投放都在消耗它，决定明年预算' },
 ];
 
 // ---------- 三表初始化与演化 ----------
@@ -106,10 +106,10 @@ export function termGrade(history) {
   else grade = 'C';
 
   const BOOK = {
-    S: { color: '#10b981', name: '治理标杆任期', note: '五年无一次失守，危机线被逐条按灭——这种任期写进教材，也写进对手的复盘。' },
-    A: { color: '#22d3ee', name: '稳健有为任期', note: '偶有失手但大盘没破，治理机器在高压下保持了转速。' },
-    B: { color: '#e8a317', name: '守成补漏任期', note: '及格线上的五年：危机没有失控，但余波与欠账都留给了下一届。' },
-    C: { color: '#c41e3a', name: '风险失控任期', note: '失分成串、三表见底，这份任期总结更像一份事故报告。' },
+    S: { color: '#6fc2ae', name: '治理标杆任期', note: '五年无一次失守，危机线被逐条按灭——这种任期写进教材，也写进对手的复盘。' },
+    A: { color: '#6e8cff', name: '稳健有为任期', note: '偶有失手但大盘没破，治理机器在高压下保持了转速。' },
+    B: { color: '#d4a25a', name: '守成补漏任期', note: '及格线上的五年：危机没有失控，但余波与欠账都留给了下一届。' },
+    C: { color: '#e5483b', name: '风险失控任期', note: '失分成串、三表见底，这份任期总结更像一份事故报告。' },
   };
   const b = BOOK[grade];
   return {

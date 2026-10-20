@@ -20,8 +20,8 @@ function buildRadarOption(mechIdx) {
     radar: {
       indicator: RADAR_DIMS.map((name, i) => ({ name: i === mechIdx ? `▶ ${name}` : name, max: 100 })),
       axisName: { color: LABEL.color, fontSize: 10 },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-      axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
+      axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
       splitArea: { show: false },
     },
     series: [{
@@ -41,7 +41,7 @@ const embedHeatmap = {
   grid: { left: 80, right: 16, top: 8, bottom: 56 },
   xAxis: { type: 'category', data: EMBED_COLS, splitArea: { show: true }, axisLabel: { color: LABEL.color, fontSize: 10, rotate: 18 } },
   yAxis: { type: 'category', data: EMBED_ROWS, splitArea: { show: true }, axisLabel: { color: LABEL.color, fontSize: 10 } },
-  visualMap: { min: 0, max: 100, calculable: false, orient: 'horizontal', left: 'center', bottom: 0, inRange: { color: ['#0f1623', '#27324a', '#8b5cf6', '#c41e3a'] }, textStyle: { color: LABEL.color, fontSize: 10 } },
+  visualMap: { min: 0, max: 100, calculable: false, orient: 'horizontal', left: 'center', bottom: 0, inRange: { color: ['#14171f', '#2a2d36', '#b07cc6', '#e5483b'] }, textStyle: { color: LABEL.color, fontSize: 10 } },
   series: [{
     type: 'heatmap',
     data: EMBED_MATRIX.flatMap((row, yi) => row.map((v, xi) => [xi, yi, v])),
@@ -73,7 +73,7 @@ export default function Page() {
 
   const inspectionOption = useMemo(() => timelineMarkAreaOpt({
     years: INSPECTION_YEARS, values: INSPECTION_VALUES, span: stageSpan,
-    highlightColor: '#8b5cf6', lineColor: '#c41e3a',
+    highlightColor: '#b07cc6', lineColor: '#e5483b',
   }), [stageSpan]);
 
   const handleReady = (chart) => {
@@ -92,7 +92,7 @@ export default function Page() {
       <IntroCard>本模块把「红色巨网」作为一种<strong style={{ color: 'var(--text-primary)' }}>结构现象</strong>建模：从党中央内核到海外离岸窗口，控制经由<strong style={{ color: 'var(--cyber-cyan)' }}>人事、财权、信息（语义防火墙）、组织嵌入、纪律与赛博反馈</strong>六条机制自上而下传导，又经网格与平台的数据回流形成闭环。十八大后以纪律机制回收离心节点、以组织前置嵌入治理，数字化阶段更把静态层级升级为<strong style={{ color: 'var(--text-primary)' }}>赛博反馈回路</strong>。<span style={{ color: 'var(--text-tertiary)' }}> 本页仅作机制层面的结构分析，数值为公开资料示意（OSINT），不构成对具体个人/机构的指认。</span></IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="L0–L6" label="网络层级" accent="#c41e3a" />
+        <Stat value="L0–L6" label="网络层级" accent="#e5483b" />
         <Stat value={`${NODES.length} 节点`} label="控制节点 · 6 机制" />
         <Stat value={mech.label} label="当前控制维度 · 切换" accent={mech.accent} />
         <Stat value={`AS_OF ${AS_OF}`} label="数据基准（示意）" />
@@ -116,7 +116,7 @@ export default function Page() {
             <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-secondary)' }}>控制手段</div>
             <div className="flex flex-wrap gap-1 mb-3">
               {meanLabels.map((l) => (
-                <span key={l} className="text-[10px] px-1.5 py-0.5 rounded mono" style={{ background: 'rgba(196,30,58,0.16)', color: '#e8a317' }}>{l}</span>
+                <span key={l} className="text-[10px] px-1.5 py-0.5 rounded mono" style={{ background: 'rgba(229, 72, 59,0.16)', color: '#d4a25a' }}>{l}</span>
               ))}
             </div>
             <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-secondary)' }}>典型机制</div>
@@ -179,9 +179,9 @@ export default function Page() {
       </Card>
 
       <FrameworkTrio cards={[
-        { title: '组织嵌入 · 网络的骨架', subtitle: '支部建在连上 → 党组前置', accent: '#10b981', border: '#10b981', body: '控制网的第一性原理是组织嵌入：把党组/党委写入国企、高校乃至民企的治理结构，使「把方向、管大局」具备法理与人事抓手。覆盖率从国企的近满覆盖向外企梯度衰减。', pillars: [['双向进入', '党组与董事会交叉任职。'], ['前置研究', '重大事项党组先议。'], ['梯度衰减', '民企/外企实质决策落差。']] },
-        { title: '纪律机制 · 系统杀毒', subtitle: '巡视全覆盖 · 回收离心节点', accent: '#8b5cf6', border: '#8b5cf6', body: '当市场化使节点离心、山头主义抬头，纪律机制（纪委—监委—巡视）以周期性反腐回收控制权、重建拓扑刚性。它是网络维持中心化的负反馈调节器，与 anticorruption 模块同源。', pillars: [['巡视利剑', '周期性结构清洗。'], ['派驻监督', '嵌入式纪检全覆盖。'], ['留置改革', '监察覆盖全体公职。']] },
-        { title: '赛博反馈 · 从层级到闭环', subtitle: '网格 + 中台 + 语义防火墙', accent: '#22d3ee', border: '#22d3ee', body: '数字化把静态层级升级为动态闭环：基层网格采集信号 → 数据中台聚合 → 内核实时调度，平台与算法成为信息流的可控阀门。控制密度与响应速度达到历史峰值，但也提升了系统的复杂度与脆性。', pillars: [['网格采集', '毛细血管级触达。'], ['语义防火墙', '信息可见性控制。'], ['闭环响应', '信号回流即时调度。']] },
+        { title: '组织嵌入 · 网络的骨架', subtitle: '支部建在连上 → 党组前置', accent: '#6fc2ae', border: '#6fc2ae', body: '控制网的第一性原理是组织嵌入：把党组/党委写入国企、高校乃至民企的治理结构，使「把方向、管大局」具备法理与人事抓手。覆盖率从国企的近满覆盖向外企梯度衰减。', pillars: [['双向进入', '党组与董事会交叉任职。'], ['前置研究', '重大事项党组先议。'], ['梯度衰减', '民企/外企实质决策落差。']] },
+        { title: '纪律机制 · 系统杀毒', subtitle: '巡视全覆盖 · 回收离心节点', accent: '#b07cc6', border: '#b07cc6', body: '当市场化使节点离心、山头主义抬头，纪律机制（纪委—监委—巡视）以周期性反腐回收控制权、重建拓扑刚性。它是网络维持中心化的负反馈调节器，与 anticorruption 模块同源。', pillars: [['巡视利剑', '周期性结构清洗。'], ['派驻监督', '嵌入式纪检全覆盖。'], ['留置改革', '监察覆盖全体公职。']] },
+        { title: '赛博反馈 · 从层级到闭环', subtitle: '网格 + 中台 + 语义防火墙', accent: '#6e8cff', border: '#6e8cff', body: '数字化把静态层级升级为动态闭环：基层网格采集信号 → 数据中台聚合 → 内核实时调度，平台与算法成为信息流的可控阀门。控制密度与响应速度达到历史峰值，但也提升了系统的复杂度与脆性。', pillars: [['网格采集', '毛细血管级触达。'], ['语义防火墙', '信息可见性控制。'], ['闭环响应', '信号回流即时调度。']] },
       ]} />
 
       <Card title="结构约束 · 成本与脆性" className="mb-2">

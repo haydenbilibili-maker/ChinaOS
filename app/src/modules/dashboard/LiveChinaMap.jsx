@@ -64,13 +64,13 @@ import {
   buildOverlaySeries, buildGeoLabelOption, fetchFiscalChoropleth,
 } from './liveMapLayers.js';
 
-const STEEL = '#22d3ee';
-const HOLD = '#e8a317';
+const STEEL = '#6e8cff';
+const HOLD = '#d4a25a';
 const ROTATE_MS = 10000;
 const JITTER_MS = 30000;
 const TIMELINE_MS = 1200;
 
-function SourceBadge({ label, loading, error, fetchedAt, okColor = '#10b981', warnColor = '#e8a317' }) {
+function SourceBadge({ label, loading, error, fetchedAt, okColor = '#6fc2ae', warnColor = '#d4a25a' }) {
   if (loading) {
     return <span style={{ color: okColor }}>// {label} 拉取中…</span>;
   }
@@ -134,8 +134,8 @@ function StatStrip({ stats, layer, simLive, inline = false }) {
   return (
     <div className={className} style={boxStyle}>
       <span style={{ color: 'var(--text-tertiary)' }}>均值 <b key={`a${stats.avg}`} className="lcm-flash" style={{ color: STEEL }}>{stats.avg}</b></span>
-      <span style={{ color: 'var(--text-tertiary)' }}>最高 <b key={`m${stats.max}`} className="lcm-flash" style={{ color: '#10b981' }}>{stats.max}</b>{!inline && <span className="hidden sm:inline"> ({stats.maxProv?.replace(/(省|市|自治区|壮族|回族|维吾尔)/g, '')})</span>}</span>
-      <span style={{ color: 'var(--text-tertiary)' }}>最低 <b key={`n${stats.min}`} className="lcm-flash-gold" style={{ color: '#64748b' }}>{stats.min}</b>{!inline && <span className="hidden sm:inline"> ({stats.minProv?.replace(/(省|市|自治区|壮族|回族|维吾尔)/g, '')})</span>}</span>
+      <span style={{ color: 'var(--text-tertiary)' }}>最高 <b key={`m${stats.max}`} className="lcm-flash" style={{ color: '#6fc2ae' }}>{stats.max}</b>{!inline && <span className="hidden sm:inline"> ({stats.maxProv?.replace(/(省|市|自治区|壮族|回族|维吾尔)/g, '')})</span>}</span>
+      <span style={{ color: 'var(--text-tertiary)' }}>最低 <b key={`n${stats.min}`} className="lcm-flash-gold" style={{ color: '#8a8578' }}>{stats.min}</b>{!inline && <span className="hidden sm:inline"> ({stats.minProv?.replace(/(省|市|自治区|壮族|回族|维吾尔)/g, '')})</span>}</span>
       {!inline && (
         <>
           <span style={{ color: 'var(--text-tertiary)' }}>单位 <b style={{ color: 'var(--text-secondary)' }}>{layer.unit || '指数 0–100'}</b></span>
@@ -143,8 +143,8 @@ function StatStrip({ stats, layer, simLive, inline = false }) {
         </>
       )}
       {simLive && (
-        <span className="inline-flex items-center gap-1" style={{ color: '#e8a317' }}>
-          <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#e8a317' }} />
+        <span className="inline-flex items-center gap-1" style={{ color: '#d4a25a' }}>
+          <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#d4a25a' }} />
           模拟 ±2%
         </span>
       )}
@@ -536,7 +536,7 @@ export default function LiveChinaMap({
   const exportPng = useCallback(() => {
     const chart = chartRef.current;
     if (!chart) return;
-    const url = chart.getDataURL({ pixelRatio: 2, backgroundColor: theme === 'light' ? '#ffffff' : '#0a0e17' });
+    const url = chart.getDataURL({ pixelRatio: 2, backgroundColor: theme === 'light' ? '#ffffff' : '#0d0f14' });
     const a = document.createElement('a');
     a.href = url;
     a.download = `shenzhou-live-${layerId}-${AS_OF}.png`;
@@ -557,7 +557,7 @@ export default function LiveChinaMap({
 
   const buildOption = useCallback(() => {
     const isDark = theme !== 'light';
-    const borderBase = isDark ? 'rgba(148,163,184,0.22)' : 'rgba(58,70,89,0.18)';
+    const borderBase = isDark ? 'rgba(162, 156, 145,0.22)' : 'rgba(58,70,89,0.18)';
     const areaIdle = mapAreaIdle(isDark ? 'dark' : 'light');
     const labelColor = chartTextColor();
     const deltaPalette = mapDeltaChoropleth(isDark ? 'dark' : 'light');
@@ -571,7 +571,7 @@ export default function LiveChinaMap({
           ? {
             borderColor: `${STEEL}${isSelected ? 'ff' : '88'}`,
             borderWidth: isSelected ? 2 : 1,
-            shadowColor: 'rgba(34,211,238,0.28)',
+            shadowColor: 'rgba(110, 140, 255,0.28)',
             shadowBlur: 6,
           }
           : isSelected
@@ -661,7 +661,7 @@ export default function LiveChinaMap({
         regions: zoneId && POLICY_ZONES[zoneId]
           ? POLICY_ZONES[zoneId].map((n) => ({
             name: n,
-            itemStyle: { borderColor: '#d4af37', borderWidth: 1.8, shadowColor: 'rgba(212,175,55,0.45)', shadowBlur: 8 },
+            itemStyle: { borderColor: '#d9b26a', borderWidth: 1.8, shadowColor: 'rgba(217, 178, 106,0.45)', shadowBlur: 8 },
           }))
           : [],
         itemStyle: {
@@ -671,7 +671,7 @@ export default function LiveChinaMap({
         },
         emphasis: {
           itemStyle: {
-            areaColor: isDark ? 'rgba(34,211,238,0.45)' : 'rgba(8,145,178,0.35)',
+            areaColor: isDark ? 'rgba(110, 140, 255,0.45)' : 'rgba(8,145,178,0.35)',
             borderColor: isDark ? STEEL : '#0891b2',
             borderWidth: 1.2,
           },
@@ -729,7 +729,7 @@ export default function LiveChinaMap({
         if (!chart.isDisposed?.()) {
           chart.resize();
         }
-        chart.showLoading('default', { text: '图层渲染中…', color: STEEL, textColor: chartTextColor(), maskColor: 'rgba(10,14,23,0.35)' });
+        chart.showLoading('default', { text: '图层渲染中…', color: STEEL, textColor: chartTextColor(), maskColor: 'rgba(13, 15, 20,0.35)' });
         chart.setOption(buildOption(), { notMerge: false, lazyUpdate: false });
         chart.hideLoading();
         if (!cancelled && !chart.isDisposed?.()) setGeoReady(true);
@@ -766,8 +766,8 @@ export default function LiveChinaMap({
     return {
       grid: { left: 44, right: 20, top: 26, bottom: 32 },
       tooltip: { ...CHART_TOOLTIP, formatter: (p) => `<b>${p.name}</b><br/>${xl.label}：${p.value[0]}<br/>${yl.label}：${p.value[1]}` },
-      xAxis: { type: 'value', name: xl.label, nameGap: 22, nameTextStyle: { color: '#5b6a82', fontSize: 10 }, scale: true, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
-      yAxis: { type: 'value', name: yl.label, nameTextStyle: { color: '#5b6a82', fontSize: 10 }, scale: true, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.08)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+      xAxis: { type: 'value', name: xl.label, nameGap: 22, nameTextStyle: { color: '#8a847a', fontSize: 10 }, scale: true, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.08)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+      yAxis: { type: 'value', name: yl.label, nameTextStyle: { color: '#8a847a', fontSize: 10 }, scale: true, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.08)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
       series: [{
         type: 'scatter',
         data: pts,
@@ -778,8 +778,8 @@ export default function LiveChinaMap({
         markLine: {
           silent: true,
           symbol: 'none',
-          lineStyle: { color: 'rgba(148,163,184,0.35)', type: 'dashed' },
-          label: { color: '#5b6a82', fontSize: 9 },
+          lineStyle: { color: 'rgba(162, 156, 145,0.35)', type: 'dashed' },
+          label: { color: '#8a847a', fontSize: 9 },
           data: [{ xAxis: xa, label: { formatter: `均值 ${xa}` } }, { yAxis: ya, label: { formatter: `均值 ${ya}` } }],
         },
       }],
@@ -798,8 +798,8 @@ export default function LiveChinaMap({
             <Icon name="Map" size={16} style={{ color: STEEL }} />
             <h2 className="os-card-title m-0">神州活图</h2>
             <span className="lcm-live-badge inline-flex items-center gap-1.5 text-[10px] mono px-1.5 py-0.5 rounded"
-              style={{ background: 'rgba(34,211,238,0.12)', color: STEEL, border: '1px solid rgba(34,211,238,0.25)' }}>
-              <span className="lcm-live-dot" style={{ background: '#ef4444' }} />
+              style={{ background: 'rgba(110, 140, 255,0.12)', color: STEEL, border: '1px solid rgba(110, 140, 255,0.25)' }}>
+              <span className="lcm-live-dot" style={{ background: '#e5483b' }} />
               LIVE
             </span>
             <span className="text-[10px] mono" style={{ color: 'var(--text-tertiary)' }}>{ALL_LAYERS.length} 层 · 其中 {REAL_LAYERS.length + REAL_AQI_LAYERS.length} 实测</span>
@@ -816,7 +816,7 @@ export default function LiveChinaMap({
         <div className="flex flex-wrap items-center gap-3 shrink-0">
           {isCompact && (
             <Link to="/shenzhou-live" className="text-xs mono px-3 py-1.5 rounded-lg"
-              style={{ background: 'rgba(34,211,238,0.15)', border: '1px solid rgba(34,211,238,0.35)', color: STEEL }}>
+              style={{ background: 'rgba(110, 140, 255,0.15)', border: '1px solid rgba(110, 140, 255,0.35)', color: STEEL }}>
               进入模块 →
             </Link>
           )}
@@ -838,8 +838,8 @@ export default function LiveChinaMap({
                   {PROVINCE_NAMES.map((n) => <option key={n} value={n.replace(/(省|市|自治区|壮族|回族|维吾尔)/g, '')} />)}
                 </datalist>
               </div>
-              <label className="inline-flex items-center gap-1.5 select-none text-[10px] mono whitespace-nowrap" style={{ color: isReal ? 'var(--text-tertiary)' : deltaMode ? '#ef4444' : 'var(--text-tertiary)', opacity: isReal ? 0.4 : 1, cursor: isReal ? 'not-allowed' : 'pointer' }} title={isReal ? '实况层为即时读数，无环比' : '当前月 − 12 月前：红升蓝降'}>
-                <input type="checkbox" disabled={isReal || coloringFiscal} checked={deltaMode && !isReal && !coloringFiscal} onChange={(e) => setDeltaMode(e.target.checked)} style={{ accentColor: '#ef4444' }} />
+              <label className="inline-flex items-center gap-1.5 select-none text-[10px] mono whitespace-nowrap" style={{ color: isReal ? 'var(--text-tertiary)' : deltaMode ? '#e5483b' : 'var(--text-tertiary)', opacity: isReal ? 0.4 : 1, cursor: isReal ? 'not-allowed' : 'pointer' }} title={isReal ? '实况层为即时读数，无环比' : '当前月 − 12 月前：红升蓝降'}>
+                <input type="checkbox" disabled={isReal || coloringFiscal} checked={deltaMode && !isReal && !coloringFiscal} onChange={(e) => setDeltaMode(e.target.checked)} style={{ accentColor: '#e5483b' }} />
                 Δ环比
               </label>
               <label className="inline-flex items-center gap-1.5 cursor-pointer select-none text-[10px] mono whitespace-nowrap" style={{ color: 'var(--text-tertiary)' }}>
@@ -888,8 +888,8 @@ export default function LiveChinaMap({
       {!isCompact ? (
         <div className="live-china-map-meta flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mt-3 mb-1">
           <span className="text-[10px] mono min-w-0 inline-flex items-center gap-2 flex-wrap" style={{ color: 'var(--text-tertiary)' }}>
-            {coloringFiscal ? '财政自给率' : layer.desc} · 数据源：<span style={{ color: coloringFiscal || isReal ? '#10b981' : 'var(--text-secondary)' }}>{coloringFiscal ? (fiscalData?.source === 'live' ? '网络' : '本地') : (layer.source === 'seed' ? '内置种子' : layer.source || '实况 API')}</span>
-            {geoSource && <span>· 边界 <span style={{ color: geoSource === 'local' ? STEEL : geoSource === 'network' ? '#10b981' : 'var(--text-secondary)' }}>{geoSource === 'local' ? '本地' : geoSource === 'network' ? '网络' : geoSource === 'proxy' ? '代理' : '缓存'}</span></span>}
+            {coloringFiscal ? '财政自给率' : layer.desc} · 数据源：<span style={{ color: coloringFiscal || isReal ? '#6fc2ae' : 'var(--text-secondary)' }}>{coloringFiscal ? (fiscalData?.source === 'live' ? '网络' : '本地') : (layer.source === 'seed' ? '内置种子' : layer.source || '实况 API')}</span>
+            {geoSource && <span>· 边界 <span style={{ color: geoSource === 'local' ? STEEL : geoSource === 'network' ? '#6fc2ae' : 'var(--text-secondary)' }}>{geoSource === 'local' ? '本地' : geoSource === 'network' ? '网络' : geoSource === 'proxy' ? '代理' : '缓存'}</span></span>}
             {showFiscal && fiscalLoading && <span style={{ color: STEEL }}>// 拉取财政层…</span>}
             {liveMetricStatus && (
               <SourceBadge
@@ -923,8 +923,8 @@ export default function LiveChinaMap({
                     onClick={() => setRegionId(r.id)}
                     className="lcm-chip text-[10px] mono px-2 py-0.5 rounded-full touch-manipulation"
                     style={{
-                      background: regionId === r.id ? 'rgba(34,211,238,0.18)' : 'var(--bg-elevated)',
-                      border: `1px solid ${regionId === r.id ? 'rgba(34,211,238,0.45)' : 'var(--border-subtle)'}`,
+                      background: regionId === r.id ? 'rgba(110, 140, 255,0.18)' : 'var(--bg-elevated)',
+                      border: `1px solid ${regionId === r.id ? 'rgba(110, 140, 255,0.45)' : 'var(--border-subtle)'}`,
                       color: regionId === r.id ? STEEL : 'var(--text-secondary)',
                     }}
                   >
@@ -941,9 +941,9 @@ export default function LiveChinaMap({
                     onClick={() => setZoneId(zoneId === z ? '' : z)}
                     className="lcm-chip text-[10px] mono px-2 py-0.5 rounded-full touch-manipulation"
                     style={{
-                      background: zoneId === z ? 'rgba(212,175,55,0.18)' : 'var(--bg-elevated)',
-                      border: `1px solid ${zoneId === z ? 'rgba(212,175,55,0.5)' : 'var(--border-subtle)'}`,
-                      color: zoneId === z ? '#d4af37' : 'var(--text-secondary)',
+                      background: zoneId === z ? 'rgba(217, 178, 106,0.18)' : 'var(--bg-elevated)',
+                      border: `1px solid ${zoneId === z ? 'rgba(217, 178, 106,0.5)' : 'var(--border-subtle)'}`,
+                      color: zoneId === z ? '#d9b26a' : 'var(--text-secondary)',
                     }}
                   >
                     {z}
@@ -1012,13 +1012,13 @@ export default function LiveChinaMap({
             </div>
           )}
           {showSatellite && satelliteState.error && (
-            <div className="mono text-xs absolute top-3 right-3 lcm-satellite-status" style={{ color: '#e8a317' }}>
+            <div className="mono text-xs absolute top-3 right-3 lcm-satellite-status" style={{ color: '#d4a25a' }}>
               {satelliteState.error}
             </div>
           )}
           {showSatellite && satelliteState.config && !satelliteState.error && (
             <div className="mono text-[10px] absolute bottom-2 right-2 lcm-satellite-legend px-2 py-1 rounded"
-              style={{ background: 'rgba(10,14,23,0.72)', color: 'var(--text-tertiary)', border: '1px solid var(--border-subtle)' }}>
+              style={{ background: 'rgba(13, 15, 20,0.72)', color: 'var(--text-tertiary)', border: '1px solid var(--border-subtle)' }}>
               {satelliteState.legend || '卫星云图'}
               {formatSatelliteTime(satelliteState.timestamp) && (
                 <span> · {formatSatelliteTime(satelliteState.timestamp)}</span>
@@ -1078,7 +1078,7 @@ export default function LiveChinaMap({
               style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}
             >
               <RankList title={`${coloringFiscal ? '财政自给' : layer.label} · Top5`} items={rankings.hot} accent={STEEL} />
-              <RankList title={`${coloringFiscal ? '财政自给' : layer.label} · Bottom5`} items={rankings.cold} accent="#64748b" />
+              <RankList title={`${coloringFiscal ? '财政自给' : layer.label} · Bottom5`} items={rankings.cold} accent="#8a8578" />
             </div>
           </aside>
         )}
@@ -1086,7 +1086,7 @@ export default function LiveChinaMap({
       )}
       {(compareNames.length > 0) && !isCompact && (
         <div className="mt-4 p-3 rounded-lg"
-          style={{ background: 'rgba(34,211,238,0.08)', border: '1px solid rgba(34,211,238,0.2)' }}>
+          style={{ background: 'rgba(110, 140, 255,0.08)', border: '1px solid rgba(110, 140, 255,0.2)' }}>
           <div className="text-[10px] mono flex flex-wrap gap-2 items-center">
             <span style={{ color: 'var(--text-tertiary)' }}>对比{compareNames.length < 2 ? '（再选一省成盘）' : ''}：</span>
             {compareNames.map((n, i) => (
@@ -1109,15 +1109,15 @@ export default function LiveChinaMap({
                 indicator: RADAR_DIMS.map((d) => ({ name: d.label, max: 100 })),
                 radius: '64%',
                 axisName: { color: LABEL.color, fontSize: 10 },
-                splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-                axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+                splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
+                axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
                 splitArea: { show: false },
               },
               series: [{
                 type: 'radar',
                 data: [
-                  { value: va, name: sa, lineStyle: { color: STEEL, width: 2 }, itemStyle: { color: STEEL }, areaStyle: { color: 'rgba(34,211,238,0.14)' } },
-                  { value: vb, name: sb, lineStyle: { color: HOLD, width: 2 }, itemStyle: { color: HOLD }, areaStyle: { color: 'rgba(232,163,23,0.12)' } },
+                  { value: va, name: sa, lineStyle: { color: STEEL, width: 2 }, itemStyle: { color: STEEL }, areaStyle: { color: 'rgba(110, 140, 255,0.14)' } },
+                  { value: vb, name: sb, lineStyle: { color: HOLD, width: 2 }, itemStyle: { color: HOLD }, areaStyle: { color: 'rgba(212, 162, 90,0.12)' } },
                 ],
               }],
             };

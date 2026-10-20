@@ -9,13 +9,13 @@
 export const AS_OF = '2026-09-28';
 
 export const THEMES = {
-  sannong: { label: '三农与乡村振兴', color: '#10b981' },
-  land: { label: '土地制度', color: '#c41e3a' },
-  crisis: { label: '危机与成本转嫁', color: '#8b5cf6' },
-  eco: { label: '生态文明与县域经济', color: '#22d3ee' },
-  global: { label: '全球化与国际格局', color: '#e8a317' },
-  food: { label: '粮食安全', color: '#fb923c' },
-  urban: { label: '城镇化与城乡劳动力', color: '#94a3b8' },
+  sannong: { label: '三农与乡村振兴', color: '#6fc2ae' },
+  land: { label: '土地制度', color: '#e5483b' },
+  crisis: { label: '危机与成本转嫁', color: '#b07cc6' },
+  eco: { label: '生态文明与县域经济', color: '#6e8cff' },
+  global: { label: '全球化与国际格局', color: '#d4a25a' },
+  food: { label: '粮食安全', color: '#c07a4a' },
+  urban: { label: '城镇化与城乡劳动力', color: '#a29c91' },
 };
 export const THEME_KEYS = Object.keys(THEMES);
 
@@ -45,11 +45,11 @@ export const BOARD = {
 };
 
 export const CAREER_GROUPS = {
-  base: { label: '基层与求学', color: '#94a3b8' },
-  policy: { label: '中央政策研究', color: '#e8a317' },
-  ruc: { label: '中国人民大学', color: '#c41e3a' },
-  xj: { label: '乡建/乡村振兴机构', color: '#10b981' },
-  board: { label: '董事与咨询', color: '#22d3ee' },
+  base: { label: '基层与求学', color: '#a29c91' },
+  policy: { label: '中央政策研究', color: '#d4a25a' },
+  ruc: { label: '中国人民大学', color: '#e5483b' },
+  xj: { label: '乡建/乡村振兴机构', color: '#6fc2ae' },
+  board: { label: '董事与咨询', color: '#6e8cff' },
 };
 
 export const CAREER = [

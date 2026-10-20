@@ -7,7 +7,7 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // ── 价值链环节（从算力底座到具身智能）──────────────────────────────
 const LINKS = [
   {
-    key: 'chip', label: '算力芯片', accent: '#8b0000', selfRate: 15, weight: 98,
+    key: 'chip', label: '算力芯片', accent: '#9e2a22', selfRate: 15, weight: 98,
     status: '训练侧高端 GPU 几近断供：英伟达 H/B 系列受出口管制，国产昇腾/壁仞/寒武纪在制程、HBM 与软件栈三重受限。',
     choke: 'EUV 制程（先进封装可绕、晶体管不可绕）、HBM 高带宽显存、CUDA 生态迁移成本。',
     breakout: '推理侧国产替代率上行，昇腾集群+MindSpore 在政企侧规模铺开；以「算力换制程」堆卡补算力。',
@@ -21,28 +21,28 @@ const LINKS = [
     firms: ['DeepSeek', 'Qwen(阿里)', '豆包(字节)', '智谱', 'Kimi(月之暗面)'],
   },
   {
-    key: 'data', label: '数据语料', accent: '#c41e3a', selfRate: 60, weight: 85,
+    key: 'data', label: '数据语料', accent: '#e5483b', selfRate: 60, weight: 85,
     status: '中文与行业数据规模是长板，但高质量、清洗对齐、版权合规的「可训练语料」仍是隐性瓶颈。',
     choke: '高质量标注语料、跨境数据流动评估、版权与个人信息合规、行业私域数据壁垒。',
     breakout: '数据要素市场化与公共数据授权运营释放政务/医疗/工业私域数据；合成数据补缺口。',
     firms: ['数据交易所', '海天瑞声', '行业数据空间', '公共数据运营商'],
   },
   {
-    key: 'app', label: '行业应用', accent: '#e8a317', selfRate: 80, weight: 75,
+    key: 'app', label: '行业应用', accent: '#d4a25a', selfRate: 80, weight: 75,
     status: '应用与场景密度是中国最强长板：制造、政务、金融落地速度领先，但 ROI 与合规成本制约规模化。',
     choke: '私有化部署成本、幻觉与可靠性审计、与既有信创栈/等保的兼容、付费意愿。',
     breakout: '「AI+」行动以算力券、场景开放清单托底；垂类小模型+RAG 降低落地门槛。',
     firms: ['行业大模型厂', '科大讯飞', '商汤', '云厂商 MaaS'],
   },
   {
-    key: 'agent', label: '智能体 Agent', accent: '#22d3ee', selfRate: 55, weight: 70,
+    key: 'agent', label: '智能体 Agent', accent: '#6e8cff', selfRate: 55, weight: 70,
     status: '从「问答」转向「干活」：工具调用、多步规划、长程任务执行成为新评测维度，国内追赶中。',
     choke: '可靠的工具调用与规划能力、长程任务的稳定性、Agent 安全与权限边界。',
     breakout: '政企流程自动化（公文/客服/运维）是先落地场景；MCP 等协议标准化加速生态。',
     firms: ['各模型厂 Agent 栈', 'RPA+LLM 厂商', '云厂商 Agent 平台'],
   },
   {
-    key: 'embodied', label: '具身智能', accent: '#10b981', selfRate: 50, weight: 88,
+    key: 'embodied', label: '具身智能', accent: '#6fc2ae', selfRate: 50, weight: 88,
     status: '人形机器人+大模型「大脑」整合：硬件供应链（减速器/电机/传感）是长板，运动控制大模型是新高地。',
     choke: '运动控制与操作的数据稀缺、真实世界泛化、本体成本、训练用仿真与真机数据。',
     breakout: '完整机器人供应链+制造场景需求，提供量产与数据飞轮；政策列为未来产业重点。',
@@ -52,11 +52,11 @@ const LINKS = [
 
 // ── AI 发展时间线（专用 → 感知 → 大模型 → AI+ → AGI 探索）──────────
 const PHASES = [
-  { period: '~2012', title: '专用 AI / 感知智能', accent: '#64748b', desc: '深度学习引爆图像/语音识别，安防、人脸、语音转写规模商用；AI 是「单点感知工具」，每个任务一个专用模型。' },
+  { period: '~2012', title: '专用 AI / 感知智能', accent: '#8a8578', desc: '深度学习引爆图像/语音识别，安防、人脸、语音转写规模商用；AI 是「单点感知工具」，每个任务一个专用模型。' },
   { period: '2017–2022', title: '深度学习浪潮', accent: '#8b6914', desc: 'Transformer 奠基，预训练范式崛起；算法、算力、数据三要素被反复强调，但能力仍碎片化、垂直化。' },
-  { period: '2023–2024', title: '大模型 / 生成式 AI', accent: '#e8a317', desc: 'GPT 冲击引爆「百模大战」，生成式 AI 备案制度落地；通用基座替代专用模型，能力从感知跃向生成与推理。' },
-  { period: '2025–', title: 'AI+ 行动 / 智能体', accent: '#c41e3a', desc: '国务院「人工智能+」行动推动全行业融合，重心从「炼模型」转向「用模型」；Agent 从问答转向执行任务。' },
-  { period: '远景', title: '通用人工智能 AGI 探索', accent: '#22d3ee', desc: '具身智能+世界模型+长程规划被视为通往 AGI 的路径；算力、能源与安全治理成为新的物理与制度约束。' },
+  { period: '2023–2024', title: '大模型 / 生成式 AI', accent: '#d4a25a', desc: 'GPT 冲击引爆「百模大战」，生成式 AI 备案制度落地；通用基座替代专用模型，能力从感知跃向生成与推理。' },
+  { period: '2025–', title: 'AI+ 行动 / 智能体', accent: '#e5483b', desc: '国务院「人工智能+」行动推动全行业融合，重心从「炼模型」转向「用模型」；Agent 从问答转向执行任务。' },
+  { period: '远景', title: '通用人工智能 AGI 探索', accent: '#6e8cff', desc: '具身智能+世界模型+长程规划被视为通往 AGI 的路径；算力、能源与安全治理成为新的物理与制度约束。' },
 ];
 
 // ── 中美 AI 实力六维（雷达，示意）──────────────────────────────────
@@ -95,15 +95,15 @@ export default function Page() {
     radar: {
       indicator: POWER_DIMS.map((n) => ({ name: n, max: 100 })),
       axisName: { color: LABEL.color, fontSize: 10 },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-      axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
+      axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
       splitArea: { show: false },
     },
     series: [{
       type: 'radar',
       data: [
-        { value: POWER_CN, name: '中国', lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.14)' } },
-        { value: POWER_US, name: '美国', lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.08)' } },
+        { value: POWER_CN, name: '中国', lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.14)' } },
+        { value: POWER_US, name: '美国', lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' }, areaStyle: { color: 'rgba(110, 140, 255,0.08)' } },
       ],
     }],
   }), []);
@@ -120,11 +120,11 @@ export default function Page() {
       label: { show: true, formatter: (p) => p.data[3], position: 'right', fontSize: 9, color: LABEL.color },
       data: MODELS.map((m) => [m.cap, m.cost, m.origin, m.name]),
       itemStyle: {
-        color: (p) => (p.data[2] === 'cn' ? '#c41e3a' : '#22d3ee'),
+        color: (p) => (p.data[2] === 'cn' ? '#e5483b' : '#6e8cff'),
         borderColor: '#fff', borderWidth: 0.5,
       },
       markArea: {
-        silent: true, itemStyle: { color: 'rgba(16,185,129,0.06)' },
+        silent: true, itemStyle: { color: 'rgba(111, 194, 174,0.06)' },
         data: [[{ xAxis: 80, yAxis: 0 }, { xAxis: 92, yAxis: 40 }]],
       },
     }],
@@ -138,8 +138,8 @@ export default function Page() {
     xAxis: categoryX(['2022', '2023', '2024', '2025E', '2026E', '2027E']),
     yAxis: valueY({ name: 'EFLOPS' }),
     series: [
-      { name: '训练算力需求', type: 'line', smooth: true, data: [80, 160, 300, 520, 820, 1200], lineStyle: { color: '#c41e3a', width: 2 }, areaStyle: { color: 'rgba(196,30,58,0.08)' } },
-      { name: '国产芯片可供', type: 'line', smooth: true, data: [30, 70, 150, 300, 540, 880], lineStyle: { color: '#10b981', width: 2 } },
+      { name: '训练算力需求', type: 'line', smooth: true, data: [80, 160, 300, 520, 820, 1200], lineStyle: { color: '#e5483b', width: 2 }, areaStyle: { color: 'rgba(229, 72, 59,0.08)' } },
+      { name: '国产芯片可供', type: 'line', smooth: true, data: [30, 70, 150, 300, 540, 880], lineStyle: { color: '#6fc2ae', width: 2 } },
       { name: '受限缺口', type: 'bar', barWidth: 14, data: [50, 90, 150, 220, 280, 320], itemStyle: { color: 'rgba(139,0,0,0.55)', borderRadius: [3, 3, 0, 0] } },
     ],
   }), []);
@@ -152,9 +152,9 @@ export default function Page() {
     xAxis: categoryX(['2021', '2022', '2023', '2024', '2025E']),
     yAxis: [logY({ name: 'EFLOPS(log)' }), valueY({ axisLabel: { formatter: '{value}%' }, splitLine: { show: false }, max: 60 })],
     series: [
-      { name: '总算力 EFLOPS', type: 'line', smooth: true, data: [202, 302, 410, 246 + 290, 650], lineStyle: { color: '#64748b', width: 2 } },
-      { name: '智能算力 EFLOPS', type: 'line', smooth: true, data: [40, 90, 197, 290, 420], lineStyle: { color: '#c41e3a', width: 2 }, areaStyle: { color: 'rgba(196,30,58,0.08)' } },
-      { name: '智算占比 %', type: 'line', yAxisIndex: 1, smooth: true, data: [20, 30, 48, 55, 60], lineStyle: { color: '#e8a317', type: 'dashed' } },
+      { name: '总算力 EFLOPS', type: 'line', smooth: true, data: [202, 302, 410, 246 + 290, 650], lineStyle: { color: '#8a8578', width: 2 } },
+      { name: '智能算力 EFLOPS', type: 'line', smooth: true, data: [40, 90, 197, 290, 420], lineStyle: { color: '#e5483b', width: 2 }, areaStyle: { color: 'rgba(229, 72, 59,0.08)' } },
+      { name: '智算占比 %', type: 'line', yAxisIndex: 1, smooth: true, data: [20, 30, 48, 55, 60], lineStyle: { color: '#d4a25a', type: 'dashed' } },
     ],
   }), []);
 
@@ -168,7 +168,7 @@ export default function Page() {
       type: 'bar', barWidth: 13,
       data: PENETRATION.map((r) => ({
         value: r.rate,
-        itemStyle: { color: r.rate >= 45 ? '#10b981' : r.rate >= 32 ? '#e8a317' : '#c41e3a', borderRadius: [0, 3, 3, 0] },
+        itemStyle: { color: r.rate >= 45 ? '#6fc2ae' : r.rate >= 32 ? '#d4a25a' : '#e5483b', borderRadius: [0, 3, 3, 0] },
         label: { show: true, position: 'right', formatter: '{c}%', color: LABEL.color, fontSize: 9 },
       })),
     }],
@@ -178,18 +178,18 @@ export default function Page() {
   const linkGapBar = useMemo(() => stackedBarOpt({
     categories: LINKS.map((x) => x.label),
     series: [
-      { name: '自主/长板', data: LINKS.map((x) => x.selfRate), itemStyle: { color: '#10b981' } },
-      { name: '受制缺口', data: LINKS.map((x) => 100 - x.selfRate), itemStyle: { color: 'rgba(196,30,58,0.5)' } },
+      { name: '自主/长板', data: LINKS.map((x) => x.selfRate), itemStyle: { color: '#6fc2ae' } },
+      { name: '受制缺口', data: LINKS.map((x) => 100 - x.selfRate), itemStyle: { color: 'rgba(229, 72, 59,0.5)' } },
     ],
   }), []);
 
   // 重点领域 AI 投入结构 donut
   const investDonut = useMemo(() => donutOpt([
-    { name: '算力基础设施', value: 38, itemStyle: { color: '#8b0000' } },
-    { name: '大模型研发', value: 24, itemStyle: { color: '#c41e3a' } },
-    { name: '行业应用落地', value: 22, itemStyle: { color: '#e8a317' } },
-    { name: '数据与语料', value: 9, itemStyle: { color: '#22d3ee' } },
-    { name: '具身/前沿', value: 7, itemStyle: { color: '#10b981' } },
+    { name: '算力基础设施', value: 38, itemStyle: { color: '#9e2a22' } },
+    { name: '大模型研发', value: 24, itemStyle: { color: '#e5483b' } },
+    { name: '行业应用落地', value: 22, itemStyle: { color: '#d4a25a' } },
+    { name: '数据与语料', value: 9, itemStyle: { color: '#6e8cff' } },
+    { name: '具身/前沿', value: 7, itemStyle: { color: '#6fc2ae' } },
   ]), []);
 
   const longboard = LINKS.filter((x) => x.selfRate >= 60).length;
@@ -199,14 +199,14 @@ export default function Page() {
     <div>
       <PageHeader badge="AI+ · 智算主权 · 价值链权力物理" title="人工智能+（AI+）· 智算与行业大模型" subtitle="算力芯片 → 大模型 → 数据语料 → 行业应用 → 智能体 → 具身智能 —— 剥离口号，沿价值链逐环节衡量谁受制、谁是长板、突破口在哪" />
       <IntroCard>
-        「人工智能+」的本质不是某个模型，而是一条<strong style={{ color: 'var(--text-primary)' }}>价值链上的非对称分布</strong>：底座的<strong style={{ color: '#c41e3a' }}>高端训练芯片</strong>是最深短板（制程+HBM+生态三重受限），而上层的<strong style={{ color: '#10b981' }}>应用场景与数据规模</strong>则是中国最强长板。开源模型（DeepSeek/Qwen）以效率与成本撕开能力差距，把「炼模型」的劣势对冲为「用模型」的优势。下面沿价值链逐环节拆解：现状、卡脖子点、突破口。
+        「人工智能+」的本质不是某个模型，而是一条<strong style={{ color: 'var(--text-primary)' }}>价值链上的非对称分布</strong>：底座的<strong style={{ color: '#e5483b' }}>高端训练芯片</strong>是最深短板（制程+HBM+生态三重受限），而上层的<strong style={{ color: '#6fc2ae' }}>应用场景与数据规模</strong>则是中国最强长板。开源模型（DeepSeek/Qwen）以效率与成本撕开能力差距，把「炼模型」的劣势对冲为「用模型」的优势。下面沿价值链逐环节拆解：现状、卡脖子点、突破口。
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="190+" label="主要大模型/备案厂商（示意）" accent="#c41e3a" />
-        <Stat value="290+ E" label="智能算力规模 EFLOPS（示意）" accent="#e8a317" />
-        <Stat value="~6,000 亿" label="AI 核心产业规模（元 · 示意）" accent="#22d3ee" />
-        <Stat value="~15%" label="高端训练 AI 芯片自给率（示意）" accent="#8b0000" />
+        <Stat value="190+" label="主要大模型/备案厂商（示意）" accent="#e5483b" />
+        <Stat value="290+ E" label="智能算力规模 EFLOPS（示意）" accent="#d4a25a" />
+        <Stat value="~6,000 亿" label="AI 核心产业规模（元 · 示意）" accent="#6e8cff" />
+        <Stat value="~15%" label="高端训练 AI 芯片自给率（示意）" accent="#9e2a22" />
       </Grid>
 
       <Card title="交互① · AI 价值链环节选择器（受制 ↔ 长板）" className="mb-6">
@@ -217,8 +217,8 @@ export default function Page() {
             <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>自主/长板度 {L.selfRate}% · 战略权重 {L.weight}</span>
           </div>
           <p className="text-xs leading-relaxed mb-1.5" style={{ color: 'var(--text-secondary)' }}><strong style={{ color: 'var(--text-primary)' }}>现状：</strong>{L.status}</p>
-          <p className="text-xs leading-relaxed mb-1.5" style={{ color: 'var(--text-secondary)' }}><strong style={{ color: '#c41e3a' }}>卡脖子点：</strong>{L.choke}</p>
-          <p className="text-xs leading-relaxed mb-2" style={{ color: 'var(--text-secondary)' }}><strong style={{ color: '#10b981' }}>突破口：</strong>{L.breakout}</p>
+          <p className="text-xs leading-relaxed mb-1.5" style={{ color: 'var(--text-secondary)' }}><strong style={{ color: '#e5483b' }}>卡脖子点：</strong>{L.choke}</p>
+          <p className="text-xs leading-relaxed mb-2" style={{ color: 'var(--text-secondary)' }}><strong style={{ color: '#6fc2ae' }}>突破口：</strong>{L.breakout}</p>
           <div className="flex flex-wrap gap-1.5 mt-2">
             {L.firms.map((f) => (
               <span key={f} className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'var(--bg-surface)', color: 'var(--text-tertiary)', border: '1px solid var(--border-subtle)' }}>{f}</span>
@@ -273,10 +273,10 @@ export default function Page() {
       <Grid cols={2} className="mb-6">
         <Card title="长板 · 场景与数据规模">
           <div className="space-y-2">
-            {[['应用场景密度', '制造/政务/金融落地速度全球领先，超大单一市场提供训练与迭代飞轮。', '#10b981'],
+            {[['应用场景密度', '制造/政务/金融落地速度全球领先，超大单一市场提供训练与迭代飞轮。', '#6fc2ae'],
               ['中文与行业数据', '人口与产业规模带来海量私域数据，数据要素市场化进一步释放供给。', '#34d399'],
-              ['开源生态', 'DeepSeek/Qwen 以效率与低成本形成全球外溢，把劣势转为生态杠杆。', '#22d3ee'],
-              ['机器人供应链', '具身智能本体（减速器/电机/传感）供应链完整，支撑量产与数据采集。', '#e8a317']].map(([tit, d, c]) => (
+              ['开源生态', 'DeepSeek/Qwen 以效率与低成本形成全球外溢，把劣势转为生态杠杆。', '#6e8cff'],
+              ['机器人供应链', '具身智能本体（减速器/电机/传感）供应链完整，支撑量产与数据采集。', '#d4a25a']].map(([tit, d, c]) => (
               <div key={tit} style={{ borderLeft: `2px solid ${c}`, paddingLeft: 10 }}>
                 <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{tit}</div>
                 <p className="text-[11px] mt-0.5" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
@@ -299,9 +299,9 @@ export default function Page() {
       </Grid>
 
       <FrameworkTrio cards={[
-        { title: '场景与数据优势', subtitle: '应用规模 = 中国长板', accent: '#10b981', border: '#10b981', body: '超大单一市场 + 完整产业体系，使中国在「用 AI」一端拥有全球最密的场景与数据飞轮。应用落地速度领先，数据要素市场化进一步把政务/医疗/工业私域数据转为训练供给。', pillars: [['场景密度', '制造/政务先行。'], ['数据规模', '私域数据飞轮。'], ['开源外溢', '生态杠杆。']] },
-        { title: '算力卡脖子', subtitle: '高端芯片 = 最深短板', accent: '#c41e3a', border: '#c41e3a', body: '价值链最底座的训练芯片受制程、HBM 与 CUDA 生态三重约束，是「人工智能+」的物理上限。以堆卡补算力、以推理替训练、以开源压成本，是当前的对冲组合，但训练侧差距短期难补。', pillars: [['制程+HBM', '硬约束。'], ['CUDA 生态', '迁移成本。'], ['以量补质', '能耗代价。']] },
-        { title: 'AI+ 赋能', subtitle: '通用技术 · 乘数效应', accent: '#22d3ee', border: '#22d3ee', body: 'AI 作为通用目的技术，其价值在于对全产业的乘数效应而非单点。「人工智能+」行动以算力券、场景开放清单、数据授权托底，把模型能力转化为制造、政务、科研（AI4S）与具身智能的全局生产力。', pillars: [['通用技术', '全产业乘数。'], ['政策托底', '算力券/清单。'], ['AI4S/具身', '前沿增量。']] },
+        { title: '场景与数据优势', subtitle: '应用规模 = 中国长板', accent: '#6fc2ae', border: '#6fc2ae', body: '超大单一市场 + 完整产业体系，使中国在「用 AI」一端拥有全球最密的场景与数据飞轮。应用落地速度领先，数据要素市场化进一步把政务/医疗/工业私域数据转为训练供给。', pillars: [['场景密度', '制造/政务先行。'], ['数据规模', '私域数据飞轮。'], ['开源外溢', '生态杠杆。']] },
+        { title: '算力卡脖子', subtitle: '高端芯片 = 最深短板', accent: '#e5483b', border: '#e5483b', body: '价值链最底座的训练芯片受制程、HBM 与 CUDA 生态三重约束，是「人工智能+」的物理上限。以堆卡补算力、以推理替训练、以开源压成本，是当前的对冲组合，但训练侧差距短期难补。', pillars: [['制程+HBM', '硬约束。'], ['CUDA 生态', '迁移成本。'], ['以量补质', '能耗代价。']] },
+        { title: 'AI+ 赋能', subtitle: '通用技术 · 乘数效应', accent: '#6e8cff', border: '#6e8cff', body: 'AI 作为通用目的技术，其价值在于对全产业的乘数效应而非单点。「人工智能+」行动以算力券、场景开放清单、数据授权托底，把模型能力转化为制造、政务、科研（AI4S）与具身智能的全局生产力。', pillars: [['通用技术', '全产业乘数。'], ['政策托底', '算力券/清单。'], ['AI4S/具身', '前沿增量。']] },
       ]} />
 
       <Card title="研判要点" className="mb-6">

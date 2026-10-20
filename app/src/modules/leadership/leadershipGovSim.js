@@ -50,28 +50,28 @@ export const CONSTRAINT_DEFS = [
     key: 'fiscalSpace',
     label: '财政空间',
     short: '财政',
-    accent: '#e8a317',
+    accent: '#d4a25a',
     note: '中央与地方可支配财力、化债占用、再杠杆余地。空间越窄，高剂量处方越易触顶。',
   },
   {
     key: 'socialStability',
     label: '社会稳定缓冲',
     short: '稳定',
-    accent: '#c41e3a',
+    accent: '#e5483b',
     note: '就业与民生暴露面、舆情可吸收余量。缓冲越薄，激进调整的政治成本越高。',
   },
   {
     key: 'cadreCapacity',
     label: '干部执行容量',
     short: '干部',
-    accent: '#22d3ee',
+    accent: '#6e8cff',
     note: '基层与部委同时推进多任务的组织带宽。容量不足时，政策文本≠执行穿透。',
   },
   {
     key: 'infoAsymmetry',
     label: '信息不对称',
     short: '信息',
-    accent: '#8b5cf6',
+    accent: '#b07cc6',
     note: '上行过滤与地方隐瞒的程度。不对称越高，路线层看到的画面越平滑、越滞后。',
   },
 ];
@@ -144,7 +144,7 @@ export const GOV_SCENARIOS = [
     id: 'local-debt',
     label: '地方隐性债务与财政倒挂',
     tag: '财政',
-    accent: '#e8a317',
+    accent: '#d4a25a',
     agendaId: 'risk-defuse',
     layer: /** @type {PowerLayer} */ ('decision'),
     primaryLocus: 'cfe',
@@ -231,7 +231,7 @@ export const GOV_SCENARIOS = [
     id: 'tech-blockade',
     label: '科技管制与产业链安全',
     tag: '科技',
-    accent: '#22d3ee',
+    accent: '#6e8cff',
     agendaId: 'tech-selfreliance',
     layer: /** @type {PowerLayer} */ ('direction'),
     primaryLocus: 'party-center',
@@ -316,7 +316,7 @@ export const GOV_SCENARIOS = [
     id: 'demo-pressure',
     label: '人口负增长与社保承压',
     tag: '人口',
-    accent: '#10b981',
+    accent: '#6fc2ae',
     agendaId: 'common-prosperity',
     layer: /** @type {PowerLayer} */ ('decision'),
     primaryLocus: 'pb',
@@ -401,7 +401,7 @@ export const GOV_SCENARIOS = [
     id: 'reform-window',
     label: '结构性改革窗口与风险熔断',
     tag: '改革',
-    accent: '#c41e3a',
+    accent: '#e5483b',
     agendaId: 'common-prosperity',
     layer: /** @type {PowerLayer} */ ('decision'),
     primaryLocus: 'cfe',
@@ -505,16 +505,16 @@ export function readConstraintPressure(constraints) {
   );
 
   let band = '可操作窗口';
-  let color = '#10b981';
+  let color = '#6fc2ae';
   let note =
     '四约束尚未同时触顶；仍存在有限的结构操作空间——但窗口会随任一参量恶化而收缩。';
   if (composite >= 72) {
     band = '高压受限';
-    color = '#c41e3a';
+    color = '#e5483b';
     note = '复合约束已进入高压区：高剂量处方极易触发社会或财政硬约束，宜优先降低信息不对称与明确熔断线。';
   } else if (composite >= 55) {
     band = '摩擦区间';
-    color = '#e8a317';
+    color = '#d4a25a';
     note = '处于摩擦区间：任何选项都会显式暴露贸易offs；注意力应集中在不可逆成本可控的切口。';
   }
 
@@ -600,25 +600,25 @@ export function runGovernanceSim(input) {
   if (metrics.reformDepth >= 60 && metrics.socialFriction < 55 && metrics.fiscalStrain < 65) {
     verdict = {
       label: '结构推进可行',
-      color: '#10b981',
+      color: '#6fc2ae',
       note: '在当前约束下，所选剂量能同时维持有限改革深度与可控摩擦——窗口存在，但依赖执行穿透持续兑现。',
     };
   } else if (metrics.socialFriction >= 70 || metrics.fiscalStrain >= 78) {
     verdict = {
       label: '硬约束触顶',
-      color: '#c41e3a',
+      color: '#e5483b',
       note: '社会缓冲或财政空间已接近触顶：继续加码会把短期危机概率推高；更合理的是收缩剂量或改换切口。',
     };
   } else if (metrics.executionQuality < 40 && metrics.reformDepth > 50) {
     verdict = {
       label: '处方—执行断裂',
-      color: '#e8a317',
+      color: '#d4a25a',
       note: '处方深度超过干部执行容量：文本上的改革无法转化为穿透，诊断权提示的梗阻会在末梢复发。',
     };
   } else {
     verdict = {
       label: '权衡维持',
-      color: '#22d3ee',
+      color: '#6e8cff',
       note: '意图效果与副作用并存；无免费午餐。可考虑调整约束假设后复跑，或与另一存档对照。',
     };
   }

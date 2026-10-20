@@ -19,9 +19,9 @@ export const DASHBOARD_CHARTS = {
       yAxis: valueY({ name: '倍', min: 2, max: 3.5 }),
       series: [{
         type: 'line', smooth: true, data: [2.79, 2.57, 2.42, 2.38, 2.56, 2.48],
-        lineStyle: { color: '#22d3ee', width: 2 },
-        areaStyle: { color: 'rgba(34,211,238,0.08)' },
-        markLine: { silent: true, data: [{ yAxis: 2.5, label: { formatter: '均衡参考 2.5', color: LABEL.color }, lineStyle: { color: '#e8a317', type: 'dashed' } }] },
+        lineStyle: { color: '#6e8cff', width: 2 },
+        areaStyle: { color: 'rgba(110, 140, 255,0.08)' },
+        markLine: { silent: true, data: [{ yAxis: 2.5, label: { formatter: '均衡参考 2.5', color: LABEL.color }, lineStyle: { color: '#d4a25a', type: 'dashed' } }] },
       }],
     }),
   },
@@ -35,10 +35,10 @@ export const DASHBOARD_CHARTS = {
       series: [{
         type: 'bar', barWidth: 18,
         data: [
-          { value: 11.2, itemStyle: { color: '#10b981' } },
-          { value: 6.8, itemStyle: { color: '#64748b' } },
-          { value: 6.1, itemStyle: { color: '#e8a317' } },
-          { value: 5.4, itemStyle: { color: '#c41e3a' } },
+          { value: 11.2, itemStyle: { color: '#6fc2ae' } },
+          { value: 6.8, itemStyle: { color: '#8a8578' } },
+          { value: 6.1, itemStyle: { color: '#d4a25a' } },
+          { value: 5.4, itemStyle: { color: '#e5483b' } },
         ],
         label: { show: true, position: 'right', color: LABEL.color, formatter: '{c}' },
       }],
@@ -53,9 +53,9 @@ export const DASHBOARD_CHARTS = {
       xAxis: categoryX(['2010', '2015', '2020', '2025E', '2030E', '2035E']),
       yAxis: valueY({ name: '%' }),
       series: [
-        { name: '少儿抚养比', type: 'line', smooth: true, data: [22.0, 22.6, 26.2, 24.8, 23.5, 22.0], lineStyle: { color: '#22d3ee' } },
-        { name: '老年抚养比', type: 'line', smooth: true, data: [11.9, 14.3, 19.7, 22.5, 26.8, 31.2], lineStyle: { color: '#c41e3a', width: 2 },
-          areaStyle: { color: 'rgba(196,30,58,0.1)' } },
+        { name: '少儿抚养比', type: 'line', smooth: true, data: [22.0, 22.6, 26.2, 24.8, 23.5, 22.0], lineStyle: { color: '#6e8cff' } },
+        { name: '老年抚养比', type: 'line', smooth: true, data: [11.9, 14.3, 19.7, 22.5, 26.8, 31.2], lineStyle: { color: '#e5483b', width: 2 },
+          areaStyle: { color: 'rgba(229, 72, 59,0.1)' } },
       ],
     }),
   },
@@ -68,9 +68,9 @@ export const DASHBOARD_CHARTS = {
       yAxis: valueY({ min: 0.38, max: 0.50, name: 'Gini' }),
       series: [{
         type: 'line', smooth: true, data: [0.417, 0.438, 0.474, 0.465, 0.468, 0.462],
-        lineStyle: { color: '#e8a317', width: 2 },
-        markArea: { silent: true, itemStyle: { color: 'rgba(232,163,23,0.06)' }, data: [[{ yAxis: 0.40 }, { yAxis: 0.45 }]] },
-        markLine: { silent: true, data: [{ yAxis: 0.40, label: { formatter: '警戒 0.40', color: LABEL.color }, lineStyle: { color: '#c41e3a', type: 'dashed' } }] },
+        lineStyle: { color: '#d4a25a', width: 2 },
+        markArea: { silent: true, itemStyle: { color: 'rgba(212, 162, 90,0.06)' }, data: [[{ yAxis: 0.40 }, { yAxis: 0.45 }]] },
+        markLine: { silent: true, data: [{ yAxis: 0.40, label: { formatter: '警戒 0.40', color: LABEL.color }, lineStyle: { color: '#e5483b', type: 'dashed' } }] },
       }],
     }),
   },
@@ -80,7 +80,7 @@ export const CONTRADICTIONS = [
   {
     key: 'gender',
     label: '性别矛盾',
-    accent: '#f0abfc',
+    accent: '#d9a7d6',
     thesis: '劳动力市场结构性排斥与生育成本社会化不足，构成性别矛盾的主轴——女性承担再生产成本，却在初次分配中遭遇薪酬剪刀差与职场天花板。',
     primary: '生育成本个体化 vs 劳动力市场无差别竞争：育儿中断、弹性缺位使女性人力资本折旧，薪酬与晋升双重惩罚。',
     secondary: '教育性别逆转（高校女生占比过半）与决策层男性主导并存，形成「高教育—低权力」错位。',
@@ -100,8 +100,8 @@ export const CONTRADICTIONS = [
         xAxis: categoryX(['2010', '2015', '2020', '2025E']),
         yAxis: valueY({ min: 60, max: 95, name: '%' }),
         series: [
-          { name: '男性', type: 'line', data: [90.2, 89.5, 88.8, 88.1], lineStyle: { color: '#22d3ee' } },
-          { name: '女性', type: 'line', data: [79.8, 78.5, 77.2, 76.0], lineStyle: { color: '#f0abfc', width: 2 } },
+          { name: '男性', type: 'line', data: [90.2, 89.5, 88.8, 88.1], lineStyle: { color: '#6e8cff' } },
+          { name: '女性', type: 'line', data: [79.8, 78.5, 77.2, 76.0], lineStyle: { color: '#d9a7d6', width: 2 } },
         ],
       })},
       { title: '性别薪酬比 · 示意', build: () => ({
@@ -109,12 +109,12 @@ export const CONTRADICTIONS = [
         xAxis: valueY({ max: 100, name: '指数(男=100)' }),
         yAxis: categoryX(['全行业', '制造业', '金融', '公共管理']),
         series: [{ type: 'bar', barWidth: 16, data: [84, 81, 78, 92],
-          itemStyle: { color: (p) => ['#f0abfc', '#c41e3a', '#e8a317', '#10b981'][p.dataIndex] },
+          itemStyle: { color: (p) => ['#d9a7d6', '#e5483b', '#d4a25a', '#6fc2ae'][p.dataIndex] },
           label: { show: true, position: 'right', color: LABEL.color } }],
       })},
       { title: '矛盾强度雷达 · 示意', build: () => radarOpt(
         ['参与率落差', '薪酬差', '生育成本', '晋升壁垒', '舆论张力'],
-        [72, 68, 85, 74, 58], { name: '性别矛盾', color: '#f0abfc' },
+        [72, 68, 85, 74, 58], { name: '性别矛盾', color: '#d9a7d6' },
       )},
     ],
     framework: {
@@ -126,7 +126,7 @@ export const CONTRADICTIONS = [
   {
     key: 'centerLocal',
     label: '央地矛盾',
-    accent: '#e8a317',
+    accent: '#d4a25a',
     thesis: '事权层层下沉、财权相对上移，形成央地之间的结构性张力——中央统筹宏观稳定与战略项目，地方承担增长、就业与维稳的即时压力，土地财政成为弥补收支倒挂的缓冲阀。',
     primary: '事权财权倒挂：基层「三保」刚性支出与自有财力缺口并存，转移支付难以完全对冲属地化责任。',
     secondary: '政策博弈：中央去杠杆/环保/能耗双控与地方稳增长诉求之间的周期性拉锯。',
@@ -146,8 +146,8 @@ export const CONTRADICTIONS = [
         xAxis: categoryX(['2015', '2018', '2021', '2024', '2025E']),
         yAxis: valueY({ min: 40, max: 95, name: '%' }),
         series: [
-          { name: '地方收入占比', type: 'bar', barWidth: 14, data: [52, 51, 53, 52, 52], itemStyle: { color: '#22d3ee' } },
-          { name: '地方支出占比', type: 'line', data: [85, 86, 87, 86, 86], lineStyle: { color: '#c41e3a', width: 2 } },
+          { name: '地方收入占比', type: 'bar', barWidth: 14, data: [52, 51, 53, 52, 52], itemStyle: { color: '#6e8cff' } },
+          { name: '地方支出占比', type: 'line', data: [85, 86, 87, 86, 86], lineStyle: { color: '#e5483b', width: 2 } },
         ],
       })},
       { title: '土地出让收入 · 示意（万亿元）', build: () => ({
@@ -155,11 +155,11 @@ export const CONTRADICTIONS = [
         xAxis: categoryX(['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025E']),
         yAxis: valueY({ name: '万亿' }),
         series: [{ type: 'line', smooth: true, data: [6.5, 7.3, 8.4, 8.7, 6.7, 5.8, 4.9, 4.5],
-          lineStyle: { color: '#e8a317', width: 2 }, areaStyle: { color: 'rgba(232,163,23,0.1)' } }],
+          lineStyle: { color: '#d4a25a', width: 2 }, areaStyle: { color: 'rgba(212, 162, 90,0.1)' } }],
       })},
       { title: '央地矛盾强度 · 雷达', build: () => radarOpt(
         ['收支倒挂', '土地依赖', '债务压力', '政策摩擦', '考核扭曲'],
-        [88, 82, 78, 70, 75], { name: '央地矛盾', color: '#e8a317' },
+        [88, 82, 78, 70, 75], { name: '央地矛盾', color: '#d4a25a' },
       )},
     ],
     framework: {
@@ -171,7 +171,7 @@ export const CONTRADICTIONS = [
   {
     key: 'urbanRural',
     label: '城乡矛盾',
-    accent: '#10b981',
+    accent: '#6fc2ae',
     thesis: '户籍制度塑造的要素流动壁垒，使城乡之间长期存在公共服务与收入的系统性落差——城镇化率与户籍城镇化率之间的「半城镇化」群体，是城乡矛盾最活跃的载体。',
     primary: '户籍壁垒导致教育、医疗、社保可携带性不足，2.4 亿流动人口在流入地难以完整市民化。',
     secondary: '工农业产品价格剪刀差的历史遗留，转为土地增值收益在城乡之间的不均衡分配。',
@@ -191,14 +191,14 @@ export const CONTRADICTIONS = [
         xAxis: categoryX(['2010', '2015', '2020', '2025E']),
         yAxis: valueY({ min: 40, max: 75, name: '%' }),
         series: [
-          { name: '常住人口城镇化', type: 'line', data: [49.9, 56.1, 63.9, 68.5], lineStyle: { color: '#10b981', width: 2 } },
-          { name: '户籍人口城镇化', type: 'line', data: [34.2, 39.9, 45.4, 50.2], lineStyle: { color: '#64748b', type: 'dashed' } },
+          { name: '常住人口城镇化', type: 'line', data: [49.9, 56.1, 63.9, 68.5], lineStyle: { color: '#6fc2ae', width: 2 } },
+          { name: '户籍人口城镇化', type: 'line', data: [34.2, 39.9, 45.4, 50.2], lineStyle: { color: '#8a8578', type: 'dashed' } },
         ],
       })},
       { title: '城乡收入比 · 趋势', build: () => DASHBOARD_CHARTS.urbanRuralRatio.build() },
       { title: '城乡矛盾强度 · 雷达', build: () => radarOpt(
         ['收入差距', '公共服务', '户籍壁垒', '土地权益', '要素流动'],
-        [70, 75, 80, 68, 62], { name: '城乡矛盾', color: '#10b981' },
+        [70, 75, 80, 68, 62], { name: '城乡矛盾', color: '#6fc2ae' },
       )},
     ],
     framework: {
@@ -210,7 +210,7 @@ export const CONTRADICTIONS = [
   {
     key: 'class',
     label: '阶层矛盾',
-    accent: '#8b5cf6',
+    accent: '#b07cc6',
     thesis: '中间阶层在资产价格膨胀期扩大，却在增速换挡后遭遇「地位焦虑」——流动性固化与编制内外双轨，使阶层矛盾从收入差距演变为机会结构与身份认同的复合张力。',
     primary: '社会流动性下降：代际收入弹性上升，优质教育与住房成为阶层再生产的关键门槛。',
     secondary: '编制内外双轨：体制内稳定性溢价与体制外市场波动形成心理落差与政策诉求分化。',
@@ -229,7 +229,7 @@ export const CONTRADICTIONS = [
         xAxis: valueY({ max: 0.6 }),
         yAxis: categoryX(['中国', '美国', '德国', '北欧均值']),
         series: [{ type: 'bar', barWidth: 16, data: [0.42, 0.34, 0.32, 0.25],
-          itemStyle: { color: (p) => (p.dataIndex === 0 ? '#8b5cf6' : '#64748b') },
+          itemStyle: { color: (p) => (p.dataIndex === 0 ? '#b07cc6' : '#8a8578') },
           label: { show: true, position: 'right', color: LABEL.color } }],
       })},
       { title: '公务员考试竞争比 · 示意', build: () => ({
@@ -237,11 +237,11 @@ export const CONTRADICTIONS = [
         xAxis: categoryX(['2018', '2019', '2020', '2022', '2024', '2025E']),
         yAxis: valueY({ name: ':1' }),
         series: [{ type: 'line', smooth: true, data: [40, 48, 52, 61, 58, 64],
-          lineStyle: { color: '#8b5cf6', width: 2 }, areaStyle: { color: 'rgba(139,92,246,0.1)' } }],
+          lineStyle: { color: '#b07cc6', width: 2 }, areaStyle: { color: 'rgba(176, 124, 198,0.1)' } }],
       })},
       { title: '阶层矛盾强度 · 雷达', build: () => radarOpt(
         ['流动性', '资产焦虑', '编制双轨', '教育竞争', '就业分化'],
-        [76, 72, 68, 80, 74], { name: '阶层矛盾', color: '#8b5cf6' },
+        [76, 72, 68, 80, 74], { name: '阶层矛盾', color: '#b07cc6' },
       )},
     ],
     framework: {
@@ -253,7 +253,7 @@ export const CONTRADICTIONS = [
   {
     key: 'regional',
     label: '区域矛盾',
-    accent: '#22d3ee',
+    accent: '#6e8cff',
     thesis: '东中西梯度与南北分化叠加，省会虹吸与产业转移不同步，使区域矛盾从「地理差距」演变为要素集聚与政策配给之间的博弈。',
     primary: '东部沿海集聚高端要素，中西部承担能源与生态功能，人均 GDP 梯度长期存在。',
     secondary: '南北分化：北方部分省份增长放缓，产业升级与人口流出形成负反馈。',
@@ -273,12 +273,12 @@ export const CONTRADICTIONS = [
         xAxis: categoryX(['2015', '2018', '2021', '2024', '2025E']),
         yAxis: valueY({ name: 'pp' }),
         series: [{ type: 'bar', barWidth: 18, data: [0.8, 1.2, 1.5, 1.8, 1.6],
-          itemStyle: { color: '#22d3ee' },
+          itemStyle: { color: '#6e8cff' },
           label: { show: true, position: 'top', color: LABEL.color } }],
       })},
       { title: '区域矛盾强度 · 雷达', build: () => radarOpt(
         ['人均差距', '南北差', '省会虹吸', '产业层级', '政策竞争'],
-        [78, 72, 70, 75, 65], { name: '区域矛盾', color: '#22d3ee' },
+        [78, 72, 70, 75, 65], { name: '区域矛盾', color: '#6e8cff' },
       )},
     ],
     framework: {
@@ -290,7 +290,7 @@ export const CONTRADICTIONS = [
   {
     key: 'generational',
     label: '代际矛盾',
-    accent: '#fb923c',
+    accent: '#c07a4a',
     thesis: '老龄化抬升抚养比、青年就业承压、资产代际传递加剧分化——代际矛盾是人口结构、劳动力市场与财富分配三条线的交汇点。',
     primary: '老年抚养比快速攀升，养老金现收现付压力增大，代际再分配预期紧张。',
     secondary: '青年就业：高校毕业生规模持续高位，慢就业与灵活就业比例上升。',
@@ -310,11 +310,11 @@ export const CONTRADICTIONS = [
         xAxis: categoryX(['2018', '2019', '2020', '2022', '2024', '2025E']),
         yAxis: valueY({ min: 8, max: 22, name: '%' }),
         series: [{ type: 'line', smooth: true, data: [9.8, 11.2, 14.5, 18.7, 16.2, 15.0],
-          lineStyle: { color: '#fb923c', width: 2 }, markPoint: { data: [{ coord: ['2022', 18.7], name: '峰值' }] } }],
+          lineStyle: { color: '#c07a4a', width: 2 }, markPoint: { data: [{ coord: ['2022', 18.7], name: '峰值' }] } }],
       })},
       { title: '代际矛盾强度 · 雷达', build: () => radarOpt(
         ['养老压力', '青年就业', '资产鸿沟', '价值观', '生育意愿'],
-        [82, 78, 74, 65, 80], { name: '代际矛盾', color: '#fb923c' },
+        [82, 78, 74, 65, 80], { name: '代际矛盾', color: '#c07a4a' },
       )},
     ],
     framework: {
@@ -326,7 +326,7 @@ export const CONTRADICTIONS = [
   {
     key: 'wealth',
     label: '贫富矛盾',
-    accent: '#c41e3a',
+    accent: '#e5483b',
     thesis: '基尼系数高位徘徊、三次分配机制尚在成形、平台经济集中度抬升——贫富矛盾呈现「显性收入差距」与「隐性福利差距」的双层结构。',
     primary: '初次分配中资本回报增速长期高于劳动回报，财富向资产持有者集中。',
     secondary: '隐性福利：编制保障、城市户籍公共服务、住房资产增值构成非货币化不平等。',
@@ -347,13 +347,13 @@ export const CONTRADICTIONS = [
         xAxis: categoryX(['2015', '2018', '2021', '2024', '2025E']),
         yAxis: valueY({ name: '%' }),
         series: [
-          { name: '劳动报酬增速', type: 'line', data: [8.2, 7.5, 6.8, 5.2, 5.0], lineStyle: { color: '#64748b' } },
-          { name: '资本回报增速', type: 'line', data: [9.5, 10.2, 9.8, 7.5, 7.2], lineStyle: { color: '#c41e3a', width: 2 } },
+          { name: '劳动报酬增速', type: 'line', data: [8.2, 7.5, 6.8, 5.2, 5.0], lineStyle: { color: '#8a8578' } },
+          { name: '资本回报增速', type: 'line', data: [9.5, 10.2, 9.8, 7.5, 7.2], lineStyle: { color: '#e5483b', width: 2 } },
         ],
       })},
       { title: '贫富矛盾强度 · 雷达', build: () => radarOpt(
         ['基尼', '资产集中', '平台垄断', '隐性福利', '三次分配'],
-        [80, 76, 68, 72, 58], { name: '贫富矛盾', color: '#c41e3a' },
+        [80, 76, 68, 72, 58], { name: '贫富矛盾', color: '#e5483b' },
       )},
     ],
     framework: {
@@ -365,7 +365,7 @@ export const CONTRADICTIONS = [
   {
     key: 'laborCapital',
     label: '劳资矛盾',
-    accent: '#06b6d4',
+    accent: '#5b7cf0',
     thesis: '全球化退潮与自动化抬升背景下，劳资矛盾从「工资谈判」扩展为「算法管理、工时边界与社会保障可携带性」的系统性争议。',
     primary: '劳动报酬占 GDP 比重长期低于资本回报，加班文化与欠薪在制造业与平台业周期性复发。',
     secondary: '灵活就业者缺乏工伤、失业与养老的完整覆盖，劳动关系认定模糊。',
@@ -384,18 +384,18 @@ export const CONTRADICTIONS = [
         xAxis: categoryX(['2000', '2005', '2010', '2015', '2020', '2025E']),
         yAxis: valueY({ min: 45, max: 58, name: '%' }),
         series: [{ type: 'line', smooth: true, data: [51.4, 50.2, 49.8, 51.2, 52.0, 52.3],
-          lineStyle: { color: '#06b6d4', width: 2 } }],
+          lineStyle: { color: '#5b7cf0', width: 2 } }],
       })},
       { title: '新就业形态规模 · 示意（亿人）', build: () => ({
         grid: { left: 72, right: 16, top: 16, bottom: 24 },
         yAxis: categoryX(['快递外卖', '网约车', '网络直播', '其他零工']),
         xAxis: valueY({ name: '亿人' }),
         series: [{ type: 'bar', barWidth: 14, data: [0.85, 0.42, 0.38, 0.55],
-          itemStyle: { color: '#06b6d4' }, label: { show: true, position: 'right', color: LABEL.color } }],
+          itemStyle: { color: '#5b7cf0' }, label: { show: true, position: 'right', color: LABEL.color } }],
       })},
       { title: '劳资矛盾强度 · 雷达', build: () => radarOpt(
         ['报酬份额', '工时违规', '灵活就业', '集体协商', '自动化替代'],
-        [74, 70, 78, 62, 66], { name: '劳资矛盾', color: '#06b6d4' },
+        [74, 70, 78, 62, 66], { name: '劳资矛盾', color: '#5b7cf0' },
       )},
     ],
     framework: {
@@ -407,7 +407,7 @@ export const CONTRADICTIONS = [
   {
     key: 'stateSociety',
     label: '官民矛盾',
-    accent: '#64748b',
+    accent: '#8a8578',
     thesis: '科层体制执行精度与民众诉求多元化之间的张力，构成官民矛盾的主线——数字政府提升透明度，也可能放大执行偏差与舆情发酵的连锁效应。',
     primary: '基层治理「最后一公里」：政策传导变形、形式主义与民众获得感落差。',
     secondary: '信访、行政诉讼与网络舆情构成平行申诉渠道，成本与效果不均。',
@@ -426,15 +426,15 @@ export const CONTRADICTIONS = [
         xAxis: categoryX(['2015', '2018', '2021', '2024', '2025E']),
         yAxis: valueY({ min: 70, max: 95, name: '%' }),
         series: [{ type: 'line', smooth: true, data: [78, 82, 86, 89, 91],
-          lineStyle: { color: '#10b981', width: 2 }, areaStyle: { color: 'rgba(16,185,129,0.08)' } }],
+          lineStyle: { color: '#6fc2ae', width: 2 }, areaStyle: { color: 'rgba(111, 194, 174,0.08)' } }],
       })},
       { title: '基层负担感知 · 示意指数', build: () => radarOpt(
         ['填表报数', '迎检考核', '问责压力', '数字系统', '激励不足'],
-        [82, 75, 78, 70, 72], { name: '基层负担', color: '#64748b' },
+        [82, 75, 78, 70, 72], { name: '基层负担', color: '#8a8578' },
       )},
       { title: '官民矛盾强度 · 雷达', build: () => radarOpt(
         ['执行偏差', '诉求渠道', '舆情发酵', '隐私边界', '信任修复'],
-        [68, 65, 72, 58, 62], { name: '官民矛盾', color: '#64748b' },
+        [68, 65, 72, 58, 62], { name: '官民矛盾', color: '#8a8578' },
       )},
     ],
     framework: {
@@ -446,7 +446,7 @@ export const CONTRADICTIONS = [
   {
     key: 'ethnic',
     label: '民族地区矛盾',
-    accent: '#d4af37',
+    accent: '#d9b26a',
     thesis: '民族地区在资源禀赋、文化保护与现代化进程之间面临特殊张力——发展差距、语言教育政策与宗教民俗管理的平衡，构成区别于一般区域矛盾的专门维度。',
     primary: '发展差距：部分民族地区人均 GDP 低于全国均值 30—40%（示意），基础设施与产业层级滞后。',
     secondary: '文化保护与现代化：双语教育、传统社区与现代治理的接口需要持续调适。',
@@ -465,18 +465,18 @@ export const CONTRADICTIONS = [
         yAxis: categoryX(['西藏', '新疆', '青海', '宁夏', '内蒙古']),
         xAxis: valueY({ max: 100, name: '%' }),
         series: [{ type: 'bar', barWidth: 14, data: [55, 72, 68, 78, 85],
-          itemStyle: { color: '#d4af37' }, label: { show: true, position: 'right', color: LABEL.color } }],
+          itemStyle: { color: '#d9b26a' }, label: { show: true, position: 'right', color: LABEL.color } }],
       })},
       { title: '对口支援投入 · 示意（亿元）', build: () => ({
         grid: GRID, tooltip: { trigger: 'axis' },
         xAxis: categoryX(['2015', '2018', '2021', '2024', '2025E']),
         yAxis: valueY({ name: '亿元' }),
         series: [{ type: 'line', smooth: true, data: [320, 380, 420, 460, 485],
-          lineStyle: { color: '#d4af37', width: 2 }, areaStyle: { color: 'rgba(212,175,55,0.1)' } }],
+          lineStyle: { color: '#d9b26a', width: 2 }, areaStyle: { color: 'rgba(217, 178, 106,0.1)' } }],
       })},
       { title: '民族地区矛盾强度 · 雷达', build: () => radarOpt(
         ['发展差距', '文化接口', '产业层级', '生态约束', '外部话语'],
-        [76, 62, 70, 58, 65], { name: '民族地区', color: '#d4af37' },
+        [76, 62, 70, 58, 65], { name: '民族地区', color: '#d9b26a' },
       )},
     ],
     framework: {

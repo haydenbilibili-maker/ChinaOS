@@ -7,31 +7,31 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // ── 海洋产业七支柱：规模 / 全球地位 / 卡位与痛点 ──────────────────────
 const SECTORS = [
   {
-    key: 'fish', label: '渔 · 海洋渔业', accent: '#22d3ee', gopShare: 18, scale: '~1.5 万亿',
+    key: 'fish', label: '渔 · 海洋渔业', accent: '#6e8cff', gopShare: 18, scale: '~1.5 万亿',
     rank: '产量全球第一 · 远洋船队规模第一',
     grip: '远洋捕捞与海水养殖规模全球第一，深蓝渔业牧场化、远洋基地（如西非、南太）持续扩张。运力即存在，渔船亦是蓝海前沿的民用触角。',
     pain: '近海资源枯竭、配额与公海治理博弈、远洋后勤补给点稀缺，渔权摩擦常态化。',
   },
   {
-    key: 'oilgas', label: '油 · 海洋油气', accent: '#e8a317', gopShare: 9, scale: '~0.8 万亿',
+    key: 'oilgas', label: '油 · 海洋油气', accent: '#d4a25a', gopShare: 9, scale: '~0.8 万亿',
     rank: '浅海成熟 · 深水装备追赶中',
     grip: '渤海、南海北部稳产，"深海一号"等深水气田投产标志超深水自主开发能力。油气是能源压舱石中最受通道与争议海域制约的一环。',
     pain: '南海争议海域油气难以单边开发、深水钻采高端装备与软件仍部分受制，边际成本高于陆上。',
   },
   {
-    key: 'engi', label: '工 · 海洋工程装备', accent: '#8b5cf6', gopShare: 8, scale: '~0.7 万亿',
+    key: 'engi', label: '工 · 海洋工程装备', accent: '#b07cc6', gopShare: 8, scale: '~0.7 万亿',
     rank: '产能全球前列 · 高端设计待突破',
     grip: '自升式/半潜式平台、FPSO、铺管船等总装产能居前，承接大量海外订单。海工装备是造船工业母机向深海能源主权的延伸。',
     pain: '高端设计、动力定位、水下生产系统（SPS）核心模块依赖进口，订单周期受油价剧烈摆动。',
   },
   {
-    key: 'ship', label: '船 · 造船', accent: '#c41e3a', gopShare: 16, scale: '~1.3 万亿',
+    key: 'ship', label: '船 · 造船', accent: '#e5483b', gopShare: 16, scale: '~1.3 万亿',
     rank: '三大指标全球第一 · 完工 50%+',
     grip: '造船完工 50.2% / 新接 66.6% / 手持 55.0% 全面领先，LNG 船等高附加值船型国产化突破。造船能力 = 运力主权与军民两用工业母机。',
     pain: '主机、曲轴、高端配套与船舶设计软件部分受制，利润率受钢价与汇率挤压，高端船型与韩国仍有缠斗。',
   },
   {
-    key: 'port', label: '港 · 港口航运', accent: '#10b981', gopShare: 17, scale: '~1.4 万亿',
+    key: 'port', label: '港 · 港口航运', accent: '#6fc2ae', gopShare: 17, scale: '~1.4 万亿',
     rank: '吞吐与集装箱全球第一',
     grip: '全球前十大港口中国占七席，集装箱吞吐量约占全球三成。港口是贸易生命线的物理锚点，海外港口布局延伸为通道节点。',
     pain: '海外枢纽港受地缘审查（"债务陷阱"叙事），航运公司在国际班轮联盟中议价权仍弱于马士基等巨头。',
@@ -59,7 +59,7 @@ const gopTrend = {
   series: [{
     type: 'line', smooth: true, symbol: 'circle', symbolSize: 6,
     data: [5.0, 6.5, 8.3, 8.0, 9.5, 9.9, 10.5],
-    lineStyle: { color: '#22d3ee', width: 2 }, areaStyle: { color: 'rgba(34,211,238,0.12)' },
+    lineStyle: { color: '#6e8cff', width: 2 }, areaStyle: { color: 'rgba(110, 140, 255,0.12)' },
   }],
 };
 
@@ -72,7 +72,7 @@ const gopShareTrend = {
   series: [{
     type: 'line', smooth: true, symbol: 'circle', symbolSize: 6,
     data: [9.3, 9.4, 9.3, 7.9, 7.8, 7.9, 7.8],
-    lineStyle: { color: '#e8a317', width: 2 }, areaStyle: { color: 'rgba(232,163,23,0.10)' },
+    lineStyle: { color: '#d4a25a', width: 2 }, areaStyle: { color: 'rgba(212, 162, 90,0.10)' },
   }],
 };
 
@@ -84,9 +84,9 @@ const shipCompare = {
   xAxis: categoryX(['造船完工量', '新接订单量', '手持订单量']),
   yAxis: valueY({ max: 100, axisLabel: { formatter: '{value}%' } }),
   series: [
-    { name: '中国', type: 'bar', data: [50.2, 66.6, 55.0], barWidth: 16, itemStyle: { color: '#c41e3a', borderRadius: 3 } },
-    { name: '韩国', type: 'bar', data: [28.5, 25.5, 31.0], barWidth: 16, itemStyle: { color: '#22d3ee', borderRadius: 3 } },
-    { name: '日本', type: 'bar', data: [15.0, 6.0, 12.0], barWidth: 16, itemStyle: { color: '#e8a317', borderRadius: 3 } },
+    { name: '中国', type: 'bar', data: [50.2, 66.6, 55.0], barWidth: 16, itemStyle: { color: '#e5483b', borderRadius: 3 } },
+    { name: '韩国', type: 'bar', data: [28.5, 25.5, 31.0], barWidth: 16, itemStyle: { color: '#6e8cff', borderRadius: 3 } },
+    { name: '日本', type: 'bar', data: [15.0, 6.0, 12.0], barWidth: 16, itemStyle: { color: '#d4a25a', borderRadius: 3 } },
   ],
 };
 
@@ -99,7 +99,7 @@ const shipRiseTrend = {
   series: [{
     type: 'line', smooth: true, symbol: 'circle', symbolSize: 6,
     data: [4, 13, 38, 41, 43, 50.2],
-    lineStyle: { color: '#c41e3a', width: 2 }, areaStyle: { color: 'rgba(196,30,58,0.10)' },
+    lineStyle: { color: '#e5483b', width: 2 }, areaStyle: { color: 'rgba(229, 72, 59,0.10)' },
   }],
 };
 
@@ -117,30 +117,30 @@ const seaPowerRadar = {
       { name: '港口枢纽', max: 100 }, { name: '海军投送', max: 100 },
     ],
     axisName: { color: LABEL.color, fontSize: 10 },
-    splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-    axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+    splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
+    axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
     splitArea: { show: false },
   },
   legend: { top: 0, textStyle: { color: LABEL.color, fontSize: 10 } },
   series: [{
     type: 'radar',
     data: [
-      { value: [88, 96, 95, 80, 98, 62], name: '中国', lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.15)' } },
-      { value: [55, 12, 50, 90, 70, 100], name: '美国', lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.12)' } },
+      { value: [88, 96, 95, 80, 98, 62], name: '中国', lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.15)' } },
+      { value: [55, 12, 50, 90, 70, 100], name: '美国', lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' }, areaStyle: { color: 'rgba(110, 140, 255,0.12)' } },
     ],
   }],
 };
 
 // 深蓝产业能力雷达（保留原图）
-const deepSeaRadar = radarOpt(['深潜技术', 'ROV/AUV', '海洋观测', '钻探开采', '深海生物', '装备制造'], [98, 85, 92, 78, 88, 95], { name: '深蓝产业能力', color: '#22d3ee' });
+const deepSeaRadar = radarOpt(['深潜技术', 'ROV/AUV', '海洋观测', '钻探开采', '深海生物', '装备制造'], [98, 85, 92, 78, 88, 95], { name: '深蓝产业能力', color: '#6e8cff' });
 
 // ── 海洋战略阶段时间线 ──────────────────────────────────────────────
 const STAGES = [
   { period: '1949–1980', title: '陆权为主', accent: '#6b7280', desc: '大陆国家路径依赖，海军定位"近岸防御"，海洋经济以近海渔业为主，海权意识与远洋能力近乎空白。' },
-  { period: '1980s–2000s', title: '近海防御', accent: '#22d3ee', desc: '"近海防御"战略成型，第一岛链内防御纵深建设，造船业承接全球产业转移、开始规模化，海洋油气浅海起步。' },
-  { period: '2012–2017', title: '海洋强国战略', accent: '#e8a317', desc: '十八大提出"建设海洋强国"，GOP 跃升，造船全球第一巩固，岛礁建设与南海存在强化，海权从口号转为体系工程。' },
-  { period: '2017–2022', title: '远海护卫 · 双航母', accent: '#c41e3a', desc: '"近海防御 + 远海护卫"双重战略，双航母成军、055 大驱列装、亚丁湾常态护航，运力与投送能力同步抬升。' },
-  { period: '2022–', title: '深蓝存在', accent: '#8b5cf6', desc: '三航母、深远海风电、深水油气、国产大型邮轮齐头并进，从"造得出"走向"控得住通道、占得住深蓝"。' },
+  { period: '1980s–2000s', title: '近海防御', accent: '#6e8cff', desc: '"近海防御"战略成型，第一岛链内防御纵深建设，造船业承接全球产业转移、开始规模化，海洋油气浅海起步。' },
+  { period: '2012–2017', title: '海洋强国战略', accent: '#d4a25a', desc: '十八大提出"建设海洋强国"，GOP 跃升，造船全球第一巩固，岛礁建设与南海存在强化，海权从口号转为体系工程。' },
+  { period: '2017–2022', title: '远海护卫 · 双航母', accent: '#e5483b', desc: '"近海防御 + 远海护卫"双重战略，双航母成军、055 大驱列装、亚丁湾常态护航，运力与投送能力同步抬升。' },
+  { period: '2022–', title: '深蓝存在', accent: '#b07cc6', desc: '三航母、深远海风电、深水油气、国产大型邮轮齐头并进，从"造得出"走向"控得住通道、占得住深蓝"。' },
 ];
 
 export default function Page() {
@@ -172,10 +172,10 @@ export default function Page() {
       </IntroCard>
 
       <StatGrid className="mb-6">
-        <Stat value="~10.5 万亿" label="海洋生产总值 GOP（2024 示意）" accent="#22d3ee" />
-        <Stat value="50.2%" label="造船完工量全球份额" accent="#c41e3a" />
-        <Stat value="170 亿吨" label="港口货物吞吐 · 全球第一" accent="#10b981" />
-        <Stat value="~7.8%" label="海洋 GDP 占全国 GDP" accent="#e8a317" />
+        <Stat value="~10.5 万亿" label="海洋生产总值 GOP（2024 示意）" accent="#6e8cff" />
+        <Stat value="50.2%" label="造船完工量全球份额" accent="#e5483b" />
+        <Stat value="170 亿吨" label="港口货物吞吐 · 全球第一" accent="#6fc2ae" />
+        <Stat value="~7.8%" label="海洋 GDP 占全国 GDP" accent="#d4a25a" />
       </StatGrid>
 
       {/* 1 · 海洋产业选择器 */}
@@ -190,7 +190,7 @@ export default function Page() {
             </div>
             <div className="text-xs mono mb-2" style={{ color: 'var(--cyber-cyan)' }}>全球地位 · {sector.rank}</div>
             <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>{sector.grip}</p>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#c41e3a' }}>痛点 · 卡位</div>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#e5483b' }}>痛点 · 卡位</div>
             <p className="text-[12px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{sector.pain}</p>
           </div>
         </Grid>
@@ -244,10 +244,10 @@ export default function Page() {
             海军前沿存在与亚丁湾常态护航则是"控得住"的硬支撑。蓝碳（红树林、海草床、盐沼）纳入双碳与生态补偿，固碳评估起步。
           </p>
           <StatGrid>
-            <Stat value="~80%" label="原油进口经马六甲" accent="#c41e3a" />
-            <Stat value="备份 3" label="陆桥 / 港口 / 北极航道" accent="#22d3ee" />
-            <Stat value="护航 16y+" label="亚丁湾常态护航" accent="#e8a317" />
-            <Stat value="蓝碳 85" label="生态监测指数 · 示意" accent="#10b981" />
+            <Stat value="~80%" label="原油进口经马六甲" accent="#e5483b" />
+            <Stat value="备份 3" label="陆桥 / 港口 / 北极航道" accent="#6e8cff" />
+            <Stat value="护航 16y+" label="亚丁湾常态护航" accent="#d4a25a" />
+            <Stat value="蓝碳 85" label="生态监测指数 · 示意" accent="#6fc2ae" />
           </StatGrid>
         </Card>
       </Grid>

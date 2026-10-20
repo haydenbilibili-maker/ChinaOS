@@ -4,10 +4,10 @@
 // playVerified: true 表示 modal 内 hls.js 可播（CORS 开放或开发代理）
 
 export const STREAM_CATEGORIES = {
-  panda: { id: 'panda', label: '熊猫直播', accent: '#10b981', icon: 'Panda' },
-  scenic: { id: 'scenic', label: '风景名胜区', accent: '#22d3ee', icon: 'Mountain' },
-  traffic: { id: 'traffic', label: '城市/交通', accent: '#e8a317', icon: 'TrainFront' },
-  other: { id: 'other', label: '其他', accent: '#8b5cf6', icon: 'Telescope' },
+  panda: { id: 'panda', label: '熊猫直播', accent: '#6fc2ae', icon: 'Panda' },
+  scenic: { id: 'scenic', label: '风景名胜区', accent: '#6e8cff', icon: 'Mountain' },
+  traffic: { id: 'traffic', label: '城市/交通', accent: '#d4a25a', icon: 'TrainFront' },
+  other: { id: 'other', label: '其他', accent: '#b07cc6', icon: 'Telescope' },
 };
 
 /** @typedef {'hls'|'page'} EmbedType */

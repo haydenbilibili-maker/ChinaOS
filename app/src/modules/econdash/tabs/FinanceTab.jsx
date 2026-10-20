@@ -8,11 +8,11 @@ import { financeKpis } from '../finance/financeData.js';
 const FinanceVizPanel = lazy(() => import('../finance/FinanceVizPanel.jsx'));
 
 const FINANCE_HUB = [
-  { to: '/capital-market', label: '资本市场 · 耐心资本', note: '注册制改革、中长期资金入市与创投政策主线。', accent: '#8b5cf6' },
-  { to: '/finance', label: '金融系统 · 系统风险', note: '增长账单的另一面：杠杆、宏观审慎与金融安全。', accent: '#c41e3a' },
-  { to: '/debt', label: '地方债务 · 省际热力', note: '广义财政与化债方案，城投风险地理分布。', accent: '#e8a317' },
-  { to: '/market-pulse', label: '全球资产脉搏 · 实时行情', note: '股债汇大宗 18 标的轮询，资本市场情绪温度计。', accent: '#22d3ee' },
-  { to: '/financeRmb', label: '人民币国际化 · CIPS', note: '跨境清算与离岸窗口，货币主权维度。', accent: '#10b981' },
+  { to: '/capital-market', label: '资本市场 · 耐心资本', note: '注册制改革、中长期资金入市与创投政策主线。', accent: '#b07cc6' },
+  { to: '/finance', label: '金融系统 · 系统风险', note: '增长账单的另一面：杠杆、宏观审慎与金融安全。', accent: '#e5483b' },
+  { to: '/debt', label: '地方债务 · 省际热力', note: '广义财政与化债方案，城投风险地理分布。', accent: '#d4a25a' },
+  { to: '/market-pulse', label: '全球资产脉搏 · 实时行情', note: '股债汇大宗 18 标的轮询，资本市场情绪温度计。', accent: '#6e8cff' },
+  { to: '/financeRmb', label: '人民币国际化 · CIPS', note: '跨境清算与离岸窗口，货币主权维度。', accent: '#6fc2ae' },
   { to: '/greenfinance', label: '绿色金融 · 碳定价', note: '双碳目标下的金融工具与碳市场接口。', accent: '#62a89e' },
 ];
 

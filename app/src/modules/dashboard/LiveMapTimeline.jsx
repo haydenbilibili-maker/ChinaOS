@@ -7,7 +7,7 @@ export default function LiveMapTimeline({
   onChange,
   playing,
   onTogglePlay,
-  accent = '#22d3ee',
+  accent = '#6e8cff',
 }) {
   return (
     <div

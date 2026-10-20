@@ -8,22 +8,22 @@ import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 export const AS_OF = AS_OF_BASELINE;
 
 export const ERAS = [
-  { id: 'founding', range: [1949, 1957], label: '建国奠基', accent: '#c41e3a', summary: '开国奠基与制度移植：一五计划立起工业骨架，三大改造确立计划体制' },
-  { id: 'winding', range: [1958, 1977], label: '曲折探索', accent: '#64748b', summary: '探索代价高昂：大跃进与文革打断积累，两弹一星为后续保留火种' },
-  { id: 'reform', range: [1978, 1991], label: '改革开放', accent: '#10b981', summary: '放权让利换增长：承包制与特区试验撕开计划铁幕，短缺经济步入尾声' },
-  { id: 'market', range: [1992, 2001], label: '市场化与全球化', accent: '#22d3ee', summary: '南方谈话定调：分税制、房改、国企攻坚落地，入世接入全球分工' },
-  { id: 'boom', range: [2002, 2012], label: '高速增长', accent: '#e8a317', summary: '全球化红利兑现：世界工厂、城镇化与地产共振，总量跃居世界第二' },
-  { id: 'newera', range: [2013, 2020], label: '新时代', accent: '#8b5cf6', summary: '动能切换：全面深改、供给侧与脱贫并进，中美博弈开启，疫情收尾' },
-  { id: 'rivalry', range: [2021, 2026], label: '战略相持', accent: '#fb923c', summary: '相持攻坚：人口拐点、地产出清与科技封锁三重压力下押注新质生产力' },
+  { id: 'founding', range: [1949, 1957], label: '建国奠基', accent: '#e5483b', summary: '开国奠基与制度移植：一五计划立起工业骨架，三大改造确立计划体制' },
+  { id: 'winding', range: [1958, 1977], label: '曲折探索', accent: '#8a8578', summary: '探索代价高昂：大跃进与文革打断积累，两弹一星为后续保留火种' },
+  { id: 'reform', range: [1978, 1991], label: '改革开放', accent: '#6fc2ae', summary: '放权让利换增长：承包制与特区试验撕开计划铁幕，短缺经济步入尾声' },
+  { id: 'market', range: [1992, 2001], label: '市场化与全球化', accent: '#6e8cff', summary: '南方谈话定调：分税制、房改、国企攻坚落地，入世接入全球分工' },
+  { id: 'boom', range: [2002, 2012], label: '高速增长', accent: '#d4a25a', summary: '全球化红利兑现：世界工厂、城镇化与地产共振，总量跃居世界第二' },
+  { id: 'newera', range: [2013, 2020], label: '新时代', accent: '#b07cc6', summary: '动能切换：全面深改、供给侧与脱贫并进，中美博弈开启，疫情收尾' },
+  { id: 'rivalry', range: [2021, 2026], label: '战略相持', accent: '#c07a4a', summary: '相持攻坚：人口拐点、地产出清与科技封锁三重压力下押注新质生产力' },
 ];
 
 export const DOMAINS = [
-  { id: 'politics', label: '制度政治', accent: '#c41e3a' },
-  { id: 'economy', label: '经济产业', accent: '#22d3ee' },
-  { id: 'tech', label: '科技工程', accent: '#8b5cf6' },
-  { id: 'diplomacy', label: '外交军事', accent: '#e8a317' },
-  { id: 'society', label: '社会民生', accent: '#10b981' },
-  { id: 'world', label: '外部环境', accent: '#64748b' },
+  { id: 'politics', label: '制度政治', accent: '#e5483b' },
+  { id: 'economy', label: '经济产业', accent: '#6e8cff' },
+  { id: 'tech', label: '科技工程', accent: '#b07cc6' },
+  { id: 'diplomacy', label: '外交军事', accent: '#d4a25a' },
+  { id: 'society', label: '社会民生', accent: '#6fc2ae' },
+  { id: 'world', label: '外部环境', accent: '#8a8578' },
 ];
 
 export const EVENTS = [

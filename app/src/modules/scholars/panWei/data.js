@@ -10,12 +10,12 @@
 export const AS_OF = '2026-09-28';
 
 export const THEMES = {
-  model: { label: '中国模式与中华体制', color: '#c41e3a' },
-  minben: { label: '民本政治与民主观', color: '#e8a317' },
-  fazhi: { label: '咨询型法治', color: '#8b5cf6' },
-  sheji: { label: '社稷体制与基层社会', color: '#10b981' },
-  rural: { label: '农民与农村集体', color: '#94a3b8' },
-  west: { label: '中西比较与国际格局', color: '#22d3ee' },
+  model: { label: '中国模式与中华体制', color: '#e5483b' },
+  minben: { label: '民本政治与民主观', color: '#d4a25a' },
+  fazhi: { label: '咨询型法治', color: '#b07cc6' },
+  sheji: { label: '社稷体制与基层社会', color: '#6fc2ae' },
+  rural: { label: '农民与农村集体', color: '#a29c91' },
+  west: { label: '中西比较与国际格局', color: '#6e8cff' },
 };
 export const THEME_KEYS = Object.keys(THEMES);
 
@@ -45,10 +45,10 @@ export const BOARD = {
 };
 
 export const CAREER_GROUPS = {
-  study: { label: '求学', color: '#8b5cf6' },
-  cass: { label: '社科院', color: '#e8a317' },
-  pku: { label: '北大教职', color: '#22d3ee' },
-  um: { label: '澳门大学', color: '#10b981' },
+  study: { label: '求学', color: '#b07cc6' },
+  cass: { label: '社科院', color: '#d4a25a' },
+  pku: { label: '北大教职', color: '#6e8cff' },
+  um: { label: '澳门大学', color: '#6fc2ae' },
 };
 
 /** 履历甘特：起止为小数年；月份未载者取近似；note 记录口径出入 */

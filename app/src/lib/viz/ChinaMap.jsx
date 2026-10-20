@@ -104,13 +104,13 @@ export default function ChinaMap({ metrics = [], style, className, enableDrill =
       },
       visualMap: {
         min: 0, max: metric.max, left: 8, bottom: 8, calculable: true,
-        inRange: { color: ['#1a2333', '#8b0000', '#c41e3a', '#e8a317'] },
-        textStyle: { color: '#93a1b5' },
+        inRange: { color: ['#1c202a', '#9e2a22', '#e5483b', '#d4a25a'] },
+        textStyle: { color: '#a29c91' },
       },
       series: [{
         type: 'map', map: view.mapName, roam: false, nameProperty: 'name',
-        itemStyle: { borderColor: 'rgba(148,163,184,0.25)', borderWidth: 0.5, areaColor: '#141c2b' },
-        emphasis: { itemStyle: { areaColor: '#22d3ee' }, label: { color: '#0a0e17' } },
+        itemStyle: { borderColor: 'rgba(162, 156, 145,0.25)', borderWidth: 0.5, areaColor: '#141c2b' },
+        emphasis: { itemStyle: { areaColor: '#6e8cff' }, label: { color: '#0d0f14' } },
         label: { show: false },
         data,
       }],
@@ -145,7 +145,7 @@ export default function ChinaMap({ metrics = [], style, className, enableDrill =
             {metrics.map((mm, i) => (
               <button key={mm.key} onClick={() => setMIdx(i)}
                 className="text-xs px-2 py-0.5 rounded mono"
-                style={{ background: i === mIdx ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)', color: i === mIdx ? '#fff' : 'var(--text-secondary)', border: 'none', cursor: 'pointer' }}>
+                style={{ background: i === mIdx ? 'rgba(229, 72, 59,0.2)' : 'var(--bg-elevated)', color: i === mIdx ? '#fff' : 'var(--text-secondary)', border: 'none', cursor: 'pointer' }}>
                 {mm.label}
               </button>
             ))}

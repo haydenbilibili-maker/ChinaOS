@@ -9,7 +9,7 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // ============================================================================
 const CHAIN = [
   {
-    key: 'eda', label: 'EDA / IP', accent: '#c41e3a', autonomy: 12,
+    key: 'eda', label: 'EDA / IP', accent: '#e5483b', autonomy: 12,
     title: 'EDA 工具与 IP 核 · 数字世界的「绘图权」',
     landscape: 'Synopsys / Cadence / Siemens EDA 三家合计占全球 ~75% 份额；ARM 垄断移动端 IP，x86 双寡头。没有 EDA，设计公司一行代码都流不出去。',
     choke: '先进工艺（7nm 以下）全流程 EDA 对华禁售；ARM 最新架构授权受审查；先进节点 PDK 与验证算力构成隐性壁垒。',
@@ -19,7 +19,7 @@ const CHAIN = [
     chokeLevel: 90,
   },
   {
-    key: 'design', label: '芯片设计', accent: '#22d3ee', autonomy: 45,
+    key: 'design', label: '芯片设计', accent: '#6e8cff', autonomy: 45,
     title: '芯片设计 (Fabless) · 离市场最近的环节',
     landscape: '美国 Fabless 占全球 ~60%+（NVIDIA/Qualcomm/AMD/Broadcom）；中国设计企业数量全球第一（3000+ 家），但营收高度长尾。',
     choke: 'AI 训练芯片（A100/H100 级）对华禁售触发倒逼；高端手机 SoC 依赖台积电先进代工——设计能力受制造天花板封顶。',
@@ -29,7 +29,7 @@ const CHAIN = [
     chokeLevel: 72,
   },
   {
-    key: 'fab', label: '制造代工', accent: '#e8a317', autonomy: 30,
+    key: 'fab', label: '制造代工', accent: '#d4a25a', autonomy: 30,
     title: '晶圆制造 (Foundry) · 资本与良率的绞肉机',
     landscape: '台积电独占全球先进代工 ~60%+（3nm 以下近乎 100%）；三星追赶吃力；中芯国际全球第三但收入差一个量级。',
     choke: 'EUV 光刻机禁运封死 7nm 以下「正路」；美籍人才禁令抽走关键工艺团队；先进制程良率与成本受多重曝光拖累。',
@@ -39,7 +39,7 @@ const CHAIN = [
     chokeLevel: 85,
   },
   {
-    key: 'equip', label: '设备', accent: '#8b5cf6', autonomy: 18,
+    key: 'equip', label: '设备', accent: '#b07cc6', autonomy: 18,
     title: '半导体设备 · 光刻链是最硬的约束',
     landscape: 'ASML 垄断 EUV（独家）与高端 DUV；应用材料/泛林/东京电子瓜分沉积刻蚀；五家美日荷企业控制设备市场 ~70%。',
     choke: 'EUV 完全禁运、浸没式 DUV 加码限制、设备维保与零部件断供条款——「卖给你的机器也能让它变砖」。',
@@ -49,7 +49,7 @@ const CHAIN = [
     chokeLevel: 98,
   },
   {
-    key: 'material', label: '材料', accent: '#10b981', autonomy: 28,
+    key: 'material', label: '材料', accent: '#6fc2ae', autonomy: 28,
     title: '半导体材料 · 看不见的「工业味精」',
     landscape: '日本控制光刻胶（JSR/信越/TOK ~80%）、大硅片（信越/SUMCO ~50%+）、电子特气关键品类；2019 日韩材料战展示其武器化潜力。',
     choke: '高端 ArF/EUV 光刻胶几乎全依赖进口；12 英寸大硅片认证周期 2-3 年；材料与工艺共演进，替换成本极高。',
@@ -59,7 +59,7 @@ const CHAIN = [
     chokeLevel: 65,
   },
   {
-    key: 'atp', label: '封测', accent: '#fb923c', autonomy: 75,
+    key: 'atp', label: '封测', accent: '#c07a4a', autonomy: 75,
     title: '封装测试 (OSAT) · 防御带中的「已得分项」',
     landscape: '中国大陆封测全球份额 ~25%+，长电科技全球第三；台湾日月光居首。封测是中国半导体自主度最高的环节。',
     choke: '先进封装（CoWoS 级 2.5D/3D）产能集中于台积电；HBM 堆叠与混合键合设备仍受设备链制约。',
@@ -69,7 +69,7 @@ const CHAIN = [
     chokeLevel: 35,
   },
   {
-    key: 'memory', label: '存储', accent: '#64748b', autonomy: 35,
+    key: 'memory', label: '存储', accent: '#8a8578', autonomy: 35,
     title: '存储芯片 · 大宗商品化的正面战场',
     landscape: '三星/SK 海力士/美光三分 DRAM；NAND 多寡头。存储是标准品，拼的是制程代际 + 产能成本——最像「重工业」的芯片。',
     choke: '长江存储被列实体清单，设备断供直接冻结扩产节奏；HBM（AI 显存）对华出口管制收紧，卡 AI 算力的「第二把锁」。',
@@ -96,14 +96,14 @@ const NODE_CHINA = [65, 40, 28, 28, 14, 14, 7, 7, 5];
 // 三、「小院高墙」出口管制层级（封锁强度 0-100 · 示意）
 // ============================================================================
 const BLOCKADE = [
-  { name: 'EUV 光刻机', v: 100, c: '#c41e3a', note: '2019 起完全禁运 · 零交付' },
-  { name: '浸没式 DUV', v: 85, c: '#e8a317', note: '2023 起新机+维保受限' },
-  { name: '先进制程设备', v: 80, c: '#e8a317', note: '14/16nm 以下设备许可证制' },
-  { name: 'AI 训练芯片', v: 75, c: '#fb923c', note: 'A100/H100 及阉割版迭代封堵' },
-  { name: 'EDA (先进节点)', v: 70, c: '#fb923c', note: '7nm 以下全流程禁售' },
-  { name: 'HBM 高带宽存储', v: 65, c: '#8b5cf6', note: 'AI 算力的第二把锁' },
-  { name: '美籍人才任职', v: 60, c: '#22d3ee', note: '「美国人条款」抽走工艺团队' },
-  { name: '成熟制程 (28nm+)', v: 15, c: '#10b981', note: '小院之外 · 反成中方产能武器' },
+  { name: 'EUV 光刻机', v: 100, c: '#e5483b', note: '2019 起完全禁运 · 零交付' },
+  { name: '浸没式 DUV', v: 85, c: '#d4a25a', note: '2023 起新机+维保受限' },
+  { name: '先进制程设备', v: 80, c: '#d4a25a', note: '14/16nm 以下设备许可证制' },
+  { name: 'AI 训练芯片', v: 75, c: '#c07a4a', note: 'A100/H100 及阉割版迭代封堵' },
+  { name: 'EDA (先进节点)', v: 70, c: '#c07a4a', note: '7nm 以下全流程禁售' },
+  { name: 'HBM 高带宽存储', v: 65, c: '#b07cc6', note: 'AI 算力的第二把锁' },
+  { name: '美籍人才任职', v: 60, c: '#6e8cff', note: '「美国人条款」抽走工艺团队' },
+  { name: '成熟制程 (28nm+)', v: 15, c: '#6fc2ae', note: '小院之外 · 反成中方产能武器' },
 ];
 
 // ============================================================================
@@ -113,38 +113,38 @@ const LOCALIZATION = [
   { name: '封测', v: 75 }, { name: '成熟制程制造', v: 55 }, { name: '功率/模拟', v: 50 },
   { name: '材料(整体)', v: 28 }, { name: '设备(整体)', v: 18 }, { name: 'EDA', v: 12 }, { name: '先进制程', v: 8 },
 ];
-const locColor = (v) => (v >= 60 ? '#10b981' : v >= 35 ? '#e8a317' : v >= 20 ? '#fb923c' : '#c41e3a');
+const locColor = (v) => (v >= 60 ? '#6fc2ae' : v >= 35 ? '#d4a25a' : v >= 20 ? '#c07a4a' : '#e5483b');
 
 const HEGEMONY = {
   categories: ['EDA/IP', '设计', '代工', '设备', '材料', '封测'],
   series: [
-    { name: '美国', data: [78, 60, 10, 42, 12, 8], itemStyle: { color: '#c41e3a' } },
-    { name: '中国台湾', data: [2, 18, 62, 1, 8, 38], itemStyle: { color: '#e8a317' } },
-    { name: '日本/荷兰', data: [8, 6, 4, 45, 55, 6], itemStyle: { color: '#8b5cf6' } },
-    { name: '韩国', data: [1, 6, 16, 2, 8, 8], itemStyle: { color: '#22d3ee' } },
-    { name: '中国大陆', data: [3, 8, 7, 6, 12, 28], itemStyle: { color: '#10b981' } },
-    { name: '其他', data: [8, 2, 1, 4, 5, 12], itemStyle: { color: '#64748b' } },
+    { name: '美国', data: [78, 60, 10, 42, 12, 8], itemStyle: { color: '#e5483b' } },
+    { name: '中国台湾', data: [2, 18, 62, 1, 8, 38], itemStyle: { color: '#d4a25a' } },
+    { name: '日本/荷兰', data: [8, 6, 4, 45, 55, 6], itemStyle: { color: '#b07cc6' } },
+    { name: '韩国', data: [1, 6, 16, 2, 8, 8], itemStyle: { color: '#6e8cff' } },
+    { name: '中国大陆', data: [3, 8, 7, 6, 12, 28], itemStyle: { color: '#6fc2ae' } },
+    { name: '其他', data: [8, 2, 1, 4, 5, 12], itemStyle: { color: '#8a8578' } },
   ],
 };
 
 const FUND3_DONUT = [
-  { name: '制造产能(成熟+特色)', value: 40, itemStyle: { color: '#c41e3a' } },
-  { name: '设备攻关(光刻链)', value: 25, itemStyle: { color: '#8b5cf6' } },
-  { name: '材料与零部件', value: 15, itemStyle: { color: '#10b981' } },
-  { name: '设计与 EDA', value: 12, itemStyle: { color: '#22d3ee' } },
-  { name: '先进封装/HBM', value: 8, itemStyle: { color: '#fb923c' } },
+  { name: '制造产能(成熟+特色)', value: 40, itemStyle: { color: '#e5483b' } },
+  { name: '设备攻关(光刻链)', value: 25, itemStyle: { color: '#b07cc6' } },
+  { name: '材料与零部件', value: 15, itemStyle: { color: '#6fc2ae' } },
+  { name: '设计与 EDA', value: 12, itemStyle: { color: '#6e8cff' } },
+  { name: '先进封装/HBM', value: 8, itemStyle: { color: '#c07a4a' } },
 ];
 
 // ============================================================================
 // 五、芯片之路时间线
 // ============================================================================
 const STAGES = [
-  { period: '1990-1999', title: '908/909 工程', accent: '#64748b', desc: '国家级攻关起步即受《瓦森纳协定》代差锁定：「建成即落后两代」。908 工程审批七年，投产即亏损；909 工程（华虹）以举国之力换一条 8 英寸线。教训写进基因：行政审批速度跑不过摩尔定律。' },
-  { period: '2000-2013', title: '中芯国际 · 市场化试水', accent: '#22d3ee', desc: '张汝京携团队建厂，走「海归 + 外资 + 代工」路线，速度空前——但台积电专利战与股权动荡暴露软肋：没有主权资本护航的追赶者，会在知识产权与资本市场两条战线被绞杀。' },
-  { period: '2014-2018', title: '大基金 I/II 期 · 国家资本入场', accent: '#e8a317', desc: '《国家集成电路产业发展推进纲要》+ 大基金一期 1387 亿、二期 2041 亿——主权资本以股权投资替代行政拨款，撬动地方与社会资本数倍杠杆。产能与营收起飞，但「重制造轻设备材料」的结构性偏科埋下伏笔。' },
-  { period: '2018-2022', title: '实体清单 · 极限施压', accent: '#c41e3a', desc: '中兴休克、华为断供、EUV 禁运、2022.10 全面设备管制——美国把芯片从商品重新定义为战略武器。封锁的意外后果：国产设备材料获得「保送验证」的市场，替代从「可选项」变成「生死题」。' },
-  { period: '2023-2024', title: '7nm 突破 · 大基金 III 期', accent: '#8b5cf6', desc: 'Mate 60 搭载国产 N+2 芯片回归，证明 DUV 多重曝光可斜向穿透封锁线；大基金三期 3440 亿注册资本超前两期之和，投向明确转向设备、材料、HBM——补齐偏科，对准光刻链最后山头。' },
-  { period: '2025→', title: '全链自主攻坚', accent: '#10b981', desc: '终局问题只剩一个：国产光刻机能否在 EUV 锁死的窗口期内完成 DUV 自主 + 下一代技术路线（如 SSMB/LDP）卡位。同时以成熟制程产能优势反向施压全球供应链——封锁与反封锁进入消耗战。' },
+  { period: '1990-1999', title: '908/909 工程', accent: '#8a8578', desc: '国家级攻关起步即受《瓦森纳协定》代差锁定：「建成即落后两代」。908 工程审批七年，投产即亏损；909 工程（华虹）以举国之力换一条 8 英寸线。教训写进基因：行政审批速度跑不过摩尔定律。' },
+  { period: '2000-2013', title: '中芯国际 · 市场化试水', accent: '#6e8cff', desc: '张汝京携团队建厂，走「海归 + 外资 + 代工」路线，速度空前——但台积电专利战与股权动荡暴露软肋：没有主权资本护航的追赶者，会在知识产权与资本市场两条战线被绞杀。' },
+  { period: '2014-2018', title: '大基金 I/II 期 · 国家资本入场', accent: '#d4a25a', desc: '《国家集成电路产业发展推进纲要》+ 大基金一期 1387 亿、二期 2041 亿——主权资本以股权投资替代行政拨款，撬动地方与社会资本数倍杠杆。产能与营收起飞，但「重制造轻设备材料」的结构性偏科埋下伏笔。' },
+  { period: '2018-2022', title: '实体清单 · 极限施压', accent: '#e5483b', desc: '中兴休克、华为断供、EUV 禁运、2022.10 全面设备管制——美国把芯片从商品重新定义为战略武器。封锁的意外后果：国产设备材料获得「保送验证」的市场，替代从「可选项」变成「生死题」。' },
+  { period: '2023-2024', title: '7nm 突破 · 大基金 III 期', accent: '#b07cc6', desc: 'Mate 60 搭载国产 N+2 芯片回归，证明 DUV 多重曝光可斜向穿透封锁线；大基金三期 3440 亿注册资本超前两期之和，投向明确转向设备、材料、HBM——补齐偏科，对准光刻链最后山头。' },
+  { period: '2025→', title: '全链自主攻坚', accent: '#6fc2ae', desc: '终局问题只剩一个：国产光刻机能否在 EUV 锁死的窗口期内完成 DUV 自主 + 下一代技术路线（如 SSMB/LDP）卡位。同时以成熟制程产能优势反向施压全球供应链——封锁与反封锁进入消耗战。' },
 ];
 
 // ============================================================================
@@ -161,12 +161,12 @@ export default function Page() {
     legend: { data: ['全球最先进量产', '中国最先进量产'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     grid: { ...GRID, top: 30, left: 44 },
     xAxis: categoryX(NODE_YEARS),
-    yAxis: logY({ name: 'nm(log)', nameTextStyle: { color: '#5b6a82', fontSize: 10 }, inverse: true }),
+    yAxis: logY({ name: 'nm(log)', nameTextStyle: { color: '#8a847a', fontSize: 10 }, inverse: true }),
     series: [
-      { name: '全球最先进量产', type: 'line', data: NODE_GLOBAL, smooth: false, symbol: 'circle', symbolSize: 7, lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
-      { name: '中国最先进量产', type: 'line', data: NODE_CHINA, smooth: false, symbol: 'diamond', symbolSize: 8, lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' },
-        markPoint: { data: [{ coord: ['2022', 7], value: '7nm\n突破', itemStyle: { color: '#e8a317' }, label: { fontSize: 9, color: '#0b1120' } }], symbolSize: 44 },
-        markLine: { silent: true, lineStyle: { color: 'rgba(232,163,23,0.5)', type: 'dashed' }, label: { color: '#e8a317', fontSize: 9, formatter: 'EUV 禁运线' }, data: [{ xAxis: '2020' }] } },
+      { name: '全球最先进量产', type: 'line', data: NODE_GLOBAL, smooth: false, symbol: 'circle', symbolSize: 7, lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' } },
+      { name: '中国最先进量产', type: 'line', data: NODE_CHINA, smooth: false, symbol: 'diamond', symbolSize: 8, lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' },
+        markPoint: { data: [{ coord: ['2022', 7], value: '7nm\n突破', itemStyle: { color: '#d4a25a' }, label: { fontSize: 9, color: '#0b1120' } }], symbolSize: 44 },
+        markLine: { silent: true, lineStyle: { color: 'rgba(212, 162, 90,0.5)', type: 'dashed' }, label: { color: '#d4a25a', fontSize: 9, formatter: 'EUV 禁运线' }, data: [{ xAxis: '2020' }] } },
     ],
   }), []);
 
@@ -176,7 +176,7 @@ export default function Page() {
     grid: { left: 100, right: 36, top: 8, bottom: 24 },
     xAxis: valueY({ max: 100 }),
     yAxis: { type: 'category', data: BLOCKADE.map((b) => b.name).reverse(), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
-    series: [{ type: 'bar', barWidth: 12, data: BLOCKADE.map((b) => ({ value: b.v, itemStyle: { color: b.c, borderRadius: [0, 3, 3, 0] } })).reverse(), label: { show: true, position: 'right', color: '#5b6a82', fontSize: 9 } }],
+    series: [{ type: 'bar', barWidth: 12, data: BLOCKADE.map((b) => ({ value: b.v, itemStyle: { color: b.c, borderRadius: [0, 3, 3, 0] } })).reverse(), label: { show: true, position: 'right', color: '#8a847a', fontSize: 9 } }],
   }), []);
 
   // 产业链自主度双系列雷达（中国 vs 全球第一梯队 · 内联）
@@ -185,13 +185,13 @@ export default function Page() {
     radar: {
       indicator: [{ name: 'EDA', max: 100 }, { name: '设备', max: 100 }, { name: '材料', max: 100 }, { name: '制造', max: 100 }, { name: '设计', max: 100 }, { name: '封测', max: 100 }],
       axisName: { color: LABEL.color, fontSize: 10 }, radius: '62%',
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } }, axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } }, splitArea: { show: false },
     },
     series: [{
       type: 'radar',
       data: [
-        { value: [12, 18, 28, 30, 45, 75], name: '中国', lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.15)' } },
-        { value: [95, 95, 92, 98, 95, 90], name: '全球第一梯队', lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.08)' } },
+        { value: [12, 18, 28, 30, 45, 75], name: '中国', lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.15)' } },
+        { value: [95, 95, 92, 98, 95, 90], name: '全球第一梯队', lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' }, areaStyle: { color: 'rgba(110, 140, 255,0.08)' } },
       ],
     }],
   }), []);
@@ -206,7 +206,7 @@ export default function Page() {
       type: 'bar', barWidth: 22,
       data: LOCALIZATION.map((d) => ({ value: d.v, itemStyle: { color: locColor(d.v), borderRadius: [3, 3, 0, 0] } })),
       label: { show: true, position: 'top', color: LABEL.color, fontSize: 9, formatter: '{c}%' },
-      markLine: { silent: true, lineStyle: { color: 'rgba(232,163,23,0.5)', type: 'dashed' }, label: { color: '#e8a317', fontSize: 9, formatter: '安全线 35%' }, data: [{ yAxis: 35 }] },
+      markLine: { silent: true, lineStyle: { color: 'rgba(212, 162, 90,0.5)', type: 'dashed' }, label: { color: '#d4a25a', fontSize: 9, formatter: '安全线 35%' }, data: [{ yAxis: 35 }] },
     }],
   }), []);
 
@@ -218,19 +218,19 @@ export default function Page() {
     legend: { data: ['进口', '出口'], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0 },
     grid: { left: 44, right: 16, top: 30, bottom: 24 },
     xAxis: categoryX(['2019', '2021', '2023', '2024E']),
-    yAxis: valueY({ name: '亿$', nameTextStyle: { color: '#5b6a82', fontSize: 10 } }),
+    yAxis: valueY({ name: '亿$', nameTextStyle: { color: '#8a847a', fontSize: 10 } }),
     series: [
-      { name: '进口', type: 'bar', data: [3055, 4326, 3494, 3850], barWidth: 16, itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } },
-      { name: '出口', type: 'bar', data: [1015, 1538, 1360, 1500], barWidth: 16, itemStyle: { color: '#22d3ee', borderRadius: [3, 3, 0, 0] } },
+      { name: '进口', type: 'bar', data: [3055, 4326, 3494, 3850], barWidth: 16, itemStyle: { color: '#e5483b', borderRadius: [3, 3, 0, 0] } },
+      { name: '出口', type: 'bar', data: [1015, 1538, 1360, 1500], barWidth: 16, itemStyle: { color: '#6e8cff', borderRadius: [3, 3, 0, 0] } },
     ],
   }), []);
 
   const fundChart = useMemo(() => stackedBarOpt({
     categories: ['一期 1387亿', '二期 2041亿', '三期 3440亿'],
     series: [
-      { name: '制造/设计', data: [70, 55, 45], itemStyle: { color: '#c41e3a' } },
-      { name: '设备材料', data: [20, 35, 40], itemStyle: { color: '#22d3ee' } },
-      { name: '封装/其他', data: [10, 10, 15], itemStyle: { color: '#e8a317' } },
+      { name: '制造/设计', data: [70, 55, 45], itemStyle: { color: '#e5483b' } },
+      { name: '设备材料', data: [20, 35, 40], itemStyle: { color: '#6e8cff' } },
+      { name: '封装/其他', data: [10, 10, 15], itemStyle: { color: '#d4a25a' } },
     ],
   }), []);
 
@@ -246,10 +246,10 @@ export default function Page() {
       </IntroCard>
 
       <StatGrid className="mb-6">
-        <Stat value="~20-25%" label="芯片自给率(口径存争议)" accent="#c41e3a" />
-        <Stat value="3440 亿¥" label="大基金三期注册资本" accent="#e8a317" />
-        <Stat value="~30%" label="全球晶圆产能份额(E·含外资在华)" accent="#22d3ee" />
-        <Stat value="3000+" label="芯片设计企业数" accent="#8b5cf6" />
+        <Stat value="~20-25%" label="芯片自给率(口径存争议)" accent="#e5483b" />
+        <Stat value="3440 亿¥" label="大基金三期注册资本" accent="#d4a25a" />
+        <Stat value="~30%" label="全球晶圆产能份额(E·含外资在华)" accent="#6e8cff" />
+        <Stat value="3000+" label="芯片设计企业数" accent="#b07cc6" />
       </StatGrid>
 
       {/* ====== 产业链环节选择器 ====== */}
@@ -266,15 +266,15 @@ export default function Page() {
               </div>
             </div>
             <div className="space-y-2">
-              <div style={{ borderLeft: '2px solid #64748b', paddingLeft: 10 }}>
+              <div style={{ borderLeft: '2px solid #8a8578', paddingLeft: 10 }}>
                 <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>全球格局</div>
                 <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{seg.landscape}</p>
               </div>
-              <div style={{ borderLeft: '2px solid #c41e3a', paddingLeft: 10 }}>
+              <div style={{ borderLeft: '2px solid #e5483b', paddingLeft: 10 }}>
                 <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>卡脖子点</div>
                 <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{seg.choke}</p>
               </div>
-              <div style={{ borderLeft: '2px solid #10b981', paddingLeft: 10 }}>
+              <div style={{ borderLeft: '2px solid #6fc2ae', paddingLeft: 10 }}>
                 <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>突破进展</div>
                 <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{seg.breakthrough}</p>
               </div>

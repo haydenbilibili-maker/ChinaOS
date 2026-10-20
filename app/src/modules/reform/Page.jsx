@@ -7,7 +7,7 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // ─── 阶段定义 · 1978 至今的「现实主义算法演进」五段 ───
 const PHASES = [
   {
-    id: 0, label: '① 放权让利', range: '1978–1984', color: '#c41e3a',
+    id: 0, label: '① 放权让利', range: '1978–1984', color: '#e5483b',
     theme: '解冻系统 · 农村包产到户 · 特区试点',
     gdpRange: '0.36 → 0.73 万亿元', openness: '外贸依存度 ~10% · 外资几乎为零',
     events: ['1978 十一届三中全会 · 工作重心转向经济建设', '1978 小岗村「大包干」按下红手印', '1980 深圳/珠海/汕头/厦门 四大特区设立', '1984 十四个沿海开放城市'],
@@ -15,7 +15,7 @@ const PHASES = [
     realist: '系统濒临生存阈值，最高优先级从「纯洁度」切到「生产力」。包产到户本质是把激励权下放到最小生产单元——压力倒逼下的第一次试错。无为而治：松绑即增长。',
   },
   {
-    id: 1, label: '② 城市闯关', range: '1984–1992', color: '#e8a317',
+    id: 1, label: '② 城市闯关', range: '1984–1992', color: '#d4a25a',
     theme: '城市改革 · 双轨制 · 价格闯关',
     gdpRange: '0.73 → 2.7 万亿元', openness: '外贸依存度 ~25% · 外资起步',
     events: ['1984 城市经济体制改革启动 · 国企扩权', '1988 价格闯关受挫 · 抢购与通胀', '1989–1991 治理整顿期', '1990 上交所/深交所开业'],
@@ -23,7 +23,7 @@ const PHASES = [
     realist: '一次过快迭代触发系统震荡——价格闯关是试错代价的标价。均值回归：体制随即回收速度、换取稳定。证明渐进主义并非保守，而是对超大规模系统熵增的清醒定价。',
   },
   {
-    id: 2, label: '③ 市场经济', range: '1992–2001', color: '#22d3ee',
+    id: 2, label: '③ 市场经济', range: '1992–2001', color: '#6e8cff',
     theme: '社会主义市场经济 · 南方谈话 · 抓大放小',
     gdpRange: '2.7 → 11 万亿元', openness: '外贸依存度 ~38% · 外资规模化涌入',
     events: ['1992 邓小平南方谈话 · 「胆子要大一些」', '1993 分税制改革 · 中央财权上收', '1994 汇率并轨 · 国企抓大放小', '1997 十五大确立基本经济制度'],
@@ -31,7 +31,7 @@ const PHASES = [
     realist: '南方谈话是对 1989 后停滞的强制重启——意识形态争论让位于绩效证据。分税制是一次集中算力的再分配：地方竞争（分布式算力）与中央汲取（财政主权）的再平衡。',
   },
   {
-    id: 3, label: '④ 入世红利', range: '2001–2012', color: '#10b981',
+    id: 3, label: '④ 入世红利', range: '2001–2012', color: '#6fc2ae',
     theme: '入世 · 全球化红利 · 世界工厂',
     gdpRange: '11 → 54 万亿元', openness: '外贸依存度峰值 ~64% · 外资引力陷阱成型',
     events: ['2001 加入 WTO · 嵌入全球分工', '2008 北京奥运 · 四万亿刺激', '2010 GDP 超日本 · 全球第二', '2010 制造业产值居世界第一'],
@@ -39,7 +39,7 @@ const PHASES = [
     realist: '资源汲取的巅峰——主权规模扩张。在全球分工中占据不可替代节点，把贸易流量变成动员工具（你中有我）。市场换技术，数十年压缩西方两百年工业化积累。红利越大，路径依赖越深。',
   },
   {
-    id: 4, label: '⑤ 全面深改', range: '2012–今', color: '#8b5cf6',
+    id: 4, label: '⑤ 全面深改', range: '2012–今', color: '#b07cc6',
     theme: '全面深改 · 供给侧 · 新发展格局 · 统筹发展与安全',
     gdpRange: '54 → 134 万亿元', openness: '外贸依存度回落 ~33% · 转向制度型开放',
     events: ['2013 十八届三中全会 · 全面深化改革', '2015 供给侧结构性改革 · 三去一降一补', '2020 「双循环」新发展格局', '2021 共同富裕 · 统筹发展与安全'],
@@ -60,16 +60,16 @@ function gdpTrendOpt(activeId) {
     grid: { left: 48, right: 16, top: 16, bottom: 24 },
     tooltip: { trigger: 'axis' },
     xAxis: { type: 'category', data: TREND_YEARS, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
-    yAxis: { type: 'log', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color } },
+    yAxis: { type: 'log', splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } }, axisLabel: { color: LABEL.color } },
     series: [{
       type: 'line', smooth: true, symbol: 'circle', symbolSize: 6,
       data: TREND_GDP.map((v, i) => ({
         value: v,
-        itemStyle: { color: (i >= span[0] && i <= span[1]) ? '#22d3ee' : '#c41e3a', borderWidth: (i >= span[0] && i <= span[1]) ? 2 : 0, borderColor: '#fff' },
+        itemStyle: { color: (i >= span[0] && i <= span[1]) ? '#6e8cff' : '#e5483b', borderWidth: (i >= span[0] && i <= span[1]) ? 2 : 0, borderColor: '#fff' },
         symbolSize: (i >= span[0] && i <= span[1]) ? 9 : 5,
       })),
-      lineStyle: { color: '#c41e3a', width: 2 }, areaStyle: { color: 'rgba(196,30,58,0.1)' },
-      markArea: { silent: true, itemStyle: { color: 'rgba(34,211,238,0.08)' }, data: [[{ xAxis: TREND_YEARS[span[0]] }, { xAxis: TREND_YEARS[span[1]] }]] },
+      lineStyle: { color: '#e5483b', width: 2 }, areaStyle: { color: 'rgba(229, 72, 59,0.1)' },
+      markArea: { silent: true, itemStyle: { color: 'rgba(110, 140, 255,0.08)' }, data: [[{ xAxis: TREND_YEARS[span[0]] }, { xAxis: TREND_YEARS[span[1]] }]] },
     }],
   };
 }
@@ -79,11 +79,11 @@ const industryTrend = {
   grid: { left: 40, right: 16, top: 30, bottom: 24 },
   tooltip: { trigger: 'axis' },
   xAxis: { type: 'category', data: ['1978', '1990', '2005', '2015', '2024'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
-  yAxis: { type: 'value', axisLabel: { formatter: '{value}%', color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+  yAxis: { type: 'value', axisLabel: { formatter: '{value}%', color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } } },
   series: [
-    { name: '第一产业', type: 'line', stack: 't', areaStyle: { color: 'rgba(16,185,129,0.3)' }, data: [28, 27, 12, 9, 7], lineStyle: { color: '#10b981' }, itemStyle: { color: '#10b981' } },
-    { name: '第二产业', type: 'line', stack: 't', areaStyle: { color: 'rgba(196,30,58,0.3)' }, data: [48, 41, 47, 41, 38], lineStyle: { color: '#c41e3a' }, itemStyle: { color: '#c41e3a' } },
-    { name: '第三产业', type: 'line', stack: 't', areaStyle: { color: 'rgba(34,211,238,0.3)' }, data: [24, 32, 41, 50, 55], lineStyle: { color: '#22d3ee' }, itemStyle: { color: '#22d3ee' } },
+    { name: '第一产业', type: 'line', stack: 't', areaStyle: { color: 'rgba(111, 194, 174,0.3)' }, data: [28, 27, 12, 9, 7], lineStyle: { color: '#6fc2ae' }, itemStyle: { color: '#6fc2ae' } },
+    { name: '第二产业', type: 'line', stack: 't', areaStyle: { color: 'rgba(229, 72, 59,0.3)' }, data: [48, 41, 47, 41, 38], lineStyle: { color: '#e5483b' }, itemStyle: { color: '#e5483b' } },
+    { name: '第三产业', type: 'line', stack: 't', areaStyle: { color: 'rgba(110, 140, 255,0.3)' }, data: [24, 32, 41, 50, 55], lineStyle: { color: '#6e8cff' }, itemStyle: { color: '#6e8cff' } },
   ],
 };
 
@@ -94,22 +94,22 @@ const opennessTrend = {
   tooltip: { trigger: 'axis' },
   xAxis: { type: 'category', data: ['1980', '1992', '2001', '2008', '2015', '2024'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
   yAxis: [
-    { type: 'value', axisLabel: { formatter: '{value}%', color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+    { type: 'value', axisLabel: { formatter: '{value}%', color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } } },
     { type: 'value', axisLabel: { color: LABEL.color }, splitLine: { show: false } },
   ],
   series: [
-    { name: '外贸依存度 %', type: 'line', smooth: true, data: [13, 35, 38, 57, 36, 33], lineStyle: { color: '#22d3ee' }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.08)' } },
-    { name: '实际利用外资(十亿$)', type: 'bar', yAxisIndex: 1, data: [1, 11, 47, 92, 126, 163], itemStyle: { color: 'rgba(232,163,23,0.7)' } },
-    { name: '出口全球占比 %', type: 'line', smooth: true, data: [1, 2.3, 4.3, 8.9, 13.8, 14.5], lineStyle: { color: '#c41e3a' }, itemStyle: { color: '#c41e3a' } },
+    { name: '外贸依存度 %', type: 'line', smooth: true, data: [13, 35, 38, 57, 36, 33], lineStyle: { color: '#6e8cff' }, itemStyle: { color: '#6e8cff' }, areaStyle: { color: 'rgba(110, 140, 255,0.08)' } },
+    { name: '实际利用外资(十亿$)', type: 'bar', yAxisIndex: 1, data: [1, 11, 47, 92, 126, 163], itemStyle: { color: 'rgba(212, 162, 90,0.7)' } },
+    { name: '出口全球占比 %', type: 'line', smooth: true, data: [1, 2.3, 4.3, 8.9, 13.8, 14.5], lineStyle: { color: '#e5483b' }, itemStyle: { color: '#e5483b' } },
   ],
 };
 
 const compRadar = {
-  radar: { indicator: [{ name: '市场化', max: 100 }, { name: '制度型开放', max: 100 }, { name: '产业链', max: 100 }, { name: '科技自立', max: 100 }, { name: '社会公平', max: 100 }, { name: '安全冗余', max: 100 }], axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } }, splitArea: { show: false } },
-  series: [{ type: 'radar', data: [{ value: [82, 75, 95, 78, 65, 88], name: '中国式现代化', lineStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.12)' } }] }],
+  radar: { indicator: [{ name: '市场化', max: 100 }, { name: '制度型开放', max: 100 }, { name: '产业链', max: 100 }, { name: '科技自立', max: 100 }, { name: '社会公平', max: 100 }, { name: '安全冗余', max: 100 }], axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } }, splitArea: { show: false } },
+  series: [{ type: 'radar', data: [{ value: [82, 75, 95, 78, 65, 88], name: '中国式现代化', lineStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.12)' } }] }],
 };
 
-const TAB_ACTIVE = { background: 'rgba(196,30,58,0.2)', color: '#fff' };
+const TAB_ACTIVE = { background: 'rgba(229, 72, 59,0.2)', color: '#fff' };
 const TAB_IDLE = { background: 'var(--bg-elevated)', color: 'var(--text-secondary)' };
 
 export default function Page() {
@@ -122,10 +122,10 @@ export default function Page() {
       <IntroCard>1978 年的改革开放是把系统最高优先级从「纯洁度」调整为「生产力」的务实权力交易：通过向社会释放局部经济自由（两权分离），换取系统在剧变时代的整体稳定与绝对领导权。指数级增长是「绩效合法性」最强硬的物理证据。下方时间线把四十余年读作一段<span style={{ color: 'var(--cyber-cyan)' }}>「现实主义算法演进」</span>——压力倒逼、灰度试错、均值回归。</IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="372 倍" label="名义 GDP 增幅(1978→2024)" accent="#c41e3a" />
-        <Stat value="5 阶段" label="算法迭代版本" accent="#8b5cf6" />
-        <Stat value="8 亿+" label="累计减贫规模" accent="#10b981" />
-        <Stat value="16+" label="标志性制度节点" accent="#22d3ee" />
+        <Stat value="372 倍" label="名义 GDP 增幅(1978→2024)" accent="#e5483b" />
+        <Stat value="5 阶段" label="算法迭代版本" accent="#b07cc6" />
+        <Stat value="8 亿+" label="累计减贫规模" accent="#6fc2ae" />
+        <Stat value="16+" label="标志性制度节点" accent="#6e8cff" />
       </Grid>
 
       {/* ─── 可点击改革阶段时间线 ─── */}
@@ -209,10 +209,10 @@ export default function Page() {
       <Card title="方法论框架 · 「摸着石头过河」的工程学" className="mb-6">
         <p className="text-xs mb-4" style={{ color: 'var(--text-tertiary)' }}>超大规模社会直接改底层代码风险极高。该方法论本质是一套对系统熵增清醒定价的工程范式。</p>
         <Grid cols={4}>
-          {[['灰度测试', '特区作主权项下外部接口，引入资本主义要素做隔离压力测试，成功后逐步推广。', '点状突破→面状覆盖', '#c41e3a'],
-            ['分布式算力', '财政承包/分税制把发展动能下放地方，锦标赛激励驱动生产力爆发。', '地方竞争 = 并行算力', '#e8a317'],
-            ['渐进主义', '拒绝休克疗法，双轨制软着陆，新旧系统共存缓慢切换，消解改革摩擦。', '稳定 > 速度', '#22d3ee'],
-            ['反馈回环', '微观试错→效果观测→宏观收拢，可吸收外部熵值的自我演化治理软件。', '试错→观测→收拢', '#8b5cf6']].map(([t, d, tag, c]) => (
+          {[['灰度测试', '特区作主权项下外部接口，引入资本主义要素做隔离压力测试，成功后逐步推广。', '点状突破→面状覆盖', '#e5483b'],
+            ['分布式算力', '财政承包/分税制把发展动能下放地方，锦标赛激励驱动生产力爆发。', '地方竞争 = 并行算力', '#d4a25a'],
+            ['渐进主义', '拒绝休克疗法，双轨制软着陆，新旧系统共存缓慢切换，消解改革摩擦。', '稳定 > 速度', '#6e8cff'],
+            ['反馈回环', '微观试错→效果观测→宏观收拢，可吸收外部熵值的自我演化治理软件。', '试错→观测→收拢', '#b07cc6']].map(([t, d, tag, c]) => (
             <div key={t} className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderTop: `2px solid ${c}` }}>
               <div className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>{t}</div>
               <p className="text-xs leading-relaxed mb-2" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
@@ -226,8 +226,8 @@ export default function Page() {
         <Card title="资源汲取 · 入世后的「引力陷阱」">
           <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>加入 WTO 是利用全球化红利的「主权规模扩张」——把庞大劳动力与全球资本、技术对撞，构建无法逃逸的「世界工厂」重力场，在全球分工中占据不可替代节点。</p>
           <div className="space-y-2">
-            <div style={{ borderLeft: '2px solid #c41e3a', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>贸易作为动员工具</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>经进出口流量把经济嵌合进世界体系，实现「你中有我」。</p></div>
-            <div style={{ borderLeft: '2px solid #22d3ee', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>逆向工程与技术沉淀</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>市场换技术，数十年完成西方两百年的工业化积累。</p></div>
+            <div style={{ borderLeft: '2px solid #e5483b', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>贸易作为动员工具</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>经进出口流量把经济嵌合进世界体系，实现「你中有我」。</p></div>
+            <div style={{ borderLeft: '2px solid #6e8cff', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>逆向工程与技术沉淀</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>市场换技术，数十年完成西方两百年的工业化积累。</p></div>
           </div>
         </Card>
         <Card title="中国式现代化竞争力（示意）"><EChart option={compRadar} style={{ height: 240 }} /></Card>

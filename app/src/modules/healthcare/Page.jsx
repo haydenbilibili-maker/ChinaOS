@@ -10,14 +10,14 @@ const triadGraph = {
     type: 'graph', layout: 'circular', symbolSize: 58, roam: false,
     label: { show: true, fontSize: 10, color: LABEL.color },
     data: [
-      { name: '医疗服务', itemStyle: { color: '#c41e3a' } },
-      { name: '医保基金', itemStyle: { color: '#10b981' } },
-      { name: '医药流通', itemStyle: { color: '#e8a317' } },
+      { name: '医疗服务', itemStyle: { color: '#e5483b' } },
+      { name: '医保基金', itemStyle: { color: '#6fc2ae' } },
+      { name: '医药流通', itemStyle: { color: '#d4a25a' } },
     ],
     links: [
-      { source: '医药流通', target: '医保基金', label: { show: true, formatter: '挤水分', color: LABEL.color }, lineStyle: { curveness: 0.2, color: '#e8a317' } },
-      { source: '医保基金', target: '医疗服务', label: { show: true, formatter: '调价/支付', color: LABEL.color }, lineStyle: { curveness: 0.2, color: '#10b981' } },
-      { source: '医疗服务', target: '医药流通', label: { show: true, formatter: '处方外流', color: LABEL.color }, lineStyle: { curveness: 0.2, color: '#c41e3a' } },
+      { source: '医药流通', target: '医保基金', label: { show: true, formatter: '挤水分', color: LABEL.color }, lineStyle: { curveness: 0.2, color: '#d4a25a' } },
+      { source: '医保基金', target: '医疗服务', label: { show: true, formatter: '调价/支付', color: LABEL.color }, lineStyle: { curveness: 0.2, color: '#6fc2ae' } },
+      { source: '医疗服务', target: '医药流通', label: { show: true, formatter: '处方外流', color: LABEL.color }, lineStyle: { curveness: 0.2, color: '#e5483b' } },
     ],
     lineStyle: { opacity: 0.9, width: 2 },
   }],
@@ -27,30 +27,30 @@ const triadGraph = {
 const vbpBar = {
   grid: { left: 40, right: 16, top: 20, bottom: 24 },
   xAxis: { type: 'category', data: ['2019', '2021', '2023', '2024E'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
-  yAxis: { type: 'value', max: 100, axisLabel: { formatter: '{value}%', color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
-  series: [{ type: 'bar', data: [52, 56, 48, 55], barWidth: 22, itemStyle: { color: '#22d3ee', borderRadius: 3 }, label: { show: true, position: 'top', formatter: '-{c}%', color: LABEL.color } }],
+  yAxis: { type: 'value', max: 100, axisLabel: { formatter: '{value}%', color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } } },
+  series: [{ type: 'bar', data: [52, 56, 48, 55], barWidth: 22, itemStyle: { color: '#6e8cff', borderRadius: 3 }, label: { show: true, position: 'top', formatter: '-{c}%', color: LABEL.color } }],
 };
 
 // ── DRG/DIP 执行后的基金支出效率画像 ──
 const drgRadar = {
   radar: {
     indicator: [{ name: '基金结余率', max: 100 }, { name: '次均住院费降幅', max: 100 }, { name: '临床路径规范度', max: 100 }, { name: '患者满意度', max: 100 }, { name: '管理响应速度', max: 100 }],
-    axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, splitArea: { show: false },
+    axisName: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, splitArea: { show: false },
   },
-  series: [{ type: 'radar', data: [{ value: [92, 85, 95, 78, 90], name: 'DRG/DIP 执行后', lineStyle: { color: '#10b981' }, itemStyle: { color: '#10b981' }, areaStyle: { color: 'rgba(16,185,129,0.15)' } }] }],
+  series: [{ type: 'radar', data: [{ value: [92, 85, 95, 78, 90], name: 'DRG/DIP 执行后', lineStyle: { color: '#6fc2ae' }, itemStyle: { color: '#6fc2ae' }, areaStyle: { color: 'rgba(111, 194, 174,0.15)' } }] }],
 };
 
 const REFORM_STAGES = [
-  { period: '1978–1992', title: '改革探索起步期', desc: '公费医疗与劳保医疗沿袭计划经济模式，财政负担沉重、效率低下；开始尝试「放权让利、扩大医院自主权」的初步改革。', accent: '#c41e3a' },
-  { period: '1992–2001', title: '市场化改革探索期', desc: '医疗领域引入市场机制，医院走向自负盈亏，「看病难、看病贵」问题逐步显现。', accent: '#e8a317' },
-  { period: '2001–2012', title: '全民医保体系建设期', desc: '启动「新医改」，建立城镇职工、城镇居民与新型农村合作医疗三大体系，到 2010 年基本实现全民医保广覆盖。', accent: '#22d3ee' },
-  { period: '2012–至今', title: '医改深化攻坚期', desc: '围绕「强基层」「保基本」深化综合改革：分级诊疗、公立医院三医联动、基本药物制度与医保支付方式改革。', accent: '#10b981' },
+  { period: '1978–1992', title: '改革探索起步期', desc: '公费医疗与劳保医疗沿袭计划经济模式，财政负担沉重、效率低下；开始尝试「放权让利、扩大医院自主权」的初步改革。', accent: '#e5483b' },
+  { period: '1992–2001', title: '市场化改革探索期', desc: '医疗领域引入市场机制，医院走向自负盈亏，「看病难、看病贵」问题逐步显现。', accent: '#d4a25a' },
+  { period: '2001–2012', title: '全民医保体系建设期', desc: '启动「新医改」，建立城镇职工、城镇居民与新型农村合作医疗三大体系，到 2010 年基本实现全民医保广覆盖。', accent: '#6e8cff' },
+  { period: '2012–至今', title: '医改深化攻坚期', desc: '围绕「强基层」「保基本」深化综合改革：分级诊疗、公立医院三医联动、基本药物制度与医保支付方式改革。', accent: '#6fc2ae' },
 ];
 
 // ── 政策抓手谱系（SelectorBar 驱动）──
 const POLICY = {
   drug_vbp: {
-    label: '药品集采', accent: '#c41e3a',
+    label: '药品集采', accent: '#e5483b',
     mech: '国家组织带量采购，以「全国 50%–80% 用量」为筹码与药企议价，中选即独占市场份额，未中选者被挤出公立渠道。',
     effect: '前九批累计覆盖 374 个品种，平均降幅 50%+；仿制药价格回归制造成本线，流通环节灰色加价被系统性剥离。',
     impact: '药企从「带金销售」转向研发驱动；公立医院药占比下降，腾出空间调增诊疗服务价格。',
@@ -58,7 +58,7 @@ const POLICY = {
     cut: 53,
   },
   device_vbp: {
-    label: '耗材集采', accent: '#e8a317',
+    label: '耗材集采', accent: '#d4a25a',
     mech: '高值医用耗材（支架、关节、种植牙）纳入带量采购，按手术量打包议价，剥离器械流通暴利。',
     effect: '心脏支架由万元级降至 700 元级（约 -90%）；人工关节平均 -82%；种植牙「单颗万元」时代终结。',
     impact: '器械经销商层级被压缩，临床用量不再受回扣驱动，患者自付端显著减负。',
@@ -66,7 +66,7 @@ const POLICY = {
     cut: 86,
   },
   drg_dip: {
-    label: 'DRG/DIP 支付', accent: '#22d3ee',
+    label: 'DRG/DIP 支付', accent: '#6e8cff',
     mech: '按疾病诊断相关分组（DRG）或病种分值（DIP）打包预付，超支由医院自担、结余可留用。',
     effect: '医院从「项目计费的利润中心」转为「成本核算的责任主体」，过度检查与长期住院动机被压制。',
     impact: '倒逼临床路径标准化与精细化成本管理，次均住院费用与平均住院日双降。',
@@ -74,7 +74,7 @@ const POLICY = {
     cut: null,
   },
   negotiation: {
-    label: '医保谈判', accent: '#10b981',
+    label: '医保谈判', accent: '#6fc2ae',
     mech: '创新药通过国家医保谈判「以价换量」进目录，「灵魂砍价」压缩单价换取全国市场准入。',
     effect: '近年谈判药品平均降幅 60% 左右；大量高价创新药、罕见病药纳入报销，患者可及性跃升。',
     impact: '为创新药建立「上市即放量」的快速通道，重塑国内药企的研发回报预期。',
@@ -82,7 +82,7 @@ const POLICY = {
     cut: 61,
   },
   tiered: {
-    label: '分级诊疗', accent: '#8b5cf6',
+    label: '分级诊疗', accent: '#b07cc6',
     mech: '以县域医共体、城市医疗集团与家庭医生签约构建「基层首诊、双向转诊」网格。',
     effect: '差异化报销比例引导小病在基层、大病去三甲，缓解三甲虹吸与基层闲置。',
     impact: '5G 远程会诊与医共体内检验互认，把优质资源「下沉」至县乡末梢。',
@@ -108,9 +108,9 @@ const fundTrend = {
   xAxis: categoryX(['2018', '2019', '2020', '2021', '2022', '2023', '2024E']),
   yAxis: valueY({ axisLabel: { formatter: '{value} 万亿' } }),
   series: [
-    { name: '基金收入', type: 'line', smooth: true, symbol: 'circle', data: [2.1, 2.4, 2.5, 2.9, 3.1, 3.4, 3.6], lineStyle: { color: '#10b981', width: 2 }, itemStyle: { color: '#10b981' } },
-    { name: '基金支出', type: 'line', smooth: true, symbol: 'circle', data: [1.8, 2.1, 2.1, 2.4, 2.5, 2.8, 3.1], lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' } },
-    { name: '累计结余', type: 'line', smooth: true, symbol: 'circle', data: [2.3, 2.7, 3.1, 3.6, 4.2, 4.8, 5.3], lineStyle: { color: '#22d3ee', width: 2, type: 'dashed' }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.08)' } },
+    { name: '基金收入', type: 'line', smooth: true, symbol: 'circle', data: [2.1, 2.4, 2.5, 2.9, 3.1, 3.4, 3.6], lineStyle: { color: '#6fc2ae', width: 2 }, itemStyle: { color: '#6fc2ae' } },
+    { name: '基金支出', type: 'line', smooth: true, symbol: 'circle', data: [1.8, 2.1, 2.1, 2.4, 2.5, 2.8, 3.1], lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' } },
+    { name: '累计结余', type: 'line', smooth: true, symbol: 'circle', data: [2.3, 2.7, 3.1, 3.6, 4.2, 4.8, 5.3], lineStyle: { color: '#6e8cff', width: 2, type: 'dashed' }, itemStyle: { color: '#6e8cff' }, areaStyle: { color: 'rgba(110, 140, 255,0.08)' } },
   ],
 };
 
@@ -121,12 +121,12 @@ const agingDual = {
   grid: { left: 44, right: 48, top: 30, bottom: 24 },
   xAxis: categoryX(['2020', '2025', '2030E', '2035E', '2040E', '2050E']),
   yAxis: [
-    { type: 'value', name: '退休抚养比 %', nameTextStyle: { color: LABEL.color, fontSize: 9 }, axisLabel: { color: LABEL.color, formatter: '{value}%' }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } } },
+    { type: 'value', name: '退休抚养比 %', nameTextStyle: { color: LABEL.color, fontSize: 9 }, axisLabel: { color: LABEL.color, formatter: '{value}%' }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } } },
     { type: 'value', name: '缴费/退休比', nameTextStyle: { color: LABEL.color, fontSize: 9 }, position: 'right', axisLabel: { color: LABEL.color }, splitLine: { show: false } },
   ],
   series: [
-    { name: '退休抚养比', type: 'bar', yAxisIndex: 0, barWidth: 18, data: [20, 25, 31, 38, 44, 52], itemStyle: { color: '#c41e3a', borderRadius: 3 } },
-    { name: '在职/退休赡养比', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', data: [2.8, 2.5, 2.1, 1.8, 1.5, 1.3], lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' } },
+    { name: '退休抚养比', type: 'bar', yAxisIndex: 0, barWidth: 18, data: [20, 25, 31, 38, 44, 52], itemStyle: { color: '#e5483b', borderRadius: 3 } },
+    { name: '在职/退休赡养比', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', data: [2.8, 2.5, 2.1, 1.8, 1.5, 1.3], lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' } },
   ],
 };
 
@@ -137,23 +137,23 @@ export default function Page() {
 
   // 卫生费用结构 donut（个人/政府/社会 占比，示意：个人自付比例持续下降）
   const expDonut = useMemo(() => donutOpt([
-    { name: '社会卫生支出', value: 44, itemStyle: { color: '#22d3ee' } },
-    { name: '政府卫生支出', value: 29, itemStyle: { color: '#10b981' } },
-    { name: '个人现金卫生支出', value: 27, itemStyle: { color: '#c41e3a' } },
+    { name: '社会卫生支出', value: 44, itemStyle: { color: '#6e8cff' } },
+    { name: '政府卫生支出', value: 29, itemStyle: { color: '#6fc2ae' } },
+    { name: '个人现金卫生支出', value: 27, itemStyle: { color: '#e5483b' } },
   ]), []);
 
   // 医疗体系六维雷达（单系列）
   const sysRadar = useMemo(() => radarOpt(
     ['覆盖可及性', '筹资公平性', '服务质量', '基金控费', '创新可负担', '分级诊疗'],
     [92, 78, 74, 86, 70, 62],
-    { name: '体系画像（示意）', color: '#c41e3a' },
+    { name: '体系画像（示意）', color: '#e5483b' },
   ), []);
 
   // 政策抓手降价对比（仅集采/谈判类有降幅）
   const cutItems = POLICY_KEYS.filter((k) => POLICY[k].cut != null);
   const cutBar = useMemo(() => stackedBarOpt({
     categories: cutItems.map((k) => POLICY[k].label),
-    series: [{ name: '平均降幅 %', stack: undefined, data: cutItems.map((k) => POLICY[k].cut), itemStyle: { color: '#c41e3a' }, label: { show: true, position: 'right', formatter: '-{c}%', color: LABEL.color, fontSize: 10 } }],
+    series: [{ name: '平均降幅 %', stack: undefined, data: cutItems.map((k) => POLICY[k].cut), itemStyle: { color: '#e5483b' }, label: { show: true, position: 'right', formatter: '-{c}%', color: LABEL.color, fontSize: 10 } }],
     horizontal: true,
   }), []);
 
@@ -165,10 +165,10 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="13.6亿" label="基本医保参保人数" accent="#c41e3a" />
-        <Stat value="95%+" label="基本医保覆盖率" accent="#e8a317" />
-        <Stat value="6,000亿" label="集采累计节约资金" accent="#22d3ee" />
-        <Stat value="78.6岁" label="人均预期寿命 · 超越部分中高收入国家" accent="#10b981" />
+        <Stat value="13.6亿" label="基本医保参保人数" accent="#e5483b" />
+        <Stat value="95%+" label="基本医保覆盖率" accent="#d4a25a" />
+        <Stat value="6,000亿" label="集采累计节约资金" accent="#6e8cff" />
+        <Stat value="78.6岁" label="人均预期寿命 · 超越部分中高收入国家" accent="#6fc2ae" />
       </Grid>
 
       {/* ── 政策抓手选择器 ── */}
@@ -182,17 +182,17 @@ export default function Page() {
           <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: `3px solid ${p.accent}` }}>
             <div className="text-[10px] mono uppercase tracking-widest mb-1" style={{ color: p.accent }}>// 运作机制</div>
             <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>{p.mech}</p>
-            <div className="text-[10px] mono uppercase tracking-widest mb-1" style={{ color: '#10b981' }}>// 直接效果</div>
+            <div className="text-[10px] mono uppercase tracking-widest mb-1" style={{ color: '#6fc2ae' }}>// 直接效果</div>
             <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{p.effect}</p>
           </div>
-          <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #27324a' }}>
-            <div className="text-[10px] mono uppercase tracking-widest mb-1" style={{ color: '#22d3ee' }}>// 结构影响</div>
+          <div className="os-card p-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #2a2d36' }}>
+            <div className="text-[10px] mono uppercase tracking-widest mb-1" style={{ color: '#6e8cff' }}>// 结构影响</div>
             <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>{p.impact}</p>
-            <div className="text-[10px] mono uppercase tracking-widest mb-1" style={{ color: '#e8a317' }}>// 争议与张力</div>
+            <div className="text-[10px] mono uppercase tracking-widest mb-1" style={{ color: '#d4a25a' }}>// 争议与张力</div>
             <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{p.dispute}</p>
             {p.cut != null && (
-              <div className="flex items-baseline gap-2 mt-3 pt-3" style={{ borderTop: '1px solid #27324a' }}>
-                <span className="text-2xl font-bold mono" style={{ color: '#c41e3a' }}>-{p.cut}%</span>
+              <div className="flex items-baseline gap-2 mt-3 pt-3" style={{ borderTop: '1px solid #2a2d36' }}>
+                <span className="text-2xl font-bold mono" style={{ color: '#e5483b' }}>-{p.cut}%</span>
                 <span className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>平均价格降幅（示意）</span>
               </div>
             )}
@@ -207,8 +207,8 @@ export default function Page() {
         </Card>
         <Card title="价值采购（VBP）· 集采品种降价均幅">
           <EChart option={vbpBar} style={{ height: 200 }} />
-          <div className="flex justify-between text-[11px] mt-3"><span style={{ color: 'var(--text-tertiary)' }}>心脏支架降幅</span><span className="font-bold" style={{ color: '#c41e3a' }}>-90%</span></div>
-          <div className="flex justify-between text-[11px] mt-1"><span style={{ color: 'var(--text-tertiary)' }}>人工关节降幅</span><span className="font-bold" style={{ color: '#c41e3a' }}>-82%</span></div>
+          <div className="flex justify-between text-[11px] mt-3"><span style={{ color: 'var(--text-tertiary)' }}>心脏支架降幅</span><span className="font-bold" style={{ color: '#e5483b' }}>-90%</span></div>
+          <div className="flex justify-between text-[11px] mt-1"><span style={{ color: 'var(--text-tertiary)' }}>人工关节降幅</span><span className="font-bold" style={{ color: '#e5483b' }}>-82%</span></div>
         </Card>
       </Grid>
 
@@ -243,7 +243,7 @@ export default function Page() {
           </p>
           <div className="flex gap-2 flex-wrap mt-4">
             {['Clinical Protocol Alignment', 'Cost Control Engine'].map((t) => (
-              <span key={t} className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest" style={{ border: '1px solid #27324a', color: '#22d3ee' }}>{t}</span>
+              <span key={t} className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest" style={{ border: '1px solid #2a2d36', color: '#6e8cff' }}>{t}</span>
             ))}
           </div>
         </Card>

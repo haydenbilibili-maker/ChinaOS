@@ -30,10 +30,10 @@ export const STRATEGY_MILESTONES = [
 
 export const OVERVIEW_STATS = [
   { value: '~200万', label: '现役总兵力', note: '白皮书口径 · 2019', accent: null },
-  { value: '350+', label: '主要水面战斗舰艇', note: 'IISS 估算 · 2024', accent: '#22d3ee' },
+  { value: '350+', label: '主要水面战斗舰艇', note: 'IISS 估算 · 2024', accent: '#6e8cff' },
   { value: '1,300+', label: '作战飞机', note: 'DoD 报告 · 2024', accent: null },
-  { value: '350+', label: '核弹头估算', note: 'SIPRI · 2025 区间', accent: '#c41e3a' },
-  { value: '$236B', label: '国防预算 2024', note: 'SIPRI · 现价美元', accent: '#e8a317' },
+  { value: '350+', label: '核弹头估算', note: 'SIPRI · 2025 区间', accent: '#e5483b' },
+  { value: '$236B', label: '国防预算 2024', note: 'SIPRI · 现价美元', accent: '#d4a25a' },
   { value: '~1.2%', label: '占 GDP', note: '官方公布 · 2024', accent: null },
 ];
 
@@ -150,11 +150,11 @@ export const PERSONNEL = {
     ],
   },
   serviceShare: [
-    { name: '陆军', value: 42, color: '#c41e3a' },
-    { name: '海军', value: 12, color: '#22d3ee' },
-    { name: '空军', value: 15, color: '#8b5cf6' },
-    { name: '火箭军', value: 8, color: '#e8a317' },
-    { name: '信息支援/联勤/其他', value: 23, color: '#64748b' },
+    { name: '陆军', value: 42, color: '#e5483b' },
+    { name: '海军', value: 12, color: '#6e8cff' },
+    { name: '空军', value: 15, color: '#b07cc6' },
+    { name: '火箭军', value: 8, color: '#d4a25a' },
+    { name: '信息支援/联勤/其他', value: 23, color: '#8a8578' },
   ],
 };
 
@@ -168,7 +168,7 @@ export const MISSILE_SPECTRUM = {
 export const EQUIPMENT_CATALOG = [
   {
     domain: '海军',
-    accent: '#22d3ee',
+    accent: '#6e8cff',
     items: [
       { name: '003型福建舰', type: '航母', status: '海试/服役', qty: '1', note: '电磁弹射 · CSIS 2025' },
       { name: '002型山东舰', type: '航母', status: '现役', qty: '1', note: '国产首艘航母' },
@@ -182,7 +182,7 @@ export const EQUIPMENT_CATALOG = [
   },
   {
     domain: '空军',
-    accent: '#8b5cf6',
+    accent: '#b07cc6',
     items: [
       { name: '歼-20', type: '第五代战斗机', status: '现役', qty: '200+', note: 'DoD 2024 估算' },
       { name: '歼-16', type: '多用途战斗机', status: '现役', qty: '300+', note: '对地/对海/空优' },
@@ -195,7 +195,7 @@ export const EQUIPMENT_CATALOG = [
   },
   {
     domain: '陆军',
-    accent: '#c41e3a',
+    accent: '#e5483b',
     items: [
       { name: '99A', type: '主战坦克', status: '现役', qty: '600+', note: '第三代主战坦克' },
       { name: '04A', type: '步兵战车', status: '现役', qty: '1,000+', note: '机械化步兵核心' },
@@ -207,7 +207,7 @@ export const EQUIPMENT_CATALOG = [
   },
   {
     domain: '火箭军',
-    accent: '#e8a317',
+    accent: '#d4a25a',
     items: [
       { name: '东风-41', type: '洲际弹道导弹', status: '现役', qty: '—', note: 'MIRV · 公路机动' },
       { name: '东风-31AG', type: '洲际弹道导弹', status: '现役', qty: '—', note: '公路机动' },
@@ -229,8 +229,8 @@ export const AIR_PIE = {
   asOf: '2024',
   note: '四/五代机占比 · DoD 估算示意',
   data: [
-    { value: 55, name: '四/五代机', color: '#c41e3a' },
-    { value: 45, name: '三代及以下', color: '#27324a' },
+    { value: 55, name: '四/五代机', color: '#e5483b' },
+    { value: 45, name: '三代及以下', color: '#2a2d36' },
   ],
 };
 
@@ -304,7 +304,7 @@ export const THEATERS = [
     name: '东部战区',
     hq: '南京',
     hqCoord: [118.78, 32.06],
-    color: '#c41e3a',
+    color: '#e5483b',
     focus: '台海方向 · 第一岛链突破',
     commander: '林向阳（上将 · 2024 公开报道）',
     provinces: ['江苏', '浙江', '安徽', '福建', '江西', '上海'],
@@ -317,7 +317,7 @@ export const THEATERS = [
     name: '南部战区',
     hq: '广州',
     hqCoord: [113.26, 23.13],
-    color: '#e8a317',
+    color: '#d4a25a',
     focus: '南海维权 · 中南半岛方向',
     commander: '吴亚男（上将 · 公开报道）',
     provinces: ['湖南', '广东', '广西', '海南', '云南', '贵州'],
@@ -330,7 +330,7 @@ export const THEATERS = [
     name: '西部战区',
     hq: '成都',
     hqCoord: [104.07, 30.67],
-    color: '#8b5cf6',
+    color: '#b07cc6',
     focus: '中印边境 · 中亚方向',
     commander: '汪海江（上将 · 公开报道）',
     provinces: ['四川', '重庆', '西藏', '新疆', '青海', '甘肃', '宁夏'],
@@ -343,7 +343,7 @@ export const THEATERS = [
     name: '北部战区',
     hq: '沈阳',
     hqCoord: [123.43, 41.80],
-    color: '#22d3ee',
+    color: '#6e8cff',
     focus: '朝鲜半岛 · 对俄方向',
     commander: '李桥铭（上将 · 公开报道）',
     provinces: ['黑龙江', '吉林', '辽宁', '山东', '内蒙古'],
@@ -356,7 +356,7 @@ export const THEATERS = [
     name: '中部战区',
     hq: '北京',
     hqCoord: [116.40, 39.90],
-    color: '#10b981',
+    color: '#6fc2ae',
     focus: '首都防卫 · 战略预备',
     commander: '徐德清（上将 · 公开报道）',
     provinces: ['北京', '天津', '河北', '山西', '河南', '湖北', '陕西'],
@@ -418,11 +418,11 @@ export const MILITARY_BASES = [
 ];
 
 export const BASE_TYPE_COLORS = {
-  海军: '#22d3ee',
-  空军: '#8b5cf6',
-  火箭军: '#e8a317',
-  海外: '#10b981',
-  岛礁: '#c41e3a',
+  海军: '#6e8cff',
+  空军: '#b07cc6',
+  火箭军: '#d4a25a',
+  海外: '#6fc2ae',
+  岛礁: '#e5483b',
 };
 
 // ============================================================================
@@ -434,12 +434,12 @@ export const RANK_PYRAMID = {
   asOf: AS_OF_BASELINE,
   note: '军衔层级人数为公开估算与编制示意，非官方精确数据；用于结构直观对比。',
   levels: [
-    { rank: '上将', count: 38, label: '军委 / 战区 / 军种主官', color: '#c41e3a' },
+    { rank: '上将', count: 38, label: '军委 / 战区 / 军种主官', color: '#e5483b' },
     { rank: '中将', count: 120, label: '正战区 / 副战区级', color: '#e8602e' },
-    { rank: '少将', count: 600, label: '正军 / 副军级', color: '#e8a317' },
-    { rank: '校官', count: 90000, label: '团师机关骨干', color: '#22d3ee' },
-    { rank: '尉官', count: 200000, label: '基层指挥军官', color: '#8b5cf6' },
-    { rank: '士官 / 义务兵', count: 1500000, label: '士兵主体', color: '#64748b' },
+    { rank: '少将', count: 600, label: '正军 / 副军级', color: '#d4a25a' },
+    { rank: '校官', count: 90000, label: '团师机关骨干', color: '#6e8cff' },
+    { rank: '尉官', count: 200000, label: '基层指挥军官', color: '#b07cc6' },
+    { rank: '士官 / 义务兵', count: 1500000, label: '士兵主体', color: '#8a8578' },
   ],
 };
 
@@ -448,10 +448,10 @@ export const FORCE_COMPOSITION = {
   asOf: '2024',
   unit: '万人 · 估算示意',
   segments: [
-    { name: '现役', value: 200, color: '#c41e3a' },
-    { name: '武警', value: 50, color: '#22d3ee' },
-    { name: '预备役', value: 50, color: '#e8a317' },
-    { name: '文职', value: 30, color: '#8b5cf6' },
+    { name: '现役', value: 200, color: '#e5483b' },
+    { name: '武警', value: 50, color: '#6e8cff' },
+    { name: '预备役', value: 50, color: '#d4a25a' },
+    { name: '文职', value: 30, color: '#b07cc6' },
   ],
   note: '武警归中央军委建制但不计入现役总员额；民兵随任务动态编组，不计入此图。',
 };
@@ -479,33 +479,33 @@ export const INTL_DEFENSE_COMPARE = {
   asOf: '2024',
   unit: 'B$ · SIPRI 现价美元',
   data: [
-    { name: '美国', value: 916, color: '#3b82f6' },
-    { name: '中国', value: 296, color: '#c41e3a' },
-    { name: '俄罗斯', value: 109, color: '#e8a317' },
-    { name: '印度', value: 86, color: '#f59e0b' },
-    { name: '沙特', value: 76, color: '#10b981' },
-    { name: '英国', value: 75, color: '#22d3ee' },
-    { name: '德国', value: 67, color: '#8b5cf6' },
-    { name: '日本', value: 50, color: '#64748b' },
+    { name: '美国', value: 916, color: '#6e8cff' },
+    { name: '中国', value: 296, color: '#e5483b' },
+    { name: '俄罗斯', value: 109, color: '#d4a25a' },
+    { name: '印度', value: 86, color: '#d4a25a' },
+    { name: '沙特', value: 76, color: '#6fc2ae' },
+    { name: '英国', value: 75, color: '#6e8cff' },
+    { name: '德国', value: 67, color: '#b07cc6' },
+    { name: '日本', value: 50, color: '#8a8578' },
   ],
   note: '中国为 SIPRI 估算值，高于官方公布；用于量级对比，非精确排名。',
 };
 
 /** 军种—兵种 旭日图（占比示意 %） */
 export const SERVICE_SUNBURST = [
-  { name: '陆军', itemStyle: { color: '#c41e3a' }, children: [
+  { name: '陆军', itemStyle: { color: '#e5483b' }, children: [
     { name: '合成部队', value: 30 }, { name: '陆军航空兵', value: 4 }, { name: '特种作战', value: 3 }, { name: '防空兵', value: 5 },
   ] },
-  { name: '海军', itemStyle: { color: '#22d3ee' }, children: [
+  { name: '海军', itemStyle: { color: '#6e8cff' }, children: [
     { name: '水面舰艇', value: 5 }, { name: '潜艇', value: 2 }, { name: '海军航空兵', value: 3 }, { name: '陆战队', value: 2 },
   ] },
-  { name: '空军', itemStyle: { color: '#8b5cf6' }, children: [
+  { name: '空军', itemStyle: { color: '#b07cc6' }, children: [
     { name: '航空兵', value: 9 }, { name: '地空导弹', value: 3 }, { name: '空降兵', value: 3 },
   ] },
-  { name: '火箭军', itemStyle: { color: '#e8a317' }, children: [
+  { name: '火箭军', itemStyle: { color: '#d4a25a' }, children: [
     { name: '核反击', value: 3 }, { name: '常规导弹', value: 5 },
   ] },
-  { name: '信息支援 / 联勤 / 其他', itemStyle: { color: '#64748b' }, children: [
+  { name: '信息支援 / 联勤 / 其他', itemStyle: { color: '#8a8578' }, children: [
     { name: '信息支援', value: 5 }, { name: '联勤保障', value: 10 }, { name: '军委直属', value: 8 },
   ] },
 ];
@@ -541,30 +541,30 @@ export const EQUIPMENT_TREE = {
 export const EQUIPMENT_COMPARE = {
   asOf: 'IISS Military Balance 2025 示意',
   data: [
-    { name: '主战坦克', value: 4200, color: '#c41e3a' },
+    { name: '主战坦克', value: 4200, color: '#e5483b' },
     { name: '步战/装甲车', value: 7000, color: '#e8602e' },
-    { name: '作战飞机', value: 1300, color: '#8b5cf6' },
-    { name: '主要水面舰艇', value: 370, color: '#22d3ee' },
-    { name: '潜艇', value: 60, color: '#06b6d4' },
-    { name: '战略运输机', value: 50, color: '#10b981' },
-    { name: '弹道导弹发射架', value: 500, color: '#e8a317' },
+    { name: '作战飞机', value: 1300, color: '#b07cc6' },
+    { name: '主要水面舰艇', value: 370, color: '#6e8cff' },
+    { name: '潜艇', value: 60, color: '#5b7cf0' },
+    { name: '战略运输机', value: 50, color: '#6fc2ae' },
+    { name: '弹道导弹发射架', value: 500, color: '#d4a25a' },
   ],
   note: '不同类别量级差异大，采用对数刻度；数值为公开估算区间中值。',
 };
 
 /** 装备服役/亮相年代时间线 */
 export const SERVICE_TIMELINE = [
-  { year: 2012, name: '辽宁舰服役', domain: '海军', color: '#22d3ee' },
-  { year: 2015, name: 'DF-26 阅兵', domain: '火箭军', color: '#e8a317' },
-  { year: 2017, name: '歼-20 服役', domain: '空军', color: '#8b5cf6' },
-  { year: 2017, name: '山东舰下水', domain: '海军', color: '#22d3ee' },
-  { year: 2017, name: '运-20 列装', domain: '空军', color: '#8b5cf6' },
-  { year: 2019, name: 'DF-17 高超亮相', domain: '火箭军', color: '#e8a317' },
-  { year: 2019, name: '075首舰下水', domain: '海军', color: '#22d3ee' },
-  { year: 2021, name: 'DF-41 公开', domain: '火箭军', color: '#e8a317' },
-  { year: 2022, name: '福建舰下水', domain: '海军', color: '#22d3ee' },
-  { year: 2024, name: '歼-35 测试', domain: '空军', color: '#8b5cf6' },
-  { year: 2024, name: '六代机概念曝光', domain: '空军', color: '#8b5cf6' },
+  { year: 2012, name: '辽宁舰服役', domain: '海军', color: '#6e8cff' },
+  { year: 2015, name: 'DF-26 阅兵', domain: '火箭军', color: '#d4a25a' },
+  { year: 2017, name: '歼-20 服役', domain: '空军', color: '#b07cc6' },
+  { year: 2017, name: '山东舰下水', domain: '海军', color: '#6e8cff' },
+  { year: 2017, name: '运-20 列装', domain: '空军', color: '#b07cc6' },
+  { year: 2019, name: 'DF-17 高超亮相', domain: '火箭军', color: '#d4a25a' },
+  { year: 2019, name: '075首舰下水', domain: '海军', color: '#6e8cff' },
+  { year: 2021, name: 'DF-41 公开', domain: '火箭军', color: '#d4a25a' },
+  { year: 2022, name: '福建舰下水', domain: '海军', color: '#6e8cff' },
+  { year: 2024, name: '歼-35 测试', domain: '空军', color: '#b07cc6' },
+  { year: 2024, name: '六代机概念曝光', domain: '空军', color: '#b07cc6' },
 ];
 
 /** 海空军现代化率雷达（双系列示意 %） */
@@ -609,17 +609,17 @@ export const RD_INVESTMENT_TREND = {
 /** 军民融合关系 · Sankey（民口 → 领域 → 军用，权重示意） */
 export const MCF_SANKEY = {
   nodes: [
-    { name: '商业航天', itemStyle: { color: '#22d3ee' } },
-    { name: '民营科技', itemStyle: { color: '#8b5cf6' } },
-    { name: '高校院所', itemStyle: { color: '#e8a317' } },
-    { name: '国有军工', itemStyle: { color: '#c41e3a' } },
-    { name: '人工智能', itemStyle: { color: '#10b981' } },
-    { name: '低轨星座', itemStyle: { color: '#10b981' } },
-    { name: '先进材料', itemStyle: { color: '#10b981' } },
-    { name: '芯片/电子', itemStyle: { color: '#10b981' } },
-    { name: '太空作战', itemStyle: { color: '#fb923c' } },
-    { name: '智能装备', itemStyle: { color: '#fb923c' } },
-    { name: '战略投送', itemStyle: { color: '#fb923c' } },
+    { name: '商业航天', itemStyle: { color: '#6e8cff' } },
+    { name: '民营科技', itemStyle: { color: '#b07cc6' } },
+    { name: '高校院所', itemStyle: { color: '#d4a25a' } },
+    { name: '国有军工', itemStyle: { color: '#e5483b' } },
+    { name: '人工智能', itemStyle: { color: '#6fc2ae' } },
+    { name: '低轨星座', itemStyle: { color: '#6fc2ae' } },
+    { name: '先进材料', itemStyle: { color: '#6fc2ae' } },
+    { name: '芯片/电子', itemStyle: { color: '#6fc2ae' } },
+    { name: '太空作战', itemStyle: { color: '#c07a4a' } },
+    { name: '智能装备', itemStyle: { color: '#c07a4a' } },
+    { name: '战略投送', itemStyle: { color: '#c07a4a' } },
   ],
   links: [
     { source: '商业航天', target: '低轨星座', value: 8 },
@@ -646,10 +646,10 @@ export const THEATER_FORCE = {
   asOf: AS_OF_BASELINE,
   theaters: ['东部战区', '南部战区', '西部战区', '北部战区', '中部战区'],
   series: [
-    { name: '陆军', color: '#c41e3a', data: [55, 45, 75, 60, 65] },
-    { name: '海军', color: '#22d3ee', data: [70, 80, 5, 40, 5] },
-    { name: '空军', color: '#8b5cf6', data: [75, 60, 55, 55, 70] },
-    { name: '火箭军/支援', color: '#e8a317', data: [60, 50, 45, 40, 55] },
+    { name: '陆军', color: '#e5483b', data: [55, 45, 75, 60, 65] },
+    { name: '海军', color: '#6e8cff', data: [70, 80, 5, 40, 5] },
+    { name: '空军', color: '#b07cc6', data: [75, 60, 55, 55, 70] },
+    { name: '火箭军/支援', color: '#d4a25a', data: [60, 50, 45, 40, 55] },
   ],
   note: '战区力量侧重为方向性强度示意（非编制人数），反映主战方向资源倾斜。',
 };
@@ -670,15 +670,15 @@ export const ISLAND_CHAINS = {
 export const STRAITS_POSTURE = {
   asOf: AS_OF_BASELINE,
   anchors: [
-    { label: 'A2/AD 覆盖', value: '~3,000 km', note: 'IISS / DoD 公开评估区间示意', accent: '#22d3ee' },
-    { label: '岛链突破', value: '第一岛链', note: '地缘物理目标向量 · 深水通道', accent: '#c41e3a' },
-    { label: '常态巡航', value: '2016–', note: '绕岛 / 过中线巡航常态化', accent: '#e8a317' },
-    { label: '前沿基地', value: '8+', note: '东部 / 东南沿海公开标注设施', accent: '#10b981' },
+    { label: 'A2/AD 覆盖', value: '~3,000 km', note: 'IISS / DoD 公开评估区间示意', accent: '#6e8cff' },
+    { label: '岛链突破', value: '第一岛链', note: '地缘物理目标向量 · 深水通道', accent: '#e5483b' },
+    { label: '常态巡航', value: '2016–', note: '绕岛 / 过中线巡航常态化', accent: '#d4a25a' },
+    { label: '前沿基地', value: '8+', note: '东部 / 东南沿海公开标注设施', accent: '#6fc2ae' },
   ],
   phases: [
-    { period: '2008–2016', title: '防独 · 红线威慑', accent: '#64748b', desc: '《反分裂国家法》+ 导弹覆盖形成底线，重心在阻止法理台独。' },
-    { period: '2016–2022', title: '促统 · 常态化巡航', accent: '#e8a317', desc: '绕岛巡航、越过海峡中线成为新常态，压缩离岸活动空间。' },
-    { period: '2022–至今', title: '收网 · 融合发展', accent: '#c41e3a', desc: '福建两岸融合发展示范区，军事威慑与制度性吸纳并行。' },
+    { period: '2008–2016', title: '防独 · 红线威慑', accent: '#8a8578', desc: '《反分裂国家法》+ 导弹覆盖形成底线，重心在阻止法理台独。' },
+    { period: '2016–2022', title: '促统 · 常态化巡航', accent: '#d4a25a', desc: '绕岛巡航、越过海峡中线成为新常态，压缩离岸活动空间。' },
+    { period: '2022–至今', title: '收网 · 融合发展', accent: '#e5483b', desc: '福建两岸融合发展示范区，军事威慑与制度性吸纳并行。' },
   ],
   frontlineRegions: ['福建', '浙江', '海南'],
   note: '数值为公开资料整理示意，完整台海博弈模型见台海模块；不含未公开部署细节。',

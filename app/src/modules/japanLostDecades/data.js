@@ -16,7 +16,7 @@ export const ALIGN_MODES = [
     offset: 31,
     jpAnchor: 1990,
     cnAnchor: 2021,
-    accent: '#c41e3a',
+    accent: '#e5483b',
     note: '日本股价 1989 年末见顶、1990 年起崩跌、地价 1991 年起下行；中国 2021 年「三道红线」落地后房企债务危机爆发、销售与投资进入下行。以资产价格/信用周期拐点为原点。',
   },
   {
@@ -26,7 +26,7 @@ export const ALIGN_MODES = [
     offset: 27,
     jpAnchor: 1994,
     cnAnchor: 2021,
-    accent: '#8b5cf6',
+    accent: '#b07cc6',
     note: '以 65 岁及以上人口占比首次达到 14%（联合国「老龄社会」阈值）为原点：日本 1994 年（总务省口径）、中国 2021 年（国家统计局口径 14.2%）。注意图中老龄化序列采用世行（联合国人口司）口径，中国越过 14% 的年份在该口径下为 2023 年。',
   },
   {
@@ -36,7 +36,7 @@ export const ALIGN_MODES = [
     offset: 0,
     jpAnchor: null,
     cnAnchor: null,
-    accent: '#22d3ee',
+    accent: '#6e8cff',
     note: '按同一日历年并列，用于观察两国在同一外部环境（全球利率、贸易格局）下的绝对水平差异。',
   },
 ];
@@ -74,50 +74,50 @@ export const METRICS = {
 // —— 阶段对位时间轴 ——————————————————————————————————————————————————————
 export const STAGES_JP = [
   {
-    key: 'jp1', from: 1985, to: 1989, title: '广场协议 → 泡沫膨胀', accent: '#e8a317',
+    key: 'jp1', from: 1985, to: 1989, title: '广场协议 → 泡沫膨胀', accent: '#d4a25a',
     desc: '1985-09-22 广场协议后日元急升；为对冲「升值萧条」，日本银行把官方贴现率降至 2.5%（1987-02 至 1989-05）。宽松资金涌入股市与土地，日经 225 于 1989-12-29 收于 38,915.87 点历史高位。',
   },
   {
-    key: 'jp2', from: 1990, to: 1996, title: '泡沫破裂 · 失去的十年前段', accent: '#c41e3a',
+    key: 'jp2', from: 1990, to: 1996, title: '泡沫破裂 · 失去的十年前段', accent: '#e5483b',
     desc: '1990-03 大藏省对不动产贷款实施「总量规制」，日本银行连续加息；日经 1990-10 跌破 2 万点，地价 1991 年起全面下行。坏账被展期掩盖，银行不良债权从 1992 年约 8 万亿日元膨胀至 1995 年约 40 万亿日元。',
   },
   {
-    key: 'jp3', from: 1997, to: 2002, title: '金融危机与坏账清算', accent: '#fb923c',
+    key: 'jp3', from: 1997, to: 2002, title: '金融危机与坏账清算', accent: '#c07a4a',
     desc: '1997-04 消费税由 3% 升至 5%，叠加亚洲金融危机；同年 11 月北海道拓殖银行、山一证券倒闭。1998 年长银国有化并首次公共注资；1999 年零利率、2001 年量化宽松。2002 年不良债权达 52 万亿日元峰值（不良率 8.6%），同年推出「金融再生计划」（竹中计划）集中处置。',
   },
   {
-    key: 'jp4', from: 2003, to: 2012, title: '缓慢复苏 · 通缩固化', accent: '#64748b',
+    key: 'jp4', from: 2003, to: 2012, title: '缓慢复苏 · 通缩固化', accent: '#8a8578',
     desc: '坏账出清后出口带动温和复苏，但 GDP 平减指数 1998–2013 年连续 16 年为负。总人口 2008 年见顶；2008 年全球金融危机、2011 年东日本大地震相继冲击，名义 GDP 长期停滞。',
   },
   {
-    key: 'jp5', from: 2013, to: 2023, title: '安倍经济学 · 超宽松', accent: '#22d3ee',
+    key: 'jp5', from: 2013, to: 2023, title: '安倍经济学 · 超宽松', accent: '#6e8cff',
     desc: '2013-04 日本银行推出量化质化宽松（QQE），2016 年引入 −0.1% 负利率与收益率曲线控制。就业与企业利润改善，但 2% 通胀目标长期未稳定实现，政府债务/GDP 在 2020 年升至约 229%（IMF）。',
   },
   {
-    key: 'jp6', from: 2024, to: 2026, title: '通缩退出 · 利率正常化', accent: '#10b981',
+    key: 'jp6', from: 2024, to: 2026, title: '通缩退出 · 利率正常化', accent: '#6fc2ae',
     desc: '2024-02-22 日经收于 39,098.68 点，34 年后改写泡沫纪录；2024-03-19 结束负利率。2026-09-18 日本银行以 7:2 加息至 1.25%，为 1995 年以来最高。2026-09-28 日经收于 65,877.62 点。',
   },
 ];
 
 export const STAGES_CN = [
   {
-    key: 'cn1', from: 2005, to: 2008, title: '汇改 · 全球化红利顶峰', accent: '#e8a317',
+    key: 'cn1', from: 2005, to: 2008, title: '汇改 · 全球化红利顶峰', accent: '#d4a25a',
     desc: '2005-07-21 人民币汇率形成机制改革，渐进升值；出口/GDP 在 2006 年约 35.5%（世行）达到高位，外需与城镇化双轮驱动。',
   },
   {
-    key: 'cn2', from: 2009, to: 2015, title: '四万亿 · 杠杆扩张', accent: '#fb923c',
+    key: 'cn2', from: 2009, to: 2015, title: '四万亿 · 杠杆扩张', accent: '#c07a4a',
     desc: '2008-11 推出四万亿刺激，城投与地产成为信用扩张主通道；非金融企业债务/GDP 从 2010 年约 109% 升至 2016 年约 140%（IMF GDD）。2015 年股市异动与「8·11」汇改。',
   },
   {
-    key: 'cn3', from: 2016, to: 2020, title: '去杠杆 · 贸易摩擦', accent: '#8b5cf6',
+    key: 'cn3', from: 2016, to: 2020, title: '去杠杆 · 贸易摩擦', accent: '#b07cc6',
     desc: '供给侧结构性改革与金融去杠杆；2018 年起中美贸易摩擦，2018 年中兴、2019 年华为被列入实体清单。2020-08 房企融资「三道红线」出台。',
   },
   {
-    key: 'cn4', from: 2021, to: 2023, title: '地产转折 · 人口拐点', accent: '#c41e3a',
+    key: 'cn4', from: 2021, to: 2023, title: '地产转折 · 人口拐点', accent: '#e5483b',
     desc: '2021 年起大型房企相继违约，销售与投资转入下行；同年 65 岁以上人口占比达 14.2%，进入深度老龄化；2022 年总人口 61 年来首次减少。2023 年 GDP 平减指数转负。',
   },
   {
-    key: 'cn5', from: 2024, to: 2026, title: '化债 · 反内卷 · 新质生产力', accent: '#10b981',
+    key: 'cn5', from: 2024, to: 2026, title: '化债 · 反内卷 · 新质生产力', accent: '#6fc2ae',
     desc: '2024-09 一揽子增量政策；2024-11 全国人大常委会批准 6 万亿元债务限额置换，连同此后 5 年每年 8000 亿元专项债用于化债，合计 10 万亿元。2025-01-01 起渐进延迟法定退休年龄。2026 年 1–8 月房地产开发投资 −19.9%，PPI 自 3 月起转正（输入性为主）。',
   },
 ];
@@ -170,7 +170,7 @@ export const DIMENSIONS = [
   {
     key: 'macro',
     title: '宏观与阶段',
-    accent: '#c41e3a',
+    accent: '#e5483b',
     question: '中国是否正在复制日本「名义增长失速—通缩固化」的宏观路径？',
     metrics: ['gdpGrowth', 'deflator', 'cpi', 'gdpPcUsd', 'urban', 'govDebt'],
     facts: [
@@ -190,7 +190,7 @@ export const DIMENSIONS = [
   {
     key: 'industry',
     title: '产业发展',
-    accent: '#fb923c',
+    accent: '#c07a4a',
     question: '中国制造业会不会像日本那样「空心化」与「僵尸化」？',
     metrics: ['manuf', 'nfcDebt', 'hiTechExp'],
     facts: [
@@ -208,7 +208,7 @@ export const DIMENSIONS = [
   {
     key: 'society',
     title: '社会发展',
-    accent: '#f0abfc',
+    accent: '#d9a7d6',
     question: '「就职冰河期」「低欲望社会」会在中国重演吗？',
     metrics: ['youthUnemp', 'unemp', 'gini'],
     facts: [
@@ -226,7 +226,7 @@ export const DIMENSIONS = [
   {
     key: 'trade',
     title: '对外贸易',
-    accent: '#22d3ee',
+    accent: '#6e8cff',
     question: '中美贸易摩擦会不会成为中国的「广场协议时刻」？',
     metrics: ['exportsGdp', 'fdiOut'],
     facts: [
@@ -245,7 +245,7 @@ export const DIMENSIONS = [
   {
     key: 'finance',
     title: '金融',
-    accent: '#d4af37',
+    accent: '#d9b26a',
     question: '中国是否正在进入辜朝明所说的「资产负债表衰退」？',
     metrics: ['hhDebt', 'nfcDebt', 'govDebt'],
     facts: [
@@ -264,7 +264,7 @@ export const DIMENSIONS = [
   {
     key: 'tech',
     title: '科技',
-    accent: '#10b981',
+    accent: '#6fc2ae',
     question: '芯片管制会不会让中国重走日本半导体的衰落之路？',
     metrics: ['rnd', 'patentRes', 'hiTechExp'],
     facts: [
@@ -281,7 +281,7 @@ export const DIMENSIONS = [
   {
     key: 'education',
     title: '教育',
-    accent: '#8b5cf6',
+    accent: '#b07cc6',
     question: '高等教育扩张与学龄人口下降并行，会带来怎样的学历通胀？',
     metrics: ['eduRates', 'tertiary'],
     facts: [
@@ -298,7 +298,7 @@ export const DIMENSIONS = [
   {
     key: 'livelihood',
     title: '民生',
-    accent: '#ec4899',
+    accent: '#c9719b',
     question: '中国的居民消费与社会保障，比日本对位期更强还是更弱？',
     metrics: ['hhCons', 'healthExp', 'gini'],
     facts: [
@@ -317,7 +317,7 @@ export const DIMENSIONS = [
   {
     key: 'population',
     title: '人口',
-    accent: '#a855f7',
+    accent: '#b07cc6',
     question: '「未富先老」让中国的人口压力比日本更大还是更小？',
     metrics: ['pop65', 'tfr', 'oldDep', 'wap'],
     facts: [
@@ -400,21 +400,21 @@ export const SCENARIOS = [
   {
     key: 'japanified',
     title: '情景 A · 日本化',
-    accent: '#c41e3a',
+    accent: '#e5483b',
     text: '平减指数持续为负、居民与企业负债转为绝对收缩，坏账在展期中累积，地方财政被动紧缩；青年失业高企演变为代际性低欲望，名义增长长期低于名义利率。',
     triggers: '居民贷款余额同比转负并持续；GDP 平减指数连续第四、第五年为负；核心 CPI 跌破 0.5%；银行不良确认持续滞后。',
   },
   {
     key: 'chronic',
     title: '情景 B · 慢性日本化（中间态）',
-    accent: '#e8a317',
+    accent: '#d4a25a',
     text: '实际增速维持在 4% 附近，但名义增速低于实际增速；PPI 随国际大宗起落，核心通胀在 1% 上下徘徊；地产投资降幅收窄但不回升，青年失业率居高不下。',
     triggers: '输入性通胀消退后 PPI 回落；社零增速低于名义 GDP；70 城房价同比跌幅收窄但未转正。',
   },
   {
     key: 'escaped',
     title: '情景 C · 非日本化',
-    accent: '#10b981',
+    accent: '#6fc2ae',
     text: '社保托底与居民部门补表推动消费率上升，平减指数转正且由需求驱动；坏账在三至五年内完成识别与处置，产业在出清后恢复利润，青年就业入口改善。',
     triggers: 'GDP 平减指数转正且核心 CPI 升至 1.5% 以上；居民消费率持续上升；居民信贷与房地产销售企稳；16–24 岁失业率同比回落。',
   },

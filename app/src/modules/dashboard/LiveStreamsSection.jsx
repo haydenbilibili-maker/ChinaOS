@@ -13,7 +13,7 @@ import {
 } from './liveStreams.js';
 import { embedBadgeLabel, embedBadgeTone } from '../../lib/live/streamUtils.js';
 
-const STEEL = '#22d3ee';
+const STEEL = '#6e8cff';
 
 function Icon({ name, size = 16 }) {
   const Cmp = Lucide[name] || Lucide.Square;
@@ -21,16 +21,16 @@ function Icon({ name, size = 16 }) {
 }
 
 const THUMB_GRADIENTS = {
-  panda: 'linear-gradient(135deg, #064e3b 0%, #10b981 100%)',
-  scenic: 'linear-gradient(135deg, #0c4a6e 0%, #22d3ee 100%)',
-  traffic: 'linear-gradient(135deg, #78350f 0%, #e8a317 100%)',
-  other: 'linear-gradient(135deg, #4c1d95 0%, #8b5cf6 100%)',
+  panda: 'linear-gradient(135deg, #064e3b 0%, #6fc2ae 100%)',
+  scenic: 'linear-gradient(135deg, #0c4a6e 0%, #6e8cff 100%)',
+  traffic: 'linear-gradient(135deg, #78350f 0%, #d4a25a 100%)',
+  other: 'linear-gradient(135deg, #4c1d95 0%, #b07cc6 100%)',
 };
 
 const BADGE_STYLES = {
   playable: { bg: 'rgba(52,211,153,0.14)', color: '#34d399', border: 'rgba(52,211,153,0.35)' },
   external: { bg: 'var(--bg-base)', color: 'var(--text-tertiary)', border: 'var(--border-subtle)' },
-  unknown: { bg: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)', border: 'rgba(34,211,238,0.35)' },
+  unknown: { bg: 'rgba(110, 140, 255,0.12)', color: 'var(--cyber-cyan)', border: 'rgba(110, 140, 255,0.35)' },
 };
 
 function StreamCard({ stream, onOpen }) {
@@ -60,7 +60,7 @@ function StreamCard({ stream, onOpen }) {
           className="absolute top-2 left-2 text-[10px] mono px-1.5 py-0.5 rounded flex items-center gap-1"
           style={{ background: 'rgba(0,0,0,0.55)', color: '#fff' }}
         >
-          <span className="os-live-dot w-1.5 h-1.5 rounded-full shrink-0" style={{ background: '#ef4444' }} aria-hidden="true" />
+          <span className="os-live-dot w-1.5 h-1.5 rounded-full shrink-0" style={{ background: '#e5483b' }} aria-hidden="true" />
           LIVE
         </span>
         <span
@@ -300,9 +300,9 @@ export default function LiveStreamsSection({ compact = false, previewCount = 8, 
             onClick={() => setActiveCat(id)}
             className="text-[11px] mono px-2.5 py-1 rounded-full transition-colors"
             style={{
-              background: activeCat === id ? 'rgba(34,211,238,0.16)' : 'var(--bg-elevated)',
+              background: activeCat === id ? 'rgba(110, 140, 255,0.16)' : 'var(--bg-elevated)',
               color: activeCat === id ? STEEL : 'var(--text-secondary)',
-              border: `1px solid ${activeCat === id ? 'rgba(34,211,238,0.35)' : 'var(--border-subtle)'}`,
+              border: `1px solid ${activeCat === id ? 'rgba(110, 140, 255,0.35)' : 'var(--border-subtle)'}`,
               cursor: 'pointer',
             }}
           >

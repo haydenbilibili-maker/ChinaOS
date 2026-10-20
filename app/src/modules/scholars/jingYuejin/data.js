@@ -10,12 +10,12 @@
 export const AS_OF = '2026-09-28';
 
 export const THEMES = {
-  partystate: { label: '党政体制与党政关系', color: '#c41e3a' },
-  bringparty: { label: '将政党带进来', color: '#8b5cf6' },
-  grassroots: { label: '基层民主与乡村治理', color: '#10b981' },
-  represent: { label: '代表理论·群众路线·选举技术', color: '#e8a317' },
-  democracy: { label: '民主理论与民主化序列', color: '#22d3ee' },
-  discipline: { label: '中国政治学学科建设与概念方法', color: '#94a3b8' },
+  partystate: { label: '党政体制与党政关系', color: '#e5483b' },
+  bringparty: { label: '将政党带进来', color: '#b07cc6' },
+  grassroots: { label: '基层民主与乡村治理', color: '#6fc2ae' },
+  represent: { label: '代表理论·群众路线·选举技术', color: '#d4a25a' },
+  democracy: { label: '民主理论与民主化序列', color: '#6e8cff' },
+  discipline: { label: '中国政治学学科建设与概念方法', color: '#a29c91' },
 };
 export const THEME_KEYS = Object.keys(THEMES);
 
@@ -46,12 +46,12 @@ export const BOARD = {
 };
 
 export const CAREER_GROUPS = {
-  study: { label: '求学', color: '#8b5cf6' },
-  ruc: { label: '杭大/人大教职', color: '#22d3ee' },
-  thu: { label: '清华教职', color: '#c41e3a' },
-  admin: { label: '系务/课程', color: '#10b981' },
-  visit: { label: '访学/访问', color: '#e8a317' },
-  service: { label: '兼职与咨询', color: '#94a3b8' },
+  study: { label: '求学', color: '#b07cc6' },
+  ruc: { label: '杭大/人大教职', color: '#6e8cff' },
+  thu: { label: '清华教职', color: '#e5483b' },
+  admin: { label: '系务/课程', color: '#6fc2ae' },
+  visit: { label: '访学/访问', color: '#d4a25a' },
+  service: { label: '兼职与咨询', color: '#a29c91' },
 };
 
 /** 履历甘特：起止为小数年；月份未载者取近似；note 记录口径出入 */

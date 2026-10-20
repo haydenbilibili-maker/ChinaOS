@@ -6,15 +6,15 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 
 // ── 工具选择器：六类绿色金融工具 ───────────────────────────────────────────
 const TOOLS = [
-  { key: 'loan', label: '绿色信贷', accent: '#10b981', balance: 35.5,
+  { key: 'loan', label: '绿色信贷', accent: '#6fc2ae', balance: 35.5,
     desc: '本外币绿色贷款余额 ~34 万亿，全球第一；投向清洁交通/能源占比 40%+，是体量最大的工具。',
     mechanism: '人民银行碳减排支持工具提供 1.75% 低成本再贷款，按碳减排量精准滴灌。',
     pain: '统计口径偏宽、部分项目「漂绿」；与传统信贷利差有限，激励仍依赖政策补贴。' },
-  { key: 'bond', label: '绿色债券', accent: '#e8a317', balance: 4.2,
+  { key: 'bond', label: '绿色债券', accent: '#d4a25a', balance: 4.2,
     desc: '绿债存量 ~4 万亿，全球发行体量第一；募集资金用途披露趋严，漂绿风险受监管关注。',
     mechanism: '绿色债券原则 100% 募集资金须投向绿色项目，第三方认证 + 存续期信息披露。',
     pain: '与普通债券「绿色溢价(greenium)」偏薄，发行人内生动力不足；标准与国际尚待统一。' },
-  { key: 'carbon', label: '碳市场', accent: '#c41e3a', balance: 92,
+  { key: 'carbon', label: '碳市场', accent: '#e5483b', balance: 92,
     desc: '全国碳市场 CEA 均价 90+ 元/吨，覆盖 50 亿吨+ CO₂；电力先行，钢铁水泥扩围抬高合规成本。',
     mechanism: '总量控制 + 配额交易(ETS)；基准线法免费分配为主，逐步引入有偿拍卖。',
     pain: '碳价偏低、流动性弱（多为履约期突击交易）；配额过松削弱减排信号。' },
@@ -22,7 +22,7 @@ const TOOLS = [
     desc: '面向钢铁/建材/航运等「棕色」高碳行业的可信转型资金；存量小但缺口最大。',
     mechanism: '挂钩可持续发展目标(SLB)与转型 KPI，利率随减排进度浮动；目录正在试点。',
     pain: '「既要减碳又不能搞运动式」——转型路径界定难，谨防「假转型」套利与产能误伤。' },
-  { key: 'esg', label: 'ESG 投资', accent: '#22d3ee', balance: 45,
+  { key: 'esg', label: 'ESG 投资', accent: '#6e8cff', balance: 45,
     desc: '上市公司可持续发展报告指引推动环境指标可比；A 级领先企业约 15%（示意）。',
     mechanism: '沪深北可持续发展报告指引半强制披露 + ESG 评级/指数 + 责任投资(ESG 基金)。',
     pain: '评级机构口径分化、数据可比性差；「ESG 漂绿」与短期业绩压力下的回撤。' },
@@ -41,12 +41,12 @@ const growthTrend = {
   yAxis: valueY({ name: '万亿' }),
   series: [
     { name: '绿色贷款余额', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6,
-      data: [10.2, 12.0, 15.9, 22.0, 30.1, 35.5], lineStyle: { color: '#10b981', width: 3 }, itemStyle: { color: '#10b981' },
-      areaStyle: { color: 'rgba(16,185,129,0.15)' } },
+      data: [10.2, 12.0, 15.9, 22.0, 30.1, 35.5], lineStyle: { color: '#6fc2ae', width: 3 }, itemStyle: { color: '#6fc2ae' },
+      areaStyle: { color: 'rgba(111, 194, 174,0.15)' } },
     { name: '绿色债券存量', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5,
-      data: [1.1, 1.4, 1.8, 2.8, 3.5, 4.2], lineStyle: { color: '#e8a317', width: 2, type: 'dashed' }, itemStyle: { color: '#e8a317' } },
+      data: [1.1, 1.4, 1.8, 2.8, 3.5, 4.2], lineStyle: { color: '#d4a25a', width: 2, type: 'dashed' }, itemStyle: { color: '#d4a25a' } },
     { name: '碳市场累计成交', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5,
-      data: [0, 0, 0.012, 0.018, 0.025, 0.043], lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' } },
+      data: [0, 0, 0.012, 0.018, 0.025, 0.043], lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' } },
   ],
 };
 
@@ -57,14 +57,14 @@ const carbonPriceTrend = {
   tooltip: { trigger: 'axis' },
   xAxis: categoryX(['21H2', '22H1', '22H2', '23H1', '23H2', '24H1', '24H2']),
   yAxis: [
-    { type: 'value', name: '元/吨', position: 'left', splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
+    { type: 'value', name: '元/吨', position: 'left', splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } }, axisLabel: { color: LABEL.color, fontSize: 10 } },
     { type: 'value', name: '百万吨', position: 'right', splitLine: { show: false }, axisLabel: { color: LABEL.color, fontSize: 10 } },
   ],
   series: [
     { name: 'CEA 碳价 (元/吨)', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, yAxisIndex: 0,
-      data: [48, 58, 56, 60, 72, 88, 95], lineStyle: { color: '#c41e3a', width: 3 }, itemStyle: { color: '#c41e3a' },
-      areaStyle: { color: 'rgba(196,30,58,0.12)' }, markLine: { silent: true, symbol: 'none', lineStyle: { color: '#e8a317', type: 'dashed' }, data: [{ yAxis: 60, label: { formatter: '欧盟 ETS ~600+ 元/吨\n（量级差距）', color: '#e8a317', fontSize: 9 } }] } },
-    { name: '月度成交量 (百万吨)', type: 'bar', yAxisIndex: 1, barWidth: 14, itemStyle: { color: 'rgba(34,211,238,0.55)', borderRadius: 2 },
+      data: [48, 58, 56, 60, 72, 88, 95], lineStyle: { color: '#e5483b', width: 3 }, itemStyle: { color: '#e5483b' },
+      areaStyle: { color: 'rgba(229, 72, 59,0.12)' }, markLine: { silent: true, symbol: 'none', lineStyle: { color: '#d4a25a', type: 'dashed' }, data: [{ yAxis: 60, label: { formatter: '欧盟 ETS ~600+ 元/吨\n（量级差距）', color: '#d4a25a', fontSize: 9 } }] } },
+    { name: '月度成交量 (百万吨)', type: 'bar', yAxisIndex: 1, barWidth: 14, itemStyle: { color: 'rgba(110, 140, 255,0.55)', borderRadius: 2 },
       data: [12, 8, 45, 6, 38, 14, 52] },
   ],
 };
@@ -76,26 +76,26 @@ const systemRadar = {
   radar: {
     indicator: SYSTEM_DIMS.map((n) => ({ name: n, max: 100 })),
     axisName: { color: LABEL.color, fontSize: 10 },
-    splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-    axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+    splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
+    axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
     splitArea: { show: false },
   },
   series: [{
     type: 'radar',
     data: [
-      { value: [70, 62, 58, 45, 55, 50], name: '中国现状', lineStyle: { color: '#10b981', width: 2 }, itemStyle: { color: '#10b981' }, areaStyle: { color: 'rgba(16,185,129,0.18)' } },
-      { value: [85, 88, 82, 80, 75, 90], name: '国际领先基准', lineStyle: { color: '#e8a317', width: 2, type: 'dashed' }, itemStyle: { color: '#e8a317' }, areaStyle: { color: 'rgba(232,163,23,0.08)' } },
+      { value: [70, 62, 58, 45, 55, 50], name: '中国现状', lineStyle: { color: '#6fc2ae', width: 2 }, itemStyle: { color: '#6fc2ae' }, areaStyle: { color: 'rgba(111, 194, 174,0.18)' } },
+      { value: [85, 88, 82, 80, 75, 90], name: '国际领先基准', lineStyle: { color: '#d4a25a', width: 2, type: 'dashed' }, itemStyle: { color: '#d4a25a' }, areaStyle: { color: 'rgba(212, 162, 90,0.08)' } },
     ],
   }],
 };
 
 // ── 绿色资金投向 donut ──────────────────────────────────────────────────
 const flowDonut = donutOpt([
-  { value: 32, name: '清洁能源', itemStyle: { color: '#10b981' } },
-  { value: 24, name: '绿色交通', itemStyle: { color: '#22d3ee' } },
-  { value: 20, name: '节能环保', itemStyle: { color: '#e8a317' } },
+  { value: 32, name: '清洁能源', itemStyle: { color: '#6fc2ae' } },
+  { value: 24, name: '绿色交通', itemStyle: { color: '#6e8cff' } },
+  { value: 20, name: '节能环保', itemStyle: { color: '#d4a25a' } },
   { value: 14, name: '绿色建筑', itemStyle: { color: '#a78bfa' } },
-  { value: 10, name: '其他/生态修复', itemStyle: { color: 'rgba(148,163,184,0.3)' } },
+  { value: 10, name: '其他/生态修复', itemStyle: { color: 'rgba(162, 156, 145,0.3)' } },
 ]);
 
 // ── 转型金融：高碳行业资金需求 vs 供给缺口（堆叠 + 缺口标注） ──────────────
@@ -103,17 +103,17 @@ const transitionGap = stackedBarOpt({
   categories: ['钢铁', '建材/水泥', '石化/化工', '有色金属', '航运/航空', '造纸'],
   series: [
     { name: '已落地转型资金', data: [0.32, 0.24, 0.28, 0.15, 0.08, 0.06], itemStyle: { color: '#a78bfa' } },
-    { name: '未满足资金缺口', data: [1.18, 0.96, 0.82, 0.55, 0.62, 0.34], itemStyle: { color: 'rgba(196,30,58,0.55)' } },
+    { name: '未满足资金缺口', data: [1.18, 0.96, 0.82, 0.55, 0.62, 0.34], itemStyle: { color: 'rgba(229, 72, 59,0.55)' } },
   ],
 });
 
 // ── 绿色金融演进时间线 ──────────────────────────────────────────────────
 const STAGES = [
-  { period: '2012', title: '绿色信贷指引', accent: '#10b981', desc: '原银监会发布《绿色信贷指引》，首次系统要求银行将环境社会风险纳入授信全流程——绿色金融从概念走向监管框架。' },
-  { period: '2016', title: '绿色金融体系指导意见', accent: '#22d3ee', desc: '七部委《关于构建绿色金融体系的指导意见》，确立绿色信贷/债券/基金/保险/碳金融五大支柱，绿色金融上升为国家战略。' },
-  { period: '2021', title: '全国碳市场上线', accent: '#c41e3a', desc: '全国碳排放权交易市场启动，电力行业 2000+ 家重点排放单位先行；碳排放第一次被定价为企业财务报表上的刚性成本。' },
+  { period: '2012', title: '绿色信贷指引', accent: '#6fc2ae', desc: '原银监会发布《绿色信贷指引》，首次系统要求银行将环境社会风险纳入授信全流程——绿色金融从概念走向监管框架。' },
+  { period: '2016', title: '绿色金融体系指导意见', accent: '#6e8cff', desc: '七部委《关于构建绿色金融体系的指导意见》，确立绿色信贷/债券/基金/保险/碳金融五大支柱，绿色金融上升为国家战略。' },
+  { period: '2021', title: '全国碳市场上线', accent: '#e5483b', desc: '全国碳排放权交易市场启动，电力行业 2000+ 家重点排放单位先行；碳排放第一次被定价为企业财务报表上的刚性成本。' },
   { period: '2022', title: '转型金融框架试点', accent: '#a78bfa', desc: 'G20 转型金融框架获采纳，国内启动转型金融目录试点——从「纯绿」扩展到棕色行业可信转型，回应「运动式减碳」教训。' },
-  { period: '2024+', title: '碳定价深化 · 国际接轨', accent: '#e8a317', desc: '碳市场扩围至钢铁/水泥/电解铝，CCER 重启；对接欧盟 CBAM 与可持续披露(ISSB)，中欧分类法趋同推进——碳价向有效水平爬升。' },
+  { period: '2024+', title: '碳定价深化 · 国际接轨', accent: '#d4a25a', desc: '碳市场扩围至钢铁/水泥/电解铝，CCER 重启；对接欧盟 CBAM 与可持续披露(ISSB)，中欧分类法趋同推进——碳价向有效水平爬升。' },
 ];
 
 export default function Page() {
@@ -130,17 +130,17 @@ export default function Page() {
     series: [
       { name: '配额缺口压力 (%)', type: 'bar', barWidth: 10, itemStyle: { color: t.accent, borderRadius: 3 },
         data: tool === 'carbon' ? [5, 8, 10, 12, 15, 45] : [3, 5, 6, 8, 10, 30] },
-      { name: '履约完成度', type: 'bar', barWidth: 10, itemStyle: { color: '#22d3ee', borderRadius: 3 },
+      { name: '履约完成度', type: 'bar', barWidth: 10, itemStyle: { color: '#6e8cff', borderRadius: 3 },
         data: [55, 65, 70, 78, 92, 85] },
     ],
   }), [tool, t]);
 
   const esgDonut = donutOpt([
-    { value: 15, name: 'A 级 (领先)', itemStyle: { color: '#10b981' } },
-    { value: 30, name: 'B 级 (中等)', itemStyle: { color: '#22d3ee' } },
-    { value: 35, name: 'C 级 (滞后)', itemStyle: { color: '#e8a317' } },
-    { value: 10, name: 'D 级 (高风险)', itemStyle: { color: '#c41e3a' } },
-    { value: 10, name: '未覆盖', itemStyle: { color: 'rgba(148,163,184,0.25)' } },
+    { value: 15, name: 'A 级 (领先)', itemStyle: { color: '#6fc2ae' } },
+    { value: 30, name: 'B 级 (中等)', itemStyle: { color: '#6e8cff' } },
+    { value: 35, name: 'C 级 (滞后)', itemStyle: { color: '#d4a25a' } },
+    { value: 10, name: 'D 级 (高风险)', itemStyle: { color: '#e5483b' } },
+    { value: 10, name: '未覆盖', itemStyle: { color: 'rgba(162, 156, 145,0.25)' } },
   ]);
 
   return (
@@ -150,9 +150,9 @@ export default function Page() {
 
       <Grid cols={4} className="mb-6">
         <Stat value={`${t.balance}${tool === 'carbon' ? ' 元/吨' : ' 万亿'}`} label={`${t.label} · 切换`} accent={t.accent} />
-        <Stat value="35.5 万亿" label="绿色信贷余额 · 全球第一" accent="#10b981" />
-        <Stat value="90+ 元/吨" label="CEA 碳价（仍偏低）" accent="#c41e3a" />
-        <Stat value="50 亿吨+" label="碳市场年覆盖排放" accent="#e8a317" />
+        <Stat value="35.5 万亿" label="绿色信贷余额 · 全球第一" accent="#6fc2ae" />
+        <Stat value="90+ 元/吨" label="CEA 碳价（仍偏低）" accent="#e5483b" />
+        <Stat value="50 亿吨+" label="碳市场年覆盖排放" accent="#d4a25a" />
       </Grid>
 
       {/* 1 · 工具选择器 */}
@@ -161,12 +161,12 @@ export default function Page() {
         <div className="os-card p-4 mb-4" style={{ background: 'var(--bg-elevated)', borderLeft: `3px solid ${t.accent}` }}>
           <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>{t.desc}</p>
           <Grid cols={2}>
-            <div style={{ borderLeft: '2px solid rgba(16,185,129,0.5)', paddingLeft: 10 }}>
-              <div className="text-[11px] font-semibold mono mb-0.5" style={{ color: '#10b981' }}>运作机制</div>
+            <div style={{ borderLeft: '2px solid rgba(111, 194, 174,0.5)', paddingLeft: 10 }}>
+              <div className="text-[11px] font-semibold mono mb-0.5" style={{ color: '#6fc2ae' }}>运作机制</div>
               <p className="text-xs leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{t.mechanism}</p>
             </div>
-            <div style={{ borderLeft: '2px solid rgba(196,30,58,0.5)', paddingLeft: 10 }}>
-              <div className="text-[11px] font-semibold mono mb-0.5" style={{ color: '#c41e3a' }}>痛点 / 待完善</div>
+            <div style={{ borderLeft: '2px solid rgba(229, 72, 59,0.5)', paddingLeft: 10 }}>
+              <div className="text-[11px] font-semibold mono mb-0.5" style={{ color: '#e5483b' }}>痛点 / 待完善</div>
               <p className="text-xs leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{t.pain}</p>
             </div>
           </Grid>
@@ -214,9 +214,9 @@ export default function Page() {
         <Card title="A 股 ESG 评级分布"><EChart option={esgDonut} style={{ height: 250 }} /></Card>
         <Card title="全国碳市场 · MRV 三要素">
           <div className="space-y-2">
-            {[['配 · 碳排放配额', '年度基准线法分配 + 有偿拍卖；电力覆盖 99%+。', '#10b981'],
-              ['证 · CCER 自愿减排', '抵消比例上限约 5%，2024 年重启，避免低价冲抵。', '#e8a317'],
-              ['测 · MRV 监测核查', 'CEMS + 第三方核查；数据造假入刑——核查是碳价可信的地基。', '#22d3ee']].map(([tit, d, c]) => (
+            {[['配 · 碳排放配额', '年度基准线法分配 + 有偿拍卖；电力覆盖 99%+。', '#6fc2ae'],
+              ['证 · CCER 自愿减排', '抵消比例上限约 5%，2024 年重启，避免低价冲抵。', '#d4a25a'],
+              ['测 · MRV 监测核查', 'CEMS + 第三方核查；数据造假入刑——核查是碳价可信的地基。', '#6e8cff']].map(([tit, d, c]) => (
               <div key={tit} style={{ borderLeft: `2px solid ${c}`, paddingLeft: 10 }}>
                 <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{tit}</div>
                 <p className="text-[11px] mt-0.5" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
@@ -233,8 +233,8 @@ export default function Page() {
 
       {/* 6 · 三框架 */}
       <FrameworkTrio cards={[
-        { title: '双碳金融引擎', subtitle: '百万亿级撬动', accent: '#10b981', border: '#10b981', body: '碳中和投资需求达百万亿量级，财政难以独力承担。绿色金融的本质是用价格与利率信号，把社会资本「导流」到低碳资产上。', pillars: [['百万亿', '中长期资金需求。'], ['1.75%', '碳减排再贷款利率。'], ['全球#1', '绿色信贷/绿债体量。']] },
-        { title: '碳定价机制', subtitle: 'CEA · CCER', accent: '#c41e3a', border: '#c41e3a', body: '当「排碳有价、减碳有偿」成为财务报表的刚性约束，工业转型从行政命令驱动转向内生经济利益驱动——但前提是碳价升到有效水平。', pillars: [['90+ 元/吨', '当前 CEA 基准。'], ['50 亿吨+', '覆盖排放量。'], ['扩围', '钢铁水泥纳入。']] },
+        { title: '双碳金融引擎', subtitle: '百万亿级撬动', accent: '#6fc2ae', border: '#6fc2ae', body: '碳中和投资需求达百万亿量级，财政难以独力承担。绿色金融的本质是用价格与利率信号，把社会资本「导流」到低碳资产上。', pillars: [['百万亿', '中长期资金需求。'], ['1.75%', '碳减排再贷款利率。'], ['全球#1', '绿色信贷/绿债体量。']] },
+        { title: '碳定价机制', subtitle: 'CEA · CCER', accent: '#e5483b', border: '#e5483b', body: '当「排碳有价、减碳有偿」成为财务报表的刚性约束，工业转型从行政命令驱动转向内生经济利益驱动——但前提是碳价升到有效水平。', pillars: [['90+ 元/吨', '当前 CEA 基准。'], ['50 亿吨+', '覆盖排放量。'], ['扩围', '钢铁水泥纳入。']] },
         { title: '转型平衡', subtitle: '不搞运动式', accent: '#a78bfa', border: '#a78bfa', body: '从「纯绿」扩展到棕色行业可信转型，核心是把握节奏：避免一刀切式「拉闸限产」，也防止以转型之名行套利之实。', pillars: [['KPI 绑定', '可信转型计划。'], ['防假转型', '目录 + 披露约束。'], ['CBAM 外溢', '出口碳足迹核算。']] },
       ]} />
 

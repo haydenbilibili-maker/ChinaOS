@@ -19,9 +19,9 @@ const inputOpt = {
   xAxis: categoryX(['2015', '2018', '2021', '2024', '2025E']),
   yAxis: valueY({ name: '' }),
   series: [
-    { name: 'R&D投入(万亿)', type: 'bar', barWidth: 18, data: [1.42, 1.97, 2.79, 3.61, 3.95], itemStyle: { color: '#22d3ee' } },
-    { name: '教育经费/GDP(%)', type: 'line', smooth: true, data: [4.0, 4.1, 4.0, 4.0, 4.1], lineStyle: { color: '#e8a317', width: 2 } },
-    { name: 'R&D人员(百万人年)', type: 'line', smooth: true, data: [3.8, 4.4, 5.6, 6.4, 6.8], lineStyle: { color: '#10b981', width: 2 } },
+    { name: 'R&D投入(万亿)', type: 'bar', barWidth: 18, data: [1.42, 1.97, 2.79, 3.61, 3.95], itemStyle: { color: '#6e8cff' } },
+    { name: '教育经费/GDP(%)', type: 'line', smooth: true, data: [4.0, 4.1, 4.0, 4.0, 4.1], lineStyle: { color: '#d4a25a', width: 2 } },
+    { name: 'R&D人员(百万人年)', type: 'line', smooth: true, data: [3.8, 4.4, 5.6, 6.4, 6.8], lineStyle: { color: '#6fc2ae', width: 2 } },
   ],
 };
 
@@ -33,10 +33,10 @@ const outputOpt = {
   series: [{
     type: 'bar', barWidth: 26,
     data: [
-      { value: 85, itemStyle: { color: '#22d3ee' } },
-      { value: 78, itemStyle: { color: '#10b981' } },
-      { value: 72, itemStyle: { color: '#e8a317' } },
-      { value: 92, itemStyle: { color: '#c41e3a' } },
+      { value: 85, itemStyle: { color: '#6e8cff' } },
+      { value: 78, itemStyle: { color: '#6fc2ae' } },
+      { value: 72, itemStyle: { color: '#d4a25a' } },
+      { value: 92, itemStyle: { color: '#e5483b' } },
     ],
     label: { show: true, position: 'top', color: LABEL.color },
   }],
@@ -47,21 +47,21 @@ const DIMS = ['投入规模', '产出质量', '体制协同', '国际位势', '�
 
 const CHAINS = [
   {
-    key: 'edu', label: '教育链', accent: '#22d3ee',
+    key: 'edu', label: '教育链', accent: '#6e8cff',
     scores: [78, 65, 58, 62, 55],
     thesis: '教育是基础工程——从基础教育公平到高等教育「双一流」，再到职业教育产教融合，为创新与人才提供源头供给。',
     points: ['分类推进高校改革，建设世界一流大学与学科', '学科专业动态调整，对接战略需求与未来产业', '职普融通、产教融合培养卓越工程师'],
     gap: '基础学科拔尖人才与应用型技能人才「两端」供给不足，学用脱节。',
   },
   {
-    key: 'sci', label: '创新链(科技)', accent: '#c41e3a',
+    key: 'sci', label: '创新链(科技)', accent: '#e5483b',
     scores: [82, 70, 55, 75, 48],
     thesis: '科技是核心动力——以国家战略科技力量为骨干，强化原始创新与关键核心技术攻关，把论文与专利转化为现实生产力。',
     points: ['国家实验室 + 高校 + 院所 + 科技领军企业协同', '基础研究投入占比提升（向 8%+ 迈进）', '科技成果转化与「评价指挥棒」改革'],
     gap: '原始创新与「从0到1」短板；成果转化「死亡之谷」尚未跨越。',
   },
   {
-    key: 'talent', label: '人才链', accent: '#10b981',
+    key: 'talent', label: '人才链', accent: '#6fc2ae',
     scores: [72, 62, 52, 58, 50],
     thesis: '人才是第一资源——构建战略人才力量梯队（战略科学家、领军人才、青年人才、卓越工程师、技能人才），并以制度留人用人。',
     points: ['一体推进引育用留，破除「四唯」', '青年人才挑大梁、当主角的机制', '海外高层次人才引进与全球竞争'],
@@ -88,10 +88,10 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="~3.95万亿" label="R&D 投入" accent="#22d3ee" />
-        <Stat value="~4%" label="教育经费/GDP" accent="#e8a317" />
-        <Stat value="~6.8M" label="R&D 人员(人年)" accent="#10b981" />
-        <Stat value={AS_OF} label="数据截至" accent="#c41e3a" />
+        <Stat value="~3.95万亿" label="R&D 投入" accent="#6e8cff" />
+        <Stat value="~4%" label="教育经费/GDP" accent="#d4a25a" />
+        <Stat value="~6.8M" label="R&D 人员(人年)" accent="#6fc2ae" />
+        <Stat value={AS_OF} label="数据截至" accent="#e5483b" />
       </Grid>
 
       <Grid cols={2} className="mb-6">
@@ -118,7 +118,7 @@ export default function Page() {
           ))}
         </Grid>
         <div className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
-          <span style={{ color: '#c41e3a' }}>断点 · </span>{c.gap}
+          <span style={{ color: '#e5483b' }}>断点 · </span>{c.gap}
         </div>
       </div>
 
@@ -132,24 +132,24 @@ export default function Page() {
             一体化要求以<strong style={{ color: 'var(--text-primary)' }}>战略需求为牵引</strong>，倒逼学科设置、攻关方向与人才培养对齐。
           </p>
           <div className="space-y-2">
-            <div style={{ borderLeft: '2px solid #22d3ee', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>需求牵引</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>未来产业/卡脖子清单倒推学科与人才培养。</p></div>
-            <div style={{ borderLeft: '2px solid #10b981', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>评价改革</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>破「四唯」，以创新质量与贡献为导向。</p></div>
+            <div style={{ borderLeft: '2px solid #6e8cff', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>需求牵引</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>未来产业/卡脖子清单倒推学科与人才培养。</p></div>
+            <div style={{ borderLeft: '2px solid #6fc2ae', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>评价改革</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>破「四唯」，以创新质量与贡献为导向。</p></div>
           </div>
         </Card>
       </Grid>
 
       <Card title="十五五 · 指标 / 约束 / 路径" className="mb-6">
         <Grid cols={3}>
-          <div style={{ borderLeft: '2px solid #22d3ee', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#22d3ee' }}>核心指标</div>
+          <div style={{ borderLeft: '2px solid #6e8cff', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6e8cff' }}>核心指标</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>R&D 投入强度与基础研究占比（向 8%+）提升；高被引论文、PCT 专利、STEM 毕业生位势抬升；战略人才梯队成形。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #e8a317', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#e8a317' }}>关键约束</div>
+          <div style={{ borderLeft: '2px solid #d4a25a', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#d4a25a' }}>关键约束</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>教育/科技/人才条块分割、目标错位与资源重复；「钱变知识」（原始创新）与「知识变钱」（成果转化）两环效率不足。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #10b981', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#10b981' }}>推进路径</div>
+          <div style={{ borderLeft: '2px solid #6fc2ae', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6fc2ae' }}>推进路径</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>以战略需求牵引倒推学科与人才培养 → 破「四唯」评价改革 → 教育—科技—人才闭环联动支撑高水平科技自立自强。</p>
           </div>
         </Grid>

@@ -56,7 +56,7 @@ export default function VolumeDetail() {
     return [...fw, ...(vol.sections || [])];
   }, [vol]);
 
-  const [rtag, rcolor] = vol ? REGIME_TAG[REGIME[vol.id]] : ['', '#64748b'];
+  const [rtag, rcolor] = vol ? REGIME_TAG[REGIME[vol.id]] : ['', '#8a8578'];
   const progress = loadProgress()[volId] || 0;
   const words = vol ? wordEstimate(vol) : 0;
 
@@ -116,7 +116,7 @@ export default function VolumeDetail() {
             ← 文明透视 · 逐卷精读
           </Link>
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-[11px] mono px-2 py-0.5 rounded" style={{ background: 'rgba(196,30,58,0.14)', color: 'var(--china-red)' }}>
+            <span className="text-[11px] mono px-2 py-0.5 rounded" style={{ background: 'rgba(229, 72, 59,0.14)', color: 'var(--china-red)' }}>
               全文报告
             </span>
             {prevNext.index >= 0 && (
@@ -142,9 +142,9 @@ export default function VolumeDetail() {
 
       <Grid cols={4} className="mb-6">
         <Stat value={vol.sections?.length || 0} label="正文章节" accent={vol.color} />
-        <Stat value={`${words}`} label="字数约" accent="#22d3ee" />
-        <Stat value={`${Math.max(progress, Math.round(scrollPct))}%`} label="阅读进度" accent="#10b981" />
-        <Stat value={vol.frameworks?.length || 0} label="框架卡" accent="#e8a317" />
+        <Stat value={`${words}`} label="字数约" accent="#6e8cff" />
+        <Stat value={`${Math.max(progress, Math.round(scrollPct))}%`} label="阅读进度" accent="#6fc2ae" />
+        <Stat value={vol.frameworks?.length || 0} label="框架卡" accent="#d4a25a" />
       </Grid>
 
       <div className="grid gap-6 mb-8" style={{ gridTemplateColumns: 'minmax(180px, 220px) 1fr' }}>

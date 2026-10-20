@@ -7,40 +7,40 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // ── 方向选择器：六个观察视角，各自切换规模/结构/政策/约束叙事 ────────────────
 const DIRECTIONS = [
   {
-    key: 'ifdi', label: '引进来 · IFDI', accent: '#22d3ee',
+    key: 'ifdi', label: '引进来 · IFDI', accent: '#6e8cff',
     headline: '从「低成本要素」到「全产业链效率」',
     desc: '全球唯一全工业门类配套形成物理级产业粘性——撤离意味着放弃最优响应速度与成本平衡。吸引力核心已从廉价劳动力转向供应链密度本身。',
-    stats: [['1.13 万亿', '年度实际利用外资（RMB · 示意）', '#22d3ee'], ['39%', '高技术产业占比', '#10b981'], ['12,000+', '新设外企（季 · 示意）', '#e8a317']],
+    stats: [['1.13 万亿', '年度实际利用外资（RMB · 示意）', '#6e8cff'], ['39%', '高技术产业占比', '#6fc2ae'], ['12,000+', '新设外企（季 · 示意）', '#d4a25a']],
   },
   {
-    key: 'ofdi', label: '走出去 · OFDI', accent: '#e8a317',
+    key: 'ofdi', label: '走出去 · OFDI', accent: '#d4a25a',
     headline: '从世界工厂到资本输出',
     desc: '制造业产能、新能源与数字平台加速出海——双向流动的另一翼。地缘转向：增量从发达经济体流向东盟与一带一路沿线，以市场换安全、以效率锁利益。',
-    stats: [['1.78 万亿', '年度对外直接投资（RMB · 示意）', '#e8a317'], ['52%', '流向一带一路+东盟占比', '#c41e3a'], ['净输出', '双向流量再平衡', '#10b981']],
+    stats: [['1.78 万亿', '年度对外直接投资（RMB · 示意）', '#d4a25a'], ['52%', '流向一带一路+东盟占比', '#e5483b'], ['净输出', '双向流量再平衡', '#6fc2ae']],
   },
   {
-    key: 'neglist', label: '负面清单', accent: '#c41e3a',
+    key: 'neglist', label: '负面清单', accent: '#e5483b',
     headline: '法无禁止即可为',
     desc: '负面清单管「能不能进」，从 2013 年全国版 190 条压减至 29 条；制造业限制条目清零标志着以绝对产业自信迎接全球竞争。清单缩短即开放度提升。',
-    stats: [['29 条', '全国版负面清单', '#c41e3a'], ['27 条', '自贸区版负面清单', '#e8a317'], ['ZERO', '制造业限制条目', '#10b981']],
+    stats: [['29 条', '全国版负面清单', '#e5483b'], ['27 条', '自贸区版负面清单', '#d4a25a'], ['ZERO', '制造业限制条目', '#6fc2ae']],
   },
   {
-    key: 'ftz', label: '自贸区', accent: '#10b981',
+    key: 'ftz', label: '自贸区', accent: '#6fc2ae',
     headline: '境内开放的灰度试验场',
     desc: '从「边境开放」转向「境内开放」：在自贸试验区测试 CPTPP、DEPA 等国际高标准经贸规则。谁定义了规则的本地化闭环，谁就掌握了在岸市场的准入话语权。',
-    stats: [['22 个', '自贸试验区（含海南港）', '#10b981'], ['CPTPP/DEPA', '对接的高标准规则', '#22d3ee'], ['先行先试', '可复制可推广机制', '#e8a317']],
+    stats: [['22 个', '自贸试验区（含海南港）', '#6fc2ae'], ['CPTPP/DEPA', '对接的高标准规则', '#6e8cff'], ['先行先试', '可复制可推广机制', '#d4a25a']],
   },
   {
-    key: 'security', label: '安全审查', accent: '#94a3b8',
+    key: 'security', label: '安全审查', accent: '#a29c91',
     headline: '开放与审查并行不悖',
     desc: '负面清单之外，外商投资国家安全审查单独守住安全边界——管「会不会伤」。关键基础设施、核心技术、重要农产品、网络与数据安全领域设置独立闸门，构成开放叙事的对冲项。',
-    stats: [['独立闸门', '关基/核心技术/数据', '#94a3b8'], ['事前申报', '触发门槛行业制', '#c41e3a'], ['张力点', '准入 vs 安全', '#e8a317']],
+    stats: [['独立闸门', '关基/核心技术/数据', '#a29c91'], ['事前申报', '触发门槛行业制', '#e5483b'], ['张力点', '准入 vs 安全', '#d4a25a']],
   },
   {
     key: 'rcep', label: 'RCEP 区域', accent: '#a78bfa',
     headline: '区域价值链的引力中心',
     desc: '全球最大自贸区下，区域累积原产地规则把东亚供应链锁进同一关税圈。投资与贸易合流：产能在区域内重新配置，中国既是终端市场也是中间品枢纽。',
-    stats: [['15 国', 'RCEP 成员经济体', '#a78bfa'], ['~30%', '占全球 GDP/人口（示意）', '#22d3ee'], ['原产地累积', '区域价值链锁定', '#10b981']],
+    stats: [['15 国', 'RCEP 成员经济体', '#a78bfa'], ['~30%', '占全球 GDP/人口（示意）', '#6e8cff'], ['原产地累积', '区域价值链锁定', '#6fc2ae']],
   },
 ];
 
@@ -65,36 +65,36 @@ const OFDI_SERIES = [4.0, 5.7, 7.2, 12.0, 9.4, 9.9, 10.5, 11.8, 12.4];
 
 // ── IFDI 行业结构（制造业占比下降、服务业/高技术上升） ─────────────────────────
 const IFDI_STRUCT = donutOpt([
-  { value: 28, name: '制造业', itemStyle: { color: '#c41e3a' } },
-  { value: 41, name: '服务业', itemStyle: { color: '#22d3ee' } },
-  { value: 22, name: '高技术产业', itemStyle: { color: '#10b981' } },
-  { value: 9, name: '其他', itemStyle: { color: '#64748b' } },
+  { value: 28, name: '制造业', itemStyle: { color: '#e5483b' } },
+  { value: 41, name: '服务业', itemStyle: { color: '#6e8cff' } },
+  { value: 22, name: '高技术产业', itemStyle: { color: '#6fc2ae' } },
+  { value: 9, name: '其他', itemStyle: { color: '#8a8578' } },
 ]);
 
 // ── OFDI 目的地分布（地缘转向：南方/区域上升） ──────────────────────────────
 const OFDI_DEST = donutOpt([
   { value: 31, name: '东盟', itemStyle: { color: '#a78bfa' } },
-  { value: 24, name: '一带一路（非东盟）', itemStyle: { color: '#e8a317' } },
-  { value: 19, name: '欧洲', itemStyle: { color: '#22d3ee' } },
-  { value: 14, name: '北美', itemStyle: { color: '#c41e3a' } },
-  { value: 12, name: '其他', itemStyle: { color: '#64748b' } },
+  { value: 24, name: '一带一路（非东盟）', itemStyle: { color: '#d4a25a' } },
+  { value: 19, name: '欧洲', itemStyle: { color: '#6e8cff' } },
+  { value: 14, name: '北美', itemStyle: { color: '#e5483b' } },
+  { value: 12, name: '其他', itemStyle: { color: '#8a8578' } },
 ]);
 
 // 历史保留：外资在华研发中心行业分布
 const RD_CENTER_PIE = donutOpt([
-  { value: 40, name: '生物医药', itemStyle: { color: '#22d3ee' } },
-  { value: 25, name: '汽车与智驾', itemStyle: { color: '#c41e3a' } },
-  { value: 20, name: '新材料', itemStyle: { color: '#10b981' } },
-  { value: 15, name: '数字技术', itemStyle: { color: '#e8a317' } },
+  { value: 40, name: '生物医药', itemStyle: { color: '#6e8cff' } },
+  { value: 25, name: '汽车与智驾', itemStyle: { color: '#e5483b' } },
+  { value: 20, name: '新材料', itemStyle: { color: '#6fc2ae' } },
+  { value: 15, name: '数字技术', itemStyle: { color: '#d4a25a' } },
 ]);
 
 // ── 开放演进时间线（外资三法 → 入世 → 自贸区 → 外商投资法 → 制度型开放） ───────
 const PHASES = [
-  { period: '1979–2000', title: '外资三法', accent: '#64748b', desc: '《中外合资经营企业法》等三法奠基，逐案审批、合资优先。外资作为引进资金、技术与管理的窗口，置于强管制框架内。' },
-  { period: '2001–2012', title: '入世并轨', accent: '#22d3ee', desc: '加入 WTO，按承诺逐步取消外资限制、降低关税、开放服务业。《外商投资产业指导目录》成为准入主轴，制造业大规模引入。' },
-  { period: '2013–2017', title: '负面清单试点', accent: '#10b981', desc: '上海等自贸区先行试点，全国版负面清单 190 条起步。从「正面目录」转向「负面清单」——管理逻辑的根本切换。' },
-  { period: '2018–2021', title: '外商投资法', accent: '#e8a317', desc: '外资三法合一为《外商投资法》，确立准入前国民待遇+负面清单管理制度；制造业限制条目清零，国民待遇法定化。' },
-  { period: '2022–至今', title: '制度型开放', accent: '#c41e3a', desc: '自贸试验区对接 CPTPP、DEPA 高标准规则，从「边境开放」转向「境内开放」；国家安全审查与开放并行，规则话语权竞争上升。' },
+  { period: '1979–2000', title: '外资三法', accent: '#8a8578', desc: '《中外合资经营企业法》等三法奠基，逐案审批、合资优先。外资作为引进资金、技术与管理的窗口，置于强管制框架内。' },
+  { period: '2001–2012', title: '入世并轨', accent: '#6e8cff', desc: '加入 WTO，按承诺逐步取消外资限制、降低关税、开放服务业。《外商投资产业指导目录》成为准入主轴，制造业大规模引入。' },
+  { period: '2013–2017', title: '负面清单试点', accent: '#6fc2ae', desc: '上海等自贸区先行试点，全国版负面清单 190 条起步。从「正面目录」转向「负面清单」——管理逻辑的根本切换。' },
+  { period: '2018–2021', title: '外商投资法', accent: '#d4a25a', desc: '外资三法合一为《外商投资法》，确立准入前国民待遇+负面清单管理制度；制造业限制条目清零，国民待遇法定化。' },
+  { period: '2022–至今', title: '制度型开放', accent: '#e5483b', desc: '自贸试验区对接 CPTPP、DEPA 高标准规则，从「边境开放」转向「境内开放」；国家安全审查与开放并行，规则话语权竞争上升。' },
 ];
 
 export default function Page() {
@@ -114,16 +114,16 @@ export default function Page() {
       {
         name: 'IFDI 引进来', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5,
         data: IFDI_SERIES,
-        lineStyle: { color: '#22d3ee', width: dir === 'ifdi' ? 3 : 1.5, opacity: dir === 'ofdi' ? 0.45 : 1 },
-        itemStyle: { color: '#22d3ee' },
-        areaStyle: dir === 'ifdi' ? { color: 'rgba(34,211,238,0.12)' } : undefined,
+        lineStyle: { color: '#6e8cff', width: dir === 'ifdi' ? 3 : 1.5, opacity: dir === 'ofdi' ? 0.45 : 1 },
+        itemStyle: { color: '#6e8cff' },
+        areaStyle: dir === 'ifdi' ? { color: 'rgba(110, 140, 255,0.12)' } : undefined,
       },
       {
         name: 'OFDI 走出去', type: 'line', smooth: true, symbol: 'circle', symbolSize: 5,
         data: OFDI_SERIES,
-        lineStyle: { color: '#e8a317', width: dir === 'ofdi' ? 3 : 1.5, opacity: dir === 'ifdi' ? 0.45 : 1 },
-        itemStyle: { color: '#e8a317' },
-        areaStyle: dir === 'ofdi' ? { color: 'rgba(232,163,23,0.12)' } : undefined,
+        lineStyle: { color: '#d4a25a', width: dir === 'ofdi' ? 3 : 1.5, opacity: dir === 'ifdi' ? 0.45 : 1 },
+        itemStyle: { color: '#d4a25a' },
+        areaStyle: dir === 'ofdi' ? { color: 'rgba(212, 162, 90,0.12)' } : undefined,
       },
     ],
   }), [dir]);
@@ -151,12 +151,12 @@ export default function Page() {
     series: [
       {
         name: '全国版', type: 'line', step: 'end', data: [190, 63, 40, 31, 29],
-        lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' },
-        areaStyle: { color: 'rgba(232,163,23,0.1)' }, label: { show: true, color: LABEL.color, fontSize: 10 },
+        lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' },
+        areaStyle: { color: 'rgba(212, 162, 90,0.1)' }, label: { show: true, color: LABEL.color, fontSize: 10 },
       },
       {
         name: '自贸区版', type: 'line', step: 'end', data: [null, 95, 37, 30, 27],
-        lineStyle: { color: '#10b981', width: 2 }, itemStyle: { color: '#10b981' },
+        lineStyle: { color: '#6fc2ae', width: 2 }, itemStyle: { color: '#6fc2ae' },
         label: { show: true, color: LABEL.color, fontSize: 10 },
       },
     ],
@@ -172,9 +172,9 @@ export default function Page() {
   const ofdiShift = useMemo(() => stackedBarOpt({
     categories: ['2013', '2018', '2024'],
     series: [
-      { name: '发达经济体', data: [62, 48, 33], itemStyle: { color: '#22d3ee' } },
-      { name: '东盟+一带一路', data: [26, 40, 55], itemStyle: { color: '#e8a317' } },
-      { name: '其他', data: [12, 12, 12], itemStyle: { color: '#64748b' } },
+      { name: '发达经济体', data: [62, 48, 33], itemStyle: { color: '#6e8cff' } },
+      { name: '东盟+一带一路', data: [26, 40, 55], itemStyle: { color: '#d4a25a' } },
+      { name: '其他', data: [12, 12, 12], itemStyle: { color: '#8a8578' } },
     ],
   }), []);
 
@@ -188,10 +188,10 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="1.13 万亿" label="实际利用外资 IFDI（RMB · 示意）" accent="#22d3ee" />
-        <Stat value="1.78 万亿" label="对外直接投资 OFDI（RMB · 示意）" accent="#e8a317" />
-        <Stat value="29 条" label="全国版负面清单条目" accent="#c41e3a" />
-        <Stat value="22 个" label="自贸试验区（含海南港）" accent="#10b981" />
+        <Stat value="1.13 万亿" label="实际利用外资 IFDI（RMB · 示意）" accent="#6e8cff" />
+        <Stat value="1.78 万亿" label="对外直接投资 OFDI（RMB · 示意）" accent="#d4a25a" />
+        <Stat value="29 条" label="全国版负面清单条目" accent="#e5483b" />
+        <Stat value="22 个" label="自贸试验区（含海南港）" accent="#6fc2ae" />
       </Grid>
 
       <Card title="交互① · 方向选择器（六视角）" className="mb-6">
@@ -238,8 +238,8 @@ export default function Page() {
             从「边境开放」转向「境内开放」：在自贸试验区测试 CPTPP、DEPA 等国际高标准经贸规则。谁定义了规则的本地化闭环，谁就掌握了在岸市场的准入话语权。
           </p>
           <Grid cols={2}>
-            <Stat value="ZERO" label="制造业限制条目" accent="#10b981" />
-            <Stat value="ACCELERATING" label="服务业开放深度" accent="#22d3ee" />
+            <Stat value="ZERO" label="制造业限制条目" accent="#6fc2ae" />
+            <Stat value="ACCELERATING" label="服务业开放深度" accent="#6e8cff" />
           </Grid>
         </Card>
       </Grid>

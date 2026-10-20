@@ -21,7 +21,7 @@ import { useTalentDeepLink, findEntityInList } from '../../lib/talent/routing.js
 
 const short = (p) => (p || '').replace(/(省|市|自治区|回族|壮族|维吾尔)/g, '');
 const inp = { background: 'var(--bg-base)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', borderRadius: 6, padding: '6px 10px', fontSize: 13 };
-const btn = { background: 'rgba(34,211,238,0.14)', color: 'var(--cyber-cyan)', border: '1px solid rgba(34,211,238,0.35)', borderRadius: 6, padding: '6px 14px', fontSize: 13, cursor: 'pointer' };
+const btn = { background: 'rgba(110, 140, 255,0.14)', color: 'var(--cyber-cyan)', border: '1px solid rgba(110, 140, 255,0.35)', borderRadius: 6, padding: '6px 14px', fontSize: 13, cursor: 'pointer' };
 const TYPE_SHORT = { '国家级智库': '国家级', '高校智库': '高校', '社会智库': '社会', '部委智库': '部委' };
 
 function tally(arr, keyFn) {
@@ -34,7 +34,7 @@ function TankCard({ r, on, onClick, dense = false }) {
   return (
     <button type="button" onClick={onClick} className="w-full text-left rounded"
       style={{
-        background: on ? 'rgba(34,211,238,0.14)' : 'var(--bg-elevated)',
+        background: on ? 'rgba(110, 140, 255,0.14)' : 'var(--bg-elevated)',
         border: `1px solid ${on ? 'var(--cyber-cyan)' : 'var(--border-subtle)'}`,
         cursor: 'pointer', padding: dense ? '8px 10px' : '10px 12px',
       }}>
@@ -43,8 +43,8 @@ function TankCard({ r, on, onClick, dense = false }) {
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-1.5 flex-wrap">
             <span className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{r.name}</span>
-            <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)' }}>{TYPE_SHORT[r.type] || r.type}</span>
-            {r.province && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(139,92,246,0.12)', color: '#a78bfa' }}>{short(r.province)}</span>}
+            <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(110, 140, 255,0.12)', color: 'var(--cyber-cyan)' }}>{TYPE_SHORT[r.type] || r.type}</span>
+            {r.province && <span className="text-[9px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(176, 124, 198,0.12)', color: '#a78bfa' }}>{short(r.province)}</span>}
           </div>
           <div className="text-[11px] mt-0.5 truncate" style={{ color: 'var(--text-secondary)' }}>{r.affiliation} · {r.focusAreas}</div>
         </div>
@@ -146,7 +146,7 @@ export default function ThinkTankSection() {
   return (
     <section>
       <div className="flex items-center gap-3 mb-4 pb-3" style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-        <span className="flex items-center justify-center rounded" style={{ width: 32, height: 32, background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)' }}>
+        <span className="flex items-center justify-center rounded" style={{ width: 32, height: 32, background: 'rgba(110, 140, 255,0.12)', color: 'var(--cyber-cyan)' }}>
           <Lucide.Landmark size={16} />
         </span>
         <div>
@@ -158,7 +158,7 @@ export default function ThinkTankSection() {
       </div>
 
       <div className="grid gap-3 mb-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(110px,1fr))' }}>
-        {TT_TYPES.map((t) => <Stat key={t} value={typeCounts[t] || 0} label={TYPE_SHORT[t]} accent="#22d3ee" />)}
+        {TT_TYPES.map((t) => <Stat key={t} value={typeCounts[t] || 0} label={TYPE_SHORT[t]} accent="#6e8cff" />)}
         <Stat value={focusAreas.length} label="研究领域" accent="#a78bfa" />
         <Stat value={filtered.length} label="当前命中" />
       </div>
@@ -206,7 +206,7 @@ export default function ThinkTankSection() {
               <div className="flex rounded overflow-hidden" style={{ border: '1px solid var(--border-subtle)' }}>
                 {[['list', 'List'], ['grid', 'LayoutGrid'], ['stats', 'BarChart3']].map(([v, ic]) => {
                   const I = Lucide[ic]; const on = view === v;
-                  return <button key={v} type="button" onClick={() => setView(v)} style={{ padding: '6px 9px', background: on ? 'rgba(34,211,238,0.18)' : 'var(--bg-base)', color: on ? 'var(--cyber-cyan)' : 'var(--text-tertiary)', border: 'none', cursor: 'pointer' }}><I size={15} /></button>;
+                  return <button key={v} type="button" onClick={() => setView(v)} style={{ padding: '6px 9px', background: on ? 'rgba(110, 140, 255,0.18)' : 'var(--bg-base)', color: on ? 'var(--cyber-cyan)' : 'var(--text-tertiary)', border: 'none', cursor: 'pointer' }}><I size={15} /></button>;
                 })}
               </div>
             </div>
@@ -247,7 +247,7 @@ export default function ThinkTankSection() {
                     institutionCard={<InstitutionCard record={{ ...d, institution: d.name, type: d.type }} />}
                     crossLinks={<CrossRefLinks record={d} queue="thinktank" />}
                     avatar={<FigureAvatar {...figureAvatarProps(d)} size={56} ring eager />}
-                    badges={<span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(34,211,238,0.12)', color: 'var(--cyber-cyan)' }}>{TYPE_SHORT[d.type] || d.type}</span>}
+                    badges={<span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(110, 140, 255,0.12)', color: 'var(--cyber-cyan)' }}>{TYPE_SHORT[d.type] || d.type}</span>}
                     sections={buildTalentDetailSections(d, {
                       queue: 'thinktank',
                       baseSections: [
@@ -258,7 +258,7 @@ export default function ThinkTankSection() {
                           { label: '类型', value: d.type, accent: 'var(--cyber-cyan)' },
                           { label: '隶属', value: d.affiliation },
                           { label: '省份', value: d.province },
-                          { label: '层级', value: d.tier, accent: '#e8a317' },
+                          { label: '层级', value: d.tier, accent: '#d4a25a' },
                         ],
                       },
                       {
@@ -266,7 +266,7 @@ export default function ThinkTankSection() {
                         cols: 3,
                         fields: [
                           { label: '研究领域', value: d.focusAreas },
-                          { label: '荣誉/定位', value: d.honors, accent: '#d4af37' },
+                          { label: '荣誉/定位', value: d.honors, accent: '#d9b26a' },
                         ],
                       },
                       ...(d.notes ? [{ title: '备注', content: <ExpandableText text={d.notes} maxLen={120} /> }] : []),

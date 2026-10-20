@@ -15,33 +15,33 @@ export const MACRO_AS_OF = AS_OF_BASELINE;
 /** 五根政策杆（init 即「中性参考」组合） */
 export const POLICY_LEVERS = [
   {
-    id: 'fiscal', label: '赤字率', min: 2.5, max: 5.0, step: 0.1, init: 3.0, unit: '%', color: '#c41e3a',
+    id: 'fiscal', label: '赤字率', min: 2.5, max: 5.0, step: 0.1, init: 3.0, unit: '%', color: '#e5483b',
     desc: '一般公共预算赤字率：当季直接拉动增长，但杠杆账单从第 3 季开始计提——刺激先到，利息后到。',
   },
   {
-    id: 'rate', label: '政策利率调整', min: -100, max: 50, step: 5, init: 0, unit: 'bp', color: '#22d3ee',
+    id: 'rate', label: '政策利率调整', min: -100, max: 50, step: 5, init: 0, unit: 'bp', color: '#6e8cff',
     desc: '相对中性水平的利率变动：降息第 2 季起拉动增长、第 4 季起抬升通胀；加息镜像反向并压缩信用。',
   },
   {
-    id: 'bonds', label: '专项债额度', min: 2, max: 6, step: 0.5, init: 3.9, unit: ' 万亿', color: '#e8a317',
+    id: 'bonds', label: '专项债额度', min: 2, max: 6, step: 0.5, init: 3.9, unit: ' 万亿', color: '#d4a25a',
     desc: '地方政府专项债年度额度：当季托底基建投资，杠杆账单同样滞后两季——和赤字是同一张资产负债表。',
   },
   {
-    id: 'fx', label: '汇率弹性', min: 0, max: 100, step: 5, init: 50, unit: '', color: '#8b5cf6',
+    id: 'fx', label: '汇率弹性', min: 0, max: 100, step: 5, init: 50, unit: '', color: '#b07cc6',
     desc: '0=严格管制 ↔ 100=自由浮动：弹性越高，外部冲击传导进国内越少，但汇率自身的短期波动越大。',
   },
   {
-    id: 'industry', label: '产业政策强度', min: 0, max: 100, step: 5, init: 40, unit: '', color: '#10b981',
+    id: 'industry', label: '产业政策强度', min: 0, max: 100, step: 5, init: 40, unit: '', color: '#6fc2ae',
     desc: '产业基金/补贴/链长制的合成强度：第 4 季才开始见效，但效应逐季递增且不衰减——最慢也最持久的杆。',
   },
 ];
 
 /** 四态（推演的四个状态变量 = 宏观调控的四难平衡） */
 export const MACRO_STATES = [
-  { id: 'growth', label: '增长动能', color: '#22d3ee', desc: 'GDP 同比增速（%，示意）——政绩、税基与就业的总阀门。' },
-  { id: 'inflation', label: '物价水平', color: '#c41e3a', desc: 'CPI 同比（%，示意）——民生容忍度的硬约束，2.5 是警戒线。' },
-  { id: 'employ', label: '就业景气', color: '#10b981', desc: '就业景气指数（示意，55 为初值）——社会稳定的第一变量。' },
-  { id: 'leverage', label: '宏观杠杆', color: '#e8a317', desc: '宏观杠杆率（%GDP，示意）——今天的每一分刺激，都是明天的账单。' },
+  { id: 'growth', label: '增长动能', color: '#6e8cff', desc: 'GDP 同比增速（%，示意）——政绩、税基与就业的总阀门。' },
+  { id: 'inflation', label: '物价水平', color: '#e5483b', desc: 'CPI 同比（%，示意）——民生容忍度的硬约束，2.5 是警戒线。' },
+  { id: 'employ', label: '就业景气', color: '#6fc2ae', desc: '就业景气指数（示意，55 为初值）——社会稳定的第一变量。' },
+  { id: 'leverage', label: '宏观杠杆', color: '#d4a25a', desc: '宏观杠杆率（%GDP，示意）——今天的每一分刺激，都是明天的账单。' },
 ];
 
 /** 状态初值（基期） */
@@ -130,30 +130,30 @@ export function quadrant(traj) {
   const dL = traj.leverage[QN - 1] - MACRO_INIT.leverage;
   if (g >= 4.7 && p <= 2.2 && dL <= 8) {
     return {
-      label: '稳增长达成', color: '#10b981',
+      label: '稳增长达成', color: '#6fc2ae',
       note: '增长、物价、杠杆同时落在容忍带内——这套组合罕见地没有透支任何一张资产负债表，但窗口期通常比任期短。',
     };
   }
   if (g < 4.3 && p > 2.2) {
     return {
-      label: '滞胀风险', color: '#c41e3a',
+      label: '滞胀风险', color: '#e5483b',
       note: '增长失速与物价抬头同时出现：工具箱里每一件武器都会同时打中一个错误目标，调控从选择题变成判断题。',
     };
   }
   if (dL > 15) {
     return {
-      label: '债务雪球', color: '#e8a317',
+      label: '债务雪球', color: '#d4a25a',
       note: '杠杆八季增幅超过 15 个百分点——增长是借来的，今天的每一分刺激都在为明天计提利息，雪球只认坡度不认理由。',
     };
   }
   if (g < 4.5) {
     return {
-      label: '紧缩出清', color: '#22d3ee',
+      label: '紧缩出清', color: '#6e8cff',
       note: '出清在进行，代价在前台：杠杆回落以增长与就业为对价，能走多远取决于政治耐受度，而不是经济学。',
     };
   }
   return {
-    label: '弱平衡', color: '#64748b',
+    label: '弱平衡', color: '#8a8578',
     note: '不冷不热的均衡——没有破裂，也没有突破；时间在替结构性问题计息，平衡本身就是最贵的政策。',
   };
 }

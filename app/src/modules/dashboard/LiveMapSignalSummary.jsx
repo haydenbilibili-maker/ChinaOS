@@ -3,7 +3,7 @@ import * as Lucide from 'lucide-react';
 import { MAP_LAYER_DEFS } from './liveMapLayers.js';
 import { formatLiveTime } from './liveWeather.js';
 
-const STEEL = '#22d3ee';
+const STEEL = '#6e8cff';
 
 function Icon({ name, size = 14 }) {
   const Cmp = Lucide[name] || Lucide.Square;
@@ -13,14 +13,14 @@ function Icon({ name, size = 14 }) {
 function statusTone(st) {
   if (!st) return { label: '未启用', color: 'var(--text-tertiary)' };
   if (st.loading) return { label: '拉取中…', color: STEEL };
-  if (st.error) return { label: st.error, color: '#e8a317' };
+  if (st.error) return { label: st.error, color: '#d4a25a' };
   if (st.fetchedAt) {
     return {
       label: `更新 ${formatLiveTime(st.fetchedAt)}`,
-      color: '#10b981',
+      color: '#6fc2ae',
     };
   }
-  return { label: '就绪', color: '#10b981' };
+  return { label: '就绪', color: '#6fc2ae' };
 }
 
 /**
@@ -54,7 +54,7 @@ export default function LiveMapSignalSummary({
             <article
               key={def.id}
               className={`lcm-signal-card ${on ? 'is-on' : ''}`}
-              style={{ borderColor: on ? 'rgba(34,211,238,0.35)' : 'var(--border-subtle)' }}
+              style={{ borderColor: on ? 'rgba(110, 140, 255,0.35)' : 'var(--border-subtle)' }}
             >
               <div className="lcm-signal-card__hd">
                 <Icon name={def.icon || 'Circle'} size={12} />
@@ -72,13 +72,13 @@ export default function LiveMapSignalSummary({
             </article>
           );
         })}
-        <article className="lcm-signal-card is-on" style={{ borderColor: 'rgba(34,211,238,0.35)' }}>
+        <article className="lcm-signal-card is-on" style={{ borderColor: 'rgba(110, 140, 255,0.35)' }}>
           <div className="lcm-signal-card__hd">
             <Icon name="Map" size={12} />
             <span className="lcm-signal-card__title">省界底图</span>
           </div>
           <p className="lcm-signal-card__desc">本地托管优先 · DataV 仅作可选回退</p>
-          <div className="lcm-signal-card__status mono" style={{ color: geoSource === 'local' ? STEEL : geoSource === 'network' ? '#10b981' : 'var(--text-tertiary)' }}>
+          <div className="lcm-signal-card__status mono" style={{ color: geoSource === 'local' ? STEEL : geoSource === 'network' ? '#6fc2ae' : 'var(--text-tertiary)' }}>
             {geoSource === 'local' && '本地 GeoJSON'}
             {geoSource === 'proxy' && 'Worker 代理'}
             {geoSource === 'network' && 'DataV 网络'}

@@ -34,32 +34,32 @@ export const PR_AS_OF = AS_OF_BASELINE;
 // heat0：初始热度 0-100；visual：画面感系数 0.6-1.4（画面即燃料）
 export const PR_SCENARIOS = [
   {
-    id: 'factory', label: '工厂安全事故', color: '#c41e3a',
+    id: 'factory', label: '工厂安全事故', color: '#e5483b',
     intro: '某制造企业车间发生安全事故，现场画面流出，伤亡数字成为全网追问的焦点。',
     facts: 85, heat0: 45, visual: 1.25,
   },
   {
-    id: 'food', label: '食品安全传闻', color: '#e8a317',
+    id: 'food', label: '食品安全传闻', color: '#d4a25a',
     intro: '一段「某品牌食品有问题」的传闻短视频疯传，检测结论未出，情绪已经先行。',
     facts: 25, heat0: 35, visual: 1.30,
   },
   {
-    id: 'speech', label: '干部会场言论失当', color: '#8b5cf6',
+    id: 'speech', label: '干部会场言论失当', color: '#b07cc6',
     intro: '某单位干部会场发言片段被剪辑传播，措辞失当引发身份对立式解读。',
     facts: 55, heat0: 40, visual: 1.00,
   },
   {
-    id: 'dataleak', label: '平台用户数据泄露', color: '#22d3ee',
+    id: 'dataleak', label: '平台用户数据泄露', color: '#6e8cff',
     intro: '某平台被曝用户数据泄露，技术细节门槛高，恐慌主要靠转述与想象扩散。',
     facts: 80, heat0: 30, visual: 0.65,
   },
   {
-    id: 'scenic', label: '景区天价消费纠纷', color: '#fb923c',
+    id: 'scenic', label: '景区天价消费纠纷', color: '#c07a4a',
     intro: '游客晒出「天价账单」视频指控某景区宰客，账单真伪与计价口径均存疑。',
     facts: 30, heat0: 38, visual: 1.35,
   },
   {
-    id: 'canteen', label: '学校食堂卫生风波', color: '#10b981',
+    id: 'canteen', label: '学校食堂卫生风波', color: '#6fc2ae',
     intro: '某学校食堂后厨画面令家长群情激愤，问题属实程度与画面冲击不成比例。',
     facts: 55, heat0: 42, visual: 1.30,
   },
@@ -197,24 +197,24 @@ export function simulateOpinion({ scenario, hours, stance, channels }) {
 export function verdictOf(res) {
   if (res.secondary >= 60) {
     return {
-      label: '次生反噬', color: '#c41e3a',
+      label: '次生反噬', color: '#e5483b',
       note: '处置本身成了第二事故。公众可以原谅事故，很难原谅欺骗——反转之后，你说什么都是错的。',
     };
   }
   if (res.peak < 55 && res.secondary < 30) {
     return {
-      label: '舆情软着陆', color: '#10b981',
+      label: '舆情软着陆', color: '#6fc2ae',
       note: '火没烧起来就熄了。最好的危机应对是让多数人从未听说这件事——前提是你没有撒谎。',
     };
   }
   if (res.longTail >= 20) {
     return {
-      label: '长尾纠缠', color: '#e8a317',
+      label: '长尾纠缠', color: '#d4a25a',
       note: '热度没死透，每隔几天被翻出来鞭一次。挤牙膏省下的不是成本，是把一次危机分期成十次。',
     };
   }
   return {
-    label: '高开稳走', color: '#22d3ee',
+    label: '高开稳走', color: '#6e8cff',
     note: '峰值压不住是事实决定的，但你让曲线只有一个峰。扛过最高点之后，每一天都在变便宜。',
   };
 }

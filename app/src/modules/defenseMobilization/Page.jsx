@@ -14,28 +14,28 @@ const AS_OF = AS_OF_BASELINE;
 
 const DOMAINS = [
   {
-    key: 'reserve', label: '后备力量', accent: '#c41e3a',
+    key: 'reserve', label: '后备力量', accent: '#e5483b',
     scores: [88, 82, 75, 70, 78],
     thesis: '预备役与民兵是国防动员的「蓄水池」——编组训练、装备预置与快速征召机制是平战转换的物理基础。',
     points: ['预备役部队编组与训练改革', '民兵应急分队与海上民兵建设', '退役军人纳入后备力量体系', '征兵「五率」与兵员质量提升'],
     lever: '国防部动员局 + 省军区系统。',
   },
   {
-    key: 'civil', label: '经济动员', accent: '#e8a317',
+    key: 'civil', label: '经济动员', accent: '#d4a25a',
     scores: [80, 85, 78, 82, 72],
     thesis: '国民经济动员是将民用产能快速转为军用供给的制度安排——战略物资储备、交通保障与工业转产是核心链条。',
     points: ['战略物资储备与轮换机制', '国防交通路网与战备公路', '军民两用技术标准统一', '关键产业链动员预案'],
     lever: '发改委国防动员办 + 交通战备系统。',
   },
   {
-    key: 'newdomain', label: '新域新质', accent: '#22d3ee',
+    key: 'newdomain', label: '新域新质', accent: '#6e8cff',
     scores: [75, 70, 92, 85, 80],
     thesis: '网络、太空、电磁、认知等新域新质作战力量需要新型动员模式——民营科技企业、算力设施与数据资源纳入动员潜力库。',
     points: ['网络攻防民兵与红队力量', '商业航天与低轨星座动员接口', '算力设施国防动员预案', '无人机/eVTOL 民用转军用通道'],
     lever: '军委联指 + 工信部动员潜力调查。',
   },
   {
-    key: 'local', label: '地方动员', accent: '#10b981',
+    key: 'local', label: '地方动员', accent: '#6fc2ae',
     scores: [82, 78, 70, 75, 85],
     thesis: '省域国防动员委员会是平战转换的「最后一公里」——人防工程、应急避难与双拥共建构成基层动员网络。',
     points: ['人民防空工程与平急两用设施', '国防动员潜力统计与数据库', '双拥模范城与拥军支前', '应急管理与国防动员预案衔接'],
@@ -44,9 +44,9 @@ const DOMAINS = [
 ];
 
 const PHASES = [
-  { period: '2016–2019', title: '改革重组', accent: '#64748b', desc: '深化国防和军队改革延伸动员体系，省军区系统调整，动员职能归口。' },
-  { period: '2020–2023', title: '潜力调查', accent: '#e8a317', desc: '国民经济动员潜力调查与数据库建设，新域新质力量纳入动员体系。' },
-  { period: '2024–', title: '平战结合', accent: '#c41e3a', desc: '政府工作报告强调「巩固提高一体化国家战略体系和能力」，平急两用设施与动员预案深化。' },
+  { period: '2016–2019', title: '改革重组', accent: '#8a8578', desc: '深化国防和军队改革延伸动员体系，省军区系统调整，动员职能归口。' },
+  { period: '2020–2023', title: '潜力调查', accent: '#d4a25a', desc: '国民经济动员潜力调查与数据库建设，新域新质力量纳入动员体系。' },
+  { period: '2024–', title: '平战结合', accent: '#e5483b', desc: '政府工作报告强调「巩固提高一体化国家战略体系和能力」，平急两用设施与动员预案深化。' },
 ];
 
 const DIMS = ['规模储备', '转换速度', '新域覆盖', '潜力质量', '预案完备'];
@@ -62,7 +62,7 @@ export default function Page() {
     xAxis: categoryX(['2015', '2018', '2021', '2024', '2026E']),
     yAxis: valueY({ name: '万人' }),
     series: [
-      { name: '预备役', type: 'bar', stack: 'r', barWidth: 22, data: [50, 48, 45, 42, 40], itemStyle: { color: '#c41e3a' } },
+      { name: '预备役', type: 'bar', stack: 'r', barWidth: 22, data: [50, 48, 45, 42, 40], itemStyle: { color: '#e5483b' } },
       { name: '民兵', type: 'bar', stack: 'r', data: [800, 750, 700, 680, 650], itemStyle: { color: AXIS.lineStyle.color } },
     ],
   }), []);
@@ -70,8 +70,8 @@ export default function Page() {
   const potentialOpt = stackedBarOpt({
     categories: ['工业', '交通', '通信', '能源', '新域新质'],
     series: [
-      { name: '动员潜力指数', data: [85, 90, 78, 88, 65], itemStyle: { color: '#c41e3a' } },
-      { name: '转化就绪度', data: [70, 82, 72, 80, 55], itemStyle: { color: '#22d3ee' } },
+      { name: '动员潜力指数', data: [85, 90, 78, 88, 65], itemStyle: { color: '#e5483b' } },
+      { name: '转化就绪度', data: [70, 82, 72, 80, 55], itemStyle: { color: '#6e8cff' } },
     ],
   });
 
@@ -105,10 +105,10 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="~690万" label="后备力量（示意）" accent="#c41e3a" />
-        <Stat value="31" label="省级国动委" accent="#e8a317" />
-        <Stat value="5大" label="动员潜力领域" accent="#22d3ee" />
-        <Stat value={AS_OF} label="数据截至" accent="#8b5cf6" />
+        <Stat value="~690万" label="后备力量（示意）" accent="#e5483b" />
+        <Stat value="31" label="省级国动委" accent="#d4a25a" />
+        <Stat value="5大" label="动员潜力领域" accent="#6e8cff" />
+        <Stat value={AS_OF} label="数据截至" accent="#b07cc6" />
       </Grid>
 
       <Grid cols={2} className="mb-6">
@@ -136,7 +136,7 @@ export default function Page() {
             ))}
           </div>
           <div className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
-            <span style={{ color: '#e8a317' }}>政策杠杆 · </span>{d.lever}
+            <span style={{ color: '#d4a25a' }}>政策杠杆 · </span>{d.lever}
           </div>
         </div>
         <Card title={`${d.label} · 动员五维评估`}>
@@ -150,16 +150,16 @@ export default function Page() {
 
       <Card title="十五五 · 指标 / 约束 / 路径" className="mb-6">
         <Grid cols={3}>
-          <div style={{ borderLeft: '2px solid #22d3ee', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#22d3ee' }}>核心指标</div>
+          <div style={{ borderLeft: '2px solid #6e8cff', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6e8cff' }}>核心指标</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>动员潜力数据库全覆盖；新域新质动员力量编组；平急两用设施与国防动员预案衔接；后备力量训练质量提升。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #e8a317', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#e8a317' }}>关键约束</div>
+          <div style={{ borderLeft: '2px solid #d4a25a', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#d4a25a' }}>关键约束</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>平战转换速度与民用经济效率的权衡；动员潜力统计的精度与更新频率；新域新质力量的体制归属与指挥链条。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #10b981', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#10b981' }}>推进路径</div>
+          <div style={{ borderLeft: '2px solid #6fc2ae', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6fc2ae' }}>推进路径</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>潜力调查与数据库 → 预案演练与编组训练 → 新域新质力量纳入 → 平急两用设施标准化。</p>
           </div>
         </Grid>

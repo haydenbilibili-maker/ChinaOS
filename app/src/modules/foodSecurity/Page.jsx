@@ -26,42 +26,42 @@ const FLOW = [
 
 const CROPS = [
   {
-    key: 'staple', label: '口粮(稻麦)', accent: '#10b981', selfRate: 100, dep: 2,
+    key: 'staple', label: '口粮(稻麦)', accent: '#6fc2ae', selfRate: 100, dep: 2,
     position: '绝对自给 · 红线',
     desc: '稻谷与小麦自给率维持 100% 左右，库存消费比远超 17%–18% 的国际安全线，端牢「中国饭碗」——大安全观第一支柱、不可退让的政治底线。',
     choke: '高端种质资源、节水稻品种局部仍需引进；丰年仍须防「丰收返贫」与种粮意愿下滑。',
     self: [99, 100, 101, 100, 101, 100],
   },
   {
-    key: 'corn', label: '玉米', accent: '#22d3ee', selfRate: 92, dep: 8,
+    key: 'corn', label: '玉米', accent: '#6e8cff', selfRate: 92, dep: 8,
     position: '基本自给 · 适度进口',
     desc: '玉米自给率较高但饲用与深加工需求增长快，进口补充与生物燃料「与人争粮、与粮争地」构成边际压力，价格随生猪存栏剧烈波动。',
     choke: '高产抗逆品种、转基因玉米产业化进度；进口配额内外价差与乌克兰、美洲到港节奏。',
     self: [94, 93, 92, 92, 91, 92],
   },
   {
-    key: 'soybean', label: '大豆', accent: '#e8a317', selfRate: 15, dep: 85,
+    key: 'soybean', label: '大豆', accent: '#d4a25a', selfRate: 15, dep: 85,
     position: '高度依赖 · 战略软肋',
     desc: '大豆进口依存约 85%，年进口逾 1 亿吨,来源集中于巴西、美国、阿根廷,是饲料粮与食用油的结构性短板,亦是中美博弈与海运通道风险的最大敞口。',
     choke: '亩产仅为美洲一半,单产与压榨效率受制;南美雨季、巴拿马运河与马六甲海峡通道风险叠加。',
     self: [16, 15, 14, 15, 15, 15],
   },
   {
-    key: 'oil', label: '食用油', accent: '#fb923c', selfRate: 32, dep: 68,
+    key: 'oil', label: '食用油', accent: '#c07a4a', selfRate: 32, dep: 68,
     position: '依赖进口 · 油瓶风险',
     desc: '食用植物油自给率约三成,棕榈油几乎全部进口、菜油豆油原料高度依赖大豆与油菜籽进口,「油瓶子」安全跟随「大豆软肋」共振。',
     choke: '油料作物与粮争地,扩种油菜、花生空间有限;棕榈油来源高度集中于印尼、马来。',
     self: [33, 32, 31, 32, 32, 32],
   },
   {
-    key: 'meat', label: '肉类', accent: '#c41e3a', selfRate: 95, dep: 5,
+    key: 'meat', label: '肉类', accent: '#e5483b', selfRate: 95, dep: 5,
     position: '基本自给 · 饲料拉动',
     desc: '猪牛羊禽肉总体基本自给,但「肉的自给」建立在「豆粕进口」之上——肉类安全本质上是被大豆进口托底的派生安全,牛肉进口依存上升较快。',
     choke: '饲料蛋白（豆粕）对外依存传导;种猪、白羽肉鸡祖代种源曾长期依赖进口。',
     self: [96, 95, 94, 95, 95, 95],
   },
   {
-    key: 'seed', label: '种业', accent: '#8b5cf6', selfRate: 70, dep: 30,
+    key: 'seed', label: '种业', accent: '#b07cc6', selfRate: 70, dep: 30,
     position: '攻坚卡脖子 · 农业芯片',
     desc: '「种子是农业的芯片」。口粮种源自主可控,但部分蔬菜、白羽肉鸡、生猪、玉米大豆高端品种与育种工具仍受制于人,种业振兴是藏粮于技的核心战场。',
     choke: '生物育种基础专利、高通量表型与基因编辑工具;部分高端蔬菜种子进口占比仍高。',
@@ -77,11 +77,11 @@ const SELF_BARS = [
 ];
 
 const STAGES = [
-  { period: '1949–1978', title: '以粮为纲', accent: '#64748b', desc: '统购统销 + 集体化,在低生产力下以行政手段保口粮、压消费,饥荒记忆塑造了「手中有粮、心中不慌」的国家本能。' },
-  { period: '1978–2004', title: '市场化改革', accent: '#22d3ee', desc: '家庭联产承包释放产能,粮食流通逐步市场化,购销价格双轨并轨,温饱问题总体解决,告别票证时代。' },
-  { period: '2004–2013', title: '谷物基本自给 · 口粮绝对安全', accent: '#10b981', desc: '取消农业税 + 粮食直补 + 最低收购价,确立「谷物基本自给、口粮绝对安全」新粮食安全观,产量「十二连增」。' },
-  { period: '2013–2020', title: '藏粮于地 · 藏粮于技', accent: '#e8a317', desc: '划定 18 亿亩耕地红线与永久基本农田,高标准农田与黑土地保护立法,从「保产量」转向「保产能」。' },
-  { period: '2021–', title: '种业振兴 · 大食物观', accent: '#8b5cf6', desc: '《种子法》修订 + 生物育种产业化破冰,提出「大食物观」向森林海洋设施要食物,把饭碗主权升级为大安全观支柱。' },
+  { period: '1949–1978', title: '以粮为纲', accent: '#8a8578', desc: '统购统销 + 集体化,在低生产力下以行政手段保口粮、压消费,饥荒记忆塑造了「手中有粮、心中不慌」的国家本能。' },
+  { period: '1978–2004', title: '市场化改革', accent: '#6e8cff', desc: '家庭联产承包释放产能,粮食流通逐步市场化,购销价格双轨并轨,温饱问题总体解决,告别票证时代。' },
+  { period: '2004–2013', title: '谷物基本自给 · 口粮绝对安全', accent: '#6fc2ae', desc: '取消农业税 + 粮食直补 + 最低收购价,确立「谷物基本自给、口粮绝对安全」新粮食安全观,产量「十二连增」。' },
+  { period: '2013–2020', title: '藏粮于地 · 藏粮于技', accent: '#d4a25a', desc: '划定 18 亿亩耕地红线与永久基本农田,高标准农田与黑土地保护立法,从「保产量」转向「保产能」。' },
+  { period: '2021–', title: '种业振兴 · 大食物观', accent: '#b07cc6', desc: '《种子法》修订 + 生物育种产业化破冰,提出「大食物观」向森林海洋设施要食物,把饭碗主权升级为大安全观支柱。' },
 ];
 
 export default function Page() {
@@ -99,8 +99,8 @@ export default function Page() {
       data: c.self,
       lineStyle: { color: c.accent, width: 2 }, itemStyle: { color: c.accent },
       areaStyle: { color: `${c.accent}18` },
-      markLine: { silent: true, symbol: 'none', label: { formatter: '安全线 95%', color: '#64748b', fontSize: 10 },
-        lineStyle: { color: '#64748b', type: 'dashed' }, data: [{ yAxis: 95 }] } }],
+      markLine: { silent: true, symbol: 'none', label: { formatter: '安全线 95%', color: '#8a8578', fontSize: 10 },
+        lineStyle: { color: '#8a8578', type: 'dashed' }, data: [{ yAxis: 95 }] } }],
   }), [c]);
 
   // 各品种自给率横向对比 bar
@@ -110,10 +110,10 @@ export default function Page() {
     yAxis: categoryX(SELF_BARS.map((x) => x.label)),
     series: [{ type: 'bar', barWidth: 16, data: SELF_BARS.map((x) => ({
       value: x.rate,
-      itemStyle: { color: x.rate >= 90 ? '#10b981' : x.rate >= 50 ? '#e8a317' : '#c41e3a', borderRadius: 3 },
+      itemStyle: { color: x.rate >= 90 ? '#6fc2ae' : x.rate >= 50 ? '#d4a25a' : '#e5483b', borderRadius: 3 },
     })), label: { show: true, position: 'right', formatter: '{c}%', color: LABEL.color, fontSize: 11 },
-      markLine: { silent: true, symbol: 'none', label: { formatter: '95%', color: '#64748b', fontSize: 10 },
-        lineStyle: { color: '#64748b', type: 'dashed' }, data: [{ xAxis: 95 }] } }],
+      markLine: { silent: true, symbol: 'none', label: { formatter: '95%', color: '#8a8578', fontSize: 10 },
+        lineStyle: { color: '#8a8578', type: 'dashed' }, data: [{ xAxis: 95 }] } }],
   }), []);
 
   // 进口依存度（随品类切换）小环
@@ -143,7 +143,7 @@ export default function Page() {
       soybean: [40, 50, 55, 60, 65, 45], oil: [45, 48, 52, 58, 60, 40],
       meat: [85, 70, 60, 72, 75, 50], seed: [70, 75, 60, 70, 70, 58],
     };
-    const ringColor = 'rgba(148,163,184,0.25)';
+    const ringColor = 'rgba(162, 156, 145,0.25)';
     return {
       legend: { data: ['粮食总盘子', c.label], textStyle: { color: LABEL.color, fontSize: 10 }, top: 0, itemWidth: 12 },
       radar: {
@@ -154,7 +154,7 @@ export default function Page() {
       series: [{
         type: 'radar',
         data: [
-          { value: overall, name: '粮食总盘子', lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.10)' } },
+          { value: overall, name: '粮食总盘子', lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' }, areaStyle: { color: 'rgba(110, 140, 255,0.10)' } },
           { value: byCrop[crop] || overall, name: c.label, lineStyle: { color: c.accent, width: 2 }, itemStyle: { color: c.accent }, areaStyle: { color: `${c.accent}1f` } },
         ],
       }],
@@ -168,20 +168,20 @@ export default function Page() {
     xAxis: categoryX(['2015', '2017', '2019', '2021', '2023', '2024']),
     yAxis: [
       { type: 'value', name: '总产/亿吨', min: 6, max: 7, position: 'left',
-        axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.12)' } },
-        nameTextStyle: { color: '#64748b' } },
+        axisLabel: { color: LABEL.color }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.12)' } },
+        nameTextStyle: { color: '#8a8578' } },
       { type: 'value', name: '耕地/亿亩', min: 18, max: 20, position: 'right',
-        axisLabel: { color: LABEL.color }, splitLine: { show: false }, nameTextStyle: { color: '#64748b' } },
+        axisLabel: { color: LABEL.color }, splitLine: { show: false }, nameTextStyle: { color: '#8a8578' } },
     ],
     series: [
       { name: '粮食总产(亿吨)', type: 'bar', yAxisIndex: 0, barWidth: 22,
         data: [6.21, 6.18, 6.64, 6.83, 6.95, 7.06],
-        itemStyle: { color: '#10b981', borderRadius: [3, 3, 0, 0] } },
+        itemStyle: { color: '#6fc2ae', borderRadius: [3, 3, 0, 0] } },
       { name: '耕地面积(亿亩)', type: 'line', yAxisIndex: 1, smooth: true, symbol: 'circle', symbolSize: 6,
         data: [20.25, 20.23, 19.18, 19.14, 19.14, 19.13],
-        lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' },
-        markLine: { silent: true, symbol: 'none', label: { formatter: '18 亿亩红线', color: '#c41e3a', fontSize: 10 },
-          lineStyle: { color: '#c41e3a', type: 'dashed' }, data: [{ yAxis: 18 }] } },
+        lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' },
+        markLine: { silent: true, symbol: 'none', label: { formatter: '18 亿亩红线', color: '#e5483b', fontSize: 10 },
+          lineStyle: { color: '#e5483b', type: 'dashed' }, data: [{ yAxis: 18 }] } },
     ],
   }), []);
 
@@ -189,8 +189,8 @@ export default function Page() {
   const importStack = useMemo(() => stackedBarOpt({
     categories: ['口粮', '玉米', '肉类', '种业', '食用油', '大豆'],
     series: [
-      { name: '国产自给', data: [100, 92, 95, 70, 32, 15], itemStyle: { color: '#10b981' } },
-      { name: '进口依存', data: [0, 8, 5, 30, 68, 85], itemStyle: { color: '#c41e3a' } },
+      { name: '国产自给', data: [100, 92, 95, 70, 32, 15], itemStyle: { color: '#6fc2ae' } },
+      { name: '进口依存', data: [0, 8, 5, 30, 68, 85], itemStyle: { color: '#e5483b' } },
     ],
   }), []);
 
@@ -204,10 +204,10 @@ export default function Page() {
       <IntroCard>粮食安全呈现<strong style={{ color: 'var(--text-primary)' }}>「口粮绝对安全、饲料粮结构性依赖」</strong>的双重现实:18 亿亩耕地红线是物理底线,口粮库存消费比远超国际安全线;而大豆进口依存约 <strong style={{ color: 'var(--text-primary)' }}>85%</strong>、食用油约 68%,构成地缘风险敞口。安全不是产量数字,而是<strong style={{ color: 'var(--text-primary)' }}>「极端断供下饭碗端在谁手里」</strong>的权力物理。</IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="7.06 亿吨" label="粮食总产(2024 示意)" accent="#10b981" />
-        <Stat value="95%+" label="谷物自给率" accent="#22d3ee" />
-        <Stat value="85%" label="大豆进口依存" accent="#e8a317" />
-        <Stat value="19.13 亿亩" label="耕地面积 · 守住红线" accent="#c41e3a" />
+        <Stat value="7.06 亿吨" label="粮食总产(2024 示意)" accent="#6fc2ae" />
+        <Stat value="95%+" label="谷物自给率" accent="#6e8cff" />
+        <Stat value="85%" label="大豆进口依存" accent="#d4a25a" />
+        <Stat value="19.13 亿亩" label="耕地面积 · 守住红线" accent="#e5483b" />
       </Grid>
 
       <Card title="交互 · 粮食品类选择器（口粮 / 玉米 / 大豆 / 食用油 / 肉类 / 种业）" className="mb-6">
@@ -218,12 +218,12 @@ export default function Page() {
             <span className="text-xs px-2 py-0.5 rounded" style={{ background: `${c.accent}1a`, color: c.accent }}>战略定位 · {c.position}</span>
           </div>
           <p className="text-sm leading-relaxed mb-2" style={{ color: 'var(--text-secondary)' }}>{c.desc}</p>
-          <p className="text-xs leading-relaxed" style={{ color: 'var(--text-muted)' }}><strong style={{ color: '#fb923c' }}>卡脖子点:</strong> {c.choke}</p>
+          <p className="text-xs leading-relaxed" style={{ color: 'var(--text-muted)' }}><strong style={{ color: '#c07a4a' }}>卡脖子点:</strong> {c.choke}</p>
         </div>
         <Grid cols={3} className="mb-4">
           <Stat value={`${c.selfRate}%`} label={`${c.label} · 自给率`} accent={c.accent} />
-          <Stat value={`${c.dep}%`} label="进口依存(示意)" accent="#e8a317" />
-          <Stat value={c.position.split(' · ')[0]} label="安全定位" accent="#8b5cf6" />
+          <Stat value={`${c.dep}%`} label="进口依存(示意)" accent="#d4a25a" />
+          <Stat value={c.position.split(' · ')[0]} label="安全定位" accent="#b07cc6" />
         </Grid>
         <Grid cols={2}>
           <Card title="自给率走势（随品类切换 · 95% 安全线）"><EChart option={selfSufficiency} style={{ height: 240 }} /></Card>
@@ -252,13 +252,13 @@ export default function Page() {
       <Card title="区域格局 · 粮食主产区与调出调入版图" className="mb-6">
         <SelectorBar
           items={[
-            { key: 'grain', label: '主产区产量', accent: '#10b981' },
-            { key: 'flow', label: '调出/调入格局', accent: '#22d3ee' },
+            { key: 'grain', label: '主产区产量', accent: '#6fc2ae' },
+            { key: 'flow', label: '调出/调入格局', accent: '#6e8cff' },
           ]}
           activeKey={mapView}
           onSelect={setMapView}
         />
-        <div className="os-card p-4 mb-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #10b981' }}>
+        <div className="os-card p-4 mb-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #6fc2ae' }}>
           <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
             {mapView === 'grain'
               ? '产量高度集中:黑龙江、河南、山东、安徽、吉林五省贡献全国近半产量,「北粮南运」格局固化——粮食安全的空间结构本身就是一种战略纵深。'

@@ -9,9 +9,9 @@
   --sd-text: #e7ecea;
   --sd-text-dim: #93a6a4;
   --sd-text-faint: #5f7370;
-  --sd-brass: #b18a52;
+  --sd-brass: #d4a25a;
   --sd-brass-dim: #6b5733;
-  --sd-celadon: #79a496;
+  --sd-celadon: #6fc2ae;
   --sd-red: #cf4a3d;
   --sd-red-bg: #2a1513;
   --sd-amber: #cf9a32;
@@ -83,7 +83,7 @@
 }
 #sd-app .sd-verdict::before {
   content: ""; position: absolute; inset: 0; border-radius: 12px;
-  border: 1px solid rgba(177, 138, 82, .12); pointer-events: none;
+  border: 1px solid rgba(212, 162, 90, .12); pointer-events: none;
 }
 #sd-app .sd-verdict-top {
   display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap;
@@ -274,7 +274,7 @@
 #sd-app .sd-obs-links { margin-top: 4px; display: flex; gap: 4px; flex-wrap: wrap; }
 #sd-app .sd-obs-link {
   font-family: var(--sd-mono); font-size: 9px; letter-spacing: .06em;
-  color: var(--sd-celadon); background: rgba(121, 164, 150, .12);
+  color: var(--sd-celadon); background: rgba(111, 194, 174, .12);
   padding: 1px 5px; border-radius: 3px;
 }
 #sd-app .sd-obs-val { white-space: nowrap; }
@@ -302,7 +302,7 @@
 #sd-app .sd-obs-foot b { color: var(--sd-text-dim); font-weight: 500; }
 #sd-app .sd-obs-foot code {
   font-family: var(--sd-mono); font-size: 10px; color: var(--sd-celadon);
-  background: rgba(121, 164, 150, .1); padding: 1px 4px; border-radius: 3px;
+  background: rgba(111, 194, 174, .1); padding: 1px 4px; border-radius: 3px;
 }
 
 @media (max-width: 560px) {

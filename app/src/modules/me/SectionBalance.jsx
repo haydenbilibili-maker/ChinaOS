@@ -14,29 +14,29 @@ import { AXIS, LABEL, GRID_LINE, CHART_SERIES_PALETTE } from '../shared/chartHel
 
 // —— 资产：可转移 / 还在增值的能力（青/绿系）——
 const ASSETS = [
-  { name: '国际化增长方法论', value: 90, color: '#22d3ee',
+  { name: '国际化增长方法论', value: 90, color: '#6e8cff',
     note: '中国供给 × 全球市场仍是长坡，方法论可跨地域、跨品类复用，越用越厚' },
-  { name: '0-1 冷启动闭环', value: 86, color: '#10b981',
+  { name: '0-1 冷启动闭环', value: 86, color: '#6fc2ae',
     note: 'Kwai / Snack / B站东南亚多次 0→1，从 0 搭体系的肌肉记忆稀缺且通用' },
-  { name: '跨文化团队管理', value: 82, color: '#22d3ee',
+  { name: '跨文化团队管理', value: 82, color: '#6e8cff',
     note: '带过中/印/菲/泰/越 50+ 跨国团队，全球化与远程协作浪潮下持续增值' },
-  { name: 'AIGC 实战（Gemini/Flux/Cursor）', value: 88, color: '#10b981',
+  { name: 'AIGC 实战（Gemini/Flux/Cursor）', value: 88, color: '#6fc2ae',
     note: '微调 200+ NPC、Cursor 10W+ 行——踩在 AI 超级个体的上升直线上，复利最快' },
-  { name: '社区生态构建', value: 78, color: '#22d3ee',
+  { name: '社区生态构建', value: 78, color: '#6e8cff',
     note: '从内容分发到 UGC 生态的底层手感，迁移到任何「人 + 内容」的产品都成立' },
 ];
 
 // —— 负债：折旧 / 绑定风险（朱砂 / 赭系）——
 const LIABILITIES = [
-  { name: '大厂体系依赖', value: 72, color: '#c41e3a',
+  { name: '大厂体系依赖', value: 72, color: '#e5483b',
     note: '过往战绩高度依赖平台流量与资源杠杆，脱离体系后边界能力需重新证明' },
-  { name: '出海红利绑定', value: 80, color: '#fb923c',
+  { name: '出海红利绑定', value: 80, color: '#c07a4a',
     note: '十年战绩绑在 2018–2022 那班车上，窗口收口后同样的打法弹性骤降' },
-  { name: '年龄议价折旧', value: 68, color: '#e8a317',
+  { name: '年龄议价折旧', value: 68, color: '#d4a25a',
     note: '35 岁后社会时钟与议价权同向下行，经验溢价被「中年」标签部分对冲' },
-  { name: '单一行业暴露（泛娱乐）', value: 74, color: '#c41e3a',
+  { name: '单一行业暴露（泛娱乐）', value: 74, color: '#e5483b',
     note: '十年压在泛娱乐/社交一条赛道，行业 β 退潮时缺第二曲线缓冲' },
-  { name: '一线 SOP × 三线土壤错配', value: 70, color: '#fb923c',
+  { name: '一线 SOP × 三线土壤错配', value: 70, color: '#c07a4a',
     note: '一线与海外攒下的方法论落到东北中等城市水土不服，须打折重学' },
 ];
 
@@ -112,18 +112,18 @@ export default function SectionBalance() {
   return (
     <Card title="⑯ 能力资产负债表 · 哪些在增值，哪些在折旧" className="mt-6">
       {/* 净值读数 */}
-      <div className="os-card p-4 mb-5" style={{ borderLeft: '3px solid #22d3ee' }}>
+      <div className="os-card p-4 mb-5" style={{ borderLeft: '3px solid #6e8cff' }}>
         <div className="flex flex-wrap items-baseline gap-x-6 gap-y-1">
           <div>
-            <span className="text-2xl font-semibold mono" style={{ color: net >= 0 ? '#10b981' : '#c41e3a' }}>
+            <span className="text-2xl font-semibold mono" style={{ color: net >= 0 ? '#6fc2ae' : '#e5483b' }}>
               {net >= 0 ? '+' : ''}{net}
             </span>
             <span className="text-[11px] mono ml-2" style={{ color: 'var(--text-tertiary)' }}>能力净值（资产均值 − 负债均值）</span>
           </div>
           <div className="text-xs mono" style={{ color: 'var(--text-tertiary)' }}>
-            资产均值 <span style={{ color: '#22d3ee' }}>{assetAvg}</span>
+            资产均值 <span style={{ color: '#6e8cff' }}>{assetAvg}</span>
             <span className="mx-1.5">·</span>
-            负债均值 <span style={{ color: '#c41e3a' }}>{liabAvg}</span>
+            负债均值 <span style={{ color: '#e5483b' }}>{liabAvg}</span>
           </div>
         </div>
         <p className="text-xs mt-2" style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>
@@ -134,14 +134,14 @@ export default function SectionBalance() {
       <div className="grid md:grid-cols-2 gap-x-8 gap-y-2">
         {/* 左栏 · 资产 */}
         <div>
-          <div className="text-[11px] mono mb-3 pb-1.5 border-b" style={{ color: '#22d3ee', borderColor: 'var(--border-subtle)' }}>
+          <div className="text-[11px] mono mb-3 pb-1.5 border-b" style={{ color: '#6e8cff', borderColor: 'var(--border-subtle)' }}>
             资产 · 可转移 / 增值能力（越高越厚）
           </div>
           {ASSETS.map((a) => <Meter key={a.name} {...a} />)}
         </div>
         {/* 右栏 · 负债 */}
         <div>
-          <div className="text-[11px] mono mb-3 pb-1.5 border-b" style={{ color: '#c41e3a', borderColor: 'var(--border-subtle)' }}>
+          <div className="text-[11px] mono mb-3 pb-1.5 border-b" style={{ color: '#e5483b', borderColor: 'var(--border-subtle)' }}>
             负债 · 折旧 / 绑定风险（越高越重）
           </div>
           {LIABILITIES.map((l) => <Meter key={l.name} {...l} />)}

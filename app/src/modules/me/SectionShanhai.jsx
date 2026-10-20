@@ -14,7 +14,7 @@ import { AXIS, LABEL, GRID_LINE, CHART_SERIES_PALETTE } from '../shared/chartHel
 // 非投资建议；合伙人以角色代称，不披露第三方个人信息。
 // ============================================================================
 
-const C = { cinnabar: '#c41e3a', cyan: '#22d3ee', ochre: '#e8a317', green: '#10b981', violet: '#8b5cf6', slate: '#94a3b8' };
+const C = { cinnabar: '#e5483b', cyan: '#6e8cff', ochre: '#d4a25a', green: '#6fc2ae', violet: '#b07cc6', slate: '#a29c91' };
 
 const SUBTABS = [
   { key: 'overview', label: '概览', accent: C.cinnabar },
@@ -94,7 +94,7 @@ function siteRadarOption() {
         { name: '决策得分', max: 4 }, { name: '年营收(百万)', max: 4 }, { name: '年净现金(十万)', max: 5 },
         { name: '调性匹配', max: 100 }, { name: '交通', max: 100 },
       ],
-      axisName: { color: LABEL.color, fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+      axisName: { color: LABEL.color, fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
       axisLine: { lineStyle: { color: GRID_LINE.lineStyle.color } }, splitArea: { show: false },
     },
     series: [{
@@ -235,7 +235,7 @@ export default function SectionShanhai() {
                   <span className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{s.name}</span>
                   <span className="text-[11px] mono" style={{ color: s.color }}>{s.pct}%</span>
                 </div>
-                <div className="h-1.5 rounded mb-1.5" style={{ background: 'rgba(148,163,184,0.12)' }}>
+                <div className="h-1.5 rounded mb-1.5" style={{ background: 'rgba(162, 156, 145,0.12)' }}>
                   <div style={{ width: `${s.pct}%`, height: '100%', borderRadius: 4, background: s.color }} />
                 </div>
                 <div className="text-[11px]" style={{ color: 'var(--text-tertiary)', lineHeight: 1.6 }}>{s.note}</div>

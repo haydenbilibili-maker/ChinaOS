@@ -84,8 +84,8 @@ export default function MacroTab({ wb }) {
         smooth: true,
         symbol: 'circle',
         symbolSize: 5,
-        lineStyle: { width: 2, color: '#e8a317' },
-        itemStyle: { color: '#e8a317' },
+        lineStyle: { width: 2, color: '#d4a25a' },
+        itemStyle: { color: '#d4a25a' },
         data: rows.map((r) => r.gdpGrowth ?? null),
       });
     }
@@ -164,11 +164,11 @@ export default function MacroTab({ wb }) {
       },
       series: [{
         type: 'line', data: vals, smooth: true, symbol: 'none',
-        lineStyle: { width: 2, color: '#22d3ee' },
-        areaStyle: { color: 'rgba(34,211,238,0.12)' },
+        lineStyle: { width: 2, color: '#6e8cff' },
+        areaStyle: { color: 'rgba(110, 140, 255,0.12)' },
         markPoint: last ? {
           symbol: 'circle', symbolSize: 8,
-          itemStyle: { color: '#22d3ee' },
+          itemStyle: { color: '#6e8cff' },
           label: { color: '#e6edf6', fontSize: 10, formatter: '最新' },
           data: [{ coord: [String(last.year), last.value] }],
         } : undefined,
@@ -277,7 +277,7 @@ export default function MacroTab({ wb }) {
             )}
           </div>
           <div className="min-w-0 flex flex-col gap-3">
-            <div className="os-card p-4" style={{ borderLeft: '3px solid #22d3ee' }}>
+            <div className="os-card p-4" style={{ borderLeft: '3px solid #6e8cff' }}>
               <div className="text-xs mono mb-1" style={{ color: 'var(--text-tertiary)' }}>{wbDef?.label || '—'} · 最新值</div>
               <div className="mono text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
                 {wbSeries?.latest ? wbStat(wbSeries.latest.value, wbDef?.kind || 'pct') : (wb.loading ? '载入中' : '—')}

@@ -28,9 +28,9 @@ function simulate(herders, governance) {
 }
 
 const SOLUTIONS = [
-  ['产权 · 私有化', '#e8a317', '把公地切给个体（科斯）：边界清晰则外部性内部化，但分割成本高、生态系统难切分（一条河、一片大气切给谁？）。', '适用：资源可分割、产权可执行', '失灵：测量/排他成本过高，或切分破坏生态整体性'],
-  ['管制 · 利维坦', '#22d3ee', '由国家设配额、征税、强制（哈丁原解）：自上而下监控成本高，且地方信息不对称，易僵化与寻租。', '适用：危害剧烈、需快速统一行动', '失灵：信息不对称→一刀切；监管被俘获；执行成本爆炸'],
-  ['自治 · 奥斯特罗姆', '#10b981', '社群自定规则、分级制裁、低成本冲突调解（八项设计原则）：在边界可识别、可重复博弈处往往最优——破解「必然私有化或国有化」的迷思。', '适用：社群稳定、博弈可重复、边界可识别', '失灵：成员流动性高、外部冲击大、上级不承认自治权'],
+  ['产权 · 私有化', '#d4a25a', '把公地切给个体（科斯）：边界清晰则外部性内部化，但分割成本高、生态系统难切分（一条河、一片大气切给谁？）。', '适用：资源可分割、产权可执行', '失灵：测量/排他成本过高，或切分破坏生态整体性'],
+  ['管制 · 利维坦', '#6e8cff', '由国家设配额、征税、强制（哈丁原解）：自上而下监控成本高，且地方信息不对称，易僵化与寻租。', '适用：危害剧烈、需快速统一行动', '失灵：信息不对称→一刀切；监管被俘获；执行成本爆炸'],
+  ['自治 · 奥斯特罗姆', '#6fc2ae', '社群自定规则、分级制裁、低成本冲突调解（八项设计原则）：在边界可识别、可重复博弈处往往最优——破解「必然私有化或国有化」的迷思。', '适用：社群稳定、博弈可重复、边界可识别', '失灵：成员流动性高、外部冲击大、上级不承认自治权'],
 ];
 
 const MAPPINGS = [
@@ -64,19 +64,19 @@ const COMMONS_CASES = [
 
 // —— 中国语境治理设计对照 ——
 const CHINA_CASES = [
-  ['黄河水权分配', '管制为骨 + 准产权为肉', '「八七分水」方案按省分配额度 + 水权交易试点（宁夏→内蒙古）；统一调度委员会扮演嵌套层级中的协调中心。', '#22d3ee'],
-  ['碳排放配额', '管制 × 产权混合', '全国碳市场（ETS）：总量由国家定（利维坦），配额可交易（产权），MRV 监测对应「有效监督」原则。', '#e8a317'],
-  ['渔业伏季休渔', '管制 + 社群执行', '统一禁渔期自上而下设定，但渔村互监、渔政与合作社共治——隐含分级惩罚与本地匹配两原则。', '#10b981'],
-  ['数据公地', '规则真空期', '数据可复制（非竞争）但隐私/安全外部性强；《数据二十条》尝试「三权分置」造准产权，公共数据开放对应公地正向供给。', '#c41e3a'],
+  ['黄河水权分配', '管制为骨 + 准产权为肉', '「八七分水」方案按省分配额度 + 水权交易试点（宁夏→内蒙古）；统一调度委员会扮演嵌套层级中的协调中心。', '#6e8cff'],
+  ['碳排放配额', '管制 × 产权混合', '全国碳市场（ETS）：总量由国家定（利维坦），配额可交易（产权），MRV 监测对应「有效监督」原则。', '#d4a25a'],
+  ['渔业伏季休渔', '管制 + 社群执行', '统一禁渔期自上而下设定，但渔村互监、渔政与合作社共治——隐含分级惩罚与本地匹配两原则。', '#6fc2ae'],
+  ['数据公地', '规则真空期', '数据可复制（非竞争）但隐私/安全外部性强；《数据二十条》尝试「三权分置」造准产权，公共数据开放对应公地正向供给。', '#e5483b'],
 ];
 
 // —— 理论演进时间轴 ——
 const TIMELINE = [
-  { period: '1965', title: '奥尔森 · 集体行动', accent: '#e8a317', desc: '《集体行动的逻辑》：大集团比小集团更难供给公共品——搭便车随规模上升，需「选择性激励」才能组织起来。' },
-  { period: '1968', title: '哈丁 · 公地悲剧', accent: '#c41e3a', desc: '《Science》经典论文：自由取用的公地必然过载——「公地自由毁掉一切」。给出私有化或国家管制两条出路。' },
-  { period: '1990', title: '奥斯特罗姆 · 实证反击', accent: '#10b981', desc: '《公共事物的治理之道》：对全球数百个灌溉/渔场/森林社群的实证——自主治理真实存在，提炼八项设计原则。' },
-  { period: '2009', title: '诺贝尔经济学奖', accent: '#10b981', desc: '奥斯特罗姆成为首位经济学奖女性得主——表彰「对经济治理尤其是公地治理的分析」。' },
-  { period: '2010s', title: '多中心治理', accent: '#22d3ee', desc: '气候治理从单一全球条约转向多中心：城市联盟、行业协议、国家政策并行嵌套，呼应第八条原则。' },
+  { period: '1965', title: '奥尔森 · 集体行动', accent: '#d4a25a', desc: '《集体行动的逻辑》：大集团比小集团更难供给公共品——搭便车随规模上升，需「选择性激励」才能组织起来。' },
+  { period: '1968', title: '哈丁 · 公地悲剧', accent: '#e5483b', desc: '《Science》经典论文：自由取用的公地必然过载——「公地自由毁掉一切」。给出私有化或国家管制两条出路。' },
+  { period: '1990', title: '奥斯特罗姆 · 实证反击', accent: '#6fc2ae', desc: '《公共事物的治理之道》：对全球数百个灌溉/渔场/森林社群的实证——自主治理真实存在，提炼八项设计原则。' },
+  { period: '2009', title: '诺贝尔经济学奖', accent: '#6fc2ae', desc: '奥斯特罗姆成为首位经济学奖女性得主——表彰「对经济治理尤其是公地治理的分析」。' },
+  { period: '2010s', title: '多中心治理', accent: '#6e8cff', desc: '气候治理从单一全球条约转向多中心：城市联盟、行业协议、国家政策并行嵌套，呼应第八条原则。' },
   { period: '2020s', title: '全球公地时代', accent: '#a78bfa', desc: '气候/太空轨道/AI 安全把公地问题推到全球尺度——恰是奥尔森「最大集团」最难自治的区间。' },
 ];
 
@@ -100,7 +100,7 @@ export default function Page() {
 
   const nChecked = checked.filter(Boolean).length;
   const prob = sustainProb(nChecked);
-  const verdict = nChecked >= 6 ? ['自治可行', '#10b981', '制度齐备：自主治理大概率可持续，且比外部管制更低成本。'] : nChecked >= 4 ? ['脆弱均衡', '#e8a317', '部分原则在位：常态下可维持，遇外部冲击（移民/市场化/上级干预）易瓦解。'] : ['走向悲剧', '#c41e3a', '设计原则缺位过多：搭便车无人制止，公地将按哈丁剧本枯竭——只剩私有化或利维坦。'];
+  const verdict = nChecked >= 6 ? ['自治可行', '#6fc2ae', '制度齐备：自主治理大概率可持续，且比外部管制更低成本。'] : nChecked >= 4 ? ['脆弱均衡', '#d4a25a', '部分原则在位：常态下可维持，遇外部冲击（移民/市场化/上级干预）易瓦解。'] : ['走向悲剧', '#e5483b', '设计原则缺位过多：搭便车无人制止，公地将按哈丁剧本枯竭——只剩私有化或利维坦。'];
   const toggle = (i) => setChecked((arr) => arr.map((v, j) => (j === i ? !v : v)));
 
   const cs = COMMONS_CASES.find((c) => c.key === caseKey);
@@ -108,12 +108,12 @@ export default function Page() {
   const chart = {
     grid: { left: 40, right: 16, top: 24, bottom: 24 },
     xAxis: { type: 'category', boundaryGap: false, data: series.map((_, i) => i), axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
-    yAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } }, axisLabel: { color: LABEL.color } },
+    yAxis: { type: 'value', max: 100, splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } }, axisLabel: { color: LABEL.color } },
     series: [{
       type: 'line', smooth: true, data: series, showSymbol: false,
-      lineStyle: { color: collapsed ? '#c41e3a' : '#10b981', width: 2 },
-      areaStyle: { color: collapsed ? 'rgba(196,30,58,0.12)' : 'rgba(16,185,129,0.12)' },
-      markLine: { silent: true, symbol: 'none', label: { color: LABEL.color, fontSize: 10 }, lineStyle: { color: '#e8a317', type: 'dashed' }, data: [{ yAxis: 20, name: '临界存量' }] },
+      lineStyle: { color: collapsed ? '#e5483b' : '#6fc2ae', width: 2 },
+      areaStyle: { color: collapsed ? 'rgba(229, 72, 59,0.12)' : 'rgba(111, 194, 174,0.12)' },
+      markLine: { silent: true, symbol: 'none', label: { color: LABEL.color, fontSize: 10 }, lineStyle: { color: '#d4a25a', type: 'dashed' }, data: [{ yAxis: 20, name: '临界存量' }] },
     }],
   };
 
@@ -121,12 +121,12 @@ export default function Page() {
   const probChart = useMemo(() => ({
     grid: { left: 44, right: 18, top: 28, bottom: 28 },
     xAxis: categoryX([0, 1, 2, 3, 4, 5, 6, 7, 8].map(String)),
-    yAxis: valueY({ max: 100, name: '自治概率 %', nameTextStyle: { color: '#5b6a82' } }),
+    yAxis: valueY({ max: 100, name: '自治概率 %', nameTextStyle: { color: '#8a847a' } }),
     series: [{
       type: 'line', smooth: true, showSymbol: true, symbolSize: 6,
       data: [0, 1, 2, 3, 4, 5, 6, 7, 8].map((n) => sustainProb(n)),
-      lineStyle: { color: '#10b981', width: 2 }, itemStyle: { color: '#10b981' },
-      areaStyle: { color: 'rgba(16,185,129,0.10)' },
+      lineStyle: { color: '#6fc2ae', width: 2 }, itemStyle: { color: '#6fc2ae' },
+      areaStyle: { color: 'rgba(111, 194, 174,0.10)' },
       markPoint: { data: [{ coord: [nChecked, prob], symbolSize: 44, itemStyle: { color: verdict[1] }, label: { show: true, formatter: `${prob}%`, color: '#0b1120', fontSize: 10, fontWeight: 700 } }] },
     }],
   }), [nChecked, prob, verdict]);
@@ -140,10 +140,10 @@ export default function Page() {
       grid: { left: 44, right: 44, top: 36, bottom: 28 },
       legend: { top: 4, textStyle: { color: LABEL.color, fontSize: 10 }, data: ['搭便车率 %', '组织成本指数'] },
       xAxis: categoryX(sizes.map(String)),
-      yAxis: [valueY({ max: 100, name: '搭便车率 %', nameTextStyle: { color: '#5b6a82' } }), { type: 'value', name: '组织成本', nameTextStyle: { color: '#5b6a82' }, splitLine: { show: false }, axisLabel: { color: LABEL.color } }],
+      yAxis: [valueY({ max: 100, name: '搭便车率 %', nameTextStyle: { color: '#8a847a' } }), { type: 'value', name: '组织成本', nameTextStyle: { color: '#8a847a' }, splitLine: { show: false }, axisLabel: { color: LABEL.color } }],
       series: [
-        { name: '搭便车率 %', type: 'line', smooth: true, data: freeride, showSymbol: false, lineStyle: { color: '#c41e3a', width: 2 } },
-        { name: '组织成本指数', type: 'line', smooth: true, yAxisIndex: 1, data: orgCost, showSymbol: false, lineStyle: { color: '#e8a317', width: 2, type: 'dashed' } },
+        { name: '搭便车率 %', type: 'line', smooth: true, data: freeride, showSymbol: false, lineStyle: { color: '#e5483b', width: 2 } },
+        { name: '组织成本指数', type: 'line', smooth: true, yAxisIndex: 1, data: orgCost, showSymbol: false, lineStyle: { color: '#d4a25a', width: 2, type: 'dashed' } },
       ],
     };
   }, []);
@@ -168,15 +168,15 @@ export default function Page() {
       </div>
 
       <Grid cols={3} className="mb-6">
-        <Stat value={endStock} label="期末资源存量（满分100）" accent={collapsed ? '#c41e3a' : endStock > 40 ? '#10b981' : '#e8a317'} />
-        <Stat value={collapsed ? '已崩溃' : '可持续'} label="公地终局" accent={collapsed ? '#c41e3a' : '#10b981'} />
-        <Stat value={difficulty} label="集体行动难度指数（奥尔森）" accent="#22d3ee" />
+        <Stat value={endStock} label="期末资源存量（满分100）" accent={collapsed ? '#e5483b' : endStock > 40 ? '#6fc2ae' : '#d4a25a'} />
+        <Stat value={collapsed ? '已崩溃' : '可持续'} label="公地终局" accent={collapsed ? '#e5483b' : '#6fc2ae'} />
+        <Stat value={difficulty} label="集体行动难度指数（奥尔森）" accent="#6e8cff" />
       </Grid>
 
       <Grid cols={2} className="mb-6">
         <Card title="参数 · 拖动调参">
-          <Slider val={herders} set={setHerders} min={3} max={60} label="放牧者数量 / 集团规模" color="#c41e3a" />
-          <Slider val={governance} set={setGovernance} min={0} max={90} label="治理强度（规则/制裁/激励）" color="#10b981" />
+          <Slider val={herders} set={setHerders} min={3} max={60} label="放牧者数量 / 集团规模" color="#e5483b" />
+          <Slider val={governance} set={setGovernance} min={0} max={90} label="治理强度（规则/制裁/激励）" color="#6fc2ae" />
           <p className="text-[11px] mt-1" style={{ color: 'var(--text-tertiary)' }}>规模越大越快越过临界线（虚线＝再生跟不上索取）；唯有把治理拉够高，曲线才从崩溃转为可持续。这正是「规模 vs 自律」的张力。</p>
         </Card>
         <Card title="资源存量演化（示意）">
@@ -190,9 +190,9 @@ export default function Page() {
           <div>
             {PRINCIPLES.map(([t, d], i) => (
               <label key={t} className="flex items-start gap-2 mb-2 cursor-pointer" style={{ opacity: checked[i] ? 1 : 0.55 }}>
-                <input type="checkbox" checked={checked[i]} onChange={() => toggle(i)} style={{ accentColor: '#10b981', marginTop: 2 }} />
+                <input type="checkbox" checked={checked[i]} onChange={() => toggle(i)} style={{ accentColor: '#6fc2ae', marginTop: 2 }} />
                 <span>
-                  <span className="text-xs font-semibold" style={{ color: checked[i] ? '#10b981' : 'var(--text-secondary)' }}>{i + 1}. {t}</span>
+                  <span className="text-xs font-semibold" style={{ color: checked[i] ? '#6fc2ae' : 'var(--text-secondary)' }}>{i + 1}. {t}</span>
                   <span className="text-[11px] block leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</span>
                 </span>
               </label>
@@ -212,7 +212,7 @@ export default function Page() {
         <SelectorBar items={COMMONS_CASES} activeKey={caseKey} onSelect={setCaseKey} />
         <Grid cols={2} className="mt-3">
           <div>
-            {[['公地属性', cs.attr, '#22d3ee'], ['搭便车结构', cs.freeride, '#c41e3a'], ['现有治理', cs.regime, '#10b981'], ['失灵点', cs.failure, '#e8a317']].map(([t, d, c]) => (
+            {[['公地属性', cs.attr, '#6e8cff'], ['搭便车结构', cs.freeride, '#e5483b'], ['现有治理', cs.regime, '#6fc2ae'], ['失灵点', cs.failure, '#d4a25a']].map(([t, d, c]) => (
               <div key={t} className="mb-2" style={{ borderLeft: `2px solid ${c}`, paddingLeft: 10 }}>
                 <div className="text-xs font-semibold" style={{ color: c }}>{t}</div>
                 <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
@@ -220,10 +220,10 @@ export default function Page() {
             ))}
           </div>
           <div>
-            <div className="text-xs mb-2" style={{ color: 'var(--text-secondary)' }}>八原则达标数（粗评）：<span className="mono font-semibold" style={{ color: cs.score >= 6 ? '#10b981' : cs.score >= 4 ? '#e8a317' : '#c41e3a' }}>{cs.score}/8</span></div>
+            <div className="text-xs mb-2" style={{ color: 'var(--text-secondary)' }}>八原则达标数（粗评）：<span className="mono font-semibold" style={{ color: cs.score >= 6 ? '#6fc2ae' : cs.score >= 4 ? '#d4a25a' : '#e5483b' }}>{cs.score}/8</span></div>
             <div style={{ display: 'flex', gap: 4, marginBottom: 10 }}>
               {Array.from({ length: 8 }).map((_, i) => (
-                <div key={i} style={{ flex: 1, height: 8, borderRadius: 2, background: i < cs.score ? (cs.score >= 6 ? '#10b981' : cs.score >= 4 ? '#e8a317' : '#c41e3a') : 'rgba(148,163,184,0.15)' }} />
+                <div key={i} style={{ flex: 1, height: 8, borderRadius: 2, background: i < cs.score ? (cs.score >= 6 ? '#6fc2ae' : cs.score >= 4 ? '#d4a25a' : '#e5483b') : 'rgba(162, 156, 145,0.15)' }} />
               ))}
             </div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
@@ -238,7 +238,7 @@ export default function Page() {
           <EChart option={olsonChart} style={{ height: 230 }} />
           <div>
             <p className="text-xs leading-relaxed mb-2" style={{ color: 'var(--text-secondary)' }}>
-              规模上升 → 单人贡献占比趋零、偷懒被发现概率趋零 → <strong style={{ color: '#c41e3a' }}>搭便车率攀升</strong>；同时谈判/监督的<strong style={{ color: '#e8a317' }}>组织成本超线性增长</strong>。这解释了：
+              规模上升 → 单人贡献占比趋零、偷懒被发现概率趋零 → <strong style={{ color: '#e5483b' }}>搭便车率攀升</strong>；同时谈判/监督的<strong style={{ color: '#d4a25a' }}>组织成本超线性增长</strong>。这解释了：
             </p>
             <ul className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)', paddingLeft: 16, listStyle: 'disc' }}>
               <li>奥斯特罗姆的成功案例多在数十到数百人的村社尺度；</li>
@@ -255,8 +255,8 @@ export default function Page() {
             <div key={t} className="os-card p-3" style={{ background: 'var(--bg-elevated)', borderLeft: `2px solid ${c}` }}>
               <div className="text-sm font-semibold mb-1" style={{ color: c }}>{t}</div>
               <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
-              <p className="text-[11px] mt-2" style={{ color: '#10b981' }}>✓ {fit}</p>
-              <p className="text-[11px]" style={{ color: '#c41e3a' }}>✗ {fail}</p>
+              <p className="text-[11px] mt-2" style={{ color: '#6fc2ae' }}>✓ {fit}</p>
+              <p className="text-[11px]" style={{ color: '#e5483b' }}>✗ {fail}</p>
             </div>
           ))}
         </Grid>

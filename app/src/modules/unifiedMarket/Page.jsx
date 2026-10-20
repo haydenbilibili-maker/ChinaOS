@@ -19,8 +19,8 @@ const fragOpt = {
   yAxis: valueY({ name: '指数', min: 0.5, max: 1.0 }),
   series: [{
     type: 'line', smooth: true, data: [0.92, 0.86, 0.80, 0.78, 0.72, 0.68],
-    lineStyle: { color: '#e8a317', width: 2 }, areaStyle: { color: 'rgba(232,163,23,0.1)' },
-    markLine: { silent: true, data: [{ yAxis: 0.6, label: { formatter: '统一市场目标', color: LABEL.color }, lineStyle: { color: '#10b981', type: 'dashed' } }] },
+    lineStyle: { color: '#d4a25a', width: 2 }, areaStyle: { color: 'rgba(212, 162, 90,0.1)' },
+    markLine: { silent: true, data: [{ yAxis: 0.6, label: { formatter: '统一市场目标', color: LABEL.color }, lineStyle: { color: '#6fc2ae', type: 'dashed' } }] },
   }],
 };
 
@@ -32,7 +32,7 @@ const barrierOpt = {
   series: [{
     type: 'bar', barWidth: 14,
     data: [78, 72, 45, 68, 52, 58],
-    itemStyle: { color: (p) => ['#c41e3a', '#e8a317', '#10b981', '#8b5cf6', '#22d3ee', '#fb923c'][p.dataIndex] },
+    itemStyle: { color: (p) => ['#e5483b', '#d4a25a', '#6fc2ae', '#b07cc6', '#6e8cff', '#c07a4a'][p.dataIndex] },
     label: { show: true, position: 'right', color: LABEL.color },
   }],
 };
@@ -42,35 +42,35 @@ const DIMS = ['推进力度', '壁垒拆除', '制度完备', '执行到位', '�
 
 const PILLARS = [
   {
-    key: 'property', label: '产权统一', accent: '#c41e3a',
+    key: 'property', label: '产权统一', accent: '#e5483b',
     scores: [70, 55, 65, 50, 48],
     thesis: '统一的产权保护与市场准入是大市场的法理地基——以全国一张「负面清单」消除隐性壁垒，让不同所有制、不同地域主体同台竞争。',
     measures: ['市场准入负面清单全国统一，破除「玻璃门/弹簧门」', '产权保护司法标准统一，民营/外资平等保护', '清理招投标/政府采购中的地域歧视性条款'],
     blocker: '地方以「备案」「资质」「目录」等隐性手段变相设限，执行端识别难、纠偏滞后。',
   },
   {
-    key: 'facility', label: '设施统一', accent: '#22d3ee',
+    key: 'facility', label: '设施统一', accent: '#6e8cff',
     scores: [75, 70, 72, 60, 65],
     thesis: '物流、信息、能源等基础设施互联互通，是商品要素跨域流动的物理前提——降低制度性交易成本与「最后一公里」的地方割据。',
     measures: ['国家物流枢纽网络、多式联运标准统一', '统一电子证照、信用信息、电力交易平台', '现代流通体系降本（社会物流总费用/GDP 下行）'],
     blocker: '跨省结算、数据互认、收费公路等存在路径依赖与地方利益固化。',
   },
   {
-    key: 'factor', label: '要素统一', accent: '#10b981',
+    key: 'factor', label: '要素统一', accent: '#6fc2ae',
     scores: [62, 42, 55, 40, 35],
     thesis: '土地、劳动力、资本、技术、数据五大要素的城乡/区域自由流动，是统一大市场的核心——也是与城乡矛盾、央地矛盾交汇最深的领域。',
     measures: ['户籍制度改革，公共服务随人走（市民化）', '城乡统一建设用地市场，集体经营性建设用地入市', '全国性技术/数据交易市场培育，数据基础制度落地'],
     blocker: '户籍与土地是地方财政与治理的命脉，要素市场化触动深层利益分配。',
   },
   {
-    key: 'regulation', label: '监管统一', accent: '#e8a317',
+    key: 'regulation', label: '监管统一', accent: '#d4a25a',
     scores: [68, 58, 70, 55, 52],
     thesis: '统一的市场监管规则与执法标准，避免「逐底竞争」与监管套利——监管一致性本身就是营商环境的公共品。',
     measures: ['统一质量、标准、计量、认证认可体系', '跨区域监管协同、信用联合奖惩', '清理废除妨碍统一市场的政策措施（公平竞争审查）'],
     blocker: '地方监管尺度差异源于考核激励，「一刀切」与「宽松洼地」并存。',
   },
   {
-    key: 'competition', label: '竞争统一', accent: '#8b5cf6',
+    key: 'competition', label: '竞争统一', accent: '#b07cc6',
     scores: [72, 50, 60, 45, 38],
     thesis: '强化反垄断与反不正当竞争、规范地方招商引资的财税优惠，是大市场的「秩序之手」——防止以补贴战割裂全国市场。',
     measures: ['公平竞争审查制度刚性化，清理违规财税优惠/补贴', '反垄断常态化（平台/原料药/公用事业）', '规范地方政府招商引资行为，遏制「内卷式」竞争'],
@@ -97,10 +97,10 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="5个统一" label="制度框架支柱" accent="#c41e3a" />
-        <Stat value="14亿" label="超大规模市场" accent="#22d3ee" />
-        <Stat value="公平竞争审查" label="刚性化抓手" accent="#10b981" />
-        <Stat value={AS_OF} label="数据截至" accent="#8b5cf6" />
+        <Stat value="5个统一" label="制度框架支柱" accent="#e5483b" />
+        <Stat value="14亿" label="超大规模市场" accent="#6e8cff" />
+        <Stat value="公平竞争审查" label="刚性化抓手" accent="#6fc2ae" />
+        <Stat value={AS_OF} label="数据截至" accent="#b07cc6" />
       </Grid>
 
       <Grid cols={2} className="mb-6">
@@ -128,7 +128,7 @@ export default function Page() {
           ))}
         </ul>
         <div className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
-          <span style={{ color: '#c41e3a' }}>梗阻 · </span>{p.blocker}
+          <span style={{ color: '#e5483b' }}>梗阻 · </span>{p.blocker}
         </div>
       </div>
 
@@ -142,24 +142,24 @@ export default function Page() {
             才能把超大规模市场转化为<strong style={{ color: 'var(--text-primary)' }}>规则话语权</strong>与全球资源配置能力。
           </p>
           <div className="space-y-2">
-            <div style={{ borderLeft: '2px solid #10b981', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>对内</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>破除分割→降低制度性交易成本→规模效率。</p></div>
-            <div style={{ borderLeft: '2px solid #22d3ee', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>对外</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>规则统一→对接国际高标准→制度型开放。</p></div>
+            <div style={{ borderLeft: '2px solid #6fc2ae', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>对内</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>破除分割→降低制度性交易成本→规模效率。</p></div>
+            <div style={{ borderLeft: '2px solid #6e8cff', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>对外</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>规则统一→对接国际高标准→制度型开放。</p></div>
           </div>
         </Card>
       </Grid>
 
       <Card title="十五五 · 指标 / 约束 / 路径" className="mb-6">
         <Grid cols={3}>
-          <div style={{ borderLeft: '2px solid #22d3ee', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#22d3ee' }}>核心指标</div>
+          <div style={{ borderLeft: '2px solid #6e8cff', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6e8cff' }}>核心指标</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>市场分割指数持续下行（趋于 0.6 目标）；社会物流总费用/GDP 下降；负面清单、公平竞争审查覆盖增量政策全口径。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #e8a317', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#e8a317' }}>关键约束</div>
+          <div style={{ borderLeft: '2px solid #d4a25a', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#d4a25a' }}>关键约束</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>地方保护根植于财政命脉与 GDP 锦标赛考核；户籍、土地、招商优惠触动深层利益分配，隐性壁垒识别纠偏滞后。</p>
           </div>
-          <div style={{ borderLeft: '2px solid #10b981', paddingLeft: 10 }}>
-            <div className="text-xs font-semibold mb-1" style={{ color: '#10b981' }}>推进路径</div>
+          <div style={{ borderLeft: '2px solid #6fc2ae', paddingLeft: 10 }}>
+            <div className="text-xs font-semibold mb-1" style={{ color: '#6fc2ae' }}>推进路径</div>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>商品市场统一 → 要素市场（土地/劳动力/数据）城乡区域流动 → 监管与竞争规则全国一致并对接国际高标准。</p>
           </div>
         </Grid>

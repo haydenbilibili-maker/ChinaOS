@@ -39,12 +39,12 @@ export function themeHeatmapOption(D) {
     visualMap: {
       min: 0, max, calculable: false, orient: 'horizontal', left: 'center', bottom: 4,
       itemWidth: 10, itemHeight: 120, textStyle: { ...LABEL },
-      inRange: { color: ['rgba(34,211,238,0.08)', CHART_SERIES_COLORS.cyberCyan, CHART_SERIES_COLORS.fireGold] },
+      inRange: { color: ['rgba(110, 140, 255,0.08)', CHART_SERIES_COLORS.cyberCyan, CHART_SERIES_COLORS.fireGold] },
     },
     series: [{
       type: 'heatmap', data,
       label: { show: true, fontSize: 10 },
-      itemStyle: { borderColor: 'rgba(15,22,35,0.6)', borderWidth: 1 },
+      itemStyle: { borderColor: 'rgba(20, 23, 31,0.6)', borderWidth: 1 },
       emphasis: { itemStyle: { shadowBlur: 8, shadowColor: 'rgba(0,0,0,0.4)' } },
     }],
   };
@@ -150,7 +150,7 @@ export function numericDeviationOption(D) {
         },
       })),
       label: { show: true, position: 'right', color: 'inherit', fontSize: 10, formatter: (p) => `${p.value > 0 ? '+' : ''}${p.value}%` },
-      markLine: { silent: true, symbol: 'none', lineStyle: { color: '#64748b', type: 'dashed' }, data: [{ xAxis: 0 }] },
+      markLine: { silent: true, symbol: 'none', lineStyle: { color: '#8a8578', type: 'dashed' }, data: [{ xAxis: 0 }] },
     }],
   };
 }
@@ -158,7 +158,7 @@ export function numericDeviationOption(D) {
 const CAT_COLORS = [
   CHART_SERIES_COLORS.fireGold,
   CHART_SERIES_COLORS.powerRed,
-  '#94a3b8',
+  '#a29c91',
   CHART_SERIES_COLORS.cyberCyan,
   CHART_SERIES_COLORS.emerald,
   CHART_SERIES_COLORS.violet,

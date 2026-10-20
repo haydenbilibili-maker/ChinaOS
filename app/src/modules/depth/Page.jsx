@@ -21,9 +21,9 @@ const GROUP_MAP = Object.fromEntries(GROUPS.map((g) => [g.id, g]));
 const HAS_MAP = new Set(['foodSecurity', 'urban', 'debtHeatmap', 'regional']);
 
 const MOMENTUM_STYLE = {
-  上行: { color: '#10b981', bg: 'rgba(16,185,129,0.14)', icon: 'TrendingUp' },
-  承压: { color: '#c41e3a', bg: 'rgba(196,30,58,0.14)', icon: 'TrendingDown' },
-  胶着: { color: '#e8a317', bg: 'rgba(232,163,23,0.14)', icon: 'MoveHorizontal' },
+  上行: { color: '#6fc2ae', bg: 'rgba(111, 194, 174,0.14)', icon: 'TrendingUp' },
+  承压: { color: '#e5483b', bg: 'rgba(229, 72, 59,0.14)', icon: 'TrendingDown' },
+  胶着: { color: '#d4a25a', bg: 'rgba(212, 162, 90,0.14)', icon: 'MoveHorizontal' },
 };
 
 const DIM_BY_KEY = Object.fromEntries(DIM_PROFILE.map((d) => [d.key, d]));
@@ -95,7 +95,7 @@ function DimRadar({ dim }) {
         splitNumber: 4,
         axisName: { color: LABEL.color, fontSize: 11 },
         axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
-        splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } },
+        splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } },
         splitArea: { show: false },
       },
       series: [{
@@ -104,9 +104,9 @@ function DimRadar({ dim }) {
         data: [{
           value: r.value,
           name: dim.label,
-          lineStyle: { color: '#e8a317', width: 2 },
-          itemStyle: { color: '#e8a317' },
-          areaStyle: { color: 'rgba(232,163,23,0.18)' },
+          lineStyle: { color: '#d4a25a', width: 2 },
+          itemStyle: { color: '#d4a25a' },
+          areaStyle: { color: 'rgba(212, 162, 90,0.18)' },
         }],
       }],
     };
@@ -153,10 +153,10 @@ function LinkageGraph({ dimKey }) {
       symbolSize: d.key === dimKey ? 34 : 24,
       itemStyle: {
         color: d.color,
-        borderColor: d.key === dimKey ? '#e8a317' : 'transparent',
+        borderColor: d.key === dimKey ? '#d4a25a' : 'transparent',
         borderWidth: d.key === dimKey ? 2 : 0,
       },
-      label: { show: true, color: d.key === dimKey ? '#e8a317' : '#93a1b5', fontSize: 11 },
+      label: { show: true, color: d.key === dimKey ? '#d4a25a' : '#a29c91', fontSize: 11 },
     }));
     const links = DIM_LINKS.map((l) => {
       const hot = l.from === dimKey;
@@ -165,11 +165,11 @@ function LinkageGraph({ dimKey }) {
         target: DIM_BY_KEY[l.to].label,
         note: l.note,
         lineStyle: {
-          color: hot ? '#e8a317' : 'rgba(148,163,184,0.25)',
+          color: hot ? '#d4a25a' : 'rgba(162, 156, 145,0.25)',
           width: hot ? 2.6 : 1,
           curveness: 0.22,
         },
-        label: { show: hot, formatter: l.note, color: '#e8a317', fontSize: 10 },
+        label: { show: hot, formatter: l.note, color: '#d4a25a', fontSize: 10 },
       };
     });
     return {
@@ -205,10 +205,10 @@ function LinkageList({ dimKey }) {
         const out = l.from === dimKey;
         const peer = DIM_BY_KEY[out ? l.to : l.from];
         return (
-          <div key={`${l.from}-${l.to}`} className="os-card p-3" style={{ borderLeft: `3px solid ${out ? '#e8a317' : peer.color}`, background: 'var(--bg-elevated)' }}>
+          <div key={`${l.from}-${l.to}`} className="os-card p-3" style={{ borderLeft: `3px solid ${out ? '#d4a25a' : peer.color}`, background: 'var(--bg-elevated)' }}>
             <div className="flex items-center gap-2 mb-1">
               <span className="mono text-[10px] px-1.5 py-0.5 rounded"
-                style={{ background: out ? 'rgba(232,163,23,0.16)' : 'var(--bg-surface)', color: out ? '#e8a317' : 'var(--text-tertiary)' }}>
+                style={{ background: out ? 'rgba(212, 162, 90,0.16)' : 'var(--bg-surface)', color: out ? '#d4a25a' : 'var(--text-tertiary)' }}>
                 {out ? '出边' : '入边'}
               </span>
               <span className="text-xs mono" style={{ color: 'var(--text-secondary)' }}>
@@ -233,7 +233,7 @@ function TensionBar() {
         type: 'value', max: 100,
         axisLine: { lineStyle: { color: AXIS.lineStyle.color } },
         axisLabel: { color: LABEL.color },
-        splitLine: { lineStyle: { color: 'rgba(148,163,184,0.1)' } },
+        splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.1)' } },
       },
       yAxis: {
         type: 'category',
@@ -296,9 +296,9 @@ export default function Page() {
       <div className="grid gap-3 mb-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(120px,1fr))' }}>
         <Stat value={total} label="已建专题" accent="var(--cyber-cyan)" />
         <Stat value={CONTENT_GROUPS.length} label="内容维度" accent="var(--fire-gold)" />
-        <Stat value={DIM_LINKS.length} label="维度联动边" accent="#8b5cf6" />
+        <Stat value={DIM_LINKS.length} label="维度联动边" accent="#b07cc6" />
         <Stat value={HAS_MAP.size} label="含中国地图" accent="var(--china-red)" />
-        <Stat value={MODULES.length} label="模块总数 (全栈)" accent="#10b981" />
+        <Stat value={MODULES.length} label="模块总数 (全栈)" accent="#6fc2ae" />
       </div>
 
       {/* ════ 一、维度作战室 ════ */}
@@ -356,7 +356,7 @@ export default function Page() {
         </div>
         <div className="flex gap-1.5 flex-wrap">
           <button onClick={() => setFilter('all')} className="text-xs px-3 py-1 rounded-full mono"
-            style={{ background: filter === 'all' ? 'rgba(34,211,238,0.18)' : 'var(--bg-elevated)', color: filter === 'all' ? 'var(--cyber-cyan)' : 'var(--text-secondary)', border: `1px solid ${filter === 'all' ? 'var(--cyber-cyan)' : 'transparent'}`, cursor: 'pointer' }}>
+            style={{ background: filter === 'all' ? 'rgba(110, 140, 255,0.18)' : 'var(--bg-elevated)', color: filter === 'all' ? 'var(--cyber-cyan)' : 'var(--text-secondary)', border: `1px solid ${filter === 'all' ? 'var(--cyber-cyan)' : 'transparent'}`, cursor: 'pointer' }}>
             全部 {total}
           </button>
           {CONTENT_GROUPS.map((gid) => {
@@ -396,7 +396,7 @@ export default function Page() {
                 <div className="flex items-center gap-2.5 mb-1.5">
                   <span style={{ color: group.accent }}><Icon name={m.icon} /></span>
                   <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{m.title}</span>
-                  {HAS_MAP.has(m.id) && <span className="mono text-[9px] px-1.5 py-0.5 rounded" style={{ background: 'rgba(196,30,58,0.16)', color: 'var(--china-red)' }}>MAP</span>}
+                  {HAS_MAP.has(m.id) && <span className="mono text-[9px] px-1.5 py-0.5 rounded" style={{ background: 'rgba(229, 72, 59,0.16)', color: 'var(--china-red)' }}>MAP</span>}
                 </div>
                 <p className="text-xs leading-snug" style={{ color: 'var(--text-tertiary)' }}>{m.subtitle}</p>
                 <Lucide.ArrowUpRight size={14} style={{ position: 'absolute', top: 14, right: 14, color: 'var(--text-tertiary)' }} />

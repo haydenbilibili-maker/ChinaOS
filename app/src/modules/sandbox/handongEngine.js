@@ -17,10 +17,10 @@ export function handongMitigatedImpact(scenario, intensity, alloc = {}) {
   const net = raw.map((r, i) => Math.max(0, Math.round(r - reliefExact[i])));
   const score = Math.round(net.reduce((a, b) => a + b, 0) / net.length);
   const verdict = score < 25
-    ? ['可控', '#10b981', '冲击在省域治理冗余内可消化，常规节奏可维持。']
+    ? ['可控', '#6fc2ae', '冲击在省域治理冗余内可消化，常规节奏可维持。']
     : score < 50
-      ? ['承压', '#e8a317', '系统承压但未失稳：须盯紧次生传导，政策资源不可撤火。']
-      : ['高危', '#c41e3a', '冲击超出常规吸收能力，进入非常规应对：动员储备、接受局部损失。'];
+      ? ['承压', '#d4a25a', '系统承压但未失稳：须盯紧次生传导，政策资源不可撤火。']
+      : ['高危', '#e5483b', '冲击超出常规吸收能力，进入非常规应对：动员储备、接受局部损失。'];
   return { raw, net, score, verdict };
 }
 
@@ -42,7 +42,7 @@ export function handongComposite(scenarioA, scenarioB, intensity) {
   });
   return {
     label: `${scenarioA.label} × ${scenarioB.label}`,
-    color: '#ef4444',
+    color: '#e5483b',
     intro: `复合情景：${scenarioA.label}与${scenarioB.label}非线性耦合——救援资源互相挤占，工具效力打 82 折。`,
     chain: [scenarioA.triggers?.[0] || '', scenarioB.triggers?.[0] || '', '跨域共振', '政策边际递减'],
     impact,

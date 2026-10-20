@@ -16,15 +16,15 @@ import { AXIS, LABEL, GRID_LINE, CHART_SERIES_PALETTE } from '../shared/chartHel
 // —— 驱动力六维（自评示意 0-100）——
 const DRIVE_DIMS = ['自主性', '影响力', '意义感', '成长', '安全感', '连接'];
 const DRIVE_VALUE = [95, 88, 82, 78, 42, 58];
-const DRIVE_COLOR = '#8b5cf6';
+const DRIVE_COLOR = '#b07cc6';
 
 // —— 时间·精力分配（35 岁回迁创业期现状示意，合计 100）——
 const ALLOC = [
-  { name: '创业', value: 46, color: '#c41e3a' },
-  { name: '家庭', value: 20, color: '#10b981' },
-  { name: '学习', value: 16, color: '#22d3ee' },
-  { name: '健康', value: 10, color: '#e8a317' },
-  { name: '社交', value: 8, color: '#94a3b8' },
+  { name: '创业', value: 46, color: '#e5483b' },
+  { name: '家庭', value: 20, color: '#6fc2ae' },
+  { name: '学习', value: 16, color: '#6e8cff' },
+  { name: '健康', value: 10, color: '#d4a25a' },
+  { name: '社交', value: 8, color: '#a29c91' },
 ];
 
 function radarOption() {
@@ -73,14 +73,14 @@ export default function SectionValues() {
           <div className="text-[11px] mono mb-1" style={{ color: 'var(--text-tertiary)' }}>// 驱动力 · 六维内核</div>
           <EChart option={radarOption()} style={{ height: 320 }} />
           <p className="text-xs mt-2" style={{ color: 'var(--text-tertiary)', lineHeight: 1.7 }}>
-            <span style={{ color: '#8b5cf6' }}>自主性 + 影响力</span> 是两根最高的轴——这解释了两次逆向下注：从打工的确定性 fork 出自负盈亏的创业，是要回收「调度权」；从一线回迁长春，是要在自己能定义边界的盘面上做事。安全感这一轴明显塌陷，正是 35 岁这次时钟中断里迷茫的来源。
+            <span style={{ color: '#b07cc6' }}>自主性 + 影响力</span> 是两根最高的轴——这解释了两次逆向下注：从打工的确定性 fork 出自负盈亏的创业，是要回收「调度权」；从一线回迁长春，是要在自己能定义边界的盘面上做事。安全感这一轴明显塌陷，正是 35 岁这次时钟中断里迷茫的来源。
           </p>
         </div>
         <div>
           <div className="text-[11px] mono mb-1" style={{ color: 'var(--text-tertiary)' }}>// 时间·精力 · 回迁创业期现状</div>
           <EChart option={donutOption()} style={{ height: 320 }} />
           <p className="text-xs mt-2" style={{ color: 'var(--text-tertiary)', lineHeight: 1.7 }}>
-            张力：创业吃掉近一半的盘子，把 <span style={{ color: '#e8a317' }}>健康</span> 与 <span style={{ color: '#94a3b8' }}>社交</span> 一起压到了最薄——短期是冲刺的必要代价，长期却是会反噬现金流安全边际的隐性透支。
+            张力：创业吃掉近一半的盘子，把 <span style={{ color: '#d4a25a' }}>健康</span> 与 <span style={{ color: '#a29c91' }}>社交</span> 一起压到了最薄——短期是冲刺的必要代价，长期却是会反噬现金流安全边际的隐性透支。
           </p>
         </div>
       </div>

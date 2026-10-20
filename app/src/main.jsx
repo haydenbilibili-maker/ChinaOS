@@ -3,9 +3,14 @@ import ReactDOM from 'react-dom/client';
 import { HashRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
+import './styles/vi2/tokens.css';
+import './styles/vi2/base.css';
+import './styles/vi2/material.css';
+import './styles/vi2/components.css';
 import { initTheme } from './lib/theme.js';
 import { initDensity } from './lib/density.js';
 import { initChunkRecovery } from './lib/chunkRecovery.js';
+import { initAtmosphere } from './lib/vi/atmosphere.js';
 
 // 部署后 stale chunk → 自动 reload 一次（须在 React 挂载前注册）
 initChunkRecovery();
@@ -13,6 +18,8 @@ initChunkRecovery();
 // 启动即确定主题（存储 > 系统 > 夜览），避免首帧闪烁并同步图表调色板
 initTheme();
 initDensity();
+// VI 2.0：浑仪水印 + 卡片聚光
+initAtmosphere();
 
 // 修复直链 /talent?tab=…（query 在 hash 外）无法被 HashRouter 识别的问题
 (() => {

@@ -38,9 +38,9 @@ function ContradictionPair({ primary, secondary }) {
 
 function MechanismGrid({ escalation, mitigation, levers }) {
   const blocks = [
-    { title: '激化条件', items: escalation, accent: '#c41e3a' },
-    { title: '缓和机制', items: mitigation, accent: '#10b981' },
-    { title: '政策杠杆', items: levers, accent: '#22d3ee' },
+    { title: '激化条件', items: escalation, accent: '#e5483b' },
+    { title: '缓和机制', items: mitigation, accent: '#6fc2ae' },
+    { title: '政策杠杆', items: levers, accent: '#6e8cff' },
   ];
   return (
     <Grid cols={3} className="mb-4">
@@ -79,10 +79,10 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value={CONTRADICTIONS.length} label="矛盾体研究单元" accent="#c41e3a" />
-        <Stat value="7+3" label="核心 + 延伸矛盾体" accent="#22d3ee" />
-        <Stat value="2—4" label="每视图 ECharts 数" accent="#e8a317" />
-        <Stat value={AS_OF} label="数据截至" accent="#8b5cf6" />
+        <Stat value={CONTRADICTIONS.length} label="矛盾体研究单元" accent="#e5483b" />
+        <Stat value="7+3" label="核心 + 延伸矛盾体" accent="#6e8cff" />
+        <Stat value="2—4" label="每视图 ECharts 数" accent="#d4a25a" />
+        <Stat value={AS_OF} label="数据截至" accent="#b07cc6" />
       </Grid>
 
       <Card title="全局仪表盘 · 四组结构性指标（示意）" className="mb-6">

@@ -43,23 +43,23 @@ function simulateLockIn(strength, seed) {
 
 // —— 经典锁定案例库 ——
 const CASES = [
-  { key: 'qwerty', label: 'QWERTY 键盘', accent: '#22d3ee', status: '锁定至今 · 150 年',
+  { key: 'qwerty', label: 'QWERTY 键盘', accent: '#6e8cff', status: '锁定至今 · 150 年',
     mech: '打字员培训（学习效应）+ 厂商兼容（协调效应）：1873 年为防卡键的次优布局，借早期打字学校批量产出技能存量，Dvorak 等更优布局再无翻盘窗口。',
     cost: '全球数十亿人的肌肉记忆 + 全部硬软件生态 —— 转换成本随用户基数线性放大。',
     exit: '未解锁。语音/触屏输入是「绕开」而非「替换」—— 边缘突破让锁定问题失去意义。' },
-  { key: 'vhs', label: 'VHS vs Beta', accent: '#10b981', status: '1988 年 Beta 退场',
+  { key: 'vhs', label: 'VHS vs Beta', accent: '#6fc2ae', status: '1988 年 Beta 退场',
     mech: '内容协调效应：VHS 录制时长更长 + 开放授权拉拢厂商与租赁店，片源越多→买家越多→片源更多，画质更优的 Betamax 被正反馈甩出。',
     cost: '消费者持有的播放设备与录像带存量；租赁店的库存承诺。',
     exit: '已解锁——但靠的是 DVD 整体换代（外部技术冲击把双方一起清零），而非 Beta 反攻。' },
-  { key: 'carbon', label: '碳基能源体系', accent: '#e8a317', status: '解锁进行时',
+  { key: 'carbon', label: '碳基能源体系', accent: '#d4a25a', status: '解锁进行时',
     mech: '大规模固定成本之王：电网/管网/炼化/内燃机产业链百年沉淀，设备折旧周期 30-50 年，配套就业与财税深度绑定。',
     cost: '全球数百万亿美元存量资产 + 产油国与能源利益集团的政治阻力。',
     exit: '双碳 = 政策外部冲击 + 光伏风电成本曲线（学习率 ~20%）跌破临界点，新路径自身开始报酬递增。' },
-  { key: 'keju', label: '科举制度', accent: '#c41e3a', status: '锁定约 1300 年',
+  { key: 'keju', label: '科举制度', accent: '#e5483b', status: '锁定约 1300 年',
     mech: '适应性预期的极致：全社会人力资本投向八股 —— 因为预期它是唯一上升通道，预期自我实现；士绅阶层（受益者）同时是制度维护者。',
     cost: '废科举=作废千万读书人的终身投资，动摇王朝合法性根基 —— 转换成本即政权稳定本身。',
     exit: '1905 年废止 —— 但靠的是甲午/庚子的外部冲击把旧路径的报酬直接打穿，属「休克替代」，代价是士绅离心。' },
-  { key: 'land', label: '土地财政', accent: '#8b5cf6', status: '当代锁定 · 换道中',
+  { key: 'land', label: '土地财政', accent: '#b07cc6', status: '当代锁定 · 换道中',
     mech: '1994 分税制 + 2003 招拍挂确立的自我强化环：卖地→基建→地价升→再卖地；地方债务、银行抵押、居民财富全部押注同一资产。',
     cost: '换道=同时重写央地财税契约、化解隐性债务、承接居民财富预期 —— 三重转换成本叠加。',
     exit: '房产税/转移支付改革是「双轨并行」式试探：旧轨未敢拆、新轨尚未递增，正处最昂贵的换道窗口。' },
@@ -71,32 +71,32 @@ const CASES = [
 
 // —— Arthur 四种自我强化机制 ——
 const FORCES = [
-  ['大规模固定成本', '产量越大单位成本越低，先行者借规模筑壁垒。', '案例：电网/高铁/晶圆厂 —— 碳基能源体系百年难拆的根源。', '#c41e3a'],
-  ['学习效应', '用得越多越熟练，经验沿既有路径累积、改良只发生在轨道内。', '案例：QWERTY 打字技能、CUDA 工程师存量、八股文应试技艺。', '#e8a317'],
-  ['协调效应', '与他人选同一方案才省事 —— 配套、标准、上下游互相绑定。', '案例：VHS 片源生态、美元结算网络、安卓应用商店。', '#22d3ee'],
-  ['适应性预期', '人们预期某方案将胜出便提前倒向它，预期自我实现。', '案例：科举千年人力资本投向、房价「永涨」信仰、技术标准之争中的站队。', '#10b981'],
+  ['大规模固定成本', '产量越大单位成本越低，先行者借规模筑壁垒。', '案例：电网/高铁/晶圆厂 —— 碳基能源体系百年难拆的根源。', '#e5483b'],
+  ['学习效应', '用得越多越熟练，经验沿既有路径累积、改良只发生在轨道内。', '案例：QWERTY 打字技能、CUDA 工程师存量、八股文应试技艺。', '#d4a25a'],
+  ['协调效应', '与他人选同一方案才省事 —— 配套、标准、上下游互相绑定。', '案例：VHS 片源生态、美元结算网络、安卓应用商店。', '#6e8cff'],
+  ['适应性预期', '人们预期某方案将胜出便提前倒向它，预期自我实现。', '案例：科举千年人力资本投向、房价「永涨」信仰、技术标准之争中的站队。', '#6fc2ae'],
 ];
 
 // —— 关键节点时间线：每个分岔点锁定了什么 ——
 const JUNCTURES = [
-  { period: '1978', title: '改革开放', accent: '#c41e3a',
+  { period: '1978', title: '改革开放', accent: '#e5483b',
     desc: '锁定「以经济建设为中心」的国家目标函数与对外开放的基本盘 —— 后续一切政策辩论都在这条轨道内进行，回头成本随每年增长复利上升。' },
-  { period: '1994', title: '分税制', accent: '#e8a317',
+  { period: '1994', title: '分税制', accent: '#d4a25a',
     desc: '锁定央地财政契约：财权上收、事权留地 —— 地方被迫开辟预算外财源，为土地财政这条次生路径埋下分岔种子。' },
-  { period: '2001', title: '入世 WTO', accent: '#22d3ee',
+  { period: '2001', title: '入世 WTO', accent: '#6e8cff',
     desc: '锁定「世界工厂」分工位置与出口导向增长模式：沿海产业集群、农民工流动、外储积累全部沿此轨道自我强化二十年。' },
-  { period: '2008', title: '四万亿', accent: '#8b5cf6',
+  { period: '2008', title: '四万亿', accent: '#b07cc6',
     desc: '锁定基建—地产—信贷的逆周期工具箱：每次下行都重启同一药方，剂量递增、药效递减 —— 工具本身被路径依赖捕获。' },
-  { period: '2020s', title: '双碳 / 自主', accent: '#10b981',
+  { period: '2020s', title: '双碳 / 自主', accent: '#6fc2ae',
     desc: '主动制造新的关键节点：在新能源与半导体两条新路径上抢在他人锁定前投入临界规模 —— 用国家力量对冲旧路径的报酬递增。' },
 ];
 
 // —— 解锁策略库 ——
 const UNLOCKS = [
-  ['休克替代', '一次性拆除旧轨、强制切换。速度快但承担全部转换成本与反弹风险。', '废科举（1905）/ 苏东休克疗法 —— 成败取决于新轨能否立刻接住存量预期。', '#c41e3a'],
-  ['双轨并行', '旧轨照旧、新轨试点，待新轨报酬递增后自然吸走存量 —— 把转换成本摊薄到时间里。', '价格双轨制 / 经济特区：中国改革的经典解锁术，用增量绕过存量利益集团。', '#e8a317'],
-  ['边缘突破', '不在旧轨上正面竞争，在旧锁定未覆盖的新场景先建临界规模、反向包抄。', '移动支付绕开信用卡 / 新能源车绕开内燃机专利墙 / 推理芯片绕开 CUDA。', '#22d3ee'],
-  ['外部冲击', '战争、危机、技术革命把旧路径报酬强行打穿，锁定瞬间失效 —— 不可设计、只可利用。', '甲午之于科举 / DVD 之于录像带战争 —— 智者的功课是在冲击来临时备好新轨。', '#10b981'],
+  ['休克替代', '一次性拆除旧轨、强制切换。速度快但承担全部转换成本与反弹风险。', '废科举（1905）/ 苏东休克疗法 —— 成败取决于新轨能否立刻接住存量预期。', '#e5483b'],
+  ['双轨并行', '旧轨照旧、新轨试点，待新轨报酬递增后自然吸走存量 —— 把转换成本摊薄到时间里。', '价格双轨制 / 经济特区：中国改革的经典解锁术，用增量绕过存量利益集团。', '#d4a25a'],
+  ['边缘突破', '不在旧轨上正面竞争，在旧锁定未覆盖的新场景先建临界规模、反向包抄。', '移动支付绕开信用卡 / 新能源车绕开内燃机专利墙 / 推理芯片绕开 CUDA。', '#6e8cff'],
+  ['外部冲击', '战争、危机、技术革命把旧路径报酬强行打穿，锁定瞬间失效 —— 不可设计、只可利用。', '甲午之于科举 / DVD 之于录像带战争 —— 智者的功课是在冲击来临时备好新轨。', '#6fc2ae'],
 ];
 
 // —— 制度锁定 vs 技术锁定对照 ——
@@ -131,10 +131,10 @@ export default function Page() {
     yAxis: valueY({ max: 100, name: '市场份额 %', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
     series: [
       { name: '技术A（质量较劣）', type: 'line', smooth: true, symbol: 'none', data: sim.shareA,
-        lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.07)' },
-        markLine: sim.lockIdx >= 0 ? { silent: true, symbol: 'none', data: [{ xAxis: sim.lockIdx, label: { formatter: '锁定点', color: '#e8a317', fontSize: 10 }, lineStyle: { color: '#e8a317', type: 'dashed' } }] } : undefined },
+        lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.07)' },
+        markLine: sim.lockIdx >= 0 ? { silent: true, symbol: 'none', data: [{ xAxis: sim.lockIdx, label: { formatter: '锁定点', color: '#d4a25a', fontSize: 10 }, lineStyle: { color: '#d4a25a', type: 'dashed' } }] } : undefined },
       { name: '技术B（质量较优）', type: 'line', smooth: true, symbol: 'none', data: sim.shareB,
-        lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
+        lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' } },
     ],
   };
 
@@ -147,10 +147,10 @@ export default function Page() {
     yAxis: logY({ name: '成本（对数轴）', nameTextStyle: { color: LABEL.color, fontSize: 10 } }),
     series: [
       { name: '转换成本', type: 'line', smooth: true, symbol: 'none', data: cost,
-        lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.07)' },
-        markArea: { silent: true, itemStyle: { color: 'rgba(16,185,129,0.08)' }, label: { show: true, formatter: '改革窗口期', color: '#10b981', fontSize: 10, position: 'insideTop' }, data: [[{ xAxis: 'T0' }, { xAxis: 'T8' }]] } },
+        lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.07)' },
+        markArea: { silent: true, itemStyle: { color: 'rgba(111, 194, 174,0.08)' }, label: { show: true, formatter: '改革窗口期', color: '#6fc2ae', fontSize: 10, position: 'insideTop' }, data: [[{ xAxis: 'T0' }, { xAxis: 'T8' }]] } },
       { name: '换道收益（近似恒定）', type: 'line', symbol: 'none', data: benefit,
-        lineStyle: { color: '#10b981', width: 2, type: 'dashed' }, itemStyle: { color: '#10b981' } },
+        lineStyle: { color: '#6fc2ae', width: 2, type: 'dashed' }, itemStyle: { color: '#6fc2ae' } },
     ],
   };
 
@@ -162,8 +162,8 @@ export default function Page() {
     xAxis: categoryX(CONTRAST_DIMS),
     yAxis: valueY({ max: 100 }),
     series: [
-      { name: '制度锁定', type: 'bar', barWidth: 16, data: CONTRAST_INST, itemStyle: { color: '#c41e3a', borderRadius: [3, 3, 0, 0] } },
-      { name: '技术锁定', type: 'bar', barWidth: 16, data: CONTRAST_TECH, itemStyle: { color: '#22d3ee', borderRadius: [3, 3, 0, 0] } },
+      { name: '制度锁定', type: 'bar', barWidth: 16, data: CONTRAST_INST, itemStyle: { color: '#e5483b', borderRadius: [3, 3, 0, 0] } },
+      { name: '技术锁定', type: 'bar', barWidth: 16, data: CONTRAST_TECH, itemStyle: { color: '#6e8cff', borderRadius: [3, 3, 0, 0] } },
     ],
   };
 
@@ -176,10 +176,10 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value={sim.lockIdx >= 0 ? `第${sim.lockIdx + 1}期` : '未锁定'} label="模拟锁定时点（份额越过 80%）" accent="#e8a317" />
-        <Stat value={sim.inferiorWins ? '劣者胜出' : '优者胜出'} label="本次模拟结局" accent={sim.inferiorWins ? '#c41e3a' : '#10b981'} />
-        <Stat value="4 种" label="报酬递增机制（Arthur）" accent="#22d3ee" />
-        <Stat value="T8" label="换道成本曲线的窗口期上限（示意）" accent="#10b981" />
+        <Stat value={sim.lockIdx >= 0 ? `第${sim.lockIdx + 1}期` : '未锁定'} label="模拟锁定时点（份额越过 80%）" accent="#d4a25a" />
+        <Stat value={sim.inferiorWins ? '劣者胜出' : '优者胜出'} label="本次模拟结局" accent={sim.inferiorWins ? '#e5483b' : '#6fc2ae'} />
+        <Stat value="4 种" label="报酬递增机制（Arthur）" accent="#6e8cff" />
+        <Stat value="T8" label="换道成本曲线的窗口期上限（示意）" accent="#6fc2ae" />
       </Grid>
 
       {/* ① 锁定模拟器 */}
@@ -189,10 +189,10 @@ export default function Page() {
             <span style={{ color: 'var(--text-secondary)' }}>报酬递增强度（0=质量主导 → 100=存量主导）</span>
             <span className="mono" style={{ color: 'var(--cyber-cyan)' }}>{strength}</span>
           </div>
-          <input type="range" min="0" max="100" value={strength} onChange={(e) => setStrength(Number(e.target.value))} style={{ width: '100%', accentColor: '#c41e3a' }} />
+          <input type="range" min="0" max="100" value={strength} onChange={(e) => setStrength(Number(e.target.value))} style={{ width: '100%', accentColor: '#e5483b' }} />
           <div className="flex items-center gap-2 mt-3">
             <button onClick={() => setSeed((s) => s + 1)} className="text-xs px-3 py-1.5 rounded mono"
-              style={{ background: 'rgba(34,211,238,0.15)', color: 'var(--cyber-cyan)', border: '1px solid var(--cyber-cyan)', cursor: 'pointer' }}>重掷历史（换一段偶然）</button>
+              style={{ background: 'rgba(110, 140, 255,0.15)', color: 'var(--cyber-cyan)', border: '1px solid var(--cyber-cyan)', cursor: 'pointer' }}>重掷历史（换一段偶然）</button>
             <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>seed #{seed}</span>
           </div>
           <p className="text-sm leading-relaxed mt-3" style={{ color: 'var(--text-secondary)' }}>
@@ -215,15 +215,15 @@ export default function Page() {
           </div>
           <Grid cols={3}>
             <div>
-              <div className="text-xs font-semibold mb-1" style={{ color: '#e8a317' }}>锁定机制</div>
+              <div className="text-xs font-semibold mb-1" style={{ color: '#d4a25a' }}>锁定机制</div>
               <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{activeCase.mech}</p>
             </div>
             <div>
-              <div className="text-xs font-semibold mb-1" style={{ color: '#c41e3a' }}>转换成本</div>
+              <div className="text-xs font-semibold mb-1" style={{ color: '#e5483b' }}>转换成本</div>
               <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{activeCase.cost}</p>
             </div>
             <div>
-              <div className="text-xs font-semibold mb-1" style={{ color: '#10b981' }}>解锁条件 / 结局</div>
+              <div className="text-xs font-semibold mb-1" style={{ color: '#6fc2ae' }}>解锁条件 / 结局</div>
               <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{activeCase.exit}</p>
             </div>
           </Grid>

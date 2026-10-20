@@ -7,25 +7,25 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 /* ── 职能维度：人民币国际化的六条战线 ──────────────────────────── */
 const FUNCTIONS = [
   {
-    key: 'trade', label: '贸易结算', accent: '#e8a317', share: 5.8, ceiling: 30,
+    key: 'trade', label: '贸易结算', accent: '#d4a25a', share: 5.8, ceiling: 30,
     progress: '中等偏上', bottleneck: '计价惯性 · 美元报价合同的网络锁定',
     lever: '把全球第一贸易国的规模优势，转译为结算货币的默认选项',
     desc: '人民币首先以跨境贸易结算切入——这是国际化的「滩头阵地」。中国是 140+ 国家的最大贸易伙伴，贸易顺差为人民币输出提供天然管道。但出口商以人民币计价的比例仍受制于美元报价的合同惯性：货物可用人民币结算，定价权却仍握在芝加哥与伦敦的交易所。',
   },
   {
-    key: 'invest', label: '投融资', accent: '#22d3ee', share: 3.4, ceiling: 25,
+    key: 'invest', label: '投融资', accent: '#6e8cff', share: 3.4, ceiling: 25,
     progress: '受控开放', bottleneck: '资本项目管制 · 离岸池深度不足',
     lever: '债券通 / 沪深港通 / 熊猫债，以「管道式开放」吸纳外资配置人民币资产',
     desc: '人民币要成为国际货币，必须有人愿意持有人民币计价资产。债券通、沪深港通构建了境外资本进出的「闸门式」管道，熊猫债吸引外国主体来华发债。但资本项目尚未完全可兑换——这是国际化的根本约束：既要资产可投，又要资本可控，二者天然对冲。',
   },
   {
-    key: 'reserve', label: '储备货币', accent: '#10b981', share: 2.3, ceiling: 15,
+    key: 'reserve', label: '储备货币', accent: '#6fc2ae', share: 2.3, ceiling: 15,
     progress: '缓慢爬升', bottleneck: '深度与信任 · 缺乏避险资产地位',
     lever: '推动各国央行配置人民币外储，SDR 篮子权重提供制度背书',
     desc: '储备货币是货币国际化的「皇冠」——意味着他国央行愿意把国家财富托付于你的信用。2016 年人民币入篮 SDR 是制度里程碑，但全球外储中人民币占比仍仅约 2.3%，远低于美元的近 58%。储备地位的本质是危机时的避险信任，而这需要数十年深度市场与法治信用的积累。',
   },
   {
-    key: 'pricing', label: '计价货币', accent: '#c41e3a', share: 1.6, ceiling: 20,
+    key: 'pricing', label: '计价货币', accent: '#e5483b', share: 1.6, ceiling: 20,
     progress: '突破口', bottleneck: '定价权旁落 · 大宗以美元基准报价',
     lever: '原油期货（上海INE）/ 铁矿石 / 黄金，以本币计价撬动美元铁三角',
     desc: '计价权是货币霸权最深的护城河——只要石油、铁矿石、粮食以美元报价，全球就必须先持有美元。上海原油期货、人民币黄金定盘价是撕开缺口的尝试：从「用人民币结算美元定价的货物」走向「用人民币定价货物本身」。这一步最难，却最致命。',
@@ -46,11 +46,11 @@ const FUNCTIONS = [
 
 /* ── 时间线：人民币国际化关键节点 ──────────────────────────────── */
 const PHASES = [
-  { period: '2009', title: '跨境贸易结算试点', accent: '#64748b', desc: '上海等五城市启动跨境贸易人民币结算试点，人民币首次以官方管道走出国门。彼时全球支付份额几乎不可见，国际化从「贸易货币」的滩头起步。' },
-  { period: '2014–2015', title: 'CIPS 一期上线', accent: '#22d3ee', desc: '人民币跨境支付系统（CIPS）一期投产，构建独立于 SWIFT 的清算报文与资金通道——这是「去依赖」基础设施的奠基，主权货币的备份协议。' },
-  { period: '2016', title: '纳入 IMF SDR 篮子', accent: '#e8a317', desc: '人民币以约 10.92% 权重入篮特别提款权，成为继美元、欧元、日元、英镑后的第五种篮子货币。制度背书完成，储备货币职能获得 IMF 认证。' },
-  { period: '2019–2021', title: 'e-CNY 试点扩大', accent: '#10b981', desc: '数字人民币在深圳、苏州、雄安等地大规模试点，从民生红包走向政务发放与供应链场景，为可编程主权货币与跨境互联探路。' },
-  { period: '2022–至今', title: '大宗本币结算加速', accent: '#c41e3a', desc: '地缘脱钩与制裁外溢压力下，中俄能源、中海原油、与多国贸易本币结算扩大，CIPS 参与者突破 1400 家，全球支付份额逼近 5%——去美元化从理念走向账本。' },
+  { period: '2009', title: '跨境贸易结算试点', accent: '#8a8578', desc: '上海等五城市启动跨境贸易人民币结算试点，人民币首次以官方管道走出国门。彼时全球支付份额几乎不可见，国际化从「贸易货币」的滩头起步。' },
+  { period: '2014–2015', title: 'CIPS 一期上线', accent: '#6e8cff', desc: '人民币跨境支付系统（CIPS）一期投产，构建独立于 SWIFT 的清算报文与资金通道——这是「去依赖」基础设施的奠基，主权货币的备份协议。' },
+  { period: '2016', title: '纳入 IMF SDR 篮子', accent: '#d4a25a', desc: '人民币以约 10.92% 权重入篮特别提款权，成为继美元、欧元、日元、英镑后的第五种篮子货币。制度背书完成，储备货币职能获得 IMF 认证。' },
+  { period: '2019–2021', title: 'e-CNY 试点扩大', accent: '#6fc2ae', desc: '数字人民币在深圳、苏州、雄安等地大规模试点，从民生红包走向政务发放与供应链场景，为可编程主权货币与跨境互联探路。' },
+  { period: '2022–至今', title: '大宗本币结算加速', accent: '#e5483b', desc: '地缘脱钩与制裁外溢压力下，中俄能源、中海原油、与多国贸易本币结算扩大，CIPS 参与者突破 1400 家，全球支付份额逼近 5%——去美元化从理念走向账本。' },
 ];
 
 /* 六维货币国际化能级（示意打分，0–100）—— CNY vs USD */
@@ -79,7 +79,7 @@ export default function Page() {
   const shareBar = useMemo(() => {
     const d = SHARE_DATA[shareMetric];
     const order = ['USD', 'EUR', 'JPY', 'GBP', 'CNY', 'OTHER'];
-    const colorMap = { USD: '#64748b', EUR: '#22d3ee', JPY: '#a78bfa', GBP: '#10b981', CNY: '#c41e3a', OTHER: '#3a4254' };
+    const colorMap = { USD: '#8a8578', EUR: '#6e8cff', JPY: '#a78bfa', GBP: '#6fc2ae', CNY: '#e5483b', OTHER: '#3a4254' };
     return {
       grid: { left: 48, right: 36, top: 16, bottom: 24 },
       tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, valueFormatter: (v) => `${v}%` },
@@ -97,8 +97,8 @@ export default function Page() {
   const cipsVsSwift = useMemo(() => stackedBarOpt({
     categories: ['参与机构(百家)', '覆盖国家/地区(十国)', '日均处理(万亿$,×10)'],
     series: [
-      { name: 'CIPS', data: [14, 11.4, 0.05], itemStyle: { color: '#c41e3a' }, stack: 'a' },
-      { name: 'SWIFT', data: [110, 20, 50], itemStyle: { color: '#64748b' }, stack: 'b' },
+      { name: 'CIPS', data: [14, 11.4, 0.05], itemStyle: { color: '#e5483b' }, stack: 'a' },
+      { name: 'SWIFT', data: [110, 20, 50], itemStyle: { color: '#8a8578' }, stack: 'b' },
     ],
     horizontal: false,
   }), []);
@@ -111,9 +111,9 @@ export default function Page() {
     xAxis: categoryX(['2010', '2013', '2016', '2019', '2022', '2025E']),
     yAxis: valueY(),
     series: [
-      { name: '结算职能', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [0.5, 1.6, 2.3, 2.8, 3.9, 5.1], lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' } },
-      { name: '储备职能', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [0.1, 0.4, 1.1, 1.9, 2.7, 3.0], lineStyle: { color: '#10b981', width: 2 }, itemStyle: { color: '#10b981' } },
-      { name: '计价职能', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [0.2, 0.5, 0.8, 1.0, 1.4, 2.1], lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' } },
+      { name: '结算职能', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [0.5, 1.6, 2.3, 2.8, 3.9, 5.1], lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' } },
+      { name: '储备职能', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [0.1, 0.4, 1.1, 1.9, 2.7, 3.0], lineStyle: { color: '#6fc2ae', width: 2 }, itemStyle: { color: '#6fc2ae' } },
+      { name: '计价职能', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [0.2, 0.5, 0.8, 1.0, 1.4, 2.1], lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' } },
     ],
   }), []);
 
@@ -124,15 +124,15 @@ export default function Page() {
     radar: {
       indicator: RADAR_DIMS.map((n) => ({ name: n, max: 100 })),
       axisName: { color: LABEL.color, fontSize: 10 },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-      axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
+      axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
       splitArea: { show: false },
     },
     series: [{
       type: 'radar',
       data: [
-        { value: RADAR_USD, name: 'USD 美元', lineStyle: { color: '#64748b', width: 2 }, itemStyle: { color: '#64748b' }, areaStyle: { color: 'rgba(100,116,139,0.12)' } },
-        { value: RADAR_CNY, name: 'CNY 人民币', lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.15)' } },
+        { value: RADAR_USD, name: 'USD 美元', lineStyle: { color: '#8a8578', width: 2 }, itemStyle: { color: '#8a8578' }, areaStyle: { color: 'rgba(100,116,139,0.12)' } },
+        { value: RADAR_CNY, name: 'CNY 人民币', lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.15)' } },
       ],
     }],
   }), []);
@@ -145,7 +145,7 @@ export default function Page() {
     series: [{
       type: 'bar', barWidth: 18, itemStyle: { borderRadius: 3 },
       data: [
-        { value: f.ceiling, itemStyle: { color: 'rgba(148,163,184,0.18)' } },
+        { value: f.ceiling, itemStyle: { color: 'rgba(162, 156, 145,0.18)' } },
         { value: f.share, itemStyle: { color: f.accent } },
       ],
       label: { show: true, position: 'right', color: LABEL.color, fontSize: 11, formatter: '{c}%' },
@@ -154,10 +154,10 @@ export default function Page() {
 
   /* 离岸人民币存款分布（示意 donut） */
   const offshorePool = useMemo(() => donutOpt([
-    { value: 42, name: '香港 (CNH 枢纽)', itemStyle: { color: '#c41e3a' } },
-    { value: 16, name: '新加坡', itemStyle: { color: '#22d3ee' } },
-    { value: 12, name: '伦敦', itemStyle: { color: '#10b981' } },
-    { value: 9, name: '台湾', itemStyle: { color: '#e8a317' } },
+    { value: 42, name: '香港 (CNH 枢纽)', itemStyle: { color: '#e5483b' } },
+    { value: 16, name: '新加坡', itemStyle: { color: '#6e8cff' } },
+    { value: 12, name: '伦敦', itemStyle: { color: '#6fc2ae' } },
+    { value: 9, name: '台湾', itemStyle: { color: '#d4a25a' } },
     { value: 8, name: '澳门', itemStyle: { color: '#a78bfa' } },
     { value: 13, name: '其他离岸中心', itemStyle: { color: '#3a4254' } },
   ]), []);
@@ -173,10 +173,10 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="4.7%" label="SWIFT 跨境支付份额 · 第 4–5 位" accent="#c41e3a" />
-        <Stat value="2.3%" label="全球官方外储占比 · IMF COFER" accent="#10b981" />
-        <Stat value="1400+" label="CIPS 参与机构 · 覆盖 114 国/地区" accent="#22d3ee" />
-        <Stat value="~50 万亿" label="跨境人民币结算规模(年,元) · 示意" accent="#e8a317" />
+        <Stat value="4.7%" label="SWIFT 跨境支付份额 · 第 4–5 位" accent="#e5483b" />
+        <Stat value="2.3%" label="全球官方外储占比 · IMF COFER" accent="#6fc2ae" />
+        <Stat value="1400+" label="CIPS 参与机构 · 覆盖 114 国/地区" accent="#6e8cff" />
+        <Stat value="~50 万亿" label="跨境人民币结算规模(年,元) · 示意" accent="#d4a25a" />
       </Grid>
 
       {/* ── 交互① 职能维度选择器 ── */}
@@ -190,12 +190,12 @@ export default function Page() {
           </div>
           <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>{f.desc}</p>
           <Grid cols={2}>
-            <div className="text-xs p-2 rounded" style={{ background: 'rgba(196,30,58,0.06)', borderLeft: '2px solid #c41e3a' }}>
-              <span className="font-semibold" style={{ color: '#c41e3a' }}>瓶颈 · </span>
+            <div className="text-xs p-2 rounded" style={{ background: 'rgba(229, 72, 59,0.06)', borderLeft: '2px solid #e5483b' }}>
+              <span className="font-semibold" style={{ color: '#e5483b' }}>瓶颈 · </span>
               <span style={{ color: 'var(--text-tertiary)' }}>{f.bottleneck}</span>
             </div>
-            <div className="text-xs p-2 rounded" style={{ background: 'rgba(16,185,129,0.06)', borderLeft: '2px solid #10b981' }}>
-              <span className="font-semibold" style={{ color: '#10b981' }}>抓手 · </span>
+            <div className="text-xs p-2 rounded" style={{ background: 'rgba(111, 194, 174,0.06)', borderLeft: '2px solid #6fc2ae' }}>
+              <span className="font-semibold" style={{ color: '#6fc2ae' }}>抓手 · </span>
               <span style={{ color: 'var(--text-tertiary)' }}>{f.lever}</span>
             </div>
           </Grid>
@@ -215,7 +215,7 @@ export default function Page() {
             <EChart option={offshorePool} style={{ height: 240 }} />
           </Card>
         </Grid>
-        <div className="text-[11px] italic p-3 mt-4" style={{ color: 'var(--text-tertiary)', borderLeft: '2px solid #e8a317', background: 'rgba(232,163,23,0.06)' }}>
+        <div className="text-[11px] italic p-3 mt-4" style={{ color: 'var(--text-tertiary)', borderLeft: '2px solid #d4a25a', background: 'rgba(212, 162, 90,0.06)' }}>
           冷峻的现实：人民币在三个口径中均稳居第 4–5 位，但与美元（外储近 58%）之间是数量级的差距。份额的缓慢爬升不是失败，而是货币国际化本就以「十年」为刻度——美元取代英镑用了半个世纪。
         </div>
       </Card>
@@ -236,7 +236,7 @@ export default function Page() {
         <Card title="人民币国际化指数趋势 —— 结算 / 储备 / 计价 三维爬升">
           <EChart option={rmbIndex} style={{ height: 240 }} />
           <p className="text-[11px] leading-relaxed mt-2" style={{ color: 'var(--text-tertiary)' }}>
-            三条曲线斜率不同：<strong style={{ color: '#e8a317' }}>结算</strong>最快（贸易规模驱动），<strong style={{ color: '#10b981' }}>储备</strong>次之（SDR 背书），<strong style={{ color: '#c41e3a' }}>计价</strong>最慢（美元定价铁三角最难撼动）。三者的剪刀差，正是国际化的真实瓶颈所在。
+            三条曲线斜率不同：<strong style={{ color: '#d4a25a' }}>结算</strong>最快（贸易规模驱动），<strong style={{ color: '#6fc2ae' }}>储备</strong>次之（SDR 背书），<strong style={{ color: '#e5483b' }}>计价</strong>最慢（美元定价铁三角最难撼动）。三者的剪刀差，正是国际化的真实瓶颈所在。
           </p>
         </Card>
       </Grid>
@@ -251,7 +251,7 @@ export default function Page() {
             雷达图揭示残酷的非对称：人民币在<strong style={{ color: 'var(--text-primary)' }}>贸易结算</strong>维度已接近美元，但在<strong style={{ color: 'var(--text-primary)' }}>资本可兑换、市场深度、储备地位</strong>三个维度差距悬殊。
             这不是政策力度问题，而是结构问题——储备货币地位的本质是<strong style={{ color: 'var(--text-primary)' }}>危机时刻的避险信任</strong>，它无法被「推动」，只能被数十年的法治、深度与开放慢慢「赢得」。
           </p>
-          <div className="text-xs italic p-3" style={{ color: 'var(--text-tertiary)', borderLeft: '2px solid #c41e3a', background: 'rgba(196,30,58,0.06)' }}>
+          <div className="text-xs italic p-3" style={{ color: 'var(--text-tertiary)', borderLeft: '2px solid #e5483b', background: 'rgba(229, 72, 59,0.06)' }}>
             "货币霸权是一种沉默的税收：只要世界用你的货币交易，全球就在为你的赤字融资。挑战它，等于挑战一个国家收取铸币税与豁免金融制裁的特权。"
           </div>
         </Card>
@@ -260,17 +260,17 @@ export default function Page() {
       {/* ── FrameworkTrio ── */}
       <FrameworkTrio cards={[
         {
-          title: '货币权力', subtitle: '铸币权 · 制裁豁免', accent: '#e8a317', border: '#e8a317',
+          title: '货币权力', subtitle: '铸币权 · 制裁豁免', accent: '#d4a25a', border: '#d4a25a',
           body: '国际货币地位是一种结构性特权：发行者享有铸币税（全球持有你的现金等于无息贷款），并对金融制裁天然豁免。美元的真正武器不是汇率，而是切断 SWIFT 接入的「核选项」。',
           pillars: [['铸币税', '全球为赤字融资。'], ['制裁豁免', '掌网者不被踢出网。'], ['计价锚', '大宗美元报价惯性。']],
         },
         {
-          title: '双轨悖论', subtitle: '管制 vs 国际化', accent: '#22d3ee', border: '#22d3ee',
+          title: '双轨悖论', subtitle: '管制 vs 国际化', accent: '#6e8cff', border: '#6e8cff',
           body: '人民币国际化最深的张力：要让世界持有人民币资产，必须放开资本项目；要守住不发生系统性风险的底线，又必须保留资本管制。开放与安全天然对冲，故只能「管道式」灰度推进。',
           pillars: [['管道式开放', '债券通/沪深港通。'], ['离岸缓冲', 'CNH 定价隔离窗。'], ['有序可兑换', '速度服从冗余。']],
         },
         {
-          title: '去美元化', subtitle: '三路并进', accent: '#c41e3a', border: '#c41e3a',
+          title: '去美元化', subtitle: '三路并进', accent: '#e5483b', border: '#e5483b',
           body: '去美元化不是宣言，而是基础设施竞赛：本币结算（绕开美元中间货币）+ CIPS（绕开 SWIFT 报文）+ 数字货币（绕开代理行链条）三路并进。制裁外溢，反而为替代体系递上客户名单。',
           pillars: [['本币结算', '中俄/中海能源。'], ['CIPS 清算', '主权备份协议。'], ['mBridge', '多边 CBDC 桥。']],
         },

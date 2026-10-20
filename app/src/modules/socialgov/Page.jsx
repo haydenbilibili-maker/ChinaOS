@@ -9,7 +9,7 @@ import { IntroCard, SelectorBar, TimelineBar, FrameworkTrio, ModuleFooter } from
 // ---------------------------------------------------------------------------
 const MECHANISMS = [
   {
-    key: 'grid', label: '网格化管理', accent: '#c41e3a',
+    key: 'grid', label: '网格化管理', accent: '#e5483b',
     principle: '把国土切成数百万个 300–500 户的微观「网格」，每格配 1 名以上专兼职网格员，承担「人地物事情」全要素采集。网格是体制的末梢传感器：权力第一次以物理颗粒度触达每一栋楼、每一户人。',
     scale: '全国约 450 万网格员 · 城乡网格超 400 万个 · 覆盖率接近 100%',
     effect: '风险感知前置：从「事后处置」转向「事前发现」。流动人口、出租屋、独居老人、矛盾苗头被纳入实时台账。',
@@ -18,7 +18,7 @@ const MECHANISMS = [
     radar: [90, 78, 72, 60, 85, 38],
   },
   {
-    key: 'whistle', label: '吹哨报到', accent: '#22d3ee',
+    key: 'whistle', label: '吹哨报到', accent: '#6e8cff',
     principle: '北京首创的「街乡吹哨、部门报到」：基层发现问题但无执法权时，可「吹哨」召集区级部门下沉会签处置，考核权倒挂 —— 部门是否报到、问题是否解决，由街道打分。',
     scale: '从北京平谷扩散至全国大中城市 · 已演化为「接诉即办」12345 热线驱动模式',
     effect: '局部矫正了「看得见的管不了、管得了的看不见」的条块断裂：权随事走、费随事转。',
@@ -27,7 +27,7 @@ const MECHANISMS = [
     radar: [75, 82, 80, 55, 70, 50],
   },
   {
-    key: 'center', label: '综治中心', accent: '#e8a317',
+    key: 'center', label: '综治中心', accent: '#d4a25a',
     principle: '县乡两级「社会治安综合治理中心」实体化运行：信访接待、人民调解、法律援助、心理服务、网格指挥多窗合一，矛盾纠纷「只进一扇门、最多跑一地」。',
     scale: '县级综治中心规范化建设全覆盖推进中 · 乡镇（街道）综治中心实体化率持续提升',
     effect: '把分散在政法、信访、司法的化解资源物理集中，形成矛盾处置的「急诊分诊台」。',
@@ -36,7 +36,7 @@ const MECHANISMS = [
     radar: [80, 92, 68, 58, 75, 42],
   },
   {
-    key: 'fengqiao', label: '枫桥经验', accent: '#10b981',
+    key: 'fengqiao', label: '枫桥经验', accent: '#6fc2ae',
     principle: '1963 年浙江诸暨枫桥镇的群众工作方法，被反复重提为治理正统：「小事不出村、大事不出镇、矛盾不上交」。本质是把矛盾化解成本压在最低层级，用熟人社会 + 调解网络在源头泄压。',
     scale: '全国人民调解委员会约 69 万个 · 人民调解员超 300 万 · 年化解纠纷千万件级',
     effect: '极低成本的社会减压阀：一件纠纷走调解的财政成本约为走诉讼的 1/10 以下。',
@@ -45,7 +45,7 @@ const MECHANISMS = [
     radar: [70, 95, 60, 75, 40, 72],
   },
   {
-    key: 'community', label: '社区自治', accent: '#8b5cf6',
+    key: 'community', label: '社区自治', accent: '#b07cc6',
     principle: '居委会/村委会法律上是「基层群众性自治组织」，配套业委会、社区社会组织、协商议事会。理论上是国家与社会的缓冲层，实践中高度「行政吸纳」：80% 以上工时用于承接政府下派任务。',
     scale: '城市社区约 11.6 万个 · 社区社会组织约 175 万个 · 注册志愿者超 2.3 亿人',
     effect: '议事协商、积分制、时间银行等微创新持续出现，自治活力在「行政外包」缝隙中生长。',
@@ -54,7 +54,7 @@ const MECHANISMS = [
     radar: [55, 68, 78, 82, 45, 85],
   },
   {
-    key: 'smart', label: '智慧社区', accent: '#fb923c',
+    key: 'smart', label: '智慧社区', accent: '#c07a4a',
     principle: '人脸门禁、高空抛物摄像、独居老人水电监测、社区 App 报事 —— 把网格员的「腿」换成传感器的「线」。城市大脑向下延伸的最后一米，治理感知从「人采」转向「机采」。',
     scale: '智慧社区试点覆盖主要城市 · 「一网统管」城市运行平台地级市基本建成',
     effect: '感知密度和响应速度数量级提升：高空抛物溯源、独居老人异常用水预警等场景已常态化。',
@@ -77,10 +77,10 @@ const depthFunnel = {
     itemStyle: { borderColor: 'transparent', borderWidth: 0 },
     emphasis: { label: { fontSize: 12 } },
     data: [
-      { value: 100, name: '市/州（顶层指挥）', itemStyle: { color: '#c41e3a' } },
-      { value: 80, name: '县/区（资源调度）', itemStyle: { color: '#e8a317' } },
-      { value: 60, name: '街/镇（阵地前移）', itemStyle: { color: '#22d3ee' } },
-      { value: 40, name: '社区（微观网格）', itemStyle: { color: '#10b981' } },
+      { value: 100, name: '市/州（顶层指挥）', itemStyle: { color: '#e5483b' } },
+      { value: 80, name: '县/区（资源调度）', itemStyle: { color: '#d4a25a' } },
+      { value: 60, name: '街/镇（阵地前移）', itemStyle: { color: '#6e8cff' } },
+      { value: 40, name: '社区（微观网格）', itemStyle: { color: '#6fc2ae' } },
     ],
   }],
 };
@@ -89,22 +89,22 @@ const conflictLine = {
   grid: { left: 44, right: 16, top: 20, bottom: 24 },
   xAxis: categoryX(['2018', '2020', '2022', '2024']),
   yAxis: valueY({ max: 100, axisLabel: { formatter: '{value}%' } }),
-  series: [{ name: '矛盾就地化解率', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [78, 85, 92, 96.8], lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' }, areaStyle: { color: 'rgba(232,163,23,0.12)' } }],
+  series: [{ name: '矛盾就地化解率', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [78, 85, 92, 96.8], lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' }, areaStyle: { color: 'rgba(212, 162, 90,0.12)' } }],
 };
 
 const cyberRadar = radarOpt(
   ['舆情预判', '数据穿透力', '响应速度', '资源触达度', '反馈闭环率'],
   [95, 98, 92, 90, 96],
-  { name: '当前治理效能', color: '#22d3ee' },
+  { name: '当前治理效能', color: '#6e8cff' },
 );
 
 // 网格体系五级结构 donut（数值为示意构成比，%）
 const gridDonut = donutOpt([
-  { value: 2, name: '市级平台（指挥中枢）', itemStyle: { color: '#c41e3a' } },
-  { value: 6, name: '区县综治中心', itemStyle: { color: '#e8a317' } },
-  { value: 12, name: '街镇网格化平台', itemStyle: { color: '#22d3ee' } },
-  { value: 28, name: '社区（村）工作站', itemStyle: { color: '#8b5cf6' } },
-  { value: 52, name: '基础网格（终端单元）', itemStyle: { color: '#10b981' } },
+  { value: 2, name: '市级平台（指挥中枢）', itemStyle: { color: '#e5483b' } },
+  { value: 6, name: '区县综治中心', itemStyle: { color: '#d4a25a' } },
+  { value: 12, name: '街镇网格化平台', itemStyle: { color: '#6e8cff' } },
+  { value: 28, name: '社区（村）工作站', itemStyle: { color: '#b07cc6' } },
+  { value: 52, name: '基础网格（终端单元）', itemStyle: { color: '#6fc2ae' } },
 ]);
 
 // 矛盾化解漏斗 —— 枫桥分流：进入司法程序前逐级泄压（示意，基数=100）
@@ -116,11 +116,11 @@ const resolveFunnel = {
     label: { show: true, position: 'inside', fontSize: 10, color: '#fff', formatter: '{b} · {c}' },
     itemStyle: { borderColor: 'transparent' },
     data: [
-      { value: 100, name: '纠纷发生（网格上报+主动排查）', itemStyle: { color: '#64748b' } },
-      { value: 72, name: '村社调解（小事不出村）', itemStyle: { color: '#10b981' } },
-      { value: 38, name: '乡镇综治中心（大事不出镇）', itemStyle: { color: '#e8a317' } },
-      { value: 14, name: '信访/行政复议分流', itemStyle: { color: '#fb923c' } },
-      { value: 5, name: '进入诉讼程序', itemStyle: { color: '#c41e3a' } },
+      { value: 100, name: '纠纷发生（网格上报+主动排查）', itemStyle: { color: '#8a8578' } },
+      { value: 72, name: '村社调解（小事不出村）', itemStyle: { color: '#6fc2ae' } },
+      { value: 38, name: '乡镇综治中心（大事不出镇）', itemStyle: { color: '#d4a25a' } },
+      { value: 14, name: '信访/行政复议分流', itemStyle: { color: '#c07a4a' } },
+      { value: 5, name: '进入诉讼程序', itemStyle: { color: '#e5483b' } },
     ],
   }],
 };
@@ -133,10 +133,10 @@ const burdenLines = {
   xAxis: categoryX(['2015', '2017', '2019', '2021', '2023', '2025']),
   yAxis: valueY({ name: '指数(2015=100)' }),
   series: [
-    { name: '下派考核事项', type: 'line', smooth: true, data: [100, 145, 190, 168, 152, 160], lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' } },
-    { name: '台账报表负担', type: 'line', smooth: true, data: [100, 160, 230, 175, 150, 142], lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' } },
-    { name: '政务 App/工作群', type: 'line', smooth: true, data: [100, 220, 380, 300, 210, 185], lineStyle: { color: '#8b5cf6', width: 2 }, itemStyle: { color: '#8b5cf6' } },
-    { name: '减负文件出台数', type: 'line', smooth: true, data: [100, 110, 180, 260, 320, 360], lineStyle: { color: '#22d3ee', width: 2, type: 'dashed' }, itemStyle: { color: '#22d3ee' } },
+    { name: '下派考核事项', type: 'line', smooth: true, data: [100, 145, 190, 168, 152, 160], lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' } },
+    { name: '台账报表负担', type: 'line', smooth: true, data: [100, 160, 230, 175, 150, 142], lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' } },
+    { name: '政务 App/工作群', type: 'line', smooth: true, data: [100, 220, 380, 300, 210, 185], lineStyle: { color: '#b07cc6', width: 2 }, itemStyle: { color: '#b07cc6' } },
+    { name: '减负文件出台数', type: 'line', smooth: true, data: [100, 110, 180, 260, 320, 360], lineStyle: { color: '#6e8cff', width: 2, type: 'dashed' }, itemStyle: { color: '#6e8cff' } },
   ],
 };
 
@@ -144,9 +144,9 @@ const burdenLines = {
 const gridWorkStack = stackedBarOpt({
   categories: ['信息采集', '矛盾排查', '民生代办', '创建迎检', '台账填报'],
   series: [
-    { name: '治理性事务', data: [22, 18, 6, 4, 5], itemStyle: { color: '#c41e3a' } },
-    { name: '服务性事务', data: [6, 8, 18, 2, 3], itemStyle: { color: '#10b981' } },
-    { name: '行政性事务', data: [4, 2, 4, 12, 14], itemStyle: { color: '#64748b' } },
+    { name: '治理性事务', data: [22, 18, 6, 4, 5], itemStyle: { color: '#e5483b' } },
+    { name: '服务性事务', data: [6, 8, 18, 2, 3], itemStyle: { color: '#6fc2ae' } },
+    { name: '行政性事务', data: [4, 2, 4, 12, 14], itemStyle: { color: '#8a8578' } },
   ],
 });
 
@@ -167,11 +167,11 @@ const tensionScatter = {
 // 三、治理演进时间线
 // ---------------------------------------------------------------------------
 const EVOLUTION = [
-  { period: '1950s–90s', title: '单位制', accent: '#64748b', desc: '「单位」是国家与个人之间唯一的接口：住房、医疗、子女入学、政治审查全部经由单位完成。社会被组织进生产建制，几乎不存在「治理」概念 —— 因为不存在体制外的社会。' },
-  { period: '1990s–2003', title: '社区制', accent: '#8b5cf6', desc: '国企改制甩出数千万「单位人」，街居体系仓促接盘。「社区建设」运动启动：居委会从看门大妈式的辅助组织，被改造为承接下岗安置、低保发放、流动人口管理的全功能末梢。' },
-  { period: '2004–2012', title: '网格化', accent: '#22d3ee', desc: '北京东城区首创「万米单元网格」，奥运维稳与汶川应急加速推广。物理空间被切片编码，「人地物事情」入库 —— 治理第一次拥有了统一的空间坐标系与责任到人的颗粒度。' },
-  { period: '2013–2019', title: '吹哨报到 / 接诉即办', accent: '#e8a317', desc: '条块矛盾倒逼机制创新：街乡吹哨、部门报到，12345 热线成为「以民呼为令」的考核指挥棒。治理重心从「不出事」转向「快响应」，市民投诉成为体制内部的纠错信号源。' },
-  { period: '2020–', title: '智慧治理 / 全要素网格', accent: '#c41e3a', desc: '封控周期完成了治理基础设施的压力测试与极限扩容：数字通行凭证、门磁、社区团购链路证明网格可在 48 小时内切换为战时动员模式。此后「全要素网格」「一网统管」常态化 —— 传感器密度与数据穿透力成为治理能力的硬通货。' },
+  { period: '1950s–90s', title: '单位制', accent: '#8a8578', desc: '「单位」是国家与个人之间唯一的接口：住房、医疗、子女入学、政治审查全部经由单位完成。社会被组织进生产建制，几乎不存在「治理」概念 —— 因为不存在体制外的社会。' },
+  { period: '1990s–2003', title: '社区制', accent: '#b07cc6', desc: '国企改制甩出数千万「单位人」，街居体系仓促接盘。「社区建设」运动启动：居委会从看门大妈式的辅助组织，被改造为承接下岗安置、低保发放、流动人口管理的全功能末梢。' },
+  { period: '2004–2012', title: '网格化', accent: '#6e8cff', desc: '北京东城区首创「万米单元网格」，奥运维稳与汶川应急加速推广。物理空间被切片编码，「人地物事情」入库 —— 治理第一次拥有了统一的空间坐标系与责任到人的颗粒度。' },
+  { period: '2013–2019', title: '吹哨报到 / 接诉即办', accent: '#d4a25a', desc: '条块矛盾倒逼机制创新：街乡吹哨、部门报到，12345 热线成为「以民呼为令」的考核指挥棒。治理重心从「不出事」转向「快响应」，市民投诉成为体制内部的纠错信号源。' },
+  { period: '2020–', title: '智慧治理 / 全要素网格', accent: '#e5483b', desc: '封控周期完成了治理基础设施的压力测试与极限扩容：数字通行凭证、门磁、社区团购链路证明网格可在 48 小时内切换为战时动员模式。此后「全要素网格」「一网统管」常态化 —— 传感器密度与数据穿透力成为治理能力的硬通货。' },
 ];
 
 // ---------------------------------------------------------------------------
@@ -197,15 +197,15 @@ export default function Page() {
       radar: {
         indicator: RADAR_DIMS.map((n) => ({ name: n, max: 100 })),
         axisName: { color: LABEL.color, fontSize: 10 },
-        splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-        axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+        splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
+        axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
         splitArea: { show: false },
       },
       series: [{
         type: 'radar',
         data: [
-          { value: base.radar, name: base.label + '（基线）', lineStyle: { color: '#64748b', width: 1.5, type: 'dashed' }, itemStyle: { color: '#64748b' }, areaStyle: { color: 'rgba(100,116,139,0.08)' } },
-          { value: mech.radar, name: mech.label, lineStyle: { color: mech.accent, width: 2 }, itemStyle: { color: mech.accent }, areaStyle: { color: 'rgba(34,211,238,0.0)' } },
+          { value: base.radar, name: base.label + '（基线）', lineStyle: { color: '#8a8578', width: 1.5, type: 'dashed' }, itemStyle: { color: '#8a8578' }, areaStyle: { color: 'rgba(100,116,139,0.08)' } },
+          { value: mech.radar, name: mech.label, lineStyle: { color: mech.accent, width: 2 }, itemStyle: { color: mech.accent }, areaStyle: { color: 'rgba(110, 140, 255,0.0)' } },
         ],
       }],
     };
@@ -220,7 +220,7 @@ export default function Page() {
       type: 'bar', barWidth: 16,
       label: { show: true, position: 'right', fontSize: 10, color: LABEL.color },
       data: [
-        { value: mech.auto, itemStyle: { color: '#10b981' } },
+        { value: mech.auto, itemStyle: { color: '#6fc2ae' } },
         { value: mech.ctrl, itemStyle: { color: mech.accent } },
       ],
     }],
@@ -235,10 +235,10 @@ export default function Page() {
 
       {/* ============ 概览 Stat ============ */}
       <Grid cols={4} className="mb-6">
-        <Stat value="450 万+" label="网格员总数 · 城乡网格超 400 万个" accent="#e8a317" />
-        <Stat value="96.8%" label="矛盾就地化解率 · 矛盾不上交（示意）" accent="#10b981" />
-        <Stat value="175 万" label="社区社会组织 · 自治活力载体（示意）" accent="#8b5cf6" />
-        <Stat value="98.1%" label="群众安全感 · 世界领先水平" accent="#c41e3a" />
+        <Stat value="450 万+" label="网格员总数 · 城乡网格超 400 万个" accent="#d4a25a" />
+        <Stat value="96.8%" label="矛盾就地化解率 · 矛盾不上交（示意）" accent="#6fc2ae" />
+        <Stat value="175 万" label="社区社会组织 · 自治活力载体（示意）" accent="#b07cc6" />
+        <Stat value="98.1%" label="群众安全感 · 世界领先水平" accent="#e5483b" />
       </Grid>
 
       {/* ============ 一、治理机制选择器 ============ */}
@@ -257,7 +257,7 @@ export default function Page() {
               <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{mech.effect}</p>
             </div>
             <div>
-              <div className="text-[11px] mono mb-1" style={{ color: '#fb923c' }}>结构性张力</div>
+              <div className="text-[11px] mono mb-1" style={{ color: '#c07a4a' }}>结构性张力</div>
               <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{mech.tension}</p>
             </div>
           </Grid>
@@ -288,8 +288,8 @@ export default function Page() {
         <Card title="网格体系五级结构 · 治理单元构成（示意 %）">
           <EChart option={gridDonut} style={{ height: 230 }} />
           <Grid cols={2} className="mt-2">
-            <Stat value="300–500 户" label="单个基础网格的标准颗粒度" accent="#10b981" />
-            <Stat value="五级贯通" label="市—区—街—社区—网格 指令链" accent="#22d3ee" />
+            <Stat value="300–500 户" label="单个基础网格的标准颗粒度" accent="#6fc2ae" />
+            <Stat value="五级贯通" label="市—区—街—社区—网格 指令链" accent="#6e8cff" />
           </Grid>
         </Card>
       </Grid>
@@ -323,9 +323,9 @@ export default function Page() {
       <Card title="基层负担悖论 · 压实 vs 减负的拉锯（指数，2015=100，示意）" className="mb-6">
         <EChart option={burdenLines} style={{ height: 260 }} />
         <Grid cols={3} className="mt-3">
-          {[['属地责任压实', '「层层签责任状」把无限责任压到有限权力的末端：出事追责到社区，但执法权、财权、人事权都不在社区。', '#c41e3a'],
-            ['痕迹主义通胀', '考核依赖「留痕」，台账与 App 数量在 2019 年前后达峰：一名社区工作者同时维护数十个工作群、上报十余套系统。', '#e8a317'],
-            ['减负的西西弗斯', '2019 年「基层减负年」以来减负文件持续加码，台账确有压降；但只要考核逻辑不变，负担便以新形态再生 —— 减负本身也成了需要留痕的工作。', '#22d3ee']].map(([t, d, c]) => (
+          {[['属地责任压实', '「层层签责任状」把无限责任压到有限权力的末端：出事追责到社区，但执法权、财权、人事权都不在社区。', '#e5483b'],
+            ['痕迹主义通胀', '考核依赖「留痕」，台账与 App 数量在 2019 年前后达峰：一名社区工作者同时维护数十个工作群、上报十余套系统。', '#d4a25a'],
+            ['减负的西西弗斯', '2019 年「基层减负年」以来减负文件持续加码，台账确有压降；但只要考核逻辑不变，负担便以新形态再生 —— 减负本身也成了需要留痕的工作。', '#6e8cff']].map(([t, d, c]) => (
             <div key={t} style={{ borderLeft: `2px solid ${c}`, paddingLeft: 10 }}>
               <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{t}</div>
               <p className="text-[11px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
@@ -345,8 +345,8 @@ export default function Page() {
         <Card title="赛博反馈：非代议制的民意校准">
           <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>数字化治理实现了对社会不满的「量化监测」。当特定区域的投诉、矛盾或舆情超过预设阈值，系统自动启动「预防性维护」程序，释放治理红利或实施行政干预。这种基于大数据反馈的决策模型，正尝试取代效率较低的传统代议机制，构建一套极速响应的「智能合意系统」。</p>
           <Grid cols={2}>
-            <Stat value="92%" label="民生诉求办结满意率" accent="#e8a317" />
-            <Stat value="秒级" label="网格化指令流转时耗" accent="#22d3ee" />
+            <Stat value="92%" label="民生诉求办结满意率" accent="#d4a25a" />
+            <Stat value="秒级" label="网格化指令流转时耗" accent="#6e8cff" />
           </Grid>
         </Card>
       </Grid>
@@ -354,10 +354,10 @@ export default function Page() {
       {/* ============ 八、四大支柱 + 数字政务 ============ */}
       <Card title="四大支柱 · 治理穿透的运行结构" className="mb-6">
         <Grid cols={4}>
-          {[['01 · 网格化穿透逻辑', '数百万微观网格 + 450 万网格员，把「人地物事情」采集为实时数据流，权力下沉至物理级。', '#c41e3a'],
-            ['02 · 矛盾化解算法', '枫桥经验数字化：调解、信访、诉源治理逐级过滤，96.8% 矛盾就地化解、不上交。', '#e8a317'],
-            ['03 · 赛博反馈校准', '投诉/舆情阈值触发预防性维护，以量化监测替代代议反馈，秒级指令流转闭环。', '#22d3ee'],
-            ['04 · 基层韧性底座', '全域安全感知网络、社区积分制自治与数字化信用体系，构建高内聚、自修复的社会有机体。', '#10b981']].map(([t, d, c]) => (
+          {[['01 · 网格化穿透逻辑', '数百万微观网格 + 450 万网格员，把「人地物事情」采集为实时数据流，权力下沉至物理级。', '#e5483b'],
+            ['02 · 矛盾化解算法', '枫桥经验数字化：调解、信访、诉源治理逐级过滤，96.8% 矛盾就地化解、不上交。', '#d4a25a'],
+            ['03 · 赛博反馈校准', '投诉/舆情阈值触发预防性维护，以量化监测替代代议反馈，秒级指令流转闭环。', '#6e8cff'],
+            ['04 · 基层韧性底座', '全域安全感知网络、社区积分制自治与数字化信用体系，构建高内聚、自修复的社会有机体。', '#6fc2ae']].map(([t, d, c]) => (
             <div key={t} style={{ borderLeft: `2px solid ${c}`, paddingLeft: 10 }}>
               <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{t}</div>
               <p className="text-[11px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
@@ -368,9 +368,9 @@ export default function Page() {
 
       <Card title="数字政务 · 从「一网通办」到「一网统管」" className="mb-6">
         <Grid cols={3}>
-          {[['一网通办（服务侧）', '政务服务事项线上集成办理，网格员兼任「数字政务代办员」，将服务入口前移至社区网格。', '#22d3ee'],
-            ['一网统管（治理侧）', '城市运行体征指标接入城市大脑，跨部门指令经网格化平台秒级派单、闭环考核。', '#c41e3a'],
-            ['信访法治化', '信访纳入诉源治理与矛盾排查闭环：依法分类处理、就地化解，减少越级上行的制度压力。', '#e8a317']].map(([t, d, c]) => (
+          {[['一网通办（服务侧）', '政务服务事项线上集成办理，网格员兼任「数字政务代办员」，将服务入口前移至社区网格。', '#6e8cff'],
+            ['一网统管（治理侧）', '城市运行体征指标接入城市大脑，跨部门指令经网格化平台秒级派单、闭环考核。', '#e5483b'],
+            ['信访法治化', '信访纳入诉源治理与矛盾排查闭环：依法分类处理、就地化解，减少越级上行的制度压力。', '#d4a25a']].map(([t, d, c]) => (
             <div key={t} style={{ borderLeft: `2px solid ${c}`, paddingLeft: 10 }}>
               <div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{t}</div>
               <p className="text-[11px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>

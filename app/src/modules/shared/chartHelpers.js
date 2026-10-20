@@ -7,13 +7,13 @@
 // 双主题调色板：夜览(dark) 沿用既有冷峻深色，日览(light) 提升对比度但保持冷灰基调
 const CHART_PALETTE = {
   dark: {
-    axis: '#27324a',
-    label: '#93a1b5',
-    split: 'rgba(148,163,184,0.1)',
-    splitStrong: 'rgba(148,163,184,0.15)',
-    tooltipBg: 'rgba(15, 22, 35, 0.94)',
-    tooltipBorder: 'rgba(148, 163, 184, 0.22)',
-    tooltipText: '#e8edf6',
+    axis: '#2a2d36',
+    label: '#a29c91',
+    split: 'rgba(162, 156, 145,0.1)',
+    splitStrong: 'rgba(162, 156, 145,0.15)',
+    tooltipBg: 'rgba(20, 23, 31, 0.94)',
+    tooltipBorder: 'rgba(162, 156, 145, 0.22)',
+    tooltipText: '#ede8df',
     pointBorder: '#ffffff',
   },
   light: {
@@ -39,13 +39,13 @@ function readCssChartVar(name, fallback) {
 
 /** 专题模块统一系列色 · power-red → cyber-cyan → fire-gold 语义序 */
 export const CHART_SERIES_COLORS = {
-  powerRed: '#c41e3a',
-  cyberCyan: '#22d3ee',
-  fireGold: '#e8a317',
-  emerald: '#10b981',
-  violet: '#8b5cf6',
-  orange: '#fb923c',
-  slate: '#64748b',
+  powerRed: '#e5483b',
+  cyberCyan: '#6e8cff',
+  fireGold: '#d4a25a',
+  emerald: '#6fc2ae',
+  violet: '#b07cc6',
+  orange: '#c07a4a',
+  slate: '#8a8578',
 };
 
 export const CHART_SERIES_PALETTE = [
@@ -70,7 +70,7 @@ export function mapChoropleth(theme = 'dark') {
 
 /** Δ12 月发散序：降温蓝 → 中性底 → 升温暖（对齐 MAP_CHOROPLETH 端点） */
 export const MAP_DELTA_CHOROPLETH = {
-  dark: ['#3b82f6', MAP_CHOROPLETH.dark[0], MAP_CHOROPLETH.dark[3]],
+  dark: ['#6e8cff', MAP_CHOROPLETH.dark[0], MAP_CHOROPLETH.dark[3]],
   light: ['#2563eb', MAP_CHOROPLETH.light[0], MAP_CHOROPLETH.light[3]],
 };
 
@@ -165,7 +165,7 @@ export function usFlagBlueAlpha(theme = 'dark', alpha = 0.12) {
   return hexAlpha(usFlagBlue(theme), alpha);
 }
 
-export function radarOpt(indicators, values, { name = '综合', color = '#c41e3a' } = {}) {
+export function radarOpt(indicators, values, { name = '综合', color = '#e5483b' } = {}) {
   return {
     radar: {
       indicator: indicators.map((n) => (typeof n === 'string' ? { name: n, max: 100 } : n)),
@@ -179,7 +179,7 @@ export function radarOpt(indicators, values, { name = '综合', color = '#c41e3a
 }
 
 /** GDP/趋势图 + markArea 高亮阶段区间 */
-export function timelineMarkAreaOpt({ years, values, span, highlightColor = '#22d3ee', lineColor = '#c41e3a' }) {
+export function timelineMarkAreaOpt({ years, values, span, highlightColor = '#6e8cff', lineColor = '#e5483b' }) {
   const [a, b] = span;
   return {
     grid: { left: 48, right: 16, top: 16, bottom: 24 },
@@ -194,8 +194,8 @@ export function timelineMarkAreaOpt({ years, values, span, highlightColor = '#22
         symbolSize: (i >= a && i <= b) ? 9 : 5,
       })),
       lineStyle: { color: lineColor, width: 2 },
-      areaStyle: { color: 'rgba(196,30,58,0.1)' },
-      markArea: { silent: true, itemStyle: { color: 'rgba(34,211,238,0.08)' }, data: [[{ xAxis: years[a] }, { xAxis: years[b] }]] },
+      areaStyle: { color: 'rgba(229, 72, 59,0.1)' },
+      markArea: { silent: true, itemStyle: { color: 'rgba(110, 140, 255,0.08)' }, data: [[{ xAxis: years[a] }, { xAxis: years[b] }]] },
     }],
   };
 }

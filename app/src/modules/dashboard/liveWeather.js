@@ -46,13 +46,13 @@ export const REAL_LAYERS = [
 ];
 
 export const REAL_PALETTES = {
-  livePrecip: [MAP_CHOROPLETH.dark[0], '#1e3a8a', '#1d4ed8', '#0891b2', '#22d3ee', '#a5f3fc'],
-  liveTemp: [MAP_CHOROPLETH.dark[0], '#1d4ed8', '#0891b2', '#10b981', '#facc15', '#f97316', '#dc2626'],
+  livePrecip: [MAP_CHOROPLETH.dark[0], '#1e3a8a', '#1d4ed8', '#0891b2', '#6e8cff', '#c2cdff'],
+  liveTemp: [MAP_CHOROPLETH.dark[0], '#1d4ed8', '#0891b2', '#6fc2ae', '#facc15', '#f97316', '#dc2626'],
 };
 
 export const REAL_PALETTES_LIGHT = {
   livePrecip: [MAP_CHOROPLETH.light[0], '#bfdbfe', '#60a5fa', '#2563eb', '#0891b2', '#155e75'],
-  liveTemp: [MAP_CHOROPLETH.light[0], '#3b82f6', '#06b6d4', '#34d399', '#fde047', '#fb923c', '#ef4444'],
+  liveTemp: [MAP_CHOROPLETH.light[0], '#6e8cff', '#5b7cf0', '#34d399', '#fde047', '#c07a4a', '#e5483b'],
 };
 
 export { WEATHER_CODE_LABEL };

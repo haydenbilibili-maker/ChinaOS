@@ -131,10 +131,10 @@ export const CAPITAL_FLOW = {
 
 /** 社融存量构成（% · 与 finance/Page.jsx TSF_STOCK 同源） */
 export const TSF_STOCK = [
-  { name: '人民币贷款', value: 62, itemStyle: { color: '#c41e3a' } },
-  { name: '政府/企业债券', value: 21, itemStyle: { color: '#e8a317' } },
-  { name: '表外融资', value: 9, itemStyle: { color: '#64748b' } },
-  { name: '股票融资', value: 4, itemStyle: { color: '#22d3ee' } },
+  { name: '人民币贷款', value: 62, itemStyle: { color: '#e5483b' } },
+  { name: '政府/企业债券', value: 21, itemStyle: { color: '#d4a25a' } },
+  { name: '表外融资', value: 9, itemStyle: { color: '#8a8578' } },
+  { name: '股票融资', value: 4, itemStyle: { color: '#6e8cff' } },
   { name: '其他', value: 4, itemStyle: { color: '#475569' } },
 ];
 
@@ -148,11 +148,11 @@ export const FINANCE_MIX = {
 
 /** 社融增量行业/部门结构（% · 2026 H1 近似示意） */
 export const SECTOR_AFRE = [
-  { name: '政府债券', value: 38, itemStyle: { color: '#e8a317' } },
-  { name: '企业中长期贷', value: 26, itemStyle: { color: '#c41e3a' } },
-  { name: '居民贷款', value: 14, itemStyle: { color: '#22d3ee' } },
-  { name: '票据/短贷冲量', value: 12, itemStyle: { color: '#64748b' } },
-  { name: '股权/其他', value: 10, itemStyle: { color: '#10b981' } },
+  { name: '政府债券', value: 38, itemStyle: { color: '#d4a25a' } },
+  { name: '企业中长期贷', value: 26, itemStyle: { color: '#e5483b' } },
+  { name: '居民贷款', value: 14, itemStyle: { color: '#6e8cff' } },
+  { name: '票据/短贷冲量', value: 12, itemStyle: { color: '#8a8578' } },
+  { name: '股权/其他', value: 10, itemStyle: { color: '#6fc2ae' } },
 ];
 
 /** 区域社融占比（% · 示意 · 对齐 econRegional 梯度叙事） */
@@ -170,9 +170,9 @@ export const POLICY_NODES = [
   { y: 2023, m: 10, title: '特殊再融资债重启', accent: '#c99a4e', desc: '一揽子化债启动，特殊再融资债券置换隐性债务，缓释城投流动性。' },
   { y: 2024, m: 9, title: '活跃资本市场组合拳', accent: '#8090c6', desc: '印花税下调、中长期资金入市指引，政策重心转向投资功能。' },
   { y: 2024, m: 12, title: 'LPR 年内第三次下调', accent: '#c44e3d', desc: '1Y/5Y LPR 同步下行，宽货币向宽信用传导，银行息差承压。' },
-  { y: 2025, m: 3, title: '政府工作报告 · 耐心资本', accent: '#22d3ee', desc: '「壮大耐心资本」写入报告，创投/养老金/保险资金入市成为主线。' },
-  { y: 2025, m: 7, title: '对等关税冲击与汇率管理', accent: '#10b981', desc: '外部约束抬升，宏观审慎工具平滑 USD/CNY 与跨境资本波动。' },
-  { y: 2026, m: 3, title: '十五五开局 · 双主线', accent: '#e8a317', desc: '科技自立自强 + 扩大内需；社融政府债前置、私人信用仍偏弱。' },
+  { y: 2025, m: 3, title: '政府工作报告 · 耐心资本', accent: '#6e8cff', desc: '「壮大耐心资本」写入报告，创投/养老金/保险资金入市成为主线。' },
+  { y: 2025, m: 7, title: '对等关税冲击与汇率管理', accent: '#6fc2ae', desc: '外部约束抬升，宏观审慎工具平滑 USD/CNY 与跨境资本波动。' },
+  { y: 2026, m: 3, title: '十五五开局 · 双主线', accent: '#d4a25a', desc: '科技自立自强 + 扩大内需；社融政府债前置、私人信用仍偏弱。' },
 ];
 
 /** 金融指标 ↔ 金丝雀/宏观域 联动（econMacroBridge 扩展） */

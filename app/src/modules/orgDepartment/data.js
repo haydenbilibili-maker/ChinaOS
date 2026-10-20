@@ -9,14 +9,14 @@ import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
 export const AS_OF = AS_OF_BASELINE;
 
 export const QUEUE_TYPES = [
-  { key: 'resume', label: '中国政要', accent: '#c41e3a', count: 2840, tab: 'resume' },
-  { key: 'knowledge', label: '知识精英', accent: '#22d3ee', count: 1260, tab: 'knowledge' },
-  { key: 'business', label: '商业精英', accent: '#e8a317', count: 890, tab: 'business' },
-  { key: 'anticorruption', label: '反腐透视', accent: '#64748b', count: 420, tab: 'anticorruption' },
-  { key: 'taiwan', label: '港澳台政要', accent: '#8b5cf6', count: 380, tab: 'taiwan' },
-  { key: 'dissident', label: '异见人士', accent: '#94a3b8', count: 210, tab: 'dissident' },
-  { key: 'overseas', label: '海外人才', accent: '#10b981', count: 560, tab: 'overseas' },
-  { key: 'thinktank', label: '智库', accent: '#f0abfc', count: 340, tab: 'thinktank' },
+  { key: 'resume', label: '中国政要', accent: '#e5483b', count: 2840, tab: 'resume' },
+  { key: 'knowledge', label: '知识精英', accent: '#6e8cff', count: 1260, tab: 'knowledge' },
+  { key: 'business', label: '商业精英', accent: '#d4a25a', count: 890, tab: 'business' },
+  { key: 'anticorruption', label: '反腐透视', accent: '#8a8578', count: 420, tab: 'anticorruption' },
+  { key: 'taiwan', label: '港澳台政要', accent: '#b07cc6', count: 380, tab: 'taiwan' },
+  { key: 'dissident', label: '异见人士', accent: '#a29c91', count: 210, tab: 'dissident' },
+  { key: 'overseas', label: '海外人才', accent: '#6fc2ae', count: 560, tab: 'overseas' },
+  { key: 'thinktank', label: '智库', accent: '#d9a7d6', count: 340, tab: 'thinktank' },
 ];
 
 export const PROFILE_TAGS = {
@@ -96,10 +96,10 @@ export function buildEchelonPyramid() {
   return stackedBarOpt({
     categories: tiers,
     series: [
-      { name: '党政综合', data: [12, 28, 45, 62, 38], itemStyle: { color: '#c41e3a' } },
-      { name: '经济金融', data: [8, 22, 35, 48, 30], itemStyle: { color: '#e8a317' } },
-      { name: '科技产业', data: [5, 15, 28, 40, 55], itemStyle: { color: '#22d3ee' } },
-      { name: '基层治理', data: [3, 10, 32, 58, 42], itemStyle: { color: '#10b981' } },
+      { name: '党政综合', data: [12, 28, 45, 62, 38], itemStyle: { color: '#e5483b' } },
+      { name: '经济金融', data: [8, 22, 35, 48, 30], itemStyle: { color: '#d4a25a' } },
+      { name: '科技产业', data: [5, 15, 28, 40, 55], itemStyle: { color: '#6e8cff' } },
+      { name: '基层治理', data: [3, 10, 32, 58, 42], itemStyle: { color: '#6fc2ae' } },
     ],
     horizontal: true,
   });
@@ -115,7 +115,7 @@ export function buildRegionBar() {
     yAxis: valueY({ name: '画像数' }),
     series: [{
       type: 'bar', barWidth: 20,
-      data: counts.map((v, i) => ({ value: v, itemStyle: { color: ['#c41e3a', '#22d3ee', '#e8a317', '#10b981', '#64748b', '#8b5cf6', '#f0abfc'][i] } })),
+      data: counts.map((v, i) => ({ value: v, itemStyle: { color: ['#e5483b', '#6e8cff', '#d4a25a', '#6fc2ae', '#8a8578', '#b07cc6', '#d9a7d6'][i] } })),
     }],
   };
 }
@@ -136,8 +136,8 @@ export function buildFilterHeatmap(profiles) {
     tooltip: { position: 'top' },
     xAxis: { type: 'category', data: fields, axisLabel: { color: LABEL.color, fontSize: 9, rotate: 30 } },
     yAxis: { type: 'category', data: qLabels, axisLabel: { color: LABEL.color, fontSize: 10 } },
-    visualMap: { min: 0, max: 5, calculable: true, orient: 'horizontal', left: 'center', bottom: 0, inRange: { color: ['#1e293b', '#22d3ee', '#c41e3a'] }, textStyle: { color: LABEL.color } },
-    series: [{ type: 'heatmap', data, label: { show: true, fontSize: 10, color: '#e8edf6' } }],
+    visualMap: { min: 0, max: 5, calculable: true, orient: 'horizontal', left: 'center', bottom: 0, inRange: { color: ['#1e293b', '#6e8cff', '#e5483b'] }, textStyle: { color: LABEL.color } },
+    series: [{ type: 'heatmap', data, label: { show: true, fontSize: 10, color: '#ede8df' } }],
   };
 }
 

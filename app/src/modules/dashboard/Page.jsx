@@ -64,7 +64,7 @@ function Icon({ name, size = 16 }) {
 const fmt = (n) => n.toLocaleString('en-US');
 
 // ── 实时大屏 · 发光指标卡 ─────────────────────────────────
-function ScreenCard({ title, accent = '#22d3ee', children, footer, live = false, className = '' }) {
+function ScreenCard({ title, accent = '#6e8cff', children, footer, live = false, className = '' }) {
   return (
     <div
       className={`os-card os-card-lift os-screen-card p-4 flex flex-col h-auto${live ? ' os-screen-card--live' : ''} ${className}`.trim()}
@@ -84,7 +84,7 @@ function ScreenCard({ title, accent = '#22d3ee', children, footer, live = false,
 }
 
 // ── 滚动情报条 · 关键读数（示意，对应各模块判读基准） ────────
-const WARM = '#10b981', HOLD = '#e8a317', COOL = '#c41e3a', STEEL = '#22d3ee';
+const WARM = '#6fc2ae', HOLD = '#d4a25a', COOL = '#e5483b', STEEL = '#6e8cff';
 const TONE = { warm: WARM, hold: HOLD, cool: COOL, steel: STEEL };
 const TICKER = TICKER_ITEMS.map(([k, v, tone]) => [k, v, TONE[tone] || HOLD]);
 
@@ -234,7 +234,7 @@ function PolicyPulse() {
   return (
     <ScreenCard title={`政策脉搏 · ${latest.year} 施政基准`} accent={HOLD} live={Boolean(liveGwr)}
       footer={<>
-        <span className="mono px-1.5 py-0.5 rounded mr-1.5" style={{ background: liveGwr ? 'rgba(16,185,129,0.16)' : 'var(--bg-elevated)', color: liveGwr ? WARM : 'var(--text-tertiary)', fontSize: 9 }}>{liveGwr ? '● 本地库活数据' : '○ 内置种子'}</span>
+        <span className="mono px-1.5 py-0.5 rounded mr-1.5" style={{ background: liveGwr ? 'rgba(111, 194, 174,0.16)' : 'var(--bg-elevated)', color: liveGwr ? WARM : 'var(--text-tertiary)', fontSize: 9 }}>{liveGwr ? '● 本地库活数据' : '○ 内置种子'}</span>
         结构化要点 · 历年比对与提法变迁见 <Link to="/policydocs" className="mono" style={{ color: STEEL }}>政策文件库</Link>
       </>}>
       <div className="grid grid-cols-2 gap-2 mb-3">
@@ -325,22 +325,22 @@ function KondratievClock() {
     for (let y = 1990; y <= 2055; y += 1) pts.push([y, +Math.sin((2 * Math.PI * (y - 1788)) / 54).toFixed(3)]);
     return {
       grid: { left: 10, right: 10, top: 10, bottom: 20 },
-      xAxis: { type: 'value', min: 1990, max: 2055, interval: 20, axisLabel: { color: '#5b6a82', fontSize: 9, formatter: (v) => String(v) }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
+      xAxis: { type: 'value', min: 1990, max: 2055, interval: 20, axisLabel: { color: '#8a847a', fontSize: 9, formatter: (v) => String(v) }, axisLine: { lineStyle: { color: AXIS.lineStyle.color } } },
       yAxis: { type: 'value', min: -1.35, max: 1.35, show: false },
       series: [{
         type: 'line', smooth: true, symbol: 'none', data: pts,
-        lineStyle: { color: STEEL, width: 2 }, areaStyle: { color: 'rgba(34,211,238,0.07)' },
+        lineStyle: { color: STEEL, width: 2 }, areaStyle: { color: 'rgba(110, 140, 255,0.07)' },
         markLine: { silent: true, symbol: 'none', data: [{ xAxis: 2026, label: { formatter: '今 2026', color: COOL, fontSize: 9 }, lineStyle: { color: COOL, type: 'dashed' } }] },
-        markArea: { silent: true, itemStyle: { color: 'rgba(139,92,246,0.10)' }, data: [[{ xAxis: 2040, label: { formatter: '第6波', color: '#8b5cf6', position: 'insideTop', fontSize: 9 } }, { xAxis: 2055 }]] },
+        markArea: { silent: true, itemStyle: { color: 'rgba(176, 124, 198,0.10)' }, data: [[{ xAxis: 2040, label: { formatter: '第6波', color: '#b07cc6', position: 'insideTop', fontSize: 9 } }, { xAxis: 2055 }]] },
       }],
     };
   }, []);
   return (
-    <ScreenCard title="康波时钟 · 长波坐标" accent="#8b5cf6"
+    <ScreenCard title="康波时钟 · 长波坐标" accent="#b07cc6"
       footer={<>第 5 波（信息）冬季尾段 → 第 6 波（AI/聚变/生物）孕育期 · 推演见 <Link to="/cognition" className="mono" style={{ color: STEEL }}>康波周期</Link> 共振模拟器</>}>
       <EChart option={opt} style={{ height: 148 }} />
       <div className="flex gap-2 mt-2 flex-wrap">
-        {[['当前相位', '第5波·冬', '#64748b'], ['下一波引擎', 'AI·聚变·生物', '#8b5cf6'], ['切换窗口', '~2035–2045', HOLD]].map(([k, v, c]) => (
+        {[['当前相位', '第5波·冬', '#8a8578'], ['下一波引擎', 'AI·聚变·生物', '#b07cc6'], ['切换窗口', '~2035–2045', HOLD]].map(([k, v, c]) => (
           <span key={k} className="text-[10px] mono px-2 py-0.5 rounded" style={{ background: 'var(--bg-elevated)', color: c }}>{k} {v}</span>
         ))}
       </div>
@@ -354,11 +354,11 @@ function RiskRadar() {
     radar: {
       indicator: RISK_RADAR.dims.map((n) => ({ name: n, max: 5 })),
       axisName: { color: LABEL.color, fontSize: 10 },
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
-      axisLine: { lineStyle: { color: 'rgba(148,163,184,0.15)' } },
+      splitLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
+      axisLine: { lineStyle: { color: 'rgba(162, 156, 145,0.15)' } },
       splitArea: { show: false }, radius: '66%',
     },
-    series: [{ type: 'radar', data: [{ value: RISK_RADAR.values, name: '威胁紧张度', lineStyle: { color: COOL, width: 2 }, itemStyle: { color: COOL }, areaStyle: { color: 'rgba(196,30,58,0.15)' } }] }],
+    series: [{ type: 'radar', data: [{ value: RISK_RADAR.values, name: '威胁紧张度', lineStyle: { color: COOL, width: 2 }, itemStyle: { color: COOL }, areaStyle: { color: 'rgba(229, 72, 59,0.15)' } }] }],
   }), []);
   return (
     <ScreenCard title="全域风险雷达" accent={COOL}
@@ -393,7 +393,7 @@ function PolicyCalendar() {
               <span className="block text-[10px] leading-snug" style={{ color: 'var(--text-tertiary)' }}>{note}</span>
             </span>
             <span className="text-[10px] mono shrink-0 mt-0.5 px-1.5 py-0.5 rounded"
-              style={{ color: done || d < 0 ? 'var(--text-tertiary)' : isNext ? WARM : 'var(--text-secondary)', background: isNext ? 'rgba(16,185,129,0.14)' : 'transparent' }}>
+              style={{ color: done || d < 0 ? 'var(--text-tertiary)' : isNext ? WARM : 'var(--text-secondary)', background: isNext ? 'rgba(111, 194, 174,0.14)' : 'transparent' }}>
               {done || d < 0 ? '已过' : d === 0 ? '今日' : `T-${d}天`}
             </span>
           </div>
@@ -450,7 +450,7 @@ function useOptions() {
       series: [{
         type: 'bar', barWidth: '62%', data: ANTICORRUPTION_TREND.values,
         itemStyle: {
-          color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: '#c41e3a' }, { offset: 1, color: '#5b0f1c' }] },
+          color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: '#e5483b' }, { offset: 1, color: '#5b0f1c' }] },
           borderRadius: [2, 2, 0, 0],
         },
       }],
@@ -467,7 +467,7 @@ function useOptions() {
       series: [{
         type: 'bar', barWidth: '64%', data: PE500_PROVINCES.map((d) => d.value),
         itemStyle: {
-          color: { type: 'linear', x: 0, y: 0, x2: 1, y2: 0, colorStops: [{ offset: 0, color: '#9a4a17' }, { offset: 1, color: '#fb923c' }] },
+          color: { type: 'linear', x: 0, y: 0, x2: 1, y2: 0, colorStops: [{ offset: 0, color: '#9a4a17' }, { offset: 1, color: '#c07a4a' }] },
           borderRadius: [0, 3, 3, 0],
         },
       }],
@@ -547,14 +547,14 @@ function ChroniclePulse() {
   const era = CHRONICLE_ERAS[CHRONICLE_ERAS.length - 1];
   const recent = useMemo(() => CHRONICLE_EVENTS.slice(-5).reverse(), []);
   return (
-    <ScreenCard title={`国运坐标 · ${era.label} ${era.range[0]}–${era.range[1]}`} accent={era.accent || '#fb923c'}
+    <ScreenCard title={`国运坐标 · ${era.label} ${era.range[0]}–${era.range[1]}`} accent={era.accent || '#c07a4a'}
       footer={<>1949→2026 七时代 {CHRONICLE_EVENTS.length} 节点全轴见 <Link to="/modules/guoyun?tab=timeline" className="mono" style={{ color: STEEL }}>国运时间轴</Link></>}>
-      <p className="text-[11px] leading-relaxed mb-2.5 px-2.5 py-2 rounded-lg" style={{ background: 'var(--bg-elevated)', color: 'var(--text-secondary)', borderLeft: `2px solid ${era.accent || '#fb923c'}` }}>{era.summary}</p>
+      <p className="text-[11px] leading-relaxed mb-2.5 px-2.5 py-2 rounded-lg" style={{ background: 'var(--bg-elevated)', color: 'var(--text-secondary)', borderLeft: `2px solid ${era.accent || '#c07a4a'}` }}>{era.summary}</p>
       <div className="space-y-1.5">
         {recent.map((e) => (
           <Link key={`${e.y}-${e.title}`} to={e.to || '/modules/guoyun?tab=timeline'} className="os-card-interactive flex items-center gap-2 rounded-lg px-2.5 py-1.5"
             style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}>
-            <span className="mono text-[10px] shrink-0" style={{ color: era.accent || '#fb923c' }}>{e.y}</span>
+            <span className="mono text-[10px] shrink-0" style={{ color: era.accent || '#c07a4a' }}>{e.y}</span>
             <span className="text-xs font-medium truncate" style={{ color: 'var(--text-primary)' }}>{e.title}</span>
             {e.w === 3 && <span className="text-[9px] mono ml-auto shrink-0" style={{ color: HOLD }}>★</span>}
           </Link>
@@ -571,7 +571,7 @@ function GdeltPulse() {
   return (
     <ScreenCard title="全球涉华舆情流" accent={STEEL} live={Boolean(articles?.length)}
       footer={<>
-        <span className="mono px-1.5 py-0.5 rounded mr-1.5" style={{ background: articles?.length ? 'rgba(16,185,129,0.16)' : 'var(--bg-elevated)', color: articles?.length ? WARM : 'var(--text-tertiary)', fontSize: 9 }}>{articles?.length ? `● ${srcLabel} ${fetchedAt ? fetchedAt.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }) : ''}` : '○ 待接入'}</span>
+        <span className="mono px-1.5 py-0.5 rounded mr-1.5" style={{ background: articles?.length ? 'rgba(111, 194, 174,0.16)' : 'var(--bg-elevated)', color: articles?.length ? WARM : 'var(--text-tertiary)', fontSize: 9 }}>{articles?.length ? `● ${srcLabel} ${fetchedAt ? fetchedAt.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }) : ''}` : '○ 待接入'}</span>
         英文媒体涉华条目 · 双源（GDELT→HN）· 标题与立场来自第三方媒体，不代表本项目观点
       </>}>
       {loading && <LoadingSkeleton rows={2} label="正在拉取 GDELT 索引…" />}
@@ -601,9 +601,9 @@ function GdeltPulse() {
 function PolyPulse() {
   const { markets, fetchedAt, loading, error } = useLiveMarkets();
   return (
-    <ScreenCard title="预测市场速览 · 群体预期定价" accent="#8b5cf6" live={Boolean(markets?.length)}
+    <ScreenCard title="预测市场速览 · 群体预期定价" accent="#b07cc6" live={Boolean(markets?.length)}
       footer={<>
-        <span className="mono px-1.5 py-0.5 rounded mr-1.5" style={{ background: markets?.length ? 'rgba(16,185,129,0.16)' : 'var(--bg-elevated)', color: markets?.length ? WARM : 'var(--text-tertiary)', fontSize: 9 }}>{markets?.length ? `● Polymarket 实时 ${fetchedAt ? fetchedAt.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }) : ''}` : '○ 待接入'}</span>
+        <span className="mono px-1.5 py-0.5 rounded mr-1.5" style={{ background: markets?.length ? 'rgba(111, 194, 174,0.16)' : 'var(--bg-elevated)', color: markets?.length ? WARM : 'var(--text-tertiary)', fontSize: 9 }}>{markets?.length ? `● Polymarket 实时 ${fetchedAt ? fetchedAt.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }) : ''}` : '○ 待接入'}</span>
         交易者聚合概率（宏观/科技类，已过滤地缘敏感）· 非本项目观点 · 非投资建议
       </>}>
       {loading && <LoadingSkeleton rows={2} label="正在拉取市场定价…" />}
@@ -819,10 +819,10 @@ export default function DashboardPage() {
   const liveKpiCount = macro.kpis.filter((k) => k.live).length;
 
   const stats = [
-    { value: MODULE_COUNT, label: '专题模块', accent: '#22d3ee', icon: 'LayoutGrid', countUp: true },
-    { value: ENTRY_TOTAL, label: '数据集条目', accent: '#c41e3a', icon: 'Database', countUp: true },
-    { value: GROUP_COUNT, label: '专题分组', accent: '#e8a317', icon: 'FolderTree', countUp: true },
-    { value: AS_OF, label: '数据基准 AS_OF', accent: '#10b981', icon: 'CalendarClock', mono: true, countUp: false },
+    { value: MODULE_COUNT, label: '专题模块', accent: '#6e8cff', icon: 'LayoutGrid', countUp: true },
+    { value: ENTRY_TOTAL, label: '数据集条目', accent: '#e5483b', icon: 'Database', countUp: true },
+    { value: GROUP_COUNT, label: '专题分组', accent: '#d4a25a', icon: 'FolderTree', countUp: true },
+    { value: AS_OF, label: '数据基准 AS_OF', accent: '#6fc2ae', icon: 'CalendarClock', mono: true, countUp: false },
   ];
 
   return (
@@ -898,7 +898,7 @@ export default function DashboardPage() {
           <Link
             to="/market-pulse"
             className="os-card-interactive mt-3 flex items-center justify-between rounded-lg px-4 py-3"
-            style={{ background: 'var(--bg-elevated)', border: '1px solid rgba(34,211,238,0.28)' }}
+            style={{ background: 'var(--bg-elevated)', border: '1px solid rgba(110, 140, 255,0.28)' }}
           >
             <span className="flex items-center gap-2">
               <Lucide.Activity size={16} style={{ color: STEEL }} />
@@ -981,22 +981,22 @@ export default function DashboardPage() {
           <span className="os-section-heading__meta min-w-0">// LIVE · 种子计数</span>
         </div>
         <Grid cols={{ sm: 1, md: 2, lg: 3, '2xl': 4 }} gap="0.85rem" className="dash-screen-grid os-section-stagger">
-          <ScreenCard title="中国政要分层构成" accent="#c41e3a" footer="政治权力队列 · 按层级聚合">
+          <ScreenCard title="中国政要分层构成" accent="#e5483b" footer="政治权力队列 · 按层级聚合">
             <EChart option={opt.donut} variant="compact" style={{ height: 230 }} />
           </ScreenCard>
-          <ScreenCard title="反腐历年趋势" accent="#e8a317" footer="副省部级及以上为主 · 按官宣年归集（2012 起）">
+          <ScreenCard title="反腐历年趋势" accent="#d4a25a" footer="副省部级及以上为主 · 按官宣年归集（2012 起）">
             <EChart option={opt.acTrend} variant="compact" style={{ height: 230 }} />
           </ScreenCard>
-          <ScreenCard title="军衔结构（量级示意）" accent="#10b981" footer={RANK_STRUCTURE.note}>
+          <ScreenCard title="军衔结构（量级示意）" accent="#6fc2ae" footer={RANK_STRUCTURE.note}>
             <EChart option={opt.ranks} variant="compact" style={{ height: 230 }} />
           </ScreenCard>
-          <ScreenCard title="民企500强 · 省份分布 Top12" accent="#fb923c" footer="工商联 2024 榜单 · 注册地口径">
+          <ScreenCard title="民企500强 · 省份分布 Top12" accent="#c07a4a" footer="工商联 2024 榜单 · 注册地口径">
             <EChart option={opt.prov} variant="compact" style={{ height: 260 }} />
           </ScreenCard>
-          <ScreenCard title="模块分组覆盖" accent="#8b5cf6" footer="各专题分组下的模块数量">
+          <ScreenCard title="模块分组覆盖" accent="#b07cc6" footer="各专题分组下的模块数量">
             <EChart option={opt.coverage} variant="compact" style={{ height: 260 }} />
           </ScreenCard>
-          <ScreenCard title="数据集规模对比" accent="#22d3ee" footer="人物/企业画像条目（去重后）">
+          <ScreenCard title="数据集规模对比" accent="#6e8cff" footer="人物/企业画像条目（去重后）">
             <EChart option={opt.scale} variant="compact" style={{ height: 260 }} />
           </ScreenCard>
         </Grid>

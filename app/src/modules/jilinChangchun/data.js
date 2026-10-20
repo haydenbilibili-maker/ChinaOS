@@ -39,7 +39,7 @@ export const KEY_STATS = [
     value: '−10.0%',
     label: '规上工业增加值累计同比',
     sub: '长春 · 2026 年 1–7 月 · 1–4 月 −2.1% → 1–6 月 −8.0% 逐月恶化',
-    accent: '#c41e3a',
+    accent: '#e5483b',
     layer: 'verified',
   },
   {
@@ -47,7 +47,7 @@ export const KEY_STATS = [
     value: '−18.5%',
     label: '固定资产投资累计同比',
     sub: '长春 · 2026 年 1–7 月 · 1–4 月曾 +12.1%，年中急转为负',
-    accent: '#c41e3a',
+    accent: '#e5483b',
     layer: 'verified',
   },
   {
@@ -55,7 +55,7 @@ export const KEY_STATS = [
     value: '~53.5%',
     label: '长春 GDP 占吉林全省',
     sub: '2025：长春 8005.59 亿 / 全省 14973.88 亿',
-    accent: '#22d3ee',
+    accent: '#6e8cff',
     layer: 'verified',
   },
   {
@@ -63,7 +63,7 @@ export const KEY_STATS = [
     value: '−4.43 万',
     label: '人口自然减少（年）',
     sub: '2025：出生 3.33 万 · 死亡 7.76 万 · 统计公报',
-    accent: '#e8a317',
+    accent: '#d4a25a',
     layer: 'verified',
   },
 ];
@@ -154,17 +154,17 @@ export const TREND_COMPARE = {
       name: '2025 全年',
       // 工业增加值全年 +7.6%；固投 −16.5%；房开 −23.5%
       data: [7.6, -16.5, -23.5],
-      color: '#e8a317',
+      color: '#d4a25a',
     },
     {
       name: '2026 年 1–4 月',
       data: [-2.1, 12.1, 5.3],
-      color: '#22d3ee',
+      color: '#6e8cff',
     },
     {
       name: '2026 年 1–7 月',
       data: [-10.0, -18.5, -21.5],
-      color: '#64748b',
+      color: '#8a8578',
     },
   ],
   note: '工业 2025 用「工业增加值」年报增速；进度用规上工业增加值——口径略异，读图时注意。1–4 月固投与房开的正读数到 1–7 月已转负。',
@@ -200,11 +200,11 @@ export const PRIMACY = {
   jilinGdp: 14973.88,
   share: 53.46,
   cities: [
-    { name: '长春', gdp: 8005.59, color: '#c41e3a' },
-    { name: '吉林市', gdp: 1702.32, color: '#22d3ee' },
-    { name: '延边', gdp: 1064.08, color: '#e8a317' },
-    { name: '松原', gdp: 1030.6, color: '#10b981' },
-    { name: '其余市州合计', gdp: 3171.29, color: '#64748b' },
+    { name: '长春', gdp: 8005.59, color: '#e5483b' },
+    { name: '吉林市', gdp: 1702.32, color: '#6e8cff' },
+    { name: '延边', gdp: 1064.08, color: '#d4a25a' },
+    { name: '松原', gdp: 1030.6, color: '#6fc2ae' },
+    { name: '其余市州合计', gdp: 3171.29, color: '#8a8578' },
   ],
 };
 
@@ -267,8 +267,8 @@ export const SOURCES = [
 ];
 
 export const STATUS_META = {
-  verified: { label: '已核实', color: '#10b981' },
-  mixed: { label: '部分核实', color: '#e8a317' },
-  comment: { label: '评论口径', color: '#fb923c' },
-  conflict: { label: '与进度冲突', color: '#c41e3a' },
+  verified: { label: '已核实', color: '#6fc2ae' },
+  mixed: { label: '部分核实', color: '#d4a25a' },
+  comment: { label: '评论口径', color: '#c07a4a' },
+  conflict: { label: '与进度冲突', color: '#e5483b' },
 };

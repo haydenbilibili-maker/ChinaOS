@@ -9,8 +9,8 @@ import {
   NEWS_MAX_AGE_DAYS,
 } from './newsFeed.js';
 
-const STEEL = '#22d3ee';
-const HOLD = '#e8a317';
+const STEEL = '#6e8cff';
+const HOLD = '#d4a25a';
 
 function NewsChip({ item }) {
   const meta = getSourceBadge(item.source);
@@ -57,7 +57,7 @@ function StatusPill({ status, mode, error, filterStats }) {
   }
   if (status === 'offline') {
     return (
-      <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(232,163,23,0.14)', color: HOLD }}>
+      <span className="text-[10px] mono px-1.5 py-0.5 rounded" style={{ background: 'rgba(212, 162, 90,0.14)', color: HOLD }}>
         离线 · 种子
       </span>
     );
@@ -67,10 +67,10 @@ function StatusPill({ status, mode, error, filterStats }) {
     return (
       <span
         className="text-[10px] mono px-1.5 py-0.5 rounded inline-flex items-center gap-1"
-        style={{ background: 'rgba(16,185,129,0.14)', color: '#10b981' }}
+        style={{ background: 'rgba(111, 194, 174,0.14)', color: '#6fc2ae' }}
         title={filtered ? `已滤除 ${filterStats.filteredOut} 条过期/无效（>${NEWS_MAX_AGE_DAYS}天）` : undefined}
       >
-        <span className="os-live-dot w-1.5 h-1.5 rounded-full shrink-0" style={{ background: '#10b981' }} aria-hidden="true" />
+        <span className="os-live-dot w-1.5 h-1.5 rounded-full shrink-0" style={{ background: '#6fc2ae' }} aria-hidden="true" />
         实时 RSS
         {filtered && (
           <span style={{ color: 'var(--text-tertiary)' }}>

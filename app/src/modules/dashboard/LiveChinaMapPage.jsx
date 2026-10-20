@@ -25,9 +25,9 @@ export { LIVE_MAP_VIEWS };
 
 const TABS = [
   { id: 'situation', label: '全国态势', accent: 'var(--cyber-cyan)' },
-  { id: 'heatmap', label: '区域热力', accent: '#10b981' },
+  { id: 'heatmap', label: '区域热力', accent: '#6fc2ae' },
   { id: 'signals', label: '信号图层', accent: 'var(--fire-gold)' },
-  { id: 'timeline', label: '时间轴', accent: '#8b5cf6' },
+  { id: 'timeline', label: '时间轴', accent: '#b07cc6' },
   { id: 'analysis', label: '研判下钻', accent: 'var(--china-red)' },
 ];
 

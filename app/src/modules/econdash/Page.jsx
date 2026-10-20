@@ -28,12 +28,12 @@ const EconH1Review = lazy(() => import('../econH1Review/Page.jsx'));
 const TABS = [
   { id: 'macro', label: '宏观态势', accent: 'var(--cyber-cyan)' },
   { id: 'structure', label: '结构矛盾', accent: 'var(--fire-gold)' },
-  { id: 'finance', label: '资本市场', accent: '#8b5cf6' },
+  { id: 'finance', label: '资本市场', accent: '#b07cc6' },
   { id: 'regional', label: '区域产业', accent: '#c99a4e' },
   { id: 'canary', label: '信号金丝雀', accent: 'var(--china-red)' },
-  { id: 'worldbank', label: '世行经济简报', accent: '#22d3ee' },
+  { id: 'worldbank', label: '世行经济简报', accent: '#6e8cff' },
   { id: 'consume15', label: '十五五促消费', accent: '#f472b6' },
-  { id: 'h1review', label: '半年经济解读', accent: '#e8a317' },
+  { id: 'h1review', label: '半年经济解读', accent: '#d4a25a' },
 ];
 
 function TabFallback() {

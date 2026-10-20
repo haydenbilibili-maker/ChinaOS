@@ -29,8 +29,8 @@ function buildPyramid(year) {
     xAxis: { type: 'value', axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color, formatter: (v) => Math.abs(v) }, splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } } },
     yAxis: { type: 'category', data: AGE_BANDS, axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color }, axisTick: { show: false } },
     series: [
-      { name: '男性', type: 'bar', stack: 'pop', data: d.male, itemStyle: { color: '#22d3ee' }, barWidth: '64%' },
-      { name: '女性', type: 'bar', stack: 'pop', data: d.female, itemStyle: { color: '#c41e3a' }, barWidth: '64%' },
+      { name: '男性', type: 'bar', stack: 'pop', data: d.male, itemStyle: { color: '#6e8cff' }, barWidth: '64%' },
+      { name: '女性', type: 'bar', stack: 'pop', data: d.female, itemStyle: { color: '#e5483b' }, barWidth: '64%' },
     ],
   };
 }
@@ -43,9 +43,9 @@ const dependencyLine = {
   xAxis: { type: 'category', data: ['2010', '2015', '2020', '2025E', '2030E', '2035E'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
   yAxis: { type: 'value', axisLabel: { formatter: '{value}%', color: LABEL.color }, splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } } },
   series: [
-    { name: '少儿抚养比', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [22.3, 22.6, 26.2, 25.0, 23.5, 22.0], lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' } },
-    { name: '老年抚养比', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [11.9, 14.3, 19.7, 22.0, 26.5, 32.0], lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' }, areaStyle: { color: 'rgba(232,163,23,0.12)' } },
-    { name: '总抚养比', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [34.2, 36.9, 45.9, 46.6, 50.2, 54.0], lineStyle: { color: '#c41e3a', width: 2, type: 'dashed' }, itemStyle: { color: '#c41e3a' } },
+    { name: '少儿抚养比', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [22.3, 22.6, 26.2, 25.0, 23.5, 22.0], lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' } },
+    { name: '老年抚养比', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [11.9, 14.3, 19.7, 22.0, 26.5, 32.0], lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' }, areaStyle: { color: 'rgba(212, 162, 90,0.12)' } },
+    { name: '总抚养比', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: [34.2, 36.9, 45.9, 46.6, 50.2, 54.0], lineStyle: { color: '#e5483b', width: 2, type: 'dashed' }, itemStyle: { color: '#e5483b' } },
   ],
 };
 
@@ -60,16 +60,16 @@ const multiTrend = {
     { type: 'value', name: '%', axisLabel: { formatter: '{value}%', color: LABEL.color }, splitLine: { show: false } },
   ],
   series: [
-    { name: '总和生育率(TFR)', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, yAxisIndex: 0, data: [1.45, 1.18, 1.30, 1.00, 1.10], lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, markLine: { silent: true, symbol: 'none', lineStyle: { color: '#fb923c', type: 'dashed' }, data: [{ yAxis: 2.1, label: { formatter: '更替水平 2.1', color: '#fb923c', fontSize: 10 } }] } },
-    { name: '老龄化率(65+)', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, yAxisIndex: 1, data: [7.0, 8.9, 13.5, 15.6, 24.5], lineStyle: { color: '#e8a317', width: 2 }, itemStyle: { color: '#e8a317' } },
-    { name: '城镇化率', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, yAxisIndex: 1, data: [36.2, 49.7, 63.9, 67.0, 75.0], lineStyle: { color: '#10b981', width: 2 }, itemStyle: { color: '#10b981' } },
+    { name: '总和生育率(TFR)', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, yAxisIndex: 0, data: [1.45, 1.18, 1.30, 1.00, 1.10], lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, markLine: { silent: true, symbol: 'none', lineStyle: { color: '#c07a4a', type: 'dashed' }, data: [{ yAxis: 2.1, label: { formatter: '更替水平 2.1', color: '#c07a4a', fontSize: 10 } }] } },
+    { name: '老龄化率(65+)', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, yAxisIndex: 1, data: [7.0, 8.9, 13.5, 15.6, 24.5], lineStyle: { color: '#d4a25a', width: 2 }, itemStyle: { color: '#d4a25a' } },
+    { name: '城镇化率', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, yAxisIndex: 1, data: [36.2, 49.7, 63.9, 67.0, 75.0], lineStyle: { color: '#6fc2ae', width: 2 }, itemStyle: { color: '#6fc2ae' } },
   ],
 };
 
 // ── 区域人口分化（净流入/流出，示意，万人/年）──
 const REGION = {
-  inflow: { label: '人口净流入 TOP (2024)', data: [['广东', 74], ['浙江', 43], ['新疆', 25], ['江苏', 9], ['海南', 5], ['福建', 10]], color: '#10b981' },
-  outflow: { label: '人口净流出 TOP (2024)', data: [['河南', -30], ['山东', -43], ['黑龙江', -33], ['湖南', -28], ['辽宁', -27], ['河北', -15]], color: '#fb923c' },
+  inflow: { label: '人口净流入 TOP (2024)', data: [['广东', 74], ['浙江', 43], ['新疆', 25], ['江苏', 9], ['海南', 5], ['福建', 10]], color: '#6fc2ae' },
+  outflow: { label: '人口净流出 TOP (2024)', data: [['河南', -30], ['山东', -43], ['黑龙江', -33], ['湖南', -28], ['辽宁', -27], ['河北', -15]], color: '#c07a4a' },
 };
 function buildRegion(mode) {
   const cfg = REGION[mode];
@@ -88,7 +88,7 @@ const talentBar = {
   grid: { left: 40, right: 24, top: 20, bottom: 28 },
   xAxis: { type: 'category', data: ['2010', '2015', '2020', '2024'], axisLine: { lineStyle: { color: AXIS.lineStyle.color } }, axisLabel: { color: LABEL.color } },
   yAxis: { type: 'value', axisLabel: { formatter: '{value}%', color: LABEL.color }, splitLine: { lineStyle: { color: GRID_LINE.lineStyle.color } } },
-  series: [{ name: '本科以上学历占比', type: 'bar', data: [8.9, 11.5, 15.5, 19.8], barWidth: 22, itemStyle: { color: '#c41e3a', borderRadius: 4 }, label: { show: true, position: 'top', formatter: '{c}%', color: LABEL.color } }],
+  series: [{ name: '本科以上学历占比', type: 'bar', data: [8.9, 11.5, 15.5, 19.8], barWidth: 22, itemStyle: { color: '#e5483b', borderRadius: 4 }, label: { show: true, position: 'top', formatter: '{c}%', color: LABEL.color } }],
 };
 const silverPie = {
   tooltip: { trigger: 'item' },
@@ -98,10 +98,10 @@ const silverPie = {
     label: { show: true, color: LABEL.color }, emphasis: { label: { show: true, fontSize: 14, fontWeight: 'bold' } },
     labelLine: { lineStyle: { color: AXIS.lineStyle.color } },
     data: [
-      { value: 40, name: '医疗保健与医药', itemStyle: { color: '#c41e3a' } },
-      { value: 25, name: '养老金融服务', itemStyle: { color: '#e8a317' } },
-      { value: 20, name: '智能助老硬件', itemStyle: { color: '#10b981' } },
-      { value: 15, name: '适老文旅休闲', itemStyle: { color: '#22d3ee' } },
+      { value: 40, name: '医疗保健与医药', itemStyle: { color: '#e5483b' } },
+      { value: 25, name: '养老金融服务', itemStyle: { color: '#d4a25a' } },
+      { value: 20, name: '智能助老硬件', itemStyle: { color: '#6fc2ae' } },
+      { value: 15, name: '适老文旅休闲', itemStyle: { color: '#6e8cff' } },
     ],
   }],
 };
@@ -110,9 +110,9 @@ function Toggle({ active, onClick, children }) {
   return (
     <button onClick={onClick} className="text-xs px-3 py-1.5 rounded transition-colors"
       style={{
-        background: active ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)',
+        background: active ? 'rgba(229, 72, 59,0.2)' : 'var(--bg-elevated)',
         color: active ? '#fff' : 'var(--text-secondary)',
-        border: active ? '1px solid #c41e3a' : '1px solid var(--border-subtle)',
+        border: active ? '1px solid #e5483b' : '1px solid var(--border-subtle)',
         cursor: 'pointer',
       }}>{children}</button>
   );
@@ -120,9 +120,9 @@ function Toggle({ active, onClick, children }) {
 
 // ── 三大人口拐点（示意）──
 const INFLECTIONS = [
-  { tag: 'PEAK', year: '2022', title: '总人口达峰', value: '14.1 亿', desc: '总人口于 2022 年触顶后转入下行通道，2025 年约 14.05 亿，规模红利窗口关闭。', accent: '#c41e3a' },
-  { tag: 'POLICY', year: '2026', title: '育儿补贴落地', value: '3600 元/孩/年', desc: '政府工作报告明确育儿补贴标准，与普惠托育、生育友好社会配套，试图抬升 TFR 底部。', accent: '#22d3ee' },
-  { tag: 'DEEP-AGING', year: '2033E', title: '深度老龄化时点', value: '65+ > 20%', desc: '预计 2033 年前后跨入「深度老龄化社会」门槛，社保精算压力峰值。', accent: '#e8a317' },
+  { tag: 'PEAK', year: '2022', title: '总人口达峰', value: '14.1 亿', desc: '总人口于 2022 年触顶后转入下行通道，2025 年约 14.05 亿，规模红利窗口关闭。', accent: '#e5483b' },
+  { tag: 'POLICY', year: '2026', title: '育儿补贴落地', value: '3600 元/孩/年', desc: '政府工作报告明确育儿补贴标准，与普惠托育、生育友好社会配套，试图抬升 TFR 底部。', accent: '#6e8cff' },
+  { tag: 'DEEP-AGING', year: '2033E', title: '深度老龄化时点', value: '65+ > 20%', desc: '预计 2033 年前后跨入「深度老龄化社会」门槛，社保精算压力峰值。', accent: '#d4a25a' },
 ];
 
 export default function Page() {
@@ -135,10 +135,10 @@ export default function Page() {
       <IntroCard>现实主义逻辑认为，人口老龄化是文明演进的物理必然。2026 政府工作报告明确育儿补贴 3600 元/孩/年（据公开报道），与普惠托育、生育友好社会配套并行。四条主线：01 老龄化熵增对冲、02 人才红利迭代、03 银发经济算法、04 生育激励与成本。核心目标是维持基本医保与社保基金的精算平衡，防止「赡养比」崩塌引发的财政系统性风险。</IntroCard>
 
       <StatGrid className="mb-6">
-        <Stat value="14.05 亿" label="总人口 (2025 · 负增长延续)" accent="#c41e3a" />
-        <Stat value="15.8%" label="老龄化率 (65+) · 2025 公报" accent="#e8a317" />
-        <Stat value="1.00" label="总和生育率 (TFR) · 2024 NBS" accent="#22d3ee" />
-        <Stat value="46.6%" label="总抚养比 · 2024 公报" accent="#10b981" />
+        <Stat value="14.05 亿" label="总人口 (2025 · 负增长延续)" accent="#e5483b" />
+        <Stat value="15.8%" label="老龄化率 (65+) · 2025 公报" accent="#d4a25a" />
+        <Stat value="1.00" label="总和生育率 (TFR) · 2024 NBS" accent="#6e8cff" />
+        <Stat value="46.6%" label="总抚养比 · 2024 公报" accent="#6fc2ae" />
       </StatGrid>
 
       {/* ── 三大人口拐点指标卡 ── */}
@@ -186,7 +186,7 @@ export default function Page() {
 
       <Card title="01 · 老龄化挑战：从「负担」到「资源」" className="mb-6">
         <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>体制正通过「渐进式延迟退休」与「个人养老金制度」实现养老负担的社会再分配，维持基本医保与社保基金的精算平衡。</p>
-        <div style={{ borderLeft: '2px solid #c41e3a', paddingLeft: 10, background: 'var(--bg-elevated)', padding: '8px 10px' }}>
+        <div style={{ borderLeft: '2px solid #e5483b', paddingLeft: 10, background: 'var(--bg-elevated)', padding: '8px 10px' }}>
           <p className="text-xs leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>策略：将老龄化视为「长寿红利」，通过终身学习与适老化改造，激活退休后的「二次动员」。</p>
         </div>
       </Card>
@@ -196,8 +196,8 @@ export default function Page() {
         <Card title="银发经济：万亿内需锚点">
           <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>银发经济不仅是养老，更是涵盖了医疗康复、智慧助老、老年文旅及财富管理的综合产业群。体制正通过政策引导，将 2.9 亿老龄人口转化为新的内需引擎。当「60后」一代步入老龄，其显著的数字化偏好与消费力正重塑中国商业底色。</p>
           <Grid cols={2}>
-            <div style={{ borderLeft: '2px solid #e8a317', paddingLeft: 10 }}><div className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>90%</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>居家养老占比（9073 格局）</p></div>
-            <div style={{ borderLeft: '2px solid #e8a317', paddingLeft: 10 }}><div className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>1.5 万亿</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>适老化改造市场潜力</p></div>
+            <div style={{ borderLeft: '2px solid #d4a25a', paddingLeft: 10 }}><div className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>90%</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>居家养老占比（9073 格局）</p></div>
+            <div style={{ borderLeft: '2px solid #d4a25a', paddingLeft: 10 }}><div className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>1.5 万亿</div><p className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>适老化改造市场潜力</p></div>
           </Grid>
         </Card>
       </Grid>
@@ -210,9 +210,9 @@ export default function Page() {
             <EChart option={talentBar} style={{ height: 220 }} />
           </div>
           <div className="flex flex-col gap-3">
-            {[['数量红利 · 退场', '劳动年龄人口 2012 年达峰后逐年净减，规模驱动模型失效。', '#fb923c'],
-              ['质量红利 · 接棒', '受教育年限 14.1 年 + 工程师密度，单位人力产出溢价上行。', '#22d3ee'],
-              ['密度红利 · 锚点', '高学历劳动力向先进制造与研发集聚，对冲总量缺口。', '#10b981']].map(([t, d, c]) => (
+            {[['数量红利 · 退场', '劳动年龄人口 2012 年达峰后逐年净减，规模驱动模型失效。', '#c07a4a'],
+              ['质量红利 · 接棒', '受教育年限 14.1 年 + 工程师密度，单位人力产出溢价上行。', '#6e8cff'],
+              ['密度红利 · 锚点', '高学历劳动力向先进制造与研发集聚，对冲总量缺口。', '#6fc2ae']].map(([t, d, c]) => (
               <div key={t} style={{ borderLeft: `2px solid ${c}`, paddingLeft: 12 }}>
                 <div className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{t}</div>
                 <p className="text-[11px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p>
@@ -228,7 +228,7 @@ export default function Page() {
           {[['Cost Reduction Protocol', '降低生育、养育、教育全链条直接成本，缓解住房与教育支出对生育决策的挤压。'],
             ['Inclusive Childcare Services', '普惠托育服务体系扩容，将 0-3 岁照护纳入公共服务供给，释放女性劳动参与。'],
             ['Tax Incentive Mechanism', '以个税专项附加扣除与补贴工具校准家庭生育成本-收益函数。']].map(([t, d]) => (
-            <div key={t} style={{ borderLeft: '2px solid #22d3ee', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{t}</div><p className="text-[11px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p></div>
+            <div key={t} style={{ borderLeft: '2px solid #6e8cff', paddingLeft: 10 }}><div className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{t}</div><p className="text-[11px] mt-1 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{d}</p></div>
           ))}
         </Grid>
       </Card>

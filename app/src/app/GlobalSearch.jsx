@@ -5,23 +5,23 @@ import { MODULE_ICONS } from './moduleIcons.js';
 
 // 结果类型元信息：标签、配色、图标、分组顺序
 const TYPE_META = {
-  module: { label: '模块', accent: '#22d3ee', icon: 'LayoutGrid' },
-  figure: { label: '中国政要', accent: '#c41e3a', icon: 'UserRound' },
-  enterprise: { label: '企业', accent: '#fb923c', icon: 'Building2' },
-  anticorruption: { label: '反腐', accent: '#e8a317', icon: 'Gavel' },
+  module: { label: '模块', accent: '#6e8cff', icon: 'LayoutGrid' },
+  figure: { label: '中国政要', accent: '#e5483b', icon: 'UserRound' },
+  enterprise: { label: '企业', accent: '#c07a4a', icon: 'Building2' },
+  anticorruption: { label: '反腐', accent: '#d4a25a', icon: 'Gavel' },
   knowledge: { label: '知识精英', accent: '#a78bfa', icon: 'Sparkles' },
   culture: { label: '知识精英', accent: '#a78bfa', icon: 'Sparkles' },
-  business: { label: '商业', accent: '#d4af37', icon: 'Briefcase' },
-  education: { label: '高等教育', accent: '#10b981', icon: 'GraduationCap' },
-  thinktank: { label: '智库', accent: '#22d3ee', icon: 'Landmark' },
+  business: { label: '商业', accent: '#d9b26a', icon: 'Briefcase' },
+  education: { label: '高等教育', accent: '#6fc2ae', icon: 'GraduationCap' },
+  thinktank: { label: '智库', accent: '#6e8cff', icon: 'Landmark' },
   research: { label: '科研院所', accent: '#a78bfa', icon: 'FlaskConical' },
   overseas: { label: '海外人才', accent: '#0ea5e9', icon: 'Globe2' },
-  diplomatic: { label: '外交人才', accent: '#f59e0b', icon: 'Landmark' },
+  diplomatic: { label: '外交人才', accent: '#d4a25a', icon: 'Landmark' },
   dissident: { label: '异见人士', accent: '#a78bfa', icon: 'Megaphone' },
   taiwan: { label: '港澳台政要', accent: '#38bdf8', icon: 'Landmark' },
-  policy: { label: '政策文件', accent: '#ef4444', icon: 'FileText' },
-  legal: { label: '法律条文', accent: '#8b5cf6', icon: 'BookMarked' },
-  glossary: { label: '术语词典', accent: '#64748b', icon: 'BookOpen' },
+  policy: { label: '政策文件', accent: '#e5483b', icon: 'FileText' },
+  legal: { label: '法律条文', accent: '#b07cc6', icon: 'BookMarked' },
+  glossary: { label: '术语词典', accent: '#8a8578', icon: 'BookOpen' },
 };
 const TYPE_ORDER = ['module', 'glossary', 'legal', 'figure', 'policy', 'knowledge', 'culture', 'business', 'education', 'thinktank', 'research', 'overseas', 'diplomatic', 'dissident', 'taiwan', 'anticorruption', 'enterprise'];
 

@@ -8,12 +8,12 @@
 /** @typedef {{ relation: number, career: number, education: number, region: number, institution: number, anticorruption?: number }} RadarScores */
 
 export const RADAR_DIMENSIONS = [
-  { key: 'relation', label: '人物关系', color: '#22d3ee' },
-  { key: 'career', label: '任职履历', color: '#c41e3a' },
-  { key: 'education', label: '教育背景', color: '#8b5cf6' },
-  { key: 'region', label: '地域家乡', color: '#e8a317' },
-  { key: 'institution', label: '机构类型', color: '#10b981' },
-  { key: 'anticorruption', label: '反腐关联', color: '#fb923c', optional: true },
+  { key: 'relation', label: '人物关系', color: '#6e8cff' },
+  { key: 'career', label: '任职履历', color: '#e5483b' },
+  { key: 'education', label: '教育背景', color: '#b07cc6' },
+  { key: 'region', label: '地域家乡', color: '#d4a25a' },
+  { key: 'institution', label: '机构类型', color: '#6fc2ae' },
+  { key: 'anticorruption', label: '反腐关联', color: '#c07a4a', optional: true },
 ];
 
 const LEVEL_RANK = {
@@ -398,26 +398,26 @@ export function buildFigureRadarOption({
     seriesData.push({
       value: dims.map((d) => primary.scores[d.key] ?? 0),
       name: primary.name || '选中',
-      lineStyle: { color: '#c41e3a', width: 2 },
-      itemStyle: { color: '#c41e3a' },
-      areaStyle: { color: 'rgba(196,30,58,0.12)' },
+      lineStyle: { color: '#e5483b', width: 2 },
+      itemStyle: { color: '#e5483b' },
+      areaStyle: { color: 'rgba(229, 72, 59,0.12)' },
     });
   }
   if (compare?.scores) {
     seriesData.push({
       value: dims.map((d) => compare.scores[d.key] ?? 0),
       name: compare.name || '对比',
-      lineStyle: { color: '#22d3ee', width: 2 },
-      itemStyle: { color: '#22d3ee' },
-      areaStyle: { color: 'rgba(34,211,238,0.08)' },
+      lineStyle: { color: '#6e8cff', width: 2 },
+      itemStyle: { color: '#6e8cff' },
+      areaStyle: { color: 'rgba(110, 140, 255,0.08)' },
     });
   }
   if (cohortAvg) {
     seriesData.push({
       value: dims.map((d) => cohortAvg[d.key] ?? 0),
       name: '队列均值',
-      lineStyle: { color: '#64748b', width: 1, type: 'dashed' },
-      itemStyle: { color: '#64748b' },
+      lineStyle: { color: '#8a8578', width: 1, type: 'dashed' },
+      itemStyle: { color: '#8a8578' },
       areaStyle: { color: 'rgba(100,116,139,0.05)' },
     });
   }

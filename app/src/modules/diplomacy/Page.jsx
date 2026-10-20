@@ -4,7 +4,7 @@ import { PageHeader, Card, Grid, Stat } from '../../app/ui.jsx';
 import { IntroCard, FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
 
 // 升温/维持/降温 三档色（沿用附件判读盘语义）
-const WARM = '#10b981', HOLD = '#e8a317', COOL = '#c41e3a', STEEL = '#22d3ee';
+const WARM = '#6fc2ae', HOLD = '#d4a25a', COOL = '#e5483b', STEEL = '#6e8cff';
 const pill = (c) => ({ display: 'inline-block', fontSize: 11, fontFamily: 'monospace', padding: '3px 9px', borderRadius: 20, border: `1px solid ${c}66`, background: `${c}14`, color: c, whiteSpace: 'nowrap' });
 
 // 四圈层布局环
@@ -167,7 +167,7 @@ export default function Page() {
   const [hot, setHot] = useState(null);
   const [tab, setTab] = useState('layers');
   const [power, setPower] = useState('us');
-  const btn = (a) => ({ background: a ? 'rgba(196,30,58,0.2)' : 'var(--bg-elevated)', color: a ? '#fff' : 'var(--text-secondary)', border: 'none', cursor: 'pointer', borderRadius: 6, padding: '6px 14px', fontSize: 13 });
+  const btn = (a) => ({ background: a ? 'rgba(229, 72, 59,0.2)' : 'var(--bg-elevated)', color: a ? '#fff' : 'var(--text-secondary)', border: 'none', cursor: 'pointer', borderRadius: 6, padding: '6px 14px', fontSize: 13 });
 
   return (
     <div>

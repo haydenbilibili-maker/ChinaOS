@@ -36,35 +36,35 @@ const POPULATION = [
 // ---------------------------------------------------------------------------
 const ISSUES = [
   {
-    key: 'hukou', label: '户籍改革 / 市民化', accent: '#c41e3a',
+    key: 'hukou', label: '户籍改革 / 市民化', accent: '#e5483b',
     progress: '城区 300 万以下城市落户全面放开，500 万以下大幅放宽；居住证持有量超 1.3 亿张；都市圈内户籍准入年限互认试点铺开。',
     tension: '放开的恰是人口流出的，卡住的恰是人想去的。超大城市积分落户名额以万计，排队者以百万计——户籍含金量与开放度成反比，这不是技术问题，是公共服务成本的分配问题。',
     policy: '「人地钱挂钩」：转移支付、建设用地指标与农业转移人口落户数挂钩，试图让吸纳人口的城市拿到买单的钱。执行中地方更愿意要地、要钱，落户指标完成口径弹性极大。',
     metric: ['18.2pp', '常住—户籍剪刀差'],
   },
   {
-    key: 'cluster', label: '城市群 / 都市圈', accent: '#22d3ee',
+    key: 'cluster', label: '城市群 / 都市圈', accent: '#6e8cff',
     progress: '「19+2」城市群格局成型，承载全国 ~75% 人口、~85% GDP；国家级都市圈批复超 14 个，跨市轨道、社保互认、产业飞地推进。',
     tension: '规划上的城市群是连绵的，财政上的城市群是割裂的。GDP 核算、税收分成、用地指标全部以行政区为单元，断头路与重复建设是分税制在空间上的投影。',
     policy: '都市圈同城化：中心城市放开落户辐射圈层，轨道上的都市圈承担住房压力外溢。本质是用空间换价格——把买不起核心区的人运到 50 公里外。',
     metric: ['19+2', '城市群格局'],
   },
   {
-    key: 'shrink', label: '收缩城市', accent: '#64748b',
+    key: 'shrink', label: '收缩城市', accent: '#8a8578',
     progress: '官方语境首次承认「收缩型中小城市」（2019 年发改委文件），要求其瘦身强体、严控增量。东北、西北资源型城市进入存量规划时代。',
     tension: '人口在收缩，建成区还在扩张——不少收缩城市的土地财政惯性仍驱动新城新区。鹤岗化的房价是市场对人口流向的诚实定价，规划话语接受得更慢。',
     policy: '从「增长规划」转向「收缩规划」：基础设施收缩归并、公共服务向县城和中心城区集中。承认收缩是第一步，有序收缩的财政工具还在路上。',
     metric: ['1/3+', '区县常住人口下降'],
   },
   {
-    key: 'renewal', label: '城市更新', accent: '#e8a317',
+    key: 'renewal', label: '城市更新', accent: '#d4a25a',
     progress: '城市更新写入国家规划，老旧小区改造累计开工超 25 万个；城中村改造在 35 城铺开；地下管网更新成为新一轮投资主线。',
     tension: '大拆大建的利润模型失效后，微更新的钱从哪来成为真问题。改造不产生土地出让金，物业增值难以回收，更新很容易退化为财政工程。',
     policy: '从「房地产化更新」转向「运营型更新」：片区统筹、做地模式、REITs 退出。能否跑通取决于租金现金流能否覆盖改造资本——多数三四线跑不通。',
     metric: ['25 万+', '老旧小区改造开工'],
   },
   {
-    key: 'county', label: '县城城镇化', accent: '#10b981',
+    key: 'county', label: '县城城镇化', accent: '#6fc2ae',
     progress: '县城作为城镇化「重要载体」获专门文件（2022）；1800 余个县与县级市承载全国近 30% 城镇常住人口；农民「就近城镇化」成本最低。',
     tension: '县城是农民买得起房的地方，却不是有工作的地方。产业空心的县城城镇化，容易变成「教育驱动的被动进城」——为孩子上学进城，收入仍依赖外出务工。',
     policy: '分类引导：大城市周边县城卫星化、专业功能县城产业化、农产品主产区县城服务化、人口流失县城收缩化。纸面分类清晰，财政能力决定执行成色。',
@@ -101,39 +101,39 @@ const CLUSTERS19 = [
   { name: '北部湾', pop: 3, gdp: 2, tier: 2 },
   { name: '其余 10 群', pop: 12, gdp: 10, tier: 3 },
 ];
-const TIER_COLOR = { 1: '#c41e3a', 2: '#e8a317', 3: '#64748b' };
+const TIER_COLOR = { 1: '#e5483b', 2: '#d4a25a', 3: '#8a8578' };
 
 // ---------------------------------------------------------------------------
 // 人口流动方向 · 分档（示意：年均常住人口增量 万人）
 // ---------------------------------------------------------------------------
 const FLOW_TIERS = [
-  { name: '一线城市', value: 25, color: '#c41e3a', note: '严控人口后增速放缓，但虹吸未止' },
-  { name: '强二线 / 省会', value: 180, color: '#22d3ee', note: '抢人大战主战场，落户即送户口' },
-  { name: '普通地级市', value: -40, color: '#e8a317', note: '总体微降，分化剧烈' },
-  { name: '县城 / 县级市', value: 30, color: '#10b981', note: '就近城镇化承接，教育驱动进城' },
-  { name: '收缩城市带', value: -120, color: '#64748b', note: '东北/资源型为主，名单持续扩大' },
+  { name: '一线城市', value: 25, color: '#e5483b', note: '严控人口后增速放缓，但虹吸未止' },
+  { name: '强二线 / 省会', value: 180, color: '#6e8cff', note: '抢人大战主战场，落户即送户口' },
+  { name: '普通地级市', value: -40, color: '#d4a25a', note: '总体微降，分化剧烈' },
+  { name: '县城 / 县级市', value: 30, color: '#6fc2ae', note: '就近城镇化承接，教育驱动进城' },
+  { name: '收缩城市带', value: -120, color: '#8a8578', note: '东北/资源型为主，名单持续扩大' },
 ];
 
 // ---------------------------------------------------------------------------
 // 市民化成本账 · 人均成本构成（示意 %）
 // ---------------------------------------------------------------------------
 const COST_DONUT = [
-  { name: '随迁子女教育', value: 28, itemStyle: { color: '#c41e3a' } },
-  { name: '保障性住房', value: 26, itemStyle: { color: '#e8a317' } },
-  { name: '社保与养老', value: 22, itemStyle: { color: '#22d3ee' } },
-  { name: '医疗卫生', value: 14, itemStyle: { color: '#10b981' } },
-  { name: '市政设施分摊', value: 10, itemStyle: { color: '#64748b' } },
+  { name: '随迁子女教育', value: 28, itemStyle: { color: '#e5483b' } },
+  { name: '保障性住房', value: 26, itemStyle: { color: '#d4a25a' } },
+  { name: '社保与养老', value: 22, itemStyle: { color: '#6e8cff' } },
+  { name: '医疗卫生', value: 14, itemStyle: { color: '#6fc2ae' } },
+  { name: '市政设施分摊', value: 10, itemStyle: { color: '#8a8578' } },
 ];
 
 // ---------------------------------------------------------------------------
 // 时间线 · 城镇化之路
 // ---------------------------------------------------------------------------
 const PHASES = [
-  { period: '1984–1997', title: '离土不离乡', accent: '#64748b', desc: '乡镇企业异军突起，农民「进厂不进城」。城镇化率从 23% 爬到 32%，户籍闸门未开，城乡二元结构原样保留——工业化先于城镇化的中国特色起点。' },
-  { period: '1998–2012', title: '农民工潮 · 土地城镇化', accent: '#e8a317', desc: '住房商品化 + 入世订单 + 土地财政三轮驱动。2.6 亿农民工撑起世界工厂，城市以每年 2000 平方公里的速度摊大饼。土地城镇化速度约为人口城镇化的 1.8 倍——城市要地不要人。' },
-  { period: '2014–2019', title: '新型城镇化规划', accent: '#22d3ee', desc: '《国家新型城镇化规划》首提「以人为核心」，1 亿非户籍人口落户目标写入文件。承认了问题，但买单机制（人地钱挂钩）落地缓慢，剪刀差仅小幅收窄。' },
-  { period: '2019–2023', title: '都市圈落户放开', accent: '#10b981', desc: '300 万以下城区落户全面取消，强二线抢人大战白热化。落户门槛从「控制人口」转向「争夺人口」——人口红利见顶后，人本身成了被争夺的资源。' },
-  { period: '2023–', title: '县城载体 · 存量更新', accent: '#c41e3a', desc: '增量扩张时代终结：城市更新替代新城建设，县城承接就近城镇化，收缩城市进入瘦身规划。城镇化率逼近 70% 天花板，剩下的题目全是硬骨头——市民化欠账与存量债务。' },
+  { period: '1984–1997', title: '离土不离乡', accent: '#8a8578', desc: '乡镇企业异军突起，农民「进厂不进城」。城镇化率从 23% 爬到 32%，户籍闸门未开，城乡二元结构原样保留——工业化先于城镇化的中国特色起点。' },
+  { period: '1998–2012', title: '农民工潮 · 土地城镇化', accent: '#d4a25a', desc: '住房商品化 + 入世订单 + 土地财政三轮驱动。2.6 亿农民工撑起世界工厂，城市以每年 2000 平方公里的速度摊大饼。土地城镇化速度约为人口城镇化的 1.8 倍——城市要地不要人。' },
+  { period: '2014–2019', title: '新型城镇化规划', accent: '#6e8cff', desc: '《国家新型城镇化规划》首提「以人为核心」，1 亿非户籍人口落户目标写入文件。承认了问题，但买单机制（人地钱挂钩）落地缓慢，剪刀差仅小幅收窄。' },
+  { period: '2019–2023', title: '都市圈落户放开', accent: '#6fc2ae', desc: '300 万以下城区落户全面取消，强二线抢人大战白热化。落户门槛从「控制人口」转向「争夺人口」——人口红利见顶后，人本身成了被争夺的资源。' },
+  { period: '2023–', title: '县城载体 · 存量更新', accent: '#e5483b', desc: '增量扩张时代终结：城市更新替代新城建设，县城承接就近城镇化，收缩城市进入瘦身规划。城镇化率逼近 70% 天花板，剩下的题目全是硬骨头——市民化欠账与存量债务。' },
 ];
 
 export default function Page() {
@@ -149,8 +149,8 @@ export default function Page() {
     xAxis: categoryX(GAP_YEARS),
     yAxis: valueY({ min: 30, max: 75, axisLabel: { formatter: '{value}%' } }),
     series: [
-      { name: '常住人口城镇化率', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: RESIDENT_RATE, lineStyle: { color: '#22d3ee', width: 2 }, itemStyle: { color: '#22d3ee' }, areaStyle: { color: 'rgba(34,211,238,0.08)' } },
-      { name: '户籍人口城镇化率', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: HUKOU_RATE, lineStyle: { color: '#c41e3a', width: 2 }, itemStyle: { color: '#c41e3a' }, areaStyle: { color: 'rgba(196,30,58,0.08)' } },
+      { name: '常住人口城镇化率', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: RESIDENT_RATE, lineStyle: { color: '#6e8cff', width: 2 }, itemStyle: { color: '#6e8cff' }, areaStyle: { color: 'rgba(110, 140, 255,0.08)' } },
+      { name: '户籍人口城镇化率', type: 'line', smooth: true, symbol: 'circle', symbolSize: 6, data: HUKOU_RATE, lineStyle: { color: '#e5483b', width: 2 }, itemStyle: { color: '#e5483b' }, areaStyle: { color: 'rgba(229, 72, 59,0.08)' } },
     ],
   }), []);
 
@@ -163,7 +163,7 @@ export default function Page() {
     series: [{
       type: 'bar', barWidth: 22,
       data: GAP_YEARS.map((_, i) => +(RESIDENT_RATE[i] - HUKOU_RATE[i]).toFixed(1)),
-      itemStyle: { color: '#e8a317', borderRadius: [3, 3, 0, 0] },
+      itemStyle: { color: '#d4a25a', borderRadius: [3, 3, 0, 0] },
       label: { show: true, position: 'top', color: LABEL.color, fontSize: 9, formatter: '{c}' },
     }],
   }), []);
@@ -183,7 +183,7 @@ export default function Page() {
 
   // 人口流动方向（正负分档着色 bar）
   const flowChart = useMemo(() => ({
-    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: (ps) => { const p = ps[0]; const t = FLOW_TIERS[p.dataIndex]; return `${t.name}: ${t.value > 0 ? '+' : ''}${t.value} 万/年<br/><span style="color:#93a1b5">${t.note}</span>`; } },
+    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: (ps) => { const p = ps[0]; const t = FLOW_TIERS[p.dataIndex]; return `${t.name}: ${t.value > 0 ? '+' : ''}${t.value} 万/年<br/><span style="color:#a29c91">${t.note}</span>`; } },
     grid: { left: 44, right: 16, top: 16, bottom: 50 },
     xAxis: categoryX(FLOW_TIERS.map((x) => x.name), { rotate: 24, fontSize: 9 }),
     yAxis: valueY({ axisLabel: { formatter: '{value}万' } }),
@@ -191,7 +191,7 @@ export default function Page() {
       type: 'bar', barWidth: 28,
       data: FLOW_TIERS.map((x) => ({ value: x.value, itemStyle: { color: x.color, borderRadius: x.value >= 0 ? [3, 3, 0, 0] : [0, 0, 3, 3] } })),
       label: { show: true, position: 'top', color: LABEL.color, fontSize: 9, formatter: ({ value }) => (value > 0 ? `+${value}` : `${value}`) },
-      markLine: { silent: true, symbol: 'none', lineStyle: { color: 'rgba(148,163,184,0.4)', type: 'dashed' }, label: { show: false }, data: [{ yAxis: 0 }] },
+      markLine: { silent: true, symbol: 'none', lineStyle: { color: 'rgba(162, 156, 145,0.4)', type: 'dashed' }, label: { show: false }, data: [{ yAxis: 0 }] },
     }],
   }), []);
 
@@ -202,10 +202,10 @@ export default function Page() {
   const payerChart = useMemo(() => stackedBarOpt({
     categories: ['教育', '住房', '社保', '医疗', '市政'],
     series: [
-      { name: '中央财政', data: [35, 15, 30, 30, 10], itemStyle: { color: '#c41e3a' } },
-      { name: '省级统筹', data: [20, 15, 25, 25, 15], itemStyle: { color: '#e8a317' } },
-      { name: '市县兜底', data: [40, 45, 25, 35, 65], itemStyle: { color: '#22d3ee' } },
-      { name: '企业/个人', data: [5, 25, 20, 10, 10], itemStyle: { color: '#64748b' } },
+      { name: '中央财政', data: [35, 15, 30, 30, 10], itemStyle: { color: '#e5483b' } },
+      { name: '省级统筹', data: [20, 15, 25, 25, 15], itemStyle: { color: '#d4a25a' } },
+      { name: '市县兜底', data: [40, 45, 25, 35, 65], itemStyle: { color: '#6e8cff' } },
+      { name: '企业/个人', data: [5, 25, 20, 10, 10], itemStyle: { color: '#8a8578' } },
     ],
   }), []);
 
@@ -213,7 +213,7 @@ export default function Page() {
   const qualityRadar = useMemo(() => radarOpt(
     ['户籍开放', '公共服务', '住房可负担', '就业容量', '基础设施', '治理能力'],
     [58, 62, 45, 70, 85, 64],
-    { name: '城镇化质量（示意）', color: '#22d3ee' },
+    { name: '城镇化质量（示意）', color: '#6e8cff' },
   ), []);
 
   return (
@@ -226,10 +226,10 @@ export default function Page() {
       </IntroCard>
 
       <Grid cols={4} className="mb-6">
-        <Stat value="~67%" label="常住人口城镇化率" accent="#22d3ee" />
-        <Stat value="~49%" label="户籍人口城镇化率" accent="#64748b" />
-        <Stat value="19+2" label="城市群格局（承载 ~85% GDP）" accent="#e8a317" />
-        <Stat value="~2.5 亿" label="半市民化群体（剪刀差对应人口）" accent="#c41e3a" />
+        <Stat value="~67%" label="常住人口城镇化率" accent="#6e8cff" />
+        <Stat value="~49%" label="户籍人口城镇化率" accent="#8a8578" />
+        <Stat value="19+2" label="城市群格局（承载 ~85% GDP）" accent="#d4a25a" />
+        <Stat value="~2.5 亿" label="半市民化群体（剪刀差对应人口）" accent="#e5483b" />
       </Grid>
 
       {/* ------------------------------------------------------------------ */}
@@ -257,15 +257,15 @@ export default function Page() {
           </div>
           <Grid cols={3}>
             <div>
-              <div className="text-xs font-semibold mb-1" style={{ color: '#10b981' }}>进展</div>
+              <div className="text-xs font-semibold mb-1" style={{ color: '#6fc2ae' }}>进展</div>
               <p className="text-[12px] leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{issue.progress}</p>
             </div>
             <div>
-              <div className="text-xs font-semibold mb-1" style={{ color: '#e8a317' }}>结构性矛盾</div>
+              <div className="text-xs font-semibold mb-1" style={{ color: '#d4a25a' }}>结构性矛盾</div>
               <p className="text-[12px] leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{issue.tension}</p>
             </div>
             <div>
-              <div className="text-xs font-semibold mb-1" style={{ color: '#22d3ee' }}>政策走向</div>
+              <div className="text-xs font-semibold mb-1" style={{ color: '#6e8cff' }}>政策走向</div>
               <p className="text-[12px] leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{issue.policy}</p>
             </div>
           </Grid>
@@ -289,7 +289,7 @@ export default function Page() {
             <p className="text-[11px] mt-2" style={{ color: 'var(--text-tertiary)' }}>剪刀差长期徘徊在 17–18 个百分点——每 1pp 约对应 1400 万人的「半市民」存量。</p>
           </div>
         </Grid>
-        <div className="os-card p-4 mt-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #c41e3a' }}>
+        <div className="os-card p-4 mt-4" style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid #e5483b' }}>
           <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
             这 2.5 亿人构成了一种独特的政治经济安排：劳动力按市场价进城，公共服务按户籍价供给。城市拿走了他们的生产率，把养老、教育、医疗的成本留给了输出地的农村——这笔账过去叫「人口红利」，现在到了偿付期。
           </p>
@@ -345,15 +345,15 @@ export default function Page() {
         </Card>
         <Card title="判断 · 城镇化下半场的三个事实">
           <div className="space-y-3">
-            <div style={{ borderLeft: '2px solid #c41e3a', paddingLeft: 10 }}>
+            <div style={{ borderLeft: '2px solid #e5483b', paddingLeft: 10 }}>
               <div className="text-xs font-semibold mb-0.5">速度不可逆地放缓</div>
               <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>年提升幅度从 1.4pp 降到 0.7pp 以下；70% 之后每一个百分点都更贵、更慢。</p>
             </div>
-            <div style={{ borderLeft: '2px solid #e8a317', paddingLeft: 10 }}>
+            <div style={{ borderLeft: '2px solid #d4a25a', paddingLeft: 10 }}>
               <div className="text-xs font-semibold mb-0.5">分化取代普涨</div>
               <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>城市群核心继续吸人，收缩带继续失血；「城镇化率」这个全国平均数正在失去信息量。</p>
             </div>
-            <div style={{ borderLeft: '2px solid #22d3ee', paddingLeft: 10 }}>
+            <div style={{ borderLeft: '2px solid #6e8cff', paddingLeft: 10 }}>
               <div className="text-xs font-semibold mb-0.5">市民化即内需</div>
               <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>让 2.5 亿人敢消费的前提是公共服务确权——市民化是成本，也是被反复点名的最大内需储备。</p>
             </div>
