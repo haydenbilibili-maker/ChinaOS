@@ -98,7 +98,12 @@ for (const vp of cfg.viewports) {
               }
             }
           }
-          out.scrollers = out.scrollers.slice(0, 12);
+          out.scrollers = out.scrollers.filter((x) => x.ch > 0).slice(0, 8);
+          out.chain = [];
+          for (let el = document.getElementById('main-content'); el && el !== document.documentElement; el = el.parentElement) {
+            const cs = getComputedStyle(el);
+            out.chain.push({ tag: el.tagName, id: el.id, cls: String(el.className).slice(0, 70), h: cs.height, oy: cs.overflowY, ch: el.clientHeight, sh: el.scrollHeight });
+          }
           return out;
         });
       }
