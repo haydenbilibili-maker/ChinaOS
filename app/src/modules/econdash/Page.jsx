@@ -3,11 +3,11 @@ import { Link, useSearchParams } from 'react-router-dom';
 // Layout: ink-observatory · os-card · os-reveal-stagger · TabBar (Round 2)
 import { PageHeader, TabBar, LoadingSkeleton } from '../../app/ui.jsx';
 import { FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
-import { ECON_DATA_AS_OF, ECON_PERIOD, ECON_TAB_IDS, KEY_INDICATORS } from './econData.js';
-import { toneOf, ARROW } from './econHelpers.jsx';
+import { ECON_DATA_AS_OF, ECON_TAB_IDS } from './econData.js';
 import { useWorldBank } from './liveWorldBank.js';
 import MacroTab from './tabs/MacroTab.jsx';
 import DataFreshnessBar from './DataFreshnessBar.jsx';
+import EconHero from './EconHero.jsx';
 import './econ.css';
 
 const StructureTab = lazy(() => import('./tabs/StructureTab.jsx'));
@@ -38,43 +38,6 @@ const TABS = [
 
 function TabFallback() {
   return <LoadingSkeleton rows={3} label="板块载入中…" className="econ-tab-fallback" />;
-}
-
-const SUMMARY_IDS = ['gdp_h1', 'iva', 'retail', 'export', 'cpi'];
-const SUMMARY_LABELS = { gdp_h1: `GDP·${ECON_PERIOD.gdp}`, iva: '规上工业', retail: '社零', export: '出口', cpi: 'CPI' };
-
-function KeyReadingStrip() {
-  const items = SUMMARY_IDS
-    .map((id) => KEY_INDICATORS.find((k) => k.id === id))
-    .filter(Boolean);
-  return (
-    <div className="econ-readout" role="group" aria-label="关键读数摘要 · 2026 年前三季度">
-      <span className="econ-readout__title mono">{ECON_PERIOD.ytd}</span>
-      <div className="econ-readout__items">
-        {items.map((k) => {
-          const tone = toneOf(k.trend ?? k.yoy);
-          return (
-            <span key={k.id} className="econ-readout__chip" title={k.label} style={{ '--econ-chip-tone': tone }}>
-              <span className="econ-readout__k">{SUMMARY_LABELS[k.id] || k.label}</span>
-              <span className="econ-readout__v mono os-mono-tabular">
-                {k.value}<span className="econ-readout__u">%</span>
-              </span>
-              <span className="econ-readout__arrow mono" style={{ color: tone }} aria-hidden="true">
-                {ARROW(k.trend ?? k.yoy)}
-              </span>
-            </span>
-          );
-        })}
-      </div>
-      <details className="econ-note">
-        <summary className="econ-note__summary mono">ⓘ 口径</summary>
-        <p className="econ-note__body">
-          NBS 快照（基准日 {ECON_DATA_AS_OF} · 1–9 月累计；GDP 为前三季度口径）· 世行 WDI 实时长序列 · 公开数据派生领先指标。
-          公开统计梳理 · 示意标定 · 非投资建议 · 非预测。
-        </p>
-      </details>
-    </div>
-  );
 }
 
 export default function Page({ embedded = false }) {
@@ -146,10 +109,19 @@ export default function Page({ embedded = false }) {
       )}
 
       {!isLongFormTab && (
-        <div className="econ-toolbelt" aria-label="时效与关键读数">
-          <DataFreshnessBar />
-          <KeyReadingStrip />
-        </div>
+        <>
+          <EconHero />
+          <div className="econ-toolbelt" aria-label="数据时效">
+            <DataFreshnessBar />
+            <details className="econ-note">
+              <summary className="econ-note__summary mono">ⓘ 口径</summary>
+              <p className="econ-note__body">
+                NBS 快照（基准日 {ECON_DATA_AS_OF} · 1–9 月累计；GDP 为前三季度口径）· 世行 WDI 实时长序列 · 公开数据派生领先指标。
+                公开统计梳理 · 示意标定 · 非投资建议 · 非预测。
+              </p>
+            </details>
+          </div>
+        </>
       )}
 
       <div className="econ-sticky-nav">
