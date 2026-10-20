@@ -55,6 +55,21 @@ for (const vp of cfg.viewports) {
         /* 外部实时数据可能拖住 networkidle，超时后照常截图 */
       }
       await page.waitForTimeout(r.settleMs ?? 1500);
+      if (r.fullPage) {
+        // 应用壳把滚动放在 <main> 等内层容器里：展开它们，整页截图才能拍到全部内容
+        await page.evaluate(() => {
+          for (const el of document.querySelectorAll('body *')) {
+            const cs = getComputedStyle(el);
+            if (/(auto|scroll)/.test(cs.overflowY) && el.scrollHeight > el.clientHeight + 4) {
+              el.style.overflowY = 'visible';
+              el.style.height = 'auto';
+              el.style.maxHeight = 'none';
+            }
+          }
+          for (const el of document.querySelectorAll('.h-screen, .h-full')) el.style.height = 'auto';
+        });
+        await page.waitForTimeout(300);
+      }
       await page.screenshot({ path: file, fullPage: r.fullPage ?? false });
       manifest.shots.push({ route: r.id, path: r.path, viewport: vp.id, theme, file: file.slice(OUT.length + 1), errors });
       console.log(`${vp.id}/${theme}/${r.id}${errors.length ? `  · ${errors.length} console errors` : ''}`);
