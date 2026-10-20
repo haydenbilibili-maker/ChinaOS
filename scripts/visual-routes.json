@@ -54,7 +54,8 @@
     {
       "id": "dash-chapters",
       "path": "/dashboard",
-      "scrollTo": "#dash-ch-situation"
+      "scrollTo": "#dash-ch-situation",
+      "probe": true
     },
     {
       "id": "dash-customize",

@@ -85,8 +85,25 @@ for (const vp of cfg.viewports) {
         });
         await page.waitForTimeout(300);
       }
+      // 可选：探测滚动容器（诊断用，写进 manifest）
+      let probe;
+      if (r.probe) {
+        probe = await page.evaluate(() => {
+          const out = { inner: window.innerHeight, doc: document.scrollingElement?.scrollHeight, docTop: document.scrollingElement?.scrollTop, scrollers: [] };
+          for (const el of document.querySelectorAll('body, body *')) {
+            if (el.scrollHeight > el.clientHeight + 4) {
+              const cs = getComputedStyle(el);
+              if (/(auto|scroll|hidden|clip)/.test(cs.overflowY)) {
+                out.scrollers.push({ tag: el.tagName, id: el.id, cls: String(el.className).slice(0, 60), oy: cs.overflowY, ch: el.clientHeight, sh: el.scrollHeight, st: el.scrollTop });
+              }
+            }
+          }
+          out.scrollers = out.scrollers.slice(0, 12);
+          return out;
+        });
+      }
       await page.screenshot({ path: file, fullPage: r.fullPage ?? false });
-      manifest.shots.push({ route: r.id, path: r.path, viewport: vp.id, theme, file: file.slice(OUT.length + 1), errors });
+      manifest.shots.push({ route: r.id, path: r.path, viewport: vp.id, theme, file: file.slice(OUT.length + 1), errors, ...(probe ? { probe } : {}) });
       console.log(`${vp.id}/${theme}/${r.id}${errors.length ? `  · ${errors.length} console errors` : ''}`);
     }
     await ctx.close();
