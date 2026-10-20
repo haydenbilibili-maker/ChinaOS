@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { PageHeader, TabBar } from '../../app/ui.jsx';
 import { FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
@@ -65,6 +65,16 @@ export default function LiveChinaMapPage() {
     });
   }, [setSearchParams]);
 
+  // 观测舱自身写回 URL 时不重建；外部导航（同页内跳到另一条 ?prov= / ?cmp= 深链）时重挂载以应用新初始态
+  const deckWroteRef = useRef(null);
+  const deckSeenRef = useRef(searchParams.toString());
+  const deckKeyRef = useRef(0);
+  const qsNow = searchParams.toString();
+  if (qsNow !== deckSeenRef.current) {
+    if (qsNow !== deckWroteRef.current) deckKeyRef.current += 1;
+    deckSeenRef.current = qsNow;
+  }
+
   const onDeckState = useCallback(({ layer, province, compare }) => {
     setSearchParams((prev) => {
       const params = new URLSearchParams(prev);
@@ -72,6 +82,7 @@ export default function LiveChinaMapPage() {
       if (province) params.set('prov', province); else params.delete('prov');
       if (compare?.length) params.set('cmp', compare.join(',')); else params.delete('cmp');
       if (params.toString() === prev.toString()) return prev;
+      deckWroteRef.current = params.toString();
       return params;
     }, { replace: true });
   }, [setSearchParams]);
@@ -105,6 +116,7 @@ export default function LiveChinaMapPage() {
   if (mode === 'deck') {
     return (
       <ShenzhouDeck
+        key={deckKeyRef.current}
         initialLayer={deepLink.layer || 'composite'}
         initialProvince={deepLink.province || null}
         initialCompare={(searchParams.get('cmp') || '').split(',').filter(Boolean)}
