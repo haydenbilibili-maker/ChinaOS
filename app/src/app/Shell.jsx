@@ -481,7 +481,7 @@ export default function Shell() {
   const isCompact = density === 'compact';
 
   return (
-    <div className="h-screen flex overflow-hidden" style={{ background: 'var(--bg-base)' }}>
+    <div className="h-screen flex os-shell-root" style={{ background: 'var(--bg-base)' }}>
       <a href="#main-content" className="os-skip-link">跳到主内容</a>
       {/* 移动端抽屉遮罩 */}
       {drawerOpen && (
