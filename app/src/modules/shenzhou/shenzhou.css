@@ -64,12 +64,10 @@
   animation: vi-spin 300s linear infinite;
 }
 
+/* 地图画布铺满舞台；版图尺寸与中心由脚本按 HUD 之间的空白计算 */
 .sz-map {
   position: absolute;
-  top: 24px;
-  bottom: calc(var(--sz-bottom-h) + 8px);
-  left: calc(var(--sz-left-w) + var(--sz-gutter));
-  right: calc(var(--sz-right-w) + var(--sz-gutter));
+  inset: 0;
   z-index: 0;
 }
 
@@ -799,7 +797,7 @@
 
   .sz-stage__sea {
     bottom: auto;
-    height: var(--sz-map-h);
+    height: calc(var(--sz-map-h) + 220px);
   }
 
   .sz-map {
@@ -807,14 +805,15 @@
     inset: auto;
     order: 0;
     height: var(--sz-map-h);
-    margin-top: 72px;
+    margin-top: -8px;
   }
 
   .sz-title {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    right: 12px;
+    position: relative;
+    order: -1;
+    top: auto;
+    left: auto;
+    margin: 12px 12px 0;
     width: auto;
     padding: 0.75rem 0.9rem;
     display: grid;
@@ -940,9 +939,6 @@
     --sz-map-h: clamp(340px, 56svh, 520px);
   }
 
-  .sz-map {
-    margin-top: 150px;
-  }
 
   .sz-readout dd .vi-figure,
   .sz-readout dd.vi-figure {

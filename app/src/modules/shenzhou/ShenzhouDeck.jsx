@@ -278,6 +278,7 @@ export default function ShenzhouDeck({ initialLayer, initialProvince, onStateCha
   const [selected, setSelected] = useState(initialProvince || null);
   const [regionId, setRegionId] = useState('national');
   const [overlays, setOverlays] = useState({ quakes: false, flights: false, shipping: false });
+  const [box, setBox] = useState(null); // 地图可用区域（像素）：避开四周 HUD
 
   const layer = layerOf(layerId);
   const isReal = !!layer.live;
@@ -340,7 +341,27 @@ export default function ShenzhouDeck({ initialLayer, initialProvince, onStateCha
     if (!geoReady || !elRef.current) return undefined;
     const chart = echarts.init(elRef.current, null, { renderer: 'canvas' });
     chartRef.current = chart;
-    const ro = new ResizeObserver(() => chart.resize());
+    const measure = () => {
+      const el = elRef.current;
+      if (!el) return;
+      const w = el.clientWidth;
+      const h = el.clientHeight;
+      const deck = el.closest('.sz-deck');
+      const cs = deck ? getComputedStyle(deck) : null;
+      const px = (name, fb) => {
+        const v = parseFloat(cs?.getPropertyValue(name));
+        return Number.isFinite(v) ? v : fb;
+      };
+      const overlay = window.matchMedia('(min-width: 1024px)').matches;
+      const g = px('--sz-gutter', 24);
+      const left = overlay ? px('--sz-left-w', 228) + g * 2 : 8;
+      const right = overlay ? px('--sz-right-w', 300) + g * 2 : 8;
+      const top = overlay ? g : 8;
+      const bottom = overlay ? px('--sz-bottom-h', 132) + g : 8;
+      setBox({ w, h, left, right, top, bottom });
+    };
+    measure();
+    const ro = new ResizeObserver(() => { chart.resize(); measure(); });
     ro.observe(elRef.current);
     const onClick = (p) => {
       const name = p?.name;
@@ -358,7 +379,15 @@ export default function ShenzhouDeck({ initialLayer, initialProvince, onStateCha
   const option = useMemo(() => {
     if (!geoReady) return null;
     const focus = selected && PROVINCE_COORDS[selected] ? { center: PROVINCE_COORDS[selected], zoom: Math.max(region.zoom, 2.4) } : { center: region.center, zoom: region.zoom };
-    const layout = { layoutCenter: ['50%', '50%'], layoutSize: '96%' };
+    // 中国版图（含南海诸岛框）宽高比约 1.3：在避开 HUD 的可用区内尽量放大并居中
+    const availW = box ? Math.max(120, box.w - box.left - box.right) : 0;
+    const availH = box ? Math.max(120, box.h - box.top - box.bottom) : 0;
+    const size = box ? Math.round(Math.min(availW, availH * 1.3) * 0.98) : '92%';
+    const cx = box ? box.left + availW / 2 : '50%';
+    const cy = box ? box.top + availH / 2 : '50%';
+    const depth = box ? Math.max(5, Math.round((typeof size === 'number' ? size : 600) * 0.012)) : 8;
+    const at = (dy) => (box ? [cx, cy + dy] : ['50%', '50%']);
+    const layout = { layoutCenter: at(0), layoutSize: size };
     const base = { map: 'china', roam: false, silent: true, aspectScale: 0.78, ...focus, animationDurationUpdate: 900, animationEasingUpdate: 'cubicInOut' };
     const top3 = rankings.hot.slice(0, 3).filter((d) => PROVINCE_COORDS[d.name]);
     const labelNames = new Set([...rankings.hot.slice(0, 5).map((d) => d.name), selected].filter(Boolean));
@@ -400,10 +429,10 @@ export default function ShenzhouDeck({ initialLayer, initialProvince, onStateCha
       },
       geo: [
         // 0 · 底座：远投影，制造悬浮感
-        { ...base, ...layout, layoutCenter: ['50%', '51.9%'], z: 0,
+        { ...base, ...layout, layoutCenter: at(depth * 2), z: 0,
           itemStyle: { areaColor: C.plinth, borderColor: C.plinth, borderWidth: 1, shadowColor: C.glow, shadowBlur: 60, shadowOffsetY: 26 } },
         // 1 · 侧壁：铜色厚度
-        { ...base, ...layout, layoutCenter: ['50%', '50.9%'], z: 1,
+        { ...base, ...layout, layoutCenter: at(depth), z: 1,
           itemStyle: { areaColor: C.edge, borderColor: C.edgeLine, borderWidth: 0.8 } },
         // 2 · 顶面：数据着色
         { ...base, ...layout, silent: false, z: 2,
@@ -469,7 +498,7 @@ export default function ShenzhouDeck({ initialLayer, initialProvince, onStateCha
         ...overlaySeries,
       ],
     };
-  }, [geoReady, selected, region, rankings, overlays, theme, C, quakesState, flightsState, shippingState, layer, isReal, monthIndex, ramp, series]);
+  }, [geoReady, box, selected, region, rankings, overlays, theme, C, quakesState, flightsState, shippingState, layer, isReal, monthIndex, ramp, series]);
 
   useEffect(() => {
     const chart = chartRef.current;
@@ -504,7 +533,7 @@ export default function ShenzhouDeck({ initialLayer, initialProvince, onStateCha
         <header className="sz-title">
           <div className="sz-title__eyebrow">
             <span className="sz-title__dot" aria-hidden="true" />
-            <span>神州活图 · 观测舱</span>
+            <span>观测舱</span>
             <span className="vi-figure sz-title__clock">北京 {clock}</span>
           </div>
           <h1 className="sz-title__layer">{layer.label}</h1>
