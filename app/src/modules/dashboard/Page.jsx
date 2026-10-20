@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { Suspense, lazy, useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Activity as LActivity, BrainCircuit as LBrainCircuit, FileDown as LFileDown, Gauge as LGauge, Search as LSearch, Square as LSquare, Star as LStar, Waves as LWaves, X as LX } from 'lucide-react';
 import { dashIcon } from './dashboardIcons.js';
@@ -39,6 +39,8 @@ import {
 } from './data.js';
 import { ECON_PERIOD } from '../econdash/econData.js';
 import { Chapter, ChapterRail, CustomizePanel, useDashLayout } from './DashChapters.jsx';
+import { getFavorites, toggleFavorite, useWorkspace } from '../../lib/workspace/store.js';
+const BriefReader = lazy(() => import('../../vi/reader/Reader.jsx'));
 import DashHero2 from './DashHero2.jsx';
 import { useMacroPulse } from './useMacroPulse.js';
 import NewsMarquee from './NewsMarquee.jsx';
@@ -639,19 +641,32 @@ function PolyPulse() {
 }
 
 // ── 关注清单（星标模块 · localStorage + 自定义事件跨组件同步） ──
-function readFavs() { try { return JSON.parse(localStorage.getItem('cos-favs') || '[]'); } catch (_) { return []; } }
+// 关注 = 工作台收藏（按路径存）。1.x 的 cos-favs（按模块 id 存）首次读取时并入后删除。
+const LEGACY_FAVS_KEY = 'cos-favs';
+function migrateLegacyFavs() {
+  try {
+    const raw = localStorage.getItem(LEGACY_FAVS_KEY);
+    if (!raw) return;
+    const ids = JSON.parse(raw);
+    const have = new Set(getFavorites());
+    // 旧列表新在前：倒序并入，保持原先的先后
+    [...(Array.isArray(ids) ? ids : [])].reverse().forEach((id) => {
+      const m = MODULES.find((x) => x.id === id);
+      if (m && !have.has(m.path)) { toggleFavorite(m.path); have.add(m.path); }
+    });
+    localStorage.removeItem(LEGACY_FAVS_KEY);
+  } catch (_) { /* 隐私模式：忽略 */ }
+}
+
+// 在模块加载时迁移（而非渲染中），避免渲染期派发事件触发他处 setState
+if (typeof window !== 'undefined') migrateLegacyFavs();
+
 function useFavs() {
-  const [favs, setFavs] = useState(readFavs);
-  useEffect(() => {
-    const h = () => setFavs(readFavs());
-    window.addEventListener('cos-favs-changed', h);
-    return () => window.removeEventListener('cos-favs-changed', h);
-  }, []);
+  const paths = useWorkspace(getFavorites);
+  const favs = paths.map((p) => MODULES.find((m) => m.path === p)?.id).filter(Boolean);
   const toggle = (id) => {
-    const cur = readFavs();
-    const next = cur.includes(id) ? cur.filter((x) => x !== id) : [id, ...cur];
-    try { localStorage.setItem('cos-favs', JSON.stringify(next.slice(0, 24))); } catch (_) {}
-    window.dispatchEvent(new Event('cos-favs-changed'));
+    const m = MODULES.find((x) => x.id === id);
+    if (m) toggleFavorite(m.path);
   };
   return [favs, toggle];
 }
@@ -704,27 +719,64 @@ function BriefingGenerator() {
   const docs = useDocs();
   const [text, setText] = useState('');
   const [copied, setCopied] = useState(false);
+  const [reading, setReading] = useState(false);
   const latest = useMemo(() => {
     const list = (docs || []).filter((d) => d.type === '政府工作报告' && d.metrics);
     return list.sort((a, b) => (b.year || 0) - (a.year || 0))[0] || GWR_DOCS[GWR_DOCS.length - 1];
   }, [docs]);
-  const gen = () => { setText(buildBriefing(latest)); setCopied(false); };
-  const copy = async () => {
-    try { await navigator.clipboard.writeText(text); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch (_) {}
+  const today = new Date().toISOString().slice(0, 10);
+  const ensure = () => {
+    const t = text || buildBriefing(latest);
+    if (!text) setText(t);
+    return t;
   };
+  const gen = () => { setText(buildBriefing(latest)); setCopied(false); setReading(true); };
+  const copy = async () => {
+    try { await navigator.clipboard.writeText(ensure()); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch (_) {}
+  };
+  const download = () => {
+    const blob = new Blob([ensure()], { type: 'text/markdown;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `ChinaOS-今日简报-${today}.md`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  };
+  // 预览：只取二级标题当提纲
+  const outline = useMemo(() => text.split('\n').filter((l) => /^## /.test(l)).map((l) => l.slice(3)), [text]);
   return (
-    <section className="mb-8">
-      <div className="flex items-center gap-2 mb-3 flex-wrap">
-        <LFileDown size={16} style={{ color: WARM }} />
-        <h2 className="os-card-title m-0">今日简报</h2>
-        <span className="text-[11px] mono" style={{ color: 'var(--text-tertiary)' }}>{'// 一键聚合 态势/施政/读数/节点 为可复制 Markdown'}</span>
-        <span className="ml-auto flex gap-2">
-          <button onClick={gen} className="os-btn os-btn-primary os-btn-sm">生成简报</button>
-          {text && <button onClick={copy} className="os-btn os-btn-sm">{copied ? '✓ 已复制' : '复制 Markdown'}</button>}
-        </span>
+    <section className="dash-brief">
+      <div className="dash-brief__main">
+        <p className="dash-brief__eyebrow">今日简报 · {today}</p>
+        <h3 className="dash-brief__title">态势、施政、读数、节点，一页读完</h3>
+        <p className="dash-brief__lead">从看板各处聚合成一份 Markdown 简报：在阅读器里读、划线记笔记，或复制 / 下载带走。</p>
+        <div className="dash-brief__actions">
+          <button type="button" onClick={gen} className="os-btn os-btn-primary os-btn-sm">生成并阅读</button>
+          <button type="button" onClick={copy} className="os-btn os-btn-sm">{copied ? '✓ 已复制' : '复制 Markdown'}</button>
+          <button type="button" onClick={download} className="os-btn os-btn-sm">下载 .md</button>
+        </div>
       </div>
-      {text && (
-        <pre className="os-card p-4 text-xs mono" style={{ whiteSpace: 'pre-wrap', color: 'var(--text-secondary)', maxHeight: 300, overflowY: 'auto', lineHeight: 1.7 }}>{text}</pre>
+      {outline.length > 0 && (
+        <ol className="dash-brief__outline" aria-label="简报提纲">
+          {outline.map((h, i) => (
+            <li key={h}><span className="vi-figure">{String(i + 1).padStart(2, '0')}</span>{h}</li>
+          ))}
+        </ol>
+      )}
+      {reading && (
+        <Suspense fallback={null}>
+          <BriefReader
+            open
+            onClose={() => setReading(false)}
+            docId={`briefing:${today}`}
+            title={`今日简报 · ${today}`}
+            badge="中枢看板"
+            meta={[`施政基准 ${latest?.year || ''}`].filter(Boolean)}
+            markdown={text}
+            disclaimer="自动聚合自看板各模块的公开整理与示意研判，非官方口径"
+          />
+        </Suspense>
       )}
     </section>
   );

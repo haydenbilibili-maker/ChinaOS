@@ -73,6 +73,12 @@
       "scrollTo": "#dash-ch-toolbox"
     },
     {
+      "id": "dash-brief",
+      "path": "/dashboard",
+      "scrollTo": "#dash-ch-briefing",
+      "click": ".dash-brief .os-btn-primary"
+    },
+    {
       "id": "dash-screens",
       "path": "/dashboard",
       "scrollTo": "#dash-ch-screens"

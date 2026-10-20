@@ -348,3 +348,83 @@
   .dch .dash-pillar-card .dash-pillar-card__go { transition: none; }
   .dch .dash-pillar-card:hover { transform: none; }
 }
+
+/* ── 今日简报 ─────────────────────────────────────── */
+.dash-brief {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: clamp(1rem, 0.5rem + 2vw, 2.5rem);
+  align-items: center;
+  padding: clamp(1.25rem, 0.8rem + 1.6vw, 2rem);
+  border-radius: var(--vi-r-panel);
+  border: 1px solid var(--vi-line-strong);
+  background:
+    linear-gradient(90deg, rgba(var(--vi-brass-rgb), 0.08), transparent 55%),
+    repeating-linear-gradient(0deg, transparent 0 31px, var(--vi-line) 31px 32px),
+    var(--vi-card-bg);
+  box-shadow: var(--vi-shadow-1), var(--vi-highlight);
+}
+
+.dash-brief:not(:has(.dash-brief__outline)) { grid-template-columns: 1fr; }
+
+.dash-brief__eyebrow {
+  margin: 0;
+  font-size: var(--vi-fs-caption);
+  letter-spacing: 0.16em;
+  color: var(--vi-brass);
+}
+
+.dash-brief__title {
+  margin: 0.35rem 0 0;
+  font-family: var(--vi-font-read);
+  font-size: var(--vi-fs-h2);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.dash-brief__lead {
+  max-width: 34rem;
+  margin: 0.6rem 0 0;
+  font-size: var(--vi-fs-small);
+  line-height: 1.75;
+  color: var(--vi-ink-2);
+}
+
+.dash-brief__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.1rem;
+}
+
+.dash-brief__outline {
+  display: grid;
+  gap: 0.15rem;
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+  background: var(--vi-bg-inset);
+  border: 1px solid var(--vi-line);
+  list-style: none;
+}
+
+.dash-brief__outline li {
+  display: flex;
+  gap: 0.7rem;
+  padding: 0.35rem 0;
+  font-family: var(--vi-font-read);
+  font-size: var(--vi-fs-small);
+  color: var(--vi-ink-1);
+  border-bottom: 1px dashed var(--vi-line);
+}
+
+.dash-brief__outline li:last-child { border-bottom: 0; }
+
+.dash-brief__outline .vi-figure {
+  font-family: var(--vi-font-display);
+  color: var(--vi-brass);
+}
+
+@media (max-width: 899px) {
+  .dash-brief { grid-template-columns: 1fr; }
+}
