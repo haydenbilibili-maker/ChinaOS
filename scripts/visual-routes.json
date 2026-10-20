@@ -78,6 +78,14 @@
     {
       "id": "shenzhou",
       "path": "/shenzhou-live"
+    },
+    {
+      "id": "shenzhou-prov",
+      "path": "/shenzhou-live?prov=广东省&layer=economy"
+    },
+    {
+      "id": "shenzhou-cmp",
+      "path": "/shenzhou-live?cmp=北京市,上海市,广东省"
     }
   ]
 }

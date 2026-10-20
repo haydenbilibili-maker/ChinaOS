@@ -65,11 +65,12 @@ export default function LiveChinaMapPage() {
     });
   }, [setSearchParams]);
 
-  const onDeckState = useCallback(({ layer, province }) => {
+  const onDeckState = useCallback(({ layer, province, compare }) => {
     setSearchParams((prev) => {
       const params = new URLSearchParams(prev);
       if (layer) params.set('layer', layer); else params.delete('layer');
       if (province) params.set('prov', province); else params.delete('prov');
+      if (compare?.length) params.set('cmp', compare.join(',')); else params.delete('cmp');
       if (params.toString() === prev.toString()) return prev;
       return params;
     }, { replace: true });
@@ -106,6 +107,7 @@ export default function LiveChinaMapPage() {
       <ShenzhouDeck
         initialLayer={deepLink.layer || 'composite'}
         initialProvince={deepLink.province || null}
+        initialCompare={(searchParams.get('cmp') || '').split(',').filter(Boolean)}
         onStateChange={onDeckState}
         onOpenWorkbench={openWorkbench}
       />

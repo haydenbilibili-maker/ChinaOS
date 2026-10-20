@@ -2,15 +2,15 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 import * as echarts from 'echarts';
 import {
-  Activity, ArrowUpRight, CloudRain, CloudSun, Factory, Landmark, Layers, Leaf, LayoutGrid,
-  Microscope, Palmtree, Pause, Plane, Play, ShieldAlert, Ship, Thermometer, TrendingUp, Users,
+  Activity, ArrowUpRight, CloudRain, CloudSun, Factory, GitCompare, Landmark, Layers, Leaf, LayoutGrid,
+  Microscope, Palmtree, Pause, Plane, Play, Search, ShieldAlert, Ship, Thermometer, TrendingUp, Users,
   Wind, X, Zap,
 } from 'lucide-react';
 import { getTheme, THEME_EVENT } from '../../lib/theme.js';
 import Signal from '../../vi/Signal.jsx';
 import { Spark } from '../../vi/Kpi.jsx';
 import {
-  AS_OF, LAYERS, REGION_PRESETS, PROVINCE_COORDS, RADAR_DIMS,
+  AS_OF, LAYERS, REGION_PRESETS, PROVINCE_COORDS, PROVINCE_NAMES, RADAR_DIMS,
   getLayerById, getNationalStats, getRankings, getProvinceRadar, getProvinceModuleLink,
 } from '../dashboard/liveMapData.js';
 import {
@@ -181,7 +181,7 @@ function RankPanel({ rankings, layer, onPick }) {
   );
 }
 
-function ProvinceCard({ name, layer, series, isReal, monthIndex, onClose }) {
+function ProvinceCard({ name, layer, series, isReal, monthIndex, onClose, inCompare, compareFull, onToggleCompare }) {
   const sorted = useMemo(() => series.slice().sort((a, b) => (b.value ?? -Infinity) - (a.value ?? -Infinity)), [series]);
   const rank = sorted.findIndex((d) => d.name === name) + 1;
   const datum = series.find((d) => d.name === name);
@@ -223,9 +223,122 @@ function ProvinceCard({ name, layer, series, isReal, monthIndex, onClose }) {
           ))}
         </div>
       )}
-      <Link to={link.to} className="sz-province__link">
-        {link.label}<ArrowUpRight size={14} aria-hidden="true" />
-      </Link>
+      <div className="sz-province__actions">
+        <button type="button" className={`sz-chip${inCompare ? ' is-on' : ''}`} onClick={onToggleCompare} disabled={!inCompare && compareFull} aria-pressed={inCompare}>
+          <GitCompare size={13} />{inCompare ? '已加入对比' : compareFull ? '对比已满' : '加入对比'}
+        </button>
+        <Link to={link.to} className="sz-province__link">
+          {link.label}<ArrowUpRight size={14} aria-hidden="true" />
+        </Link>
+      </div>
+    </section>
+  );
+}
+
+/** 对比色：霁蓝 / 铜 / 青瓷（VI 数据色板前三位） */
+const COMPARE_COLORS = {
+  dark: ['#6e8cff', '#d4a25a', '#6fc2ae'],
+  light: ['#3d5bd9', '#8a6224', '#237561'],
+};
+const MAX_COMPARE = 3;
+
+function MultiSpark({ series, colors, height = 72 }) {
+  const all = series.flat();
+  if (!all.length) return null;
+  const lo = Math.min(...all);
+  const hi = Math.max(...all);
+  const span = hi - lo || 1;
+  const w = 240;
+  const pad = 4;
+  const n = series[0]?.length || 0;
+  const x = (i) => pad + (i / Math.max(1, n - 1)) * (w - pad * 2);
+  const y = (v) => pad + (1 - (v - lo) / span) * (height - pad * 2);
+  return (
+    <svg className="sz-multispark" viewBox={`0 0 ${w} ${height}`} width="100%" height={height} preserveAspectRatio="none" aria-hidden="true">
+      {series.map((data, si) => (
+        <g key={si} style={{ color: colors[si] }}>
+          <path d={data.map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join(' ')} fill="none" stroke="currentColor" strokeWidth="1.6" vectorEffect="non-scaling-stroke" strokeLinejoin="round" />
+          <circle cx={x(n - 1)} cy={y(data[n - 1])} r="3" fill="currentColor" />
+        </g>
+      ))}
+    </svg>
+  );
+}
+
+function ProvinceSearch({ onPick }) {
+  const [q, setQ] = useState('');
+  const submit = (e) => {
+    e.preventDefault();
+    const hit = PROVINCE_NAMES.find((n) => n === q) || PROVINCE_NAMES.find((n) => n.startsWith(q.trim()) || shortProvinceName(n) === q.trim());
+    if (hit) { onPick(hit); setQ(''); }
+  };
+  return (
+    <form className="sz-search" onSubmit={submit} role="search">
+      <Search size={15} aria-hidden="true" />
+      <input
+        value={q}
+        onChange={(e) => setQ(e.target.value)}
+        list="sz-province-list"
+        placeholder="定位省份…"
+        aria-label="定位省份"
+      />
+      <datalist id="sz-province-list">
+        {PROVINCE_NAMES.map((n) => <option key={n} value={n} />)}
+      </datalist>
+    </form>
+  );
+}
+
+function ComparePanel({ names, colors, layer, series, isReal, onRemove, onClear, selected, onAdd }) {
+  const byName = Object.fromEntries(series.map((d) => [d.name, d.value]));
+  const sorted = series.slice().sort((a, b) => (b.value ?? -Infinity) - (a.value ?? -Infinity));
+  const rankOf = (n) => sorted.findIndex((d) => d.name === n) + 1;
+  const histories = !isReal ? names.map((n) => getProvinceHistory(n, layer.id)) : null;
+  const dims = names.map((n) => getProvinceRadar(n));
+  return (
+    <section className="sz-compare" aria-label="省份对比">
+      <header className="sz-panel__head">
+        <span className="sz-panel__title">对比 · {layer.valueName}</span>
+        <button type="button" className="sz-text-btn" onClick={onClear}>清空</button>
+      </header>
+      <ul className="sz-compare__list">
+        {names.map((n, i) => (
+          <li key={n} style={{ '--c': colors[i] }}>
+            <span className="sz-compare__dot" aria-hidden="true" />
+            <span className="sz-compare__name">{shortProvinceName(n)}</span>
+            <span className="sz-compare__v vi-figure">{fmt(byName[n])}{layer.unit ? <span className="vi-unit">{layer.unit}</span> : null}</span>
+            <span className="sz-compare__rank">第 {rankOf(n) || '—'}</span>
+            <button type="button" className="sz-icon-btn sz-icon-btn--sm" onClick={() => onRemove(n)} aria-label={`移出对比 ${n}`}><X size={13} /></button>
+          </li>
+        ))}
+      </ul>
+      {selected && !names.includes(selected) && (
+        <button type="button" className="sz-chip sz-compare__add" onClick={() => onAdd(selected)} disabled={names.length >= MAX_COMPARE}>
+          <GitCompare size={13} />{names.length >= MAX_COMPARE ? `对比已满（最多 ${MAX_COMPARE} 个）` : `加入 ${shortProvinceName(selected)}`}
+        </button>
+      )}
+      {histories && (
+        <div className="sz-compare__spark">
+          <span className="sz-rank__caption">近 12 月走势 · 示意指数</span>
+          <MultiSpark series={histories} colors={colors} />
+          <div className="sz-province__axis"><span>{MONTH_LABELS[0]}</span><span>{MONTH_LABELS[MONTH_LABELS.length - 1]}</span></div>
+        </div>
+      )}
+      <div className="sz-compare__dims">
+        <span className="sz-rank__caption">六维画像 · 示意指数</span>
+        {RADAR_DIMS.map((d, di) => (
+          <div key={d.key} className="sz-cdim">
+            <span className="sz-cdim__k">{d.label}</span>
+            <span className="sz-cdim__bars">
+              {names.map((n, i) => (
+                <span key={n} className="sz-cdim__bar" style={{ '--c': colors[i] }}>
+                  <span style={{ width: `${Math.min(100, dims[i][di] ?? 0)}%` }} />
+                </span>
+              ))}
+            </span>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }
@@ -264,7 +377,7 @@ function Timeline({ monthIndex, onChange, playing, onToggle, national }) {
 
 /* ─────────────────────────────── 主体 ─────────────────────────────── */
 
-export default function ShenzhouDeck({ initialLayer, initialProvince, onStateChange, onOpenWorkbench }) {
+export default function ShenzhouDeck({ initialLayer, initialProvince, initialCompare = [], onStateChange, onOpenWorkbench }) {
   const theme = useThemeKey();
   const C = THEME_COLORS[theme];
   const now = useClock();
@@ -276,6 +389,7 @@ export default function ShenzhouDeck({ initialLayer, initialProvince, onStateCha
   const [monthIndex, setMonthIndex] = useState(CURRENT_MONTH_INDEX);
   const [playing, setPlaying] = useState(false);
   const [selected, setSelected] = useState(initialProvince || null);
+  const [compare, setCompare] = useState(() => initialCompare.filter((n) => PROVINCE_COORDS[n]).slice(0, MAX_COMPARE));
   const [regionId, setRegionId] = useState('national');
   const [overlays, setOverlays] = useState({ quakes: false, flights: false, shipping: false });
   const [box, setBox] = useState(null); // 地图可用区域（像素）：避开四周 HUD
@@ -307,8 +421,8 @@ export default function ShenzhouDeck({ initialLayer, initialProvince, onStateCha
   const stateCbRef = useRef(onStateChange);
   stateCbRef.current = onStateChange;
   useEffect(() => {
-    stateCbRef.current?.({ layer: layerId === 'composite' ? '' : layerId, province: selected || '' });
-  }, [layerId, selected]);
+    stateCbRef.current?.({ layer: layerId === 'composite' ? '' : layerId, province: selected || '', compare });
+  }, [layerId, selected, compare]);
 
   // 播放：每 1.2s 前进一月，循环
   useEffect(() => {
@@ -395,7 +509,7 @@ export default function ShenzhouDeck({ initialLayer, initialProvince, onStateCha
     const layout = { layoutCenter: at(0), layoutSize: size };
     const base = { map: 'china', roam: false, silent: true, aspectScale: 0.78, ...focus, animationDurationUpdate: 900, animationEasingUpdate: 'cubicInOut' };
     const top3 = rankings.hot.slice(0, 3).filter((d) => PROVINCE_COORDS[d.name]);
-    const labelNames = new Set([...rankings.hot.slice(0, 5).map((d) => d.name), selected].filter(Boolean));
+    const labelNames = new Set([...rankings.hot.slice(0, 5).map((d) => d.name), selected, ...compare].filter(Boolean));
 
     const overlaySeries = [
       overlays.quakes && 'overlay-quakes',
@@ -444,7 +558,10 @@ export default function ShenzhouDeck({ initialLayer, initialProvince, onStateCha
           itemStyle: { areaColor: C.land, borderColor: C.border, borderWidth: 0.7 },
           emphasis: { itemStyle: { areaColor: C.hover, borderColor: C.ink, borderWidth: 1.2 }, label: { show: false } },
           select: { disabled: true },
-          regions: selected ? [{ name: selected, itemStyle: { borderColor: C.cinnabar, borderWidth: 2, shadowColor: C.cinnabar, shadowBlur: 16 } }] : [] },
+          regions: [
+            ...compare.map((n, i) => ({ name: n, itemStyle: { borderColor: COMPARE_COLORS[theme][i], borderWidth: 2.2, shadowColor: COMPARE_COLORS[theme][i], shadowBlur: 14 } })),
+            ...(selected && !compare.includes(selected) ? [{ name: selected, itemStyle: { borderColor: C.cinnabar, borderWidth: 2, shadowColor: C.cinnabar, shadowBlur: 16 } }] : []),
+          ] },
       ],
       series: [
         {
@@ -503,13 +620,18 @@ export default function ShenzhouDeck({ initialLayer, initialProvince, onStateCha
         ...overlaySeries,
       ],
     };
-  }, [geoReady, box, selected, region, rankings, overlays, theme, C, quakesState, flightsState, shippingState, layer, isReal, monthIndex, ramp, series]);
+  }, [geoReady, box, selected, compare, region, rankings, overlays, theme, C, quakesState, flightsState, shippingState, layer, isReal, monthIndex, ramp, series]);
 
   useEffect(() => {
     const chart = chartRef.current;
     if (!chart || !option) return;
-    chart.setOption(option, { replaceMerge: ['series', 'geo'] });
+    // 只替换 series；geo 按索引合并，区域 / 省份切换时中心与缩放平滑过渡
+    chart.setOption(option, { replaceMerge: ['series'] });
   }, [option]);
+
+  const toggleCompare = useCallback((name) => {
+    setCompare((cur) => (cur.includes(name) ? cur.filter((n) => n !== name) : cur.length >= MAX_COMPARE ? cur : [...cur, name]));
+  }, []);
 
   const pickLayer = useCallback((id) => {
     setLayerId(id);
@@ -562,10 +684,36 @@ export default function ShenzhouDeck({ initialLayer, initialProvince, onStateCha
 
         {/* 右侧：省份卡 / 排行 */}
         <aside className="sz-right">
-          {selected ? (
-            <ProvinceCard name={selected} layer={layer} series={valued} isReal={isReal} monthIndex={monthIndex} onClose={() => setSelected(null)} />
+          <ProvinceSearch onPick={(n) => { setRegionId('national'); setSelected(n); }} />
+          {compare.length >= 2 ? (
+            <ComparePanel
+              names={compare}
+              colors={COMPARE_COLORS[theme]}
+              layer={layer}
+              series={valued}
+              isReal={isReal}
+              onRemove={toggleCompare}
+              onClear={() => setCompare([])}
+              selected={selected}
+              onAdd={toggleCompare}
+            />
+          ) : selected ? (
+            <ProvinceCard
+              name={selected}
+              layer={layer}
+              series={valued}
+              isReal={isReal}
+              monthIndex={monthIndex}
+              onClose={() => setSelected(null)}
+              inCompare={compare.includes(selected)}
+              compareFull={compare.length >= MAX_COMPARE}
+              onToggleCompare={() => toggleCompare(selected)}
+            />
           ) : (
             rankings.hot.length > 0 && <RankPanel rankings={rankings} layer={layer} onPick={setSelected} />
+          )}
+          {compare.length === 1 && (
+            <p className="sz-compare__hint">已选 {shortProvinceName(compare[0])} · 再选一个省份加入对比</p>
           )}
         </aside>
 

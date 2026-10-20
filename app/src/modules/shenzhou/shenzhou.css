@@ -773,6 +773,197 @@
 }
 
 /* ── 中屏：收窄侧栏 ───────────────────────────────── */
+/* ── 省份搜索 ─────────────────────────────────────── */
+.sz-right {
+  gap: 10px;
+}
+
+.sz-right > section {
+  min-height: 0;
+}
+
+.sz-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: none;
+  min-height: 40px;
+  padding: 0 0.8rem;
+  border-radius: 12px;
+  background: var(--sz-hud-bg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--vi-line-strong);
+  color: var(--vi-ink-3);
+}
+
+.sz-search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--vi-ink-1);
+  font: inherit;
+  font-size: var(--vi-fs-small);
+}
+
+.sz-search:focus-within {
+  border-color: rgba(var(--vi-lapis-rgb), 0.6);
+  box-shadow: var(--focus-ring);
+}
+
+/* ── 对比 ─────────────────────────────────────────── */
+.sz-compare {
+  padding: 1rem 1.1rem;
+  overflow-y: auto;
+  background: var(--sz-hud-bg);
+  backdrop-filter: blur(18px) saturate(1.25);
+  -webkit-backdrop-filter: blur(18px) saturate(1.25);
+  border: 1px solid var(--vi-line-strong);
+  border-radius: 16px;
+  box-shadow: var(--vi-shadow-2), var(--vi-highlight);
+  animation: vi-bloom var(--vi-dur-slow) var(--vi-ease-ink) both;
+}
+
+.sz-text-btn {
+  border: 0;
+  background: none;
+  color: var(--vi-ink-3);
+  font-size: var(--vi-fs-caption);
+  cursor: pointer;
+}
+
+.sz-text-btn:hover {
+  color: var(--vi-ink-1);
+}
+
+.sz-compare__list {
+  display: grid;
+  gap: 4px;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.sz-compare__list li {
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr) auto auto 28px;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 38px;
+  padding: 0 0.2rem 0 0.4rem;
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--c) 10%, transparent);
+}
+
+.sz-compare__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--c);
+  box-shadow: 0 0 8px var(--c);
+}
+
+.sz-compare__name {
+  font-weight: 600;
+}
+
+.sz-compare__v {
+  font-family: var(--vi-font-display);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.sz-compare__rank {
+  font-size: var(--vi-fs-caption);
+  color: var(--vi-ink-3);
+}
+
+.sz-icon-btn--sm {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+}
+
+.sz-compare__add {
+  margin-bottom: 0.75rem;
+}
+
+.sz-compare__spark,
+.sz-compare__dims {
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--vi-line);
+}
+
+.sz-compare__dims {
+  margin-top: 0.75rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.sz-multispark {
+  display: block;
+  margin-top: 0.25rem;
+}
+
+.sz-cdim {
+  display: grid;
+  grid-template-columns: 2.6em minmax(0, 1fr);
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--vi-fs-caption);
+  color: var(--vi-ink-2);
+}
+
+.sz-cdim__bars {
+  display: grid;
+  gap: 2px;
+}
+
+.sz-cdim__bar {
+  display: block;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--vi-line);
+  overflow: hidden;
+}
+
+.sz-cdim__bar span {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--c);
+  transition: width var(--vi-dur-slow) var(--vi-ease-ink);
+}
+
+.sz-compare__hint {
+  margin: 0;
+  padding: 0.55rem 0.8rem;
+  border-radius: 10px;
+  background: var(--sz-hud-bg);
+  border: 1px dashed var(--vi-line-strong);
+  font-size: var(--vi-fs-caption);
+  color: var(--vi-ink-2);
+}
+
+.sz-province__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.sz-province__actions .sz-province__link {
+  margin-top: 0;
+}
+
+.sz-chip:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 @media (max-width: 1279px) {
   .sz-deck {
     --sz-left-w: 208px;
@@ -955,7 +1146,18 @@
   }
 }
 
+@media (max-width: 767px) {
+  .sz-deck {
+    padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .sz-search input {
+    font-size: 16px; /* 防止 iOS 聚焦放大 */
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .sz-compare,
   .sz-stage__sea::after,
   .sz-title__dot,
   .sz-rank,
