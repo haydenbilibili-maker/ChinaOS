@@ -92,9 +92,10 @@ def main():
     if argv:
         targets = argv
     else:
-        # 根目录 HTML + 外移的内容分片 tabs/*.html（阶段二后内容源所在）
-        targets = sorted(glob.glob(os.path.join(root, "*.html")))
-        targets += sorted(glob.glob(os.path.join(root, "tabs", "*.html")))
+        # 遗留 HTML（legacy/）+ 外移的内容分片 legacy/tabs/*.html + 部署用静态报告 app/public/*.html
+        targets = sorted(glob.glob(os.path.join(root, "legacy", "*.html")))
+        targets += sorted(glob.glob(os.path.join(root, "legacy", "tabs", "*.html")))
+        targets += sorted(glob.glob(os.path.join(root, "app", "public", "*.html")))
 
     all_hits = []
     for t in targets:

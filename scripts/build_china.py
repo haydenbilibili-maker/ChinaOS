@@ -25,8 +25,8 @@ import re
 import json
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CHINA = os.path.join(ROOT, "china.html")
-TABS_DIR = os.path.join(ROOT, "tabs")
+CHINA = os.path.join(ROOT, "legacy", "china.html")
+TABS_DIR = os.path.join(ROOT, "legacy", "tabs")
 
 # 函数名 → tabs/ 文件 slug。仅限「纯静态、可达」的内容型 Tab。
 # （死代码 getGuochaoHTML / getDiplomacyHTML 不在此列，另行清理。）

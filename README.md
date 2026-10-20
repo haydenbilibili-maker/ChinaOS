@@ -80,7 +80,7 @@ npm run check      # registry/路由 + UI + 史鉴双线 + Vitest
 
 **线上地址：** https://chinaos.hayden-bilibili.workers.dev/
 
-> 常见故障：若页面仍显示「China OS v2.0 系统架构总览」（遗留 `china.html`），说明 Worker 仍在托管仓库根目录静态文件，而非 `app/dist`。请使用下方命令重新部署。
+> 常见故障：若页面仍显示「China OS v2.0 系统架构总览」（遗留 `china.html`），说明 Worker 托管的不是 `app/dist`（遗留页现位于 `legacy/`，不应部署）。请使用下方命令重新部署。
 
 ```bash
 # 项目根目录
@@ -144,12 +144,10 @@ china2OS/
 │   └── dist/                 # 构建产物
 ├── scripts/                  # Python 数据与语料脚本
 ├── data/                     # 外部数据快照
-├── docs/                     # 补充文档
-├── tabs/                     # 迁移期 HTML 专题源
+├── docs/                     # 补充文档、审计与时效台账（docs/audits/）
+├── worker/                   # Cloudflare Worker（SPA 回退、实况代理）
+├── legacy/                   # 迁移前遗留：china.html、tabs/ 分片与未迁移报告（不部署）
 ├── energy-module/            # 能源模块独立实验
-├── china.html                # 遗留总览页（迁移参照）
-├── power-logic.html          # 遗留专题报告
-├── straits.html / military.html
 └── 中国深度调研系列_索引与恢复指令.md   # 系列索引与术语规范
 ```
 
