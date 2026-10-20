@@ -1,9 +1,11 @@
 import React, { Suspense, lazy, useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { NavLink, Link, Outlet, useLocation } from 'react-router-dom';
 import {
-  ChevronDown, ChevronRight, FoldVertical, LayoutGrid, Lock, Menu, Moon,
-  PanelLeftClose, PanelLeftOpen, Rows3, Search, Square, Sun, UnfoldVertical, X,
+  ChevronDown, ChevronRight, FoldVertical, LayoutDashboard, LayoutGrid, Lock, Map as MapIcon, Menu, Moon,
+  PanelLeftClose, PanelLeftOpen, Rows3, Search, Square, Star, Sun, UnfoldVertical, X,
 } from 'lucide-react';
+import Seal from '../vi/Seal.jsx';
+import { getFavorites, pushRecent, toggleFavorite, useWorkspace } from '../lib/workspace/store.js';
 import { GROUPS, HUANGFEIZHAI_GROUP_ID, modulesByGroup } from './registry.js';
 import { MODULE_ICONS } from './moduleIcons.js';
 import { shijianSubgroupLabel, shijianCasesBandLabel } from '../lib/shijian/navOrder.js';
@@ -240,6 +242,97 @@ function GroupBlock({ group, expanded, onToggle, onNavigate, alwaysShowModules, 
   );
 }
 
+// ── 2.0 · 「我的」侧栏分区：工作台入口 + 收藏 ─────────────────────────
+function MySection({ narrow, onNavigate }) {
+  const favorites = useWorkspace(getFavorites);
+  const favMods = favorites.map((p) => ({ path: p, mod: resolveModuleByPath(p) })).filter((x) => x.mod).slice(0, 6);
+  return (
+    <div className={`mb-5 os-group-block vi-my${narrow ? ' os-group-block--narrow' : ''}`}>
+      <div className="os-group-header px-3 mb-2" aria-label="我的">
+        <div className="os-group-header__row">
+          <span className="os-group-header__dot" style={{ background: 'var(--vi-brass)' }} />
+          <span className="os-group-header__title">我的</span>
+        </div>
+      </div>
+      <nav className="space-y-0.5">
+        <NavLink
+          to="/workspace"
+          onClick={onNavigate}
+          title={narrow ? '我的工作台' : undefined}
+          className={({ isActive }) => `nav-item flex items-center gap-3 px-3 py-2 rounded-lg text-sm ${isActive ? 'is-active' : ''}`}
+        >
+          <LayoutGrid size={16} />
+          <span className="nav-item__label flex-1 truncate">我的工作台</span>
+        </NavLink>
+        {!narrow && favMods.map(({ path, mod }) => (
+          <NavLink
+            key={path}
+            to={path}
+            onClick={onNavigate}
+            className={({ isActive }) => `nav-item vi-my__fav flex items-center gap-3 px-3 py-1.5 rounded-lg text-sm ${isActive ? 'is-active' : ''}`}
+          >
+            <Star size={13} className="vi-my__star" aria-hidden="true" />
+            <span className="nav-item__label flex-1 truncate">{mod.title}</span>
+          </NavLink>
+        ))}
+      </nav>
+    </div>
+  );
+}
+
+// ── 2.0 · 顶栏收藏开关 ─────────────────────────────────────────────
+function FavoriteToggle({ pathname }) {
+  const favorites = useWorkspace(getFavorites);
+  const mod = resolveModuleByPath(pathname);
+  if (!mod || mod.path === '/workspace') return null;
+  const path = mod.path;
+  const on = favorites.includes(path);
+  return (
+    <button
+      type="button"
+      className={`os-btn os-btn-ghost os-btn-sm vi-fav-toggle${on ? ' is-on' : ''}`}
+      onClick={() => toggleFavorite(path)}
+      aria-pressed={on}
+      aria-label={on ? `取消收藏 ${mod.title}` : `收藏 ${mod.title}`}
+      title={on ? '取消收藏' : '收藏到工作台'}
+    >
+      <Star size={15} fill={on ? 'currentColor' : 'none'} />
+      <span className="vi-fav-toggle__label">{on ? '已收藏' : '收藏'}</span>
+    </button>
+  );
+}
+
+// ── 2.0 · 手机底部 Dock ────────────────────────────────────────────
+const DOCK_ITEMS = [
+  { id: 'home', label: '看板', to: '/dashboard', Icon: LayoutDashboard },
+  { id: 'map', label: '活图', to: '/shenzhou-live', Icon: MapIcon },
+  { id: 'ws', label: '我的', to: '/workspace', Icon: LayoutGrid },
+];
+
+function MobileDock({ pathname, onSearch, onMenu }) {
+  return (
+    <nav className="vi-dock" aria-label="快捷导航">
+      {DOCK_ITEMS.map(({ id, label, to, Icon: DockIcon }) => {
+        const active = pathname === to || pathname.startsWith(`${to}/`);
+        return (
+          <Link key={id} to={to} className={`vi-dock__item${active ? ' is-active' : ''}`} aria-current={active ? 'page' : undefined}>
+            <DockIcon size={20} strokeWidth={1.7} />
+            <span>{label}</span>
+          </Link>
+        );
+      })}
+      <button type="button" className="vi-dock__item" onClick={onSearch}>
+        <Search size={20} strokeWidth={1.7} />
+        <span>搜索</span>
+      </button>
+      <button type="button" className="vi-dock__item" onClick={onMenu}>
+        <Menu size={20} strokeWidth={1.7} />
+        <span>目录</span>
+      </button>
+    </nav>
+  );
+}
+
 export default function Shell() {
   const loc = useLocation();
   const crumbs = useMemo(
@@ -308,14 +401,7 @@ export default function Shell() {
 
   // 访问足迹：记录最近访问的模块路径（中枢看板「最近访问」直达条的数据源）
   useEffect(() => {
-    const p = loc.pathname;
-    if (!p || p === '/' || p === '/dashboard') return;
-    try {
-      const key = 'cos-recent';
-      const arr = JSON.parse(localStorage.getItem(key) || '[]').filter((x) => x !== p);
-      arr.unshift(p);
-      localStorage.setItem(key, JSON.stringify(arr.slice(0, 16)));
-    } catch (_) { /* 隐私模式等场景静默跳过 */ }
+    pushRecent(loc.pathname);
   }, [loc.pathname]);
 
   // 全局快捷键：⌘K / Ctrl+K 打开搜索；Esc 关闭抽屉
@@ -408,22 +494,12 @@ export default function Shell() {
       >
         <div className="px-4 py-4 border-b shrink-0 flex items-center gap-2" style={{ borderColor: 'var(--border-subtle)' }}>
           <div className="flex-1 min-w-0 os-sidebar-brand">
-            <Link to="/dashboard" className="flex items-center gap-2.5 os-link" style={{ textDecoration: 'none' }} onClick={closeDrawer}>
-              <img
-                src="/logo.svg"
-                alt=""
-                width={28}
-                height={28}
-                className="shrink-0"
-                style={{ borderRadius: 6 }}
-                aria-hidden="true"
-              />
-              <span className="os-sidebar-brand-text text-lg font-bold tracking-tight" style={{ color: 'var(--china-red)' }}>China OS</span>
-              <span className="os-sidebar-brand-text text-xs mono px-1.5 py-0.5 rounded" style={{ background: 'var(--bg-elevated)', color: 'var(--cyber-cyan)' }}>
-                v3
-              </span>
+            <Link to="/dashboard" className="vi-brand os-link" onClick={closeDrawer}>
+              <Seal size={30} className="shrink-0" />
+              <span className="os-sidebar-brand-text vi-brand__name">China OS</span>
+              <span className="os-sidebar-brand-text vi-brand__ver">2.0</span>
             </Link>
-            <div className="os-sidebar-brand-text text-xs mt-1.5" style={{ color: 'var(--text-tertiary)' }}>治大国如烹小鲜</div>
+            <div className="os-sidebar-brand-text vi-brand__tag">治大国如烹小鲜</div>
           </div>
           <button
             type="button"
@@ -447,6 +523,7 @@ export default function Shell() {
           <SidebarTreeControls anyExpanded={anyGroupExpanded} onToggleAll={toggleAllGroups} />
         ) : null}
         <div className="flex-1 overflow-y-auto py-4 min-h-0">
+          <MySection narrow={sidebarNarrow} onNavigate={closeDrawer} />
           {GROUPS.map((g) => (
             <GroupBlock
               key={g.id}
@@ -489,6 +566,7 @@ export default function Shell() {
           <BreadcrumbNav items={crumbs} />
 
           <div className="ml-auto flex items-center gap-2 shrink-0">
+            <FavoriteToggle pathname={loc.pathname} />
             {huangfeizhaiUnlocked && resolveModuleByPath(loc.pathname)?.group === HUANGFEIZHAI_GROUP_ID ? (
               <button
                 type="button"
@@ -542,6 +620,12 @@ export default function Shell() {
         </div>
         <SiteFooter />
       </main>
+
+      <MobileDock
+        pathname={loc.pathname}
+        onSearch={() => setSearchOpen(true)}
+        onMenu={() => setDrawerOpen(true)}
+      />
 
       {searchOpen ? (
         <Suspense fallback={null}>

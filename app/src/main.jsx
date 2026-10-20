@@ -7,6 +7,7 @@ import './styles/vi2/tokens.css';
 import './styles/vi2/base.css';
 import './styles/vi2/material.css';
 import './styles/vi2/components.css';
+import './styles/vi2/shell.css';
 import { initTheme } from './lib/theme.js';
 import { initDensity } from './lib/density.js';
 import { initChunkRecovery } from './lib/chunkRecovery.js';

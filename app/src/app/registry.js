@@ -45,6 +45,11 @@ export const MODULES = [
     component: lazy(() => import('../modules/dashboard/Page.jsx')),
   },
   {
+    id: 'workspace', path: '/workspace', group: 'home',
+    title: '我的工作台', subtitle: '收藏 · 关注指标 · 最近 · 笔记', icon: 'LayoutGrid',
+    component: lazy(() => import('../modules/workspace/Page.jsx')),
+  },
+  {
     id: 'live-feeds', path: '/live-feeds', group: 'home',
     title: '神州实况', subtitle: '公开慢直播 · 熊猫 · 景区 · 枢纽', icon: 'Radio',
     component: lazy(() => import('../modules/dashboard/LiveFeedsPage.jsx')),
