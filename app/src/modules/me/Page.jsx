@@ -131,7 +131,7 @@ function migrationMapOption(full = false) {
       { type: 'scatter', coordinateSystem: 'geo', zlevel: 2,
         symbolSize: (v, p) => (CITY_GEO[p.dataIndex]?.kind ? 13 : 9),
         itemStyle: { color: (p) => colorOf(CITY_GEO[p.dataIndex]) },
-        label: { show: true, position: 'right', formatter: (p) => p.name, color: LABEL.color, fontSize: 11, fontFamily: 'var(--font-mono)' },
+        label: { show: true, position: 'right', formatter: (p) => p.name, color: LABEL.color, fontSize: 11, fontFamily: 'JetBrains Mono, ui-monospace, monospace' },
         data: CITY_GEO.map((c) => ({ name: c.name, value: c.coord, itemStyle: { color: colorOf(c) } })) },
       // 起点/终点高亮涟漪
       { type: 'effectScatter', coordinateSystem: 'geo', zlevel: 3, rippleEffect: { scale: 3, brushType: 'stroke' },

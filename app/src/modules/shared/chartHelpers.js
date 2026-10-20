@@ -17,13 +17,13 @@ const CHART_PALETTE = {
     pointBorder: '#ffffff',
   },
   light: {
-    axis: '#b8c4d4',
-    label: '#3a4659',
-    split: 'rgba(58, 70, 89, 0.1)',
-    splitStrong: 'rgba(58, 70, 89, 0.16)',
-    tooltipBg: 'rgba(252, 253, 255, 0.98)',
-    tooltipBorder: 'rgba(15, 23, 42, 0.12)',
-    tooltipText: '#121820',
+    axis: '#cfc6b5',
+    label: '#5a544b',
+    split: 'rgba(22, 19, 15, 0.08)',
+    splitStrong: 'rgba(22, 19, 15, 0.14)',
+    tooltipBg: 'rgba(255, 255, 255, 0.98)',
+    tooltipBorder: 'rgba(22, 19, 15, 0.14)',
+    tooltipText: '#16130f',
     pointBorder: '#ffffff',
   },
 };
@@ -47,6 +47,12 @@ export const CHART_SERIES_COLORS = {
   orange: '#c07a4a',
   slate: '#8a8578',
 };
+
+/** VI 2.0 数据可视化有序色板（§1.4）：option 未指定 color 时的默认序 */
+export const VI_DATA_PALETTE = ['#6e8cff', '#d4a25a', '#6fc2ae', '#e5483b', '#b07cc6', '#4fa3c7', '#c07a4a', '#8a8578'];
+
+/** 画布无法解析 CSS 变量，图表字体必须写字面量 */
+export const CHART_FONT_FAMILY = 'Inter, "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif';
 
 export const CHART_SERIES_PALETTE = [
   CHART_SERIES_COLORS.powerRed,
@@ -90,8 +96,8 @@ export function mapAreaIdle(theme = 'dark') {
 
 export const AXIS = { lineStyle: { color: C.axis } };
 export const GRID_LINE = { lineStyle: { color: C.split } };
-export const LABEL = { color: C.label, fontSize: 10 };
-export const LEGEND = { textStyle: { color: C.label, fontSize: 10 }, itemWidth: 12 };
+export const LABEL = { color: C.label, fontSize: 11 };
+export const LEGEND = { textStyle: { color: C.label, fontSize: 11 }, itemWidth: 12, itemHeight: 8, icon: 'roundRect' };
 export const GRID = { left: 36, right: 16, top: 16, bottom: 42 };
 export const GRID_WIDE = { left: 44, right: 44, top: 30, bottom: 24 };
 
@@ -100,8 +106,8 @@ export const CHART_TOOLTIP = {
   backgroundColor: C.tooltipBg,
   borderColor: C.tooltipBorder,
   borderWidth: 1,
-  textStyle: { color: C.tooltipText, fontSize: 11 },
-  extraCssText: 'border-radius: 8px; padding: 8px 12px; line-height: 1.45; box-shadow: 0 4px 16px -4px rgba(15,23,42,0.15);',
+  textStyle: { color: C.tooltipText, fontSize: 12, fontFamily: CHART_FONT_FAMILY },
+  extraCssText: 'border-radius: 12px; padding: 10px 12px; line-height: 1.55; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 18px 40px -16px rgba(0,0,0,0.45);',
 };
 
 /** 折线/散点高亮描边色 */
