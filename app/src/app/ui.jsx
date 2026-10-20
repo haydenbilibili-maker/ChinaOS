@@ -1,6 +1,7 @@
 import React, { useRef, useLayoutEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import StatTrend from '../lib/viz/StatTrend.jsx';
+import { useCurrentModule } from '../lib/vi/moduleContext.js';
 export { default as OsGauge } from '../lib/viz/OsGauge.jsx';
 export { default as OsSparkline } from '../lib/viz/OsSparkline.jsx';
 export { default as StatTrend } from '../lib/viz/StatTrend.jsx';
@@ -56,13 +57,41 @@ export function CrossLinks({ title = '横向打通 · 关联模块', links = [],
   );
 }
 
+const pad2 = (n) => String(n).padStart(2, '0');
+
+/** 卷首大字：标题里第一个汉字（无则不画） */
+function mastheadGlyph(title) {
+  const m = String(title || '').match(/[\u4e00-\u9fff]/);
+  return m ? m[0] : '';
+}
+
 export function PageHeader({ badge, title, subtitle, children, noAccent = false }) {
+  const ctx = useCurrentModule();
+  const accent = ctx?.mod?.accent || ctx?.group?.accent;
+  const glyph = typeof title === 'string' ? mastheadGlyph(title) : '';
+  const showKicker = ctx?.group && ctx.group.id !== 'home';
   return (
-    <header className={`os-page-header os-section ${noAccent ? 'os-page-header--no-accent' : ''}`}>
-      {badge && (
-        <span className="os-page-badge mono">
-          {badge}
-        </span>
+    <header
+      className={`os-page-header os-masthead os-section ${noAccent ? 'os-page-header--no-accent' : ''}`}
+      style={accent ? { '--mh-accent': accent } : undefined}
+    >
+      {glyph && <span className="os-masthead__glyph" aria-hidden="true">{glyph}</span>}
+      {(badge || showKicker) && (
+        <div className="os-masthead__kicker">
+          {showKicker && (
+            <span className="os-masthead__group">
+              {ctx.group.label}
+              {ctx.index && ctx.total > 1 && (
+                <span className="os-masthead__no vi-figure">{pad2(ctx.index)}<i>/{pad2(ctx.total)}</i></span>
+              )}
+            </span>
+          )}
+          {badge && (
+            <span className="os-page-badge mono">
+              {badge}
+            </span>
+          )}
+        </div>
       )}
       <h1 className="os-page-title">{title}</h1>
       {subtitle && <p className="os-page-subtitle">{subtitle}</p>}

@@ -12,6 +12,7 @@ import { shijianSubgroupLabel, shijianCasesBandLabel } from '../lib/shijian/navO
 import { isSynthesisCase } from '../lib/shijian/caseYears.js';
 import { useHuangfeizhaiAuth } from '../lib/huangfeizhai/useHuangfeizhaiAuth.js';
 import { buildBreadcrumbs, resolveModuleByPath } from './breadcrumb.js';
+import { ModuleContext } from '../lib/vi/moduleContext.js';
 import SiteFooter from './SiteFooter.jsx';
 import { getTheme, toggleTheme, subscribeTheme } from '../lib/theme.js';
 import { getDensity, toggleDensity, subscribeDensity } from '../lib/density.js';
@@ -339,6 +340,14 @@ export default function Shell() {
     () => buildBreadcrumbs(loc.pathname, loc.search),
     [loc.pathname, loc.search],
   );
+  const moduleCtx = useMemo(() => {
+    const mod = resolveModuleByPath(loc.pathname);
+    if (!mod) return null;
+    const group = GROUPS.find((g) => g.id === mod.group) || null;
+    const list = modulesByGroup(mod.group);
+    const i = list.findIndex((m) => m.id === mod.id);
+    return { mod, group, index: i >= 0 ? i + 1 : null, total: list.length };
+  }, [loc.pathname]);
   const mainRef = useRef(null);
   const sidebarRef = useRef(null);
   const drawerTriggerRef = useRef(null);
@@ -616,7 +625,9 @@ export default function Shell() {
           </div>
         </header>
         <div key={loc.pathname} className="os-page-enter os-content-fluid py-8">
-          <Outlet />
+          <ModuleContext.Provider value={moduleCtx}>
+            <Outlet />
+          </ModuleContext.Provider>
         </div>
         <SiteFooter />
       </main>
