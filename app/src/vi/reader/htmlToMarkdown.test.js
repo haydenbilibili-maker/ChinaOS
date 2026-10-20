@@ -66,4 +66,15 @@ describe('htmlToMarkdown', () => {
     ));
     expect(md).toBe('点击任一行展开该案机制与印证规律，并对照各单卷深描的交叉引用说明');
   });
+
+  it('dropTitle removes the h1, its short kicker, and numbered eyebrows', () => {
+    const md = htmlToMarkdown(E('body', {},
+      E('p', {}, 'SJ-18 · 综合层'),
+      E('h1', {}, '拐点谱系'),
+      E('p', {}, '01 · 引言'),
+      E('h2', {}, '三场拐点'),
+      E('p', {}, '正文'),
+    ), { dropTitle: true });
+    expect(md).toBe('## 三场拐点\n\n正文');
+  });
 });

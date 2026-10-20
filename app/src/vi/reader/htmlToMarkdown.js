@@ -10,6 +10,7 @@ const BLOCK = new Set(['address', 'article', 'aside', 'blockquote', 'dd', 'detai
 const TEXT_NODE = 3;
 const MEANINGFUL = /[\p{L}\p{N}]/u;
 const UI_HINT = /^(点击|点选|轻触|拖动|悬停)/;
+const EYEBROW = /^\d{1,2}\s*[·.、]\s*\S+$/;
 const ELEMENT_NODE = 1;
 
 const tag = (n) => String(n?.tagName || '').toLowerCase();
@@ -46,12 +47,14 @@ function svgLabel(n) {
  * @param {Node} root
  * @returns {string} markdown
  */
-export function htmlToMarkdown(root) {
+export function htmlToMarkdown(root, { dropTitle = false } = {}) {
   const out = [];
+  let titleSeen = false;
   const para = (s) => {
     const t = squash(s);
     if (!t || !MEANINGFUL.test(t)) return; // 纯图标 / 符号
     if (t.length < 20 && UI_HINT.test(t)) return; // 交互提示（「点击揭开」）
+    if (t.length < 16 && EYEBROW.test(t)) return; // 章节眉题（「01 · 引言」）
     out.push(t, '');
   };
 
@@ -64,7 +67,14 @@ export function htmlToMarkdown(root) {
     const h = t.match(/^h([1-6])$/);
     if (h) {
       const text = squash(kids(n).map(inlineText).join('').replace(/\*\*/g, ''));
-      if (text) out.push(`${'#'.repeat(Math.min(4, Number(h[1])))} ${text}`, '');
+      if (!text) return;
+      if (dropTitle && h[1] === '1' && !titleSeen) {
+        titleSeen = true;
+        // 标题由阅读器页头给出；其前的短眉题（卷号 · 分类）一并去掉
+        if (out.join('').length < 60) out.length = 0;
+        return;
+      }
+      out.push(`${'#'.repeat(Math.min(4, Number(h[1])))} ${text}`, '');
       return;
     }
     if (t === 'svg') {

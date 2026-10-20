@@ -18,7 +18,7 @@ export default function useHtmlDoc(src) {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const html = await res.text();
       const doc = new DOMParser().parseFromString(html, 'text/html');
-      const markdown = htmlToMarkdown(pickContentRoot(doc));
+      const markdown = htmlToMarkdown(pickContentRoot(doc), { dropTitle: true });
       loadedRef.current = src;
       setState((s) => ({ ...s, loading: false, markdown }));
     } catch (e) {
