@@ -773,7 +773,8 @@ function BriefingGenerator() {
             title={`今日简报 · ${today}`}
             badge="中枢看板"
             meta={[`施政基准 ${latest?.year || ''}`].filter(Boolean)}
-            markdown={text}
+            // 品牌抬头与一级标题由阅读器页头给出，正文从第一个二级标题起
+            markdown={text.includes('\n## ') ? text.slice(text.indexOf('\n## ') + 1) : text}
             disclaimer="自动聚合自看板各模块的公开整理与示意研判，非官方口径"
           />
         </Suspense>

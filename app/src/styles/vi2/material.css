@@ -301,3 +301,15 @@ table {
   font-size: var(--vi-fs-caption);
   line-height: 1.45;
 }
+
+/* 窄屏：读数卡两列并排（1.x 的 480px 单列规则让一排读数拉成整屏长条） */
+@media (max-width: 480px) {
+  .os-stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+  .os-stat-card--v2 {
+    min-height: 6rem;
+    padding: 0.85rem 0.9rem 0.8rem 1.1rem;
+  }
+}
