@@ -378,7 +378,12 @@ export default function ShenzhouDeck({ initialLayer, initialProvince, onStateCha
 
   const option = useMemo(() => {
     if (!geoReady) return null;
-    const focus = selected && PROVINCE_COORDS[selected] ? { center: PROVINCE_COORDS[selected], zoom: Math.max(region.zoom, 2.4) } : { center: region.center, zoom: region.zoom };
+    // 全国视图：zoom 1 + 几何中心，让整幅版图按可用区域完整适配；区域 / 省份才放大聚焦
+    const focus = selected && PROVINCE_COORDS[selected]
+      ? { center: PROVINCE_COORDS[selected], zoom: Math.max(region.zoom, 2.4) }
+      : region.id === 'national'
+        ? { center: null, zoom: 1 }
+        : { center: region.center, zoom: region.zoom };
     // 中国版图（含南海诸岛框）宽高比约 1.3：在避开 HUD 的可用区内尽量放大并居中
     const availW = box ? Math.max(120, box.w - box.left - box.right) : 0;
     const availH = box ? Math.max(120, box.h - box.top - box.bottom) : 0;
