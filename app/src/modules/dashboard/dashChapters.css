@@ -285,3 +285,66 @@
   text-align: center;
   color: var(--vi-ink-3);
 }
+
+/* ── 门户卡（章节内）：模块色晕 + 编号 + 悬停推进 ───────────── */
+.dch .dash-gateway-grid { counter-reset: gate; }
+
+.dch .dash-pillar-card {
+  counter-increment: gate;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 168px;
+  border-color: var(--vi-line-strong);
+  background:
+    radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--pillar-accent) 18%, transparent), transparent 62%),
+    var(--vi-card-bg);
+  transition: transform var(--vi-dur-base) var(--vi-ease-ink), border-color var(--vi-dur-base) var(--vi-ease-ink), box-shadow var(--vi-dur-base) var(--vi-ease-ink);
+}
+
+/* 右下角大号编号 */
+.dch .dash-pillar-card::after {
+  content: counter(gate, decimal-leading-zero);
+  position: absolute;
+  z-index: -1;
+  right: 0.6rem;
+  bottom: -0.9rem;
+  font-family: var(--vi-font-display);
+  font-size: 4.75rem;
+  font-weight: 400;
+  line-height: 1;
+  color: color-mix(in srgb, var(--pillar-accent) 16%, transparent);
+  pointer-events: none;
+}
+
+.dch .dash-pillar-card .dash-pillar-card__title {
+  font-family: var(--vi-font-read);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.dch .dash-pillar-card .dash-pillar-card__icon {
+  color: var(--pillar-accent);
+  background: color-mix(in srgb, var(--pillar-accent) 14%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--pillar-accent) 35%, transparent);
+}
+
+.dch .dash-pillar-card .dash-pillar-card__go {
+  color: var(--pillar-accent);
+  transition: transform var(--vi-dur-base) var(--vi-ease-ink);
+}
+
+.dch .dash-pillar-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--pillar-accent) 55%, transparent);
+  box-shadow: var(--vi-shadow-2), 0 18px 40px -24px var(--pillar-accent);
+}
+
+.dch .dash-pillar-card:hover .dash-pillar-card__go { transform: translateX(4px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .dch .dash-pillar-card,
+  .dch .dash-pillar-card .dash-pillar-card__go { transition: none; }
+  .dch .dash-pillar-card:hover { transform: none; }
+}
