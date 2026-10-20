@@ -63,6 +63,21 @@
       "click": ".dch-rail__custom"
     },
     {
+      "id": "dash-gateway",
+      "path": "/dashboard",
+      "scrollTo": "#dash-ch-gateway"
+    },
+    {
+      "id": "dash-toolbox",
+      "path": "/dashboard",
+      "scrollTo": "#dash-ch-toolbox"
+    },
+    {
+      "id": "dash-screens",
+      "path": "/dashboard",
+      "scrollTo": "#dash-ch-screens"
+    },
+    {
       "id": "econ",
       "path": "/econ-dashboard"
     },
