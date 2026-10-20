@@ -40,6 +40,10 @@
       "path": "/modules/shijian/sj-18?read=1"
     },
     {
+      "id": "civ-read",
+      "path": "/civilization/v/v1?read=1"
+    },
+    {
       "id": "signalpanel",
       "path": "/modules/signal-panel"
     },
