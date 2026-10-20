@@ -206,8 +206,8 @@ const MAP = {
     { to: '/consumption', label: '扩大内需 · 消费率', note: '内需不足与消费占 GDP 比重。' },
     { to: '/foreign-trade', label: '对外贸易 · 新三样', note: '外需与出口交货值领先指标。' },
     { to: '/japan-lost-decades', label: '中日比较 · 失去的三十年', note: '平减指数连负三年 ↔ 日本 1990s 通缩固化的阶段对位。' },
-    { to: '/scholars/huang-qifan?tab=ledger', label: '学者专栏 · 黄奇帆预判台账', note: '顺差、关税、卖地收入等表述与 1–8 月读数对照。' },
-    { to: '/scholars/yu-yongding?tab=ledger', label: '学者专栏 · 余永定 · 通缩与财政台账', note: '扩张性财政与平减指数判断对照 1–8 月读数。' },
+    { to: '/scholars/huang-qifan?tab=ledger', label: '学者专栏 · 黄奇帆预判台账', note: '顺差、关税、卖地收入等表述与前三季度读数对照。' },
+    { to: '/scholars/yu-yongding?tab=ledger', label: '学者专栏 · 余永定 · 通缩与财政台账', note: '扩张性财政与平减指数判断对照前三季度读数。' },
     { to: '/scholars/lin-yifu?tab=ledger', label: '学者专栏 · 林毅夫 · 增长潜力台账', note: '增长潜力预测与实际增速对照。' },
     { to: '/vietnam-compare', label: '中越比较研究 · 阶段对位', note: '越南 2026 ≈ 中国 2015–2018：出口导向与外资依赖的后发镜像。' },
   ],
@@ -614,7 +614,7 @@ const MAP = {
     { to: '/vietnam-compare', label: '中越比较研究', note: '同为列宁主义党国 + 市场化转型的后发对位样本。' },
   ],
   japanLostDecades: [
-    { to: '/econ-dashboard', label: '经济大盘 · 1–8 月读数', note: '中国侧当下切片：CPI/PPI、地产、社零、失业。' },
+    { to: '/econ-dashboard', label: '经济大盘 · 前三季度读数', note: '中国侧当下切片：CPI/PPI、地产、社零、失业。' },
     { to: '/modules/shijian-world/sjw-15', label: 'SJW-15 · 明治—战后日本发展型国家', note: '日本高增长前史：MITI 与安全伞。' },
     { to: '/modules/shijian-world/sjw-16', label: 'SJW-16 · 布雷顿森林→广场协议', note: '广场协议与泡沫的货币锚接口。' },
     { to: '/modules/shijian-world/sjw-23', label: 'SJW-23 · 发展型国家谱系矩阵', note: '日韩台与中国行的收入谱系对照。' },
@@ -630,7 +630,7 @@ const MAP = {
   ],
   vietnamCompare: [
     { to: '/japan-lost-decades', label: '中日比较 · 失去的三十年', note: '同框架的另一面：中国作为后来者对位日本。' },
-    { to: '/econ-dashboard', label: '经济大盘 · 1–8 月读数', note: '中国侧当下切片：增速、出口、平减指数。' },
+    { to: '/econ-dashboard', label: '经济大盘 · 前三季度读数', note: '中国侧当下切片：增速、出口、平减指数。' },
     { to: '/benchmark', label: '国际对标 · 中美日德', note: '静态横截面对标。' },
     { to: '/middleincometrap', label: '中等收入陷阱', note: '越南升入中高收入后的门槛与中国的跨越进度。' },
     { to: '/foreign-trade', label: '对外贸易 · 转口与关税', note: '中国对越出口与美国对越 301 关税的传导。' },
@@ -664,7 +664,7 @@ const MAP = {
   ],
   scholarLinYifu: [
     { to: '/scholars?issue=industrialPolicy', label: '学者专栏 · 产业政策光谱', note: '各学者对有为政府与产业政策的立场对照。' },
-    { to: '/econ-dashboard', label: '经济大盘 · 1–8 月读数', note: '增长潜力预测的对照数据。' },
+    { to: '/econ-dashboard', label: '经济大盘 · 前三季度读数', note: '增长潜力预测的对照数据。' },
     { to: '/middleincometrap', label: '中等收入陷阱', note: '高收入门槛与增长路径。' },
     { to: '/npf', label: '新质生产力', note: '产业升级与技术创新的政策落点。' },
     { to: '/japan-lost-decades', label: '中日比较 · 失去的三十年', note: '后发追赶与增速换挡的阶段对位。' },
@@ -691,7 +691,7 @@ const MAP = {
   ],
   scholarYuYongding: [
     { to: '/scholars?issue=localDebt', label: '学者专栏 · 地方债与财政光谱', note: '财政扩张与纪律的立场对照。' },
-    { to: '/econ-dashboard', label: '经济大盘 · 1–8 月读数', note: 'CPI/PPI 与增长读数对照。' },
+    { to: '/econ-dashboard', label: '经济大盘 · 前三季度读数', note: 'CPI/PPI 与增长读数对照。' },
     { to: '/debt', label: '地方债务', note: '隐性债务与化债。' },
     { to: '/rmb', label: '人民币国际化', note: '汇率与资本账户。' },
     { to: '/finance-system', label: '金融系统', note: '货币政策与金融稳定。' },
@@ -784,7 +784,7 @@ const MAP = {
   ],
   scholarHuangQifan: [
     { to: '/scholars', label: '学者专栏 · 总览', note: '名册与思想光谱矩阵。' },
-    { to: '/econ-dashboard', label: '经济大盘 · 1–8 月读数', note: '顺差、出口、地产投资等台账对照数据。' },
+    { to: '/econ-dashboard', label: '经济大盘 · 前三季度读数', note: '顺差、出口、地产投资等台账对照数据。' },
     { to: '/housing', label: '住房地产', note: '70 城房价、土地出让与房地产新模式。' },
     { to: '/debt', label: '地方债务 · 省际热力', note: '融资平台与"八大投"争议的全国口径。' },
     { to: '/japan-lost-decades', label: '中日比较 · 失去的三十年', note: '资产拐点与再平衡路径的阶段对位。' },

@@ -16,8 +16,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BASELINE = date(2026, 9, 15)
-BASELINE_STR = "2026-09-15"
-BASELINE_MONTH = "2026-09"
+BASELINE_STR = "2026-10-19"
+BASELINE_MONTH = "2026-10"
 
 SCAN_DIRS = [
     ROOT / "app/src",
