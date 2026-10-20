@@ -61,8 +61,14 @@ function useScrollSpy(ids) {
   return active;
 }
 
+/** 只滚动 #main-content：scrollIntoView 会连带滚动外层 overflow:hidden 的壳，导致顶栏、侧栏错位 */
 function jumpTo(id) {
-  document.getElementById(anchor(id))?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const el = document.getElementById(anchor(id));
+  const root = document.getElementById('main-content');
+  if (!el || !root) return;
+  const top = el.getBoundingClientRect().top - root.getBoundingClientRect().top + root.scrollTop - 120;
+  const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  root.scrollTo({ top: Math.max(0, top), behavior: reduce ? 'auto' : 'smooth' });
 }
 
 /** 吸顶章节轨 */

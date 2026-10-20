@@ -136,7 +136,7 @@
 /* 定制面板 */
 .dch-panel {
   position: fixed;
-  z-index: 60;
+  z-index: 950; /* 高于 AI 浮钮（900） */
   right: clamp(12px, 2vw, 28px);
   top: 120px;
   width: min(380px, calc(100vw - 24px));

@@ -57,7 +57,13 @@ for (const vp of cfg.viewports) {
       await page.waitForTimeout(r.settleMs ?? 1500);
       // 可选：滚到某元素（内层滚动容器也适用）、点击某按钮，再截图——用于拍首屏以下的交互态
       if (r.scrollTo) {
-        await page.evaluate((sel) => document.querySelector(sel)?.scrollIntoView({ block: 'start' }), r.scrollTo);
+        await page.evaluate((sel) => {
+          const el = document.querySelector(sel);
+          const root = document.getElementById('main-content');
+          if (!el) return;
+          if (!root) { el.scrollIntoView({ block: 'start' }); return; }
+          root.scrollTop += el.getBoundingClientRect().top - root.getBoundingClientRect().top - 120;
+        }, r.scrollTo);
         await page.waitForTimeout(600);
       }
       if (r.click) {
