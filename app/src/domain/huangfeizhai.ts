@@ -1,99 +1,146 @@
-/** 荒废斋 · 私人信息分区配置与客户端门禁（混淆级，非服务端安全） */
+/**
+ * 荒废斋 · 私人信息分区配置与客户端会话状态
+ *
+ * 鉴权在服务端（worker/index.js）：密钥摘要存于 Worker secret，登录成功后下发
+ * HttpOnly 会话 Cookie；私密模块的构建产物（private/*.js）只在会话有效时下发。
+ * 客户端只缓存「会话是否有效」用于渲染，不持有任何密钥或令牌。
+ */
 
 export const HUANGFEIZHAI_GROUP_ID = 'huangfeizhai';
 export const HUANGFEIZHAI_HUB_ROUTE = '/modules/huangfeizhai';
-export const AUTH_STORAGE_KEY = 'chinaos.huangfeizhai.auth.v1';
-export const AUTH_SESSION_KEY = 'chinaos.huangfeizhai.auth.session';
 export const AUTH_CHANGED_EVENT = 'chinaos:huangfeizhai-auth-changed';
+export const HFZ_API = '/api/hfz';
 
-/** 默认访问密钥（仅客户端混淆；生产可改此常量或后续接环境变量） */
-export const DEFAULT_PASSWORD = 'admin888';
+/** 开发环境（vite dev，无 Worker）下的会话标记，仅存本标签页 */
+const DEV_SESSION_KEY = 'chinaos.huangfeizhai.dev-session';
 
-/** 「记住本会话」持久化有效期（毫秒） */
-export const PERSISTENT_SESSION_MS = 24 * 60 * 60 * 1000;
+export type HfzAuthState = 'unknown' | 'authenticated' | 'anonymous';
 
-export interface HuangfeizhaiAuthRecord {
-  v: 1;
-  at: number;
-  exp?: number;
-}
+export type HfzLoginError = 'invalid' | 'rate_limited' | 'not_configured' | 'network' | 'bad_request';
 
-function parseRecord(raw: string | null): HuangfeizhaiAuthRecord | null {
-  if (!raw) return null;
+export type HfzLoginResult = { ok: true } | { ok: false; error: HfzLoginError; retryAfterSec?: number };
+
+let state: HfzAuthState = 'unknown';
+
+function isDev(): boolean {
   try {
-    const o = JSON.parse(raw) as HuangfeizhaiAuthRecord;
-    if (o?.v !== 1 || typeof o.at !== 'number') return null;
-    if (o.exp != null && Date.now() > o.exp) return null;
-    return o;
+    return Boolean((import.meta as ImportMeta & { env?: { DEV?: boolean } }).env?.DEV);
   } catch {
-    return null;
+    return false;
   }
 }
 
-function readAuth(storage: Storage, key: string): HuangfeizhaiAuthRecord | null {
-  try {
-    return parseRecord(storage.getItem(key));
-  } catch {
-    return null;
-  }
-}
-
-function writeAuth(storage: Storage, key: string, record: HuangfeizhaiAuthRecord): void {
-  try {
-    storage.setItem(key, JSON.stringify(record));
-  } catch {
-    /* 隐私模式等场景静默跳过 */
-  }
-}
-
-function clearAuth(storage: Storage, key: string): void {
-  try {
-    storage.removeItem(key);
-  } catch {
-    /* 隐私模式等场景静默跳过 */
-  }
-}
-
-function notifyAuthChanged(): void {
-  if (typeof window !== 'undefined') {
+function setState(next: HfzAuthState): void {
+  if (state === next) return;
+  state = next;
+  if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function') {
     window.dispatchEvent(new Event(AUTH_CHANGED_EVENT));
   }
 }
 
-export function verifyPassword(password: string): boolean {
-  return password === DEFAULT_PASSWORD;
+/** Worker 未接管（vite dev 时 /api 落到 SPA 回退）→ 响应不是 JSON */
+function isJson(res: Response): boolean {
+  return (res.headers.get('Content-Type') || '').includes('application/json');
+}
+
+function readDevSession(): boolean {
+  try {
+    return sessionStorage.getItem(DEV_SESSION_KEY) === '1';
+  } catch {
+    return false;
+  }
+}
+
+function writeDevSession(on: boolean): void {
+  try {
+    if (on) sessionStorage.setItem(DEV_SESSION_KEY, '1');
+    else sessionStorage.removeItem(DEV_SESSION_KEY);
+  } catch {
+    /* 隐私模式等场景静默跳过 */
+  }
+}
+
+export function getHuangfeizhaiAuthState(): HfzAuthState {
+  return state;
 }
 
 export function isHuangfeizhaiAuthenticated(): boolean {
-  if (typeof window === 'undefined') return false;
-  const session = readAuth(sessionStorage, AUTH_SESSION_KEY);
-  if (session) return true;
-  const persistent = readAuth(localStorage, AUTH_STORAGE_KEY);
-  return persistent != null;
+  return state === 'authenticated';
 }
 
-export function unlockHuangfeizhai(rememberSession = false): void {
-  const record: HuangfeizhaiAuthRecord = {
-    v: 1,
-    at: Date.now(),
-    ...(rememberSession ? { exp: Date.now() + PERSISTENT_SESSION_MS } : {}),
-  };
-
-  if (rememberSession) {
-    writeAuth(localStorage, AUTH_STORAGE_KEY, record);
-    clearAuth(sessionStorage, AUTH_SESSION_KEY);
-  } else {
-    writeAuth(sessionStorage, AUTH_SESSION_KEY, record);
-    clearAuth(localStorage, AUTH_STORAGE_KEY);
+/** 向服务端确认会话；网络失败时保守视为未登录 */
+export async function refreshHuangfeizhaiSession(fetchImpl: typeof fetch = fetch): Promise<boolean> {
+  try {
+    const res = await fetchImpl(`${HFZ_API}/session`, { credentials: 'same-origin', cache: 'no-store' });
+    if (!isJson(res)) {
+      const dev = isDev() && readDevSession();
+      setState(dev ? 'authenticated' : 'anonymous');
+      return dev;
+    }
+    const body = (await res.json()) as { authenticated?: boolean };
+    const ok = body.authenticated === true;
+    setState(ok ? 'authenticated' : 'anonymous');
+    return ok;
+  } catch {
+    setState('anonymous');
+    return false;
   }
-  notifyAuthChanged();
 }
 
-export function lockHuangfeizhai(): void {
-  if (typeof window === 'undefined') return;
-  clearAuth(sessionStorage, AUTH_SESSION_KEY);
-  clearAuth(localStorage, AUTH_STORAGE_KEY);
-  notifyAuthChanged();
+export async function loginHuangfeizhai(
+  password: string,
+  remember = false,
+  fetchImpl: typeof fetch = fetch,
+): Promise<HfzLoginResult> {
+  if (!password) return { ok: false, error: 'bad_request' };
+  let res: Response;
+  try {
+    res = await fetchImpl(`${HFZ_API}/login`, {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password, remember }),
+    });
+  } catch {
+    return { ok: false, error: 'network' };
+  }
+
+  if (!isJson(res)) {
+    // 本地 vite dev 没有 Worker：放行并在本标签页记住，生产构建永不走此分支
+    if (isDev()) {
+      writeDevSession(true);
+      setState('authenticated');
+      return { ok: true };
+    }
+    return { ok: false, error: 'not_configured' };
+  }
+
+  const body = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: HfzLoginError };
+  if (res.ok && body.ok) {
+    setState('authenticated');
+    return { ok: true };
+  }
+  const retry = Number(res.headers.get('Retry-After'));
+  return {
+    ok: false,
+    error: body.error ?? (res.status === 429 ? 'rate_limited' : 'invalid'),
+    ...(Number.isFinite(retry) && retry > 0 ? { retryAfterSec: retry } : {}),
+  };
+}
+
+export async function logoutHuangfeizhai(fetchImpl: typeof fetch = fetch): Promise<void> {
+  writeDevSession(false);
+  try {
+    await fetchImpl(`${HFZ_API}/logout`, { method: 'POST', credentials: 'same-origin' });
+  } catch {
+    /* 即使网络失败也先在本地锁上 */
+  }
+  setState('anonymous');
+}
+
+/** 仅供测试：重置模块内状态 */
+export function __resetHuangfeizhaiState(): void {
+  state = 'unknown';
 }
 
 export const HUANGFEIZHAI_PROTECTED_ROUTES = [

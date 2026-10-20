@@ -13,7 +13,8 @@
     "check:scholars": "node scripts/check-scholars.mjs",
     "check": "npm run check:integrity && npm run check:scholars && npm run check:ui && npm run check:shijian && npm test --prefix app",
     "avatars:verify": "node scripts/resolveVerifiedAvatars.mjs --delay 2000",
-    "lint:css": "stylelint \"app/src/**/*.css\" --allow-empty-input"
+    "lint:css": "stylelint \"app/src/**/*.css\" --allow-empty-input",
+    "hfz:hash": "node scripts/hfz-hash.mjs"
   },
   "devDependencies": {
     "stylelint": "^16.26.1",

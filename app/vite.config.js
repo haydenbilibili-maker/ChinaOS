@@ -1,7 +1,10 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-const PRIVATE_HOST_RE = /^(localhost|127\.|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)/i;
+/** 荒废斋私密内容所在源码目录（自画像 / 决策复盘 / 分区总览） */
+const PRIVATE_MODULE_RE = /[\\/]src[\\/]modules[\\/](?:me|personalReview)[\\/]|[\\/]src[\\/]modules[\\/]huangfeizhai[\\/]Page\.jsx$/;
+
+const PRIVATE_HOST_RE =/^(localhost|127\.|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)/i;
 
 /** 与 streamUtils.js HLS_PROXY_ALLOW_HOSTS 同步 */
 const HLS_PROXY_ALLOW_HOSTS = [
@@ -97,6 +100,10 @@ export default defineConfig({
         // 按模块目录命名 lazy chunk，避免全部叫 Page-{hash}.js 难以排查部署失步
         chunkFileNames(chunkInfo) {
           const id = chunkInfo.facadeModuleId || '';
+          // 荒废斋私密模块单独落在 private/：Worker 仅在会话 Cookie 有效时下发（见 worker/index.js）
+          if ((chunkInfo.moduleIds || []).some((m) => PRIVATE_MODULE_RE.test(m))) {
+            return 'private/[name]-[hash].js';
+          }
           const mod = id.match(/\/modules\/([^/]+)\//)?.[1];
           if (mod) return `assets/mod-${mod}-[hash].js`;
           return 'assets/[name]-[hash].js';

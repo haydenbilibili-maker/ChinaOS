@@ -90,6 +90,19 @@ npm run deploy       # 构建 app/ + wrangler deploy
 
 配置见 [`wrangler.toml`](wrangler.toml)（静态资源 `app/dist`）与 [`worker/index.js`](worker/index.js)（遗留 `/china?tab=…` → `/#/…` 重定向）。
 
+### 荒废斋（私人分区）鉴权
+
+荒废斋在服务端校验：Worker 比对密钥摘要并签发 HttpOnly 会话 Cookie，私密模块的构建产物 `private/*.js` 只在会话有效时下发。首次部署前配置两个 secret：
+
+```bash
+printf '%s' '你的访问密钥' | npm run -s hfz:hash | npx wrangler secret put HFZ_PASSWORD_SHA256
+openssl rand -base64 32 | npx wrangler secret put HFZ_SESSION_SECRET
+```
+
+未配置时登录返回「服务端尚未配置访问密钥」。更换密钥只需重设 `HFZ_PASSWORD_SHA256`；重设 `HFZ_SESSION_SECRET` 会让所有已登录会话失效。本地 `npm run dev` 没有 Worker，门禁输入任意密钥即放行（仅开发构建）。
+
+> 注意：服务端鉴权保护的是线上站点。私密模块源码（`app/src/modules/me`、`personalReview`）仍在仓库中，仓库公开时任何人都能读到源码。
+
 本地预览 Worker：
 
 ```bash
