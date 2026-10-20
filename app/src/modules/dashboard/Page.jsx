@@ -33,8 +33,10 @@ import {
   RISK_RADAR,
   POLICY_CALENDAR_2026,
   MACRO_SPARKLINES,
+  TICKER_ITEMS,
   econTabPath,
 } from './data.js';
+import { ECON_PERIOD } from '../econdash/econData.js';
 import { useMacroPulse } from './useMacroPulse.js';
 import NewsMarquee from './NewsMarquee.jsx';
 import LiveStreamsSection from './LiveStreamsSection.jsx';
@@ -83,12 +85,8 @@ function ScreenCard({ title, accent = '#22d3ee', children, footer, live = false,
 
 // ── 滚动情报条 · 关键读数（示意，对应各模块判读基准） ────────
 const WARM = '#10b981', HOLD = '#e8a317', COOL = '#c41e3a', STEEL = '#22d3ee';
-const TICKER = [
-  ['GDP H1', '5.3%', COOL], ['CPI 6月', '0.3%', STEEL], ['PMI 6月', '49.8', HOLD],
-  ['社零 6月', '+4.6%', WARM], ['赤字率', '4% 左右', COOL], ['货币定调', '适度宽松', WARM],
-  ['中美', '竞合管控 →', HOLD], ['台海', '高压常态化', HOLD], ['人口', '14.05 亿 · 负增长', HOLD],
-  ['青年失业', '16.8%', COOL], ['城镇调查失业率', '5.1%', HOLD], ['制造业全球份额', '≈30%', WARM],
-];
+const TONE = { warm: WARM, hold: HOLD, cool: COOL, steel: STEEL };
+const TICKER = TICKER_ITEMS.map(([k, v, tone]) => [k, v, TONE[tone] || HOLD]);
 
 function Ticker() {
   const items = (dup) => TICKER.map(([k, v, c], i) => (
@@ -107,7 +105,7 @@ function Ticker() {
   );
 }
 
-// ── 2026 H1 宏观读数（NBS 公开口径 · 对齐经济大盘 KEY_INDICATORS） ──
+// ── 宏观读数（NBS 公开口径 · 对齐经济大盘 KEY_INDICATORS / ECON_PERIOD） ──
 function MacroH1Strip({ kpis, asOf, lastRefresh, isRefreshing, secondsToNext, refreshCount }) {
   const tsKey = lastRefresh ? lastRefresh.toISOString() : 'pending';
   const fmtTs = lastRefresh
@@ -121,7 +119,7 @@ function MacroH1Strip({ kpis, asOf, lastRefresh, isRefreshing, secondsToNext, re
     >
       <div className="flex items-center gap-2 mb-3 flex-wrap min-w-0 max-w-full">
         <Lucide.Gauge size={14} style={{ color: COOL }} />
-        <span className="text-xs font-semibold os-label-slot" style={{ color: 'var(--text-secondary)' }}>2026 H1 宏观读数</span>
+        <span className="text-xs font-semibold os-label-slot" style={{ color: 'var(--text-secondary)' }}>2026 {ECON_PERIOD.gdp}宏观读数</span>
         <span className="text-[10px] mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>
           数据截至 <span className="mono os-mono-tabular">{asOf}</span>
         </span>

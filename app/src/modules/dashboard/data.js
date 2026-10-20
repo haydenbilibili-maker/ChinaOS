@@ -19,7 +19,7 @@ import { LEGAL_STATUTE_DEDUPED_COUNT } from '../../lib/db/legalStatuteSeed.js';
 import { PRIVATE_ENTERPRISE_META, PE500_COMPANIES, PE500_DATASETS } from '../../lib/db/privateEnterpriseSeed.js';
 import { RANK_PYRAMID, MILITARY_INTEL_META } from '../../lib/db/militaryIntel2026.js';
 import { AS_OF_BASELINE } from '../../lib/config/asOfBaseline.js';
-import { ECON_AS_OF, KEY_INDICATORS, CANARY_SIGNALS, INDICATOR_SPARKLINES, econTabPath } from '../econdash/econData.js';
+import { ECON_AS_OF, ECON_PERIOD, KEY_INDICATORS, CANARY_SIGNALS, INDICATOR_SPARKLINES, econTabPath } from '../econdash/econData.js';
 
 export const AS_OF = AS_OF_BASELINE;
 export const MACRO_AS_OF = ECON_AS_OF;
@@ -44,7 +44,7 @@ export const SIGNAL_COLORS = {
 /** KPI 迷你火花线序列（公开口径示意 · 与 econdash INDICATOR_SPARKLINES 同源） */
 export const MACRO_SPARKLINES = {
   ...INDICATOR_SPARKLINES,
-  youth_unemp: [21.3, 19.6, 18.2, 17.5, 17.1, 16.9, 17.0, 16.8],
+  youth_unemp: [19.6, 18.2, 17.5, 17.1, 16.9, 16.8, 17.9, 18.9], // 末两期官方（7 月 17.9、8 月 18.9），前期示意
 };
 
 export { econTabPath };
@@ -75,19 +75,20 @@ export function buildMacroKpiSnapshot() {
   return [
     {
       id: 'gdp_h1',
-      k: 'GDP H1',
-      v: gdp ? fmtPct(gdp.value) : '5.3%',
+      k: `GDP ${ECON_PERIOD.gdp}`,
+      v: gdp ? fmtPct(gdp.value) : '—',
       note: '累计同比 · 十五五开局',
       c: KPI_COLORS.cool,
       asOf: gdp?.asOf || MACRO_AS_OF,
-      liveKey: 'gdpGrowth',
+      // 世行 WDI 为年度口径，不能覆盖季度累计读数
+      liveKey: null,
       live: false,
     },
     {
       id: 'cpi',
-      k: 'CPI 6月',
-      v: cpi ? fmtPct(cpi.value) : '0.3%',
-      note: '同比近零 · 通缩压力',
+      k: `CPI ${ECON_PERIOD.ytd}`,
+      v: cpi ? fmtPct(cpi.value) : '—',
+      note: '累计同比 · 低位运行',
       c: KPI_COLORS.steel,
       asOf: cpi?.asOf || MACRO_AS_OF,
       liveKey: null,
@@ -95,9 +96,9 @@ export function buildMacroKpiSnapshot() {
     },
     {
       id: 'pmi_mfg',
-      k: 'PMI 6月',
-      v: pmi ? fmtPoint(pmi.value) : '49.8',
-      note: '制造业 · 荣枯线下',
+      k: `PMI ${ECON_PERIOD.month}`,
+      v: pmi ? fmtPoint(pmi.value) : '—',
+      note: pmi && pmi.value >= 50 ? '制造业 · 扩张区间' : '制造业 · 荣枯线下',
       c: KPI_COLORS.hold,
       asOf: pmi?.asOf || MACRO_AS_OF,
       liveKey: null,
@@ -105,9 +106,9 @@ export function buildMacroKpiSnapshot() {
     },
     {
       id: 'retail',
-      k: '社零 6月',
-      v: retail ? `+${fmtPct(retail.value)}` : '+4.6%',
-      note: '以旧换新支撑',
+      k: `社零 ${ECON_PERIOD.ytd}`,
+      v: retail ? `${retail.value >= 0 ? '+' : ''}${fmtPct(retail.value)}` : '—',
+      note: '累计同比 · 服务强于商品',
       c: KPI_COLORS.warm,
       asOf: retail?.asOf || MACRO_AS_OF,
       liveKey: null,
@@ -115,8 +116,8 @@ export function buildMacroKpiSnapshot() {
     },
     {
       id: 'm2',
-      k: 'M2 6月',
-      v: m2 ? fmtPct(m2.value) : '7.2%',
+      k: `M2 ${ECON_PERIOD.month}末`,
+      v: m2 ? fmtPct(m2.value) : '—',
       note: '宽货币 · 窄信用',
       c: KPI_COLORS.steel,
       asOf: m2?.asOf || MACRO_AS_OF,
@@ -126,8 +127,8 @@ export function buildMacroKpiSnapshot() {
     {
       id: 'youth_unemp',
       k: '青年失业',
-      v: youth?.reading?.match(/[\d.]+%/)?.[0] || '16.8%',
-      note: '16–24 岁 · 6月',
+      v: youth?.reading?.match(/[\d.]+%/)?.[0] || '—',
+      note: `16–24 岁 · ${youth?.reading?.match(/^(\d+)\s*月/)?.[1] ?? '—'} 月`,
       c: KPI_COLORS.cool,
       asOf: MACRO_AS_OF,
       liveKey: null,
@@ -137,6 +138,39 @@ export function buildMacroKpiSnapshot() {
 }
 
 export const MACRO_KPI_SNAPSHOT = buildMacroKpiSnapshot();
+
+/**
+ * 滚动情报条：数值项一律取自 KEY_INDICATORS / 金丝雀盘（随时效更新自动刷新），
+ * 定性项为各模块判读基准。tone ∈ warm | hold | cool | steel。
+ */
+export function buildTickerItems() {
+  const ind = (id) => pickIndicator(id);
+  const gdp = ind('gdp_h1');
+  const cpi = ind('cpi');
+  const pmi = ind('pmi_mfg');
+  const retail = ind('retail');
+  const unemp = ind('urban_unemp');
+  const exp = ind('export');
+  const youth = CANARY_SIGNALS.find((s) => s.id === 'youth_unemp');
+  const signed = (v) => `${v >= 0 ? '+' : ''}${fmtPct(v)}`;
+  return [
+    gdp && [`GDP ${ECON_PERIOD.gdp}`, fmtPct(gdp.value), 'cool'],
+    cpi && [`CPI ${ECON_PERIOD.ytd}`, fmtPct(cpi.value), 'steel'],
+    pmi && [`PMI ${ECON_PERIOD.month}`, fmtPoint(pmi.value), pmi.value >= 50 ? 'warm' : 'hold'],
+    retail && [`社零 ${ECON_PERIOD.ytd}`, signed(retail.value), retail.value >= 3 ? 'warm' : 'hold'],
+    exp && [`出口 ${ECON_PERIOD.ytd}`, signed(exp.value), 'warm'],
+    ['赤字率', '4% 左右', 'cool'],
+    ['货币定调', '适度宽松', 'warm'],
+    ['中美', '竞合管控 →', 'hold'],
+    ['台海', '高压常态化', 'hold'],
+    ['人口', '14.05 亿 · 负增长', 'hold'],
+    youth && ['青年失业', youth.reading.match(/[\d.]+%/)?.[0] ?? '—', 'cool'],
+    unemp && ['城镇调查失业率', fmtPct(unemp.value), 'hold'],
+    ['制造业全球份额', '≈30%', 'warm'],
+  ].filter(Boolean);
+}
+
+export const TICKER_ITEMS = buildTickerItems();
 
 /** 活模块快捷跳转 · 带实时状态标注 */
 export const LIVE_MODULE_CHIPS = [

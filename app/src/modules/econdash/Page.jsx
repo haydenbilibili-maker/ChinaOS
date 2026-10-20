@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 // Layout: ink-observatory · os-card · os-reveal-stagger · TabBar (Round 2)
 import { PageHeader, TabBar, LoadingSkeleton } from '../../app/ui.jsx';
 import { FrameworkTrio, ModuleFooter } from '../shared/ModuleParadigm.jsx';
-import { ECON_DATA_AS_OF, ECON_TAB_IDS, KEY_INDICATORS } from './econData.js';
+import { ECON_DATA_AS_OF, ECON_PERIOD, ECON_TAB_IDS, KEY_INDICATORS } from './econData.js';
 import { toneOf, ARROW } from './econHelpers.jsx';
 import { useWorldBank } from './liveWorldBank.js';
 import MacroTab from './tabs/MacroTab.jsx';
@@ -41,7 +41,7 @@ function TabFallback() {
 }
 
 const SUMMARY_IDS = ['gdp_h1', 'iva', 'retail', 'export', 'cpi'];
-const SUMMARY_LABELS = { gdp_h1: 'GDP·H1', iva: '规上工业', retail: '社零', export: '出口', cpi: 'CPI' };
+const SUMMARY_LABELS = { gdp_h1: `GDP·${ECON_PERIOD.gdp}`, iva: '规上工业', retail: '社零', export: '出口', cpi: 'CPI' };
 
 function KeyReadingStrip() {
   const items = SUMMARY_IDS
@@ -49,7 +49,7 @@ function KeyReadingStrip() {
     .filter(Boolean);
   return (
     <div className="econ-readout" role="group" aria-label="关键读数摘要 · 2026 年前三季度">
-      <span className="econ-readout__title mono">1–9月</span>
+      <span className="econ-readout__title mono">{ECON_PERIOD.ytd}</span>
       <div className="econ-readout__items">
         {items.map((k) => {
           const tone = toneOf(k.trend ?? k.yoy);
