@@ -16,8 +16,8 @@ export const FINANCE_AS_OF = AS_OF_BASELINE;
 
 /** 近八期月份标签（升序） */
 export const FINANCE_MONTHS = [
-  '2026-01', '2026-02', '2026-03', '2026-04',
-  '2026-05', '2026-06', '2026-07', '2026-08',
+  '2026-03', '2026-04', '2026-05', '2026-06',
+  '2026-07', '2026-08', '2026-09', '2026-10',
 ];
 
 // —— M2 同比：econData INDICATOR_SPARKLINES.m2 ——
@@ -36,7 +36,7 @@ export const M1_YOY = M2_YOY.map((m2, i) => {
  * M0 同比（流通中现金；人民银行公开口径近似走势）
  * 数字支付替代效应下增速缓降，仍高于 M1 活化读数。
  */
-export const M0_YOY = [11.2, 10.8, 10.4, 9.9, 9.5, 9.0, 8.6, 8.3];
+export const M0_YOY = [10.4, 9.9, 9.5, 9.0, 8.6, 8.3, null, null];
 
 export const MONEY_SUPPLY = {
   months: FINANCE_MONTHS,
@@ -45,7 +45,7 @@ export const MONEY_SUPPLY = {
   m2: M2_YOY,
   scissors: SCISSORS,
   source: '人民银行 货币供应 · 新口径近似（M2/剪刀差同源 econData）',
-  note: 'M1 由 M2+剪刀差派生；M0 为公开口径近似走势',
+  note: 'M1 由 M2+剪刀差派生；M0 为公开口径近似，9–10 月未改写故留空',
 };
 
 // —— CPI / PPI：INDICATOR_SPARKLINES ——
@@ -63,16 +63,16 @@ export const CPI_PPI = {
 
 /**
  * 社融存量增速 + 社融脉冲（社融同比 − M2 同比，信用扩张超额 proxy）
- * 末两期（2026-07 7.4% / 2026-08 7.2%）为人民银行官方值，对齐 KEY_INDICATORS.afre；前六期为公开口径近似。
+ * 2026-07 7.4%、08 7.2%、09 7.1%、10 7.2% 为央行官方值；前四期为公开口径近似。
  */
-const AFRE_YOY = [9.2, 8.9, 8.7, 8.5, 8.4, 8.4, 7.4, 7.2];
+const AFRE_YOY = [8.7, 8.5, 8.4, 8.4, 7.4, 7.2, 7.1, 7.2];
 export const AFRE_SERIES = {
   months: FINANCE_MONTHS,
   yoy: AFRE_YOY,
   pulse: AFRE_YOY.map((a, i) =>
-    Math.round((a - M2_YOY[i]) * 10) / 10,
+    (a == null || M2_YOY[i] == null ? null : Math.round((a - M2_YOY[i]) * 10) / 10),
   ),
-  source: '人民银行 社融存量 · 末两期官方（2026-09-14 金融统计数据报告）· 前六期近似',
+  source: '人民银行 社融存量 · 7–10 月官方（至 2026-11-13 金融统计数据报告）· 前四期近似',
 };
 
 /**
@@ -81,12 +81,12 @@ export const AFRE_SERIES = {
  */
 export const RATE_CORRIDOR = {
   months: FINANCE_MONTHS,
-  lpr1y: [3.10, 3.10, 3.10, 3.00, 3.00, 3.00, 2.95, 2.95],
-  lpr5y: [3.60, 3.60, 3.60, 3.50, 3.50, 3.50, 3.45, 3.45],
-  mlf1y: [2.50, 2.50, 2.50, 2.40, 2.40, 2.40, 2.35, 2.35],
-  dr007: [1.82, 1.78, 1.85, 1.72, 1.68, 1.75, 1.71, 1.69],
+  lpr1y: [3.10, 3.00, 3.00, 3.00, 2.95, 2.95, null, null],
+  lpr5y: [3.60, 3.50, 3.50, 3.50, 3.45, 3.45, null, null],
+  mlf1y: [2.50, 2.40, 2.40, 2.40, 2.35, 2.35, null, null],
+  dr007: [1.85, 1.72, 1.68, 1.75, 1.71, 1.69, null, null],
   source: '人民银行 LPR/MLF 公告 · DR007 银行间公开均值近似',
-  note: '示意 · 月均值非逐日精确',
+  note: '示意 · 9–10 月无新公告则留空，不沿用前值冒充新数',
 };
 
 /**
@@ -95,7 +95,7 @@ export const RATE_CORRIDOR = {
  */
 export const FX_USDCNY = {
   months: FINANCE_MONTHS,
-  mid: [7.24, 7.22, 7.21, 7.20, 7.19, 7.18, 7.18, 7.18],
+  mid: [7.21, 7.20, 7.19, 7.18, 7.18, 7.18, null, null],
   source: '外汇交易中心 中间价 · 月均值近似',
 };
 
@@ -105,8 +105,8 @@ export const FX_USDCNY = {
  */
 export const MARKET_SENTIMENT = {
   months: FINANCE_MONTHS,
-  sse: [3380, 3420, 3480, 3550, 3680, 3820, 3950, 3993],
-  cn10y: [1.85, 1.82, 1.79, 1.76, 1.73, 1.70, 1.68, 1.68],
+  sse: [3480, 3550, 3680, 3820, 3950, 3993, null, null],
+  cn10y: [1.79, 1.76, 1.73, 1.70, 1.68, 1.68, null, null],
   /** 股债相对强弱：上证归一化 − 10Y×100（示意指数，非官方） */
   seeSaw: null,
   source: '上证/中债估值 · 示意；末值 sse 对齐 liveQuotes MARKET_SEED',
@@ -115,6 +115,7 @@ export const MARKET_SENTIMENT = {
 
 MARKET_SENTIMENT.seeSaw = MARKET_SENTIMENT.sse.map((s, i) => {
   const b = MARKET_SENTIMENT.cn10y[i];
+  if (s == null || b == null) return null;
   const sNorm = (s - 3200) / 800;
   const bNorm = (2.2 - b) / 0.6;
   return Math.round((sNorm - bNorm) * 100) / 100;
@@ -123,8 +124,8 @@ MARKET_SENTIMENT.seeSaw = MARKET_SENTIMENT.sse.map((s, i) => {
 /** 北向资金净流入 + 融资余额（示意 · 口径待核） */
 export const CAPITAL_FLOW = {
   months: FINANCE_MONTHS,
-  northbound: [180, -52, 115, 88, -28, 205, 148, 92],
-  marginBalance: [1.52, 1.48, 1.45, 1.43, 1.41, 1.44, 1.47, 1.49],
+  northbound: [115, 88, -28, 205, 148, 92, null, null],
+  marginBalance: [1.45, 1.43, 1.41, 1.44, 1.47, 1.49, null, null],
   source: 'Wind/交易所公开口径近似 · 示意',
   note: '北向自 2024-08 起停止实时披露；此处为月度估算示意',
 };

@@ -19,7 +19,7 @@ export const FIGURE_POLITICAL_STRUCTURE_META = {
 
 const C = (o) => fig({ province: '中央', ...o });
 
-const R = ({ name, institutionType, institution, org, role, level, title, birth, native, rank, tookOffice, career }) =>
+const R = ({ name, institutionType, institution, org, role, level, title, birth, native, rank, tookOffice, career, status }) =>
   C({
     name,
     level,
@@ -27,6 +27,7 @@ const R = ({ name, institutionType, institution, org, role, level, title, birth,
     sector: institutionType === '政协' ? '全国政协' : institutionType === '人大' ? '国家机关' : institutionType === '部委' ? '国务院' : '党中央',
     org,
     source: `十四届全国人大政协/国务院任免·${tookOffice}`,
+    ...(status ? { status } : {}),
     fields: {
       title,
       birth,
@@ -2628,7 +2629,7 @@ export const FIGURE_POLITICAL_STRUCTURE_2026 = [
     native: '陕西',
     rank: '二十届中央委员',
     tookOffice: '2022-10',
-    career: [{ from: '2022', to: '', desc: '任中央宣传部副部长' }, { from: '2018', to: '2022', desc: '任北京市委常委、宣传部部长' }],
+    career: [{ from: '2022', to: '', desc: '任中央宣传部副部长' }, { from: '2018', to: '2022', desc: '任北京市委常委、宣传部部长' }, { from: '2026', to: '2026', desc: '2026-11-03 国务院免去国务院新闻办公室主任（新华社）。本库另将该职记在傅华名下，交接时点未核，不改傅华条' }],
   }),
   R({
     name: '洪大用',
@@ -2901,14 +2902,15 @@ export const FIGURE_POLITICAL_STRUCTURE_2026 = [
     institutionType: '中直',
     institution: '国务院办公厅',
     org: '国务院办公厅',
-    role: '副秘书长',
+    role: '原副秘书长',
     level: '副部级',
-    title: '国务院副秘书长',
+    title: '国务院原副秘书长',
     birth: '1966年',
     native: '黑龙江',
     rank: '二十届中央委员',
     tookOffice: '2022-04',
-    career: [{ from: '2022', to: '', desc: '任国务院副秘书长' }, { from: '2018', to: '2022', desc: '任工业和信息化部副部长' }],
+    status: 'former',
+    career: [{ from: '2022', to: '2026', desc: '任国务院副秘书长，2026-11-03 免职（新华社）' }, { from: '2018', to: '2022', desc: '任工业和信息化部副部长' }],
   }),
   R({
     name: '丁学东',

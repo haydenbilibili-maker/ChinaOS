@@ -44,7 +44,7 @@ export const SIGNAL_COLORS = {
 /** KPI 迷你火花线序列（公开口径示意 · 与 econdash INDICATOR_SPARKLINES 同源） */
 export const MACRO_SPARKLINES = {
   ...INDICATOR_SPARKLINES,
-  youth_unemp: [19.6, 18.2, 17.5, 17.1, 16.9, 16.8, 17.9, 18.9], // 末两期官方（7 月 17.9、8 月 18.9），前期示意
+  youth_unemp: [17.5, 17.1, 16.9, 16.8, 17.9, 18.9, 18.0, 17.2], // 末四期官方（7 月 17.9、8 月 18.9、9 月 18.0、10 月 17.2），前期示意。9–10 月为数据发布库，澎湃/中经社转引
 };
 
 export { econTabPath };

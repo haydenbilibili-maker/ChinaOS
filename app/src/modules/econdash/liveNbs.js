@@ -78,12 +78,12 @@ export const NBS_LATEST = [
   // —— 科技口径并入产业 —— 研发经费
   { id: 'rd',          label: '研发经费（R&D）支出', group: '产业',     period: '2025年',   value: 3.69,   unit: '万亿元', yoy: 8.3,  source: '国家统计局', note: NOTE },
 
-  // —— 2026 年中月度值 ——（period '2026年X月'；对齐 2026-10-19 NBS 前三季度发布窗口）
-  { id: 'cpiM',        label: '居民消费价格 CPI（当月同比）', group: '物价', period: '2026年9月', value: 0.9,  unit: '%',     yoy: null, source: '国家统计局', note: NOTE },
-  { id: 'ppiM',        label: '工业生产者出厂价 PPI（当月同比）', group: '物价', period: '2026年9月', value: 5.0, unit: '%',  yoy: null, source: '国家统计局', note: NOTE },
-  { id: 'pmiM',        label: '制造业采购经理指数 PMI', group: '产业',  period: '2026年9月', value: 50.1,  unit: '点',    yoy: null, source: '国家统计局', note: NOTE },
-  { id: 'retailM',     label: '社会消费品零售总额（当月同比）', group: '投资消费', period: '2026年9月', value: 1.1, unit: '%', yoy: null, source: '国家统计局', note: NOTE },
-  { id: 'indVAM',      label: '规上工业增加值（当月同比）', group: '产业', period: '2026年9月', value: 5.5, unit: '%',   yoy: null, source: '国家统计局', note: NOTE },
+  // —— 2026 年中月度值 ——（period '2026年X月'；对齐 2026-11-16 NBS 10 月国民经济运行）
+  { id: 'cpiM',        label: '居民消费价格 CPI（当月同比）', group: '物价', period: '2026年10月', value: 0.7,  unit: '%',     yoy: null, source: '国家统计局', note: NOTE },
+  { id: 'ppiM',        label: '工业生产者出厂价 PPI（当月同比）', group: '物价', period: '2026年10月', value: 5.7, unit: '%',  yoy: null, source: '国家统计局', note: NOTE },
+  { id: 'pmiM',        label: '制造业采购经理指数 PMI', group: '产业',  period: '2026年10月', value: 49.3,  unit: '点',    yoy: null, source: '国家统计局', note: NOTE },
+  { id: 'retailM',     label: '社会消费品零售总额（当月同比）', group: '投资消费', period: '2026年10月', value: 0.4, unit: '%', yoy: null, source: '国家统计局', note: NOTE },
+  { id: 'indVAM',      label: '规上工业增加值（当月同比）', group: '产业', period: '2026年10月', value: 4.8, unit: '%',   yoy: null, source: '国家统计局', note: NOTE },
 
   // —— 2026 上半年（H1）——（period '2026年上半年'；2026-07-15 国家统计局发布；季报未更新前保留）
   { id: 'gdpH1',       label: 'GDP（上半年，实际同比）', group: '增长',     period: '2026年上半年', value: 4.7,  unit: '%',     yoy: null, source: '国家统计局', note: '上半年 695704 亿元；一季 5.0 / 二季 4.3 · 以国家统计局发布为准' },
@@ -107,6 +107,16 @@ export const NBS_LATEST = [
   { id: 'svc19',       label: '服务业生产指数（1–9 月同比）', group: '产业', period: '2026年1-9月', value: 4.7, unit: '%', yoy: null, source: '国家统计局', note: '9 月当月 +4.8% · 以国家统计局发布为准' },
   { id: 'trade19',     label: '货物进出口总额（1–9 月）', group: '对外',   period: '2026年1-9月', value: 39.94, unit: '万亿元', yoy: 18.8, source: '国家统计局', note: '出口 +16.4% / 进口 +22.3%（海关总署） · 以国家统计局发布为准' },
   { id: 'incomeQ3',    label: '居民人均可支配收入（前三季度，实际同比）', group: '就业', period: '2026年1-9月', value: 4.4, unit: '%', yoy: null, source: '国家统计局', note: '34230 元，名义 +5.3%；城乡收入比 2.39 · 以国家统计局发布为准' },
+
+  // —— 2026 年 1–10 月 ——（period '2026年1-10月'；2026-11-16 国家统计局发布。GDP / 居民收入无 10 月核算，仍见前三季度行）
+  { id: 'indVA110',    label: '规上工业增加值（1–10 月同比）', group: '产业', period: '2026年1-10月', value: 5.3,  unit: '%',     yoy: null, source: '国家统计局', note: '10 月当月 +4.8%；装备制造、高技术制造当月 +10.6% / +17.6%（累计分项未单列） · 以国家统计局发布为准' },
+  { id: 'cpi110',      label: '居民消费价格 CPI（1–10 月同比）', group: '物价', period: '2026年1-10月', value: 0.9,  unit: '%',   yoy: null, source: '国家统计局', note: '10 月当月 +0.7%；核心 CPI 1–10 月 +1.1% · 以国家统计局发布为准' },
+  { id: 'ppi110',      label: '工业生产者出厂价 PPI（1–10 月同比）', group: '物价', period: '2026年1-10月', value: 2.7, unit: '%', yoy: null, source: '国家统计局', note: '10 月当月 +5.7% · 以国家统计局发布为准' },
+  { id: 'unemp110',    label: '城镇调查失业率（1–10 月均值）', group: '就业', period: '2026年1-10月', value: 5.2,  unit: '%',   yoy: null, source: '国家统计局', note: '10 月当月 5.1% · 以国家统计局发布为准' },
+  { id: 'fai110',      label: '固定资产投资（1–10 月同比）', group: '投资消费', period: '2026年1-10月', value: -8.1, unit: '%', yoy: null, source: '国家统计局', note: '扣除地产 −5.1%；地产开发投资 −21.6% · 以国家统计局发布为准' },
+  { id: 'retail110',   label: '社会消费品零售总额（1–10 月同比）', group: '投资消费', period: '2026年1-10月', value: 1.0, unit: '%', yoy: null, source: '国家统计局', note: '416464 亿元；服务零售 +4.9% · 以国家统计局发布为准' },
+  { id: 'svc110',      label: '服务业生产指数（1–10 月同比）', group: '产业', period: '2026年1-10月', value: 4.7, unit: '%', yoy: null, source: '国家统计局', note: '10 月当月 +4.6% · 以国家统计局发布为准' },
+  { id: 'trade110',    label: '货物进出口总额（1–10 月）', group: '对外',   period: '2026年1-10月', value: 44.81, unit: '万亿元', yoy: 20.0, source: '国家统计局', note: '出口 +17.6% / 进口 +23.6%（海关总署） · 以国家统计局发布为准' },
 ];
 
 const FETCH_TIMEOUT_MS = 8000; // 8s 超时（任务约定）

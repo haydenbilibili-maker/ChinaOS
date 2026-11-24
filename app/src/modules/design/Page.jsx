@@ -50,7 +50,7 @@ const TYPE_SCALE = [
   ['h3', 'H3 卡片标题', '制造业采购经理指数'],
   ['body', 'Body 界面正文', '九月制造业 PMI 回到荣枯线以上，新订单仍在扩张区间，价格指数受国际大宗商品推动明显抬升。'],
   ['small', 'Small 说明', '数据来源：国家统计局 2026-10-19 发布，口径为可比价实际增速。'],
-  ['caption', 'Caption 标签', '截至 2026-10-19 · NBS'],
+  ['caption', 'Caption 标签', '截至 2026-11-20 · NBS / 央行 / 财政部'],
 ];
 
 const FIGURE_SCALE = [
@@ -267,9 +267,9 @@ export default function DesignSystemPage() {
         </div>
         <div className="vi-kpi-row">
           {gdp && <Kpi label="GDP 实际增速" period={ECON_PERIOD.gdp} value={gdp.value} unit="%" level="watch" spark={INDICATOR_SPARKLINES.gdp_h1} source="NBS 2026-10-19" />}
-          {pmi && <Kpi label="制造业 PMI" period={ECON_PERIOD.month} value={pmi.value} delta={lastDelta('pmi_mfg')} level="ok" spark={INDICATOR_SPARKLINES.pmi_mfg} source="NBS 2026-09-30" />}
-          {cpi && <Kpi label="CPI" period={ECON_PERIOD.ytd} value={cpi.value} unit="%" delta={lastDelta('cpi')} level="watch" spark={INDICATOR_SPARKLINES.cpi} source="NBS 2026-10-14" />}
-          {m2 && <Kpi label="M2 余额同比" period={`${ECON_PERIOD.month}末`} value={m2.value} unit="%" delta={lastDelta('m2')} good="up" level="ok" spark={INDICATOR_SPARKLINES.m2} source="人民银行 2026-10-14" />}
+          {pmi && <Kpi label="制造业 PMI" period={ECON_PERIOD.month} value={pmi.value} delta={lastDelta('pmi_mfg')} level="watch" spark={INDICATOR_SPARKLINES.pmi_mfg} source="NBS 2026-10-31" />}
+          {cpi && <Kpi label="CPI" period={ECON_PERIOD.ytd} value={cpi.value} unit="%" delta={lastDelta('cpi')} level="watch" spark={INDICATOR_SPARKLINES.cpi} source="NBS 2026-11-09" />}
+          {m2 && <Kpi label="M2 余额同比" period={`${ECON_PERIOD.month}末`} value={m2.value} unit="%" delta={lastDelta('m2')} good="up" level="ok" spark={INDICATOR_SPARKLINES.m2} source="人民银行 2026-11-13" />}
         </div>
       </Section>
 

@@ -38,16 +38,16 @@ const PRICE_H1_SERIES = {
   ppi: [-2.8, -2.6, -1.8, -0.6, 0.4, 1.5, 2.8, 4.1],
 };
 
-/** 最新进展对照（H1 数字不改；1–8 月取自 NBS 2026-09-15 / CPI·PPI 2026-09-09） */
-const LATEST_18 = [
-  ['规上工业增加值', '+5.4%', '+5.3%', '8 月当月 +5.2%，高技术制造 1–8 月 +14.2%'],
-  ['社会消费品零售总额', '+1.3%', '+1.1%', '8 月当月仅 +0.4%；服务零售 +4.9%'],
-  ['固定资产投资（不含农户）', '−5.7%', '−7.2%', '扣除地产 −4.2%，民间 −10.1%'],
-  ['房地产开发投资', '−18.0%', '−19.9%', '新房销售额 −13.0%，二手房网签面积 +10.6%'],
-  ['出口（人民币计）', '+13.4%', '+14.6%', '8 月当月 +18.6%，机电产品 +21.9%'],
-  ['CPI（累计同比）', '+1.0%', '+0.9%', '8 月当月 +0.8%，核心 CPI +1.0%'],
-  ['PPI（累计同比）', '+1.5%', '+2.0%', '8 月当月 +3.8%，输入性推升'],
-  ['城镇调查失业率（均值）', '5.2%', '5.2%', '8 月 5.3%；16–24 岁（不含在校生）18.9%'],
+/** 最新进展对照（H1 数字不改；1–10 月取自 NBS 2026-11-16 / CPI·PPI 2026-11-09） */
+const LATEST_YTD = [
+  ['规上工业增加值', '+5.4%', '+5.3%', '10 月当月 +4.8%；装备制造、高技术制造当月 +10.6% / +17.6%（累计分项未单列）'],
+  ['社会消费品零售总额', '+1.3%', '+1.0%', '10 月当月 +0.4%；服务零售 +4.9%，商品零售 +0.9%'],
+  ['固定资产投资（不含农户）', '−5.7%', '−8.1%', '扣除地产 −5.1%，民间 −11.4%'],
+  ['房地产开发投资', '−18.0%', '−21.6%', '新房销售额 −14.3%，二手房网签面积 +11.4%'],
+  ['出口（人民币计）', '+13.4%', '+17.6%', '10 月当月 +28.7%，机电产品 1–10 月 +25.2%'],
+  ['CPI（累计同比）', '+1.0%', '+0.9%', '10 月当月 +0.7%，核心 CPI +0.8%'],
+  ['PPI（累计同比）', '+1.5%', '+2.7%', '10 月当月 +5.7%，输入性推升'],
+  ['城镇调查失业率（均值）', '5.2%', '5.2%', '10 月 5.1%；16–24 岁（不含在校生）17.2%'],
 ];
 
 // —— 三驾马车（消费 / 投资 / 出口）——
@@ -465,10 +465,10 @@ export default function Page({ embedded = false } = {}) {
         ))}
       </StatGrid>
 
-      <Card title={`最新进展 · 1–8 月对照（数据截至 ${ECON_DATA_AS_OF} · 不改下方 H1 统计）`} className="mb-8">
+      <Card title={`最新进展 · 1–10 月对照（数据截至 ${ECON_DATA_AS_OF} · 不改下方 H1 统计）`} className="mb-8">
         <p className="text-xs leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>
-          上半年的「供强需弱」在 7–8 月继续加深：工业与出口维持高位，社零、固投与地产投资降幅扩大；PPI 转正主要来自国际油价与有色的输入性推升，
-          而非终端需求回暖。三季度 GDP 约 10 月中旬发布，届时再更新 GDP 口径。
+          上半年的「供强需弱」延续到 10 月：工业累计仍为 +5.3%，但当月放缓至 +4.8%；社零累计降至 +1.0%，固投与地产投资降幅继续扩大。
+          PPI 同比扩大仍以能源等输入性推升为主，终端 CPI 当月回落到 +0.7%。三季度 GDP 已发布（+4.6%），四季度核算未出，下方 H1 统计不改。
         </p>
         <div style={{ overflowX: 'auto' }}>
           <table className="w-full text-xs" style={{ borderCollapse: 'collapse', color: 'var(--text-secondary)' }}>
@@ -476,12 +476,12 @@ export default function Page({ embedded = false } = {}) {
               <tr style={{ color: 'var(--text-tertiary)', textAlign: 'left' }}>
                 <th scope="col" className="py-1.5 pr-3 font-normal">指标</th>
                 <th scope="col" className="py-1.5 pr-3 font-normal mono">H1</th>
-                <th scope="col" className="py-1.5 pr-3 font-normal mono">1–8 月</th>
-                <th scope="col" className="py-1.5 font-normal">8 月注记</th>
+                <th scope="col" className="py-1.5 pr-3 font-normal mono">1–10 月</th>
+                <th scope="col" className="py-1.5 font-normal">10 月注记</th>
               </tr>
             </thead>
             <tbody>
-              {LATEST_18.map(([k, h1, m8, n]) => (
+              {LATEST_YTD.map(([k, h1, m8, n]) => (
                 <tr key={k} style={{ borderTop: '1px solid var(--border-subtle, rgba(255,255,255,0.06))' }}>
                   <th scope="row" className="py-1.5 pr-3 font-normal text-left" style={{ color: 'var(--text-primary)' }}>{k}</th>
                   <td className="py-1.5 pr-3 mono">{h1}</td>
@@ -492,7 +492,7 @@ export default function Page({ embedded = false } = {}) {
             </tbody>
           </table>
         </div>
-        <SourceLine>出处：国家统计局 2026-09-15《8月份国民经济运行平稳、发展向新向优》· CPI/PPI 2026-09-09 · 分年龄组失业率 2026-09-17 · 进出口：海关总署</SourceLine>
+        <SourceLine>出处：国家统计局 2026-11-16《10月份国民经济运行总体平稳、向新向优》· CPI/PPI 2026-11-09 · 分年龄组见数据发布库（澎湃新闻 2026-11-18 转引）· 进出口：海关总署</SourceLine>
       </Card>
 
       {/* —— 增长与产业 —— */}
