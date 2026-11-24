@@ -98,7 +98,7 @@ export default function Page({ embedded = false }) {
         <PageHeader
           badge="Dashboard · 经济大盘"
           title="经济大盘"
-          subtitle={`NBS 快照 × 世行长序列 × 金丝雀 · 十五五开局前三季度 · 数据截至 ${ECON_DATA_AS_OF}`}
+          subtitle={`NBS 快照 × 世行长序列 × 金丝雀 · 十五五开局 · 1–10 月 · 数据截至 ${ECON_DATA_AS_OF}`}
         >
           <div className="econ-header-chips flex flex-wrap gap-1.5 items-center">
             <Link to="/dashboard" className="econ-cross-chip">中枢看板 ↗</Link>
@@ -116,7 +116,7 @@ export default function Page({ embedded = false }) {
             <details className="econ-note">
               <summary className="econ-note__summary mono">ⓘ 口径</summary>
               <p className="econ-note__body">
-                NBS 快照（基准日 {ECON_DATA_AS_OF} · 1–9 月累计；GDP 为前三季度口径）· 世行 WDI 实时长序列 · 公开数据派生领先指标。
+                NBS 快照（基准日 {ECON_DATA_AS_OF} · 1–10 月累计；GDP 仍为前三季度口径）· 世行 WDI 实时长序列 · 公开数据派生领先指标。
                 公开统计梳理 · 示意标定 · 非投资建议 · 非预测。
               </p>
             </details>

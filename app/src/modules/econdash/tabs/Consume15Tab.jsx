@@ -11,7 +11,7 @@ import { ECON_DATA_AS_OF, KEY_INDICATORS } from '../econData.js';
 
 const POLICY_AS_OF = '2026-07-13';
 const H1_AS_OF = '2026-07-15';
-const FOLLOWUP_AS_OF = '2026-09-02';
+const FOLLOWUP_AS_OF = '2026-10-28';
 
 const SIX = [
   { t: '服务消费提质惠民', d: '养老 · 托育 · 文旅 · 健康置前' },
@@ -51,9 +51,9 @@ export default function Consume15Tab() {
       type: 'bar',
       barWidth: 18,
       data: [
-        { value: retail?.value ?? 1.3, itemStyle: { color: '#6e8cff', borderRadius: [3, 3, 0, 0] } },
-        { value: 5.0, itemStyle: { color: '#6fc2ae', borderRadius: [3, 3, 0, 0] } },
-        { value: 1.0, itemStyle: { color: '#e5483b', borderRadius: [3, 3, 0, 0] } },
+        { value: retail?.value ?? 1.0, itemStyle: { color: '#6e8cff', borderRadius: [3, 3, 0, 0] } },
+        { value: 4.9, itemStyle: { color: '#6fc2ae', borderRadius: [3, 3, 0, 0] } },
+        { value: 0.9, itemStyle: { color: '#e5483b', borderRadius: [3, 3, 0, 0] } },
         { value: fai?.value ?? -5.7, itemStyle: { color: '#d4a25a', borderRadius: [3, 3, 0, 0] } },
         { value: iva?.value ?? 5.4, itemStyle: { color: '#8a8578', borderRadius: [3, 3, 0, 0] } },
       ],
@@ -109,15 +109,15 @@ export default function Consume15Tab() {
           <Stat value="6×28" label="重点任务" accent="#6e8cff" sub="六面二十八条" />
           <Stat
             value={retail ? `+${retail.value}%` : '—'}
-            label="1–9 月社零"
+            label="1–10 月社零"
             accent="#8a8578"
-            sub={`服务零售 +5.0% · 截至 ${ECON_DATA_AS_OF}`}
+            sub={`服务零售 +4.9% · 截至 ${ECON_DATA_AS_OF}`}
           />
         </StatGrid>
 
         <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
           <strong style={{ color: 'var(--text-primary)' }}>一句话：</strong>
-          政策要闭合「供强需弱」——1–9 月社零偏弱（{retail ? `+${retail.value}%` : '—'}）与固投拖累（{fai ? `${fai.value}%` : '—'}）并存；
+          政策要闭合「供强需弱」——1–10 月社零偏弱（{retail ? `+${retail.value}%` : '—'}）与固投拖累（{fai ? `${fai.value}%` : '—'}）并存；
           规划把扩内需升格为十五五消费纲领，以能力增收 + 服务/商品供给 + 制度长效三轨并进。
         </p>
 
@@ -125,12 +125,12 @@ export default function Consume15Tab() {
           <strong style={{ color: 'var(--text-primary)' }}>规划批复后进展（截至 {FOLLOWUP_AS_OF}）：</strong>
           商务部等 7 部门《关于推动商品消费扩容升级的实施意见》（商消费函〔2026〕389 号，8-13 成文）给出 2030 年社零约 60 万亿元的量化锚；
           财政部等三部门财金〔2026〕71 号（8-21 发布、8-01 起施行）把信用卡各类分期纳入个人消费贷贴息，贴息上限由 3000 元提至 5000 元；
-          商务部等 8 部门《促进智能家居消费行动方案》（商消费发〔2026〕148 号，9-02）。读数面：9 月社零当月 +1.1%（8 月仅 +0.4%），1–9 月服务零售 +5.0% 仍明显快于商品 +1.0%——政策密度上升与需求偏弱同框（NBS 2026-10-19）。
+          商务部等 8 部门《促进智能家居消费行动方案》（商消费发〔2026〕148 号，9-02）。此后：商务部等 9 部门《关于加快推进科技兴商的意见》（商建函〔2026〕551 号，10-13）把人工智能等写入商品与服务消费供给；国家发展改革委等 5 部门《关于加强消费基础设施建设 促进消费投资良性互动的指导意见》（发改就业〔2026〕1508 号，10-19）；商务部 10-28 召开全国消费品以旧换新推进会，称政策带动相关品类销售额超 2 万亿元、惠及超 2.5 亿人次。读数面：10 月社零当月 +0.4%（9 月 +1.1%），1–10 月服务零售 +4.9% 仍快于商品 +0.9%——政策密度上升与需求偏弱同框（NBS 2026-11-16）。
         </p>
 
         <Grid cols={2} className="mb-4">
           <div>
-            <div className="text-[11px] mono mb-2" style={{ color: 'var(--text-tertiary)' }}>1–9 月供需剪刀差（核实）</div>
+            <div className="text-[11px] mono mb-2" style={{ color: 'var(--text-tertiary)' }}>1–10 月供需剪刀差（核实）</div>
             <EChart option={miniStructure} style={{ height: 220 }} />
           </div>
           <div>

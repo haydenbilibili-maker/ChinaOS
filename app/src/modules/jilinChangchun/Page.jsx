@@ -294,13 +294,13 @@ export default function Page() {
         <Card title="结构压力雷达（示意分 · 越高压力越大）">
           <EChart option={radarOption} style={{ height: 300 }} />
           <p className="text-[11px] mt-2" style={{ color: 'var(--text-tertiary)' }}>
-            工业与固投随 2026 年中进度急转为负而上调（1–7 月 −10.0% / −18.5%），与人口自然减少、土地财政退潮同处高压区；分值为示意，非官方评分。
+            工业与固投随 2026 年进度转负而上调（1–9 月 −7.1% / −24.2%），与人口自然减少、土地财政退潮同处高压区；分值为示意，非官方评分。
           </p>
         </Card>
         <Card title="年报 vs 进度 · 工业 / 投资对照">
           <EChart option={trendOption} style={{ height: 300 }} />
           <p className="text-[11px] mt-2" style={{ color: 'var(--text-tertiary)' }}>
-            {TREND_COMPARE.note} 评论最初引用的「固投 −16.5%」是 2025 全年；2026 年 1–6 月为 −16.4%、1–7 月为 −18.5%，进度读数已与之相当。
+            {TREND_COMPARE.note} 评论最初引用的「固投 −16.5%」是 2025 全年；2026 年 1–9 月为 −24.2%，进度降幅已经更深。
           </p>
         </Card>
       </Grid>
