@@ -2213,6 +2213,16 @@ export const MODULES = [
     component: lazy(() => import('../modules/cushionMonitor/Page.jsx')),
   },
   {
+    id: 'observationModel',
+    path: '/modules/observation-model',
+    group: 'governance',
+    title: '复杂网络观测模型',
+    subtitle: '精英稳定性 · 情景概率 · 指标预警 · 2026-11',
+    icon: 'Network',
+    accent: '#6fc2ae',
+    component: lazy(() => import('../modules/observationModel/Page.jsx')),
+  },
+  {
     id: 'leadership', path: '/leadership', group: 'sim',
     title: '领袖统治', subtitle: '权力结构 · 决策机制 · 12 图可视化 · 四区交互', icon: 'Crown',
     component: lazy(() => import('../modules/leadership/Page.jsx')),
