@@ -232,6 +232,16 @@ const MAP = {
     { to: '/modules/personal-review', label: '超个体决策复盘', note: '我该怎么办 · 罗盘/垫子/安全垫。' },
     { to: '/cognition', label: '康波周期 · 长波定位', note: '叙事链「世界」· 第五轮尾部/第六轮安装期。' },
     { to: '/dashboard', label: '中枢看板 · 双仪表合成', note: 'GovernanceVerdict 矩阵速览。' },
+    { to: '/modules/observation-model', label: '复杂网络观测模型', note: '精英稳定性 · 情景概率 · 指标预警 · 事件编码。' },
+  ],
+  observationModel: [
+    { to: '/modules/observatory', label: '观象台 · 治理总入口', note: '世界→中国→同类→我的总判读；本模型补充精英与人事维度。' },
+    { to: '/modules/signal-panel', label: '宏观再平衡信号灯', note: '经济维度的 A/B/C 信号，与本模型 E 组指标互证。' },
+    { to: '/modules/three-forces', label: '三力监测仪', note: '外部压力 / 内部危机 / 认知迭代 · 改革窗口读数。' },
+    { to: '/modules/anticorruption', label: '反腐结构观测', note: '查处节奏与系统分布 · 对应 P2、P6、M1 指标。' },
+    { to: '/leadership', label: '领袖统治', note: '权力结构与决策机制 · 本模型枢纽节点的展开。' },
+    { to: '/talent', label: '人才精英库', note: '政要履历底座 · 节点表与圈层划分的核对来源。' },
+    { to: '/modules/premier-radius', label: '总理权限半径', note: '党政关系 · 国务院从生成节点到执行节点。' },
   ],
   attribution: [
     { to: '/modules/observatory', label: '观象台 · 治理总入口', note: '叙事链「中国」段 · 三层归因是动不了的原因解剖。' },

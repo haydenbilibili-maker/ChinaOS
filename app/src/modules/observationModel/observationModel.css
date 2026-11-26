@@ -1,0 +1,122 @@
+/* 复杂网络观测模型 · 模块私有样式（沿用全局设计令牌） */
+
+.observation-model-page .om-note {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-tertiary);
+}
+
+.observation-model-page .om-note a {
+  color: var(--cyber-cyan);
+}
+
+.observation-model-page .om-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.observation-model-page .om-table th,
+.observation-model-page .om-table td {
+  padding: 7px 10px 7px 0;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid var(--border-subtle, rgb(162 156 145 / 10%));
+}
+
+.observation-model-page .om-table thead th {
+  border-top: 0;
+  font-weight: 400;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+
+.observation-model-page .om-table tbody th {
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.observation-model-page .om-dim th,
+.observation-model-page .om-dim td {
+  opacity: 0.75;
+}
+
+.observation-model-page .om-pill {
+  display: inline-block;
+  padding: 0 8px;
+  font-size: 11px;
+  white-space: nowrap;
+  border: 1px solid;
+  border-radius: 999px;
+}
+
+.observation-model-page .om-scen__block {
+  margin-bottom: 18px;
+}
+
+.observation-model-page .om-scen__title {
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.observation-model-page .om-scen__bar {
+  display: flex;
+  gap: 2px;
+  height: 14px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.observation-model-page .om-scen__seg {
+  min-width: 2px;
+}
+
+.observation-model-page .om-scen__legend {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.observation-model-page .om-scen__p {
+  margin-left: 6px;
+  color: var(--text-primary);
+}
+
+.observation-model-page .om-swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  vertical-align: middle;
+  border-radius: 2px;
+}
+
+.observation-model-page .om-signal {
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.observation-model-page .om-cross {
+  display: inline-flex;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--cyber-cyan);
+}
+
+@media (min-width: 1024px) {
+  .observation-model-page .om-span2 {
+    grid-column: span 2;
+  }
+}
