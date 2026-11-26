@@ -8,6 +8,9 @@
 
 export const MODEL_AS_OF = '2026-11-26';
 
+/** 接班候选池口径：2027 年未到龄、1960 年代出生的在任政治局委员 */
+export const SUCCESSOR_BIRTH_RANGE = [1960, 1969];
+
 /** 二十大选出的中央委员 205 人 + 候补中央委员 171 人 */
 export const CC_BASE = 376;
 
@@ -19,7 +22,7 @@ export const INDICATOR_GROUPS = ['政治精英', '军队', '经济', '外部', '
 /** 指标字典 · 第 15 节 */
 export const INDICATORS = [
   { id: 'P1', group: '政治精英', name: '中央全会出席率', definition: '（出席中委+候补）÷376', source: '全会公报', frequency: '每次全会', current: '74.2%（五中）', threshold: '低于 80%', status: '预警' },
-  { id: 'P2', group: '政治精英', name: '政治局原委员被查比例', definition: '被查人数÷24', source: '中纪委/新华社', frequency: '事件驱动', current: '3/24', threshold: '出现常委', status: '关注' },
+  { id: 'P2', group: '政治精英', name: '政治局原委员被查比例', definition: '被查人数÷24', source: '中纪委/新华社', frequency: '事件驱动', current: '4/24（含 1 人立案审查中）', threshold: '出现常委', status: '关注' },
   { id: 'P3', group: '政治精英', name: '常委会稳定性', definition: '二十大常委留任人数', source: '公开报道', frequency: '事件驱动', current: '7/7', threshold: '任一人变动', status: '正常' },
   { id: 'P4', group: '政治精英', name: '省委书记调整个数', definition: '年内更换的省级一把手', source: '新华社', frequency: '月', current: '2026 年已核实至少 4 个', threshold: '大会前半年内超过 8 个', status: '关注' },
   { id: 'P5', group: '政治精英', name: '递补中委时被跳过人数', definition: '按得票顺序应递补而未递补者', source: '公报名单比对', frequency: '每次全会', current: '待编码', threshold: '每次 ≥3 人', status: '待评' },
@@ -59,7 +62,7 @@ export const POLITBURO = [
   { name: '何立峰', birthYear: 1955, post: '副总理', circle: '闽浙沪旧部', ageOut2027: true, status: '在任', grade: 'A' },
   { name: '张国清', birthYear: 1964, post: '副总理', circle: '军工技术官僚', ageOut2027: false, status: '在任', grade: 'B' },
   { name: '陈文清', birthYear: 1960, post: '中央政法委书记', circle: '安全系统', ageOut2027: false, status: '在任', grade: 'B' },
-  { name: '陈吉宁', birthYear: 1964, post: '上海市委书记', circle: '军工技术官僚', ageOut2027: false, status: '在任', grade: 'B' },
+  { name: '陈吉宁', birthYear: 1964, post: '2026-11-24 立案审查调查（原上海市委书记）', circle: '军工技术官僚', ageOut2027: false, status: '被查处', grade: 'B' },
   { name: '陈敏尔', birthYear: 1960, post: '天津市委书记', circle: '闽浙沪旧部', ageOut2027: false, status: '在任', grade: 'B' },
   { name: '袁家军', birthYear: 1962, post: '重庆市委书记', circle: '军工技术官僚', ageOut2027: false, status: '在任', grade: 'B' },
   { name: '黄坤明', birthYear: 1956, post: '广东省委书记', circle: '闽浙沪旧部', ageOut2027: true, status: '在任', grade: 'A' },
@@ -88,11 +91,39 @@ export const PLENUMS = [
   { plenum: '五中', date: '2026-10', full: 162, alternates: 117 },
 ];
 
-/** 情景主观概率 · 第 17 节（%） */
+/** 领导层维度（二十一大）情景定义 */
+export const L_SCENARIOS = [
+  { id: 'L1', label: '连任，不明确接班' },
+  { id: 'L2', label: '连任，出现明确接班安排' },
+  { id: 'L3', label: '其他结果' },
+];
+
+/** 领导层维度的起点（五中全会前的主观先验，%） */
+export const L_PRIOR_BASE = { L1: 65, L2: 25, L3: 10 };
+
+/**
+ * 领导层维度的逐次贝叶斯更新记录（第 17 节协议）：每条为已发生事件及其似然 P(事件 | 情景)。
+ * 当前概率 = 从 L_PRIOR_BASE 起依次更新；页面的概率轨迹即由此计算，不手填。
+ */
+export const L_UPDATES = [
+  {
+    date: '2026-10-29',
+    label: '五中全会',
+    event: '公报新增以习命名的思想条目（习近平党建思想）',
+    like: { L1: 0.8, L2: 0.6, L3: 0.2 },
+    why: '个人化理论升格在“连任不接班”下最常见；明确接班安排下也会出现但较弱；“其他结果”下罕见。',
+  },
+  {
+    date: '2026-11-24',
+    label: '陈吉宁被查',
+    event: '接班候选池成员（1964 年生政治局委员、上海市委书记）被立案审查调查',
+    like: { L1: 0.6, L2: 0.3, L3: 0.5 },
+    why: '候选池收缩与持续清洗在“不明确接班”下最自然；若已在安排接班，此类事件可能性明显更低；高层不稳定情景下也较常见。',
+  },
+];
+
+/** 经济政策与外部环境维度 · 第 17 节（%） */
 export const SCENARIOS = [
-  { dimension: '领导层（二十一大）', id: 'L1', label: '连任，不明确接班', p: 75 },
-  { dimension: '领导层（二十一大）', id: 'L2', label: '连任，出现明确接班安排', p: 22 },
-  { dimension: '领导层（二十一大）', id: 'L3', label: '其他结果', p: 3 },
   { dimension: '经济政策（2027）', id: 'R1', label: '安全优先，渐进刺激', p: 70 },
   { dimension: '经济政策（2027）', id: 'R2', label: '大规模消费刺激＋对民企制度性放权', p: 30 },
   { dimension: '外部环境（2027）', id: 'X1', label: '中美与台海可管控', p: 75 },
@@ -130,6 +161,7 @@ export const PROPERTY_TREND = [
 
 /** 2026 年事件日志 · 按编码协议，新事件置顶 */
 export const EVENTS = [
+  { date: '2026-11-24', event: '陈吉宁（政治局委员、上海市委书记）被立案审查调查', type: '政治', grade: 'B', indicators: 'P2', direction: 'L1 ↑；L2 ↓' },
   { date: '2026-11-19', event: '深圳 APEC 期间习特会晤；首次中俄美三国元首会晤', type: '外部', grade: 'A', indicators: 'X1', direction: 'X1 ↑' },
   { date: '2026-10-29', event: '五中全会：提出习近平党建思想；张升民入政治局；追认 33 人开除', type: '政治/话语', grade: 'A', indicators: 'P1 P6 D1', direction: 'L1 ↑' },
   { date: '2026-10-19', event: '前三季度 GDP +4.6%，投资下滑', type: '经济', grade: 'A', indicators: 'E1 E5', direction: 'R2 小幅 ↑' },
@@ -149,4 +181,41 @@ export const MODEL_SOURCES = [
   { label: '人民网 · 二十届历次全会', url: 'https://cpc.people.com.cn/GB/64162/448263/index.html' },
   { label: '国家统计局 · 1–10 月房地产', url: 'https://www.stats.gov.cn/sj/zxfbhjd/202611/t20261116_1965840.html' },
   { label: '外交部 · 习近平会见特朗普（深圳）', url: 'https://www.mfa.gov.cn/zyxw/202611/t20261119_12062924.shtml' },
+  { label: '俄罗斯卫星通讯社转新华社 · 陈吉宁被查', url: 'https://sputniknews.cn/20261125/1074331173.html' },
 ];
+
+// ── 网络结构（第 10、12 节）────────────────────────────────────────────────
+
+/** 权力管道：总书记通过它们向下传导决策 */
+export const PIPELINES = [
+  { id: 'pipe-cc', name: '中央委员会体系', note: '深改、财经、外事、国安等决策议事协调机构', members: ['蔡奇', '王沪宁', '石泰峰', '李干杰', '李书磊', '陈文清', '王毅', '赵乐际', '李鸿忠'] },
+  { id: 'pipe-state', name: '国务院', note: '2023 年后定位为执行节点', members: ['李强', '丁薛祥', '何立峰', '刘国中', '张国清'] },
+  { id: 'pipe-cmc', name: '中央军委', note: '二十届原 7 人中仅 2 人在任', members: ['张升民', '张又侠', '何卫东', '李尚福', '刘振立', '苗华'] },
+  { id: 'pipe-ccdi', name: '纪委监委', note: '常态化政治审查', members: ['李希'] },
+  { id: 'pipe-local', name: '地方（省/直辖市）', note: '政治局委员兼任的一把手岗位', members: ['尹力', '陈吉宁', '陈敏尔', '袁家军', '黄坤明', '马兴瑞'] },
+];
+
+/** 人事圈层与“边”的保护力（第 12 节边权重表；0–3：无/低/中/高） */
+export const CIRCLES = [
+  { id: '闽浙沪旧部', edge: '直接共事', protect2022: 3, protect2026: 2.5, note: '文职核心；截至目前常委层级无人被查' },
+  { id: '友人与二代', edge: '世交 / 二代', protect2022: 3, protect2026: 0.5, note: '张又侠 2026-09 被开除党籍军籍' },
+  { id: '军工技术官僚', edge: '系统提拔', protect2022: 2, protect2026: 0.5, note: '马兴瑞、陈吉宁被查；金壮龙等在五中全会开除名单' },
+  { id: '陕西关系', edge: '祖籍 / 根据地', protect2022: 2, protect2026: 2, note: '证据不足，权重维持' },
+  { id: '专业官僚', edge: '组织程序', protect2022: 1.5, protect2026: 1.5, note: '外交、组织、统战、地方等职业路径' },
+  { id: '军队', edge: '军内提拔', protect2022: 2, protect2026: 0.5, note: '何卫东、苗华等原 31 集团军背景将领被查' },
+];
+
+/** 不在政治局、但在网络中的军委原成员 */
+export const EXTRA_NODES = [
+  { name: '李尚福', post: '原国防部长 · 2024-06 开除党籍', circle: '军工技术官僚', status: '被查处', grade: 'A' },
+  { name: '刘振立', post: '原联合参谋部参谋长 · 2026-09 开除党籍军籍', circle: '军队', status: '被查处', grade: 'A' },
+  { name: '苗华', post: '原政治工作部主任 · 2025-10 开除党籍军籍', circle: '军队', status: '被查处', grade: 'A' },
+];
+
+/** 圈层归并：节点表中的细分标签映射到网络圈层 */
+export const CIRCLE_ALIAS = {
+  '陕西关系/军队': '陕西关系',
+  理论系统: '专业官僚',
+  安全系统: '专业官僚',
+  前任网络: '专业官僚',
+};

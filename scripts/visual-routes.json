@@ -126,6 +126,12 @@
     {
       "id": "shenzhou-cmp",
       "path": "/shenzhou-live?cmp=北京市,上海市,广东省"
+    },
+    {
+      "id": "observation-model",
+      "path": "/modules/observation-model",
+      "fullPage": true,
+      "settleMs": 3000
     }
   ]
 }

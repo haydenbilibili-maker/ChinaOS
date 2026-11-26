@@ -2217,7 +2217,7 @@ export const MODULES = [
     path: '/modules/observation-model',
     group: 'governance',
     title: '复杂网络观测模型',
-    subtitle: '精英稳定性 · 情景概率 · 指标预警 · 2026-11',
+    subtitle: '权力网络 · 情景推演 · 指标预警 · 2026-11',
     icon: 'Network',
     accent: '#6fc2ae',
     component: lazy(() => import('../modules/observationModel/Page.jsx')),

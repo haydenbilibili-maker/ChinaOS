@@ -1,4 +1,8 @@
-/* 复杂网络观测模型 · 模块私有样式（沿用全局设计令牌） */
+/* 复杂网络观测模型 · v2 观测驾驶舱（沿用全局设计令牌，模块私有类以 om- 开头） */
+
+.observation-model-page .om-section {
+  margin-bottom: 20px;
+}
 
 .observation-model-page .om-note {
   margin: 8px 0 0;
@@ -7,8 +11,428 @@
   color: var(--text-tertiary);
 }
 
-.observation-model-page .om-note a {
+.observation-model-page .om-note a,
+.observation-model-page .om-cross {
   color: var(--cyber-cyan);
+}
+
+.observation-model-page .om-cross {
+  display: inline-flex;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.observation-model-page .om-sub {
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text-tertiary);
+}
+
+/* ── 读数条 ─────────────────────────────────────────────────────────────── */
+.observation-model-page .om-readout {
+  margin-bottom: 16px;
+  padding: 14px 18px;
+  border-left: 3px solid var(--fire-gold);
+}
+
+.observation-model-page .om-readout__head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  align-items: baseline;
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.observation-model-page .om-readout__tag {
+  color: var(--fire-gold);
+}
+
+.observation-model-page .om-readout__latest b {
+  color: var(--status-negative);
+  font-weight: 500;
+}
+
+.observation-model-page .om-readout__line {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+}
+
+.observation-model-page .om-readout__line b {
+  color: var(--text-primary);
+}
+
+/* ── 分栏布局 ─────────────────────────────────────────────────────────── */
+.observation-model-page .om-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+
+.observation-model-page .om-trio {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+
+@media (min-width: 1024px) {
+  .observation-model-page .om-split {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+
+  .observation-model-page .om-split--even {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .observation-model-page .om-trio {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.observation-model-page .om-split > .os-card,
+.observation-model-page .om-trio > .os-card {
+  min-width: 0;
+}
+
+.observation-model-page .om-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.observation-model-page .om-toolbar .os-tab-bar {
+  margin-bottom: 0;
+}
+
+.observation-model-page .om-toolbar__meta {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+/* ── 节点详情 ─────────────────────────────────────────────────────────── */
+.observation-model-page .om-detail {
+  max-height: 640px;
+  overflow-y: auto;
+}
+
+.observation-model-page .om-detail__kicker {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text-tertiary);
+}
+
+.observation-model-page .om-detail__title {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 4px 0 2px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.observation-model-page .om-detail__sub {
+  margin: 0 0 10px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.observation-model-page .om-detail__stat {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.observation-model-page .om-kv {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 12px;
+  margin: 0;
+  font-size: 12px;
+}
+
+.observation-model-page .om-kv dt {
+  color: var(--text-tertiary);
+}
+
+.observation-model-page .om-kv dd {
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.observation-model-page .om-members {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.observation-model-page .om-members li {
+  display: grid;
+  grid-template-columns: 4.5em minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 12px;
+  border-top: 1px solid var(--border-subtle, rgb(162 156 145 / 10%));
+}
+
+.observation-model-page .om-members__name {
+  color: var(--text-primary);
+}
+
+.observation-model-page .om-members__post {
+  overflow: hidden;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.observation-model-page .om-protect {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 8px;
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.observation-model-page .om-protect__row {
+  display: grid;
+  grid-template-columns: 3em 1fr 2em;
+  gap: 8px;
+  align-items: center;
+}
+
+.observation-model-page .om-protect__track {
+  height: 6px;
+  overflow: hidden;
+  background: var(--border-subtle, rgb(162 156 145 / 12%));
+  border-radius: 3px;
+}
+
+.observation-model-page .om-protect__track span {
+  display: block;
+  height: 100%;
+  background: var(--text-tertiary);
+}
+
+.observation-model-page .om-protect__row.is-now .om-protect__track span {
+  background: var(--fire-gold);
+}
+
+.observation-model-page .om-protect b {
+  color: var(--text-primary);
+}
+
+/* ── 情景 ─────────────────────────────────────────────────────────────── */
+.observation-model-page .om-updates {
+  display: grid;
+  gap: 10px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.observation-model-page .om-updates li {
+  padding-left: 10px;
+  border-left: 2px solid var(--fire-gold);
+}
+
+.observation-model-page .om-updates__like {
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.observation-model-page .om-chips {
+  display: grid;
+  gap: 6px;
+  margin: 10px 0 14px;
+}
+
+.observation-model-page .om-chip {
+  padding: 7px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid var(--border-subtle, rgb(162 156 145 / 18%));
+  border-radius: 8px;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.observation-model-page .om-chip:hover {
+  color: var(--text-primary);
+}
+
+.observation-model-page .om-chip.is-on {
+  color: var(--text-primary);
+  background: rgb(212 162 90 / 10%);
+  border-color: var(--fire-gold);
+}
+
+.observation-model-page .om-stack {
+  display: grid;
+  grid-template-columns: 5.5em 1fr;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.observation-model-page .om-stack__bar {
+  display: flex;
+  gap: 2px;
+  height: 20px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.observation-model-page .om-stack__bar span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--bg-base);
+  white-space: nowrap;
+  transition: flex-basis 0.3s ease;
+}
+
+.observation-model-page .om-deltas {
+  display: grid;
+  gap: 4px;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.observation-model-page .om-delta {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+}
+
+.observation-model-page .om-delta b {
+  margin-left: auto;
+}
+
+.observation-model-page .om-link {
+  justify-self: start;
+  padding: 0;
+  font-size: 12px;
+  color: var(--cyber-cyan);
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+
+.observation-model-page .om-divider {
+  height: 1px;
+  margin: 14px 0 10px;
+  background: var(--border-subtle, rgb(162 156 145 / 14%));
+}
+
+.observation-model-page .om-mini {
+  margin-bottom: 10px;
+}
+
+.observation-model-page .om-mini__title {
+  margin-bottom: 4px;
+  font-size: 12px;
+  color: var(--text-primary);
+}
+
+.observation-model-page .om-mini__row {
+  display: grid;
+  grid-template-columns: 2em minmax(0, 1fr) 72px 3em;
+  gap: 8px;
+  align-items: center;
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.observation-model-page .om-mini__label {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.observation-model-page .om-mini__track {
+  height: 6px;
+  overflow: hidden;
+  background: var(--border-subtle, rgb(162 156 145 / 12%));
+  border-radius: 3px;
+}
+
+.observation-model-page .om-mini__track span {
+  display: block;
+  height: 100%;
+  background: var(--cyber-cyan);
+}
+
+.observation-model-page .om-mini__row b {
+  color: var(--text-primary);
+  text-align: right;
+}
+
+/* ── 指标看板 ─────────────────────────────────────────────────────────── */
+.observation-model-page .om-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.observation-model-page .om-tile {
+  display: grid;
+  gap: 6px;
+  padding: 10px 12px;
+  color: var(--text-secondary);
+  text-align: left;
+  cursor: pointer;
+  background: var(--bg-elevated, transparent);
+  border: 1px solid var(--border-subtle, rgb(162 156 145 / 16%));
+  border-radius: 10px;
+  transition: border-color 0.15s;
+}
+
+.observation-model-page .om-tile.is-on {
+  border-color: var(--fire-gold);
+}
+
+.observation-model-page .om-tile__name {
+  font-size: 13px;
+  color: var(--text-primary);
+}
+
+.observation-model-page .om-tile__counts {
+  display: flex;
+  gap: 10px;
+  font-size: 15px;
+}
+
+.observation-model-page .om-tile__counts i {
+  font-style: normal;
+}
+
+.observation-model-page .om-tile__bar {
+  display: flex;
+  gap: 2px;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 2px;
 }
 
 .observation-model-page .om-table {
@@ -34,14 +458,26 @@
 }
 
 .observation-model-page .om-table tbody th {
+  padding-left: 10px;
   font-weight: 500;
   color: var(--text-primary);
   white-space: nowrap;
+  box-shadow: inset 3px 0 0 var(--row-accent, transparent);
 }
 
-.observation-model-page .om-dim th,
-.observation-model-page .om-dim td {
-  opacity: 0.75;
+.observation-model-page .om-row-click {
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.observation-model-page .om-row-click:hover,
+.observation-model-page .om-row-click.is-on {
+  background: rgb(110 140 255 / 7%);
+}
+
+.observation-model-page .om-row-click:focus-visible {
+  outline: 2px solid var(--focus-ring-cyan, var(--cyber-cyan));
+  outline-offset: -2px;
 }
 
 .observation-model-page .om-pill {
@@ -53,70 +489,73 @@
   border-radius: 999px;
 }
 
-.observation-model-page .om-scen__block {
-  margin-bottom: 18px;
-}
-
-.observation-model-page .om-scen__title {
-  margin-bottom: 6px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.observation-model-page .om-scen__bar {
+/* ── 事件 ─────────────────────────────────────────────────────────────── */
+.observation-model-page .om-filter-note {
   display: flex;
-  gap: 2px;
-  height: 14px;
-  overflow: hidden;
-  border-radius: 4px;
-}
-
-.observation-model-page .om-scen__seg {
-  min-width: 2px;
-}
-
-.observation-model-page .om-scen__legend {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  margin: 8px 0 0;
-  padding: 0;
-  list-style: none;
+  gap: 10px;
+  align-items: baseline;
+  margin-bottom: 4px;
   font-size: 12px;
   color: var(--text-secondary);
 }
 
-.observation-model-page .om-scen__p {
-  margin-left: 6px;
-  color: var(--text-primary);
+.observation-model-page .om-event-detail {
+  padding: 10px 12px;
+  margin-top: 6px;
+  background: var(--bg-elevated, transparent);
+  border-left: 3px solid var(--cyber-cyan);
+  border-radius: 6px;
 }
 
-.observation-model-page .om-swatch {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin-right: 6px;
-  vertical-align: middle;
-  border-radius: 2px;
-}
-
-.observation-model-page .om-signal {
-  margin: 0 0 10px;
-  font-size: 13px;
+.observation-model-page .om-event-detail__title {
+  margin: 4px 0;
+  font-size: 14px;
   line-height: 1.6;
   color: var(--text-primary);
 }
 
-.observation-model-page .om-cross {
-  display: inline-flex;
-  margin-top: 12px;
+.observation-model-page .om-evlist {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
   font-size: 12px;
-  color: var(--cyber-cyan);
+  line-height: 1.6;
+  color: var(--text-secondary);
 }
 
-@media (min-width: 1024px) {
-  .observation-model-page .om-span2 {
-    grid-column: span 2;
+.observation-model-page .om-evlist li + li {
+  border-top: 1px solid var(--border-subtle, rgb(162 156 145 / 10%));
+}
+
+.observation-model-page .om-evlist--click {
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+.observation-model-page .om-evlist--click button {
+  display: grid;
+  gap: 2px;
+  width: 100%;
+  padding: 7px 8px;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  border-radius: 6px;
+}
+
+.observation-model-page .om-evlist--click button:hover,
+.observation-model-page .om-evlist--click button.is-on {
+  color: var(--text-primary);
+  background: rgb(110 140 255 / 7%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .observation-model-page .om-stack__bar span,
+  .observation-model-page .om-chip,
+  .observation-model-page .om-tile,
+  .observation-model-page .om-row-click {
+    transition: none;
   }
 }
