@@ -85,9 +85,10 @@ export function networkOption({ nodes, links }, selectedId, { compact = false } 
       categories: CATEGORIES,
       data,
       links: edges,
-      zoom: compact ? 0.9 : 0.86,
+      top: 34,
+      zoom: compact ? 1.45 : 0.82,
       force: compact
-        ? { repulsion: 70, edgeLength: [18, 52], gravity: 0.16, friction: 0.25 }
+        ? { repulsion: 80, edgeLength: [20, 56], gravity: 0.14, friction: 0.25 }
         : { repulsion: 240, edgeLength: [44, 130], gravity: 0.08, friction: 0.25 },
       emphasis: { focus: 'adjacency', lineStyle: { width: 2.5 } },
       labelLayout: { hideOverlap: true },
