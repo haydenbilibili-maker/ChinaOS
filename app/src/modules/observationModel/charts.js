@@ -21,11 +21,12 @@ const CATEGORIES = [
 ];
 const CAT_INDEX = { hub: 0, pipeline: 1, circle: 2 };
 
-export function networkOption({ nodes, links }, selectedId) {
+export function networkOption({ nodes, links }, selectedId, { compact = false } = {}) {
   const data = nodes.map((n) => {
     const category = n.kind === 'member' ? (n.status === '被查处' ? 4 : 3) : CAT_INDEX[n.kind];
     const psc = n.kind === 'member' && /常委/.test(n.person?.post || '');
-    const size = n.kind === 'hub' ? 58 : n.kind === 'pipeline' ? 30 : n.kind === 'circle' ? 16 + n.protect * 6 : psc ? 18 : 12;
+    const base = n.kind === 'hub' ? 58 : n.kind === 'pipeline' ? 30 : n.kind === 'circle' ? 16 + n.protect * 6 : psc ? 18 : 12;
+    const size = compact ? Math.round(base * 0.72) : base;
     const selected = n.id === selectedId;
     return {
       id: n.id,
@@ -40,9 +41,9 @@ export function networkOption({ nodes, links }, selectedId) {
         opacity: n.kind === 'member' && n.status === '被查处' ? 0.9 : 1,
       },
       label: {
-        show: true,
+        show: !(compact && n.kind === 'member'),
         position: n.kind === 'hub' ? 'inside' : n.kind === 'member' ? 'right' : n.kind === 'circle' ? 'top' : 'bottom',
-        fontSize: n.kind === 'hub' ? 13 : n.kind === 'member' ? 10 : 11,
+        fontSize: n.kind === 'hub' ? (compact ? 11 : 13) : n.kind === 'member' ? 10 : compact ? 10 : 11,
         fontWeight: n.kind === 'member' ? 400 : 600,
         color: n.kind === 'hub' ? '#0b0f17' : LABEL.color,
         formatter: n.kind === 'pipeline' || n.kind === 'circle' ? n.name.replace('（省/直辖市）', '') : n.name,
@@ -75,7 +76,7 @@ export function networkOption({ nodes, links }, selectedId) {
         return p.name;
       },
     },
-    legend: [{ data: CATEGORIES.map((c) => c.name), bottom: 0, textStyle: { color: LABEL.color, fontSize: 11 }, itemWidth: 10, itemHeight: 10 }],
+    legend: [{ data: CATEGORIES.map((c) => c.name), top: 0, textStyle: { color: LABEL.color, fontSize: 11 }, itemWidth: 10, itemHeight: 10 }],
     series: [{
       type: 'graph',
       layout: 'force',
@@ -84,7 +85,10 @@ export function networkOption({ nodes, links }, selectedId) {
       categories: CATEGORIES,
       data,
       links: edges,
-      force: { repulsion: 240, edgeLength: [44, 130], gravity: 0.07, friction: 0.25 },
+      zoom: compact ? 0.9 : 0.86,
+      force: compact
+        ? { repulsion: 70, edgeLength: [18, 52], gravity: 0.16, friction: 0.25 }
+        : { repulsion: 240, edgeLength: [44, 130], gravity: 0.08, friction: 0.25 },
       emphasis: { focus: 'adjacency', lineStyle: { width: 2.5 } },
       labelLayout: { hideOverlap: true },
     }],

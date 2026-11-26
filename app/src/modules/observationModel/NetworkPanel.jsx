@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Card } from '../../app/ui.jsx';
 import EChart from '../../lib/viz/EChart.jsx';
 import { SelectorBar } from '../shared/ModuleParadigm.jsx';
@@ -119,7 +119,16 @@ export default function NetworkPanel() {
     () => buildNetwork({ politburo: POLITBURO, extra: EXTRA_NODES, pipelines: PIPELINES, circles: CIRCLES, alias: CIRCLE_ALIAS, snapshot }),
     [snapshot],
   );
-  const option = useMemo(() => networkOption(network, null), [network]);
+  const boxRef = useRef(null);
+  const [compact, setCompact] = useState(false);
+  useEffect(() => {
+    const el = boxRef.current;
+    if (!el || typeof ResizeObserver === 'undefined') return undefined;
+    const ro = new ResizeObserver(([entry]) => setCompact(entry.contentRect.width < 640));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  const option = useMemo(() => networkOption(network, null, { compact }), [network, compact]);
   const selectRef = useRef(setSelectedId);
   selectRef.current = setSelectedId;
   const onReady = useCallback((chart) => {
@@ -137,8 +146,10 @@ export default function NetworkPanel() {
           <SelectorBar items={SNAPSHOTS} activeKey={snapshot} onSelect={setSnapshot} />
           <span className="om-toolbar__meta mono">节点 {network.nodes.length} · 边 {network.links.length} · 被查处 <b style={{ color: purged ? 'var(--status-negative)' : undefined }}>{purged}</b></span>
         </div>
-        <EChart option={option} onReady={onReady} style={{ height: 500 }} />
-        <p className="om-note">圈层菱形大小与金色连线粗细表示“边的保护力”（0–3）；红色虚线为已因查处断开的边。可拖动节点，点击查看详情，点图例隐藏某类节点。</p>
+        <div ref={boxRef}>
+          <EChart option={option} onReady={onReady} style={{ height: compact ? 420 : 520 }} />
+        </div>
+        <p className="om-note">圈层菱形大小与金色连线粗细表示“边的保护力”（0–3）；红色虚线为已因查处断开的边。可拖动节点，点击查看详情（窄屏下成员姓名在详情中显示），点图例隐藏某类节点。</p>
       </Card>
       <Card title="节点详情" className="om-split__side om-detail" asSection={false}>
         <NodeDetail node={node} network={network} snapshot={snapshot} />
