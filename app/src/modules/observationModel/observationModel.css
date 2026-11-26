@@ -70,6 +70,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 16px;
+  align-items: start;
 }
 
 .observation-model-page .om-trio {
@@ -558,4 +559,62 @@
   .observation-model-page .om-row-click {
     transition: none;
   }
+}
+
+.observation-model-page .om-tile__counts small {
+  margin-left: 2px;
+  font-size: 10px;
+  color: var(--text-tertiary);
+}
+
+.observation-model-page .om-circles {
+  display: grid;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.observation-model-page .om-circles__row {
+  display: grid;
+  grid-template-columns: 6.5em minmax(0, 1fr) 4.5em;
+  gap: 8px;
+  align-items: center;
+  padding: 0;
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+
+.observation-model-page .om-circles__row:hover,
+.observation-model-page .om-circles__row.is-on {
+  color: var(--text-primary);
+}
+
+.observation-model-page .om-circles__track {
+  position: relative;
+  height: 8px;
+  background: var(--border-subtle, rgb(162 156 145 / 12%));
+  border-radius: 4px;
+}
+
+.observation-model-page .om-circles__track i {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 4px;
+}
+
+.observation-model-page .om-circles__track i.was {
+  background: rgb(162 156 145 / 35%);
+}
+
+.observation-model-page .om-circles__track i.now {
+  background: var(--fire-gold);
+}
+
+.observation-model-page .om-circles__track i.now.is-drop {
+  background: var(--status-negative);
 }

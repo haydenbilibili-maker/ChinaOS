@@ -1,5 +1,5 @@
 // 复杂网络观测模型 · ECharts option 构造（纯函数）
-import { AXIS, LABEL, GRID_LINE, CHART_TOOLTIP, chartSeriesColor } from '../shared/chartHelpers.js';
+import { AXIS, LABEL, GRID_LINE, CHART_TOOLTIP } from '../shared/chartHelpers.js';
 
 export const NEG = '#e5483b';
 export const GOLD = '#d4a25a';
@@ -41,7 +41,7 @@ export function networkOption({ nodes, links }, selectedId) {
       },
       label: {
         show: true,
-        position: n.kind === 'hub' ? 'inside' : n.kind === 'member' ? 'right' : 'bottom',
+        position: n.kind === 'hub' ? 'inside' : n.kind === 'member' ? 'right' : n.kind === 'circle' ? 'top' : 'bottom',
         fontSize: n.kind === 'hub' ? 13 : n.kind === 'member' ? 10 : 11,
         fontWeight: n.kind === 'member' ? 400 : 600,
         color: n.kind === 'hub' ? '#0b0f17' : LABEL.color,
@@ -84,7 +84,7 @@ export function networkOption({ nodes, links }, selectedId) {
       categories: CATEGORIES,
       data,
       links: edges,
-      force: { repulsion: 150, edgeLength: [36, 110], gravity: 0.09, friction: 0.25 },
+      force: { repulsion: 240, edgeLength: [44, 130], gravity: 0.07, friction: 0.25 },
       emphasis: { focus: 'adjacency', lineStyle: { width: 2.5 } },
       labelLayout: { hideOverlap: true },
     }],
@@ -141,6 +141,7 @@ export function trajectoryOption(points, whatIf) {
 // ── 事件时间轴 ──────────────────────────────────────────────────────────────
 
 export const LANES = ['政治', '军队', '经济', '外部', '话语'];
+const LANE_COLORS = [GOLD, BLUE, TEAL, CYAN, '#b07cc6'];
 
 export function timelineOption(events, { selectedKey, highlightKeys }) {
   const laneOf = (t) => LANES.indexOf(String(t).split('/')[0]);
@@ -171,7 +172,7 @@ export function timelineOption(events, { selectedKey, highlightKeys }) {
           value: [e.date, laneOf(e.type)],
           symbolSize: sel ? 20 : 13,
           itemStyle: {
-            color: chartSeriesColor(laneOf(e.type)),
+            color: LANE_COLORS[laneOf(e.type)],
             opacity: on ? 0.95 : 0.18,
             borderColor: sel ? '#ffffff' : 'rgba(0,0,0,0)',
             borderWidth: sel ? 2 : 0,
@@ -200,7 +201,7 @@ export function plenumOption(rows, { base, alert }) {
     series: [{
       type: 'bar',
       barWidth: '50%',
-      data: rows.map((r) => ({ value: r.total, itemStyle: { color: r.share < alert ? NEG : chartSeriesColor(0), borderRadius: [4, 4, 0, 0] } })),
+      data: rows.map((r) => ({ value: r.total, itemStyle: { color: r.share < alert ? NEG : BLUE, borderRadius: [4, 4, 0, 0] } })),
       label: { show: true, position: 'top', formatter: (p) => `${rows[p.dataIndex].share.toFixed(1)}%`, color: LABEL.color, fontSize: 10 },
       markLine: {
         symbol: 'none',
@@ -222,14 +223,21 @@ export function econOption(rows) {
       formatter: (ps) => { const r = data[ps[0].dataIndex]; return `${r.metric}（${r.period}）：${signed(r.value)}%`; },
     },
     grid: { left: 104, right: 40, top: 4, bottom: 20 },
-    xAxis: { type: 'value', splitLine: GRID_LINE, axisLabel: { ...LABEL, fontSize: 10, formatter: '{value}%' } },
+    xAxis: {
+      type: 'value',
+      min: (v) => Math.floor(v.min * 1.4),
+      max: (v) => Math.ceil(v.max * 1.3),
+      splitNumber: 4,
+      splitLine: GRID_LINE,
+      axisLabel: { ...LABEL, fontSize: 10, formatter: '{value}%' },
+    },
     yAxis: { type: 'category', data: data.map((r) => r.metric), axisLine: AXIS, axisLabel: { ...LABEL, fontSize: 10 } },
     series: [{
       type: 'bar',
       barWidth: '58%',
       data: data.map((r) => ({
         value: r.value,
-        itemStyle: { color: r.value < 0 ? NEG : chartSeriesColor(0) },
+        itemStyle: { color: r.value < 0 ? NEG : TEAL },
         label: { position: r.value < 0 ? 'left' : 'right' },
       })),
       label: { show: true, formatter: (p) => signed(p.value), color: LABEL.color, fontSize: 10 },

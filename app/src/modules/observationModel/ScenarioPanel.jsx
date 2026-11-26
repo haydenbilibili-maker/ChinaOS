@@ -57,7 +57,7 @@ export default function ScenarioPanel() {
           ))}
         </div>
         <StackRow label="当前" probs={current} />
-        <StackRow label={whatIf ? '信号出现后' : '（未选信号）'} probs={whatIf || current} />
+        {whatIf ? <StackRow label="信号出现后" probs={whatIf} /> : <p className="om-note">点选上方任一信号，查看概率如何移动。</p>}
         {whatIf && (
           <div className="om-deltas">
             {L_SCENARIOS.map((s) => {

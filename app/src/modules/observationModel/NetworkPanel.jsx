@@ -142,6 +142,20 @@ export default function NetworkPanel() {
       </Card>
       <Card title="节点详情" className="om-split__side om-detail" asSection={false}>
         <NodeDetail node={node} network={network} snapshot={snapshot} />
+        <div className="om-divider" />
+        <div className="om-detail__kicker">各圈层边的保护力 · 2022 → 当前（满分 3）</div>
+        <div className="om-circles">
+          {CIRCLES.map((c) => (
+            <button key={c.id} type="button" className={`om-circles__row ${selectedId === `circle:${c.id}` ? 'is-on' : ''}`} onClick={() => setSelectedId(`circle:${c.id}`)}>
+              <span>{c.id}</span>
+              <span className="om-circles__track" aria-hidden="true">
+                <i className="was" style={{ width: `${(c.protect2022 / 3) * 100}%` }} />
+                <i className={`now ${c.protect2026 < c.protect2022 ? 'is-drop' : ''}`} style={{ width: `${(c.protect2026 / 3) * 100}%` }} />
+              </span>
+              <span className="mono">{c.protect2022} → {c.protect2026}</span>
+            </button>
+          ))}
+        </div>
       </Card>
     </div>
   );

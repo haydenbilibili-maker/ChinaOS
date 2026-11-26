@@ -18,9 +18,9 @@ export default function IndicatorBoard({ group, onGroup, selectedId, onSelect })
           <button key={s.group} type="button" className={`om-tile ${group === s.group ? 'is-on' : ''}`} aria-pressed={group === s.group} onClick={() => onGroup(group === s.group ? null : s.group)}>
             <span className="om-tile__name">{s.group}</span>
             <span className="om-tile__counts mono">
-              <i style={{ color: 'var(--status-negative)' }}>{s.warn}</i>
-              <i style={{ color: 'var(--status-caution)' }}>{s.watch}</i>
-              <i style={{ color: 'var(--status-positive)' }}>{s.ok}</i>
+              <i style={{ color: 'var(--status-negative)' }}>{s.warn}<small>预警</small></i>
+              <i style={{ color: 'var(--status-caution)' }}>{s.watch}<small>关注</small></i>
+              <i style={{ color: 'var(--status-positive)' }}>{s.ok}<small>正常</small></i>
             </span>
             <span className="om-tile__bar">
               {['预警', '关注', '正常', '待评'].map((k) => {
