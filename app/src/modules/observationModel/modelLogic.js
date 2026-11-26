@@ -58,3 +58,77 @@ export function circleCounts(politburo) {
   }
   return [...m.entries()].sort((a, b) => b[1] - a[1]);
 }
+
+/** 依次应用多条似然，返回最终后验（%） */
+export function applySignals(prior, likes) {
+  return likes.reduce((p, like) => bayesUpdate(p, like), { ...prior });
+}
+
+/** 领导层维度概率轨迹：起点 + 每条已发生事件后的后验 */
+export function lTrajectory(base, updates) {
+  const points = [{ label: '起点', date: null, probs: { ...base } }];
+  let p = { ...base };
+  for (const u of updates) {
+    p = bayesUpdate(p, u.like);
+    points.push({ label: u.label, date: u.date, event: u.event, why: u.why, like: u.like, probs: p });
+  }
+  return points;
+}
+
+/** 接班候选池：在任、未到龄、出生年在给定区间内的政治局委员 */
+export function successorPool(politburo, [from, to]) {
+  return politburo.filter((r) => r.status === '在任' && r.ageOut2027 === false && r.birthYear >= from && r.birthYear <= to);
+}
+
+/** 各分组的指标状态计数 */
+export function indicatorDimSummary(indicators, groups) {
+  return groups.map((g) => {
+    const rows = indicators.filter((r) => r.group === g);
+    const count = (s) => rows.filter((r) => r.status === s).length;
+    return { group: g, total: rows.length, warn: count('预警'), watch: count('关注'), ok: count('正常'), pending: count('待评') };
+  });
+}
+
+/** 影响某指标的事件（事件 indicators 字段以空格分隔） */
+export function eventsForIndicator(events, id) {
+  return events.filter((e) => String(e.indicators).split(/\s+/).includes(id));
+}
+
+/** 正文中提到某人的事件 */
+export function eventsMentioning(events, name) {
+  return events.filter((e) => String(e.event).includes(name));
+}
+
+/**
+ * 构建网络节点与边。snapshot: '2022'（二十大组成时）| '2026'（当前）
+ * 节点 id：hub / pipe-* / circle:<圈层> / m:<姓名>
+ */
+export function buildNetwork({ politburo, extra, pipelines, circles, alias, snapshot = '2026' }) {
+  const people = [...politburo.filter((r) => r.circle !== '枢纽'), ...extra].map((r) => ({
+    ...r,
+    netCircle: alias[r.circle] || r.circle,
+    netStatus: snapshot === '2022' ? (r.added ? '未入局' : '在任') : r.status,
+  })).filter((r) => r.netStatus !== '未入局');
+
+  const nodes = [{ id: 'hub', name: '习近平', kind: 'hub' }];
+  const links = [];
+  for (const p of pipelines) {
+    nodes.push({ id: p.id, name: p.name, kind: 'pipeline' });
+    links.push({ source: 'hub', target: p.id, kind: 'hub-pipe', weight: 3 });
+  }
+  for (const c of circles) {
+    const w = snapshot === '2022' ? c.protect2022 : c.protect2026;
+    nodes.push({ id: `circle:${c.id}`, name: c.id, kind: 'circle', protect: w });
+    links.push({ source: 'hub', target: `circle:${c.id}`, kind: 'hub-circle', weight: w });
+  }
+  for (const r of people) {
+    const id = `m:${r.name}`;
+    nodes.push({ id, name: r.name, kind: 'member', status: r.netStatus, person: r });
+    if (circles.some((c) => c.id === r.netCircle)) {
+      links.push({ source: id, target: `circle:${r.netCircle}`, kind: 'member-circle', weight: 1, broken: r.netStatus === '被查处' });
+    }
+    const pipe = pipelines.find((p) => p.members.includes(r.name));
+    if (pipe) links.push({ source: id, target: pipe.id, kind: 'member-pipe', weight: 1, broken: r.netStatus === '被查处' });
+  }
+  return { nodes, links };
+}
